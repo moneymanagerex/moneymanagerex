@@ -871,7 +871,7 @@ bool mmMainCurrencyDialog::GetOnlineHistory(std::map<wxDateTime, double> &histor
         , "5y", "1d"); //TODO: ask range and interval
 
     wxString json_data;
-    auto err_code = site_content(URL, json_data);
+    auto err_code = http_get_data(URL, json_data);
     if (err_code != CURLE_OK)
     {
         msg = json_data;

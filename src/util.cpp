@@ -187,12 +187,63 @@ curlWriteMemoryCallback(void *contents, size_t size, size_t nmemb, void *userp)
   return realsize;
 }
 
+static size_t
+curlWriteFileCallback(void *contents, size_t size, size_t nmemb, wxFileOutputStream *stream)
+{
+    stream->Write(contents, size * nmemb);
+    return stream->LastWrite();
+}
 
-CURLcode site_content(const wxString& sSite, wxString& sOutput)
- {
-    CURL *curl = curl_easy_init();
-    if (!curl) return CURLE_FAILED_INIT;
+#ifdef _DEBUG
+static int log_libcurl_debug(CURL *handle, curl_infotype type, char *data, size_t size, void *userp)
+{
+    (void)handle; /* Not used */
+    (void)userp; /* Not used */
+    static const char * const s_infotype[] = {
+        "*", "<", ">", "{", "}", "(", ")"
+    };
 
+    wxString text(data, size);
+    wxStringTokenizer tokenizer;
+
+    switch (type) {
+    case CURLINFO_HEADER_OUT:
+    case CURLINFO_TEXT:
+    case CURLINFO_HEADER_IN:
+        tokenizer.SetString(text, "\n", wxTOKEN_STRTOK);
+        while (tokenizer.HasMoreTokens()) {
+            wxString line = tokenizer.GetNextToken();
+            line.Trim();
+            wxLogTrace("libcurl", "%s %s", s_infotype[type], line);
+        }
+        break;
+    case CURLINFO_DATA_OUT:
+    case CURLINFO_DATA_IN:
+    case CURLINFO_SSL_DATA_IN:
+    case CURLINFO_SSL_DATA_OUT:
+        if (wxLog::IsAllowedTraceMask("libcurl_data")) {
+            tokenizer.SetString(text, "\n", wxTOKEN_STRTOK);
+            while (tokenizer.HasMoreTokens()) {
+                wxString line = tokenizer.GetNextToken();
+                line.Trim();
+                wxLogTrace("libcurl_data", "%s %s", s_infotype[type], line);
+            }
+        }
+        else
+        {
+            wxLogTrace("libcurl", "%s [%zu bytes data]", s_infotype[type], size);
+        }
+        break;
+    case CURLINFO_END:
+    default:
+        return 0;
+    }
+        
+    return 0;
+}
+#endif
+
+void curl_set_common_options(CURL* curl) {
     wxString proxyName = Model_Setting::instance().GetStringSetting("PROXYIP", "");
     if (!proxyName.empty())
     {
@@ -202,26 +253,45 @@ CURLcode site_content(const wxString& sSite, wxString& sOutput)
     }
 
     int networkTimeout = Model_Setting::instance().GetIntSetting("NETWORKTIMEOUT", 10); // default 10 secs
-    curl_easy_setopt(curl, CURLOPT_TIMEOUT, networkTimeout); 
+    curl_easy_setopt(curl, CURLOPT_TIMEOUT, networkTimeout);
 
-    struct curlBuff chunk;
+    curl_easy_setopt(curl, CURLOPT_USERAGENT, static_cast<const char*>(wxString::Format("%s/%s", mmex::getProgramName(), mmex::version::string).mb_str()));
+
+    curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1L);
+
+#ifdef _DEBUG
+    curl_easy_setopt(curl, CURLOPT_VERBOSE, 1L);
+    curl_easy_setopt(curl, CURLOPT_DEBUGFUNCTION, log_libcurl_debug);
+#endif
+}
+
+void curl_set_writedata_options(CURL* curl, curlBuff& chunk)
+{
     chunk.memory = (char *)malloc(1);
     chunk.size = 0;
     curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, curlWriteMemoryCallback);
     curl_easy_setopt(curl, CURLOPT_WRITEDATA, (void *)&chunk);
 
-#ifdef _DEBUG
-    curl_easy_setopt(curl, CURLOPT_VERBOSE, 1L);
-#endif
-    curl_easy_setopt(curl, CURLOPT_USERAGENT,
-        static_cast<const char*>(wxString::Format("%s/%s", mmex::getProgramName(), mmex::version::string).mb_str()));
+}
+
+CURLcode http_get_data(const wxString& sSite, wxString& sOutput)
+{
+    CURL *curl = curl_easy_init();
+    if (!curl) return CURLE_FAILED_INIT;
+
+    curl_set_common_options(curl);
+
+    struct curlBuff chunk;
+    curl_set_writedata_options(curl, chunk);
+        
     curl_easy_setopt(curl, CURLOPT_URL, static_cast<const char*>(sSite.mb_str()));
+    
     CURLcode err_code = curl_easy_perform(curl);
     if (err_code == CURLE_OK)
         sOutput = wxString::FromUTF8(chunk.memory);
     else {
         sOutput = curl_easy_strerror(err_code); //TODO: translation
-        wxLogDebug("site_content: URL = %s error = %s", sSite, sOutput);
+        wxLogDebug("http_get_data: URL = %s error = %s", sSite, sOutput);
     }
 
     free(chunk.memory);
@@ -229,32 +299,73 @@ CURLcode site_content(const wxString& sSite, wxString& sOutput)
     return err_code;
 }
 
-bool download_file(const wxString& site, const wxString& path)
+CURLcode http_post_data(const wxString& sSite, const wxString& sData, const wxString& sContentType, wxString& sOutput) 
 {
-    wxFileSystem fs;
-    wxFileSystem::AddHandler(new wxInternetFSHandler());
-    wxFSFile *file = fs.OpenFile(site);
-    if (file != NULL)
-    {
-        wxInputStream *in = file->GetStream();
-        if (in != NULL)
-        {
-            wxFileOutputStream output(path);
-            output.Write(*file->GetStream());
-            output.Close();
-            delete in;
-            return true;
-        }
+    CURL *curl = curl_easy_init();
+    if (!curl) return CURLE_FAILED_INIT;
+
+    curl_set_common_options(curl);
+
+    struct curlBuff chunk;
+    curl_set_writedata_options(curl, chunk);
+
+    struct curl_slist *headers = NULL;
+    headers = curl_slist_append(headers, sContentType.mb_str());
+    curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headers);
+
+    curl_easy_setopt(curl, CURLOPT_URL, static_cast<const char*>(sSite.mb_str()));
+    curl_easy_setopt(curl, CURLOPT_POSTFIELDS, static_cast<const char*>(sData.mb_str()));
+    
+    CURLcode err_code = curl_easy_perform(curl);
+    if (err_code == CURLE_OK)
+        sOutput = wxString::FromUTF8(chunk.memory);
+    else {
+        sOutput = curl_easy_strerror(err_code); //TODO: translation
+        wxLogDebug("http_post_data: URL = %s error = %s", sSite, sOutput);
     }
 
-    return false;
+    free(chunk.memory);
+    curl_easy_cleanup(curl);
+    return err_code;
+}
+
+CURLcode http_download_file(const wxString& sSite, const wxString& sPath)
+{
+    wxLogDebug("http_download_file: URL = %s | Target = %s", sSite, sPath);
+    
+    CURL *curl = curl_easy_init();
+    if (!curl) return CURLE_FAILED_INIT;
+
+    curl_set_common_options(curl);
+
+    wxFileOutputStream output(sPath);
+    if (!output.IsOk()) {
+        wxLogDebug("http_download_file: Failed to open output file: %s error = %d", sPath, output.GetLastError());
+        return CURLE_WRITE_ERROR;
+    }
+
+    curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, curlWriteFileCallback);
+    curl_easy_setopt(curl, CURLOPT_WRITEDATA, (void *)&output);
+
+    curl_easy_setopt(curl, CURLOPT_URL, static_cast<const char*>(sSite.mb_str()));
+
+    CURLcode err_code = curl_easy_perform(curl);
+    output.Close();
+    curl_easy_cleanup(curl);
+
+    if (err_code != CURLE_OK)
+    {
+        wxLogDebug("http_download_file: URL = %s error = %s", sSite, curl_easy_strerror(err_code));
+    }
+
+    return err_code;
 }
 
 //Get unread news or all news for last year
 const bool getNewsRSS(std::vector<WebsiteNews>& WebsiteNewsList)
 {
     wxString RssContent;
-    if (site_content(mmex::weblink::NewsRSS, RssContent) != CURLE_OK)
+    if (http_get_data(mmex::weblink::NewsRSS, RssContent) != CURLE_OK)
         return false;
 
     //simple validation to avoid bug #1083
@@ -339,7 +450,7 @@ bool get_yahoo_prices(std::vector<wxString>& symbols
     const auto URL = wxString::Format(mmex::weblink::YahooQuotes, buffer);
 
     wxString json_data;
-    auto err_code = site_content(URL, json_data);
+    auto err_code = http_get_data(URL, json_data);
     if (err_code != CURLE_OK)
     {
         output = json_data;
@@ -427,7 +538,7 @@ bool get_crypto_currency_prices(std::vector<wxString>& symbols, double& usd_rate
     const auto URL = mmex::weblink::CoinCap;
 
     wxString json_data;
-    auto err_code = site_content(URL, json_data);
+    auto err_code = http_get_data(URL, json_data);
     if (err_code != CURLE_OK)
     {
         output = json_data;
