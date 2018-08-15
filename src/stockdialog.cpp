@@ -726,7 +726,7 @@ void mmStockDialog::OnHistoryDownloadButton(wxCommandEvent& /*event*/)
 		, m_stock->SYMBOL, range, interval);
 
     wxString json_data, sOutput;
-    auto err_code = site_content(URL, json_data);
+    auto err_code = http_get_data(URL, json_data);
     if (err_code != CURLE_OK)
     {
         if (sOutput == wxEmptyString) sOutput = _("Stock history not found!"); //TODO: ?

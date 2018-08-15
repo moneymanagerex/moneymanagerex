@@ -37,7 +37,6 @@ const wxString WebAppParam::ApiExpectedVersion = "1.0.1";
 const wxString mmWebApp::getUrl()
 {
     wxString Url = Model_Infotable::instance().GetStringInfo("WEBAPPURL", "");
-    Url.Replace("https://", "http://");
     return Url;
 }
 
@@ -73,7 +72,7 @@ const wxString mmWebApp::getServicesPageURL()
 const wxString mmWebApp::WebApp_getApiVersion()
 {
     wxString outputMessage;
-    site_content(mmWebApp::getServicesPageURL() + "&" + WebAppParam::CheckApiVersion, outputMessage);
+    http_get_data(mmWebApp::getServicesPageURL() + "&" + WebAppParam::CheckApiVersion, outputMessage);
     // TODO: check for errors?
     return outputMessage;
 }
@@ -105,7 +104,7 @@ bool mmWebApp::WebApp_CheckEnabled()
 bool mmWebApp::WebApp_CheckGuid()
 {
     wxString outputMessage;
-    site_content(mmWebApp::getServicesPageURL() + "&" + WebAppParam::CheckGuid, outputMessage);
+    http_get_data(mmWebApp::getServicesPageURL() + "&" + WebAppParam::CheckGuid, outputMessage);
 
     if (outputMessage == WebAppParam::MessageSuccedeed)
         return true;
@@ -144,14 +143,6 @@ bool mmWebApp::WebApp_CheckApiVersion()
 //POST data as JSON
 int mmWebApp::WebApp_SendJson(wxString& Website, const wxString& JsonData, wxString& Output)
 {
-    wxHTTP http;
-    int ErrorCode = 0;
-
-    //Build string connection
-    Website.Replace("http://", "");
-    wxString BaseServerAddress = Website.SubString(0, Website.Find("/")-1);
-    wxString PagePath = Website.SubString(Website.Find("/"), Website.Length());
-
     //Create multipart form
     wxString Boundary = "Custom_Boundary_MMEX_WebApp";
     wxString Text = wxEmptyString;
@@ -160,41 +151,9 @@ int mmWebApp::WebApp_SendJson(wxString& Website, const wxString& JsonData, wxStr
     Text.Append(wxString::Format("%s\r\n", JsonData));
     Text.Append(wxString::Format("\r\n--%s--\r\n", Boundary));
 
-    http.SetPostText("multipart/form-data; boundary=" + Boundary, Text);
+    wxString ContentType = wxString::Format("Content-Type: multipart/form-data; boundary=%s", Boundary);
 
-    if (http.Connect(BaseServerAddress))
-    {
-        ErrorCode = http.GetError();
-        if (ErrorCode == wxPROTO_NOERR)
-        {
-            wxInputStream *httpStream = http.GetInputStream(PagePath);
-            if (httpStream)
-            {
-                wxStringOutputStream out_stream(&Output);
-                httpStream->Read(out_stream);
-            }
-            else
-                ErrorCode = -1;
-            wxDELETE(httpStream);
-        }
-        http.Close();
-    }
-    else
-        ErrorCode = http.GetError();
-
-    if (ErrorCode != wxPROTO_NOERR)
-    {
-        if (ErrorCode == wxPROTO_NETERR) Output = _("A generic network error occurred");
-        else if (ErrorCode == wxPROTO_PROTERR) Output = _("An error occurred during negotiation");
-        else if (ErrorCode == wxPROTO_CONNERR) Output = _("The client failed to connect the server");
-        else if (ErrorCode == wxPROTO_INVVAL) Output = _("Invalid value");
-        else if (ErrorCode == wxPROTO_NOFILE) Output = _("The remote file doesn't exist");
-        else if (ErrorCode == wxPROTO_RCNCT) Output = _("An error occurred during reconnection");
-        else if (ErrorCode == wxPROTO_STREAMING) Output = _("Someone tried to send a command during a transfer");
-        else if (ErrorCode == -1) Output = _("Cannot get data from website");
-        else Output = _("Unknown error");
-    }
-    return ErrorCode;
+    return http_post_data(Website, Text, ContentType, Output);
 }
 
 
@@ -202,7 +161,7 @@ int mmWebApp::WebApp_SendJson(wxString& Website, const wxString& JsonData, wxStr
 bool mmWebApp::WebApp_DeleteAllAccount()
 {
     wxString outputMessage;
-    int ErrorCode = site_content(mmWebApp::getServicesPageURL() + "&" + WebAppParam::DeleteAccount, outputMessage);
+    int ErrorCode = http_get_data(mmWebApp::getServicesPageURL() + "&" + WebAppParam::DeleteAccount, outputMessage);
 
     return mmWebApp::returnResult(ErrorCode, outputMessage);
 }
@@ -246,7 +205,7 @@ bool mmWebApp::WebApp_UpdateAccount()
 bool mmWebApp::WebApp_DeleteAllPayee()
 {
     wxString outputMessage;
-    int ErrorCode = site_content(mmWebApp::getServicesPageURL() + "&" + WebAppParam::DeletePayee, outputMessage);
+    int ErrorCode = http_get_data(mmWebApp::getServicesPageURL() + "&" + WebAppParam::DeletePayee, outputMessage);
 
     return mmWebApp::returnResult(ErrorCode, outputMessage);
 }
@@ -303,7 +262,7 @@ bool mmWebApp::WebApp_UpdatePayee()
 bool mmWebApp::WebApp_DeleteAllCategory()
 {
     wxString outputMessage;
-    int ErrorCode = site_content(mmWebApp::getServicesPageURL() + "&" + WebAppParam::DeleteCategory, outputMessage);
+    int ErrorCode = http_get_data(mmWebApp::getServicesPageURL() + "&" + WebAppParam::DeleteCategory, outputMessage);
 
     return mmWebApp::returnResult(ErrorCode, outputMessage);
 }
@@ -377,7 +336,7 @@ bool mmWebApp::WebApp_UpdateCategory()
 bool mmWebApp::WebApp_DownloadNewTransaction(WebTranVector& WebAppTransactions_, const bool CheckOnly)
 {
     wxString NewTransactionJSON;
-    CURLcode ErrorCode = site_content(mmWebApp::getServicesPageURL() + "&" + WebAppParam::DownloadNewTransaction, NewTransactionJSON);
+    CURLcode ErrorCode = http_get_data(mmWebApp::getServicesPageURL() + "&" + WebAppParam::DownloadNewTransaction, NewTransactionJSON);
 
     if (NewTransactionJSON == "null" || NewTransactionJSON.IsEmpty() || ErrorCode != CURLE_OK)
         return false;
@@ -654,7 +613,7 @@ bool mmWebApp::WebApp_DeleteOneTransaction(int WebAppTransactionId)
     wxString DeleteOneTransactionUrl = mmWebApp::getServicesPageURL() + "&" + WebAppParam::DeleteOneTransaction + "=" << WebAppTransactionId;
 
     wxString outputMessage;
-    int ErrorCode = site_content(DeleteOneTransactionUrl, outputMessage);
+    int ErrorCode = http_get_data(DeleteOneTransactionUrl, outputMessage);
 
     return mmWebApp::returnResult(ErrorCode, outputMessage);
 }
@@ -668,7 +627,7 @@ wxString mmWebApp::WebApp_DownloadOneAttachment(const wxString& AttachmentName, 
     wxString FilePath = mmex::getPathAttachment(mmAttachmentManage::InfotablePathSetting()) + wxFileName::GetPathSeparator()
         + Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION) + wxFileName::GetPathSeparator() + FileName;
     wxString URL = mmWebApp::getServicesPageURL() + "&" + WebAppParam::DownloadAttachments + "=" + AttachmentName;
-    if (download_file(URL, FilePath))
+    if (http_download_file(URL, FilePath) == CURLE_OK)
         return FileName;
     else
         return wxEmptyString;
@@ -680,7 +639,7 @@ wxString mmWebApp::WebApp_GetAttachment(const wxString& AttachmentFileName)
     wxString FileExtension = wxFileName(AttachmentFileName).GetExt().MakeLower();
     wxString FilePath = mmex::getTempFolder() + "WebAppAttach_" + wxDateTime::Now().Format("%Y%m%d%H%M%S") + "." + FileExtension;
     wxString URL = mmWebApp::getServicesPageURL() + "&" + WebAppParam::DownloadAttachments + "=" + AttachmentFileName;
-    if (download_file(URL, FilePath))
+    if (http_download_file(URL, FilePath) == CURLE_OK)
         return FilePath;
     else
     return wxEmptyString;

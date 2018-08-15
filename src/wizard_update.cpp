@@ -140,7 +140,7 @@ mmUpdateWizardPage2::mmUpdateWizardPage2(mmUpdateWizard* parent)
     : wxWizardPageSimple(parent)
 {
     wxString json_links, installer_type;
-    site_content(mmex::weblink::UpdateLinks, json_links);
+    http_get_data(mmex::weblink::UpdateLinks, json_links);
 
     Document json_doc;
     if (json_doc.Parse(json_links.c_str()).HasParseError())
@@ -328,7 +328,7 @@ struct Version
 void mmUpdate::checkUpdates(const bool bSilent, wxFrame *frame)
 {
     wxString resp;
-    CURLcode err_code = site_content(mmex::weblink::Releases, resp);
+    CURLcode err_code = http_get_data(mmex::weblink::Releases, resp);
     if (err_code != CURLE_OK)
     {
         if (!bSilent)
