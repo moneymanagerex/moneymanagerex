@@ -12,7 +12,6 @@ IF(GIT_FOUND)
     IF(NOT GIT_TAG_VERSION MATCHES "^v([0-9]+\\.[0-9]+\\.[0-9]+)(-([^ ]+))*")
         MESSAGE(FATAL_ERROR "Unable to determine MMEX version tag from sources!")
     ENDIF()
-    MESSAGE(STATUS "MMEX sources tagged as ${GIT_TAG_VERSION}")
 # ---------------------------------------------------------------------------
 # MMEX uses semantic versioning Ref: http://semver.org
 #
@@ -36,6 +35,7 @@ ENDIF()
 
 PROJECT(MMEX VERSION ${MMEX_VERSION})
 OPTION(MMEX_PORTABLE_INSTALL "Include an empty mmexini.db3 file in the Windows installation" ON) 
+OPTION(MMEX_ENCRYPTION_OPTIONAL "Build even if encryption is not supported by wxsqlite library" OFF) 
 
 # Name of the resulted executable binary
 SET(MMEX_EXE mmex)
@@ -671,6 +671,15 @@ IF(CMAKE_VS_WINDOWS_TARGET_PLATFORM_VERSION)
 ENDIF()
 IF(wxWidgets_VERSION_STRING)
     MESSAGE(STATUS "wxWidgets ${wxWidgets_VERSION_STRING}")
+ENDIF()
+IF(wxSQLite3_VERSION)
+    MESSAGE(STATUS "wxSQLite3 ${wxSQLite3_VERSION}")
+ENDIF()
+IF(RapidJSON_VERSION)
+    MESSAGE(STATUS "RapidJSON ${RapidJSON_VERSION}")
+ENDIF()
+IF(Lua_VERSION)
+    MESSAGE(STATUS "Lua ${Lua_VERSION}")
 ENDIF()
 IF(CURL_VERSION_STRING)
     MESSAGE(STATUS "curl ${CURL_VERSION_STRING}")

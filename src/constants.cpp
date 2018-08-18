@@ -25,7 +25,6 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "rapidjson/rapidjson.h"
 #include "DB_Upgrade.h" /* for dbLatestVersion */
 #include <curl/curl.h>
-#include <sqlite3secure.h>
 
 const wxSizerFlags g_flagsH = wxSizerFlags().Align(wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL).Border(wxALL, 5);
 const wxSizerFlags g_flagsV = wxSizerFlags().Align(wxALIGN_LEFT).Border(wxALL, 5);
@@ -80,7 +79,10 @@ const wxString mmex::getProgramDescription()
 
     description << mmex::getTitleProgramVersion() << "\n"
         << _("Database version: ") << dbLatestVersion
-        << " (" << wxSQLite3Cipher::GetCipherName(wxSQLite3Cipher::GetGlobalCipherDefault()) << ")\n"
+#if WXSQLITE3_HAVE_CODEC
+        << " (" << wxSQLite3Cipher::GetCipherName(wxSQLite3Cipher::GetGlobalCipherDefault()) << ")"
+#endif
+        << "\n"
 #ifdef GIT_COMMIT_HASH
         << _("Git commit: ") << GIT_COMMIT_HASH
         << " (" << GIT_COMMIT_DATE << ")\n"
