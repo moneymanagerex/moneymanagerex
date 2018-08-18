@@ -870,7 +870,6 @@ void mmGUIFrame::updateNavTreeControl()
     }
     windowsFreezeThaw(m_nav_tree_ctrl);
     m_nav_tree_ctrl->SelectItem(root);
-    m_nav_tree_ctrl->EnsureVisible(root);
     m_nav_tree_ctrl->Refresh();
     m_nav_tree_ctrl->Update();
     m_nav_tree_ctrl->SetEvtHandlerEnabled(true);
