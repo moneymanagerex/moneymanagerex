@@ -1492,13 +1492,7 @@ void mmGUIFrame::createMenu()
     menu_file->Append(menuItemPrint);
 
     menu_file->AppendSeparator();
-#ifdef __LINUX__
-    wxMenuItem* menuItemQuit = new wxMenuItem(menu_file, wxID_EXIT,
-        _("E&xit\tCtrl-Q"), _("Quit this program"));
-#else
-    wxMenuItem* menuItemQuit = new wxMenuItem(menu_file, wxID_EXIT,
-        _("E&xit\tAlt-X"), _("Quit this program"));
-#endif
+    wxMenuItem* menuItemQuit = new wxMenuItem(menu_file, wxID_EXIT);
     menuItemQuit->SetBitmap(mmBitmap(png::EXIT));
     menu_file->Append(menuItemQuit);
 
