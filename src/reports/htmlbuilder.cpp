@@ -28,7 +28,6 @@
 namespace tags
 {
 static const wxString END = R"(
-</body>
 <script>
     var elements = document.getElementsByClassName('money');
     for (var i = 0; i < elements.length; i++) {
@@ -38,11 +37,12 @@ static const wxString END = R"(
         }
     }
 </script>
+</body>
 </html>
 )";
 static const char HTML[] = R"(<!DOCTYPE html>
 <html><head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <title>%s - Report</title>
 <link href = 'master.css' rel = 'stylesheet' />
 <script src = 'ChartNew.js'></script>
