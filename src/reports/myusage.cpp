@@ -27,8 +27,7 @@ const char *usage_template = R"(
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8" />
-    <meta http - equiv = "Content-Type" content = "text/html" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <title><TMPL_VAR REPORTNAME></title>
     <script src = "ChartNew.js"></script>
     <script src = "format.js"></script>

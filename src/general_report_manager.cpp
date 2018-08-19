@@ -54,8 +54,7 @@ static const wxString SAMPLE_ASSETS_HTT =
 R"(<!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8" />
-    <meta http - equiv = "Content-Type" content = "text/html" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <title><TMPL_VAR REPORTNAME></title>
     <script src = "sorttable.js"></script>
     <link href="master.css" rel="stylesheet">
@@ -101,7 +100,6 @@ R"(<!DOCTYPE html>
     <hr>    <TMPL_VAR ERROR>
 </TMPL_LOOP>
 
-</body>
 <script>
     <!-- Format double to base currency -->
     function currency(n) {
@@ -122,6 +120,7 @@ R"(<!DOCTYPE html>
         element.innerHTML = '<TMPL_VAR PFX_SYMBOL>' + currency(element.innerHTML) +'<TMPL_VAR SFX_SYMBOL>';
     }
 </script>
+</body>
 </html>
 )";
 
@@ -129,8 +128,7 @@ static const char *HTT_CONTEINER =
 R"(<!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <meta http - equiv = "Content-Type" content = "text/html">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <title><TMPL_VAR REPORTNAME></title>
     <script src = "ChartNew.js"></script>
     <script src = "sorttable.js"></script>
@@ -164,7 +162,6 @@ R"(<!DOCTYPE html>
     <TMPL_VAR ERROR>
 </TMPL_LOOP>
 </div>
-</body>
 <script>
     <!-- Format double to base currency -->
     function currency(n) {
@@ -185,6 +182,7 @@ R"(<!DOCTYPE html>
         element.innerHTML = '<TMPL_VAR PFX_SYMBOL>' + currency(element.innerHTML) +'<TMPL_VAR SFX_SYMBOL>';
     }
 </script>
+</body>
 </html>
 )";
 

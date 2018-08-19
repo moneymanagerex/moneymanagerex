@@ -1,8 +1,7 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8" />
-    <meta http - equiv="Content-Type" content="text/html" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <title>Home Page</title>
     <script src="ChartNew.js"></script>
     <script src="sorttable.js"></script>
@@ -172,7 +171,6 @@
         </tr>
     </table>
 </div>
-</body>
 <script>
     function toggleTable(id) {
         var elem = document.getElementById(id)
@@ -246,4 +244,5 @@
         }
     }
 </script>
+</body>
 </html>
