@@ -374,7 +374,7 @@ void mmUpdate::checkUpdates(const bool bSilent, wxFrame *frame)
         {
             latest=check;
             latest_tag=r["tag_name"].GetString();
-            latest_release=r;
+            if (latest_release != r) latest_release=r;
         }
     }
 
