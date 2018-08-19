@@ -164,20 +164,20 @@ const wxString mmex::weblink::addReferralToURL(const wxString& BaseURL, const wx
     return url;
 }
 
-const wxString mmex::weblink::WebSite = mmex::weblink::addReferralToURL("http://www.moneymanagerex.org", "Website");
+const wxString mmex::weblink::WebSite = mmex::weblink::addReferralToURL("https://www.moneymanagerex.org", "Website");
 const wxString mmex::weblink::Releases = "https://api.github.com/repos/moneymanagerex/moneymanagerex/releases";
-const wxString mmex::weblink::News = mmex::weblink::addReferralToURL("http://www.moneymanagerex.org/news", "News");
+const wxString mmex::weblink::News = mmex::weblink::addReferralToURL("https://www.moneymanagerex.org/news", "News");
 const wxString mmex::weblink::NewsRSS = "http://www.moneymanagerex.org/news?format=feed";
-const wxString mmex::weblink::Forum = mmex::weblink::addReferralToURL("http://forum.moneymanagerex.org", "Forum");
+const wxString mmex::weblink::Forum = mmex::weblink::addReferralToURL("https://forum.moneymanagerex.org", "Forum");
 const wxString mmex::weblink::Wiki = "http://wiki.moneymanagerex.org";
 const wxString mmex::weblink::GitHub = "https://github.com/moneymanagerex/moneymanagerex";
-const wxString mmex::weblink::YouTube = "http://www.youtube.com/user/moneymanagerex";
+const wxString mmex::weblink::YouTube = "https://www.youtube.com/user/moneymanagerex";
 const wxString mmex::weblink::Slack = "http://slack.moneymanagerex.org/";
 const wxString mmex::weblink::BugReport = "https://github.com/moneymanagerex/moneymanagerex/issues";
 const wxString mmex::weblink::Donate = "https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=moneymanagerex%40gmail%2ecom&lc=US&item_name=MoneyManagerEx&no_note=0&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHostedGuest";
 const wxString mmex::weblink::SquareCashGuan = "https://cash.me/$guanlisheng/1";
 const wxString mmex::weblink::Twitter = "https://twitter.com/MoneyManagerEx";
-const wxString mmex::weblink::Facebook = "http://www.facebook.com/pages/Money-Manager-Ex/242286559144586";
+const wxString mmex::weblink::Facebook = "https://www.facebook.com/MoneyManagerEx/";
 
 // Yahoo API
 const wxString mmex::weblink::YahooQuotes = "https://query1.finance.yahoo.com/v7/finance/quote?symbols=%s&fields=regularMarketPrice,currency,shortName";
@@ -186,24 +186,24 @@ const wxString mmex::weblink::YahooQuotes = "https://query1.finance.yahoo.com/v7
 const wxString mmex::weblink::YahooQuotesHistory = "https://query1.finance.yahoo.com/v8/finance/chart/%s?range=%s&interval=%s&fields=currency";
 
 //CoinCap API
-const wxString mmex::weblink::CoinCap = "http://coincap.io/front";
-const wxString mmex::weblink::CoinCapHistory = "http://coincap.io/history/365day/%s";
+const wxString mmex::weblink::CoinCap = "https://coincap.io/front";
+const wxString mmex::weblink::CoinCapHistory = "https://coincap.io/history/365day/%s";
 
 //
 const wxString mmex::weblink::GooglePlay = "https://play.google.com/store/apps/details?id=com.money.manager.ex";
 const wxString mmex::weblink::WebApp = "https://github.com/moneymanagerex/web-money-manager-ex";
 
 // Will display the stock page when using Looks up the current value
-const wxString mmex::weblink::DefStockUrl = "http://finance.yahoo.com/echarts?s=%s";
+const wxString mmex::weblink::DefStockUrl = "https://finance.yahoo.com/echarts?s=%s";
 // Looks up the current value
-// const wxChar *const mmex::DEFSTOCKURL = "http://finance.yahoo.com/lookup?s=%s";
+// const wxChar *const mmex::DEFSTOCKURL = "https://finance.yahoo.com/lookup?s=%s";
 
 // Using google: To specify the exchange, use exch:code
 // Using yahoo: To specify the exchange, use code.exch
-// const wxChar *const mmex::DEFSTOCKURL = "http://www.google.com/finance?q=%s";
+// const wxChar *const mmex::DEFSTOCKURL = "https://www.google.com/finance?q=%s";
 
 //US Dollar (USD) in Euro (EUR) Chart
-//http://www.google.com/finance?q=CURRENCY%3AUSD
+//https://www.google.com/finance?q=CURRENCY%3AUSD
 
 /* End namespace weblink */
 
