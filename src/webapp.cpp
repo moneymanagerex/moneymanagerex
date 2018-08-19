@@ -22,8 +22,6 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "paths.h"
 #include "transdialog.h"
 #include "util.h"
-#include <wx/sstream.h>
-#include <wx/protocol/http.h>
 #include "Model_Account.h"
 #include "Model_Attachment.h"
 #include "Model_Category.h"
