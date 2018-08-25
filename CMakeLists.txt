@@ -212,8 +212,6 @@ IF(APPLE)
     SET(MACOSX_APP_ICON_NAME mmex.icns)
     # Setting path to icon
     SET(MACOSX_APP_ICON_FILE "${PROJECT_SOURCE_DIR}/resources/${MACOSX_APP_ICON_NAME}")
-    # Real setting of icons
-    SET(MACOSX_BUNDLE_ICON_FILE "${MACOSX_APP_ICON_NAME}")
     SET(MMEX_DOC_DIR ${MMEX_EXE}.app/Contents/SharedSupport/doc)
     SET(MMEX_RES_DIR ${MMEX_EXE}.app/Contents/Resources)
 ELSEIF(WIN32)
@@ -307,20 +305,23 @@ ENDIF()
 # --------- Install ---------
 # Before moving to INSTALL commands for macOS bundle this needs to be set
 IF(APPLE)
+    STRING(REGEX REPLACE "^(.).*\\.([0-9]+)$" "\\1\\2" MMEX_VERSION_UNSTABLE_SHORT ${MMEX_VERSION_UNSTABLE})
+
     # Configure variables that are substituted into the plist
     # https://cmake.org/cmake/help/latest/prop_tgt/MACOSX_BUNDLE_INFO_PLIST.html
+    # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Introduction/Introduction.html
 
     SET_TARGET_PROPERTIES(${MMEX_EXE} PROPERTIES
-        # Set CFBundleName, which controls the application menu label
-        MACOSX_BUNDLE_BUNDLE_NAME ${MMEX_EXE}
-        # Set CFBundleVersion to the git describe output. Apple docs say it should be "three non-negative, period-separated integers with the first integer being greater than zero"
-        MACOSX_BUNDLE_BUNDLE_VERSION ${MMEX_VERSION}
-        # Set CFBundleExecutable
-        #MACOSX_BUNDLE_EXECUTABLE_NAME "${OUTPUT_NAME}"
-        # Set CFBundleShortVersionString to "2.0.0". This is displayed in the Finder and Spotlight.
+        MACOSX_BUNDLE_BUNDLE_NAME ${PROJECT_NAME}
+        MACOSX_BUNDLE_EXECUTABLE_NAME ${MMEX_EXE}
+        MACOSX_BUNDLE_GUI_IDENTIFIER org.moneymanagerex.${MMEX_EXE}
+        MACOSX_BUNDLE_BUNDLE_VERSION ${MMEX_VERSION}${MMEX_VERSION_UNSTABLE_SHORT}
         MACOSX_BUNDLE_SHORT_VERSION_STRING ${MMEX_VERSION}
+        MACOSX_BUNDLE_LONG_VERSION_STRING ${MMEX_VERSION_FULL}
+        MACOSX_BUNDLE_COPYRIGHT "Copyright © 2009-2017 Nikolay\nCopyright © 2011-2017 LiSheng\nCopyright © 2013-2017 James, Gabriele\nCopyright © 2010-2017 Stefano\nCopyright © 2009-2010 VaDiM, Wesley Ellis"
+        MACOSX_BUNDLE_ICON_FILE ${MACOSX_APP_ICON_NAME}
         # Set the path to the plist template
-        MACOSX_BUNDLE_INFO_PLIST "${PROJECT_SOURCE_DIR}/resources/Info.plist")
+        MACOSX_BUNDLE_INFO_PLIST "${PROJECT_SOURCE_DIR}/resources/MacOSXBundleInfo.plist.in")
 ENDIF()
 
 IF(WIN32)
