@@ -33,6 +33,9 @@ env:
   - OS=fedora DIST=24
   - OS=fedora DIST=25
   - OS=fedora DIST=26
+  - OS=fedora DIST=27
+  - OS=fedora DIST=28
+  - OS=fedora DIST=29
   # - OS=opensuse # see issue #1331 on GitHub
   - OS=opensuse DIST=42.2
   - OS=opensuse DIST=42.3
@@ -69,6 +72,9 @@ matrix:
   - env: OS=fedora DIST=24
   - env: OS=fedora DIST=25
   - env: OS=fedora DIST=26
+  - env: OS=fedora DIST=27
+  - env: OS=fedora DIST=28
+  - env: OS=fedora DIST=29
   - env: OS=opensuse
   - env: OS=opensuse DIST=42.2
   - env: OS=opensuse DIST=42.3
