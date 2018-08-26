@@ -70,8 +70,10 @@ void mmReportCashFlow::getStats(double& tInitialBalance, std::vector<ValueTrio>&
             if (wxNOT_FOUND == accountArray_->Index(account.ACCOUNTNAME)) continue;
         }
 
-        // Use account first transaction date for initial balance
         const auto transactions = Model_Account::transaction(account);
+        if (transactions.empty()) continue;
+        
+        // Use account first transaction date for initial balance
         const double convRate = Model_CurrencyHistory::getDayRate(account.CURRENCYID, transactions[0].TRANSDATE);
         tInitialBalance += account.INITIALBAL * convRate;
 
