@@ -11,8 +11,8 @@ description: |
   concentrate on simplicity and user friendliness - something one can
   use everyday.
 icon: resources/mmex.svg
-confinement: devmode
-grade: devel
+confinement: strict
+grade: stable
 
 apps:
   mmex:
@@ -25,7 +25,7 @@ parts:
     plugin: cmake
     source: .
     source-type: git
-    configflags: [-DCMAKE_BUILD_TYPE=Debug]
+    configflags: [-DCMAKE_BUILD_TYPE=Release]
     after: [desktop-gtk2]
     build-packages:
       - build-essential
@@ -38,4 +38,8 @@ parts:
       - liblua5.3-dev
       - libcurl4-openssl-dev
       - rapidjson-dev
-    stage-packages: [wx3.0-i18n]
+    stage-packages:
+      - libwxgtk-webview3.0-0v5
+      - liblua5.3-0
+      - libcurl3
+      - wx3.0-i18n
