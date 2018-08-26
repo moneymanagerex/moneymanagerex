@@ -98,7 +98,7 @@ repository for additional packages.
 MMEX developers created dedicated repository for MMEX binary packages for
 multiple Linux distributions at [packagecloud.io] hosting platform.
 New versions are published there automatically (using CI) when they arrive.
-Debian 8/9/10, CentOS 7, Fedora 24/25/26, Mint 18/19, openSUSE Leap 42.2/42.3,
+Debian 8/9/10, CentOS 7, Fedora 24-29, Mint 18/19, openSUSE Leap 42.2/42.3,
 Ubuntu 16/17/18 are supported for now.
 
 > Warning: only unstable versions of MMEX are available now.
@@ -130,7 +130,7 @@ configuration.
 ### From manually downloaded binaries
 
 Download package for your distribution from [GitHub Releases][GitHubDL].
-Arch, Debian 8/9/10, CentOS 7, Fedora 24/25/26/rawhide, Mint 18/19, openSUSE
+Arch, Debian 8/9/10, CentOS 7, Fedora 24-29/rawhide, Mint 18/19, openSUSE
 Leap 42.2/42.3/tumbleweed, Ubuntu 16/17/18, Slackware 14.2 are supported for now,
 64-bit only.
 
