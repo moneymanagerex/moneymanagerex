@@ -9217,9 +9217,6 @@ msgstr "Anda telah mempunyai program versi terbaru"
 #~ msgid "Updates"
 #~ msgstr "&Perbaharui Data"
 
-#~ msgid "Invalid field name"
-#~ msgstr "Invalid field name"
-
 #~ msgid "Invalid number of shares entered "
 #~ msgstr "Jumlah saham yang diisikan tidak benar"
 
@@ -9233,9 +9230,6 @@ msgstr "Anda telah mempunyai program versi terbaru"
 
 #~ msgid "Quit this program"
 #~ msgstr "Keluar dari Money Manager Ex"
-
-#~ msgid "Invalid scalar query"
-#~ msgstr "Invalid scalar query"
 
 #, fuzzy
 #~ msgid "Investment Accounts"
@@ -9312,21 +9306,12 @@ msgstr "Anda telah mempunyai program versi terbaru"
 #~ msgid "All Term Accounts"
 #~ msgstr "Dari Rekening"
 
-#~ msgid "List Border"
-#~ msgstr "List Border"
-
 #, fuzzy
 #~ msgid "View Last 365 days"
 #~ msgstr "Lihat 30 Hari terakhir "
 
-#~ msgid "List Row 0"
-#~ msgstr "List Row 0"
-
 #~ msgid "Term Accounts Total:"
 #~ msgstr "Rekening Berjangka Total:"
-
-#~ msgid "List Row 1"
-#~ msgstr "List Row 1"
 
 #~ msgid "Bank Accounts Total:"
 #~ msgstr "Rekening Bank Total:"
@@ -9435,12 +9420,6 @@ msgstr "Anda telah mempunyai program versi terbaru"
 
 #~ msgid "View Transactions for current month"
 #~ msgstr "Tampilkan Transaksi bulan ini"
-
-#~ msgid "Nav Tree"
-#~ msgstr "Nav Tree"
-
-#~ msgid " : Restart"
-#~ msgstr " : Restart"
 
 #, fuzzy
 #~ msgid "Navigation Tree Expansion Options"
@@ -9576,9 +9555,6 @@ msgstr "Anda telah mempunyai program versi terbaru"
 #~ msgid "View Transactions for today"
 #~ msgstr "Tampilkan Transaksi hari ini"
 
-#~ msgid "Null Results pointer"
-#~ msgstr "Null Results pointer"
-
 #, fuzzy
 #~ msgid "&Load"
 #~ msgstr "Panggil File SQL"
@@ -9651,9 +9627,6 @@ msgstr "Anda telah mempunyai program versi terbaru"
 #~ msgid "Other currency conversion rate. Set Base Currency to 1."
 #~ msgstr "Konversi kurs mata uang lainnya. Tetapkan dasar mata uang ke 1."
 
-#~ msgid ":"
-#~ msgstr ":"
-
 #~ msgid "Out of memory"
 #~ msgstr "Memory tidak memadai"
 
@@ -9707,9 +9680,6 @@ msgstr "Anda telah mempunyai program versi terbaru"
 #, fuzzy
 #~ msgid "Payee Report - Current Year"
 #~ msgstr "Penerima - Tahun Ini"
-
-#~ msgid "Allow for any delay in quotes"
-#~ msgstr "Allow for any delay in quotes"
 
 #, fuzzy
 #~ msgid "Payee Report - Last 30 Days"
@@ -9803,9 +9773,6 @@ msgstr "Anda telah mempunyai program versi terbaru"
 
 #~ msgid "Payees - Last Calendar Month"
 #~ msgstr "Penerima - Bulan Lalu"
-
-#~ msgid "Cannot decode binary"
-#~ msgstr "Cannot decode binary"
 
 #~ msgid "Payees - Last Financial Year"
 #~ msgstr "Penerima - Tahun Finansial Terakhir"
@@ -10095,9 +10062,6 @@ msgstr "Anda telah mempunyai program versi terbaru"
 #~ msgid "Select To Acct"
 #~ msgstr "Pilih"
 
-#~ msgid "Error binding NULL param"
-#~ msgstr "Error binding NULL param"
-
 #~ msgid ""
 #~ "Select the currently selected payee as the selected payee for the "
 #~ "transaction"
@@ -10115,14 +10079,8 @@ msgstr "Anda telah mempunyai program versi terbaru"
 #~ "Pilih apakah perlu dibuat file backup .bak saat membuka file data "
 #~ "keuangan"
 
-#~ msgid "Error binding int param"
-#~ msgstr "Error binding int param"
-
 #~ msgid "Semicolon"
 #~ msgstr "Titik koma"
-
-#~ msgid "Error binding double param"
-#~ msgstr "Error binding double param"
 
 #~ msgid "Set"
 #~ msgstr "Pilih"
@@ -10353,9 +10311,6 @@ msgstr "Anda telah mempunyai program versi terbaru"
 
 #~ msgid "Invalid purchase price entered "
 #~ msgstr "Harga pembelian yang diisikan tidak benar"
-
-#~ msgid "Statement not accessible"
-#~ msgstr "Statement not accessible"
 
 #~ msgid "Where the Money Comes From - Current Month"
 #~ msgstr "Asal Penerimaan Uang - Bulan Ini"
@@ -10800,24 +10755,12 @@ msgstr "Anda telah mempunyai program versi terbaru"
 #~ "Enter the name of the financial institution where the investment is held"
 #~ msgstr "Isi dengan nama institusi keuangan yang mengelola saham"
 
-#~ msgid "Error binding blob param"
-#~ msgstr "Error binding blob param"
-
 #~ msgid "Where the Money Goes - Last 30 Days"
 #~ msgstr "Kemana Uang Keluar - 30 Hari Terakhir"
-
-#~ msgid "Error binding int64 param"
-#~ msgstr "Error binding int64 param"
-
-#~ msgid "Error binding date/time param"
-#~ msgstr "Error binding date/time param"
 
 #, fuzzy
 #~ msgid "Error: %s\n"
 #~ msgstr "Error: %s"
-
-#~ msgid "Error clearing bindings"
-#~ msgstr "Error clearing bindings"
 
 #, fuzzy
 #~ msgid "Expand Bank Accounts in Trew View when tree is refreshed"
@@ -10928,13 +10871,6 @@ msgstr "Anda telah mempunyai program versi terbaru"
 #~ msgid "Specify which account the transfer is comming from"
 #~ msgstr "Tentukan rekening yang akan dipindahbukukan"
 
-#~ msgid "Invalid field index"
-#~ msgstr "Invalid field index"
-
-#, fuzzy
-#~ msgid "Status:"
-#~ msgstr "Status:"
-
 #, fuzzy
 #~ msgid "BankAccount"
 #~ msgstr "Rekening Bank"
@@ -11037,9 +10973,6 @@ msgstr "Anda telah mempunyai program versi terbaru"
 #~ msgid "Times Repeated"
 #~ msgstr "Jumlah Pengulangan"
 
-#~ msgid "Yahoo Suffix"
-#~ msgstr "Yahoo Suffix"
-
 #, fuzzy
 #~ msgid "To Account"
 #~ msgstr "Ke Rekening"
@@ -11063,9 +10996,6 @@ msgstr "Anda telah mempunyai program versi terbaru"
 #~ "Untuk mneg-impor file QIF dengan benar, format tanggal yang digunakan \n"
 #~ "harus sama dengan format yang ada di file QIF.\n"
 #~ "Apakah proses impor akan dilanjutkan ?"
-
-#~ msgid "Automatic stock quote refresh in progress..."
-#~ msgstr "Automatic stock quote refresh in progress..."
 
 #, fuzzy
 #~ msgid "Today's Date: <b>"
@@ -11164,9 +11094,6 @@ msgstr "Anda telah mempunyai program versi terbaru"
 #~ msgid "Tree View Options: Expand Section"
 #~ msgstr "Pilihan Tampilan"
 
-#~ msgid "Entry "
-#~ msgstr "Entry "
-
 #~ msgid "Type: "
 #~ msgstr "Tipe:"
 
@@ -11198,9 +11125,6 @@ msgstr "Anda telah mempunyai program versi terbaru"
 
 #~ msgid "Value of 123456.78 will be"
 #~ msgstr "Nilai dari 123456.78 akan menjadi"
-
-#~ msgid "finance.au.yahoo.com"
-#~ msgstr "finance.au.yahoo.com"
 
 #, fuzzy
 #~ msgid "Specify the number of payments to be made."
@@ -11238,9 +11162,6 @@ msgstr "Anda telah mempunyai program versi terbaru"
 #, fuzzy
 #~ msgid "View Budgets as Financial Years"
 #~ msgstr "Kategori Utama Dalam 30 Hari Terakhir"
-
-#~ msgid "Sub-Menu"
-#~ msgstr "Sub-Menu"
 
 #, fuzzy
 #~ msgid "Monthly Summary of Accounts"
@@ -11350,9 +11271,6 @@ msgstr "Anda telah mempunyai program versi terbaru"
 #, fuzzy
 #~ msgid "Unit Price"
 #~ msgstr "Harga Saat Ini"
-
-#~ msgid "Error binding string param"
-#~ msgstr "Error binding string param"
 
 #~ msgid "Update database changes to database backup on exit."
 #~ msgstr ""

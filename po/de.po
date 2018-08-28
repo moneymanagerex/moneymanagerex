@@ -8942,9 +8942,6 @@ msgstr "Sie haben die neueste Version installiert!"
 #~ msgid " Total:"
 #~ msgstr "Gesamt:"
 
-#~ msgid "Universal CSV Dialog"
-#~ msgstr "Universal CSV Dialog"
-
 #~ msgid " Start Page"
 #~ msgstr " Startseite"
 
@@ -9075,9 +9072,6 @@ msgstr "Sie haben die neueste Version installiert!"
 
 #~ msgid "Line: %i"
 #~ msgstr "Zeile %i"
-
-#~ msgid "%s\t -> %s\n"
-#~ msgstr "%s\t -> %s\n"
 
 #, fuzzy
 #~ msgid "Value Date"
@@ -9239,32 +9233,17 @@ msgstr "Sie haben die neueste Version installiert!"
 #~ "Ändern aller Kategorien von:  \n"
 #~ "%s zu Kategorie: %s"
 
-#~ msgid "%s\t: %s\n"
-#~ msgstr "%s\t: %s\n"
-
-#~ msgid "6"
-#~ msgstr "6"
-
 #~ msgid "Incorrect XML data (#4)!"
 #~ msgstr "Fehlerhafte XML Daten (#4)!"
 
-#~ msgid "4"
-#~ msgstr "4"
-
 #~ msgid "View Budget Summary Report without Categories"
 #~ msgstr "zeige Budget Zusammenfassung ohne Kategorien"
-
-#~ msgid "2"
-#~ msgstr "2"
 
 #~ msgid "Incorrect XML data (#2)!"
 #~ msgstr "Fehlerhafte XML Daten (#2)!"
 
 #~ msgid "%s -> User document directory"
 #~ msgstr "%s -> Benutzerverzeichnis Dokumente"
-
-#~ msgid "3"
-#~ msgstr "3"
 
 #~ msgid "Enter password for new database"
 #~ msgstr "Passwort für Datenbank eingeben.."
@@ -9459,9 +9438,6 @@ msgstr "Sie haben die neueste Version installiert!"
 #~ msgid " using the relocate command:"
 #~ msgstr "mit dem Befehl zu verlagern:"
 
-#~ msgid "Normal"
-#~ msgstr "Normal"
-
 #~ msgid "&Bank Accounts"
 #~ msgstr "&Bankkonten"
 
@@ -9490,9 +9466,6 @@ msgstr "Sie haben die neueste Version installiert!"
 
 #~ msgid "&MMEX CSV Files"
 #~ msgstr "&MMEX CSV-Dateien"
-
-#~ msgid "Null Results pointer"
-#~ msgstr "Null Results pointer"
 
 #, fuzzy
 #~ msgid "&New Series"
@@ -9549,9 +9522,6 @@ msgstr "Sie haben die neueste Version installiert!"
 #~ "Zahlungsempfänger Abfrage Tipp: benutzen Sie * als Platzhalter bei der "
 #~ "Verwendung des Filters. Beispiel: *c zeigt Chemiker und Koch,*c*m zeigt "
 #~ "nur Chemiker."
-
-#~ msgid ":"
-#~ msgstr ":"
 
 #~ msgid "Other currency conversion rate. Set Base Currency to 1."
 #~ msgstr "anderer Währung Umrechnungskurs. Festlegen der Basiswährung zu 1"
@@ -9843,9 +9813,6 @@ msgstr "Sie haben die neueste Version installiert!"
 #~ msgid "Create new Custom Reports"
 #~ msgstr "neuen benutzerdefinierter Bericht erstellen"
 
-#~ msgid "Report Name[|Report Filename.sql[|SUB]]"
-#~ msgstr "Report Name[|Report Filename.sql[|SUB]]"
-
 #~ msgid "Viewing Flagged transactions"
 #~ msgstr "Ansicht der markierten Buchungen"
 
@@ -9878,9 +9845,6 @@ msgstr "Sie haben die neueste Version installiert!"
 
 #~ msgid "Dababase updated succesfully"
 #~ msgstr "Datenbank erfolgreich aktualisiert"
-
-#~ msgid "SQL Source Script:"
-#~ msgstr "SQL Source Script:"
 
 #~ msgid "Date is missing"
 #~ msgstr "Datum fehlt "
@@ -9994,17 +9958,11 @@ msgstr "Sie haben die neueste Version installiert!"
 #~ msgid "Select the Custom Report %s"
 #~ msgstr "wähle Benutzerdefinierter Bericht %s"
 
-#~ msgid "Error binding blob param"
-#~ msgstr "Error binding blob param"
-
 #~ msgid ""
 #~ "Select the currently selected payee as the selected payee for the "
 #~ "transaction"
 #~ msgstr ""
 #~ "Aktuell ausgewählten Empfänger als Empfänger für die Buchung verwenden."
-
-#~ msgid "Error binding int param"
-#~ msgstr "Error binding int param"
 
 #, fuzzy
 #~ msgid ""
@@ -10013,9 +9971,6 @@ msgstr "Sie haben die neueste Version installiert!"
 #~ msgstr ""
 #~ "Wählen Sie, ob beim Öffnen einer Datenbank eine .bak-Datei erstellt "
 #~ "werden soll"
-
-#~ msgid "Error binding int64 param"
-#~ msgstr "Error binding int64 param"
 
 #, fuzzy
 #~ msgid "Selection can be made by using Search button."
@@ -10070,9 +10025,6 @@ msgstr "Sie haben die neueste Version installiert!"
 
 #~ msgid "Setting new Database file"
 #~ msgstr "Datenbank speichern unter..."
-
-#~ msgid "Filter"
-#~ msgstr "Filter"
 
 #~ msgid "Setup page printing options"
 #~ msgstr "Druckoptionen für Seite"
@@ -10187,15 +10139,9 @@ msgstr "Sie haben die neueste Version installiert!"
 #~ msgid "Web Page"
 #~ msgstr "Webseite"
 
-#~ msgid "1"
-#~ msgstr "1"
-
 #, fuzzy
 #~ msgid "MM.&NET CSV Files"
 #~ msgstr "&MM.NET CSV-Dateien"
-
-#~ msgid "5"
-#~ msgstr "5"
 
 #, fuzzy
 #~ msgid "K"
@@ -10319,9 +10265,6 @@ msgstr "Sie haben die neueste Version installiert!"
 #~ msgid "T"
 #~ msgstr "Zu"
 
-#~ msgid "7"
-#~ msgstr "7"
-
 #, fuzzy
 #~ msgid "PAB"
 #~ msgstr "TAB"
@@ -10372,9 +10315,6 @@ msgstr "Sie haben die neueste Version installiert!"
 #~ msgid "Income vs Expenses - 30 Days"
 #~ msgstr "Einnahmen vs Ausgaben - letzte 30 Tage"
 
-#~ msgid "Import/Export"
-#~ msgstr "Import/Export"
-
 #~ msgid "The remote file doesn't exist"
 #~ msgstr "Die Remote-Datei existiert nicht"
 
@@ -10390,9 +10330,6 @@ msgstr "Sie haben die neueste Version installiert!"
 
 #~ msgid "Where the Money Comes From - Current Month to Date"
 #~ msgstr "Wo das Geld herkommt - laufender Monat "
-
-#~ msgid "System: "
-#~ msgstr "System: "
 
 #~ msgid "Conversion to Base Rate"
 #~ msgstr "Konvertierung auf Basiszinssatz"
@@ -10731,14 +10668,8 @@ msgstr "Sie haben die neueste Version installiert!"
 #~ msgid "Transactions imported from QIF: %ld"
 #~ msgstr " Buchungen importiert von QIF: %ld"
 
-#~ msgid "Error binding NULL param"
-#~ msgstr "Error binding NULL param"
-
 #~ msgid "Translators"
 #~ msgstr "Übersetzer"
-
-#~ msgid "Error clearing bindings"
-#~ msgstr "Error clearing bindings"
 
 #, fuzzy
 #~ msgid "Tree View Options: Expand Section"
@@ -10829,9 +10760,6 @@ msgstr "Sie haben die neueste Version installiert!"
 #, fuzzy
 #~ msgid "Would you like to download it now ?"
 #~ msgstr "möchten Sie dies herunterladen? "
-
-#~ msgid "Status:"
-#~ msgstr "Status:"
 
 #~ msgid "List Border"
 #~ msgstr "Listen-Rahmen"
@@ -10936,9 +10864,6 @@ msgstr "Sie haben die neueste Version installiert!"
 #~ msgid "XXLarge"
 #~ msgstr "XXGross"
 
-#~ msgid "&OK"
-#~ msgstr "&OK"
-
 #, fuzzy
 #~ msgid "&Load"
 #~ msgstr "Lade SQL"
@@ -10960,14 +10885,8 @@ msgstr "Sie haben die neueste Version installiert!"
 #~ "entweder addiert oder subtrahiert werden zum <b> 'Gesamtbetrag' </b> je "
 #~ "nach zuletzt ausgewähltem Konto."
 
-#~ msgid "123456.78"
-#~ msgstr "123456.78"
-
 #~ msgid "Add CSV field"
 #~ msgstr "CSV-Feld hinzufügen"
-
-#~ msgid "Yahoo Suffix"
-#~ msgstr "Yahoo Suffix"
 
 #~ msgid "Allow for any delay in quotes"
 #~ msgstr "Erlaube Verzögerung in Notierungen"
@@ -11078,12 +10997,6 @@ msgstr "Sie haben die neueste Version installiert!"
 #~ "Geben Sie den Empfänger ein, der hinzugefügt werden soll, oder "
 #~ "bearbeiten sie einen bestehenden Namen."
 
-#~ msgid "Error binding string param"
-#~ msgstr "Error binding string param"
-
-#~ msgid "finance.au.yahoo.com"
-#~ msgstr "finance.au.yahoo.com"
-
 #~ msgid "Expand Bank Accounts on home page when page is refreshed"
 #~ msgstr ""
 #~ "Erweitern der Bank Konten auf der Startseite, wenn die Daten "
@@ -11180,9 +11093,6 @@ msgstr "Sie haben die neueste Version installiert!"
 #~ msgid "%s Converted to: %s"
 #~ msgstr "%s konvertiert zu: %s"
 
-#~ msgid "1000"
-#~ msgstr "1000"
-
 #~ msgid "mmGetTableChoice: Array not recognised"
 #~ msgstr "mmGetTableChoice: Feld nicht erkannt"
 
@@ -11242,9 +11152,6 @@ msgstr "Sie haben die neueste Version installiert!"
 #~ msgid "Estimated Income: %s Actual Income:  %s"
 #~ msgstr "Erwartete Einnahmen: %s Aktuelle Einnahmen:  %s"
 
-#~ msgid "Error binding double param"
-#~ msgstr "Error binding double param"
-
 #~ msgid "Financial Year: "
 #~ msgstr "Finanzjahr"
 
@@ -11284,9 +11191,6 @@ msgstr "Sie haben die neueste Version installiert!"
 #~ msgid "Income vs Expenses - Last Calendar Month"
 #~ msgstr "Einnahmen vs Ausgaben: letzter Kalender Monat"
 
-#~ msgid "%s\t: %0.4f -> %0.4f\n"
-#~ msgstr "%s\t: %0.4f -> %0.4f\n"
-
 #~ msgid "to"
 #~ msgstr "bis"
 
@@ -11315,9 +11219,6 @@ msgstr "Sie haben die neueste Version installiert!"
 #~ msgid "to "
 #~ msgstr " Bis:"
 
-#~ msgid "Error binding date/time param"
-#~ msgstr "Error binding date/time param"
-
 #~ msgid "Edit..."
 #~ msgstr "Bearbeiten.."
 
@@ -11330,9 +11231,6 @@ msgstr "Sie haben die neueste Version installiert!"
 
 #~ msgid "Statement not accessible"
 #~ msgstr "Anweisung nicht verfügbar"
-
-#~ msgid "Min: "
-#~ msgstr "Min: "
 
 #~ msgid "Specify categories for this transaction"
 #~ msgstr "Kategorie für diese Buchung wählen"
@@ -11372,9 +11270,6 @@ msgstr "Sie haben die neueste Version installiert!"
 #, fuzzy
 #~ msgid " has excessive items. Check delimiters in numbers, skipping."
 #~ msgstr " fehlender Betrag. Übersprungen."
-
-#~ msgid "App"
-#~ msgstr "App"
 
 #~ msgid "Continue ?"
 #~ msgstr "weiterfahren ?"

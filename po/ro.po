@@ -10240,9 +10240,6 @@ msgstr "Ai deja instalată ultima versiune!"
 #~ msgid "&Stock Accounts"
 #~ msgstr "Conturi"
 
-#~ msgid ":"
-#~ msgstr ":"
-
 #, fuzzy
 #~ msgid "Account  :"
 #~ msgstr "Cont"
@@ -10767,9 +10764,6 @@ msgstr "Ai deja instalată ultima versiune!"
 #, fuzzy
 #~ msgid "Unit Price"
 #~ msgstr "Curs Actual"
-
-#~ msgid "finance.au.yahoo.com"
-#~ msgstr "finance.au.yahoo.com"
 
 #, fuzzy
 #~ msgid "Universal CSV Export"

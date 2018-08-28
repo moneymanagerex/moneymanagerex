@@ -9302,9 +9302,6 @@ msgstr "U heeft de nieuwste versie!"
 #~ msgid " : Requires MMEX Restart"
 #~ msgstr " : Vereist opnieuw opstarten van MMEX"
 
-#~ msgid " Help"
-#~ msgstr " Help"
-
 #~ msgid "Min: "
 #~ msgstr "Minimum: "
 
@@ -9435,9 +9432,6 @@ msgstr "U heeft de nieuwste versie!"
 #~ msgid "&Load"
 #~ msgstr "&Laden"
 
-#~ msgid "&Help\tCtrl-F1"
-#~ msgstr "&Help\tCtrl-F1"
-
 #, fuzzy
 #~ msgid "&New Series"
 #~ msgstr "Nieuwe transactie"
@@ -9477,17 +9471,11 @@ msgstr "U heeft de nieuwste versie!"
 #~ msgid "View Transactions for last 30 days"
 #~ msgstr "Transacties van de laatste 30 Dagen"
 
-#~ msgid "1000"
-#~ msgstr "1000"
-
 #~ msgid "Number of Shares"
 #~ msgstr "Aantal Aandelen"
 
 #~ msgid "123456.78   Shown As:"
 #~ msgstr "123456.78   wordt getoond als:"
-
-#~ msgid "123456.78"
-#~ msgstr "123456.78"
 
 #~ msgid ""
 #~ "<b>Note:</b> Transactions contain <b>'transfers'</b> may either be added "
@@ -10300,9 +10288,6 @@ msgstr "U heeft de nieuwste versie!"
 #~ msgid "Where the Money Comes From - Current Month to Date"
 #~ msgstr "Inkomstenbronnen - Deze Maand tot Datum"
 
-#~ msgid " type "
-#~ msgstr " type "
-
 #~ msgid "New/Edit Transaction"
 #~ msgstr "Nieuwe Transactie / Transactie Bewerken"
 
@@ -10349,9 +10334,6 @@ msgstr "U heeft de nieuwste versie!"
 
 #~ msgid "Number Shares"
 #~ msgstr "Aantal Aandelen"
-
-#~ msgid ":"
-#~ msgstr ":"
 
 #~ msgid "Where the Money Comes From - Last Calendar Month"
 #~ msgstr "Inkomstenbronnen - Vorige Kalendermaand"
@@ -10477,9 +10459,6 @@ msgstr "U heeft de nieuwste versie!"
 
 #~ msgid "Checking/Savings"
 #~ msgstr "Zicht-/Spaarrekening"
-
-#~ msgid "QFX Import"
-#~ msgstr "QFX Import"
 
 #~ msgid "Choose Universal CSV format file to load"
 #~ msgstr "Kies Universeel CSV-formaatbestand om te laden"
@@ -10655,9 +10634,6 @@ msgstr "U heeft de nieuwste versie!"
 #, fuzzy
 #~ msgid "Income vs Expenses - Current Financial Year"
 #~ msgstr "Inkomsten vs Uitgaven voor het Financiële Jaar: "
-
-#~ msgid "MMEX message"
-#~ msgstr "MMEX message"
 
 #~ msgid "Income vs Expenses - Last Calendar Month"
 #~ msgstr "Inkomsten vs. Uitgaven: Vorige maand"
@@ -10959,9 +10935,6 @@ msgstr "U heeft de nieuwste versie!"
 #~ msgid "Statement not accessible"
 #~ msgstr "Commando niet uitvoerbaar"
 
-#~ msgid "Invalid scalar query"
-#~ msgstr "Invalid scalar query"
-
 #, fuzzy
 #~ msgid "Stock Investment Page Selection"
 #~ msgstr "Bevestigd Schrapping Fonds"
@@ -11164,17 +11137,11 @@ msgstr "U heeft de nieuwste versie!"
 #~ msgid "Unknown error"
 #~ msgstr "Onbekend"
 
-#~ msgid "Type: "
-#~ msgstr "Type: "
-
 #~ msgid "Set to 'Auto Execute' on the 'Next Occurrence' date."
 #~ msgstr "Volgende Transactie Automatisch Uitvoeren"
 
 #~ msgid "Specify the number of times this series repeats."
 #~ msgstr "Voer het aantal keer in dat de transactie herhaald wordt."
-
-#~ msgid "&OK"
-#~ msgstr "&OK"
 
 #~ msgid "Sub-Menu"
 #~ msgstr "Submenu"

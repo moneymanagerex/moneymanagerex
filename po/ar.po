@@ -9410,9 +9410,6 @@ msgstr "لديك آخر اصدار!"
 #~ msgid "Payee Report - %s"
 #~ msgstr "المستفيد"
 
-#~ msgid ":"
-#~ msgstr ":"
-
 #, fuzzy
 #~ msgid "Payee Report - Current Financial Year"
 #~ msgstr "العام الحالي"

@@ -8282,12 +8282,6 @@ msgstr ""
 msgid "You already have the latest version"
 msgstr ""
 
-#~ msgid "Visit MMEX Forum"
-#~ msgstr "Visit MMEX Forum"
-
-#~ msgid "Visit MMEX Twitter"
-#~ msgstr "Visit MMEX Twitter"
-
 #~ msgid "New/Edit Asset"
 #~ msgstr "เพื่ม/แก้ไข ทรัพย์สิน"
 

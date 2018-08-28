@@ -9096,9 +9096,6 @@ msgstr "Tiene la última versión instalada %s"
 #~ msgid "Filter"
 #~ msgstr "Filtro"
 
-#~ msgid "(DB v.%i)"
-#~ msgstr "(DB v.%i)"
-
 #~ msgid "Incorrect XML data (#2)!"
 #~ msgstr "¡Datos XML incorrectos (#2)!"
 
@@ -9109,32 +9106,17 @@ msgstr "Tiene la última versión instalada %s"
 #~ msgid "Universal CSV Export"
 #~ msgstr "Exportar Universal CSV"
 
-#~ msgid "1257"
-#~ msgstr "1257"
-
 #~ msgid "Income......."
 #~ msgstr "Ingresos....."
-
-#~ msgid "1255"
-#~ msgstr "1255"
 
 #~ msgid "Financial Year Settings"
 #~ msgstr "Preferencias del año fiscal"
 
-#~ msgid "1253"
-#~ msgstr "1253"
-
 #~ msgid "Income vs Expenses for Financial Year: "
 #~ msgstr "Ingresos vs Gastos para el año fiscal: "
 
-#~ msgid "1251"
-#~ msgstr "1251"
-
 #~ msgid "Update Failed"
 #~ msgstr "Actualización fallida"
-
-#~ msgid "%s\t: %s\n"
-#~ msgstr "%s\t: %s\n"
 
 #, fuzzy
 #~ msgid "Income vs Expenses - Last Financial Year"
@@ -9153,30 +9135,15 @@ msgstr "Tiene la última versión instalada %s"
 #~ msgid "Bug reports"
 #~ msgstr "Informe de errores"
 
-#~ msgid "7"
-#~ msgstr "7"
-
 #, fuzzy
 #~ msgid "Income vs Expenses - Last 12 months"
 #~ msgstr "Ingresos vs Gastos - Últimos 12 meses"
 
-#~ msgid "5"
-#~ msgstr "5"
-
 #~ msgid "Update database changes to database backup on exit."
 #~ msgstr "Actualizar la copia de seguridad con los cambios al salir."
 
-#~ msgid "3"
-#~ msgstr "3"
-
 #~ msgid "Income vs Expenses - Current Month to Date"
 #~ msgstr "Ingresos vs Gastos - Mes actual a fecha"
-
-#~ msgid "1"
-#~ msgstr "1"
-
-#~ msgid "1250"
-#~ msgstr "1250"
 
 #, fuzzy
 #~| msgid "Accounts: "
@@ -9207,9 +9174,6 @@ msgstr "Tiene la última versión instalada %s"
 
 #~ msgid "Cannot locate previously opened database.\n"
 #~ msgstr "No se puede localizar la base de datos abierta previamente.\n"
-
-#~ msgid "4"
-#~ msgstr "4"
 
 #, fuzzy
 #~ msgid "No File opened"
@@ -9270,9 +9234,6 @@ msgstr "Tiene la última versión instalada %s"
 
 #~ msgid "Home Page Expansion Options"
 #~ msgstr "Opciones de expasión de la Página de inicio"
-
-#~ msgid "%1$s - %2$s"
-#~ msgstr "%1$s - %2$s"
 
 #~ msgid "View \"Follow Up\" Transactions"
 #~ msgstr "Ver transacciones de \"seguimiento\""
@@ -9540,9 +9501,6 @@ msgstr "Tiene la última versión instalada %s"
 #~ msgid "Found no protocol which can get this URL"
 #~ msgstr "No se puede ir a esta URL"
 
-#~ msgid "%s\t -> %s\n"
-#~ msgstr "%s\t -> %s\n"
-
 #~ msgid "A path is required for this protocol"
 #~ msgstr "Se requiere una dirección para este protocolo"
 
@@ -9555,9 +9513,6 @@ msgstr "Tiene la última versión instalada %s"
 #~ msgid "View Reconciled"
 #~ msgstr "Ver reconciliadas"
 
-#~ msgid "EUR"
-#~ msgstr "EUR"
-
 #~ msgid "Log file written to : "
 #~ msgstr "Fichero de registro escrito en : "
 
@@ -9565,24 +9520,11 @@ msgstr "Tiene la última versión instalada %s"
 #~ msgid "Pence"
 #~ msgstr "Gastos"
 
-#~ msgid "USD"
-#~ msgstr "USD"
-
-#~ msgid "RUB"
-#~ msgstr "RUB"
-
 #~ msgid "MMEX Account View: Transaction Filter"
 #~ msgstr "MMEX Vista de cuenta: Filtro de transacciones"
 
-#, fuzzy
-#~ msgid "pul"
-#~ msgstr "pul"
-
 #~ msgid "View Reconciled Transactions"
 #~ msgstr "Ver las transacciones reconciliadas"
-
-#~ msgid "L"
-#~ msgstr "L"
 
 #~ msgid "MMEX System Information Check"
 #~ msgstr "Comprobación de información del sistema de MMEX"
@@ -9590,9 +9532,6 @@ msgstr "Tiene la última versión instalada %s"
 #, fuzzy
 #~ msgid "centavo"
 #~ msgstr "Dentista"
-
-#~ msgid "AFN"
-#~ msgstr "AFN"
 
 #, fuzzy
 #~ msgid "CVE"
@@ -9665,10 +9604,6 @@ msgstr "Tiene la última versión instalada %s"
 #~ msgid "New Lua Custom Report"
 #~ msgstr "Nuevo informe Lua personalizado"
 
-#, fuzzy
-#~ msgid " - "
-#~ msgstr " - "
-
 #~ msgid "View Transactions for last 30 days"
 #~ msgstr "Ver las transacciones de los últimos 30 días"
 
@@ -9691,9 +9626,6 @@ msgstr "Tiene la última versión instalada %s"
 #, fuzzy
 #~ msgid "New version is: %s"
 #~ msgstr "La nueva versión es: %s"
-
-#~ msgid " Total:"
-#~ msgstr " Total:"
 
 #~ msgid "View Transactions for last 90 days"
 #~ msgstr "Ver las transacciones de los últimos 90 días"
@@ -9786,9 +9718,6 @@ msgstr "Tiene la última versión instalada %s"
 #~ msgid "View Un-Reconciled"
 #~ msgstr "Ver no reconciliadas"
 
-#~ msgid "%s\t: %0.4f -> %0.4f\n"
-#~ msgstr "%s\t: %0.4f -> %0.4f\n"
-
 #~ msgid "Notes: "
 #~ msgstr "Notas: "
 
@@ -9810,9 +9739,6 @@ msgstr "Tiene la última versión instalada %s"
 #~ msgid "View Un-Reconciled Transactions"
 #~ msgstr "Ver las transacciones no reconciliadas"
 
-#~ msgid "&OK"
-#~ msgstr "&OK"
-
 #~ msgid "Options"
 #~ msgstr "Opciones"
 
@@ -9833,9 +9759,6 @@ msgstr "Tiene la última versión instalada %s"
 
 #~ msgid "View UnReconciled"
 #~ msgstr "Ver no reconciliadas"
-
-#~ msgid "1000"
-#~ msgstr "1000"
 
 #, fuzzy
 #~ msgid ""
@@ -9920,9 +9843,6 @@ msgstr "Tiene la última versión instalada %s"
 
 #~ msgid "Payees - Current Month"
 #~ msgstr "Beneficiarios - Mes actual"
-
-#~ msgid "App"
-#~ msgstr "App"
 
 #~ msgid "Viewing All Except Reconciled Transactions"
 #~ msgstr "Viendo todo excepto las transacciones reconciliadas"
@@ -10274,10 +10194,6 @@ msgstr "Tiene la última versión instalada %s"
 #~ msgid "Selection can be made by using Search button."
 #~ msgstr "La selección se puede hacer usando el botón de Búsqueda"
 
-#, fuzzy
-#~ msgid "Error: %s\n"
-#~ msgstr "Error: %s\n"
-
 #~ msgid "Viewing transactions for last month"
 #~ msgstr "Viendo las transacciones del mes pasado"
 
@@ -10570,14 +10486,8 @@ msgstr "Tiene la última versión instalada %s"
 #~ msgid "MM.&NET CSV Files"
 #~ msgstr "Ficheros MM.&NET CSV"
 
-#~ msgid "UAH"
-#~ msgstr "UAH"
-
 #~ msgid "Where the Money Comes From - Last Financial Year"
 #~ msgstr "De dónde viene el dinero - Año fiscal anterior"
-
-#~ msgid "DZD"
-#~ msgstr "DZD"
 
 #~ msgid "MMEX must be shutdown and restarted for all the changes to be seen."
 #~ msgstr "Se debe reiniciar MMEX para que todos los cambios tengan efecto."
@@ -10585,9 +10495,6 @@ msgstr "Tiene la última versión instalada %s"
 #, fuzzy
 #~ msgid "ETB"
 #~ msgstr "Tabulador"
-
-#~ msgid "GBP"
-#~ msgstr "GBP"
 
 #, fuzzy
 #~ msgid "T"
@@ -10668,9 +10575,6 @@ msgstr "Tiene la última versión instalada %s"
 #~ " a\n"
 #~ "otro "
 
-#~ msgid "Normal"
-#~ msgstr "Normal"
-
 #~ msgid " type "
 #~ msgstr " tipo "
 
@@ -10702,9 +10606,6 @@ msgstr "Tiene la última versión instalada %s"
 #~ msgid "&Delete Budget Year"
 #~ msgstr "&Borrar presupuesto anual"
 
-#~ msgid "123456.78"
-#~ msgstr "123456.78"
-
 #~ msgid "Other currency conversion rate. Set Base Currency to 1."
 #~ msgstr "Otra tasa de conversión de moneda. Fijar moneda base a 1."
 
@@ -10724,9 +10625,6 @@ msgstr "Tiene la última versión instalada %s"
 
 #~ msgid "Add a new payee name"
 #~ msgstr "Añada el nombre de un nuevo beneficiario"
-
-#~ msgid ":"
-#~ msgstr ":"
 
 #, fuzzy
 #~ msgid "All Others"
@@ -10969,9 +10867,6 @@ msgstr "Tiene la última versión instalada %s"
 #~ msgid "Importing CSV MM.NET"
 #~ msgstr "Importando CSV MM.NET"
 
-#~ msgid "2"
-#~ msgstr "2"
-
 #~ msgid "XLarge"
 #~ msgstr "Muy grande"
 
@@ -10981,9 +10876,6 @@ msgstr "Tiene la última versión instalada %s"
 
 #~ msgid "Huge"
 #~ msgstr "Enorme"
-
-#~ msgid "1256"
-#~ msgstr "1256"
 
 #~ msgid "%s -> User document directory"
 #~ msgstr "%s -> Carpeta de documentos de usuario"
@@ -11192,9 +11084,6 @@ msgstr "Tiene la última versión instalada %s"
 #~ msgid "Transactions imported from CSV"
 #~ msgstr "Transacciones importadas de CSV"
 
-#~ msgid "finance.au.yahoo.com"
-#~ msgstr "finance.au.yahoo.com"
-
 #, fuzzy
 #~ msgid "Transactions imported from QIF: %ld"
 #~ msgstr "Transacciones importadas del QIF: %ld"
@@ -11250,9 +11139,6 @@ msgstr "Tiene la última versión instalada %s"
 #~ msgid "Income vs Expenses - Current Financial Year"
 #~ msgstr "Ingresos vs Gastos - Año fiscal actual"
 
-#~ msgid "6"
-#~ msgstr "6"
-
 #~ msgid "minutes while market is open"
 #~ msgstr "minutos mientras el mercado esté abierto"
 
@@ -11264,9 +11150,6 @@ msgstr "Tiene la última versión instalada %s"
 
 #~ msgid "Specify the color for the list row 0"
 #~ msgstr "Especifique el color de la fila 0 de lista"
-
-#~ msgid "1254"
-#~ msgstr "1254"
 
 #, fuzzy
 #~ msgid "Specify the number of payments to be made."
@@ -11349,9 +11232,6 @@ msgstr "Tiene la última versión instalada %s"
 #~ msgid "Please confirm deletion of a selected Currency"
 #~ msgstr "Por favor, confirme el borrado de la moneda seleccionada"
 
-#~ msgid "Total: "
-#~ msgstr "Total: "
-
 #~ msgid "&Report Issues or Feedback"
 #~ msgstr "Informar de problemas o dar &retroalimentación"
 
@@ -11387,9 +11267,6 @@ msgstr "Tiene la última versión instalada %s"
 #, fuzzy
 #~ msgid "Income vs Expenses for Year: %d"
 #~ msgstr "Ingresos vs Gastos para el año: %d"
-
-#~ msgid "1252"
-#~ msgstr "1252"
 
 #~ msgid "to "
 #~ msgstr "a "

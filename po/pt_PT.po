@@ -9695,9 +9695,6 @@ msgstr "Tem a última versão instalada!"
 #~ msgid "Category:"
 #~ msgstr "Categoria "
 
-#~ msgid "Powered by wxWidgets, SQLite, wxSQLite(by Ulrich Telle)"
-#~ msgstr "Powered by wxWidgets, SQLite, wxSQLite(by Ulrich Telle)"
-
 #~ msgid "Change settings for automatic refresh"
 #~ msgstr "Alterar as opções para actulizações automáticas"
 
@@ -10274,9 +10271,6 @@ msgstr "Tem a última versão instalada!"
 #~ msgid "&Stock Accounts"
 #~ msgstr "Contas Bancárias"
 
-#~ msgid ":"
-#~ msgstr ":"
-
 #, fuzzy
 #~ msgid "Account  :"
 #~ msgstr "Conta"
@@ -10353,9 +10347,6 @@ msgstr "Tem a última versão instalada!"
 
 #~ msgid "CSV Export"
 #~ msgstr "Exportar para CSV"
-
-#~ msgid "C  "
-#~ msgstr "C  "
 
 #~ msgid "Cash Flow Forecast For All Accounts - A Year Ahead"
 #~ msgstr "Previsão do Cash Flow Para Todas as Contas a 1 Ano"
@@ -10804,9 +10795,6 @@ msgstr "Tem a última versão instalada!"
 #, fuzzy
 #~ msgid "Unit Price"
 #~ msgstr "Preço Actual"
-
-#~ msgid "finance.au.yahoo.com"
-#~ msgstr "finance.au.yahoo.com"
 
 #, fuzzy
 #~ msgid "Universal CSV Export"

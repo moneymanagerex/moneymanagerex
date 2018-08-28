@@ -8790,14 +8790,8 @@ msgstr "Hai già l'ultima versione %s"
 #~ msgid "Where the Money Goes - %s"
 #~ msgstr "Dove va il denaro - %s"
 
-#~ msgid "BND"
-#~ msgstr "BND"
-
 #~ msgid "Your database file is stored with an extension of .mmb."
 #~ msgstr "Il Database è archiviato con estensione .mmb"
-
-#~ msgid "BGN"
-#~ msgstr "BGN"
 
 #~ msgid "XML Files (*.xml) | *.xml;*.XML | All files | *.*"
 #~ msgstr "Files XML (*.xml) | *.xml;*.XML | Tutti i files | *.*"
@@ -8807,9 +8801,6 @@ msgstr "Hai già l'ultima versione %s"
 
 #~ msgid "Next"
 #~ msgstr "Prossima"
-
-#~ msgid "XAF"
-#~ msgstr "XAF"
 
 #~ msgid ""
 #~ "Do you really want to massive update field content?\n"
@@ -8825,9 +8816,6 @@ msgstr "Hai già l'ultima versione %s"
 #~ msgid "Clear the settings for the allocated position"
 #~ msgstr "Indicare lo stato dell'operazione"
 
-#~ msgid "Esc"
-#~ msgstr "Esc"
-
 #~ msgid "E&xit\tAlt-X"
 #~ msgstr "E&sci\tAlt-X"
 
@@ -8836,9 +8824,6 @@ msgstr "Hai già l'ultima versione %s"
 
 #~ msgid "BankAccount"
 #~ msgstr "Conto Bancario"
-
-#~ msgid "KYD"
-#~ msgstr "KYD"
 
 #~ msgid "My Usage"
 #~ msgstr "Statistiche di utilizzo"
@@ -8849,9 +8834,6 @@ msgstr "Hai già l'ultima versione %s"
 #~ msgid "A generic network error occurred"
 #~ msgstr "Errore di rete"
 
-#~ msgid "CNY"
-#~ msgstr "CNY"
-
 #~ msgid "The client failed to connect the server"
 #~ msgstr "Il client non è riuscito a comunicare con il server"
 
@@ -8860,9 +8842,6 @@ msgstr "Hai già l'ultima versione %s"
 
 #~ msgid "An error occurred during reconnection"
 #~ msgstr "Si è verificato un errore durante la riconnessione"
-
-#~ msgid "KMF"
-#~ msgstr "KMF"
 
 #~ msgid "Cannot get data from website"
 #~ msgstr "Impossibile ricevere dati dal sito"
@@ -8873,21 +8852,12 @@ msgstr "Hai già l'ultima versione %s"
 #~ msgid "Download in progress"
 #~ msgstr "Download in corso"
 
-#~ msgid "CDF"
-#~ msgstr "CDF"
-
-#~ msgid "%1$s - %2$s"
-#~ msgstr "%1$s - %2$s"
-
 #, fuzzy
 #~ msgid "Default account \""
 #~ msgstr "&Elimina Conto"
 
 #~ msgid "Custom Fields | %s %i"
 #~ msgstr "Campi Personalizzati | %s %i"
-
-#~ msgid "kn"
-#~ msgstr "kn"
 
 #~ msgid "Close custom field window"
 #~ msgstr "Chiude la finestra dei campi personalizzati"
@@ -8900,20 +8870,11 @@ msgstr "Hai già l'ultima versione %s"
 #~ "Per applicare i nuovi cambiamenti chiudere e riaprire il pannello dei "
 #~ "campi personalizzati"
 
-#~ msgid "CZK"
-#~ msgstr "CZK"
-
 #~ msgid "European euro"
 #~ msgstr "Euro"
 
-#~ msgid " - "
-#~ msgstr " - "
-
 #~ msgid "Ukrainian hryvnia"
 #~ msgstr "Grivna ucraina"
-
-#~ msgid "DKK"
-#~ msgstr "DKK"
 
 #~ msgid "Angolan kwanza"
 #~ msgstr "Kwanza Angolano"
@@ -8924,9 +8885,6 @@ msgstr "Hai già l'ultima versione %s"
 #~ msgid "West African CFA franc"
 #~ msgstr "Franco Africa Occidentale"
 
-#~ msgid "DJF"
-#~ msgstr "DJF"
-
 #~ msgid "Bosnia and Herzegovina konvertibilna marka"
 #~ msgstr "Marco Bosniaco"
 
@@ -8935,9 +8893,6 @@ msgstr "Hai già l'ultima versione %s"
 
 #~ msgid "Cambodian riel"
 #~ msgstr "Riel cambogiano"
-
-#~ msgid "EGP"
-#~ msgstr "EGP"
 
 #~ msgid "Croatian kuna"
 #~ msgstr "Kuna Croata"
@@ -8948,9 +8903,6 @@ msgstr "Hai già l'ultima versione %s"
 #~ msgid "Gambian dalasi"
 #~ msgstr "Dalasi"
 
-#~ msgid "ERN"
-#~ msgstr "ERN"
-
 #~ msgid "Guatemalan quetzal"
 #~ msgstr "Quetzal"
 
@@ -8959,9 +8911,6 @@ msgstr "Hai già l'ultima versione %s"
 
 #~ msgid "Honduran lempira"
 #~ msgstr "Lempira Honduregna"
-
-#~ msgid "FKP"
-#~ msgstr "FKP"
 
 #~ msgid "Indonesian rupiah"
 #~ msgstr "Rupia Indonesiana"
@@ -8972,20 +8921,11 @@ msgstr "Hai già l'ultima versione %s"
 #~ msgid "Kazakhstani tenge"
 #~ msgstr "Tenge"
 
-#~ msgid "XPF"
-#~ msgstr "XPF"
-
 #~ msgid "Kyrgyzstani som"
 #~ msgstr "Som"
 
-#~ msgid "%s\t: %0.4f -> %0.4f\n"
-#~ msgstr "%s\t: %0.4f -> %0.4f\n"
-
 #~ msgid "Lebanese lira"
 #~ msgstr "Sterlina Libanese"
-
-#~ msgid "GMD"
-#~ msgstr "GMD"
 
 #~ msgid "Macanese pataca"
 #~ msgstr "Pataca"
@@ -8996,9 +8936,6 @@ msgstr "Hai già l'ultima versione %s"
 #~ msgid "Maldivian rufiyaa"
 #~ msgstr "Rufiyaa"
 
-#~ msgid "GHS"
-#~ msgstr "GHS"
-
 #~ msgid "Mongolian tugrik"
 #~ msgstr "Tugrik"
 
@@ -9007,9 +8944,6 @@ msgstr "Hai già l'ultima versione %s"
 
 #~ msgid "Nigerian naira"
 #~ msgstr "Naira"
-
-#~ msgid "Q"
-#~ msgstr "Q"
 
 #~ msgid "Panamanian balboa"
 #~ msgstr "Balboa"
@@ -9020,9 +8954,6 @@ msgstr "Hai già l'ultima versione %s"
 #~ msgid "Paraguayan guarani"
 #~ msgstr "Guarani Paraguaiano"
 
-#~ msgid "FG"
-#~ msgstr "FG"
-
 #~ msgid "Polish zloty"
 #~ msgstr "Zloty Polacco"
 
@@ -9032,9 +8963,6 @@ msgstr "Hai già l'ultima versione %s"
 #~ msgid "South African rand"
 #~ msgstr "Rand Sudafricano"
 
-#~ msgid "GYD"
-#~ msgstr "GYD"
-
 #~ msgid "Thai baht"
 #~ msgstr "Baht Tailandese"
 
@@ -9043,9 +8971,6 @@ msgstr "Hai già l'ultima versione %s"
 
 #~ msgid "Vanuatu vatu"
 #~ msgstr "Vatu"
-
-#~ msgid "HTG"
-#~ msgstr "HTG"
 
 #~ msgid "Samoan tala"
 #~ msgstr "Tala"
@@ -9058,9 +8983,6 @@ msgstr "Hai già l'ultima versione %s"
 #~ msgid "Amount ±"
 #~ msgstr "Importo"
 
-#~ msgid "HKD"
-#~ msgstr "HKD"
-
 #~ msgid "Show all even the unused currencies"
 #~ msgstr "Mostra tutte le valute, anche le non usate"
 
@@ -9072,9 +8994,6 @@ msgstr "Hai già l'ultima versione %s"
 #~ msgid "Convert Encrypted DB to Non-Encrypted DB"
 #~ msgstr "Converte un DB criptato in uno non criptato"
 
-#~ msgid "HUF"
-#~ msgstr "HUF"
-
 #~ msgid "No File opened"
 #~ msgstr "Nessun file aperto"
 
@@ -9083,9 +9002,6 @@ msgstr "Hai già l'ultima versione %s"
 
 #~ msgid "Cannot locate previously opened database.\n"
 #~ msgstr "Impossibile trovare l'ultimo database aperto.\n"
-
-#~ msgid "ISK"
-#~ msgstr "ISK"
 
 #~ msgid "Choose database file to Save As"
 #~ msgstr "Scegliere il database da Salvare con Nome"
@@ -9102,35 +9018,11 @@ msgstr "Hai già l'ultima versione %s"
 #~ "\n"
 #~ "%s"
 
-#~ msgid "Rp"
-#~ msgstr "Rp"
-
 #~ msgid "Accounts:"
 #~ msgstr "Account:"
 
 #~ msgid "Choose account to reallocate account type"
 #~ msgstr "Scegliere il Conto da cambiare di tipologia"
-
-#~ msgid "1"
-#~ msgstr "1"
-
-#~ msgid "SDR"
-#~ msgstr "SDR"
-
-#~ msgid "3"
-#~ msgstr "3"
-
-#~ msgid "2"
-#~ msgstr "2"
-
-#~ msgid "5"
-#~ msgstr "5"
-
-#~ msgid "IRR"
-#~ msgstr "IRR"
-
-#~ msgid "7"
-#~ msgstr "7"
 
 #~ msgid "Choose the new type for account: %s"
 #~ msgstr "Scegliere il nuovo tipo per il conto: %s"
@@ -9144,56 +9036,20 @@ msgstr "Hai già l'ultima versione %s"
 #~ "\n"
 #~ "  con: %s"
 
-#~ msgid "ILS"
-#~ msgstr "ILS"
-
-#~ msgid "%s\t: %s\n"
-#~ msgstr "%s\t: %s\n"
-
 #~ msgid "Accounts: %s"
 #~ msgstr "Conti: %s"
-
-#~ msgid "1251"
-#~ msgstr "1251"
-
-#~ msgid "JPY"
-#~ msgstr "JPY"
-
-#~ msgid "1253"
-#~ msgstr "1253"
 
 #~ msgid "Comma"
 #~ msgstr "Virgola"
 
-#~ msgid "1255"
-#~ msgstr "1255"
-
-#~ msgid "T"
-#~ msgstr "T"
-
-#~ msgid "1257"
-#~ msgstr "1257"
-
-#~ msgid "1256"
-#~ msgstr "1256"
-
 #~ msgid "Follow MMEX on Facebook"
 #~ msgstr "Segui MMEX su Facebook"
-
-#~ msgid "KSh"
-#~ msgstr "KSh"
-
-#~ msgid "(DB v.%i)"
-#~ msgstr "(DB v.%i)"
 
 #~ msgid "Curr. unit value"
 #~ msgstr "Prezzo Attuale unit."
 
 #~ msgid "Artwork"
 #~ msgstr "Grafica"
-
-#~ msgid "W"
-#~ msgstr "W"
 
 #~ msgid ""
 #~ "Asset Account not found.\n"
@@ -9213,9 +9069,6 @@ msgstr "Hai già l'ultima versione %s"
 #~ " Uno dei seguenti campi: Data, Importo, Tipo è mancante. Operazione "
 #~ "ignorata"
 
-#~ msgid "KRW"
-#~ msgstr "KRW"
-
 #~ msgid "Transactions saved to database in account: %s"
 #~ msgstr "Operazioni salvate nel database nel conto: %s"
 
@@ -9228,9 +9081,6 @@ msgstr "Hai già l'ultima versione %s"
 #~ msgstr ""
 #~ "Aggiornare tutto lo storico dei tassi di cambio? Ogni valore "
 #~ "personalizzato sarà eliminato!"
-
-#~ msgid "KGS"
-#~ msgstr "KGS"
 
 #~ msgid ""
 #~ "Directory of language files does not exist:\n"
@@ -9249,9 +9099,6 @@ msgstr "Hai già l'ultima versione %s"
 #~ msgid "Get Android Version"
 #~ msgstr "Ottieni versione Android"
 
-#~ msgid "LAK"
-#~ msgstr "LAK"
-
 #~ msgid "Visit MMEX Forum"
 #~ msgstr "Visita il Forum di MMEX"
 
@@ -9260,9 +9107,6 @@ msgstr "Hai già l'ultima versione %s"
 
 #~ msgid "Specify the language to use"
 #~ msgstr "Specifica la lingua da utilizzare"
-
-#~ msgid "LVL"
-#~ msgstr "LVL"
 
 #~ msgid "Today's Date: %s"
 #~ msgstr "Oggi: %s"
@@ -9276,9 +9120,6 @@ msgstr "Hai già l'ultima versione %s"
 #~ msgstr ""
 #~ "Inserire la commissione pagata.\n"
 #~ "Usato per creare la transazione iniziale nei conti titoli."
-
-#~ msgid "M"
-#~ msgstr "M"
 
 #~ msgid ""
 #~ "Share Account not found.\n"
@@ -9299,9 +9140,6 @@ msgstr "Hai già l'ultima versione %s"
 #~ msgid "Number of %s:"
 #~ msgstr "Numero di %s:"
 
-#~ msgid "LRD"
-#~ msgstr "LRD"
-
 #~ msgid "Add Stock Transactions"
 #~ msgstr "Aggiungi operazione titoli"
 
@@ -9315,9 +9153,6 @@ msgstr "Hai già l'ultima versione %s"
 #~ msgid "Delete Stock Investment"
 #~ msgstr "Elimina Investimento in Titoli"
 
-#~ msgid "LYD"
-#~ msgstr "LYD"
-
 #~ msgid "Specify the associated Account that will contain this transaction"
 #~ msgstr "Specificare il conto associato su cui sarà registrata l'operazione"
 
@@ -9327,9 +9162,6 @@ msgstr "Hai già l'ultima versione %s"
 #~ msgid "Found no protocol which can get this URL"
 #~ msgstr "Nessun protocollo trovato per questo URL"
 
-#~ msgid "LTL"
-#~ msgstr "LTL"
-
 #~ msgid "A path is required for this protocol"
 #~ msgstr "Richiesto un percorso per questo protocollo"
 
@@ -9338,9 +9170,6 @@ msgstr "Hai già l'ultima versione %s"
 
 #~ msgid "Cannot get data from WWW!"
 #~ msgstr "Impossibile ricevere dati dal WWW!"
-
-#~ msgid "MKD"
-#~ msgstr "MKD"
 
 #~ msgid "Specify period in Days to activate.Becomes blank when not active."
 #~ msgstr ""
@@ -9353,9 +9182,6 @@ msgstr "Hai già l'ultima versione %s"
 #~ msgid "MMEX database succesfully upgraded to version %i"
 #~ msgstr "Database di MMEX aggiornato correttamente alla versione %i"
 
-#~ msgid "MGA"
-#~ msgstr "MGA"
-
 #~ msgid "Monthly Summary of Accounts"
 #~ msgstr "Saldo mensile dei Conti"
 
@@ -9364,9 +9190,6 @@ msgstr "Hai già l'ultima versione %s"
 
 #~ msgid "Budget Performance"
 #~ msgstr "Risultati Budget"
-
-#~ msgid "MWK"
-#~ msgstr "MWK"
 
 #~ msgid "Cash Flow - With Bank Accounts"
 #~ msgstr "Flusso di Cassa - Conti Bancari"
@@ -9377,9 +9200,6 @@ msgstr "Hai già l'ultima versione %s"
 #~ msgid "Cash Flow - Specific Accounts"
 #~ msgstr "Flusso di Cassa - Conti Specifici"
 
-#~ msgid "MYR"
-#~ msgstr "MYR"
-
 #~ msgid "All Bank Accounts"
 #~ msgstr "Tutti i Conti Bancari"
 
@@ -9388,9 +9208,6 @@ msgstr "Hai già l'ultima versione %s"
 
 #~ msgid "Account Name"
 #~ msgstr "Nome Conto"
-
-#~ msgid "MVR"
-#~ msgstr "MVR"
 
 #~ msgid "Term Accounts Total:"
 #~ msgstr "Totale Conti a Termine:"
@@ -9401,47 +9218,14 @@ msgstr "Hai già l'ultima versione %s"
 #~ msgid "Total Balance on all Accounts"
 #~ msgstr "Saldo Totale (Tutti i conti)"
 
-#~ msgid "MRO"
-#~ msgstr "MRO"
-
-#~ msgid "USD"
-#~ msgstr "USD"
-
 #~ msgid "Total Amount: "
 #~ msgstr "Totale Complessivo: "
 
 #~ msgid "Pound"
 #~ msgstr "Sterlina"
 
-#~ msgid "MUR"
-#~ msgstr "MUR"
-
-#~ msgid "GBP"
-#~ msgstr "GBP"
-
 #~ msgid "No account available to reallocate!"
 #~ msgstr "Nessun conto disponibile da cambiare!"
-
-#~ msgid "UAH"
-#~ msgstr "UAH"
-
-#~ msgid "MDL"
-#~ msgstr "MDL"
-
-#~ msgid "AFN"
-#~ msgstr "AFN"
-
-#~ msgid "pul"
-#~ msgstr "pul"
-
-#~ msgid "DZD"
-#~ msgstr "DZD"
-
-#~ msgid "MAD"
-#~ msgstr "MAD"
-
-#~ msgid "AOA"
-#~ msgstr "AOA"
 
 #~ msgid "Number of Shares"
 #~ msgstr "Numero di Azioni"
@@ -9449,92 +9233,20 @@ msgstr "Hai già l'ultima versione %s"
 #~ msgid "centavo"
 #~ msgstr "Centavo"
 
-#~ msgid "MMK"
-#~ msgstr "MMK"
-
-#~ msgid "AMD"
-#~ msgstr "AMD"
-
-#~ msgid "ARS"
-#~ msgstr "ARS"
-
-#~ msgid "AUD"
-#~ msgstr "AUD"
-
-#~ msgid "NRs"
-#~ msgstr "NRs"
-
-#~ msgid "BSD"
-#~ msgstr "BSD"
-
 #~ msgid "Overwrite?"
 #~ msgstr "Sovrascrivere?"
-
-#~ msgid "BDT"
-#~ msgstr "BDT"
-
-#~ msgid "ANG"
-#~ msgstr "ANG"
-
-#~ msgid "Br"
-#~ msgstr "Br"
-
-#~ msgid "BBD"
-#~ msgstr "BBD"
-
-#~ msgid "BZD"
-#~ msgstr "BZD"
-
-#~ msgid "NIO"
-#~ msgstr "NIO"
-
-#~ msgid "XOF"
-#~ msgstr "XOF"
 
 #~ msgid "Pay Date"
 #~ msgstr "Data pagamento"
 
-#~ msgid "BTN"
-#~ msgstr "BTN"
-
-#~ msgid "NOK"
-#~ msgstr "NOK"
-
-#~ msgid "KM"
-#~ msgstr "KM"
-
-#~ msgid "BOB"
-#~ msgstr "BOB"
-
-#~ msgid "P"
-#~ msgstr "P"
-
-#~ msgid "PKR"
-#~ msgstr "PKR"
-
-#~ msgid "BRL"
-#~ msgstr "BRL"
-
 #~ msgid "Payee Report - %s"
 #~ msgstr "Resoconto Beneficiario - %s"
-
-#~ msgid "BIF"
-#~ msgstr "BIF"
-
-#~ msgid "KHR"
-#~ msgstr "KHR"
 
 #~ msgid "&Clear "
 #~ msgstr "&Cancella"
 
-#~ msgid "FBu"
-#~ msgstr "FBu"
-
 #~ msgid "Quit this program"
 #~ msgstr "Esce dal programma"
-
-#~ msgid "CVE"
-#~ msgstr "CVE"
 
 #~ msgid "Updates"
 #~ msgstr "Aggiornamenti"
@@ -9545,9 +9257,6 @@ msgstr "Hai già l'ultima versione %s"
 #~ msgid "The remote file doesn't exist"
 #~ msgstr "Il file non esiste"
 
-#~ msgid "COP"
-#~ msgstr "COP"
-
 #~ msgid "Unknown error"
 #~ msgstr "Errore sconosciuto"
 
@@ -9556,9 +9265,6 @@ msgstr "Hai già l'ultima versione %s"
 
 #~ msgid "ALL"
 #~ msgstr "TUTTI"
-
-#~ msgid "CRC"
-#~ msgstr "CRC"
 
 #~ msgid "Add, edit and delete custom fields"
 #~ msgstr "Aggiunge, modifica ed elimina i campi personalizzati"
@@ -9569,9 +9275,6 @@ msgstr "Hai già l'ultima versione %s"
 #~ msgid "UK Pound"
 #~ msgstr "Sterlina Inglese"
 
-#~ msgid "Kr"
-#~ msgstr "Kr"
-
 #~ msgid "Bangladeshi taka"
 #~ msgstr "Taka Bengalese"
 
@@ -9580,9 +9283,6 @@ msgstr "Hai già l'ultima versione %s"
 
 #~ msgid "Botswana pula"
 #~ msgstr "Pula"
-
-#~ msgid "DOP"
-#~ msgstr "DOP"
 
 #~ msgid "Eritrean nakfa"
 #~ msgstr "Nakfa"
@@ -9593,9 +9293,6 @@ msgstr "Hai già l'ultima versione %s"
 #~ msgid "Haitian gourde"
 #~ msgstr "Gourde"
 
-#~ msgid "ETB"
-#~ msgstr "ETB"
-
 #~ msgid "Japanese yen"
 #~ msgstr "Yen Giapponese"
 
@@ -9604,9 +9301,6 @@ msgstr "Hai già l'ultima versione %s"
 
 #~ msgid "Latvian lats"
 #~ msgstr "Lat Lettone"
-
-#~ msgid "D"
-#~ msgstr "D"
 
 #~ msgid "Macedonian denar"
 #~ msgstr "Dinaro Macedone"
@@ -9617,9 +9311,6 @@ msgstr "Hai già l'ultima versione %s"
 #~ msgid "Myanma kyat"
 #~ msgstr "Kyat Birmano"
 
-#~ msgid "GIP"
-#~ msgstr "GIP"
-
 #~ msgid "Papua New Guinean kina"
 #~ msgstr "Kina"
 
@@ -9629,9 +9320,6 @@ msgstr "Hai già l'ultima versione %s"
 #~ msgid "Sierra Leonean leone"
 #~ msgstr "Leone"
 
-#~ msgid "GNF"
-#~ msgstr "GNF"
-
 #~ msgid "Uruguayan peso"
 #~ msgstr "Nuovo Peso Uruguaiano"
 
@@ -9640,9 +9328,6 @@ msgstr "Hai già l'ultima versione %s"
 
 #~ msgid "Wrong file type!"
 #~ msgstr "Tipo di file errato!"
-
-#~ msgid "HNL"
-#~ msgstr "HNL"
 
 #~ msgid "Convert Encrypted &DB"
 #~ msgstr "Converti &Database criptato"
@@ -9656,9 +9341,6 @@ msgstr "Hai già l'ultima versione %s"
 #~ "Spiacente. La versione del Database è troppo vecchia o la password non è "
 #~ "corretta."
 
-#~ msgid "kr"
-#~ msgstr "kr"
-
 #~ msgid "MMEX message"
 #~ msgstr "MMEX - Messaggio"
 
@@ -9667,12 +9349,6 @@ msgstr "Hai già l'ultima versione %s"
 
 #~ msgid "%s -> User document directory"
 #~ msgstr "%s -> Cartella documenti utente"
-
-#~ msgid "IDR"
-#~ msgstr "IDR"
-
-#~ msgid "4"
-#~ msgstr "4"
 
 #~ msgid "Enter password for new database"
 #~ msgstr "Inserire la password per il nuovo database"
@@ -9684,32 +9360,14 @@ msgstr "Hai già l'ultima versione %s"
 #~ "Sostituzione da categoria : \n"
 #~ "%s a: %s"
 
-#~ msgid "IQD"
-#~ msgstr "IQD"
-
-#~ msgid "1250"
-#~ msgstr "1250"
-
 #~ msgid "Show Deleted (Void)"
 #~ msgstr "Mostra Cancellate"
-
-#~ msgid "1254"
-#~ msgstr "1254"
-
-#~ msgid "JOD"
-#~ msgstr "JOD"
 
 #~ msgid "Bug reports"
 #~ msgstr "Segnalazioni bug"
 
-#~ msgid "1252"
-#~ msgstr "1252"
-
 #~ msgid "Developers"
 #~ msgstr "Sviluppatori"
-
-#~ msgid "KES"
-#~ msgstr "KES"
 
 #~ msgid "Transactions imported from file: "
 #~ msgstr "Operazioni importate dal file: "
@@ -9719,9 +9377,6 @@ msgstr "Hai già l'ultima versione %s"
 
 #~ msgid "Do you want to update today currency rates?"
 #~ msgstr "Aggiornare i tassi di cambio attuali?"
-
-#~ msgid "KWD"
-#~ msgstr "KWD"
 
 #~ msgid "Check For Updates"
 #~ msgstr "Verifica la disponibilità di aggiornamenti"
@@ -9733,9 +9388,6 @@ msgstr "Hai già l'ultima versione %s"
 
 #~ msgid "Account List"
 #~ msgstr "Pagina Principale"
-
-#~ msgid "Ls"
-#~ msgstr "Ls"
 
 #~ msgid ""
 #~ "Specify the initial date of the stock investment\n"
@@ -9750,9 +9402,6 @@ msgstr "Hai già l'ultima versione %s"
 #~ msgid "Specify how many stock history prices download from purchase date"
 #~ msgstr "Specificare quanti valori scaricare dalla data di acquisto"
 
-#~ msgid "LSL"
-#~ msgstr "LSL"
-
 #~ msgid "View Stock Transactions"
 #~ msgstr "Mostra Operazioni Titoli"
 
@@ -9761,9 +9410,6 @@ msgstr "Hai già l'ultima versione %s"
 
 #~ msgid "Syntax error in the URL string"
 #~ msgstr "Errore di sintassi nella stringa URL"
-
-#~ msgid "Lt"
-#~ msgstr "Lt"
 
 #~ msgid "Connection error"
 #~ msgstr "Errore di connessione"
@@ -9779,9 +9425,6 @@ msgstr "Hai già l'ultima versione %s"
 #~ "Specificare il numero di pagamenti da eseguire. Lasciare vuoto se i "
 #~ "pagamenti si protraggono per sempre."
 
-#~ msgid "FMG"
-#~ msgstr "FMG"
-
 #~ msgid "Income vs Expenses - Specific Accounts"
 #~ msgstr "Entrate / Uscite - Conti specifici"
 
@@ -9790,9 +9433,6 @@ msgstr "Hai già l'ultima versione %s"
 
 #~ msgid "Cash Flow - With Term Accounts"
 #~ msgstr "Flusso di Cassa - Conti a Termine"
-
-#~ msgid "RM"
-#~ msgstr "RM"
 
 #~ msgid "All Term Accounts"
 #~ msgstr "Tutti i Conti a Termine"
@@ -9803,98 +9443,23 @@ msgstr "Hai già l'ultima versione %s"
 #~ msgid "Stocks Total:"
 #~ msgstr "Totale Titoli:"
 
-#~ msgid "UM"
-#~ msgstr "UM"
-
-#~ msgid "EUR"
-#~ msgstr "EUR"
-
 #~ msgid "Bank Accounts Total:"
 #~ msgstr "Totale Conti Bancari:"
-
-#~ msgid "RUB"
-#~ msgstr "RUB"
-
-#~ msgid "MXN"
-#~ msgstr "MXN"
-
-#~ msgid "L"
-#~ msgstr "L"
 
 #~ msgid "Specify the purchase date of the stock investment"
 #~ msgstr "Indicare la data di acquisto del titolo"
 
-#~ msgid "XCD"
-#~ msgstr "XCD"
-
-#~ msgid "K"
-#~ msgstr "K"
-
-#~ msgid "AWG"
-#~ msgstr "AWG"
-
-#~ msgid "Kz"
-#~ msgstr "Kz"
-
-#~ msgid "BHD"
-#~ msgstr "BHD"
-
-#~ msgid "NPR"
-#~ msgstr "NPR"
-
-#~ msgid "BYR"
-#~ msgstr "BYR"
-
 #~ msgid "Stock Investments: %s"
 #~ msgstr "Investimenti: %s"
 
-#~ msgid "BMD"
-#~ msgstr "BMD"
-
-#~ msgid "NGN"
-#~ msgstr "NGN"
-
-#~ msgid "BAM"
-#~ msgstr "BAM"
-
-#~ msgid "CFA"
-#~ msgstr "CFA"
-
-#~ msgid "PGK"
-#~ msgstr "PGK"
-
-#~ msgid "PAB"
-#~ msgstr "PAB"
-
-#~ msgid "PEN"
-#~ msgstr "PEN"
-
 #~ msgid "Term Account"
 #~ msgstr "Conti a Termine"
-
-#~ msgid "PLN"
-#~ msgstr "PLN"
-
-#~ msgid "CLP"
-#~ msgstr "CLP"
-
-#~ msgid "QAR"
-#~ msgstr "QAR"
 
 #~ msgid ""
 #~ "Unable to update history currency rates. Please update them manually!"
 #~ msgstr ""
 #~ "Impossibile aggiornare lo storico dei tassi di cambio. Aggiornarli "
 #~ "manualmente!"
-
-#~ msgid "RF"
-#~ msgstr "RF"
-
-#~ msgid "HRK"
-#~ msgstr "HRK"
-
-#~ msgid "Db"
-#~ msgstr "Db"
 
 #~ msgid ""
 #~ "The database can later be encrypted if required, by\n"
@@ -9905,122 +9470,29 @@ msgstr "Hai già l'ultima versione %s"
 #~ "utilizzando l'opzione 'Salva Database come' e cambiando\n"
 #~ "il formato del file prima del salvataggio."
 
-#~ msgid "SR"
-#~ msgstr "SR"
-
-#~ msgid "Nfa"
-#~ msgstr "Nfa"
-
-#~ msgid "RSD"
-#~ msgstr "RSD"
-
 #~ msgid "Bhutanese ngultrum"
 #~ msgstr "Ngultrum"
-
-#~ msgid "SLL"
-#~ msgstr "SLL"
-
-#~ msgid "GEL"
-#~ msgstr "GEL"
-
-#~ msgid "SBD"
-#~ msgstr "SBD"
 
 #~ msgid "The next pages will help you create a new database."
 #~ msgstr "La pagina successiva ti aiuterà a creare un nuovo Database"
 
-#~ msgid "R"
-#~ msgstr "R"
-
-#~ msgid "G"
-#~ msgstr "G"
-
-#~ msgid "LKR"
-#~ msgstr "LKR"
-
 #~ msgid "Peruvian nuevo sol"
 #~ msgstr "Nuevo Sol"
-
-#~ msgid "SDG"
-#~ msgstr "SDG"
-
-#~ msgid "INR"
-#~ msgstr "INR"
-
-#~ msgid "E"
-#~ msgstr "E"
 
 #~ msgid "Times Repeated"
 #~ msgstr "Numero di ripetizioni"
 
-#~ msgid "SEK"
-#~ msgstr "SEK"
-
-#~ msgid "JMD"
-#~ msgstr "JMD"
-
-#~ msgid "SYP"
-#~ msgstr "SYP"
-
-#~ msgid "6"
-#~ msgstr "6"
-
-#~ msgid "TJS"
-#~ msgstr "TJS"
-
-#~ msgid "KPW"
-#~ msgstr "KPW"
-
-#~ msgid "THB"
-#~ msgstr "THB"
-
 #~ msgid "Total Price"
 #~ msgstr "Prezzo Totale"
-
-#~ msgid "DT"
-#~ msgstr "DT"
-
-#~ msgid "LBP"
-#~ msgstr "LBP"
-
-#~ msgid "TRY"
-#~ msgstr "TRY"
 
 #~ msgid "Run this program in your Android smart phone or tablet"
 #~ msgstr "Esegui questo programma sul tuo smartphone o tablet Android"
 
-#~ msgid "TMT"
-#~ msgstr "TMT"
-
-#~ msgid "MOP"
-#~ msgstr "MOP"
-
-#~ msgid "UGX"
-#~ msgstr "UGX"
-
 #~ msgid "Unit Price"
 #~ msgstr "Prezzo unit."
 
-#~ msgid "UYU"
-#~ msgstr "UYU"
-
-#~ msgid "Rf"
-#~ msgstr "Rf"
-
-#~ msgid "VT"
-#~ msgstr "VT"
-
 #~ msgid "Budget Category Summary"
 #~ msgstr "Riepilogo Budget Categorie"
-
-#~ msgid "VND"
-#~ msgstr "VND"
-
-#~ msgid "MNT"
-#~ msgstr "MNT"
-
-#~ msgid "YER"
-#~ msgstr "YER"
 
 #~ msgid "Universal CSV Dialog"
 #~ msgstr "Impostazioni File CSV Generico"
@@ -10028,60 +9500,18 @@ msgstr "Hai già l'ultima versione %s"
 #~ msgid "Currency History Options: "
 #~ msgstr "Opzioni storico tassi di cambio:"
 
-#~ msgid "NZD"
-#~ msgstr "NZD"
-
 #~ msgid "Invalid value "
 #~ msgstr "Valore non valido "
 
-#~ msgid "AZN"
-#~ msgstr "AZN"
-
-#~ msgid "PHP"
-#~ msgstr "PHP"
-
-#~ msgid "CAD"
-#~ msgstr "CAD"
-
-#~ msgid "RON"
-#~ msgstr "RON"
-
 #~ msgid "Universal CSV Export"
 #~ msgstr "Esportazione Universale CSV"
-
-#~ msgid "STD"
-#~ msgstr "STD"
-
-#~ msgid "Fdj"
-#~ msgstr "Fdj"
-
-#~ msgid "SCR"
-#~ msgstr "SCR"
 
 #, fuzzy
 #~ msgid "All files"
 #~ msgstr "Nel tempo"
 
-#~ msgid "SOS"
-#~ msgstr "SOS"
-
-#~ msgid "GTQ"
-#~ msgstr "GTQ"
-
-#~ msgid "SHP"
-#~ msgstr "SHP"
-
 #~ msgid "Value Date"
 #~ msgstr "Data valore"
-
-#~ msgid "SZL"
-#~ msgstr "SZL"
-
-#~ msgid "XDR"
-#~ msgstr "XDR"
-
-#~ msgid "TWD"
-#~ msgstr "TWD"
 
 #~ msgid ""
 #~ "Please enter password for Database\n"
@@ -10092,110 +9522,17 @@ msgstr "Hai già l'ultima versione %s"
 #~ "\n"
 #~ "%s"
 
-#~ msgid "TTD"
-#~ msgstr "TTD"
-
-#~ msgid "KN"
-#~ msgstr "KN"
-
-#~ msgid "m"
-#~ msgstr "m"
-
 #~ msgid "View Budget Summary Report without Categories"
 #~ msgstr "Mostra resoconti Budget senza Categorie"
-
-#~ msgid "AED"
-#~ msgstr "AED"
-
-#~ msgid "MK"
-#~ msgstr "MK"
-
-#~ msgid "VUV"
-#~ msgstr "VUV"
-
-#~ msgid "%s\t -> %s\n"
-#~ msgstr "%s\t -> %s\n"
-
-#~ msgid "VEF"
-#~ msgstr "VEF"
-
-#~ msgid "NAD"
-#~ msgstr "NAD"
-
-#~ msgid "PYG"
-#~ msgstr "PYG"
-
-#~ msgid "BWP"
-#~ msgstr "BWP"
-
-#~ msgid "RWF"
-#~ msgstr "RWF"
-
-#~ msgid "F"
-#~ msgstr "F"
-
-#~ msgid "SGD"
-#~ msgstr "SGD"
 
 #~ msgid "South Korean won"
 #~ msgstr "Won Sudcoreano"
 
-#~ msgid "SRD"
-#~ msgstr "SRD"
-
-#~ msgid "Ft"
-#~ msgstr "Ft"
-
-#~ msgid "TZS"
-#~ msgstr "TZS"
-
 #~ msgid "Donate"
 #~ msgstr "Donazioni"
 
-#~ msgid "USh"
-#~ msgstr "USh"
-
-#~ msgid "LD"
-#~ msgstr "LD"
-
-#~ msgid "WST"
-#~ msgstr "WST"
-
-#~ msgid "OMR"
-#~ msgstr "OMR"
-
-#~ msgid "QR"
-#~ msgstr "QR"
-
-#~ msgid "FJD"
-#~ msgstr "FJD"
-
-#~ msgid "ZAR"
-#~ msgstr "ZAR"
-
-#~ msgid "KZT"
-#~ msgstr "KZT"
-
-#~ msgid "TND"
-#~ msgstr "TND"
-
 #~ msgid "Currency rate updated"
 #~ msgstr "Tassi di Cambio aggiornati"
-
-#~ msgid "SAR"
-#~ msgstr "SAR"
-
-#~ msgid "CHF"
-#~ msgstr "CHF"
-
-#~ msgid "UZS"
-#~ msgstr "UZS"
-
-#~ msgid "Rs"
-#~ msgstr "Rs"
-
-#~ msgid "Pence"
-#~ msgstr "Pence"
 
 #~ msgid "Where the Money Comes From - %s"
 #~ msgstr "Da dove arriva il denaro - %s"

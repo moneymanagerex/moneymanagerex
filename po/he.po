@@ -8696,26 +8696,14 @@ msgstr "הגרסה העדכנית ביותר כבר מותקנת %s"
 #~ msgid "Term Account"
 #~ msgstr "חשבון חיסכון"
 
-#~ msgid "JMD"
-#~ msgstr "JMD"
-
 #~ msgid "Universal CSV Dialog"
 #~ msgstr "אוניברסלי CSV חלון"
-
-#~ msgid "₹"
-#~ msgstr "₹"
 
 #~ msgid "XML Files (*.xml) | *.xml;*.XML | All files | *.*"
 #~ msgstr "קבצי XML (*. xml) | *. xml; *. XML | כל הקבצים | *.*"
 
-#~ msgid "KZT"
-#~ msgstr "KZT"
-
 #~ msgid "Next"
 #~ msgstr "הבא"
-
-#~ msgid "T"
-#~ msgstr "T"
 
 #~ msgid ""
 #~ "Do you really want to massive update field content?\n"
@@ -8724,21 +8712,12 @@ msgstr "הגרסה העדכנית ביותר כבר מותקנת %s"
 #~ "האם לבצע עדכון תוכן שדה מסיבי ?\n"
 #~ "נא שקול זאת מאחר ואין כל אימות!"
 
-#~ msgid "KES"
-#~ msgstr "KES"
-
 #, fuzzy
 #~ msgid "Clear the settings for the allocated position"
 #~ msgstr "הגדר  סטאטוס תנועה"
 
-#~ msgid "₪"
-#~ msgstr "₪"
-
 #~ msgid "E&xit\tAlt-X"
 #~ msgstr "&צא tab]Alt-X]"
-
-#~ msgid "KPW"
-#~ msgstr "KPW"
 
 #~ msgid "BankAccount"
 #~ msgstr "חשבון הבנק"
@@ -8749,20 +8728,11 @@ msgstr "הגרסה העדכנית ביותר כבר מותקנת %s"
 #~ msgid "My Usage"
 #~ msgstr "השימוש שלי"
 
-#~ msgid "KWD"
-#~ msgstr "KWD"
-
 #~ msgid "A generic network error occurred"
 #~ msgstr "התרחשה שגיאת רשת גנרית"
 
-#~ msgid "J$"
-#~ msgstr "J$"
-
 #~ msgid "The client failed to connect the server"
 #~ msgstr "ה'לקוח' כשל לתקשר עם ה'שרת'"
-
-#~ msgid "KN"
-#~ msgstr "KN"
 
 #~ msgid "An error occurred during reconnection"
 #~ msgstr "אירעה שגיאה במהלך ההתחברות מחדש"
@@ -8773,20 +8743,8 @@ msgstr "הגרסה העדכנית ביותר כבר מותקנת %s"
 #~ msgid "Cannot get data from website"
 #~ msgstr "לא מצליח לקבל נתונים מהאתר"
 
-#~ msgid "Ls"
-#~ msgstr "Ls"
-
 #~ msgid "Download in progress"
 #~ msgstr "ההורדה מתקדמת"
-
-#~ msgid "L$"
-#~ msgstr "L$"
-
-#~ msgid "%1$s - %2$s"
-#~ msgstr "%1$s - %2$s"
-
-#~ msgid "LBP"
-#~ msgstr "LBP"
 
 #~ msgid "Custom Fields | %s %i"
 #~ msgstr "שדות מותאמים אישית | %s %i"
@@ -8797,21 +8755,12 @@ msgstr "הגרסה העדכנית ביותר כבר מותקנת %s"
 #~ msgid "Close custom field window"
 #~ msgstr "סגור חלון שדה מותאם אישית"
 
-#~ msgid "LSL"
-#~ msgstr "LSL"
-
 #~ msgid "To apply new changes close and re-open Custom Field panel"
 #~ msgstr ""
 #~ "כדי להחיל את השינויים החדשים, סגור ופתח מחדש את לוח 'שדה מותאם אישית'"
 
-#~ msgid "₮"
-#~ msgstr "₮"
-
 #~ msgid "European euro"
 #~ msgstr "אירו"
-
-#~ msgid "LD"
-#~ msgstr "LD"
 
 #~ msgid "Ukrainian hryvnia"
 #~ msgstr "הריבניה אוקראיני"
@@ -8822,20 +8771,11 @@ msgstr "הגרסה העדכנית ביותר כבר מותקנת %s"
 #~ msgid "Angolan kwanza"
 #~ msgstr "קואנזה אנגולי"
 
-#~ msgid "Lt"
-#~ msgstr "Lt"
-
 #~ msgid "West African CFA franc"
 #~ msgstr "פרנק CFA מערב אפריקני"
 
-#~ msgid "N$"
-#~ msgstr "N$"
-
 #~ msgid "Bosnia and Herzegovina konvertibilna marka"
 #~ msgstr "המרק הסחיר"
-
-#~ msgid "MOP"
-#~ msgstr "MOP"
 
 #~ msgid "Cambodian riel"
 #~ msgstr "ריאל קולומביאני"
@@ -8846,20 +8786,11 @@ msgstr "הגרסה העדכנית ביותר כבר מותקנת %s"
 #~ msgid "Croatian kuna"
 #~ msgstr "קונה קרואטי"
 
-#~ msgid "FMG"
-#~ msgstr "FMG"
-
 #~ msgid "Gambian dalasi"
 #~ msgstr "דאלאסי של גמביה"
 
-#~ msgid "NAƒ"
-#~ msgstr "NAƒ"
-
 #~ msgid "Guatemalan quetzal"
 #~ msgstr "קצאל של גואטמלה"
-
-#~ msgid "MK"
-#~ msgstr "MK"
 
 #~ msgid "Honduran lempira"
 #~ msgstr "למפירה הונדורית"
@@ -8870,20 +8801,11 @@ msgstr "הגרסה העדכנית ביותר כבר מותקנת %s"
 #~ msgid "Indonesian rupiah"
 #~ msgstr "רופיה אינדונזית"
 
-#~ msgid "RM"
-#~ msgstr "RM"
-
 #~ msgid "Kazakhstani tenge"
 #~ msgstr "טנגה קזחסטני"
 
-#~ msgid "NZ$"
-#~ msgstr "NZ$"
-
 #~ msgid "Kyrgyzstani som"
 #~ msgstr "סום קירגיסטני"
-
-#~ msgid "Rf"
-#~ msgstr "Rf"
 
 #~ msgid "Lebanese lira"
 #~ msgstr "לירה לבנונית"
@@ -8894,20 +8816,11 @@ msgstr "הגרסה העדכנית ביותר כבר מותקנת %s"
 #~ msgid "Macanese pataca"
 #~ msgstr "פאטאקה של מקאו"
 
-#~ msgid "UM"
-#~ msgstr "UM"
-
 #~ msgid "Maldivian rufiyaa"
 #~ msgstr "רופיאה מלדיבית"
 
-#~ msgid "C$"
-#~ msgstr "C$"
-
 #~ msgid "Mongolian tugrik"
 #~ msgstr "טוגריק מונגולי"
-
-#~ msgid "Rs"
-#~ msgstr "Rs"
 
 #~ msgid "Nigerian naira"
 #~ msgstr "נאירה ניגרי"
@@ -8918,20 +8831,11 @@ msgstr "הגרסה העדכנית ביותר כבר מותקנת %s"
 #~ msgid "Panamanian balboa"
 #~ msgstr "בלבואה פנמי"
 
-#~ msgid "MXN"
-#~ msgstr "MXN"
-
 #~ msgid "Paraguayan guarani"
 #~ msgstr "גוארני פרגוואי "
 
-#~ msgid "₦"
-#~ msgstr "₦"
-
 #~ msgid "Polish zloty"
 #~ msgstr "זלוטי פולני"
-
-#~ msgid "MNT"
-#~ msgstr "MNT"
 
 #~ msgid "South African rand"
 #~ msgstr "רנד דרום אפריקני"
@@ -8942,20 +8846,11 @@ msgstr "הגרסה העדכנית ביותר כבר מותקנת %s"
 #~ msgid "Thai baht"
 #~ msgstr "בהט תאילנדי"
 
-#~ msgid "K"
-#~ msgstr "K"
-
 #~ msgid "Vanuatu vatu"
 #~ msgstr "ואטו ונואטו"
 
-#~ msgid "Rs."
-#~ msgstr "Rs."
-
 #~ msgid "Samoan tala"
 #~ msgstr "טאלא של סמוא"
-
-#~ msgid "NAD"
-#~ msgstr "NAD"
 
 #, fuzzy
 #~| msgid "Amount"
@@ -8968,20 +8863,11 @@ msgstr "הגרסה העדכנית ביותר כבר מותקנת %s"
 #~ msgid "Show all even the unused currencies"
 #~ msgstr "הצג הכל גם מטבעות שאינם בשימוש"
 
-#~ msgid "NPR"
-#~ msgstr "NPR"
-
 #~ msgid "Convert Encrypted DB to Non-Encrypted DB"
 #~ msgstr "המר מסד נתונים מוצפן למסד נתונים לא מוצפן"
 
-#~ msgid "B./"
-#~ msgstr "B./"
-
 #~ msgid "No File opened"
 #~ msgstr "קובץ לא נפתח "
-
-#~ msgid "NZD"
-#~ msgstr "NZD"
 
 #~ msgid "Cannot locate previously opened database.\n"
 #~ msgstr "מסד נתונים שנפתח לאחרונה לא נמצא.\n"
@@ -8993,9 +8879,6 @@ msgstr "הגרסה העדכנית ביותר כבר מותקנת %s"
 #~ msgid "Choose database file to Save As"
 #~ msgstr "בחר קובץ מסד נתונים לשמירה בשם"
 
-#~ msgid "NGN"
-#~ msgstr "NGN"
-
 #~ msgid ""
 #~ "New password for database\n"
 #~ "\n"
@@ -9005,32 +8888,8 @@ msgstr "הגרסה העדכנית ביותר כבר מותקנת %s"
 #~ "\n"
 #~ "%s"
 
-#~ msgid "S/."
-#~ msgstr "S/."
-
 #~ msgid "%s -> User document directory"
 #~ msgstr "%s ->  ספרית מסמכי משתמש"
-
-#~ msgid "OMR"
-#~ msgstr "OMR"
-
-#~ msgid "2"
-#~ msgstr "2"
-
-#~ msgid "1"
-#~ msgstr "1"
-
-#~ msgid "4"
-#~ msgstr "4"
-
-#~ msgid "PAB"
-#~ msgstr "PAB"
-
-#~ msgid "6"
-#~ msgstr "6"
-
-#~ msgid "₱"
-#~ msgstr "₱"
 
 #~ msgid ""
 #~ "Changing all categories of: \n"
@@ -9038,9 +8897,6 @@ msgstr "הגרסה העדכנית ביותר כבר מותקנת %s"
 #~ msgstr ""
 #~ "מחליף את כל הקטגוריות מ: %s\n"
 #~ "  לקטגוריה: %s"
-
-#~ msgid "PYG"
-#~ msgstr "PYG"
 
 #~ msgid "Accounts: %s"
 #~ msgstr "חשבונות: %s"
@@ -9053,47 +8909,14 @@ msgstr "הגרסה העדכנית ביותר כבר מותקנת %s"
 #~ "מחליף את כל המוטבים מ: %s\n"
 #~ "  למוטב: %s"
 
-#~ msgid "1250"
-#~ msgstr "1250"
-
-#~ msgid "PHP"
-#~ msgstr "PHP"
-
-#~ msgid "1252"
-#~ msgstr "1252"
-
-#~ msgid "din."
-#~ msgstr "din."
-
-#~ msgid "1254"
-#~ msgstr "1254"
-
-#~ msgid "QR"
-#~ msgstr "QR"
-
-#~ msgid "1256"
-#~ msgstr "1256"
-
-#~ msgid "1255"
-#~ msgstr "1255"
-
 #~ msgid "Bug reports"
 #~ msgstr "דיווח תקלות"
-
-#~ msgid "RON"
-#~ msgstr "RON"
 
 #~ msgid "Donate"
 #~ msgstr "תרום"
 
-#~ msgid "S$"
-#~ msgstr "S$"
-
 #~ msgid "Developers"
 #~ msgstr "מפתחים"
-
-#~ msgid "RWF"
-#~ msgstr "RWF"
 
 #~ msgid "Invalid Transaction"
 #~ msgstr "תנועה לא תקינה"
@@ -9104,20 +8927,11 @@ msgstr "הגרסה העדכנית ביותר כבר מותקנת %s"
 #~ msgid "Transactions imported from file: "
 #~ msgstr "תנועות יובאו מקובץ:"
 
-#~ msgid "STD"
-#~ msgstr "STD"
-
 #~ msgid "Imported transactions have been flagged so you can review them."
 #~ msgstr "תנועות שיובאו סומנו כך שתוכל לבקרן."
 
-#~ msgid "SI$"
-#~ msgstr "SI$"
-
 #~ msgid "Do you want to update today currency rates?"
 #~ msgstr "האם לעדכן היום שערי מטבע?"
-
-#~ msgid "SAR"
-#~ msgstr "SAR"
 
 #~ msgid ""
 #~ "Unable to download history for base symbol %s. History rates not "
@@ -9134,20 +8948,11 @@ msgstr "הגרסה העדכנית ביותר כבר מותקנת %s"
 #~ msgid "Check For Updates"
 #~ msgstr "בדוק עדכונים"
 
-#~ msgid "SCR"
-#~ msgstr "SCR"
-
 #~ msgid "Run this program in your Android smart phone or tablet"
 #~ msgstr "הרץ תכנית זו בטלפון החכם או מחשב לוח אנדרואיד"
 
-#~ msgid "Sh."
-#~ msgstr "Sh."
-
 #~ msgid "Account List"
 #~ msgstr "רשימת חשבונות"
-
-#~ msgid "SGD"
-#~ msgstr "SGD"
 
 #~ msgid "View Budgets as Financial Years"
 #~ msgstr "הצג תקציב כשנה פיננסית"
@@ -9162,20 +8967,11 @@ msgstr "הגרסה העדכנית ביותר כבר מותקנת %s"
 #~ "הזן את התאריך המקורי של ההשקעה\n"
 #~ "משמש בעת יצירת תנועת ההשקעה הראשונית."
 
-#~ msgid "SOS"
-#~ msgstr "SOS"
-
 #~ msgid "Specify the stock/share price date."
 #~ msgstr "הזן את תאריך הרכישה של נייר הערך"
 
-#~ msgid "Fr."
-#~ msgstr "Fr."
-
 #~ msgid "Specify how many stock history prices download from purchase date"
 #~ msgstr "הגדר את כמות  היסטורית מחירי נירות ערך  להורידה ממועד הרכישה"
-
-#~ msgid "ZAR"
-#~ msgstr "ZAR"
 
 #~ msgid ""
 #~ "End date is in the future\n"
@@ -9190,20 +8986,8 @@ msgstr "הגרסה העדכנית ביותר כבר מותקנת %s"
 #~ msgid "View Stock Transactions"
 #~ msgstr "הצג תנועות בנירות ערך"
 
-#~ msgid "SHP"
-#~ msgstr "SHP"
-
-#~ msgid "%s\t -> %s\n"
-#~ msgstr "%s\t -> %s\n"
-
-#~ msgid "NT$"
-#~ msgstr "NT$"
-
 #~ msgid "Syntax error in the URL string"
 #~ msgstr "שגיאת תחביר במחרוזת URL"
-
-#~ msgid "SRD"
-#~ msgstr "SRD"
 
 #~ msgid "A host name is required for this protocol"
 #~ msgstr "נדרש שם מחשב מארח עבור פרוטוקול זה"
@@ -9214,20 +8998,11 @@ msgstr "הגרסה העדכנית ביותר כבר מותקנת %s"
 #~ msgid "Connection error"
 #~ msgstr "שגיאת התחברות"
 
-#~ msgid "SZL"
-#~ msgstr "SZL"
-
 #~ msgid "Retard or advance the date of the 'next occurrence"
 #~ msgstr "אחר או קדם את התאריך של המופע הבא"
 
-#~ msgid "฿"
-#~ msgstr "฿"
-
 #~ msgid "Invalid Amount Entered "
 #~ msgstr "הוזן סכום לא תקין "
-
-#~ msgid "CHF"
-#~ msgstr "CHF"
 
 #~ msgid "Income vs Expenses - Specific Accounts"
 #~ msgstr "הכנסות מול הוצאות - לחשבונות מסויימים"
@@ -9238,20 +9013,11 @@ msgstr "הגרסה העדכנית ביותר כבר מותקנת %s"
 #~ msgid "Budget Category Summary"
 #~ msgstr "סיכום קטגוריות תקציב"
 
-#~ msgid "TWD"
-#~ msgstr "TWD"
-
 #~ msgid "Cash Flow - With Term Accounts"
 #~ msgstr "תזרים מזומנים - כולל חשבונות חיסכון"
 
-#~ msgid "TT$"
-#~ msgstr "TT$"
-
 #~ msgid "Daily Cash Flow - Specific Accounts"
 #~ msgstr "תזרים מזומנים יומי - חשבונות נבחרים"
-
-#~ msgid "TZS"
-#~ msgstr "TZS"
 
 #~ msgid "All Term Accounts"
 #~ msgstr "כל חשבונות החיסכון"
@@ -9262,307 +9028,91 @@ msgstr "הגרסה העדכנית ביותר כבר מותקנת %s"
 #~ msgid "Bank Accounts Total:"
 #~ msgstr "סך כל חשבונות בנק:"
 
-#~ msgid "TTD"
-#~ msgstr "TTD"
-
 #~ msgid "Stocks Total:"
 #~ msgstr "סך הכל השקעות:"
-
-#~ msgid "₺"
-#~ msgstr "₺"
 
 #~ msgid "Total Amount: "
 #~ msgstr "סכום כולל: "
 
-#~ msgid "TND"
-#~ msgstr "TND"
-
-#~ msgid "EUR"
-#~ msgstr "EUR"
-
-#~ msgid "USD"
-#~ msgstr "USD"
-
 #~ msgid "Pence"
 #~ msgstr "פנס"
 
-#~ msgid "m"
-#~ msgstr "m"
-
-#~ msgid "RUB"
-#~ msgstr "RUB"
-
-#~ msgid "$U"
-#~ msgstr "$U"
-
-#~ msgid "pul"
-#~ msgstr "pul"
-
-#~ msgid "USh"
-#~ msgstr "USh"
-
-#~ msgid "L"
-#~ msgstr "L"
-
-#~ msgid "AFN"
-#~ msgstr "AFN"
-
-#~ msgid "Kz"
-#~ msgstr "Kz"
-
-#~ msgid "AED"
-#~ msgstr "AED"
-
-#~ msgid "XCD"
-#~ msgstr "XCD"
-
-#~ msgid "₫"
-#~ msgstr "₫"
-
-#~ msgid "ARS"
-#~ msgstr "ARS"
-
-#~ msgid "UZS"
-#~ msgstr "UZS"
-
-#~ msgid "AWG"
-#~ msgstr "AWG"
-
-#~ msgid "AMD"
-#~ msgstr "AMD"
-
-#~ msgid "AZN"
-#~ msgstr "AZN"
-
-#~ msgid "VUV"
-#~ msgstr "VUV"
-
-#~ msgid "BHD"
-#~ msgstr "BHD"
-
-#~ msgid "WS$"
-#~ msgstr "WS$"
-
-#~ msgid "BBD"
-#~ msgstr "BBD"
-
-#~ msgid "WST"
-#~ msgstr "WST"
-
-#~ msgid "BYR"
-#~ msgstr "BYR"
-
-#~ msgid "Br"
-#~ msgstr "Br"
-
-#~ msgid "CFA"
-#~ msgstr "CFA"
-
-#~ msgid "VEF"
-#~ msgstr "VEF"
-
-#~ msgid "BMD"
-#~ msgstr "BMD"
-
 #~ msgid "Venezuelan Bolívar"
 #~ msgstr "בוליבר ונצואליני"
-
-#~ msgid "BOB"
-#~ msgstr "BOB"
 
 #~ msgid ""
 #~ "Specify the number of payments to be made.Leave blank if the payments "
 #~ "continue forever."
 #~ msgstr " הזן את מספר התשלומים לביצוע. השאר ריק כדי שהתשלומים ימשיכו לעד."
 
-#~ msgid "BAM"
-#~ msgstr "BAM"
-
-#~ msgid "KM"
-#~ msgstr "KM"
-
-#~ msgid "BWP"
-#~ msgstr "BWP"
-
 #~ msgid "Currency rate updated"
 #~ msgstr "עדכון שערי מט\"ח"
-
-#~ msgid "BND"
-#~ msgstr "BND"
 
 #~ msgid "céntimos"
 #~ msgstr "סנטימוס"
 
-#~ msgid "FBu"
-#~ msgstr "FBu"
-
 #~ msgid "Line : %ld imported OK."
 #~ msgstr " שורה: %ld יובא בהצלחה."
-
-#~ msgid "KHR"
-#~ msgstr "KHR"
-
-#~ msgid "BIF"
-#~ msgstr "BIF"
-
-#~ msgid "CAD"
-#~ msgstr "CAD"
 
 #~ msgid "%i occurrencies founded and replaced!"
 #~ msgstr "%i  שערי מטבע נמצאו והוחלפו"
 
-#~ msgid "CVE"
-#~ msgstr "CVE"
-
 #~ msgid "Payee Report - %s"
 #~ msgstr "דוח מוטב  - %s"
-
-#~ msgid "CLP"
-#~ msgstr "CLP"
 
 #~ msgid "Workbook"
 #~ msgstr "חוברת עבודה"
 
-#~ msgid "COP"
-#~ msgstr "COP"
-
-#~ msgid "CNY"
-#~ msgstr "CNY"
-
-#~ msgid "F"
-#~ msgstr "F"
-
 #~ msgid "Worksheet"
 #~ msgstr "גיליון עבודה"
-
-#~ msgid "CRC"
-#~ msgstr "CRC"
 
 #~ msgid "Due Date"
 #~ msgstr "תאריך פרעון"
 
-#~ msgid "HRK"
-#~ msgstr "HRK"
-
 #~ msgid "Cell"
 #~ msgstr "תא"
-
-#~ msgid "Kr"
-#~ msgstr "Kr"
-
-#~ msgid "CZK"
-#~ msgstr "CZK"
-
-#~ msgid "Fdj"
-#~ msgstr "Fdj"
 
 #~ msgid "New/Edit Asset"
 #~ msgstr "הוסף/ערוך נכס"
 
-#~ msgid "DOP"
-#~ msgstr "DOP"
-
 #~ msgid "Times Repeated"
 #~ msgstr "מספר חזרות"
-
-#~ msgid "Nfa"
-#~ msgstr "Nfa"
 
 #~ msgid "Purchase Price"
 #~ msgstr "מחיר קניה"
 
-#~ msgid "ETB"
-#~ msgstr "ETB"
-
-#~ msgid "ERN"
-#~ msgstr "ERN"
-
-#~ msgid "FJD"
-#~ msgstr "FJD"
-
 #~ msgid "Number of Shares"
 #~ msgstr "מספר מניות"
-
-#~ msgid "D"
-#~ msgstr "D"
 
 #~ msgid "Set to 'Auto Execute' on the next Pay Date."
 #~ msgstr "סמן  'לבצע אוטומטי' בתאריך הפרעון הבא."
 
-#~ msgid "GEL"
-#~ msgstr "GEL"
-
 #~ msgid "Enter current stock price"
 #~ msgstr "הזן שער נ\"ע נוכחי"
-
-#~ msgid "GIP"
-#~ msgstr "GIP"
-
-#~ msgid "GHS"
-#~ msgstr "GHS"
-
-#~ msgid "GTQ"
-#~ msgstr "GTQ"
 
 #~ msgid "Share Name"
 #~ msgstr "מחיר מניה"
 
-#~ msgid "GNF"
-#~ msgstr "GNF"
-
 #~ msgid "Set 'Auto Execute' with manual user acknowledgement."
 #~ msgstr "סמן  ' הרץ אוטומטית' עם אישור משתמש ."
-
-#~ msgid "G"
-#~ msgstr "G"
 
 #~ msgid "Unit Price"
 #~ msgstr "מחיר יחידה"
 
-#~ msgid "HNL"
-#~ msgstr "HNL"
-
-#~ msgid "HTG"
-#~ msgstr "HTG"
-
-#~ msgid "Ft"
-#~ msgstr "Ft"
-
 #~ msgid "Curr. unit value"
 #~ msgstr "ערך יחידת נוכחי"
-
-#~ msgid "kr"
-#~ msgstr "kr"
 
 #~ msgid "Set 'Auto Execute' without user acknowlegement."
 #~ msgstr "הגדר 'הפעלה אוטומטית' ללא אישור משתמש."
 
-#~ msgid "INR"
-#~ msgstr "INR"
-
 #~ msgid "Value Date"
 #~ msgstr "תאריך ערך"
-
-#~ msgid "IDR"
-#~ msgstr "IDR"
-
-#~ msgid "Rp"
-#~ msgstr "Rp"
-
-#~ msgid "XDR"
-#~ msgstr "XDR"
 
 #~ msgid "Sets the default currency for the database."
 #~ msgstr "מגדיר את מטבע הבסיס למסד הנתונים"
 
-#~ msgid "IQD"
-#~ msgstr "IQD"
-
 #~ msgid "Reset date to the Due Date"
 #~ msgstr "אפס את התאריך לתאריך היעד"
-
-#~ msgid "JOD"
-#~ msgstr "JOD"
 
 #~ msgid " Edit Recurring Transaction"
 #~ msgstr "ערוך תנועה מחזורית"
@@ -9570,15 +9120,9 @@ msgstr "הגרסה העדכנית ביותר כבר מותקנת %s"
 #~ msgid "Conversion to Base Rate"
 #~ msgstr "תרגום לשער בסיס"
 
-#~ msgid "JPY"
-#~ msgstr "JPY"
-
 #~ msgid ""
 #~ "Unable to update history currency rates. Please update them manually!"
 #~ msgstr "אין אפשרות לעדכן שערי חליפין היסטוריים. נא לעדכן אותם באופן ידני!"
-
-#~ msgid "W"
-#~ msgstr "W"
 
 #~ msgid "RecurringTransaction"
 #~ msgstr "תנועות מחזורית"
@@ -9588,9 +9132,6 @@ msgstr "הגרסה העדכנית ביותר כבר מותקנת %s"
 
 #~ msgid "An error occurred during negotiation"
 #~ msgstr "אירעה שגיאה במהלך ההתחברות"
-
-#~ msgid "KGS"
-#~ msgstr "KGS"
 
 #~ msgid "Someone tried to send a command during a transfer"
 #~ msgstr "היה נסיון לשלוח פקודה בזמן ההעברה"
@@ -9602,9 +9143,6 @@ msgstr "הגרסה העדכנית ביותר כבר מותקנת %s"
 #~ msgid "All files"
 #~ msgstr "בכל הזמנים"
 
-#~ msgid "LVL"
-#~ msgstr "LVL"
-
 #~ msgid "Custom Fields | New %s"
 #~ msgstr "שדות מותאמים אישית | New %s"
 
@@ -9613,9 +9151,6 @@ msgstr "הגרסה העדכנית ביותר כבר מותקנת %s"
 
 #~ msgid "United States dollar"
 #~ msgstr "דולר ארצות הברית"
-
-#~ msgid "LRD"
-#~ msgstr "LRD"
 
 #~ msgid "Albanian lek"
 #~ msgstr "לק אלבני"
@@ -9626,9 +9161,6 @@ msgstr "הגרסה העדכנית ביותר כבר מותקנת %s"
 #~ msgid "Bhutanese ngultrum"
 #~ msgstr "נגולטרום של בהוטן"
 
-#~ msgid "LTL"
-#~ msgstr "LTL"
-
 #~ msgid "Central African CFA franc"
 #~ msgstr "פרנק CFA מערב אפריקני"
 
@@ -9637,9 +9169,6 @@ msgstr "הגרסה העדכנית ביותר כבר מותקנת %s"
 
 #~ msgid "Georgian lari"
 #~ msgstr "לארי גאורגי"
-
-#~ msgid "MGA"
-#~ msgstr "MGA"
 
 #~ msgid "Hungarian forint"
 #~ msgstr "פורינט הונגרי"
@@ -9650,9 +9179,6 @@ msgstr "הגרסה העדכנית ביותר כבר מותקנת %s"
 #~ msgid "South Korean won"
 #~ msgstr "וון דרום קוריאני"
 
-#~ msgid "MYR"
-#~ msgstr "MYR"
-
 #~ msgid "Lesotho loti"
 #~ msgstr "לוטי של לסוטו"
 
@@ -9661,9 +9187,6 @@ msgstr "הגרסה העדכנית ביותר כבר מותקנת %s"
 
 #~ msgid "Mauritanian ouguiya"
 #~ msgstr "אואוגויה של מאוריטניה"
-
-#~ msgid "MRO"
-#~ msgstr "MRO"
 
 #~ msgid "Omani rial"
 #~ msgstr "ריאל אומני"
@@ -9674,9 +9197,6 @@ msgstr "הגרסה העדכנית ביותר כבר מותקנת %s"
 #~ msgid "Peruvian nuevo sol"
 #~ msgstr "נואבו סול פרואני "
 
-#~ msgid "MDL"
-#~ msgstr "MDL"
-
 #~ msgid "Tajikistani somoni"
 #~ msgstr "סומוני טג׳יקיסטאני"
 
@@ -9685,9 +9205,6 @@ msgstr "הגרסה העדכנית ביותר כבר מותקנת %s"
 
 #~ msgid "Vietnamese dong"
 #~ msgstr "דונג ויאטנמי"
-
-#~ msgid "MMK"
-#~ msgstr "MMK"
 
 #, fuzzy
 #~| msgid "Amount:"
@@ -9706,9 +9223,6 @@ msgstr "הגרסה העדכנית ביותר כבר מותקנת %s"
 #~ "\n"
 #~ "%s"
 
-#~ msgid "ANG"
-#~ msgstr "ANG"
-
 #~ msgid "Password not entered for encrypted Database.\n"
 #~ msgstr ".לא הוזנה סיסמה למסד נתונים מוצפן\n"
 
@@ -9718,44 +9232,11 @@ msgstr "הגרסה העדכנית ביותר כבר מותקנת %s"
 #~ msgid "Enter password for new database"
 #~ msgstr "הזן סיסמה למסד נתונים חדש"
 
-#~ msgid "NOK"
-#~ msgstr "NOK"
-
-#~ msgid "3"
-#~ msgstr "3"
-
 #~ msgid "MMEX message"
 #~ msgstr "הודעת MMEX"
 
-#~ msgid "7"
-#~ msgstr "7"
-
-#~ msgid "PGK"
-#~ msgstr "PGK"
-
-#~ msgid "%s\t: %s\n"
-#~ msgstr "%s\t: %s\n"
-
 #~ msgid "Organize Currency: Add Currency"
 #~ msgstr "נהל מטבעות: הוסף מטבע"
-
-#~ msgid "1253"
-#~ msgstr "1253"
-
-#~ msgid "PLN"
-#~ msgstr "PLN"
-
-#~ msgid "1257"
-#~ msgstr "1257"
-
-#~ msgid "1251"
-#~ msgstr "1251"
-
-#~ msgid "(DB v.%i)"
-#~ msgstr "(DB v.%i)"
-
-#~ msgid "RF"
-#~ msgstr "RF"
 
 #~ msgid ""
 #~ "Asset Account not found.\n"
@@ -9771,9 +9252,6 @@ msgstr "הגרסה העדכנית ביותר כבר מותקנת %s"
 #~ msgid "Transactions saved to database in account: %s"
 #~ msgstr "תנועה נשמרה במסד הנתונים לחשבון:  %s"
 
-#~ msgid "SR"
-#~ msgstr "SR"
-
 #~ msgid ""
 #~ "Directory of language files does not exist:\n"
 #~ "%s"
@@ -9787,9 +9265,6 @@ msgstr "הגרסה העדכנית ביותר כבר מותקנת %s"
 
 #~ msgid "Visit MMEX Forum"
 #~ msgstr "בקר בפורום MMEX"
-
-#~ msgid "SLL"
-#~ msgstr "SLL"
 
 #~ msgid "Today's Date: %s"
 #~ msgstr "תאריך היום: %s"
@@ -9810,9 +9285,6 @@ msgstr "הגרסה העדכנית ביותר כבר מותקנת %s"
 #~ "יצירת חשבון חדש, תשפיע על קישורי חשבון ניר הערך ולכן ידרשו כוונון ידני "
 #~ "מחודש."
 
-#~ msgid "R"
-#~ msgstr "R"
-
 #~ msgid "Add Stock Transactions"
 #~ msgstr "הוסף תנועות בנירות ערך"
 
@@ -9826,9 +9298,6 @@ msgstr "הגרסה העדכנית ביותר כבר מותקנת %s"
 #~ msgid "Specify the associated Account that will contain this transaction"
 #~ msgstr "בחר 'חשבון' עבור התנועה זו"
 
-#~ msgid "SDG"
-#~ msgstr "SDG"
-
 #~ msgid "A path is required for this protocol"
 #~ msgstr "נדרש נתיב עבור פרוטוקול זה"
 
@@ -9837,9 +9306,6 @@ msgstr "הגרסה העדכנית ביותר כבר מותקנת %s"
 
 #~ msgid "MMEX database succesfully upgraded to version %i"
 #~ msgstr "שדרוג מסד נתונים MMEX   לגירסה %i עבר בהצלחה!"
-
-#~ msgid "SEK"
-#~ msgstr "SEK"
 
 #~ msgid "Budget Performance"
 #~ msgstr "בצועי תקציב"
@@ -9850,9 +9316,6 @@ msgstr "הגרסה העדכנית ביותר כבר מותקנת %s"
 #~ msgid "Cash Flow - Specific Accounts"
 #~ msgstr "תזרים מזומנים - חשבונות נבחרים"
 
-#~ msgid "TJS"
-#~ msgstr "TJS"
-
 #~ msgid "Account Name"
 #~ msgstr "שם חשבון"
 
@@ -9862,23 +9325,11 @@ msgstr "הגרסה העדכנית ביותר כבר מותקנת %s"
 #~ msgid "Total Balance on all Accounts"
 #~ msgstr "יתרה כוללת לכל החשבונות"
 
-#~ msgid "DT"
-#~ msgstr "DT"
-
 #~ msgid "Pound"
 #~ msgstr "פאונד"
 
 #~ msgid "Term Accounts Total:"
 #~ msgstr "סך כל חשבונות חיסכון:"
-
-#~ msgid "UAH"
-#~ msgstr "UAH"
-
-#~ msgid "TMT"
-#~ msgstr "TMT"
-
-#~ msgid "DZD"
-#~ msgstr "DZD"
 
 #~ msgid " file contains insufficient number of tokens"
 #~ msgstr " הקובץ אינו מכיל מספר מספק של 'אסימונים'"
@@ -9886,71 +9337,23 @@ msgstr "הגרסה העדכנית ביותר כבר מותקנת %s"
 #~ msgid "centavo"
 #~ msgstr "סנטאבו"
 
-#~ msgid "UYU"
-#~ msgstr "UYU"
-
-#~ msgid "AUD"
-#~ msgstr "AUD"
-
-#~ msgid "AOA"
-#~ msgstr "AOA"
-
-#~ msgid "BDT"
-#~ msgstr "BDT"
-
-#~ msgid "VND"
-#~ msgstr "VND"
-
-#~ msgid "BZD"
-#~ msgstr "BZD"
-
 #~ msgid "Universal CSV Export"
 #~ msgstr "יצוא CSV אוניברסלי"
-
-#~ msgid "BTN"
-#~ msgstr "BTN"
 
 #~ msgid "Specify period in Days to activate.Becomes blank when not active."
 #~ msgstr "הזן תקופה בימים כדי להפעיל. השאר ריק כאשר לא פעיל."
 
-#~ msgid "P"
-#~ msgstr "P"
-
-#~ msgid "XOF"
-#~ msgstr "XOF"
-
-#~ msgid "BGN"
-#~ msgstr "BGN"
-
 #~ msgid "Invalid value "
 #~ msgstr "ערך לא תקין"
-
-#~ msgid "XAF"
-#~ msgstr "XAF"
 
 #~ msgid "Overwrite?"
 #~ msgstr "האם לדרוס?"
 
-#~ msgid "KYD"
-#~ msgstr "KYD"
-
 #~ msgid "Rename group"
 #~ msgstr "שנה שם קבוצה"
 
-#~ msgid "KMF"
-#~ msgstr "KMF"
-
-#~ msgid "Esc"
-#~ msgstr "Esc"
-
-#~ msgid "kn"
-#~ msgstr "kn"
-
 #~ msgid "Row"
 #~ msgstr "שורה"
-
-#~ msgid "DKK"
-#~ msgstr "DKK"
 
 #~ msgid ""
 #~ "Attempt to delete a currency being used by an account\n"
@@ -9959,56 +9362,20 @@ msgstr "הגרסה העדכנית ביותר כבר מותקנת %s"
 #~ "הנך מנסה למחוק מטבע שגבר נעשה בו שימוש בחשבון\n"
 #~ " או שמשמש  כמטבע הבסיס."
 
-#~ msgid "EGP"
-#~ msgstr "EGP"
-
 #~ msgid "Purchase Date"
 #~ msgstr "מועד רכישה"
-
-#~ msgid "FKP"
-#~ msgstr "FKP"
-
-#~ msgid "DJF"
-#~ msgstr "DJF"
-
-#~ msgid "GMD"
-#~ msgstr "GMD"
 
 #~ msgid "Enter purchase price for each stock"
 #~ msgstr "הזן לכל מניה שער קניה"
 
-#~ msgid "Q"
-#~ msgstr "Q"
-
-#~ msgid "%s\t: %0.6f -> %0.6f\n"
-#~ msgstr "%s\t: %0.6f -> %0.6f\n"
-
-#~ msgid "GYD"
-#~ msgstr "GYD"
-
 #~ msgid "Share Symbol"
 #~ msgstr "סמל ניר ערך"
-
-#~ msgid "HKD"
-#~ msgstr "HKD"
-
-#~ msgid "FG"
-#~ msgstr "FG"
-
-#~ msgid "ISK"
-#~ msgstr "ISK"
 
 #~ msgid "Curr. total value"
 #~ msgstr "ערך כולל נוכחי"
 
-#~ msgid "SDR"
-#~ msgstr "SDR"
-
 #~ msgid "Important note"
 #~ msgstr "הערה חשובה"
-
-#~ msgid "ILS"
-#~ msgstr "ILS"
 
 #~ msgid "Right click on currency and choose 'Set as Base Currency'"
 #~ msgstr "לחץ לחיצה ימנית על מטבע ובחר 'קבע כמטבע הבסיס'"
@@ -10016,14 +9383,8 @@ msgstr "הגרסה העדכנית ביותר כבר מותקנת %s"
 #~ msgid " Payments Left "
 #~ msgstr "תשלומים נותרו"
 
-#~ msgid "IRR"
-#~ msgstr "IRR"
-
 #~ msgid "Becomes blank when not active."
 #~ msgstr "הופך 'ריק' כאשר אינו פעיל."
-
-#~ msgid "KRW"
-#~ msgstr "KRW"
 
 #~ msgid "Leave blank when not active."
 #~ msgstr "השאר ריק כאשר לא פעיל."
@@ -10033,9 +9394,6 @@ msgstr "הגרסה העדכנית ביותר כבר מותקנת %s"
 
 #~ msgid "Leave blank if the payments continue forever."
 #~ msgstr "השאר ריק אם הסדרה ללא מועד סיום. "
-
-#~ msgid "M"
-#~ msgstr "M"
 
 #~ msgid ""
 #~ " One of the following fields: Date, Amount, Type is missing, skipping"
@@ -10047,9 +9405,6 @@ msgstr "הגרסה העדכנית ביותר כבר מותקנת %s"
 #~ msgid " Auto Repeat Transactions"
 #~ msgstr " תנועות חוזרות אוטומטית"
 
-#~ msgid "MKD"
-#~ msgstr "MKD"
-
 #~ msgid "Include the categories in the Budget Category Summary"
 #~ msgstr "כלול קטגוריות בסיכום תקציב על פי קטגוריות"
 
@@ -10059,9 +9414,6 @@ msgstr "הגרסה העדכנית ביותר כבר מותקנת %s"
 #~ msgid "Database Optimization Completed!"
 #~ msgstr "מיטוב מסד הנתונים הושלם."
 
-#~ msgid "MVR"
-#~ msgstr "MVR"
-
 #~ msgid "Size after"
 #~ msgstr "גודל אחרי"
 
@@ -10070,9 +9422,6 @@ msgstr "הגרסה העדכנית ביותר כבר מותקנת %s"
 
 #~ msgid "Last Calendar Month"
 #~ msgstr "חודש קודם"
-
-#~ msgid "MAD"
-#~ msgstr "MAD"
 
 #~ msgid ""
 #~ "Tip: Change all transactions using this Payee to another Payee\n"
@@ -10086,9 +9435,6 @@ msgstr "הגרסה העדכנית ביותר כבר מותקנת %s"
 #~ msgid "Total Income: "
 #~ msgstr "סך כל הכנסות:"
 
-#~ msgid "NIO"
-#~ msgstr "NIO"
-
 #~ msgid "Where the Money Goes - %s"
 #~ msgstr "לאן הולך הכסף - %s"
 
@@ -10097,9 +9443,6 @@ msgstr "הגרסה העדכנית ביותר כבר מותקנת %s"
 
 #~ msgid "Categories - %s"
 #~ msgstr "קטגוריות - %s"
-
-#~ msgid "PEN"
-#~ msgstr "PEN"
 
 #~ msgid " - "
 #~ msgstr "-"
@@ -10140,101 +9483,29 @@ msgstr "הגרסה העדכנית ביותר כבר מותקנת %s"
 #~ "תוך שימוש באפשרות: 'שמירת מסד נתונים כ...' ולשנות\n"
 #~ "סוג הקובץ לפני השמירה."
 
-#~ msgid "SBD"
-#~ msgstr "SBD"
-
-#~ msgid "."
-#~ msgstr "."
-
 #~ msgid "Large"
 #~ msgstr "גדול"
-
-#~ msgid "€"
-#~ msgstr "€"
-
-#~ msgid "E"
-#~ msgstr "E"
-
-#~ msgid "р"
-#~ msgstr "р"
 
 #~ msgid "Delete Stock Investment"
 #~ msgstr "מחק תיק נירות ערך"
 
-#~ msgid "руб."
-#~ msgstr "руб."
-
-#~ msgid "THB"
-#~ msgstr "THB"
-
-#~ msgid "₴"
-#~ msgstr "₴"
-
 #~ msgid "XLarge"
 #~ msgstr "גדול מאוד"
-
-#~ msgid "دج"
-#~ msgstr "دج"
-
-#~ msgid "UGX"
-#~ msgstr "UGX"
-
-#~ msgid "EC$"
-#~ msgstr "EC$"
-
-#~ msgid "GBP"
-#~ msgstr "GBP"
-
-#~ msgid "ƒ"
-#~ msgstr "ƒ"
-
-#~ msgid "YER"
-#~ msgstr "YER"
-
-#~ msgid "Bds$"
-#~ msgstr "Bds$"
 
 #~ msgid "XXLarge"
 #~ msgstr "גדול במיוחד"
 
-#~ msgid "BD$"
-#~ msgstr "BD$"
-
 #~ msgid "Enter the name of the category to add or edit here"
 #~ msgstr "הזן את שם הקטגוריה להוספה או עריכה"
-
-#~ msgid "Bs."
-#~ msgstr "Bs."
-
-#~ msgid "BRL"
-#~ msgstr "BRL"
-
-#~ msgid "KY$"
-#~ msgstr "KY$"
 
 #~ msgid "Default account \""
 #~ msgstr "מחק חשבון \""
 
-#~ msgid "Col$"
-#~ msgstr "Col$"
-
 #~ msgid "Huge"
 #~ msgstr "עצום"
 
-#~ msgid "Kč"
-#~ msgstr "Kč"
-
 #~ msgid "Specify the stock price date"
 #~ msgstr "הזן את תאריך הרכישה של נייר הערך"
-
-#~ msgid "FJ$"
-#~ msgstr "FJ$"
-
-#~ msgid "XPF"
-#~ msgstr "XPF"
-
-#~ msgid "HK$"
-#~ msgstr "HK$"
 
 #~ msgid "Stock Investments: %s"
 #~ msgstr "השקעה במניות: %s"
@@ -10248,9 +9519,6 @@ msgstr "הגרסה העדכנית ביותר כבר מותקנת %s"
 #~ msgid "Specify the number of payments to be made."
 #~ msgstr "הגדר את מספר התשלומים."
 
-#~ msgid "LAK"
-#~ msgstr "LAK"
-
 #~ msgid "View Budget Summary Report without Categories"
 #~ msgstr "הצג דוח תקציב מסכם ללא קטגוריות"
 
@@ -10259,9 +9527,6 @@ msgstr "הגרסה העדכנית ביותר כבר מותקנת %s"
 
 #~ msgid " - No File opened "
 #~ msgstr " - קובץ לא נפתח "
-
-#~ msgid "MWK"
-#~ msgstr "MWK"
 
 #~ msgid "mmGeneralGroupReport"
 #~ msgstr "קבוצת דוחות כללית MM "
@@ -10272,9 +9537,6 @@ msgstr "הגרסה העדכנית ביותר כבר מותקנת %s"
 #~ msgid "Total Expenses: "
 #~ msgstr "סך כל הוצאות:"
 
-#~ msgid "NRs"
-#~ msgstr "NRs"
-
 #~ msgid "Where the Money Comes From - %s"
 #~ msgstr "מאין מגיע הכסף - %s"
 
@@ -10283,9 +9545,6 @@ msgstr "הגרסה העדכנית ביותר כבר מותקנת %s"
 
 #~ msgid " Split Category Details"
 #~ msgstr "פרטי פיצול קטגוריות"
-
-#~ msgid "QAR"
-#~ msgstr "QAR"
 
 #~ msgid ""
 #~ "As this file contains important financial information,\n"
@@ -10301,50 +9560,17 @@ msgstr "הגרסה העדכנית ביותר כבר מותקנת %s"
 #~ msgid "Hide Deleted (Void)"
 #~ msgstr "הסתר פריטים שנמחקו (נמחק)"
 
-#~ msgid " "
-#~ msgstr " "
-
-#~ msgid "LKR"
-#~ msgstr "LKR"
-
-#~ msgid ","
-#~ msgstr ","
-
 #~ msgid "Get Android Version"
 #~ msgstr "קבל גרסת אנדרואיד "
-
-#~ msgid "؋"
-#~ msgstr "؋"
-
-#~ msgid "TRY"
-#~ msgstr "TRY"
-
-#~ msgid "AR$"
-#~ msgstr "AR$"
 
 #~ msgid "Show Deleted (Void)"
 #~ msgstr "הצג פריטים שנמחקו (נמחק)"
 
-#~ msgid "BZ$"
-#~ msgstr "BZ$"
-
 #~ msgid "Currency History Options: "
 #~ msgstr "אפשרויות היסטורית מטבעות:"
 
-#~ msgid "R$"
-#~ msgstr "R$"
-
-#~ msgid "BSD"
-#~ msgstr "BSD"
-
-#~ msgid "₡"
-#~ msgstr "₡"
-
 #~ msgid "Specify the purchase date of the stock investment"
 #~ msgstr "הזן את תאריך רכישת המניה"
-
-#~ msgid "GY$"
-#~ msgstr "GY$"
 
 #~ msgid "No account available to reallocate!"
 #~ msgstr "אין חשבון זמין להגירה!"
@@ -10352,50 +9578,17 @@ msgstr "הגרסה העדכנית ביותר כבר מותקנת %s"
 #~ msgid "Specify period in Months to activate."
 #~ msgstr "הזן תקופת חודשים כדי להפעיל."
 
-#~ msgid "KSh"
-#~ msgstr "KSh"
-
 #~ msgid "Budget Summary: Include &Categories"
 #~ msgstr "כולל &קטגוריות :סיכום תקציב"
-
-#~ msgid "HUF"
-#~ msgstr "HUF"
 
 #~ msgid " Help"
 #~ msgstr " עזרה"
 
-#~ msgid "MUR"
-#~ msgstr "MUR"
-
 #~ msgid "Category Income/Expenses: %s"
 #~ msgstr "קטגוריה הכנסות/הוצאות:  %s"
 
-#~ msgid "5"
-#~ msgstr "5"
-
-#~ msgid "$"
-#~ msgstr "$"
-
-#~ msgid "RSD"
-#~ msgstr "RSD"
-
-#~ msgid "коп."
-#~ msgstr "коп."
-
 #~ msgid "Cash Flow - With Bank Accounts"
 #~ msgstr "תזרים מזומנים - כולל חשבונות בנק"
-
-#~ msgid "B$"
-#~ msgstr "B$"
-
-#~ msgid "VT"
-#~ msgstr "VT"
-
-#~ msgid "¥"
-#~ msgstr "¥"
-
-#~ msgid "CDF"
-#~ msgstr "CDF"
 
 #~ msgid " Enter Recurring Transaction"
 #~ msgstr "הזן תנועה מחזורית"
@@ -10406,38 +9599,17 @@ msgstr "הגרסה העדכנית ביותר כבר מותקנת %s"
 #~ msgid "Size before"
 #~ msgstr "גודל לפני"
 
-#~ msgid "PKR"
-#~ msgstr "PKR"
-
 #~ msgid "The next pages will help you create a new database."
 #~ msgstr "הדפים הבאים ינחו אותך ביצירת מסד נתונים חדש."
-
-#~ msgid "SYP"
-#~ msgstr "SYP"
 
 #~ msgid "Céntimo"
 #~ msgstr "סנטימו"
 
-#~ msgid "urn:schemas-microsoft-com:office:spreadsheet"
-#~ msgstr "urn:schemas-microsoft-com:office:spreadsheet"
-
-#~ msgid "RD$"
-#~ msgstr "RD$"
-
 #~ msgid "Grand Total: "
 #~ msgstr "סך הכל כללי: "
 
-#~ msgid "£"
-#~ msgstr "£"
-
-#~ msgid "Nu."
-#~ msgstr "Nu."
-
 #~ msgid " Specify "
 #~ msgstr " הגדר "
-
-#~ msgid "LYD"
-#~ msgstr "LYD"
 
 #~ msgid "Bangladeshi taka"
 #~ msgstr "טאקה בנגלדשי"

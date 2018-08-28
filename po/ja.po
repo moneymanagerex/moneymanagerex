@@ -8832,9 +8832,6 @@ msgstr "最新のバージョンがインストールされています!"
 #~ msgid "Expand Term Accounts on home page when page is refreshed"
 #~ msgstr "ページが更新されたとき、ホームページの定期口座を展開します"
 
-#~ msgid "1"
-#~ msgstr "1"
-
 #~ msgid "Expected API version -> "
 #~ msgstr "期待した API バージョン -> "
 
@@ -8844,14 +8841,8 @@ msgstr "最新のバージョンがインストールされています!"
 #~ msgid "Financial Year: "
 #~ msgstr "会計年度: "
 
-#~ msgid "5"
-#~ msgstr "5"
-
 #~ msgid "From Account"
 #~ msgstr "元のアカウント"
-
-#~ msgid "4"
-#~ msgstr "4"
 
 #~ msgid "From and To Account cannot be the same."
 #~ msgstr "元と先のアカウントは同じにできません"
@@ -9081,9 +9072,6 @@ msgstr "最新のバージョンがインストールされています!"
 #~ msgid "Next Occurrence"
 #~ msgstr "次の発生"
 
-#~ msgid "%s\t: %0.4f -> %0.4f\n"
-#~ msgstr "%s\t: %0.4f -> %0.4f\n"
-
 #~ msgid "No software found for file extension ."
 #~ msgstr "ファイル拡張子のソフトウェアが見つかりません。"
 
@@ -9184,9 +9172,6 @@ msgstr "最新のバージョンがインストールされています!"
 #~ msgid "Select From Account"
 #~ msgstr "元のアカウントを選択"
 
-#~ msgid "3"
-#~ msgstr "3"
-
 #~ msgid "Select To Acct"
 #~ msgstr "先のアカウントを選択"
 
@@ -9256,9 +9241,6 @@ msgstr "最新のバージョンがインストールされています!"
 
 #~ msgid "Small"
 #~ msgstr "小"
-
-#~ msgid "%s\t -> %s\n"
-#~ msgstr "%s\t -> %s\n"
 
 #~ msgid "Sort by"
 #~ msgstr "並び替え"
@@ -9345,9 +9327,6 @@ msgstr "最新のバージョンがインストールされています!"
 #~ msgid "Accounts:"
 #~ msgstr "アカウント: "
 
-#~ msgid "6"
-#~ msgstr "6"
-
 #~ msgid "%s -> User document directory"
 #~ msgstr "%s -> ユーザー ドキュメント ディレクトリ"
 
@@ -9421,9 +9400,6 @@ msgstr "最新のバージョンがインストールされています!"
 #~ msgid "Convert Encrypted DB to Non-Encrypted DB"
 #~ msgstr "暗号化された DB を暗号化されていない DB に変換します"
 
-#~ msgid "%s\t: %s\n"
-#~ msgstr "%s\t: %s\n"
-
 #, fuzzy
 #~ msgid "Pence"
 #~ msgstr "支出"
@@ -9461,9 +9437,6 @@ msgstr "最新のバージョンがインストールされています!"
 #~ msgid "When database file opening:"
 #~ msgstr "データベースファイルを開いた時:"
 
-#~ msgid "7"
-#~ msgstr "7"
-
 #, fuzzy
 #~ msgid ""
 #~ "One of the following fields: Date, Amount, Type is missing, skipping"
@@ -9480,9 +9453,6 @@ msgstr "最新のバージョンがインストールされています!"
 
 #~ msgid "Quit this program"
 #~ msgstr "このプログラムを終了します"
-
-#~ msgid "2"
-#~ msgstr "2"
 
 #~ msgid "Total Amount: "
 #~ msgstr "合計金額: "

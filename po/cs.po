@@ -8887,9 +8887,6 @@ msgstr "Používáte poslední verzi aplikace!"
 #~ msgid "MMEX message"
 #~ msgstr "Oznámení MMEX"
 
-#~ msgid "1"
-#~ msgstr "1"
-
 #, fuzzy
 #~ msgid "Universal CSV Export"
 #~ msgstr "Univerzální import CSV"
@@ -8900,17 +8897,11 @@ msgstr "Používáte poslední verzi aplikace!"
 #~ msgid "%s -> User document directory"
 #~ msgstr "%s -> Složka dokumentů uživatele"
 
-#~ msgid "5"
-#~ msgstr "5"
-
 #~ msgid "Found no protocol which can get this URL"
 #~ msgstr "Nenalezen žádný protokol pro získání této URL"
 
 #~ msgid "Specify the color for the list details"
 #~ msgstr "Vyberte barvu pro podrobnosti seznamu"
-
-#~ msgid "4"
-#~ msgstr "4"
 
 #~ msgid ""
 #~ "Changing all payees of: %s \n"
@@ -9077,14 +9068,8 @@ msgstr "Používáte poslední verzi aplikace!"
 #~ msgid "Specify the associated Account that will contain this transaction"
 #~ msgstr "Zadejte účet, kterému bude přiřazena opakovaná transakce"
 
-#~ msgid "7"
-#~ msgstr "7"
-
 #~ msgid "Small"
 #~ msgstr "Menší"
-
-#~ msgid "%s\t -> %s\n"
-#~ msgstr "%s\t -> %s\n"
 
 #~ msgid "A path is required for this protocol"
 #~ msgstr "Pro tento protokol je vyžadována cesta "
@@ -9267,17 +9252,11 @@ msgstr "Používáte poslední verzi aplikace!"
 #~ msgid "Market open from"
 #~ msgstr "Obchod otevře od"
 
-#~ msgid " : Restart"
-#~ msgstr " : Restart"
-
 #~ msgid "May "
 #~ msgstr "květen"
 
 #~ msgid "View Not-Reconciled"
 #~ msgstr "Zobrazit neověřené"
-
-#~ msgid "Min: "
-#~ msgstr "Min: "
 
 #~ msgid " Start Page"
 #~ msgstr " Úvodní stránka"
@@ -9405,9 +9384,6 @@ msgstr "Používáte poslední verzi aplikace!"
 
 #~ msgid "Normal"
 #~ msgstr "Normalní"
-
-#~ msgid "&OK"
-#~ msgstr "&OK"
 
 #, fuzzy
 #~ msgid "Note: Split transactions not set"
@@ -9661,9 +9637,6 @@ msgstr "Používáte poslední verzi aplikace!"
 #~ msgid "Viewing All Transactions"
 #~ msgstr "Zobrazeny všechny transakce"
 
-#~ msgid "Powered by wxWidgets, SQLite, wxSQLite(by Ulrich Telle)"
-#~ msgstr "Powered by wxWidgets, SQLite, wxSQLite(by Ulrich Telle)"
-
 #~ msgid "Change all transactions using one Payee to another Payee"
 #~ msgstr "Změnit všechny transakce pomocí záměny Příjemce"
 
@@ -9714,9 +9687,6 @@ msgstr "Používáte poslední verzi aplikace!"
 
 #~ msgid "Colors"
 #~ msgstr "Barvy"
-
-#~ msgid "Released under the GNU GPL License"
-#~ msgstr "Released under the GNU GPL License"
 
 #~ msgid "Choose Investment Account"
 #~ msgstr "Vyberte investiční účet"
@@ -9995,9 +9965,6 @@ msgstr "Používáte poslední verzi aplikace!"
 #~ msgid "Visit MMEX Forum or &Report New Issues."
 #~ msgstr "Přejít na MMEX Forum nebo nahlášení &chyb."
 
-#~ msgid "Import/Export"
-#~ msgstr "Import/Export"
-
 #, fuzzy
 #~ msgid ""
 #~ "Please enter password for Database\n"
@@ -10027,9 +9994,6 @@ msgstr "Používáte poslední verzi aplikace!"
 
 #~ msgid "Income vs Expenses - Current Month to Date"
 #~ msgstr "Příjmy a výdaje - Aktuální měsíc k datu "
-
-#~ msgid "6"
-#~ msgstr "6"
 
 #~ msgid "Income vs Expenses - Last 12 months"
 #~ msgstr "Příjmy a výdaje - Posledních 12 měsíců"
@@ -10111,9 +10075,6 @@ msgstr "Používáte poslední verzi aplikace!"
 
 #~ msgid "Invalid scalar query"
 #~ msgstr "Neplatný skalární dotaz"
-
-#~ msgid "%s\t: %s\n"
-#~ msgstr "%s\t: %s\n"
 
 #~ msgid "JanFebMarAprMayJunJulAugSepOctNovDec"
 #~ msgstr "LedÚnoBřeDubKvěČenČecSrpZářŘíjLisPro"
@@ -10299,9 +10260,6 @@ msgstr "Používáte poslední verzi aplikace!"
 #~ msgstr ""
 #~ "Zadejte své jméno (volitelné). Jméno je použito především pro zprávy a "
 #~ "tiskové zprávy.\n"
-
-#~ msgid "1000"
-#~ msgstr "1000"
 
 #~ msgid "Where the Money Goes - 30 Days"
 #~ msgstr "Kam peníze odchází - 30 dnů "
@@ -10811,9 +10769,6 @@ msgstr "Používáte poslední verzi aplikace!"
 #~ msgid "Total Value"
 #~ msgstr "Počáteční hodnota"
 
-#~ msgid "finance.au.yahoo.com"
-#~ msgstr "finance.au.yahoo.com"
-
 #~ msgid "Total of Accounts:"
 #~ msgstr "Celkem na účtech:"
 
@@ -10951,9 +10906,6 @@ msgstr "Používáte poslední verzi aplikace!"
 #~ msgid "The next pages will help you create a new database."
 #~ msgstr "Následujcí stránky Vám pomohou při tvorbě nové databáze."
 
-#~ msgid "%s\t: %0.4f -> %0.4f\n"
-#~ msgstr "%s\t: %0.4f -> %0.4f\n"
-
 #~ msgid "This will allow all MMEX option updates to take effect."
 #~ msgstr "Tímto umožníte aplikaci změn v MMEX."
 
@@ -11042,9 +10994,6 @@ msgstr "Používáte poslední verzi aplikace!"
 #~ msgid "Income vs Expenses - Last Year"
 #~ msgstr "Příjmy a výdaje - Poslední rok"
 
-#~ msgid "2"
-#~ msgstr "2"
-
 #, fuzzy
 #~ msgid "Invalid current price entered "
 #~ msgstr "Zadána neplatná nákupní cena "
@@ -11119,9 +11068,6 @@ msgstr "Používáte poslední verzi aplikace!"
 #~ msgid "Large"
 #~ msgstr "Velký"
 
-#~ msgid "3"
-#~ msgstr "3"
-
 #~ msgid "Subsequent errors not displayed."
 #~ msgstr "Dodatečné chyby nebyly zobrazeny."
 
@@ -11161,9 +11107,6 @@ msgstr "Používáte poslední verzi aplikace!"
 
 #~ msgid "Thank you! "
 #~ msgstr "Děkujeme Vám! "
-
-#~ msgid ":"
-#~ msgstr ":"
 
 #~ msgid "Account:"
 #~ msgstr "Účet:"

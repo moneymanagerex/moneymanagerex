@@ -9047,9 +9047,6 @@ msgstr "U heeft al de nieuwste versie %s"
 #~ msgid "This is generally the name of a financial institution"
 #~ msgstr "Vul de contactpersoon gegevens in voor de financiële instelling."
 
-#~ msgid "CSV Export"
-#~ msgstr "CSV Export"
-
 #~ msgid "Polish zloty"
 #~ msgstr "Poolse zloty"
 
@@ -9060,14 +9057,8 @@ msgstr "U heeft al de nieuwste versie %s"
 #~ msgid "There are no accounts available for import to"
 #~ msgstr "Geen rekening voor import beschikbaar"
 
-#~ msgid "ALL"
-#~ msgstr "ALL"
-
 #~ msgid "Thai baht"
 #~ msgstr "Thaise baht"
-
-#~ msgid "QFX Import"
-#~ msgstr "QFX Import"
 
 #, fuzzy
 #~ msgid ""
@@ -9099,9 +9090,6 @@ msgstr "U heeft al de nieuwste versie %s"
 #~ msgid "The next pages will help you create a new database."
 #~ msgstr ""
 #~ "De volgende pagina's zullen je helpen een nieuw databestand te maken."
-
-#~ msgid "%1$s - %2$s"
-#~ msgstr "%1$s - %2$s"
 
 #, fuzzy
 #~| msgid "Amount:"
@@ -9144,9 +9132,6 @@ msgstr "U heeft al de nieuwste versie %s"
 #~ msgid "Password not entered for encrypted Database.\n"
 #~ msgstr "Wachtwoord niet ingevoerd voor versleuteld databestand.\n"
 
-#~ msgid ":"
-#~ msgstr ":"
-
 #~ msgid "Test script. Save before running."
 #~ msgstr "Test script. Opslaan voor uitvoeren."
 
@@ -9172,9 +9157,6 @@ msgstr "U heeft al de nieuwste versie %s"
 #~ "\n"
 #~ "%s"
 
-#~ msgid "2"
-#~ msgstr "2"
-
 #, fuzzy
 #~ msgid "&Report Issues or Feedback"
 #~ msgstr "Forem vragen en antwoorden"
@@ -9182,21 +9164,12 @@ msgstr "U heeft al de nieuwste versie %s"
 #~ msgid "Term Account views have been temporarly turned on."
 #~ msgstr "Weergave van termijnrekeningen is tijdelijk geactiveerd."
 
-#~ msgid "1"
-#~ msgstr "1"
-
-#~ msgid "6"
-#~ msgstr "6"
-
 #, fuzzy
 #~ msgid "Total Stock Investments: "
 #~ msgstr "Totaal beleggingen :"
 
 #~ msgid "Term Account"
 #~ msgstr "Termijnrekening"
-
-#~ msgid "5"
-#~ msgstr "5"
 
 #~ msgid "Accounts: %s"
 #~ msgstr "Rekeningen: %s"
@@ -9217,29 +9190,17 @@ msgstr "U heeft al de nieuwste versie %s"
 #~ "\n"
 #~ "  naar begunstigde: %s "
 
-#~ msgid "1252"
-#~ msgstr "1252"
-
 #~ msgid "Total Value"
 #~ msgstr "Totale waarde"
 
 #~ msgid "System: "
 #~ msgstr "Systeem:"
 
-#~ msgid "1251"
-#~ msgstr "1251"
-
-#~ msgid "1256"
-#~ msgstr "1256"
-
 #~ msgid " unrecognized transaction type, skipping."
 #~ msgstr " onbekend type transactie, overslaan."
 
 #~ msgid "Summary of Assets"
 #~ msgstr "Samenvatting van bezittingen "
-
-#~ msgid "1255"
-#~ msgstr "1255"
 
 #~ msgid "Donate"
 #~ msgstr "Doneer"
@@ -9365,9 +9326,6 @@ msgstr "U heeft al de nieuwste versie %s"
 #~ msgid "Number of %s:"
 #~ msgstr "Aantal %s:"
 
-#~ msgid "%s\t -> %s\n"
-#~ msgstr "%s\t -> %s\n"
-
 #, fuzzy
 #~ msgid "Total: %s Invested: %s Loss: %s "
 #~ msgstr "Totaal beleggingen :"
@@ -9380,9 +9338,6 @@ msgstr "U heeft al de nieuwste versie %s"
 
 #~ msgid "A host name is required for this protocol"
 #~ msgstr "Een host-naam is vereist voor dit protocol"
-
-#~ msgid "urn:schemas-microsoft-com:office:spreadsheet"
-#~ msgstr "urn:schemas-microsoft-com:office:spreadsheet"
 
 #, fuzzy
 #~ msgid "Stock Investment Page Selection"
@@ -9422,17 +9377,11 @@ msgstr "U heeft al de nieuwste versie %s"
 #~ msgid "Transaction Number"
 #~ msgstr "Transactie-nummer"
 
-#~ msgid "Status:"
-#~ msgstr "Status:"
-
 #~ msgid "Budget Performance"
 #~ msgstr "Begrotingsresultaat"
 
 #~ msgid "Daily Cash Flow - Specific Accounts"
 #~ msgstr "Geldstromen - Specifieke rekeningen"
-
-#~ msgid "VUV"
-#~ msgstr "VUV"
 
 #~ msgid "Statement not accessible"
 #~ msgstr "Commando niet uitvoerbaar"
@@ -9455,17 +9404,11 @@ msgstr "U heeft al de nieuwste versie %s"
 #~ msgid "Total Amount: "
 #~ msgstr "Totaalbedrag:"
 
-#~ msgid "m"
-#~ msgstr "m"
-
 #~ msgid "Specify which account the transfer is comming from"
 #~ msgstr "Specificeer van welke rekening de overboeking komt"
 
 #~ msgid "Total Balance on all Accounts"
 #~ msgstr "Totaalbalans van alle rekeningen"
-
-#~ msgid "Pence"
-#~ msgstr "Pence"
 
 #~ msgid "Transaction Type"
 #~ msgstr "Type transactie"
@@ -9480,17 +9423,8 @@ msgstr "U heeft al de nieuwste versie %s"
 #~ msgid "pul"
 #~ msgstr "jul "
 
-#~ msgid "TWD"
-#~ msgstr "TWD"
-
 #~ msgid "Specify where the transaction is going to or coming from "
 #~ msgstr "Geef aan waar de transactie vandaankomt of heengaat"
-
-#~ msgid "UAH"
-#~ msgstr "UAH"
-
-#~ msgid "Kz"
-#~ msgstr "Kz"
 
 #~ msgid "Transaction Type is empty"
 #~ msgstr "Transactie-type is niet ingevuld"
@@ -9498,23 +9432,8 @@ msgstr "U heeft al de nieuwste versie %s"
 #~ msgid "Specify the purchase date of the stock investment"
 #~ msgstr "Specificeer aankoopdatum van het effectenfonds"
 
-#~ msgid "DZD"
-#~ msgstr "DZD"
-
-#~ msgid "ARS"
-#~ msgstr "ARS"
-
-#~ msgid "SHP"
-#~ msgstr "SHP"
-
 #~ msgid "Specify the number of times this series repeats."
 #~ msgstr "Specificeer het aantal herhalingen voor deze serie."
-
-#~ msgid "centavo"
-#~ msgstr "centavo"
-
-#~ msgid "AZN"
-#~ msgstr "AZN"
 
 #~ msgid "Transaction View Options"
 #~ msgstr "Optie transactie overzicht"
@@ -9523,24 +9442,9 @@ msgstr "U heeft al de nieuwste versie %s"
 #~ msgid "Specify the number of payments to be made."
 #~ msgstr "Geef aan welk type rekening aangemaakt moet worden"
 
-#~ msgid "AUD"
-#~ msgstr "AUD"
-
-#~ msgid "BBD"
-#~ msgstr "BBD"
-
-#~ msgid "SCR"
-#~ msgstr "SCR"
-
 #, fuzzy
 #~ msgid "Specify the folder to use when archive attachments"
 #~ msgstr "Specificeer de kleur voor de navigatieboom"
-
-#~ msgid "BDT"
-#~ msgstr "BDT"
-
-#~ msgid "CFA"
-#~ msgstr "CFA"
 
 #, fuzzy
 #~ msgid "Transactions imported from CSV"
@@ -9549,23 +9453,8 @@ msgstr "U heeft al de nieuwste versie %s"
 #~ msgid "Specify the color for the list row 1"
 #~ msgstr "Specificeer de kleur voor regel 1 in lijsten"
 
-#~ msgid "BZD"
-#~ msgstr "BZD"
-
-#~ msgid "BOB"
-#~ msgstr "BOB"
-
-#~ msgid "RON"
-#~ msgstr "RON"
-
 #~ msgid "Specify the color for the list row 0"
 #~ msgstr "Specificeer de kleur voor regel 0 in lijsten"
-
-#~ msgid "BTN"
-#~ msgstr "BTN"
-
-#~ msgid "BWP"
-#~ msgstr "BWP"
 
 #~ msgid "Transactions imported from QIF"
 #~ msgstr "Transacties geïmporteerd vanuit QIF"
@@ -9573,23 +9462,8 @@ msgstr "U heeft al de nieuwste versie %s"
 #~ msgid "Specify the color for the list details"
 #~ msgstr "Specificeer de kleur voor lijstdetails"
 
-#~ msgid "P"
-#~ msgstr "P"
-
-#~ msgid "FBu"
-#~ msgstr "FBu"
-
-#~ msgid "PAB"
-#~ msgstr "PAB"
-
 #~ msgid "Specify the color for the list background"
 #~ msgstr "Specificeer de kleur voor achtergrond van de lijst"
-
-#~ msgid "BGN"
-#~ msgstr "BGN"
-
-#~ msgid "CAD"
-#~ msgstr "CAD"
 
 #~ msgid "Transactions imported from QIF: %ld"
 #~ msgstr "Transacties geïmporteerd vanuit QIF: %ld"
@@ -9597,23 +9471,8 @@ msgstr "U heeft al de nieuwste versie %s"
 #~ msgid "Specify the color for the list Border"
 #~ msgstr "Specificeer de kleur voor de omranding in lijsten"
 
-#~ msgid "XAF"
-#~ msgstr "XAF"
-
-#~ msgid "CLP"
-#~ msgstr "CLP"
-
-#~ msgid "NPR"
-#~ msgstr "NPR"
-
 #~ msgid "Specify the color for future transactions"
 #~ msgstr "Specificeer kleur voor toekomstige transacties"
-
-#~ msgid "KYD"
-#~ msgstr "KYD"
-
-#~ msgid "F"
-#~ msgstr "F"
 
 #~ msgid "Translators"
 #~ msgstr "Vertalers"
@@ -9621,23 +9480,8 @@ msgstr "U heeft al de nieuwste versie %s"
 #~ msgid "Specify categories for this transaction"
 #~ msgstr "Specificeer categorie voor deze transactie"
 
-#~ msgid "KMF"
-#~ msgstr "KMF"
-
-#~ msgid "HRK"
-#~ msgstr "HRK"
-
-#~ msgid "MXN"
-#~ msgstr "MXN"
-
 #~ msgid "Specify advanced settings for transaction"
 #~ msgstr "Transactie uitgebreide instellingen"
-
-#~ msgid "kn"
-#~ msgstr "kn"
-
-#~ msgid "Fdj"
-#~ msgstr "Fdj"
 
 #, fuzzy
 #~ msgid "Tree View Options: Expand Section"
@@ -9646,23 +9490,8 @@ msgstr "U heeft al de nieuwste versie %s"
 #~ msgid "Specify Status"
 #~ msgstr "Specificeer status"
 
-#~ msgid "DKK"
-#~ msgstr "DKK"
-
-#~ msgid "Nfa"
-#~ msgstr "Nfa"
-
-#~ msgid "RM"
-#~ msgstr "RM"
-
 #~ msgid "Specify Payee"
 #~ msgstr "Specificeer relatie"
-
-#~ msgid "EGP"
-#~ msgstr "EGP"
-
-#~ msgid "FJD"
-#~ msgstr "FJD"
 
 #~ msgid "Type: "
 #~ msgstr "Type:"
@@ -9670,23 +9499,11 @@ msgstr "U heeft al de nieuwste versie %s"
 #~ msgid "Specify Notes"
 #~ msgstr "Specificeer notities"
 
-#~ msgid "FKP"
-#~ msgstr "FKP"
-
-#~ msgid "GEL"
-#~ msgstr "GEL"
-
 #~ msgid "Lt"
 #~ msgstr "uLt"
 
 #~ msgid "Specify Category"
 #~ msgstr "Specificeer categorie"
-
-#~ msgid "GMD"
-#~ msgstr "GMD"
-
-#~ msgid "GTQ"
-#~ msgstr "GTQ"
 
 #~ msgid "Unit Price"
 #~ msgstr "Stuksprijs"
@@ -9694,23 +9511,8 @@ msgstr "U heeft al de nieuwste versie %s"
 #~ msgid "Specify Account"
 #~ msgstr "Specificeer rekening"
 
-#~ msgid "Q"
-#~ msgstr "Q"
-
-#~ msgid "G"
-#~ msgstr "G"
-
-#~ msgid "Ls"
-#~ msgstr "Ls"
-
 #~ msgid "Source Payee"
 #~ msgstr "Bron begunstigde"
-
-#~ msgid "GYD"
-#~ msgstr "GYD"
-
-#~ msgid "Ft"
-#~ msgstr "Ft"
 
 #~ msgid "Universal CSV Dialog"
 #~ msgstr "Standaard CSV import/export dialoog"
@@ -9718,23 +9520,8 @@ msgstr "U heeft al de nieuwste versie %s"
 #~ msgid "Sort by"
 #~ msgstr "Sorteer op"
 
-#~ msgid "HKD"
-#~ msgstr "HKD"
-
-#~ msgid "INR"
-#~ msgstr "INR"
-
-#~ msgid "KES"
-#~ msgstr "KES"
-
 #~ msgid "Small"
 #~ msgstr "Klein"
-
-#~ msgid "ISK"
-#~ msgstr "ISK"
-
-#~ msgid "XDR"
-#~ msgstr "XDR"
 
 #~ msgid "Universal CSV Export"
 #~ msgstr "Universele CSV export"
@@ -9746,23 +9533,8 @@ msgstr "U heeft al de nieuwste versie %s"
 #~ "QIF transactie overgeslagen omdat datum, type of bedrag niet is ingevuld "
 #~ "of fout is, de transactie heeft "
 
-#~ msgid "SDR"
-#~ msgstr "SDR"
-
-#~ msgid "JMD"
-#~ msgstr "JMD"
-
-#~ msgid "IQD"
-#~ msgstr "IQD"
-
 #~ msgid "Size before"
 #~ msgstr "Grootte vooraf"
-
-#~ msgid "ILS"
-#~ msgstr "ILS"
-
-#~ msgid "KZT"
-#~ msgstr "KZT"
 
 #~ msgid "Update Failed"
 #~ msgstr "Bijwerken mislukt"
@@ -9770,23 +9542,8 @@ msgstr "U heeft al de nieuwste versie %s"
 #~ msgid "Size after"
 #~ msgstr "Grootte achteraf"
 
-#~ msgid "T"
-#~ msgstr "T"
-
-#~ msgid "KPW"
-#~ msgstr "KPW"
-
-#~ msgid "kr"
-#~ msgstr "kr"
-
 #~ msgid "Sign up for the announcement mailing list"
 #~ msgstr "Voeg me toe aan de mailinglijst"
-
-#~ msgid "W"
-#~ msgstr "W"
-
-#~ msgid "KN"
-#~ msgstr "KN"
 
 #~ msgid "Update database changes to database backup on exit."
 #~ msgstr "Databestand wijzigingen opslaan in de back-up bij het afsluiten."
@@ -9794,23 +9551,8 @@ msgstr "U heeft al de nieuwste versie %s"
 #~ msgid "Show/Hide Term Accounts on Summary page"
 #~ msgstr "Toon/Verberg termijnrekeningen op de overzichtspagina"
 
-#~ msgid "KGS"
-#~ msgstr "KGS"
-
-#~ msgid "LBP"
-#~ msgstr "LBP"
-
-#~ msgid "GNF"
-#~ msgstr "GNF"
-
 #~ msgid "Show/Hide Stock Accounts on Summary page"
 #~ msgstr "Toon/Verberg effecten rekeningen op de overzichtspagina"
-
-#~ msgid "LVL"
-#~ msgstr "LVL"
-
-#~ msgid "LD"
-#~ msgstr "LD"
 
 #~ msgid "Using Language : "
 #~ msgstr "Taal:"
@@ -9818,23 +9560,8 @@ msgstr "U heeft al de nieuwste versie %s"
 #~ msgid "Show/Hide Bank Accounts on Summary page"
 #~ msgstr "Toon/Verberg financiële rekeningen op de overzichtspagina"
 
-#~ msgid "LRD"
-#~ msgstr "LRD"
-
-#~ msgid "MOP"
-#~ msgstr "MOP"
-
-#~ msgid "D"
-#~ msgstr "D"
-
 #~ msgid "Show all hidden payees"
 #~ msgstr "Toon alle verborgen begunstigden"
-
-#~ msgid "LTL"
-#~ msgstr "LTL"
-
-#~ msgid "MK"
-#~ msgstr "MK"
 
 #, fuzzy
 #~ msgid "Value Date"
@@ -9843,23 +9570,8 @@ msgstr "U heeft al de nieuwste versie %s"
 #~ msgid "Show Deleted (Void)"
 #~ msgstr "Toon verwijderde (ongeldige)"
 
-#~ msgid "MGA"
-#~ msgstr "MGA"
-
-#~ msgid "Rf"
-#~ msgstr "Rf"
-
-#~ msgid "DOP"
-#~ msgstr "DOP"
-
 #~ msgid "Setup page printing options"
 #~ msgstr "Instellen pagina printopties"
-
-#~ msgid "MYR"
-#~ msgstr "MYR"
-
-#~ msgid "Rs"
-#~ msgstr "Rs"
 
 #~ msgid "Value of 123456.78 will be"
 #~ msgstr "Bedrag 123456.78 zal worden"
@@ -9867,23 +9579,8 @@ msgstr "U heeft al de nieuwste versie %s"
 #~ msgid "Setting new Database file"
 #~ msgstr "Nieuw databestand opbouwen"
 
-#~ msgid "MRO"
-#~ msgstr "MRO"
-
-#~ msgid "MNT"
-#~ msgstr "MNT"
-
-#~ msgid "CRC"
-#~ msgstr "CRC"
-
 #~ msgid "Sets the default currency for the database."
 #~ msgstr "Instellen van de standaard valuta voor het databestand."
-
-#~ msgid "MDL"
-#~ msgstr "MDL"
-
-#~ msgid "NAD"
-#~ msgstr "NAD"
 
 #~ msgid "Version History"
 #~ msgstr "Versie historie"
@@ -9892,23 +9589,8 @@ msgstr "U heeft al de nieuwste versie %s"
 #~ msgstr ""
 #~ "Activeer 'Automatisch uitvoeren' bij de 'volgende gebeurtenis' datum."
 
-#~ msgid "MMK"
-#~ msgstr "MMK"
-
-#~ msgid "NZD"
-#~ msgstr "NZD"
-
-#~ msgid "CVE"
-#~ msgstr "CVE"
-
 #~ msgid "Set Info Setting Value %s = %s. Error: %s"
 #~ msgstr "Informatie instellingwaarde instellen %s = %s. Fout: %s"
-
-#~ msgid "ANG"
-#~ msgstr "ANG"
-
-#~ msgid "OMR"
-#~ msgstr "OMR"
 
 #~ msgid "View \"Follow Up\" Transactions"
 #~ msgstr "Bekijk 'te controleren' transacties"
@@ -9917,23 +9599,8 @@ msgstr "U heeft al de nieuwste versie %s"
 #~ msgstr ""
 #~ "Activeren 'automatisch uitvoeren' zonder bevestgingen van de gebruiker."
 
-#~ msgid "NOK"
-#~ msgstr "NOK"
-
-#~ msgid "PYG"
-#~ msgstr "PYG"
-
-#~ msgid "BND"
-#~ msgstr "BND"
-
 #~ msgid "Set"
 #~ msgstr "Kies"
-
-#~ msgid "PGK"
-#~ msgstr "PGK"
-
-#~ msgid "QR"
-#~ msgstr "QR"
 
 #~ msgid "View All Except Reconciled Transactions"
 #~ msgstr "Bekijk alle transacties, uitgezonderd bevestigde"
@@ -9941,23 +9608,8 @@ msgstr "U heeft al de nieuwste versie %s"
 #~ msgid "Semicolon"
 #~ msgstr "Puntkomma"
 
-#~ msgid "PLN"
-#~ msgstr "PLN"
-
-#~ msgid "RWF"
-#~ msgstr "RWF"
-
-#~ msgid "BMD"
-#~ msgstr "BMD"
-
 #~ msgid "Selection can be made by using Search button."
 #~ msgstr "Een keuze kan worden gemaakt via de zoekknop."
-
-#~ msgid "RF"
-#~ msgstr "RF"
-
-#~ msgid "SAR"
-#~ msgstr "SAR"
 
 #~ msgid "View All transactions"
 #~ msgstr "Toon alle transacties"
@@ -9973,22 +9625,10 @@ msgstr "U heeft al de nieuwste versie %s"
 #~ msgid "SR"
 #~ msgstr "uSR"
 
-#~ msgid "SGD"
-#~ msgstr "SGD"
-
-#~ msgid "BHD"
-#~ msgstr "BHD"
-
 #~ msgid ""
 #~ "Select the currently selected payee as the selected payee for the "
 #~ "transaction"
 #~ msgstr "Gebruik de nu geselecteerde begunstigde voor de transactie"
-
-#~ msgid "SLL"
-#~ msgstr "SLL"
-
-#~ msgid "ZAR"
-#~ msgstr "ZAR"
 
 #~ msgid "View Budget Summary Report without Categories"
 #~ msgstr "Laat alle begroting categorieën zien"
@@ -9996,24 +9636,9 @@ msgstr "U heeft al de nieuwste versie %s"
 #~ msgid "Select the Custom Report %s"
 #~ msgstr "Selecteer een eigen rapport %s"
 
-#~ msgid "R"
-#~ msgstr "R"
-
-#~ msgid "SRD"
-#~ msgstr "SRD"
-
-#~ msgid "XCD"
-#~ msgstr "XCD"
-
 #, fuzzy
 #~ msgid "Select accounts"
 #~ msgstr "Kies rekening"
-
-#~ msgid "SDG"
-#~ msgstr "SDG"
-
-#~ msgid "CHF"
-#~ msgstr "CHF"
 
 #~ msgid "View Duplicate Transactions"
 #~ msgstr "Toon gekopieerde transacties"
@@ -10021,23 +9646,8 @@ msgstr "U heeft al de nieuwste versie %s"
 #~ msgid "Select To Acct"
 #~ msgstr "Selecteer naar rekening"
 
-#~ msgid "SEK"
-#~ msgstr "SEK"
-
-#~ msgid "TZS"
-#~ msgstr "TZS"
-
-#~ msgid "RUB"
-#~ msgstr "RUB"
-
 #~ msgid "Select To"
 #~ msgstr "Kies naar"
-
-#~ msgid "TJS"
-#~ msgstr "TJS"
-
-#~ msgid "TND"
-#~ msgstr "TND"
 
 #~ msgid "View Duplicates"
 #~ msgstr "Toon dubbele"
@@ -10045,23 +9655,11 @@ msgstr "U heeft al de nieuwste versie %s"
 #~ msgid "Select From Account"
 #~ msgstr "Kies van rekening"
 
-#~ msgid "DT"
-#~ msgstr "DT"
-
-#~ msgid "USh"
-#~ msgstr "USh"
-
 #~ msgid "Stocks Total:"
 #~ msgstr "Effecten totaal:"
 
 #~ msgid "Select From"
 #~ msgstr "Selecteer van"
-
-#~ msgid "TMT"
-#~ msgstr "TMT"
-
-#~ msgid "UZS"
-#~ msgstr "UZS"
 
 #~ msgid "View File Contents"
 #~ msgstr "Bekijk inhoud van het bestand"
@@ -10069,20 +9667,11 @@ msgstr "U heeft al de nieuwste versie %s"
 #~ msgid "Script type:"
 #~ msgstr "Scripttype:"
 
-#~ msgid "UYU"
-#~ msgstr "UYU"
-
-#~ msgid "WST"
-#~ msgstr "WST"
-
 #~ msgid "Cash Flow - With Term Accounts"
 #~ msgstr "Geldstromen - Met termijnrekeningen"
 
 #~ msgid "Scale should be greater than zero"
 #~ msgstr "De schaal moet groter zijn dan nul"
-
-#~ msgid "VND"
-#~ msgstr "VND"
 
 #~ msgid "Currency rate updated"
 #~ msgstr "Wisselkoers bijgewerkt"
@@ -10137,9 +9726,6 @@ msgstr "U heeft al de nieuwste versie %s"
 
 #~ msgid "Worksheet"
 #~ msgstr "Werkblad"
-
-#~ msgid " - "
-#~ msgstr " - "
 
 #~ msgid "View Not-Reconciled"
 #~ msgstr "Bekijk openstaande"
@@ -10249,12 +9835,6 @@ msgstr "U heeft al de nieuwste versie %s"
 #~ msgid " to Edit:"
 #~ msgstr " te wijzigen:"
 
-#~ msgid "%s\t: %0.4f -> %0.4f\n"
-#~ msgstr "%s\t: %0.4f -> %0.4f\n"
-
-#~ msgid "1254"
-#~ msgstr "1254"
-
 #~ msgid "Reoccuring Transaction Creation"
 #~ msgstr "Aanmaken herhalende transactie"
 
@@ -10275,9 +9855,6 @@ msgstr "U heeft al de nieuwste versie %s"
 #~ msgid "&Delete Budget Year"
 #~ msgstr "Begrotingsjaar verwijderen"
 
-#~ msgid "&Help\tCtrl-F1"
-#~ msgstr "&Help\tCtrl-F1"
-
 #~ msgid ""
 #~ "Changing all categories of: \n"
 #~ "%s to category: %s"
@@ -10291,17 +9868,11 @@ msgstr "U heeft al de nieuwste versie %s"
 #~ msgid "&Go To.."
 #~ msgstr "&Ga naar.."
 
-#~ msgid "&Open"
-#~ msgstr "&Open"
-
 #~ msgid "View Transactions for last 90 days"
 #~ msgstr "Bekijk de transacties van de vorige 90 dagen"
 
 #~ msgid "Released under the GNU GPL License"
 #~ msgstr "Uitgebracht onder GNU GPL licentie"
-
-#~ msgid "&OK"
-#~ msgstr "&OK"
 
 #~ msgid "&Select Category"
 #~ msgstr "&Kies categorie"
@@ -10470,9 +10041,6 @@ msgstr "U heeft al de nieuwste versie %s"
 #~ msgid "Honduran lempira"
 #~ msgstr "Hondurese lempira"
 
-#~ msgid "Vietnamese dong"
-#~ msgstr "Vietnamese dong"
-
 #~ msgid "Accessing Database"
 #~ msgstr "Bijwerken database"
 
@@ -10540,9 +10108,6 @@ msgstr "U heeft al de nieuwste versie %s"
 #~ msgid "Cannot get data from website"
 #~ msgstr "Kan geen data van de website ophalen"
 
-#~ msgid "C  "
-#~ msgstr "C  "
-
 #~ msgid "An error occurred during reconnection"
 #~ msgstr "Er is een fout opgetreden bij opnieuw verbinden"
 
@@ -10577,9 +10142,6 @@ msgstr "U heeft al de nieuwste versie %s"
 
 #~ msgid "Papua New Guinean kina"
 #~ msgstr "Papoea-Nieuw-Guineese kina"
-
-#~ msgid "E&xit\tAlt-X"
-#~ msgstr "E&xit\tAlt-X"
 
 #~ msgid "Viewing Flagged transactions"
 #~ msgstr "Bekijk gemerkte transacties"
@@ -10630,9 +10192,6 @@ msgstr "U heeft al de nieuwste versie %s"
 #~ msgid "Create new Custom Reports"
 #~ msgstr "Maak een nieuw eigen rapport"
 
-#~ msgid "3"
-#~ msgstr "3"
-
 #~ msgid "Curr. unit price"
 #~ msgstr "Huidige waarde per stuk"
 
@@ -10642,9 +10201,6 @@ msgstr "U heeft al de nieuwste versie %s"
 #~ msgid "Currency List"
 #~ msgstr "Valuta lijst"
 
-#~ msgid "%s\t: %s\n"
-#~ msgstr "%s\t: %s\n"
-
 #~ msgid "Current"
 #~ msgstr "Huidig"
 
@@ -10653,9 +10209,6 @@ msgstr "U heeft al de nieuwste versie %s"
 
 #~ msgid "Custom Report: "
 #~ msgstr "Eigen rapport: "
-
-#~ msgid "1257"
-#~ msgstr "1257"
 
 #~ msgid "Custom Reports..."
 #~ msgstr "Eigen rapporten..."
@@ -10768,14 +10321,8 @@ msgstr "U heeft al de nieuwste versie %s"
 #~ "Vul de naam voor een toe te voegen relatie in, of wijzig een bestaande "
 #~ "relatie"
 
-#~ msgid "AED"
-#~ msgstr "AED"
-
 #~ msgid "Enter the year in YYYY format to specify year"
 #~ msgstr "Specificeer jaar in YYYY formaat"
-
-#~ msgid "USD"
-#~ msgstr "USD"
 
 #~ msgid "Error adding Category"
 #~ msgstr "Fout in toevoegen categorie"
@@ -10786,20 +10333,11 @@ msgstr "U heeft al de nieuwste versie %s"
 #~ msgid "Error binding blob param"
 #~ msgstr "Fout in koppelen blob parameter"
 
-#~ msgid "AFN"
-#~ msgstr "AFN"
-
 #~ msgid "Error binding double param"
 #~ msgstr "Fout in koppelen getal parameter"
 
-#~ msgid "SZL"
-#~ msgstr "SZL"
-
 #~ msgid "Error binding int64 param"
 #~ msgstr "Fout in koppelen getal64 parameter"
-
-#~ msgid "AMD"
-#~ msgstr "AMD"
 
 #~ msgid "Error clearing bindings"
 #~ msgstr "Fout in wissen parameters"
@@ -10810,22 +10348,13 @@ msgstr "U heeft al de nieuwste versie %s"
 #~ msgid "Error: %s\n"
 #~ msgstr "Fout: %s\n"
 
-#~ msgid "Br"
-#~ msgstr "Br"
-
 #~ msgid "Estimated Income: %s Actual Income:  %s"
 #~ msgstr "Geschatte inkomsten: %s Werkelijke inkomsten:  %s"
-
-#~ msgid "STD"
-#~ msgstr "STD"
 
 #~ msgid "Expand Bank Accounts in Trew View when tree is refreshed"
 #~ msgstr ""
 #~ "Financiële rekeningen in boomweergave uitvouwen als de boom wordt "
 #~ "vernieuwd"
-
-#~ msgid "KM"
-#~ msgstr "KM"
 
 #~ msgid "Expand Stock Accounts on navigation tree"
 #~ msgstr "Effecten rekeningen in boomweergave uitvouwen"
@@ -10837,20 +10366,11 @@ msgstr "U heeft al de nieuwste versie %s"
 #~ msgstr ""
 #~ "Termijnrekeningen in boomweergave uitvouwen als de boom wordt vernieuwd"
 
-#~ msgid "BIF"
-#~ msgstr "BIF"
-
 #~ msgid "Expand Term Accounts on navigation tree"
 #~ msgstr "Termijnrekeningen in boomweergave uitvouwen"
 
-#~ msgid "NGN"
-#~ msgstr "NGN"
-
 #~ msgid "File name is empty"
 #~ msgstr "Bestandsnaam niet ingevuld"
-
-#~ msgid "CNY"
-#~ msgstr "CNY"
 
 #~ msgid "Filter Payees: "
 #~ msgstr "Filter begunstigde: "
@@ -10861,20 +10381,11 @@ msgstr "U heeft al de nieuwste versie %s"
 #~ msgid "Filter Transactions"
 #~ msgstr "Filter transacties"
 
-#~ msgid "CZK"
-#~ msgstr "CZK"
-
 #~ msgid "Financial Year: "
 #~ msgstr "Financieel jaar:"
 
-#~ msgid "UM"
-#~ msgstr "UM"
-
 #~ msgid "Follow Up On "
 #~ msgstr "Volgende actie op "
-
-#~ msgid "ERN"
-#~ msgstr "ERN"
 
 #~ msgid "From Account"
 #~ msgstr "Van rekening"
@@ -10885,20 +10396,11 @@ msgstr "U heeft al de nieuwste versie %s"
 #~ msgid "Future Transactions"
 #~ msgstr "Toekomstige transacties"
 
-#~ msgid "GHS"
-#~ msgstr "GHS"
-
 #~ msgid "Grand Total: "
 #~ msgstr "Eindtotaal: "
 
-#~ msgid "LSL"
-#~ msgstr "LSL"
-
 #~ msgid "Heading"
 #~ msgstr "Titel"
-
-#~ msgid "HTG"
-#~ msgstr "HTG"
 
 #~ msgid "Home Page Expansion Options"
 #~ msgstr "Startpagina uitbreidingsopties"
@@ -10909,20 +10411,8 @@ msgstr "U heeft al de nieuwste versie %s"
 #~ msgid "Idle"
 #~ msgstr "Wacht"
 
-#~ msgid "Rp"
-#~ msgstr "Rp"
-
 #~ msgid "Import from CSV"
 #~ msgstr "Import van CSV"
-
-#~ msgid "JOD"
-#~ msgstr "JOD"
-
-#~ msgid "Import/Export"
-#~ msgstr "Import/Export"
-
-#~ msgid "JPY"
-#~ msgstr "JPY"
 
 #~ msgid "Important note"
 #~ msgstr "Belangrijke notitie"
@@ -10933,20 +10423,11 @@ msgstr "U heeft al de nieuwste versie %s"
 #~ msgid "In "
 #~ msgstr "onder "
 
-#~ msgid "KRW"
-#~ msgstr "KRW"
-
 #~ msgid "Income vs Expenses - All Time"
 #~ msgstr "Inkomsten vs Uitgaven - totaal"
 
-#~ msgid "HNL"
-#~ msgstr "HNL"
-
 #~ msgid "Income vs Expenses - Current Month to Date"
 #~ msgstr "Inkomsten vs uitgaven - Huidige maand tot datum"
-
-#~ msgid "M"
-#~ msgstr "M"
 
 #~ msgid "Income vs Expenses - Last 12 months"
 #~ msgstr "Inkomsten vs uitgaven - Vorige 12 maanden"
@@ -10960,20 +10441,11 @@ msgstr "U heeft al de nieuwste versie %s"
 #~ msgid "Income vs Expenses - Last Financial Year"
 #~ msgstr "Inkomsten vs Uitgaven - vorig financieel jaar"
 
-#~ msgid "MKD"
-#~ msgstr "MKD"
-
 #~ msgid "Income vs Expenses for Financial Year: "
 #~ msgstr "Inkomsten vs Uitgaven voor financieel jaar: "
 
-#~ msgid "ETB"
-#~ msgstr "ETB"
-
 #~ msgid "Income......."
 #~ msgstr "Inkomen......."
-
-#~ msgid "MVR"
-#~ msgstr "MVR"
 
 #~ msgid "Incorrect XML data (#2)!"
 #~ msgstr "Foutieve XML data (#2)!"
@@ -10984,20 +10456,11 @@ msgstr "U heeft al de nieuwste versie %s"
 #~ msgid "Incorrect XML data (#4)!"
 #~ msgstr "Foutieve XML data (#4)!"
 
-#~ msgid "MAD"
-#~ msgstr "MAD"
-
 #~ msgid "Incorrect XML data (#6)!"
 #~ msgstr "Foutieve XML data (#6)!"
 
-#~ msgid "COP"
-#~ msgstr "COP"
-
 #~ msgid "Init Balance "
 #~ msgstr "Begin-balans"
-
-#~ msgid "NIO"
-#~ msgstr "NIO"
 
 #~ msgid "Invalid Value "
 #~ msgstr "Foutieve waarde"
@@ -11008,20 +10471,11 @@ msgstr "U heeft al de nieuwste versie %s"
 #~ msgid "Invalid current price entered "
 #~ msgstr "Ingevulde huidige waarde ongeldig"
 
-#~ msgid "PEN"
-#~ msgstr "PEN"
-
 #~ msgid "Invalid field name"
 #~ msgstr "Veldnaam ongeldig"
 
-#~ msgid "BAM"
-#~ msgstr "BAM"
-
 #~ msgid "Invalid purchase price entered "
 #~ msgstr "Aankoopbedrag foutief"
-
-#~ msgid "Db"
-#~ msgstr "Db"
 
 #, fuzzy
 #~ msgid "Investment Accounts"
@@ -11033,20 +10487,11 @@ msgstr "U heeft al de nieuwste versie %s"
 #~ msgid "Large"
 #~ msgstr "Groot"
 
-#~ msgid "SBD"
-#~ msgstr "SBD"
-
 #~ msgid "Leave blank when not active."
 #~ msgstr "Leeg laten indien niet gebruikt."
 
-#~ msgid "AWG"
-#~ msgstr "AWG"
-
 #~ msgid "Line %i"
 #~ msgstr "Regel %i"
-
-#~ msgid "E"
-#~ msgstr "E"
 
 #~ msgid "Line: "
 #~ msgstr "Regel:"
@@ -11058,20 +10503,11 @@ msgstr "U heeft al de nieuwste versie %s"
 #~ msgid "Line: %i invalid amount, skipping."
 #~ msgstr "Regel: %ld ongeldig bedrag, overgeslagen"
 
-#~ msgid "THB"
-#~ msgstr "THB"
-
 #~ msgid "List Border"
 #~ msgstr "Omranding in lijsten"
 
-#~ msgid "EUR"
-#~ msgstr "EUR"
-
 #~ msgid "List Row 1"
 #~ msgstr "Regel 1 in lijsten"
-
-#~ msgid "UGX"
-#~ msgstr "UGX"
 
 #~ msgid "Load Custom SQL file:"
 #~ msgstr "Laad eigen SQL-bestand:"
@@ -11081,9 +10517,6 @@ msgstr "U heeft al de nieuwste versie %s"
 
 #~ msgid "Log file written to : "
 #~ msgstr "Log bestand geschreven naar : "
-
-#~ msgid "YER"
-#~ msgstr "YER"
 
 #~ msgid "MMEX Account View: Transaction Filter"
 #~ msgstr "MMEX rekening weergave: Transactie filter"
@@ -11195,9 +10628,6 @@ msgstr "U heeft al de nieuwste versie %s"
 
 #~ msgid "Notes: "
 #~ msgstr "Notities:"
-
-#~ msgid "4"
-#~ msgstr "4"
 
 #, fuzzy
 #~ msgid "Number Shares"
@@ -11365,9 +10795,6 @@ msgstr "U heeft al de nieuwste versie %s"
 #~ msgid "Curr. unit value"
 #~ msgstr "Huidige totale waarde"
 
-#~ msgid "7"
-#~ msgstr "7"
-
 #~ msgid "Current &View"
 #~ msgstr "Huidige &weergave"
 
@@ -11376,9 +10803,6 @@ msgstr "U heeft al de nieuwste versie %s"
 
 #~ msgid "Custom script:"
 #~ msgstr "Eigen script: "
-
-#~ msgid "(DB v.%i)"
-#~ msgstr "(DB v.%i)"
 
 #~ msgid "Date is missing"
 #~ msgstr "Datum is niet ingevuld"
@@ -11441,20 +10865,11 @@ msgstr "U heeft al de nieuwste versie %s"
 #~ msgid "Error binding NULL param"
 #~ msgstr "Fout in koppelen NULL parameter"
 
-#~ msgid "GBP"
-#~ msgstr "GBP"
-
 #~ msgid "Error binding int param"
 #~ msgstr "Fout in koppelen parameter heel getal"
 
-#~ msgid "TTD"
-#~ msgstr "TTD"
-
 #~ msgid "Error code:"
 #~ msgstr "Foutmelding:"
-
-#~ msgid "BSD"
-#~ msgstr "BSD"
 
 #~ msgid "Every "
 #~ msgstr "Iedere"
@@ -11466,22 +10881,13 @@ msgstr "U heeft al de nieuwste versie %s"
 #~ msgstr ""
 #~ "Effecten rekeningen in boomweergave uitvouwen als de boom wordt vernieuwd"
 
-#~ msgid "BRL"
-#~ msgstr "BRL"
-
 #~ msgid "Expenses..."
 #~ msgstr "Uitgaven..."
-
-#~ msgid "PHP"
-#~ msgstr "PHP"
 
 #~ msgid ""
 #~ "Filter Split categories. Include the category for further filtering."
 #~ msgstr ""
 #~ "Filter splits categorieën: Neem de categorie op voor verdere filtering."
-
-#~ msgid "CDF"
-#~ msgstr "CDF"
 
 #~ msgid "Find Payee: "
 #~ msgstr "Zoek begunstigde: "
@@ -11492,20 +10898,11 @@ msgstr "U heeft al de nieuwste versie %s"
 #~ msgid "From and To Account cannot be the same."
 #~ msgstr "Van- en naar rekening mag niet hetzelfde zijn"
 
-#~ msgid "XPF"
-#~ msgstr "XPF"
-
 #~ msgid "HTML_BUILDER: Syntax error function: %s"
 #~ msgstr "HTML_BUILDER: Syntax fout functie: %s"
 
-#~ msgid "FMG"
-#~ msgstr "FMG"
-
 #~ msgid "Huge"
 #~ msgstr "Enorm"
-
-#~ msgid "HUF"
-#~ msgstr "HUF"
 
 #~ msgid "Import from MM.NET CSV"
 #~ msgstr "Import van MM.NET CSV"
@@ -11517,20 +10914,11 @@ msgstr "U heeft al de nieuwste versie %s"
 #~ msgid "Importing CSV MM.NET"
 #~ msgstr "Import van MM.NET CSV"
 
-#~ msgid "KSh"
-#~ msgstr "KSh"
-
 #~ msgid "Income vs Expenses - Current Financial Year"
 #~ msgstr "Inkomsten vs Uitgaven - huidig financieel jaar"
 
-#~ msgid "IDR"
-#~ msgstr "IDR"
-
 #~ msgid "Income vs Expenses - Last Calendar Month"
 #~ msgstr "Inkomsten vs uitgaven - vorige maand"
-
-#~ msgid "LYD"
-#~ msgstr "LYD"
 
 #~ msgid "Income vs Expenses for Year: %d"
 #~ msgstr "Inkomsten vs Uitgaven voor jaar: %d"
@@ -11541,20 +10929,11 @@ msgstr "U heeft al de nieuwste versie %s"
 #~ msgid "Incorrect XML data (#3)!"
 #~ msgstr "Foutieve XML data (#3)!"
 
-#~ msgid "MUR"
-#~ msgstr "MUR"
-
 #~ msgid "Incorrect XML data (#7)!"
 #~ msgstr "Foutieve XML data (#7)!"
 
-#~ msgid "Kr"
-#~ msgstr "Kr"
-
 #~ msgid "Invalid commission entered "
 #~ msgstr "Ingevulde commissie foutief"
-
-#~ msgid "PKR"
-#~ msgstr "PKR"
 
 #~ msgid "Invalid number of shares entered "
 #~ msgstr "Aantal aandelen foutief"
@@ -11569,9 +10948,6 @@ msgstr "U heeft al de nieuwste versie %s"
 #~ "Investeringsrekeningen zijn speciale rekeningen \n"
 #~ "die alleen gekoppeld zijn aan beleggingen in effecten. \n"
 
-#~ msgid "RSD"
-#~ msgstr "RSD"
-
 #~ msgid "Legend:"
 #~ msgstr "Legenda:"
 
@@ -11581,9 +10957,6 @@ msgstr "U heeft al de nieuwste versie %s"
 #~ msgid "Line: %i"
 #~ msgstr "Regel: %i"
 
-#~ msgid "SYP"
-#~ msgstr "SYP"
-
 #~ msgid "List Row 0"
 #~ msgstr "Regel 0 in lijsten"
 
@@ -11592,9 +10965,6 @@ msgstr "U heeft al de nieuwste versie %s"
 
 #~ msgid "Load Template"
 #~ msgstr "Sjabloon laden"
-
-#~ msgid "VT"
-#~ msgstr "VT"
 
 #~ msgid "MMEX DATABASE ERROR"
 #~ msgstr "MMEX DATABESTAND FOUT"
@@ -11650,9 +11020,6 @@ msgstr "U heeft al de nieuwste versie %s"
 
 #~ msgid "Null Results pointer"
 #~ msgstr "Aanwijzer naar geen resultaat"
-
-#~ msgid "1250"
-#~ msgstr "1250"
 
 #~ msgid "Options"
 #~ msgstr "Opties"
@@ -11739,14 +11106,8 @@ msgstr "U heeft al de nieuwste versie %s"
 #~ msgid "Custom Reports"
 #~ msgstr "Eigen rapporten"
 
-#~ msgid "1253"
-#~ msgstr "1253"
-
 #~ msgid "Delete Transaction"
 #~ msgstr "Wis transactie"
-
-#~ msgid "finance.au.yahoo.com"
-#~ msgstr "finance.au.yahoo.com"
 
 #, fuzzy
 #~ msgid "Do you want to scan all transaction ?"
@@ -11791,20 +11152,8 @@ msgstr "U heeft al de nieuwste versie %s"
 #~ "Financiële rekeningen op de startpagina uitvouwen als de pagina wordt "
 #~ "vernieuwd"
 
-#~ msgid "XOF"
-#~ msgstr "XOF"
-
-#~ msgid "Filter"
-#~ msgstr "Filter"
-
-#~ msgid "SOS"
-#~ msgstr "SOS"
-
 #~ msgid "Font Size Options"
 #~ msgstr "Lettergrootte opties"
-
-#~ msgid "DJF"
-#~ msgstr "DJF"
 
 #~ msgid "Hide Deleted (Void)"
 #~ msgstr "Verberg verwijderde (ongeldige)"
@@ -11815,20 +11164,11 @@ msgstr "U heeft al de nieuwste versie %s"
 #~ msgid "Import/Export Settings"
 #~ msgstr "Import/export instellingen"
 
-#~ msgid "IRR"
-#~ msgstr "IRR"
-
 #~ msgid "Income vs Expenses - Current Year"
 #~ msgstr "Inkomsten vs uitgaven - huidig jaar"
 
-#~ msgid "KWD"
-#~ msgstr "KWD"
-
 #~ msgid "Incorrect XML data (#1)!"
 #~ msgstr "Foutieve XML data (#1)!"
-
-#~ msgid "MWK"
-#~ msgstr "MWK"
 
 #~ msgid "Initial Term Account Activation"
 #~ msgstr "Initieel activeren van een termijnrekening"
@@ -11836,23 +11176,11 @@ msgstr "U heeft al de nieuwste versie %s"
 #~ msgid "mmGetColumnChoice: This is not a 2 dimentional array"
 #~ msgstr "mmGetColumnChoice: Dit is geen 2 dimensionele array"
 
-#~ msgid "Invalid scalar query"
-#~ msgstr "Invalid scalar query"
-
-#~ msgid "QAR"
-#~ msgstr "QAR"
-
 #~ msgid "Line : "
 #~ msgstr "Regel :"
 
-#~ msgid "KHR"
-#~ msgstr "KHR"
-
 #~ msgid "Load Custom Lua file:"
 #~ msgstr "Laad eigen Lua-bestand: "
-
-#~ msgid "TRY"
-#~ msgstr "TRY"
 
 #~ msgid "MMEX must be shutdown and restarted for all the changes to be seen."
 #~ msgstr ""
@@ -11872,12 +11200,6 @@ msgstr "U heeft al de nieuwste versie %s"
 
 #~ msgid "Connection error"
 #~ msgstr "Verbindingsfout "
-
-#~ msgid "No software found for file extension ."
-#~ msgstr "No software found for file extension ."
-
-#~ msgid " type "
-#~ msgstr " type "
 
 #~ msgid "Number of Shares"
 #~ msgstr "Aantal aandelen"
@@ -11943,21 +11265,12 @@ msgstr "U heeft al de nieuwste versie %s"
 #~ msgid "Estimated Expenses: %s Actual Expenses:  %s"
 #~ msgstr "Geschatte uitgaven: %s Werkelijke uitgaven:  %s"
 
-#~ msgid "AOA"
-#~ msgstr "AOA"
-
 #, fuzzy
 #~ msgid "Financial Year Settings"
 #~ msgstr "Algemene instellingen"
 
-#~ msgid "VEF"
-#~ msgstr "VEF"
-
 #~ msgid "Import &QIF File"
 #~ msgstr "Importeer &QIF bestand"
-
-#~ msgid "FG"
-#~ msgstr "FG"
 
 #~ msgid "Income vs Expenses - Last Year"
 #~ msgstr "Inkomsten vs uitgaven - vorig jaar"
@@ -11968,14 +11281,8 @@ msgstr "U heeft al de nieuwste versie %s"
 #~ msgid "Invalid field index"
 #~ msgstr "Veld index ongeldig"
 
-#~ msgid "NRs"
-#~ msgstr "NRs"
-
 #~ msgid "List Background"
 #~ msgstr "Achtergrond voor lijsten"
-
-#~ msgid "GIP"
-#~ msgstr "GIP"
 
 #~ msgid "Modify the description for the attachment:"
 #~ msgstr "Wijzig de omschrijving van de bijlage:"
@@ -12034,24 +11341,15 @@ msgstr "U heeft al de nieuwste versie %s"
 #~ msgid "Incorrect XML data (#5)!"
 #~ msgstr "Foutieve XML data (#5)!"
 
-#~ msgid "LAK"
-#~ msgstr "LAK"
-
 #, fuzzy
 #~ msgid "MM.&NET CSV Files"
 #~ msgstr "&MM.NET CSV bestanden"
-
-#~ msgid "L"
-#~ msgstr "L"
 
 #~ msgid "Notes:"
 #~ msgstr "Notities:"
 
 #~ msgid " days remaining"
 #~ msgstr " resterende dagen"
-
-#~ msgid "CSV Import"
-#~ msgstr "CSV Import"
 
 #~ msgid "Maldivian rufiyaa"
 #~ msgstr "Maldivische rufiyaa"
@@ -12064,9 +11362,6 @@ msgstr "U heeft al de nieuwste versie %s"
 
 #~ msgid "Income vs Expenses - 30 Days"
 #~ msgstr "Inkomsten vs uitgaven - 30 dagen"
-
-#~ msgid "LKR"
-#~ msgstr "LKR"
 
 #~ msgid "New version is: %s"
 #~ msgstr "De nieuwe versie is: %s"
@@ -12087,12 +11382,6 @@ msgstr "U heeft al de nieuwste versie %s"
 #~ msgstr ""
 #~ "Termijnrekeningen op de startpagina uitvouwen als de pagina wordt "
 #~ "vernieuwd"
-
-#~ msgid "Esc"
-#~ msgstr "Esc"
-
-#~ msgid "K"
-#~ msgstr "K"
 
 #~ msgid "to payee: "
 #~ msgstr "naar begunstigde:"

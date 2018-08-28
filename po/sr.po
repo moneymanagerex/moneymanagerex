@@ -9444,9 +9444,6 @@ msgstr "Имате последњу верзију!"
 #~ msgid "Organize Currency: Add Currency"
 #~ msgstr "Организуј валуту"
 
-#~ msgid ":"
-#~ msgstr ":"
-
 #~ msgid "Page Set&up..."
 #~ msgstr "Подешавање листа..."
 
@@ -10235,9 +10232,6 @@ msgstr "Имате последњу верзију!"
 #~ msgid "Budget setup for Year : "
 #~ msgstr "Подешавање буџета по години:"
 
-#~ msgid "C  "
-#~ msgstr "C  "
-
 #, fuzzy
 #~ msgid "Cannot process these QIF Account Types yet."
 #~ msgstr "Не може се још обрадити ове QIF Типове Рачуна"
@@ -10600,9 +10594,6 @@ msgstr "Имате последњу верзију!"
 #, fuzzy
 #~ msgid "Type: "
 #~ msgstr "Тип:"
-
-#~ msgid "finance.au.yahoo.com"
-#~ msgstr "finance.au.yahoo.com"
 
 #, fuzzy
 #~ msgid "Universal CSV Dialog"

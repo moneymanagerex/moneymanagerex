@@ -10232,9 +10232,6 @@ msgstr "Jums ir instalēta jaunākā versija!"
 #~ msgid "&Stock Accounts"
 #~ msgstr "Bankas konts"
 
-#~ msgid ":"
-#~ msgstr ":"
-
 #, fuzzy
 #~ msgid "Account  :"
 #~ msgstr "Konts"
@@ -10740,9 +10737,6 @@ msgstr "Jums ir instalēta jaunākā versija!"
 
 #~ msgid "Unable to convert db successfully. Check Password!"
 #~ msgstr "Nevarētu konvertēt datu bāzi. Pārbaudiet paroli!"
-
-#~ msgid "finance.au.yahoo.com"
-#~ msgstr "finance.au.yahoo.com"
 
 #, fuzzy
 #~ msgid "Universal CSV Dialog"

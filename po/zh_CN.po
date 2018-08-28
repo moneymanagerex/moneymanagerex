@@ -9483,9 +9483,6 @@ msgstr "您已经安装最新版本！"
 #~ msgid "Percent/Year: "
 #~ msgstr "本年"
 
-#~ msgid "C  "
-#~ msgstr "C  "
-
 #~ msgid "Please confirm deletion of a selected Currency"
 #~ msgstr "确认删除所选的货币"
 
@@ -10540,9 +10537,6 @@ msgstr "您已经安装最新版本！"
 
 #~ msgid "Type a Payee Name in the Text Box and then press Add."
 #~ msgstr "在文本框中输入首款人姓名，然后点新增。"
-
-#~ msgid "finance.au.yahoo.com"
-#~ msgstr "finance.au.yahoo.com"
 
 #~ msgid "Unable to convert db successfully. Check Password!"
 #~ msgstr "无法成功连接数据库，请检查密码！"

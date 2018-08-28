@@ -10026,9 +10026,6 @@ msgstr "Du har den senaste versionen installerad!"
 #~ msgid "&Select Category"
 #~ msgstr "Välj kategori"
 
-#~ msgid ":"
-#~ msgstr ":"
-
 #, fuzzy
 #~ msgid "&Search"
 #~ msgstr "Mars"
@@ -10179,9 +10176,6 @@ msgstr "Du har den senaste versionen installerad!"
 #, fuzzy
 #~ msgid "Edit an existing SQL report"
 #~ msgstr "Ändra namnet på en befintlig kategori"
-
-#~ msgid "Entry "
-#~ msgstr "Entry "
 
 #, fuzzy
 #~ msgid "Edit Payee Name"
@@ -10452,9 +10446,6 @@ msgstr "Du har den senaste versionen installerad!"
 #, fuzzy
 #~ msgid "View Last 365 days"
 #~ msgstr "Visa 30 dagar"
-
-#~ msgid "finance.au.yahoo.com"
-#~ msgstr "finance.au.yahoo.com"
 
 #~ msgid "Split Category"
 #~ msgstr "Dela kategori"
