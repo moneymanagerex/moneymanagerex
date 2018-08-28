@@ -5434,7 +5434,7 @@ msgstr "Export als HTML"
 
 #: src/mmframe.cpp:1466
 msgid "&Force WebApp sync"
-msgstr "&Erzwinge die WebApp-Synchronisierung
+msgstr "&Erzwinge die WebApp-Synchronisierung"
 
 #: src/mmframe.cpp:1466
 #, fuzzy
