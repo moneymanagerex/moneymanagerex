@@ -9271,10 +9271,6 @@ msgstr "Imate instaliranu najnoviju verziju!"
 #~ msgid "MMEX Account View: Transaction Filter"
 #~ msgstr "Transakcijski filter"
 
-#, fuzzy
-#~ msgid "T"
-#~ msgstr "U korist"
-
 #~ msgid "Market open from"
 #~ msgstr "Berza je otvorena od"
 
@@ -10141,10 +10137,6 @@ msgstr "Imate instaliranu najnoviju verziju!"
 #~ msgid "Pence"
 #~ msgstr "Troškovi"
 
-#, fuzzy
-#~ msgid "NOK"
-#~ msgstr "OK"
-
 #~ msgid "Currency rate updated"
 #~ msgstr "Menadžer valuta"
 
@@ -10844,10 +10836,6 @@ msgstr "Imate instaliranu najnoviju verziju!"
 #, fuzzy
 #~ msgid "Term account"
 #~ msgstr "Na teret račun"
-
-#, fuzzy
-#~ msgid "K"
-#~ msgstr "OK"
 
 #~ msgid "Times Repeated"
 #~ msgstr "Broj ponavljanja"

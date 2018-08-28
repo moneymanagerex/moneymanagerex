@@ -9240,16 +9240,8 @@ msgstr "புதிய வெளியீடு நிறுவப்பட்�
 #~ msgid "MMEX Account View: Transaction Filter"
 #~ msgstr "பறிமாற்ற வடி"
 
-#, fuzzy
-#~ msgid "K"
-#~ msgstr "சரி"
-
 #~ msgid "Market open from"
 #~ msgstr "சந்தை திறக்கும் நேரம்"
-
-#, fuzzy
-#~ msgid "T"
-#~ msgstr "பெறுதல்"
 
 #~ msgid "May "
 #~ msgstr "மே"
@@ -10094,10 +10086,6 @@ msgstr "புதிய வெளியீடு நிறுவப்பட்�
 
 #~ msgid "Total Balance on all Accounts"
 #~ msgstr "அனைத்து கணக்குகளின் மொத்த இருப்பு: "
-
-#, fuzzy
-#~ msgid "NOK"
-#~ msgstr "சரி"
 
 #, fuzzy
 #~ msgid "Currency History Options: "

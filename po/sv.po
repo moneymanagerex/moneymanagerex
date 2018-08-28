@@ -9199,10 +9199,6 @@ msgstr "Du har den senaste versionen installerad!"
 #~ msgid "Month: "
 #~ msgstr "Månad"
 
-#, fuzzy
-#~ msgid "NOK"
-#~ msgstr "OK"
-
 #~ msgid "Name of Currency to Add"
 #~ msgstr "Namn på valuta som ska läggas till"
 
@@ -9929,14 +9925,6 @@ msgstr "Du har den senaste versionen installerad!"
 #, fuzzy
 #~ msgid "Where the Money Comes From - Last Calendar Month"
 #~ msgstr "Vart pengar kommer ifrån"
-
-#, fuzzy
-#~ msgid "K"
-#~ msgstr "OK"
-
-#, fuzzy
-#~ msgid "T"
-#~ msgstr "Till"
 
 #, fuzzy
 #~ msgid "Invalid value "

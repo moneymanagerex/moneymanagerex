@@ -9256,16 +9256,8 @@ msgstr "Ai deja instalată ultima versiune!"
 #~ msgstr "Rîndul 1 al Listei"
 
 #, fuzzy
-#~ msgid "K"
-#~ msgstr "OK"
-
-#, fuzzy
 #~ msgid "Load Custom Lua file:"
 #~ msgstr "Administrează Baza de Date"
-
-#, fuzzy
-#~ msgid "NOK"
-#~ msgstr "OK"
 
 #, fuzzy
 #~ msgid "Load Custom SQL file:"
@@ -10132,10 +10124,6 @@ msgstr "Ai deja instalată ultima versiune!"
 #, fuzzy
 #~ msgid "pul"
 #~ msgstr "Iul"
-
-#, fuzzy
-#~ msgid "T"
-#~ msgstr "Către"
 
 #, fuzzy
 #~ msgid "centavo"

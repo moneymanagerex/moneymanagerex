@@ -9622,9 +9622,6 @@ msgstr "U heeft al de nieuwste versie %s"
 #~ "Bepaal of een .bak gemaakt moet worden bij het openen van een database-"
 #~ "bestand"
 
-#~ msgid "SR"
-#~ msgstr "uSR"
-
 #~ msgid ""
 #~ "Select the currently selected payee as the selected payee for the "
 #~ "transaction"
@@ -10950,9 +10947,6 @@ msgstr "U heeft al de nieuwste versie %s"
 
 #~ msgid "Legend:"
 #~ msgstr "Legenda:"
-
-#~ msgid "BYR"
-#~ msgstr "BYN"
 
 #~ msgid "Line: %i"
 #~ msgstr "Regel: %i"

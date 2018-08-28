@@ -8869,9 +8869,6 @@ msgstr "У вас установлена новейшая версия %s"
 #~ msgid "Someone tried to send a command during a transfer"
 #~ msgstr "Кто-то пытается отдать команду во время отправки"
 
-#~ msgid "ALL"
-#~ msgstr "Все"
-
 #~ msgid ""
 #~ "New password for database\n"
 #~ "\n"

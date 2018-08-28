@@ -8825,14 +8825,6 @@ msgstr "Jūs jau turite naujausią versiją: %s"
 #~ msgid "The client failed to connect the server"
 #~ msgstr "Klientui nepavyko prisijungti prie serverio"
 
-#, fuzzy
-#~ msgid "BIF"
-#~ msgstr "QIF"
-
-#, fuzzy
-#~ msgid "CVE"
-#~ msgstr "CSV"
-
 #~ msgid "An error occurred during negotiation"
 #~ msgstr "Įvyko klaida derybų metu"
 
@@ -8842,23 +8834,11 @@ msgstr "Jūs jau turite naujausią versiją: %s"
 #~ msgid "The remote file doesn't exist"
 #~ msgstr "Nutolęs failas neegzistuoja"
 
-#, fuzzy
-#~ msgid "D"
-#~ msgstr "ID"
-
 #~ msgid "Someone tried to send a command during a transfer"
 #~ msgstr "Kažkas bandė siųsti komandą perkėlimo metu"
 
-#, fuzzy
-#~ msgid "ALL"
-#~ msgstr "Visi"
-
 #~ msgid "Unknown error"
 #~ msgstr "Nežinoma klaida"
-
-#, fuzzy
-#~ msgid "IQD"
-#~ msgstr "ID"
 
 #, fuzzy
 #~ msgid "All files"
@@ -8871,10 +8851,6 @@ msgstr "Jūs jau turite naujausią versiją: %s"
 #~| msgid "Amount"
 #~ msgid "Amount ±"
 #~ msgstr "Suma"
-
-#, fuzzy
-#~ msgid "LSL"
-#~ msgstr "SQL"
 
 #~ msgid "Show all even the unused currencies"
 #~ msgstr "Rodyti visas, net ir nenaudojamas valiutas"
@@ -8889,10 +8865,6 @@ msgstr "Jūs jau turite naujausią versiją: %s"
 #~ msgstr "Konvertuoti šifruotą &DB į nešifruotą DB"
 
 #, fuzzy
-#~ msgid "K"
-#~ msgstr "Gerai"
-
-#, fuzzy
 #~ msgid "No File opened"
 #~ msgstr " - Nėra atverto failo "
 
@@ -8902,10 +8874,6 @@ msgstr "Jūs jau turite naujausią versiją: %s"
 
 #~ msgid "Cannot locate previously opened database.\n"
 #~ msgstr "Nepavyksta aptikti anksčiau atverto duomenų bazės.\n"
-
-#, fuzzy
-#~ msgid "PAB"
-#~ msgstr "TAB"
 
 #~ msgid "Choose database file to Save As"
 #~ msgstr "Parinkite, kad išsaugoti duomenų bazės failą kaip"
@@ -8923,20 +8891,12 @@ msgstr "Jūs jau turite naujausią versiją: %s"
 #~ "%s"
 
 #, fuzzy
-#~ msgid "SLL"
-#~ msgstr "SQL"
-
-#, fuzzy
 #~| msgid "Accounts: "
 #~ msgid "Accounts:"
 #~ msgstr "Sąskaitos: "
 
 #~ msgid "Specify the number of times this series repeats."
 #~ msgstr "Nurodykite serijos pasikartojimų skaičių."
-
-#, fuzzy
-#~ msgid "THB"
-#~ msgstr "TAB"
 
 #~ msgid ""
 #~ "Changing all categories of: \n"
@@ -9153,10 +9113,6 @@ msgstr "Jūs jau turite naujausią versiją: %s"
 #~ msgid "May "
 #~ msgstr "Gegužė "
 
-#, fuzzy
-#~ msgid "IDR"
-#~ msgstr "ID"
-
 #~ msgid "Modify the description for the attachment:"
 #~ msgstr "Pakeisti naujo priedo aprašymą:"
 
@@ -9165,10 +9121,6 @@ msgstr "Jūs jau turite naujausią versiją: %s"
 
 #~ msgid "New/Edit Asset"
 #~ msgstr "Naujas/Redaguoti turtą"
-
-#, fuzzy
-#~ msgid "LD"
-#~ msgstr "Eksportuotų operacijų skaičius: %ld"
 
 #~ msgid "No account available to reallocate!"
 #~ msgstr "Nėra sąskaitos pasiekiamos perskirstymui!"
@@ -9303,19 +9255,11 @@ msgstr "Jūs jau turite naujausią versiją: %s"
 #~ "\n"
 #~ "%s"
 
-#, fuzzy
-#~ msgid "T"
-#~ msgstr "Eilutė %i \t %s\n"
-
 #~ msgid "Enter password for new database"
 #~ msgstr "Įveskite slaptažodį naujai duomenų bazei"
 
 #~ msgid "Where the Money Comes From - %s"
 #~ msgstr "Iš kur gaunami pinigai - %s"
-
-#, fuzzy
-#~ msgid "SZL"
-#~ msgstr "SQL"
 
 #~ msgid "Donate"
 #~ msgstr "Paremti"
@@ -9366,10 +9310,6 @@ msgstr "Jūs jau turite naujausią versiją: %s"
 #~ msgid "Amount ±: "
 #~ msgstr "Kiekis:"
 
-#, fuzzy
-#~ msgid "ETB"
-#~ msgstr "TAB"
-
 #~ msgid "Visit MMEX Forum"
 #~ msgstr "Aplankyti MMEX Forumą"
 
@@ -9393,10 +9333,6 @@ msgstr "Jūs jau turite naujausią versiją: %s"
 
 #~ msgid "An error occurred during reconnection"
 #~ msgstr "Įvyko klaida bandant pakartotinai susijungti"
-
-#, fuzzy
-#~ msgid "NOK"
-#~ msgstr "Gerai"
 
 #, fuzzy
 #~ msgid "Accounts: %s"

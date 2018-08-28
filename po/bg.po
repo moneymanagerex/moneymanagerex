@@ -9154,10 +9154,6 @@ msgstr "Имате инсталирана последната версия!"
 #~ msgid "New MMEX Options"
 #~ msgstr "Нови MMEX опции"
 
-#, fuzzy
-#~ msgid "CVE"
-#~ msgstr "CSV"
-
 #~ msgid "New transactions found on web app"
 #~ msgstr "Открита е нова транзакция на WebApp"
 
@@ -9166,10 +9162,6 @@ msgstr "Имате инсталирана последната версия!"
 
 #~ msgid "New update available: "
 #~ msgstr "Има ново обновление:"
-
-#, fuzzy
-#~ msgid "IQD"
-#~ msgstr "GUID"
 
 #~ msgid "New/Edit Asset"
 #~ msgstr "Нов/Промени Актив"
@@ -9188,24 +9180,12 @@ msgstr "Имате инсталирана последната версия!"
 #~ msgid "New/Edit Stock Investment"
 #~ msgstr "Нова/Редакция акционна инвестиция"
 
-#, fuzzy
-#~ msgid "NOK"
-#~ msgstr "Добре"
-
 #~ msgid "Next Occurrence"
 #~ msgstr "Следващо появяване"
 
 #, fuzzy
-#~ msgid "ETB"
-#~ msgstr "ТАБ"
-
-#, fuzzy
 #~ msgid "No account available to reallocate!"
 #~ msgstr "Няма акаунт за изтриване!"
-
-#, fuzzy
-#~ msgid "THB"
-#~ msgstr "ТАБ"
 
 #~ msgid "No software found for file extension ."
 #~ msgstr "Не е открит софтуер за разширението на файла."
@@ -9223,10 +9203,6 @@ msgstr "Имате инсталирана последната версия!"
 #, fuzzy
 #~ msgid "Note: Split transactions not set"
 #~ msgstr "Импортира разделени транзакции"
-
-#, fuzzy
-#~ msgid "PAB"
-#~ msgstr "ТАБ"
 
 #~ msgid "Notes:"
 #~ msgstr "Бележки:"
@@ -9519,32 +9495,8 @@ msgstr "Имате инсталирана последната версия!"
 #~ msgstr "Виж неодобрените"
 
 #, fuzzy
-#~ msgid "BIF"
-#~ msgstr "QIF"
-
-#, fuzzy
-#~ msgid "D"
-#~ msgstr "GUID"
-
-#, fuzzy
-#~ msgid "IDR"
-#~ msgstr "GUID"
-
-#, fuzzy
 #~ msgid "pul"
 #~ msgstr "Юли"
-
-#, fuzzy
-#~ msgid "K"
-#~ msgstr "Добре"
-
-#, fuzzy
-#~ msgid "SLL"
-#~ msgstr "SQL"
-
-#, fuzzy
-#~ msgid "SZL"
-#~ msgstr "SQL"
 
 #~ msgid "View Reconciled"
 #~ msgstr "Виж одобрените"
@@ -9683,10 +9635,6 @@ msgstr "Имате инсталирана последната версия!"
 #~ msgstr "Избери цвета на лист от спиък 1"
 
 #, fuzzy
-#~ msgid "LSL"
-#~ msgstr "SQL"
-
-#, fuzzy
 #~ msgid "Specify the number of payments to be made."
 #~ msgstr "Изберете видът на акаунта, който да бъде създаден."
 
@@ -9701,10 +9649,6 @@ msgstr "Имате инсталирана последната версия!"
 
 #~ msgid "Specify which account the transfer is comming from"
 #~ msgstr "Посочи от кой акаунт идва трансфера"
-
-#, fuzzy
-#~ msgid "T"
-#~ msgstr "До"
 
 #~ msgid "Status:"
 #~ msgstr "Статус:"

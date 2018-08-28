@@ -9247,23 +9247,11 @@ msgstr "U heeft de nieuwste versie!"
 #~ msgid "pul"
 #~ msgstr "Jul"
 
-#, fuzzy
-#~ msgid "T"
-#~ msgstr "Naar"
-
 #~ msgid "Load Template"
 #~ msgstr "Sjabloon Laden"
 
-#, fuzzy
-#~ msgid "NOK"
-#~ msgstr "OK"
-
 #~ msgid "View File Contents"
 #~ msgstr "Bestand Bekijken"
-
-#, fuzzy
-#~ msgid "THB"
-#~ msgstr "Tab"
 
 #~ msgid "MM.&NET CSV Files"
 #~ msgstr "&MM.NET CSV-Bestand"
@@ -10206,18 +10194,6 @@ msgstr "U heeft de nieuwste versie!"
 
 #~ msgid "List Row 1"
 #~ msgstr "Lijst Rij 2"
-
-#, fuzzy
-#~ msgid "ETB"
-#~ msgstr "Tab"
-
-#, fuzzy
-#~ msgid "K"
-#~ msgstr "OK"
-
-#, fuzzy
-#~ msgid "PAB"
-#~ msgstr "Tab"
 
 #~ msgid "Log file written to : "
 #~ msgstr "Logbestand geschreven naar: "

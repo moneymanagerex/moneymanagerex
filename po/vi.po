@@ -9045,10 +9045,6 @@ msgstr "Bạn đang dùng phiên bản mới nhất!"
 #~ msgstr "Bung các tài khoản sau trong Mục lục"
 
 #, fuzzy
-#~ msgid "K"
-#~ msgstr "Xong"
-
-#, fuzzy
 #~ msgid "New Lua Custom Report"
 #~ msgstr "Xóa báo cáo"
 
@@ -9641,20 +9637,8 @@ msgstr "Bạn đang dùng phiên bản mới nhất!"
 #~ msgid "Specify the associated Account that will contain this transaction"
 #~ msgstr "Nhập số tiền giao dịch"
 
-#, fuzzy
-#~ msgid "T"
-#~ msgstr "Tới"
-
 #~ msgid "Delete Stock Investment"
 #~ msgstr "Xóa chứng khoán"
-
-#, fuzzy
-#~ msgid "THB"
-#~ msgstr "Dấu TAB"
-
-#, fuzzy
-#~ msgid "PAB"
-#~ msgstr "Dấu TAB"
 
 #, fuzzy
 #~ msgid "Rename group"
@@ -9963,10 +9947,6 @@ msgstr "Bạn đang dùng phiên bản mới nhất!"
 #~ msgstr "TK &có kì hạn"
 
 #, fuzzy
-#~ msgid "ETB"
-#~ msgstr "Dấu TAB"
-
-#, fuzzy
 #~ msgid "Term account"
 #~ msgstr "Tài khoản có kì hạn"
 
@@ -10115,10 +10095,6 @@ msgstr "Bạn đang dùng phiên bản mới nhất!"
 
 #~ msgid "Times Repeated"
 #~ msgstr "Số lần lặp lại"
-
-#, fuzzy
-#~ msgid "NOK"
-#~ msgstr "Xong"
 
 #, fuzzy
 #~ msgid "Total Price"

@@ -9366,10 +9366,6 @@ msgstr "Anda telah mempunyai program versi terbaru"
 #~ msgid "MMEX DATABASE ERROR"
 #~ msgstr "MMEX DATA KEUANGAN ERROR"
 
-#, fuzzy
-#~ msgid "ETB"
-#~ msgstr "TAB"
-
 #~ msgid "MMEX must be shutdown and restarted for all the changes to be seen."
 #~ msgstr ""
 #~ "MMEX harus dimatikan dan direstart untuk menampilkan semua perubahan."
@@ -9380,10 +9376,6 @@ msgstr "Anda telah mempunyai program versi terbaru"
 
 #~ msgid "Market open from"
 #~ msgstr "Bursa saham dibuka dari "
-
-#, fuzzy
-#~ msgid "PAB"
-#~ msgstr "TAB"
 
 #~ msgid "May "
 #~ msgstr "Mei"
@@ -10225,10 +10217,6 @@ msgstr "Anda telah mempunyai program versi terbaru"
 #~ msgid "Important note"
 #~ msgstr "Impor Files"
 
-#, fuzzy
-#~ msgid "ALL"
-#~ msgstr "Semua"
-
 #~ msgid "Init Balance "
 #~ msgstr "Saldo saat ini"
 
@@ -10376,10 +10364,6 @@ msgstr "Anda telah mempunyai program versi terbaru"
 #~ msgstr "Isi dengan jumlah (Rp.) untuk transaksi ini"
 
 #, fuzzy
-#~ msgid "T"
-#~ msgstr "Ke"
-
-#, fuzzy
 #~ msgid "pul"
 #~ msgstr "Jul"
 
@@ -10394,10 +10378,6 @@ msgstr "Anda telah mempunyai program versi terbaru"
 #, fuzzy
 #~ msgid "Invalid value "
 #~ msgstr "Nilai tidak benar"
-
-#, fuzzy
-#~ msgid "THB"
-#~ msgstr "TAB"
 
 #, fuzzy
 #~ msgid "  and contributors from around the world"
@@ -10905,10 +10885,6 @@ msgstr "Anda telah mempunyai program versi terbaru"
 #~ msgid "Subcategories"
 #~ msgstr "Sub Kategori"
 
-#, fuzzy
-#~ msgid "K"
-#~ msgstr "Simpan Data"
-
 #~ msgid "Subsequent errors not displayed."
 #~ msgstr "Urutan error tidak ditampilkan."
 
@@ -11321,10 +11297,6 @@ msgstr "Anda telah mempunyai program versi terbaru"
 #~ msgid "This will allow all MMEX option updates to take effect."
 #~ msgstr ""
 #~ "Hal ini akan mengijinkan semua perubahan pilihan MMEX untuk dijalankan."
-
-#, fuzzy
-#~ msgid "NOK"
-#~ msgstr "Simpan Data"
 
 #~ msgid ""
 #~ "To maintain this view, change the defaults by using:\n"

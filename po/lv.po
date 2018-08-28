@@ -9251,16 +9251,8 @@ msgstr "Jums ir instalēta jaunākā versija!"
 #~ msgstr "Lietotāja SQL logs"
 
 #, fuzzy
-#~ msgid "K"
-#~ msgstr "Labi"
-
-#, fuzzy
 #~ msgid "Load Custom SQL file:"
 #~ msgstr "Lietotāja SQL logs"
-
-#, fuzzy
-#~ msgid "NOK"
-#~ msgstr "Labi"
 
 #, fuzzy
 #~ msgid "Load Template"
@@ -10124,10 +10116,6 @@ msgstr "Jums ir instalēta jaunākā versija!"
 #, fuzzy
 #~ msgid "pul"
 #~ msgstr "Jūl"
-
-#, fuzzy
-#~ msgid "T"
-#~ msgstr "Uz"
 
 #, fuzzy
 #~ msgid "centavo"

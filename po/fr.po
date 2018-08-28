@@ -9344,30 +9344,14 @@ msgstr "Vous utilisez la dernière version %s"
 #~ msgid "centavo"
 #~ msgstr "Dentaire"
 
-#, fuzzy
-#~ msgid "ETB"
-#~ msgstr "Tabulation"
-
 #~ msgid "Log file written to : "
 #~ msgstr "Logfile écrit sur: "
-
-#, fuzzy
-#~ msgid "IDR"
-#~ msgstr "GUID"
 
 #~ msgid "Universal CSV Dialog"
 #~ msgstr "Dialogue pour le CSV universel."
 
-#, fuzzy
-#~ msgid "T"
-#~ msgstr "Ligne %i \t %s\n"
-
 #~ msgid "MMEX Account View: Transaction Filter"
 #~ msgstr "Vue des Comptes MMEX: Filtre par mouvements"
-
-#, fuzzy
-#~ msgid "LD"
-#~ msgstr "Nombre d'opérations exportées : %ld"
 
 #~ msgid "MMEX System Information Check"
 #~ msgstr "Vérification des informations système MMEX"
@@ -9380,20 +9364,12 @@ msgstr "Vous utilisez la dernière version %s"
 #~ msgid "Universal CSV Export"
 #~ msgstr "Importer un fichier CSV universel"
 
-#, fuzzy
-#~ msgid "SZL"
-#~ msgstr "SQL"
-
 #~ msgid "May "
 #~ msgstr "Mai "
 
 #, fuzzy
 #~ msgid "Currency History Options: "
 #~ msgstr "Options de l'historique des devises :"
-
-#, fuzzy
-#~ msgid "THB"
-#~ msgstr "Tabulation"
 
 #, fuzzy
 #~ msgid "Invalid value "
@@ -9902,9 +9878,6 @@ msgstr "Vous utilisez la dernière version %s"
 #~ msgid "Wrong file type!"
 #~ msgstr "Mauvais type de fichier !"
 
-#~ msgid "ALL"
-#~ msgstr "TOUT"
-
 #~ msgid "Show all even the unused currencies"
 #~ msgstr "Tout montrer, même les monnaies non utilisées"
 
@@ -9939,10 +9912,6 @@ msgstr "Vous utilisez la dernière version %s"
 
 #~ msgid "Where the Money Comes From - Last Calendar Month"
 #~ msgstr "D'où vient l'argent ( Dernier mois calendrier)"
-
-#, fuzzy
-#~ msgid "1254"
-#~ msgstr "This is a test of rubbish"
 
 #~ msgid "Income vs Expenses - All Time"
 #~ msgstr "Ensemble des données"
@@ -10074,10 +10043,6 @@ msgstr "Vous utilisez la dernière version %s"
 
 #~ msgid "Total Balance on all Accounts"
 #~ msgstr "Solde de tous les comptes"
-
-#, fuzzy
-#~ msgid "IQD"
-#~ msgstr "GUID"
 
 #, fuzzy
 #~ msgid "MAKE ATTENTION:"

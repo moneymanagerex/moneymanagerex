@@ -9533,38 +9533,14 @@ msgstr "Tiene la última versión instalada %s"
 #~ msgid "centavo"
 #~ msgstr "Dentista"
 
-#, fuzzy
-#~ msgid "CVE"
-#~ msgstr "CSV"
-
 #~ msgid "Market open from"
 #~ msgstr "Mercado abierto desde"
-
-#, fuzzy
-#~ msgid "D"
-#~ msgstr "ID"
 
 #~ msgid "View Transactions for current month"
 #~ msgstr "Ver las transacciones del mes actual"
 
-#, fuzzy
-#~ msgid "IQD"
-#~ msgstr "ID"
-
 #~ msgid "Min: "
 #~ msgstr "Mín: "
-
-#, fuzzy
-#~ msgid "K"
-#~ msgstr "OK"
-
-#, fuzzy
-#~ msgid "IDR"
-#~ msgstr "ID"
-
-#, fuzzy
-#~ msgid "PAB"
-#~ msgstr "Tabulador"
 
 #~ msgid "Month: "
 #~ msgstr "Mes: "
@@ -10493,20 +10469,8 @@ msgstr "Tiene la última versión instalada %s"
 #~ msgstr "Se debe reiniciar MMEX para que todos los cambios tengan efecto."
 
 #, fuzzy
-#~ msgid "ETB"
-#~ msgstr "Tabulador"
-
-#, fuzzy
-#~ msgid "T"
-#~ msgstr "A"
-
-#, fuzzy
 #~ msgid "Modify the description for the attachment:"
 #~ msgstr "Modificar la descripción del adjunto:"
-
-#, fuzzy
-#~ msgid "THB"
-#~ msgstr "Tabulador"
 
 #, fuzzy
 #~ msgid "Where the Money Comes From - Last Year"
@@ -10520,10 +10484,6 @@ msgstr "Tiene la última versión instalada %s"
 
 #~ msgid "  and contributors from around the world"
 #~ msgstr " y colaboradores de todo el mundo"
-
-#, fuzzy
-#~ msgid "NOK"
-#~ msgstr "OK"
 
 #~ msgid " Filter Settings "
 #~ msgstr " Configuración del filtro "
@@ -11119,9 +11079,6 @@ msgstr "Tiene la última versión instalada %s"
 #~ msgid "Set to 'Auto Execute' on the 'Next Occurrence' date."
 #~ msgstr "Seleccionar 'Auto Ejecutar' en la fecha de 'Siguiente Aparición'."
 
-#~ msgid "ALL"
-#~ msgstr "TODO"
-
 #~ msgid "Edit an existing SQL report"
 #~ msgstr "Editar informe SQL existente"
 
@@ -11204,10 +11161,6 @@ msgstr "Tiene la última versión instalada %s"
 #, fuzzy
 #~ msgid "There are no accounts available for import to"
 #~ msgstr "Ninguna cuenta disponible a la que importar"
-
-#, fuzzy
-#~ msgid "BIF"
-#~ msgstr "QIF"
 
 #~ msgid "Tip: Change all transactions using this "
 #~ msgstr "Consejo: Cambie todas las transacciones que utilicen este "

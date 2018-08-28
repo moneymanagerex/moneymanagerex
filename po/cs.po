@@ -8846,10 +8846,6 @@ msgstr "Používáte poslední verzi aplikace!"
 #~ msgstr "Převede zašifrovanou DB na nešifrovanou DB"
 
 #, fuzzy
-#~ msgid "LD"
-#~ msgstr "Počet exportováných transakcí: %ld"
-
-#, fuzzy
 #~ msgid "Specify the number of payments to be made."
 #~ msgstr "Zadejte typ vytvářeného účtu."
 
@@ -8876,10 +8872,6 @@ msgstr "Používáte poslední verzi aplikace!"
 #~ "\n"
 #~ "%s"
 #~ msgstr "Zadejte heslo pro databázi"
-
-#, fuzzy
-#~ msgid "BIF"
-#~ msgstr "QIF"
 
 #~ msgid "Specify the color for the list row 1"
 #~ msgstr "Vyberte barvu pro 1 řádek seznamu"
@@ -9105,23 +9097,11 @@ msgstr "Používáte poslední verzi aplikace!"
 #~ msgid "Pence"
 #~ msgstr "Výdaje"
 
-#, fuzzy
-#~ msgid "ETB"
-#~ msgstr "TAB (tabulátor)"
-
 #~ msgid "View All transactions"
 #~ msgstr "Zobrazit všechny transakce"
 
 #~ msgid "Show/Hide Term Accounts on Summary page"
 #~ msgstr "Zobrazit/skrýt vkladové účty na úvodní stránce"
-
-#, fuzzy
-#~ msgid "CVE"
-#~ msgstr "CSV"
-
-#, fuzzy
-#~ msgid "T"
-#~ msgstr "Komu"
 
 #, fuzzy
 #~ msgid "No File opened"
@@ -9130,37 +9110,17 @@ msgstr "Používáte poslední verzi aplikace!"
 #~ msgid "Show/Hide Stock Accounts on Summary page"
 #~ msgstr "Zobrazit/skrýt investiční účty na úvodní stránce"
 
-#, fuzzy
-#~ msgid "IQD"
-#~ msgstr "GUID (identifikátor)"
-
-#, fuzzy
-#~ msgid "NOK"
-#~ msgstr "OK"
-
 #~ msgid "View Budget Summary Report without Categories"
 #~ msgstr "Zobrazit sestavu rozpočtu bez kategorií"
 
 #~ msgid "Show/Hide Bank Accounts on Summary page"
 #~ msgstr "Zobrazit/skrýt bankovní účty na úvodní stránce"
 
-#, fuzzy
-#~ msgid "K"
-#~ msgstr "OK"
-
 #~ msgid "Future Transactions"
 #~ msgstr "Neprovedené transakce"
 
-#, fuzzy
-#~ msgid "ALL"
-#~ msgstr "Všechny"
-
 #~ msgid "Show all hidden payees"
 #~ msgstr "Zobrazit všechny skryté příjemce"
-
-#, fuzzy
-#~ msgid "SLL"
-#~ msgstr "SQL"
 
 #~ msgid "Gain Loss"
 #~ msgstr "Zisk/Ztráta"
@@ -9210,10 +9170,6 @@ msgstr "Používáte poslední verzi aplikace!"
 
 #~ msgid "Log file written to : "
 #~ msgstr "Soubor záznamu zapsán do : "
-
-#, fuzzy
-#~ msgid "THB"
-#~ msgstr "TAB (tabulátor)"
 
 #~ msgid "MM.&NET CSV Files"
 #~ msgstr "MM.&NET CSV soubory"
@@ -10092,10 +10048,6 @@ msgstr "Používáte poslední verzi aplikace!"
 #~ msgid "The remote file doesn't exist"
 #~ msgstr "Vzdálený soubor neexistuje"
 
-#, fuzzy
-#~ msgid "LSL"
-#~ msgstr "SQL"
-
 #~ msgid "Line: %i invalid amount, skipping."
 #~ msgstr "Řádek: %i neplatná částka, přeskakuji."
 
@@ -10126,10 +10078,6 @@ msgstr "Používáte poslední verzi aplikace!"
 
 #~ msgid "Where the Money Comes From - Current Year"
 #~ msgstr "Odkud peníze přichází - Aktuální rok  "
-
-#, fuzzy
-#~ msgid "SZL"
-#~ msgstr "SQL"
 
 #~ msgid "Currency rate updated"
 #~ msgstr "Kurz měny byl aktualizován"
@@ -10613,10 +10561,6 @@ msgstr "Používáte poslední verzi aplikace!"
 #~ msgid "to: "
 #~ msgstr "do: "
 
-#, fuzzy
-#~ msgid "PAB"
-#~ msgstr "TAB (tabulátor)"
-
 #~ msgid "Status:"
 #~ msgstr "Stav:"
 
@@ -10998,16 +10942,8 @@ msgstr "Používáte poslední verzi aplikace!"
 #~ msgid "Invalid current price entered "
 #~ msgstr "Zadána neplatná nákupní cena "
 
-#, fuzzy
-#~ msgid "IDR"
-#~ msgstr "GUID (identifikátor)"
-
 #~ msgid "Statement not accessible"
 #~ msgstr "Výpis není dostupný"
-
-#, fuzzy
-#~ msgid "D"
-#~ msgstr "GUID (identifikátor)"
 
 #~ msgid "Sub-Category"
 #~ msgstr "Podkategorie"

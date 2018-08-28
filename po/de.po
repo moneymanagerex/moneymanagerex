@@ -8989,57 +8989,21 @@ msgstr "Sie haben die neueste Version installiert!"
 #~ "MMEX muss heruntergefahren und neu gestartet werden, damit alle "
 #~ "Änderungen zu sehen sind."
 
-#, fuzzy
-#~ msgid "THB"
-#~ msgstr "TAB"
-
 #~ msgid "Update Failed"
 #~ msgstr "Aktualisierung fehlgeschlagen"
-
-#, fuzzy
-#~ msgid "SLL"
-#~ msgstr "SQL"
 
 #~ msgid "MMEX Account View: Transaction Filter"
 #~ msgstr "MMEX Kontoanzeige: Buchungsfilter"
 
-#, fuzzy
-#~ msgid "NOK"
-#~ msgstr "OK"
-
-#, fuzzy
-#~ msgid "SZL"
-#~ msgstr "SQL"
-
-#, fuzzy
-#~ msgid "LSL"
-#~ msgstr "SQL"
-
 #~ msgid "Log file written to : "
 #~ msgstr "Logfile geschrieben auf:"
-
-#, fuzzy
-#~ msgid "IQD"
-#~ msgstr "GUID"
 
 #~ msgid "Update database changes to database backup on exit."
 #~ msgstr ""
 #~ "Die Änderungen an der Datenbank werden beim Beenden von MMEX gesichert."
 
-#, fuzzy
-#~ msgid "D"
-#~ msgstr "GUID"
-
 #~ msgid "Load Custom Lua file:"
 #~ msgstr "Lade benutzerdefiniertes Lua File:  "
-
-#, fuzzy
-#~ msgid "CVE"
-#~ msgstr "CSV"
-
-#, fuzzy
-#~ msgid "IDR"
-#~ msgstr "GUID"
 
 #, fuzzy
 #~ msgid "centavo"
@@ -10143,10 +10107,6 @@ msgstr "Sie haben die neueste Version installiert!"
 #~ msgid "MM.&NET CSV Files"
 #~ msgstr "&MM.NET CSV-Dateien"
 
-#, fuzzy
-#~ msgid "K"
-#~ msgstr "OK"
-
 #~ msgid ""
 #~ "Changing all payees of: %s \n"
 #~ "\n"
@@ -10254,20 +10214,8 @@ msgstr "Sie haben die neueste Version installiert!"
 #~ msgid "Where the Money Comes From - 30 Days"
 #~ msgstr "Wo das Geld herkommt - letzte 30 Tage"
 
-#, fuzzy
-#~ msgid "ETB"
-#~ msgstr "TAB"
-
 #~ msgid "Incorrect XML data (#5)!"
 #~ msgstr "Fehlerhafte XML Daten (#5)!"
-
-#, fuzzy
-#~ msgid "T"
-#~ msgstr "Zu"
-
-#, fuzzy
-#~ msgid "PAB"
-#~ msgstr "TAB"
 
 #~ msgid "Incorrect XML data (#1)!"
 #~ msgstr "Fehlerhafte XML Daten (#1)!"
@@ -10766,10 +10714,6 @@ msgstr "Sie haben die neueste Version installiert!"
 
 #~ msgid "Split Category"
 #~ msgstr "Kategorie teilen"
-
-#, fuzzy
-#~ msgid "BIF"
-#~ msgstr "QIF"
 
 #~ msgid "Specify which account the transfer is coming from"
 #~ msgstr "Konto wählen, von welchem die Buchung erfolgt"

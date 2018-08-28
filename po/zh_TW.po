@@ -9243,16 +9243,8 @@ msgstr "您已安裝最新版本！"
 #~ msgid "Delete Stock Investment"
 #~ msgstr "刪除股票"
 
-#, fuzzy
-#~ msgid "T"
-#~ msgstr "至"
-
 #~ msgid "Market open from"
 #~ msgstr "股市開市從"
-
-#, fuzzy
-#~ msgid "NOK"
-#~ msgstr "確定"
 
 #, fuzzy
 #~ msgid "View Transactions for last 90 days"
@@ -10872,10 +10864,6 @@ msgstr "您已安裝最新版本！"
 #, fuzzy
 #~ msgid "Hide Deleted (Void)"
 #~ msgstr "選擇類型"
-
-#, fuzzy
-#~ msgid "K"
-#~ msgstr "確定"
 
 #~ msgid "List Row 0"
 #~ msgstr "第0列"

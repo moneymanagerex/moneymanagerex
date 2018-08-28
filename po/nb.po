@@ -9245,10 +9245,6 @@ msgstr "Du har den siste versionen installert!"
 #~ msgstr "Vis alternativer"
 
 #, fuzzy
-#~ msgid "T"
-#~ msgstr "Til"
-
-#, fuzzy
 #~ msgid "New transactions found on web app"
 #~ msgstr "Viser transaksjoner fra de siste 30 dager"
 
@@ -10024,10 +10020,6 @@ msgstr "Du har den siste versionen installert!"
 #~ msgstr "Angi beløp til denne transaksjonen"
 
 #, fuzzy
-#~ msgid "NOK"
-#~ msgstr "OK"
-
-#, fuzzy
 #~ msgid "Currency rate updated"
 #~ msgstr "valuta håndterer"
 
@@ -10740,10 +10732,6 @@ msgstr "Du har den siste versionen installert!"
 
 #~ msgid "To Account Amount Entry"
 #~ msgstr "Til konto beløp innslag"
-
-#, fuzzy
-#~ msgid "K"
-#~ msgstr "OK"
 
 #, fuzzy
 #~ msgid "Total Stock Investments: "

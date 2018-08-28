@@ -8681,9 +8681,6 @@ msgstr "Ti ke tashmë versionin e fundit %s"
 #~ msgid "Semicolon"
 #~ msgstr "Pikëpresjet "
 
-#~ msgid "TAB"
-#~ msgstr "Tabela"
-
 #~ msgid "CSV Delimiter"
 #~ msgstr "Decimetri i CSV"
 
