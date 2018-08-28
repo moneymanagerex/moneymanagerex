@@ -9011,23 +9011,11 @@ msgstr "最新のバージョンがインストールされています!"
 #~ msgid "Modify the description for the attachment:"
 #~ msgstr "添付の説明を変更します:"
 
-#, fuzzy
-#~ msgid "ETB"
-#~ msgstr "タブ"
-
 #~ msgid "Month: "
 #~ msgstr "月: "
 
-#, fuzzy
-#~ msgid "CVE"
-#~ msgstr "CSV"
-
 #~ msgid "Navigation Tree Expansion Options"
 #~ msgstr "ナビゲーションツリー展開オプション"
-
-#, fuzzy
-#~ msgid "NOK"
-#~ msgstr "OK"
 
 #~ msgid "New MMEX Options"
 #~ msgstr "新しい MMEX オプション"
@@ -9038,16 +9026,8 @@ msgstr "最新のバージョンがインストールされています!"
 #~ msgid "New Repeating Transaction"
 #~ msgstr "新しい繰り返し取引"
 
-#, fuzzy
-#~ msgid "THB"
-#~ msgstr "タブ"
-
 #~ msgid "New Report %i"
 #~ msgstr "新しいレポート %i"
-
-#, fuzzy
-#~ msgid "SZL"
-#~ msgstr "SQL"
 
 #~ msgid "New transactions found on web app"
 #~ msgstr "ウェブアプリに新しい取引が見つかりました"
@@ -9245,10 +9225,6 @@ msgstr "最新のバージョンがインストールされています!"
 #~ msgid "Sort by"
 #~ msgstr "並び替え"
 
-#, fuzzy
-#~ msgid "BIF"
-#~ msgstr "QIF"
-
 #~ msgid "Specify categories for this transaction"
 #~ msgstr "この取引のカテゴリーを指定します"
 
@@ -9259,16 +9235,8 @@ msgstr "最新のバージョンがインストールされています!"
 #~ msgstr "振替の金額を指定してください"
 
 #, fuzzy
-#~ msgid "SLL"
-#~ msgstr "SQL"
-
-#, fuzzy
 #~ msgid "Specify the number of payments to be made."
 #~ msgstr "作成するアカウントの種類を指定してください。"
-
-#, fuzzy
-#~ msgid "K"
-#~ msgstr "OK"
 
 #~ msgid "Specify the number of times this series repeats."
 #~ msgstr "このシリーズを繰り返す回数を指定します。"
@@ -9362,10 +9330,6 @@ msgstr "最新のバージョンがインストールされています!"
 #~ msgid "Cannot get data from WWW!"
 #~ msgstr "WWW からデータを取得できません!"
 
-#, fuzzy
-#~ msgid "T"
-#~ msgstr "先"
-
 #~ msgid "Will display the web page for the specified Stock symbol"
 #~ msgstr "指定された株式銘柄コード/シンボルのWebページが表示されます"
 
@@ -9419,14 +9383,6 @@ msgstr "最新のバージョンがインストールされています!"
 #~ msgstr ""
 #~ "アカウントで使用されている、または基本通貨として\n"
 #~ " 使用されている通貨を削除しようとしています。"
-
-#, fuzzy
-#~ msgid "PAB"
-#~ msgstr "タブ"
-
-#, fuzzy
-#~ msgid "LSL"
-#~ msgstr "SQL"
 
 #~ msgid "&Search"
 #~ msgstr "検索(&S)"

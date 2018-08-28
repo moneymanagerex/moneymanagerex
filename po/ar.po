@@ -9233,10 +9233,6 @@ msgstr "لديك آخر اصدار!"
 #~ msgstr "خيارات العرض"
 
 #, fuzzy
-#~ msgid "K"
-#~ msgstr "موافق"
-
-#, fuzzy
 #~ msgid "New transactions found on web app"
 #~ msgstr "استعراض معاملات اليوم"
 
@@ -10029,10 +10025,6 @@ msgstr "لديك آخر اصدار!"
 #~ msgstr "الاسنان"
 
 #, fuzzy
-#~ msgid "NOK"
-#~ msgstr "موافق"
-
-#, fuzzy
 #~ msgid "Add Stock Transactions"
 #~ msgstr "تحرير عملية"
 
@@ -10388,10 +10380,6 @@ msgstr "لديك آخر اصدار!"
 #, fuzzy
 #~ msgid "Stock Investment Page Selection"
 #~ msgstr "تأكيد حذف الاسهم الاستثمارية"
-
-#, fuzzy
-#~ msgid "ALL"
-#~ msgstr "الكل"
 
 #, fuzzy
 #~ msgid "Stock Investments: %s"
@@ -10782,10 +10770,6 @@ msgstr "لديك آخر اصدار!"
 #, fuzzy
 #~ msgid "Unknown OFX investment account"
 #~ msgstr "اختيار حساب الاستثمار"
-
-#, fuzzy
-#~ msgid "T"
-#~ msgstr "إلى"
 
 #~ msgid "View All Except Reconciled Transactions"
 #~ msgstr "عرض كل العمليات عدا الناجحة"

@@ -9280,16 +9280,8 @@ msgstr "Tem a última versão instalada!"
 #~ msgstr "Linha 1 da Lista"
 
 #, fuzzy
-#~ msgid "K"
-#~ msgstr "OK"
-
-#, fuzzy
 #~ msgid "Load Custom Lua file:"
 #~ msgstr "SQL"
-
-#, fuzzy
-#~ msgid "NOK"
-#~ msgstr "OK"
 
 #, fuzzy
 #~ msgid "Load Custom SQL file:"
@@ -10158,10 +10150,6 @@ msgstr "Tem a última versão instalada!"
 #, fuzzy
 #~ msgid "pul"
 #~ msgstr "Jul"
-
-#, fuzzy
-#~ msgid "T"
-#~ msgstr "Para"
 
 #, fuzzy
 #~ msgid "centavo"

@@ -9263,9 +9263,6 @@ msgstr "Hai già l'ultima versione %s"
 #~ msgid "An error occurred during negotiation"
 #~ msgstr "Si è verificato un errore durante la negoziazione"
 
-#~ msgid "ALL"
-#~ msgstr "TUTTI"
-
 #~ msgid "Add, edit and delete custom fields"
 #~ msgstr "Aggiunge, modifica ed elimina i campi personalizzati"
 

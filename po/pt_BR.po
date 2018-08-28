@@ -9157,10 +9157,6 @@ msgstr "Você já tem a última versão instalada"
 #~ msgid "Nav Tree"
 #~ msgstr "Navegação"
 
-#, fuzzy
-#~ msgid "CVE"
-#~ msgstr "CSV"
-
 #~ msgid "Navigation Tree Expansion Options"
 #~ msgstr "Opções de expansão da Árvore de Navegação"
 
@@ -9170,24 +9166,12 @@ msgstr "Você já tem a última versão instalada"
 #~ msgid "New MMEX Options"
 #~ msgstr "Novas Opções do MMEX"
 
-#, fuzzy
-#~ msgid "IQD"
-#~ msgstr "GUID"
-
 #~ msgid "New transactions found on web app"
 #~ msgstr "Novas transações encontradas no web app"
 
 #, fuzzy
-#~ msgid "T"
-#~ msgstr "Para"
-
-#, fuzzy
 #~ msgid "New update available: "
 #~ msgstr "Nova atualização disponível!"
-
-#, fuzzy
-#~ msgid "NOK"
-#~ msgstr "OK"
 
 #~ msgid "New/Edit Asset"
 #~ msgstr "Novo/Editar Bem"
@@ -9198,10 +9182,6 @@ msgstr "Você já tem a última versão instalada"
 
 #~ msgid "New/Edit Stock Investment"
 #~ msgstr "Novo/Editar Investimento"
-
-#, fuzzy
-#~ msgid "THB"
-#~ msgstr "TAB"
 
 #~ msgid "New/Edit Transaction"
 #~ msgstr "Nova/Editar Transação"
@@ -9688,32 +9668,8 @@ msgstr "Você já tem a última versão instalada"
 #~ msgid "centavo"
 #~ msgstr "Dentista"
 
-#, fuzzy
-#~ msgid "BIF"
-#~ msgstr "QIF"
-
 #~ msgid "Where the Money Comes From - Last Year"
 #~ msgstr "De onde vem o dinheiro - Ultimo Ano"
-
-#, fuzzy
-#~ msgid "IDR"
-#~ msgstr "GUID"
-
-#, fuzzy
-#~ msgid "LSL"
-#~ msgstr "SQL"
-
-#, fuzzy
-#~ msgid "K"
-#~ msgstr "OK"
-
-#, fuzzy
-#~ msgid "PAB"
-#~ msgstr "TAB"
-
-#, fuzzy
-#~ msgid "SZL"
-#~ msgstr "SQL"
 
 #~ msgid "Currency rate updated"
 #~ msgstr "Taxa de Câmbio atualizada"
@@ -9941,10 +9897,6 @@ msgstr "Você já tem a última versão instalada"
 #~ msgstr "Especifique a cor da linha 1 das listas"
 
 #, fuzzy
-#~ msgid "D"
-#~ msgstr "GUID"
-
-#, fuzzy
 #~ msgid "Specify the number of payments to be made."
 #~ msgstr "Especifique o tipo da conta a ser criada"
 
@@ -10071,10 +10023,6 @@ msgstr "Você já tem a última versão instalada"
 #~ msgid "Specify the number of times this series repeats."
 #~ msgstr "Especifique o número de vezes que esta transação se repetirá."
 
-#, fuzzy
-#~ msgid "SLL"
-#~ msgstr "SQL"
-
 #~ msgid "Specify which account the transfer is comming from"
 #~ msgstr "Especifique a conta de onde a transferência está vindo "
 
@@ -10132,10 +10080,6 @@ msgstr "Você já tem a última versão instalada"
 #, fuzzy
 #~ msgid "Specify the folder to use when archive attachments"
 #~ msgstr "Especifique a cor da árvore de navegação"
-
-#, fuzzy
-#~ msgid "ETB"
-#~ msgstr "TAB"
 
 #~ msgid " to..."
 #~ msgstr " para..."

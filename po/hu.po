@@ -9715,9 +9715,6 @@ msgstr "Ön már a legújabb verzióval rendelkezik: %s"
 #~ msgid "Line: %i invalid amount, skipping."
 #~ msgstr " érvénytelen érték, kihagyás."
 
-#~ msgid "SLL"
-#~ msgstr "SSL"
-
 #~ msgid "List Background"
 #~ msgstr "Lista háttere"
 
@@ -11030,9 +11027,6 @@ msgstr "Ön már a legújabb verzióval rendelkezik: %s"
 #~ msgid "XXLarge"
 #~ msgstr "Nagyon nagy"
 
-#~ msgid "SYP"
-#~ msgstr "SYO"
-
 #~ msgid "Total Amount: "
 #~ msgstr "Végösszeg: "
 
@@ -11303,9 +11297,6 @@ msgstr "Ön már a legújabb verzióval rendelkezik: %s"
 #~ msgstr ""
 #~ "Határozza meg, hogy a vétel dátumának idejéből részvényárakból mennyi "
 #~ "előzményt töltsön le"
-
-#~ msgid "HNL"
-#~ msgstr "HNR"
 
 #, fuzzy
 #~ msgid "&Delete Series"

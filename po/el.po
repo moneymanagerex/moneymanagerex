@@ -9273,25 +9273,13 @@ msgstr "Έχετε εγκατεστημένη την τελευταία έκδο
 #~ msgid "MMEX Account View: Transaction Filter"
 #~ msgstr "Προβολή λογαριασμού MMEX: Φίλτρο συναλλαγών"
 
-#, fuzzy
-#~ msgid "ETB"
-#~ msgstr "TAB"
-
 #~ msgid "View Reconciled Transactions"
 #~ msgstr "Δείτε όλες τις τακτοποιημένες συναλλαγές"
-
-#, fuzzy
-#~ msgid "K"
-#~ msgstr "OK"
 
 #~ msgid "MMEX must be shutdown and restarted for all the changes to be seen."
 #~ msgstr ""
 #~ "Το MMEX πρέπει να κλείσει και να επανεκκινηθεί για να εμφανιστούν όλες "
 #~ "οι αλλαγές."
-
-#, fuzzy
-#~ msgid "PAB"
-#~ msgstr "TAB"
 
 #~ msgid "Currency rate updated"
 #~ msgstr "Η ισοτιμία νομισμάτων ενημερώθηκε"
@@ -10242,26 +10230,14 @@ msgstr "Έχετε εγκατεστημένη την τελευταία έκδο
 #~ msgid "MM.&NET CSV Files"
 #~ msgstr "&MM.NET CSV αρχεία"
 
-#, fuzzy
-#~ msgid "T"
-#~ msgstr "Προς"
-
 #~ msgid "Where the Money Comes From - Current Month"
 #~ msgstr "Από που έρχονται τα χρήματα - Τρέχων μήνας"
-
-#, fuzzy
-#~ msgid "THB"
-#~ msgstr "TAB"
 
 #~ msgid "Market open from"
 #~ msgstr "Χρηματιστήριο ανοιχτό από"
 
 #~ msgid "Enter the name of the category to add or edit here"
 #~ msgstr "Εδώ εισάγετε το όνομα της κατηγορίας προς εισαγωγή ή επεξεργασία "
-
-#, fuzzy
-#~ msgid "NOK"
-#~ msgstr "OK"
 
 #, fuzzy
 #~ msgid " - "

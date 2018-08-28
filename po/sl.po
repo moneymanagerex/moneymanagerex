@@ -9245,10 +9245,6 @@ msgstr "Imate naloženo zadnjo verzijo!"
 #~ msgid "Market open from"
 #~ msgstr "Borza je odprta od"
 
-#, fuzzy
-#~ msgid "NOK"
-#~ msgstr "Potrdi"
-
 #~ msgid "May "
 #~ msgstr "Maj"
 
@@ -9266,10 +9262,6 @@ msgstr "Imate naloženo zadnjo verzijo!"
 #, fuzzy
 #~ msgid "Modify the description for the attachment:"
 #~ msgstr "Vnesi naziv prejemnika ki ga dodajaš:"
-
-#, fuzzy
-#~ msgid "K"
-#~ msgstr "Potrdi"
 
 #, fuzzy
 #~ msgid "Month: "
@@ -10565,10 +10557,6 @@ msgstr "Imate naloženo zadnjo verzijo!"
 #, fuzzy
 #~ msgid "Term account"
 #~ msgstr "V breme računa"
-
-#, fuzzy
-#~ msgid "T"
-#~ msgstr "V korist"
 
 #, fuzzy
 #~ msgid "There are no accounts available for import to"

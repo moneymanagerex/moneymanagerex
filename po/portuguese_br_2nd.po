@@ -8845,9 +8845,6 @@ msgstr "Você já tem a versão mais recente instalada %s"
 #~ msgid "Next"
 #~ msgstr "Seguinte"
 
-#~ msgid "ALL"
-#~ msgstr "TUDO"
-
 #~ msgid "Comma"
 #~ msgstr "Vírgula"
 
@@ -9102,9 +9099,6 @@ msgstr "Você já tem a versão mais recente instalada %s"
 #~ " \n"
 #~ "para o Favorecido: %s"
 
-#~ msgid "K"
-#~ msgstr "k"
-
 #~ msgid "Accounts: %s"
 #~ msgstr "Contas: %s"
 
@@ -9227,9 +9221,6 @@ msgstr "Você já tem a versão mais recente instalada %s"
 
 #~ msgid "Specify the number of times this series repeats."
 #~ msgstr "Especifique o número de vezes que esta série se repete."
-
-#~ msgid "VEF"
-#~ msgstr "VER"
 
 #, fuzzy
 #~ msgid "Invalid value "

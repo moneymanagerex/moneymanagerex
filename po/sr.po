@@ -9229,10 +9229,6 @@ msgstr "Имате последњу верзију!"
 #~ msgid "MMEX Account View: Transaction Filter"
 #~ msgstr "Филтер трансакције"
 
-#, fuzzy
-#~ msgid "T"
-#~ msgstr "Рачун"
-
 #~ msgid "Market open from"
 #~ msgstr "Тржиште отворено од "
 
@@ -10042,10 +10038,6 @@ msgstr "Имате последњу верзију!"
 #~ msgstr "Јул"
 
 #, fuzzy
-#~ msgid "K"
-#~ msgstr "Потврди"
-
-#, fuzzy
 #~ msgid "centavo"
 #~ msgstr "Зуби"
 
@@ -10480,10 +10472,6 @@ msgstr "Имате последњу верзију!"
 #~ "Будите сигурни да радите сигурносну копију\n"
 #~ "датоеке и да је пажњиво сачувате пошто садржава\n"
 #~ "важне финансијке информације."
-
-#, fuzzy
-#~ msgid "NOK"
-#~ msgstr "Потврди"
 
 #, fuzzy
 #~ msgid "This is generally the name of a financial institution"

@@ -9269,16 +9269,8 @@ msgstr "Imate instaliranu najnoviju verziju!"
 #~ msgstr "&MM.NET CSV Datoteke"
 
 #, fuzzy
-#~ msgid "K"
-#~ msgstr "OK"
-
-#, fuzzy
 #~ msgid "MMEX Account View: Transaction Filter"
 #~ msgstr "Transakcijski filter"
-
-#, fuzzy
-#~ msgid "NOK"
-#~ msgstr "OK"
 
 #~ msgid "Market open from"
 #~ msgstr "Burza je otvorena od"
@@ -10131,10 +10123,6 @@ msgstr "Imate instaliranu najnoviju verziju!"
 #, fuzzy
 #~ msgid "Specify the stock/share price date."
 #~ msgstr "Upišite datum kupovine imovine"
-
-#, fuzzy
-#~ msgid "T"
-#~ msgstr "U korist"
 
 #, fuzzy
 #~ msgid "centavo"

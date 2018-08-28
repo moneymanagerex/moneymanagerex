@@ -8749,9 +8749,6 @@ msgstr "הגרסה העדכנית ביותר כבר מותקנת %s"
 #~ msgid "Custom Fields | %s %i"
 #~ msgstr "שדות מותאמים אישית | %s %i"
 
-#~ msgid "ALL"
-#~ msgstr "הכל"
-
 #~ msgid "Close custom field window"
 #~ msgstr "סגור חלון שדה מותאם אישית"
 

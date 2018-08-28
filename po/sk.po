@@ -9122,10 +9122,6 @@ msgstr "Máte nainštalovanú najnovšiu verziu"
 #~ msgid "New Lua Custom Report"
 #~ msgstr "Nový vlastný Lua report"
 
-#, fuzzy
-#~ msgid "CVE"
-#~ msgstr "CSV"
-
 #~ msgid "New MMEX Options"
 #~ msgstr "Možnosti MMEX"
 
@@ -9136,23 +9132,11 @@ msgstr "Máte nainštalovanú najnovšiu verziu"
 #~ msgid "New transactions found on web app"
 #~ msgstr "Vo webovej aplikácii bola nájdená nová transakcia"
 
-#, fuzzy
-#~ msgid "IQD"
-#~ msgstr "GUID"
-
 #~ msgid "New update available: "
 #~ msgstr "Je dostupná nová aktualizácia: "
 
-#, fuzzy
-#~ msgid "T"
-#~ msgstr "Komu"
-
 #~ msgid "New/Edit Asset"
 #~ msgstr "Pridať/Upraviť hmotný majetok"
-
-#, fuzzy
-#~ msgid "NOK"
-#~ msgstr "OK"
 
 #~ msgid "New/Edit Stock Investment"
 #~ msgstr "Pridať/upraviť investície do akcií"
@@ -9162,10 +9146,6 @@ msgstr "Máte nainštalovanú najnovšiu verziu"
 
 #~ msgid "New/Edit Transaction"
 #~ msgstr "Pridať/upraviť transakciu"
-
-#, fuzzy
-#~ msgid "THB"
-#~ msgstr "TAB"
 
 #~ msgid "Next Occurrence"
 #~ msgstr "Ďalší výskyt"
@@ -9701,32 +9681,8 @@ msgstr "Máte nainštalovanú najnovšiu verziu"
 #~ msgid "centavo"
 #~ msgstr "Zubný lekár"
 
-#, fuzzy
-#~ msgid "BIF"
-#~ msgstr "QIF"
-
 #~ msgid "Where the Money Comes From - Last Financial Year"
 #~ msgstr "Odkiaľ idú peniaze - minulý fiškálny rok"
-
-#, fuzzy
-#~ msgid "IDR"
-#~ msgstr "GUID"
-
-#, fuzzy
-#~ msgid "LSL"
-#~ msgstr "SQL"
-
-#, fuzzy
-#~ msgid "K"
-#~ msgstr "OK"
-
-#, fuzzy
-#~ msgid "PAB"
-#~ msgstr "TAB"
-
-#, fuzzy
-#~ msgid "SZL"
-#~ msgstr "SQL"
 
 #~ msgid "Currency rate updated"
 #~ msgstr "Kurz meny bol aktualizovaný"
@@ -9991,10 +9947,6 @@ msgstr "Máte nainštalovanú najnovšiu verziu"
 #~ msgstr "Upresnite farbu pre nepárny riadok zoznamu"
 
 #, fuzzy
-#~ msgid "D"
-#~ msgstr "GUID"
-
-#, fuzzy
 #~ msgid "Specify the number of payments to be made."
 #~ msgstr "Upresnite typ vytváraného účtu."
 
@@ -10142,16 +10094,8 @@ msgstr "Máte nainštalovanú najnovšiu verziu"
 #~ msgid "Specify the number of times this series repeats."
 #~ msgstr "Upresnite počet opakovaní."
 
-#, fuzzy
-#~ msgid "SLL"
-#~ msgstr "SQL"
-
 #~ msgid "Specify which account the transfer is comming from"
 #~ msgstr "Upresnite účet, z ktorého prichádza prevod"
-
-#, fuzzy
-#~ msgid "ETB"
-#~ msgstr "TAB"
 
 #~ msgid "Stock Investments: %s"
 #~ msgstr "Akcie: %s"

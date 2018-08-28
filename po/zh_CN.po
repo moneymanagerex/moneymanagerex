@@ -9134,10 +9134,6 @@ msgstr "您已经安装最新版本！"
 #~ msgstr "载入SQL文件"
 
 #, fuzzy
-#~ msgid "K"
-#~ msgstr "确认"
-
-#, fuzzy
 #~ msgid "Load Template"
 #~ msgstr "读取模板(&L)"
 
@@ -9154,10 +9150,6 @@ msgstr "您已经安装最新版本！"
 #, fuzzy
 #~ msgid "MMEX Account View: Transaction Filter"
 #~ msgstr "交易过滤"
-
-#, fuzzy
-#~ msgid "T"
-#~ msgstr "至"
 
 #~ msgid "Market open from"
 #~ msgstr "市场开放时间"
@@ -9969,10 +9961,6 @@ msgstr "您已经安装最新版本！"
 #, fuzzy
 #~ msgid "Where the Money Comes From - Current Month to Date"
 #~ msgstr "本月"
-
-#, fuzzy
-#~ msgid "NOK"
-#~ msgstr "确认"
 
 #, fuzzy
 #~ msgid "Currency History Options: "

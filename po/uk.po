@@ -9299,14 +9299,6 @@ msgstr ""
 #~ msgstr "Стоматологія"
 
 #, fuzzy
-#~ msgid "T"
-#~ msgstr "На"
-
-#, fuzzy
-#~ msgid "K"
-#~ msgstr "ОК"
-
-#, fuzzy
 #~ msgid "New MMEX Options"
 #~ msgstr "Переглянути опції"
 
@@ -10487,10 +10479,6 @@ msgstr ""
 #, fuzzy
 #~ msgid "Modify the description for the attachment:"
 #~ msgstr "Введіть назву майна"
-
-#, fuzzy
-#~ msgid "NOK"
-#~ msgstr "ОК"
 
 #, fuzzy
 #~ msgid "Specify the associated Account that will contain this transaction"
