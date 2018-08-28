@@ -8967,9 +8967,6 @@ msgstr "Имате инсталирана последната версия!"
 #~ msgid "Future Transactions"
 #~ msgstr "Бъдещи транзакции"
 
-#~ msgid "3"
-#~ msgstr "3"
-
 #~ msgid "Grand Total: "
 #~ msgstr "Краен сбор:"
 
@@ -8979,9 +8976,6 @@ msgstr "Имате инсталирана последната версия!"
 #~ msgid "Hide Deleted (Void)"
 #~ msgstr "Скрий изтритите (Невалидни)"
 
-#~ msgid "7"
-#~ msgstr "7"
-
 #~ msgid "Home Page Expansion Options"
 #~ msgstr "Опции за Началната страница"
 
@@ -8990,9 +8984,6 @@ msgstr "Имате инсталирана последната версия!"
 
 #~ msgid "Huge"
 #~ msgstr "Огромен"
-
-#~ msgid "%s\t: %s\n"
-#~ msgstr "%s\t: %s\n"
 
 #~ msgid "Import/Export"
 #~ msgstr "Импорт/Експорт"
@@ -9127,9 +9118,6 @@ msgstr "Имате инсталирана последната версия!"
 
 #~ msgid "May "
 #~ msgstr "Май"
-
-#~ msgid "%s\t -> %s\n"
-#~ msgstr "%s\t -> %s\n"
 
 #~ msgid "Min: "
 #~ msgstr "Мин:"
@@ -9431,17 +9419,8 @@ msgstr "Имате инсталирана последната версия!"
 #~ msgid "Enter password for new database"
 #~ msgstr "Въведи парола за нова база данни"
 
-#~ msgid "1"
-#~ msgstr "1"
-
-#~ msgid "2"
-#~ msgstr "2"
-
 #~ msgid "MMEX message"
 #~ msgstr "MMEX съобщение"
-
-#~ msgid "6"
-#~ msgstr "6"
 
 #~ msgid ""
 #~ "Changing all payees of: %s \n"
@@ -9659,9 +9638,6 @@ msgstr "Имате инсталирана последната версия!"
 #~ msgid "Set 'Auto Execute' without user acknowlegement."
 #~ msgstr "Сложи 'Автоматично изпълнение' без одобрение от потребителя."
 
-#~ msgid "5"
-#~ msgstr "5"
-
 #~ msgid "Sets the default currency for the database."
 #~ msgstr "Избери основната валута за базата данни."
 
@@ -9677,9 +9653,6 @@ msgstr "Имате инсталирана последната версия!"
 
 #~ msgid "Show/Hide Stock Accounts on Summary page"
 #~ msgstr "Скрий/Покажи акционните акаунти на Обобщената страница"
-
-#~ msgid "4"
-#~ msgstr "4"
 
 #~ msgid "Small"
 #~ msgstr "Малък"
@@ -9808,9 +9781,6 @@ msgstr "Имате инсталирана последната версия!"
 
 #~ msgid "Conversion to Base Rate"
 #~ msgstr "Конверсия към основния курс"
-
-#~ msgid "%s\t: %0.4f -> %0.4f\n"
-#~ msgstr "%s\t: %0.4f -> %0.4f\n"
 
 #, fuzzy
 #~ msgid "Selection can be made by using Search button."

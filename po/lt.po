@@ -8779,9 +8779,6 @@ msgstr "Jūs jau turite naujausią versiją: %s"
 #~ msgid "XXLarge"
 #~ msgstr "XXDidelis"
 
-#~ msgid "%s\t -> %s\n"
-#~ msgstr "%s\t -> %s\n"
-
 #~ msgid "Your database file is stored with an extension of .mmb."
 #~ msgstr "Jūsų duomenų bazės failas yra išsaugotas su plėtiniu .mmb."
 
@@ -8937,15 +8934,9 @@ msgstr "Jūs jau turite naujausią versiją: %s"
 #~ msgid "Specify the number of times this series repeats."
 #~ msgstr "Nurodykite serijos pasikartojimų skaičių."
 
-#~ msgid "1"
-#~ msgstr "1"
-
 #, fuzzy
 #~ msgid "THB"
 #~ msgstr "TAB"
-
-#~ msgid "3"
-#~ msgstr "3"
 
 #~ msgid ""
 #~ "Changing all categories of: \n"
@@ -8954,14 +8945,8 @@ msgstr "Jūs jau turite naujausią versiją: %s"
 #~ "Keičiamos visos kategorijos priklausančios: \n"
 #~ "%s į kategoriją: %s"
 
-#~ msgid "5"
-#~ msgstr "5"
-
 #~ msgid "Currency rate updated"
 #~ msgstr "Valiutų kursas atnaujintas"
-
-#~ msgid "7"
-#~ msgstr "7"
 
 #~ msgid "Specify the purchase date of the stock investment"
 #~ msgstr "Nurodykite investicijos į akcijas pirkimo datą"
@@ -8977,9 +8962,6 @@ msgstr "Jūs jau turite naujausią versiją: %s"
 
 #~ msgid "Enter the name of the category to add or edit here"
 #~ msgstr "Įveskite pridedamos ar redaguojamos kategorijos pavadinimą čia"
-
-#~ msgid "%s\t: %s\n"
-#~ msgstr "%s\t: %s\n"
 
 #~ msgid "Artwork"
 #~ msgstr "Grafika"
@@ -9018,9 +9000,6 @@ msgstr "Jūs jau turite naujausią versiją: %s"
 #~ msgid "Imported transactions have been flagged so you can review them."
 #~ msgstr ""
 #~ "Importuotos operacijos buvo pažymėtos, kad galėtumėte peržiūrėti jas."
-
-#~ msgid "%s\t: %0.4f -> %0.4f\n"
-#~ msgstr "%s\t: %0.4f -> %0.4f\n"
 
 #, fuzzy
 #~ msgid "Do you want to update today currency rates?"
@@ -9207,9 +9186,6 @@ msgstr "Jūs jau turite naujausią versiją: %s"
 #~ msgid "Note: Split transactions not set"
 #~ msgstr "Pastaba: Suskaldytos operacijos nenustatytos."
 
-#~ msgid "4"
-#~ msgstr "4"
-
 #~ msgid "Number of Shares"
 #~ msgstr "Akcijų kiekis"
 
@@ -9337,9 +9313,6 @@ msgstr "Jūs jau turite naujausią versiją: %s"
 #~ msgid "Where the Money Comes From - %s"
 #~ msgstr "Iš kur gaunami pinigai - %s"
 
-#~ msgid "6"
-#~ msgstr "6"
-
 #, fuzzy
 #~ msgid "SZL"
 #~ msgstr "SQL"
@@ -9353,9 +9326,6 @@ msgstr "Jūs jau turite naujausią versiją: %s"
 #, fuzzy
 #~ msgid "Transactions saved to database in account: %s"
 #~ msgstr "Operacijos išsaugotos duomenų bazėje sąskaitoje: "
-
-#~ msgid " - "
-#~ msgstr " - "
 
 #~ msgid "Monthly Summary of Accounts"
 #~ msgstr "Mėnesinė sąskaitų santrauka"
@@ -9399,9 +9369,6 @@ msgstr "Jūs jau turite naujausią versiją: %s"
 #, fuzzy
 #~ msgid "ETB"
 #~ msgstr "TAB"
-
-#~ msgid "2"
-#~ msgstr "2"
 
 #~ msgid "Visit MMEX Forum"
 #~ msgstr "Aplankyti MMEX Forumą"

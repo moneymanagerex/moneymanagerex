@@ -8991,9 +8991,6 @@ msgstr "Imate naloženo zadnjo verzijo!"
 #~ msgid "Income vs Expenses for Financial Year: "
 #~ msgstr "Prihodki vs Izdatki za leto: "
 
-#~ msgid "E&xit\tAlt-X"
-#~ msgstr "E&xit\tAlt-X"
-
 #~ msgid "View Duplicate Transactions"
 #~ msgstr "Prikaži podvojene transakcije"
 
@@ -10242,9 +10239,6 @@ msgstr "Imate naloženo zadnjo verzijo!"
 #~ msgid "Add a new payee name"
 #~ msgstr "Dodajte naziv novega prejemnika"
 
-#~ msgid ":"
-#~ msgstr ":"
-
 #, fuzzy
 #~ msgid "Advanced Amount"
 #~ msgstr "Napredno"
@@ -10721,9 +10715,6 @@ msgstr "Imate naloženo zadnjo verzijo!"
 #, fuzzy
 #~ msgid "Unit Price"
 #~ msgstr "Trenutna cena"
-
-#~ msgid "finance.au.yahoo.com"
-#~ msgstr "finance.au.yahoo.com"
 
 #, fuzzy
 #~ msgid "Universal CSV Export"

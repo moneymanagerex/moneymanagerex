@@ -10325,9 +10325,6 @@ msgstr "您已安裝最新版本！"
 #~ msgid "Transaction Type"
 #~ msgstr "交易分類"
 
-#~ msgid "Powered by wxWidgets, SQLite, wxSQLite(by Ulrich Telle)"
-#~ msgstr "Powered by wxWidgets, SQLite, wxSQLite(by Ulrich Telle)"
-
 #~ msgid "Transaction Type is empty"
 #~ msgstr "沒有交易分類"
 
@@ -10613,9 +10610,6 @@ msgstr "您已安裝最新版本！"
 #~ msgid "Year: "
 #~ msgstr "每年"
 
-#~ msgid ":"
-#~ msgstr ":"
-
 #~ msgid "Options Dialog"
 #~ msgstr "選項"
 
@@ -10697,9 +10691,6 @@ msgstr "您已安裝最新版本！"
 #~ msgid ""
 #~ "Do you really want to delete all the \"Follow Up\" transactions shown?"
 #~ msgstr "你是否確定刪除下列已標記的所有交易?"
-
-#~ msgid "finance.au.yahoo.com"
-#~ msgstr "finance.au.yahoo.com"
 
 #~ msgid ""
 #~ "Enter the name of the financial institution where the investment is held"

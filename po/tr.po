@@ -8560,9 +8560,6 @@ msgstr "Zaten son sürümü kullanıyorsunuz %s"
 #~ msgid "A generic network error occurred"
 #~ msgstr "Genel bir ağ hatası oluştu."
 
-#~ msgid "finance.au.yahoo.com"
-#~ msgstr "finance.au.yahoo.com"
-
 #~ msgid "Invalid Amount Entered "
 #~ msgstr "Geçersiz Tutar Girdiniz"
 
@@ -8643,9 +8640,6 @@ msgstr "Zaten son sürümü kullanıyorsunuz %s"
 #~ msgid "CSV Field"
 #~ msgstr "CSV Alanı"
 
-#~ msgid "2"
-#~ msgstr "2"
-
 #, fuzzy
 #~| msgid "Accounts: "
 #~ msgid "Accounts:"
@@ -8658,24 +8652,12 @@ msgstr "Zaten son sürümü kullanıyorsunuz %s"
 #~ "Sorry. The Database version is too old or Database password is incorrect"
 #~ msgstr "Üzgünüm. Veritabanı sürümü çok eski veya şifre hatalı"
 
-#~ msgid "6"
-#~ msgstr "6"
-
-#~ msgid "3"
-#~ msgstr "3"
-
 #, fuzzy
 #~ msgid "Viewing Follow-Up transactions"
 #~ msgstr "Tüm İşlemler"
 
 #~ msgid "Choose MM.NET CSV data file to import"
 #~ msgstr "İçeri aktarım için MM.NET CSV dosyası seçiniz"
-
-#~ msgid "%s\t: %s\n"
-#~ msgstr "%s\t: %s\n"
-
-#~ msgid "7"
-#~ msgstr "7"
 
 #~ msgid "Viewing All except Reconciled Transactions"
 #~ msgstr "Onaylanmış İşlemler Dışındakiler"
@@ -9087,22 +9069,13 @@ msgstr "Zaten son sürümü kullanıyorsunuz %s"
 #~ msgid "Income vs Expenses - Last Year"
 #~ msgstr "Gelir & Gider - Tüm Zamanlar"
 
-#~ msgid "Small"
-#~ msgstr "Small"
-
 #, fuzzy
 #~ msgid "Income vs Expenses - Current Year"
 #~ msgstr "Gelir & Gider: Bu Ay"
 
-#~ msgid "Huge"
-#~ msgstr "Huge"
-
 #, fuzzy
 #~ msgid "Income vs Expenses - Last Financial Year"
 #~ msgstr "Yıllık Gelir & Gider : "
-
-#~ msgid "XXLarge"
-#~ msgstr "XXLarge"
 
 #, fuzzy
 #~ msgid "Income vs Expenses - Current Financial Year"
@@ -9151,9 +9124,6 @@ msgstr "Zaten son sürümü kullanıyorsunuz %s"
 #, fuzzy
 #~ msgid "Income vs Expenses - Current Month to Date"
 #~ msgstr "Gelir & Gider: Bu Ay"
-
-#~ msgid "mmGeneralGroupReport"
-#~ msgstr "mmGeneralGroupReport"
 
 #, fuzzy
 #~ msgid " Filter Settings "
@@ -9864,9 +9834,6 @@ msgstr "Zaten son sürümü kullanıyorsunuz %s"
 #~ msgid "Custom Reports..."
 #~ msgstr "Özel SQL Raporu"
 
-#~ msgid "5"
-#~ msgstr "5"
-
 #, fuzzy
 #~ msgid " account: "
 #~ msgstr " tutar "
@@ -9949,9 +9916,6 @@ msgstr "Zaten son sürümü kullanıyorsunuz %s"
 #~ msgid "Account Name"
 #~ msgstr "Hesap Adı"
 
-#~ msgid "%s\t -> %s\n"
-#~ msgstr "%s\t -> %s\n"
-
 #~ msgid "Total Amount: "
 #~ msgstr "Toplam Tutar: "
 
@@ -10028,9 +9992,6 @@ msgstr "Zaten son sürümü kullanıyorsunuz %s"
 #~ msgid "Transactions saved to database in account: "
 #~ msgstr "İşlemlerin veritabanında kaydedildiği hesap:"
 
-#~ msgid "TAB"
-#~ msgstr "TAB"
-
 #~ msgid "File exists."
 #~ msgstr "Dosya var."
 
@@ -10042,15 +10003,6 @@ msgstr "Zaten son sürümü kullanıyorsunuz %s"
 
 #~ msgid "Overwrite?"
 #~ msgstr "Üzerine yazılsın mı?"
-
-#~ msgid "XSmall"
-#~ msgstr "XSmall"
-
-#~ msgid "%s\t: %0.6f -> %0.6f\n"
-#~ msgstr "%s\t: %0.6f -> %0.6f\n"
-
-#~ msgid "XLarge"
-#~ msgstr "XLarge"
 
 #~ msgid "Report Font Size"
 #~ msgstr "Rapor Font Boyutu"
@@ -10441,9 +10393,6 @@ msgstr "Zaten son sürümü kullanıyorsunuz %s"
 #~ msgid "Edit Custom Report"
 #~ msgstr "Özel SQL Raporu"
 
-#~ msgid "4"
-#~ msgstr "4"
-
 #, fuzzy
 #~ msgid "Setting new Database file"
 #~ msgstr "Veritabanını Farklı Kaydet"
@@ -10469,9 +10418,6 @@ msgstr "Zaten son sürümü kullanıyorsunuz %s"
 
 #~ msgid "Income vs Expenses - Specific Accounts"
 #~ msgstr "Gelir & Gider (Belirli Hesaplar)"
-
-#~ msgid ":"
-#~ msgstr ":"
 
 #~ msgid "Updates"
 #~ msgstr "Güncellemeler"
@@ -10550,21 +10496,12 @@ msgstr "Zaten son sürümü kullanıyorsunuz %s"
 #~ msgid "Options"
 #~ msgstr "Seçenekler"
 
-#~ msgid "Cannot decode binary"
-#~ msgstr "Cannot decode binary"
-
 #~ msgid "Viewing All Transactions"
 #~ msgstr "Tüm İşlemler"
-
-#~ msgid "Large"
-#~ msgstr "Large"
 
 #, fuzzy
 #~ msgid "123456.78"
 #~ msgstr "1234567.89 olarak görünecektir."
-
-#~ msgid "Normal"
-#~ msgstr "Normal"
 
 #~ msgid "&Universal CSV Files"
 #~ msgstr "&CVS"
@@ -10576,15 +10513,9 @@ msgstr "Zaten son sürümü kullanıyorsunuz %s"
 #~ msgid "Be &notified of new releases"
 #~ msgstr "Yeni versiyon bilgilendirme"
 
-#~ msgid "Invalid field index"
-#~ msgstr "Invalid field index"
-
 #, fuzzy
 #~ msgid "Investment Accounts"
 #~ msgstr "Yatırım Hesabı Seç"
-
-#~ msgid " - "
-#~ msgstr " - "
 
 #~ msgid "Number Shares"
 #~ msgstr "Adet"
@@ -10600,9 +10531,6 @@ msgstr "Zaten son sürümü kullanıyorsunuz %s"
 
 #~ msgid "To Account Amount Entry"
 #~ msgstr "Hesaba Gönderilecek Tutar"
-
-#~ msgid "Invalid field name"
-#~ msgstr "Invalid field name"
 
 #~ msgid "Select To"
 #~ msgstr "Seçini<"
@@ -10629,9 +10557,6 @@ msgstr "Zaten son sürümü kullanıyorsunuz %s"
 #~ msgid "&Load"
 #~ msgstr "SQL Çağır"
 
-#~ msgid "Invalid scalar query"
-#~ msgstr "Invalid scalar query"
-
 #~ msgid "Specify Payee"
 #~ msgstr "Alacaklı"
 
@@ -10655,9 +10580,6 @@ msgstr "Zaten son sürümü kullanıyorsunuz %s"
 
 #~ msgid "Budget Setup and Performance"
 #~ msgstr "Bütçe Hazırlama ve  Performans"
-
-#~ msgid "Null Results pointer"
-#~ msgstr "Null Results pointer"
 
 #, fuzzy
 #~ msgid "MM.&NET CSV Files"
@@ -10685,9 +10607,6 @@ msgstr "Zaten son sürümü kullanıyorsunuz %s"
 #~ msgid "Tree View Options: Expand Section"
 #~ msgstr "Görünüm Seçenekleri"
 
-#~ msgid "Error binding string param"
-#~ msgstr "Error binding string param"
-
 #, fuzzy
 #~ msgid "Backup before opening"
 #~ msgstr "Veritabanını açmadan önce yedekle"
@@ -10711,9 +10630,6 @@ msgstr "Zaten son sürümü kullanıyorsunuz %s"
 #~ msgid " Start Page"
 #~ msgstr " Açılış Sayfası"
 
-#~ msgid "Error binding int param"
-#~ msgstr "Error binding int param"
-
 #, fuzzy
 #~ msgid "Do you want to delete the Lua file as well?"
 #~ msgstr "Seriyi silmek istediğinizden emin misiniz ?"
@@ -10736,9 +10652,6 @@ msgstr "Zaten son sürümü kullanıyorsunuz %s"
 
 #~ msgid "to"
 #~ msgstr "e"
-
-#~ msgid "Error binding int64 param"
-#~ msgstr "Error binding int64 param"
 
 #, fuzzy
 #~ msgid "Display Stock Web Page"
@@ -10772,9 +10685,6 @@ msgstr "Zaten son sürümü kullanıyorsunuz %s"
 #~ "Otomatik hisse fiyatları güncellemesi başlamadı. \n"
 #~ "Son Güncelleme: %s"
 
-#~ msgid "Error binding double param"
-#~ msgstr "Error binding double param"
-
 #, fuzzy
 #~ msgid "Delete all \"Follow Up\" transactions"
 #~ msgstr "İşaretlenmiş işlemleri sil"
@@ -10797,9 +10707,6 @@ msgstr "Zaten son sürümü kullanıyorsunuz %s"
 
 #~ msgid "Gain Loss"
 #~ msgstr "+ / - "
-
-#~ msgid "Error binding blob param"
-#~ msgstr "Error binding blob param"
 
 #~ msgid "Select From"
 #~ msgstr "Seçiniz"
@@ -10824,9 +10731,6 @@ msgstr "Zaten son sürümü kullanıyorsunuz %s"
 #~ msgid "Specify Notes"
 #~ msgstr "Not "
 
-#~ msgid "Error binding date/time param"
-#~ msgstr "Error binding date/time param"
-
 #~ msgid "&MMEX CSV Files"
 #~ msgstr "&MMEX CSV"
 
@@ -10850,9 +10754,6 @@ msgstr "Zaten son sürümü kullanıyorsunuz %s"
 
 #~ msgid " cannot process Account Types yet "
 #~ msgstr " henüz Hesap Tipleri işlenemiyor "
-
-#~ msgid "Error binding NULL param"
-#~ msgstr "Error binding NULL param"
 
 #, fuzzy
 #~ msgid "Custom script:"
@@ -10881,9 +10782,6 @@ msgstr "Zaten son sürümü kullanıyorsunuz %s"
 
 #~ msgid "never!"
 #~ msgstr "asla!"
-
-#~ msgid "Error clearing bindings"
-#~ msgstr "Error clearing bindings"
 
 #, fuzzy
 #~ msgid " Total:"
@@ -10971,9 +10869,6 @@ msgstr "Zaten son sürümü kullanıyorsunuz %s"
 #~ msgstr ""
 #~ "Veritabanı dosyası açılırken .bak uzantılı yedek dosyası oluşturulmasını "
 #~ "istiyorsanız seçiniz."
-
-#~ msgid "1"
-#~ msgstr "1"
 
 #~ msgid "Transaction Number"
 #~ msgstr "İşlem No"

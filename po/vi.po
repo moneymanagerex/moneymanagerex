@@ -10081,9 +10081,6 @@ msgstr "Bạn đang dùng phiên bản mới nhất!"
 #~ msgid "Important note"
 #~ msgstr "Ghi chú quan trọng"
 
-#~ msgid "finance.au.yahoo.com"
-#~ msgstr "finance.au.yahoo.com"
-
 #~ msgid "Split Category"
 #~ msgstr "Nhiều hạng mục"
 
@@ -10126,9 +10123,6 @@ msgstr "Bạn đang dùng phiên bản mới nhất!"
 #, fuzzy
 #~ msgid "Total Price"
 #~ msgstr "Giá hiện tại"
-
-#~ msgid ":"
-#~ msgstr ":"
 
 #~ msgid "Transaction Number"
 #~ msgstr "Số giao dịch"

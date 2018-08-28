@@ -8990,9 +8990,6 @@ msgstr "Vous utilisez la dernière version %s"
 #~ msgid "Unknown error"
 #~ msgstr "Erreur inconnue"
 
-#~ msgid "%1$s - %2$s"
-#~ msgstr "%1$s - %2$s"
-
 #~ msgid "From "
 #~ msgstr "De "
 
@@ -9085,29 +9082,14 @@ msgstr "Vous utilisez la dernière version %s"
 #~ "\n"
 #~ "%s"
 
-#~ msgid "1"
-#~ msgstr "1"
-
 #~ msgid "Import/Export"
 #~ msgstr "Importer/Exporter"
-
-#~ msgid "3"
-#~ msgstr "3"
 
 #~ msgid "Transactions imported from QIF: %ld"
 #~ msgstr "Opération importée du fichier QIF: %ld"
 
-#~ msgid "5"
-#~ msgstr "5"
-
 #~ msgid "Important note"
 #~ msgstr "Note importante"
-
-#~ msgid "7"
-#~ msgstr "7"
-
-#~ msgid "6"
-#~ msgstr "6"
 
 #~ msgid ""
 #~ "Changing all payees of: %s \n"
@@ -9120,9 +9102,6 @@ msgstr "Vous utilisez la dernière version %s"
 
 #~ msgid "Income vs Expenses - 30 Days"
 #~ msgstr "Rentrées / Dépenses pour les 30 derniers jours"
-
-#~ msgid "%s\t: %s\n"
-#~ msgstr "%s\t: %s\n"
 
 #~ msgid "Translators"
 #~ msgstr "Traducteurs"
@@ -9261,17 +9240,11 @@ msgstr "Vous utilisez la dernière version %s"
 #~ msgid "Invalid number of shares entered "
 #~ msgstr "Nombre de titres introduits non valable "
 
-#~ msgid "%s\t -> %s\n"
-#~ msgstr "%s\t -> %s\n"
-
 #~ msgid "Delete Stock Investment"
 #~ msgstr "Supprimer investissement"
 
 #~ msgid "Syntax error in the URL string"
 #~ msgstr "Erreur de syntaxe dans l'adresse URL"
-
-#~ msgid "Large"
-#~ msgstr "Large"
 
 #~ msgid "A host name is required for this protocol"
 #~ msgstr "un nom d'hôte est requis pour ce protocole"
@@ -9368,10 +9341,6 @@ msgstr "Vous utilisez la dernière version %s"
 #~ msgstr "Chargement d'un fichier SQL personnalisé"
 
 #, fuzzy
-#~ msgid "BIF"
-#~ msgstr "BIF"
-
-#, fuzzy
 #~ msgid "centavo"
 #~ msgstr "Dentaire"
 
@@ -9399,12 +9368,6 @@ msgstr "Vous utilisez la dernière version %s"
 #, fuzzy
 #~ msgid "LD"
 #~ msgstr "Nombre d'opérations exportées : %ld"
-
-#~ msgid "LSL"
-#~ msgstr "LSL"
-
-#~ msgid "NOK"
-#~ msgstr "NOK"
 
 #~ msgid "MMEX System Information Check"
 #~ msgstr "Vérification des informations système MMEX"
@@ -9452,10 +9415,6 @@ msgstr "Vous utilisez la dernière version %s"
 
 #~ msgid "Name of Currency to Add"
 #~ msgstr "Nom de la devise à ajouter"
-
-#, fuzzy
-#~ msgid "urn:schemas-microsoft-com:office:spreadsheet"
-#~ msgstr "urn:schemas-microsoft-com:office:spreadsheet"
 
 #, fuzzy
 #~ msgid "Workbook"
@@ -9517,9 +9476,6 @@ msgstr "Vous utilisez la dernière version %s"
 #~ "\n"
 #~ "OK.......: Insertion au point sélectionné\n"
 #~ "Cancel : Insertion à la fin de la liste."
-
-#~ msgid " date "
-#~ msgstr " date "
 
 #~ msgid " invalid amount, skipping."
 #~ msgstr " montant non valable, sauter."
@@ -9965,17 +9921,11 @@ msgstr "Vous utilisez la dernière version %s"
 #~ msgid "Choose database file to Save As"
 #~ msgstr "Sélectionner la base de données à enregistrer sous"
 
-#~ msgid "Huge"
-#~ msgstr "Huge"
-
 #~ msgid "%s -> User document directory"
 #~ msgstr "%s -> répertoire de l'utilisateur"
 
 #~ msgid "Cannot locate previously opened database.\n"
 #~ msgstr "Impossible de trouver la derniere base utilisée\n"
-
-#~ msgid "4"
-#~ msgstr "4"
 
 #~ msgid "Import/Export Settings"
 #~ msgstr "Paramètres d'Importation/Exportation"
@@ -10122,10 +10072,6 @@ msgstr "Vous utilisez la dernière version %s"
 #~ msgid "Load Custom Lua file:"
 #~ msgstr "Charger un fichier Lua personnalisé:"
 
-#, fuzzy
-#~ msgid "CVE"
-#~ msgstr "CVE"
-
 #~ msgid "Total Balance on all Accounts"
 #~ msgstr "Solde de tous les comptes"
 
@@ -10137,14 +10083,8 @@ msgstr "Vous utilisez la dernière version %s"
 #~ msgid "MAKE ATTENTION:"
 #~ msgstr "Make _Object"
 
-#~ msgid "K"
-#~ msgstr "K"
-
 #~ msgid "Where the Money Goes - 30 Days"
 #~ msgstr "Où va l'argent pour les 30 derniers jours"
-
-#~ msgid "SLL"
-#~ msgstr "SLL"
 
 #~ msgid "MMEX must be shutdown and restarted for all the changes to be seen."
 #~ msgstr ""
@@ -10153,9 +10093,6 @@ msgstr "Vous utilisez la dernière version %s"
 
 #~ msgid "Currency rate updated"
 #~ msgstr "Taux de conversion mis à jour"
-
-#~ msgid "PAB"
-#~ msgstr "PAB"
 
 #, fuzzy
 #~ msgid "%i occurrencies founded and replaced!"
@@ -10214,9 +10151,6 @@ msgstr "Vous utilisez la dernière version %s"
 
 #~ msgid "&Bank Accounts"
 #~ msgstr "Comptes bancaires"
-
-#~ msgid "Normal"
-#~ msgstr "Normal"
 
 #~ msgid "&Open"
 #~ msgstr "&ouvrir"
@@ -10438,9 +10372,6 @@ msgstr "Vous utilisez la dernière version %s"
 #~ msgid "Income vs Expenses - Last Calendar Month"
 #~ msgstr "Revenus/dépenses ( Dernier mois calendrier)"
 
-#~ msgid "Small"
-#~ msgstr "Small"
-
 #~ msgid "Artwork"
 #~ msgstr "graphisme"
 
@@ -10452,9 +10383,6 @@ msgstr "Vous utilisez la dernière version %s"
 
 #~ msgid "Specify the color for future transactions"
 #~ msgstr "Choisir une couleur pour les transactions à venir"
-
-#~ msgid "XLarge"
-#~ msgstr "XLarge"
 
 #~ msgid "Specify the color for the list background"
 #~ msgstr "Spécifie la couleur de l'arrière-plan de la liste"
@@ -10478,9 +10406,6 @@ msgstr "Vous utilisez la dernière version %s"
 #~ msgid "Specify the number of payments to be made."
 #~ msgstr "Préciser le type de compte à créer"
 
-#~ msgid "XSmall"
-#~ msgstr "XSmall"
-
 #~ msgid "Specify the purchase date of the stock investment"
 #~ msgstr "Préciser la date d'acquisition"
 
@@ -10491,10 +10416,6 @@ msgstr "Vous utilisez la dernière version %s"
 #~ msgid "Specify which account the transfer is coming from"
 #~ msgstr "Introduire le compte d'où provient le transfert."
 
-#, fuzzy
-#~ msgid "D"
-#~ msgstr "D"
-
 #~ msgid "Split Category"
 #~ msgstr "Catégorie de répartition"
 
@@ -10503,9 +10424,6 @@ msgstr "Vous utilisez la dernière version %s"
 
 #~ msgid "Stock Accounts"
 #~ msgstr "Comptes d'action"
-
-#~ msgid "XXLarge"
-#~ msgstr "XXLarge"
 
 #~ msgid "Stock Investments: %s"
 #~ msgstr "Investissements en actions: %s"
@@ -10521,9 +10439,6 @@ msgstr "Vous utilisez la dernière version %s"
 
 #~ msgid "Subcategory:"
 #~ msgstr "Sous-catégorie :"
-
-#~ msgid "Notes:"
-#~ msgstr "Notes:"
 
 #~ msgid "Summary of Assets"
 #~ msgstr "Liste des biens"
@@ -10799,9 +10714,6 @@ msgstr "Vous utilisez la dernière version %s"
 #~ "Annulation de la transaction QIF (la date, le type ou le montant est "
 #~ "manquant ou invalide) "
 
-#~ msgid "2"
-#~ msgstr "2"
-
 #~ msgid "Specify where the transaction is going to or coming from "
 #~ msgstr "Introduire le tiers associé à l'opération "
 
@@ -10837,9 +10749,6 @@ msgstr "Vous utilisez la dernière version %s"
 #, fuzzy
 #~ msgid "No account available to reallocate!"
 #~ msgstr "Aucun compte valable!"
-
-#~ msgid "%s\t: %0.4f -> %0.4f\n"
-#~ msgstr "%s\t: %0.4f -> %0.4f\n"
 
 #~ msgid "to payee: "
 #~ msgstr "pour le tiers : "

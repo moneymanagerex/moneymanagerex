@@ -9478,9 +9478,6 @@ msgstr "Έχετε εγκατεστημένη την τελευταία έκδο
 #~ msgid "Notes: "
 #~ msgstr "Σημειώσεις: "
 
-#~ msgid "&OK"
-#~ msgstr "&OK"
-
 #, fuzzy
 #~ msgid "View Un-Reconciled"
 #~ msgstr "Εμφάνιση μη τακτοποιημένων"
@@ -9510,9 +9507,6 @@ msgstr "Έχετε εγκατεστημένη την τελευταία έκδο
 
 #~ msgid "View Un-Reconciled Transactions"
 #~ msgstr "Δείτε τις μη τακτοποιημένες συναλλαγές"
-
-#~ msgid ":"
-#~ msgstr ":"
 
 #~ msgid "Organise Categories"
 #~ msgstr "Οργάνωση Κατηγοριών"
@@ -9665,9 +9659,6 @@ msgstr "Έχετε εγκατεστημένη την τελευταία έκδο
 
 #~ msgid "Viewing All Transactions"
 #~ msgstr "Δείτε όλες τις κινήσεις"
-
-#~ msgid "C  "
-#~ msgstr "C  "
 
 #~ msgid "Please confirm deletion of a selected Currency"
 #~ msgstr "Παρακαλούμε επιβεβαιώστε τη διαγραφή του επιλεγμένου νομίσματος"
@@ -10917,9 +10908,6 @@ msgstr "Έχετε εγκατεστημένη την τελευταία έκδο
 
 #~ msgid "Universal CSV Dialog"
 #~ msgstr "Παράθυρο γενικής μορφής CSV"
-
-#~ msgid "finance.au.yahoo.com"
-#~ msgstr "finance.au.yahoo.com"
 
 #~ msgid "Update Failed"
 #~ msgstr "Η ενημέρωση απέτυχε"

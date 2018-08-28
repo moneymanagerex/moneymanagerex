@@ -8802,9 +8802,6 @@ msgstr "Máte nainštalovanú najnovšiu verziu"
 #~ msgid "Next"
 #~ msgstr "Ďalší"
 
-#~ msgid "Filter"
-#~ msgstr "Filter"
-
 #~ msgid "Grand Total: "
 #~ msgstr "Celkový súčet: "
 
@@ -8947,20 +8944,11 @@ msgstr "Máte nainštalovanú najnovšiu verziu"
 #~ msgid "Invalid commission entered "
 #~ msgstr "Zadaná neplatná provízia "
 
-#~ msgid "3"
-#~ msgstr "3"
-
 #~ msgid "Invalid number of shares entered "
 #~ msgstr "Zadaný neplatný počet akcií "
 
-#~ msgid "4"
-#~ msgstr "4"
-
 #~ msgid "Invalid purchase price entered "
 #~ msgstr "Zadaná neplatná nadobúdacia cena "
-
-#~ msgid "7"
-#~ msgstr "7"
 
 #~ msgid "Large"
 #~ msgstr "Veľké"
@@ -8970,9 +8958,6 @@ msgstr "Máte nainštalovanú najnovšiu verziu"
 
 #~ msgid "Last Calendar Month"
 #~ msgstr "Minulý kalendárny mesiac"
-
-#~ msgid "%s\t: %s\n"
-#~ msgstr "%s\t: %s\n"
 
 #~ msgid "Leave blank when not active."
 #~ msgstr "Nechajte prázdne, ak nie je aktívne."
@@ -9099,12 +9084,6 @@ msgstr "Máte nainštalovanú najnovšiu verziu"
 
 #~ msgid "Universal CSV Dialog"
 #~ msgstr "Univerzálny CSV dialóg"
-
-#~ msgid "Min: "
-#~ msgstr "Min: "
-
-#~ msgid "%s\t -> %s\n"
-#~ msgstr "%s\t -> %s\n"
 
 #~ msgid "Modify the description for the attachment:"
 #~ msgstr "Zmeňte opis prílohy:"
@@ -9624,15 +9603,6 @@ msgstr "Máte nainštalovanú najnovšiu verziu"
 #~ msgid "Where the Money Comes From - Current Month"
 #~ msgstr "Odkiaľ idú peniaze - aktuálny mesiac"
 
-#~ msgid "2"
-#~ msgstr "2"
-
-#~ msgid "5"
-#~ msgstr "5"
-
-#~ msgid "6"
-#~ msgstr "6"
-
 #~ msgid ""
 #~ "Changing all categories of: \n"
 #~ "%s to category: %s"
@@ -9779,9 +9749,6 @@ msgstr "Máte nainštalovanú najnovšiu verziu"
 
 #~ msgid " file contains insufficient number of tokens"
 #~ msgstr " súbor obsahuje nedostatočný počet symbolov"
-
-#~ msgid "%s\t: %0.4f -> %0.4f\n"
-#~ msgstr "%s\t: %0.4f -> %0.4f\n"
 
 #~ msgid "&Help\tCtrl-F1"
 #~ msgstr "&Pomoc\tCtrl-F1"
@@ -9974,9 +9941,6 @@ msgstr "Máte nainštalovanú najnovšiu verziu"
 
 #~ msgid "Set to 'Auto Execute' on the 'Next Occurrence' date."
 #~ msgstr "Nastaviť 'Automatické vykonanie' na dátum 'Ďalšieho výskytu'."
-
-#~ msgid "1"
-#~ msgstr "1"
 
 #~ msgid "Setup page printing options"
 #~ msgstr "Nastavenie strany pre tlač"

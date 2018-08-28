@@ -9068,9 +9068,6 @@ msgstr "Ön már a legújabb verzióval rendelkezik: %s"
 #~ msgid "Comma"
 #~ msgstr "Vessző"
 
-#~ msgid "%s\t: %0.4f -> %0.4f\n"
-#~ msgstr "%s\t: %0.4f -> %0.4f\n"
-
 #~ msgid "Continue ?"
 #~ msgstr "Folytatja?"
 
@@ -9086,9 +9083,6 @@ msgstr "Ön már a legújabb verzióval rendelkezik: %s"
 #~ msgid "Create a new SQL report"
 #~ msgstr "Új SQL jelentés készítése"
 
-#~ msgid "1"
-#~ msgstr "1"
-
 #~ msgid "Create new Custom Reports"
 #~ msgstr "Új felhasználói jelentés készítése"
 
@@ -9097,9 +9091,6 @@ msgstr "Ön már a legújabb verzióval rendelkezik: %s"
 
 #~ msgid "Create or modify reports for the Reports section"
 #~ msgstr "A jelentési részhez jelentések készítése, vagy módosítása"
-
-#~ msgid "5"
-#~ msgstr "5"
 
 #~ msgid "Curr. unit price"
 #~ msgstr "Aktuális egységár"
@@ -9131,9 +9122,6 @@ msgstr "Ön már a legújabb verzióval rendelkezik: %s"
 #~ msgid "Currency with same name exists"
 #~ msgstr "Már van ilyen nevű pénznem"
 
-#~ msgid "1251"
-#~ msgstr "1251"
-
 #~ msgid "Current"
 #~ msgstr "Jelenlegi"
 
@@ -9143,9 +9131,6 @@ msgstr "Ön már a legújabb verzióval rendelkezik: %s"
 
 #~ msgid "Current &View"
 #~ msgstr "Jelenlegi nézet "
-
-#~ msgid "1255"
-#~ msgstr "1255"
 
 #~ msgid "Custom Report: "
 #~ msgstr "Felhasználói SQL jelentés: "
@@ -9206,9 +9191,6 @@ msgstr "Ön már a legújabb verzióval rendelkezik: %s"
 #~ msgid "Delete Account"
 #~ msgstr "Bankszámla törlése"
 
-#~ msgid "kr"
-#~ msgstr "kr"
-
 #~ msgid "Delete Transaction"
 #~ msgstr "Ügylet törlése"
 
@@ -9233,9 +9215,6 @@ msgstr "Ön már a legújabb verzióval rendelkezik: %s"
 
 #~ msgid "Delete..."
 #~ msgstr "Törlés..."
-
-#~ msgid "XCD"
-#~ msgstr "XCD"
 
 #~ msgid "Display Stock Web Page"
 #~ msgstr "Tőzsdeinformációs weboldal megjelenítése"
@@ -9267,15 +9246,9 @@ msgstr "Ön már a legújabb verzióval rendelkezik: %s"
 #~ msgid "Do you want to delete the Lua file as well?"
 #~ msgstr "A Lua fájlt is törölni szeretné?"
 
-#~ msgid "VND"
-#~ msgstr "VND"
-
 #, fuzzy
 #~ msgid "Do you want to scan all transaction ?"
 #~ msgstr "Minden megjelenített ügyletet töröl?"
-
-#~ msgid "%s\t -> %s\n"
-#~ msgstr "%s\t -> %s\n"
 
 #~ msgid "Download WebApp new transaction"
 #~ msgstr "Új WebApp ügyletek letöltése"
@@ -9291,9 +9264,6 @@ msgstr "Ön már a legújabb verzióval rendelkezik: %s"
 
 #~ msgid "Edit an existing SQL report"
 #~ msgstr "Létező SQL kimutatás szerkesztése"
-
-#~ msgid "UAH"
-#~ msgstr "UAH"
 
 #~ msgid "Edit..."
 #~ msgstr "Szerkesztés..."
@@ -9316,15 +9286,9 @@ msgstr "Ön már a legújabb verzióval rendelkezik: %s"
 #~ "A Yahoo.com-ról árfolyamfrissítési adatok letöltésének engedélyezése, "
 #~ "vagy tiltása."
 
-#~ msgid "ANG"
-#~ msgstr "ANG"
-
 #, fuzzy
 #~ msgid "Enter &Transaction"
 #~ msgstr "Ügylet bejegyzése"
-
-#~ msgid "TRY"
-#~ msgstr "TRY"
 
 #~ msgid ""
 #~ "Enter a search string. You can use * as a wildcard to match zero or more "
@@ -9332,9 +9296,6 @@ msgstr "Ön már a legújabb verzióval rendelkezik: %s"
 #~ msgstr ""
 #~ "Írjon be keresési karaktersort. A *-ot használhatja 0 vagy több, a ?-t "
 #~ "pedig egy karakter helyettesítésére."
-
-#~ msgid "AWG"
-#~ msgstr "AWG"
 
 #~ msgid "Enter purchase price for each stock"
 #~ msgstr "Adja meg az egyes részvények vételi árfolyamát"
@@ -9372,9 +9333,6 @@ msgstr "Ön már a legújabb verzióval rendelkezik: %s"
 #~ "Ha részvényeit több piacon forgatja, hagyja üresen és a kiterjesztéseket "
 #~ "a portfóliójában szereplő szimbólumok mellé írja."
 
-#~ msgid "BGN"
-#~ msgstr "BGN"
-
 #~ msgid "Enter the year in YYYY format to specify year"
 #~ msgstr "Adja meg az évet YYYY formában"
 
@@ -9385,20 +9343,11 @@ msgstr "Ön már a legújabb verzióval rendelkezik: %s"
 #~ msgid "Entry "
 #~ msgstr "Bevitel "
 
-#~ msgid "BND"
-#~ msgstr "BND"
-
 #~ msgid "Error adding Category"
 #~ msgstr "Sikertelen a kategória létrehozása"
 
-#~ msgid "SHP"
-#~ msgstr "SHP"
-
 #~ msgid "Error code:"
 #~ msgstr "Hibakód:"
-
-#~ msgid "BTN"
-#~ msgstr "BTN"
 
 #~ msgid "Error: %s\n"
 #~ msgstr "Hiba: %s\n"
@@ -9421,9 +9370,6 @@ msgstr "Ön már a legújabb verzióval rendelkezik: %s"
 #~ msgid "Every "
 #~ msgstr "Minden"
 
-#~ msgid "CAD"
-#~ msgstr "CAD"
-
 #~ msgid "Expand Bank Accounts in Trew View when tree is refreshed"
 #~ msgstr ""
 #~ "A bankszámlákat fanézet formájában bontsa ki, ha a fa frissítésre került"
@@ -9437,20 +9383,11 @@ msgstr "Ön már a legújabb verzióval rendelkezik: %s"
 #~ "A bankszámlákat az Összesítő lapon bontsa ki, ha a lap frissítésre "
 #~ "került."
 
-#~ msgid "CLP"
-#~ msgstr "CLP"
-
 #~ msgid "Expand Stock Accounts on navigation tree"
 #~ msgstr "A navigációs ablakban lévő tőkeszámlák kibontása"
 
-#~ msgid "RSD"
-#~ msgstr "RSD"
-
 #~ msgid "Expand Stocks Accounts in Trew View when tree is refreshed"
 #~ msgstr "A fanézetben a részvényszámlák kibontása a fa frissítésekor"
-
-#~ msgid "CVE"
-#~ msgstr "CVE"
 
 #~ msgid "Expand Term Accounts in Trew View when tree is refreshed"
 #~ msgstr ""
@@ -9490,14 +9427,8 @@ msgstr "Ön már a legújabb verzióval rendelkezik: %s"
 #~ msgid "Filter"
 #~ msgstr "Szűrés"
 
-#~ msgid "DKK"
-#~ msgstr "DKK"
-
 #~ msgid "Filter Payees: "
 #~ msgstr "Kedvezményezettek szűrése: "
-
-#~ msgid "PAB"
-#~ msgstr "PAB"
 
 #~ msgid ""
 #~ "Filter Split categories. Include the category for further filtering."
@@ -9517,14 +9448,8 @@ msgstr "Ön már a legújabb verzióval rendelkezik: %s"
 #~ msgid "Financial Year Settings"
 #~ msgstr "Általános beállítások"
 
-#~ msgid "EGP"
-#~ msgstr "EGP"
-
 #~ msgid "Financial Year: "
 #~ msgstr "Pénzügyi év: "
-
-#~ msgid "NIO"
-#~ msgstr "NIO"
 
 #~ msgid "Find Payee: "
 #~ msgstr "Keresett kedvezményezett: "
@@ -9541,20 +9466,11 @@ msgstr "Ön már a legújabb verzióval rendelkezik: %s"
 #~ msgid "Font Size Options"
 #~ msgstr "Betűméret opciók"
 
-#~ msgid "FBu"
-#~ msgstr "FBu"
-
 #~ msgid "From "
 #~ msgstr "ekkortól: "
 
-#~ msgid "MUR"
-#~ msgstr "MUR"
-
 #~ msgid "From Account"
 #~ msgstr "Kiinduló számla"
-
-#~ msgid "FMG"
-#~ msgstr "FMG"
 
 #~ msgid "From and To Account cannot be the same."
 #~ msgstr "A kiinduló és a célszámla nem lehet azonos"
@@ -9565,21 +9481,12 @@ msgstr "Ön már a legújabb verzióval rendelkezik: %s"
 #~ msgid "Future Transactions"
 #~ msgstr "Jövőbeni ügyletek"
 
-#~ msgid "GBP"
-#~ msgstr "GBP"
-
 #, fuzzy
 #~ msgid "Gain Loss"
 #~ msgstr "Emelkedés/süllyedés"
 
-#~ msgid "MGA"
-#~ msgstr "MGA"
-
 #~ msgid "Grand Total: "
 #~ msgstr "Összes összesen: "
-
-#~ msgid "GMD"
-#~ msgstr "GMD"
 
 #, fuzzy
 #~ msgid "HTML_BUILDER: Syntax error function: %s"
@@ -9591,20 +9498,11 @@ msgstr "Ön már a legújabb verzióval rendelkezik: %s"
 #~ msgid "Heading"
 #~ msgstr "Fejléc"
 
-#~ msgid "HKD"
-#~ msgstr "HKD"
-
 #~ msgid "Hide Deleted (Void)"
 #~ msgstr "Töröltek rejtése (Érvénytelen)"
 
-#~ msgid "LTL"
-#~ msgstr "LTL"
-
 #~ msgid "Home Page Expansion Options"
 #~ msgstr "Összesítő lap beállítása megnyitáskor."
-
-#~ msgid "HUF"
-#~ msgstr "HUF"
 
 #~ msgid "Huge"
 #~ msgstr "Hatalmas"
@@ -9615,14 +9513,8 @@ msgstr "Ön már a legújabb verzióval rendelkezik: %s"
 #~ msgid "Idle"
 #~ msgstr "Függő"
 
-#~ msgid "IQD"
-#~ msgstr "IQD"
-
 #~ msgid "Import &QIF File"
 #~ msgstr "&QIF fájl Importálása"
-
-#~ msgid "Kz"
-#~ msgstr "Kz"
 
 #~ msgid "Import from CSV"
 #~ msgstr "Importálás CSV-ből"
@@ -9636,23 +9528,11 @@ msgstr "Ön már a legújabb verzióval rendelkezik: %s"
 #~ msgid "Update database changes to database backup on exit."
 #~ msgstr "Az adatbázis változásait kilépéskor a másolaton érvényesítse."
 
-#~ msgid "Import/Export"
-#~ msgstr "Import/Export"
-
-#~ msgid "JPY"
-#~ msgstr "JPY"
-
 #~ msgid "Import/Export Settings"
 #~ msgstr "Import/Export beállítások"
 
-#~ msgid "KN"
-#~ msgstr "KN"
-
 #~ msgid "Important note"
 #~ msgstr "Fontos megjegyzés"
-
-#~ msgid "KHR"
-#~ msgstr "KHR"
 
 #, fuzzy
 #~ msgid "Importing CSV MM.NET"
@@ -9664,21 +9544,12 @@ msgstr "Ön már a legújabb verzióval rendelkezik: %s"
 #~ msgid "In "
 #~ msgstr "Következő"
 
-#~ msgid "KPW"
-#~ msgstr "KPW"
-
 #, fuzzy
 #~ msgid "Income vs Expenses - 30 Days"
 #~ msgstr "Bevételek és kiadások - előző 30 napban"
 
-#~ msgid "JOD"
-#~ msgstr "JOD"
-
 #~ msgid "Income vs Expenses - All Time"
 #~ msgstr "Összes bevétel és kiadás"
-
-#~ msgid "KYD"
-#~ msgstr "KYD"
 
 #, fuzzy
 #~ msgid "Income vs Expenses - Current Financial Year"
@@ -9691,22 +9562,13 @@ msgstr "Ön már a legújabb verzióval rendelkezik: %s"
 #~ msgid "Income vs Expenses - Current Month to Date"
 #~ msgstr "Bevételek és kiadások - ebben a hónapban máig"
 
-#~ msgid "L"
-#~ msgstr "L"
-
 #, fuzzy
 #~ msgid "Income vs Expenses - Current Year"
 #~ msgstr "Bevételek és kiadások - ebben a hónapban"
 
-#~ msgid "INR"
-#~ msgstr "INR"
-
 #, fuzzy
 #~ msgid "Income vs Expenses - Last 12 months"
 #~ msgstr "Bevételek és kiadások - előző hónapban"
-
-#~ msgid "LKR"
-#~ msgstr "LKR"
 
 #~ msgid "Income vs Expenses - Last Calendar Month"
 #~ msgstr "Bevételek és kiadások - előző hónapban"
@@ -9718,21 +9580,12 @@ msgstr "Ön már a legújabb verzióval rendelkezik: %s"
 #~ msgid "Income vs Expenses - Last Financial Year"
 #~ msgstr "Bevételek-kiadások a pénzügyi évben: "
 
-#~ msgid "LVL"
-#~ msgstr "LVL"
-
 #, fuzzy
 #~ msgid "Income vs Expenses - Last Year"
 #~ msgstr "Bevételek és kiadások - előző 30 napban"
 
-#~ msgid "GYD"
-#~ msgstr "GYD"
-
 #~ msgid "Income vs Expenses for Financial Year: "
 #~ msgstr "Bevételek-kiadások a pénzügyi évben: "
-
-#~ msgid "M"
-#~ msgstr "M"
 
 #, fuzzy
 #~ msgid "Income vs Expenses for Year: %d"
@@ -9744,20 +9597,11 @@ msgstr "Ön már a legújabb verzióval rendelkezik: %s"
 #~ msgid "Income......."
 #~ msgstr "Bevétel..."
 
-#~ msgid "MK"
-#~ msgstr "MK"
-
 #~ msgid "Incorrect XML data (#1)!"
 #~ msgstr "Szabálytalan XML adat (#1)!"
 
-#~ msgid "G"
-#~ msgstr "G"
-
 #~ msgid "Incorrect XML data (#2)!"
 #~ msgstr "Szabálytalan XML adat (#2)!"
-
-#~ msgid "MNT"
-#~ msgstr "MNT"
 
 #~ msgid "Incorrect XML data (#3)!"
 #~ msgstr "Szabálytalan XML adat (#3)!"
@@ -9768,14 +9612,8 @@ msgstr "Ön már a legújabb verzióval rendelkezik: %s"
 #~ msgid "Incorrect XML data (#4)!"
 #~ msgstr "Szabálytalan XML adat (#4)!"
 
-#~ msgid "MVR"
-#~ msgstr "MVR"
-
 #~ msgid "Incorrect XML data (#5)!"
 #~ msgstr "Szabálytalan XML adat (#5)!"
-
-#~ msgid "F"
-#~ msgstr "F"
 
 #~ msgid "Incorrect XML data (#6)!"
 #~ msgstr "Szabálytalan XML adat (#6)!"
@@ -9792,20 +9630,11 @@ msgstr "Ön már a legújabb verzióval rendelkezik: %s"
 #~ msgid "Init Balance "
 #~ msgstr "Kezdő egyenleg"
 
-#~ msgid "NOK"
-#~ msgstr "NOK"
-
 #~ msgid "Initial Term Account Activation"
 #~ msgstr "Időszaki számla kezdeti beállítása"
 
-#~ msgid "E"
-#~ msgstr "E"
-
 #~ msgid "Invalid Value "
 #~ msgstr "Érvénytelen érték"
-
-#~ msgid "Nfa"
-#~ msgstr "Nfa"
 
 #~ msgid "Invalid commission entered "
 #~ msgstr "Érvénytelen jutalékot adott meg"
@@ -9816,20 +9645,11 @@ msgstr "Ön már a legújabb verzióval rendelkezik: %s"
 #~ msgid "Invalid current price entered "
 #~ msgstr "Érvénytelen napi árat adott meg"
 
-#~ msgid "PEN"
-#~ msgstr "PEN"
-
 #~ msgid "Invalid field index"
 #~ msgstr "Érvénytelen mező index"
 
-#~ msgid "DJF"
-#~ msgstr "DJF"
-
 #~ msgid "Invalid field name"
 #~ msgstr "Érvénytelen mezőnév"
-
-#~ msgid "PLN"
-#~ msgstr "PLN"
 
 #~ msgid "Invalid number of shares entered "
 #~ msgstr "Érvénytelen számú értékpapírt adott meg"
@@ -9840,9 +9660,6 @@ msgstr "Ön már a legújabb verzióval rendelkezik: %s"
 #~ msgid "Invalid purchase price entered "
 #~ msgstr "Érvénytelen vételi árat adott meg"
 
-#~ msgid "Q"
-#~ msgstr "Q"
-
 #~ msgid "Invalid scalar query"
 #~ msgstr "Érvénytelen skaláris lekérdezés"
 
@@ -9852,9 +9669,6 @@ msgstr "Ön már a legújabb verzióval rendelkezik: %s"
 #, fuzzy
 #~ msgid "Investment Accounts"
 #~ msgstr "Válasszon befektetési számlát"
-
-#~ msgid "RF"
-#~ msgstr "RF"
 
 #, fuzzy
 #~ msgid "Investment accounts are specialized accounts that only"
@@ -9869,20 +9683,11 @@ msgstr "Ön már a legújabb verzióval rendelkezik: %s"
 #~ msgid "Large"
 #~ msgstr "Nagy"
 
-#~ msgid "RUB"
-#~ msgstr "RUB"
-
 #~ msgid "Last Calendar Month"
 #~ msgstr "Előző naptári hónapban"
 
-#~ msgid "CHF"
-#~ msgstr "CHF"
-
 #~ msgid "Leave blank when not active."
 #~ msgstr "Hagyja üresen, ha nem aktív."
-
-#~ msgid "Rf"
-#~ msgstr "Rf"
 
 #~ msgid "Legend:"
 #~ msgstr "Jelmagyarázat: "
@@ -9894,20 +9699,11 @@ msgstr "Ön már a legújabb verzióval rendelkezik: %s"
 #~ msgid "Line %i"
 #~ msgstr "Sor : "
 
-#~ msgid "SAR"
-#~ msgstr "SAR"
-
 #~ msgid "Line : "
 #~ msgstr "Sor : "
 
-#~ msgid "BZD"
-#~ msgstr "BZD"
-
 #~ msgid "Line: "
 #~ msgstr "Sor : "
-
-#~ msgid "SDR"
-#~ msgstr "SDR"
 
 #~ msgid "Line: %i"
 #~ msgstr "Sor: %i"
@@ -9925,14 +9721,8 @@ msgstr "Ön már a legújabb verzióval rendelkezik: %s"
 #~ msgid "List Background"
 #~ msgstr "Lista háttere"
 
-#~ msgid "BMD"
-#~ msgstr "BMD"
-
 #~ msgid "List Border"
 #~ msgstr "Lista elválasztó"
-
-#~ msgid "STD"
-#~ msgstr "STD"
 
 #~ msgid "List Row 0"
 #~ msgstr "0. fejléc"
@@ -9959,9 +9749,6 @@ msgstr "Ön már a legújabb verzióval rendelkezik: %s"
 #~ msgid "Load Custom SQL file:"
 #~ msgstr "Kivonatolt SQL fájl betöltése: "
 
-#~ msgid "TJS"
-#~ msgstr "TJS"
-
 #~ msgid "Load Template"
 #~ msgstr "Sablon betöltése"
 
@@ -9972,15 +9759,9 @@ msgstr "Ön már a legújabb verzióval rendelkezik: %s"
 #~ msgid "Log file written to : "
 #~ msgstr "A log fájl címe: "
 
-#~ msgid "TTD"
-#~ msgstr "TTD"
-
 #, fuzzy
 #~ msgid "MM.&NET CSV Files"
 #~ msgstr "&MM.NET CSV fájlok"
-
-#~ msgid "AMD"
-#~ msgstr "AMD"
 
 #~ msgid "MMEX Account View: Transaction Filter"
 #~ msgstr "MMEX számlanézet: Ügyletek szűrése."
@@ -10001,9 +9782,6 @@ msgstr "Ön már a legújabb verzióval rendelkezik: %s"
 #~ msgid "MMEX System Information Check"
 #~ msgstr "Az MMEX rendszerinformációk ellenőrzése"
 
-#~ msgid "UGX"
-#~ msgstr "UGX"
-
 #~ msgid "MMEX must be shutdown and restarted for all the changes to be seen."
 #~ msgstr "A változások megjelenítéséhez az MMEX-et újra kell indítani."
 
@@ -10013,9 +9791,6 @@ msgstr "Ön már a legújabb verzióval rendelkezik: %s"
 #~ msgid "Market open from"
 #~ msgstr "Tőzsde nyit: "
 
-#~ msgid "UYU"
-#~ msgstr "UYU"
-
 #~ msgid "May "
 #~ msgstr "május"
 
@@ -10024,9 +9799,6 @@ msgstr "Ön már a legújabb verzióval rendelkezik: %s"
 
 #~ msgid "Min: "
 #~ msgstr "Min.: "
-
-#~ msgid "VT"
-#~ msgstr "VT"
 
 #~ msgid "Modify the description for the attachment:"
 #~ msgstr "A melléklet leírásának módosítása: "
@@ -10049,9 +9821,6 @@ msgstr "Ön már a legújabb verzióval rendelkezik: %s"
 #~ msgid "Nav Tree"
 #~ msgstr "Navigációs fa"
 
-#~ msgid "XDR"
-#~ msgstr "XDR"
-
 #~ msgid "Navigation Tree Expansion Options"
 #~ msgstr "A navigáció faszerkezet beállítási megnyitáskor."
 
@@ -10061,9 +9830,6 @@ msgstr "Ön már a legújabb verzióval rendelkezik: %s"
 #~ msgid "New Lua Custom Report"
 #~ msgstr "Új felhasználói Lua jelentés"
 
-#~ msgid "ZAR"
-#~ msgstr "ZAR"
-
 #~ msgid "New MMEX Options"
 #~ msgstr "Új MMEX opció"
 
@@ -10072,9 +9838,6 @@ msgstr "Ön már a legújabb verzióval rendelkezik: %s"
 
 #~ msgid "New transactions found on web app"
 #~ msgstr "Új ügyletek vannak a web alkalmazásban"
-
-#~ msgid "m"
-#~ msgstr "m"
 
 #, fuzzy
 #~ msgid "New update available: "
@@ -10129,9 +9892,6 @@ msgstr "Ön már a legújabb verzióval rendelkezik: %s"
 #~ msgstr ""
 #~ "Nincs bankszámla! Nem tudok importálni! Hozzon létre előbb egy új "
 #~ "bankszámlát!"
-
-#~ msgid "1254"
-#~ msgstr "1254"
 
 #, fuzzy
 #~ msgid "No account available for export!"
@@ -10592,9 +10352,6 @@ msgstr "Ön már a legújabb verzióval rendelkezik: %s"
 #~ msgid "Term Account views have been temporarly turned on."
 #~ msgstr "Az időszaki számlák megjelenítése időlegesen bekapcsolva."
 
-#~ msgid "3"
-#~ msgstr "3"
-
 #~ msgid "Term Account"
 #~ msgstr "Időszaki számlák"
 
@@ -10604,9 +10361,6 @@ msgstr "Ön már a legújabb verzióval rendelkezik: %s"
 #~ msgid "Term &Accounts"
 #~ msgstr "Időszaki b&ankszámlák"
 
-#~ msgid "%s\t: %s\n"
-#~ msgstr "%s\t: %s\n"
-
 #~ msgid "System: "
 #~ msgstr "Rendszer: "
 
@@ -10615,9 +10369,6 @@ msgstr "Ön már a legújabb verzióval rendelkezik: %s"
 
 #~ msgid "Summary of Assets"
 #~ msgstr "Vagyon összegzése"
-
-#~ msgid "1257"
-#~ msgstr "1257"
 
 #~ msgid "Subsequent errors not displayed."
 #~ msgstr "A további hibák nincsenek megjelenítve."
@@ -10683,9 +10434,6 @@ msgstr "Ön már a legújabb verzióval rendelkezik: %s"
 #~ msgid "Stock Investments"
 #~ msgstr "Befektetések"
 
-#~ msgid "WST"
-#~ msgstr "WST"
-
 #, fuzzy
 #~ msgid "Stock Investment Page Selection"
 #~ msgstr "Befektetés törlésének jóváhagyása"
@@ -10702,9 +10450,6 @@ msgstr "Ön már a legújabb verzióval rendelkezik: %s"
 #~ msgid "Stock Accounts"
 #~ msgstr "Részvényszámlák"
 
-#~ msgid "ARS"
-#~ msgstr "ARS"
-
 #~ msgid "Status:"
 #~ msgstr "Állapot: "
 
@@ -10713,9 +10458,6 @@ msgstr "Ön már a legújabb verzióval rendelkezik: %s"
 
 #~ msgid "Statement not accessible"
 #~ msgstr "A kimutatás nem érhető el"
-
-#~ msgid "BBD"
-#~ msgstr "BBD"
 
 #~ msgid "Split Category"
 #~ msgstr "Kategória bontása"
@@ -10726,15 +10468,9 @@ msgstr "Ön már a legújabb verzióval rendelkezik: %s"
 #~ msgid "Specify which account the transfer is comming from"
 #~ msgstr "Adja meg, hogy az átutalás mely számláról érkezik"
 
-#~ msgid "BRL"
-#~ msgstr "BRL"
-
 #, fuzzy
 #~ msgid "Specify which account the transfer is coming from"
 #~ msgstr "Adja meg, hogy az átutalás mely számláról érkezik"
-
-#~ msgid "SRD"
-#~ msgstr "SRD"
 
 #~ msgid "Specify where the transaction is going to or coming from "
 #~ msgstr "Adja meg, hogy az ügylet hová indul, vagy honnan jön"
@@ -10750,9 +10486,6 @@ msgstr "Ön már a legújabb verzióval rendelkezik: %s"
 
 #~ msgid "Specify the number of times this series repeats."
 #~ msgstr "Adja meg a megbízás ismétlődésének számát."
-
-#~ msgid "COP"
-#~ msgstr "COP"
 
 #, fuzzy
 #~ msgid "Specify the number of payments to be made."
@@ -10777,20 +10510,11 @@ msgstr "Ön már a legújabb verzióval rendelkezik: %s"
 #~ msgid "Specify the color for the list row 0"
 #~ msgstr "Adja meg a 0. fejléc színét"
 
-#~ msgid "DT"
-#~ msgstr "DT"
-
 #~ msgid "Specify the color for the list details"
 #~ msgstr "Adja meg a lista részleteinek színét"
 
-#~ msgid "PKR"
-#~ msgstr "PKR"
-
 #~ msgid "Specify the color for the list background"
 #~ msgstr "Adja meg a háttér színét"
-
-#~ msgid "ETB"
-#~ msgstr "ETB"
 
 #~ msgid "Specify the color for the list Border"
 #~ msgstr "Adja meg az elválasztó színét"
@@ -10801,20 +10525,11 @@ msgstr "Ön már a legújabb verzióval rendelkezik: %s"
 #~ msgid "Specify the color for future transactions"
 #~ msgstr "Válasszon színjelölést a jövőbeni ügyletekhez"
 
-#~ msgid "FJD"
-#~ msgstr "FJD"
-
 #~ msgid "Specify categories for this transaction"
 #~ msgstr "Válassz kategóriát az ügylethez"
 
-#~ msgid "MYR"
-#~ msgstr "MYR"
-
 #~ msgid "Specify advanced settings for transaction"
 #~ msgstr "Ügyletek haladó beállításai"
-
-#~ msgid "GHS"
-#~ msgstr "GHS"
 
 #~ msgid "Specify Status"
 #~ msgstr "Állapot megadása"
@@ -10825,20 +10540,11 @@ msgstr "Ön már a legújabb verzióval rendelkezik: %s"
 #~ msgid "Specify Payee"
 #~ msgstr "Kedvezményezett megadása"
 
-#~ msgid "HRK"
-#~ msgstr "HRK"
-
 #~ msgid "Specify Notes"
 #~ msgstr "Jegyzet hozzáadása"
 
-#~ msgid "Lt"
-#~ msgstr "Lt"
-
 #~ msgid "Specify Category"
 #~ msgstr "Kategória megadása"
-
-#~ msgid "ISK"
-#~ msgstr "ISK"
 
 #~ msgid "Specify Account"
 #~ msgstr "Bankszámla megadása"
@@ -10850,20 +10556,11 @@ msgstr "Ön már a legújabb verzióval rendelkezik: %s"
 #~ msgid "Source Payee"
 #~ msgstr "Kedvezményezettből"
 
-#~ msgid "KES"
-#~ msgstr "KES"
-
 #~ msgid "Sort by"
 #~ msgstr "Rendezés ... szerint"
 
-#~ msgid "KWD"
-#~ msgstr "KWD"
-
 #~ msgid "Small"
 #~ msgstr "Kicsi"
-
-#~ msgid "KSh"
-#~ msgstr "KSh"
 
 #~ msgid ""
 #~ "Skipping QIF transaction because date, type, amount is empty/invalid, "
@@ -10881,9 +10578,6 @@ msgstr "Ön már a legújabb verzióval rendelkezik: %s"
 #~ msgid "Size before"
 #~ msgstr "Méret előtte"
 
-#~ msgid "LBP"
-#~ msgstr "LBP"
-
 #~ msgid "Size after"
 #~ msgstr "Méret utána"
 
@@ -10892,9 +10586,6 @@ msgstr "Ön már a legújabb verzióval rendelkezik: %s"
 
 #~ msgid "Sign up for the announcement mailing list"
 #~ msgstr "Feliratkozás a levelezőlistára"
-
-#~ msgid "Ls"
-#~ msgstr "Ls"
 
 #~ msgid "Show/Hide Term Accounts on Summary page"
 #~ msgstr "Az összesítő lapon az Időszaki számlák megjelenítése."
@@ -10912,14 +10603,8 @@ msgstr "Ön már a legújabb verzióval rendelkezik: %s"
 #~ msgid "Show/Hide Bank Accounts on Summary page"
 #~ msgstr "Az összesítő lapon a bankszámlákat megjelenítése, vagy elrejtése. "
 
-#~ msgid "GIP"
-#~ msgstr "GIP"
-
 #~ msgid "Show all hidden payees"
 #~ msgstr "Mutassa az összes rejtett kedvezményezettet"
-
-#~ msgid "MXN"
-#~ msgstr "MXN"
 
 #~ msgid "Show Deleted (Void)"
 #~ msgstr "Töröltek (Érvénytelenek) mutatása "
@@ -10931,20 +10616,11 @@ msgstr "Ön már a legújabb verzióval rendelkezik: %s"
 #~ msgid "Setup page printing options"
 #~ msgstr "Nyomtatási beállítások"
 
-#~ msgid "NRs"
-#~ msgstr "NRs"
-
 #~ msgid "Setting new Database file"
 #~ msgstr "Új adatbázisfájl létrehozása"
 
-#~ msgid "EUR"
-#~ msgstr "EUR"
-
 #~ msgid "Sets the default currency for the database."
 #~ msgstr "Adja meg a adatbázis által használt pénznemet."
-
-#~ msgid "PHP"
-#~ msgstr "PHP"
 
 #~ msgid "Set to 'Auto Execute' on the 'Next Occurrence' date."
 #~ msgstr "A következő esedékesség napján automatikusan végrehajtásra kerül."
@@ -10954,9 +10630,6 @@ msgstr "Ön már a legújabb verzióval rendelkezik: %s"
 
 #~ msgid "Set Info Setting Value %s = %s. Error: %s"
 #~ msgstr "Info. érték beállítása %s = %s. Hiba: %s"
-
-#~ msgid "QR"
-#~ msgstr "QR"
 
 #~ msgid "Set 'Auto Execute' without user acknowlegement."
 #~ msgstr "Automatikus végrehajtás jóváhagyás nélkül."
@@ -10979,9 +10652,6 @@ msgstr "Ön már a legújabb verzióval rendelkezik: %s"
 #~ msgid "Selection can be made by using Search button."
 #~ msgstr "Kiválasztás a Keresés gomb használatával lehetséges."
 
-#~ msgid "SCR"
-#~ msgstr "SCR"
-
 #, fuzzy
 #~ msgid ""
 #~ "Select whether to create a _YYYY-MM-DD.bak file before opening the "
@@ -10997,9 +10667,6 @@ msgstr "Ön már a legújabb verzióval rendelkezik: %s"
 #~ "transaction"
 #~ msgstr "Adja hozzá a kijelölt kedvezményezettet az ügylethez"
 
-#~ msgid "SR"
-#~ msgstr "SR"
-
 #~ msgid "Select accounts"
 #~ msgstr "Számla kiválasztása"
 
@@ -11009,21 +10676,12 @@ msgstr "Ön már a legújabb verzióval rendelkezik: %s"
 #~ msgid "Select To Acct"
 #~ msgstr "Válasszon"
 
-#~ msgid "T"
-#~ msgstr "T"
-
 #, fuzzy
 #~ msgid "Select To Account-"
 #~ msgstr "Válasszon célszámlát"
 
-#~ msgid "BDT"
-#~ msgstr "BDT"
-
 #~ msgid "Select To"
 #~ msgstr "Célszámla"
-
-#~ msgid "TZS"
-#~ msgstr "TZS"
 
 #~ msgid "Select From Account"
 #~ msgstr "Válasszon kiinduló számlát"
@@ -11034,9 +10692,6 @@ msgstr "Ön már a legújabb verzióval rendelkezik: %s"
 #~ msgid "Select From"
 #~ msgstr "Kiiduló számla"
 
-#~ msgid "USD"
-#~ msgstr "USD"
-
 #~ msgid "Script type:"
 #~ msgstr "A szkript típusa:"
 
@@ -11045,9 +10700,6 @@ msgstr "Ön már a legújabb verzióval rendelkezik: %s"
 
 #~ msgid "Scale should be greater than zero"
 #~ msgstr "A váltási árfolyam nagyobb kell legyen mint 0.0"
-
-#~ msgid "W"
-#~ msgstr "W"
 
 #, fuzzy
 #~ msgid "Save the script to file name set by the Report Title."
@@ -11061,9 +10713,6 @@ msgstr "Ön már a legújabb verzióval rendelkezik: %s"
 #~ "Bezárás előtt mentse a változásokat. Mentés nélkül a változások "
 #~ "elvesznek."
 
-#~ msgid "XPF"
-#~ msgstr "XPF"
-
 #~ msgid "Save As..."
 #~ msgstr "Mentés mint ..."
 
@@ -11076,9 +10725,6 @@ msgstr "Ön már a legújabb verzióval rendelkezik: %s"
 
 #~ msgid "SQL query discarded by user"
 #~ msgstr "Az SQL űrlapot a felhasználó nem használja"
-
-#~ msgid "urn:schemas-microsoft-com:office:spreadsheet"
-#~ msgstr "urn:schemas-microsoft-com:office:spreadsheet"
 
 #~ msgid "SQL Source Script:"
 #~ msgstr "SQL forrás szkript: "
@@ -11119,9 +10765,6 @@ msgstr "Ön már a legújabb verzióval rendelkezik: %s"
 
 #~ msgid "Report Name[|Report Filename.sql[|SUB]]"
 #~ msgstr "Jelentés neve[|Report Filename.sql[|SUB]]"
-
-#~ msgid "1250"
-#~ msgstr "1250"
 
 #~ msgid "Report Font Size"
 #~ msgstr "Jelentés betűmérete"
@@ -11305,17 +10948,8 @@ msgstr "Ön már a legújabb verzióval rendelkezik: %s"
 #~ "\n"
 #~ "%s"
 
-#~ msgid "6"
-#~ msgstr "6"
-
 #~ msgid "' and marked as Follow Up"
 #~ msgstr "' és jelöld meg Egyeztetendőként"
-
-#~ msgid "1252"
-#~ msgstr "1252"
-
-#~ msgid "7"
-#~ msgstr "7"
 
 #~ msgid "Donate"
 #~ msgstr "Adományozás"
@@ -11325,9 +10959,6 @@ msgstr "Ön már a legújabb verzióval rendelkezik: %s"
 
 #~ msgid "Imported transactions have been flagged so you can review them."
 #~ msgstr "Az importált ügyletek megjelölve, így ellenőrizheti azokat."
-
-#~ msgid "(DB v.%i)"
-#~ msgstr "(DB v.%i)"
 
 #~ msgid "Visit MMEX Forum"
 #~ msgstr "Látogassa meg az MMEX Fórumát"
@@ -11357,50 +10988,20 @@ msgstr "Ön már a legújabb verzióval rendelkezik: %s"
 #~ msgid "Where the Money Goes - Last Year"
 #~ msgstr "Ahová a pénz ment - tavaly"
 
-#~ msgid "AED"
-#~ msgstr "AED"
-
 #~ msgid "Syntax error in the URL string"
 #~ msgstr "Szintaxishiba az URL sztringben"
-
-#~ msgid "AZN"
-#~ msgstr "AZN"
-
-#~ msgid "YER"
-#~ msgstr "YER"
-
-#~ msgid "BHD"
-#~ msgstr "BHD"
 
 #~ msgid "Account Name"
 #~ msgstr "Számla neve"
 
-#~ msgid "BWP"
-#~ msgstr "BWP"
-
 #~ msgid "Will search for the given text in the Notes field"
 #~ msgstr "Az adott szöveg keresése a megjegyzés mezőben"
-
-#~ msgid "CDF"
-#~ msgstr "CDF"
-
-#~ msgid "BYR"
-#~ msgstr "BYR"
-
-#~ msgid "CZK"
-#~ msgstr "CZK"
-
-#~ msgid "THB"
-#~ msgstr "THB"
 
 #~ msgid "Currency rate updated"
 #~ msgstr "Valutaárfolyam frissítve"
 
 #~ msgid "Cash Flow - Specific Accounts"
 #~ msgstr "Cash Flow - meghatározott számlák"
-
-#~ msgid "Db"
-#~ msgstr "Db"
 
 #~ msgid "Would you like to download it now ?"
 #~ msgstr "Letölti most?"
@@ -11411,92 +11012,20 @@ msgstr "Ön már a legújabb verzióval rendelkezik: %s"
 #~ msgid "Default account \""
 #~ msgstr "Alap beállított számla"
 
-#~ msgid "Fdj"
-#~ msgstr "Fdj"
-
-#~ msgid "R"
-#~ msgstr "R"
-
-#~ msgid "GNF"
-#~ msgstr "GNF"
-
-#~ msgid "Ft"
-#~ msgstr "Ft"
-
-#~ msgid "IDR"
-#~ msgstr "IDR"
-
 #~ msgid "Write error: %s"
 #~ msgstr "Íráshiba: %s"
 
 #~ msgid "Invalid value "
 #~ msgstr "Érvénytelen érték"
 
-#~ msgid "ILS"
-#~ msgstr "ILS"
-
-#~ msgid "KM"
-#~ msgstr "KM"
-
-#~ msgid "MMK"
-#~ msgstr "MMK"
-
-#~ msgid "KZT"
-#~ msgstr "KZT"
-
-#~ msgid "KMF"
-#~ msgstr "KMF"
-
-#~ msgid "LRD"
-#~ msgstr "LRD"
-
 #~ msgid "XLarge"
 #~ msgstr "Extra nagy"
-
-#~ msgid "MAD"
-#~ msgstr "MAD"
-
-#~ msgid "LSL"
-#~ msgstr "LSL"
-
-#~ msgid "MOP"
-#~ msgstr "MOP"
-
-#~ msgid "KGS"
-#~ msgstr "KGS"
-
-#~ msgid "NAD"
-#~ msgstr "NAD"
-
-#~ msgid "MRO"
-#~ msgstr "MRO"
-
-#~ msgid "OMR"
-#~ msgstr "OMR"
 
 #~ msgid "XSmall"
 #~ msgstr "Extra kicsi"
 
-#~ msgid "PYG"
-#~ msgstr "PYG"
-
-#~ msgid "P"
-#~ msgstr "P"
-
-#~ msgid "RM"
-#~ msgstr "RM"
-
-#~ msgid "FKP"
-#~ msgstr "FKP"
-
 #~ msgid "Row"
 #~ msgstr "Sor"
-
-#~ msgid "RON"
-#~ msgstr "RON"
-
-#~ msgid "SEK"
-#~ msgstr "SEK"
 
 #~ msgid "XXLarge"
 #~ msgstr "Nagyon nagy"
@@ -11504,23 +11033,8 @@ msgstr "Ön már a legújabb verzióval rendelkezik: %s"
 #~ msgid "SYP"
 #~ msgstr "SYO"
 
-#~ msgid "SGD"
-#~ msgstr "SGD"
-
-#~ msgid "TMT"
-#~ msgstr "TMT"
-
-#~ msgid "CRC"
-#~ msgstr "CRC"
-
 #~ msgid "Total Amount: "
 #~ msgstr "Végösszeg: "
-
-#~ msgid "TND"
-#~ msgstr "TND"
-
-#~ msgid "UZS"
-#~ msgstr "UZS"
 
 #~ msgid "Yahoo Suffix"
 #~ msgstr "Yahoo-kiterjesztés"
@@ -11528,20 +11042,8 @@ msgstr "Ön már a legújabb verzióval rendelkezik: %s"
 #~ msgid "Worksheet"
 #~ msgstr "Munkalap"
 
-#~ msgid "VEF"
-#~ msgstr "VEF"
-
-#~ msgid "centavo"
-#~ msgstr "centavo"
-
-#~ msgid "AUD"
-#~ msgstr "AUD"
-
 #~ msgid " : Requires MMEX Restart"
 #~ msgstr " : Az MMEX újraindítását igényli!"
-
-#~ msgid "kn"
-#~ msgstr "kn"
 
 #~ msgid " Unknown QIF line: "
 #~ msgstr "Ismeretlen QIF sor: "
@@ -11589,12 +11091,6 @@ msgstr "Ön már a legújabb verzióval rendelkezik: %s"
 #~ msgid "&Go To.."
 #~ msgstr "&Ugrás.."
 
-#~ msgid ":"
-#~ msgstr ":"
-
-#~ msgid "4"
-#~ msgstr "4"
-
 #~ msgid "Add"
 #~ msgstr "Hozzáad"
 
@@ -11612,9 +11108,6 @@ msgstr "Ön már a legújabb verzióval rendelkezik: %s"
 
 #~ msgid "Your current version is: %s"
 #~ msgstr "Az Ön által használt verzió: %s"
-
-#~ msgid "ALL"
-#~ msgstr "ALL"
 
 #~ msgid "Allow for any delay in quotes"
 #~ msgstr "A jegyzésekben a késleltetés engedélyezett"
@@ -11648,9 +11141,6 @@ msgstr "Ön már a legújabb verzióval rendelkezik: %s"
 #~ msgid "European euro"
 #~ msgstr "Európai euró"
 
-#~ msgid "Lesotho loti"
-#~ msgstr "Lesotho loti"
-
 #~ msgid "Bangladeshi taka"
 #~ msgstr "Bangladesi laka"
 
@@ -11662,9 +11152,6 @@ msgstr "Ön már a legújabb verzióval rendelkezik: %s"
 
 #~ msgid "Cannot locate previously opened database.\n"
 #~ msgstr "Nem találok előzőleg megnyitott adatbázist.\n"
-
-#~ msgid "finance.au.yahoo.com"
-#~ msgstr "finance.au.yahoo.com"
 
 #~ msgid "Accounts: %s"
 #~ msgstr "Számlák: %s"
@@ -11690,95 +11177,23 @@ msgstr "Ön már a legújabb verzióval rendelkezik: %s"
 #~ msgid "for Account: "
 #~ msgstr "célszámla: "
 
-#~ msgid "BAM"
-#~ msgstr "BAM"
-
-#~ msgid "AFN"
-#~ msgstr "AFN"
-
-#~ msgid "Br"
-#~ msgstr "Br"
-
 #~ msgid " To: "
 #~ msgstr " Eddig: "
 
 #~ msgid "Cell"
 #~ msgstr "Cella"
 
-#~ msgid "CFA"
-#~ msgstr "CFA"
-
-#~ msgid "ERN"
-#~ msgstr "ERN"
-
 #~ msgid "minutes while market is open"
 #~ msgstr "perc, amíg a tőzsde nyitva"
-
-#~ msgid "GEL"
-#~ msgstr "GEL"
-
-#~ msgid "Esc"
-#~ msgstr "Esc"
-
-#~ msgid "IRR"
-#~ msgstr "IRR"
-
-#~ msgid "SDG"
-#~ msgstr "SDG"
-
-#~ msgid "KRW"
-#~ msgstr "KRW"
-
-#~ msgid "JMD"
-#~ msgstr "JMD"
-
-#~ msgid "LYD"
-#~ msgstr "LYD"
 
 #~ msgid "mmGetColumnChoice: This is not a 2 dimentional array"
 #~ msgstr "mmGetColumnChoice: a tömb nem kétdimenziós"
 
-#~ msgid "MWK"
-#~ msgstr "MWK"
-
-#~ msgid "MDL"
-#~ msgstr "MDL"
-
-#~ msgid "PGK"
-#~ msgstr "PGK"
-
-#~ msgid "LD"
-#~ msgstr "LD"
-
-#~ msgid "RWF"
-#~ msgstr "RWF"
-
-#~ msgid "Pence"
-#~ msgstr "Pence"
-
-#~ msgid "SOS"
-#~ msgstr "SOS"
-
 #~ msgid "mmGetTableChoice: Array not recognised"
 #~ msgstr "mmGetTableChoice: ismeretlen tömb"
 
-#~ msgid "TWD"
-#~ msgstr "TWD"
-
-#~ msgid "SZL"
-#~ msgstr "SZL"
-
-#~ msgid "VUV"
-#~ msgstr "VUV"
-
-#~ msgid "DZD"
-#~ msgstr "DZD"
-
 #~ msgid "pul"
 #~ msgstr "húzás"
-
-#~ msgid "XAF"
-#~ msgstr "XAF"
 
 #~ msgid " and contributors from around the world"
 #~ msgstr " és a közreműködők világszerte."
@@ -11834,9 +11249,6 @@ msgstr "Ön már a legújabb verzióval rendelkezik: %s"
 #~ msgid "Guatemalan quetzal"
 #~ msgstr "Guatemalai quetzal"
 
-#~ msgid "2"
-#~ msgstr "2"
-
 #~ msgid "or"
 #~ msgstr "vagy"
 
@@ -11847,44 +11259,14 @@ msgstr "Ön már a legújabb verzióval rendelkezik: %s"
 #~ "A nyelvi fájlok könyvtára nem létezik:\n"
 #~ "%s"
 
-#~ msgid "1253"
-#~ msgstr "1253"
-
-#~ msgid "AOA"
-#~ msgstr "AOA"
-
 #~ msgid "Cash Flow Forecast For All Accounts - A Year Ahead"
 #~ msgstr "Cash Flow előrejelzés minden számlához"
-
-#~ msgid "CNY"
-#~ msgstr "CNY"
-
-#~ msgid "BIF"
-#~ msgstr "BIF"
-
-#~ msgid "FG"
-#~ msgstr "FG"
 
 #~ msgid "to"
 #~ msgstr "...nak/nek"
 
-#~ msgid "K"
-#~ msgstr "K"
-
-#~ msgid "GTQ"
-#~ msgstr "GTQ"
-
-#~ msgid "MKD"
-#~ msgstr "MKD"
-
 #~ msgid "USh"
 #~ msgstr "USH"
-
-#~ msgid "QAR"
-#~ msgstr "QAR"
-
-#~ msgid "NGN"
-#~ msgstr "NGN"
 
 #~ msgid "Stocks Total:"
 #~ msgstr "Részvények összesen: "
@@ -11892,17 +11274,11 @@ msgstr "Ön már a legújabb verzióval rendelkezik: %s"
 #~ msgid "to "
 #~ msgstr " eddig: "
 
-#~ msgid "XOF"
-#~ msgstr "XOF"
-
 #~ msgid "Total Balance on all Accounts"
 #~ msgstr "Az összes számla egyenlege: "
 
 #~ msgid " missing amount, skipping."
 #~ msgstr " hiányzó összeg, kihagyás"
-
-#~ msgid "HTG"
-#~ msgstr "HTG"
 
 #, fuzzy
 #~ msgid "&Stock Investments"
@@ -11910,9 +11286,6 @@ msgstr "Ön már a legújabb verzióval rendelkezik: %s"
 
 #~ msgid " using the relocate command:"
 #~ msgstr "az áthelyezés parancs használata: "
-
-#~ msgid "%1$s - %2$s"
-#~ msgstr "%1$s - %2$s"
 
 #~ msgid "to category: "
 #~ msgstr " kategóriára:"
@@ -11923,14 +11296,8 @@ msgstr "Ön már a legújabb verzióval rendelkezik: %s"
 #~ msgid "Becomes blank when not active."
 #~ msgstr "Üressé válik, ha nem aktív."
 
-#~ msgid "1256"
-#~ msgstr "1256"
-
 #~ msgid "Bug reports"
 #~ msgstr "Hibajelentések"
-
-#~ msgid "BOB"
-#~ msgstr "BOB"
 
 #~ msgid "Specify how many stock history prices download from purchase date"
 #~ msgstr ""
@@ -11944,18 +11311,6 @@ msgstr "Ön már a legújabb verzióval rendelkezik: %s"
 #~ msgid "&Delete Series"
 #~ msgstr "Sorozat Törlése"
 
-#~ msgid "NPR"
-#~ msgstr "NPR"
-
-#~ msgid "Kr"
-#~ msgstr "Kr"
-
-#~ msgid "UM"
-#~ msgstr "UM"
-
-#~ msgid "NZD"
-#~ msgstr "NZD"
-
 #~ msgid "&Bank Accounts"
 #~ msgstr "&Bankszámlák "
 
@@ -11966,20 +11321,11 @@ msgstr "Ön már a legújabb verzióval rendelkezik: %s"
 #~ msgid "Calendar"
 #~ msgstr "Naptár"
 
-#~ msgid "BSD"
-#~ msgstr "BSD"
-
 #~ msgid "Add Stock Transactions"
 #~ msgstr "Részvényügyletek hozzáadása"
 
 #~ msgid "Samoan tala"
 #~ msgstr "szamoai tala"
-
-#~ msgid "LAK"
-#~ msgstr "LAK"
-
-#~ msgid "Rp"
-#~ msgstr "Rp"
 
 #~ msgid ""
 #~ " One of the following fields: date, payee, transaction type, amount, "
@@ -11996,18 +11342,9 @@ msgstr "Ön már a legújabb verzióval rendelkezik: %s"
 #~ msgid "Amount ±"
 #~ msgstr "Összeg"
 
-#~ msgid "SBD"
-#~ msgstr "SBD"
-
 #, fuzzy
 #~ msgid "Added category: %s"
 #~ msgstr "Kategória hozzáadása"
-
-#~ msgid "DOP"
-#~ msgstr "DOP"
-
-#~ msgid "D"
-#~ msgstr "D"
 
 #~ msgid "Japanese yen"
 #~ msgstr "Japán yen"

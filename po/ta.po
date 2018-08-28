@@ -10200,13 +10200,6 @@ msgstr "புதிய வெளியீடு நிறுவப்பட்�
 #~ msgstr "எங்கிருந்து தொகை வருகிறது"
 
 #, fuzzy
-#~ msgid "123456.78"
-#~ msgstr "123456.78"
-
-#~ msgid ":"
-#~ msgstr ":"
-
-#, fuzzy
 #~ msgid ""
 #~ "Account Bal: %s      Reconciled Bal: %s      Diff: %s      Displayed "
 #~ "Bal: %s"
@@ -10681,9 +10674,6 @@ msgstr "புதிய வெளியீடு நிறுவப்பட்�
 #, fuzzy
 #~ msgid "Unit Price"
 #~ msgstr "தற்போதைய விலை"
-
-#~ msgid "finance.au.yahoo.com"
-#~ msgstr "finance.au.yahoo.com"
 
 #, fuzzy
 #~ msgid "Universal CSV Export"

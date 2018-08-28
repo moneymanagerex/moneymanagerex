@@ -9016,9 +9016,6 @@ msgstr "Imate instaliranu najnoviju verziju!"
 #~ msgid "Income vs Expenses for Financial Year: "
 #~ msgstr "Prihodi vs Troškovi za godinu :"
 
-#~ msgid "E&xit\tAlt-X"
-#~ msgstr "E&xit\tAlt-X"
-
 #, fuzzy
 #~ msgid "View Duplicates"
 #~ msgstr "Umnoži"
@@ -9479,9 +9476,6 @@ msgstr "Imate instaliranu najnoviju verziju!"
 
 #~ msgid "Options Dialog"
 #~ msgstr "Sučelje opcija"
-
-#~ msgid ":"
-#~ msgstr ":"
 
 #, fuzzy
 #~ msgid "Organise Categories"
@@ -10795,9 +10789,6 @@ msgstr "Imate instaliranu najnoviju verziju!"
 #~ msgid "Using Language : "
 #~ msgstr "Koristite jezik :"
 
-#~ msgid "finance.au.yahoo.com"
-#~ msgstr "finance.au.yahoo.com"
-
 #~ msgid "Value of 123456.78 will be"
 #~ msgstr "Vriednost 123456.78 će biti"
 
@@ -10815,9 +10806,6 @@ msgstr "Imate instaliranu najnoviju verziju!"
 #, fuzzy
 #~ msgid "View All transactions"
 #~ msgstr "Prikaži sve transakcije"
-
-#~ msgid "Idle"
-#~ msgstr "Idle"
 
 #, fuzzy
 #~ msgid "Specify the number of payments to be made."

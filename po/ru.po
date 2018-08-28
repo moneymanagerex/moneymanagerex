@@ -8736,9 +8736,6 @@ msgstr "У вас установлена новейшая версия %s"
 #~ "Замена категории: \n"
 #~ "%s на: %s"
 
-#~ msgid "Guatemalan quetzal"
-#~ msgstr "Guatemalan quetzal"
-
 #~ msgid ""
 #~ "Changing all payees of: %s \n"
 #~ "\n"
@@ -8748,14 +8745,8 @@ msgstr "У вас установлена новейшая версия %s"
 #~ "\n"
 #~ " на: %s"
 
-#~ msgid "Haitian gourde"
-#~ msgstr "Haitian gourde"
-
 #~ msgid "XML Files (*.xml) | *.xml;*.XML | All files | *.*"
 #~ msgstr "XML файлы (*.xml) | *.xml;*.XML | Все файлы | *.*"
-
-#~ msgid "Indonesian rupiah"
-#~ msgstr "Indonesian rupiah"
 
 #~ msgid "Next"
 #~ msgstr "Следующий"
@@ -8788,9 +8779,6 @@ msgstr "У вас установлена новейшая версия %s"
 #~ msgid "E&xit\tAlt-X"
 #~ msgstr "В&ыход\tAlt-X"
 
-#~ msgid "Kyrgyzstani som"
-#~ msgstr "Kyrgyzstani som"
-
 #~ msgid "BankAccount"
 #~ msgstr "Банковский счёт"
 
@@ -8800,9 +8788,6 @@ msgstr "У вас установлена новейшая версия %s"
 #~ msgid "My Usage"
 #~ msgstr "Статистика"
 
-#~ msgid "Lebanese lira"
-#~ msgstr "Lebanese lira"
-
 #~ msgid "A generic network error occurred"
 #~ msgstr "Произошла общая ошибка сети"
 
@@ -8811,9 +8796,6 @@ msgstr "У вас установлена новейшая версия %s"
 
 #~ msgid "The client failed to connect the server"
 #~ msgstr "Не удалось подключиться к серверу"
-
-#~ msgid "Macanese pataca"
-#~ msgstr "Macanese pataca"
 
 #~ msgid "An error occurred during reconnection"
 #~ msgstr "Произошла ошибка во время установки соединения"
@@ -8825,9 +8807,6 @@ msgstr "У вас установлена новейшая версия %s"
 #~ msgid "Cannot get data from website"
 #~ msgstr "Не могу получить данные из сети"
 
-#~ msgid "Maldivian rufiyaa"
-#~ msgstr "Maldivian rufiyaa"
-
 #~ msgid "Download in progress"
 #~ msgstr "Загрузка"
 
@@ -8836,9 +8815,6 @@ msgstr "У вас установлена новейшая версия %s"
 
 #~ msgid "Custom Fields | %s %i"
 #~ msgstr "Настраиваемые поля | %s %i"
-
-#~ msgid "Mongolian tugrik"
-#~ msgstr "Mongolian tugrik"
 
 #~ msgid "Close custom field window"
 #~ msgstr "Закрыть окно"
@@ -8850,9 +8826,6 @@ msgstr "У вас установлена новейшая версия %s"
 #~ msgstr ""
 #~ "Чтобы применить новые изменения надо закрыть и снова открыть панель"
 
-#~ msgid "Nigerian naira"
-#~ msgstr "Nigerian naira"
-
 #~ msgid "European euro"
 #~ msgstr "Евро"
 
@@ -8862,47 +8835,11 @@ msgstr "У вас установлена новейшая версия %s"
 #~ msgid "Ukrainian hryvnia"
 #~ msgstr "Украинская гривна"
 
-#~ msgid "Panamanian balboa"
-#~ msgstr "Panamanian balboa"
-
-#~ msgid "Angolan kwanza"
-#~ msgstr "Angolan kwanza"
-
 #~ msgid "Password not entered for encrypted Database.\n"
 #~ msgstr "Не введён пароль для зашифрованной базы данных.\n"
 
-#~ msgid "West African CFA franc"
-#~ msgstr "West African CFA franc"
-
-#~ msgid "Paraguayan guarani"
-#~ msgstr "Paraguayan guarani"
-
-#~ msgid "Bosnia and Herzegovina konvertibilna marka"
-#~ msgstr "Bosnia and Herzegovina konvertibilna marka"
-
-#~ msgid "Bhutanese ngultrum"
-#~ msgstr "Bhutanese ngultrum"
-
-#~ msgid "Cambodian riel"
-#~ msgstr "Cambodian riel"
-
-#~ msgid "Polish zloty"
-#~ msgstr "Polish zloty"
-
-#~ msgid "Croatian kuna"
-#~ msgstr "Croatian kuna"
-
 #~ msgid "Choose database file to Save As"
 #~ msgstr "Выберите файл базы данных чтобы сохранить как"
-
-#~ msgid "Gambian dalasi"
-#~ msgstr "Gambian dalasi"
-
-#~ msgid "South African rand"
-#~ msgstr "South African rand"
-
-#~ msgid "Honduran lempira"
-#~ msgstr "Honduran lempira"
 
 #~ msgid "Georgian lari"
 #~ msgstr "Грузинский лари"
@@ -8923,9 +8860,6 @@ msgstr "У вас установлена новейшая версия %s"
 #~ msgid "RecurringTransaction"
 #~ msgstr "Повторяющиеся транзакции"
 
-#~ msgid "Latvian lats"
-#~ msgstr "Latvian lats"
-
 #~ msgid "An error occurred during negotiation"
 #~ msgstr "Произошла ошибка во время установки соединения"
 
@@ -8934,9 +8868,6 @@ msgstr "У вас установлена новейшая версия %s"
 
 #~ msgid "Someone tried to send a command during a transfer"
 #~ msgstr "Кто-то пытается отдать команду во время отправки"
-
-#~ msgid "Macedonian denar"
-#~ msgstr "Macedonian denar"
 
 #~ msgid "ALL"
 #~ msgstr "Все"
@@ -8953,47 +8884,11 @@ msgstr "У вас установлена новейшая версия %s"
 #~ msgid "Add, edit and delete custom fields"
 #~ msgstr "Добавлять, редактировать и удалять пользовательские поля"
 
-#~ msgid "Myanma kyat"
-#~ msgstr "Myanma kyat"
-
 #~ msgid "UK Pound"
 #~ msgstr "Фунт Великобритании"
 
 #~ msgid "Custom Fields | New %s"
 #~ msgstr "Пользовательские поля | Новое %s"
-
-#~ msgid "Bangladeshi taka"
-#~ msgstr "Bangladeshi taka"
-
-#~ msgid "Papua New Guinean kina"
-#~ msgstr "Papua New Guinean kina"
-
-#~ msgid "Botswana pula"
-#~ msgstr "Botswana pula"
-
-#~ msgid "Central African CFA franc"
-#~ msgstr "Central African CFA franc"
-
-#~ msgid "Eritrean nakfa"
-#~ msgstr "Eritrean nakfa"
-
-#~ msgid "Sierra Leonean leone"
-#~ msgstr "Sierra Leonean leone"
-
-#~ msgid "Thai baht"
-#~ msgstr "Thai baht"
-
-#~ msgid "Hungarian forint"
-#~ msgstr "Hungarian forint"
-
-#~ msgid "Vanuatu vatu"
-#~ msgstr "Vanuatu vatu"
-
-#~ msgid "South Korean won"
-#~ msgstr "South Korean won"
-
-#~ msgid "Samoan tala"
-#~ msgstr "Samoan tala"
 
 #~ msgid "The remote file doesn't exist"
 #~ msgstr "Файл не существует"
@@ -9001,26 +8896,11 @@ msgstr "У вас установлена новейшая версия %s"
 #~ msgid "When database file opening:"
 #~ msgstr "При открытии базы данных:"
 
-#~ msgid "Mauritanian ouguiya"
-#~ msgstr "Mauritanian ouguiya"
-
 #~ msgid "Amount ±: "
 #~ msgstr "Значеник ±: "
 
-#~ msgid "Peruvian nuevo sol"
-#~ msgstr "Peruvian nuevo sol"
-
 #~ msgid "Convert Encrypted &DB"
 #~ msgstr "Преобразовать &зашифрованную БД"
-
-#~ msgid "Tajikistani somoni"
-#~ msgstr "Tajikistani somoni"
-
-#~ msgid "Uruguayan peso"
-#~ msgstr "Uruguayan peso"
-
-#~ msgid "Lesotho loti"
-#~ msgstr "Lesotho loti"
 
 #~ msgid "Wrong file type!"
 #~ msgstr "Неправильный тип файла!"
@@ -9031,14 +8911,8 @@ msgstr "У вас установлена новейшая версия %s"
 #~ msgid "Convert Encrypted DB to Non-Encrypted DB"
 #~ msgstr "Преобразовать шифрованную базу данных в не зашифрованную"
 
-#~ msgid "Vietnamese dong"
-#~ msgstr "Vietnamese dong"
-
 #~ msgid "Amount ±"
 #~ msgstr "Значеник ±"
-
-#~ msgid "Omani rial"
-#~ msgstr "Omani rial"
 
 #~ msgid "Albanian lek"
 #~ msgstr "Албанский лек"

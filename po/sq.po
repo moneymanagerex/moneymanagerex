@@ -8678,20 +8678,11 @@ msgstr "Ti ke tashmë versionin e fundit %s"
 #~ msgid "Comma"
 #~ msgstr "Presjet"
 
-#~ msgid "1"
-#~ msgstr "1"
-
 #~ msgid "Semicolon"
 #~ msgstr "Pikëpresjet "
 
-#~ msgid "6"
-#~ msgstr "6"
-
 #~ msgid "TAB"
 #~ msgstr "Tabela"
-
-#~ msgid "5"
-#~ msgstr "5"
 
 #~ msgid "CSV Delimiter"
 #~ msgstr "Decimetri i CSV"
@@ -8779,12 +8770,6 @@ msgstr "Ti ke tashmë versionin e fundit %s"
 #~ msgid "Syntax error in the URL string"
 #~ msgstr "Sintaksa në vargun e URL, Gabim !"
 
-#~ msgid "%s\t: %0.6f -> %0.6f\n"
-#~ msgstr "%s\t: %0.6f -> %0.6f\n"
-
-#~ msgid "%s\t -> %s\n"
-#~ msgstr "%s\t -> %s\n"
-
 #~ msgid "Invalid value "
 #~ msgstr "Vlerë e Pavlefshme"
 
@@ -8826,9 +8811,6 @@ msgstr "Ti ke tashmë versionin e fundit %s"
 
 #~ msgid "All Bank Accounts"
 #~ msgstr "Të Gjitha LLogaritë Bankare "
-
-#~ msgid "Normal"
-#~ msgstr "Normal"
 
 #~ msgid "Daily Cash Flow - Specific Accounts"
 #~ msgstr "Fluksi ditor i parasë - Llogari të veçanta"
@@ -8935,9 +8917,6 @@ msgstr "Ti ke tashmë versionin e fundit %s"
 #~ msgid "Cannot locate previously opened database.\n"
 #~ msgstr "Nuk mund të gjej DB e hapur së fundmi.\n"
 
-#~ msgid "4"
-#~ msgstr "4"
-
 #~ msgid "Enter password for new database"
 #~ msgstr "Shkruaj Fjalëkalimin për DB e ri"
 
@@ -8964,16 +8943,10 @@ msgstr "Ti ke tashmë versionin e fundit %s"
 #~ msgid "Follow MMEX on Facebook"
 #~ msgstr "Ndiq MMEX ne facebook"
 
-#~ msgid "7"
-#~ msgstr "7"
-
 #~ msgid "Imported transactions have been flagged so you can review them."
 #~ msgstr ""
 #~ "Transaksionet e importuara janë shënuar me flamur që të mund ti "
 #~ "shqyrtosh."
-
-#~ msgid "%s\t: %s\n"
-#~ msgstr "%s\t: %s\n"
 
 #~ msgid "Run this program in your Android smart phone or tablet"
 #~ msgstr "Drejto këtë program në telefonin tënd android osa në tablet "
@@ -9091,9 +9064,6 @@ msgstr "Ti ke tashmë versionin e fundit %s"
 #~ msgid "Last Calendar Month"
 #~ msgstr "Muaji I fundit kalendarik"
 
-#~ msgid "3"
-#~ msgstr "3"
-
 #~ msgid "Term Account"
 #~ msgstr "Llogari me Afat"
 
@@ -9147,12 +9117,6 @@ msgstr "Ti ke tashmë versionin e fundit %s"
 
 #~ msgid "The client failed to connect the server"
 #~ msgstr "Lidhja e klientit në server dështoi"
-
-#~ msgid "mmGeneralGroupReport"
-#~ msgstr "mmGeneralGroupReport"
-
-#~ msgid "2"
-#~ msgstr "2"
 
 #~ msgid ""
 #~ "Tip: Change all transactions using this Payee to another Payee\n"
