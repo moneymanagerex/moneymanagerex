@@ -734,8 +734,8 @@ bool mmMainCurrencyDialog::SetBaseCurrency(int& baseCurrencyID)
 
     if (Model_CurrencyHistory::instance().all().size() > 0)
     {
-        if (wxMessageBox(_("Setting a new base currency will delete all historic rates:") + "\n"
-            + _("it's possible to re-download them after setting the new base currency.") + "\n\n"
+        if (wxMessageBox(_("Setting a new base currency will delete all historic rates,\n"
+            "it's possible to re-download them after setting the new base currency.") + "\n\n"
             + _("Do you want to continue?"), _("Currency Dialog"), wxYES_NO | wxYES_DEFAULT | wxICON_ERROR)
             != wxYES)
         {
