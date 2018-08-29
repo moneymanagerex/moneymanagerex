@@ -92,7 +92,7 @@ bool mmCurrencyDialog::Create(wxWindow* parent, wxWindowID id
 
     if (!m_currency)
     {
-        mmSingleChoiceDialog select_currency_name(this, _("Currency name"), _("Select Currency"), Model_Currency::instance().all_currency_names());
+        mmSingleChoiceDialog select_currency_name(this, _("Currency Name"), _("Select Currency"), Model_Currency::instance().all_currency_names());
         if (select_currency_name.ShowModal() == wxID_OK)
         {
             const wxString currencyname = select_currency_name.GetStringSelection();
