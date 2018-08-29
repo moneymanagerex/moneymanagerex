@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Money Manager Ex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2018-08-28 15:26+0200\n"
-"PO-Revision-Date: 2018-04-24 19:49+0100\n"
+"POT-Creation-Date: 2018-08-29 15:21+0200\n"
+"PO-Revision-Date: 2018-08-29 15:40+0200\n"
 "Last-Translator: Tomasz Słodkowicz\n"
 "Language: pl_PL\n"
 "MIME-Version: 1.0\n"
@@ -11,7 +11,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ..\n"
-"X-Launchpad-Export-Date: 2011-10-25 16:24+0000\n"
 "X-Generator: Poedit 2.0.6\n"
 "X-Poedit-KeywordsList: wxTRANSLATE;_\n"
 "X-Poedit-SearchPath-0: src\n"
@@ -858,24 +857,20 @@ msgid "Daily"
 msgstr "Codziennie"
 
 #: src/billsdepositsdialog.cpp:61 src/billsdepositsdialog.cpp:1406
-#, fuzzy
 msgid "In (x) Days"
-msgstr "Za %s dni"
+msgstr "Za (x) dni"
 
 #: src/billsdepositsdialog.cpp:62 src/billsdepositsdialog.cpp:1406
-#, fuzzy
 msgid "In (x) Months"
-msgstr "Za %s miesiące"
+msgstr "Za (x) miesięcy"
 
 #: src/billsdepositsdialog.cpp:63
-#, fuzzy
 msgid "Every (x) Days"
-msgstr "Co %s dni"
+msgstr "Co (x) dni"
 
 #: src/billsdepositsdialog.cpp:64
-#, fuzzy
 msgid "Every (x) Months"
-msgstr "Co %s miesiące"
+msgstr "Co (x) miesięcy"
 
 #: src/billsdepositsdialog.cpp:65 src/billsdepositspanel.cpp:60
 msgid "Monthly (last day)"
@@ -930,9 +925,8 @@ msgid "Payments Left"
 msgstr "Pozostało płatności"
 
 #: src/billsdepositsdialog.cpp:479
-#, fuzzy
 msgid "Request user to enter payment"
-msgstr "Poproś o wprowadzenie w dniu 'daty płatności'"
+msgstr "Poproś o wprowadzenie płatności"
 
 #: src/billsdepositsdialog.cpp:480
 msgid "User requested to enter this transaction on the 'Date Paid'"
@@ -941,9 +935,8 @@ msgstr ""
 "płatności'"
 
 #: src/billsdepositsdialog.cpp:483
-#, fuzzy
 msgid "Grant automatic execute"
-msgstr "Zezwól na automatyczne wykonanie tej płatności."
+msgstr "Zezwól na automatyczne wykonanie"
 
 #: src/billsdepositsdialog.cpp:484
 msgid "The requested payment will occur without user interaction"
@@ -1234,12 +1227,11 @@ msgstr "Nieprawidłowa wartość"
 
 #: src/billsdepositsdialog.cpp:1405
 msgid "Choose one of the following:"
-msgstr ""
+msgstr "Wybierz jedno z:"
 
 #: src/billsdepositsdialog.cpp:1405 src/mmSimpleDialogs.cpp:232
-#, fuzzy
 msgid "Invalid Choice"
-msgstr "Nieprawidłowa nazwa"
+msgstr "Nieprawidłowy wybór"
 
 #: src/billsdepositsdialog.cpp:1482 src/transdialog.cpp:1169
 #: src/usertransactionpanel.cpp:199
@@ -1889,18 +1881,13 @@ msgstr "Ulubione"
 msgid "Currency Manager"
 msgstr "Zarządzanie walutami"
 
-#: src/currencydialog.cpp:95
-msgid "Currency name"
+#: src/currencydialog.cpp:95 src/currencydialog.cpp:160
+msgid "Currency Name"
 msgstr "Nazwa waluty"
 
 #: src/currencydialog.cpp:152
-#, fuzzy
 msgid "Currency Type"
-msgstr "Nazwa waluty"
-
-#: src/currencydialog.cpp:160
-msgid "Currency Name"
-msgstr "Nazwa waluty"
+msgstr "Typ waluty"
 
 #: src/currencydialog.cpp:166
 msgid "Currency Symbol"
@@ -1927,9 +1914,8 @@ msgid "Scale"
 msgstr "Skala"
 
 #: src/currencydialog.cpp:208
-#, fuzzy
 msgid "Historic currency"
-msgstr "Ukryj waluty historyczne"
+msgstr "Waluta historyczna"
 
 #: src/currencydialog.cpp:213
 msgid "Value Display Sample:"
@@ -2011,28 +1997,27 @@ msgstr ""
 
 #: src/customfieldeditdialog.cpp:164
 msgid "Choices"
-msgstr "Dobór"
+msgstr "Wartości"
 
 #: src/customfieldeditdialog.cpp:166
 msgid "Enter the choices for this field separated with a semicolon"
-msgstr "Wprowadź wybrane do tego pola przedzielając średnikiem"
+msgstr "Wprowadź dopuszczalne wartości dla tego pola rozdzielając średnikiem"
 
 #: src/customfieldeditdialog.cpp:169
 msgid "Digits scale"
-msgstr ""
+msgstr "Miejsca dziesiętne"
 
 #: src/customfieldeditdialog.cpp:171
 msgid "Enter the decimal digits scale allowed"
-msgstr ""
+msgstr "Wprowadź dopuszczalną liczbę cyfr po przecinku"
 
 #: src/customfieldeditdialog.cpp:174
-#, fuzzy
 msgid "Panel's column"
-msgstr "Resetuj kolumny"
+msgstr "Kolumna w panelu"
 
 #: src/customfieldeditdialog.cpp:179
 msgid "Select a value to represent the item on a panel"
-msgstr ""
+msgstr "Wbierz kolumnę w której będzie prezentowane pole w panelu"
 
 #: src/customfieldeditdialog.cpp:221
 msgid "Changing field type will delete all content!"
@@ -2076,10 +2061,13 @@ msgid ""
 "value replaces allowed\n"
 "Please consider that there isn't any validation!"
 msgstr ""
+"Ta funkcja dokona masowego wyszukania i zastąpienia wartości dla własnego pola \"%s\".\n"
+"Wyszuka i zastąpi jedynie całą zawartość pola, nie jest możliwe zastąpienie jedynie fragmentu zapisanej wartości.\n"
+"Zauważ, że nie ma tu żadnego sprawdzania poprawności!"
 
 #: src/customfieldlistdialog.cpp:194
 msgid "Confirm Custom Field Content Update"
-msgstr "Potwierdź uaktualnienie pola"
+msgstr "Potwierdź aktualizację wartości pola"
 
 #: src/customfieldlistdialog.cpp:199
 msgid "Find what"
@@ -3442,14 +3430,12 @@ msgid "Investment Income"
 msgstr "Przychody z inwestycji"
 
 #: src/dbupgrade.cpp:86
-#, fuzzy
 msgid "upgrade"
-msgstr "Aktualizacja MMEX"
+msgstr "zaktualizować"
 
 #: src/dbupgrade.cpp:110
-#, fuzzy
 msgid "initialization"
-msgstr "Optymalizacja bazy danych"
+msgstr "zainicjalizować"
 
 #: src/dbupgrade.cpp:129
 msgid "MMEX database error!"
@@ -3470,18 +3456,16 @@ msgid "MMEX database upgrade"
 msgstr "Aktualizacja bazy danych MMEX"
 
 #: src/dbupgrade.cpp:148
-#, fuzzy
 msgid "MMEX database vacuum failed!"
-msgstr "Aktualizacja bazy danych MMEX"
+msgstr "Optymizacja bazy danych MMEX nie powiodła się!"
 
 #: src/dbupgrade.cpp:149
-#, fuzzy
 msgid ""
 "MMEX still should work, but try to re-optimize it from Tools -> Database -> "
 "Optimize"
 msgstr ""
-"Zalecamy optymizację pliku bazy danych z menu Narzędzia -> Baza danych -> "
-"Optymalizuj"
+"MMEX powinien działać, ale zalecamy optymizację pliku bazy danych z menu "
+"Narzędzia -> Baza danych -> Optymalizuj"
 
 #: src/dbupgrade.cpp:153
 #, c-format
@@ -3489,9 +3473,9 @@ msgid "MMEX database successfully upgraded to version %i"
 msgstr "Baza danych MMEX poprawnie uaktualniona do wersji %i"
 
 #: src/dbupgrade.cpp:160
-#, fuzzy, c-format
+#, c-format
 msgid "MMEX database %s to version %i failed!"
-msgstr "Nie udało się zaktualizować bazy danych MMEX do wersji %i"
+msgstr "Nie udało się %s bazy danych MMEX do wersji %i!"
 
 #: src/dbupgrade.cpp:161
 msgid ""
@@ -3626,7 +3610,7 @@ msgstr "Wszystkie, z wyjątkiem uzgodnionych"
 
 #: src/filtertransdialog.cpp:184 src/transactionsupdatedialog.cpp:100
 msgid "Specify"
-msgstr " Określ"
+msgstr "Wybierz"
 
 #: src/filtertransdialog.cpp:213 src/reports/mmDateRange.cpp:27
 msgid "Date Range"
@@ -3665,23 +3649,22 @@ msgid "Amount Range"
 msgstr "Zakres kwoty:"
 
 #: src/filtertransdialog.cpp:350
-#, fuzzy
 msgid "Settings"
-msgstr "Ustawienia CSV"
+msgstr "Zapisane zestawy"
 
 #: src/filtertransdialog.cpp:371 src/filtertransdialog.cpp:669
 #: src/filtertransdialog.cpp:918 src/filtertransdialog.cpp:1192
-#, fuzzy, c-format
+#, c-format
 msgid "%i: Empty"
-msgstr "Linia %ld: pusta"
+msgstr "%i: pusty"
 
 #: src/filtertransdialog.cpp:380
 msgid "Save active values into current Preset selection"
-msgstr ""
+msgstr "Zapisz powyższe wartości w wybranym zestawie"
 
 #: src/filtertransdialog.cpp:385
 msgid "Clear all fields for current Preset selection"
-msgstr ""
+msgstr "Wyczyść wszyskie pola w wybranym zestawie"
 
 #: src/filtertransdialog.cpp:399
 msgid "&Activate "
@@ -3700,9 +3683,8 @@ msgid "Deactivate the filter"
 msgstr "Dezaktywuj filtr"
 
 #: src/filtertransdialog.cpp:408 src/transdialog.cpp:573
-#, fuzzy
 msgid "Show/Hide custom fields window"
-msgstr "Otwórz okno własnego pola"
+msgstr "Pokaż/ukryj okno własnych pól"
 
 #: src/filtertransdialog.cpp:787
 msgid "Filtering Details: "
@@ -3710,43 +3692,39 @@ msgstr "Szczegóły filtrowania: "
 
 #: src/filtertransdialog.cpp:822
 msgid "Since"
-msgstr ""
+msgstr "Data od"
 
 #: src/filtertransdialog.cpp:824
 msgid "Before"
-msgstr ""
+msgstr "Data do"
 
 #: src/filtertransdialog.cpp:878
-#, fuzzy
 msgid "Amount Min."
-msgstr "Kwota"
+msgstr "Kwota min"
 
 #: src/filtertransdialog.cpp:886
-#, fuzzy
 msgid "Amount Max."
-msgstr "Kwota"
+msgstr "Kwota max"
 
 #: src/filtertransdialog.cpp:921
 msgid "Label"
-msgstr ""
+msgstr "Nazwa"
 
 #: src/filtertransdialog.cpp:1194
-#, fuzzy
 msgid "Please Enter"
-msgstr "Proszę czekać"
+msgstr "Proszę wprowadź"
 
 #: src/filtertransdialog.cpp:1194
 msgid "Setting Name"
-msgstr ""
+msgstr "Nazwa zapisanego zestawu"
 
 #: src/filtertransdialog.cpp:1198
-#, fuzzy
 msgid "Could not save settings"
-msgstr "Nie można zapisać pliku."
+msgstr "Nie można zapisać zestawu"
 
 #: src/filtertransdialog.cpp:1198
 msgid "Empty value"
-msgstr ""
+msgstr "Pusta wartość"
 
 #: src/general_report_manager.cpp:236 src/general_report_manager.cpp:609
 msgid "General Reports Manager"
@@ -4558,7 +4536,7 @@ msgstr "Pliki CSV (*.csv)"
 
 #: src/maincurrencydialog.cpp:69
 msgid "Base"
-msgstr ""
+msgstr "Bazowa"
 
 #: src/maincurrencydialog.cpp:70 src/reports/summarystocks.cpp:180
 #: src/stockdialog.cpp:424 src/stockspanel.cpp:98
@@ -4567,11 +4545,11 @@ msgstr "Symbol"
 
 #: src/maincurrencydialog.cpp:72
 msgid "Last Rate"
-msgstr "Kurs waluty"
+msgstr "Ostatni kurs"
 
 #: src/maincurrencydialog.cpp:73
 msgid "Hist."
-msgstr ""
+msgstr "Hist."
 
 #: src/maincurrencydialog.cpp:77 src/maincurrencydialog.cpp:348
 #: src/maincurrencydialog.cpp:633 src/maincurrencydialog.cpp:739
@@ -4579,9 +4557,8 @@ msgid "Currency Dialog"
 msgstr "Ustawienia waluty"
 
 #: src/maincurrencydialog.cpp:157
-#, fuzzy
 msgid "Update latest rate only for all used currencies"
-msgstr "Usuń historię wartości walut dla nieużywanych walut"
+msgstr "Uaktualnij tylko ostatni kurs dla wszystkich używanych walut"
 
 #: src/maincurrencydialog.cpp:160
 msgid "Online Update"
@@ -4604,16 +4581,14 @@ msgid "Hide historical currencies"
 msgstr "Ukryj waluty historyczne"
 
 #: src/maincurrencydialog.cpp:223
-#, fuzzy
 msgid ""
 "Select the currently selected currency as the selected currency for the "
 "account"
-msgstr "Wybierz obecnie zaznaczoną kategorię jako kategorię dla transakcji"
+msgstr "Wybierz obecnie zaznaczoną walutę jako walutę dla konta"
 
 #: src/maincurrencydialog.cpp:225
-#, fuzzy
 msgid "Select the currently selected currency as base currency"
-msgstr "Wybierz obecnie zaznaczoną kategorię jako kategorię dla transakcji"
+msgstr "Wybierz obecnie zaznaczoną walutę jako walutę bazową"
 
 #: src/maincurrencydialog.cpp:239
 msgid "Currency History Options"
@@ -4683,9 +4658,8 @@ msgid "Currency history error"
 msgstr "Błąd historii waluty"
 
 #: src/maincurrencydialog.cpp:614
-#, fuzzy
 msgid "No currency selected!"
-msgstr "Wybór waluty bazowej"
+msgstr "Nie wybrano waluty!"
 
 #: src/maincurrencydialog.cpp:627
 #, c-format
@@ -4707,9 +4681,10 @@ msgid ""
 "Setting a new base currency will delete all historic rates,\n"
 "it's possible to re-download them after setting the new base currency."
 msgstr ""
+"Wybór nowej waluty bazowej usunie wszystkie historyczne kursy,\n"
+"można je ponownie pobrać po ustawieniu nowej waluty bazowej."
 
 #: src/maincurrencydialog.cpp:739
-#, fuzzy
 msgid "Do you want to continue?"
 msgstr "Czy chcesz kontynuować?"
 
@@ -4819,9 +4794,8 @@ msgid "Please enter a calculated or fixed amount"
 msgstr "Wprowadź wyliczoną lub stałą kwotę"
 
 #: src/mmSimpleDialogs.cpp:233
-#, fuzzy
 msgid "Please select a valid choice"
-msgstr "Proszę wybrać"
+msgstr "Proszę wybrać dopuszczalną wartość"
 
 #: src/mmTextCtrl.cpp:83
 msgid "Please enter a calculated value."
@@ -5204,9 +5178,8 @@ msgstr ""
 "lub wybierz z listy rozwijanej."
 
 #: src/mmcustomdata.cpp:58
-#, fuzzy
 msgid "Custom fields"
-msgstr "Szczegóły pola własnego"
+msgstr "Pola własne"
 
 #: src/mmcustomdata.cpp:307
 msgid "Multi Choice"
@@ -6375,7 +6348,7 @@ msgstr "terminowe"
 
 #: src/model/Model_Account.cpp:37 src/model/Model_Currency.cpp:30
 msgid "Crypto"
-msgstr "kryptowalut"
+msgstr "kryptowaluta"
 
 #: src/model/Model_Account.cpp:38
 msgid "Investment"
@@ -6427,17 +6400,15 @@ msgstr "Transakcja"
 
 #: src/model/Model_Attachment.cpp:25
 msgid "Stock"
-msgstr "Akcje"
+msgstr "Akcja"
 
 #: src/model/Model_Attachment.cpp:27
-#, fuzzy
 msgid "Bank Account"
-msgstr "Konta bankowe"
+msgstr "Konto bankowe"
 
 #: src/model/Model_Attachment.cpp:28
-#, fuzzy
 msgid "Recurring Transaction"
-msgstr "Transakcje powtarzane"
+msgstr "Transakcja powtarzana"
 
 #: src/model/Model_Billsdeposits.cpp:313
 msgid ""
@@ -6459,7 +6430,7 @@ msgstr "Co dwa tygodnie"
 
 #: src/model/Model_Currency.cpp:29
 msgid "Fiat"
-msgstr ""
+msgstr "fiducjarna"
 
 #: src/model/Model_CustomField.cpp:25
 msgid "String"
@@ -6505,9 +6476,8 @@ msgstr ""
 "zmodyfikuje bazę danych! Przerwano!"
 
 #: src/option.cpp:117 src/reports/myusage.cpp:108
-#, fuzzy
 msgid "MMEX Usage Frequency"
-msgstr "Częstotliwość"
+msgstr "Częstotliwość używania MMEX"
 
 #: src/option.cpp:118 src/option.cpp:119
 msgid "Summary of Accounts"
@@ -6589,7 +6559,6 @@ msgid "Attachment archive folder for %s only:"
 msgstr "Katalog archiwum załączników tylko dla %s:"
 
 #: src/optionsettingsattachment.cpp:68
-#, fuzzy
 msgid "Every OS type (Win, Mac, Unix) has its attachment folder"
 msgstr "Każdy typ systemu (Windows, Mac, Unix) ma własny katalogu załączników"
 
@@ -6964,14 +6933,12 @@ msgid "Seconds"
 msgstr "Sekund"
 
 #: src/optionsettingsnet.cpp:171
-#, fuzzy
 msgid "Check for Updates"
-msgstr "Sprawdź &uaktualnienia"
+msgstr "Sprawdź aktualizacje"
 
 #: src/optionsettingsnet.cpp:177
-#, fuzzy
 msgid "Check at StartUp"
-msgstr "Sprawdź uaktualnienia przy starcie"
+msgstr "Sprawdź przy starcie"
 
 #: src/optionsettingsnet.cpp:179
 msgid ""
@@ -6988,13 +6955,12 @@ msgid "Unstable"
 msgstr "wersje rozwojowe"
 
 #: src/optionsettingsnet.cpp:187
-#, fuzzy
 msgid "Select updates source channel"
-msgstr "Źródło uaktualnień"
+msgstr "Wybierz źródło aktualizacji"
 
 #: src/optionsettingsnet.cpp:190
 msgid "Select preferred version:"
-msgstr ""
+msgstr "Wybierz preferowaną wersję:"
 
 #: src/optionsettingsnet.cpp:218 src/optionsettingsnet.cpp:223
 msgid "WebApp connection test"
@@ -7200,9 +7166,8 @@ msgid "Relocate all source payee to the destination payee"
 msgstr "Przenoszenie beneficjenta źródłowego do beneficjenta docelowego"
 
 #: src/relocatepayeedialog.cpp:95
-#, fuzzy
 msgid "Delete source payee after relocation"
-msgstr "Przenoszenie beneficjenta źródłowego do beneficjenta docelowego"
+msgstr "Usuń źródłowego beneficjenta po przeniesieniu"
 
 #: src/relocatepayeedialog.cpp:151
 #, c-format
@@ -8114,7 +8079,7 @@ msgstr "Hasło nie może być puste."
 
 #: src/util.cpp:533
 msgid "Wrong base currency to USD rate provided"
-msgstr ""
+msgstr "Ustawiono błędny kurs waluty bazowej do USD"
 
 #: src/util.cpp:801
 msgid "UTF-8"
@@ -8527,27 +8492,25 @@ msgid "Your version is %s"
 msgstr "Twoja wersja to %s"
 
 #: src/wizard_update.cpp:48
-#, fuzzy, c-format
+#, c-format
 msgid "New version is %s (published at %s)"
-msgstr "Nowa wersja to %s"
+msgstr "Nowa wersja to %s (opublikowana %s)"
 
 #: src/wizard_update.cpp:56
 msgid "What's new:"
 msgstr "Co nowego:"
 
 #: src/wizard_update.cpp:61
-#, fuzzy
 msgid "Click on Finish to open our download webpage."
-msgstr "Kliknij aby otworzyć naszą stronę i pobrać."
+msgstr "Kliknij Zakończ aby otworzyć naszą stronę i pobrać."
 
 #: src/wizard_update.cpp:336 src/wizard_update.cpp:351
 msgid "Unable to check for updates!"
 msgstr "Nie można sprawdzić uaktualnień!"
 
 #: src/wizard_update.cpp:337 src/wizard_update.cpp:352
-#, fuzzy
 msgid "Error: "
-msgstr "Błąd: %s"
+msgstr "Błąd: "
 
 #: src/wizard_update.cpp:338 src/wizard_update.cpp:353
 #: src/wizard_update.cpp:390
@@ -8555,75 +8518,5 @@ msgid "MMEX Update Check"
 msgstr "Sprawdzanie aktualizacji MMEX"
 
 #: src/wizard_update.cpp:389
-#, fuzzy
 msgid "You already have the latest version"
-msgstr "Masz już zainstalowaną najnowszą wersję %s"
-
-#~ msgid "Cannot get data from website"
-#~ msgstr "Nie można otrzymać danych z WWW"
-
-#~ msgid "E&xit\tAlt-X"
-#~ msgstr "W&yjście\tAlt-X"
-
-#~ msgid "Unknown error"
-#~ msgstr "Nieznany błąd"
-
-#~ msgid "RecurringTransaction"
-#~ msgstr "Transakcja powtarzana"
-
-#~ msgid "Download in progress"
-#~ msgstr "Pobieranie w toku"
-
-#~ msgid "My Usage"
-#~ msgstr "Moje użycie"
-
-#~ msgid "Next"
-#~ msgstr "Następny"
-
-#~ msgid "&Clear "
-#~ msgstr "Wyczyść"
-
-#~ msgid ""
-#~ "Do you really want to massive update field content?\n"
-#~ "Please consider that there isn't any validation!"
-#~ msgstr ""
-#~ "Na pewno chcesz dokonać masowego uaktualnienia pól?\n"
-#~ "Zauważ, że nie ma tu żadnego sprawdzenia poprawności!"
-
-#~ msgid "A generic network error occurred"
-#~ msgstr "Wystąpił błąd sieci"
-
-#~ msgid "Clear the settings for the allocated position"
-#~ msgstr "Wyczyść ustawienia dla wybranego numeru filtra"
-
-#~ msgid "The client failed to connect the server"
-#~ msgstr "Niepowodzenie połączenia klienta z serwerem"
-
-#~ msgid "BankAccount"
-#~ msgstr "Konto bankowe"
-
-#~ msgid "Updates"
-#~ msgstr "Uaktualnienia"
-
-#~ msgid "Conversion to Base Rate"
-#~ msgstr "Kowersja do kursu bazowego"
-
-#~ msgid ""
-#~ "Unable to update history currency rates. Please update them manually!"
-#~ msgstr ""
-#~ "Aktualizacja historii kursów walut niemożliwa. Uaktualnij je ręcznie!"
-
-#~ msgid "The remote file doesn't exist"
-#~ msgstr "Zdalny plik nie istnieje"
-
-#~ msgid "An error occurred during reconnection"
-#~ msgstr "W czasie powtórnego łączenia wystąpił błąd"
-
-#~ msgid "An error occurred during negotiation"
-#~ msgstr "W czasie łączenia wystąpił błąd"
-
-#~ msgid "Quit this program"
-#~ msgstr "Wyjdź z programu"
-
-#~ msgid "Someone tried to send a command during a transfer"
-#~ msgstr "Ktoś próbował wysłać polecenie w czasie transferu"
+msgstr "Masz już zainstalowaną najnowszą wersję"
