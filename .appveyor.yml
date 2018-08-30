@@ -103,10 +103,6 @@ install:
 - copy clcache\clcache-%clcVer%\clcache.exe clcache\clcache-%clcVer%\cl.exe
 - if exist %APPVEYOR_BUILD_FOLDER%\clcache\clcache-%clcVer%\cl.exe set "PATH=%APPVEYOR_BUILD_FOLDER%\clcache\clcache-%clcVer%;%PATH%"
 - clcache -s
-# Patch CMake
-- for /d %%d in ("%ProgramFiles(x86)%\CMake\share\cmake-*") do (
-    type util\FindwxWidgets.cmake-SupportMSVC1911.patch 2>nul | patch -Nf -d "%%d\Modules"
-  )
 # wxWidgets, try to download pre-compiled version first
 - if %wxShared%==1 (
     curl -fsL --fail-early
