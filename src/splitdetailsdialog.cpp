@@ -21,12 +21,9 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "categdialog.h"
 #include "constants.h"
 #include "mmSimpleDialogs.h"
-#include "util.h"
 #include "validators.h"
 
 #include "Model_Category.h"
-#include "Model_Checking.h"
-#include "Model_Subcategory.h"
 
 wxIMPLEMENT_DYNAMIC_CLASS(SplitDetailDialog, wxDialog);
 
@@ -89,7 +86,7 @@ void SplitDetailDialog::DataToControls()
     m_bcategory->SetLabelText(category_name);
 
     if (split_.SPLITTRANSAMOUNT)
-        m_text_mount->SetValue(std::fabs(split_.SPLITTRANSAMOUNT));
+        m_text_mount->SetValue(split_.SPLITTRANSAMOUNT, Model_Currency::precision(m_currency));
 
     if (category_name.empty())
     {
@@ -169,7 +166,7 @@ void SplitDetailDialog::CreateControls()
  * wxEVT_COMMAND_BUTTON_CLICKED event handler for ID_BUTTONCATEGORY
  */
 
-void SplitDetailDialog::OnButtonCategoryClick( wxCommandEvent& /*event*/ )
+void SplitDetailDialog::OnButtonCategoryClick( wxCommandEvent& event )
 {
     mmCategDialog dlg(this, split_.CATEGID, split_.SUBCATEGID, false);
     if (dlg.ShowModal() == wxID_OK)
@@ -178,21 +175,20 @@ void SplitDetailDialog::OnButtonCategoryClick( wxCommandEvent& /*event*/ )
         split_.SUBCATEGID = dlg.getSubCategId();
         m_bcategory->SetLabelText(dlg.getFullCategName());
     }
-    wxCommandEvent evt(wxID_ANY, wxID_ANY);
-    onTextEntered(evt);
-    DataToControls();
+    onTextEntered(event);
 }
 
 void SplitDetailDialog::onTextEntered(wxCommandEvent& WXUNUSED(event))
 {
-    if (m_text_mount->Calculate())
+    if (m_text_mount->Calculate(Model_Currency::precision(m_currency)))
         m_text_mount->GetDouble(split_.SPLITTRANSAMOUNT);
 
     DataToControls();
 }
 
-void SplitDetailDialog::OnButtonOKClick( wxCommandEvent& /*event*/ )
+void SplitDetailDialog::OnButtonOKClick( wxCommandEvent& event )
 {
+    onTextEntered(event);
     if (!m_text_mount->checkValue(split_.SPLITTRANSAMOUNT))
         return;
 
