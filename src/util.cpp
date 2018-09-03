@@ -23,7 +23,6 @@
 #include "validators.h"
 #include "option.h"
 #include "reports/reportbase.h"
-#include "Model_Currency.h"
 #include "Model_Infotable.h"
 #include "Model_Setting.h"
 #include <wx/sstream.h>
@@ -741,25 +740,25 @@ const std::unordered_map<wxString, wxString> &date_formats_regex()
     const wxString yy = "([0-9]{1,2})";
     const wxString yyyy = "(((19)|([2]([0]{1})))([0-9]{2}))";
     const wxString tail = "($|[^0-9])+";
-    date_regex["%d/%m/%y"] = wxString::Format("^%s\/%s\/%s%s", dd, mm, yy, tail);
-    date_regex["%d/%m/%Y"] = wxString::Format("^%s\/%s\/%s%s", dd, mm, yyyy, tail);
+    date_regex["%d/%m/%y"] = wxString::Format("^%s/%s/%s%s", dd, mm, yy, tail);
+    date_regex["%d/%m/%Y"] = wxString::Format("^%s/%s/%s%s", dd, mm, yyyy, tail);
     date_regex["%d-%m-%y"] = wxString::Format("^%s-%s-%s%s", dd, mm, yy, tail);
     date_regex["%d-%m-%Y"] = wxString::Format("^%s-%s-%s%s", dd, mm, yyyy, tail);
     date_regex["%d.%m.%y"] = wxString::Format("^%s\x2E%s\x2E%s%s", dd, mm, yy, tail);
     date_regex["%d.%m.%Y"] = wxString::Format("^%s\x2E%s\x2E%s%s", dd, mm, yyyy, tail);
     date_regex["%d,%m,%y"] = wxString::Format("^%s,%s,%s%s", dd, mm, yy, tail);
-    date_regex["%d/%m'%Y"] = wxString::Format("^%s\/%s'%s%s", dd, mm, yyyy, tail);
-    date_regex["%d/%m'%y"] = wxString::Format("^%s\/%s'%s%s", dd, mm, yy, tail);
-    date_regex["%d/%m %Y"] = wxString::Format("^%s\/%s %s%s", dd, mm, yyyy, tail);
-    date_regex["%m/%d/%y"] = wxString::Format("^%s\/%s/%s%s", mm, dd, yy, tail);
-    date_regex["%m/%d/%Y"] = wxString::Format("^%s\/%s/%s%s", mm, dd, yyyy, tail);
+    date_regex["%d/%m'%Y"] = wxString::Format("^%s/%s'%s%s", dd, mm, yyyy, tail);
+    date_regex["%d/%m'%y"] = wxString::Format("^%s/%s'%s%s", dd, mm, yy, tail);
+    date_regex["%d/%m %Y"] = wxString::Format("^%s/%s %s%s", dd, mm, yyyy, tail);
+    date_regex["%m/%d/%y"] = wxString::Format("^%s/%s/%s%s", mm, dd, yy, tail);
+    date_regex["%m/%d/%Y"] = wxString::Format("^%s/%s/%s%s", mm, dd, yyyy, tail);
     date_regex["%m-%d-%y"] = wxString::Format("^%s-%s-%s%s", mm, dd, yy, tail);
     date_regex["%m-%d-%Y"] = wxString::Format("^%s-%s-%s%s", mm, dd, yyyy, tail);
-    date_regex["%m/%d'%y"] = wxString::Format("^%s\/%s'%s%s", mm, dd, yy, tail);
-    date_regex["%m/%d'%Y"] = wxString::Format("^%s\/%s'%s%s", mm, dd, yyyy, tail);
-    date_regex["%y/%m/%d"] = wxString::Format("^%s\/%s\/%s%s", yy, mm, dd, tail);
+    date_regex["%m/%d'%y"] = wxString::Format("^%s/%s'%s%s", mm, dd, yy, tail);
+    date_regex["%m/%d'%Y"] = wxString::Format("^%s/%s'%s%s", mm, dd, yyyy, tail);
+    date_regex["%y/%m/%d"] = wxString::Format("^%s/%s/%s%s", yy, mm, dd, tail);
     date_regex["%y-%m-%d"] = wxString::Format("^%s-%s-%s%s", yy, mm, dd, tail);
-    date_regex["%Y/%m/%d"] = wxString::Format("^%s\/%s\/%s%s", yyyy, mm, dd, tail);
+    date_regex["%Y/%m/%d"] = wxString::Format("^%s/%s/%s%s", yyyy, mm, dd, tail);
     date_regex["%Y-%m-%d"] = wxString::Format("^%s-%s-%s%s", yyyy, mm, dd, tail);
     date_regex["%Y.%m.%d"] = wxString::Format("^%s\x2E%s\x2E%s%s", yyyy, mm, dd, tail);
     date_regex["%Y %m %d"] = wxString::Format("^%s %s %s%s", yyyy, mm, dd, tail);
