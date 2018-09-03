@@ -197,6 +197,8 @@ void mmCheckingPanel::sortTable()
     case TransactionListCtrl::COL_UDFC05:
         std::stable_sort(this->m_trans.begin(), this->m_trans.end(), SorterByUDFC05);
         break;
+    case TransactionListCtrl::COL_IMGSTATUS: break;
+    case TransactionListCtrl::COL_MAX: break;
 
     }
 
