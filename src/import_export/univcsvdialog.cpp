@@ -458,7 +458,11 @@ void mmUnivCSVDialog::SetSettings(const wxString &json_data)
     if (!df.empty())
     {
         date_format_ = df;
-        initDateMask();
+        const auto pos = g_date_formats_map.find(date_format_);
+        if (pos != g_date_formats_map.end())
+            choiceDateFormat_->SetStringSelection(pos->second);
+        else
+            wxLogDebug("Unrecognized DATE_MASK %s", df);
     }
 
     //File
