@@ -29,7 +29,6 @@ env:
   - OS=ubuntu DIST=artful ARCH=x86
   - OS=ubuntu DIST=bionic ARCH=x86
   - OS=ubuntu DIST=cosmic ARCH=x86
-  - OS=fedora
   - OS=fedora DIST=24
   - OS=fedora DIST=25
   - OS=fedora DIST=26
@@ -68,7 +67,6 @@ matrix:
   - env: OS=ubuntu DIST=artful ARCH=x86
   - env: OS=ubuntu DIST=bionic ARCH=x86
   - env: OS=ubuntu DIST=cosmic ARCH=x86
-  - env: OS=fedora
   - env: OS=fedora DIST=24
   - env: OS=fedora DIST=25
   - env: OS=fedora DIST=26
@@ -83,6 +81,7 @@ matrix:
   - env: OS=osx DIST=10.11
   - env: OS=macos DIST=10.12
   - env: OS=slackware DIST=14.2
+  - env: OS=snap
 
 install: |-
   DOCKER=moneymanagerex/mmex_build_env:$OS${DIST:+.$DIST}${ARCH:+.$ARCH}
