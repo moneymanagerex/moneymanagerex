@@ -111,7 +111,7 @@ before_script:
 - cd ../.. && mkdir build && cd build
 
 script: |-
-  CMAKE_CMD="cmake ${ARCH:+-DCMAKE_TOOLCHAIN_FILE=util/toolchain-$TRAVIS_OS_NAME-$ARCH.cmake} -DCMAKE_BUILD_TYPE=$BUILD_TYPE .."
+  CMAKE_CMD="cmake ${ARCH:+-DCMAKE_TOOLCHAIN_FILE=util/toolchain-$TRAVIS_OS_NAME-$ARCH.cmake} -DCMAKE_BUILD_TYPE=$BUILD_TYPE -DCPACK_DEBIAN_PACKAGE_DEBUG=ON -DCPACK_RPM_PACKAGE_DEBUG=ON .."
   case $TRAVIS_OS_NAME in
     linux)
       chmod -fR a+rwX $HOME/.ccache
