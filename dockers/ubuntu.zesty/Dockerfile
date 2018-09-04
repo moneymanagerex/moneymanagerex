@@ -3,7 +3,7 @@ LABEL maintainer="developers@moneymanagerex.org"
 RUN sed -i -re 's/(([a-z]{2}\.)?archive|security)\.ubuntu\.com/old-releases.ubuntu.com/g' /etc/apt/sources.list && \
     apt-get update && \
     apt-get install -y --no-install-recommends \
-      cmake build-essential gettext git pkg-config lsb-release ccache \
+      cmake build-essential gettext git pkg-config lsb-release file ccache \
       libwxgtk-webview3.0-dev liblua5.3-dev libcurl4-openssl-dev \
       rapidjson-dev && \
     apt-get clean
