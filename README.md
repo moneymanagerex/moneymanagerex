@@ -24,8 +24,8 @@ MMEX is mainly written in C++11 and built on:
 * Windows XP, 2003, Vista, 7, 8 and 10  
   [![a]][AppVeyor]
 * Most Unix variants using the GTK+ toolkit (version 2.6 or newer)  
-  [![snap] ![debian] ![ubuntu] ![centos] ![fedora] ![opensuse] ![arch]
-  ![raspbian] ![slackware]][Travis]
+  [![debian] ![ubuntu] ![centos] ![fedora] ![opensuse] ![arch] ![raspbian]
+  ![slackware]][Travis] [![snap]][buildsnap]
 * OS X (10.7 or newer) and macOS using Cocoa  
   [![yosemite] ![el capitan] ![sierra] ![high sierra]][Travis]
 
@@ -95,7 +95,8 @@ Please follow installation instructions from [INSTALL.md] file.
 [ubuntu]: http://badges.herokuapp.com/travis/moneymanagerex/moneymanagerex?label=ubuntu&env=OS=ubuntu
 [centos]: http://badges.herokuapp.com/travis/moneymanagerex/moneymanagerex?label=centos&env=OS=el
 [debian]: http://badges.herokuapp.com/travis/moneymanagerex/moneymanagerex?label=debian&env=OS=debian
-[snap]: http://badges.herokuapp.com/travis/moneymanagerex/moneymanagerex?label=snap&env=OS=snap
+[snap]: https://build.snapcraft.io/badge/moneymanagerex/moneymanagerex.svg
+[buildsnap]: https://build.snapcraft.io/user/moneymanagerex/moneymanagerex
 [fedora]: http://badges.herokuapp.com/travis/moneymanagerex/moneymanagerex?label=fedora&env=OS=fedora
 [opensuse]: http://badges.herokuapp.com/travis/moneymanagerex/moneymanagerex?label=opensuse&env=OS=opensuse
 [arch]: http://badges.herokuapp.com/travis/moneymanagerex/moneymanagerex?label=arch&env=OS=archlinux
