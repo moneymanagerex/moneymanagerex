@@ -41,7 +41,6 @@ env:
   - OS=archlinux
   - OS=el DIST=7 # DIST=6 doesn't provide webview in wxGTK3
   - OS=slackware DIST=14.2 # DIST=14.1 has cmake 2.x
-  - OS=snap
 
 matrix:
   fast_finish: true
@@ -81,17 +80,14 @@ matrix:
   - env: OS=osx DIST=10.11
   - env: OS=macos DIST=10.12
   - env: OS=slackware DIST=14.2
-  - env: OS=snap
 
 install: |-
   DOCKER=moneymanagerex/mmex_build_env:$OS${DIST:+.$DIST}${ARCH:+.$ARCH}
   case $TRAVIS_OS_NAME in
     linux)
       ccache -s || true
-      if [ $OS != snap ]; then
-        docker pull ${DOCKER}
-        docker build dockers/$OS${DIST:+.$DIST}${ARCH:+.$ARCH} --cache-from ${DOCKER} -t ${DOCKER}
-      fi
+      docker pull ${DOCKER}
+      docker build dockers/$OS${DIST:+.$DIST}${ARCH:+.$ARCH} --cache-from ${DOCKER} -t ${DOCKER}
       ;;
     osx)
       MACOSX_DEPLOYMENT_TARGET=$DIST
@@ -115,17 +111,10 @@ script: |-
   case $TRAVIS_OS_NAME in
     linux)
       chmod -fR a+rwX $HOME/.ccache
-      if [ $OS != snap ]; then
-        docker run -it --rm -w /moneymanagerex/build -e MAKEFLAGS \
-                  -v $HOME/.ccache:/root/.ccache \
-                  -v $TRAVIS_BUILD_DIR:/moneymanagerex ${DOCKER} \
-          bash -c "$CMAKE_CMD && make package && eval \$MMEX_INST_CMD"
-      else
-        docker run -it --rm -e BUILD_TYPE \
-                  -v $HOME/.ccache:/root/.ccache \
-                  -v $TRAVIS_BUILD_DIR:/my-snap snapcore/snapcraft \
-          bash -c "apt update && cd /my-snap && snapcraft"
-      fi ;;
+      docker run -it --rm -w /moneymanagerex/build -e MAKEFLAGS \
+                -v $HOME/.ccache:/root/.ccache \
+                -v $TRAVIS_BUILD_DIR:/moneymanagerex ${DOCKER} \
+        bash -c "$CMAKE_CMD && make package && eval \$MMEX_INST_CMD" ;;
     osx)
       $CMAKE_CMD && make package ;;
   esac
@@ -139,9 +128,6 @@ notifications: # set notification options
 
 after_success:
 - ccache -s || true
-# Move snap package to build subdir
-- if [ $OS = snap ]; then
-    for p in ../*.snap; do mv -v $p .; done; fi
 # Rename mac packages
 - if [ $TRAVIS_OS_NAME = osx ]; then
     for p in *.dmg; do mv -v $p ${p%Darwin.*}$OS$DIST.dmg; done; fi
@@ -150,14 +136,9 @@ after_success:
 before_deploy: |-
   if [[ ! -d gh_releases ]]; then
     mkdir gh_releases
-    for f in *.{deb,rpm,dmg,txz,pkg.tar.xz,snap}; do
+    for f in *.{deb,rpm,dmg,txz,pkg.tar.xz}; do
       if [[ -e "$f" ]]; then cp -v "$f" "gh_releases/${f//\~/.}"; fi
     done
-  fi
-  # workaround for travis-ci/dpl#845 issue
-  if [ $OS = snap ]; then
-    sudo apt update
-    sudo apt install snapd
   fi
 
 # Set encrypted variable 'GitHub_auth_token' in Travis repo settings to deploy packages
@@ -165,17 +146,10 @@ before_deploy: |-
 # Set encrypted variable 'PACKAGECLOUD_TOKEN' in Travis repo settings to deploy packages
 # for tagged commits to packagecloud repo.
 deploy:
-- provider: snap
-  snap: ./*.snap
-  channel: edge
-  skip_cleanup: true
-  on:
-    tags: true
-    condition: $OS = snap && ${#SNAP_TOKEN} != 0
 - provider: releases
   api_key: $GitHub_auth_token
   file_glob: true
-  file: gh_releases/*.{deb,rpm,dmg,txz,pkg.tar.xz,snap}
+  file: gh_releases/*.{deb,rpm,dmg,txz,pkg.tar.xz}
   skip_cleanup: true
   prerelease: true
   overwrite: true
