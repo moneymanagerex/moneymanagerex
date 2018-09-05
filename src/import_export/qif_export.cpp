@@ -25,7 +25,8 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "option.h"
 #include "Model_Infotable.h"
 #include "Model_Account.h"
-
+#include <wx/notebook.h>
+#include <wx/progdlg.h>
 
 wxIMPLEMENT_DYNAMIC_CLASS(mmQIFExportDialog, wxDialog);
 

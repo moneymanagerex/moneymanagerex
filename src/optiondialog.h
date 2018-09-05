@@ -24,6 +24,7 @@
 #include "defs.h"
 #include <vector>
 
+class wxListbook;
 class mmGUIApp;
 class OptionSettingsBase;
 

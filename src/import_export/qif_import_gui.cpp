@@ -32,6 +32,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 #include <wx/progdlg.h>
 #include <wx/dataview.h>
+#include <wx/notebook.h>
 
 enum tab_id {
     LOG_TAB = 0,

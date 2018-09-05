@@ -32,6 +32,7 @@
 
 class wxSQLite3Database;
 class mmGeneralReportManager;
+class wxNotebook;
 
 class sqlListCtrl : public mmListCtrl
 {

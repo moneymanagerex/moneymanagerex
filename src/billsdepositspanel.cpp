@@ -29,6 +29,7 @@
 #include "Model_Attachment.h"
 #include "Model_Category.h"
 #include "Model_Account.h"
+#include <wx/splitter.h>
 
 enum
 {

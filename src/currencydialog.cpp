@@ -29,8 +29,8 @@
 #include "mmSimpleDialogs.h"
 #include "option.h"
 
-#include <wx/combobox.h>
 #include <wx/valnum.h>
+#include <wx/numformatter.h>
 
 wxIMPLEMENT_DYNAMIC_CLASS(mmCurrencyDialog, wxDialog);
 

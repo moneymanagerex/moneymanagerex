@@ -17,7 +17,7 @@
  ********************************************************/
 #pragma once
 
-// For compilers that support precompilation, includes "wx/wx.h>.
+// For compilers that support precompilation, includes <wx/wx.h>
 #include <wx/wxprec.h>
 
 #ifdef __BORLANDC__
@@ -28,35 +28,15 @@
 #include <wx/wx.h>
 #endif
 
-#include <wx/splitter.h>
 #include <wx/treectrl.h>
 #include <wx/listctrl.h>
-#include <wx/fileconf.h>
 #include <wx/filename.h>
-#include <wx/gdicmn.h>
-#include <wx/string.h>
 #include <wx/datectrl.h>
 #include <wx/datetime.h>
-#include <wx/progdlg.h>
-#include <wx/utils.h>
-#include <wx/splash.h>
-#include <wx/imagpng.h>
-#include <wx/calctrl.h>
 #include <wx/dateevt.h>
 #include <wx/tokenzr.h>
 #include <wx/wfstream.h>
 #include <wx/txtstrm.h>
 #include <wx/url.h>
-#include <wx/html/htmlwin.h>
-#include <wx/html/htmlproc.h>
-#include <wx/html/htmprint.h>
-#include <wx/listbook.h>
 #include <wx/imaglist.h>
-#include <wx/popupwin.h>
-#include <wx/dir.h>
-#include <wx/stdpaths.h>
-#include <wx/app.h>
-#include <wx/choice.h>
 #include <wx/statline.h>
-#include <wx/dialog.h>
-#include <wx/numformatter.h>

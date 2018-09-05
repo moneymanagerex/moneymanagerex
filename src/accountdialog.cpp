@@ -28,6 +28,7 @@
 #include "util.h"
 #include "validators.h"
 #include "webapp.h"
+#include <wx/notebook.h>
 
 #include "Model_Infotable.h"
 #include "Model_Currency.h"

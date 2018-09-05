@@ -20,6 +20,7 @@
 #include "optiondialog.h"
 #include "constants.h"
 #include "paths.h"
+#include <wx/listbook.h>
 
 #include "../resources/main-setup.xpm"
 #include "../resources/preferences-attachments.xpm"

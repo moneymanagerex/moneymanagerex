@@ -30,6 +30,8 @@
 #include "mmframe.h"
 #include "Model_StockHistory.h"
 #include "Model_Infotable.h"
+#include <wx/progdlg.h>
+#include <wx/textfile.h>
 
 IMPLEMENT_DYNAMIC_CLASS(mmStockDialog, wxDialog)
 

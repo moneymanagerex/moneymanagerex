@@ -21,6 +21,9 @@
 #include "util.h"
 #include "Model_Setting.h"
 #include "rapidjson/error/en.h"
+#include <wx/imagpng.h>
+#include <wx/html/htmlwin.h>
+
 /*
 #include "paths.h"
 #include <wx/progdlg.h>

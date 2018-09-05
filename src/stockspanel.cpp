@@ -32,6 +32,9 @@
 #include "Model_StockHistory.h"
 #include "Model_Infotable.h"
 
+#include <wx/splitter.h>
+#include <wx/numformatter.h>
+
 static const wxString STOCKTIPS[] = { 
     wxTRANSLATE("Using MMEX it is possible to track stocks/mutual funds investments."),
     wxTRANSLATE("To create new stocks entry the Symbol, Number of shares and Purchase prise should be entered."),

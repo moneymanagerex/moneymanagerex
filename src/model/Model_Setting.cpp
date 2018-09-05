@@ -20,6 +20,7 @@
 #include "constants.h"
 #include "option.h"
 #include "paths.h"
+#include <wx/stdpaths.h>
 
 Model_Setting::Model_Setting()
 : Model<DB_Table_SETTING_V1>()

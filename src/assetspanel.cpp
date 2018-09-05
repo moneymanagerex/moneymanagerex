@@ -27,6 +27,7 @@
 #include "Model_Setting.h"
 #include "Model_Usage.h"
 #include <wx/srchctrl.h>
+#include <wx/splitter.h>
 
 /*******************************************************/
 

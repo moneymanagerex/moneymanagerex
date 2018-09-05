@@ -40,7 +40,9 @@
 #include <algorithm>
 
 #include <wx/xml/xml.h>
+#include <wx/textfile.h>
 #include <wx/spinctrl.h>
+#include <wx/progdlg.h>
 
 wxIMPLEMENT_DYNAMIC_CLASS(mmUnivCSVDialog, wxDialog);
 

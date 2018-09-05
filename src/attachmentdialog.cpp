@@ -27,6 +27,7 @@ Copyright (C) 2014 Gabriele-V
 #include "Model_Infotable.h"
 
 #include <wx/mimetype.h>
+#include <wx/textfile.h> // for GetEOL()
 
 wxIMPLEMENT_DYNAMIC_CLASS(mmAttachmentDialog, wxDialog);
 

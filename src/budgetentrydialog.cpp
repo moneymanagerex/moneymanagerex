@@ -17,6 +17,7 @@
  ********************************************************/
 
 #include "budgetentrydialog.h"
+#include "defs.h"
 #include "Model_Category.h"
 #include "validators.h"
 #include "paths.h"

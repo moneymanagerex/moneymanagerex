@@ -23,6 +23,7 @@
 #include "attachmentdialog.h"
 #include "billsdepositsdialog.h"
 #include "constants.h"
+#include "defs.h"
 #include "filtertransdialog.h"
 #include "images_list.h"
 #include "mmex.h"
@@ -44,6 +45,7 @@
 #include <algorithm>
 #include <wx/clipbrd.h>
 #include <wx/srchctrl.h>
+#include <wx/splitter.h>
 #include <wx/sound.h>
 //----------------------------------------------------------------------------
 

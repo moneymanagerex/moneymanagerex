@@ -17,11 +17,10 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 #pragma once
 
-#include "defs.h"
+#include <wx/string.h>
+#include <wx/sizer.h>
 #include "versions.h"
 //----------------------------------------------------------------------------
-
-class wxString;
 
 extern const wxSizerFlags g_flagsH;
 extern const wxSizerFlags g_flagsV;

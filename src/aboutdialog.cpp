@@ -21,8 +21,10 @@
 #include "paths.h"
 #include "reports/htmlbuilder.h"
 #include <wx/statline.h>
+#include <wx/notebook.h>
 #include <wx/version.h>
 #include <wx/regex.h>
+#include <wx/html/htmlwin.h>
 
 wxIMPLEMENT_DYNAMIC_CLASS(mmAboutDialog, wxDialog);
 

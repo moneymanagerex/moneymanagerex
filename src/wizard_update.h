@@ -22,6 +22,8 @@
 #include "rapidjson/document.h"
 #include "option.h"
 
+class wxHtmlLinkEvent;
+
 class mmUpdate
 {
 public:

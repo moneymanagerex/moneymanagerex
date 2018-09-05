@@ -25,12 +25,14 @@
 #include "reports/htmlbuilder.h"
 #include "reports/reportbase.h"
 #include "Model_Setting.h"
-#include <LuaGlue/LuaGlue.h>
-#include "sqlite3.h"
 #include "mmreportspanel.h"
+#include <LuaGlue/LuaGlue.h>
+#include <sqlite3.h>
+#include <wx/dir.h>
 
 #if defined (__WXMSW__)
     #include <wx/msw/registry.h>
+    #include <wx/stdpaths.h>
 #endif
 
 class Record : public std::map<std::wstring, std::wstring>

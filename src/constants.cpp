@@ -17,9 +17,8 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
 #include "constants.h"
-#include <wx/string.h>
+#include "defs.h"
 #include <wx/filefn.h>
-#include <wx/utils.h>
 #include <wx/wxsqlite3.h>
 #include "lua.h"
 #ifdef MMEX_WEBSERVER
