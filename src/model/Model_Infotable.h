@@ -21,7 +21,7 @@
 
 #include "Model.h"
 #include "Table_Infotable.h"
-#include "defs.h"
+#include "wx_common.h"
 
 class Model_Infotable : public Model<DB_Table_INFOTABLE>
 {

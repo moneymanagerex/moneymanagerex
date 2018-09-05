@@ -19,7 +19,7 @@
 #ifndef MM_EX_ABOUTDIALOG_H_
 #define MM_EX_ABOUTDIALOG_H_
 
-#include "defs.h"
+#include "wx_common.h"
 
 class wxHtmlWindow;
 class wxHtmlLinkEvent;

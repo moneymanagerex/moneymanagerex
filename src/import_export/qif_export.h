@@ -19,7 +19,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #ifndef QIF_EXPORT_H
 #define QIF_EXPORT_H
 
-#include "defs.h"
+#include "wx_common.h"
 
 class wxDatePickerCtrl;
 

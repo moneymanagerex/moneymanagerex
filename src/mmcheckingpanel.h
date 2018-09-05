@@ -21,7 +21,7 @@
 #ifndef MM_EX_CHECKINGPANEL_H_
 #define MM_EX_CHECKINGPANEL_H_
 //----------------------------------------------------------------------------
-#include "defs.h"
+#include "wx_common.h"
 #include "mmpanelbase.h"
 #include "constants.h"
 #include "reports/mmDateRange.h"

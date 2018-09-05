@@ -19,7 +19,7 @@
 
 #include "webserver.h"
 #include <wx/thread.h>
-#include "defs.h"
+#include "wx_common.h"
 #include "platfdep.h"
 #include "paths.h"
 #include "mongoose/mongoose.h"

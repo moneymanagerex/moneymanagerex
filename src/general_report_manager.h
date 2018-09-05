@@ -19,7 +19,7 @@
 
 #pragma once
 
-#include "defs.h"
+#include "wx_common.h"
 #include <wx/webview.h>
 #include <wx/webviewfshandler.h>
 #include <vector>

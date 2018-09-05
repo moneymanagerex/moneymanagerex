@@ -19,7 +19,7 @@
 #ifndef MM_EX_TRANSACTIONSUPDATE_H_
 #define MM_EX_TRANSACTIONSUPDATE_H_
 
-#include "defs.h"
+#include "wx_common.h"
 #include "mmcombobox.h"
 class mmTextCtrl;
 

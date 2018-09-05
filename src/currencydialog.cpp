@@ -22,7 +22,7 @@
 #include "constants.h"
 #include "util.h"
 #include "Model_Currency.h"
-#include "defs.h"
+#include "wx_common.h"
 #include "paths.h"
 #include "validators.h"
 #include "mmTextCtrl.h"

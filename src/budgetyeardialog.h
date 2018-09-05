@@ -20,7 +20,7 @@
 #ifndef MM_EX_BUDGETYEARDIALOG_H_
 #define MM_EX_BUDGETYEARDIALOG_H_
 
-#include "defs.h"
+#include "wx_common.h"
 
 class mmBudgetYearDialog : public wxDialog
 {

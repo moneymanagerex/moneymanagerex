@@ -21,7 +21,7 @@
 #ifndef MM_EX_OPTION_H_
 #define MM_EX_OPTION_H_
 
-#include "defs.h"
+#include "wx_common.h"
 #include <vector>
 
 class mmPrintableBase;

@@ -23,7 +23,7 @@
 #include "attachmentdialog.h"
 #include "billsdepositsdialog.h"
 #include "constants.h"
-#include "defs.h"
+#include "wx_common.h"
 #include "filtertransdialog.h"
 #include "images_list.h"
 #include "mmex.h"

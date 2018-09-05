@@ -70,7 +70,7 @@ ADD_EXECUTABLE(${MMEX_EXE} WIN32 MACOSX_BUNDLE
     dbupgrade.h
     dbwrapper.cpp
     dbwrapper.h
-    defs.h
+    wx_common.h
     filtertransdialog.cpp
     filtertransdialog.h
     general_report_manager.cpp

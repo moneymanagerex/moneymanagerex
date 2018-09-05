@@ -17,7 +17,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
 #include "constants.h"
-#include "defs.h"
+#include "wx_common.h"
 #include <wx/filefn.h>
 #include <wx/wxsqlite3.h>
 #include "lua.h"

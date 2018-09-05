@@ -20,7 +20,7 @@
 #ifndef MM_EX_RELOCATEPAYEEDIALOG_H_
 #define MM_EX_RELOCATEPAYEEDIALOG_H_
 
-#include "defs.h"
+#include "wx_common.h"
 
 class relocatePayeeDialog : public wxDialog
 {

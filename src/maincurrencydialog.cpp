@@ -21,7 +21,7 @@
 #include "maincurrencydialog.h"
 #include "currencydialog.h"
 #include "constants.h"
-#include "defs.h"
+#include "wx_common.h"
 #include "images_list.h"
 #include "mmTextCtrl.h"
 #include "mmSimpleDialogs.h"

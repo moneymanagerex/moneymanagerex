@@ -21,7 +21,7 @@
 
 #include "Model.h"
 #include "Table_Setting_V1.h"
-#include "defs.h"
+#include "wx_common.h"
 
 class Model_Setting : public Model<DB_Table_SETTING_V1>
 {

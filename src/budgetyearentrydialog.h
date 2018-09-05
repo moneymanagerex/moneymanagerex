@@ -19,7 +19,7 @@
 #ifndef MM_EX_BUDGETYEARENTRYDIALOG_H_
 #define MM_EX_BUDGETYEARENTRYDIALOG_H_
 
-#include "defs.h"
+#include "wx_common.h"
 
 class wxSpinCtrl;
 

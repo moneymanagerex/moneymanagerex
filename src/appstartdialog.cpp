@@ -17,7 +17,7 @@
  ********************************************************/
 
 #include "appstartdialog.h"
-#include "defs.h"
+#include "wx_common.h"
 #include "paths.h"
 #include "constants.h"
 #include "option.h"

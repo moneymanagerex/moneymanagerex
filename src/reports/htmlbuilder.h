@@ -20,7 +20,7 @@
 #ifndef MM_EX_HTMLBUILDER_H_
 #define MM_EX_HTMLBUILDER_H_
 
-#include "defs.h"
+#include "wx_common.h"
 #include <vector>
 #include "Model_Currency.h"
 #include "html_template.h"

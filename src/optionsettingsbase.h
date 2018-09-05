@@ -19,7 +19,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #pragma once
 
 #include "constants.h"
-#include "defs.h"
+#include "wx_common.h"
 
 #include "Model_Infotable.h"
 #include "Model_Setting.h"

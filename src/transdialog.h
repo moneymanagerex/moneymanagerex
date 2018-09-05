@@ -22,7 +22,7 @@
 #define MM_EX_TRANSDIALOG_H_
 
 #include "mmcustomdata.h"
-#include "defs.h"
+#include "wx_common.h"
 
 #include "Model_Checking.h"
 #include "Model_Payee.h"

@@ -20,7 +20,7 @@
 #define MM_EX_CATEGDIALOG_H_
 
 
-#include "defs.h"
+#include "wx_common.h"
 #include "Model_Category.h"
 
 class mmTreeItemCateg : public wxTreeItemData

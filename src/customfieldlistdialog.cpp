@@ -19,7 +19,7 @@ Copyright (C) 2016 Gabriele-V
 #include "customfieldlistdialog.h"
 #include "customfieldeditdialog.h"
 #include "constants.h"
-#include "defs.h"
+#include "wx_common.h"
 #include "images_list.h"
 #include "mmSimpleDialogs.h"
 #include "paths.h"
