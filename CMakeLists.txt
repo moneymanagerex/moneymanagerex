@@ -225,14 +225,7 @@ ENDIF()
 
 # --------- wxWidgets dependency ---------
 SET(wxWidgets_USE_REL_AND_DBG ON)
-IF(WIN32)
-    #wxScintilla is needed on Windows
-    FIND_PACKAGE(wxWidgets REQUIRED
-        core qa net html xml aui adv stc webview base scintilla REQUIRED)
-ELSE()
-    FIND_PACKAGE(wxWidgets REQUIRED
-        core qa net html xml aui adv stc webview base REQUIRED)
-ENDIF()
+FIND_PACKAGE(wxWidgets REQUIRED core qa html xml aui adv stc webview base REQUIRED)
 IF(wxWidgets_VERSION_STRING AND wxWidgets_VERSION_STRING VERSION_LESS 2.9.2)
     MESSAGE(SEND_ERROR "wxWidgets version to old.")
 ENDIF()
@@ -349,7 +342,6 @@ IF(WIN32)
         IF(NOT CMAKE_INSTALL_DEBUG_LIBRARIES_ONLY)
             LIST(APPEND MMEX_WXDLLS
                 wxbase${WXDLLPREF}
-                wxbase${WXDLLPREF}_net
                 wxbase${WXDLLPREF}_xml
                 wxmsw${WXDLLPREF}_adv
                 wxmsw${WXDLLPREF}_aui
@@ -363,7 +355,6 @@ IF(WIN32)
             SET(WXDLLPREF ${WXDLLPREF}d)
             LIST(APPEND MMEX_WXDLLS
                 wxbase${WXDLLPREF}
-                wxbase${WXDLLPREF}_net
                 wxbase${WXDLLPREF}_xml
                 wxmsw${WXDLLPREF}_adv
                 wxmsw${WXDLLPREF}_aui
