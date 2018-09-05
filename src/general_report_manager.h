@@ -30,7 +30,7 @@
 #include <sys/time.h>
 #endif
 
-class wxStyledTextCtrl;
+class wxSQLite3Database;
 class mmGeneralReportManager;
 
 class sqlListCtrl : public mmListCtrl

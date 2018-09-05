@@ -37,7 +37,6 @@
 #include <wx/string.h>
 #include <wx/datectrl.h>
 #include <wx/datetime.h>
-#include <wx/wxsqlite3.h>
 #include <wx/progdlg.h>
 #include <wx/utils.h>
 #include <wx/splash.h>
@@ -51,7 +50,6 @@
 #include <wx/html/htmlwin.h>
 #include <wx/html/htmlproc.h>
 #include <wx/html/htmprint.h>
-#include <wx/fs_inet.h>
 #include <wx/listbook.h>
 #include <wx/imaglist.h>
 #include <wx/popupwin.h>

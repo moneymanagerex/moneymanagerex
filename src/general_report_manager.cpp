@@ -35,6 +35,7 @@
 #include <wx/richtooltip.h>
 #include <wx/sstream.h>
 #include <wx/zipstrm.h>
+#include <wx/wxsqlite3.h>
 
 static const wxString SAMPLE_ASSETS_LUA = 
 R"(local total_balance = 0

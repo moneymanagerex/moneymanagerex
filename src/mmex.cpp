@@ -30,9 +30,6 @@
 #include "Model_Report.h"
 
 #include <wx/cmdline.h>
-#include <wx/fs_arc.h>
-#include <wx/fs_filter.h>
-#include <wx/fs_mem.h>
 
 //----------------------------------------------------------------------------
 wxIMPLEMENT_APP(mmGUIApp);
@@ -183,12 +180,6 @@ bool OnInitImpl(mmGUIApp* app)
 
     /* Initialize Image Handlers */
     wxInitAllImageHandlers();
-
-    /* Initialize File System Handlers */
-    wxFileSystem::AddHandler(new wxMemoryFSHandler());
-    wxFileSystem::AddHandler(new wxInternetFSHandler());
-    wxFileSystem::AddHandler(new wxArchiveFSHandler());
-    wxFileSystem::AddHandler(new wxFilterFSHandler());
 
     app->m_setting_db = new wxSQLite3Database();
     app->m_setting_db->Open(mmex::getPathUser(mmex::SETTINGS));

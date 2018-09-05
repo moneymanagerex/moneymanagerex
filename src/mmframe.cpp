@@ -80,7 +80,6 @@
 #include "Model_CurrencyHistory.h"
 #include "Model_Infotable.h"
 
-#include <wx/fs_mem.h>
 #include <stack>
 
 //----------------------------------------------------------------------------
