@@ -222,11 +222,11 @@ ENDIF()
 
 
 # --------- wxWidgets dependency ---------
+LIST(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/util")
 SET(wxWidgets_USE_REL_AND_DBG ON)
-FIND_PACKAGE(wxWidgets REQUIRED core qa html xml aui adv stc webview base REQUIRED)
-IF(wxWidgets_VERSION_STRING AND wxWidgets_VERSION_STRING VERSION_LESS 2.9.2)
-    MESSAGE(SEND_ERROR "wxWidgets version to old.")
-ENDIF()
+FIND_PACKAGE(wxWidgets 2.9.2 REQUIRED
+    COMPONENTS core qa html xml aui adv stc webview base
+    OPTIONAL_COMPONENTS scintilla)
 IF(APPLE AND wxWidgets_LIBRARIES MATCHES "${CMAKE_STATIC_LIBRARY_PREFIX}wx_baseu-[0-9\\.]+${CMAKE_STATIC_LIBRARY_SUFFIX}")
     # use static libs in place of dynamic if using static wxMac
     FOREACH(deplib png jpeg)
