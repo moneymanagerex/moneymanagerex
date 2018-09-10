@@ -1,7 +1,7 @@
 FROM base/archlinux:latest
 LABEL maintainer="developers@moneymanagerex.org"
 RUN pacman -Syuq --noprogressbar --needed --noconfirm \
-      git cmake make gcc gettext fakeroot lsb-release \
+      git cmake make gcc gettext pkg-config fakeroot lsb-release \
       webkit2gtk wxgtk3 rapidjson && \
     pacman -Qdtq | xargs -r pacman -Rns --noconfirm && \
     pacman -Sc --noconfirm
