@@ -31,7 +31,7 @@ environment:
   # libcurl config
   curlVer: 7_61_1
   curldir: C:\curl-$(curlVer)
-  curlStatic: ON
+  curlShared: OFF
   # wxWidgets config
   wxVer: 3.1.1
   wxwin: C:\wxWidgets-$(wxver)-$(configuration)
@@ -79,7 +79,7 @@ init:
   else (set wxLibFolder=%wxLibFolder%_dll)
 # Set curl library paths
 - set "curlLibFolder=%curldir%\vc%comp%%xp%%wxSuff%_%configuration%"
-- if %curlStatic%==ON (set curlLibFolder=%curlLibFolder%_lib)
+- if %curlShared%==OFF (set curlLibFolder=%curlLibFolder%_lib)
   else (set curlLibFolder=%curlLibFolder%_dll)
 # Print some info
 - echo %APPVEYOR_BUILD_WORKER_IMAGE% %platform% v%comp%%xp% %configuration% %arch%
@@ -91,10 +91,12 @@ init:
 - if %comp%==140 (set "gen=14 2015" & set "tool=v%comp%%xp%,host=x64")
 - if %comp%==141 (set "gen=15 2017" & set "tool=v%comp%%xp%,host=x64")
 - if %platform:~-2%==64 set "gen=%gen% Win64"
+# Microsoft compiler debug symbols option
+- if %configuration%==Debug (set "CL=%CL% /Z7")
 
 cache:
 - '%wxwin%\lib -> ..\MSVC_ver.txt'
-- '%curlLibFolder%'
+- '%curlLibFolder% -> .appveyor.yml'
 - '%CLCACHE_DIR% -> ..\MSVC_ver.txt'
 
 install:
@@ -125,25 +127,32 @@ install:
       wxUSE_UNSAFE_WXSTRING_CONV=0
   )
 # libcurl
-- if %configuration%==Debug (
-    set "curlConf=-DENABLE_DEBUG=ON" &&
-    set "curlFlags=/Z7"
-  )
+- if %configuration%==Debug (set "curlConf=-DENABLE_DEBUG=ON")
 - if not exist "%curlLibFolder%" (
     echo Building libcurl %curlVer% &
     git clone -q --depth=1 --branch=curl-%curlVer% https://github.com/curl/curl.git %curldir%-src &&
     mkdir %curldir%-src\build && cd %curldir%-src\build &&
     cmake -T %tool% -G "Visual Studio %gen%" %curlConf%
       -DBUILD_CURL_EXE=OFF
-      -DCURL_STATICLIB=%curlStatic%
-      -DHTTP_ONLY=ON
+      -DBUILD_SHARED_LIBS=%curlShared%
+      -DCURL_DISABLE_LDAP=ON
+      -DCURL_DISABLE_LDAPS=ON
+      -DCURL_DISABLE_TELNET=ON
+      -DCURL_DISABLE_DICT=ON
+      -DCURL_DISABLE_FILE=ON
+      -DCURL_DISABLE_TFTP=ON
+      -DCURL_DISABLE_RTSP=ON
+      -DCURL_DISABLE_POP3=ON
+      -DCURL_DISABLE_IMAP=ON
+      -DCURL_DISABLE_SMTP=ON
+      -DCURL_DISABLE_GOPHER=ON
       -DENABLE_MANUAL=OFF
       -DCMAKE_USE_WINSSL=ON
       -DBUILD_TESTING=OFF
       -DCMAKE_INSTALL_PREFIX=%curlLibFolder%
       .. &&
     cmake --build . --target install --config %configuration%
-      -- /maxcpucount /verbosity:minimal /nologo /p:PreferredToolArchitecture=x64 %curlFlags%
+      -- /maxcpucount /verbosity:minimal /nologo /p:PreferredToolArchitecture=x64
   )
 
 before_build:
@@ -201,9 +210,3 @@ deploy:
   on:
     appveyor_repo_tag: true # deploy on tag push only
     configuration: Release  # Debug contains non-redist MS DLLs
-
-#notifications:
-#- provider: Slack
-#    auth_token:
-#      secure: kBl9BlxvRMr9liHmnBs14A==
-#    channel: '#appveyor'
