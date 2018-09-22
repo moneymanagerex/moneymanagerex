@@ -121,9 +121,9 @@ script: |-
       docker run -it --rm -w /moneymanagerex/build -e MAKEFLAGS \
                 -v $HOME/.ccache:/root/.ccache \
                 -v $TRAVIS_BUILD_DIR:/moneymanagerex ${DOCKER} \
-        bash -c "$CMAKE_CMD && make package && eval \$MMEX_INST_CMD" ;;
+        bash -c "$CMAKE_CMD && cmake --build . --target package && eval \$MMEX_INST_CMD" ;;
     osx)
-      $CMAKE_CMD && make package ;;
+      $CMAKE_CMD && cmake --build . --target package ;;
   esac
 
 notifications: # set notification options
