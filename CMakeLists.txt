@@ -1,17 +1,16 @@
 CMAKE_MINIMUM_REQUIRED(VERSION 3.0 FATAL_ERROR)
 SET(InMMEX TRUE)
 
-FIND_PACKAGE(Git)
-IF(GIT_FOUND)
-    # Get the latest version tag
-    EXECUTE_PROCESS(COMMAND ${GIT_EXECUTABLE} describe --match v* --tags --abbrev=0
-        WORKING_DIRECTORY ${CMAKE_HOME_DIRECTORY}
-        OUTPUT_VARIABLE GIT_TAG_VERSION
-        OUTPUT_STRIP_TRAILING_WHITESPACE
-        TIMEOUT 4 ERROR_QUIET)
-    IF(NOT GIT_TAG_VERSION MATCHES "^v([0-9]+\\.[0-9]+\\.[0-9]+)(-([^ ]+))*")
-        MESSAGE(FATAL_ERROR "Unable to determine MMEX version tag from sources!")
-    ENDIF()
+FIND_PACKAGE(Git REQUIRED)
+# Get the latest version tag
+EXECUTE_PROCESS(COMMAND ${GIT_EXECUTABLE} describe --match v* --tags --abbrev=0
+    WORKING_DIRECTORY ${CMAKE_HOME_DIRECTORY}
+    OUTPUT_VARIABLE GIT_TAG_VERSION
+    OUTPUT_STRIP_TRAILING_WHITESPACE
+    TIMEOUT 4 ERROR_QUIET)
+IF(NOT GIT_TAG_VERSION MATCHES "^v([0-9]+\\.[0-9]+\\.[0-9]+)(-([^ ]+))*")
+    MESSAGE(FATAL_ERROR "Unable to determine MMEX version tag from sources!")
+ENDIF()
 # ---------------------------------------------------------------------------
 # MMEX uses semantic versioning Ref: http://semver.org
 #
@@ -28,10 +27,9 @@ IF(GIT_FOUND)
 # ./src/versions.h
 # ./resources/mmex.rc
 # ---------------------------------------------------------------------------
-    SET(MMEX_VERSION ${CMAKE_MATCH_1})
-    SET(MMEX_VERSION_UNSTABLE ${CMAKE_MATCH_3})
-    SET(MMEX_VERSION_FULL ${CMAKE_MATCH_1}${CMAKE_MATCH_2})
-ENDIF()
+SET(MMEX_VERSION ${CMAKE_MATCH_1})
+SET(MMEX_VERSION_UNSTABLE ${CMAKE_MATCH_3})
+SET(MMEX_VERSION_FULL ${CMAKE_MATCH_1}${CMAKE_MATCH_2})
 
 PROJECT(MMEX VERSION ${MMEX_VERSION})
 OPTION(MMEX_PORTABLE_INSTALL "Include an empty mmexini.db3 file in the Windows installation" ON) 
@@ -41,26 +39,24 @@ OPTION(MMEX_ENCRYPTION_OPTIONAL "Build even if encryption is not supported by wx
 SET(MMEX_EXE mmex)
 
 # Find Git commit details to put into versions.h later
-IF(GIT_FOUND)
-    # Get the current working branch
-    EXECUTE_PROCESS(COMMAND ${GIT_EXECUTABLE} symbolic-ref --short -q HEAD
-        WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
-        OUTPUT_VARIABLE GIT_BRANCH
-        OUTPUT_STRIP_TRAILING_WHITESPACE
-        TIMEOUT 4 ERROR_QUIET)
-    # Get the latest abbreviated commit hash of the working branch
-    EXECUTE_PROCESS(COMMAND ${GIT_EXECUTABLE} log -1 --format=%h
-        WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
-        OUTPUT_VARIABLE GIT_COMMIT_HASH
-        OUTPUT_STRIP_TRAILING_WHITESPACE
-        TIMEOUT 4 ERROR_QUIET)
-    # Get the latest commit date of the working branch
-    EXECUTE_PROCESS(COMMAND ${GIT_EXECUTABLE} log -1 --format=%cd --date=short
-        WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
-        OUTPUT_VARIABLE GIT_COMMIT_DATE
-        OUTPUT_STRIP_TRAILING_WHITESPACE
-        TIMEOUT 4 ERROR_QUIET)
-ENDIF()
+# Get the current working branch
+EXECUTE_PROCESS(COMMAND ${GIT_EXECUTABLE} symbolic-ref --short -q HEAD
+    WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
+    OUTPUT_VARIABLE GIT_BRANCH
+    OUTPUT_STRIP_TRAILING_WHITESPACE
+    TIMEOUT 4 ERROR_QUIET)
+# Get the latest abbreviated commit hash of the working branch
+EXECUTE_PROCESS(COMMAND ${GIT_EXECUTABLE} log -1 --format=%h
+    WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
+    OUTPUT_VARIABLE GIT_COMMIT_HASH
+    OUTPUT_STRIP_TRAILING_WHITESPACE
+    TIMEOUT 4 ERROR_QUIET)
+# Get the latest commit date of the working branch
+EXECUTE_PROCESS(COMMAND ${GIT_EXECUTABLE} log -1 --format=%cd --date=short
+    WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
+    OUTPUT_VARIABLE GIT_COMMIT_DATE
+    OUTPUT_STRIP_TRAILING_WHITESPACE
+    TIMEOUT 4 ERROR_QUIET)
 
 IF(CMAKE_SYSTEM_NAME STREQUAL "Linux")
     # define shortcut
@@ -127,15 +123,8 @@ ENDIF()
 IF(MSVC)
     # using Visual Studio C++
     ADD_DEFINITIONS(-D_CRT_SECURE_NO_WARNINGS)
-ELSEIF(CMAKE_CXX_COMPILER_ID MATCHES "Clang")
-    # using regular Clang or AppleClang
-    IF(LINUX_DISTRO STREQUAL "Ubuntu")
-        # Due to bug in Ubuntu
-        # http://stackoverflow.com/questions/37096062/get-a-basic-c-program-to-compile-using-clang-on-ubuntu-16
-        SET(CMAKE_CXX_FLAGS "-stdlib=libstdc++ ${CMAKE_CXX_FLAGS}")
-    ELSEIF(APPLE)
-        SET(CMAKE_CXX_FLAGS "-stdlib=libc++ ${CMAKE_CXX_FLAGS}")
-    ENDIF()
+ELSEIF(CMAKE_CXX_COMPILER_ID STREQUAL AppleClang)
+    SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -stdlib=libc++")
 ENDIF()
 
 # try to use clcache/ccache to speed up builds
@@ -657,7 +646,9 @@ ENDIF()
 IF(VS_VERSION)
     MESSAGE(STATUS "Visual Studio ${VS_VERSION}")
 ENDIF()
-MESSAGE(STATUS "${CMAKE_CXX_COMPILER_ID} ${CMAKE_CXX_COMPILER_VERSION}")
+IF(CMAKE_CXX_COMPILER_ID)
+    MESSAGE(STATUS "${CMAKE_CXX_COMPILER_ID} ${CMAKE_CXX_COMPILER_VERSION}")
+ENDIF()
 IF(CMAKE_VS_WINDOWS_TARGET_PLATFORM_VERSION)
     MESSAGE(STATUS "Win SDK ${CMAKE_VS_WINDOWS_TARGET_PLATFORM_VERSION}")
 ENDIF()
