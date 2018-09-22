@@ -73,7 +73,7 @@
     <key>NSHumanReadableCopyright</key>
     <string>${MACOSX_BUNDLE_COPYRIGHT}</string>
     <key>LSMinimumSystemVersion</key>
-    <string>10.9.0</string>
+    <string>10.7.0</string>
     <key>LSApplicationCategoryType</key>
     <string>public.app-category.finance</string>
     <key>LSMultipleInstancesProhibited</key>
