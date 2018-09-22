@@ -96,12 +96,19 @@ install: |-
         do brew list $p >/dev/null || brew install --verbose $p; done
       brew link --force gettext zlib
       ccache -s && export PATH="/usr/local/opt/ccache/libexec:$PATH"
-      brew install --verbose wxmac --with-static --with-stl
+      cd $HOME
+      curl -fsSL -O https://github.com/wxWidgets/wxWidgets/releases/download/v3.1.1/wxWidgets-3.1.1.tar.bz2
+      tar xzf wxWidgets-*.tar.bz2
+      cd wxWidgets-3.1.1
+      ./configure --disable-shared --enable-cxx11 --with-cxx=11 \
+        --with-macosx-version-min=$MACOSX_DEPLOYMENT_TARGET \
+        --without-libtiff
+      make install
       ;;
   esac
 
 before_script:
-- cd src/db
+- cd $TRAVIS_BUILD_DIR/src/db
 - python ../../util/sqlite2cpp.py ../../database/tables.sql && rm -f sql*.sql *.mmdbg
 - python ../../util/sqliteupgrade2cpp.py ../../database/incremental_upgrade
 - cd ../.. && mkdir build && cd build
