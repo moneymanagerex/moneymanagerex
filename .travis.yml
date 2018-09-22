@@ -82,16 +82,16 @@ matrix:
   - env: OS=slackware DIST=14.2
 
 install: |-
-  DOCKER=moneymanagerex/mmex_build_env:$OS${DIST:+.$DIST}${ARCH:+.$ARCH}
   case $TRAVIS_OS_NAME in
     linux)
+      DOCKER=moneymanagerex/mmex_build_env:$OS${DIST:+.$DIST}${ARCH:+.$ARCH}
       ccache -s || true
       docker pull ${DOCKER}
       docker build dockers/$OS${DIST:+.$DIST}${ARCH:+.$ARCH} --cache-from ${DOCKER} -t ${DOCKER}
       ;;
     osx)
       MACOSX_DEPLOYMENT_TARGET=$DIST
-      brew update # see travis-ci/travis-ci#8552
+      brew update
       for p in gettext ccache zlib;
         do brew list $p >/dev/null || brew install --verbose $p; done
       brew link --force gettext zlib
