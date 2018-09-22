@@ -91,10 +91,7 @@ install: |-
       ;;
     osx)
       MACOSX_DEPLOYMENT_TARGET=$DIST
-      brew update
-      for p in gettext ccache zlib;
-        do brew list $p >/dev/null || brew install --verbose $p; done
-      brew link --force gettext zlib
+      brew update && brew bundle --verbose --file=util/Brewfile
       ccache -s && export PATH="/usr/local/opt/ccache/libexec:$PATH"
       cd $HOME
       curl -fsSL -O https://github.com/wxWidgets/wxWidgets/releases/download/v3.1.1/wxWidgets-3.1.1.tar.bz2
