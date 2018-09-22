@@ -45,10 +45,11 @@ env:
 matrix:
   fast_finish: true
   include: # add non-linux targets
-  - { os: osx, osx_image: xcode6.4, env: OS=osx DIST=10.10 }
-  - { os: osx, osx_image: xcode8,   env: OS=osx DIST=10.11 }
-  - { os: osx, osx_image: xcode9.2, env: OS=macos DIST=10.12 }
-  - { os: osx, osx_image: xcode9.4, env: OS=macos DIST=10.13 }
+  - { os: osx, osx_image: xcode6.4, compiler: clang, env: OS=osx DIST=10.10 }
+  - { os: osx, osx_image: xcode8,   compiler: clang, env: OS=osx DIST=10.11 }
+  - { os: osx, osx_image: xcode9.2, compiler: clang, env: OS=macos DIST=10.12 }
+  - { os: osx, osx_image: xcode9.4, compiler: clang, env: OS=macos DIST=10.13 }
+  - { os: osx, osx_image: xcode10,  compiler: clang, env: OS=macos DIST=10.14 }
   allow_failures:
   - env: OS=debian DIST=jessie
   - env: OS=debian DIST=stretch
@@ -79,6 +80,7 @@ matrix:
   - env: OS=osx DIST=10.10
   - env: OS=osx DIST=10.11
   - env: OS=macos DIST=10.12
+  - env: OS=macos DIST=10.14
   - env: OS=slackware DIST=14.2
 
 install: |-
