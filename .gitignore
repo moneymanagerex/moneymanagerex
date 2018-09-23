@@ -34,4 +34,4 @@
 *.bak
 *.swp
 *.d
-
+.DS_Store
