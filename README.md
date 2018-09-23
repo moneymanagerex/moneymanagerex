@@ -23,11 +23,11 @@ MMEX is mainly written in C++11 and built on:
 
 * Windows XP, 2003, Vista, 7, 8 and 10  
   [![a]][AppVeyor]
-* Most Unix variants using the GTK+ toolkit (version 2.6 or newer)  
+* Most Unix variants using the [GTK+] toolkit  
   [![debian] ![ubuntu] ![centos] ![fedora] ![opensuse] ![arch] ![raspbian]
   ![slackware]][Travis] [![snap]][buildsnap]
-* OS X (10.7 or newer) and macOS using Cocoa  
-  [![yosemite] ![el capitan] ![sierra] ![high sierra]][Travis]
+* OS X / macOS 10.7 or newer using [Cocoa]  
+  [![yosemite] ![el capitan] ![sierra] ![high sierra] ![mojave]][Travis]
 
 Please follow installation instructions from [INSTALL.md] file.
 
@@ -106,5 +106,8 @@ Please follow installation instructions from [INSTALL.md] file.
 [el capitan]: http://badges.herokuapp.com/travis/moneymanagerex/moneymanagerex?label=el%20capitan&env=DIST=10.11
 [sierra]: http://badges.herokuapp.com/travis/moneymanagerex/moneymanagerex?label=sierra&env=DIST=10.12
 [high sierra]: http://badges.herokuapp.com/travis/moneymanagerex/moneymanagerex?label=high%20sierra&env=DIST=10.13
+[mojave]: http://badges.herokuapp.com/travis/moneymanagerex/moneymanagerex?label=mojave&env=DIST=10.14
 [resolution time]: http://isitmaintained.com/badge/resolution/moneymanagerex/moneymanagerex.svg
 [INSTALL.md]: ./INSTALL.md
+[Cocoa]: https://developer.apple.com/library/archive/documentation/MacOSX/Conceptual/OSX_Technology_Overview/CocoaApplicationLayer/CocoaApplicationLayer.html "Cocoa Application Layer"
+[GTK+]: https://www.gtk.org/ "GIMP Toolkit"
