@@ -129,6 +129,9 @@ IF(MSVC)
     # using Visual Studio C++
     ADD_DEFINITIONS(-D_CRT_SECURE_NO_WARNINGS)
 ELSEIF(CMAKE_CXX_COMPILER_ID STREQUAL AppleClang)
+    # force libc++, not libstdc++ for Xcode 10
+    # https://developer.apple.com/documentation/xcode_release_notes/xcode_10_release_notes#3035631
+    SET(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -stdlib=libc++ -lc++abi")
     SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -stdlib=libc++")
 ENDIF()
 
@@ -519,7 +522,7 @@ ELSEIF(APPLE)
     SET(CPACK_DMG_VOLUME_NAME "Money Manager Ex")
     SET(CPACK_DMG_FORMAT UDZO)
     SET(CPACK_DMG_BACKGROUND_IMAGE "${PROJECT_SOURCE_DIR}/resources/dmg-background.png")
-    SET(CPACK_DMG_DS_STORE "${PROJECT_SOURCE_DIR}/resources/.DS_Store")
+    SET(CPACK_DMG_DS_STORE "${PROJECT_SOURCE_DIR}/resources/dmg-DS_Store")
     SET(CPACK_PACKAGE_ICON "${PROJECT_SOURCE_DIR}/resources/mmex-package.icns")
     SET(CPACK_BUNDLE_PLIST "${PROJECT_SOURCE_DIR}/resources/Info.plist")
 ELSEIF(WIN32)

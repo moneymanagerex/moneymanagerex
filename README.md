@@ -16,7 +16,7 @@ personal finance application. The design goals are to concentrate on
 simplicity and user-friendliness - something one can use everyday.
 
 MMEX is mainly written in C++11 and built on:  
-[wxWidgets] 3.0+ | [wxSqlite3] | [SQLite3] | [Mongoose] | [RapidJSON]
+[wxWidgets] 3.0+ | [wxSQLite3] | [SQLite3] | [Mongoose] | [RapidJSON]
 | [ChartNew.JS] | [html-template] | [libcurl]
 
 #### Supported platforms ####
@@ -27,7 +27,7 @@ MMEX is mainly written in C++11 and built on:
   [![debian] ![ubuntu] ![centos] ![fedora] ![opensuse] ![arch] ![raspbian]
   ![slackware]][Travis] [![snap]][buildsnap]
 * OS X / macOS 10.7 or newer using [Cocoa]  
-  [![el capitan] ![sierra] ![high sierra] ![mojave]][Travis]
+  [![macos]][Travis]
 
 Please follow installation instructions from [INSTALL.md] file.
 
@@ -66,7 +66,7 @@ Please follow installation instructions from [INSTALL.md] file.
 [Snap Store]: https://snapcraft.io/mmex
 [Twitter]: https://twitter.com/MoneyManagerEx
 [wxWidgets]: http://wxwidgets.org/
-[wxSqlite3]: https://github.com/utelle/wxsqlite3
+[wxSQLite3]: https://github.com/utelle/wxsqlite3
 [SQLite3]: http://sqlite.org/
 [Mongoose]: https://github.com/cesanta/mongoose
 [RapidJSON]: http://rapidjson.org/
@@ -102,10 +102,7 @@ Please follow installation instructions from [INSTALL.md] file.
 [arch]: http://badges.herokuapp.com/travis/moneymanagerex/moneymanagerex?label=arch&env=OS=archlinux
 [raspbian]: http://badges.herokuapp.com/travis/moneymanagerex/moneymanagerex?label=raspbian&env=ARCH=armhf
 [slackware]: http://badges.herokuapp.com/travis/moneymanagerex/moneymanagerex?label=slackware&env=OS=slackware
-[el capitan]: http://badges.herokuapp.com/travis/moneymanagerex/moneymanagerex?label=el%20capitan&env=DIST=10.11
-[sierra]: http://badges.herokuapp.com/travis/moneymanagerex/moneymanagerex?label=sierra&env=DIST=10.12
-[high sierra]: http://badges.herokuapp.com/travis/moneymanagerex/moneymanagerex?label=high%20sierra&env=DIST=10.13
-[mojave]: http://badges.herokuapp.com/travis/moneymanagerex/moneymanagerex?label=mojave&env=DIST=10.14
+[macos]: http://badges.herokuapp.com/travis/moneymanagerex/moneymanagerex?label=macos&env=OS=macos
 [resolution time]: http://isitmaintained.com/badge/resolution/moneymanagerex/moneymanagerex.svg
 [INSTALL.md]: ./INSTALL.md
 [Cocoa]: https://developer.apple.com/library/archive/documentation/MacOSX/Conceptual/OSX_Technology_Overview/CocoaApplicationLayer/CocoaApplicationLayer.html "Cocoa Application Layer"
