@@ -46,7 +46,6 @@ env:
 matrix:
   fast_finish: true
   include: # add non-linux targets
-  - { os: osx, osx_image: xcode6.4, compiler: clang, env: OS=osx DIST=10.10 }
   - { os: osx, osx_image: xcode8,   compiler: clang, env: OS=osx DIST=10.11 }
   - { os: osx, osx_image: xcode9.2, compiler: clang, env: OS=macos DIST=10.12 }
   - { os: osx, osx_image: xcode9.4, compiler: clang, env: OS=macos DIST=10.13 }
@@ -78,10 +77,9 @@ matrix:
   - env: OS=opensuse DIST=42.2
   - env: OS=opensuse DIST=42.3
   - env: OS=archlinux
-  - env: OS=osx DIST=10.10
   - env: OS=osx DIST=10.11
   - env: OS=macos DIST=10.12
-  - env: OS=macos DIST=10.14
+  - env: OS=macos DIST=10.13
   - env: OS=slackware DIST=14.2
 
 install: |-
@@ -93,7 +91,7 @@ install: |-
       docker build dockers/$OS${DIST:+.$DIST}${ARCH:+.$ARCH} --cache-from ${DOCKER} -t ${DOCKER}
       ;;
     osx)
-      MACOSX_DEPLOYMENT_TARGET=$DIST
+      export MACOSX_DEPLOYMENT_TARGET=$DIST
       brew update && brew bundle --verbose --file=util/Brewfile
       ccache -s && export PATH="/usr/local/opt/ccache/libexec:$PATH"
       cd $HOME
@@ -114,16 +112,18 @@ before_script:
 - cd ../.. && mkdir build && cd build
 
 script: |-
-  CMAKE_CMD="cmake ${ARCH:+-DCMAKE_TOOLCHAIN_FILE=util/toolchain-$TRAVIS_OS_NAME-$ARCH.cmake} -DCMAKE_BUILD_TYPE=$BUILD_TYPE -DCPACK_DEBIAN_PACKAGE_DEBUG=ON -DCPACK_RPM_PACKAGE_DEBUG=ON .."
+  CMAKE_CMD="cmake ${ARCH:+-DCMAKE_TOOLCHAIN_FILE=util/toolchain-$TRAVIS_OS_NAME-$ARCH.cmake} .."
   case $TRAVIS_OS_NAME in
     linux)
       chmod -fR a+rwX $HOME/.ccache
       docker run -it --rm -w /moneymanagerex/build -e MAKEFLAGS \
                 -v $HOME/.ccache:/root/.ccache \
                 -v $TRAVIS_BUILD_DIR:/moneymanagerex ${DOCKER} \
-        bash -c "$CMAKE_CMD && cmake --build . --target package && eval \$MMEX_INST_CMD" ;;
+        bash -c "$CMAKE_CMD -DCMAKE_BUILD_TYPE=$BUILD_TYPE && cmake --build . --target package && eval \$MMEX_INST_CMD" ;;
     osx)
-      $CMAKE_CMD -G Xcode && cmake --build . --target package | \
+      export CXXFLAGS=-stdlib=libc++ # exports required by Xcode 10 or later
+      export LDFLAGS=-stdlib=libc++
+      $CMAKE_CMD -G Xcode && cmake --build . --target package --config $BUILD_TYPE | \
         xcpretty -c -f `xcpretty-travis-formatter`; test ${PIPESTATUS[0]} -eq 0
       ;;
   esac

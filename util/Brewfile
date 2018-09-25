@@ -1,4 +1,2 @@
 brew 'ccache'
 brew 'gettext', link: true
-brew 'jpeg', link: true
-brew 'libpng', link: true
