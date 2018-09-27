@@ -9,6 +9,7 @@ cache: ccache
 
 env:
   global:
+  - CCACHE_SLOPPINESS=time_macros
   - CMAKE_BUILD_PARALLEL_LEVEL=4
   - MAKEFLAGS=-j$CMAKE_BUILD_PARALLEL_LEVEL
   - BUILD_TYPE=$(if [[ "$TRAVIS_TAG" =~ ^v[0-9]+\.[0-9]+\.[0-9]+ ]]; then if [[ "$TRAVIS_TAG" =~ -[a-z] ]]; then echo RelWithDebInfo; else echo Release; fi; else echo Debug; fi)
@@ -123,7 +124,9 @@ script: |-
     osx)
       export CXXFLAGS=-stdlib=libc++ # exports required by Xcode 10 or later
       export LDFLAGS=-stdlib=libc++
-      $CMAKE_CMD -G Xcode && cmake --build . --target package --config $BUILD_TYPE | \
+      $CMAKE_CMD -G Xcode && cmake --build . --target package --config $BUILD_TYPE -- \
+        CC=/usr/local/opt/ccache/libexec/clang \
+        CPLUSPLUS=/usr/local/opt/ccache/libexec/clang++ | \
         xcpretty -c -f `xcpretty-travis-formatter`; test ${PIPESTATUS[0]} -eq 0
       ;;
   esac
