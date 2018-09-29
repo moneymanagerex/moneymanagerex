@@ -223,6 +223,18 @@ FIND_PACKAGE(wxWidgets REQUIRED core qa html xml aui adv stc webview base REQUIR
 IF(wxWidgets_VERSION_STRING AND wxWidgets_VERSION_STRING VERSION_LESS 2.9.2)
     MESSAGE(SEND_ERROR "wxWidgets version to old.")
 ENDIF()
+IF(APPLE AND wxWidgets_LIBRARIES MATCHES "${CMAKE_STATIC_LIBRARY_PREFIX}wx_baseu-[0-9\\.]+${CMAKE_STATIC_LIBRARY_SUFFIX}")
+    # use static libs in place of dynamic if using static wxMac
+    FOREACH(deplib png jpeg)
+        FIND_LIBRARY(${deplib}path ${CMAKE_STATIC_LIBRARY_PREFIX}${deplib}${CMAKE_STATIC_LIBRARY_SUFFIX})
+        IF(${deplib}path)
+            STRING(REPLACE "-l${deplib}" "${${deplib}path}"
+                wxWidgets_LIBRARIES "${wxWidgets_LIBRARIES}")
+        ENDIF()
+    ENDFOREACH()
+    UNSET(deplib)
+    UNSET(${deplib}path)
+ENDIF()
 ADD_LIBRARY(wxWidgets INTERFACE)
 TARGET_INCLUDE_DIRECTORIES(wxWidgets INTERFACE ${wxWidgets_INCLUDE_DIRS})
 TARGET_LINK_LIBRARIES(wxWidgets INTERFACE ${wxWidgets_LIBRARIES})
