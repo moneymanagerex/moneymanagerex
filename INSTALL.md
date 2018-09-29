@@ -24,11 +24,6 @@ preserved to selected directory on your hard disk, external drive, pen-drive
 etc. and start executable `mmex.exe`. This package not use any files outside
 its directory.
 
-> To try the latest *nightly* developer build you can go to [AppVeyor], click
-> on `Win32` or `x64` platform then click on `ARTIFACTS` tab on the right
-> (above blue log window). Please remember this version can not work at all
-> or have serious bugs!
-
 Required *Visual C++ Runtime* and *Universal CRT* DLLs are included in MMEX
 packages. `msvc*.dll` and `vcruntime*.dll` can be safely deleted if the same
 version of *Visual C++ Redistributable Package* or from Microsoft is installed
@@ -131,8 +126,7 @@ configuration.
 
 Download package for your distribution from [GitHub Releases][GitHubDL].
 Arch, Debian 8/9/10, CentOS 7, Fedora 24-29/rawhide, Mint 18/19, openSUSE
-Leap 42.2/42.3/tumbleweed, Ubuntu 16/17/18, Slackware 14.2 are supported for now,
-64-bit only.
+Leap 42.2/42.3/tumbleweed, Ubuntu 16/17/18, Slackware 14.2 are supported for now.
 
 > Use unstable pre-release version (*alpha*, *beta*, *rc*) at your risk
 > (work on your database copies!) to check or test newly added functions.
@@ -155,13 +149,21 @@ webkitgtk and wxGTK3 (with webview support). They can be build from
 OS X / macOS
 ------------
 
-Download Drag'N'Drop package from [GitHub Releases][GitHubDL] for OS X 10.10
-Yosemite, OS X 10.11 El Capitan, or macOS 10.12 Sierra.
+Download Drag'N'Drop package (.dmg file) from [GitHub Releases][GitHubDL].
+OS X / macOS versions starting from 10.7 (Lion) are supported.
 
 > Use unstable pre-release version (*alpha*, *beta*, *rc*) at your risk
 > (work on your database copies!) to check or test newly added functions.
 
-> TODO: describe next installation steps
+Double click the downloaded file to mount it - name will show up in the Finder
+sidebar and a new Finder window will open showing MMEX icon, arrow and
+Applications folder shortcut.
+
+Drag the application icon to Applications to install (may need an
+administrator password to do this).
+
+Eject the mounted .dmg package by clicking the eject button in the Sidebar
+when the copy process is finished. You can delete the .dmg file after that.
 
 [BUILD.md]: BUILD.md
 [Windows]: #microsoft-windows
