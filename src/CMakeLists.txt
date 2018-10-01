@@ -146,8 +146,6 @@ ADD_EXECUTABLE(${MMEX_EXE} WIN32 MACOSX_BUNDLE
     webappdialog.cpp
     webappdialog.h
     webapp.h
-    webserver.cpp
-    webserver.h
     wizard_newaccount.cpp
     wizard_newaccount.h
     wizard_newdb.cpp
@@ -282,6 +280,18 @@ ADD_EXECUTABLE(${MMEX_EXE} WIN32 MACOSX_BUNDLE
     "platfdep_${MMEX_PLATFDEP}.cpp"
     "${MACOSX_APP_ICON_FILE}"
     "${MMEX_RC}")
+
+IF(MMEX_WEBSERVER)
+    TARGET_SOURCES(${MMEX_EXE} PRIVATE
+        webserver.cpp
+        webserver.h)
+    SET_SOURCE_FILES_PROPERTIES(
+        constants.cpp
+        mmex.cpp
+        optionsettingsnet.cpp
+        optionsettingsnet.h
+        PROPERTIES COMPILE_DEFINITIONS MMEX_WEBSERVER)
+ENDIF()
 
 IF(";${CMAKE_CXX_COMPILE_FEATURES};" MATCHES ";cxx_std_11;")
     TARGET_COMPILE_FEATURES(${MMEX_EXE} PUBLIC cxx_std_11)

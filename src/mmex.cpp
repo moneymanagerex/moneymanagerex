@@ -23,8 +23,9 @@
 #include "paths.h"
 #include "platfdep.h"
 #include "util.h"
+#ifdef MMEX_WEBSERVER
 #include "webserver.h"
-
+#endif
 #include "Model_Setting.h"
 #include "Model_Usage.h"
 #include "Model_Report.h"
@@ -218,7 +219,9 @@ bool OnInitImpl(mmGUIApp* app)
 
     app->m_frame = new mmGUIFrame(app, mmex::getProgramName(), wxPoint(valx, valy), wxSize(valw, valh));
 
+#ifdef MMEX_WEBSERVER
     Mongoose_Service::instance().open();
+#endif
 
     bool ok = app->m_frame->Show();
     if (isMax) app->m_frame->Maximize(true);
@@ -281,7 +284,9 @@ int mmGUIApp::OnExit()
 
     if (m_setting_db) delete m_setting_db;
 
+#ifdef MMEX_WEBSERVER
     Mongoose_Service::instance().stop();
+#endif
 
     /* CURL Cleanup */
     curl_global_cleanup();

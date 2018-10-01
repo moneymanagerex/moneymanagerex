@@ -28,7 +28,9 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 /*******************************************************/
 wxBEGIN_EVENT_TABLE(OptionSettingsNet, wxPanel)
     EVT_TEXT(ID_DIALOG_OPTIONS_TEXTCTRL_PROXY, OptionSettingsNet::OnProxyChanged)
+#ifdef MMEX_WEBSERVER
     EVT_CHECKBOX(ID_DIALOG_OPTIONS_ENABLE_WEBSERVER, OptionSettingsNet::OnEnableWebserverChanged)
+#endif
     EVT_BUTTON(ID_DIALOG_OPTIONS_BUTTON_WEBAPP_TEST, OptionSettingsNet::OnWebAppTest)
 wxEND_EVENT_TABLE()
 /*******************************************************/
@@ -112,6 +114,7 @@ void OptionSettingsNet::Create()
 
     proxyStaticBoxSizer->Add(flex_sizer3, g_flagsV);
 
+#ifdef MMEX_WEBSERVER
     // Web Server Settings
     wxStaticBox* webserverStaticBox = new wxStaticBox(this, wxID_STATIC, _("Web Server"));
     SetBoldFont(webserverStaticBox);
@@ -135,6 +138,7 @@ void OptionSettingsNet::Create()
     flex_sizer4->Add(m_webserver_port, g_flagsH);
 
     webserverStaticBoxSizer->Add(flex_sizer4, g_flagsV);
+#endif
 
     //Usage data send
     wxStaticBox* usageStaticBox = new wxStaticBox(this, wxID_STATIC, _("Usage statistics"));
@@ -194,7 +198,9 @@ void OptionSettingsNet::Create()
 
     wxCommandEvent evt;
     OptionSettingsNet::OnProxyChanged(evt);
+#ifdef MMEX_WEBSERVER
     OptionSettingsNet::OnEnableWebserverChanged(evt);
+#endif
     SetSizer(networkPanelSizer);
 }
 
@@ -203,10 +209,12 @@ void OptionSettingsNet::OnProxyChanged(wxCommandEvent& event)
     m_proxy_port->Enable(m_proxy_address->GetValue() != "");
 }
 
+#ifdef MMEX_WEBSERVER
 void OptionSettingsNet::OnEnableWebserverChanged(wxCommandEvent& event)
 {
     m_webserver_port->Enable(m_webserver_checkbox->GetValue());
 }
+#endif
 
 void OptionSettingsNet::OnWebAppTest(wxCommandEvent& /*event*/)
 {
@@ -235,8 +243,10 @@ void OptionSettingsNet::SaveSettings()
     wxTextCtrl* WebAppGUID = (wxTextCtrl*) FindWindow(ID_DIALOG_OPTIONS_TEXTCTRL_WEBAPPGUID);
     Model_Infotable::instance().Set("WEBAPPGUID", WebAppGUID->GetValue());
 
+#ifdef MMEX_WEBSERVER
     Model_Setting::instance().Set("ENABLEWEBSERVER", m_webserver_checkbox->GetValue());
     Model_Setting::instance().Set("WEBSERVERPORT", m_webserver_port->GetValue());
+#endif
 
     Option::instance().SendUsageStatistics(m_send_data->GetValue());
 
