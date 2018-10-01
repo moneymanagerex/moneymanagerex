@@ -3,7 +3,7 @@ LABEL maintainer="developers@moneymanagerex.org"
 RUN pacman -Syuq --noprogressbar --needed --noconfirm \
       git cmake make gcc gettext fakeroot lsb-release \
       webkit2gtk wxgtk3 rapidjson && \
-    pacman -Qdtq | xargs -r pacman -Rns && \
+    pacman -Qdtq | xargs -r pacman -Rns --noconfirm && \
     pacman -Sc --noconfirm
 
 # unlock nobody required for makepkg
