@@ -25,7 +25,6 @@
 #include "singleton.h"
 #include "Model_Setting.h"
 #include "Model_Report.h"
-#include "Model_Setting.h"
 #include "Model_Infotable.h"
 
 static struct mg_serve_http_opts s_http_server_opts;
@@ -60,12 +59,12 @@ static void handle_sql(struct mg_connection* nc, struct http_message* hm)
     
     json_writer.EndObject();
 
-    const char* str = json_buffer.GetString();
-    std::cout<<str<<std::endl;
+    std::cout<<json_buffer.GetString()<<std::endl;
 
     mg_printf(nc, "HTTP/1.1 200 OK\r\n"
                 "Content-Type: application/json; charset=utf-8\r\n"
-                "Content-Length: %zu\r\n\r\n%s", sizeof(str) / sizeof(char), str);
+                "Content-Length: %zu\r\n\r\n%s",
+                json_buffer.GetSize(), json_buffer.GetString());
 }
 
 static void ev_handler(struct mg_connection *nc, int ev, void *ev_data) 
