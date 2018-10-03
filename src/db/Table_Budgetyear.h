@@ -7,7 +7,7 @@
  * @author    Guan Lisheng (guanlisheng@gmail.com)
  * @author    Stefano Giorgio (stef145g)
  * @author    Tomasz Słodkowicz
- * @date      2018-05-16 01:30:37.316867
+ * @date      2018-10-03 19:57:45.537490
  */
 #pragma once
 
@@ -122,6 +122,7 @@ struct DB_Table_BUDGETYEAR : public DB_Table
     {
         COL_BUDGETYEARID = 0
         , COL_BUDGETYEARNAME = 1
+        , COL_UNKNOWN = -1
     };
 
     /** Returns the column name as a string*/
@@ -143,7 +144,7 @@ struct DB_Table_BUDGETYEAR : public DB_Table
         if ("BUDGETYEARID" == name) return COL_BUDGETYEARID;
         else if ("BUDGETYEARNAME" == name) return COL_BUDGETYEARNAME;
 
-        return COLUMN(-1);
+        return COL_UNKNOWN;
     }
     
     /** Data is a single record in the database table*/

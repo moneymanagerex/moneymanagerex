@@ -7,7 +7,7 @@
  * @author    Guan Lisheng (guanlisheng@gmail.com)
  * @author    Stefano Giorgio (stef145g)
  * @author    Tomasz Słodkowicz
- * @date      2018-05-16 01:30:37.316867
+ * @date      2018-10-03 19:57:45.537490
  */
 #pragma once
 
@@ -138,6 +138,7 @@ struct DB_Table_CATEGORY : public DB_Table
     {
         COL_CATEGID = 0
         , COL_CATEGNAME = 1
+        , COL_UNKNOWN = -1
     };
 
     /** Returns the column name as a string*/
@@ -159,7 +160,7 @@ struct DB_Table_CATEGORY : public DB_Table
         if ("CATEGID" == name) return COL_CATEGID;
         else if ("CATEGNAME" == name) return COL_CATEGNAME;
 
-        return COLUMN(-1);
+        return COL_UNKNOWN;
     }
     
     /** Data is a single record in the database table*/
