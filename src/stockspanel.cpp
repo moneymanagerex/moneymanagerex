@@ -459,17 +459,16 @@ void StocksListCtrl::doRefreshItems(int trx_id)
 
     if (cnt>0)
     {
-        RefreshItems(0, cnt > 0 ? cnt - 1 : 0);
+        RefreshItems(0, cnt - 1);
+        if (selectedIndex >= 0)
+        {
+            SetItemState(selectedIndex, wxLIST_STATE_SELECTED, wxLIST_STATE_SELECTED);
+            SetItemState(selectedIndex, wxLIST_STATE_FOCUSED, wxLIST_STATE_FOCUSED);
+            EnsureVisible(selectedIndex);
+        }
     }
     else
         selectedIndex = -1;
-
-    if (selectedIndex >= 0 && cnt>0)
-    {
-        SetItemState(selectedIndex, wxLIST_STATE_SELECTED, wxLIST_STATE_SELECTED);
-        SetItemState(selectedIndex, wxLIST_STATE_FOCUSED, wxLIST_STATE_FOCUSED);
-        EnsureVisible(selectedIndex);
-    }
 }
 
 /*******************************************************/
@@ -763,7 +762,7 @@ void mmStocksPanel::updateHeader()
     double total = investment_balance.first; 
 
     const wxString& diffStr = Model_Currency::toCurrency(total > originalVal ? total - originalVal : originalVal - total, m_currency);
-    double diffPercents = diffPercents = (total > originalVal ? total / originalVal*100.0 - 100.0 : -(total / originalVal*100.0 - 100.0));
+    double diffPercents = (total > originalVal ? 1 : -1) * (total / originalVal*100.0 - 100.0);
     const wxString lbl = wxString::Format("%s     %s     %s     %s (%s %%)"
         , wxString::Format(_("Total Shares: %s"), Total_Shares())
         , wxString::Format(_("Total: %s"), Model_Currency::toCurrency(total + initVal, m_currency))

@@ -208,8 +208,7 @@ private:
     void OnFileNameChanged(wxCommandEvent& event);
     void OnDateFormatChanged(wxCommandEvent& event);
     void changeFocus(wxChildFocusEvent& event);
-    void OnSpinCtrlIgnoreFirstRows(wxSpinEvent& event);
-    void OnSpinCtrlIgnoreLastRows(wxSpinEvent& event);
+    void OnSpinCtrlIgnoreRows(wxSpinEvent& event);
 
     void OnLoad();
     void UpdateListItemBackground();

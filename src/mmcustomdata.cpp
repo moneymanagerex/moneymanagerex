@@ -310,8 +310,8 @@ void mmCustomData::OnMultiChoice(wxCommandEvent& event)
     if (MultiChoice->ShowModal() == wxID_OK)
     {
         data.clear();
-        for (const auto &i : MultiChoice->GetSelections()) {
-            data += all_choices[i] + ";";
+        for (const auto &s : MultiChoice->GetSelections()) {
+            data += all_choices[s] + ";";
         }
         data.RemoveLast();
     }

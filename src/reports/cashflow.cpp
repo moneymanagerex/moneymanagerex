@@ -74,8 +74,8 @@ void mmReportCashFlow::getStats(double& tInitialBalance, std::vector<ValueTrio>&
         if (transactions.empty()) continue;
         
         // Use account first transaction date for initial balance
-        const double convRate = Model_CurrencyHistory::getDayRate(account.CURRENCYID, transactions[0].TRANSDATE);
-        tInitialBalance += account.INITIALBAL * convRate;
+        const double initConvRate = Model_CurrencyHistory::getDayRate(account.CURRENCYID, transactions[0].TRANSDATE);
+        tInitialBalance += account.INITIALBAL * initConvRate;
 
         account_id.Add(account.ACCOUNTID);
         for (const auto& tran : transactions)
@@ -267,7 +267,7 @@ wxString mmReportCashFlow::getHTMLText_i()
         else
         {
             const wxDateTime& firstDayOfTheMonth = wxDateTime(dtEnd).SetDay(1);
-            if (dtEnd == firstDayOfTheMonth) colorId_ = ++colorId_ % 2;
+            if (dtEnd == firstDayOfTheMonth) colorId_ = (colorId_+1) % 2;
         }
 
         hb.startTableRow(COLORS[colorId_]);

@@ -182,16 +182,18 @@ void mmAssetsListCtrl::doRefreshItems(int trx_id)
         selectedIndex = m_asc ? cnt - 1 : 0;
 
     if (cnt>0)
-        RefreshItems(0, cnt > 0 ? --cnt : 0);
+    {
+        RefreshItems(0, cnt - 1);
+        if (selectedIndex >= 0)
+        {
+            SetItemState(selectedIndex, wxLIST_STATE_SELECTED, wxLIST_STATE_SELECTED);
+            SetItemState(selectedIndex, wxLIST_STATE_FOCUSED, wxLIST_STATE_FOCUSED);
+            EnsureVisible(selectedIndex);
+        }
+    }
     else
         selectedIndex = -1;
 
-    if (selectedIndex >= 0 && cnt>0)
-    {
-        SetItemState(selectedIndex, wxLIST_STATE_SELECTED, wxLIST_STATE_SELECTED);
-        SetItemState(selectedIndex, wxLIST_STATE_FOCUSED, wxLIST_STATE_FOCUSED);
-        EnsureVisible(selectedIndex);
-    }
     m_selected_row = selectedIndex;
 }
 

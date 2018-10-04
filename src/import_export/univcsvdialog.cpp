@@ -351,14 +351,14 @@ void mmUnivCSVDialog::CreateControls()
         rowSelectionStaticBoxSizer->Add(itemStaticText7, g_flagsH);
         m_spinIgnoreFirstRows_ = new wxSpinCtrl(rowSelectionStaticBoxSizer->GetStaticBox(), ID_FIRST_ROW, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 0, 0, 0);
         rowSelectionStaticBoxSizer->Add(m_spinIgnoreFirstRows_, g_flagsH);
-        m_spinIgnoreFirstRows_->Connect(wxEVT_COMMAND_SPINCTRL_UPDATED, wxSpinEventHandler(mmUnivCSVDialog::OnSpinCtrlIgnoreFirstRows), nullptr, this);
+        m_spinIgnoreFirstRows_->Connect(wxEVT_COMMAND_SPINCTRL_UPDATED, wxSpinEventHandler(mmUnivCSVDialog::OnSpinCtrlIgnoreRows), nullptr, this);
 
         // "Ignore last" title, spin and event handler.
         wxStaticText* itemStaticText8 = new wxStaticText(rowSelectionStaticBoxSizer->GetStaticBox(), wxID_ANY, _("From end: "));
         rowSelectionStaticBoxSizer->Add(itemStaticText8, g_flagsH);
         m_spinIgnoreLastRows_ = new wxSpinCtrl(rowSelectionStaticBoxSizer->GetStaticBox(), ID_LAST_ROW, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 0, 0, 0);
         rowSelectionStaticBoxSizer->Add(m_spinIgnoreLastRows_, g_flagsH);
-        m_spinIgnoreLastRows_->Connect(wxEVT_COMMAND_SPINCTRL_UPDATED, wxSpinEventHandler(mmUnivCSVDialog::OnSpinCtrlIgnoreLastRows), nullptr, this);
+        m_spinIgnoreLastRows_->Connect(wxEVT_COMMAND_SPINCTRL_UPDATED, wxSpinEventHandler(mmUnivCSVDialog::OnSpinCtrlIgnoreRows), nullptr, this);
     }
 
     // Preview
@@ -1600,12 +1600,7 @@ void mmUnivCSVDialog::changeFocus(wxChildFocusEvent& event)
         m_oject_in_focus = w->GetId();
 }
 
-void mmUnivCSVDialog::OnSpinCtrlIgnoreFirstRows(wxSpinEvent& WXUNUSED(event))
-{
-    UpdateListItemBackground();
-}
-
-void mmUnivCSVDialog::OnSpinCtrlIgnoreLastRows(wxSpinEvent& WXUNUSED(event))
+void mmUnivCSVDialog::OnSpinCtrlIgnoreRows(wxSpinEvent& WXUNUSED(event))
 {
     UpdateListItemBackground();
 }

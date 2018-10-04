@@ -264,12 +264,5 @@ void mmPanelBase::PrintPage()
 
 void mmPanelBase::windowsFreezeThaw()
 {
-#ifdef __WXGTK__
-    return;
-#endif
-
-    if (this->IsFrozen())
-        this->Thaw();
-    else
-        this->Freeze();
+    ::windowsFreezeThaw(this);
 }

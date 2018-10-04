@@ -851,12 +851,12 @@ void windowsFreezeThaw(wxWindow* w)
 {
 #ifdef __WXGTK__
     return;
-#endif
-
+#else
     if (w->IsFrozen())
         w->Thaw();
     else
         w->Freeze();
+#endif
 }
 
 // ----------------------------------------------------------------------------

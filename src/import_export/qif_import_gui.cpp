@@ -598,8 +598,8 @@ void mmQIFImportDialog::refreshTabs(int tabs)
             currencySymbol = currencySymbol.SubString(1, currencySymbol.length() - 2);            
             
             Model_Account::Data* account = (accountNumberCheckBox_->IsChecked())
-              ? account = Model_Account::instance().getByAccNum(acc.first)
-              : account = Model_Account::instance().get(acc.first);
+              ? Model_Account::instance().getByAccNum(acc.first)
+              : Model_Account::instance().get(acc.first);
        
             wxString status;
             const wxString type = acc.second.find(AccountType) != acc.second.end() 
@@ -1137,8 +1137,8 @@ int mmQIFImportDialog::getOrCreateAccounts()
     {
         int accountID = -1;
         Model_Account::Data* acc = (accountNumberCheckBox_->IsChecked())
-            ? acc = Model_Account::instance().getByAccNum(item.first)
-            : acc = Model_Account::instance().get(item.first);   
+            ? Model_Account::instance().getByAccNum(item.first)
+            : Model_Account::instance().get(item.first);   
 
         if (!acc)
         {
