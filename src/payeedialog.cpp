@@ -169,13 +169,10 @@ void mmPayeeDialog::OnDataChanged(wxDataViewEvent& event)
     const auto payees = Model_Payee::instance().find(Model_Payee::PAYEENAME(value));
     if (payees.empty())
     {
-        if (payee)
-        {
-            payee->PAYEENAME = value;
-            Model_Payee::instance().save(payee);
-            mmWebApp::MMEX_WebApp_UpdatePayee();
-            refreshRequested_ = true;
-        }
+        payee->PAYEENAME = value;
+        Model_Payee::instance().save(payee);
+        mmWebApp::MMEX_WebApp_UpdatePayee();
+        refreshRequested_ = true;
     }
     else
     {

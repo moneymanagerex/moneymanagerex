@@ -227,10 +227,9 @@ void Model_Usage::timing(const wxString& documentPath, const wxString& documentT
 
     url.back() = ' '; // override the last &
 
-	// Spawn thread to send statistics
-	SendStatsThread* thread = new SendStatsThread(url);
-	if (thread)
-		thread->Run();
+    // Spawn thread to send statistics
+    SendStatsThread* thread = new SendStatsThread(url);
+    thread->Run();
 }
 
 void Model_Usage::pageview(const wxString& documentPath, const wxString& documentTitle, int plt /* = 0 msec*/)
@@ -272,44 +271,43 @@ void Model_Usage::pageview(const wxString& documentPath, const wxString& documen
 
     url.back() = ' '; // override the last &
 
-	// Spawn thread to send statistics
-	SendStatsThread* thread = new SendStatsThread(url);
-	if (thread)
-		thread->Run();
+    // Spawn thread to send statistics
+    SendStatsThread* thread = new SendStatsThread(url);
+    thread->Run();
 }
 
 wxThread::ExitCode SendStatsThread::Entry()
 {
-	std::cout << m_url << std::endl;
+    std::cout << m_url << std::endl;
 
-	struct mg_mgr mgr;
-	struct mg_connection *nc;
+    struct mg_mgr mgr;
+    struct mg_connection *nc;
 
-	mg_mgr_init(&mgr, this);
+    mg_mgr_init(&mgr, this);
 
-	std::string user_agent = "User-Agent: " + wxGetOsDescription().ToStdString() + "\r\n";
-	std::cout << user_agent << std::endl;
-	nc = mg_connect_http(&mgr, SendStatsThread::ev_handler, m_url.c_str(), user_agent.c_str(), NULL); // GET
+    std::string user_agent = "User-Agent: " + wxGetOsDescription().ToStdString() + "\r\n";
+    std::cout << user_agent << std::endl;
+    nc = mg_connect_http(&mgr, SendStatsThread::ev_handler, m_url.c_str(), user_agent.c_str(), NULL); // GET
 
     if (nc != nullptr)
     {
-	    mg_set_protocol_http_websocket(nc);
+        mg_set_protocol_http_websocket(nc);
 
-	    time_t ts_start = time(NULL);
-	    time_t ts_end = ts_start;
-	    this->m_end = false;
+        time_t ts_start = time(NULL);
+        time_t ts_end = ts_start;
+        this->m_end = false;
 
-	    while (!this->m_end)
-	    {
-		    if ((ts_end - ts_start) >= 1) // 1 sec
-		    {
-			    std::cout << "timeout" << std::endl;
-			    break;
-		    }
-		    ts_end = mg_mgr_poll(&mgr, 1000);
-	    }
+        while (!this->m_end)
+        {
+            if ((ts_end - ts_start) >= 1) // 1 sec
+            {
+                std::cout << "timeout" << std::endl;
+                break;
+            }
+            ts_end = mg_mgr_poll(&mgr, 1000);
+        }
     }
-	mg_mgr_free(&mgr);
+    mg_mgr_free(&mgr);
 
-	return nullptr;
+    return nullptr;
 }

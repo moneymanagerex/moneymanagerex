@@ -172,13 +172,14 @@ curlWriteMemoryCallback(void *contents, size_t size, size_t nmemb, void *userp)
   size_t realsize = size * nmemb;
   struct curlBuff *mem = (struct curlBuff *)userp;
  
-  mem->memory = (char *)realloc(mem->memory, mem->size + realsize + 1);
-  if(mem->memory == NULL) {
+  char *tmp = (char *)realloc(mem->memory, mem->size + realsize + 1);
+  if (tmp == NULL) {
     /* out of memory! */ 
     // printf("not enough memory (realloc returned NULL)\n");
     return 0;
   }
- 
+
+  mem->memory = tmp;
   memcpy(&(mem->memory[mem->size]), contents, realsize);
   mem->size += realsize;
   mem->memory[mem->size] = 0;

@@ -316,6 +316,7 @@ void mmCustomData::OnMultiChoice(wxCommandEvent& event)
         data.RemoveLast();
     }
 
+    delete MultiChoice;
     button->SetLabel(data);
     SetWidgetChanged(controlID, data);
 }

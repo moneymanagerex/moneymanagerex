@@ -870,28 +870,31 @@ void mmGeneralReportManager::OnMenuSelected(wxCommandEvent& event)
     }
 
     MyTreeItemData* iData = dynamic_cast<MyTreeItemData*>(m_treeCtrl->GetItemData(m_selectedItemID));
-    int report_id = iData->get_report_id();
+    if (iData)
+    {
+        int report_id = iData->get_report_id();
 
-    if(iData && report_id > -1)
-    {
-        switch (id){
-        case ID_RENAME:
-            this->renameReport(report_id);
-            break;
-        case ID_DELETE:
-            this->DeleteReport(report_id);
-            break;
-        case ID_GROUP:
-            this->changeReportGroup(report_id, false);
-            break;
-        case ID_UNGROUP:
-            this->changeReportGroup(report_id, true);
-            break;
+        if (report_id > -1)
+        {
+            switch (id){
+            case ID_RENAME:
+                this->renameReport(report_id);
+                break;
+            case ID_DELETE:
+                this->DeleteReport(report_id);
+                break;
+            case ID_GROUP:
+                this->changeReportGroup(report_id, false);
+                break;
+            case ID_UNGROUP:
+                this->changeReportGroup(report_id, true);
+                break;
+            }
         }
-    }
-    else if (id == ID_GROUP)
-    {
-        this->renameReportGroup(m_selectedGroup);
+        else if (id == ID_GROUP)
+        {
+            this->renameReportGroup(m_selectedGroup);
+        }
     }
 
     fillControls();
