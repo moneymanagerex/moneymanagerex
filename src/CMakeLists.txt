@@ -2,6 +2,17 @@ IF(NOT InMMEX)
     MESSAGE(FATAL_ERROR "Use the top-level CMake script!")
 ENDIF(NOT InMMEX)
 
+# enable warnings while compile sources in src
+IF(MSVC)
+    STRING(REGEX REPLACE "(^| )[/-](w|W[0-4])( |$)" " " CMAKE_C_FLAGS "${CMAKE_C_FLAGS}")
+    STRING(REGEX REPLACE "(^| )[/-](w|W[0-4])( |$)" " " CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}")
+    SET(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} /W4")
+    SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /W4")
+ELSE()
+    ADD_COMPILE_OPTIONS("-Wall" "-Wextra" "-Wno-unknown-pragmas")
+ENDIF()
+
+
 # Pass version numbers to the sources
 CONFIGURE_FILE(versions.h.in versions.h @ONLY)
 INCLUDE_DIRECTORIES("${CMAKE_CURRENT_BINARY_DIR}")
