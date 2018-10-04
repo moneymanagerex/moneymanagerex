@@ -239,7 +239,7 @@ mmGUIFrame::mmGUIFrame(mmGUIApp* app, const wxString& title
 
     /* Create the Controls for the frame */
     createMenu();
-    CreateToolBar();
+    createToolBar();
     // Disable menu items incase no database is established.
     menuEnableItems(false);
     createControls();
@@ -1813,7 +1813,7 @@ void mmGUIFrame::createMenu()
 }
 //----------------------------------------------------------------------------
 
-void mmGUIFrame::CreateToolBar()
+void mmGUIFrame::createToolBar()
 {
     long style = wxTB_FLAT | wxTB_NODIVIDER;
 

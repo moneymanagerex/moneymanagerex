@@ -122,7 +122,7 @@ private:
     bool createDataStore(const wxString& fileName, const bool openingNew, const bool encrypt, const wxString &passwd);
     void InitializeModelTables();
     void createMenu();
-    void CreateToolBar();
+    void createToolBar();
     void createReportsPage(mmPrintableBase* rb, bool cleanup);
     void createHelpPage();
     void refreshPanelData();
