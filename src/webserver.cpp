@@ -18,6 +18,7 @@
  ********************************************************/
 
 #include "webserver.h"
+#include <wx/thread.h>
 #include "defs.h"
 #include "platfdep.h"
 #include "paths.h"
@@ -88,13 +89,15 @@ static void ev_handler(struct mg_connection *nc, int ev, void *ev_data)
     }
 }
 
-WebServerThread::WebServerThread(): wxThread()
+class WebServerThread : public wxThread
 {
-}
+public:
+    WebServerThread(): wxThread() {};
+    ~WebServerThread() {};
 
-WebServerThread::~WebServerThread()
-{
-}
+protected:
+    virtual ExitCode Entry();
+};
 
 wxThread::ExitCode WebServerThread::Entry()
 {

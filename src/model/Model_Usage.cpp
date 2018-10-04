@@ -23,6 +23,7 @@ Copyright (C) 2018 Stefano Giorgio (stef145g)
 #include "constants.h"
 #include "paths.h"
 #include <wx/platinfo.h>
+#include <wx/thread.h>
 #include <wx/intl.h>
 #include "mongoose/mongoose.h"
 #include "option.h"
@@ -121,10 +122,24 @@ wxString uuid()
     return UUID;
 }
 
+class SendStatsThread : public wxThread
+{
+public:
+    SendStatsThread(const std::string& url) : wxThread()
+        , m_url(url), m_end(false) {};
+    ~SendStatsThread() {};
+    static void ev_handler(struct mg_connection *nc, int ev, void *ev_data);
+    bool m_end;
+
+protected:
+    std::string m_url;
+    virtual ExitCode Entry();
+};
+
 void SendStatsThread::ev_handler(struct mg_connection *nc, int ev, void *ev_data)
 {
     struct http_message *hm = (struct http_message *) ev_data;
-	SendStatsThread* usage = (SendStatsThread*)nc->mgr->user_data;
+    SendStatsThread* usage = (SendStatsThread*)nc->mgr->user_data;
     int connect_status;
 
     switch (ev)
@@ -261,16 +276,6 @@ void Model_Usage::pageview(const wxString& documentPath, const wxString& documen
 	SendStatsThread* thread = new SendStatsThread(url);
 	if (thread)
 		thread->Run();
-}
-
-SendStatsThread::SendStatsThread(const std::string& url) : wxThread()
-, m_url(url)
-, m_end(false)
-{
-}
-
-SendStatsThread::~SendStatsThread()
-{
 }
 
 wxThread::ExitCode SendStatsThread::Entry()
