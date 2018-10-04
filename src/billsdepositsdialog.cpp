@@ -101,12 +101,12 @@ mmBDDialog::mmBDDialog()
 }
 
 mmBDDialog::mmBDDialog(wxWindow* parent, int bdID, bool edit, bool enterOccur)
-    : m_new_bill(!edit)
+    : payeeUnknown_(true)
+    , m_new_bill(!edit)
     , m_enter_occur(enterOccur)
-    , m_advanced(false)
-    , payeeUnknown_(true)
     , autoExecuteUserAck_(false)
     , autoExecuteSilent_(false)
+    , m_advanced(false)
     , categUpdated_(false)
     , prevType_(-1)
 {

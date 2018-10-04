@@ -49,9 +49,9 @@ wxEND_EVENT_TABLE()
 
 
 mmPayeeDialog::mmPayeeDialog(wxWindow *parent, bool payee_choose, const wxString &name) :
-    m_payee_id(-1)
+    payeeListBox_()
     , m_maskTextCtrl()
-    , payeeListBox_()
+    , m_payee_id(-1)
     , m_payee_rename(-1)
     , m_payee_choose(payee_choose)
     , refreshRequested_(false)

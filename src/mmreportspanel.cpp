@@ -116,9 +116,9 @@ mmReportsPanel::mmReportsPanel(
     wxWindowID winid, const wxPoint& pos,
     const wxSize& size, long style,
     const wxString& name )
-    : rb_(rb)
-    , m_date_ranges(nullptr)
+    : m_date_ranges(nullptr)
     , m_cust_date(nullptr)
+    , rb_(rb)
     , cleanup_(cleanupReport)
     , cleanupmem_(false)
     , m_frame(frame)

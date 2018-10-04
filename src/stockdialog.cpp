@@ -59,11 +59,7 @@ mmStockDialog::mmStockDialog(wxWindow* parent
     , int accountID
     , const wxString& name
     )
-    : m_stock(stock)
-    , m_gui_frame(gui_frame)
-    , m_edit(stock ? true: false)
-    , m_account_id(accountID)
-    , m_stock_name_ctrl(nullptr)
+    : m_stock_name_ctrl(nullptr)
     , m_stock_symbol_ctrl(nullptr)
     , m_purchase_date_ctrl(nullptr)
     , m_num_shares_ctrl(nullptr)
@@ -76,6 +72,10 @@ mmStockDialog::mmStockDialog(wxWindow* parent
     , m_commission_ctrl(nullptr)
     , m_bAttachments(nullptr)
     , m_price_listbox(nullptr)
+    , m_stock(stock)
+    , m_edit(stock ? true: false)
+    , m_account_id(accountID)
+    , m_gui_frame(gui_frame)
 {
     long style = wxCAPTION | wxRESIZE_BORDER | wxSYSTEM_MENU | wxCLOSE_BOX;
     Create(parent, wxID_ANY, "", wxDefaultPosition, wxSize(400, 300), style, name);

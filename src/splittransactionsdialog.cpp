@@ -60,9 +60,9 @@ SplitTransactionDialog::SplitTransactionDialog( )
     , const wxString& name
     )
     : m_splits(split)
-    , totalAmount_(totalAmount)
-    , accountID_(accountID)
     , transType_(transType)
+    , accountID_(accountID)
+    , totalAmount_(totalAmount)
     , items_changed_(false)
 {
     for (const auto &item : m_splits)

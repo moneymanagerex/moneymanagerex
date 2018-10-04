@@ -297,11 +297,11 @@ wxString Model_Checking::toShortStatus(const wxString& fullStatus)
     return fullStatus.Left(1) == "N" ? "" : fullStatus.Left(1);
 }
 
-Model_Checking::Full_Data::Full_Data() : Data(0), BALANCE(0), AMOUNT(0)
+Model_Checking::Full_Data::Full_Data() : Data(0), AMOUNT(0), BALANCE(0)
 {
 }
 
-Model_Checking::Full_Data::Full_Data(int account_id, const Data& r) : Data(r), BALANCE(0), AMOUNT(0)
+Model_Checking::Full_Data::Full_Data(int account_id, const Data& r) : Data(r), AMOUNT(0), BALANCE(0)
     , m_splits(Model_Splittransaction::instance().find(Model_Splittransaction::TRANSID(r.TRANSID)))
 {
     Initialise(account_id, r);
@@ -309,7 +309,7 @@ Model_Checking::Full_Data::Full_Data(int account_id, const Data& r) : Data(r), B
 
 Model_Checking::Full_Data::Full_Data(int account_id, const Data& r
     , const std::map<int /*trans id*/, Model_Splittransaction::Data_Set /*split trans*/ > & splits)
-    : Data(r), BALANCE(0), AMOUNT(0)
+    : Data(r), AMOUNT(0), BALANCE(0)
 {
     const auto it = splits.find(this->id());
     if (it != splits.end()) m_splits = it->second;

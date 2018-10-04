@@ -73,9 +73,6 @@ mmUnivCSVDialog::mmUnivCSVDialog(
 ) :
     dialogType_(dialogType),
     delimit_(","),
-    importSuccessful_(false),
-    m_spinIgnoreFirstRows_(nullptr),
-    m_spinIgnoreLastRows_(nullptr),
     csvFieldCandicate_(nullptr),
     csvListBox_(nullptr),
     m_button_add_(nullptr),
@@ -85,8 +82,11 @@ mmUnivCSVDialog::mmUnivCSVDialog(
     m_text_ctrl_(nullptr),
     log_field_(nullptr),
     m_textDelimiter(nullptr),
+    m_rowSelectionStaticBox_(nullptr),
+    m_spinIgnoreFirstRows_(nullptr),
+    m_spinIgnoreLastRows_(nullptr),
     choiceDateFormat_(nullptr),
-    m_rowSelectionStaticBox_(nullptr)
+    importSuccessful_(false)
 {
     CSVFieldName_[UNIV_CSV_DATE] = wxTRANSLATE("Date");
     CSVFieldName_[UNIV_CSV_PAYEE] = wxTRANSLATE("Payee");

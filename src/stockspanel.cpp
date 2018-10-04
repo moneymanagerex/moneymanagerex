@@ -490,8 +490,8 @@ mmStocksPanel::mmStocksPanel(int accountID
     , wxWindowID winid, const wxPoint& pos, const wxSize& size, long style
     , const wxString& name)
     : m_account_id(accountID)
-    , m_frame(frame)
     , m_currency()
+    , m_frame(frame)
 {
     Create(parent, winid, pos, size, style, name);
 }

@@ -126,7 +126,7 @@ class SendStatsThread : public wxThread
 {
 public:
     SendStatsThread(const std::string& url) : wxThread()
-        , m_url(url), m_end(false) {};
+        , m_end(false), m_url(url) {};
     ~SendStatsThread() {};
     static void ev_handler(struct mg_connection *nc, int ev, void *ev_data);
     bool m_end;

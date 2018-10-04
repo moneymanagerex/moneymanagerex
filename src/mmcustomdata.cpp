@@ -34,9 +34,9 @@ mmCustomData::mmCustomData()
 
 mmCustomData::mmCustomData(wxDialog* dialog, const wxString& ref_type, int ref_id)
     : wxDialog()
+    , m_static_box(nullptr)
     , m_ref_type(ref_type)
     , m_ref_id(ref_id)
-    , m_static_box(nullptr)
 {
     m_dialog = dialog;
     m_fields = Model_CustomField::instance().find(Model_CustomField::DB_Table_CUSTOMFIELD::REFTYPE(m_ref_type));

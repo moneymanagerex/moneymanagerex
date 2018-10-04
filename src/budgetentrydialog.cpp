@@ -38,11 +38,11 @@ mmBudgetEntryDialog::mmBudgetEntryDialog(wxWindow* parent
     , Model_Budget::Data* entry
     , const wxString& categoryEstimate
     , const wxString& CategoryActual)
-    : catEstimateAmountStr_(categoryEstimate)
-    , catActualAmountStr_(CategoryActual)
-    , m_choiceItem()
+    : m_choiceItem()
     , m_textAmount()
     , m_choiceType()
+    , catEstimateAmountStr_(categoryEstimate)
+    , catActualAmountStr_(CategoryActual)
 {
     budgetEntry_ = entry;
     long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX;

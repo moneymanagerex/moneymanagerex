@@ -77,10 +77,10 @@ mmBudgetingPanel::mmBudgetingPanel(int budgetYearID
     , wxWindow *parent, mmGUIFrame* frame, wxWindowID winid
     , const wxPoint& pos, const wxSize& size
     , long style,const wxString& name)
-    : m_imageList(nullptr)
-    , listCtrlBudget_(nullptr)
+    : listCtrlBudget_(nullptr)
     , budgetYearID_(budgetYearID)
     , m_frame(frame)
+    , m_imageList(nullptr)
     , budgetReportHeading_(nullptr)
     , income_estimated_(nullptr)
     , income_actual_(nullptr)

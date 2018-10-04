@@ -52,9 +52,9 @@ SplitDetailDialog::SplitDetailDialog(
     , int accountID)
     : split_(split)
     , m_currency(Model_Currency::GetBaseCurrency())
+    , m_choice_type(nullptr)
     , m_text_mount(nullptr)
     , m_bcategory(nullptr)
-    , m_choice_type(nullptr)
     , m_cancel_button(nullptr)
 {
     transType_ = transType;

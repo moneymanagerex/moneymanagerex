@@ -65,7 +65,6 @@ mmNewAcctDialog::mmNewAcctDialog()
 
 mmNewAcctDialog::mmNewAcctDialog(Model_Account::Data* account, wxWindow* parent, const wxString &name)
     : m_account(account)
-    , m_currencyID(-1)
     , m_textAccountName(nullptr)
     , m_notesCtrl(nullptr)
     , m_initbalance_ctrl(nullptr)
@@ -78,6 +77,7 @@ mmNewAcctDialog::mmNewAcctDialog(Model_Account::Data* account, wxWindow* parent,
     , m_interest_rate_ctrl(nullptr)
     , m_payment_due_date_ctrl(nullptr)
     , m_minimum_payment_ctrl(nullptr)
+    , m_currencyID(-1)
     , m_accessinfo_infocus(false)
 {
     m_imageList = navtree_images_list();

@@ -39,8 +39,8 @@ mmListCtrl::mmListCtrl(wxWindow *parent, wxWindowID winid)
     , m_selected_row(-1)
     , m_selected_col(0)
     , m_asc(true)
-    , m_ColumnHeaderNbr(-1)
     , m_default_sort_column(-1)
+    , m_ColumnHeaderNbr(-1)
 {
 }
 

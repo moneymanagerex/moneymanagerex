@@ -88,22 +88,22 @@ mmTransDialog::mmTransDialog(wxWindow* parent
     , bool duplicate
     , int type
     , const wxString& name
-) : m_currency(nullptr)
-    , m_to_currency(nullptr)
+) : m_transfer(false)
+    , m_duplicate(duplicate)
     , categUpdated_(false)
-    , m_transfer(false)
     , m_advanced(false)
     , m_current_balance(current_balance)
-    , m_duplicate(duplicate)
     , m_account_id(account_id)
+    , m_currency(nullptr)
+    , m_to_currency(nullptr)
+    , skip_date_init_(false)
     , skip_account_init_(false)
+    , skip_amount_init_(false)
     , skip_payee_init_(false)
     , skip_status_init_(false)
-    , skip_date_init_(false)
     , skip_notes_init_(false)
     , skip_category_init_(false)
     , skip_tooltips_init_(false)
-    , skip_amount_init_(false)
 {
 
     Model_Checking::Data *transaction = Model_Checking::instance().get(transaction_id);

@@ -34,9 +34,9 @@
 mmReportTransactions::mmReportTransactions(int refAccountID
     , mmFilterTransactionsDialog* transDialog)
     : mmPrintableBase("mmReportTransactions")
+    , trans_()
     , m_refAccountID(refAccountID)
     , m_transDialog(transDialog)
-    , trans_()
 {
     Run(m_transDialog);
 }

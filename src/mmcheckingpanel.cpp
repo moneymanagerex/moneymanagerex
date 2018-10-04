@@ -96,12 +96,12 @@ wxEND_EVENT_TABLE();
 //----------------------------------------------------------------------------
 
 mmCheckingPanel::mmCheckingPanel(wxWindow *parent, mmGUIFrame *frame, int accountID, int id) 
-    : m_filteredBalance(0.0)
-    , m_listCtrlAccount()
+    : m_trans_filter_dlg(0)
     , m_AccountID(accountID)
+    , m_filteredBalance(0.0)
+    , m_listCtrlAccount()
     , m_account(Model_Account::instance().get(accountID))
     , m_currency(Model_Account::currency(m_account))
-    , m_trans_filter_dlg(0)
     , m_frame(frame)
 {
     long style = wxTAB_TRAVERSAL | wxNO_BORDER;
@@ -1051,9 +1051,13 @@ TransactionListCtrl::TransactionListCtrl(
     const wxWindowID id
 ) :
     mmListCtrl(parent, id),
-    m_cp(cp),
+    g_sortcol(COL_DEF_SORT),
+    m_prevSortCol(COL_DEF_SORT),
+    g_asc(true),
     m_selectedIndex(-1),
     m_selectedForCopy(-1),
+    m_selectedID(-1),
+    m_cp(cp),
     m_attr1(*wxBLACK, mmColors::listAlternativeColor0, wxNullFont),
     m_attr2(*wxBLACK, mmColors::listAlternativeColor1, wxNullFont),
     m_attr3(mmColors::listFutureDateColor, mmColors::listAlternativeColor0, wxNullFont),
@@ -1065,12 +1069,8 @@ TransactionListCtrl::TransactionListCtrl(
     m_attr15(*wxBLACK, mmColors::userDefColor5, wxNullFont),
     m_attr16(*wxYELLOW, mmColors::userDefColor6, wxNullFont),
     m_attr17(*wxYELLOW, mmColors::userDefColor7, wxNullFont),
-    m_sortCol(COL_DEF_SORT),
-    g_sortcol(COL_DEF_SORT),
-    m_prevSortCol(COL_DEF_SORT),
-    g_asc(true),
-    m_selectedID(-1),
-    m_topItemIndex(-1)
+    m_topItemIndex(-1),
+    m_sortCol(COL_DEF_SORT)
 {
     wxASSERT(m_cp);
 

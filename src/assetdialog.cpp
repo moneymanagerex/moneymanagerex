@@ -42,7 +42,9 @@ wxEND_EVENT_TABLE()
 
 mmAssetDialog::mmAssetDialog(wxWindow* parent, mmGUIFrame* gui_frame, Model_Asset::Data* asset, bool trans_data)
     : m_asset(asset)
-    , m_gui_frame(gui_frame)
+    , m_hidden_trans_entry(true)
+    , m_transfer_entry(nullptr)
+    , m_checking_entry(nullptr)
     , m_assetName()
     , m_dpc()
     , m_notes()
@@ -51,10 +53,8 @@ mmAssetDialog::mmAssetDialog(wxWindow* parent, mmGUIFrame* gui_frame, Model_Asse
     , m_assetType()
     , m_valueChange()
     , m_valueChangeRateLabel()
-    , m_hidden_trans_entry(true)
-    , m_transfer_entry(nullptr)
-    , m_checking_entry(nullptr)
     , m_dialog_heading (_("New Asset"))
+    , m_gui_frame(gui_frame)
 {
     if (m_asset || trans_data)
     {
@@ -72,7 +72,9 @@ mmAssetDialog::mmAssetDialog(wxWindow* parent, mmGUIFrame* gui_frame, Model_Asse
 
 mmAssetDialog::mmAssetDialog(wxWindow* parent, mmGUIFrame* gui_frame, Model_Translink::Data* transfer_entry, Model_Checking::Data* checking_entry)
     : m_asset(nullptr)
-    , m_gui_frame(gui_frame)
+    , m_hidden_trans_entry(false)
+    , m_transfer_entry(transfer_entry)
+    , m_checking_entry(checking_entry)
     , m_assetName()
     , m_dpc()
     , m_notes()
@@ -81,10 +83,8 @@ mmAssetDialog::mmAssetDialog(wxWindow* parent, mmGUIFrame* gui_frame, Model_Tran
     , m_assetType()
     , m_valueChange()
     , m_valueChangeRateLabel()
-    , m_hidden_trans_entry(false)
-    , m_transfer_entry(transfer_entry)
-    , m_checking_entry(checking_entry)
     , m_dialog_heading (_("Add Asset Transaction"))
+    , m_gui_frame(gui_frame)
 {
     if (transfer_entry)
     {

@@ -43,8 +43,8 @@ relocateCategoryDialog::relocateCategoryDialog( )
 relocateCategoryDialog::relocateCategoryDialog(wxWindow* parent
     , int sourceCatID, int sourceSubCatID)
     : m_buttonSource(nullptr)
-    , m_buttonDest(nullptr)
     , m_info(nullptr)
+    , m_buttonDest(nullptr)
 {
 
     m_sourceCatID    = sourceCatID;
