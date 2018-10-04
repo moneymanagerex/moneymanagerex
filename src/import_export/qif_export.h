@@ -43,17 +43,17 @@ public:
 
 private:
     void mmExportQIF();
-    void OnAccountsButton(wxCommandEvent& /*event*/);
-    void OnCheckboxClick(wxCommandEvent& /*event*/);
+    void OnAccountsButton(wxCommandEvent& WXUNUSED(event));
+    void OnCheckboxClick(wxCommandEvent& WXUNUSED(event));
     void OnFileNameEntered(wxCommandEvent& event);
     void OnFileNameChanged(wxCommandEvent& event);
     void OnFileSearch(wxCommandEvent& event);
-    void OnButtonClear(wxCommandEvent& /*event*/);
+    void OnButtonClear(wxCommandEvent& WXUNUSED(event));
     void CreateControls();
     void fillControls();
     void OnQuit(wxCloseEvent& event);
     void OnCancel(wxCommandEvent& event);
-    void OnOk(wxCommandEvent& /*event*/);
+    void OnOk(wxCommandEvent& WXUNUSED(event));
 
 
     wxCheckBox* cCategs_;

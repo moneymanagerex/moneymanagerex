@@ -51,8 +51,6 @@ private:
 
     int m_attachment_id;
     std::map<int, wxString> ColName_;
-    wxButton* btnCancel_;
-    wxButton* button_OK_;
     wxString m_PathSep = wxFileName::GetPathSeparator();
 
     wxString m_RefType;
@@ -68,8 +66,8 @@ private:
     void OpenAttachment();
     void EditAttachment();
     void DeleteAttachment();
-    void OnCancel(wxCommandEvent& /*event*/);
-    void OnOk(wxCommandEvent& /*event*/);
+    void OnCancel(wxCommandEvent& WXUNUSED(event));
+    void OnOk(wxCommandEvent& WXUNUSED(event));
 
     void OnListItemSelected(wxDataViewEvent& event);
     void OnMenuSelected(wxCommandEvent& event);

@@ -39,8 +39,8 @@ public:
 
 private:
     wxWizardPageSimple* page1;
-    void PageChanged(wxWizardEvent& /*event*/);
-    void LinkClicked(wxHtmlLinkEvent& /*event*/);
+    void PageChanged(wxWizardEvent& WXUNUSED(event));
+    void LinkClicked(wxHtmlLinkEvent& WXUNUSED(event));
 
     wxDECLARE_EVENT_TABLE();
 };

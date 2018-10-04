@@ -105,7 +105,7 @@ mmCheckingPanel::mmCheckingPanel(wxWindow *parent, mmGUIFrame *frame, int accoun
     , m_frame(frame)
 {
     long style = wxTAB_TRAVERSAL | wxNO_BORDER;
-    Create(parent, mmID_CHECKING, wxDefaultPosition, wxDefaultSize, style);
+    Create(parent, id, wxDefaultPosition, wxDefaultSize, style);
 }
 //----------------------------------------------------------------------------
 
@@ -1003,6 +1003,7 @@ void mmCheckingPanel::RefreshList(int transID)
 
 void mmCheckingPanel::SetTransactionFilterState(bool active)
 {
+// FIXME: don't ignore active param or remove it
     m_bitmapMainFilter->Enable(!m_transFilterActive);
     m_stxtMainFilter->Enable(!m_transFilterActive);
 }
@@ -1562,7 +1563,7 @@ void TransactionListCtrl::OnCopy(wxCommandEvent& WXUNUSED(event))
     }
 }
 
-void TransactionListCtrl::OnDuplicateTransaction(wxCommandEvent& event)
+void TransactionListCtrl::OnDuplicateTransaction(wxCommandEvent& WXUNUSED(event))
 {
     if ((m_selectedIndex < 0) || (GetSelectedItemCount() > 1)) return;
 
@@ -1617,7 +1618,7 @@ int TransactionListCtrl::OnPaste(Model_Checking::Data* tran)
     return transactionID;
 }
 
-void TransactionListCtrl::OnOpenAttachment(wxCommandEvent& event)
+void TransactionListCtrl::OnOpenAttachment(wxCommandEvent& WXUNUSED(event))
 {
     if ((m_selectedIndex < 0) || (GetSelectedItemCount() > 1)) return;
     int transaction_id = m_cp->m_trans[m_selectedIndex].TRANSID;
@@ -1679,7 +1680,7 @@ void TransactionListCtrl::OnListKeyDown(wxListEvent& event)
 }
 //----------------------------------------------------------------------------
 
-void TransactionListCtrl::OnDeleteTransaction(wxCommandEvent& /*event*/)
+void TransactionListCtrl::OnDeleteTransaction(wxCommandEvent& WXUNUSED(event))
 {
     //check if a transaction is selected
     if (GetSelectedItemCount() < 1) return;
@@ -1755,7 +1756,7 @@ bool TransactionListCtrl::TransactionLocked(const wxString& transdate)
     return false;
 }
 
-void TransactionListCtrl::OnEditTransaction(wxCommandEvent& /*event*/)
+void TransactionListCtrl::OnEditTransaction(wxCommandEvent& WXUNUSED(event))
 {
     if (GetSelectedItemCount() > 1)
     {
@@ -1830,7 +1831,7 @@ void TransactionListCtrl::OnNewTransaction(wxCommandEvent& event)
     }
 }
 
-void TransactionListCtrl::OnNewTransferTransaction(wxCommandEvent& /*event*/)
+void TransactionListCtrl::OnNewTransferTransaction(wxCommandEvent& WXUNUSED(event))
 {
     mmTransDialog dlg(this, m_cp->m_AccountID, 0, m_cp->m_account_balance, false, Model_Checking::TRANSFER);
     if (dlg.ShowModal() == wxID_OK)
@@ -1898,7 +1899,7 @@ void TransactionListCtrl::refreshVisualList(int trans_id, bool filter)
     m_cp->m_listCtrlAccount->SetFocus();
 }
 
-void TransactionListCtrl::OnMoveTransaction(wxCommandEvent& /*event*/)
+void TransactionListCtrl::OnMoveTransaction(wxCommandEvent& WXUNUSED(event))
 {
     if ((m_selectedIndex < 0)) return;
 
@@ -1948,7 +1949,7 @@ void TransactionListCtrl::OnMoveTransaction(wxCommandEvent& /*event*/)
 }
 
 //----------------------------------------------------------------------------
-void TransactionListCtrl::OnViewSplitTransaction(wxCommandEvent& /*event*/)
+void TransactionListCtrl::OnViewSplitTransaction(wxCommandEvent& WXUNUSED(event))
 {
     if ((m_selectedIndex > -1) && (GetSelectedItemCount() == 1)) {
         const Model_Checking::Full_Data& tran = m_cp->m_trans.at(m_selectedIndex);
@@ -1958,7 +1959,7 @@ void TransactionListCtrl::OnViewSplitTransaction(wxCommandEvent& /*event*/)
 }
 
 //----------------------------------------------------------------------------
-void TransactionListCtrl::OnOrganizeAttachments(wxCommandEvent& /*event*/)
+void TransactionListCtrl::OnOrganizeAttachments(wxCommandEvent& WXUNUSED(event))
 {
     if ((m_selectedIndex < 0) || (GetSelectedItemCount() > 1)) return;
 
@@ -1972,7 +1973,7 @@ void TransactionListCtrl::OnOrganizeAttachments(wxCommandEvent& /*event*/)
 }
 
 //----------------------------------------------------------------------------
-void TransactionListCtrl::OnCreateReoccurance(wxCommandEvent& /*event*/)
+void TransactionListCtrl::OnCreateReoccurance(wxCommandEvent& WXUNUSED(event))
 {
     if ((m_selectedIndex < 0) || (GetSelectedItemCount() > 1)) return;
 
@@ -1985,7 +1986,7 @@ void TransactionListCtrl::OnCreateReoccurance(wxCommandEvent& /*event*/)
 }
 
 //----------------------------------------------------------------------------
-void TransactionListCtrl::OnListItemActivated(wxListEvent& /*event*/)
+void TransactionListCtrl::OnListItemActivated(wxListEvent& WXUNUSED(event))
 {
     if (m_selectedIndex < 0) return;
 
@@ -1993,7 +1994,7 @@ void TransactionListCtrl::OnListItemActivated(wxListEvent& /*event*/)
     AddPendingEvent(evt);
 }
 
-void TransactionListCtrl::OnListItemFocused(wxListEvent& event)
+void TransactionListCtrl::OnListItemFocused(wxListEvent& WXUNUSED(event))
 {
     m_cp->enableEditDeleteButtons(true);
 

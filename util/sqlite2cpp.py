@@ -441,12 +441,6 @@ struct DB_Table_%s : public DB_Table
             return *this;
         }
 '''
-        s += '''
-        template<typename C>
-        bool match(const C &c) const
-        {
-            return false;
-        }'''
         for field in self._fields:
             ftype = base_data_types_reverse[field['type']]
             if ftype == 'wxString':

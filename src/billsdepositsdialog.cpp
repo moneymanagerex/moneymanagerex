@@ -43,7 +43,7 @@ enum { NONE, WEEKLY, FORTNIGHTLY, MONTHLY
     , YEARLY, FOURMONTHS, FOURWEEKS
     , DAILY, INXDAYS, INXMONTHS
     , EVERYXDAYS, EVERYXMONTHS, MONTHLYLASTDAY, MONTHLYLASTBUSINESSDAY
-} rep;
+};
 
 const std::vector<std::pair<int, wxString> > mmBDDialog::BILLSDEPOSITS_REPEATS =
 {
@@ -665,7 +665,7 @@ void mmBDDialog::CreateControls()
     this->Fit();
 }
 
-void mmBDDialog::OnQuit(wxCloseEvent& /*event*/)
+void mmBDDialog::OnQuit(wxCloseEvent& WXUNUSED(event))
 {
     const wxString& RefType = Model_Attachment::reftype_desc(Model_Attachment::BILLSDEPOSIT);
     if (!m_bill_data.BDID)
@@ -673,7 +673,7 @@ void mmBDDialog::OnQuit(wxCloseEvent& /*event*/)
     EndModal(wxID_CANCEL);
 }
 
-void mmBDDialog::OnCancel(wxCommandEvent& /*event*/)
+void mmBDDialog::OnCancel(wxCommandEvent& WXUNUSED(event))
 {
     const wxString& RefType = Model_Attachment::reftype_desc(Model_Attachment::BILLSDEPOSIT);
     if (!m_bill_data.BDID)
@@ -681,7 +681,7 @@ void mmBDDialog::OnCancel(wxCommandEvent& /*event*/)
     EndModal(wxID_CANCEL);
 }
 
-void mmBDDialog::OnAccountName(wxCommandEvent& /*event*/)
+void mmBDDialog::OnAccountName(wxCommandEvent& WXUNUSED(event))
 {
     const auto& accounts = Model_Account::instance().all_checking_account_names(true);
     mmSingleChoiceDialog scd(this
@@ -713,7 +713,7 @@ void mmBDDialog::OnAccountName(wxCommandEvent& /*event*/)
     }
 }
 
-void mmBDDialog::OnPayee(wxCommandEvent& /*event*/)
+void mmBDDialog::OnPayee(wxCommandEvent& WXUNUSED(event))
 {
     if (m_transfer)
     {
@@ -764,7 +764,7 @@ void mmBDDialog::OnPayee(wxCommandEvent& /*event*/)
     }
 }
 
-void mmBDDialog::OnTo(wxCommandEvent& /*event*/)
+void mmBDDialog::OnTo(wxCommandEvent& WXUNUSED(event))
 {
     // This should only get called if we are in a transfer
 
@@ -781,7 +781,7 @@ void mmBDDialog::OnTo(wxCommandEvent& /*event*/)
     }
 }
 
-void mmBDDialog::OnCategs(wxCommandEvent& /*event*/)
+void mmBDDialog::OnCategs(wxCommandEvent& WXUNUSED(event))
 {
     if (cSplit_->GetValue())
     {
@@ -816,12 +816,12 @@ void mmBDDialog::setToolTipsForType(Model_Billsdeposits::TYPE transType, bool en
     }
 }
 
-void mmBDDialog::OnTypeChanged(wxCommandEvent& /*event*/)
+void mmBDDialog::OnTypeChanged(wxCommandEvent& WXUNUSED(event))
 {
     updateControlsForTransType();
 }
 
-void mmBDDialog::OnAttachments(wxCommandEvent& /*event*/)
+void mmBDDialog::OnAttachments(wxCommandEvent& WXUNUSED(event))
 {
     const wxString& RefType = Model_Attachment::reftype_desc(Model_Attachment::BILLSDEPOSIT);
     mmAttachmentDialog dlg(this, RefType, m_bill_data.BDID);
@@ -956,7 +956,7 @@ void mmBDDialog::onNoteSelected(wxCommandEvent& event)
         textNotes_->ChangeValue(frequentNotes_[i - 1]);
 }
 
-void mmBDDialog::OnOk(wxCommandEvent& /*event*/)
+void mmBDDialog::OnOk(wxCommandEvent& WXUNUSED(event))
 {
     Model_Account::Data *acc = Model_Account::instance().get(m_bill_data.ACCOUNTID);
     if (!acc)
@@ -1149,7 +1149,7 @@ void mmBDDialog::OnOk(wxCommandEvent& /*event*/)
     EndModal(wxID_OK);
 }
 
-void mmBDDialog::OnSplitChecked(wxCommandEvent& /*event*/)
+void mmBDDialog::OnSplitChecked(wxCommandEvent& WXUNUSED(event))
 {
     if (cSplit_->IsChecked())
     {
@@ -1157,28 +1157,22 @@ void mmBDDialog::OnSplitChecked(wxCommandEvent& /*event*/)
     }
     else
     {
+        wxASSERT(m_bill_data.local_splits.size() > 0);
         if (m_bill_data.local_splits.size() > 1)
         {
             //Delete split items first (data protection)
             cSplit_->SetValue(true);
         }
-        else
+        else if (m_bill_data.local_splits.size() == 1)
         {
-            if (m_bill_data.local_splits.size() == 1)
-            {
-                m_bill_data.CATEGID = m_bill_data.local_splits.begin()->CATEGID;
-                m_bill_data.SUBCATEGID = m_bill_data.local_splits.begin()->SUBCATEGID;
-                m_bill_data.TRANSAMOUNT = m_bill_data.local_splits.begin()->SPLITTRANSAMOUNT;
+            m_bill_data.CATEGID = m_bill_data.local_splits.begin()->CATEGID;
+            m_bill_data.SUBCATEGID = m_bill_data.local_splits.begin()->SUBCATEGID;
+            m_bill_data.TRANSAMOUNT = m_bill_data.local_splits.begin()->SPLITTRANSAMOUNT;
 
-                if (m_bill_data.TRANSAMOUNT < 0)
-                {
-                    m_bill_data.TRANSAMOUNT = -m_bill_data.TRANSAMOUNT;
-                    m_choice_transaction_type->SetSelection(Model_Checking::WITHDRAWAL);
-                }
-            }
-            else
+            if (m_bill_data.TRANSAMOUNT < 0)
             {
-                m_bill_data.TRANSAMOUNT = 0;
+                m_bill_data.TRANSAMOUNT = -m_bill_data.TRANSAMOUNT;
+                m_choice_transaction_type->SetSelection(Model_Checking::WITHDRAWAL);
             }
 
             m_bill_data.local_splits.clear();
@@ -1205,7 +1199,7 @@ void mmBDDialog::SetSplitControls(bool split)
     setCategoryLabel();
 }
 
-void mmBDDialog::OnAutoExecutionUserAckChecked(wxCommandEvent& /*event*/)
+void mmBDDialog::OnAutoExecutionUserAckChecked(wxCommandEvent& WXUNUSED(event))
 {
     autoExecuteUserAck_ = !autoExecuteUserAck_;
     if (autoExecuteUserAck_)
@@ -1220,7 +1214,7 @@ void mmBDDialog::OnAutoExecutionUserAckChecked(wxCommandEvent& /*event*/)
     }
 }
 
-void mmBDDialog::OnAutoExecutionSilentChecked(wxCommandEvent& /*event*/)
+void mmBDDialog::OnAutoExecutionSilentChecked(wxCommandEvent& WXUNUSED(event))
 {
     autoExecuteSilent_ = !autoExecuteSilent_;
 }
@@ -1233,7 +1227,7 @@ void mmBDDialog::OnCalendarSelChanged(wxCalendarEvent& event)
 }
 
 
-void mmBDDialog::OnAdvanceChecked(wxCommandEvent& /*event*/)
+void mmBDDialog::OnAdvanceChecked(wxCommandEvent& WXUNUSED(event))
 {
     SetAdvancedTransferControls(cAdvanced_->IsChecked());
 }
@@ -1296,22 +1290,22 @@ void mmBDDialog::SetNewDate(wxDatePickerCtrl* dpc, bool forward)
     m_calendar_ctrl->SetDate(date);
 }
 
-void mmBDDialog::OnNextOccurDateForward(wxSpinEvent& /*event*/)
+void mmBDDialog::OnNextOccurDateForward(wxSpinEvent& WXUNUSED(event))
 {
     SetNewDate(m_date_due);
 }
 
-void mmBDDialog::OnNextOccurDateBack(wxSpinEvent& /*event*/)
+void mmBDDialog::OnNextOccurDateBack(wxSpinEvent& WXUNUSED(event))
 {
     SetNewDate(m_date_due, false);
 }
 
-void mmBDDialog::OnTransDateForward(wxSpinEvent& /*event*/)
+void mmBDDialog::OnTransDateForward(wxSpinEvent& WXUNUSED(event))
 {
     SetNewDate(m_date_paid);
 }
 
-void mmBDDialog::OnTransDateBack(wxSpinEvent& /*event*/)
+void mmBDDialog::OnTransDateBack(wxSpinEvent& WXUNUSED(event))
 {
     SetNewDate(m_date_paid, false);
 }
@@ -1367,12 +1361,12 @@ void mmBDDialog::setRepeatDetails()
     }
 }
 
-void mmBDDialog::OnRepeatTypeChanged(wxCommandEvent& /*event*/)
+void mmBDDialog::OnRepeatTypeChanged(wxCommandEvent& WXUNUSED(event))
 {
     setRepeatDetails();
 }
 
-void mmBDDialog::OnsetNextRepeatDate(wxCommandEvent& /*event*/)
+void mmBDDialog::OnsetNextRepeatDate(wxCommandEvent& WXUNUSED(event))
 {
     wxString valueStr = textNumRepeats_->GetValue();
     if (valueStr.IsNumber())
@@ -1413,7 +1407,7 @@ void mmBDDialog::OnsetNextRepeatDate(wxCommandEvent& /*event*/)
     }
 }
 
-void mmBDDialog::OnPeriodChange(wxCommandEvent& /*event*/)
+void mmBDDialog::OnPeriodChange(wxCommandEvent& WXUNUSED(event))
 {
     // event is ignored when showing: Times Repeated
     int repeats = m_choice_repeat->GetSelection();
@@ -1429,8 +1423,6 @@ void mmBDDialog::OnPeriodChange(wxCommandEvent& /*event*/)
 
 void mmBDDialog::activateSplitTransactionsDlg()
 {
-    bool bDeposit = (m_bill_data.TRANSCODE == Model_Billsdeposits::all_type()[Model_Checking::DEPOSIT]);
-
     if (m_bill_data.CATEGID > -1 && m_bill_data.local_splits.empty())
     {
         if (!textAmount_->GetDouble(m_bill_data.TRANSAMOUNT))
@@ -1438,7 +1430,7 @@ void mmBDDialog::activateSplitTransactionsDlg()
             m_bill_data.TRANSAMOUNT = 0;
         }
         Split s;
-        s.SPLITTRANSAMOUNT = bDeposit ? m_bill_data.TRANSAMOUNT : m_bill_data.TRANSAMOUNT;
+        s.SPLITTRANSAMOUNT = m_bill_data.TRANSAMOUNT;
         s.CATEGID = m_bill_data.CATEGID;
         s.SUBCATEGID = m_bill_data.SUBCATEGID;
         m_bill_data.local_splits.push_back(s);

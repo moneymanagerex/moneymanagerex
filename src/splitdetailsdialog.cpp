@@ -201,7 +201,7 @@ void SplitDetailDialog::OnButtonOKClick( wxCommandEvent& event )
     EndModal(wxID_OK);
 }
 
-void SplitDetailDialog::OnCancel(wxCommandEvent& /*event*/)
+void SplitDetailDialog::OnCancel(wxCommandEvent& WXUNUSED(event))
 {
     EndModal(wxID_CANCEL);
 }

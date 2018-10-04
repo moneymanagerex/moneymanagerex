@@ -7,7 +7,7 @@
  * @author    Guan Lisheng (guanlisheng@gmail.com)
  * @author    Stefano Giorgio (stef145g)
  * @author    Tomasz Słodkowicz
- * @date      2018-10-03 19:57:45.537490
+ * @date      2018-10-07 02:45:31.001407
  */
 #pragma once
 
@@ -391,11 +391,6 @@ struct DB_Table_BILLSDEPOSITS : public DB_Table
             return *this;
         }
 
-        template<typename C>
-        bool match(const C &c) const
-        {
-            return false;
-        }
 
         bool match(const Self::BDID &in) const
         {

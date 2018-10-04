@@ -217,8 +217,6 @@ private:
     void initDelimiter();
     void initDateMask();
 
-    wxBitmap GetBitmapResource(const wxString& name);
-    wxIcon GetIconResource(const wxString& name);
     const bool ShowToolTips();
     void OnSettingsSelected(wxCommandEvent& event);
     wxString GetStoredSettings(int id);

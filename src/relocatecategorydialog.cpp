@@ -133,7 +133,7 @@ void relocateCategoryDialog::CreateControls()
     this->Fit();
 }
 
-void relocateCategoryDialog::OnSelectSource(wxCommandEvent& /*event*/)
+void relocateCategoryDialog::OnSelectSource(wxCommandEvent& WXUNUSED(event))
 {
     mmCategDialog sourceCat(this, m_sourceCatID, m_sourceSubCatID, false);
 
@@ -149,7 +149,7 @@ void relocateCategoryDialog::OnSelectSource(wxCommandEvent& /*event*/)
     }
 }
 
-void relocateCategoryDialog::OnSelectDest(wxCommandEvent& /*event*/)
+void relocateCategoryDialog::OnSelectDest(wxCommandEvent& WXUNUSED(event))
 {
     mmCategDialog destCat(this, m_destCatID, m_destSubCatID, false);
 
@@ -167,7 +167,7 @@ int relocateCategoryDialog::updatedCategoriesCount() const
     return m_changedRecords;
 }
 
-void relocateCategoryDialog::OnOk(wxCommandEvent& /*event*/)
+void relocateCategoryDialog::OnOk(wxCommandEvent& WXUNUSED(event))
 {
 
     if (wxMessageBox(_("Please Confirm:"), _("Category Relocation Confirmation"), wxOK | wxCANCEL) == wxOK)

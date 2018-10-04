@@ -357,7 +357,7 @@ void mmStockDialog::CreateControls()
     buttonsOK_CANCEL_sizer->Add(itemButton30, g_flagsH);
 }
 
-void mmStockDialog::OnQuit(wxCloseEvent& /*event*/)
+void mmStockDialog::OnQuit(wxCloseEvent& WXUNUSED(event))
 {
     const wxString& RefType = Model_Attachment::reftype_desc(Model_Attachment::STOCK);
     if (!m_edit)
@@ -365,7 +365,7 @@ void mmStockDialog::OnQuit(wxCloseEvent& /*event*/)
     EndModal(wxID_CANCEL);
 }
 
-void mmStockDialog::OnCancel(wxCommandEvent& /*event*/)
+void mmStockDialog::OnCancel(wxCommandEvent& WXUNUSED(event))
 {
     const wxString& RefType = Model_Attachment::reftype_desc(Model_Attachment::STOCK);
     if (m_stock_id <= 0)
@@ -373,7 +373,7 @@ void mmStockDialog::OnCancel(wxCommandEvent& /*event*/)
     EndModal(wxID_CANCEL);
 }
 
-void mmStockDialog::OnAttachments(wxCommandEvent& /*event*/)
+void mmStockDialog::OnAttachments(wxCommandEvent& WXUNUSED(event))
 {
     const wxString RefType = Model_Attachment::reftype_desc(Model_Attachment::STOCK);
     int RefId = m_stock_id;
@@ -385,7 +385,7 @@ void mmStockDialog::OnAttachments(wxCommandEvent& /*event*/)
     dlg.ShowModal();
 }
 
-void mmStockDialog::OnStockPriceButton(wxCommandEvent& /*event*/)
+void mmStockDialog::OnStockPriceButton(wxCommandEvent& WXUNUSED(event))
 {
     const wxString stockSymbol = m_stock_symbol_ctrl->GetValue().Trim();
 
@@ -397,7 +397,7 @@ void mmStockDialog::OnStockPriceButton(wxCommandEvent& /*event*/)
     }
 }
 
-void mmStockDialog::OnSave(wxCommandEvent& /*event*/)
+void mmStockDialog::OnSave(wxCommandEvent& WXUNUSED(event))
 {
     if (m_price_listbox->GetItemCount())
     {
@@ -545,7 +545,7 @@ void mmStockDialog::OnListItemSelected(wxListEvent& event)
     }
 }
 
-void mmStockDialog::OnHistoryImportButton(wxCommandEvent& /*event*/)
+void mmStockDialog::OnHistoryImportButton(wxCommandEvent& WXUNUSED(event))
 {
     if (m_stock->SYMBOL.IsEmpty())
         return;
@@ -666,7 +666,7 @@ void mmStockDialog::OnHistoryImportButton(wxCommandEvent& /*event*/)
     }
 }
 
-void mmStockDialog::OnHistoryDownloadButton(wxCommandEvent& /*event*/)
+void mmStockDialog::OnHistoryDownloadButton(wxCommandEvent& WXUNUSED(event))
 {
 
     if (m_stock->SYMBOL.IsEmpty())
@@ -822,7 +822,7 @@ void mmStockDialog::OnHistoryDownloadButton(wxCommandEvent& /*event*/)
     ShowStockHistory();
 }
 
-void mmStockDialog::OnHistoryAddButton(wxCommandEvent& /*event*/)
+void mmStockDialog::OnHistoryAddButton(wxCommandEvent& WXUNUSED(event))
 {
     if (m_stock->SYMBOL.IsEmpty())
         return;
@@ -870,7 +870,7 @@ void mmStockDialog::OnHistoryAddButton(wxCommandEvent& /*event*/)
     }
 }
 
-void mmStockDialog::OnHistoryDeleteButton(wxCommandEvent& /*event*/)
+void mmStockDialog::OnHistoryDeleteButton(wxCommandEvent& WXUNUSED(event))
 {
     if (m_price_listbox->GetSelectedItemCount() <= 0)
         return;

@@ -219,7 +219,7 @@ void transactionsUpdateDialog::CreateControls()
     button_panel_sizer->Add(button_cancel, g_flagsH);
 }
 
-void transactionsUpdateDialog::OnOk(wxCommandEvent& /*event*/)
+void transactionsUpdateDialog::OnOk(wxCommandEvent& WXUNUSED(event))
 {
     double amount = 0;
     if (m_amount_checkbox->IsChecked() && !m_amount_ctrl->checkValue(amount))
@@ -379,7 +379,7 @@ void transactionsUpdateDialog::onFocusChange(wxChildFocusEvent& event)
     event.Skip();
 }
 
-void transactionsUpdateDialog::OnCategChange(wxCommandEvent& /*event*/)
+void transactionsUpdateDialog::OnCategChange(wxCommandEvent& WXUNUSED(event))
 {
     mmCategDialog dlg(this, -1, -1, false);
     if (dlg.ShowModal() == wxID_OK)

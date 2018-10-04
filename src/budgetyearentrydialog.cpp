@@ -132,7 +132,7 @@ void mmBudgetYearEntryDialog::CreateControls()
     itemBoxSizer9->Add(itemButtonCancel, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5);
 }
 
-void mmBudgetYearEntryDialog::OnOk(wxCommandEvent& /*event*/)
+void mmBudgetYearEntryDialog::OnOk(wxCommandEvent& WXUNUSED(event))
 {
     wxString currYearText = wxString() << textYear_->GetValue();
     wxString baseYear = itemChoice_->GetStringSelection();

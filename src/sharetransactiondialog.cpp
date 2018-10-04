@@ -440,7 +440,7 @@ void ShareTransactionDialog::OnOk(wxCommandEvent& WXUNUSED(event))
     EndModal(wxID_OK);
 }
 
-void ShareTransactionDialog::OnTextEntered(wxCommandEvent& event)
+void ShareTransactionDialog::OnTextEntered(wxCommandEvent& WXUNUSED(event))
 {
     double share_num = 0;
     if (!m_share_num_ctrl->GetValue().empty())

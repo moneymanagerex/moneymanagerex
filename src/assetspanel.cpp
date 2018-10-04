@@ -162,7 +162,7 @@ void mmAssetsListCtrl::OnListKeyDown(wxListEvent& event)
     }
 }
 
-void mmAssetsListCtrl::OnNewAsset(wxCommandEvent& /*event*/)
+void mmAssetsListCtrl::OnNewAsset(wxCommandEvent& WXUNUSED(event))
 {
     mmAssetDialog dlg(this, m_panel->m_frame, (Model_Asset::Data*)nullptr);
     if (dlg.ShowModal() == wxID_OK)
@@ -195,7 +195,7 @@ void mmAssetsListCtrl::doRefreshItems(int trx_id)
     m_selected_row = selectedIndex;
 }
 
-void mmAssetsListCtrl::OnDeleteAsset(wxCommandEvent& /*event*/)
+void mmAssetsListCtrl::OnDeleteAsset(wxCommandEvent& WXUNUSED(event))
 {
     if (m_selected_row < 0)    return;
 
@@ -217,7 +217,7 @@ void mmAssetsListCtrl::OnDeleteAsset(wxCommandEvent& /*event*/)
     }
 }
 
-void mmAssetsListCtrl::OnEditAsset(wxCommandEvent& /*event*/)
+void mmAssetsListCtrl::OnEditAsset(wxCommandEvent& WXUNUSED(event))
 {
     if (m_selected_row < 0)     return;
 
@@ -225,7 +225,7 @@ void mmAssetsListCtrl::OnEditAsset(wxCommandEvent& /*event*/)
     AddPendingEvent(evt);
 }
 
-void mmAssetsListCtrl::OnDuplicateAsset(wxCommandEvent& /*event*/)
+void mmAssetsListCtrl::OnDuplicateAsset(wxCommandEvent& WXUNUSED(event))
 {
     if (m_selected_row < 0)     return;
 
@@ -260,7 +260,7 @@ void mmAssetsListCtrl::OnGotoAssetAccount(wxCommandEvent& WXUNUSED(event))
     m_panel->GotoAssetAccount(m_selected_row);
 }
 
-void mmAssetsListCtrl::OnOrganizeAttachments(wxCommandEvent& /*event*/)
+void mmAssetsListCtrl::OnOrganizeAttachments(wxCommandEvent& WXUNUSED(event))
 {
     if (m_selected_row < 0) return;
 
@@ -273,7 +273,7 @@ void mmAssetsListCtrl::OnOrganizeAttachments(wxCommandEvent& /*event*/)
     doRefreshItems(RefId);
 }
 
-void mmAssetsListCtrl::OnOpenAttachment(wxCommandEvent& /*event*/)
+void mmAssetsListCtrl::OnOpenAttachment(wxCommandEvent& WXUNUSED(event))
 {
     if (m_selected_row < 0) return;
 

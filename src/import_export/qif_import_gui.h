@@ -52,12 +52,12 @@ private:
     void CreateControls();
     void fillControls();
     void OnFileSearch(wxCommandEvent& event);
-    void OnCheckboxClick(wxCommandEvent& /*event*/);
-    void OnAccountChanged(wxCommandEvent& /*event*/);
+    void OnCheckboxClick(wxCommandEvent& WXUNUSED(event));
+    void OnAccountChanged(wxCommandEvent& WXUNUSED(event));
     void OnDateMaskChange(wxCommandEvent& event);
     void OnQuit(wxCloseEvent& event);
     void OnCancel(wxCommandEvent& event);
-    void OnOk(wxCommandEvent& /*event*/);
+    void OnOk(wxCommandEvent& WXUNUSED(event));
 
     bool mmReadQIFFile();
     void clear_transaction_data();

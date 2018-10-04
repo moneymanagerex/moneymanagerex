@@ -141,12 +141,12 @@ int relocatePayeeDialog::updatedPayeesCount()
     return m_changed_records;
 }
 
-void relocatePayeeDialog::OnCancel(wxCommandEvent& /*event*/)
+void relocatePayeeDialog::OnCancel(wxCommandEvent& WXUNUSED(event))
 {
     EndModal(m_changed_records>0 ? wxID_OK : wxID_CANCEL);
 }
 
-void relocatePayeeDialog::OnOk(wxCommandEvent& /*event*/)
+void relocatePayeeDialog::OnOk(wxCommandEvent& WXUNUSED(event))
 {
     const wxString& info = wxString::Format(_("From %s to %s")
         , Model_Payee::instance().get(sourcePayeeID_)->PAYEENAME

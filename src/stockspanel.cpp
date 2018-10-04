@@ -252,7 +252,7 @@ void StocksListCtrl::OnListKeyDown(wxListEvent& event)
     }
 }
 
-void StocksListCtrl::OnNewStocks(wxCommandEvent& /*event*/)
+void StocksListCtrl::OnNewStocks(wxCommandEvent& WXUNUSED(event))
 {
     mmStockDialog dlg(this, m_stock_panel->m_frame, nullptr, m_stock_panel->m_account_id);
     dlg.ShowModal();
@@ -262,7 +262,7 @@ void StocksListCtrl::OnNewStocks(wxCommandEvent& /*event*/)
     }
 }
 
-void StocksListCtrl::OnDeleteStocks(wxCommandEvent& /*event*/)
+void StocksListCtrl::OnDeleteStocks(wxCommandEvent& WXUNUSED(event))
 {
     if (m_selected_row == -1) return;
 
@@ -280,7 +280,7 @@ void StocksListCtrl::OnDeleteStocks(wxCommandEvent& /*event*/)
     }
 }
 
-void StocksListCtrl::OnMoveStocks(wxCommandEvent& /*event*/)
+void StocksListCtrl::OnMoveStocks(wxCommandEvent& WXUNUSED(event))
 {
     if (m_selected_row == -1) return;
     
@@ -322,7 +322,7 @@ void StocksListCtrl::OnEditStocks(wxCommandEvent& event)
     AddPendingEvent(evt);
 }
 
-void StocksListCtrl::OnOrganizeAttachments(wxCommandEvent& /*event*/)
+void StocksListCtrl::OnOrganizeAttachments(wxCommandEvent& WXUNUSED(event))
 {
     if (m_selected_row < 0) return;
 
@@ -335,7 +335,7 @@ void StocksListCtrl::OnOrganizeAttachments(wxCommandEvent& /*event*/)
     doRefreshItems(RefId);
 }
 
-void StocksListCtrl::OnStockWebPage(wxCommandEvent& /*event*/)
+void StocksListCtrl::OnStockWebPage(wxCommandEvent& WXUNUSED(event))
 {
     if (m_selected_row < 0) return;
     const wxString stockSymbol = m_stocks[m_selected_row].SYMBOL;
@@ -348,7 +348,7 @@ void StocksListCtrl::OnStockWebPage(wxCommandEvent& /*event*/)
     }
 }
 
-void StocksListCtrl::OnOpenAttachment(wxCommandEvent& /*event*/)
+void StocksListCtrl::OnOpenAttachment(wxCommandEvent& WXUNUSED(event))
 {
     if (m_selected_row < 0) return;
 

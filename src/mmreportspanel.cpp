@@ -466,7 +466,7 @@ void mmReportsPanel::PrintPage()
     browser_->Print();
 }
 
-void mmReportsPanel::OnDateRangeChanged(wxCommandEvent& /*event*/)
+void mmReportsPanel::OnDateRangeChanged(wxCommandEvent& WXUNUSED(event))
 {
     if (rb_)
     {
@@ -501,7 +501,7 @@ void mmReportsPanel::OnDateRangeChanged(wxCommandEvent& /*event*/)
     }
 }
 
-void mmReportsPanel::OnAccountChanged(wxCommandEvent& /*event*/)
+void mmReportsPanel::OnAccountChanged(wxCommandEvent& WXUNUSED(event))
 {
     if (rb_)
     {
@@ -520,7 +520,7 @@ void mmReportsPanel::OnAccountChanged(wxCommandEvent& /*event*/)
     }
 }
 
-void mmReportsPanel::OnStartEndDateChanged(wxDateEvent& /*event*/)
+void mmReportsPanel::OnStartEndDateChanged(wxDateEvent& WXUNUSED(event))
 {
     if (rb_)
     {
@@ -557,7 +557,7 @@ void mmReportsPanel::OnNextReport(wxCommandEvent& event)
     }
 }
 
-void mmReportsPanel::OnChartChanged(wxCommandEvent& /*event*/)
+void mmReportsPanel::OnChartChanged(wxCommandEvent& WXUNUSED(event))
 {
     if (rb_)
     {

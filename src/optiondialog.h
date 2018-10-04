@@ -51,8 +51,8 @@ private:
         long style);
 
     void CreateControls();
-    void OnOk(wxCommandEvent& /*event*/);
-    void OnApply(wxCommandEvent& /*event*/);
+    void OnOk(wxCommandEvent& WXUNUSED(event));
+    void OnApply(wxCommandEvent& WXUNUSED(event));
 
 private:
     wxImageList* m_imageList;

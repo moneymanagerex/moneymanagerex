@@ -568,7 +568,7 @@ void mmUnivCSVDialog::SetSettings(const wxString &json_data)
 }
 
 //Selection dialog for fields to be added to listbox
-void mmUnivCSVDialog::OnAdd(wxCommandEvent& /*event*/)
+void mmUnivCSVDialog::OnAdd(wxCommandEvent& WXUNUSED(event))
 {
     int index = csvFieldCandicate_->GetSelection();
     if (index != wxNOT_FOUND)
@@ -594,7 +594,7 @@ void mmUnivCSVDialog::OnAdd(wxCommandEvent& /*event*/)
 }
 
 //Removes an item from the field list box
-void mmUnivCSVDialog::OnRemove(wxCommandEvent& /*event*/)
+void mmUnivCSVDialog::OnRemove(wxCommandEvent& WXUNUSED(event))
 {
     int index = csvListBox_->GetSelection();
     if (index != wxNOT_FOUND)
@@ -660,7 +660,7 @@ void mmUnivCSVDialog::OnLoad()
 }
 
 //Saves the field order to a template file
-void mmUnivCSVDialog::OnSave(wxCommandEvent& /*event*/)
+void mmUnivCSVDialog::OnSave(wxCommandEvent& WXUNUSED(event))
 {
 
     StringBuffer json_buffer;
@@ -786,7 +786,7 @@ bool mmUnivCSVDialog::validateData(tran_holder & holder)
     return true;
 }
 
-void mmUnivCSVDialog::OnImport(wxCommandEvent& /*event*/)
+void mmUnivCSVDialog::OnImport(wxCommandEvent& WXUNUSED(event))
 {
     // date and amount are required
     bool datefield = isIndexPresent(UNIV_CSV_DATE);
@@ -967,7 +967,7 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& /*event*/)
     if (!canceledbyuser && countImported > 0) Close();
 }
 
-void mmUnivCSVDialog::OnExport(wxCommandEvent& /*event*/)
+void mmUnivCSVDialog::OnExport(wxCommandEvent& WXUNUSED(event))
 {
     // date and amount are required
     if (!isIndexPresent(UNIV_CSV_DATE) || (!isIndexPresent(UNIV_CSV_AMOUNT)
@@ -1273,7 +1273,7 @@ void mmUnivCSVDialog::update_preview()
     }
 }
 
-void mmUnivCSVDialog::OnMoveUp(wxCommandEvent& /*event*/)
+void mmUnivCSVDialog::OnMoveUp(wxCommandEvent& WXUNUSED(event))
 {
     int index = csvListBox_->GetSelection();
     if (index != wxNOT_FOUND && index != 0)
@@ -1292,7 +1292,7 @@ void mmUnivCSVDialog::OnMoveUp(wxCommandEvent& /*event*/)
     }
 }
 
-void mmUnivCSVDialog::OnMoveDown(wxCommandEvent& /*event*/)
+void mmUnivCSVDialog::OnMoveDown(wxCommandEvent& WXUNUSED(event))
 {
     int index = csvListBox_->GetSelection();
     if (index != wxNOT_FOUND && index != (int)csvListBox_->GetCount() - 1)
@@ -1311,7 +1311,7 @@ void mmUnivCSVDialog::OnMoveDown(wxCommandEvent& /*event*/)
     }
 }
 
-void mmUnivCSVDialog::OnStandard(wxCommandEvent& /*event*/)
+void mmUnivCSVDialog::OnStandard(wxCommandEvent& WXUNUSED(event))
 {
     csvListBox_->Clear();
     csvFieldOrder_.clear();
@@ -1332,7 +1332,7 @@ void mmUnivCSVDialog::OnStandard(wxCommandEvent& /*event*/)
     update_preview();
 }
 
-void mmUnivCSVDialog::OnBrowse(wxCommandEvent& /*event*/)
+void mmUnivCSVDialog::OnBrowse(wxCommandEvent& WXUNUSED(event))
 {
     wxString fileName = m_text_ctrl_->GetValue();
     wxString header;
@@ -1530,7 +1530,7 @@ void mmUnivCSVDialog::parseToken(int index, const wxString& orig_token, tran_hol
     }
 }
 
-void mmUnivCSVDialog::OnButtonClear(wxCommandEvent& /*event*/)
+void mmUnivCSVDialog::OnButtonClear(wxCommandEvent& WXUNUSED(event))
 {
     log_field_->Clear();
 }
@@ -1600,12 +1600,12 @@ void mmUnivCSVDialog::changeFocus(wxChildFocusEvent& event)
         m_oject_in_focus = w->GetId();
 }
 
-void mmUnivCSVDialog::OnSpinCtrlIgnoreFirstRows(wxSpinEvent& event)
+void mmUnivCSVDialog::OnSpinCtrlIgnoreFirstRows(wxSpinEvent& WXUNUSED(event))
 {
     UpdateListItemBackground();
 }
 
-void mmUnivCSVDialog::OnSpinCtrlIgnoreLastRows(wxSpinEvent& event)
+void mmUnivCSVDialog::OnSpinCtrlIgnoreLastRows(wxSpinEvent& WXUNUSED(event))
 {
     UpdateListItemBackground();
 }
@@ -1633,16 +1633,6 @@ bool mmUnivCSVDialog::isIndexPresent(int index) const
 const bool mmUnivCSVDialog::ShowToolTips()
 {
     return TRUE;
-}
-
-wxBitmap mmUnivCSVDialog::GetBitmapResource(const wxString& /*name*/)
-{
-    return wxNullBitmap;
-}
-
-wxIcon mmUnivCSVDialog::GetIconResource(const wxString& /*name*/)
-{
-    return wxNullIcon;
 }
 
 ITransactionsFile *mmUnivCSVDialog::CreateFileHandler()

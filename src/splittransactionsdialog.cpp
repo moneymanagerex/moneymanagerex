@@ -175,7 +175,7 @@ void SplitTransactionDialog::CreateControls()
     bottomRowButtonSizer->Add(itemButtonCancel, g_flagsH);
 }
 
-void SplitTransactionDialog::OnButtonAddClick( wxCommandEvent& /*event*/ )
+void SplitTransactionDialog::OnButtonAddClick( wxCommandEvent& WXUNUSED(event) )
 {
     double amount = totalAmount_ - Model_Splittransaction::get_total(m_local_splits);
     if (amount < 0.0) amount = 0.0;
@@ -189,13 +189,13 @@ void SplitTransactionDialog::OnButtonAddClick( wxCommandEvent& /*event*/ )
     DataToControls();
 }
 
-void SplitTransactionDialog::OnButtonEditClick( wxCommandEvent& /*event*/ )
+void SplitTransactionDialog::OnButtonEditClick( wxCommandEvent& WXUNUSED(event) )
 {
     EditEntry(selectedIndex_);
     DataToControls();
 }
 
-void SplitTransactionDialog::OnOk( wxCommandEvent& /*event*/ )
+void SplitTransactionDialog::OnOk( wxCommandEvent& WXUNUSED(event) )
 {
     //Check total amount - should be positive
     double total = 0;
@@ -213,7 +213,7 @@ void SplitTransactionDialog::OnOk( wxCommandEvent& /*event*/ )
     }
 }
 
-void SplitTransactionDialog::OnButtonRemoveClick( wxCommandEvent& event )
+void SplitTransactionDialog::OnButtonRemoveClick(wxCommandEvent& WXUNUSED(event))
 {
     if (selectedIndex_ < 0 || selectedIndex_ >= (int)this->m_local_splits.size())
         return;
@@ -253,7 +253,7 @@ void SplitTransactionDialog::OnListItemSelected(wxDataViewEvent& event)
     SetDisplayEditDeleteButtons();
 }
 
-void SplitTransactionDialog::OnListDblClick(wxDataViewEvent& event)
+void SplitTransactionDialog::OnListDblClick(wxDataViewEvent& WXUNUSED(event))
 {
     if (itemButtonEdit_->IsShown()) EditEntry(selectedIndex_);
 }

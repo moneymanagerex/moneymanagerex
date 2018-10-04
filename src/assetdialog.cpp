@@ -313,7 +313,7 @@ void mmAssetDialog::HideTransactionPanel()
     m_transaction_panel->Hide();
 }
 
-void mmAssetDialog::OnChangeAppreciationType(wxCommandEvent& /*event*/)
+void mmAssetDialog::OnChangeAppreciationType(wxCommandEvent& WXUNUSED(event))
 {
     int selection = m_valueChange->GetSelection();
     // Disable for "None", Enable for "Appreciates" or "Depreciates"
@@ -337,7 +337,7 @@ void mmAssetDialog::enableDisableRate(bool en)
     }
 }
 
-void mmAssetDialog::OnOk(wxCommandEvent& /*event*/)
+void mmAssetDialog::OnOk(wxCommandEvent& WXUNUSED(event))
 {
     const wxString name = m_assetName->GetValue().Trim();
     if (name.empty())
@@ -463,7 +463,7 @@ void mmAssetDialog::CreateAssetAccount()
     asset_dialog.ShowModal();
 }
 
-void mmAssetDialog::OnCancel(wxCommandEvent& /*event*/)
+void mmAssetDialog::OnCancel(wxCommandEvent& WXUNUSED(event))
 {
     if (assetRichText)
         return;
@@ -476,7 +476,7 @@ void mmAssetDialog::OnCancel(wxCommandEvent& /*event*/)
     }
 }
 
-void mmAssetDialog::OnQuit(wxCloseEvent& /*event*/)
+void mmAssetDialog::OnQuit(wxCloseEvent& WXUNUSED(event))
 {
     const wxString& RefType = Model_Attachment::reftype_desc(Model_Attachment::ASSET);
     if (!this->m_asset)
@@ -484,7 +484,7 @@ void mmAssetDialog::OnQuit(wxCloseEvent& /*event*/)
     EndModal(wxID_CANCEL);
 }
 
-void mmAssetDialog::OnAttachments(wxCommandEvent& /*event*/)
+void mmAssetDialog::OnAttachments(wxCommandEvent& WXUNUSED(event))
 {
     const wxString& RefType = Model_Attachment::reftype_desc(Model_Attachment::ASSET);
     int RefId;

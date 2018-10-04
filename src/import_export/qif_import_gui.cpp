@@ -714,7 +714,7 @@ void mmQIFImportDialog::getDateMask()
     choiceDateFormat_->SetStringSelection(g_date_formats_map.at(m_dateFormatStr));
 }
 
-void mmQIFImportDialog::OnFileSearch(wxCommandEvent& /*event*/)
+void mmQIFImportDialog::OnFileSearch(wxCommandEvent& WXUNUSED(event))
 {
     m_FileNameStr = file_name_ctrl_->GetValue();
 
@@ -739,7 +739,7 @@ void mmQIFImportDialog::OnFileSearch(wxCommandEvent& /*event*/)
             , _("Date Mask has several values"), ("Warning"), wxICON_INFORMATION);
 }
 
-void mmQIFImportDialog::OnDateMaskChange(wxCommandEvent& /*event*/)
+void mmQIFImportDialog::OnDateMaskChange(wxCommandEvent& WXUNUSED(event))
 {
     wxStringClientData* data = (wxStringClientData*)(choiceDateFormat_->GetClientObject(choiceDateFormat_->GetSelection()));
     if (data) m_dateFormatStr = data->GetData();
@@ -793,7 +793,7 @@ void mmQIFImportDialog::OnCheckboxClick( wxCommandEvent& event )
     refreshTabs(t);  
 }
 
-void mmQIFImportDialog::OnAccountChanged(wxCommandEvent& /*event*/)
+void mmQIFImportDialog::OnAccountChanged(wxCommandEvent& WXUNUSED(event))
 {
     wxStringClientData* data_obj = (wxStringClientData*)accountDropDown_->GetClientObject(accountDropDown_->GetSelection());
     if (data_obj)
@@ -801,7 +801,7 @@ void mmQIFImportDialog::OnAccountChanged(wxCommandEvent& /*event*/)
     refreshTabs(TRX_TAB);
 }
 
-void mmQIFImportDialog::OnOk(wxCommandEvent& /*event*/)
+void mmQIFImportDialog::OnOk(wxCommandEvent& WXUNUSED(event))
 {
     wxString sMsg;
     wxMessageDialog msgDlg(this, _("Do you want to import all transaction ?")
@@ -1119,12 +1119,12 @@ bool mmQIFImportDialog::completeTransaction(/*in*/ const std::unordered_map <int
     return true;
 }
 
-void mmQIFImportDialog::OnCancel(wxCommandEvent& /*event*/)
+void mmQIFImportDialog::OnCancel(wxCommandEvent& WXUNUSED(event))
 {
     EndModal(wxID_CANCEL);
 }
 
-void mmQIFImportDialog::OnQuit(wxCloseEvent& /*event*/)
+void mmQIFImportDialog::OnQuit(wxCloseEvent& WXUNUSED(event))
 {
     EndModal(wxID_CANCEL);
 }

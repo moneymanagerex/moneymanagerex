@@ -114,7 +114,7 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
     std::map<int, std::map<int, std::map<int, double> > > categoryStats;
     Model_Category::instance().getCategoryStats(categoryStats
         , &date_range, Option::instance().IgnoreFutureTransactions()
-        , false, true, (evaluateTransfer ? &budgetAmt : nullptr));
+        , false, (evaluateTransfer ? &budgetAmt : nullptr));
 
     auto categs = Model_Category::all_categories();
     categs[L"\uF8FF"] = std::make_pair(-1, -1); //last alphabetical charicter

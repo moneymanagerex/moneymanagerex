@@ -85,9 +85,9 @@ private:
     void OnSelChanged(wxTreeEvent& event);
     void OnDoubleClicked(wxTreeEvent& event);
     void showCategDialogDeleteError(bool category = true);
-    void OnCategoryRelocation(wxCommandEvent& /*event*/);
-    void OnExpandChbClick(wxCommandEvent& /*event*/);
-    void OnShowHiddenChbClick(wxCommandEvent& /*event*/);
+    void OnCategoryRelocation(wxCommandEvent& WXUNUSED(event));
+    void OnExpandChbClick(wxCommandEvent& WXUNUSED(event));
+    void OnShowHiddenChbClick(wxCommandEvent& WXUNUSED(event));
     void OnMenuSelected(wxCommandEvent& event);
     void OnItemRightClick(wxTreeEvent& event);
     bool categShowStatus(int categId, int subCategId);
