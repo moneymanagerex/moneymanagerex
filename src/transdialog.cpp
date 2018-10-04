@@ -923,8 +923,8 @@ void mmTransDialog::OnAccountOrPayeeUpdated(wxCommandEvent& event)
             cbPayee_->Clear();
             Model_Payee::Data_Set filtd = Model_Payee::instance().FilterPayees(payeeName);
             std::sort(filtd.rbegin(), filtd.rend(), SorterByPAYEENAME());
-            for (int nn=0; nn<filtd.size(); nn++) {
-                cbPayee_->Insert(filtd[nn].PAYEENAME, 0);
+            for (const auto &payee : filtd) {
+                cbPayee_->Insert(payee.PAYEENAME, 0);
             }
             cbPayee_->ChangeValue(payeeName);
             cbPayee_->SetInsertionPointEnd();

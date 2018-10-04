@@ -1382,7 +1382,7 @@ void TransactionListCtrl::OnColClick(wxListEvent& event)
     else
         ColumnNr = m_ColumnHeaderNbr;
 
-    if (0 > ColumnNr || ColumnNr >= m_columns.size() || ColumnNr == COL_IMGSTATUS) return;
+    if (0 > ColumnNr || (size_t)ColumnNr >= m_columns.size() || ColumnNr == COL_IMGSTATUS) return;
 
     /* Clear previous column image */
     if (m_sortCol != ColumnNr) {
