@@ -63,6 +63,7 @@ public:
     bool getSimilarStatus();
     int getCategId();
     int getSubCategId();
+    void getFilterStatus();
 
 private:
     void BuildPayeeList();
@@ -77,14 +78,12 @@ private:
     template<class MODEL, class FULL_DATA = typename MODEL::Full_Data>
     bool checkAmount(const FULL_DATA &tran);
 
-    wxString getStatus() const;
-
     wxString getNumber();
     wxString getNotes();
 
 private:
     /// Returns true if Status string matches.
-    bool compareStatus(const wxString& itemStatus) const;
+    bool compareStatus(const wxString& itemStatus, const wxString& filterStatus) const;
 
     bool getTypeCheckBox();
     bool allowType(const wxString& typeState, bool sameAccount) const;
@@ -165,6 +164,7 @@ private:
     wxString refAccountStr_;
     double m_min_amount;
     double m_max_amount;
+    wxString m_filterStatus;
     int m_settings_id;
     void SetSettingsID(int id) { m_settings_id = id; }
     int GetSettingsID() { return m_settings_id; }

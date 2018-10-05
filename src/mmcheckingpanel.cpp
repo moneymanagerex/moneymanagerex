@@ -221,6 +221,7 @@ void mmCheckingPanel::filterTable()
     int udfc04_ref_id = matrix.at("UDFC04");
     int udfc05_ref_id = matrix.at("UDFC05");
 
+    m_trans_filter_dlg->getFilterStatus();
     const auto splits = Model_Splittransaction::instance().get_all();
     const auto attachments = Model_Attachment::instance().get_all(Model_Attachment::TRANSACTION);
     for (const auto& tran : Model_Account::transaction(this->m_account))

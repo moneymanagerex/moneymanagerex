@@ -320,6 +320,7 @@ Model_Checking::Full_Data::Full_Data(int account_id, const Data& r
 void Model_Checking::Full_Data::Initialise(int account_id, const Data& r)
 {
     ACCOUNTNAME = Model_Account::get_account_name(r.ACCOUNTID);
+    STATUSFD = r.STATUS;
     if (Model_Checking::type(r) == Model_Checking::TRANSFER)
     {
         TOACCOUNTNAME = Model_Account::get_account_name(r.TOACCOUNTID);
@@ -328,17 +329,15 @@ void Model_Checking::Full_Data::Initialise(int account_id, const Data& r)
         {
             STATUSFD = r.STATUS.Right(1);
         }
-        else
+        else if (account_id == r.ACCOUNTID)
         {
             STATUSFD = r.STATUS.Left(1);
         }
 
-        if (STATUSFD == "N") STATUSFD = "";
     }
     else
     {
         PAYEENAME = Model_Payee::get_payee_name(r.PAYEEID);
-        STATUSFD = r.STATUS == "N" ? "" : r.STATUS;
     }
 
     if (!m_splits.empty())
