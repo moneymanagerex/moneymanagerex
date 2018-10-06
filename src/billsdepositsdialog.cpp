@@ -568,9 +568,6 @@ void mmBDDialog::CreateControls()
     transPanelSizer->Add(typeSizer);
 
     // Amount Fields --------------------------------------------
-    amountNormalTip_ = _("Specify the amount for this transaction");
-    amountTransferTip_ = _("Specify the amount to be transferred");
-
     wxStaticText* staticTextAmount = new wxStaticText(transactionPanel, wxID_STATIC, _("Amount"));
 
     textAmount_ = new mmTextCtrl(transactionPanel, ID_DIALOG_TRANS_TEXTAMOUNT, ""
@@ -603,8 +600,6 @@ void mmBDDialog::CreateControls()
     wxStaticText* staticTextPayee = new wxStaticText(transactionPanel, ID_DIALOG_TRANS_STATIC_PAYEE, _("Payee"));
 
     bPayee_ = new wxButton(transactionPanel, ID_DIALOG_TRANS_BUTTONPAYEE, _("Select Payee"));
-    payeeWithdrawalTip_ = _("Specify where the transaction is going to");
-
     bPayee_->SetToolTip(payeeWithdrawalTip_);
 
     transPanelSizer->Add(staticTextPayee, g_flagsH);
@@ -801,21 +796,6 @@ void mmBDDialog::OnCategs(wxCommandEvent& WXUNUSED(event))
     setCategoryLabel();
 }
 
-void mmBDDialog::setToolTipsForType(Model_Billsdeposits::TYPE transType, bool enableAdvanced)
-{
-    bPayee_->UnsetToolTip();
-    textAmount_->SetToolTip(_("Specify the amount for this transaction"));
-
-    if (transType == Model_Billsdeposits::TRANSFER) {
-        bPayee_->SetToolTip(_("Specify which account the transfer is going to"));
-        textAmount_->SetToolTip(amountTransferTip_);
-    }
-    else {
-        bPayee_->SetToolTip(_("Specify to whom the transaction is going to or coming from "));
-        textAmount_->SetToolTip(amountNormalTip_);
-    }
-}
-
 void mmBDDialog::OnTypeChanged(wxCommandEvent& WXUNUSED(event))
 {
     updateControlsForTransType();
@@ -840,11 +820,12 @@ void mmBDDialog::updateControlsForTransType()
     wxStaticText* accountLabel = static_cast<wxStaticText*>(FindWindow(ID_DIALOG_TRANS_STATIC_ACCOUNT));
     wxStaticText* stp = static_cast<wxStaticText*>(FindWindow(ID_DIALOG_TRANS_STATIC_PAYEE));
 
-    m_transfer = m_choice_transaction_type->GetSelection() == Model_Billsdeposits::TRANSFER;
     switch (m_choice_transaction_type->GetSelection())
     {
     case Model_Billsdeposits::TRANSFER:
     {
+        m_transfer = true;
+        textAmount_->SetToolTip(amountTransferTip_);
         accountLabel->SetLabelText(_("From"));
         if (m_bill_data.ACCOUNTID < 0)
         {
@@ -854,12 +835,12 @@ void mmBDDialog::updateControlsForTransType()
         }
         else
         {
-            bPayee_->SetLabelText(bAccount_->GetLabel());
             m_bill_data.PAYEEID = m_bill_data.ACCOUNTID;
         }
 
         stp->SetLabelText(_("To"));
         bPayee_->SetLabelText(_("Select To Account"));
+        bPayee_->SetToolTip(payeeTransferTip_);
         if (prevType_ != -1)
         {
             m_bill_data.TOACCOUNTID = -1;
@@ -869,6 +850,7 @@ void mmBDDialog::updateControlsForTransType()
     }
     case Model_Billsdeposits::WITHDRAWAL:
     {
+        textAmount_->SetToolTip(amountNormalTip_);
         accountLabel->SetLabelText(_("Account"));
         stp->SetLabelText(_("Payee"));
         bPayee_->SetToolTip(payeeWithdrawalTip_);
@@ -882,10 +864,10 @@ void mmBDDialog::updateControlsForTransType()
     }
     case Model_Billsdeposits::DEPOSIT:
     {
+        textAmount_->SetToolTip(amountNormalTip_);
         accountLabel->SetLabelText(_("Account"));
-        accountLabel->SetLabelText(_("To"));
         stp->SetLabelText(_("From"));
-        bPayee_->SetToolTip(_("Specify where the transaction is coming from"));
+        bPayee_->SetToolTip(payeeDepositTip_);
         if (payeeUnknown_)
         {
             m_bill_data.PAYEEID = -1;
@@ -903,7 +885,6 @@ void mmBDDialog::updateControlsForTransType()
     }
 
     prevType_ = m_choice_transaction_type->GetSelection();
-    setToolTipsForType((Model_Billsdeposits::TYPE)prevType_, m_transfer);
 }
 
 void mmBDDialog::resetPayeeString()
@@ -1468,7 +1449,6 @@ void mmBDDialog::OnTextEntered(wxCommandEvent& event)
 
 void mmBDDialog::setTooltips()
 {
-    bCategory_->UnsetToolTip();
     if (this->m_bill_data.local_splits.empty())
     {
         bCategory_->SetToolTip(_("Specify the category for this transaction"));
