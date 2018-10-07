@@ -362,7 +362,7 @@ CURLcode http_download_file(const wxString& sSite, const wxString& sPath)
 }
 
 //Get unread news or all news for last year
-const bool getNewsRSS(std::vector<WebsiteNews>& WebsiteNewsList)
+bool getNewsRSS(std::vector<WebsiteNews>& WebsiteNewsList)
 {
     wxString RssContent;
     if (http_get_data(mmex::weblink::NewsRSS, RssContent) != CURLE_OK)
@@ -847,11 +847,13 @@ const wxString getURL(const wxString& file)
     return index;
 }
 
-void windowsFreezeThaw(wxWindow* w)
-{
 #ifdef __WXGTK__
+void windowsFreezeThaw(wxWindow*)
+{
     return;
 #else
+void windowsFreezeThaw(wxWindow* w)
+{
     if (w->IsFrozen())
         w->Thaw();
     else

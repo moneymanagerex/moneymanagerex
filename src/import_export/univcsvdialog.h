@@ -216,7 +216,7 @@ private:
     void initDelimiter();
     void initDateMask();
 
-    const bool ShowToolTips();
+    bool ShowToolTips();
     void OnSettingsSelected(wxCommandEvent& event);
     wxString GetStoredSettings(int id);
     void SetSettings(const wxString &data);

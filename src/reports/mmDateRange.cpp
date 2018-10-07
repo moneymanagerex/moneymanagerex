@@ -51,7 +51,7 @@ const wxDateTime mmDateRange::today() const
     return this->today_;
 }
 
-const bool mmDateRange::is_with_date() const
+bool mmDateRange::is_with_date() const
 {
     return true;
 }
@@ -211,7 +211,7 @@ mmAllTime::mmAllTime()
     this->title_ = wxTRANSLATE("Over Time");
 }
 
-const bool mmAllTime::is_with_date() const
+bool mmAllTime::is_with_date() const
 {
     return false;
 }

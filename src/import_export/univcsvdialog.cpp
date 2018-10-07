@@ -1625,7 +1625,7 @@ bool mmUnivCSVDialog::isIndexPresent(int index) const
     return false;
 }
 
-const bool mmUnivCSVDialog::ShowToolTips()
+bool mmUnivCSVDialog::ShowToolTips()
 {
     return TRUE;
 }
