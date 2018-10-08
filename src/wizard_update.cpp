@@ -344,12 +344,14 @@ void mmUpdate::checkUpdates(const bool bSilent, wxFrame *frame)
 
     Document json_releases;
     ParseResult res = json_releases.Parse(resp.c_str());
-    if (!res)
+    if (!res || !json_releases.IsArray())
     {
         if (!bSilent)
         {
             const wxString& msgStr = _("Unable to check for updates!")
-                + "\n\n" + _("Error: ") + GetParseError_En(res.Code());
+                + "\n\n" + _("Error: ")
+                + ((!res) ? GetParseError_En(res.Code())
+                          : json_releases.GetString());
             wxMessageBox(msgStr, _("MMEX Update Check"));
         }
         return;
