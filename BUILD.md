@@ -101,9 +101,13 @@ __All following commands must be run from this command prompt!__
        mkdir c:\curl-<version>\build
        cd c:\curl-<version>\build
        set "PATH=%PATH%;%DevEnvDir%CommonExtensions\Microsoft\CMake\CMake\bin"
-       cmake -G "Visual Studio 15 2017" -DBUILD_CURL_EXE=OFF -DHTTP_ONLY=ON ^
-         -DENABLE_MANUAL=OFF -DBUILD_TESTING=OFF -DCURL_STATICLIB=ON ^
-         -DCMAKE_USE_WINSSL=ON -DCMAKE_INSTALL_PREFIX=c:\libcurl ..
+       cmake -G "Visual Studio 15 2017" -DBUILD_CURL_EXE=OFF -DCURL_DISABLE_LDAP=ON ^
+         -DCURL_DISABLE_LDAPS=ON -DCURL_DISABLE_TELNET=ON -DCURL_DISABLE_DICT=ON ^
+         -DCURL_DISABLE_FILE=ON -DCURL_DISABLE_TFTP=ON -DCURL_DISABLE_RTSP=ON ^
+         -DCURL_DISABLE_POP3=ON -DCURL_DISABLE_IMAP=ON -DCURL_DISABLE_SMTP=ON ^
+         -DCURL_DISABLE_GOPHER=ON -DENABLE_MANUAL=OFF -DBUILD_TESTING=OFF ^
+         -DBUILD_SHARED_LIBS=OFF -DCMAKE_USE_WINSSL=ON ^
+         -DCMAKE_INSTALL_PREFIX=c:\libcurl ..
        set "CL=/MP"
        cmake --build . --target install --config Release --clean-first ^
          -- /maxcpucount /verbosity:minimal /nologo /p:PreferredToolArchitecture=x64
