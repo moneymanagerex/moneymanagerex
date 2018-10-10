@@ -325,7 +325,6 @@ int mmBillsDepositsPanel::initVirtualListControl(int id)
     listCtrlAccount_->SetColumn(listCtrlAccount_->m_selected_col, item);
 
     bills_.clear();
-    transFilterDlg_->getFilterStatus();
     const auto split = Model_Budgetsplittransaction::instance().get_all();
     for (const Model_Billsdeposits::Data& data
         : Model_Billsdeposits::instance().all(Model_Billsdeposits::COL_NEXTOCCURRENCEDATE))

@@ -63,9 +63,9 @@ public:
     bool getSimilarStatus();
     int getCategId();
     int getSubCategId();
-    void getFilterStatus();
 
 private:
+    void getFilterStatus();
     void BuildPayeeList();
 
     bool getDateRangeCheckBox();

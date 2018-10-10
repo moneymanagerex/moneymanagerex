@@ -86,6 +86,7 @@ mmFilterTransactionsDialog::mmFilterTransactionsDialog(wxWindow* parent, int acc
     , payeeID_(-1)
     , refAccountID_(account_id)
     , refAccountStr_("")
+    , m_filterStatus("")
     , m_min_amount(0)
     , m_max_amount(0)
     , m_settings_id(-1)
@@ -513,6 +514,17 @@ void mmFilterTransactionsDialog::OnButtonokClick(wxCommandEvent& WXUNUSED(event)
         }
     }
 
+    if (statusCheckBox_->IsChecked())
+    {
+        if (choiceStatus_->GetSelection() < 0)
+        {
+            int id = choiceStatus_->GetId();
+            return mmErrorDialogs::ToolTip4Object(FindWindow(id)
+                , _("Invalid value"), _("Status"));
+        }
+        getFilterStatus();
+        wxLogDebug(m_filterStatus);
+    }
     //SaveSettings();
     EndModal(wxID_OK);
 }

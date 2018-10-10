@@ -183,7 +183,6 @@ wxString mmReportTransactions::getHTMLText()
 
 void mmReportTransactions::Run(mmFilterTransactionsDialog* dlg)
 {
-    dlg->getFilterStatus();
     const auto splits = Model_Splittransaction::instance().get_all();
     auto categ = m_transDialog->getCategId();
     auto subcateg = m_transDialog->getSubCategId();
