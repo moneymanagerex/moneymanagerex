@@ -45,13 +45,13 @@ mmCustomFieldEditDialog::mmCustomFieldEditDialog(wxWindow* parent, Model_CustomF
     , m_fieldRefType(fieldRefType)
     , m_itemDescription(nullptr)
     , m_itemType(nullptr)
+    , m_itemUDFC(nullptr)
     , m_itemTooltip(nullptr)
     , m_itemRegEx(nullptr)
     , m_itemAutocomplete(nullptr)
     , m_itemDefault(nullptr)
     , m_itemChoices(nullptr)
     , m_itemDigitScale(nullptr)
-    , m_itemUDFC(nullptr)
 {
     long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX;
     Create(parent, wxID_ANY, _("New/Edit Custom Field"), wxDefaultPosition, wxSize(400, 300), style);
@@ -193,7 +193,7 @@ void mmCustomFieldEditDialog::CreateControls()
     itemButton30->SetFocus();
 }
 
-void mmCustomFieldEditDialog::OnOk(wxCommandEvent& /*event*/)
+void mmCustomFieldEditDialog::OnOk(wxCommandEvent& WXUNUSED(event))
 {
     const wxString name = m_itemDescription->GetValue().Trim();
     if (name.empty()) {
@@ -276,12 +276,12 @@ void mmCustomFieldEditDialog::OnOk(wxCommandEvent& /*event*/)
     EndModal(wxID_OK);
 }
 
-void mmCustomFieldEditDialog::OnCancel(wxCommandEvent& /*event*/)
+void mmCustomFieldEditDialog::OnCancel(wxCommandEvent& WXUNUSED(event))
 {
     EndModal(wxID_CANCEL);
 }
 
-void mmCustomFieldEditDialog::OnQuit(wxCloseEvent& /*event*/)
+void mmCustomFieldEditDialog::OnQuit(wxCloseEvent& WXUNUSED(event))
 {
     EndModal(wxID_CANCEL);
 }
@@ -292,7 +292,7 @@ void mmCustomFieldEditDialog::OnChangeType(wxCommandEvent& event)
 }
 
 
-void mmCustomFieldEditDialog::OnChangeType(wxCommandEvent& /*event*/, bool OnDataToControls)
+void mmCustomFieldEditDialog::OnChangeType(wxCommandEvent& WXUNUSED(event), bool OnDataToControls)
 {
     //Disable everything
     m_itemRegEx->Enable(false);

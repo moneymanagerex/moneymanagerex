@@ -245,7 +245,7 @@ void mmCategDialog::CreateControls()
     itemBoxSizer9->Add(itemCancelButton, g_flagsH);
 }
 
-void mmCategDialog::OnAdd(wxCommandEvent& /*event*/)
+void mmCategDialog::OnAdd(wxCommandEvent& WXUNUSED(event))
 {
     wxString prompt_msg = _("Enter the name for the new category:");
     if (selectedItemId_ == root_)
@@ -326,7 +326,7 @@ void mmCategDialog::showCategDialogDeleteError(bool category)
     wxMessageBox(deleteCategoryErrMsg, _("Organise Categories: Delete Error"), wxOK | wxICON_ERROR);
 }
 
-void mmCategDialog::OnDelete(wxCommandEvent& /*event*/)
+void mmCategDialog::OnDelete(wxCommandEvent& WXUNUSED(event))
 {
     if (!selectedItemId_ || selectedItemId_ == root_)
         return;
@@ -396,13 +396,13 @@ void mmCategDialog::OnDelete(wxCommandEvent& /*event*/)
     selectedItemId_ = PreviousItem;
 }
 
-void mmCategDialog::OnBSelect(wxCommandEvent& /*event*/)
+void mmCategDialog::OnBSelect(wxCommandEvent& WXUNUSED(event))
 {
     if (selectedItemId_ != root_ && selectedItemId_)
         EndModal(wxID_OK);
 }
 
-void mmCategDialog::OnDoubleClicked(wxTreeEvent& /*event*/)
+void mmCategDialog::OnDoubleClicked(wxTreeEvent& WXUNUSED(event))
 {
     if (selectedItemId_ != root_ && selectedItemId_ && m_enable_select)
     {
@@ -414,7 +414,7 @@ void mmCategDialog::OnDoubleClicked(wxTreeEvent& /*event*/)
     }
 }
 
-void mmCategDialog::OnCancel(wxCommandEvent& /*event*/)
+void mmCategDialog::OnCancel(wxCommandEvent& WXUNUSED(event))
 {
     EndModal(wxID_CANCEL);
 }
@@ -456,7 +456,7 @@ void mmCategDialog::OnSelChanged(wxTreeEvent& event)
     m_buttonEdit->Enable(selectedItemId_ != root_);
 }
 
-void mmCategDialog::OnEdit(wxCommandEvent& /*event*/)
+void mmCategDialog::OnEdit(wxCommandEvent& WXUNUSED(event))
 {
     if (selectedItemId_ == root_ || !selectedItemId_)
         return;
@@ -564,7 +564,7 @@ void mmCategDialog::setTreeSelection(const wxString& catName, const wxString& su
     }
 }
 
-void mmCategDialog::OnCategoryRelocation(wxCommandEvent& /*event*/)
+void mmCategDialog::OnCategoryRelocation(wxCommandEvent& WXUNUSED(event))
 {
     relocateCategoryDialog dlg(this, m_categ_id, m_subcateg_id);
     if (dlg.ShowModal() == wxID_OK)
@@ -579,7 +579,7 @@ void mmCategDialog::OnCategoryRelocation(wxCommandEvent& /*event*/)
     }
 }
 
-void mmCategDialog::OnExpandChbClick(wxCommandEvent& /*event*/)
+void mmCategDialog::OnExpandChbClick(wxCommandEvent& WXUNUSED(event))
 {
     if (m_cbExpand->IsChecked())
     {
@@ -596,7 +596,7 @@ void mmCategDialog::OnExpandChbClick(wxCommandEvent& /*event*/)
     Model_Setting::instance().Set("EXPAND_CATEGS_TREE", m_cbExpand->IsChecked());
 }
 
-void mmCategDialog::OnShowHiddenChbClick(wxCommandEvent& /*event*/)
+void mmCategDialog::OnShowHiddenChbClick(wxCommandEvent& WXUNUSED(event))
 {
     Model_Setting::instance().Set("SHOW_HIDDEN_CATEGS", m_cbShowAll->IsChecked());
     fillControls();

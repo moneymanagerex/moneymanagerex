@@ -172,13 +172,14 @@ curlWriteMemoryCallback(void *contents, size_t size, size_t nmemb, void *userp)
   size_t realsize = size * nmemb;
   struct curlBuff *mem = (struct curlBuff *)userp;
  
-  mem->memory = (char *)realloc(mem->memory, mem->size + realsize + 1);
-  if(mem->memory == NULL) {
+  char *tmp = (char *)realloc(mem->memory, mem->size + realsize + 1);
+  if (tmp == NULL) {
     /* out of memory! */ 
     // printf("not enough memory (realloc returned NULL)\n");
     return 0;
   }
- 
+
+  mem->memory = tmp;
   memcpy(&(mem->memory[mem->size]), contents, realsize);
   mem->size += realsize;
   mem->memory[mem->size] = 0;
@@ -361,7 +362,7 @@ CURLcode http_download_file(const wxString& sSite, const wxString& sPath)
 }
 
 //Get unread news or all news for last year
-const bool getNewsRSS(std::vector<WebsiteNews>& WebsiteNewsList)
+bool getNewsRSS(std::vector<WebsiteNews>& WebsiteNewsList)
 {
     wxString RssContent;
     if (http_get_data(mmex::weblink::NewsRSS, RssContent) != CURLE_OK)
@@ -846,16 +847,18 @@ const wxString getURL(const wxString& file)
     return index;
 }
 
+#ifdef __WXGTK__
+void windowsFreezeThaw(wxWindow*)
+{
+    return;
+#else
 void windowsFreezeThaw(wxWindow* w)
 {
-#ifdef __WXGTK__
-    return;
-#endif
-
     if (w->IsFrozen())
         w->Thaw();
     else
         w->Freeze();
+#endif
 }
 
 // ----------------------------------------------------------------------------

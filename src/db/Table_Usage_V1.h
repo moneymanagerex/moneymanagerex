@@ -7,7 +7,7 @@
  * @author    Guan Lisheng (guanlisheng@gmail.com)
  * @author    Stefano Giorgio (stef145g)
  * @author    Tomasz Słodkowicz
- * @date      2018-05-16 01:30:37.316867
+ * @date      2018-10-07 02:45:31.001407
  */
 #pragma once
 
@@ -129,6 +129,7 @@ struct DB_Table_USAGE_V1 : public DB_Table
         COL_USAGEID = 0
         , COL_USAGEDATE = 1
         , COL_JSONCONTENT = 2
+        , COL_UNKNOWN = -1
     };
 
     /** Returns the column name as a string*/
@@ -152,7 +153,7 @@ struct DB_Table_USAGE_V1 : public DB_Table
         else if ("USAGEDATE" == name) return COL_USAGEDATE;
         else if ("JSONCONTENT" == name) return COL_JSONCONTENT;
 
-        return COLUMN(-1);
+        return COL_UNKNOWN;
     }
     
     /** Data is a single record in the database table*/
@@ -212,11 +213,6 @@ struct DB_Table_USAGE_V1 : public DB_Table
             return *this;
         }
 
-        template<typename C>
-        bool match(const C &c) const
-        {
-            return false;
-        }
 
         bool match(const Self::USAGEID &in) const
         {

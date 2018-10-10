@@ -58,21 +58,19 @@ private:
     };
 
     wxDataViewListCtrl* webtranListBox_;
-    wxSearchCtrl* m_maskTextCtrl;
 
-    int m_webtran_id;
     mmWebApp::WebTranVector WebAppTransactions_;
     bool refreshRequested_;
 
-    mmWebAppDialog() : m_webtran_id(-1), refreshRequested_(false) {}
+    mmWebAppDialog() : refreshRequested_(false) {}
 
     void Create(wxWindow* parent, const wxString& name = "mmWebAppDialog");
     void CreateControls();
     void fillControls();
 
-    void OnCancel(wxCommandEvent& /*event*/);
-    void OnApply(wxCommandEvent& /*event*/);
-    void OnOk(wxCommandEvent& /*event*/);
+    void OnCancel(wxCommandEvent& WXUNUSED(event));
+    void OnApply(wxCommandEvent& WXUNUSED(event));
+    void OnOk(wxCommandEvent& WXUNUSED(event));
 
     bool ImportWebTr(int WebTrID, bool open);
     void ImportAllWebTr(const bool open);

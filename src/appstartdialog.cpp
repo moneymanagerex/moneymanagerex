@@ -41,8 +41,8 @@ wxEND_EVENT_TABLE()
 
 mmAppStartDialog::mmAppStartDialog(wxWindow* parent, const wxString& name)
     : itemCheckBox(nullptr)
-    , m_buttonExit(nullptr)
     , m_buttonClose(nullptr)
+    , m_buttonExit(nullptr)
 {
     long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX;
     Create(parent, wxID_ANY, mmex::getCaption(mmex::getTitleProgramVersion()),
@@ -53,7 +53,7 @@ bool mmAppStartDialog::Create(wxWindow* parent, wxWindowID id, const wxString& c
     , const wxPoint& pos, const wxSize& size, long style, const wxString& name)
 {
     SetExtraStyle(GetExtraStyle()|wxWS_EX_BLOCK_EVENTS);
-    bool ok = wxDialog::Create(parent, id, caption, pos, size, style);
+    bool ok = wxDialog::Create(parent, id, caption, pos, size, style, name);
 
     if (ok) {
         SetIcon(mmex::getProgramIcon());
@@ -160,7 +160,7 @@ void mmAppStartDialog::SetCloseButtonToExit()
     m_buttonExit->Show(true);
 }
 
-void mmAppStartDialog::OnButtonAppstartHelpClick( wxCommandEvent& /*event*/ )
+void mmAppStartDialog::OnButtonAppstartHelpClick( wxCommandEvent& WXUNUSED(event) )
 {
     int helpFileIndex_ = mmex::HTML_INDEX;
     wxFileName helpIndexFile(mmex::getPathDoc((mmex::EDocFile)helpFileIndex_));
@@ -180,27 +180,27 @@ void mmAppStartDialog::OnButtonAppstartHelpClick( wxCommandEvent& /*event*/ )
     wxLaunchDefaultBrowser(url);
 }
 
-void mmAppStartDialog::OnButtonAppstartWebsiteClick( wxCommandEvent& /*event*/ )
+void mmAppStartDialog::OnButtonAppstartWebsiteClick( wxCommandEvent& WXUNUSED(event) )
 {
     wxLaunchDefaultBrowser(mmex::weblink::WebSite);
 }
 
-void mmAppStartDialog::OnButtonAppstartLastDatabaseClick( wxCommandEvent& /*event*/ )
+void mmAppStartDialog::OnButtonAppstartLastDatabaseClick( wxCommandEvent& WXUNUSED(event) )
 {
     EndModal(wxID_FILE1);
 }
 
-void mmAppStartDialog::OnButtonAppstartOpenDatabaseClick( wxCommandEvent& /*event*/ )
+void mmAppStartDialog::OnButtonAppstartOpenDatabaseClick( wxCommandEvent& WXUNUSED(event) )
 {
     EndModal(wxID_OPEN);
 }
 
-void mmAppStartDialog::OnQuit(wxCommandEvent& /*event*/)
+void mmAppStartDialog::OnQuit(wxCommandEvent& WXUNUSED(event))
 {
     EndModal(wxID_EXIT);
 }
 
-void mmAppStartDialog::OnClose(wxCloseEvent& /*event*/)
+void mmAppStartDialog::OnClose(wxCloseEvent& WXUNUSED(event))
 {
     if (m_buttonExit->IsShown())
         EndModal(wxID_EXIT);
@@ -208,7 +208,7 @@ void mmAppStartDialog::OnClose(wxCloseEvent& /*event*/)
         EndModal(wxID_OK);
 }
 
-void mmAppStartDialog::OnButtonAppstartNewDatabaseClick( wxCommandEvent& /*event*/ )
+void mmAppStartDialog::OnButtonAppstartNewDatabaseClick( wxCommandEvent& WXUNUSED(event) )
 {
     EndModal(wxID_NEW);
 }

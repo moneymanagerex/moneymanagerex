@@ -162,10 +162,10 @@ mmBillsDepositsPanel::mmBillsDepositsPanel(wxWindow *parent, wxWindowID winid
     , const wxPoint& pos, const wxSize& size, long style, const wxString& name)
     : m_imageList(nullptr)
     , listCtrlAccount_(nullptr)
+    , m_infoText(nullptr)
+    , m_infoTextMini(nullptr)
     , transFilterDlg_(nullptr)
     , bitmapTransFilter_(nullptr)
-    , m_infoTextMini(nullptr)
-    , m_infoText(nullptr)
 {
     this->tips_.Add(_("MMEX allows regular payments to be set up as transactions. These transactions can also be regular deposits, or transfers that will occur at some future time. These transactions act as a reminder that an event is about to occur, and appears on the Home Page 14 days before the transaction is due. "));
     this->tips_.Add(_("Tip: These transactions can be set up to activate - allowing the user to adjust any values on the due date."));
@@ -614,14 +614,14 @@ void billsDepositsListCtrl::OnListKeyDown(wxListEvent& event)
     }
 }
 
-void billsDepositsListCtrl::OnNewBDSeries(wxCommandEvent& /*event*/)
+void billsDepositsListCtrl::OnNewBDSeries(wxCommandEvent& WXUNUSED(event))
 {
     mmBDDialog dlg(this, 0, false, false);
     if ( dlg.ShowModal() == wxID_OK )
         refreshVisualList(m_bdp->initVirtualListControl(dlg.GetTransID()));
 }
 
-void billsDepositsListCtrl::OnEditBDSeries(wxCommandEvent& /*event*/)
+void billsDepositsListCtrl::OnEditBDSeries(wxCommandEvent& WXUNUSED(event))
 {
     if (m_selected_row == -1) return;
 
@@ -630,7 +630,7 @@ void billsDepositsListCtrl::OnEditBDSeries(wxCommandEvent& /*event*/)
         refreshVisualList(m_bdp->initVirtualListControl(dlg.GetTransID()));
 }
 
-void billsDepositsListCtrl::OnDeleteBDSeries(wxCommandEvent& /*event*/)
+void billsDepositsListCtrl::OnDeleteBDSeries(wxCommandEvent& WXUNUSED(event))
 {
     if (m_selected_row < 0) return;
     if (m_bdp->bills_.size() == 0) return;
@@ -648,7 +648,7 @@ void billsDepositsListCtrl::OnDeleteBDSeries(wxCommandEvent& /*event*/)
     }
 }
 
-void billsDepositsListCtrl::OnEnterBDTransaction(wxCommandEvent& /*event*/)
+void billsDepositsListCtrl::OnEnterBDTransaction(wxCommandEvent& WXUNUSED(event))
 {
     if (m_selected_row == -1) return;
 
@@ -658,7 +658,7 @@ void billsDepositsListCtrl::OnEnterBDTransaction(wxCommandEvent& /*event*/)
         refreshVisualList(m_bdp->initVirtualListControl(id));
 }
 
-void billsDepositsListCtrl::OnSkipBDTransaction(wxCommandEvent& /*event*/)
+void billsDepositsListCtrl::OnSkipBDTransaction(wxCommandEvent& WXUNUSED(event))
 {
     if (m_selected_row == -1) return;
 
@@ -667,7 +667,7 @@ void billsDepositsListCtrl::OnSkipBDTransaction(wxCommandEvent& /*event*/)
     refreshVisualList(m_bdp->initVirtualListControl(id));
 }
 
-void billsDepositsListCtrl::OnOrganizeAttachments(wxCommandEvent& /*event*/)
+void billsDepositsListCtrl::OnOrganizeAttachments(wxCommandEvent& WXUNUSED(event))
 {
     if (m_selected_row == -1) return;
 
@@ -680,7 +680,7 @@ void billsDepositsListCtrl::OnOrganizeAttachments(wxCommandEvent& /*event*/)
     refreshVisualList(m_bdp->initVirtualListControl(RefId));
 }
 
-void billsDepositsListCtrl::OnOpenAttachment(wxCommandEvent& event)
+void billsDepositsListCtrl::OnOpenAttachment(wxCommandEvent& WXUNUSED(event))
 {
     if (m_selected_row == -1) return;
     int RefId = m_bdp->bills_[m_selected_row].BDID;
@@ -690,7 +690,7 @@ void billsDepositsListCtrl::OnOpenAttachment(wxCommandEvent& event)
     refreshVisualList(m_bdp->initVirtualListControl(RefId));
 }
 
-void billsDepositsListCtrl::OnListItemActivated(wxListEvent& /*event*/)
+void billsDepositsListCtrl::OnListItemActivated(wxListEvent& WXUNUSED(event))
 {
     if (m_selected_row == -1) return;
 

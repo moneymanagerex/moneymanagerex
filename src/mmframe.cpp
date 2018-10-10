@@ -193,24 +193,24 @@ mmGUIFrame::mmGUIFrame(mmGUIApp* app, const wxString& title
     , const wxSize& size)
     : wxFrame(0, -1, title, pos, size)
     , m_app(app)
-    , m_commit_callback_hook(nullptr)
-    , m_update_callback_hook(nullptr)
     , gotoAccountID_(-1)
     , gotoTransID_(-1)
-    , checkingAccountPage_(nullptr)
-    , budgetingPage_(nullptr)
-    , billsDepositsPanel_(nullptr)
-    , homePage_(nullptr)
-    , homePanel_(nullptr)
     , activeReport_(false)
+    , autoRepeatTransactionsTimer_(this, AUTO_REPEAT_TRANSACTIONS_TIMER_ID)
     , panelCurrent_(nullptr)
+    , homePanel_(nullptr)
     , m_nav_tree_ctrl(nullptr)
     , menuBar_(nullptr)
     , toolBar_(nullptr)
     , selectedItemData_(nullptr)
     , helpFileIndex_(-1)
+    , homePage_(nullptr)
+    , checkingAccountPage_(nullptr)
+    , billsDepositsPanel_(nullptr)
+    , budgetingPage_(nullptr)
     , m_hide_share_accounts(true)
-    , autoRepeatTransactionsTimer_(this, AUTO_REPEAT_TRANSACTIONS_TIMER_ID)
+    , m_commit_callback_hook(nullptr)
+    , m_update_callback_hook(nullptr)
 {
     // tell wxAuiManager to manage this frame
     m_mgr.SetManagedWindow(this);
@@ -239,7 +239,7 @@ mmGUIFrame::mmGUIFrame(mmGUIApp* app, const wxString& title
 
     /* Create the Controls for the frame */
     createMenu();
-    CreateToolBar();
+    createToolBar();
     // Disable menu items incase no database is established.
     menuEnableItems(false);
     createControls();
@@ -457,7 +457,7 @@ void mmGUIFrame::setAccountNavTreeSection(const wxString& accountName)
 }
 
 //----------------------------------------------------------------------------
-void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& /*event*/)
+void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& WXUNUSED(event))
 {
     //WebApp check
     if (mmWebApp::WebApp_CheckEnabled())
@@ -1066,7 +1066,7 @@ void mmGUIFrame::OnSelChanged(wxTreeEvent& event)
 }
 //----------------------------------------------------------------------------
 
-void mmGUIFrame::OnLaunchAccountWebsite(wxCommandEvent& /*event*/)
+void mmGUIFrame::OnLaunchAccountWebsite(wxCommandEvent& WXUNUSED(event))
 {
     if (selectedItemData_)
     {
@@ -1082,7 +1082,7 @@ void mmGUIFrame::OnLaunchAccountWebsite(wxCommandEvent& /*event*/)
 }
 //----------------------------------------------------------------------------
 
-void mmGUIFrame::OnAccountAttachments(wxCommandEvent& /*event*/)
+void mmGUIFrame::OnAccountAttachments(wxCommandEvent& WXUNUSED(event))
 {
     if (selectedItemData_)
     {
@@ -1095,7 +1095,7 @@ void mmGUIFrame::OnAccountAttachments(wxCommandEvent& /*event*/)
 }
 
 //----------------------------------------------------------------------------
-void mmGUIFrame::OnPopupEditAccount(wxCommandEvent& /*event*/)
+void mmGUIFrame::OnPopupEditAccount(wxCommandEvent& WXUNUSED(event))
 {
     if (selectedItemData_)
     {
@@ -1148,7 +1148,7 @@ void mmGUIFrame::OnPopupAccountBaseBalance(wxCommandEvent& WXUNUSED(event))
 
 //----------------------------------------------------------------------------
 
-void mmGUIFrame::OnPopupDeleteAccount(wxCommandEvent& /*event*/)
+void mmGUIFrame::OnPopupDeleteAccount(wxCommandEvent& WXUNUSED(event))
 {
     if (selectedItemData_)
     {
@@ -1346,7 +1346,7 @@ void mmGUIFrame::createBudgetingPage(int budgetYearID)
         wxSizer *sizer = cleanupHomePanel();
 
         budgetingPage_ = new mmBudgetingPanel(budgetYearID
-            , homePanel_, this, mmID_BUDGET, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
+            , homePanel_, mmID_BUDGET, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
         panelCurrent_ = budgetingPage_;
 
         sizer->Add(panelCurrent_, 1, wxGROW | wxALL, 1);
@@ -1813,7 +1813,7 @@ void mmGUIFrame::createMenu()
 }
 //----------------------------------------------------------------------------
 
-void mmGUIFrame::CreateToolBar()
+void mmGUIFrame::createToolBar()
 {
     long style = wxTB_FLAT | wxTB_NODIVIDER;
 
@@ -2031,7 +2031,7 @@ bool mmGUIFrame::openFile(const wxString& fileName, bool openingNew, bool encryp
 }
 //----------------------------------------------------------------------------
 
-void mmGUIFrame::OnNew(wxCommandEvent& /*event*/)
+void mmGUIFrame::OnNew(wxCommandEvent& WXUNUSED(event))
 {
     autoRepeatTransactionsTimer_.Stop();
     wxFileDialog dlg(this,
@@ -2057,7 +2057,7 @@ void mmGUIFrame::OnNew(wxCommandEvent& /*event*/)
 }
 //----------------------------------------------------------------------------
 
-void mmGUIFrame::OnOpen(wxCommandEvent& /*event*/)
+void mmGUIFrame::OnOpen(wxCommandEvent& WXUNUSED(event))
 {
     autoRepeatTransactionsTimer_.Stop();
     wxString fileName = wxFileSelector(_("Choose database file to open")
@@ -2075,7 +2075,7 @@ void mmGUIFrame::OnOpen(wxCommandEvent& /*event*/)
 }
 //----------------------------------------------------------------------------
 
-void mmGUIFrame::OnSetPassword(wxCommandEvent& /*event*/)
+void mmGUIFrame::OnSetPassword(wxCommandEvent& WXUNUSED(event))
 {
     wxString new_password = readPasswordFromUser(true);
     if (!new_password.IsEmpty())
@@ -2087,7 +2087,7 @@ void mmGUIFrame::OnSetPassword(wxCommandEvent& /*event*/)
 }
 //----------------------------------------------------------------------------
 
-void mmGUIFrame::OnRemovePassword(wxCommandEvent& /*event*/)
+void mmGUIFrame::OnRemovePassword(wxCommandEvent& WXUNUSED(event))
 {
     int ans = wxMessageBox(
         _("Please confirm database decryption and password removal."),
@@ -2103,7 +2103,7 @@ void mmGUIFrame::OnRemovePassword(wxCommandEvent& /*event*/)
 }
 //----------------------------------------------------------------------------
 
-void mmGUIFrame::OnVacuumDB(wxCommandEvent& /*event*/)
+void mmGUIFrame::OnVacuumDB(wxCommandEvent& WXUNUSED(event))
 {
     wxMessageDialog msgDlg(this
         , wxString::Format("%s\n\n%s",_("Make sure you have a backup of DB before optimize it"),_("Do you want to proceed?"))
@@ -2122,7 +2122,7 @@ void mmGUIFrame::OnVacuumDB(wxCommandEvent& /*event*/)
 }
 //----------------------------------------------------------------------------
 
-void mmGUIFrame::OnDebugDB(wxCommandEvent& /*event*/)
+void mmGUIFrame::OnDebugDB(wxCommandEvent& WXUNUSED(event))
 {
     wxMessageDialog msgDlg(this
         , wxString::Format("%s\n\n%s", _("Please use this function only if explicitly requested by MMEX support"), _("Do you want to proceed?"))
@@ -2134,7 +2134,7 @@ void mmGUIFrame::OnDebugDB(wxCommandEvent& /*event*/)
 }
 //----------------------------------------------------------------------------
 
-void mmGUIFrame::OnSaveAs(wxCommandEvent& /*event*/)
+void mmGUIFrame::OnSaveAs(wxCommandEvent& WXUNUSED(event))
 {
     wxASSERT(m_db);
     wxASSERT(!m_filename.empty());
@@ -2198,26 +2198,26 @@ void mmGUIFrame::OnSaveAs(wxCommandEvent& /*event*/)
 
 //----------------------------------------------------------------------------
 
-void mmGUIFrame::OnExportToCSV(wxCommandEvent& /*event*/)
+void mmGUIFrame::OnExportToCSV(wxCommandEvent& WXUNUSED(event))
 {
     mmUnivCSVDialog(this, mmUnivCSVDialog::DIALOG_TYPE_EXPORT_CSV).ShowModal();
 }
 //----------------------------------------------------------------------------
 
-void mmGUIFrame::OnExportToXML(wxCommandEvent& /*event*/)
+void mmGUIFrame::OnExportToXML(wxCommandEvent& WXUNUSED(event))
 {
     mmUnivCSVDialog(this, mmUnivCSVDialog::DIALOG_TYPE_EXPORT_XML).ShowModal();
 }
 //----------------------------------------------------------------------------
 
-void mmGUIFrame::OnExportToQIF(wxCommandEvent& /*event*/)
+void mmGUIFrame::OnExportToQIF(wxCommandEvent& WXUNUSED(event))
 {
     mmQIFExportDialog dlg(this);
     dlg.ShowModal();
 }
 //----------------------------------------------------------------------------
 
-void mmGUIFrame::OnExportToWebApp(wxCommandEvent& /*event*/)
+void mmGUIFrame::OnExportToWebApp(wxCommandEvent& WXUNUSED(event))
 {
     if (mmWebApp::WebApp_CheckEnabled())
     {
@@ -2232,7 +2232,7 @@ void mmGUIFrame::OnExportToWebApp(wxCommandEvent& /*event*/)
 }
 //----------------------------------------------------------------------------
 
-void mmGUIFrame::OnImportQIF(wxCommandEvent& /*event*/)
+void mmGUIFrame::OnImportQIF(wxCommandEvent& WXUNUSED(event))
 {
     mmQIFImportDialog dlg(this, gotoAccountID_);
     dlg.ShowModal();
@@ -2254,7 +2254,7 @@ void mmGUIFrame::OnImportQIF(wxCommandEvent& /*event*/)
 }
 //----------------------------------------------------------------------------
 
-void mmGUIFrame::OnImportUniversalCSV(wxCommandEvent& /*event*/)
+void mmGUIFrame::OnImportUniversalCSV(wxCommandEvent& WXUNUSED(event))
 {
     if (Model_Account::instance().all().empty())
     {
@@ -2273,7 +2273,7 @@ void mmGUIFrame::OnImportUniversalCSV(wxCommandEvent& /*event*/)
 }
 //----------------------------------------------------------------------------
 
-void mmGUIFrame::OnImportXML(wxCommandEvent& /*event*/)
+void mmGUIFrame::OnImportXML(wxCommandEvent& WXUNUSED(event))
 {
     if (Model_Account::instance().all().empty())
     {
@@ -2293,7 +2293,7 @@ void mmGUIFrame::OnImportXML(wxCommandEvent& /*event*/)
 
 //----------------------------------------------------------------------------
 
-void mmGUIFrame::OnImportWebApp(wxCommandEvent& /*event*/)
+void mmGUIFrame::OnImportWebApp(wxCommandEvent& WXUNUSED(event))
 {
     if (mmWebApp::WebApp_CheckEnabled())
     {
@@ -2314,7 +2314,7 @@ void mmGUIFrame::OnQuit(wxCommandEvent& WXUNUSED(event))
 }
 //----------------------------------------------------------------------------
 
-void mmGUIFrame::OnNewAccount(wxCommandEvent& /*event*/)
+void mmGUIFrame::OnNewAccount(wxCommandEvent& WXUNUSED(event))
 {
     mmAddAccountWizard* wizard = new mmAddAccountWizard(this);
     wizard->CenterOnParent();
@@ -2354,13 +2354,13 @@ void mmGUIFrame::OnNewAccount(wxCommandEvent& /*event*/)
 }
 //----------------------------------------------------------------------------
 
-void mmGUIFrame::OnAccountList(wxCommandEvent& /*event*/)
+void mmGUIFrame::OnAccountList(wxCommandEvent& WXUNUSED(event))
 {
     createHomePage();
 }
 //----------------------------------------------------------------------------
 
-void mmGUIFrame::refreshPanelData(wxCommandEvent& /*event*/)
+void mmGUIFrame::refreshPanelData(wxCommandEvent& WXUNUSED(event))
 {
     refreshPanelData();
 }
@@ -2391,7 +2391,7 @@ void mmGUIFrame::refreshPanelData()
 
 }
 
-void mmGUIFrame::OnOrgCategories(wxCommandEvent& /*event*/)
+void mmGUIFrame::OnOrgCategories(wxCommandEvent& WXUNUSED(event))
 {
     mmCategDialog dlg(this, -1, false);
     dlg.ShowModal();
@@ -2402,7 +2402,7 @@ void mmGUIFrame::OnOrgCategories(wxCommandEvent& /*event*/)
 }
 //----------------------------------------------------------------------------
 
-void mmGUIFrame::OnOrgPayees(wxCommandEvent& /*event*/)
+void mmGUIFrame::OnOrgPayees(wxCommandEvent& WXUNUSED(event))
 {
     mmPayeeDialog dlg(this,false);
     dlg.ShowModal();
@@ -2413,7 +2413,7 @@ void mmGUIFrame::OnOrgPayees(wxCommandEvent& /*event*/)
 }
 //----------------------------------------------------------------------------
 
-void mmGUIFrame::OnNewTransaction(wxCommandEvent& /*event*/)
+void mmGUIFrame::OnNewTransaction(wxCommandEvent& WXUNUSED(event))
 {
     if (m_db)
     {
@@ -2435,7 +2435,7 @@ void mmGUIFrame::OnNewTransaction(wxCommandEvent& /*event*/)
 }
 //----------------------------------------------------------------------------
 
-void mmGUIFrame::OnBudgetSetupDialog(wxCommandEvent& /*event*/)
+void mmGUIFrame::OnBudgetSetupDialog(wxCommandEvent& WXUNUSED(event))
 {
     if (m_db)
     {
@@ -2445,7 +2445,7 @@ void mmGUIFrame::OnBudgetSetupDialog(wxCommandEvent& /*event*/)
 }
 //----------------------------------------------------------------------------
 
-void mmGUIFrame::OnTransactionReport(wxCommandEvent& /*event*/)
+void mmGUIFrame::OnTransactionReport(wxCommandEvent& WXUNUSED(event))
 {
     if (!m_db) return;
     if (Model_Account::instance().all().empty()) return;
@@ -2470,7 +2470,7 @@ void mmGUIFrame::OnCustomFieldsManager(wxCommandEvent& WXUNUSED(event))
     createHomePage();
 }
 
-void mmGUIFrame::OnGeneralReportManager(wxCommandEvent& /*event*/)
+void mmGUIFrame::OnGeneralReportManager(wxCommandEvent& WXUNUSED(event))
 {
     if (!m_db) return;
 
@@ -2482,7 +2482,7 @@ void mmGUIFrame::OnGeneralReportManager(wxCommandEvent& /*event*/)
 
 //----------------------------------------------------------------------------
 
-void mmGUIFrame::OnOptions(wxCommandEvent& /*event*/)
+void mmGUIFrame::OnOptions(wxCommandEvent& WXUNUSED(event))
 {
     if (!m_db.get()) return;
 
@@ -2507,7 +2507,7 @@ void mmGUIFrame::OnOptions(wxCommandEvent& /*event*/)
 }
 //----------------------------------------------------------------------------
 
-void mmGUIFrame::OnHelp(wxCommandEvent& /*event*/)
+void mmGUIFrame::OnHelp(wxCommandEvent& WXUNUSED(event))
 {
     helpFileIndex_ = mmex::HTML_INDEX;
     createHelpPage();
@@ -2515,13 +2515,13 @@ void mmGUIFrame::OnHelp(wxCommandEvent& /*event*/)
 }
 //----------------------------------------------------------------------------
 
-void mmGUIFrame::OnCheckUpdate(wxCommandEvent& /*event*/)
+void mmGUIFrame::OnCheckUpdate(wxCommandEvent& WXUNUSED(event))
 {
     mmUpdate::checkUpdates(false, this);
 }
 //----------------------------------------------------------------------------
 
-void mmGUIFrame::OnBeNotified(wxCommandEvent& /*event*/)
+void mmGUIFrame::OnBeNotified(wxCommandEvent& WXUNUSED(event))
 {
     Model_Setting::instance().Set(INIDB_NEWS_LAST_READ_DATE, wxDate::Today().FormatISODate());
     wxLaunchDefaultBrowser(mmex::weblink::News);
@@ -2551,7 +2551,7 @@ void mmGUIFrame::OnSimpleURLOpen(wxCommandEvent& event)
 
 //----------------------------------------------------------------------------
 
-void mmGUIFrame::OnReportBug(wxCommandEvent& /*event*/)
+void mmGUIFrame::OnReportBug(wxCommandEvent& WXUNUSED(event))
 {
     std::vector<wxString> texts = {
         _("Please follow these tasks before submitting new bug:"),
@@ -2789,7 +2789,7 @@ void mmGUIFrame::OnGotoStocksAccount(wxCommandEvent& WXUNUSED(event))
         createStocksAccountPage(gotoAccountID_);
 }
 
-void mmGUIFrame::OnAssets(wxCommandEvent& /*event*/)
+void mmGUIFrame::OnAssets(wxCommandEvent& WXUNUSED(event))
 {
     StringBuffer json_buffer;
     Writer<StringBuffer> json_writer(json_buffer);
@@ -2817,14 +2817,14 @@ void mmGUIFrame::OnAssets(wxCommandEvent& /*event*/)
 }
 //----------------------------------------------------------------------------
 
-void mmGUIFrame::OnCurrency(wxCommandEvent& /*event*/)
+void mmGUIFrame::OnCurrency(wxCommandEvent& WXUNUSED(event))
 {
     mmMainCurrencyDialog(this, false, false).ShowModal();
     refreshPanelData();
 }
 //----------------------------------------------------------------------------
 
-void mmGUIFrame::OnEditAccount(wxCommandEvent& /*event*/)
+void mmGUIFrame::OnEditAccount(wxCommandEvent& WXUNUSED(event))
 {
     const auto &accounts = Model_Account::instance().all(Model_Account::COL_ACCOUNTNAME);
     if (accounts.empty())
@@ -2847,7 +2847,7 @@ void mmGUIFrame::OnEditAccount(wxCommandEvent& /*event*/)
 }
 //----------------------------------------------------------------------------
 
-void mmGUIFrame::OnDeleteAccount(wxCommandEvent& /*event*/)
+void mmGUIFrame::OnDeleteAccount(wxCommandEvent& WXUNUSED(event))
 {
     const auto &accounts = Model_Account::instance().all(Model_Account::COL_ACCOUNTNAME);
     if (accounts.empty())
@@ -2939,7 +2939,7 @@ void mmGUIFrame::OnViewLinksUpdateUI(wxUpdateUIEvent &event)
     event.Check(m_mgr.GetPane("Navigation").IsShown());
 }
 
-void mmGUIFrame::OnHideShareAccounts(wxCommandEvent &event)
+void mmGUIFrame::OnHideShareAccounts(wxCommandEvent& WXUNUSED(event))
 {
     m_hide_share_accounts = !m_hide_share_accounts;
     updateNavTreeControl();
@@ -2950,31 +2950,31 @@ void mmGUIFrame::RefreshNavigationTree()
     updateNavTreeControl();
 }
 
-void mmGUIFrame::OnViewBudgetFinancialYears(wxCommandEvent &event)
+void mmGUIFrame::OnViewBudgetFinancialYears(wxCommandEvent& WXUNUSED(event))
 {
     Option::instance().BudgetFinancialYears(!Option::instance().BudgetFinancialYears());
     refreshPanelData();
 }
 
-void mmGUIFrame::OnViewBudgetTransferTotal(wxCommandEvent &event)
+void mmGUIFrame::OnViewBudgetTransferTotal(wxCommandEvent& WXUNUSED(event))
 {
     Option::instance().BudgetIncludeTransfers(!Option::instance().BudgetIncludeTransfers());
     refreshPanelData();
 }
 
-void mmGUIFrame::OnViewBudgetSetupSummary(wxCommandEvent &event)
+void mmGUIFrame::OnViewBudgetSetupSummary(wxCommandEvent& WXUNUSED(event))
 {
     Option::instance().BudgetSetupWithoutSummaries(!Option::instance().BudgetSetupWithoutSummaries());
     refreshPanelData();
 }
 
-void mmGUIFrame::OnViewBudgetCategorySummary(wxCommandEvent &event)
+void mmGUIFrame::OnViewBudgetCategorySummary(wxCommandEvent& WXUNUSED(event))
 {
     Option::instance().BudgetReportWithSummaries(!Option::instance().BudgetReportWithSummaries());
     refreshPanelData();
 }
 
-void mmGUIFrame::OnViewIgnoreFutureTransactions(wxCommandEvent &event)
+void mmGUIFrame::OnViewIgnoreFutureTransactions(wxCommandEvent& WXUNUSED(event))
 {
     Option::instance().IgnoreFutureTransactions(!Option::instance().IgnoreFutureTransactions());
     updateNavTreeControl();
@@ -2982,7 +2982,7 @@ void mmGUIFrame::OnViewIgnoreFutureTransactions(wxCommandEvent &event)
 }
 //----------------------------------------------------------------------------
 
-void mmGUIFrame::OnCategoryRelocation(wxCommandEvent& /*event*/)
+void mmGUIFrame::OnCategoryRelocation(wxCommandEvent& WXUNUSED(event))
 {
     relocateCategoryDialog dlg(this);
     if (dlg.ShowModal() == wxID_OK)
@@ -2997,7 +2997,7 @@ void mmGUIFrame::OnCategoryRelocation(wxCommandEvent& /*event*/)
 }
 //----------------------------------------------------------------------------
 
-void mmGUIFrame::OnPayeeRelocation(wxCommandEvent& /*event*/)
+void mmGUIFrame::OnPayeeRelocation(wxCommandEvent& WXUNUSED(event))
 {
     relocatePayeeDialog dlg(this);
     if (dlg.ShowModal() == wxID_OK)
@@ -3063,7 +3063,7 @@ void mmGUIFrame::OnRecentFiles(wxCommandEvent& event)
 }
 //----------------------------------------------------------------------------
 
-void mmGUIFrame::OnClearRecentFiles(wxCommandEvent& /*event*/)
+void mmGUIFrame::OnClearRecentFiles(wxCommandEvent& WXUNUSED(event))
 {
     m_recentFiles->Clear();
     m_recentFiles->AddFileToHistory(m_filename);

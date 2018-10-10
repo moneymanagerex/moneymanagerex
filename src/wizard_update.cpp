@@ -28,7 +28,7 @@
 */
 
 wxBEGIN_EVENT_TABLE(mmUpdateWizard, wxWizard)
-    EVT_WIZARD_PAGE_CHANGED(wxID_ANY, mmUpdateWizard::PageChanged)
+//    EVT_WIZARD_PAGE_CHANGED(wxID_ANY, mmUpdateWizard::PageChanged)
     EVT_HTML_LINK_CLICKED(wxID_ANY, mmUpdateWizard::LinkClicked)
 wxEND_EVENT_TABLE()
 
@@ -120,11 +120,13 @@ void mmUpdateWizard::RunIt(bool modal)
     }
 }
 
+/*
 void mmUpdateWizard::PageChanged(wxWizardEvent& evt)
 {
-    //if (evt.GetDirection && evt.GetPage == mmUpdateWizard.pages[1]) //TODO: Download file in wizard page2
-    //self.pages[1].timer.Start(1000) //TODO
+    if (evt.GetDirection && evt.GetPage == mmUpdateWizard.pages[1]) //TODO: Download file in wizard page2
+    self.pages[1].timer.Start(1000) //TODO
 }
+*/
 
 void mmUpdateWizard::LinkClicked(wxHtmlLinkEvent& evt)
 {

@@ -117,7 +117,7 @@ void mmBudgetYearDialog::CreateControls()
     itemButtonCancel->SetFocus();
 }
 
-void mmBudgetYearDialog::OnAdd(wxCommandEvent& /*event*/)
+void mmBudgetYearDialog::OnAdd(wxCommandEvent& WXUNUSED(event))
 {
     mmBudgetYearEntryDialog dlg(this); 
     if ( dlg.ShowModal() == wxID_OK )
@@ -127,7 +127,7 @@ void mmBudgetYearDialog::OnAdd(wxCommandEvent& /*event*/)
     }
 }
  
-void mmBudgetYearDialog::OnAddMonth(wxCommandEvent& /*event*/)
+void mmBudgetYearDialog::OnAddMonth(wxCommandEvent& WXUNUSED(event))
 {
     mmBudgetYearEntryDialog dlg(this, true); 
     if ( dlg.ShowModal() == wxID_OK )
@@ -137,7 +137,7 @@ void mmBudgetYearDialog::OnAddMonth(wxCommandEvent& /*event*/)
     }
 }
 
-void mmBudgetYearDialog::OnDelete(wxCommandEvent& /*event*/)
+void mmBudgetYearDialog::OnDelete(wxCommandEvent& WXUNUSED(event))
 {
     wxString budgetYearString = m_listBox->GetStringSelection();
     int budgetYearID = Model_Budgetyear::instance().Get(budgetYearString);
@@ -146,7 +146,7 @@ void mmBudgetYearDialog::OnDelete(wxCommandEvent& /*event*/)
     fillControls();
 }
  
-void mmBudgetYearDialog::OnOk(wxCommandEvent& /*event*/)
+void mmBudgetYearDialog::OnOk(wxCommandEvent& WXUNUSED(event))
 {
     EndModal(wxID_OK);
 }

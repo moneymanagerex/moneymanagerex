@@ -37,9 +37,7 @@ wxEND_EVENT_TABLE()
 
 
 mmWebAppDialog::mmWebAppDialog(wxWindow *parent, const wxString& name) :
-    m_webtran_id(-1)
-    , m_maskTextCtrl()
-    , webtranListBox_()
+    webtranListBox_()
     , refreshRequested_(false)
 {
     Create(parent, name);
@@ -288,18 +286,18 @@ void mmWebAppDialog::ImportAllWebTr(const bool open)
     }
 }
 
-void mmWebAppDialog::OnCancel(wxCommandEvent& /*event*/)
+void mmWebAppDialog::OnCancel(wxCommandEvent& WXUNUSED(event))
 {
     EndModal(wxID_CANCEL);
 }
 
-void mmWebAppDialog::OnApply(wxCommandEvent& /*event*/)
+void mmWebAppDialog::OnApply(wxCommandEvent& WXUNUSED(event))
 {
     mmWebAppDialog::ImportAllWebTr(true);
     EndModal(wxID_APPLY);
 }
 
-void mmWebAppDialog::OnOk(wxCommandEvent& /*event*/)
+void mmWebAppDialog::OnOk(wxCommandEvent& WXUNUSED(event))
 {
     mmWebAppDialog::ImportAllWebTr(false);
     EndModal(wxID_OK);

@@ -73,9 +73,6 @@ mmUnivCSVDialog::mmUnivCSVDialog(
 ) :
     dialogType_(dialogType),
     delimit_(","),
-    importSuccessful_(false),
-    m_spinIgnoreFirstRows_(nullptr),
-    m_spinIgnoreLastRows_(nullptr),
     csvFieldCandicate_(nullptr),
     csvListBox_(nullptr),
     m_button_add_(nullptr),
@@ -85,8 +82,11 @@ mmUnivCSVDialog::mmUnivCSVDialog(
     m_text_ctrl_(nullptr),
     log_field_(nullptr),
     m_textDelimiter(nullptr),
+    m_rowSelectionStaticBox_(nullptr),
+    m_spinIgnoreFirstRows_(nullptr),
+    m_spinIgnoreLastRows_(nullptr),
     choiceDateFormat_(nullptr),
-    m_rowSelectionStaticBox_(nullptr)
+    importSuccessful_(false)
 {
     CSVFieldName_[UNIV_CSV_DATE] = wxTRANSLATE("Date");
     CSVFieldName_[UNIV_CSV_PAYEE] = wxTRANSLATE("Payee");
@@ -351,14 +351,14 @@ void mmUnivCSVDialog::CreateControls()
         rowSelectionStaticBoxSizer->Add(itemStaticText7, g_flagsH);
         m_spinIgnoreFirstRows_ = new wxSpinCtrl(rowSelectionStaticBoxSizer->GetStaticBox(), ID_FIRST_ROW, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 0, 0, 0);
         rowSelectionStaticBoxSizer->Add(m_spinIgnoreFirstRows_, g_flagsH);
-        m_spinIgnoreFirstRows_->Connect(wxEVT_COMMAND_SPINCTRL_UPDATED, wxSpinEventHandler(mmUnivCSVDialog::OnSpinCtrlIgnoreFirstRows), nullptr, this);
+        m_spinIgnoreFirstRows_->Connect(wxEVT_COMMAND_SPINCTRL_UPDATED, wxSpinEventHandler(mmUnivCSVDialog::OnSpinCtrlIgnoreRows), nullptr, this);
 
         // "Ignore last" title, spin and event handler.
         wxStaticText* itemStaticText8 = new wxStaticText(rowSelectionStaticBoxSizer->GetStaticBox(), wxID_ANY, _("From end: "));
         rowSelectionStaticBoxSizer->Add(itemStaticText8, g_flagsH);
         m_spinIgnoreLastRows_ = new wxSpinCtrl(rowSelectionStaticBoxSizer->GetStaticBox(), ID_LAST_ROW, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 0, 0, 0);
         rowSelectionStaticBoxSizer->Add(m_spinIgnoreLastRows_, g_flagsH);
-        m_spinIgnoreLastRows_->Connect(wxEVT_COMMAND_SPINCTRL_UPDATED, wxSpinEventHandler(mmUnivCSVDialog::OnSpinCtrlIgnoreLastRows), nullptr, this);
+        m_spinIgnoreLastRows_->Connect(wxEVT_COMMAND_SPINCTRL_UPDATED, wxSpinEventHandler(mmUnivCSVDialog::OnSpinCtrlIgnoreRows), nullptr, this);
     }
 
     // Preview
@@ -568,7 +568,7 @@ void mmUnivCSVDialog::SetSettings(const wxString &json_data)
 }
 
 //Selection dialog for fields to be added to listbox
-void mmUnivCSVDialog::OnAdd(wxCommandEvent& /*event*/)
+void mmUnivCSVDialog::OnAdd(wxCommandEvent& WXUNUSED(event))
 {
     int index = csvFieldCandicate_->GetSelection();
     if (index != wxNOT_FOUND)
@@ -594,7 +594,7 @@ void mmUnivCSVDialog::OnAdd(wxCommandEvent& /*event*/)
 }
 
 //Removes an item from the field list box
-void mmUnivCSVDialog::OnRemove(wxCommandEvent& /*event*/)
+void mmUnivCSVDialog::OnRemove(wxCommandEvent& WXUNUSED(event))
 {
     int index = csvListBox_->GetSelection();
     if (index != wxNOT_FOUND)
@@ -660,7 +660,7 @@ void mmUnivCSVDialog::OnLoad()
 }
 
 //Saves the field order to a template file
-void mmUnivCSVDialog::OnSave(wxCommandEvent& /*event*/)
+void mmUnivCSVDialog::OnSave(wxCommandEvent& WXUNUSED(event))
 {
 
     StringBuffer json_buffer;
@@ -786,7 +786,7 @@ bool mmUnivCSVDialog::validateData(tran_holder & holder)
     return true;
 }
 
-void mmUnivCSVDialog::OnImport(wxCommandEvent& /*event*/)
+void mmUnivCSVDialog::OnImport(wxCommandEvent& WXUNUSED(event))
 {
     // date and amount are required
     bool datefield = isIndexPresent(UNIV_CSV_DATE);
@@ -967,7 +967,7 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& /*event*/)
     if (!canceledbyuser && countImported > 0) Close();
 }
 
-void mmUnivCSVDialog::OnExport(wxCommandEvent& /*event*/)
+void mmUnivCSVDialog::OnExport(wxCommandEvent& WXUNUSED(event))
 {
     // date and amount are required
     if (!isIndexPresent(UNIV_CSV_DATE) || (!isIndexPresent(UNIV_CSV_AMOUNT)
@@ -1273,7 +1273,7 @@ void mmUnivCSVDialog::update_preview()
     }
 }
 
-void mmUnivCSVDialog::OnMoveUp(wxCommandEvent& /*event*/)
+void mmUnivCSVDialog::OnMoveUp(wxCommandEvent& WXUNUSED(event))
 {
     int index = csvListBox_->GetSelection();
     if (index != wxNOT_FOUND && index != 0)
@@ -1292,7 +1292,7 @@ void mmUnivCSVDialog::OnMoveUp(wxCommandEvent& /*event*/)
     }
 }
 
-void mmUnivCSVDialog::OnMoveDown(wxCommandEvent& /*event*/)
+void mmUnivCSVDialog::OnMoveDown(wxCommandEvent& WXUNUSED(event))
 {
     int index = csvListBox_->GetSelection();
     if (index != wxNOT_FOUND && index != (int)csvListBox_->GetCount() - 1)
@@ -1311,7 +1311,7 @@ void mmUnivCSVDialog::OnMoveDown(wxCommandEvent& /*event*/)
     }
 }
 
-void mmUnivCSVDialog::OnStandard(wxCommandEvent& /*event*/)
+void mmUnivCSVDialog::OnStandard(wxCommandEvent& WXUNUSED(event))
 {
     csvListBox_->Clear();
     csvFieldOrder_.clear();
@@ -1332,7 +1332,7 @@ void mmUnivCSVDialog::OnStandard(wxCommandEvent& /*event*/)
     update_preview();
 }
 
-void mmUnivCSVDialog::OnBrowse(wxCommandEvent& /*event*/)
+void mmUnivCSVDialog::OnBrowse(wxCommandEvent& WXUNUSED(event))
 {
     wxString fileName = m_text_ctrl_->GetValue();
     wxString header;
@@ -1530,7 +1530,7 @@ void mmUnivCSVDialog::parseToken(int index, const wxString& orig_token, tran_hol
     }
 }
 
-void mmUnivCSVDialog::OnButtonClear(wxCommandEvent& /*event*/)
+void mmUnivCSVDialog::OnButtonClear(wxCommandEvent& WXUNUSED(event))
 {
     log_field_->Clear();
 }
@@ -1600,12 +1600,7 @@ void mmUnivCSVDialog::changeFocus(wxChildFocusEvent& event)
         m_oject_in_focus = w->GetId();
 }
 
-void mmUnivCSVDialog::OnSpinCtrlIgnoreFirstRows(wxSpinEvent& event)
-{
-    UpdateListItemBackground();
-}
-
-void mmUnivCSVDialog::OnSpinCtrlIgnoreLastRows(wxSpinEvent& event)
+void mmUnivCSVDialog::OnSpinCtrlIgnoreRows(wxSpinEvent& WXUNUSED(event))
 {
     UpdateListItemBackground();
 }
@@ -1630,19 +1625,9 @@ bool mmUnivCSVDialog::isIndexPresent(int index) const
     return false;
 }
 
-const bool mmUnivCSVDialog::ShowToolTips()
+bool mmUnivCSVDialog::ShowToolTips()
 {
     return TRUE;
-}
-
-wxBitmap mmUnivCSVDialog::GetBitmapResource(const wxString& /*name*/)
-{
-    return wxNullBitmap;
-}
-
-wxIcon mmUnivCSVDialog::GetIconResource(const wxString& /*name*/)
-{
-    return wxNullIcon;
 }
 
 ITransactionsFile *mmUnivCSVDialog::CreateFileHandler()

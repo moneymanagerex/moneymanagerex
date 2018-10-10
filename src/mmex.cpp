@@ -39,7 +39,7 @@ wxIMPLEMENT_APP(mmGUIApp);
 static const wxCmdLineEntryDesc g_cmdLineDesc [] =
 {
     { wxCMD_LINE_PARAM, nullptr, nullptr, wxT_2("database file"), wxCMD_LINE_VAL_STRING, wxCMD_LINE_PARAM_OPTIONAL },
-    { wxCMD_LINE_NONE }
+    { wxCMD_LINE_NONE, nullptr, nullptr, nullptr, wxCMD_LINE_VAL_NONE, 0 }
 };
 
 //----------------------------------------------------------------------------

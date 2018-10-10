@@ -7,7 +7,7 @@
  * @author    Guan Lisheng (guanlisheng@gmail.com)
  * @author    Stefano Giorgio (stef145g)
  * @author    Tomasz Słodkowicz
- * @date      2018-05-16 01:30:37.316867
+ * @date      2018-10-07 02:45:31.001407
  */
 #pragma once
 
@@ -128,6 +128,7 @@ struct DB_Table_ASSETCLASS_STOCK : public DB_Table
         COL_ID = 0
         , COL_ASSETCLASSID = 1
         , COL_STOCKSYMBOL = 2
+        , COL_UNKNOWN = -1
     };
 
     /** Returns the column name as a string*/
@@ -151,7 +152,7 @@ struct DB_Table_ASSETCLASS_STOCK : public DB_Table
         else if ("ASSETCLASSID" == name) return COL_ASSETCLASSID;
         else if ("STOCKSYMBOL" == name) return COL_STOCKSYMBOL;
 
-        return COLUMN(-1);
+        return COL_UNKNOWN;
     }
     
     /** Data is a single record in the database table*/
@@ -212,11 +213,6 @@ struct DB_Table_ASSETCLASS_STOCK : public DB_Table
             return *this;
         }
 
-        template<typename C>
-        bool match(const C &c) const
-        {
-            return false;
-        }
 
         bool match(const Self::ID &in) const
         {

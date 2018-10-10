@@ -62,7 +62,7 @@ public:
     static void getCategoryStats(
         std::map<int, std::map<int, std::map<int, double> > > &categoryStats
         , mmDateRange* date_range, bool ignoreFuture
-        , bool group_by_month = true, bool with_date = true
+        , bool group_by_month = true
         , std::map<int, std::map<int, double> > *budgetAmt = nullptr);
 };
 

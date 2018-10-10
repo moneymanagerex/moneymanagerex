@@ -52,26 +52,26 @@ wxBEGIN_EVENT_TABLE(mmQIFImportDialog, wxDialog)
 wxEND_EVENT_TABLE()
 
 mmQIFImportDialog::mmQIFImportDialog(wxWindow* parent, int account_id)
-    : m_userDefinedDateMask(false)
-    , choiceDateFormat_(nullptr)
+    : m_init_account_id(account_id)
+    , m_userDefinedDateMask(false)
+    , m_today(wxDate::Today())
+    , m_fresh(wxDate::Today().Subtract(wxDateSpan::Months(1)))
     , dataListBox_(nullptr)
     , accListBox_(nullptr)
     , payeeListBox_(nullptr)
     , categoryListBox_(nullptr)
     , button_search_(nullptr)
     , file_name_ctrl_(nullptr)
+    , m_choiceEncoding(nullptr)
     , log_field_(nullptr)
     , dateFromCheckBox_(nullptr)
     , dateToCheckBox_(nullptr)
     , fromDateCtrl_(nullptr)
     , toDateCtrl_(nullptr)
+    , choiceDateFormat_(nullptr)
     , accountCheckBox_(nullptr)
     , accountDropDown_(nullptr)
-    , m_choiceEncoding(nullptr)
     , btnOK_(nullptr)
-    , m_init_account_id(account_id)
-    , m_today(wxDate::Today())
-    , m_fresh(wxDate::Today().Subtract(wxDateSpan::Months(1)))
 {
     payeeIsNotes_ = false;
     long style = wxCAPTION | wxRESIZE_BORDER | wxSYSTEM_MENU | wxCLOSE_BOX;
@@ -598,8 +598,8 @@ void mmQIFImportDialog::refreshTabs(int tabs)
             currencySymbol = currencySymbol.SubString(1, currencySymbol.length() - 2);            
             
             Model_Account::Data* account = (accountNumberCheckBox_->IsChecked())
-              ? account = Model_Account::instance().getByAccNum(acc.first)
-              : account = Model_Account::instance().get(acc.first);
+              ? Model_Account::instance().getByAccNum(acc.first)
+              : Model_Account::instance().get(acc.first);
        
             wxString status;
             const wxString type = acc.second.find(AccountType) != acc.second.end() 
@@ -714,7 +714,7 @@ void mmQIFImportDialog::getDateMask()
     choiceDateFormat_->SetStringSelection(g_date_formats_map.at(m_dateFormatStr));
 }
 
-void mmQIFImportDialog::OnFileSearch(wxCommandEvent& /*event*/)
+void mmQIFImportDialog::OnFileSearch(wxCommandEvent& WXUNUSED(event))
 {
     m_FileNameStr = file_name_ctrl_->GetValue();
 
@@ -739,7 +739,7 @@ void mmQIFImportDialog::OnFileSearch(wxCommandEvent& /*event*/)
             , _("Date Mask has several values"), ("Warning"), wxICON_INFORMATION);
 }
 
-void mmQIFImportDialog::OnDateMaskChange(wxCommandEvent& /*event*/)
+void mmQIFImportDialog::OnDateMaskChange(wxCommandEvent& WXUNUSED(event))
 {
     wxStringClientData* data = (wxStringClientData*)(choiceDateFormat_->GetClientObject(choiceDateFormat_->GetSelection()));
     if (data) m_dateFormatStr = data->GetData();
@@ -793,7 +793,7 @@ void mmQIFImportDialog::OnCheckboxClick( wxCommandEvent& event )
     refreshTabs(t);  
 }
 
-void mmQIFImportDialog::OnAccountChanged(wxCommandEvent& /*event*/)
+void mmQIFImportDialog::OnAccountChanged(wxCommandEvent& WXUNUSED(event))
 {
     wxStringClientData* data_obj = (wxStringClientData*)accountDropDown_->GetClientObject(accountDropDown_->GetSelection());
     if (data_obj)
@@ -801,7 +801,7 @@ void mmQIFImportDialog::OnAccountChanged(wxCommandEvent& /*event*/)
     refreshTabs(TRX_TAB);
 }
 
-void mmQIFImportDialog::OnOk(wxCommandEvent& /*event*/)
+void mmQIFImportDialog::OnOk(wxCommandEvent& WXUNUSED(event))
 {
     wxString sMsg;
     wxMessageDialog msgDlg(this, _("Do you want to import all transaction ?")
@@ -964,7 +964,7 @@ bool mmQIFImportDialog::mergeTransferPair(Model_Checking::Cache& to, Model_Check
             if (refTrxTo->TOACCOUNTID != refTrxFrom->ACCOUNTID) continue;
             if (refTrxTo->TRANSACTIONNUMBER != refTrxFrom->TRANSACTIONNUMBER) continue;
             if (refTrxTo->NOTES != refTrxFrom->NOTES) continue;
-            if (refTrxFrom->TRANSDATE != refTrxFrom->TRANSDATE) continue;
+            if (refTrxTo->TRANSDATE != refTrxFrom->TRANSDATE) continue;
             refTrxTo->TOTRANSAMOUNT = refTrxFrom->TRANSAMOUNT;
             from.erase(from.begin() + i);
             pair_found = true;
@@ -1119,12 +1119,12 @@ bool mmQIFImportDialog::completeTransaction(/*in*/ const std::unordered_map <int
     return true;
 }
 
-void mmQIFImportDialog::OnCancel(wxCommandEvent& /*event*/)
+void mmQIFImportDialog::OnCancel(wxCommandEvent& WXUNUSED(event))
 {
     EndModal(wxID_CANCEL);
 }
 
-void mmQIFImportDialog::OnQuit(wxCloseEvent& /*event*/)
+void mmQIFImportDialog::OnQuit(wxCloseEvent& WXUNUSED(event))
 {
     EndModal(wxID_CANCEL);
 }
@@ -1137,8 +1137,8 @@ int mmQIFImportDialog::getOrCreateAccounts()
     {
         int accountID = -1;
         Model_Account::Data* acc = (accountNumberCheckBox_->IsChecked())
-            ? acc = Model_Account::instance().getByAccNum(item.first)
-            : acc = Model_Account::instance().get(item.first);   
+            ? Model_Account::instance().getByAccNum(item.first)
+            : Model_Account::instance().get(item.first);   
 
         if (!acc)
         {

@@ -312,7 +312,7 @@ void mmMainCurrencyDialog::CreateControls()
     this->Fit();
 }
 
-void mmMainCurrencyDialog::OnBtnAdd(wxCommandEvent& /*event*/)
+void mmMainCurrencyDialog::OnBtnAdd(wxCommandEvent& WXUNUSED(event))
 {
     mmCurrencyDialog dlg(this, 0);
     if (dlg.ShowModal() == wxID_OK)
@@ -323,7 +323,7 @@ void mmMainCurrencyDialog::OnBtnAdd(wxCommandEvent& /*event*/)
     fillControls();
 }
 
-void mmMainCurrencyDialog::OnBtnEdit(wxCommandEvent& /*event*/)
+void mmMainCurrencyDialog::OnBtnEdit(wxCommandEvent& WXUNUSED(event))
 {
     Model_Currency::Data *currency = Model_Currency::instance().get(m_currency_id);
     if (currency)
@@ -331,13 +331,13 @@ void mmMainCurrencyDialog::OnBtnEdit(wxCommandEvent& /*event*/)
     fillControls();
 }
 
-void mmMainCurrencyDialog::OnBtnSelect(wxCommandEvent& /*event*/)
+void mmMainCurrencyDialog::OnBtnSelect(wxCommandEvent& WXUNUSED(event))
 {
     if (m_currency_id > -1) 
         EndModal(wxID_OK);
 }
 
-void mmMainCurrencyDialog::OnBtnDelete(wxCommandEvent& /*event*/)
+void mmMainCurrencyDialog::OnBtnDelete(wxCommandEvent& WXUNUSED(event))
 {
     int selected_index = currencyListBox_->GetSelectedRow();
     if (selected_index < 0) return;
@@ -425,7 +425,7 @@ void mmMainCurrencyDialog::OnListItemSelected(wxDataViewEvent& event)
     ShowCurrencyHistory();
 }
 
-void mmMainCurrencyDialog::OnListItemActivated(wxDataViewEvent& /* event */)
+void mmMainCurrencyDialog::OnListItemActivated(wxDataViewEvent& WXUNUSED(event))
 {
     wxCommandEvent evt(wxEVT_COMMAND_BUTTON_CLICKED, wxID_ANY);
 
@@ -457,7 +457,7 @@ bool mmMainCurrencyDialog::OnlineUpdateCurRate(int curr_id, bool hide)
     return ok;
 }
 
-void mmMainCurrencyDialog::OnOnlineUpdateCurRate(wxCommandEvent& /*event*/)
+void mmMainCurrencyDialog::OnOnlineUpdateCurRate(wxCommandEvent& WXUNUSED(event))
 {
     if (!m_static_dialog)    //Abort when trying to set base currency
     {
@@ -513,19 +513,19 @@ void mmMainCurrencyDialog::OnItemRightClick(wxDataViewEvent& event)
     event.Skip();
 }
 
-void mmMainCurrencyDialog::OnShowHiddenChbClick(wxCommandEvent& event)
+void mmMainCurrencyDialog::OnShowHiddenChbClick(wxCommandEvent& WXUNUSED(event))
 {
     Model_Infotable::instance().Set("SHOW_HIDDEN_CURRENCIES", !cbShowAll_->IsChecked());
     fillControls();
 }
 
-void mmMainCurrencyDialog::OnHideHistoricClick(wxCommandEvent& event)
+void mmMainCurrencyDialog::OnHideHistoricClick(wxCommandEvent& WXUNUSED(event))
 {
     Model_Infotable::instance().Set("HIDE_HISTORIC_CURRENCIES", cbHideHistoric_->IsChecked());
     fillControls();
 }
 
-void mmMainCurrencyDialog::OnCancel(wxCommandEvent& /*event*/)
+void mmMainCurrencyDialog::OnCancel(wxCommandEvent& WXUNUSED(event))
 {
     EndModal(wxID_CANCEL);
 }
@@ -571,7 +571,7 @@ void mmMainCurrencyDialog::ShowCurrencyHistory()
     }
 }
 
-void mmMainCurrencyDialog::OnHistoryAdd(wxCommandEvent& /*event*/)
+void mmMainCurrencyDialog::OnHistoryAdd(wxCommandEvent& WXUNUSED(event))
 {
     if (m_currency_id <= 0) return;
 
@@ -588,7 +588,7 @@ void mmMainCurrencyDialog::OnHistoryAdd(wxCommandEvent& /*event*/)
     ShowCurrencyHistory();
 }
 
-void mmMainCurrencyDialog::OnHistoryDelete(wxCommandEvent& /*event*/)
+void mmMainCurrencyDialog::OnHistoryDelete(wxCommandEvent& WXUNUSED(event))
 {
     if (valueListBox_->GetSelectedItemCount() <= 0) return;
 
@@ -606,7 +606,7 @@ void mmMainCurrencyDialog::OnHistoryDelete(wxCommandEvent& /*event*/)
     ShowCurrencyHistory();
 }
 
-void mmMainCurrencyDialog::OnHistoryUpdate(wxCommandEvent& /*event*/)
+void mmMainCurrencyDialog::OnHistoryUpdate(wxCommandEvent& WXUNUSED(event))
 {
     if (m_static_dialog) return;    //Abort when trying to set base currency
     Model_Currency::Data* CurrentCurrency = Model_Currency::instance().get(m_currency_id);
@@ -677,7 +677,7 @@ void mmMainCurrencyDialog::OnHistoryUpdate(wxCommandEvent& /*event*/)
             , _("Currency history error"));
 }
 
-void mmMainCurrencyDialog::OnHistoryDeleteUnused(wxCommandEvent& /*event*/)
+void mmMainCurrencyDialog::OnHistoryDeleteUnused(wxCommandEvent& WXUNUSED(event))
 {
     if (m_static_dialog) return;    //Abort when trying to set base currency
     Model_CurrencyHistory::instance().Savepoint();
@@ -720,7 +720,7 @@ void mmMainCurrencyDialog::OnHistorySelected(wxListEvent& event)
     }
 }
 
-void mmMainCurrencyDialog::OnHistoryDeselected(wxListEvent& event)
+void mmMainCurrencyDialog::OnHistoryDeselected(wxListEvent& WXUNUSED(event))
 {
     valueDatePicker_->SetValue(wxDateTime::Today());
     valueTextBox_->SetValue(wxEmptyString);

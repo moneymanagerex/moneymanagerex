@@ -122,7 +122,7 @@ private:
     bool createDataStore(const wxString& fileName, const bool openingNew, const bool encrypt, const wxString &passwd);
     void InitializeModelTables();
     void createMenu();
-    void CreateToolBar();
+    void createToolBar();
     void createReportsPage(mmPrintableBase* rb, bool cleanup);
     void createHelpPage();
     void refreshPanelData();
@@ -201,7 +201,7 @@ private:
     void OnCategoryRelocation(wxCommandEvent& event);
     void OnPayeeRelocation(wxCommandEvent& event);
     void OnNewTransaction(wxCommandEvent& event);
-    void refreshPanelData(wxCommandEvent& /*event*/);
+    void refreshPanelData(wxCommandEvent& WXUNUSED(event));
 
     void OnOptions(wxCommandEvent& event);
     void OnBudgetSetupDialog(wxCommandEvent& event);
@@ -240,7 +240,7 @@ private:
     wxMenu* m_menuRecentFiles;
 
     void OnRecentFiles(wxCommandEvent& event);
-    void OnClearRecentFiles(wxCommandEvent& /*event*/);
+    void OnClearRecentFiles(wxCommandEvent& WXUNUSED(event));
 
     void OnHideShowReport(wxCommandEvent& event);
 

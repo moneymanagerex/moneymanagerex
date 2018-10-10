@@ -310,8 +310,8 @@ protected:
 };
 
 htmlWidgetBillsAndDeposits::htmlWidgetBillsAndDeposits(const wxString& title, mmDateRange* date_range)
-    : title_(title)
-    , date_range_(date_range)
+    : date_range_(date_range)
+    , title_(title)
 {}
 
 htmlWidgetBillsAndDeposits::~htmlWidgetBillsAndDeposits()
@@ -357,8 +357,8 @@ wxString htmlWidgetBillsAndDeposits::getHTMLText()
         wxString payeeStr = "";
         if (Model_Billsdeposits::type(entry) == Model_Billsdeposits::TRANSFER)
         {   
-            const Model_Account::Data *account = Model_Account::instance().get(entry.TOACCOUNTID);
-            if (account) payeeStr = account->ACCOUNTNAME;
+            const Model_Account::Data *toaccount = Model_Account::instance().get(entry.TOACCOUNTID);
+            if (toaccount) payeeStr = toaccount->ACCOUNTNAME;
             payeeStr += " &larr; " + accountStr;
         }   
         else
@@ -487,9 +487,9 @@ mmHomePagePanel::mmHomePagePanel(wxWindow *parent, mmGUIFrame *frame
     , long style
     , const wxString& name)
     : m_frame(frame)
-    , countFollowUp_(0)
-    , date_range_(nullptr)
     , browser_(nullptr)
+    , date_range_(nullptr)
+    , countFollowUp_(0)
 {
     Create(parent, winid, pos, size, style, name);
     m_frame->menuPrintingEnable(true);

@@ -65,7 +65,6 @@ mmNewAcctDialog::mmNewAcctDialog()
 
 mmNewAcctDialog::mmNewAcctDialog(Model_Account::Data* account, wxWindow* parent, const wxString &name)
     : m_account(account)
-    , m_currencyID(-1)
     , m_textAccountName(nullptr)
     , m_notesCtrl(nullptr)
     , m_initbalance_ctrl(nullptr)
@@ -78,6 +77,7 @@ mmNewAcctDialog::mmNewAcctDialog(Model_Account::Data* account, wxWindow* parent,
     , m_interest_rate_ctrl(nullptr)
     , m_payment_due_date_ctrl(nullptr)
     , m_minimum_payment_ctrl(nullptr)
+    , m_currencyID(-1)
     , m_accessinfo_infocus(false)
 {
     m_imageList = navtree_images_list();
@@ -397,12 +397,12 @@ void mmNewAcctDialog::CreateControls()
     }
 }
 
-void mmNewAcctDialog::OnCancel(wxCommandEvent& /*event*/)
+void mmNewAcctDialog::OnCancel(wxCommandEvent& WXUNUSED(event))
 {
     EndModal(wxID_CANCEL);
 }
 
-void mmNewAcctDialog::OnCurrency(wxCommandEvent& /*event*/)
+void mmNewAcctDialog::OnCurrency(wxCommandEvent& WXUNUSED(event))
 {
     if (mmMainCurrencyDialog::Execute(this, m_currencyID))
     {
@@ -423,14 +423,14 @@ void mmNewAcctDialog::OnCurrency(wxCommandEvent& /*event*/)
     }
 }
 
-void mmNewAcctDialog::OnAttachments(wxCommandEvent& /*event*/)
+void mmNewAcctDialog::OnAttachments(wxCommandEvent& WXUNUSED(event))
 {
     wxString RefType = Model_Attachment::reftype_desc(Model_Attachment::BANKACCOUNT);
     mmAttachmentDialog dlg(this, RefType, m_account->ACCOUNTID);
     dlg.ShowModal();
 }
 
-void mmNewAcctDialog::OnOk(wxCommandEvent& /*event*/)
+void mmNewAcctDialog::OnOk(wxCommandEvent& WXUNUSED(event))
 {
     wxString acctName = m_textAccountName->GetValue().Trim();
     if (acctName.IsEmpty() || Model_Account::Exist(acctName))
@@ -493,7 +493,7 @@ void mmNewAcctDialog::OnOk(wxCommandEvent& /*event*/)
     mmWebApp::MMEX_WebApp_UpdateAccount();
 }
 
-void mmNewAcctDialog::OnImageButton(wxCommandEvent& /*event*/)
+void mmNewAcctDialog::OnImageButton(wxCommandEvent& WXUNUSED(event))
 {
     wxCommandEvent ev(wxEVT_COMMAND_MENU_SELECTED, wxID_ANY);
     ev.SetEventObject(this);

@@ -56,7 +56,7 @@ private:
 
     void OnButtonOKClick( wxCommandEvent& event );
     void onTextEntered(wxCommandEvent& event);
-    void OnCancel(wxCommandEvent& /*event*/);
+    void OnCancel(wxCommandEvent& WXUNUSED(event));
 
     Split split_;
     Model_Currency::Data *m_currency;

@@ -49,7 +49,7 @@ public:
     bool Calculate(int alt_precision = -1);
     bool GetDouble(double &amount) const;
     bool checkValue(double &amount, bool positive_value = true);
-    const wxChar GetDecimalPoint();
+    wxChar GetDecimalPoint();
 
 private:
     const Model_Currency::Data* m_currency;

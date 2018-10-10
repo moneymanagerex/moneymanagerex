@@ -257,8 +257,8 @@ void dbUpgrade::SqlFileDebug(wxSQLite3Database* db)
         if (txtLine.StartsWith("-- MMEX db version required ",&txtLine))
         {
             int ver = GetCurrentVersion(db);
-            unsigned long reqver;
-            if (!txtLine.ToCULong(&reqver))
+            long reqver;
+            if (!txtLine.ToCLong(&reqver))
             {
                 wxMessageBox(_("Invalid debug file content, please contact MMEX support!"), _("MMEX debug error"), wxOK | wxICON_ERROR);
                 return;

@@ -100,7 +100,7 @@ void mmHelpPanel::sortTable()
 {
 }
 
-void mmHelpPanel::OnHelpPageBack(wxCommandEvent& /*event*/)
+void mmHelpPanel::OnHelpPageBack(wxCommandEvent& WXUNUSED(event))
 {
     if (browser_->CanGoBack())
     {
@@ -109,7 +109,7 @@ void mmHelpPanel::OnHelpPageBack(wxCommandEvent& /*event*/)
     }
 }
 
-void mmHelpPanel::OnHelpPageForward(wxCommandEvent& /*event*/)
+void mmHelpPanel::OnHelpPageForward(wxCommandEvent& WXUNUSED(event))
 {
     if (browser_->CanGoForward() )
     {

@@ -98,7 +98,7 @@ Model_CustomField::FIELDTYPE Model_CustomField::type(const Data* r)
             return item.first;
     }
 
-    return FIELDTYPE(-1);
+    return UNKNOWN;
 }
 
 Model_CustomField::FIELDTYPE Model_CustomField::type(const Data& r)

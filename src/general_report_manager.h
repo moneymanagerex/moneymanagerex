@@ -71,7 +71,7 @@ private:
     void OnImportReportEvt(wxCommandEvent& event);
     void importReport();
     bool openZipFile(const wxString &reportFileName
-        , wxString &htt, wxString &sql, wxString &lua, wxString &readme, wxString &reportName);
+        , wxString &htt, wxString &sql, wxString &lua, wxString &readme);
     void OnUpdateReport(wxCommandEvent& event);
     void OnExportReport(wxCommandEvent& event);
     void OnRun(wxCommandEvent& event);

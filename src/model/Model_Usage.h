@@ -20,24 +20,6 @@ Copyright (C) 2018 Stefano Giorgio (stef145g)
 
 #include "Model.h"
 #include "Table_Usage_V1.h"
-#include <wx/thread.h>
-
-struct mg_connection;
-
-class SendStatsThread : public wxThread
-{
-public:
-	SendStatsThread(const std::string& url);
-	~SendStatsThread();
-	static void ev_handler(struct mg_connection *nc, int ev, void *ev_data);
-
-	bool m_end;
-
-protected:
-	std::string m_url;
-
-	virtual ExitCode Entry();
-};
 
 class Model_Usage : public Model<DB_Table_USAGE_V1>
 {
