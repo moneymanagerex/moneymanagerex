@@ -222,7 +222,10 @@ ENDIF()
 
 
 # --------- wxWidgets dependency ---------
-LIST(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/util")
+IF(CMAKE_VERSION VERSION_LESS 3.14)
+    # FindwxWidgets.cmake module will be fixed in CMake 3.14.0
+    LIST(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/util")
+ENDIF()
 SET(wxWidgets_USE_REL_AND_DBG ON)
 FIND_PACKAGE(wxWidgets 2.9.2 REQUIRED
     COMPONENTS core qa html xml aui adv stc webview base
