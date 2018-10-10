@@ -223,14 +223,14 @@ sqlListCtrl::sqlListCtrl(mmGeneralReportManager* grm, wxWindow *parent, wxWindow
 
 mmGeneralReportManager::mmGeneralReportManager(wxWindow* parent, wxSQLite3Database* db)
     : m_db(db)
+    , m_outputHTML(nullptr)
     , m_buttonOpen(nullptr)
     , m_buttonSave(nullptr)
     , m_buttonSaveAs(nullptr)
     , m_buttonRun(nullptr)
     , m_treeCtrl(nullptr)
-    , m_outputHTML(nullptr)
-    , m_sqlListBox(nullptr)
     , m_dbView(nullptr)
+    , m_sqlListBox(nullptr)
     , m_selectedReportID(0)
 {
     long style = wxCAPTION | wxRESIZE_BORDER | wxSYSTEM_MENU | wxCLOSE_BOX;
@@ -390,7 +390,7 @@ void mmGeneralReportManager::createOutputTab(wxNotebook* editors_notebook, int t
 {
     //Output
     wxPanel* out_tab = new wxPanel(editors_notebook, wxID_ANY);
-    editors_notebook->InsertPage(ID_TAB_OUT, out_tab, _("Output"));
+    editors_notebook->InsertPage(type, out_tab, _("Output"));
     wxBoxSizer *out_sizer = new wxBoxSizer(wxVERTICAL);
     out_tab->SetSizer(out_sizer);
     m_outputHTML = wxWebView::New(out_tab, ID_WEB);
@@ -516,7 +516,7 @@ void mmGeneralReportManager::OnSqlTest(wxCommandEvent& WXUNUSED(event))
     }
 }
 
-void mmGeneralReportManager::OnNewTemplate(wxCommandEvent& event)
+void mmGeneralReportManager::OnNewTemplate(wxCommandEvent& WXUNUSED(event))
 {
     MinimalEditor* templateText = static_cast<MinimalEditor*>(FindWindow(ID_TEMPLATE));
     if (!templateText->GetValue().empty()) return;
@@ -534,7 +534,7 @@ void mmGeneralReportManager::OnNewTemplate(wxCommandEvent& event)
     OnUpdateReport(evt);
 }
 
-void mmGeneralReportManager::OnImportReportEvt(wxCommandEvent& /*event*/)
+void mmGeneralReportManager::OnImportReportEvt(wxCommandEvent& WXUNUSED(event))
 {
     importReport();
 }
@@ -550,7 +550,7 @@ void mmGeneralReportManager::importReport()
 
     wxFileName fn(reportFileName);
     wxString sql, lua, htt, txt, reportName;
-    openZipFile(reportFileName, htt, sql, lua, txt, reportName);
+    openZipFile(reportFileName, htt, sql, lua, txt);
 
     reportName = fn.FileName(reportFileName).GetName();
     Model_Report::Data *report = Model_Report::instance().get(reportName);
@@ -568,7 +568,7 @@ void mmGeneralReportManager::importReport()
 }
 
 bool mmGeneralReportManager::openZipFile(const wxString &reportFileName
-    , wxString &htt, wxString &sql, wxString &lua, wxString &txt, wxString &reportName)
+    , wxString &htt, wxString &sql, wxString &lua, wxString &txt)
 {
     if (!reportFileName.empty())
     {
@@ -613,7 +613,7 @@ bool mmGeneralReportManager::openZipFile(const wxString &reportFileName
     }
     return true;
 }
-void mmGeneralReportManager::OnUpdateReport(wxCommandEvent& /*event*/)
+void mmGeneralReportManager::OnUpdateReport(wxCommandEvent& WXUNUSED(event))
 {
     MyTreeItemData* iData = dynamic_cast<MyTreeItemData*>(m_treeCtrl->GetItemData(m_selectedItemID));
     if (!iData) return;
@@ -636,7 +636,7 @@ void mmGeneralReportManager::OnUpdateReport(wxCommandEvent& /*event*/)
     }
 }
 
-void mmGeneralReportManager::OnRun(wxCommandEvent& /*event*/)
+void mmGeneralReportManager::OnRun(wxCommandEvent& WXUNUSED(event))
 {
     MyTreeItemData* iData = dynamic_cast<MyTreeItemData*>(m_treeCtrl->GetItemData(m_selectedItemID));
     if (!iData) return;
@@ -870,28 +870,31 @@ void mmGeneralReportManager::OnMenuSelected(wxCommandEvent& event)
     }
 
     MyTreeItemData* iData = dynamic_cast<MyTreeItemData*>(m_treeCtrl->GetItemData(m_selectedItemID));
-    int report_id = iData->get_report_id();
+    if (iData)
+    {
+        int report_id = iData->get_report_id();
 
-    if(iData && report_id > -1)
-    {
-        switch (id){
-        case ID_RENAME:
-            this->renameReport(report_id);
-            break;
-        case ID_DELETE:
-            this->DeleteReport(report_id);
-            break;
-        case ID_GROUP:
-            this->changeReportGroup(report_id, false);
-            break;
-        case ID_UNGROUP:
-            this->changeReportGroup(report_id, true);
-            break;
+        if (report_id > -1)
+        {
+            switch (id){
+            case ID_RENAME:
+                this->renameReport(report_id);
+                break;
+            case ID_DELETE:
+                this->DeleteReport(report_id);
+                break;
+            case ID_GROUP:
+                this->changeReportGroup(report_id, false);
+                break;
+            case ID_UNGROUP:
+                this->changeReportGroup(report_id, true);
+                break;
+            }
         }
-    }
-    else if (id == ID_GROUP)
-    {
-        this->renameReportGroup(m_selectedGroup);
+        else if (id == ID_GROUP)
+        {
+            this->renameReportGroup(m_selectedGroup);
+        }
     }
 
     fillControls();
@@ -956,7 +959,7 @@ void mmGeneralReportManager::newReport(int sample)
     m_selectedReportID = Model_Report::instance().save(report);
 }
 
-void mmGeneralReportManager::OnExportReport(wxCommandEvent& /*event*/)
+void mmGeneralReportManager::OnExportReport(wxCommandEvent& WXUNUSED(event))
 {
     MyTreeItemData* iData = dynamic_cast<MyTreeItemData*>(m_treeCtrl->GetItemData(m_selectedItemID));
     if (!iData) return;
@@ -1017,7 +1020,7 @@ wxString sqlListCtrl::OnGetItemText(long item, long column) const
     return m_grm->OnGetItemText(item, column);
 }
 
-void mmGeneralReportManager::OnClose(wxCommandEvent& /*event*/)
+void mmGeneralReportManager::OnClose(wxCommandEvent& WXUNUSED(event))
 {
     EndModal(wxID_OK);
 }

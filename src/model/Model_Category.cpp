@@ -158,7 +158,7 @@ bool Model_Category::has_income(int id, int sub_id)
 void Model_Category::getCategoryStats(
         std::map<int, std::map<int, std::map<int, double> > > &categoryStats
         , mmDateRange* date_range, bool ignoreFuture //TODO: deprecated
-        , bool group_by_month, bool with_date
+        , bool group_by_month
         , std::map<int, std::map<int, double> > *budgetAmt)
 {
     //Initialization

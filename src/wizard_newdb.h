@@ -46,11 +46,10 @@ class mmNewDatabaseWizardPage : public wxWizardPageSimple
 public:
     mmNewDatabaseWizardPage(mmNewDatabaseWizard* parent);
 
-    void OnCurrency(wxCommandEvent& /*event*/);
+    void OnCurrency(wxCommandEvent& WXUNUSED(event));
     virtual bool TransferDataFromWindow();
 
 private:
-    mmNewDatabaseWizard* parent_;
     wxButton* itemButtonCurrency_;
     wxTextCtrl* itemUserName_;
     int currencyID_;

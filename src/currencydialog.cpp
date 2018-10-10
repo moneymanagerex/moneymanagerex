@@ -133,7 +133,6 @@ void mmCurrencyDialog::fillControls()
         m_scale = log10(m_currency->SCALE);
         const wxString& scale_value = wxString::Format("%i", m_scale);
         scaleTx_->ChangeValue(scale_value);
-        bool baseCurrency = (Option::instance().BaseCurrency() == m_currency->CURRENCYID);
         m_currencySymbol->ChangeValue(m_currency->CURRENCY_SYMBOL);
         m_historic->SetValue(Model_Currency::BoolOf(m_currency->HISTORIC));
     }
@@ -230,7 +229,7 @@ void mmCurrencyDialog::CreateControls()
     itemButton25->SetToolTip(_("Any changes will be lost without update"));
 }
 
-void mmCurrencyDialog::OnOk(wxCommandEvent& /*event*/)
+void mmCurrencyDialog::OnOk(wxCommandEvent& WXUNUSED(event))
 {
     const int type = m_currencyType->GetSelection();
     if (type == -1)
@@ -258,12 +257,12 @@ void mmCurrencyDialog::OnOk(wxCommandEvent& /*event*/)
     EndModal(wxID_OK);
 }
 
- void mmCurrencyDialog::OnCancel(wxCommandEvent& /*event*/)
+ void mmCurrencyDialog::OnCancel(wxCommandEvent& WXUNUSED(event))
 {
     EndModal(wxID_CANCEL);
 }
 
-void mmCurrencyDialog::OnTextChanged(wxCommandEvent& event)
+void mmCurrencyDialog::OnTextChanged(wxCommandEvent& WXUNUSED(event))
 {  
     int scale = wxAtoi(scaleTx_->GetValue());
     m_currency->PFX_SYMBOL = pfxTx_->GetValue();

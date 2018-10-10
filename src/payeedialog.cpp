@@ -49,9 +49,9 @@ wxEND_EVENT_TABLE()
 
 
 mmPayeeDialog::mmPayeeDialog(wxWindow *parent, bool payee_choose, const wxString &name) :
-    m_payee_id(-1)
+    payeeListBox_()
     , m_maskTextCtrl()
-    , payeeListBox_()
+    , m_payee_id(-1)
     , m_payee_rename(-1)
     , m_payee_choose(payee_choose)
     , refreshRequested_(false)
@@ -151,7 +151,7 @@ void mmPayeeDialog::fillControls()
     m_payee_id = firstInTheListPayeeID;
 }
 
-void mmPayeeDialog::OnDataEditStart(wxDataViewEvent& event)
+void mmPayeeDialog::OnDataEditStart(wxDataViewEvent& WXUNUSED(event))
 {
     m_payee_rename = m_payee_id;
 }
@@ -169,13 +169,10 @@ void mmPayeeDialog::OnDataChanged(wxDataViewEvent& event)
     const auto payees = Model_Payee::instance().find(Model_Payee::PAYEENAME(value));
     if (payees.empty())
     {
-        if (payee)
-        {
-            payee->PAYEENAME = value;
-            Model_Payee::instance().save(payee);
-            mmWebApp::MMEX_WebApp_UpdatePayee();
-            refreshRequested_ = true;
-        }
+        payee->PAYEENAME = value;
+        Model_Payee::instance().save(payee);
+        mmWebApp::MMEX_WebApp_UpdatePayee();
+        refreshRequested_ = true;
     }
     else
     {
@@ -194,7 +191,7 @@ void mmPayeeDialog::OnListItemSelected(wxDataViewEvent& event)
         m_payee_id = (int)payeeListBox_->GetItemData(item);
 }
 
-void mmPayeeDialog::OnListItemActivated(wxDataViewEvent& event)
+void mmPayeeDialog::OnListItemActivated(wxDataViewEvent& WXUNUSED(event))
 {
     if (m_payee_id > 0 && m_payee_choose)
         EndModal(wxID_OK);
@@ -347,7 +344,7 @@ void mmPayeeDialog::OnMenuSelected(wxCommandEvent& event)
     }
 }
 
-void mmPayeeDialog::OnMagicButton(wxCommandEvent& event)
+void mmPayeeDialog::OnMagicButton(wxCommandEvent& WXUNUSED(event))
 {
     wxDataViewEvent evt;
     OnItemRightClick(evt);
@@ -388,12 +385,12 @@ void mmPayeeDialog::OnItemRightClick(wxDataViewEvent& event)
     event.Skip();
 }
 
-void mmPayeeDialog::OnCancel(wxCommandEvent& /*event*/)
+void mmPayeeDialog::OnCancel(wxCommandEvent& WXUNUSED(event))
 {
     EndModal(wxID_CANCEL);
 }
 
-void mmPayeeDialog::OnOk(wxCommandEvent& /*event*/)
+void mmPayeeDialog::OnOk(wxCommandEvent& WXUNUSED(event))
 {
     EndModal(wxID_OK);
 }

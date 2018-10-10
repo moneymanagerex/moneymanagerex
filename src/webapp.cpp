@@ -545,7 +545,7 @@ int mmWebApp::MMEX_InsertNewTransaction(webtran_holder& WebAppTrans)
             wxString AttachmentsFolder = mmex::getPathAttachment(mmAttachmentManage::InfotablePathSetting());
             if (AttachmentsFolder == wxEmptyString || !wxDirExists(AttachmentsFolder))
             {
-                DeskNewTrID = Model_Checking::instance().remove(DeskNewTrID);
+                Model_Checking::instance().remove(DeskNewTrID);
                 DeskNewTrID = -1;
 
                 wxString msgStr = wxString() << _("Unable to download attachments from webapp.") << "\n"
@@ -578,7 +578,7 @@ int mmWebApp::MMEX_InsertNewTransaction(webtran_holder& WebAppTrans)
                     }
                     else
                     {
-                        DeskNewTrID = Model_Checking::instance().remove(DeskNewTrID);
+                        Model_Checking::instance().remove(DeskNewTrID);
                         DeskNewTrID = -1;
 
                         wxString msgStr = wxString() << _("Unable to download attachments from webapp.") << "\n"

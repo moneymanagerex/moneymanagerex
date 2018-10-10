@@ -107,8 +107,8 @@ Option::Option()
     , m_transPayeeSelection(Option::NONE)
     , m_transCategorySelection(Option::NONE)
     , m_transStatusReconciled(Option::NONE)
-    , m_usageStatistics(true)
     , m_transDateDefault(0)
+    , m_usageStatistics(true)
     , m_sharePrecision(4)
     , m_html_font_size(100)
     , m_ico_size(16)
@@ -465,7 +465,7 @@ int Option::IconSize()
     return m_ico_size;
 }
 
-const int Option::AccountImageId(int account_id, bool def)
+int Option::AccountImageId(int account_id, bool def)
 {
     int max = acc_img::MAX_XPM - img::LAST_NAVTREE_PNG;
     int min = 1;

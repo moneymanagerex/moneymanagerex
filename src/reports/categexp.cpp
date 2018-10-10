@@ -52,8 +52,7 @@ void  mmReportCategoryExpenses::RefreshData()
     Model_Category::instance().getCategoryStats(categoryStats
         , const_cast<mmDateRange*>(m_date_range)
         , Option::instance().IgnoreFutureTransactions()
-        , false
-        , m_date_range->is_with_date());
+        , false);
 
     data_holder line;
     int i = 0;

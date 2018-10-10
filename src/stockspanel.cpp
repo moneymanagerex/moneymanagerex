@@ -252,7 +252,7 @@ void StocksListCtrl::OnListKeyDown(wxListEvent& event)
     }
 }
 
-void StocksListCtrl::OnNewStocks(wxCommandEvent& /*event*/)
+void StocksListCtrl::OnNewStocks(wxCommandEvent& WXUNUSED(event))
 {
     mmStockDialog dlg(this, m_stock_panel->m_frame, nullptr, m_stock_panel->m_account_id);
     dlg.ShowModal();
@@ -262,7 +262,7 @@ void StocksListCtrl::OnNewStocks(wxCommandEvent& /*event*/)
     }
 }
 
-void StocksListCtrl::OnDeleteStocks(wxCommandEvent& /*event*/)
+void StocksListCtrl::OnDeleteStocks(wxCommandEvent& WXUNUSED(event))
 {
     if (m_selected_row == -1) return;
 
@@ -280,7 +280,7 @@ void StocksListCtrl::OnDeleteStocks(wxCommandEvent& /*event*/)
     }
 }
 
-void StocksListCtrl::OnMoveStocks(wxCommandEvent& /*event*/)
+void StocksListCtrl::OnMoveStocks(wxCommandEvent& WXUNUSED(event))
 {
     if (m_selected_row == -1) return;
     
@@ -322,7 +322,7 @@ void StocksListCtrl::OnEditStocks(wxCommandEvent& event)
     AddPendingEvent(evt);
 }
 
-void StocksListCtrl::OnOrganizeAttachments(wxCommandEvent& /*event*/)
+void StocksListCtrl::OnOrganizeAttachments(wxCommandEvent& WXUNUSED(event))
 {
     if (m_selected_row < 0) return;
 
@@ -335,7 +335,7 @@ void StocksListCtrl::OnOrganizeAttachments(wxCommandEvent& /*event*/)
     doRefreshItems(RefId);
 }
 
-void StocksListCtrl::OnStockWebPage(wxCommandEvent& /*event*/)
+void StocksListCtrl::OnStockWebPage(wxCommandEvent& WXUNUSED(event))
 {
     if (m_selected_row < 0) return;
     const wxString stockSymbol = m_stocks[m_selected_row].SYMBOL;
@@ -348,7 +348,7 @@ void StocksListCtrl::OnStockWebPage(wxCommandEvent& /*event*/)
     }
 }
 
-void StocksListCtrl::OnOpenAttachment(wxCommandEvent& /*event*/)
+void StocksListCtrl::OnOpenAttachment(wxCommandEvent& WXUNUSED(event))
 {
     if (m_selected_row < 0) return;
 
@@ -459,17 +459,16 @@ void StocksListCtrl::doRefreshItems(int trx_id)
 
     if (cnt>0)
     {
-        RefreshItems(0, cnt > 0 ? cnt - 1 : 0);
+        RefreshItems(0, cnt - 1);
+        if (selectedIndex >= 0)
+        {
+            SetItemState(selectedIndex, wxLIST_STATE_SELECTED, wxLIST_STATE_SELECTED);
+            SetItemState(selectedIndex, wxLIST_STATE_FOCUSED, wxLIST_STATE_FOCUSED);
+            EnsureVisible(selectedIndex);
+        }
     }
     else
         selectedIndex = -1;
-
-    if (selectedIndex >= 0 && cnt>0)
-    {
-        SetItemState(selectedIndex, wxLIST_STATE_SELECTED, wxLIST_STATE_SELECTED);
-        SetItemState(selectedIndex, wxLIST_STATE_FOCUSED, wxLIST_STATE_FOCUSED);
-        EnsureVisible(selectedIndex);
-    }
 }
 
 /*******************************************************/
@@ -490,8 +489,8 @@ mmStocksPanel::mmStocksPanel(int accountID
     , wxWindowID winid, const wxPoint& pos, const wxSize& size, long style
     , const wxString& name)
     : m_account_id(accountID)
-    , m_frame(frame)
     , m_currency()
+    , m_frame(frame)
 {
     Create(parent, winid, pos, size, style, name);
 }
@@ -763,7 +762,7 @@ void mmStocksPanel::updateHeader()
     double total = investment_balance.first; 
 
     const wxString& diffStr = Model_Currency::toCurrency(total > originalVal ? total - originalVal : originalVal - total, m_currency);
-    double diffPercents = diffPercents = (total > originalVal ? total / originalVal*100.0 - 100.0 : -(total / originalVal*100.0 - 100.0));
+    double diffPercents = (total > originalVal ? 1 : -1) * (total / originalVal*100.0 - 100.0);
     const wxString lbl = wxString::Format("%s     %s     %s     %s (%s %%)"
         , wxString::Format(_("Total Shares: %s"), Total_Shares())
         , wxString::Format(_("Total: %s"), Model_Currency::toCurrency(total + initVal, m_currency))

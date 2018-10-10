@@ -204,19 +204,19 @@ void OptionSettingsNet::Create()
     SetSizer(networkPanelSizer);
 }
 
-void OptionSettingsNet::OnProxyChanged(wxCommandEvent& event)
+void OptionSettingsNet::OnProxyChanged(wxCommandEvent& WXUNUSED(event))
 {
     m_proxy_port->Enable(m_proxy_address->GetValue() != "");
 }
 
 #ifdef MMEX_WEBSERVER
-void OptionSettingsNet::OnEnableWebserverChanged(wxCommandEvent& event)
+void OptionSettingsNet::OnEnableWebserverChanged(wxCommandEvent& WXUNUSED(event))
 {
     m_webserver_port->Enable(m_webserver_checkbox->GetValue());
 }
 #endif
 
-void OptionSettingsNet::OnWebAppTest(wxCommandEvent& /*event*/)
+void OptionSettingsNet::OnWebAppTest(wxCommandEvent& WXUNUSED(event))
 {
     OptionSettingsNet::SaveSettings();
     if (mmWebApp::WebApp_CheckEnabled())

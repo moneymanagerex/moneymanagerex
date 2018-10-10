@@ -21,17 +21,7 @@
 #ifndef WEB_SERVER_H_
 #define WEB_SERVER_H_
 
-#include <wx/thread.h>
-
-class WebServerThread : public wxThread
-{
-public:
-    WebServerThread();
-    ~WebServerThread();
-
-protected:
-    virtual ExitCode Entry();
-};
+class WebServerThread;
 
 class Mongoose_Service
 {

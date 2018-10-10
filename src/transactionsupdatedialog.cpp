@@ -48,7 +48,8 @@ transactionsUpdateDialog::~transactionsUpdateDialog()
 transactionsUpdateDialog::transactionsUpdateDialog(wxWindow* parent
     , int account_id
     , std::vector<int>& transaction_id)
-    : m_transaction_id(transaction_id)
+    : m_payee_checkbox(nullptr)
+    , m_payee(nullptr)
     , m_date_checkbox(nullptr)
     , m_dpc(nullptr)
     , m_status_checkbox(nullptr)
@@ -62,8 +63,7 @@ transactionsUpdateDialog::transactionsUpdateDialog(wxWindow* parent
     , m_notes_checkbox(nullptr)
     , m_append_checkbox(nullptr)
     , m_notes_ctrl(nullptr)
-    , m_payee(nullptr)
-    , m_payee_checkbox(nullptr)
+    , m_transaction_id(transaction_id)
 {
     Model_Account::Data* acc = Model_Account::instance().get(account_id);
     m_currency = acc ? Model_Account::currency(acc) : Model_Currency::GetBaseCurrency();
@@ -219,7 +219,7 @@ void transactionsUpdateDialog::CreateControls()
     button_panel_sizer->Add(button_cancel, g_flagsH);
 }
 
-void transactionsUpdateDialog::OnOk(wxCommandEvent& /*event*/)
+void transactionsUpdateDialog::OnOk(wxCommandEvent& WXUNUSED(event))
 {
     double amount = 0;
     if (m_amount_checkbox->IsChecked() && !m_amount_ctrl->checkValue(amount))
@@ -379,7 +379,7 @@ void transactionsUpdateDialog::onFocusChange(wxChildFocusEvent& event)
     event.Skip();
 }
 
-void transactionsUpdateDialog::OnCategChange(wxCommandEvent& /*event*/)
+void transactionsUpdateDialog::OnCategChange(wxCommandEvent& WXUNUSED(event))
 {
     mmCategDialog dlg(this, -1, -1, false);
     if (dlg.ShowModal() == wxID_OK)

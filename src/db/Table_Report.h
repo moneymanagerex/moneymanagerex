@@ -7,7 +7,7 @@
  * @author    Guan Lisheng (guanlisheng@gmail.com)
  * @author    Stefano Giorgio (stef145g)
  * @author    Tomasz Słodkowicz
- * @date      2018-05-16 01:30:37.316867
+ * @date      2018-10-07 02:45:31.001407
  */
 #pragma once
 
@@ -157,6 +157,7 @@ struct DB_Table_REPORT : public DB_Table
         , COL_LUACONTENT = 4
         , COL_TEMPLATECONTENT = 5
         , COL_DESCRIPTION = 6
+        , COL_UNKNOWN = -1
     };
 
     /** Returns the column name as a string*/
@@ -188,7 +189,7 @@ struct DB_Table_REPORT : public DB_Table
         else if ("TEMPLATECONTENT" == name) return COL_TEMPLATECONTENT;
         else if ("DESCRIPTION" == name) return COL_DESCRIPTION;
 
-        return COLUMN(-1);
+        return COL_UNKNOWN;
     }
     
     /** Data is a single record in the database table*/
@@ -260,11 +261,6 @@ struct DB_Table_REPORT : public DB_Table
             return *this;
         }
 
-        template<typename C>
-        bool match(const C &c) const
-        {
-            return false;
-        }
 
         bool match(const Self::REPORTID &in) const
         {

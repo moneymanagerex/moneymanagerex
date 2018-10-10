@@ -35,7 +35,7 @@ public:
     const virtual wxDateTime start_date() const;
     const virtual wxDateTime end_date() const;
     const virtual wxDateTime today() const;
-    const virtual bool is_with_date() const;
+    virtual bool is_with_date() const;
     const virtual wxString title() const;
     const virtual wxString local_title() const;
 };
@@ -128,7 +128,7 @@ class mmAllTime: public mmDateRange
 {
 public:
     mmAllTime();
-    const bool is_with_date() const;
+    bool is_with_date() const;
 };
 
 class mmSpecifiedRange : public mmDateRange

@@ -120,13 +120,14 @@ private:
     int prevType_;
     std::vector<wxString> frequentNotes_;
 
-    wxString payeeWithdrawalTip_;
-    wxString amountNormalTip_;
-    wxString amountTransferTip_;
+    const wxString payeeWithdrawalTip_ = _("Specify where the transaction is going to");
+    const wxString payeeDepositTip_ = _("Specify where the transaction is coming from");
+    const wxString payeeTransferTip_ = _("Specify which account the transfer is going to");
+    const wxString amountNormalTip_ = _("Specify the amount for this transaction");
+    const wxString amountTransferTip_ = _("Specify the amount to be transferred");
     wxSpinButton* spinNextOccDate_;
     wxSpinButton* spinTransDate_;
 
-    void setToolTipsForType(Model_Billsdeposits::TYPE transType, bool enableAdvanced = false);
     void resetPayeeString();
     void setTooltips();
     void setCategoryLabel();

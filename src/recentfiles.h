@@ -23,6 +23,9 @@
 
 class mmFileHistory: public wxFileHistory
 {
+using wxFileHistory::Load;
+using wxFileHistory::Save;
+
 public:
     mmFileHistory(size_t maxFiles=9, wxWindowID idBase=wxID_FILE1);
     ~mmFileHistory();

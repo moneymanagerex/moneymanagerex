@@ -162,7 +162,7 @@ void OptionSettingsGeneral::Create()
     generalPanelSizer->Add(m_use_sound, g_flagsV);
 }
 
-void OptionSettingsGeneral::OnCurrency(wxCommandEvent& /*event*/)
+void OptionSettingsGeneral::OnCurrency(wxCommandEvent& WXUNUSED(event))
 {
     int currencyID = Option::instance().BaseCurrency();
     mmMainCurrencyDialog(this, currencyID, false).ShowModal();
@@ -173,7 +173,7 @@ void OptionSettingsGeneral::OnCurrency(wxCommandEvent& /*event*/)
     m_currency_id = currencyID;
 }
 
-void OptionSettingsGeneral::OnDateFormatChanged(wxCommandEvent& /*event*/)
+void OptionSettingsGeneral::OnDateFormatChanged(wxCommandEvent& WXUNUSED(event))
 {
     wxStringClientData* data = (wxStringClientData*) (m_date_format_choice->GetClientObject(m_date_format_choice->GetSelection()));
     if (data)

@@ -82,13 +82,13 @@ mmFilterTransactionsDialog::~mmFilterTransactionsDialog()
 mmFilterTransactionsDialog::mmFilterTransactionsDialog(wxWindow* parent, int account_id)
     : categID_(-1)
     , subcategID_(-1)
+    , bSimilarCategoryStatus_(false)
     , payeeID_(-1)
     , refAccountID_(account_id)
     , refAccountStr_("")
-    , m_settings_id(-1)
     , m_min_amount(0)
     , m_max_amount(0)
-    , bSimilarCategoryStatus_(false)
+    , m_settings_id(-1)
 {
     int day = Model_Infotable::instance().GetIntInfo("FINANCIAL_YEAR_START_DAY", 1);
     int month = Model_Infotable::instance().GetIntInfo("FINANCIAL_YEAR_START_MONTH", 7);
@@ -459,7 +459,7 @@ void mmFilterTransactionsDialog::OnCheckboxClick(wxCommandEvent& event)
     event.Skip();
 }
 
-void mmFilterTransactionsDialog::OnButtonokClick(wxCommandEvent& /*event*/)
+void mmFilterTransactionsDialog::OnButtonokClick(wxCommandEvent& WXUNUSED(event))
 {
     if (accountCheckBox_->IsChecked())
     {
@@ -517,12 +517,12 @@ void mmFilterTransactionsDialog::OnButtonokClick(wxCommandEvent& /*event*/)
     EndModal(wxID_OK);
 }
 
-void mmFilterTransactionsDialog::OnButtoncancelClick(wxCommandEvent& /*event*/)
+void mmFilterTransactionsDialog::OnButtoncancelClick(wxCommandEvent& WXUNUSED(event))
 {
     EndModal(wxID_CANCEL);
 }
 
-void mmFilterTransactionsDialog::OnCategs(wxCommandEvent& /*event*/)
+void mmFilterTransactionsDialog::OnCategs(wxCommandEvent& WXUNUSED(event))
 {
     Model_Category::Data* category = Model_Category::instance().get(categID_);
     Model_Subcategory::Data* sub_category = Model_Subcategory::instance().get(subcategID_);
@@ -641,7 +641,7 @@ bool mmFilterTransactionsDialog::checkAmount(const FULL_DATA& tran)
     return ok || split_ok;
 }
 
-void mmFilterTransactionsDialog::OnButtonClearClick(wxCommandEvent& /*event*/)
+void mmFilterTransactionsDialog::OnButtonClearClick(wxCommandEvent& WXUNUSED(event))
 {
     clearSettings();
     wxCommandEvent evt(/*wxEVT_CHECKBOX*/ wxID_ANY, wxID_ANY);
@@ -1162,7 +1162,7 @@ void mmFilterTransactionsDialog::OnMoreFields(wxCommandEvent& WXUNUSED(event))
     this->Fit();
 }
 
-void mmFilterTransactionsDialog::OnDateRangeChanged(wxCommandEvent& /*event*/)
+void mmFilterTransactionsDialog::OnDateRangeChanged(wxCommandEvent& WXUNUSED(event))
 {
     bool user_date = false;
     int i = this->m_date_ranges->GetSelection();
@@ -1185,7 +1185,7 @@ void mmFilterTransactionsDialog::OnDateRangeChanged(wxCommandEvent& /*event*/)
     m_toDateControl->Enable(user_date);
 }
 
-void mmFilterTransactionsDialog::OnSaveSettings(wxCommandEvent& /*event*/)
+void mmFilterTransactionsDialog::OnSaveSettings(wxCommandEvent& WXUNUSED(event))
 {
     int i = m_setting_name->GetSelection();
     //m_custom_fields->SaveCustomValues(i);

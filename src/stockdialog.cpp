@@ -59,11 +59,7 @@ mmStockDialog::mmStockDialog(wxWindow* parent
     , int accountID
     , const wxString& name
     )
-    : m_stock(stock)
-    , m_gui_frame(gui_frame)
-    , m_edit(stock ? true: false)
-    , m_account_id(accountID)
-    , m_stock_name_ctrl(nullptr)
+    : m_stock_name_ctrl(nullptr)
     , m_stock_symbol_ctrl(nullptr)
     , m_purchase_date_ctrl(nullptr)
     , m_num_shares_ctrl(nullptr)
@@ -76,6 +72,10 @@ mmStockDialog::mmStockDialog(wxWindow* parent
     , m_commission_ctrl(nullptr)
     , m_bAttachments(nullptr)
     , m_price_listbox(nullptr)
+    , m_stock(stock)
+    , m_edit(stock ? true: false)
+    , m_account_id(accountID)
+    , m_gui_frame(gui_frame)
 {
     long style = wxCAPTION | wxRESIZE_BORDER | wxSYSTEM_MENU | wxCLOSE_BOX;
     Create(parent, wxID_ANY, "", wxDefaultPosition, wxSize(400, 300), style, name);
@@ -357,7 +357,7 @@ void mmStockDialog::CreateControls()
     buttonsOK_CANCEL_sizer->Add(itemButton30, g_flagsH);
 }
 
-void mmStockDialog::OnQuit(wxCloseEvent& /*event*/)
+void mmStockDialog::OnQuit(wxCloseEvent& WXUNUSED(event))
 {
     const wxString& RefType = Model_Attachment::reftype_desc(Model_Attachment::STOCK);
     if (!m_edit)
@@ -365,7 +365,7 @@ void mmStockDialog::OnQuit(wxCloseEvent& /*event*/)
     EndModal(wxID_CANCEL);
 }
 
-void mmStockDialog::OnCancel(wxCommandEvent& /*event*/)
+void mmStockDialog::OnCancel(wxCommandEvent& WXUNUSED(event))
 {
     const wxString& RefType = Model_Attachment::reftype_desc(Model_Attachment::STOCK);
     if (m_stock_id <= 0)
@@ -373,7 +373,7 @@ void mmStockDialog::OnCancel(wxCommandEvent& /*event*/)
     EndModal(wxID_CANCEL);
 }
 
-void mmStockDialog::OnAttachments(wxCommandEvent& /*event*/)
+void mmStockDialog::OnAttachments(wxCommandEvent& WXUNUSED(event))
 {
     const wxString RefType = Model_Attachment::reftype_desc(Model_Attachment::STOCK);
     int RefId = m_stock_id;
@@ -385,7 +385,7 @@ void mmStockDialog::OnAttachments(wxCommandEvent& /*event*/)
     dlg.ShowModal();
 }
 
-void mmStockDialog::OnStockPriceButton(wxCommandEvent& /*event*/)
+void mmStockDialog::OnStockPriceButton(wxCommandEvent& WXUNUSED(event))
 {
     const wxString stockSymbol = m_stock_symbol_ctrl->GetValue().Trim();
 
@@ -397,7 +397,7 @@ void mmStockDialog::OnStockPriceButton(wxCommandEvent& /*event*/)
     }
 }
 
-void mmStockDialog::OnSave(wxCommandEvent& /*event*/)
+void mmStockDialog::OnSave(wxCommandEvent& WXUNUSED(event))
 {
     if (m_price_listbox->GetItemCount())
     {
@@ -528,7 +528,7 @@ void mmStockDialog::CreateShareAccount(Model_Account::Data* stock_account)
     ShareTransactionDialog share_dialog(this, m_stock);
     share_dialog.ShowModal();
     m_gui_frame->RefreshNavigationTree();
-	EndModal(wxID_OK);
+    EndModal(wxID_OK);
 }
 
 void mmStockDialog::OnListItemSelected(wxListEvent& event)
@@ -545,7 +545,7 @@ void mmStockDialog::OnListItemSelected(wxListEvent& event)
     }
 }
 
-void mmStockDialog::OnHistoryImportButton(wxCommandEvent& /*event*/)
+void mmStockDialog::OnHistoryImportButton(wxCommandEvent& WXUNUSED(event))
 {
     if (m_stock->SYMBOL.IsEmpty())
         return;
@@ -666,64 +666,64 @@ void mmStockDialog::OnHistoryImportButton(wxCommandEvent& /*event*/)
     }
 }
 
-void mmStockDialog::OnHistoryDownloadButton(wxCommandEvent& /*event*/)
+void mmStockDialog::OnHistoryDownloadButton(wxCommandEvent& WXUNUSED(event))
 {
 
     if (m_stock->SYMBOL.IsEmpty())
         return;
 
-	/*"ValidRanges":["1d","5d","1mo","3mo","6mo","1y","2y","5y","10y","ytd","max"]*/
-	enum { DAY5, MON, MON3, MON6, YEAR, YEAR2, YEAR5, YEAR10, YTD, MAX };
-	const wxString ranges[] = { "5d","1mo","3mo","6mo","1y","2y","5y","10y","ytd","max" };
-	const std::vector<std::pair<int, wxString> > RANGE_PAIRS =
-	{
-		{ DAY5, _("5 Days") }
-		,{ MON, _("1 Month") }
-		,{ MON3, _("3 Months") }
-		,{ MON6, _("6 Months") }
-		,{ YEAR, _("1 Year") }
-		,{ YEAR2, _("2 Years") }
-		,{ YEAR5, _("5 Years") }
-		,{ YEAR10, _("10 Years") }
-		,{ YTD, _("Current Year to Date") }
-		,{ MAX, _("Max") }
-	};
+    /*"ValidRanges":["1d","5d","1mo","3mo","6mo","1y","2y","5y","10y","ytd","max"]*/
+    enum { DAY5, MON, MON3, MON6, YEAR, YEAR2, YEAR5, YEAR10, YTD, MAX };
+    const wxString ranges[] = { "5d","1mo","3mo","6mo","1y","2y","5y","10y","ytd","max" };
+    const std::vector<std::pair<int, wxString> > RANGE_PAIRS =
+    {
+        { DAY5, _("5 Days") }
+        ,{ MON, _("1 Month") }
+        ,{ MON3, _("3 Months") }
+        ,{ MON6, _("6 Months") }
+        ,{ YEAR, _("1 Year") }
+        ,{ YEAR2, _("2 Years") }
+        ,{ YEAR5, _("5 Years") }
+        ,{ YEAR10, _("10 Years") }
+        ,{ YTD, _("Current Year to Date") }
+        ,{ MAX, _("Max") }
+    };
 
     wxArrayString items;
-	for (const auto& entry : RANGE_PAIRS) { items.Add(entry.second); }
+    for (const auto& entry : RANGE_PAIRS) { items.Add(entry.second); }
 
     int range_menu_item_no = wxGetSingleChoiceIndex(_("Specify type frequency of stock history")
         , _("Stock History Update"), items);
 
-	if (range_menu_item_no < 0) return;
-	const wxString range = ranges[range_menu_item_no];
+    if (range_menu_item_no < 0) return;
+    const wxString range = ranges[range_menu_item_no];
 
-	wxString interval = "1d";
-	if (range != "5d")
-	{
-		/* Valid intervals : [1m, 2m, 5m, 15m, 30m, 60m, 90m, 1h, 1d, 5d, 1wk, 1mo, 3mo] */
-		enum { IDAILY, IDAY5, IWEEK, IMON, IMON3 };
-		const wxString intervals[] = { "1d","5d","1wk","1mo","3mo" };
-		const std::vector<std::pair<int, wxString> > INTERVAL_PAIRS =
-		{
-			{ IDAILY, _("1 Day") }
-			,{ IDAY5, _("5 Days") }
-			,{ IWEEK, _("1 Week") }
-			,{ IMON, _("1 Month") }
-			,{ IMON3, _("3 Months") }
-		};
+    wxString interval = "1d";
+    if (range != "5d")
+    {
+        /* Valid intervals : [1m, 2m, 5m, 15m, 30m, 60m, 90m, 1h, 1d, 5d, 1wk, 1mo, 3mo] */
+        enum { IDAILY, IDAY5, IWEEK, IMON, IMON3 };
+        const wxString intervals[] = { "1d","5d","1wk","1mo","3mo" };
+        const std::vector<std::pair<int, wxString> > INTERVAL_PAIRS =
+        {
+            { IDAILY, _("1 Day") }
+            ,{ IDAY5, _("5 Days") }
+            ,{ IWEEK, _("1 Week") }
+            ,{ IMON, _("1 Month") }
+            ,{ IMON3, _("3 Months") }
+        };
 
-		items.clear();
-		for (const auto& entry : INTERVAL_PAIRS) { items.Add(entry.second); }
+        items.clear();
+        for (const auto& entry : INTERVAL_PAIRS) { items.Add(entry.second); }
 
-		int interval_menu_item_no = wxGetSingleChoiceIndex(_("Specify interval of stock history")
-			, _("Stock History Update"), items);
+        int interval_menu_item_no = wxGetSingleChoiceIndex(_("Specify interval of stock history")
+            , _("Stock History Update"), items);
 
-		if (interval_menu_item_no < 0) return;
-		interval = intervals[interval_menu_item_no];
-	}
-	const wxString URL = wxString::Format(mmex::weblink::YahooQuotesHistory
-		, m_stock->SYMBOL, range, interval);
+        if (interval_menu_item_no < 0) return;
+        interval = intervals[interval_menu_item_no];
+    }
+    const wxString URL = wxString::Format(mmex::weblink::YahooQuotesHistory
+        , m_stock->SYMBOL, range, interval);
 
     wxString json_data, sOutput;
     auto err_code = http_get_data(URL, json_data);
@@ -783,46 +783,45 @@ void mmStockDialog::OnHistoryDownloadButton(wxCommandEvent& /*event*/)
     if (timestamp.Size() != quotes_closed.Size())
         return;
 
-	std::map<time_t, float> history;
-	for (rapidjson::SizeType i = 0; i < timestamp.Size(); i++)
-	{
+    std::map<time_t, float> history;
+    for (rapidjson::SizeType i = 0; i < timestamp.Size(); i++)
+    {
         if (!timestamp[i].IsInt()) continue;
-		time_t time = timestamp[i].GetInt();
+        time_t time = timestamp[i].GetInt();
         if (!quotes_closed[i].IsFloat()) continue;
         float rate = quotes_closed[i].GetFloat() / k;
-		history[time] = rate;
-	}
+        history[time] = rate;
+    }
 
-	const wxString today = wxDate::Today().FormatISODate();
+    const wxString today = wxDate::Today().FormatISODate();
     Model_StockHistory::instance().Savepoint();
     for (const auto &entry: history)
     {
-		float dPrice = entry.second;
-		const wxString date_str = wxDateTime((time_t)entry.first).FormatISODate();
-		if (date_str == today) continue;
+        float dPrice = entry.second;
+        const wxString date_str = wxDateTime((time_t)entry.first).FormatISODate();
+        if (date_str == today) continue;
 
-		if (Model_StockHistory::instance()
-			    .find(
-			        Model_StockHistory::SYMBOL(m_stock->SYMBOL)
-			        , Model_StockHistory::DB_Table_STOCKHISTORY::DATE(date_str)
-		        ).size() == 0
-			    && dPrice > 0
-			)
-		{
-			Model_StockHistory::Data *data = Model_StockHistory::instance().create();
-			data->SYMBOL = m_stock->SYMBOL;
-			
-			data->DATE = date_str;
-			data->VALUE = (double)dPrice;
-			data->UPDTYPE = Model_StockHistory::ONLINE;
-			Model_StockHistory::instance().save(data);
-		}
+        if (Model_StockHistory::instance()
+                .find(
+                    Model_StockHistory::SYMBOL(m_stock->SYMBOL)
+                    , Model_StockHistory::DB_Table_STOCKHISTORY::DATE(date_str)
+                ).size() == 0
+                && dPrice > 0
+            )
+        {
+            Model_StockHistory::Data *ndata = Model_StockHistory::instance().create();
+            ndata->SYMBOL = m_stock->SYMBOL;
+            ndata->DATE = date_str;
+            ndata->VALUE = (double)dPrice;
+            ndata->UPDTYPE = Model_StockHistory::ONLINE;
+            Model_StockHistory::instance().save(ndata);
+        }
     }
     Model_StockHistory::instance().ReleaseSavepoint();
     ShowStockHistory();
 }
 
-void mmStockDialog::OnHistoryAddButton(wxCommandEvent& /*event*/)
+void mmStockDialog::OnHistoryAddButton(wxCommandEvent& WXUNUSED(event))
 {
     if (m_stock->SYMBOL.IsEmpty())
         return;
@@ -870,7 +869,7 @@ void mmStockDialog::OnHistoryAddButton(wxCommandEvent& /*event*/)
     }
 }
 
-void mmStockDialog::OnHistoryDeleteButton(wxCommandEvent& /*event*/)
+void mmStockDialog::OnHistoryDeleteButton(wxCommandEvent& WXUNUSED(event))
 {
     if (m_price_listbox->GetSelectedItemCount() <= 0)
         return;

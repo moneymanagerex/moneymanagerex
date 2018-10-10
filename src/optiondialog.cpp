@@ -169,13 +169,13 @@ void mmOptionsDialog::SaveNewSystemSettings()
     Model_Infotable::instance().ReleaseSavepoint();
 }
 
-void mmOptionsDialog::OnOk(wxCommandEvent& /*event*/)
+void mmOptionsDialog::OnOk(wxCommandEvent& WXUNUSED(event))
 {
     this->SaveNewSystemSettings();
     EndModal(wxID_OK);
 }
 
-void mmOptionsDialog::OnApply(wxCommandEvent& /*event*/)
+void mmOptionsDialog::OnApply(wxCommandEvent& WXUNUSED(event))
 {
     Model_Infotable::instance().Savepoint();
     Model_Setting::instance().Savepoint();

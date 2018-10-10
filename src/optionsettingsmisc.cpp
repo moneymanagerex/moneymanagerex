@@ -185,7 +185,7 @@ void OptionSettingsMisc::Create()
     OptionSettingsMisc::OnBackupChanged(evt);
 }
 
-void OptionSettingsMisc::OnBackupChanged(wxCommandEvent& event)
+void OptionSettingsMisc::OnBackupChanged(wxCommandEvent& WXUNUSED(event))
 {
     wxCheckBox* ChkBackup = (wxCheckBox*)FindWindow(ID_DIALOG_OPTIONS_CHK_BACKUP);
     wxCheckBox* ChkBackupUpdate = (wxCheckBox*)FindWindow(ID_DIALOG_OPTIONS_CHK_BACKUP_UPDATE);

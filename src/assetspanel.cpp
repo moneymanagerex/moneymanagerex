@@ -162,7 +162,7 @@ void mmAssetsListCtrl::OnListKeyDown(wxListEvent& event)
     }
 }
 
-void mmAssetsListCtrl::OnNewAsset(wxCommandEvent& /*event*/)
+void mmAssetsListCtrl::OnNewAsset(wxCommandEvent& WXUNUSED(event))
 {
     mmAssetDialog dlg(this, m_panel->m_frame, (Model_Asset::Data*)nullptr);
     if (dlg.ShowModal() == wxID_OK)
@@ -182,20 +182,22 @@ void mmAssetsListCtrl::doRefreshItems(int trx_id)
         selectedIndex = m_asc ? cnt - 1 : 0;
 
     if (cnt>0)
-        RefreshItems(0, cnt > 0 ? --cnt : 0);
+    {
+        RefreshItems(0, cnt - 1);
+        if (selectedIndex >= 0)
+        {
+            SetItemState(selectedIndex, wxLIST_STATE_SELECTED, wxLIST_STATE_SELECTED);
+            SetItemState(selectedIndex, wxLIST_STATE_FOCUSED, wxLIST_STATE_FOCUSED);
+            EnsureVisible(selectedIndex);
+        }
+    }
     else
         selectedIndex = -1;
 
-    if (selectedIndex >= 0 && cnt>0)
-    {
-        SetItemState(selectedIndex, wxLIST_STATE_SELECTED, wxLIST_STATE_SELECTED);
-        SetItemState(selectedIndex, wxLIST_STATE_FOCUSED, wxLIST_STATE_FOCUSED);
-        EnsureVisible(selectedIndex);
-    }
     m_selected_row = selectedIndex;
 }
 
-void mmAssetsListCtrl::OnDeleteAsset(wxCommandEvent& /*event*/)
+void mmAssetsListCtrl::OnDeleteAsset(wxCommandEvent& WXUNUSED(event))
 {
     if (m_selected_row < 0)    return;
 
@@ -217,7 +219,7 @@ void mmAssetsListCtrl::OnDeleteAsset(wxCommandEvent& /*event*/)
     }
 }
 
-void mmAssetsListCtrl::OnEditAsset(wxCommandEvent& /*event*/)
+void mmAssetsListCtrl::OnEditAsset(wxCommandEvent& WXUNUSED(event))
 {
     if (m_selected_row < 0)     return;
 
@@ -225,7 +227,7 @@ void mmAssetsListCtrl::OnEditAsset(wxCommandEvent& /*event*/)
     AddPendingEvent(evt);
 }
 
-void mmAssetsListCtrl::OnDuplicateAsset(wxCommandEvent& /*event*/)
+void mmAssetsListCtrl::OnDuplicateAsset(wxCommandEvent& WXUNUSED(event))
 {
     if (m_selected_row < 0)     return;
 
@@ -260,7 +262,7 @@ void mmAssetsListCtrl::OnGotoAssetAccount(wxCommandEvent& WXUNUSED(event))
     m_panel->GotoAssetAccount(m_selected_row);
 }
 
-void mmAssetsListCtrl::OnOrganizeAttachments(wxCommandEvent& /*event*/)
+void mmAssetsListCtrl::OnOrganizeAttachments(wxCommandEvent& WXUNUSED(event))
 {
     if (m_selected_row < 0) return;
 
@@ -273,7 +275,7 @@ void mmAssetsListCtrl::OnOrganizeAttachments(wxCommandEvent& /*event*/)
     doRefreshItems(RefId);
 }
 
-void mmAssetsListCtrl::OnOpenAttachment(wxCommandEvent& /*event*/)
+void mmAssetsListCtrl::OnOpenAttachment(wxCommandEvent& WXUNUSED(event))
 {
     if (m_selected_row < 0) return;
 
@@ -392,11 +394,11 @@ END_EVENT_TABLE()
 /*******************************************************/
 
 mmAssetsPanel::mmAssetsPanel(mmGUIFrame* frame, wxWindow *parent, wxWindowID winid, const wxString& name)
-    : m_filter_type(Model_Asset::TYPE(-1))
-    , m_frame(frame)
+    : m_frame(frame)
+    , m_filter_type(Model_Asset::TYPE(-1))
+    , m_header_text(nullptr)
     , m_listCtrlAssets(nullptr)
     , m_itemStaticTextMainFilter(nullptr)
-    , m_header_text(nullptr)
     , m_tips()
 {
     Create(parent, winid, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL, name);

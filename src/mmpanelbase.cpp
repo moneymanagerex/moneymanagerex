@@ -39,8 +39,8 @@ mmListCtrl::mmListCtrl(wxWindow *parent, wxWindowID winid)
     , m_selected_row(-1)
     , m_selected_col(0)
     , m_asc(true)
-    , m_ColumnHeaderNbr(-1)
     , m_default_sort_column(-1)
+    , m_ColumnHeaderNbr(-1)
 {
 }
 
@@ -111,7 +111,7 @@ void mmListCtrl::OnItemResize(wxListEvent& event)
         Model_Setting::instance().Set(wxString::Format(m_col_width, i), width);
 }
 
-void mmListCtrl::OnColClick(wxListEvent& event)
+void mmListCtrl::OnColClick(wxListEvent& WXUNUSED(event))
 {
     // Default to do nothing and implement in derived class
 }
@@ -159,7 +159,7 @@ void mmListCtrl::PopupSelected(wxCommandEvent& event)
     }
 }
 
-void mmListCtrl::OnHeaderHide(wxCommandEvent& event)
+void mmListCtrl::OnHeaderHide(wxCommandEvent& WXUNUSED(event))
 {
     if (m_ColumnHeaderNbr >= 0 && !m_col_width.IsEmpty())
     {
@@ -169,14 +169,14 @@ void mmListCtrl::OnHeaderHide(wxCommandEvent& event)
     }
 }
 
-void mmListCtrl::OnHeaderSort(wxCommandEvent& event)
+void mmListCtrl::OnHeaderSort(wxCommandEvent& WXUNUSED(event))
 {
     wxListEvent e;
     e.SetId(MENU_HEADER_SORT);
     OnColClick(e);
 }
 
-void mmListCtrl::OnHeaderReset(wxCommandEvent& event)
+void mmListCtrl::OnHeaderReset(wxCommandEvent& WXUNUSED(event))
 {
     wxString parameter_name;
     for (int i = 0; i < (int)m_columns.size(); i++)
@@ -264,12 +264,5 @@ void mmPanelBase::PrintPage()
 
 void mmPanelBase::windowsFreezeThaw()
 {
-#ifdef __WXGTK__
-    return;
-#endif
-
-    if (this->IsFrozen())
-        this->Thaw();
-    else
-        this->Freeze();
+    ::windowsFreezeThaw(this);
 }

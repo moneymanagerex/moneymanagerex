@@ -55,8 +55,6 @@ private:
     int m_field_id;
     mmCustomFieldListDialog() : m_field_id(-1) {}
     std::map<int, wxString> ColName_;
-    wxButton* btnCancel_;
-    wxButton* button_OK_;
 
     void Create(wxWindow* parent);
     void CreateControls();
@@ -66,7 +64,7 @@ private:
     void EditField();
     void DeleteField();
     void UpdateField();
-    void OnClose(wxCommandEvent& /*event*/);
+    void OnClose(wxCommandEvent& WXUNUSED(event));
 
     void OnListItemSelected(wxDataViewEvent& event);
     void OnMenuSelected(wxCommandEvent& event);

@@ -91,7 +91,7 @@ bool mmTextCtrl::checkValue(double &amount, bool positive_value)
     return true;
 }
 
-const wxChar mmTextCtrl::GetDecimalPoint()
+wxChar mmTextCtrl::GetDecimalPoint()
 {
     return m_currency->DECIMAL_POINT[0];
 }

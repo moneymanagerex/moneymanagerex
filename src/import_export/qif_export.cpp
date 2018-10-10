@@ -222,12 +222,12 @@ void mmQIFExportDialog::CreateControls()
     buttons_sizer->Realize();
 }
 
-void mmQIFExportDialog::OnButtonClear(wxCommandEvent& /*event*/)
+void mmQIFExportDialog::OnButtonClear(wxCommandEvent& WXUNUSED(event))
 {
     log_field_->Clear();
 }
 
-void mmQIFExportDialog::OnAccountsButton(wxCommandEvent& /*event*/)
+void mmQIFExportDialog::OnAccountsButton(wxCommandEvent& WXUNUSED(event))
 {
     selected_accounts_id_.clear();
     bSelectedAccounts_->UnsetToolTip();
@@ -272,7 +272,7 @@ void mmQIFExportDialog::OnAccountsButton(wxCommandEvent& /*event*/)
 
 }
 
-void mmQIFExportDialog::OnFileSearch(wxCommandEvent& /*event*/)
+void mmQIFExportDialog::OnFileSearch(wxCommandEvent& WXUNUSED(event))
 {
     wxString fileName = m_text_ctrl_->GetValue();
 
@@ -289,7 +289,7 @@ void mmQIFExportDialog::OnFileSearch(wxCommandEvent& /*event*/)
     ok->Enable();
 }
 
-void mmQIFExportDialog::OnOk(wxCommandEvent& /*event*/)
+void mmQIFExportDialog::OnOk(wxCommandEvent& WXUNUSED(event))
 {
     if (toFileCheckBox_->GetValue() && m_text_ctrl_->GetValue().IsEmpty())
         return mmErrorDialogs::InvalidFile(m_text_ctrl_);
@@ -311,16 +311,16 @@ void mmQIFExportDialog::OnOk(wxCommandEvent& /*event*/)
         wxMessageBox(sErrorMsg, _("QIF Export"), wxOK|wxICON_WARNING);
 }
 
-void mmQIFExportDialog::OnCancel(wxCommandEvent& /*event*/)
+void mmQIFExportDialog::OnCancel(wxCommandEvent& WXUNUSED(event))
 {
     EndModal(wxID_CANCEL);
 }
 
-void mmQIFExportDialog::OnQuit(wxCloseEvent& /*event*/)
+void mmQIFExportDialog::OnQuit(wxCloseEvent& WXUNUSED(event))
 {
         EndModal(wxID_CANCEL);
 }
-void mmQIFExportDialog::OnCheckboxClick( wxCommandEvent& /*event*/ )
+void mmQIFExportDialog::OnCheckboxClick( wxCommandEvent& WXUNUSED(event) )
 {
     bSelectedAccounts_->Enable(accountsCheckBox_->GetValue());
     if (dateFromCheckBox_->GetValue()) dateFromCheckBox_->SetValue(accountsCheckBox_->GetValue());

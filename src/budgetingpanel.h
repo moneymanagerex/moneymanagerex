@@ -25,7 +25,6 @@ class wxListCtrl;
 class wxListEvent;
 class wxStaticText;
 class mmBudgetingPanel;
-class mmGUIFrame;
 
 /* Custom ListCtrl class that implements virtual LC style */
 class budgetingListCtrl : public mmListCtrl
@@ -57,7 +56,7 @@ class mmBudgetingPanel : public mmPanelBase
 
 public:
     mmBudgetingPanel(int budgetYearID
-        , wxWindow *parent, mmGUIFrame *frame
+        , wxWindow *parent
         , wxWindowID winid = wxID_ANY
         , const wxPoint& pos = wxDefaultPosition
         , const wxSize& size = wxDefaultSize
@@ -93,7 +92,6 @@ public:
     wxString BuildPage() const { return listCtrlBudget_->BuildPage(GetPanelTitle()); }
 
 private:
-    mmGUIFrame* m_frame;
     std::vector<std::pair<int, int> > budget_;
     std::map<int, std::pair<double, double> > budgetTotals_;
     std::map<int, std::map<int, Model_Budget::PERIOD_ENUM> > budgetPeriod_;

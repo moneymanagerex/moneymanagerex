@@ -7,7 +7,7 @@
  * @author    Guan Lisheng (guanlisheng@gmail.com)
  * @author    Stefano Giorgio (stef145g)
  * @author    Tomasz Słodkowicz
- * @date      2018-05-16 01:30:37.316867
+ * @date      2018-10-07 02:45:31.001407
  */
 #pragma once
 
@@ -129,6 +129,7 @@ struct DB_Table_SETTING_V1 : public DB_Table
         COL_SETTINGID = 0
         , COL_SETTINGNAME = 1
         , COL_SETTINGVALUE = 2
+        , COL_UNKNOWN = -1
     };
 
     /** Returns the column name as a string*/
@@ -152,7 +153,7 @@ struct DB_Table_SETTING_V1 : public DB_Table
         else if ("SETTINGNAME" == name) return COL_SETTINGNAME;
         else if ("SETTINGVALUE" == name) return COL_SETTINGVALUE;
 
-        return COLUMN(-1);
+        return COL_UNKNOWN;
     }
     
     /** Data is a single record in the database table*/
@@ -212,11 +213,6 @@ struct DB_Table_SETTING_V1 : public DB_Table
             return *this;
         }
 
-        template<typename C>
-        bool match(const C &c) const
-        {
-            return false;
-        }
 
         bool match(const Self::SETTINGID &in) const
         {

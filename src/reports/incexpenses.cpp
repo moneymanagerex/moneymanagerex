@@ -84,13 +84,14 @@ wxString mmReportIncomeExpenses::getHTMLText()
         if (Model_Checking::foreignTransactionAsTransfer(transaction))
             continue;
 
-        // We got this far, get the currency conversion rate for this account
         Model_Account::Data *account = Model_Account::instance().get(transaction.ACCOUNTID);
         if (accountArray_)
         {
-            if (wxNOT_FOUND == accountArray_->Index(account->ACCOUNTNAME)) continue;
+            if (!account || wxNOT_FOUND == accountArray_->Index(account->ACCOUNTNAME))
+                continue;
         }
         double convRate = 1;
+        // We got this far, get the currency conversion rate for this account
         if (account) convRate = Model_CurrencyHistory::getDayRate(Model_Account::currency(account)->CURRENCYID,transaction.TRANSDATE);
 
         if (Model_Checking::type(transaction) == Model_Checking::DEPOSIT)
@@ -196,13 +197,14 @@ wxString mmReportIncomeExpensesMonthly::getHTMLText()
         , Model_Checking::TRANSDATE(m_date_range->end_date(), LESS_OR_EQUAL)
         , Model_Checking::STATUS(Model_Checking::VOID_, NOT_EQUAL)))
     {
-        // We got this far, get the currency conversion rate for this account
         Model_Account::Data *account = Model_Account::instance().get(transaction.ACCOUNTID);
         if (accountArray_)
         {
-            if (wxNOT_FOUND == accountArray_->Index(account->ACCOUNTNAME)) continue;
+            if (!account || wxNOT_FOUND == accountArray_->Index(account->ACCOUNTNAME))
+                continue;
         }
         double convRate = 1;
+        // We got this far, get the currency conversion rate for this account
         if (account) convRate = Model_CurrencyHistory::getDayRate(Model_Account::currency(account)->CURRENCYID, transaction.TRANSDATE);
 
         int idx = (Model_Checking::TRANSDATE(transaction).GetYear() * 100

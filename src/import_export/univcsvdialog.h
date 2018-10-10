@@ -208,8 +208,7 @@ private:
     void OnFileNameChanged(wxCommandEvent& event);
     void OnDateFormatChanged(wxCommandEvent& event);
     void changeFocus(wxChildFocusEvent& event);
-    void OnSpinCtrlIgnoreFirstRows(wxSpinEvent& event);
-    void OnSpinCtrlIgnoreLastRows(wxSpinEvent& event);
+    void OnSpinCtrlIgnoreRows(wxSpinEvent& event);
 
     void OnLoad();
     void UpdateListItemBackground();
@@ -217,9 +216,7 @@ private:
     void initDelimiter();
     void initDateMask();
 
-    wxBitmap GetBitmapResource(const wxString& name);
-    wxIcon GetIconResource(const wxString& name);
-    const bool ShowToolTips();
+    bool ShowToolTips();
     void OnSettingsSelected(wxCommandEvent& event);
     wxString GetStoredSettings(int id);
     void SetSettings(const wxString &data);

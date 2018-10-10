@@ -102,7 +102,6 @@ private:
     mmTextCtrl* m_textAmount;
     mmTextCtrl* toTextAmount_;
     wxTextCtrl* textNotes_;
-    wxBitmapButton* m_bAuto;
     wxButton* bCategory_;
     wxButton* bAttachments_;
     wxComboBox* cbAccount_;
@@ -118,7 +117,6 @@ private:
     wxStaticText* account_label_;
     wxStaticText* payee_label_;
 
-    int m_type;
     bool m_transfer;
     bool m_new_trx;
     bool m_duplicate;

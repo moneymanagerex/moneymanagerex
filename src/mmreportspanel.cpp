@@ -116,9 +116,9 @@ mmReportsPanel::mmReportsPanel(
     wxWindowID winid, const wxPoint& pos,
     const wxSize& size, long style,
     const wxString& name )
-    : rb_(rb)
-    , m_date_ranges(nullptr)
+    : m_date_ranges(nullptr)
     , m_cust_date(nullptr)
+    , rb_(rb)
     , cleanup_(cleanupReport)
     , cleanupmem_(false)
     , m_frame(frame)
@@ -176,91 +176,92 @@ bool mmReportsPanel::Create(wxWindow *parent, wxWindowID winid
     GetSizer()->Fit(this);
     GetSizer()->SetSizeHints(this);
 
-    wxString error;
-    if (saveReportText(error))
-        browser_->LoadURL(getURL(mmex::getReportFullFileName(rb_->file_name())));
-    else
-        browser_->SetPage(error, "");
-
     if (rb_)
+    {
+        wxString error;
+        if (saveReportText(error))
+            browser_->LoadURL(getURL(mmex::getReportFullFileName(rb_->file_name())));
+        else
+            browser_->SetPage(error, "");
+
         this->SetLabel(rb_->title());
+    }
     Model_Usage::instance().pageview(this, (wxDateTime::UNow() - start).GetMilliseconds().ToLong());
 
-    return TRUE;
+    return true;
 }
 
 bool mmReportsPanel::saveReportText(wxString& error, bool initial)
 {
     error = "";
-    if (rb_)
+    if (!rb_) return false;
+
+    rb_->initial_report(initial);
+    if (this->m_date_ranges)
     {
-        rb_->initial_report(initial);
-        if (this->m_date_ranges)
+        int rp = rb_->report_parameters();
+        if (rp & rb_->RepParams::DATE_RANGE)
         {
-            int rp = rb_->report_parameters();
-            if (rp & rb_->RepParams::DATE_RANGE)
+            mmDateRange* date = static_cast<mmDateRange*>
+                (this->m_date_ranges->GetClientData(this->m_date_ranges->GetSelection()));
+            if (date == nullptr)
             {
-                mmDateRange* date = static_cast<mmDateRange*>
-                    (this->m_date_ranges->GetClientData(this->m_date_ranges->GetSelection()));
-                if (date == nullptr)
+                if (m_cust_date == nullptr)
                 {
-                    if (m_cust_date == nullptr)
+                    wxDateTime begin_date;
+                    wxDateTime end_date;
+                    rb_->getDates(begin_date, end_date);
+                    if (begin_date.IsValid() && end_date.IsValid())
                     {
-                        wxDateTime begin_date;
-                        wxDateTime end_date;
-                        rb_->getDates(begin_date, end_date);
-                        if (begin_date.IsValid() && end_date.IsValid())
-                        {
-                            m_cust_date = new mmSpecifiedRange(begin_date, end_date);
-                            date = m_cust_date;
-                            this->m_start_date->SetValue(begin_date);
-                            this->m_end_date->SetValue(end_date);
-                            m_start_date->Enable(true);
-                            m_end_date->Enable(true);
-                        }
-                        else
-                        {
-                            // Reinitialize to first date selection
-                            this->m_date_ranges->SetSelection(0);
-                            date = *m_all_date_ranges.begin();
-                            this->m_start_date->SetValue(date->start_date());
-                            this->m_end_date->SetValue(date->end_date());
-                            m_start_date->Enable(false);
-                            m_end_date->Enable(false);
-                        }
+                        m_cust_date = new mmSpecifiedRange(begin_date, end_date);
+                        date = m_cust_date;
+                        this->m_start_date->SetValue(begin_date);
+                        this->m_end_date->SetValue(end_date);
+                        m_start_date->Enable(true);
+                        m_end_date->Enable(true);
                     }
                     else
-                        date = m_cust_date;
+                    {
+                        // Reinitialize to first date selection
+                        this->m_date_ranges->SetSelection(0);
+                        date = *m_all_date_ranges.begin();
+                        this->m_start_date->SetValue(date->start_date());
+                        this->m_end_date->SetValue(date->end_date());
+                        m_start_date->Enable(false);
+                        m_end_date->Enable(false);
+                    }
                 }
-                rb_->date_range(date, this->m_date_ranges->GetSelection());
+                else
+                    date = m_cust_date;
             }
-            else if (rp & (rb_->RepParams::BUDGET_DATES | rb_->RepParams::ONLY_YEARS))
-                rb_->date_range(nullptr
-                    , *reinterpret_cast<int*>(this->m_date_ranges->GetClientData(this->m_date_ranges->GetSelection())));
+            rb_->date_range(date, this->m_date_ranges->GetSelection());
         }
-
-        StringBuffer json_buffer;
-        Writer<StringBuffer> json_writer(json_buffer);
-
-        json_writer.StartObject();
-        json_writer.Key("module");
-        json_writer.String("Report");
-        json_writer.Key("name");
-        json_writer.String(rb_->title().c_str());
-        json_writer.Key("start");
-        json_writer.String(wxDateTime::Now().FormatISOCombined().c_str());
-
-        const auto file_name = rb_->file_name();
-        wxLogDebug("Report File Name: %s", file_name);
-        if (!Model_Report::outputReportFile(rb_->getHTMLText(), file_name))
-            error = _("Error");
-
-        json_writer.Key("end");
-        json_writer.String(wxDateTime::Now().FormatISOCombined().c_str());
-        json_writer.EndObject();
-
-        Model_Usage::instance().AppendToUsage(json_buffer.GetString());
+        else if (rp & (rb_->RepParams::BUDGET_DATES | rb_->RepParams::ONLY_YEARS))
+            rb_->date_range(nullptr
+                , *reinterpret_cast<int*>(this->m_date_ranges->GetClientData(this->m_date_ranges->GetSelection())));
     }
+
+    StringBuffer json_buffer;
+    Writer<StringBuffer> json_writer(json_buffer);
+
+    json_writer.StartObject();
+    json_writer.Key("module");
+    json_writer.String("Report");
+    json_writer.Key("name");
+    json_writer.String(rb_->title().c_str());
+    json_writer.Key("start");
+    json_writer.String(wxDateTime::Now().FormatISOCombined().c_str());
+
+    const auto file_name = rb_->file_name();
+    wxLogDebug("Report File Name: %s", file_name);
+    if (!Model_Report::outputReportFile(rb_->getHTMLText(), file_name))
+        error = _("Error");
+
+    json_writer.Key("end");
+    json_writer.String(wxDateTime::Now().FormatISOCombined().c_str());
+    json_writer.EndObject();
+
+    Model_Usage::instance().AppendToUsage(json_buffer.GetString());
 
     return error.empty();
 }
@@ -466,7 +467,7 @@ void mmReportsPanel::PrintPage()
     browser_->Print();
 }
 
-void mmReportsPanel::OnDateRangeChanged(wxCommandEvent& /*event*/)
+void mmReportsPanel::OnDateRangeChanged(wxCommandEvent& WXUNUSED(event))
 {
     if (rb_)
     {
@@ -501,7 +502,7 @@ void mmReportsPanel::OnDateRangeChanged(wxCommandEvent& /*event*/)
     }
 }
 
-void mmReportsPanel::OnAccountChanged(wxCommandEvent& /*event*/)
+void mmReportsPanel::OnAccountChanged(wxCommandEvent& WXUNUSED(event))
 {
     if (rb_)
     {
@@ -520,7 +521,7 @@ void mmReportsPanel::OnAccountChanged(wxCommandEvent& /*event*/)
     }
 }
 
-void mmReportsPanel::OnStartEndDateChanged(wxDateEvent& /*event*/)
+void mmReportsPanel::OnStartEndDateChanged(wxDateEvent& WXUNUSED(event))
 {
     if (rb_)
     {
@@ -557,7 +558,7 @@ void mmReportsPanel::OnNextReport(wxCommandEvent& event)
     }
 }
 
-void mmReportsPanel::OnChartChanged(wxCommandEvent& /*event*/)
+void mmReportsPanel::OnChartChanged(wxCommandEvent& WXUNUSED(event))
 {
     if (rb_)
     {

@@ -166,7 +166,7 @@ bool Model_Report::PrepareSQL(wxString& sql, std::map <wxString, wxString>& rep_
     if (sql.empty()) return false;
     if (sql.Last() != ';') sql += ';';
 
-    size_t pos = sql.Lower().Find("&begin_date");
+    int pos = sql.Lower().Find("&begin_date");
     size_t len = wxString("&begin_date").size();
 
     if (pos != wxNOT_FOUND)

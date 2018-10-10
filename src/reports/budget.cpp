@@ -81,7 +81,7 @@ wxString mmReportBudget::AdjustYearValues(int day, int month, long year, const w
         if (Option::instance().BudgetFinancialYears())
         {
             GetFinancialYearValues(day, month);
-            ret = wxString::Format(_("Financial Year: %s - %i"), yearStr, (year + 1));
+            ret = wxString::Format(_("Financial Year: %s - %li"), yearStr, (year + 1));
         }
         else
         {

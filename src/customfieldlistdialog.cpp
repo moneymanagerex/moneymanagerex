@@ -41,8 +41,8 @@ wxEND_EVENT_TABLE()
 
 
 mmCustomFieldListDialog::mmCustomFieldListDialog (wxWindow* parent, const wxString& RefType) :
-    m_field_id(-1)
-    , m_RefType(RefType)
+    m_RefType(RefType)
+    , m_field_id(-1)
     #ifdef _DEBUG
         , debug_(true)
     #else
@@ -244,7 +244,7 @@ void mmCustomFieldListDialog::OnMenuSelected(wxCommandEvent& event)
     }
 }
 
-void mmCustomFieldListDialog::OnMagicButton(wxCommandEvent& event)
+void mmCustomFieldListDialog::OnMagicButton(wxCommandEvent& WXUNUSED(event))
 {
     wxDataViewEvent evt;
     OnItemRightClick(evt);
@@ -276,12 +276,12 @@ void mmCustomFieldListDialog::OnItemRightClick(wxDataViewEvent& event)
     event.Skip();
 }
 
-void mmCustomFieldListDialog::OnListItemActivated(wxDataViewEvent& event)
+void mmCustomFieldListDialog::OnListItemActivated(wxDataViewEvent& WXUNUSED(event))
 {
     mmCustomFieldListDialog::EditField();
 }
 
-void mmCustomFieldListDialog::OnClose(wxCommandEvent& /*event*/)
+void mmCustomFieldListDialog::OnClose(wxCommandEvent& WXUNUSED(event))
 {
     EndModal(wxID_OK);
 }
