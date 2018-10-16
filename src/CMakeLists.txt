@@ -299,6 +299,7 @@ IF(MMEX_WEBSERVER)
     SET_SOURCE_FILES_PROPERTIES(
         constants.cpp
         mmex.cpp
+        optiondialog.cpp
         optionsettingsnet.cpp
         optionsettingsnet.h
         PROPERTIES COMPILE_DEFINITIONS MMEX_WEBSERVER)
