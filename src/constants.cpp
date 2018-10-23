@@ -171,6 +171,7 @@ const wxString mmex::weblink::addReferralToURL(const wxString& BaseURL, const wx
     return url;
 }
 
+const wxString mmex::weblink::GA = "https://www.google-analytics.com/collect?";
 const wxString mmex::weblink::WebSite = mmex::weblink::addReferralToURL("https://www.moneymanagerex.org", "Website");
 const wxString mmex::weblink::Releases = "https://api.github.com/repos/moneymanagerex/moneymanagerex/releases";
 const wxString mmex::weblink::News = mmex::weblink::addReferralToURL("https://www.moneymanagerex.org/news", "News");
