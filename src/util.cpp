@@ -243,9 +243,9 @@ static int log_libcurl_debug(CURL *handle, curl_infotype type, char *data, size_
 }
 #endif
 
-void curl_set_common_options(CURL* curl) {
+void curl_set_common_options(CURL* curl, const wxString& useragent = wxEmptyString) {
     wxString proxyName = Model_Setting::instance().GetStringSetting("PROXYIP", "");
-    if (!proxyName.empty())
+    if (!proxyName.IsEmpty())
     {
         int proxyPort = Model_Setting::instance().GetIntSetting("PROXYPORT", 0);
         const wxString& proxySettings = wxString::Format("%s:%d", proxyName, proxyPort);
@@ -255,7 +255,10 @@ void curl_set_common_options(CURL* curl) {
     int networkTimeout = Model_Setting::instance().GetIntSetting("NETWORKTIMEOUT", 10); // default 10 secs
     curl_easy_setopt(curl, CURLOPT_TIMEOUT, networkTimeout);
 
-    curl_easy_setopt(curl, CURLOPT_USERAGENT, static_cast<const char*>(wxString::Format("%s/%s", mmex::getProgramName(), mmex::version::string).mb_str()));
+    if (useragent.IsEmpty())
+        curl_easy_setopt(curl, CURLOPT_USERAGENT, static_cast<const char*>(wxString::Format("%s/%s", mmex::getProgramName(), mmex::version::string).mb_str()));
+    else
+        curl_easy_setopt(curl, CURLOPT_USERAGENT, static_cast<const char*>(useragent.mb_str()));
 
     curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1L);
 
@@ -271,15 +274,14 @@ void curl_set_writedata_options(CURL* curl, curlBuff& chunk)
     chunk.size = 0;
     curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, curlWriteMemoryCallback);
     curl_easy_setopt(curl, CURLOPT_WRITEDATA, (void *)&chunk);
-
 }
 
-CURLcode http_get_data(const wxString& sSite, wxString& sOutput)
+CURLcode http_get_data(const wxString& sSite, wxString& sOutput, const wxString& useragent)
 {
     CURL *curl = curl_easy_init();
     if (!curl) return CURLE_FAILED_INIT;
 
-    curl_set_common_options(curl);
+    curl_set_common_options(curl, useragent);
 
     struct curlBuff chunk;
     curl_set_writedata_options(curl, chunk);

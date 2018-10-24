@@ -25,7 +25,6 @@ Copyright (C) 2018 Stefano Giorgio (stef145g)
 #include <wx/platinfo.h>
 #include <wx/thread.h>
 #include <wx/intl.h>
-#include "mongoose/mongoose.h"
 #include "option.h"
 
 Model_Usage::Model_Usage()
@@ -113,7 +112,7 @@ wxString Model_Usage::To_JSON_String() const
 wxString uuid()
 {
     wxString UUID = Model_Setting::instance().GetStringSetting("UUID", wxEmptyString);
-    if (UUID == wxEmptyString || UUID.length() < wxString("mac_20140428075834123").length())
+    if (UUID.IsEmpty() || UUID.Length() < wxString("mac_20140428075834123").Length())
     {
         wxDateTime now = wxDateTime::UNow();
         UUID = wxString::Format("%s_%s", wxPlatformInfo::Get().GetPortIdShortName(), now.Format("%Y%m%d%H%M%S%l"));
@@ -125,41 +124,14 @@ wxString uuid()
 class SendStatsThread : public wxThread
 {
 public:
-    SendStatsThread(const std::string& url) : wxThread()
-        , m_end(false), m_url(url) {};
+    SendStatsThread(const wxString& url) : wxThread()
+        , m_url(url) {};
     ~SendStatsThread() {};
-    static void ev_handler(struct mg_connection *nc, int ev, void *ev_data);
-    bool m_end;
 
 protected:
-    std::string m_url;
+    wxString m_url;
     virtual ExitCode Entry();
 };
-
-void SendStatsThread::ev_handler(struct mg_connection *nc, int ev, void *ev_data)
-{
-    struct http_message *hm = (struct http_message *) ev_data;
-    SendStatsThread* usage = (SendStatsThread*)nc->mgr->user_data;
-    int connect_status;
-
-    switch (ev)
-    {   
-        case MG_EV_CONNECT:
-            connect_status = * (int *) ev_data;
-            if (connect_status != 0)
-            {
-                usage->m_end = true; 
-            }
-            break;
-        case MG_EV_HTTP_REPLY:
-            printf("Got reply:\n%.*s\n", (int) hm->body.len, hm->body.p);
-            nc->flags |= MG_F_SEND_AND_CLOSE;
-            usage->m_end = true;
-            break;
-        default:
-            break;
-    }
-}
 
 void Model_Usage::pageview(const wxWindow* window, int plt /* = 0 msec*/)
 {
@@ -195,9 +167,7 @@ void Model_Usage::timing(const wxString& documentPath, const wxString& documentT
         return;
     }
 
-    static std::string GA_URL_ENDPOINT = "http://www.google-analytics.com/collect?";
-
-    std::string url = GA_URL_ENDPOINT;
+    wxString url = mmex::weblink::GA;
 
     std::vector<std::pair<wxString, wxString>> parameters = {
         { "v", "1" },
@@ -222,13 +192,11 @@ void Model_Usage::timing(const wxString& documentPath, const wxString& documentT
     for (const auto& kv : parameters)
     {
         if (kv.second.empty()) continue;
-        url += wxString::Format("%s=%s&", kv.first, kv.second).ToStdString();
+        url += wxString::Format("%s=%s&", kv.first, kv.second);
     }
 
-    url.back() = ' '; // override the last &
-
     // Spawn thread to send statistics
-    SendStatsThread* thread = new SendStatsThread(url);
+    SendStatsThread* thread = new SendStatsThread(url.RemoveLast()); // override the last &
     thread->Run();
 }
 
@@ -239,9 +207,7 @@ void Model_Usage::pageview(const wxString& documentPath, const wxString& documen
         return;
     }
 
-    static std::string GA_URL_ENDPOINT = "http://www.google-analytics.com/collect?";
-
-    std::string url = GA_URL_ENDPOINT;
+    wxString url = mmex::weblink::GA;
 
     std::vector<std::pair<wxString, wxString>> parameters = {
         { "v", "1" },
@@ -266,48 +232,20 @@ void Model_Usage::pageview(const wxString& documentPath, const wxString& documen
     for (const auto& kv : parameters)
     {
         if (kv.second.empty()) continue;
-        url += wxString::Format("%s=%s&", kv.first, kv.second).ToStdString();
+        url += wxString::Format("%s=%s&", kv.first, kv.second);
     }
 
-    url.back() = ' '; // override the last &
-
     // Spawn thread to send statistics
-    SendStatsThread* thread = new SendStatsThread(url);
+    SendStatsThread* thread = new SendStatsThread(url.RemoveLast()); // override the last &
     thread->Run();
 }
 
 wxThread::ExitCode SendStatsThread::Entry()
 {
-    std::cout << m_url << std::endl;
-
-    struct mg_mgr mgr;
-    struct mg_connection *nc;
-
-    mg_mgr_init(&mgr, this);
-
-    std::string user_agent = "User-Agent: " + wxGetOsDescription().ToStdString() + "\r\n";
-    std::cout << user_agent << std::endl;
-    nc = mg_connect_http(&mgr, SendStatsThread::ev_handler, m_url.c_str(), user_agent.c_str(), NULL); // GET
-
-    if (nc != nullptr)
-    {
-        mg_set_protocol_http_websocket(nc);
-
-        time_t ts_start = time(NULL);
-        time_t ts_end = ts_start;
-        this->m_end = false;
-
-        while (!this->m_end)
-        {
-            if ((ts_end - ts_start) >= 1) // 1 sec
-            {
-                std::cout << "timeout" << std::endl;
-                break;
-            }
-            ts_end = mg_mgr_poll(&mgr, 1000);
-        }
-    }
-    mg_mgr_free(&mgr);
-
+    wxLogDebug("Sending stats (thread %lu, priority %u, %s, %i cores): %s",
+        GetId(), GetPriority(), wxGetOsDescription(), GetCPUCount(), m_url);
+    wxString result = wxEmptyString;
+    http_get_data(m_url, result, "User-Agent: " + wxGetOsDescription() + "\r\n");
+    wxLogDebug("Response: %s", result);
     return nullptr;
 }
