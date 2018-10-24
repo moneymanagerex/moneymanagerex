@@ -303,6 +303,7 @@ IF(MMEX_WEBSERVER)
         optionsettingsnet.cpp
         optionsettingsnet.h
         PROPERTIES COMPILE_DEFINITIONS MMEX_WEBSERVER)
+    TARGET_LINK_LIBRARIES(${MMEX_EXE} PRIVATE Mongoose)
 ENDIF()
 
 IF(";${CMAKE_CXX_COMPILE_FEATURES};" MATCHES ";cxx_std_11;")
@@ -336,8 +337,7 @@ TARGET_LINK_LIBRARIES(${MMEX_EXE} PUBLIC
     HTML-template
     CURL::libcurl
     LuaGlue
-    Lua
-    Mongoose)
+    Lua)
 
 IF(MSVC)
     # Based on this http://stackoverflow.com/a/8294669
