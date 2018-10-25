@@ -86,6 +86,7 @@ mmFilterTransactionsDialog::mmFilterTransactionsDialog(wxWindow* parent, int acc
     , payeeID_(-1)
     , refAccountID_(account_id)
     , refAccountStr_("")
+    , m_filterStatus("")
     , m_min_amount(0)
     , m_max_amount(0)
     , m_settings_id(-1)
@@ -513,6 +514,17 @@ void mmFilterTransactionsDialog::OnButtonokClick(wxCommandEvent& WXUNUSED(event)
         }
     }
 
+    if (statusCheckBox_->IsChecked())
+    {
+        if (choiceStatus_->GetSelection() < 0)
+        {
+            int id = choiceStatus_->GetId();
+            return mmErrorDialogs::ToolTip4Object(FindWindow(id)
+                , _("Invalid value"), _("Status"));
+        }
+        getFilterStatus();
+        wxLogDebug(m_filterStatus);
+    }
     //SaveSettings();
     EndModal(wxID_OK);
 }
@@ -563,32 +575,34 @@ bool mmFilterTransactionsDialog::SomethingSelected()
         || m_custom_fields->IsSomeWidgetChanged();
 }
 
-wxString mmFilterTransactionsDialog::getStatus() const
+void mmFilterTransactionsDialog::getFilterStatus()
 {
-    wxString status;
+    m_filterStatus.clear();
+    int item = choiceStatus_->GetSelection();
+    if (!getStatusCheckBox() || item < 0) return;
     wxStringClientData* status_obj =
-        (wxStringClientData *)choiceStatus_->GetClientObject(choiceStatus_->GetSelection());
-    if (status_obj) status = status_obj->GetData().Left(1);
-    status.Replace("N", "");
-    return status;
+        (wxStringClientData*)choiceStatus_->GetClientObject(item);
+    if (status_obj) {
+        m_filterStatus = status_obj->GetData().Left(1);
+    }
 }
 
-bool mmFilterTransactionsDialog::compareStatus(const wxString& itemStatus) const
+bool mmFilterTransactionsDialog::compareStatus(const wxString& itemStatus, const wxString& filterStatus) const
 {
-    wxString filterStatus = getStatus();
-    if (itemStatus == filterStatus)
+
+    if ((itemStatus.empty() || itemStatus.Contains("N")) && filterStatus == "N")
     {
         return true;
     }
-    else if ("U" == filterStatus) // Un-Reconciled
+    else if ((itemStatus.empty() || "N" == itemStatus || "F" == itemStatus) && filterStatus == "U") // Un-Reconciled
     {
-        return "" == itemStatus || "F" == itemStatus;
+        return true;
     }
-    else if ("A" == filterStatus) // All Except Reconciled
+    else if ((itemStatus != "R" && itemStatus != "RR" ) && filterStatus == "A") // All Except Reconciled
     {
-        return "R" != itemStatus;
+        return true;
     }
-    return false;
+    return itemStatus.Contains(filterStatus);
 }
 
 bool mmFilterTransactionsDialog::allowType(const wxString& typeState, bool sameAccount) const
@@ -735,7 +749,7 @@ bool mmFilterTransactionsDialog::checkAll(const Model_Checking::Full_Data &tran,
         ok = false;
     else if (getCategoryCheckBox() && !checkCategory<Model_Checking>(tran))
         ok = false;
-    else if (getStatusCheckBox() && !compareStatus(tran.STATUSFD))
+    else if (getStatusCheckBox() && !compareStatus(tran.STATUSFD, m_filterStatus))
         ok = false;
     else if (getTypeCheckBox() && !allowType(tran.TRANSCODE, accountID == tran.ACCOUNTID))
         ok = false;
@@ -760,7 +774,7 @@ bool mmFilterTransactionsDialog::checkAll(const Model_Billsdeposits::Full_Data &
         ok = false;
     else if (getCategoryCheckBox() && !checkCategory<Model_Billsdeposits>(tran))
         ok = false;
-    else if (getStatusCheckBox() && !compareStatus(tran.STATUS))
+    else if (getStatusCheckBox() && !compareStatus(tran.STATUS, m_filterStatus))
         ok = false;
     else if (getTypeCheckBox() && !allowType(tran.TRANSCODE, true))
         ok = false;
