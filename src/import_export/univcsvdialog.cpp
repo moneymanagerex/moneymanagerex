@@ -459,10 +459,12 @@ void mmUnivCSVDialog::SetSettings(const wxString &json_data)
     {
         date_format_ = df;
         const auto pos = g_date_formats_map.find(date_format_);
-        if (pos != g_date_formats_map.end())
+        if (pos != g_date_formats_map.end()) {
             choiceDateFormat_->SetStringSelection(pos->second);
-        else
+        }
+        else {
             wxLogDebug("Unrecognized DATE_MASK %s", df);
+        }
     }
 
     //File
@@ -501,30 +503,29 @@ void mmUnivCSVDialog::SetSettings(const wxString &json_data)
 
     //CSV fields
     csvFieldOrder_.clear();
-    for (size_t i = 0; i <= 9; i++)
+    if (json_doc.HasMember("FIELDS") && json_doc["FIELDS"].IsArray())
     {
-        char str[3];
-        sprintf(str, "%zu", i);
-        if (json_doc.HasMember(str) && json_doc[str].IsString())
+        Value a = json_doc["FIELDS"].GetArray();
+        if (a.IsArray()) 
         {
-            const auto value = wxString::FromUTF8(json_doc[str].GetString());
-            int key = -1;
-
-            for (const auto& entry : CSVFieldName_)
+            for (auto& v : a.GetArray())
             {
-                if (entry.second == value || wxGetTranslation(entry.second) == value)
+                if (v.IsObject())
                 {
-                    key = entry.first;
-                    break;
+                    auto obj = v.GetObject(); 
+                    const auto value = wxString::FromUTF8(obj.begin()->value.GetString());
+
+                    for (const auto& entry : CSVFieldName_)
+                    {
+                        if (entry.second == value || wxGetTranslation(entry.second) == value)
+                        {
+                            int key = entry.first;
+                            csvFieldOrder_.push_back(key);
+                            break;
+                        }
+                    }
                 }
             }
-            
-            if (key > -1) {
-                csvFieldOrder_.push_back(key);
-            }
-        }
-        else {
-            break;
         }
     }
 
@@ -575,8 +576,20 @@ void mmUnivCSVDialog::OnAdd(wxCommandEvent& WXUNUSED(event))
     {
         mmListBoxItem* item = static_cast<mmListBoxItem*> (csvFieldCandicate_->GetClientObject(index));
 
-        csvListBox_->Append(wxGetTranslation(item->getName()), new mmListBoxItem(item->getIndex(), item->getName()));
-        csvFieldOrder_.push_back(item->getIndex());
+        int target_position = csvListBox_->GetSelection();
+        if (target_position == wxNOT_FOUND) {
+            target_position = csvListBox_->GetCount();
+        }
+        else {
+            target_position++;
+        }
+
+        mmListBoxItem* i = new mmListBoxItem(item->getIndex(), item->getName());
+        csvListBox_->Insert(wxGetTranslation(item->getName()), target_position, i);
+        csvListBox_->SetSelection(target_position);
+
+        auto itPos = csvFieldOrder_.begin() + target_position;
+        auto newIt = csvFieldOrder_.insert(itPos, item->getIndex());
 
         if (item->getIndex() != UNIV_CSV_DONTCARE)
         {
@@ -662,7 +675,6 @@ void mmUnivCSVDialog::OnLoad()
 //Saves the field order to a template file
 void mmUnivCSVDialog::OnSave(wxCommandEvent& WXUNUSED(event))
 {
-
     StringBuffer json_buffer;
     PrettyWriter<StringBuffer> json_writer(json_buffer);
     json_writer.StartObject();
@@ -671,7 +683,6 @@ void mmUnivCSVDialog::OnSave(wxCommandEvent& WXUNUSED(event))
     int id = c->GetSelection();
     const wxString& settingsPrefix = GetSettingsPrfix();
     const wxString& setting_id = wxString::Format(settingsPrefix +"%d", id);
-    wxLogDebug("%s", setting_id);
 
     const auto an = m_choice_account_->GetStringSelection();
     if (!an.empty())
@@ -697,17 +708,6 @@ void mmUnivCSVDialog::OnSave(wxCommandEvent& WXUNUSED(event))
         json_writer.String(fileName.c_str());
     }
 
-    size_t count = 0;
-    for (std::vector<int>::const_iterator it = csvFieldOrder_.begin(); it != csvFieldOrder_.end(); ++it)
-    {
-        char key[2];
-        sprintf(key, "%zu", count++);
-        int i = *it;
-
-        json_writer.Key(key);
-        json_writer.String(CSVFieldName_[i].c_str());
-    }
-
     if (IsImporter())
     {
         // Amount sign
@@ -730,12 +730,25 @@ void mmUnivCSVDialog::OnSave(wxCommandEvent& WXUNUSED(event))
         json_writer.Key("EXPORT_TITLES");
         json_writer.Bool(et);
     }
+
+    json_writer.Key("FIELDS");
+    json_writer.StartArray();
+    size_t count = 0;
+    for (std::vector<int>::const_iterator it = csvFieldOrder_.begin(); it != csvFieldOrder_.end(); ++it)
+    {
+        int i = *it;
+        json_writer.StartObject();
+        json_writer.Key(wxString::Format("%zu", count++));
+        json_writer.String(CSVFieldName_[i].c_str());
+        json_writer.EndObject();
+    }
+    json_writer.EndArray();
+
     json_writer.EndObject();
 
     const wxString json_data = json_buffer.GetString();
 
-    Model_Setting::instance().Set(wxString::Format(settingsPrefix + "%d", id), json_data);
-    //Model_Setting::instance().Set(settingsPrefix + "CURRENT", id); // TODO: is this ever used?
+    Model_Setting::instance().Set(setting_id, json_data);
 }
 
 bool mmUnivCSVDialog::validateData(tran_holder & holder)
@@ -1280,10 +1293,10 @@ void mmUnivCSVDialog::OnMoveUp(wxCommandEvent& WXUNUSED(event))
     {
         mmListBoxItem* item = static_cast<mmListBoxItem*>(csvListBox_->GetClientObject(index));
         int item_index = item->getIndex();
-        wxString item_name = item->getName();
+        const wxString item_name = item->getName();
 
         csvListBox_->Delete(index);
-        csvListBox_->Insert(item_name, index - 1, new mmListBoxItem(item_index, item_name));
+        csvListBox_->Insert(wxGetTranslation(item_name), index - 1, new mmListBoxItem(item_index, item_name));
 
         csvListBox_->SetSelection(index - 1, true);
         std::swap(csvFieldOrder_[index - 1], csvFieldOrder_[index]);
@@ -1302,7 +1315,7 @@ void mmUnivCSVDialog::OnMoveDown(wxCommandEvent& WXUNUSED(event))
         wxString item_name = item->getName();
 
         csvListBox_->Delete(index);
-        csvListBox_->Insert(item_name, index + 1, new mmListBoxItem(item_index, item_name));
+        csvListBox_->Insert(wxGetTranslation(item_name), index + 1, new mmListBoxItem(item_index, item_name));
 
         csvListBox_->SetSelection(index + 1, true);
         std::swap(csvFieldOrder_[index + 1], csvFieldOrder_[index]);
