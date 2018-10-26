@@ -738,7 +738,7 @@ void mmUnivCSVDialog::OnSave(wxCommandEvent& WXUNUSED(event))
     {
         int i = *it;
         json_writer.StartObject();
-        json_writer.Key(wxString::Format("%zu", count++));
+        json_writer.Key(wxString::Format("%zu", count++).c_str());
         json_writer.String(CSVFieldName_[i].c_str());
         json_writer.EndObject();
     }
