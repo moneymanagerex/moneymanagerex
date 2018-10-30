@@ -469,6 +469,10 @@ void mmFilterTransactionsDialog::OnButtonokClick(wxCommandEvent& WXUNUSED(event)
         if (account)
             refAccountID_ = account->ACCOUNTID;
     }
+    else
+    {
+        refAccountID_ = -1;
+    }
 
     if (payeeCheckBox_->IsChecked())
     {
