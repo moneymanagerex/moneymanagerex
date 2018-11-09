@@ -52,7 +52,7 @@
   `doxygen` in this directory then open `./html/index.html` with any DHTML,
   Javascript and CSS enabled web browser.
 
-  To see all avaiable doxygen options and their descriptions update Doxyfile
+  To see all available doxygen options and their descriptions update Doxyfile
   with `doxygen -u`.
 
 + To compress mmex Windows executable file use [mpress] or [upx].

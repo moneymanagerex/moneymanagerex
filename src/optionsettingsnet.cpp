@@ -223,7 +223,7 @@ void OptionSettingsNet::OnWebAppTest(wxCommandEvent& WXUNUSED(event))
     {
         if (mmWebApp::WebApp_CheckGuid() && mmWebApp::WebApp_CheckApiVersion())
         {
-            wxMessageBox(_("WebApp connection tested succesfully!"), _("WebApp connection test"));
+            wxMessageBox(_("WebApp connection tested successfully!"), _("WebApp connection test"));
         }
     }
     else

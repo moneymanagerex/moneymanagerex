@@ -382,10 +382,10 @@ void mmBDDialog::CreateControls()
     /**********************************************************************************************
      Determining where the controls go
     ***********************************************************************************************/
-    //mainBoxSizerInner will allign contents horizontally
+    //mainBoxSizerInner will align contents horizontally
     mainBoxSizerInner->Add(repeatTransBoxSizer, g_flagsExpand);
 
-    //mainBoxSizerOuter will allign contents vertically
+    //mainBoxSizerOuter will align contents vertically
     mainBoxSizerOuter->Add(mainBoxSizerInner, g_flagsExpand);
 
     /* Calendar */
@@ -454,7 +454,7 @@ void mmBDDialog::CreateControls()
 
     wxBoxSizer* repeatBoxSizer = new wxBoxSizer(wxHORIZONTAL);
     m_btn_due_date = new wxBitmapButton(this, ID_DIALOG_TRANS_BUTTONTRANSNUM, mmBitmap(png::RIGHTARROW));
-    m_btn_due_date->SetToolTip(_("Advance the next occuring date with the specified values"));
+    m_btn_due_date->SetToolTip(_("Advance the next occurring date with the specified values"));
     repeatBoxSizer->Add(m_choice_repeat, wxSizerFlags(g_flagsExpand).Proportion(6));
     repeatBoxSizer->Add(m_btn_due_date, g_flagsExpand);
 

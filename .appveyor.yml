@@ -24,7 +24,7 @@ matrix:
 environment:
   # use cache with 7z compression
   APPVEYOR_CACHE_ENTRY_ZIP_ARGS: -t7z -m0=lzma -mx=9
-  # Use cygwin embeded gettext tools
+  # Use cygwin embedded gettext tools
   path: '%path%;C:\cygwin64\bin'
   # clcache config
   clcVer: 4.1.0

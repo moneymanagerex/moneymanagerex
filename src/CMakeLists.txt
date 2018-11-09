@@ -343,7 +343,7 @@ IF(MSVC)
     # Based on this http://stackoverflow.com/a/8294669
     # added solution to compile problems due to
     # conflict between winsock and winsock2
-    # Partialy reinvented fix from commit
+    # Partially reinvented fix from commit
     # commit 06accae1273e66ced469672151522e45eee685a9
     TARGET_COMPILE_DEFINITIONS(${MMEX_EXE} PRIVATE WIN32_LEAN_AND_MEAN)
 ENDIF()

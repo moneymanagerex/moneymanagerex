@@ -500,7 +500,7 @@ void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& WXUNUSED(event))
                 {
                     refreshPanelData();
                 }
-                else // stop repeat executions from occuring
+                else // stop repeat executions from occurring
                     continueExecution = false;
             }
         }
@@ -1787,7 +1787,7 @@ void mmGUIFrame::createMenu()
     menuHelp->Append(menuItemAppStart);
 
     wxMenuItem* menuItemCheck = new wxMenuItem(menuHelp, MENU_CHECKUPDATE
-        , _("Check for &Updates"), _("Check if a new MMEX version is avaiable"));
+        , _("Check for &Updates"), _("Check if a new MMEX version is available"));
     menuItemCheck->SetBitmap(mmBitmap(png::UPDATE));
     menuHelp->Append(menuItemCheck);
 
@@ -2226,7 +2226,7 @@ void mmGUIFrame::OnExportToWebApp(wxCommandEvent& WXUNUSED(event))
             mmWebApp::WebApp_UpdateAccount();
             mmWebApp::WebApp_UpdatePayee();
             mmWebApp::WebApp_UpdateCategory();
-            wxMessageBox(_("Accounts, payees and categories succesfully syncronized to WebApp!"), _("WebApp export"));
+            wxMessageBox(_("Accounts, payees and categories successfully syncronized to WebApp!"), _("WebApp export"));
         }
     }
 }

@@ -712,7 +712,7 @@ const wxDateTime getUserDefinedFinancialYear(bool prevDayRequired)
     long monthNum;
     Option::instance().FinancialYearStartMonth().ToLong(&monthNum);
 
-    if (monthNum > 0) //Test required for compatability with previous version
+    if (monthNum > 0) //Test required for compatibility with previous version
         monthNum--;
 
     int year = wxDate::GetCurrentYear();

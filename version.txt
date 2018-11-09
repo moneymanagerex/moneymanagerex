@@ -536,7 +536,7 @@ one
 
 0.9.1.0 (Oct 9, 2007)
 - Fix bug where split transaction entries were being orphaned in the DB either in the account view
-or via the Bills Deposits entries. This could cause wierd behavior. (Lucky Arthur)
+or via the Bills Deposits entries. This could cause weird behavior. (Lucky Arthur)
 - Fixed issue where split transaction amounts weren't being reported correctly if transactions were repeated. (within the same transaction) (manuel)
 - Make stock symbol match case insensitive (geraldnz )
 - Fix text vertical spacing in several panels in Linux (Ikkyu)
@@ -796,7 +796,7 @@ or via the Bills Deposits entries. This could cause wierd behavior. (Lucky Arthu
 - Add Feature 1480766:Allow automatic backup of .mmb file
 - Add Feature 1493309:Add Linkable Accounts from main page
 - Add Feature 1491278:Add 4 Month frequency for Bills & Deposits
-- Fix bug in Quarterly bills and deposits calculation of next occurence date
+- Fix bug in Quarterly bills and deposits calculation of next occurrence date
 - Show upcoming bills and deposits in homepage only if not empty
 - Add Feature 1455825:Add Flag for follow up transactions display in main screen
 - Fix 1494231:Init Balance funky init balance entry
@@ -868,9 +868,9 @@ or via the Bills Deposits entries. This could cause wierd behavior. (Lucky Arthu
 - Budgeting is now functional
 - Budgeting 12 month performance report
 - Changed home page to using HTML view
-- Add last opened database name in app start dialog (KL Teh)
-- The CSV import now take the date format option. Import/Export expects date to be in that format.(KL Teh)
-- CSV import no longer reports missing lines as having no date (KL Teh)
+- Add last opened database name in app start dialog (KL The)
+- The CSV import now take the date format option. Import/Export expects date to be in that format.(KL The)
+- CSV import no longer reports missing lines as having no date (KL The)
 - Transaction Number not being displayed (ikkyu)
 - Unable to see help file (ikkyu)
 - Mark imported transactions as needing followup
@@ -907,7 +907,7 @@ or via the Bills Deposits entries. This could cause wierd behavior. (Lucky Arthu
 - Ability to mark all transactions to a certain type
 - Add icons for telling transaction types apart easily
 - Void transactions are not considered when computing balance on accounts
-- While adding new transaction to account, use of aprostophe (') in some field causes SQL error (KL Teh)
+- While adding new transaction to account, use of aprostophe (') in some field causes SQL error (KL The)
 - Add ability to specify arbitrary transfer amounts for From and To accounts
 - Main summary correctly accounts for baseconvrate
 - Main summary uses base currency for database

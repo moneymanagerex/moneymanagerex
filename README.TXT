@@ -40,7 +40,7 @@ spende il denaro.
 
 MMEX include tutte le caratteristiche di base che il 90% degli utenti avrebbe 
 voluto vedere in un programma di gestione finanaziaria. L'obiettivo principale 
-della progettazione si и concentrato sulla facilitа e semplicitа d'utilizzo, 
+della progettazione si и concentration sulla facilitа e semplicitа d'utilizzo, 
 qualcosa che chiunque potesse utilizzare ogni giorno.
 
 Sistemi supportati:

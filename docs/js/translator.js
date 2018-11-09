@@ -25,7 +25,7 @@ function translate() {
                 element.style.color = "#aa0000";
         }
         if (i != success) {
-            var perc = document.getElementById("percantage");
+            var perc = document.getElementById("percentage");
             perc.innerHTML = "Translated " + success + " of " + i;
         }
     }

@@ -76,7 +76,7 @@ public:
     /** Add prefix and suffix characters to string value */
     static wxString toCurrency(double value, const Data* currency = GetBaseCurrency(), int precision = -1);
 
-    /** convert value to a string with required precision. Currency is used only for percision */
+    /** convert value to a string with required precision. Currency is used only for precision */
     static wxString toStringNoFormatting(double value, const Data* currency = GetBaseCurrency(), int precision = -1);
     /** convert value to a currency formatted string with required precision */
     static wxString toString(double value, const Data* currency = GetBaseCurrency(), int precision = -1);

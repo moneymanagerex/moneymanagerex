@@ -747,7 +747,7 @@ void mmStocksPanel::updateHeader()
 {
     const Model_Account::Data* account = Model_Account::instance().get(m_account_id);
     double initVal = 0;
-    // + Transfered from other accounts - Transfered to other accounts
+    // + Transferred from other accounts - Transferred to other accounts
 
     //Get Stock Investment Account Balance as Init Amount + sum (Value) - sum (Purchase Price)
     std::pair<double, double> investment_balance;

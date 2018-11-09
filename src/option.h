@@ -105,7 +105,7 @@ public:
     void SharePrecision(int value);
     int SharePrecision();
 
-    /* stored value in percantage for scale html font and other objects */
+    /* stored value in percentage for scale html font and other objects */
     void HtmlFontSize(int value);
     int HtmlFontSize();
 
