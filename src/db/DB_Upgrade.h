@@ -388,7 +388,8 @@ const std::vector<wxString> dbUpgradeQuery =
 		INSERT OR IGNORE INTO CURRENCYFORMATS_V1 VALUES (NULL, 'Luxembourg Convertible Franc (before 1990-03)', '', '', '.', ',', '100', '1', 'LUC', 'Traditional');
 		INSERT OR IGNORE INTO CURRENCYFORMATS_V1 VALUES (NULL, 'Luxembourg Franc (before 2002-03)', '', '', '.', ',', '100', '1', 'LUF', 'Traditional');
 		INSERT OR IGNORE INTO CURRENCYFORMATS_V1 VALUES (NULL, 'Luxembourg Financial Franc (before 1990-03)', '', '', '.', ',', '100', '1', 'LUL', 'Traditional');
-		INSERT OR IGNORE INTO CURRENCYFORMATS_V1 VALUES (NULL, 'Latvian Ruble (before 1994-12)', '', '', '.', ',', '100', '1', 'LVR', 'Traditional');
+		INSERT OR IGNORE I)"
+	R"(NTO CURRENCYFORMATS_V1 VALUES (NULL, 'Latvian Ruble (before 1994-12)', '', '', '.', ',', '100', '1', 'LVR', 'Traditional');
 		INSERT OR IGNORE INTO CURRENCYFORMATS_V1 VALUES (NULL, 'Malagasy Franc (before 2004-12)', '', '', '.', ',', '100', '1', 'MGF', 'Traditional');
 		INSERT OR IGNORE INTO CURRENCYFORMATS_V1 VALUES (NULL, 'Mali Franc (before 1984-11)', '', '', '.', ',', '100', '1', 'MLF', 'Traditional');
 		INSERT OR IGNORE INTO CURRENCYFORMATS_V1 VALUES (NULL, 'Ouguiya', '', '', '.', ',', '100', '1', 'MRU', 'Traditional');
