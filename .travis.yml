@@ -1,5 +1,5 @@
 language: cpp
-dist: trusty
+dist: xenial
 sudo: required
 services: [ docker ]
 git: { depth: false }
@@ -47,7 +47,7 @@ env:
 matrix:
   fast_finish: true
   include: # add non-linux targets
-  - { os: osx, osx_image: xcode10, compiler: clang, env: OS=macos DIST=10.7 }
+  - { os: osx, osx_image: xcode10.1, compiler: clang, env: OS=macos DIST=10.7 }
   allow_failures:
   - env: OS=debian DIST=jessie
   - env: OS=debian DIST=stretch
