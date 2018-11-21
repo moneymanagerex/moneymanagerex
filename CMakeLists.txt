@@ -254,6 +254,10 @@ TARGET_COMPILE_DEFINITIONS(wxWidgets INTERFACE ${wxWidgets_DEFINITIONS}
 # --------- curl dependency ---------
 # curl version >=7.57 can have config files
 FIND_PACKAGE(CURL QUIET COMPONENTS libcurl CONFIG)
+IF(NOT CURL_FOUND AND NOT CURL_VERSION VERSION_LESS 7.62)
+    # curl 7.62 removed support for COMPONENTS
+    FIND_PACKAGE(CURL QUIET CONFIG)
+ENDIF()
 IF(CURL_FOUND)
     MESSAGE(STATUS "Found CURL: ${CURL_LIBRARIES} (found version \"${CURL_VERSION}\")")
     GET_TARGET_PROPERTY(LIBCURL_TYPE CURL::libcurl TYPE)
