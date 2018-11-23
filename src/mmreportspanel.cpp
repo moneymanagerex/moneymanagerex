@@ -109,7 +109,7 @@ wxBEGIN_EVENT_TABLE(mmReportsPanel, wxPanel)
     EVT_BUTTON(ID_PREV_REPORT, mmReportsPanel::OnPrevReport)
     EVT_BUTTON(ID_NEXT_REPORT, mmReportsPanel::OnNextReport)
     EVT_CHOICE(ID_CHOICE_CHART, mmReportsPanel::OnChartChanged)
-    wxEND_EVENT_TABLE()
+wxEND_EVENT_TABLE()
 
 mmReportsPanel::mmReportsPanel(
     mmPrintableBase* rb, bool cleanupReport, wxWindow *parent, mmGUIFrame* frame,
@@ -302,11 +302,16 @@ void mmReportsPanel::CreateControls()
                 m_date_ranges->Append(date_range->local_title(), date_range);
             }
             m_date_ranges->Append(_("Custom"), (mmDateRange *)nullptr);
-            m_date_ranges->SetSelection(rb_->getDateSelection());
+
+            int sel_id = rb_->getDateSelection();
+            if (sel_id < 0 || sel_id >= m_all_date_ranges.size()) {
+                sel_id = 0;
+            }
+            m_date_ranges->SetSelection(sel_id);
 
             itemBoxSizerHeader->Add(m_date_ranges, 0, wxALL, 1);
             itemBoxSizerHeader->AddSpacer(5);
-            const mmDateRange* date_range = *m_all_date_ranges.begin();
+            const mmDateRange* date_range = m_all_date_ranges.at(sel_id);
             long date_style = wxDP_DROPDOWN | wxDP_SHOWCENTURY;
             m_start_date = new wxDatePickerCtrl(itemPanel3, ID_CHOICE_START_DATE
                 , wxDefaultDateTime, wxDefaultPosition, wxDefaultSize, date_style);
