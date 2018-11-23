@@ -154,6 +154,7 @@ install:
     cmake --build . --target install --config %configuration%
       -- /maxcpucount /verbosity:minimal /nologo /p:PreferredToolArchitecture=x64
   )
+- type %curlLibFolder%\lib\cmake\CURL\*.cmake
 
 before_build:
 - cd %APPVEYOR_BUILD_FOLDER%
