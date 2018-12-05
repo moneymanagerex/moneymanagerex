@@ -1,0 +1,18 @@
+engines:
+ rubocop:
+   enabled: true
+   exclude_paths:
+     - config/engines.yml
+ duplication:
+   enabled: true
+   exclude_paths:
+     - config/engines.yml
+ metrics:
+   enabled: true
+   exclude_paths:
+     - config/engines.yml
+ coverage:
+   enabled: true
+   exclude_paths:
+     - config/engines.yml
+  
