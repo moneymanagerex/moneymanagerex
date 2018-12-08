@@ -166,6 +166,10 @@ bool mmBDDialog::Create(wxWindow* parent, wxWindowID id, const wxString& caption
 
 void mmBDDialog::dataToControls()
 {
+    Model_Checking::getFrequentUsedNotes(frequentNotes_);
+    wxButton* bFrequentUsedNotes = static_cast<wxButton*>(FindWindow(ID_DIALOG_TRANS_BUTTON_FREQENTNOTES));
+    bFrequentUsedNotes->Enable(!frequentNotes_.empty());
+
     for (const auto& entry : BILLSDEPOSITS_REPEATS)
     {
         m_choice_repeat->Append(wxGetTranslation(entry.second));
@@ -918,7 +922,6 @@ void mmBDDialog::resetPayeeString()
 
 void mmBDDialog::OnFrequentUsedNotes(wxCommandEvent& WXUNUSED(event))
 {
-    Model_Checking::getFrequentUsedNotes(frequentNotes_);
     wxMenu menu;
     int id = wxID_HIGHEST;
     for (const auto& entry : frequentNotes_) {
