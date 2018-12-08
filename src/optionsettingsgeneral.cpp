@@ -90,9 +90,9 @@ void OptionSettingsGeneral::Create()
         currName = wxGetTranslation(currency->CURRENCYNAME);
     wxButton* baseCurrencyButton = new wxButton(this, ID_DIALOG_OPTIONS_BUTTON_CURRENCY
         , currName, wxDefaultPosition, wxDefaultSize);
-    baseCurrencyButton->SetToolTip(_("Sets the database default Currency using the 'Currency Dialog'"));
+    baseCurrencyButton->SetToolTip(_("Sets the database default Currency using the 'Currency Dialog'")
+        + "\n" + _("Right click and select 'Set as Base Currency' in 'Currency Dialog'"));
     currencyStaticBoxSizer->Add(baseCurrencyButton, g_flagsH);
-    currencyStaticBoxSizer->Add(new wxStaticText(this, wxID_STATIC, _("Right click and select 'Set as Base Currency' in 'Currency Dialog'")), g_flagsH);
 
     // Date Format Settings
     wxStaticBox* dateFormatStaticBox = new wxStaticBox(this, wxID_STATIC, _("Date Format"));

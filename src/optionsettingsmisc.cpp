@@ -89,31 +89,31 @@ void OptionSettingsMisc::Create()
 
     wxChoice* defaultDateChoice = new wxChoice(this
         , ID_DIALOG_OPTIONS_DEFAULT_TRANSACTION_DATE
-        , wxDefaultPosition, wxSize(140, -1), default_values);
+        , wxDefaultPosition, wxDefaultSize, default_values);
     defaultDateChoice->SetSelection(Option::instance().TransDateDefault());
 
     wxChoice* defaultPayeeChoice = new wxChoice(this
         , ID_DIALOG_OPTIONS_DEFAULT_TRANSACTION_PAYEE
-        , wxDefaultPosition, wxSize(140, -1), default_values);
+        , wxDefaultPosition, wxDefaultSize, default_values);
     defaultPayeeChoice->SetSelection(Option::instance().TransPayeeSelection());
 
-    default_values[1] = (_("Last used for payee"));
+    default_values.clear();
+    default_values.Add(_("None"));
+    default_values.Add(_("Last used for payee"));
     default_values.Add(_("Unused"));
     wxChoice* defaultCategoryChoice = new wxChoice(this
         , ID_DIALOG_OPTIONS_DEFAULT_TRANSACTION_CATEGORY
-        , wxDefaultPosition, defaultPayeeChoice->GetSize(), default_values);
+        , wxDefaultPosition, wxDefaultSize, default_values);
     defaultCategoryChoice->SetSelection(Option::instance().TransCategorySelection());
 
     wxChoice* default_status = new wxChoice(this
         , ID_DIALOG_OPTIONS_DEFAULT_TRANSACTION_STATUS
-        , wxDefaultPosition, defaultDateChoice->GetSize());
-
-    for (const auto& i : Model_Checking::all_status())
-        default_status->Append(wxGetTranslation(i), new wxStringClientData(i));
+        , wxDefaultPosition, wxDefaultSize, Model_Checking::all_status());
 
     default_status->SetSelection(Option::instance().TransStatusReconciled());
 
     wxFlexGridSizer* newTransflexGridSizer = new wxFlexGridSizer(0, 2, 0, 0);
+    newTransflexGridSizer->AddGrowableCol(1);
     transSettingsStaticBoxSizer->Add(newTransflexGridSizer);
     newTransflexGridSizer->Add(new wxStaticText(this, wxID_STATIC, _("Default Date:")), g_flagsH);
     newTransflexGridSizer->Add(defaultDateChoice, g_flagsH);
