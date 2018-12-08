@@ -165,7 +165,7 @@ wxString mmReportTransactions::getHTMLText()
         const std::vector<wxString> v{ totalStr };
         if (total.size() > 1 
             || (curr->CURRENCY_SYMBOL != Model_Currency::GetBaseCurrency()->CURRENCY_SYMBOL))
-            hb.addTotalRow(curr->CURRENCY_SYMBOL, 9, v);
+            hb.addTotalRow(curr->CURRENCY_SYMBOL, 10, v);
     }
     const wxString totalStr = Model_Currency::toCurrency(grand_total, Model_Currency::GetBaseCurrency());
     const std::vector<wxString> v{ totalStr };
@@ -186,28 +186,39 @@ void mmReportTransactions::Run(mmFilterTransactionsDialog* dlg)
     const auto splits = Model_Splittransaction::instance().get_all();
     auto categ = m_transDialog->getCategId();
     auto subcateg = m_transDialog->getSubCategId();
-    auto similar = !m_transDialog->getSimilarStatus();
+    bool similar = !m_transDialog->getSimilarStatus();
+    bool category = dlg->getCategoryCheckBox();
     for (const auto& tran : Model_Checking::instance().all()) //TODO: find should be faster
     {
         Model_Checking::Full_Data full_tran(m_refAccountID, tran, splits);
         if (!dlg->checkAll(full_tran, m_refAccountID)) continue;
         full_tran.PAYEENAME = full_tran.real_payee_name(m_refAccountID);
-        if (full_tran.has_split()) 
+        double total_amount = 0;
+
+        if (full_tran.has_split())
         {
             full_tran.CATEGNAME.clear();
-            full_tran.TRANSAMOUNT = 0;
             for (const auto& split : full_tran.m_splits)
             {
+                const Model_Account::Data* acc = Model_Account::instance().get(tran.ACCOUNTID);
+                const Model_Currency::Data* currency = Model_Currency::instance().get(acc->CURRENCYID);
+                wxString amt = Model_Currency::toCurrency(split.SPLITTRANSAMOUNT, currency);
                 const wxString split_info = wxString::Format("%s = %s | "
                     , Model_Category::full_name(split.CATEGID, split.SUBCATEGID)
-                    , wxString::Format("%.2f", split.SPLITTRANSAMOUNT));
-                full_tran.CATEGNAME.Append(split_info);
-                if (split.CATEGID != categ ) continue;
-                if (split.SUBCATEGID !=  subcateg && similar) continue;
+                    , amt);
 
-                full_tran.TRANSAMOUNT += split.SPLITTRANSAMOUNT;
+                full_tran.CATEGNAME.Append(split_info);
+
+                if (category && split.CATEGID != categ) continue;
+                if (category && split.SUBCATEGID != subcateg && similar) continue;
+
+                total_amount += split.SPLITTRANSAMOUNT;
             }
             full_tran.CATEGNAME.RemoveLast(2);
+        }
+
+        if (category) {
+            full_tran.TRANSAMOUNT = total_amount;
         }
         else {
             full_tran.TRANSAMOUNT = tran.TRANSAMOUNT;
