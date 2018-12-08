@@ -5,7 +5,7 @@ Money Manager Ex
 [![stable]][GitHubLatest] [![unstable]][GitHubDL] [![s]][SourceForgeDL]
 [![gha]][GitHubDL] [![ghl]][GitHubLatest] [![p]][packagecloud] [![w]][website]
 [![i]][GitHubIssues] [![resolution time]][isitmaintained] [![cd]][CodeDocs]
-[![c]][contributors] [![l]](LICENSE) [![o]][OpenHub] [![Codacy Badge](https://api.codacy.com/project/badge/Grade/4cb8bd40c2304ae88251087be6b243c9)](https://www.codacy.com/app/=moneymanagerex/moneymanagerex?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=moneymanagerex/moneymanagerex&amp;utm_campaign=Badge_Grade)
+[![c]][contributors] [![l]](LICENSE) [![o]][OpenHub]
 
 Money Manager Ex is a free, open-source, cross-platform, easy-to-use personal
 finance software. It primarily helps organize one's finances and keeps track
