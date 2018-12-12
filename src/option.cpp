@@ -41,7 +41,7 @@
 #include "reports/summarystocks.h"
 #include "reports/forecast.h"
 
-struct ReportInfo
+struct Option::ReportInfo
 {
     enum Reports {
         MyUsage = 0,
@@ -67,32 +67,29 @@ struct ReportInfo
     wxString name;
     bool type;
     Reports id;
-};
-
-int ReportCompare(_wxArraywxArrayPtrVoid *first, _wxArraywxArrayPtrVoid *second)
-{
-    ReportInfo *f = reinterpret_cast<ReportInfo*>(*first);
-    ReportInfo *s = reinterpret_cast<ReportInfo*>(*second);
-    if (f->group.IsEmpty())
+    bool operator < (const ReportInfo& rep) const
     {
-        if (s->group.IsEmpty())
-            return f->name.Cmp(s->name);
-        else
-            return f->name.Cmp(s->group);
-    }
-    else
-    {
-        if (s->group.IsEmpty())
-            return f->group.Cmp(s->name);
+        if (group.IsEmpty())
+        {
+            if (rep.group.IsEmpty())
+                return name.Cmp(rep.name) < 0;
+            else
+                return name.Cmp(rep.group) < 0;
+        }
         else
         {
-            int r = f->group.Cmp(s->group);
-            if (r == 0)
-                r = f->name.Cmp(s->name);
-            return r;
+            if (rep.group.IsEmpty())
+                return group.Cmp(rep.name) < 0;
+            else
+            {
+                int r = group.Cmp(rep.group);
+                if (r == 0)
+                    r = name.Cmp(rep.name);
+                return r < 0;
+            }
         }
-    }
-}
+    };
+};
 
 //----------------------------------------------------------------------------
 Option::Option()
@@ -114,34 +111,25 @@ Option::Option()
     , m_ico_size(16)
     , m_hideReport(0)
 {
-    m_reports.Add(new ReportInfo("", wxTRANSLATE("MMEX Usage Frequency"), false, ReportInfo::MyUsage));
-    m_reports.Add(new ReportInfo(wxTRANSLATE("Summary of Accounts"), wxTRANSLATE("Monthly"), false, ReportInfo::MonthlySummaryofAccounts));
-    m_reports.Add(new ReportInfo(wxTRANSLATE("Summary of Accounts"), wxTRANSLATE("Yearly"), false, ReportInfo::YearlySummaryofAccounts));
-    m_reports.Add(new ReportInfo(wxTRANSLATE("Categories"), wxTRANSLATE("Where the Money Goes"), false, ReportInfo::WheretheMoneyGoes));
-    m_reports.Add(new ReportInfo(wxTRANSLATE("Categories"), wxTRANSLATE("Where the Money Comes From"), false, ReportInfo::WheretheMoneyComesFrom));
-    m_reports.Add(new ReportInfo(wxTRANSLATE("Categories"), wxTRANSLATE("Summary"), false, ReportInfo::CategoriesSummary));
-    m_reports.Add(new ReportInfo(wxTRANSLATE("Categories"), wxTRANSLATE("Monthly"), false, ReportInfo::CategoriesMonthly));
-    m_reports.Add(new ReportInfo("", wxTRANSLATE("Payees"), false, ReportInfo::Payees));
-    m_reports.Add(new ReportInfo(wxTRANSLATE("Income vs Expenses"), wxTRANSLATE("Summary"), false, ReportInfo::IncomevsExpensesSummary));
-    m_reports.Add(new ReportInfo(wxTRANSLATE("Income vs Expenses"), wxTRANSLATE("Monthly"), false, ReportInfo::IncomevsExpensesMonthly));
-    m_reports.Add(new ReportInfo(wxTRANSLATE("Budget"), wxTRANSLATE("Performance"), true, ReportInfo::BudgetPerformance));
-    m_reports.Add(new ReportInfo(wxTRANSLATE("Budget"), wxTRANSLATE("Category Summary"), true, ReportInfo::BudgetCategorySummary));
-    m_reports.Add(new ReportInfo(wxTRANSLATE("Cash Flow"), wxTRANSLATE("Monthly"), false, ReportInfo::MonthlyCashFlow));
-    m_reports.Add(new ReportInfo(wxTRANSLATE("Cash Flow"), wxTRANSLATE("Daily"), false, ReportInfo::DailyCashFlow));
-    m_reports.Add(new ReportInfo(wxTRANSLATE("Stocks Report"), wxTRANSLATE("Performance"), false, ReportInfo::StocksReportPerformance));
-    m_reports.Add(new ReportInfo(wxTRANSLATE("Stocks Report"), wxTRANSLATE("Summary"), false, ReportInfo::StocksReportSummary));
-    m_reports.Add(new ReportInfo("", wxTRANSLATE("Forecast Report"), false, ReportInfo::ForecastReport));
+    m_reports.push_back(ReportInfo("", wxTRANSLATE("MMEX Usage Frequency"), false, ReportInfo::MyUsage));
+    m_reports.push_back(ReportInfo(wxTRANSLATE("Summary of Accounts"), wxTRANSLATE("Monthly"), false, ReportInfo::MonthlySummaryofAccounts));
+    m_reports.push_back(ReportInfo(wxTRANSLATE("Summary of Accounts"), wxTRANSLATE("Yearly"), false, ReportInfo::YearlySummaryofAccounts));
+    m_reports.push_back(ReportInfo(wxTRANSLATE("Categories"), wxTRANSLATE("Where the Money Goes"), false, ReportInfo::WheretheMoneyGoes));
+    m_reports.push_back(ReportInfo(wxTRANSLATE("Categories"), wxTRANSLATE("Where the Money Comes From"), false, ReportInfo::WheretheMoneyComesFrom));
+    m_reports.push_back(ReportInfo(wxTRANSLATE("Categories"), wxTRANSLATE("Summary"), false, ReportInfo::CategoriesSummary));
+    m_reports.push_back(ReportInfo(wxTRANSLATE("Categories"), wxTRANSLATE("Monthly"), false, ReportInfo::CategoriesMonthly));
+    m_reports.push_back(ReportInfo("", wxTRANSLATE("Payees"), false, ReportInfo::Payees));
+    m_reports.push_back(ReportInfo(wxTRANSLATE("Income vs Expenses"), wxTRANSLATE("Summary"), false, ReportInfo::IncomevsExpensesSummary));
+    m_reports.push_back(ReportInfo(wxTRANSLATE("Income vs Expenses"), wxTRANSLATE("Monthly"), false, ReportInfo::IncomevsExpensesMonthly));
+    m_reports.push_back(ReportInfo(wxTRANSLATE("Budget"), wxTRANSLATE("Performance"), true, ReportInfo::BudgetPerformance));
+    m_reports.push_back(ReportInfo(wxTRANSLATE("Budget"), wxTRANSLATE("Category Summary"), true, ReportInfo::BudgetCategorySummary));
+    m_reports.push_back(ReportInfo(wxTRANSLATE("Cash Flow"), wxTRANSLATE("Monthly"), false, ReportInfo::MonthlyCashFlow));
+    m_reports.push_back(ReportInfo(wxTRANSLATE("Cash Flow"), wxTRANSLATE("Daily"), false, ReportInfo::DailyCashFlow));
+    m_reports.push_back(ReportInfo(wxTRANSLATE("Stocks Report"), wxTRANSLATE("Performance"), false, ReportInfo::StocksReportPerformance));
+    m_reports.push_back(ReportInfo(wxTRANSLATE("Stocks Report"), wxTRANSLATE("Summary"), false, ReportInfo::StocksReportSummary));
+    m_reports.push_back(ReportInfo("", wxTRANSLATE("Forecast Report"), false, ReportInfo::ForecastReport));
     //Sort by group name and report name
-    m_reports.Sort(ReportCompare);
-}
-
-Option::~Option()
-{
-    for (int i = 0; i < ReportCount(); i++)
-    {
-        ReportInfo* r = reinterpret_cast<ReportInfo*>(m_reports[i]);
-        delete r;
-    }
+    std::sort(m_reports.begin(), m_reports.end());
 }
 
 //----------------------------------------------------------------------------
@@ -545,8 +533,7 @@ void Option::HideReport(int report, bool value)
 {
     if ((report >= 0) && (report < ReportCount()))
     {
-        ReportInfo* r = reinterpret_cast<ReportInfo*>(m_reports[report]);
-        int bitField = 1 << static_cast<int>(r->id);
+        int bitField = 1 << m_reports[report].id;
         if (value)
             m_hideReport |= bitField;
         else
@@ -561,8 +548,7 @@ bool Option::HideReport(int report)
     bool hideReport = false;
     if ((report >= 0) && (report < ReportCount()))
     {
-        ReportInfo* r = reinterpret_cast<ReportInfo*>(m_reports[report]);
-        int bitField = 1 << static_cast<int>(r->id);
+        int bitField = 1 << m_reports[report].id;
         hideReport = ((m_hideReport & bitField) != 0);
     }
     return hideReport;
@@ -578,7 +564,7 @@ wxString Option::ReportFullName(int report)
     wxString name = "";
     if ((report >= 0) && (report < ReportCount()))
     {
-        ReportInfo* r = reinterpret_cast<ReportInfo*>(m_reports[report]);
+        ReportInfo* r = &m_reports[report];
         name = wxGetTranslation(r->group);
         if (name.IsEmpty())
             name = wxGetTranslation(r->name);
@@ -593,8 +579,7 @@ wxString Option::ReportGroup(int report)
     wxString group = "";
     if ((report >= 0) && (report < ReportCount()))
     {
-        ReportInfo* r = reinterpret_cast<ReportInfo*>(m_reports[report]);
-        group = r->group;
+        group = m_reports[report].group;
     }
     return group;
 }
@@ -604,8 +589,7 @@ wxString Option::ReportName(int report)
     wxString name = "";
     if ((report >= 0) && (report < ReportCount()))
     {
-        ReportInfo* r = reinterpret_cast<ReportInfo*>(m_reports[report]);
-        name = r->name;
+        name = m_reports[report].name;
     }
     return name;
 }
@@ -615,8 +599,7 @@ bool Option::BudgetReport(int report)
     bool budget = false;
     if ((report >= 0) && (report < ReportCount()))
     {
-        ReportInfo* r = reinterpret_cast<ReportInfo*>(m_reports[report]);
-        budget = r->type;
+        budget = m_reports[report].type;
     }
     return budget;
 }
@@ -626,8 +609,7 @@ mmPrintableBase* Option::ReportFunction(int report)
     mmPrintableBase* function = nullptr;
     if ((report >= 0) && (report < ReportCount()))
     {
-        ReportInfo* r = reinterpret_cast<ReportInfo*>(m_reports[report]);
-        switch (r->id)
+        switch (m_reports[report].id)
         {
         case ReportInfo::MyUsage:
             function = new mmReportMyUsage();
@@ -684,7 +666,7 @@ mmPrintableBase* Option::ReportFunction(int report)
             break;
         }
         if (function != nullptr)
-            function->setSettings(ReportSettings(r->id));
+            function->setSettings(ReportSettings(m_reports[report].id));
     }
     return function;
 }

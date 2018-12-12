@@ -22,6 +22,7 @@
 #define MM_EX_OPTION_H_
 
 #include "defs.h"
+#include <vector>
 
 class mmPrintableBase;
 
@@ -37,7 +38,6 @@ public:
 
 public:
     Option();
-    ~Option();
     static Option& instance();
     void LoadOptions(bool include_infotable = true);
 
@@ -155,7 +155,8 @@ private:
     int m_ico_size;
     int m_budget_days_offset;
     int m_hideReport;
-    wxArrayPtrVoid m_reports;
+    struct ReportInfo;
+    std::vector<Option::ReportInfo> m_reports;
 
     const wxString ReportSettings(int id);
 };
