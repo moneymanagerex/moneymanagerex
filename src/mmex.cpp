@@ -68,12 +68,17 @@ bool mmGUIApp::setGUILanguage(wxLanguage lang)
     wxTranslations *trans = new wxTranslations;
     trans->SetLanguage(lang);
     trans->AddStdCatalog();
-    if (!trans->AddCatalog("mmex", wxLANGUAGE_ENGLISH_US))
+    if (!trans->AddCatalog("mmex", wxLANGUAGE_ENGLISH_US) && lang != wxLANGUAGE_ENGLISH_US)
     {
-        mmErrorDialogs::MessageWarning(NULL
-            ,wxString::Format(_("Can not load translation for selected language %s"),
-                (lang>wxLANGUAGE_UNKNOWN)?wxLocale::GetLanguageCanonicalName(lang).Prepend("(").Append(")"):"")
-            ,_("Language change"));
+        if (lang==wxLANGUAGE_DEFAULT)
+            mmErrorDialogs::MessageWarning(NULL
+                ,_("Can not load translation for default language")
+                ,_("Language change"));
+        else
+            mmErrorDialogs::MessageWarning(NULL
+                ,wxString::Format(_("Can not load translation for selected language %s"),
+                    wxLocale::GetLanguageCanonicalName(lang))
+                ,_("Language change"));
         wxDELETE(trans);
         return false;
     }
