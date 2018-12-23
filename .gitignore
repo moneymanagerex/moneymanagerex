@@ -1,7 +1,8 @@
 # Compiled Object files
 *.slo
 *.lo
-*.o*
+*.o
+*.out
 *.obj
 
 # Compiled Dynamic libraries
@@ -26,8 +27,8 @@
 .idea
 
 # Visual Studio tools
-/.vs
-/.vscode
+.vs
+.vscode
 
 # backups & tmp files
 *~
