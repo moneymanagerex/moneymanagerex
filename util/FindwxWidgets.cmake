@@ -934,17 +934,27 @@ foreach(_wx_lib_ ${wxWidgets_LIBRARIES})
     find_library(_wx_lib_found NAMES ${_wx_lib_name} HINTS ${wxWidgets_LIBRARY_DIRS})
     if(_wx_lib_found STREQUAL _wx_lib_found-NOTFOUND)
       list(APPEND _wx_lib_missing ${_wx_lib_name})
+      foreach(_cmp IN LISTS wxWidgets_FIND_COMPONENTS)
+        if(";${_wx_lib_name};" MATCHES "[^a-z]${_cmp}u?[^a-z]")
+          set(wxWidgets_${_cmp}_FOUND FALSE)
+        endif()
+      endforeach()  
     endif()
     unset(_wx_lib_found CACHE)
   endif()
 endforeach()
 
-if (_wx_lib_missing)
+if(_wx_lib_missing)
   string(REPLACE ";" " " _wx_lib_missing "${_wx_lib_missing}")
   DBG_MSG_V("wxWidgets not found due to following missing libraries: ${_wx_lib_missing}")
   set(wxWidgets_FOUND FALSE)
   unset(wxWidgets_LIBRARIES)
 endif()
+foreach(_cmp IN LISTS wxWidgets_FIND_COMPONENTS)
+  if(wxWidgets_FOUND AND wxWidgets_FIND_REQUIRED_${_cmp} AND NOT DEFINED wxWidgets_${_cmp}_FOUND)
+    set(wxWidgets_${_cmp}_FOUND TRUE)
+  endif()
+endforeach()
 unset(_wx_lib_missing)
 
 # Check if a specific version was requested by find_package().
@@ -984,16 +994,11 @@ DBG_MSG("wxWidgets_USE_FILE        : ${wxWidgets_USE_FILE}")
 
 include(FindPackageHandleStandardArgs)
 
-if(wxWidgets_FIND_STYLE STREQUAL "win32")
-  set(wxWidgets_HANDLE_COMPONENTS "HANDLE_COMPONENTS")
-endif()
-
 find_package_handle_standard_args(wxWidgets
   REQUIRED_VARS wxWidgets_LIBRARIES wxWidgets_INCLUDE_DIRS
   VERSION_VAR   wxWidgets_VERSION_STRING
-  ${wxWidgets_HANDLE_COMPONENTS}
+  HANDLE_COMPONENTS
   )
-unset(wxWidgets_HANDLE_COMPONENTS)
 
 #=====================================================================
 # Macros for use in wxWidgets apps.
