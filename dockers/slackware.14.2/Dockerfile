@@ -9,16 +9,70 @@ RUN echo -e 'quiet=on\ncheck_certificate=off' >> ~/.wgetrc \
  && slackpkg -default_answer=y -batch=on upgrade-all \
  && slackpkg update gpg && slackpkg update \
  && slackpkg -default_answer=y -batch=on install \
-      cmake-3 libarchive-3 nettle lzo libxml2 cyrus-sasl make-4 ccache \
-      binutils gcc-5 gcc-g++ guile gc libffi libmpc glibc-2 gettext-tools \
-      git flex kernel-headers libcroco \
-      \
-      gtk+2 glib2 pango atk-2 cairo gdk-pixbuf2 freetype fontconfig libX11 \
-      libXxf86vm libSM libnotify libsoup libXinerama libXi libXt libXrandr \
-      libXcursor libXcomposite pixman mesa libxcb libXrender libxshmfence \
-      libXdamage libXfixes libXext libdrm libXau libXdmcp harfbuzz libICE \
-      enchant gstreamer gst-plugins-base libsecret libxslt sqlite-3 icu4c \
-      orc libgcrypt libgpg-error curl \
+      atk-2 \
+      binutils \
+      cairo \
+      ccache \
+      cmake-3 \
+      curl \
+      cyrus-sasl \
+      enchant \
+      flex \
+      fontconfig \
+      freetype \
+      gc \
+      gcc-5 \
+      gcc-g++ \
+      gdk-pixbuf2 \
+      gettext-tools \
+      git \
+      glib2 \
+      glibc-2 \
+      gst-plugins-base \
+      gstreamer \
+      gtk+2 \
+      guile \
+      harfbuzz \
+      icu4c \
+      kernel-headers \
+      libarchive-3 \
+      libcroco \
+      libdrm \
+      libffi \
+      libgcrypt \
+      libgpg-error \
+      libICE \
+      libmpc \
+      libnotify \
+      libsecret \
+      libSM \
+      libsoup \
+      libX11 \
+      libXau \
+      libxcb \
+      libXcomposite \
+      libXcursor \
+      libXdamage \
+      libXdmcp \
+      libXext \
+      libXfixes \
+      libXi \
+      libXinerama \
+      libxml2 \
+      libXrandr \
+      libXrender \
+      libxshmfence \
+      libxslt \
+      libXt \
+      libXxf86vm \
+      lzo \
+      make-4 \
+      mesa \
+      nettle \
+      orc \
+      pango \
+      pixman \
+      sqlite-3 \
  && sed -i 's/REPOPLUS=( slackpkgplus )/REPOPLUS=( slackpkgplus slackonly slackel )/' \
       /etc/slackpkg/slackpkgplus.conf \
  && echo "MIRRORPLUS['slackonly']=http://slackonly.com/pub/packages/14.2-x86_64/" \
@@ -27,7 +81,10 @@ RUN echo -e 'quiet=on\ncheck_certificate=off' >> ~/.wgetrc \
       >> /etc/slackpkg/slackpkgplus.conf \
  && slackpkg update gpg && slackpkg update \
  && slackpkg -default_answer=y -batch=on -checkgpg=off install \
-      slackonly:libwebp slackonly:webkitgtk slackonly:rapidjson slackel:wxGTK3 \
+      slackel:wxGTK3 \
+      slackonly:libwebp \
+      slackonly:rapidjson \
+      slackonly:webkitgtk \
  && rm -rf /var/cache/packages/* /var/lib/slackpkg/* \
            /usr/share/locale/* /usr/man/* \
            /tmp/* ~/.wgetrc slackpkg+*.t?z

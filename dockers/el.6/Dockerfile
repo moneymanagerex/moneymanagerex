@@ -4,8 +4,16 @@ RUN rpm --import https://getfedora.org/static/0608B895.txt \
  && yum -y install http://download.fedoraproject.org/pub/epel/epel-release-latest-6.noarch.rpm \
  && yum -y install centos-release-scl \
  && yum -y install --setopt=tsflags=nodocs \
-        cmake3 devtoolset-6-gcc-c++ gettext git devtoolset-6-make rpm-build redhat-lsb-core \
-        webkitgtk-devel wxGTK3-devel ccache \
+      ccache \
+      cmake3 \
+      devtoolset-6-gcc-c++ \
+      devtoolset-6-make \
+      gettext \
+      git \
+      redhat-lsb-core \
+      rpm-build \
+      webkitgtk-devel \
+      wxGTK3-devel \
  && yum clean all
 
 # cmake3 installed from EPEL
