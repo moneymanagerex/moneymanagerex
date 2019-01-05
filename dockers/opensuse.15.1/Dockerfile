@@ -1,6 +1,6 @@
-FROM opensuse/tumbleweed:latest
+FROM opensuse/leap:15.1
 LABEL maintainer="developers@moneymanagerex.org"
-RUN zypper refresh && zypper install -y --no-recommends \
+RUN zypper install -y --no-recommends \
       ccache \
       cmake \
       gcc-c++ \
@@ -10,7 +10,7 @@ RUN zypper refresh && zypper install -y --no-recommends \
       lsb-release \
       make \
       rpm-build \
-      wxWidgets-devel \
+      wxWidgets-3_2-devel \
  && zypper clean --all
 
 ENV MMEX_INST_CMD zypper --no-refresh --no-gpg-checks install -y ./mmex-*.rpm
