@@ -1,4 +1,4 @@
-FROM linuxmintd/mint18-amd64
+FROM linuxmintd/mint18-amd64:latest
 LABEL maintainer="developers@moneymanagerex.org"
 RUN apt-get update && apt-get install -y --no-install-recommends \
       build-essential \
