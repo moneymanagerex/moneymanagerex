@@ -1,4 +1,4 @@
-FROM linuxmintd/mint19.1-i386
+FROM linuxmintd/mint19.1-i386:latest
 LABEL maintainer="developers@moneymanagerex.org"
 RUN dpkg --add-architecture i386 && apt-get update \
  && apt-get install -y --no-install-recommends \
