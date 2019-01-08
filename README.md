@@ -4,8 +4,8 @@ Money Manager Ex
 
 [![stable]][GitHubLatest] [![unstable]][GitHubDL] [![s]][SourceForgeDL]
 [![gha]][GitHubDL] [![ghl]][GitHubLatest] [![p]][packagecloud] [![w]][website]
-[![i]][GitHubIssues] [![resolution time]][isitmaintained] [![cd]][CodeDocs]
-[![c]][contributors] [![l]](LICENSE) [![o]][OpenHub]
+[![i]][GitHubIssues] [![resolution time]][isitmaintained] [![grade]][Codacy]
+[![cd]][CodeDocs] [![c]][contributors] [![l]](LICENSE) [![o]][OpenHub]
 
 Money Manager Ex is a free, open-source, cross-platform, easy-to-use personal
 finance software. It primarily helps organize one's finances and keeps track
@@ -104,6 +104,8 @@ Please follow installation instructions from [INSTALL.md] file.
 [slackware]: http://badges.herokuapp.com/travis/moneymanagerex/moneymanagerex?label=slackware&env=OS=slackware
 [macos]: http://badges.herokuapp.com/travis/moneymanagerex/moneymanagerex?label=macos&env=OS=macos
 [resolution time]: http://isitmaintained.com/badge/resolution/moneymanagerex/moneymanagerex.svg
+[grade]: https://api.codacy.com/project/badge/Grade/1142d09f61e84483bb7783cb19f7da76
 [INSTALL.md]: ./INSTALL.md
 [Cocoa]: https://developer.apple.com/library/archive/documentation/MacOSX/Conceptual/OSX_Technology_Overview/CocoaApplicationLayer/CocoaApplicationLayer.html "Cocoa Application Layer"
 [GTK+]: https://www.gtk.org/ "GIMP Toolkit"
+[Codacy]: https://www.codacy.com/app/slodki/moneymanagerex "Codacy code quality grade"
