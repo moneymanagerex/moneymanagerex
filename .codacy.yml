@@ -1,0 +1,41 @@
+---
+engines:
+  bandit:
+    enabled: true
+  cppcheck:
+    enabled: true
+    language: c++
+  csslint:
+    enabled: true
+  eslint:
+    enabled: true
+  flawfinder:
+    nabled: true
+  hadolint:
+    enabled: true
+  jackson-linter:
+    enabled: true
+  jshint:
+    enabled: true
+  pmd:
+    enabled: true
+  prospector:
+    enabled: true
+  pylint:
+    enabled: true
+  remark-lint:
+    enabled: true
+  shellcheck:
+    enabled: true
+  stylelint:
+    enabled: true
+  duplication:
+    enabled: true
+  metrics:
+    enabled: true
+languages:
+  cpp:
+    extensions:
+      - '.h'
+exclude_paths:
+  - '3rd/**/*'
