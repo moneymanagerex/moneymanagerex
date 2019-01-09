@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MMEX\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2018-10-25 19:05+0300\n"
-"PO-Revision-Date: 2018-10-25 19:10+0300\n"
+"POT-Creation-Date: 2019-01-09 16:33+0300\n"
+"PO-Revision-Date: 2019-01-09 16:41+0300\n"
 "Last-Translator: Nikolay <vomikan@mail.ru>, 2018\n"
 "Language-Team: Russian (https://www.transifex.com/mmex/teams/84279/ru/)\n"
 "Language: ru\n"
@@ -55,7 +55,7 @@ msgstr "Конфиденциальность"
 
 #: src/aboutdialog.cpp:197 src/accountdialog.cpp:372 src/appstartdialog.cpp:136
 #: src/assetdialog.cpp:299 src/attachmentdialog.cpp:118
-#: src/billsdepositsdialog.cpp:497 src/budgetentrydialog.cpp:156
+#: src/billsdepositsdialog.cpp:501 src/budgetentrydialog.cpp:156
 #: src/budgetyeardialog.cpp:112 src/budgetyearentrydialog.cpp:128
 #: src/currencydialog.cpp:223 src/customfieldeditdialog.cpp:188
 #: src/import_export/qif_export.cpp:214 src/import_export/qif_export.cpp:237
@@ -63,7 +63,7 @@ msgstr "Конфиденциальность"
 #: src/payeedialog.cpp:127 src/relocatecategorydialog.cpp:125
 #: src/relocatepayeedialog.cpp:130 src/sharetransactiondialog.cpp:310
 #: src/splitdetailsdialog.cpp:157 src/splittransactionsdialog.cpp:170
-#: src/transactionsupdatedialog.cpp:213 src/transdialog.cpp:568
+#: src/transactionsupdatedialog.cpp:213 src/transdialog.cpp:572
 msgid "&OK "
 msgstr "&ОК "
 
@@ -107,13 +107,13 @@ msgid "Favorite Account"
 msgstr "Избранный счёт"
 
 #: src/accountdialog.cpp:248 src/assetdialog.cpp:247 src/assetspanel.cpp:66
-#: src/billsdepositsdialog.cpp:634 src/billsdepositspanel.cpp:115
-#: src/filtertransdialog.cpp:339 src/filtertransdialog.cpp:920
+#: src/billsdepositsdialog.cpp:638 src/billsdepositspanel.cpp:115
+#: src/filtertransdialog.cpp:339 src/filtertransdialog.cpp:924
 #: src/import_export/qif_import_gui.cpp:100
 #: src/import_export/univcsvdialog.cpp:97 src/mmcheckingpanel.cpp:1107
 #: src/reports/transactions.cpp:81 src/sharetransactiondialog.cpp:253
 #: src/stockdialog.cpp:277 src/stockspanel.cpp:107
-#: src/transactionsupdatedialog.cpp:184 src/transdialog.cpp:535
+#: src/transactionsupdatedialog.cpp:184 src/transdialog.cpp:539
 #: src/usertransactionpanel.cpp:213 src/webappdialog.cpp:83
 msgid "Notes"
 msgstr "Примечания"
@@ -371,15 +371,15 @@ msgstr "Название"
 msgid "Enter the name of the asset"
 msgstr "Введите название актива"
 
-#: src/assetdialog.cpp:195 src/assetspanel.cpp:62 src/filtertransdialog.cpp:513
-#: src/filtertransdialog.cpp:832 src/import_export/qif_import_gui.cpp:94
+#: src/assetdialog.cpp:195 src/assetspanel.cpp:62 src/filtertransdialog.cpp:517
+#: src/filtertransdialog.cpp:836 src/import_export/qif_import_gui.cpp:94
 #: src/import_export/univcsvdialog.cpp:91 src/maincurrencydialog.cpp:251
 #: src/maincurrencydialog.cpp:274 src/mmcheckingpanel.cpp:1099
-#: src/mmreportspanel.cpp:341 src/model/Model_CustomField.cpp:29
+#: src/mmreportspanel.cpp:346 src/model/Model_CustomField.cpp:29
 #: src/reports/cashflow.cpp:248 src/reports/summary.cpp:155
 #: src/reports/transactions.cpp:74 src/stockdialog.cpp:310
 #: src/stockdialog.cpp:642 src/transactionsupdatedialog.cpp:106
-#: src/transdialog.cpp:427 src/usertransactionpanel.cpp:115
+#: src/transdialog.cpp:431 src/usertransactionpanel.cpp:115
 #: src/webappdialog.cpp:76
 msgid "Date"
 msgstr "Дата"
@@ -418,9 +418,9 @@ msgid "% Rate"
 msgstr "% изменения"
 
 #: src/assetdialog.cpp:241
-#, fuzzy, c-format
-msgid "Enter the rate at which the asset changes its value in % per year"
-msgstr "Введите ежегодное изменение стоимости имущества в %"
+msgid ""
+"Enter the rate at which the asset changes its value in percentage per year"
+msgstr "Введите ежегодное изменение стоимости имущества в процентах"
 
 #: src/assetdialog.cpp:253
 msgid "Organize attachments of this asset"
@@ -467,14 +467,14 @@ msgstr ""
 msgid "ID"
 msgstr "ID"
 
-#: src/assetspanel.cpp:63 src/billsdepositsdialog.cpp:567
+#: src/assetspanel.cpp:63 src/billsdepositsdialog.cpp:571
 #: src/billsdepositspanel.cpp:108 src/customfieldlistdialog.cpp:54
-#: src/filtertransdialog.cpp:284 src/filtertransdialog.cpp:881
+#: src/filtertransdialog.cpp:284 src/filtertransdialog.cpp:885
 #: src/import_export/qif_import_gui.cpp:97
 #: src/import_export/qif_import_gui.cpp:239 src/mmhomepagepanel.cpp:801
 #: src/reports/incexpenses.cpp:133 src/reports/transactions.cpp:79
 #: src/splitdetailsdialog.cpp:117 src/transactionsupdatedialog.cpp:133
-#: src/transdialog.cpp:461 src/usertransactionpanel.cpp:145
+#: src/transdialog.cpp:465 src/usertransactionpanel.cpp:145
 #: src/webappdialog.cpp:79
 msgid "Type"
 msgstr "Тип"
@@ -700,9 +700,8 @@ msgid "Import attachment:"
 msgstr "Загрузка вложения:"
 
 #: src/attachmentdialog.cpp:166 src/import_export/univcsvdialog.cpp:1371
-#, fuzzy
 msgid "All Files"
-msgstr "QIF файлы"
+msgstr "Все файлы"
 
 #: src/attachmentdialog.cpp:174
 msgid "Enter a description for the new attachment:"
@@ -806,7 +805,7 @@ msgstr "Вложение не открыть"
 #: src/filtertransdialog.cpp:49 src/model/Model_Asset.cpp:24
 #: src/model/Model_Billsdeposits.cpp:38 src/model/Model_Budget.cpp:54
 #: src/model/Model_Checking.cpp:37 src/optionsettingsmisc.cpp:87
-#: src/reports/cashflow.cpp:235
+#: src/optionsettingsmisc.cpp:101 src/reports/cashflow.cpp:235
 msgid "None"
 msgstr "Нет"
 
@@ -820,8 +819,8 @@ msgid "Fortnightly"
 msgstr "Раз в две недели"
 
 #: src/billsdepositsdialog.cpp:53 src/billsdepositspanel.cpp:48
-#: src/model/Model_Budget.cpp:57 src/option.cpp:118 src/option.cpp:123
-#: src/option.cpp:126 src/option.cpp:129
+#: src/model/Model_Budget.cpp:57 src/option.cpp:115 src/option.cpp:120
+#: src/option.cpp:123 src/option.cpp:126
 msgid "Monthly"
 msgstr "Ежемесячно"
 
@@ -841,7 +840,7 @@ msgid "Half-Yearly"
 msgstr "Раз в полгода"
 
 #: src/billsdepositsdialog.cpp:57 src/billsdepositspanel.cpp:52
-#: src/model/Model_Budget.cpp:61 src/option.cpp:119
+#: src/model/Model_Budget.cpp:61 src/option.cpp:116
 msgid "Yearly"
 msgstr "Ежегодно"
 
@@ -854,29 +853,25 @@ msgid "Four Weeks"
 msgstr "Четыре недели"
 
 #: src/billsdepositsdialog.cpp:60 src/billsdepositspanel.cpp:55
-#: src/model/Model_Budget.cpp:62 src/option.cpp:130
+#: src/model/Model_Budget.cpp:62 src/option.cpp:127
 msgid "Daily"
 msgstr "Ежедневно"
 
-#: src/billsdepositsdialog.cpp:61 src/billsdepositsdialog.cpp:1381
-#, fuzzy
+#: src/billsdepositsdialog.cpp:61 src/billsdepositsdialog.cpp:1384
 msgid "In (x) Days"
-msgstr "В %s день"
+msgstr "В (X) дни"
 
-#: src/billsdepositsdialog.cpp:62 src/billsdepositsdialog.cpp:1381
-#, fuzzy
+#: src/billsdepositsdialog.cpp:62 src/billsdepositsdialog.cpp:1384
 msgid "In (x) Months"
-msgstr "В %sмесяц"
+msgstr "В (X) месяцы"
 
 #: src/billsdepositsdialog.cpp:63
-#, fuzzy
 msgid "Every (x) Days"
-msgstr "Каждые %s дней"
+msgstr "Каждые (X) дней"
 
 #: src/billsdepositsdialog.cpp:64
-#, fuzzy
 msgid "Every (x) Months"
-msgstr "Каждые %s месяцев"
+msgstr "Каждые (X) месяцев"
 
 #: src/billsdepositsdialog.cpp:65 src/billsdepositspanel.cpp:60
 msgid "Monthly (last day)"
@@ -890,261 +885,259 @@ msgstr "Ежемесячно (последний рабочий день)"
 msgid "New Recurring Transaction"
 msgstr "Новая запланированная транзакция"
 
-#: src/billsdepositsdialog.cpp:295
+#: src/billsdepositsdialog.cpp:299
 msgid "Edit Recurring Transaction"
 msgstr "Редактор запланированной транзакции"
 
-#: src/billsdepositsdialog.cpp:299
+#: src/billsdepositsdialog.cpp:303
 msgid "Enter Recurring Transaction"
 msgstr "Введите Повторяющуюся транзакцию"
 
-#: src/billsdepositsdialog.cpp:392
+#: src/billsdepositsdialog.cpp:396
 msgid "Transaction Dates"
 msgstr "Дата транзакции"
 
-#: src/billsdepositsdialog.cpp:414
+#: src/billsdepositsdialog.cpp:418
 msgid "Recurring Transaction Details"
 msgstr "Детали повторяющейся транзакции"
 
-#: src/billsdepositsdialog.cpp:435
+#: src/billsdepositsdialog.cpp:439
 msgid "Specify the date when this bill or deposit is due"
 msgstr "Определите дату следующего начисления"
 
-#: src/billsdepositsdialog.cpp:439
+#: src/billsdepositsdialog.cpp:443
 msgid "Retard or advance the date of the 'next occurrence'"
 msgstr "Задерживать или продвигать дату 'следующего события'"
 
-#: src/billsdepositsdialog.cpp:445 src/billsdepositspanel.cpp:103
+#: src/billsdepositsdialog.cpp:449 src/billsdepositspanel.cpp:103
 msgid "Date Due"
 msgstr "Дата возвращения"
 
-#: src/billsdepositsdialog.cpp:449 src/billsdepositsdialog.cpp:1296
+#: src/billsdepositsdialog.cpp:453 src/billsdepositsdialog.cpp:1299
 msgid "Repeats"
 msgstr "Повторы"
 
-#: src/billsdepositsdialog.cpp:457
-msgid "Advance the next occuring date with the specified values"
-msgstr "Специальные параметры даты следующего начисления"
+#: src/billsdepositsdialog.cpp:461
+msgid "Advance the next occurring date with the specified values"
+msgstr "Перейдите к следующей дате с указанными значениями"
 
-#: src/billsdepositsdialog.cpp:465 src/billsdepositsdialog.cpp:1338
+#: src/billsdepositsdialog.cpp:469 src/billsdepositsdialog.cpp:1341
 msgid "Payments Left"
 msgstr "Платежей всего"
 
-#: src/billsdepositsdialog.cpp:479
-#, fuzzy
+#: src/billsdepositsdialog.cpp:483
 msgid "Request user to enter payment"
-msgstr "Пользователь должен ввести оплату на 'Дата Оплаты'"
+msgstr "Пользователь должен ввести оплату"
 
-#: src/billsdepositsdialog.cpp:480
+#: src/billsdepositsdialog.cpp:484
 msgid "User requested to enter this transaction on the 'Date Paid'"
 msgstr "Пользователь должен ввести транзакцию на 'Дата Оплаты'"
 
-#: src/billsdepositsdialog.cpp:483
-#, fuzzy
+#: src/billsdepositsdialog.cpp:487
 msgid "Grant automatic execute"
-msgstr "Автоматическое разрешение на выполнение данной записи."
+msgstr "Автоматическое разрешение на выполнение"
 
-#: src/billsdepositsdialog.cpp:484
+#: src/billsdepositsdialog.cpp:488
 msgid "The requested payment will occur without user interaction"
 msgstr "Автовыполнение будет происходить без участия пользователя"
 
-#: src/billsdepositsdialog.cpp:509 src/transdialog.cpp:404
+#: src/billsdepositsdialog.cpp:513 src/transdialog.cpp:408
 msgid "Transaction Details"
 msgstr "Детали транзакции"
 
-#: src/billsdepositsdialog.cpp:524
+#: src/billsdepositsdialog.cpp:528
 msgid "Specify the date the user is requested to enter this transaction"
 msgstr "Укажите дату, когда пользователю предлагается ввести эту транзакцию"
 
-#: src/billsdepositsdialog.cpp:527
+#: src/billsdepositsdialog.cpp:531
 msgid "Advance or retard the user request date of this transaction"
 msgstr "Опережение или запаздывание даты запроса пользователя этой сделки"
 
-#: src/billsdepositsdialog.cpp:532
+#: src/billsdepositsdialog.cpp:536
 msgid "Reset 'Date Paid' to 'Today's Date'"
 msgstr "Сброс 'Дата Оплаты' на 'Сегодняшняя дата'"
 
-#: src/billsdepositsdialog.cpp:539 src/billsdepositspanel.cpp:102
+#: src/billsdepositsdialog.cpp:543 src/billsdepositspanel.cpp:102
 msgid "Date Paid"
 msgstr "Дата оплаты"
 
-#: src/billsdepositsdialog.cpp:550 src/filtertransdialog.cpp:281
-#: src/transdialog.cpp:1217
+#: src/billsdepositsdialog.cpp:554 src/filtertransdialog.cpp:281
+#: src/transdialog.cpp:1220
 msgid "Specify the status for the transaction"
 msgstr "Выберите статус транзакции"
 
-#: src/billsdepositsdialog.cpp:552 src/billsdepositspanel.cpp:106
-#: src/filtertransdialog.cpp:271 src/filtertransdialog.cpp:523
-#: src/filtertransdialog.cpp:867 src/import_export/qif_import_gui.cpp:241
+#: src/billsdepositsdialog.cpp:556 src/billsdepositspanel.cpp:106
+#: src/filtertransdialog.cpp:271 src/filtertransdialog.cpp:527
+#: src/filtertransdialog.cpp:871 src/import_export/qif_import_gui.cpp:241
 #: src/import_export/qif_import_gui.cpp:253
 #: src/import_export/qif_import_gui.cpp:264 src/mmcheckingpanel.cpp:1102
 #: src/reports/transactions.cpp:77 src/transactionsupdatedialog.cpp:119
-#: src/transdialog.cpp:441 src/usertransactionpanel.cpp:185
+#: src/transdialog.cpp:445 src/usertransactionpanel.cpp:185
 #: src/webappdialog.cpp:78
 msgid "Status"
 msgstr "Статус"
 
-#: src/billsdepositsdialog.cpp:557 src/splitdetailsdialog.cpp:129
-#: src/transdialog.cpp:1218
+#: src/billsdepositsdialog.cpp:561 src/splitdetailsdialog.cpp:129
+#: src/transdialog.cpp:1221
 msgid "Specify the type of transactions to be created."
 msgstr "Выберите тип новой транзакции."
 
-#: src/billsdepositsdialog.cpp:558 src/transdialog.cpp:456
+#: src/billsdepositsdialog.cpp:562 src/transdialog.cpp:460
 msgid "&Advanced"
 msgstr "Доп."
 
-#: src/billsdepositsdialog.cpp:561 src/transdialog.cpp:1222
+#: src/billsdepositsdialog.cpp:565 src/transdialog.cpp:1225
 msgid "Allows the setting of different amounts in the FROM and TO accounts."
 msgstr "Определите сумму которая будет переведена на другой счёт."
 
-#: src/billsdepositsdialog.cpp:571 src/billsdepositspanel.cpp:109
-#: src/budgetingpanel.cpp:321 src/filtertransdialog.cpp:491
-#: src/filtertransdialog.cpp:499 src/mmhomepagepanel.cpp:391
+#: src/billsdepositsdialog.cpp:575 src/billsdepositspanel.cpp:109
+#: src/budgetingpanel.cpp:321 src/filtertransdialog.cpp:495
+#: src/filtertransdialog.cpp:503 src/mmhomepagepanel.cpp:391
 #: src/mmhomepagepanel.cpp:803 src/reports/budgetcategorysummary.cpp:184
 #: src/reports/categexp.cpp:164 src/reports/incexpenses.cpp:134
 #: src/reports/transactions.cpp:82 src/splitdetailsdialog.cpp:133
 #: src/splittransactionsdialog.cpp:136 src/transactionsupdatedialog.cpp:148
-#: src/transdialog.cpp:479 src/usertransactionpanel.cpp:149
+#: src/transdialog.cpp:483 src/usertransactionpanel.cpp:149
 #: src/webappdialog.cpp:82
 msgid "Amount"
 msgstr "Сумма"
 
-#: src/billsdepositsdialog.cpp:583 src/transdialog.cpp:1202
+#: src/billsdepositsdialog.cpp:587 src/transdialog.cpp:1205
 msgid "Specify the transfer amount in the To Account"
 msgstr "Задайте сумму для счёта в который производится перевод"
 
-#: src/billsdepositsdialog.cpp:595 src/billsdepositsdialog.cpp:854
-#: src/billsdepositsdialog.cpp:868 src/billsdepositspanel.cpp:104
-#: src/filtertransdialog.cpp:203 src/filtertransdialog.cpp:822
+#: src/billsdepositsdialog.cpp:599 src/billsdepositsdialog.cpp:858
+#: src/billsdepositsdialog.cpp:872 src/billsdepositspanel.cpp:104
+#: src/filtertransdialog.cpp:203 src/filtertransdialog.cpp:826
 #: src/import_export/qif_import_gui.cpp:93
 #: src/import_export/qif_import_gui.cpp:153
 #: src/import_export/qif_import_gui.cpp:232
 #: src/import_export/qif_import_gui.cpp:820 src/reports/transactions.cpp:75
-#: src/transdialog.cpp:291 src/transdialog.cpp:486
+#: src/transdialog.cpp:295 src/transdialog.cpp:490
 #: src/usertransactionpanel.cpp:119 src/webappdialog.cpp:77
 msgid "Account"
 msgstr "Счёт"
 
-#: src/billsdepositsdialog.cpp:596 src/billsdepositsdialog.cpp:684
-#: src/billsdepositsdialog.cpp:716 src/billsdepositsdialog.cpp:766
-#: src/billsdepositsdialog.cpp:832 src/usertransactionpanel.cpp:120
+#: src/billsdepositsdialog.cpp:600 src/billsdepositsdialog.cpp:688
+#: src/billsdepositsdialog.cpp:720 src/billsdepositsdialog.cpp:770
+#: src/billsdepositsdialog.cpp:836 src/usertransactionpanel.cpp:120
 msgid "Select Account"
 msgstr "Выберите счёт"
 
-#: src/billsdepositsdialog.cpp:597
+#: src/billsdepositsdialog.cpp:601
 msgid "Specify the Account that will own the recurring transaction"
 msgstr "Укажите счёт для данной повторяющейся транзакции"
 
-#: src/billsdepositsdialog.cpp:600 src/billsdepositsdialog.cpp:855
+#: src/billsdepositsdialog.cpp:604 src/billsdepositsdialog.cpp:859
 #: src/billsdepositspanel.cpp:105 src/filtertransdialog.cpp:238
-#: src/filtertransdialog.cpp:844 src/import_export/qif_import_gui.cpp:96
+#: src/filtertransdialog.cpp:848 src/import_export/qif_import_gui.cpp:96
 #: src/import_export/qif_import_gui.cpp:246
 #: src/import_export/univcsvdialog.cpp:92 src/mmcheckingpanel.cpp:1101
 #: src/model/Model_Attachment.cpp:29 src/reports/payee.cpp:121
 #: src/reports/transactions.cpp:76 src/transactionsupdatedialog.cpp:160
-#: src/transdialog.cpp:284 src/transdialog.cpp:491
+#: src/transdialog.cpp:288 src/transdialog.cpp:495
 #: src/usertransactionpanel.cpp:189 src/webappdialog.cpp:80
 msgid "Payee"
 msgstr "Получатель"
 
-#: src/billsdepositsdialog.cpp:602 src/billsdepositsdialog.cpp:892
+#: src/billsdepositsdialog.cpp:606 src/billsdepositsdialog.cpp:896
 #: src/usertransactionpanel.cpp:190
 msgid "Select Payee"
 msgstr "Выберите получателя"
 
-#: src/billsdepositsdialog.cpp:609 src/transdialog.cpp:504
+#: src/billsdepositsdialog.cpp:613 src/transdialog.cpp:508
 msgid "Split"
 msgstr "Разделить"
 
-#: src/billsdepositsdialog.cpp:612 src/transdialog.cpp:1219
+#: src/billsdepositsdialog.cpp:616 src/transdialog.cpp:1222
 msgid "Use split Categories"
 msgstr "Разделить по категориям"
 
-#: src/billsdepositsdialog.cpp:618 src/billsdepositspanel.cpp:107
+#: src/billsdepositsdialog.cpp:622 src/billsdepositspanel.cpp:107
 #: src/budgetingpanel.cpp:318 src/filtertransdialog.cpp:249
-#: src/filtertransdialog.cpp:852 src/import_export/qif_import_gui.cpp:98
+#: src/filtertransdialog.cpp:856 src/import_export/qif_import_gui.cpp:98
 #: src/import_export/qif_import_gui.cpp:258
 #: src/import_export/univcsvdialog.cpp:94 src/mmcheckingpanel.cpp:1103
 #: src/mmhomepagepanel.cpp:223 src/reports/budgetcategorysummary.cpp:183
 #: src/reports/budgetingperf.cpp:178 src/reports/categexp.cpp:163
 #: src/reports/categovertimeperf.cpp:110 src/reports/transactions.cpp:78
 #: src/splitdetailsdialog.cpp:142 src/splittransactionsdialog.cpp:135
-#: src/transactionsupdatedialog.cpp:172 src/transdialog.cpp:514
+#: src/transactionsupdatedialog.cpp:172 src/transdialog.cpp:518
 #: src/usertransactionpanel.cpp:196 src/webappdialog.cpp:81
 msgid "Category"
 msgstr "Категория"
 
-#: src/billsdepositsdialog.cpp:619 src/billsdepositsdialog.cpp:1486
-#: src/transactionsupdatedialog.cpp:175 src/transdialog.cpp:373
-#: src/transdialog.cpp:967 src/usertransactionpanel.cpp:197
+#: src/billsdepositsdialog.cpp:623 src/billsdepositsdialog.cpp:1489
+#: src/transactionsupdatedialog.cpp:175 src/transdialog.cpp:377
+#: src/transdialog.cpp:971 src/usertransactionpanel.cpp:197
 msgid "Select Category"
 msgstr "Выберите категорию"
 
-#: src/billsdepositsdialog.cpp:628 src/transdialog.cpp:1220
+#: src/billsdepositsdialog.cpp:632 src/transdialog.cpp:1223
 msgid "Specify any associated check number or transaction number"
 msgstr "Введите номер чека или номер сделки"
 
-#: src/billsdepositsdialog.cpp:630 src/billsdepositspanel.cpp:114
-#: src/filtertransdialog.cpp:331 src/filtertransdialog.cpp:910
+#: src/billsdepositsdialog.cpp:634 src/billsdepositspanel.cpp:114
+#: src/filtertransdialog.cpp:331 src/filtertransdialog.cpp:914
 #: src/import_export/qif_import_gui.cpp:95
 #: src/import_export/univcsvdialog.cpp:96 src/mmcheckingpanel.cpp:1100
-#: src/reports/transactions.cpp:80 src/transdialog.cpp:528
+#: src/reports/transactions.cpp:80 src/transdialog.cpp:532
 #: src/usertransactionpanel.cpp:209
 msgid "Number"
 msgstr "№"
 
-#: src/billsdepositsdialog.cpp:639
+#: src/billsdepositsdialog.cpp:643
 msgid "Organize attachments of this recurring transaction"
 msgstr "Менеджер вложений повторяющейся транзакции"
 
-#: src/billsdepositsdialog.cpp:643 src/transdialog.cpp:539
+#: src/billsdepositsdialog.cpp:647 src/transdialog.cpp:543
 #: src/usertransactionpanel.cpp:224
 msgid "Select one of the frequently used notes"
 msgstr "Часто используемые заметки"
 
-#: src/billsdepositsdialog.cpp:654 src/transdialog.cpp:1221
+#: src/billsdepositsdialog.cpp:658 src/transdialog.cpp:1224
 #: src/usertransactionpanel.cpp:233
 msgid "Specify any text notes you want to add to this transaction."
 msgstr "Введите текстовые примечания к этой транзакции."
 
-#: src/billsdepositsdialog.cpp:683
+#: src/billsdepositsdialog.cpp:687
 msgid "Choose Bank Account or Term Account"
 msgstr "Выберите счёт"
 
-#: src/billsdepositsdialog.cpp:716 src/billsdepositsdialog.cpp:766
+#: src/billsdepositsdialog.cpp:720 src/billsdepositsdialog.cpp:770
 msgid "Account name"
 msgstr "Название счёта"
 
-#: src/billsdepositsdialog.cpp:829 src/billsdepositsdialog.cpp:869
-#: src/transdialog.cpp:288 src/transdialog.cpp:350
+#: src/billsdepositsdialog.cpp:833 src/billsdepositsdialog.cpp:873
+#: src/transdialog.cpp:292 src/transdialog.cpp:354
 msgid "From"
 msgstr "Из"
 
-#: src/billsdepositsdialog.cpp:841 src/transdialog.cpp:348
+#: src/billsdepositsdialog.cpp:845 src/transdialog.cpp:352
 msgid "To"
 msgstr "В"
 
-#: src/billsdepositsdialog.cpp:842
+#: src/billsdepositsdialog.cpp:846
 msgid "Select To Account"
 msgstr "На счёт"
 
-#: src/billsdepositsdialog.cpp:1247
+#: src/billsdepositsdialog.cpp:1250
 msgid "Specify the transfer amount in the From Account"
 msgstr "Определите сумму которая будет переведена на другой счёт"
 
-#: src/billsdepositsdialog.cpp:1297
+#: src/billsdepositsdialog.cpp:1300
 msgid "Activates"
 msgstr "Активация"
 
-#: src/billsdepositsdialog.cpp:1299
+#: src/billsdepositsdialog.cpp:1302
 msgid "Period: Days"
 msgstr "Период: дней"
 
-#: src/billsdepositsdialog.cpp:1300
+#: src/billsdepositsdialog.cpp:1303
 msgid "Period: Months"
 msgstr "Период: месяцев"
 
-#: src/billsdepositsdialog.cpp:1307
+#: src/billsdepositsdialog.cpp:1310
 msgid ""
 "Specify period in Days to activate.\n"
 "Becomes blank when not active."
@@ -1152,7 +1145,7 @@ msgstr ""
 "Укажите период в днях до исполнения.\n"
 "Оставьте пустым, чтобы не использовать."
 
-#: src/billsdepositsdialog.cpp:1315
+#: src/billsdepositsdialog.cpp:1318
 msgid ""
 "Specify period in Months to activate.\n"
 "Becomes blank when not active."
@@ -1160,7 +1153,7 @@ msgstr ""
 "Укажите период в месяцах до активации.\n"
 "Оставьте пустым, чтобы не использовать."
 
-#: src/billsdepositsdialog.cpp:1323
+#: src/billsdepositsdialog.cpp:1326
 msgid ""
 "Specify period in Days to activate.\n"
 "Leave blank when not active."
@@ -1168,7 +1161,7 @@ msgstr ""
 "Укажите период в днях до исполнения.\n"
 "Оставьте пустым, чтобы не использовать."
 
-#: src/billsdepositsdialog.cpp:1331
+#: src/billsdepositsdialog.cpp:1334
 msgid ""
 "Specify period in Months to activate.\n"
 "Leave blank when not active."
@@ -1176,20 +1169,20 @@ msgstr ""
 "Укажите период в месяцах до активации.\n"
 "Оставьте пустым, чтобы не использовать."
 
-#: src/billsdepositsdialog.cpp:1339
+#: src/billsdepositsdialog.cpp:1342
 msgid ""
 "Specify the number of payments to be made.\n"
 "Leave blank if the payments continue forever."
 msgstr "Введите количество повторов. Оставьте поле пустым, если бесконечно."
 
-#: src/billsdepositsdialog.cpp:1365 src/billsdepositsdialog.cpp:1374
-#: src/filtertransdialog.cpp:491 src/filtertransdialog.cpp:499
-#: src/filtertransdialog.cpp:513 src/filtertransdialog.cpp:523 src/util.cpp:582
+#: src/billsdepositsdialog.cpp:1368 src/billsdepositsdialog.cpp:1377
+#: src/filtertransdialog.cpp:495 src/filtertransdialog.cpp:503
+#: src/filtertransdialog.cpp:517 src/filtertransdialog.cpp:527 src/util.cpp:582
 msgid "Invalid value"
 msgstr "Неверное значение"
 
-#: src/billsdepositsdialog.cpp:1365 src/billsdepositsdialog.cpp:1374
-#: src/billsdepositsdialog.cpp:1382 src/general_report_manager.cpp:657
+#: src/billsdepositsdialog.cpp:1368 src/billsdepositsdialog.cpp:1377
+#: src/billsdepositsdialog.cpp:1385 src/general_report_manager.cpp:657
 #: src/import_export/qif_import_gui.cpp:736 src/maincurrencydialog.cpp:454
 #: src/mmframe.cpp:3060 src/mmreportspanel.cpp:258
 #: src/splittransactionsdialog.cpp:206 src/stockspanel.cpp:818
@@ -1197,24 +1190,23 @@ msgstr "Неверное значение"
 msgid "Error"
 msgstr "Ошибка"
 
-#: src/billsdepositsdialog.cpp:1380 src/mmSimpleDialogs.cpp:232
-#, fuzzy
+#: src/billsdepositsdialog.cpp:1383 src/mmSimpleDialogs.cpp:232
 msgid "Invalid Choice"
-msgstr "Неверное название"
+msgstr "Неверный выбор"
 
-#: src/billsdepositsdialog.cpp:1380
+#: src/billsdepositsdialog.cpp:1383
 msgid "Choose one of the following:"
-msgstr ""
+msgstr "Выберите один из следующих вариантов:"
 
-#: src/billsdepositsdialog.cpp:1454 src/transdialog.cpp:1179
+#: src/billsdepositsdialog.cpp:1457 src/transdialog.cpp:1182
 #: src/usertransactionpanel.cpp:199
 msgid "Specify the category for this transaction"
 msgstr "Выберите категорию данной транзакции"
 
-#: src/billsdepositsdialog.cpp:1476 src/categdialog.cpp:118
-#: src/import_export/qif_export.cpp:123 src/option.cpp:120 src/option.cpp:121
-#: src/option.cpp:122 src/option.cpp:123 src/reports/categexp.cpp:230
-#: src/transdialog.cpp:363
+#: src/billsdepositsdialog.cpp:1479 src/categdialog.cpp:118
+#: src/import_export/qif_export.cpp:123 src/option.cpp:117 src/option.cpp:118
+#: src/option.cpp:119 src/option.cpp:120 src/reports/categexp.cpp:230
+#: src/transdialog.cpp:367
 msgid "Categories"
 msgstr "Категории"
 
@@ -1222,7 +1214,7 @@ msgstr "Категории"
 msgid "Specify where the transaction is going to"
 msgstr "Укажите счёт куда будет произведено перечисление"
 
-#: src/billsdepositsdialog.h:124 src/transdialog.cpp:1211
+#: src/billsdepositsdialog.h:124 src/transdialog.cpp:1214
 msgid "Specify where the transaction is coming from"
 msgstr "Укажите откуда будет произведено перечисление"
 
@@ -1230,7 +1222,7 @@ msgstr "Укажите откуда будет произведено переч
 msgid "Specify which account the transfer is going to"
 msgstr "Укажите счёт куда будет произведено перечисление"
 
-#: src/billsdepositsdialog.h:126 src/transdialog.cpp:1206
+#: src/billsdepositsdialog.h:126 src/transdialog.cpp:1209
 #: src/usertransactionpanel.cpp:153
 msgid "Specify the amount for this transaction"
 msgstr "Введите сумму для данной транзакции"
@@ -1476,10 +1468,9 @@ msgid "View Budget Category Summary"
 msgstr "Отображать сумму по категориям в бюджете"
 
 #: src/budgetingpanel.cpp:184 src/reports/budget.cpp:84
-#, fuzzy, c-format
-#| msgid "Financial Year: %s - %i"
+#, c-format
 msgid "Financial Year: %s - %li"
-msgstr "Финансовый год: %s - %i"
+msgstr "Финансовый год: %s - %li"
 
 #: src/budgetingpanel.cpp:188 src/reports/budget.cpp:88
 #, c-format
@@ -1780,17 +1771,16 @@ msgid "Version: "
 msgstr "Версия: "
 
 #: src/constants.cpp:84 src/mmframe.cpp:2569
-#, fuzzy
 msgid "Database version: "
-msgstr "Поддерживаемая версия базы данных: "
+msgstr "Версия базы данных: "
 
 #: src/constants.cpp:90 src/mmframe.cpp:2570
 msgid "Git commit: "
-msgstr ""
+msgstr "Git commit: "
 
 #: src/constants.cpp:94 src/mmframe.cpp:2571
 msgid "Git branch: "
-msgstr ""
+msgstr "Git ветка: "
 
 #: src/constants.cpp:97 src/mmframe.cpp:2572
 msgid "MMEX is using the following support products:"
@@ -1882,9 +1872,8 @@ msgid "Currency Name"
 msgstr "Название валюты"
 
 #: src/currencydialog.cpp:151
-#, fuzzy
 msgid "Currency Type"
-msgstr "Название валюты"
+msgstr "Тип валюты"
 
 #: src/currencydialog.cpp:165
 msgid "Currency Symbol"
@@ -1911,9 +1900,8 @@ msgid "Scale"
 msgstr "Дробных"
 
 #: src/currencydialog.cpp:207
-#, fuzzy
 msgid "Historic currency"
-msgstr "Установить валюту"
+msgstr "Историческая валюта"
 
 #: src/currencydialog.cpp:212
 msgid "Value Display Sample:"
@@ -1933,9 +1921,9 @@ msgid "Invalid Entry"
 msgstr "Неверная запись"
 
 #: src/currencydialog.cpp:280
-#, fuzzy, c-format
+#, c-format
 msgid "%s Shown As: %s"
-msgstr "%.2f отобразится как: %s"
+msgstr "%s отобразится как: %s"
 
 #: src/customfieldeditdialog.cpp:57
 msgid "New/Edit Custom Field"
@@ -2003,20 +1991,19 @@ msgstr "Введите варианты значений для этого по�
 
 #: src/customfieldeditdialog.cpp:169
 msgid "Digits scale"
-msgstr ""
+msgstr "Цифровая шкала"
 
 #: src/customfieldeditdialog.cpp:171
 msgid "Enter the decimal digits scale allowed"
-msgstr ""
+msgstr "Введите разрешенную шкалу десятичных цифр"
 
 #: src/customfieldeditdialog.cpp:174
-#, fuzzy
 msgid "Panel's column"
-msgstr "Сбросить размер колонок"
+msgstr "Колоноки панели"
 
 #: src/customfieldeditdialog.cpp:179
 msgid "Select a value to represent the item on a panel"
-msgstr ""
+msgstr "Выберите значение для представления элемента на панели"
 
 #: src/customfieldeditdialog.cpp:221
 msgid "Changing field type will delete all content!"
@@ -2060,6 +2047,11 @@ msgid ""
 "value replaces allowed\n"
 "Please consider that there isn't any validation!"
 msgstr ""
+"Эта функция будет выполнять массовый поиск и замену значений "
+"пользовательского поля \"%s\"\n"
+"Будут заменены только полные совпадения поля, частичное или среднее значение "
+"не допускается\n"
+"Пожалуйста, учтите, что нет никакой проверки!"
 
 #: src/customfieldlistdialog.cpp:194
 msgid "Confirm Custom Field Content Update"
@@ -2167,15 +2159,15 @@ msgstr "Перевод"
 
 #: src/db/Table_Currencyformats.h:106
 msgid "US Dollar"
-msgstr ""
+msgstr "Доллар США"
 
 #: src/db/Table_Currencyformats.h:107
 msgid "Euro"
-msgstr ""
+msgstr "Евро"
 
 #: src/db/Table_Currencyformats.h:108
 msgid "Pound Sterling"
-msgstr ""
+msgstr "Фунт стерлингов"
 
 #: src/db/Table_Currencyformats.h:109
 msgid "Russian Ruble"
@@ -2183,38 +2175,34 @@ msgstr "Российский рубль"
 
 #: src/db/Table_Currencyformats.h:110
 msgid "Hryvnia"
-msgstr ""
+msgstr "Украинская гривна"
 
 #: src/db/Table_Currencyformats.h:111
-#, fuzzy
 msgid "Afghani"
 msgstr "Афганские афгани"
 
 #: src/db/Table_Currencyformats.h:112
 msgid "Lek"
-msgstr ""
+msgstr "Албанский лек"
 
 #: src/db/Table_Currencyformats.h:113
-#, fuzzy
 msgid "Algerian Dinar"
-msgstr "Algerian dinar"
+msgstr "Алжирский динар"
 
 #: src/db/Table_Currencyformats.h:114
+#, fuzzy
 msgid "Kwanza"
-msgstr ""
+msgstr "Angolan kwanza"
 
 #: src/db/Table_Currencyformats.h:115
-#, fuzzy
 msgid "East Caribbean Dollar"
-msgstr "East Caribbean dollar"
+msgstr "Восточно-карибский доллар"
 
 #: src/db/Table_Currencyformats.h:116
-#, fuzzy
 msgid "Argentine Peso"
-msgstr "Argentine peso"
+msgstr "Аргентинское песо"
 
 #: src/db/Table_Currencyformats.h:117
-#, fuzzy
 msgid "Armenian Dram"
 msgstr "Армянский драм"
 
@@ -2224,14 +2212,13 @@ msgid "Aruban Florin"
 msgstr "Aruban florin"
 
 #: src/db/Table_Currencyformats.h:119
-#, fuzzy
 msgid "Australian Dollar"
 msgstr "Австралийский доллар"
 
 #: src/db/Table_Currencyformats.h:120
 #, fuzzy
 msgid "Azerbaijan Manat"
-msgstr "Азербайджанский манат"
+msgstr "Азербайджанский манат (до 2005-10)"
 
 #: src/db/Table_Currencyformats.h:121
 #, fuzzy
@@ -2244,13 +2231,13 @@ msgid "Bahraini Dinar"
 msgstr "Bahraini dinar"
 
 #: src/db/Table_Currencyformats.h:123
+#, fuzzy
 msgid "Taka"
-msgstr ""
+msgstr "Bangladeshi taka"
 
 #: src/db/Table_Currencyformats.h:124
-#, fuzzy
 msgid "Barbados Dollar"
-msgstr "Barbadian dollar"
+msgstr "Барбадосский доллар"
 
 #: src/db/Table_Currencyformats.h:125
 #, fuzzy
@@ -2263,8 +2250,9 @@ msgid "Belize Dollar"
 msgstr "Belize dollar"
 
 #: src/db/Table_Currencyformats.h:127
+#, fuzzy
 msgid "CFA Franc BCEAO"
-msgstr ""
+msgstr "West African CFA franc"
 
 #: src/db/Table_Currencyformats.h:128
 #, fuzzy
@@ -2272,8 +2260,9 @@ msgid "Bermudian Dollar"
 msgstr "Bermudian dollar"
 
 #: src/db/Table_Currencyformats.h:129
+#, fuzzy
 msgid "Ngultrum"
-msgstr ""
+msgstr "Bhutanese ngultrum"
 
 #: src/db/Table_Currencyformats.h:130
 #, fuzzy
@@ -2281,28 +2270,25 @@ msgid "Boliviano"
 msgstr "Bolivian boliviano"
 
 #: src/db/Table_Currencyformats.h:131
-#, fuzzy
 msgid "Convertible Mark"
-msgstr "Преобразованная БД!"
+msgstr "Конвертируемая марка"
 
 #: src/db/Table_Currencyformats.h:132
+#, fuzzy
 msgid "Pula"
-msgstr ""
+msgstr "Botswana pula"
 
 #: src/db/Table_Currencyformats.h:133
-#, fuzzy
 msgid "Brazilian Real"
-msgstr "Brazilian real"
+msgstr "Бразильский реал"
 
 #: src/db/Table_Currencyformats.h:134
-#, fuzzy
 msgid "Brunei Dollar"
-msgstr "Brunei dollar"
+msgstr "Брунейский доллар"
 
 #: src/db/Table_Currencyformats.h:135
-#, fuzzy
 msgid "Bulgarian Lev"
-msgstr "Bulgarian lev"
+msgstr "Болгарский лев"
 
 #: src/db/Table_Currencyformats.h:136
 #, fuzzy
@@ -2310,16 +2296,16 @@ msgid "Burundi Franc"
 msgstr "Burundi franc"
 
 #: src/db/Table_Currencyformats.h:137
+#, fuzzy
 msgid "Riel"
-msgstr ""
+msgstr "Cambodian riel"
 
 #: src/db/Table_Currencyformats.h:138
 #, fuzzy
 msgid "CFA Franc BEAC"
-msgstr "CFP franc"
+msgstr "West African CFA franc"
 
 #: src/db/Table_Currencyformats.h:139
-#, fuzzy
 msgid "Canadian Dollar"
 msgstr "Канадский доллар"
 
@@ -2364,13 +2350,13 @@ msgid "Costa Rican Colon"
 msgstr "Costa Rican colon"
 
 #: src/db/Table_Currencyformats.h:148
+#, fuzzy
 msgid "Kuna"
-msgstr ""
+msgstr "Croatian kuna"
 
 #: src/db/Table_Currencyformats.h:149
-#, fuzzy
 msgid "Czech Koruna"
-msgstr "Czech koruna"
+msgstr "Чешская крона"
 
 #: src/db/Table_Currencyformats.h:150
 #, fuzzy
@@ -2380,7 +2366,7 @@ msgstr "Danish krone"
 #: src/db/Table_Currencyformats.h:151
 #, fuzzy
 msgid "Djibouti Franc"
-msgstr "Djiboutian franc"
+msgstr "Comorian franc"
 
 #: src/db/Table_Currencyformats.h:152
 #, fuzzy
@@ -2388,13 +2374,13 @@ msgid "Dominican Peso"
 msgstr "Dominican peso"
 
 #: src/db/Table_Currencyformats.h:153
-#, fuzzy
 msgid "Egyptian Pound"
-msgstr "Egyptian pound"
+msgstr "Египетский фунт"
 
 #: src/db/Table_Currencyformats.h:154
+#, fuzzy
 msgid "Nakfa"
-msgstr ""
+msgstr "Eritrean nakfa"
 
 #: src/db/Table_Currencyformats.h:155
 #, fuzzy
@@ -2409,7 +2395,7 @@ msgstr "Falkland Islands pound"
 #: src/db/Table_Currencyformats.h:157
 #, fuzzy
 msgid "Fiji Dollar"
-msgstr "Fijian dollar"
+msgstr "Belize dollar"
 
 #: src/db/Table_Currencyformats.h:158
 #, fuzzy
@@ -2417,12 +2403,13 @@ msgid "CFP Franc"
 msgstr "CFP franc"
 
 #: src/db/Table_Currencyformats.h:159
+#, fuzzy
 msgid "Dalasi"
-msgstr ""
+msgstr "Gambian dalasi"
 
 #: src/db/Table_Currencyformats.h:160
 msgid "Lari"
-msgstr ""
+msgstr "Грузинский лари"
 
 #: src/db/Table_Currencyformats.h:161
 #, fuzzy
@@ -2435,8 +2422,9 @@ msgid "Gibraltar Pound"
 msgstr "Gibraltar pound"
 
 #: src/db/Table_Currencyformats.h:163
+#, fuzzy
 msgid "Quetzal"
-msgstr ""
+msgstr "Guatemalan quetzal"
 
 #: src/db/Table_Currencyformats.h:164
 #, fuzzy
@@ -2446,15 +2434,17 @@ msgstr "Guinean franc"
 #: src/db/Table_Currencyformats.h:165
 #, fuzzy
 msgid "Guyana Dollar"
-msgstr "Guyanese dollar"
+msgstr "Belize dollar"
 
 #: src/db/Table_Currencyformats.h:166
+#, fuzzy
 msgid "Gourde"
-msgstr ""
+msgstr "Haitian gourde"
 
 #: src/db/Table_Currencyformats.h:167
+#, fuzzy
 msgid "Lempira"
-msgstr ""
+msgstr "Honduran lempira"
 
 #: src/db/Table_Currencyformats.h:168
 #, fuzzy
@@ -2462,28 +2452,29 @@ msgid "Hong Kong Dollar"
 msgstr "Hong Kong dollar"
 
 #: src/db/Table_Currencyformats.h:169
+#, fuzzy
 msgid "Forint"
-msgstr ""
+msgstr "Hungarian forint"
 
 #: src/db/Table_Currencyformats.h:170
+#, fuzzy
 msgid "Iceland Krona"
-msgstr ""
+msgstr "Шведская крона"
 
 #: src/db/Table_Currencyformats.h:171
-#, fuzzy
 msgid "Indian Rupee"
 msgstr "Индийская рупия"
 
 #: src/db/Table_Currencyformats.h:172
+#, fuzzy
 msgid "Rupiah"
-msgstr ""
+msgstr "Indonesian rupiah"
 
 #: src/db/Table_Currencyformats.h:173
 msgid "Special Drawing Rights"
-msgstr "Special Drawing Rights"
+msgstr "Специальные права заимствования"
 
 #: src/db/Table_Currencyformats.h:174
-#, fuzzy
 msgid "Iranian Rial"
 msgstr "Иранский риал"
 
@@ -2504,7 +2495,7 @@ msgstr "Jamaican dollar"
 
 #: src/db/Table_Currencyformats.h:178
 msgid "Yen"
-msgstr ""
+msgstr "Японская иена"
 
 #: src/db/Table_Currencyformats.h:179
 #, fuzzy
@@ -2513,7 +2504,7 @@ msgstr "Jordanian dinar"
 
 #: src/db/Table_Currencyformats.h:180
 msgid "Tenge"
-msgstr ""
+msgstr "Тенге"
 
 #: src/db/Table_Currencyformats.h:181
 #, fuzzy
@@ -2526,8 +2517,9 @@ msgid "North Korean Won"
 msgstr "North Korean won"
 
 #: src/db/Table_Currencyformats.h:183
+#, fuzzy
 msgid "Won"
-msgstr ""
+msgstr "North Korean won"
 
 #: src/db/Table_Currencyformats.h:184
 #, fuzzy
@@ -2535,8 +2527,9 @@ msgid "Kuwaiti Dinar"
 msgstr "Kuwaiti dinar"
 
 #: src/db/Table_Currencyformats.h:185
+#, fuzzy
 msgid "Som"
-msgstr ""
+msgstr "Kyrgyzstani som"
 
 #: src/db/Table_Currencyformats.h:186
 #, fuzzy
@@ -2544,17 +2537,19 @@ msgid "Lao Kip"
 msgstr "Lao kip"
 
 #: src/db/Table_Currencyformats.h:187
+#, fuzzy
 msgid "Latvian Lats (before 2014-01)"
-msgstr ""
+msgstr "Latvian lats"
 
 #: src/db/Table_Currencyformats.h:188
 #, fuzzy
 msgid "Lebanese Pound"
-msgstr "Sudanese pound"
+msgstr "Lebanese lira"
 
 #: src/db/Table_Currencyformats.h:189
+#, fuzzy
 msgid "Loti"
-msgstr ""
+msgstr "Lesotho loti"
 
 #: src/db/Table_Currencyformats.h:190
 #, fuzzy
@@ -2572,12 +2567,14 @@ msgid "Lithuanian Litas (before 2014-12)"
 msgstr "Lithuanian litas"
 
 #: src/db/Table_Currencyformats.h:193
+#, fuzzy
 msgid "Pataca"
-msgstr ""
+msgstr "Macanese pataca"
 
 #: src/db/Table_Currencyformats.h:194
+#, fuzzy
 msgid "Denar"
-msgstr ""
+msgstr "Macedonian denar"
 
 #: src/db/Table_Currencyformats.h:195
 #, fuzzy
@@ -2595,12 +2592,14 @@ msgid "Malaysian Ringgit"
 msgstr "Malaysian ringgit"
 
 #: src/db/Table_Currencyformats.h:198
+#, fuzzy
 msgid "Rufiyaa"
-msgstr ""
+msgstr "Maldivian rufiyaa"
 
 #: src/db/Table_Currencyformats.h:199
+#, fuzzy
 msgid "Ouguiya (before 2017-12)"
-msgstr ""
+msgstr "Mauritanian ouguiya"
 
 #: src/db/Table_Currencyformats.h:200
 #, fuzzy
@@ -2618,8 +2617,9 @@ msgid "Moldovan Leu"
 msgstr "Moldovan leu"
 
 #: src/db/Table_Currencyformats.h:203
+#, fuzzy
 msgid "Tugrik"
-msgstr ""
+msgstr "Mongolian tugrik"
 
 #: src/db/Table_Currencyformats.h:204
 #, fuzzy
@@ -2627,13 +2627,14 @@ msgid "Moroccan Dirham"
 msgstr "Moroccan dirham"
 
 #: src/db/Table_Currencyformats.h:205
+#, fuzzy
 msgid "Kyat"
-msgstr ""
+msgstr "Myanma kyat"
 
 #: src/db/Table_Currencyformats.h:206
 #, fuzzy
 msgid "Namibia Dollar"
-msgstr "Namibian dollar"
+msgstr "Bahamian dollar"
 
 #: src/db/Table_Currencyformats.h:207
 #, fuzzy
@@ -2655,8 +2656,9 @@ msgid "Cordoba Oro"
 msgstr ""
 
 #: src/db/Table_Currencyformats.h:211
+#, fuzzy
 msgid "Naira"
-msgstr ""
+msgstr "Nigerian naira"
 
 #: src/db/Table_Currencyformats.h:212
 #, fuzzy
@@ -2664,30 +2666,34 @@ msgid "Norwegian Krone"
 msgstr "Norwegian krone"
 
 #: src/db/Table_Currencyformats.h:213
+#, fuzzy
 msgid "Rial Omani"
-msgstr ""
+msgstr "Omani rial"
 
 #: src/db/Table_Currencyformats.h:214
 #, fuzzy
 msgid "Pakistan Rupee"
-msgstr "Pakistani rupee"
+msgstr "Nepalese rupee"
 
 #: src/db/Table_Currencyformats.h:215
+#, fuzzy
 msgid "Balboa"
-msgstr ""
+msgstr "Panamanian balboa"
 
 #: src/db/Table_Currencyformats.h:216
+#, fuzzy
 msgid "Kina"
-msgstr ""
+msgstr "Papua New Guinean kina"
 
 #: src/db/Table_Currencyformats.h:217
+#, fuzzy
 msgid "Guarani"
-msgstr ""
+msgstr "Paraguayan guarani"
 
 #: src/db/Table_Currencyformats.h:218
 #, fuzzy
 msgid "Sol"
-msgstr "Тикер"
+msgstr "Peruvian nuevo sol"
 
 #: src/db/Table_Currencyformats.h:219
 #, fuzzy
@@ -2695,8 +2701,9 @@ msgid "Philippine Piso"
 msgstr "Philippine peso"
 
 #: src/db/Table_Currencyformats.h:220
+#, fuzzy
 msgid "Zloty"
-msgstr ""
+msgstr "Polish zloty"
 
 #: src/db/Table_Currencyformats.h:221
 #, fuzzy
@@ -2711,11 +2718,12 @@ msgstr "Romanian leu"
 #: src/db/Table_Currencyformats.h:223
 #, fuzzy
 msgid "Rwanda Franc"
-msgstr "Rwandan franc"
+msgstr "Burundi franc"
 
 #: src/db/Table_Currencyformats.h:224
+#, fuzzy
 msgid "Dobra (before 2017-12)"
-msgstr ""
+msgstr "Азербайджанский манат (до 2005-10)"
 
 #: src/db/Table_Currencyformats.h:225
 #, fuzzy
@@ -2733,8 +2741,9 @@ msgid "Seychelles Rupee"
 msgstr "Seychellois rupee"
 
 #: src/db/Table_Currencyformats.h:228
+#, fuzzy
 msgid "Leone"
-msgstr ""
+msgstr "Sierra Leonean leone"
 
 #: src/db/Table_Currencyformats.h:229
 #, fuzzy
@@ -2752,8 +2761,9 @@ msgid "Somali Shilling"
 msgstr "Somali shilling"
 
 #: src/db/Table_Currencyformats.h:232
+#, fuzzy
 msgid "Rand"
-msgstr ""
+msgstr "South African rand"
 
 #: src/db/Table_Currencyformats.h:233
 #, fuzzy
@@ -2773,7 +2783,7 @@ msgstr "Sudanese pound"
 #: src/db/Table_Currencyformats.h:236
 #, fuzzy
 msgid "Surinam Dollar"
-msgstr "Surinamese dollar"
+msgstr "Bahamian dollar"
 
 #: src/db/Table_Currencyformats.h:237
 #, fuzzy
@@ -2781,12 +2791,10 @@ msgid "Lilangeni"
 msgstr "Swazi lilangeni"
 
 #: src/db/Table_Currencyformats.h:238
-#, fuzzy
 msgid "Swedish Krona"
 msgstr "Шведская крона"
 
 #: src/db/Table_Currencyformats.h:239
-#, fuzzy
 msgid "Swiss Franc"
 msgstr "Швейцарский франк"
 
@@ -2796,13 +2804,13 @@ msgid "Syrian Pound"
 msgstr "Syrian pound"
 
 #: src/db/Table_Currencyformats.h:241
-#, fuzzy
 msgid "New Taiwan Dollar"
-msgstr "New Taiwan dollar"
+msgstr "Новый тайваньский доллар"
 
 #: src/db/Table_Currencyformats.h:242
+#, fuzzy
 msgid "Somoni"
-msgstr ""
+msgstr "Tajikistani somoni"
 
 #: src/db/Table_Currencyformats.h:243
 #, fuzzy
@@ -2810,8 +2818,9 @@ msgid "Tanzanian Shilling"
 msgstr "Tanzanian shilling"
 
 #: src/db/Table_Currencyformats.h:244
+#, fuzzy
 msgid "Baht"
-msgstr ""
+msgstr "Thai baht"
 
 #: src/db/Table_Currencyformats.h:245
 #, fuzzy
@@ -2824,19 +2833,18 @@ msgid "Tunisian Dinar"
 msgstr "Tunisian dinar"
 
 #: src/db/Table_Currencyformats.h:247
-#, fuzzy
 msgid "Turkish Lira"
-msgstr "Turkish lira"
+msgstr "Турецкая лира"
 
 #: src/db/Table_Currencyformats.h:248
 #, fuzzy
 msgid "Turkmenistan New Manat"
-msgstr "Turkmen manat"
+msgstr "Азербайджанский манат (до 2005-10)"
 
 #: src/db/Table_Currencyformats.h:249
 #, fuzzy
 msgid "Uganda Shilling"
-msgstr "Ugandan shilling"
+msgstr "Kenyan shilling"
 
 #: src/db/Table_Currencyformats.h:250
 #, fuzzy
@@ -2844,8 +2852,9 @@ msgid "UAE Dirham"
 msgstr "UAE dirham"
 
 #: src/db/Table_Currencyformats.h:251
+#, fuzzy
 msgid "Peso Uruguayo"
-msgstr ""
+msgstr "Argentine peso"
 
 #: src/db/Table_Currencyformats.h:252
 #, fuzzy
@@ -2853,16 +2862,19 @@ msgid "Uzbekistan Sum"
 msgstr "Узбекский сом"
 
 #: src/db/Table_Currencyformats.h:253
+#, fuzzy
 msgid "Vatu"
-msgstr ""
+msgstr "Vanuatu vatu"
 
 #: src/db/Table_Currencyformats.h:254
+#, fuzzy
 msgid "Dong"
-msgstr ""
+msgstr "Vietnamese dong"
 
 #: src/db/Table_Currencyformats.h:255
+#, fuzzy
 msgid "Tala"
-msgstr ""
+msgstr "Samoan tala"
 
 #: src/db/Table_Currencyformats.h:256
 #, fuzzy
@@ -2875,23 +2887,25 @@ msgstr ""
 
 #: src/db/Table_Currencyformats.h:258
 msgid "Bitcoin"
-msgstr "Биткойн"
+msgstr "Биткоин"
 
 #: src/db/Table_Currencyformats.h:259
 msgid "Andorran Peseta (before 2003-07)"
 msgstr ""
 
 #: src/db/Table_Currencyformats.h:260
+#, fuzzy
 msgid "Afghani (before 2003-01)"
-msgstr ""
+msgstr "Афганские афгани"
 
 #: src/db/Table_Currencyformats.h:261
 msgid "Old Lek (before 1989-12)"
 msgstr ""
 
 #: src/db/Table_Currencyformats.h:262
+#, fuzzy
 msgid "Kwanza (before 1991-03)"
-msgstr ""
+msgstr "Angolan kwanza"
 
 #: src/db/Table_Currencyformats.h:263
 msgid "New Kwanza (before 2000-02)"
@@ -2902,34 +2916,37 @@ msgid "Kwanza Reajustado (before 2000-02)"
 msgstr ""
 
 #: src/db/Table_Currencyformats.h:265
+#, fuzzy
 msgid "Austral (before 1992-01)"
-msgstr ""
+msgstr "Азербайджанский манат (до 2005-10)"
 
 #: src/db/Table_Currencyformats.h:266
 msgid "Peso Argentino (before 1985-07)"
 msgstr ""
 
 #: src/db/Table_Currencyformats.h:267
+#, fuzzy
 msgid "Peso (1989 to 1990)"
-msgstr ""
+msgstr "Philippine peso"
 
 #: src/db/Table_Currencyformats.h:268
+#, fuzzy
 msgid "Schilling (before 2002-03)"
-msgstr ""
+msgstr "Азербайджанский манат (до 2005-10)"
 
 #: src/db/Table_Currencyformats.h:269
-#, fuzzy
 msgid "Azerbaijan Manat (before 2005-10)"
-msgstr "Азербайджанский манат"
+msgstr "Азербайджанский манат (до 2005-10)"
 
 #: src/db/Table_Currencyformats.h:270
 #, fuzzy
 msgid "Azerbaijanian Manat (before 2005-12)"
-msgstr "Азербайджанский манат"
+msgstr "Азербайджанский манат (до 2005-10)"
 
 #: src/db/Table_Currencyformats.h:271
+#, fuzzy
 msgid "Dinar (before 1998-07)"
-msgstr ""
+msgstr "Азербайджанский манат (до 2005-10)"
 
 #: src/db/Table_Currencyformats.h:272
 msgid "Convertible Franc (before 1990-03)"
@@ -2952,24 +2969,28 @@ msgid "Lev A/62 (1989 to 1990)"
 msgstr ""
 
 #: src/db/Table_Currencyformats.h:277
+#, fuzzy
 msgid "Lev (before 2003-11)"
-msgstr ""
+msgstr "Bulgarian lev"
 
 #: src/db/Table_Currencyformats.h:278
 msgid "Peso boliviano (before 1987-02)"
 msgstr ""
 
 #: src/db/Table_Currencyformats.h:279
+#, fuzzy
 msgid "Cruzeiro (before 1986-03)"
-msgstr ""
+msgstr "Азербайджанский манат (до 2005-10)"
 
 #: src/db/Table_Currencyformats.h:280
+#, fuzzy
 msgid "Cruzado (before 1989-02)"
-msgstr ""
+msgstr "Азербайджанский манат (до 2005-10)"
 
 #: src/db/Table_Currencyformats.h:281
+#, fuzzy
 msgid "Cruzeiro (before 1993-03)"
-msgstr ""
+msgstr "Азербайджанский манат (до 2005-10)"
 
 #: src/db/Table_Currencyformats.h:282
 msgid "New Cruzado (before 1990-03)"
@@ -2980,8 +3001,9 @@ msgid "Cruzeiro Real (before 1994-07)"
 msgstr ""
 
 #: src/db/Table_Currencyformats.h:284
+#, fuzzy
 msgid "Kyat (before 1990-02)"
-msgstr ""
+msgstr "Myanma kyat"
 
 #: src/db/Table_Currencyformats.h:285
 #, fuzzy
@@ -2998,24 +3020,28 @@ msgid "WIR Franc (for electronic) (before 2004-11)"
 msgstr ""
 
 #: src/db/Table_Currencyformats.h:288
+#, fuzzy
 msgid "Serbian Dinar (before 2006-10)"
-msgstr ""
+msgstr "Serbian dinar"
 
 #: src/db/Table_Currencyformats.h:289
 msgid "Krona A/53 (1989 to 1990)"
 msgstr ""
 
 #: src/db/Table_Currencyformats.h:290
+#, fuzzy
 msgid "Koruna (before 1993-03)"
-msgstr ""
+msgstr "Czech koruna"
 
 #: src/db/Table_Currencyformats.h:291
+#, fuzzy
 msgid "Peso Convertible"
-msgstr ""
+msgstr "Philippine peso"
 
 #: src/db/Table_Currencyformats.h:292
+#, fuzzy
 msgid "Cuban Peso"
-msgstr ""
+msgstr "Chilean peso"
 
 #: src/db/Table_Currencyformats.h:293
 msgid "Cyprus Pound (before 2008-01)"
@@ -3030,16 +3056,18 @@ msgid "Deutsche Mark (before 2002-03)"
 msgstr ""
 
 #: src/db/Table_Currencyformats.h:296
+#, fuzzy
 msgid "Sucre (before 2000-09)"
-msgstr ""
+msgstr "Азербайджанский манат (до 2005-10)"
 
 #: src/db/Table_Currencyformats.h:297
 msgid "Unidad de Valor Constante (UVC) (before 2000-09)"
 msgstr ""
 
 #: src/db/Table_Currencyformats.h:298
+#, fuzzy
 msgid "Kroon (before 2011-01)"
-msgstr ""
+msgstr "Азербайджанский манат (до 2005-10)"
 
 #: src/db/Table_Currencyformats.h:299
 msgid "Spanish Peseta (1978 to 1981)"
@@ -3054,8 +3082,9 @@ msgid "Spanish Peseta (before 2002-03)"
 msgstr ""
 
 #: src/db/Table_Currencyformats.h:302
+#, fuzzy
 msgid "Markka (before 2002-03)"
-msgstr ""
+msgstr "Азербайджанский манат (до 2005-10)"
 
 #: src/db/Table_Currencyformats.h:303
 msgid "French Franc (before 1999-01)"
@@ -3066,28 +3095,33 @@ msgid "Georgian Coupon (before 1995-10)"
 msgstr ""
 
 #: src/db/Table_Currencyformats.h:305
+#, fuzzy
 msgid "Cedi (before 2008-01)"
-msgstr ""
+msgstr "Ghanaian cedi"
 
 #: src/db/Table_Currencyformats.h:306
 msgid "Ghana Cedi (before 2007-06)"
 msgstr ""
 
 #: src/db/Table_Currencyformats.h:307
+#, fuzzy
 msgid "Syli (before 1989-12)"
-msgstr ""
+msgstr "Азербайджанский манат (до 2005-10)"
 
 #: src/db/Table_Currencyformats.h:308
+#, fuzzy
 msgid "Syli (before 1986-02)"
-msgstr ""
+msgstr "Азербайджанский манат (до 2005-10)"
 
 #: src/db/Table_Currencyformats.h:309
+#, fuzzy
 msgid "Ekwele (before 1986-06)"
-msgstr ""
+msgstr "Азербайджанский манат (до 2005-10)"
 
 #: src/db/Table_Currencyformats.h:310
+#, fuzzy
 msgid "Drachma (before 2002-03)"
-msgstr ""
+msgstr "Азербайджанский манат (до 2005-10)"
 
 #: src/db/Table_Currencyformats.h:311
 msgid "Guinea Escudo (1978 to 1981)"
@@ -3106,8 +3140,9 @@ msgid "Irish Pound (before 2002-03)"
 msgstr ""
 
 #: src/db/Table_Currencyformats.h:315
+#, fuzzy
 msgid "Pound (1978 to 1981)"
-msgstr ""
+msgstr "Falkland Islands pound"
 
 #: src/db/Table_Currencyformats.h:316
 msgid "Old Shekel (1989 to 1990)"
@@ -3126,12 +3161,14 @@ msgid "Pathet Lao Kip (before 1979-12)"
 msgstr ""
 
 #: src/db/Table_Currencyformats.h:320
+#, fuzzy
 msgid "Loti (before 1985-05)"
-msgstr ""
+msgstr "Lesotho loti"
 
 #: src/db/Table_Currencyformats.h:321
+#, fuzzy
 msgid "Talonas (before 1993-07)"
-msgstr ""
+msgstr "Азербайджанский манат (до 2005-10)"
 
 #: src/db/Table_Currencyformats.h:322
 msgid "Luxembourg Convertible Franc (before 1990-03)"
@@ -3158,8 +3195,9 @@ msgid "Mali Franc (before 1984-11)"
 msgstr ""
 
 #: src/db/Table_Currencyformats.h:328
+#, fuzzy
 msgid "Ouguiya"
-msgstr ""
+msgstr "Mauritanian ouguiya"
 
 #: src/db/Table_Currencyformats.h:329
 msgid "Maltese Lira (before 2008-01)"
@@ -3174,8 +3212,9 @@ msgid "Maldive Rupee (before 1989-12)"
 msgstr ""
 
 #: src/db/Table_Currencyformats.h:332
+#, fuzzy
 msgid "Mexican Peso (before 1993-01)"
-msgstr ""
+msgstr "Mexican peso"
 
 #: src/db/Table_Currencyformats.h:333
 msgid "Mozambique Escudo (1978 to 1981)"
@@ -3190,28 +3229,33 @@ msgid "Mozambique Metical"
 msgstr ""
 
 #: src/db/Table_Currencyformats.h:336
+#, fuzzy
 msgid "Cordoba (before 1990-10)"
-msgstr ""
+msgstr "Азербайджанский манат (до 2005-10)"
 
 #: src/db/Table_Currencyformats.h:337
 msgid "Netherlands Guilder (before 2002-03)"
 msgstr ""
 
 #: src/db/Table_Currencyformats.h:338
+#, fuzzy
 msgid "Sol (1989 to 1990)"
-msgstr ""
+msgstr "Peruvian nuevo sol"
 
 #: src/db/Table_Currencyformats.h:339
+#, fuzzy
 msgid "Inti (before 1991-07)"
-msgstr ""
+msgstr "Азербайджанский манат (до 2005-10)"
 
 #: src/db/Table_Currencyformats.h:340
+#, fuzzy
 msgid "Sol (before 1986-02)"
-msgstr ""
+msgstr "Peruvian nuevo sol"
 
 #: src/db/Table_Currencyformats.h:341
+#, fuzzy
 msgid "Zloty (before 1997-01)"
-msgstr ""
+msgstr "Polish zloty"
 
 #: src/db/Table_Currencyformats.h:342
 msgid "Portuguese Escudo (before 2002-03)"
@@ -3230,21 +3274,22 @@ msgid "Old Leu (before 2005-06)"
 msgstr ""
 
 #: src/db/Table_Currencyformats.h:346
-#, fuzzy
 msgid "Russian Ruble (before 1994-07)"
-msgstr "Российский рубль"
+msgstr "Российский рубль (до 1994-07)"
 
 #: src/db/Table_Currencyformats.h:347
 msgid "Sudanese Dinar (before 2007-07)"
 msgstr ""
 
 #: src/db/Table_Currencyformats.h:348
+#, fuzzy
 msgid "Sudanese Pound (before 1998-06)"
-msgstr ""
+msgstr "Sudanese pound"
 
 #: src/db/Table_Currencyformats.h:349
+#, fuzzy
 msgid "Tolar (before 2007-01)"
-msgstr ""
+msgstr "Азербайджанский манат (до 2005-10)"
 
 #: src/db/Table_Currencyformats.h:350
 msgid "Slovak Koruna (before 2009-01)"
@@ -3264,20 +3309,23 @@ msgid "Dobra"
 msgstr ""
 
 #: src/db/Table_Currencyformats.h:354
+#, fuzzy
 msgid "Rouble (before 1990-12)"
-msgstr ""
+msgstr "Азербайджанский манат (до 2005-10)"
 
 #: src/db/Table_Currencyformats.h:355
+#, fuzzy
 msgid "El Salvador Colon"
-msgstr ""
+msgstr "Costa Rican colon"
 
 #: src/db/Table_Currencyformats.h:356
 msgid "Tajik Ruble (before 2001-04)"
 msgstr ""
 
 #: src/db/Table_Currencyformats.h:357
+#, fuzzy
 msgid "Turkmenistan Manat (before 2009-01)"
-msgstr ""
+msgstr "Азербайджанский манат (до 2005-10)"
 
 #: src/db/Table_Currencyformats.h:358
 msgid "Pa’anga"
@@ -3292,8 +3340,9 @@ msgid "Old Turkish Lira (before 2005-12)"
 msgstr ""
 
 #: src/db/Table_Currencyformats.h:361
+#, fuzzy
 msgid "Karbovanet (before 1996-09)"
-msgstr ""
+msgstr "Азербайджанский манат (до 2005-10)"
 
 #: src/db/Table_Currencyformats.h:362
 msgid "Uganda Shilling (before 1987-05)"
@@ -3312,16 +3361,19 @@ msgid "Old Uruguay Peso (before 1989-12)"
 msgstr ""
 
 #: src/db/Table_Currencyformats.h:366
+#, fuzzy
 msgid "Uruguayan Peso (before 1993-03)"
-msgstr ""
+msgstr "Uruguayan peso"
 
 #: src/db/Table_Currencyformats.h:367
+#, fuzzy
 msgid "Bolivar (before 2008-01)"
-msgstr ""
+msgstr "Азербайджанский манат (до 2005-10)"
 
 #: src/db/Table_Currencyformats.h:368
+#, fuzzy
 msgid "Old Dong (1989-1990)"
-msgstr ""
+msgstr "Vietnamese dong"
 
 #: src/db/Table_Currencyformats.h:369
 msgid "European Currency Unit (E.C.U) (before 1999-01)"
@@ -3365,8 +3417,9 @@ msgid "New Zaire (before 1999-06)"
 msgstr ""
 
 #: src/db/Table_Currencyformats.h:379
+#, fuzzy
 msgid "Zaire (before 1994-02)"
-msgstr ""
+msgstr "Азербайджанский манат (до 2005-10)"
 
 #: src/db/Table_Currencyformats.h:380
 msgid "Rhodesian Dollar (before 1989-12)"
@@ -3379,7 +3432,7 @@ msgstr ""
 #: src/db/Table_Currencyformats.h:382
 #, fuzzy
 msgid "Zimbabwe Dollar"
-msgstr "Liberian dollar"
+msgstr "Bahamian dollar"
 
 #: src/db/Table_Currencyformats.h:383
 msgid "Zimbabwe Dollar (new) (before 2006-09)"
@@ -3534,14 +3587,12 @@ msgid "Investment Income"
 msgstr "Инвестиционный доход"
 
 #: src/dbupgrade.cpp:86
-#, fuzzy
 msgid "upgrade"
-msgstr "Обновление MMEX"
+msgstr "апгрейд"
 
 #: src/dbupgrade.cpp:110
-#, fuzzy
 msgid "initialization"
-msgstr "Оптимизация базы данных"
+msgstr "инициализация"
 
 #: src/dbupgrade.cpp:129
 msgid "MMEX database error!"
@@ -3562,12 +3613,10 @@ msgid "MMEX database upgrade"
 msgstr "Обновление базы данных MMEX"
 
 #: src/dbupgrade.cpp:148
-#, fuzzy
 msgid "MMEX database vacuum failed!"
-msgstr "Обновление базы данных MMEX"
+msgstr "Уплотнение MMEX базы данных не удалось!"
 
 #: src/dbupgrade.cpp:149
-#, fuzzy
 msgid ""
 "MMEX still should work, but try to re-optimize it from Tools -> Database -> "
 "Optimize"
@@ -3581,9 +3630,9 @@ msgid "MMEX database successfully upgraded to version %i"
 msgstr "База данных MMEX успешно обновлена до версии %i"
 
 #: src/dbupgrade.cpp:160
-#, fuzzy, c-format
+#, c-format
 msgid "MMEX database %s to version %i failed!"
-msgstr "Обновление базы данных MMEX до версии %i не удалось!"
+msgstr "Обновление базы данных %s до версии %i не удалось!"
 
 #: src/dbupgrade.cpp:161
 msgid ""
@@ -3599,7 +3648,7 @@ msgstr "Загрузить файл отладки"
 
 #: src/dbupgrade.cpp:237
 msgid "MMEX debug files (*.mmdbg)"
-msgstr ""
+msgstr "Файлы отладки MMEX (*.mmdbg)"
 
 #: src/dbupgrade.cpp:250 src/dbupgrade.cpp:263 src/dbupgrade.cpp:324
 msgid "Invalid debug file content, please contact MMEX support!"
@@ -3618,16 +3667,16 @@ msgid ""
 "This SQL debug script requires %li database version, but current database is "
 "version %i."
 msgstr ""
+"Этот SQL скрипт требует базу данных версии %li, но текущая версия база "
+"данных %i."
 
 #: src/dbupgrade.cpp:284
-#, fuzzy
 msgid "Debug script description:"
-msgstr "Описание"
+msgstr "Описание сценария отладки:"
 
 #: src/dbupgrade.cpp:284
-#, fuzzy
 msgid "Please confirm running this SQL script."
-msgstr "Подтвердите новый пароль"
+msgstr "Пожалуйста, подтвердите выполнение этого сценария SQL."
 
 #: src/dbupgrade.cpp:284 src/dbupgrade.cpp:330 src/dbupgrade.cpp:362
 msgid "MMEX debug"
@@ -3651,16 +3700,15 @@ msgstr "Сохранить отладочный файл"
 
 #: src/dbupgrade.cpp:333
 msgid "Text files (*.txt)"
-msgstr ""
+msgstr "Текстовые файлы (*.txt)"
 
 #: src/dbupgrade.cpp:362
 msgid "DB maintenance completed, please close and re-open MMEX!"
 msgstr "Обслуживание БД завершено, пожалуйста, закройте и снова откройте MMEX!"
 
 #: src/dbwrapper.cpp:58
-#, fuzzy
 msgid "Error opening database file:"
-msgstr "Папка для .MMB файла базы данных"
+msgstr "Ошибка открытия файла базы данных:"
 
 #: src/dbwrapper.cpp:62
 msgid "Can't open file"
@@ -3672,27 +3720,19 @@ msgstr "Вы должны указать другой путь к базе да�
 
 #: src/dbwrapper.cpp:90
 msgid "Possible reasons:"
-msgstr ""
+msgstr "Возможные причины:"
 
 #: src/dbwrapper.cpp:91
-#, fuzzy
 msgid "An incorrect password given for an encrypted file"
-msgstr "Сменить пароль для зашифрованной базы данных"
+msgstr "Неверный пароль для зашифрованного файла"
 
 #: src/dbwrapper.cpp:92
-#, fuzzy
 msgid "Attempt to open a file that is not a database file"
-msgstr ""
-"Неверный пароль задан для шифрованного файла \n"
-"\n"
-"или \n"
-"\n"
-"Попытка открыть файл, который не является базой данных \n"
+msgstr "Попытка открыть файл, который не является файлом базы данных"
 
 #: src/dbwrapper.cpp:93
-#, fuzzy
 msgid "Corrupted database file"
-msgstr "Выберите зашифрованный файл базы данных"
+msgstr "Поврежденный файл базы данных"
 
 #: src/dbwrapper.cpp:100 src/mmframe.cpp:1898
 msgid "Opening MMEX Database - Error"
@@ -3718,11 +3758,11 @@ msgstr "Отслеживать"
 msgid "Duplicate"
 msgstr "Повтор"
 
-#: src/filtertransdialog.cpp:54 src/filtertransdialog.cpp:859
+#: src/filtertransdialog.cpp:54 src/filtertransdialog.cpp:863
 msgid "Un-Reconciled"
 msgstr "Не выверено"
 
-#: src/filtertransdialog.cpp:55 src/filtertransdialog.cpp:860
+#: src/filtertransdialog.cpp:55 src/filtertransdialog.cpp:864
 msgid "All Except Reconciled"
 msgstr "Кроме выверенных"
 
@@ -3734,7 +3774,7 @@ msgstr "Укажите"
 msgid "Date Range"
 msgstr "Диапазон дат"
 
-#: src/filtertransdialog.cpp:262 src/filtertransdialog.cpp:850
+#: src/filtertransdialog.cpp:262 src/filtertransdialog.cpp:854
 msgid "Include Similar"
 msgstr "Включая подобные"
 
@@ -3767,23 +3807,22 @@ msgid "Amount Range"
 msgstr "Диапазон цен"
 
 #: src/filtertransdialog.cpp:351
-#, fuzzy
 msgid "Settings"
-msgstr "Параметры CSV"
+msgstr "Настройки"
 
-#: src/filtertransdialog.cpp:372 src/filtertransdialog.cpp:683
-#: src/filtertransdialog.cpp:932 src/filtertransdialog.cpp:1206
-#, fuzzy, c-format
+#: src/filtertransdialog.cpp:372 src/filtertransdialog.cpp:687
+#: src/filtertransdialog.cpp:936 src/filtertransdialog.cpp:1210
+#, c-format
 msgid "%i: Empty"
-msgstr "Строка %ld: Пусто"
+msgstr "%i: пусто"
 
 #: src/filtertransdialog.cpp:381
 msgid "Save active values into current Preset selection"
-msgstr ""
+msgstr "Сохранить активные значения в текущем выборе пресета"
 
 #: src/filtertransdialog.cpp:386
 msgid "Clear all fields for current Preset selection"
-msgstr ""
+msgstr "Очистить все поля для выбора текущего пресета"
 
 #: src/filtertransdialog.cpp:400
 msgid "&Activate "
@@ -3801,54 +3840,49 @@ msgstr "Деактивировать "
 msgid "Deactivate the filter"
 msgstr "Деактивировать фильтр"
 
-#: src/filtertransdialog.cpp:409 src/transdialog.cpp:573
-#, fuzzy
+#: src/filtertransdialog.cpp:409 src/transdialog.cpp:577
 msgid "Show/Hide custom fields window"
-msgstr "Открыть окно пользовательских полей"
+msgstr "Показать/Скрыть окно пользовательских полей"
 
-#: src/filtertransdialog.cpp:801
+#: src/filtertransdialog.cpp:805
 msgid "Filtering Details: "
 msgstr "Детали фильтра: "
 
-#: src/filtertransdialog.cpp:836
+#: src/filtertransdialog.cpp:840
 msgid "Since"
-msgstr ""
+msgstr "С"
 
-#: src/filtertransdialog.cpp:838
+#: src/filtertransdialog.cpp:842
 msgid "Before"
-msgstr ""
+msgstr "Перед"
 
-#: src/filtertransdialog.cpp:892
-#, fuzzy
+#: src/filtertransdialog.cpp:896
 msgid "Amount Min."
-msgstr "Сумма"
+msgstr "Сумма Мин."
 
-#: src/filtertransdialog.cpp:900
-#, fuzzy
+#: src/filtertransdialog.cpp:904
 msgid "Amount Max."
-msgstr "Сумма"
+msgstr "Сумма Макс."
 
-#: src/filtertransdialog.cpp:935
+#: src/filtertransdialog.cpp:939
 msgid "Label"
-msgstr ""
+msgstr "Название"
 
-#: src/filtertransdialog.cpp:1208
-#, fuzzy
+#: src/filtertransdialog.cpp:1212
 msgid "Please Enter"
-msgstr "Пожалуйста, подождите"
+msgstr "Пожалуйста, введите"
 
-#: src/filtertransdialog.cpp:1208
+#: src/filtertransdialog.cpp:1212
 msgid "Setting Name"
-msgstr ""
+msgstr "Название настройки"
 
-#: src/filtertransdialog.cpp:1212
-#, fuzzy
+#: src/filtertransdialog.cpp:1216
 msgid "Could not save settings"
-msgstr "Невозможно сохранить файл."
+msgstr "Не удалось сохранить настройки"
 
-#: src/filtertransdialog.cpp:1212
+#: src/filtertransdialog.cpp:1216
 msgid "Empty value"
-msgstr ""
+msgstr "Пустое значение"
 
 #: src/general_report_manager.cpp:237 src/general_report_manager.cpp:610
 msgid "General Reports Manager"
@@ -3930,13 +3964,12 @@ msgid "Load report file:"
 msgstr "Загрузить файл отчёта:"
 
 #: src/general_report_manager.cpp:546 src/general_report_manager.cpp:976
-#, fuzzy
 msgid "General Report Manager files (*.grm)"
-msgstr "Менеджер отчётов"
+msgstr "Файлы диспетчера отчетов (*.grm)"
 
 #: src/general_report_manager.cpp:546 src/general_report_manager.cpp:976
 msgid "ZIP files (*.zip)"
-msgstr ""
+msgstr "ZIP файлы (*.zip)"
 
 #: src/general_report_manager.cpp:609
 #, c-format
@@ -4137,9 +4170,8 @@ msgstr "Выберите QIF файл для экспорта"
 
 #: src/import_export/qif_export.cpp:281
 #: src/import_export/qif_import_gui.cpp:723
-#, fuzzy
 msgid "QIF Files (*.qif)"
-msgstr "QIF файлы"
+msgstr "QIF файлы (*.qif)"
 
 #: src/import_export/qif_export.cpp:300
 msgid "No Account available for export"
@@ -4221,7 +4253,7 @@ msgstr "Данные"
 #: src/import_export/univcsvdialog.cpp:763
 #: src/import_export/univcsvdialog.cpp:766
 #: src/import_export/univcsvdialog.cpp:787
-#: src/import_export/univcsvdialog.cpp:794 src/transdialog.cpp:307
+#: src/import_export/univcsvdialog.cpp:794 src/transdialog.cpp:311
 #: src/webapp.cpp:393 src/webapp.cpp:401 src/webapp.cpp:409
 msgid "Unknown"
 msgstr "Неизвестно"
@@ -4377,9 +4409,8 @@ msgid "Added payee: %s"
 msgstr "Добавлен получатель: %s"
 
 #: src/import_export/univcsvdialog.cpp:93
-#, fuzzy
 msgid "Amount +/-"
-msgstr "Сумма"
+msgstr "Сумма +/-"
 
 #: src/import_export/univcsvdialog.cpp:95
 msgid "SubCategory"
@@ -4468,9 +4499,8 @@ msgid "Export column titles"
 msgstr "Экспорт названия столбцов"
 
 #: src/import_export/univcsvdialog.cpp:328
-#, fuzzy
 msgid "Amount +/-:"
-msgstr "Сумма:"
+msgstr "Сумма +/-:"
 
 #: src/import_export/univcsvdialog.cpp:334
 msgid "Positive values are deposits"
@@ -4654,18 +4684,16 @@ msgid "Choose XML data file to export"
 msgstr "Выберите XML файл для экспорта"
 
 #: src/import_export/univcsvdialog.cpp:1371
-#, fuzzy
 msgid "XML Files (*.xml)"
-msgstr "&XML файлы..."
+msgstr "XML файлы (*.xml)"
 
 #: src/import_export/univcsvdialog.cpp:1372 src/stockdialog.cpp:555
-#, fuzzy
 msgid "CSV Files (*.csv)"
-msgstr "CSV файлы"
+msgstr "CSV файлы (*.csv)"
 
 #: src/maincurrencydialog.cpp:69
 msgid "Base"
-msgstr ""
+msgstr "Баз."
 
 #: src/maincurrencydialog.cpp:70 src/reports/summarystocks.cpp:180
 #: src/stockdialog.cpp:424 src/stockspanel.cpp:98
@@ -4678,7 +4706,7 @@ msgstr "Последний курс"
 
 #: src/maincurrencydialog.cpp:73
 msgid "Hist."
-msgstr ""
+msgstr "Ист."
 
 #: src/maincurrencydialog.cpp:77 src/maincurrencydialog.cpp:348
 #: src/maincurrencydialog.cpp:633 src/maincurrencydialog.cpp:739
@@ -4686,42 +4714,38 @@ msgid "Currency Dialog"
 msgstr "Валюта"
 
 #: src/maincurrencydialog.cpp:157
-#, fuzzy
 msgid "Update latest rate only for all used currencies"
-msgstr "Удаление истории для неиспользуемых валют"
+msgstr "Обновить последнюю ставку только для всех используемых валют"
 
 #: src/maincurrencydialog.cpp:160
 msgid "Online Update"
 msgstr "Обновить онлайн"
 
 #: src/maincurrencydialog.cpp:163
-#, fuzzy
 msgid "Hide Unused"
-msgstr "Неиспользуемый"
+msgstr "Скрыть неиспользуемые"
 
 #: src/maincurrencydialog.cpp:165
 msgid "Hide currencies unused in this database"
-msgstr ""
+msgstr "Скрыть валюты, не используемые в этой базе данных"
 
 #: src/maincurrencydialog.cpp:172
 msgid "Hide Historic"
-msgstr ""
+msgstr "Скрыть исторические"
 
 #: src/maincurrencydialog.cpp:174
 msgid "Hide historical currencies"
-msgstr ""
+msgstr "Скрыть исторические валюты"
 
 #: src/maincurrencydialog.cpp:223
-#, fuzzy
 msgid ""
 "Select the currently selected currency as the selected currency for the "
 "account"
-msgstr "Выбор выделенной категории для текущей транзакции"
+msgstr "Установить выбранную валюту в качестве валюты для счёта"
 
 #: src/maincurrencydialog.cpp:225
-#, fuzzy
 msgid "Select the currently selected currency as base currency"
-msgstr "Выбор выделенной категории для текущей транзакции"
+msgstr "Выбрать отмеченную валюту в качестве базовой валюты"
 
 #: src/maincurrencydialog.cpp:239
 msgid "Currency History Options"
@@ -4786,9 +4810,8 @@ msgid "Online Update Currency Rate"
 msgstr "&Обновить курсы валют онлайн"
 
 #: src/maincurrencydialog.cpp:614
-#, fuzzy
 msgid "No currency selected!"
-msgstr "Выбор базовой валюты"
+msgstr "Валюта не выбрана!"
 
 #: src/maincurrencydialog.cpp:614 src/maincurrencydialog.cpp:629
 #: src/maincurrencydialog.cpp:677
@@ -4814,11 +4837,12 @@ msgid ""
 "Setting a new base currency will delete all historic rates,\n"
 "it's possible to re-download them after setting the new base currency."
 msgstr ""
+"Установка новой базовой валюты удалит все исторические курсы,\n"
+"их можно повторно загрузить после установки новой базовой валюты."
 
 #: src/maincurrencydialog.cpp:739
-#, fuzzy
 msgid "Do you want to continue?"
-msgstr "Вы хотите продолжить?"
+msgstr "Хотите продолжить?"
 
 #: src/maincurrencydialog.cpp:761 src/maincurrencydialog.cpp:865
 msgid "Could not find base currency symbol!"
@@ -4929,9 +4953,8 @@ msgid "Please enter a calculated or fixed amount"
 msgstr "Пожалуйста введите положительное число или арифметическое выражение"
 
 #: src/mmSimpleDialogs.cpp:233
-#, fuzzy
 msgid "Please select a valid choice"
-msgstr "Пожалуйста, подождите"
+msgstr "Пожалуйста, выберите правильный пункт"
 
 #: src/mmTextCtrl.cpp:83
 msgid "Please enter a positive or calculated value."
@@ -4974,7 +4997,6 @@ msgid "Tip: Remember to make backups of your .mmb."
 msgstr "Совет: Не забывайте делать резервное копирование вашего .mmb файла."
 
 #: src/mmTips.h:27
-#, fuzzy
 msgid ""
 "Tip: The not encrypted .mmb file is insecure. That means anyone else having "
 "the proper know how can actually open the file and read the contents. So "
@@ -5054,17 +5076,16 @@ msgstr ""
 "клавиша О переключит между Отель, Отдых, Одежда и т.д."
 
 #: src/mmTips.h:38
-#, fuzzy, c-format
 msgid ""
-"Tip to get out of debt: Pay yourself 10% first. Put this into an account "
-"that is hard to touch. Make sure it is a chore to get the money out (you "
-"have to drive to the bank), so you will only tap it consciously and for "
+"Tip to get out of debt: Pay yourself 10 percentage first. Put this into an "
+"account that is hard to touch. Make sure it is a chore to get the money out "
+"(you have to drive to the bank), so you will only tap it consciously and for "
 "major expenses."
 msgstr ""
-"Совет, чтобы выйти из долгов: Сохраняйте 10% заработка. Поместите это в "
-"трудно доступное место. Такое, чтобы получить деньги было затруднительно "
-"(вам нужно проехать в банк, например).  В этом случае вы будете использовать "
-"эти деньги сознательно и только для основных расходов."
+"Совет, чтобы выйти из долгов: Сохраняйте 10 процентов заработка. Поместите "
+"это в трудно доступное место. Такое, чтобы получить деньги было "
+"затруднительно (вам нужно поехать в банк, например).  В этом случае вы "
+"будете использовать эти деньги сознательно и только для основных расходов."
 
 #: src/mmTips.h:39
 msgid "Tip to get out of debt: Establish an emergency fund."
@@ -5275,7 +5296,7 @@ msgstr "Вы действительно хотите удалить все по�
 msgid "Do you really want to delete the selected transaction?"
 msgstr "Вы действительно хотите удалить выбранную транзакцию?"
 
-#: src/mmcheckingpanel.cpp:1751 src/transdialog.cpp:689 src/transdialog.cpp:722
+#: src/mmcheckingpanel.cpp:1751 src/transdialog.cpp:693 src/transdialog.cpp:726
 msgid "MMEX Transaction Check"
 msgstr "Проверка транзакций"
 
@@ -5316,38 +5337,39 @@ msgstr ""
 "или выберите получателя из выпадающего списка."
 
 #: src/mmcustomdata.cpp:58
-#, fuzzy
 msgid "Custom fields"
-msgstr "Пользовательские поля"
+msgstr "Настраиваемые поля"
 
 #: src/mmcustomdata.cpp:307
-#, fuzzy
 msgid "Please select"
-msgstr "Пожалуйста, подождите"
+msgstr "Пожалуйста выберите"
 
 #: src/mmcustomdata.cpp:307
-#, fuzzy
 msgid "Multi Choice"
-msgstr "Выбор множественный"
+msgstr "Мульти Выбор"
 
-#: src/mmex.cpp:74
+#: src/mmex.cpp:75
+msgid "Can not load translation for default language"
+msgstr "Не могу загрузить перевод для языка по умолчанию"
+
+#: src/mmex.cpp:76 src/mmex.cpp:81 src/mmframe.cpp:3105
+msgid "Language change"
+msgstr "Изменение языка"
+
+#: src/mmex.cpp:79
 #, c-format
 msgid "Can not load translation for selected language %s"
 msgstr "Невозможно загрузить перевод для выбранного языка %s"
 
-#: src/mmex.cpp:76 src/mmframe.cpp:3105
-msgid "Language change"
-msgstr "Изменение языка"
-
-#: src/mmex.cpp:110
+#: src/mmex.cpp:115
 msgid ""
-"Fatal error occured.\n"
+"Fatal error occurred.\n"
 "Application will be terminated."
 msgstr ""
-"Произошел критический сбой.\n"
-"Программа будет закрыта."
+"Произошла фатальная ошибка.\n"
+"Приложение будет закрыто."
 
-#: src/mmex.cpp:243
+#: src/mmex.cpp:248
 msgid ""
 "MMEX is already running...\n"
 "\n"
@@ -5357,7 +5379,7 @@ msgstr ""
 "\n"
 "Запуск нескольких экземпляров больше не поддерживается."
 
-#: src/mmex.cpp:244
+#: src/mmex.cpp:249
 msgid "MMEX Instance Check"
 msgstr "Проверка MMEX"
 
@@ -5564,12 +5586,13 @@ msgstr "Экспортировать в HTML"
 
 #: src/mmframe.cpp:1476
 msgid "&Force WebApp sync"
-msgstr ""
+msgstr "Принудительно синхронизировать с WebApp"
 
 #: src/mmframe.cpp:1476
-#, fuzzy
 msgid "Force sync of accounts, payees and categories to WebApp"
-msgstr "Все отсутсвующие счета, получатели и ратегории будут созданы."
+msgstr ""
+"Принудительно синхронизировать учетные записи, получателей платежей и "
+"категории с WebApp"
 
 #: src/mmframe.cpp:1480
 msgid "Import from any CSV file"
@@ -5764,14 +5787,12 @@ msgid "&General Report Manager..."
 msgstr "Менеджер отчётов..."
 
 #: src/mmframe.cpp:1665
-#, fuzzy
 msgid "&Custom Fields Manager..."
-msgstr "Изменить"
+msgstr "Диспетчер пользовательских полей..."
 
 #: src/mmframe.cpp:1665 src/mmframe.cpp:1832
-#, fuzzy
 msgid "Custom Fields Manager"
-msgstr "Изменить"
+msgstr "Диспетчер пользовательских полей"
 
 #: src/mmframe.cpp:1672 src/mmframe.cpp:1836
 msgid "&Options..."
@@ -5782,24 +5803,20 @@ msgid "Show the Options Dialog"
 msgstr "Настройки"
 
 #: src/mmframe.cpp:1680
-#, fuzzy
 msgid "Set &Password"
-msgstr "Сменить пароль зашифрованной БД"
+msgstr "Задать пароль зашифрованной БД"
 
 #: src/mmframe.cpp:1681
-#, fuzzy
 msgid "Encrypt database or change password for database file"
-msgstr "Введите пароль для базы данных"
+msgstr "Зашифровать базу данных или изменить пароль для файла базы данных"
 
 #: src/mmframe.cpp:1684
-#, fuzzy
 msgid "Remove Password"
-msgstr "Удалить "
+msgstr "Удалить пароль"
 
 #: src/mmframe.cpp:1685
-#, fuzzy
 msgid "Remove password and decrypt database file"
-msgstr "Сменить пароль для зашифрованной базы данных"
+msgstr "Удалить пароль и расшифровать файл базы данных"
 
 #: src/mmframe.cpp:1688
 msgid "Optimize &Database"
@@ -5940,7 +5957,7 @@ msgstr "Пожертвовать через PayPal"
 
 #: src/mmframe.cpp:1750
 msgid "Donate the team to support infrastructure etc"
-msgstr "Поддержать команду для поддержки инфраструктуры и т.п."
+msgstr "Пожертвовать команде для поддержки инфраструктуры и т.п."
 
 #: src/mmframe.cpp:1753
 msgid "Buy us a Coffee"
@@ -5979,7 +5996,7 @@ msgid "Check for &Updates"
 msgstr "П&роверить обновления"
 
 #: src/mmframe.cpp:1790
-msgid "Check if a new MMEX version is avaiable"
+msgid "Check if a new MMEX version is available"
 msgstr "Проверьте, доступна ли новая версия MMEX"
 
 #: src/mmframe.cpp:1795 src/mmframe.cpp:1840
@@ -6043,9 +6060,8 @@ msgid "News"
 msgstr "Новости"
 
 #: src/mmframe.cpp:1896
-#, fuzzy
 msgid "Cannot locate database file to open."
-msgstr "Выберите файл базы данных"
+msgstr "Не удается найти файл базы данных для открытия."
 
 #: src/mmframe.cpp:1904 src/mmframe.cpp:1998
 msgid "[portable mode]"
@@ -6068,14 +6084,12 @@ msgid "Choose database file to create"
 msgstr "Выберите файл базы данных для создания"
 
 #: src/mmframe.cpp:2041 src/mmframe.cpp:2065 src/mmframe.cpp:2146
-#, fuzzy
 msgid "MMEX database files (*.mmb)"
-msgstr "Ошибка базы данных MMEX!"
+msgstr "Файлы базы данных MMEX (*.mmb)"
 
 #: src/mmframe.cpp:2043 src/mmframe.cpp:2148
-#, fuzzy
 msgid "Encrypted MMEX database files (*.mmb)"
-msgstr "Выберите зашифрованный файл базы данных"
+msgstr "Зашифрованные файлы базы данных MMEX (*.mmb)"
 
 #: src/mmframe.cpp:2063
 msgid "Choose database file to open"
@@ -6086,23 +6100,20 @@ msgid "Password change completed."
 msgstr "Замена пароля выполнена."
 
 #: src/mmframe.cpp:2085
-#, fuzzy
 msgid "Encryption Password Change"
-msgstr "MMEX: Смена пароля зишифрованной БД"
+msgstr "Изменение пароля шифрования"
 
 #: src/mmframe.cpp:2093
-#, fuzzy
 msgid "Please confirm database decryption and password removal."
-msgstr "Подтвердите новый пароль"
+msgstr "Пожалуйста, подтвердите расшифровку базы данных и удаление пароля."
 
 #: src/mmframe.cpp:2094 src/mmframe.cpp:2101
-#, fuzzy
 msgid "Encryption Password Removal"
-msgstr "MMEX: Смена пароля зишифрованной БД"
+msgstr "Удаление пароля шифрования"
 
 #: src/mmframe.cpp:2101
 msgid "Password removed and database decrypted."
-msgstr ""
+msgstr "Пароль удален, а база данных расшифрована."
 
 #: src/mmframe.cpp:2109
 msgid "Make sure you have a backup of DB before optimize it"
@@ -6144,19 +6155,16 @@ msgid "Can't copy file to itself"
 msgstr "Нельзя скопировать файл в себя"
 
 #: src/mmframe.cpp:2167
-#, fuzzy
 msgid "Can't overwrite selected file"
-msgstr "Перезаписать имеющийся файл?"
+msgstr "Не могу перезаписать выбранный файл"
 
 #: src/mmframe.cpp:2229
-#, fuzzy
-msgid "Accounts, payees and categories succesfully syncronized to WebApp!"
-msgstr "Все отсутсвующие счета, получатели и ратегории будут созданы."
+msgid "Accounts, payees and categories successfully syncronized to WebApp!"
+msgstr "Все отсутствующие счета, получатели и категории будут созданы!"
 
 #: src/mmframe.cpp:2229
-#, fuzzy
 msgid "WebApp export"
-msgstr "WebApp Settings параметры"
+msgstr "Экспорт WebApp"
 
 #: src/mmframe.cpp:2261 src/mmframe.cpp:2280
 msgid "No account available to import to"
@@ -6377,16 +6385,14 @@ msgstr "Всего:"
 msgid "Top Withdrawals: %s"
 msgstr "Самые расходные: %s"
 
-#: src/mmhomepagepanel.cpp:223 src/option.cpp:122 src/option.cpp:125
-#: src/option.cpp:132
+#: src/mmhomepagepanel.cpp:223 src/option.cpp:119 src/option.cpp:122
+#: src/option.cpp:129
 msgid "Summary"
 msgstr "Сводка"
 
 #: src/mmhomepagepanel.cpp:391
-#, fuzzy
-#| msgid "Account name"
 msgid "Account / Payee"
-msgstr "Название счёта"
+msgstr "Счёт / Получатель"
 
 #: src/mmhomepagepanel.cpp:616
 msgid "Upcoming Transactions"
@@ -6448,7 +6454,7 @@ msgstr "Сбросить размер колонок"
 msgid "REPORTS"
 msgstr "ОТЧЁТЫ"
 
-#: src/mmreportspanel.cpp:297 src/mmreportspanel.cpp:370
+#: src/mmreportspanel.cpp:297 src/mmreportspanel.cpp:375
 msgid "Period:"
 msgstr "Период:"
 
@@ -6457,41 +6463,41 @@ msgstr "Период:"
 msgid "Custom"
 msgstr "Пользовательский"
 
-#: src/mmreportspanel.cpp:325 src/mmreportspanel.cpp:326
-#: src/mmreportspanel.cpp:353 src/mmreportspanel.cpp:354
-#: src/mmreportspanel.cpp:406 src/mmreportspanel.cpp:407
+#: src/mmreportspanel.cpp:330 src/mmreportspanel.cpp:331
+#: src/mmreportspanel.cpp:358 src/mmreportspanel.cpp:359
+#: src/mmreportspanel.cpp:411 src/mmreportspanel.cpp:412
 msgid "Previous Period"
 msgstr "Предыдущий период"
 
-#: src/mmreportspanel.cpp:329 src/mmreportspanel.cpp:330
-#: src/mmreportspanel.cpp:357 src/mmreportspanel.cpp:358
-#: src/mmreportspanel.cpp:410 src/mmreportspanel.cpp:411
+#: src/mmreportspanel.cpp:334 src/mmreportspanel.cpp:335
+#: src/mmreportspanel.cpp:362 src/mmreportspanel.cpp:363
+#: src/mmreportspanel.cpp:415 src/mmreportspanel.cpp:416
 msgid "Next Period"
 msgstr "Следующий период"
 
-#: src/mmreportspanel.cpp:423 src/reports/cashflow.cpp:236
+#: src/mmreportspanel.cpp:428 src/reports/cashflow.cpp:236
 #: src/reports/incexpenses.cpp:47 src/reports/incexpenses.cpp:176
 msgid "Accounts: "
 msgstr "Счета: "
 
-#: src/mmreportspanel.cpp:425 src/reports/cashflow.cpp:231
+#: src/mmreportspanel.cpp:430 src/reports/cashflow.cpp:231
 #: src/reports/incexpenses.cpp:50 src/reports/incexpenses.cpp:179
 msgid "All Accounts"
 msgstr "Все счета"
 
-#: src/mmreportspanel.cpp:426
+#: src/mmreportspanel.cpp:431
 msgid "Specific Accounts"
 msgstr "Конкретные Счета"
 
-#: src/mmreportspanel.cpp:445
+#: src/mmreportspanel.cpp:450
 msgid "Chart:"
 msgstr "Диаграмма:"
 
-#: src/mmreportspanel.cpp:447
+#: src/mmreportspanel.cpp:452
 msgid "Show"
 msgstr "Показать"
 
-#: src/mmreportspanel.cpp:448
+#: src/mmreportspanel.cpp:453
 msgid "Hide"
 msgstr "Скрыть"
 
@@ -6573,14 +6579,12 @@ msgid "Stock"
 msgstr "Акции"
 
 #: src/model/Model_Attachment.cpp:27
-#, fuzzy
 msgid "Bank Account"
-msgstr "Банковские счета"
+msgstr "Банковский счет"
 
 #: src/model/Model_Attachment.cpp:28
-#, fuzzy
 msgid "Recurring Transaction"
-msgstr "Повторяющиеся транзакции"
+msgstr "Повторяющаяся транзакция"
 
 #: src/model/Model_Billsdeposits.cpp:313
 msgid ""
@@ -6647,53 +6651,52 @@ msgstr ""
 "%s \n"
 "пытается изменить БД! Запрещено!"
 
-#: src/option.cpp:117 src/reports/myusage.cpp:108
-#, fuzzy
+#: src/option.cpp:114 src/reports/myusage.cpp:108
 msgid "MMEX Usage Frequency"
-msgstr "Период"
+msgstr "Частота использования MMEX"
 
-#: src/option.cpp:118 src/option.cpp:119
+#: src/option.cpp:115 src/option.cpp:116
 msgid "Summary of Accounts"
 msgstr "Сводка по счетам"
 
-#: src/option.cpp:120 src/reports/categexp.cpp:220
+#: src/option.cpp:117 src/reports/categexp.cpp:220
 msgid "Where the Money Goes"
 msgstr "Расходы"
 
-#: src/option.cpp:121 src/reports/categexp.cpp:225
+#: src/option.cpp:118 src/reports/categexp.cpp:225
 msgid "Where the Money Comes From"
 msgstr "Доходы"
 
-#: src/option.cpp:124
+#: src/option.cpp:121
 msgid "Payees"
 msgstr "Получатели"
 
-#: src/option.cpp:125 src/option.cpp:126 src/reports/incexpenses.cpp:32
+#: src/option.cpp:122 src/option.cpp:123 src/reports/incexpenses.cpp:32
 #: src/reports/incexpenses.cpp:161
 msgid "Income vs Expenses"
 msgstr "Доходы/Расходы"
 
-#: src/option.cpp:127 src/option.cpp:128
+#: src/option.cpp:124 src/option.cpp:125
 msgid "Budget"
 msgstr "Бюджет"
 
-#: src/option.cpp:127 src/option.cpp:131
+#: src/option.cpp:124 src/option.cpp:128
 msgid "Performance"
 msgstr "Активность"
 
-#: src/option.cpp:128
+#: src/option.cpp:125
 msgid "Category Summary"
 msgstr "По Категориям"
 
-#: src/option.cpp:129 src/option.cpp:130 src/reports/cashflow.cpp:35
+#: src/option.cpp:126 src/option.cpp:127 src/reports/cashflow.cpp:35
 msgid "Cash Flow"
 msgstr "Движение средств"
 
-#: src/option.cpp:131 src/option.cpp:132
+#: src/option.cpp:128 src/option.cpp:129
 msgid "Stocks Report"
 msgstr "Отчёт по котировкам"
 
-#: src/option.cpp:133
+#: src/option.cpp:130
 msgid "Forecast Report"
 msgstr "Прогноз"
 
@@ -6732,7 +6735,6 @@ msgid "Attachment archive folder for %s only:"
 msgstr "Папка вложений для %s только:"
 
 #: src/optionsettingsattachment.cpp:68
-#, fuzzy
 msgid "Every OS type (Win, Mac, Unix) has its attachment folder"
 msgstr "Каждая ОС (Win,Mac,Unix) имеет свой каталог для вложений"
 
@@ -6757,7 +6759,6 @@ msgid "User profile folder"
 msgstr "Папка профиля пользователя"
 
 #: src/optionsettingsattachment.cpp:104
-#, fuzzy
 msgid "Folder of .mmb database file"
 msgstr "Папка для .MMB файла базы данных"
 
@@ -6873,7 +6874,7 @@ msgstr "Установить валюту"
 msgid "Sets the database default Currency using the 'Currency Dialog'"
 msgstr "Устанавливает валюту по умолчанию с помощью 'Менеджера Валют'"
 
-#: src/optionsettingsgeneral.cpp:95
+#: src/optionsettingsgeneral.cpp:94
 msgid "Right click and select 'Set as Base Currency' in 'Currency Dialog'"
 msgstr ""
 "Щелкните правой кнопкой мыши и выберите 'Установить в качестве базовой "
@@ -6951,11 +6952,11 @@ msgstr "Параметры диалога новых транзакций"
 msgid "Last Used"
 msgstr "Как до того"
 
-#: src/optionsettingsmisc.cpp:100
+#: src/optionsettingsmisc.cpp:102
 msgid "Last used for payee"
 msgstr "Как до того"
 
-#: src/optionsettingsmisc.cpp:101
+#: src/optionsettingsmisc.cpp:103
 msgid "Unused"
 msgstr "Неиспользуемый"
 
@@ -7041,9 +7042,8 @@ msgid "Specify the Web App GUID"
 msgstr "Задайте Web App GUID"
 
 #: src/optionsettingsnet.cpp:86
-#, fuzzy
 msgid "Test connection"
-msgstr "Ошибка соединения WebApp"
+msgstr "Проверка соединения"
 
 #: src/optionsettingsnet.cpp:89
 msgid "More information about WebApp"
@@ -7112,12 +7112,10 @@ msgid "Seconds"
 msgstr "Сек."
 
 #: src/optionsettingsnet.cpp:175
-#, fuzzy
 msgid "Check for Updates"
-msgstr "П&роверить обновления"
+msgstr "Проверить обновления"
 
 #: src/optionsettingsnet.cpp:181
-#, fuzzy
 msgid "Check at StartUp"
 msgstr "Проверить наличие обновлений при запуске"
 
@@ -7143,13 +7141,12 @@ msgid "Select preferred version:"
 msgstr "Выберите предпочтительную версию:"
 
 #: src/optionsettingsnet.cpp:226
-#, fuzzy
-msgid "WebApp connection tested succesfully!"
-msgstr "Ошибка соединения WebApp"
+msgid "WebApp connection tested successfully!"
+msgstr "Соединение с WebApp успешно протестировано!"
 
 #: src/optionsettingsnet.cpp:226 src/optionsettingsnet.cpp:231
 msgid "WebApp connection test"
-msgstr "Проверка соединения с WebApp "
+msgstr "Проверка соединения с WebApp"
 
 #: src/optionsettingsnet.cpp:231
 msgid "Some parameters are missing."
@@ -8110,7 +8107,7 @@ msgstr "Котировки не найдены"
 #: src/stockspanel.cpp:885
 #, c-format
 msgid "%s on %s"
-msgstr "%s - %s"
+msgstr "%s на %s"
 
 #: src/stockspanel.cpp:942
 #, c-format
@@ -8137,15 +8134,15 @@ msgstr "Дублировать транзакцию"
 msgid "Edit Transaction"
 msgstr "Редактирование транзакции"
 
-#: src/transdialog.cpp:526
+#: src/transdialog.cpp:530
 msgid "Populate Transaction #"
 msgstr "Присвоить №"
 
-#: src/transdialog.cpp:548 src/usertransactionpanel.cpp:217
+#: src/transdialog.cpp:552 src/usertransactionpanel.cpp:217
 msgid "Organize attachments of this transaction"
 msgstr "Менеджер вложений"
 
-#: src/transdialog.cpp:629
+#: src/transdialog.cpp:633
 #, c-format
 msgid ""
 "Do you want to add new payee: \n"
@@ -8154,11 +8151,11 @@ msgstr ""
 "Добавить нового получателя: \n"
 "%s?"
 
-#: src/transdialog.cpp:630
+#: src/transdialog.cpp:634
 msgid "Confirm to add new payee"
 msgstr "Подтвердите добавление нового получателя"
 
-#: src/transdialog.cpp:720
+#: src/transdialog.cpp:724
 msgid ""
 "This transaction will exceed your account limit.\n"
 "\n"
@@ -8168,31 +8165,31 @@ msgstr ""
 "\n"
 "Вы хотите продолжить?"
 
-#: src/transdialog.cpp:1197
+#: src/transdialog.cpp:1200
 msgid "Specify account the money is taken from"
 msgstr "Определите счёт откуда будет произведено перечисление"
 
-#: src/transdialog.cpp:1198
+#: src/transdialog.cpp:1201
 msgid "Specify account the money is moved to"
 msgstr "Укажите счёт куда будет произведено перечисление"
 
-#: src/transdialog.cpp:1199
+#: src/transdialog.cpp:1202
 msgid "Specify the transfer amount in the From Account."
 msgstr "Определите сумму которая будет переведена на другой счёт."
 
-#: src/transdialog.cpp:1207
+#: src/transdialog.cpp:1210
 msgid "Specify account for the transaction"
 msgstr "Выберите счёт транзакции"
 
-#: src/transdialog.cpp:1209
+#: src/transdialog.cpp:1212
 msgid "Specify to whom the transaction is going to"
 msgstr "Укажите кому будет произведено перечисление"
 
-#: src/transdialog.cpp:1215 src/usertransactionpanel.cpp:105
+#: src/transdialog.cpp:1218 src/usertransactionpanel.cpp:105
 msgid "Specify the date of the transaction"
 msgstr "Укажите дату транзакции"
 
-#: src/transdialog.cpp:1216 src/usertransactionpanel.cpp:109
+#: src/transdialog.cpp:1219 src/usertransactionpanel.cpp:109
 msgid "Retard or advance the date of the transaction"
 msgstr "Отставание или опережение даты транзакции"
 
@@ -8239,32 +8236,28 @@ msgid "Account Selection"
 msgstr "Выбор счёта"
 
 #: src/util.cpp:113
-#, fuzzy
 msgid "Encrypted database password"
-msgstr "MMEX: Зашифрованная БД"
+msgstr "Пароль зашифрованной базы данных"
 
 #: src/util.cpp:115
-#, fuzzy
 msgid "Enter password for database file"
-msgstr "Введите пароль для базы данных"
+msgstr "Введите пароль для файла базы данных"
 
 #: src/util.cpp:122
-#, fuzzy
 msgid "Re-enter password for database file"
-msgstr "Введите пароль для базы данных"
+msgstr "Повторно введите пароль для файла базы данных"
 
 #: src/util.cpp:126
 msgid "Confirm password failed."
 msgstr "Пароль не подтверждён."
 
 #: src/util.cpp:128
-#, fuzzy
 msgid "Password must not be empty."
-msgstr "Новый пароль не может быть пустым."
+msgstr "Пароль не должен быть пустым."
 
 #: src/util.cpp:535
 msgid "Wrong base currency to USD rate provided"
-msgstr ""
+msgstr "Указан неверный курс базовой валюты к доллару США"
 
 #: src/util.cpp:803
 msgid "UTF-8"
