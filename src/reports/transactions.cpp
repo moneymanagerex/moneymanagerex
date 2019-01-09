@@ -142,7 +142,7 @@ wxString mmReportTransactions::getHTMLText()
             {
                 const Model_Currency::Data* curr = Model_Account::currency(acc);
                 const double amount = Model_Checking::balance(transaction, transaction.ACCOUNTID);
-                const double convRate = Model_CurrencyHistory::getDayRate(Model_Account::instance().get(transaction.ACCOUNTID)->CURRENCYID, transaction.TRANSDATE);
+                const double convRate = Model_CurrencyHistory::getDayRate(curr->CURRENCYID, transaction.TRANSDATE);
                 hb.addCurrencyCell(amount, curr);
                 total[curr->CURRENCYID] += amount;
                 total_in_base_curr[curr->CURRENCYID] += amount * convRate;
@@ -193,11 +193,12 @@ void mmReportTransactions::Run(mmFilterTransactionsDialog* dlg)
         Model_Checking::Full_Data full_tran(m_refAccountID, tran, splits);
         if (!dlg->checkAll(full_tran, m_refAccountID)) continue;
         full_tran.PAYEENAME = full_tran.real_payee_name(m_refAccountID);
-        double total_amount = 0;
+        full_tran.TRANSAMOUNT = tran.TRANSAMOUNT;
 
         if (full_tran.has_split())
         {
             full_tran.CATEGNAME.clear();
+            double total_amount = 0;
             for (const auto& split : full_tran.m_splits)
             {
                 const Model_Account::Data* acc = Model_Account::instance().get(tran.ACCOUNTID);
@@ -215,14 +216,9 @@ void mmReportTransactions::Run(mmFilterTransactionsDialog* dlg)
                 total_amount += split.SPLITTRANSAMOUNT;
             }
             full_tran.CATEGNAME.RemoveLast(2);
-        }
-
-        if (category) {
             full_tran.TRANSAMOUNT = total_amount;
         }
-        else {
-            full_tran.TRANSAMOUNT = tran.TRANSAMOUNT;
-        }
+
         trans_.push_back(full_tran);
     }
     std::stable_sort(trans_.begin(), trans_.end(), SorterByTRANSDATE());
