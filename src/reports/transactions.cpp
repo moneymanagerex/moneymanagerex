@@ -195,23 +195,24 @@ void mmReportTransactions::Run(mmFilterTransactionsDialog* dlg)
         full_tran.PAYEENAME = full_tran.real_payee_name(m_refAccountID);
         full_tran.TRANSAMOUNT = tran.TRANSAMOUNT;
 
-        if (full_tran.has_split())
+        if (category && full_tran.has_split())
         {
+            const Model_Account::Data* acc = Model_Account::instance().get(tran.ACCOUNTID);
+            const Model_Currency::Data* currency = Model_Currency::instance().get(acc->CURRENCYID);
+
             full_tran.CATEGNAME.clear();
             double total_amount = 0;
             for (const auto& split : full_tran.m_splits)
             {
-                const Model_Account::Data* acc = Model_Account::instance().get(tran.ACCOUNTID);
-                const Model_Currency::Data* currency = Model_Currency::instance().get(acc->CURRENCYID);
-                wxString amt = Model_Currency::toCurrency(split.SPLITTRANSAMOUNT, currency);
+                const wxString amt = Model_Currency::toCurrency(split.SPLITTRANSAMOUNT, currency);
                 const wxString split_info = wxString::Format("%s = %s | "
                     , Model_Category::full_name(split.CATEGID, split.SUBCATEGID)
                     , amt);
 
                 full_tran.CATEGNAME.Append(split_info);
 
-                if (category && split.CATEGID != categ) continue;
-                if (category && split.SUBCATEGID != subcateg && similar) continue;
+                if (split.CATEGID != categ) continue;
+                if (similar && split.SUBCATEGID != subcateg) continue;
 
                 total_amount += split.SPLITTRANSAMOUNT;
             }
