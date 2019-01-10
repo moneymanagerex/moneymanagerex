@@ -9,10 +9,10 @@
         "Money Manager Ex User Manual":"Manuale Utente di Money Manager Ex"
     }],
     "pl": [{
-        "Money Manager Ex User Manual":"Instrukcja użytkowania Money Manager"    
+        "Money Manager Ex User Manual":"Podręcznik użytkownika Money Manager Ex"
     }],
     "sp": [{
-        "Money Manager Ex User Manual":"Manual de usuario de Money Manager Ex"    
+        "Money Manager Ex User Manual":"Manual de usuario de Money Manager Ex"
     }],
     "de": [{
         "Money Manager Ex User Manual":"Money Manager Ex-Benutzerhandbuch"
