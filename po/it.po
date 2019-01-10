@@ -1131,7 +1131,7 @@ msgstr "Nome non valido"
 
 #: src/billsdepositsdialog.cpp:1383
 msgid "Choose one of the following:"
-msgstr ""
+msgstr "Scegli una delle seguenti:"
 
 #: src/billsdepositsdialog.cpp:1457 src/transdialog.cpp:1182
 #: src/usertransactionpanel.cpp:199
