@@ -25,49 +25,49 @@ div#toc ul {
 }
 
 img.shadow {
-  box-shadow: 8px 8px 10px #aaa;
+    box-shadow: 8px 8px 10px #aaa;
 }
 
 .notes{
-  text-decoration:none;
-  color:#000;
-  background:#ffc;
-  display:block;
-  height:15em;
-  width:15em;
-  padding:1em;
-  /* Firefox */
-  -moz-box-shadow:5px 5px 7px rgba(33,33,33,1);
-  /* Safari+Chrome */
-  -webkit-box-shadow: 5px 5px 7px rgba(33,33,33,.7);
-  /* Opera */
-  box-shadow: 5px 5px 7px rgba(33,33,33,.7);
+    text-decoration:none;
+    color:#000;
+    background:#ffc;
+    display:block;
+    height:15em;
+    width:15em;
+    padding:1em;
+    /* Firefox */
+    -moz-box-shadow:5px 5px 7px rgba(33,33,33,1);
+    /* Safari+Chrome */
+    -webkit-box-shadow: 5px 5px 7px rgba(33,33,33,.7);
+    /* Opera */
+    box-shadow: 5px 5px 7px rgba(33,33,33,.7);
 
-  -ms-transform:rotate(-6deg);
-  -webkit-transform:rotate(-6deg);
-  -o-transform:rotate(-6deg);
-  -moz-transform:rotate(-6deg);
+    -ms-transform:rotate(-6deg);
+    -webkit-transform:rotate(-6deg);
+    -o-transform:rotate(-6deg);
+    -moz-transform:rotate(-6deg);
 }
 
 .tips{
-  text-decoration:none;
-  color:#000;
-  background:#bafbc0;
-  display:block;
-  height:15em;
-  width:15em;
-  padding:1em;
-  /* Firefox */
-  -moz-box-shadow:5px 5px 7px rgba(33,33,33,1);
-  /* Safari+Chrome */
-  -webkit-box-shadow: 5px 5px 7px rgba(33,33,33,.7);
-  /* Opera */
-  box-shadow: 5px 5px 7px rgba(33,33,33,.7);
+    text-decoration:none;
+    color:#000;
+    background:#bafbc0;
+    display:block;
+    height:15em;
+    width:15em;
+    padding:1em;
+    /* Firefox */
+    -moz-box-shadow:5px 5px 7px rgba(33,33,33,1);
+    /* Safari+Chrome */
+    -webkit-box-shadow: 5px 5px 7px rgba(33,33,33,.7);
+    /* Opera */
+    box-shadow: 5px 5px 7px rgba(33,33,33,.7);
 
-  -ms-transform:rotate(-6deg);
-  -webkit-transform:rotate(-6deg);
-  -o-transform:rotate(-6deg);
-  -moz-transform:rotate(-6deg);
+    -ms-transform:rotate(-6deg);
+    -webkit-transform:rotate(-6deg);
+    -o-transform:rotate(-6deg);
+    -moz-transform:rotate(-6deg);
 }
 
 header.tips_header{

@@ -1,5 +1,14 @@
 msgid ""
 msgstr ""
+<<<<<<< HEAD
+=======
+"Project-Id-Version: Money Manager Ex\n"
+"Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
+"POT-Creation-Date: 2019-01-11 00:58+0100\n"
+"PO-Revision-Date: 2018-08-29 15:40+0200\n"
+"Last-Translator: Tomasz Słodkowicz\n"
+"Language: pl_PL\n"
+>>>>>>> fd716d3dc7fd4c08bd3bcb8de475713543d23add
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -35,12 +44,22 @@ msgstr "Licencja"
 msgid "Privacy"
 msgstr "Prywatność"
 
+<<<<<<< HEAD
 #: src/aboutdialog.cpp:197 src/accountdialog.cpp:372 src/appstartdialog.cpp:136
 #: src/assetdialog.cpp:299 src/attachmentdialog.cpp:118
 #: src/billsdepositsdialog.cpp:501 src/budgetentrydialog.cpp:156
 #: src/budgetyeardialog.cpp:112 src/budgetyearentrydialog.cpp:128
 #: src/currencydialog.cpp:223 src/customfieldeditdialog.cpp:188
 #: src/import_export/qif_export.cpp:214 src/import_export/qif_export.cpp:237
+=======
+#: src/aboutdialog.cpp:197 src/accountdialog.cpp:372
+#: src/appstartdialog.cpp:136 src/assetdialog.cpp:299
+#: src/attachmentdialog.cpp:118 src/billsdepositsdialog.cpp:501
+#: src/budgetentrydialog.cpp:156 src/budgetyeardialog.cpp:112
+#: src/budgetyearentrydialog.cpp:128 src/currencydialog.cpp:223
+#: src/customfieldeditdialog.cpp:188 src/import_export/qif_export.cpp:214
+#: src/import_export/qif_export.cpp:237
+>>>>>>> fd716d3dc7fd4c08bd3bcb8de475713543d23add
 #: src/import_export/qif_import_gui.cpp:310 src/optiondialog.cpp:150
 #: src/payeedialog.cpp:127 src/relocatecategorydialog.cpp:125
 #: src/relocatepayeedialog.cpp:130 src/sharetransactiondialog.cpp:310
@@ -335,8 +354,14 @@ msgstr "Nazwa"
 msgid "Enter the name of the asset"
 msgstr "Wprowadź nazwę aktywów"
 
+<<<<<<< HEAD
 #: src/assetdialog.cpp:195 src/assetspanel.cpp:62 src/filtertransdialog.cpp:517
 #: src/filtertransdialog.cpp:836 src/import_export/qif_import_gui.cpp:94
+=======
+#: src/assetdialog.cpp:195 src/assetspanel.cpp:62
+#: src/filtertransdialog.cpp:517 src/filtertransdialog.cpp:836
+#: src/import_export/qif_import_gui.cpp:94
+>>>>>>> fd716d3dc7fd4c08bd3bcb8de475713543d23add
 #: src/import_export/univcsvdialog.cpp:91 src/maincurrencydialog.cpp:251
 #: src/maincurrencydialog.cpp:274 src/mmcheckingpanel.cpp:1099
 #: src/mmreportspanel.cpp:346 src/model/Model_CustomField.cpp:29
@@ -382,8 +407,14 @@ msgid "% Rate"
 msgstr "% amortyzacji"
 
 #: src/assetdialog.cpp:241
+<<<<<<< HEAD
 msgid "Enter the rate at which the asset changes its value in percentage per year"
 msgstr ""
+=======
+msgid ""
+"Enter the rate at which the asset changes its value in percentage per year"
+msgstr "Wprowadź stopę zmiany wartości aktywów w procentach na rok"
+>>>>>>> fd716d3dc7fd4c08bd3bcb8de475713543d23add
 
 #: src/assetdialog.cpp:253
 msgid "Organize attachments of this asset"
@@ -494,12 +525,29 @@ msgid "Confirm Asset Deletion"
 msgstr "Potwierdź usunięcie aktywów"
 
 #: src/assetspanel.cpp:371 src/stockspanel.cpp:768 src/stockspanel.cpp:943
+<<<<<<< HEAD
+=======
+#, c-format
+>>>>>>> fd716d3dc7fd4c08bd3bcb8de475713543d23add
 msgid "Total: %s"
 msgstr "Łącznie: %s"
 
 #: src/assetspanel.cpp:421
+<<<<<<< HEAD
 msgid "MMEX allows you to track fixed assets like cars, houses, land and others. Each asset can have its value appreciate by a certain rate per year, depreciate by a certain rate per year, or not change in value. The total assets are added to your total financial worth."
 msgstr "MMEX umożliwia śledzenie wartości środków trwałych, takich jak samochody, domy, grunty i inne. Każdy element może mieć wartość obniżaną (amortyzowaną) o określony procent rocznie lub nie zmienianą. Suma wartości aktywów jest dodawana do całkowitej wartości finansowej."
+=======
+msgid ""
+"MMEX allows you to track fixed assets like cars, houses, land and others. "
+"Each asset can have its value appreciate by a certain rate per year, "
+"depreciate by a certain rate per year, or not change in value. The total "
+"assets are added to your total financial worth."
+msgstr ""
+"MMEX umożliwia śledzenie wartości środków trwałych, takich jak samochody, "
+"domy, grunty i inne. Każdy element może mieć wartość obniżaną "
+"(amortyzowaną) o określony procent rocznie lub nie zmienianą. Suma wartości "
+"aktywów jest dodawana do całkowitej wartości finansowej."
+>>>>>>> fd716d3dc7fd4c08bd3bcb8de475713543d23add
 
 #: src/assetspanel.cpp:456 src/assetspanel.h:110
 #: src/general_report_manager.cpp:671 src/general_report_manager.cpp:948
@@ -544,7 +592,12 @@ msgstr "&Edytuj"
 #: src/assetspanel.cpp:528 src/billsdepositspanel.cpp:284
 #: src/budgetyeardialog.cpp:99 src/categdialog.cpp:232
 #: src/maincurrencydialog.cpp:299 src/mmcheckingpanel.cpp:537
+<<<<<<< HEAD
 #: src/mmcheckingpanel.cpp:1249 src/stockdialog.cpp:338 src/stockspanel.cpp:592
+=======
+#: src/mmcheckingpanel.cpp:1249 src/stockdialog.cpp:338
+#: src/stockspanel.cpp:592
+>>>>>>> fd716d3dc7fd4c08bd3bcb8de475713543d23add
 msgid "&Delete "
 msgstr "Usuń"
 
@@ -566,11 +619,20 @@ msgid "Enter any string to find related assets"
 msgstr "Wprowadź ciąg aby znaleźć odpowiadające aktywa"
 
 #: src/assetspanel.cpp:667
+<<<<<<< HEAD
+=======
+#, c-format
+>>>>>>> fd716d3dc7fd4c08bd3bcb8de475713543d23add
 msgid "Change in Value: %s %s"
 msgstr "Zmina wartości: %s %s"
 
 #: src/assetspanel.cpp:781
+<<<<<<< HEAD
 msgid "This asset does not have its own account\n"
+=======
+msgid ""
+"This asset does not have its own account\n"
+>>>>>>> fd716d3dc7fd4c08bd3bcb8de475713543d23add
 "\n"
 "Multiple transactions for this asset are not recommended.\n"
 "Please use the popup: 'Open Asset Account' to track the transaction."
@@ -584,7 +646,12 @@ msgid "Asset Management"
 msgstr "Zarządznie aktywami"
 
 #: src/assetspanel.cpp:803
+<<<<<<< HEAD
 msgid "Account \t Date\t   Value\n"
+=======
+msgid ""
+"Account \t Date\t   Value\n"
+>>>>>>> fd716d3dc7fd4c08bd3bcb8de475713543d23add
 "\n"
 ""
 msgstr "Konto \t Data\t   Watość\n"
@@ -697,8 +764,17 @@ msgid "Att."
 msgstr "Zał."
 
 #: src/attachmentdialog.cpp:345
+<<<<<<< HEAD
 msgid "This directory and its files are automatically managed by Money Manager EX software."
 msgstr "Ten katalog i zawarte w nim pliki są zarządzane automatycznie przez Money Manager EX."
+=======
+msgid ""
+"This directory and its files are automatically managed by Money Manager EX "
+"software."
+msgstr ""
+"Ten katalog i zawarte w nim pliki są zarządzane automatycznie przez Money "
+"Manager EX."
+>>>>>>> fd716d3dc7fd4c08bd3bcb8de475713543d23add
 
 #: src/attachmentdialog.cpp:347
 msgid "Please do not remove, rename or modify manually directories and files."
@@ -862,7 +938,11 @@ msgstr "Powtórzenia"
 
 #: src/billsdepositsdialog.cpp:461
 msgid "Advance the next occurring date with the specified values"
+<<<<<<< HEAD
 msgstr ""
+=======
+msgstr "Przestaw datę następnego wystąpienia w oparciu o ustaloną wartość"
+>>>>>>> fd716d3dc7fd4c08bd3bcb8de475713543d23add
 
 #: src/billsdepositsdialog.cpp:469 src/billsdepositsdialog.cpp:1341
 msgid "Payments Left"
@@ -931,7 +1011,12 @@ msgstr "Za&awansowane"
 
 #: src/billsdepositsdialog.cpp:565 src/transdialog.cpp:1225
 msgid "Allows the setting of different amounts in the FROM and TO accounts."
+<<<<<<< HEAD
 msgstr "Pozwala ustawić różne kwoty transakcji na kontcie źródłowym i docelowym."
+=======
+msgstr ""
+"Pozwala ustawić różne kwoty transakcji na kontcie źródłowym i docelowym."
+>>>>>>> fd716d3dc7fd4c08bd3bcb8de475713543d23add
 
 #: src/billsdepositsdialog.cpp:575 src/billsdepositspanel.cpp:109
 #: src/budgetingpanel.cpp:321 src/filtertransdialog.cpp:495
@@ -1081,42 +1166,70 @@ msgid "Period: Months"
 msgstr "Okres: miesiące"
 
 #: src/billsdepositsdialog.cpp:1310
+<<<<<<< HEAD
 msgid "Specify period in Days to activate.\n"
+=======
+msgid ""
+"Specify period in Days to activate.\n"
+>>>>>>> fd716d3dc7fd4c08bd3bcb8de475713543d23add
 "Becomes blank when not active."
 msgstr "Określ czas w dniach do realizacji.\n"
 "Staje się puste kiedy nie jest aktywne."
 
 #: src/billsdepositsdialog.cpp:1318
+<<<<<<< HEAD
 msgid "Specify period in Months to activate.\n"
+=======
+msgid ""
+"Specify period in Months to activate.\n"
+>>>>>>> fd716d3dc7fd4c08bd3bcb8de475713543d23add
 "Becomes blank when not active."
 msgstr "Określ czas w miesiącach do realizacji.\n"
 "Staje się puste kiedy nie jest aktywne."
 
 #: src/billsdepositsdialog.cpp:1326
+<<<<<<< HEAD
 msgid "Specify period in Days to activate.\n"
+=======
+msgid ""
+"Specify period in Days to activate.\n"
+>>>>>>> fd716d3dc7fd4c08bd3bcb8de475713543d23add
 "Leave blank when not active."
 msgstr "Określ okres do aktywacji w dniach.\n"
 "Pozostaw puste kiedy nieaktywne."
 
 #: src/billsdepositsdialog.cpp:1334
+<<<<<<< HEAD
 msgid "Specify period in Months to activate.\n"
+=======
+msgid ""
+"Specify period in Months to activate.\n"
+>>>>>>> fd716d3dc7fd4c08bd3bcb8de475713543d23add
 "Leave blank when not active."
 msgstr "Określ okres w miesiącach do aktywacji.\n"
 "Pozostaw puste kiedy nieaktywne."
 
 #: src/billsdepositsdialog.cpp:1342
+<<<<<<< HEAD
 msgid "Specify the number of payments to be made.\n"
+=======
+msgid ""
+"Specify the number of payments to be made.\n"
+>>>>>>> fd716d3dc7fd4c08bd3bcb8de475713543d23add
 "Leave blank if the payments continue forever."
 msgstr "Określ liczbę płatności do wykonania.\n"
 "Pozostaw puste jeśli płatność ma być realizowana bez końca."
 
 #: src/billsdepositsdialog.cpp:1368 src/billsdepositsdialog.cpp:1377
+<<<<<<< HEAD
 #: src/filtertransdialog.cpp:495 src/filtertransdialog.cpp:503
 #: src/filtertransdialog.cpp:517 src/filtertransdialog.cpp:527 src/util.cpp:582
 msgid "Invalid value"
 msgstr "Nieprawidłowa wartość"
 
 #: src/billsdepositsdialog.cpp:1368 src/billsdepositsdialog.cpp:1377
+=======
+>>>>>>> fd716d3dc7fd4c08bd3bcb8de475713543d23add
 #: src/billsdepositsdialog.cpp:1385 src/general_report_manager.cpp:657
 #: src/import_export/qif_import_gui.cpp:736 src/maincurrencydialog.cpp:454
 #: src/mmframe.cpp:3060 src/mmreportspanel.cpp:258
@@ -1125,14 +1238,30 @@ msgstr "Nieprawidłowa wartość"
 msgid "Error"
 msgstr "Błąd"
 
+<<<<<<< HEAD
 #: src/billsdepositsdialog.cpp:1383 src/mmSimpleDialogs.cpp:232
 msgid "Invalid Choice"
 msgstr "Nieprawidłowy wybór"
+=======
+#: src/billsdepositsdialog.cpp:1368 src/billsdepositsdialog.cpp:1377
+#: src/filtertransdialog.cpp:495 src/filtertransdialog.cpp:503
+#: src/filtertransdialog.cpp:517 src/filtertransdialog.cpp:527
+#: src/util.cpp:582
+msgid "Invalid value"
+msgstr "Nieprawidłowa wartość"
+>>>>>>> fd716d3dc7fd4c08bd3bcb8de475713543d23add
 
 #: src/billsdepositsdialog.cpp:1383
 msgid "Choose one of the following:"
 msgstr "Wybierz jedno z:"
 
+<<<<<<< HEAD
+=======
+#: src/billsdepositsdialog.cpp:1383 src/mmSimpleDialogs.cpp:232
+msgid "Invalid Choice"
+msgstr "Nieprawidłowy wybór"
+
+>>>>>>> fd716d3dc7fd4c08bd3bcb8de475713543d23add
 #: src/billsdepositsdialog.cpp:1457 src/transdialog.cpp:1182
 #: src/usertransactionpanel.cpp:199
 msgid "Specify the category for this transaction"
@@ -1279,6 +1408,10 @@ msgstr "Automatycznie"
 
 #: src/billsdepositspanel.cpp:509 src/billsdepositspanel.cpp:575
 #: src/mmhomepagepanel.cpp:347
+<<<<<<< HEAD
+=======
+#, c-format
+>>>>>>> fd716d3dc7fd4c08bd3bcb8de475713543d23add
 msgid "%d days remaining"
 msgstr "%d dni pozostało"
 
@@ -1289,11 +1422,19 @@ msgid "Inactive"
 msgstr " Nieaktywny(a)"
 
 #: src/billsdepositspanel.cpp:519 src/mmhomepagepanel.cpp:348
+<<<<<<< HEAD
+=======
+#, c-format
+>>>>>>> fd716d3dc7fd4c08bd3bcb8de475713543d23add
 msgid "%d days delay!"
 msgstr "%d dni opóźnienia!"
 
 #: src/billsdepositspanel.cpp:526 src/billsdepositspanel.cpp:585
 #: src/mmhomepagepanel.cpp:350
+<<<<<<< HEAD
+=======
+#, c-format
+>>>>>>> fd716d3dc7fd4c08bd3bcb8de475713543d23add
 msgid "%d days overdue!"
 msgstr "%d dni zaległości!"
 
@@ -1384,22 +1525,43 @@ msgid "View Budget Category Summary"
 msgstr "Pokaż podsumowanie kategorii budżetu"
 
 #: src/budgetingpanel.cpp:184 src/reports/budget.cpp:84
+<<<<<<< HEAD
 msgid "Financial Year: %s - %li"
 msgstr "Rok finansowy:%s -%li"
 
 #: src/budgetingpanel.cpp:188 src/reports/budget.cpp:88
+=======
+#, c-format
+msgid "Financial Year: %s - %li"
+msgstr "rok finansowy: %s - %li"
+
+#: src/budgetingpanel.cpp:188 src/reports/budget.cpp:88
+#, c-format
+>>>>>>> fd716d3dc7fd4c08bd3bcb8de475713543d23add
 msgid "Year: %s"
 msgstr "rok: %s"
 
 #: src/budgetingpanel.cpp:193 src/reports/budget.cpp:93
+<<<<<<< HEAD
+=======
+#, c-format
+>>>>>>> fd716d3dc7fd4c08bd3bcb8de475713543d23add
 msgid "Month: %s"
 msgstr "miesiąc: %s"
 
 #: src/budgetingpanel.cpp:198
+<<<<<<< HEAD
+=======
+#, c-format
+>>>>>>> fd716d3dc7fd4c08bd3bcb8de475713543d23add
 msgid "%s    Start Date of: %s"
 msgstr "%s    Data początku: %s"
 
 #: src/budgetingpanel.cpp:201
+<<<<<<< HEAD
+=======
+#, c-format
+>>>>>>> fd716d3dc7fd4c08bd3bcb8de475713543d23add
 msgid "Budget Setup for %s"
 msgstr "Ustawienia budżetu na %s"
 
@@ -1625,6 +1787,10 @@ msgstr "Zakończono przenoszenie kategorii."
 
 #: src/categdialog.cpp:574 src/mmframe.cpp:2992 src/mmframe.cpp:3007
 #: src/payeedialog.cpp:316
+<<<<<<< HEAD
+=======
+#, c-format
+>>>>>>> fd716d3dc7fd4c08bd3bcb8de475713543d23add
 msgid "Records have been updated in the database: %i"
 msgstr "Zapisy w bazie danych zostały uaktualnione: %i"
 
@@ -1811,6 +1977,10 @@ msgid "Invalid Entry"
 msgstr "Nieprawidłowy wpis"
 
 #: src/currencydialog.cpp:280
+<<<<<<< HEAD
+=======
+#, c-format
+>>>>>>> fd716d3dc7fd4c08bd3bcb8de475713543d23add
 msgid "%s Shown As: %s"
 msgstr "%s wyświetlane jako: %s"
 
@@ -1929,8 +2099,16 @@ msgstr "Potwierdź usunięcie pola"
 msgid "This function will massive search & replace for \"%s\" custom field values\n"
 "It will match & replace only complete field value, no partial or middle-value replaces allowed\n"
 "Please consider that there isn't any validation!"
+<<<<<<< HEAD
 msgstr "Ta funkcja dokona masowego wyszukania i zastąpienia wartości dla własnego pola \"%s\".\n"
 "Wyszuka i zastąpi jedynie całą zawartość pola, nie jest możliwe zastąpienie jedynie fragmentu zapisanej wartości.\n"
+=======
+msgstr ""
+"Ta funkcja dokona masowego wyszukania i zastąpienia wartości dla własnego "
+"pola \"%s\".\n"
+"Wyszuka i zastąpi jedynie całą zawartość pola, nie jest możliwe zastąpienie "
+"jedynie fragmentu zapisanej wartości.\n"
+>>>>>>> fd716d3dc7fd4c08bd3bcb8de475713543d23add
 "Zauważ, że nie ma tu żadnego sprawdzania poprawności!"
 
 #: src/customfieldlistdialog.cpp:194
@@ -2028,7 +2206,11 @@ msgid "Other Expenses"
 msgstr "Inne wydatki"
 
 #: src/db/Table_Category.h:120 src/model/Model_Billsdeposits.cpp:33
+<<<<<<< HEAD
 #: src/model/Model_Checking.cpp:32
+=======
+#: src/model/Model_Checking.cpp:32 src/transdialog.cpp:335
+>>>>>>> fd716d3dc7fd4c08bd3bcb8de475713543d23add
 msgid "Transfer"
 msgstr "Przelew"
 
@@ -3496,6 +3678,10 @@ msgstr "Zapisane zestawy"
 
 #: src/filtertransdialog.cpp:372 src/filtertransdialog.cpp:687
 #: src/filtertransdialog.cpp:936 src/filtertransdialog.cpp:1210
+<<<<<<< HEAD
+=======
+#, c-format
+>>>>>>> fd716d3dc7fd4c08bd3bcb8de475713543d23add
 msgid "%i: Empty"
 msgstr "%i: pusty"
 
@@ -3634,6 +3820,10 @@ msgid "Create Template"
 msgstr "Utwórz wzorzec"
 
 #: src/general_report_manager.cpp:490
+<<<<<<< HEAD
+=======
+#, c-format
+>>>>>>> fd716d3dc7fd4c08bd3bcb8de475713543d23add
 msgid "Row(s) returned: %i  Duration: %ld ms"
 msgstr "Wierszy: %i  Czas trwania: %ld ms"
 
@@ -3654,7 +3844,13 @@ msgid "ZIP files (*.zip)"
 msgstr "Pliki archiwów ZIP (*.zip)"
 
 #: src/general_report_manager.cpp:609
+<<<<<<< HEAD
 msgid "Unable to open file:\n"
+=======
+#, c-format
+msgid ""
+"Unable to open file:\n"
+>>>>>>> fd716d3dc7fd4c08bd3bcb8de475713543d23add
 "%s\n"
 "\n"
 ""
@@ -3721,17 +3917,31 @@ msgid "Add Report Group"
 msgstr "Dodaj grupę raportów"
 
 #: src/general_report_manager.cpp:922
+<<<<<<< HEAD
 msgid "New Report %s"
 msgstr "Nowy raport %s"
 
-#: src/general_report_manager.cpp:935
-msgid "Report Name already exists"
-msgstr "Nazwa raportu już istnieje"
+=======
+#, c-format
+msgid "New Report %s"
+msgstr "Nowy raport %s"
 
 #: src/general_report_manager.cpp:935 src/general_report_manager.cpp:942
 msgid "New Report"
 msgstr "Nowy raport"
 
+>>>>>>> fd716d3dc7fd4c08bd3bcb8de475713543d23add
+#: src/general_report_manager.cpp:935
+msgid "Report Name already exists"
+msgstr "Nazwa raportu już istnieje"
+
+<<<<<<< HEAD
+#: src/general_report_manager.cpp:935 src/general_report_manager.cpp:942
+msgid "New Report"
+msgstr "Nowy raport"
+
+=======
+>>>>>>> fd716d3dc7fd4c08bd3bcb8de475713543d23add
 #: src/general_report_manager.cpp:973
 msgid "Choose file to Save As Report"
 msgstr "Wybierz plik do zapisania jako raport"
@@ -3802,10 +4012,13 @@ msgstr "Dziennik"
 msgid "QIF"
 msgstr "QIF"
 
+<<<<<<< HEAD
 #: src/import_export/qif_export.cpp:111
 msgid "CSV"
 msgstr "CSV"
 
+=======
+>>>>>>> fd716d3dc7fd4c08bd3bcb8de475713543d23add
 #: src/import_export/qif_export.cpp:129 src/mmframe.cpp:2832
 #: src/mmframe.cpp:2836 src/mmframe.cpp:2855 src/mmframe.cpp:2859
 msgid "Accounts"
@@ -4077,6 +4290,10 @@ msgstr "Dodane konto: %s"
 
 #: src/import_export/qif_import_gui.cpp:1196
 #: src/import_export/univcsvdialog.cpp:770
+<<<<<<< HEAD
+=======
+#, c-format
+>>>>>>> fd716d3dc7fd4c08bd3bcb8de475713543d23add
 msgid "Added payee: %s"
 msgstr "Dodany beneficjent: %s"
 
@@ -4206,7 +4423,13 @@ msgid "Export File"
 msgstr "Eksport pliku"
 
 #: src/import_export/univcsvdialog.cpp:483
+<<<<<<< HEAD
 msgid "Default account '%s' for this template does not exist.\n"
+=======
+#, c-format
+msgid ""
+"Default account '%s' for this template does not exist.\n"
+>>>>>>> fd716d3dc7fd4c08bd3bcb8de475713543d23add
 "Please select a new account."
 msgstr "Konto domyślne '%s' dla tego wzorca nie istnieje.\n"
 "Wybierz nowe konto."
@@ -4233,14 +4456,26 @@ msgid "Import"
 msgstr "Import"
 
 #: src/import_export/univcsvdialog.cpp:863
+<<<<<<< HEAD
+=======
+#, c-format
+>>>>>>> fd716d3dc7fd4c08bd3bcb8de475713543d23add
 msgid "Transactions imported to account %s: %ld"
 msgstr "Tansakcji zaimportowanych na konto %s: %ld"
 
 #: src/import_export/univcsvdialog.cpp:874
+<<<<<<< HEAD
+=======
+#, c-format
+>>>>>>> fd716d3dc7fd4c08bd3bcb8de475713543d23add
 msgid "Line %ld: Empty"
 msgstr "Linia %ld: pusta"
 
 #: src/import_export/univcsvdialog.cpp:888
+<<<<<<< HEAD
+=======
+#, c-format
+>>>>>>> fd716d3dc7fd4c08bd3bcb8de475713543d23add
 msgid "Line %ld: Error:"
 msgstr "Linia %ld: błąd:"
 
@@ -4257,30 +4492,58 @@ msgid "Type (withdrawal/deposit) unknown."
 msgstr "Typ (wpłata/wypłata) nierozpoznany."
 
 #: src/import_export/univcsvdialog.cpp:918
+<<<<<<< HEAD
+=======
+#, c-format
+>>>>>>> fd716d3dc7fd4c08bd3bcb8de475713543d23add
 msgid "Line %ld: OK, imported."
 msgstr "Linia %ld: OK, zaimportowana."
 
 #: src/import_export/univcsvdialog.cpp:926 src/stockdialog.cpp:638
+<<<<<<< HEAD
+=======
+#, c-format
+>>>>>>> fd716d3dc7fd4c08bd3bcb8de475713543d23add
 msgid "Total Lines: %ld"
 msgstr "Razem linii: %ld"
 
 #: src/import_export/univcsvdialog.cpp:928
+<<<<<<< HEAD
+=======
+#, c-format
+>>>>>>> fd716d3dc7fd4c08bd3bcb8de475713543d23add
 msgid "Lines Selected to Import: %ld"
 msgstr "Linii wybranych do wczytania: %ld"
 
 #: src/import_export/univcsvdialog.cpp:930
+<<<<<<< HEAD
+=======
+#, c-format
+>>>>>>> fd716d3dc7fd4c08bd3bcb8de475713543d23add
 msgid "Empty Lines: %ld"
 msgstr "Pustych linii: %ld"
 
 #: src/import_export/univcsvdialog.cpp:932
+<<<<<<< HEAD
+=======
+#, c-format
+>>>>>>> fd716d3dc7fd4c08bd3bcb8de475713543d23add
 msgid "Imported: %ld"
 msgstr "Zaimportowanych: %ld"
 
 #: src/import_export/univcsvdialog.cpp:934
+<<<<<<< HEAD
+=======
+#, c-format
+>>>>>>> fd716d3dc7fd4c08bd3bcb8de475713543d23add
 msgid "Errored: %ld"
 msgstr "Błędnych: %ld"
 
 #: src/import_export/univcsvdialog.cpp:937
+<<<<<<< HEAD
+=======
+#, c-format
+>>>>>>> fd716d3dc7fd4c08bd3bcb8de475713543d23add
 msgid "Log file written to: %s"
 msgstr "Plik dziennika zapisany do: %s"
 
@@ -4293,7 +4556,12 @@ msgid "No imported transactions!"
 msgstr "Nie zaimportowano transakcji!"
 
 #: src/import_export/univcsvdialog.cpp:990
+<<<<<<< HEAD
 msgid "Incorrect fields specified for export! Requires at least Date and Amount."
+=======
+msgid ""
+"Incorrect fields specified for export! Requires at least Date and Amount."
+>>>>>>> fd716d3dc7fd4c08bd3bcb8de475713543d23add
 msgstr "Nieprawidłowe pola do eksportu! Wymagane są co najmniej data i kwota."
 
 #: src/import_export/univcsvdialog.cpp:991
@@ -4302,6 +4570,7 @@ msgid "Export"
 msgstr "Eksport"
 
 #: src/import_export/univcsvdialog.cpp:1001
+<<<<<<< HEAD
 msgid "Overwrite existing file?"
 msgstr "Nadpisać istniejący plik?"
 
@@ -4309,6 +4578,15 @@ msgstr "Nadpisać istniejący plik?"
 msgid "File exists"
 msgstr "Plik istnieje"
 
+=======
+msgid "File exists"
+msgstr "Plik istnieje"
+
+#: src/import_export/univcsvdialog.cpp:1001
+msgid "Overwrite existing file?"
+msgstr "Nadpisać istniejący plik?"
+
+>>>>>>> fd716d3dc7fd4c08bd3bcb8de475713543d23add
 #: src/import_export/univcsvdialog.cpp:1007
 msgid "Failed to delete existing file. File may be locked by another program."
 msgstr "Nie można usunąć istniejącego pliku. Plik może być blokowany przez inny program."
@@ -4318,6 +4596,10 @@ msgid "Destination file error"
 msgstr "Błąd pliku docelowego"
 
 #: src/import_export/univcsvdialog.cpp:1111
+<<<<<<< HEAD
+=======
+#, c-format
+>>>>>>> fd716d3dc7fd4c08bd3bcb8de475713543d23add
 msgid "Transactions exported: %ld"
 msgstr "Wyeksportowano transakcji: %ld"
 
@@ -4658,7 +4940,15 @@ msgid "Organize Categories Dialog Tip: Pressing 2 key combination will cycle thr
 msgstr "Porada dla okna Organizuj Kategorie: Wciśnięcie kombinacji dwóch klawiszy przenosi do kategorii rozpoczynajacych się literami tej kombinacji. Przykład: wciśnięcie 'ho' wybierze 'Homeneeds', 'Home', 'House Tax', etc..."
 
 #: src/mmTips.h:38
+<<<<<<< HEAD
 msgid "Tip to get out of debt: Pay yourself 10 percentage first. Put this into an account that is hard to touch. Make sure it is a chore to get the money out (you have to drive to the bank), so you will only tap it consciously and for major expenses."
+=======
+msgid ""
+"Tip to get out of debt: Pay yourself 10 percentage first. Put this into an "
+"account that is hard to touch. Make sure it is a chore to get the money out "
+"(you have to drive to the bank), so you will only tap it consciously and "
+"for major expenses."
+>>>>>>> fd716d3dc7fd4c08bd3bcb8de475713543d23add
 msgstr ""
 
 #: src/mmTips.h:39
@@ -4726,6 +5016,10 @@ msgid "Enter any string to find it in the nearest transaction notes"
 msgstr "Wprowadź ciąg do znalezienia w notatkach do transakcji"
 
 #: src/mmcheckingpanel.cpp:577
+<<<<<<< HEAD
+=======
+#, c-format
+>>>>>>> fd716d3dc7fd4c08bd3bcb8de475713543d23add
 msgid "Account View: %s"
 msgstr "Widok konta: %s"
 
@@ -4855,6 +5149,10 @@ msgid "Unreconciled"
 msgstr "Nieuzgodnione"
 
 #: src/mmcheckingpanel.cpp:1353
+<<<<<<< HEAD
+=======
+#, c-format
+>>>>>>> fd716d3dc7fd4c08bd3bcb8de475713543d23add
 msgid "Do you really want to delete all the \"%s\" transactions shown?"
 msgstr "Jesteś pewien że chcesz usunąć wszystkie \"%s\" pokazane transakcje?"
 
@@ -4862,11 +5160,20 @@ msgstr "Jesteś pewien że chcesz usunąć wszystkie \"%s\" pokazane transakcje?
 msgid "Do you really want to delete the selected transaction?"
 msgstr "Czy na pewno chcesz usunąć wybraną transakcję?"
 
+<<<<<<< HEAD
 #: src/mmcheckingpanel.cpp:1751 src/transdialog.cpp:693 src/transdialog.cpp:726
+=======
+#: src/mmcheckingpanel.cpp:1751 src/transdialog.cpp:693
+#: src/transdialog.cpp:726
+>>>>>>> fd716d3dc7fd4c08bd3bcb8de475713543d23add
 msgid "MMEX Transaction Check"
 msgstr "Sprawdzanie transakcji MMEX"
 
 #: src/mmcheckingpanel.cpp:1917 src/stockspanel.cpp:291
+<<<<<<< HEAD
+=======
+#, c-format
+>>>>>>> fd716d3dc7fd4c08bd3bcb8de475713543d23add
 msgid "Moving Transaction from %s to..."
 msgstr "Przenoszenie pransakcji z %s do..."
 
@@ -4879,14 +5186,26 @@ msgid "Reoccuring Transaction saved."
 msgstr "Transakcja powtarzana zapisana."
 
 #: src/mmcheckingpanel.cpp:2027
+<<<<<<< HEAD
+=======
+#, c-format
+>>>>>>> fd716d3dc7fd4c08bd3bcb8de475713543d23add
 msgid "Transactions selected: %ld"
 msgstr "Wybranych transakcji: %ld"
 
 #: src/mmcheckingpanel.cpp:2029
+<<<<<<< HEAD
+=======
+#, c-format
+>>>>>>> fd716d3dc7fd4c08bd3bcb8de475713543d23add
 msgid "Selected transactions balance: %s"
 msgstr "Suma wybranych transakcji: %s"
 
 #: src/mmcheckingpanel.cpp:2032
+<<<<<<< HEAD
+=======
+#, c-format
+>>>>>>> fd716d3dc7fd4c08bd3bcb8de475713543d23add
 msgid "Days between selected transactions: %d"
 msgstr "Liczba dni pomiędzy wybranymi transakcjami: %d"
 
@@ -4904,6 +5223,7 @@ msgstr "Pola własne"
 msgid "Please select"
 msgstr "Proszę wybrać"
 
+<<<<<<< HEAD
 #: src/mmcustomdata.cpp:307
 msgid "Multi Choice"
 msgstr "Wielokrotnego wyboru"
@@ -4911,22 +5231,44 @@ msgstr "Wielokrotnego wyboru"
 #: src/mmex.cpp:75
 msgid "Can not load translation for default language"
 msgstr ""
+=======
+#: src/mmex.cpp:75
+msgid "Can not load translation for default language"
+msgstr "Nie można załadować tłumaczenia dla domyślnego języka"
+>>>>>>> fd716d3dc7fd4c08bd3bcb8de475713543d23add
 
 #: src/mmex.cpp:76 src/mmex.cpp:81 src/mmframe.cpp:3105
 msgid "Language change"
 msgstr "Zmiana języka"
 
 #: src/mmex.cpp:79
+<<<<<<< HEAD
+=======
+#, c-format
+>>>>>>> fd716d3dc7fd4c08bd3bcb8de475713543d23add
 msgid "Can not load translation for selected language %s"
 msgstr "Nie można załadować tłumaczenia dla wybranego języka %s"
 
 #: src/mmex.cpp:115
+<<<<<<< HEAD
 msgid "Fatal error occurred.\n"
 "Application will be terminated."
 msgstr ""
 
 #: src/mmex.cpp:248
 msgid "MMEX is already running...\n"
+=======
+msgid ""
+"Fatal error occurred.\n"
+"Application will be terminated."
+msgstr ""
+"Wystąpił błąd krytyczny.\n"
+"Aplikacja zostanie zamknięta."
+
+#: src/mmex.cpp:248
+msgid ""
+"MMEX is already running...\n"
+>>>>>>> fd716d3dc7fd4c08bd3bcb8de475713543d23add
 "\n"
 "Multiple instances are no longer supported."
 msgstr "MMEX jest już uruchomiony...\n"
@@ -4999,7 +5341,13 @@ msgid "Help"
 msgstr "Pomoc"
 
 #: src/mmframe.cpp:1139
+<<<<<<< HEAD
 msgid "Account: %s\n"
+=======
+#, c-format
+msgid ""
+"Account: %s\n"
+>>>>>>> fd716d3dc7fd4c08bd3bcb8de475713543d23add
 "\n"
 "Balance at currency %s: %s\n"
 "Balance at currency %s: %s"
@@ -5232,6 +5580,7 @@ msgid "Ignore Future transactions"
 msgstr "Ignoruj przyszłe transakcje"
 
 #: src/mmframe.cpp:1531 src/mmframe.cpp:1854
+<<<<<<< HEAD
 msgid "Toggle Fullscreen\tF11"
 msgstr "Tryb pełnoekranowy\tF11"
 
@@ -5239,6 +5588,15 @@ msgstr "Tryb pełnoekranowy\tF11"
 msgid "Toggle Fullscreen"
 msgstr "Tryb pełnoekranowy"
 
+=======
+msgid "Toggle Fullscreen"
+msgstr "Tryb pełnoekranowy"
+
+#: src/mmframe.cpp:1531 src/mmframe.cpp:1854
+msgid "Toggle Fullscreen\tF11"
+msgstr "Tryb pełnoekranowy\tF11"
+
+>>>>>>> fd716d3dc7fd4c08bd3bcb8de475713543d23add
 #: src/mmframe.cpp:1539
 msgid "Switch Application Language"
 msgstr "Zmień język programu"
@@ -5279,14 +5637,24 @@ msgstr "Organizuj &beneficjentów..."
 msgid "Organize Payees"
 msgstr "Organizuj beneficjentów"
 
-#: src/mmframe.cpp:1613
-msgid "Organize Currency..."
-msgstr "Organizuj waluty..."
-
+<<<<<<< HEAD
+=======
 #: src/mmframe.cpp:1613 src/mmframe.cpp:1830
 msgid "Organize Currency"
 msgstr "Organizuj waluty"
 
+>>>>>>> fd716d3dc7fd4c08bd3bcb8de475713543d23add
+#: src/mmframe.cpp:1613
+msgid "Organize Currency..."
+msgstr "Organizuj waluty..."
+
+<<<<<<< HEAD
+#: src/mmframe.cpp:1613 src/mmframe.cpp:1830
+msgid "Organize Currency"
+msgstr "Organizuj waluty"
+
+=======
+>>>>>>> fd716d3dc7fd4c08bd3bcb8de475713543d23add
 #: src/mmframe.cpp:1618
 msgid "&Categories..."
 msgstr "Kategorie..."
@@ -5416,52 +5784,97 @@ msgid "Visit us on Facebook"
 msgstr "Odwiedź nas na Facebook-u"
 
 #: src/mmframe.cpp:1719
+<<<<<<< HEAD
 msgid "Twitter"
 msgstr "Twitter"
 
 #: src/mmframe.cpp:1719
 msgid "Follow us on Twitter"
 msgstr "Śledź nas na Twitterze"
+=======
+msgid "Follow us on Twitter"
+msgstr "Śledź nas na Twitterze"
+
+#: src/mmframe.cpp:1719
+msgid "Twitter"
+msgstr "Twitter"
+
+#: src/mmframe.cpp:1722
+msgid "Watch free video materials about MMEX"
+msgstr "Obejrzyj darmowe materiały filmowe o MMEX"
+>>>>>>> fd716d3dc7fd4c08bd3bcb8de475713543d23add
 
 #: src/mmframe.cpp:1722
 msgid "YouTube"
 msgstr "YouTube"
 
+<<<<<<< HEAD
 #: src/mmframe.cpp:1722
 msgid "Watch free video materials about MMEX"
 msgstr "Obejrzyj darmowe materiały filmowe o MMEX"
+=======
+#: src/mmframe.cpp:1725
+msgid "Communicate online with MMEX team from your desktop or mobile device"
+msgstr ""
+"Skontaktuj się on-line z zespołem MMEX przez komputer lub urządzenie mobilne"
+>>>>>>> fd716d3dc7fd4c08bd3bcb8de475713543d23add
 
 #: src/mmframe.cpp:1725
 msgid "Slack"
 msgstr "Slack"
 
+<<<<<<< HEAD
 #: src/mmframe.cpp:1725
 msgid "Communicate online with MMEX team from your desktop or mobile device"
 msgstr "Skontaktuj się on-line z zespołem MMEX przez komputer lub urządzenie mobilne"
+=======
+#: src/mmframe.cpp:1728
+msgid "Access open source code repository and track reported bug statuses"
+msgstr ""
+"Przeglądaj repozytorium kodu źródłowego i śledź statusy zgłoszonych błędów"
+>>>>>>> fd716d3dc7fd4c08bd3bcb8de475713543d23add
 
 #: src/mmframe.cpp:1728
 msgid "GitHub"
 msgstr "GitHub"
 
+<<<<<<< HEAD
 #: src/mmframe.cpp:1728
 msgid "Access open source code repository and track reported bug statuses"
 msgstr "Przeglądaj repozytorium kodu źródłowego i śledź statusy zgłoszonych błędów"
+=======
+#: src/mmframe.cpp:1731
+msgid "Read and update wiki pages"
+msgstr "Przeczytaj i uzupełnij strony wiki"
+>>>>>>> fd716d3dc7fd4c08bd3bcb8de475713543d23add
 
 #: src/mmframe.cpp:1731
 msgid "Wiki pages"
 msgstr "Strony wiki"
 
+<<<<<<< HEAD
 #: src/mmframe.cpp:1731
 msgid "Read and update wiki pages"
 msgstr "Przeczytaj i uzupełnij strony wiki"
 
+=======
+>>>>>>> fd716d3dc7fd4c08bd3bcb8de475713543d23add
 #: src/mmframe.cpp:1734
 msgid "Forum"
 msgstr "Forum"
 
 #: src/mmframe.cpp:1735
+<<<<<<< HEAD
 msgid "Visit the MMEX forum to see existing user comments or report new issues with the software"
 msgstr "Odwiedź forum MMEX aby poznać komentarze użytkowników, zgłosić błędy lub zaproponować ulepszenia."
+=======
+msgid ""
+"Visit the MMEX forum to see existing user comments or report new issues "
+"with the software"
+msgstr ""
+"Odwiedź forum MMEX aby poznać komentarze użytkowników, zgłosić błędy lub "
+"zaproponować ulepszenia."
+>>>>>>> fd716d3dc7fd4c08bd3bcb8de475713543d23add
 
 #: src/mmframe.cpp:1738
 msgid "Google Play"
@@ -5480,6 +5893,7 @@ msgid "Subscribe to e-mail newsletter or view existing announcements"
 msgstr "Zapisz się do listy mailingowej z powiadomieniami lub zobacz aktualne"
 
 #: src/mmframe.cpp:1746
+<<<<<<< HEAD
 msgid "RSS Feed"
 msgstr "Kanał RSS"
 
@@ -5487,6 +5901,15 @@ msgstr "Kanał RSS"
 msgid "Connect RSS web feed to news aggregator"
 msgstr "Otwórz kanał RSS w czytniku wiadomości"
 
+=======
+msgid "Connect RSS web feed to news aggregator"
+msgstr "Otwórz kanał RSS w czytniku wiadomości"
+
+#: src/mmframe.cpp:1746
+msgid "RSS Feed"
+msgstr "Kanał RSS"
+
+>>>>>>> fd716d3dc7fd4c08bd3bcb8de475713543d23add
 #: src/mmframe.cpp:1749
 msgid "Donate via PayPal"
 msgstr "Wspomóż przez PayPal"
@@ -5533,7 +5956,11 @@ msgstr "Sprawdź &uaktualnienia"
 
 #: src/mmframe.cpp:1790
 msgid "Check if a new MMEX version is available"
+<<<<<<< HEAD
 msgstr ""
+=======
+msgstr "Sprawdź czy jest dostępna nowa wersja MMEX"
+>>>>>>> fd716d3dc7fd4c08bd3bcb8de475713543d23add
 
 #: src/mmframe.cpp:1795 src/mmframe.cpp:1840
 msgid "&About..."
@@ -5632,6 +6059,7 @@ msgid "Choose database file to open"
 msgstr "Wybierz plik bazy do otwarcia"
 
 #: src/mmframe.cpp:2085
+<<<<<<< HEAD
 msgid "Password change completed."
 msgstr "Zmiana hasła ukończona."
 
@@ -5639,6 +6067,15 @@ msgstr "Zmiana hasła ukończona."
 msgid "Encryption Password Change"
 msgstr "Zmiana hasła szyfrowania"
 
+=======
+msgid "Encryption Password Change"
+msgstr "Zmiana hasła szyfrowania"
+
+#: src/mmframe.cpp:2085
+msgid "Password change completed."
+msgstr "Zmiana hasła ukończona."
+
+>>>>>>> fd716d3dc7fd4c08bd3bcb8de475713543d23add
 #: src/mmframe.cpp:2093
 msgid "Please confirm database decryption and password removal."
 msgstr "Potwierdź proszę odszyfrowanie bazy danych i usunięcie hasła."
@@ -5660,7 +6097,13 @@ msgid "DB Optimization"
 msgstr "Optymalizacja bazy danych"
 
 #: src/mmframe.cpp:2117
+<<<<<<< HEAD
 msgid "Database Optimization Completed!\n"
+=======
+#, c-format
+msgid ""
+"Database Optimization Completed!\n"
+>>>>>>> fd716d3dc7fd4c08bd3bcb8de475713543d23add
 "\n"
 "Size before: %s\n"
 "Size after: %s\n"
@@ -5693,7 +6136,11 @@ msgstr "Nie można zastąpić wybrenego pliku"
 
 #: src/mmframe.cpp:2229
 msgid "Accounts, payees and categories successfully syncronized to WebApp!"
+<<<<<<< HEAD
 msgstr ""
+=======
+msgstr "Konta, beneficjenci i kategorie poprawnie zsynchronizowane z WebApp!"
+>>>>>>> fd716d3dc7fd4c08bd3bcb8de475713543d23add
 
 #: src/mmframe.cpp:2229
 msgid "WebApp export"
@@ -5704,7 +6151,12 @@ msgid "No account available to import to"
 msgstr "Brak dostępnych kont dla importu"
 
 #: src/mmframe.cpp:2331
+<<<<<<< HEAD
 msgid "Asset Accounts hold Asset transactions\n"
+=======
+msgid ""
+"Asset Accounts hold Asset transactions\n"
+>>>>>>> fd716d3dc7fd4c08bd3bcb8de475713543d23add
 "\n"
 "Asset transactions are created within the Assets View\n"
 "after the selection of the Asset within that view.\n"
@@ -5721,7 +6173,12 @@ msgid "Asset Account Creation"
 msgstr "Tworzenie konta aktywów"
 
 #: src/mmframe.cpp:2341
+<<<<<<< HEAD
 msgid "Share Accounts hold Share transactions\n"
+=======
+msgid ""
+"Share Accounts hold Share transactions\n"
+>>>>>>> fd716d3dc7fd4c08bd3bcb8de475713543d23add
 "\n"
 "Share transactions are created within the Stock Portfolio View\n"
 "after the selection of the Company Stock within the associated view.\n"
@@ -5755,18 +6212,38 @@ msgid "Please follow these tasks before submitting new bug:"
 msgstr "Wykonaj poniższe kroki przed zgłoszeniem nowego błędu:"
 
 #: src/mmframe.cpp:2558
+<<<<<<< HEAD
 msgid "1. Use Help->Check for Updates in MMEX to get latest version - your problem can be fixed already."
 msgstr "1. Użyj menu Pomoc->Sprawdź uaktualnienia w MMEX aby pobrać najnowszą wersję - twój problem może być już rozwiązany."
 
 #: src/mmframe.cpp:2559
 msgid "2. Search https://github.com/moneymanagerex/moneymanagerex/issues?q=is:issue for similar problem - update existing issue instead of creating new one."
 msgstr "2. Wyszukaj podobny problem na https://github.com/moneymanagerex/moneymanagerex/issues?q=is:issue - uzupełnij istniejące zgłoszenie zamiast tworzyć nowe."
+=======
+msgid ""
+"1. Use Help->Check for Updates in MMEX to get latest version - your problem "
+"can be fixed already."
+msgstr ""
+"1. Użyj menu Pomoc->Sprawdź uaktualnienia w MMEX aby pobrać najnowszą "
+"wersję - twój problem może być już rozwiązany."
+
+#: src/mmframe.cpp:2559
+msgid ""
+"2. Search https://github.com/moneymanagerex/moneymanagerex/issues?q=is:"
+"issue for similar problem - update existing issue instead of creating new "
+"one."
+msgstr ""
+"2. Wyszukaj podobny problem na https://github.com/moneymanagerex/"
+"moneymanagerex/issues?q=is:issue - uzupełnij istniejące zgłoszenie zamiast "
+"tworzyć nowe."
+>>>>>>> fd716d3dc7fd4c08bd3bcb8de475713543d23add
 
 #: src/mmframe.cpp:2560
 msgid "3. Put some descriptive name for your issue in the Title field above."
 msgstr "3. Umieść opisową nazwę twojego problemu w polu Title powyżej."
 
 #: src/mmframe.cpp:2561
+<<<<<<< HEAD
 msgid "4. Replace this text (marked with >) with detailed description of your problem."
 msgstr "4. Zastąp ten tekst (oznaczony >) dokładnym opisem twojego problemu."
 
@@ -5777,6 +6254,27 @@ msgstr "Przeczytaj https://www.chiark.greenend.org.uk/~sgtatham/bugs-pl.html dla
 #: src/mmframe.cpp:2563
 msgid "5. Include steps to reproduce your issue, attach screenshots where appropriate."
 msgstr "5. Opisz kroki pozwalające odtworzyć twój problem, dołącz zrzuty ekranu jeśli są przydatne."
+=======
+msgid ""
+"4. Replace this text (marked with >) with detailed description of your "
+"problem."
+msgstr "4. Zastąp ten tekst (oznaczony >) dokładnym opisem twojego problemu."
+
+#: src/mmframe.cpp:2562
+msgid ""
+"Read https://www.chiark.greenend.org.uk/~sgtatham/bugs.html for useful tips."
+msgstr ""
+"Przeczytaj https://www.chiark.greenend.org.uk/~sgtatham/bugs-pl.html dla "
+"cennych wskazówek."
+
+#: src/mmframe.cpp:2563
+msgid ""
+"5. Include steps to reproduce your issue, attach screenshots where "
+"appropriate."
+msgstr ""
+"5. Opisz kroki pozwalające odtworzyć twój problem, dołącz zrzuty ekranu "
+"jeśli są przydatne."
+>>>>>>> fd716d3dc7fd4c08bd3bcb8de475713543d23add
 
 #: src/mmframe.cpp:2564
 msgid "6. Please do not remove information attached below this text."
@@ -5803,20 +6301,38 @@ msgid "Choose Account to Delete"
 msgstr "Wybierz konto do usunięcia"
 
 #: src/mmframe.cpp:2864
+<<<<<<< HEAD
 msgid "Are you sure you want to delete\n"
+=======
+#, c-format
+msgid ""
+"Are you sure you want to delete\n"
+>>>>>>> fd716d3dc7fd4c08bd3bcb8de475713543d23add
 " %s account: %s ?"
 msgstr "Czy na pewno chcesz usunąć\n"
 " %s konto: %s ?"
 
+<<<<<<< HEAD
+=======
+#: src/mmframe.cpp:2883 src/mmframe.cpp:2906
+msgid "Account Reallocation"
+msgstr "Zmiana typu konta"
+
+>>>>>>> fd716d3dc7fd4c08bd3bcb8de475713543d23add
 #: src/mmframe.cpp:2883
 msgid "Select the account to reallocate"
 msgstr "Wybierz konto do realokacji"
 
+<<<<<<< HEAD
 #: src/mmframe.cpp:2883 src/mmframe.cpp:2906
 msgid "Account Reallocation"
 msgstr "Zmiana typu konta"
 
 #: src/mmframe.cpp:2905
+=======
+#: src/mmframe.cpp:2905
+#, c-format
+>>>>>>> fd716d3dc7fd4c08bd3bcb8de475713543d23add
 msgid "Account: %s - Select new type."
 msgstr "Konto: %s - Wybierz nowy typ."
 
@@ -5829,12 +6345,25 @@ msgid "Payee Relocation Result"
 msgstr "Wynik przenoszenia beneficjenta"
 
 #: src/mmframe.cpp:3060
+<<<<<<< HEAD
+=======
+#, c-format
+>>>>>>> fd716d3dc7fd4c08bd3bcb8de475713543d23add
 msgid "File %s not found"
 msgstr "Pliku %s nie odnaleziono"
 
 #: src/mmframe.cpp:3103
+<<<<<<< HEAD
 msgid "The language for this application has been changed. The change will take effect the next time the application is started."
 msgstr "Zmieniono język programu. Zmiana będzie widoczna po ponownym uruchomieniu programu."
+=======
+msgid ""
+"The language for this application has been changed. The change will take "
+"effect the next time the application is started."
+msgstr ""
+"Zmieniono język programu. Zmiana będzie widoczna po ponownym uruchomieniu "
+"programu."
+>>>>>>> fd716d3dc7fd4c08bd3bcb8de475713543d23add
 
 #: src/mmframereport.cpp:71
 msgid "General Group Report"
@@ -5880,6 +6409,10 @@ msgid "Total:"
 msgstr "Łącznie:"
 
 #: src/mmhomepagepanel.cpp:197
+<<<<<<< HEAD
+=======
+#, c-format
+>>>>>>> fd716d3dc7fd4c08bd3bcb8de475713543d23add
 msgid "Top Withdrawals: %s"
 msgstr "Najważniejsze wypłaty: %s"
 
@@ -5890,13 +6423,21 @@ msgstr "Podsumowanie"
 
 #: src/mmhomepagepanel.cpp:391
 msgid "Account / Payee"
+<<<<<<< HEAD
 msgstr ""
+=======
+msgstr "Konto / Beneficjent"
+>>>>>>> fd716d3dc7fd4c08bd3bcb8de475713543d23add
 
 #: src/mmhomepagepanel.cpp:616
 msgid "Upcoming Transactions"
 msgstr "Najbliższe transakcje do wykonania"
 
 #: src/mmhomepagepanel.cpp:799
+<<<<<<< HEAD
+=======
+#, c-format
+>>>>>>> fd716d3dc7fd4c08bd3bcb8de475713543d23add
 msgid "Income vs Expenses: %s"
 msgstr "Przychody vs Wydatki: %s"
 
@@ -6593,8 +7134,15 @@ msgid "Check at StartUp"
 msgstr "Sprawdź przy starcie"
 
 #: src/optionsettingsnet.cpp:183
+<<<<<<< HEAD
 msgid "Enable to automatically check if new MMEX version is available at StartUp"
 msgstr "Zaznacz, aby sprawdzać dostepność nowej wersji MMWX w czasie uruchomienia"
+=======
+msgid ""
+"Enable to automatically check if new MMEX version is available at StartUp"
+msgstr ""
+"Zaznacz, aby sprawdzać dostepność nowej wersji MMWX w czasie uruchomienia"
+>>>>>>> fd716d3dc7fd4c08bd3bcb8de475713543d23add
 
 #: src/optionsettingsnet.cpp:186
 msgid "Stable"
@@ -6612,14 +7160,24 @@ msgstr "Wybierz źródło aktualizacji"
 msgid "Select preferred version:"
 msgstr "Wybierz preferowaną wersję:"
 
+<<<<<<< HEAD
 #: src/optionsettingsnet.cpp:226
 msgid "WebApp connection tested successfully!"
 msgstr ""
 
+=======
+>>>>>>> fd716d3dc7fd4c08bd3bcb8de475713543d23add
 #: src/optionsettingsnet.cpp:226 src/optionsettingsnet.cpp:231
 msgid "WebApp connection test"
 msgstr "Test połączenia z WebApp"
 
+<<<<<<< HEAD
+=======
+#: src/optionsettingsnet.cpp:226
+msgid "WebApp connection tested successfully!"
+msgstr "Połączenie z WebApp przetestowane!"
+
+>>>>>>> fd716d3dc7fd4c08bd3bcb8de475713543d23add
 #: src/optionsettingsnet.cpp:231
 msgid "Some parameters are missing."
 msgstr "Brakuje niektórych parametrów."
@@ -6717,8 +7275,17 @@ msgid "Payee in use."
 msgstr "Beneficjent jest w użyciu."
 
 #: src/payeedialog.cpp:263
+<<<<<<< HEAD
 msgid "Tip: Change all transactions using this Payee to another Payee using the relocate command:"
 msgstr "Porada: Zmień wszystke transakcje z danym beneficjentem na innego beneficjenta\n"
+=======
+msgid ""
+"Tip: Change all transactions using this Payee to another Payee using the "
+"relocate command:"
+msgstr ""
+"Porada: Zmień wszystke transakcje z danym beneficjentem na innego "
+"beneficjenta\n"
+>>>>>>> fd716d3dc7fd4c08bd3bcb8de475713543d23add
 "za pomocą polecenia Przenoszenie:"
 
 #: src/payeedialog.cpp:265
@@ -7485,22 +8052,42 @@ msgid "Refresh Stock Prices from Yahoo"
 msgstr "Odśwież ceny akcji z Yahoo"
 
 #: src/stockspanel.cpp:725
+<<<<<<< HEAD
+=======
+#, c-format
+>>>>>>> fd716d3dc7fd4c08bd3bcb8de475713543d23add
 msgid "Stock Portfolio: %s"
 msgstr "Inwestycje: %s"
 
 #: src/stockspanel.cpp:767
+<<<<<<< HEAD
+=======
+#, c-format
+>>>>>>> fd716d3dc7fd4c08bd3bcb8de475713543d23add
 msgid "Total Shares: %s"
 msgstr "Aktywa ogółem: %s"
 
 #: src/stockspanel.cpp:769
+<<<<<<< HEAD
+=======
+#, c-format
+>>>>>>> fd716d3dc7fd4c08bd3bcb8de475713543d23add
 msgid "Invested: %s"
 msgstr "Zainwestowane: %s"
 
 #: src/stockspanel.cpp:770
+<<<<<<< HEAD
+=======
+#, c-format
+>>>>>>> fd716d3dc7fd4c08bd3bcb8de475713543d23add
 msgid "Gain: %s"
 msgstr "Zysk: %s"
 
 #: src/stockspanel.cpp:770
+<<<<<<< HEAD
+=======
+#, c-format
+>>>>>>> fd716d3dc7fd4c08bd3bcb8de475713543d23add
 msgid "Loss: %s"
 msgstr "Strata: %s"
 
@@ -7509,6 +8096,10 @@ msgid "Stock prices successfully updated"
 msgstr "Ceny akcji pomyślnie zaktualizowane"
 
 #: src/stockspanel.cpp:810 src/stockspanel.cpp:982
+<<<<<<< HEAD
+=======
+#, c-format
+>>>>>>> fd716d3dc7fd4c08bd3bcb8de475713543d23add
 msgid "Last updated %s"
 msgstr "Ostatnia aktualizacja %s"
 
@@ -7521,10 +8112,18 @@ msgid "Quotes not found"
 msgstr "Kwoty nie odnalezione"
 
 #: src/stockspanel.cpp:885
+<<<<<<< HEAD
+=======
+#, c-format
+>>>>>>> fd716d3dc7fd4c08bd3bcb8de475713543d23add
 msgid "%s on %s"
 msgstr "%s na %s"
 
 #: src/stockspanel.cpp:942
+<<<<<<< HEAD
+=======
+#, c-format
+>>>>>>> fd716d3dc7fd4c08bd3bcb8de475713543d23add
 msgid "Symbol: %s"
 msgstr "Symbol: %s"
 
@@ -7557,7 +8156,13 @@ msgid "Organize attachments of this transaction"
 msgstr "Organizuj załączniki dla tej transakcji"
 
 #: src/transdialog.cpp:633
+<<<<<<< HEAD
 msgid "Do you want to add new payee: \n"
+=======
+#, c-format
+msgid ""
+"Do you want to add new payee: \n"
+>>>>>>> fd716d3dc7fd4c08bd3bcb8de475713543d23add
 "%s?"
 msgstr "Czy chcesz dodać nowego beneficjenta: \n"
 "%s?"
@@ -7567,7 +8172,12 @@ msgid "Confirm to add new payee"
 msgstr "Potwierdź dodanie odbiorcy"
 
 #: src/transdialog.cpp:724
+<<<<<<< HEAD
 msgid "This transaction will exceed your account limit.\n"
+=======
+msgid ""
+"This transaction will exceed your account limit.\n"
+>>>>>>> fd716d3dc7fd4c08bd3bcb8de475713543d23add
 "\n"
 "Do you wish to continue?"
 msgstr "Ta transakcja spowoduje przekroczenie limitu konta.\n"
@@ -7671,14 +8281,24 @@ msgid "UTF-8"
 msgstr "UTF-8"
 
 #: src/util.cpp:816
-msgid "January"
-msgstr "styczeń"
-
-#: src/util.cpp:816
+<<<<<<< HEAD
+=======
 msgid "February"
 msgstr "luty"
 
 #: src/util.cpp:816
+>>>>>>> fd716d3dc7fd4c08bd3bcb8de475713543d23add
+msgid "January"
+msgstr "styczeń"
+
+#: src/util.cpp:816
+<<<<<<< HEAD
+msgid "February"
+msgstr "luty"
+
+#: src/util.cpp:816
+=======
+>>>>>>> fd716d3dc7fd4c08bd3bcb8de475713543d23add
 msgid "March"
 msgstr "marzec"
 
@@ -7686,47 +8306,80 @@ msgstr "marzec"
 msgid "April"
 msgstr "kwiecień"
 
+<<<<<<< HEAD
+=======
+#: src/util.cpp:817
+msgid "June"
+msgstr "czerwiec"
+
+>>>>>>> fd716d3dc7fd4c08bd3bcb8de475713543d23add
 #: src/util.cpp:817 src/util.cpp:825
 msgid "May"
 msgstr "maj"
 
+<<<<<<< HEAD
 #: src/util.cpp:817
 msgid "June"
 msgstr "czerwiec"
+=======
+#: src/util.cpp:818
+msgid "August"
+msgstr "sierpień"
+>>>>>>> fd716d3dc7fd4c08bd3bcb8de475713543d23add
 
 #: src/util.cpp:818
 msgid "July"
 msgstr "lipiec"
 
 #: src/util.cpp:818
+<<<<<<< HEAD
 msgid "August"
 msgstr "sierpień"
 
 #: src/util.cpp:818
+=======
+>>>>>>> fd716d3dc7fd4c08bd3bcb8de475713543d23add
 msgid "September"
 msgstr "wrzesień"
 
 #: src/util.cpp:819
+<<<<<<< HEAD
 msgid "October"
 msgstr "październik"
+=======
+msgid "December"
+msgstr "grudzień"
+>>>>>>> fd716d3dc7fd4c08bd3bcb8de475713543d23add
 
 #: src/util.cpp:819
 msgid "November"
 msgstr "listopad"
 
 #: src/util.cpp:819
+<<<<<<< HEAD
 msgid "December"
 msgstr "grudzień"
+=======
+msgid "October"
+msgstr "październik"
+
+#: src/util.cpp:824
+msgid "Feb"
+msgstr "lut"
+>>>>>>> fd716d3dc7fd4c08bd3bcb8de475713543d23add
 
 #: src/util.cpp:824
 msgid "Jan"
 msgstr "sty"
 
 #: src/util.cpp:824
+<<<<<<< HEAD
 msgid "Feb"
 msgstr "lut"
 
 #: src/util.cpp:824
+=======
+>>>>>>> fd716d3dc7fd4c08bd3bcb8de475713543d23add
 msgid "Mar"
 msgstr "mar"
 
@@ -7739,52 +8392,89 @@ msgid "Jun"
 msgstr "cze"
 
 #: src/util.cpp:826
-msgid "Jul"
-msgstr "lip"
-
-#: src/util.cpp:826
+<<<<<<< HEAD
+=======
 msgid "Aug"
 msgstr "sie"
 
 #: src/util.cpp:826
+>>>>>>> fd716d3dc7fd4c08bd3bcb8de475713543d23add
+msgid "Jul"
+msgstr "lip"
+
+#: src/util.cpp:826
+<<<<<<< HEAD
+msgid "Aug"
+msgstr "sie"
+
+#: src/util.cpp:826
+=======
+>>>>>>> fd716d3dc7fd4c08bd3bcb8de475713543d23add
 msgid "Sep"
 msgstr "wrz"
 
 #: src/util.cpp:827
+<<<<<<< HEAD
 msgid "Oct"
 msgstr "paź"
+=======
+msgid "Dec"
+msgstr "gru"
+>>>>>>> fd716d3dc7fd4c08bd3bcb8de475713543d23add
 
 #: src/util.cpp:827
 msgid "Nov"
 msgstr "lis"
 
 #: src/util.cpp:827
+<<<<<<< HEAD
 msgid "Dec"
 msgstr "gru"
+=======
+msgid "Oct"
+msgstr "paź"
+
+#: src/util.cpp:832
+msgid "Monday"
+msgstr "poniedziałek"
+>>>>>>> fd716d3dc7fd4c08bd3bcb8de475713543d23add
 
 #: src/util.cpp:832
 msgid "Sunday"
 msgstr "niedziela"
 
 #: src/util.cpp:832
+<<<<<<< HEAD
 msgid "Monday"
 msgstr "poniedziałek"
 
 #: src/util.cpp:832
+=======
+>>>>>>> fd716d3dc7fd4c08bd3bcb8de475713543d23add
 msgid "Tuesday"
 msgstr "wtorek"
 
 #: src/util.cpp:833
+<<<<<<< HEAD
 msgid "Wednesday"
 msgstr "środa"
+=======
+msgid "Friday"
+msgstr "piątek"
+>>>>>>> fd716d3dc7fd4c08bd3bcb8de475713543d23add
 
 #: src/util.cpp:833
 msgid "Thursday"
 msgstr "czwartek"
 
 #: src/util.cpp:833
+<<<<<<< HEAD
 msgid "Friday"
 msgstr "piątek"
+=======
+msgid "Wednesday"
+msgstr "środa"
+>>>>>>> fd716d3dc7fd4c08bd3bcb8de475713543d23add
 
 #: src/util.cpp:834
 msgid "Saturday"
@@ -8016,7 +8706,12 @@ msgid "Base Currency for account"
 msgstr "Bazowa waluta dla konta"
 
 #: src/wizard_newdb.cpp:136
+<<<<<<< HEAD
 msgid "Specify the base (or default) currency to be used for the\n"
+=======
+msgid ""
+"Specify the base (or default) currency to be used for the\n"
+>>>>>>> fd716d3dc7fd4c08bd3bcb8de475713543d23add
 "database. The base currency can later be changed by using\n"
 "the options dialog. New accounts, will use this currency by\n"
 "default, and can be changed when editing account details."
