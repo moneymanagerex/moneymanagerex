@@ -2533,7 +2533,7 @@ msgstr "New Zealand dollar"
 
 #: src/db/Table_Currencyformats.h:210
 msgid "Cordoba Oro"
-msgstr ""
+msgstr "Кордова Оро"
 
 #: src/db/Table_Currencyformats.h:211
 #, fuzzy
@@ -2765,7 +2765,7 @@ msgstr "Yemeni rial"
 
 #: src/db/Table_Currencyformats.h:257
 msgid "Bolívar"
-msgstr ""
+msgstr "Боливар"
 
 #: src/db/Table_Currencyformats.h:258
 msgid "Bitcoin"
@@ -2773,7 +2773,7 @@ msgstr "Биткоин"
 
 #: src/db/Table_Currencyformats.h:259
 msgid "Andorran Peseta (before 2003-07)"
-msgstr ""
+msgstr "Андорра Песета (до 2003-07)"
 
 #: src/db/Table_Currencyformats.h:260
 #, fuzzy
@@ -2782,7 +2782,7 @@ msgstr "Афганские афгани"
 
 #: src/db/Table_Currencyformats.h:261
 msgid "Old Lek (before 1989-12)"
-msgstr ""
+msgstr "Старый Лек (до 1989-12)"
 
 #: src/db/Table_Currencyformats.h:262
 #, fuzzy
@@ -2791,7 +2791,7 @@ msgstr "Angolan kwanza"
 
 #: src/db/Table_Currencyformats.h:263
 msgid "New Kwanza (before 2000-02)"
-msgstr ""
+msgstr "Новая кванза (до 2000-02)"
 
 #: src/db/Table_Currencyformats.h:264
 msgid "Kwanza Reajustado (before 2000-02)"
@@ -2804,7 +2804,7 @@ msgstr "Азербайджанский манат (до 2005-10)"
 
 #: src/db/Table_Currencyformats.h:266
 msgid "Peso Argentino (before 1985-07)"
-msgstr ""
+msgstr "Аргентинское песо (до 1985-07)"
 
 #: src/db/Table_Currencyformats.h:267
 #, fuzzy
@@ -2832,23 +2832,23 @@ msgstr "Азербайджанский манат (до 2005-10)"
 
 #: src/db/Table_Currencyformats.h:272
 msgid "Convertible Franc (before 1990-03)"
-msgstr ""
+msgstr "Конвертируемый франк (до 1990-03)"
 
 #: src/db/Table_Currencyformats.h:273
 msgid "Belgian Franc (before 2002-03)"
-msgstr ""
+msgstr "Бельгийский франк (до 2002-03)"
 
 #: src/db/Table_Currencyformats.h:274
 msgid "Financial Franc (before 1990-03)"
-msgstr ""
+msgstr "Финансовый франк (до 1990-03)"
 
 #: src/db/Table_Currencyformats.h:275
 msgid "Lev A/52 (1989 to 1990)"
-msgstr ""
+msgstr "Лев А/52 (1989-1990)"
 
 #: src/db/Table_Currencyformats.h:276
 msgid "Lev A/62 (1989 to 1990)"
-msgstr ""
+msgstr "Лев А/62 (1989-1990)"
 
 #: src/db/Table_Currencyformats.h:277
 #, fuzzy
@@ -2857,7 +2857,7 @@ msgstr "Bulgarian lev"
 
 #: src/db/Table_Currencyformats.h:278
 msgid "Peso boliviano (before 1987-02)"
-msgstr ""
+msgstr "Боливийское песо (до 1987-02)"
 
 #: src/db/Table_Currencyformats.h:279
 #, fuzzy
@@ -2876,11 +2876,11 @@ msgstr "Азербайджанский манат (до 2005-10)"
 
 #: src/db/Table_Currencyformats.h:282
 msgid "New Cruzado (before 1990-03)"
-msgstr ""
+msgstr "Новый Крузадо (до 1990-03)"
 
 #: src/db/Table_Currencyformats.h:283
 msgid "Cruzeiro Real (before 1994-07)"
-msgstr ""
+msgstr "Крузейро реал (до 1994-07)"
 
 #: src/db/Table_Currencyformats.h:284
 #, fuzzy
@@ -2899,7 +2899,7 @@ msgstr "Белорусский рубль"
 
 #: src/db/Table_Currencyformats.h:287
 msgid "WIR Franc (for electronic) (before 2004-11)"
-msgstr ""
+msgstr "WIR-франк (электронный) (до 2004-11)"
 
 #: src/db/Table_Currencyformats.h:288
 #, fuzzy
@@ -2927,15 +2927,15 @@ msgstr "Chilean peso"
 
 #: src/db/Table_Currencyformats.h:293
 msgid "Cyprus Pound (before 2008-01)"
-msgstr ""
+msgstr "Кипрский фунт (до 2008-01)"
 
 #: src/db/Table_Currencyformats.h:294
 msgid "Mark der DDR (1990-07 to 1990-09)"
-msgstr ""
+msgstr "Марка ГДР (с 1990-07 по 1990-09)"
 
 #: src/db/Table_Currencyformats.h:295
 msgid "Deutsche Mark (before 2002-03)"
-msgstr ""
+msgstr "Немецкая марка (до 2002-03)"
 
 #: src/db/Table_Currencyformats.h:296
 #, fuzzy
@@ -2953,7 +2953,7 @@ msgstr "Азербайджанский манат (до 2005-10)"
 
 #: src/db/Table_Currencyformats.h:299
 msgid "Spanish Peseta (1978 to 1981)"
-msgstr ""
+msgstr "Испанская песета (с 1978 по 1981 год)"
 
 #: src/db/Table_Currencyformats.h:300
 msgid "A Account (convertible Peseta Account) (before 1994-12)"
@@ -2961,7 +2961,7 @@ msgstr ""
 
 #: src/db/Table_Currencyformats.h:301
 msgid "Spanish Peseta (before 2002-03)"
-msgstr ""
+msgstr "Испанская песета (до 2002-03)"
 
 #: src/db/Table_Currencyformats.h:302
 #, fuzzy
@@ -2974,7 +2974,7 @@ msgstr "Французский Франк (до 1999-01)"
 
 #: src/db/Table_Currencyformats.h:304
 msgid "Georgian Coupon (before 1995-10)"
-msgstr ""
+msgstr "Грузинский купон (до 1995-10)"
 
 #: src/db/Table_Currencyformats.h:305
 #, fuzzy
@@ -2983,7 +2983,7 @@ msgstr "Ghanaian cedi"
 
 #: src/db/Table_Currencyformats.h:306
 msgid "Ghana Cedi (before 2007-06)"
-msgstr ""
+msgstr "Ганский седи (до 2007-06)"
 
 #: src/db/Table_Currencyformats.h:307
 #, fuzzy
@@ -3011,15 +3011,15 @@ msgstr ""
 
 #: src/db/Table_Currencyformats.h:312
 msgid "Guinea-Bissau Peso (before 1997-05)"
-msgstr ""
+msgstr "Песо Гвинеи-Бисау (до 1997-05)"
 
 #: src/db/Table_Currencyformats.h:313
 msgid "Croatian Dinar (before 1995-01)"
-msgstr ""
+msgstr "Хорватский динар (до 1995-01)"
 
 #: src/db/Table_Currencyformats.h:314
 msgid "Irish Pound (before 2002-03)"
-msgstr ""
+msgstr "Ирландский фунт (до 2002-03)"
 
 #: src/db/Table_Currencyformats.h:315
 #, fuzzy
@@ -3036,7 +3036,7 @@ msgstr ""
 
 #: src/db/Table_Currencyformats.h:318
 msgid "Italian Lira (before 2002-03)"
-msgstr ""
+msgstr "Итальянская лира (до 2002-03)"
 
 #: src/db/Table_Currencyformats.h:319
 msgid "Pathet Lao Kip (before 1979-12)"
@@ -3058,23 +3058,23 @@ msgstr ""
 
 #: src/db/Table_Currencyformats.h:323
 msgid "Luxembourg Franc (before 2002-03)"
-msgstr ""
+msgstr "Люксембургский франк (до 2002-03)"
 
 #: src/db/Table_Currencyformats.h:324
 msgid "Luxembourg Financial Franc (before 1990-03)"
-msgstr ""
+msgstr "Люксембургский финансовый франк (до 1990-03)"
 
 #: src/db/Table_Currencyformats.h:325
 msgid "Latvian Ruble (before 1994-12)"
-msgstr ""
+msgstr "Латвийский рубль (до 1994-12)"
 
 #: src/db/Table_Currencyformats.h:326
 msgid "Malagasy Franc (before 2004-12)"
-msgstr ""
+msgstr "Малагасийский франк (до 2004-12)"
 
 #: src/db/Table_Currencyformats.h:327
 msgid "Mali Franc (before 1984-11)"
-msgstr ""
+msgstr "Малийский франк (до 1984-11)"
 
 #: src/db/Table_Currencyformats.h:328
 #, fuzzy
@@ -3083,15 +3083,15 @@ msgstr "Mauritanian ouguiya"
 
 #: src/db/Table_Currencyformats.h:329
 msgid "Maltese Lira (before 2008-01)"
-msgstr ""
+msgstr "Мальтийская лира (до 2008-01)"
 
 #: src/db/Table_Currencyformats.h:330
 msgid "Maltese Pound (before 1983-06)"
-msgstr ""
+msgstr "Мальтийский фунт (до 1983-06)"
 
 #: src/db/Table_Currencyformats.h:331
 msgid "Maldive Rupee (before 1989-12)"
-msgstr ""
+msgstr "Мальдивская рупия (до 1989-12)"
 
 #: src/db/Table_Currencyformats.h:332
 #, fuzzy
@@ -3100,15 +3100,15 @@ msgstr "Mexican peso"
 
 #: src/db/Table_Currencyformats.h:333
 msgid "Mozambique Escudo (1978 to 1981)"
-msgstr ""
+msgstr "Мозамбикский эскудо (с 1978 по 1981 год)"
 
 #: src/db/Table_Currencyformats.h:334
 msgid "Mozambique Metical (before 2006-06)"
-msgstr ""
+msgstr "Мозамбикский метикал (до 2006-06)"
 
 #: src/db/Table_Currencyformats.h:335
 msgid "Mozambique Metical"
-msgstr ""
+msgstr "Мозамбикский метикал"
 
 #: src/db/Table_Currencyformats.h:336
 #, fuzzy
@@ -3117,7 +3117,7 @@ msgstr "Азербайджанский манат (до 2005-10)"
 
 #: src/db/Table_Currencyformats.h:337
 msgid "Netherlands Guilder (before 2002-03)"
-msgstr ""
+msgstr "Нидерландский гульден (до 2002-03)"
 
 #: src/db/Table_Currencyformats.h:338
 #, fuzzy
@@ -3141,11 +3141,11 @@ msgstr "Polish zloty"
 
 #: src/db/Table_Currencyformats.h:342
 msgid "Portuguese Escudo (before 2002-03)"
-msgstr ""
+msgstr "Португальский эскудо (до 2002-03)"
 
 #: src/db/Table_Currencyformats.h:343
 msgid "Rhodesian Dollar (1978 to 1981)"
-msgstr ""
+msgstr "Родезийский доллар (1978-1981 годы)"
 
 #: src/db/Table_Currencyformats.h:344
 msgid "Leu A/52 (1989 to 1990)"
@@ -3161,7 +3161,7 @@ msgstr "Российский рубль (до 1994-07)"
 
 #: src/db/Table_Currencyformats.h:347
 msgid "Sudanese Dinar (before 2007-07)"
-msgstr ""
+msgstr "Суданский динар (до 2007-07)"
 
 #: src/db/Table_Currencyformats.h:348
 #, fuzzy
@@ -3175,11 +3175,11 @@ msgstr "Азербайджанский манат (до 2005-10)"
 
 #: src/db/Table_Currencyformats.h:350
 msgid "Slovak Koruna (before 2009-01)"
-msgstr ""
+msgstr "Словацкая крона (до 2009-01)"
 
 #: src/db/Table_Currencyformats.h:351
 msgid "Surinam Guilder (before 2003-12)"
-msgstr ""
+msgstr "Суринамский гульден (до 2003-12)"
 
 #: src/db/Table_Currencyformats.h:352
 #, fuzzy
@@ -3211,11 +3211,11 @@ msgstr "Азербайджанский манат (до 2005-10)"
 
 #: src/db/Table_Currencyformats.h:358
 msgid "Pa’anga"
-msgstr ""
+msgstr "Паанга"
 
 #: src/db/Table_Currencyformats.h:359
 msgid "Timor Escudo (before 2002-11)"
-msgstr ""
+msgstr "Тиморское эскудо (до 2002-11)"
 
 #: src/db/Table_Currencyformats.h:360
 msgid "Old Turkish Lira (before 2005-12)"
@@ -3228,7 +3228,7 @@ msgstr "Азербайджанский манат (до 2005-10)"
 
 #: src/db/Table_Currencyformats.h:362
 msgid "Uganda Shilling (before 1987-05)"
-msgstr ""
+msgstr "Угандийский шиллинг (before 1987-05)"
 
 #: src/db/Table_Currencyformats.h:363
 msgid "Old Shilling (1989 to 1990)"
@@ -3263,15 +3263,15 @@ msgstr ""
 
 #: src/db/Table_Currencyformats.h:370
 msgid "Gold-Franc (before 2006-10)"
-msgstr ""
+msgstr "Золотой франк (до 2006-10)"
 
 #: src/db/Table_Currencyformats.h:371
 msgid "Yemeni Dinar (before 1991-09)"
-msgstr ""
+msgstr "Йеменский динар (до 1991-09)"
 
 #: src/db/Table_Currencyformats.h:372
 msgid "New Yugoslavian Dinar (before 1990-01)"
-msgstr ""
+msgstr "Новый югославский динар (до 1990-01)"
 
 #: src/db/Table_Currencyformats.h:373
 msgid "New Dinar (before 2003-07)"
@@ -3279,7 +3279,7 @@ msgstr ""
 
 #: src/db/Table_Currencyformats.h:374
 msgid "Yugoslavian Dinar (before 1995-11)"
-msgstr ""
+msgstr "Югославский динар (до 1995-11)"
 
 #: src/db/Table_Currencyformats.h:375
 msgid "Financial Rand (before 1995-03)"
