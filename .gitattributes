@@ -3,21 +3,11 @@
 # Auto detect text files and perform LF normalization
 * text=auto
 
-# Explicitly declare text files you want to always be normalized and
-# converted to native line endings on checkout.
-*.cpp  text
-*.h    text
-*.blk  text
-*.xpm  text
-*.po   text
-*.pot  text
-*.html text
-
 # Declare files that will always have LF line endings on checkout.
 *.sh      text eol=lf
 *.guess   text eol=lf
 *.sub     text eol=lf
-*.desktop text eol=lf 
+*.desktop text eol=lf
 
 # Declare files that will always have CRLF line endings on checkout.
 *.bat     text eol=crlf
@@ -26,9 +16,14 @@
 *.vcproj  text eol=crlf
 *.vcxproj text eol=crlf
 *.filters text eol=crlf
+*.vbs     text eol=crlf
 
 # Denote all files that are truly binary and should not be modified.
 # The binary setting is an alias for -text -diff.
-*.png binary
-*.jpg binary
-*.ico binary
+*.png  binary
+*.jpg  binary
+*.ico  binary
+*.icns binary
+*.gif  binary
+*.mmb  binary
+*.wav  binary
