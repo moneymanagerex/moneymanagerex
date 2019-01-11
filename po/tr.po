@@ -1,31 +1,19 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Money Manager Ex\n"
-"Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2019-01-09 17:35+0300\n"
-"PO-Revision-Date: 2019-01-09 17:35+0300\n"
-"Last-Translator: Nikolay Akimov <vomikan@mail.ru>\n"
-"Language-Team: mmex <developers@moneymanagerex.org>\n"
-"Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-Basepath: ..\n"
-"X-Launchpad-Export-Date: 2011-10-25 16:24+0000\n"
-"X-Generator: Poedit 2.2\n"
-"X-Poedit-KeywordsList: wxTRANSLATE;_\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
-"X-Poedit-SearchPath-0: src\n"
+"X-Generator: POEditor.com\n"
+"Project-Id-Version: Money Manager Ex\n"
+"Language: tr\n"
 
 #: src/aboutdialog.cpp:41
 msgid "License agreement"
 msgstr "Lisans sözleşmesi"
 
 #: src/aboutdialog.cpp:41
-#, c-format
 msgid "About %s"
-msgstr ""
+msgstr "%s Hakkında"
 
 #: src/aboutdialog.cpp:146
 msgid "About"
@@ -33,7 +21,7 @@ msgstr "Hakkında"
 
 #: src/aboutdialog.cpp:151
 msgid "Authors"
-msgstr ""
+msgstr "Yetkililer"
 
 #: src/aboutdialog.cpp:156
 msgid "Sponsors"
@@ -45,7 +33,7 @@ msgstr "Lisans"
 
 #: src/aboutdialog.cpp:166
 msgid "Privacy"
-msgstr ""
+msgstr "Gizlilik"
 
 #: src/aboutdialog.cpp:197 src/accountdialog.cpp:372 src/appstartdialog.cpp:136
 #: src/assetdialog.cpp:299 src/attachmentdialog.cpp:118
@@ -77,14 +65,13 @@ msgstr "Hesap Adı:"
 
 #: src/accountdialog.cpp:198
 msgid "Account Type:"
-msgstr "Hesap Tipi"
+msgstr "Hesap Tipi:"
 
 #: src/accountdialog.cpp:209
 msgid "Account Status:"
 msgstr "Hesap Durumu:"
 
 #: src/accountdialog.cpp:218
-#, c-format
 msgid "Initial Balance: %s"
 msgstr "Başlangıç Kalıntısı: %s"
 
@@ -128,15 +115,15 @@ msgstr "Hesap Numarası:"
 
 #: src/accountdialog.cpp:273
 msgid "Held At:"
-msgstr "Finans Kuruluşu : "
+msgstr "Finans Kuruluşu:"
 
 #: src/accountdialog.cpp:279
 msgid "Website:"
-msgstr "İnternet Sitesi: "
+msgstr "Websitesi:"
 
 #: src/accountdialog.cpp:285
 msgid "Contact:"
-msgstr "Kontak:"
+msgstr "İletişim:"
 
 #: src/accountdialog.cpp:291
 msgid "Access Info:"
@@ -144,43 +131,43 @@ msgstr "Erişim Bilgisi:"
 
 #: src/accountdialog.cpp:298
 msgid "Statement"
-msgstr ""
+msgstr "Durum"
 
 #: src/accountdialog.cpp:306
 msgid "Statement:"
-msgstr ""
+msgstr "Durum:"
 
 #: src/accountdialog.cpp:307
 msgid "Locked"
-msgstr ""
+msgstr "Kilitli"
 
 #: src/accountdialog.cpp:311
 msgid "Reconciled Date:"
-msgstr ""
+msgstr "Onay Tarihi:"
 
 #: src/accountdialog.cpp:316
 msgid "Minimum Bal:"
-msgstr ""
+msgstr "Enaz Kalıntı:"
 
 #: src/accountdialog.cpp:323
 msgid "Credit"
-msgstr ""
+msgstr "Kredi"
 
 #: src/accountdialog.cpp:331
 msgid "Credit Limit:"
-msgstr ""
+msgstr "Kredi Limiti:"
 
 #: src/accountdialog.cpp:336
 msgid "Interest Rate:"
-msgstr ""
+msgstr "Faiz Oranı:"
 
 #: src/accountdialog.cpp:340
 msgid "Payment Due Date:"
-msgstr ""
+msgstr "Vade Tarihi:"
 
 #: src/accountdialog.cpp:345
 msgid "Minimum Payment:"
-msgstr ""
+msgstr "Enaz Ödeme:"
 
 #: src/accountdialog.cpp:367
 msgid "Organize attachments of this account"
@@ -192,76 +179,63 @@ msgstr "Hesap adını giriniz. Herhangibir anda değiştirebilirsiniz."
 
 #: src/accountdialog.cpp:381 src/wizard_newaccount.cpp:121
 msgid "Specify the type of account to be created."
-msgstr "Oluşturulacak hesabın tipini belirtiniz."
+msgstr "Oluşturulacak hesabın türünü belirtiniz."
 
 #: src/accountdialog.cpp:382
-msgid ""
-"Specify if this account has been closed. Closed accounts are inactive in "
-"most calculations, reporting etc."
-msgstr ""
-"Hesap kapatılmış ise belirtiniz. Kapalı hesaplar birçok hesaplama, raporlama "
-"vb . işlemlerde etkin değildir."
+msgid "Specify if this account has been closed. Closed accounts are inactive in most calculations, reporting etc."
+msgstr "Hesap kapatılmış ise belirtiniz. Kapalı hesaplar birçok hesaplama, raporlama vb . işlemlerde dikkate alınmaz."
 
 #: src/accountdialog.cpp:383
 msgid "Enter the initial balance in this account."
-msgstr "Varsa hesabın mevcut kalıntısını giriniz."
+msgstr "Hesabın mevcut kalıntısını giriniz."
 
 #: src/accountdialog.cpp:384
 msgid "Specify the currency to be used by this account."
 msgstr "Bu hesapta kullanılacak para birimini belirtiniz."
 
 #: src/accountdialog.cpp:385
-msgid ""
-"Select whether this is an account that is used often. This is used to filter "
-"accounts display view."
-msgstr ""
-"Eğer sık kullandığınız bir hesap ise seçiniz. Bu seçim görüntülemede "
-"hesapları filtrelemek için kullanılır. "
+msgid "Select whether this is an account that is used often. This is used to filter accounts display view."
+msgstr "Eğer sık kullandığınız bir hesap ise seçiniz. Bu seçim görüntülemede hesapları filtrelemek için kullanılır."
 
 #: src/accountdialog.cpp:386
 msgid "Enter user notes and details about this account."
-msgstr "Hesapla ilgili not ve detaylar"
+msgstr "Hesapla ilgili kullanıcı notları ve ayrıntıları giriniz."
 
 #: src/accountdialog.cpp:387
 msgid "Enter the Account Number associated with this account."
-msgstr "Hesap Numarasını giriniz."
+msgstr "Hesap numarasını giriniz."
 
 #: src/accountdialog.cpp:388
-msgid ""
-"Enter the name of the financial institution in which the account is held."
+msgid "Enter the name of the financial institution in which the account is held."
 msgstr "Hesabınızın tutulduğu finans kuruluşunun adını giriniz."
 
 #: src/accountdialog.cpp:389
 msgid "Enter the URL of the website for the financial institution."
-msgstr "Finans Kuruluşunun iinternet sitesini giriniz."
+msgstr "Finans Kuruluşunun internet sitesini giriniz."
 
 #: src/accountdialog.cpp:390
 msgid "Enter any contact information for the financial institution."
-msgstr "Finans Kuruluşu için kontak bilgisi giriniz."
+msgstr "Finans Kuruluşu için iletişim bilgisi giriniz."
 
 #: src/accountdialog.cpp:391
-msgid ""
-"Enter any login/access information for the financial institution. This is "
-"not secure as anyone with access to the mmb file can access it."
-msgstr ""
-"Finans Kuruluşu için oturum açma / giriş bilgisi giriniz. 'mmb' dosyasına "
-"erişen kimse bu bilgiye ulaşabileceğinden GÜVENLİ DEĞİLDİR."
+msgid "Enter any login/access information for the financial institution. This is not secure as anyone with access to the mmb file can access it."
+msgstr "Finans Kuruluşu için oturum açma / giriş bilgisi giriniz. 'mmb' dosyasına erişen kimse bu bilgiye ulaşabileceğinden güvenli değildir."
 
 #: src/accountdialog.cpp:393
 msgid "Enable or disable the transaction Lock"
-msgstr ""
+msgstr "İşlem kilidini etkinleştir veya devre dışı bırak."
 
 #: src/accountdialog.cpp:394
 msgid "The date of the transaction lock"
-msgstr ""
+msgstr "İşlem kilit tarihi"
 
 #: src/accountdialog.cpp:395
 msgid "Account balance lower limit. Zero to disable"
-msgstr ""
+msgstr "Hesap kalıntısı limitin altında. Devre dışı bırakmak için sıfırlayın."
 
 #: src/accountdialog.cpp:396
 msgid "Credit limit for the Account. Zero to disable"
-msgstr ""
+msgstr "Hesap için kredi limiti. Devre dışı bırakmak için sıfırlayın."
 
 #: src/accountdialog.cpp:439
 msgid "Account Name "
@@ -277,7 +251,6 @@ msgid "Default Image"
 msgstr "Varsayılan İmaj"
 
 #: src/accountdialog.cpp:509
-#, c-format
 msgid "Image #%i"
 msgstr "İmaj #%i"
 
@@ -287,11 +260,11 @@ msgstr "En Son Kullanılan Veritabanını Aç"
 
 #: src/appstartdialog.cpp:102
 msgid "Create a New Database"
-msgstr "Yeni Veritabanı Oluştur"
+msgstr "Yeni bir Veritabanı Oluştur"
 
 #: src/appstartdialog.cpp:103
 msgid "Create a new database file to get started"
-msgstr "Başlangıç için yeni bir veritabanı oluştur"
+msgstr "Başlangıç için yeni bir veritabanı dosyası oluştur"
 
 #: src/appstartdialog.cpp:106
 msgid "Open Existing Database"
@@ -303,23 +276,21 @@ msgstr "Önceden oluşturulmuş (*.mmb) bir veritabanı dosyası aç"
 
 #: src/appstartdialog.cpp:110
 msgid "Read Documentation"
-msgstr "Dokümanlar"
+msgstr "Belgeleri Oku"
 
 #: src/appstartdialog.cpp:111
 msgid "Read the user manual"
-msgstr "Kullanım Kılavuzu"
+msgstr "Kullanım Kılavuzunu Oku"
 
 #: src/appstartdialog.cpp:114
 msgid "Visit Website for more information"
-msgstr "Daha fazla bilgi için ... (İnternet)"
+msgstr "Daha fazla bilgi için Websitesine git"
 
 #: src/appstartdialog.cpp:115
-#, c-format
 msgid "Open the %s website for latest news, updates etc"
 msgstr "Son haberler, güncellemeler için %s websitesine bağlanın."
 
 #: src/appstartdialog.cpp:123
-#, c-format
 msgid "Show this window next time %s starts"
 msgstr "%s bir daha başladığında bu pencereyi göster"
 
@@ -328,7 +299,7 @@ msgid "&Exit "
 msgstr "Çı&kış"
 
 #: src/appstartdialog.cpp:153
-#, fuzzy, c-format
+#, fuzzy
 msgid "Open the previously opened database: %s"
 msgstr "Önceki kullanılmış veritabanını aç : %s"
 
@@ -342,11 +313,11 @@ msgstr "Varlık Düzenle"
 
 #: src/assetdialog.cpp:65 src/assetdialog.cpp:86 src/assetspanel.cpp:514
 msgid "Add Asset Transaction"
-msgstr ""
+msgstr "Varlık İşlemi Ekle"
 
 #: src/assetdialog.cpp:91
 msgid "Edit Asset Transaction"
-msgstr ""
+msgstr "Varlık İşlemi Düzenle"
 
 #: src/assetdialog.cpp:177
 msgid "Asset Details"
@@ -388,7 +359,7 @@ msgstr "Varlık Tipi"
 
 #: src/assetdialog.cpp:208
 msgid "Select type of asset"
-msgstr "Varlık tipini seçin"
+msgstr "Varlık türünü seçin"
 
 #: src/assetdialog.cpp:213 src/import_export/qif_import_gui.cpp:99
 #: src/maincurrencydialog.cpp:257 src/maincurrencydialog.cpp:281
@@ -405,7 +376,7 @@ msgstr "Değerdeki Değişim"
 
 #: src/assetdialog.cpp:231
 msgid "Specify if the value of the asset changes over time"
-msgstr "Varlığın değerinin zamanla değişimi sözkonusu ise bunu belirtiniz"
+msgstr "Varlığın değeri zamanla değişiyorsa bunu belirtiniz"
 
 #: src/assetdialog.cpp:235
 msgid "% Rate"
@@ -413,10 +384,8 @@ msgstr "% Oran"
 
 #: src/assetdialog.cpp:241
 #, fuzzy
-#| msgid "Enter the rate at which the asset changes its value in % per year"
-msgid ""
-"Enter the rate at which the asset changes its value in percentage per year"
-msgstr "Her yıl varlığın değerindeki değişim oranını % per year olarak girin."
+msgid "Enter the rate at which the asset changes its value in percentage per year"
+msgstr "Her yıl varlığın değerindeki değişim oranını yıllık yüzde olarak girin."
 
 #: src/assetdialog.cpp:253
 msgid "Organize attachments of this asset"
@@ -424,15 +393,15 @@ msgstr "Bu varlığın ilişiklerini düzenleyin"
 
 #: src/assetdialog.cpp:256
 msgid "Enter notes associated with this asset"
-msgstr "Varlık hakkında notlar"
+msgstr "Varlıkla ilgili notlar"
 
 #: src/assetdialog.cpp:262
 msgid "New Transaction Details"
-msgstr ""
+msgstr "Yeni İşlem Ayrıntıları"
 
 #: src/assetdialog.cpp:265 src/sharetransactiondialog.cpp:280
 msgid "Edit Transaction Details"
-msgstr ""
+msgstr "İşlem Ayrıntıları Düzenle"
 
 #: src/assetdialog.cpp:300 src/constants.cpp:44
 #: src/sharetransactiondialog.cpp:311
@@ -440,15 +409,20 @@ msgid "&Cancel "
 msgstr "İ&ptal"
 
 #: src/assetdialog.cpp:421
-msgid ""
-"An asset account having the same name has not been found.\n"
+msgid "An asset account having the same name has not been found.\n"
 "\n"
 "A single transaction for this asset can be associated with any account.\n"
 "Multiple asset transactions need to be associated with an asset account.\n"
 "\n"
 "Would you want to create one?\n"
 "\n"
-msgstr ""
+""
+msgstr "Aynı isimli bir varlık hesabı bulunamadı.\n"
+"\n"
+"Bu varlık için bir işlem herhangi bir hesapla ilişkilendirilebilir.\n"
+"Çoklu varlık işlemlerinin bir varlık hesabında izlenmeleri gerekir.\n"
+"\n"
+"Bir varlık hesabı oluşturmak ister misiniz?"
 
 #: src/assetspanel.cpp:60 src/billsdepositspanel.cpp:101
 #: src/mmcheckingpanel.cpp:1098 src/reports/transactions.cpp:73
@@ -466,7 +440,7 @@ msgstr "ID"
 #: src/transdialog.cpp:465 src/usertransactionpanel.cpp:145
 #: src/webappdialog.cpp:79
 msgid "Type"
-msgstr "Tip"
+msgstr "Tür"
 
 #: src/assetspanel.cpp:64 src/reports/summarystocks.cpp:183
 msgid "Initial Value"
@@ -483,33 +457,33 @@ msgstr "&Yeni Varlık"
 
 #: src/assetspanel.cpp:102
 msgid "D&uplicate Asset"
-msgstr "&Varlığı Kopyala"
+msgstr "Varlığı &Kopyala"
 
 #: src/assetspanel.cpp:104
 msgid "&Add Asset Transaction"
-msgstr ""
+msgstr "&Varlık İşlemi Ekle"
 
 #: src/assetspanel.cpp:105
 msgid "&View Asset Transactions"
-msgstr ""
+msgstr "Varlık İşlemlerini &Göster"
 
 #: src/assetspanel.cpp:106
 msgid "&Open Asset Account"
-msgstr ""
+msgstr "Varlık Hesabını &Aç"
 
 #: src/assetspanel.cpp:108
 msgid "&Edit Asset"
-msgstr "&Varlık Düzenle"
+msgstr "Varlık &Düzenle"
 
 #: src/assetspanel.cpp:109
 msgid "&Delete Asset"
-msgstr "&Varlık Sil"
+msgstr "Varlık &Sil"
 
 #: src/assetspanel.cpp:111 src/billsdepositspanel.cpp:414
 #: src/mmcheckingpanel.cpp:1233 src/mmframe.cpp:1230 src/payeedialog.cpp:373
 #: src/stockspanel.cpp:152
 msgid "&Organize Attachments"
-msgstr "İlişikleri &Düzenleyin"
+msgstr "İlişikleri Dü&zenleyin"
 
 #: src/assetspanel.cpp:205
 msgid "Do you really want to delete the Asset?"
@@ -520,20 +494,12 @@ msgid "Confirm Asset Deletion"
 msgstr "Varlık Silme Onayı"
 
 #: src/assetspanel.cpp:371 src/stockspanel.cpp:768 src/stockspanel.cpp:943
-#, c-format
 msgid "Total: %s"
 msgstr "Toplam: %s"
 
 #: src/assetspanel.cpp:421
-msgid ""
-"MMEX allows you to track fixed assets like cars, houses, land and others. "
-"Each asset can have its value appreciate by a certain rate per year, "
-"depreciate by a certain rate per year, or not change in value. The total "
-"assets are added to your total financial worth."
-msgstr ""
-"MMEX size araba, arsa, arazi, ev ve diğerleri gibi varlıkları izleme olanağı "
-"sağlar. Her varlığın değeri her yıl belli bir oranda artabilir, azalabilir "
-"veya değişmeyebilir. Toplam varlık değeri toplam finansal değere eklenir."
+msgid "MMEX allows you to track fixed assets like cars, houses, land and others. Each asset can have its value appreciate by a certain rate per year, depreciate by a certain rate per year, or not change in value. The total assets are added to your total financial worth."
+msgstr "MMEX size araba, arsa, arazi, ev ve diğerleri gibi duran varlıkları izleme olanağı sağlar. Her varlığın değeri her yıl belli bir oranda artabilir, azalabilir veya değişmeyebilir. Toplam varlık değeri toplam finansal değere eklenir."
 
 #: src/assetspanel.cpp:456 src/assetspanel.h:110
 #: src/general_report_manager.cpp:671 src/general_report_manager.cpp:948
@@ -556,15 +522,15 @@ msgstr "&Yeni"
 
 #: src/assetspanel.cpp:513 src/stockspanel.cpp:577
 msgid "&Add Trans "
-msgstr ""
+msgstr "İş&lem Ekle"
 
 #: src/assetspanel.cpp:518 src/stockspanel.cpp:582
 msgid "&View Trans "
-msgstr ""
+msgstr "İşle&m Gör"
 
 #: src/assetspanel.cpp:519
 msgid "View Asset Transactions"
-msgstr ""
+msgstr "Varlık İşlemlerini Göster"
 
 #: src/assetspanel.cpp:523 src/attachmentdialog.cpp:285
 #: src/billsdepositspanel.cpp:279 src/categdialog.cpp:228
@@ -600,13 +566,11 @@ msgid "Enter any string to find related assets"
 msgstr "Aranan varlığa uygun herhangi bir dize giriniz."
 
 #: src/assetspanel.cpp:667
-#, c-format
 msgid "Change in Value: %s %s"
 msgstr "Değerdeki Değişim: %s %s"
 
 #: src/assetspanel.cpp:781
-msgid ""
-"This asset does not have its own account\n"
+msgid "This asset does not have its own account\n"
 "\n"
 "Multiple transactions for this asset are not recommended.\n"
 "Please use the popup: 'Open Asset Account' to track the transaction."
@@ -617,9 +581,9 @@ msgid "Asset Management"
 msgstr ""
 
 #: src/assetspanel.cpp:803
-msgid ""
-"Account \t Date\t   Value\n"
+msgid "Account \t Date\t   Value\n"
 "\n"
+""
 msgstr ""
 
 #: src/attachmentdialog.cpp:54 src/customfieldlistdialog.cpp:52
@@ -662,12 +626,10 @@ msgid "Attachments folder not found"
 msgstr "İlişikler dizini bulunamadı."
 
 #: src/attachmentdialog.cpp:85
-#, c-format
 msgid "Organize Attachments | %s %i"
 msgstr "İlişikleri Düzenleyin | %s %i"
 
 #: src/attachmentdialog.cpp:87
-#, c-format
 msgid "Organize Attachments | New %s"
 msgstr "İlişikleri Düzenleyin | Yeni %s"
 
@@ -731,18 +693,12 @@ msgid "Att."
 msgstr "Att."
 
 #: src/attachmentdialog.cpp:345
-msgid ""
-"This directory and its files are automatically managed by Money Manager EX "
-"software."
-msgstr ""
-"Bu dizin ve içindeki dosyalar Money Manager EX yazılımı tarafından otomatik "
-"yönetilir."
+msgid "This directory and its files are automatically managed by Money Manager EX software."
+msgstr "Bu dizin ve içindeki dosyalar Money Manager EX yazılımı tarafından otomatik yönetilir."
 
 #: src/attachmentdialog.cpp:347
 msgid "Please do not remove, rename or modify manually directories and files."
-msgstr ""
-"Lütfen dizin ve dosyaları elle silmeyin, değiştirmeyin veya yeniden "
-"adlandırmayın."
+msgstr "Lütfen dizin ve dosyaları elle silmeyin, değiştirmeyin veya yeniden adlandırmayın."
 
 #: src/attachmentdialog.cpp:381 src/attachmentdialog.cpp:389
 msgid "Destination file already exist:"
@@ -778,9 +734,7 @@ msgstr "Dosya açma olanaksız:"
 
 #: src/attachmentdialog.cpp:455
 msgid "Please verify that file exists and user has rights to read it."
-msgstr ""
-"Lütfen dosyanın var olduğunu ve kullanıcının okuma haklarının olduğunu "
-"doğrulayın."
+msgstr "Lütfen dosyanın var olduğunu ve kullanıcının okuma haklarının olduğunu doğrulayın."
 
 #: src/attachmentdialog.cpp:456
 msgid "Open attachment failed"
@@ -909,7 +863,6 @@ msgstr "Periyod"
 
 #: src/billsdepositsdialog.cpp:461
 #, fuzzy
-#| msgid "Advance the Next Occurance Date with the specified values"
 msgid "Advance the next occurring date with the specified values"
 msgstr "Özelleştirilmiş değerle gelecek gerçekleşmenin tarihini öne alın."
 
@@ -1131,32 +1084,27 @@ msgstr "Dönem: Ay"
 
 #: src/billsdepositsdialog.cpp:1310
 #, fuzzy
-msgid ""
-"Specify period in Days to activate.\n"
+msgid "Specify period in Days to activate.\n"
 "Becomes blank when not active."
 msgstr "Etkinleştirmek için dönemi gün olarak belirtin."
 
 #: src/billsdepositsdialog.cpp:1318
-msgid ""
-"Specify period in Months to activate.\n"
+msgid "Specify period in Months to activate.\n"
 "Becomes blank when not active."
 msgstr ""
 
 #: src/billsdepositsdialog.cpp:1326
-msgid ""
-"Specify period in Days to activate.\n"
+msgid "Specify period in Days to activate.\n"
 "Leave blank when not active."
 msgstr ""
 
 #: src/billsdepositsdialog.cpp:1334
-msgid ""
-"Specify period in Months to activate.\n"
+msgid "Specify period in Months to activate.\n"
 "Leave blank when not active."
 msgstr ""
 
 #: src/billsdepositsdialog.cpp:1342
-msgid ""
-"Specify the number of payments to be made.\n"
+msgid "Specify the number of payments to be made.\n"
 "Leave blank if the payments continue forever."
 msgstr ""
 
@@ -1218,22 +1166,18 @@ msgid "Specify the amount to be transferred"
 msgstr ""
 
 #: src/billsdepositspanel.cpp:56
-#, c-format
 msgid "In %s Days"
 msgstr "%s Günde"
 
 #: src/billsdepositspanel.cpp:57
-#, c-format
 msgid "In %s Months"
 msgstr "%s Ayda"
 
 #: src/billsdepositspanel.cpp:58
-#, c-format
 msgid "Every %s Days"
 msgstr "Her %s Günde"
 
 #: src/billsdepositspanel.cpp:59
-#, c-format
 msgid "Every %s Months"
 msgstr "Her %s Ay"
 
@@ -1255,22 +1199,11 @@ msgid "Payment"
 msgstr "Ödeme"
 
 #: src/billsdepositspanel.cpp:170
-msgid ""
-"MMEX allows regular payments to be set up as transactions. These "
-"transactions can also be regular deposits, or transfers that will occur at "
-"some future time. These transactions act as a reminder that an event is "
-"about to occur, and appears on the Home Page 14 days before the transaction "
-"is due. "
-msgstr ""
-"MMEX düzenli ödemelerin işlem olarak ayarlanması olanağı sağlar. Bu işlemler "
-"gelecek bir zamanda gerçekleşecek düzenli alındı ve aktarımlar da olabilir. "
-"Bu işlemler bir olayın gerçekleşmek üzere olduğuna ilişkin bir anımsatıcı "
-"olarak rol oynar ve işlem tarihinden 14 gün önce Anasayfada görünürler."
+msgid "MMEX allows regular payments to be set up as transactions. These transactions can also be regular deposits, or transfers that will occur at some future time. These transactions act as a reminder that an event is about to occur, and appears on the Home Page 14 days before the transaction is due. "
+msgstr "MMEX düzenli ödemelerin işlem olarak ayarlanması olanağı sağlar. Bu işlemler gelecek bir zamanda gerçekleşecek düzenli alındı ve aktarımlar da olabilir. Bu işlemler bir olayın gerçekleşmek üzere olduğuna ilişkin bir anımsatıcı olarak rol oynar ve işlem tarihinden 14 gün önce Anasayfada görünürler."
 
 #: src/billsdepositspanel.cpp:171
-msgid ""
-"Tip: These transactions can be set up to activate - allowing the user to "
-"adjust any values on the due date."
+msgid "Tip: These transactions can be set up to activate - allowing the user to adjust any values on the due date."
 msgstr ""
 
 #: src/billsdepositspanel.cpp:225 src/billsdepositspanel.cpp:888
@@ -1345,7 +1278,6 @@ msgstr "Otomatik Olarak"
 
 #: src/billsdepositspanel.cpp:509 src/billsdepositspanel.cpp:575
 #: src/mmhomepagepanel.cpp:347
-#, c-format
 msgid "%d days remaining"
 msgstr "%d kalan gün"
 
@@ -1356,13 +1288,11 @@ msgid "Inactive"
 msgstr "Etkin değil"
 
 #: src/billsdepositspanel.cpp:519 src/mmhomepagepanel.cpp:348
-#, c-format
 msgid "%d days delay!"
 msgstr "%d gün gecikme!"
 
 #: src/billsdepositspanel.cpp:526 src/billsdepositspanel.cpp:585
 #: src/mmhomepagepanel.cpp:350
-#, c-format
 msgid "%d days overdue!"
 msgstr "%d gün geçti!"
 
@@ -1453,28 +1383,23 @@ msgid "View Budget Category Summary"
 msgstr "Bütçe Kategorileri Özetini Görüntüle"
 
 #: src/budgetingpanel.cpp:184 src/reports/budget.cpp:84
-#, fuzzy, c-format
-#| msgid "Financial Year: %s - %i"
+#, fuzzy
 msgid "Financial Year: %s - %li"
 msgstr "Finansman Yılı: %s - %i"
 
 #: src/budgetingpanel.cpp:188 src/reports/budget.cpp:88
-#, c-format
 msgid "Year: %s"
 msgstr "Yıl: %s"
 
 #: src/budgetingpanel.cpp:193 src/reports/budget.cpp:93
-#, c-format
 msgid "Month: %s"
 msgstr "Ay: %s"
 
 #: src/budgetingpanel.cpp:198
-#, c-format
 msgid "%s    Start Date of: %s"
 msgstr ""
 
 #: src/budgetingpanel.cpp:201
-#, c-format
 msgid "Budget Setup for %s"
 msgstr "%s için Bütçe Ayarı"
 
@@ -1553,11 +1478,9 @@ msgid "Budget Year:"
 msgstr "Bütçe Yılı:"
 
 #: src/budgetyearentrydialog.cpp:79
-msgid ""
-"Specify the required year.\n"
+msgid "Specify the required year.\n"
 "Use Spin buttons to increase or decrease the year."
-msgstr ""
-"Gerekli yılı belirtin.\n"
+msgstr "Gerekli yılı belirtin.\n"
 "Yılı azaltmak veya artırmak için Kaydırma düğmelerini kullanın."
 
 #: src/budgetyearentrydialog.cpp:86
@@ -1565,11 +1488,9 @@ msgid "Budget Month:"
 msgstr "Bütçe Ayı:"
 
 #: src/budgetyearentrydialog.cpp:95
-msgid ""
-"Specify the required month.\n"
+msgid "Specify the required month.\n"
 "Use Spin buttons to increase or decrease the month."
-msgstr ""
-"Gerekli ayı belirtin.\n"
+msgstr "Gerekli ayı belirtin.\n"
 "Ayı azaltmak veya artırmak için Kaydırma düğmelerini kullanın."
 
 #: src/budgetyearentrydialog.cpp:102
@@ -1613,20 +1534,15 @@ msgid "Edit the name of an existing category"
 msgstr "Varolan kategori adını düzenle"
 
 #: src/categdialog.cpp:234
-msgid ""
-"Delete an existing category. The category cannot be used by existing "
-"transactions."
-msgstr ""
-"Varolan bir kategori sil. Kategori varolan işlem kayıtlarında kullanılamaz."
+msgid "Delete an existing category. The category cannot be used by existing transactions."
+msgstr "Varolan bir kategori sil. Kategori varolan işlem kayıtlarında kullanılamaz."
 
 #: src/categdialog.cpp:239 src/maincurrencydialog.cpp:219
 msgid "&Select"
 msgstr "&Seç"
 
 #: src/categdialog.cpp:241
-msgid ""
-"Select the currently selected category as the selected category for the "
-"transaction"
+msgid "Select the currently selected category as the selected category for the transaction"
 msgstr "Etkin  olan kategoriyi işlem için seçilmiş kategori olarak seç"
 
 #: src/categdialog.cpp:250
@@ -1646,12 +1562,9 @@ msgid "Category with same name exists"
 msgstr "Bu kategori tanımlı"
 
 #: src/categdialog.cpp:266
-msgid ""
-"Tip: If category added now, check bottom of list.\n"
+msgid "Tip: If category added now, check bottom of list.\n"
 "Category will be in sorted order next time dialog appears"
-msgstr ""
-"İpucu: Şimdi eklenen kategoriler için listenin sonunu kontrol edin. Kategori "
-"diyalog penceresinin sonraki açılmasında sıralanacaktır."
+msgstr "İpucu: Şimdi eklenen kategoriler için listenin sonunu kontrol edin. Kategori diyalog penceresinin sonraki açılmasında sıralanacaktır."
 
 #: src/categdialog.cpp:268 src/categdialog.cpp:292 src/categdialog.cpp:310
 msgid "Organise Categories: Adding Error"
@@ -1674,19 +1587,15 @@ msgid "Sub-Category in use."
 msgstr "Alt kategori kullanımda."
 
 #: src/categdialog.cpp:318
-msgid ""
-"Tip: Change all transactions using this Category to\n"
+msgid "Tip: Change all transactions using this Category to\n"
 "another Category using the relocate command:"
-msgstr ""
-"İpucu: Bu kategoriyi kullanan tüm işlemleri\n"
+msgstr "İpucu: Bu kategoriyi kullanan tüm işlemleri\n"
 "taşıma komutunu kullanarak diğer bir kategoriye taşıyın:"
 
 #: src/categdialog.cpp:321
-msgid ""
-"Tip: Change all transactions using this Sub-Category to\n"
+msgid "Tip: Change all transactions using this Sub-Category to\n"
 "another Sub-Category using the relocate command:"
-msgstr ""
-"İpucu: Bu alt-kategoriyi kullanan tüm işlemleri  \n"
+msgstr "İpucu: Bu alt-kategoriyi kullanan tüm işlemleri  \n"
 "taşıma komutunu kullanarak diğer bir alt-kategoriye taşıyın."
 
 #: src/categdialog.cpp:324
@@ -1698,7 +1607,6 @@ msgid "Organise Categories: Delete Error"
 msgstr "Kategorileri Düzenle: Silme Hatası"
 
 #: src/categdialog.cpp:465
-#, c-format
 msgid "Enter a new name for %s"
 msgstr "%s için yeni bir isim girin"
 
@@ -1716,7 +1624,6 @@ msgstr "Kategori taşıma tamamlandı."
 
 #: src/categdialog.cpp:574 src/mmframe.cpp:2992 src/mmframe.cpp:3007
 #: src/payeedialog.cpp:316
-#, c-format
 msgid "Records have been updated in the database: %i"
 msgstr "Veritabanındaki kayıtlar güncellendi: %i"
 
@@ -1908,7 +1815,7 @@ msgid "Invalid Entry"
 msgstr "Geçersiz Giriş"
 
 #: src/currencydialog.cpp:280
-#, fuzzy, c-format
+#, fuzzy
 msgid "%s Shown As: %s"
 msgstr "%.2f Gösterilen: %s"
 
@@ -1961,8 +1868,7 @@ msgid "Default"
 msgstr ""
 
 #: src/customfieldeditdialog.cpp:160
-msgid ""
-"Enter the default for this field\n"
+msgid "Enter the default for this field\n"
 "For date/time insert 'Now' to make current date/time as default"
 msgstr ""
 
@@ -2013,7 +1919,6 @@ msgid "Properties"
 msgstr ""
 
 #: src/customfieldlistdialog.cpp:65
-#, c-format
 msgid "Personalize custom fields | %s"
 msgstr ""
 
@@ -2026,11 +1931,8 @@ msgid "Confirm Custom Field Deletion"
 msgstr ""
 
 #: src/customfieldlistdialog.cpp:191
-#, c-format
-msgid ""
-"This function will massive search & replace for \"%s\" custom field values\n"
-"It will match & replace only complete field value, no partial or middle-"
-"value replaces allowed\n"
+msgid "This function will massive search & replace for \"%s\" custom field values\n"
+"It will match & replace only complete field value, no partial or middle-value replaces allowed\n"
 "Please consider that there isn't any validation!"
 msgstr ""
 
@@ -2049,8 +1951,7 @@ msgid "Update Custom Field Content"
 msgstr ""
 
 #: src/customfieldlistdialog.cpp:203
-msgid ""
-"Do you want to update blank content?\n"
+msgid "Do you want to update blank content?\n"
 "Press no if you want to abort replace procedure!"
 msgstr ""
 
@@ -2059,13 +1960,11 @@ msgid "Replace with"
 msgstr ""
 
 #: src/customfieldlistdialog.cpp:215
-msgid ""
-"Do you want to update to blank?\n"
+msgid "Do you want to update to blank?\n"
 "Press no if you want to abort replace procedure!"
 msgstr ""
 
 #: src/customfieldlistdialog.cpp:231
-#, c-format
 msgid "%i occurrences founded and replaced!"
 msgstr ""
 
@@ -3411,9 +3310,7 @@ msgid "MMEX database error!"
 msgstr ""
 
 #: src/dbupgrade.cpp:130
-#, c-format
-msgid ""
-"MMEX database version %i doesn't work with this MMEX version.\n"
+msgid "MMEX database version %i doesn't work with this MMEX version.\n"
 "Please upgrade MMEX to newer version."
 msgstr ""
 
@@ -3428,25 +3325,19 @@ msgid "MMEX database vacuum failed!"
 msgstr "Veritabanını Farklı Kaydet"
 
 #: src/dbupgrade.cpp:149
-msgid ""
-"MMEX still should work, but try to re-optimize it from Tools -> Database -> "
-"Optimize"
+msgid "MMEX still should work, but try to re-optimize it from Tools -> Database -> Optimize"
 msgstr ""
 
 #: src/dbupgrade.cpp:153
-#, c-format
 msgid "MMEX database successfully upgraded to version %i"
 msgstr ""
 
 #: src/dbupgrade.cpp:160
-#, c-format
 msgid "MMEX database %s to version %i failed!"
 msgstr ""
 
 #: src/dbupgrade.cpp:161
-msgid ""
-"Please restore DB from autocreated pre-upgrade backup and retry or contact "
-"MMEX support"
+msgid "Please restore DB from autocreated pre-upgrade backup and retry or contact MMEX support"
 msgstr ""
 
 #: src/dbupgrade.cpp:237
@@ -3467,10 +3358,7 @@ msgid "MMEX debug error"
 msgstr ""
 
 #: src/dbupgrade.cpp:268
-#, c-format
-msgid ""
-"This SQL debug script requires %li database version, but current database is "
-"version %i."
+msgid "This SQL debug script requires %li database version, but current database is version %i."
 msgstr ""
 
 #: src/dbupgrade.cpp:284
@@ -3492,8 +3380,7 @@ msgid "Query error, please contact MMEX support!"
 msgstr ""
 
 #: src/dbupgrade.cpp:329
-msgid ""
-"Send this log to MMEX support team:\n"
+msgid "Send this log to MMEX support team:\n"
 "press OK to save to file or Cancel to exit"
 msgstr ""
 
@@ -3534,12 +3421,12 @@ msgstr "Bir şifreli veritabanının şifresini değiştirin."
 #: src/dbwrapper.cpp:92
 #, fuzzy
 msgid "Attempt to open a file that is not a database file"
-msgstr ""
-"Şifreli bir dosya için geçersiz bir şifre \n"
+msgstr "Şifreli bir dosya için geçersiz bir şifre \n"
 "\n"
 "veya \n"
 "\n"
 " veritabanı dosyası olmayan bir dosyayı açma girişimi \n"
+""
 
 #: src/dbwrapper.cpp:93
 #, fuzzy
@@ -3625,7 +3512,7 @@ msgstr "Ayarlar"
 
 #: src/filtertransdialog.cpp:372 src/filtertransdialog.cpp:687
 #: src/filtertransdialog.cpp:936 src/filtertransdialog.cpp:1210
-#, fuzzy, c-format
+#, fuzzy
 msgid "%i: Empty"
 msgstr "Satır: %ld"
 
@@ -3771,7 +3658,6 @@ msgid "Create Template"
 msgstr "Şablon Oluştur"
 
 #: src/general_report_manager.cpp:490
-#, c-format
 msgid "Row(s) returned: %i  Duration: %ld ms"
 msgstr "Döndürülen Satırlar: %i   Süre: %ld ms"
 
@@ -3793,15 +3679,14 @@ msgid "ZIP files (*.zip)"
 msgstr ""
 
 #: src/general_report_manager.cpp:609
-#, c-format
-msgid ""
-"Unable to open file:\n"
+msgid "Unable to open file:\n"
 "%s\n"
 "\n"
-msgstr ""
-"Dosya açılması olanaksız:\n"
+""
+msgstr "Dosya açılması olanaksız:\n"
 "%s\n"
 "\n"
+""
 
 #: src/general_report_manager.cpp:674
 msgid "New Empty Report"
@@ -3861,7 +3746,6 @@ msgid "Add Report Group"
 msgstr "Rapor Gurubu Ekle"
 
 #: src/general_report_manager.cpp:922
-#, c-format
 msgid "New Report %s"
 msgstr "Yeni Rapor %s"
 
@@ -4022,12 +3906,10 @@ msgid "Exporting"
 msgstr "Dışa veriliyor"
 
 #: src/import_export/qif_export.cpp:419
-#, c-format
 msgid "Exporting transaction %i"
 msgstr "Dışa aktarılan işlemler %i"
 
 #: src/import_export/qif_export.cpp:474
-#, c-format
 msgid "Number of transactions exported: %ld"
 msgstr "Dışa aktarılan işlem sayısı: %ld"
 
@@ -4085,17 +3967,16 @@ msgid "Scanning"
 msgstr "Taranıyor"
 
 #: src/import_export/qif_import_gui.cpp:372
-#, c-format
 msgid "Reading line %i, %ld ms"
 msgstr "Satir okunuyor %i, %ld ms"
 
 #: src/import_export/qif_import_gui.cpp:378
-#, c-format
 msgid "Line %i \t %s\n"
+""
 msgstr "Satır %i \t %s\n"
+""
 
 #: src/import_export/qif_import_gui.cpp:438
-#, c-format
 msgid "Number of lines read from QIF file: %i in %ld ms"
 msgstr "QIF dosyasından okunan satır sayısı: %i in %ld ms"
 
@@ -4160,12 +4041,10 @@ msgid "Importing Categories"
 msgstr "Kategoriler alınıyor."
 
 #: src/import_export/qif_import_gui.cpp:843
-#, c-format
 msgid "Importing transaction %i of %i"
 msgstr "İşlemler alınıyor %i / %i"
 
 #: src/import_export/qif_import_gui.cpp:865 src/webapp.cpp:120
-#, c-format
 msgid "Error: %s"
 msgstr "Hata: %s"
 
@@ -4182,7 +4061,7 @@ msgid "Import finished successfully"
 msgstr "Alma başarılı bir şekilde sonuçlandı."
 
 #: src/import_export/qif_import_gui.cpp:904 src/stockdialog.cpp:640
-#, fuzzy, c-format
+#, fuzzy
 msgid "Total Imported: %ld"
 msgstr "Toplam Alınan : %ld"
 
@@ -4220,13 +4099,11 @@ msgid "Transaction Category is incorrect"
 msgstr ""
 
 #: src/import_export/qif_import_gui.cpp:1167
-#, c-format
 msgid "Added account: %s"
 msgstr "Eklenen hesap: %s"
 
 #: src/import_export/qif_import_gui.cpp:1196
 #: src/import_export/univcsvdialog.cpp:770
-#, c-format
 msgid "Added payee: %s"
 msgstr "Eklenen Alacaklı/Satıcı: %s"
 
@@ -4358,9 +4235,7 @@ msgid "Export File"
 msgstr "Dosya Ver"
 
 #: src/import_export/univcsvdialog.cpp:483
-#, c-format
-msgid ""
-"Default account '%s' for this template does not exist.\n"
+msgid "Default account '%s' for this template does not exist.\n"
 "Please select a new account."
 msgstr ""
 
@@ -4371,9 +4246,7 @@ msgstr ""
 #: src/import_export/univcsvdialog.cpp:811
 #, fuzzy
 msgid "Incorrect fields specified for import!"
-msgstr ""
-"CSV alımı için hatalı alanlar belirlemesi! En azından Tarih ve Tutar alanı "
-"gerekli."
+msgstr "CSV alımı için hatalı alanlar belirlemesi! En azından Tarih ve Tutar alanı gerekli."
 
 #: src/import_export/univcsvdialog.cpp:812
 msgid "Date field is required."
@@ -4389,19 +4262,18 @@ msgid "Import"
 msgstr "Al"
 
 #: src/import_export/univcsvdialog.cpp:863
-#, fuzzy, c-format
+#, fuzzy
 msgid "Transactions imported to account %s: %ld"
-msgstr ""
-"CSV'den alınan işlemler\n"
+msgstr "CSV'den alınan işlemler\n"
 "hesabına %s : %ld"
 
 #: src/import_export/univcsvdialog.cpp:874
-#, fuzzy, c-format
+#, fuzzy
 msgid "Line %ld: Empty"
 msgstr "Satır: %ld"
 
 #: src/import_export/univcsvdialog.cpp:888
-#, fuzzy, c-format
+#, fuzzy
 msgid "Line %ld: Error:"
 msgstr "Satır: %ld"
 
@@ -4419,37 +4291,37 @@ msgid "Type (withdrawal/deposit) unknown."
 msgstr ""
 
 #: src/import_export/univcsvdialog.cpp:918
-#, fuzzy, c-format
+#, fuzzy
 msgid "Line %ld: OK, imported."
 msgstr "Satır : %ld alımı tamamlandı."
 
 #: src/import_export/univcsvdialog.cpp:926 src/stockdialog.cpp:638
-#, fuzzy, c-format
+#, fuzzy
 msgid "Total Lines: %ld"
 msgstr "Toplam Satır : %ld"
 
 #: src/import_export/univcsvdialog.cpp:928
-#, fuzzy, c-format
+#, fuzzy
 msgid "Lines Selected to Import: %ld"
 msgstr "Özel SQL Raporu"
 
 #: src/import_export/univcsvdialog.cpp:930
-#, fuzzy, c-format
+#, fuzzy
 msgid "Empty Lines: %ld"
 msgstr "Toplam Satır : %ld"
 
 #: src/import_export/univcsvdialog.cpp:932
-#, fuzzy, c-format
+#, fuzzy
 msgid "Imported: %ld"
 msgstr "Toplam Alınan : %ld"
 
 #: src/import_export/univcsvdialog.cpp:934
-#, fuzzy, c-format
+#, fuzzy
 msgid "Errored: %ld"
 msgstr "Hata: %s"
 
 #: src/import_export/univcsvdialog.cpp:937
-#, fuzzy, c-format
+#, fuzzy
 msgid "Log file written to: %s"
 msgstr "Yazılan log dosyası : %s"
 
@@ -4463,8 +4335,7 @@ msgid "No imported transactions!"
 msgstr "WebApp işlemlerini al"
 
 #: src/import_export/univcsvdialog.cpp:990
-msgid ""
-"Incorrect fields specified for export! Requires at least Date and Amount."
+msgid "Incorrect fields specified for export! Requires at least Date and Amount."
 msgstr ""
 
 #: src/import_export/univcsvdialog.cpp:991
@@ -4489,7 +4360,6 @@ msgid "Destination file error"
 msgstr ""
 
 #: src/import_export/univcsvdialog.cpp:1111
-#, c-format
 msgid "Transactions exported: %ld"
 msgstr "Verilen işlemler: %ld"
 
@@ -4567,9 +4437,7 @@ msgstr ""
 
 #: src/maincurrencydialog.cpp:223
 #, fuzzy
-msgid ""
-"Select the currently selected currency as the selected currency for the "
-"account"
+msgid "Select the currently selected currency as the selected currency for the account"
 msgstr "Etkin  olan kategoriyi işlem için seçilmiş kategori olarak seç"
 
 #: src/maincurrencydialog.cpp:225
@@ -4622,7 +4490,6 @@ msgid "Base Currency Selection"
 msgstr ""
 
 #: src/maincurrencydialog.cpp:421
-#, c-format
 msgid "Currency History Options: %s "
 msgstr ""
 
@@ -4649,7 +4516,7 @@ msgid "Currency history error"
 msgstr ""
 
 #: src/maincurrencydialog.cpp:627
-#, fuzzy, c-format
+#, fuzzy
 msgid "Unable to download %s currency rates"
 msgstr "Çevrimiçi döviz kuru güncelleme"
 
@@ -4658,13 +4525,11 @@ msgid "Do you want to add also dates without any transaction?"
 msgstr ""
 
 #: src/maincurrencydialog.cpp:675
-#, c-format
 msgid "Unable to download history for symbol %s. History rates not available!"
 msgstr ""
 
 #: src/maincurrencydialog.cpp:737
-msgid ""
-"Setting a new base currency will delete all historic rates,\n"
+msgid "Setting a new base currency will delete all historic rates,\n"
 "it's possible to re-download them after setting the new base currency."
 msgstr ""
 
@@ -4686,7 +4551,6 @@ msgid "Currency rates have been updated"
 msgstr ""
 
 #: src/mmSimpleDialogs.cpp:122
-#, c-format
 msgid "Entry %s is invalid"
 msgstr "%s girişi geçersiz"
 
@@ -4695,11 +4559,9 @@ msgid "Please use this button for category selection."
 msgstr ""
 
 #: src/mmSimpleDialogs.cpp:130
-msgid ""
-"Please use this button for category selection\n"
+msgid "Please use this button for category selection\n"
 "or use the 'Split' checkbox for multiple categories."
-msgstr ""
-"Kategori seçimi için bu düğmeyi veya çoklu\n"
+msgstr "Kategori seçimi için bu düğmeyi veya çoklu\n"
 "kategoriler için  \"Parçalı\" kontrol kutusunu kullanın."
 
 #: src/mmSimpleDialogs.cpp:132
@@ -4731,9 +4593,7 @@ msgid "Selection can be made by using the dropdown button."
 msgstr "Açılır düğme kullanılarak seçim yapılabilir."
 
 #: src/mmSimpleDialogs.cpp:159
-msgid ""
-"Activating the button will provide a selection box where the account can be "
-"selected."
+msgid "Activating the button will provide a selection box where the account can be selected."
 msgstr ""
 
 #: src/mmSimpleDialogs.cpp:170 src/mmcombobox.h:77
@@ -4741,17 +4601,13 @@ msgid "Invalid Payee"
 msgstr "Geçersiz Alacaklı/Satıcı"
 
 #: src/mmSimpleDialogs.cpp:171
-msgid ""
-"Please type in a new payee,\n"
+msgid "Please type in a new payee,\n"
 "or make a selection using the dropdown button."
-msgstr ""
-"Lütfen yeni bir Alacaklı/Satıcı yazın veya\n"
+msgstr "Lütfen yeni bir Alacaklı/Satıcı yazın veya\n"
 "açılır düğmeyi kullanarak bir seçim yapın.."
 
 #: src/mmSimpleDialogs.cpp:177
-msgid ""
-"Activating the button will provide a selection box where the payee can be "
-"selected."
+msgid "Activating the button will provide a selection box where the payee can be selected."
 msgstr ""
 
 #: src/mmSimpleDialogs.cpp:187 src/mmSimpleDialogs.cpp:201
@@ -4794,11 +4650,9 @@ msgid "Please enter a calculated value."
 msgstr ""
 
 #: src/mmTextCtrl.cpp:85
-msgid ""
-"Tip: For calculations, enter expressions like (2+2)*(2+2)\n"
+msgid "Tip: For calculations, enter expressions like (2+2)*(2+2)\n"
 "Calculations will be evaluated and the result used as the entry."
-msgstr ""
-"Tip: Hesaplamalar için (2+2)*(2+2) gibi ifadeler girin\n"
+msgstr "Tip: Hesaplamalar için (2+2)*(2+2) gibi ifadeler girin\n"
 "Hesaplamalar değerlendirilecek ve sonuç giriş olarak kullanılacak."
 
 #: src/mmTips.h:23
@@ -4806,20 +4660,12 @@ msgid "Recommendation: Always backup your .mmb database file regularly."
 msgstr "Öneri: Her zaman düzenli olarak .mmb veritabanı dosyanızı yedekleyin."
 
 #: src/mmTips.h:24
-msgid ""
-"Recommendation: If upgrading to a new version of MMEX, make sure you backup "
-"your .mmb database file before doing so."
-msgstr ""
-"Öneri: Eğer MMEX'i yeni sürüme yükseltecekseniz, bunu yapmadan önce .mmb "
-"veritabanı dosyanızın yedeğini aldığınızdan emin olun."
+msgid "Recommendation: If upgrading to a new version of MMEX, make sure you backup your .mmb database file before doing so."
+msgstr "Öneri: Eğer MMEX'i yeni sürüme yükseltecekseniz, bunu yapmadan önce .mmb veritabanı dosyanızın yedeğini aldığınızdan emin olun."
 
 #: src/mmTips.h:25
-msgid ""
-"Recommendation: Use copy (Ctrl+C) and paste (Ctrl+V) for frequently used "
-"transactions."
-msgstr ""
-"Öneri: Sık kullanılan işlemler için kopyala (Ctrl+C) ve yapıştır'ı (Ctrl+V) "
-"kullanın."
+msgid "Recommendation: Use copy (Ctrl+C) and paste (Ctrl+V) for frequently used transactions."
+msgstr "Öneri: Sık kullanılan işlemler için kopyala (Ctrl+C) ve yapıştır'ı (Ctrl+V) kullanın."
 
 #: src/mmTips.h:26
 msgid "Tip: Remember to make backups of your .mmb."
@@ -4827,101 +4673,45 @@ msgstr "İpucu: .mmb dosyanızın yedeğini almayı unutmayın."
 
 #: src/mmTips.h:27
 #, fuzzy
-msgid ""
-"Tip: The not encrypted .mmb file is insecure. That means anyone else having "
-"the proper know how can actually open the file and read the contents. So "
-"make sure that if you are storing any sensitive financial information it is "
-"properly guarded."
-msgstr ""
-"İpucu: .mmb dosyası şifreli değil. Bu doğru bilgi sahibi herhangi birinin "
-"dosyayı açabileceği ve içeriğini okuyabileceği demektir. Bu nedenle eğer "
-"herhangi özel bir finansal bilgi saklıyorsanız, dosyanın gerektiği gibi "
-"korunduğundan emin olun. "
+msgid "Tip: The not encrypted .mmb file is insecure. That means anyone else having the proper know how can actually open the file and read the contents. So make sure that if you are storing any sensitive financial information it is properly guarded."
+msgstr "İpucu: .mmb dosyası şifreli değil. Bu doğru bilgi sahibi herhangi birinin dosyayı açabileceği ve içeriğini okuyabileceği demektir. Bu nedenle eğer herhangi özel bir finansal bilgi saklıyorsanız, dosyanın gerektiği gibi korunduğundan emin olun. "
 
 #: src/mmTips.h:28
-msgid ""
-"Tip: To mark a transaction as reconciled, just select the transaction and "
-"hit the 'r' or 'R' key. To mark a transaction as unreconciled, just select "
-"the transaction and hit the 'u' or 'U' key."
-msgstr ""
-"İpucu: Bir işlemi onaylanmış olarak işaretlemek için, yalnızca işlemi seçin "
-"ve 'R' veya 'r' tuşuna basın. Bir işlemi onaylanmamış olarak işaretlemek "
-"için, yalnızca işlemi seçin ve 'Ü' veya 'u' tuşuna basın."
+msgid "Tip: To mark a transaction as reconciled, just select the transaction and hit the 'r' or 'R' key. To mark a transaction as unreconciled, just select the transaction and hit the 'u' or 'U' key."
+msgstr "İpucu: Bir işlemi onaylanmış olarak işaretlemek için, yalnızca işlemi seçin ve 'R' veya 'r' tuşuna basın. Bir işlemi onaylanmamış olarak işaretlemek için, yalnızca işlemi seçin ve 'Ü' veya 'u' tuşuna basın."
 
 #: src/mmTips.h:29
-msgid ""
-"Tip: To mark a transaction as requiring followup, just select the "
-"transaction and hit the 'f' or 'F' key."
-msgstr ""
-"İpucu: Bir işlemi 'izlenme' gerekir olarak işaretlemek için, yalnızca işlemi "
-"seçin ve 'F' veya 'f' tuşuna basın."
+msgid "Tip: To mark a transaction as requiring followup, just select the transaction and hit the 'f' or 'F' key."
+msgstr "İpucu: Bir işlemi 'izlenme' gerekir olarak işaretlemek için, yalnızca işlemi seçin ve 'F' veya 'f' tuşuna basın."
 
 #: src/mmTips.h:30
-msgid ""
-"Tip: MMEX supports printing of all reports that can be viewed. The print "
-"options are available under the menu, File->Print."
-msgstr ""
-"İpucu: MMEX görülebilen tüm raporların basımını destekler. Yazdırma seçeneği "
-"Dosya -> Yazdır menüsü altındadır."
+msgid "Tip: MMEX supports printing of all reports that can be viewed. The print options are available under the menu, File->Print."
+msgstr "İpucu: MMEX görülebilen tüm raporların basımını destekler. Yazdırma seçeneği Dosya -> Yazdır menüsü altındadır."
 
 #: src/mmTips.h:31
-msgid ""
-"Tip: You can modify some runtime behavior of MMEX by changing the options in "
-"the Options Dialog. "
-msgstr ""
-"İpucu: Seçenekler penceresindeki seçeneği değiştirerek MMEX'in bazı çalışma "
-"davranışlarını değiştirebilirsiniz."
+msgid "Tip: You can modify some runtime behavior of MMEX by changing the options in the Options Dialog. "
+msgstr "İpucu: Seçenekler penceresindeki seçeneği değiştirerek MMEX'in bazı çalışma davranışlarını değiştirebilirsiniz."
 
 #: src/mmTips.h:32
-msgid ""
-"Tip: To print a statement with transactions from any arbitrary set of "
-"criteria, use the transaction filter to select the transactions you want and "
-"then do a print from the menu."
+msgid "Tip: To print a statement with transactions from any arbitrary set of criteria, use the transaction filter to select the transactions you want and then do a print from the menu."
 msgstr ""
 
 #: src/mmTips.h:33
-msgid ""
-"Tip: Set exchange rate for currencies in case if you have accounts with "
-"different currencies."
-msgstr ""
-"İpucu: Farklı para birimli hesaplarınız olması durumunda, para birimleri "
-"için döviz kurlarını ayarlayın."
+msgid "Tip: Set exchange rate for currencies in case if you have accounts with different currencies."
+msgstr "İpucu: Farklı para birimli hesaplarınız olması durumunda, para birimleri için döviz kurlarını ayarlayın."
 
 #: src/mmTips.h:35
-msgid ""
-"Organize Categories Dialog Tip: Pressing the h key will cycle through all "
-"categories starting with the letter h"
-msgstr ""
-"Kategorileri Düzenleme İpucu: 'h' tuşuna basmak 'h' harfi ile başlayan tüm "
-"kategorileri tarayacaktır."
+msgid "Organize Categories Dialog Tip: Pressing the h key will cycle through all categories starting with the letter h"
+msgstr "Kategorileri Düzenleme İpucu: 'h' tuşuna basmak 'h' harfi ile başlayan tüm kategorileri tarayacaktır."
 
 #: src/mmTips.h:36
-msgid ""
-"Organize Categories Dialog Tip: Pressing 2 key combination will cycle "
-"through all categories starting with that key combination. Example: Pressing "
-"ho will select Homeneeds, Home, House Tax, etc..."
-msgstr ""
-"Kategorileri Düzenleme İpucu: 2 tuş bileşimine basmak bu tuş bileşimleri ile "
-"başlayan tüm kategorileri tarayacaktır. Örnek: 'ot\" tuş bileşimine basmak "
-"Otomobil Yakıt, Otomobil Bakım, vs. kategorilerini seçecektir."
+msgid "Organize Categories Dialog Tip: Pressing 2 key combination will cycle through all categories starting with that key combination. Example: Pressing ho will select Homeneeds, Home, House Tax, etc..."
+msgstr "Kategorileri Düzenleme İpucu: 2 tuş bileşimine basmak bu tuş bileşimleri ile başlayan tüm kategorileri tarayacaktır. Örnek: 'ot\" tuş bileşimine basmak Otomobil Yakıt, Otomobil Bakım, vs. kategorilerini seçecektir."
 
 #: src/mmTips.h:38
 #, fuzzy
-#| msgid ""
-#| "Tip to get out of debt: Pay yourself 10% first. Put this into an account "
-#| "that is hard to touch. Make sure it is a chore to get the money out (you "
-#| "have to drive to the bank), so you will only tap it consciously and for "
-#| "major expenses."
-msgid ""
-"Tip to get out of debt: Pay yourself 10 percentage first. Put this into an "
-"account that is hard to touch. Make sure it is a chore to get the money out "
-"(you have to drive to the bank), so you will only tap it consciously and for "
-"major expenses."
-msgstr ""
-"Borçtan kurtulmak için ipucu: Önce kendinize 10% ayırın. Sonra bunu ulaşımı "
-"zor olan bir hesaba koyun. Parayı geri almanın bir külfet olduğundan emin "
-"olun (örneğin Bankaya gitmek zorundasınız), böylece bu hesabı yalnızca "
-"bilinçli olarak ve çok önemli giderleriniz için kullanırsınız."
+msgid "Tip to get out of debt: Pay yourself 10 percentage first. Put this into an account that is hard to touch. Make sure it is a chore to get the money out (you have to drive to the bank), so you will only tap it consciously and for major expenses."
+msgstr "Borçtan kurtulmak için ipucu: Önce kendinize 10% ayırın. Sonra bunu ulaşımı zor olan bir hesaba koyun. Parayı geri almanın bir külfet olduğundan emin olun (örneğin Bankaya gitmek zorundasınız), böylece bu hesabı yalnızca bilinçli olarak ve çok önemli giderleriniz için kullanırsınız."
 
 #: src/mmTips.h:39
 msgid "Tip to get out of debt: Establish an emergency fund."
@@ -4933,9 +4723,7 @@ msgstr "Borçtan kurtulmak için ipucu: Yeni borç edinmeyi durdurun."
 
 #: src/mmTips.h:41
 msgid "Tip to get out of debt: Create a realistic budget for your expenses."
-msgstr ""
-"Borçtan kurtulmak için ipucu: Harcamalarınız için gerçekçi bütçeler "
-"hazırlayın."
+msgstr "Borçtan kurtulmak için ipucu: Harcamalarınız için gerçekçi bütçeler hazırlayın."
 
 #: src/mmTips.h:42
 msgid "Tip to get out of debt: Spend less than you earn."
@@ -4946,13 +4734,8 @@ msgid "Tip to get out of debt: Pay more than the minimum."
 msgstr "Borçtan kurtulmak için ipucu: En azdan daha fazla ödeyin."
 
 #: src/mmTips.h:44
-msgid ""
-"Before going to a shop and buy something: take the time making a list of "
-"what you really need. In the shop buy what is in your list."
-msgstr ""
-"Alışverişe gitmeden ve birşey almadan önce: Gerçek ihtiyaçlarınızın bir "
-"listesini hazırlamak için zaman ayırın. Alışverişte yalnızca listenizde olan "
-"şeyleri alın."
+msgid "Before going to a shop and buy something: take the time making a list of what you really need. In the shop buy what is in your list."
+msgstr "Alışverişe gitmeden ve birşey almadan önce: Gerçek ihtiyaçlarınızın bir listesini hazırlamak için zaman ayırın. Alışverişte yalnızca listenizde olan şeyleri alın."
 
 #: src/mmcheckingpanel.cpp:458 src/mmcheckingpanel.cpp:602
 msgid "Displayed Bal: "
@@ -4995,7 +4778,7 @@ msgid "Enter any string to find it in the nearest transaction notes"
 msgstr "En yakın işlem notlarında bulmak için herhangi bir dize girin"
 
 #: src/mmcheckingpanel.cpp:577
-#, fuzzy, c-format
+#, fuzzy
 msgid "Account View: %s"
 msgstr "Hesap Görünümü: %s"
 
@@ -5125,7 +4908,6 @@ msgid "Unreconciled"
 msgstr "Onaylanmamış"
 
 #: src/mmcheckingpanel.cpp:1353
-#, c-format
 msgid "Do you really want to delete all the \"%s\" transactions shown?"
 msgstr "Gösterilen tüm \"%s\" işlemlerini silmeyi gerçekten istiyor musunuz?"
 
@@ -5138,7 +4920,6 @@ msgid "MMEX Transaction Check"
 msgstr ""
 
 #: src/mmcheckingpanel.cpp:1917 src/stockspanel.cpp:291
-#, c-format
 msgid "Moving Transaction from %s to..."
 msgstr "İşlemler %s 'den taşınıyor..."
 
@@ -5151,26 +4932,24 @@ msgid "Reoccuring Transaction saved."
 msgstr "Yinelenen işlemler kaydedildi."
 
 #: src/mmcheckingpanel.cpp:2027
-#, fuzzy, c-format
+#, fuzzy
 msgid "Transactions selected: %ld"
 msgstr "Verilen işlemler: %ld"
 
 #: src/mmcheckingpanel.cpp:2029
-#, fuzzy, c-format
+#, fuzzy
 msgid "Selected transactions balance: %s"
 msgstr "Seçilen işlemi düzenle"
 
 #: src/mmcheckingpanel.cpp:2032
-#, fuzzy, c-format
+#, fuzzy
 msgid "Days between selected transactions: %d"
 msgstr "Seçilen işlemi sil"
 
 #: src/mmcombobox.h:78
-msgid ""
-"Please type in an exiting payee name,\n"
+msgid "Please type in an exiting payee name,\n"
 "or make a selection using the dropdown button."
-msgstr ""
-"Lütfen var olan bir alacaklı/satıcı adı yazın,\n"
+msgstr "Lütfen var olan bir alacaklı/satıcı adı yazın,\n"
 "veya açılır düğmeyi kullanarak bir seçim yapın."
 
 #: src/mmcustomdata.cpp:58
@@ -5197,25 +4976,18 @@ msgid "Language change"
 msgstr "Dil"
 
 #: src/mmex.cpp:79
-#, c-format
 msgid "Can not load translation for selected language %s"
 msgstr ""
 
 #: src/mmex.cpp:115
 #, fuzzy
-#| msgid ""
-#| "Fatal error occured.\n"
-#| "Application will be terminated."
-msgid ""
-"Fatal error occurred.\n"
+msgid "Fatal error occurred.\n"
 "Application will be terminated."
-msgstr ""
-"Kritik hata oluştu.\n"
+msgstr "Kritik hata oluştu.\n"
 "Uygulama sonlandırılacak"
 
 #: src/mmex.cpp:248
-msgid ""
-"MMEX is already running...\n"
+msgid "MMEX is already running...\n"
 "\n"
 "Multiple instances are no longer supported."
 msgstr ""
@@ -5286,9 +5058,7 @@ msgid "Help"
 msgstr "Yardım"
 
 #: src/mmframe.cpp:1139
-#, c-format
-msgid ""
-"Account: %s\n"
+msgid "Account: %s\n"
 "\n"
 "Balance at currency %s: %s\n"
 "Balance at currency %s: %s"
@@ -5760,12 +5530,8 @@ msgstr "Forum"
 
 #: src/mmframe.cpp:1735
 #, fuzzy
-msgid ""
-"Visit the MMEX forum to see existing user comments or report new issues with "
-"the software"
-msgstr ""
-"MMEX Forumu ziyaret edin. Var olan kullanıcı yorumlarını veya uygulamayla "
-"ilgili yeni konuları rapor edin."
+msgid "Visit the MMEX forum to see existing user comments or report new issues with the software"
+msgstr "MMEX Forumu ziyaret edin. Var olan kullanıcı yorumlarını veya uygulamayla ilgili yeni konuları rapor edin."
 
 #: src/mmframe.cpp:1738
 msgid "Google Play"
@@ -5978,12 +5744,11 @@ msgid "DB Optimization"
 msgstr "VeriTabanı İyileştirme"
 
 #: src/mmframe.cpp:2117
-#, c-format
-msgid ""
-"Database Optimization Completed!\n"
+msgid "Database Optimization Completed!\n"
 "\n"
 "Size before: %s\n"
 "Size after: %s\n"
+""
 msgstr ""
 
 #: src/mmframe.cpp:2128
@@ -6022,8 +5787,7 @@ msgid "No account available to import to"
 msgstr "Alınacak kullanılabilir hesap yok."
 
 #: src/mmframe.cpp:2331
-msgid ""
-"Asset Accounts hold Asset transactions\n"
+msgid "Asset Accounts hold Asset transactions\n"
 "\n"
 "Asset transactions are created within the Assets View\n"
 "after the selection of the Asset within that view.\n"
@@ -6036,14 +5800,12 @@ msgid "Asset Account Creation"
 msgstr ""
 
 #: src/mmframe.cpp:2341
-msgid ""
-"Share Accounts hold Share transactions\n"
+msgid "Share Accounts hold Share transactions\n"
 "\n"
 "Share transactions are created within the Stock Portfolio View\n"
 "after the selection of the Company Stock within the associated view.\n"
 "\n"
-"These accounts only become visible after associating a Stock to the Share "
-"Account\n"
+"These accounts only become visible after associating a Stock to the Share Account\n"
 "Or by using the Menu View --> 'Display Share Accounts'\n"
 "Share Accounts can also hold normal transactions to regular account."
 msgstr ""
@@ -6065,15 +5827,11 @@ msgid "Please follow these tasks before submitting new bug:"
 msgstr ""
 
 #: src/mmframe.cpp:2558
-msgid ""
-"1. Use Help->Check for Updates in MMEX to get latest version - your problem "
-"can be fixed already."
+msgid "1. Use Help->Check for Updates in MMEX to get latest version - your problem can be fixed already."
 msgstr ""
 
 #: src/mmframe.cpp:2559
-msgid ""
-"2. Search https://github.com/moneymanagerex/moneymanagerex/issues?q=is:issue "
-"for similar problem - update existing issue instead of creating new one."
+msgid "2. Search https://github.com/moneymanagerex/moneymanagerex/issues?q=is:issue for similar problem - update existing issue instead of creating new one."
 msgstr ""
 
 #: src/mmframe.cpp:2560
@@ -6081,20 +5839,15 @@ msgid "3. Put some descriptive name for your issue in the Title field above."
 msgstr ""
 
 #: src/mmframe.cpp:2561
-msgid ""
-"4. Replace this text (marked with >) with detailed description of your "
-"problem."
+msgid "4. Replace this text (marked with >) with detailed description of your problem."
 msgstr ""
 
 #: src/mmframe.cpp:2562
-msgid ""
-"Read https://www.chiark.greenend.org.uk/~sgtatham/bugs.html for useful tips."
+msgid "Read https://www.chiark.greenend.org.uk/~sgtatham/bugs.html for useful tips."
 msgstr ""
 
 #: src/mmframe.cpp:2563
-msgid ""
-"5. Include steps to reproduce your issue, attach screenshots where "
-"appropriate."
+msgid "5. Include steps to reproduce your issue, attach screenshots where appropriate."
 msgstr ""
 
 #: src/mmframe.cpp:2564
@@ -6122,12 +5875,9 @@ msgid "Choose Account to Delete"
 msgstr "Silinecek Hesabı Seçin"
 
 #: src/mmframe.cpp:2864
-#, c-format
-msgid ""
-"Are you sure you want to delete\n"
+msgid "Are you sure you want to delete\n"
 " %s account: %s ?"
-msgstr ""
-"%s hesabını silmek istediğinizden emin\n"
+msgstr "%s hesabını silmek istediğinizden emin\n"
 "misiniz: %s ?"
 
 #: src/mmframe.cpp:2883
@@ -6139,7 +5889,6 @@ msgid "Account Reallocation"
 msgstr "Hesap Türü Değişikliği"
 
 #: src/mmframe.cpp:2905
-#, c-format
 msgid "Account: %s - Select new type."
 msgstr ""
 
@@ -6152,14 +5901,11 @@ msgid "Payee Relocation Result"
 msgstr "Alacaklı/Satıcı Taşıma Sonucu"
 
 #: src/mmframe.cpp:3060
-#, c-format
 msgid "File %s not found"
 msgstr "%s dosyası bulunamadı"
 
 #: src/mmframe.cpp:3103
-msgid ""
-"The language for this application has been changed. The change will take "
-"effect the next time the application is started."
+msgid "The language for this application has been changed. The change will take effect the next time the application is started."
 msgstr ""
 
 #: src/mmframereport.cpp:71
@@ -6206,7 +5952,6 @@ msgid "Total:"
 msgstr "Toplam:"
 
 #: src/mmhomepagepanel.cpp:197
-#, c-format
 msgid "Top Withdrawals: %s"
 msgstr "Yüksek Ödemeler: %s"
 
@@ -6217,7 +5962,6 @@ msgstr "Özet"
 
 #: src/mmhomepagepanel.cpp:391
 #, fuzzy
-#| msgid "Account name"
 msgid "Account / Payee"
 msgstr "Hesap Adı"
 
@@ -6226,7 +5970,6 @@ msgid "Upcoming Transactions"
 msgstr "Vadesi Yaklaşan İşlemler"
 
 #: src/mmhomepagepanel.cpp:799
-#, c-format
 msgid "Income vs Expenses: %s"
 msgstr "Gelir & Gider: %s"
 
@@ -6420,8 +6163,7 @@ msgid "Recurring Transaction"
 msgstr "Yinelenen İşlemler"
 
 #: src/model/Model_Billsdeposits.cpp:313
-msgid ""
-"A recurring transaction will exceed your account limit.\n"
+msgid "A recurring transaction will exceed your account limit.\n"
 "\n"
 "Do you wish to continue?"
 msgstr ""
@@ -6471,13 +6213,10 @@ msgid "Payee Error"
 msgstr "Alacaklı/Satıcı Hatası"
 
 #: src/model/Model_Report.cpp:273
-#, c-format
-msgid ""
-"The SQL script:\n"
+msgid "The SQL script:\n"
 "%s \n"
 "will modify database! aborted!"
-msgstr ""
-"SQL script:\n"
+msgstr "SQL script:\n"
 "%s \n"
 "veritabanını değiştirecek! durduruldu!"
 
@@ -6555,7 +6294,6 @@ msgid "&Apply"
 msgstr "&Uygula"
 
 #: src/optiondialog.cpp:189
-#, c-format
 msgid "%s page has been saved."
 msgstr "%s sayfası kaydedildi."
 
@@ -6564,7 +6302,6 @@ msgid "Attachments Settings"
 msgstr "İlişikler Ayarları"
 
 #: src/optionsettingsattachment.cpp:64
-#, c-format
 msgid "Attachment archive folder for %s only:"
 msgstr "Yalnızca %s için ilişik arşiv dizini:"
 
@@ -6645,12 +6382,8 @@ msgid "When remove attachment, move file instead of delete"
 msgstr "İlişik kaldırıldığında dosyayı silme yerine taşı"
 
 #: src/optionsettingsattachment.cpp:170
-msgid ""
-"Select to don't delete file when attachment is removed, but instead move it "
-"to 'Deleted' subfolder"
-msgstr ""
-"İlişik kaldırıldığında dosyanın silinmemesi, fakat yerine 'Deleted' dizinine "
-"taşınması için seçin"
+msgid "Select to don't delete file when attachment is removed, but instead move it to 'Deleted' subfolder"
+msgstr "İlişik kaldırıldığında dosyanın silinmemesi, fakat yerine 'Deleted' dizinine taşınması için seçin"
 
 #: src/optionsettingsattachment.cpp:179
 msgid "Application data directory"
@@ -6753,12 +6486,8 @@ msgid "Use Original Date when Pasting Transactions"
 msgstr "İşlemleri Kopyalarken Orjinal Tarihi Kullan"
 
 #: src/optionsettingsgeneral.cpp:156
-msgid ""
-"Select whether to use the original transaction date or current date when "
-"copying/pasting transactions"
-msgstr ""
-"İşlemlerii kopyalayıp / yapıştırırken orjinal hareket tarihinin mi yoksa "
-"günün tarihinin mi kullanılacağını belirtin."
+msgid "Select whether to use the original transaction date or current date when copying/pasting transactions"
+msgstr "İşlemlerii kopyalayıp / yapıştırırken orjinal hareket tarihinin mi yoksa günün tarihinin mi kullanılacağını belirtin."
 
 #: src/optionsettingsgeneral.cpp:159
 msgid "Use Transaction Sound"
@@ -6825,11 +6554,9 @@ msgid "Create a new backup when MMEX Start"
 msgstr "MMEX başladığında yeni bir yedek oluştur"
 
 #: src/optionsettingsmisc.cpp:144
-msgid ""
-"When MMEX Starts,\n"
+msgid "When MMEX Starts,\n"
 "creates the backup database: dbFile_start_YYYY-MM-DD.ext."
-msgstr ""
-"MMEX Başladığında,\n"
+msgstr "MMEX Başladığında,\n"
 "veritabanı yedeği yaratır: dbFile_start_YYYY-MM-DD.ext."
 
 #: src/optionsettingsmisc.cpp:149
@@ -6837,11 +6564,9 @@ msgid "Backup database on exit."
 msgstr "Çıkışta veritabanını yedekle"
 
 #: src/optionsettingsmisc.cpp:151
-msgid ""
-"When MMEX shuts down and changes made to database,\n"
+msgid "When MMEX shuts down and changes made to database,\n"
 "creates or updates the backup database: dbFile_update_YYYY-MM-DD.ext."
-msgstr ""
-"MMEX kapatıldığında ve veritabanında değişiklikler yapıldığında,\n"
+msgstr "MMEX kapatıldığında ve veritabanında değişiklikler yapıldığında,\n"
 "veritabanı yedeği yaratır veya günceller: dbFile_update_YYYY-MM-DD.ext."
 
 #: src/optionsettingsmisc.cpp:159
@@ -6960,10 +6685,8 @@ msgid "Check at StartUp"
 msgstr "Açılışta güncellemeleri kontrol et"
 
 #: src/optionsettingsnet.cpp:183
-msgid ""
-"Enable to automatically check if new MMEX version is available at StartUp"
-msgstr ""
-"Başlangıçta yeni bir MMEX sürümü olup olmadığını otomatik olarak kontrol et."
+msgid "Enable to automatically check if new MMEX version is available at StartUp"
+msgstr "Başlangıçta yeni bir MMEX sürümü olup olmadığını otomatik olarak kontrol et."
 
 #: src/optionsettingsnet.cpp:186
 msgid "Stable"
@@ -7046,9 +6769,7 @@ msgid "Budget Offset (days):"
 msgstr "Bütçe Yılı:"
 
 #: src/optionsettingsview.cpp:158
-msgid ""
-"Advance or retard the start date from the 1st of the month or year by the "
-"number of days"
+msgid "Advance or retard the start date from the 1st of the month or year by the number of days"
 msgstr ""
 
 #: src/optionsettingsview.cpp:163
@@ -7098,9 +6819,7 @@ msgid "Payee in use."
 msgstr "Alacaklı/Satıcı kullanımda"
 
 #: src/payeedialog.cpp:263
-msgid ""
-"Tip: Change all transactions using this Payee to another Payee using the "
-"relocate command:"
+msgid "Tip: Change all transactions using this Payee to another Payee using the relocate command:"
 msgstr ""
 
 #: src/payeedialog.cpp:265
@@ -7155,32 +6874,26 @@ msgid "Category Relocation Confirmation"
 msgstr "Kategori Taşıma Onayı"
 
 #: src/relocatecategorydialog.cpp:271 src/relocatepayeedialog.cpp:231
-#, c-format
 msgid "Records found in transactions: %i"
 msgstr "İşlemlerde kayıtlar bulundu: %i"
 
 #: src/relocatecategorydialog.cpp:272
-#, c-format
 msgid "Records found in split transactions: %i"
 msgstr "Parçalı işlemlerde kayıtlar bulundu: %i"
 
 #: src/relocatecategorydialog.cpp:273 src/relocatepayeedialog.cpp:232
-#, c-format
 msgid "Records found in recurring transactions: %i"
 msgstr "Yinelenen işlemlerde kayıtlar bulundu: %i"
 
 #: src/relocatecategorydialog.cpp:274
-#, c-format
 msgid "Records found in recurring split transactions: %i"
 msgstr "Yinelenen parçalı işlemlerde kayıtlar bulundu: %i"
 
 #: src/relocatecategorydialog.cpp:275
-#, c-format
 msgid "Records found as Default Payee Category: %i"
 msgstr "Varsayılan Alacaklı/Satıcı Kategorisi olarak kayıtlar bulundu: %i"
 
 #: src/relocatecategorydialog.cpp:276
-#, c-format
 msgid "Records found in budget: %i"
 msgstr "Bütçede kayıtlar bulundu: %i"
 
@@ -7199,7 +6912,7 @@ msgid "Delete source payee after relocation"
 msgstr "Tüm kaynak alacaklı/satıcıları hedef alacaklı/satıcıya taşıyın."
 
 #: src/relocatepayeedialog.cpp:151
-#, fuzzy, c-format
+#, fuzzy
 msgid "From %s to %s"
 msgstr "%s on %s"
 
@@ -7208,12 +6921,10 @@ msgid "Payee Relocation Confirmation"
 msgstr "Alacaklı/Satıcı Taşıma Onayı"
 
 #: src/reports/budgetcategorysummary.cpp:130
-#, c-format
 msgid "Budget Categories for %s"
 msgstr "%s Bütçe Kategorileri"
 
 #: src/reports/budgetcategorysummary.cpp:130
-#, c-format
 msgid "Budget Category Summary for %s"
 msgstr "%s için Bütçe Kategori Özeti"
 
@@ -7246,7 +6957,6 @@ msgid "Difference Expenses:"
 msgstr "Gider Farkı:"
 
 #: src/reports/budgetingperf.cpp:171
-#, c-format
 msgid "Budget Performance for %s"
 msgstr ""
 
@@ -7268,7 +6978,6 @@ msgid "Monthly Total"
 msgstr "Aylık Rapor"
 
 #: src/reports/cashflow.cpp:221
-#, c-format
 msgid "Cash Flow Forecast for %i Years Ahead"
 msgstr "Gelecek %i Yıl İçin Nakit Akışı Forecast"
 
@@ -7306,12 +7015,10 @@ msgid "Forecast"
 msgstr ""
 
 #: src/reports/htmlbuilder.cpp:116
-#, c-format
 msgid "Report Generated %s %s"
 msgstr ""
 
 #: src/reports/htmlbuilder.cpp:313
-#, c-format
 msgid "From %s till %s"
 msgstr "%s'den %s'e"
 
@@ -7404,7 +7111,6 @@ msgid "Choose Accounts"
 msgstr "Hesap Seç"
 
 #: src/reports/summary.cpp:147
-#, c-format
 msgid "Accounts Balance - %s"
 msgstr "Hesap Kalıntısı - %s"
 
@@ -7442,7 +7148,6 @@ msgid "Stocks Performance Charts"
 msgstr "Borsa Performans Grafiği"
 
 #: src/reports/transactions.cpp:60
-#, c-format
 msgid "Transaction List for Account: %s"
 msgstr "%s Hesabı İçin İşlem Listesi"
 
@@ -7552,14 +7257,12 @@ msgid "New Stock Investment"
 msgstr "Yeni Menkul Kıymet Yatırımı"
 
 #: src/stockdialog.cpp:156
-msgid ""
-"Initial share price.\n"
+msgid "Initial share price.\n"
 "Recorded in share transaction"
 msgstr ""
 
 #: src/stockdialog.cpp:158
-msgid ""
-"Invalid in this view.\n"
+msgid "Invalid in this view.\n"
 "View Transactions for values"
 msgstr ""
 
@@ -7570,15 +7273,13 @@ msgstr "Hesabın Adı"
 
 #: src/stockdialog.cpp:199
 #, fuzzy
-msgid ""
-"Enter the associated Share Account name\n"
+msgid "Enter the associated Share Account name\n"
 "An account can be created on Save"
 msgstr "Hesap adını giriniz. Herhangibir anda değiştirebilirsiniz."
 
 #: src/stockdialog.cpp:209
 #, fuzzy
-msgid ""
-"Enter the Company's stock exchange symbol.\n"
+msgid "Enter the Company's stock exchange symbol.\n"
 "(Optional) Include exchange. eg: IBM.BE"
 msgstr "Menkul değer simgesi girin (İsteğe bağlı) Kuru içer. Örn: IBM.BE"
 
@@ -7587,8 +7288,7 @@ msgid "*Date"
 msgstr ""
 
 #: src/stockdialog.cpp:213
-msgid ""
-"Initial purchase date of shares.\n"
+msgid "Initial purchase date of shares.\n"
 "Recorded in share transaction"
 msgstr ""
 
@@ -7602,8 +7302,7 @@ msgid "*Share Number"
 msgstr ""
 
 #: src/stockdialog.cpp:224
-msgid ""
-"Total number of shares.\n"
+msgid "Total number of shares.\n"
 "Recorded in share transaction"
 msgstr ""
 
@@ -7626,14 +7325,12 @@ msgid "*Commission"
 msgstr ""
 
 #: src/stockdialog.cpp:246
-msgid ""
-"Remainder of funds from share investment.\n"
+msgid "Remainder of funds from share investment.\n"
 "Recorded in share transaction"
 msgstr ""
 
 #: src/stockdialog.cpp:251
-msgid ""
-"Enter any commission paid or left over money from the purchase of shares."
+msgid "Enter any commission paid or left over money from the purchase of shares."
 msgstr ""
 
 #: src/stockdialog.cpp:256
@@ -7686,21 +7383,18 @@ msgid "Held At"
 msgstr "Hesap"
 
 #: src/stockdialog.cpp:489
-msgid ""
-"A Share Account as the Company name has not been found.\n"
+msgid "A Share Account as the Company name has not been found.\n"
 "\n"
 "Do you want to create one?"
 msgstr ""
 
 #: src/stockdialog.cpp:499
-msgid ""
-"The Company name does not have an associated Share Account.\n"
+msgid "The Company name does not have an associated Share Account.\n"
 "\n"
-"You may want to readjust the Company Name to an existing Share Account with "
-"the same name. If this is an existing Stock without a Share Account, it is "
-"recommended that a Share Account is created.\n"
+"You may want to readjust the Company Name to an existing Share Account with the same name. If this is an existing Stock without a Share Account, it is recommended that a Share Account is created.\n"
 "\n"
 "Do you want to create a new Share Acccount?\n"
+""
 msgstr ""
 
 #: src/stockdialog.cpp:567
@@ -7792,16 +7486,11 @@ msgstr "Hisse Senedi Geçmişi Hatası"
 
 #: src/stockspanel.cpp:36
 msgid "Using MMEX it is possible to track stocks/mutual funds investments."
-msgstr ""
-"MMEX'i kullanarak hisse senedi/ortak fon yatırımlarını izlemek olanaklıdır."
+msgstr "MMEX'i kullanarak hisse senedi/ortak fon yatırımlarını izlemek olanaklıdır."
 
 #: src/stockspanel.cpp:37
-msgid ""
-"To create new stocks entry the Symbol, Number of shares and Purchase prise "
-"should be entered."
-msgstr ""
-"Yeni hisse senedi giriş simgesi yaratmak için, pay sayısı ve alış fiyatı "
-"girilmelidir."
+msgid "To create new stocks entry the Symbol, Number of shares and Purchase prise should be entered."
+msgstr "Yeni hisse senedi giriş simgesi yaratmak için, pay sayısı ve alış fiyatı girilmelidir."
 
 #: src/stockspanel.cpp:38
 msgid "Sample of UK (HSBC HLDG) share: HSBA.L"
@@ -7809,8 +7498,7 @@ msgstr "UK (HSBC HLDG) payı örneği: HSBA.L"
 
 #: src/stockspanel.cpp:39
 msgid "If the Stock Name field is empty it will be filed when prices updated"
-msgstr ""
-"Eğer Hisse Senedi Adı alanı boşsa, fiyat güncellendiğinde doldurulacaktır."
+msgstr "Eğer Hisse Senedi Adı alanı boşsa, fiyat güncellendiğinde doldurulacaktır."
 
 #: src/stockspanel.cpp:99
 msgid "Share Total"
@@ -7861,12 +7549,11 @@ msgid "Confirm Stock Investment Deletion"
 msgstr "Menkul Kıymet Yatırımı Sil"
 
 #: src/stockspanel.cpp:404
-#, c-format
-msgid ""
-"Temporary Stock list: %s\n"
+msgid "Temporary Stock list: %s\n"
 "\n"
 "Date          Lot          Shares          Price        Commission\n"
 "\n"
+""
 msgstr ""
 
 #: src/stockspanel.cpp:574
@@ -7909,27 +7596,22 @@ msgid "Refresh Stock Prices from Yahoo"
 msgstr "Stock Fiyatlarını Yahoo'dan Güncelle"
 
 #: src/stockspanel.cpp:725
-#, c-format
 msgid "Stock Portfolio: %s"
 msgstr ""
 
 #: src/stockspanel.cpp:767
-#, c-format
 msgid "Total Shares: %s"
 msgstr "Toplam Paylar: %s"
 
 #: src/stockspanel.cpp:769
-#, c-format
 msgid "Invested: %s"
 msgstr "Yatırılan: %s"
 
 #: src/stockspanel.cpp:770
-#, c-format
 msgid "Gain: %s"
 msgstr "Kazanç: %s "
 
 #: src/stockspanel.cpp:770
-#, c-format
 msgid "Loss: %s"
 msgstr "Kayıp: %s"
 
@@ -7938,7 +7620,6 @@ msgid "Stock prices successfully updated"
 msgstr "Hisse senedi fiyatları başarılı bir şekilde güncellendi."
 
 #: src/stockspanel.cpp:810 src/stockspanel.cpp:982
-#, c-format
 msgid "Last updated %s"
 msgstr "Son güncelleme %s"
 
@@ -7951,12 +7632,10 @@ msgid "Quotes not found"
 msgstr ""
 
 #: src/stockspanel.cpp:885
-#, c-format
 msgid "%s on %s"
 msgstr "%s on %s"
 
 #: src/stockspanel.cpp:942
-#, c-format
 msgid "Symbol: %s"
 msgstr "Simge: %s"
 
@@ -7991,12 +7670,9 @@ msgid "Organize attachments of this transaction"
 msgstr "Bu işlemin ilişiklerini düzenleyin"
 
 #: src/transdialog.cpp:633
-#, c-format
-msgid ""
-"Do you want to add new payee: \n"
+msgid "Do you want to add new payee: \n"
 "%s?"
-msgstr ""
-"Yeni Alacaklı/Satıcı eklemek ister misiniz: \n"
+msgstr "Yeni Alacaklı/Satıcı eklemek ister misiniz: \n"
 "%s?"
 
 #: src/transdialog.cpp:634
@@ -8004,8 +7680,7 @@ msgid "Confirm to add new payee"
 msgstr "Yeni Alacaklı/Satıcı eklemeyi onaylayın"
 
 #: src/transdialog.cpp:724
-msgid ""
-"This transaction will exceed your account limit.\n"
+msgid "This transaction will exceed your account limit.\n"
 "\n"
 "Do you wish to continue?"
 msgstr ""
@@ -8260,12 +7935,10 @@ msgid "Wrong WebApp API version:"
 msgstr "Yanlış WebApp API sürümü:"
 
 #: src/webapp.cpp:132
-#, c-format
 msgid "WebApp   API version -> %s"
 msgstr "WebApp API sürümü -> %s"
 
 #: src/webapp.cpp:133
-#, c-format
 msgid "Expected API version -> %s"
 msgstr "Beklenen API sürümü -> %s"
 
@@ -8274,17 +7947,13 @@ msgid "Wrong WebApp API version"
 msgstr "Yanlış WebApp API sürümü"
 
 #: src/webapp.cpp:464
-#, c-format
 msgid "Account '%s' not found!"
 msgstr "'%s' hesabı bulunamadı."
 
 #: src/webapp.cpp:466
-#, c-format
-msgid ""
-"Transaction will be inserted with the first bank account:\n"
+msgid "Transaction will be inserted with the first bank account:\n"
 "'%s' and marked as  'Follow Up'"
-msgstr ""
-"İşlem ilk banka hesabında araya eklenecek:\n"
+msgstr "İşlem ilk banka hesabında araya eklenecek:\n"
 "'%s' ve 'İzlenecek' olarak işaretlenecek."
 
 #: src/webapp.cpp:469
@@ -8320,12 +7989,8 @@ msgid "Communication error"
 msgstr "İletişim hatası"
 
 #: src/webapp.cpp:586
-msgid ""
-"Transaction not downloaded: please close and open MMEX to try re-download "
-"transaction"
-msgstr ""
-"İşlem indirilemedi: işlemi yeniden indirmeyi denemek için lütfen MMEX'i "
-"kapatıp açın."
+msgid "Transaction not downloaded: please close and open MMEX to try re-download transaction"
+msgstr "İşlem indirilemedi: işlemi yeniden indirmeyi denemek için lütfen MMEX'i kapatıp açın."
 
 #: src/webapp.cpp:587
 msgid "Attachment download error"
@@ -8364,13 +8029,11 @@ msgid "Add Account Wizard"
 msgstr "Hesap Ekleme Sihirbazı"
 
 #: src/wizard_newaccount.cpp:35
-#, c-format
 msgid "%s models all transactions as belonging to accounts."
 msgstr ""
 
 #: src/wizard_newaccount.cpp:36
-msgid ""
-"The next pages will help you create a new account.\n"
+msgid "The next pages will help you create a new account.\n"
 "To help you get started, begin by making a list of all\n"
 "financial institutions where you hold an account."
 msgstr ""
@@ -8392,11 +8055,9 @@ msgid "Specify a descriptive name for the account."
 msgstr "Hesap için tanımlayıcı bir isim belirtin."
 
 #: src/wizard_newaccount.cpp:106
-msgid ""
-"This is generally the name of a financial institution\n"
+msgid "This is generally the name of a financial institution\n"
 "where the account is held. For example: 'ABC Bank'."
-msgstr ""
-"Bu genellikle hesabın bulunduğu bir finans\n"
+msgstr "Bu genellikle hesabın bulunduğu bir finans\n"
 "kuruluşu adıdır. Örneğin 'Finansbank'."
 
 #: src/wizard_newaccount.cpp:126
@@ -8409,29 +8070,23 @@ msgstr "Oluşturmak istediğiniz hesabın türünü belirtin:"
 
 #: src/wizard_newaccount.cpp:131
 #, fuzzy
-msgid ""
-"General bank accounts cover a wide variety of account\n"
+msgid "General bank accounts cover a wide variety of account\n"
 "types like Checking, Savings etc."
-msgstr ""
-"Genel bankacılık hesapları, çek hesapları, tasarruf ve kredi kartı\n"
+msgstr "Genel bankacılık hesapları, çek hesapları, tasarruf ve kredi kartı\n"
 "hesapları gibi hesap türlerinin geniş bir kesimini kapsar."
 
 #: src/wizard_newaccount.cpp:136
-msgid ""
-"Investment accounts are specialized accounts that only\n"
+msgid "Investment accounts are specialized accounts that only\n"
 "have stock/mutual fund investments associated with them."
-msgstr ""
-"Yatırım hesapları kendileriyle ilişkilendirilmiş hisse senedi,\n"
+msgstr "Yatırım hesapları kendileriyle ilişkilendirilmiş hisse senedi,\n"
 "yatırım fonları bulunan özelleştirilmiş hesaplardır."
 
 #: src/wizard_newaccount.cpp:141
-msgid ""
-"Term accounts are specialized bank accounts. Intended for asset\n"
+msgid "Term accounts are specialized bank accounts. Intended for asset\n"
 "type accounts such as Term Deposits and Bonds. These accounts\n"
 "can have regular money coming in and out, being outside the\n"
 "general income stream."
-msgstr ""
-"Vadeli hesaplar özel banka hesaplarıdır. Sözedilen örneğin vadeli\n"
+msgstr "Vadeli hesaplar özel banka hesaplarıdır. Sözedilen örneğin vadeli\n"
 "hesaplar veya bonolar gibi varlık türü hesaplardır. Bu hesaplara\n"
 "genel gelir akışı dışındayken düzenli para giriş ve çıkışları\n"
 "olabilir."
@@ -8442,17 +8097,14 @@ msgstr "Temel hesap para birimi ayarlanmamış."
 
 #: src/wizard_newaccount.cpp:158
 msgid "Set that first using Tools->Options menu and then add a new account."
-msgstr ""
-"Araçlar -> Seçenekler menüsünü kullanarak önce onu ayarlayın ve sonra bir "
-"yeni bir hesap ekleyin."
+msgstr "Araçlar -> Seçenekler menüsünü kullanarak önce onu ayarlayın ve sonra bir yeni bir hesap ekleyin."
 
 #: src/wizard_newdb.cpp:30
 msgid "New Database Wizard"
 msgstr "Yeni Veritabanı Sihirbazı"
 
 #: src/wizard_newdb.cpp:50
-msgid ""
-"The next pages will help you create a new database.\n"
+msgid "The next pages will help you create a new database.\n"
 "\n"
 "Your database file is stored with an extension of .mmb.\n"
 "As this file contains important financial information,\n"
@@ -8470,16 +8122,13 @@ msgid "Base Currency for account"
 msgstr "Hesap İçin Kullanılacak Para Birimi"
 
 #: src/wizard_newdb.cpp:136
-msgid ""
-"Specify the base (or default) currency to be used for the\n"
+msgid "Specify the base (or default) currency to be used for the\n"
 "database. The base currency can later be changed by using\n"
 "the options dialog. New accounts, will use this currency by\n"
 "default, and can be changed when editing account details."
-msgstr ""
-"Veritabanı için kullanılacak ana (veya varsayılan) para birimini\n"
+msgstr "Veritabanı için kullanılacak ana (veya varsayılan) para birimini\n"
 "belirtin. Temel (ana) para birimi daha sonra seçenekler menüsü\n"
-"kullanılarak değiştirilebilir. Yeni hesaplar varsayılan olarak bu para "
-"birimini\n"
+"kullanılarak değiştirilebilir. Yeni hesaplar varsayılan olarak bu para birimini\n"
 "kullanacak ve hesap ayrıntıları düzenlenirken değiştirilebilecek."
 
 #: src/wizard_newdb.cpp:153
@@ -8488,9 +8137,7 @@ msgstr "(İsteğe bağlı) Bir başlık veya adını yazın."
 
 #: src/wizard_newdb.cpp:154
 msgid "Used as a database title for displayed and printed reports."
-msgstr ""
-"Görüntülenen veya basılan raporlarda bir veritabanı başlığı olarak "
-"kullanılacak."
+msgstr "Görüntülenen veya basılan raporlarda bir veritabanı başlığı olarak kullanılacak."
 
 #: src/wizard_newdb.cpp:165
 msgid "Base Currency Not Set"
@@ -8505,12 +8152,11 @@ msgid "A new version of MMEX is available!"
 msgstr "MMEX'in yeni bir sürümü kullanılabilir."
 
 #: src/wizard_update.cpp:47
-#, c-format
 msgid "Your version is %s"
 msgstr "Sürümünüz: %s"
 
 #: src/wizard_update.cpp:48
-#, fuzzy, c-format
+#, fuzzy
 msgid "New version is %s (published at %s)"
 msgstr "Yeni Sürüm: %s"
 
@@ -8542,2361 +8188,3 @@ msgstr "MMEX Güncelleme Kontrolü"
 msgid "You already have the latest version"
 msgstr "Zaten son sürümü kullanıyorsunuz %s"
 
-#~ msgid "Specify to whom the transaction is going to or coming from "
-#~ msgstr "işlemin nereden geldiğini veya nereye gittiğini belirtiniz"
-
-#~ msgid "Currency name"
-#~ msgstr "Para Birimi Adı"
-
-#~ msgid "Web Page"
-#~ msgstr "İnternet Sayfası"
-
-#, fuzzy
-#~ msgid "Viewing transactions for current month"
-#~ msgstr "Bu aydan itibaren olan işlemleri görüntüle"
-
-#~ msgid ""
-#~ "Do not enter anything except the server name (or IP address, if you're "
-#~ "feeling lucky)"
-#~ msgstr ""
-#~ "Sunucu adı haricinde hiçbirşey girmeyin (Veya şanslı hissediyorsanız , IP "
-#~ "adresi)"
-
-#~ msgid " To: "
-#~ msgstr " Bitiş: "
-
-#~ msgid "The remote file doesn't exist"
-#~ msgstr "Uzak dosya yok"
-
-#~ msgid "A generic network error occurred"
-#~ msgstr "Genel bir ağ hatası oluştu."
-
-#~ msgid "Invalid Amount Entered "
-#~ msgstr "Geçersiz Tutar Girdiniz"
-
-#~ msgid "Unknown error"
-#~ msgstr "Bilinmeyen hata"
-
-#~ msgid "An error occurred during reconnection"
-#~ msgstr "Yeniden bağlanma sırasında bir hata oluştu."
-
-#~ msgid "Using Language : "
-#~ msgstr "Kullanılan Dil : "
-
-#, fuzzy
-#~ msgid "Percent/Year: "
-#~ msgstr "Bu Yıl"
-
-#, fuzzy
-#~| msgid "Amount"
-#~ msgid "Amount ±"
-#~ msgstr "Tutar"
-
-#~ msgid "Download in progress"
-#~ msgstr "İndiriliyor..."
-
-#, fuzzy
-#~ msgid "Contributors"
-#~ msgstr "Katkıda Bulunanlar"
-
-#~ msgid ""
-#~ "Changing all categories of: \n"
-#~ "%s to category: %s"
-#~ msgstr ""
-#~ "Tüm kategoriler değiştiriliyor: \n"
-#~ "%s /: %s"
-
-#~ msgid "Convert Encrypted DB to Non-Encrypted DB"
-#~ msgstr "Şifrelenmiş DB'yi Şifrelenmemiş DB olarak Dönüştür"
-
-#, fuzzy
-#~| msgid "Amount:"
-#~ msgid "Amount ±: "
-#~ msgstr "Tutar:"
-
-#~ msgid "Version History"
-#~ msgstr "Versiyon Tarihçesi"
-
-#~ msgid "Add CSV field"
-#~ msgstr "CSV alanı ekle"
-
-#~ msgid "Password not entered for encrypted Database.\n"
-#~ msgstr "Şifreli veritabanı için şifre girilmedi.\n"
-
-#~ msgid ""
-#~ "Please enter password for Database\n"
-#~ "\n"
-#~ "%s"
-#~ msgstr ""
-#~ "Lütfen veritabanı için şifre girin\n"
-#~ "\n"
-#~ "%s"
-
-#~ msgid "Released under the GNU GPL License"
-#~ msgstr "GNU GPL Lisansı altında geliştirilmiştir."
-
-#~ msgid "%s -> User document directory"
-#~ msgstr "%s -> Kullanıcı belge dizini"
-
-#~ msgid "Enter password for new database"
-#~ msgstr "Yeni veritabanı için şifre girin"
-
-#~ msgid "Choose database file to Save As"
-#~ msgstr "Açılacak şifrelenmiş veritabanını seçin"
-
-#, fuzzy
-#~ msgid "  and contributors from around the world"
-#~ msgstr " ve dünyanın dörtbir yanından katılımcılar."
-
-#~ msgid "CSV Field"
-#~ msgstr "CSV Alanı"
-
-#, fuzzy
-#~| msgid "Accounts: "
-#~ msgid "Accounts:"
-#~ msgstr "Hesaplar:"
-
-#~ msgid "Viewing Void transactions"
-#~ msgstr "Hükümsüz İşlemler"
-
-#~ msgid ""
-#~ "Sorry. The Database version is too old or Database password is incorrect"
-#~ msgstr "Üzgünüm. Veritabanı sürümü çok eski veya şifre hatalı"
-
-#, fuzzy
-#~ msgid "Viewing Follow-Up transactions"
-#~ msgstr "Tüm İşlemler"
-
-#~ msgid "Choose MM.NET CSV data file to import"
-#~ msgstr "İçeri aktarım için MM.NET CSV dosyası seçiniz"
-
-#~ msgid "Viewing All except Reconciled Transactions"
-#~ msgstr "Onaylanmış İşlemler Dışındakiler"
-
-#, fuzzy
-#~ msgid "All files"
-#~ msgstr "Tüm Zamanlar"
-
-#~ msgid "Developers"
-#~ msgstr "Geliştiriciler"
-
-#~ msgid "Bug reports"
-#~ msgstr "Hata Raporları"
-
-#, fuzzy
-#~ msgid "Viewing transactions for last 3 months"
-#~ msgstr "Son 3 ay"
-
-#, fuzzy
-#~ msgid "Importing CSV MM.NET"
-#~ msgstr "MM.NET CSV'den"
-
-#~ msgid ""
-#~ "Directory of language files does not exist:\n"
-#~ "%s"
-#~ msgstr ""
-#~ "Dil dosyaları dizini yok:\n"
-#~ "%s"
-
-#~ msgid "Artwork"
-#~ msgstr "Görseller"
-
-#, fuzzy
-#~ msgid "Viewing transactions for last month"
-#~ msgstr "Son aydan itibaren olan işlemleri görüntüle"
-
-#~ msgid "An error occurred during negotiation"
-#~ msgstr "Görüşme sırasında bir hata oluştu"
-
-#~ msgid "Visit MMEX Forum"
-#~ msgstr "MMEX Forumu ziyaret edin"
-
-#~ msgid "Check For Updates"
-#~ msgstr "Güncelleme Denetimi"
-
-#, fuzzy
-#~ msgid "Viewing transactions for last 90 days"
-#~ msgstr "Son 30 gün"
-
-#, fuzzy
-#~ msgid "No account available for export!"
-#~ msgstr "Kullanılabilir Hiçbir Hesap Yok! Dışarı Aktarım Gerçekleştirilemez!"
-
-#, fuzzy
-#~ msgid "Payee Added: %s"
-#~ msgstr "Alacaklı "
-
-#~ msgid "Account List"
-#~ msgstr "Hesap Listesi"
-
-#, fuzzy
-#~ msgid "Viewing transactions for last 30 days"
-#~ msgstr "Son 30 gün"
-
-#~ msgid "Quit this program"
-#~ msgstr "Programı Kapat"
-
-#, fuzzy
-#~ msgid "Account name: %s"
-#~ msgstr "Hesap Adı"
-
-#~ msgid "QIF Files"
-#~ msgstr "QIF Dosyaları"
-
-#~ msgid "Change the name of an existing payee"
-#~ msgstr "Varolan Bir Alacaklı Adını Değiştir"
-
-#~ msgid "CSV Export"
-#~ msgstr "CSV'ye "
-
-#~ msgid ""
-#~ "Delete the selected payee. The payee cannot be used by an existing "
-#~ "transaction."
-#~ msgstr ""
-#~ "Seçilen alacaklıyı sil. Bu alacaklı varolan bir işlem tarafından "
-#~ "kullanılamayacak."
-
-#~ msgid ""
-#~ "Select the currently selected payee as the selected payee for the "
-#~ "transaction"
-#~ msgstr "Etkin alacaklıyı bu işlem için seçilmiş alacaklı olarak kaydet"
-
-#~ msgid "E&xit\tAlt-X"
-#~ msgstr "Çı&kış\tAlt-X"
-
-#~ msgid "Conversion to Base Rate"
-#~ msgstr "Taban"
-
-#, fuzzy
-#~ msgid "Clear the settings for the allocated position"
-#~ msgstr "İşlemin durumunu belirtiniz"
-
-#, fuzzy
-#~ msgid "to category: "
-#~ msgstr "Kategori: \n"
-
-#, fuzzy
-#~ msgid "&Select Category"
-#~ msgstr "Kategori Seçiniz"
-
-#, fuzzy
-#~ msgid "No account available for import."
-#~ msgstr "Kullanılabilir Hiçbir Hesap Yok! Dışarı Aktarım Gerçekleştirilemez!"
-
-#, fuzzy
-#~ msgid "Transactions imported from QIF: %ld"
-#~ msgstr "QIF'ten aktarılan işlemler"
-
-#~ msgid "Next"
-#~ msgstr "İleri"
-
-#, fuzzy
-#~ msgid "Transaction Statistics for %i - %i"
-#~ msgstr "İşlem Adetleri   "
-
-#~ msgid "Specify the language to use"
-#~ msgstr "Kullanılacak Dili belirtin"
-
-#~ msgid "View File Contents"
-#~ msgstr "Dosya İçeriğini Görüntüle"
-
-#~ msgid "Daily Cash Flow - Specific Accounts"
-#~ msgstr "Günlük Nakit Akışı (Belirli Hesaplar)"
-
-#~ msgid "New/Edit Transaction"
-#~ msgstr "İşlem Giriş / Güncelleme"
-
-#~ msgid "Import from CSV"
-#~ msgstr "CVS'ten"
-
-#, fuzzy
-#~ msgid "Scale should be greater than zero"
-#~ msgstr "Taban değer 0.0'dan büyük olmalı"
-
-#~ msgid "Today's Date: %s"
-#~ msgstr "Bugünün Tarihi : %s"
-
-#, fuzzy
-#~ msgid "Base Conversion Rate should be positive"
-#~ msgstr "Taban değer 0.0'dan büyük olmalı"
-
-#~ msgid "Total Balance on all Accounts"
-#~ msgstr "Tüm Hesaplardaki Toplam Bakiye"
-
-#, fuzzy
-#~ msgid "Custom Report: "
-#~ msgstr "Özel SQL Raporu"
-
-#, fuzzy
-#~ msgid "Stocks Total:"
-#~ msgstr "Toplam:"
-
-#~ msgid "Name of Currency to Add"
-#~ msgstr "Eklenecek Para Birimi"
-
-#, fuzzy
-#~ msgid "Choose account to import to:"
-#~ msgstr "Üzerine Aktarım Yapılacak Hesabı Seçiniz:"
-
-#~ msgid "Add Currency"
-#~ msgstr "Para Birimi Ekle"
-
-#~ msgid "Number of %s:"
-#~ msgstr "%s Sayısı"
-
-#, fuzzy
-#~ msgid "Attempt to Add a currency which already exists!"
-#~ msgstr "Para Birimi tanımlı!"
-
-#~ msgid "Found no protocol which can get this URL"
-#~ msgstr "Bu URL'yi sağlayabilecek protokol bulunamadı"
-
-#, fuzzy
-#~ msgid "View Un-Reconciled"
-#~ msgstr "Onaylanmamış Görüntüle"
-
-#~ msgid "Syntax error in the URL string"
-#~ msgstr "URL dizesinde yazım hatası"
-
-#, fuzzy
-#~ msgid "Please deactivate Transaction Filter"
-#~ msgstr "İşlem Filtrele"
-
-#, fuzzy
-#~ msgid "Transactions imported from CSV"
-#~ msgstr "QIF'ten aktarılan işlemler"
-
-#, fuzzy
-#~ msgid "Where the Money Goes - Last Calendar Month"
-#~ msgstr "Son Takvim Ayı"
-
-#~ msgid "Connection error"
-#~ msgstr "Bağlantı hatası"
-
-#, fuzzy
-#~ msgid "Where the Money Goes - Current Month"
-#~ msgstr "Param Nereye Gidiyor"
-
-#~ msgid " Edit Recurring Transaction"
-#~ msgstr "Yinelenen İşlemi Düzenle"
-
-#, fuzzy
-#~ msgid "Where the Money Goes - 30 Days"
-#~ msgstr "Param Nereye Gidiyor"
-
-#~ msgid "New/Edit Asset"
-#~ msgstr "Varlık Giriş / Güncelleme"
-
-#, fuzzy
-#~ msgid "Where the Money Goes - Last Year"
-#~ msgstr "Param Nereye Gidiyor"
-
-#~ msgid " missing date, skipping."
-#~ msgstr "eksik tarih, yok sayılıyor."
-
-#, fuzzy
-#~ msgid "Where the Money Goes - Current Year"
-#~ msgstr "Param Nereye Gidiyor"
-
-#~ msgid "Due Date"
-#~ msgstr "Vade Tarihi"
-
-#, fuzzy
-#~ msgid "Where the Money Goes - Last Financial Year"
-#~ msgstr "Yüksek Tutarlı İşlemler (Son 30 Gün)"
-
-#~ msgid "Set 'Auto Execute' without user acknowlegement."
-#~ msgstr "'Otomatik Kaydet'i kullanıcı onaysız ayarla"
-
-#, fuzzy
-#~ msgid "Where the Money Goes - Current Financial Year"
-#~ msgstr "Bu Yıl"
-
-#~ msgid "Set 'Auto Execute' with manual user acknowledgement."
-#~ msgstr "'Otomatik Kaydet'i kullanıcı onaylı ayarla"
-
-#, fuzzy
-#~ msgid "Where the Money Comes From - Last Calendar Month"
-#~ msgstr "Para Nereden Akıyor"
-
-#~ msgid " missing payee, skipping."
-#~ msgstr "eksik alacaklı, yok sayılıyor."
-
-#, fuzzy
-#~ msgid "Where the Money Comes From - Current Month"
-#~ msgstr "Para Nereden Akıyor"
-
-#~ msgid "Pay Date"
-#~ msgstr "Ödeme Tarihi"
-
-#, fuzzy
-#~ msgid "Where the Money Comes From - 30 Days"
-#~ msgstr "Para Nereden Akıyor"
-
-#~ msgid "Specify the number of times this series repeats."
-#~ msgstr "Bu işlemin kaç kez yineleneceğini belirtin"
-
-#, fuzzy
-#~ msgid "Where the Money Comes From - Last Year"
-#~ msgstr "Para Nereden Akıyor"
-
-#~ msgid "Leave blank when not active."
-#~ msgstr "Etkinleştirilmediğinde boş bırakın."
-
-#, fuzzy
-#~ msgid "Where the Money Comes From - Current Year"
-#~ msgstr "Para Nereden Akıyor"
-
-#~ msgid " missing transaction type, skipping."
-#~ msgstr " eksik hareket tipi, yok sayılıyor."
-
-#, fuzzy
-#~ msgid "Where the Money Comes From - Last Financial Year"
-#~ msgstr "Para Nereden Akıyor"
-
-#~ msgid "Enter the name of the category to add or edit here"
-#~ msgstr "Buraya Eklemek/Düzenlemek istediğiniz kategori adını giriniz"
-
-#, fuzzy
-#~ msgid "Where the Money Comes From - Current Financial Year"
-#~ msgstr "Para Nereden Akıyor"
-
-#~ msgid "Currency with same name exists"
-#~ msgstr "Aynı isimli para birimi var."
-
-#, fuzzy
-#~ msgid "Categories - Last Calendar Month"
-#~ msgstr "Son Takvim Ayı"
-
-#~ msgid "&Update"
-#~ msgstr "&Güncelle"
-
-#, fuzzy
-#~ msgid "Categories - Current Month"
-#~ msgstr "Şimdiki Ayı Görüntüle"
-
-#~ msgid " missing amount, skipping."
-#~ msgstr "eksik tutar, yok sayılıyor."
-
-#, fuzzy
-#~ msgid "Categories - Last Year"
-#~ msgstr "Yüksek Tutarlı İşlemler (Son 30 Gün)"
-
-#~ msgid "Rename group"
-#~ msgstr "Gurubu yeniden adlandır"
-
-#, fuzzy
-#~ msgid "Categories - Current Year"
-#~ msgstr "Bu Yıl"
-
-#~ msgid "Semicolon"
-#~ msgstr "Noktalı virgül"
-
-#, fuzzy
-#~ msgid "Categories - Last Financial Year"
-#~ msgstr "Yüksek Tutarlı İşlemler (Son 30 Gün)"
-
-#~ msgid "Comma"
-#~ msgstr "Virgül"
-
-#, fuzzy
-#~ msgid "Payees - Last Calendar Month"
-#~ msgstr "Son Takvim Ayı"
-
-#, fuzzy
-#~ msgid " check delimiters. Possible amount error, skipping."
-#~ msgstr "eksik tutar, yok sayılıyor."
-
-#, fuzzy
-#~ msgid "Payees - Current Month"
-#~ msgstr "Şimdiki Ayı Görüntüle"
-
-#~ msgid "Transactions imported from CSV: "
-#~ msgstr "CSV'den alınan işlemler:"
-
-#, fuzzy
-#~ msgid "Payees - Last 30 Days"
-#~ msgstr "Yüksek Tutarlı İşlemler (Son 30 Gün)"
-
-#~ msgid "Universal CSV Export"
-#~ msgstr "Evrensel CSV Verme"
-
-#, fuzzy
-#~ msgid "Payees - Last Year"
-#~ msgstr "Yüksek Tutarlı İşlemler (Son 30 Gün)"
-
-#~ msgid ""
-#~ "Incorrect fields specified for CSV export! Requires at least Date and "
-#~ "Amount."
-#~ msgstr ""
-#~ "CVS dışa aktarımı için hatalı alanlar belirtilmiş! En azından Tarih, "
-#~ "Tutar ve Alacaklı alanı gerekiyor."
-
-#, fuzzy
-#~ msgid "Payees - Current Year"
-#~ msgstr "Bu Yıl"
-
-#, fuzzy
-#~ msgid " has excessive items. Check delimiters in numbers, skipping."
-#~ msgstr "eksik tutar, yok sayılıyor."
-
-#, fuzzy
-#~ msgid "Payees - Last Financial Year"
-#~ msgstr "Yüksek Tutarlı İşlemler (Son 30 Gün)"
-
-#~ msgid ""
-#~ "Attempt to delete a currency being used by an account\n"
-#~ " or as the base currency."
-#~ msgstr ""
-#~ "Bir hesap tarafından kullanılan bir para birimini\n"
-#~ " veya temel birimini silmeye çalışma"
-
-#, fuzzy
-#~ msgid "Payees - Current Financial Year"
-#~ msgstr "Bu Yıl"
-
-#~ msgid "Updates source:"
-#~ msgstr "Güncelleme kaynağı:"
-
-#, fuzzy
-#~ msgid "Income vs Expenses - Last Calendar Month"
-#~ msgstr "Gelir & Gider: Bu Ay"
-
-#~ msgid "Important note"
-#~ msgstr "Önemli not"
-
-#, fuzzy
-#~ msgid "Income vs Expenses - 30 Days"
-#~ msgstr "Gelir & Gider - Tüm Zamanlar"
-
-#~ msgid ""
-#~ "one of the following fields: date, payee, transaction type, amount "
-#~ "strings is empty, skipping"
-#~ msgstr "tarih, alacaklı,hareket tipi veya tutar alanı boş, yok sayılıyor"
-
-#, fuzzy
-#~ msgid "Income vs Expenses - Last Year"
-#~ msgstr "Gelir & Gider - Tüm Zamanlar"
-
-#, fuzzy
-#~ msgid "Income vs Expenses - Current Year"
-#~ msgstr "Gelir & Gider: Bu Ay"
-
-#, fuzzy
-#~ msgid "Income vs Expenses - Last Financial Year"
-#~ msgstr "Yıllık Gelir & Gider : "
-
-#, fuzzy
-#~ msgid "Income vs Expenses - Current Financial Year"
-#~ msgstr "Yıllık Gelir & Gider : "
-
-#~ msgid " unrecognized transaction type, skipping."
-#~ msgstr " tanınmayan hareket tipi, yok sayılıyor"
-
-#~ msgid "Income vs Expenses - All Time"
-#~ msgstr "Gelir & Gider - Tüm Zamanlar"
-
-#~ msgid "Selection can be made by using Search button."
-#~ msgstr "Arama düğmesi kullanılarak seçim yapılabilir."
-
-#, fuzzy
-#~ msgid "Where the Money Goes - Current Month to Date"
-#~ msgstr "Param Nereye Gidiyor"
-
-#~ msgid "Include the categories in the Budget Category Summary"
-#~ msgstr "Bütçe Kategori Özetinde kategorileri içer."
-
-#, fuzzy
-#~ msgid "Where the Money Comes From - Current Month to Date"
-#~ msgstr "Para Nereden Akıyor"
-
-#~ msgid "Budget Summary: Include &Categories"
-#~ msgstr "Bütçe Özeti: &Kategorileri İçer"
-
-#, fuzzy
-#~ msgid "Category Report"
-#~ msgstr "Kategori"
-
-#~ msgid ""
-#~ "Please verify that the CSV file from MMEX.NET contains only one account!"
-#~ msgstr ""
-#~ "Lütfen MMEX.NET'ten gelen CSV dosyasının tek hesap içerdiğini "
-#~ "doğrulayınız!"
-
-#, fuzzy
-#~ msgid "Payees - Current Month to Date"
-#~ msgstr "Şimdiki Ayı Görüntüle"
-
-#~ msgid "Size before"
-#~ msgstr "Önceki boyut"
-
-#, fuzzy
-#~ msgid "Income vs Expenses - Current Month to Date"
-#~ msgstr "Gelir & Gider: Bu Ay"
-
-#, fuzzy
-#~ msgid " Filter Settings "
-#~ msgstr "Görünüm Ayarları"
-
-#~ msgid "Choose the new type for account: %s"
-#~ msgstr "Hesap için yeni tür seçin: %s"
-
-#, fuzzy
-#~ msgid "Income vs Expenses for Financial Year: "
-#~ msgstr "Yıllık Gelir & Gider : "
-
-#~ msgid " missing category, skipping."
-#~ msgstr " eksik kategori, atlanıyor."
-
-#, fuzzy
-#~ msgid "Income vs Expenses for Year: %d"
-#~ msgstr "Yıllık Gelir & Gider : "
-
-#~ msgid "Term Account"
-#~ msgstr "Vadeli Hesap"
-
-#, fuzzy
-#~ msgid "Income vs Expenses - Last 12 months"
-#~ msgstr "Gelir & Gider: Bu Ay"
-
-#~ msgid "Grand Total: "
-#~ msgstr "Genel Toplam:"
-
-#, fuzzy
-#~ msgid "Payees Total: "
-#~ msgstr "Kategori "
-
-#~ msgid "Total Income: "
-#~ msgstr "Toplam Gelirler:"
-
-#, fuzzy
-#~ msgid "View Last 365 days"
-#~ msgstr "30 Günü Görüntüle"
-
-#~ msgid ""
-#~ " One of the following fields: date, payee, transaction type, amount, "
-#~ "category strings is empty, skipping"
-#~ msgstr ""
-#~ "Tarih, Alacaklı, İşlem Tipi, Tutar veya kategori alanı boş, yok sayılıyor"
-
-#, fuzzy
-#~ msgid "MMEX Account View: Transaction Filter"
-#~ msgstr "İşlem Filtrele"
-
-#~ msgid "Categories - %s"
-#~ msgstr "Kategoriler -%s"
-
-#~ msgid "About "
-#~ msgstr "Hakkında"
-
-#~ msgid " Split Category Details"
-#~ msgstr "Parçalı Kategori Ayrıntıları"
-
-#~ msgid "Viewing All Budget Categories"
-#~ msgstr "Tüm Bütçe Kategorilerini Görüntüle"
-
-#~ msgid "Purchase Price"
-#~ msgstr "Alış Fiyatı"
-
-#, fuzzy
-#~ msgid "Deletion completed"
-#~ msgstr "Kategori boş olamaz"
-
-#~ msgid " invalid date, skipping."
-#~ msgstr " geçersiz tarih, yok sayılıyor."
-
-#, fuzzy
-#~ msgid "to "
-#~ msgstr " Bitiş: "
-
-#~ msgid "Number of Shares"
-#~ msgstr "Adet"
-
-#, fuzzy
-#~ msgid "Please deactivate: "
-#~ msgstr "Lütfen Bekleyiniz"
-
-#~ msgid "Unit Price"
-#~ msgstr "Birim Fiyat"
-
-#, fuzzy
-#~ msgid "&Duplicate Transaction"
-#~ msgstr "Eşkopya İşlemler"
-
-#~ msgid "Share Symbol"
-#~ msgstr "Hisse Senedi Simgesi"
-
-#, fuzzy
-#~ msgid "Categories - Current Month to Date"
-#~ msgstr "Şimdiki Ayı Görüntüle"
-
-#~ msgid "Filter Transactions"
-#~ msgstr "İşlemleri Filtrele"
-
-#, fuzzy
-#~ msgid "Import &QIF File"
-#~ msgstr "İçeri Aktar"
-
-#~ msgid "Curr. total value"
-#~ msgstr "Geç. toplam value"
-
-#~ msgid "Init Balance "
-#~ msgstr "Başlangıç Bakiyesi"
-
-#~ msgid "Your database file is stored with an extension of .mmb."
-#~ msgstr "Veritabanı dosyanız .mmb uzantısıyla kaydedilir."
-
-#, fuzzy
-#~ msgid "Select accounts"
-#~ msgstr "Hesap Seçiniz"
-
-#~ msgid "The next pages will help you create a new database."
-#~ msgstr ""
-#~ "İzleyen sayfalar yeni bir veritabanı yaratmak için size yardımcı olacak."
-
-#, fuzzy
-#~ msgid "Transactions imported from QIF"
-#~ msgstr "QIF'ten aktarılan işlemler"
-
-#~ msgid "Options Dialog"
-#~ msgstr "Seçenekler"
-
-#, fuzzy
-#~ msgid "to account "
-#~ msgstr " tutar "
-
-#~ msgid "Universal CSV Dialog"
-#~ msgstr "Evrensel CSV Penceresi"
-
-#~ msgid " account name "
-#~ msgstr " hesap adı "
-
-#, fuzzy
-#~ msgid "Reoccuring Transaction Creation"
-#~ msgstr "Tekrarlayan İşlem Detayı"
-
-#~ msgid "Transaction Type is empty"
-#~ msgstr "İşlem Tipi Boş"
-
-#, fuzzy
-#~ msgid "Note: Split transactions not set"
-#~ msgstr "Vadesi Yaklaşan İşlemler"
-
-#~ msgid "Category is empty, marking transaction as Unknown category"
-#~ msgstr "Kategori boş, işlem kaydı Billinmiyor kategorisine imleniyor "
-
-#, fuzzy
-#~ msgid "Tools -> Options"
-#~ msgstr "Seçenekler"
-
-#~ msgid ""
-#~ "Skipping QIF transaction because date, type, amount is empty/invalid, "
-#~ "transaction skipped had "
-#~ msgstr ""
-#~ "QIF işlemi yok sayılıyor çünkü tarih,tip,tutar boş/geçersiz, hareket yok "
-#~ "sayıldı"
-
-#, fuzzy
-#~ msgid "New Repeating Transaction"
-#~ msgstr "Tekrarlayan İşlem Giriş / Güncelleme"
-
-#~ msgid " payee "
-#~ msgstr " alacaklı"
-
-#, fuzzy
-#~ msgid "Organize attachments of this repeating transaction"
-#~ msgstr "Bu işlemin tutarını belirtiniz"
-
-#~ msgid " type "
-#~ msgstr " tip "
-
-#, fuzzy
-#~ msgid "Specify the Account that will own the repeating transaction"
-#~ msgstr "Bu işlemin tutarını belirtiniz"
-
-#~ msgid " amount "
-#~ msgstr " tutar "
-
-#, fuzzy
-#~ msgid "This is generally the name of a financial institution"
-#~ msgstr "Finans Kuruluşu için kontak bilgisi giriniz."
-
-#~ msgid " date "
-#~ msgstr " tarih "
-
-#, fuzzy
-#~ msgid "Records found in repeating transactions: %i"
-#~ msgstr "Tekrarlayan İşlemler"
-
-#, fuzzy
-#~ msgid "Total Imported : "
-#~ msgstr "Toplam Tutar: "
-
-#~ msgid "Next Due Date"
-#~ msgstr "Sonraki Vade Sonu"
-
-#~ msgid "From: "
-#~ msgstr "Başlangıç:"
-
-#~ msgid "Next Occurrence"
-#~ msgstr "Sonraki "
-
-#, fuzzy
-#~ msgid "to: "
-#~ msgstr " Bitiş: "
-
-#, fuzzy
-#~ msgid "Investment accounts are specialized accounts that only"
-#~ msgstr ""
-#~ "\n"
-#~ "Yatırım hesapları sadece Menkul Kıymetler / Aracı Kurum yatırımlarını \n"
-#~ "ilişkilendirebileceğiniz özelleştirilmiş hesaplardır. \n"
-
-#~ msgid "Stock Investments"
-#~ msgstr "Menkul Kıymetler"
-
-#, fuzzy
-#~ msgid "New version is: %s"
-#~ msgstr "Versiyon: "
-
-#~ msgid "Entry "
-#~ msgstr "Giriş"
-
-#~ msgid "Specify where the transaction is going to or coming from "
-#~ msgstr "İşlemin nereden geldiğini veya nereye gittiğini belirtiniz"
-
-#, fuzzy
-#~ msgid "Find Payee: "
-#~ msgstr "Alacaklı "
-
-#~ msgid "Select To Acct"
-#~ msgstr "Gönderilecek Hesabı Seçiniz"
-
-#, fuzzy
-#~ msgid "Filter Payees: "
-#~ msgstr "Alacaklı "
-
-#, fuzzy
-#~ msgid "Stock Investment Page Selection"
-#~ msgstr "Menkul Kıymet Yatırımı Sil"
-
-#, fuzzy
-#~ msgid "Add"
-#~ msgstr "Ekle"
-
-#, fuzzy
-#~ msgid "From Account"
-#~ msgstr "Aktarıldığı Hesap"
-
-#~ msgid "Num Shares"
-#~ msgstr "Adet"
-
-#, fuzzy
-#~ msgid "New transactions found on web app"
-#~ msgstr "Son 30 gün"
-
-#, fuzzy
-#~ msgid "Select To Account-"
-#~ msgstr "Alıcı Hesap"
-
-#~ msgid "Invalid Value "
-#~ msgstr "Geçersiz Değer"
-
-#, fuzzy
-#~ msgid "for Account: "
-#~ msgstr "Aktarılacak Hesap"
-
-#~ msgid "No Account available! Cannot Import! Create a new account first!"
-#~ msgstr ""
-#~ "Kullanılabilir hiçbir hesap yok. İçeri Aktarım yapılamadı. Önce yeni bir "
-#~ "hesap oluşturunuz!"
-
-#~ msgid "Category cannot be empty"
-#~ msgstr "Kategori boş olamaz"
-
-#, fuzzy
-#~ msgid "Expand Bank Accounts on navigation tree"
-#~ msgstr "Hesaplarım"
-
-#, fuzzy
-#~ msgid "From "
-#~ msgstr "Başlangıç:"
-
-#, fuzzy
-#~ msgid "Stock Accounts"
-#~ msgstr "Hesaplarım"
-
-#, fuzzy
-#~ msgid "Source Payee"
-#~ msgstr "Alacaklı Seçiniz"
-
-#~ msgid "Set"
-#~ msgstr "Ayarla"
-
-#, fuzzy
-#~ msgid "to payee: "
-#~ msgstr " alacaklı"
-
-#~ msgid "CSV Import"
-#~ msgstr "CVS'tenr"
-
-#, fuzzy
-#~ msgid "Create a new SQL report"
-#~ msgstr "Özel SQL Raporu"
-
-#~ msgid "Invalid commission entered "
-#~ msgstr "Geçersiz komisyon girdiniz"
-
-#, fuzzy
-#~ msgid "Edit..."
-#~ msgstr "Düzenle"
-
-#, fuzzy
-#~ msgid "Load Template"
-#~ msgstr "Şablon Çağır"
-
-#, fuzzy
-#~ msgid "Edit an existing SQL report"
-#~ msgstr "Varolan kategori adını düzenle"
-
-#, fuzzy
-#~ msgid "&Open"
-#~ msgstr "Açık"
-
-#, fuzzy
-#~ msgid "Delete..."
-#~ msgstr "Sil"
-
-#~ msgid ""
-#~ "Total Lines : %d \n"
-#~ "Total Imported : %d\n"
-#~ "\n"
-#~ "Log file written to : %s.\n"
-#~ "\n"
-#~ "Imported transactions have been flagged so you can review them. "
-#~ msgstr ""
-#~ "Toplam Satır : %d \n"
-#~ " Aktarılan : %d\n"
-#~ "\n"
-#~ "Log Dosyası : %s.\n"
-#~ "\n"
-#~ "Aktarılan hareketler işaretlendi, bu sayede inceleyebilirsiniz."
-
-#, fuzzy
-#~ msgid "Sub-Category"
-#~ msgstr "AltKategori"
-
-#, fuzzy
-#~ msgid "Choose Universal CSV format file to save"
-#~ msgstr "Aktarmak için CSV dosyası seçiniz"
-
-#, fuzzy
-#~ msgid "Type: "
-#~ msgstr "Tip: "
-
-#, fuzzy
-#~ msgid "Month: "
-#~ msgstr "Ay"
-
-#, fuzzy
-#~ msgid "Notes: "
-#~ msgstr "Not: \n"
-
-#, fuzzy
-#~ msgid "Year: "
-#~ msgstr "Yıllık"
-
-#~ msgid " starts"
-#~ msgstr "Başlar"
-
-#~ msgid "Delete Transaction"
-#~ msgstr "İşlem Sil"
-
-#~ msgid "Category "
-#~ msgstr "Kategori"
-
-#, fuzzy
-#~ msgid "All Others"
-#~ msgstr "Diğerleri"
-
-#, fuzzy
-#~ msgid "App"
-#~ msgstr "Nis"
-
-#~ msgid "Rate of Change in Value"
-#~ msgstr "Değerdeki Değişim Oranı"
-
-#, fuzzy
-#~ msgid "Income......."
-#~ msgstr "Gelir"
-
-#, fuzzy
-#~ msgid "Home Page Expansion Options"
-#~ msgstr "Ana Sayfa"
-
-#, fuzzy
-#~ msgid "Expenses..."
-#~ msgstr "Gider"
-
-#~ msgid ""
-#~ "The next pages will help you create a new database.\n"
-#~ "\n"
-#~ "Your database file is stored with an extension of .mmb.\n"
-#~ "\n"
-#~ "Make sure to make backups of this file \n"
-#~ "and to store it carefully as it contains important \n"
-#~ "financial information."
-#~ msgstr ""
-#~ "İlerleyen ekranlar yeni veri tabanı oluşturmanıza yardımcı olacaktır.\n"
-#~ "\n"
-#~ "Veritabanı dosyanız .mmb uzantısı ile kaydedilecektir. \n"
-#~ "\n"
-#~ "Bu dosyayı sık sık yedeklemeyi unutmayın. \n"
-#~ "Ve dikkatli saklayınız çünkü size ait önemli finansal\n"
-#~ "bilgiler içermektedir."
-
-#~ msgid "Opening Database File && Verifying Integrity"
-#~ msgstr "Veritabanı Dosyası Açılıyor && Bütünlüğü Doğrulanıyor"
-
-#, fuzzy
-#~ msgid "New update available: "
-#~ msgstr "Yeni Güncelleme Bulundu!"
-
-#~ msgid "No database!"
-#~ msgstr "Veritabanı Yok!"
-
-#, fuzzy
-#~ msgid "Line: %i invalid amount, skipping."
-#~ msgstr " geçersiz tutar, yok sayılıyor."
-
-#~ msgid "Incorrect XML data (#1)!"
-#~ msgstr "XML veri hatalı (#1)!"
-
-#, fuzzy
-#~ msgid "Cannot process these QIF Account Types yet."
-#~ msgstr "henüz QIF Hesap Tipleri işlenemiyor "
-
-#~ msgid "Incorrect XML data (#2)!"
-#~ msgstr "XML veri hatalı  (#2)!"
-
-#~ msgid ""
-#~ "(Optional)Specify your name. Mainly used for reporting and in printing "
-#~ "reports.\n"
-#~ msgstr ""
-#~ "(Opsiyonel) İsminizi giriniz. Çoğunlukla raporlar ve çıktılar için "
-#~ "kullanılır. \n"
-
-#~ msgid "Incorrect XML data (#3)!"
-#~ msgstr "XML veri hatalı  (#3)!"
-
-#, fuzzy
-#~ msgid "Date is missing"
-#~ msgstr "Tarih boş, "
-
-#~ msgid "Incorrect XML data (#4)!"
-#~ msgstr "XML veri hatalı  (#4)!"
-
-#, fuzzy
-#~ msgid "Total number of lines: %i"
-#~ msgstr "Toplam Varlıklar:"
-
-#~ msgid "Incorrect XML data (#5)!"
-#~ msgstr "XML veri hatalı  (#5)!"
-
-#, fuzzy
-#~ msgid "Choose Account to Import to"
-#~ msgstr "Üzerine Aktarım Yapılacak Hesabı Seçiniz:"
-
-#~ msgid "Incorrect XML data (#6)!"
-#~ msgstr "XML veri hatalı  (#6)!"
-
-#~ msgid ""
-#~ "To import QIF files correctly, the date option set in MMEX \n"
-#~ " must match the format of the date in the QIF file.\n"
-#~ "Are you are sure you want to proceed with the import?"
-#~ msgstr ""
-#~ "QIF dosyalarını hatasız olarak aktarmak için, MMEX'te \n"
-#~ "belirtilmiş tarih formatı, QIF dosyasındaki tarih formatı ile "
-#~ "uyuşmalıdır.\n"
-#~ "Aktarıma devam etmek istediğinizden emin misiniz ?\" "
-
-#~ msgid "Incorrect XML data (#7)!"
-#~ msgstr "XML veri hatalı (#7)!"
-
-#, fuzzy
-#~ msgid "Repeat Transaction - Auto Execution Checking"
-#~ msgstr "Tekrarlayan İşlem Detayı"
-
-#~ msgid "Transaction View Options"
-#~ msgstr "İşlem Görüntüleme Seçenekleri"
-
-#, fuzzy
-#~ msgid "Current &View"
-#~ msgstr "Etkin Görünüm"
-
-#~ msgid "Font Size Options"
-#~ msgstr "Font Boyutu Seçenekleri"
-
-#~ msgid "Setup page printing options"
-#~ msgstr "Sayfa yazdırma seçeneklerini düzenle"
-
-#, fuzzy
-#~ msgid ""
-#~ "Enable online currency update \n"
-#~ "(Get data from European Central Bank)"
-#~ msgstr ""
-#~ "Çevrimiçi döviz kuru güncellemeyi etkileştir (Veri European Central "
-#~ "Bank'tan alınacaktır)"
-
-#~ msgid "Adding payee "
-#~ msgstr "Alacaklı Ekliyor"
-
-#~ msgid "Date  "
-#~ msgstr "Tarih"
-
-#~ msgid "Nav Tree"
-#~ msgstr "Control Paneli"
-
-#~ msgid "Accessing Database"
-#~ msgstr "Veritabanına Erişiyor"
-
-#~ msgid "List Row 1"
-#~ msgstr "Liste Satırı 1"
-
-#~ msgid "View Reconciled Transactions"
-#~ msgstr "Onaylanmış İşlemler"
-
-#~ msgid "Specify the color for the list row 0"
-#~ msgstr "Liste satır 0 rengi"
-
-#~ msgid "View Un-Reconciled Transactions"
-#~ msgstr "Onaylanmamış İşlemler"
-
-#, fuzzy
-#~ msgid ""
-#~ "When not selected, the payee default is set to the most frequently used "
-#~ "payee for the current account."
-#~ msgstr "Etkin alacaklıyı bu işlem için seçilmiş alacaklı olarak kaydet"
-
-#~ msgid "View All Except Reconciled Transactions"
-#~ msgstr "Onaylanmış İşlemler Dışındakiler"
-
-#~ msgid "Specify the color for the list Border"
-#~ msgstr "Liste çerçeve rengi belirtiniz"
-
-#~ msgid "View Void Transactions"
-#~ msgstr "Hükümsüz İşlemler"
-
-#~ msgid "Restore Default Colors"
-#~ msgstr "Varsayılan Renkleri Geri Yükle"
-
-#, fuzzy
-#~ msgid "View \"Follow Up\" Transactions"
-#~ msgstr "Tüm İşlemler"
-
-#~ msgid "Specify the color for future transactions"
-#~ msgstr "Gelecekteki işlemler için renk seçiniz"
-
-#~ msgid "View Duplicate Transactions"
-#~ msgstr "Eşkopya İşlemler"
-
-#, fuzzy
-#~ msgid "&New Series"
-#~ msgstr "Yeni Seri"
-
-#, fuzzy
-#~ msgid "View Transactions for today"
-#~ msgstr "Son 30 gün"
-
-#, fuzzy
-#~ msgid "Import/Export"
-#~ msgstr "İçeri/Dışarı Aktarım Seçenekleri"
-
-#, fuzzy
-#~ msgid "View Transactions for current month"
-#~ msgstr "Bu aydan itibaren olan işlemleri görüntüle"
-
-#, fuzzy
-#~ msgid "Payee:"
-#~ msgstr "Alacaklı "
-
-#, fuzzy
-#~ msgid "View Transactions for last 30 days"
-#~ msgstr "Son 30 gün"
-
-#, fuzzy
-#~ msgid "Date Range:"
-#~ msgstr "Tarih Aralığı"
-
-#, fuzzy
-#~ msgid "View Transactions for last 90 days"
-#~ msgstr "Son 30 gün"
-
-#, fuzzy
-#~ msgid "&Edit Series"
-#~ msgstr "Seri Düzenle"
-
-#, fuzzy
-#~ msgid "View Transactions for last month"
-#~ msgstr "Son aydan itibaren olan işlemleri görüntüle"
-
-#, fuzzy
-#~ msgid "Status:"
-#~ msgstr "Durum"
-
-#, fuzzy
-#~ msgid "View Transactions for last 3 months"
-#~ msgstr "Son 3 ay"
-
-#~ msgid "View UnReconciled"
-#~ msgstr "Onaylanmamış Görüntüle"
-
-#~ msgid "Viewing all transactions"
-#~ msgstr "Tüm İşlemler"
-
-#, fuzzy
-#~ msgid "View Not-Reconciled"
-#~ msgstr "Onaylanmış Görüntüle"
-
-#~ msgid "Viewing Reconciled transactions"
-#~ msgstr "Onaylanmış İşlemler"
-
-#, fuzzy
-#~ msgid "&Delete Series"
-#~ msgstr "Seri Sil"
-
-#~ msgid "Viewing All Except Reconciled Transactions"
-#~ msgstr "Onaylanmış İşlemler Dışındakiler"
-
-#, fuzzy
-#~ msgid "View Duplicates"
-#~ msgstr "EşKopya"
-
-#~ msgid "Viewing Un-Reconciled transactions"
-#~ msgstr "Onaylanmamış İşlemler"
-
-#, fuzzy
-#~ msgid "Payee missing"
-#~ msgstr "Alacaklı "
-
-#~ msgid "Line : "
-#~ msgstr "Satır : "
-
-#, fuzzy
-#~ msgid "Category is missing"
-#~ msgstr "Kategori "
-
-#, fuzzy
-#~ msgid "&OK"
-#~ msgstr "Tamam"
-
-#, fuzzy
-#~ msgid "Enter &Transaction"
-#~ msgstr "İşlem Gir"
-
-#, fuzzy
-#~ msgid "Organise Categories"
-#~ msgstr "Kategoriler"
-
-#~ msgid "Cannot get data from website"
-#~ msgstr "Web sitesinden veri alınamıyor."
-
-#, fuzzy
-#~ msgid "Load Custom SQL file:"
-#~ msgstr "Özel SQL Ekranı"
-
-#~ msgid "Follow MMEX on Facebook"
-#~ msgstr "MMEX'i Facebook'ta izleyin"
-
-#, fuzzy
-#~ msgid "New Lua Custom Report"
-#~ msgstr "Özel SQL Raporu"
-
-#~ msgid "Convert Encrypted &DB"
-#~ msgstr "Şifrelenmiş Veritabanını &Dönüştür"
-
-#~ msgid "SQL Query will modify your Data. Proceed??"
-#~ msgstr "SQL sorgusu verinizi değiştirecek. Emin misiniz ?"
-
-#~ msgid "Error adding Category"
-#~ msgstr "Kategori ekleme hatası"
-
-#~ msgid "Currency List"
-#~ msgstr "Para Birimi Listesi"
-
-#~ msgid ""
-#~ "New password for database\n"
-#~ "\n"
-#~ "%s"
-#~ msgstr ""
-#~ "Veritabanı için yeni şifre\n"
-#~ "\n"
-#~ "%s"
-
-#~ msgid "Checking/Savings"
-#~ msgstr "Genel / Tasarruf"
-
-#~ msgid "MMEX message"
-#~ msgstr "MMEX mesajı"
-
-#, fuzzy
-#~ msgid "Custom Reports..."
-#~ msgstr "Özel SQL Raporu"
-
-#, fuzzy
-#~ msgid " account: "
-#~ msgstr " tutar "
-
-#~ msgid "Value of 123456.78 will be"
-#~ msgstr "123456.78 değeri"
-
-#, fuzzy
-#~ msgid "Week#%d"
-#~ msgstr "Haftalık"
-
-#~ msgid "Donate"
-#~ msgstr "Bağış"
-
-#, fuzzy
-#~ msgid "Change all transactions using one Payee to another Payee"
-#~ msgstr "Tüm İşlemler"
-
-#~ msgid "Someone tried to send a command during a transfer"
-#~ msgstr "Bir aktarım sırasında birisi bir komut göndermeye çalıştı."
-
-#, fuzzy
-#~ msgid "Tools"
-#~ msgstr "&Araçlar"
-
-#~ msgid "Run this program in your Android smart phone or tablet"
-#~ msgstr "Bu programı Android telefon veya tabletinizde çalıştırın."
-
-#~ msgid "Invalid current price entered "
-#~ msgstr "Geçersiz güncel fiyat girdiniz"
-
-#~ msgid "C  "
-#~ msgstr "Durum "
-
-#~ msgid ""
-#~ "Enter the suffix used by Yahoo for the market of your stocks. \n"
-#~ "If your stocks are in multiple markets, leave this blank and add  the "
-#~ "suffix to each symbol in your portfolio."
-#~ msgstr ""
-#~ "Kullandığınız hisse piyasası için Yahoo tarafından kullanılan sonek "
-#~ "değerini giriniz. \n"
-#~ " Eğer hisselerinin  birden fazla piyasada ise, bunu boş bırakınız ve "
-#~ "sonek değerlerini portföyünüzdeki herbir hisse için ayrı ayrı giriniz."
-
-#~ msgid "My Usage"
-#~ msgstr "Kullanım Bilgisi"
-
-#~ msgid "Allow for any delay in quotes"
-#~ msgstr "Fiyatlardaki herhangi bir gecikmeye izin ver"
-
-#~ msgid "&Clear "
-#~ msgstr "&Temizle"
-
-#~ msgid "Cash Flow - Specific Accounts"
-#~ msgstr "Nakit Akışı (Belirli Hesaplar)"
-
-#, fuzzy
-#~ msgid "Account missing"
-#~ msgstr "Hesap Listesi"
-
-#~ msgid "All Term Accounts"
-#~ msgstr "Tüm Vadeli Hesaplar"
-
-#, fuzzy
-#~ msgid "&Stock Investments"
-#~ msgstr "Menkul Kıymetler"
-
-#, fuzzy
-#~ msgid "Term Accounts Total:"
-#~ msgstr "Aktarıldığı Hesap"
-
-#~ msgid "All Bank Accounts"
-#~ msgstr "Tüm Banka Hesapları"
-
-#~ msgid "Specify how many stock history prices download from purchase date"
-#~ msgstr ""
-#~ "Satınalma tarihinden sonra kaç hisse senedi geçmişi fiyatları "
-#~ "indirildiğini belirtin "
-
-#~ msgid "Account Name"
-#~ msgstr "Hesap Adı"
-
-#~ msgid "Total Amount: "
-#~ msgstr "Toplam Tutar: "
-
-#~ msgid "A path is required for this protocol"
-#~ msgstr "Bu protokol için bir yol gereklidir."
-
-#~ msgid "Total of Accounts:"
-#~ msgstr "Toplam :"
-
-#~ msgid "Invalid value "
-#~ msgstr "Geçersiz Değer"
-
-#~ msgid "A host name is required for this protocol"
-#~ msgstr "Bu protokol için bir sunucu adı gereklidir."
-
-#~ msgid "Payment Date"
-#~ msgstr "Ödeme Tarihi"
-
-#~ msgid "Cannot get data from WWW!"
-#~ msgstr "Internetten veri alınamadı!"
-
-#~ msgid "Set to 'Auto Execute' on the next Pay Date."
-#~ msgstr "Gelecek ödeme tarihinde 'Otomatik Kaydet'e ayarla"
-
-#~ msgid " Enter Recurring Transaction"
-#~ msgstr "Yinelenen İşlem Gir"
-
-#~ msgid "Reset date to the Due Date"
-#~ msgstr "Tarihi, vade tarihine ayarla"
-
-#~ msgid "Follow Up On "
-#~ msgstr "Takip Et Açık"
-
-#~ msgid "Specify period in Months to activate."
-#~ msgstr "Etkinleştirilecek dönemi ay olarak belirtin."
-
-#~ msgid "Automatic Execution will occur without user interaction"
-#~ msgstr "Otomatik Kaydetme kullanıcı etkileşimsiz gerçekleşecek."
-
-#~ msgid ""
-#~ "Tip: These transactions can be set up to activate – allowing the user to "
-#~ "adjust any values on the due date."
-#~ msgstr ""
-#~ "İpucu: Bu işlemler kullanıcının vade tarihinde herhangi bir değeri "
-#~ "ayarlamasına olanak sağlamayı etkinleştirmek için ayarlanabilir."
-
-#~ msgid "Specify the amount to be transfered"
-#~ msgstr "Aktarılacak tutarı belirtin."
-
-#~ msgid "Base Rate Conversion Sample:"
-#~ msgstr "Kur Örneği:"
-
-#~ msgid "Leave blank if this series continues forever."
-#~ msgstr "Bu seri her zaman devam edecekse boş bırakın."
-
-#~ msgid " Specify "
-#~ msgstr "Belirtin"
-
-#~ msgid "Total: %s Invested: %s Gain: %s "
-#~ msgstr "Toplam: %s Yatırılan: %s Kar: %s "
-
-#~ msgid "Specify the order of fields in the CSV file"
-#~ msgstr "CSV dosya içerisindeki alanların sırasını belirtiniz"
-
-#~ msgid "Organize Currency: Add Currency"
-#~ msgstr "Para Birimi Düzenleme: Para Birimi Ekle"
-
-#~ msgid "CSV Delimiter"
-#~ msgstr "CSV Ayracı"
-
-#~ msgid "File name is empty"
-#~ msgstr "Dosya adı boş"
-
-#~ msgid "Transactions saved to database in account: "
-#~ msgstr "İşlemlerin veritabanında kaydedildiği hesap:"
-
-#~ msgid "File exists."
-#~ msgstr "Dosya var."
-
-#~ msgid "Total: %s Invested: %s Loss: %s "
-#~ msgstr "Toplam: %s Yatırılan: %s Zarar: %s "
-
-#~ msgid "Remember to update currency rate"
-#~ msgstr "Döviz kurunu güncellemeyi unutmayın"
-
-#~ msgid "Overwrite?"
-#~ msgstr "Üzerine yazılsın mı?"
-
-#~ msgid "Report Font Size"
-#~ msgstr "Rapor Font Boyutu"
-
-#~ msgid "Display MMEX News on home page"
-#~ msgstr "Anasayfada MMEX haberlerini görüntüle."
-
-#~ msgid "&Go To.."
-#~ msgstr "&Git.."
-
-#~ msgid " Auto Repeat Transactions"
-#~ msgstr "Otomatik Yinelenen İşlemler"
-
-#~ msgid "Specify which font size is used on the report tables"
-#~ msgstr "Rapor tablolarında hangi font boyutunun kullanılacağını belirtiniz."
-
-#~ msgid "Database Optimization Completed!"
-#~ msgstr "Veritabanı iyileştirme tamamlandı."
-
-#~ msgid "Hide Deleted (Void)"
-#~ msgstr "Silineni gizle (Geçersiz)"
-
-#~ msgid "Choose account to reallocate account type"
-#~ msgstr "Türünü değiştirmek için bir hesap seçin"
-
-#~ msgid " - No File opened "
-#~ msgstr "Hiçbir dosya açılmadı"
-
-#~ msgid " Help"
-#~ msgstr " Yardım"
-
-#~ msgid "Cash Flow Forecast For All Accounts - A Year Ahead"
-#~ msgstr "Tüm Hesaplar İçin Nakit Akışı Tahmini - Önümüzdeki 1 Yıl"
-
-#~ msgid "Total Expenses: "
-#~ msgstr "Toplam Giderler: "
-
-#~ msgid "Last Calendar Month"
-#~ msgstr "Son Takvim Ayı"
-
-#~ msgid "Where the Money Comes From - %s"
-#~ msgstr "Para Nereden Geliyor - %s"
-
-#~ msgid ""
-#~ "Tip: Change all transactions using this Payee to another Payee\n"
-#~ "using the relocate command:"
-#~ msgstr ""
-#~ "İpucu: Taşı komutunu kullanarak bu Alacaklı/Satıcıyı\n"
-#~ "kullanan tüm işlemleri diğer bir alacaklı/satıcıyla değiştirin:"
-
-#~ msgid "Purchase Date"
-#~ msgstr "Alış Tarihi"
-
-#~ msgid "Where the Money Goes - %s"
-#~ msgstr "Para Nereye Gidiyor - %s"
-
-#~ msgid "Specify the purchase date of the stock investment"
-#~ msgstr "Menkul Kıymet Yatırımının alış tarihini belirtiniz "
-
-#, fuzzy
-#~ msgid "Today's Date: <b>"
-#~ msgstr "Tarih : "
-
-#~ msgid "Share Name"
-#~ msgstr "Hisse"
-
-#~ msgid "Stock Name"
-#~ msgstr "Menkul kıymeti"
-
-#~ msgid "Curr. unit value"
-#~ msgstr "Geç. birim değeri"
-
-#~ msgid "Enter purchase price for each stock"
-#~ msgstr "Herbir menkul kıymetin alış fiyatını giriniz"
-
-#~ msgid ""
-#~ " models all transactions as belonging to accounts.\n"
-#~ "\n"
-#~ "The next pages will help you create a new account.\n"
-#~ "\n"
-#~ "To help you get started, begin by making a list of all\n"
-#~ "financial institutions where you hold an account."
-#~ msgstr ""
-#~ " her işlemi hesaplara bağlı olarak biçimlendirir.\n"
-#~ "\n"
-#~ "İzleyen sayfa yeni bir hesap oluşturmanıza yardımcı olacak.\n"
-#~ "\n"
-#~ "Size yardımcı olmak için başlangıç olarak, hesabınızı tuttuğunuz finans\n"
-#~ "kuruluşlarının bir listesini yaparak işe başlayın."
-
-#~ msgid "Total Price"
-#~ msgstr "Toplam Fiyat"
-
-#~ msgid ""
-#~ "The database can later be encrypted if required, by\n"
-#~ "using the option: 'Save database as' and changing the\n"
-#~ "file type before saving."
-#~ msgstr ""
-#~ "Eğer gerekliyse veritabanı 'Veritabanını Farklı Kaydet'\n"
-#~ "seçeneği kullanılarak daha sonra şifrelenebilir ve\n"
-#~ "kaydetmeden önce dosya türü değiştirilebilir."
-
-#~ msgid "Rate of Change"
-#~ msgstr "Değişim Oranı"
-
-#, fuzzy
-#~ msgid "Account Balance - %s"
-#~ msgstr "Hesaplar"
-
-#~ msgid ""
-#~ "As this file contains important financial information,\n"
-#~ "we recommended creating daily backups with the Options\n"
-#~ "setting: 'Backup before opening', and store your backups\n"
-#~ "in a separate location."
-#~ msgstr ""
-#~ "Bu dosya önemli finansal bilgiler içerdiğinden,\n"
-#~ "Seçeneklerden 'Açmadan önce yedekle' ayarı ile\n"
-#~ "günlük yedekler oluşturmanızı ve yedeklerinizi\n"
-#~ " ayrı bir yerde saklamanızı öneririz."
-
-#, fuzzy
-#~ msgid "Curr. unit price"
-#~ msgstr "Güncel Fiyat"
-
-#~ msgid ""
-#~ "Tip: To print a statement with transactions from any arbitary set of "
-#~ "criteria, use the transaction filter to select the transactions you want "
-#~ "and then do a print from the menu."
-#~ msgstr ""
-#~ "İpucu: İsteğe bağlı ölçütler setinden oluşan işlemlerin yer aldığı "
-#~ "raporları bastırmak için, istediğiniz işlemleri seçmek amacıyla işlem "
-#~ "süzgecini kullanın ve daha sonra menuden çıktı alın."
-
-#~ msgid "Repeating Transaction Details"
-#~ msgstr "Tekrarlayan İşlem Detayı"
-
-#, fuzzy
-#~ msgid "Total Value"
-#~ msgstr "Geçersiz Değer"
-
-#, fuzzy
-#~ msgid "&Repeating Transactions"
-#~ msgstr "Tekrarlayan İşlemler"
-
-#~ msgid "Specify advanced settings for transaction"
-#~ msgstr "İşlemin gelişmiş ayarlarını belirtiniz"
-
-#~ msgid "May "
-#~ msgstr "Mayıs"
-
-#~ msgid "Repeating Transactions"
-#~ msgstr "Tekrarlayan İşlemler"
-
-#, fuzzy
-#~ msgid "Your current version is: %s"
-#~ msgstr "Versiyon: "
-
-#, fuzzy
-#~ msgid "Modify the description for the attachment:"
-#~ msgstr "Varlık adını giriniz"
-
-#~ msgid "Split Category"
-#~ msgstr "Parçalı Kategori"
-
-#~ msgid "Remaining Days"
-#~ msgstr "Kalan Gün"
-
-#~ msgid "Select From Account"
-#~ msgstr "Gönderen Hesap"
-
-#~ msgid "Powered by wxWidgets, SQLite, wxSQLite(by Ulrich Telle)"
-#~ msgstr "wxWidgets ve SQLite ile çalışmaktadır. (Ulrich Telle)"
-
-#, fuzzy
-#~ msgid "Report with same name exists"
-#~ msgstr "Bu kategori tanımlı"
-
-#, fuzzy
-#~ msgid "Specify which account the transfer is comming from"
-#~ msgstr "Havalenin hangi hesaptan gerçekleştiğini belirtiniz"
-
-#, fuzzy
-#~ msgid "&Bank Accounts"
-#~ msgstr "Hesaplarım"
-
-#, fuzzy
-#~ msgid "To Account"
-#~ msgstr "Aktarılacak Hesap"
-
-#, fuzzy
-#~ msgid "&Stock Accounts"
-#~ msgstr "Hesaplarım"
-
-#, fuzzy
-#~ msgid "Download WebApp new transaction"
-#~ msgstr "Vadesi Yaklaşan İşlemler"
-
-#~ msgid "Invalid purchase price entered "
-#~ msgstr "Geçersiz alış fiyatı girdiniz"
-
-#, fuzzy
-#~ msgid "&Run Query"
-#~ msgstr "Query çalıştır"
-
-#, fuzzy
-#~ msgid "Error code:"
-#~ msgstr "Hata"
-
-#~ msgid "Invalid number of shares entered "
-#~ msgstr "Geçersiz hisse adedi girdinizi"
-
-#, fuzzy
-#~ msgid "Choose Universal CSV format file to load"
-#~ msgstr "Aktarmak için CSV dosyası seçiniz"
-
-#~ msgid "Current"
-#~ msgstr "Güncel"
-
-#, fuzzy
-#~ msgid "Financial Year: "
-#~ msgstr "Son Takvim Yılı"
-
-#, fuzzy
-#~ msgid "Save As..."
-#~ msgstr "Alacaklı"
-
-#~ msgid "Legend:"
-#~ msgstr "Gösterge:"
-
-#~ msgid "Category         : "
-#~ msgstr "Kategori         : "
-
-#, fuzzy
-#~ msgid "Expences"
-#~ msgstr "Gider"
-
-#, fuzzy
-#~ msgid "Subcategories"
-#~ msgstr "AltKategori"
-
-#~ msgid "&Help\tCtrl-F1"
-#~ msgstr "&Yardım\tCtrl-F1"
-
-#, fuzzy
-#~ msgid "Initial Term Account Activation"
-#~ msgstr "Hesap Sil"
-
-#, fuzzy
-#~ msgid " Unknown QIF line: "
-#~ msgstr " hatalı QIF satır tipi"
-
-#, fuzzy
-#~ msgid ""
-#~ "Do you really want to delete all the \"Follow Up\" transactions shown?"
-#~ msgstr "İşaretlenmiş işlemleri silmek istediğinizden emin misiniz?"
-
-#, fuzzy
-#~ msgid "Added subcategory: %s"
-#~ msgstr "Yeni kategori ekle"
-
-#~ msgid "Sub Category  : "
-#~ msgstr "Alt Kategori    : "
-
-#, fuzzy
-#~ msgid "There are no accounts available for import to"
-#~ msgstr "Kullanılabilir Hiçbir Hesap Yok! Dışarı Aktarım Gerçekleştirilemez!"
-
-#, fuzzy
-#~ msgid "Added category: %s"
-#~ msgstr "Kategori"
-
-#, fuzzy
-#~ msgid "Translators"
-#~ msgstr "İşlemler"
-
-#, fuzzy
-#~ msgid "Amount is missing"
-#~ msgstr "Hesap boş"
-
-#, fuzzy
-#~ msgid "Page Set&up..."
-#~ msgstr "Sayfa Ayarı..."
-
-#, fuzzy
-#~ msgid "Do you want to scan all transaction ?"
-#~ msgstr "Listedeki işlemleri silmek istediğinizden emin misiniz?"
-
-#, fuzzy
-#~ msgid "Print Pre&view..."
-#~ msgstr "Baskı Önizleme..."
-
-#~ msgid "Notes               : "
-#~ msgstr "Not                 : "
-
-#~ msgid "List Row 0"
-#~ msgstr "Liste Satırı 0"
-
-#~ msgid "Preview current report"
-#~ msgstr "Rapor Önizleme"
-
-#~ msgid "List Border"
-#~ msgstr "Liste çerçevesi"
-
-#~ msgid "List Background"
-#~ msgstr "Liste Arkaplanı"
-
-#~ msgid "Future Transactions"
-#~ msgstr "Gelecek İşlemler"
-
-#~ msgid "Specify the color for the list row 1"
-#~ msgstr "Liste satır 1 rengi"
-
-#~ msgid "Colors"
-#~ msgstr "Renkler"
-
-#~ msgid "Unable to convert db successfully. Check Password!"
-#~ msgstr "DB dönüştürülemedi. Şifrenizi Kontrol Ediniz!"
-
-#, fuzzy
-#~ msgid "Account:"
-#~ msgstr "Hesaplar"
-
-#~ msgid "Import/Export Settings"
-#~ msgstr "İçeri/Dışarı Aktarım Seçenekleri"
-
-#, fuzzy
-#~ msgid "Subcategory:"
-#~ msgstr "AltKategori"
-
-#, fuzzy
-#~ msgid "Specify which account the transfer is coming from"
-#~ msgstr "Havalenin hangi hesaptan gerçekleştiğini belirtiniz"
-
-#~ msgid "View Reconciled"
-#~ msgstr "Onaylanmış Görüntüle"
-
-#, fuzzy
-#~ msgid "Category:"
-#~ msgstr "Kategori"
-
-#, fuzzy
-#~ msgid "View Flagged"
-#~ msgstr "İşaretlenmiş İşlemler"
-
-#~ msgid "QFX Import"
-#~ msgstr "QFX'ten"
-
-#, fuzzy
-#~ msgid "Line: "
-#~ msgstr "Satır : "
-
-#, fuzzy
-#~ msgid "View Void"
-#~ msgstr "30 Günü Görüntüle"
-
-#~ msgid "Monthly Summary of Accounts"
-#~ msgstr "Aylık Hesap Özeti"
-
-#~ msgid "New/Edit Stock Investment"
-#~ msgstr "Stok Yatırım Giriş / Güncelleme"
-
-#~ msgid "Update Failed"
-#~ msgstr "Güncelleme Başarısız"
-
-#~ msgid "The client failed to connect the server"
-#~ msgstr "İstemci sunucuya bağlanmada başarısız oldu."
-
-#, fuzzy
-#~ msgid "Load Custom Lua file:"
-#~ msgstr "Özel SQL Ekranı"
-
-#~ msgid ""
-#~ "Enter the payee name to be added or make edits to an existing payee name"
-#~ msgstr ""
-#~ "Eklenecek alacaklı adınıı giriniz veya varolan alacaklı adını düzenleyiniz"
-
-#, fuzzy
-#~ msgid "Error: %s\n"
-#~ msgstr "Hata"
-
-#~ msgid "Cannot locate previously opened database.\n"
-#~ msgstr "Bir önceki açılan veritabanı bulunamıyor.\n"
-
-#, fuzzy
-#~ msgid "Edit Custom Report"
-#~ msgstr "Özel SQL Raporu"
-
-#, fuzzy
-#~ msgid "Setting new Database file"
-#~ msgstr "Veritabanını Farklı Kaydet"
-
-#~ msgid ""
-#~ "Changing all payees of: %s \n"
-#~ "\n"
-#~ "  to payee: %s"
-#~ msgstr ""
-#~ "Changing all payees of: %s \n"
-#~ "\n"
-#~ "  to payee: %s"
-
-#, fuzzy
-#~ msgid "Filter"
-#~ msgstr "&Dosya"
-
-#~ msgid "Type a Payee Name in the Text Box and then press Add."
-#~ msgstr "Bir Alıcı adı  girerek ekle tuşuna basınız"
-
-#~ msgid "Yahoo Suffix"
-#~ msgstr "Yahoo Soneki"
-
-#~ msgid "Income vs Expenses - Specific Accounts"
-#~ msgstr "Gelir & Gider (Belirli Hesaplar)"
-
-#~ msgid "Updates"
-#~ msgstr "Güncellemeler"
-
-#, fuzzy
-#~ msgid "&Refresh prices every"
-#~ msgstr "Fiyatları güncelleme periyodu"
-
-#~ msgid "Cash Flow - With Term Accounts"
-#~ msgstr "Nakit Akışı (Vadeli Hesaplarla)"
-
-#~ msgid ""
-#~ "Enter the name of the financial institution where the investment is held"
-#~ msgstr "Yatırımın bulunduğu finans kuruluşunun adını giriniz"
-
-#~ msgid "Statement not accessible"
-#~ msgstr "Deyim erişilebilir değil"
-
-#~ msgid "Choose Investment Account"
-#~ msgstr "Yatırım Hesabı Seç"
-
-#~ msgid "Delete Stock Investment"
-#~ msgstr "Stock Yatırımı Sil"
-
-#, fuzzy
-#~ msgid "Account  :"
-#~ msgstr "Hesap"
-
-#~ msgid ""
-#~ "End date is in the future\n"
-#~ "Quotes will be updated until today"
-#~ msgstr ""
-#~ "End date is in the future\n"
-#~ "Quotes will be updated until today"
-
-#~ msgid "Change settings for automatic refresh"
-#~ msgstr "Otomatik yenileme için ayarları değiştir"
-
-#~ msgid "Times Repeated"
-#~ msgstr "Dönem Adet"
-
-#~ msgid ""
-#~ "Automatic stock quote refresh is disabled. \n"
-#~ "Last update: %s"
-#~ msgstr ""
-#~ "Otomatik hisse fiyatları güncellemesi aktif değil. \n"
-#~ "Son Güncelleme : %s"
-
-#~ msgid "Out of memory"
-#~ msgstr "Yetersiz Bellek"
-
-#~ msgid "Automatic stock quote refresh in progress..."
-#~ msgstr "Otomatik hisse fiyatları güncellemesi devam etmekte ..."
-
-#~ msgid "Other currency conversion rate. Set Base Currency to 1."
-#~ msgstr "Diğer döviz kuru. Temel Para Birimini 1'e ayarlayın."
-
-#~ msgid ""
-#~ "Automatic stock quote refresh Failed. \n"
-#~ "Last successful update: %s"
-#~ msgstr ""
-#~ "Otomatik hisse fiyatları güncellemesi başarısız oldu. \n"
-#~ "Son başarılı güncelleme: %s"
-
-#~ msgid "%s Converted to: %s"
-#~ msgstr "%s, %s'e çevrildi"
-
-#~ msgid "Stock Download"
-#~ msgstr "Karşıdan hisse yükleme"
-
-#~ msgid ""
-#~ " One of the following fields: Date, Amount, Type is missing, skipping"
-#~ msgstr ""
-#~ "İzleyen alanlardan biri: Tarih, Alacaklı, Tutar veya Tip eksik, atlanmış"
-
-#~ msgid "Options"
-#~ msgstr "Seçenekler"
-
-#~ msgid "Viewing All Transactions"
-#~ msgstr "Tüm İşlemler"
-
-#, fuzzy
-#~ msgid "123456.78"
-#~ msgstr "1234567.89 olarak görünecektir."
-
-#~ msgid "&Universal CSV Files"
-#~ msgstr "&CVS"
-
-#~ msgid "No account available to reallocate!"
-#~ msgstr "Yeniden atanacak kullanılabilir hesap yok!"
-
-#, fuzzy
-#~ msgid "Be &notified of new releases"
-#~ msgstr "Yeni versiyon bilgilendirme"
-
-#, fuzzy
-#~ msgid "Investment Accounts"
-#~ msgstr "Yatırım Hesabı Seç"
-
-#~ msgid "Number Shares"
-#~ msgstr "Adet"
-
-#~ msgid "Category Income/Expenses: %s"
-#~ msgstr "Kategori Bazında Gelir / Gider: %s"
-
-#~ msgid "Total Stock Investments: "
-#~ msgstr "Toplam Stok Yatırımları:"
-
-#~ msgid "Stock Investments: %s"
-#~ msgstr "Menkul Değer Yatırımları: %s"
-
-#~ msgid "To Account Amount Entry"
-#~ msgstr "Hesaba Gönderilecek Tutar"
-
-#~ msgid "Select To"
-#~ msgstr "Seçini<"
-
-#, fuzzy
-#~ msgid " Enter Repeating Transaction"
-#~ msgstr "Tekrarlayan İşlemler"
-
-#~ msgid "Estimated Expenses: %s Actual Expenses:  %s"
-#~ msgstr "Tahmini Giderler: %s  Gerçek Giderler:  %s"
-
-#, fuzzy
-#~ msgid " Edit Repeating Transaction"
-#~ msgstr "Tekrarlayan İşlem Giriş / Güncelleme"
-
-#~ msgid "Enter the year in YYYY format to specify year"
-#~ msgstr "Yıl bilgisini 4 hane ( YYYY ) olarak giriniz"
-
-#, fuzzy
-#~ msgid "Total: "
-#~ msgstr "Toplam:"
-
-#, fuzzy
-#~ msgid "&Load"
-#~ msgstr "SQL Çağır"
-
-#~ msgid "Specify Payee"
-#~ msgstr "Alacaklı"
-
-#, fuzzy
-#~ msgid "Expand Term Accounts on navigation tree"
-#~ msgstr "Hesaplarım"
-
-#~ msgid "Specify Status"
-#~ msgstr "Durum"
-
-#, fuzzy
-#~ msgid "Term &Accounts"
-#~ msgstr "&Hesaplar"
-
-#~ msgid "Viewing Flagged transactions"
-#~ msgstr "İşaretlenmiş İşlemler"
-
-#, fuzzy
-#~ msgid "Line: %i"
-#~ msgstr "Satır : "
-
-#~ msgid "Budget Setup and Performance"
-#~ msgstr "Bütçe Hazırlama ve  Performans"
-
-#, fuzzy
-#~ msgid "MM.&NET CSV Files"
-#~ msgstr "&MM.NET CSV"
-
-#, fuzzy
-#~ msgid "Specify the folder to use when archive attachments"
-#~ msgstr "Kontrol Paneli rengini belirtiniz"
-
-#~ msgid "Import from MM.NET CSV"
-#~ msgstr "MM.NET CSV'den"
-
-#, fuzzy
-#~ msgid "Term account"
-#~ msgstr "Aktarıldığı Hesap"
-
-#~ msgid " : Restart"
-#~ msgstr " : Yeniden Başlat"
-
-#, fuzzy
-#~ msgid "Min: "
-#~ msgstr "+ / - "
-
-#, fuzzy
-#~ msgid "Tree View Options: Expand Section"
-#~ msgstr "Görünüm Seçenekleri"
-
-#, fuzzy
-#~ msgid "Backup before opening"
-#~ msgstr "Veritabanını açmadan önce yedekle"
-
-#~ msgid "Specify the color for the list details"
-#~ msgstr "Liste Detayları rengi belirtiniz"
-
-#, fuzzy
-#~ msgid "Daily Update, before opening"
-#~ msgstr "Veritabanını açmadan önce yedekle"
-
-#~ msgid "List Details"
-#~ msgstr "Liste Detayları"
-
-#~ msgid "Budget Performance for Year : "
-#~ msgstr "Yıllık Bütçe Performansı : "
-
-#~ msgid "Notes:"
-#~ msgstr "Not:"
-
-#~ msgid " Start Page"
-#~ msgstr " Açılış Sayfası"
-
-#, fuzzy
-#~ msgid "Do you want to delete the Lua file as well?"
-#~ msgstr "Seriyi silmek istediğinizden emin misiniz ?"
-
-#~ msgid "When database file opening:"
-#~ msgstr "Veritabanı dosyası açılırken:"
-
-#, fuzzy
-#~ msgid "Create new Custom Reports"
-#~ msgstr "Özel SQL Raporu"
-
-#~ msgid "Get Android Version"
-#~ msgstr "Android Sürümü Al"
-
-#~ msgid "Add a new payee name"
-#~ msgstr "Yeni Bir Alacaklı Ekle"
-
-#~ msgid "Imported transactions have been flagged so you can review them."
-#~ msgstr "Tekrar görebilmeniz için alınan işlemler işaretlendi."
-
-#~ msgid "to"
-#~ msgstr "e"
-
-#, fuzzy
-#~ msgid "Display Stock Web Page"
-#~ msgstr "Menkul Kıymetler Internet Sayfası"
-
-#, fuzzy
-#~ msgid "Bank Accounts Total:"
-#~ msgstr "Hesaplarım"
-
-#~ msgid "Idle"
-#~ msgstr "Boşta"
-
-#~ msgid "Cash Flow - With Bank Accounts"
-#~ msgstr "Nakit Akışı (Banka Hesaplarıyla)"
-
-#~ msgid ""
-#~ "Automatic stock quote refresh idle - Out of Hours. \n"
-#~ "Last update: %s"
-#~ msgstr ""
-#~ "Otomatik hisse fiyatları güncellemesi etkin değil - Mesai saatleri "
-#~ "dışı. \n"
-#~ "Gün Güncelleme: %s"
-
-#~ msgid "Becomes blank when not active."
-#~ msgstr "Etkinleştirilmediğinde boş olur."
-
-#~ msgid ""
-#~ "Automatic stock quote refresh not started. \n"
-#~ "Last update: %s"
-#~ msgstr ""
-#~ "Otomatik hisse fiyatları güncellemesi başlamadı. \n"
-#~ "Son Güncelleme: %s"
-
-#, fuzzy
-#~ msgid "Delete all \"Follow Up\" transactions"
-#~ msgstr "İşaretlenmiş işlemleri sil"
-
-#~ msgid "Sets the default currency for the database."
-#~ msgstr "Veritabanı için varsayılan para birimi olarak ayarlar."
-
-#, fuzzy
-#~ msgid "Diference: "
-#~ msgstr "Fark:"
-
-#~ msgid " file contains insufficient number of tokens"
-#~ msgstr " dosya yetersiz sayıda bilgi içeriyor"
-
-#~ msgid "Sign up for the announcement mailing list"
-#~ msgstr "Duyuru e-posta grubuna üye ol"
-
-#~ msgid "Budget Performance for "
-#~ msgstr "Bütçe Performansı"
-
-#~ msgid "Gain Loss"
-#~ msgstr "+ / - "
-
-#~ msgid "Select From"
-#~ msgstr "Seçiniz"
-
-#~ msgid "Payee Report - %s"
-#~ msgstr "Alacaklı/Satıcı Raporu - %s"
-
-#, fuzzy
-#~ msgid "&Delete Budget Year"
-#~ msgstr "Bütçe Yılı Sil"
-
-#~ msgid "Value Date"
-#~ msgstr "Değerleme Tarihi"
-
-#, fuzzy
-#~ msgid "Save Custom SQL file:"
-#~ msgstr "Özel SQL Ekranı"
-
-#~ msgid "From and To Account cannot be the same."
-#~ msgstr "Gönderen ve Alan hesap aynı olamaz."
-
-#~ msgid "Specify Notes"
-#~ msgstr "Not "
-
-#~ msgid "&MMEX CSV Files"
-#~ msgstr "&MMEX CSV"
-
-#, fuzzy
-#~ msgid "New MMEX Options"
-#~ msgstr "Görünüm Seçenekleri"
-
-#, fuzzy
-#~ msgid "Top Transactions Last 30 Days"
-#~ msgstr "Son 30 gün"
-
-#~ msgid "Unable to write to file."
-#~ msgstr "Dosyaya yazılamadı."
-
-#, fuzzy
-#~ msgid "Financial Year Settings"
-#~ msgstr "Genel Ayarlar"
-
-#~ msgid "Specify the color for the list background"
-#~ msgstr "Liste Arkaplanı için renk belirtiniz"
-
-#~ msgid " cannot process Account Types yet "
-#~ msgstr " henüz Hesap Tipleri işlenemiyor "
-
-#, fuzzy
-#~ msgid "Custom script:"
-#~ msgstr "Özel SQL Raporu"
-
-#, fuzzy
-#~ msgid "Are you are sure you want to proceed with the import?"
-#~ msgstr "Varlığı silmek istediğinizden emin misiniz ?"
-
-#, fuzzy
-#~ msgid "Enable or disable get data from Yahoo.com to update currency rate"
-#~ msgstr ""
-#~ "Döviz kurlarını güncellemek için European Central Bank'tan veri alımını "
-#~ "aktif veya pasif yap"
-
-#, fuzzy
-#~ msgid "Amount Range:"
-#~ msgstr "Tutar Aralığı"
-
-#~ msgid "minutes while market is open"
-#~ msgstr "Süre"
-
-#, fuzzy
-#~ msgid "Edit Payee Name"
-#~ msgstr "Alacaklı Ekliyor"
-
-#~ msgid "never!"
-#~ msgstr "asla!"
-
-#, fuzzy
-#~ msgid " Total:"
-#~ msgstr "Toplam:"
-
-#~ msgid "&Search"
-#~ msgstr "&Arama"
-
-#, fuzzy
-#~ msgid "&Report Issues or Feedback"
-#~ msgstr "Sorun veya Görüş Bildir"
-
-#~ msgid "Amount to be recorded in To Account"
-#~ msgstr "Gönderieln Hesaba kaydedilecek tutar"
-
-#~ msgid "Specify the stock price date"
-#~ msgstr "Menkul değer fiyat tarihini belirtin"
-
-#~ msgid "Year is not valid"
-#~ msgstr "Geçersiz Yıl"
-
-#, fuzzy
-#~ msgid "Would you like to download it now ?"
-#~ msgstr ""
-#~ "Önceden açılmış veritabanı bulunamadı.\n"
-#~ "Dosyayı kendiniz seçmek ister misiniz ? "
-
-#~ msgid "To Whom the Money Goes"
-#~ msgstr "Param Kime Gidiyor"
-
-#, fuzzy
-#~ msgid "Specify categories for this transaction"
-#~ msgstr "Bu işlem için kategori belirtiniz"
-
-#~ msgid "Sample Date"
-#~ msgstr "Örnek Tarih"
-
-#, fuzzy
-#~ msgid "Advanced Amount"
-#~ msgstr "Gelişmiş"
-
-#~ msgid "Budget setup for Year : "
-#~ msgstr "Bütçe Ayarı : "
-
-#~ msgid "Summary of Assets"
-#~ msgstr "Varlık Özeti"
-
-#~ msgid "Market open from"
-#~ msgstr "Market Açılışı"
-
-#~ msgid "Show all even the unused currencies"
-#~ msgstr "Kullanılmayan para birimlerini bile göster."
-
-#~ msgid ""
-#~ "Automatic stock quote refresh successful. \n"
-#~ "Last update: %s"
-#~ msgstr ""
-#~ "Otomatik hisse fiyatları güncellemesi başarılı. \n"
-#~ "Son Güncelleme: %s"
-
-#~ msgid "Currency rate updated"
-#~ msgstr "Döviz Kurları güncellendi"
-
-#~ msgid "Company"
-#~ msgstr "Firma"
-
-#, fuzzy
-#~ msgid "Enter the name for the new report group"
-#~ msgstr "Varlık adını giriniz"
-
-#~ msgid "Specify Category"
-#~ msgstr "Kategori"
-
-#, fuzzy
-#~ msgid "Line %i"
-#~ msgstr "Satır : "
-
-#, fuzzy
-#~ msgid ""
-#~ "Select whether to create a _YYYY-MM-DD.bak file before opening the "
-#~ "database"
-#~ msgstr ""
-#~ "Veritabanı dosyası açılırken .bak uzantılı yedek dosyası oluşturulmasını "
-#~ "istiyorsanız seçiniz."
-
-#~ msgid "Transaction Number"
-#~ msgstr "İşlem No"
-
-#~ msgid "Estimated Income: %s Actual Income:  %s"
-#~ msgstr "Tahmini Gelir: %s  Gerçek Gelir:  %s"
-
-#~ msgid "Import from MMEX CSV"
-#~ msgstr "MMEX CSV'den"
-
-#, fuzzy
-#~ msgid "View All transactions"
-#~ msgstr "Tüm İşlemler"
-
-#, fuzzy
-#~ msgid ""
-#~ "Account Bal: %s      Reconciled Bal: %s      Diff: %s      Displayed Bal: "
-#~ "%s"
-#~ msgstr "Hesap Bakiyesi : %s      Onaylanmış Bakiye : %s"
-
-#~ msgid "Show Deleted (Void)"
-#~ msgstr "Silineni Göster (Geçersiz)"
-
-#~ msgid "Size after"
-#~ msgstr "Sonraki boyut"
-
-#~ msgid "Delete Account"
-#~ msgstr "Hesap Sil"
