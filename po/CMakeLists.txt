@@ -19,14 +19,14 @@ IF(NOT GETTEXT_VERSION_STRING)
 ENDIF()
 SET(GETTEXT_VERSION_STRING "${GETTEXT_VERSION_STRING}"
     CACHE INTERNAL "gettext version detected")
-    
+
 FILE(GLOB POFiles RELATIVE "${CMAKE_CURRENT_BINARY_DIR}" *.po)
 FOREACH(POFile ${POFiles})
     GET_FILENAME_COMPONENT(CurrentFile "${POFile}" NAME_WE)
     ADD_CUSTOM_COMMAND(OUTPUT ${CurrentFile}.mo
-#        COMMAND ${GETTEXT_MSGMERGE_EXECUTABLE} --quiet --update --backup=none -s "${POFile}" ${MMEX_EXE}.pot
-        COMMAND ${GETTEXT_MSGFMT_EXECUTABLE} -o ${CurrentFile}.mo "${POFile}"
-        COMMENT "Generating ${CurrentFile} translation"
+        # COMMAND ${GETTEXT_MSGMERGE_EXECUTABLE} --quiet --update --backup=none -s "${POFile}" ${MMEX_EXE}.pot
+        COMMAND ${GETTEXT_MSGFMT_EXECUTABLE} -v --statistics -o ${CurrentFile}.mo "${POFile}"
+        COMMENT ""
         MAIN_DEPENDENCY "${POFile}")
 
     # wxWidgets standard paths
