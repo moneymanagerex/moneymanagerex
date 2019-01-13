@@ -17,7 +17,7 @@
     "de": [{
         "Money Manager Ex User Manual":"Money Manager Ex-Benutzerhandbuch"
         , "Contents": "Inhalt"
-        , "Introduction": "Einführung" 
+        , "Introduction": "Einführung"
     }],
     "ru": [{
         "Money Manager Ex User Manual": "Руководство пользователя Money Manager Ex"
@@ -334,7 +334,7 @@
         , "Editing of Budget Categories": "Редактирование категорий бюджета"
         , "Budget Setup": "Настройка бюджета"
         , "bud_1": ""
-        , "bud_1": ""
+        , "bud_2": ""
         , "bud_3": ""
         , "bud_4": ""
         , "bud_5": ""
@@ -386,7 +386,6 @@
         , "Use Original date...": "Использовать первоначальную дату..."
         , "Use sound...": "Использовать звуки..."
         , "Enable online currency...": "Включить онлайн котировки валют..."
-        , "Tree View": "Вид дерева навигации"
         , "Expand Section": "Развернуть раздел"
         , "options_32": "Поозволяет активировать онлайн обновление валютных котировак."
         , "options_31": "Активируйте, чтобы проигрывать звук, когда транзакция вводится."

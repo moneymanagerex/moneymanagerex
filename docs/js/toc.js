@@ -1,6 +1,7 @@
 /*
  * Dynamic Table of Contents script
  * by Matt Whitlock <http://www.whitsoftdev.com/>
+ * modified by Tomasz Słodkowicz
  */
 
 function createLink(href, innerHTML) {
@@ -10,29 +11,30 @@ function createLink(href, innerHTML) {
     return a;
 }
 
+function addId(section, node) {
+    node.insertBefore(document.createTextNode(section + ". "), node.firstChild);
+    node.id = "section" + section;
+}
+
+function addTOC(list, node) {
+    list.appendChild(document.createElement("li"))
+        .appendChild(createLink("#" + node.id, node.innerHTML));
+}
+
 function generateTOC(toc) {
     var i2 = 0, i3 = 0;
     toc = toc.appendChild(document.createElement("ul"));
-    for (var i = 0; i < document.body.childNodes.length; ++i) {
-        var node = document.body.childNodes[i];
+    document.querySelectorAll("h2, h3").forEach(function(node) {
         var tagName = node.nodeName.toLowerCase();
-        if (tagName == "h3") {
-            ++i3;
-            if (i3 == 1) toc.lastChild.appendChild(document.createElement("ul"));
-            var section = i2 + "." + i3;
-            node.insertBefore(document.createTextNode(section + ". "), node.firstChild);
-            node.id = "section" + section;
-            toc.lastChild.lastChild
-                .appendChild(document.createElement("li"))
-                .appendChild(createLink("#section" + section, node.innerHTML));
+        if (tagName === "h3") {
+            if (++i3 === 1) toc.lastChild.appendChild(document.createElement("ul"));
+            addId(i2 + "." + i3, node);
+            addTOC(toc.lastChild.lastChild, node);
         }
-        else if (tagName == "h2") {
-            ++i2, i3 = 0;
-            var section = i2;
-            node.insertBefore(document.createTextNode(section + ". "), node.firstChild);
-            node.id = "section" + section;
-            toc.appendChild(h2item = document.createElement("li"))
-                .appendChild(createLink("#section" + section, node.innerHTML));
+        else if (tagName === "h2") {
+            i3 = 0;
+            addId(++i2, node);
+            addTOC(toc, node);
         }
-    }
+    });
 }
