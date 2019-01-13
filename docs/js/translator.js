@@ -3,33 +3,8 @@
  * by Nikolay Akimov <https://github.com/vomikan/>
  */
 
-function translate() {
-    var lang = getParameterValue("lang");
-    if (lang != "") String.locale = lang;
-
-    if (Object.keys(localization).indexOf(lang) > -1) {
-        console.log(lang)
-        var success = 0;
-        var elements = document.getElementsByClassName('i18n');
-        for (var i = 0; i < elements.length; i++) {
-            var element = elements[i];
-            var element_str = element.innerHTML;
-            var id = element.getAttribute('id');
-            if (id != null) element_str = id;
-            var translation_str = localization[lang][0][element_str];
-            if (translation_str != "" & translation_str !== undefined) {
-                element.innerHTML = translation_str;
-                success = success + 1;
-            }
-            else
-                element.style.color = "#aa0000";
-        }
-        if (i != success) {
-            var perc = document.getElementById("percentage");
-            perc.innerHTML = "Translated " + success + " of " + i;
-        }
-    }
-}
+/* https://eslint.org/docs/user-guide/configuring#specifying-globals */
+/* global localization:false */
 
 function getParameterValue(parameter) {
     parameter = parameter.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
@@ -37,7 +12,33 @@ function getParameterValue(parameter) {
     var regex = new RegExp(regexS);
     var results = regex.exec(window.location.href);
     if (results == null)
-        return "";
+        return null;
     else
         return results[1];
+}
+
+function translate() {
+    var lang = getParameterValue("lang");
+    if (lang != null) String.locale = lang;
+
+    if (Object.keys(localization).indexOf(lang) > -1) {
+        // console.log(lang);
+        var elements = document.querySelectorAll(".i18n");
+        var success = 0, all = elements.length;
+        elements.forEach(function(element) {
+            var elementStr = element.innerHTML;
+            var id = element.id;
+            if (id) elementStr = id;
+            var translationStr = localization[lang][0][elementStr];
+            if (translationStr) {
+                element.innerHTML = translationStr;
+                ++success;
+            }
+            else
+                element.style.color = "#aa0000";
+        });
+        if (success !== all)
+            document.getElementById("percentage")
+                .innerHTML = "Translated " + success + " of " + all;
+    }
 }
