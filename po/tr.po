@@ -3,13 +3,9 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.2\n"
+"X-Generator: POEditor.com\n"
 "Project-Id-Version: Money Manager Ex\n"
 "Language: tr\n"
-"POT-Creation-Date: \n"
-"PO-Revision-Date: \n"
-"Last-Translator: \n"
-"Language-Team: \n"
 
 #: src/aboutdialog.cpp:41
 msgid "License agreement"
@@ -413,22 +409,22 @@ msgid "&Cancel "
 msgstr "İ&ptal"
 
 #: src/assetdialog.cpp:421
-msgid ""
-"An asset account having the same name has not been found.\n"
+msgid "An asset account having the same name has not been found.\n"
 "\n"
 "A single transaction for this asset can be associated with any account.\n"
 "Multiple asset transactions need to be associated with an asset account.\n"
 "\n"
 "Would you want to create one?\n"
 "\n"
-msgstr ""
-"Aynı isimli bir varlık hesabı bulunamadı.\n"
+""
+msgstr "Aynı isimli bir varlık hesabı bulunamadı.\n"
 "\n"
 "Bu varlık için bir işlem herhangi bir hesapla ilişkilendirilebilir.\n"
 "Çoklu varlık işlemlerinin bir varlık hesabında izlenmeleri gerekir.\n"
 "\n"
 "Bir varlık hesabı oluşturmak ister misiniz?\n"
 "\n"
+""
 
 #: src/assetspanel.cpp:60 src/billsdepositspanel.cpp:101
 #: src/mmcheckingpanel.cpp:1098 src/reports/transactions.cpp:73
@@ -576,8 +572,7 @@ msgid "Change in Value: %s %s"
 msgstr "Değerdeki Değişim: %s %s"
 
 #: src/assetspanel.cpp:781
-msgid ""
-"This asset does not have its own account\n"
+msgid "This asset does not have its own account\n"
 "\n"
 "Multiple transactions for this asset are not recommended.\n"
 "Please use the popup: 'Open Asset Account' to track the transaction."
@@ -588,9 +583,9 @@ msgid "Asset Management"
 msgstr ""
 
 #: src/assetspanel.cpp:803
-msgid ""
-"Account \t Date\t   Value\n"
+msgid "Account \t Date\t   Value\n"
 "\n"
+""
 msgstr ""
 
 #: src/attachmentdialog.cpp:54 src/customfieldlistdialog.cpp:52
@@ -1091,32 +1086,27 @@ msgstr "Dönem: Ay"
 
 #: src/billsdepositsdialog.cpp:1310
 #, fuzzy
-msgid ""
-"Specify period in Days to activate.\n"
+msgid "Specify period in Days to activate.\n"
 "Becomes blank when not active."
 msgstr "Etkinleştirmek için dönemi gün olarak belirtin."
 
 #: src/billsdepositsdialog.cpp:1318
-msgid ""
-"Specify period in Months to activate.\n"
+msgid "Specify period in Months to activate.\n"
 "Becomes blank when not active."
 msgstr ""
 
 #: src/billsdepositsdialog.cpp:1326
-msgid ""
-"Specify period in Days to activate.\n"
+msgid "Specify period in Days to activate.\n"
 "Leave blank when not active."
 msgstr ""
 
 #: src/billsdepositsdialog.cpp:1334
-msgid ""
-"Specify period in Months to activate.\n"
+msgid "Specify period in Months to activate.\n"
 "Leave blank when not active."
 msgstr ""
 
 #: src/billsdepositsdialog.cpp:1342
-msgid ""
-"Specify the number of payments to be made.\n"
+msgid "Specify the number of payments to be made.\n"
 "Leave blank if the payments continue forever."
 msgstr ""
 
@@ -1490,11 +1480,9 @@ msgid "Budget Year:"
 msgstr "Bütçe Yılı:"
 
 #: src/budgetyearentrydialog.cpp:79
-msgid ""
-"Specify the required year.\n"
+msgid "Specify the required year.\n"
 "Use Spin buttons to increase or decrease the year."
-msgstr ""
-"Gerekli yılı belirtin.\n"
+msgstr "Gerekli yılı belirtin.\n"
 "Yılı azaltmak veya artırmak için Kaydırma düğmelerini kullanın."
 
 #: src/budgetyearentrydialog.cpp:86
@@ -1502,11 +1490,9 @@ msgid "Budget Month:"
 msgstr "Bütçe Ayı:"
 
 #: src/budgetyearentrydialog.cpp:95
-msgid ""
-"Specify the required month.\n"
+msgid "Specify the required month.\n"
 "Use Spin buttons to increase or decrease the month."
-msgstr ""
-"Gerekli ayı belirtin.\n"
+msgstr "Gerekli ayı belirtin.\n"
 "Ayı azaltmak veya artırmak için Kaydırma düğmelerini kullanın."
 
 #: src/budgetyearentrydialog.cpp:102
@@ -1578,8 +1564,7 @@ msgid "Category with same name exists"
 msgstr "Bu kategori tanımlı"
 
 #: src/categdialog.cpp:266
-msgid ""
-"Tip: If category added now, check bottom of list.\n"
+msgid "Tip: If category added now, check bottom of list.\n"
 "Category will be in sorted order next time dialog appears"
 msgstr "İpucu: Şimdi eklenen kategoriler için listenin sonunu kontrol edin. Kategori diyalog penceresinin sonraki açılmasında sıralanacaktır."
 
@@ -1604,19 +1589,15 @@ msgid "Sub-Category in use."
 msgstr "Alt kategori kullanımda."
 
 #: src/categdialog.cpp:318
-msgid ""
-"Tip: Change all transactions using this Category to\n"
+msgid "Tip: Change all transactions using this Category to\n"
 "another Category using the relocate command:"
-msgstr ""
-"İpucu: Bu kategoriyi kullanan tüm işlemleri\n"
+msgstr "İpucu: Bu kategoriyi kullanan tüm işlemleri\n"
 "taşıma komutunu kullanarak diğer bir kategoriye taşıyın:"
 
 #: src/categdialog.cpp:321
-msgid ""
-"Tip: Change all transactions using this Sub-Category to\n"
+msgid "Tip: Change all transactions using this Sub-Category to\n"
 "another Sub-Category using the relocate command:"
-msgstr ""
-"İpucu: Bu alt-kategoriyi kullanan tüm işlemleri  \n"
+msgstr "İpucu: Bu alt-kategoriyi kullanan tüm işlemleri  \n"
 "taşıma komutunu kullanarak diğer bir alt-kategoriye taşıyın."
 
 #: src/categdialog.cpp:324
@@ -1889,8 +1870,7 @@ msgid "Default"
 msgstr ""
 
 #: src/customfieldeditdialog.cpp:160
-msgid ""
-"Enter the default for this field\n"
+msgid "Enter the default for this field\n"
 "For date/time insert 'Now' to make current date/time as default"
 msgstr ""
 
@@ -1953,8 +1933,7 @@ msgid "Confirm Custom Field Deletion"
 msgstr ""
 
 #: src/customfieldlistdialog.cpp:191
-msgid ""
-"This function will massive search & replace for \"%s\" custom field values\n"
+msgid "This function will massive search & replace for \"%s\" custom field values\n"
 "It will match & replace only complete field value, no partial or middle-value replaces allowed\n"
 "Please consider that there isn't any validation!"
 msgstr ""
@@ -1974,8 +1953,7 @@ msgid "Update Custom Field Content"
 msgstr ""
 
 #: src/customfieldlistdialog.cpp:203
-msgid ""
-"Do you want to update blank content?\n"
+msgid "Do you want to update blank content?\n"
 "Press no if you want to abort replace procedure!"
 msgstr ""
 
@@ -1984,8 +1962,7 @@ msgid "Replace with"
 msgstr ""
 
 #: src/customfieldlistdialog.cpp:215
-msgid ""
-"Do you want to update to blank?\n"
+msgid "Do you want to update to blank?\n"
 "Press no if you want to abort replace procedure!"
 msgstr ""
 
@@ -3335,8 +3312,7 @@ msgid "MMEX database error!"
 msgstr ""
 
 #: src/dbupgrade.cpp:130
-msgid ""
-"MMEX database version %i doesn't work with this MMEX version.\n"
+msgid "MMEX database version %i doesn't work with this MMEX version.\n"
 "Please upgrade MMEX to newer version."
 msgstr ""
 
@@ -3406,8 +3382,7 @@ msgid "Query error, please contact MMEX support!"
 msgstr ""
 
 #: src/dbupgrade.cpp:329
-msgid ""
-"Send this log to MMEX support team:\n"
+msgid "Send this log to MMEX support team:\n"
 "press OK to save to file or Cancel to exit"
 msgstr ""
 
@@ -3448,12 +3423,12 @@ msgstr "Bir şifreli veritabanının şifresini değiştirin."
 #: src/dbwrapper.cpp:92
 #, fuzzy
 msgid "Attempt to open a file that is not a database file"
-msgstr ""
-"Şifreli bir dosya için geçersiz bir şifre \n"
+msgstr "Şifreli bir dosya için geçersiz bir şifre \n"
 "\n"
 "veya \n"
 "\n"
 " veritabanı dosyası olmayan bir dosyayı açma girişimi \n"
+""
 
 #: src/dbwrapper.cpp:93
 #, fuzzy
@@ -3706,14 +3681,14 @@ msgid "ZIP files (*.zip)"
 msgstr ""
 
 #: src/general_report_manager.cpp:609
-msgid ""
-"Unable to open file:\n"
+msgid "Unable to open file:\n"
 "%s\n"
 "\n"
-msgstr ""
-"Dosya açılması olanaksız:\n"
+""
+msgstr "Dosya açılması olanaksız:\n"
 "%s\n"
 "\n"
+""
 
 #: src/general_report_manager.cpp:674
 msgid "New Empty Report"
@@ -3999,7 +3974,9 @@ msgstr "Satir okunuyor %i, %ld ms"
 
 #: src/import_export/qif_import_gui.cpp:378
 msgid "Line %i \t %s\n"
+""
 msgstr "Satır %i \t %s\n"
+""
 
 #: src/import_export/qif_import_gui.cpp:438
 msgid "Number of lines read from QIF file: %i in %ld ms"
@@ -4260,8 +4237,7 @@ msgid "Export File"
 msgstr "Dosya Ver"
 
 #: src/import_export/univcsvdialog.cpp:483
-msgid ""
-"Default account '%s' for this template does not exist.\n"
+msgid "Default account '%s' for this template does not exist.\n"
 "Please select a new account."
 msgstr ""
 
@@ -4290,8 +4266,7 @@ msgstr "Al"
 #: src/import_export/univcsvdialog.cpp:863
 #, fuzzy
 msgid "Transactions imported to account %s: %ld"
-msgstr ""
-"CSV'den alınan işlemler\n"
+msgstr "CSV'den alınan işlemler\n"
 "hesabına %s : %ld"
 
 #: src/import_export/univcsvdialog.cpp:874
@@ -4556,8 +4531,7 @@ msgid "Unable to download history for symbol %s. History rates not available!"
 msgstr ""
 
 #: src/maincurrencydialog.cpp:737
-msgid ""
-"Setting a new base currency will delete all historic rates,\n"
+msgid "Setting a new base currency will delete all historic rates,\n"
 "it's possible to re-download them after setting the new base currency."
 msgstr ""
 
@@ -4587,11 +4561,9 @@ msgid "Please use this button for category selection."
 msgstr ""
 
 #: src/mmSimpleDialogs.cpp:130
-msgid ""
-"Please use this button for category selection\n"
+msgid "Please use this button for category selection\n"
 "or use the 'Split' checkbox for multiple categories."
-msgstr ""
-"Kategori seçimi için bu düğmeyi veya çoklu\n"
+msgstr "Kategori seçimi için bu düğmeyi veya çoklu\n"
 "kategoriler için  \"Parçalı\" kontrol kutusunu kullanın."
 
 #: src/mmSimpleDialogs.cpp:132
@@ -4631,11 +4603,9 @@ msgid "Invalid Payee"
 msgstr "Geçersiz Alacaklı/Satıcı"
 
 #: src/mmSimpleDialogs.cpp:171
-msgid ""
-"Please type in a new payee,\n"
+msgid "Please type in a new payee,\n"
 "or make a selection using the dropdown button."
-msgstr ""
-"Lütfen yeni bir Alacaklı/Satıcı yazın veya\n"
+msgstr "Lütfen yeni bir Alacaklı/Satıcı yazın veya\n"
 "açılır düğmeyi kullanarak bir seçim yapın.."
 
 #: src/mmSimpleDialogs.cpp:177
@@ -4682,11 +4652,9 @@ msgid "Please enter a calculated value."
 msgstr ""
 
 #: src/mmTextCtrl.cpp:85
-msgid ""
-"Tip: For calculations, enter expressions like (2+2)*(2+2)\n"
+msgid "Tip: For calculations, enter expressions like (2+2)*(2+2)\n"
 "Calculations will be evaluated and the result used as the entry."
-msgstr ""
-"Tip: Hesaplamalar için (2+2)*(2+2) gibi ifadeler girin\n"
+msgstr "Tip: Hesaplamalar için (2+2)*(2+2) gibi ifadeler girin\n"
 "Hesaplamalar değerlendirilecek ve sonuç giriş olarak kullanılacak."
 
 #: src/mmTips.h:23
@@ -4981,11 +4949,9 @@ msgid "Days between selected transactions: %d"
 msgstr "Seçilen işlemi sil"
 
 #: src/mmcombobox.h:78
-msgid ""
-"Please type in an exiting payee name,\n"
+msgid "Please type in an exiting payee name,\n"
 "or make a selection using the dropdown button."
-msgstr ""
-"Lütfen var olan bir alacaklı/satıcı adı yazın,\n"
+msgstr "Lütfen var olan bir alacaklı/satıcı adı yazın,\n"
 "veya açılır düğmeyi kullanarak bir seçim yapın."
 
 #: src/mmcustomdata.cpp:58
@@ -5017,16 +4983,13 @@ msgstr ""
 
 #: src/mmex.cpp:115
 #, fuzzy
-msgid ""
-"Fatal error occurred.\n"
+msgid "Fatal error occurred.\n"
 "Application will be terminated."
-msgstr ""
-"Kritik hata oluştu.\n"
+msgstr "Kritik hata oluştu.\n"
 "Uygulama sonlandırılacak"
 
 #: src/mmex.cpp:248
-msgid ""
-"MMEX is already running...\n"
+msgid "MMEX is already running...\n"
 "\n"
 "Multiple instances are no longer supported."
 msgstr ""
@@ -5097,8 +5060,7 @@ msgid "Help"
 msgstr "Yardım"
 
 #: src/mmframe.cpp:1139
-msgid ""
-"Account: %s\n"
+msgid "Account: %s\n"
 "\n"
 "Balance at currency %s: %s\n"
 "Balance at currency %s: %s"
@@ -5784,11 +5746,11 @@ msgid "DB Optimization"
 msgstr "VeriTabanı İyileştirme"
 
 #: src/mmframe.cpp:2117
-msgid ""
-"Database Optimization Completed!\n"
+msgid "Database Optimization Completed!\n"
 "\n"
 "Size before: %s\n"
 "Size after: %s\n"
+""
 msgstr ""
 
 #: src/mmframe.cpp:2128
@@ -5827,8 +5789,7 @@ msgid "No account available to import to"
 msgstr "Alınacak kullanılabilir hesap yok."
 
 #: src/mmframe.cpp:2331
-msgid ""
-"Asset Accounts hold Asset transactions\n"
+msgid "Asset Accounts hold Asset transactions\n"
 "\n"
 "Asset transactions are created within the Assets View\n"
 "after the selection of the Asset within that view.\n"
@@ -5841,8 +5802,7 @@ msgid "Asset Account Creation"
 msgstr ""
 
 #: src/mmframe.cpp:2341
-msgid ""
-"Share Accounts hold Share transactions\n"
+msgid "Share Accounts hold Share transactions\n"
 "\n"
 "Share transactions are created within the Stock Portfolio View\n"
 "after the selection of the Company Stock within the associated view.\n"
@@ -5917,11 +5877,9 @@ msgid "Choose Account to Delete"
 msgstr "Silinecek Hesabı Seçin"
 
 #: src/mmframe.cpp:2864
-msgid ""
-"Are you sure you want to delete\n"
+msgid "Are you sure you want to delete\n"
 " %s account: %s ?"
-msgstr ""
-"%s hesabını silmek istediğinizden emin\n"
+msgstr "%s hesabını silmek istediğinizden emin\n"
 "misiniz: %s ?"
 
 #: src/mmframe.cpp:2883
@@ -6207,8 +6165,7 @@ msgid "Recurring Transaction"
 msgstr "Yinelenen İşlemler"
 
 #: src/model/Model_Billsdeposits.cpp:313
-msgid ""
-"A recurring transaction will exceed your account limit.\n"
+msgid "A recurring transaction will exceed your account limit.\n"
 "\n"
 "Do you wish to continue?"
 msgstr ""
@@ -6258,12 +6215,10 @@ msgid "Payee Error"
 msgstr "Alacaklı/Satıcı Hatası"
 
 #: src/model/Model_Report.cpp:273
-msgid ""
-"The SQL script:\n"
+msgid "The SQL script:\n"
 "%s \n"
 "will modify database! aborted!"
-msgstr ""
-"SQL script:\n"
+msgstr "SQL script:\n"
 "%s \n"
 "veritabanını değiştirecek! durduruldu!"
 
@@ -6601,11 +6556,9 @@ msgid "Create a new backup when MMEX Start"
 msgstr "MMEX başladığında yeni bir yedek oluştur"
 
 #: src/optionsettingsmisc.cpp:144
-msgid ""
-"When MMEX Starts,\n"
+msgid "When MMEX Starts,\n"
 "creates the backup database: dbFile_start_YYYY-MM-DD.ext."
-msgstr ""
-"MMEX Başladığında,\n"
+msgstr "MMEX Başladığında,\n"
 "veritabanı yedeği yaratır: dbFile_start_YYYY-MM-DD.ext."
 
 #: src/optionsettingsmisc.cpp:149
@@ -6613,11 +6566,9 @@ msgid "Backup database on exit."
 msgstr "Çıkışta veritabanını yedekle"
 
 #: src/optionsettingsmisc.cpp:151
-msgid ""
-"When MMEX shuts down and changes made to database,\n"
+msgid "When MMEX shuts down and changes made to database,\n"
 "creates or updates the backup database: dbFile_update_YYYY-MM-DD.ext."
-msgstr ""
-"MMEX kapatıldığında ve veritabanında değişiklikler yapıldığında,\n"
+msgstr "MMEX kapatıldığında ve veritabanında değişiklikler yapıldığında,\n"
 "veritabanı yedeği yaratır veya günceller: dbFile_update_YYYY-MM-DD.ext."
 
 #: src/optionsettingsmisc.cpp:159
@@ -7308,14 +7259,12 @@ msgid "New Stock Investment"
 msgstr "Yeni Menkul Kıymet Yatırımı"
 
 #: src/stockdialog.cpp:156
-msgid ""
-"Initial share price.\n"
+msgid "Initial share price.\n"
 "Recorded in share transaction"
 msgstr ""
 
 #: src/stockdialog.cpp:158
-msgid ""
-"Invalid in this view.\n"
+msgid "Invalid in this view.\n"
 "View Transactions for values"
 msgstr ""
 
@@ -7326,15 +7275,13 @@ msgstr "Hesabın Adı"
 
 #: src/stockdialog.cpp:199
 #, fuzzy
-msgid ""
-"Enter the associated Share Account name\n"
+msgid "Enter the associated Share Account name\n"
 "An account can be created on Save"
 msgstr "Hesap adını giriniz. Herhangibir anda değiştirebilirsiniz."
 
 #: src/stockdialog.cpp:209
 #, fuzzy
-msgid ""
-"Enter the Company's stock exchange symbol.\n"
+msgid "Enter the Company's stock exchange symbol.\n"
 "(Optional) Include exchange. eg: IBM.BE"
 msgstr "Menkul değer simgesi girin (İsteğe bağlı) Kuru içer. Örn: IBM.BE"
 
@@ -7343,8 +7290,7 @@ msgid "*Date"
 msgstr ""
 
 #: src/stockdialog.cpp:213
-msgid ""
-"Initial purchase date of shares.\n"
+msgid "Initial purchase date of shares.\n"
 "Recorded in share transaction"
 msgstr ""
 
@@ -7358,8 +7304,7 @@ msgid "*Share Number"
 msgstr ""
 
 #: src/stockdialog.cpp:224
-msgid ""
-"Total number of shares.\n"
+msgid "Total number of shares.\n"
 "Recorded in share transaction"
 msgstr ""
 
@@ -7382,8 +7327,7 @@ msgid "*Commission"
 msgstr ""
 
 #: src/stockdialog.cpp:246
-msgid ""
-"Remainder of funds from share investment.\n"
+msgid "Remainder of funds from share investment.\n"
 "Recorded in share transaction"
 msgstr ""
 
@@ -7441,19 +7385,18 @@ msgid "Held At"
 msgstr "Hesap"
 
 #: src/stockdialog.cpp:489
-msgid ""
-"A Share Account as the Company name has not been found.\n"
+msgid "A Share Account as the Company name has not been found.\n"
 "\n"
 "Do you want to create one?"
 msgstr ""
 
 #: src/stockdialog.cpp:499
-msgid ""
-"The Company name does not have an associated Share Account.\n"
+msgid "The Company name does not have an associated Share Account.\n"
 "\n"
 "You may want to readjust the Company Name to an existing Share Account with the same name. If this is an existing Stock without a Share Account, it is recommended that a Share Account is created.\n"
 "\n"
 "Do you want to create a new Share Acccount?\n"
+""
 msgstr ""
 
 #: src/stockdialog.cpp:567
@@ -7608,11 +7551,11 @@ msgid "Confirm Stock Investment Deletion"
 msgstr "Menkul Kıymet Yatırımı Sil"
 
 #: src/stockspanel.cpp:404
-msgid ""
-"Temporary Stock list: %s\n"
+msgid "Temporary Stock list: %s\n"
 "\n"
 "Date          Lot          Shares          Price        Commission\n"
 "\n"
+""
 msgstr ""
 
 #: src/stockspanel.cpp:574
@@ -7729,11 +7672,9 @@ msgid "Organize attachments of this transaction"
 msgstr "Bu işlemin ilişiklerini düzenleyin"
 
 #: src/transdialog.cpp:633
-msgid ""
-"Do you want to add new payee: \n"
+msgid "Do you want to add new payee: \n"
 "%s?"
-msgstr ""
-"Yeni Alacaklı/Satıcı eklemek ister misiniz: \n"
+msgstr "Yeni Alacaklı/Satıcı eklemek ister misiniz: \n"
 "%s?"
 
 #: src/transdialog.cpp:634
@@ -7741,8 +7682,7 @@ msgid "Confirm to add new payee"
 msgstr "Yeni Alacaklı/Satıcı eklemeyi onaylayın"
 
 #: src/transdialog.cpp:724
-msgid ""
-"This transaction will exceed your account limit.\n"
+msgid "This transaction will exceed your account limit.\n"
 "\n"
 "Do you wish to continue?"
 msgstr ""
@@ -8013,11 +7953,9 @@ msgid "Account '%s' not found!"
 msgstr "'%s' hesabı bulunamadı."
 
 #: src/webapp.cpp:466
-msgid ""
-"Transaction will be inserted with the first bank account:\n"
+msgid "Transaction will be inserted with the first bank account:\n"
 "'%s' and marked as  'Follow Up'"
-msgstr ""
-"İşlem ilk banka hesabında araya eklenecek:\n"
+msgstr "İşlem ilk banka hesabında araya eklenecek:\n"
 "'%s' ve 'İzlenecek' olarak işaretlenecek."
 
 #: src/webapp.cpp:469
@@ -8097,8 +8035,7 @@ msgid "%s models all transactions as belonging to accounts."
 msgstr ""
 
 #: src/wizard_newaccount.cpp:36
-msgid ""
-"The next pages will help you create a new account.\n"
+msgid "The next pages will help you create a new account.\n"
 "To help you get started, begin by making a list of all\n"
 "financial institutions where you hold an account."
 msgstr ""
@@ -8120,11 +8057,9 @@ msgid "Specify a descriptive name for the account."
 msgstr "Hesap için tanımlayıcı bir isim belirtin."
 
 #: src/wizard_newaccount.cpp:106
-msgid ""
-"This is generally the name of a financial institution\n"
+msgid "This is generally the name of a financial institution\n"
 "where the account is held. For example: 'ABC Bank'."
-msgstr ""
-"Bu genellikle hesabın bulunduğu bir finans\n"
+msgstr "Bu genellikle hesabın bulunduğu bir finans\n"
 "kuruluşu adıdır. Örneğin 'Finansbank'."
 
 #: src/wizard_newaccount.cpp:126
@@ -8137,29 +8072,23 @@ msgstr "Oluşturmak istediğiniz hesabın türünü belirtin:"
 
 #: src/wizard_newaccount.cpp:131
 #, fuzzy
-msgid ""
-"General bank accounts cover a wide variety of account\n"
+msgid "General bank accounts cover a wide variety of account\n"
 "types like Checking, Savings etc."
-msgstr ""
-"Genel bankacılık hesapları, çek hesapları, tasarruf ve kredi kartı\n"
+msgstr "Genel bankacılık hesapları, çek hesapları, tasarruf ve kredi kartı\n"
 "hesapları gibi hesap türlerinin geniş bir kesimini kapsar."
 
 #: src/wizard_newaccount.cpp:136
-msgid ""
-"Investment accounts are specialized accounts that only\n"
+msgid "Investment accounts are specialized accounts that only\n"
 "have stock/mutual fund investments associated with them."
-msgstr ""
-"Yatırım hesapları kendileriyle ilişkilendirilmiş hisse senedi,\n"
+msgstr "Yatırım hesapları kendileriyle ilişkilendirilmiş hisse senedi,\n"
 "yatırım fonları bulunan özelleştirilmiş hesaplardır."
 
 #: src/wizard_newaccount.cpp:141
-msgid ""
-"Term accounts are specialized bank accounts. Intended for asset\n"
+msgid "Term accounts are specialized bank accounts. Intended for asset\n"
 "type accounts such as Term Deposits and Bonds. These accounts\n"
 "can have regular money coming in and out, being outside the\n"
 "general income stream."
-msgstr ""
-"Vadeli hesaplar özel banka hesaplarıdır. Sözedilen örneğin vadeli\n"
+msgstr "Vadeli hesaplar özel banka hesaplarıdır. Sözedilen örneğin vadeli\n"
 "hesaplar veya bonolar gibi varlık türü hesaplardır. Bu hesaplara\n"
 "genel gelir akışı dışındayken düzenli para giriş ve çıkışları\n"
 "olabilir."
@@ -8177,8 +8106,7 @@ msgid "New Database Wizard"
 msgstr "Yeni Veritabanı Sihirbazı"
 
 #: src/wizard_newdb.cpp:50
-msgid ""
-"The next pages will help you create a new database.\n"
+msgid "The next pages will help you create a new database.\n"
 "\n"
 "Your database file is stored with an extension of .mmb.\n"
 "As this file contains important financial information,\n"
@@ -8196,13 +8124,11 @@ msgid "Base Currency for account"
 msgstr "Hesap İçin Kullanılacak Para Birimi"
 
 #: src/wizard_newdb.cpp:136
-msgid ""
-"Specify the base (or default) currency to be used for the\n"
+msgid "Specify the base (or default) currency to be used for the\n"
 "database. The base currency can later be changed by using\n"
 "the options dialog. New accounts, will use this currency by\n"
 "default, and can be changed when editing account details."
-msgstr ""
-"Veritabanı için kullanılacak ana (veya varsayılan) para birimini\n"
+msgstr "Veritabanı için kullanılacak ana (veya varsayılan) para birimini\n"
 "belirtin. Temel (ana) para birimi daha sonra seçenekler menüsü\n"
 "kullanılarak değiştirilebilir. Yeni hesaplar varsayılan olarak bu para birimini\n"
 "kullanacak ve hesap ayrıntıları düzenlenirken değiştirilebilecek."
@@ -8262,3 +8188,4 @@ msgstr "MMEX Güncelleme Kontrolü"
 #, fuzzy
 msgid "You already have the latest version"
 msgstr "Zaten son sürümü kullanıyorsunuz %s"
+

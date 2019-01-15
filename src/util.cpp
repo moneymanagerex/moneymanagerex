@@ -710,7 +710,7 @@ const wxDateTime mmParseISODate(const wxString& str)
 const wxDateTime getUserDefinedFinancialYear(bool prevDayRequired)
 {
     long monthNum;
-    Option::instance().FinancialYearStartMonth().ToLong(&monthNum);
+    Option::instance().getFinancialYearStartMonth().ToLong(&monthNum);
 
     if (monthNum > 0) //Test required for compatibility with previous version
         monthNum--;
@@ -718,7 +718,7 @@ const wxDateTime getUserDefinedFinancialYear(bool prevDayRequired)
     int year = wxDate::GetCurrentYear();
     if (wxDate::GetCurrentMonth() < monthNum) year--;
 
-    int dayNum = wxAtoi(Option::instance().FinancialYearStartDay());
+    int dayNum = wxAtoi(Option::instance().getFinancialYearStartDay());
 
     if (dayNum <= 0 || dayNum > wxDateTime::GetNumberOfDays((wxDateTime::Month)monthNum, year))
         dayNum = 1;

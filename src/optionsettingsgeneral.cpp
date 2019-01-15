@@ -45,7 +45,7 @@ OptionSettingsGeneral::OptionSettingsGeneral(wxWindow *parent, mmGUIApp* app
 {
     wxPanel::Create(parent, id, pos, size, style, name);
     m_app = app;
-    m_currency_id = Option::instance().BaseCurrency();
+    m_currency_id = Option::instance().getBaseCurrency();
     m_date_format = Option::instance().DateFormat();
 
     Create();
@@ -164,9 +164,9 @@ void OptionSettingsGeneral::Create()
 
 void OptionSettingsGeneral::OnCurrency(wxCommandEvent& WXUNUSED(event))
 {
-    int currencyID = Option::instance().BaseCurrency();
+    int currencyID = Option::instance().getBaseCurrency();
     mmMainCurrencyDialog(this, currencyID, false).ShowModal();
-    currencyID = Option::instance().BaseCurrency();
+    currencyID = Option::instance().getBaseCurrency();
     Model_Currency::Data* currency = Model_Currency::instance().get(currencyID);
     wxButton* bn = (wxButton*)FindWindow(ID_DIALOG_OPTIONS_BUTTON_CURRENCY);
     bn->SetLabelText(wxGetTranslation(currency->CURRENCYNAME));

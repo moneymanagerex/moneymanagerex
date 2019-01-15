@@ -47,30 +47,30 @@ public:
 
     // set and save the option: m_language
     void Language(wxLanguage& language);
-    wxLanguage Language(bool get_db = false);
-    // get 2-letter ISO 639-1 code
-    wxString LanguageISO6391(bool get_db = false);
+    wxLanguage getLanguage() const;
+    // get 2-letter ISO 639-1 code plus Region
+    const wxString getBestTranslation() const;
 
     // set and save the option: m_userNameString
     void UserName(const wxString& username);
-    wxString UserName();
+    const wxString getUserName() const;
 
     // set and save the option: m_financialYearStartDayString
     void FinancialYearStartDay(const wxString& setting);
-    wxString FinancialYearStartDay();
+    const wxString getFinancialYearStartDay() const;
 
     // set and save the option: m_financialYearStartMonthString
     void FinancialYearStartMonth(const wxString& setting);
-    wxString FinancialYearStartMonth();
+    const wxString getFinancialYearStartMonth() const;
 
     // set the base currency ID
     void BaseCurrency(int base_currency_id);
     // returns the base currency ID
-    int BaseCurrency();
+    int getBaseCurrency() const;
 
     // set and save the option: m_databaseUpdated
     void DatabaseUpdated(bool value);
-    bool DatabaseUpdated();
+    bool getDatabaseUpdated() const;
 
     void BudgetFinancialYears(bool value);
     bool BudgetFinancialYears();
@@ -132,6 +132,7 @@ public:
 private:
     wxString m_dateFormat;
     wxLanguage m_language;
+    wxString m_bestTranslation;
     wxString m_userNameString;
     wxString m_financialYearStartDayString;
     wxString m_financialYearStartMonthString;
@@ -160,6 +161,41 @@ private:
 
     const wxString ReportSettings(int id);
 };
+
+inline wxLanguage Option::getLanguage() const
+{
+    return m_language;
+}
+
+inline const wxString Option::getBestTranslation() const
+{
+    return m_bestTranslation;
+}
+
+inline const wxString Option::getUserName() const
+{
+    return m_userNameString;
+}
+
+inline const wxString Option::getFinancialYearStartDay() const
+{
+    return m_financialYearStartDayString;
+}
+
+inline const wxString Option::getFinancialYearStartMonth() const
+{
+    return m_financialYearStartMonthString;
+}
+
+inline int Option::getBaseCurrency() const
+{
+    return m_baseCurrency;
+}
+
+inline bool Option::getDatabaseUpdated() const
+{
+    return m_databaseUpdated;
+}
 
 #endif // MM_EX_OPTION_H_
 //----------------------------------------------------------------------------

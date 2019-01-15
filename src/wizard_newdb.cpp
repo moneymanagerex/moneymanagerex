@@ -175,7 +175,7 @@ void mmNewDatabaseWizardPage::OnCurrency(wxCommandEvent& WXUNUSED(event))
 {
     while (true)
     {
-        currencyID_ = Option::instance().BaseCurrency();
+        currencyID_ = Option::instance().getBaseCurrency();
         mmMainCurrencyDialog::Execute(this, currencyID_);
         Model_Currency::Data* currency = Model_Currency::instance().get(currencyID_);
         if (currency)

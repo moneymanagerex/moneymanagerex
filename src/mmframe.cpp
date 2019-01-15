@@ -335,7 +335,7 @@ void mmGUIFrame::cleanup()
     cleanupHomePanel(false);
     ShutdownDatabase();
     /// Update the database according to user requirements
-    if (Option::instance().DatabaseUpdated() && Model_Setting::instance().GetBoolSetting("BACKUPDB_UPDATE", false))
+    if (Option::instance().getDatabaseUpdated() && Model_Setting::instance().GetBoolSetting("BACKUPDB_UPDATE", false))
     {
         dbUpgrade::BackupDB(m_filename, dbUpgrade::BACKUPTYPE::CLOSE, Model_Setting::instance().GetIntSetting("MAX_BACKUP_FILES", 4));
     }
@@ -1909,7 +1909,7 @@ bool mmGUIFrame::createDataStore(const wxString& fileName, const bool openingNew
 
         ShutdownDatabase();
         /// Backup the database according to user requirements
-        if (Option::instance().DatabaseUpdated() &&
+        if (Option::instance().getDatabaseUpdated() &&
             Model_Setting::instance().GetBoolSetting("BACKUPDB_UPDATE", false))
         {
             dbUpgrade::BackupDB(m_filename, dbUpgrade::BACKUPTYPE::CLOSE, Model_Setting::instance().GetIntSetting("MAX_BACKUP_FILES", 4));

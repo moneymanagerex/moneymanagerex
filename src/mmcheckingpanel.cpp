@@ -755,16 +755,16 @@ void mmCheckingPanel::initFilterSettings()
             if (show_future) m_end_date = future_date_string;
             break;
         case  MENU_VIEW_CURRENTFINANCIALYEAR:
-            date_range = new mmCurrentFinancialYear(wxAtoi(Option::instance().FinancialYearStartDay())
-                , wxAtoi(Option::instance().FinancialYearStartMonth()));
+            date_range = new mmCurrentFinancialYear(wxAtoi(Option::instance().getFinancialYearStartDay())
+                , wxAtoi(Option::instance().getFinancialYearStartMonth()));
             if (show_future) m_end_date = future_date_string;
             break;
         case  MENU_VIEW_LASTYEAR:
             date_range = new mmLastYear;
             break;
         case  MENU_VIEW_LASTFINANCIALYEAR:
-            date_range = new mmLastFinancialYear(wxAtoi(Option::instance().FinancialYearStartDay())
-                , wxAtoi(Option::instance().FinancialYearStartMonth()));
+            date_range = new mmLastFinancialYear(wxAtoi(Option::instance().getFinancialYearStartDay())
+                , wxAtoi(Option::instance().getFinancialYearStartMonth()));
             break;
         case  MENU_VIEW_STATEMENTDATE:
             if (Model_Account::BoolOf(m_account->STATEMENTLOCKED))

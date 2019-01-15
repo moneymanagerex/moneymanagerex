@@ -215,28 +215,9 @@ wxString Option::DateFormat()
 
 void Option::Language(wxLanguage& language)
 {
+    m_bestTranslation = wxTranslations::Get()->GetBestTranslation("mmex", wxLANGUAGE_ENGLISH_US);
     m_language = language;
     Model_Setting::instance().Set(LANGUAGE_PARAMETER, language);
-}
-
-wxLanguage Option::Language(bool get_db)
-{
-    if (get_db)
-    {
-        m_language = static_cast<wxLanguage>(Model_Setting::instance().GetIntSetting(LANGUAGE_PARAMETER, wxLANGUAGE_UNKNOWN));
-    }
-
-    return m_language;
-}
-
-wxString Option::LanguageISO6391(bool get_db)
-{
-    Option::Language(get_db);
-    if (m_language==wxLANGUAGE_UNKNOWN)
-        return wxEmptyString;
-    if (m_language==wxLANGUAGE_DEFAULT)
-        return wxTranslations::Get()->GetBestTranslation("mmex", wxLANGUAGE_ENGLISH_US).Left(2);
-    return wxLocale::GetLanguageCanonicalName(m_language).Left(2);
 }
 
 void Option::UserName(const wxString& username)
@@ -245,25 +226,10 @@ void Option::UserName(const wxString& username)
     Model_Infotable::instance().Set("USERNAME", username);
 }
 
-wxString Option::UserName()
-{
-    return m_userNameString;
-}
-
-wxString Option::FinancialYearStartDay()
-{
-    return m_financialYearStartDayString;
-}
-
 void Option::FinancialYearStartDay(const wxString& setting)
 {
     m_financialYearStartDayString = setting;
     Model_Infotable::instance().Set("FINANCIAL_YEAR_START_DAY", setting);
-}
-
-wxString Option::FinancialYearStartMonth()
-{
-    return m_financialYearStartMonthString;
 }
 
 void Option::FinancialYearStartMonth(const wxString& setting)
@@ -278,19 +244,9 @@ void Option::BaseCurrency(int base_currency_id)
     Model_Infotable::instance().Set("BASECURRENCYID", base_currency_id);
 }
 
-int Option::BaseCurrency()
-{
-    return m_baseCurrency;
-}
-
 void Option::DatabaseUpdated(bool value)
 {
     m_databaseUpdated = value;
-}
-
-bool Option::DatabaseUpdated()
-{
-    return m_databaseUpdated;
 }
 
 void Option::BudgetFinancialYears(bool value)

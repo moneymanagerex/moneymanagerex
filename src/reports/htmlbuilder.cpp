@@ -126,12 +126,12 @@ void mmHTMLBuilder::init()
     );
 
     //Show user name if provided
-    if (Option::instance().UserName() != "")
+    if (Option::instance().getUserName() != "")
     {
         startTable();
         startTableRow();
         startTableCell();
-        addHeader(2, Option::instance().UserName());
+        addHeader(2, Option::instance().getUserName());
         endTableCell();
         endTableRow();
         endTable();
