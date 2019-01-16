@@ -78,7 +78,7 @@ StocksListCtrl::StocksListCtrl(mmStocksPanel* cp, wxWindow *parent, wxWindowID w
     , m_stock_panel(cp)
     , m_imageList(0)
 {
-    int x = Option::instance().IconSize();
+    int x = Option::instance().getIconSize();
     m_imageList = new wxImageList(x, x);
     m_imageList->Add(mmBitmap(png::PROFIT));
     m_imageList->Add(mmBitmap(png::LOSS));
@@ -412,9 +412,9 @@ void mmStocksPanel::ViewStockTransactions(int selectedIndex)
             wxString sd = mmGetDateForDisplay(stock_trans->TRANSDATE);
             wxString sl = share_entry->SHARELOT;
       
-            int precision = share_entry->SHARENUMBER == floor(share_entry->SHARENUMBER) ? 0 : Option::instance().SharePrecision();
+            int precision = share_entry->SHARENUMBER == floor(share_entry->SHARENUMBER) ? 0 : Option::instance().getSharePrecision();
             wxString sn = wxString::FromDouble(share_entry->SHARENUMBER, precision);
-            wxString su = wxString::FromDouble(share_entry->SHAREPRICE, Option::instance().SharePrecision());
+            wxString su = wxString::FromDouble(share_entry->SHAREPRICE, Option::instance().getSharePrecision());
             wxString sc = wxString::FromDouble(share_entry->SHARECOMMISSION, 2);
             msg << wxString::Format("%s     %s          %s               %s          %s\n", sd, sl, sn, su, sc);
         }

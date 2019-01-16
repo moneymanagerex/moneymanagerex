@@ -157,7 +157,7 @@ void mmQIFExportDialog::CreateControls()
     // Encoding --------------------------------------------
 
     // Date Format Settings --------------------------------
-    wxString dateFormatStr = Option::instance().DateFormat();
+    wxString dateFormatStr = Option::instance().getDateFormat();
 
     wxStaticText* dateFormat = new wxStaticText(main_tab, wxID_STATIC, _("Date Format"));
     m_choiceDateFormat = new wxComboBox(main_tab, wxID_ANY);

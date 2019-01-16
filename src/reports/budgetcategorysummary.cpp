@@ -98,12 +98,12 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
         yearEnd.Add(wxDateSpan::Year()).Subtract(wxDateSpan::Day());
 
     // Readjust dates by the Budget Offset Option
-    Option::instance().BudgetDateOffset(yearBegin);
-    Option::instance().BudgetDateOffset(yearEnd);
+    Option::instance().setBudgetDateOffset(yearBegin);
+    Option::instance().setBudgetDateOffset(yearEnd);
     mmSpecifiedRange date_range(yearBegin, yearEnd);
 
     bool evaluateTransfer = false;
-    if (Option::instance().BudgetIncludeTransfers())
+    if (Option::instance().getBudgetIncludeTransfers())
     {
         evaluateTransfer = true;
     }
@@ -113,7 +113,7 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
     Model_Budget::instance().getBudgetEntry(m_date_selection, budgetPeriod, budgetAmt);
     std::map<int, std::map<int, std::map<int, double> > > categoryStats;
     Model_Category::instance().getCategoryStats(categoryStats
-        , &date_range, Option::instance().IgnoreFutureTransactions()
+        , &date_range, Option::instance().getIgnoreFutureTransactions()
         , false, (evaluateTransfer ? &budgetAmt : nullptr));
 
     auto categs = Model_Category::all_categories();
@@ -125,7 +125,7 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
         , startMonth, startYear, budget_year);
     hb.init();
     hb.addDivContainer();
-    bool amply = Option::instance().BudgetReportWithSummaries();
+    bool amply = Option::instance().getBudgetReportWithSummaries();
     const wxString& headerStartupMsg = amply 
         ? _("Budget Categories for %s") : _("Budget Category Summary for %s");
 

@@ -17,9 +17,10 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
 //----------------------------------------------------------------------------
+#include "constants.h"
+#include "option.h"
 #include "paths.h"
 #include "platfdep.h"
-#include "constants.h"
 #include "util.h"
 #include "../resources/mmexico.xpm"
 //----------------------------------------------------------------------------
@@ -127,12 +128,15 @@ wxString mmex::getPathDoc(const EDocFile& f)
       "license.txt",
       "version.txt",
       "help/index.html",
-      "help/grm.html",
-      "help/stocks_and_shares.html",
-      "help/budget.html",
+      "help/en_US/grm.html",
+      "help/en_US/stocks_and_shares.html",
+      "help/en_US/budget.html",
     };
 
     wxASSERT(f >= 0 && f < DOC_FILES_MAX);
+
+    //TODO: change file path for not default locale
+    auto locale = Option::instance().getBestTranslation();
 
     wxString path = files[f];
     path.Replace("/",wxFileName::GetPathSeparator());

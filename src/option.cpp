@@ -2,6 +2,7 @@
  Copyright (C) 2006 Madhan Kanagavel
  Copyright (C) 2016 - 2017 Stefano Giorgio [stef145g]
  Copyright (C) 2017 James Higley
+ Copyright (C) 2019 Nikolay Akimov
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -130,6 +131,9 @@ Option::Option()
     m_reports.push_back(ReportInfo("", wxTRANSLATE("Forecast Report"), false, ReportInfo::ForecastReport));
     //Sort by group name and report name
     std::sort(m_reports.begin(), m_reports.end());
+
+    m_reportsSize = static_cast<int>(m_reports.size());
+
 }
 
 //----------------------------------------------------------------------------
@@ -155,7 +159,7 @@ void Option::LoadOptions(bool include_infotable)
         {
             if (mmMainCurrencyDialog::Execute(m_baseCurrency))
             {
-                BaseCurrency(m_baseCurrency);
+                setBaseCurrency(m_baseCurrency);
             }
         }
     }
@@ -185,231 +189,156 @@ void Option::LoadOptions(bool include_infotable)
 #endif
 
     m_html_font_size = Model_Setting::instance().GetIntSetting("HTMLSCALE", default_font_size);
-    m_ico_size = 16;
-    if (m_html_font_size >= 300)
-    {
-        m_ico_size = 48;
-    }
-    else if (m_html_font_size >= 200)
-    {
-        m_ico_size = 32;
-    }
-    else if (m_html_font_size >= 150)
-    {
-        m_ico_size = 24;
-    }
-
+    setIconSize(m_html_font_size);
     m_hideReport = Model_Setting::instance().GetIntSetting("HIDE_REPORT", 0);
 }
 
-void Option::DateFormat(const wxString& dateformat)
+void Option::setDateFormat(const wxString& dateformat)
 {
     m_dateFormat = dateformat;
     Model_Infotable::instance().Set("DATEFORMAT", dateformat);
 }
 
-wxString Option::DateFormat()
-{
-    return m_dateFormat;
-}
-
-void Option::Language(wxLanguage& language)
+void Option::setLanguageID(wxLanguage& language)
 {
     m_bestTranslation = wxTranslations::Get()->GetBestTranslation("mmex", wxLANGUAGE_ENGLISH_US);
     m_language = language;
     Model_Setting::instance().Set(LANGUAGE_PARAMETER, language);
 }
 
-void Option::UserName(const wxString& username)
+void Option::setUserName(const wxString& username)
 {
     m_userNameString = username;
     Model_Infotable::instance().Set("USERNAME", username);
 }
 
-void Option::FinancialYearStartDay(const wxString& setting)
+void Option::setFinancialYearStartDay(const wxString& setting)
 {
     m_financialYearStartDayString = setting;
     Model_Infotable::instance().Set("FINANCIAL_YEAR_START_DAY", setting);
 }
 
-void Option::FinancialYearStartMonth(const wxString& setting)
+void Option::setFinancialYearStartMonth(const wxString& setting)
 {
     m_financialYearStartMonthString = setting;
     Model_Infotable::instance().Set("FINANCIAL_YEAR_START_MONTH", setting);
 }
 
-void Option::BaseCurrency(int base_currency_id)
+void Option::setBaseCurrency(int base_currency_id)
 {
     m_baseCurrency = base_currency_id;
     Model_Infotable::instance().Set("BASECURRENCYID", base_currency_id);
 }
 
-void Option::DatabaseUpdated(bool value)
-{
-    m_databaseUpdated = value;
-}
-
-void Option::BudgetFinancialYears(bool value)
+void Option::setBudgetFinancialYears(bool value)
 {
     Model_Setting::instance().Set(INIDB_BUDGET_FINANCIAL_YEARS, value);
     m_budgetFinancialYears = value;
 }
 
-bool Option::BudgetFinancialYears()
-{
-    return m_budgetFinancialYears;
-}
-
-void Option::BudgetIncludeTransfers(bool value)
+void Option::setBudgetIncludeTransfers(bool value)
 {
     Model_Setting::instance().Set(INIDB_BUDGET_INCLUDE_TRANSFERS, value);
     m_budgetIncludeTransfers = value;
 
 }
 
-bool Option::BudgetIncludeTransfers()
-{
-    return m_budgetIncludeTransfers;
-}
-
-void Option::BudgetSetupWithoutSummaries(bool value)
+void Option::setBudgetSetupWithoutSummaries(bool value)
 {
     Model_Setting::instance().Set(INIDB_BUDGET_SETUP_WITHOUT_SUMMARY, value);
     m_budgetSetupWithoutSummaries = value;
 }
 
-bool Option::BudgetSetupWithoutSummaries()
-{
-    return m_budgetSetupWithoutSummaries;
-}
-
-void Option::BudgetReportWithSummaries(bool value)
+void Option::setBudgetReportWithSummaries(bool value)
 {
     Model_Setting::instance().Set(INIDB_BUDGET_SUMMARY_WITHOUT_CATEG, value);
     m_budgetReportWithSummaries = value;
 
 }
-bool Option::BudgetReportWithSummaries()
-{
-    return m_budgetReportWithSummaries;
-}
 
-void Option::IgnoreFutureTransactions(bool value)
+void Option::setIgnoreFutureTransactions(bool value)
 {
     Model_Setting::instance().Set(INIDB_IGNORE_FUTURE_TRANSACTIONS, value);
     m_ignoreFutureTransactions = value;
 }
 
-bool Option::IgnoreFutureTransactions()
-{
-    return m_ignoreFutureTransactions;
-}
-
-void Option::TransPayeeSelection(int value)
+void Option::setTransPayeeSelection(int value)
 {
     Model_Setting::instance().Set("TRANSACTION_PAYEE_NONE", value);
     m_transPayeeSelection = value;
 }
 
-int Option::TransPayeeSelection()
-{
-    return m_transPayeeSelection;
-}
-
-void Option::TransCategorySelection(int value)
+void Option::setTransCategorySelection(int value)
 {
     Model_Setting::instance().Set("TRANSACTION_CATEGORY_NONE", value);
     m_transCategorySelection = value;
 }
 
-int Option::TransCategorySelection()
+int Option::getTransCategorySelection()
 {
     return m_transCategorySelection;
 }
 
-void Option::TransStatusReconciled(int value)
+void Option::setTransStatusReconciled(int value)
 {
     Model_Setting::instance().Set("TRANSACTION_STATUS_RECONCILED", value);
     m_transStatusReconciled = value;
 }
 
-int Option::TransStatusReconciled()
-{
-    return m_transStatusReconciled;
-}
-
-void Option::TransDateDefault(int value)
+void Option::setTransDateDefault(int value)
 {
     Model_Setting::instance().Set("TRANSACTION_DATE_DEFAULT", value);
     m_transDateDefault = value;
 }
 
-int Option::TransDateDefault()
-{
-    return m_transDateDefault;
-}
-
-void Option::SharePrecision(int value)
+void Option::setSharePrecision(int value)
 {
     Model_Infotable::instance().Set("SHARE_PRECISION", value);
     m_sharePrecision = value;
 }
 
-int Option::SharePrecision()
-{
-    return m_sharePrecision;
-}
-
-void Option::SendUsageStatistics(bool value)
+void Option::setSendUsageStatistics(bool value)
 {
     m_usageStatistics = value;
     Model_Setting::instance().Set(INIDB_SEND_USAGE_STATS, value);
 }
 
-bool Option::SendUsageStatistics()
-{
-    return m_usageStatistics;
-}
-
-void Option::HtmlFontSize(int value)
+void Option::setHtmlFontSize(int value)
 {
     Model_Setting::instance().Set("HTMLSCALE", value);
     m_html_font_size = value;
 }
 
-int Option::HtmlFontSize()
-{
-    return m_html_font_size;
-}
-
-void Option::BudgetDaysOffset(int value)
+void Option::setBudgetDaysOffset(int value)
 {
     Model_Infotable::instance().Set("BUDGET_DAYS_OFFSET", value);
     m_budget_days_offset = value;
 }
 
-int Option::BudgetDaysOffset()
-{
-    return m_budget_days_offset;
-}
-
-void Option::BudgetDateOffset(wxDateTime& date)
+void Option::setBudgetDateOffset(wxDateTime& date)
 {
     if (m_budget_days_offset != 0)
         date.Add(wxDateSpan::Days(m_budget_days_offset));
 }
 
-void Option::IconSize(int value)
+void Option::setIconSize(int html_font_size)
 {
-    m_ico_size = value;
+    m_ico_size = 16;
+    if (html_font_size >= 300)
+    {
+        m_ico_size = 48;
+    }
+    else if (html_font_size >= 200)
+    {
+        m_ico_size = 32;
+    }
+    else if (html_font_size >= 150)
+    {
+        m_ico_size = 24;
+    }
 }
 
-int Option::IconSize()
-{
-    return m_ico_size;
-}
-
-int Option::AccountImageId(int account_id, bool def)
+int Option::getAccountImageId(int account_id, bool def) const
 {
     int max = acc_img::MAX_XPM - img::LAST_NAVTREE_PNG;
     int min = 1;
@@ -485,11 +414,11 @@ int Option::AccountImageId(int account_id, bool def)
     return selectedImage;
 }
 
-void Option::HideReport(int report, bool value)
+void Option::setHideReport(int reportID, bool value)
 {
-    if ((report >= 0) && (report < ReportCount()))
+    if (getReportIndexIsOK(reportID))
     {
-        int bitField = 1 << m_reports[report].id;
+        int bitField = 1 << m_reports.at(reportID).id;
         if (value)
             m_hideReport |= bitField;
         else
@@ -499,73 +428,49 @@ void Option::HideReport(int report, bool value)
     }
 }
 
-bool Option::HideReport(int report)
+bool Option::getHideReport(int reportID) const
 {
     bool hideReport = false;
-    if ((report >= 0) && (report < ReportCount()))
+    if (getReportIndexIsOK(reportID))
     {
-        int bitField = 1 << m_reports[report].id;
+        int bitField = 1 << m_reports.at(reportID).id;
         hideReport = ((m_hideReport & bitField) != 0);
     }
     return hideReport;
 }
 
-int Option::ReportCount()
-{
-    return static_cast<int>(m_reports.size());
-}
-
-wxString Option::ReportFullName(int report)
+const wxString Option::getReportFullName(int reportID) const
 {
     wxString name = "";
-    if ((report >= 0) && (report < ReportCount()))
+    if (getReportIndexIsOK(reportID))
     {
-        ReportInfo* r = &m_reports[report];
-        name = wxGetTranslation(r->group);
+        name = m_reports.at(reportID).group;
         if (name.IsEmpty())
-            name = wxGetTranslation(r->name);
+            name = wxGetTranslation(m_reports.at(reportID).name);
         else
-            name += wxString(" (") + wxGetTranslation(r->name) + wxString(")");
+            name = wxString::Format("%s (%s)"
+                , wxGetTranslation(name)
+                , wxGetTranslation(m_reports.at(reportID).name));
     }
     return name;
 }
 
-wxString Option::ReportGroup(int report)
+const wxString Option::getReportGroup(int reportID)
 {
     wxString group = "";
-    if ((report >= 0) && (report < ReportCount()))
+    if (getReportIndexIsOK(reportID))
     {
-        group = m_reports[report].group;
+        group = m_reports.at(reportID).group;
     }
     return group;
 }
 
-wxString Option::ReportName(int report)
-{
-    wxString name = "";
-    if ((report >= 0) && (report < ReportCount()))
-    {
-        name = m_reports[report].name;
-    }
-    return name;
-}
-
-bool Option::BudgetReport(int report)
-{
-    bool budget = false;
-    if ((report >= 0) && (report < ReportCount()))
-    {
-        budget = m_reports[report].type;
-    }
-    return budget;
-}
-
-mmPrintableBase* Option::ReportFunction(int report)
+mmPrintableBase* Option::getReportFunction(int reportID) const
 {
     mmPrintableBase* function = nullptr;
-    if ((report >= 0) && (report < ReportCount()))
+    if (getReportIndexIsOK(reportID))
     {
-        switch (m_reports[report].id)
+        switch (m_reports.at(reportID).id)
         {
         case ReportInfo::MyUsage:
             function = new mmReportMyUsage();
@@ -622,12 +527,12 @@ mmPrintableBase* Option::ReportFunction(int report)
             break;
         }
         if (function != nullptr)
-            function->setSettings(ReportSettings(m_reports[report].id));
+            function->setSettings(getReportSettingsJSON(m_reports.at(reportID).id));
     }
     return function;
 }
 
-const wxString Option::ReportSettings(int id)
+const wxString Option::getReportSettingsJSON(int id) const
 {
     const wxString& name = wxString::Format("REPORT_%d", id);
     const wxString& settings = Model_Infotable::instance().GetStringInfo(name, "");
@@ -642,4 +547,19 @@ const wxString Option::ReportSettings(int id)
     }
     const auto& json_data = JSON_PrettyFormated(j_doc_main);
     return json_data;
+}
+
+void Option::setDatabaseUpdated(bool value)
+{
+    m_databaseUpdated = value;
+}
+
+bool Option::getBudgetReport(int reportID) const
+{
+    return getReportIndexIsOK(reportID) ? m_reports.at(reportID).type : false;
+}
+
+const wxString Option::getReportName(int reportID) const
+{
+    return getReportIndexIsOK(reportID) ? m_reports.at(reportID).name : "";
 }

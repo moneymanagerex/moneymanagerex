@@ -117,7 +117,7 @@ mmNewDatabaseWizardPage::mmNewDatabaseWizardPage(mmNewDatabaseWizard* parent)
     {
         currencyID_ = base_currency->CURRENCYID;
         currName = wxGetTranslation(base_currency->CURRENCYNAME);
-	    Option::instance().BaseCurrency(currencyID_);
+	    Option::instance().setBaseCurrency(currencyID_);
     }
 
     itemButtonCurrency_ = new wxButton(this, wxID_ANY, currName, wxDefaultPosition, wxSize(220, -1), 0);
@@ -166,7 +166,7 @@ bool mmNewDatabaseWizardPage::TransferDataFromWindow()
         return false;
     }
     wxString userName = itemUserName_->GetValue().Trim();
-    Option::instance().UserName(userName);
+    Option::instance().setUserName(userName);
 
     return true;
 }
@@ -182,7 +182,7 @@ void mmNewDatabaseWizardPage::OnCurrency(wxCommandEvent& WXUNUSED(event))
         {
             itemButtonCurrency_->SetLabelText(wxGetTranslation(currency->CURRENCYNAME));
             currencyID_ = currency->CURRENCYID;
-            Option::instance().BaseCurrency(currencyID_);
+            Option::instance().setBaseCurrency(currencyID_);
             break;
         }
     }

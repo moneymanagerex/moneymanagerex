@@ -476,7 +476,7 @@ void mmCheckingPanel::CreateControls()
         , wxID_ANY, wxDefaultPosition, wxSize(200, 200)
         , wxSP_3DBORDER | wxSP_3DSASH | wxNO_BORDER);
 
-    int x = Option::instance().IconSize();
+    int x = Option::instance().getIconSize();
     m_imageList.reset(new wxImageList(x, x));
     m_imageList->Add(mmBitmap(png::RECONCILED));
     m_imageList->Add(mmBitmap(png::VOID_STAT));
@@ -718,7 +718,7 @@ void mmCheckingPanel::initViewTransactionsHeader()
 void mmCheckingPanel::initFilterSettings()
 {
     mmDateRange* date_range = NULL;
-    bool show_future = !Option::instance().IgnoreFutureTransactions();
+    bool show_future = !Option::instance().getIgnoreFutureTransactions();
     const wxString& future_date_string = wxDateTime(31, wxDateTime::Dec, 9999).FormatISODate();
     m_begin_date = "";
     m_end_date = "";

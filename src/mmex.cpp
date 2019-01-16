@@ -84,7 +84,7 @@ bool mmGUIApp::setGUILanguage(wxLanguage lang)
     }
     wxTranslations::Set(trans);
     this->m_lang = lang;
-    Option::instance().Language(lang);
+    Option::instance().setLanguageID(lang);
     return true;
 }
 

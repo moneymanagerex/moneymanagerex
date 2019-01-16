@@ -743,7 +743,7 @@ bool mmMainCurrencyDialog::SetBaseCurrency(int& baseCurrencyID)
         }
     }
 
-    Option::instance().BaseCurrency(baseCurrencyID);
+    Option::instance().setBaseCurrency(baseCurrencyID);
 
     Model_CurrencyHistory::instance().ResetCurrencyHistory();
 
