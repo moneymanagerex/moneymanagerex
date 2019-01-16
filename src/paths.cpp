@@ -120,7 +120,7 @@ bool mmex::isPortableMode()
 }
 //----------------------------------------------------------------------------
 
-wxString mmex::getPathDoc(const EDocFile& f)
+const wxString mmex::getPathDoc(const EDocFile& f)
 {
     static const wxString files[DOC_FILES_MAX] = {
       "README.TXT",
@@ -135,16 +135,22 @@ wxString mmex::getPathDoc(const EDocFile& f)
 
     wxASSERT(f >= 0 && f < DOC_FILES_MAX);
 
-    //TODO: change file path for not default locale
-    auto locale = Option::instance().getBestTranslation();
-
     wxString path = files[f];
-    path.Replace("/",wxFileName::GetPathSeparator());
-    return path.Prepend(GetDocDir().GetPathWithSep());
+    path.Replace("/", wxFileName::GetPathSeparator());
+    path = path.Prepend(GetDocDir().GetPathWithSep());
+
+    wxString i18n_path = path;
+    const wxString locale = Option::instance().getBestTranslation();
+    i18n_path.Replace("en_US", locale);
+    if (wxFileName::FileExists(i18n_path)) {
+        path = i18n_path;
+    }
+
+    return path;
 }
 //----------------------------------------------------------------------------
 
-wxString mmex::getPathResource(EResFile f)
+const wxString mmex::getPathResource(EResFile f)
 {
     static const wxString files[RES_FILES_MAX] = {
       "mmex.ico",

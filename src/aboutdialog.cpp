@@ -204,7 +204,7 @@ void mmAboutDialog::CreateControls(int TabToOpen)
 
 void mmAboutDialog::OnLinkClicked(wxHtmlLinkEvent& event)
 {
-    wxHtmlLinkInfo link_info = event.GetLinkInfo();
-    wxString sURL = link_info.GetHref();
+    const wxHtmlLinkInfo link_info = event.GetLinkInfo();
+    const wxString sURL = link_info.GetHref();
     wxLaunchDefaultBrowser(sURL);
 }
