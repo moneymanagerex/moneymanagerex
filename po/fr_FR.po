@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2018-08-28 15:26+0200\n"
-"PO-Revision-Date: 2019-01-17 12:25\n"
+"PO-Revision-Date: 2019-01-17 13:09\n"
 "Last-Translator: vomikan <nikolay.akimov@gmail.com>\n"
 "Language-Team: French\n"
 "Language: fr_FR\n"
@@ -39,7 +39,7 @@ msgstr "Auteurs"
 
 #: src/aboutdialog.cpp:156
 msgid "Sponsors"
-msgstr ""
+msgstr "Sponsors"
 
 #: src/aboutdialog.cpp:161
 msgid "License"
@@ -405,7 +405,7 @@ msgstr "% Taux"
 #: src/assetdialog.cpp:241
 #, c-format
 msgid "Enter the rate at which the asset changes its value in % per year"
-msgstr ""
+msgstr "Saisissez le taux pour lequel la valeur de l’actif change, en % par an"
 
 #: src/assetdialog.cpp:253
 msgid "Organize attachments of this asset"
@@ -2022,11 +2022,11 @@ msgstr "Loisir"
 
 #: src/db/Table_Category.h:108 src/model/Model_Asset.cpp:32
 msgid "Automobile"
-msgstr ""
+msgstr "Voiture"
 
 #: src/db/Table_Category.h:109
 msgid "Education"
-msgstr ""
+msgstr "Éducation"
 
 #: src/db/Table_Category.h:110
 msgid "Homeneeds"
@@ -2046,7 +2046,7 @@ msgstr "Vacances"
 
 #: src/db/Table_Category.h:114
 msgid "Taxes"
-msgstr ""
+msgstr "Taxes"
 
 #: src/db/Table_Category.h:115
 msgid "Miscellaneous"
@@ -2075,7 +2075,7 @@ msgstr "Dollar US"
 
 #: src/db/Table_Currencyformats.h:107
 msgid "Euro"
-msgstr ""
+msgstr "Euro"
 
 #: src/db/Table_Currencyformats.h:108
 msgid "Pound Sterling"
@@ -2115,7 +2115,7 @@ msgstr ""
 
 #: src/db/Table_Currencyformats.h:117
 msgid "Armenian Dram"
-msgstr ""
+msgstr "Dram Arménien"
 
 #: src/db/Table_Currencyformats.h:118
 msgid "Aruban Florin"
