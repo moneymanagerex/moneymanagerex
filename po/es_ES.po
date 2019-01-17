@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2018-08-28 15:26+0200\n"
-"PO-Revision-Date: 2019-01-17 12:26\n"
+"PO-Revision-Date: 2019-01-17 15:18\n"
 "Last-Translator: vomikan <nikolay.akimov@gmail.com>\n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -62,7 +62,7 @@ msgstr "Privacidad"
 #: src/splitdetailsdialog.cpp:160 src/splittransactionsdialog.cpp:170
 #: src/transactionsupdatedialog.cpp:213 src/transdialog.cpp:568
 msgid "&OK "
-msgstr ""
+msgstr "&OK "
 
 #: src/accountdialog.cpp:85 src/mmframe.cpp:1579 src/mmframe.cpp:1827
 #: src/wizard_newaccount.cpp:80 src/wizard_newaccount.cpp:87
@@ -442,7 +442,7 @@ msgstr "No se ha encontrado una cuenta de valores con el mismo nombre.\n\n"
 #: src/mmcheckingpanel.cpp:1095 src/reports/transactions.cpp:73
 #: src/stockspanel.cpp:95
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #: src/assetspanel.cpp:63 src/billsdepositsdialog.cpp:567
 #: src/billsdepositspanel.cpp:108 src/customfieldlistdialog.cpp:54
@@ -510,7 +510,7 @@ msgstr "Corfirme el borrado del Activo"
 #: src/assetspanel.cpp:369 src/stockspanel.cpp:769 src/stockspanel.cpp:944
 #, c-format
 msgid "Total: %s"
-msgstr ""
+msgstr "Total: %s"
 
 #: src/assetspanel.cpp:419
 msgid "MMEX allows you to track fixed assets like cars, houses, land and others. Each asset can have its value appreciate by a certain rate per year, depreciate by a certain rate per year, or not change in value. The total assets are added to your total financial worth."
@@ -606,7 +606,7 @@ msgstr "Cuenta \t Fecha\t   Valor\n\n"
 #: src/import_export/qif_import_gui.cpp:92
 #: src/import_export/univcsvdialog.cpp:1104 src/payeedialog.cpp:64
 msgid "#"
-msgstr ""
+msgstr "#"
 
 #: src/attachmentdialog.cpp:55 src/general_report_manager.cpp:407
 msgid "Description"
@@ -873,7 +873,7 @@ msgstr "Repeticiones"
 
 #: src/billsdepositsdialog.cpp:457
 msgid "Advance the next occuring date with the specified values"
-msgstr ""
+msgstr "Avanzar la próxima fecha de ocurrencia con los valores especificados"
 
 #: src/billsdepositsdialog.cpp:465 src/billsdepositsdialog.cpp:1363
 msgid "Payments Left"
@@ -1155,7 +1155,7 @@ msgstr "Especificar el número de pagos a realizar.\n"
 #: src/splittransactionsdialog.cpp:206 src/stockspanel.cpp:819
 #: src/stockspanel.cpp:820
 msgid "Error"
-msgstr ""
+msgstr "Error"
 
 #: src/billsdepositsdialog.cpp:1390 src/billsdepositsdialog.cpp:1399
 #: src/filtertransdialog.cpp:490 src/filtertransdialog.cpp:498
@@ -1288,7 +1288,7 @@ msgstr "&Borrar serie de facturas y abonos..."
 
 #: src/billsdepositspanel.cpp:459
 msgid "Manual"
-msgstr ""
+msgstr "Manual"
 
 #: src/billsdepositspanel.cpp:463
 msgid "Suggested"
@@ -1410,7 +1410,7 @@ msgstr "Ver resumen de categorías del presupuesto"
 #: src/budgetingpanel.cpp:186 src/reports/budget.cpp:84
 #, c-format
 msgid "Financial Year: %s - %i"
-msgstr ""
+msgstr "Año fiscal: %s - %i"
 
 #: src/budgetingpanel.cpp:190 src/reports/budget.cpp:88
 #, c-format
@@ -1695,11 +1695,11 @@ msgstr "Versión de la base de datos: "
 
 #: src/constants.cpp:87 src/mmframe.cpp:2572
 msgid "Git commit: "
-msgstr ""
+msgstr "Git commit: "
 
 #: src/constants.cpp:91 src/mmframe.cpp:2573
 msgid "Git branch: "
-msgstr ""
+msgstr "Git branch: "
 
 #: src/constants.cpp:94 src/mmframe.cpp:2574
 msgid "MMEX is using the following support products:"
@@ -1788,7 +1788,7 @@ msgstr "Gestor de monedas"
 
 #: src/currencydialog.cpp:95
 msgid "Currency name"
-msgstr ""
+msgstr "Nombre de la moneda"
 
 #: src/currencydialog.cpp:152
 msgid "Currency Type"
@@ -2074,7 +2074,7 @@ msgstr "Dólar estadounidense"
 
 #: src/db/Table_Currencyformats.h:107
 msgid "Euro"
-msgstr ""
+msgstr "Euro"
 
 #: src/db/Table_Currencyformats.h:108
 msgid "Pound Sterling"
@@ -2086,15 +2086,15 @@ msgstr "Rublo"
 
 #: src/db/Table_Currencyformats.h:110
 msgid "Hryvnia"
-msgstr ""
+msgstr "Hryvnia"
 
 #: src/db/Table_Currencyformats.h:111
 msgid "Afghani"
-msgstr ""
+msgstr "Afghani"
 
 #: src/db/Table_Currencyformats.h:112
 msgid "Lek"
-msgstr ""
+msgstr "Lek"
 
 #: src/db/Table_Currencyformats.h:113
 msgid "Algerian Dinar"
@@ -2102,7 +2102,7 @@ msgstr "Dinar argelino"
 
 #: src/db/Table_Currencyformats.h:114
 msgid "Kwanza"
-msgstr ""
+msgstr "Kwanza"
 
 #: src/db/Table_Currencyformats.h:115
 msgid "East Caribbean Dollar"
@@ -2138,7 +2138,7 @@ msgstr "Dinar Bahreiní"
 
 #: src/db/Table_Currencyformats.h:123
 msgid "Taka"
-msgstr ""
+msgstr "Taka"
 
 #: src/db/Table_Currencyformats.h:124
 msgid "Barbados Dollar"
@@ -2162,11 +2162,11 @@ msgstr "Dólar bermudeño"
 
 #: src/db/Table_Currencyformats.h:129
 msgid "Ngultrum"
-msgstr ""
+msgstr "Ngultrum"
 
 #: src/db/Table_Currencyformats.h:130
 msgid "Boliviano"
-msgstr ""
+msgstr "Boliviano"
 
 #: src/db/Table_Currencyformats.h:131
 msgid "Convertible Mark"
@@ -2174,7 +2174,7 @@ msgstr "Marcos convertibles"
 
 #: src/db/Table_Currencyformats.h:132
 msgid "Pula"
-msgstr ""
+msgstr "Pula"
 
 #: src/db/Table_Currencyformats.h:133
 msgid "Brazilian Real"
@@ -2194,7 +2194,7 @@ msgstr "Franco de Burundi"
 
 #: src/db/Table_Currencyformats.h:137
 msgid "Riel"
-msgstr ""
+msgstr "Riel"
 
 #: src/db/Table_Currencyformats.h:138
 msgid "CFA Franc BEAC"
@@ -2238,7 +2238,7 @@ msgstr "Colón costarricense"
 
 #: src/db/Table_Currencyformats.h:148
 msgid "Kuna"
-msgstr ""
+msgstr "Kuna"
 
 #: src/db/Table_Currencyformats.h:149
 msgid "Czech Koruna"
@@ -2262,7 +2262,7 @@ msgstr "Libra egipcia"
 
 #: src/db/Table_Currencyformats.h:154
 msgid "Nakfa"
-msgstr ""
+msgstr "Nakfa"
 
 #: src/db/Table_Currencyformats.h:155
 msgid "Ethiopian Birr"
@@ -2282,11 +2282,11 @@ msgstr "Franco CFP"
 
 #: src/db/Table_Currencyformats.h:159
 msgid "Dalasi"
-msgstr ""
+msgstr "Dalasi"
 
 #: src/db/Table_Currencyformats.h:160
 msgid "Lari"
-msgstr ""
+msgstr "Lari"
 
 #: src/db/Table_Currencyformats.h:161
 msgid "Ghana Cedi"
@@ -2298,7 +2298,7 @@ msgstr "Libra gibraltareña"
 
 #: src/db/Table_Currencyformats.h:163
 msgid "Quetzal"
-msgstr ""
+msgstr "Quetzal"
 
 #: src/db/Table_Currencyformats.h:164
 msgid "Guinean Franc"
@@ -2310,11 +2310,11 @@ msgstr "Dólar guyanés"
 
 #: src/db/Table_Currencyformats.h:166
 msgid "Gourde"
-msgstr ""
+msgstr "Gourde"
 
 #: src/db/Table_Currencyformats.h:167
 msgid "Lempira"
-msgstr ""
+msgstr "Lempira"
 
 #: src/db/Table_Currencyformats.h:168
 msgid "Hong Kong Dollar"
@@ -2358,7 +2358,7 @@ msgstr "Dólar jamaicano"
 
 #: src/db/Table_Currencyformats.h:178
 msgid "Yen"
-msgstr ""
+msgstr "Yen"
 
 #: src/db/Table_Currencyformats.h:179
 msgid "Jordanian Dinar"
@@ -2366,7 +2366,7 @@ msgstr "Dinar Jordano"
 
 #: src/db/Table_Currencyformats.h:180
 msgid "Tenge"
-msgstr ""
+msgstr "Tenge"
 
 #: src/db/Table_Currencyformats.h:181
 msgid "Kenyan Shilling"
@@ -2378,7 +2378,7 @@ msgstr "Won norcoreano"
 
 #: src/db/Table_Currencyformats.h:183
 msgid "Won"
-msgstr ""
+msgstr "Won"
 
 #: src/db/Table_Currencyformats.h:184
 msgid "Kuwaiti Dinar"
@@ -2386,7 +2386,7 @@ msgstr "Dinar kuwaiti"
 
 #: src/db/Table_Currencyformats.h:185
 msgid "Som"
-msgstr ""
+msgstr "Som"
 
 #: src/db/Table_Currencyformats.h:186
 msgid "Lao Kip"
@@ -2402,7 +2402,7 @@ msgstr "Libra Libanesa"
 
 #: src/db/Table_Currencyformats.h:189
 msgid "Loti"
-msgstr ""
+msgstr "Loti"
 
 #: src/db/Table_Currencyformats.h:190
 msgid "Liberian Dollar"
@@ -2418,11 +2418,11 @@ msgstr "Litas lituanas (antes de 2014-12)"
 
 #: src/db/Table_Currencyformats.h:193
 msgid "Pataca"
-msgstr ""
+msgstr "Pataca"
 
 #: src/db/Table_Currencyformats.h:194
 msgid "Denar"
-msgstr ""
+msgstr "Denar"
 
 #: src/db/Table_Currencyformats.h:195
 msgid "Malagasy Ariary"
@@ -2458,7 +2458,7 @@ msgstr "Leu moldavo"
 
 #: src/db/Table_Currencyformats.h:203
 msgid "Tugrik"
-msgstr ""
+msgstr "Tugrik"
 
 #: src/db/Table_Currencyformats.h:204
 msgid "Moroccan Dirham"
@@ -2466,7 +2466,7 @@ msgstr "Dírham marroquí"
 
 #: src/db/Table_Currencyformats.h:205
 msgid "Kyat"
-msgstr ""
+msgstr "Kyat"
 
 #: src/db/Table_Currencyformats.h:206
 msgid "Namibia Dollar"
@@ -2506,11 +2506,11 @@ msgstr "Rupia pakistaní"
 
 #: src/db/Table_Currencyformats.h:215
 msgid "Balboa"
-msgstr ""
+msgstr "Balboa"
 
 #: src/db/Table_Currencyformats.h:216
 msgid "Kina"
-msgstr ""
+msgstr "Kina"
 
 #: src/db/Table_Currencyformats.h:217
 msgid "Guarani"
@@ -2518,7 +2518,7 @@ msgstr "Guaraní"
 
 #: src/db/Table_Currencyformats.h:218
 msgid "Sol"
-msgstr ""
+msgstr "Sol"
 
 #: src/db/Table_Currencyformats.h:219
 msgid "Philippine Piso"
@@ -2526,7 +2526,7 @@ msgstr "Piso filipino"
 
 #: src/db/Table_Currencyformats.h:220
 msgid "Zloty"
-msgstr ""
+msgstr "Zloty"
 
 #: src/db/Table_Currencyformats.h:221
 msgid "Qatari Rial"
@@ -2558,7 +2558,7 @@ msgstr "Rupia de Seychelles"
 
 #: src/db/Table_Currencyformats.h:228
 msgid "Leone"
-msgstr ""
+msgstr "Leone"
 
 #: src/db/Table_Currencyformats.h:229
 msgid "Singapore Dollar"
@@ -2574,7 +2574,7 @@ msgstr "Shilling Somalí"
 
 #: src/db/Table_Currencyformats.h:232
 msgid "Rand"
-msgstr ""
+msgstr "Rand"
 
 #: src/db/Table_Currencyformats.h:233
 msgid "Sri Lanka Rupee"
@@ -2594,7 +2594,7 @@ msgstr "Dólar surinamés"
 
 #: src/db/Table_Currencyformats.h:237
 msgid "Lilangeni"
-msgstr ""
+msgstr "Lilangeni"
 
 #: src/db/Table_Currencyformats.h:238
 msgid "Swedish Krona"
@@ -2614,7 +2614,7 @@ msgstr "Nuevo dólar taiwanés"
 
 #: src/db/Table_Currencyformats.h:242
 msgid "Somoni"
-msgstr ""
+msgstr "Somoni"
 
 #: src/db/Table_Currencyformats.h:243
 msgid "Tanzanian Shilling"
@@ -2622,7 +2622,7 @@ msgstr "Shilling de Tanzania"
 
 #: src/db/Table_Currencyformats.h:244
 msgid "Baht"
-msgstr ""
+msgstr "Baht"
 
 #: src/db/Table_Currencyformats.h:245
 msgid "Trinidad and Tobago Dollar"
@@ -2650,7 +2650,7 @@ msgstr "Dirham de los EAU"
 
 #: src/db/Table_Currencyformats.h:251
 msgid "Peso Uruguayo"
-msgstr ""
+msgstr "Peso Uruguayo"
 
 #: src/db/Table_Currencyformats.h:252
 msgid "Uzbekistan Sum"
@@ -2658,15 +2658,15 @@ msgstr "Sum uzbeco"
 
 #: src/db/Table_Currencyformats.h:253
 msgid "Vatu"
-msgstr ""
+msgstr "Vatu"
 
 #: src/db/Table_Currencyformats.h:254
 msgid "Dong"
-msgstr ""
+msgstr "Dong"
 
 #: src/db/Table_Currencyformats.h:255
 msgid "Tala"
-msgstr ""
+msgstr "Tala"
 
 #: src/db/Table_Currencyformats.h:256
 msgid "Yemeni Rial"
