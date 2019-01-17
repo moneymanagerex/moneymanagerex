@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2018-08-28 15:26+0200\n"
-"PO-Revision-Date: 2019-01-17 12:25\n"
+"PO-Revision-Date: 2019-01-17 19:48\n"
 "Last-Translator: vomikan <nikolay.akimov@gmail.com>\n"
 "Language-Team: Norwegian Bokmal\n"
 "Language: nb_NO\n"
@@ -23,31 +23,31 @@ msgstr ""
 #: src/aboutdialog.cpp:41
 #, c-format
 msgid "About %s"
-msgstr ""
+msgstr "Om %s"
 
 #: src/aboutdialog.cpp:41
 msgid "License agreement"
-msgstr ""
+msgstr "Lisensavtale"
 
 #: src/aboutdialog.cpp:146
 msgid "About"
-msgstr ""
+msgstr "Om"
 
 #: src/aboutdialog.cpp:151
 msgid "Authors"
-msgstr ""
+msgstr "Forfatter"
 
 #: src/aboutdialog.cpp:156
 msgid "Sponsors"
-msgstr ""
+msgstr "Sponsorer"
 
 #: src/aboutdialog.cpp:161
 msgid "License"
-msgstr ""
+msgstr "Lisens"
 
 #: src/aboutdialog.cpp:166
 msgid "Privacy"
-msgstr ""
+msgstr "Personvern"
 
 #: src/aboutdialog.cpp:197 src/accountdialog.cpp:372
 #: src/appstartdialog.cpp:136 src/assetdialog.cpp:299
@@ -62,7 +62,7 @@ msgstr ""
 #: src/splitdetailsdialog.cpp:160 src/splittransactionsdialog.cpp:170
 #: src/transactionsupdatedialog.cpp:213 src/transdialog.cpp:568
 msgid "&OK "
-msgstr ""
+msgstr "&OK "
 
 #: src/accountdialog.cpp:85 src/mmframe.cpp:1579 src/mmframe.cpp:1827
 #: src/wizard_newaccount.cpp:80 src/wizard_newaccount.cpp:87
@@ -89,7 +89,7 @@ msgstr "Konto status:"
 #: src/accountdialog.cpp:218
 #, c-format
 msgid "Initial Balance: %s"
-msgstr ""
+msgstr "Første saldo: %s"
 
 #: src/accountdialog.cpp:225 src/import_export/univcsvdialog.cpp:1582
 msgid "Currency:"
@@ -127,7 +127,7 @@ msgstr "Konto nummer:"
 
 #: src/accountdialog.cpp:267
 msgid "Card Number:"
-msgstr ""
+msgstr "Kortnummer:"
 
 #: src/accountdialog.cpp:273
 msgid "Held At:"
