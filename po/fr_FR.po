@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2018-08-28 15:26+0200\n"
-"PO-Revision-Date: 2019-01-17 13:09\n"
+"PO-Revision-Date: 2019-01-17 23:43\n"
 "Last-Translator: vomikan <nikolay.akimov@gmail.com>\n"
 "Language-Team: French\n"
 "Language: fr_FR\n"
@@ -269,7 +269,7 @@ msgstr "Image par défaut"
 #: src/accountdialog.cpp:509
 #, c-format
 msgid "Image #%i"
-msgstr ""
+msgstr "Image #%i"
 
 #: src/appstartdialog.cpp:99
 msgid "Open Last Opened Database"
@@ -367,7 +367,7 @@ msgstr "Saisissez le nom du bien"
 #: src/transdialog.cpp:427 src/usertransactionpanel.cpp:115
 #: src/webappdialog.cpp:78
 msgid "Date"
-msgstr ""
+msgstr "Date"
 
 #: src/assetdialog.cpp:200
 msgid "Specify the date of purchase of asset"
@@ -454,7 +454,7 @@ msgstr "N° opé."
 #: src/transdialog.cpp:461 src/usertransactionpanel.cpp:145
 #: src/webappdialog.cpp:81
 msgid "Type"
-msgstr ""
+msgstr "Type"
 
 #: src/assetspanel.cpp:64 src/reports/summarystocks.cpp:183
 msgid "Initial Value"
@@ -606,11 +606,11 @@ msgstr "Compte \t Date\t Valeur\n\n"
 #: src/import_export/qif_import_gui.cpp:92
 #: src/import_export/univcsvdialog.cpp:1104 src/payeedialog.cpp:64
 msgid "#"
-msgstr ""
+msgstr "Number"
 
 #: src/attachmentdialog.cpp:55 src/general_report_manager.cpp:407
 msgid "Description"
-msgstr ""
+msgstr "Libellé"
 
 #: src/attachmentdialog.cpp:56 src/import_export/qif_export.cpp:178
 #: src/import_export/univcsvdialog.cpp:163
@@ -873,7 +873,7 @@ msgstr "Fréquence"
 
 #: src/billsdepositsdialog.cpp:457
 msgid "Advance the next occuring date with the specified values"
-msgstr ""
+msgstr "Valider la prochaine occurence avec les valeurs spécifiés"
 
 #: src/billsdepositsdialog.cpp:465 src/billsdepositsdialog.cpp:1363
 msgid "Payments Left"
@@ -889,7 +889,7 @@ msgstr "Demander à l'utilisateur de saisir l'opération à la «Date de paiemen
 
 #: src/billsdepositsdialog.cpp:483
 msgid "Grant automatic execute"
-msgstr ""
+msgstr "Valider automatiquement"
 
 #: src/billsdepositsdialog.cpp:484
 msgid "The requested payment will occur without user interaction"
@@ -1082,7 +1082,7 @@ msgstr "Précisez le compte qui recevra le transfert"
 
 #: src/billsdepositsdialog.cpp:814
 msgid "Specify to whom the transaction is going to or coming from "
-msgstr ""
+msgstr "Préciser à qui ou d'où vient cette transaction "
 
 #: src/billsdepositsdialog.cpp:848 src/billsdepositsdialog.cpp:887
 #: src/transdialog.cpp:288 src/transdialog.cpp:350
@@ -1410,7 +1410,7 @@ msgstr "Voir le résumé du budget de la catégorie."
 #: src/budgetingpanel.cpp:186 src/reports/budget.cpp:84
 #, c-format
 msgid "Financial Year: %s - %i"
-msgstr ""
+msgstr "Année fiscale: %s - %i"
 
 #: src/budgetingpanel.cpp:190 src/reports/budget.cpp:88
 #, c-format
@@ -1689,7 +1689,7 @@ msgstr "Fermer"
 
 #: src/constants.cpp:61 src/mmframe.cpp:2570
 msgid "Version: "
-msgstr ""
+msgstr "Version: "
 
 #: src/constants.cpp:81 src/mmframe.cpp:2571
 msgid "Database version: "
@@ -1697,11 +1697,11 @@ msgstr "Version base de données: "
 
 #: src/constants.cpp:87 src/mmframe.cpp:2572
 msgid "Git commit: "
-msgstr ""
+msgstr "Commit gît: "
 
 #: src/constants.cpp:91 src/mmframe.cpp:2573
 msgid "Git branch: "
-msgstr ""
+msgstr "Branch Git : "
 
 #: src/constants.cpp:94 src/mmframe.cpp:2574
 msgid "MMEX is using the following support products:"
@@ -1709,7 +1709,7 @@ msgstr "MMEX utilise les produits suivant:"
 
 #: src/constants.cpp:107 src/mmframe.cpp:2575
 msgid "Build on"
-msgstr ""
+msgstr "Compile le"
 
 #: src/constants.cpp:107 src/mmframe.cpp:2576
 msgid "with:"
@@ -1717,7 +1717,7 @@ msgstr "avec:"
 
 #: src/constants.cpp:128 src/mmframe.cpp:2577
 msgid "Running on:"
-msgstr ""
+msgstr "Mis en marche le:"
 
 #: src/constants.cpp:217
 msgid "View All Transactions"
@@ -1769,7 +1769,7 @@ msgstr "Voir année suivante"
 
 #: src/constants.cpp:229
 msgid "View Since Statement Date"
-msgstr ""
+msgstr "Voir depuis la date de l'opération"
 
 #: src/constants.cpp:232 src/mmframe.cpp:1295 src/mmframe.cpp:1825
 #: src/model/Model_Account.cpp:26
@@ -1790,11 +1790,11 @@ msgstr "Gestion des devises"
 
 #: src/currencydialog.cpp:95
 msgid "Currency name"
-msgstr ""
+msgstr "Nom de la devise"
 
 #: src/currencydialog.cpp:152
 msgid "Currency Type"
-msgstr ""
+msgstr "Type de la devise"
 
 #: src/currencydialog.cpp:160
 msgid "Currency Name"
@@ -1826,7 +1826,7 @@ msgstr "Echelle"
 
 #: src/currencydialog.cpp:208
 msgid "Historic currency"
-msgstr ""
+msgstr "Historique du cours de la devise"
 
 #: src/currencydialog.cpp:213
 msgid "Value Display Sample:"
@@ -1848,7 +1848,7 @@ msgstr "Entrée non valable"
 #: src/currencydialog.cpp:281
 #, c-format
 msgid "%s Shown As: %s"
-msgstr ""
+msgstr "%s vu comme %s"
 
 #: src/customfieldeditdialog.cpp:57
 msgid "New/Edit Custom Field"
@@ -1880,7 +1880,7 @@ msgstr "Entrez l'infobulle qui sera affiché"
 
 #: src/customfieldeditdialog.cpp:147
 msgid "RegEx"
-msgstr ""
+msgstr "Regex"
 
 #: src/customfieldeditdialog.cpp:149
 msgid "Enter the RegEx to validate field"
@@ -1914,19 +1914,19 @@ msgstr "Entrez les choix pour ce champ séparés par un point-virgule"
 
 #: src/customfieldeditdialog.cpp:169
 msgid "Digits scale"
-msgstr ""
+msgstr "Nombre de décimales"
 
 #: src/customfieldeditdialog.cpp:171
 msgid "Enter the decimal digits scale allowed"
-msgstr ""
+msgstr "Entrer les nombre de décimales permis"
 
 #: src/customfieldeditdialog.cpp:174
 msgid "Panel's column"
-msgstr ""
+msgstr "Colonne de panel"
 
 #: src/customfieldeditdialog.cpp:179
 msgid "Select a value to represent the item on a panel"
-msgstr ""
+msgstr "Sélectionnez une valeur qui représente l'item dans le panel"
 
 #: src/customfieldeditdialog.cpp:221
 msgid "Changing field type will delete all content!"
