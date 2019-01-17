@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2018-08-28 15:26+0200\n"
-"PO-Revision-Date: 2019-01-17 19:45\n"
+"PO-Revision-Date: 2019-01-17 19:48\n"
 "Last-Translator: vomikan <nikolay.akimov@gmail.com>\n"
 "Language-Team: Italian\n"
 "Language: it_IT\n"
@@ -1082,7 +1082,7 @@ msgstr "Specificare il Conto verso il quale si effettua il trasferimento"
 
 #: src/billsdepositsdialog.cpp:814
 msgid "Specify to whom the transaction is going to or coming from "
-msgstr ""
+msgstr "Specificare destinatario o origine dell'operazione "
 
 #: src/billsdepositsdialog.cpp:848 src/billsdepositsdialog.cpp:887
 #: src/transdialog.cpp:288 src/transdialog.cpp:350
@@ -1410,7 +1410,7 @@ msgstr "Mostra riepilogo Categorie di Budget"
 #: src/budgetingpanel.cpp:186 src/reports/budget.cpp:84
 #, c-format
 msgid "Financial Year: %s - %i"
-msgstr ""
+msgstr "Anno finanziario (esercizio): %s - %i"
 
 #: src/budgetingpanel.cpp:190 src/reports/budget.cpp:88
 #, c-format
@@ -1693,19 +1693,19 @@ msgstr "Versione: %s"
 
 #: src/constants.cpp:81 src/mmframe.cpp:2571
 msgid "Database version: "
-msgstr ""
+msgstr "Versione del database: "
 
 #: src/constants.cpp:87 src/mmframe.cpp:2572
 msgid "Git commit: "
-msgstr ""
+msgstr "Git commit: "
 
 #: src/constants.cpp:91 src/mmframe.cpp:2573
 msgid "Git branch: "
-msgstr ""
+msgstr "Git branch: "
 
 #: src/constants.cpp:94 src/mmframe.cpp:2574
 msgid "MMEX is using the following support products:"
-msgstr ""
+msgstr "MMEX utilizza i prodotti di supporto seguenti:"
 
 #: src/constants.cpp:107 src/mmframe.cpp:2575
 msgid "Build on"
@@ -1790,7 +1790,7 @@ msgstr "Gestione Valute"
 
 #: src/currencydialog.cpp:95
 msgid "Currency name"
-msgstr ""
+msgstr "Nome della Valuta"
 
 #: src/currencydialog.cpp:152
 msgid "Currency Type"
@@ -1826,7 +1826,7 @@ msgstr "Scala"
 
 #: src/currencydialog.cpp:208
 msgid "Historic currency"
-msgstr ""
+msgstr "Storico valuta"
 
 #: src/currencydialog.cpp:213
 msgid "Value Display Sample:"
@@ -1872,7 +1872,7 @@ msgstr "Selezionare il tipo di campo personalizzato"
 
 #: src/customfieldeditdialog.cpp:142
 msgid "ToolTip"
-msgstr ""
+msgstr "Suggerimento"
 
 #: src/customfieldeditdialog.cpp:144
 msgid "Enter the tooltip that will be shown"
