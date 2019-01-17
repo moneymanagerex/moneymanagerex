@@ -1,26 +1,24 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
 msgid ""
 msgstr ""
-"Project-Id-Version: mmex-0.9.8.0\n"
+"Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2018-08-28 15:26+0200\n"
-"PO-Revision-Date: 2018-03-13 11:14+0300\n"
-"Last-Translator: Nikolay Akimov <vomikan@mail.ru>\n"
-"Language-Team: Launchpad Finnish Translators <LL@li.org>\n"
+"PO-Revision-Date: 2019-01-17 12:26\n"
+"Last-Translator: vomikan <nikolay.akimov@gmail.com>\n"
+"Language-Team: Finnish\n"
 "Language: fi_FI\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2017-01-05 11:05+0000\n"
-"X-Generator: Poedit 2.0.6\n"
-"X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-Basepath: ../src\n"
-"X-Poedit-KeywordsList: _;wxTRANSLATE\n"
-"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-KeywordsList: wxTRANSLATE;_\n"
+"X-Generator: crowdin.com\n"
+"X-Poedit-SearchPath-0: src\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Crowdin-Project: moneymanagerex\n"
+"X-Crowdin-Language: fi\n"
+"X-Crowdin-File: /master/po/en_GB.po\n"
 
 #: src/aboutdialog.cpp:41
 #, c-format
@@ -200,9 +198,7 @@ msgid "Specify the type of account to be created."
 msgstr "Anna tilin tyyppi"
 
 #: src/accountdialog.cpp:382
-msgid ""
-"Specify if this account has been closed. Closed accounts are inactive in "
-"most calculations, reporting etc."
+msgid "Specify if this account has been closed. Closed accounts are inactive in most calculations, reporting etc."
 msgstr ""
 
 #: src/accountdialog.cpp:383
@@ -214,12 +210,8 @@ msgid "Specify the currency to be used by this account."
 msgstr "Määritä tilin valuutta."
 
 #: src/accountdialog.cpp:385
-msgid ""
-"Select whether this is an account that is used often. This is used to "
-"filter accounts display view."
-msgstr ""
-"Valitse jos tili on usein käytetty. Tätä asentusta käytetään rajaamaan "
-"tilejä näkymissä."
+msgid "Select whether this is an account that is used often. This is used to filter accounts display view."
+msgstr "Valitse jos tili on usein käytetty. Tätä asentusta käytetään rajaamaan tilejä näkymissä."
 
 #: src/accountdialog.cpp:386
 msgid "Enter user notes and details about this account."
@@ -230,8 +222,7 @@ msgid "Enter the Account Number associated with this account."
 msgstr "Anna tilinumero tälle tilille."
 
 #: src/accountdialog.cpp:388
-msgid ""
-"Enter the name of the financial institution in which the account is held."
+msgid "Enter the name of the financial institution in which the account is held."
 msgstr "Kerro minkä yrityksen tilistä on kysymys."
 
 #: src/accountdialog.cpp:389
@@ -243,9 +234,7 @@ msgid "Enter any contact information for the financial institution."
 msgstr "anna yrityksen yhteystiedot."
 
 #: src/accountdialog.cpp:391
-msgid ""
-"Enter any login/access information for the financial institution. This is "
-"not secure as anyone with access to the mmb file can access it."
+msgid "Enter any login/access information for the financial institution. This is not secure as anyone with access to the mmb file can access it."
 msgstr ""
 
 #: src/accountdialog.cpp:393
@@ -329,9 +318,9 @@ msgid "&Exit "
 msgstr "&Poistu "
 
 #: src/appstartdialog.cpp:153
-#, fuzzy, c-format
+#, c-format
 msgid "Open the previously opened database: %s"
-msgstr "Avaa edellisellä kerrralla avattu tietokanta: %s"
+msgstr ""
 
 #: src/assetdialog.cpp:57 src/assetdialog.cpp:426 src/assetspanel.cpp:508
 msgid "New Asset"
@@ -440,14 +429,10 @@ msgid "&Cancel "
 msgstr ""
 
 #: src/assetdialog.cpp:421
-msgid ""
-"An asset account having the same name has not been found.\n"
-"\n"
+msgid "An asset account having the same name has not been found.\n\n"
 "A single transaction for this asset can be associated with any account.\n"
-"Multiple asset transactions need to be associated with an asset account.\n"
-"\n"
-"Would you want to create one?\n"
-"\n"
+"Multiple asset transactions need to be associated with an asset account.\n\n"
+"Would you want to create one?\n\n"
 msgstr ""
 
 #: src/assetspanel.cpp:60 src/billsdepositspanel.cpp:101
@@ -525,11 +510,7 @@ msgid "Total: %s"
 msgstr ""
 
 #: src/assetspanel.cpp:419
-msgid ""
-"MMEX allows you to track fixed assets like cars, houses, land and others. "
-"Each asset can have its value appreciate by a certain rate per year, "
-"depreciate by a certain rate per year, or not change in value. The total "
-"assets are added to your total financial worth."
+msgid "MMEX allows you to track fixed assets like cars, houses, land and others. Each asset can have its value appreciate by a certain rate per year, depreciate by a certain rate per year, or not change in value. The total assets are added to your total financial worth."
 msgstr ""
 
 #: src/assetspanel.cpp:454 src/assetspanel.h:110
@@ -603,9 +584,7 @@ msgid "Change in Value: %s %s"
 msgstr ""
 
 #: src/assetspanel.cpp:779
-msgid ""
-"This asset does not have its own account\n"
-"\n"
+msgid "This asset does not have its own account\n\n"
 "Multiple transactions for this asset are not recommended.\n"
 "Please use the popup: 'Open Asset Account' to track the transaction."
 msgstr ""
@@ -615,16 +594,14 @@ msgid "Asset Management"
 msgstr ""
 
 #: src/assetspanel.cpp:801
-msgid ""
-"Account \t Date\t   Value\n"
-"\n"
+msgid "Account \t Date\t   Value\n\n"
 msgstr ""
 
 #: src/attachmentdialog.cpp:54 src/customfieldlistdialog.cpp:52
 #: src/import_export/qif_import_gui.cpp:92
 #: src/import_export/univcsvdialog.cpp:1104 src/payeedialog.cpp:64
 msgid "#"
-msgstr "#"
+msgstr ""
 
 #: src/attachmentdialog.cpp:55 src/general_report_manager.cpp:407
 msgid "Description"
@@ -660,12 +637,10 @@ msgid "Attachments folder not found"
 msgstr ""
 
 #: src/attachmentdialog.cpp:85
-#, c-format
 msgid "Organize Attachments | %s %i"
 msgstr ""
 
 #: src/attachmentdialog.cpp:87
-#, c-format
 msgid "Organize Attachments | New %s"
 msgstr ""
 
@@ -679,9 +654,8 @@ msgid "Import attachment:"
 msgstr ""
 
 #: src/attachmentdialog.cpp:166 src/import_export/univcsvdialog.cpp:1354
-#, fuzzy
 msgid "All Files"
-msgstr "Tiedosto"
+msgstr ""
 
 #: src/attachmentdialog.cpp:174
 msgid "Enter a description for the new attachment:"
@@ -729,9 +703,7 @@ msgid "Att."
 msgstr ""
 
 #: src/attachmentdialog.cpp:347
-msgid ""
-"This directory and its files are automatically managed by Money Manager EX "
-"software."
+msgid "This directory and its files are automatically managed by Money Manager EX software."
 msgstr ""
 
 #: src/attachmentdialog.cpp:349
@@ -835,24 +807,20 @@ msgid "Daily"
 msgstr "Päivittäin"
 
 #: src/billsdepositsdialog.cpp:61 src/billsdepositsdialog.cpp:1406
-#, fuzzy
 msgid "In (x) Days"
-msgstr "%s Päivässä"
+msgstr ""
 
 #: src/billsdepositsdialog.cpp:62 src/billsdepositsdialog.cpp:1406
-#, fuzzy
 msgid "In (x) Months"
-msgstr "%s Kuukaudessa"
+msgstr ""
 
 #: src/billsdepositsdialog.cpp:63
-#, fuzzy
 msgid "Every (x) Days"
-msgstr "Joka %s Päivä"
+msgstr ""
 
 #: src/billsdepositsdialog.cpp:64
-#, fuzzy
 msgid "Every (x) Months"
-msgstr "Joka %s Kuukausi"
+msgstr ""
 
 #: src/billsdepositsdialog.cpp:65 src/billsdepositspanel.cpp:60
 msgid "Monthly (last day)"
@@ -1146,32 +1114,27 @@ msgid "Period: Months"
 msgstr ""
 
 #: src/billsdepositsdialog.cpp:1332
-msgid ""
-"Specify period in Days to activate.\n"
+msgid "Specify period in Days to activate.\n"
 "Becomes blank when not active."
 msgstr ""
 
 #: src/billsdepositsdialog.cpp:1340
-msgid ""
-"Specify period in Months to activate.\n"
+msgid "Specify period in Months to activate.\n"
 "Becomes blank when not active."
 msgstr ""
 
 #: src/billsdepositsdialog.cpp:1348
-msgid ""
-"Specify period in Days to activate.\n"
+msgid "Specify period in Days to activate.\n"
 "Leave blank when not active."
 msgstr ""
 
 #: src/billsdepositsdialog.cpp:1356
-msgid ""
-"Specify period in Months to activate.\n"
+msgid "Specify period in Months to activate.\n"
 "Leave blank when not active."
 msgstr ""
 
 #: src/billsdepositsdialog.cpp:1364
-msgid ""
-"Specify the number of payments to be made.\n"
+msgid "Specify the number of payments to be made.\n"
 "Leave blank if the payments continue forever."
 msgstr ""
 
@@ -1195,9 +1158,8 @@ msgid "Choose one of the following:"
 msgstr ""
 
 #: src/billsdepositsdialog.cpp:1405 src/mmSimpleDialogs.cpp:232
-#, fuzzy
 msgid "Invalid Choice"
-msgstr "Määrä"
+msgstr ""
 
 #: src/billsdepositsdialog.cpp:1482 src/transdialog.cpp:1169
 #: src/usertransactionpanel.cpp:199
@@ -1249,18 +1211,11 @@ msgid "Payment"
 msgstr ""
 
 #: src/billsdepositspanel.cpp:170
-msgid ""
-"MMEX allows regular payments to be set up as transactions. These "
-"transactions can also be regular deposits, or transfers that will occur at "
-"some future time. These transactions act as a reminder that an event is "
-"about to occur, and appears on the Home Page 14 days before the transaction "
-"is due. "
+msgid "MMEX allows regular payments to be set up as transactions. These transactions can also be regular deposits, or transfers that will occur at some future time. These transactions act as a reminder that an event is about to occur, and appears on the Home Page 14 days before the transaction is due. "
 msgstr ""
 
 #: src/billsdepositspanel.cpp:171
-msgid ""
-"Tip: These transactions can be set up to activate - allowing the user to "
-"adjust any values on the due date."
+msgid "Tip: These transactions can be set up to activate - allowing the user to adjust any values on the due date."
 msgstr ""
 
 #: src/billsdepositspanel.cpp:225 src/billsdepositspanel.cpp:888
@@ -1542,8 +1497,7 @@ msgid "Budget Year:"
 msgstr ""
 
 #: src/budgetyearentrydialog.cpp:79
-msgid ""
-"Specify the required year.\n"
+msgid "Specify the required year.\n"
 "Use Spin buttons to increase or decrease the year."
 msgstr ""
 
@@ -1552,8 +1506,7 @@ msgid "Budget Month:"
 msgstr ""
 
 #: src/budgetyearentrydialog.cpp:95
-msgid ""
-"Specify the required month.\n"
+msgid "Specify the required month.\n"
 "Use Spin buttons to increase or decrease the month."
 msgstr ""
 
@@ -1598,9 +1551,7 @@ msgid "Edit the name of an existing category"
 msgstr ""
 
 #: src/categdialog.cpp:234
-msgid ""
-"Delete an existing category. The category cannot be used by existing "
-"transactions."
+msgid "Delete an existing category. The category cannot be used by existing transactions."
 msgstr ""
 
 #: src/categdialog.cpp:239 src/maincurrencydialog.cpp:219
@@ -1608,9 +1559,7 @@ msgid "&Select"
 msgstr ""
 
 #: src/categdialog.cpp:241
-msgid ""
-"Select the currently selected category as the selected category for the "
-"transaction"
+msgid "Select the currently selected category as the selected category for the transaction"
 msgstr ""
 
 #: src/categdialog.cpp:250
@@ -1630,8 +1579,7 @@ msgid "Category with same name exists"
 msgstr ""
 
 #: src/categdialog.cpp:266
-msgid ""
-"Tip: If category added now, check bottom of list.\n"
+msgid "Tip: If category added now, check bottom of list.\n"
 "Category will be in sorted order next time dialog appears"
 msgstr ""
 
@@ -1656,14 +1604,12 @@ msgid "Sub-Category in use."
 msgstr ""
 
 #: src/categdialog.cpp:318
-msgid ""
-"Tip: Change all transactions using this Category to\n"
+msgid "Tip: Change all transactions using this Category to\n"
 "another Category using the relocate command:"
 msgstr ""
 
 #: src/categdialog.cpp:321
-msgid ""
-"Tip: Change all transactions using this Sub-Category to\n"
+msgid "Tip: Change all transactions using this Sub-Category to\n"
 "another Sub-Category using the relocate command:"
 msgstr ""
 
@@ -1832,9 +1778,8 @@ msgid "Currency name"
 msgstr ""
 
 #: src/currencydialog.cpp:152
-#, fuzzy
 msgid "Currency Type"
-msgstr "Valuutta"
+msgstr ""
 
 #: src/currencydialog.cpp:160
 msgid "Currency Name"
@@ -1939,8 +1884,7 @@ msgid "Default"
 msgstr ""
 
 #: src/customfieldeditdialog.cpp:160
-msgid ""
-"Enter the default for this field\n"
+msgid "Enter the default for this field\n"
 "For date/time insert 'Now' to make current date/time as default"
 msgstr ""
 
@@ -2004,10 +1948,8 @@ msgstr ""
 
 #: src/customfieldlistdialog.cpp:191
 #, c-format
-msgid ""
-"This function will massive search & replace for \"%s\" custom field values\n"
-"It will match & replace only complete field value, no partial or middle-"
-"value replaces allowed\n"
+msgid "This function will massive search & replace for \"%s\" custom field values\n"
+"It will match & replace only complete field value, no partial or middle-value replaces allowed\n"
 "Please consider that there isn't any validation!"
 msgstr ""
 
@@ -2026,8 +1968,7 @@ msgid "Update Custom Field Content"
 msgstr ""
 
 #: src/customfieldlistdialog.cpp:203
-msgid ""
-"Do you want to update blank content?\n"
+msgid "Do you want to update blank content?\n"
 "Press no if you want to abort replace procedure!"
 msgstr ""
 
@@ -2036,8 +1977,7 @@ msgid "Replace with"
 msgstr ""
 
 #: src/customfieldlistdialog.cpp:215
-msgid ""
-"Do you want to update to blank?\n"
+msgid "Do you want to update to blank?\n"
 "Press no if you want to abort replace procedure!"
 msgstr ""
 
@@ -3385,8 +3325,7 @@ msgstr ""
 
 #: src/dbupgrade.cpp:130
 #, c-format
-msgid ""
-"MMEX database version %i doesn't work with this MMEX version.\n"
+msgid "MMEX database version %i doesn't work with this MMEX version.\n"
 "Please upgrade MMEX to newer version."
 msgstr ""
 
@@ -3400,9 +3339,7 @@ msgid "MMEX database vacuum failed!"
 msgstr ""
 
 #: src/dbupgrade.cpp:149
-msgid ""
-"MMEX still should work, but try to re-optimize it from Tools -> Database -> "
-"Optimize"
+msgid "MMEX still should work, but try to re-optimize it from Tools -> Database -> Optimize"
 msgstr ""
 
 #: src/dbupgrade.cpp:153
@@ -3416,9 +3353,7 @@ msgid "MMEX database %s to version %i failed!"
 msgstr ""
 
 #: src/dbupgrade.cpp:161
-msgid ""
-"Please restore DB from autocreated pre-upgrade backup and retry or contact "
-"MMEX support"
+msgid "Please restore DB from autocreated pre-upgrade backup and retry or contact MMEX support"
 msgstr ""
 
 #: src/dbupgrade.cpp:237
@@ -3440,15 +3375,12 @@ msgstr ""
 
 #: src/dbupgrade.cpp:268
 #, c-format
-msgid ""
-"This SQL debug script requires %li database version, but current database "
-"is version %i."
+msgid "This SQL debug script requires %li database version, but current database is version %i."
 msgstr ""
 
 #: src/dbupgrade.cpp:284
-#, fuzzy
 msgid "Debug script description:"
-msgstr "Kuvaus"
+msgstr ""
 
 #: src/dbupgrade.cpp:284 src/dbupgrade.cpp:330 src/dbupgrade.cpp:362
 msgid "MMEX debug"
@@ -3463,8 +3395,7 @@ msgid "Query error, please contact MMEX support!"
 msgstr ""
 
 #: src/dbupgrade.cpp:329
-msgid ""
-"Send this log to MMEX support team:\n"
+msgid "Send this log to MMEX support team:\n"
 "press OK to save to file or Cancel to exit"
 msgstr ""
 
@@ -3607,9 +3538,8 @@ msgid "Activate the filter with these settings"
 msgstr ""
 
 #: src/filtertransdialog.cpp:402
-#, fuzzy
 msgid "&Deactivate "
-msgstr "Inaktiivinen"
+msgstr ""
 
 #: src/filtertransdialog.cpp:403
 msgid "Deactivate the filter"
@@ -3632,14 +3562,12 @@ msgid "Before"
 msgstr ""
 
 #: src/filtertransdialog.cpp:878
-#, fuzzy
 msgid "Amount Min."
-msgstr "Määrä"
+msgstr ""
 
 #: src/filtertransdialog.cpp:886
-#, fuzzy
 msgid "Amount Max."
-msgstr "Määrä"
+msgstr ""
 
 #: src/filtertransdialog.cpp:921
 msgid "Label"
@@ -3750,10 +3678,8 @@ msgstr ""
 
 #: src/general_report_manager.cpp:608
 #, c-format
-msgid ""
-"Unable to open file:\n"
-"%s\n"
-"\n"
+msgid "Unable to open file:\n"
+"%s\n\n"
 msgstr ""
 
 #: src/general_report_manager.cpp:673
@@ -3975,7 +3901,6 @@ msgid "Please wait"
 msgstr ""
 
 #: src/import_export/qif_export.cpp:419
-#, c-format
 msgid "Exporting transaction %i"
 msgstr ""
 
@@ -4173,20 +4098,17 @@ msgid "Transaction Category is incorrect"
 msgstr ""
 
 #: src/import_export/qif_import_gui.cpp:1167
-#, c-format
 msgid "Added account: %s"
 msgstr ""
 
 #: src/import_export/qif_import_gui.cpp:1196
 #: src/import_export/univcsvdialog.cpp:753
-#, c-format
 msgid "Added payee: %s"
 msgstr ""
 
 #: src/import_export/univcsvdialog.cpp:93
-#, fuzzy
 msgid "Amount +/-"
-msgstr "Määrä"
+msgstr ""
 
 #: src/import_export/univcsvdialog.cpp:95
 msgid "SubCategory"
@@ -4274,9 +4196,8 @@ msgid "Export column titles"
 msgstr ""
 
 #: src/import_export/univcsvdialog.cpp:328
-#, fuzzy
 msgid "Amount +/-:"
-msgstr "Määrä:"
+msgstr ""
 
 #: src/import_export/univcsvdialog.cpp:334
 msgid "Positive values are deposits"
@@ -4312,8 +4233,7 @@ msgstr ""
 
 #: src/import_export/univcsvdialog.cpp:477
 #, c-format
-msgid ""
-"Default account '%s' for this template does not exist.\n"
+msgid "Default account '%s' for this template does not exist.\n"
 "Please select a new account."
 msgstr ""
 
@@ -4339,7 +4259,6 @@ msgid "Import"
 msgstr ""
 
 #: src/import_export/univcsvdialog.cpp:846
-#, c-format
 msgid "Transactions imported to account %s: %ld"
 msgstr ""
 
@@ -4371,9 +4290,9 @@ msgid "Line %ld: OK, imported."
 msgstr ""
 
 #: src/import_export/univcsvdialog.cpp:909 src/stockdialog.cpp:638
-#, fuzzy, c-format
+#, c-format
 msgid "Total Lines: %ld"
-msgstr "Yhteensä: "
+msgstr ""
 
 #: src/import_export/univcsvdialog.cpp:911
 #, c-format
@@ -4409,8 +4328,7 @@ msgid "No imported transactions!"
 msgstr ""
 
 #: src/import_export/univcsvdialog.cpp:973
-msgid ""
-"Incorrect fields specified for export! Requires at least Date and Amount."
+msgid "Incorrect fields specified for export! Requires at least Date and Amount."
 msgstr ""
 
 #: src/import_export/univcsvdialog.cpp:974
@@ -4510,9 +4428,7 @@ msgid "Hide historical currencies"
 msgstr ""
 
 #: src/maincurrencydialog.cpp:223
-msgid ""
-"Select the currently selected currency as the selected currency for the "
-"account"
+msgid "Select the currently selected currency as the selected currency for the account"
 msgstr ""
 
 #: src/maincurrencydialog.cpp:225
@@ -4605,8 +4521,7 @@ msgid "Unable to download history for symbol %s. History rates not available!"
 msgstr ""
 
 #: src/maincurrencydialog.cpp:737
-msgid ""
-"Setting a new base currency will delete all historic rates,\n"
+msgid "Setting a new base currency will delete all historic rates,\n"
 "it's possible to re-download them after setting the new base currency."
 msgstr ""
 
@@ -4636,8 +4551,7 @@ msgid "Please use this button for category selection."
 msgstr ""
 
 #: src/mmSimpleDialogs.cpp:130
-msgid ""
-"Please use this button for category selection\n"
+msgid "Please use this button for category selection\n"
 "or use the 'Split' checkbox for multiple categories."
 msgstr ""
 
@@ -4670,9 +4584,7 @@ msgid "Selection can be made by using the dropdown button."
 msgstr ""
 
 #: src/mmSimpleDialogs.cpp:159
-msgid ""
-"Activating the button will provide a selection box where the account can be "
-"selected."
+msgid "Activating the button will provide a selection box where the account can be selected."
 msgstr ""
 
 #: src/mmSimpleDialogs.cpp:170 src/mmcombobox.h:77
@@ -4680,15 +4592,12 @@ msgid "Invalid Payee"
 msgstr ""
 
 #: src/mmSimpleDialogs.cpp:171
-msgid ""
-"Please type in a new payee,\n"
+msgid "Please type in a new payee,\n"
 "or make a selection using the dropdown button."
 msgstr ""
 
 #: src/mmSimpleDialogs.cpp:177
-msgid ""
-"Activating the button will provide a selection box where the payee can be "
-"selected."
+msgid "Activating the button will provide a selection box where the payee can be selected."
 msgstr ""
 
 #: src/mmSimpleDialogs.cpp:187 src/mmSimpleDialogs.cpp:201
@@ -4708,9 +4617,8 @@ msgid "Please type in a non empty symbol."
 msgstr ""
 
 #: src/mmSimpleDialogs.cpp:222
-#, fuzzy
 msgid "Invalid Amount"
-msgstr "Määrä"
+msgstr ""
 
 #: src/mmSimpleDialogs.cpp:223
 msgid "Please enter a calculated or fixed amount"
@@ -4729,8 +4637,7 @@ msgid "Please enter a positive or calculated value."
 msgstr ""
 
 #: src/mmTextCtrl.cpp:85
-msgid ""
-"Tip: For calculations, enter expressions like (2+2)*(2+2)\n"
+msgid "Tip: For calculations, enter expressions like (2+2)*(2+2)\n"
 "Calculations will be evaluated and the result used as the entry."
 msgstr ""
 
@@ -4739,15 +4646,11 @@ msgid "Recommendation: Always backup your .mmb database file regularly."
 msgstr ""
 
 #: src/mmTips.h:24
-msgid ""
-"Recommendation: If upgrading to a new version of MMEX, make sure you backup "
-"your .mmb database file before doing so."
+msgid "Recommendation: If upgrading to a new version of MMEX, make sure you backup your .mmb database file before doing so."
 msgstr ""
 
 #: src/mmTips.h:25
-msgid ""
-"Recommendation: Use copy (Ctrl+C) and paste (Ctrl+V) for frequently used "
-"transactions."
+msgid "Recommendation: Use copy (Ctrl+C) and paste (Ctrl+V) for frequently used transactions."
 msgstr ""
 
 #: src/mmTips.h:26
@@ -4755,71 +4658,44 @@ msgid "Tip: Remember to make backups of your .mmb."
 msgstr ""
 
 #: src/mmTips.h:27
-msgid ""
-"Tip: The not encrypted .mmb file is insecure. That means anyone else having "
-"the proper know how can actually open the file and read the contents. So "
-"make sure that if you are storing any sensitive financial information it is "
-"properly guarded."
+msgid "Tip: The not encrypted .mmb file is insecure. That means anyone else having the proper know how can actually open the file and read the contents. So make sure that if you are storing any sensitive financial information it is properly guarded."
 msgstr ""
 
 #: src/mmTips.h:28
-msgid ""
-"Tip: To mark a transaction as reconciled, just select the transaction and "
-"hit the 'r' or 'R' key. To mark a transaction as unreconciled, just select "
-"the transaction and hit the 'u' or 'U' key."
+msgid "Tip: To mark a transaction as reconciled, just select the transaction and hit the 'r' or 'R' key. To mark a transaction as unreconciled, just select the transaction and hit the 'u' or 'U' key."
 msgstr ""
 
 #: src/mmTips.h:29
-msgid ""
-"Tip: To mark a transaction as requiring followup, just select the "
-"transaction and hit the 'f' or 'F' key."
+msgid "Tip: To mark a transaction as requiring followup, just select the transaction and hit the 'f' or 'F' key."
 msgstr ""
 
 #: src/mmTips.h:30
-msgid ""
-"Tip: MMEX supports printing of all reports that can be viewed. The print "
-"options are available under the menu, File->Print."
+msgid "Tip: MMEX supports printing of all reports that can be viewed. The print options are available under the menu, File->Print."
 msgstr ""
 
 #: src/mmTips.h:31
-msgid ""
-"Tip: You can modify some runtime behavior of MMEX by changing the options "
-"in the Options Dialog. "
+msgid "Tip: You can modify some runtime behavior of MMEX by changing the options in the Options Dialog. "
 msgstr ""
 
 #: src/mmTips.h:32
-msgid ""
-"Tip: To print a statement with transactions from any arbitrary set of "
-"criteria, use the transaction filter to select the transactions you want "
-"and then do a print from the menu."
+msgid "Tip: To print a statement with transactions from any arbitrary set of criteria, use the transaction filter to select the transactions you want and then do a print from the menu."
 msgstr ""
 
 #: src/mmTips.h:33
-msgid ""
-"Tip: Set exchange rate for currencies in case if you have accounts with "
-"different currencies."
+msgid "Tip: Set exchange rate for currencies in case if you have accounts with different currencies."
 msgstr ""
 
 #: src/mmTips.h:35
-msgid ""
-"Organize Categories Dialog Tip: Pressing the h key will cycle through all "
-"categories starting with the letter h"
+msgid "Organize Categories Dialog Tip: Pressing the h key will cycle through all categories starting with the letter h"
 msgstr ""
 
 #: src/mmTips.h:36
-msgid ""
-"Organize Categories Dialog Tip: Pressing 2 key combination will cycle "
-"through all categories starting with that key combination. Example: "
-"Pressing ho will select Homeneeds, Home, House Tax, etc..."
+msgid "Organize Categories Dialog Tip: Pressing 2 key combination will cycle through all categories starting with that key combination. Example: Pressing ho will select Homeneeds, Home, House Tax, etc..."
 msgstr ""
 
 #: src/mmTips.h:38
 #, c-format
-msgid ""
-"Tip to get out of debt: Pay yourself 10% first. Put this into an account "
-"that is hard to touch. Make sure it is a chore to get the money out (you "
-"have to drive to the bank), so you will only tap it consciously and for "
-"major expenses."
+msgid "Tip to get out of debt: Pay yourself 10% first. Put this into an account that is hard to touch. Make sure it is a chore to get the money out (you have to drive to the bank), so you will only tap it consciously and for major expenses."
 msgstr ""
 
 #: src/mmTips.h:39
@@ -4843,9 +4719,7 @@ msgid "Tip to get out of debt: Pay more than the minimum."
 msgstr ""
 
 #: src/mmTips.h:44
-msgid ""
-"Before going to a shop and buy something: take the time making a list of "
-"what you really need. In the shop buy what is in your list."
+msgid "Before going to a shop and buy something: take the time making a list of what you really need. In the shop buy what is in your list."
 msgstr ""
 
 #: src/mmcheckingpanel.cpp:456 src/mmcheckingpanel.cpp:600
@@ -4889,9 +4763,8 @@ msgid "Enter any string to find it in the nearest transaction notes"
 msgstr ""
 
 #: src/mmcheckingpanel.cpp:575
-#, fuzzy, c-format
 msgid "Account View: %s"
-msgstr "Tilin nimi:"
+msgstr ""
 
 #: src/mmcheckingpanel.cpp:867
 msgid "Select account used in transfer transactions"
@@ -5046,23 +4919,19 @@ msgid "Reoccuring Transaction saved."
 msgstr ""
 
 #: src/mmcheckingpanel.cpp:2024
-#, c-format
 msgid "Transactions selected: %ld"
 msgstr ""
 
 #: src/mmcheckingpanel.cpp:2026
-#, c-format
 msgid "Selected transactions balance: %s"
 msgstr ""
 
 #: src/mmcheckingpanel.cpp:2029
-#, c-format
 msgid "Days between selected transactions: %d"
 msgstr ""
 
 #: src/mmcombobox.h:78
-msgid ""
-"Please type in an exiting payee name,\n"
+msgid "Please type in an exiting payee name,\n"
 "or make a selection using the dropdown button."
 msgstr ""
 
@@ -5088,15 +4957,12 @@ msgid "Language change"
 msgstr ""
 
 #: src/mmex.cpp:112
-msgid ""
-"Fatal error occured.\n"
+msgid "Fatal error occured.\n"
 "Application will be terminated."
 msgstr ""
 
 #: src/mmex.cpp:249
-msgid ""
-"MMEX is already running...\n"
-"\n"
+msgid "MMEX is already running...\n\n"
 "Multiple instances are no longer supported."
 msgstr ""
 
@@ -5167,9 +5033,7 @@ msgstr ""
 
 #: src/mmframe.cpp:1141
 #, c-format
-msgid ""
-"Account: %s\n"
-"\n"
+msgid "Account: %s\n\n"
 "Balance at currency %s: %s\n"
 "Balance at currency %s: %s"
 msgstr ""
@@ -5526,9 +5390,8 @@ msgid "Encrypt database or change password for database file"
 msgstr ""
 
 #: src/mmframe.cpp:1686
-#, fuzzy
 msgid "Remove Password"
-msgstr "&Poista "
+msgstr ""
 
 #: src/mmframe.cpp:1687
 msgid "Remove password and decrypt database file"
@@ -5563,18 +5426,16 @@ msgid "&Help\tF1"
 msgstr ""
 
 #: src/mmframe.cpp:1709
-#, fuzzy
 msgid "Read the User Manual"
-msgstr "Lue käyttäjän käyttöohjetta"
+msgstr ""
 
 #: src/mmframe.cpp:1714
 msgid "Website"
 msgstr ""
 
 #: src/mmframe.cpp:1715
-#, fuzzy
 msgid "Open the Money Manager EX website for latest news, updates etc"
-msgstr "Webbisivuilla %s on viimeisimmät uutiset, päivitykset jne"
+msgstr ""
 
 #: src/mmframe.cpp:1718
 msgid "Facebook"
@@ -5621,18 +5482,15 @@ msgid "Read and update wiki pages"
 msgstr ""
 
 #: src/mmframe.cpp:1733
-#, fuzzy
 msgid "Wiki pages"
-msgstr "Wikipediasivut"
+msgstr ""
 
 #: src/mmframe.cpp:1736
 msgid "Forum"
 msgstr ""
 
 #: src/mmframe.cpp:1737
-msgid ""
-"Visit the MMEX forum to see existing user comments or report new issues "
-"with the software"
+msgid "Visit the MMEX forum to see existing user comments or report new issues with the software"
 msgstr ""
 
 #: src/mmframe.cpp:1740
@@ -5768,9 +5626,8 @@ msgid "News"
 msgstr ""
 
 #: src/mmframe.cpp:1898
-#, fuzzy
 msgid "Cannot locate database file to open."
-msgstr "Luo uusi tietokantatiedosto aloittaaksesi"
+msgstr ""
 
 #: src/mmframe.cpp:1906 src/mmframe.cpp:2000
 msgid "[portable mode]"
@@ -5834,9 +5691,7 @@ msgstr ""
 
 #: src/mmframe.cpp:2119
 #, c-format
-msgid ""
-"Database Optimization Completed!\n"
-"\n"
+msgid "Database Optimization Completed!\n\n"
 "Size before: %s\n"
 "Size after: %s\n"
 msgstr ""
@@ -5874,12 +5729,9 @@ msgid "No account available to import to"
 msgstr ""
 
 #: src/mmframe.cpp:2333
-msgid ""
-"Asset Accounts hold Asset transactions\n"
-"\n"
+msgid "Asset Accounts hold Asset transactions\n\n"
 "Asset transactions are created within the Assets View\n"
-"after the selection of the Asset within that view.\n"
-"\n"
+"after the selection of the Asset within that view.\n\n"
 "Asset Accounts can also hold normal transactions to regular accounts."
 msgstr ""
 
@@ -5888,14 +5740,10 @@ msgid "Asset Account Creation"
 msgstr ""
 
 #: src/mmframe.cpp:2343
-msgid ""
-"Share Accounts hold Share transactions\n"
-"\n"
+msgid "Share Accounts hold Share transactions\n\n"
 "Share transactions are created within the Stock Portfolio View\n"
-"after the selection of the Company Stock within the associated view.\n"
-"\n"
-"These accounts only become visible after associating a Stock to the Share "
-"Account\n"
+"after the selection of the Company Stock within the associated view.\n\n"
+"These accounts only become visible after associating a Stock to the Share Account\n"
 "Or by using the Menu View --> 'Display Share Accounts'\n"
 "Share Accounts can also hold normal transactions to regular account."
 msgstr ""
@@ -5917,16 +5765,11 @@ msgid "Please follow these tasks before submitting new bug:"
 msgstr ""
 
 #: src/mmframe.cpp:2560
-msgid ""
-"1. Use Help->Check for Updates in MMEX to get latest version - your problem "
-"can be fixed already."
+msgid "1. Use Help->Check for Updates in MMEX to get latest version - your problem can be fixed already."
 msgstr ""
 
 #: src/mmframe.cpp:2561
-msgid ""
-"2. Search https://github.com/moneymanagerex/moneymanagerex/issues?q=is:"
-"issue for similar problem - update existing issue instead of creating new "
-"one."
+msgid "2. Search https://github.com/moneymanagerex/moneymanagerex/issues?q=is:issue for similar problem - update existing issue instead of creating new one."
 msgstr ""
 
 #: src/mmframe.cpp:2562
@@ -5934,20 +5777,15 @@ msgid "3. Put some descriptive name for your issue in the Title field above."
 msgstr ""
 
 #: src/mmframe.cpp:2563
-msgid ""
-"4. Replace this text (marked with >) with detailed description of your "
-"problem."
+msgid "4. Replace this text (marked with >) with detailed description of your problem."
 msgstr ""
 
 #: src/mmframe.cpp:2564
-msgid ""
-"Read https://www.chiark.greenend.org.uk/~sgtatham/bugs.html for useful tips."
+msgid "Read https://www.chiark.greenend.org.uk/~sgtatham/bugs.html for useful tips."
 msgstr ""
 
 #: src/mmframe.cpp:2565
-msgid ""
-"5. Include steps to reproduce your issue, attach screenshots where "
-"appropriate."
+msgid "5. Include steps to reproduce your issue, attach screenshots where appropriate."
 msgstr ""
 
 #: src/mmframe.cpp:2566
@@ -5976,8 +5814,7 @@ msgstr ""
 
 #: src/mmframe.cpp:2866
 #, c-format
-msgid ""
-"Are you sure you want to delete\n"
+msgid "Are you sure you want to delete\n"
 " %s account: %s ?"
 msgstr ""
 
@@ -6008,9 +5845,7 @@ msgid "File %s not found"
 msgstr ""
 
 #: src/mmframe.cpp:3105
-msgid ""
-"The language for this application has been changed. The change will take "
-"effect the next time the application is started."
+msgid "The language for this application has been changed. The change will take effect the next time the application is started."
 msgstr ""
 
 #: src/mmframereport.cpp:71
@@ -6158,9 +5993,8 @@ msgid "All Accounts"
 msgstr ""
 
 #: src/mmreportspanel.cpp:426
-#, fuzzy
 msgid "Specific Accounts"
-msgstr "Valitse tili"
+msgstr ""
 
 #: src/mmreportspanel.cpp:445
 msgid "Chart:"
@@ -6252,18 +6086,15 @@ msgid "Stock"
 msgstr ""
 
 #: src/model/Model_Attachment.cpp:27
-#, fuzzy
 msgid "Bank Account"
-msgstr "Tili"
+msgstr ""
 
 #: src/model/Model_Attachment.cpp:28
 msgid "Recurring Transaction"
 msgstr ""
 
 #: src/model/Model_Billsdeposits.cpp:313
-msgid ""
-"A recurring transaction will exceed your account limit.\n"
-"\n"
+msgid "A recurring transaction will exceed your account limit.\n\n"
 "Do you wish to continue?"
 msgstr ""
 
@@ -6313,16 +6144,14 @@ msgstr ""
 
 #: src/model/Model_Report.cpp:273
 #, c-format
-msgid ""
-"The SQL script:\n"
+msgid "The SQL script:\n"
 "%s \n"
 "will modify database! aborted!"
 msgstr ""
 
 #: src/option.cpp:117 src/reports/myusage.cpp:108
-#, fuzzy
 msgid "MMEX Usage Frequency"
-msgstr "Toisto"
+msgstr ""
 
 #: src/option.cpp:118 src/option.cpp:119
 msgid "Summary of Accounts"
@@ -6354,9 +6183,8 @@ msgid "Performance"
 msgstr ""
 
 #: src/option.cpp:128
-#, fuzzy
 msgid "Category Summary"
-msgstr "Kategoria: "
+msgstr ""
 
 #: src/option.cpp:129 src/option.cpp:130 src/reports/cashflow.cpp:35
 msgid "Cash Flow"
@@ -6473,9 +6301,7 @@ msgid "When remove attachment, move file instead of delete"
 msgstr ""
 
 #: src/optionsettingsattachment.cpp:170
-msgid ""
-"Select to don't delete file when attachment is removed, but instead move it "
-"to 'Deleted' subfolder"
+msgid "Select to don't delete file when attachment is removed, but instead move it to 'Deleted' subfolder"
 msgstr ""
 
 #: src/optionsettingsattachment.cpp:179
@@ -6579,9 +6405,7 @@ msgid "Use Original Date when Pasting Transactions"
 msgstr ""
 
 #: src/optionsettingsgeneral.cpp:156
-msgid ""
-"Select whether to use the original transaction date or current date when "
-"copying/pasting transactions"
+msgid "Select whether to use the original transaction date or current date when copying/pasting transactions"
 msgstr ""
 
 #: src/optionsettingsgeneral.cpp:159
@@ -6649,8 +6473,7 @@ msgid "Create a new backup when MMEX Start"
 msgstr ""
 
 #: src/optionsettingsmisc.cpp:144
-msgid ""
-"When MMEX Starts,\n"
+msgid "When MMEX Starts,\n"
 "creates the backup database: dbFile_start_YYYY-MM-DD.ext."
 msgstr ""
 
@@ -6659,8 +6482,7 @@ msgid "Backup database on exit."
 msgstr ""
 
 #: src/optionsettingsmisc.cpp:151
-msgid ""
-"When MMEX shuts down and changes made to database,\n"
+msgid "When MMEX shuts down and changes made to database,\n"
 "creates or updates the backup database: dbFile_update_YYYY-MM-DD.ext."
 msgstr ""
 
@@ -6777,8 +6599,7 @@ msgid "Check at StartUp"
 msgstr ""
 
 #: src/optionsettingsnet.cpp:179
-msgid ""
-"Enable to automatically check if new MMEX version is available at StartUp"
+msgid "Enable to automatically check if new MMEX version is available at StartUp"
 msgstr ""
 
 #: src/optionsettingsnet.cpp:182
@@ -6854,9 +6675,7 @@ msgid "Budget Offset (days):"
 msgstr ""
 
 #: src/optionsettingsview.cpp:158
-msgid ""
-"Advance or retard the start date from the 1st of the month or year by the "
-"number of days"
+msgid "Advance or retard the start date from the 1st of the month or year by the number of days"
 msgstr ""
 
 #: src/optionsettingsview.cpp:163
@@ -6904,9 +6723,7 @@ msgid "Payee in use."
 msgstr ""
 
 #: src/payeedialog.cpp:266
-msgid ""
-"Tip: Change all transactions using this Payee to another Payee using the "
-"relocate command:"
+msgid "Tip: Change all transactions using this Payee to another Payee using the relocate command:"
 msgstr ""
 
 #: src/payeedialog.cpp:268
@@ -6934,14 +6751,12 @@ msgid "Relocate source category to the destination category"
 msgstr ""
 
 #: src/relocatecategorydialog.cpp:93
-#, fuzzy
 msgid "Select Source Category"
-msgstr "Valitse kategoria"
+msgstr ""
 
 #: src/relocatecategorydialog.cpp:98
-#, fuzzy
 msgid "Select Destination Category"
-msgstr "Valitse kategoria"
+msgstr ""
 
 #: src/relocatecategorydialog.cpp:111 src/relocatepayeedialog.cpp:111
 msgid "Relocate:"
@@ -6970,12 +6785,10 @@ msgid "Records found in split transactions: %i"
 msgstr ""
 
 #: src/relocatecategorydialog.cpp:273 src/relocatepayeedialog.cpp:232
-#, c-format
 msgid "Records found in recurring transactions: %i"
 msgstr ""
 
 #: src/relocatecategorydialog.cpp:274
-#, c-format
 msgid "Records found in recurring split transactions: %i"
 msgstr ""
 
@@ -7066,9 +6879,8 @@ msgid "%"
 msgstr ""
 
 #: src/reports/budgetingperf.cpp:241
-#, fuzzy
 msgid "Monthly Total"
-msgstr "Kuukausittain"
+msgstr ""
 
 #: src/reports/cashflow.cpp:221
 #, c-format
@@ -7207,7 +7019,6 @@ msgid "Choose Accounts"
 msgstr ""
 
 #: src/reports/summary.cpp:147
-#, c-format
 msgid "Accounts Balance - %s"
 msgstr ""
 
@@ -7355,14 +7166,12 @@ msgid "New Stock Investment"
 msgstr ""
 
 #: src/stockdialog.cpp:156
-msgid ""
-"Initial share price.\n"
+msgid "Initial share price.\n"
 "Recorded in share transaction"
 msgstr ""
 
 #: src/stockdialog.cpp:158
-msgid ""
-"Invalid in this view.\n"
+msgid "Invalid in this view.\n"
 "View Transactions for values"
 msgstr ""
 
@@ -7371,15 +7180,12 @@ msgid "Name of the company issuing Shares"
 msgstr ""
 
 #: src/stockdialog.cpp:199
-#, fuzzy
-msgid ""
-"Enter the associated Share Account name\n"
+msgid "Enter the associated Share Account name\n"
 "An account can be created on Save"
-msgstr "Anna tilin Nimi. Voit muuttaa nimeä myöhemmin."
+msgstr ""
 
 #: src/stockdialog.cpp:209
-msgid ""
-"Enter the Company's stock exchange symbol.\n"
+msgid "Enter the Company's stock exchange symbol.\n"
 "(Optional) Include exchange. eg: IBM.BE"
 msgstr ""
 
@@ -7388,53 +7194,46 @@ msgid "*Date"
 msgstr ""
 
 #: src/stockdialog.cpp:213
-msgid ""
-"Initial purchase date of shares.\n"
+msgid "Initial purchase date of shares.\n"
 "Recorded in share transaction"
 msgstr ""
 
 #: src/stockdialog.cpp:219
-#, fuzzy
 msgid "Specify the date of this initial share purchase"
-msgstr "Montako kertaa toistetaan."
+msgstr ""
 
 #: src/stockdialog.cpp:223
 msgid "*Share Number"
 msgstr ""
 
 #: src/stockdialog.cpp:224
-msgid ""
-"Total number of shares.\n"
+msgid "Total number of shares.\n"
 "Recorded in share transaction"
 msgstr ""
 
 #: src/stockdialog.cpp:230
-#, fuzzy
 msgid "Enter the initial number of shares."
-msgstr "Anna tilin alkusaldo."
+msgstr ""
 
 #: src/stockdialog.cpp:234 src/stockspanel.cpp:100
 msgid "*Share Price"
 msgstr ""
 
 #: src/stockdialog.cpp:241
-#, fuzzy
 msgid "Enter the initial price per share."
-msgstr "Anna tilin alkusaldo."
+msgstr ""
 
 #: src/stockdialog.cpp:245
 msgid "*Commission"
 msgstr ""
 
 #: src/stockdialog.cpp:246
-msgid ""
-"Remainder of funds from share investment.\n"
+msgid "Remainder of funds from share investment.\n"
 "Recorded in share transaction"
 msgstr ""
 
 #: src/stockdialog.cpp:251
-msgid ""
-"Enter any commission paid or left over money from the purchase of shares."
+msgid "Enter any commission paid or left over money from the purchase of shares."
 msgstr ""
 
 #: src/stockdialog.cpp:256
@@ -7486,20 +7285,13 @@ msgid "Held At"
 msgstr ""
 
 #: src/stockdialog.cpp:489
-msgid ""
-"A Share Account as the Company name has not been found.\n"
-"\n"
+msgid "A Share Account as the Company name has not been found.\n\n"
 "Do you want to create one?"
 msgstr ""
 
 #: src/stockdialog.cpp:499
-msgid ""
-"The Company name does not have an associated Share Account.\n"
-"\n"
-"You may want to readjust the Company Name to an existing Share Account with "
-"the same name. If this is an existing Stock without a Share Account, it is "
-"recommended that a Share Account is created.\n"
-"\n"
+msgid "The Company name does not have an associated Share Account.\n\n"
+"You may want to readjust the Company Name to an existing Share Account with the same name. If this is an existing Stock without a Share Account, it is recommended that a Share Account is created.\n\n"
 "Do you want to create a new Share Acccount?\n"
 msgstr ""
 
@@ -7516,39 +7308,32 @@ msgid "Importing CSV"
 msgstr ""
 
 #: src/stockdialog.cpp:680 src/stockdialog.cpp:710
-#, fuzzy
 msgid "5 Days"
-msgstr "%s Päivässä"
+msgstr ""
 
 #: src/stockdialog.cpp:681 src/stockdialog.cpp:712
-#, fuzzy
 msgid "1 Month"
-msgstr "Kuukausittain"
+msgstr ""
 
 #: src/stockdialog.cpp:682 src/stockdialog.cpp:713
-#, fuzzy
 msgid "3 Months"
-msgstr "%s Kuukaudessa"
+msgstr ""
 
 #: src/stockdialog.cpp:683
-#, fuzzy
 msgid "6 Months"
-msgstr "%s Kuukaudessa"
+msgstr ""
 
 #: src/stockdialog.cpp:684
-#, fuzzy
 msgid "1 Year"
-msgstr "Vuosittain"
+msgstr ""
 
 #: src/stockdialog.cpp:685
-#, fuzzy
 msgid "2 Years"
-msgstr "Vuosittain"
+msgstr ""
 
 #: src/stockdialog.cpp:686
-#, fuzzy
 msgid "5 Years"
-msgstr "Vuosittain"
+msgstr ""
 
 #: src/stockdialog.cpp:687
 msgid "10 Years"
@@ -7571,9 +7356,8 @@ msgid "1 Day"
 msgstr ""
 
 #: src/stockdialog.cpp:711
-#, fuzzy
 msgid "1 Week"
-msgstr "Viikoittain"
+msgstr ""
 
 #: src/stockdialog.cpp:719
 msgid "Specify interval of stock history"
@@ -7592,9 +7376,7 @@ msgid "Using MMEX it is possible to track stocks/mutual funds investments."
 msgstr ""
 
 #: src/stockspanel.cpp:37
-msgid ""
-"To create new stocks entry the Symbol, Number of shares and Purchase prise "
-"should be entered."
+msgid "To create new stocks entry the Symbol, Number of shares and Purchase prise should be entered."
 msgstr ""
 
 #: src/stockspanel.cpp:38
@@ -7655,11 +7437,8 @@ msgstr ""
 
 #: src/stockspanel.cpp:404
 #, c-format
-msgid ""
-"Temporary Stock list: %s\n"
-"\n"
-"Date          Lot          Shares          Price        Commission\n"
-"\n"
+msgid "Temporary Stock list: %s\n\n"
+"Date          Lot          Shares          Price        Commission\n\n"
 msgstr ""
 
 #: src/stockspanel.cpp:575
@@ -7709,7 +7488,6 @@ msgid "Total Shares: %s"
 msgstr ""
 
 #: src/stockspanel.cpp:770
-#, c-format
 msgid "Invested: %s"
 msgstr ""
 
@@ -7780,8 +7558,7 @@ msgstr ""
 
 #: src/transdialog.cpp:629
 #, c-format
-msgid ""
-"Do you want to add new payee: \n"
+msgid "Do you want to add new payee: \n"
 "%s?"
 msgstr ""
 
@@ -7790,9 +7567,7 @@ msgid "Confirm to add new payee"
 msgstr ""
 
 #: src/transdialog.cpp:720
-msgid ""
-"This transaction will exceed your account limit.\n"
-"\n"
+msgid "This transaction will exceed your account limit.\n\n"
 "Do you wish to continue?"
 msgstr ""
 
@@ -7825,10 +7600,8 @@ msgid "Retard or advance the date of the transaction"
 msgstr ""
 
 #: src/usertransactionpanel.cpp:122
-#, fuzzy
-msgid ""
-"Please select the Account that will be associated with this transaction"
-msgstr "Anna tilinumero tälle tilille."
+msgid "Please select the Account that will be associated with this transaction"
+msgstr ""
 
 #: src/usertransactionpanel.cpp:134
 msgid "Withdraw funds from or deposit funds to this Account."
@@ -8063,8 +7836,7 @@ msgstr ""
 
 #: src/webapp.cpp:466
 #, c-format
-msgid ""
-"Transaction will be inserted with the first bank account:\n"
+msgid "Transaction will be inserted with the first bank account:\n"
 "'%s' and marked as  'Follow Up'"
 msgstr ""
 
@@ -8101,9 +7873,7 @@ msgid "Communication error"
 msgstr ""
 
 #: src/webapp.cpp:586
-msgid ""
-"Transaction not downloaded: please close and open MMEX to try re-download "
-"transaction"
+msgid "Transaction not downloaded: please close and open MMEX to try re-download transaction"
 msgstr ""
 
 #: src/webapp.cpp:587
@@ -8148,8 +7918,7 @@ msgid "%s models all transactions as belonging to accounts."
 msgstr ""
 
 #: src/wizard_newaccount.cpp:36
-msgid ""
-"The next pages will help you create a new account.\n"
+msgid "The next pages will help you create a new account.\n"
 "To help you get started, begin by making a list of all\n"
 "financial institutions where you hold an account."
 msgstr ""
@@ -8171,8 +7940,7 @@ msgid "Specify a descriptive name for the account."
 msgstr ""
 
 #: src/wizard_newaccount.cpp:106
-msgid ""
-"This is generally the name of a financial institution\n"
+msgid "This is generally the name of a financial institution\n"
 "where the account is held. For example: 'ABC Bank'."
 msgstr ""
 
@@ -8185,20 +7953,17 @@ msgid "Select the type of account you want to create:"
 msgstr ""
 
 #: src/wizard_newaccount.cpp:131
-msgid ""
-"General bank accounts cover a wide variety of account\n"
+msgid "General bank accounts cover a wide variety of account\n"
 "types like Checking, Savings etc."
 msgstr ""
 
 #: src/wizard_newaccount.cpp:136
-msgid ""
-"Investment accounts are specialized accounts that only\n"
+msgid "Investment accounts are specialized accounts that only\n"
 "have stock/mutual fund investments associated with them."
 msgstr ""
 
 #: src/wizard_newaccount.cpp:141
-msgid ""
-"Term accounts are specialized bank accounts. Intended for asset\n"
+msgid "Term accounts are specialized bank accounts. Intended for asset\n"
 "type accounts such as Term Deposits and Bonds. These accounts\n"
 "can have regular money coming in and out, being outside the\n"
 "general income stream."
@@ -8217,15 +7982,12 @@ msgid "New Database Wizard"
 msgstr ""
 
 #: src/wizard_newdb.cpp:50
-msgid ""
-"The next pages will help you create a new database.\n"
-"\n"
+msgid "The next pages will help you create a new database.\n\n"
 "Your database file is stored with an extension of .mmb.\n"
 "As this file contains important financial information,\n"
 "we recommended creating daily backups with the Options\n"
 "setting: 'Backup before opening', and store your backups\n"
-"in a separate location.\n"
-"\n"
+"in a separate location.\n\n"
 "The database can later be encrypted if required, by\n"
 "using the option: 'Save database as' and changing the\n"
 "file type before saving."
@@ -8236,8 +7998,7 @@ msgid "Base Currency for account"
 msgstr ""
 
 #: src/wizard_newdb.cpp:135
-msgid ""
-"Specify the base (or default) currency to be used for the\n"
+msgid "Specify the base (or default) currency to be used for the\n"
 "database. The base currency can later be changed by using\n"
 "the options dialog. New accounts, will use this currency by\n"
 "default, and can be changed when editing account details."
@@ -8286,9 +8047,8 @@ msgid "Unable to check for updates!"
 msgstr ""
 
 #: src/wizard_update.cpp:337 src/wizard_update.cpp:352
-#, fuzzy
 msgid "Error: "
-msgstr "Virhe"
+msgstr ""
 
 #: src/wizard_update.cpp:338 src/wizard_update.cpp:353
 #: src/wizard_update.cpp:390
@@ -8299,59 +8059,175 @@ msgstr ""
 msgid "You already have the latest version"
 msgstr ""
 
-#~ msgid "Leave blank when not active."
-#~ msgstr "Jätä tyhjäksi, jos ei ole aktiivinen."
-
-#~ msgid "Donate"
-#~ msgstr "Lahjoita"
-
-#~ msgid "Leave blank if this series continues forever."
-#~ msgstr "Jätä tyhjäksi jos sarja toistuu loputtomasti."
-
-#~ msgid "Calendar"
-#~ msgstr "Kalenteri"
-
-#~ msgid "Remaining Days"
-#~ msgstr "Jäljelläolevat päivät"
-
-#~ msgid "Next"
-#~ msgstr "Seuraava"
+#, fuzzy
+#~ msgid "Term account"
+#~ msgstr "Favourite Account"
 
 #, fuzzy
-#~| msgid "Amount"
-#~ msgid "Amount ±"
-#~ msgstr "Määrä"
-
-#~ msgid "Bug reports"
-#~ msgstr "Ilmoitus ohjelmavirheestä"
+#~ msgid "Amount Range:"
+#~ msgstr "Favourite Account"
 
 #, fuzzy
-#~| msgid "Account"
-#~ msgid "Accounts:"
-#~ msgstr "Tili"
+#~ msgid "To Account"
+#~ msgstr "Favourite Account"
 
-#~ msgid "Developers"
-#~ msgstr "Kehittäjät"
-
-#~ msgid "Artwork"
-#~ msgstr "Graafinen ilme"
-
-#~ msgid "Account Name"
-#~ msgstr "Tilin nimi"
-
-#~ msgid "Visit MMEX Twitter"
-#~ msgstr "MMEX Twitterissä"
-
-#~ msgid "Visit MMEX Forum"
-#~ msgstr "MMEX Foorumit"
+#~ msgid "Specify the color for future transactions"
+#~ msgstr "Specify the colour for future transactions"
 
 #, fuzzy
-#~| msgid "Amount:"
+#~ msgid "for Account: "
+#~ msgstr "Favourite Account"
+
+#, fuzzy
+#~ msgid "Cash Flow - With Term Accounts"
+#~ msgstr "Favourite Account"
+
+#, fuzzy
+#~ msgid "Daily Cash Flow - Specific Accounts"
+#~ msgstr "Favourite Account"
+
+#, fuzzy
+#~ msgid "Income vs Expenses - Specific Accounts"
+#~ msgstr "Favourite Account"
+
+#, fuzzy
+#~ msgid "All Term Accounts"
+#~ msgstr "Favourite Account"
+
+#, fuzzy
+#~ msgid "Bank Accounts Total:"
+#~ msgstr "Favourite Account"
+
+#, fuzzy
+#~ msgid "Term Accounts Total:"
+#~ msgstr "Favourite Account"
+
+#~ msgid "Specify the color for the list background"
+#~ msgstr "Specify the colour for the list background"
+
+#, fuzzy
+#~ msgid "RecurringTransaction"
+#~ msgstr "Specify the colour for future transactions"
+
+#, fuzzy
+#~ msgid ""
+#~ "Specify the initial date of the stock investment\n"
+#~ "Used when creating the initial Share transaction."
+#~ msgstr "Specify the colour for future transactions"
+
+#, fuzzy
+#~ msgid "Specify the stock/share price date."
+#~ msgstr "Specify the colour for the nav tree"
+
+#~ msgid "Specify the color for the list row 0"
+#~ msgstr "Specify the colour for the list row 0"
+
+#, fuzzy
+#~ msgid "Specify the associated Account that will contain this transaction"
+#~ msgstr "Specify the colour for future transactions"
+
+#, fuzzy
+#~ msgid "Invalid value "
+#~ msgstr "Restore Default Colours"
+
+#, fuzzy
+#~ msgid "Default account \""
+#~ msgstr "Favourite Account"
+
+#~ msgid "Specify the color for the list row 1"
+#~ msgstr "Specify the colour for the list row 1"
+
+#, fuzzy
+#~ msgid "Account missing"
+#~ msgstr "Favourite Account"
+
+#, fuzzy
+#~ msgid "Account name: %s"
+#~ msgstr "Favourite Account"
+
+#, fuzzy
+#~ msgid "Account:"
+#~ msgstr "Favourite Account"
+
+#, fuzzy
+#~ msgid "Specify the folder to use when archive attachments"
+#~ msgstr "Specify the colour for the nav tree"
+
+#, fuzzy
+#~ msgid "Amount is missing"
+#~ msgstr "Favourite Account"
+
+#, fuzzy
+#~ msgid "Invalid Transaction"
+#~ msgstr "Specify the colour for future transactions"
+
+#~ msgid "Checking/Savings"
+#~ msgstr "Current/Savings"
+
+#, fuzzy
+#~ msgid "Stock Investments: %s"
+#~ msgstr "Favourite Account"
+
+#~ msgid "Expand Bank Accounts in Trew View when tree is refreshed"
+#~ msgstr "Expand Bank Accounts in Tree View when tree is refreshed"
+
+#, fuzzy
+#~ msgid "Total Balance on all Accounts"
+#~ msgstr "Favourite Account"
+
+#~ msgid "Expand Term Accounts in Trew View when tree is refreshed"
+#~ msgstr "Expand Term Accounts in Tree View when tree is refreshed"
+
+#, fuzzy
+#~ msgid "Term &Accounts"
+#~ msgstr "Favourite Account"
+
+#~ msgid "Restore Default Colors"
+#~ msgstr "Restore Default Colours"
+
+#, fuzzy
+#~ msgid "&Stock Accounts"
+#~ msgstr "Favourite Account"
+
+#, fuzzy
 #~ msgid "Amount ±: "
-#~ msgstr "Määrä:"
+#~ msgstr "Favourite Account"
 
-#~ msgid "Next Occurrence"
-#~ msgstr "Seuraava tapahtumakerta"
+#, fuzzy
+#~ msgid "All Bank Accounts"
+#~ msgstr "Favourite Account"
 
+#~ msgid "Colors"
+#~ msgstr "Colours"
+
+#, fuzzy
+#~ msgid "Add Stock Transactions"
+#~ msgstr "Specify the colour for future transactions"
+
+#, fuzzy
 #~ msgid "From Account"
-#~ msgstr "Tililtä"
+#~ msgstr "Favourite Account"
+
+#, fuzzy
+#~ msgid "Cash Flow - With Bank Accounts"
+#~ msgstr "Favourite Account"
+
+#~ msgid "Expand Stocks Accounts in Trew View when tree is refreshed"
+#~ msgstr "Expand Stocks Accounts in Tree View when tree is refreshed"
+
+#, fuzzy
+#~ msgid "Select To Account-"
+#~ msgstr "Favourite Account"
+
+#, fuzzy
+#~ msgid "Accounts:"
+#~ msgstr "Favourite Account"
+
+#, fuzzy
+#~ msgid "Accounts: %s"
+#~ msgstr "Favourite Account"
+
+#, fuzzy
+#~ msgid "Term Account"
+#~ msgstr "Favourite Account"
+
