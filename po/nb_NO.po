@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2018-08-28 15:26+0200\n"
-"PO-Revision-Date: 2019-01-17 19:48\n"
+"PO-Revision-Date: 2019-01-17 20:19\n"
 "Last-Translator: vomikan <nikolay.akimov@gmail.com>\n"
 "Language-Team: Norwegian Bokmal\n"
 "Language: nb_NO\n"
@@ -147,47 +147,47 @@ msgstr "Tilgangsinformasjon:"
 
 #: src/accountdialog.cpp:298
 msgid "Statement"
-msgstr ""
+msgstr "Kontoutskrift"
 
 #: src/accountdialog.cpp:306
 msgid "Statement:"
-msgstr ""
+msgstr "Kontoutskrift:"
 
 #: src/accountdialog.cpp:307
 msgid "Locked"
-msgstr ""
+msgstr "Låst"
 
 #: src/accountdialog.cpp:311
 msgid "Reconciled Date:"
-msgstr ""
+msgstr "Avstemt dato:"
 
 #: src/accountdialog.cpp:316
 msgid "Minimum Bal:"
-msgstr ""
+msgstr "Minimum Bal:"
 
 #: src/accountdialog.cpp:323
 msgid "Credit"
-msgstr ""
+msgstr "Kredit"
 
 #: src/accountdialog.cpp:331
 msgid "Credit Limit:"
-msgstr ""
+msgstr "Kredittgrensen:"
 
 #: src/accountdialog.cpp:336
 msgid "Interest Rate:"
-msgstr ""
+msgstr "Rente:"
 
 #: src/accountdialog.cpp:340
 msgid "Payment Due Date:"
-msgstr ""
+msgstr "Forfallsdato for betaling:"
 
 #: src/accountdialog.cpp:345
 msgid "Minimum Payment:"
-msgstr ""
+msgstr "Minimum betaling:"
 
 #: src/accountdialog.cpp:367
 msgid "Organize attachments of this account"
-msgstr ""
+msgstr "Organisere vedlegg for denne kontoen"
 
 #: src/accountdialog.cpp:380
 msgid "Enter the Name of the Account. This name can be renamed at any time."
@@ -239,19 +239,19 @@ msgstr "Angi innloggings informasjon til den finansielle institusjonen. Dette er
 
 #: src/accountdialog.cpp:393
 msgid "Enable or disable the transaction Lock"
-msgstr ""
+msgstr "Aktivere eller deaktivere transaksjon lås"
 
 #: src/accountdialog.cpp:394
 msgid "The date of the transaction lock"
-msgstr ""
+msgstr "Dato for transaksjon lås"
 
 #: src/accountdialog.cpp:395
 msgid "Account balance lower limit. Zero to disable"
-msgstr ""
+msgstr "Konto balansens nedre grense. Null for å deaktivere"
 
 #: src/accountdialog.cpp:396
 msgid "Credit limit for the Account. Zero to disable"
-msgstr ""
+msgstr "Kredittgrensen for kontoen. Null for å deaktivere"
 
 #: src/accountdialog.cpp:439
 msgid "Account Name "
@@ -264,12 +264,12 @@ msgstr "Valutta"
 
 #: src/accountdialog.cpp:502
 msgid "Default Image"
-msgstr ""
+msgstr "Standardbildet"
 
 #: src/accountdialog.cpp:509
 #, c-format
 msgid "Image #%i"
-msgstr ""
+msgstr "Bilde #%i"
 
 #: src/appstartdialog.cpp:99
 msgid "Open Last Opened Database"
@@ -277,7 +277,7 @@ msgstr "Åpne sist brukte database"
 
 #: src/appstartdialog.cpp:102
 msgid "Create a New Database"
-msgstr ""
+msgstr "Opprette en ny Database"
 
 #: src/appstartdialog.cpp:103
 msgid "Create a new database file to get started"
@@ -285,11 +285,11 @@ msgstr "Åpne en ny database for å begynne"
 
 #: src/appstartdialog.cpp:106
 msgid "Open Existing Database"
-msgstr ""
+msgstr "Åpne eksisterende Database"
 
 #: src/appstartdialog.cpp:107
 msgid "Open an already created database file with extension (*.mmb)"
-msgstr ""
+msgstr "Åpne en allerede opprettet database fil med filtype (*.mmb)"
 
 #: src/appstartdialog.cpp:110
 msgid "Read Documentation"
@@ -306,21 +306,21 @@ msgstr "Besøk websiden for mer informasjon"
 #: src/appstartdialog.cpp:115
 #, c-format
 msgid "Open the %s website for latest news, updates etc"
-msgstr ""
+msgstr "Åpne webområdet %s for nyheter, oppdateringer osv"
 
 #: src/appstartdialog.cpp:123
 #, c-format
 msgid "Show this window next time %s starts"
-msgstr ""
+msgstr "Vis dette vinduet neste gang %s starter"
 
 #: src/appstartdialog.cpp:137
 msgid "&Exit "
-msgstr ""
+msgstr "&Avslutt "
 
 #: src/appstartdialog.cpp:153
 #, c-format
 msgid "Open the previously opened database: %s"
-msgstr ""
+msgstr "Åpne den tidligere åpnede databasen: %s"
 
 #: src/assetdialog.cpp:57 src/assetdialog.cpp:426 src/assetspanel.cpp:508
 msgid "New Asset"
@@ -332,11 +332,11 @@ msgstr "Endre aktiva"
 
 #: src/assetdialog.cpp:65 src/assetdialog.cpp:87 src/assetspanel.cpp:512
 msgid "Add Asset Transaction"
-msgstr ""
+msgstr "Legg til ressurs transaksjon"
 
 #: src/assetdialog.cpp:91
 msgid "Edit Asset Transaction"
-msgstr ""
+msgstr "Endre ressurs transaksjon"
 
 #: src/assetdialog.cpp:177
 msgid "Asset Details"
@@ -400,16 +400,16 @@ msgstr "Angi verdi aktiva endring over tid"
 
 #: src/assetdialog.cpp:235
 msgid "% Rate"
-msgstr ""
+msgstr "% sats"
 
 #: src/assetdialog.cpp:241
 #, c-format
 msgid "Enter the rate at which the asset changes its value in % per year"
-msgstr ""
+msgstr "Skriv inn satsen som ressursen endrer verdien i % per år"
 
 #: src/assetdialog.cpp:253
 msgid "Organize attachments of this asset"
-msgstr ""
+msgstr "Organisere vedlegg for denne ressursen"
 
 #: src/assetdialog.cpp:256
 msgid "Enter notes associated with this asset"
@@ -417,29 +417,32 @@ msgstr "Angi ett notat for dette aktiva"
 
 #: src/assetdialog.cpp:262
 msgid "New Transaction Details"
-msgstr ""
+msgstr "Nye transaksjonsdetaljer"
 
 #: src/assetdialog.cpp:265 src/sharetransactiondialog.cpp:280
 msgid "Edit Transaction Details"
-msgstr ""
+msgstr "Redigere transaksjonsdetaljer"
 
 #: src/assetdialog.cpp:300 src/constants.cpp:41
 #: src/sharetransactiondialog.cpp:311
 msgid "&Cancel "
-msgstr ""
+msgstr "&Avbryt "
 
 #: src/assetdialog.cpp:421
 msgid "An asset account having the same name has not been found.\n\n"
 "A single transaction for this asset can be associated with any account.\n"
 "Multiple asset transactions need to be associated with an asset account.\n\n"
 "Would you want to create one?\n\n"
-msgstr ""
+msgstr "Har ikke funnet en eiendelskonto med samme navn.\n\n"
+"én transaksjon for denne ressursen kan være tilknyttet hvilken som helst konto.\n"
+"flere ressurser må være forbundet med en eiendelskonto.\n\n"
+"skal du opprette en?\n\n"
 
 #: src/assetspanel.cpp:60 src/billsdepositspanel.cpp:101
 #: src/mmcheckingpanel.cpp:1095 src/reports/transactions.cpp:73
 #: src/stockspanel.cpp:95
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #: src/assetspanel.cpp:63 src/billsdepositsdialog.cpp:567
 #: src/billsdepositspanel.cpp:108 src/customfieldlistdialog.cpp:54
@@ -451,16 +454,16 @@ msgstr ""
 #: src/transdialog.cpp:461 src/usertransactionpanel.cpp:145
 #: src/webappdialog.cpp:81
 msgid "Type"
-msgstr ""
+msgstr "Type"
 
 #: src/assetspanel.cpp:64 src/reports/summarystocks.cpp:183
 msgid "Initial Value"
-msgstr ""
+msgstr "Startverdien"
 
 #: src/assetspanel.cpp:65 src/reports/summarystocks.cpp:153
 #: src/reports/summarystocks.cpp:187 src/stockdialog.cpp:272
 msgid "Current Value"
-msgstr ""
+msgstr "Gjeldende verdi"
 
 #: src/assetspanel.cpp:100
 msgid "&New Asset"
@@ -468,15 +471,15 @@ msgstr "&Ny aktiva"
 
 #: src/assetspanel.cpp:102
 msgid "D&uplicate Asset"
-msgstr ""
+msgstr "D & uplicate ressurs"
 
 #: src/assetspanel.cpp:104
 msgid "&Add Asset Transaction"
-msgstr ""
+msgstr "&Legg til ressurs transaksjon"
 
 #: src/assetspanel.cpp:105
 msgid "&View Asset Transactions"
-msgstr ""
+msgstr "& Vis Ressurs Transaksjoner"
 
 #: src/assetspanel.cpp:106
 msgid "&Open Asset Account"
@@ -740,7 +743,7 @@ msgstr ""
 
 #: src/attachmentdialog.cpp:454
 msgid "Unable to open file:"
-msgstr ""
+msgstr "Kan ikke åpne filen:"
 
 #: src/attachmentdialog.cpp:457
 msgid "Please verify that file exists and user has rights to read it."
