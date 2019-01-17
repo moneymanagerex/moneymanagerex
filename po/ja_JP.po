@@ -1,25 +1,24 @@
-# Japanese translation for mmex
-# Copyright (c) 2015 Rosetta Contributors and Canonical Ltd 2015
-# This file is distributed under the same license as the mmex package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2015.
-#
 msgid ""
 msgstr ""
-"Project-Id-Version: mmex\n"
+"Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2018-08-28 15:26+0200\n"
-"PO-Revision-Date: 2018-03-13 11:16+0300\n"
-"Last-Translator: Nikolay Akimov <vomikan@mail.ru>\n"
-"Language-Team: Japanese <ja@li.org>\n"
-"Language: ja\n"
+"PO-Revision-Date: 2019-01-17 12:11\n"
+"Last-Translator: vomikan <nikolay.akimov@gmail.com>\n"
+"Language-Team: Japanese\n"
+"Language: ja_JP\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-11-07 15:20+0000\n"
-"X-Generator: Poedit 2.0.6\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-Basepath: ..\n"
 "X-Poedit-KeywordsList: wxTRANSLATE;_\n"
-"X-Poedit-Basepath: ../src\n"
-"X-Poedit-SearchPath-0: .\n"
+"X-Generator: crowdin.com\n"
+"X-Poedit-SearchPath-0: src\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Crowdin-Project: moneymanagerex\n"
+"X-Crowdin-Language: ja\n"
+"X-Crowdin-File: /master/po/en_GB.po\n"
 
 #: src/aboutdialog.cpp:41
 #, c-format
@@ -63,7 +62,7 @@ msgstr ""
 #: src/splitdetailsdialog.cpp:160 src/splittransactionsdialog.cpp:170
 #: src/transactionsupdatedialog.cpp:213 src/transdialog.cpp:568
 msgid "&OK "
-msgstr "&OK "
+msgstr ""
 
 #: src/accountdialog.cpp:85 src/mmframe.cpp:1579 src/mmframe.cpp:1827
 #: src/wizard_newaccount.cpp:80 src/wizard_newaccount.cpp:87
@@ -147,9 +146,8 @@ msgid "Access Info:"
 msgstr "アクセス情報"
 
 #: src/accountdialog.cpp:298
-#, fuzzy
 msgid "Statement"
-msgstr "添付ファイル"
+msgstr ""
 
 #: src/accountdialog.cpp:306
 msgid "Statement:"
@@ -160,9 +158,8 @@ msgid "Locked"
 msgstr ""
 
 #: src/accountdialog.cpp:311
-#, fuzzy
 msgid "Reconciled Date:"
-msgstr "照合済の残高: "
+msgstr ""
 
 #: src/accountdialog.cpp:316
 msgid "Minimum Bal:"
@@ -177,14 +174,12 @@ msgid "Credit Limit:"
 msgstr ""
 
 #: src/accountdialog.cpp:336
-#, fuzzy
 msgid "Interest Rate:"
-msgstr "インターネット"
+msgstr ""
 
 #: src/accountdialog.cpp:340
-#, fuzzy
 msgid "Payment Due Date:"
-msgstr "次の期限日"
+msgstr ""
 
 #: src/accountdialog.cpp:345
 msgid "Minimum Payment:"
@@ -203,12 +198,8 @@ msgid "Specify the type of account to be created."
 msgstr "作成するアカウントの種類を指定してください。"
 
 #: src/accountdialog.cpp:382
-msgid ""
-"Specify if this account has been closed. Closed accounts are inactive in "
-"most calculations, reporting etc."
-msgstr ""
-"このアカウントを閉じた場合に指定してください。閉じたアカウントは計算、レポー"
-"トなどで対象外になります。"
+msgid "Specify if this account has been closed. Closed accounts are inactive in most calculations, reporting etc."
+msgstr "このアカウントを閉じた場合に指定してください。閉じたアカウントは計算、レポートなどで対象外になります。"
 
 #: src/accountdialog.cpp:383
 msgid "Enter the initial balance in this account."
@@ -219,12 +210,8 @@ msgid "Specify the currency to be used by this account."
 msgstr "このアカウントで使用する通貨を指定してください。"
 
 #: src/accountdialog.cpp:385
-msgid ""
-"Select whether this is an account that is used often. This is used to "
-"filter accounts display view."
-msgstr ""
-"よく使うアカウントを選択してください。これはアカウントを表示するフィルターに"
-"使用します。"
+msgid "Select whether this is an account that is used often. This is used to filter accounts display view."
+msgstr "よく使うアカウントを選択してください。これはアカウントを表示するフィルターに使用します。"
 
 #: src/accountdialog.cpp:386
 msgid "Enter user notes and details about this account."
@@ -235,8 +222,7 @@ msgid "Enter the Account Number associated with this account."
 msgstr "このアカウントに関連付けるアカウント番号/口座番号を入力してください。"
 
 #: src/accountdialog.cpp:388
-msgid ""
-"Enter the name of the financial institution in which the account is held."
+msgid "Enter the name of the financial institution in which the account is held."
 msgstr "アカウント/口座を所有する金融機関の名前を入力してください。"
 
 #: src/accountdialog.cpp:389
@@ -248,22 +234,16 @@ msgid "Enter any contact information for the financial institution."
 msgstr "金融機関の連絡先情報を入力してください。"
 
 #: src/accountdialog.cpp:391
-msgid ""
-"Enter any login/access information for the financial institution. This is "
-"not secure as anyone with access to the mmb file can access it."
-msgstr ""
-"金融機関のログイン/アクセス情報を入力してください。 mmb ファイルにアクセス権"
-"のある人は誰でもアクセスできるため、安全ではありません。"
+msgid "Enter any login/access information for the financial institution. This is not secure as anyone with access to the mmb file can access it."
+msgstr "金融機関のログイン/アクセス情報を入力してください。 mmb ファイルにアクセス権のある人は誰でもアクセスできるため、安全ではありません。"
 
 #: src/accountdialog.cpp:393
-#, fuzzy
 msgid "Enable or disable the transaction Lock"
-msgstr "選択した取引を編集"
+msgstr ""
 
 #: src/accountdialog.cpp:394
-#, fuzzy
 msgid "The date of the transaction lock"
-msgstr "取引の日付を指定してください"
+msgstr ""
 
 #: src/accountdialog.cpp:395
 msgid "Account balance lower limit. Zero to disable"
@@ -338,9 +318,9 @@ msgid "&Exit "
 msgstr "終了(&E) "
 
 #: src/appstartdialog.cpp:153
-#, fuzzy, c-format
+#, c-format
 msgid "Open the previously opened database: %s"
-msgstr "前回開いたデータベースを開きます : %s"
+msgstr ""
 
 #: src/assetdialog.cpp:57 src/assetdialog.cpp:426 src/assetspanel.cpp:508
 msgid "New Asset"
@@ -351,14 +331,12 @@ msgid "Edit Asset"
 msgstr "資産を編集"
 
 #: src/assetdialog.cpp:65 src/assetdialog.cpp:87 src/assetspanel.cpp:512
-#, fuzzy
 msgid "Add Asset Transaction"
-msgstr "取引を編集"
+msgstr ""
 
 #: src/assetdialog.cpp:91
-#, fuzzy
 msgid "Edit Asset Transaction"
-msgstr "取引を編集"
+msgstr ""
 
 #: src/assetdialog.cpp:177
 msgid "Asset Details"
@@ -438,14 +416,12 @@ msgid "Enter notes associated with this asset"
 msgstr "この資産に関連するメモを入力します"
 
 #: src/assetdialog.cpp:262
-#, fuzzy
 msgid "New Transaction Details"
-msgstr "取引の詳細"
+msgstr ""
 
 #: src/assetdialog.cpp:265 src/sharetransactiondialog.cpp:280
-#, fuzzy
 msgid "Edit Transaction Details"
-msgstr "取引の分割ダイアログ"
+msgstr ""
 
 #: src/assetdialog.cpp:300 src/constants.cpp:41
 #: src/sharetransactiondialog.cpp:311
@@ -453,14 +429,10 @@ msgid "&Cancel "
 msgstr "キャンセル(&C) "
 
 #: src/assetdialog.cpp:421
-msgid ""
-"An asset account having the same name has not been found.\n"
-"\n"
+msgid "An asset account having the same name has not been found.\n\n"
 "A single transaction for this asset can be associated with any account.\n"
-"Multiple asset transactions need to be associated with an asset account.\n"
-"\n"
-"Would you want to create one?\n"
-"\n"
+"Multiple asset transactions need to be associated with an asset account.\n\n"
+"Would you want to create one?\n\n"
 msgstr ""
 
 #: src/assetspanel.cpp:60 src/billsdepositspanel.cpp:101
@@ -499,19 +471,16 @@ msgid "D&uplicate Asset"
 msgstr "資産を複製(&u)"
 
 #: src/assetspanel.cpp:104
-#, fuzzy
 msgid "&Add Asset Transaction"
-msgstr "取引を編集(&E)"
+msgstr ""
 
 #: src/assetspanel.cpp:105
-#, fuzzy
 msgid "&View Asset Transactions"
-msgstr "すべての取引を表示"
+msgstr ""
 
 #: src/assetspanel.cpp:106
-#, fuzzy
 msgid "&Open Asset Account"
-msgstr "アカウントを削除(&D)"
+msgstr ""
 
 #: src/assetspanel.cpp:108
 msgid "&Edit Asset"
@@ -541,15 +510,8 @@ msgid "Total: %s"
 msgstr ""
 
 #: src/assetspanel.cpp:419
-msgid ""
-"MMEX allows you to track fixed assets like cars, houses, land and others. "
-"Each asset can have its value appreciate by a certain rate per year, "
-"depreciate by a certain rate per year, or not change in value. The total "
-"assets are added to your total financial worth."
-msgstr ""
-"MMEX は、車、家、土地などの固定資産を追跡することができます。それぞれの資産"
-"は、年間一定の率で価値が上昇する、年間一定の率で減価する、または価値に変動が"
-"ないことがあります。総資産は、あなたの合計財務価値に追加されます。"
+msgid "MMEX allows you to track fixed assets like cars, houses, land and others. Each asset can have its value appreciate by a certain rate per year, depreciate by a certain rate per year, or not change in value. The total assets are added to your total financial worth."
+msgstr "MMEX は、車、家、土地などの固定資産を追跡することができます。それぞれの資産は、年間一定の率で価値が上昇する、年間一定の率で減価する、または価値に変動がないことがあります。総資産は、あなたの合計財務価値に追加されます。"
 
 #: src/assetspanel.cpp:454 src/assetspanel.h:110
 #: src/general_report_manager.cpp:670 src/general_report_manager.cpp:944
@@ -571,19 +533,16 @@ msgid "&New "
 msgstr "新規(&N) "
 
 #: src/assetspanel.cpp:511 src/stockspanel.cpp:578
-#, fuzzy
 msgid "&Add Trans "
-msgstr "追加(&A) "
+msgstr ""
 
 #: src/assetspanel.cpp:516 src/stockspanel.cpp:583
-#, fuzzy
 msgid "&View Trans "
-msgstr "新しい取引(&N)"
+msgstr ""
 
 #: src/assetspanel.cpp:517
-#, fuzzy
 msgid "View Asset Transactions"
-msgstr "すべての取引を表示"
+msgstr ""
 
 #: src/assetspanel.cpp:521 src/attachmentdialog.cpp:287
 #: src/billsdepositspanel.cpp:279 src/categdialog.cpp:228
@@ -625,29 +584,24 @@ msgid "Change in Value: %s %s"
 msgstr ""
 
 #: src/assetspanel.cpp:779
-msgid ""
-"This asset does not have its own account\n"
-"\n"
+msgid "This asset does not have its own account\n\n"
 "Multiple transactions for this asset are not recommended.\n"
 "Please use the popup: 'Open Asset Account' to track the transaction."
 msgstr ""
 
 #: src/assetspanel.cpp:782
-#, fuzzy
 msgid "Asset Management"
-msgstr "ライセンス契約"
+msgstr ""
 
 #: src/assetspanel.cpp:801
-msgid ""
-"Account \t Date\t   Value\n"
-"\n"
+msgid "Account \t Date\t   Value\n\n"
 msgstr ""
 
 #: src/attachmentdialog.cpp:54 src/customfieldlistdialog.cpp:52
 #: src/import_export/qif_import_gui.cpp:92
 #: src/import_export/univcsvdialog.cpp:1104 src/payeedialog.cpp:64
 msgid "#"
-msgstr "#"
+msgstr ""
 
 #: src/attachmentdialog.cpp:55 src/general_report_manager.cpp:407
 msgid "Description"
@@ -683,12 +637,10 @@ msgid "Attachments folder not found"
 msgstr "添付ファイルのフォルダーが見つかりません"
 
 #: src/attachmentdialog.cpp:85
-#, c-format
 msgid "Organize Attachments | %s %i"
 msgstr "添付ファイルを整理 | %s %i"
 
 #: src/attachmentdialog.cpp:87
-#, c-format
 msgid "Organize Attachments | New %s"
 msgstr "添付ファイルを整理 | 新しい %s"
 
@@ -702,9 +654,8 @@ msgid "Import attachment:"
 msgstr "添付ファイルをインポート"
 
 #: src/attachmentdialog.cpp:166 src/import_export/univcsvdialog.cpp:1354
-#, fuzzy
 msgid "All Files"
-msgstr "その他すべて"
+msgstr ""
 
 #: src/attachmentdialog.cpp:174
 msgid "Enter a description for the new attachment:"
@@ -752,17 +703,12 @@ msgid "Att."
 msgstr "添付"
 
 #: src/attachmentdialog.cpp:347
-msgid ""
-"This directory and its files are automatically managed by Money Manager EX "
-"software."
-msgstr ""
-"このディレクトリとファイルは、Money Manager EX ソフトウェアによって自動的に"
-"管理されています。"
+msgid "This directory and its files are automatically managed by Money Manager EX software."
+msgstr "このディレクトリとファイルは、Money Manager EX ソフトウェアによって自動的に管理されています。"
 
 #: src/attachmentdialog.cpp:349
 msgid "Please do not remove, rename or modify manually directories and files."
-msgstr ""
-"ディレクトリやファイルを、手動で、削除、名前の変更、変更しないでください。"
+msgstr "ディレクトリやファイルを、手動で、削除、名前の変更、変更しないでください。"
 
 #: src/attachmentdialog.cpp:383 src/attachmentdialog.cpp:391
 msgid "Destination file already exist:"
@@ -798,9 +744,7 @@ msgstr "ファイルを開くことができません:"
 
 #: src/attachmentdialog.cpp:457
 msgid "Please verify that file exists and user has rights to read it."
-msgstr ""
-"ファイルが存在すること、およびユーザーが読む権限を持っていることを確認してく"
-"ださい。"
+msgstr "ファイルが存在すること、およびユーザーが読む権限を持っていることを確認してください。"
 
 #: src/attachmentdialog.cpp:458
 msgid "Open attachment failed"
@@ -863,24 +807,20 @@ msgid "Daily"
 msgstr "毎日"
 
 #: src/billsdepositsdialog.cpp:61 src/billsdepositsdialog.cpp:1406
-#, fuzzy
 msgid "In (x) Days"
-msgstr "%s 日で"
+msgstr ""
 
 #: src/billsdepositsdialog.cpp:62 src/billsdepositsdialog.cpp:1406
-#, fuzzy
 msgid "In (x) Months"
-msgstr "%s ヶ月で"
+msgstr ""
 
 #: src/billsdepositsdialog.cpp:63
-#, fuzzy
 msgid "Every (x) Days"
-msgstr "%s 日ごと"
+msgstr ""
 
 #: src/billsdepositsdialog.cpp:64
-#, fuzzy
 msgid "Every (x) Months"
-msgstr "%s ヶ月ごと"
+msgstr ""
 
 #: src/billsdepositsdialog.cpp:65 src/billsdepositspanel.cpp:60
 msgid "Monthly (last day)"
@@ -895,19 +835,16 @@ msgid "New Recurring Transaction"
 msgstr ""
 
 #: src/billsdepositsdialog.cpp:295
-#, fuzzy
 msgid "Edit Recurring Transaction"
-msgstr "繰り返し取引"
+msgstr ""
 
 #: src/billsdepositsdialog.cpp:299
-#, fuzzy
 msgid "Enter Recurring Transaction"
-msgstr "繰り返し取引"
+msgstr ""
 
 #: src/billsdepositsdialog.cpp:392
-#, fuzzy
 msgid "Transaction Dates"
-msgstr "取引の詳細"
+msgstr ""
 
 #: src/billsdepositsdialog.cpp:414
 msgid "Recurring Transaction Details"
@@ -918,23 +855,20 @@ msgid "Specify the date when this bill or deposit is due"
 msgstr ""
 
 #: src/billsdepositsdialog.cpp:439
-#, fuzzy
 msgid "Retard or advance the date of the 'next occurrence'"
-msgstr "次の '発生日' を遅らせるかまたは進めます"
+msgstr ""
 
 #: src/billsdepositsdialog.cpp:445 src/billsdepositspanel.cpp:103
-#, fuzzy
 msgid "Date Due"
-msgstr "日付の範囲"
+msgstr ""
 
 #: src/billsdepositsdialog.cpp:449 src/billsdepositsdialog.cpp:1321
 msgid "Repeats"
 msgstr "繰り返し"
 
 #: src/billsdepositsdialog.cpp:457
-#, fuzzy
 msgid "Advance the next occuring date with the specified values"
-msgstr "指定した値で次の発生日を進めます"
+msgstr ""
 
 #: src/billsdepositsdialog.cpp:465 src/billsdepositsdialog.cpp:1363
 msgid "Payments Left"
@@ -953,32 +887,28 @@ msgid "Grant automatic execute"
 msgstr ""
 
 #: src/billsdepositsdialog.cpp:484
-#, fuzzy
 msgid "The requested payment will occur without user interaction"
-msgstr "ユーザーとのインタラクションなしに、自動実行が発生します"
+msgstr ""
 
 #: src/billsdepositsdialog.cpp:509 src/transdialog.cpp:404
 msgid "Transaction Details"
 msgstr "取引の詳細"
 
 #: src/billsdepositsdialog.cpp:524
-#, fuzzy
 msgid "Specify the date the user is requested to enter this transaction"
-msgstr "この取引のカテゴリーを指定します"
+msgstr ""
 
 #: src/billsdepositsdialog.cpp:527
-#, fuzzy
 msgid "Advance or retard the user request date of this transaction"
-msgstr "取引の日付を遅らせるか進めます"
+msgstr ""
 
 #: src/billsdepositsdialog.cpp:532
 msgid "Reset 'Date Paid' to 'Today's Date'"
 msgstr ""
 
 #: src/billsdepositsdialog.cpp:539 src/billsdepositspanel.cpp:102
-#, fuzzy
 msgid "Date Paid"
-msgstr "日付の範囲"
+msgstr ""
 
 #: src/billsdepositsdialog.cpp:550 src/filtertransdialog.cpp:280
 #: src/transdialog.cpp:1207
@@ -1184,39 +1114,29 @@ msgid "Period: Months"
 msgstr "期間: 月数"
 
 #: src/billsdepositsdialog.cpp:1332
-#, fuzzy
-msgid ""
-"Specify period in Days to activate.\n"
+msgid "Specify period in Days to activate.\n"
 "Becomes blank when not active."
-msgstr "アクティベートする期間を日数で指定します。"
+msgstr ""
 
 #: src/billsdepositsdialog.cpp:1340
-#, fuzzy
-msgid ""
-"Specify period in Months to activate.\n"
+msgid "Specify period in Months to activate.\n"
 "Becomes blank when not active."
-msgstr "アクティベートする期間を月数で指定します。"
+msgstr ""
 
 #: src/billsdepositsdialog.cpp:1348
-#, fuzzy
-msgid ""
-"Specify period in Days to activate.\n"
+msgid "Specify period in Days to activate.\n"
 "Leave blank when not active."
-msgstr "アクティベートする期間を日数で指定します。"
+msgstr ""
 
 #: src/billsdepositsdialog.cpp:1356
-#, fuzzy
-msgid ""
-"Specify period in Months to activate.\n"
+msgid "Specify period in Months to activate.\n"
 "Leave blank when not active."
-msgstr "アクティベートする期間を月数で指定します。"
+msgstr ""
 
 #: src/billsdepositsdialog.cpp:1364
-#, fuzzy
-msgid ""
-"Specify the number of payments to be made.\n"
+msgid "Specify the number of payments to be made.\n"
 "Leave blank if the payments continue forever."
-msgstr "このシリーズを永久に続ける場合は、空白のままにします。"
+msgstr ""
 
 #: src/billsdepositsdialog.cpp:1390 src/billsdepositsdialog.cpp:1399
 #: src/billsdepositsdialog.cpp:1407 src/general_report_manager.cpp:656
@@ -1238,9 +1158,8 @@ msgid "Choose one of the following:"
 msgstr ""
 
 #: src/billsdepositsdialog.cpp:1405 src/mmSimpleDialogs.cpp:232
-#, fuzzy
 msgid "Invalid Choice"
-msgstr "名前が正しくありません"
+msgstr ""
 
 #: src/billsdepositsdialog.cpp:1482 src/transdialog.cpp:1169
 #: src/usertransactionpanel.cpp:199
@@ -1292,22 +1211,11 @@ msgid "Payment"
 msgstr ""
 
 #: src/billsdepositspanel.cpp:170
-msgid ""
-"MMEX allows regular payments to be set up as transactions. These "
-"transactions can also be regular deposits, or transfers that will occur at "
-"some future time. These transactions act as a reminder that an event is "
-"about to occur, and appears on the Home Page 14 days before the transaction "
-"is due. "
-msgstr ""
-"MMEX は定期的な支払を取引として設定することができます。これらの取引は、将来"
-"いつか発生する定期的な預金、または振替にもすることができます。これらの取引"
-"は、発生するイベントのリマインダーとして機能し、取引が発生する 14 日前にホー"
-"ムページに表示されます。 "
+msgid "MMEX allows regular payments to be set up as transactions. These transactions can also be regular deposits, or transfers that will occur at some future time. These transactions act as a reminder that an event is about to occur, and appears on the Home Page 14 days before the transaction is due. "
+msgstr "MMEX は定期的な支払を取引として設定することができます。これらの取引は、将来いつか発生する定期的な預金、または振替にもすることができます。これらの取引は、発生するイベントのリマインダーとして機能し、取引が発生する 14 日前にホームページに表示されます。 "
 
 #: src/billsdepositspanel.cpp:171
-msgid ""
-"Tip: These transactions can be set up to activate - allowing the user to "
-"adjust any values on the due date."
+msgid "Tip: These transactions can be set up to activate - allowing the user to adjust any values on the due date."
 msgstr ""
 
 #: src/billsdepositspanel.cpp:225 src/billsdepositspanel.cpp:888
@@ -1589,11 +1497,9 @@ msgid "Budget Year:"
 msgstr "予算年度:"
 
 #: src/budgetyearentrydialog.cpp:79
-msgid ""
-"Specify the required year.\n"
+msgid "Specify the required year.\n"
 "Use Spin buttons to increase or decrease the year."
-msgstr ""
-"必要な年度を指定します。\n"
+msgstr "必要な年度を指定します。\n"
 "スピンボタンを使用して、年をプラスまたはマイナスします。"
 
 #: src/budgetyearentrydialog.cpp:86
@@ -1601,11 +1507,9 @@ msgid "Budget Month:"
 msgstr "予算月:"
 
 #: src/budgetyearentrydialog.cpp:95
-msgid ""
-"Specify the required month.\n"
+msgid "Specify the required month.\n"
 "Use Spin buttons to increase or decrease the month."
-msgstr ""
-"必要な月を指定します。\n"
+msgstr "必要な月を指定します。\n"
 "スピンボタンを使用して、月をプラスまたはマイナスします。"
 
 #: src/budgetyearentrydialog.cpp:102
@@ -1649,22 +1553,16 @@ msgid "Edit the name of an existing category"
 msgstr "既存のカテゴリーの名前を編集します"
 
 #: src/categdialog.cpp:234
-msgid ""
-"Delete an existing category. The category cannot be used by existing "
-"transactions."
-msgstr ""
-"既存のカテゴリーを削除します。カテゴリーは、既存の取引で使用できません。"
+msgid "Delete an existing category. The category cannot be used by existing transactions."
+msgstr "既存のカテゴリーを削除します。カテゴリーは、既存の取引で使用できません。"
 
 #: src/categdialog.cpp:239 src/maincurrencydialog.cpp:219
 msgid "&Select"
 msgstr "選択(&S)"
 
 #: src/categdialog.cpp:241
-msgid ""
-"Select the currently selected category as the selected category for the "
-"transaction"
-msgstr ""
-"現在選択されているカテゴリーを、取引で選択したカテゴリーとして選択します"
+msgid "Select the currently selected category as the selected category for the transaction"
+msgstr "現在選択されているカテゴリーを、取引で選択したカテゴリーとして選択します"
 
 #: src/categdialog.cpp:250
 msgid "Enter the name for the new category:"
@@ -1683,11 +1581,9 @@ msgid "Category with same name exists"
 msgstr "同じ名前のカテゴリーが存在します"
 
 #: src/categdialog.cpp:266
-msgid ""
-"Tip: If category added now, check bottom of list.\n"
+msgid "Tip: If category added now, check bottom of list.\n"
 "Category will be in sorted order next time dialog appears"
-msgstr ""
-"ヒント: 今、カテゴリーを追加した場合は、リストの最後を確認してください。\n"
+msgstr "ヒント: 今、カテゴリーを追加した場合は、リストの最後を確認してください。\n"
 "次回ダイアログボックスが表示されると、カテゴリーはソート順になります"
 
 #: src/categdialog.cpp:268 src/categdialog.cpp:292 src/categdialog.cpp:310
@@ -1700,9 +1596,7 @@ msgstr "同じ名前のサブカテゴリーが存在します"
 
 #: src/categdialog.cpp:309
 msgid "Invalid Parent Category. Choose Root or Main Category node."
-msgstr ""
-"親カテゴリーが正しくありません。ルートまたはメインカテゴリーノードを選択して"
-"ください。"
+msgstr "親カテゴリーが正しくありません。ルートまたはメインカテゴリーノードを選択してください。"
 
 #: src/categdialog.cpp:316
 msgid "Category in use."
@@ -1713,19 +1607,15 @@ msgid "Sub-Category in use."
 msgstr "サブカテゴリーは使用中です。"
 
 #: src/categdialog.cpp:318
-msgid ""
-"Tip: Change all transactions using this Category to\n"
+msgid "Tip: Change all transactions using this Category to\n"
 "another Category using the relocate command:"
-msgstr ""
-"ヒント: 再配置コマンドを使用して、このカテゴリーを使用している\n"
+msgstr "ヒント: 再配置コマンドを使用して、このカテゴリーを使用している\n"
 "すべての取引を、別のカテゴリーに変更します:"
 
 #: src/categdialog.cpp:321
-msgid ""
-"Tip: Change all transactions using this Sub-Category to\n"
+msgid "Tip: Change all transactions using this Sub-Category to\n"
 "another Sub-Category using the relocate command:"
-msgstr ""
-"ヒント: 再配置コマンドを使用して、このサブカテゴリー使用している\n"
+msgstr "ヒント: 再配置コマンドを使用して、このサブカテゴリー使用している\n"
 "すべての取引を、別のサブカテゴリーに変更します:"
 
 #: src/categdialog.cpp:324
@@ -1776,14 +1666,12 @@ msgid "Clear Settings"
 msgstr "設定をクリア"
 
 #: src/constants.cpp:39
-#, fuzzy
 msgid "Cancel"
-msgstr "キャンセル(&C) "
+msgstr ""
 
 #: src/constants.cpp:45
-#, fuzzy
 msgid "Close"
-msgstr "締切"
+msgstr ""
 
 #: src/constants.cpp:47
 msgid "&Close "
@@ -1794,23 +1682,20 @@ msgid "Version: "
 msgstr "バージョン: "
 
 #: src/constants.cpp:81 src/mmframe.cpp:2571
-#, fuzzy
 msgid "Database version: "
-msgstr "データベース::開く: %s"
+msgstr ""
 
 #: src/constants.cpp:87 src/mmframe.cpp:2572
 msgid "Git commit: "
 msgstr ""
 
 #: src/constants.cpp:91 src/mmframe.cpp:2573
-#, fuzzy
 msgid "Git branch: "
-msgstr "初期残高: %s"
+msgstr ""
 
 #: src/constants.cpp:94 src/mmframe.cpp:2574
-#, fuzzy
 msgid "MMEX is using the following support products:"
-msgstr "MMEX は、以下のサポート製品を使用しています"
+msgstr ""
 
 #: src/constants.cpp:107 src/mmframe.cpp:2575
 msgid "Build on"
@@ -1861,19 +1746,16 @@ msgid "View Current Year"
 msgstr "今年を表示"
 
 #: src/constants.cpp:226
-#, fuzzy
 msgid "View Current Financial Year"
-msgstr "今年度"
+msgstr ""
 
 #: src/constants.cpp:227
-#, fuzzy
 msgid "View Last Year"
-msgstr "昨年"
+msgstr ""
 
 #: src/constants.cpp:228
-#, fuzzy
 msgid "View Last Financial Year"
-msgstr "昨年度"
+msgstr ""
 
 #: src/constants.cpp:229
 msgid "View Since Statement Date"
@@ -1901,9 +1783,8 @@ msgid "Currency name"
 msgstr "通貨名"
 
 #: src/currencydialog.cpp:152
-#, fuzzy
 msgid "Currency Type"
-msgstr "通貨名"
+msgstr ""
 
 #: src/currencydialog.cpp:160
 msgid "Currency Name"
@@ -1934,9 +1815,8 @@ msgid "Scale"
 msgstr "小数点以下桁数"
 
 #: src/currencydialog.cpp:208
-#, fuzzy
 msgid "Historic currency"
-msgstr "通貨の設定"
+msgstr ""
 
 #: src/currencydialog.cpp:213
 msgid "Value Display Sample:"
@@ -1956,39 +1836,33 @@ msgid "Invalid Entry"
 msgstr "エントリーが正しくありません"
 
 #: src/currencydialog.cpp:281
-#, fuzzy, c-format
+#, c-format
 msgid "%s Shown As: %s"
-msgstr "%.2f 表示は: %s"
+msgstr ""
 
 #: src/customfieldeditdialog.cpp:57
-#, fuzzy
 msgid "New/Edit Custom Field"
-msgstr "資産を作成/編集"
+msgstr ""
 
 #: src/customfieldeditdialog.cpp:120
-#, fuzzy
 msgid "Custom Field Details"
-msgstr "資産の詳細"
+msgstr ""
 
 #: src/customfieldeditdialog.cpp:132
-#, fuzzy
 msgid "Enter the name of the custom field"
-msgstr "資産の名前を入力してください"
+msgstr ""
 
 #: src/customfieldeditdialog.cpp:135
-#, fuzzy
 msgid "Field Type"
-msgstr "資産の種類"
+msgstr ""
 
 #: src/customfieldeditdialog.cpp:139
-#, fuzzy
 msgid "Select type of custom field"
-msgstr "資産の種類を指定してください"
+msgstr ""
 
 #: src/customfieldeditdialog.cpp:142
-#, fuzzy
 msgid "ToolTip"
-msgstr "ツール(&T)"
+msgstr ""
 
 #: src/customfieldeditdialog.cpp:144
 msgid "Enter the tooltip that will be shown"
@@ -1999,14 +1873,12 @@ msgid "RegEx"
 msgstr ""
 
 #: src/customfieldeditdialog.cpp:149
-#, fuzzy
 msgid "Enter the RegEx to validate field"
-msgstr "資産の名前を入力してください"
+msgstr ""
 
 #: src/customfieldeditdialog.cpp:152
-#, fuzzy
 msgid "Autocomplete"
-msgstr "自動車"
+msgstr ""
 
 #: src/customfieldeditdialog.cpp:155
 msgid "Enables autocomplete on custom field"
@@ -2017,8 +1889,7 @@ msgid "Default"
 msgstr ""
 
 #: src/customfieldeditdialog.cpp:160
-msgid ""
-"Enter the default for this field\n"
+msgid "Enter the default for this field\n"
 "For date/time insert 'Now' to make current date/time as default"
 msgstr ""
 
@@ -2035,9 +1906,8 @@ msgid "Digits scale"
 msgstr ""
 
 #: src/customfieldeditdialog.cpp:171
-#, fuzzy
 msgid "Enter the decimal digits scale allowed"
-msgstr "レポートの名前を入力してください"
+msgstr ""
 
 #: src/customfieldeditdialog.cpp:174
 msgid "Panel's column"
@@ -2065,9 +1935,8 @@ msgid "You have modified choices: ones removed will be cleaned!"
 msgstr ""
 
 #: src/customfieldlistdialog.cpp:55
-#, fuzzy
 msgid "Properties"
-msgstr "財産"
+msgstr ""
 
 #: src/customfieldlistdialog.cpp:65
 #, c-format
@@ -2075,28 +1944,23 @@ msgid "Personalize custom fields | %s"
 msgstr ""
 
 #: src/customfieldlistdialog.cpp:172
-#, fuzzy
 msgid "Do you really want to delete this custom field and all its data?"
-msgstr "この添付ファイルを削除してもよろしいですか?"
+msgstr ""
 
 #: src/customfieldlistdialog.cpp:173
-#, fuzzy
 msgid "Confirm Custom Field Deletion"
-msgstr "資産削除の確認"
+msgstr ""
 
 #: src/customfieldlistdialog.cpp:191
 #, c-format
-msgid ""
-"This function will massive search & replace for \"%s\" custom field values\n"
-"It will match & replace only complete field value, no partial or middle-"
-"value replaces allowed\n"
+msgid "This function will massive search & replace for \"%s\" custom field values\n"
+"It will match & replace only complete field value, no partial or middle-value replaces allowed\n"
 "Please consider that there isn't any validation!"
 msgstr ""
 
 #: src/customfieldlistdialog.cpp:194
-#, fuzzy
 msgid "Confirm Custom Field Content Update"
-msgstr "新しい支払先の追加の確認"
+msgstr ""
 
 #: src/customfieldlistdialog.cpp:199
 msgid "Find what"
@@ -2109,8 +1973,7 @@ msgid "Update Custom Field Content"
 msgstr ""
 
 #: src/customfieldlistdialog.cpp:203
-msgid ""
-"Do you want to update blank content?\n"
+msgid "Do you want to update blank content?\n"
 "Press no if you want to abort replace procedure!"
 msgstr ""
 
@@ -2119,8 +1982,7 @@ msgid "Replace with"
 msgstr ""
 
 #: src/customfieldlistdialog.cpp:215
-msgid ""
-"Do you want to update to blank?\n"
+msgid "Do you want to update to blank?\n"
 "Press no if you want to abort replace procedure!"
 msgstr ""
 
@@ -2219,9 +2081,8 @@ msgid "Afghani"
 msgstr ""
 
 #: src/db/Table_Currencyformats.h:112
-#, fuzzy
 msgid "Lek"
-msgstr "生活"
+msgstr ""
 
 #: src/db/Table_Currencyformats.h:113
 msgid "Algerian Dinar"
@@ -2296,9 +2157,8 @@ msgid "Boliviano"
 msgstr ""
 
 #: src/db/Table_Currencyformats.h:131
-#, fuzzy
 msgid "Convertible Mark"
-msgstr "DB を変換しました!"
+msgstr ""
 
 #: src/db/Table_Currencyformats.h:132
 msgid "Pula"
@@ -2645,9 +2505,8 @@ msgid "Guarani"
 msgstr ""
 
 #: src/db/Table_Currencyformats.h:218
-#, fuzzy
 msgid "Sol"
-msgstr "シンボル"
+msgstr ""
 
 #: src/db/Table_Currencyformats.h:219
 msgid "Philippine Piso"
@@ -3466,54 +3325,45 @@ msgid "initialization"
 msgstr ""
 
 #: src/dbupgrade.cpp:129
-#, fuzzy
 msgid "MMEX database error!"
-msgstr "MMEX データベースを開く時 - エラー"
+msgstr ""
 
 #: src/dbupgrade.cpp:130
 #, c-format
-msgid ""
-"MMEX database version %i doesn't work with this MMEX version.\n"
+msgid "MMEX database version %i doesn't work with this MMEX version.\n"
 "Please upgrade MMEX to newer version."
 msgstr ""
 
 #: src/dbupgrade.cpp:131 src/dbupgrade.cpp:150 src/dbupgrade.cpp:153
 #: src/dbupgrade.cpp:162
-#, fuzzy
 msgid "MMEX database upgrade"
-msgstr "データベースのパスワードを入力してください"
+msgstr ""
 
 #: src/dbupgrade.cpp:148
-#, fuzzy
 msgid "MMEX database vacuum failed!"
-msgstr "データベースのパスワードを入力してください"
+msgstr ""
 
 #: src/dbupgrade.cpp:149
-msgid ""
-"MMEX still should work, but try to re-optimize it from Tools -> Database -> "
-"Optimize"
+msgid "MMEX still should work, but try to re-optimize it from Tools -> Database -> Optimize"
 msgstr ""
 
 #: src/dbupgrade.cpp:153
-#, fuzzy, c-format
+#, c-format
 msgid "MMEX database successfully upgraded to version %i"
-msgstr "データベースのパスワードを入力してください"
+msgstr ""
 
 #: src/dbupgrade.cpp:160
-#, fuzzy, c-format
+#, c-format
 msgid "MMEX database %s to version %i failed!"
-msgstr "データベースのパスワードを入力してください"
+msgstr ""
 
 #: src/dbupgrade.cpp:161
-msgid ""
-"Please restore DB from autocreated pre-upgrade backup and retry or contact "
-"MMEX support"
+msgid "Please restore DB from autocreated pre-upgrade backup and retry or contact MMEX support"
 msgstr ""
 
 #: src/dbupgrade.cpp:237
-#, fuzzy
 msgid "Load debug file"
-msgstr "ロードするレポートファイル:"
+msgstr ""
 
 #: src/dbupgrade.cpp:237
 msgid "MMEX debug files (*.mmdbg)"
@@ -3525,46 +3375,38 @@ msgstr ""
 
 #: src/dbupgrade.cpp:250 src/dbupgrade.cpp:263 src/dbupgrade.cpp:269
 #: src/dbupgrade.cpp:318 src/dbupgrade.cpp:324 src/dbupgrade.cpp:356
-#, fuzzy
 msgid "MMEX debug error"
-msgstr "MMEX: メニュー ポップアップ エラー"
+msgstr ""
 
 #: src/dbupgrade.cpp:268
 #, c-format
-msgid ""
-"This SQL debug script requires %li database version, but current database "
-"is version %i."
+msgid "This SQL debug script requires %li database version, but current database is version %i."
 msgstr ""
 
 #: src/dbupgrade.cpp:284
-#, fuzzy
 msgid "Debug script description:"
-msgstr "説明"
+msgstr ""
 
 #: src/dbupgrade.cpp:284 src/dbupgrade.cpp:330 src/dbupgrade.cpp:362
-#, fuzzy
 msgid "MMEX debug"
-msgstr "MMEX メッセージ"
+msgstr ""
 
 #: src/dbupgrade.cpp:284
-#, fuzzy
 msgid "Please confirm running this SQL script."
-msgstr "保存を確認してください..."
+msgstr ""
 
 #: src/dbupgrade.cpp:318 src/dbupgrade.cpp:356
 msgid "Query error, please contact MMEX support!"
 msgstr ""
 
 #: src/dbupgrade.cpp:329
-msgid ""
-"Send this log to MMEX support team:\n"
+msgid "Send this log to MMEX support team:\n"
 "press OK to save to file or Cancel to exit"
 msgstr ""
 
 #: src/dbupgrade.cpp:333
-#, fuzzy
 msgid "Save debug file"
-msgstr "名前を付けてデータベース ファイルを保存"
+msgstr ""
 
 #: src/dbupgrade.cpp:333
 msgid "Text files (*.txt)"
@@ -3575,9 +3417,8 @@ msgid "DB maintenance completed, please close and re-open MMEX!"
 msgstr ""
 
 #: src/dbwrapper.cpp:58
-#, fuzzy
 msgid "Error opening database file:"
-msgstr "データベースファイル"
+msgstr ""
 
 #: src/dbwrapper.cpp:62
 msgid "Can't open file"
@@ -3592,29 +3433,16 @@ msgid "Possible reasons:"
 msgstr ""
 
 #: src/dbwrapper.cpp:91
-#, fuzzy
 msgid "An incorrect password given for an encrypted file"
 msgstr ""
-"暗号化されたファイルのパスワードが正しくない \n"
-"\n"
-"または \n"
-"\n"
-" データベースではないファイルを開こうとしました \n"
 
 #: src/dbwrapper.cpp:92
-#, fuzzy
 msgid "Attempt to open a file that is not a database file"
 msgstr ""
-"暗号化されたファイルのパスワードが正しくない \n"
-"\n"
-"または \n"
-"\n"
-" データベースではないファイルを開こうとしました \n"
 
 #: src/dbwrapper.cpp:93
-#, fuzzy
 msgid "Corrupted database file"
-msgstr "データベースファイル"
+msgstr ""
 
 #: src/dbwrapper.cpp:100 src/mmframe.cpp:1900
 msgid "Opening MMEX Database - Error"
@@ -3649,9 +3477,8 @@ msgid "All Except Reconciled"
 msgstr "照合済を除きすべて"
 
 #: src/filtertransdialog.cpp:184 src/transactionsupdatedialog.cpp:100
-#, fuzzy
 msgid "Specify"
-msgstr " 指定 "
+msgstr ""
 
 #: src/filtertransdialog.cpp:213 src/reports/mmDateRange.cpp:27
 msgid "Date Range"
@@ -3690,9 +3517,8 @@ msgid "Amount Range"
 msgstr "金額の範囲"
 
 #: src/filtertransdialog.cpp:350
-#, fuzzy
 msgid "Settings"
-msgstr "CSV 設定"
+msgstr ""
 
 #: src/filtertransdialog.cpp:371 src/filtertransdialog.cpp:669
 #: src/filtertransdialog.cpp:918 src/filtertransdialog.cpp:1192
@@ -3709,18 +3535,16 @@ msgid "Clear all fields for current Preset selection"
 msgstr ""
 
 #: src/filtertransdialog.cpp:399
-#, fuzzy
 msgid "&Activate "
-msgstr "アクティベート"
+msgstr ""
 
 #: src/filtertransdialog.cpp:400
 msgid "Activate the filter with these settings"
 msgstr ""
 
 #: src/filtertransdialog.cpp:402
-#, fuzzy
 msgid "&Deactivate "
-msgstr "アクティベート"
+msgstr ""
 
 #: src/filtertransdialog.cpp:403
 msgid "Deactivate the filter"
@@ -3743,33 +3567,28 @@ msgid "Before"
 msgstr ""
 
 #: src/filtertransdialog.cpp:878
-#, fuzzy
 msgid "Amount Min."
-msgstr "金額"
+msgstr ""
 
 #: src/filtertransdialog.cpp:886
-#, fuzzy
 msgid "Amount Max."
-msgstr "金額"
+msgstr ""
 
 #: src/filtertransdialog.cpp:921
 msgid "Label"
 msgstr ""
 
 #: src/filtertransdialog.cpp:1194
-#, fuzzy
 msgid "Please Enter"
-msgstr "しばらくお待ちください"
+msgstr ""
 
 #: src/filtertransdialog.cpp:1194
-#, fuzzy
 msgid "Setting Name"
-msgstr "株式名"
+msgstr ""
 
 #: src/filtertransdialog.cpp:1198
-#, fuzzy
 msgid "Could not save settings"
-msgstr "ファイルを選択(&f)"
+msgstr ""
 
 #: src/filtertransdialog.cpp:1198
 msgid "Empty value"
@@ -3823,11 +3642,11 @@ msgstr "出力"
 
 #: src/general_report_manager.cpp:404
 msgid "SQL"
-msgstr "SQL"
+msgstr ""
 
 #: src/general_report_manager.cpp:405
 msgid "Lua"
-msgstr "Lua"
+msgstr ""
 
 #: src/general_report_manager.cpp:406
 msgid "Template"
@@ -3855,9 +3674,8 @@ msgid "Load report file:"
 msgstr "ロードするレポートファイル:"
 
 #: src/general_report_manager.cpp:545 src/general_report_manager.cpp:972
-#, fuzzy
 msgid "General Report Manager files (*.grm)"
-msgstr "汎用レポートマネージャー"
+msgstr ""
 
 #: src/general_report_manager.cpp:545 src/general_report_manager.cpp:972
 msgid "ZIP files (*.zip)"
@@ -3865,14 +3683,10 @@ msgstr ""
 
 #: src/general_report_manager.cpp:608
 #, c-format
-msgid ""
-"Unable to open file:\n"
-"%s\n"
-"\n"
-msgstr ""
-"ファイルを開くことができません:\n"
-"%s\n"
-"\n"
+msgid "Unable to open file:\n"
+"%s\n\n"
+msgstr "ファイルを開くことができません:\n"
+"%s\n\n"
 
 #: src/general_report_manager.cpp:673
 msgid "New Empty Report"
@@ -3960,19 +3774,16 @@ msgid "Universal CSV Import"
 msgstr "ユニバーサル CSV インポート"
 
 #: src/import_export/parsers.cpp:89
-#, fuzzy
 msgid "Unable to create file."
-msgstr "ファイルに書き込みできません。"
+msgstr ""
 
 #: src/import_export/parsers.cpp:109 src/import_export/parsers.cpp:248
-#, fuzzy
 msgid "Could not save file."
-msgstr "ファイルを選択(&f)"
+msgstr ""
 
 #: src/import_export/parsers.cpp:109 src/import_export/parsers.cpp:248
-#, fuzzy
 msgid "Export error"
-msgstr "ファイルのエクスポート"
+msgstr ""
 
 #: src/import_export/parsers.cpp:135 src/import_export/parsers.cpp:144
 msgid "File is not in Excel XML Spreadsheet 2003 format."
@@ -3988,14 +3799,12 @@ msgid "Could not find Worksheet."
 msgstr ""
 
 #: src/import_export/parsers.cpp:163
-#, fuzzy
 msgid "Table"
-msgstr "有効"
+msgstr ""
 
 #: src/import_export/parsers.cpp:165
-#, fuzzy
 msgid "Could not find Table."
-msgstr "基本通貨シンボルが見つかりませんでした!"
+msgstr ""
 
 #: src/import_export/parsers.cpp:216
 msgid "Transactions"
@@ -4017,11 +3826,11 @@ msgstr "ログ"
 
 #: src/import_export/qif_export.cpp:111
 msgid "CSV"
-msgstr "CSV"
+msgstr ""
 
 #: src/import_export/qif_export.cpp:111
 msgid "QIF"
-msgstr "QIF"
+msgstr ""
 
 #: src/import_export/qif_export.cpp:129 src/mmframe.cpp:2834
 #: src/mmframe.cpp:2838 src/mmframe.cpp:2857 src/mmframe.cpp:2861
@@ -4068,9 +3877,8 @@ msgstr "エクスポートする QIF データファイルを選択"
 
 #: src/import_export/qif_export.cpp:281
 #: src/import_export/qif_import_gui.cpp:723
-#, fuzzy
 msgid "QIF Files (*.qif)"
-msgstr "QIF ファイル"
+msgstr ""
 
 #: src/import_export/qif_export.cpp:300
 msgid "No Account available for export"
@@ -4099,7 +3907,6 @@ msgid "Please wait"
 msgstr "しばらくお待ちください"
 
 #: src/import_export/qif_export.cpp:419
-#, c-format
 msgid "Exporting transaction %i"
 msgstr "取引をエクスポートしています %i"
 
@@ -4184,7 +3991,7 @@ msgstr "OK ボタンを押すと続行します"
 #: src/import_export/qif_import_gui.cpp:641
 #: src/import_export/qif_import_gui.cpp:658
 msgid "OK"
-msgstr "OK"
+msgstr ""
 
 #: src/import_export/qif_import_gui.cpp:614
 #: src/import_export/qif_import_gui.cpp:617
@@ -4214,8 +4021,7 @@ msgstr "すべての取引をインポートしますか ?"
 
 #: src/import_export/qif_import_gui.cpp:808
 msgid "All missing account, payees and categories will be created."
-msgstr ""
-"すべての見つからないアカウント、支払先、およびカテゴリーを作成します。"
+msgstr "すべての見つからないアカウント、支払先、およびカテゴリーを作成します。"
 
 #: src/import_export/qif_import_gui.cpp:809
 msgid "Confirm Import"
@@ -4260,9 +4066,9 @@ msgid "Import finished successfully"
 msgstr "インポートが正常に終了しました"
 
 #: src/import_export/qif_import_gui.cpp:904 src/stockdialog.cpp:640
-#, fuzzy, c-format
+#, c-format
 msgid "Total Imported: %ld"
-msgstr "インポートした合計 : %ld"
+msgstr ""
 
 #: src/import_export/qif_import_gui.cpp:912
 #: src/import_export/univcsvdialog.cpp:954
@@ -4298,20 +4104,17 @@ msgid "Transaction Category is incorrect"
 msgstr ""
 
 #: src/import_export/qif_import_gui.cpp:1167
-#, c-format
 msgid "Added account: %s"
 msgstr "追加したアカウント: %s"
 
 #: src/import_export/qif_import_gui.cpp:1196
 #: src/import_export/univcsvdialog.cpp:753
-#, c-format
 msgid "Added payee: %s"
 msgstr "追加した支払先: %s"
 
 #: src/import_export/univcsvdialog.cpp:93
-#, fuzzy
 msgid "Amount +/-"
-msgstr "金額(+/-)"
+msgstr ""
 
 #: src/import_export/univcsvdialog.cpp:95
 msgid "SubCategory"
@@ -4327,14 +4130,12 @@ msgid "Balance"
 msgstr "残高"
 
 #: src/import_export/univcsvdialog.cpp:102
-#, fuzzy
 msgid "Export dialog"
-msgstr "ファイルのエクスポート"
+msgstr ""
 
 #: src/import_export/univcsvdialog.cpp:102
-#, fuzzy
 msgid "Import dialog"
-msgstr "ファイルのインポート"
+msgstr ""
 
 #: src/import_export/univcsvdialog.cpp:163
 msgid "&Browse"
@@ -4353,9 +4154,8 @@ msgid "Save Template"
 msgstr "テンプレートを保存"
 
 #: src/import_export/univcsvdialog.cpp:192
-#, fuzzy
 msgid "Specify the order of fields in the file"
-msgstr "CSV ファイルのフィールドの順番を指定します"
+msgstr ""
 
 #: src/import_export/univcsvdialog.cpp:223
 msgid "&MMEX format"
@@ -4390,24 +4190,20 @@ msgid "Date Format: "
 msgstr "日付フォーマット: "
 
 #: src/import_export/univcsvdialog.cpp:290
-#, fuzzy
 msgid "CSV Delimiter:"
-msgstr "CSV デリミタ"
+msgstr ""
 
 #: src/import_export/univcsvdialog.cpp:296 src/optionsettingsmisc.cpp:180
 msgid "Specify the delimiter to use when importing/exporting CSV files"
-msgstr ""
-"CSV ファイルをインポート/エクスポートする時に使用するデリミタを指定します"
+msgstr "CSV ファイルをインポート/エクスポートする時に使用するデリミタを指定します"
 
 #: src/import_export/univcsvdialog.cpp:319
-#, fuzzy
 msgid "Export column titles"
-msgstr "ファイルのエクスポート"
+msgstr ""
 
 #: src/import_export/univcsvdialog.cpp:328
-#, fuzzy
 msgid "Amount +/-:"
-msgstr "金額(+/-)"
+msgstr ""
 
 #: src/import_export/univcsvdialog.cpp:334
 msgid "Positive values are deposits"
@@ -4422,14 +4218,12 @@ msgid "Rows to ignore"
 msgstr ""
 
 #: src/import_export/univcsvdialog.cpp:350
-#, fuzzy
 msgid "From start: "
-msgstr "開始日"
+msgstr ""
 
 #: src/import_export/univcsvdialog.cpp:357
-#, fuzzy
 msgid "From end: "
-msgstr "開始日"
+msgstr ""
 
 #: src/import_export/univcsvdialog.cpp:365
 msgid "Preview"
@@ -4445,22 +4239,17 @@ msgstr "ファイルのエクスポート"
 
 #: src/import_export/univcsvdialog.cpp:477
 #, c-format
-msgid ""
-"Default account '%s' for this template does not exist.\n"
+msgid "Default account '%s' for this template does not exist.\n"
 "Please select a new account."
 msgstr ""
 
 #: src/import_export/univcsvdialog.cpp:479
-#, fuzzy
 msgid "Account does not exist"
-msgstr "アカウント名は既に存在します"
+msgstr ""
 
 #: src/import_export/univcsvdialog.cpp:794
-#, fuzzy
 msgid "Incorrect fields specified for import!"
 msgstr ""
-"CSV インポートに指定したフィールドが正しくありません! 少なくとも日付、金額、"
-"支払先が必要です。"
 
 #: src/import_export/univcsvdialog.cpp:795
 msgid "Date field is required."
@@ -4476,11 +4265,8 @@ msgid "Import"
 msgstr ""
 
 #: src/import_export/univcsvdialog.cpp:846
-#, fuzzy, c-format
 msgid "Transactions imported to account %s: %ld"
 msgstr ""
-"CSV から取引をインポートしました\n"
-"先のアカウント %s : %i"
 
 #: src/import_export/univcsvdialog.cpp:857
 #, c-format
@@ -4493,9 +4279,8 @@ msgid "Line %ld: Error:"
 msgstr ""
 
 #: src/import_export/univcsvdialog.cpp:873
-#, fuzzy
 msgid "Invalid Date."
-msgstr "名前が正しくありません"
+msgstr ""
 
 #: src/import_export/univcsvdialog.cpp:874 src/mmTextCtrl.cpp:82
 msgid "Invalid Amount."
@@ -4506,14 +4291,14 @@ msgid "Type (withdrawal/deposit) unknown."
 msgstr ""
 
 #: src/import_export/univcsvdialog.cpp:901
-#, fuzzy, c-format
+#, c-format
 msgid "Line %ld: OK, imported."
-msgstr "行 : %i インポート OK"
+msgstr ""
 
 #: src/import_export/univcsvdialog.cpp:909 src/stockdialog.cpp:638
-#, fuzzy, c-format
+#, c-format
 msgid "Total Lines: %ld"
-msgstr "合計行数 : %i"
+msgstr ""
 
 #: src/import_export/univcsvdialog.cpp:911
 #, c-format
@@ -4521,66 +4306,57 @@ msgid "Lines Selected to Import: %ld"
 msgstr ""
 
 #: src/import_export/univcsvdialog.cpp:913
-#, fuzzy, c-format
+#, c-format
 msgid "Empty Lines: %ld"
-msgstr "合計行数 : %i"
+msgstr ""
 
 #: src/import_export/univcsvdialog.cpp:915
-#, fuzzy, c-format
+#, c-format
 msgid "Imported: %ld"
-msgstr "インポートした合計 : %ld"
+msgstr ""
 
 #: src/import_export/univcsvdialog.cpp:917
-#, fuzzy, c-format
+#, c-format
 msgid "Errored: %ld"
-msgstr "インポートした合計 : %ld"
+msgstr ""
 
 #: src/import_export/univcsvdialog.cpp:920
-#, fuzzy, c-format
+#, c-format
 msgid "Log file written to: %s"
-msgstr "ログファイル書き込み先 : %s"
+msgstr ""
 
 #: src/import_export/univcsvdialog.cpp:923 src/stockdialog.cpp:646
 msgid "Please confirm saving..."
 msgstr "保存を確認してください..."
 
 #: src/import_export/univcsvdialog.cpp:955
-#, fuzzy
 msgid "No imported transactions!"
-msgstr "分割取引をインポートしています"
+msgstr ""
 
 #: src/import_export/univcsvdialog.cpp:973
-#, fuzzy
-msgid ""
-"Incorrect fields specified for export! Requires at least Date and Amount."
+msgid "Incorrect fields specified for export! Requires at least Date and Amount."
 msgstr ""
-"CSV インポートに指定したフィールドが正しくありません! 少なくとも日付、金額、"
-"支払先が必要です。"
 
 #: src/import_export/univcsvdialog.cpp:974
 #: src/import_export/univcsvdialog.cpp:1095
-#, fuzzy
 msgid "Export"
-msgstr "エクスポート(&E)"
+msgstr ""
 
 #: src/import_export/univcsvdialog.cpp:984
-#, fuzzy
 msgid "File exists"
-msgstr "ファイル名が空です"
+msgstr ""
 
 #: src/import_export/univcsvdialog.cpp:984
-#, fuzzy
 msgid "Overwrite existing file?"
-msgstr "既存の予算を削除"
+msgstr ""
 
 #: src/import_export/univcsvdialog.cpp:990
 msgid "Failed to delete existing file. File may be locked by another program."
 msgstr ""
 
 #: src/import_export/univcsvdialog.cpp:991
-#, fuzzy
 msgid "Destination file error"
-msgstr "先のカテゴリー"
+msgstr ""
 
 #: src/import_export/univcsvdialog.cpp:1094
 #, c-format
@@ -4592,34 +4368,28 @@ msgid "Choose CSV data file to import"
 msgstr "インポートする CSV データファイルを選択"
 
 #: src/import_export/univcsvdialog.cpp:1341
-#, fuzzy
 msgid "Choose CSV data file to export"
-msgstr "エクスポートする CSV データファイルを選択"
+msgstr ""
 
 #: src/import_export/univcsvdialog.cpp:1344
-#, fuzzy
 msgid "Choose XML data file to import"
-msgstr "インポートする CSV データファイルを選択"
+msgstr ""
 
 #: src/import_export/univcsvdialog.cpp:1347
-#, fuzzy
 msgid "Choose XML data file to export"
-msgstr "エクスポートする QIF データファイルを選択"
+msgstr ""
 
 #: src/import_export/univcsvdialog.cpp:1354
-#, fuzzy
 msgid "XML Files (*.xml)"
-msgstr "&CSV ファイル..."
+msgstr ""
 
 #: src/import_export/univcsvdialog.cpp:1355 src/stockdialog.cpp:555
-#, fuzzy
 msgid "CSV Files (*.csv)"
-msgstr "CSV ファイル"
+msgstr ""
 
 #: src/maincurrencydialog.cpp:69
-#, fuzzy
 msgid "Base"
-msgstr "基本レート"
+msgstr ""
 
 #: src/maincurrencydialog.cpp:70 src/reports/summarystocks.cpp:180
 #: src/stockdialog.cpp:424 src/stockspanel.cpp:98
@@ -4664,18 +4434,12 @@ msgid "Hide historical currencies"
 msgstr ""
 
 #: src/maincurrencydialog.cpp:223
-#, fuzzy
-msgid ""
-"Select the currently selected currency as the selected currency for the "
-"account"
+msgid "Select the currently selected currency as the selected currency for the account"
 msgstr ""
-"現在選択されているカテゴリーを、取引で選択したカテゴリーとして選択します"
 
 #: src/maincurrencydialog.cpp:225
-#, fuzzy
 msgid "Select the currently selected currency as base currency"
 msgstr ""
-"現在選択されているカテゴリーを、取引で選択したカテゴリーとして選択します"
 
 #: src/maincurrencydialog.cpp:239
 msgid "Currency History Options"
@@ -4749,9 +4513,9 @@ msgid "No currency selected!"
 msgstr ""
 
 #: src/maincurrencydialog.cpp:627
-#, fuzzy, c-format
+#, c-format
 msgid "Unable to download %s currency rates"
-msgstr "為替レートを更新することを忘れないでください"
+msgstr ""
 
 #: src/maincurrencydialog.cpp:632
 msgid "Do you want to add also dates without any transaction?"
@@ -4763,15 +4527,13 @@ msgid "Unable to download history for symbol %s. History rates not available!"
 msgstr ""
 
 #: src/maincurrencydialog.cpp:737
-msgid ""
-"Setting a new base currency will delete all historic rates,\n"
+msgid "Setting a new base currency will delete all historic rates,\n"
 "it's possible to re-download them after setting the new base currency."
 msgstr ""
 
 #: src/maincurrencydialog.cpp:739
-#, fuzzy
 msgid "Do you want to continue?"
-msgstr "それらをダウンロードしますか?"
+msgstr ""
 
 #: src/maincurrencydialog.cpp:761 src/maincurrencydialog.cpp:865
 msgid "Could not find base currency symbol!"
@@ -4795,11 +4557,9 @@ msgid "Please use this button for category selection."
 msgstr ""
 
 #: src/mmSimpleDialogs.cpp:130
-msgid ""
-"Please use this button for category selection\n"
+msgid "Please use this button for category selection\n"
 "or use the 'Split' checkbox for multiple categories."
-msgstr ""
-"このボタンを使用してカテゴリーを選択してください\n"
+msgstr "このボタンを使用してカテゴリーを選択してください\n"
 "または複数のカテゴリーは '分割' チェックボックスを使用します。"
 
 #: src/mmSimpleDialogs.cpp:132
@@ -4831,9 +4591,7 @@ msgid "Selection can be made by using the dropdown button."
 msgstr "ドロップダウンボタンを使用して選択できます。"
 
 #: src/mmSimpleDialogs.cpp:159
-msgid ""
-"Activating the button will provide a selection box where the account can be "
-"selected."
+msgid "Activating the button will provide a selection box where the account can be selected."
 msgstr ""
 
 #: src/mmSimpleDialogs.cpp:170 src/mmcombobox.h:77
@@ -4841,17 +4599,13 @@ msgid "Invalid Payee"
 msgstr "支払先が正しくありません"
 
 #: src/mmSimpleDialogs.cpp:171
-msgid ""
-"Please type in a new payee,\n"
+msgid "Please type in a new payee,\n"
 "or make a selection using the dropdown button."
-msgstr ""
-"新しい支払先を入力してください、\n"
+msgstr "新しい支払先を入力してください、\n"
 "またはドロップダウンボタンを使用して選択します。"
 
 #: src/mmSimpleDialogs.cpp:177
-msgid ""
-"Activating the button will provide a selection box where the payee can be "
-"selected."
+msgid "Activating the button will provide a selection box where the payee can be selected."
 msgstr ""
 
 #: src/mmSimpleDialogs.cpp:187 src/mmSimpleDialogs.cpp:201
@@ -4871,19 +4625,16 @@ msgid "Please type in a non empty symbol."
 msgstr ""
 
 #: src/mmSimpleDialogs.cpp:222
-#, fuzzy
 msgid "Invalid Amount"
-msgstr "アカウントが正しくありません。"
+msgstr ""
 
 #: src/mmSimpleDialogs.cpp:223
-#, fuzzy
 msgid "Please enter a calculated or fixed amount"
-msgstr "正または計算された値を入力してください。"
+msgstr ""
 
 #: src/mmSimpleDialogs.cpp:233
-#, fuzzy
 msgid "Please select a valid choice"
-msgstr "しばらくお待ちください"
+msgstr ""
 
 #: src/mmTextCtrl.cpp:83
 msgid "Please enter a calculated value."
@@ -4894,131 +4645,67 @@ msgid "Please enter a positive or calculated value."
 msgstr "正または計算された値を入力してください。"
 
 #: src/mmTextCtrl.cpp:85
-msgid ""
-"Tip: For calculations, enter expressions like (2+2)*(2+2)\n"
+msgid "Tip: For calculations, enter expressions like (2+2)*(2+2)\n"
 "Calculations will be evaluated and the result used as the entry."
-msgstr ""
-"ヒント: 計算は、(2+2)*(2+2) のような式を入力します\n"
+msgstr "ヒント: 計算は、(2+2)*(2+2) のような式を入力します\n"
 "計算が評価されて、その結果はエントリーとして使用されます。"
 
 #: src/mmTips.h:23
 msgid "Recommendation: Always backup your .mmb database file regularly."
-msgstr ""
-"推奨事項: 定期的に、必ず .mmb データベースファイルをバックアップしてくださ"
-"い。"
+msgstr "推奨事項: 定期的に、必ず .mmb データベースファイルをバックアップしてください。"
 
 #: src/mmTips.h:24
-msgid ""
-"Recommendation: If upgrading to a new version of MMEX, make sure you backup "
-"your .mmb database file before doing so."
-msgstr ""
-"推奨事項: MMEX の新しいバージョンにアップグレードする場合は、実行する前に、."
-"mmb データベースファイルをバックアップしたことを確認してください。"
+msgid "Recommendation: If upgrading to a new version of MMEX, make sure you backup your .mmb database file before doing so."
+msgstr "推奨事項: MMEX の新しいバージョンにアップグレードする場合は、実行する前に、.mmb データベースファイルをバックアップしたことを確認してください。"
 
 #: src/mmTips.h:25
-msgid ""
-"Recommendation: Use copy (Ctrl+C) and paste (Ctrl+V) for frequently used "
-"transactions."
-msgstr ""
-"推奨事項: 頻繁に取引で使用される、コピー (Ctrl+Cキー) と貼り付け (Ctrl+V"
-"キー) を使用してください。"
+msgid "Recommendation: Use copy (Ctrl+C) and paste (Ctrl+V) for frequently used transactions."
+msgstr "推奨事項: 頻繁に取引で使用される、コピー (Ctrl+Cキー) と貼り付け (Ctrl+Vキー) を使用してください。"
 
 #: src/mmTips.h:26
 msgid "Tip: Remember to make backups of your .mmb."
 msgstr "ヒント: .mmb のバックアップを作成することを忘れないでください。"
 
 #: src/mmTips.h:27
-#, fuzzy
-msgid ""
-"Tip: The not encrypted .mmb file is insecure. That means anyone else having "
-"the proper know how can actually open the file and read the contents. So "
-"make sure that if you are storing any sensitive financial information it is "
-"properly guarded."
+msgid "Tip: The not encrypted .mmb file is insecure. That means anyone else having the proper know how can actually open the file and read the contents. So make sure that if you are storing any sensitive financial information it is properly guarded."
 msgstr ""
-"ヒント: .mmb ファイルは暗号化されていません。それは、適切なノウハウを有する"
-"他の誰もが、実際のファイルを開き、内容を読み取ることができることを意味しま"
-"す。そのため、重要な財務情報を格納している場合は、適切に保護されていることを"
-"確認してください。"
 
 #: src/mmTips.h:28
-msgid ""
-"Tip: To mark a transaction as reconciled, just select the transaction and "
-"hit the 'r' or 'R' key. To mark a transaction as unreconciled, just select "
-"the transaction and hit the 'u' or 'U' key."
-msgstr ""
-"ヒント: 取引を照合済としてマークするには、取引を選択して、'r' または 'R' "
-"キーを押してください。取引を未照合としてマークするには、取引を選択して、'u' "
-"または 'U' キーを押してください。"
+msgid "Tip: To mark a transaction as reconciled, just select the transaction and hit the 'r' or 'R' key. To mark a transaction as unreconciled, just select the transaction and hit the 'u' or 'U' key."
+msgstr "ヒント: 取引を照合済としてマークするには、取引を選択して、'r' または 'R' キーを押してください。取引を未照合としてマークするには、取引を選択して、'u' または 'U' キーを押してください。"
 
 #: src/mmTips.h:29
-msgid ""
-"Tip: To mark a transaction as requiring followup, just select the "
-"transaction and hit the 'f' or 'F' key."
-msgstr ""
-"ヒント: 取引をフォローアップを必要としてマークするには、取引を選択して、'f' "
-"または 'F' キーを押してください。"
+msgid "Tip: To mark a transaction as requiring followup, just select the transaction and hit the 'f' or 'F' key."
+msgstr "ヒント: 取引をフォローアップを必要としてマークするには、取引を選択して、'f' または 'F' キーを押してください。"
 
 #: src/mmTips.h:30
-msgid ""
-"Tip: MMEX supports printing of all reports that can be viewed. The print "
-"options are available under the menu, File->Print."
-msgstr ""
-"ヒント: MMEX はすべてのレポートの印刷をサポートしていて、表示できます。印刷"
-"オプションは、メニュー、ファイル -> 印刷 の下で利用可能です。"
+msgid "Tip: MMEX supports printing of all reports that can be viewed. The print options are available under the menu, File->Print."
+msgstr "ヒント: MMEX はすべてのレポートの印刷をサポートしていて、表示できます。印刷オプションは、メニュー、ファイル -> 印刷 の下で利用可能です。"
 
 #: src/mmTips.h:31
-msgid ""
-"Tip: You can modify some runtime behavior of MMEX by changing the options "
-"in the Options Dialog. "
-msgstr ""
-"ヒント: オプション ダイアログでオプションを変更して、MMEX のいくつかの実行時"
-"の動作を変更することができます。 "
+msgid "Tip: You can modify some runtime behavior of MMEX by changing the options in the Options Dialog. "
+msgstr "ヒント: オプション ダイアログでオプションを変更して、MMEX のいくつかの実行時の動作を変更することができます。 "
 
 #: src/mmTips.h:32
-msgid ""
-"Tip: To print a statement with transactions from any arbitrary set of "
-"criteria, use the transaction filter to select the transactions you want "
-"and then do a print from the menu."
+msgid "Tip: To print a statement with transactions from any arbitrary set of criteria, use the transaction filter to select the transactions you want and then do a print from the menu."
 msgstr ""
 
 #: src/mmTips.h:33
-msgid ""
-"Tip: Set exchange rate for currencies in case if you have accounts with "
-"different currencies."
-msgstr ""
-"ヒント: 異なる通貨のアカウントがある場合は、通貨の為替レートを設定してくださ"
-"い。"
+msgid "Tip: Set exchange rate for currencies in case if you have accounts with different currencies."
+msgstr "ヒント: 異なる通貨のアカウントがある場合は、通貨の為替レートを設定してください。"
 
 #: src/mmTips.h:35
-msgid ""
-"Organize Categories Dialog Tip: Pressing the h key will cycle through all "
-"categories starting with the letter h"
-msgstr ""
-"カテゴリーの整理ダイアログのヒント: h キーを押すと、文字 h で始まるすべての"
-"カテゴリにわたって循環します"
+msgid "Organize Categories Dialog Tip: Pressing the h key will cycle through all categories starting with the letter h"
+msgstr "カテゴリーの整理ダイアログのヒント: h キーを押すと、文字 h で始まるすべてのカテゴリにわたって循環します"
 
 #: src/mmTips.h:36
-msgid ""
-"Organize Categories Dialog Tip: Pressing 2 key combination will cycle "
-"through all categories starting with that key combination. Example: "
-"Pressing ho will select Homeneeds, Home, House Tax, etc..."
-msgstr ""
-"カテゴリーの整理ダイアログのヒント: 2 つのキーを組み合わせて押すと、そのキー"
-"の組み合わせで始まるすべてのカテゴリーを通じて循環します。例: ho を押すと、"
-"Homeneeds、Home、House Tax などが、選択されます..."
+msgid "Organize Categories Dialog Tip: Pressing 2 key combination will cycle through all categories starting with that key combination. Example: Pressing ho will select Homeneeds, Home, House Tax, etc..."
+msgstr "カテゴリーの整理ダイアログのヒント: 2 つのキーを組み合わせて押すと、そのキーの組み合わせで始まるすべてのカテゴリーを通じて循環します。例: ho を押すと、Homeneeds、Home、House Tax などが、選択されます..."
 
 #: src/mmTips.h:38
 #, c-format
-msgid ""
-"Tip to get out of debt: Pay yourself 10% first. Put this into an account "
-"that is hard to touch. Make sure it is a chore to get the money out (you "
-"have to drive to the bank), so you will only tap it consciously and for "
-"major expenses."
-msgstr ""
-"借金から抜け出すヒント: まず自分自身に 10% f を支払います。これを触ることが"
-"難しい口座に入れてください。これは (銀行で運用する必要がある) お金を得るため"
-"の雑費であることを確認してください。それで、主要な支出のために意識して蓄えま"
-"す。"
+msgid "Tip to get out of debt: Pay yourself 10% first. Put this into an account that is hard to touch. Make sure it is a chore to get the money out (you have to drive to the bank), so you will only tap it consciously and for major expenses."
+msgstr "借金から抜け出すヒント: まず自分自身に 10% f を支払います。これを触ることが難しい口座に入れてください。これは (銀行で運用する必要がある) お金を得るための雑費であることを確認してください。それで、主要な支出のために意識して蓄えます。"
 
 #: src/mmTips.h:39
 msgid "Tip to get out of debt: Establish an emergency fund."
@@ -5041,12 +4728,8 @@ msgid "Tip to get out of debt: Pay more than the minimum."
 msgstr "借金から抜け出すヒント: 最低限以上に返済しましょう。"
 
 #: src/mmTips.h:44
-msgid ""
-"Before going to a shop and buy something: take the time making a list of "
-"what you really need. In the shop buy what is in your list."
-msgstr ""
-"お店に行って何かを購入する前に、あなたが本当に必要なもののリストを作成する時"
-"間をとってください。お店では、リストにあるものを購入しましょう。"
+msgid "Before going to a shop and buy something: take the time making a list of what you really need. In the shop buy what is in your list."
+msgstr "お店に行って何かを購入する前に、あなたが本当に必要なもののリストを作成する時間をとってください。お店では、リストにあるものを購入しましょう。"
 
 #: src/mmcheckingpanel.cpp:456 src/mmcheckingpanel.cpp:600
 msgid "Displayed Bal: "
@@ -5089,9 +4772,8 @@ msgid "Enter any string to find it in the nearest transaction notes"
 msgstr "最も近い取引メモを検索する、任意の文字列を入力してください"
 
 #: src/mmcheckingpanel.cpp:575
-#, fuzzy, c-format
 msgid "Account View: %s"
-msgstr "アカウント表示 : %s"
+msgstr ""
 
 #: src/mmcheckingpanel.cpp:867
 msgid "Select account used in transfer transactions"
@@ -5229,9 +4911,8 @@ msgstr "選択した取引を削除してもよろしいですか?"
 
 #: src/mmcheckingpanel.cpp:1748 src/transdialog.cpp:689
 #: src/transdialog.cpp:722
-#, fuzzy
 msgid "MMEX Transaction Check"
-msgstr "取引を編集"
+msgstr ""
 
 #: src/mmcheckingpanel.cpp:1914 src/stockspanel.cpp:291
 #, c-format
@@ -5247,41 +4928,34 @@ msgid "Reoccuring Transaction saved."
 msgstr ""
 
 #: src/mmcheckingpanel.cpp:2024
-#, fuzzy, c-format
 msgid "Transactions selected: %ld"
-msgstr "取引をエクスポートしました: %ld"
+msgstr ""
 
 #: src/mmcheckingpanel.cpp:2026
-#, fuzzy, c-format
 msgid "Selected transactions balance: %s"
-msgstr "選択した取引を編集"
+msgstr ""
 
 #: src/mmcheckingpanel.cpp:2029
-#, fuzzy, c-format
 msgid "Days between selected transactions: %d"
-msgstr "選択した取引を削除"
+msgstr ""
 
 #: src/mmcombobox.h:78
-msgid ""
-"Please type in an exiting payee name,\n"
+msgid "Please type in an exiting payee name,\n"
 "or make a selection using the dropdown button."
-msgstr ""
-"既存の支払先の名前を入力してください、\n"
+msgstr "既存の支払先の名前を入力してください、\n"
 "またはドロップダウンボタンを使用して選択します。"
 
 #: src/mmcustomdata.cpp:58
-#, fuzzy
 msgid "Custom fields"
-msgstr "資産の詳細"
+msgstr ""
 
 #: src/mmcustomdata.cpp:307
 msgid "Multi Choice"
 msgstr ""
 
 #: src/mmcustomdata.cpp:307
-#, fuzzy
 msgid "Please select"
-msgstr "しばらくお待ちください"
+msgstr ""
 
 #: src/mmex.cpp:76
 #, c-format
@@ -5289,29 +4963,23 @@ msgid "Can not load translation for selected language %s"
 msgstr ""
 
 #: src/mmex.cpp:78 src/mmframe.cpp:3107
-#, fuzzy
 msgid "Language change"
-msgstr "言語"
+msgstr ""
 
 #: src/mmex.cpp:112
-msgid ""
-"Fatal error occured.\n"
+msgid "Fatal error occured.\n"
 "Application will be terminated."
-msgstr ""
-"致命的なエラーが発生しました。\n"
+msgstr "致命的なエラーが発生しました。\n"
 "アプリケーションを終了します。"
 
 #: src/mmex.cpp:249
-msgid ""
-"MMEX is already running...\n"
-"\n"
+msgid "MMEX is already running...\n\n"
 "Multiple instances are no longer supported."
 msgstr ""
 
 #: src/mmex.cpp:250
-#, fuzzy
 msgid "MMEX Instance Check"
-msgstr "MMEX システム情報確認"
+msgstr ""
 
 #: src/mmframe.cpp:272
 msgid "Navigation"
@@ -5337,20 +5005,17 @@ msgid "Term Accounts"
 msgstr "定期口座"
 
 #: src/mmframe.cpp:454 src/mmframe.cpp:716
-#, fuzzy
 msgid "Stock Portfolios"
-msgstr "株式口座"
+msgstr ""
 
 #: src/mmframe.cpp:455 src/mmframe.cpp:701 src/mmhomepagepanel.cpp:467
-#, fuzzy
 msgid "Cash Accounts"
-msgstr "アカウントを選択"
+msgstr ""
 
 #: src/mmframe.cpp:456 src/mmframe.cpp:706 src/mmhomepagepanel.cpp:470
 #: src/reports/summary.cpp:159
-#, fuzzy
 msgid "Loan Accounts"
-msgstr "銀行口座"
+msgstr ""
 
 #: src/mmframe.cpp:458 src/mmframe.cpp:731 src/mmhomepagepanel.cpp:472
 #: src/reports/summary.cpp:161
@@ -5358,18 +5023,16 @@ msgid "Crypto Wallets"
 msgstr ""
 
 #: src/mmframe.cpp:500
-#, fuzzy
 msgid "Auto Repeat Transactions"
-msgstr " 自動繰り返し取引"
+msgstr ""
 
 #: src/mmframe.cpp:686 src/mmframe.cpp:1828
 msgid "Home Page"
 msgstr "ホームページ"
 
 #: src/mmframe.cpp:721
-#, fuzzy
 msgid "Share Accounts"
-msgstr "アカウントを選択"
+msgstr ""
 
 #: src/mmframe.cpp:741 src/mmframe.cpp:1640
 msgid "Budget Setup"
@@ -5381,9 +5044,7 @@ msgstr "ヘルプ"
 
 #: src/mmframe.cpp:1141
 #, c-format
-msgid ""
-"Account: %s\n"
-"\n"
+msgid "Account: %s\n\n"
 "Balance at currency %s: %s\n"
 "Balance at currency %s: %s"
 msgstr ""
@@ -5433,9 +5094,8 @@ msgid "&Launch Account Website"
 msgstr "アカウントのWebサイトを起動(&L)"
 
 #: src/mmframe.cpp:1258 src/mmframe.cpp:1571
-#, fuzzy
 msgid "Hide/Show Report"
-msgstr "新しいレポート"
+msgstr ""
 
 #: src/mmframe.cpp:1270 src/mmframe.cpp:1579
 msgid "New &Account"
@@ -5452,9 +5112,8 @@ msgstr "&CSV ファイル..."
 
 #: src/mmframe.cpp:1281 src/mmframe.cpp:1286 src/mmframe.cpp:1475
 #: src/mmframe.cpp:1483
-#, fuzzy
 msgid "&XML Files..."
-msgstr "&CSV ファイル..."
+msgstr ""
 
 #: src/mmframe.cpp:1282 src/mmframe.cpp:1287 src/mmframe.cpp:1476
 #: src/mmframe.cpp:1484
@@ -5506,9 +5165,8 @@ msgid "Export to CSV"
 msgstr "CSV にエクスポート"
 
 #: src/mmframe.cpp:1475
-#, fuzzy
 msgid "Export to XML"
-msgstr "HTML にエクスポート"
+msgstr ""
 
 #: src/mmframe.cpp:1477
 msgid "&Report to HTML"
@@ -5523,10 +5181,8 @@ msgid "&Force WebApp sync"
 msgstr ""
 
 #: src/mmframe.cpp:1478
-#, fuzzy
 msgid "Force sync of accounts, payees and categories to WebApp"
 msgstr ""
-"すべての見つからないアカウント、支払先、およびカテゴリーを作成します。"
 
 #: src/mmframe.cpp:1482
 msgid "Import from any CSV file"
@@ -5569,14 +5225,12 @@ msgid "Show/Hide the Navigation tree control"
 msgstr "ナビゲーション ツリー コントロールの表示/非表示"
 
 #: src/mmframe.cpp:1507
-#, fuzzy
 msgid "&Display Share Accounts"
-msgstr "アカウントを削除(&D)"
+msgstr ""
 
 #: src/mmframe.cpp:1507
-#, fuzzy
 msgid "Show/Hide Share Accounts in the navigation tree"
-msgstr "ナビゲーション ツリー コントロールの表示/非表示"
+msgstr ""
 
 #: src/mmframe.cpp:1510
 msgid "Budgets: As &Financial Years"
@@ -5603,14 +5257,12 @@ msgid "Display the Budget Setup without category summaries"
 msgstr "カテゴリー サマリーのない予算の設定を表示します"
 
 #: src/mmframe.cpp:1516
-#, fuzzy
 msgid "Budget Category Report: with &Summaries"
-msgstr "予算カテゴリー サマリー"
+msgstr ""
 
 #: src/mmframe.cpp:1516
-#, fuzzy
 msgid "Include the category summaries in the Budget Category Summary"
-msgstr "予算カテゴリーのサマリーにカテゴリーを含めます"
+msgstr ""
 
 #: src/mmframe.cpp:1518
 msgid "Ignore F&uture Transactions"
@@ -5725,14 +5377,12 @@ msgid "&General Report Manager..."
 msgstr "汎用レポートマネージャー(&G)..."
 
 #: src/mmframe.cpp:1667
-#, fuzzy
 msgid "&Custom Fields Manager..."
-msgstr "資産の詳細"
+msgstr ""
 
 #: src/mmframe.cpp:1667 src/mmframe.cpp:1834
-#, fuzzy
 msgid "Custom Fields Manager"
-msgstr "資産の詳細"
+msgstr ""
 
 #: src/mmframe.cpp:1674 src/mmframe.cpp:1838
 msgid "&Options..."
@@ -5747,19 +5397,16 @@ msgid "Set &Password"
 msgstr ""
 
 #: src/mmframe.cpp:1683
-#, fuzzy
 msgid "Encrypt database or change password for database file"
-msgstr "データベースのパスワードを入力してください"
+msgstr ""
 
 #: src/mmframe.cpp:1686
-#, fuzzy
 msgid "Remove Password"
-msgstr "削除(&R) "
+msgstr ""
 
 #: src/mmframe.cpp:1687
-#, fuzzy
 msgid "Remove password and decrypt database file"
-msgstr "データベースのパスワードを入力してください"
+msgstr ""
 
 #: src/mmframe.cpp:1690
 msgid "Optimize &Database"
@@ -5770,9 +5417,8 @@ msgid "Optimize database space and performance"
 msgstr ""
 
 #: src/mmframe.cpp:1694
-#, fuzzy
 msgid "Database Debug"
-msgstr "データベースのバックアップ"
+msgstr ""
 
 #: src/mmframe.cpp:1695
 msgid "Generate database report or fix errors"
@@ -5791,18 +5437,16 @@ msgid "&Help\tF1"
 msgstr "ヘルプ(&H)\tF1"
 
 #: src/mmframe.cpp:1709
-#, fuzzy
 msgid "Read the User Manual"
-msgstr "ユーザーマニュアルを読む"
+msgstr ""
 
 #: src/mmframe.cpp:1714
 msgid "Website"
 msgstr ""
 
 #: src/mmframe.cpp:1715
-#, fuzzy
 msgid "Open the Money Manager EX website for latest news, updates etc"
-msgstr "%s のウェブサイトを開きます。最新ニュース、アップデートなど"
+msgstr ""
 
 #: src/mmframe.cpp:1718
 msgid "Facebook"
@@ -5849,22 +5493,16 @@ msgid "Read and update wiki pages"
 msgstr ""
 
 #: src/mmframe.cpp:1733
-#, fuzzy
 msgid "Wiki pages"
-msgstr "Wiki ページ"
+msgstr ""
 
 #: src/mmframe.cpp:1736
 msgid "Forum"
 msgstr "フォーラム"
 
 #: src/mmframe.cpp:1737
-#, fuzzy
-msgid ""
-"Visit the MMEX forum to see existing user comments or report new issues "
-"with the software"
+msgid "Visit the MMEX forum to see existing user comments or report new issues with the software"
 msgstr ""
-"MMEX フォーラムをご覧ください。既存ユーザーのコメントを参照したり、ソフト"
-"ウェアに関する新しい問題をレポートしてください。"
 
 #: src/mmframe.cpp:1740
 msgid "Google Play"
@@ -5875,15 +5513,12 @@ msgid "Get free Android version and run MMEX on your smart phone or tablet"
 msgstr ""
 
 #: src/mmframe.cpp:1744
-#, fuzzy
 msgid "&Newsletter"
-msgstr "新しい資産(&N)"
+msgstr ""
 
 #: src/mmframe.cpp:1745
-#, fuzzy
 msgid "Subscribe to e-mail newsletter or view existing announcements"
 msgstr ""
-"サインアップすると、メーリング リストの通知や既存のお知らせを表示します。"
 
 #: src/mmframe.cpp:1748
 msgid "Connect RSS web feed to news aggregator"
@@ -5918,32 +5553,28 @@ msgid "Stay in touch with MMEX community"
 msgstr ""
 
 #: src/mmframe.cpp:1781
-#, fuzzy
 msgid "Report a Bug"
-msgstr "レポート"
+msgstr ""
 
 #: src/mmframe.cpp:1782
 msgid "Report an error in application to the developers"
 msgstr ""
 
 #: src/mmframe.cpp:1787
-#, fuzzy
 msgid "Reopen &Start-up Dialog"
-msgstr "アプリ起動ダイアログ"
+msgstr ""
 
 #: src/mmframe.cpp:1787
-#, fuzzy
 msgid "Show application start-up dialog"
-msgstr "アプリの起動ダイアログを表示(&S)"
+msgstr ""
 
 #: src/mmframe.cpp:1792
 msgid "Check for &Updates"
 msgstr "更新を確認(&U)"
 
 #: src/mmframe.cpp:1792
-#, fuzzy
 msgid "Check if a new MMEX version is avaiable"
-msgstr "新しいバージョンが利用可能です。"
+msgstr ""
 
 #: src/mmframe.cpp:1797 src/mmframe.cpp:1842
 msgid "&About..."
@@ -5978,9 +5609,8 @@ msgid "New"
 msgstr "新規"
 
 #: src/mmframe.cpp:1828
-#, fuzzy
 msgid "Show Home Page"
-msgstr "ホームページ"
+msgstr ""
 
 #: src/mmframe.cpp:1830
 msgid "Show Organize Categories Dialog"
@@ -6007,14 +5637,12 @@ msgid "News"
 msgstr ""
 
 #: src/mmframe.cpp:1898
-#, fuzzy
 msgid "Cannot locate database file to open."
-msgstr "開くデータベース ファイルを選択してください"
+msgstr ""
 
 #: src/mmframe.cpp:1906 src/mmframe.cpp:2000
-#, fuzzy
 msgid "[portable mode]"
-msgstr "ポータブル モード"
+msgstr ""
 
 #: src/mmframe.cpp:1945
 msgid "Have MMEX support provided you a debug/patch file?"
@@ -6033,14 +5661,12 @@ msgid "Choose database file to create"
 msgstr "作成するデータベース ファイルを選択してください"
 
 #: src/mmframe.cpp:2043 src/mmframe.cpp:2067 src/mmframe.cpp:2148
-#, fuzzy
 msgid "MMEX database files (*.mmb)"
-msgstr "データベースファイル"
+msgstr ""
 
 #: src/mmframe.cpp:2045 src/mmframe.cpp:2150
-#, fuzzy
 msgid "Encrypted MMEX database files (*.mmb)"
-msgstr "開く暗号化されたデータベース ファイルを選択してください"
+msgstr ""
 
 #: src/mmframe.cpp:2065
 msgid "Choose database file to open"
@@ -6076,9 +5702,7 @@ msgstr ""
 
 #: src/mmframe.cpp:2119
 #, c-format
-msgid ""
-"Database Optimization Completed!\n"
-"\n"
+msgid "Database Optimization Completed!\n\n"
 "Size before: %s\n"
 "Size after: %s\n"
 msgstr ""
@@ -6100,58 +5724,44 @@ msgid "Can't copy file to itself"
 msgstr "自分自身にファイルをコピーすることはできません"
 
 #: src/mmframe.cpp:2169
-#, fuzzy
 msgid "Can't overwrite selected file"
-msgstr "既存の予算を削除"
+msgstr ""
 
 #: src/mmframe.cpp:2231
-#, fuzzy
 msgid "Accounts, payees and categories succesfully syncronized to WebApp!"
 msgstr ""
-"すべての見つからないアカウント、支払先、およびカテゴリーを作成します。"
 
 #: src/mmframe.cpp:2231
-#, fuzzy
 msgid "WebApp export"
-msgstr "Webアプリ設定"
+msgstr ""
 
 #: src/mmframe.cpp:2263 src/mmframe.cpp:2282
-#, fuzzy
 msgid "No account available to import to"
-msgstr "インポート可能なアカウントがありません"
+msgstr ""
 
 #: src/mmframe.cpp:2333
-msgid ""
-"Asset Accounts hold Asset transactions\n"
-"\n"
+msgid "Asset Accounts hold Asset transactions\n\n"
 "Asset transactions are created within the Assets View\n"
-"after the selection of the Asset within that view.\n"
-"\n"
+"after the selection of the Asset within that view.\n\n"
 "Asset Accounts can also hold normal transactions to regular accounts."
 msgstr ""
 
 #: src/mmframe.cpp:2337
-#, fuzzy
 msgid "Asset Account Creation"
-msgstr "アカウントの削除を確認"
+msgstr ""
 
 #: src/mmframe.cpp:2343
-msgid ""
-"Share Accounts hold Share transactions\n"
-"\n"
+msgid "Share Accounts hold Share transactions\n\n"
 "Share transactions are created within the Stock Portfolio View\n"
-"after the selection of the Company Stock within the associated view.\n"
-"\n"
-"These accounts only become visible after associating a Stock to the Share "
-"Account\n"
+"after the selection of the Company Stock within the associated view.\n\n"
+"These accounts only become visible after associating a Stock to the Share Account\n"
 "Or by using the Menu View --> 'Display Share Accounts'\n"
 "Share Accounts can also hold normal transactions to regular account."
 msgstr ""
 
 #: src/mmframe.cpp:2349
-#, fuzzy
 msgid "Share Account Creation"
-msgstr "アカウントの削除を確認"
+msgstr ""
 
 #: src/mmframe.cpp:2506
 msgid "MMEX Options have been updated."
@@ -6166,16 +5776,11 @@ msgid "Please follow these tasks before submitting new bug:"
 msgstr ""
 
 #: src/mmframe.cpp:2560
-msgid ""
-"1. Use Help->Check for Updates in MMEX to get latest version - your problem "
-"can be fixed already."
+msgid "1. Use Help->Check for Updates in MMEX to get latest version - your problem can be fixed already."
 msgstr ""
 
 #: src/mmframe.cpp:2561
-msgid ""
-"2. Search https://github.com/moneymanagerex/moneymanagerex/issues?q=is:"
-"issue for similar problem - update existing issue instead of creating new "
-"one."
+msgid "2. Search https://github.com/moneymanagerex/moneymanagerex/issues?q=is:issue for similar problem - update existing issue instead of creating new one."
 msgstr ""
 
 #: src/mmframe.cpp:2562
@@ -6183,20 +5788,15 @@ msgid "3. Put some descriptive name for your issue in the Title field above."
 msgstr ""
 
 #: src/mmframe.cpp:2563
-msgid ""
-"4. Replace this text (marked with >) with detailed description of your "
-"problem."
+msgid "4. Replace this text (marked with >) with detailed description of your problem."
 msgstr ""
 
 #: src/mmframe.cpp:2564
-msgid ""
-"Read https://www.chiark.greenend.org.uk/~sgtatham/bugs.html for useful tips."
+msgid "Read https://www.chiark.greenend.org.uk/~sgtatham/bugs.html for useful tips."
 msgstr ""
 
 #: src/mmframe.cpp:2565
-msgid ""
-"5. Include steps to reproduce your issue, attach screenshots where "
-"appropriate."
+msgid "5. Include steps to reproduce your issue, attach screenshots where appropriate."
 msgstr ""
 
 #: src/mmframe.cpp:2566
@@ -6225,11 +5825,9 @@ msgstr "削除するアカウントを選択してください"
 
 #: src/mmframe.cpp:2866
 #, c-format
-msgid ""
-"Are you sure you want to delete\n"
+msgid "Are you sure you want to delete\n"
 " %s account: %s ?"
-msgstr ""
-"削除してもよろしいですか\n"
+msgstr "削除してもよろしいですか\n"
 " %s アカウント: %s ?"
 
 #: src/mmframe.cpp:2885 src/mmframe.cpp:2908
@@ -6237,9 +5835,8 @@ msgid "Account Reallocation"
 msgstr ""
 
 #: src/mmframe.cpp:2885
-#, fuzzy
 msgid "Select the account to reallocate"
-msgstr "作成するアカウントの種類を選択します:"
+msgstr ""
 
 #: src/mmframe.cpp:2907
 #, c-format
@@ -6260,15 +5857,12 @@ msgid "File %s not found"
 msgstr "ファイル %s が見つかりません"
 
 #: src/mmframe.cpp:3105
-msgid ""
-"The language for this application has been changed. The change will take "
-"effect the next time the application is started."
+msgid "The language for this application has been changed. The change will take effect the next time the application is started."
 msgstr ""
 
 #: src/mmframereport.cpp:71
-#, fuzzy
 msgid "General Group Report"
-msgstr "汎用レポートマネージャー"
+msgstr ""
 
 #: src/mmframereport.cpp:98 src/model/Model_Report.cpp:413
 #: src/reports/forecast.cpp:88 src/reports/myusage.cpp:234
@@ -6380,9 +5974,8 @@ msgid "REPORTS"
 msgstr "レポート"
 
 #: src/mmreportspanel.cpp:297 src/mmreportspanel.cpp:370
-#, fuzzy
 msgid "Period:"
-msgstr "期間: 日数"
+msgstr ""
 
 #: src/mmreportspanel.cpp:304 src/reports/mmDateRange.cpp:222
 #: src/reports/reportbase.cpp:169
@@ -6412,18 +6005,16 @@ msgid "All Accounts"
 msgstr "すべてのアカウント"
 
 #: src/mmreportspanel.cpp:426
-#, fuzzy
 msgid "Specific Accounts"
-msgstr "キャッシュフロー - 指定アカウント"
+msgstr ""
 
 #: src/mmreportspanel.cpp:445
 msgid "Chart:"
 msgstr ""
 
 #: src/mmreportspanel.cpp:447
-#, fuzzy
 msgid "Show"
-msgstr "すべて表示"
+msgstr ""
 
 #: src/mmreportspanel.cpp:448
 msgid "Hide"
@@ -6459,14 +6050,12 @@ msgid "Investment"
 msgstr "投資"
 
 #: src/model/Model_Account.cpp:39 src/model/Model_Attachment.cpp:26
-#, fuzzy
 msgid "Asset"
-msgstr "資産"
+msgstr ""
 
 #: src/model/Model_Account.cpp:40
-#, fuzzy
 msgid "Shares"
-msgstr "株式名"
+msgstr ""
 
 #: src/model/Model_Account.cpp:134
 msgid "Account Error"
@@ -6501,36 +6090,29 @@ msgid "Other"
 msgstr "その他"
 
 #: src/model/Model_Attachment.cpp:24
-#, fuzzy
 msgid "Transaction"
-msgstr "新しい取引"
+msgstr ""
 
 #: src/model/Model_Attachment.cpp:25
-#, fuzzy
 msgid "Stock"
-msgstr "株式"
+msgstr ""
 
 #: src/model/Model_Attachment.cpp:27
-#, fuzzy
 msgid "Bank Account"
-msgstr "銀行口座"
+msgstr ""
 
 #: src/model/Model_Attachment.cpp:28
-#, fuzzy
 msgid "Recurring Transaction"
-msgstr "繰り返し取引"
+msgstr ""
 
 #: src/model/Model_Billsdeposits.cpp:313
-msgid ""
-"A recurring transaction will exceed your account limit.\n"
-"\n"
+msgid "A recurring transaction will exceed your account limit.\n\n"
 "Do you wish to continue?"
 msgstr ""
 
 #: src/model/Model_Billsdeposits.cpp:315
-#, fuzzy
 msgid "MMEX Recurring Transaction Check"
-msgstr "繰り返し取引"
+msgstr ""
 
 #: src/model/Model_Budget.cpp:56
 msgid "Bi-Weekly"
@@ -6545,23 +6127,20 @@ msgid "String"
 msgstr ""
 
 #: src/model/Model_CustomField.cpp:26
-#, fuzzy
 msgid "Integer"
-msgstr "インターネット"
+msgstr ""
 
 #: src/model/Model_CustomField.cpp:27
-#, fuzzy
 msgid "Decimal"
-msgstr "小数点の文字"
+msgstr ""
 
 #: src/model/Model_CustomField.cpp:28
 msgid "Boolean"
 msgstr ""
 
 #: src/model/Model_CustomField.cpp:30
-#, fuzzy
 msgid "Time"
-msgstr "時間の経過"
+msgstr ""
 
 #: src/model/Model_CustomField.cpp:31
 msgid "SingleChoice"
@@ -6577,19 +6156,16 @@ msgstr ""
 
 #: src/model/Model_Report.cpp:273
 #, c-format
-msgid ""
-"The SQL script:\n"
+msgid "The SQL script:\n"
 "%s \n"
 "will modify database! aborted!"
-msgstr ""
-"SQL スクリプト:\n"
+msgstr "SQL スクリプト:\n"
 "%s \n"
 "データベースを更新します! 中止しました!"
 
 #: src/option.cpp:117 src/reports/myusage.cpp:108
-#, fuzzy
 msgid "MMEX Usage Frequency"
-msgstr "周期"
+msgstr ""
 
 #: src/option.cpp:118 src/option.cpp:119
 msgid "Summary of Accounts"
@@ -6613,19 +6189,16 @@ msgid "Income vs Expenses"
 msgstr "収入対支出"
 
 #: src/option.cpp:127 src/option.cpp:128
-#, fuzzy
 msgid "Budget"
-msgstr "予算年度:"
+msgstr ""
 
 #: src/option.cpp:127 src/option.cpp:131
-#, fuzzy
 msgid "Performance"
-msgstr "予算パフォーマンス"
+msgstr ""
 
 #: src/option.cpp:128
-#, fuzzy
 msgid "Category Summary"
-msgstr "予算カテゴリー サマリー"
+msgstr ""
 
 #: src/option.cpp:129 src/option.cpp:130 src/reports/cashflow.cpp:35
 msgid "Cash Flow"
@@ -6674,9 +6247,8 @@ msgid "Attachment archive folder for %s only:"
 msgstr "%s のみ、添付ファイル アーカイブ フォルダー:"
 
 #: src/optionsettingsattachment.cpp:68
-#, fuzzy
 msgid "Every OS type (Win, Mac, Unix) has its attachment folder"
-msgstr "各 OS 種類 (Win、Mac、Unix) 別に添付ファイル フォルダーがあります"
+msgstr ""
 
 #: src/optionsettingsattachment.cpp:85
 msgid "Browse for folder"
@@ -6691,24 +6263,20 @@ msgid "Legend "
 msgstr "凡例 "
 
 #: src/optionsettingsattachment.cpp:102 src/optionsettingsattachment.cpp:177
-#, fuzzy
 msgid "User documents directory"
-msgstr "システム ドキュメント ディレクトリ"
+msgstr ""
 
 #: src/optionsettingsattachment.cpp:103
-#, fuzzy
 msgid "User profile folder"
-msgstr "%s -> ユーザー プロファイル フォルダー"
+msgstr ""
 
 #: src/optionsettingsattachment.cpp:104
-#, fuzzy
 msgid "Folder of .mmb database file"
-msgstr "%s -> MMB データベースファイルのフォルダー"
+msgstr ""
 
 #: src/optionsettingsattachment.cpp:105
-#, fuzzy
 msgid "MMEX Application data folder"
-msgstr "%s -> MMEX アプリケーションデータのフォルダー"
+msgstr ""
 
 #: src/optionsettingsattachment.cpp:111
 msgid "Other OS folders "
@@ -6719,19 +6287,16 @@ msgid "Not yet set"
 msgstr "まだ設定されていません"
 
 #: src/optionsettingsattachment.cpp:124
-#, fuzzy
 msgid "Windows folder"
-msgstr "Windows フォルダー -> "
+msgstr ""
 
 #: src/optionsettingsattachment.cpp:132
-#, fuzzy
 msgid "Mac folder"
-msgstr "Mac フォルダー -> "
+msgstr ""
 
 #: src/optionsettingsattachment.cpp:140
-#, fuzzy
 msgid "Unix folder"
-msgstr "Unix フォルダー -> "
+msgstr ""
 
 #: src/optionsettingsattachment.cpp:150
 msgid "Create and use Attachments subfolder"
@@ -6743,20 +6308,15 @@ msgstr "インポート後にファイルを削除"
 
 #: src/optionsettingsattachment.cpp:164
 msgid "Select to delete file after import in attachments archive"
-msgstr ""
-"添付ファイルのアーカイブのインポートの後に、削除するファイルを選択します"
+msgstr "添付ファイルのアーカイブのインポートの後に、削除するファイルを選択します"
 
 #: src/optionsettingsattachment.cpp:168
 msgid "When remove attachment, move file instead of delete"
 msgstr "添付ファイルを削除する時、削除の代わりにファイルを移動します"
 
 #: src/optionsettingsattachment.cpp:170
-msgid ""
-"Select to don't delete file when attachment is removed, but instead move it "
-"to 'Deleted' subfolder"
-msgstr ""
-"添付ファイルが削除されたときに、ファイルを削除しないで、代わりに '削除' サブ"
-"フォルダに移動する場合に選択します"
+msgid "Select to don't delete file when attachment is removed, but instead move it to 'Deleted' subfolder"
+msgstr "添付ファイルが削除されたときに、ファイルを削除しないで、代わりに '削除' サブフォルダに移動する場合に選択します"
 
 #: src/optionsettingsattachment.cpp:179
 msgid "Application data directory"
@@ -6859,12 +6419,8 @@ msgid "Use Original Date when Pasting Transactions"
 msgstr "貼り付けるときに取引の元の日付を使用する"
 
 #: src/optionsettingsgeneral.cpp:156
-msgid ""
-"Select whether to use the original transaction date or current date when "
-"copying/pasting transactions"
-msgstr ""
-"取引をコピー/貼り付けする時、元の取引の日付か、現在の日付を使用するかを選択"
-"します"
+msgid "Select whether to use the original transaction date or current date when copying/pasting transactions"
+msgstr "取引をコピー/貼り付けする時、元の取引の日付か、現在の日付を使用するかを選択します"
 
 #: src/optionsettingsgeneral.cpp:159
 msgid "Use Transaction Sound"
@@ -6883,9 +6439,8 @@ msgid "Clear the field to Reset the value to system default."
 msgstr "フィールドをクリアして、システムのデフォルトにリセットします。"
 
 #: src/optionsettingsmisc.cpp:69
-#, fuzzy
 msgid "Share Precision"
-msgstr "購入額"
+msgstr ""
 
 #: src/optionsettingsmisc.cpp:74
 msgid "Set the precision for Share prices"
@@ -6932,11 +6487,9 @@ msgid "Create a new backup when MMEX Start"
 msgstr "MMEX を開始するときに、新しいバックアップを作成する"
 
 #: src/optionsettingsmisc.cpp:144
-msgid ""
-"When MMEX Starts,\n"
+msgid "When MMEX Starts,\n"
 "creates the backup database: dbFile_start_YYYY-MM-DD.ext."
-msgstr ""
-"MMEX が開始する時、\n"
+msgstr "MMEX が開始する時、\n"
 "データベースのバックアップを作成します: dbFile_start_YYYY-MM-DD.ext。"
 
 #: src/optionsettingsmisc.cpp:149
@@ -6944,13 +6497,10 @@ msgid "Backup database on exit."
 msgstr "終了時にデータベースをバックアップ。"
 
 #: src/optionsettingsmisc.cpp:151
-msgid ""
-"When MMEX shuts down and changes made to database,\n"
+msgid "When MMEX shuts down and changes made to database,\n"
 "creates or updates the backup database: dbFile_update_YYYY-MM-DD.ext."
-msgstr ""
-"MMEX をシャットダウンし、データベースに変更が加えられた時、\n"
-"データベースのバックアップを作成または更新します: dbFile_update_YYYY-MM-DD."
-"ext。"
+msgstr "MMEX をシャットダウンし、データベースに変更が加えられた時、\n"
+"データベースのバックアップを作成または更新します: dbFile_update_YYYY-MM-DD.ext。"
 
 #: src/optionsettingsmisc.cpp:159
 msgid "Specify max number of backup files"
@@ -6974,7 +6524,7 @@ msgstr "Webアプリ設定"
 
 #: src/optionsettingsnet.cpp:67
 msgid "Url"
-msgstr "Url"
+msgstr ""
 
 #: src/optionsettingsnet.cpp:71
 msgid "Specify the Web App URL without final slash"
@@ -6982,16 +6532,15 @@ msgstr "Web アプリケーションの URL を指定します。最後にスラ
 
 #: src/optionsettingsnet.cpp:74
 msgid "GUID"
-msgstr "GUID"
+msgstr ""
 
 #: src/optionsettingsnet.cpp:78
 msgid "Specify the Web App GUID"
 msgstr "Web アプリケーションの GUID を指定します"
 
 #: src/optionsettingsnet.cpp:84
-#, fuzzy
 msgid "Test connection"
-msgstr "WebApp 接続エラー"
+msgstr ""
 
 #: src/optionsettingsnet.cpp:87
 msgid "More information about WebApp"
@@ -7043,8 +6592,7 @@ msgstr "匿名の使用状況データの統計情報を送信"
 
 #: src/optionsettingsnet.cpp:148
 msgid "Enable to help us sending anonymous data about MMEX usage."
-msgstr ""
-"有効にすると、MMEX の使用状況に関する匿名のデータを私たちに送信します。"
+msgstr "有効にすると、MMEX の使用状況に関する匿名のデータを私たちに送信します。"
 
 #: src/optionsettingsnet.cpp:153
 msgid "Timeout"
@@ -7059,17 +6607,15 @@ msgid "Seconds"
 msgstr ""
 
 #: src/optionsettingsnet.cpp:171
-#, fuzzy
 msgid "Check for Updates"
-msgstr "更新を確認(&U)"
+msgstr ""
 
 #: src/optionsettingsnet.cpp:177
 msgid "Check at StartUp"
 msgstr ""
 
 #: src/optionsettingsnet.cpp:179
-msgid ""
-"Enable to automatically check if new MMEX version is available at StartUp"
+msgid "Enable to automatically check if new MMEX version is available at StartUp"
 msgstr ""
 
 #: src/optionsettingsnet.cpp:182
@@ -7089,14 +6635,12 @@ msgid "Select preferred version:"
 msgstr ""
 
 #: src/optionsettingsnet.cpp:218 src/optionsettingsnet.cpp:223
-#, fuzzy
 msgid "WebApp connection test"
-msgstr "WebApp 接続エラー"
+msgstr ""
 
 #: src/optionsettingsnet.cpp:218
-#, fuzzy
 msgid "WebApp connection tested succesfully!"
-msgstr "WebApp 接続エラー"
+msgstr ""
 
 #: src/optionsettingsnet.cpp:223
 msgid "Some parameters are missing."
@@ -7123,50 +6667,40 @@ msgid "Specify which scale factor is used for the report pages"
 msgstr ""
 
 #: src/optionsettingsview.cpp:121
-#, fuzzy
 msgid "Budget Options"
-msgstr "オプションを表示"
+msgstr ""
 
 #: src/optionsettingsview.cpp:127
-#, fuzzy
 msgid "View as Financial Years"
-msgstr "昨年度"
+msgstr ""
 
 #: src/optionsettingsview.cpp:133
-#, fuzzy
 msgid "View with 'transfer' transactions"
-msgstr "'振替' 取引で予算を表示"
+msgstr ""
 
 #: src/optionsettingsview.cpp:139
-#, fuzzy
 msgid "View Setup Without Budget Summaries"
-msgstr "予算サマリーのない予算設定を表示"
+msgstr ""
 
 #: src/optionsettingsview.cpp:145
-#, fuzzy
 msgid "View Category Report with Summaries"
-msgstr "予算カテゴリーのサマリーを表示します"
+msgstr ""
 
 #: src/optionsettingsview.cpp:154
-#, fuzzy
 msgid "Budget Offset (days):"
-msgstr "予算年度:"
+msgstr ""
 
 #: src/optionsettingsview.cpp:158
-msgid ""
-"Advance or retard the start date from the 1st of the month or year by the "
-"number of days"
+msgid "Advance or retard the start date from the 1st of the month or year by the number of days"
 msgstr ""
 
 #: src/optionsettingsview.cpp:163
-#, fuzzy
 msgid "Report Options"
-msgstr "オプションを表示"
+msgstr ""
 
 #: src/optionsettingsview.cpp:169
-#, fuzzy
 msgid "View without Future Transactions"
-msgstr "将来の取引のないレポートを表示"
+msgstr ""
 
 #: src/optionsettingsview.cpp:175
 msgid "User Colors"
@@ -7205,13 +6739,8 @@ msgid "Payee in use."
 msgstr "支払先は使用しています。"
 
 #: src/payeedialog.cpp:266
-#, fuzzy
-msgid ""
-"Tip: Change all transactions using this Payee to another Payee using the "
-"relocate command:"
+msgid "Tip: Change all transactions using this Payee to another Payee using the relocate command:"
 msgstr ""
-"ヒント: 再配置コマンドを使用して、すべての取引を\n"
-"この支払先から別の取引先に変更します:"
 
 #: src/payeedialog.cpp:268
 msgid "Tools -> Relocation of -> Payees"
@@ -7234,19 +6763,16 @@ msgid "Relocate Category Dialog"
 msgstr "カテゴリーの再配置ダイアログ"
 
 #: src/relocatecategorydialog.cpp:90
-#, fuzzy
 msgid "Relocate source category to the destination category"
-msgstr "すべての元のカテゴリーを先のカテゴリ－に再配置します"
+msgstr ""
 
 #: src/relocatecategorydialog.cpp:93
-#, fuzzy
 msgid "Select Source Category"
-msgstr "元のカテゴリー"
+msgstr ""
 
 #: src/relocatecategorydialog.cpp:98
-#, fuzzy
 msgid "Select Destination Category"
-msgstr "先のカテゴリー"
+msgstr ""
 
 #: src/relocatecategorydialog.cpp:111 src/relocatepayeedialog.cpp:111
 msgid "Relocate:"
@@ -7275,12 +6801,10 @@ msgid "Records found in split transactions: %i"
 msgstr "分割取引に見つかったレコード: %i"
 
 #: src/relocatecategorydialog.cpp:273 src/relocatepayeedialog.cpp:232
-#, c-format
 msgid "Records found in recurring transactions: %i"
 msgstr ""
 
 #: src/relocatecategorydialog.cpp:274
-#, c-format
 msgid "Records found in recurring split transactions: %i"
 msgstr ""
 
@@ -7299,19 +6823,17 @@ msgid "Relocate Payee Dialog"
 msgstr "支払先の再配置ダイアログ"
 
 #: src/relocatepayeedialog.cpp:83
-#, fuzzy
 msgid "Relocate all source payee to the destination payee"
-msgstr "すべての元の支払先を先の支払先に再配置"
+msgstr ""
 
 #: src/relocatepayeedialog.cpp:95
-#, fuzzy
 msgid "Delete source payee after relocation"
-msgstr "すべての元の支払先を先の支払先に再配置"
+msgstr ""
 
 #: src/relocatepayeedialog.cpp:151
-#, fuzzy, c-format
+#, c-format
 msgid "From %s to %s"
-msgstr "%s から %s まで"
+msgstr ""
 
 #: src/relocatepayeedialog.cpp:156
 msgid "Payee Relocation Confirmation"
@@ -7370,12 +6892,11 @@ msgstr ""
 
 #: src/reports/budgetingperf.cpp:199
 msgid "%"
-msgstr "%"
+msgstr ""
 
 #: src/reports/budgetingperf.cpp:241
-#, fuzzy
 msgid "Monthly Total"
-msgstr "毎月"
+msgstr ""
 
 #: src/reports/cashflow.cpp:221
 #, c-format
@@ -7392,19 +6913,16 @@ msgid "Category Total: "
 msgstr "カテゴリー合計: "
 
 #: src/reports/categexp.cpp:205
-#, fuzzy
 msgid "Total Expenses:"
-msgstr "合計支出: "
+msgstr ""
 
 #: src/reports/categexp.cpp:206
-#, fuzzy
 msgid "Total Income:"
-msgstr "合計収入: "
+msgstr ""
 
 #: src/reports/categovertimeperf.cpp:36
-#, fuzzy
 msgid "Category Income/Expenses"
-msgstr "カテゴリー収入/支出: %s"
+msgstr ""
 
 #: src/reports/categovertimeperf.cpp:117
 msgid "Overall"
@@ -7517,9 +7035,8 @@ msgid "Choose Accounts"
 msgstr "アカウントを選択"
 
 #: src/reports/summary.cpp:147
-#, fuzzy, c-format
 msgid "Accounts Balance - %s"
-msgstr "アカウントの残高: "
+msgstr ""
 
 #: src/reports/summary.cpp:148
 msgid "Monthly Report"
@@ -7534,9 +7051,8 @@ msgid "Summary of Stocks"
 msgstr ""
 
 #: src/reports/summarystocks.cpp:181
-#, fuzzy
 msgid "*Purchase Date"
-msgstr "購入日"
+msgstr ""
 
 #: src/reports/summarystocks.cpp:182
 msgid "Quantity"
@@ -7565,14 +7081,12 @@ msgid "Transaction List "
 msgstr "取引リスト "
 
 #: src/sharetransactiondialog.cpp:68 src/sharetransactiondialog.cpp:86
-#, fuzzy
 msgid "Add Share Transaction"
-msgstr "新しい取引"
+msgstr ""
 
 #: src/sharetransactiondialog.cpp:90
-#, fuzzy
 msgid "Edit Share Transaction"
-msgstr "取引を編集"
+msgstr ""
 
 #: src/sharetransactiondialog.cpp:185 src/stockdialog.cpp:183
 msgid "Stock Investment Details"
@@ -7580,52 +7094,44 @@ msgstr "株式投資の詳細"
 
 #: src/sharetransactiondialog.cpp:195 src/stockdialog.cpp:194
 #: src/stockspanel.cpp:97
-#, fuzzy
 msgid "Company Name"
-msgstr "通貨名"
+msgstr ""
 
 #: src/sharetransactiondialog.cpp:199
 msgid "Enter the stock company name"
 msgstr "株式の会社名を入力してください"
 
 #: src/sharetransactiondialog.cpp:202 src/stockdialog.cpp:202
-#, fuzzy
 msgid "Stock Symbol"
-msgstr "シンボル"
+msgstr ""
 
 #: src/sharetransactiondialog.cpp:209
 msgid "Enter the stock symbol. (Optional) Include exchange. eg: IBM.BE"
-msgstr ""
-"株式の銘柄コード/シンボルを入力してください。 (オプション) 為替を含む。例: "
-"IBM.BE"
+msgstr "株式の銘柄コード/シンボルを入力してください。 (オプション) 為替を含む。例: IBM.BE"
 
 #: src/sharetransactiondialog.cpp:212
-#, fuzzy
 msgid "Share Number"
-msgstr "株式名"
+msgstr ""
 
 #: src/sharetransactiondialog.cpp:218
 msgid "Enter number of shares held"
 msgstr "保有株式数を入力してください"
 
 #: src/sharetransactiondialog.cpp:223
-#, fuzzy
 msgid "Share Price"
-msgstr "購入額"
+msgstr ""
 
 #: src/sharetransactiondialog.cpp:229
-#, fuzzy
 msgid "Enter the current value for a single share unit"
-msgstr "資産の現在の価値を入力してください"
+msgstr ""
 
 #: src/sharetransactiondialog.cpp:238
 msgid "Enter any commission paid"
 msgstr "支払済の売買手数料を入力してください"
 
 #: src/sharetransactiondialog.cpp:243
-#, fuzzy
 msgid "Share Lot"
-msgstr "株式名"
+msgstr ""
 
 #: src/sharetransactiondialog.cpp:250
 msgid "Enter the LOT that this parcel os shares belong to"
@@ -7644,9 +7150,8 @@ msgid "Enter notes associated with this investment"
 msgstr "この投資に関連するメモを入力してください"
 
 #: src/sharetransactiondialog.cpp:277
-#, fuzzy
 msgid "Add Transaction Details"
-msgstr "取引の詳細"
+msgstr ""
 
 #: src/splitdetailsdialog.cpp:73
 msgid "Split Detail Dialog"
@@ -7661,9 +7166,8 @@ msgid "Split Transaction Dialog"
 msgstr "取引の分割ダイアログ"
 
 #: src/splittransactionsdialog.cpp:127
-#, fuzzy
 msgid "Split Category Details"
-msgstr " カテゴリー分割の詳細"
+msgstr ""
 
 #: src/splittransactionsdialog.cpp:206
 msgid "Invalid Total Amount"
@@ -7678,94 +7182,74 @@ msgid "New Stock Investment"
 msgstr "新しい株式投資"
 
 #: src/stockdialog.cpp:156
-msgid ""
-"Initial share price.\n"
+msgid "Initial share price.\n"
 "Recorded in share transaction"
 msgstr ""
 
 #: src/stockdialog.cpp:158
-msgid ""
-"Invalid in this view.\n"
+msgid "Invalid in this view.\n"
 "View Transactions for values"
 msgstr ""
 
 #: src/stockdialog.cpp:195
-#, fuzzy
 msgid "Name of the company issuing Shares"
-msgstr "アカウントの名前"
+msgstr ""
 
 #: src/stockdialog.cpp:199
-#, fuzzy
-msgid ""
-"Enter the associated Share Account name\n"
+msgid "Enter the associated Share Account name\n"
 "An account can be created on Save"
-msgstr "アカウントの名前を入力してください。名前はいつでも変更できます。"
+msgstr ""
 
 #: src/stockdialog.cpp:209
-#, fuzzy
-msgid ""
-"Enter the Company's stock exchange symbol.\n"
+msgid "Enter the Company's stock exchange symbol.\n"
 "(Optional) Include exchange. eg: IBM.BE"
 msgstr ""
-"株式の銘柄コード/シンボルを入力してください。 (オプション) 為替を含む。例: "
-"IBM.BE"
 
 #: src/stockdialog.cpp:212 src/stockspanel.cpp:96
-#, fuzzy
 msgid "*Date"
-msgstr "日付"
+msgstr ""
 
 #: src/stockdialog.cpp:213
-msgid ""
-"Initial purchase date of shares.\n"
+msgid "Initial purchase date of shares.\n"
 "Recorded in share transaction"
 msgstr ""
 
 #: src/stockdialog.cpp:219
-#, fuzzy
 msgid "Specify the date of this initial share purchase"
-msgstr "次の請求書または預金の日付を指定します"
+msgstr ""
 
 #: src/stockdialog.cpp:223
-#, fuzzy
 msgid "*Share Number"
-msgstr "株式名"
+msgstr ""
 
 #: src/stockdialog.cpp:224
-msgid ""
-"Total number of shares.\n"
+msgid "Total number of shares.\n"
 "Recorded in share transaction"
 msgstr ""
 
 #: src/stockdialog.cpp:230
-#, fuzzy
 msgid "Enter the initial number of shares."
-msgstr "保有株式数を入力してください"
+msgstr ""
 
 #: src/stockdialog.cpp:234 src/stockspanel.cpp:100
-#, fuzzy
 msgid "*Share Price"
-msgstr "購入額"
+msgstr ""
 
 #: src/stockdialog.cpp:241
-#, fuzzy
 msgid "Enter the initial price per share."
-msgstr "このアカウントの初期残高を入力してください。"
+msgstr ""
 
 #: src/stockdialog.cpp:245
-#, fuzzy
 msgid "*Commission"
-msgstr "売買手数料"
+msgstr ""
 
 #: src/stockdialog.cpp:246
-msgid ""
-"Remainder of funds from share investment.\n"
+msgid "Remainder of funds from share investment.\n"
 "Recorded in share transaction"
 msgstr ""
 
 #: src/stockdialog.cpp:251
-msgid ""
-"Enter any commission paid or left over money from the purchase of shares."
+msgid "Enter any commission paid or left over money from the purchase of shares."
 msgstr ""
 
 #: src/stockdialog.cpp:256
@@ -7773,9 +7257,8 @@ msgid "Share price after the initial share purchase"
 msgstr ""
 
 #: src/stockdialog.cpp:261
-#, fuzzy
 msgid "Enter current share price."
-msgstr "現在の株式価格を入力してください"
+msgstr ""
 
 #: src/stockdialog.cpp:264 src/stockspanel.cpp:105
 msgid "Price Date"
@@ -7818,20 +7301,13 @@ msgid "Held At"
 msgstr "取得日"
 
 #: src/stockdialog.cpp:489
-msgid ""
-"A Share Account as the Company name has not been found.\n"
-"\n"
+msgid "A Share Account as the Company name has not been found.\n\n"
 "Do you want to create one?"
 msgstr ""
 
 #: src/stockdialog.cpp:499
-msgid ""
-"The Company name does not have an associated Share Account.\n"
-"\n"
-"You may want to readjust the Company Name to an existing Share Account with "
-"the same name. If this is an existing Stock without a Share Account, it is "
-"recommended that a Share Account is created.\n"
-"\n"
+msgid "The Company name does not have an associated Share Account.\n\n"
+"You may want to readjust the Company Name to an existing Share Account with the same name. If this is an existing Stock without a Share Account, it is recommended that a Share Account is created.\n\n"
 "Do you want to create a new Share Acccount?\n"
 msgstr ""
 
@@ -7848,49 +7324,40 @@ msgid "Importing CSV"
 msgstr "CSV をインポートしています"
 
 #: src/stockdialog.cpp:680 src/stockdialog.cpp:710
-#, fuzzy
 msgid "5 Days"
-msgstr "日数"
+msgstr ""
 
 #: src/stockdialog.cpp:681 src/stockdialog.cpp:712
-#, fuzzy
 msgid "1 Month"
-msgstr "月"
+msgstr ""
 
 #: src/stockdialog.cpp:682 src/stockdialog.cpp:713
-#, fuzzy
 msgid "3 Months"
-msgstr "月"
+msgstr ""
 
 #: src/stockdialog.cpp:683
-#, fuzzy
 msgid "6 Months"
-msgstr "月"
+msgstr ""
 
 #: src/stockdialog.cpp:684
-#, fuzzy
 msgid "1 Year"
-msgstr "年度"
+msgstr ""
 
 #: src/stockdialog.cpp:685
-#, fuzzy
 msgid "2 Years"
-msgstr "年度"
+msgstr ""
 
 #: src/stockdialog.cpp:686
-#, fuzzy
 msgid "5 Years"
-msgstr "年度"
+msgstr ""
 
 #: src/stockdialog.cpp:687
-#, fuzzy
 msgid "10 Years"
-msgstr "年度"
+msgstr ""
 
 #: src/stockdialog.cpp:689
-#, fuzzy
 msgid "Max"
-msgstr "5月"
+msgstr ""
 
 #: src/stockdialog.cpp:695
 msgid "Specify type frequency of stock history"
@@ -7905,14 +7372,12 @@ msgid "1 Day"
 msgstr ""
 
 #: src/stockdialog.cpp:711
-#, fuzzy
 msgid "1 Week"
-msgstr "毎週"
+msgstr ""
 
 #: src/stockdialog.cpp:719
-#, fuzzy
 msgid "Specify interval of stock history"
-msgstr "株式投資の購入日を指定します"
+msgstr ""
 
 #: src/stockdialog.cpp:732
 msgid "Stock history not found!"
@@ -7927,12 +7392,8 @@ msgid "Using MMEX it is possible to track stocks/mutual funds investments."
 msgstr "MMEX を使用すると、株式/投資信託投資を追跡することが可能です。"
 
 #: src/stockspanel.cpp:37
-msgid ""
-"To create new stocks entry the Symbol, Number of shares and Purchase prise "
-"should be entered."
-msgstr ""
-"新しい株式のエントリーを作成するには、銘柄コード/シンボル、株式数、および購"
-"入価格を入力する必要があります。"
+msgid "To create new stocks entry the Symbol, Number of shares and Purchase prise should be entered."
+msgstr "新しい株式のエントリーを作成するには、銘柄コード/シンボル、株式数、および購入価格を入力する必要があります。"
 
 #: src/stockspanel.cpp:38
 msgid "Sample of UK (HSBC HLDG) share: HSBA.L"
@@ -7943,38 +7404,32 @@ msgid "If the Stock Name field is empty it will be filed when prices updated"
 msgstr "株式名フィールドが空の場合は、価格が更新されたときに入力されます"
 
 #: src/stockspanel.cpp:99
-#, fuzzy
 msgid "Share Total"
-msgstr "株式名"
+msgstr ""
 
 #: src/stockspanel.cpp:101
-#, fuzzy
 msgid "Init Value"
-msgstr "初期価値"
+msgstr ""
 
 #: src/stockspanel.cpp:103
-#, fuzzy
 msgid "Curr. Share Price"
-msgstr "現在価格"
+msgstr ""
 
 #: src/stockspanel.cpp:104
-#, fuzzy
 msgid "Curr. Total Value"
-msgstr "現在価値"
+msgstr ""
 
 #: src/stockspanel.cpp:144
 msgid "&New Stock Investment"
 msgstr "新しい株式投資(&N)"
 
 #: src/stockspanel.cpp:146
-#, fuzzy
 msgid "&Add Stock Transactions"
-msgstr "取引を編集(&E)"
+msgstr ""
 
 #: src/stockspanel.cpp:147
-#, fuzzy
 msgid "&View Stock Transactions"
-msgstr "すべての取引を表示"
+msgstr ""
 
 #: src/stockspanel.cpp:149
 msgid "&Edit Stock Investment"
@@ -7985,9 +7440,8 @@ msgid "&Delete Stock Investment"
 msgstr "株式投資を削除(&D)"
 
 #: src/stockspanel.cpp:153
-#, fuzzy
 msgid "Stock &Web Page"
-msgstr "株価情報 Web ページ"
+msgstr ""
 
 #: src/stockspanel.cpp:269
 msgid "Do you really want to delete the stock investment?"
@@ -7999,11 +7453,8 @@ msgstr "株式投資の削除の確認"
 
 #: src/stockspanel.cpp:404
 #, c-format
-msgid ""
-"Temporary Stock list: %s\n"
-"\n"
-"Date          Lot          Shares          Price        Commission\n"
-"\n"
+msgid "Temporary Stock list: %s\n\n"
+"Date          Lot          Shares          Price        Commission\n\n"
 msgstr ""
 
 #: src/stockspanel.cpp:575
@@ -8015,27 +7466,24 @@ msgid "Add or remove shares to the selected Stock"
 msgstr ""
 
 #: src/stockspanel.cpp:584
-#, fuzzy
 msgid "View selected stock's share transactions"
-msgstr "選択した取引を編集"
+msgstr ""
 
 #: src/stockspanel.cpp:589
 msgid "Edit selected stock investment and readjust current prices"
 msgstr ""
 
 #: src/stockspanel.cpp:594
-#, fuzzy
 msgid "Delete selected stock investment"
-msgstr "株式投資を削除"
+msgstr ""
 
 #: src/stockspanel.cpp:598
 msgid "&Move"
 msgstr "移動(&M)"
 
 #: src/stockspanel.cpp:599
-#, fuzzy
 msgid "Move the selected Stock to another portfolio"
-msgstr "選択した取引を別のアカウントに移動します"
+msgstr ""
 
 #: src/stockspanel.cpp:612
 msgid "Refresh"
@@ -8056,7 +7504,6 @@ msgid "Total Shares: %s"
 msgstr ""
 
 #: src/stockspanel.cpp:770
-#, c-format
 msgid "Invested: %s"
 msgstr ""
 
@@ -8098,18 +7545,16 @@ msgid "Symbol: %s"
 msgstr ""
 
 #: src/transactionsupdatedialog.cpp:72
-#, fuzzy
 msgid "Multi Transactions Update"
-msgstr "取引の詳細"
+msgstr ""
 
 #: src/transactionsupdatedialog.cpp:186
 msgid "Append"
 msgstr ""
 
 #: src/transactionsupdatedialog.cpp:249
-#, fuzzy
 msgid "Invalid type"
-msgstr "エントリーが正しくありません"
+msgstr ""
 
 #: src/transdialog.cpp:170
 msgid "Duplicate Transaction"
@@ -8129,11 +7574,9 @@ msgstr "この取引の添付ファイルを整理します"
 
 #: src/transdialog.cpp:629
 #, c-format
-msgid ""
-"Do you want to add new payee: \n"
+msgid "Do you want to add new payee: \n"
 "%s?"
-msgstr ""
-"新しい支払先を追加しますか: \n"
+msgstr "新しい支払先を追加しますか: \n"
 "%s?"
 
 #: src/transdialog.cpp:630
@@ -8141,9 +7584,7 @@ msgid "Confirm to add new payee"
 msgstr "新しい支払先の追加の確認"
 
 #: src/transdialog.cpp:720
-msgid ""
-"This transaction will exceed your account limit.\n"
-"\n"
+msgid "This transaction will exceed your account limit.\n\n"
 "Do you wish to continue?"
 msgstr ""
 
@@ -8176,68 +7617,56 @@ msgid "Retard or advance the date of the transaction"
 msgstr "取引の日付を遅らせるか進めます"
 
 #: src/usertransactionpanel.cpp:122
-#, fuzzy
-msgid ""
-"Please select the Account that will be associated with this transaction"
-msgstr "この取引のアカウントを選択してください"
+msgid "Please select the Account that will be associated with this transaction"
+msgstr ""
 
 #: src/usertransactionpanel.cpp:134
 msgid "Withdraw funds from or deposit funds to this Account."
 msgstr ""
 
 #: src/usertransactionpanel.cpp:136
-#, fuzzy
 msgid "&Transfer"
-msgstr "交通"
+msgstr ""
 
 #: src/usertransactionpanel.cpp:139
 msgid "Funds transfer from/to this account. Uncheck to set as Expense/Income."
 msgstr ""
 
 #: src/usertransactionpanel.cpp:164
-#, fuzzy
 msgid "Currency used for this transaction."
-msgstr "このアカウントで使用する通貨を指定してください。"
+msgstr ""
 
 #: src/usertransactionpanel.cpp:183
-#, fuzzy
 msgid "Specify the status for this transaction"
-msgstr "取引の状態を指定してください"
+msgstr ""
 
 #: src/usertransactionpanel.cpp:191
-#, fuzzy
 msgid "Specify a person, Company or Organisation for this transaction."
-msgstr "取引の金額を指定してください"
+msgstr ""
 
 #: src/usertransactionpanel.cpp:207
-#, fuzzy
 msgid "Specify a transaction code or associated check details"
-msgstr "デフォルトで表示する取引を指定します"
+msgstr ""
 
 #: src/usertransactionpanel.cpp:298
-#, fuzzy
 msgid "Select the required account"
-msgstr "移動先のアカウントを選択します "
+msgstr ""
 
 #: src/usertransactionpanel.cpp:299
-#, fuzzy
 msgid "Account Selection"
-msgstr "アカウントの削除を確認"
+msgstr ""
 
 #: src/util.cpp:114
-#, fuzzy
 msgid "Encrypted database password"
-msgstr "開く暗号化されたデータベース ファイルを選択してください"
+msgstr ""
 
 #: src/util.cpp:116
-#, fuzzy
 msgid "Enter password for database file"
-msgstr "データベースのパスワードを入力してください"
+msgstr ""
 
 #: src/util.cpp:123
-#, fuzzy
 msgid "Re-enter password for database file"
-msgstr "データベースのパスワードを入力してください"
+msgstr ""
 
 #: src/util.cpp:127
 msgid "Confirm password failed."
@@ -8424,8 +7853,7 @@ msgstr ""
 
 #: src/webapp.cpp:466
 #, c-format
-msgid ""
-"Transaction will be inserted with the first bank account:\n"
+msgid "Transaction will be inserted with the first bank account:\n"
 "'%s' and marked as  'Follow Up'"
 msgstr ""
 
@@ -8462,9 +7890,7 @@ msgid "Communication error"
 msgstr ""
 
 #: src/webapp.cpp:586
-msgid ""
-"Transaction not downloaded: please close and open MMEX to try re-download "
-"transaction"
+msgid "Transaction not downloaded: please close and open MMEX to try re-download transaction"
 msgstr ""
 
 #: src/webapp.cpp:587
@@ -8509,18 +7935,10 @@ msgid "%s models all transactions as belonging to accounts."
 msgstr ""
 
 #: src/wizard_newaccount.cpp:36
-#, fuzzy
-msgid ""
-"The next pages will help you create a new account.\n"
+msgid "The next pages will help you create a new account.\n"
 "To help you get started, begin by making a list of all\n"
 "financial institutions where you hold an account."
 msgstr ""
-" モデルすべてのトランザクションがアカウントに属するものとして。\n"
-"\n"
-"次のページは、新しいアカウントを作成するのを支援します。\n"
-"\n"
-"始めるにあたって、あなたがアカウントを保有する金融機関\n"
-"すべてのリストを作ることから始めます。"
 
 #: src/wizard_newaccount.cpp:80
 msgid "Account Name Invalid"
@@ -8539,11 +7957,9 @@ msgid "Specify a descriptive name for the account."
 msgstr "アカウントを記述する名前を指定します。"
 
 #: src/wizard_newaccount.cpp:106
-msgid ""
-"This is generally the name of a financial institution\n"
+msgid "This is generally the name of a financial institution\n"
 "where the account is held. For example: 'ABC Bank'."
-msgstr ""
-"これは一般的に、アカウントを保有する\n"
+msgstr "これは一般的に、アカウントを保有する\n"
 "金融機関の名前です。例えば: 'ABC 銀行'。"
 
 #: src/wizard_newaccount.cpp:126
@@ -8555,30 +7971,22 @@ msgid "Select the type of account you want to create:"
 msgstr "作成するアカウントの種類を選択します:"
 
 #: src/wizard_newaccount.cpp:131
-#, fuzzy
-msgid ""
-"General bank accounts cover a wide variety of account\n"
+msgid "General bank accounts cover a wide variety of account\n"
 "types like Checking, Savings etc."
 msgstr ""
-"一般的な銀行口座は、当座、預金、クレジットカードなどの\n"
-"多種多様な種類をカバーします。"
 
 #: src/wizard_newaccount.cpp:136
-msgid ""
-"Investment accounts are specialized accounts that only\n"
+msgid "Investment accounts are specialized accounts that only\n"
 "have stock/mutual fund investments associated with them."
-msgstr ""
-"投資口座は、株式/投資信託投資のみに関連した\n"
+msgstr "投資口座は、株式/投資信託投資のみに関連した\n"
 "特殊なアカウントです。"
 
 #: src/wizard_newaccount.cpp:141
-msgid ""
-"Term accounts are specialized bank accounts. Intended for asset\n"
+msgid "Term accounts are specialized bank accounts. Intended for asset\n"
 "type accounts such as Term Deposits and Bonds. These accounts\n"
 "can have regular money coming in and out, being outside the\n"
 "general income stream."
-msgstr ""
-"定期口座は、特化した銀行口座です。定期預金や債券などの\n"
+msgstr "定期口座は、特化した銀行口座です。定期預金や債券などの\n"
 "資産の種類のアカウントを対象にします。\n"
 "これらのアカウントは、一般的な収入の流れの外に、\n"
 "通常のお金の入出金を行うことができます。"
@@ -8589,46 +7997,34 @@ msgstr "基本アカウント通貨が設定されていません。"
 
 #: src/wizard_newaccount.cpp:158
 msgid "Set that first using Tools->Options menu and then add a new account."
-msgstr ""
-"まず、ツール -> オプション メニューを使用して、新しいアカウントを追加して設"
-"定します。"
+msgstr "まず、ツール -> オプション メニューを使用して、新しいアカウントを追加して設定します。"
 
 #: src/wizard_newdb.cpp:30
 msgid "New Database Wizard"
 msgstr "新規データベース ウィザード"
 
 #: src/wizard_newdb.cpp:50
-#, fuzzy
-msgid ""
-"The next pages will help you create a new database.\n"
-"\n"
+msgid "The next pages will help you create a new database.\n\n"
 "Your database file is stored with an extension of .mmb.\n"
 "As this file contains important financial information,\n"
 "we recommended creating daily backups with the Options\n"
 "setting: 'Backup before opening', and store your backups\n"
-"in a separate location.\n"
-"\n"
+"in a separate location.\n\n"
 "The database can later be encrypted if required, by\n"
 "using the option: 'Save database as' and changing the\n"
 "file type before saving."
 msgstr ""
-"このファイルには重要な財務情報が含まれているため、\n"
-"オプション設定: '開く前にバックアップ' で\n"
-"毎日バックアップを作成すること、\n"
-"および別の場所にバックアップを保存することを推奨します。"
 
 #: src/wizard_newdb.cpp:126
 msgid "Base Currency for account"
 msgstr "アカウントの基本通貨"
 
 #: src/wizard_newdb.cpp:135
-msgid ""
-"Specify the base (or default) currency to be used for the\n"
+msgid "Specify the base (or default) currency to be used for the\n"
 "database. The base currency can later be changed by using\n"
 "the options dialog. New accounts, will use this currency by\n"
 "default, and can be changed when editing account details."
-msgstr ""
-"データベースで使用する基本 (またはデフォルトの) 通貨を指定します。\n"
+msgstr "データベースで使用する基本 (またはデフォルトの) 通貨を指定します。\n"
 "基本通貨は、後でオプションダイアログを使用して変更することができます。\n"
 "新しいアカウントは、デフォルトで、この通貨を使用します。\n"
 "そして、アカウントの詳細を編集するときに変更できます。"
@@ -8639,8 +8035,7 @@ msgstr "(オプション) タイトルまたはあなたの名前を指定しま
 
 #: src/wizard_newdb.cpp:153
 msgid "Used as a database title for displayed and printed reports."
-msgstr ""
-"表示、および印刷されるレポートの、データベースのタイトルとして使用されます。"
+msgstr "表示、および印刷されるレポートの、データベースのタイトルとして使用されます。"
 
 #: src/wizard_newdb.cpp:164
 msgid "Base Currency Not Set"
@@ -8677,9 +8072,8 @@ msgid "Unable to check for updates!"
 msgstr ""
 
 #: src/wizard_update.cpp:337 src/wizard_update.cpp:352
-#, fuzzy
 msgid "Error: "
-msgstr "エラー"
+msgstr ""
 
 #: src/wizard_update.cpp:338 src/wizard_update.cpp:353
 #: src/wizard_update.cpp:390
@@ -8687,740 +8081,178 @@ msgid "MMEX Update Check"
 msgstr ""
 
 #: src/wizard_update.cpp:389
-#, fuzzy
 msgid "You already have the latest version"
-msgstr "最新のバージョンがインストールされています!"
-
-#~ msgid "XXLarge"
-#~ msgstr "極大"
-
-#~ msgid "Organize attachments of this repeating transaction"
-#~ msgstr "この繰り返し取引の添付を整理します"
-
-#~ msgid "Year: "
-#~ msgstr "年度: "
-
-#~ msgid "Specify which font size is used on the report tables"
-#~ msgstr "レポートの表で使用するフォント サイズ指定します"
-
-#~ msgid "Your database file is stored with an extension of .mmb."
-#~ msgstr "データベースファイルは .mmb 拡張子で保存されます。"
-
-#~ msgid "Base Rate Conversion Sample:"
-#~ msgstr "基本レート換算サンプル:"
-
-#~ msgid "Next"
-#~ msgstr "次"
-
-#~ msgid "' not found!"
-#~ msgstr "' が見つかりません!"
-
-#~ msgid "Budget Categories for "
-#~ msgstr "予算カテゴリー "
-
-#~ msgid "Budget Category Summary for "
-#~ msgstr "予算カテゴリー サマリー "
-
-#~ msgid "Budget Performance for "
-#~ msgstr "予算パフォーマンス "
-
-#~ msgid "Split Category"
-#~ msgstr "カテゴリーを分割"
-
-#~ msgid "Budget Summary: Include &Categories"
-#~ msgstr "予算サマリー: カテゴリーを含める(&C)"
-
-#~ msgid "E&xit\tAlt-X"
-#~ msgstr "終了(&x)\tAlt-X"
-
-#~ msgid "Calendar"
-#~ msgstr "カレンダー"
-
-#~ msgid "Stock Investments: %s"
-#~ msgstr "株式投資: %s"
-
-#~ msgid "Cash Flow Forecast for %d Years Ahead"
-#~ msgstr "%d 年先のキャッシュフロー予測"
-
-#~ msgid "Categories - %s"
-#~ msgstr "カテゴリー - %s"
-
-#~ msgid "Choose Universal CSV format file to load"
-#~ msgstr "ロードするユニバーサル CSV フォーマットファイルを選択"
-
-#~ msgid "Subcategories"
-#~ msgstr "サブカテゴリー"
-
-#~ msgid "Choose Universal CSV format file to save"
-#~ msgstr "保存するユニバーサル CSV フォーマットファイルを選択"
-
-#~ msgid "The client failed to connect the server"
-#~ msgstr "クライアントがサーバーに接続できませんでした"
-
-#~ msgid "Comma"
-#~ msgstr "カンマ"
-
-#~ msgid "Symbol: "
-#~ msgstr "銘柄コード/シンボル: "
-
-#~ msgid "Continue ?"
-#~ msgstr "続行しますか ?"
-
-#~ msgid "Cannot get data from website"
-#~ msgstr "Web サイトからデータを取得できません"
-
-#~ msgid "Create and use '%s' subfolder"
-#~ msgstr "'%s' サブフォルダーを作成して使用"
-
-#~ msgid "Unknown error"
-#~ msgstr "不明なエラー"
-
-#~ msgid "Current"
-#~ msgstr "現在"
+msgstr ""
 
 #, fuzzy
-#~ msgid "All files"
-#~ msgstr "その他すべて"
-
-#~ msgid "Download WebApp new transaction"
-#~ msgstr "WebApp の新しい取引をダウンロード"
-
-#~ msgid "Term &Accounts"
-#~ msgstr "定期口座(&A)"
-
-#~ msgid "Enter purchase price for each stock"
-#~ msgstr "それぞれの株式の購入額を入力してください"
-
-#~ msgid "Show all even the unused currencies"
-#~ msgstr "すべての未使用の通貨を表示"
-
-#~ msgid "Enter the name for the new report group"
-#~ msgstr "新しいレポートグループの名前を入力してください"
+#~ msgid "Term account"
+#~ msgstr "Favourite Account"
 
 #, fuzzy
-#~| msgid "Amount:"
-#~ msgid "Amount ±: "
-#~ msgstr "金額:"
-
-#~ msgid "Expand Bank Accounts in Trew View when tree is refreshed"
-#~ msgstr "ツリーが更新されたとき、ツリービューの銀行口座を展開します"
-
-#~ msgid ""
-#~ "Sorry. The Database version is too old or Database password is incorrect"
-#~ msgstr ""
-#~ "申し訳ありません。データベースのバージョンが古すぎるか、データベースのパ"
-#~ "スワードが正しくありません"
-
-#~ msgid "Expand Bank Accounts on home page when page is refreshed"
-#~ msgstr "ページが更新されたとき、ホームページの銀行口座を展開します"
-
-#~ msgid "Term Account"
-#~ msgstr "定期口座"
-
-#~ msgid "Expand Stock Accounts on home page when page is refreshed"
-#~ msgstr "ページが更新されたとき、ホームページの株式口座を展開します"
-
-#~ msgid "MMEX message"
-#~ msgstr "MMEX メッセージ"
-
-#~ msgid "Expand Term Accounts in Trew View when tree is refreshed"
-#~ msgstr "ツリーが更新されたとき、ツリービューの定期口座を展開します"
-
-#~ msgid "Choose database file to Save As"
-#~ msgstr "名前を付けて保存するデータベース ファイルを選択してください"
-
-#~ msgid "Expand Term Accounts on home page when page is refreshed"
-#~ msgstr "ページが更新されたとき、ホームページの定期口座を展開します"
-
-#~ msgid "Expected API version -> "
-#~ msgstr "期待した API バージョン -> "
-
-#~ msgid "Term Account views have been temporarly turned on."
-#~ msgstr "定期口座表示は一時的にオンになっています。"
-
-#~ msgid "Financial Year: "
-#~ msgstr "会計年度: "
-
-#~ msgid "From Account"
-#~ msgstr "元のアカウント"
-
-#~ msgid "From and To Account cannot be the same."
-#~ msgstr "元と先のアカウントは同じにできません"
-
-#~ msgid ""
-#~ "Changing all payees of: %s \n"
-#~ "\n"
-#~ "  to payee: %s"
-#~ msgstr ""
-#~ "すべての支払先の変更: %s \n"
-#~ "\n"
-#~ "  から支払先: %s"
-
-#~ msgid "Gain: "
-#~ msgstr "利益: "
-
-#~ msgid ""
-#~ "The database can later be encrypted if required, by\n"
-#~ "using the option: 'Save database as' and changing the\n"
-#~ "file type before saving."
-#~ msgstr ""
-#~ "必要に応じて、データベースは後で暗号化することができます。\n"
-#~ "オプション: '名前を付けてデータベースを保存' を使用して、\n"
-#~ "保存する前にファイルの種類を変更します。"
-
-#~ msgid "Grand Total: "
-#~ msgstr "総合計: "
-
-#~ msgid "Developers"
-#~ msgstr "開発者"
-
-#~ msgid "Hide Deleted (Void)"
-#~ msgstr "削除済 (無効) を非表示"
-
-#~ msgid "Donate"
-#~ msgstr "寄付"
-
-#~ msgid "Home Page Expansion Options"
-#~ msgstr "ホームページ展開オプション"
+#~ msgid "Amount Range:"
+#~ msgstr "Favourite Account"
 
 #, fuzzy
-#~ msgid "Transactions imported from file: "
-#~ msgstr "CSV から取引をインポートしました: "
-
-#~ msgid "Huge"
-#~ msgstr "巨大"
-
-#~ msgid "The next pages will help you create a new database."
-#~ msgstr "次のページは、新しいデータベースを作成する支援をします。"
-
-#~ msgid "Important note"
-#~ msgstr "重要なメモ"
-
-#~ msgid "Check For Updates"
-#~ msgstr "更新プログラムを確認します"
-
-#~ msgid "Income/Expences"
-#~ msgstr "収入/支出"
-
-#~ msgid ""
-#~ "Directory of language files does not exist:\n"
-#~ "%s"
-#~ msgstr ""
-#~ "言語ファイルのディレクトリが存在しません:\n"
-#~ "%s"
-
-#~ msgid "Initial Term Account Activation"
-#~ msgstr "初期定期口座有効化"
-
-#~ msgid "Cash Flow - With Bank Accounts"
-#~ msgstr "キャッシュフロー - 銀行口座"
-
-#~ msgid "Invalid Value "
-#~ msgstr "無効な値 "
-
-#~ msgid "This message will not be displayed in future."
-#~ msgstr "将来、このメッセージは表示されません。"
-
-#~ msgid "Invalid commission entered "
-#~ msgstr "入力された売買手数料が正しくありません "
-
-#~ msgid "View Budgets as Financial Years"
-#~ msgstr "会計年度で予算を表示"
-
-#~ msgid "Invalid number of shares entered "
-#~ msgstr "入力された株式数が正しくありません "
-
-#~ msgid "Specify the language to use"
-#~ msgstr "使用する言語を指定します"
-
-#~ msgid "Invalid purchase price entered "
-#~ msgstr "入力された購入価格が正しくありません "
-
-#~ msgid "Account Name"
-#~ msgstr "アカウント名"
-
-#~ msgid "Invested: "
-#~ msgstr "投資: "
-
-#~ msgid "Times Repeated"
-#~ msgstr "繰り返し回数"
-
-#~ msgid "Large"
-#~ msgstr "大"
-
-#, fuzzy
-#~ msgid "Specify the stock/share price date."
-#~ msgstr "資産の購入日を指定してください"
-
-#~ msgid "Last Calendar Month"
-#~ msgstr "先月"
-
-#, fuzzy
-#~ msgid ""
-#~ "Enter any commission paid.\n"
-#~ "Used when creating the initial Share transaction."
-#~ msgstr "最も近い取引メモを検索する、任意の文字列を入力してください"
-
-#~ msgid "Leave blank when not active."
-#~ msgstr "アクティブでないときは空白のままにします。"
-
-#, fuzzy
-#~ msgid "Specify the associated Account that will contain this transaction"
-#~ msgstr "繰り返し取引を所有するアカウントを指定してください"
-
-#~ msgid "Legend:"
-#~ msgstr "凡例:"
-
-#~ msgid ""
-#~ "Tip: These transactions can be set up to activate – allowing the user to "
-#~ "adjust any values on the due date."
-#~ msgstr ""
-#~ "ヒント: これらの取引が有効になるように設定することができます - ユーザーが"
-#~ "任意の値に期日を調整することができます。"
-
-#~ msgid "Line: %i"
-#~ msgstr "行: %i"
-
-#~ msgid "A path is required for this protocol"
-#~ msgstr "このプロトコルのパスが必要です"
-
-#~ msgid "Load Template"
-#~ msgstr "テンプレートをロード"
-
-#~ msgid "A host name is required for this protocol"
-#~ msgstr "このプロトコルのホスト名が必要です"
-
-#~ msgid "Loss: "
-#~ msgstr "損失: "
-
-#, fuzzy
-#~ msgid "pul"
-#~ msgstr "7月"
-
-#~ msgid "May "
-#~ msgstr "5月 "
-
-#~ msgid ""
-#~ "Tip: To print a statement with transactions from any arbitary set of "
-#~ "criteria, use the transaction filter to select the transactions you want "
-#~ "and then do a print from the menu."
-#~ msgstr ""
-#~ "ヒント: 任意の基準で取引の明細書を印刷したい場合、取引フィルターを使用し"
-#~ "て取引を選択し、メニューから印刷を行います。"
-
-#~ msgid "Modify the description for the attachment:"
-#~ msgstr "添付の説明を変更します:"
-
-#~ msgid "Month: "
-#~ msgstr "月: "
-
-#~ msgid "Navigation Tree Expansion Options"
-#~ msgstr "ナビゲーションツリー展開オプション"
-
-#~ msgid "New MMEX Options"
-#~ msgstr "新しい MMEX オプション"
-
 #~ msgid "To Account"
-#~ msgstr "先のアカウント"
+#~ msgstr "Favourite Account"
 
-#~ msgid "New Repeating Transaction"
-#~ msgstr "新しい繰り返し取引"
-
-#~ msgid "New Report %i"
-#~ msgstr "新しいレポート %i"
-
-#~ msgid "New transactions found on web app"
-#~ msgstr "ウェブアプリに新しい取引が見つかりました"
-
-#~ msgid " Edit Repeating Transaction"
-#~ msgstr " 繰り返し取引を編集"
-
-#~ msgid "New/Edit Asset"
-#~ msgstr "資産を作成/編集"
-
-#~ msgid ""
-#~ "To maintain this view, change the defaults by using:\n"
-#~ "\n"
-#~ "Tools -> Options\n"
-#~ "View Options"
-#~ msgstr ""
-#~ "このビューを管理するには、次でデフォルトを変更してください:\n"
-#~ "\n"
-#~ "ツール -> オプション\n"
-#~ "オプションを表示"
-
-#~ msgid "Next Occurrence"
-#~ msgstr "次の発生"
-
-#~ msgid "No software found for file extension ."
-#~ msgstr "ファイル拡張子のソフトウェアが見つかりません。"
-
-#~ msgid " file contains insufficient number of tokens"
-#~ msgstr " ファイルに含まれるトークンの数が足りません"
-
-#~ msgid "Normal"
-#~ msgstr "通常"
-
-#~ msgid "&Repeating Transactions"
-#~ msgstr "繰り返し取引(&R)"
-
-#~ msgid "Number of Shares"
-#~ msgstr "株式数"
-
-#~ msgid "To/From(+/-)"
-#~ msgstr "先/元(+/-)"
-
-#~ msgid "Organize Currency: Add Currency"
-#~ msgstr "通貨の整理: 通貨を追加"
-
-#~ msgid "' and marked as  Follow Up"
-#~ msgstr "' およびフォローアップとしてマークします"
-
-#~ msgid "Other currency conversion rate. Set Base Currency to 1."
-#~ msgstr "その他の通貨換算レート。基本通貨は1に設定します。"
-
-#~ msgid "&Update"
-#~ msgstr "更新(&U)"
-
-#~ msgid "Payee report - %s"
-#~ msgstr "支払先レポート - %s"
-
-#~ msgid "Becomes blank when not active."
-#~ msgstr "アクティブでないときに空白になります。"
-
-#~ msgid ""
-#~ "Please verify that operatin system is able to handle this type of file."
-#~ msgstr ""
-#~ "オペレーティングシステムで、この種類のファイルを扱うことができるか確認し"
-#~ "てください。"
-
-#~ msgid "Total Shares: "
-#~ msgstr "合計株式: "
-
-#~ msgid "Proceed to website: "
-#~ msgstr "Web サイトに進みます: "
+#~ msgid "Specify the color for future transactions"
+#~ msgstr "Specify the colour for future transactions"
 
 #, fuzzy
-#~ msgid "BankAccount"
-#~ msgstr "銀行口座"
-
-#~ msgid "Records found in repeating split transactions: %i"
-#~ msgstr "繰り返し分割取引に見つかったレコード: %i"
-
-#~ msgid "Total: "
-#~ msgstr "合計: "
-
-#~ msgid "An error occurred during negotiation"
-#~ msgstr "ネゴシエーション中にエラーが発生しました"
-
-#~ msgid "An error occurred during reconnection"
-#~ msgstr "再接続中にエラーが発生しました"
-
-#~ msgid "Someone tried to send a command during a transfer"
-#~ msgstr "転送中に誰かがコマンドを送信しようとしました"
-
-#~ msgid "The remote file doesn't exist"
-#~ msgstr "リモートのファイルが存在しません"
-
-#~ msgid "Repeating Transaction Details"
-#~ msgstr "繰り返し取引の詳細"
+#~ msgid "for Account: "
+#~ msgstr "Favourite Account"
 
 #, fuzzy
-#~| msgid "Amount"
-#~ msgid "Amount ±"
-#~ msgstr "金額"
-
-#~ msgid "Report Font Size"
-#~ msgstr "レポート フォント サイズ"
-
-#~ msgid "Transaction will be inserted with the first bank account:"
-#~ msgstr "取引は、最初の銀行口座に挿入されます:"
-
-#~ msgid "Report with same name exists"
-#~ msgstr "同じ名前のレポートが存在します"
-
-#~ msgid "Password not entered for encrypted Database.\n"
-#~ msgstr "暗号化されたデータベースのパスワードが入力されていません。\n"
-
-#~ msgid "Save As..."
-#~ msgstr "名前を付けて保存..."
+#~ msgid "Cash Flow - With Term Accounts"
+#~ msgstr "Favourite Account"
 
 #, fuzzy
-#~ msgid "No File opened"
-#~ msgstr " - 開かれたファイルはありません "
-
-#~ msgid "Select From Account"
-#~ msgstr "元のアカウントを選択"
-
-#~ msgid "Select To Acct"
-#~ msgstr "先のアカウントを選択"
-
-#~ msgid "Transactions saved to database in account: "
-#~ msgstr "取引をデータベースに保存しました。アカウント: "
-
-#~ msgid "Semicolon"
-#~ msgstr "セミコロン"
-
-#~ msgid "Bug reports"
-#~ msgstr "バグ報告"
-
-#~ msgid "Set"
-#~ msgstr "設定"
-
-#~ msgid ""
-#~ "Changing all categories of: \n"
-#~ "%s to category: %s"
-#~ msgstr ""
-#~ "すべてのカテゴリーの変更: \n"
-#~ "%s からカテゴリー: %s"
-
-#~ msgid "Set 'Auto Execute' without user acknowlegement."
-#~ msgstr "ユーザの確認なしに '自動実行' を設定します。"
-
-#~ msgid "Imported transactions have been flagged so you can review them."
-#~ msgstr "確認できるようにインポートした取引にフラグをつけました。"
-
-#~ msgid "Set to 'Auto Execute' on the 'Next Occurrence' date."
-#~ msgstr "次の '発生日' の日付に '自動実行' を設定します。"
-
-#~ msgid "Unable to download new transaction from WebApp"
-#~ msgstr "WebApp から新しい取引をダウンロードできません"
-
-#~ msgid "Sets the default currency for the database."
-#~ msgstr "データベースのデフォルトの通貨を設定します。"
-
 #~ msgid "Daily Cash Flow - Specific Accounts"
-#~ msgstr "毎日のキャッシュフロー - 指定アカウント"
+#~ msgstr "Favourite Account"
 
-#~ msgid "Show Deleted (Void)"
-#~ msgstr "削除済 (無効) を表示"
-
+#, fuzzy
 #~ msgid "Income vs Expenses - Specific Accounts"
-#~ msgstr "収入対支出 - 指定アカウント"
+#~ msgstr "Favourite Account"
 
-#~ msgid "Show/Hide Bank Accounts on Summary page"
-#~ msgstr "サマリーページで銀行口座を表示/非表示にします"
+#, fuzzy
+#~ msgid "All Term Accounts"
+#~ msgstr "Favourite Account"
+
+#, fuzzy
+#~ msgid "Bank Accounts Total:"
+#~ msgstr "Favourite Account"
+
+#, fuzzy
+#~ msgid "Term Accounts Total:"
+#~ msgstr "Favourite Account"
+
+#~ msgid "Specify the color for the list background"
+#~ msgstr "Specify the colour for the list background"
+
+#, fuzzy
+#~ msgid "RecurringTransaction"
+#~ msgstr "Specify the colour for future transactions"
 
 #, fuzzy
 #~ msgid ""
 #~ "Specify the initial date of the stock investment\n"
 #~ "Used when creating the initial Share transaction."
-#~ msgstr "この取引のカテゴリーを指定します"
-
-#~ msgid "Show/Hide Stock Accounts on Summary page"
-#~ msgstr "サマリーページで株式口座を表示/非表示にします"
-
-#~ msgid "Universal CSV Dialog"
-#~ msgstr "ユニバーサル CSV ダイアログ"
-
-#~ msgid "Show/Hide Term Accounts on Summary page"
-#~ msgstr "サマリーページで定期口座を表示/非表示にします"
-
-#~ msgid "Found no protocol which can get this URL"
-#~ msgstr "この URL を取得するプロトコルがありません"
-
-#~ msgid "Small"
-#~ msgstr "小"
-
-#~ msgid "Sort by"
-#~ msgstr "並び替え"
-
-#~ msgid "Specify categories for this transaction"
-#~ msgstr "この取引のカテゴリーを指定します"
-
-#~ msgid "View Budget Summary Report without Categories"
-#~ msgstr "カテゴリーのない予算サマリー レポートを表示"
-
-#~ msgid "Specify the amount to be transfered"
-#~ msgstr "振替の金額を指定してください"
+#~ msgstr "Specify the colour for future transactions"
 
 #, fuzzy
-#~ msgid "Specify the number of payments to be made."
-#~ msgstr "作成するアカウントの種類を指定してください。"
+#~ msgid "Specify the stock/share price date."
+#~ msgstr "Specify the colour for the nav tree"
 
-#~ msgid "Specify the number of times this series repeats."
-#~ msgstr "このシリーズを繰り返す回数を指定します。"
-
-#~ msgid " Help"
-#~ msgstr " ヘルプ"
-
-#~ msgid "Specify where the transaction is going to or coming from "
-#~ msgstr "取引の元または先を指定します "
-
-#~ msgid "Visit MMEX Twitter"
-#~ msgstr "MMEX Twitter を訪問"
-
-#~ msgid "Specify which account the transfer is comming from"
-#~ msgstr "取引の振替元のアカウントを指定します"
-
-#~ msgid "&Stock Accounts"
-#~ msgstr "株式口座(&S)"
-
-#~ msgid "Automatic Execution will require user acknowledgement."
-#~ msgstr "自動実行は、ユーザーの確認が必要です。"
-
-#~ msgid "&Open"
-#~ msgstr "開く(&O)"
-
-#~ msgid "&Clear "
-#~ msgstr "クリア(&C) "
+#~ msgid "Specify the color for the list row 0"
+#~ msgstr "Specify the colour for the list row 0"
 
 #, fuzzy
-#~ msgid "Clear the settings for the allocated position"
-#~ msgstr "取引の状態を指定してください"
-
-#~ msgid "Records found in repeating transactions: %i"
-#~ msgstr "繰り返し取引に見つかったレコード: %i"
-
-#~ msgid "WebApp   API version -> "
-#~ msgstr "WebApp API バージョン -> "
-
-#~ msgid "Remaining Days"
-#~ msgstr "残り日数"
-
-#~ msgid "Currency with same name exists"
-#~ msgstr "同じ名前の通貨が存在します"
-
-#~ msgid "Convert Encrypted &DB"
-#~ msgstr "暗号化 &DB を変換"
-
-#~ msgid "Where the Money Comes From - %s"
-#~ msgstr "お金の入り元 - %s"
-
-#~ msgid "Enter password for new database"
-#~ msgstr "新しいデータベースのパスワードを入力してください"
+#~ msgid "Specify the associated Account that will contain this transaction"
+#~ msgstr "Specify the colour for future transactions"
 
 #, fuzzy
-#~| msgid "Accounts: "
-#~ msgid "Accounts:"
-#~ msgstr "アカウント: "
-
-#~ msgid "%s -> User document directory"
-#~ msgstr "%s -> ユーザー ドキュメント ディレクトリ"
-
-#~ msgid "Artwork"
-#~ msgstr "アートワーク"
-
-#, fuzzy
-#~ msgid "Invalid Transaction"
-#~ msgstr "取引を編集"
-
-#~ msgid "Visit MMEX Forum"
-#~ msgstr "MMEX フォーラムを訪問"
-
-#~ msgid "Where the Money Goes - %s"
-#~ msgstr "お金の行き先 - %s"
-
-#~ msgid "All Bank Accounts"
-#~ msgstr "すべての銀行口座"
-
-#~ msgid "All Term Accounts"
-#~ msgstr "すべての定期口座"
-
-#, fuzzy
-#~ msgid "Add Stock Transactions"
-#~ msgstr "取引を編集"
-
-#~ msgid "Today's Date: %s"
-#~ msgstr "今日の日付: %s"
-
-#~ msgid "Connection error"
-#~ msgstr "接続エラー"
-
-#~ msgid "Cannot get data from WWW!"
-#~ msgstr "WWW からデータを取得できません!"
-
-#~ msgid "Will display the web page for the specified Stock symbol"
-#~ msgstr "指定された株式銘柄コード/シンボルのWebページが表示されます"
-
-#~ msgid "Currency rate updated"
-#~ msgstr "通貨レートを更新しました"
-
-#~ msgid "Enter the name of the category to add or edit here"
-#~ msgstr "追加または編集するカテゴリーの名前を入力してください"
-
-#~ msgid "%s Converted to: %s"
-#~ msgstr "%s 変換先: %s"
+#~ msgid "Invalid value "
+#~ msgstr "Restore Default Colours"
 
 #, fuzzy
 #~ msgid "Default account \""
-#~ msgstr "アカウントを削除(&D)"
+#~ msgstr "Favourite Account"
 
-#~ msgid "Conversion to Base Rate"
-#~ msgstr "基本レートに変換"
-
-#~ msgid "Account '"
-#~ msgstr "アカウント '"
-
-#~ msgid "Register/View Release &Notifications."
-#~ msgstr "リリース通知の登録/表示(&N)"
-
-#~ msgid "XLarge"
-#~ msgstr "特大"
-
-#~ msgid "Cannot locate previously opened database.\n"
-#~ msgstr "以前開いたデータベースが見つかりません。\n"
-
-#~ msgid "Convert Encrypted DB to Non-Encrypted DB"
-#~ msgstr "暗号化された DB を暗号化されていない DB に変換します"
+#~ msgid "Specify the color for the list row 1"
+#~ msgstr "Specify the colour for the list row 1"
 
 #, fuzzy
-#~ msgid "Pence"
-#~ msgstr "支出"
-
-#~ msgid "Cash Flow - With Term Accounts"
-#~ msgstr "キャッシュフロー - 定期口座"
-
-#~ msgid "Account List"
-#~ msgstr "アカウントリスト"
-
-#~ msgid "Syntax error in the URL string"
-#~ msgstr "URL 文字列に文法エラーがあります"
-
-#~ msgid ""
-#~ "Attempt to delete a currency being used by an account\n"
-#~ " or as the base currency."
-#~ msgstr ""
-#~ "アカウントで使用されている、または基本通貨として\n"
-#~ " 使用されている通貨を削除しようとしています。"
-
-#~ msgid "&Search"
-#~ msgstr "検索(&S)"
-
-#~ msgid "A generic network error occurred"
-#~ msgstr "一般的なネットワークエラーが発生しました"
-
-#~ msgid "When database file opening:"
-#~ msgstr "データベースファイルを開いた時:"
+#~ msgid "Account missing"
+#~ msgstr "Favourite Account"
 
 #, fuzzy
-#~ msgid ""
-#~ "One of the following fields: Date, Amount, Type is missing, skipping"
-#~ msgstr ""
-#~ " 次のフィールド: 日付、金額、種類、の１つが見つかりません。スキップします"
+#~ msgid "Account name: %s"
+#~ msgstr "Favourite Account"
 
 #, fuzzy
-#~ msgid "View Stock Transactions"
-#~ msgstr "すべての取引を表示"
+#~ msgid "Account:"
+#~ msgstr "Favourite Account"
 
 #, fuzzy
-#~ msgid "centavo"
-#~ msgstr "歯科"
+#~ msgid "Specify the folder to use when archive attachments"
+#~ msgstr "Specify the colour for the nav tree"
 
-#~ msgid "Quit this program"
-#~ msgstr "このプログラムを終了します"
+#, fuzzy
+#~ msgid "Amount is missing"
+#~ msgstr "Favourite Account"
 
-#~ msgid "Total Amount: "
-#~ msgstr "合計金額: "
+#, fuzzy
+#~ msgid "Invalid Transaction"
+#~ msgstr "Specify the colour for future transactions"
 
-#~ msgid " Enter Repeating Transaction"
-#~ msgstr " 繰り返し取引を入力してください"
+#~ msgid "Checking/Savings"
+#~ msgstr "Current/Savings"
 
-#~ msgid "&Bank Accounts"
-#~ msgstr "銀行口座(&B)"
+#, fuzzy
+#~ msgid "Stock Investments: %s"
+#~ msgstr "Favourite Account"
 
-#~ msgid "Invalid Amount Entered "
-#~ msgstr "入力された金額は正しくありません "
+#~ msgid "Expand Bank Accounts in Trew View when tree is refreshed"
+#~ msgstr "Expand Bank Accounts in Tree View when tree is refreshed"
 
-#~ msgid "XSmall"
-#~ msgstr "極小"
+#, fuzzy
+#~ msgid "Total Balance on all Accounts"
+#~ msgstr "Favourite Account"
+
+#~ msgid "Expand Term Accounts in Trew View when tree is refreshed"
+#~ msgstr "Expand Term Accounts in Tree View when tree is refreshed"
+
+#, fuzzy
+#~ msgid "Term &Accounts"
+#~ msgstr "Favourite Account"
+
+#~ msgid "Restore Default Colors"
+#~ msgstr "Restore Default Colours"
+
+#, fuzzy
+#~ msgid "&Stock Accounts"
+#~ msgstr "Favourite Account"
+
+#, fuzzy
+#~ msgid "Amount ±: "
+#~ msgstr "Favourite Account"
+
+#, fuzzy
+#~ msgid "All Bank Accounts"
+#~ msgstr "Favourite Account"
+
+#~ msgid "Colors"
+#~ msgstr "Colours"
+
+#, fuzzy
+#~ msgid "Add Stock Transactions"
+#~ msgstr "Specify the colour for future transactions"
+
+#, fuzzy
+#~ msgid "From Account"
+#~ msgstr "Favourite Account"
+
+#, fuzzy
+#~ msgid "Cash Flow - With Bank Accounts"
+#~ msgstr "Favourite Account"
+
+#~ msgid "Expand Stocks Accounts in Trew View when tree is refreshed"
+#~ msgstr "Expand Stocks Accounts in Tree View when tree is refreshed"
+
+#, fuzzy
+#~ msgid "Select To Account-"
+#~ msgstr "Favourite Account"
+
+#, fuzzy
+#~ msgid "Accounts:"
+#~ msgstr "Favourite Account"
+
+#, fuzzy
+#~ msgid "Accounts: %s"
+#~ msgstr "Favourite Account"
+
+#, fuzzy
+#~ msgid "Term Account"
+#~ msgstr "Favourite Account"
+
