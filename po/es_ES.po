@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2018-08-28 15:26+0200\n"
-"PO-Revision-Date: 2019-01-17 15:18\n"
+"PO-Revision-Date: 2019-01-17 19:14\n"
 "Last-Translator: vomikan <nikolay.akimov@gmail.com>\n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -2674,11 +2674,11 @@ msgstr "Rial yemení"
 
 #: src/db/Table_Currencyformats.h:257
 msgid "Bolívar"
-msgstr ""
+msgstr "Bolívar"
 
 #: src/db/Table_Currencyformats.h:258
 msgid "Bitcoin"
-msgstr ""
+msgstr "Bitcoin"
 
 #: src/db/Table_Currencyformats.h:259
 msgid "Andorran Peseta (before 2003-07)"
@@ -2810,7 +2810,7 @@ msgstr "Corona (antes de 1993-03)"
 
 #: src/db/Table_Currencyformats.h:291
 msgid "Peso Convertible"
-msgstr ""
+msgstr "Peso Convertible"
 
 #: src/db/Table_Currencyformats.h:292
 msgid "Cuban Peso"
@@ -3058,7 +3058,7 @@ msgstr "Libra sursudanesa"
 
 #: src/db/Table_Currencyformats.h:353
 msgid "Dobra"
-msgstr ""
+msgstr "Dobra"
 
 #: src/db/Table_Currencyformats.h:354
 msgid "Rouble (before 1990-12)"
@@ -3078,7 +3078,7 @@ msgstr "Manat de Turkmenistán (antes de 2009-01)"
 
 #: src/db/Table_Currencyformats.h:358
 msgid "Pa’anga"
-msgstr ""
+msgstr "Pa’anga"
 
 #: src/db/Table_Currencyformats.h:359
 msgid "Timor Escudo (before 2002-11)"
@@ -3194,11 +3194,11 @@ msgstr "Electricidad"
 
 #: src/db/Table_Subcategory.h:107 src/db/Table_Subcategory.h:118
 msgid "Gas"
-msgstr ""
+msgstr "Gas"
 
 #: src/db/Table_Subcategory.h:108
 msgid "Internet"
-msgstr ""
+msgstr "Internet"
 
 #: src/db/Table_Subcategory.h:109
 msgid "Rent"
@@ -3656,11 +3656,11 @@ msgstr "Salida"
 
 #: src/general_report_manager.cpp:404
 msgid "SQL"
-msgstr ""
+msgstr "SQL"
 
 #: src/general_report_manager.cpp:405
 msgid "Lua"
-msgstr ""
+msgstr "Lua"
 
 #: src/general_report_manager.cpp:406
 msgid "Template"
@@ -3836,15 +3836,15 @@ msgstr "Parámetros"
 #: src/import_export/qif_export.cpp:104
 #: src/import_export/qif_import_gui.cpp:204
 msgid "Log"
-msgstr ""
+msgstr "Log"
 
 #: src/import_export/qif_export.cpp:111
 msgid "CSV"
-msgstr ""
+msgstr "CSV"
 
 #: src/import_export/qif_export.cpp:111
 msgid "QIF"
-msgstr ""
+msgstr "QIF"
 
 #: src/import_export/qif_export.cpp:129 src/mmframe.cpp:2834
 #: src/mmframe.cpp:2838 src/mmframe.cpp:2857 src/mmframe.cpp:2861
@@ -4005,7 +4005,7 @@ msgstr "Presione el botón OK para continuar"
 #: src/import_export/qif_import_gui.cpp:641
 #: src/import_export/qif_import_gui.cpp:658
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: src/import_export/qif_import_gui.cpp:614
 #: src/import_export/qif_import_gui.cpp:617
@@ -4065,7 +4065,7 @@ msgstr "Importando transacción %i de %i"
 #: src/import_export/qif_import_gui.cpp:865 src/webapp.cpp:120
 #, c-format
 msgid "Error: %s"
-msgstr ""
+msgstr "Error: %s"
 
 #: src/import_export/qif_import_gui.cpp:876
 msgid "Importing Transfers"
@@ -4404,7 +4404,7 @@ msgstr "Archivos CSV (*.csv)"
 
 #: src/maincurrencydialog.cpp:69
 msgid "Base"
-msgstr ""
+msgstr "Base"
 
 #: src/maincurrencydialog.cpp:70 src/reports/summarystocks.cpp:180
 #: src/stockdialog.cpp:424 src/stockspanel.cpp:98
@@ -4417,7 +4417,7 @@ msgstr "Último tipo"
 
 #: src/maincurrencydialog.cpp:73
 msgid "Hist."
-msgstr ""
+msgstr "Hist."
 
 #: src/maincurrencydialog.cpp:77 src/maincurrencydialog.cpp:348
 #: src/maincurrencydialog.cpp:633 src/maincurrencydialog.cpp:739
@@ -5212,7 +5212,7 @@ msgstr "Importar desde QIF"
 
 #: src/mmframe.cpp:1485
 msgid "&WebApp..."
-msgstr ""
+msgstr "&WebApp..."
 
 #: src/mmframe.cpp:1485
 msgid "Import from WebApp"
@@ -5468,7 +5468,7 @@ msgstr "Abrir la web de Money Manager EX para las últimas noticias, actualizaci
 
 #: src/mmframe.cpp:1718
 msgid "Facebook"
-msgstr ""
+msgstr "Facebook"
 
 #: src/mmframe.cpp:1718
 msgid "Visit us on Facebook"
@@ -5480,7 +5480,7 @@ msgstr "Síguenos en Twitter"
 
 #: src/mmframe.cpp:1721
 msgid "Twitter"
-msgstr ""
+msgstr "Twitter"
 
 #: src/mmframe.cpp:1724
 msgid "Watch free video materials about MMEX"
@@ -5488,7 +5488,7 @@ msgstr "Ver vídeos gratis sobre MMEX"
 
 #: src/mmframe.cpp:1724
 msgid "YouTube"
-msgstr ""
+msgstr "YouTube"
 
 #: src/mmframe.cpp:1727
 msgid "Communicate online with MMEX team from your desktop or mobile device"
@@ -5496,7 +5496,7 @@ msgstr "Comuníquese en línea con el equipo de MMEX desde tu escritorio o móvi
 
 #: src/mmframe.cpp:1727
 msgid "Slack"
-msgstr ""
+msgstr "Slack"
 
 #: src/mmframe.cpp:1730
 msgid "Access open source code repository and track reported bug statuses"
@@ -5504,7 +5504,7 @@ msgstr "Acceda al repositorio de código libre y siga el estado de los errores i
 
 #: src/mmframe.cpp:1730
 msgid "GitHub"
-msgstr ""
+msgstr "GitHub"
 
 #: src/mmframe.cpp:1733
 msgid "Read and update wiki pages"
@@ -5524,7 +5524,7 @@ msgstr "Visita el foro MMEX para ver los comentarios de los usuarios o informar 
 
 #: src/mmframe.cpp:1740
 msgid "Google Play"
-msgstr ""
+msgstr "Google Play"
 
 #: src/mmframe.cpp:1741
 msgid "Get free Android version and run MMEX on your smart phone or tablet"
@@ -5592,7 +5592,7 @@ msgstr "Comprobar act&ualizaciones"
 
 #: src/mmframe.cpp:1792
 msgid "Check if a new MMEX version is avaiable"
-msgstr ""
+msgstr "Comprobar si hay nuevas versiones de MMEX"
 
 #: src/mmframe.cpp:1797 src/mmframe.cpp:1842
 msgid "&About..."
@@ -5749,7 +5749,7 @@ msgstr "No es posible sobrescribir el fichero seleccionado"
 
 #: src/mmframe.cpp:2231
 msgid "Accounts, payees and categories succesfully syncronized to WebApp!"
-msgstr ""
+msgstr "¡Cuentas, beneficiarios y categorías sincronizadas satisfactoriamente a la WebApp!"
 
 #: src/mmframe.cpp:2231
 msgid "WebApp export"
@@ -5923,13 +5923,13 @@ msgstr "Ganancia/Pérdida"
 #: src/reports/cashflow.cpp:249 src/reports/categexp.cpp:166
 #: src/reports/categovertimeperf.cpp:141 src/reports/summary.cpp:162
 msgid "Total"
-msgstr ""
+msgstr "Total"
 
 #: src/mmhomepagepanel.cpp:125 src/mmhomepagepanel.cpp:754
 #: src/reports/incexpenses.cpp:266 src/reports/payee.cpp:146
 #: src/reports/summarystocks.cpp:137 src/splittransactionsdialog.cpp:141
 msgid "Total:"
-msgstr ""
+msgstr "Total:"
 
 #: src/mmhomepagepanel.cpp:196
 #, c-format
@@ -6071,7 +6071,7 @@ msgstr "A plazo"
 
 #: src/model/Model_Account.cpp:37 src/model/Model_Currency.cpp:30
 msgid "Crypto"
-msgstr ""
+msgstr "Crypto"
 
 #: src/model/Model_Account.cpp:38
 msgid "Investment"
@@ -6149,7 +6149,7 @@ msgstr "Quincenalmente"
 
 #: src/model/Model_Currency.cpp:29
 msgid "Fiat"
-msgstr ""
+msgstr "Fiat"
 
 #: src/model/Model_CustomField.cpp:25
 msgid "String"
@@ -6161,7 +6161,7 @@ msgstr "Entero"
 
 #: src/model/Model_CustomField.cpp:27
 msgid "Decimal"
-msgstr ""
+msgstr "Decimal"
 
 #: src/model/Model_CustomField.cpp:28
 msgid "Boolean"
@@ -6243,7 +6243,7 @@ msgstr "Informe de previsión"
 
 #: src/optiondialog.cpp:130
 msgid "General"
-msgstr ""
+msgstr "General"
 
 #: src/optiondialog.cpp:131 src/optionsettingsview.cpp:54
 msgid "View Options"
@@ -6554,7 +6554,7 @@ msgstr "Ajustes de la WebApp"
 
 #: src/optionsettingsnet.cpp:67
 msgid "Url"
-msgstr ""
+msgstr "URL"
 
 #: src/optionsettingsnet.cpp:71
 msgid "Specify the Web App URL without final slash"
@@ -6562,7 +6562,7 @@ msgstr "Especifique la URL de la Web App sin la barra final"
 
 #: src/optionsettingsnet.cpp:74
 msgid "GUID"
-msgstr ""
+msgstr "GUID"
 
 #: src/optionsettingsnet.cpp:78
 msgid "Specify the Web App GUID"
@@ -6590,7 +6590,7 @@ msgstr "Especificar el número de puerto del proxy"
 
 #: src/optionsettingsnet.cpp:108
 msgid "Proxy"
-msgstr ""
+msgstr "Proxy"
 
 #: src/optionsettingsnet.cpp:110 src/optionsettingsnet.cpp:134
 msgid "Port"
@@ -6670,7 +6670,7 @@ msgstr "Prueba de conexión con WebApp"
 
 #: src/optionsettingsnet.cpp:218
 msgid "WebApp connection tested succesfully!"
-msgstr ""
+msgstr "¡Prueba de conexión con WebApp satisfactoria!"
 
 #: src/optionsettingsnet.cpp:223
 msgid "Some parameters are missing."
@@ -6914,7 +6914,7 @@ msgstr "Ejecución del presupuesto para %s"
 
 #: src/reports/budgetingperf.cpp:194 src/reports/budgetingperf.cpp:197
 msgid "Est."
-msgstr ""
+msgstr "Est."
 
 #: src/reports/budgetingperf.cpp:195 src/reports/budgetingperf.cpp:198
 msgid "Act."
@@ -6922,7 +6922,7 @@ msgstr "Real."
 
 #: src/reports/budgetingperf.cpp:199
 msgid "%"
-msgstr ""
+msgstr "%"
 
 #: src/reports/budgetingperf.cpp:241
 msgid "Monthly Total"
@@ -7725,7 +7725,7 @@ msgstr "Moneda principal proporcionada incorrecta para la tasa de cambio con el 
 
 #: src/util.cpp:801
 msgid "UTF-8"
-msgstr ""
+msgstr "UTF-8"
 
 #: src/util.cpp:814
 msgid "February"
@@ -7777,7 +7777,7 @@ msgstr "Octubre"
 
 #: src/util.cpp:822
 msgid "Feb"
-msgstr ""
+msgstr "Feb"
 
 #: src/util.cpp:822
 msgid "Jan"
@@ -7785,7 +7785,7 @@ msgstr "Ene"
 
 #: src/util.cpp:822
 msgid "Mar"
-msgstr ""
+msgstr "Mar"
 
 #: src/util.cpp:823
 msgid "Apr"
@@ -7793,7 +7793,7 @@ msgstr "Abr"
 
 #: src/util.cpp:823
 msgid "Jun"
-msgstr ""
+msgstr "Jun"
 
 #: src/util.cpp:824
 msgid "Aug"
@@ -7801,11 +7801,11 @@ msgstr "Ago"
 
 #: src/util.cpp:824
 msgid "Jul"
-msgstr ""
+msgstr "Jul"
 
 #: src/util.cpp:824
 msgid "Sep"
-msgstr ""
+msgstr "Sep"
 
 #: src/util.cpp:825
 msgid "Dec"
@@ -7813,11 +7813,11 @@ msgstr "Dic"
 
 #: src/util.cpp:825
 msgid "Nov"
-msgstr ""
+msgstr "Nov"
 
 #: src/util.cpp:825
 msgid "Oct"
-msgstr ""
+msgstr "Oct"
 
 #: src/util.cpp:830
 msgid "Monday"
@@ -8129,7 +8129,7 @@ msgstr "¡No es posible comprobar las actualizaciones!"
 
 #: src/wizard_update.cpp:337 src/wizard_update.cpp:352
 msgid "Error: "
-msgstr ""
+msgstr "Error: "
 
 #: src/wizard_update.cpp:338 src/wizard_update.cpp:353
 #: src/wizard_update.cpp:390
