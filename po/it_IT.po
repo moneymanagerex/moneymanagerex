@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2018-08-28 15:26+0200\n"
-"PO-Revision-Date: 2019-01-17 12:25\n"
+"PO-Revision-Date: 2019-01-17 19:45\n"
 "Last-Translator: vomikan <nikolay.akimov@gmail.com>\n"
 "Language-Team: Italian\n"
 "Language: it_IT\n"
@@ -47,7 +47,7 @@ msgstr "Licenza"
 
 #: src/aboutdialog.cpp:166
 msgid "Privacy"
-msgstr ""
+msgstr "Privacy"
 
 #: src/aboutdialog.cpp:197 src/accountdialog.cpp:372
 #: src/appstartdialog.cpp:136 src/assetdialog.cpp:299
@@ -62,7 +62,7 @@ msgstr ""
 #: src/splitdetailsdialog.cpp:160 src/splittransactionsdialog.cpp:170
 #: src/transactionsupdatedialog.cpp:213 src/transdialog.cpp:568
 msgid "&OK "
-msgstr ""
+msgstr "&OK "
 
 #: src/accountdialog.cpp:85 src/mmframe.cpp:1579 src/mmframe.cpp:1827
 #: src/wizard_newaccount.cpp:80 src/wizard_newaccount.cpp:87
@@ -405,7 +405,7 @@ msgstr "Tasso %"
 #: src/assetdialog.cpp:241
 #, c-format
 msgid "Enter the rate at which the asset changes its value in % per year"
-msgstr ""
+msgstr "Immettere il tasso percentuale annuo con cui l'investimento cambia valore"
 
 #: src/assetdialog.cpp:253
 msgid "Organize attachments of this asset"
@@ -442,7 +442,7 @@ msgstr "Non è stato trovato un conto patrimoniale con lo stesso nome.\n\n"
 #: src/mmcheckingpanel.cpp:1095 src/reports/transactions.cpp:73
 #: src/stockspanel.cpp:95
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #: src/assetspanel.cpp:63 src/billsdepositsdialog.cpp:567
 #: src/billsdepositspanel.cpp:108 src/customfieldlistdialog.cpp:54
@@ -590,7 +590,9 @@ msgstr "Variazioni di Valore: %s %s"
 msgid "This asset does not have its own account\n\n"
 "Multiple transactions for this asset are not recommended.\n"
 "Please use the popup: 'Open Asset Account' to track the transaction."
-msgstr ""
+msgstr "Questa attività non dispone di un proprio conto\n\n"
+"Transazioni multiple per questo conto non sono raccomandate.\n"
+"Si prega di utilizzare il popup: 'Apri un conto patrimoniale' per tenere traccia della transazione."
 
 #: src/assetspanel.cpp:782
 msgid "Asset Management"
@@ -604,7 +606,7 @@ msgstr "Conto \t Data\t   Valore\n\n"
 #: src/import_export/qif_import_gui.cpp:92
 #: src/import_export/univcsvdialog.cpp:1104 src/payeedialog.cpp:64
 msgid "#"
-msgstr ""
+msgstr "#"
 
 #: src/attachmentdialog.cpp:55 src/general_report_manager.cpp:407
 msgid "Description"
@@ -613,7 +615,7 @@ msgstr "Descrizione"
 #: src/attachmentdialog.cpp:56 src/import_export/qif_export.cpp:178
 #: src/import_export/univcsvdialog.cpp:163
 msgid "File"
-msgstr ""
+msgstr "File"
 
 #: src/attachmentdialog.cpp:64
 msgid "Attachment folder not defined."
@@ -871,7 +873,7 @@ msgstr "Ripetizioni"
 
 #: src/billsdepositsdialog.cpp:457
 msgid "Advance the next occuring date with the specified values"
-msgstr ""
+msgstr "Anticipa la prossima data con i valori specificati"
 
 #: src/billsdepositsdialog.cpp:465 src/billsdepositsdialog.cpp:1363
 msgid "Payments Left"
@@ -879,7 +881,7 @@ msgstr "Pagamenti rimanenti"
 
 #: src/billsdepositsdialog.cpp:479
 msgid "Request user to enter payment"
-msgstr ""
+msgstr "Si richiede all'utente di inserire il pagamento"
 
 #: src/billsdepositsdialog.cpp:480
 msgid "User requested to enter this transaction on the 'Date Paid'"
