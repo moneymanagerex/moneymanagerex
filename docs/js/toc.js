@@ -24,8 +24,7 @@ function addTOC(list, node) {
 function generateTOC(toc) {
     var i2 = 0, i3 = 0;
     toc = toc.appendChild(document.createElement("ul"));
-	nodeList = document.querySelectorAll("h2, h3");
-    //nodeList.forEach(function(node) 
+	let nodeList = document.querySelectorAll("h2, h3");
 	for(var i = 0; i < nodeList.length; i++)
 	{
         var tagName = nodeList[i].nodeName.toLowerCase();
