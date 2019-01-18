@@ -79,7 +79,7 @@
         Sample
     </div>
     <div style="overflow:auto;width:650px;height:220px;background:#eee;float:left;left:200px;top:0;padding:3px;">
-
+<code>
 with b as  (<br>
 &nbsp;&nbsp;select ACCOUNTID, STATUS <br>
 &nbsp;&nbsp;&nbsp;&nbsp;, (case when TRANSCODE = 'Deposit' then TRANSAMOUNT else -TRANSAMOUNT end) as TRANSAMOUNT<br>
@@ -98,7 +98,7 @@ where a.STATUS = 'Open' <br>
 &nbsp;&nbsp;and b.STATUS <> 'V' <br>
 &nbsp;&nbsp;and b.TRANSDATE <= <font style="color:black; background:yellow">'&single_date'</font> <br>
 group by a.ACCOUNTNAME order by a.ACCOUNTNAME asc; <br>
-
+</code>
 </div>
 </div>
 <br>
