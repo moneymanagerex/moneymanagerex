@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2018-08-28 15:26+0200\n"
-"PO-Revision-Date: 2019-01-17 12:26\n"
+"PO-Revision-Date: 2019-01-18 07:23\n"
 "Last-Translator: vomikan <nikolay.akimov@gmail.com>\n"
 "Language-Team: German\n"
 "Language: de_DE\n"
@@ -349,7 +349,7 @@ msgstr "Details zu Vermögenswerten"
 #: src/import_export/qif_import_gui.cpp:263 src/maincurrencydialog.cpp:71
 #: src/payeedialog.cpp:65 src/reports/summarystocks.cpp:179
 msgid "Name"
-msgstr ""
+msgstr "Name"
 
 #: src/assetdialog.cpp:192
 msgid "Enter the name of the asset"
@@ -596,7 +596,7 @@ msgstr "Dieser Vermögenswert hat kein eigenes Konto.\n\n"
 
 #: src/assetspanel.cpp:782
 msgid "Asset Management"
-msgstr ""
+msgstr "Vermögensverwaltung"
 
 #: src/assetspanel.cpp:801
 msgid "Account \t Date\t   Value\n\n"
