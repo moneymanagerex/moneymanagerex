@@ -13,6 +13,11 @@
 
 <body dir="ltr" lang="en-US" onload="generateTOC(document.getElementById('toc'));">
     <a id="go_home" href="./index.html" style="font-weight: bold">Inicio</a><br>
+    <script>
+        var lang = getParameterValue("lang");
+        if (lang !== '')
+            document.getElementById('go_home').href = "index.html?lang=" + lang;
+    </script>
 
     <a href="#" class="back-to-top"><img src="../img/backtotop.png" alt="Volver arriba" /></a>
     <!--Smooth Back to Top Button End-->
@@ -22,24 +27,20 @@
     </div>
     <hr>
     <p>
-        <strong>MMEX</strong> allows for the setting up of a budget for a Year and/or
-        Month.
+        <strong>MMEX</strong> permite la configuración de un presupuesto para un año y/o mes.
     </p>
-    <p>This would allow you to compare how you did versus your budget.</p>
-    <p>Budgets can be displayed in Calendar Years or Financial Years.</p>
+    <p>Esto te permitiría comparar como lo hiciste respecto a tu presupuesto.</p>
+    <p>Los presupuestos se pueden mostrar en años naturales o años fiscales.</p>
     <p>
-        Use the Options Dialog to set the start of the Financial Year, and any
-        permanent settings as required.
+        Use el menú Opciones para configurar el inicio del año fiscal y cualquier configuración permanente que se requiera.
     </p>
     <p>
-        The <strong>View&rarr;Budgets: As Financial Years</strong> can also be used to switch
-        between the 2 views
+        La opción <strong>Ver&rarr;Presupuestos: como años fiscales</strong> también se puede usar para intercambiar entre las dos vistas
     </p>
     <hr>
     <h2>Creando nuevo presupuesto</h2>
     <p>
-        To set up a budget right click on the 'Budgeting' tree node and add a
-        budget month or year.
+        Para configurar un presupuesto pinche con el botón derecho en el nodo del árbol 'Presupuestando' y añade un presupuesto mensual o anual.
     </p>
     <div class="row">
         <div class="col-xs-1"></div>
@@ -50,25 +51,22 @@
 
     <h2>Edición de categorías del presupuesto</h2>
     <p>
-        Once a year has been added, select the year to display the Budget
-        Setup.
+        Una vez añadido un año, selecciona el año para mostrar la configuración del presupuesto.
     </p>
     <p>
-        Each category can then be edited by double clicking the selected
-        category.
+        Cada categoría se puede editar haciendo doble click en la categoría seleccionada.
     </p>
     <div class="row">
         <div class="col-xs-1"></div>
         <img class="shadow" id="budget_entry_details" alt="Detalles del presupuesto" src="budget_entry_details.png">
     </div>
     <br>
-    <p>This is done for all subsequent categories.</p>
+    <p>Esto se hace para todas las categorías posteriores.</p>
     <hr>
 
     <h2>Organizar presupuesto</h2>
     <p>
-        This becomes the budget for that year. Subsequent months and/or years can
-        then be derived from that year.
+        Este se convierte en el presupuesto para ese año. Los meses y/o años posteriores se pueden derivar de ese año.
     </p>
     <div class="row">
         <div class="col-xs-1"></div>
@@ -76,15 +74,13 @@
     </div>
 
     <br>
-    <p>Category Summary Totals are displayed for each main category.</p>
+    <p>Para cada categoría se muestran sus totales.</p>
     <p>
-        When setting up a budget, the Budget Summary Totals can be turned off by
-        activating the Menu Item:
+        Cuando se configura un presupuesto, los totales del presupuesto se pueden desactivar desde la opción del menú:
     </p>
-    <p>View&rarr;Budget Setup: Without Summaries</p>
+    <p>Ver&rarr;Configuración del presupuesto: sin totales</p>
     <p>
-        Using the reports under 'Budgeting', it is now possible to compare how you
-        spent the money versus your actual budget.
+        Usando los informes bajo 'Presupuestando' podrás comparar cómo gastas el dinero frente a tu presupuesto actual.
     </p>
     <hr>
     <span id="translator"></span>
