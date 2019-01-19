@@ -28,7 +28,10 @@ function generateTOC(toc) {
         .forEach(function(node) {
             var tagName = node.nodeName.toLowerCase();
             if (tagName === "h3") {
-                if (++i3 === 1) toc.lastChild.appendChild(document.createElement("ul"));
+                ++i3;
+                if (i3 === 1) {
+                    toc.lastChild.appendChild(document.createElement("ul"));
+                }
                 addId(i2 + "." + i3, node);
                 addTOC(toc.lastChild.lastChild, node);
             }
