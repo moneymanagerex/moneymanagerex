@@ -170,12 +170,12 @@
         </div>
     </div>
     <script>
-        var lang = getParameterValue("lang").substring(0, 2);
+        var lang = getParameterValue("lang");
         var img_path = "img/mmex_concept.png";
         if (lang == 'ru')
             img_path = "img/mmex_concept_ru.png";
-        else if (lang == 'po')
-            img_path = "img/mmex_concept_po.png";
+        else if (lang == 'pl')
+            img_path = "img/mmex_concept_pl.png";
         else if (lang == 'hu')
             img_path = "img/mmex_concept_hu.png";
         document.getElementById('mmex_concept').src = img_path;
