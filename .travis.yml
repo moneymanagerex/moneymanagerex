@@ -52,8 +52,25 @@ env:
 
 matrix:
   fast_finish: true
+
   include: # add non-linux targets
+  - name: Validate HTML CSS SVG
+    language: java
+    jdk: openjdk8
+    cache: pip
+    services:
+    install: pip install --user html5validator
+    before_script: skip
+    script: |-
+      set -o pipefail
+      html5validator --also-check-svg --also-check-css --blacklist 3rd --root . |& \
+        sed "s#file:$TRAVIS_BUILD_DIR/./##"
+    after_success: skip
+    deploy: skip
+    env: OS=none
+    if: tag != nightly
   - { os: osx, osx_image: xcode10.1, compiler: clang, env: OS=macos DIST=10.7 }
+
   allow_failures:
   - env: OS=debian DIST=jessie
   - env: OS=debian DIST=stretch
