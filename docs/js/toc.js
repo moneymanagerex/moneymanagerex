@@ -24,21 +24,17 @@ function addTOC(list, node) {
 function generateTOC(toc) {
     var i2 = 0, i3 = 0;
     toc = toc.appendChild(document.createElement("ul"));
-    Array.prototype.slice.apply(document.querySelectorAll("h2, h3"))
-        .forEach(function(node) {
-            var tagName = node.nodeName.toLowerCase();
-            if (tagName === "h3") {
-                ++i3;
-                if (i3 === 1) {
-                    toc.lastChild.appendChild(document.createElement("ul"));
-                }
-                addId(i2 + "." + i3, node);
-                addTOC(toc.lastChild.lastChild, node);
-            }
-            else if (tagName === "h2") {
-                i3 = 0;
-                addId(++i2, node);
-                addTOC(toc, node);
-            }
-        });
+    document.querySelectorAll("h2, h3").forEach(function(node) {
+        var tagName = node.nodeName.toLowerCase();
+        if (tagName === "h3") {
+            if (++i3 === 1) toc.lastChild.appendChild(document.createElement("ul"));
+            addId(i2 + "." + i3, node);
+            addTOC(toc.lastChild.lastChild, node);
+        }
+        else if (tagName === "h2") {
+            i3 = 0;
+            addId(++i2, node);
+            addTOC(toc, node);
+        }
+    });
 }
