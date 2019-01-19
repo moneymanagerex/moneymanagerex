@@ -69,8 +69,8 @@ void OptionSettingsMisc::Create()
     share_precision_sizer->Add(new wxStaticText(this, wxID_STATIC, _("Share Precision")), wxSizerFlags(g_flagsExpand).Proportion(0));
 
     m_share_precision = new wxSpinCtrl(this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize
-        , wxSP_ARROW_KEYS, 2, 10, Option::instance().SharePrecision());
-    m_share_precision->SetValue(Option::instance().SharePrecision());
+        , wxSP_ARROW_KEYS, 2, 10, Option::instance().getSharePrecision());
+    m_share_precision->SetValue(Option::instance().getSharePrecision());
     m_share_precision->SetToolTip(_("Set the precision for Share prices"));
 
     share_precision_sizer->Add(m_share_precision, wxSizerFlags(g_flagsExpand).Proportion(0));
@@ -90,12 +90,12 @@ void OptionSettingsMisc::Create()
     wxChoice* defaultDateChoice = new wxChoice(this
         , ID_DIALOG_OPTIONS_DEFAULT_TRANSACTION_DATE
         , wxDefaultPosition, wxDefaultSize, default_values);
-    defaultDateChoice->SetSelection(Option::instance().TransDateDefault());
+    defaultDateChoice->SetSelection(Option::instance().getTransDateDefault());
 
     wxChoice* defaultPayeeChoice = new wxChoice(this
         , ID_DIALOG_OPTIONS_DEFAULT_TRANSACTION_PAYEE
         , wxDefaultPosition, wxDefaultSize, default_values);
-    defaultPayeeChoice->SetSelection(Option::instance().TransPayeeSelection());
+    defaultPayeeChoice->SetSelection(Option::instance().getTransPayeeSelection());
 
     default_values.clear();
     default_values.Add(_("None"));
@@ -104,13 +104,13 @@ void OptionSettingsMisc::Create()
     wxChoice* defaultCategoryChoice = new wxChoice(this
         , ID_DIALOG_OPTIONS_DEFAULT_TRANSACTION_CATEGORY
         , wxDefaultPosition, wxDefaultSize, default_values);
-    defaultCategoryChoice->SetSelection(Option::instance().TransCategorySelection());
+    defaultCategoryChoice->SetSelection(Option::instance().getTransCategorySelection());
 
     wxChoice* default_status = new wxChoice(this
         , ID_DIALOG_OPTIONS_DEFAULT_TRANSACTION_STATUS
         , wxDefaultPosition, wxDefaultSize, Model_Checking::all_status());
 
-    default_status->SetSelection(Option::instance().TransStatusReconciled());
+    default_status->SetSelection(Option::instance().getTransStatusReconciled());
 
     wxFlexGridSizer* newTransflexGridSizer = new wxFlexGridSizer(0, 2, 0, 0);
     newTransflexGridSizer->AddGrowableCol(1);
@@ -211,19 +211,19 @@ void OptionSettingsMisc::SaveStocksUrl()
 void OptionSettingsMisc::SaveSettings()
 {
     wxChoice* itemChoice = (wxChoice*)FindWindow(ID_DIALOG_OPTIONS_DEFAULT_TRANSACTION_PAYEE);
-    Option::instance().TransPayeeSelection(itemChoice->GetSelection());
+    Option::instance().setTransPayeeSelection(itemChoice->GetSelection());
 
     itemChoice = (wxChoice*)FindWindow(ID_DIALOG_OPTIONS_DEFAULT_TRANSACTION_CATEGORY);
-    Option::instance().TransCategorySelection(itemChoice->GetSelection());
+    Option::instance().setTransCategorySelection(itemChoice->GetSelection());
 
     itemChoice = (wxChoice*)FindWindow(ID_DIALOG_OPTIONS_DEFAULT_TRANSACTION_STATUS);
-    Option::instance().TransStatusReconciled(itemChoice->GetSelection());
+    Option::instance().setTransStatusReconciled(itemChoice->GetSelection());
 
     itemChoice = (wxChoice*)FindWindow(ID_DIALOG_OPTIONS_DEFAULT_TRANSACTION_DATE);
-    Option::instance().TransDateDefault(itemChoice->GetSelection());
+    Option::instance().setTransDateDefault(itemChoice->GetSelection());
 
     SaveStocksUrl();
-    Option::instance().SharePrecision(m_share_precision->GetValue());
+    Option::instance().setSharePrecision(m_share_precision->GetValue());
 
     wxCheckBox* itemCheckBox = (wxCheckBox*)FindWindow(ID_DIALOG_OPTIONS_CHK_BACKUP);
     Model_Setting::instance().Set("BACKUPDB", itemCheckBox->GetValue());

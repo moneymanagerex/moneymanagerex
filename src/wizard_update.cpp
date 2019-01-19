@@ -47,7 +47,7 @@ mmUpdateWizard::mmUpdateWizard(wxFrame *frame, const Value& new_version)
         << wxString::Format(_("Your version is %s"), mmex::version::string) << "\n"
         << wxString::Format(_("New version is %s (published at %s)")
             , m_new_version["tag_name"].GetString()+1
-            , pub_date.Format(Option::instance().DateFormat()) ) << "\n";
+            , pub_date.Format(Option::instance().getDateFormat()) ) << "\n";
 
     wxBoxSizer *page1_sizer = new wxBoxSizer(wxVERTICAL);
     page1->SetSizer(page1_sizer);

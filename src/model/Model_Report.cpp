@@ -395,7 +395,7 @@ wxString Model_Report::get_html(const Data* r)
         s.Replace("\\", "\\\\");
         report(L"FILESEPARATOR") = s;
         report(L"LANGUAGE") = Option::instance().LanguageISO6391();
-        report(L"HTMLSCALE") = wxString::Format("%d", Option::instance().HtmlFontSize());
+        report(L"HTMLSCALE") = wxString::Format("%d", Option::instance().getHtmlFontSize());
     }
     report(L"ERRORS") = errors;
 

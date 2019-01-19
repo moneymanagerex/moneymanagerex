@@ -53,7 +53,7 @@ void  mmReportPayeeExpenses::RefreshData()
 
     std::map<int, std::pair<double, double> > payeeStats;
     getPayeeStats(payeeStats, const_cast<mmDateRange*>(m_date_range)
-        , Option::instance().IgnoreFutureTransactions());
+        , Option::instance().getIgnoreFutureTransactions());
 
     data_holder line;
 

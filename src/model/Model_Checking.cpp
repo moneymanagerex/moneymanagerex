@@ -423,7 +423,7 @@ void Model_Checking::getEmptyTransaction(Data &data, int accountID)
 {
     data.TRANSID = -1;
     wxDateTime trx_date = wxDateTime::Today();
-    if (Option::instance().TransDateDefault() != 0)
+    if (Option::instance().getTransDateDefault() != 0)
     {
         auto trans = instance().find(ACCOUNTID(accountID), TRANSDATE(trx_date, LESS_OR_EQUAL));
         std::stable_sort(trans.begin(), trans.end(), SorterByTRANSDATE());
@@ -445,7 +445,7 @@ void Model_Checking::getEmptyTransaction(Data &data, int accountID)
 
     data.TRANSDATE = trx_date.FormatISODate();
     data.ACCOUNTID = accountID;
-    data.STATUS = toShortStatus(all_status()[Option::instance().TransStatusReconciled()]);
+    data.STATUS = toShortStatus(all_status()[Option::instance().getTransStatusReconciled()]);
     data.TRANSCODE = all_type()[WITHDRAWAL];
     data.CATEGID = -1;
     data.SUBCATEGID = -1;
@@ -453,7 +453,7 @@ void Model_Checking::getEmptyTransaction(Data &data, int accountID)
     data.TRANSAMOUNT = 0;
     data.TOTRANSAMOUNT = 0;
     data.TRANSACTIONNUMBER = "";
-    if (Option::instance().TransCategorySelection() != Option::NONE)
+    if (Option::instance().getTransCategorySelection() != Option::NONE)
     {
         auto trx = instance().find(TRANSCODE(TRANSFER, NOT_EQUAL)
             , ACCOUNTID(accountID, EQUAL), TRANSDATE(trx_date, LESS_OR_EQUAL));
@@ -463,7 +463,7 @@ void Model_Checking::getEmptyTransaction(Data &data, int accountID)
             std::stable_sort(trx.begin(), trx.end(), SorterByTRANSDATE());
             Model_Payee::Data* payee = Model_Payee::instance().get(trx.rbegin()->PAYEEID);
             if (payee) data.PAYEEID = payee->PAYEEID;
-            if (payee && Option::instance().TransCategorySelection() != Option::NONE)
+            if (payee && Option::instance().getTransCategorySelection() != Option::NONE)
             {
                 data.CATEGID = payee->CATEGID;
                 data.SUBCATEGID = payee->SUBCATEGID;

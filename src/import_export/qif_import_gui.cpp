@@ -274,7 +274,7 @@ void mmQIFImportDialog::CreateControls()
     flex_sizer_b->Add(payeeIsNotesCheckBox_, g_flagsH);
 
     // Date Format Settings
-    m_dateFormatStr = Option::instance().DateFormat();
+    m_dateFormatStr = Option::instance().getDateFormat();
 
     wxStaticText* dateFormat = new wxStaticText(this, wxID_STATIC, _("Date Format"));
     choiceDateFormat_ = new wxComboBox(this, wxID_ANY);

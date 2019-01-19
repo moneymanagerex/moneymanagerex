@@ -4,14 +4,12 @@
     <meta charset="UTF-8">
     <title>Money Manager Ex User Manual</title>
     <link href="master.css" rel="stylesheet" type="text/css">
-    <script src="js/translator.js"></script>
-    <script src="js/translations.js"></script>
     <script src="js/toc.js"></script>
     <script src='http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js'></script>
     <script src="js/back_to_top.js"></script>
     <link href="back_to_top.css" rel="stylesheet" type="text/css">
 </head>
-<body dir="ltr" onload="translate();generateTOC(document.getElementById('toc'));">
+<body dir="ltr" onload="generateTOC(document.getElementById('toc'));">
 
     <a href="#" class="back-to-top"><img src="img/backtotop.png" alt="Back to Top" /></a>
     <!--Smooth Back to Top Button End-->
@@ -166,20 +164,9 @@
             <p class="i18n" id="concept_5">Dies kann, wie in der folgenden Abbildung gezeigt vereinfacht werden:</p>
         </div>
         <div class="col-xs-8 text-info">
-            <p><img class="shadow" id="mmex_concept" alt="MMEX Konzept" src="./Money Manager Ex-Benutzerhandbuch_files/mmex_concept.png"></p>
+            <p><img class="shadow" id="mmex_concept" alt="MMEX Konzept" src="img/mmex_concept.png"></p>
         </div>
     </div>
-    <script>
-        var lang = getParameterValue("lang").substring(0, 2);
-        var img_path = "img/mmex_concept.png";
-        if (lang == 'ru')
-            img_path = "img/mmex_concept_ru.png";
-        else if (lang == 'po')
-            img_path = "img/mmex_concept_po.png";
-        else if (lang == 'hu')
-            img_path = "img/mmex_concept_hu.png";
-        document.getElementById('mmex_concept').src = img_path;
-    </script>
     <p class="i18n" id="concept_6">
         <font>
             <font>
@@ -2187,12 +2174,7 @@
     </div>
     <hr>
     <h2 class="i18n">Aktien</h2>
-    <a id="stocks_href" href="http://desktop.moneymanagerex.org/stocks_and_shares.html">Aktien, Aktien und Aktiendividende Verwaltung in MMEX</a>
-    <script>
-        var lang = getParameterValue("lang");
-        if (lang !== '')
-            document.getElementById('stocks_href').href = "stocks_and_shares.html?lang=" + lang;
-    </script>
+    <a id="stocks_href" href="stocks_and_shares.html">Aktien, Aktien und Aktiendividende Verwaltung in MMEX</a>
     <hr>
     <h2 class="i18n">Aktiva</h2>
     <p class="i18n" id="assets_1">
@@ -2206,12 +2188,7 @@
     </p>
     <hr>
     <h2 class="i18n">Budgetierung</h2>
-    <a class="i18n" id="budget_href" href="http://desktop.moneymanagerex.org/budget.html">Budgetierung in MMEX</a>
-    <script>
-        var lang = getParameterValue("lang");
-        if (lang !== '')
-            document.getElementById('budget_href').href = "budget.html?lang=" + lang;
-    </script>
+    <a class="i18n" id="budget_href" href="budget.html">Budgetierung in MMEX</a>
     <hr>
     <h2 class="i18n" >Berichte</h2>
     <p>
@@ -2336,12 +2313,7 @@
     <br>
     <hr>
     <h3 class="i18n">Allgemeine Report Manager</h3>
-    <a class="i18n" id="grm_href" href="http://desktop.moneymanagerex.org/grm.html">Allgemeine Report Manager</a>
-    <script>
-        var lang = getParameterValue("lang");
-        if (lang !== '')
-            document.getElementById('grm_href').href = "grm.html?lang=" + lang;
-    </script>
+    <a id="grm_href" href="grm.html">Allgemeine Report Manager</a>
     <br>
     <hr>
     <h3 class="i18n">Drucken</h3>
@@ -2898,7 +2870,7 @@
     </p>
     <hr>
     Copyright &copy; 2005-2009 Madhan Kanagavel<br>
-    Copyright &copy; 2013-2018 MMEX contributors<br>
+    Copyright &copy; 2013-2019 MMEX contributors<br>
 
 </body>
 </html>

@@ -70,7 +70,7 @@ bool mmGUIApp::setGUILanguage(wxLanguage lang)
     trans->AddStdCatalog();
     if (!trans->AddCatalog("mmex", wxLANGUAGE_ENGLISH_US) && lang != wxLANGUAGE_ENGLISH_US)
     {
-        if (lang==wxLANGUAGE_DEFAULT)
+        if (lang == wxLANGUAGE_DEFAULT)
             mmErrorDialogs::MessageWarning(NULL
                 ,_("Can not load translation for default language")
                 ,_("Language change"));
@@ -83,8 +83,8 @@ bool mmGUIApp::setGUILanguage(wxLanguage lang)
         return false;
     }
     wxTranslations::Set(trans);
-    this->m_lang=lang;
-    Option::instance().Language(lang);
+    this->m_lang = lang;
+    Option::instance().setLanguageID(lang);
     return true;
 }
 
@@ -198,7 +198,7 @@ bool OnInitImpl(mmGUIApp* app)
     Option::instance().LoadOptions(false);
 
     /* set preffered GUI language */
-    app->setGUILanguage(Option::instance().Language());
+    app->setGUILanguage(Option::instance().getLanguage());
 
     /* Was App Maximized? */
     bool isMax = Model_Setting::instance().GetBoolSetting("ISMAXIMIZED", true);

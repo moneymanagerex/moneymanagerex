@@ -117,19 +117,19 @@ void mmGUIFrame::updateReportNavigation(wxTreeItemId& reports, bool budget)
 
     wxTreeItemId reportGroup;
     wxString reportGroupName;
-    for (int r = 0; r < Option::instance().ReportCount(); r++)
+    for (int r = 0; r < Option::instance().getReportCount(); r++)
     {
-        const wxString& groupName = Option::instance().ReportGroup(r);
+        const wxString& groupName = Option::instance().getReportGroup(r);
         bool no_group = groupName.IsEmpty();
         if (reportGroupName != groupName && !no_group)
         {
             bool bAdd = false;
-            for (int s = 0; (s < Option::instance().ReportCount()) && !bAdd; s++)
+            for (int s = 0; (s < Option::instance().getReportCount()) && !bAdd; s++)
             {
-                if (Option::instance().ReportGroup(s) == groupName)
+                if (Option::instance().getReportGroup(s) == groupName)
                 {
-                    bool a = !Option::instance().HideReport(s);
-                    if (a && Option::instance().BudgetReport(s))
+                    bool a = !Option::instance().getHideReport(s);
+                    if (a && Option::instance().getBudgetReport(s))
                         a = budget;
                     if (a)
                         bAdd = true;
@@ -143,17 +143,17 @@ void mmGUIFrame::updateReportNavigation(wxTreeItemId& reports, bool budget)
                 reportGroupName = groupName;
             }
         }
-        bool bShow = !Option::instance().HideReport(r);
-        if (bShow && Option::instance().BudgetReport(r))
+        bool bShow = !Option::instance().getHideReport(r);
+        if (bShow && Option::instance().getBudgetReport(r))
             bShow = budget;
         
         if (bShow)
         {
-            const auto& reportName = Option::instance().ReportName(r);
+            const auto& reportName = Option::instance().getReportName(r);
             wxTreeItemId item = m_nav_tree_ctrl->AppendItem(no_group ? reports : reportGroup
                 , wxGetTranslation(reportName), img::PIECHART_PNG, img::PIECHART_PNG);
             m_nav_tree_ctrl->SetItemData(item
-                , new mmTreeItemData(reportName, Option::instance().ReportFunction(r)));
+                , new mmTreeItemData(reportName, Option::instance().getReportFunction(r)));
         }
     }
 

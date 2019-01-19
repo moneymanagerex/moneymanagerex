@@ -176,7 +176,7 @@ wxString mmBudgetingPanel::GetPanelTitle() const
     wxString yearStr = Model_Budgetyear::instance().Get(budgetYearID_);
     if ((yearStr.length() < 5))
     {
-        if (Option::instance().BudgetFinancialYears())
+        if (Option::instance().getBudgetFinancialYears())
         {
             long year;
             yearStr.ToLong(&year);
@@ -193,7 +193,7 @@ wxString mmBudgetingPanel::GetPanelTitle() const
         yearStr = wxString::Format(_("Month: %s"), yearStr);
     }
 
-    if (Option::instance().BudgetDaysOffset() != 0)
+    if (Option::instance().getBudgetDaysOffset() != 0)
     {
         yearStr = wxString::Format(_("%s    Start Date of: %s"), yearStr, mmGetDateForDisplay(m_budget_offset_date));
     }
@@ -280,7 +280,7 @@ void mmBudgetingPanel::CreateControls()
     itemIncomeSizer->Add(expenses_diff_);
     /* ---------------------- */
 
-    int x = Option::instance().IconSize();
+    int x = Option::instance().getIconSize();
     m_imageList = new wxImageList(x, x);
     m_imageList->Add(mmBitmap(png::RECONCILED));
     m_imageList->Add(mmBitmap(png::VOID_STAT));
@@ -377,7 +377,7 @@ void mmBudgetingPanel::initVirtualListControl()
     mmReportBudget budgetDetails;
 
     bool evaluateTransfer = false;
-    if (Option::instance().BudgetIncludeTransfers())
+    if (Option::instance().getBudgetIncludeTransfers())
     {
         evaluateTransfer = true;
     }
@@ -403,15 +403,15 @@ void mmBudgetingPanel::initVirtualListControl()
     }
 
     // Readjust dates by the Budget Offset Option
-    Option::instance().BudgetDateOffset(dtBegin);
+    Option::instance().setBudgetDateOffset(dtBegin);
     m_budget_offset_date = dtBegin.FormatISODate();
-    Option::instance().BudgetDateOffset(dtEnd);
+    Option::instance().setBudgetDateOffset(dtEnd);
     mmSpecifiedRange date_range(dtBegin, dtEnd);
 
     //Get statistics
     Model_Budget::instance().getBudgetEntry(budgetYearID_, budgetPeriod_, budgetAmt_);
     Model_Category::instance().getCategoryStats(categoryStats_
-        , &date_range, Option::instance().IgnoreFutureTransactions()
+        , &date_range, Option::instance().getIgnoreFutureTransactions()
         , false, (evaluateTransfer ? &budgetAmt_ : 0));
 
     const Model_Subcategory::Data_Set& allSubcategories = Model_Subcategory::instance().all(Model_Subcategory::COL_SUBCATEGNAME);
@@ -475,7 +475,7 @@ void mmBudgetingPanel::initVirtualListControl()
         budgetTotals_[category.CATEGID].first = catTotalsEstimated;
         budgetTotals_[category.CATEGID].second = catTotalsActual;
 
-        if ((!Option::instance().BudgetSetupWithoutSummaries() || currentView_ == VIEW_SUMM)
+        if ((!Option::instance().getBudgetSetupWithoutSummaries() || currentView_ == VIEW_SUMM)
             && DisplayEntryAllowed(-1, category.CATEGID))
         {
             budget_.push_back(std::make_pair(-1, category.CATEGID));
