@@ -33,10 +33,10 @@
         <img id="grm_toolbar" alt="GRM Toolbar" src="img/grm_toolbar.png">
     </div>
     <script>
-        var lang = getParameterValue("lang").substring(0, 2);
+        var lang = getParameterValue("lang");
         var img_path = "img/grm_toolbar.png";
-        if (lang == 'po')
-            img_path = "img/grm_toolbar_po.png";
+        if (lang == 'pl')
+            img_path = "img/grm_toolbar_pl.png";
         document.getElementById('grm_toolbar').src = img_path;
     </script>
     <hr>
@@ -72,10 +72,10 @@
         <img id="grm" alt="GRM" src="img/grm.gif">
     </div>
     <script>
-        var lang = getParameterValue("lang").substring(0, 2);
+        var lang = getParameterValue("lang");
         var img_path = "img/grm.gif";
-        if (lang == 'po')
-            img_path = "img/grm_po.gif";
+        if (lang == 'pl')
+            img_path = "img/grm_pl.gif";
         document.getElementById('grm').src = img_path;
     </script>
     <hr>
@@ -132,7 +132,7 @@ group by a.ACCOUNTNAME order by a.ACCOUNTNAME asc; <br>
         <img id="grm_date" alt="GRM Date" src="img/grm_custom_date.png">
     </div>
     <script>
-        var lang = getParameterValue("lang").substring(0, 2);
+        var lang = getParameterValue("lang");
         var img_path = "img/grm_custom_date.png";
         if (lang == 'ru')
             img_path = "img/grm_custom_date_ru.png";
