@@ -57,8 +57,8 @@ public:
     void setGotoAccountID(int account_id, long transID = -1);
     bool financialYearIsDifferent()
     {
-        return (Option::instance().FinancialYearStartDay() != "1" ||
-                Option::instance().FinancialYearStartMonth() != "1");
+        return (Option::instance().getFinancialYearStartDay() != "1" ||
+                Option::instance().getFinancialYearStartMonth() != "1");
     }
     /// return the index (mmex::EDocFile) to return the correct file.
     int getHelpFileIndex() const

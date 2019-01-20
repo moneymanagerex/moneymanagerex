@@ -90,7 +90,7 @@ private:
     void OnShowHiddenChbClick(wxCommandEvent& WXUNUSED(event));
     void OnMenuSelected(wxCommandEvent& event);
     void OnItemRightClick(wxTreeEvent& event);
-    bool categShowStatus(int categId, int subCategId);
+    bool getCategShowStatus(int categId, int subCategId);
     void setTreeSelection(const wxString& catName, const wxString& subCatName);
 
     wxTreeCtrl* m_treeCtrl;

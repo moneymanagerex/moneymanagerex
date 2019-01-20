@@ -162,7 +162,7 @@ void Model_Usage::pageview(const wxWindow* window, int plt /* = 0 msec*/)
 
 void Model_Usage::timing(const wxString& documentPath, const wxString& documentTitle, int plt /* = 0 msec*/)
 {
-    if (!Option::instance().SendUsageStatistics())
+    if (!Option::instance().getSendUsageStatistics())
     {
         return;
     }
@@ -202,7 +202,7 @@ void Model_Usage::timing(const wxString& documentPath, const wxString& documentT
 
 void Model_Usage::pageview(const wxString& documentPath, const wxString& documentTitle, int plt /* = 0 msec*/)
 {
-    if (!Option::instance().SendUsageStatistics())
+    if (!Option::instance().getSendUsageStatistics())
     {
         return;
     }

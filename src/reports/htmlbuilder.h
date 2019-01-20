@@ -127,4 +127,9 @@ private:
     } today_;
 };
 
+inline const wxString mmHTMLBuilder::getHTMLText() const
+{
+    return html_;
+}
+
 #endif

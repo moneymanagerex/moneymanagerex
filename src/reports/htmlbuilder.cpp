@@ -122,16 +122,16 @@ void mmHTMLBuilder::init()
 {
     html_ = wxString::Format(wxString::FromUTF8(tags::HTML)
         , mmex::getProgramName()
-        , wxString::Format("%d", Option::instance().HtmlFontSize())
+        , wxString::Format("%d", Option::instance().getHtmlFontSize())
     );
 
     //Show user name if provided
-    if (Option::instance().UserName() != "")
+    if (Option::instance().getUserName() != "")
     {
         startTable();
         startTableRow();
         startTableCell();
-        addHeader(2, Option::instance().UserName());
+        addHeader(2, Option::instance().getUserName());
         endTableCell();
         endTableRow();
         endTable();
@@ -588,11 +588,6 @@ void mmHTMLBuilder::addLineChart(const std::vector<ValueTrio>& data, const wxStr
     this->addText(wxString::Format("<canvas id='%s' width ='%i' height='%i'></canvas>\n", id, x, y));
     this->addText(wxString::Format(js, labels, datasets, id,
         wxString::Format(opt, datasetFill ? "true" : "false", pointDot ? "true" : "false", showGridLines ? "true" : "false")));
-}
-
-const wxString mmHTMLBuilder::getHTMLText() const
-{
-    return html_;
 }
 
 std::ostream& operator << (std::ostream& os, const wxDateTime& date)

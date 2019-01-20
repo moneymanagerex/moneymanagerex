@@ -127,7 +127,7 @@ void mmCategDialog::fillControls()
     for (const Model_Category::Data& category : categories)
     {
         wxTreeItemId maincat;
-        bool bShow = categShowStatus(category.CATEGID, -1);
+        bool bShow = getCategShowStatus(category.CATEGID, -1);
         if (m_cbShowAll->IsChecked() || bShow || category.CATEGID == m_init_selected_categ_id)
         {
             maincat = m_treeCtrl->AppendItem(root_, category.CATEGNAME);
@@ -138,7 +138,7 @@ void mmCategDialog::fillControls()
 
             for (const auto &sub_category : Model_Category::sub_category(category))
             {
-                bShow = categShowStatus(category.CATEGID, sub_category.SUBCATEGID);
+                bShow = getCategShowStatus(category.CATEGID, sub_category.SUBCATEGID);
                 if (m_cbShowAll->IsChecked() || bShow || sub_category.SUBCATEGID == m_init_selected_subcateg_id)
                 {
                     wxTreeItemId subcateg = m_treeCtrl->AppendItem(maincat, sub_category.SUBCATEGNAME);
@@ -656,7 +656,7 @@ void mmCategDialog::OnItemRightClick(wxTreeEvent& event)
     event.Skip();
 }
 
-bool mmCategDialog::categShowStatus(int categId, int subCategId)
+bool mmCategDialog::getCategShowStatus(int categId, int subCategId)
 {
     if (subCategId != -1)
     {
@@ -666,9 +666,7 @@ bool mmCategDialog::categShowStatus(int categId, int subCategId)
     }
 
     const wxString index = wxString::Format("*%i:%i*", categId, subCategId);
-    if (m_hidden_categs.Index(index) != wxNOT_FOUND)
-        return false;
-    return true;
+    return (m_hidden_categs.Index(index) == wxNOT_FOUND);
 }
 
 wxString mmCategDialog::getFullCategName()

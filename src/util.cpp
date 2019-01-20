@@ -640,12 +640,12 @@ const wxString mmGetDateForDisplay(const wxString &iso_date)
     //ISO Date to formatted string lookup table.
     static std::unordered_map<wxString, wxString> dateLookup;
 
-    static wxString dateFormat = Option::instance().DateFormat();
+    static wxString dateFormat = Option::instance().getDateFormat();
 
     // If format has been changed, delete all stored strings.
-    if (dateFormat != Option::instance().DateFormat())
+    if (dateFormat != Option::instance().getDateFormat())
     {
-        dateFormat = Option::instance().DateFormat();
+        dateFormat = Option::instance().getDateFormat();
         dateLookup.clear();
     }
 
@@ -710,7 +710,7 @@ const wxDateTime mmParseISODate(const wxString& str)
 const wxDateTime getUserDefinedFinancialYear(bool prevDayRequired)
 {
     long monthNum;
-    Option::instance().FinancialYearStartMonth().ToLong(&monthNum);
+    Option::instance().getFinancialYearStartMonth().ToLong(&monthNum);
 
     if (monthNum > 0) //Test required for compatibility with previous version
         monthNum--;
@@ -718,7 +718,7 @@ const wxDateTime getUserDefinedFinancialYear(bool prevDayRequired)
     int year = wxDate::GetCurrentYear();
     if (wxDate::GetCurrentMonth() < monthNum) year--;
 
-    int dayNum = wxAtoi(Option::instance().FinancialYearStartDay());
+    int dayNum = wxAtoi(Option::instance().getFinancialYearStartDay());
 
     if (dayNum <= 0 || dayNum > wxDateTime::GetNumberOfDays((wxDateTime::Month)monthNum, year))
         dayNum = 1;

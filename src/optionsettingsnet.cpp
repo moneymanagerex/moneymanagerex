@@ -148,7 +148,7 @@ void OptionSettingsNet::Create()
 
     m_send_data = new wxCheckBox(this, wxID_ANY
         , _("Send anonymous statistics usage data"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
-    m_send_data->SetValue(Option::instance().SendUsageStatistics());
+    m_send_data->SetValue(Option::instance().getSendUsageStatistics());
     m_send_data->SetToolTip(_("Enable to help us sending anonymous data about MMEX usage."));
 
     usageStaticBoxSizer->Add(m_send_data, g_flagsV);
@@ -248,7 +248,7 @@ void OptionSettingsNet::SaveSettings()
     Model_Setting::instance().Set("WEBSERVERPORT", m_webserver_port->GetValue());
 #endif
 
-    Option::instance().SendUsageStatistics(m_send_data->GetValue());
+    Option::instance().setSendUsageStatistics(m_send_data->GetValue());
 
     Model_Setting::instance().Set("NETWORKTIMEOUT", m_network_timeout->GetValue());
 
