@@ -198,7 +198,7 @@ bool OnInitImpl(mmGUIApp* app)
     Option::instance().LoadOptions(false);
 
     /* set preffered GUI language */
-    app->setGUILanguage(Option::instance().getLanguageID());
+    app->setGUILanguage(Option::instance().getLanguage());
 
     /* Was App Maximized? */
     bool isMax = Model_Setting::instance().GetBoolSetting("ISMAXIMIZED", true);

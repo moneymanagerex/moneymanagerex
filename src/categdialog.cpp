@@ -1,21 +1,21 @@
 /*******************************************************
-Copyright (C) 2006 Madhan Kanagavel
-Copyright (C) 2016 Nikolay Akimov
+ Copyright (C) 2006 Madhan Kanagavel
+ Copyright (C) 2016 Nikolay Akimov
 
-This program is free software; you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation; either version 2 of the License, or
-(at your option) any later version.
+ This program is free software; you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation; either version 2 of the License, or
+ (at your option) any later version.
 
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
 
-You should have received a copy of the GNU General Public License
-along with this program; if not, write to the Free Software
-Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-********************************************************/
+ You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software
+ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ ********************************************************/
 
 #include "categdialog.h"
 #include "images_list.h"
@@ -45,14 +45,14 @@ EVT_MENU(wxID_ANY, mmCategDialog::OnMenuSelected)
 wxEND_EVENT_TABLE()
 
 mmCategDialog::mmCategDialog()
-    : m_treeCtrl(nullptr)
-    , m_buttonAdd(nullptr)
-    , m_buttonEdit(nullptr)
-    , m_buttonSelect(nullptr)
-    , m_buttonDelete(nullptr)
-    , m_buttonRelocate(nullptr)
-    , m_cbExpand(nullptr)
-    , m_cbShowAll(nullptr)
+: m_treeCtrl(nullptr)
+, m_buttonAdd(nullptr)
+, m_buttonEdit(nullptr)
+, m_buttonSelect(nullptr)
+, m_buttonDelete(nullptr)
+, m_buttonRelocate(nullptr)
+, m_cbExpand(nullptr)
+, m_cbShowAll(nullptr)
 {
     // Initialize fields in constructor
     m_categ_id = -1;
@@ -143,7 +143,7 @@ void mmCategDialog::fillControls()
                 {
                     wxTreeItemId subcateg = m_treeCtrl->AppendItem(maincat, sub_category.SUBCATEGNAME);
                     m_treeCtrl->SetItemData(subcateg, new mmTreeItemCateg(category, sub_category));
-                    if (!bShow)
+                    if (!bShow) 
                         m_treeCtrl->SetItemTextColour(subcateg, wxColour("GREY"));
 
                     if (m_categ_id == category.CATEGID && m_subcateg_id == sub_category.SUBCATEGID)
@@ -204,7 +204,7 @@ void mmCategDialog::CreateControls()
     itemBoxSizer33->Add(m_cbShowAll, g_flagsH);
 
 #if defined (__WXGTK__) || defined (__WXMAC__)
-    m_treeCtrl = new wxTreeCtrl(this, wxID_ANY,
+    m_treeCtrl = new wxTreeCtrl( this, wxID_ANY,
         wxDefaultPosition, wxSize(200, 380));
 #else
     m_treeCtrl = new wxTreeCtrl(this, wxID_ANY
@@ -427,21 +427,20 @@ void mmCategDialog::OnSelChanged(wxTreeEvent& event)
     if (!selectedItemId_) return;
     if (selectedItemId != selectedItemId_) m_treeCtrl->SelectItem(selectedItemId_);
 
-    const bool bRootSelected = selectedItemId_ == root_;
-    if (bRootSelected)
+    mmTreeItemCateg* iData =
+        dynamic_cast<mmTreeItemCateg*>(m_treeCtrl->GetItemData(selectedItemId_));
+    if (!iData) return;
+
+    m_categ_id = iData->getCategData()->CATEGID;
+    m_subcateg_id = iData->getSubCategData()->SUBCATEGID;
+
+    if (selectedItemId_ == root_)
     {
-        m_categ_id = -1;
-        m_subcateg_id = -1;
+        m_buttonSelect->Disable();
     }
     else
     {
-        mmTreeItemCateg* iData =
-            dynamic_cast<mmTreeItemCateg*>(m_treeCtrl->GetItemData(selectedItemId_));
-        if (!iData) return;
-
-        m_categ_id = iData->getCategData()->CATEGID;
-        m_subcateg_id = iData->getSubCategData()->SUBCATEGID;
-
+        m_buttonSelect->Enable(m_enable_select);
         bool bUsed = Model_Category::is_used(m_categ_id, m_subcateg_id);
         if (m_subcateg_id == -1)
         {
@@ -453,11 +452,8 @@ void mmCategDialog::OnSelChanged(wxTreeEvent& event)
 
         m_buttonDelete->SetForegroundColour(!bUsed && !m_treeCtrl->ItemHasChildren(selectedItemId_) ? wxNullColour : wxColor(*wxRED));
     }
-
     m_buttonAdd->Enable(m_subcateg_id == -1);
-    m_buttonEdit->Enable(!bRootSelected);
-    m_buttonDelete->Enable(!bRootSelected);
-    m_buttonSelect->Enable(m_enable_select && !bRootSelected);
+    m_buttonEdit->Enable(selectedItemId_ != root_);
 }
 
 void mmCategDialog::OnEdit(wxCommandEvent& WXUNUSED(event))
@@ -576,7 +572,7 @@ void mmCategDialog::OnCategoryRelocation(wxCommandEvent& WXUNUSED(event))
         wxString msgStr;
         msgStr << _("Category Relocation Completed.") << "\n\n"
             << wxString::Format(_("Records have been updated in the database: %i"),
-                dlg.updatedCategoriesCount());
+            dlg.updatedCategoriesCount());
         wxMessageBox(msgStr, _("Category Relocation Result"));
         m_refresh_requested = true;
         fillControls();
