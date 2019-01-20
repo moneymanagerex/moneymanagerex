@@ -48,8 +48,9 @@ public:
 
     // set and save the option: m_language
     void setLanguageID(wxLanguage& language);
-    wxLanguage getLanguage() const;
+    wxLanguage getLanguageID() const;
     // get 2-letter ISO 639-1 code plus Region
+    const wxString LanguageISO6391(bool get_db = false);
     const wxString getBestTranslation() const;
 
     // set and save the option: m_userNameString
@@ -127,7 +128,6 @@ public:
     const wxString getReportName(int reportID) const;
     bool getBudgetReport(int reportID) const;
     mmPrintableBase* getReportFunction(int reportID) const;
-    const wxString LanguageISO6391(bool get_db = false);
 
 private:
     bool getReportIndexIsOK(int reportID) const;
@@ -166,7 +166,7 @@ private:
     const wxString getReportSettingsJSON(int id) const;
 };
 
-inline wxLanguage Option::getLanguage() const
+inline wxLanguage Option::getLanguageID() const
 {
     return m_language;
 }
