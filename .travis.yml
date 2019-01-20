@@ -55,6 +55,7 @@ matrix:
 
   include: # add non-linux targets
   - name: Validate HTML CSS SVG
+    git: { submodules: false }
     language: java
     jdk: openjdk8
     cache: pip
@@ -69,9 +70,13 @@ matrix:
     deploy: skip
     env: OS=none
     if: tag != nightly
-  - { os: osx, osx_image: xcode10.1, compiler: clang, env: OS=macos DIST=10.7 }
+  - os: osx
+    osx_image: xcode10.1
+    compiler: clang
+    env: OS=macos DIST=10.7
 
   allow_failures:
+  - language: java # Validate HTML CSS SVG
   - env: OS=debian DIST=jessie
   - env: OS=debian DIST=stretch
   - env: OS=debian DIST=buster
