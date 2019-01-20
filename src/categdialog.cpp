@@ -427,20 +427,21 @@ void mmCategDialog::OnSelChanged(wxTreeEvent& event)
     if (!selectedItemId_) return;
     if (selectedItemId != selectedItemId_) m_treeCtrl->SelectItem(selectedItemId_);
 
-    mmTreeItemCateg* iData =
-        dynamic_cast<mmTreeItemCateg*>(m_treeCtrl->GetItemData(selectedItemId_));
-    if (!iData) return;
-
-    m_categ_id = iData->getCategData()->CATEGID;
-    m_subcateg_id = iData->getSubCategData()->SUBCATEGID;
-
-    if (selectedItemId_ == root_)
+    const bool bRootSelected = selectedItemId_ == root_;
+    if (bRootSelected)
     {
-        m_buttonSelect->Disable();
+        m_categ_id = -1;
+        m_subcateg_id = -1;
     }
     else
     {
-        m_buttonSelect->Enable(m_enable_select);
+        mmTreeItemCateg* iData =
+            dynamic_cast<mmTreeItemCateg*>(m_treeCtrl->GetItemData(selectedItemId_));
+        if (!iData) return;
+
+        m_categ_id = iData->getCategData()->CATEGID;
+        m_subcateg_id = iData->getSubCategData()->SUBCATEGID;
+
         bool bUsed = Model_Category::is_used(m_categ_id, m_subcateg_id);
         if (m_subcateg_id == -1)
         {
@@ -452,8 +453,11 @@ void mmCategDialog::OnSelChanged(wxTreeEvent& event)
 
         m_buttonDelete->SetForegroundColour(!bUsed && !m_treeCtrl->ItemHasChildren(selectedItemId_) ? wxNullColour : wxColor(*wxRED));
     }
+
     m_buttonAdd->Enable(m_subcateg_id == -1);
-    m_buttonEdit->Enable(selectedItemId_ != root_);
+    m_buttonEdit->Enable(!bRootSelected);
+    m_buttonDelete->Enable(!bRootSelected);
+    m_buttonSelect->Enable(m_enable_select && !bRootSelected);
 }
 
 void mmCategDialog::OnEdit(wxCommandEvent& WXUNUSED(event))
