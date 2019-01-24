@@ -1,3 +1,4 @@
 files:
   - source: /po/mmex.pot
     translation: /po/%locale_with_underscore%.po
+    commit_message: "fix(i18n): update"
