@@ -90,7 +90,7 @@ void mmHelpPanel::CreateControls()
     int helpFileIndex = m_frame->getHelpFileIndex();
     const wxString help_file = wxString::Format("file://%s?lang=%s"
         , mmex::getPathDoc((mmex::EDocFile)helpFileIndex)
-        , Option::instance().LanguageISO6391());
+        , Option::instance().getLanguageISO6391());
 
     //wxLogDebug("%s", help_file);
     browser_->LoadURL(help_file);

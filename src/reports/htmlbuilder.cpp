@@ -122,16 +122,16 @@ void mmHTMLBuilder::init()
 {
     html_ = wxString::Format(wxString::FromUTF8(tags::HTML)
         , mmex::getProgramName()
-        , wxString::Format("%d", Option::instance().HtmlFontSize())
+        , wxString::Format("%d", Option::instance().getHtmlFontSize())
     );
 
     //Show user name if provided
-    if (Option::instance().UserName() != "")
+    if (Option::instance().getUserName() != "")
     {
         startTable();
         startTableRow();
         startTableCell();
-        addHeader(2, Option::instance().UserName());
+        addHeader(2, Option::instance().getUserName());
         endTableCell();
         endTableRow();
         endTable();

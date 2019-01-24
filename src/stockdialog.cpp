@@ -111,14 +111,14 @@ void mmStockDialog::DataToControls()
     m_notes_ctrl->SetValue(m_stock->NOTES);
     m_purchase_date_ctrl->SetValue(Model_Stock::PURCHASEDATE(m_stock));
 
-    int precision = m_stock->NUMSHARES == floor(m_stock->NUMSHARES) ? 0 : Option::instance().SharePrecision();
+    int precision = m_stock->NUMSHARES == floor(m_stock->NUMSHARES) ? 0 : Option::instance().getSharePrecision();
     m_num_shares_ctrl->SetValue(m_stock->NUMSHARES, precision);
     Model_Account::Data* account = Model_Account::instance().get(m_stock->HELDAT);
     Model_Currency::Data *currency = Model_Currency::GetBaseCurrency();
     if (account) currency = Model_Account::currency(account);
     int currency_precision = Model_Currency::precision(currency);
-    if (currency_precision < Option::instance().SharePrecision())
-        currency_precision = Option::instance().SharePrecision();
+    if (currency_precision < Option::instance().getSharePrecision())
+        currency_precision = Option::instance().getSharePrecision();
     m_share_price_ctrl->SetValue(m_stock->PURCHASEPRICE, account, currency_precision);
     m_current_price_ctrl->SetValue(m_stock->CURRENTPRICE, account, currency_precision);
     m_commission_ctrl->SetValue(m_stock->COMMISSION, account, currency_precision);
@@ -541,7 +541,7 @@ void mmStockDialog::OnListItemSelected(wxListEvent& event)
     if (histData->HISTID > 0)
     {
         m_current_date_ctrl->SetValue(Model_StockHistory::DATE(*histData));
-        m_current_price_ctrl->SetValue(Model_Account::toString(histData->VALUE, account, Option::instance().SharePrecision()));
+        m_current_price_ctrl->SetValue(Model_Account::toString(histData->VALUE, account, Option::instance().getSharePrecision()));
     }
 }
 
@@ -610,7 +610,7 @@ void mmStockDialog::OnHistoryImportButton(wxCommandEvent& WXUNUSED(event))
             // date
             wxDateTime dt;
             dateStr = tokens[0];
-            mmParseDisplayStringToDate(dt, dateStr, Option::instance().DateFormat());
+            mmParseDisplayStringToDate(dt, dateStr, Option::instance().getDateFormat());
             dateStr = dt.FormatISODate();
             // price
             priceStr = tokens[1];
@@ -840,7 +840,7 @@ void mmStockDialog::OnHistoryAddButton(wxCommandEvent& WXUNUSED(event))
     for (i = 0; i<m_price_listbox->GetItemCount(); i++)
     {
         listStr = m_price_listbox->GetItemText(i, 0);
-        mmParseDisplayStringToDate(dt, listStr, Option::instance().DateFormat());
+        mmParseDisplayStringToDate(dt, listStr, Option::instance().getDateFormat());
         if (dt.IsSameDate(m_current_date_ctrl->GetValue()))
             break;
     }
@@ -850,7 +850,7 @@ void mmStockDialog::OnHistoryAddButton(wxCommandEvent& WXUNUSED(event))
         for (i = 0; i<m_price_listbox->GetItemCount(); i++)
         {
             listStr = m_price_listbox->GetItemText(i, 0);
-            mmParseDisplayStringToDate(dt, listStr, Option::instance().DateFormat());
+            mmParseDisplayStringToDate(dt, listStr, Option::instance().getDateFormat());
             if (dt.GetDateOnly() < m_current_date_ctrl->GetValue().GetDateOnly())
                 break;
         }
@@ -861,10 +861,10 @@ void mmStockDialog::OnHistoryAddButton(wxCommandEvent& WXUNUSED(event))
     }
     if (i != m_price_listbox->GetItemCount())
     {
-        listStr = Model_Account::toString(dPrice, account, Option::instance().SharePrecision());
+        listStr = Model_Account::toString(dPrice, account, Option::instance().getSharePrecision());
         m_price_listbox->SetItem(i, 0, mmGetDateForDisplay(m_current_date_ctrl->GetValue().FormatISODate()));
         m_price_listbox->SetItem(i, 1, listStr);
-        listStr = Model_Account::toString(dPrice - m_stock->PURCHASEPRICE, account, Option::instance().SharePrecision());
+        listStr = Model_Account::toString(dPrice - m_stock->PURCHASEPRICE, account, Option::instance().getSharePrecision());
         m_price_listbox->SetItem(i, 2, listStr);
     }
 }
@@ -910,7 +910,7 @@ void mmStockDialog::ShowStockHistory()
             item.SetData(d.HISTID);
             m_price_listbox->InsertItem(item);
             const wxDate dtdt = Model_StockHistory::DATE(d);
-            const wxString dispAmount = Model_Account::toString(d.VALUE, account, Option::instance().SharePrecision());
+            const wxString dispAmount = Model_Account::toString(d.VALUE, account, Option::instance().getSharePrecision());
             m_price_listbox->SetItem(idx, 0, mmGetDateForDisplay(d.DATE));
             m_price_listbox->SetItem(idx, 1, dispAmount);
             if (idx == 0)
@@ -918,7 +918,7 @@ void mmStockDialog::ShowStockHistory()
                 m_current_date_ctrl->SetValue(dtdt);
                 m_current_price_ctrl->SetValue(dispAmount);
             }
-            const wxString& priceAmount = Model_Account::toString(d.VALUE - m_stock->PURCHASEPRICE, account, Option::instance().SharePrecision());
+            const wxString& priceAmount = Model_Account::toString(d.VALUE - m_stock->PURCHASEPRICE, account, Option::instance().getSharePrecision());
             m_price_listbox->SetItem(idx, 2, priceAmount);
             idx++;
         }

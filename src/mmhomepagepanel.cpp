@@ -569,14 +569,14 @@ void mmHomePagePanel::getTemplate()
 
 void mmHomePagePanel::getData()
 {
-    m_frames["HTMLSCALE"] = wxString::Format("%d", Option::instance().HtmlFontSize());
+    m_frames["HTMLSCALE"] = wxString::Format("%d", Option::instance().getHtmlFontSize());
 
     vAccts_ = Model_Setting::instance().ViewAccounts();
     
     if (date_range_)
         date_range_->destroy();
  
-    if (Option::instance().IgnoreFutureTransactions())
+    if (Option::instance().getIgnoreFutureTransactions())
         date_range_ = new mmCurrentMonthToDate;
     else
         date_range_ = new mmCurrentMonth;
@@ -643,7 +643,7 @@ void mmHomePagePanel::fillData()
 void mmHomePagePanel::get_account_stats(std::map<int, std::pair<double, double> > &accountStats)
 {
     Model_Checking::Data_Set all_trans;
-    if (Option::instance().IgnoreFutureTransactions())
+    if (Option::instance().getIgnoreFutureTransactions())
     {
         all_trans = Model_Checking::instance().find(
             DB_Table_CHECKINGACCOUNT::TRANSDATE(date_range_->today().FormatISODate(), LESS_OR_EQUAL));
@@ -678,7 +678,7 @@ void mmHomePagePanel::getExpensesIncomeStats(std::map<int, std::pair<double, dou
     , mmDateRange* date_range)const
 {
     //Initialization
-    bool ignoreFuture = Option::instance().IgnoreFutureTransactions();
+    bool ignoreFuture = Option::instance().getIgnoreFutureTransactions();
 
     //Calculations
     const auto &transactions = Model_Checking::instance().find(

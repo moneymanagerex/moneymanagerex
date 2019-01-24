@@ -90,7 +90,7 @@ wxArrayString Model_Currency::all_currency_types()
 // Getter
 Model_Currency::Data* Model_Currency::GetBaseCurrency()
 {
-    int currency_id = Option::instance().BaseCurrency();
+    int currency_id = Option::instance().getBaseCurrencyID();
     Model_Currency::Data* currency = Model_Currency::instance().get(currency_id);
     return currency;
 }

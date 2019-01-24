@@ -218,7 +218,7 @@ wxString mmReportMyUsage::getHTMLText()
                             _end_date.GetDay());
     report(L"CONTENTS") = contents;
     report(L"GRAND") = wxString::Format("%ld", (long)all_usage.size());
-    report(L"HTMLSCALE") = wxString::Format("%d", Option::instance().HtmlFontSize());
+    report(L"HTMLSCALE") = wxString::Format("%d", Option::instance().getHtmlFontSize());
 
     wxString out = wxEmptyString;
     try 

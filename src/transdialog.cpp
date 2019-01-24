@@ -305,7 +305,7 @@ void mmTransDialog::dataToControls()
                 cbPayee_->AutoComplete(all_payees);
             }
 
-            if (m_new_trx && (Option::instance().TransPayeeSelection() == Option::UNUSED))
+            if (m_new_trx && (Option::instance().getTransPayeeSelection() == Option::UNUSED))
             {
                 cbPayee_->Enable(false);
                 cbPayee_->ChangeValue(_("Unknown"));
@@ -315,7 +315,7 @@ void mmTransDialog::dataToControls()
             if (payee)
             {
                 cbPayee_->ChangeValue(payee->PAYEENAME);
-                if (m_new_trx && (Option::instance().TransPayeeSelection() == Option::NONE))
+                if (m_new_trx && (Option::instance().getTransPayeeSelection() == Option::NONE))
                 {
                     cbPayee_->ChangeValue("");
                 }
@@ -633,7 +633,7 @@ bool mmTransDialog::ValidateData()
                 , wxString::Format(_("Do you want to add new payee: \n%s?"), payee_name)
                 , _("Confirm to add new payee")
                 , wxYES_NO | wxYES_DEFAULT | wxICON_WARNING);
-            if (Option::instance().TransCategorySelection() == Option::UNUSED || msgDlg.ShowModal() == wxID_YES)
+            if (Option::instance().getTransCategorySelection() == Option::UNUSED || msgDlg.ShowModal() == wxID_YES)
             {
                 payee = Model_Payee::instance().create();
                 payee->PAYEENAME = payee_name;
@@ -951,7 +951,7 @@ void mmTransDialog::SetCategoryForPayee(const Model_Payee::Data *payee)
 {
     // Only for new transactions: if user want to autofill last category used for payee.
     // If this is a Split Transaction, ignore displaying last category for payee
-    if (Option::instance().TransCategorySelection() != Option::NONE
+    if (Option::instance().getTransCategorySelection() != Option::NONE
         && !categUpdated_ && local_splits.empty() && m_new_trx && !m_duplicate)
     {
         // if payee has memory of last category used then display last category for payee

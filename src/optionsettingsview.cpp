@@ -112,7 +112,7 @@ void OptionSettingsView::Create()
     m_scale_factor = new wxSpinCtrl(this, wxID_ANY
         , wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, min, max);
 
-    int vFontSize = Option::instance().HtmlFontSize();
+    int vFontSize = Option::instance().getHtmlFontSize();
     m_scale_factor->SetValue(vFontSize);
     m_scale_factor->SetToolTip(_("Specify which scale factor is used for the report pages"));
     view_sizer1->Add(m_scale_factor, g_flagsH);
@@ -126,25 +126,25 @@ void OptionSettingsView::Create()
 
     m_budget_financial_years = new wxCheckBox(this, wxID_STATIC, _("View as Financial Years")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
-    m_budget_financial_years->SetValue(Option::instance().BudgetFinancialYears());
+    m_budget_financial_years->SetValue(Option::instance().getBudgetFinancialYears());
     budgetSizer->Add(m_budget_financial_years, g_flagsV);
 
     m_budget_include_transfers = new wxCheckBox(this, wxID_STATIC
         , _("View with 'transfer' transactions")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
-    m_budget_include_transfers->SetValue(Option::instance().BudgetIncludeTransfers());
+    m_budget_include_transfers->SetValue(Option::instance().getBudgetIncludeTransfers());
     budgetSizer->Add(m_budget_include_transfers, g_flagsV);
 
     m_budget_setup_without_summary = new wxCheckBox(this, wxID_STATIC
         , _("View Setup Without Budget Summaries")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
-    m_budget_setup_without_summary->SetValue(Option::instance().BudgetSetupWithoutSummaries());
+    m_budget_setup_without_summary->SetValue(Option::instance().getBudgetSetupWithoutSummaries());
     budgetSizer->Add(m_budget_setup_without_summary, g_flagsV);
 
     m_budget_summary_without_category = new wxCheckBox(this, wxID_STATIC
         , _("View Category Report with Summaries")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
-    m_budget_summary_without_category->SetValue(Option::instance().BudgetReportWithSummaries());
+    m_budget_summary_without_category->SetValue(Option::instance().getBudgetReportWithSummaries());
     budgetSizer->Add(m_budget_summary_without_category, g_flagsV);
 
     // Allows a year or financial year to start before or after the 1st of the month.
@@ -156,7 +156,7 @@ void OptionSettingsView::Create()
     m_budget_days_offset = new wxSpinCtrl(this, wxID_ANY
         , wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, -30, +30);
     m_budget_days_offset->SetToolTip(_("Advance or retard the start date from the 1st of the month or year by the number of days"));
-    m_budget_days_offset->SetValue(Option::instance().BudgetDaysOffset());
+    m_budget_days_offset->SetValue(Option::instance().getBudgetDaysOffset());
     budget_offset_sizer->Add(m_budget_days_offset, g_flagsH);
 
     // Report Options
@@ -168,7 +168,7 @@ void OptionSettingsView::Create()
     m_ignore_future_transactions = new wxCheckBox(this, wxID_STATIC
         , _("View without Future Transactions")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
-    m_ignore_future_transactions->SetValue(Option::instance().IgnoreFutureTransactions());
+    m_ignore_future_transactions->SetValue(Option::instance().getIgnoreFutureTransactions());
     reportSizer->Add(m_ignore_future_transactions, g_flagsV);
 
     // Colours settings
@@ -244,14 +244,14 @@ void OptionSettingsView::SaveSettings()
     Model_Setting::instance().SetViewTransactions(transVisible);
 
     int size = m_scale_factor->GetValue();
-    Option::instance().HtmlFontSize(size);
+    Option::instance().setHtmlFontSize(size);
 
-    Option::instance().BudgetFinancialYears(m_budget_financial_years->GetValue());
-    Option::instance().BudgetIncludeTransfers(m_budget_include_transfers->GetValue());
-    Option::instance().BudgetSetupWithoutSummaries(m_budget_setup_without_summary->GetValue());
-    Option::instance().BudgetReportWithSummaries(m_budget_summary_without_category->GetValue());
-    Option::instance().BudgetDaysOffset(m_budget_days_offset->GetValue());
-    Option::instance().IgnoreFutureTransactions(m_ignore_future_transactions->GetValue());
+    Option::instance().setBudgetFinancialYears(m_budget_financial_years->GetValue());
+    Option::instance().setBudgetIncludeTransfers(m_budget_include_transfers->GetValue());
+    Option::instance().setBudgetSetupWithoutSummaries(m_budget_setup_without_summary->GetValue());
+    Option::instance().setBudgetReportWithSummaries(m_budget_summary_without_category->GetValue());
+    Option::instance().setBudgetDaysOffset(m_budget_days_offset->GetValue());
+    Option::instance().setIgnoreFutureTransactions(m_ignore_future_transactions->GetValue());
 
     mmColors::userDefColor1 = m_UDFCB1->GetForegroundColour();
     mmColors::userDefColor2 = m_UDFCB2->GetForegroundColour();

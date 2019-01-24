@@ -162,7 +162,7 @@ void Model_Usage::pageview(const wxWindow* window, int plt /* = 0 msec*/)
 
 void Model_Usage::timing(const wxString& documentPath, const wxString& documentTitle, int plt /* = 0 msec*/)
 {
-    if (!Option::instance().SendUsageStatistics())
+    if (!Option::instance().getSendUsageStatistics())
     {
         return;
     }
@@ -177,7 +177,7 @@ void Model_Usage::timing(const wxString& documentPath, const wxString& documentT
         { "dp", documentPath },
         { "dt", documentTitle },
         //        {"geoid", },
-        { "ul", Option::instance().LanguageISO6391() },
+        { "ul", Option::instance().getLanguageISO6391() },
         { "sr", wxString::Format("%ix%i", wxGetDisplaySize().GetX(), wxGetDisplaySize().GetY()) },
         { "vp", "" },
         { "sd", wxString::Format("%i-bits", wxDisplayDepth()) },
@@ -202,7 +202,7 @@ void Model_Usage::timing(const wxString& documentPath, const wxString& documentT
 
 void Model_Usage::pageview(const wxString& documentPath, const wxString& documentTitle, int plt /* = 0 msec*/)
 {
-    if (!Option::instance().SendUsageStatistics())
+    if (!Option::instance().getSendUsageStatistics())
     {
         return;
     }
@@ -217,7 +217,7 @@ void Model_Usage::pageview(const wxString& documentPath, const wxString& documen
         { "dp", documentPath },
         { "dt", documentTitle },
         //        {"geoid", },
-        { "ul", Option::instance().LanguageISO6391() },
+        { "ul", Option::instance().getLanguageISO6391() },
         { "sr", wxString::Format("%ix%i", wxGetDisplaySize().GetX(), wxGetDisplaySize().GetY()) },
         { "vp", "" },
         { "sd", wxString::Format("%i-bits", wxDisplayDepth()) },

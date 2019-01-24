@@ -42,92 +42,92 @@ public:
     void LoadOptions(bool include_infotable = true);
 
     // set and save the option: m_dateFormat
-    void DateFormat(const wxString& datefornat);
-    wxString DateFormat();
+    void setDateFormat(const wxString& datefornat);
+    const wxString getDateFormat() const;
 
     // set and save the option: m_language
-    void Language(wxLanguage& language);
-    wxLanguage Language(bool get_db = false);
+    void setLanguage(wxLanguage& language);
+    wxLanguage getLanguageID(bool get_db = false);
     // get 2-letter ISO 639-1 code
-    wxString LanguageISO6391(bool get_db = false);
+    const wxString getLanguageISO6391(bool get_db = false);
 
     // set and save the option: m_userNameString
-    void UserName(const wxString& username);
-    wxString UserName();
+    void setUserName(const wxString& username);
+    const wxString getUserName() const;
 
     // set and save the option: m_financialYearStartDayString
-    void FinancialYearStartDay(const wxString& setting);
-    wxString FinancialYearStartDay();
+    void setFinancialYearStartDay(const wxString& setting);
+    const wxString getFinancialYearStartDay() const;
 
     // set and save the option: m_financialYearStartMonthString
-    void FinancialYearStartMonth(const wxString& setting);
-    wxString FinancialYearStartMonth();
+    void setFinancialYearStartMonth(const wxString& setting);
+    const wxString getFinancialYearStartMonth() const;
 
     // set the base currency ID
-    void BaseCurrency(int base_currency_id);
+    void setBaseCurrencyID(int base_currency_id);
     // returns the base currency ID
-    int BaseCurrency();
+    int getBaseCurrencyID() const;
 
     // set and save the option: m_databaseUpdated
-    void DatabaseUpdated(bool value);
-    bool DatabaseUpdated();
+    void setDatabaseUpdated(bool value);
+    bool getDatabaseUpdated() const;
 
-    void BudgetFinancialYears(bool value);
-    bool BudgetFinancialYears();
+    void setBudgetFinancialYears(bool value);
+    bool getBudgetFinancialYears() const;
 
-    void BudgetIncludeTransfers(bool value);
-    bool BudgetIncludeTransfers();
+    void setBudgetIncludeTransfers(bool value);
+    bool getBudgetIncludeTransfers() const;
     
-    void BudgetSetupWithoutSummaries(bool value);
-    bool BudgetSetupWithoutSummaries();
+    void setBudgetSetupWithoutSummaries(bool value);
+    bool getBudgetSetupWithoutSummaries() const;
 
-    void BudgetReportWithSummaries(bool value);
-    bool BudgetReportWithSummaries();
+    void setBudgetReportWithSummaries(bool value);
+    bool getBudgetReportWithSummaries() const;
 
-    void IgnoreFutureTransactions(bool value);
-    bool IgnoreFutureTransactions();
+    void setIgnoreFutureTransactions(bool value);
+    bool getIgnoreFutureTransactions() const;
 
-    void TransPayeeSelection(int value);
-    int TransPayeeSelection();
+    void setTransPayeeSelection(int value);
+    int getTransPayeeSelection() const;
 
-    void TransCategorySelection(int value);
-    int TransCategorySelection();
+    void setTransCategorySelection(int value);
+    int getTransCategorySelection() const;
 
-    void TransStatusReconciled(int value);
-    int TransStatusReconciled();
+    void setTransStatusReconciled(int value);
+    int getTransStatusReconciled() const;
 
-    void TransDateDefault(int value);
-    int TransDateDefault();
+    void setTransDateDefault(int value);
+    int getTransDateDefault() const;
 
-    void SendUsageStatistics(bool value);
-    bool SendUsageStatistics();
+    void setSendUsageStatistics(bool value);
+    bool getSendUsageStatistics() const;
 
-    void SharePrecision(int value);
-    int SharePrecision();
+    void setSharePrecision(int value);
+    int getSharePrecision() const;
 
     /* stored value in percentage for scale html font and other objects */
-    void HtmlFontSize(int value);
-    int HtmlFontSize();
+    void setHtmlFontSize(int value);
+    int getHtmlFontSize() const;
 
     // Allows a year or financial year to start before or after the 1st of the month.
-    void BudgetDaysOffset(int value);
-    int BudgetDaysOffset();
+    void setBudgetDaysOffset(int value);
+    int getBudgetDaysOffset() const;
     /**Re-adjust date by the date offset value*/
-    void BudgetDateOffset(wxDateTime& date);
+    void setBudgetDateOffset(wxDateTime& date);
 
-    void IconSize(int value);
-    int IconSize();
+    void setIconSize(int value);
+    int getIconSize() const;
 
-    int AccountImageId(int account_id, bool def = false);
+    int getAccountImageId(int account_id, bool def = false);
 
-    void HideReport(int report, bool value);
-    bool HideReport(int report);
-    int ReportCount();
-    wxString ReportFullName(int report);
-    wxString ReportGroup(int report);
-    wxString ReportName(int report);
-    bool BudgetReport(int report);
-    mmPrintableBase* ReportFunction(int report);
+    void setHideReport(int report, bool value);
+    bool getHideReport(int report);
+    int getReportCount();
+    const wxString getReportFullName(int report);
+    const wxString getReportGroup(int report);
+    const wxString getReportName(int report);
+    bool getBudgetReport(int report);
+    mmPrintableBase* getReportFunction(int report);
 
 private:
     wxString m_dateFormat;
@@ -161,5 +161,104 @@ private:
     const wxString ReportSettings(int id);
 };
 
+inline const wxString Option::getUserName() const
+{
+    return m_userNameString;
+}
+
+inline const wxString Option::getFinancialYearStartDay() const
+{
+    return m_financialYearStartDayString;
+}
+
+inline const wxString Option::getFinancialYearStartMonth() const
+{
+    return m_financialYearStartMonthString;
+}
+
+inline int Option::getBaseCurrencyID() const
+{
+    return m_baseCurrency;
+}
+
+inline bool Option::getDatabaseUpdated() const
+{
+    return m_databaseUpdated;
+}
+
+inline const wxString Option::getDateFormat() const
+{
+    return m_dateFormat;
+}
+
+inline bool Option::getBudgetFinancialYears() const
+{
+    return m_budgetFinancialYears;
+}
+
+inline bool Option::getBudgetIncludeTransfers() const
+{
+    return m_budgetIncludeTransfers;
+}
+
+inline bool Option::getBudgetSetupWithoutSummaries() const
+{
+    return m_budgetSetupWithoutSummaries;
+}
+
+inline bool Option::getBudgetReportWithSummaries() const
+{
+    return m_budgetReportWithSummaries;
+}
+
+inline bool Option::getIgnoreFutureTransactions() const
+{
+    return m_ignoreFutureTransactions;
+}
+
+inline int Option::getTransPayeeSelection() const
+{
+    return m_transPayeeSelection;
+}
+
+inline int Option::getTransCategorySelection() const
+{
+    return m_transCategorySelection;
+}
+
+inline int Option::getTransStatusReconciled() const
+{
+    return m_transStatusReconciled;
+}
+
+inline int Option::getTransDateDefault() const
+{
+    return m_transDateDefault;
+}
+
+inline int Option::getSharePrecision() const
+{
+    return m_sharePrecision;
+}
+
+inline bool Option::getSendUsageStatistics() const
+{
+    return m_usageStatistics;
+}
+
+inline int Option::getHtmlFontSize() const
+{
+    return m_html_font_size;
+}
+
+inline int Option::getBudgetDaysOffset() const
+{
+    return m_budget_days_offset;
+}
+
+inline int Option::getIconSize() const
+{
+    return m_ico_size;
+}
 #endif // MM_EX_OPTION_H_
 //----------------------------------------------------------------------------

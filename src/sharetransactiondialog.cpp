@@ -134,10 +134,10 @@ void ShareTransactionDialog::DataToControls()
 
     if (translink_list.empty())
     {   // Set up the transaction as the first entry.
-        int precision = m_stock->NUMSHARES == floor(m_stock->NUMSHARES) ? 0 : Option::instance().SharePrecision();
+        int precision = m_stock->NUMSHARES == floor(m_stock->NUMSHARES) ? 0 : Option::instance().getSharePrecision();
         m_share_num_ctrl->SetValue(m_stock->NUMSHARES, precision);
-        m_share_price_ctrl->SetValue(m_stock->PURCHASEPRICE, Option::instance().SharePrecision());
-        m_commission_ctrl->SetValue(m_stock->COMMISSION, Option::instance().SharePrecision());
+        m_share_price_ctrl->SetValue(m_stock->PURCHASEPRICE, Option::instance().getSharePrecision());
+        m_commission_ctrl->SetValue(m_stock->COMMISSION, Option::instance().getSharePrecision());
         m_transaction_panel->TransactionDate(Model_Stock::PURCHASEDATE(m_stock));
         m_transaction_panel->SetTransactionValue(
             (m_stock->NUMSHARES * m_stock->PURCHASEPRICE), m_stock->COMMISSION, true);
@@ -146,10 +146,10 @@ void ShareTransactionDialog::DataToControls()
     {
         if (m_translink_entry && m_share_entry)
         {
-            int precision = m_share_entry->SHARENUMBER == floor(m_share_entry->SHARENUMBER) ? 0 : Option::instance().SharePrecision();
+            int precision = m_share_entry->SHARENUMBER == floor(m_share_entry->SHARENUMBER) ? 0 : Option::instance().getSharePrecision();
             m_share_num_ctrl->SetValue(std::abs(m_share_entry->SHARENUMBER), precision);
-            m_share_price_ctrl->SetValue(m_share_entry->SHAREPRICE, Option::instance().SharePrecision());
-            m_commission_ctrl->SetValue(m_share_entry->SHARECOMMISSION, Option::instance().SharePrecision());
+            m_share_price_ctrl->SetValue(m_share_entry->SHAREPRICE, Option::instance().getSharePrecision());
+            m_commission_ctrl->SetValue(m_share_entry->SHARECOMMISSION, Option::instance().getSharePrecision());
             m_share_lot_ctrl->SetValue(m_share_entry->SHARELOT);
 
             Model_Checking::Data* checking_entry = Model_Checking::instance().get(m_translink_entry->CHECKINGACCOUNTID);
@@ -160,7 +160,7 @@ void ShareTransactionDialog::DataToControls()
         else
         {
             m_share_num_ctrl->SetValue(0, 0);
-            m_share_price_ctrl->SetValue(0, Option::instance().SharePrecision());
+            m_share_price_ctrl->SetValue(0, Option::instance().getSharePrecision());
             m_transaction_panel->SetTransactionValue(0, 0, true);
         }
     }
