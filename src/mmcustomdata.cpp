@@ -321,13 +321,13 @@ void mmCustomData::OnMultiChoice(wxCommandEvent& event)
     SetWidgetChanged(controlID, data);
 }
 
-size_t mmCustomData::GetActiveCustomFieldsCount()
+size_t mmCustomData::GetActiveCustomFieldsCount() const
 { 
     const auto& data_set = Model_CustomFieldData::instance().find(Model_CustomFieldData::REFID(m_ref_id));
     return data_set.size();
 }
 
-std::map<wxString, wxString> mmCustomData::GetActiveCustomFields()
+std::map<wxString, wxString> mmCustomData::GetActiveCustomFields() const
 {
     wxString data;
     std::map<wxString, wxString> values;
@@ -344,7 +344,7 @@ std::map<wxString, wxString> mmCustomData::GetActiveCustomFields()
     return values;
 }
 
-const wxString mmCustomData::GetWidgetData(wxWindowID controlID)
+const wxString mmCustomData::GetWidgetData(wxWindowID controlID) const
 {
     wxString data;
     if (m_data_changed.find(controlID) != m_data_changed.end()) 
@@ -471,7 +471,7 @@ void mmCustomData::ResetWidgetsChanged()
     m_data_changed.clear();
 }
 
-void mmCustomData::ClearSettings()
+void mmCustomData::ClearSettings() const
 {
     for (const auto &field : m_fields)
     {
@@ -506,7 +506,7 @@ void mmCustomData::OnCheckBoxChanged(wxCommandEvent& event)
     SetWidgetChanged(event.GetId(), data);
 }
 
-int mmCustomData::GetWidgetType(wxWindowID controlID)
+int mmCustomData::GetWidgetType(wxWindowID controlID) const
 {
     Model_CustomField::Data_Set fields = Model_CustomField::instance().find(Model_CustomField::DB_Table_CUSTOMFIELD::REFTYPE(m_ref_type));
     int control_id = controlID - GetBaseID();
@@ -558,7 +558,7 @@ bool mmCustomData::IsWidgetChanged(wxWindowID id)
     return !value.empty();
 }
 
-bool mmCustomData::IsSomeWidgetChanged()
+bool mmCustomData::IsSomeWidgetChanged() const
 {
     for (const auto& entry : m_data_changed)
     {
@@ -596,12 +596,12 @@ bool mmCustomData::IsDataFound(const Model_Checking::Full_Data &tran)
     return false;
 }
 
-bool mmCustomData::IsCustomPanelShown()
+bool mmCustomData::IsCustomPanelShown() const
 {
     return m_static_box->IsShown();
 }
 
-void mmCustomData::ShowHideCustomPanel()
+void mmCustomData::ShowHideCustomPanel() const
 {
     if (IsCustomPanelShown()) {
         m_static_box->Hide();

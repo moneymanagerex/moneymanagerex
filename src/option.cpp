@@ -128,8 +128,11 @@ Option::Option()
     m_reports.push_back(ReportInfo(wxTRANSLATE("Stocks Report"), wxTRANSLATE("Performance"), false, ReportInfo::StocksReportPerformance));
     m_reports.push_back(ReportInfo(wxTRANSLATE("Stocks Report"), wxTRANSLATE("Summary"), false, ReportInfo::StocksReportSummary));
     m_reports.push_back(ReportInfo("", wxTRANSLATE("Forecast Report"), false, ReportInfo::ForecastReport));
+
     //Sort by group name and report name
     std::sort(m_reports.begin(), m_reports.end());
+
+    m_report_count = static_cast<int>(m_reports.size());
 }
 
 //----------------------------------------------------------------------------
@@ -227,35 +230,35 @@ wxLanguage Option::getLanguageID(bool get_db)
 const wxString Option::getLanguageISO6391(bool get_db)
 {
     Option::getLanguageID(get_db);
-    if (m_language==wxLANGUAGE_UNKNOWN)
+    if (m_language == wxLANGUAGE_UNKNOWN)
         return wxEmptyString;
-    if (m_language==wxLANGUAGE_DEFAULT)
+    if (m_language == wxLANGUAGE_DEFAULT)
         return wxTranslations::Get()->GetBestTranslation("mmex", wxLANGUAGE_ENGLISH_US).Left(2);
     return wxLocale::GetLanguageCanonicalName(m_language).Left(2);
 }
 
 void Option::setUserName(const wxString& username)
 {
-    m_userNameString = username;
     Model_Infotable::instance().Set("USERNAME", username);
+    m_userNameString = username;
 }
 
 void Option::setFinancialYearStartDay(const wxString& setting)
 {
-    m_financialYearStartDayString = setting;
     Model_Infotable::instance().Set("FINANCIAL_YEAR_START_DAY", setting);
+    m_financialYearStartDayString = setting;
 }
 
 void Option::setFinancialYearStartMonth(const wxString& setting)
 {
-    m_financialYearStartMonthString = setting;
     Model_Infotable::instance().Set("FINANCIAL_YEAR_START_MONTH", setting);
+    m_financialYearStartMonthString = setting;
 }
 
 void Option::setBaseCurrencyID(int base_currency_id)
 {
-    m_baseCurrency = base_currency_id;
     Model_Infotable::instance().Set("BASECURRENCYID", base_currency_id);
+    m_baseCurrency = base_currency_id;
 }
 
 void Option::setDatabaseUpdated(bool value)
@@ -327,8 +330,8 @@ void Option::setSharePrecision(int value)
 
 void Option::setSendUsageStatistics(bool value)
 {
-    m_usageStatistics = value;
     Model_Setting::instance().Set(INIDB_SEND_USAGE_STATS, value);
+    m_usageStatistics = value;
 }
 
 void Option::setHtmlFontSize(int value)
@@ -343,7 +346,7 @@ void Option::setBudgetDaysOffset(int value)
     m_budget_days_offset = value;
 }
 
-void Option::setBudgetDateOffset(wxDateTime& date)
+void Option::setBudgetDateOffset(wxDateTime& date) const
 {
     if (m_budget_days_offset != 0)
         date.Add(wxDateSpan::Days(m_budget_days_offset));
@@ -354,7 +357,7 @@ void Option::setIconSize(int value)
     m_ico_size = value;
 }
 
-int Option::getAccountImageId(int account_id, bool def)
+int Option::getAccountImageId(int account_id, bool def) const
 {
     int max = acc_img::MAX_XPM - img::LAST_NAVTREE_PNG;
     int min = 1;
@@ -432,7 +435,7 @@ int Option::getAccountImageId(int account_id, bool def)
 
 void Option::setHideReport(int report, bool value)
 {
-    if ((report >= 0) && (report < getReportCount()))
+    if (isReportIDCorrect(report))
     {
         int bitField = 1 << m_reports[report].id;
         if (value)
@@ -444,71 +447,52 @@ void Option::setHideReport(int report, bool value)
     }
 }
 
-bool Option::getHideReport(int report)
+bool Option::getHideReport(int report) const
 {
     bool hideReport = false;
-    if ((report >= 0) && (report < getReportCount()))
+    if (isReportIDCorrect(report))
     {
-        int bitField = 1 << m_reports[report].id;
+        int bitField = 1 << m_reports.at(report).id;
         hideReport = ((m_hideReport & bitField) != 0);
     }
     return hideReport;
 }
 
-int Option::getReportCount()
-{
-    return static_cast<int>(m_reports.size());
-}
-
-const wxString Option::getReportFullName(int report)
+const wxString Option::getReportFullName(int reportID) const
 {
     wxString name = "";
-    if ((report >= 0) && (report < getReportCount()))
+    if (isReportIDCorrect(reportID))
     {
-        ReportInfo* r = &m_reports[report];
-        name = wxGetTranslation(r->group);
+        name = m_reports.at(reportID).group;
         if (name.IsEmpty())
-            name = wxGetTranslation(r->name);
+            name = wxGetTranslation(m_reports.at(reportID).name);
         else
-            name += wxString(" (") + wxGetTranslation(r->name) + wxString(")");
+            name = wxString::Format("%s (%s)"
+                , wxGetTranslation(name)
+                , wxGetTranslation(m_reports.at(reportID).name));
     }
     return name;
 }
 
-const wxString Option::getReportGroup(int report)
+const wxString Option::getReportGroup(int report) const
 {
-    wxString group = "";
-    if ((report >= 0) && (report < getReportCount()))
-    {
-        group = m_reports[report].group;
-    }
-    return group;
+    return isReportIDCorrect(report) ? m_reports.at(report).group : wxEmptyString;
 }
 
-const wxString Option::getReportName(int report)
+const wxString Option::getReportName(int report) const
 {
-    wxString name = "";
-    if ((report >= 0) && (report < getReportCount()))
-    {
-        name = m_reports[report].name;
-    }
-    return name;
+    return isReportIDCorrect(report) ? m_reports.at(report).name : wxEmptyString;
 }
 
-bool Option::getBudgetReport(int report)
+bool Option::getBudgetReport(int report) const
 {
-    bool budget = false;
-    if ((report >= 0) && (report < getReportCount()))
-    {
-        budget = m_reports[report].type;
-    }
-    return budget;
+    return isReportIDCorrect(report) ? m_reports.at(report).type : false;
 }
 
-mmPrintableBase* Option::getReportFunction(int report)
+mmPrintableBase* Option::getReportFunction(int report) const
 {
     mmPrintableBase* function = nullptr;
-    if ((report >= 0) && (report < getReportCount()))
+    if (isReportIDCorrect(report))
     {
         switch (m_reports[report].id)
         {
@@ -567,12 +551,12 @@ mmPrintableBase* Option::getReportFunction(int report)
             break;
         }
         if (function != nullptr)
-            function->setSettings(ReportSettings(m_reports[report].id));
+            function->setSettings(ReportSettings(m_reports.at(report).id));
     }
     return function;
 }
 
-const wxString Option::ReportSettings(int id)
+const wxString Option::ReportSettings(int id) const
 {
     const wxString& name = wxString::Format("REPORT_%d", id);
     const wxString& settings = Model_Infotable::instance().GetStringInfo(name, "");

@@ -113,23 +113,25 @@ public:
     void setBudgetDaysOffset(int value);
     int getBudgetDaysOffset() const;
     /**Re-adjust date by the date offset value*/
-    void setBudgetDateOffset(wxDateTime& date);
+    void setBudgetDateOffset(wxDateTime& date) const;
 
     void setIconSize(int value);
     int getIconSize() const;
 
-    int getAccountImageId(int account_id, bool def = false);
+    int getAccountImageId(int account_id, bool def = false) const;
 
     void setHideReport(int report, bool value);
-    bool getHideReport(int report);
-    int getReportCount();
-    const wxString getReportFullName(int report);
-    const wxString getReportGroup(int report);
-    const wxString getReportName(int report);
-    bool getBudgetReport(int report);
-    mmPrintableBase* getReportFunction(int report);
+    bool getHideReport(int report) const;
+    int getReportCount() const;
+    const wxString getReportFullName(int report) const;
+    const wxString getReportGroup(int report) const;
+    const wxString getReportName(int report) const;
+    bool getBudgetReport(int report) const;
+    mmPrintableBase* getReportFunction(int report) const;
 
 private:
+    bool isReportIDCorrect(int report) const;
+    int m_report_count;
     wxString m_dateFormat;
     wxLanguage m_language;
     wxString m_userNameString;
@@ -158,7 +160,7 @@ private:
     struct ReportInfo;
     std::vector<Option::ReportInfo> m_reports;
 
-    const wxString ReportSettings(int id);
+    const wxString ReportSettings(int id) const;
 };
 
 inline const wxString Option::getUserName() const
@@ -260,5 +262,16 @@ inline int Option::getIconSize() const
 {
     return m_ico_size;
 }
+
+inline int Option::getReportCount() const
+{
+    return m_report_count;
+}
+
+inline bool Option::isReportIDCorrect(int report) const
+{
+    return (report >= 0) && (report < getReportCount());
+}
+
 #endif // MM_EX_OPTION_H_
 //----------------------------------------------------------------------------

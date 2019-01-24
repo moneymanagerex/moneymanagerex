@@ -572,7 +572,7 @@ void mmCheckingPanel::CreateControls()
 }
 
 //----------------------------------------------------------------------------
-wxString mmCheckingPanel::GetPanelTitle(const Model_Account::Data& account) const
+const wxString mmCheckingPanel::GetPanelTitle(const Model_Account::Data& account) const
 {
     return wxString::Format(_("Account View: %s"), account.ACCOUNTNAME);
 }
