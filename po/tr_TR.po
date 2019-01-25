@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-01-09 16:41+0300\n"
-"PO-Revision-Date: 2019-01-25 05:35\n"
+"PO-Revision-Date: 2019-01-25 09:03\n"
 "Last-Translator: vomikan <nikolay.akimov@gmail.com>\n"
 "Language-Team: Turkish\n"
 "MIME-Version: 1.0\n"
@@ -577,7 +577,7 @@ msgstr "Varlık Yönetimi"
 
 #: assetspanel.cpp:803
 msgid "Account \t Date\t   Value\n\n"
-msgstr "Hesap \\t Tarih\\t   Değer\n\n"
+msgstr "Hesap \t Tarih\t   Değer\n\n"
 
 #: attachmentdialog.cpp:54 customfieldlistdialog.cpp:52
 #: import_export/qif_import_gui.cpp:92 import_export/univcsvdialog.cpp:1121
