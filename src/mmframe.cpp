@@ -1748,7 +1748,7 @@ void mmGUIFrame::createMenu()
     wxMenuItem* menuItemDonate = new wxMenuItem(menuHelp, MENU_DONATE
         , _("Donate via PayPal")
         , _("Donate the team to support infrastructure etc"));
-    menuItemDonate->SetBitmap(mmBitmap(png::PP));
+    menuItemDonate->SetBitmap(mmBitmap(png::DONATE));
     wxMenuItem* menuItemBuyCoffee = new wxMenuItem(menuHelp, MENU_BUY_COFFEE
         , _("Buy us a Coffee")
         , _("Buy key developer a coffee"));
