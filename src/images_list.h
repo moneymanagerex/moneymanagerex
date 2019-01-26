@@ -108,7 +108,7 @@ enum png {
     BUG,
     NEWS,
     NEW_NEWS,
-    PP,
+    DONATE,
     FULLSCREEN,
     PIE_CHART,
     BUDGET,

@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-01-09 16:41+0300\n"
-"PO-Revision-Date: 2019-01-24 16:59\n"
+"PO-Revision-Date: 2019-01-25 09:03\n"
 "Last-Translator: vomikan <nikolay.akimov@gmail.com>\n"
 "Language-Team: Turkish\n"
 "MIME-Version: 1.0\n"
@@ -577,7 +577,7 @@ msgstr "Varlık Yönetimi"
 
 #: assetspanel.cpp:803
 msgid "Account \t Date\t   Value\n\n"
-msgstr "Hesap    Tarih        Değer"
+msgstr "Hesap \t Tarih\t   Değer\n\n"
 
 #: attachmentdialog.cpp:54 customfieldlistdialog.cpp:52
 #: import_export/qif_import_gui.cpp:92 import_export/univcsvdialog.cpp:1121
@@ -3931,7 +3931,7 @@ msgstr "Satır %i \t %s\n"
 #: import_export/qif_import_gui.cpp:438
 #, c-format
 msgid "Number of lines read from QIF file: %i in %ld ms"
-msgstr "QIF dosyasından okunan satır sayısı: %ld ms'de %i"
+msgstr "QIF dosyasından okunan satır sayısı: %i in %ld ms"
 
 #: import_export/qif_import_gui.cpp:441
 msgid "Press OK Button to continue"
@@ -4881,7 +4881,7 @@ msgstr "Seçili işlemler: %ld"
 #: mmcheckingpanel.cpp:2029
 #, c-format
 msgid "Selected transactions balance: %s"
-msgstr "Seçili işlemlerin kalıntısı"
+msgstr "Seçili işlemlerin kalıntısı: %s"
 
 #: mmcheckingpanel.cpp:2032
 #, c-format
@@ -5658,9 +5658,9 @@ msgstr "VeriTabanı İyileştirme"
 msgid "Database Optimization Completed!\n\n"
 "Size before: %s\n"
 "Size after: %s\n"
-msgstr "Veritabanı İyileştirme Tamamlandı!\n"
+msgstr "Veritabanı İyileştirme Tamamlandı!\n\n"
 "Önceki Boyut: %s\n"
-"Sonraki Boyut: %s"
+"Sonraki Boyut: %s\n"
 
 #: mmframe.cpp:2128
 msgid "Please use this function only if explicitly requested by MMEX support"
@@ -7280,7 +7280,7 @@ msgid "The Company name does not have an associated Share Account.\n\n"
 "Do you want to create a new Share Acccount?\n"
 msgstr "Firma adının bağlantılı bir Hisse (Pay) Hesabı yok.\n\n"
 "Firma adını aynı isimli var olan bir menkul değer hesabına yeniden ayarlamak isteyebilirsiniz. Eğer bu Hisse Hesabı olmayan bir menkul değerse bir Hisse Hesabı oluşturulması önerilir.\n\n"
-"Yeni bir Menkul Değer hesabı oluşturmak ister misiniz?"
+"Yeni bir Menkul Değer hesabı oluşturmak ister misiniz?\n"
 
 #: stockdialog.cpp:567
 msgid "Stock History CSV Import"
@@ -7426,8 +7426,8 @@ msgstr "Menkul Kıymet Yatırımı Silme Onayı"
 #, c-format
 msgid "Temporary Stock list: %s\n\n"
 "Date          Lot          Shares          Price        Commission\n\n"
-msgstr "Geçici Menkul Değer listesi: %s\n\n"
-"Tarih          Lot           Pay           Fiyat         Komisyon"
+msgstr "Temporary Stock list: %s\n\n"
+"Tarih          Lot           Pay           Fiyat         Komisyon\n\n"
 
 #: stockspanel.cpp:574
 msgid "Create a new Stock investment in this portfolio"

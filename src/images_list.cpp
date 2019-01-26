@@ -40,6 +40,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "../resources/credit_card_png.h"
 #include "../resources/currency_png.h"
 #include "../resources/delete_account_png.h"
+#include "../resources/donate_png.h"
 #include "../resources/downarrow_png.h"
 #include "../resources/edit_account_png.h"
 #include "../resources/exit_png.h"
@@ -72,7 +73,6 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "../resources/payee_png.h"
 #include "../resources/payee_relocation_png.h"
 #include "../resources/pie_chart_png.h"
-#include "../resources/pp_png.h"
 #include "../resources/print_png.h"
 #include "../resources/profit_png.h"
 #include "../resources/property_png.h"
@@ -228,7 +228,7 @@ const wxBitmap mmBitmap(int ref)
     case BUG: return x == 16 ? wxBITMAP_PNG_FROM_DATA(bug) : x == 24 ? wxBITMAP_PNG_FROM_DATA(bug24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(bug32) : wxBITMAP_PNG_FROM_DATA(bug48);
     case NEWS: return x == 16 ? wxBITMAP_PNG_FROM_DATA(news) : x == 24 ? wxBITMAP_PNG_FROM_DATA(news24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(news32) : wxBITMAP_PNG_FROM_DATA(news48);
     case NEW_NEWS: return x == 16 ? wxBITMAP_PNG_FROM_DATA(nnews) : x == 24 ? wxBITMAP_PNG_FROM_DATA(nnews24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(nnews32) : wxBITMAP_PNG_FROM_DATA(nnews48);
-    case PP: return x == 16 ? wxBITMAP_PNG_FROM_DATA(pp) : x == 24 ? wxBITMAP_PNG_FROM_DATA(pp24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(pp32) : wxBITMAP_PNG_FROM_DATA(pp48);
+    case DONATE: return x == 16 ? wxBITMAP_PNG_FROM_DATA(donate) : x == 24 ? wxBITMAP_PNG_FROM_DATA(donate24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(donate32) : wxBITMAP_PNG_FROM_DATA(donate48);
     case FULLSCREEN: return x == 16 ? wxBITMAP_PNG_FROM_DATA(fullscreen) : x == 24 ? wxBITMAP_PNG_FROM_DATA(fullscreen24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(fullscreen32) : wxBITMAP_PNG_FROM_DATA(fullscreen48);
     case PIE_CHART: return x == 16 ? wxBITMAP_PNG_FROM_DATA(pie_chart) : x == 24 ? wxBITMAP_PNG_FROM_DATA(pie_chart24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(pie_chart32) : wxBITMAP_PNG_FROM_DATA(pie_chart48);
     case BUDGET: return x == 16 ? wxBITMAP_PNG_FROM_DATA(budget) : x == 24 ? wxBITMAP_PNG_FROM_DATA(budget24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(budget32) : wxBITMAP_PNG_FROM_DATA(budget48);
