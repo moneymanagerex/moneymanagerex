@@ -837,7 +837,8 @@ void mmTransDialog::ActivateSplitTransactionsDlg()
     if (!m_textAmount->GetDouble(m_trx_data.TRANSAMOUNT))
         m_trx_data.TRANSAMOUNT = 0;
 
-    if (!Model_Category::full_name(m_trx_data.CATEGID, m_trx_data.SUBCATEGID).empty() && local_splits.empty())
+    const auto full_category_name = Model_Category::full_name(m_trx_data.CATEGID, m_trx_data.SUBCATEGID);
+    if (!full_category_name.empty() && local_splits.empty() && m_trx_data.TRANSAMOUNT != 0)
     {
         Split s;
         s.SPLITTRANSAMOUNT = m_trx_data.TRANSAMOUNT;
@@ -979,6 +980,10 @@ void mmTransDialog::OnSplitChecked(wxCommandEvent& WXUNUSED(event))
 {
     if (cSplit_->IsChecked())
     {
+        if (!m_textAmount->IsEmpty() && !m_textAmount->checkValue(m_trx_data.TRANSAMOUNT)) {
+            cSplit_->SetValue(false);
+            return;
+        }
         ActivateSplitTransactionsDlg();
     }
     else
