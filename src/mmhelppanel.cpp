@@ -74,9 +74,6 @@ void mmHelpPanel::CreateControls()
     itemBoxSizerHeader->Add(buttonBack, 0, wxLEFT, 5);
     itemBoxSizerHeader->Add(buttonFordward, 0, wxLEFT | wxRIGHT, 5);
     itemBoxSizerHeader->Add(itemStaticText9, 0, wxLEFT | wxTOP, 5);
-
-    browser_ = wxWebView::New(this, wxID_ANY);
-    itemBoxSizer2->Add(browser_, 1, wxGROW | wxALL, 1);
     
     /**************************************************************************
     Allows help files for a specific language.
@@ -93,7 +90,8 @@ void mmHelpPanel::CreateControls()
         , Option::instance().LanguageISO6391());
 
     //wxLogDebug("%s", help_file);
-    browser_->LoadURL(help_file);
+    browser_ = wxWebView::New(this, wxID_ANY, help_file);
+    itemBoxSizer2->Add(browser_, 1, wxGROW | wxALL, 1);
 }
 
 void mmHelpPanel::sortTable()
