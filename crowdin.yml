@@ -1,6 +1,4 @@
 files:
   - source: /po/mmex.pot
     translation: /po/%locale_with_underscore%.po
-    source: /docs/index.html
-    translation: /docs/%file_name%_%locale_with_underscore%.html
     commit_message: "fix(i18n): update"
