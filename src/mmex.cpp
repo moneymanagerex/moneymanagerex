@@ -84,7 +84,7 @@ bool mmGUIApp::setGUILanguage(wxLanguage lang)
     }
     wxTranslations::Set(trans);
     this->m_lang=lang;
-    Option::instance().Language(lang);
+    Option::instance().setLanguage(lang);
     return true;
 }
 
@@ -198,7 +198,7 @@ bool OnInitImpl(mmGUIApp* app)
     Option::instance().LoadOptions(false);
 
     /* set preffered GUI language */
-    app->setGUILanguage(Option::instance().Language());
+    app->setGUILanguage(Option::instance().getLanguageID());
 
     /* Was App Maximized? */
     bool isMax = Model_Setting::instance().GetBoolSetting("ISMAXIMIZED", true);

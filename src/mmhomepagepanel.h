@@ -70,16 +70,16 @@ private:
     void getData();
     void fillData();
     void OnLinkClicked(wxWebViewEvent& event);
-    const wxString displayAssets(double& tBalance);
-    const wxString displayIncomeVsExpenses();
-    const wxString getStatWidget();
-    const wxString getToggles();
-    const wxString displayGrandTotals(double& tBalance);
+    const wxString getAssetsJSON(double& tBalance) const;
+    const wxString getIncomeVsExpensesJSON() const;
+    const wxString getStatWidget() const;
+    const wxString getToggles() const;
+    const wxString getGrandTotalsJSON(double& tBalance) const;
 
-    const wxString displayAccounts(double& tBalance, std::map<int, std::pair<double, double> > &accountStats
-        , int type = Model_Account::CHECKING);
-    void get_account_stats(std::map<int, std::pair<double, double> > &accountStats);
-    void getExpensesIncomeStats(std::map<int, std::pair<double, double> > &incomeExpensesStats
+    const wxString getAccountsHTML(double& tBalance, std::map<int, std::pair<double, double> > &accountStats
+        , int type = Model_Account::CHECKING) const;
+    void setAccountsData(std::map<int, std::pair<double, double> > &accountStats);
+    void setExpensesIncomeStatsData(std::map<int, std::pair<double, double> > &incomeExpensesStats
         , mmDateRange* date_range) const;
     int countFollowUp_, total_transactions_;
 };

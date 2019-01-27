@@ -518,11 +518,10 @@ bool mmHomePagePanel::Create(wxWindow *parent
     wxPanelBase::Create(parent, winid, pos, size, style, name);
     wxDateTime start = wxDateTime::UNow();
 
+    createHTML();
     CreateControls();
     GetSizer()->Fit(this);
     GetSizer()->SetSizeHints(this);
-
-    createHTML();
 
     Model_Usage::instance().pageview(this, (wxDateTime::UNow() - start).GetMilliseconds().ToLong());
 
@@ -541,7 +540,7 @@ void mmHomePagePanel::CreateControls()
     wxBoxSizer* itemBoxSizer2 = new wxBoxSizer(wxVERTICAL);
     this->SetSizer(itemBoxSizer2);
 
-    browser_ = wxWebView::New(this, mmID_BROWSER);
+    browser_ = wxWebView::New(this, mmID_BROWSER, getURL(mmex::getReportFullFileName("index")));
     browser_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new wxWebViewFSHandler("memory")));
     browser_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new WebViewHandlerHomePage(this, "assets")));
     browser_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new WebViewHandlerHomePage(this, "billsdeposits")));
@@ -569,14 +568,14 @@ void mmHomePagePanel::getTemplate()
 
 void mmHomePagePanel::getData()
 {
-    m_frames["HTMLSCALE"] = wxString::Format("%d", Option::instance().HtmlFontSize());
+    m_frames["HTMLSCALE"] = wxString::Format("%d", Option::instance().getHtmlFontSize());
 
     vAccts_ = Model_Setting::instance().ViewAccounts();
     
     if (date_range_)
         date_range_->destroy();
  
-    if (Option::instance().IgnoreFutureTransactions())
+    if (Option::instance().getIgnoreFutureTransactions())
         date_range_ = new mmCurrentMonthToDate;
     else
         date_range_ = new mmCurrentMonth;
@@ -584,22 +583,22 @@ void mmHomePagePanel::getData()
     double tBalance = 0.0;
 
     std::map<int, std::pair<double, double> > accountStats;
-    get_account_stats(accountStats);
+    setAccountsData(accountStats);
 
-    m_frames["ACCOUNTS_INFO"] = displayAccounts(tBalance, accountStats);
-    m_frames["CARD_ACCOUNTS_INFO"] = displayAccounts(tBalance
+    m_frames["ACCOUNTS_INFO"] = getAccountsHTML(tBalance, accountStats);
+    m_frames["CARD_ACCOUNTS_INFO"] = getAccountsHTML(tBalance
         , accountStats, Model_Account::CREDIT_CARD);
 
-    m_frames["CASH_ACCOUNTS_INFO"] = displayAccounts(tBalance
+    m_frames["CASH_ACCOUNTS_INFO"] = getAccountsHTML(tBalance
         , accountStats, Model_Account::CASH);
 
-    m_frames["LOAN_ACCOUNTS_INFO"] = displayAccounts(tBalance
+    m_frames["LOAN_ACCOUNTS_INFO"] = getAccountsHTML(tBalance
         , accountStats, Model_Account::LOAN);
 
-    m_frames["TERM_ACCOUNTS_INFO"] = displayAccounts(tBalance
+    m_frames["TERM_ACCOUNTS_INFO"] = getAccountsHTML(tBalance
         , accountStats, Model_Account::TERM);
     
-    m_frames["CRYPTO_WALLETS_INFO"] = displayAccounts(tBalance
+    m_frames["CRYPTO_WALLETS_INFO"] = getAccountsHTML(tBalance
         , accountStats, Model_Account::CRYPTO);
 
     //Stocks
@@ -607,11 +606,11 @@ void mmHomePagePanel::getData()
     m_frames["STOCKS_INFO"] = stocks_widget.getHTMLText();
     tBalance += stocks_widget.get_total();
 
-    m_frames["ASSETS_INFO"] = displayAssets(tBalance);
-    m_frames["GRAND_TOTAL"] = displayGrandTotals(tBalance);
+    m_frames["ASSETS_INFO"] = getAssetsJSON(tBalance);
+    m_frames["GRAND_TOTAL"] = getGrandTotalsJSON(tBalance);
 
     //
-    m_frames["INCOME_VS_EXPENSES"] = displayIncomeVsExpenses();
+    m_frames["INCOME_VS_EXPENSES"] = getIncomeVsExpensesJSON();
 
     htmlWidgetBillsAndDeposits bills_and_deposits(_("Upcoming Transactions"));
     m_frames["BILLS_AND_DEPOSITS"] = bills_and_deposits.getHTMLText();
@@ -624,7 +623,7 @@ void mmHomePagePanel::getData()
     m_frames["TOGGLES"] = getToggles();
 
 }
-const wxString mmHomePagePanel::getToggles()
+const wxString mmHomePagePanel::getToggles() const
 {
     const wxString json = Model_Infotable::instance().GetStringInfo("HOME_PAGE_STATUS", "{}");
     return json;
@@ -637,13 +636,12 @@ void mmHomePagePanel::fillData()
         m_templateText.Replace(wxString::Format("<TMPL_VAR %s>", entry.first), entry.second);
     }
     Model_Report::outputReportFile(m_templateText, "index");
-    browser_->LoadURL(getURL(mmex::getReportFullFileName("index")));
 }
 
-void mmHomePagePanel::get_account_stats(std::map<int, std::pair<double, double> > &accountStats)
+void mmHomePagePanel::setAccountsData(std::map<int, std::pair<double, double> > &accountStats)
 {
     Model_Checking::Data_Set all_trans;
-    if (Option::instance().IgnoreFutureTransactions())
+    if (Option::instance().getIgnoreFutureTransactions())
     {
         all_trans = Model_Checking::instance().find(
             DB_Table_CHECKINGACCOUNT::TRANSDATE(date_range_->today().FormatISODate(), LESS_OR_EQUAL));
@@ -674,11 +672,11 @@ void mmHomePagePanel::get_account_stats(std::map<int, std::pair<double, double> 
     }
 }
 
-void mmHomePagePanel::getExpensesIncomeStats(std::map<int, std::pair<double, double> > &incomeExpensesStats
-    , mmDateRange* date_range)const
+void mmHomePagePanel::setExpensesIncomeStatsData(std::map<int, std::pair<double, double> > &incomeExpensesStats
+    , mmDateRange* date_range) const
 {
     //Initialization
-    bool ignoreFuture = Option::instance().IgnoreFutureTransactions();
+    bool ignoreFuture = Option::instance().getIgnoreFutureTransactions();
 
     //Calculations
     const auto &transactions = Model_Checking::instance().find(
@@ -711,8 +709,8 @@ void mmHomePagePanel::getExpensesIncomeStats(std::map<int, std::pair<double, dou
 }
 
 /* Accounts */
-const wxString mmHomePagePanel::displayAccounts(double& tBalance
-    , std::map<int, std::pair<double, double> > &accountStats, int type)
+const wxString mmHomePagePanel::getAccountsHTML(double& tBalance
+    , std::map<int, std::pair<double, double> > &accountStats, int type) const
 {
     wxASSERT(acc_type_str.size() >= (size_t)type );
     const wxString idStr = acc_type_str[type].first;
@@ -770,11 +768,11 @@ const wxString mmHomePagePanel::displayAccounts(double& tBalance
 }
 
 //* Income vs Expenses *//
-const wxString mmHomePagePanel::displayIncomeVsExpenses()
+const wxString mmHomePagePanel::getIncomeVsExpensesJSON() const
 {
     double tIncome = 0.0, tExpenses = 0.0;
     std::map<int, std::pair<double, double> > incomeExpensesStats;
-    getExpensesIncomeStats(incomeExpensesStats, date_range_);
+    setExpensesIncomeStatsData(incomeExpensesStats, date_range_);
 
     for (const auto& account : Model_Account::instance().all())
     {
@@ -825,14 +823,14 @@ const wxString mmHomePagePanel::displayIncomeVsExpenses()
     json_writer.Int(scaleStepWidth);
     json_writer.EndObject();
 
-    wxLogDebug("======= mmHomePagePanel::displayIncomeVsExpenses =======");
+    wxLogDebug("======= mmHomePagePanel::getIncomeVsExpensesJSON =======");
     wxLogDebug("RapidJson\n%s", json_buffer.GetString());
 
     return json_buffer.GetString();
 }
 
 //* Assets *//
-const wxString mmHomePagePanel::displayAssets(double& tBalance)
+const wxString mmHomePagePanel::getAssetsJSON(double& tBalance) const
 {
     double asset_balance = Model_Asset::instance().balance();
     tBalance += asset_balance;
@@ -846,13 +844,13 @@ const wxString mmHomePagePanel::displayAssets(double& tBalance)
     json_writer.String(Model_Currency::toCurrency(asset_balance).c_str());
     json_writer.EndObject();
 
-    wxLogDebug("======= mmHomePagePanel::displayAssets =======");
+    wxLogDebug("======= mmHomePagePanel::getAssetsJSON =======");
     wxLogDebug("RapidJson\n%s", json_buffer.GetString());
 
     return json_buffer.GetString();
 }
 
-const wxString mmHomePagePanel::getStatWidget()
+const wxString mmHomePagePanel::getStatWidget() const
 {
     StringBuffer json_buffer;
     PrettyWriter<StringBuffer> json_writer(json_buffer);
@@ -877,7 +875,7 @@ const wxString mmHomePagePanel::getStatWidget()
     return json_buffer.GetString();
 }
 
-const wxString mmHomePagePanel::displayGrandTotals(double& tBalance)
+const wxString mmHomePagePanel::getGrandTotalsJSON(double& tBalance) const
 {
     const wxString tBalanceStr = Model_Currency::toCurrency(tBalance);
 
@@ -890,7 +888,7 @@ const wxString mmHomePagePanel::displayGrandTotals(double& tBalance)
     json_writer.String(tBalanceStr.c_str());
     json_writer.EndObject();
 
-    wxLogDebug("======= mmHomePagePanel::displayGrandTotals =======");
+    wxLogDebug("======= mmHomePagePanel::getGrandTotalsJSON =======");
     wxLogDebug("RapidJson\n%s", json_buffer.GetString());
 
     return json_buffer.GetString();

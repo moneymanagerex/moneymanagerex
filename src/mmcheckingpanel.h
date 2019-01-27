@@ -354,7 +354,7 @@ private:
     /* updates the checking panel data */
     void showTips();
     void updateExtraTransactionData(int selIndex);
-    wxString GetPanelTitle(const Model_Account::Data& account) const;
+    const wxString GetPanelTitle(const Model_Account::Data& account) const;
 
     /* Getter for Virtual List Control */
     const wxString getItem(long item, long column);

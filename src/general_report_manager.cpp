@@ -192,8 +192,8 @@ class MyTreeItemData : public wxTreeItemData
 public:
     MyTreeItemData(int report_id, const wxString& selectedGroup) : m_report_id(report_id)
         , m_selectedGroup(selectedGroup) { }
-    int get_report_id() { return m_report_id; }
-    wxString get_group_name() { return m_selectedGroup; }
+    int get_report_id() const { return m_report_id; }
+    const wxString get_group_name() const { return m_selectedGroup; }
 private:
     int m_report_id;
     wxString m_selectedGroup;
@@ -999,8 +999,8 @@ void mmGeneralReportManager::OnExportReport(wxCommandEvent& WXUNUSED(event))
 void mmGeneralReportManager::showHelp()
 {
     wxFileName helpIndexFile(mmex::getPathDoc((mmex::EDocFile)mmex::HTML_CUSTOM_SQL));
-    if (Option::instance().LanguageISO6391() != "en")
-        helpIndexFile.AppendDir(Option::instance().LanguageISO6391());
+    if (Option::instance().getLanguageISO6391() != "en")
+        helpIndexFile.AppendDir(Option::instance().getLanguageISO6391());
     wxString url = "file://" + mmex::getPathDoc((mmex::EDocFile)mmex::HTML_CUSTOM_SQL);
     if (helpIndexFile.FileExists()) // Load the help file for the given language
     {

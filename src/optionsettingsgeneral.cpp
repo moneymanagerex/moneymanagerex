@@ -45,8 +45,8 @@ OptionSettingsGeneral::OptionSettingsGeneral(wxWindow *parent, mmGUIApp* app
 {
     wxPanel::Create(parent, id, pos, size, style, name);
     m_app = app;
-    m_currency_id = Option::instance().BaseCurrency();
-    m_date_format = Option::instance().DateFormat();
+    m_currency_id = Option::instance().getBaseCurrencyID();
+    m_date_format = Option::instance().getDateFormat();
 
     Create();
 }
@@ -164,9 +164,9 @@ void OptionSettingsGeneral::Create()
 
 void OptionSettingsGeneral::OnCurrency(wxCommandEvent& WXUNUSED(event))
 {
-    int currencyID = Option::instance().BaseCurrency();
+    int currencyID = Option::instance().getBaseCurrencyID();
     mmMainCurrencyDialog(this, currencyID, false).ShowModal();
-    currencyID = Option::instance().BaseCurrency();
+    currencyID = Option::instance().getBaseCurrencyID();
     Model_Currency::Data* currency = Model_Currency::instance().get(currencyID);
     wxButton* bn = (wxButton*)FindWindow(ID_DIALOG_OPTIONS_BUTTON_CURRENCY);
     bn->SetLabelText(wxGetTranslation(currency->CURRENCYNAME));
@@ -192,7 +192,7 @@ bool OptionSettingsGeneral::SaveFinancialYearStart()
     //Save Financial Year Start Month
     int month = 1 + m_month_selection->GetSelection();
     wxString fysMonthVal = wxString::Format("%d", month);
-    Option::instance().FinancialYearStartMonth(fysMonthVal);
+    Option::instance().setFinancialYearStartMonth(fysMonthVal);
     int last_month_day = wxDateTime(1, wxDateTime::Month(month-1), 2015).GetLastMonthDay().GetDay();
 
     //Save Financial Year Start Day
@@ -201,18 +201,18 @@ bool OptionSettingsGeneral::SaveFinancialYearStart()
     if (last_month_day < day)
         day = last_month_day;
 
-    Option::instance().FinancialYearStartDay(wxString::Format("%d", day));
+    Option::instance().setFinancialYearStartDay(wxString::Format("%d", day));
     return last_month_day < day;
 }
 
 void OptionSettingsGeneral::SaveSettings()
 {
     wxTextCtrl* stun = (wxTextCtrl*) FindWindow(ID_DIALOG_OPTIONS_TEXTCTRL_USERNAME);
-    Option::instance().UserName(stun->GetValue());
+    Option::instance().setUserName(stun->GetValue());
 
     //Model_Infotable::instance().SetBaseCurrency(m_currency_id); Handled only inside MainCurrencyDialog to better manage CurrencyHistory changes
 
-    Option::instance().DateFormat(m_date_format);
+    Option::instance().setDateFormat(m_date_format);
     SaveFinancialYearStart();
 
     Model_Setting::instance().Set(INIDB_USE_ORG_DATE_COPYPASTE, m_use_org_date_copy_paste->GetValue());
