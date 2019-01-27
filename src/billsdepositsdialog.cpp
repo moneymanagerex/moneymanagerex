@@ -175,13 +175,6 @@ void mmBDDialog::dataToControls()
         m_choice_repeat->Append(wxGetTranslation(entry.second));
     }
 
-    if (m_bill_data.REPEATS < NONE || m_bill_data.REPEATS > MONTHLYLASTBUSINESSDAY) {
-        m_choice_repeat->SetSelection(MONTHLY);
-    }
-    else {
-        m_choice_repeat->SetSelection(m_bill_data.REPEATS);
-    }
-
     for (const auto& i : Model_Billsdeposits::all_type())
     {
         if (i != Model_Billsdeposits::all_type()[Model_Billsdeposits::TRANSFER] || Model_Account::instance().all().size() > 1)
@@ -194,12 +187,10 @@ void mmBDDialog::dataToControls()
     SetTransferControls();  // hide appropriate fields
 
     resetPayeeString();
-    if (m_enter_occur)
-    {
+    if (m_enter_occur) {
         spinNextOccDate_->Disable();
     }
-    else
-    {
+    else {
         spinTransDate_->Disable();
     }
 
@@ -207,13 +198,12 @@ void mmBDDialog::dataToControls()
         return;
     }
 
-    if (m_bill_data.PAYEEID > 0)
-    {
+    if (m_bill_data.PAYEEID > 0) {
         payeeUnknown_ = false;
     }
+
     m_choice_status->SetSelection(Model_Checking::status(m_bill_data.STATUS));
-    if (m_bill_data.NUMOCCURRENCES > 0)
-    {
+    if (m_bill_data.NUMOCCURRENCES > 0) {
         textNumRepeats_->SetValue(wxString::Format("%d", m_bill_data.NUMOCCURRENCES));
     }
 
@@ -250,6 +240,14 @@ void mmBDDialog::dataToControls()
     setRepeatDetails();
     if (m_bill_data.REPEATS == 0) {// if none
         textNumRepeats_->SetValue("");
+    }
+
+    if (m_bill_data.REPEATS < NONE || m_bill_data.REPEATS > MONTHLYLASTBUSINESSDAY) {
+        wxASSERT(false);
+        m_choice_repeat->SetSelection(MONTHLY);
+    }
+    else {
+        m_choice_repeat->SetSelection(m_bill_data.REPEATS);
     }
 
     m_choice_transaction_type->SetSelection(Model_Billsdeposits::type(m_bill_data.TRANSCODE));
