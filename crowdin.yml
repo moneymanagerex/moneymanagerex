@@ -2,4 +2,4 @@ files:
   - source: /po/mmex.pot
     translation: /po/%locale_with_underscore%.po
   - source: /docs/index.html
-    translation: /docs/index_%two_letters_code%.html
+    translation: /docs/index_%locale_with_underscore%.html
