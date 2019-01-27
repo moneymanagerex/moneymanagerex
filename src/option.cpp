@@ -476,12 +476,12 @@ const wxString Option::getReportFullName(int reportID) const
 
 const wxString Option::getReportGroup(int report) const
 {
-    return isReportIDCorrect(report) ? m_reports.at(report).group : wxEmptyString;
+    return isReportIDCorrect(report) ? m_reports.at(report).group : "";
 }
 
 const wxString Option::getReportName(int report) const
 {
-    return isReportIDCorrect(report) ? m_reports.at(report).name : wxEmptyString;
+    return isReportIDCorrect(report) ? m_reports.at(report).name : "";
 }
 
 bool Option::getBudgetReport(int report) const
