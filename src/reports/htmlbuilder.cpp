@@ -419,31 +419,37 @@ void mmHTMLBuilder::endTableCell()
 
 void mmHTMLBuilder::addRadarChart(std::vector<ValueTrio>& actData, std::vector<ValueTrio>& estData, const wxString& id, const int x, const int y)
 {
-    static const wxString data_item =
-        "{\n"
-        "  'label' : '%s',\n"
-        "  'fillColor' : '%s',\n"
-        "  'strokeColor' : '%s',\n"
-        "  'pointColor' : '%s',\n"
-        "  'pointStrokeColor' : '#fff',\n"
-        "  'data' : [%s],\n"
-        "},\n";
+    static const wxString data_item = R"(
+{
+  'label' : '%s',
+  'fillColor' : '%s',
+  'strokeColor' : '%s',
+  'pointColor' : '%s',
+  'pointStrokeColor' : '#fff',
+  'data' : [%s],
+},)";
 
-    static const wxString js = "<script type='text/javascript'>\n"
-        "var data = {\n"
-        "  labels : [%s],\n"
-        "  datasets : [%s]\n"
-        "};\n"
-        "var ctx = document.getElementById('%s').getContext('2d');\n"
-        "var reportChart = new Chart(ctx).Radar(data, %s);\n"
-        "</script>\n";
-    static const wxString opt =
-        "{datasetFill: false,\n"
-        "inGraphDataShow : false,\n"
-        "annotateDisplay : true,\n"
-        "responsive: true,\n"
-        "pointDot : false,\n"
-        "showGridLines: true}";
+    static const wxString js = R"(
+<script type='text/javascript'>
+  var data = {
+    labels : [%s],
+    datasets : [%s]
+  };
+  var ctx = document.getElementById('%s').getContext('2d');
+  var reportChart = new Chart(ctx).Radar(data, %s);
+</script>;
+)";
+
+    static const wxString opt = R"(
+{
+  datasetFill: false,
+  inGraphDataShow : false,
+  annotateDisplay : true,
+  responsive: true,
+  pointDot : false,
+  showGridLines: true
+};
+)";
 
     wxString labels = "";
     wxString actValues = "";
@@ -467,21 +473,26 @@ void mmHTMLBuilder::addRadarChart(std::vector<ValueTrio>& actData, std::vector<V
 
 void mmHTMLBuilder::addPieChart(std::vector<ValueTrio>& valueList, const wxString& id, const int x, const int y)
 {
-    static const wxString data_item =
-        "{\n"
-        "value : %s,\n"
-        "color : '%s',\n"
-        "title : '%s',\n"
-        "},\n";
-    static const wxString js = "<script>\n"
-        "var data = [%s];\n"
-        "var options = {\n"
-        "  annotateDisplay : true,\n"
-        "  responsive : true\n"
-        "};\n"
-        "var ctx = document.getElementById('%s').getContext('2d');\n"
-        "var reportChart = new Chart(ctx).Pie(data, options);\n"
-        "</script>\n";
+    static const wxString data_item = R"(
+{
+  value : %s,
+  color : '%s',
+  title : '%s'
+},)";
+
+    static const wxString js = R"(
+<script>
+  var data = [%s];
+  var options = {
+    annotateDisplay : true,
+    segmentShowStroke : false,
+    segmentStrokeWidth: 0,
+    responsive : true
+  };
+  var ctx = document.getElementById('%s').getContext('2d');
+  var reportChart = new Chart(ctx).Pie(data, options);
+</script>
+)";
 
     wxString data ="";
     wxString label;
@@ -492,8 +503,9 @@ void mmHTMLBuilder::addPieChart(std::vector<ValueTrio>& valueList, const wxStrin
         label.Replace("'", " ");
 
         data += wxString::Format(data_item
-            , wxString::FromCDouble(fabs(entry.amount), 2), entry.color
-            , label );
+            , wxString::FromCDouble(fabs(entry.amount), 2)
+            , entry.color
+            , label);
     }
     this->addText(wxString::Format("<canvas id='%s' width ='%i' height='%i' style='min-width: %dpx; min-height: %dpx'></canvas>\n", id, x, y, x, y));
     this->addText(wxString::Format(js, data, id));
@@ -501,29 +513,31 @@ void mmHTMLBuilder::addPieChart(std::vector<ValueTrio>& valueList, const wxStrin
 
 void mmHTMLBuilder::addBarChart(const wxString &labels, const std::vector<ValueTrio>& data, const wxString& id, const int x, const int y)
 {
-    static const wxString data_item =
-        "{\n"
-        "  fillColor : '%s',\n"
-        "  strokeColor : '%s',\n"
-        "  data : [%s],\n"
-        "  title : '%s',\n"
-        "},\n";
-    static const wxString js = "<script>\n"
-        "var data = {\n"
-        "  labels : [%s],\n"
-        "  datasets : [%s]\n"
-        "};\n"
-        "var options = {\n"
-        "  scaleOverride: true,\n"
-        "  annotateDisplay : true,\n"
-        //"  responsive : true,\n"
-        "  scaleStartValue : 0,\n"
-        "  scaleSteps : [10],\n"
-        "  scaleStepWidth : [%i]\n"
-        "};\n"
-        "var ctx = document.getElementById('%s').getContext('2d');\n"
-        "var reportChart = new Chart(ctx).Bar(data, options);\n"
-        "</script>\n";
+    static const wxString data_item = R"(
+{
+  fillColor : '%s',
+  strokeColor : '%s',
+  data : [%s],
+  title : '%s'
+},)";
+    static const wxString js = R"(
+<script>
+  var data = {
+    labels : [%s],
+    datasets : [%s]
+  };
+  var options = {
+    scaleOverride: true,
+    annotateDisplay : true,
+    //  responsive : true,
+    scaleStartValue : 0,
+    scaleSteps : [10],
+    scaleStepWidth : [%i]
+  };
+  var ctx = document.getElementById('%s').getContext('2d');
+  var reportChart = new Chart(ctx).Bar(data, options);
+</script>;
+)";
 
     double steps = 10.0;
     double scaleStepWidth = 1;
@@ -549,31 +563,35 @@ void mmHTMLBuilder::addBarChart(const wxString &labels, const std::vector<ValueT
 
 void mmHTMLBuilder::addLineChart(const std::vector<ValueTrio>& data, const wxString& id, const int index, const int x, const int y, bool pointDot, bool showGridLines, bool datasetFill)
 {
-    static const wxString data_item =
-        "{\n"
-        "  'label' : '%s',\n"
-        "  'fillColor' : '%s',\n"
-        "  'strokeColor' : '%s',\n"
-        "  'pointColor' : '%s',\n"
-        "  'pointStrokeColor' : '#fff',\n"
-        "  'data' : [%s],\n"
-        "},\n";
+    static const wxString data_item = R"(
+{
+  label : '%s',
+  fillColor : '%s',
+  strokeColor : '%s',
+  pointColor : '%s',
+  pointStrokeColor : '#fff',
+  data : [%s],
+},)";
 
-    static const wxString js = "<script type='text/javascript'>\n"
-        "var data = {\n"
-        "  labels : [%s],\n"
-        "  datasets : [%s]\n"
-        "};\n"
-        "var ctx = document.getElementById('%s').getContext('2d');\n"
-        "var reportChart = new Chart(ctx).Line(data, %s);\n"
-        "</script>\n";
-    static const wxString opt =
-        "{datasetFill: %s,\n"
-        "inGraphDataShow : false,\n"
-        "annotateDisplay : true,\n"
-        "responsive: true,\n"
-        "pointDot :%s,\n"
-        "showGridLines: %s}";
+    static const wxString js = R"(
+<script type='text/javascript'>
+var data = {
+  labels : [%s],
+  datasets : [%s]
+};
+var ctx = document.getElementById('%s').getContext('2d');
+var reportChart = new Chart(ctx).Line(data, %s);
+</script>
+)";
+    static const wxString opt = R"(
+{
+  datasetFill: %s,
+  inGraphDataShow : false,
+  annotateDisplay : true,
+  responsive: true,
+  pointDot :%s,
+  showGridLines: %s
+};)";
 
     wxString labels = "";
     wxString values = "";

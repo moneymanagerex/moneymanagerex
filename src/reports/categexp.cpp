@@ -184,7 +184,7 @@ wxString mmReportCategoryExpenses::getHTMLText()
         if (group_counter[entry.categs] == group && group_counter[entry.categs] > 1)
         {
             group = 0;
-            hb.startTableRow();
+            hb.startTableRow("WhiteSmoke");
             if (getChartSelection() == 0) hb.addTableCell("");
             hb.addTableCell(_("Category Total: "));
             hb.addTableCell("");
