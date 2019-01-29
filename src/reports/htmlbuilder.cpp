@@ -269,14 +269,14 @@ void mmHTMLBuilder::addColorMarker(const wxString& color)
     this->endTableCell();
 }
 
-const wxString mmHTMLBuilder::getColor(int i)
+const wxString mmHTMLBuilder::getColor(int i) const
 {
     int c = i % (sizeof(tags::COLORS) / sizeof(wxString));
     wxString color = tags::COLORS[c];
     return color;
 }
 
-const wxString mmHTMLBuilder::getRandomColor(bool positive)
+const wxString mmHTMLBuilder::getRandomColor(bool positive) const
 {
     int red = positive ? rand() % 20 : 156 + rand() % 100;
     int green = rand() % 128;
@@ -419,17 +419,7 @@ void mmHTMLBuilder::endTableCell()
 
 void mmHTMLBuilder::addRadarChart(std::vector<ValueTrio>& actData, std::vector<ValueTrio>& estData, const wxString& id, const int x, const int y)
 {
-    static const wxString data_item = R"(
-{
-  'label' : '%s',
-  'fillColor' : '%s',
-  'strokeColor' : '%s',
-  'pointColor' : '%s',
-  'pointStrokeColor' : '#fff',
-  'data' : [%s],
-},)";
-
-    static const wxString js = R"(
+    static const wxString html_parts = R"(
 <script type='text/javascript'>
   var data = {
     labels : [%s],
@@ -439,6 +429,16 @@ void mmHTMLBuilder::addRadarChart(std::vector<ValueTrio>& actData, std::vector<V
   var reportChart = new Chart(ctx).Radar(data, %s);
 </script>;
 )";
+
+    static const wxString data_item = R"(
+{
+  'label' : '%s',
+  'fillColor' : '%s',
+  'strokeColor' : '%s',
+  'pointColor' : '%s',
+  'pointStrokeColor' : '#fff',
+  'data' : [%s],
+},)";
 
     static const wxString opt = R"(
 {
@@ -467,98 +467,163 @@ void mmHTMLBuilder::addRadarChart(std::vector<ValueTrio>& actData, std::vector<V
 
     wxString datasets = wxString::Format(data_item, _("Actual"), getColor(8), getColor(8), getColor(8), actValues);
     datasets += wxString::Format(data_item, _("Estimated"), getColor(6), getColor(6), getColor(6), estValues);
-    this->addText(wxString::Format("<canvas id='%s' width ='%i' height='%i'></canvas>\n", id, x, y));
-    this->addText(wxString::Format(js, labels, datasets, id, opt));
+    this->addText(wxString::Format(html_parts, id, x, y, labels, datasets, id, opt));
 }
 
 void mmHTMLBuilder::addPieChart(std::vector<ValueTrio>& valueList, const wxString& id, const int x, const int y)
 {
-    static const wxString data_item = R"(
-{
-  value : %s,
-  color : '%s',
-  title : '%s'
-},)";
-
-    static const wxString js = R"(
+    static const wxString html_parts = R"(
+<canvas id='%s' width ='%i' height='%i' style='min-width: %dpx; min-height: %dpx'></canvas>
 <script>
-  var data = [%s];
-  var options = {
-    annotateDisplay : true,
-    segmentShowStroke : false,
-    segmentStrokeWidth: 0,
-    responsive : true
-  };
+  var d = %s;
   var ctx = document.getElementById('%s').getContext('2d');
-  var reportChart = new Chart(ctx).Pie(data, options);
+  var reportChart = new Chart(ctx).Pie(d.data, d.options);
 </script>
 )";
 
-    wxString data ="";
-    wxString label;
+    int precision = Model_Currency::precision(Model_Currency::GetBaseCurrency());
+    int round = pow(10, precision);
+
+    Document jsonDoc;
+    jsonDoc.SetObject();
+    Value data_array(kArrayType);
+    Document::AllocatorType& allocator = jsonDoc.GetAllocator();
+
     for (const auto& entry : valueList)
     {
         // Replace problem causing character
-        label = entry.label;
-        label.Replace("'", " ");
+        auto label = entry.label;
+        label.Replace("'", "`");
 
-        data += wxString::Format(data_item
-            , wxString::FromCDouble(fabs(entry.amount), 2)
-            , entry.color
-            , label);
+        Value objValue;
+        objValue.SetObject();
+
+        Value title, color;
+        title.SetString(label.c_str(), allocator);
+        objValue.AddMember("title", title, allocator);
+
+        color.SetString(entry.color.c_str(), allocator);
+        objValue.AddMember("color", color, allocator);
+
+        double v = (floor(fabs(entry.amount) * round) / round);
+        objValue.AddMember("value", v, allocator);
+
+        data_array.PushBack(objValue, allocator);
     }
-    this->addText(wxString::Format("<canvas id='%s' width ='%i' height='%i' style='min-width: %dpx; min-height: %dpx'></canvas>\n", id, x, y, x, y));
-    this->addText(wxString::Format(js, data, id));
+
+    jsonDoc.AddMember("data", data_array, allocator);
+
+    Value optionsValue;
+    optionsValue.SetObject();
+    optionsValue.AddMember("annotateDisplay", true, allocator);
+    optionsValue.AddMember("segmentShowStroke", false, allocator);
+    optionsValue.AddMember("responsive", true, allocator);
+    jsonDoc.AddMember("options", optionsValue, allocator);
+    
+
+    StringBuffer strbuf;
+    Writer<StringBuffer> writer(strbuf);
+    jsonDoc.Accept(writer);
+
+    const wxString data = strbuf.GetString();
+
+    this->addText(wxString::Format(html_parts, id, x, y, x/2, y/2, data, id));
 }
 
-void mmHTMLBuilder::addBarChart(const wxString &labels, const std::vector<ValueTrio>& data, const wxString& id, const int x, const int y)
+void mmHTMLBuilder::addBarChart(const wxArrayString& labels
+    , const std::vector<ValueTrio>& data, const wxString& id
+    , const int x, const int y)
 {
-    static const wxString data_item = R"(
-{
-  fillColor : '%s',
-  strokeColor : '%s',
-  data : [%s],
-  title : '%s'
-},)";
-    static const wxString js = R"(
+    static const wxString html_parts = R"(
+<canvas id='%s' width ='%i' height='%i' style='min-width: %dpx; min-height: %dpx'></canvas>
 <script>
-  var data = {
-    labels : [%s],
-    datasets : [%s]
-  };
-  var options = {
-    scaleOverride: true,
-    annotateDisplay : true,
-    //  responsive : true,
-    scaleStartValue : 0,
-    scaleSteps : [10],
-    scaleStepWidth : [%i]
-  };
+  var d = %s;
   var ctx = document.getElementById('%s').getContext('2d');
-  var reportChart = new Chart(ctx).Bar(data, options);
-</script>;
+  var reportChart = new Chart(ctx).Bar(d.data, d.options);
+</script>
 )";
 
-    double steps = 10.0;
     double scaleStepWidth = 1;
+    double steps = 10.0;
+    int precision = Model_Currency::precision(Model_Currency::GetBaseCurrency());
+    int round = pow(10, precision);
 
-    wxString values = "";
+    Document jsonDoc;
+    jsonDoc.SetObject();
+    Document::AllocatorType& allocator = jsonDoc.GetAllocator();
+
+    Value dataObjValue;
+    dataObjValue.SetObject();
+
+    Value labelsArray(kArrayType);
+    for (const auto& entry : labels)
+    {
+        Value label_str;
+        label_str.SetString(entry.c_str(), allocator);
+        labelsArray.PushBack(label_str, allocator);
+    }
+    dataObjValue.AddMember("labels", labelsArray, allocator);
+
+    Value datasets_array(kArrayType);
     for (const auto& entry : data)
     {
-        values += wxString::Format(data_item, entry.color, entry.color, wxString::FromCDouble(entry.amount, 2), entry.label);
+        Value objValue;
+        objValue.SetObject();
+
+        Value title, color;
+        title.SetString(entry.label.c_str(), allocator);
+        objValue.AddMember("title", title, allocator);
+
+        color.SetString(entry.color.c_str(), allocator);
+        objValue.AddMember("fillColor", color, allocator);
+
+        color.SetString(entry.color.c_str(), allocator);
+        objValue.AddMember("strokeColor", color, allocator);
+
+        Value value(kArrayType);
+        double v = (floor(fabs(entry.amount) * round) / round);
+        value.PushBack(v, allocator);
+        objValue.AddMember("data", value, allocator);
+
+        datasets_array.PushBack(objValue, allocator);
+
         scaleStepWidth = std::max(entry.amount, scaleStepWidth);
     }
+    dataObjValue.AddMember("datasets", datasets_array, allocator);
+
+    jsonDoc.AddMember("data", dataObjValue, allocator);
+
     scaleStepWidth = ceil(scaleStepWidth / steps);
     // Compute chart spacing and interval (chart forced to start at zero)
     if (scaleStepWidth <= 1.0)
         scaleStepWidth = 1.0;
     else {
         double s = (pow(10, ceil(log10(scaleStepWidth)) - 1.0));
-        if (s > 0) scaleStepWidth = ceil(scaleStepWidth / s)*s;
+        if (s > 0) {
+            scaleStepWidth = ceil(scaleStepWidth / s)*s;
+        }
     }
 
-    this->addText(wxString::Format("<canvas id='%s' width ='%i' height='%i' style='min-width: %dpx; min-height: %dpx'></canvas>\n", id, x, y, x, y));
-    this->addText(wxString::Format(js, labels, values, (int)scaleStepWidth, id));
+    Value optionsValue;
+    optionsValue.SetObject();
+    optionsValue.AddMember("scaleOverride", true, allocator);
+    optionsValue.AddMember("annotateDisplay", true, allocator);
+    optionsValue.AddMember("scaleStartValue", 0, allocator);
+    optionsValue.AddMember("scaleSteps", 0, allocator);
+    Value scale(kArrayType);
+    scale.PushBack((int)scaleStepWidth, allocator);
+    optionsValue.AddMember("scaleStepWidth", scale, allocator);
+    Value step(kArrayType);
+    step.PushBack(10, allocator);
+    optionsValue.AddMember("scaleSteps", step, allocator);
+    jsonDoc.AddMember("options", optionsValue, allocator);
+
+    StringBuffer strbuf;
+    Writer<StringBuffer> writer(strbuf);
+    jsonDoc.Accept(writer);
+
+    const wxString d = strbuf.GetString();
+    this->addText(wxString::Format(html_parts, id, x, y, x, y, d, id));
 }
 
 void mmHTMLBuilder::addLineChart(const std::vector<ValueTrio>& data, const wxString& id, const int index, const int x, const int y, bool pointDot, bool showGridLines, bool datasetFill)
