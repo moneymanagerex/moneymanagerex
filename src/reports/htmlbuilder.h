@@ -68,8 +68,8 @@ public:
     void addMoneyCell(double amount, int precision = -1);
     void addTableCellMonth(int month);
     void addColorMarker(const wxString& color);
-    const wxString getColor(int i);
-    const wxString getRandomColor(bool positive);
+    const wxString getColor(int i) const;
+    const wxString getRandomColor(bool positive) const;
 
     /** Add a Cell value */
     void addTableCellDate(const wxString& iso_date);
@@ -115,7 +115,7 @@ public:
     void addRadarChart(std::vector<ValueTrio>& actData, std::vector<ValueTrio>& estData, const wxString& id, const int x = 300, const int y = 300);
     void addPieChart(std::vector<ValueTrio>& valueList, const wxString& id, const int x = 300, const int y = 300);
     void addLineChart(const std::vector<ValueTrio>& data, const wxString& id, const int index, const int x = 640, const int y = 256, bool pointDot = false, bool showGridLines = true, bool datasetFill = false);
-    void addBarChart(const wxString & labels, const std::vector<ValueTrio>& data, const wxString& id, const int x = 192, const int y = 256);
+    void addBarChart(const wxArrayString& labels, const std::vector<ValueTrio>& data, const wxString& id, const int x = 192, const int y = 256);
 
 private:
     wxString html_;
