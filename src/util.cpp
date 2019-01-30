@@ -71,7 +71,7 @@ mmTreeItemData::mmTreeItemData(mmPrintableBase* report)
         : id_(0)
         , isString_(true)
         , isBudgetingNode_(false)
-        , stringData_("report@" + report->title())
+        , stringData_("report@" + report->getReportTitle())
         , report_(report)
     {}
 mmTreeItemData::mmTreeItemData(const wxString& string)
@@ -398,7 +398,7 @@ bool getNewsRSS(std::vector<WebsiteNews>& WebsiteNewsList)
             {
                 wxString ElementName = News->GetName();
 
-                if (ElementName == "title")
+                if (ElementName == "getReportTitle")
                     website_news.Title = News->GetChildren()->GetContent();
                 else if (ElementName == "link")
                     website_news.Link = News->GetChildren()->GetContent();

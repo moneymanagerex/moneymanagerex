@@ -36,7 +36,7 @@ public:
     virtual int report_parameters();
 
 private:
-    wxString actualAmountColour(double amount, double actual, double estimated, bool total = false);
+    const wxString actualAmountColour(double amount, double actual, double estimated, bool total = false) const;
 };
 
 #endif // MM_EX_REPORTBUDGET_CATEGORYSUMMARY_H_

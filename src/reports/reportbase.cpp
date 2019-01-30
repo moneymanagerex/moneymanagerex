@@ -160,7 +160,7 @@ void mmPrintableBase::chart(int selection)
     m_chart_selection = selection;
 }
 
-wxString mmPrintableBase::title() const
+const wxString mmPrintableBase::getReportTitle() const
 {
     wxString title = m_title;
     if (m_date_range)
@@ -173,9 +173,9 @@ wxString mmPrintableBase::title() const
     return title;
 }
 
-wxString mmPrintableBase::file_name() const
+const wxString mmPrintableBase::getFileName() const
 {
-    wxString file_name = title();
+    wxString file_name = getReportTitle();
     file_name.Replace(" - ", "-");
     file_name.Replace(" ", "_");
     file_name.Replace("/", "-");
