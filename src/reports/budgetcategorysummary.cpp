@@ -61,7 +61,7 @@ wxString mmReportBudgetCategorySummary::actualAmountColour(double amount, double
     return actAmtColStr;
 }
 
-wxString mmReportBudgetCategorySummary::getHTMLText()
+wxString mmReportBudgetCategorySummary::getHTMLText() const
 {
     unsigned short startDay = 1;
     long startMonth, startYear;

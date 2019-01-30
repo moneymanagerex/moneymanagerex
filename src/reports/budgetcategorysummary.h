@@ -32,7 +32,7 @@ public:
     mmReportBudgetCategorySummary();
     virtual ~mmReportBudgetCategorySummary();
 
-    virtual wxString getHTMLText();
+    virtual wxString getHTMLText() const;
     virtual int report_parameters();
 
 private:

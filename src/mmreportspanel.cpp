@@ -180,11 +180,11 @@ bool mmReportsPanel::Create(wxWindow *parent, wxWindowID winid
     {
         wxString error;
         if (saveReportText(error))
-            browser_->LoadURL(getURL(mmex::getReportFullFileName(rb_->file_name())));
+            browser_->LoadURL(getURL(mmex::getReportFullFileName(rb_->getFileName())));
         else
             browser_->SetPage(error, "");
 
-        this->SetLabel(rb_->title());
+        this->SetLabel(rb_->getReportTitle());
     }
     Model_Usage::instance().pageview(this, (wxDateTime::UNow() - start).GetMilliseconds().ToLong());
 
@@ -248,11 +248,11 @@ bool mmReportsPanel::saveReportText(wxString& error, bool initial)
     json_writer.Key("module");
     json_writer.String("Report");
     json_writer.Key("name");
-    json_writer.String(rb_->title().c_str());
+    json_writer.String(rb_->getReportTitle().c_str());
     json_writer.Key("start");
     json_writer.String(wxDateTime::Now().FormatISOCombined().c_str());
 
-    const auto file_name = rb_->file_name();
+    const auto file_name = rb_->getFileName();
     wxLogDebug("Report File Name: %s", file_name);
     if (!Model_Report::outputReportFile(rb_->getHTMLText(), file_name))
         error = _("Error");
@@ -498,7 +498,7 @@ void mmReportsPanel::OnDateRangeChanged(wxCommandEvent& WXUNUSED(event))
         {
             wxString error;
             if (this->saveReportText(error, false)) {
-                browser_->LoadURL(getURL(mmex::getReportFullFileName(rb_->file_name())));
+                browser_->LoadURL(getURL(mmex::getReportFullFileName(rb_->getFileName())));
             }
             else {
                 browser_->SetPage(error, "");
@@ -519,7 +519,7 @@ void mmReportsPanel::OnAccountChanged(wxCommandEvent& WXUNUSED(event))
 
             wxString error;
             if (this->saveReportText(error, false))
-                browser_->LoadURL(getURL(mmex::getReportFullFileName(rb_->file_name())));
+                browser_->LoadURL(getURL(mmex::getReportFullFileName(rb_->getFileName())));
             else
                 browser_->SetPage(error, "");
         }
@@ -537,7 +537,7 @@ void mmReportsPanel::OnStartEndDateChanged(wxDateEvent& WXUNUSED(event))
 
         wxString error;
         if (this->saveReportText(error, false))
-            browser_->LoadURL(getURL(mmex::getReportFullFileName(rb_->file_name())));
+            browser_->LoadURL(getURL(mmex::getReportFullFileName(rb_->getFileName())));
         else
             browser_->SetPage(error, "");
     }
@@ -574,7 +574,7 @@ void mmReportsPanel::OnChartChanged(wxCommandEvent& WXUNUSED(event))
 
             wxString error;
             if (this->saveReportText(error, false))
-                browser_->LoadURL(getURL(mmex::getReportFullFileName(rb_->file_name())));
+                browser_->LoadURL(getURL(mmex::getReportFullFileName(rb_->getFileName())));
             else
                 browser_->SetPage(error, "");
         }

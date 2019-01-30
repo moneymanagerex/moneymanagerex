@@ -204,7 +204,7 @@ wxString mmReportMyUsage::getHTMLText()
     }
 
     mm_html_template report(usage_template);
-    report(L"REPORTNAME") = this->title();
+    report(L"REPORTNAME") = this->getReportTitle();
     // report(L"_LINECHART") = _("Line Chart");
     // report(L"_BARCHART") = _("Bar Chart");
     report(L"_FREQUENCY") = _("Frequency");
