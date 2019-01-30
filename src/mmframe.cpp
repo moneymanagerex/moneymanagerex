@@ -224,7 +224,7 @@ mmGUIFrame::mmGUIFrame(mmGUIApp* app, const wxString& title
 #endif
     // decide if we need to show app start dialog
     bool from_scratch = false;
-    wxFileName dbpath = m_app->m_optParam;
+    wxFileName dbpath = m_app->getOptParam();
     if (!dbpath.IsOk())
     {
         from_scratch = Model_Setting::instance().GetBoolSetting("SHOWBEGINAPP", true);
@@ -242,6 +242,7 @@ mmGUIFrame::mmGUIFrame(mmGUIApp* app, const wxString& title
     createToolBar();
     // Disable menu items incase no database is established.
     menuEnableItems(false);
+
     createControls();
 
 #if wxUSE_STATUSBAR

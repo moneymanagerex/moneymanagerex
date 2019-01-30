@@ -187,12 +187,12 @@ bool OnInitImpl(mmGUIApp* app)
     /* Initialize Image Handlers */
     wxInitAllImageHandlers();
 
-    app->m_setting_db = new wxSQLite3Database();
-    app->m_setting_db->Open(mmex::getPathUser(mmex::SETTINGS));
-    Model_Setting::instance(app->m_setting_db);
+    app->setSettingDB(new wxSQLite3Database());
+    app->getSettingDB()->Open(mmex::getPathUser(mmex::SETTINGS));
+    Model_Setting::instance(app->getSettingDB());
     Model_Setting::instance().ShrinkUsageTable();
 
-    Model_Usage::instance(app->m_setting_db);
+    Model_Usage::instance(app->getSettingDB());
 
     /* Load general MMEX Custom Settings */
     Option::instance().LoadOptions(false);
