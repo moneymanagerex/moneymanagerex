@@ -111,6 +111,9 @@ wxString mmReportIncomeExpenses::getHTMLText()
     vt.label = _("Expenses");
     valueList.push_back(vt);
 
+    wxArrayString labels;
+    labels.Add(_("Income vs Expenses"));
+
     hb.addDivRow();
     hb.addDivCol17_67();
     hb.startTable();
@@ -120,7 +123,7 @@ wxString mmReportIncomeExpenses::getHTMLText()
             hb.startTableCell(" style='vertical-align:middle' width='70%'");
             hb.addDivCol17_67();
             if (!valueList.empty())
-                hb.addBarChart("''", valueList, "BarChart");
+                hb.addBarChart(labels, valueList, "BarChart");
             hb.endDiv();
             hb.endTableCell();
 
