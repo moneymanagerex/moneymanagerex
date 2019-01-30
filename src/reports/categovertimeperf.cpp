@@ -98,7 +98,7 @@ wxString mmReportCategoryOverTimePerformance::getHTMLText()
     mmHTMLBuilder hb;
     hb.init();
     hb.addDivContainer();
-    hb.addHeader(2, title());
+    hb.addHeader(2, getReportTitle());
     hb.addDateNow();
     hb.addLineBreak();
 

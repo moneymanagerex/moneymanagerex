@@ -43,7 +43,7 @@ int mmReportBudgetCategorySummary::report_parameters()
     return RepParams::BUDGET_DATES | RepParams::CHART;
 }
 
-wxString mmReportBudgetCategorySummary::actualAmountColour(double amount, double actual, double estimated, bool total)
+const wxString mmReportBudgetCategorySummary::actualAmountColour(double amount, double actual, double estimated, bool total) const
 {
     wxString actAmtColStr = "black";
     if (total) {

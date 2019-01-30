@@ -208,7 +208,7 @@ wxString mmReportChartStocks::getHTMLText()
     mmHTMLBuilder hb;
     hb.init();
     hb.addDivContainer();
-    hb.addHeader(2, title());
+    hb.addHeader(2, getReportTitle());
     hb.addDateNow();
 
     wxTimeSpan dtDiff = m_date_range->end_date() - m_date_range->start_date();

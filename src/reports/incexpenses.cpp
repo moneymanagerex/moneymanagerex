@@ -69,7 +69,7 @@ wxString mmReportIncomeExpenses::getHTMLText()
     mmHTMLBuilder hb;
     hb.init();
     hb.addDivContainer();
-    hb.addHeader(2, this->title());
+    hb.addHeader(2, this->getReportTitle());
     hb.addDateNow();
     hb.DisplayDateHeading(m_date_range->start_date(), m_date_range->end_date(), m_date_range->is_with_date());
     hb.addHeader(3, headerMsg);
@@ -222,7 +222,7 @@ wxString mmReportIncomeExpensesMonthly::getHTMLText()
     mmHTMLBuilder hb;
     hb.init();
     hb.addDivContainer();
-    hb.addHeader(2, this->title());
+    hb.addHeader(2, this->getReportTitle());
     hb.addDateNow();
     hb.DisplayDateHeading(m_date_range->start_date(), m_date_range->end_date(), m_date_range->is_with_date());
     hb.addHeader(3, headerMsg);
