@@ -43,7 +43,7 @@ int mmReportBudgetCategorySummary::report_parameters()
     return RepParams::BUDGET_DATES | RepParams::CHART;
 }
 
-wxString mmReportBudgetCategorySummary::actualAmountColour(double amount, double actual, double estimated, bool total)
+const wxString mmReportBudgetCategorySummary::actualAmountColour(double amount, double actual, double estimated, bool total) const
 {
     wxString actAmtColStr = "black";
     if (total) {
@@ -61,7 +61,7 @@ wxString mmReportBudgetCategorySummary::actualAmountColour(double amount, double
     return actAmtColStr;
 }
 
-wxString mmReportBudgetCategorySummary::getHTMLText() const
+wxString mmReportBudgetCategorySummary::getHTMLText()
 {
     unsigned short startDay = 1;
     long startMonth, startYear;

@@ -420,14 +420,16 @@ void mmHTMLBuilder::endTableCell()
 void mmHTMLBuilder::addRadarChart(std::vector<ValueTrio>& actData, std::vector<ValueTrio>& estData, const wxString& id, const int x, const int y)
 {
     static const wxString html_parts = R"(
+<canvas id='%s' width ='%i' height='%i'></canvas>
 <script type='text/javascript'>
   var data = {
     labels : [%s],
     datasets : [%s]
   };
   var ctx = document.getElementById('%s').getContext('2d');
-  var reportChart = new Chart(ctx).Radar(data, %s);
-</script>;
+  var options = %s;
+  var reportChart = new Chart(ctx).Radar(data, options);
+</script>
 )";
 
     static const wxString data_item = R"(
@@ -448,7 +450,7 @@ void mmHTMLBuilder::addRadarChart(std::vector<ValueTrio>& actData, std::vector<V
   responsive: true,
   pointDot : false,
   showGridLines: true
-};
+}
 )";
 
     wxString labels = "";
@@ -458,15 +460,17 @@ void mmHTMLBuilder::addRadarChart(std::vector<ValueTrio>& actData, std::vector<V
     for (const auto& entry : actData)
     {
         labels += wxString::Format("'%s',", entry.label);
-        actValues += wxString::FromCDouble(entry.amount, 2) + ",";
+        actValues += wxString::FromCDouble(fabs(entry.amount), 2) + ",";
     }
     for (const auto& entry : estData)
     {
-        estValues += wxString::FromCDouble(entry.amount, 2) + ",";
+        estValues += wxString::FromCDouble(fabs(entry.amount), 2) + ",";
     }
 
-    wxString datasets = wxString::Format(data_item, _("Actual"), getColor(8), getColor(8), getColor(8), actValues);
-    datasets += wxString::Format(data_item, _("Estimated"), getColor(6), getColor(6), getColor(6), estValues);
+    const auto ac = getColor(8);
+    const auto ec = getColor(6);
+    wxString datasets = wxString::Format(data_item, _("Actual"), ac, ac, ac, actValues);
+    datasets += wxString::Format(data_item, _("Estimated"), ec, ec, ec, estValues);
     this->addText(wxString::Format(html_parts, id, x, y, labels, datasets, id, opt));
 }
 

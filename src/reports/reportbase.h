@@ -38,7 +38,7 @@ public:
     virtual void RefreshData() {}
     virtual const wxString getReportTitle() const;
     virtual const wxString getFileName() const;
-    virtual int report_parameters() const { return RepParams::NONE;  }
+    virtual int report_parameters() { return RepParams::NONE;  }
     virtual void date_range(const mmDateRange* date_range, int selection);
     void accounts(int selection, wxString& name);
     void chart(int selection);
