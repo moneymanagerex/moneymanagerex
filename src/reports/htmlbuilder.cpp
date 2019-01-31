@@ -630,7 +630,7 @@ void mmHTMLBuilder::addBarChart(const wxArrayString& labels
     this->addText(wxString::Format(html_parts, id, x, y, x, y, d, id));
 }
 
-void mmHTMLBuilder::addLineChart(const std::vector<ValueTrio>& data, const wxString& id, const int index, const int x, const int y, bool pointDot, bool showGridLines, bool datasetFill)
+void mmHTMLBuilder::addLineChart(const std::vector<LineGraphData>& data, const wxString& id, const int index, const int x, const int y, bool pointDot, bool showGridLines, bool datasetFill)
 {
     static const wxString html_parts = R"(
 <canvas id='%s' width ='%i' height='%i'></canvas>
@@ -653,11 +653,16 @@ var reportChart = new Chart(ctx).Line(d.data, d.options);
 
     Value labelsArray(kArrayType);
     Value valuesArray(kArrayType);
+    Value xPosArray(kArrayType);
     for (const auto& entry : data)
     {
-        Value label_str;
+        Value label_str, xPos;
         label_str.SetString(entry.label.c_str(), allocator);
         labelsArray.PushBack(label_str, allocator);
+
+        xPos.SetString(entry.xPos.c_str(), allocator);
+        xPosArray.PushBack(xPos, allocator);
+
         double v = (floor(fabs(entry.amount) * round) / round);
         valuesArray.PushBack(v, allocator);
     }
@@ -665,6 +670,7 @@ var reportChart = new Chart(ctx).Line(d.data, d.options);
     Value datasetsValue;
     datasetsValue.SetObject();
     datasetsValue.AddMember("data", valuesArray, allocator);
+    datasetsValue.AddMember("xPos", xPosArray, allocator);
 
     const auto c = getColor(index);
     Value fillColor, strokeColor, pointColor, pointStrokeColor;
