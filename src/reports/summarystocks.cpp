@@ -258,7 +258,7 @@ wxString mmReportChartStocks::getHTMLText()
             Model_Account::Data* account = Model_Account::instance().get(stock.HELDAT);
             hb.addHeader(1, wxString::Format("%s - (%s)", stock.STOCKNAME, account->ACCOUNTNAME));
             hb.addDivCol17_67();
-            hb.addLineChart(aData, stock.STOCKNAME, count, 1000, 400, pointDot, showGridLines, true);
+            hb.addLineChart(aData, stock.STOCKNAME, count, 1000, 400, pointDot, showGridLines);
             hb.endDiv();
             hb.endDiv();
         }

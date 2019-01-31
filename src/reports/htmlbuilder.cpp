@@ -632,49 +632,81 @@ void mmHTMLBuilder::addBarChart(const wxArrayString& labels
 
 void mmHTMLBuilder::addLineChart(const std::vector<ValueTrio>& data, const wxString& id, const int index, const int x, const int y, bool pointDot, bool showGridLines, bool datasetFill)
 {
-    static const wxString data_item = R"(
-{
-  label : '%s',
-  fillColor : '%s',
-  strokeColor : '%s',
-  pointColor : '%s',
-  pointStrokeColor : '#fff',
-  data : [%s],
-},)";
-
-    static const wxString js = R"(
+    static const wxString html_parts = R"(
+<canvas id='%s' width ='%i' height='%i'></canvas>
 <script type='text/javascript'>
-var data = {
-  labels : [%s],
-  datasets : [%s]
-};
+var d = %s
 var ctx = document.getElementById('%s').getContext('2d');
-var reportChart = new Chart(ctx).Line(data, %s);
+var reportChart = new Chart(ctx).Line(d.data, d.options);
 </script>
 )";
-    static const wxString opt = R"(
-{
-  datasetFill: %s,
-  inGraphDataShow : false,
-  annotateDisplay : true,
-  responsive: true,
-  pointDot :%s,
-  showGridLines: %s
-};)";
 
-    wxString labels = "";
-    wxString values = "";
+    int precision = Model_Currency::precision(Model_Currency::GetBaseCurrency());
+    int round = pow(10, precision);
 
+    Document jsonDoc;
+    jsonDoc.SetObject();
+    Document::AllocatorType& allocator = jsonDoc.GetAllocator();
+
+    Value dObjValue;
+    dObjValue.SetObject();
+
+    Value labelsArray(kArrayType);
+    Value valuesArray(kArrayType);
     for (const auto& entry : data)
     {
-        labels += wxString::Format("'%s',", entry.label);
-        values += wxString::FromCDouble(entry.amount, 2) + ",";
+        Value label_str;
+        label_str.SetString(entry.label.c_str(), allocator);
+        labelsArray.PushBack(label_str, allocator);
+        double v = (floor(fabs(entry.amount) * round) / round);
+        valuesArray.PushBack(v, allocator);
     }
 
-    wxString datasets = wxString::Format(data_item, "LineChart", getColor(index), getColor(index), getColor(index), values);
-    this->addText(wxString::Format("<canvas id='%s' width ='%i' height='%i'></canvas>\n", id, x, y));
-    this->addText(wxString::Format(js, labels, datasets, id,
-        wxString::Format(opt, datasetFill ? "true" : "false", pointDot ? "true" : "false", showGridLines ? "true" : "false")));
+    Value datasetsValue;
+    datasetsValue.SetObject();
+    datasetsValue.AddMember("data", valuesArray, allocator);
+
+    const auto c = getColor(index);
+    Value fillColor, strokeColor, pointColor, pointStrokeColor;
+    fillColor.SetString(c.c_str(), allocator);
+    strokeColor.SetString(c.c_str(), allocator);
+    pointColor.SetString(c.c_str(), allocator);
+    fillColor.SetString(c.c_str(), allocator);
+    datasetsValue.AddMember("fillColor", fillColor, allocator);
+    datasetsValue.AddMember("strokeColor", strokeColor, allocator);
+    datasetsValue.AddMember("pointColor", pointColor, allocator);
+    pointStrokeColor.SetString("#fff", allocator);
+    datasetsValue.AddMember("pointStrokeColor", pointStrokeColor, allocator);
+
+    Value datasetsArray(kArrayType);
+    datasetsArray.PushBack(datasetsValue, allocator);
+
+    dObjValue.AddMember("labels", labelsArray, allocator);
+    dObjValue.AddMember("datasets", datasetsArray, allocator);
+
+    //Options
+    Value optionsValue;
+    optionsValue.SetObject();
+    optionsValue.AddMember("datasetFill", datasetFill, allocator);
+    optionsValue.AddMember("inGraphDataShow", false, allocator);
+    optionsValue.AddMember("annotateDisplay", true, allocator);
+    optionsValue.AddMember("responsive", true, allocator);
+    optionsValue.AddMember("pointDot", pointDot, allocator);
+    optionsValue.AddMember("showGridLines", showGridLines, allocator);
+
+    //
+    jsonDoc.AddMember("options", optionsValue, allocator);
+    jsonDoc.AddMember("data", dObjValue, allocator);
+
+    StringBuffer strbuf;
+    Writer<StringBuffer> writer(strbuf);
+    jsonDoc.Accept(writer);
+
+    const wxString d = strbuf.GetString();
+
+
+    const auto text = (wxString::Format(html_parts, id, x, y, d, id));
+    this->addText(text);
 }
 
 const wxString mmHTMLBuilder::getHTMLText() const
