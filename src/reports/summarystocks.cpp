@@ -233,15 +233,16 @@ wxString mmReportChartStocks::getHTMLText()
             showGridLines = true;
         else
             freq = histData.size() / 366;
-        std::vector<ValueTrio> aData;
+        std::vector<LineGraphData> aData;
         for (const auto& hist : histData)
         {
             if (dataCount % freq == 0)
             {
-                ValueTrio val;
+                LineGraphData val;
+                val.xPos = mmGetDateForDisplay(hist.DATE);
                 const wxDate dateDt = Model_StockHistory::DATE(hist);
                 if (histData.size() <= 30)
-                    val.label = mmGetDateForDisplay(hist.DATE);
+                    val.label = val.xPos;
                 else if (precDateDt.IsValid() && dateDt.GetMonth() != precDateDt.GetMonth())
                     val.label = dateDt.GetEnglishMonthName(dateDt.GetMonth());
                 else
@@ -258,7 +259,7 @@ wxString mmReportChartStocks::getHTMLText()
             Model_Account::Data* account = Model_Account::instance().get(stock.HELDAT);
             hb.addHeader(1, wxString::Format("%s - (%s)", stock.STOCKNAME, account->ACCOUNTNAME));
             hb.addDivCol17_67();
-            hb.addLineChart(aData, stock.STOCKNAME, count, 1000, 400, pointDot, showGridLines, true);
+            hb.addLineChart(aData, stock.STOCKNAME, count, 1000, 400, pointDot, showGridLines);
             hb.endDiv();
             hb.endDiv();
         }

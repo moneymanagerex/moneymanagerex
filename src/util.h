@@ -45,6 +45,12 @@ struct ValueTrio
     wxString label;
     double   amount;
 };
+struct LineGraphData
+{
+    wxString xPos;
+    wxString label;
+    double   amount;
+};
 
 struct WebsiteNews
 {
