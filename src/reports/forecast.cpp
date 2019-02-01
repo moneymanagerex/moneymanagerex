@@ -128,16 +128,16 @@ const char * mmReportForecast::m_template = R"(
 <TMPL_LOOP NAME=CONTENTS> <TMPL_IF NAME=__LAST__> "<TMPL_VAR DATE>" <TMPL_ELSE> "<TMPL_VAR DATE>", </TMPL_IF> </TMPL_LOOP>],
 datasets: [
   {
-      fillColor : 'rgba(129, 172, 123, 0.5)',
-      strokeColor : 'rgba(129, 172, 123, 1)',
-      pointColor : 'rgba(129, 172, 123, 1)', 
+      fillColor : 'rgba(230, 21, 22, 0.7)',
+      strokeColor : 'rgba(230, 21, 22, 1)',
+      pointColor : 'rgba(230, 21, 22, 1)', 
       pointStrokeColor : "#fff",
       data : [
 <TMPL_LOOP NAME=CONTENTS> <TMPL_IF NAME=__LAST__> <TMPL_VAR WITHDRAWAL> <TMPL_ELSE> <TMPL_VAR WITHDRAWAL>, </TMPL_IF> </TMPL_LOOP>],
       title : "WITHDRAWAL"
   },
   {
-      fillColor : 'rgba(129, 172, 123, 0.5)',
+      fillColor : 'rgba(129, 172, 123, 0.7)',
       strokeColor : 'rgba(129, 172, 123, 1)',
       pointColor : 'rgba(129, 172, 123, 1)', 
       pointStrokeColor : "#fff",
@@ -147,7 +147,7 @@ datasets: [
   }
 ]
 }
-var opts= { annotateDisplay : true, responsive : true };
+var opts= { annotateDisplay : true, responsive : true, pointDot:false, datasetFill:true };
 
 window.onload = function() {
   var myBar = new Chart(document.getElementById("mycanvas").getContext("2d")).Line(data,opts);
