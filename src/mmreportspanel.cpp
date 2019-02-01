@@ -432,7 +432,7 @@ void mmReportsPanel::CreateControls()
             for (const auto& e : Model_Account::instance().TYPE_CHOICES)
             {
                 if (e.first != Model_Account::INVESTMENT)
-                    m_accounts->Append(wxGetTranslation(e.second));
+                    m_accounts->Append(wxGetTranslation(e.second), new wxStringClientData(e.second));
             }
             m_accounts->SetSelection(rb_->getAccountSelection());
 
@@ -514,8 +514,10 @@ void mmReportsPanel::OnAccountChanged(wxCommandEvent& WXUNUSED(event))
         int sel = m_accounts->GetSelection();
         if ((sel == 1) || (sel != rb_->getAccountSelection()))
         {
-            wxString accountSelection = m_accounts->GetString(sel);
-            rb_->accounts(sel, accountSelection);
+            wxString accountSelection;
+            wxStringClientData* type_obj = (wxStringClientData *)m_accounts->GetClientObject(m_accounts->GetSelection());
+            if (type_obj) accountSelection = type_obj->GetData();
+            rb_->setAccounts(sel, accountSelection);
 
             wxString error;
             if (this->saveReportText(error, false))

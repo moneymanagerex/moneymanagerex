@@ -417,7 +417,7 @@ void mmHTMLBuilder::endTableCell()
     html_+= tags::TABLE_CELL_END;
 }
 
-void mmHTMLBuilder::addRadarChart(std::vector<ValueTrio>& actData, std::vector<ValueTrio>& estData, const wxString& id, const int x, const int y)
+void mmHTMLBuilder::addRadarChart(std::vector<ValueTrio>& actData, std::vector<ValueTrio>& estData, const wxString& id, int x, int y)
 {
     static const wxString html_parts = R"(
 <canvas id='%s' width ='%i' height='%i'></canvas>
@@ -474,7 +474,7 @@ void mmHTMLBuilder::addRadarChart(std::vector<ValueTrio>& actData, std::vector<V
     this->addText(wxString::Format(html_parts, id, x, y, labels, datasets, id, opt));
 }
 
-void mmHTMLBuilder::addPieChart(std::vector<ValueTrio>& valueList, const wxString& id, const int x, const int y)
+void mmHTMLBuilder::addPieChart(std::vector<ValueTrio>& valueList, const wxString& id, int x, int y)
 {
     static const wxString html_parts = R"(
 <canvas id='%s' width ='%i' height='%i' style='min-width: %dpx; min-height: %dpx'></canvas>
@@ -536,7 +536,7 @@ void mmHTMLBuilder::addPieChart(std::vector<ValueTrio>& valueList, const wxStrin
 
 void mmHTMLBuilder::addBarChart(const wxArrayString& labels
     , const std::vector<ValueTrio>& data, const wxString& id
-    , const int x, const int y)
+    , int x, int y)
 {
     static const wxString html_parts = R"(
 <canvas id='%s' width ='%i' height='%i' style='min-width: %dpx; min-height: %dpx'></canvas>
@@ -630,7 +630,7 @@ void mmHTMLBuilder::addBarChart(const wxArrayString& labels
     this->addText(wxString::Format(html_parts, id, x, y, x, y, d, id));
 }
 
-void mmHTMLBuilder::addLineChart(const std::vector<LineGraphData>& data, const wxString& id, const int index, const int x, const int y, bool pointDot, bool showGridLines, bool datasetFill)
+void mmHTMLBuilder::addLineChart(const std::vector<LineGraphData>& data, const wxString& id, int colorNum, int x, int y, bool pointDot, bool showGridLines, bool datasetFill)
 {
     static const wxString html_parts = R"(
 <canvas id='%s' width ='%i' height='%i'></canvas>
@@ -663,7 +663,7 @@ var reportChart = new Chart(ctx).Line(d.data, d.options);
         xPos.SetString(entry.xPos.c_str(), allocator);
         xPosArray.PushBack(xPos, allocator);
 
-        double v = (floor(fabs(entry.amount) * round) / round);
+        double v = (floor((entry.amount) * round) / round);
         valuesArray.PushBack(v, allocator);
     }
 
@@ -672,7 +672,7 @@ var reportChart = new Chart(ctx).Line(d.data, d.options);
     datasetsValue.AddMember("data", valuesArray, allocator);
     datasetsValue.AddMember("xPos", xPosArray, allocator);
 
-    const auto c = getColor(index);
+    const auto c = getColor(colorNum);
     Value fillColor, strokeColor, pointColor, pointStrokeColor;
     fillColor.SetString(c.c_str(), allocator);
     strokeColor.SetString(c.c_str(), allocator);
@@ -709,7 +709,6 @@ var reportChart = new Chart(ctx).Line(d.data, d.options);
     jsonDoc.Accept(writer);
 
     const wxString d = strbuf.GetString();
-
 
     const auto text = (wxString::Format(html_parts, id, x, y, d, id));
     this->addText(text);

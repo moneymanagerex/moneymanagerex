@@ -40,7 +40,7 @@ public:
     virtual const wxString getFileName() const;
     virtual int report_parameters() { return RepParams::NONE;  }
     virtual void date_range(const mmDateRange* date_range, int selection);
-    void accounts(int selection, wxString& name);
+    void setAccounts(int selection, const wxString& name);
     void chart(int selection);
     int getDateSelection() const;
     int getAccountSelection() const;
