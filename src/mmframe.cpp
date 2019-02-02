@@ -2394,7 +2394,7 @@ void mmGUIFrame::refreshPanelData()
 
 void mmGUIFrame::OnOrgCategories(wxCommandEvent& WXUNUSED(event))
 {
-    mmCategDialog dlg(this, -1, false);
+    mmCategDialog dlg(this, -1, -1, true, false);
     dlg.ShowModal();
     if (dlg.getRefreshRequested())
     {
