@@ -163,6 +163,7 @@ void mmCategDialog::fillControls()
     m_treeCtrl->EnsureVisible(selectedItemId_);
 
     m_buttonSelect->Disable();
+    m_buttonDelete->Disable();
     m_buttonEdit->Disable();
     m_buttonAdd->Enable();
     m_buttonRelocate->Enable(m_enable_relocate);
@@ -231,7 +232,7 @@ void mmCategDialog::CreateControls()
 
     m_buttonDelete = new wxButton(buttonsPanel, wxID_REMOVE, _("&Delete "));
     itemBoxSizer66->Add(m_buttonDelete, g_flagsH);
-    m_buttonDelete->SetToolTip(_("Delete an existing category. The category cannot be used by existing transactions."));
+    m_buttonDelete->SetToolTip(_("Select an unused category to delete."));
 
     wxStdDialogButtonSizer* itemBoxSizer9 = new wxStdDialogButtonSizer;
     buttonsSizer->Add(itemBoxSizer9, wxSizerFlags(g_flagsExpand).Border(wxALL, 0));
@@ -435,12 +436,14 @@ void mmCategDialog::OnSelChanged(wxTreeEvent& event)
     {
         m_categ_id = -1;
         m_subcateg_id = -1;
+        m_buttonDelete->Disable();
+        m_buttonDelete->SetToolTip(_("Select an unused category to delete."));
     }
     else
     {
         mmTreeItemCateg* iData =
             dynamic_cast<mmTreeItemCateg*>(m_treeCtrl->GetItemData(selectedItemId_));
-        if (!iData) return;
+        wxASSERT(iData);
 
         m_categ_id = iData->getCategData()->CATEGID;
         m_subcateg_id = iData->getSubCategData()->SUBCATEGID;
@@ -454,12 +457,28 @@ void mmCategDialog::OnSelChanged(wxTreeEvent& event)
                 bUsed = (bUsed || Model_Category::is_used(m_categ_id, s.SUBCATEGID));
         }
 
-        m_buttonDelete->SetForegroundColour(!bUsed && !m_treeCtrl->ItemHasChildren(selectedItemId_) ? wxNullColour : wxColor(*wxRED));
+        if (bUsed)
+        {
+            m_buttonDelete->Disable();
+            m_buttonDelete->SetToolTip(_("This category cannot be deleted because it's used by transactions."));
+        }
+        else
+        {
+            if (!m_treeCtrl->ItemHasChildren(selectedItemId_))
+            {
+                m_buttonDelete->Enable();
+                m_buttonDelete->SetToolTip(_("Delete an existing category."));
+            }
+            else
+            {
+                m_buttonDelete->Disable();
+                m_buttonDelete->SetToolTip(_("Subcategories must be deleted before."));
+            }
+        }
     }
 
     m_buttonAdd->Enable(m_subcateg_id == -1);
     m_buttonEdit->Enable(!bRootSelected);
-    m_buttonDelete->Enable(!bRootSelected);
     m_buttonSelect->Enable(!bRootSelected);
 }
 
