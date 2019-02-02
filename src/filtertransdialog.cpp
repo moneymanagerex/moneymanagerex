@@ -74,7 +74,7 @@ mmFilterTransactionsDialog::~mmFilterTransactionsDialog()
 {
     if (m_custom_fields)
         delete m_custom_fields;
-    
+
     std::for_each(m_all_date_ranges.begin(), m_all_date_ranges.end(), std::mem_fun(&mmDateRange::destroy));
     m_all_date_ranges.clear();
 }
@@ -347,11 +347,11 @@ void mmFilterTransactionsDialog::CreateControls()
     wxBoxSizer* settings_sizer = new wxBoxSizer(wxVERTICAL);
     wxBoxSizer* settings_box_sizer = new wxBoxSizer(wxHORIZONTAL);
     settings_sizer->Add(settings_box_sizer, wxSizerFlags(g_flagsExpand).Border(wxALL, 0));
-    
+
     wxStaticText* settings = new wxStaticText(this, wxID_ANY, _("Settings"));
     settings_box_sizer->Add(settings, g_flagsH);
     settings_box_sizer->AddSpacer(5);
-    
+
     m_setting_name = new wxChoice(this, wxID_APPLY);
     settings_box_sizer->Add(m_setting_name, g_flagsExpand);
 
@@ -544,9 +544,9 @@ void mmFilterTransactionsDialog::OnCategs(wxCommandEvent& WXUNUSED(event))
     Model_Subcategory::Data* sub_category = Model_Subcategory::instance().get(subcategID_);
     int categID = category ? category->CATEGID : -1;
     int subcategID = sub_category ? sub_category->SUBCATEGID : -1;
-    mmCategDialog dlg(this, categID, subcategID, false);
+    mmCategDialog dlg(this, categID, subcategID);
 
-    if (dlg.ShowModal() == wxID_OK)
+    if (dlg.ShowModal() == wxID_APPLY)
     {
         categID_ = dlg.getCategId();
         subcategID_ = dlg.getSubCategId();
@@ -1237,6 +1237,6 @@ void mmFilterTransactionsDialog::OnSettingsSelected(wxCommandEvent& event)
 {
     int i = event.GetSelection();
     GetStoredSettings(i);
-    m_custom_fields->SetRefID(0); //TODO: 
+    m_custom_fields->SetRefID(0); //TODO:
     dataToControls();
 }

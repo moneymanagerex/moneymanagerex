@@ -135,9 +135,9 @@ void relocateCategoryDialog::CreateControls()
 
 void relocateCategoryDialog::OnSelectSource(wxCommandEvent& WXUNUSED(event))
 {
-    mmCategDialog sourceCat(this, m_sourceCatID, m_sourceSubCatID, false);
+    mmCategDialog sourceCat(this, m_sourceCatID, m_sourceSubCatID);
 
-    if (sourceCat.ShowModal() == wxID_OK)
+    if (sourceCat.ShowModal() == wxID_APPLY)
     {
         m_sourceCatID    = sourceCat.getCategId();
         m_sourceSubCatID = sourceCat.getSubCategId();
@@ -151,9 +151,9 @@ void relocateCategoryDialog::OnSelectSource(wxCommandEvent& WXUNUSED(event))
 
 void relocateCategoryDialog::OnSelectDest(wxCommandEvent& WXUNUSED(event))
 {
-    mmCategDialog destCat(this, m_destCatID, m_destSubCatID, false);
+    mmCategDialog destCat(this, m_destCatID, m_destSubCatID);
 
-    if (destCat.ShowModal() == wxID_OK)
+    if (destCat.ShowModal() == wxID_APPLY)
     {
         m_destCatID    = destCat.getCategId();
         m_destSubCatID = destCat.getSubCategId();

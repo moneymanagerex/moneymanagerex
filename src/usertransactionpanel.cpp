@@ -239,7 +239,7 @@ void UserTransactionPanel::Create()
 void UserTransactionPanel::DataToControls()
 {
     if (!m_checking_entry) return;
-        
+
     wxDateTime trans_date;
     trans_date.ParseDate(m_checking_entry->TRANSDATE);
     TransactionDate(trans_date);
@@ -254,7 +254,7 @@ void UserTransactionPanel::DataToControls()
 
     m_payee_id = m_checking_entry->PAYEEID;
     m_payee->SetLabelText(Model_Payee::get_payee_name(m_payee_id));
-    
+
     m_category_id = m_checking_entry->CATEGID;
     m_subcategory_id = m_checking_entry->SUBCATEGID;
     m_category->SetLabelText(Model_Category::full_name(m_category_id, m_subcategory_id));
@@ -336,7 +336,7 @@ void UserTransactionPanel::OnTransPayeeButton(wxCommandEvent& WXUNUSED(event))
 void UserTransactionPanel::OnTransCategoryButton(wxCommandEvent& WXUNUSED(event))
 {
     mmCategDialog dlg(this, m_category_id, m_subcategory_id);
-    if (dlg.ShowModal() == wxID_OK)
+    if (dlg.ShowModal() == wxID_APPLY)
     {
         m_category_id = dlg.getCategId();
         m_subcategory_id = dlg.getSubCategId();

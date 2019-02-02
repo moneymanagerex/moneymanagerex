@@ -311,7 +311,7 @@ mmGUIFrame::~mmGUIFrame()
     catch (...) {
         wxASSERT(false);
     }
-    
+
     // Report database statistics
     for (const auto & model : this->m_all_models)
     {
@@ -711,7 +711,7 @@ void mmGUIFrame::updateNavTreeControl()
         , img::TERMACCOUNT_PNG, img::TERMACCOUNT_PNG);
     m_nav_tree_ctrl->SetItemData(termAccounts, new mmTreeItemData("Term Accounts"));
     m_nav_tree_ctrl->SetItemBold(termAccounts, true);
-    
+
     wxTreeItemId stocks = m_nav_tree_ctrl->AppendItem(root, _("Stock Portfolios")
         , img::STOCK_ACC_PNG, img::STOCK_ACC_PNG);
     m_nav_tree_ctrl->SetItemData(stocks, new mmTreeItemData("Stocks"));
@@ -726,7 +726,7 @@ void mmGUIFrame::updateNavTreeControl()
         , img::ASSET_PNG, img::ASSET_PNG);
     m_nav_tree_ctrl->SetItemData(assets, new mmTreeItemData("Assets"));
     m_nav_tree_ctrl->SetItemBold(assets, true);
-    
+
     wxTreeItemId cryptoAccounts = m_nav_tree_ctrl->AppendItem(root, _("Crypto Wallets")
         , img::CRYPTO_PNG, img::CRYPTO_PNG);
     m_nav_tree_ctrl->SetItemData(cryptoAccounts, new mmTreeItemData("Crypto Wallets"));
@@ -742,7 +742,7 @@ void mmGUIFrame::updateNavTreeControl()
     m_nav_tree_ctrl->SetItemData(budgeting, new mmTreeItemData("Budgeting"));
     m_nav_tree_ctrl->SetItemBold(budgeting, true);
 
-    const DB_Table_BUDGETYEAR::Data_Set all_budgets 
+    const DB_Table_BUDGETYEAR::Data_Set all_budgets
         = Model_Budgetyear::instance().all(Model_Budgetyear::COL_BUDGETYEARNAME);
     bool have_budget = (all_budgets.size() > 0);
     for (const auto& e : Model_Budgetyear::instance().all(Model_Budgetyear::COL_BUDGETYEARNAME))
@@ -773,7 +773,7 @@ void mmGUIFrame::updateNavTreeControl()
     {
         /* Start Populating the dynamic data */
         wxString vAccts = Model_Setting::instance().ViewAccounts();
-        wxASSERT(vAccts == VIEW_ACCOUNTS_ALL_STR || vAccts == VIEW_ACCOUNTS_FAVORITES_STR 
+        wxASSERT(vAccts == VIEW_ACCOUNTS_ALL_STR || vAccts == VIEW_ACCOUNTS_FAVORITES_STR
             || vAccts == VIEW_ACCOUNTS_OPEN_STR || vAccts == VIEW_ACCOUNTS_CLOSED_STR);
 
         for (const auto& account : Model_Account::instance().all(Model_Account::COL_ACCOUNTNAME))
@@ -1264,7 +1264,7 @@ void mmGUIFrame::showTreePopupMenu(const wxTreeItemId& id, const wxPoint& pt)
             iData->getString() == "item@Credit Card Accounts" ||
             iData->getString() == "item@Stocks")
         {
-            // Create for Account types: Bank, Cash, Loan, Credit Card, Term & Stocks 
+            // Create for Account types: Bank, Cash, Loan, Credit Card, Term & Stocks
             wxMenu menu;
             menu.Append(MENU_TREEPOPUP_ACCOUNT_NEW, _("New &Account"));
             menu.Append(MENU_TREEPOPUP_ACCOUNT_DELETE, _("&Delete Account"));
@@ -1307,7 +1307,7 @@ void mmGUIFrame::OnViewAccountsTemporaryChange(wxCommandEvent& e)
     const wxString vAccts = Model_Setting::instance().ViewAccounts();
     wxString temp_view = VIEW_ACCOUNTS_ALL_STR;
     //Set view ALL & Refresh Navigation Panel
-    switch (evt_id) 
+    switch (evt_id)
     {
     case MENU_TREEPOPUP_ACCOUNT_VIEWALL: temp_view = VIEW_ACCOUNTS_ALL_STR; break;
     case MENU_TREEPOPUP_ACCOUNT_VIEWFAVORITE: temp_view = VIEW_ACCOUNTS_FAVORITES_STR; break;
@@ -1332,7 +1332,7 @@ void mmGUIFrame::createBudgetingPage(int budgetYearID)
     json_writer.StartObject();
     json_writer.Key("module");
     json_writer.String("Budget Panel");
-    
+
     json_writer.Key("start");
     json_writer.String(wxDateTime::Now().FormatISOCombined().c_str());
 
@@ -1374,7 +1374,7 @@ void mmGUIFrame::createHomePage()
     json_writer.StartObject();
     json_writer.Key("module");
     json_writer.String("Home Page");
-    
+
     json_writer.Key("start");
     json_writer.String(wxDateTime::Now().FormatISOCombined().c_str());
 
@@ -1840,13 +1840,13 @@ void mmGUIFrame::createToolBar()
     toolBar_->AddSeparator();
     toolBar_->AddTool(wxID_ABOUT, _("&About..."), mmBitmap(png::ABOUT), _("Show about dialog"));
     toolBar_->AddTool(wxID_HELP, _("&Help\tF1"), mmBitmap(png::HELP), _("Show the Help file"));
-    
+
     wxString news_array;
     for (const auto& entry : g_WebsiteNewsList)
         news_array += entry.Title + "\n";
     if (news_array.empty()) news_array = _("Register/View Release &Notifications");
-    const wxBitmap news_ico = (g_WebsiteNewsList.size() > 0) 
-        ? mmBitmap(png::NEW_NEWS) 
+    const wxBitmap news_ico = (g_WebsiteNewsList.size() > 0)
+        ? mmBitmap(png::NEW_NEWS)
         : mmBitmap(png::NEWS);
     toolBar_->AddSeparator();
     toolBar_->AddTool(MENU_ANNOUNCEMENTMAILING, _("News"), news_ico, news_array);
@@ -1977,7 +1977,7 @@ bool mmGUIFrame::createDataStore(const wxString& fileName, const bool openingNew
         mmNewDatabaseWizard* wizard = new mmNewDatabaseWizard(this);
         wizard->CenterOnParent();
         wizard->RunIt(true);
-        wxButton* next = (wxButton*) wizard->FindWindow(wxID_FORWARD); //FIXME: 
+        wxButton* next = (wxButton*) wizard->FindWindow(wxID_FORWARD); //FIXME:
         if (next) next->SetLabel(_("&Next ->"));
 
         SetDataBaseParameters(fileName);
@@ -2114,7 +2114,7 @@ void mmGUIFrame::OnVacuumDB(wxCommandEvent& WXUNUSED(event))
         const wxString SizeBefore = wxFileName(m_filename).GetHumanReadableSize();
         m_db->Vacuum();
         const wxString SizeAfter = wxFileName(m_filename).GetHumanReadableSize();
-        wxMessageBox(wxString::Format( 
+        wxMessageBox(wxString::Format(
             _("Database Optimization Completed!\n\n"
             "Size before: %s\n"
             "Size after: %s\n"), SizeBefore, SizeAfter),
@@ -2373,7 +2373,7 @@ void mmGUIFrame::refreshPanelData()
         createHomePage();
     else if (id == mmID_CHECKING)
         checkingAccountPage_->RefreshList();
-    else if (id == mmID_ASSETS) 
+    else if (id == mmID_ASSETS)
         { /*Nothing to do;*/ }
     else if (id == mmID_BILLS)
         billsDepositsPanel_->RefreshList();
@@ -2394,7 +2394,7 @@ void mmGUIFrame::refreshPanelData()
 
 void mmGUIFrame::OnOrgCategories(wxCommandEvent& WXUNUSED(event))
 {
-    mmCategDialog dlg(this, -1, false);
+    mmCategDialog dlg(this, -1, -1, true, false);
     dlg.ShowModal();
     if (dlg.getRefreshRequested())
     {
@@ -2461,7 +2461,7 @@ void mmGUIFrame::OnTransactionReport(wxCommandEvent& WXUNUSED(event))
 }
 
 
-void mmGUIFrame::OnCustomFieldsManager(wxCommandEvent& WXUNUSED(event)) 
+void mmGUIFrame::OnCustomFieldsManager(wxCommandEvent& WXUNUSED(event))
 {
     if (!m_db) return;
     const wxString& ref_type = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
@@ -2642,7 +2642,7 @@ void mmGUIFrame::OnExportToHtml(wxCommandEvent& WXUNUSED(event))
     wxString fileName = wxFileSelector(_("Choose HTML file to Export")
         , wxEmptyString, wxEmptyString, wxEmptyString
         , "*.html", wxFD_SAVE | wxFD_OVERWRITE_PROMPT);
-    
+
     if (!fileName.empty())
     {
         wxString htmlText = panelCurrent_->BuildPage();
@@ -2730,7 +2730,7 @@ void mmGUIFrame::createCheckingAccountPage(int accountID)
     json_writer.EndObject();
 
     Model_Usage::instance().AppendToUsage(json_buffer.GetString());
-    
+
     menuPrintingEnable(true);
     if (gotoTransID_ > 0)
     {
@@ -2746,7 +2746,7 @@ void mmGUIFrame::createStocksAccountPage(int accountID)
     json_writer.StartObject();
     json_writer.Key("module");
     json_writer.String("Stock Panel");
-    
+
     json_writer.Key("start");
     json_writer.String(wxDateTime::Now().FormatISOCombined().c_str());
 
@@ -2764,7 +2764,7 @@ void mmGUIFrame::createStocksAccountPage(int accountID)
     json_writer.Key("end");
     json_writer.String(wxDateTime::Now().FormatISOCombined().c_str());
     json_writer.EndObject();
-    
+
     Model_Usage::instance().AppendToUsage(json_buffer.GetString());
 }
 
@@ -2798,7 +2798,7 @@ void mmGUIFrame::OnAssets(wxCommandEvent& WXUNUSED(event))
     json_writer.StartObject();
     json_writer.Key("module");
     json_writer.String("Asset Panel");
-    
+
     json_writer.Key("start");
     json_writer.String(wxDateTime::Now().FormatISOCombined().c_str());
 

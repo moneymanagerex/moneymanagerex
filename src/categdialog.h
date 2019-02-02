@@ -47,7 +47,7 @@ public:
     mmCategDialog();
     mmCategDialog(wxWindow* parent
         , int category_id = -1, int subcategory_id = -1
-        , bool bEnableRelocate = true
+        , bool bEnableRelocate = false
         , bool bEnableSelect = true);
 
     bool Create(wxWindow* parent
