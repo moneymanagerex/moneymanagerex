@@ -105,7 +105,7 @@ mmPrintableBase::~mmPrintableBase()
         delete accountArray_;
 }
 
-void mmPrintableBase::accounts(int selection, wxString& name)
+void mmPrintableBase::setAccounts(int selection, const wxString& name)
 {
     if ((selection == 1) || (m_account_selection != selection))
     {

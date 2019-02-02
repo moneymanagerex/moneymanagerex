@@ -216,7 +216,6 @@ wxString mmReportChartStocks::getHTMLText()
         hb.DisplayDateHeading(m_date_range->start_date(), m_date_range->end_date(), true);
     hb.addHorizontalLine();
 
-    int count = 0;
     bool pointDot = false, showGridLines = false;
     wxTimeSpan dist;
     wxDate precDateDt = wxInvalidDateTime;
@@ -244,7 +243,7 @@ wxString mmReportChartStocks::getHTMLText()
                 if (histData.size() <= 30)
                     val.label = val.xPos;
                 else if (precDateDt.IsValid() && dateDt.GetMonth() != precDateDt.GetMonth())
-                    val.label = dateDt.GetEnglishMonthName(dateDt.GetMonth());
+                    val.label = wxGetTranslation(dateDt.GetEnglishMonthName(dateDt.GetMonth()));
                 else
                     val.label = "";
                 val.amount = hist.VALUE;
@@ -259,12 +258,10 @@ wxString mmReportChartStocks::getHTMLText()
             Model_Account::Data* account = Model_Account::instance().get(stock.HELDAT);
             hb.addHeader(1, wxString::Format("%s - (%s)", stock.STOCKNAME, account->ACCOUNTNAME));
             hb.addDivCol17_67();
-            hb.addLineChart(aData, stock.STOCKNAME, count, 1000, 400, pointDot, showGridLines);
+            hb.addLineChart(aData, stock.STOCKNAME, 0, 1000, 400, pointDot, showGridLines);
             hb.endDiv();
             hb.endDiv();
         }
-
-        count++;
     }
 
     hb.endDiv();

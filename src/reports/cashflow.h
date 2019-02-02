@@ -52,8 +52,6 @@ protected:
 
     static const int yearsNum_ = 10;
     const wxDateTime today_;
-    int colorId_;
-
 };
 
 #endif // MM_EX_REPORTCASHFLOW_H_
