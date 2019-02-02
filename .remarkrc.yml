@@ -1,0 +1,6 @@
+plugins:
+  remark-preset-lint-consistent:
+  preset-lint-markdown-style-guide:
+  remark-preset-lint-recommended:
+    lint-no-shortcut-reference-link: false
+    lint-no-shortcut-reference-image: false
