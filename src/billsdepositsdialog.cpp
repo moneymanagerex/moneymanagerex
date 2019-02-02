@@ -658,7 +658,7 @@ void mmBDDialog::CreateControls()
 
     transPanelSizer->Add(RightAlign_sizer, wxSizerFlags(g_flagsH).Align(wxALIGN_RIGHT).Border(wxALL, 0));
     box_sizer1->Add(textNotes_, wxSizerFlags(g_flagsExpand).Border(wxTOP, 5));
-    
+
     this->Fit();
 }
 
@@ -786,8 +786,8 @@ void mmBDDialog::OnCategs(wxCommandEvent& WXUNUSED(event))
     }
     else
     {
-        mmCategDialog dlg(this, m_bill_data.CATEGID, m_bill_data.SUBCATEGID, false);
-        if (dlg.ShowModal() == wxID_OK)
+        mmCategDialog dlg(this, m_bill_data.CATEGID, m_bill_data.SUBCATEGID);
+        if (dlg.ShowModal() == wxID_APPLY)
         {
             m_bill_data.CATEGID = dlg.getCategId();
             m_bill_data.SUBCATEGID = dlg.getSubCategId();

@@ -268,7 +268,7 @@ void transactionsUpdateDialog::OnOk(wxCommandEvent& WXUNUSED(event))
 	const auto split = Model_Splittransaction::instance().get_all();
 
     Model_Checking::instance().Savepoint();
-    
+
     for (const auto& id : m_transaction_id)
     {
         Model_Checking::Data *trx = Model_Checking::instance().get(id);
@@ -289,7 +289,7 @@ void transactionsUpdateDialog::OnOk(wxCommandEvent& WXUNUSED(event))
         if (m_notes_checkbox->IsChecked() && !m_notes_ctrl->GetValue().IsEmpty())
         {
             if (m_append_checkbox->IsChecked())
-                trx->NOTES += (trx->NOTES.Right(1) == "\n" ? "" : "\n") 
+                trx->NOTES += (trx->NOTES.Right(1) == "\n" ? "" : "\n")
                     + m_notes_ctrl->GetValue();
             else
                 trx->NOTES = m_notes_ctrl->GetValue();
@@ -337,7 +337,7 @@ void transactionsUpdateDialog::OnOk(wxCommandEvent& WXUNUSED(event))
 
         Model_Checking::instance().save(trx);
     }
-    
+
     Model_Checking::instance().ReleaseSavepoint();
     EndModal(wxID_OK);
 }
@@ -381,8 +381,8 @@ void transactionsUpdateDialog::onFocusChange(wxChildFocusEvent& event)
 
 void transactionsUpdateDialog::OnCategChange(wxCommandEvent& WXUNUSED(event))
 {
-    mmCategDialog dlg(this, -1, -1, false);
-    if (dlg.ShowModal() == wxID_OK)
+    mmCategDialog dlg(this, -1, -1);
+    if (dlg.ShowModal() == wxID_APPLY)
     {
         m_categ_id = dlg.getCategId();
         m_subcateg_id = dlg.getSubCategId();

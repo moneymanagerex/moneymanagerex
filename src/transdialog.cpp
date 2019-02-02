@@ -127,7 +127,7 @@ mmTransDialog::mmTransDialog(wxWindow* parent
     else
         m_currency = Model_Currency::GetBaseCurrency();
 
-    if (m_transfer) 
+    if (m_transfer)
     {
         Model_Account::Data* to_acc = Model_Account::instance().get(m_trx_data.TOACCOUNTID);
         if (to_acc) {
@@ -451,7 +451,7 @@ void mmTransDialog::CreateControls()
 
     for (const auto& i : Model_Checking::all_type())
     {
-        if (i != Model_Checking::all_type()[Model_Checking::TRANSFER] 
+        if (i != Model_Checking::all_type()[Model_Checking::TRANSFER]
             || Model_Account::instance().all().size() > 1)
             transaction_type_->Append(wxGetTranslation(i), new wxStringClientData(i));
     }
@@ -649,7 +649,7 @@ bool mmTransDialog::ValidateData()
         {
             m_trx_data.TOACCOUNTID = -1;
         }
-        
+
         payee->CATEGID = m_trx_data.CATEGID;
         payee->SUBCATEGID = m_trx_data.SUBCATEGID;
         Model_Payee::instance().save(payee);
@@ -665,7 +665,7 @@ bool mmTransDialog::ValidateData()
             return false;
         }
         m_trx_data.TOACCOUNTID = to_account->ACCOUNTID;
-        
+
         if (m_advanced)
         {
             if (!toTextAmount_->checkValue(m_trx_data.TOTRANSAMOUNT))
@@ -783,7 +783,7 @@ void mmTransDialog::OnFocusChange(wxChildFocusEvent& event)
     if (!m_transfer)
     {
         Model_Payee::Data * payee = Model_Payee::instance().get(cbPayee_->GetValue());
-        if (payee) 
+        if (payee)
         {
             cbPayee_->ChangeValue(payee->PAYEENAME);
             SetCategoryForPayee(payee);
@@ -805,7 +805,7 @@ void mmTransDialog::OnFocusChange(wxChildFocusEvent& event)
     {
         m_textAmount->SelectAll();
     }
-    else 
+    else
     {
         if (m_textAmount->Calculate(Model_Currency::precision(m_trx_data.ACCOUNTID)))
         {
@@ -818,7 +818,7 @@ void mmTransDialog::OnFocusChange(wxChildFocusEvent& event)
     {
         toTextAmount_->SelectAll();
     }
-    else 
+    else
     {
         if (toTextAmount_->Calculate(Model_Currency::precision(m_trx_data.TOACCOUNTID)))
         {
@@ -856,7 +856,7 @@ void mmTransDialog::ActivateSplitTransactionsDlg()
     {
         local_splits = dlg.getResult();
     }
-    if (!local_splits.empty()) 
+    if (!local_splits.empty())
     {
         m_trx_data.TRANSAMOUNT = Model_Splittransaction::get_total(local_splits);
         skip_category_init_ = !dlg.isItemsChanged();
@@ -1049,8 +1049,8 @@ void mmTransDialog::OnCategs(wxCommandEvent& WXUNUSED(event))
     }
     else
     {
-        mmCategDialog dlg(this, m_trx_data.CATEGID, m_trx_data.SUBCATEGID, false);
-        if (dlg.ShowModal() == wxID_OK)
+        mmCategDialog dlg(this, m_trx_data.CATEGID, m_trx_data.SUBCATEGID);
+        if (dlg.ShowModal() == wxID_APPLY)
         {
             m_trx_data.CATEGID = dlg.getCategId();
             m_trx_data.SUBCATEGID = dlg.getSubCategId();
@@ -1100,7 +1100,7 @@ void mmTransDialog::OnFrequentUsedNotes(wxCommandEvent& WXUNUSED(event))
 {
     wxMenu menu;
     int id = wxID_HIGHEST;
-    for (const auto& entry : frequentNotes_) 
+    for (const auto& entry : frequentNotes_)
     {
         const wxString& label = entry.Mid(0, 30) + (entry.size() > 30 ? "..." : "");
         menu.Append(++id, label);
@@ -1139,7 +1139,7 @@ void mmTransDialog::OnOk(wxCommandEvent& WXUNUSED(event))
     m_trx_data.TRANSID = Model_Checking::instance().save(r);
 
     Model_Splittransaction::Data_Set splt;
-    for (const auto& entry : local_splits) 
+    for (const auto& entry : local_splits)
     {
         Model_Splittransaction::Data *s = Model_Splittransaction::instance().create();
         s->CATEGID = entry.CATEGID;
@@ -1166,7 +1166,7 @@ void mmTransDialog::OnOk(wxCommandEvent& WXUNUSED(event))
 void mmTransDialog::OnCancel(wxCommandEvent& WXUNUSED(event))
 {
 #ifndef __WXMAC__
-    if (object_in_focus_ != itemButtonCancel_->GetId() && wxGetKeyState(wxKeyCode(WXK_ESCAPE))) 
+    if (object_in_focus_ != itemButtonCancel_->GetId() && wxGetKeyState(wxKeyCode(WXK_ESCAPE)))
             return itemButtonCancel_->SetFocus();
 #endif
 

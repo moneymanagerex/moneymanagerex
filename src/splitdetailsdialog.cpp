@@ -45,7 +45,7 @@ SplitDetailDialog::SplitDetailDialog()
 {
 }
 
-SplitDetailDialog::SplitDetailDialog( 
+SplitDetailDialog::SplitDetailDialog(
     wxWindow* parent
     , Split &split
     , int transType
@@ -168,8 +168,8 @@ void SplitDetailDialog::CreateControls()
 
 void SplitDetailDialog::OnButtonCategoryClick( wxCommandEvent& event )
 {
-    mmCategDialog dlg(this, split_.CATEGID, split_.SUBCATEGID, false);
-    if (dlg.ShowModal() == wxID_OK)
+    mmCategDialog dlg(this, split_.CATEGID, split_.SUBCATEGID);
+    if (dlg.ShowModal() == wxID_APPLY)
     {
         split_.CATEGID = dlg.getCategId();
         split_.SUBCATEGID = dlg.getSubCategId();

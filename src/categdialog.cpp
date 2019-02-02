@@ -32,7 +32,7 @@
 wxIMPLEMENT_DYNAMIC_CLASS(mmCategDialog, wxDialog);
 
 wxBEGIN_EVENT_TABLE(mmCategDialog, wxDialog)
-EVT_BUTTON(wxID_OK, mmCategDialog::OnBSelect)
+EVT_BUTTON(wxID_APPLY, mmCategDialog::OnBSelect)
 EVT_BUTTON(wxID_CANCEL, mmCategDialog::OnCancel)
 EVT_BUTTON(wxID_ADD, mmCategDialog::OnAdd)
 EVT_BUTTON(wxID_REMOVE, mmCategDialog::OnDelete)
@@ -143,7 +143,7 @@ void mmCategDialog::fillControls()
                 {
                     wxTreeItemId subcateg = m_treeCtrl->AppendItem(maincat, sub_category.SUBCATEGNAME);
                     m_treeCtrl->SetItemData(subcateg, new mmTreeItemCateg(category, sub_category));
-                    if (!bShow) 
+                    if (!bShow)
                         m_treeCtrl->SetItemTextColour(subcateg, wxColour("GREY"));
 
                     if (m_categ_id == category.CATEGID && m_subcateg_id == sub_category.SUBCATEGID)
@@ -236,13 +236,16 @@ void mmCategDialog::CreateControls()
     wxStdDialogButtonSizer* itemBoxSizer9 = new wxStdDialogButtonSizer;
     buttonsSizer->Add(itemBoxSizer9, wxSizerFlags(g_flagsExpand).Border(wxALL, 0));
 
-    m_buttonSelect = new wxButton(buttonsPanel, wxID_OK, _("&Select"));
-    itemBoxSizer9->Add(m_buttonSelect, wxSizerFlags(g_flagsExpand).Proportion(4));
+    m_buttonSelect = new wxButton(buttonsPanel, wxID_APPLY, _("&Select"));
+    itemBoxSizer9->Add(m_buttonSelect, wxSizerFlags(g_flagsExpand).ReserveSpaceEvenIfHidden().Proportion(4));
     m_buttonSelect->SetToolTip(_("Select the currently selected category as the selected category for the transaction"));
+    m_buttonSelect->Show(m_enable_select);
 
     //Some interfaces has no any close buttons, it may confuse user. Cancel button added
-    wxButton* itemCancelButton = new wxButton(buttonsPanel, wxID_CANCEL, wxGetTranslation(g_CancelLabel));
+    wxButton* itemCancelButton = new wxButton(buttonsPanel, wxID_CANCEL
+        , wxGetTranslation(m_enable_select ? g_CancelLabel : g_CloseLabel));
     itemBoxSizer9->Add(itemCancelButton, g_flagsH);
+
 }
 
 void mmCategDialog::OnAdd(wxCommandEvent& WXUNUSED(event))
@@ -399,7 +402,7 @@ void mmCategDialog::OnDelete(wxCommandEvent& WXUNUSED(event))
 void mmCategDialog::OnBSelect(wxCommandEvent& WXUNUSED(event))
 {
     if (selectedItemId_ != root_ && selectedItemId_)
-        EndModal(wxID_OK);
+        EndModal(wxID_APPLY);
 }
 
 void mmCategDialog::OnDoubleClicked(wxTreeEvent& WXUNUSED(event))
@@ -410,7 +413,7 @@ void mmCategDialog::OnDoubleClicked(wxTreeEvent& WXUNUSED(event))
             (m_treeCtrl->GetItemData(selectedItemId_));
         m_categ_id = iData->getCategData()->CATEGID;
         m_subcateg_id = iData->getSubCategData()->SUBCATEGID;
-        EndModal(wxID_OK);
+        EndModal(wxID_APPLY);
     }
 }
 
@@ -457,7 +460,7 @@ void mmCategDialog::OnSelChanged(wxTreeEvent& event)
     m_buttonAdd->Enable(m_subcateg_id == -1);
     m_buttonEdit->Enable(!bRootSelected);
     m_buttonDelete->Enable(!bRootSelected);
-    m_buttonSelect->Enable(m_enable_select && !bRootSelected);
+    m_buttonSelect->Enable(!bRootSelected);
 }
 
 void mmCategDialog::OnEdit(wxCommandEvent& WXUNUSED(event))
