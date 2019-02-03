@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-02-03 12:43+0300\n"
-"PO-Revision-Date: 2019-02-03 20:43\n"
+"PO-Revision-Date: 2019-02-03 21:13\n"
 "Last-Translator: vomikan <nikolay.akimov@gmail.com>\n"
 "Language-Team: Polish\n"
 "MIME-Version: 1.0\n"
@@ -1469,7 +1469,7 @@ msgstr "Rok budżetowy:"
 msgid "Specify the required year.\n"
 "Use Spin buttons to increase or decrease the year."
 msgstr "Określ wymagany rok.\n"
-"Użyj przycisków aby zwiększyć lub zmniejszyć rok.."
+"Użyj przycisków aby zwiększyć lub zmniejszyć rok."
 
 #: budgetyearentrydialog.cpp:86
 msgid "Budget Month:"
@@ -3447,7 +3447,7 @@ msgstr "Do wyjaśnienia"
 #: filtertransdialog.cpp:53 model/Model_Billsdeposits.cpp:42
 #: model/Model_Checking.cpp:41
 msgid "Duplicate"
-msgstr "Duplikowane"
+msgstr "Duplikat"
 
 #: filtertransdialog.cpp:54 filtertransdialog.cpp:863
 msgid "Un-Reconciled"
@@ -3495,7 +3495,7 @@ msgstr "Przelew z"
 
 #: filtertransdialog.cpp:309
 msgid "Amount Range"
-msgstr "Zakres kwoty:"
+msgstr "Zakres kwoty"
 
 #: filtertransdialog.cpp:351
 msgid "Settings"
@@ -4151,7 +4151,7 @@ msgstr "Konto:"
 
 #: import_export/univcsvdialog.cpp:278
 msgid "Date Format: "
-msgstr "Format daty"
+msgstr "Format daty:"
 
 #: import_export/univcsvdialog.cpp:290
 msgid "CSV Delimiter:"
@@ -4730,7 +4730,7 @@ msgstr "D&uplikuj"
 
 #: mmcheckingpanel.cpp:543
 msgid "Duplicate selected transaction"
-msgstr "Duplikuj wybraną transakcję"
+msgstr "Powiel wybraną transakcję"
 
 #: mmcheckingpanel.cpp:560
 msgid "Enter any string to find it in the nearest transaction notes"
@@ -4795,11 +4795,11 @@ msgstr "Usuń wszystkie transakcje w bieżącym widoku"
 
 #: mmcheckingpanel.cpp:1247
 msgid "Delete Viewed \"Follow Up\" Trans."
-msgstr "Kasuj widoczne transakcje 'Do wyjaśń.'."
+msgstr "Usuń widoczne transakcje do wyjaśnienia"
 
 #: mmcheckingpanel.cpp:1248
 msgid "Delete Viewed \"Unreconciled\" Trans."
-msgstr "Kasuj widoczne transakcje 'Nieuzgodn.'."
+msgstr "Usuń widoczne transakcje nieuzgodnione"
 
 #: mmcheckingpanel.cpp:1254
 msgid "Mark As &Reconciled"
@@ -4819,7 +4819,7 @@ msgstr "Zaznacz jako &do wyjaśnienia"
 
 #: mmcheckingpanel.cpp:1262
 msgid "Mark As &Duplicate"
-msgstr "Zaznacz jako &zduplikowaną"
+msgstr "Zaznacz jako &duplikat"
 
 #: mmcheckingpanel.cpp:1264
 msgid "Mark"
@@ -4839,11 +4839,11 @@ msgstr "jako pomijane"
 
 #: mmcheckingpanel.cpp:1270
 msgid "as needing Followup"
-msgstr "jako wymagające wyjaśnienia"
+msgstr "jako do wyjaśnienia"
 
 #: mmcheckingpanel.cpp:1271
 msgid "as Duplicate"
-msgstr "jako zduplikowane"
+msgstr "jako duplikat"
 
 #: mmcheckingpanel.cpp:1272
 msgid "Mark all being viewed"
@@ -4881,7 +4881,7 @@ msgstr "Sprawdzanie transakcji MMEX"
 #: mmcheckingpanel.cpp:1917 stockspanel.cpp:291
 #, c-format
 msgid "Moving Transaction from %s to..."
-msgstr "Przenoszenie pransakcji z %s do..."
+msgstr "Przenoszenie transakcji z %s do..."
 
 #: mmcheckingpanel.cpp:1920 stockspanel.cpp:292
 msgid "Select the destination Account "
@@ -5937,11 +5937,11 @@ msgstr "Suma łącznie:"
 
 #: mmpanelbase.cpp:134
 msgid "Hide/Show Columns"
-msgstr "Ukryj/pokaż kulumny"
+msgstr "Ukryj/pokaż kolumny"
 
 #: mmpanelbase.cpp:135
 msgid "Hide this column"
-msgstr "Ukryj kulumnę"
+msgstr "Ukryj kolumnę"
 
 #: mmpanelbase.cpp:137
 msgid "Order by this column"
@@ -6288,7 +6288,7 @@ msgstr "Usuń plik po zaimportowaniu"
 
 #: optionsettingsattachment.cpp:164
 msgid "Select to delete file after import in attachments archive"
-msgstr "Wybierz aby usunąć plik z archiwum zalączników po zaimportowaniu"
+msgstr "Wybierz aby usunąć plik z archiwum załączników po zaimportowaniu"
 
 #: optionsettingsattachment.cpp:168
 msgid "When remove attachment, move file instead of delete"
@@ -6296,7 +6296,7 @@ msgstr "Przy usuwaniu załączników, przenieś plik zamiast kasować"
 
 #: optionsettingsattachment.cpp:170
 msgid "Select to don't delete file when attachment is removed, but instead move it to 'Deleted' subfolder"
-msgstr "Zaznacz aby nie kasować pliku kiedy zalącznik jest usuwany, a zamiast tego przenieść go do katalogu 'Deleted'"
+msgstr "Zaznacz aby nie kasować pliku kiedy załącznik jest usuwany, a zamiast tego przenieść go do katalogu 'Deleted'"
 
 #: optionsettingsattachment.cpp:179
 msgid "Application data directory"
@@ -6320,7 +6320,7 @@ msgstr "Wybierz katalog na archiwum załączników"
 
 #: optionsettingsattachment.cpp:257
 msgid "Attachments path has been changed!"
-msgstr "Zmieniono ścieżkę do zalączników!"
+msgstr "Zmieniono ścieżkę do załączników!"
 
 #: optionsettingsattachment.cpp:259 optionsettingsattachment.cpp:268
 msgid "Attachments folder migration"
@@ -6440,7 +6440,7 @@ msgstr "Ostatnio użyta dla beneficjenta"
 
 #: optionsettingsmisc.cpp:103
 msgid "Unused"
-msgstr "Nieuzywane(y)"
+msgstr "Nieużywane(y)"
 
 #: optionsettingsmisc.cpp:118
 msgid "Default Date:"
@@ -6484,7 +6484,7 @@ msgstr "W czasie zamykania po wprowadzeniu zmian do bazy danych,\n"
 
 #: optionsettingsmisc.cpp:159
 msgid "Specify max number of backup files"
-msgstr "Określ max ilość kopii bezpieczeńtwa"
+msgstr "Określ max ilość kopii bezpieczeństwa"
 
 #: optionsettingsmisc.cpp:162
 msgid "Max Files"
@@ -6508,7 +6508,7 @@ msgstr "URL"
 
 #: optionsettingsnet.cpp:73
 msgid "Specify the Web App URL without final slash"
-msgstr "Wpisz URL Web App bez końcowego ukośnika"
+msgstr "Wpisz URL WebApp bez końcowego ukośnika"
 
 #: optionsettingsnet.cpp:76
 msgid "GUID"
@@ -6516,7 +6516,7 @@ msgstr "GUID"
 
 #: optionsettingsnet.cpp:80
 msgid "Specify the Web App GUID"
-msgstr "Wpisz Web App GUID"
+msgstr "Wpisz WebApp GUID"
 
 #: optionsettingsnet.cpp:86
 msgid "Test connection"
@@ -6596,7 +6596,7 @@ msgstr "Sprawdź przy starcie"
 
 #: optionsettingsnet.cpp:183
 msgid "Enable to automatically check if new MMEX version is available at StartUp"
-msgstr "Zaznacz, aby sprawdzać dostepność nowej wersji MMWX w czasie uruchomienia"
+msgstr "Zaznacz, aby sprawdzać dostępność nowej wersji MMWX w czasie uruchomienia"
 
 #: optionsettingsnet.cpp:186
 msgid "Stable"
@@ -6744,7 +6744,7 @@ msgstr "Okno przenoszenia kategorii"
 
 #: relocatecategorydialog.cpp:90
 msgid "Relocate source category to the destination category"
-msgstr "Przenoszenie kategorii źródłej do kategorii docelowej"
+msgstr "Przenoszenie kategorii źródłowej do kategorii docelowej"
 
 #: relocatecategorydialog.cpp:93
 msgid "Select Source Category"
@@ -6773,17 +6773,17 @@ msgstr "Potwierdzenie przenoszenia kategorii"
 #: relocatecategorydialog.cpp:271 relocatepayeedialog.cpp:231
 #, c-format
 msgid "Records found in transactions: %i"
-msgstr "Wpisy znaleziono w transakcach: %i"
+msgstr "Wpisy znaleziono w transakcjach: %i"
 
 #: relocatecategorydialog.cpp:272
 #, c-format
 msgid "Records found in split transactions: %i"
-msgstr "Wpisy znaleziono w dzielonych transakcach: %i"
+msgstr "Wpisy znaleziono w dzielonych transakcjach: %i"
 
 #: relocatecategorydialog.cpp:273 relocatepayeedialog.cpp:232
 #, c-format
 msgid "Records found in recurring transactions: %i"
-msgstr "Wpisy znaleziono w transakcach powtarzanych: %i"
+msgstr "Wpisy znaleziono w transakcjach powtarzanych: %i"
 
 #: relocatecategorydialog.cpp:274
 #, c-format
@@ -6793,12 +6793,12 @@ msgstr "Zapis znaleziony w powtarzanych, dzielonych transakcjach: %i"
 #: relocatecategorydialog.cpp:275
 #, c-format
 msgid "Records found as Default Payee Category: %i"
-msgstr "Zapis znaleziony jako domyślnla kategoria beneficjenta: %i"
+msgstr "Zapis znaleziony jako domyślna kategoria beneficjenta: %i"
 
 #: relocatecategorydialog.cpp:276
 #, c-format
 msgid "Records found in budget: %i"
-msgstr "Zapis znaleziony w budźecie: %i"
+msgstr "Zapis znaleziony w budżecie: %i"
 
 #: relocatepayeedialog.cpp:53
 msgid "Relocate Payee Dialog"
@@ -6883,7 +6883,7 @@ msgstr "Suma miesięczna"
 #: reports/cashflow.cpp:223
 #, c-format
 msgid "Cash Flow Forecast for %i Years Ahead"
-msgstr "Prognoza przeplywu środków dla następnych %i lat"
+msgstr "Prognoza przepływu środków dla następnych %i lat"
 
 #: reports/cashflow.cpp:290 reports/incexpenses.cpp:242 reports/payee.cpp:124
 msgid "Difference"
@@ -7451,7 +7451,7 @@ msgstr "Tymczasowa lista akcji: %s\n\n"
 
 #: stockspanel.cpp:574
 msgid "Create a new Stock investment in this portfolio"
-msgstr "Utwórz inwestycję giełdową w tym portelu"
+msgstr "Utwórz inwestycję giełdową w tym portfelu"
 
 #: stockspanel.cpp:578
 msgid "Add or remove shares to the selected Stock"
@@ -7459,7 +7459,7 @@ msgstr "Dodaj lub usuń akcje"
 
 #: stockspanel.cpp:583
 msgid "View selected stock's share transactions"
-msgstr "Pokaż trasakcje dla wybranej akcji"
+msgstr "Pokaż transakcje dla wybranej akcji"
 
 #: stockspanel.cpp:588
 msgid "Edit selected stock investment and readjust current prices"
@@ -7551,7 +7551,7 @@ msgstr "Niepoprawny typ"
 
 #: transdialog.cpp:170
 msgid "Duplicate Transaction"
-msgstr "Duplikuj transakcję"
+msgstr "Powiel transakcję"
 
 #: transdialog.cpp:171
 msgid "Edit Transaction"
@@ -7580,7 +7580,7 @@ msgstr "Potwierdź dodanie odbiorcy"
 msgid "This transaction will exceed your account limit.\n\n"
 "Do you wish to continue?"
 msgstr "Ta transakcja spowoduje przekroczenie limitu konta.\n\n"
-"Czy chcesz kontunuować?"
+"Czy chcesz kontynuować?"
 
 #: transdialog.cpp:1205
 msgid "Specify account the money is taken from"
@@ -7870,7 +7870,7 @@ msgstr "Transakcja nie pobrana:"
 
 #: webapp.cpp:554
 msgid "please fix attachments folder or delete attachments from WebApp"
-msgstr "proszę poprawić katalog załączników lub usunąć załaczniki z WebApp"
+msgstr "proszę poprawić katalog załączników lub usunąć załączniki z WebApp"
 
 #: webapp.cpp:555
 msgid "Attachment folder error"
@@ -7894,7 +7894,7 @@ msgstr "Błąd pobierania załącznika"
 
 #: webappdialog.cpp:51
 msgid "Import WebApp transactions"
-msgstr "Imporowanie transakcji WebApp"
+msgstr "Importowanie transakcji WebApp"
 
 #: webappdialog.cpp:94
 msgid "&Import all "
@@ -7914,7 +7914,7 @@ msgstr "Błąd połączenia WebApp"
 
 #: webappdialog.cpp:269
 msgid "Open Attachment"
-msgstr "Otwórz załacznik"
+msgstr "Otwórz załącznik"
 
 #: webappdialog.cpp:271
 msgid "Delete"
@@ -7927,7 +7927,7 @@ msgstr "Kreator dodawania konta"
 #: wizard_newaccount.cpp:35
 #, c-format
 msgid "%s models all transactions as belonging to accounts."
-msgstr "%s modeluje wszystkie transakcje jako nalezące do kont."
+msgstr "%s modeluje wszystkie transakcje jako należące do kont."
 
 #: wizard_newaccount.cpp:36
 msgid "The next pages will help you create a new account.\n"
@@ -7965,7 +7965,7 @@ msgstr "Typ konta"
 
 #: wizard_newaccount.cpp:130
 msgid "Select the type of account you want to create:"
-msgstr "Wybierz typ konta jakie checsz utworzyć:"
+msgstr "Wybierz typ konta jakie chcesz utworzyć:"
 
 #: wizard_newaccount.cpp:131
 msgid "General bank accounts cover a wide variety of account\n"
@@ -7986,8 +7986,8 @@ msgid "Term accounts are specialized bank accounts. Intended for asset\n"
 "general income stream."
 msgstr "Konta terminowe są specjalnymi kontami bankowymi. Są przeznaczone do\n"
 "aktywów takich jak lokaty terminowe, obligacje, kredyty hipoteczne.\n"
-"Te rachunki mogą posiadać przepływy środków, bedące poza ogólnym\n"
-" strumieniem przychodów."
+"Te rachunki mogą posiadać przepływy środków, będące poza ogólnym\n"
+"strumieniem przychodów."
 
 #: wizard_newaccount.cpp:157
 msgid "Base Account Currency Not set."
@@ -8031,7 +8031,7 @@ msgid "Specify the base (or default) currency to be used for the\n"
 "the options dialog. New accounts, will use this currency by\n"
 "default, and can be changed when editing account details."
 msgstr "Wybierz główną (lub domyślną) walutę która będzie\n"
-"używana z bazą danych. Nowe konta będą jej uzywały\n"
+"używana z bazą danych. Nowe konta będą jej używały\n"
 "Możesz zmienić walutę związaną z kontem kiedy zechcesz."
 
 #: wizard_newdb.cpp:153
