@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-02-03 12:43+0300\n"
-"PO-Revision-Date: 2019-02-03 09:50\n"
+"PO-Revision-Date: 2019-02-03 20:13\n"
 "Last-Translator: vomikan <nikolay.akimov@gmail.com>\n"
 "Language-Team: Polish\n"
 "MIME-Version: 1.0\n"
@@ -186,7 +186,7 @@ msgstr "Organizuj załączniki do tego konta"
 
 #: accountdialog.cpp:380
 msgid "Enter the Name of the Account. This name can be renamed at any time."
-msgstr "Wprowadź nazwę konta. Możesz ją zmienić póżniej."
+msgstr "Wprowadź nazwę konta. Możesz ją zmienić później."
 
 #: accountdialog.cpp:381 wizard_newaccount.cpp:121
 msgid "Specify the type of account to be created."
@@ -394,11 +394,11 @@ msgstr "% amortyzacji"
 
 #: assetdialog.cpp:241
 msgid "Enter the rate at which the asset changes its value in percentage per year"
-msgstr ""
+msgstr "Wprowadź stopę zmiany wartości aktywów w procentach na rok"
 
 #: assetdialog.cpp:253
 msgid "Organize attachments of this asset"
-msgstr "Organizuj zalączniki dla tych aktywów"
+msgstr "Organizuj załączniki dla tych aktywów"
 
 #: assetdialog.cpp:256
 msgid "Enter notes associated with this asset"
@@ -550,7 +550,7 @@ msgstr "Usuń aktywa"
 #: assetspanel.cpp:536 billsdepositspanel.cpp:302 mmcheckingpanel.cpp:550
 #: stockspanel.cpp:605
 msgid "Open attachments"
-msgstr "Otwórz załaczniki"
+msgstr "Otwórz załączniki"
 
 #: assetspanel.cpp:543 assetspanel.cpp:544 mmcheckingpanel.cpp:558
 msgid "Search"
@@ -563,7 +563,7 @@ msgstr "Wprowadź ciąg aby znaleźć odpowiadające aktywa"
 #: assetspanel.cpp:667
 #, c-format
 msgid "Change in Value: %s %s"
-msgstr "Zmina wartości: %s %s"
+msgstr "Zmiana wartości: %s %s"
 
 #: assetspanel.cpp:781
 msgid "This asset does not have its own account\n\n"
@@ -575,11 +575,11 @@ msgstr "Te aktywa nie mają dedykowanego konta\n\n"
 
 #: assetspanel.cpp:784
 msgid "Asset Management"
-msgstr "Zarządznie aktywami"
+msgstr "Zarządzanie aktywami"
 
 #: assetspanel.cpp:803
 msgid "Account \t Date\t   Value\n\n"
-msgstr "Konto \t Data\t   Watość\n\n"
+msgstr "Konto \t Data\t   Wartość\n\n"
 
 #: attachmentdialog.cpp:54 customfieldlistdialog.cpp:52
 #: import_export/qif_import_gui.cpp:92 import_export/univcsvdialog.cpp:1121
@@ -610,11 +610,11 @@ msgstr "Nie zdefiniowano katalogu załączników"
 
 #: attachmentdialog.cpp:70
 msgid "Unable to find attachments folder:"
-msgstr "Nie można odznaleźć katalogu załaczników:"
+msgstr "Nie można odnaleźć katalogu załączników:"
 
 #: attachmentdialog.cpp:73
 msgid "Please verify that above path is correct"
-msgstr "Sprawdź, czy powyższa scieżka jest prawidłowa"
+msgstr "Sprawdź, czy powyższa ścieżka jest prawidłowa"
 
 #: attachmentdialog.cpp:74
 msgid "Attachments folder not found"
@@ -636,7 +636,7 @@ msgstr "Inne narzędzia"
 
 #: attachmentdialog.cpp:164
 msgid "Import attachment:"
-msgstr "Importuj zalącznik:"
+msgstr "Importuj załącznik:"
 
 #: attachmentdialog.cpp:166 import_export/univcsvdialog.cpp:1371
 msgid "All Files"
@@ -720,15 +720,15 @@ msgstr "Czy chcesz kontynuować i usunąć załącznik z bazy danych?"
 
 #: attachmentdialog.cpp:439
 msgid "Delete attachment failed"
-msgstr "Niepowodzenie usunięcia załacznika"
+msgstr "Niepowodzenie usunięcia załącznika"
 
 #: attachmentdialog.cpp:452
 msgid "Unable to open file:"
-msgstr "Nie można otworzyc pliku:"
+msgstr "Nie można otworzyć pliku:"
 
 #: attachmentdialog.cpp:455
 msgid "Please verify that file exists and user has rights to read it."
-msgstr "Sprawdź, czy plik istnieje i czy uzytkownik ma prawo odczytu."
+msgstr "Sprawdź, czy plik istnieje i czy użytkownik ma prawo odczytu."
 
 #: attachmentdialog.cpp:456
 msgid "Open attachment failed"
@@ -852,7 +852,7 @@ msgstr "Powtórzenia"
 
 #: billsdepositsdialog.cpp:459
 msgid "Advance the next occurring date with the specified values"
-msgstr ""
+msgstr "Przestaw datę następnego wystąpienia w oparciu o ustaloną wartość"
 
 #: billsdepositsdialog.cpp:467 billsdepositsdialog.cpp:1339
 msgid "Payments Left"
@@ -918,7 +918,7 @@ msgstr "Za&awansowane"
 
 #: billsdepositsdialog.cpp:563 transdialog.cpp:1230
 msgid "Allows the setting of different amounts in the FROM and TO accounts."
-msgstr "Pozwala ustawić różne kwoty transakcji na kontcie źródłowym i docelowym."
+msgstr "Pozwala ustawić różne kwoty transakcji na koncie źródłowym i docelowym."
 
 #: billsdepositsdialog.cpp:573 billsdepositspanel.cpp:109
 #: budgetingpanel.cpp:321 filtertransdialog.cpp:495 filtertransdialog.cpp:503
@@ -1016,7 +1016,7 @@ msgstr "Organizuj załączniki dla tej transakcji powtarzanej"
 
 #: billsdepositsdialog.cpp:645 transdialog.cpp:543 usertransactionpanel.cpp:224
 msgid "Select one of the frequently used notes"
-msgstr "Wybierz jedną z często uzywanych notatek"
+msgstr "Wybierz jedną z często używanych notatek"
 
 #: billsdepositsdialog.cpp:656 transdialog.cpp:1229
 #: usertransactionpanel.cpp:233
@@ -1182,11 +1182,11 @@ msgstr "Płatność"
 
 #: billsdepositspanel.cpp:170
 msgid "MMEX allows regular payments to be set up as transactions. These transactions can also be regular deposits, or transfers that will occur at some future time. These transactions act as a reminder that an event is about to occur, and appears on the Home Page 14 days before the transaction is due. "
-msgstr "MMEX umożliwia ustawienie powtarzanych platności jako transakcji. Mogą to być regularne wpłaty lub przelewy, które będą wykonywane w przyszłości. Te transakcje wywołają przypomnienie przed datą swojego wystąpienia, które pojawi się na stronie glównej na 14 dni przed zadaną datą."
+msgstr "MMEX umożliwia ustawienie powtarzanych płatności jako transakcji. Mogą to być regularne wpłaty lub przelewy, które będą wykonywane w przyszłości. Te transakcje wywołają przypomnienie przed datą swojego wystąpienia, które pojawi się na stronie głównej na 14 dni przed zadaną datą."
 
 #: billsdepositspanel.cpp:171
 msgid "Tip: These transactions can be set up to activate - allowing the user to adjust any values on the due date."
-msgstr "Porada: Te transakcje mogą być aktywowane w przyszłości - pozwalając uzytkownikowi wybrać dowolną wartość daty realizacji."
+msgstr "Porada: Te transakcje mogą być aktywowane w przyszłości - pozwalając użytkownikowi wybrać dowolną wartość daty realizacji."
 
 #: billsdepositspanel.cpp:225 billsdepositspanel.cpp:888 mmframe.cpp:735
 #: mmhomepagepanel.cpp:433
@@ -1286,7 +1286,7 @@ msgstr "Czy na pewno chcesz usunąć te serie?"
 
 #: billsdepositspanel.cpp:638
 msgid "Confirm Series Deletion"
-msgstr "Potwierdż usunięcie serii"
+msgstr "Potwierdź usunięcie serii"
 
 #: budgetentrydialog.cpp:49
 msgid "Budget Year Entry"
@@ -1478,7 +1478,7 @@ msgstr "Miesiąc budżetowy:"
 #: budgetyearentrydialog.cpp:95
 msgid "Specify the required month.\n"
 "Use Spin buttons to increase or decrease the month."
-msgstr "Okreść wymagany miesiąc.\n"
+msgstr "Określ wymagany miesiąc.\n"
 "Użyj przycisków aby zwiększyć lub pomniejszyć miesiąc."
 
 #: budgetyearentrydialog.cpp:102
@@ -1523,7 +1523,7 @@ msgstr "Edytuj nazwę istniejącej kategorii"
 
 #: categdialog.cpp:235 categdialog.cpp:440
 msgid "Select an unused category to delete."
-msgstr ""
+msgstr "Wybierz nieużywaną kategorię do usunięcia."
 
 #: categdialog.cpp:240 maincurrencydialog.cpp:219
 msgid "&Select"
@@ -1565,7 +1565,7 @@ msgstr "Podkategoria o tej nazwie już istnieje"
 
 #: categdialog.cpp:313
 msgid "Invalid Parent Category. Choose Root or Main Category node."
-msgstr "Nieprawidlowa kategoria nadrzędna. Wybierz główną gałąź kategorii."
+msgstr "Nieprawidłowa kategoria nadrzędna. Wybierz główną gałąź kategorii."
 
 #: categdialog.cpp:320
 msgid "Category in use."
@@ -1578,7 +1578,7 @@ msgstr "Podkategoria jest używana."
 #: categdialog.cpp:322
 msgid "Tip: Change all transactions using this Category to\n"
 "another Category using the relocate command:"
-msgstr "Porada: Zmień wszystke transakcje z danym beneficjentem na innego beneficjenta\n"
+msgstr "Porada: Zmień wszystkie transakcje z danym beneficjentem na innego beneficjenta\n"
 " za pomocą polecenia Przenoszenie:"
 
 #: categdialog.cpp:325
@@ -1597,15 +1597,15 @@ msgstr "Organizuj kategorie: Bląd usuwania"
 
 #: categdialog.cpp:463
 msgid "This category cannot be deleted because it's used by transactions."
-msgstr ""
+msgstr "Ta kategoria nie może być usunięta bo jest używana przez transakcje."
 
 #: categdialog.cpp:470
 msgid "Delete an existing category."
-msgstr ""
+msgstr "Usuń istniejącą kategorię."
 
 #: categdialog.cpp:475
 msgid "Subcategories must be deleted before."
-msgstr ""
+msgstr "Podkategorie muszą być wcześniej usunięte."
 
 #: categdialog.cpp:491
 #, c-format
@@ -1891,7 +1891,7 @@ msgstr "Kolumna w panelu"
 
 #: customfieldeditdialog.cpp:179
 msgid "Select a value to represent the item on a panel"
-msgstr "Wbierz kolumnę w której będzie prezentowane pole w panelu"
+msgstr "Wybierz kolumnę w której będzie prezentowane pole w panelu"
 
 #: customfieldeditdialog.cpp:221
 msgid "Changing field type will delete all content!"
@@ -1997,7 +1997,7 @@ msgstr "Edukacja"
 
 #: db/Table_Category.h:110
 msgid "Homeneeds"
-msgstr "Wypozażenie domu"
+msgstr "Wyposażenie domu"
 
 #: db/Table_Category.h:111
 msgid "Healthcare"
@@ -3403,7 +3403,7 @@ msgstr "Błąd otwarcia pliku bazy danych:"
 
 #: dbwrapper.cpp:62
 msgid "Can't open file"
-msgstr "Nie można otworzyc pliku"
+msgstr "Nie można otworzyć pliku"
 
 #: dbwrapper.cpp:63
 msgid "You must specify path to another database file"
@@ -3513,7 +3513,7 @@ msgstr "Zapisz powyższe wartości w wybranym zestawie"
 
 #: filtertransdialog.cpp:386
 msgid "Clear all fields for current Preset selection"
-msgstr "Wyczyść wszyskie pola w wybranym zestawie"
+msgstr "Wyczyść wszystkie pola w wybranym zestawie"
 
 #: filtertransdialog.cpp:400
 msgid "&Activate "
@@ -3521,7 +3521,7 @@ msgstr "Włącz"
 
 #: filtertransdialog.cpp:401
 msgid "Activate the filter with these settings"
-msgstr "Użyj fitra z tymi ustawieniami"
+msgstr "Użyj filtra z tymi ustawieniami"
 
 #: filtertransdialog.cpp:403
 msgid "&Deactivate "
@@ -4670,7 +4670,7 @@ msgstr "Porada dla okna Organizuj Kategorie: Wciśnięcie kombinacji dwóch klaw
 
 #: mmTips.h:38
 msgid "Tip to get out of debt: Pay yourself 10 percentage first. Put this into an account that is hard to touch. Make sure it is a chore to get the money out (you have to drive to the bank), so you will only tap it consciously and for major expenses."
-msgstr ""
+msgstr "Wskazówka jak pozbyć się długu: Wypłacaj sobie 10% kwoty dochodów. Zdeponuj to na konto, które wymaga zachodu do wypłaty (np. trzeba osobiście pojechać do banku), więc będziesz go używał świadomie i na ważniejsze wydatki."
 
 #: mmTips.h:39
 msgid "Tip to get out of debt: Establish an emergency fund."
@@ -4926,7 +4926,7 @@ msgstr "Wielokrotnego wyboru"
 
 #: mmex.cpp:75
 msgid "Can not load translation for default language"
-msgstr ""
+msgstr "Nie można załadować tłumaczenia dla domyślnego języka"
 
 #: mmex.cpp:76 mmex.cpp:81 mmframe.cpp:3106
 msgid "Language change"
@@ -4940,7 +4940,8 @@ msgstr "Nie można załadować tłumaczenia dla wybranego języka %s"
 #: mmex.cpp:115
 msgid "Fatal error occurred.\n"
 "Application will be terminated."
-msgstr ""
+msgstr "Wystąpił błąd krytyczny.\n"
+"Aplikacja zostanie zamknięta."
 
 #: mmex.cpp:248
 msgid "MMEX is already running...\n\n"
@@ -5544,7 +5545,7 @@ msgstr "Sprawdź &uaktualnienia"
 
 #: mmframe.cpp:1791
 msgid "Check if a new MMEX version is available"
-msgstr ""
+msgstr "Sprawdź czy jest dostępna nowa wersja MMEX"
 
 #: mmframe.cpp:1796 mmframe.cpp:1841
 msgid "&About..."
@@ -5701,7 +5702,7 @@ msgstr "Nie można zastąpić wybrenego pliku"
 
 #: mmframe.cpp:2230
 msgid "Accounts, payees and categories successfully syncronized to WebApp!"
-msgstr ""
+msgstr "Konta, beneficjenci i kategorie poprawnie zsynchronizowane z WebApp!"
 
 #: mmframe.cpp:2230
 msgid "WebApp export"
@@ -5892,7 +5893,7 @@ msgstr "Podsumowanie"
 
 #: mmhomepagepanel.cpp:391
 msgid "Account / Payee"
-msgstr ""
+msgstr "Konto / Beneficjent"
 
 #: mmhomepagepanel.cpp:615
 msgid "Upcoming Transactions"
