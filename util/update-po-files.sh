@@ -7,22 +7,26 @@ XGETTEXT_ARGS="-k_ -kwxGetTranslation -kwxTRANSLATE -kwxPLURAL:1,2 \
                --from-code=UTF-8 \
                --add-location \
                --package-name=MMEX \
-               --width=78 \
+               --no-wrap \
                --msgid-bugs-address=developer@moneymanagerex.org"
 MSGMERGE_ARGS="--quiet \
                --update \
                --sort-by-file \
                --add-location \
-               --width=78 \
+               --no-wrap \
                --backup=none"
-POT=MoneyManagerEx.pot
+SED_ARGS="--null-data \
+          --regexp-extended \
+          --in-place"
+POT=mmex.pot
 
 echo "Extracting strings into po/$POT..."
-find src -name \*.cpp -o -name \*.h | xgettext -f - $XGETTEXT_ARGS -o po/$POT
+find src \( -name \*.cpp -o -name \*.h \) -printf '%P\n' | xgettext -D src -f - $XGETTEXT_ARGS -o po/$POT
 
 echo "Merging into *.po..."
 for p in po/*.po ; do
     echo "Merging $p ..."
     msgmerge $MSGMERGE_ARGS $p po/$POT
+    sed $SED_ARGS 's/(msgid|msgstr) ""\n"/\1 "/;s/\\n"\n"\\n"\n/\\n\\n"\n/;s/(msgid ""\nmsgstr ")/\1"\n"/' $p
 done
 echo "Finished"
