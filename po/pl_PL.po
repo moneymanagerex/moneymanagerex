@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-02-03 12:43+0300\n"
-"PO-Revision-Date: 2019-02-03 09:50\n"
+"PO-Revision-Date: 2019-02-03 19:43\n"
 "Last-Translator: vomikan <nikolay.akimov@gmail.com>\n"
 "Language-Team: Polish\n"
 "MIME-Version: 1.0\n"
@@ -394,7 +394,7 @@ msgstr "% amortyzacji"
 
 #: assetdialog.cpp:241
 msgid "Enter the rate at which the asset changes its value in percentage per year"
-msgstr ""
+msgstr "Wprowadź stopę zmiany wartości aktywów w procentach na rok"
 
 #: assetdialog.cpp:253
 msgid "Organize attachments of this asset"
@@ -852,7 +852,7 @@ msgstr "Powtórzenia"
 
 #: billsdepositsdialog.cpp:459
 msgid "Advance the next occurring date with the specified values"
-msgstr ""
+msgstr "Przestaw datę następnego wystąpienia w oparciu o ustaloną wartość"
 
 #: billsdepositsdialog.cpp:467 billsdepositsdialog.cpp:1339
 msgid "Payments Left"
@@ -1523,7 +1523,7 @@ msgstr "Edytuj nazwę istniejącej kategorii"
 
 #: categdialog.cpp:235 categdialog.cpp:440
 msgid "Select an unused category to delete."
-msgstr ""
+msgstr "Wybierz nieużywaną kategorię do usunięcia."
 
 #: categdialog.cpp:240 maincurrencydialog.cpp:219
 msgid "&Select"
