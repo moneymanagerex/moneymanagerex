@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-02-03 12:43+0300\n"
-"PO-Revision-Date: 2019-02-03 21:13\n"
+"PO-Revision-Date: 2019-02-03 21:43\n"
 "Last-Translator: vomikan <nikolay.akimov@gmail.com>\n"
 "Language-Team: Polish\n"
 "MIME-Version: 1.0\n"
@@ -4658,7 +4658,7 @@ msgstr "Porada: W celu wydruku stanu konta tylko z wybranymi pozycjami, użyj kr
 
 #: mmTips.h:33
 msgid "Tip: Set exchange rate for currencies in case if you have accounts with different currencies."
-msgstr "Porada: Jeżeli masz konta w różnych walutach, ustaw kurs wymiany walut ."
+msgstr "Porada: Jeżeli masz konta w różnych walutach, ustaw kurs wymiany walut."
 
 #: mmTips.h:35
 msgid "Organize Categories Dialog Tip: Pressing the h key will cycle through all categories starting with the letter h"
@@ -5473,7 +5473,7 @@ msgstr "Forum"
 
 #: mmframe.cpp:1736
 msgid "Visit the MMEX forum to see existing user comments or report new issues with the software"
-msgstr "Odwiedź forum MMEX aby poznać komentarze użytkowników, zgłosić błędy lub zaproponować ulepszenia."
+msgstr "Odwiedź forum MMEX aby poznać komentarze użytkowników, zgłosić błędy lub zaproponować ulepszenia"
 
 #: mmframe.cpp:1739
 msgid "Google Play"
@@ -5924,7 +5924,7 @@ msgstr "Statystyka transakcji"
 
 #: mmhomepagepanel.cpp:864
 msgid "Follow Up On Transactions: "
-msgstr "Transakcje do śledzenia"
+msgstr "Transakcje do śledzenia:"
 
 #: mmhomepagepanel.cpp:868
 msgid "Total Transactions: "
