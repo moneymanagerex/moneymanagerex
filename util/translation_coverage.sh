@@ -16,12 +16,12 @@ for p in po/*.po ; do
     f=$(echo "$o" | sed -r 's/.*([^0-9]|^)([0-9]+) fuzzy.*/\2/;t;c 0')
     u=$(echo "$o" | sed -r 's/.*([^0-9]|^)([0-9]+) untranslated.*/\2/;t;c 0')
     a=$((t+f+u))
-    printf '%-5s: %3d%%' $(basename -s .po $p) $((t*100/a))
+    printf '%-5s %3d%%' $(basename -s .po $p) $((t*100/a))
     if [ $f -ne 0 ]; then
         printf ' %*d fuzzy' ${#a} $f
     fi
     echo
-done
+done | sort -r -n -k 2
 
 rm -f -- "$POT"
 trap - EXIT
