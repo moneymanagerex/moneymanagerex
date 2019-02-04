@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-02-03 12:43+0300\n"
-"PO-Revision-Date: 2019-02-03 21:43\n"
+"PO-Revision-Date: 2019-02-04 07:34\n"
 "Last-Translator: vomikan <nikolay.akimov@gmail.com>\n"
 "Language-Team: Polish\n"
 "MIME-Version: 1.0\n"
@@ -1369,7 +1369,7 @@ msgstr "Pokaż podsumowanie kategorii budżetu"
 #: budgetingpanel.cpp:184 reports/budget.cpp:84
 #, c-format
 msgid "Financial Year: %s - %li"
-msgstr "Rok finansowy:%s -%li"
+msgstr "Rok finansowy: %s - %li"
 
 #: budgetingpanel.cpp:188 reports/budget.cpp:88
 #, c-format
@@ -6616,7 +6616,7 @@ msgstr "Wybierz preferowaną wersję:"
 
 #: optionsettingsnet.cpp:226
 msgid "WebApp connection tested successfully!"
-msgstr ""
+msgstr "Połączenie z WebApp przetestowane!"
 
 #: optionsettingsnet.cpp:226 optionsettingsnet.cpp:231
 msgid "WebApp connection test"
