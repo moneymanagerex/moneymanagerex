@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-02-03 12:43+0300\n"
-"PO-Revision-Date: 2019-02-04 07:34\n"
+"PO-Revision-Date: 2019-02-04 21:34\n"
 "Last-Translator: vomikan <nikolay.akimov@gmail.com>\n"
 "Language-Team: Polish\n"
 "MIME-Version: 1.0\n"
@@ -222,7 +222,7 @@ msgstr "Wprowadź nazwę instytucji finansowej która prowadzi to konto."
 
 #: accountdialog.cpp:389
 msgid "Enter the URL of the website for the financial institution."
-msgstr "Wprowadź URL do strony instytucji finansowej."
+msgstr "Wprowadź URL strony WWW instytucji finansowej."
 
 #: accountdialog.cpp:390
 msgid "Enter any contact information for the financial institution."
