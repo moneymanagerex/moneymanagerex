@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-02-05 11:56+0300\n"
-"PO-Revision-Date: 2019-02-05 09:30\n"
+"PO-Revision-Date: 2019-02-05 20:47\n"
 "Last-Translator: vomikan <nikolay.akimov@gmail.com>\n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -143,11 +143,11 @@ msgstr "Zugangsdaten:"
 
 #: accountdialog.cpp:298
 msgid "Statement"
-msgstr ""
+msgstr "Kontoauszug"
 
 #: accountdialog.cpp:306
 msgid "Statement:"
-msgstr ""
+msgstr "Kontoauszug:"
 
 #: accountdialog.cpp:307
 msgid "Locked"
@@ -155,7 +155,7 @@ msgstr "Gesperrt"
 
 #: accountdialog.cpp:311
 msgid "Reconciled Date:"
-msgstr ""
+msgstr "Datum des Abgleichs:"
 
 #: accountdialog.cpp:316
 msgid "Minimum Bal:"
@@ -175,7 +175,7 @@ msgstr "Zinsrate:"
 
 #: accountdialog.cpp:340
 msgid "Payment Due Date:"
-msgstr ""
+msgstr "Fälligkeitsdatum:"
 
 #: accountdialog.cpp:345
 msgid "Minimum Payment:"
@@ -407,11 +407,11 @@ msgstr "Notizen zu diesem Vermögensgegenstand"
 
 #: assetdialog.cpp:262
 msgid "New Transaction Details"
-msgstr ""
+msgstr "Alle Details zur neuen Transaktion"
 
 #: assetdialog.cpp:265 sharetransactiondialog.cpp:280
 msgid "Edit Transaction Details"
-msgstr ""
+msgstr "Buchungsdetails ändern"
 
 #: assetdialog.cpp:300 constants.cpp:44 sharetransactiondialog.cpp:311
 msgid "&Cancel "
@@ -829,15 +829,15 @@ msgstr "Wiederkehrende Buchungen eingeben"
 
 #: billsdepositsdialog.cpp:394
 msgid "Transaction Dates"
-msgstr ""
+msgstr "Transaktionsdaten"
 
 #: billsdepositsdialog.cpp:416
 msgid "Recurring Transaction Details"
-msgstr ""
+msgstr "Details der wiederkehrenden Buchung"
 
 #: billsdepositsdialog.cpp:437
 msgid "Specify the date when this bill or deposit is due"
-msgstr ""
+msgstr "Geben Sie das Datum an, an dem diese Rechnung oder Gutschrift fällig ist"
 
 #: billsdepositsdialog.cpp:441
 msgid "Retard or advance the date of the 'next occurrence'"
@@ -845,7 +845,7 @@ msgstr ""
 
 #: billsdepositsdialog.cpp:447 billsdepositspanel.cpp:103
 msgid "Date Due"
-msgstr ""
+msgstr "Fälligkeitsdatum"
 
 #: billsdepositsdialog.cpp:451 billsdepositsdialog.cpp:1297
 msgid "Repeats"
@@ -861,7 +861,7 @@ msgstr "Ausstehende Zahlungen"
 
 #: billsdepositsdialog.cpp:481
 msgid "Request user to enter payment"
-msgstr ""
+msgstr "Benutzer zur Zahlungseingabe auffordern"
 
 #: billsdepositsdialog.cpp:482
 msgid "User requested to enter this transaction on the 'Date Paid'"
@@ -869,11 +869,11 @@ msgstr "Der Benutzer hat gebeten, diese Transaktion am 'Zahlungsdatum' einzugebe
 
 #: billsdepositsdialog.cpp:485
 msgid "Grant automatic execute"
-msgstr ""
+msgstr "Automatischen Buchungseintrag erlauben"
 
 #: billsdepositsdialog.cpp:486
 msgid "The requested payment will occur without user interaction"
-msgstr ""
+msgstr "Die angeforderte Zahlung wird ohne Benutzerinteraktion durchgeführt"
 
 #: billsdepositsdialog.cpp:511 transdialog.cpp:408
 msgid "Transaction Details"
@@ -881,7 +881,7 @@ msgstr "Buchungsdetails"
 
 #: billsdepositsdialog.cpp:526
 msgid "Specify the date the user is requested to enter this transaction"
-msgstr ""
+msgstr "Geben Sie das Datum an, an dem der Benutzer aufgefordert wird, diese Transaktion einzugeben"
 
 #: billsdepositsdialog.cpp:529
 msgid "Advance or retard the user request date of this transaction"
@@ -893,7 +893,7 @@ msgstr "Setzen Sie 'Zahlungsdatum' auf 'Heutiges Datum' zurück"
 
 #: billsdepositsdialog.cpp:541 billsdepositspanel.cpp:102
 msgid "Date Paid"
-msgstr ""
+msgstr "Bezahlt am"
 
 #: billsdepositsdialog.cpp:552 filtertransdialog.cpp:281 transdialog.cpp:1225
 msgid "Specify the status for the transaction"
@@ -954,7 +954,7 @@ msgstr "Konto wählen"
 
 #: billsdepositsdialog.cpp:599
 msgid "Specify the Account that will own the recurring transaction"
-msgstr ""
+msgstr "Geben Sie das Konto an, dem die regelmäßige Buchung zugeordnet wird"
 
 #: billsdepositsdialog.cpp:602 billsdepositsdialog.cpp:857
 #: billsdepositspanel.cpp:105 filtertransdialog.cpp:238
