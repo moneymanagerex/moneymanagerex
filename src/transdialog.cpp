@@ -428,7 +428,9 @@ void mmTransDialog::CreateControls()
         , wxSP_VERTICAL | wxSP_ARROW_KEYS | wxSP_WRAP);
     spinCtrl_->SetRange (-32768, 32768);
 
-    flex_sizer->Add(new wxStaticText(this, wxID_STATIC, _("Date")), g_flagsH);
+    wxStaticText* name_label = new wxStaticText(this, wxID_STATIC, _("Date"));
+    flex_sizer->Add(name_label, g_flagsH);
+    name_label->SetFont(this->GetFont().Bold());
     wxBoxSizer* date_sizer = new wxBoxSizer(wxHORIZONTAL);
     flex_sizer->Add(date_sizer);
     date_sizer->Add(dpc_, g_flagsH);
@@ -480,7 +482,9 @@ void mmTransDialog::CreateControls()
     amountSizer->Add(m_textAmount, g_flagsH);
     amountSizer->Add(toTextAmount_, g_flagsH);
 
-    flex_sizer->Add(new wxStaticText( this, wxID_STATIC, _("Amount")), g_flagsH);
+    wxStaticText* amount_label = new wxStaticText(this, wxID_STATIC, _("Amount"));
+    amount_label->SetFont(this->GetFont().Bold());
+    flex_sizer->Add(amount_label, g_flagsH);
     flex_sizer->Add(amountSizer);
 
     // Account ---------------------------------------------
@@ -488,11 +492,13 @@ void mmTransDialog::CreateControls()
         , wxDefaultPosition, wxSize(230, -1));
 
     account_label_ = new wxStaticText(this, wxID_STATIC, _("Account"));
+    account_label_->SetFont(this->GetFont().Bold());
     flex_sizer->Add(account_label_, g_flagsH);
     flex_sizer->Add(cbAccount_, g_flagsH);
 
     // Payee ---------------------------------------------
     payee_label_ = new wxStaticText(this, wxID_STATIC, _("Payee"));
+    payee_label_->SetFont(this->GetFont().Bold());
 
     /*Note: If you want to use EVT_TEXT_ENTER(id,func) to receive wxEVT_COMMAND_TEXT_ENTER events,
       you have to add the wxTE_PROCESS_ENTER window style flag.
@@ -515,7 +521,9 @@ void mmTransDialog::CreateControls()
     bCategory_ = new wxButton(this, wxID_VIEW_DETAILS, ""
         , wxDefaultPosition, wxSize(230, -1));
 
-    flex_sizer->Add(new wxStaticText(this, wxID_STATIC, _("Category")), g_flagsH);
+    wxStaticText* categ_label = new wxStaticText(this, wxID_STATIC, _("Category"));
+    categ_label->SetFont(this->GetFont().Bold());
+    flex_sizer->Add(categ_label, g_flagsH);
     flex_sizer->Add(bCategory_, g_flagsH);
 
     // Number  ---------------------------------------------

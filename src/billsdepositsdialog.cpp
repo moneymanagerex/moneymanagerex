@@ -570,7 +570,8 @@ void mmBDDialog::CreateControls()
     transPanelSizer->Add(typeSizer);
 
     // Amount Fields --------------------------------------------
-    wxStaticText* staticTextAmount = new wxStaticText(transactionPanel, wxID_STATIC, _("Amount"));
+    wxStaticText* amount_label = new wxStaticText(transactionPanel, wxID_STATIC, _("Amount"));
+    amount_label->SetFont(this->GetFont().Bold());
 
     textAmount_ = new mmTextCtrl(transactionPanel, ID_DIALOG_TRANS_TEXTAMOUNT, ""
         , wxDefaultPosition, wxDefaultSize, wxALIGN_RIGHT | wxTE_PROCESS_ENTER
@@ -590,21 +591,24 @@ void mmBDDialog::CreateControls()
     amountSizer->Add(textAmount_, g_flagsH);
     amountSizer->Add(toTextAmount_, g_flagsH);
 
-    transPanelSizer->Add(staticTextAmount, g_flagsH);
+    transPanelSizer->Add(amount_label, g_flagsH);
     transPanelSizer->Add(amountSizer);
 
     // Account ------------------------------------------------
-    transPanelSizer->Add(new wxStaticText(transactionPanel, ID_DIALOG_TRANS_STATIC_ACCOUNT, _("Account")), g_flagsH);
+    wxStaticText* acc_label = new wxStaticText(transactionPanel, ID_DIALOG_TRANS_STATIC_ACCOUNT, _("Account"));
+    acc_label->SetFont(this->GetFont().Bold());
+    transPanelSizer->Add(acc_label, g_flagsH);
     bAccount_ = new wxButton(transactionPanel, ID_DIALOG_BD_COMBOBOX_ACCOUNTNAME, _("Select Account"));
     bAccount_->SetToolTip(_("Specify the Account that will own the recurring transaction"));
     transPanelSizer->Add(bAccount_, g_flagsExpand);
     // Payee ------------------------------------------------
-    wxStaticText* staticTextPayee = new wxStaticText(transactionPanel, ID_DIALOG_TRANS_STATIC_PAYEE, _("Payee"));
+    wxStaticText* payee_label = new wxStaticText(transactionPanel, ID_DIALOG_TRANS_STATIC_PAYEE, _("Payee"));
+    payee_label->SetFont(this->GetFont().Bold());
 
     bPayee_ = new wxButton(transactionPanel, ID_DIALOG_TRANS_BUTTONPAYEE, _("Select Payee"));
     bPayee_->SetToolTip(payeeWithdrawalTip_);
 
-    transPanelSizer->Add(staticTextPayee, g_flagsH);
+    transPanelSizer->Add(payee_label, g_flagsH);
     transPanelSizer->Add(bPayee_, g_flagsExpand);
 
     // Split Category -------------------------------------------
@@ -617,12 +621,13 @@ void mmBDDialog::CreateControls()
     transPanelSizer->Add(cSplit_, g_flagsH);
 
     // Category ---------------------------------------------
-    wxStaticText* staticTextCategory = new wxStaticText(transactionPanel, wxID_STATIC, _("Category"));
+    wxStaticText* categ_label = new wxStaticText(transactionPanel, wxID_STATIC, _("Category"));
+    categ_label->SetFont(this->GetFont().Bold());
     bCategory_ = new wxButton(transactionPanel, ID_DIALOG_TRANS_BUTTONCATEGS, _("Select Category")
         , wxDefaultPosition, wxDefaultSize, 0);
     //bCategory_->SetToolTip(_("Specify the category for this transaction"));
 
-    transPanelSizer->Add(staticTextCategory, g_flagsExpand);
+    transPanelSizer->Add(categ_label, g_flagsExpand);
     transPanelSizer->Add(bCategory_, g_flagsExpand);
 
     // Number ---------------------------------------------
