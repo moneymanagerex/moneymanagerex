@@ -97,15 +97,12 @@ class mmAssetsPanel : public mmPanelBase
 
 public:
     mmAssetsPanel(mmGUIFrame* frame, wxWindow *parent, wxWindowID winid, const wxString& name="mmAssetsPanel");
-    mmGUIFrame* m_frame;
 
     void updateExtraAssetData(int selIndex);
-    wxString getItem(long item, long column);
+    const wxString getItem(long item, long column) const;
 
-    Model_Asset::Data_Set m_assets;
-    Model_Asset::TYPE m_filter_type;
-    int col_max() { return COL_MAX; }
-    int col_sort() { return COL_DATE; }
+    int getColMax() const { return COL_MAX; }
+    int getDefSortColumn() const { return COL_DATE; }
 
     wxString BuildPage() const { return m_listCtrlAssets->BuildPage(_("Assets")); }
 
@@ -113,9 +110,17 @@ public:
     void ViewAssetTrans(const int selected_index);
     void GotoAssetAccount(const int selected_index);
     void sortTable();
+    wxStaticText* getHeaderText() const { return m_header_text; }
+    mmGUIFrame * getAssetPanelFrame() const { return m_frame; }
+    Model_Asset::Data_Set getAssetDataSet() const { return m_assets; }
+    void setAssetDataSet(const Model_Asset::Data_Set& assets) { m_assets = assets; }
+    Model_Asset::TYPE getFilterType() const { return m_filter_type; }
 
-    wxStaticText* m_header_text;
 private:
+    Model_Asset::Data_Set m_assets;
+    Model_Asset::TYPE m_filter_type;
+    mmGUIFrame * m_frame;
+    wxStaticText* m_header_text;
     void enableEditDeleteButtons(bool enable);
     void OnSearchTxtEntered(wxCommandEvent& event);
     mmAssetsListCtrl* m_listCtrlAssets;

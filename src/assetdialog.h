@@ -40,11 +40,12 @@ public:
     mmAssetDialog(wxWindow *parent, mmGUIFrame* gui_frame, Model_Asset::Data* asset, bool trans_data = false);
     mmAssetDialog(wxWindow *parent, mmGUIFrame* gui_frame, Model_Translink::Data* transfer_entry, Model_Checking::Data* checking_entry);
 
-    Model_Asset::Data* m_asset;
     void SetTransactionAccountName(const wxString& account_name);
     void SetTransactionDate();
+    Model_Asset::Data* getAssetData() { return m_asset; }
 
 private:
+    Model_Asset::Data* m_asset;
     bool Create(wxWindow* parent
         , wxWindowID id
         , const wxString& caption
