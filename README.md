@@ -31,10 +31,13 @@ MMEX is mainly written in C++11 and built on:
 
 Please follow installation instructions from [INSTALL.md] file.
 
+We invite you to explore and help us translate Money Manager Ex in [Crowdin].
+[![localized]][Crowdin]
+
 #### External public resources ####
 
 [Slack] | [Forum] | [Wiki] | [Facebook] | [YouTube] | [SourceForge] | [GitHub]
-| [Docker Hub] | [Snap Store] | [Twitter] [![tw]][Twitter]
+| [Docker Hub] | [Snap Store] | [Twitter] [![tw]][Twitter] | [Crowdin]
 
 #### Tips ####
 
@@ -64,6 +67,7 @@ Please follow installation instructions from [INSTALL.md] file.
 [GitHub]: https://github.com/moneymanagerex
 [Docker Hub]: https://hub.docker.com/r/moneymanagerex/
 [Snap Store]: https://snapcraft.io/mmex
+[Crowdin]: https://crowdin.com/project/moneymanagerex
 [Twitter]: https://twitter.com/MoneyManagerEx
 [wxWidgets]: http://wxwidgets.org/
 [wxSQLite3]: https://github.com/utelle/wxsqlite3
@@ -81,6 +85,7 @@ Please follow installation instructions from [INSTALL.md] file.
 [o]: http://www.openhub.net/p/moneymanagerex/widgets/project_thin_badge.gif
 [i]: https://img.shields.io/github/issues-raw/moneymanagerex/moneymanagerex.svg?label=gh%20issues
 [c]: https://img.shields.io/github/contributors/moneymanagerex/moneymanagerex.svg
+[localized]: https://d322cqt584bo4o.cloudfront.net/moneymanagerex/localized.svg
 [cd]: https://codedocs.xyz/moneymanagerex/moneymanagerex.svg
 [l]: https://img.shields.io/badge/license-GPL2-blue.svg
 [s]: https://img.shields.io/sourceforge/dt/moneymanagerex.svg?label=%20sf&logoWidth=8&logo=data%3Aimage%2Fpng%3Bbase64%2CiVBORw0KGgoAAAANSUhEUgAAAC0AAAA4CAMAAABe34GAAAAACVBMVEUAAAAAAAD%2F%2F%2F%2BD3c%2FSAAAAAnRSTlMATX7%2B8BUAAABeSURBVHgB7coxCoBAAAOw0%2F8%2FWtA1tLs0c85Et21vb%2F9pe1jsyP7OrSOzI5eOfL1K%2FlLuyO7O7s7oLbs7uzu7O7s7uzv37uzu7O7sjly6szty6s7uzoZcurMhJ87nAdpRCKWC0tGVAAAAAElFTkSuQmCC
