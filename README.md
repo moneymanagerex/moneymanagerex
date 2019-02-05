@@ -37,9 +37,7 @@ We invite you to explore and help us translate Money Manager Ex in [Crowdin].
 #### External public resources ####
 
 [Slack] | [Forum] | [Wiki] | [Facebook] | [YouTube] | [SourceForge] | [GitHub]
-| [Docker Hub] | [Snap Store] | [Twitter] | [Crowdin]
-
-[![tw]][Twitter]
+| [Docker Hub] | [Snap Store] | [Twitter] [![tw]][Twitter] | [Crowdin]
 
 #### Tips ####
 
