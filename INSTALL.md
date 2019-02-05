@@ -21,7 +21,7 @@ versions. Download installer or ZIP portable package from
 
 To use portable package simply extract files with directory structure
 preserved to selected directory on your hard disk, external drive, pen-drive
-etc. and start executable `mmex.exe`. This package not use any files outside
+etc. and start executable `mmex.exe`. This package does not use any files outside
 its directory.
 
 Required *Visual C++ Runtime* and *Universal CRT* DLLs are included in MMEX
