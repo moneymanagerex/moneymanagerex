@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-02-05 11:56+0300\n"
-"PO-Revision-Date: 2019-02-05 20:47\n"
+"PO-Revision-Date: 2019-02-05 21:14\n"
 "Last-Translator: vomikan <nikolay.akimov@gmail.com>\n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -1084,7 +1084,8 @@ msgstr ""
 #: billsdepositsdialog.cpp:1340
 msgid "Specify the number of payments to be made.\n"
 "Leave blank if the payments continue forever."
-msgstr ""
+msgstr "Geben Sie die Anzahl der Zahlungen an.\n"
+"Geben Sie nichts ein, wenn die Zahlungen für immer fortgesetzt werden."
 
 #: billsdepositsdialog.cpp:1366 billsdepositsdialog.cpp:1375
 #: filtertransdialog.cpp:495 filtertransdialog.cpp:503
@@ -1102,7 +1103,7 @@ msgstr "Fehler"
 
 #: billsdepositsdialog.cpp:1381 mmSimpleDialogs.cpp:232
 msgid "Invalid Choice"
-msgstr ""
+msgstr "Ungültige Auswahl"
 
 #: billsdepositsdialog.cpp:1381
 msgid "Choose one of the following:"
@@ -1137,7 +1138,7 @@ msgstr "Betrag für diese Buchung"
 
 #: billsdepositsdialog.h:127
 msgid "Specify the amount to be transferred"
-msgstr ""
+msgstr "Geben Sie den zu übertragenden Betrag an"
 
 #: billsdepositspanel.cpp:56
 #, c-format
@@ -1166,7 +1167,7 @@ msgstr "Häufigkeit"
 
 #: billsdepositspanel.cpp:111
 msgid "Repetitions"
-msgstr ""
+msgstr "Wiederholungen"
 
 #: billsdepositspanel.cpp:112
 msgid "Autorepeat"
@@ -1187,7 +1188,7 @@ msgstr ""
 #: billsdepositspanel.cpp:225 billsdepositspanel.cpp:888 mmframe.cpp:735
 #: mmhomepagepanel.cpp:433
 msgid "Recurring Transactions"
-msgstr ""
+msgstr "Wiederkehrende Buchungen"
 
 #: billsdepositspanel.cpp:241 filtertransdialog.cpp:117 mmcheckingpanel.cpp:448
 msgid "Transaction Filter"
@@ -1243,7 +1244,7 @@ msgstr "&Wiederkehrende Buchung löschen..."
 
 #: billsdepositspanel.cpp:459
 msgid "Manual"
-msgstr ""
+msgstr "Manuell"
 
 #: billsdepositspanel.cpp:463
 msgid "Suggested"
@@ -1251,7 +1252,7 @@ msgstr "Empfohlen"
 
 #: billsdepositspanel.cpp:467
 msgid "Automated"
-msgstr ""
+msgstr "Automatisiert"
 
 #: billsdepositspanel.cpp:509 billsdepositspanel.cpp:575
 #: mmhomepagepanel.cpp:347
@@ -1519,7 +1520,7 @@ msgstr "Namen einer bestehenden Kategorie bearbeiten"
 
 #: categdialog.cpp:235 categdialog.cpp:440
 msgid "Select an unused category to delete."
-msgstr ""
+msgstr "Wählen Sie eine ungenutzte Kategorie zum Löschen."
 
 #: categdialog.cpp:240 maincurrencydialog.cpp:219
 msgid "&Select"
@@ -1594,15 +1595,15 @@ msgstr "Kategorien verwalten: löschen Fehler"
 
 #: categdialog.cpp:463
 msgid "This category cannot be deleted because it's used by transactions."
-msgstr ""
+msgstr "Diese Unterkategorie kann nicht gelöscht werden, da sie in Buchungen verwendet wird."
 
 #: categdialog.cpp:470
 msgid "Delete an existing category."
-msgstr ""
+msgstr "Bestehende Kategorie löschen."
 
 #: categdialog.cpp:475
 msgid "Subcategories must be deleted before."
-msgstr ""
+msgstr "Unterkategorien müssen vorher gelöscht werden."
 
 #: categdialog.cpp:491
 #, c-format
@@ -1684,7 +1685,7 @@ msgstr "mit:"
 
 #: constants.cpp:133 mmframe.cpp:2576
 msgid "Running on:"
-msgstr ""
+msgstr "Läuft auf:"
 
 #: constants.cpp:223
 msgid "View All Transactions"
@@ -1736,7 +1737,7 @@ msgstr "Zeige letztes Finanzjahr"
 
 #: constants.cpp:235
 msgid "View Since Statement Date"
-msgstr ""
+msgstr "Ansicht seit dem Buchungsdatum"
 
 #: constants.cpp:238 mmframe.cpp:1294 mmframe.cpp:1824
 #: model/Model_Account.cpp:26
@@ -1810,27 +1811,27 @@ msgstr "Ungültiger Eintrag"
 #: currencydialog.cpp:280
 #, c-format
 msgid "%s Shown As: %s"
-msgstr ""
+msgstr "%s Angezeigt als: %s"
 
 #: customfieldeditdialog.cpp:57
 msgid "New/Edit Custom Field"
-msgstr ""
+msgstr "Neues/Bearbeite benutzerdefiniertes Feld"
 
 #: customfieldeditdialog.cpp:120
 msgid "Custom Field Details"
-msgstr ""
+msgstr "Details des benutzerdefinierten Feldes"
 
 #: customfieldeditdialog.cpp:132
 msgid "Enter the name of the custom field"
-msgstr ""
+msgstr "Bezeichnung des benutzerdefinierten Feldes"
 
 #: customfieldeditdialog.cpp:135
 msgid "Field Type"
-msgstr ""
+msgstr "Feldtyp"
 
 #: customfieldeditdialog.cpp:139
 msgid "Select type of custom field"
-msgstr ""
+msgstr "Wählen Sie einen Typ für das benutzerdefinierte Feld"
 
 #: customfieldeditdialog.cpp:142
 msgid "ToolTip"
@@ -1863,7 +1864,8 @@ msgstr "Standard"
 #: customfieldeditdialog.cpp:160
 msgid "Enter the default for this field\n"
 "For date/time insert 'Now' to make current date/time as default"
-msgstr ""
+msgstr "Geben Sie die Standardeinstellung für dieses Feld an\n"
+"Für Datum/Uhrzeit geben Sie 'Now' ein, um das aktuelle Datum/Uhrzeit als Standard zu setzen"
 
 #: customfieldeditdialog.cpp:164
 msgid "Choices"
@@ -2597,7 +2599,7 @@ msgstr ""
 
 #: general_report_manager.cpp:844
 msgid "Enter or choose name for the new group"
-msgstr ""
+msgstr "Geben Sie einen Namen für die neue Gruppe ein oder wählen Sie einen Namen aus"
 
 #: general_report_manager.cpp:909
 msgid "Add Report Group"
@@ -2610,7 +2612,7 @@ msgstr "Neuer Bericht %s"
 
 #: general_report_manager.cpp:935
 msgid "Report Name already exists"
-msgstr ""
+msgstr "Berichtsbezeichnung ist bereits vorhanden"
 
 #: general_report_manager.cpp:935 general_report_manager.cpp:942
 msgid "New Report"
@@ -2632,7 +2634,7 @@ msgstr "Universal CSV-Import"
 
 #: import_export/parsers.cpp:89
 msgid "Unable to create file."
-msgstr ""
+msgstr "Datei kann nicht erstellt werden."
 
 #: import_export/parsers.cpp:109 import_export/parsers.cpp:248
 msgid "Could not save file."
@@ -2640,11 +2642,11 @@ msgstr "Datei konnte nicht gespeichert werden."
 
 #: import_export/parsers.cpp:109 import_export/parsers.cpp:248
 msgid "Export error"
-msgstr ""
+msgstr "Fehler beim Export"
 
 #: import_export/parsers.cpp:135 import_export/parsers.cpp:144
 msgid "File is not in Excel XML Spreadsheet 2003 format."
-msgstr ""
+msgstr "Datei ist nicht im Excel 2003 XML Tabellenformat."
 
 #: import_export/parsers.cpp:135 import_export/parsers.cpp:144
 #: import_export/parsers.cpp:157 import_export/parsers.cpp:165
@@ -2729,7 +2731,7 @@ msgstr "QIF-Datei für Export auswählen"
 
 #: import_export/qif_export.cpp:281 import_export/qif_import_gui.cpp:723
 msgid "QIF Files (*.qif)"
-msgstr ""
+msgstr "QIF Dateien (*.qif)"
 
 #: import_export/qif_export.cpp:300
 msgid "No Account available for export"
@@ -2784,7 +2786,7 @@ msgstr "Codierung:"
 
 #: import_export/qif_import_gui.cpp:167
 msgid "Use account number instead of account name"
-msgstr ""
+msgstr "Kontonummer anstelle des Kontonamens verwenden"
 
 #: import_export/qif_import_gui.cpp:171
 msgid "Include payee field in notes"
@@ -2909,7 +2911,7 @@ msgstr "Import fertig beendet"
 #: import_export/qif_import_gui.cpp:904 stockdialog.cpp:640
 #, c-format
 msgid "Total Imported: %ld"
-msgstr ""
+msgstr "Insgesamt importiert: %ld"
 
 #: import_export/qif_import_gui.cpp:912 import_export/univcsvdialog.cpp:971
 msgid "Imported transactions discarded by user!"
@@ -2955,7 +2957,7 @@ msgstr "Zahlungsempfänger hinzugefügt: %s"
 
 #: import_export/univcsvdialog.cpp:93
 msgid "Amount +/-"
-msgstr ""
+msgstr "Betrag +/-"
 
 #: import_export/univcsvdialog.cpp:95
 msgid "SubCategory"
@@ -2972,11 +2974,11 @@ msgstr "Kontostand"
 
 #: import_export/univcsvdialog.cpp:102
 msgid "Import dialog"
-msgstr ""
+msgstr "Dialogfeld \"importieren\""
 
 #: import_export/univcsvdialog.cpp:102
 msgid "Export dialog"
-msgstr ""
+msgstr "Dialogfeld \"exportieren\""
 
 #: import_export/univcsvdialog.cpp:163
 msgid "&Browse"
@@ -2984,7 +2986,7 @@ msgstr "&Durchsuchen"
 
 #: import_export/univcsvdialog.cpp:166
 msgid "Choose CSV data file to Import"
-msgstr ""
+msgstr "CSV-Datei zum importieren auswählen"
 
 #: import_export/univcsvdialog.cpp:166
 msgid "Choose CSV data file to Export"
@@ -2996,7 +2998,7 @@ msgstr "Als Vorlage speichern"
 
 #: import_export/univcsvdialog.cpp:192
 msgid "Specify the order of fields in the file"
-msgstr ""
+msgstr "Geben Sie die Reihenfolge der Felder in der Datei an"
 
 #: import_export/univcsvdialog.cpp:223
 msgid "&MMEX format"
@@ -3040,11 +3042,11 @@ msgstr "Trennzeichen für das Importieren/Exportieren von CSV-Dateien angeben"
 
 #: import_export/univcsvdialog.cpp:319
 msgid "Export column titles"
-msgstr ""
+msgstr "Spaltennamen exportieren"
 
 #: import_export/univcsvdialog.cpp:328
 msgid "Amount +/-:"
-msgstr ""
+msgstr "Betrag +/-:"
 
 #: import_export/univcsvdialog.cpp:334
 msgid "Positive values are deposits"
@@ -3060,11 +3062,11 @@ msgstr "Zeilen zum Ignorieren"
 
 #: import_export/univcsvdialog.cpp:350
 msgid "From start: "
-msgstr ""
+msgstr "Von Anfang an: "
 
 #: import_export/univcsvdialog.cpp:357
 msgid "From end: "
-msgstr ""
+msgstr "Ab Ende: "
 
 #: import_export/univcsvdialog.cpp:365
 msgid "Preview"
@@ -3087,11 +3089,11 @@ msgstr "Das Standardkonto '%s' für diese Vorlage existiert nicht.\n"
 
 #: import_export/univcsvdialog.cpp:485
 msgid "Account does not exist"
-msgstr ""
+msgstr "Konto existiert nicht"
 
 #: import_export/univcsvdialog.cpp:811
 msgid "Incorrect fields specified for import!"
-msgstr ""
+msgstr "Falsche Felder für den Import angegeben!"
 
 #: import_export/univcsvdialog.cpp:812
 msgid "Date field is required."
@@ -3104,7 +3106,7 @@ msgstr "Feld 'Betrag' oder beide Felder 'Auszahlung' und 'Einzahlung' sind erfor
 #: import_export/univcsvdialog.cpp:814 import_export/univcsvdialog.cpp:941
 #: webappdialog.cpp:270
 msgid "Import"
-msgstr ""
+msgstr "Importieren"
 
 #: import_export/univcsvdialog.cpp:863
 #, c-format
@@ -3114,7 +3116,7 @@ msgstr "Buchungen in Konto %s importiert: %ld"
 #: import_export/univcsvdialog.cpp:874
 #, c-format
 msgid "Line %ld: Empty"
-msgstr ""
+msgstr "Zeile %ld: Leer"
 
 #: import_export/univcsvdialog.cpp:888
 #, c-format
@@ -3136,37 +3138,37 @@ msgstr "Art (Abhebung/Einzahlung) unbekannt."
 #: import_export/univcsvdialog.cpp:918
 #, c-format
 msgid "Line %ld: OK, imported."
-msgstr ""
+msgstr "Zeile %ld: OK, importiert."
 
 #: import_export/univcsvdialog.cpp:926 stockdialog.cpp:638
 #, c-format
 msgid "Total Lines: %ld"
-msgstr ""
+msgstr "Anzahl der Zeilen: %ld"
 
 #: import_export/univcsvdialog.cpp:928
 #, c-format
 msgid "Lines Selected to Import: %ld"
-msgstr ""
+msgstr "Zu importierende Zeilen ausgewählt: %ld"
 
 #: import_export/univcsvdialog.cpp:930
 #, c-format
 msgid "Empty Lines: %ld"
-msgstr ""
+msgstr "Leere Zeilen: %ld"
 
 #: import_export/univcsvdialog.cpp:932
 #, c-format
 msgid "Imported: %ld"
-msgstr ""
+msgstr "Importiert: %ld"
 
 #: import_export/univcsvdialog.cpp:934
 #, c-format
 msgid "Errored: %ld"
-msgstr ""
+msgstr "Fehler: %ld"
 
 #: import_export/univcsvdialog.cpp:937
 #, c-format
 msgid "Log file written to: %s"
-msgstr ""
+msgstr "Die Logdatei befindet sich in: %s"
 
 #: import_export/univcsvdialog.cpp:940 stockdialog.cpp:646
 msgid "Please confirm saving..."
@@ -3178,11 +3180,11 @@ msgstr "Keine importierten Buchungen!"
 
 #: import_export/univcsvdialog.cpp:990
 msgid "Incorrect fields specified for export! Requires at least Date and Amount."
-msgstr ""
+msgstr "Falsche Felder für den Export angegeben! Benötigt mindestens Datum und Betrag."
 
 #: import_export/univcsvdialog.cpp:991 import_export/univcsvdialog.cpp:1112
 msgid "Export"
-msgstr ""
+msgstr "Exportieren"
 
 #: import_export/univcsvdialog.cpp:1001
 msgid "Overwrite existing file?"
@@ -3198,7 +3200,7 @@ msgstr "Die vorhandene Datei konnte nicht gelöscht werden. Datei kann von einem
 
 #: import_export/univcsvdialog.cpp:1008
 msgid "Destination file error"
-msgstr ""
+msgstr "Die Zieldatei existiert bereits"
 
 #: import_export/univcsvdialog.cpp:1111
 #, c-format
@@ -3211,27 +3213,27 @@ msgstr "CSV-Datei zum importieren auswählen"
 
 #: import_export/univcsvdialog.cpp:1358
 msgid "Choose CSV data file to export"
-msgstr ""
+msgstr "CSV-Datei zum Exportieren auswählen"
 
 #: import_export/univcsvdialog.cpp:1361
 msgid "Choose XML data file to import"
-msgstr ""
+msgstr "XML-Datei zum importieren auswählen"
 
 #: import_export/univcsvdialog.cpp:1364
 msgid "Choose XML data file to export"
-msgstr ""
+msgstr "XML-Datei zum exportieren auswählen"
 
 #: import_export/univcsvdialog.cpp:1371
 msgid "XML Files (*.xml)"
-msgstr ""
+msgstr "XML-Dateien (*.xml)"
 
 #: import_export/univcsvdialog.cpp:1372 stockdialog.cpp:555
 msgid "CSV Files (*.csv)"
-msgstr ""
+msgstr "CSV-Dateien (*.csv)"
 
 #: maincurrencydialog.cpp:69
 msgid "Base"
-msgstr ""
+msgstr "Basiswährung"
 
 #: maincurrencydialog.cpp:70 reports/summarystocks.cpp:180 stockdialog.cpp:424
 #: stockspanel.cpp:98
@@ -3240,11 +3242,11 @@ msgstr "Kürzel"
 
 #: maincurrencydialog.cpp:72
 msgid "Last Rate"
-msgstr ""
+msgstr "Letzter Kurs"
 
 #: maincurrencydialog.cpp:73
 msgid "Hist."
-msgstr ""
+msgstr "Bisheriger Verlauf"
 
 #: maincurrencydialog.cpp:77 maincurrencydialog.cpp:348
 #: maincurrencydialog.cpp:633 maincurrencydialog.cpp:739
@@ -3253,7 +3255,7 @@ msgstr "Währungen"
 
 #: maincurrencydialog.cpp:157
 msgid "Update latest rate only for all used currencies"
-msgstr ""
+msgstr "Aktuellen Kurs nur für die verwendeten Währungen aktualisieren"
 
 #: maincurrencydialog.cpp:160
 msgid "Online Update"
@@ -3277,15 +3279,15 @@ msgstr "Historische Währungen ausblenden"
 
 #: maincurrencydialog.cpp:223
 msgid "Select the currently selected currency as the selected currency for the account"
-msgstr ""
+msgstr "Die momentan ausgewählte Währung als Kontowährung benutzen"
 
 #: maincurrencydialog.cpp:225
 msgid "Select the currently selected currency as base currency"
-msgstr ""
+msgstr "Die momentan ausgewählte Währung als Basiswährung benutzen"
 
 #: maincurrencydialog.cpp:239
 msgid "Currency History Options"
-msgstr ""
+msgstr "Währungsverlaufoptionen"
 
 #: maincurrencydialog.cpp:263 stockdialog.cpp:324
 msgid "Diff."
@@ -3293,11 +3295,11 @@ msgstr "Diff."
 
 #: maincurrencydialog.cpp:279
 msgid "Specify the date of currency value"
-msgstr ""
+msgstr "Datum des Währungskurses angeben"
 
 #: maincurrencydialog.cpp:286
 msgid "Enter the currency value"
-msgstr ""
+msgstr "Geben Sie den Währungskurs ein"
 
 #: maincurrencydialog.cpp:295
 msgid "Download Currency Values history"
@@ -3305,7 +3307,7 @@ msgstr "Laden Sie den Verlauf der Währungswerte herunter"
 
 #: maincurrencydialog.cpp:296
 msgid "&Add / Update "
-msgstr ""
+msgstr "Hinzufügen/Aktualisieren "
 
 #: maincurrencydialog.cpp:298
 msgid "Add Currency Values to history"
@@ -3313,7 +3315,7 @@ msgstr "Fügen Sie dem Verlauf Währungswerte hinzu"
 
 #: maincurrencydialog.cpp:301
 msgid "Delete selected Currency Values"
-msgstr ""
+msgstr "Ausgewählte Währung löschen"
 
 #: maincurrencydialog.cpp:305
 msgid "Delete Currency Values history for unused currencies"
@@ -3357,11 +3359,11 @@ msgstr "Währungsverlaufsfehler"
 #: maincurrencydialog.cpp:627
 #, c-format
 msgid "Unable to download %s currency rates"
-msgstr ""
+msgstr "Kann die Wechselkurse %s nicht herunterladen"
 
 #: maincurrencydialog.cpp:632
 msgid "Do you want to add also dates without any transaction?"
-msgstr ""
+msgstr "Möchten Sie auch Daten ohne Transaktion hinzufügen?"
 
 #: maincurrencydialog.cpp:675
 #, c-format
