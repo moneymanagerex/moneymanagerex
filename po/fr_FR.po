@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-02-03 12:43+0300\n"
-"PO-Revision-Date: 2019-02-03 09:54\n"
+"PO-Revision-Date: 2019-02-04 14:57\n"
 "Last-Translator: vomikan <nikolay.akimov@gmail.com>\n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -1523,7 +1523,7 @@ msgstr "Editer le nom d'une catégorie existante"
 
 #: categdialog.cpp:235 categdialog.cpp:440
 msgid "Select an unused category to delete."
-msgstr ""
+msgstr "Sélectionnez une catégorie inutilisée à supprimer."
 
 #: categdialog.cpp:240 maincurrencydialog.cpp:219
 msgid "&Select"
@@ -1597,15 +1597,15 @@ msgstr "Gestion des catégories: erreur d'effacement"
 
 #: categdialog.cpp:463
 msgid "This category cannot be deleted because it's used by transactions."
-msgstr ""
+msgstr "Cette catégorie ne peut pas être supprimée car elle est utilisée par les transactions."
 
 #: categdialog.cpp:470
 msgid "Delete an existing category."
-msgstr ""
+msgstr "Supprimer une catégorie existante."
 
 #: categdialog.cpp:475
 msgid "Subcategories must be deleted before."
-msgstr ""
+msgstr "Les sous-catégories doivent être supprimées avant."
 
 #: categdialog.cpp:491
 #, c-format
