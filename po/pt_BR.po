@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-02-05 11:56+0300\n"
-"PO-Revision-Date: 2019-02-06 16:36\n"
+"PO-Revision-Date: 2019-02-06 17:06\n"
 "Last-Translator: vomikan <nikolay.akimov@gmail.com>\n"
 "Language-Team: Portuguese, Brazilian\n"
 "MIME-Version: 1.0\n"
@@ -482,7 +482,7 @@ msgstr "&Excluir Bem"
 #: assetspanel.cpp:111 billsdepositspanel.cpp:414 mmcheckingpanel.cpp:1233
 #: mmframe.cpp:1231 payeedialog.cpp:373 stockspanel.cpp:152
 msgid "&Organize Attachments"
-msgstr "&Organizar Documentos"
+msgstr "&Organizar Anexos"
 
 #: assetspanel.cpp:205
 msgid "Do you really want to delete the Asset?"
@@ -1341,7 +1341,7 @@ msgstr "Valor:"
 
 #: budgetentrydialog.cpp:148
 msgid "Enter the amount budgeted for this category."
-msgstr "Informe o montante orçado para esta categoria."
+msgstr "Informe o valor orçado para esta categoria."
 
 #: budgetingpanel.cpp:58
 msgid "View All Budget Categories"
@@ -4081,11 +4081,11 @@ msgstr "Ver/Esconder a Árvore de Navegação"
 
 #: mmframe.cpp:1506
 msgid "&Display Share Accounts"
-msgstr "&Exibir contas compartilhadas"
+msgstr "&Exibir Contas de Ações"
 
 #: mmframe.cpp:1506
 msgid "Show/Hide Share Accounts in the navigation tree"
-msgstr "Mostrar/ocultar contas compartilhadas na árvore de navegação"
+msgstr "Mostrar/ocultar Contas de Ações na árvore de navegação"
 
 #: mmframe.cpp:1509
 msgid "Budgets: As &Financial Years"
@@ -4477,7 +4477,7 @@ msgstr "Mostra Lista de Beneficiários"
 
 #: mmframe.cpp:1831
 msgid "Show Organize Currency Dialog"
-msgstr "Mostrar Lista de Moedas"
+msgstr "Mostra Lista de Moedas"
 
 #: mmframe.cpp:1842
 msgid "Show the Help file"
@@ -4621,7 +4621,7 @@ msgstr "Contas Compartilhadas possuem transações de compartilhamento\n\n"
 "As transações de ações são criadas dentro da visão de portfólio de ações\n"
 "após a seleção do Estoque da Empresa dentro da visão associada.\n\n"
 "Essas contas só se tornam visíveis depois de associar um estoque à conta de compartilhamento\n"
-"Ou usando o Menu VIsão -> 'Mostrar contas compartilhadas'\n"
+"Ou usando o Menu Visão -> 'Mostrar contas compartilhadas'\n"
 "Contas compartilhadas também podem conter transações normais para uma conta normal."
 
 #: mmframe.cpp:2348
@@ -6373,7 +6373,7 @@ msgstr "Atualizar os preços das Ações pelo Yahoo"
 #: stockspanel.cpp:725
 #, c-format
 msgid "Stock Portfolio: %s"
-msgstr "Carteira de ações: %s"
+msgstr "Carteira de Ações: %s"
 
 #: stockspanel.cpp:767
 #, c-format
@@ -6473,7 +6473,7 @@ msgstr "Especifique de qual conta o dinheiro está sendo retirado"
 
 #: transdialog.cpp:1206
 msgid "Specify account the money is moved to"
-msgstr "Especifique para qual conta o dinheiro foi depositado"
+msgstr "Especifique em qual conta o dinheiro foi depositado"
 
 #: transdialog.cpp:1207
 msgid "Specify the transfer amount in the From Account."
@@ -6549,7 +6549,7 @@ msgstr "Redigite a senha para o arquivo de banco de dados"
 
 #: util.cpp:126
 msgid "Confirm password failed."
-msgstr "Confirme a senha falhou."
+msgstr "Confirmação de senha falhou."
 
 #: util.cpp:128
 msgid "Password must not be empty."
@@ -6807,7 +6807,7 @@ msgstr "Excluir"
 
 #: wizard_newaccount.cpp:26
 msgid "Add Account Wizard"
-msgstr "Assistente para adicionar Conta"
+msgstr "Assistente para Adicionar Conta"
 
 #: wizard_newaccount.cpp:35
 #, c-format
@@ -6861,8 +6861,8 @@ msgstr "As contas bancárias gerais cobrem uma ampla variedade de contas\n"
 #: wizard_newaccount.cpp:136
 msgid "Investment accounts are specialized accounts that only\n"
 "have stock/mutual fund investments associated with them."
-msgstr "Contas de Investimento são contas específicas que têm apenas \n"
-"investimentos ou fundos mútuos de investimento associados a elas."
+msgstr "Contas de investimento são contas especializadas que tem apenas\n"
+"investimentos em ações/fundos associados a eles."
 
 #: wizard_newaccount.cpp:141
 msgid "Term accounts are specialized bank accounts. Intended for asset\n"
