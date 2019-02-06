@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-02-05 11:56+0300\n"
-"PO-Revision-Date: 2019-02-05 09:30\n"
+"PO-Revision-Date: 2019-02-05 21:44\n"
 "Last-Translator: vomikan <nikolay.akimov@gmail.com>\n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -143,11 +143,11 @@ msgstr "Zugangsdaten:"
 
 #: accountdialog.cpp:298
 msgid "Statement"
-msgstr ""
+msgstr "Kontoauszug"
 
 #: accountdialog.cpp:306
 msgid "Statement:"
-msgstr ""
+msgstr "Kontoauszug:"
 
 #: accountdialog.cpp:307
 msgid "Locked"
@@ -155,7 +155,7 @@ msgstr "Gesperrt"
 
 #: accountdialog.cpp:311
 msgid "Reconciled Date:"
-msgstr ""
+msgstr "Datum des Abgleichs:"
 
 #: accountdialog.cpp:316
 msgid "Minimum Bal:"
@@ -175,7 +175,7 @@ msgstr "Zinsrate:"
 
 #: accountdialog.cpp:340
 msgid "Payment Due Date:"
-msgstr ""
+msgstr "Fälligkeitsdatum:"
 
 #: accountdialog.cpp:345
 msgid "Minimum Payment:"
@@ -407,11 +407,11 @@ msgstr "Notizen zu diesem Vermögensgegenstand"
 
 #: assetdialog.cpp:262
 msgid "New Transaction Details"
-msgstr ""
+msgstr "Alle Details zur neuen Transaktion"
 
 #: assetdialog.cpp:265 sharetransactiondialog.cpp:280
 msgid "Edit Transaction Details"
-msgstr ""
+msgstr "Buchungsdetails ändern"
 
 #: assetdialog.cpp:300 constants.cpp:44 sharetransactiondialog.cpp:311
 msgid "&Cancel "
@@ -829,15 +829,15 @@ msgstr "Wiederkehrende Buchungen eingeben"
 
 #: billsdepositsdialog.cpp:394
 msgid "Transaction Dates"
-msgstr ""
+msgstr "Transaktionsdaten"
 
 #: billsdepositsdialog.cpp:416
 msgid "Recurring Transaction Details"
-msgstr ""
+msgstr "Details der wiederkehrenden Buchung"
 
 #: billsdepositsdialog.cpp:437
 msgid "Specify the date when this bill or deposit is due"
-msgstr ""
+msgstr "Geben Sie das Datum an, an dem diese Rechnung oder Gutschrift fällig ist"
 
 #: billsdepositsdialog.cpp:441
 msgid "Retard or advance the date of the 'next occurrence'"
@@ -845,7 +845,7 @@ msgstr ""
 
 #: billsdepositsdialog.cpp:447 billsdepositspanel.cpp:103
 msgid "Date Due"
-msgstr ""
+msgstr "Fälligkeitsdatum"
 
 #: billsdepositsdialog.cpp:451 billsdepositsdialog.cpp:1297
 msgid "Repeats"
@@ -861,7 +861,7 @@ msgstr "Ausstehende Zahlungen"
 
 #: billsdepositsdialog.cpp:481
 msgid "Request user to enter payment"
-msgstr ""
+msgstr "Benutzer zur Zahlungseingabe auffordern"
 
 #: billsdepositsdialog.cpp:482
 msgid "User requested to enter this transaction on the 'Date Paid'"
@@ -869,11 +869,11 @@ msgstr "Der Benutzer hat gebeten, diese Transaktion am 'Zahlungsdatum' einzugebe
 
 #: billsdepositsdialog.cpp:485
 msgid "Grant automatic execute"
-msgstr ""
+msgstr "Automatischen Buchungseintrag erlauben"
 
 #: billsdepositsdialog.cpp:486
 msgid "The requested payment will occur without user interaction"
-msgstr ""
+msgstr "Die angeforderte Zahlung wird ohne Benutzerinteraktion durchgeführt"
 
 #: billsdepositsdialog.cpp:511 transdialog.cpp:408
 msgid "Transaction Details"
@@ -881,7 +881,7 @@ msgstr "Buchungsdetails"
 
 #: billsdepositsdialog.cpp:526
 msgid "Specify the date the user is requested to enter this transaction"
-msgstr ""
+msgstr "Geben Sie das Datum an, an dem der Benutzer aufgefordert wird, diese Transaktion einzugeben"
 
 #: billsdepositsdialog.cpp:529
 msgid "Advance or retard the user request date of this transaction"
@@ -893,7 +893,7 @@ msgstr "Setzen Sie 'Zahlungsdatum' auf 'Heutiges Datum' zurück"
 
 #: billsdepositsdialog.cpp:541 billsdepositspanel.cpp:102
 msgid "Date Paid"
-msgstr ""
+msgstr "Bezahlt am"
 
 #: billsdepositsdialog.cpp:552 filtertransdialog.cpp:281 transdialog.cpp:1225
 msgid "Specify the status for the transaction"
@@ -954,7 +954,7 @@ msgstr "Konto wählen"
 
 #: billsdepositsdialog.cpp:599
 msgid "Specify the Account that will own the recurring transaction"
-msgstr ""
+msgstr "Geben Sie das Konto an, dem die regelmäßige Buchung zugeordnet wird"
 
 #: billsdepositsdialog.cpp:602 billsdepositsdialog.cpp:857
 #: billsdepositspanel.cpp:105 filtertransdialog.cpp:238
@@ -1084,7 +1084,8 @@ msgstr ""
 #: billsdepositsdialog.cpp:1340
 msgid "Specify the number of payments to be made.\n"
 "Leave blank if the payments continue forever."
-msgstr ""
+msgstr "Geben Sie die Anzahl der Zahlungen an.\n"
+"Geben Sie nichts ein, wenn die Zahlungen für immer fortgesetzt werden."
 
 #: billsdepositsdialog.cpp:1366 billsdepositsdialog.cpp:1375
 #: filtertransdialog.cpp:495 filtertransdialog.cpp:503
@@ -1102,7 +1103,7 @@ msgstr "Fehler"
 
 #: billsdepositsdialog.cpp:1381 mmSimpleDialogs.cpp:232
 msgid "Invalid Choice"
-msgstr ""
+msgstr "Ungültige Auswahl"
 
 #: billsdepositsdialog.cpp:1381
 msgid "Choose one of the following:"
@@ -1137,7 +1138,7 @@ msgstr "Betrag für diese Buchung"
 
 #: billsdepositsdialog.h:127
 msgid "Specify the amount to be transferred"
-msgstr ""
+msgstr "Geben Sie den zu übertragenden Betrag an"
 
 #: billsdepositspanel.cpp:56
 #, c-format
@@ -1166,7 +1167,7 @@ msgstr "Häufigkeit"
 
 #: billsdepositspanel.cpp:111
 msgid "Repetitions"
-msgstr ""
+msgstr "Wiederholungen"
 
 #: billsdepositspanel.cpp:112
 msgid "Autorepeat"
@@ -1187,7 +1188,7 @@ msgstr ""
 #: billsdepositspanel.cpp:225 billsdepositspanel.cpp:888 mmframe.cpp:735
 #: mmhomepagepanel.cpp:433
 msgid "Recurring Transactions"
-msgstr ""
+msgstr "Wiederkehrende Buchungen"
 
 #: billsdepositspanel.cpp:241 filtertransdialog.cpp:117 mmcheckingpanel.cpp:448
 msgid "Transaction Filter"
@@ -1243,7 +1244,7 @@ msgstr "&Wiederkehrende Buchung löschen..."
 
 #: billsdepositspanel.cpp:459
 msgid "Manual"
-msgstr ""
+msgstr "Manuell"
 
 #: billsdepositspanel.cpp:463
 msgid "Suggested"
@@ -1251,7 +1252,7 @@ msgstr "Empfohlen"
 
 #: billsdepositspanel.cpp:467
 msgid "Automated"
-msgstr ""
+msgstr "Automatisiert"
 
 #: billsdepositspanel.cpp:509 billsdepositspanel.cpp:575
 #: mmhomepagepanel.cpp:347
@@ -1519,7 +1520,7 @@ msgstr "Namen einer bestehenden Kategorie bearbeiten"
 
 #: categdialog.cpp:235 categdialog.cpp:440
 msgid "Select an unused category to delete."
-msgstr ""
+msgstr "Wählen Sie eine ungenutzte Kategorie zum Löschen."
 
 #: categdialog.cpp:240 maincurrencydialog.cpp:219
 msgid "&Select"
@@ -1594,15 +1595,15 @@ msgstr "Kategorien verwalten: löschen Fehler"
 
 #: categdialog.cpp:463
 msgid "This category cannot be deleted because it's used by transactions."
-msgstr ""
+msgstr "Diese Unterkategorie kann nicht gelöscht werden, da sie in Buchungen verwendet wird."
 
 #: categdialog.cpp:470
 msgid "Delete an existing category."
-msgstr ""
+msgstr "Bestehende Kategorie löschen."
 
 #: categdialog.cpp:475
 msgid "Subcategories must be deleted before."
-msgstr ""
+msgstr "Unterkategorien müssen vorher gelöscht werden."
 
 #: categdialog.cpp:491
 #, c-format
@@ -1684,7 +1685,7 @@ msgstr "mit:"
 
 #: constants.cpp:133 mmframe.cpp:2576
 msgid "Running on:"
-msgstr ""
+msgstr "Läuft auf:"
 
 #: constants.cpp:223
 msgid "View All Transactions"
@@ -1736,7 +1737,7 @@ msgstr "Zeige letztes Finanzjahr"
 
 #: constants.cpp:235
 msgid "View Since Statement Date"
-msgstr ""
+msgstr "Ansicht seit dem Buchungsdatum"
 
 #: constants.cpp:238 mmframe.cpp:1294 mmframe.cpp:1824
 #: model/Model_Account.cpp:26
@@ -1810,27 +1811,27 @@ msgstr "Ungültiger Eintrag"
 #: currencydialog.cpp:280
 #, c-format
 msgid "%s Shown As: %s"
-msgstr ""
+msgstr "%s Angezeigt als: %s"
 
 #: customfieldeditdialog.cpp:57
 msgid "New/Edit Custom Field"
-msgstr ""
+msgstr "Neues/Bearbeite benutzerdefiniertes Feld"
 
 #: customfieldeditdialog.cpp:120
 msgid "Custom Field Details"
-msgstr ""
+msgstr "Details des benutzerdefinierten Feldes"
 
 #: customfieldeditdialog.cpp:132
 msgid "Enter the name of the custom field"
-msgstr ""
+msgstr "Bezeichnung des benutzerdefinierten Feldes"
 
 #: customfieldeditdialog.cpp:135
 msgid "Field Type"
-msgstr ""
+msgstr "Feldtyp"
 
 #: customfieldeditdialog.cpp:139
 msgid "Select type of custom field"
-msgstr ""
+msgstr "Wählen Sie einen Typ für das benutzerdefinierte Feld"
 
 #: customfieldeditdialog.cpp:142
 msgid "ToolTip"
@@ -1863,7 +1864,8 @@ msgstr "Standard"
 #: customfieldeditdialog.cpp:160
 msgid "Enter the default for this field\n"
 "For date/time insert 'Now' to make current date/time as default"
-msgstr ""
+msgstr "Geben Sie die Standardeinstellung für dieses Feld an\n"
+"Für Datum/Uhrzeit geben Sie 'Now' ein, um das aktuelle Datum/Uhrzeit als Standard zu setzen"
 
 #: customfieldeditdialog.cpp:164
 msgid "Choices"
@@ -2597,7 +2599,7 @@ msgstr ""
 
 #: general_report_manager.cpp:844
 msgid "Enter or choose name for the new group"
-msgstr ""
+msgstr "Geben Sie einen Namen für die neue Gruppe ein oder wählen Sie einen Namen aus"
 
 #: general_report_manager.cpp:909
 msgid "Add Report Group"
@@ -2610,7 +2612,7 @@ msgstr "Neuer Bericht %s"
 
 #: general_report_manager.cpp:935
 msgid "Report Name already exists"
-msgstr ""
+msgstr "Berichtsbezeichnung ist bereits vorhanden"
 
 #: general_report_manager.cpp:935 general_report_manager.cpp:942
 msgid "New Report"
@@ -2632,7 +2634,7 @@ msgstr "Universal CSV-Import"
 
 #: import_export/parsers.cpp:89
 msgid "Unable to create file."
-msgstr ""
+msgstr "Datei kann nicht erstellt werden."
 
 #: import_export/parsers.cpp:109 import_export/parsers.cpp:248
 msgid "Could not save file."
@@ -2640,11 +2642,11 @@ msgstr "Datei konnte nicht gespeichert werden."
 
 #: import_export/parsers.cpp:109 import_export/parsers.cpp:248
 msgid "Export error"
-msgstr ""
+msgstr "Fehler beim Export"
 
 #: import_export/parsers.cpp:135 import_export/parsers.cpp:144
 msgid "File is not in Excel XML Spreadsheet 2003 format."
-msgstr ""
+msgstr "Datei ist nicht im Excel 2003 XML Tabellenformat."
 
 #: import_export/parsers.cpp:135 import_export/parsers.cpp:144
 #: import_export/parsers.cpp:157 import_export/parsers.cpp:165
@@ -2729,7 +2731,7 @@ msgstr "QIF-Datei für Export auswählen"
 
 #: import_export/qif_export.cpp:281 import_export/qif_import_gui.cpp:723
 msgid "QIF Files (*.qif)"
-msgstr ""
+msgstr "QIF Dateien (*.qif)"
 
 #: import_export/qif_export.cpp:300
 msgid "No Account available for export"
@@ -2784,7 +2786,7 @@ msgstr "Codierung:"
 
 #: import_export/qif_import_gui.cpp:167
 msgid "Use account number instead of account name"
-msgstr ""
+msgstr "Kontonummer anstelle des Kontonamens verwenden"
 
 #: import_export/qif_import_gui.cpp:171
 msgid "Include payee field in notes"
@@ -2909,7 +2911,7 @@ msgstr "Import fertig beendet"
 #: import_export/qif_import_gui.cpp:904 stockdialog.cpp:640
 #, c-format
 msgid "Total Imported: %ld"
-msgstr ""
+msgstr "Insgesamt importiert: %ld"
 
 #: import_export/qif_import_gui.cpp:912 import_export/univcsvdialog.cpp:971
 msgid "Imported transactions discarded by user!"
@@ -2955,7 +2957,7 @@ msgstr "Zahlungsempfänger hinzugefügt: %s"
 
 #: import_export/univcsvdialog.cpp:93
 msgid "Amount +/-"
-msgstr ""
+msgstr "Betrag +/-"
 
 #: import_export/univcsvdialog.cpp:95
 msgid "SubCategory"
@@ -2972,11 +2974,11 @@ msgstr "Kontostand"
 
 #: import_export/univcsvdialog.cpp:102
 msgid "Import dialog"
-msgstr ""
+msgstr "Dialogfeld \"importieren\""
 
 #: import_export/univcsvdialog.cpp:102
 msgid "Export dialog"
-msgstr ""
+msgstr "Dialogfeld \"exportieren\""
 
 #: import_export/univcsvdialog.cpp:163
 msgid "&Browse"
@@ -2984,7 +2986,7 @@ msgstr "&Durchsuchen"
 
 #: import_export/univcsvdialog.cpp:166
 msgid "Choose CSV data file to Import"
-msgstr ""
+msgstr "CSV-Datei zum importieren auswählen"
 
 #: import_export/univcsvdialog.cpp:166
 msgid "Choose CSV data file to Export"
@@ -2996,7 +2998,7 @@ msgstr "Als Vorlage speichern"
 
 #: import_export/univcsvdialog.cpp:192
 msgid "Specify the order of fields in the file"
-msgstr ""
+msgstr "Geben Sie die Reihenfolge der Felder in der Datei an"
 
 #: import_export/univcsvdialog.cpp:223
 msgid "&MMEX format"
@@ -3040,11 +3042,11 @@ msgstr "Trennzeichen für das Importieren/Exportieren von CSV-Dateien angeben"
 
 #: import_export/univcsvdialog.cpp:319
 msgid "Export column titles"
-msgstr ""
+msgstr "Spaltennamen exportieren"
 
 #: import_export/univcsvdialog.cpp:328
 msgid "Amount +/-:"
-msgstr ""
+msgstr "Betrag +/-:"
 
 #: import_export/univcsvdialog.cpp:334
 msgid "Positive values are deposits"
@@ -3060,11 +3062,11 @@ msgstr "Zeilen zum Ignorieren"
 
 #: import_export/univcsvdialog.cpp:350
 msgid "From start: "
-msgstr ""
+msgstr "Von Anfang an: "
 
 #: import_export/univcsvdialog.cpp:357
 msgid "From end: "
-msgstr ""
+msgstr "Ab Ende: "
 
 #: import_export/univcsvdialog.cpp:365
 msgid "Preview"
@@ -3087,11 +3089,11 @@ msgstr "Das Standardkonto '%s' für diese Vorlage existiert nicht.\n"
 
 #: import_export/univcsvdialog.cpp:485
 msgid "Account does not exist"
-msgstr ""
+msgstr "Konto existiert nicht"
 
 #: import_export/univcsvdialog.cpp:811
 msgid "Incorrect fields specified for import!"
-msgstr ""
+msgstr "Falsche Felder für den Import angegeben!"
 
 #: import_export/univcsvdialog.cpp:812
 msgid "Date field is required."
@@ -3104,7 +3106,7 @@ msgstr "Feld 'Betrag' oder beide Felder 'Auszahlung' und 'Einzahlung' sind erfor
 #: import_export/univcsvdialog.cpp:814 import_export/univcsvdialog.cpp:941
 #: webappdialog.cpp:270
 msgid "Import"
-msgstr ""
+msgstr "Importieren"
 
 #: import_export/univcsvdialog.cpp:863
 #, c-format
@@ -3114,7 +3116,7 @@ msgstr "Buchungen in Konto %s importiert: %ld"
 #: import_export/univcsvdialog.cpp:874
 #, c-format
 msgid "Line %ld: Empty"
-msgstr ""
+msgstr "Zeile %ld: Leer"
 
 #: import_export/univcsvdialog.cpp:888
 #, c-format
@@ -3136,37 +3138,37 @@ msgstr "Art (Abhebung/Einzahlung) unbekannt."
 #: import_export/univcsvdialog.cpp:918
 #, c-format
 msgid "Line %ld: OK, imported."
-msgstr ""
+msgstr "Zeile %ld: OK, importiert."
 
 #: import_export/univcsvdialog.cpp:926 stockdialog.cpp:638
 #, c-format
 msgid "Total Lines: %ld"
-msgstr ""
+msgstr "Anzahl der Zeilen: %ld"
 
 #: import_export/univcsvdialog.cpp:928
 #, c-format
 msgid "Lines Selected to Import: %ld"
-msgstr ""
+msgstr "Zu importierende Zeilen ausgewählt: %ld"
 
 #: import_export/univcsvdialog.cpp:930
 #, c-format
 msgid "Empty Lines: %ld"
-msgstr ""
+msgstr "Leere Zeilen: %ld"
 
 #: import_export/univcsvdialog.cpp:932
 #, c-format
 msgid "Imported: %ld"
-msgstr ""
+msgstr "Importiert: %ld"
 
 #: import_export/univcsvdialog.cpp:934
 #, c-format
 msgid "Errored: %ld"
-msgstr ""
+msgstr "Fehler: %ld"
 
 #: import_export/univcsvdialog.cpp:937
 #, c-format
 msgid "Log file written to: %s"
-msgstr ""
+msgstr "Die Logdatei befindet sich in: %s"
 
 #: import_export/univcsvdialog.cpp:940 stockdialog.cpp:646
 msgid "Please confirm saving..."
@@ -3178,11 +3180,11 @@ msgstr "Keine importierten Buchungen!"
 
 #: import_export/univcsvdialog.cpp:990
 msgid "Incorrect fields specified for export! Requires at least Date and Amount."
-msgstr ""
+msgstr "Falsche Felder für den Export angegeben! Benötigt mindestens Datum und Betrag."
 
 #: import_export/univcsvdialog.cpp:991 import_export/univcsvdialog.cpp:1112
 msgid "Export"
-msgstr ""
+msgstr "Exportieren"
 
 #: import_export/univcsvdialog.cpp:1001
 msgid "Overwrite existing file?"
@@ -3198,7 +3200,7 @@ msgstr "Die vorhandene Datei konnte nicht gelöscht werden. Datei kann von einem
 
 #: import_export/univcsvdialog.cpp:1008
 msgid "Destination file error"
-msgstr ""
+msgstr "Die Zieldatei existiert bereits"
 
 #: import_export/univcsvdialog.cpp:1111
 #, c-format
@@ -3211,27 +3213,27 @@ msgstr "CSV-Datei zum importieren auswählen"
 
 #: import_export/univcsvdialog.cpp:1358
 msgid "Choose CSV data file to export"
-msgstr ""
+msgstr "CSV-Datei zum Exportieren auswählen"
 
 #: import_export/univcsvdialog.cpp:1361
 msgid "Choose XML data file to import"
-msgstr ""
+msgstr "XML-Datei zum importieren auswählen"
 
 #: import_export/univcsvdialog.cpp:1364
 msgid "Choose XML data file to export"
-msgstr ""
+msgstr "XML-Datei zum exportieren auswählen"
 
 #: import_export/univcsvdialog.cpp:1371
 msgid "XML Files (*.xml)"
-msgstr ""
+msgstr "XML-Dateien (*.xml)"
 
 #: import_export/univcsvdialog.cpp:1372 stockdialog.cpp:555
 msgid "CSV Files (*.csv)"
-msgstr ""
+msgstr "CSV-Dateien (*.csv)"
 
 #: maincurrencydialog.cpp:69
 msgid "Base"
-msgstr ""
+msgstr "Basiswährung"
 
 #: maincurrencydialog.cpp:70 reports/summarystocks.cpp:180 stockdialog.cpp:424
 #: stockspanel.cpp:98
@@ -3240,11 +3242,11 @@ msgstr "Kürzel"
 
 #: maincurrencydialog.cpp:72
 msgid "Last Rate"
-msgstr ""
+msgstr "Letzter Kurs"
 
 #: maincurrencydialog.cpp:73
 msgid "Hist."
-msgstr ""
+msgstr "Bisheriger Verlauf"
 
 #: maincurrencydialog.cpp:77 maincurrencydialog.cpp:348
 #: maincurrencydialog.cpp:633 maincurrencydialog.cpp:739
@@ -3253,7 +3255,7 @@ msgstr "Währungen"
 
 #: maincurrencydialog.cpp:157
 msgid "Update latest rate only for all used currencies"
-msgstr ""
+msgstr "Aktuellen Kurs nur für die verwendeten Währungen aktualisieren"
 
 #: maincurrencydialog.cpp:160
 msgid "Online Update"
@@ -3277,15 +3279,15 @@ msgstr "Historische Währungen ausblenden"
 
 #: maincurrencydialog.cpp:223
 msgid "Select the currently selected currency as the selected currency for the account"
-msgstr ""
+msgstr "Die momentan ausgewählte Währung als Kontowährung benutzen"
 
 #: maincurrencydialog.cpp:225
 msgid "Select the currently selected currency as base currency"
-msgstr ""
+msgstr "Die momentan ausgewählte Währung als Basiswährung benutzen"
 
 #: maincurrencydialog.cpp:239
 msgid "Currency History Options"
-msgstr ""
+msgstr "Währungsverlaufoptionen"
 
 #: maincurrencydialog.cpp:263 stockdialog.cpp:324
 msgid "Diff."
@@ -3293,11 +3295,11 @@ msgstr "Diff."
 
 #: maincurrencydialog.cpp:279
 msgid "Specify the date of currency value"
-msgstr ""
+msgstr "Datum des Währungskurses angeben"
 
 #: maincurrencydialog.cpp:286
 msgid "Enter the currency value"
-msgstr ""
+msgstr "Geben Sie den Währungskurs ein"
 
 #: maincurrencydialog.cpp:295
 msgid "Download Currency Values history"
@@ -3305,7 +3307,7 @@ msgstr "Laden Sie den Verlauf der Währungswerte herunter"
 
 #: maincurrencydialog.cpp:296
 msgid "&Add / Update "
-msgstr ""
+msgstr "Hinzufügen/Aktualisieren "
 
 #: maincurrencydialog.cpp:298
 msgid "Add Currency Values to history"
@@ -3313,7 +3315,7 @@ msgstr "Fügen Sie dem Verlauf Währungswerte hinzu"
 
 #: maincurrencydialog.cpp:301
 msgid "Delete selected Currency Values"
-msgstr ""
+msgstr "Ausgewählte Währung löschen"
 
 #: maincurrencydialog.cpp:305
 msgid "Delete Currency Values history for unused currencies"
@@ -3357,16 +3359,16 @@ msgstr "Währungsverlaufsfehler"
 #: maincurrencydialog.cpp:627
 #, c-format
 msgid "Unable to download %s currency rates"
-msgstr ""
+msgstr "Kann die Wechselkurse %s nicht herunterladen"
 
 #: maincurrencydialog.cpp:632
 msgid "Do you want to add also dates without any transaction?"
-msgstr ""
+msgstr "Möchten Sie auch Daten ohne Transaktion hinzufügen?"
 
 #: maincurrencydialog.cpp:675
 #, c-format
 msgid "Unable to download history for symbol %s. History rates not available!"
-msgstr ""
+msgstr "Der Verlauf für das Symbol %s kann nicht heruntergeladen werden. Vorherige Kurse sind nicht verfügbar!"
 
 #: maincurrencydialog.cpp:737
 msgid "Setting a new base currency will delete all historic rates,\n"
@@ -4456,7 +4458,7 @@ msgstr "Neu"
 
 #: mmframe.cpp:1827
 msgid "Show Home Page"
-msgstr ""
+msgstr "Zeige Startseite"
 
 #: mmframe.cpp:1829
 msgid "Show Organize Categories Dialog"
@@ -4484,19 +4486,19 @@ msgstr "Nachrichten"
 
 #: mmframe.cpp:1897
 msgid "Cannot locate database file to open."
-msgstr ""
+msgstr "Kann Datenbank-Datei zum Öffnen nicht finden."
 
 #: mmframe.cpp:1905 mmframe.cpp:1999
 msgid "[portable mode]"
-msgstr ""
+msgstr "Portabler Modus"
 
 #: mmframe.cpp:1944
 msgid "Have MMEX support provided you a debug/patch file?"
-msgstr ""
+msgstr "Hat der MMEX-Support Ihnen eine Debug-/Patch-Datei zur Verfügung gestellt?"
 
 #: mmframe.cpp:1944
 msgid "MMEX upgrade"
-msgstr ""
+msgstr "MMEX-Upgrade"
 
 #: mmframe.cpp:1981
 msgid "&Next ->"
@@ -4508,11 +4510,11 @@ msgstr "Wählen Sie die zu erstellende Datenbank-Datei"
 
 #: mmframe.cpp:2042 mmframe.cpp:2066 mmframe.cpp:2147
 msgid "MMEX database files (*.mmb)"
-msgstr ""
+msgstr "MMEX-Datenbankdateien (*.mmb)"
 
 #: mmframe.cpp:2044 mmframe.cpp:2149
 msgid "Encrypted MMEX database files (*.mmb)"
-msgstr ""
+msgstr "Verschlüsselte MMEX-Datenbankdateien (*.mmb)"
 
 #: mmframe.cpp:2064
 msgid "Choose database file to open"
@@ -4520,19 +4522,19 @@ msgstr "Wählen Sie die zu öffnende Datenbank-Datei"
 
 #: mmframe.cpp:2086
 msgid "Password change completed."
-msgstr ""
+msgstr "Passwortänderung abgeschlossen."
 
 #: mmframe.cpp:2086
 msgid "Encryption Password Change"
-msgstr ""
+msgstr "Änderung des Verschlüsselungspasswortes"
 
 #: mmframe.cpp:2094
 msgid "Please confirm database decryption and password removal."
-msgstr ""
+msgstr "Bitte bestätigen Sie die Entschlüsselung der Datenbank und das Entfernen des Passworts."
 
 #: mmframe.cpp:2095 mmframe.cpp:2102
 msgid "Encryption Password Removal"
-msgstr ""
+msgstr "Verschlüsselungspasswort entfernen"
 
 #: mmframe.cpp:2102
 msgid "Password removed and database decrypted."
@@ -4551,7 +4553,9 @@ msgstr "DB-Optimierung"
 msgid "Database Optimization Completed!\n\n"
 "Size before: %s\n"
 "Size after: %s\n"
-msgstr ""
+msgstr "Datenbankoptimierung abgeschlossen!\n\n"
+"Größe vorher: %s\n"
+"Größe nachher: %s\n"
 
 #: mmframe.cpp:2129
 msgid "Please use this function only if explicitly requested by MMEX support"
@@ -4575,7 +4579,7 @@ msgstr "Ausgewählte Datei kann nicht überschrieben werden"
 
 #: mmframe.cpp:2230
 msgid "Accounts, payees and categories successfully syncronized to WebApp!"
-msgstr ""
+msgstr "Konten, Zahlungsempfänger und Kategorien erfolgreich mit der WebApp synchronisiert!"
 
 #: mmframe.cpp:2230
 msgid "WebApp export"
@@ -4590,11 +4594,13 @@ msgid "Asset Accounts hold Asset transactions\n\n"
 "Asset transactions are created within the Assets View\n"
 "after the selection of the Asset within that view.\n\n"
 "Asset Accounts can also hold normal transactions to regular accounts."
-msgstr ""
+msgstr "Sachkonten beinhalten Sachtransaktionen\n\n"
+"Sachtransaktionen können der entsprechenden Ansicht erstellt werden, nachdem die entsprechende Anlage in dieser Ansicht ausgewählt wurde\n\n"
+"Sachkonten können auch normale Transaktionen auf reguläre Konten beinhalten."
 
 #: mmframe.cpp:2336
 msgid "Asset Account Creation"
-msgstr ""
+msgstr "Sachkonto erstellen"
 
 #: mmframe.cpp:2342
 msgid "Share Accounts hold Share transactions\n\n"
@@ -4607,7 +4613,7 @@ msgstr ""
 
 #: mmframe.cpp:2348
 msgid "Share Account Creation"
-msgstr ""
+msgstr "Aktionkonto erstellen"
 
 #: mmframe.cpp:2505
 msgid "MMEX Options have been updated."
@@ -4619,35 +4625,35 @@ msgstr "MMEX Optionen"
 
 #: mmframe.cpp:2558
 msgid "Please follow these tasks before submitting new bug:"
-msgstr ""
+msgstr "Bitte befolgen Sie diese Schritte, bevor Sie einen neuen Fehler melden:"
 
 #: mmframe.cpp:2559
 msgid "1. Use Help->Check for Updates in MMEX to get latest version - your problem can be fixed already."
-msgstr ""
+msgstr "1. Verwenden Sie Hilfe->Überprüfen Sie Updates in MMEX, um die neueste Version zu erhalten - Ihr Problem könnte bereits behoben sein."
 
 #: mmframe.cpp:2560
 msgid "2. Search https://github.com/moneymanagerex/moneymanagerex/issues?q=is:issue for similar problem - update existing issue instead of creating new one."
-msgstr ""
+msgstr "2. Suchen Sie auf https://github.com/moneymanagerex/moneymanagerex/issues?q=is:issue für ähnliche Probleme - aktualisieren Sie ein vorhandenes Problem anstatt ein Neues zu erstellen."
 
 #: mmframe.cpp:2561
 msgid "3. Put some descriptive name for your issue in the Title field above."
-msgstr ""
+msgstr "3. Geben Sie einen aussagekräftigen Namen für Ihr Problem im obigen Titel-Feld ein."
 
 #: mmframe.cpp:2562
 msgid "4. Replace this text (marked with >) with detailed description of your problem."
-msgstr ""
+msgstr "4. Ersetzen Sie diesen Text (mit > markiert) mit einer detaillierter Beschreibung Ihres Problems."
 
 #: mmframe.cpp:2563
 msgid "Read https://www.chiark.greenend.org.uk/~sgtatham/bugs.html for useful tips."
-msgstr ""
+msgstr "Lesen Sie https://www.chiark.greenend.org.uk/~sgtatham/bugs.html für nützliche Tipps."
 
 #: mmframe.cpp:2564
 msgid "5. Include steps to reproduce your issue, attach screenshots where appropriate."
-msgstr ""
+msgstr "5. Geben Sie die Schritte an, um Ihr Problem zu reproduzieren. Ergänzen Sie Screenshots, wo es notwendig ist."
 
 #: mmframe.cpp:2565
 msgid "6. Please do not remove information attached below this text."
-msgstr ""
+msgstr "6. Bitte entfernen Sie die unter diesem Text enthaltenen Informationen nicht."
 
 #: mmframe.cpp:2642
 msgid "Choose HTML file to Export"
@@ -4678,7 +4684,7 @@ msgstr "Möchtest du wirklich folgendes Konto löschen\n"
 
 #: mmframe.cpp:2884
 msgid "Select the account to reallocate"
-msgstr ""
+msgstr "Wählen Sie das Konto aus, das Sie neu zuordnen möchten"
 
 #: mmframe.cpp:2884 mmframe.cpp:2907
 msgid "Account Reallocation"
@@ -4691,7 +4697,7 @@ msgstr "Konto: %s - Neuen Kontotype auswählen."
 
 #: mmframe.cpp:3007 payeedialog.cpp:315
 msgid "Payee Relocation Completed."
-msgstr ""
+msgstr "Änderung des Zahlungsempfängers abgeschlossen."
 
 #: mmframe.cpp:3011 payeedialog.cpp:319
 msgid "Payee Relocation Result"
@@ -4704,11 +4710,11 @@ msgstr "Datei %s nicht gefunden"
 
 #: mmframe.cpp:3104
 msgid "The language for this application has been changed. The change will take effect the next time the application is started."
-msgstr ""
+msgstr "Die Sprache für diese Anwendung wurde geändert. Die Änderung wird beim nächsten Start der Anwendung wirksam."
 
 #: mmframereport.cpp:71
 msgid "General Group Report"
-msgstr ""
+msgstr "Allgemeiner Gruppenbericht"
 
 #: mmframereport.cpp:98 model/Model_Report.cpp:413 reports/forecast.cpp:88
 #: reports/myusage.cpp:234
@@ -4759,7 +4765,7 @@ msgstr "Zusammenfassung"
 
 #: mmhomepagepanel.cpp:391
 msgid "Account / Payee"
-msgstr ""
+msgstr "Konto / Zahlungsempfänger"
 
 #: mmhomepagepanel.cpp:615
 msgid "Upcoming Transactions"
@@ -4856,7 +4862,7 @@ msgstr "Bestimmte Konten"
 
 #: mmreportspanel.cpp:450
 msgid "Chart:"
-msgstr ""
+msgstr "Diagramm:"
 
 #: mmreportspanel.cpp:452
 msgid "Show"
@@ -4880,7 +4886,7 @@ msgstr "Kreditkarte"
 
 #: model/Model_Account.cpp:35
 msgid "Loan"
-msgstr ""
+msgstr "Darlehen"
 
 #: model/Model_Account.cpp:36
 msgid "Term"
@@ -4896,7 +4902,7 @@ msgstr "Geldanlage"
 
 #: model/Model_Account.cpp:39 model/Model_Attachment.cpp:26
 msgid "Asset"
-msgstr ""
+msgstr "Vermögenswert"
 
 #: model/Model_Account.cpp:40
 msgid "Shares"
@@ -5044,7 +5050,7 @@ msgstr ""
 
 #: option.cpp:125
 msgid "Category Summary"
-msgstr ""
+msgstr "Zusammenfassung der Kategorien"
 
 #: option.cpp:126 option.cpp:127 reports/cashflow.cpp:35
 msgid "Cash Flow"
@@ -5118,11 +5124,11 @@ msgstr ""
 
 #: optionsettingsattachment.cpp:104
 msgid "Folder of .mmb database file"
-msgstr ""
+msgstr "Ordner der .mmb Datenbankdatei"
 
 #: optionsettingsattachment.cpp:105
 msgid "MMEX Application data folder"
-msgstr ""
+msgstr "MMEX Anwendungsdatenordner"
 
 #: optionsettingsattachment.cpp:111
 msgid "Other OS folders "
@@ -5146,7 +5152,7 @@ msgstr "Unix Ordner"
 
 #: optionsettingsattachment.cpp:150
 msgid "Create and use Attachments subfolder"
-msgstr ""
+msgstr "Erstellen und verwenden Sie den Anhang-Unterordner"
 
 #: optionsettingsattachment.cpp:162
 msgid "Delete file after import"
@@ -5186,7 +5192,7 @@ msgstr "Wählen Sie den Ordner um die Anhänge zu archivieren"
 
 #: optionsettingsattachment.cpp:257
 msgid "Attachments path has been changed!"
-msgstr ""
+msgstr "Der Pfad für Anhänge wurde geändert!"
 
 #: optionsettingsattachment.cpp:259 optionsettingsattachment.cpp:268
 msgid "Attachments folder migration"
@@ -5744,7 +5750,7 @@ msgstr "%"
 
 #: reports/budgetingperf.cpp:241
 msgid "Monthly Total"
-msgstr ""
+msgstr "Monatlich Gesamt"
 
 #: reports/cashflow.cpp:223
 #, c-format
@@ -5761,15 +5767,15 @@ msgstr "Kategorie Total: "
 
 #: reports/categexp.cpp:204
 msgid "Total Expenses:"
-msgstr ""
+msgstr "Gesamtausgaben:"
 
 #: reports/categexp.cpp:205
 msgid "Total Income:"
-msgstr ""
+msgstr "Gesamteinkommen:"
 
 #: reports/categovertimeperf.cpp:36
 msgid "Category Income/Expenses"
-msgstr ""
+msgstr "Kategorie Einnahmen/Ausgaben"
 
 #: reports/categovertimeperf.cpp:117
 msgid "Overall"
@@ -5781,12 +5787,12 @@ msgstr "Einnahmen"
 
 #: reports/forecast.cpp:26
 msgid "Forecast"
-msgstr ""
+msgstr "Vorhersage"
 
 #: reports/htmlbuilder.cpp:116
 #, c-format
 msgid "Report Generated %s %s"
-msgstr ""
+msgstr "Bericht erstellt %s %s"
 
 #: reports/htmlbuilder.cpp:313
 #, c-format
@@ -5884,7 +5890,7 @@ msgstr "Konten auswählen"
 #: reports/summary.cpp:147
 #, c-format
 msgid "Accounts Balance - %s"
-msgstr ""
+msgstr "Kontostände - %s"
 
 #: reports/summary.cpp:148
 msgid "Monthly Report"
@@ -6040,7 +6046,7 @@ msgstr ""
 
 #: stockdialog.cpp:195
 msgid "Name of the company issuing Shares"
-msgstr ""
+msgstr "Name des Unternehmens, das die Aktien ausstellt"
 
 #: stockdialog.cpp:199
 msgid "Enter the associated Share Account name\n"
@@ -6054,7 +6060,7 @@ msgstr ""
 
 #: stockdialog.cpp:212 stockspanel.cpp:96
 msgid "*Date"
-msgstr ""
+msgstr "*Datum"
 
 #: stockdialog.cpp:213
 msgid "Initial purchase date of shares.\n"
@@ -6080,15 +6086,15 @@ msgstr ""
 
 #: stockdialog.cpp:234 stockspanel.cpp:100
 msgid "*Share Price"
-msgstr ""
+msgstr "*Aktienpreis"
 
 #: stockdialog.cpp:241
 msgid "Enter the initial price per share."
-msgstr ""
+msgstr "Geben Sie den Anfangspreis pro Aktie ein."
 
 #: stockdialog.cpp:245
 msgid "*Commission"
-msgstr ""
+msgstr "*Gebühren"
 
 #: stockdialog.cpp:246
 msgid "Remainder of funds from share investment.\n"
@@ -6105,7 +6111,7 @@ msgstr ""
 
 #: stockdialog.cpp:261
 msgid "Enter current share price."
-msgstr ""
+msgstr "Aktuellen Aktienpreis eingeben."
 
 #: stockdialog.cpp:264 stockspanel.cpp:105
 msgid "Price Date"
@@ -6358,12 +6364,12 @@ msgstr ""
 #: stockspanel.cpp:770
 #, c-format
 msgid "Gain: %s"
-msgstr ""
+msgstr "Gewinn: %s"
 
 #: stockspanel.cpp:770
 #, c-format
 msgid "Loss: %s"
-msgstr ""
+msgstr "Verlust: %s"
 
 #: stockspanel.cpp:808
 msgid "Stock prices successfully updated"
@@ -6394,11 +6400,11 @@ msgstr "Symbol: %s"
 
 #: transactionsupdatedialog.cpp:72
 msgid "Multi Transactions Update"
-msgstr ""
+msgstr "Multi-Transaktions-Update"
 
 #: transactionsupdatedialog.cpp:186
 msgid "Append"
-msgstr ""
+msgstr "Anhängen"
 
 #: transactionsupdatedialog.cpp:249
 msgid "Invalid type"
@@ -6471,7 +6477,7 @@ msgstr "Bitte Konto für diese Buchung wählen"
 
 #: usertransactionpanel.cpp:134
 msgid "Withdraw funds from or deposit funds to this Account."
-msgstr ""
+msgstr "Auszahlungen von oder Einzahlungen auf dieses Konto."
 
 #: usertransactionpanel.cpp:136
 msgid "&Transfer"
@@ -6483,11 +6489,11 @@ msgstr ""
 
 #: usertransactionpanel.cpp:164
 msgid "Currency used for this transaction."
-msgstr ""
+msgstr "Währung für diese Transaktion."
 
 #: usertransactionpanel.cpp:183
 msgid "Specify the status for this transaction"
-msgstr ""
+msgstr "Status der Buchung"
 
 #: usertransactionpanel.cpp:191
 msgid "Specify a person, Company or Organisation for this transaction."
@@ -6503,31 +6509,31 @@ msgstr ""
 
 #: usertransactionpanel.cpp:299
 msgid "Account Selection"
-msgstr ""
+msgstr "Kontoauswahl"
 
 #: util.cpp:113
 msgid "Encrypted database password"
-msgstr ""
+msgstr "Datenbankkennwort eingeben"
 
 #: util.cpp:115
 msgid "Enter password for database file"
-msgstr ""
+msgstr "Passwort für Datenbankdatei eingeben"
 
 #: util.cpp:122
 msgid "Re-enter password for database file"
-msgstr ""
+msgstr "Passwort für Datenbankdatei erneut eingeben"
 
 #: util.cpp:126
 msgid "Confirm password failed."
-msgstr ""
+msgstr "Das Kennwort konnte nicht bestätigt werden."
 
 #: util.cpp:128
 msgid "Password must not be empty."
-msgstr ""
+msgstr "Passwort darf nicht leer sein."
 
 #: util.cpp:535
 msgid "Wrong base currency to USD rate provided"
-msgstr ""
+msgstr "Falsche Basiswährung zum angegebenen USD-Kurs"
 
 #: util.cpp:803
 msgid "UTF-8"
@@ -6713,7 +6719,7 @@ msgstr "Falsches WebApp Konto"
 
 #: webapp.cpp:551 webapp.cpp:584
 msgid "Unable to download attachments from webapp."
-msgstr ""
+msgstr "Konnte Anhänge von der Webapp nicht herunterladen."
 
 #: webapp.cpp:552
 msgid "Attachments folder not set or unavailable"
