@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-02-05 11:56+0300\n"
-"PO-Revision-Date: 2019-02-06 14:08\n"
+"PO-Revision-Date: 2019-02-06 14:42\n"
 "Last-Translator: vomikan <nikolay.akimov@gmail.com>\n"
 "Language-Team: Portuguese, Brazilian\n"
 "MIME-Version: 1.0\n"
@@ -4093,23 +4093,23 @@ msgstr "Orçamentos: Como &Exercícios Financeiros"
 
 #: mmframe.cpp:1509
 msgid "Display Budgets in Financial Year Format"
-msgstr "Exibir Orçamentos no formato de Exercício Financeiro"
+msgstr "Exibir Orçamentos no Formato de Exercício Financeiro"
 
 #: mmframe.cpp:1511
 msgid "Budgets: &Include Transfers in Totals"
-msgstr "Orçamentos: &Incluir as transferências nos totais"
+msgstr "Orçamentos: &Incluir as Transferências nos Totais"
 
 #: mmframe.cpp:1511
 msgid "Include the transfer transactions in the Budget Totals"
-msgstr "Incluir as transferências no Total do Orçamento"
+msgstr "Incluir as Transferências no Total do Orçamento"
 
 #: mmframe.cpp:1513
 msgid "Budget Setup: &Without Summaries"
-msgstr "Orçamento: &Sem Resumo"
+msgstr "Configuração de Orçamento: &Sem Resumo"
 
 #: mmframe.cpp:1513
 msgid "Display the Budget Setup without category summaries"
-msgstr "Exibir as Definições de Orçamento sem resumo das categorias"
+msgstr "Exibir as Configurações de Orçamento sem resumo das categorias"
 
 #: mmframe.cpp:1515
 msgid "Budget Category Report: with &Summaries"
@@ -4121,23 +4121,23 @@ msgstr "Incluir os resumos de categorias no Resumo da Categoria do Orçamento"
 
 #: mmframe.cpp:1517
 msgid "Ignore F&uture Transactions"
-msgstr "Ignorar transações &Futuras"
+msgstr "Ignorar Transações &Futuras"
 
 #: mmframe.cpp:1517
 msgid "Ignore Future transactions"
-msgstr "Ignorar transações futuras"
+msgstr "Ignorar Transações Futuras"
 
 #: mmframe.cpp:1532 mmframe.cpp:1855
 msgid "Toggle Fullscreen\tF11"
-msgstr "Alternar tela cheia\tF11"
+msgstr "Alternar Tela Cheia\tF11"
 
 #: mmframe.cpp:1532 mmframe.cpp:1855
 msgid "Toggle Fullscreen"
-msgstr "Alternar para o modo tela cheia"
+msgstr "Alternar para Tela Cheia"
 
 #: mmframe.cpp:1540
 msgid "Switch Application Language"
-msgstr "Alternar o idioma do aplicativo"
+msgstr "Alternar Idioma do Aplicativo"
 
 #: mmframe.cpp:1541
 msgid "Change language used for MMEX GUI"
@@ -4149,11 +4149,11 @@ msgstr "padrão do sistema "
 
 #: mmframe.cpp:1574
 msgid "Account &List"
-msgstr "&Página Inicial"
+msgstr "&Lista de Contas"
 
 #: mmframe.cpp:1574
 msgid "Show Account List"
-msgstr "Ir para Página Inicial"
+msgstr "Ir para Lista de Contas"
 
 #: mmframe.cpp:1586
 msgid "Change the account type of an account."
@@ -4165,7 +4165,7 @@ msgstr "Excluir Conta do arquivo de dados"
 
 #: mmframe.cpp:1604
 msgid "Organize &Categories..."
-msgstr "Lista de &Categorias..."
+msgstr "Organizar &Categorias..."
 
 #: mmframe.cpp:1609
 msgid "Organize &Payees..."
@@ -4177,11 +4177,11 @@ msgstr "Organizar Beneficiários"
 
 #: mmframe.cpp:1614
 msgid "Organize Currency..."
-msgstr "Lista de Moedas..."
+msgstr "Organizar Moedas..."
 
 #: mmframe.cpp:1614 mmframe.cpp:1831
 msgid "Organize Currency"
-msgstr "Moedas"
+msgstr "Organizar Moedas"
 
 #: mmframe.cpp:1619
 msgid "&Categories..."
@@ -4205,7 +4205,7 @@ msgstr "Realocar Categorias && Beneficiários"
 
 #: mmframe.cpp:1639
 msgid "&Budget Setup"
-msgstr "&Elaborar Orçamento"
+msgstr "&Configurar Orçamento"
 
 #: mmframe.cpp:1644
 msgid "&Recurring Transactions"
@@ -4221,7 +4221,7 @@ msgstr "&Bens"
 
 #: mmframe.cpp:1654
 msgid "&Transaction Report Filter..."
-msgstr "&Relatório de Transações com filtro..."
+msgstr "&Relatório de Transações com Filtro..."
 
 #: mmframe.cpp:1654 mmframe.cpp:1835
 msgid "Transaction Report Filter"
@@ -4245,11 +4245,11 @@ msgstr "&Opções..."
 
 #: mmframe.cpp:1673 mmframe.cpp:1837
 msgid "Show the Options Dialog"
-msgstr "Mostrar menu de Opções"
+msgstr "Mostrar Tela de Opções"
 
 #: mmframe.cpp:1681
 msgid "Set &Password"
-msgstr "Configurar &senha"
+msgstr "Configurar &Senha"
 
 #: mmframe.cpp:1682
 msgid "Encrypt database or change password for database file"
@@ -4265,7 +4265,7 @@ msgstr "Remover senha e descriptografar arquivo de banco de dados"
 
 #: mmframe.cpp:1689
 msgid "Optimize &Database"
-msgstr "Otimizar banco de &dados"
+msgstr "Otimizar Banco de &Dados"
 
 #: mmframe.cpp:1690
 msgid "Optimize database space and performance"
@@ -4293,7 +4293,7 @@ msgstr "&Ajuda\tF1"
 
 #: mmframe.cpp:1708
 msgid "Read the User Manual"
-msgstr "Leia o manual do usuário"
+msgstr "Ler Manual do Usuário"
 
 #: mmframe.cpp:1713
 msgid "Website"
@@ -4437,7 +4437,7 @@ msgstr "&Sobre..."
 
 #: mmframe.cpp:1796 mmframe.cpp:1841
 msgid "Show about dialog"
-msgstr "Mostrar página Sobre..."
+msgstr "Mostrar tela de Sobre..."
 
 #: mmframe.cpp:1801
 msgid "&File"
@@ -4465,15 +4465,15 @@ msgstr "Novo(a)"
 
 #: mmframe.cpp:1827
 msgid "Show Home Page"
-msgstr "Mostrar página inicial"
+msgstr "Mostrar Página Inicial"
 
 #: mmframe.cpp:1829
 msgid "Show Organize Categories Dialog"
-msgstr "Mostrar Lista de Categorias"
+msgstr "Mostra Lista de Categorias"
 
 #: mmframe.cpp:1830
 msgid "Show Organize Payees Dialog"
-msgstr "Mostrar Lista de Beneficiários"
+msgstr "Mostra Lista de Beneficiários"
 
 #: mmframe.cpp:1831
 msgid "Show Organize Currency Dialog"
@@ -4481,7 +4481,7 @@ msgstr "Mostrar Lista de Moedas"
 
 #: mmframe.cpp:1842
 msgid "Show the Help file"
-msgstr "Mostrar o arquivo de ajuda"
+msgstr "Mostra o arquivo de Ajuda"
 
 #: mmframe.cpp:1847
 msgid "Register/View Release &Notifications"
@@ -4489,7 +4489,7 @@ msgstr "Registrar/Visualizar Alterações &Notificações"
 
 #: mmframe.cpp:1852
 msgid "News"
-msgstr "Noticías"
+msgstr "Notícias"
 
 #: mmframe.cpp:1897
 msgid "Cannot locate database file to open."
