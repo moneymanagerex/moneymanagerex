@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-02-05 11:56+0300\n"
-"PO-Revision-Date: 2019-02-05 09:27\n"
+"PO-Revision-Date: 2019-02-06 10:27\n"
 "Last-Translator: vomikan <nikolay.akimov@gmail.com>\n"
 "Language-Team: Portuguese, Brazilian\n"
 "MIME-Version: 1.0\n"
@@ -1524,7 +1524,7 @@ msgstr "Editar o nome de uma categoria existente"
 
 #: categdialog.cpp:235 categdialog.cpp:440
 msgid "Select an unused category to delete."
-msgstr ""
+msgstr "Selecione uma categoria não utilizada para excluir."
 
 #: categdialog.cpp:240 maincurrencydialog.cpp:219
 msgid "&Select"
@@ -1598,15 +1598,15 @@ msgstr "Lista de Categorias: Excluir Erro"
 
 #: categdialog.cpp:463
 msgid "This category cannot be deleted because it's used by transactions."
-msgstr ""
+msgstr "Esta categoria não pode ser apagada porque está sendo utilizada por alguma transação."
 
 #: categdialog.cpp:470
 msgid "Delete an existing category."
-msgstr ""
+msgstr "Excluir uma categoria existente."
 
 #: categdialog.cpp:475
 msgid "Subcategories must be deleted before."
-msgstr ""
+msgstr "As subcategorias devem ser excluídas primeiro."
 
 #: categdialog.cpp:491
 #, c-format
@@ -1668,11 +1668,11 @@ msgstr "Versão do Banco de Dados:"
 
 #: constants.cpp:90 mmframe.cpp:2571
 msgid "Git commit: "
-msgstr ""
+msgstr "Git commit: "
 
 #: constants.cpp:94 mmframe.cpp:2572
 msgid "Git branch: "
-msgstr ""
+msgstr "Git branch: "
 
 #: constants.cpp:97 mmframe.cpp:2573
 msgid "MMEX is using the following support products:"
@@ -2694,7 +2694,7 @@ msgstr "QIF"
 
 #: import_export/qif_export.cpp:111
 msgid "CSV"
-msgstr ""
+msgstr "CSV"
 
 #: import_export/qif_export.cpp:129 mmframe.cpp:2833 mmframe.cpp:2837
 #: mmframe.cpp:2856 mmframe.cpp:2860
@@ -2842,7 +2842,7 @@ msgstr "Pressione o botão OK para continuar"
 #: import_export/qif_import_gui.cpp:612 import_export/qif_import_gui.cpp:641
 #: import_export/qif_import_gui.cpp:658
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: import_export/qif_import_gui.cpp:614 import_export/qif_import_gui.cpp:617
 msgid "Warning"
@@ -3252,7 +3252,7 @@ msgstr "Última taxa"
 
 #: maincurrencydialog.cpp:73
 msgid "Hist."
-msgstr ""
+msgstr "Hist."
 
 #: maincurrencydialog.cpp:77 maincurrencydialog.cpp:348
 #: maincurrencydialog.cpp:633 maincurrencydialog.cpp:739
