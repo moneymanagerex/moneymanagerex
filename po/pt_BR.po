@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-02-05 11:56+0300\n"
-"PO-Revision-Date: 2019-02-06 12:27\n"
+"PO-Revision-Date: 2019-02-06 13:05\n"
 "Last-Translator: vomikan <nikolay.akimov@gmail.com>\n"
 "Language-Team: Portuguese, Brazilian\n"
 "MIME-Version: 1.0\n"
@@ -2368,7 +2368,7 @@ msgstr "Pagamento"
 #: mmcheckingpanel.cpp:1105 model/Model_Billsdeposits.cpp:32
 #: model/Model_Checking.cpp:31 splitdetailsdialog.cpp:123
 msgid "Deposit"
-msgstr "Recebimento"
+msgstr "Depósito"
 
 #: filtertransdialog.cpp:294
 msgid "Transfer To"
