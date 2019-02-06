@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-02-05 11:56+0300\n"
-"PO-Revision-Date: 2019-02-06 10:27\n"
+"PO-Revision-Date: 2019-02-06 11:24\n"
 "Last-Translator: vomikan <nikolay.akimov@gmail.com>\n"
 "Language-Team: Portuguese, Brazilian\n"
 "MIME-Version: 1.0\n"
@@ -227,11 +227,11 @@ msgstr "Insira a endereço do site da instituição financeira."
 
 #: accountdialog.cpp:390
 msgid "Enter any contact information for the financial institution."
-msgstr "Insira qualquer contato para a instituição financeira."
+msgstr "Insira qualquer informação de contato para a instituição financeira."
 
 #: accountdialog.cpp:391
 msgid "Enter any login/access information for the financial institution. This is not secure as anyone with access to the mmb file can access it."
-msgstr "Insira o login de usuário para acesso. Isso não é seguro já que qualquer um com acesso ao arquivo .mmb poderá ver."
+msgstr "Insira o login de usuário para acesso para a instituição financeira. Isso não é seguro já que qualquer um com acesso ao arquivo mmb poderá ver."
 
 #: accountdialog.cpp:393
 msgid "Enable or disable the transaction Lock"
@@ -395,7 +395,7 @@ msgstr "% Taxa"
 
 #: assetdialog.cpp:241
 msgid "Enter the rate at which the asset changes its value in percentage per year"
-msgstr "Introduza a taxa à qual o valor do ativo se altera em % por ano"
+msgstr "Introduza a taxa à qual o valor do ativo se altera em porcentagem por ano"
 
 #: assetdialog.cpp:253
 msgid "Organize attachments of this asset"
@@ -403,7 +403,7 @@ msgstr "Organize documentos deste ativo"
 
 #: assetdialog.cpp:256
 msgid "Enter notes associated with this asset"
-msgstr "Introduza qualquer comentário relacionado a este bem"
+msgstr "Introduza qualquer observação relacionada a este bem"
 
 #: assetdialog.cpp:262
 msgid "New Transaction Details"
