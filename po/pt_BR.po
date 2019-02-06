@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-02-05 11:56+0300\n"
-"PO-Revision-Date: 2019-02-06 14:42\n"
+"PO-Revision-Date: 2019-02-06 15:08\n"
 "Last-Translator: vomikan <nikolay.akimov@gmail.com>\n"
 "Language-Team: Portuguese, Brazilian\n"
 "MIME-Version: 1.0\n"
@@ -4541,7 +4541,7 @@ msgstr "Por favor, confirme descriptografia de banco de dados e remoção de sen
 
 #: mmframe.cpp:2095 mmframe.cpp:2102
 msgid "Encryption Password Removal"
-msgstr "Remoção de senha de criptografia"
+msgstr "Remoção de Senha de Criptografia"
 
 #: mmframe.cpp:2102
 msgid "Password removed and database decrypted."
@@ -4608,7 +4608,7 @@ msgstr "Contas de ativos retêm transações de ativos\n\n"
 
 #: mmframe.cpp:2336
 msgid "Asset Account Creation"
-msgstr "Criação de conta de ativo"
+msgstr "Criação de Conta de Ativo"
 
 #: mmframe.cpp:2342
 msgid "Share Accounts hold Share transactions\n\n"
@@ -4630,7 +4630,7 @@ msgstr "Criação de Conta Compartilhada"
 
 #: mmframe.cpp:2505
 msgid "MMEX Options have been updated."
-msgstr "As Opçoes do MMEX foram atualizadas."
+msgstr "As Opções do MMEX foram atualizadas."
 
 #: mmframe.cpp:2506 optiondialog.cpp:55 optiondialog.cpp:190
 msgid "MMEX Options"
@@ -4736,11 +4736,11 @@ msgstr "Exceção recebida"
 
 #: mmframereport.cpp:113
 msgid "Transaction Report"
-msgstr "Filtrar Relatório de Transação"
+msgstr "Relatório de Transação"
 
 #: mmhelppanel.cpp:67
 msgid "&Back"
-msgstr "&Retornar"
+msgstr "&Voltar"
 
 #: mmhelppanel.cpp:68
 msgid "&Forward"
@@ -4770,7 +4770,7 @@ msgstr "Total:"
 #: mmhomepagepanel.cpp:197
 #, c-format
 msgid "Top Withdrawals: %s"
-msgstr "Maiores Gastos: %s"
+msgstr "Maiores Retiradas: %s"
 
 #: mmhomepagepanel.cpp:223 option.cpp:119 option.cpp:122 option.cpp:129
 msgid "Summary"
@@ -4782,7 +4782,7 @@ msgstr "Conta / Beneficiário"
 
 #: mmhomepagepanel.cpp:615
 msgid "Upcoming Transactions"
-msgstr "Transações Próximas"
+msgstr "Próximas Transações"
 
 #: mmhomepagepanel.cpp:797
 #, c-format
@@ -4805,11 +4805,11 @@ msgstr "Receitas/Despesas"
 
 #: mmhomepagepanel.cpp:860
 msgid "Transaction Statistics"
-msgstr "Estatística das Transações"
+msgstr "Estatísticas das Transações"
 
 #: mmhomepagepanel.cpp:864
 msgid "Follow Up On Transactions: "
-msgstr "Acompanhar nas Transações: "
+msgstr "Acompanhamento das Transações: "
 
 #: mmhomepagepanel.cpp:868
 msgid "Total Transactions: "
@@ -4895,7 +4895,7 @@ msgstr "Conta Corrente"
 
 #: model/Model_Account.cpp:34
 msgid "Credit Card"
-msgstr "Cartão de crédito"
+msgstr "Cartão de Crédito"
 
 #: model/Model_Account.cpp:35
 msgid "Loan"
@@ -4907,7 +4907,7 @@ msgstr "Depósito"
 
 #: model/Model_Account.cpp:37 model/Model_Currency.cpp:30
 msgid "Crypto"
-msgstr "Cripto"
+msgstr "Criptomoeda"
 
 #: model/Model_Account.cpp:38
 msgid "Investment"
@@ -4923,7 +4923,7 @@ msgstr "Ações"
 
 #: model/Model_Account.cpp:134
 msgid "Account Error"
-msgstr "Erro na conta"
+msgstr "Erro na Conta"
 
 #: model/Model_Asset.cpp:25
 msgid "Appreciates"
@@ -4947,7 +4947,7 @@ msgstr "Obras de Arte"
 
 #: model/Model_Asset.cpp:35
 msgid "Jewellery"
-msgstr "Jóia"
+msgstr "Jóias"
 
 #: model/Model_Asset.cpp:37
 msgid "Other"
