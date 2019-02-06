@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-02-05 11:56+0300\n"
-"PO-Revision-Date: 2019-02-06 11:24\n"
+"PO-Revision-Date: 2019-02-06 11:54\n"
 "Last-Translator: vomikan <nikolay.akimov@gmail.com>\n"
 "Language-Team: Portuguese, Brazilian\n"
 "MIME-Version: 1.0\n"
@@ -551,7 +551,7 @@ msgstr "Excluir Bem"
 #: assetspanel.cpp:536 billsdepositspanel.cpp:302 mmcheckingpanel.cpp:550
 #: stockspanel.cpp:605
 msgid "Open attachments"
-msgstr "Abrir documentos"
+msgstr "Abrir anexos"
 
 #: assetspanel.cpp:543 assetspanel.cpp:544 mmcheckingpanel.cpp:558
 msgid "Search"
@@ -603,15 +603,15 @@ msgstr "Pasta de documentos não definida."
 
 #: attachmentdialog.cpp:65
 msgid "Please set it in Tools -> Options -> Attachments"
-msgstr "Por favor, configure isto em Ferramentas -> Opções -> Documentos"
+msgstr "Por favor, configure isto em Ferramentas -> Opções -> Anexos"
 
 #: attachmentdialog.cpp:66
 msgid "Attachment folder not defined"
-msgstr "Pasta de documentos não definida"
+msgstr "Pasta de anexos não definida"
 
 #: attachmentdialog.cpp:70
 msgid "Unable to find attachments folder:"
-msgstr "Não foi possível encontrar a pasta de documentos:"
+msgstr "Não foi possível encontrar a pasta de anexos:"
 
 #: attachmentdialog.cpp:73
 msgid "Please verify that above path is correct"
@@ -619,17 +619,17 @@ msgstr "Por favor, certifique-se que o caminho acima está correto"
 
 #: attachmentdialog.cpp:74
 msgid "Attachments folder not found"
-msgstr "Pasta de documentos não encontrada"
+msgstr "Pasta de anexos não encontrada"
 
 #: attachmentdialog.cpp:85
 #, c-format
 msgid "Organize Attachments | %s %i"
-msgstr "Organizar Documentos | %s %i"
+msgstr "Organizar Anexos | %s %i"
 
 #: attachmentdialog.cpp:87
 #, c-format
 msgid "Organize Attachments | New %s"
-msgstr "Organizar Documentos | Novo %s"
+msgstr "Organizar Anexos | Novo %s"
 
 #: attachmentdialog.cpp:125 customfieldlistdialog.cpp:100 payeedialog.cpp:117
 msgid "Other tools"
@@ -637,7 +637,7 @@ msgstr "Outras Ferramentas"
 
 #: attachmentdialog.cpp:164
 msgid "Import attachment:"
-msgstr "Importar documento:"
+msgstr "Importar anexo:"
 
 #: attachmentdialog.cpp:166 import_export/univcsvdialog.cpp:1371
 msgid "All Files"
@@ -645,11 +645,11 @@ msgstr "Todos os Arquivos"
 
 #: attachmentdialog.cpp:174
 msgid "Enter a description for the new attachment:"
-msgstr "Insira uma descrição para o novo documento:"
+msgstr "Insira uma descrição para o novo anexo:"
 
 #: attachmentdialog.cpp:175
 msgid "Organize Attachments: Add Attachment"
-msgstr "Organizar Documentos: Adicionar Documento"
+msgstr "Organizar Anexos: Adicionar Anexo"
 
 #: attachmentdialog.cpp:215
 msgid "Enter a new description for the attachment:"
@@ -657,15 +657,15 @@ msgstr "Digite uma nova descrição para o anexo:"
 
 #: attachmentdialog.cpp:216
 msgid "Organize Attachments: Edit Attachment"
-msgstr "Organizar Documentos: Editar Documento"
+msgstr "Organizar Anexos: Editar Anexo"
 
 #: attachmentdialog.cpp:239
 msgid "Do you really want to delete this attachment?"
-msgstr "Tem certeza de que deseja excluir este documento?"
+msgstr "Tem certeza de que deseja excluir este anexo?"
 
 #: attachmentdialog.cpp:240
 msgid "Confirm Attachment Deletion"
-msgstr "Confirmar a Exclusão do Documento"
+msgstr "Confirmar a Exclusão do Anexo"
 
 #: attachmentdialog.cpp:282 categdialog.cpp:225 customfieldlistdialog.cpp:262
 #: import_export/univcsvdialog.cpp:215 maincurrencydialog.cpp:205
@@ -685,7 +685,7 @@ msgstr "&Remover"
 
 #: attachmentdialog.cpp:338
 msgid "Att."
-msgstr "Obs."
+msgstr "Anex."
 
 #: attachmentdialog.cpp:345
 msgid "This directory and its files are automatically managed by Money Manager EX software."
@@ -701,7 +701,7 @@ msgstr "O arquivo de destino já existe:"
 
 #: attachmentdialog.cpp:384
 msgid "File not found in attachments. Please delete or rename it."
-msgstr "Arquivo não encontrado nos documentos. Por favor, apague-o ou renomeie-o."
+msgstr "Arquivo não encontrado nos anexos. Por favor, apague-o ou renomeie-o."
 
 #: attachmentdialog.cpp:385 attachmentdialog.cpp:393
 msgid "Destination file already exist"
@@ -709,23 +709,23 @@ msgstr "O arquivo de destino já existe"
 
 #: attachmentdialog.cpp:392
 msgid "File already found in attachments"
-msgstr "Arquivo já encontrado em 'documentos'"
+msgstr "Arquivo já encontrado em anexos"
 
 #: attachmentdialog.cpp:435
 msgid "Attachment not found:"
-msgstr "Documento não encontrado:"
+msgstr "Anexo não encontrado:"
 
 #: attachmentdialog.cpp:438
 msgid "Do you want to continue and delete attachment on database?"
-msgstr "Tem certeza mesmo de que deseja excluir o documento do arquivo de dados?"
+msgstr "Tem certeza de que deseja excluir o anexo do banco de dados?"
 
 #: attachmentdialog.cpp:439
 msgid "Delete attachment failed"
-msgstr "Falha ao excluir documento"
+msgstr "Falha ao excluir anexo"
 
 #: attachmentdialog.cpp:452
 msgid "Unable to open file:"
-msgstr "Impossivel abrir o arquivo:"
+msgstr "Impossível abrir o arquivo:"
 
 #: attachmentdialog.cpp:455
 msgid "Please verify that file exists and user has rights to read it."
@@ -733,7 +733,7 @@ msgstr "Por favor, certifique-se que o arquivo existe e o usuário tem permissõ
 
 #: attachmentdialog.cpp:456
 msgid "Open attachment failed"
-msgstr "Falha ao abrir documento"
+msgstr "Falha ao abrir anexo"
 
 #: billsdepositsdialog.cpp:50 billsdepositspanel.cpp:45
 #: filtertransdialog.cpp:49 model/Model_Asset.cpp:24
@@ -805,7 +805,7 @@ msgstr "Todo dia (x)"
 
 #: billsdepositsdialog.cpp:64
 msgid "Every (x) Months"
-msgstr "Todo mês (x)"
+msgstr "A Cada (x) mês(es)"
 
 #: billsdepositsdialog.cpp:65 billsdepositspanel.cpp:60
 msgid "Monthly (last day)"
@@ -974,7 +974,7 @@ msgstr "Selecione o Favorecido"
 
 #: billsdepositsdialog.cpp:611 transdialog.cpp:508
 msgid "Split"
-msgstr "Separar em categorias"
+msgstr "Separar categorias"
 
 #: billsdepositsdialog.cpp:614 transdialog.cpp:1227
 msgid "Use split Categories"
@@ -1030,7 +1030,7 @@ msgstr "Escolha a Conta Bancária ou Conta Depósito"
 
 #: billsdepositsdialog.cpp:718 billsdepositsdialog.cpp:768
 msgid "Account name"
-msgstr "Conta"
+msgstr "Nome da Conta"
 
 #: billsdepositsdialog.cpp:831 billsdepositsdialog.cpp:871 transdialog.cpp:292
 #: transdialog.cpp:354
@@ -1051,7 +1051,7 @@ msgstr "Especifique o montante da transferência na Conta de Origem"
 
 #: billsdepositsdialog.cpp:1298
 msgid "Activates"
-msgstr "Ativa"
+msgstr "Ativar"
 
 #: billsdepositsdialog.cpp:1300
 msgid "Period: Days"
@@ -1138,7 +1138,7 @@ msgstr "Especificar para qual conta a transferência está indo"
 
 #: billsdepositsdialog.h:126 transdialog.cpp:1214 usertransactionpanel.cpp:153
 msgid "Specify the amount for this transaction"
-msgstr "Especifique o montante desta transação"
+msgstr "Especifique o valor desta transação"
 
 #: billsdepositsdialog.h:127
 msgid "Specify the amount to be transferred"
@@ -1157,12 +1157,12 @@ msgstr "Em %s Meses"
 #: billsdepositspanel.cpp:58
 #, c-format
 msgid "Every %s Days"
-msgstr "Todos os %s Dias"
+msgstr "A Cada %s Dias"
 
 #: billsdepositspanel.cpp:59
 #, c-format
 msgid "Every %s Months"
-msgstr "Todos os %s Meses"
+msgstr "A Cada %s Meses"
 
 #: billsdepositspanel.cpp:110 budgetingpanel.cpp:320
 #: reports/budgetcategorysummary.cpp:185 reports/myusage.cpp:210
@@ -1291,7 +1291,7 @@ msgstr "Confirmar a exclusão da Transação"
 
 #: budgetentrydialog.cpp:49
 msgid "Budget Year Entry"
-msgstr "Entrada Ano Orçamentário"
+msgstr "Registro do Ano Orçamentário"
 
 #: budgetentrydialog.cpp:107
 msgid "Category: "
@@ -1321,23 +1321,23 @@ msgstr "Gasto"
 #: reports/categexp.cpp:138 reports/incexpenses.cpp:107
 #: reports/incexpenses.cpp:240
 msgid "Income"
-msgstr "Recebimento"
+msgstr "Receita"
 
 #: budgetentrydialog.cpp:133
 msgid "Specify whether this category is an income or an expense category"
-msgstr "Informe se esta categoria é de Gasto ou Recebimento"
+msgstr "Informe se esta categoria é de receita ou despesa"
 
 #: budgetentrydialog.cpp:135
 msgid "Frequency:"
-msgstr "Periodicidade:"
+msgstr "Frequência:"
 
 #: budgetentrydialog.cpp:140
 msgid "Specify the frequency of the expense or deposit"
-msgstr "Informe a periodicidade do despesa ou receita"
+msgstr "Informe a frequência do despesa ou receita"
 
 #: budgetentrydialog.cpp:143
 msgid "Amount:"
-msgstr "Montante:"
+msgstr "Valor:"
 
 #: budgetentrydialog.cpp:148
 msgid "Enter the amount budgeted for this category."
