@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-02-05 11:56+0300\n"
-"PO-Revision-Date: 2019-02-06 16:07\n"
+"PO-Revision-Date: 2019-02-06 16:36\n"
 "Last-Translator: vomikan <nikolay.akimov@gmail.com>\n"
 "Language-Team: Portuguese, Brazilian\n"
 "MIME-Version: 1.0\n"
@@ -6029,7 +6029,7 @@ msgstr "Detalhamento das Categorias desta Transação"
 
 #: splittransactionsdialog.cpp:74
 msgid "Split Transaction Dialog"
-msgstr "Separação em várias Categorias"
+msgstr "Separação em Várias Categorias"
 
 #: splittransactionsdialog.cpp:127
 msgid "Split Category Details"
@@ -6061,19 +6061,19 @@ msgstr "Inválido nesta exibição.\n"
 
 #: stockdialog.cpp:195
 msgid "Name of the company issuing Shares"
-msgstr "Nome da empresa emissora de ações"
+msgstr "Nome da empresa emissora de Ações"
 
 #: stockdialog.cpp:199
 msgid "Enter the associated Share Account name\n"
 "An account can be created on Save"
-msgstr "Insira o nome da conta de ação associada\n"
-"Uma conta pode ser criada em Salvar"
+msgstr "Insira o nome da Conta de Ação associada\n"
+"Uma conta pode ser criada ao Salvar"
 
 #: stockdialog.cpp:209
 msgid "Enter the Company's stock exchange symbol.\n"
 "(Optional) Include exchange. eg: IBM.BE"
 msgstr "Digite o símbolo da bolsa de valores da empresa.\n"
-"(Opcional) Inclua a troca. exemplo: IBM.BE"
+"(Opcional) Inclua o Tipo. exemplo: PETR4.PN"
 
 #: stockdialog.cpp:212 stockspanel.cpp:96
 msgid "*Date"
@@ -6091,7 +6091,7 @@ msgstr "Especifique a data dessa compra inicial de ações"
 
 #: stockdialog.cpp:223
 msgid "*Share Number"
-msgstr "*Número da Ação"
+msgstr "*Número de Ações"
 
 #: stockdialog.cpp:224
 msgid "Total number of shares.\n"
@@ -6113,7 +6113,7 @@ msgstr "Digite o preço inicial por ação."
 
 #: stockdialog.cpp:245
 msgid "*Commission"
-msgstr "*Custo"
+msgstr "*Comissões"
 
 #: stockdialog.cpp:246
 msgid "Remainder of funds from share investment.\n"
@@ -6147,7 +6147,7 @@ msgstr "Opções do histórico de Ações"
 
 #: stockdialog.cpp:305
 msgid "Stock Price History"
-msgstr "Histórico de preços de ações"
+msgstr "Histórico de preço das ações"
 
 #: stockdialog.cpp:317 stockdialog.cpp:642
 msgid "Price"
@@ -6171,7 +6171,7 @@ msgstr "Adicionar preço da ação ao histórico"
 
 #: stockdialog.cpp:417
 msgid "Held At"
-msgstr "Mantido no(a)"
+msgstr "Realizado em"
 
 #: stockdialog.cpp:489
 msgid "A Share Account as the Company name has not been found.\n\n"
@@ -6237,11 +6237,11 @@ msgstr "Máx"
 
 #: stockdialog.cpp:695
 msgid "Specify type frequency of stock history"
-msgstr "Especifique a frequência do tipo de histórico de estoque"
+msgstr "Especifique a frequência do tipo de histórico de ação"
 
 #: stockdialog.cpp:696 stockdialog.cpp:720
 msgid "Stock History Update"
-msgstr "Atualização do histórico de estoque"
+msgstr "Atualização do Histórico de Ações"
 
 #: stockdialog.cpp:709
 msgid "1 Day"
@@ -6253,15 +6253,15 @@ msgstr "1 Semana"
 
 #: stockdialog.cpp:719
 msgid "Specify interval of stock history"
-msgstr "Especifique intervalo do histórico de estoque"
+msgstr "Especifique intervalo do histórico de ações"
 
 #: stockdialog.cpp:732
 msgid "Stock history not found!"
-msgstr "Histórico de estoque não encontrado!"
+msgstr "Histórico de ações não encontrado!"
 
 #: stockdialog.cpp:733
 msgid "Stock History Error"
-msgstr "Erro do histórico de Estoque"
+msgstr "Erro do Histórico de Ações"
 
 #: stockspanel.cpp:36
 msgid "Using MMEX it is possible to track stocks/mutual funds investments."
@@ -6293,7 +6293,7 @@ msgstr "Cotação Atual"
 
 #: stockspanel.cpp:104
 msgid "Curr. Total Value"
-msgstr "Valor total atual"
+msgstr "Valor Total Atual"
 
 #: stockspanel.cpp:144
 msgid "&New Stock Investment"
@@ -6325,7 +6325,7 @@ msgstr "Tem certeza de que deseja excluir este investimento?"
 
 #: stockspanel.cpp:270
 msgid "Confirm Stock Investment Deletion"
-msgstr "Confirmar a exclusão do Investimento"
+msgstr "Confirmar a Exclusão do Investimento"
 
 #: stockspanel.cpp:404
 #, c-format
@@ -6336,15 +6336,15 @@ msgstr "Lista de ações temporária:: %s\n\n"
 
 #: stockspanel.cpp:574
 msgid "Create a new Stock investment in this portfolio"
-msgstr "Criar um novo investimento em ações nessa carteira"
+msgstr "Criar um novo investimento em Ações nessa carteira"
 
 #: stockspanel.cpp:578
 msgid "Add or remove shares to the selected Stock"
-msgstr "Adicionar ou remover ações ao estoque selecionado"
+msgstr "Adicionar ou remover ações ao Investimento selecionado"
 
 #: stockspanel.cpp:583
 msgid "View selected stock's share transactions"
-msgstr "Ver transações de ações do mercado de ações selecionado"
+msgstr "Ver transações de ações do investimento selecionado"
 
 #: stockspanel.cpp:588
 msgid "Edit selected stock investment and readjust current prices"
@@ -6360,7 +6360,7 @@ msgstr "&Mover"
 
 #: stockspanel.cpp:598
 msgid "Move the selected Stock to another portfolio"
-msgstr "Mover o estoque selecionado para outro portfólio"
+msgstr "Mover o Investimento selecionado para outro portfólio"
 
 #: stockspanel.cpp:611
 msgid "Refresh"
@@ -6424,7 +6424,7 @@ msgstr "Símbolo: %s"
 
 #: transactionsupdatedialog.cpp:72
 msgid "Multi Transactions Update"
-msgstr "Atualização de múltiplas transações"
+msgstr "Atualização de Múltiplas Transações"
 
 #: transactionsupdatedialog.cpp:186
 msgid "Append"
@@ -6436,7 +6436,7 @@ msgstr "Tipo inválido"
 
 #: transdialog.cpp:170
 msgid "Duplicate Transaction"
-msgstr "Transacção Duplicada"
+msgstr "Transação Duplicada"
 
 #: transdialog.cpp:171
 msgid "Edit Transaction"
@@ -6444,11 +6444,11 @@ msgstr "Editar Transação"
 
 #: transdialog.cpp:530
 msgid "Populate Transaction #"
-msgstr "Definir um número aleatoreamente"
+msgstr "Preencher Transação #"
 
 #: transdialog.cpp:552 usertransactionpanel.cpp:217
 msgid "Organize attachments of this transaction"
-msgstr "Organizar documentos desta transação"
+msgstr "Organizar anexos desta transação"
 
 #: transdialog.cpp:633
 #, c-format
