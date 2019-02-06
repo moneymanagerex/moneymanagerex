@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-02-05 11:56+0300\n"
-"PO-Revision-Date: 2019-02-06 15:08\n"
+"PO-Revision-Date: 2019-02-06 15:35\n"
 "Last-Translator: vomikan <nikolay.akimov@gmail.com>\n"
 "Language-Team: Portuguese, Brazilian\n"
 "MIME-Version: 1.0\n"
@@ -4959,11 +4959,11 @@ msgstr "Transação"
 
 #: model/Model_Attachment.cpp:25
 msgid "Stock"
-msgstr "Estoque"
+msgstr "Investimento"
 
 #: model/Model_Attachment.cpp:27
 msgid "Bank Account"
-msgstr "Conta bancária"
+msgstr "Conta Bancária"
 
 #: model/Model_Attachment.cpp:28
 msgid "Recurring Transaction"
@@ -4977,7 +4977,7 @@ msgstr "Uma transação recorrente excederá o limite da sua conta.\n\n"
 
 #: model/Model_Billsdeposits.cpp:315
 msgid "MMEX Recurring Transaction Check"
-msgstr "Verificação de transação recorrente MMEX"
+msgstr "Verificação de Transação Recorrente MMEX"
 
 #: model/Model_Budget.cpp:56
 msgid "Bi-Weekly"
@@ -4985,7 +4985,7 @@ msgstr "Quinzenal"
 
 #: model/Model_Currency.cpp:29
 msgid "Fiat"
-msgstr "Decreto"
+msgstr "Fiduciária"
 
 #: model/Model_CustomField.cpp:25
 msgid "String"
@@ -5017,7 +5017,7 @@ msgstr "MultiplaEscolha"
 
 #: model/Model_Payee.cpp:80
 msgid "Payee Error"
-msgstr "Erro do beneficiário"
+msgstr "Erro do Beneficiário"
 
 #: model/Model_Report.cpp:273
 #, c-format
@@ -5030,7 +5030,7 @@ msgstr "O script SQL:\n"
 
 #: option.cpp:114 reports/myusage.cpp:108
 msgid "MMEX Usage Frequency"
-msgstr "Frequência de uso do MMEX"
+msgstr "Frequência de Uso do MMEX"
 
 #: option.cpp:115 option.cpp:116
 msgid "Summary of Accounts"
@@ -5038,11 +5038,11 @@ msgstr "Resumo das Contas"
 
 #: option.cpp:117 reports/categexp.cpp:220
 msgid "Where the Money Goes"
-msgstr "Para Onde o Dinheiro Vai"
+msgstr "Para Onde Vai Dinheiro"
 
 #: option.cpp:118 reports/categexp.cpp:225
 msgid "Where the Money Comes From"
-msgstr "De onde o Dinheiro vem"
+msgstr "De Onde Vem o Dinheiro"
 
 #: option.cpp:121
 msgid "Payees"
@@ -5063,7 +5063,7 @@ msgstr "Desempenho"
 
 #: option.cpp:125
 msgid "Category Summary"
-msgstr "Resumo da categoria"
+msgstr "Resumo da Categoria"
 
 #: option.cpp:126 option.cpp:127 reports/cashflow.cpp:35
 msgid "Cash Flow"
@@ -5071,11 +5071,11 @@ msgstr "Fluxo de Caixa"
 
 #: option.cpp:128 option.cpp:129
 msgid "Stocks Report"
-msgstr "Relatório de estoques"
+msgstr "Relatório de Investimentos"
 
 #: option.cpp:130
 msgid "Forecast Report"
-msgstr "Relatório de previsão"
+msgstr "Relatório de Previsão"
 
 #: optiondialog.cpp:130
 msgid "General"
@@ -5087,7 +5087,7 @@ msgstr "Visualizar Opções"
 
 #: optiondialog.cpp:132 webappdialog.cpp:84
 msgid "Attachments"
-msgstr "Documentos"
+msgstr "Anexos"
 
 #: optiondialog.cpp:133
 msgid "Network"
@@ -5104,12 +5104,12 @@ msgstr "%s página foi salva."
 
 #: optionsettingsattachment.cpp:57
 msgid "Attachments Settings"
-msgstr "Configurações de Documentos"
+msgstr "Configurações de Anexos"
 
 #: optionsettingsattachment.cpp:64
 #, c-format
 msgid "Attachment archive folder for %s only:"
-msgstr "Pasta de armazenamento de Documentos para %s apenas:"
+msgstr "Pasta de armazenamento de Anexos para %s apenas:"
 
 #: optionsettingsattachment.cpp:68
 msgid "Every OS type (Win, Mac, Unix) has its attachment folder"
@@ -5173,15 +5173,15 @@ msgstr "Excluir arquivo após a importação"
 
 #: optionsettingsattachment.cpp:164
 msgid "Select to delete file after import in attachments archive"
-msgstr "Selecione para excluir o arquivo depois de importá-lo na pasta de documentos"
+msgstr "Selecione para excluir o arquivo depois de importá-lo na pasta de anexos"
 
 #: optionsettingsattachment.cpp:168
 msgid "When remove attachment, move file instead of delete"
-msgstr "Quando remover o documento, mover o arquivo ao invés de excluí-lo"
+msgstr "Quando remover o anexo, mover o arquivo ao invés de excluí-lo"
 
 #: optionsettingsattachment.cpp:170
 msgid "Select to don't delete file when attachment is removed, but instead move it to 'Deleted' subfolder"
-msgstr "Selecione para não exlcuir o arquivo quando o documento for removido, mas ao invés disso, movê-lo para a subpasta 'Excluídos'"
+msgstr "Selecione para não excluir o arquivo quando o anexo for removido, mas ao invés disso, movê-lo para a subpasta 'Excluídos'"
 
 #: optionsettingsattachment.cpp:179
 msgid "Application data directory"
@@ -5189,7 +5189,7 @@ msgstr "Diretório de dados do software"
 
 #: optionsettingsattachment.cpp:181
 msgid "Database file directory"
-msgstr "Diretório do Arquivo de Dados"
+msgstr "Diretório do Banco de Dados"
 
 #: optionsettingsattachment.cpp:183
 msgid "Dropbox folder"
@@ -5201,7 +5201,7 @@ msgstr "Usuário Definido"
 
 #: optionsettingsattachment.cpp:210
 msgid "Choose folder to set as attachments archive"
-msgstr "Escolha a pasta que servirá como armazenamento de documentos"
+msgstr "Escolha a pasta que servirá como armazenamento dos anexos"
 
 #: optionsettingsattachment.cpp:257
 msgid "Attachments path has been changed!"
@@ -5245,11 +5245,11 @@ msgstr "Selecionar Moeda"
 
 #: optionsettingsgeneral.cpp:93
 msgid "Sets the database default Currency using the 'Currency Dialog'"
-msgstr "Define a moeda padrão do banco de dados usando a \"Janela de moeda\""
+msgstr "Define a moeda padrão do banco de dados usando a \"Janela de Moeda\""
 
 #: optionsettingsgeneral.cpp:94
 msgid "Right click and select 'Set as Base Currency' in 'Currency Dialog'"
-msgstr "Clique com o botão direito e selecione \"Definir como moeda base\" na \"Janela de moeda\""
+msgstr "Clique com o botão direito e selecione \"Definir como Moeda Base\" na \"Janela de Moeda\""
 
 #: optionsettingsgeneral.cpp:110
 msgid "Specify the date format for display"
@@ -5289,7 +5289,7 @@ msgstr "Selecione se é para usar a data original da transação ou a data atual
 
 #: optionsettingsgeneral.cpp:159
 msgid "Use Transaction Sound"
-msgstr "Usar som ao registrar transações"
+msgstr "Usar Som ao Registrar Transações"
 
 #: optionsettingsgeneral.cpp:161
 msgid "Select whether to use sounds when entering transactions"
