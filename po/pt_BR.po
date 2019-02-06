@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-02-05 11:56+0300\n"
-"PO-Revision-Date: 2019-02-06 13:05\n"
+"PO-Revision-Date: 2019-02-06 13:35\n"
 "Last-Translator: vomikan <nikolay.akimov@gmail.com>\n"
 "Language-Team: Portuguese, Brazilian\n"
 "MIME-Version: 1.0\n"
@@ -2434,11 +2434,11 @@ msgstr "Antes"
 
 #: filtertransdialog.cpp:896
 msgid "Amount Min."
-msgstr "Montante Mín."
+msgstr "Valor Mín."
 
 #: filtertransdialog.cpp:904
 msgid "Amount Max."
-msgstr "Montante Máx."
+msgstr "Valor Máx."
 
 #: filtertransdialog.cpp:939
 msgid "Label"
@@ -2500,7 +2500,7 @@ msgstr "&Executar"
 
 #: general_report_manager.cpp:381
 msgid "Run selected report."
-msgstr "Emitir relatório selecionado."
+msgstr "Executar relatório selecionado."
 
 #: general_report_manager.cpp:393
 msgid "Output"
@@ -2529,15 +2529,15 @@ msgstr "Criar Modelo"
 #: general_report_manager.cpp:490
 #, c-format
 msgid "Row(s) returned: %i  Duration: %ld ms"
-msgstr "Fila(s) retornada(s): %i Duração: %ld ms"
+msgstr "Linha(s) retornada(s): %i Duração: %ld ms"
 
 #: general_report_manager.cpp:515
 msgid "SQL Syntax Error"
-msgstr "Erro de SQL Syntax"
+msgstr "Erro de sintaxe SQL"
 
 #: general_report_manager.cpp:544
 msgid "Load report file:"
-msgstr "Carregar relatório:"
+msgstr "Carregar arquivo de relatório:"
 
 #: general_report_manager.cpp:546 general_report_manager.cpp:976
 msgid "General Report Manager files (*.grm)"
@@ -2551,12 +2551,12 @@ msgstr "Arquivos ZIP (* .zip)"
 #, c-format
 msgid "Unable to open file:\n"
 "%s\n\n"
-msgstr "Impossivel abrir o arquivo:\n"
+msgstr "Impossível abrir o arquivo:\n"
 "%s\n\n"
 
 #: general_report_manager.cpp:674
 msgid "New Empty Report"
-msgstr "Novo Relatório em branco"
+msgstr "Novo Relatório em Branco"
 
 #: general_report_manager.cpp:675
 msgid "New Sample Report"
@@ -2589,7 +2589,7 @@ msgstr "Inserir um nome para o relatório"
 #: general_report_manager.cpp:780 general_report_manager.cpp:928
 #: mmframe.cpp:1250 mmframe.cpp:1661 mmframe.cpp:1832
 msgid "General Report Manager"
-msgstr "Gerenciador de Relatórios"
+msgstr "Gerenciador Geral de Relatórios"
 
 #: general_report_manager.cpp:798
 msgid "Delete the Report Title:"
@@ -2601,7 +2601,7 @@ msgstr "Digite ou escolha o nome do novo grupo de relatórios"
 
 #: general_report_manager.cpp:828
 msgid "Change report group"
-msgstr "Alterar grupo de relatórios"
+msgstr "Alterar grupo de relatório"
 
 #: general_report_manager.cpp:844
 msgid "Enter or choose name for the new group"
@@ -2631,12 +2631,12 @@ msgstr "Escolha o arquivo para Salvar como Relatório"
 #: import_export/parsers.cpp:46 import_export/univcsvdialog.cpp:1388
 #: mmSimpleDialogs.cpp:139
 msgid "Unable to open file."
-msgstr "Impossivel abrir o arquivo."
+msgstr "Impossível abrir o arquivo."
 
 #: import_export/parsers.cpp:46 import_export/parsers.cpp:89
 #: import_export/univcsvdialog.cpp:855 mmframe.cpp:2262 mmframe.cpp:2281
 msgid "Universal CSV Import"
-msgstr "Importação de CSV Universal"
+msgstr "Importar CSV Universal"
 
 #: import_export/parsers.cpp:89
 msgid "Unable to create file."
@@ -2703,11 +2703,11 @@ msgstr "Contas"
 
 #: import_export/qif_export.cpp:140 import_export/qif_import_gui.cpp:182
 msgid "From Date"
-msgstr "A Partir da Data"
+msgstr "Data Inicial"
 
 #: import_export/qif_export.cpp:149 import_export/qif_import_gui.cpp:191
 msgid "To Date"
-msgstr "Até a Data"
+msgstr "Data final"
 
 #: import_export/qif_export.cpp:162 import_export/qif_import_gui.cpp:279
 #: optionsettingsgeneral.cpp:98
@@ -2917,7 +2917,7 @@ msgstr "Importação finalizada com sucesso"
 #: import_export/qif_import_gui.cpp:904 stockdialog.cpp:640
 #, c-format
 msgid "Total Imported: %ld"
-msgstr "Total Importados: %ld"
+msgstr "Total Importado: %ld"
 
 #: import_export/qif_import_gui.cpp:912 import_export/univcsvdialog.cpp:971
 msgid "Imported transactions discarded by user!"
@@ -3127,11 +3127,11 @@ msgstr "Linha %ld: vazia"
 #: import_export/univcsvdialog.cpp:888
 #, c-format
 msgid "Line %ld: Error:"
-msgstr "Line %ld: Erro"
+msgstr "Linha %ld: Erro:"
 
 #: import_export/univcsvdialog.cpp:890
 msgid "Invalid Date."
-msgstr "Data inválida."
+msgstr "Data Inválida."
 
 #: import_export/univcsvdialog.cpp:891 mmTextCtrl.cpp:82
 msgid "Invalid Amount."
@@ -3257,7 +3257,7 @@ msgstr "Hist."
 #: maincurrencydialog.cpp:77 maincurrencydialog.cpp:348
 #: maincurrencydialog.cpp:633 maincurrencydialog.cpp:739
 msgid "Currency Dialog"
-msgstr "Moeda"
+msgstr "Janela de Moeda"
 
 #: maincurrencydialog.cpp:157
 msgid "Update latest rate only for all used currencies"
@@ -3446,12 +3446,12 @@ msgstr "Ativar o botão fornecerá uma caixa de seleção onde a conta pode ser 
 
 #: mmSimpleDialogs.cpp:170 mmcombobox.h:77
 msgid "Invalid Payee"
-msgstr "Favorecido Inválido"
+msgstr "Beneficiário Inválido"
 
 #: mmSimpleDialogs.cpp:171
 msgid "Please type in a new payee,\n"
 "or make a selection using the dropdown button."
-msgstr "Por favor, digite um novo favorecido,\n"
+msgstr "Por favor, digite um novo beneficiário,\n"
 "ou selecione utilizando o botão suspenso."
 
 #: mmSimpleDialogs.cpp:177
@@ -3598,7 +3598,7 @@ msgstr "Diferença: "
 
 #: mmcheckingpanel.cpp:529 mmframe.cpp:1839 transdialog.cpp:171
 msgid "New Transaction"
-msgstr "Adicionar uma nova Transação"
+msgstr "Nova Transação"
 
 #: mmcheckingpanel.cpp:533
 msgid "Edit selected transaction"
@@ -3631,7 +3631,7 @@ msgstr "Selecione a conta usada nas transferências"
 
 #: mmcheckingpanel.cpp:1204
 msgid "&New Withdrawal"
-msgstr "&Nova retirada"
+msgstr "&Nova Retirada"
 
 #: mmcheckingpanel.cpp:1205
 msgid "&New Deposit"
@@ -3655,7 +3655,7 @@ msgstr "&Colar Transação"
 
 #: mmcheckingpanel.cpp:1220
 msgid "D&uplicate Transaction"
-msgstr "D&uplicar transacção"
+msgstr "D&uplicar Transacção"
 
 #: mmcheckingpanel.cpp:1223
 msgid "&Move Transaction"
@@ -3667,7 +3667,7 @@ msgstr "&Visualizar Transações com múltiplas categorias"
 
 #: mmcheckingpanel.cpp:1237
 msgid "Create Reoccuring T&ransaction"
-msgstr "Criar t&ransação recorrente"
+msgstr "Criar T&ransação Recorrente"
 
 #: mmcheckingpanel.cpp:1243
 msgid "&Delete Transaction"
@@ -3699,7 +3699,7 @@ msgstr "Marcar Como &Nula"
 
 #: mmcheckingpanel.cpp:1260
 msgid "Mark For &Followup"
-msgstr "Marcar para &Acompanhar"
+msgstr "Marcar Para &Acompanhar"
 
 #: mmcheckingpanel.cpp:1262
 msgid "Mark As &Duplicate"
@@ -3723,7 +3723,7 @@ msgstr "como Nula"
 
 #: mmcheckingpanel.cpp:1270
 msgid "as needing Followup"
-msgstr "como necessitando acompanhamento"
+msgstr "como necessitando Acompanhamento"
 
 #: mmcheckingpanel.cpp:1271
 msgid "as Duplicate"
@@ -3739,7 +3739,7 @@ msgstr "Tem certeza de que deseja excluir todas essas transações?"
 
 #: mmcheckingpanel.cpp:1341 mmcheckingpanel.cpp:1354 mmcheckingpanel.cpp:1699
 msgid "Confirm Transaction Deletion"
-msgstr "Confirmar a exclusão da(s) Transação(ões)"
+msgstr "Confirmar a Exclusão da(s) Transação(ões)"
 
 #: mmcheckingpanel.cpp:1350
 msgid "Follow Up"
@@ -3765,7 +3765,7 @@ msgstr "Verificação de transação MMEX"
 #: mmcheckingpanel.cpp:1917 stockspanel.cpp:291
 #, c-format
 msgid "Moving Transaction from %s to..."
-msgstr "Movendo a transacção de %s para..."
+msgstr "Mover Transação de %s para..."
 
 #: mmcheckingpanel.cpp:1920 stockspanel.cpp:292
 msgid "Select the destination Account "
@@ -3783,7 +3783,7 @@ msgstr "Transações selecionadas: %ld"
 #: mmcheckingpanel.cpp:2029
 #, c-format
 msgid "Selected transactions balance: %s"
-msgstr "Saldo de transações selecionadas: %s"
+msgstr "Saldo das transações selecionadas: %s"
 
 #: mmcheckingpanel.cpp:2032
 #, c-format
@@ -3793,7 +3793,7 @@ msgstr "Dias entre transações selecionadas: %d"
 #: mmcombobox.h:78
 msgid "Please type in an exiting payee name,\n"
 "or make a selection using the dropdown button."
-msgstr "Por favor, digite um favorecido existente,\n"
+msgstr "Por favor, digite um beneficiário existente,\n"
 "ou selecione um utilizando o botão."
 
 #: mmcustomdata.cpp:58
@@ -3848,12 +3848,12 @@ msgstr "Barra de Ferramentas"
 #: mmframe.cpp:450 mmframe.cpp:690 mmhomepagepanel.cpp:476
 #: reports/summary.cpp:157
 msgid "Bank Accounts"
-msgstr "Contas"
+msgstr "Contas Bancárias"
 
 #: mmframe.cpp:451 mmframe.cpp:695 mmhomepagepanel.cpp:477
 #: reports/summary.cpp:158
 msgid "Credit Card Accounts"
-msgstr "Contas de cartão de crédito"
+msgstr "Contas de Cartão de Crédito"
 
 #: mmframe.cpp:452 mmframe.cpp:710 mmhomepagepanel.cpp:479
 #: reports/summary.cpp:160
@@ -3876,7 +3876,7 @@ msgstr "Contas de Empréstimo"
 #: mmframe.cpp:457 mmframe.cpp:730 mmhomepagepanel.cpp:480
 #: reports/summary.cpp:161
 msgid "Crypto Wallets"
-msgstr "Carteiras de criptografia"
+msgstr "Carteiras de Cripto Moedas"
 
 #: mmframe.cpp:499
 msgid "Auto Repeat Transactions"
@@ -3888,11 +3888,11 @@ msgstr "Página Inicial"
 
 #: mmframe.cpp:720
 msgid "Share Accounts"
-msgstr "Compartilhar contas"
+msgstr "Contas de Ações"
 
 #: mmframe.cpp:740 mmframe.cpp:1639
 msgid "Budget Setup"
-msgstr "Orçamentos"
+msgstr "Configuração de Orçamento"
 
 #: mmframe.cpp:767 mmframe.cpp:2515 mmhelppanel.cpp:71
 msgid "Help"
@@ -3909,7 +3909,7 @@ msgstr "Conta: %s\n\n"
 
 #: mmframe.cpp:1146
 msgid "Foreign Currency Account Balance"
-msgstr "Saldo da conta em moeda estrangeira"
+msgstr "Saldo da Conta em Moeda Estrangeira"
 
 #: mmframe.cpp:1160
 msgid "Do you really want to delete the account?"
@@ -3917,7 +3917,7 @@ msgstr "Tem certeza de que deseja excluir esta conta?"
 
 #: mmframe.cpp:1167 mmframe.cpp:2868
 msgid "Confirm Account Deletion"
-msgstr "Confirmar a exclusão da Conta"
+msgstr "Confirmar a Exclusão da Conta"
 
 #: mmframe.cpp:1187
 msgid "MMEX has been opened without an active database."
