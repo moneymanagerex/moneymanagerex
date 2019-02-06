@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-02-05 11:56+0300\n"
-"PO-Revision-Date: 2019-02-06 13:35\n"
+"PO-Revision-Date: 2019-02-06 14:08\n"
 "Last-Translator: vomikan <nikolay.akimov@gmail.com>\n"
 "Language-Team: Portuguese, Brazilian\n"
 "MIME-Version: 1.0\n"
@@ -3937,7 +3937,7 @@ msgstr "&Editar Conta"
 
 #: mmframe.cpp:1223 mmframe.cpp:1586
 msgid "&Reallocate Account"
-msgstr "&Realocar conta"
+msgstr "&Realocar Conta"
 
 #: mmframe.cpp:1224 mmframe.cpp:1270 mmframe.cpp:1590
 msgid "&Delete Account"
@@ -3945,7 +3945,7 @@ msgstr "&Excluir Conta"
 
 #: mmframe.cpp:1226
 msgid "&Foreign Currency Balance"
-msgstr "Saldo em moeda &estrangeira"
+msgstr "Saldo em Moeda &Estrangeira"
 
 #: mmframe.cpp:1227
 msgid "&Launch Account Website"
@@ -3961,7 +3961,7 @@ msgstr "Nova &Conta"
 
 #: mmframe.cpp:1272
 msgid "Account &List (Home)"
-msgstr "&Página Inicial"
+msgstr "&Lista de Contas (Página Inicial)"
 
 #: mmframe.cpp:1279 mmframe.cpp:1284 mmframe.cpp:1473 mmframe.cpp:1481
 msgid "&CSV Files..."
@@ -4013,7 +4013,7 @@ msgstr "&Arquivos recentes..."
 
 #: mmframe.cpp:1467
 msgid "&Clear Recent Files"
-msgstr "&Limpar Arquivos recentes"
+msgstr "&Limpar Arquivos Recentes"
 
 #: mmframe.cpp:1473
 msgid "Export to CSV"
@@ -4077,7 +4077,7 @@ msgstr "&Navegação"
 
 #: mmframe.cpp:1504
 msgid "Show/Hide the Navigation tree control"
-msgstr "Mostrar/Esconder o controle da árvore Navegação"
+msgstr "Ver/Esconder a Árvore de Navegação"
 
 #: mmframe.cpp:1506
 msgid "&Display Share Accounts"
@@ -4169,11 +4169,11 @@ msgstr "Lista de &Categorias..."
 
 #: mmframe.cpp:1609
 msgid "Organize &Payees..."
-msgstr "Lista de &Favorecidos..."
+msgstr "Organizar &Beneficiários..."
 
 #: mmframe.cpp:1609 mmframe.cpp:1830 payeedialog.cpp:76
 msgid "Organize Payees"
-msgstr "Favorecidos"
+msgstr "Organizar Beneficiários"
 
 #: mmframe.cpp:1614
 msgid "Organize Currency..."
@@ -4189,11 +4189,11 @@ msgstr "&Categorias..."
 
 #: mmframe.cpp:1623
 msgid "&Payees..."
-msgstr "&Favorecidos..."
+msgstr "&Beneficiários..."
 
 #: mmframe.cpp:1624
 msgid "Reassign all payees to another payee"
-msgstr "Realocar todos os Favorecidos para outro Favorecido"
+msgstr "Realocar todos os Beneficiários para outro Beneficiário"
 
 #: mmframe.cpp:1627
 msgid "Relocation of..."
@@ -4201,7 +4201,7 @@ msgstr "Realocar de..."
 
 #: mmframe.cpp:1628
 msgid "Relocate Categories && Payees"
-msgstr "Realocar Categorias && Favorecidos"
+msgstr "Realocar Categorias && Beneficiários"
 
 #: mmframe.cpp:1639
 msgid "&Budget Setup"
@@ -4473,7 +4473,7 @@ msgstr "Mostrar Lista de Categorias"
 
 #: mmframe.cpp:1830
 msgid "Show Organize Payees Dialog"
-msgstr "Mostrar Lista de Favorecidos"
+msgstr "Mostrar Lista de Beneficiários"
 
 #: mmframe.cpp:1831
 msgid "Show Organize Currency Dialog"
@@ -4586,7 +4586,7 @@ msgstr "Não é possível sobrescrever o arquivo selecionado"
 
 #: mmframe.cpp:2230
 msgid "Accounts, payees and categories successfully syncronized to WebApp!"
-msgstr "Contas, favorecidos e categorias sincronizadas com sucesso para o WebApp!"
+msgstr "Contas, beneficiários e categorias sincronizadas com sucesso para o WebApp!"
 
 #: mmframe.cpp:2230
 msgid "WebApp export"
@@ -4710,11 +4710,11 @@ msgstr "Conta: %s - Selecione um novo tipo."
 
 #: mmframe.cpp:3007 payeedialog.cpp:315
 msgid "Payee Relocation Completed."
-msgstr "Realocação de Favorecido finalizada."
+msgstr "Realocação de Beneficiário finalizada."
 
 #: mmframe.cpp:3011 payeedialog.cpp:319
 msgid "Payee Relocation Result"
-msgstr "Resultado da Realocação de Favorecido"
+msgstr "Resultado da Realocação de Beneficiário"
 
 #: mmframe.cpp:3061
 #, c-format
@@ -4778,7 +4778,7 @@ msgstr "Resumo"
 
 #: mmhomepagepanel.cpp:391
 msgid "Account / Payee"
-msgstr "Conta / Favorecido"
+msgstr "Conta / Beneficiário"
 
 #: mmhomepagepanel.cpp:615
 msgid "Upcoming Transactions"
@@ -5046,7 +5046,7 @@ msgstr "De onde o Dinheiro vem"
 
 #: option.cpp:121
 msgid "Payees"
-msgstr "Favorecidos"
+msgstr "Beneficiários"
 
 #: option.cpp:122 option.cpp:123 reports/incexpenses.cpp:32
 #: reports/incexpenses.cpp:115 reports/incexpenses.cpp:164
@@ -5321,7 +5321,7 @@ msgstr "Último utilizado"
 
 #: optionsettingsmisc.cpp:102
 msgid "Last used for payee"
-msgstr "Último usado como favorecido"
+msgstr "Último usado como beneficiário"
 
 #: optionsettingsmisc.cpp:103
 msgid "Unused"
@@ -5333,7 +5333,7 @@ msgstr "Data Padrão:"
 
 #: optionsettingsmisc.cpp:120
 msgid "Default Payee:"
-msgstr "Favorecido Padrão:"
+msgstr "Beneficiário Padrão:"
 
 #: optionsettingsmisc.cpp:122
 msgid "Default Category:"
@@ -5581,27 +5581,27 @@ msgstr "Localizar:"
 
 #: payeedialog.cpp:179 payeedialog.cpp:218 payeedialog.cpp:246
 msgid "Payee with same name exists"
-msgstr "Já existe um Favorecido com este nome"
+msgstr "Já existe um Beneficiário com este nome"
 
 #: payeedialog.cpp:180 payeedialog.cpp:203 payeedialog.cpp:218
 msgid "Organize Payees: Add Payee"
-msgstr "Favorecidos: Adicionar Favorecido"
+msgstr "Beneficiários: Adicionar Beneficiário"
 
 #: payeedialog.cpp:202
 msgid "Enter the name for the new payee:"
-msgstr "Insira o nome para o novo Favorecido:"
+msgstr "Insira o nome para o novo Beneficiário:"
 
 #: payeedialog.cpp:229
 msgid "Modify the name for the payee:"
-msgstr "Modifique o nome do favorecido:"
+msgstr "Modifique o nome do beneficiário:"
 
 #: payeedialog.cpp:230 payeedialog.cpp:246
 msgid "Organize Payees: Edit Payee"
-msgstr "Favorecidos: Editar Favorecido"
+msgstr "Beneficiários: Editar Beneficiário"
 
 #: payeedialog.cpp:260
 msgid "Payee in use."
-msgstr "Este Favorecido está em uso."
+msgstr "Este Beneficiário está em uso."
 
 #: payeedialog.cpp:263
 msgid "Tip: Change all transactions using this Payee to another Payee using the relocate command:"
@@ -5609,11 +5609,11 @@ msgstr "Dica: altere todas as transações usando este beneficiário para outro 
 
 #: payeedialog.cpp:265
 msgid "Tools -> Relocation of -> Payees"
-msgstr "Ferramentas -> Realocar -> Favorecidos"
+msgstr "Ferramentas -> Realocar -> Beneficiários"
 
 #: payeedialog.cpp:266
 msgid "Organize Payees: Delete Error"
-msgstr "Favorecidos: Erro ao excluir"
+msgstr "Organizar Beneficiários: Erro ao excluir"
 
 #: payeedialog.cpp:362
 msgid "Define Default Category"
@@ -5621,7 +5621,7 @@ msgstr "Definir a Categoria Padrão"
 
 #: payeedialog.cpp:377
 msgid "Relocate Payee"
-msgstr "Realocar Favorecido"
+msgstr "Realocar Beneficiário"
 
 #: relocatecategorydialog.cpp:58
 msgid "Relocate Category Dialog"
@@ -5678,7 +5678,7 @@ msgstr "Registros encontrados em transações divididas recorrentes: %i"
 #: relocatecategorydialog.cpp:275
 #, c-format
 msgid "Records found as Default Payee Category: %i"
-msgstr "Registros encontrados como Categoria de Favorecido Padrão: %i"
+msgstr "Registros encontrados como Categoria de Beneficiário Padrão: %i"
 
 #: relocatecategorydialog.cpp:276
 #, c-format
@@ -5687,7 +5687,7 @@ msgstr "Registros encontrados no orçamento: %i"
 
 #: relocatepayeedialog.cpp:53
 msgid "Relocate Payee Dialog"
-msgstr "Tela de Realocação de Favorecido"
+msgstr "Tela de Realocação de Beneficiário"
 
 #: relocatepayeedialog.cpp:83
 msgid "Relocate all source payee to the destination payee"
@@ -5695,7 +5695,7 @@ msgstr "Transferir todo o beneficiário de origem para o beneficiário de destin
 
 #: relocatepayeedialog.cpp:95
 msgid "Delete source payee after relocation"
-msgstr "Excluir o favorecido pesquisado após a realocação"
+msgstr "Excluir o beneficiário pesquisado após a realocação"
 
 #: relocatepayeedialog.cpp:151
 #, c-format
@@ -5704,7 +5704,7 @@ msgstr "De %s para %s"
 
 #: relocatepayeedialog.cpp:156
 msgid "Payee Relocation Confirmation"
-msgstr "Confirmação de Realocação de Favorecido"
+msgstr "Confirmação de Realocação de Beneficiário"
 
 #: reports/budgetcategorysummary.cpp:130
 #, c-format
@@ -5894,7 +5894,7 @@ msgstr "Últimos 365 dias"
 
 #: reports/payee.cpp:32
 msgid "Payee Report"
-msgstr "Relatório de Favorecidos"
+msgstr "Relatório de Beneficiários"
 
 #: reports/reportbase.cpp:132
 msgid "Choose Accounts"
@@ -5923,7 +5923,7 @@ msgstr "*Data de Compra"
 
 #: reports/summarystocks.cpp:182
 msgid "Quantity"
-msgstr "Montante"
+msgstr "Quantidade"
 
 #: reports/summarystocks.cpp:184 stockdialog.cpp:255
 msgid "Current Price"
@@ -6037,7 +6037,7 @@ msgstr "Detalhes da Categoria Dividida"
 
 #: splittransactionsdialog.cpp:206
 msgid "Invalid Total Amount"
-msgstr "Montante Total Inválido"
+msgstr "Valor Total Inválido"
 
 #: stockdialog.cpp:131 stockdialog.cpp:503
 msgid "Edit Stock Investment"
@@ -6454,12 +6454,12 @@ msgstr "Organizar documentos desta transação"
 #, c-format
 msgid "Do you want to add new payee: \n"
 "%s?"
-msgstr "Pretende adicionar um novo favorecido:\n"
+msgstr "Pretende adicionar um novo beneficiário:\n"
 "%s?"
 
 #: transdialog.cpp:634
 msgid "Confirm to add new payee"
-msgstr "Confirme para adicionar o novo favorecido"
+msgstr "Confirme para adicionar o novo beneficiário"
 
 #: transdialog.cpp:724
 msgid "This transaction will exceed your account limit.\n\n"
@@ -6477,7 +6477,7 @@ msgstr "Especifique para qual conta o dinheiro foi depositado"
 
 #: transdialog.cpp:1207
 msgid "Specify the transfer amount in the From Account."
-msgstr "Especifique o montante da transferência na Conta de Origem."
+msgstr "Especifique o valor da transferência na Conta de Origem."
 
 #: transdialog.cpp:1215
 msgid "Specify account for the transaction"
