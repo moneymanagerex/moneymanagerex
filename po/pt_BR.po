@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-02-05 11:56+0300\n"
-"PO-Revision-Date: 2019-02-06 11:54\n"
+"PO-Revision-Date: 2019-02-06 12:27\n"
 "Last-Translator: vomikan <nikolay.akimov@gmail.com>\n"
 "Language-Team: Portuguese, Brazilian\n"
 "MIME-Version: 1.0\n"
@@ -1353,7 +1353,7 @@ msgstr "Visualizar somente Categorias Orçadas"
 
 #: budgetingpanel.cpp:60
 msgid "View Planned Budget Categories"
-msgstr "Visualizar Categorias do Orçamento previsto"
+msgstr "Visualizar Categorias do Orçamento planejadas"
 
 #: budgetingpanel.cpp:61
 msgid "View Income Budget Categories"
@@ -1480,7 +1480,7 @@ msgstr "Orçamento do Mês:"
 msgid "Specify the required month.\n"
 "Use Spin buttons to increase or decrease the month."
 msgstr "Especifique o mês desejado.\n"
-"Use as setinhas para aumentar ou dimiuir o mês."
+"Use as setinhas para aumentar ou diminuir o mês."
 
 #: budgetyearentrydialog.cpp:102
 msgid "Base Budget On:"
@@ -1540,7 +1540,7 @@ msgstr "Informe o nome para a nova categoria:"
 
 #: categdialog.cpp:257
 msgid "Tip: If category added now, check bottom of list."
-msgstr "Dica: se a categoria for adicionada agora, verifique o final da lista."
+msgstr "Dica: se a categoria foi adicionada agora, verifique o final da lista."
 
 #: categdialog.cpp:260
 msgid "Add Category"
@@ -1553,12 +1553,12 @@ msgstr "Já existe uma categoria com este nome"
 #: categdialog.cpp:270
 msgid "Tip: If category added now, check bottom of list.\n"
 "Category will be in sorted order next time dialog appears"
-msgstr "Dica: Se a categoria foi adicionada agora, verifique-a final da lista. \n"
-"A categoria estará organizada em ordem alfabética na próxima que esta caixa aparecer."
+msgstr "Dica: Se a categoria foi adicionada agora, verifique o final da lista. \n"
+"A categoria estará organizada em ordem alfabética na próxima vez que esta caixa aparecer"
 
 #: categdialog.cpp:272 categdialog.cpp:296 categdialog.cpp:314
 msgid "Organise Categories: Adding Error"
-msgstr "Lista de Categorias: Acrescentando Erro"
+msgstr "Organizar Categorias: Erro ao Adicionar"
 
 #: categdialog.cpp:295 categdialog.cpp:522
 msgid "Sub Category with same name exists"
@@ -1594,7 +1594,7 @@ msgstr "Ferramentas -> Realocar -> Categorias"
 
 #: categdialog.cpp:330
 msgid "Organise Categories: Delete Error"
-msgstr "Lista de Categorias: Excluir Erro"
+msgstr "Organizar Categorias: Erro ao Excluir"
 
 #: categdialog.cpp:463
 msgid "This category cannot be deleted because it's used by transactions."
@@ -1619,7 +1619,7 @@ msgstr "Editar Categoria"
 
 #: categdialog.cpp:506 categdialog.cpp:523
 msgid "Organise Categories: Editing Error"
-msgstr "Lista de Categorias: Erro de edição"
+msgstr "Organizar Categorias: Erro ao Editar"
 
 #: categdialog.cpp:599 mmframe.cpp:2992
 msgid "Category Relocation Completed."
@@ -1644,7 +1644,7 @@ msgstr "Reexibir a Categoria Selecionada"
 
 #: categdialog.cpp:670
 msgid "Clear Settings"
-msgstr "Limpar as definições"
+msgstr "Limpar as configurações"
 
 #: constants.cpp:42
 msgid "Cancel"
@@ -1880,7 +1880,7 @@ msgstr "Insira as escolhas para este campo separadas por um ponto e vírgula"
 
 #: customfieldeditdialog.cpp:169
 msgid "Digits scale"
-msgstr "Dígitos"
+msgstr "Escala de Dígitos"
 
 #: customfieldeditdialog.cpp:171
 msgid "Enter the decimal digits scale allowed"
@@ -1934,7 +1934,7 @@ msgid "This function will massive search & replace for \"%s\" custom field value
 "It will match & replace only complete field value, no partial or middle-value replaces allowed\n"
 "Please consider that there isn't any validation!"
 msgstr "Esta função fará uma busca & substituição massiva para os \"%s\" campos personalizados\n"
-"Fará uma busca & substituição apenas dos campos completos, nehuma substituição de valor parcial ou pela metade é permitida\n"
+"Fará uma busca & substituição apenas dos campos completos, nenhuma substituição de valor parcial ou pela metade é permitida\n"
 "Por favor, considere que não há qualquer validação!"
 
 #: customfieldlistdialog.cpp:194
@@ -1964,7 +1964,7 @@ msgstr "Substituir com"
 #: customfieldlistdialog.cpp:215
 msgid "Do you want to update to blank?\n"
 "Press no if you want to abort replace procedure!"
-msgstr "Você quer atualizar em branco?\n"
+msgstr "Você quer atualizar para branco?\n"
 "Pressione Não se você quiser abortar o procedimento de substituição!"
 
 #: customfieldlistdialog.cpp:231
@@ -2002,7 +2002,7 @@ msgstr "Necessidades de Casa"
 
 #: db/Table_Category.h:111
 msgid "Healthcare"
-msgstr "Plano de Saude"
+msgstr "Cuidados com Saúde"
 
 #: db/Table_Category.h:112
 msgid "Insurance"
@@ -2123,7 +2123,7 @@ msgstr "Dentista"
 
 #: db/Table_Subcategory.h:129
 msgid "Eyecare"
-msgstr "Oftalmologista"
+msgstr "Cuidados com os Olhos"
 
 #: db/Table_Subcategory.h:130
 msgid "Physician"
@@ -2151,7 +2151,7 @@ msgstr "Viagem"
 
 #: db/Table_Subcategory.h:137
 msgid "Lodging"
-msgstr "Diária"
+msgstr "Hospedagem"
 
 #: db/Table_Subcategory.h:138
 msgid "Sightseeing"
@@ -2175,7 +2175,7 @@ msgstr "Salário"
 
 #: db/Table_Subcategory.h:144
 msgid "Reimbursement/Refunds"
-msgstr "Reembolsos"
+msgstr "Reembolsos/Restituição"
 
 #: db/Table_Subcategory.h:145
 msgid "Investment Income"
