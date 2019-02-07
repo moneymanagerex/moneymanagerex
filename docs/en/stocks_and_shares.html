@@ -116,18 +116,12 @@
     </p>
 
     <p>New Stock Investment example:</p>
-    <div class="row">
-        <div class="col-xs-1">
-        </div>
-        <div class="col-xs-8 text-info">
-            <p><img class="shadow" alt='stock_shares_new_stock' src='img/stock_shares_new_stock.png'></p>
-        </div>
+            <p><img class="shadow" alt='stock_shares_new_stock' src='../en/stock_shares_new_stock.png'></p>
 
-        <div class="notes col-xs-1">
-            <header class="notes_header">Note</header>
+    <aside class="sticky notes">
+        <header>Note</header>
             Important: Save before close to keep any changes
-        </div>
-    </div>
+    </aside>
 
     <p>
         saving this entry, the Share Account and Share Linkage can be set up.<br />
@@ -169,14 +163,8 @@
         </li>
     </ol>
 
-    <div class="row">
-        <div class="col-xs-2">
-            <p>Addition of Shares to our transaction</p>
-        </div>
-        <div class="col-xs-8 text-info">
-            <img class="shadow" alt='stock_shares_new_shares' src='img/stock_shares_new_shares.png'>
-        </div>
-    </div>
+    <p>Addition of Shares to our transaction</p>
+    <img class="shadow" alt='stock_shares_new_shares' src='../en/stock_shares_new_shares.png'>
 
     <h3>Adding Subsequent Share Entries to our Stock</h3>
     <p>
@@ -240,12 +228,9 @@
         view as each purchase will generally have a different share price.
     </p>
 
-    <div class="row">
-        <p>Stock Portfolio view containing our new Stocks</p>
-        <div class="col-xs-9 text-info">
-            <img class="shadow" alt='stock_shares_portfolio' src='img/stock_shares_portfolio.png'>
-        </div>
-    </div>
+    <p>Stock Portfolio view containing our new Stocks</p>
+    <img class="shadow" alt='stock_shares_portfolio' 
+        src='../en/stock_shares_portfolio.png'>
 
     <h2>Stock Transaction List View</h2>
 
@@ -254,7 +239,7 @@
 
     <p>Stock list from Portfolio view for our stock</p>
     <img class="shadow" alt='stock_shares_view_transactions'
-         src='img/stock_shares_view_transactions.png'>
+         src='../en/stock_shares_view_transactions.png'>
 
     <h2>Share Accounts in MMEX</h2>
 
@@ -283,7 +268,7 @@
     <p>Account View for the Share Account: Alpha Corp</p>
     <p>Stock list from Portfolio view for our stock</p>
     <img class="shadow" alt='stock_shares_share_account'
-         src='img/stock_shares_share_account.png'>
+         src='../en/stock_shares_share_account.png'>
 
     <h2>Adding Dividends to our Shares</h2>
     <p>
@@ -297,5 +282,18 @@
         <li>Actual commissions paid to a stock broker should also
             be recorded as a separate transaction.</li>
     </ol>
+
+    <footer><p><small>
+        Copyright &copy; 2005-2009 Madhan Kanagavel<br>
+        Copyright &copy; 2013-2018 MMEX contributors<br>
+        <span id="translator">Translators: MMEX contributors</span>
+    </small></p></footer>
+    <script>
+        var LANG = document.getElementsByTagName('html')[0].getAttribute('lang');
+        var tr = document.getElementById("translator");            
+        if (LANG == 'en')
+            tr.parentNode.removeChild(tr);
+    </script>
+
 </body>
 </html>

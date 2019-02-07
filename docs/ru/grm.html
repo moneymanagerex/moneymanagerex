@@ -92,19 +92,19 @@ where a.STATUS = 'Open'
 group by a.ACCOUNTNAME order by a.ACCOUNTNAME asc;
 </code></pre>
 
-        <img id="grm_date" alt="Дата GRM" src="../ru/grm_custom_date.png">
+    <img id="grm_date" alt="Дата GRM" src="../ru/grm_custom_date.png">
 
-<hr>
     <footer><p><small>
         Copyright &copy; 2005-2009 Madhan Kanagavel<br>
         Copyright &copy; 2013-2018 MMEX contributors<br>
-        <span id="translator">Перевод: Николай Акимов</span>
+        <span id="translator">Translators: equipo MMEX</span>
     </small></p></footer>
-<script>
-var LANG = document.getElementsByTagName('html')[0].getAttribute('lang');
-if (LANG == 'en')
-    document.getElementById("translator").innerHTML = "";
-</script>
+    <script>
+        var LANG = document.getElementsByTagName('html')[0].getAttribute('lang');
+        var tr = document.getElementById("translator");            
+        if (LANG == 'en')
+            tr.parentNode.removeChild(tr);
+    </script>
 
 </body>
 </html>

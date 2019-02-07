@@ -91,12 +91,13 @@ group by a.ACCOUNTNAME order by a.ACCOUNTNAME asc;
     <footer><p><small>
         Copyright &copy; 2005-2009 Madhan Kanagavel<br>
         Copyright &copy; 2013-2018 MMEX contributors<br>
-        <span id="translator">Translators: equipo MMEX</span>
+        <span id="translator">Translators: MMEX contributors</span>
     </small></p></footer>
     <script>
         var LANG = document.getElementsByTagName('html')[0].getAttribute('lang');
+        var tr = document.getElementById("translator");            
         if (LANG == 'en')
-            document.getElementById("translator").innerHTML = "";
+            tr.parentNode.removeChild(tr);
     </script>
 
 </body>
