@@ -2743,11 +2743,17 @@
 
     </p>
 
-    <hr>
-    Copyright &copy; 2005-2009 Madhan Kanagavel<br>
-    Copyright &copy; 2013-2018 MMEX contributors<br>
-    <br>
-    <h5 class="western">Traduzione Italiana di Maurizio.13 - email: xmaurizio.13<span style="color: rgb(153, 153, 153);">(AT)</span>hotmal
-    <span style="color: rgb(153, 153, 153);">(DOT)</span>com - [user: Mau.13]</h5>
+    <footer><p><small>
+        Copyright &copy; 2005-2009 Madhan Kanagavel<br>
+        Copyright &copy; 2013-2019 MMEX contributors<br>
+        <span id="translator">Tradotto da: Team MMEX</span>
+    </small></p></footer>
+    <script>
+        var LANG = document.getElementsByTagName('html')[0].getAttribute('lang');
+        var tr = document.getElementById("translator");            
+        if (LANG == 'en')
+            tr.parentNode.removeChild(tr);
+    </script>
+
 </body>
 </html>
