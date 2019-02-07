@@ -3,27 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <title>Руководство пользователя Money Manager Ex</title>
-    <link href="manual.css" rel="stylesheet" type="text/css">
+    <link href="../manual.css" rel="stylesheet" type="text/css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.1/css/flag-icon.min.css" rel="stylesheet" type="text/css">
-    <script src="js/toc.js"></script>
+    <script src="../js/toc.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
-    <script src="js/back_to_top.js"></script>
+    <script src="../js/back_to_top.js"></script>
 </head>
 
 <body onload="generateTOC(document.getElementById('toc'));">
     <header>
         <nav id="language-menu"><small>
-            <a href="index.html?lang=en"><span class="flag-icon flag-icon-gb"></span> English</a>
-            <a href="index.html?lang=de"><span class="flag-icon flag-icon-de"></span> German</a>
-            <a href="index.html?lang=fr"><span class="flag-icon flag-icon-fr"></span> French</a>
-            <a href="index.html?lang=hu"><span class="flag-icon flag-icon-hu"></span> Hungarian</a>
-            <a href="index.html?lang=it"><span class="flag-icon flag-icon-it"></span> Italian</a>
-            <a href="index.html?lang=pl"><span class="flag-icon flag-icon-pl"></span> Polish</a>
-                                         <span class="flag-icon flag-icon-ru"></span> Russian
-            <a href="index.html?lang=es"><span class="flag-icon flag-icon-es"></span> Spanish</a>
+            <a href="../index.html?lang=en"><span class="flag-icon flag-icon-gb"></span> English</a>
+            <a href="../index.html?lang=de"><span class="flag-icon flag-icon-de"></span> German</a>
+            <a href="../index.html?lang=fr"><span class="flag-icon flag-icon-fr"></span> French</a>
+            <a href="../index.html?lang=hu"><span class="flag-icon flag-icon-hu"></span> Hungarian</a>
+            <a href="../index.html?lang=it"><span class="flag-icon flag-icon-it"></span> Italian</a>
+            <a href="../index.html?lang=pl"><span class="flag-icon flag-icon-pl"></span> Polish</a>
+                                            <span class="flag-icon flag-icon-ru"></span> Russian
+            <a href="../index.html?lang=es"><span class="flag-icon flag-icon-es"></span> Spanish</a>
         </small></nav>
 
-        <a href="#" id="back-to-top"><img src="img/backtotop.png" alt="Wróc na górę" /></a>
+        <a href="#" id="back-to-top"><img src="../img/backtotop.png" alt="Wróc na górę" /></a>
         <!--Smooth Back to Top Button End-->
 
         <h1>Руководство пользователя Money Manager Ex</h1>
@@ -57,7 +57,7 @@
             <p>Упрощенно это может быть показано, как на этом изображении:</p>
         </div>
         <div class="col-xs-8 text-info">
-        <img src="img/mmex_concept_ru.png" alt="">
+        <img src="../ru/mmex_concept.png" alt="">
         </div>
     </div>
     <p>Еще одна важная вещь это валюта, которая используется для выполнения операций.</p>
@@ -912,7 +912,7 @@
     <h2>Инвестиции</h2>
     MMEX allows you to track Stocks and Shares. The total Stocks are added to
     your total financial worth.<br>Further details refer to
-    <a href="stocks_and_shares.html">Stocks, Shares and Share Dividend Management in MMEX</a>
+    <a href="../en/stocks_and_shares.html">Stocks, Shares and Share Dividend Management in MMEX</a>
 
     <h2>Активы</h2>
     <p>MMEX позволяет отслеживать основные средства такие, как автомобили, дома, землю и другие. Каждый актив может иметь свое значение цены приведённое к определенному курсу валюты с учётом обесценивания за год. В итоге все активы добавляются в ваш общий объем денежных средств.</p>
@@ -938,12 +938,7 @@
 	<p>&nbsp;</p>
 
     <h2>Бюджет</h2>
-    <a id="budget_href" href="budget.html?lang=ru">Бюджет в MMEX</a>
-    <script>
-        var lang = getParameterValue("lang");
-        if (lang !== '')
-            document.getElementById('budget_href').href = "budget.html?lang=" + lang;
-    </script>
+    <a href="budget.html">Бюджет в MMEX</a>
 
     <h2>Отчёты</h2>
     <p>MMEX содержит множество отчетов.</p>
@@ -974,12 +969,7 @@
     <br>
 
     <h3>Управление отчётами</h3>
-    <a id="grm_href">Управление отчётами</a>
-    <script>
-        var lang = getParameterValue("lang");
-        if (lang !== '')
-            document.getElementById('grm_href').href = "grm.html?lang=" + lang;
-    </script>
+    <a href="grm.html">Управление отчётами</a>
     <br>
 
     <h3>Печать</h3>
@@ -1144,7 +1134,7 @@
                 <input name="no_note" type="hidden" value="0">
                 <input name="currency_code" type="hidden" value="USD">
                 <input name="bn" type="hidden" value="PP-DonationsBF:btn_donateCC_LG.gif:NonHostedGuest">
-                <input id="paypal" alt="PayPal - The safer, easier way to pay online!" name="submit" src="img/btn_donateCC_LG.gif" type="image">
+                <input id="paypal" alt="PayPal - The safer, easier way to pay online!" name="submit" src="../img/btn_donateCC_LG.gif" type="image">
             </form>
         </div>
         <div class="col-xs-9">
