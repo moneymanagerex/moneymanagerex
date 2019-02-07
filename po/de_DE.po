@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-02-05 11:56+0300\n"
-"PO-Revision-Date: 2019-02-07 18:04\n"
+"PO-Revision-Date: 2019-02-07 18:36\n"
 "Last-Translator: vomikan <nikolay.akimov@gmail.com>\n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -5127,7 +5127,7 @@ msgstr "Verzeichnis für Benutzerdokumente"
 
 #: optionsettingsattachment.cpp:103
 msgid "User profile folder"
-msgstr ""
+msgstr "Benutzerprofilordner"
 
 #: optionsettingsattachment.cpp:104
 msgid "Folder of .mmb database file"
@@ -5207,15 +5207,15 @@ msgstr ""
 
 #: optionsettingsattachment.cpp:265
 msgid "Error moving attachments folder: please move it manually!"
-msgstr ""
+msgstr "Fehler beim Verschieben des Anhänge-Ordners. Bitte verschieben Sie ihn händisch!"
 
 #: optionsettingsattachment.cpp:266
 msgid "Origin"
-msgstr ""
+msgstr "Herkunft"
 
 #: optionsettingsattachment.cpp:267
 msgid "Destination"
-msgstr ""
+msgstr "Ziel"
 
 #: optionsettingsgeneral.cpp:64
 msgid "Display Heading"
@@ -5239,7 +5239,7 @@ msgstr "Währung auswählen"
 
 #: optionsettingsgeneral.cpp:93
 msgid "Sets the database default Currency using the 'Currency Dialog'"
-msgstr ""
+msgstr "Setzt die Standardwährung der Datenbank mithilfe der 'Währungsdialoges'"
 
 #: optionsettingsgeneral.cpp:94
 msgid "Right click and select 'Set as Base Currency' in 'Currency Dialog'"
@@ -5263,7 +5263,7 @@ msgstr "Start Tag"
 
 #: optionsettingsgeneral.cpp:133
 msgid "Specify Day for start of financial year"
-msgstr ""
+msgstr "Geben Sie den Tag für den Beginn des Geschäftsjahres an"
 
 #: optionsettingsgeneral.cpp:137
 msgid "Start Month"
@@ -5271,7 +5271,7 @@ msgstr "Start Monat"
 
 #: optionsettingsgeneral.cpp:149
 msgid "Specify month for start of financial year"
-msgstr ""
+msgstr "Geben Sie das Monat für den Beginn des Geschäftsjahres an"
 
 #: optionsettingsgeneral.cpp:154
 msgid "Use Original Date when Pasting Transactions"
@@ -5319,7 +5319,7 @@ msgstr "zuletzt als Zahlungsempfänger eingesetzt"
 
 #: optionsettingsmisc.cpp:103
 msgid "Unused"
-msgstr ""
+msgstr "Unbenutzt"
 
 #: optionsettingsmisc.cpp:118
 msgid "Default Date:"
@@ -5399,11 +5399,11 @@ msgstr "Geben Sie den Web-App GUID ein"
 
 #: optionsettingsnet.cpp:86
 msgid "Test connection"
-msgstr ""
+msgstr "Verbindung testen"
 
 #: optionsettingsnet.cpp:89
 msgid "More information about WebApp"
-msgstr ""
+msgstr "Weitere Informationen über die WebApp"
 
 #: optionsettingsnet.cpp:93
 msgid "Proxy Settings"
@@ -5483,27 +5483,27 @@ msgstr "Stabil"
 
 #: optionsettingsnet.cpp:187
 msgid "Unstable"
-msgstr ""
+msgstr "Instabil"
 
 #: optionsettingsnet.cpp:191
 msgid "Select updates source channel"
-msgstr ""
+msgstr "Quellkanal für Updates auswählen"
 
 #: optionsettingsnet.cpp:194
 msgid "Select preferred version:"
-msgstr ""
+msgstr "Bevorzugte Version auswählen:"
 
 #: optionsettingsnet.cpp:226
 msgid "WebApp connection tested successfully!"
-msgstr ""
+msgstr "WebApp-Verbindung erfolgreich getestet!"
 
 #: optionsettingsnet.cpp:226 optionsettingsnet.cpp:231
 msgid "WebApp connection test"
-msgstr ""
+msgstr "WebApp Verbindungstest"
 
 #: optionsettingsnet.cpp:231
 msgid "Some parameters are missing."
-msgstr ""
+msgstr "Einige Parameter fehlen."
 
 #: optionsettingsview.cpp:79
 msgid "Specify which accounts are visible"
@@ -5519,15 +5519,15 @@ msgstr "Welche Buchungen sind standardgemäß sichtbar"
 
 #: optionsettingsview.cpp:109
 msgid "HTML scale factor"
-msgstr ""
+msgstr "HTML-Skalierungsfaktor"
 
 #: optionsettingsview.cpp:117
 msgid "Specify which scale factor is used for the report pages"
-msgstr ""
+msgstr "Geben Sie an, welcher Skalierungsfaktor für die Berichtseiten verwendet wird"
 
 #: optionsettingsview.cpp:121
 msgid "Budget Options"
-msgstr ""
+msgstr "Budget-Optionen"
 
 #: optionsettingsview.cpp:127
 msgid "View as Financial Years"
@@ -5555,11 +5555,11 @@ msgstr ""
 
 #: optionsettingsview.cpp:163
 msgid "Report Options"
-msgstr ""
+msgstr "Berichtsoptionen"
 
 #: optionsettingsview.cpp:169
 msgid "View without Future Transactions"
-msgstr ""
+msgstr "Ansicht ohne zukünftige Transaktionen"
 
 #: optionsettingsview.cpp:175
 msgid "User Colors"
