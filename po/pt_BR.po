@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-02-05 11:56+0300\n"
-"PO-Revision-Date: 2019-02-06 15:35\n"
+"PO-Revision-Date: 2019-02-06 17:06\n"
 "Last-Translator: vomikan <nikolay.akimov@gmail.com>\n"
 "Language-Team: Portuguese, Brazilian\n"
 "MIME-Version: 1.0\n"
@@ -482,7 +482,7 @@ msgstr "&Excluir Bem"
 #: assetspanel.cpp:111 billsdepositspanel.cpp:414 mmcheckingpanel.cpp:1233
 #: mmframe.cpp:1231 payeedialog.cpp:373 stockspanel.cpp:152
 msgid "&Organize Attachments"
-msgstr "&Organizar Documentos"
+msgstr "&Organizar Anexos"
 
 #: assetspanel.cpp:205
 msgid "Do you really want to delete the Asset?"
@@ -1341,7 +1341,7 @@ msgstr "Valor:"
 
 #: budgetentrydialog.cpp:148
 msgid "Enter the amount budgeted for this category."
-msgstr "Informe o montante orçado para esta categoria."
+msgstr "Informe o valor orçado para esta categoria."
 
 #: budgetingpanel.cpp:58
 msgid "View All Budget Categories"
@@ -4081,11 +4081,11 @@ msgstr "Ver/Esconder a Árvore de Navegação"
 
 #: mmframe.cpp:1506
 msgid "&Display Share Accounts"
-msgstr "&Exibir contas compartilhadas"
+msgstr "&Exibir Contas de Ações"
 
 #: mmframe.cpp:1506
 msgid "Show/Hide Share Accounts in the navigation tree"
-msgstr "Mostrar/ocultar contas compartilhadas na árvore de navegação"
+msgstr "Mostrar/ocultar Contas de Ações na árvore de navegação"
 
 #: mmframe.cpp:1509
 msgid "Budgets: As &Financial Years"
@@ -4477,7 +4477,7 @@ msgstr "Mostra Lista de Beneficiários"
 
 #: mmframe.cpp:1831
 msgid "Show Organize Currency Dialog"
-msgstr "Mostrar Lista de Moedas"
+msgstr "Mostra Lista de Moedas"
 
 #: mmframe.cpp:1842
 msgid "Show the Help file"
@@ -4621,7 +4621,7 @@ msgstr "Contas Compartilhadas possuem transações de compartilhamento\n\n"
 "As transações de ações são criadas dentro da visão de portfólio de ações\n"
 "após a seleção do Estoque da Empresa dentro da visão associada.\n\n"
 "Essas contas só se tornam visíveis depois de associar um estoque à conta de compartilhamento\n"
-"Ou usando o Menu VIsão -> 'Mostrar contas compartilhadas'\n"
+"Ou usando o Menu Visão -> 'Mostrar contas compartilhadas'\n"
 "Contas compartilhadas também podem conter transações normais para uma conta normal."
 
 #: mmframe.cpp:2348
@@ -5373,7 +5373,7 @@ msgstr "Especificar número máximo de arquivos de backup"
 
 #: optionsettingsmisc.cpp:162
 msgid "Max Files"
-msgstr "Máx. de arquivos"
+msgstr "Máx. de Arquivos"
 
 #: optionsettingsmisc.cpp:169
 msgid "CSV Settings"
@@ -5389,7 +5389,7 @@ msgstr "Configurações do WebApp"
 
 #: optionsettingsnet.cpp:69
 msgid "Url"
-msgstr "Endereço"
+msgstr "Url"
 
 #: optionsettingsnet.cpp:73
 msgid "Specify the Web App URL without final slash"
@@ -5449,7 +5449,7 @@ msgstr "Especifique o número da porta do servidor web"
 
 #: optionsettingsnet.cpp:144
 msgid "Usage statistics"
-msgstr "Estatística de uso"
+msgstr "Estatísticas de uso"
 
 #: optionsettingsnet.cpp:150
 msgid "Send anonymous statistics usage data"
@@ -5473,15 +5473,15 @@ msgstr "Segundos"
 
 #: optionsettingsnet.cpp:175
 msgid "Check for Updates"
-msgstr "Verificar atualizações"
+msgstr "Verificar Atualizações"
 
 #: optionsettingsnet.cpp:181
 msgid "Check at StartUp"
-msgstr "Verificar ao inicializar"
+msgstr "Verificar ao Inicializar"
 
 #: optionsettingsnet.cpp:183
 msgid "Enable to automatically check if new MMEX version is available at StartUp"
-msgstr "Habilite para verificar automaticamente se a nova versão do MMEX está disponível na inicialização"
+msgstr "Habilite para verificar automaticamente se a nova versão do MMEX está disponível na Inicialização"
 
 #: optionsettingsnet.cpp:186
 msgid "Stable"
@@ -5517,7 +5517,7 @@ msgstr "Especifique quais contas são visíveis"
 
 #: optionsettingsview.cpp:81
 msgid "Transactions Visible"
-msgstr "Transações visíveis"
+msgstr "Transações Visíveis"
 
 #: optionsettingsview.cpp:107
 msgid "Specify which transactions are visible by default"
@@ -5561,15 +5561,15 @@ msgstr "Adiantar ou atrasar a data de início a partir do 1° dia do mês ou ano
 
 #: optionsettingsview.cpp:163
 msgid "Report Options"
-msgstr "Opções de relatório"
+msgstr "Opções de Relatório"
 
 #: optionsettingsview.cpp:169
 msgid "View without Future Transactions"
-msgstr "Ver sem transações futuras"
+msgstr "Ver sem Transações Futuras"
 
 #: optionsettingsview.cpp:175
 msgid "User Colors"
-msgstr "Cores do usuário"
+msgstr "Cores do Usuário"
 
 #: payeedialog.cpp:66
 msgid "Default Category"
@@ -5605,7 +5605,7 @@ msgstr "Este Beneficiário está em uso."
 
 #: payeedialog.cpp:263
 msgid "Tip: Change all transactions using this Payee to another Payee using the relocate command:"
-msgstr "Dica: altere todas as transações usando este beneficiário para outro beneficiário usando o comando relocate:"
+msgstr "Dica: Transfira todas as transações deste beneficiário para outro beneficiário usando o comando realocar:"
 
 #: payeedialog.cpp:265
 msgid "Tools -> Relocation of -> Payees"
@@ -5633,11 +5633,11 @@ msgstr "Realocar a categoria de origem para a categoria de destino"
 
 #: relocatecategorydialog.cpp:93
 msgid "Select Source Category"
-msgstr "Selecione a categoria de origem"
+msgstr "Selecione a Categoria de Origem"
 
 #: relocatecategorydialog.cpp:98
 msgid "Select Destination Category"
-msgstr "Selecione a categoria de destino"
+msgstr "Selecione a Categoria de Destino"
 
 #: relocatecategorydialog.cpp:111 relocatepayeedialog.cpp:111
 msgid "Relocate:"
@@ -5709,12 +5709,12 @@ msgstr "Confirmação de Realocação de Beneficiário"
 #: reports/budgetcategorysummary.cpp:130
 #, c-format
 msgid "Budget Categories for %s"
-msgstr "Categorias de orçamento para %s"
+msgstr "Categorias de Orçamento para %s"
 
 #: reports/budgetcategorysummary.cpp:130
 #, c-format
 msgid "Budget Category Summary for %s"
-msgstr "Resumo da categoria de orçamento para %s"
+msgstr "Resumo da Categoria de Orçamento para %s"
 
 #: reports/budgetcategorysummary.cpp:133
 msgid "( Estimated Vs Actual )"
@@ -5734,11 +5734,11 @@ msgstr "Diferença:"
 
 #: reports/budgetcategorysummary.cpp:271
 msgid "Estimated Expenses:"
-msgstr "Despesas estimadas:"
+msgstr "Despesas Estimadas:"
 
 #: reports/budgetcategorysummary.cpp:273
 msgid "Actual Expenses:"
-msgstr "Despesas realizadas:"
+msgstr "Despesas Realizadas:"
 
 #: reports/budgetcategorysummary.cpp:275
 msgid "Difference Expenses:"
@@ -5747,7 +5747,7 @@ msgstr "Diferença:"
 #: reports/budgetingperf.cpp:171
 #, c-format
 msgid "Budget Performance for %s"
-msgstr "Desempenho orçamentário para %s"
+msgstr "Desempenho Orçamentário para %s"
 
 #: reports/budgetingperf.cpp:194 reports/budgetingperf.cpp:197
 msgid "Est."
@@ -5755,7 +5755,7 @@ msgstr "Est."
 
 #: reports/budgetingperf.cpp:195 reports/budgetingperf.cpp:198
 msgid "Act."
-msgstr "At."
+msgstr "Atu."
 
 #: reports/budgetingperf.cpp:199
 msgid "%"
@@ -5768,7 +5768,7 @@ msgstr "Total Mensal"
 #: reports/cashflow.cpp:223
 #, c-format
 msgid "Cash Flow Forecast for %i Years Ahead"
-msgstr "Previsão de fluxo de caixa para %i anos à frente"
+msgstr "Previsão de Fluxo de Caixa para %i Anos à Frente"
 
 #: reports/cashflow.cpp:290 reports/incexpenses.cpp:242 reports/payee.cpp:124
 msgid "Difference"
@@ -5805,7 +5805,7 @@ msgstr "Previsão"
 #: reports/htmlbuilder.cpp:116
 #, c-format
 msgid "Report Generated %s %s"
-msgstr "Relatório gerado %s %s"
+msgstr "Relatório Gerado %s %s"
 
 #: reports/htmlbuilder.cpp:313
 #, c-format
@@ -5842,7 +5842,7 @@ msgstr "Hoje"
 
 #: reports/mmDateRange.cpp:90
 msgid "Current Month to Date"
-msgstr "Mês atual até hoje"
+msgstr "Mês Atual até Hoje"
 
 #: reports/mmDateRange.cpp:98
 msgid "Last Month"
@@ -5854,15 +5854,15 @@ msgstr "Últimos 30 dias"
 
 #: reports/mmDateRange.cpp:118
 msgid "Last 90 Days"
-msgstr "Últimos 90 dias"
+msgstr "Últimos 90 Dias"
 
 #: reports/mmDateRange.cpp:128
 msgid "Last 3 Months"
-msgstr "Últimos 3 meses"
+msgstr "Últimos 3 Meses"
 
 #: reports/mmDateRange.cpp:138
 msgid "Last 12 Months"
-msgstr "Últimos 12 meses"
+msgstr "Últimos 12 Meses"
 
 #: reports/mmDateRange.cpp:146
 msgid "Current Year"
@@ -5870,7 +5870,7 @@ msgstr "Ano Atual"
 
 #: reports/mmDateRange.cpp:154 stockdialog.cpp:688
 msgid "Current Year to Date"
-msgstr "Ano atual até o momento"
+msgstr "Ano Atual até Hoje"
 
 #: reports/mmDateRange.cpp:162
 msgid "Last Year"
@@ -5882,7 +5882,7 @@ msgstr "Exercício Financeiro Atual"
 
 #: reports/mmDateRange.cpp:193
 msgid "Current Financial Year to Date"
-msgstr "Exercício Financeiro Atual até o momento"
+msgstr "Exercício Financeiro Atual até o Hoje"
 
 #: reports/mmDateRange.cpp:203
 msgid "Last Financial Year"
@@ -5890,7 +5890,7 @@ msgstr "Último Exercício Financeiro"
 
 #: reports/mmDateRange.cpp:231
 msgid "Last 365 Days"
-msgstr "Últimos 365 dias"
+msgstr "Últimos 365 Dias"
 
 #: reports/payee.cpp:32
 msgid "Payee Report"
@@ -5932,11 +5932,11 @@ msgstr "Preço Atual"
 #: reports/summarystocks.cpp:185 sharetransactiondialog.cpp:236
 #: stockspanel.cpp:106
 msgid "Commission"
-msgstr "Custo"
+msgstr "Comissões"
 
 #: reports/summarystocks.cpp:193
 msgid "Stocks Performance Charts"
-msgstr "Gráficos de desempenho de ações"
+msgstr "Gráficos de Desempenho de Ações"
 
 #: reports/transactions.cpp:60
 #, c-format
@@ -5965,15 +5965,15 @@ msgstr "Nome da Empresa"
 
 #: sharetransactiondialog.cpp:199
 msgid "Enter the stock company name"
-msgstr "Entre com o nome ação da empresa"
+msgstr "Digite o nome da empresa emissora de ações"
 
 #: sharetransactiondialog.cpp:202 stockdialog.cpp:202
 msgid "Stock Symbol"
-msgstr "Símbolo de Estoque"
+msgstr "Símbolo da Ação"
 
 #: sharetransactiondialog.cpp:209
 msgid "Enter the stock symbol. (Optional) Include exchange. eg: IBM.BE"
-msgstr "Entre com o símbolo do investimento. (Opcional) Incluir tipo. Ex: PETR4.PN"
+msgstr "Digite o símbolo da ação. (Opcional) Incluir Tipo da Ação. Ex: PETR4.PN"
 
 #: sharetransactiondialog.cpp:212
 msgid "Share Number"
@@ -5981,7 +5981,7 @@ msgstr "Número da Ação"
 
 #: sharetransactiondialog.cpp:218
 msgid "Enter number of shares held"
-msgstr "Entre com o número de ações mantidas"
+msgstr "Digite o número de ações mantidas"
 
 #: sharetransactiondialog.cpp:223
 msgid "Share Price"
@@ -5989,15 +5989,15 @@ msgstr "Preço da Ação"
 
 #: sharetransactiondialog.cpp:229
 msgid "Enter the current value for a single share unit"
-msgstr "Insira o valor atual de uma única unidade da ação"
+msgstr "Digite o valor atual de uma única unidade da ação"
 
 #: sharetransactiondialog.cpp:238
 msgid "Enter any commission paid"
-msgstr "Insira as taxas pagas"
+msgstr "Insira todas as taxas pagas"
 
 #: sharetransactiondialog.cpp:243
 msgid "Share Lot"
-msgstr "Lote de ações"
+msgstr "Lote de Ações"
 
 #: sharetransactiondialog.cpp:250
 msgid "Enter the LOT that this parcel os shares belong to"
@@ -6005,19 +6005,19 @@ msgstr "Insira o LOTE ao qual esta parcela de ações pertence"
 
 #: sharetransactiondialog.cpp:257 stockdialog.cpp:281
 msgid "Organize attachments of this stock"
-msgstr "Organizar documentos deste investimento"
+msgstr "Organizar anexos deste investimento"
 
 #: sharetransactiondialog.cpp:262 stockdialog.cpp:283
 msgid "Display the web page for the specified Stock symbol"
-msgstr "Exibe a página da web para o símbolo especificado do estoque"
+msgstr "Exibe a página da web para o símbolo do investimento especificado"
 
 #: sharetransactiondialog.cpp:272 stockdialog.cpp:290
 msgid "Enter notes associated with this investment"
-msgstr "Introduza qualquer comentário associado a este investimento"
+msgstr "Digite qualquer comentário associado a este investimento"
 
 #: sharetransactiondialog.cpp:277
 msgid "Add Transaction Details"
-msgstr "Adicionar detalhes da transação"
+msgstr "Adicionar Detalhes da Transação"
 
 #: splitdetailsdialog.cpp:70
 msgid "Split Detail Dialog"
@@ -6029,7 +6029,7 @@ msgstr "Detalhamento das Categorias desta Transação"
 
 #: splittransactionsdialog.cpp:74
 msgid "Split Transaction Dialog"
-msgstr "Separação em várias Categorias"
+msgstr "Separação em Várias Categorias"
 
 #: splittransactionsdialog.cpp:127
 msgid "Split Category Details"
@@ -6061,19 +6061,19 @@ msgstr "Inválido nesta exibição.\n"
 
 #: stockdialog.cpp:195
 msgid "Name of the company issuing Shares"
-msgstr "Nome da empresa emissora de ações"
+msgstr "Nome da empresa emissora de Ações"
 
 #: stockdialog.cpp:199
 msgid "Enter the associated Share Account name\n"
 "An account can be created on Save"
-msgstr "Insira o nome da conta de ação associada\n"
-"Uma conta pode ser criada em Salvar"
+msgstr "Insira o nome da Conta de Ação associada\n"
+"Uma conta pode ser criada ao Salvar"
 
 #: stockdialog.cpp:209
 msgid "Enter the Company's stock exchange symbol.\n"
 "(Optional) Include exchange. eg: IBM.BE"
 msgstr "Digite o símbolo da bolsa de valores da empresa.\n"
-"(Opcional) Inclua a troca. exemplo: IBM.BE"
+"(Opcional) Inclua o Tipo. exemplo: PETR4.PN"
 
 #: stockdialog.cpp:212 stockspanel.cpp:96
 msgid "*Date"
@@ -6091,7 +6091,7 @@ msgstr "Especifique a data dessa compra inicial de ações"
 
 #: stockdialog.cpp:223
 msgid "*Share Number"
-msgstr "*Número da Ação"
+msgstr "*Número de Ações"
 
 #: stockdialog.cpp:224
 msgid "Total number of shares.\n"
@@ -6113,7 +6113,7 @@ msgstr "Digite o preço inicial por ação."
 
 #: stockdialog.cpp:245
 msgid "*Commission"
-msgstr "*Custo"
+msgstr "*Comissões"
 
 #: stockdialog.cpp:246
 msgid "Remainder of funds from share investment.\n"
@@ -6147,7 +6147,7 @@ msgstr "Opções do histórico de Ações"
 
 #: stockdialog.cpp:305
 msgid "Stock Price History"
-msgstr "Histórico de preços de ações"
+msgstr "Histórico de preço das ações"
 
 #: stockdialog.cpp:317 stockdialog.cpp:642
 msgid "Price"
@@ -6171,7 +6171,7 @@ msgstr "Adicionar preço da ação ao histórico"
 
 #: stockdialog.cpp:417
 msgid "Held At"
-msgstr "Mantido no(a)"
+msgstr "Realizado em"
 
 #: stockdialog.cpp:489
 msgid "A Share Account as the Company name has not been found.\n\n"
@@ -6237,11 +6237,11 @@ msgstr "Máx"
 
 #: stockdialog.cpp:695
 msgid "Specify type frequency of stock history"
-msgstr "Especifique a frequência do tipo de histórico de estoque"
+msgstr "Especifique a frequência do tipo de histórico de ação"
 
 #: stockdialog.cpp:696 stockdialog.cpp:720
 msgid "Stock History Update"
-msgstr "Atualização do histórico de estoque"
+msgstr "Atualização do Histórico de Ações"
 
 #: stockdialog.cpp:709
 msgid "1 Day"
@@ -6253,15 +6253,15 @@ msgstr "1 Semana"
 
 #: stockdialog.cpp:719
 msgid "Specify interval of stock history"
-msgstr "Especifique intervalo do histórico de estoque"
+msgstr "Especifique intervalo do histórico de ações"
 
 #: stockdialog.cpp:732
 msgid "Stock history not found!"
-msgstr "Histórico de estoque não encontrado!"
+msgstr "Histórico de ações não encontrado!"
 
 #: stockdialog.cpp:733
 msgid "Stock History Error"
-msgstr "Erro do histórico de Estoque"
+msgstr "Erro do Histórico de Ações"
 
 #: stockspanel.cpp:36
 msgid "Using MMEX it is possible to track stocks/mutual funds investments."
@@ -6293,7 +6293,7 @@ msgstr "Cotação Atual"
 
 #: stockspanel.cpp:104
 msgid "Curr. Total Value"
-msgstr "Valor total atual"
+msgstr "Valor Total Atual"
 
 #: stockspanel.cpp:144
 msgid "&New Stock Investment"
@@ -6325,7 +6325,7 @@ msgstr "Tem certeza de que deseja excluir este investimento?"
 
 #: stockspanel.cpp:270
 msgid "Confirm Stock Investment Deletion"
-msgstr "Confirmar a exclusão do Investimento"
+msgstr "Confirmar a Exclusão do Investimento"
 
 #: stockspanel.cpp:404
 #, c-format
@@ -6336,15 +6336,15 @@ msgstr "Lista de ações temporária:: %s\n\n"
 
 #: stockspanel.cpp:574
 msgid "Create a new Stock investment in this portfolio"
-msgstr "Criar um novo investimento em ações nessa carteira"
+msgstr "Criar um novo investimento em Ações nessa carteira"
 
 #: stockspanel.cpp:578
 msgid "Add or remove shares to the selected Stock"
-msgstr "Adicionar ou remover ações ao estoque selecionado"
+msgstr "Adicionar ou remover ações ao Investimento selecionado"
 
 #: stockspanel.cpp:583
 msgid "View selected stock's share transactions"
-msgstr "Ver transações de ações do mercado de ações selecionado"
+msgstr "Ver transações de ações do investimento selecionado"
 
 #: stockspanel.cpp:588
 msgid "Edit selected stock investment and readjust current prices"
@@ -6360,7 +6360,7 @@ msgstr "&Mover"
 
 #: stockspanel.cpp:598
 msgid "Move the selected Stock to another portfolio"
-msgstr "Mover o estoque selecionado para outro portfólio"
+msgstr "Mover o Investimento selecionado para outro portfólio"
 
 #: stockspanel.cpp:611
 msgid "Refresh"
@@ -6373,7 +6373,7 @@ msgstr "Atualizar os preços das Ações pelo Yahoo"
 #: stockspanel.cpp:725
 #, c-format
 msgid "Stock Portfolio: %s"
-msgstr "Carteira de ações: %s"
+msgstr "Carteira de Ações: %s"
 
 #: stockspanel.cpp:767
 #, c-format
@@ -6424,7 +6424,7 @@ msgstr "Símbolo: %s"
 
 #: transactionsupdatedialog.cpp:72
 msgid "Multi Transactions Update"
-msgstr "Atualização de múltiplas transações"
+msgstr "Atualização de Múltiplas Transações"
 
 #: transactionsupdatedialog.cpp:186
 msgid "Append"
@@ -6436,7 +6436,7 @@ msgstr "Tipo inválido"
 
 #: transdialog.cpp:170
 msgid "Duplicate Transaction"
-msgstr "Transacção Duplicada"
+msgstr "Transação Duplicada"
 
 #: transdialog.cpp:171
 msgid "Edit Transaction"
@@ -6444,11 +6444,11 @@ msgstr "Editar Transação"
 
 #: transdialog.cpp:530
 msgid "Populate Transaction #"
-msgstr "Definir um número aleatoreamente"
+msgstr "Preencher Transação #"
 
 #: transdialog.cpp:552 usertransactionpanel.cpp:217
 msgid "Organize attachments of this transaction"
-msgstr "Organizar documentos desta transação"
+msgstr "Organizar anexos desta transação"
 
 #: transdialog.cpp:633
 #, c-format
@@ -6473,7 +6473,7 @@ msgstr "Especifique de qual conta o dinheiro está sendo retirado"
 
 #: transdialog.cpp:1206
 msgid "Specify account the money is moved to"
-msgstr "Especifique para qual conta o dinheiro foi depositado"
+msgstr "Especifique em qual conta o dinheiro foi depositado"
 
 #: transdialog.cpp:1207
 msgid "Specify the transfer amount in the From Account."
@@ -6549,7 +6549,7 @@ msgstr "Redigite a senha para o arquivo de banco de dados"
 
 #: util.cpp:126
 msgid "Confirm password failed."
-msgstr "Confirme a senha falhou."
+msgstr "Confirmação de senha falhou."
 
 #: util.cpp:128
 msgid "Password must not be empty."
@@ -6807,7 +6807,7 @@ msgstr "Excluir"
 
 #: wizard_newaccount.cpp:26
 msgid "Add Account Wizard"
-msgstr "Assistente para adicionar Conta"
+msgstr "Assistente para Adicionar Conta"
 
 #: wizard_newaccount.cpp:35
 #, c-format
@@ -6861,8 +6861,8 @@ msgstr "As contas bancárias gerais cobrem uma ampla variedade de contas\n"
 #: wizard_newaccount.cpp:136
 msgid "Investment accounts are specialized accounts that only\n"
 "have stock/mutual fund investments associated with them."
-msgstr "Contas de Investimento são contas específicas que têm apenas \n"
-"investimentos ou fundos mútuos de investimento associados a elas."
+msgstr "Contas de investimento são contas especializadas que tem apenas\n"
+"investimentos em ações/fundos associados a eles."
 
 #: wizard_newaccount.cpp:141
 msgid "Term accounts are specialized bank accounts. Intended for asset\n"
