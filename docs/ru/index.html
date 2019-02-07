@@ -1239,8 +1239,16 @@
     <p>Чтобы распечатать выписку со счёта, постройте отчёт по транзакциям, используя фильтр транзакций. Затем распечатайте его через меню Файл -&gt; Печать.</p>
     <p>Этот инструмент доступен в дереве навигации, или в панели инструментов, расположенной в верхней части MMEX.</p>
 
-    <hr>
-    Copyright © 2005-2009 Madhan Kanagavel<br>
-    Copyright © 2013-2018 MMEX contributors<br>
-    Перевод: Николай Акимов
-</body></html>
+    <footer><p><small>
+        Copyright &copy; 2005-2009 Madhan Kanagavel<br>
+        Copyright &copy; 2013-2019 MMEX contributors<br>
+        <span id="translator">Перевод: Николай Акимов</span>
+    </small></p></footer>
+    <script>
+        var LANG = document.getElementsByTagName('html')[0].getAttribute('lang');
+        var tr = document.getElementById("translator");            
+        if (LANG == 'en')
+            tr.parentNode.removeChild(tr);
+    </script>
+</body>
+</html>

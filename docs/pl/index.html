@@ -1378,9 +1378,16 @@ Plik &rarr; Drukuj... &rarr; Aktualny widok</p>
 Repory &rarr; Raporty transakcji, albo w przyciskach szybkiej nawigacji w
 górnym lewym rogu interfejsu MMEX.</p>
 
-<footer>
-Copyright &copy; 2005-2009 Madhan Kanagavel<br>
-Copyright &copy; 2013-2018 MMEX contributors
-</footer>
+    <footer><p><small>
+        Copyright &copy; 2005-2009 Madhan Kanagavel<br>
+        Copyright &copy; 2013-2019 MMEX contributors<br>
+        <span id="translator">Translation: Team MMEX</span>
+    </small></p></footer>
+    <script>
+        var LANG = document.getElementsByTagName('html')[0].getAttribute('lang');
+        var tr = document.getElementById("translator");            
+        if (LANG == 'en')
+            tr.parentNode.removeChild(tr);
+    </script>
 </body>
 </html>
