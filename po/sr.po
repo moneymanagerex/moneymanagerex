@@ -19,7 +19,7 @@ msgstr ""
 "X-Crowdin-Project: moneymanagerex\n"
 "X-Crowdin-Language: sr\n"
 "X-Crowdin-File: /master/po/mmex.pot\n"
-"Language: sr_SP\n"
+"Language: sr\n"
 
 #: aboutdialog.cpp:41
 msgid "License agreement"

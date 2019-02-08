@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-02-05 11:56+0300\n"
-"PO-Revision-Date: 2019-02-05 21:44\n"
+"PO-Revision-Date: 2019-02-07 18:36\n"
 "Last-Translator: vomikan <nikolay.akimov@gmail.com>\n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -430,7 +430,7 @@ msgstr "Ein Anlagenkonto mit demselben Namen wurde nicht gefunden.\n\n"
 #: assetspanel.cpp:60 billsdepositspanel.cpp:101 mmcheckingpanel.cpp:1098
 #: reports/transactions.cpp:73 stockspanel.cpp:95
 msgid "ID"
-msgstr ""
+msgstr "Nummer"
 
 #: assetspanel.cpp:63 billsdepositsdialog.cpp:569 billsdepositspanel.cpp:108
 #: customfieldlistdialog.cpp:54 filtertransdialog.cpp:284
@@ -461,15 +461,15 @@ msgstr "Wert D&uplizieren"
 
 #: assetspanel.cpp:104
 msgid "&Add Asset Transaction"
-msgstr ""
+msgstr "&Anlagenbuchung hinzufügen"
 
 #: assetspanel.cpp:105
 msgid "&View Asset Transactions"
-msgstr ""
+msgstr "&Anlagenbuchung anzeigen"
 
 #: assetspanel.cpp:106
 msgid "&Open Asset Account"
-msgstr ""
+msgstr "&Anlagenkonto öffnen"
 
 #: assetspanel.cpp:108
 msgid "&Edit Asset"
@@ -564,7 +564,7 @@ msgstr "Geben Sie eine beliebige Zeichenfolge ein, um die entsprechenden Vermög
 #: assetspanel.cpp:667
 #, c-format
 msgid "Change in Value: %s %s"
-msgstr ""
+msgstr "Wertveränderung: %s %s"
 
 #: assetspanel.cpp:781
 msgid "This asset does not have its own account\n\n"
@@ -841,7 +841,7 @@ msgstr "Geben Sie das Datum an, an dem diese Rechnung oder Gutschrift fällig is
 
 #: billsdepositsdialog.cpp:441
 msgid "Retard or advance the date of the 'next occurrence'"
-msgstr ""
+msgstr "Datum der 'nächsten Fälligkeit' der Buchung zurück oder vor verlegen"
 
 #: billsdepositsdialog.cpp:447 billsdepositspanel.cpp:103
 msgid "Date Due"
@@ -885,7 +885,7 @@ msgstr "Geben Sie das Datum an, an dem der Benutzer aufgefordert wird, diese Tra
 
 #: billsdepositsdialog.cpp:529
 msgid "Advance or retard the user request date of this transaction"
-msgstr ""
+msgstr "Datum der Frage an den Benutzer dieser Buchung zurück oder vor verlegen"
 
 #: billsdepositsdialog.cpp:534
 msgid "Reset 'Date Paid' to 'Today's Date'"
@@ -1013,7 +1013,7 @@ msgstr "Nummer"
 
 #: billsdepositsdialog.cpp:641
 msgid "Organize attachments of this recurring transaction"
-msgstr ""
+msgstr "Anhänge dieser regelmäßigen Buchung verwalten"
 
 #: billsdepositsdialog.cpp:645 transdialog.cpp:543 usertransactionpanel.cpp:224
 msgid "Select one of the frequently used notes"
@@ -1064,22 +1064,26 @@ msgstr "Periode: Monate"
 #: billsdepositsdialog.cpp:1308
 msgid "Specify period in Days to activate.\n"
 "Becomes blank when not active."
-msgstr ""
+msgstr "Geben Sie den Zeitraum bis zur Aktivierung in Tagen an.\n"
+"Das Feld wird leer, wenn nicht aktiv."
 
 #: billsdepositsdialog.cpp:1316
 msgid "Specify period in Months to activate.\n"
 "Becomes blank when not active."
-msgstr ""
+msgstr "Geben Sie den Zeitraum bis zur Aktivierung in Monaten an.\n"
+"Das Feld wird leer, wenn nicht aktiv."
 
 #: billsdepositsdialog.cpp:1324
 msgid "Specify period in Days to activate.\n"
 "Leave blank when not active."
-msgstr ""
+msgstr "Geben Sie den Zeitraum bis zur Aktivierung in Tagen an.\n"
+"Feld bitte leer lassen, wenn nicht aktiv."
 
 #: billsdepositsdialog.cpp:1332
 msgid "Specify period in Months to activate.\n"
 "Leave blank when not active."
-msgstr ""
+msgstr "Geben Sie den Zeitraum bis zur Aktivierung in Monaten an.\n"
+"Feld bitte leer lassen, wenn nicht aktiv."
 
 #: billsdepositsdialog.cpp:1340
 msgid "Specify the number of payments to be made.\n"
@@ -1877,7 +1881,7 @@ msgstr "Geben Sie die Auswahlmöglichkeiten für dieses Feld getrennt durch ein 
 
 #: customfieldeditdialog.cpp:169
 msgid "Digits scale"
-msgstr ""
+msgstr "Ziffernskala"
 
 #: customfieldeditdialog.cpp:171
 msgid "Enter the decimal digits scale allowed"
@@ -1902,7 +1906,7 @@ msgstr "Möchten Sie fortfahren?"
 
 #: customfieldeditdialog.cpp:223 customfieldeditdialog.cpp:245
 msgid "Custom Field Change"
-msgstr ""
+msgstr "Benutzerdefiniertes Feld ändern"
 
 #: customfieldeditdialog.cpp:243
 msgid "You have modified choices: ones removed will be cleaned!"
@@ -1910,20 +1914,20 @@ msgstr ""
 
 #: customfieldlistdialog.cpp:55
 msgid "Properties"
-msgstr ""
+msgstr "Eigenschaften"
 
 #: customfieldlistdialog.cpp:65
 #, c-format
 msgid "Personalize custom fields | %s"
-msgstr ""
+msgstr "Benutzerdefinierte Felder anpassen | %s"
 
 #: customfieldlistdialog.cpp:172
 msgid "Do you really want to delete this custom field and all its data?"
-msgstr ""
+msgstr "Möchten Sie dieses benutzerdefinierte Feld und alle seine Daten wirklich löschen?"
 
 #: customfieldlistdialog.cpp:173
 msgid "Confirm Custom Field Deletion"
-msgstr ""
+msgstr "Benutzerdefiniertes Feld löschen bestätigen"
 
 #: customfieldlistdialog.cpp:191
 #, c-format
@@ -1934,7 +1938,7 @@ msgstr ""
 
 #: customfieldlistdialog.cpp:194
 msgid "Confirm Custom Field Content Update"
-msgstr ""
+msgstr "Bestätigung der Inhaltsänderung eines benutzerdefiniertes Feldes"
 
 #: customfieldlistdialog.cpp:199
 msgid "Find what"
@@ -1944,12 +1948,13 @@ msgstr "&Suche"
 #: customfieldlistdialog.cpp:211 customfieldlistdialog.cpp:217
 #: customfieldlistdialog.cpp:232
 msgid "Update Custom Field Content"
-msgstr ""
+msgstr "Benutzerdefinierten Feldinhalt aktualisieren"
 
 #: customfieldlistdialog.cpp:203
 msgid "Do you want to update blank content?\n"
 "Press no if you want to abort replace procedure!"
-msgstr ""
+msgstr "Möchten Sie leere Inhalte aktualisieren?\n"
+"Drücken Sie Nein, wenn Sie den Vorgang abbrechen möchten!"
 
 #: customfieldlistdialog.cpp:211
 msgid "Replace with"
@@ -1958,7 +1963,8 @@ msgstr "Ersetzen durch"
 #: customfieldlistdialog.cpp:215
 msgid "Do you want to update to blank?\n"
 "Press no if you want to abort replace procedure!"
-msgstr ""
+msgstr "Möchtest Sie den Inhalt auf 'leer' aktualisieren?\n"
+"Drücken Sie Nein, wenn Sie den Vorgang abbrechen möchten!"
 
 #: customfieldlistdialog.cpp:231
 #, c-format
@@ -2223,7 +2229,7 @@ msgstr "Bitte stellen Sie die Datenbank aus der automatisch erstellten Sicherung
 
 #: dbupgrade.cpp:237
 msgid "Load debug file"
-msgstr ""
+msgstr "Debug-Datei laden"
 
 #: dbupgrade.cpp:237
 msgid "MMEX debug files (*.mmdbg)"
@@ -2245,7 +2251,7 @@ msgstr "Dieses SQL debug Skript benötigt %li Datenbankversion, aber die aktuell
 
 #: dbupgrade.cpp:284
 msgid "Debug script description:"
-msgstr ""
+msgstr "Beschreibung des Debug-Skriptes:"
 
 #: dbupgrade.cpp:284
 msgid "Please confirm running this SQL script."
@@ -2257,12 +2263,13 @@ msgstr "MMEX debug"
 
 #: dbupgrade.cpp:318 dbupgrade.cpp:356
 msgid "Query error, please contact MMEX support!"
-msgstr ""
+msgstr "Abfragefehler, bitte kontaktieren Sie den MMEX-Support!"
 
 #: dbupgrade.cpp:329
 msgid "Send this log to MMEX support team:\n"
 "press OK to save to file or Cancel to exit"
-msgstr ""
+msgstr "Senden Sie dieses Protokoll an das MMEX-Support-Team:\n"
+"Drücken Sie \"OK\" zum Speichern der Datei oder \"Abbrechen\" um zu beenden"
 
 #: dbupgrade.cpp:333
 msgid "Save debug file"
@@ -2302,7 +2309,7 @@ msgstr "Es wurde versucht eine Datei zu öffnen, die keine Datenbankdatei ist"
 
 #: dbwrapper.cpp:93
 msgid "Corrupted database file"
-msgstr ""
+msgstr "Beschädigte Datenbankdatei"
 
 #: dbwrapper.cpp:100 mmframe.cpp:1899
 msgid "Opening MMEX Database - Error"
@@ -2378,21 +2385,21 @@ msgstr "Betragsspanne:"
 
 #: filtertransdialog.cpp:351
 msgid "Settings"
-msgstr ""
+msgstr "Einstellungen"
 
 #: filtertransdialog.cpp:372 filtertransdialog.cpp:687
 #: filtertransdialog.cpp:936 filtertransdialog.cpp:1210
 #, c-format
 msgid "%i: Empty"
-msgstr ""
+msgstr "%i: Leer"
 
 #: filtertransdialog.cpp:381
 msgid "Save active values into current Preset selection"
-msgstr ""
+msgstr "Aktive Werte in die aktuelle Preset-Auswahl speichern"
 
 #: filtertransdialog.cpp:386
 msgid "Clear all fields for current Preset selection"
-msgstr ""
+msgstr "Alle Felder für die aktuelle Preset-Auswahl löschen"
 
 #: filtertransdialog.cpp:400
 msgid "&Activate "
@@ -2400,7 +2407,7 @@ msgstr "&Aktivieren "
 
 #: filtertransdialog.cpp:401
 msgid "Activate the filter with these settings"
-msgstr ""
+msgstr "Filter mit diesen Einstellungen aktivieren"
 
 #: filtertransdialog.cpp:403
 msgid "&Deactivate "
@@ -2412,7 +2419,7 @@ msgstr "Filter deaktivieren"
 
 #: filtertransdialog.cpp:409 transdialog.cpp:577
 msgid "Show/Hide custom fields window"
-msgstr ""
+msgstr "Fenster für benutzerdefinierte Felder anzeigen/ausblenden"
 
 #: filtertransdialog.cpp:805
 msgid "Filtering Details: "
@@ -2420,11 +2427,11 @@ msgstr "Filterung Details: "
 
 #: filtertransdialog.cpp:840
 msgid "Since"
-msgstr ""
+msgstr "Seit"
 
 #: filtertransdialog.cpp:842
 msgid "Before"
-msgstr ""
+msgstr "Vor"
 
 #: filtertransdialog.cpp:896
 msgid "Amount Min."
@@ -2436,15 +2443,15 @@ msgstr "Max. Betrag"
 
 #: filtertransdialog.cpp:939
 msgid "Label"
-msgstr ""
+msgstr "Bezeichnung"
 
 #: filtertransdialog.cpp:1212
 msgid "Please Enter"
-msgstr ""
+msgstr "Bitte eingeben"
 
 #: filtertransdialog.cpp:1212
 msgid "Setting Name"
-msgstr ""
+msgstr "Name der Einstellung"
 
 #: filtertransdialog.cpp:1216
 msgid "Could not save settings"
@@ -2535,11 +2542,11 @@ msgstr "Bereichtsdatei laden: "
 
 #: general_report_manager.cpp:546 general_report_manager.cpp:976
 msgid "General Report Manager files (*.grm)"
-msgstr ""
+msgstr "Allgemeine Berichtsmanager Dateien (*.grm)"
 
 #: general_report_manager.cpp:546 general_report_manager.cpp:976
 msgid "ZIP files (*.zip)"
-msgstr ""
+msgstr "ZIP-Dateien (*.zip)"
 
 #: general_report_manager.cpp:609
 #, c-format
@@ -2562,7 +2569,7 @@ msgstr "Wechsle Gruppe"
 
 #: general_report_manager.cpp:680 general_report_manager.cpp:845
 msgid "Rename Group"
-msgstr ""
+msgstr "Gruppe umbenennen"
 
 #: general_report_manager.cpp:681
 msgid "UnGroup"
@@ -2591,11 +2598,11 @@ msgstr "Löschen des Berichtstitels:"
 
 #: general_report_manager.cpp:827 general_report_manager.cpp:908
 msgid "Enter or choose name for the new report group"
-msgstr ""
+msgstr "Geben Sie einen Namen für die neue Berichtsgruppe ein oder wählen Sie einen Namen aus"
 
 #: general_report_manager.cpp:828
 msgid "Change report group"
-msgstr ""
+msgstr "Berichtsgruppe ändern"
 
 #: general_report_manager.cpp:844
 msgid "Enter or choose name for the new group"
@@ -4366,11 +4373,11 @@ msgstr "&Newsletter"
 
 #: mmframe.cpp:1744
 msgid "Subscribe to e-mail newsletter or view existing announcements"
-msgstr ""
+msgstr "E-Mail-Newsletter abonnieren oder vorhandene Ankündigungen anzeigen"
 
 #: mmframe.cpp:1747
 msgid "RSS Feed"
-msgstr ""
+msgstr "RSS-Feed"
 
 #: mmframe.cpp:1747
 msgid "Connect RSS web feed to news aggregator"
@@ -4394,7 +4401,7 @@ msgstr "Kauf dem Schlüsselentwickler einen Kaffee"
 
 #: mmframe.cpp:1759
 msgid "Community"
-msgstr ""
+msgstr "Community"
 
 #: mmframe.cpp:1760
 msgid "Stay in touch with MMEX community"
@@ -4402,7 +4409,7 @@ msgstr "Bleib mit der MMEX Community in Verbindung"
 
 #: mmframe.cpp:1780
 msgid "Report a Bug"
-msgstr ""
+msgstr "Einen Fehler melden"
 
 #: mmframe.cpp:1781
 msgid "Report an error in application to the developers"
@@ -4410,7 +4417,7 @@ msgstr "Melde den Entwicklern einen Fehler in der Anwendung"
 
 #: mmframe.cpp:1786
 msgid "Reopen &Start-up Dialog"
-msgstr ""
+msgstr "Den &Start-up-Dialog erneut öffnen"
 
 #: mmframe.cpp:1786
 msgid "Show application start-up dialog"
@@ -4422,7 +4429,7 @@ msgstr "Prüfe auf neue &Version"
 
 #: mmframe.cpp:1791
 msgid "Check if a new MMEX version is available"
-msgstr ""
+msgstr "Prüfen, ob eine neue Version verfügbar ist"
 
 #: mmframe.cpp:1796 mmframe.cpp:1841
 msgid "&About..."
@@ -4829,7 +4836,7 @@ msgstr "BERICHTE"
 
 #: mmreportspanel.cpp:297 mmreportspanel.cpp:375
 msgid "Period:"
-msgstr ""
+msgstr "Zeitraum:"
 
 #: mmreportspanel.cpp:304 reports/mmDateRange.cpp:222
 #: reports/reportbase.cpp:169
@@ -4972,7 +4979,7 @@ msgstr "Zwei-Wöchentlich"
 
 #: model/Model_Currency.cpp:29
 msgid "Fiat"
-msgstr ""
+msgstr "Fiat"
 
 #: model/Model_CustomField.cpp:25
 msgid "String"
@@ -5058,7 +5065,7 @@ msgstr "Geldfluss"
 
 #: option.cpp:128 option.cpp:129
 msgid "Stocks Report"
-msgstr ""
+msgstr "Aktienbericht"
 
 #: option.cpp:130
 msgid "Forecast Report"
@@ -5116,11 +5123,11 @@ msgstr "Legende "
 
 #: optionsettingsattachment.cpp:102 optionsettingsattachment.cpp:177
 msgid "User documents directory"
-msgstr ""
+msgstr "Verzeichnis für Benutzerdokumente"
 
 #: optionsettingsattachment.cpp:103
 msgid "User profile folder"
-msgstr ""
+msgstr "Benutzerprofilordner"
 
 #: optionsettingsattachment.cpp:104
 msgid "Folder of .mmb database file"
@@ -5200,15 +5207,15 @@ msgstr ""
 
 #: optionsettingsattachment.cpp:265
 msgid "Error moving attachments folder: please move it manually!"
-msgstr ""
+msgstr "Fehler beim Verschieben des Anhänge-Ordners. Bitte verschieben Sie ihn händisch!"
 
 #: optionsettingsattachment.cpp:266
 msgid "Origin"
-msgstr ""
+msgstr "Herkunft"
 
 #: optionsettingsattachment.cpp:267
 msgid "Destination"
-msgstr ""
+msgstr "Ziel"
 
 #: optionsettingsgeneral.cpp:64
 msgid "Display Heading"
@@ -5232,7 +5239,7 @@ msgstr "Währung auswählen"
 
 #: optionsettingsgeneral.cpp:93
 msgid "Sets the database default Currency using the 'Currency Dialog'"
-msgstr ""
+msgstr "Setzt die Standardwährung der Datenbank mithilfe der 'Währungsdialoges'"
 
 #: optionsettingsgeneral.cpp:94
 msgid "Right click and select 'Set as Base Currency' in 'Currency Dialog'"
@@ -5256,7 +5263,7 @@ msgstr "Start Tag"
 
 #: optionsettingsgeneral.cpp:133
 msgid "Specify Day for start of financial year"
-msgstr ""
+msgstr "Geben Sie den Tag für den Beginn des Geschäftsjahres an"
 
 #: optionsettingsgeneral.cpp:137
 msgid "Start Month"
@@ -5264,7 +5271,7 @@ msgstr "Start Monat"
 
 #: optionsettingsgeneral.cpp:149
 msgid "Specify month for start of financial year"
-msgstr ""
+msgstr "Geben Sie das Monat für den Beginn des Geschäftsjahres an"
 
 #: optionsettingsgeneral.cpp:154
 msgid "Use Original Date when Pasting Transactions"
@@ -5312,7 +5319,7 @@ msgstr "zuletzt als Zahlungsempfänger eingesetzt"
 
 #: optionsettingsmisc.cpp:103
 msgid "Unused"
-msgstr ""
+msgstr "Unbenutzt"
 
 #: optionsettingsmisc.cpp:118
 msgid "Default Date:"
@@ -5392,11 +5399,11 @@ msgstr "Geben Sie den Web-App GUID ein"
 
 #: optionsettingsnet.cpp:86
 msgid "Test connection"
-msgstr ""
+msgstr "Verbindung testen"
 
 #: optionsettingsnet.cpp:89
 msgid "More information about WebApp"
-msgstr ""
+msgstr "Weitere Informationen über die WebApp"
 
 #: optionsettingsnet.cpp:93
 msgid "Proxy Settings"
@@ -5476,27 +5483,27 @@ msgstr "Stabil"
 
 #: optionsettingsnet.cpp:187
 msgid "Unstable"
-msgstr ""
+msgstr "Instabil"
 
 #: optionsettingsnet.cpp:191
 msgid "Select updates source channel"
-msgstr ""
+msgstr "Quellkanal für Updates auswählen"
 
 #: optionsettingsnet.cpp:194
 msgid "Select preferred version:"
-msgstr ""
+msgstr "Bevorzugte Version auswählen:"
 
 #: optionsettingsnet.cpp:226
 msgid "WebApp connection tested successfully!"
-msgstr ""
+msgstr "WebApp-Verbindung erfolgreich getestet!"
 
 #: optionsettingsnet.cpp:226 optionsettingsnet.cpp:231
 msgid "WebApp connection test"
-msgstr ""
+msgstr "WebApp Verbindungstest"
 
 #: optionsettingsnet.cpp:231
 msgid "Some parameters are missing."
-msgstr ""
+msgstr "Einige Parameter fehlen."
 
 #: optionsettingsview.cpp:79
 msgid "Specify which accounts are visible"
@@ -5512,15 +5519,15 @@ msgstr "Welche Buchungen sind standardgemäß sichtbar"
 
 #: optionsettingsview.cpp:109
 msgid "HTML scale factor"
-msgstr ""
+msgstr "HTML-Skalierungsfaktor"
 
 #: optionsettingsview.cpp:117
 msgid "Specify which scale factor is used for the report pages"
-msgstr ""
+msgstr "Geben Sie an, welcher Skalierungsfaktor für die Berichtseiten verwendet wird"
 
 #: optionsettingsview.cpp:121
 msgid "Budget Options"
-msgstr ""
+msgstr "Budget-Optionen"
 
 #: optionsettingsview.cpp:127
 msgid "View as Financial Years"
@@ -5548,11 +5555,11 @@ msgstr ""
 
 #: optionsettingsview.cpp:163
 msgid "Report Options"
-msgstr ""
+msgstr "Berichtsoptionen"
 
 #: optionsettingsview.cpp:169
 msgid "View without Future Transactions"
-msgstr ""
+msgstr "Ansicht ohne zukünftige Transaktionen"
 
 #: optionsettingsview.cpp:175
 msgid "User Colors"
