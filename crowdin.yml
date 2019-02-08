@@ -1,7 +1,7 @@
 files:
   - source: /po/mmex.pot
     translation: /po/%locale_with_underscore%.po
-    language: {"sr_SP": "sr"}
     languages_mapping:
         locale_with_underscore: {"sr_SP": "sr"}
+        language: {"sr_SP": "sr"}
     translation_replace: {"_SP" : ""}
