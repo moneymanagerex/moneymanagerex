@@ -3,7 +3,7 @@ files:
     translation: /po/%locale_with_underscore%.po
     languages_mapping:
         locale_with_underscore:
-            sr_SP: sr
+            sr: sr_SP
         language:
-            sr_SP: sr
+            sr: sr_SP
     translation_replace: {"_SP" : ""}
