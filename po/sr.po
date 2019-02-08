@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-02-05 11:56+0300\n"
-"PO-Revision-Date: 2019-02-08 12:39\n"
+"PO-Revision-Date: 2019-02-08 13:03\n"
 "Last-Translator: vomikan <nikolay.akimov@gmail.com>\n"
 "Language-Team: Serbian (Cyrillic)\n"
 "MIME-Version: 1.0\n"
@@ -1496,7 +1496,7 @@ msgstr ""
 
 #: categdialog.cpp:195
 msgid "Show All"
-msgstr ""
+msgstr "Prikažite sve"
 
 #: categdialog.cpp:197
 msgid "Show all hidden categories"
