@@ -3,4 +3,4 @@ files:
     translation: /po/%locale_with_underscore%.po
     languages_mapping:
         locale_with_underscore:
-            sr_SP: sr
+            sr-SP: sr
