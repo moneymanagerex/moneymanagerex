@@ -5,4 +5,4 @@ files:
         locale_with_underscore:
             sr: sr_SP
         language:
-            sr: sr_SP
+            sr_SP: sr
