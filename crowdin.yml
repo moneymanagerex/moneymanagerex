@@ -1,4 +1,6 @@
 files:
   - source: /po/mmex.pot
     translation: /po/%locale_with_underscore%.po
-    translation_replace: {"_SP" : ""}
+    languages_mapping:
+        locale_with_underscore:
+            sr_SP: sr
