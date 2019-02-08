@@ -2,8 +2,10 @@ files:
   - source: /po/mmex.pot
     translation: /po/%locale_with_underscore%.po
     languages_mapping:
-        locale_with_underscore: {"sr_SP": "sr"}
-        locale_with_underscore: {"sr-SP": "sr"}
-        language: {"sr_SP": "sr"}
-        language: {"sr-SP": "sr"}
+        locale_with_underscore:
+             "sr_SP": "sr"
+             "sr-SP": "sr"
+        language:
+            "sr_SP": "sr"
+            "sr-SP": "sr"
     translation_replace: {"_SP" : ""}
