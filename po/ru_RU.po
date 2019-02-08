@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-02-05 11:56+0300\n"
-"PO-Revision-Date: 2019-02-08 11:47\n"
+"PO-Revision-Date: 2019-02-08 12:24\n"
 "Last-Translator: vomikan <nikolay.akimov@gmail.com>\n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -131,7 +131,7 @@ msgstr "Открыт в:"
 
 #: accountdialog.cpp:279
 msgid "Website:"
-msgstr "Web-сайт:"
+msgstr "Сайт:"
 
 #: accountdialog.cpp:285
 msgid "Contact:"
