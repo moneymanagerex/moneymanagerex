@@ -4,6 +4,6 @@ files:
     languages_mapping:
         locale_with_underscore:
             sr: sr_SP
-        language:
-            sr: sr_SP
+    language:
+        sr_SP: sr
     translation_replace: {"_SP" : ""}
