@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-02-05 11:56+0300\n"
-"PO-Revision-Date: 2019-02-08 12:25\n"
+"PO-Revision-Date: 2019-02-08 10:35\n"
 "Last-Translator: vomikan <nikolay.akimov@gmail.com>\n"
 "Language-Team: Serbian (Cyrillic)\n"
 "MIME-Version: 1.0\n"
@@ -28,7 +28,7 @@ msgstr ""
 #: aboutdialog.cpp:41
 #, c-format
 msgid "About %s"
-msgstr "О програму %s"
+msgstr ""
 
 #: aboutdialog.cpp:146
 msgid "About"
@@ -40,7 +40,7 @@ msgstr "Autori"
 
 #: aboutdialog.cpp:156
 msgid "Sponsors"
-msgstr "Спонзори"
+msgstr ""
 
 #: aboutdialog.cpp:161
 msgid "License"
@@ -163,7 +163,7 @@ msgstr ""
 
 #: accountdialog.cpp:323
 msgid "Credit"
-msgstr "Кредит"
+msgstr ""
 
 #: accountdialog.cpp:331
 msgid "Credit Limit:"
@@ -2167,7 +2167,7 @@ msgstr ""
 
 #: dbupgrade.cpp:110
 msgid "initialization"
-msgstr "покретање"
+msgstr ""
 
 #: dbupgrade.cpp:129
 msgid "MMEX database error!"
