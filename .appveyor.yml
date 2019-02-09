@@ -29,7 +29,7 @@ environment:
   # clcache config
   clcVer: 4.1.0
   # libcurl config
-  curlVer: 7_62_0
+  curlVer: 7_64_0
   curldir: C:\curl-$(curlVer)
   curlShared: OFF
   # wxWidgets config
@@ -162,7 +162,7 @@ before_build:
 - cd src\db &&
   python ..\..\util\sqlite2cpp.py ..\..\database\tables.sql &&
   python ..\..\util\sqliteupgrade2cpp.py ..\..\database\incremental_upgrade &&
-  del *.mmdbg sql*.sql 
+  del *.mmdbg sql*.sql
 - cd %APPVEYOR_BUILD_FOLDER%
 
 build_script:
