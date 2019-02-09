@@ -11,7 +11,7 @@
 </head>
 <body onload="generateTOC(document.getElementById('toc'));">
     <header>
-        <nav><small><a id="go_home" href="./index.html">Перейти на главную страницу справки</a></small></nav>
+        <nav><small><a id="go_home" href="../index.html?lang=ru">Перейти на главную страницу справки</a></small></nav>
 
         <a href="#" id="back-to-top"><img src="../img/backtotop.png" alt="Наверх" /></a>
         <!--Smooth Back to Top Button End-->
@@ -79,7 +79,7 @@ group by a.ACCOUNTNAME order by a.ACCOUNTNAME asc;
 
     <h3>Импорт отчёта</h3>
     <p>
-        Есть много отчетов, представленных пользователями или разработчиками на 
+        Есть много отчетов, представленных пользователями или разработчиками на
     </p>
         <a href="https://github.com/moneymanagerex/general-reports/releases">github</a>
 
@@ -94,7 +94,7 @@ group by a.ACCOUNTNAME order by a.ACCOUNTNAME asc;
     </small></p></footer>
     <script>
         var LANG = document.getElementsByTagName('html')[0].getAttribute('lang');
-        var tr = document.getElementById("translator");            
+        var tr = document.getElementById("translator");
         if (LANG == 'en')
             tr.parentNode.removeChild(tr);
     </script>

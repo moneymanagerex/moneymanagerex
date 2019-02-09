@@ -11,7 +11,7 @@
 </head>
 <body onload="generateTOC(document.getElementById('toc'));">
     <header>
-        <nav><small><a id="go_home" href="./index.html">Go to main help page</a></small></nav>
+        <nav><small><a id="go_home" href="../index.html?lang=en">Go to main help page</a></small></nav>
         <a href="#" id="back-to-top"><img src="../img/backtotop.png" alt="Back to Top" /></a>
         <!--Smooth Back to Top Button End-->
 
@@ -78,7 +78,7 @@
     </small></p></footer>
     <script>
         var LANG = document.getElementsByTagName('html')[0].getAttribute('lang');
-        var tr = document.getElementById("translator");            
+        var tr = document.getElementById("translator");
         if (LANG == 'en')
             tr.parentNode.removeChild(tr);
     </script>
