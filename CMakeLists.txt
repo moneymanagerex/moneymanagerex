@@ -177,12 +177,12 @@ ENDIF()
 IF(CCACHE_PROGRAM)
     IF(MSVC)
         FUNCTION(any_target_hook)
-            SET(NON_COMPILE_TARGETS INTERFACE IMPORTED UNKNOWN ALIAS) 
+            SET(NON_COMPILE_TARGETS INTERFACE IMPORTED UNKNOWN ALIAS)
             LIST(FIND NON_COMPILE_TARGETS "${ARGV1}" found)
             IF(${found} GREATER -1)
                 RETURN()
             ENDIF()
-                
+
             SET_TARGET_PROPERTIES(${ARGV0} PROPERTIES VS_GLOBAL_CLToolExe       clcache.exe)
             SET_TARGET_PROPERTIES(${ARGV0} PROPERTIES VS_GLOBAL_CLToolPath      "${CLCACHE_DIR}")
             SET_TARGET_PROPERTIES(${ARGV0} PROPERTIES VS_GLOBAL_TrackFileAccess false)
@@ -416,7 +416,7 @@ IF(WIN32)
             SET(WXDLLPREF ${WXDLLPREF}${wxWidgets_VERSION_PATCH})
         ENDIF()
         SET(WXDLLPREF ${WXDLLPREF}u)
-        
+
         IF(NOT CMAKE_INSTALL_DEBUG_LIBRARIES_ONLY)
             LIST(APPEND MMEX_WXDLLS
                 wxbase${WXDLLPREF}
@@ -485,9 +485,6 @@ INSTALL(FILES
     DESTINATION "${MMEX_DOC_DIR}")
 INSTALL(DIRECTORY
     docs/
-    DESTINATION "${MMEX_DOC_DIR}/help")
-INSTALL(FILES
-    resources/master.css
     DESTINATION "${MMEX_DOC_DIR}/help")
 
 # Resources
@@ -579,7 +576,7 @@ IF(LINUX)
         SET(CPACK_RPM_PACKAGE_RELEASE_DIST ".opensuse${LINUX_DISTRO_REL}")
         SET(CPACK_RPM_PACKAGE_RELEASE 1)
     ELSEIF(LINUX_DISTRO STREQUAL "Slackware")
-        SET(CPACK_GENERATOR TXZ)            
+        SET(CPACK_GENERATOR TXZ)
         IF(CMAKE_SIZEOF_VOID_P EQUAL 8)
             SET(CPACK_SYSTEM_NAME x86_64)
         ELSE()
