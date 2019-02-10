@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-02-05 11:56+0300\n"
-"PO-Revision-Date: 2019-02-07 18:36\n"
+"PO-Revision-Date: 2019-02-10 13:13\n"
 "Last-Translator: vomikan <nikolay.akimov@gmail.com>\n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -1910,7 +1910,7 @@ msgstr "Benutzerdefiniertes Feld ändern"
 
 #: customfieldeditdialog.cpp:243
 msgid "You have modified choices: ones removed will be cleaned!"
-msgstr ""
+msgstr "Sie haben die Auswahl geändert: Jene, welche entfernt wurden, werden bereinigt!"
 
 #: customfieldlistdialog.cpp:55
 msgid "Properties"
@@ -3423,7 +3423,7 @@ msgstr "Dateiname ist leer."
 
 #: mmSimpleDialogs.cpp:140
 msgid "Please select the file for this operation."
-msgstr ""
+msgstr "Bitte wählen Sie die Datei für diesen Vorgang aus."
 
 #: mmSimpleDialogs.cpp:149
 msgid "Invalid Account"
@@ -3473,7 +3473,7 @@ msgstr "Bitte geben Sie keinen leeren Namen ein."
 
 #: mmSimpleDialogs.cpp:206
 msgid "Please type in a non empty symbol."
-msgstr ""
+msgstr "Bitte geben Sie ein nicht leeres Symbol ein."
 
 #: mmSimpleDialogs.cpp:222
 msgid "Invalid Amount"
@@ -3481,11 +3481,11 @@ msgstr "Ungültiger Betrag"
 
 #: mmSimpleDialogs.cpp:223
 msgid "Please enter a calculated or fixed amount"
-msgstr ""
+msgstr "Bitte geben Sie einen berechneten oder festen Betrag ein"
 
 #: mmSimpleDialogs.cpp:233
 msgid "Please select a valid choice"
-msgstr ""
+msgstr "Bitte treffen Sie eine gültige Wahl"
 
 #: mmTextCtrl.cpp:83
 msgid "Please enter a positive or calculated value."
@@ -3493,7 +3493,7 @@ msgstr "Bitte geben Sie einen positiven oder berechneten Wert ein."
 
 #: mmTextCtrl.cpp:83
 msgid "Please enter a calculated value."
-msgstr ""
+msgstr "Bitte geben Sie einen berechneten Wert ein."
 
 #: mmTextCtrl.cpp:85
 msgid "Tip: For calculations, enter expressions like (2+2)*(2+2)\n"
@@ -3519,7 +3519,7 @@ msgstr "Tipp: Vergessen Sie nicht ein Backups Ihrer Datenbank (.mmb) zu machen."
 
 #: mmTips.h:27
 msgid "Tip: The not encrypted .mmb file is insecure. That means anyone else having the proper know how can actually open the file and read the contents. So make sure that if you are storing any sensitive financial information it is properly guarded."
-msgstr ""
+msgstr "Tipp: Die unverschlüsselte .mmb-Datei ist unsicher. Das bedeutet, dass jeder mit dem entsprechenden Wissen die Datei öffnen und den Inhalt lesen kann. Stellen Sie also sicher, dass, wenn Sie sensible Finanzinformationen in der Datei speichern, diese ordnungsgemäß geschützt ist."
 
 #: mmTips.h:28
 msgid "Tip: To mark a transaction as reconciled, just select the transaction and hit the 'r' or 'R' key. To mark a transaction as unreconciled, just select the transaction and hit the 'u' or 'U' key."
@@ -3779,7 +3779,7 @@ msgstr "Wiederkehrende Transaktion gespeichert."
 #: mmcheckingpanel.cpp:2027
 #, c-format
 msgid "Transactions selected: %ld"
-msgstr ""
+msgstr "Ausgewählte Buchungen: %ld"
 
 #: mmcheckingpanel.cpp:2029
 #, c-format
@@ -3803,19 +3803,19 @@ msgstr ""
 
 #: mmcustomdata.cpp:307
 msgid "Please select"
-msgstr ""
+msgstr "Bitte wählen"
 
 #: mmcustomdata.cpp:307
 msgid "Multi Choice"
-msgstr ""
+msgstr "Mehrfachauswahl"
 
 #: mmex.cpp:75
 msgid "Can not load translation for default language"
-msgstr ""
+msgstr "Die Übersetzung für Standardsprache kann nicht geladen werden"
 
 #: mmex.cpp:76 mmex.cpp:81 mmframe.cpp:3106
 msgid "Language change"
-msgstr ""
+msgstr "Sprache geändert"
 
 #: mmex.cpp:79
 #, c-format
@@ -3825,7 +3825,8 @@ msgstr "Die Übersetzung für die ausgewählte Sprache %s kann nicht geladen wer
 #: mmex.cpp:115
 msgid "Fatal error occurred.\n"
 "Application will be terminated."
-msgstr ""
+msgstr "Schwerwiegender Fehler.\n"
+"Anwendung wird beendet."
 
 #: mmex.cpp:248
 msgid "MMEX is already running...\n\n"
@@ -3835,7 +3836,7 @@ msgstr "MMEX läuft bereits...\n\n"
 
 #: mmex.cpp:249
 msgid "MMEX Instance Check"
-msgstr ""
+msgstr "MMEX Instanzprüfung"
 
 #: mmframe.cpp:271
 msgid "Navigation"
@@ -3853,7 +3854,7 @@ msgstr "Bankkonten"
 #: mmframe.cpp:451 mmframe.cpp:695 mmhomepagepanel.cpp:477
 #: reports/summary.cpp:158
 msgid "Credit Card Accounts"
-msgstr ""
+msgstr "Kreditkartenkonten"
 
 #: mmframe.cpp:452 mmframe.cpp:710 mmhomepagepanel.cpp:479
 #: reports/summary.cpp:160
