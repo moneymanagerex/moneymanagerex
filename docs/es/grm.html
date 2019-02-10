@@ -4,14 +4,13 @@
     <meta charset="UTF-8">
     <title>General Report Manager</title>
     <link href="../manual.css" rel="stylesheet" type="text/css">
-    <script src="../js/get_param.js"></script>
     <script src="../js/toc.js"></script>
     <script src='http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js'></script>
     <script src="../js/back_to_top.js"></script>
 </head>
 <body onload="generateTOC(document.getElementById('toc'));">
     <header>
-        <nav><small><a id="go_home" href="index.html">Go to main help page</a></small></nav>
+        <nav><small><a id="go_home" href="../index.html?/lang=es">Go to main help page</a></small></nav>
 
         <a href="#" id="back-to-top"><img src="../img/backtotop.png" alt="Back to Top" /></a>
         <!--Smooth Back to Top Button End-->
@@ -99,7 +98,7 @@ group by a.ACCOUNTNAME order by a.ACCOUNTNAME asc;
     </small></p></footer>
     <script>
         var LANG = document.getElementsByTagName('html')[0].getAttribute('lang');
-        var tr = document.getElementById("translator");            
+        var tr = document.getElementById("translator");
         if (LANG == 'en')
             tr.parentNode.removeChild(tr);
     </script>

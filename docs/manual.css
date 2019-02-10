@@ -17,10 +17,6 @@ html {
 
 form#donate { float: right; }
 
-dt, dfn {
-    font-weight: bold;
-    font-style: italic;
-}
 dt { margin-top: 0.5ex; }
 dt::after { content: ":"; }
 
@@ -100,16 +96,23 @@ aside.sticky {
     -moz-transform: rotate(var(--rotation-angle));
 }
 
-aside.sticky > header {
+aside.sticky::before {
     font-weight: bold;
+    display: block;
     margin-bottom: 0.5ex;
 }
 
 .notes { background:#ffc; }
-.notes > header { color: red; }
+.notes::before {
+    content: 'Note';
+    color: red;
+}
 
 .tips { background:#bafbc0; }
-.tips > header { color: blue; }
+.tips::before {
+    content: 'Tip';
+    color: blue;
+}
 
 .negative { color: red; }
 .right { text-align: right; }
