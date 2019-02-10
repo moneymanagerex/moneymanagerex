@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-02-05 11:56+0300\n"
-"PO-Revision-Date: 2019-02-10 13:13\n"
+"PO-Revision-Date: 2019-02-10 13:43\n"
 "Last-Translator: vomikan <nikolay.akimov@gmail.com>\n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -3867,12 +3867,12 @@ msgstr ""
 
 #: mmframe.cpp:454 mmframe.cpp:700 mmhomepagepanel.cpp:475
 msgid "Cash Accounts"
-msgstr ""
+msgstr "Bargeldkonto"
 
 #: mmframe.cpp:455 mmframe.cpp:705 mmhomepagepanel.cpp:478
 #: reports/summary.cpp:159
 msgid "Loan Accounts"
-msgstr ""
+msgstr "Kreditkonten"
 
 #: mmframe.cpp:457 mmframe.cpp:730 mmhomepagepanel.cpp:480
 #: reports/summary.cpp:161
@@ -3954,7 +3954,7 @@ msgstr "Konto-Webseite &öffnen"
 
 #: mmframe.cpp:1257 mmframe.cpp:1570
 msgid "Hide/Show Report"
-msgstr ""
+msgstr "Bericht ausblenden/anzeigen"
 
 #: mmframe.cpp:1269 mmframe.cpp:1578
 msgid "New &Account"
@@ -4038,7 +4038,7 @@ msgstr "&Erzwinge die WebApp-Synchronisierung"
 
 #: mmframe.cpp:1477
 msgid "Force sync of accounts, payees and categories to WebApp"
-msgstr ""
+msgstr "Synchronisierung von Konten, Empfänger und Kategorien zur WebApp erzwingen"
 
 #: mmframe.cpp:1481
 msgid "Import from any CSV file"
@@ -4146,7 +4146,7 @@ msgstr "Ändere die für die MMEX GUI verwendete Sprache"
 
 #: mmframe.cpp:1547
 msgid "system default"
-msgstr ""
+msgstr "Systemstandard"
 
 #: mmframe.cpp:1574
 msgid "Account &List"
@@ -4158,7 +4158,7 @@ msgstr "Liste der Konten anzeigen"
 
 #: mmframe.cpp:1586
 msgid "Change the account type of an account."
-msgstr ""
+msgstr "Ändern Sie den Kontotyp eines Kontos."
 
 #: mmframe.cpp:1590
 msgid "Delete Account from database"
@@ -4238,7 +4238,7 @@ msgstr "&Benutzerdefinierte Felder verwalten..."
 
 #: mmframe.cpp:1666 mmframe.cpp:1833
 msgid "Custom Fields Manager"
-msgstr ""
+msgstr "Benutzerdefinierte Felder verwalten"
 
 #: mmframe.cpp:1673 mmframe.cpp:1837
 msgid "&Options..."
@@ -4306,7 +4306,7 @@ msgstr "Öffne die Money Manager EX Webseite für Neuigkeiten, Updates etc"
 
 #: mmframe.cpp:1717
 msgid "Facebook"
-msgstr ""
+msgstr "Facebook"
 
 #: mmframe.cpp:1717
 msgid "Visit us on Facebook"
@@ -4314,7 +4314,7 @@ msgstr "Besuchen Sie uns auf Facebook"
 
 #: mmframe.cpp:1720
 msgid "Twitter"
-msgstr ""
+msgstr "Twitter"
 
 #: mmframe.cpp:1720
 msgid "Follow us on Twitter"
@@ -4322,7 +4322,7 @@ msgstr "Folgen Sie uns auf Twitter"
 
 #: mmframe.cpp:1723
 msgid "YouTube"
-msgstr ""
+msgstr "YouTube"
 
 #: mmframe.cpp:1723
 msgid "Watch free video materials about MMEX"
@@ -4330,7 +4330,7 @@ msgstr "Sehen Sie sich kostenloses Videomaterial über MMEX an"
 
 #: mmframe.cpp:1726
 msgid "Slack"
-msgstr ""
+msgstr "Slack"
 
 #: mmframe.cpp:1726
 msgid "Communicate online with MMEX team from your desktop or mobile device"
@@ -4338,7 +4338,7 @@ msgstr "Kommunizieren Sie online mit dem MMEX-Team von Ihrem Desktop oder mobile
 
 #: mmframe.cpp:1729
 msgid "GitHub"
-msgstr ""
+msgstr "GitHub"
 
 #: mmframe.cpp:1729
 msgid "Access open source code repository and track reported bug statuses"
@@ -4346,7 +4346,7 @@ msgstr "Greifen Sie auf das Open-Source-Code-Repository zu und protokollieren Si
 
 #: mmframe.cpp:1732
 msgid "Wiki pages"
-msgstr ""
+msgstr "Wiki-Seiten"
 
 #: mmframe.cpp:1732
 msgid "Read and update wiki pages"
@@ -4362,7 +4362,7 @@ msgstr "Besuche das MMEX Forum, um bestehende Nutzerkommentare zu lesen oder um 
 
 #: mmframe.cpp:1739
 msgid "Google Play"
-msgstr ""
+msgstr "Google Play"
 
 #: mmframe.cpp:1740
 msgid "Get free Android version and run MMEX on your smart phone or tablet"
