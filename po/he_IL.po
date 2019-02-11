@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-02-05 11:56+0300\n"
-"PO-Revision-Date: 2019-02-05 09:30\n"
+"PO-Revision-Date: 2019-02-11 10:57\n"
 "Last-Translator: vomikan <nikolay.akimov@gmail.com>\n"
 "Language-Team: Hebrew\n"
 "MIME-Version: 1.0\n"
@@ -4776,7 +4776,7 @@ msgstr "סיכום"
 
 #: mmhomepagepanel.cpp:391
 msgid "Account / Payee"
-msgstr ""
+msgstr "חשבון / מוטב"
 
 #: mmhomepagepanel.cpp:615
 msgid "Upcoming Transactions"
@@ -5387,7 +5387,7 @@ msgstr "הגדרות רשת"
 
 #: optionsettingsnet.cpp:69
 msgid "Url"
-msgstr ""
+msgstr "Url"
 
 #: optionsettingsnet.cpp:73
 msgid "Specify the Web App URL without final slash"
@@ -5395,7 +5395,7 @@ msgstr "הזנת כתובת URL של אפליקציית השרת ללא הלוכ
 
 #: optionsettingsnet.cpp:76
 msgid "GUID"
-msgstr ""
+msgstr "GUID"
 
 #: optionsettingsnet.cpp:80
 msgid "Specify the Web App GUID"
@@ -5459,7 +5459,7 @@ msgstr "אִפְשׁוּר שליחת נתוני שימוש אנונימיים �
 
 #: optionsettingsnet.cpp:157
 msgid "Timeout"
-msgstr ""
+msgstr "פסק זמן"
 
 #: optionsettingsnet.cpp:166
 msgid "Specify a network communication timeout value to use."
@@ -5499,7 +5499,7 @@ msgstr "בחירת גרסה מועדפת:"
 
 #: optionsettingsnet.cpp:226
 msgid "WebApp connection tested successfully!"
-msgstr ""
+msgstr "חיבור WebApp נבדק בהצלחה!"
 
 #: optionsettingsnet.cpp:226 optionsettingsnet.cpp:231
 msgid "WebApp connection test"
@@ -5757,7 +5757,7 @@ msgstr "בפועל."
 
 #: reports/budgetingperf.cpp:199
 msgid "%"
-msgstr ""
+msgstr "%"
 
 #: reports/budgetingperf.cpp:241
 msgid "Monthly Total"
@@ -6560,7 +6560,7 @@ msgstr "שער המרה ממטבע בסיס ל דולר ארה\"ב, שגוי"
 
 #: util.cpp:803
 msgid "UTF-8"
-msgstr ""
+msgstr "UTF-8"
 
 #: util.cpp:816
 msgid "January"
