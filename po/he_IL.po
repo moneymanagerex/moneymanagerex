@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-02-05 11:56+0300\n"
-"PO-Revision-Date: 2019-02-11 10:57\n"
+"PO-Revision-Date: 2019-02-11 11:25\n"
 "Last-Translator: vomikan <nikolay.akimov@gmail.com>\n"
 "Language-Team: Hebrew\n"
 "MIME-Version: 1.0\n"
@@ -61,7 +61,7 @@ msgstr "פרטיות"
 #: splitdetailsdialog.cpp:157 splittransactionsdialog.cpp:170
 #: transactionsupdatedialog.cpp:213 transdialog.cpp:572
 msgid "&OK "
-msgstr ""
+msgstr "&OK "
 
 #: accountdialog.cpp:85 mmframe.cpp:1578 mmframe.cpp:1826
 #: wizard_newaccount.cpp:80 wizard_newaccount.cpp:87 wizard_newaccount.cpp:159
@@ -395,7 +395,7 @@ msgstr "% שער"
 
 #: assetdialog.cpp:241
 msgid "Enter the rate at which the asset changes its value in percentage per year"
-msgstr ""
+msgstr "הזנת שעור השינוי בערך הנכס באחוזים לשנה"
 
 #: assetdialog.cpp:253
 msgid "Organize attachments of this asset"
@@ -586,7 +586,7 @@ msgstr "חשבון \t תאריך\t ערך\n\n"
 #: import_export/qif_import_gui.cpp:92 import_export/univcsvdialog.cpp:1121
 #: payeedialog.cpp:64
 msgid "#"
-msgstr ""
+msgstr "#"
 
 #: attachmentdialog.cpp:55 general_report_manager.cpp:408
 msgid "Description"
@@ -853,7 +853,7 @@ msgstr "חזרות"
 
 #: billsdepositsdialog.cpp:459
 msgid "Advance the next occurring date with the specified values"
-msgstr ""
+msgstr "קידום תאריך המופע הבא בערכים שצוינו"
 
 #: billsdepositsdialog.cpp:467 billsdepositsdialog.cpp:1339
 msgid "Payments Left"
@@ -1369,7 +1369,7 @@ msgstr "הצגת סיכום קטגוריות תקציב"
 #: budgetingpanel.cpp:184 reports/budget.cpp:84
 #, c-format
 msgid "Financial Year: %s - %li"
-msgstr ""
+msgstr "שנת כספים: %s - %li"
 
 #: budgetingpanel.cpp:188 reports/budget.cpp:88
 #, c-format
@@ -1523,7 +1523,7 @@ msgstr "עריכת שם של קטגוריה קיימת"
 
 #: categdialog.cpp:235 categdialog.cpp:440
 msgid "Select an unused category to delete."
-msgstr ""
+msgstr "למחיקה יש לבחור בקטגוריה ללא תנועות משויכות."
 
 #: categdialog.cpp:240 maincurrencydialog.cpp:219
 msgid "&Select"
@@ -1597,15 +1597,15 @@ msgstr "ניהול קטגוריות: מחיקת שגיאה"
 
 #: categdialog.cpp:463
 msgid "This category cannot be deleted because it's used by transactions."
-msgstr ""
+msgstr "אין אפשרות למחוק קטגוריה זו מאחר שקיימות תנועות שמשויכות אליה."
 
 #: categdialog.cpp:470
 msgid "Delete an existing category."
-msgstr ""
+msgstr "מחיקת קטגורייה קיימת."
 
 #: categdialog.cpp:475
 msgid "Subcategories must be deleted before."
-msgstr ""
+msgstr "יש למחוק קטגוריות משנה תחילה."
 
 #: categdialog.cpp:491
 #, c-format
@@ -1667,7 +1667,7 @@ msgstr "גרסת מסד נתונים: "
 
 #: constants.cpp:90 mmframe.cpp:2571
 msgid "Git commit: "
-msgstr ""
+msgstr "קבוע Git: "
 
 #: constants.cpp:94 mmframe.cpp:2572
 msgid "Git branch: "
@@ -2506,11 +2506,11 @@ msgstr "פלט"
 
 #: general_report_manager.cpp:405
 msgid "SQL"
-msgstr ""
+msgstr "SQL"
 
 #: general_report_manager.cpp:406
 msgid "Lua"
-msgstr ""
+msgstr "Lua"
 
 #: general_report_manager.cpp:407
 msgid "Template"
@@ -2688,11 +2688,11 @@ msgstr "לוג"
 
 #: import_export/qif_export.cpp:111
 msgid "QIF"
-msgstr ""
+msgstr "QIF"
 
 #: import_export/qif_export.cpp:111
 msgid "CSV"
-msgstr ""
+msgstr "CSV"
 
 #: import_export/qif_export.cpp:129 mmframe.cpp:2833 mmframe.cpp:2837
 #: mmframe.cpp:2856 mmframe.cpp:2860
@@ -3554,7 +3554,7 @@ msgstr "עצה עבור תיבת דו-שיח ניהול קטגוריות: הקש
 
 #: mmTips.h:38
 msgid "Tip to get out of debt: Pay yourself 10 percentage first. Put this into an account that is hard to touch. Make sure it is a chore to get the money out (you have to drive to the bank), so you will only tap it consciously and for major expenses."
-msgstr ""
+msgstr "עצה על מנת לצאת מהחובות: לשלם 10 אחוז לעצמך תחילה. הפקד את הסכום בחשבון שקשה למשוך ממנו. ודא שמשיכת הכסף תהיה מטלה מורכבת (חייב להגיע לבנק אישית), כך שהשימוש בכסף יעשה במודע, עבור הוצאות משמעותיות."
 
 #: mmTips.h:39
 msgid "Tip to get out of debt: Establish an emergency fund."
@@ -3810,7 +3810,7 @@ msgstr "בחירה מרובה"
 
 #: mmex.cpp:75
 msgid "Can not load translation for default language"
-msgstr ""
+msgstr "לא ניתן לטעון תרגום לשפת ברירת המחדל"
 
 #: mmex.cpp:76 mmex.cpp:81 mmframe.cpp:3106
 msgid "Language change"
@@ -3824,7 +3824,7 @@ msgstr "לא ניתן לטעון תרגום לשפה שנבחרה %s"
 #: mmex.cpp:115
 msgid "Fatal error occurred.\n"
 "Application will be terminated."
-msgstr ""
+msgstr "אירעה שגיאה חמורה. היישום יסגר."
 
 #: mmex.cpp:248
 msgid "MMEX is already running...\n\n"
@@ -4328,7 +4328,7 @@ msgstr "צפה בתכני וידאו חינמיים אודות MMEX"
 
 #: mmframe.cpp:1726
 msgid "Slack"
-msgstr ""
+msgstr "Slack"
 
 #: mmframe.cpp:1726
 msgid "Communicate online with MMEX team from your desktop or mobile device"
@@ -4336,7 +4336,7 @@ msgstr "תקשר באופן מקוון עם צוות MMEX משולחן העבו�
 
 #: mmframe.cpp:1729
 msgid "GitHub"
-msgstr ""
+msgstr "GitHub"
 
 #: mmframe.cpp:1729
 msgid "Access open source code repository and track reported bug statuses"
@@ -4428,7 +4428,7 @@ msgstr "בדיקת זמינות &עדכונים"
 
 #: mmframe.cpp:1791
 msgid "Check if a new MMEX version is available"
-msgstr ""
+msgstr "בדיקת זמינות גרסת MMEX חדשה"
 
 #: mmframe.cpp:1796 mmframe.cpp:1841
 msgid "&About..."
@@ -4584,7 +4584,7 @@ msgstr "לא ניתן לדרוס קובץ קיים"
 
 #: mmframe.cpp:2230
 msgid "Accounts, payees and categories successfully syncronized to WebApp!"
-msgstr ""
+msgstr "חשבונות, מוטבים וקטגוריות סונכרנו בהצלחה ל WebApp!"
 
 #: mmframe.cpp:2230
 msgid "WebApp export"
