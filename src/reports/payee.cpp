@@ -50,6 +50,7 @@ void  mmReportPayeeExpenses::RefreshData()
     valueList_.clear();
     positiveTotal_ = 0.0;
     negativeTotal_ = 0.0;
+    int color_id = 0;
 
     std::map<int, std::pair<double, double> > payeeStats;
     getPayeeStats(payeeStats, const_cast<mmDateRange*>(m_date_range)
@@ -68,7 +69,7 @@ void  mmReportPayeeExpenses::RefreshData()
         line.name = payee ? payee->PAYEENAME : "";
         line.incomes = entry.second.first;
         line.expenses = entry.second.second;
-        line.color = hb.getRandomColor((line.incomes + line.expenses) > 0);
+        line.color = hb.getColor(color_id++);
         data_.push_back(line);
     }
 
