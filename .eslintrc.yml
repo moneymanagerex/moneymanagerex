@@ -1,0 +1,18 @@
+---
+  root: true
+  env:
+    browser: true
+    jquery: true
+parserOptions:
+  sourceType: script
+extends: eslint:recommended
+rules:
+  eqeqeq:
+    - error
+    - smart
+  curly:
+    - error
+    - multi-or-nest
+  quotes:
+    - error
+    - double
