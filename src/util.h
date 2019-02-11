@@ -174,5 +174,32 @@ bool mmParseDisplayStringToDate(wxDateTime& date, const wxString& sDate, const w
 extern const std::map<wxString, wxString> g_date_formats_map;
 extern const std::map<int, std::pair<wxConvAuto, wxString> > g_encoding;
 
+class mmDates
+{
+public:
+    mmDates();
+    ~mmDates();
+    bool isStringDate(const wxString &dateStr);
+    const wxString getDateMask() const;
+    const wxString getDateFormat() const;
+    int getVariants() const;
+private:
+    std::map<wxString, wxString> m_date_formats_temp;
+    std::unordered_map<wxString, int> m_date_parsing_stat;
+
+};
+
+class mmSeparator
+{
+public:
+    mmSeparator();
+    ~mmSeparator();
+    bool isStringHasSeparator(const wxString &string);
+    const wxString getSeparator() const;
+private:
+    std::map<wxString, int> m_separators;
+
+};
+
 #endif // MM_EX_UTIL_H_
 //----------------------------------------------------------------------------

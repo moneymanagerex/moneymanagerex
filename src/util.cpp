@@ -688,7 +688,7 @@ bool mmParseDisplayStringToDate(wxDateTime& date, const wxString& str_date, cons
         }
         wxString::const_iterator end;
         bool t = date.ParseFormat(date_str, sDateMask, &end);
-        wxLogDebug("String:%s Mask:%s OK:%s ISO:%s Pattern:%s", date_str, date_mask, wxString(t ? "true" : "false"), date.FormatISODate(), regex);
+        //wxLogDebug("String:%s Mask:%s OK:%s ISO:%s Pattern:%s", date_str, date_mask, wxString(t ? "true" : "false"), date.FormatISODate(), regex);
         return t;
     }
     return false;
@@ -933,4 +933,108 @@ void mmCalcValidator::OnChar(wxKeyEvent& event)
     else
         event.Skip();
 
+}
+
+mmDates::~mmDates()
+{
+}
+
+mmDates::mmDates()
+{
+    m_date_formats_temp = g_date_formats_map;
+    m_date_parsing_stat.clear();
+}
+
+const wxString mmDates::getDateMask() const
+{
+    return m_date_formats_temp.empty() ? "" : m_date_formats_temp.begin()->second;
+}
+
+const wxString mmDates::getDateFormat() const
+{
+    return m_date_formats_temp.empty() ? "" : m_date_formats_temp.begin()->first;
+}
+
+int mmDates::getVariants() const
+{
+    return m_date_formats_temp.size();
+}
+
+bool mmDates::isStringDate(const wxString &dateStr)
+{
+    bool is_date = false;
+    wxDate today = wxDate::Today();
+    wxDate fresh(today.Subtract(wxDateSpan::Months(1)));
+
+    if (m_date_formats_temp.size() > 1)
+    {
+        wxArrayString invalidMask;
+        const std::map<wxString, wxString> date_formats = m_date_formats_temp;
+        for (const auto& date_mask : date_formats)
+        {
+            const wxString mask = date_mask.first;
+            wxDateTime dtdt = today;
+            if (mmParseDisplayStringToDate(dtdt, dateStr, mask))
+            {
+                m_date_parsing_stat[mask] ++;
+                //Increase the date mask rating if parse date is recent (2 month ago) date 
+                if (dtdt <= today && dtdt >= fresh)
+                    m_date_parsing_stat[mask] ++;
+                is_date = true;
+            }
+            else {
+                invalidMask.Add(mask);
+            }
+        }
+
+        if (invalidMask.size() < m_date_formats_temp.size())
+        {
+            for (const auto &i : invalidMask)
+                m_date_formats_temp.erase(i);
+        }
+    }
+    return is_date;
+}
+
+mmSeparator::~mmSeparator()
+{
+}
+
+mmSeparator::mmSeparator()
+{
+    const auto& def_delim = Model_Infotable::instance().GetStringInfo("DELIMITER", mmex::DEFDELIMTER);
+    m_separators = {
+        { def_delim, 0 }
+        , { ";", 0 }
+        , { ",", 0 }
+        , { "\t", 0 }
+        , {"|", 0 }
+    };
+}
+
+const wxString mmSeparator::getSeparator() const
+{
+    auto x = std::max_element(m_separators.begin(), m_separators.end(),
+        [](const std::pair<wxString, int>& p1, const std::pair<wxString, int>& p2) {
+        return p1.second < p2.second; });
+    return x->first;
+}
+
+bool mmSeparator::isStringHasSeparator(const wxString &string)
+{
+    bool result = false;
+    bool skip = false;
+    for (const auto& entry : m_separators)
+    {
+        for (const auto& letter : string) {
+            if (letter == '"') {
+                skip = !skip;
+            }
+            if (!skip && letter == entry.first) {
+                m_separators[entry.first]++;
+                result = true;
+            }
+        }
+    }
+    return result;
 }

@@ -22,6 +22,7 @@
 #include <vector>
 #include <map>
 #include <wx/dialog.h>
+#include "Model_Checking.h"
 class wxSpinCtrl;
 class wxSpinEvent;
 class wxListBox;
@@ -171,11 +172,13 @@ private:
     wxString date_format_;
 
     wxChoice* m_choiceAmountFieldSign;
+    wxChoice* m_choiceAmountsFormat;
     enum amountFieldSignValues { PositiveIsDeposit, PositiveIsWithdrawal };
     wxCheckBox* m_checkBoxExportTitles;
 
     int fromAccountID_;
     bool importSuccessful_;
+    bool m_userDefinedDateMask;
     int m_oject_in_focus;
 
     /// Creation

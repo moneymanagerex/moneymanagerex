@@ -73,6 +73,9 @@ mmUnivCSVDialog::mmUnivCSVDialog(
 ) :
     dialogType_(dialogType),
     delimit_(","),
+    m_userDefinedDateMask(false),
+    m_choiceAmountFieldSign(nullptr),
+    m_choiceAmountsFormat(nullptr),
     csvFieldCandicate_(nullptr),
     csvListBox_(nullptr),
     m_button_add_(nullptr),
@@ -337,6 +340,19 @@ void mmUnivCSVDialog::CreateControls()
         flex_sizer->Add(m_choiceAmountFieldSign, g_flagsH);
     }
 
+    wxStaticText* itemStaticTextDigits = new wxStaticText(itemPanel7, wxID_ANY, _("Amount mask"));
+    flex_sizer->Add(itemStaticTextDigits, g_flagsH);
+    m_choiceAmountsFormat = new wxChoice(itemPanel7, wxID_ANY);
+    flex_sizer->Add(m_choiceAmountsFormat, g_flagsH);
+    static const wxString DATA[] = {
+        "wddd,ddd.dd"
+        , "wddd.ddd,dd"
+        , "wddd ddd.dd"
+        , "wddd'ddd.dd"
+    };
+    for (const auto& entry : DATA)
+        m_choiceAmountsFormat->Append(entry, new wxStringClientData(entry));
+
     // Select rows to import (not relevant for export)
     if(IsImporter())
     {
@@ -466,6 +482,8 @@ void mmUnivCSVDialog::SetSettings(const wxString &json_data)
             wxLogDebug("Unrecognized DATE_MASK %s", df);
         }
     }
+    else
+        m_userDefinedDateMask = false;
 
     //File
     Value& file_name = GetValueByPointerWithDefault(json_doc, "/FILE_NAME", "");
@@ -647,10 +665,10 @@ const wxString mmUnivCSVDialog::getCSVFieldName(int index) const
 {
     std::map<int, wxString>::const_iterator it = CSVFieldName_.find(index);
     if (it != CSVFieldName_.end()) {
-        return wxGetTranslation(it->second);
+        return (it->second);
     }
 
-    return _("Unknown");
+    return wxTRANSLATE("Unknown");
 }
 
 void mmUnivCSVDialog::OnLoad()
@@ -869,7 +887,7 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& WXUNUSED(event))
         }
 
         unsigned int numTokens = pParser->GetItemsCount(lineNum);
-        if (numTokens ==0)
+        if (numTokens == 0)
         {
             wxString msg = wxString::Format(_("Line %ld: Empty"), lineNum+1);
             log << msg << endl;
@@ -1121,22 +1139,25 @@ void mmUnivCSVDialog::update_preview()
     this->m_list_ctrl_->InsertColumn(colCount, _("#"));
     this->m_list_ctrl_->SetColumnWidth(colCount, 30);
     ++colCount;
-    int date_position = 0;
+
     const int MAX_ROWS_IN_PREVIEW = 20;
     const int MAX_COLS = 30; // Not including line number col.
-    const wxString NOTES_FIELD_NAME = getCSVFieldName(UNIV_CSV_NOTES);
-    const wxString DATE_FIELD_NAME = getCSVFieldName(UNIV_CSV_DATE);
+
+    int date_col = -1;
+    int amount_col = -1;
+
     for (std::vector<int>::const_iterator it = csvFieldOrder_.begin(); it != csvFieldOrder_.end(); ++ it)
     {
-        wxString item_name = this->getCSVFieldName(*it);
-        this->m_list_ctrl_->InsertColumn(colCount, item_name);
-        if (item_name == NOTES_FIELD_NAME)
-        {
+        const wxString& item_name = this->getCSVFieldName(*it);
+        this->m_list_ctrl_->InsertColumn(colCount, wxGetTranslation(item_name));
+        if (it[0] == UNIV_CSV_NOTES) {
             this->m_list_ctrl_->SetColumnWidth(colCount, 300);
         }
-        else if (item_name == DATE_FIELD_NAME)
-        {
-            date_position = colCount;
+        else if (it[0] == UNIV_CSV_DATE) {
+            date_col = colCount - 1;
+        }
+        else if (it[0] == UNIV_CSV_AMOUNT) {
+            amount_col = colCount - 1;
         }
         ++colCount;
     }
@@ -1152,6 +1173,14 @@ void mmUnivCSVDialog::update_preview()
         // Open and parse file
         ITransactionsFile *pImporter = CreateFileHandler();
         pImporter->Load(fileName, MAX_COLS);
+
+        unsigned int firstRow = m_spinIgnoreFirstRows_->GetValue();
+
+        unsigned int date_parser_errors = 0;
+        unsigned int amount_parser_errors = 0;
+
+        mmDates* dParser = new mmDates;
+        unsigned int MAX_ATTEMPTS = 1;
 
         // Import- Add rows to preview
         for (unsigned int row = 0; row < pImporter->GetLinesCount(); row++)
@@ -1169,11 +1198,29 @@ void mmUnivCSVDialog::update_preview()
                 // Add a new column
                 if (col == colCount - 1)
                 {
-                    m_list_ctrl_->InsertColumn(colCount, getCSVFieldName(UNIV_CSV_DONTCARE));
+                    m_list_ctrl_->InsertColumn(colCount, getCSVFieldName(-1));
                     colCount++;
                 }
                 
-                wxString content = pImporter->GetItem(row, col);
+                const auto content = pImporter->GetItem(row, col);
+
+                if (!m_userDefinedDateMask
+                    && row >= firstRow
+                    && date_parser_errors < MAX_ATTEMPTS
+                    && (int)col == date_col)
+                {
+                    date_parser_errors += (dParser->isStringDate(content) ? 0 : 1);
+                }
+
+                if (row >= firstRow
+                    && amount_parser_errors < MAX_ATTEMPTS
+                    && (int)col == amount_col)
+                {
+                    //amount_parser_errors += (dParser->isStringDate(content) ? 0 : 1);
+                    wxLogDebug("Is amount: %s ?", content);
+                    amount_parser_errors++;
+                }
+
                 ++col; 
                 m_list_ctrl_->SetItem(itemIndex, col, content);
             }
@@ -1184,6 +1231,18 @@ void mmUnivCSVDialog::update_preview()
         m_spinIgnoreFirstRows_->SetRange(m_spinIgnoreFirstRows_->GetMin(), m_list_ctrl_->GetItemCount());
         m_spinIgnoreLastRows_->SetRange(m_spinIgnoreLastRows_->GetMin(), m_list_ctrl_->GetItemCount());
         UpdateListItemBackground();
+
+        if (!m_userDefinedDateMask)
+        {
+            const wxString date_mask = dParser->getDateMask();
+            date_format_ = dParser->getDateFormat();
+            choiceDateFormat_->SetStringSelection(date_mask);
+            if (dParser->getVariants() == 1) {
+                m_userDefinedDateMask = true;
+            }
+        }
+
+        delete dParser;
     }
     else // exporter preview
     {
@@ -1269,7 +1328,7 @@ void mmUnivCSVDialog::update_preview()
                         break;
                     else
                     {
-                        if (col == date_position)
+                        if (col == date_col)
                         {
                             wxDateTime dtdt;
                             mmParseDisplayStringToDate(dtdt, text, date_format_);
@@ -1379,7 +1438,7 @@ void mmUnivCSVDialog::OnBrowse(wxCommandEvent& WXUNUSED(event))
 
     if (!fileName.IsEmpty())
     {
-        m_text_ctrl_->SetValue(fileName);
+        m_text_ctrl_->ChangeValue(fileName);
 
         if (IsImporter()) {
             wxTextFile tFile(fileName);
@@ -1389,16 +1448,24 @@ void mmUnivCSVDialog::OnBrowse(wxCommandEvent& WXUNUSED(event))
                 return;
             }
 
+            mmSeparator* sep = new mmSeparator;
             wxString line;
             size_t count = 0;
             for (line = tFile.GetFirstLine(); !tFile.Eof(); line = tFile.GetNextLine())
             {
                 *log_field_ << line << "\n";
                 if (++count >= 10) break;
+                sep->isStringHasSeparator(line);
             }
+
+            *log_field_ << "\n";
+
+            delimit_ = sep->getSeparator();
+            m_textDelimiter->ChangeValue(delimit_);
+            delete sep;
+
             // TODO: update_preview() is called twice. Once here and once in OnFileNameChanged(). 
             // This leads to double work and double error messages to the user.
-            *log_field_ << "\n";
             this->update_preview();
         }
     }
@@ -1603,6 +1670,7 @@ void mmUnivCSVDialog::OnDateFormatChanged(wxCommandEvent& event)
         *log_field_ << m_choiceEncoding->GetStringSelection() << "\n";
     }
 
+    m_userDefinedDateMask = true;
     this->update_preview();
 }
 
