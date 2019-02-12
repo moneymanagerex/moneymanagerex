@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-02-05 11:56+0300\n"
-"PO-Revision-Date: 2019-02-05 09:31\n"
+"PO-Revision-Date: 2019-02-12 10:45\n"
 "Last-Translator: vomikan <nikolay.akimov@gmail.com>\n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -316,7 +316,7 @@ msgstr "Kilépés"
 #: appstartdialog.cpp:153
 #, c-format
 msgid "Open the previously opened database: %s"
-msgstr ""
+msgstr "Korábban megnyitott adatbázis megnyitása: %s"
 
 #: assetdialog.cpp:56 assetdialog.cpp:426 assetspanel.cpp:510
 msgid "New Asset"
@@ -796,11 +796,11 @@ msgstr ""
 
 #: billsdepositsdialog.cpp:63
 msgid "Every (x) Days"
-msgstr ""
+msgstr "Minden (x). napon"
 
 #: billsdepositsdialog.cpp:64
 msgid "Every (x) Months"
-msgstr ""
+msgstr "Minden (x). hónapban"
 
 #: billsdepositsdialog.cpp:65 billsdepositspanel.cpp:60
 msgid "Monthly (last day)"
@@ -1363,7 +1363,7 @@ msgstr "Költségvetés kategóriák összesítése"
 #: budgetingpanel.cpp:184 reports/budget.cpp:84
 #, c-format
 msgid "Financial Year: %s - %li"
-msgstr ""
+msgstr "Pénzügyi év: %s - %li"
 
 #: budgetingpanel.cpp:188 reports/budget.cpp:88
 #, c-format
@@ -1657,15 +1657,15 @@ msgstr "Verzió: "
 
 #: constants.cpp:84 mmframe.cpp:2570
 msgid "Database version: "
-msgstr ""
+msgstr "Adatbázis verzió: "
 
 #: constants.cpp:90 mmframe.cpp:2571
 msgid "Git commit: "
-msgstr ""
+msgstr "Git commit: "
 
 #: constants.cpp:94 mmframe.cpp:2572
 msgid "Git branch: "
-msgstr ""
+msgstr "Git branch: "
 
 #: constants.cpp:97 mmframe.cpp:2573
 msgid "MMEX is using the following support products:"
@@ -2178,7 +2178,7 @@ msgstr ""
 
 #: dbupgrade.cpp:110
 msgid "initialization"
-msgstr ""
+msgstr "inicializálás"
 
 #: dbupgrade.cpp:129
 msgid "MMEX database error!"
@@ -2197,7 +2197,7 @@ msgstr "Az MMEX adatbázis frissítése"
 
 #: dbupgrade.cpp:148
 msgid "MMEX database vacuum failed!"
-msgstr ""
+msgstr "MMEX adatbázis VACUUM parancs végrehajtása nem sikerült!"
 
 #: dbupgrade.cpp:149
 msgid "MMEX still should work, but try to re-optimize it from Tools -> Database -> Optimize"
@@ -2206,7 +2206,7 @@ msgstr ""
 #: dbupgrade.cpp:153
 #, c-format
 msgid "MMEX database successfully upgraded to version %i"
-msgstr ""
+msgstr "MMEX adatbázis sikeresen frissült %i verzióra"
 
 #: dbupgrade.cpp:160
 #, c-format
