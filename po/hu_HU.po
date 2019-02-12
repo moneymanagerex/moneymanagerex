@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-02-05 11:56+0300\n"
-"PO-Revision-Date: 2019-02-12 10:45\n"
+"PO-Revision-Date: 2019-02-12 11:16\n"
 "Last-Translator: vomikan <nikolay.akimov@gmail.com>\n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -23,7 +23,7 @@ msgstr ""
 
 #: aboutdialog.cpp:41
 msgid "License agreement"
-msgstr "Licenc megállapodás"
+msgstr "Licencszerződés"
 
 #: aboutdialog.cpp:41
 #, c-format
@@ -48,7 +48,7 @@ msgstr "Licenc"
 
 #: aboutdialog.cpp:166
 msgid "Privacy"
-msgstr "Magán"
+msgstr "Adatvédelem"
 
 #: aboutdialog.cpp:197 accountdialog.cpp:372 appstartdialog.cpp:136
 #: assetdialog.cpp:299 attachmentdialog.cpp:118 billsdepositsdialog.cpp:499
@@ -127,7 +127,7 @@ msgstr "Számlaszám: "
 
 #: accountdialog.cpp:273
 msgid "Held At:"
-msgstr "Kezelő:: "
+msgstr "Kezelő:"
 
 #: accountdialog.cpp:279
 msgid "Website:"
@@ -159,7 +159,7 @@ msgstr "Egyeztetett dátum:"
 
 #: accountdialog.cpp:316
 msgid "Minimum Bal:"
-msgstr "Minimális balansz:"
+msgstr "Minimális egyenleg:"
 
 #: accountdialog.cpp:323
 msgid "Credit"
@@ -187,7 +187,7 @@ msgstr "A számlához tartozó mellékletek rendezése"
 
 #: accountdialog.cpp:380
 msgid "Enter the Name of the Account. This name can be renamed at any time."
-msgstr "Adja meg a számla nevét. Ez bármikor megváltoztatható."
+msgstr "Adja meg a számla nevét. Ez a név bármikor megváltoztatható."
 
 #: accountdialog.cpp:381 wizard_newaccount.cpp:121
 msgid "Specify the type of account to be created."
@@ -293,7 +293,7 @@ msgstr "Olvassa el a dokumentációt"
 
 #: appstartdialog.cpp:111
 msgid "Read the user manual"
-msgstr "Olvassa el a kézikönyvet"
+msgstr "Olvassa el a felhasználói kézikönyvet"
 
 #: appstartdialog.cpp:114
 msgid "Visit Website for more information"
@@ -441,7 +441,7 @@ msgstr "Típus"
 
 #: assetspanel.cpp:64 reports/summarystocks.cpp:183
 msgid "Initial Value"
-msgstr "Kezdeti érték"
+msgstr "Kezdőérték"
 
 #: assetspanel.cpp:65 reports/summarystocks.cpp:153
 #: reports/summarystocks.cpp:187 stockdialog.cpp:272
@@ -543,7 +543,7 @@ msgstr "Törlés"
 
 #: assetspanel.cpp:529
 msgid "Delete Asset"
-msgstr "Vagyontárgy Törlése"
+msgstr "Vagyontárgy törlése"
 
 #: assetspanel.cpp:536 billsdepositspanel.cpp:302 mmcheckingpanel.cpp:550
 #: stockspanel.cpp:605
@@ -552,7 +552,7 @@ msgstr "Mellékletek megnyitása"
 
 #: assetspanel.cpp:543 assetspanel.cpp:544 mmcheckingpanel.cpp:558
 msgid "Search"
-msgstr "Keres"
+msgstr "Keresés"
 
 #: assetspanel.cpp:546
 msgid "Enter any string to find related assets"
@@ -788,19 +788,19 @@ msgstr "Napi"
 
 #: billsdepositsdialog.cpp:61 billsdepositsdialog.cpp:1382
 msgid "In (x) Days"
-msgstr ""
+msgstr "(x) napon belül"
 
 #: billsdepositsdialog.cpp:62 billsdepositsdialog.cpp:1382
 msgid "In (x) Months"
-msgstr ""
+msgstr "(x) hónapon belül"
 
 #: billsdepositsdialog.cpp:63
 msgid "Every (x) Days"
-msgstr "Minden (x). napon"
+msgstr "(x) naponta"
 
 #: billsdepositsdialog.cpp:64
 msgid "Every (x) Months"
-msgstr "Minden (x). hónapban"
+msgstr "(x) havonta"
 
 #: billsdepositsdialog.cpp:65 billsdepositspanel.cpp:60
 msgid "Monthly (last day)"
@@ -1104,7 +1104,7 @@ msgstr "Érvénytelen választás"
 
 #: billsdepositsdialog.cpp:1381
 msgid "Choose one of the following:"
-msgstr ""
+msgstr "Válassz egyet a következőkből:"
 
 #: billsdepositsdialog.cpp:1455 transdialog.cpp:1187
 #: usertransactionpanel.cpp:199
@@ -1758,7 +1758,7 @@ msgstr "Pénznem neve"
 
 #: currencydialog.cpp:151
 msgid "Currency Type"
-msgstr ""
+msgstr "Pénznem típusa"
 
 #: currencydialog.cpp:165
 msgid "Currency Symbol"
@@ -1881,7 +1881,7 @@ msgstr ""
 
 #: customfieldeditdialog.cpp:174
 msgid "Panel's column"
-msgstr ""
+msgstr "Panel oszlop"
 
 #: customfieldeditdialog.cpp:179
 msgid "Select a value to represent the item on a panel"
@@ -2275,7 +2275,7 @@ msgstr "A DB karbantartása kész, zárja be és nyissa meg újra az MMEX-et!"
 
 #: dbwrapper.cpp:58
 msgid "Error opening database file:"
-msgstr ""
+msgstr "Hiba az adatbázis megnyitásakor:"
 
 #: dbwrapper.cpp:62
 msgid "Can't open file"
@@ -2287,7 +2287,7 @@ msgstr "Adja meg egy másik adatbázis elérési útját"
 
 #: dbwrapper.cpp:90
 msgid "Possible reasons:"
-msgstr ""
+msgstr "Lehetséges okok:"
 
 #: dbwrapper.cpp:91
 msgid "An incorrect password given for an encrypted file"
@@ -2299,7 +2299,7 @@ msgstr ""
 
 #: dbwrapper.cpp:93
 msgid "Corrupted database file"
-msgstr ""
+msgstr "Sérült adatbázis fájl"
 
 #: dbwrapper.cpp:100 mmframe.cpp:1899
 msgid "Opening MMEX Database - Error"
@@ -2375,7 +2375,7 @@ msgstr "Összeghatár: "
 
 #: filtertransdialog.cpp:351
 msgid "Settings"
-msgstr ""
+msgstr "Beállítások"
 
 #: filtertransdialog.cpp:372 filtertransdialog.cpp:687
 #: filtertransdialog.cpp:936 filtertransdialog.cpp:1210
@@ -2449,7 +2449,7 @@ msgstr ""
 
 #: filtertransdialog.cpp:1216
 msgid "Empty value"
-msgstr ""
+msgstr "Üres érték"
 
 #: general_report_manager.cpp:237 general_report_manager.cpp:610
 msgid "General Reports Manager"
@@ -2536,7 +2536,7 @@ msgstr ""
 
 #: general_report_manager.cpp:546 general_report_manager.cpp:976
 msgid "ZIP files (*.zip)"
-msgstr ""
+msgstr "ZIP fájlok (*.zip)"
 
 #: general_report_manager.cpp:609
 #, c-format
@@ -2664,7 +2664,7 @@ msgstr "A táblázat nem található."
 
 #: import_export/parsers.cpp:216
 msgid "Transactions"
-msgstr ""
+msgstr "Tranzakció"
 
 #: import_export/qif_export.cpp:42 import_export/qif_export.cpp:235
 #: import_export/qif_export.cpp:311
@@ -2728,7 +2728,7 @@ msgstr "Válasszon QIF adatfájlt az exporthoz!"
 
 #: import_export/qif_export.cpp:281 import_export/qif_import_gui.cpp:723
 msgid "QIF Files (*.qif)"
-msgstr ""
+msgstr "QIF fájlok (*.qif)"
 
 #: import_export/qif_export.cpp:300
 msgid "No Account available for export"
@@ -2954,7 +2954,7 @@ msgstr "Hozzáadott kedvezményezett: %s"
 
 #: import_export/univcsvdialog.cpp:93
 msgid "Amount +/-"
-msgstr ""
+msgstr "Összeg +/-"
 
 #: import_export/univcsvdialog.cpp:95
 msgid "SubCategory"
@@ -3043,7 +3043,7 @@ msgstr "Oszlopcímek exportálása"
 
 #: import_export/univcsvdialog.cpp:328
 msgid "Amount +/-:"
-msgstr ""
+msgstr "Összeg +/-:"
 
 #: import_export/univcsvdialog.cpp:334
 msgid "Positive values are deposits"
@@ -3221,11 +3221,11 @@ msgstr ""
 
 #: import_export/univcsvdialog.cpp:1371
 msgid "XML Files (*.xml)"
-msgstr ""
+msgstr "XML fájlok (*.xml)"
 
 #: import_export/univcsvdialog.cpp:1372 stockdialog.cpp:555
 msgid "CSV Files (*.csv)"
-msgstr ""
+msgstr "CSV fájlok (*.csv)"
 
 #: maincurrencydialog.cpp:69
 msgid "Base"
@@ -3787,11 +3787,11 @@ msgstr "Kérem, hogy létező kedvezményezett nevet adj írj be,\n"
 
 #: mmcustomdata.cpp:58
 msgid "Custom fields"
-msgstr ""
+msgstr "Egyéni mezők"
 
 #: mmcustomdata.cpp:307
 msgid "Please select"
-msgstr ""
+msgstr "Kérem válasszon"
 
 #: mmcustomdata.cpp:307
 msgid "Multi Choice"
@@ -4243,7 +4243,7 @@ msgstr ""
 
 #: mmframe.cpp:1685
 msgid "Remove Password"
-msgstr ""
+msgstr "Jelszó eltávolítása"
 
 #: mmframe.cpp:1686
 msgid "Remove password and decrypt database file"
@@ -4291,7 +4291,7 @@ msgstr ""
 
 #: mmframe.cpp:1717
 msgid "Facebook"
-msgstr ""
+msgstr "Facebook"
 
 #: mmframe.cpp:1717
 msgid "Visit us on Facebook"
@@ -4299,15 +4299,15 @@ msgstr "Látogasson meg minket a Facebook-on."
 
 #: mmframe.cpp:1720
 msgid "Twitter"
-msgstr ""
+msgstr "Twitter"
 
 #: mmframe.cpp:1720
 msgid "Follow us on Twitter"
-msgstr ""
+msgstr "Kövessen minket Twitteren"
 
 #: mmframe.cpp:1723
 msgid "YouTube"
-msgstr ""
+msgstr "YouTube"
 
 #: mmframe.cpp:1723
 msgid "Watch free video materials about MMEX"
@@ -4315,7 +4315,7 @@ msgstr ""
 
 #: mmframe.cpp:1726
 msgid "Slack"
-msgstr ""
+msgstr "Slack"
 
 #: mmframe.cpp:1726
 msgid "Communicate online with MMEX team from your desktop or mobile device"
@@ -4323,7 +4323,7 @@ msgstr ""
 
 #: mmframe.cpp:1729
 msgid "GitHub"
-msgstr ""
+msgstr "GitHub"
 
 #: mmframe.cpp:1729
 msgid "Access open source code repository and track reported bug statuses"
@@ -4331,7 +4331,7 @@ msgstr ""
 
 #: mmframe.cpp:1732
 msgid "Wiki pages"
-msgstr ""
+msgstr "Wiki oldalak"
 
 #: mmframe.cpp:1732
 msgid "Read and update wiki pages"
@@ -4451,7 +4451,7 @@ msgstr "Új"
 
 #: mmframe.cpp:1827
 msgid "Show Home Page"
-msgstr ""
+msgstr "Kezdőoldal mutatása"
 
 #: mmframe.cpp:1829
 msgid "Show Organize Categories Dialog"
@@ -4576,7 +4576,7 @@ msgstr ""
 
 #: mmframe.cpp:2230
 msgid "WebApp export"
-msgstr ""
+msgstr "WebApp exportálás"
 
 #: mmframe.cpp:2262 mmframe.cpp:2281
 msgid "No account available to import to"
@@ -4833,17 +4833,17 @@ msgstr ""
 #: mmreportspanel.cpp:304 reports/mmDateRange.cpp:222
 #: reports/reportbase.cpp:169
 msgid "Custom"
-msgstr ""
+msgstr "Egyéni"
 
 #: mmreportspanel.cpp:330 mmreportspanel.cpp:331 mmreportspanel.cpp:358
 #: mmreportspanel.cpp:359 mmreportspanel.cpp:411 mmreportspanel.cpp:412
 msgid "Previous Period"
-msgstr ""
+msgstr "Előző időszak"
 
 #: mmreportspanel.cpp:334 mmreportspanel.cpp:335 mmreportspanel.cpp:362
 #: mmreportspanel.cpp:363 mmreportspanel.cpp:415 mmreportspanel.cpp:416
 msgid "Next Period"
-msgstr ""
+msgstr "Következő időszak"
 
 #: mmreportspanel.cpp:428 reports/cashflow.cpp:240 reports/incexpenses.cpp:47
 #: reports/incexpenses.cpp:179
@@ -4865,7 +4865,7 @@ msgstr ""
 
 #: mmreportspanel.cpp:452
 msgid "Show"
-msgstr ""
+msgstr "Megjelenítés"
 
 #: mmreportspanel.cpp:453
 msgid "Hide"
@@ -4893,7 +4893,7 @@ msgstr "Időszaki számla"
 
 #: model/Model_Account.cpp:37 model/Model_Currency.cpp:30
 msgid "Crypto"
-msgstr ""
+msgstr "Kriptovaluta"
 
 #: model/Model_Account.cpp:38
 msgid "Investment"
@@ -4949,11 +4949,11 @@ msgstr "Részvény"
 
 #: model/Model_Attachment.cpp:27
 msgid "Bank Account"
-msgstr ""
+msgstr "Bankszámla"
 
 #: model/Model_Attachment.cpp:28
 msgid "Recurring Transaction"
-msgstr ""
+msgstr "Rendszeres ügylet"
 
 #: model/Model_Billsdeposits.cpp:313
 msgid "A recurring transaction will exceed your account limit.\n\n"
@@ -5391,7 +5391,7 @@ msgstr "Adja meg a Web App GUID-jét"
 
 #: optionsettingsnet.cpp:86
 msgid "Test connection"
-msgstr ""
+msgstr "Kapcsolat tesztelése"
 
 #: optionsettingsnet.cpp:89
 msgid "More information about WebApp"
@@ -5459,11 +5459,11 @@ msgstr "Másodperc"
 
 #: optionsettingsnet.cpp:175
 msgid "Check for Updates"
-msgstr ""
+msgstr "Frissítések keresése"
 
 #: optionsettingsnet.cpp:181
 msgid "Check at StartUp"
-msgstr ""
+msgstr "Indításnál ellenőrizze"
 
 #: optionsettingsnet.cpp:183
 msgid "Enable to automatically check if new MMEX version is available at StartUp"
@@ -6177,39 +6177,39 @@ msgstr "CSV importálása"
 
 #: stockdialog.cpp:680 stockdialog.cpp:710
 msgid "5 Days"
-msgstr ""
+msgstr "5 nap"
 
 #: stockdialog.cpp:681 stockdialog.cpp:712
 msgid "1 Month"
-msgstr ""
+msgstr "1 hónap"
 
 #: stockdialog.cpp:682 stockdialog.cpp:713
 msgid "3 Months"
-msgstr ""
+msgstr "3 hónap"
 
 #: stockdialog.cpp:683
 msgid "6 Months"
-msgstr ""
+msgstr "6 hónap"
 
 #: stockdialog.cpp:684
 msgid "1 Year"
-msgstr ""
+msgstr "1 év"
 
 #: stockdialog.cpp:685
 msgid "2 Years"
-msgstr ""
+msgstr "2 év"
 
 #: stockdialog.cpp:686
 msgid "5 Years"
-msgstr ""
+msgstr "5 év"
 
 #: stockdialog.cpp:687
 msgid "10 Years"
-msgstr ""
+msgstr "10 év"
 
 #: stockdialog.cpp:689
 msgid "Max"
-msgstr ""
+msgstr "Max"
 
 #: stockdialog.cpp:695
 msgid "Specify type frequency of stock history"
@@ -6221,11 +6221,11 @@ msgstr "Részvény-előzmények frissítése"
 
 #: stockdialog.cpp:709
 msgid "1 Day"
-msgstr ""
+msgstr "1 nap"
 
 #: stockdialog.cpp:711
 msgid "1 Week"
-msgstr ""
+msgstr "1 hét"
 
 #: stockdialog.cpp:719
 msgid "Specify interval of stock history"
@@ -6404,11 +6404,11 @@ msgstr ""
 
 #: transactionsupdatedialog.cpp:186
 msgid "Append"
-msgstr ""
+msgstr "Hozzáfűzés"
 
 #: transactionsupdatedialog.cpp:249
 msgid "Invalid type"
-msgstr ""
+msgstr "Érvénytelen típus"
 
 #: transdialog.cpp:170
 msgid "Duplicate Transaction"
@@ -6557,7 +6557,7 @@ msgstr "április"
 
 #: util.cpp:817 util.cpp:825
 msgid "May"
-msgstr "máj."
+msgstr "május"
 
 #: util.cpp:817
 msgid "June"
@@ -6940,7 +6940,7 @@ msgstr "Frissítések nem tudom ellenőrizni!"
 
 #: wizard_update.cpp:339 wizard_update.cpp:354
 msgid "Error: "
-msgstr ""
+msgstr "Hiba: "
 
 #: wizard_update.cpp:340 wizard_update.cpp:357 wizard_update.cpp:394
 msgid "MMEX Update Check"
@@ -6948,5 +6948,5 @@ msgstr "MMEX frissítési ellenőrzés"
 
 #: wizard_update.cpp:393
 msgid "You already have the latest version"
-msgstr ""
+msgstr "Már a legfrissebb verziót használod"
 
