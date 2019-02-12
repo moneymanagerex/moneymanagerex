@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-02-05 11:56+0300\n"
-"PO-Revision-Date: 2019-02-12 11:16\n"
+"PO-Revision-Date: 2019-02-12 11:46\n"
 "Last-Translator: vomikan <nikolay.akimov@gmail.com>\n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -407,7 +407,7 @@ msgstr "Írja be a vagyontárgyhoz fűződő megjegyzéseket"
 
 #: assetdialog.cpp:262
 msgid "New Transaction Details"
-msgstr "Új tranzakció részletek"
+msgstr "Új tranzakció részletei"
 
 #: assetdialog.cpp:265 sharetransactiondialog.cpp:280
 msgid "Edit Transaction Details"
@@ -3093,7 +3093,7 @@ msgstr ""
 
 #: import_export/univcsvdialog.cpp:812
 msgid "Date field is required."
-msgstr ""
+msgstr "A dátum mező kötelező."
 
 #: import_export/univcsvdialog.cpp:813
 msgid "Amount field or both Withdrawal and Deposit fields are required."
@@ -3112,16 +3112,16 @@ msgstr ""
 #: import_export/univcsvdialog.cpp:874
 #, c-format
 msgid "Line %ld: Empty"
-msgstr ""
+msgstr "%ld. sor: Üres"
 
 #: import_export/univcsvdialog.cpp:888
 #, c-format
 msgid "Line %ld: Error:"
-msgstr ""
+msgstr "%ld. sor: Hiba:"
 
 #: import_export/univcsvdialog.cpp:890
 msgid "Invalid Date."
-msgstr ""
+msgstr "Érvénytelen dátum."
 
 #: import_export/univcsvdialog.cpp:891 mmTextCtrl.cpp:82
 msgid "Invalid Amount."
@@ -3139,32 +3139,32 @@ msgstr ""
 #: import_export/univcsvdialog.cpp:926 stockdialog.cpp:638
 #, c-format
 msgid "Total Lines: %ld"
-msgstr ""
+msgstr "Összes sor: %ld"
 
 #: import_export/univcsvdialog.cpp:928
 #, c-format
 msgid "Lines Selected to Import: %ld"
-msgstr ""
+msgstr "Importálásra kiválasztott sorok: %ld"
 
 #: import_export/univcsvdialog.cpp:930
 #, c-format
 msgid "Empty Lines: %ld"
-msgstr ""
+msgstr "Üres sorok: %ld"
 
 #: import_export/univcsvdialog.cpp:932
 #, c-format
 msgid "Imported: %ld"
-msgstr ""
+msgstr "Importálva: %ld"
 
 #: import_export/univcsvdialog.cpp:934
 #, c-format
 msgid "Errored: %ld"
-msgstr ""
+msgstr "Hibás: %ld"
 
 #: import_export/univcsvdialog.cpp:937
 #, c-format
 msgid "Log file written to: %s"
-msgstr ""
+msgstr "Naplófájl írása ide: %s"
 
 #: import_export/univcsvdialog.cpp:940 stockdialog.cpp:646
 msgid "Please confirm saving..."
@@ -3172,7 +3172,7 @@ msgstr "Erősítse meg a mentést..."
 
 #: import_export/univcsvdialog.cpp:972
 msgid "No imported transactions!"
-msgstr ""
+msgstr "Nincsenek importált tranzakciók!"
 
 #: import_export/univcsvdialog.cpp:990
 msgid "Incorrect fields specified for export! Requires at least Date and Amount."
@@ -3213,11 +3213,11 @@ msgstr "Válasszon CSV adatfájlt az exporthoz"
 
 #: import_export/univcsvdialog.cpp:1361
 msgid "Choose XML data file to import"
-msgstr ""
+msgstr "Válasszon XML adatfájlt az importáláshoz"
 
 #: import_export/univcsvdialog.cpp:1364
 msgid "Choose XML data file to export"
-msgstr ""
+msgstr "Válasszon XML adatfájlt azexportáláshoz"
 
 #: import_export/univcsvdialog.cpp:1371
 msgid "XML Files (*.xml)"
@@ -3345,7 +3345,7 @@ msgstr "Devizaárfolyam online frissítése"
 
 #: maincurrencydialog.cpp:614
 msgid "No currency selected!"
-msgstr ""
+msgstr "Nincs pénznem kiválasztva!"
 
 #: maincurrencydialog.cpp:614 maincurrencydialog.cpp:629
 #: maincurrencydialog.cpp:677
@@ -3373,7 +3373,7 @@ msgstr ""
 
 #: maincurrencydialog.cpp:739
 msgid "Do you want to continue?"
-msgstr ""
+msgstr "Kívánja folytatni?"
 
 #: maincurrencydialog.cpp:761 maincurrencydialog.cpp:865
 msgid "Could not find base currency symbol!"
@@ -3803,7 +3803,7 @@ msgstr ""
 
 #: mmex.cpp:76 mmex.cpp:81 mmframe.cpp:3106
 msgid "Language change"
-msgstr ""
+msgstr "Nyelv megváltoztatása"
 
 #: mmex.cpp:79
 #, c-format
@@ -3864,7 +3864,7 @@ msgstr "Hitelszámlák"
 #: mmframe.cpp:457 mmframe.cpp:730 mmhomepagepanel.cpp:480
 #: reports/summary.cpp:161
 msgid "Crypto Wallets"
-msgstr ""
+msgstr "Kriptopénztárcák"
 
 #: mmframe.cpp:499
 msgid "Auto Repeat Transactions"
@@ -4363,7 +4363,7 @@ msgstr ""
 
 #: mmframe.cpp:1747
 msgid "RSS Feed"
-msgstr ""
+msgstr "RSS Hírfolyam"
 
 #: mmframe.cpp:1747
 msgid "Connect RSS web feed to news aggregator"
@@ -4371,7 +4371,7 @@ msgstr ""
 
 #: mmframe.cpp:1750
 msgid "Donate via PayPal"
-msgstr ""
+msgstr "Adakozzon PayPal-on"
 
 #: mmframe.cpp:1751
 msgid "Donate the team to support infrastructure etc"
@@ -4379,7 +4379,7 @@ msgstr ""
 
 #: mmframe.cpp:1754
 msgid "Buy us a Coffee"
-msgstr ""
+msgstr "Vegyen nekünk egy kávét"
 
 #: mmframe.cpp:1755
 msgid "Buy key developer a coffee"
@@ -4387,7 +4387,7 @@ msgstr ""
 
 #: mmframe.cpp:1759
 msgid "Community"
-msgstr ""
+msgstr "Közösség"
 
 #: mmframe.cpp:1760
 msgid "Stay in touch with MMEX community"
@@ -4395,11 +4395,11 @@ msgstr ""
 
 #: mmframe.cpp:1780
 msgid "Report a Bug"
-msgstr ""
+msgstr "Hiba bejelentése"
 
 #: mmframe.cpp:1781
 msgid "Report an error in application to the developers"
-msgstr ""
+msgstr "Jelentsen be egy alkalmazás hibát a fejlesztőknek"
 
 #: mmframe.cpp:1786
 msgid "Reopen &Start-up Dialog"
@@ -4483,7 +4483,7 @@ msgstr ""
 
 #: mmframe.cpp:1905 mmframe.cpp:1999
 msgid "[portable mode]"
-msgstr ""
+msgstr "[hordozható mód]"
 
 #: mmframe.cpp:1944
 msgid "Have MMEX support provided you a debug/patch file?"
@@ -4503,11 +4503,11 @@ msgstr "Adja meg az adatbázisfájl nevét"
 
 #: mmframe.cpp:2042 mmframe.cpp:2066 mmframe.cpp:2147
 msgid "MMEX database files (*.mmb)"
-msgstr ""
+msgstr "MMEX adatbázis fájlok (*.mmb)"
 
 #: mmframe.cpp:2044 mmframe.cpp:2149
 msgid "Encrypted MMEX database files (*.mmb)"
-msgstr ""
+msgstr "Titkosított MMEX adatbázis fájlok (*.mmb)"
 
 #: mmframe.cpp:2064
 msgid "Choose database file to open"
@@ -4519,7 +4519,7 @@ msgstr "A jelszóváltoztatás befejezve."
 
 #: mmframe.cpp:2086
 msgid "Encryption Password Change"
-msgstr ""
+msgstr "Titkosítási jelszó módosítása"
 
 #: mmframe.cpp:2094
 msgid "Please confirm database decryption and password removal."
@@ -4527,7 +4527,7 @@ msgstr ""
 
 #: mmframe.cpp:2095 mmframe.cpp:2102
 msgid "Encryption Password Removal"
-msgstr ""
+msgstr "Titkosítási jelszó eltávolítása"
 
 #: mmframe.cpp:2102
 msgid "Password removed and database decrypted."
@@ -4828,7 +4828,7 @@ msgstr "KIMUTATÁSOK"
 
 #: mmreportspanel.cpp:297 mmreportspanel.cpp:375
 msgid "Period:"
-msgstr ""
+msgstr "Időszak:"
 
 #: mmreportspanel.cpp:304 reports/mmDateRange.cpp:222
 #: reports/reportbase.cpp:169
@@ -4861,7 +4861,7 @@ msgstr ""
 
 #: mmreportspanel.cpp:450
 msgid "Chart:"
-msgstr ""
+msgstr "Grafikon:"
 
 #: mmreportspanel.cpp:452
 msgid "Show"
@@ -5041,15 +5041,15 @@ msgstr "Bevételek és kiadások"
 
 #: option.cpp:124 option.cpp:125
 msgid "Budget"
-msgstr ""
+msgstr "Költségvetés"
 
 #: option.cpp:124 option.cpp:128
 msgid "Performance"
-msgstr ""
+msgstr "Teljesítmény"
 
 #: option.cpp:125
 msgid "Category Summary"
-msgstr ""
+msgstr "Kategória összegzés"
 
 #: option.cpp:126 option.cpp:127 reports/cashflow.cpp:35
 msgid "Cash Flow"
@@ -5139,15 +5139,15 @@ msgstr "Nincs beállítva"
 
 #: optionsettingsattachment.cpp:124
 msgid "Windows folder"
-msgstr ""
+msgstr "Windows mappa"
 
 #: optionsettingsattachment.cpp:132
 msgid "Mac folder"
-msgstr ""
+msgstr "Mac mappa"
 
 #: optionsettingsattachment.cpp:140
 msgid "Unix folder"
-msgstr ""
+msgstr "Unix mappa"
 
 #: optionsettingsattachment.cpp:150
 msgid "Create and use Attachments subfolder"
