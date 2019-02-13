@@ -943,6 +943,7 @@ mmDates::mmDates()
 {
     m_date_formats_temp = g_date_formats_map;
     m_date_parsing_stat.clear();
+    m_today = wxDate::Today();
 }
 
 const wxString mmDates::getDateMask() const
@@ -955,16 +956,15 @@ const wxString mmDates::getDateFormat() const
     return m_date_formats_temp.empty() ? "" : m_date_formats_temp.begin()->first;
 }
 
-int mmDates::getVariants() const
+bool mmDates::isParsingDone() const
 {
-    return m_date_formats_temp.size();
+    return m_date_formats_temp.size() < g_date_formats_map.size();
 }
 
 bool mmDates::isStringDate(const wxString &dateStr)
 {
     bool is_date = false;
-    wxDate today = wxDate::Today();
-    wxDate fresh(today.Subtract(wxDateSpan::Months(1)));
+    wxDate latest_dates(m_today.Subtract(wxDateSpan::Months(1)));
 
     if (m_date_formats_temp.size() > 1)
     {
@@ -973,12 +973,12 @@ bool mmDates::isStringDate(const wxString &dateStr)
         for (const auto& date_mask : date_formats)
         {
             const wxString mask = date_mask.first;
-            wxDateTime dtdt = today;
+            wxDateTime dtdt = m_today;
             if (mmParseDisplayStringToDate(dtdt, dateStr, mask))
             {
                 m_date_parsing_stat[mask] ++;
                 //Increase the date mask rating if parse date is recent (2 month ago) date 
-                if (dtdt <= today && dtdt >= fresh)
+                if (dtdt <= m_today && dtdt >= latest_dates)
                     m_date_parsing_stat[mask] ++;
                 is_date = true;
             }

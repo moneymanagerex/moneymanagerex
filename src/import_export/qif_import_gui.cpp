@@ -345,7 +345,6 @@ bool mmQIFImportDialog::mmReadQIFFile()
     m_QIFpayeeNames.clear();
     m_payee_names.clear();
     m_payee_names.Add(_("Unknown"));
-    m_date_parsing_stat.clear();
 
     wxFileInputStream input(m_FileNameStr);
     wxConvAuto conv = g_encoding.at(m_choiceEncoding->GetSelection()).first;
@@ -359,6 +358,8 @@ bool mmQIFImportDialog::mmReadQIFFile()
 
     wxString accName = ""; //TODO: check Account check box
     std::unordered_map <int, wxString> trx;
+
+    mmDates* dParser = new mmDates;
     while (input.IsOk() && !input.Eof())
     {
         ++numLines;
@@ -418,7 +419,7 @@ bool mmQIFImportDialog::mmReadQIFFile()
         if (date_formats_temp.size() > 1 && lineType == Date
             && (data.Mid(0, 1) != "["))
         {
-            parseDate(data, date_formats_temp);
+            dParser->isStringDate(data);
         }
 
         if (trx[lineType].empty())
@@ -429,7 +430,15 @@ bool mmQIFImportDialog::mmReadQIFFile()
     }
     log_field_->ScrollLines(log_field_->GetNumberOfLines());
 
-    getDateMask();
+
+    if (!m_userDefinedDateMask)
+    {
+        const wxString date_mask = dParser->getDateMask();
+        choiceDateFormat_->SetStringSelection(date_mask);
+    }
+
+    delete dParser;
+
     fillControls();
 
     progressDlg.Destroy();
@@ -661,59 +670,6 @@ void mmQIFImportDialog::refreshTabs(int tabs)
     }
 }
 
-void mmQIFImportDialog::parseDate(const wxString &dateStr
-    , std::map<wxString, wxString> &date_formats_temp)
-{
-    if (date_formats_temp.size() == 1) return;
-    wxArrayString invalidMask;
-    const std::map<wxString, wxString> date_formats = date_formats_temp;
-    for (const auto& date_mask : date_formats)
-    {
-        const wxString mask = date_mask.first;
-        wxDateTime dtdt = m_today;
-        if (mmParseDisplayStringToDate(dtdt, dateStr, mask))
-        {
-            m_date_parsing_stat[mask] ++;
-            //Increase the date mask rating if parse date is recent (2 month ago) date 
-            if (dtdt <= m_today && dtdt >= m_fresh)
-                m_date_parsing_stat[mask] ++;
-        }
-        else {
-            invalidMask.Add(mask);
-        }
-    }
-
-    if (invalidMask.size() < date_formats_temp.size())
-    {
-        for (const auto &i : invalidMask)
-            date_formats_temp.erase(i);
-    }
-}
-
-void mmQIFImportDialog::getDateMask()
-{
-    if (!m_userDefinedDateMask)
-    {
-        //Check parsing results
-        int count = 0;
-        if (!m_date_parsing_stat.empty())
-            choiceDateFormat_->Clear();
-
-        for (const auto& d : m_date_parsing_stat)
-        {
-            wxLogDebug("%s \t%i", g_date_formats_map.at(d.first), d.second);
-
-            choiceDateFormat_->Append(g_date_formats_map.at(d.first), new wxStringClientData(d.first));
-            if (d.second > count)
-            {
-                count = d.second;
-                m_dateFormatStr = d.first;
-            }
-        }
-    }
-    choiceDateFormat_->SetStringSelection(g_date_formats_map.at(m_dateFormatStr));
-}
-
 void mmQIFImportDialog::OnFileSearch(wxCommandEvent& WXUNUSED(event))
 {
     m_FileNameStr = file_name_ctrl_->GetValue();
@@ -730,13 +686,6 @@ void mmQIFImportDialog::OnFileSearch(wxCommandEvent& WXUNUSED(event))
         file_name_ctrl_->SetValue(m_FileNameStr);
         mmReadQIFFile();
     }
-
-    if (m_date_parsing_stat.empty())
-        mmErrorDialogs::ToolTip4Object(choiceDateFormat_
-            , _("Can't determine date mask"), _("Error"), wxICON_ERROR);
-    else if (m_date_parsing_stat.size() > 1)
-        mmErrorDialogs::ToolTip4Object(choiceDateFormat_
-            , _("Date Mask has several values"), ("Warning"), wxICON_INFORMATION);
 }
 
 void mmQIFImportDialog::OnDateMaskChange(wxCommandEvent& WXUNUSED(event))

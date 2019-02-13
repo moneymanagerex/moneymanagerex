@@ -71,13 +71,10 @@ private:
     void appendTransfers(Model_Checking::Cache &destination, Model_Checking::Cache &target);
     void joinSplit(Model_Checking::Cache &destination, std::vector <Model_Splittransaction::Cache> &target);
     void saveSplit();
-    void getDateMask();
     void refreshTabs(int tabs);
-    void parseDate(const wxString &dateStr, std::map<wxString, wxString> &date_formats_temp);
 
     //QIF paragraphs represented like maps type = data
     std::vector <std::unordered_map <int, wxString> > vQIF_trxs_;
-    std::unordered_map<wxString, int> m_date_parsing_stat; //it counts successfully parsed dates with selected date mask
     std::unordered_map <wxString, std::unordered_map <int, wxString> > m_QIFaccounts;
     std::unordered_map <wxString, int> m_QIFaccountsID;
     std::unordered_map <wxString, int> m_QIFpayeeNames;

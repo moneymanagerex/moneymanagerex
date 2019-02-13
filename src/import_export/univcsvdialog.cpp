@@ -38,6 +38,9 @@
 #include "Model_Infotable.h"
 
 #include <algorithm>
+#include <cctype>
+#include <string>
+#include <regex>
 
 #include <wx/xml/xml.h>
 #include <wx/spinctrl.h>
@@ -55,7 +58,7 @@ wxBEGIN_EVENT_TABLE(mmUnivCSVDialog, wxDialog)
     EVT_BUTTON(wxID_STANDARD, mmUnivCSVDialog::OnStandard)
     EVT_BUTTON(wxID_BROWSE, mmUnivCSVDialog::OnBrowse)
     EVT_LISTBOX_DCLICK(wxID_ANY, mmUnivCSVDialog::OnListBox)
-    EVT_CHOICE(wxID_ANY, mmUnivCSVDialog::OnDateFormatChanged)
+    EVT_CHOICE(ID_DATE_FORMAT, mmUnivCSVDialog::OnDateFormatChanged)
 wxEND_EVENT_TABLE()
 
 //----------------------------------------------------------------------------
@@ -75,7 +78,7 @@ mmUnivCSVDialog::mmUnivCSVDialog(
     delimit_(","),
     m_userDefinedDateMask(false),
     m_choiceAmountFieldSign(nullptr),
-    m_choiceAmountsFormat(nullptr),
+    m_choiceDecimalSeparator(nullptr),
     csvFieldCandicate_(nullptr),
     csvListBox_(nullptr),
     m_button_add_(nullptr),
@@ -89,8 +92,10 @@ mmUnivCSVDialog::mmUnivCSVDialog(
     m_spinIgnoreFirstRows_(nullptr),
     m_spinIgnoreLastRows_(nullptr),
     choiceDateFormat_(nullptr),
-    importSuccessful_(false)
+    importSuccessful_(false),
+    m_reverce_sign(false)
 {
+    decimal_ = Model_Currency::GetBaseCurrency()->DECIMAL_POINT;
     CSVFieldName_[UNIV_CSV_DATE] = wxTRANSLATE("Date");
     CSVFieldName_[UNIV_CSV_PAYEE] = wxTRANSLATE("Payee");
     CSVFieldName_[UNIV_CSV_AMOUNT] = wxTRANSLATE("Amount +/-");
@@ -340,18 +345,12 @@ void mmUnivCSVDialog::CreateControls()
         flex_sizer->Add(m_choiceAmountFieldSign, g_flagsH);
     }
 
-    wxStaticText* itemStaticTextDigits = new wxStaticText(itemPanel7, wxID_ANY, _("Amount mask"));
+    wxStaticText* itemStaticTextDigits = new wxStaticText(itemPanel7, wxID_ANY, _("Decimal Char"));
     flex_sizer->Add(itemStaticTextDigits, g_flagsH);
-    m_choiceAmountsFormat = new wxChoice(itemPanel7, wxID_ANY);
-    flex_sizer->Add(m_choiceAmountsFormat, g_flagsH);
-    static const wxString DATA[] = {
-        "wddd,ddd.dd"
-        , "wddd.ddd,dd"
-        , "wddd ddd.dd"
-        , "wddd'ddd.dd"
-    };
-    for (const auto& entry : DATA)
-        m_choiceAmountsFormat->Append(entry, new wxStringClientData(entry));
+    m_choiceDecimalSeparator = new mmChoiceAmountMask(itemPanel7, ID_UD_DECIMAL);
+    flex_sizer->Add(m_choiceDecimalSeparator, g_flagsH);
+    m_choiceDecimalSeparator->Connect(ID_UD_DECIMAL
+        , wxEVT_COMMAND_CHOICE_SELECTED, wxCommandEventHandler(mmUnivCSVDialog::OnDecimalChange), nullptr, this);
 
     // Select rows to import (not relevant for export)
     if(IsImporter())
@@ -365,7 +364,8 @@ void mmUnivCSVDialog::CreateControls()
         // "Ignore first" title, spin and event handler.
         wxStaticText* itemStaticText7 = new wxStaticText(rowSelectionStaticBoxSizer->GetStaticBox(), wxID_ANY, _("From start: "));
         rowSelectionStaticBoxSizer->Add(itemStaticText7, g_flagsH);
-        m_spinIgnoreFirstRows_ = new wxSpinCtrl(rowSelectionStaticBoxSizer->GetStaticBox(), ID_FIRST_ROW, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 0, 0, 0);
+        m_spinIgnoreFirstRows_ = new wxSpinCtrl(rowSelectionStaticBoxSizer->GetStaticBox(), ID_FIRST_ROW
+            , wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS);
         rowSelectionStaticBoxSizer->Add(m_spinIgnoreFirstRows_, g_flagsH);
         m_spinIgnoreFirstRows_->Connect(wxEVT_COMMAND_SPINCTRL_UPDATED, wxSpinEventHandler(mmUnivCSVDialog::OnSpinCtrlIgnoreRows), nullptr, this);
 
@@ -771,7 +771,7 @@ void mmUnivCSVDialog::OnSave(wxCommandEvent& WXUNUSED(event))
 
 bool mmUnivCSVDialog::validateData(tran_holder & holder)
 {
-    if (!holder.Date.IsValid() || !holder.Amount || holder.Type.Trim().IsEmpty()) {
+    if (!holder.valid) {
         return false;
     }
 
@@ -874,8 +874,9 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& WXUNUSED(event))
         , wxEmptyString, linesToImport
         , nullptr, wxPD_AUTO_HIDE | wxPD_APP_MODAL | wxPD_SMOOTH | wxPD_CAN_ABORT
                  | wxPD_ELAPSED_TIME | wxPD_REMAINING_TIME
-        );
-
+    );
+    
+    m_reverce_sign = m_choiceAmountFieldSign->GetCurrentSelection() == PositiveIsWithdrawal;
     for (long lineNum = firstRow; lineNum < lastRow; lineNum++)
     {
         const wxString& progressMsg = wxString::Format(_("Transactions imported to account %s: %ld")
@@ -1180,7 +1181,7 @@ void mmUnivCSVDialog::update_preview()
         unsigned int amount_parser_errors = 0;
 
         mmDates* dParser = new mmDates;
-        unsigned int MAX_ATTEMPTS = 1;
+        unsigned int MAX_ATTEMPTS = 3;
 
         // Import- Add rows to preview
         for (unsigned int row = 0; row < pImporter->GetLinesCount(); row++)
@@ -1216,8 +1217,6 @@ void mmUnivCSVDialog::update_preview()
                     && amount_parser_errors < MAX_ATTEMPTS
                     && (int)col == amount_col)
                 {
-                    //amount_parser_errors += (dParser->isStringDate(content) ? 0 : 1);
-                    wxLogDebug("Is amount: %s ?", content);
                     amount_parser_errors++;
                 }
 
@@ -1227,19 +1226,15 @@ void mmUnivCSVDialog::update_preview()
         }
         delete pImporter;
 
-        // Limit spin control's max value to number of lines in file.
-        m_spinIgnoreFirstRows_->SetRange(m_spinIgnoreFirstRows_->GetMin(), m_list_ctrl_->GetItemCount());
         m_spinIgnoreLastRows_->SetRange(m_spinIgnoreLastRows_->GetMin(), m_list_ctrl_->GetItemCount());
         UpdateListItemBackground();
 
-        if (!m_userDefinedDateMask)
+        if (!m_userDefinedDateMask && dParser->isParsingDone())
         {
             const wxString date_mask = dParser->getDateMask();
             date_format_ = dParser->getDateFormat();
             choiceDateFormat_->SetStringSelection(date_mask);
-            if (dParser->getVariants() == 1) {
-                m_userDefinedDateMask = true;
-            }
+            m_userDefinedDateMask = true;
         }
 
         delete dParser;
@@ -1491,10 +1486,22 @@ void mmUnivCSVDialog::OnDelimiterChange(wxCommandEvent& event)
     }
 }
 
+void mmUnivCSVDialog::OnDecimalChange(wxCommandEvent& event)
+{
+    int i = m_choiceDecimalSeparator->GetSelection();
+    wxStringClientData* type_obj = (wxStringClientData*)m_choiceDecimalSeparator->GetClientObject(i);
+    if (type_obj) {
+        decimal_ = type_obj->GetData();
+    }
+
+    event.Skip();
+}
+
 void mmUnivCSVDialog::parseToken(int index, const wxString& orig_token, tran_holder& holder)
 {
+    if ( orig_token.IsEmpty()) return;
     wxString token = orig_token;
-    if (token.Trim().IsEmpty()) return;
+
     Model_Payee::Data* payee = nullptr;
     Model_Category::Data* category = nullptr;
     Model_Subcategory::Data* sub_category = nullptr;
@@ -1502,111 +1509,103 @@ void mmUnivCSVDialog::parseToken(int index, const wxString& orig_token, tran_hol
     wxDateTime dtdt;
     switch (index)
     {
-        case UNIV_CSV_DATE:
-            if (mmParseDisplayStringToDate(dtdt, token, date_format_))
-                holder.Date = dtdt.GetDateOnly();
-            break;
+    case UNIV_CSV_DATE:
+        if (mmParseDisplayStringToDate(dtdt, token, date_format_))
+            holder.Date = dtdt.GetDateOnly();
+        else
+            holder.valid = false;
+        break;
 
-        case UNIV_CSV_PAYEE:
-            payee = Model_Payee::instance().get(token);
-            if (!payee)
-            {
-                payee = Model_Payee::instance().create();
-                payee->PAYEENAME = token;
-                Model_Payee::instance().save(payee);
-            }
-
-            holder.PayeeID = payee->PAYEEID;
-            break;
-
-        case UNIV_CSV_AMOUNT:
+    case UNIV_CSV_PAYEE:
+        payee = Model_Payee::instance().get(token);
+        if (!payee)
         {
-            token.Replace(" ", wxEmptyString);
-
-            if (!Model_Currency::fromString(token, holder.Amount, Model_Account::currency(Model_Account::instance().get(fromAccountID_)))) return;
-
-            Model_Checking::TYPE txType = Model_Checking::WITHDRAWAL;
-            if ((holder.Amount > 0.0 && m_choiceAmountFieldSign->GetCurrentSelection() == PositiveIsDeposit) ||
-                (holder.Amount <= 0.0 && m_choiceAmountFieldSign->GetCurrentSelection() == PositiveIsWithdrawal))
-            {
-                txType = Model_Checking::DEPOSIT;
-            }
-            holder.Type = Model_Checking::all_type()[txType];
-
-            holder.Amount = fabs(holder.Amount);
-            break;
+            payee = Model_Payee::instance().create();
+            payee->PAYEENAME = token;
+            Model_Payee::instance().save(payee);
         }
-        case UNIV_CSV_CATEGORY:
-            category = Model_Category::instance().get(token);
-            if (!category)
-            {
-                category = Model_Category::instance().create();
-                category->CATEGNAME = token;
-                Model_Category::instance().save(category);
-            }
 
-            holder.CategoryID = category->CATEGID;
-            break;
+        holder.PayeeID = payee->PAYEEID;
+        break;
 
-        case UNIV_CSV_SUBCATEGORY:
-            if (holder.CategoryID == -1)
-                return;
+    case UNIV_CSV_AMOUNT:
+    {
+        double result = wxAtof(mmTrimAmount(token));
 
-            sub_category = (!token.IsEmpty() ? Model_Subcategory::instance().get(token, holder.CategoryID) : 0);
-            if (!sub_category)
-            {
-                sub_category = Model_Subcategory::instance().create();
-                sub_category->CATEGID = holder.CategoryID;
-                sub_category->SUBCATEGNAME = token;
-                Model_Subcategory::instance().save(sub_category);
-            }
-            holder.SubCategoryID = sub_category->SUBCATEGID; 
-            break;
-
-        case UNIV_CSV_NOTES:
-            holder.Notes = token;
-            holder.Notes.Replace("\\n", "\n");
-            break;
-
-        case UNIV_CSV_TRANSNUM:
-            holder.Number = token;
-            break;
-
-        case UNIV_CSV_DONTCARE:
-            // do nothing
-            break;
-
-        case UNIV_CSV_DEPOSIT:
-            if (token.IsEmpty())
-                return;
-            // do nothing if an amount has already been stored by a previous call
-            if (holder.Amount != 0.0)
-                break;
-            if (!Model_Currency::fromString(token, holder.Amount, Model_Account::currency(Model_Account::instance().get(fromAccountID_))))
-                return;
-            holder.Amount = fabs(holder.Amount);
+        if ((result > 0.0 && !m_reverce_sign) || (result <= 0.0 && m_reverce_sign))
+        {
             holder.Type = Model_Checking::all_type()[Model_Checking::DEPOSIT];
-            break;
 
-        case UNIV_CSV_WITHDRAWAL:
-            if (token.IsEmpty())
-                return;
-            // do nothing if an amount has already been stored by a previous call
-            if (holder.Amount != 0.0)
-                break;
-            if (!Model_Currency::fromString(token, holder.Amount, Model_Account::currency(Model_Account::instance().get(fromAccountID_))))
-                return;
-            holder.Amount = fabs(holder.Amount);
-            holder.Type = Model_Checking::all_type()[Model_Checking::WITHDRAWAL];
-            break;
+        holder.Amount = fabs(result);
 
-        case UNIV_CSV_BALANCE:
-            // do nothing
-            break;
+        break;
+    }
+    case UNIV_CSV_CATEGORY:
+        category = Model_Category::instance().get(token);
+        if (!category)
+        {
+            category = Model_Category::instance().create();
+            category->CATEGNAME = token;
+            Model_Category::instance().save(category);
+        }
 
-        default:
-            wxASSERT(false);
+        holder.CategoryID = category->CATEGID;
+        break;
+
+    case UNIV_CSV_SUBCATEGORY:
+        if (holder.CategoryID == -1)
+            return;
+
+        sub_category = (!token.IsEmpty() ? Model_Subcategory::instance().get(token, holder.CategoryID) : 0);
+        if (!sub_category)
+        {
+            sub_category = Model_Subcategory::instance().create();
+            sub_category->CATEGID = holder.CategoryID;
+            sub_category->SUBCATEGNAME = token;
+            Model_Subcategory::instance().save(sub_category);
+        }
+        holder.SubCategoryID = sub_category->SUBCATEGID;
+        break;
+
+    case UNIV_CSV_NOTES:
+        holder.Notes = token;
+        holder.Notes.Replace("\\n", "\n");
+        break;
+
+    case UNIV_CSV_TRANSNUM:
+        holder.Number = token;
+        break;
+
+    case UNIV_CSV_DONTCARE:
+        // do nothing
+        break;
+
+    case UNIV_CSV_DEPOSIT:
+        if (token.IsEmpty())
+            return;
+        // do nothing if an amount has already been stored by a previous call
+        if (holder.Amount != 0.0)
             break;
+        holder.Amount = fabs(wxAtof(mmTrimAmount(token)));
+        holder.Type = Model_Checking::all_type()[Model_Checking::DEPOSIT];
+        break;
+
+    case UNIV_CSV_WITHDRAWAL:
+        if (token.IsEmpty())
+            return;
+        // do nothing if an amount has already been stored by a previous call
+        if (holder.Amount != 0.0)
+            break;
+        holder.Amount = fabs(wxAtof(mmTrimAmount(token)));
+        break;
+
+    case UNIV_CSV_BALANCE:
+        // do nothing
+        break;
+
+    default:
+        wxASSERT(false);
+        break;
     }
 }
 
@@ -1688,11 +1687,12 @@ void mmUnivCSVDialog::OnSpinCtrlIgnoreRows(wxSpinEvent& WXUNUSED(event))
 
 void mmUnivCSVDialog::UpdateListItemBackground()
 {
-    const int firstRow = m_spinIgnoreFirstRows_->GetValue();
-    const int lastRow = m_list_ctrl_->GetItemCount() - m_spinIgnoreLastRows_->GetValue() - 1;
+    int firstRow = m_spinIgnoreFirstRows_->GetValue();
+    int lastRow = m_list_ctrl_->GetItemCount() - m_spinIgnoreLastRows_->GetValue() - 1;
     for (int row = 0; row < m_list_ctrl_->GetItemCount(); row++)
     {
-        m_list_ctrl_->SetItemBackgroundColour(row, row >= firstRow && row <= lastRow ? m_list_ctrl_->GetBackgroundColour() :*wxLIGHT_GREY);
+        wxColor color = row >= firstRow && row <= lastRow ? m_list_ctrl_->GetBackgroundColour() : *wxLIGHT_GREY;
+        m_list_ctrl_->SetItemBackgroundColour(row, color);
     }
 }
 

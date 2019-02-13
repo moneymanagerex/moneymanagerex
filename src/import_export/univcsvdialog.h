@@ -23,6 +23,7 @@
 #include <map>
 #include <wx/dialog.h>
 #include "Model_Checking.h"
+#include "mmSimpleDialogs.h"
 class wxSpinCtrl;
 class wxSpinEvent;
 class wxListBox;
@@ -53,6 +54,7 @@ class wxCheckBox;
 #define ID_ENCODING 10107
 #define ID_FIRST_ROW 10108
 #define ID_LAST_ROW 10109
+#define ID_UD_DECIMAL 10110
 ////@end control identifiers
 
 /*!
@@ -136,7 +138,7 @@ private:
     struct tran_holder
     {
         wxDateTime Date;
-        wxString Type;
+        wxString Type = Model_Checking::all_type()[Model_Checking::WITHDRAWAL];
         wxString Status = "";
         int ToAccountID = -1;
         double ToAmount = 0.0;
@@ -146,9 +148,11 @@ private:
         double Amount = 0.0;
         wxString Number;
         wxString Notes;
+        bool valid = true;
     };
     EDialogType dialogType_;
     wxString delimit_;
+    wxString decimal_;
 
     std::vector<int> csvFieldOrder_;
     wxListBox* csvFieldCandicate_;
@@ -172,7 +176,7 @@ private:
     wxString date_format_;
 
     wxChoice* m_choiceAmountFieldSign;
-    wxChoice* m_choiceAmountsFormat;
+    mmChoiceAmountMask* m_choiceDecimalSeparator;
     enum amountFieldSignValues { PositiveIsDeposit, PositiveIsWithdrawal };
     wxCheckBox* m_checkBoxExportTitles;
 
@@ -180,6 +184,7 @@ private:
     bool importSuccessful_;
     bool m_userDefinedDateMask;
     int m_oject_in_focus;
+    bool m_reverce_sign;
 
     /// Creation
     bool Create(wxWindow* parent,
@@ -206,6 +211,7 @@ private:
     void OnBrowse(wxCommandEvent& event);
     void OnListBox(wxCommandEvent& event);
     void OnDelimiterChange(wxCommandEvent& event);
+    void OnDecimalChange(wxCommandEvent& event);
     void OnButtonClear(wxCommandEvent& event);
     void OnFileNameEntered(wxCommandEvent& event);
     void OnFileNameChanged(wxCommandEvent& event);
@@ -224,5 +230,19 @@ private:
     wxString GetStoredSettings(int id);
     void SetSettings(const wxString &data);
     ITransactionsFile *CreateFileHandler();
+    const wxString mmUnivCSVDialog::mmTrimAmount(const wxString& value) const;
 };
+
+inline const wxString mmUnivCSVDialog::mmTrimAmount(const wxString& value) const
+{
+    wxString str;
+    wxString valid_strings = "-1234567890" + decimal_;
+    for (const auto& c : value) {
+        if (valid_strings.Contains(c)) {
+            str += c;
+        }
+    }
+    return str;
+}
+
 #endif

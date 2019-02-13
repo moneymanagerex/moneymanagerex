@@ -182,10 +182,11 @@ public:
     bool isStringDate(const wxString &dateStr);
     const wxString getDateMask() const;
     const wxString getDateFormat() const;
-    int getVariants() const;
+    bool isParsingDone() const;
 private:
     std::map<wxString, wxString> m_date_formats_temp;
     std::unordered_map<wxString, int> m_date_parsing_stat;
+    wxDateTime m_today;
 
 };
 
