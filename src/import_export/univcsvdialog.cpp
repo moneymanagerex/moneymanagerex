@@ -611,7 +611,7 @@ void mmUnivCSVDialog::OnAdd(wxCommandEvent& WXUNUSED(event))
         auto itPos = csvFieldOrder_.begin() + target_position;
         auto newIt = csvFieldOrder_.insert(itPos, item->getIndex());
 
-        if (item->getIndex() != UNIV_CSV_DONTCARE)
+        if (item->getIndex() != UNIV_CSV_DONTCARE && item->getIndex() != UNIV_CSV_NOTES)
         {
             csvFieldCandicate_->Delete(index);
             if (index < (int)csvFieldCandicate_->GetCount()) {
@@ -1152,10 +1152,7 @@ void mmUnivCSVDialog::update_preview()
     {
         const wxString& item_name = this->getCSVFieldName(*it);
         this->m_list_ctrl_->InsertColumn(colCount, wxGetTranslation(item_name));
-        if (it[0] == UNIV_CSV_NOTES) {
-            this->m_list_ctrl_->SetColumnWidth(colCount, 300);
-        }
-        else if (it[0] == UNIV_CSV_DATE) {
+        if (it[0] == UNIV_CSV_DATE) {
             date_col = colCount - 1;
         }
         else if (it[0] == UNIV_CSV_AMOUNT) {
@@ -1570,8 +1567,8 @@ void mmUnivCSVDialog::parseToken(int index, const wxString& orig_token, tran_hol
         break;
 
     case UNIV_CSV_NOTES:
-        holder.Notes = token;
-        holder.Notes.Replace("\\n", "\n");
+        token.Replace("\\n", "\n");
+        holder.Notes += token + "\n";
         break;
 
     case UNIV_CSV_TRANSNUM:
