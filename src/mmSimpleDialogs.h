@@ -33,6 +33,7 @@ class mmChoiceAmountMask : public wxChoice
 {
 public:
     mmChoiceAmountMask(wxWindow* parent, wxWindowID id);
+    virtual void SetDecimalChar(const wxString& str);
 };
 
 class mmSingleChoiceDialog : public wxSingleChoiceDialog

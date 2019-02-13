@@ -43,9 +43,14 @@ mmChoiceAmountMask::mmChoiceAmountMask(wxWindow* parent, wxWindowID id)
     Model_Currency::Data* base_currency = Model_Currency::GetBaseCurrency();
     const auto decimal_point = base_currency->DECIMAL_POINT;
 
-    if (decimal_point == ".")
+    SetDecimalChar(decimal_point);
+}
+
+void mmChoiceAmountMask::SetDecimalChar(const wxString& str)
+{
+    if (str == ".")
         SetSelection(0);
-    else if (decimal_point == ",")
+    else if (str == ",")
         SetSelection(1);
     else
         SetSelection(2);
