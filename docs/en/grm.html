@@ -4,14 +4,13 @@
     <meta charset="UTF-8">
     <title>General Report Manager</title>
     <link href="../manual.css" rel="stylesheet" type="text/css">
-    <script src="../js/get_param.js"></script>
     <script src="../js/toc.js"></script>
     <script src='http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js'></script>
     <script src="../js/back_to_top.js"></script>
 </head>
 <body onload="generateTOC(document.getElementById('toc'));">
     <header>
-        <nav><small><a id="go_home" href="./index.html">Go to main help page</a></small></nav>
+        <nav><small><a id="go_home" href="../index.html?lang=en">Go to main help page</a></small></nav>
 
         <a href="#" id="back-to-top"><img src="../img/backtotop.png" alt="Back to Top" /></a>
         <!--Smooth Back to Top Button End-->
@@ -23,7 +22,11 @@
     <nav id="toc"></nav>
 
     <h2>Opening General Report Manager</h2>
-    <p>Call General Report Manager (GRM) tool or main menu - tools - General Report Manager...</p>
+    <p>
+        Call General Report Manager (<abbr>GRM</abbr>) tool or use main menu
+        <kbd><samp>Tools</samp> &rarr; <samp>General Report Manager&hellip;</samp>
+        </kbd>.
+    </p>
     <img class="shadow" alt="GRM Toolbar" src="../en/grm_toolbar.png">
 
     <h2>Adding a new report</h2>
@@ -31,32 +34,42 @@
 
     <h3>Creating the report from scratch</h3>
     <ol>
-        <li>Using the navigation tree, mouse Right-Click on the Reports label.</li>
-        <li>Choose the menu item: 'New Empty Report'.</li>
+        <li>Using the navigation tree, mouse Right-Click on the
+            <kbd><samp>Reports</samp></kbd> label.</li>
+        <li>Choose the menu item: <kbd><samp>New Empty Report</samp></kbd>.</li>
         <li>Enter the name for the new report group and the new name.</li>
-        <li>Rename reports, if required, by right-clicking on the menu item: 'Rename Report'.</li>
-        <li>Three tabs will be displayed: SQL, Lua and htt.</li>
+        <li>Rename reports, if required, by right-clicking on the menu item:
+            <kbd><samp>Rename Report</samp></kbd>.</li>
+        <li>Three tabs will be displayed: Output, SQL, Lua, Template and
+            Description.</li>
         <li>
             Choose the tab: SQL, insert the SQL script into the editor window,
-            check that the SQL script finishes with a semicolon, then press the Save button.
+            check that the SQL script finishes with a semicolon, then press
+            the <kbd><samp>Save</samp></kbd> button.
         </li>
-        <li>Press the Test button to execute the SQL script.</li>
-        <li>If the test is passed the Create Template button will become available.
-            Press it to generate an html template for the report.</li>
-        <li>Press the 'Run' button to get the html report in the Output window.</li>
+        <li>Press the <kbd><samp>Test</samp></kbd> button to execute the SQL
+            script.</li>
+        <li>If the test is passed the <kbd><samp>Create Template</samp></kbd>
+            button will become available. Press it to generate an HTML
+            template for the report.</li>
+        <li>Press the <kbd><samp>Run</samp></kbd> button to get the HTML
+            report in the Output window.</li>
     </ol>
-    <img class="shadow" alt="GRM" src="../en/grm.gif">
+    <img class="shadow" alt="Creation of a new report from scratch animation"
+    src="../en/grm.gif">
 
     <h4>Report Parameters</h4>
-
-    <p>For mmex ver. 1.4.0 there is a possibility to transfer dates into a report's SQL script.
-    There are four options available: <var>&single_date</var>, <var>&begin_date</var>, <var>&end_date</var>, <var>&budget_years</var>.
-    In case if a SQL contains one of the parameter above it will be replaced a date from a calendar widet.
-    For example, this SQL script returns all accounts balances for the specified date:
+    <p>
+        For MMEX version 1.4.0 there is a possibility to transfer dates into a
+        report's SQL script.
+        There are four options available: <var>&single_date</var>,
+        <var>&begin_date</var>, <var>&end_date</var>, <var>&budget_years</var>.
+        In case if a SQL contains one of the parameter above it will be
+        replaced a date from a calendar widet.
+        For example, this SQL script returns all accounts balances for the
+        specified date:
     </p>
-
-<pre><code>
-with b as  (
+<pre><code class="language-sql">with b as  (
     select ACCOUNTID, STATUS
         , (case when TRANSCODE = 'Deposit' then TRANSAMOUNT else -TRANSAMOUNT end) as TRANSAMOUNT
         , TRANSDATE
@@ -75,18 +88,20 @@ where a.STATUS = 'Open'
     and b.TRANSDATE &lt;= '<var>&single_date</var>'
 group by a.ACCOUNTNAME order by a.ACCOUNTNAME asc;
 </code></pre>
-
-    <img class="shadow" alt="GRM Date" src="../en/grm_custom_date.png">
+    <img class="shadow" alt="GRM report output using single date parameter
+    example" src="../en/grm_custom_date.png">
 
     <h3>Importing report</h3>
     <p>
         There are a lot of reports provided by users or developers on
+        <a href="https://github.com/moneymanagerex/general-reports/releases">GitHub</a>
     </p>
-        <a href="https://github.com/moneymanagerex/general-reports/releases">github</a>
 
     <h2>Exporting report definition</h2>
-    <p>If you have created any helpful report it may be
-    <a href="http://forum.moneymanagerex.org/viewforum.php?f=16">exported into zip file</a>.</p>
+    <p>
+        If you have created any helpful report it may be exported into ZIP
+        file.
+    </p>
 
     <footer><p><small>
         Copyright &copy; 2005-2009 Madhan Kanagavel<br>
@@ -95,7 +110,7 @@ group by a.ACCOUNTNAME order by a.ACCOUNTNAME asc;
     </small></p></footer>
     <script>
         var LANG = document.getElementsByTagName('html')[0].getAttribute('lang');
-        var tr = document.getElementById("translator");            
+        var tr = document.getElementById("translator");
         if (LANG == 'en')
             tr.parentNode.removeChild(tr);
     </script>

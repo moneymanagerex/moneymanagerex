@@ -288,17 +288,7 @@ void mmHTMLBuilder::addColorMarker(const wxString& color)
 const wxString mmHTMLBuilder::getColor(int i) const
 {
     int c = i % (sizeof(tags::COLORS) / sizeof(wxString));
-    wxString color = tags::COLORS[c];
-    return color;
-}
-
-const wxString mmHTMLBuilder::getRandomColor(bool positive) const
-{
-    int red = positive ? rand() % 20 : 156 + rand() % 100;
-    int green = rand() % 128;
-    int blue = positive ? 156 + rand() % 100 : rand() % 20;
-
-    const wxString& color = wxString::Format("rgba(%i, %i, %i, 0.7)", red, green, blue);
+    const wxString& color = tags::COLORS[c];
     return color;
 }
 
