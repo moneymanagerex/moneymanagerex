@@ -431,7 +431,7 @@ bool mmQIFImportDialog::mmReadQIFFile()
     log_field_->ScrollLines(log_field_->GetNumberOfLines());
 
 
-    if (!m_userDefinedDateMask)
+    if (!m_userDefinedDateMask && dParser->isParsingDone())
     {
         const wxString date_mask = dParser->getDateMask();
         choiceDateFormat_->SetStringSelection(date_mask);

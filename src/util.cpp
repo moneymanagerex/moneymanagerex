@@ -946,16 +946,8 @@ mmDates::mmDates()
     m_today = wxDate::Today();
 }
 
-const wxString mmDates::getDateMask() const
-{
-    const auto& date_format = getDateFormat();
-    if (g_date_formats_map.find(date_format) != g_date_formats_map.end())
-        return g_date_formats_map.at(date_format);
-    else
-        return "";
-}
 
-const wxString mmDates::getDateFormat() const
+bool mmDates::isParsingDone()
 {
     int val = 0;
 
@@ -964,14 +956,15 @@ const wxString mmDates::getDateFormat() const
         m_date_parsing_stat.end(),
         [val](const std::pair<wxString, int>& mo) {return mo.second > val; });
 
-    if (result != m_date_parsing_stat.end())
-        return result->first;
-    else
-        return "";
-}
+    if (result != m_date_parsing_stat.end()) {
+        m_date_format = result->first;
+        m_date_mask = g_date_formats_map.at(m_date_format);
+    }
+    else {
+        m_date_mask = "";
+        m_date_format = "";
+    }
 
-bool mmDates::isParsingDone() const
-{
     return m_date_formats_temp.size() < g_date_formats_map.size();
 }
 

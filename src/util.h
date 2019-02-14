@@ -182,13 +182,23 @@ public:
     bool isStringDate(const wxString &dateStr);
     const wxString getDateMask() const;
     const wxString getDateFormat() const;
-    bool isParsingDone() const;
+    bool isParsingDone();
 private:
     std::map<wxString, wxString> m_date_formats_temp;
     std::map<wxString, int> m_date_parsing_stat;
     wxDateTime m_today;
-
+    wxString m_date_mask; //Human readable date format like DD/MM/YYYY
+    wxString m_date_format;
 };
+
+inline const wxString mmDates::getDateMask() const
+{
+        return m_date_mask;
+}
+inline const wxString mmDates::getDateFormat() const
+{
+    return m_date_format;
+}
 
 class mmSeparator
 {
