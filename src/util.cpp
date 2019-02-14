@@ -958,11 +958,11 @@ const wxString mmDates::getDateMask() const
 const wxString mmDates::getDateFormat() const
 {
     int val = 0;
-    m_date_formats_temp.begin()->second;
+
     auto result = std::find_if(
         m_date_parsing_stat.begin(),
         m_date_parsing_stat.end(),
-        [val](const auto& mo) {return mo.second > val; });
+        [val](const std::pair<wxString, int>& mo) {return mo.second > val; });
 
     if (result != m_date_parsing_stat.end())
         return result->first;
