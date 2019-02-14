@@ -1004,12 +1004,12 @@ mmSeparator::mmSeparator()
 {
     const auto& def_delim = Model_Infotable::instance().GetStringInfo("DELIMITER", mmex::DEFDELIMTER);
     m_separators = {
-        { def_delim, 0 }
-        , { ";", 0 }
+          { ";", 0 }
         , { ",", 0 }
         , { "\t", 0 }
         , {"|", 0 }
     };
+    m_separators[def_delim] = 0;
 }
 
 const wxString mmSeparator::getSeparator() const

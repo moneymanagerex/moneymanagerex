@@ -236,7 +236,7 @@ private:
 inline const wxString mmUnivCSVDialog::mmTrimAmount(const wxString& value) const
 {
     wxString str;
-    wxString valid_strings = "-1234567890" + decimal_;
+    wxString valid_strings = "-0123456789" + decimal_;
     for (const auto& c : value) {
         if (valid_strings.Contains(c)) {
             str += c;
