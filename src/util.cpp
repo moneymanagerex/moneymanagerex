@@ -948,12 +948,26 @@ mmDates::mmDates()
 
 const wxString mmDates::getDateMask() const
 {
-    return m_date_formats_temp.empty() ? "" : m_date_formats_temp.begin()->second;
+    const auto& date_format = getDateFormat();
+    if (g_date_formats_map.find(date_format) != g_date_formats_map.end())
+        return g_date_formats_map.at(date_format);
+    else
+        return "";
 }
 
 const wxString mmDates::getDateFormat() const
 {
-    return m_date_formats_temp.empty() ? "" : m_date_formats_temp.begin()->first;
+    int val = 0;
+    m_date_formats_temp.begin()->second;
+    auto result = std::find_if(
+        m_date_parsing_stat.begin(),
+        m_date_parsing_stat.end(),
+        [val](const auto& mo) {return mo.second > val; });
+
+    if (result != m_date_parsing_stat.end())
+        return result->first;
+    else
+        return "";
 }
 
 bool mmDates::isParsingDone() const

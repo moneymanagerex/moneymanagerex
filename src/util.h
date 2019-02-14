@@ -185,7 +185,7 @@ public:
     bool isParsingDone() const;
 private:
     std::map<wxString, wxString> m_date_formats_temp;
-    std::unordered_map<wxString, int> m_date_parsing_stat;
+    std::map<wxString, int> m_date_parsing_stat;
     wxDateTime m_today;
 
 };
