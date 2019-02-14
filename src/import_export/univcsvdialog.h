@@ -230,7 +230,7 @@ private:
     wxString GetStoredSettings(int id);
     void SetSettings(const wxString &data);
     ITransactionsFile *CreateFileHandler();
-    const wxString mmUnivCSVDialog::mmTrimAmount(const wxString& value) const;
+    const wxString mmTrimAmount(const wxString& value) const;
 };
 
 inline const wxString mmUnivCSVDialog::mmTrimAmount(const wxString& value) const
