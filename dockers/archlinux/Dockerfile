@@ -1,8 +1,9 @@
-FROM base/archlinux:latest
+FROM archlinux/base:latest
 LABEL maintainer="developers@moneymanagerex.org"
 RUN pacman -Syuq --noprogressbar --needed --noconfirm \
       cmake \
       fakeroot \
+      file \
       gcc \
       gettext \
       git \
@@ -13,7 +14,7 @@ RUN pacman -Syuq --noprogressbar --needed --noconfirm \
       webkit2gtk \
       wxgtk3 \
  && pacman -Qdtq | xargs -r pacman -Rns --noconfirm \
- && pacman -Sc --noconfirm
+ && pacman -Scc --noconfirm
 
 # unlock nobody required for makepkg
 RUN usermod nobody -s /usr/bin/bash
