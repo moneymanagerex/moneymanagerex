@@ -1,7 +1,8 @@
 # Compiled Object files
 *.slo
 *.lo
-*.o*
+*.o
+*.out
 *.obj
 
 # Compiled Dynamic libraries
@@ -15,63 +16,23 @@
 *.a
 *.lib
 
-# Executables
-*.exe
-*.out
-*.app
+# default build dir
+/build/
 
-# I18n
-*.mo
+#snapcraft build dirs
+/snap/
+/parts/
 
-# Makefiles
-makefile
-/po/Makefile
-/setup/win/Makefile
+# JetBrains CLion IDE
+.idea
 
-# Python
-*.pyc
+# Visual Studio tools
+.vs
+.vscode
 
-# MSVC Compiler and Build files
-*.opensdf
-*.suo
-*.sdf
-.deps
-/build/msw-vc-2013e/Win32
-/build/msw-vc-2013e/x64
-/build/msw-vc-2015/Win32
-/build/msw-vc-2015/x64
-/build/msw_tests-vc-2013e/Win32
-/build/msw_tests-vc-2013e/x64
-/mmex_release
-
-# Extra files used for testing
-/build/msw_tests-vc-2013e/test_*.mmb
-/build/msw_tests-vc-2013e/test_*.emb
-/build/msw_tests-vc-2013e/test_*.txt
-/build/msw_tests-vc-2013e/test_*.sql
-*.patch
-*.zip
-
-#autoconf
-aclocal.m4
-/autom4te.cache/
-config.log
-config.status
-shared-ld-sh
-bk-deps
-/build/bakefiles/.bakefile_gen.state
-
-#dist
-*.dmg
-/build/macosx/dmg/
-
-#backups & tmp file
+# backups & tmp files
 *~
 *.bak
 *.swp
-
 *.d
-
-/release
-mmex.VC.db
-/build/msw-vc-2015/mmex_mmex.vcxproj.user
+.DS_Store
