@@ -37,12 +37,9 @@ Linux
 
 ### From Snap Store
 
-If you are using one of the following Linux distributions: Arch Linux, Debian,
-elementary OS, Fedora, Gentoo, Linux Mint, Manjaro, OpenEmbedded/Yocto,
-openSUSE, OpenWrt, Solus, Raspbian, Ubuntu then you can use snapd to install
-and run MMEX snap package available from [Snap Store].
-
-> Warning: only unstable versions of MMEX are available now.
+If you are using one of the 19 [snap supported] Linux distributions on amd64,
+arm64, armhf, i386, powerpc, ppc64el or s390x hardware then you can use snapd
+to install and run MMEX snap package available from [Snap Store].
 
 snapd is the service you need to install to run and manage snaps. Please
 follow [snapd installation instructions] for your distribution.
@@ -57,8 +54,8 @@ If you want to test unstable version of MMEX you can install with
 `sudo snap refresh mmex --beta` commands. You can list available MMEX versions
 with `snap info mmex` command.
 
-> Use unstable pre-release version (from *beta* channel) at your risk
-> (work on your database copies!) to check or test newly added functions.
+> Use unstable pre-release version (from *beta* or *edge* channels) at your
+> risk (work on your database copies!) to check or test newly added functions.
 
 ### From distribution repository
 
@@ -184,3 +181,4 @@ when the copy process is finished. You can delete the .dmg file after that.
 [slackbuilds.org]: https://slackbuilds.org/
 [Snap Store]: https://snapcraft.io/mmex
 [snapd installation instructions]: https://docs.snapcraft.io/core/install
+[snap supported]: https://docs.snapcraft.io/core/install
