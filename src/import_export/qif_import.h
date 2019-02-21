@@ -91,7 +91,7 @@ enum qifLineType
     CategorySplit = 12,  // S
     MemoSplit = 13,  // E
     AmountSplit = 14,   // '$'
-    //mmex expra
+    //mmex extra
     AccountName = 64,
     ToAccountName,
     TrxType,

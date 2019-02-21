@@ -20,6 +20,8 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 #include <wx/dialog.h>
 #include "Model_Checking.h"
+#include "mmSimpleDialogs.h"
+
 class wxDatePickerCtrl;
 class wxDataViewListCtrl;
 class mmQIFImport;
@@ -58,26 +60,23 @@ private:
     void OnQuit(wxCloseEvent& event);
     void OnCancel(wxCommandEvent& event);
     void OnOk(wxCommandEvent& WXUNUSED(event));
-
+    void OnDecimalChange(wxCommandEvent& event);
     bool mmReadQIFFile();
     void clear_transaction_data();
     int getOrCreateAccounts();
     void getOrCreatePayees();
     void getOrCreateCategories();
-    void completeTransaction(std::unordered_map <int, wxString> &trx, const wxString &accName);
+    bool completeTransaction(std::unordered_map <int, wxString> &trx, const wxString &accName);
     bool completeTransaction(/*in*/ const std::unordered_map <int, wxString> &i
         , /*out*/ Model_Checking::Data* trx, wxString& msg);
     bool mergeTransferPair(Model_Checking::Cache& to, Model_Checking::Cache& from);
     void appendTransfers(Model_Checking::Cache &destination, Model_Checking::Cache &target);
     void joinSplit(Model_Checking::Cache &destination, std::vector <Model_Splittransaction::Cache> &target);
     void saveSplit();
-    void getDateMask();
     void refreshTabs(int tabs);
-    void parseDate(const wxString &dateStr, std::map<wxString, wxString> &date_formats_temp);
 
     //QIF paragraphs represented like maps type = data
     std::vector <std::unordered_map <int, wxString> > vQIF_trxs_;
-    std::unordered_map<wxString, int> m_date_parsing_stat; //it counts successfully parsed dates with selected date mask
     std::unordered_map <wxString, std::unordered_map <int, wxString> > m_QIFaccounts;
     std::unordered_map <wxString, int> m_QIFaccountsID;
     std::unordered_map <wxString, int> m_QIFpayeeNames;
@@ -85,9 +84,9 @@ private:
     std::unordered_map <wxString, std::pair<int, int> > m_QIFcategoryNames;
     std::vector <Model_Splittransaction::Cache> m_splitDataSets;
 
-    int m_init_account_id;
     wxString m_accountNameStr;
     wxString m_dateFormatStr;
+    wxString decimal_;
     bool m_userDefinedDateMask;
     int fromAccountID_;
     wxString m_FileNameStr;
@@ -112,6 +111,7 @@ private:
     wxCheckBox* accountNumberCheckBox_;     
     wxCheckBox* payeeIsNotesCheckBox_;
     wxButton* btnOK_;
+    mmChoiceAmountMask* m_choiceDecimalSeparator;
     
     bool payeeIsNotes_; //Include payee field in notes
 
