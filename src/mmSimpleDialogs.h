@@ -23,9 +23,18 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include <wx/choicdlg.h>
 #include <wx/dialog.h>
 #include "Model_Account.h"
+#include <wx/choice.h>
 class wxComboBox;
 class wxTextCtrl;
 class wxChoice;
+
+
+class mmChoiceAmountMask : public wxChoice
+{
+public:
+    mmChoiceAmountMask(wxWindow* parent, wxWindowID id);
+    virtual void SetDecimalChar(const wxString& str);
+};
 
 class mmSingleChoiceDialog : public wxSingleChoiceDialog
 {
