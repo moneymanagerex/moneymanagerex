@@ -952,12 +952,12 @@ mmDates::~mmDates()
 }
 
 mmDates::mmDates()
+    : m_date_formats_temp(g_date_formats_map)
+    , m_error_count(0)
+    , m_today(wxDate::Today())
 {
-    m_date_formats_temp = g_date_formats_map;
     m_date_parsing_stat.clear();
-    m_today = wxDate::Today();
     m_month_ago = m_today.Subtract(wxDateSpan::Months(1));
-    m_error_count = 0;
 }
 
 

@@ -1147,7 +1147,6 @@ void mmUnivCSVDialog::update_preview()
     const int MAX_COLS = 30; // Not including line number col.
 
     int date_col = -1;
-    int amount_col = -1;
 
     for (std::vector<int>::const_iterator it = csvFieldOrder_.begin(); it != csvFieldOrder_.end(); ++it)
     {
@@ -1155,9 +1154,6 @@ void mmUnivCSVDialog::update_preview()
         this->m_list_ctrl_->InsertColumn(colCount, wxGetTranslation(item_name));
         if (it[0] == UNIV_CSV_DATE) {
             date_col = colCount - 1;
-        }
-        else if (it[0] == UNIV_CSV_AMOUNT) {
-            amount_col = colCount - 1;
         }
         ++colCount;
     }
@@ -1176,7 +1172,7 @@ void mmUnivCSVDialog::update_preview()
 
         unsigned int totalLines = pImporter->GetLinesCount();
         unsigned int firstRow = m_spinIgnoreFirstRows_->GetValue();
-        long lastRow = totalLines - m_spinIgnoreLastRows_->GetValue();
+        unsigned int lastRow = totalLines - m_spinIgnoreLastRows_->GetValue();
 
         mmDates* dParser = new mmDates;
 
