@@ -49,6 +49,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "../resources/forum_png.h"
 #include "../resources/fullscreen_png.h"
 #include "../resources/github_png.h"
+#include "../resources/globe_png.h"
 #include "../resources/google_play_png.h"
 #include "../resources/grm_png.h"
 #include "../resources/clear_png.h"
@@ -229,6 +230,7 @@ const wxBitmap mmBitmap(int ref)
     case NEWS: return x == 16 ? wxBITMAP_PNG_FROM_DATA(news) : x == 24 ? wxBITMAP_PNG_FROM_DATA(news24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(news32) : wxBITMAP_PNG_FROM_DATA(news48);
     case NEW_NEWS: return x == 16 ? wxBITMAP_PNG_FROM_DATA(nnews) : x == 24 ? wxBITMAP_PNG_FROM_DATA(nnews24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(nnews32) : wxBITMAP_PNG_FROM_DATA(nnews48);
     case DONATE: return x == 16 ? wxBITMAP_PNG_FROM_DATA(donate) : x == 24 ? wxBITMAP_PNG_FROM_DATA(donate24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(donate32) : wxBITMAP_PNG_FROM_DATA(donate48);
+    case CROWDIN: return x == 16 ? wxBITMAP_PNG_FROM_DATA(globe) : x == 24 ? wxBITMAP_PNG_FROM_DATA(globe24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(globe32) : wxBITMAP_PNG_FROM_DATA(globe48);
     case FULLSCREEN: return x == 16 ? wxBITMAP_PNG_FROM_DATA(fullscreen) : x == 24 ? wxBITMAP_PNG_FROM_DATA(fullscreen24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(fullscreen32) : wxBITMAP_PNG_FROM_DATA(fullscreen48);
     case PIE_CHART: return x == 16 ? wxBITMAP_PNG_FROM_DATA(pie_chart) : x == 24 ? wxBITMAP_PNG_FROM_DATA(pie_chart24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(pie_chart32) : wxBITMAP_PNG_FROM_DATA(pie_chart48);
     case BUDGET: return x == 16 ? wxBITMAP_PNG_FROM_DATA(budget) : x == 24 ? wxBITMAP_PNG_FROM_DATA(budget24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(budget32) : wxBITMAP_PNG_FROM_DATA(budget48);

@@ -109,6 +109,7 @@ enum png {
     NEWS,
     NEW_NEWS,
     DONATE,
+    CROWDIN,
     FULLSCREEN,
     PIE_CHART,
     BUDGET,

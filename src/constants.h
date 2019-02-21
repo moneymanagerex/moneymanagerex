@@ -80,6 +80,7 @@ namespace weblink
     extern const wxString Slack;
     extern const wxString BugReport;
     extern const wxString Donate;
+    extern const wxString Crowdin;
     extern const wxString SquareCashGuan;
     extern const wxString Twitter;
     extern const wxString Facebook;
