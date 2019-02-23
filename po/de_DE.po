@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-02-05 11:56+0300\n"
-"PO-Revision-Date: 2019-02-23 22:03\n"
+"PO-Revision-Date: 2019-02-23 22:35\n"
 "Last-Translator: vomikan <nikolay.akimov@gmail.com>\n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -4695,7 +4695,7 @@ msgstr "Wählen Sie das Konto aus, das Sie neu zuordnen möchten"
 
 #: mmframe.cpp:2884 mmframe.cpp:2907
 msgid "Account Reallocation"
-msgstr ""
+msgstr "Kontowechsel"
 
 #: mmframe.cpp:2906
 #, c-format
@@ -4708,7 +4708,7 @@ msgstr "Änderung des Zahlungsempfängers abgeschlossen."
 
 #: mmframe.cpp:3011 payeedialog.cpp:319
 msgid "Payee Relocation Result"
-msgstr ""
+msgstr "Ergebnis des Zahlungsempfängerwechsels"
 
 #: mmframe.cpp:3061
 #, c-format
@@ -4726,7 +4726,7 @@ msgstr "Allgemeiner Gruppenbericht"
 #: mmframereport.cpp:98 model/Model_Report.cpp:413 reports/forecast.cpp:88
 #: reports/myusage.cpp:234
 msgid "Caught exception"
-msgstr ""
+msgstr "Abgefangene Ausnahme"
 
 #: mmframereport.cpp:113
 msgid "Transaction Report"
@@ -5069,7 +5069,7 @@ msgstr "Aktienbericht"
 
 #: option.cpp:130
 msgid "Forecast Report"
-msgstr ""
+msgstr "Prognosebericht"
 
 #: optiondialog.cpp:130
 msgid "General"
@@ -5111,7 +5111,7 @@ msgstr "Jedes Betriebssystem (Win, Mac, Unix) hat seinen Anhangs-Ordner"
 
 #: optionsettingsattachment.cpp:85
 msgid "Browse for folder"
-msgstr ""
+msgstr "Verzeichnis auswählen"
 
 #: optionsettingsattachment.cpp:92 optionsettingsattachment.cpp:232
 msgid "Real path:"
@@ -5203,7 +5203,7 @@ msgstr "Der Pfad für Anhänge wurde geändert!"
 
 #: optionsettingsattachment.cpp:259 optionsettingsattachment.cpp:268
 msgid "Attachments folder migration"
-msgstr ""
+msgstr "Anhangsverzeichnis Migration"
 
 #: optionsettingsattachment.cpp:265
 msgid "Error moving attachments folder: please move it manually!"
@@ -5299,11 +5299,11 @@ msgstr "Das Feld muss leer sein, um den Wert zu System-Standard zurücksetzen."
 
 #: optionsettingsmisc.cpp:69
 msgid "Share Precision"
-msgstr ""
+msgstr "Anteilsgenauigkeit"
 
 #: optionsettingsmisc.cpp:74
 msgid "Set the precision for Share prices"
-msgstr ""
+msgstr "Genauigkeit für Aktienkurse festlegen"
 
 #: optionsettingsmisc.cpp:80
 msgid "New Transaction Dialog Settings"
@@ -5531,23 +5531,23 @@ msgstr "Budget-Optionen"
 
 #: optionsettingsview.cpp:127
 msgid "View as Financial Years"
-msgstr ""
+msgstr "Ansicht in Geschäftsjahren"
 
 #: optionsettingsview.cpp:133
 msgid "View with 'transfer' transactions"
-msgstr ""
+msgstr "Ansicht mit Übertragungsbuchungen"
 
 #: optionsettingsview.cpp:139
 msgid "View Setup Without Budget Summaries"
-msgstr ""
+msgstr "Setup ohne Budget-Zusammenfassungen anzeigen"
 
 #: optionsettingsview.cpp:145
 msgid "View Category Report with Summaries"
-msgstr ""
+msgstr "Kategoriebericht mit Zusammenfassungen anzeigen"
 
 #: optionsettingsview.cpp:154
 msgid "Budget Offset (days):"
-msgstr ""
+msgstr "Budgetverrechnung (Tage):"
 
 #: optionsettingsview.cpp:158
 msgid "Advance or retard the start date from the 1st of the month or year by the number of days"
@@ -5599,7 +5599,8 @@ msgstr "Empfänger/Zahler wird gerade verwendet"
 
 #: payeedialog.cpp:263
 msgid "Tip: Change all transactions using this Payee to another Payee using the relocate command:"
-msgstr ""
+msgstr "Tipp: Ändern Sie alle Buchungen mit diesem Zahlungsempfänger zu einem anderen\n"
+" mit dem Befehl \"verschieben\":"
 
 #: payeedialog.cpp:265
 msgid "Tools -> Relocation of -> Payees"
@@ -6148,7 +6149,7 @@ msgstr "Aktienkursentwicklung herunterladen"
 
 #: stockdialog.cpp:337
 msgid "Import Stock Price history (CSV Format)"
-msgstr ""
+msgstr "Import der Aktienpreisentwicklung (CSV Format)"
 
 #: stockdialog.cpp:339
 msgid "Delete selected Stock Price"
@@ -6271,15 +6272,15 @@ msgstr ""
 
 #: stockspanel.cpp:101
 msgid "Init Value"
-msgstr ""
+msgstr "Anfangswert"
 
 #: stockspanel.cpp:103
 msgid "Curr. Share Price"
-msgstr ""
+msgstr "Akt. Aktienpreis"
 
 #: stockspanel.cpp:104
 msgid "Curr. Total Value"
-msgstr ""
+msgstr "Akt. Gesamtwert"
 
 #: stockspanel.cpp:144
 msgid "&New Stock Investment"
@@ -6287,11 +6288,11 @@ msgstr "&Neue Wertpapieranlagen"
 
 #: stockspanel.cpp:146
 msgid "&Add Stock Transactions"
-msgstr ""
+msgstr "Aktienbuchung &hinzufügen"
 
 #: stockspanel.cpp:147
 msgid "&View Stock Transactions"
-msgstr ""
+msgstr "Aktienbuchung &anzeigen"
 
 #: stockspanel.cpp:149
 msgid "&Edit Stock Investment"
@@ -6303,7 +6304,7 @@ msgstr "Wertpapieranlagen &löschen"
 
 #: stockspanel.cpp:153
 msgid "Stock &Web Page"
-msgstr ""
+msgstr "Börsenkurs &Webseite"
 
 #: stockspanel.cpp:269
 msgid "Do you really want to delete the stock investment?"
@@ -6317,19 +6318,20 @@ msgstr "Bestätigen Sie die Löschung der Wertpapieranlage"
 #, c-format
 msgid "Temporary Stock list: %s\n\n"
 "Date          Lot          Shares          Price        Commission\n\n"
-msgstr ""
+msgstr "Temporäre Aktienliste: %s\n\n"
+"Datum          Stück          Aktie            Provision\n\n"
 
 #: stockspanel.cpp:574
 msgid "Create a new Stock investment in this portfolio"
-msgstr ""
+msgstr "Neue Aktieninvestitionen in diesem Portfolio erstellen"
 
 #: stockspanel.cpp:578
 msgid "Add or remove shares to the selected Stock"
-msgstr ""
+msgstr "Hinzufügen oder Entfernen von Anteilen zur ausgewählten Aktie"
 
 #: stockspanel.cpp:583
 msgid "View selected stock's share transactions"
-msgstr ""
+msgstr "Ausgewählte Aktieanteil Buchungen anzeigen"
 
 #: stockspanel.cpp:588
 msgid "Edit selected stock investment and readjust current prices"
@@ -6337,7 +6339,7 @@ msgstr ""
 
 #: stockspanel.cpp:593
 msgid "Delete selected stock investment"
-msgstr ""
+msgstr "Ausgewählte Aktieninvestitionen löschen"
 
 #: stockspanel.cpp:597
 msgid "&Move"
@@ -6345,7 +6347,7 @@ msgstr "&Verschieben"
 
 #: stockspanel.cpp:598
 msgid "Move the selected Stock to another portfolio"
-msgstr ""
+msgstr "Ausgewählte Aktie in ein anderes Portfolio verschieben"
 
 #: stockspanel.cpp:611
 msgid "Refresh"
@@ -6358,17 +6360,17 @@ msgstr "Aktualisiere Wertpapierkurse von Yahoo"
 #: stockspanel.cpp:725
 #, c-format
 msgid "Stock Portfolio: %s"
-msgstr ""
+msgstr "Aktien Portfolio: %s"
 
 #: stockspanel.cpp:767
 #, c-format
 msgid "Total Shares: %s"
-msgstr ""
+msgstr "Anteile gesamt: %s"
 
 #: stockspanel.cpp:769
 #, c-format
 msgid "Invested: %s"
-msgstr ""
+msgstr "Investiert: %s"
 
 #: stockspanel.cpp:770
 #, c-format
@@ -6395,7 +6397,7 @@ msgstr "anschliessen..."
 
 #: stockspanel.cpp:853
 msgid "Quotes not found"
-msgstr ""
+msgstr "Kurse nicht gefunden"
 
 #: stockspanel.cpp:885
 #, c-format
@@ -6506,7 +6508,7 @@ msgstr "Status der Buchung"
 
 #: usertransactionpanel.cpp:191
 msgid "Specify a person, Company or Organisation for this transaction."
-msgstr ""
+msgstr "Geben Sie eine Person, Firma oder Organisation für diese Buchung an."
 
 #: usertransactionpanel.cpp:207
 msgid "Specify a transaction code or associated check details"
@@ -6514,7 +6516,7 @@ msgstr ""
 
 #: usertransactionpanel.cpp:298
 msgid "Select the required account"
-msgstr ""
+msgstr "Wählen Sie das gewünschte Konto"
 
 #: usertransactionpanel.cpp:299
 msgid "Account Selection"
@@ -6736,7 +6738,7 @@ msgstr "Anhangsverzeichnis nicht gesetzt oder ungültig"
 
 #: webapp.cpp:553
 msgid "Transaction not downloaded:"
-msgstr ""
+msgstr "Buchung nicht heruntergeladen:"
 
 #: webapp.cpp:554
 msgid "please fix attachments folder or delete attachments from WebApp"
@@ -6756,15 +6758,15 @@ msgstr "Verbindungsfehler"
 
 #: webapp.cpp:586
 msgid "Transaction not downloaded: please close and open MMEX to try re-download transaction"
-msgstr ""
+msgstr "Buchung nicht heruntergeladen: Bitte schließen und öffnen Sie MMEX, um die Buchung erneut herunterzuladen"
 
 #: webapp.cpp:587
 msgid "Attachment download error"
-msgstr ""
+msgstr "Herunterladen des Anhangs fehlgeschlagen"
 
 #: webappdialog.cpp:51
 msgid "Import WebApp transactions"
-msgstr ""
+msgstr "WebApp Buchungen importieren"
 
 #: webappdialog.cpp:94
 msgid "&Import all "
@@ -6772,7 +6774,7 @@ msgstr "Alle &importieren "
 
 #: webappdialog.cpp:95
 msgid "Import and open all "
-msgstr ""
+msgstr "Alle importieren und öffnen "
 
 #: webappdialog.cpp:182
 msgid "Unable to insert transaction in MMEX database"
@@ -6803,7 +6805,9 @@ msgstr ""
 msgid "The next pages will help you create a new account.\n"
 "To help you get started, begin by making a list of all\n"
 "financial institutions where you hold an account."
-msgstr ""
+msgstr "Die nächsten Seiten werden Ihnen helfen, ein neues Konto zu erstellen.\n"
+"Um den Start zu erleichtern beginnen Sie mit einer Liste aller\n"
+"Finanzinstitute bei denen Sie ein Konto haben."
 
 #: wizard_newaccount.cpp:80
 msgid "Account Name Invalid"
@@ -6943,7 +6947,7 @@ msgstr "Auf Fertigstellen klicken, um unsere Downloadseite zu öffnen."
 
 #: wizard_update.cpp:338 wizard_update.cpp:353
 msgid "Unable to check for updates!"
-msgstr ""
+msgstr "Überprüfung auf Updates nicht möglich!"
 
 #: wizard_update.cpp:339 wizard_update.cpp:354
 msgid "Error: "
@@ -6955,5 +6959,5 @@ msgstr "MMEX Update Überprüfung"
 
 #: wizard_update.cpp:393
 msgid "You already have the latest version"
-msgstr ""
+msgstr "Sie haben bereits die neuste Version"
 
