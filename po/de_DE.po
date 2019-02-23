@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-02-05 11:56+0300\n"
-"PO-Revision-Date: 2019-02-23 20:33\n"
+"PO-Revision-Date: 2019-02-23 21:03\n"
 "Last-Translator: vomikan <nikolay.akimov@gmail.com>\n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -235,11 +235,11 @@ msgstr "ACHTUNG! Diese Daten können von allen eingesehen werden, die Zugriff au
 
 #: accountdialog.cpp:393
 msgid "Enable or disable the transaction Lock"
-msgstr "Aktivieren oder deaktivieren Sie die Transaktionssperre"
+msgstr "Aktivieren oder deaktivieren der Buchungssperre"
 
 #: accountdialog.cpp:394
 msgid "The date of the transaction lock"
-msgstr "Das Datum der Transaktionssperre"
+msgstr "Datum der Buchungssperre"
 
 #: accountdialog.cpp:395
 msgid "Account balance lower limit. Zero to disable"
@@ -328,11 +328,11 @@ msgstr "Vermögenswert bearbeiten"
 
 #: assetdialog.cpp:65 assetdialog.cpp:86 assetspanel.cpp:514
 msgid "Add Asset Transaction"
-msgstr "Buchung hinzufügen"
+msgstr "Anlagenbuchung hinzufügen"
 
 #: assetdialog.cpp:91
 msgid "Edit Asset Transaction"
-msgstr "Buchung bearbeiten"
+msgstr "Anagenbuchung bearbeiten"
 
 #: assetdialog.cpp:177
 msgid "Asset Details"
@@ -407,11 +407,11 @@ msgstr "Notizen zu diesem Vermögensgegenstand"
 
 #: assetdialog.cpp:262
 msgid "New Transaction Details"
-msgstr "Alle Details zur neuen Transaktion"
+msgstr "Alle Details zur neuen Buchung"
 
 #: assetdialog.cpp:265 sharetransactiondialog.cpp:280
 msgid "Edit Transaction Details"
-msgstr "Buchungsdetails ändern"
+msgstr "Buchungsdetails bearbeiten"
 
 #: assetdialog.cpp:300 constants.cpp:44 sharetransactiondialog.cpp:311
 msgid "&Cancel "
@@ -461,11 +461,11 @@ msgstr "Wert D&uplizieren"
 
 #: assetspanel.cpp:104
 msgid "&Add Asset Transaction"
-msgstr "&Anlagenbuchung hinzufügen"
+msgstr "Anlagenbuchung &hinzufügen"
 
 #: assetspanel.cpp:105
 msgid "&View Asset Transactions"
-msgstr "&Anlagenbuchung anzeigen"
+msgstr "Anlagenbuchung &anzeigen"
 
 #: assetspanel.cpp:106
 msgid "&Open Asset Account"
@@ -529,7 +529,7 @@ msgstr "Transfer"
 
 #: assetspanel.cpp:519
 msgid "View Asset Transactions"
-msgstr "Alle Buchungen ansehen"
+msgstr "Anlagenbuchungen ansehen"
 
 #: assetspanel.cpp:523 attachmentdialog.cpp:285 billsdepositspanel.cpp:279
 #: categdialog.cpp:229 customfieldlistdialog.cpp:264 maincurrencydialog.cpp:208
@@ -821,15 +821,15 @@ msgstr "Neue wiederkehrende Buchung"
 
 #: billsdepositsdialog.cpp:297
 msgid "Edit Recurring Transaction"
-msgstr "Wiederkehrende Buchungen bearbeiten"
+msgstr "Wiederkehrende Buchung bearbeiten"
 
 #: billsdepositsdialog.cpp:301
 msgid "Enter Recurring Transaction"
-msgstr "Wiederkehrende Buchungen eingeben"
+msgstr "Wiederkehrende Buchung eingeben"
 
 #: billsdepositsdialog.cpp:394
 msgid "Transaction Dates"
-msgstr "Transaktionsdaten"
+msgstr "Buchungsdatum"
 
 #: billsdepositsdialog.cpp:416
 msgid "Recurring Transaction Details"
@@ -3625,7 +3625,7 @@ msgstr "Geben Sie eine beliebige Zeichenfolge ein, für die nächste Buchungs Be
 #: mmcheckingpanel.cpp:577
 #, c-format
 msgid "Account View: %s"
-msgstr ""
+msgstr "Kontoansicht: %s"
 
 #: mmcheckingpanel.cpp:869
 msgid "Select account used in transfer transactions"
@@ -3790,7 +3790,7 @@ msgstr ""
 #: mmcheckingpanel.cpp:2032
 #, c-format
 msgid "Days between selected transactions: %d"
-msgstr ""
+msgstr "Tage zwischen ausgewählten Transaktionen: %d"
 
 #: mmcombobox.h:78
 msgid "Please type in an exiting payee name,\n"
@@ -3800,7 +3800,7 @@ msgstr "Bitte geben Sie einen eindeutigen Namen des Zahlungsempfängers, \n"
 
 #: mmcustomdata.cpp:58
 msgid "Custom fields"
-msgstr ""
+msgstr "Benutzerdefinierte Felder"
 
 #: mmcustomdata.cpp:307
 msgid "Please select"
@@ -3864,7 +3864,7 @@ msgstr "Festgeldkonten"
 
 #: mmframe.cpp:453 mmframe.cpp:715
 msgid "Stock Portfolios"
-msgstr ""
+msgstr "Aktienportfolios"
 
 #: mmframe.cpp:454 mmframe.cpp:700 mmhomepagepanel.cpp:475
 msgid "Cash Accounts"
@@ -3882,7 +3882,7 @@ msgstr "Crypto Geldbörsen"
 
 #: mmframe.cpp:499
 msgid "Auto Repeat Transactions"
-msgstr ""
+msgstr "Automatische wiederholte Transaktionen"
 
 #: mmframe.cpp:685 mmframe.cpp:1827
 msgid "Home Page"
@@ -3890,7 +3890,7 @@ msgstr "Hauptansicht"
 
 #: mmframe.cpp:720
 msgid "Share Accounts"
-msgstr ""
+msgstr "Aktienkonten"
 
 #: mmframe.cpp:740 mmframe.cpp:1639
 msgid "Budget Setup"
@@ -4083,11 +4083,11 @@ msgstr "Navigationsbaum ein-/ausblenden"
 
 #: mmframe.cpp:1506
 msgid "&Display Share Accounts"
-msgstr ""
+msgstr "&Aktienkonten anzeigen"
 
 #: mmframe.cpp:1506
 msgid "Show/Hide Share Accounts in the navigation tree"
-msgstr ""
+msgstr "Ein-/ausblenden der Aktienkonten im Navigationsbaum"
 
 #: mmframe.cpp:1509
 msgid "Budgets: As &Financial Years"
@@ -4115,11 +4115,11 @@ msgstr "Anzeigen des Setup-Budgets ohne Kategorie Zusammenfassungen"
 
 #: mmframe.cpp:1515
 msgid "Budget Category Report: with &Summaries"
-msgstr ""
+msgstr "Budget-Kategoriebericht: mit &Zusammenfassungen"
 
 #: mmframe.cpp:1515
 msgid "Include the category summaries in the Budget Category Summary"
-msgstr ""
+msgstr "Einbeziehen der Kategorie Zusammenfassungen in die Budget-Kategorie-Übersicht"
 
 #: mmframe.cpp:1517
 msgid "Ignore F&uture Transactions"
@@ -4423,7 +4423,7 @@ msgstr "Den &Start-up-Dialog erneut öffnen"
 
 #: mmframe.cpp:1786
 msgid "Show application start-up dialog"
-msgstr ""
+msgstr "Anwendungsstart-Dialog anzeigen"
 
 #: mmframe.cpp:1791
 msgid "Check for &Updates"
@@ -4487,7 +4487,7 @@ msgstr "Zeige Hilfedatei"
 
 #: mmframe.cpp:1847
 msgid "Register/View Release &Notifications"
-msgstr ""
+msgstr "Release &Benachrichtigungen registrieren/anzeigen"
 
 #: mmframe.cpp:1852
 msgid "News"
@@ -5945,11 +5945,11 @@ msgstr "Buchungsliste"
 
 #: sharetransactiondialog.cpp:64 sharetransactiondialog.cpp:83
 msgid "Add Share Transaction"
-msgstr "Aktientransaktion hinzufügen"
+msgstr "Aktienbuchung hinzufügen"
 
 #: sharetransactiondialog.cpp:90
 msgid "Edit Share Transaction"
-msgstr ""
+msgstr "Aktienbuchung bearbeiten"
 
 #: sharetransactiondialog.cpp:185 stockdialog.cpp:183
 msgid "Stock Investment Details"
@@ -6025,7 +6025,7 @@ msgstr "Split Details der Buchung"
 
 #: splittransactionsdialog.cpp:74
 msgid "Split Transaction Dialog"
-msgstr "Buchungs-Aufteilung"
+msgstr "Geteilte Buchung"
 
 #: splittransactionsdialog.cpp:127
 msgid "Split Category Details"
@@ -6409,7 +6409,7 @@ msgstr "Symbol: %s"
 
 #: transactionsupdatedialog.cpp:72
 msgid "Multi Transactions Update"
-msgstr "Multi-Transaktions-Update"
+msgstr "Aktualisierung mehrerer Buchungen"
 
 #: transactionsupdatedialog.cpp:186
 msgid "Append"
@@ -6433,7 +6433,7 @@ msgstr "Buchung einpflegen #"
 
 #: transdialog.cpp:552 usertransactionpanel.cpp:217
 msgid "Organize attachments of this transaction"
-msgstr "ordnen der Beilagen dieser Buchung"
+msgstr "Verwalten der Anhänge dieser Buchung"
 
 #: transdialog.cpp:633
 #, c-format
@@ -6478,7 +6478,7 @@ msgstr "Datum der Buchung"
 
 #: transdialog.cpp:1224 usertransactionpanel.cpp:109
 msgid "Retard or advance the date of the transaction"
-msgstr "Datum der Buchung zurück oder vor verlegen"
+msgstr "Datum der Buchung zurück- oder vorverlegen"
 
 #: usertransactionpanel.cpp:122
 msgid "Please select the Account that will be associated with this transaction"
@@ -6498,7 +6498,7 @@ msgstr ""
 
 #: usertransactionpanel.cpp:164
 msgid "Currency used for this transaction."
-msgstr "Währung für diese Transaktion."
+msgstr "Währung für diese Buchung."
 
 #: usertransactionpanel.cpp:183
 msgid "Specify the status for this transaction"
