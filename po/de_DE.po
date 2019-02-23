@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-02-05 11:56+0300\n"
-"PO-Revision-Date: 2019-02-23 21:03\n"
+"PO-Revision-Date: 2019-02-23 21:33\n"
 "Last-Translator: vomikan <nikolay.akimov@gmail.com>\n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -1187,7 +1187,7 @@ msgstr "MMEX ermöglicht regelmäßige Zahlungen/Überweisungen die als Transakt
 
 #: billsdepositspanel.cpp:171
 msgid "Tip: These transactions can be set up to activate - allowing the user to adjust any values on the due date."
-msgstr "Tipp: Diese Transaktionen können so eingestellt werden, dass der Benutzer alle Werte am Fälligkeitsdatum anpassen kann."
+msgstr "Tipp: Diese Buchungen können so aufgesetzt werden, dass der Benutzer das Fälligkeitsdatum auf jeden beliebigen Wert setzen kann."
 
 #: billsdepositspanel.cpp:225 billsdepositspanel.cpp:888 mmframe.cpp:735
 #: mmhomepagepanel.cpp:433
@@ -1532,7 +1532,7 @@ msgstr "&Wählen"
 
 #: categdialog.cpp:242
 msgid "Select the currently selected category as the selected category for the transaction"
-msgstr "Ausgewählte Kategorie für die Buchung benutzen"
+msgstr "Ausgewählte Kategorie für diese Buchung benutzen"
 
 #: categdialog.cpp:254
 msgid "Enter the name for the new category:"
@@ -1580,14 +1580,12 @@ msgstr "Unterkategorie ist in Verwendung."
 #: categdialog.cpp:322
 msgid "Tip: Change all transactions using this Category to\n"
 "another Category using the relocate command:"
-msgstr "Tipp: Ändern Sie alle Transaktionen mit dieser Kategorie in eine andere Kategorie \n"
-" mit dem Befehl \"zu verlagern\":"
+msgstr "Tipp: Verlagern Sie mit dem Befehl \"verschieben\" alle Buchungen von einer Kategorie in eine andere:"
 
 #: categdialog.cpp:325
 msgid "Tip: Change all transactions using this Sub-Category to\n"
 "another Sub-Category using the relocate command:"
-msgstr "Tipp: Ändern Sie alle Transaktionen mit dieser Kategorie in eine andere Kategorie \n"
-" mit dem Befehl \"zu verlagern\":"
+msgstr "Tipp: Verlagern Sie mit dem Befehl \"verschieben\" alle Buchungen von einer Unterkategorie in eine andere:"
 
 #: categdialog.cpp:328
 msgid "Tools -> Relocation of -> Categories"
@@ -1599,7 +1597,7 @@ msgstr "Kategorien verwalten: löschen Fehler"
 
 #: categdialog.cpp:463
 msgid "This category cannot be deleted because it's used by transactions."
-msgstr "Diese Unterkategorie kann nicht gelöscht werden, da sie in Buchungen verwendet wird."
+msgstr "Diese Kategorie kann nicht gelöscht werden, da sie in Buchungen verwendet wird."
 
 #: categdialog.cpp:470
 msgid "Delete an existing category."
@@ -2674,7 +2672,7 @@ msgstr "Tabelle konnte nicht gefunden werden."
 
 #: import_export/parsers.cpp:216
 msgid "Transactions"
-msgstr "Transaktionen"
+msgstr "Buchungen"
 
 #: import_export/qif_export.cpp:42 import_export/qif_export.cpp:235
 #: import_export/qif_export.cpp:311
@@ -2773,7 +2771,7 @@ msgstr "Exportiere Buchung %i"
 #: import_export/qif_export.cpp:474
 #, c-format
 msgid "Number of transactions exported: %ld"
-msgstr "Anzahl Buchungen exportiert: %ld"
+msgstr "Anzahl der exportierten Buchungen: %ld"
 
 #: import_export/qif_export.cpp:475 mmframe.cpp:1475
 msgid "Export to QIF"
@@ -2896,7 +2894,7 @@ msgstr "Importiere Kategorien"
 #: import_export/qif_import_gui.cpp:843
 #, c-format
 msgid "Importing transaction %i of %i"
-msgstr "Importiere Buchungen %i bis %i"
+msgstr "Importiere Buchungen %i von %i"
 
 #: import_export/qif_import_gui.cpp:865 webapp.cpp:120
 #, c-format
@@ -2938,19 +2936,19 @@ msgstr "Datumsformat oder Datumsmaske ist falsch"
 
 #: import_export/qif_import_gui.cpp:1026
 msgid "Transaction Account is incorrect"
-msgstr "Das Transaktionskonto ist falsch"
+msgstr "Das Buchungskonto ist falsch"
 
 #: import_export/qif_import_gui.cpp:1033
 msgid "Transaction Account for transfer is incorrect"
-msgstr "Das Transaktionskonto für die Übertragung ist falsch"
+msgstr "Das Buchungskonto für die Übertragung ist falsch"
 
 #: import_export/qif_import_gui.cpp:1060
 msgid "Transaction Amount is incorrect"
-msgstr "Transaktionsbetrag ist falsch"
+msgstr "Buchungsbetrag ist falsch"
 
 #: import_export/qif_import_gui.cpp:1078
 msgid "Transaction Category is incorrect"
-msgstr "Die Transaktionskategorie ist falsch"
+msgstr "Die Buchungskategorie ist falsch"
 
 #: import_export/qif_import_gui.cpp:1167
 #, c-format
@@ -3370,7 +3368,7 @@ msgstr "Kann die Wechselkurse %s nicht herunterladen"
 
 #: maincurrencydialog.cpp:632
 msgid "Do you want to add also dates without any transaction?"
-msgstr "Möchten Sie auch Daten ohne Transaktion hinzufügen?"
+msgstr "Möchten Sie auch Tage ohne Buchungen hinzufügen?"
 
 #: maincurrencydialog.cpp:675
 #, c-format
@@ -3620,7 +3618,7 @@ msgstr "Markierte Buchungen duplizieren"
 
 #: mmcheckingpanel.cpp:560
 msgid "Enter any string to find it in the nearest transaction notes"
-msgstr "Geben Sie eine beliebige Zeichenfolge ein, für die nächste Buchungs Bemerkung"
+msgstr "Geben Sie eine beliebige Zeichenfolge ein, um diese in den nächste Buchungsbemerkung zu suchen"
 
 #: mmcheckingpanel.cpp:577
 #, c-format
@@ -3629,7 +3627,7 @@ msgstr "Kontoansicht: %s"
 
 #: mmcheckingpanel.cpp:869
 msgid "Select account used in transfer transactions"
-msgstr "wähle Konto das für Buchungstranfers benützt wird"
+msgstr "Wähle das Konto das für die Buchungsübertragung genutzt wird"
 
 #: mmcheckingpanel.cpp:1204
 msgid "&New Withdrawal"
@@ -3661,7 +3659,7 @@ msgstr "Buchung D&uplizieren"
 
 #: mmcheckingpanel.cpp:1223
 msgid "&Move Transaction"
-msgstr "&Buchung verschieben"
+msgstr "Buchung &verschieben"
 
 #: mmcheckingpanel.cpp:1229
 msgid "&View Split Categories"
@@ -3754,11 +3752,11 @@ msgstr "Ungeprüft"
 #: mmcheckingpanel.cpp:1353
 #, c-format
 msgid "Do you really want to delete all the \"%s\" transactions shown?"
-msgstr "Sollen wirklich alle sichtbaren Buchungen \"%s\" gelöscht werden?"
+msgstr "Sollen wirklich alle sichtbaren \"%s\" Buchungen gelöscht werden?"
 
 #: mmcheckingpanel.cpp:1698
 msgid "Do you really want to delete the selected transaction?"
-msgstr "Ausgewählte Buchung wirklich löschen?"
+msgstr "Soll die ausgewählte Buchung wirklich gelöscht werden?"
 
 #: mmcheckingpanel.cpp:1751 transdialog.cpp:693 transdialog.cpp:726
 msgid "MMEX Transaction Check"
@@ -3775,7 +3773,7 @@ msgstr "Empfängerkonto wählen "
 
 #: mmcheckingpanel.cpp:1984
 msgid "Reoccuring Transaction saved."
-msgstr "Wiederkehrende Transaktion gespeichert."
+msgstr "Wiederkehrende Buchung gespeichert."
 
 #: mmcheckingpanel.cpp:2027
 #, c-format
@@ -3790,7 +3788,7 @@ msgstr ""
 #: mmcheckingpanel.cpp:2032
 #, c-format
 msgid "Days between selected transactions: %d"
-msgstr "Tage zwischen ausgewählten Transaktionen: %d"
+msgstr "Tage zwischen ausgewählten Buchungen: %d"
 
 #: mmcombobox.h:78
 msgid "Please type in an exiting payee name,\n"
@@ -3882,7 +3880,7 @@ msgstr "Crypto Geldbörsen"
 
 #: mmframe.cpp:499
 msgid "Auto Repeat Transactions"
-msgstr "Automatische wiederholte Transaktionen"
+msgstr "Automatische wiederkehrende Buchungen"
 
 #: mmframe.cpp:685 mmframe.cpp:1827
 msgid "Home Page"
@@ -4103,7 +4101,7 @@ msgstr "Budgets: Schliesse Ü&berweisungen ein"
 
 #: mmframe.cpp:1511
 msgid "Include the transfer transactions in the Budget Totals"
-msgstr " Transferbuchung im Budgettotal einschliessen"
+msgstr "Transferbuchungen in Budgetsummen einschliessen"
 
 #: mmframe.cpp:1513
 msgid "Budget Setup: &Without Summaries"
@@ -4123,11 +4121,11 @@ msgstr "Einbeziehen der Kategorie Zusammenfassungen in die Budget-Kategorie-Übe
 
 #: mmframe.cpp:1517
 msgid "Ignore F&uture Transactions"
-msgstr "Z&ukünftige Transaktionen ignorieren"
+msgstr "Z&ukünftige Buchungen ignorieren"
 
 #: mmframe.cpp:1517
 msgid "Ignore Future transactions"
-msgstr "Zukünftige Transaktionen ignorieren"
+msgstr "Zukünftige Buchungen ignorieren"
 
 #: mmframe.cpp:1532 mmframe.cpp:1855
 msgid "Toggle Fullscreen\tF11"
@@ -4951,7 +4949,7 @@ msgstr "Andere"
 
 #: model/Model_Attachment.cpp:24
 msgid "Transaction"
-msgstr "Transaktion"
+msgstr "Buchung"
 
 #: model/Model_Attachment.cpp:25
 msgid "Stock"
@@ -4973,7 +4971,7 @@ msgstr "Eine wiederkehrende Buchung überschreitet Ihr Kontolimit.\n\n"
 
 #: model/Model_Billsdeposits.cpp:315
 msgid "MMEX Recurring Transaction Check"
-msgstr "MMEX Wiederkehrende Buchungen Überprüfen"
+msgstr "MMEX Überprüfung wiederkehrender Buchungen"
 
 #: model/Model_Budget.cpp:56
 msgid "Bi-Weekly"
