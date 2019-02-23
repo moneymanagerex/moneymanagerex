@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-02-05 11:56+0300\n"
-"PO-Revision-Date: 2019-02-10 13:43\n"
+"PO-Revision-Date: 2019-02-23 13:04\n"
 "Last-Translator: vomikan <nikolay.akimov@gmail.com>\n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -521,7 +521,7 @@ msgstr "&Neu "
 
 #: assetspanel.cpp:513 stockspanel.cpp:577
 msgid "&Add Trans "
-msgstr ""
+msgstr "&Transaktion hinzufügen "
 
 #: assetspanel.cpp:518 stockspanel.cpp:582
 msgid "&View Trans "
@@ -1885,7 +1885,7 @@ msgstr "Ziffernskala"
 
 #: customfieldeditdialog.cpp:171
 msgid "Enter the decimal digits scale allowed"
-msgstr ""
+msgstr "Geben Sie eine zulässige Dezimalzahl ein"
 
 #: customfieldeditdialog.cpp:174
 msgid "Panel's column"
