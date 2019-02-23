@@ -1,35 +1,35 @@
-IF(NOT InMMEX)
-    MESSAGE(FATAL_ERROR "Use the top-level CMake script!")
-ENDIF(NOT InMMEX)
+if(NOT InMMEX)
+    message(FATAL_ERROR "Use the top-level CMake script!")
+endif()
 
 # enable warnings while compile sources in src
-IF(MSVC)
-    STRING(REGEX REPLACE "(^| )[/-](w|W[0-4])( |$)" " " CMAKE_C_FLAGS "${CMAKE_C_FLAGS}")
-    STRING(REGEX REPLACE "(^| )[/-](w|W[0-4])( |$)" " " CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}")
-    SET(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} /W4")
-    SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /W4")
-ELSE()
-    ADD_COMPILE_OPTIONS("-Wall" "-Wextra" "-Wno-unknown-pragmas")
-ENDIF()
+if(MSVC)
+    string(REGEX REPLACE "(^| )[/-](w|W[0-4])( |$)" " " CMAKE_C_FLAGS "${CMAKE_C_FLAGS}")
+    string(REGEX REPLACE "(^| )[/-](w|W[0-4])( |$)" " " CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}")
+    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} /W4")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /W4")
+else()
+    add_compile_options("-Wall" "-Wextra" "-Wno-unknown-pragmas")
+endif()
 
 
 # Pass version numbers to the sources
-CONFIGURE_FILE(versions.h.in versions.h @ONLY)
-INCLUDE_DIRECTORIES("${CMAKE_CURRENT_BINARY_DIR}")
+configure_file(versions.h.in versions.h @ONLY)
+include_directories("${CMAKE_CURRENT_BINARY_DIR}")
 
-IF(APPLE)
-    SET(MMEX_PLATFDEP mac)
-ELSEIF(UNIX)
-    SET(MMEX_PLATFDEP unix)
-ELSEIF (WIN32)
-    SET(MMEX_PLATFDEP win)
-    CONFIGURE_FILE(
+if(APPLE)
+    set(MMEX_PLATFDEP mac)
+elseif(UNIX)
+    set(MMEX_PLATFDEP unix)
+elseif(WIN32)
+    set(MMEX_PLATFDEP win)
+    configure_file(
         "${PROJECT_SOURCE_DIR}/resources/mmex.rc.in"
         mmex.rc @ONLY)
-    SET(MMEX_RC "${CMAKE_CURRENT_BINARY_DIR}/mmex.rc")
-ENDIF ()
+    set(MMEX_RC "${CMAKE_CURRENT_BINARY_DIR}/mmex.rc")
+endif()
 
-ADD_EXECUTABLE(${MMEX_EXE} WIN32 MACOSX_BUNDLE
+add_executable(${MMEX_EXE} WIN32 MACOSX_BUNDLE
     aboutdialog.cpp
     aboutdialog.h
     accountdialog.cpp
@@ -292,32 +292,32 @@ ADD_EXECUTABLE(${MMEX_EXE} WIN32 MACOSX_BUNDLE
     "${MACOSX_APP_ICON_FILE}"
     "${MMEX_RC}")
 
-IF(";${CMAKE_CXX_COMPILE_FEATURES};" MATCHES ";cxx_std_11;")
-    TARGET_COMPILE_FEATURES(${MMEX_EXE} PUBLIC cxx_std_11)
-ELSEIF(";${CMAKE_CXX_COMPILE_FEATURES};" MATCHES ";cxx_range_for;"
+if(";${CMAKE_CXX_COMPILE_FEATURES};" MATCHES ";cxx_std_11;")
+    target_compile_features(${MMEX_EXE} PUBLIC cxx_std_11)
+elseif(";${CMAKE_CXX_COMPILE_FEATURES};" MATCHES ";cxx_range_for;"
        AND ";${CMAKE_CXX_COMPILE_FEATURES};" MATCHES ";cxx_nullptr;")
-    TARGET_COMPILE_FEATURES(${MMEX_EXE} PUBLIC cxx_range_for cxx_nullptr)
-ELSE()
-    INCLUDE(CheckCXXCompilerFlag)
+    target_compile_features(${MMEX_EXE} PUBLIC cxx_range_for cxx_nullptr)
+else()
+    include(CheckCXXCompilerFlag)
     CHECK_CXX_COMPILER_FLAG("-std=gnu++11" COMPILER_SUPPORTS_GXX11)
     CHECK_CXX_COMPILER_FLAG("-std=c++11" COMPILER_SUPPORTS_CXX11)
     CHECK_CXX_COMPILER_FLAG("-std=gnu++0x" COMPILER_SUPPORTS_GXX0X)
     CHECK_CXX_COMPILER_FLAG("-std=c++0x" COMPILER_SUPPORTS_CXX0X)
-    IF(COMPILER_SUPPORTS_GXX11)
-        TARGET_COMPILE_OPTIONS(${MMEX_EXE} PUBLIC -std=gnu++11)
-    ELSEIF(COMPILER_SUPPORTS_CXX11)
-        TARGET_COMPILE_OPTIONS(${MMEX_EXE} PUBLIC -std=c++11)
-    ELSEIF(COMPILER_SUPPORTS_GXX0X)
-        TARGET_COMPILE_OPTIONS(${MMEX_EXE} PUBLIC -std=gnu++0x)
-    ELSEIF(COMPILER_SUPPORTS_CXX0X)
-        TARGET_COMPILE_OPTIONS(${MMEX_EXE} PUBLIC -std=c++0x)
-    ELSE()
-        MESSAGE(SEND_ERROR "The compiler ${CMAKE_CXX_COMPILER} has no C++11 support.")
-    ENDIF()
-ENDIF()
+    if(COMPILER_SUPPORTS_GXX11)
+        target_compile_options(${MMEX_EXE} PUBLIC -std=gnu++11)
+    elseif(COMPILER_SUPPORTS_CXX11)
+        target_compile_options(${MMEX_EXE} PUBLIC -std=c++11)
+    elseif(COMPILER_SUPPORTS_GXX0X)
+        target_compile_options(${MMEX_EXE} PUBLIC -std=gnu++0x)
+    elseif(COMPILER_SUPPORTS_CXX0X)
+        target_compile_options(${MMEX_EXE} PUBLIC -std=c++0x)
+    else()
+        message(SEND_ERROR "The compiler ${CMAKE_CXX_COMPILER} has no C++11 support.")
+    endif()
+endif()
 
-TARGET_INCLUDE_DIRECTORIES(${MMEX_EXE} PUBLIC . model db)
-TARGET_LINK_LIBRARIES(${MMEX_EXE} PUBLIC
+target_include_directories(${MMEX_EXE} PUBLIC . model db)
+target_link_libraries(${MMEX_EXE} PUBLIC
     wxSQLite3
     RapidJSON
     HTML-template
@@ -325,15 +325,15 @@ TARGET_LINK_LIBRARIES(${MMEX_EXE} PUBLIC
     LuaGlue
     Lua)
 
-IF(MSVC)
+if(MSVC)
     # Based on this http://stackoverflow.com/a/8294669
     # added solution to compile problems due to
     # conflict between winsock and winsock2
     # Partially reinvented fix from commit
     # commit 06accae1273e66ced469672151522e45eee685a9
-    TARGET_COMPILE_DEFINITIONS(${MMEX_EXE} PRIVATE WIN32_LEAN_AND_MEAN)
-ENDIF()
+    target_compile_definitions(${MMEX_EXE} PRIVATE WIN32_LEAN_AND_MEAN)
+endif()
 
-INSTALL(TARGETS ${MMEX_EXE}
+install(TARGETS ${MMEX_EXE}
     RUNTIME DESTINATION ${MMEX_BIN_DIR}
     BUNDLE  DESTINATION .)
