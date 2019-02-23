@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-02-05 11:56+0300\n"
-"PO-Revision-Date: 2019-02-23 21:33\n"
+"PO-Revision-Date: 2019-02-23 22:03\n"
 "Last-Translator: vomikan <nikolay.akimov@gmail.com>\n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -110,7 +110,7 @@ msgstr "Favorisiertes Konto"
 #: transactionsupdatedialog.cpp:184 transdialog.cpp:539
 #: usertransactionpanel.cpp:213 webappdialog.cpp:83
 msgid "Notes"
-msgstr "Bemerkungen"
+msgstr "Anmerkungen"
 
 #: accountdialog.cpp:258 db/Table_Subcategory.h:123 db/Table_Subcategory.h:126
 #: db/Table_Subcategory.h:142 optiondialog.cpp:134
@@ -3438,7 +3438,7 @@ msgstr "Konto wählen auf welches die Buchung erfolgen soll"
 
 #: mmSimpleDialogs.cpp:156 transactionsupdatedialog.cpp:248
 msgid "Selection can be made by using the dropdown button."
-msgstr "Die Auswahl kann mit Hilfe des Dropdown-Button erfolgen."
+msgstr "Die Auswahl kann mit Hilfe des Auswahlknopfes erfolgen."
 
 #: mmSimpleDialogs.cpp:159
 msgid "Activating the button will provide a selection box where the account can be selected."
@@ -3783,7 +3783,7 @@ msgstr "Ausgewählte Buchungen: %ld"
 #: mmcheckingpanel.cpp:2029
 #, c-format
 msgid "Selected transactions balance: %s"
-msgstr ""
+msgstr "Ausgewählter Buchungsbilanz: %s"
 
 #: mmcheckingpanel.cpp:2032
 #, c-format
@@ -4812,7 +4812,7 @@ msgstr "Buchungen insgesamt:"
 #: mmhomepagepanel.cpp:886 reports/categexp.cpp:207
 #: reports/summarystocks.cpp:147 reports/transactions.cpp:172
 msgid "Grand Total:"
-msgstr "Gesamttotal:"
+msgstr "Gesamtsumme:"
 
 #: mmpanelbase.cpp:134
 msgid "Hide/Show Columns"
@@ -5053,7 +5053,7 @@ msgstr "Budgetierung"
 
 #: option.cpp:124 option.cpp:128
 msgid "Performance"
-msgstr ""
+msgstr "Entwicklung"
 
 #: option.cpp:125
 msgid "Category Summary"
@@ -5283,7 +5283,7 @@ msgstr "Wählen Sie hier aus, ob das aktuelle oder das Original-Datum beim Kopie
 
 #: optionsettingsgeneral.cpp:159
 msgid "Use Transaction Sound"
-msgstr "Sound bei Buchung"
+msgstr "Sound beim Buchung"
 
 #: optionsettingsgeneral.cpp:161
 msgid "Select whether to use sounds when entering transactions"
@@ -5307,7 +5307,7 @@ msgstr ""
 
 #: optionsettingsmisc.cpp:80
 msgid "New Transaction Dialog Settings"
-msgstr "Neue Buchungs Dialog Einstellungen"
+msgstr "Dialog Einstellungen für neue Buchung"
 
 #: optionsettingsmisc.cpp:88
 msgid "Last Used"
@@ -5515,7 +5515,7 @@ msgstr "Sichtbare Buchungen"
 
 #: optionsettingsview.cpp:107
 msgid "Specify which transactions are visible by default"
-msgstr "Welche Buchungen sind standardgemäß sichtbar"
+msgstr "Legen Sie fest welche Buchungen standardgemäß sichtbar sind"
 
 #: optionsettingsview.cpp:109
 msgid "HTML scale factor"
@@ -5559,7 +5559,7 @@ msgstr "Berichtsoptionen"
 
 #: optionsettingsview.cpp:169
 msgid "View without Future Transactions"
-msgstr "Ansicht ohne zukünftige Transaktionen"
+msgstr "Ansicht ohne zukünftige Buchungen"
 
 #: optionsettingsview.cpp:175
 msgid "User Colors"
@@ -5652,12 +5652,12 @@ msgstr "Kategorie Umzug Bestätigung"
 #: relocatecategorydialog.cpp:271 relocatepayeedialog.cpp:231
 #, c-format
 msgid "Records found in transactions: %i"
-msgstr "gefundene Zeilen in Buchungen: %i"
+msgstr "Gefundene Einträge in Buchungen: %i"
 
 #: relocatecategorydialog.cpp:272
 #, c-format
 msgid "Records found in split transactions: %i"
-msgstr "gefundene Zeile in gespliteten Buchungen: %i"
+msgstr "Gefundene Einträge in gespliteten Buchungen: %i"
 
 #: relocatecategorydialog.cpp:273 relocatepayeedialog.cpp:232
 #, c-format
@@ -5999,7 +5999,7 @@ msgstr ""
 
 #: sharetransactiondialog.cpp:257 stockdialog.cpp:281
 msgid "Organize attachments of this stock"
-msgstr "Organisieren der Anhänge dieser Aktie"
+msgstr "Verwaltung der Anhänge dieser Aktie"
 
 #: sharetransactiondialog.cpp:262 stockdialog.cpp:283
 msgid "Display the web page for the specified Stock symbol"
@@ -6019,7 +6019,7 @@ msgstr "Aufteilung"
 
 #: splitdetailsdialog.cpp:106
 msgid "Split Transaction Details"
-msgstr "Split Details der Buchung"
+msgstr "Details der Splitbuchung"
 
 #: splittransactionsdialog.cpp:74
 msgid "Split Transaction Dialog"
@@ -6080,16 +6080,17 @@ msgstr ""
 
 #: stockdialog.cpp:223
 msgid "*Share Number"
-msgstr ""
+msgstr "Aktiennummer"
 
 #: stockdialog.cpp:224
 msgid "Total number of shares.\n"
 "Recorded in share transaction"
-msgstr ""
+msgstr "Gesamtanzahl der Aktien.\n"
+"In Aktienbuchung eingetragen"
 
 #: stockdialog.cpp:230
 msgid "Enter the initial number of shares."
-msgstr ""
+msgstr "Geben Sie die Anzahl der initial vorhandenen Aktien ein."
 
 #: stockdialog.cpp:234 stockspanel.cpp:100
 msgid "*Share Price"
@@ -6106,7 +6107,8 @@ msgstr "*Gebühren"
 #: stockdialog.cpp:246
 msgid "Remainder of funds from share investment.\n"
 "Recorded in share transaction"
-msgstr ""
+msgstr "Restbetrag der Gelder aus der Aktienanlage.\n"
+"In Aktienbuchung eingetragen"
 
 #: stockdialog.cpp:251
 msgid "Enter any commission paid or left over money from the purchase of shares."
@@ -6114,7 +6116,7 @@ msgstr ""
 
 #: stockdialog.cpp:256
 msgid "Share price after the initial share purchase"
-msgstr ""
+msgstr "Aktienkurs nach dem ersten Aktienkauf"
 
 #: stockdialog.cpp:261
 msgid "Enter current share price."
@@ -6122,19 +6124,19 @@ msgstr "Aktuellen Aktienpreis eingeben."
 
 #: stockdialog.cpp:264 stockspanel.cpp:105
 msgid "Price Date"
-msgstr ""
+msgstr "Preisdatum"
 
 #: stockdialog.cpp:265
 msgid "Actual date of the Current Price"
-msgstr ""
+msgstr "Aktuelles Preisdatum"
 
 #: stockdialog.cpp:298
 msgid "Stock History Options"
-msgstr ""
+msgstr "Aktienentwicklungsoptionen"
 
 #: stockdialog.cpp:305
 msgid "Stock Price History"
-msgstr ""
+msgstr "Aktienkursentwicklung"
 
 #: stockdialog.cpp:317 stockdialog.cpp:642
 msgid "Price"
@@ -6142,7 +6144,7 @@ msgstr "Preis"
 
 #: stockdialog.cpp:335
 msgid "Download Stock Price history"
-msgstr ""
+msgstr "Aktienkursentwicklung herunterladen"
 
 #: stockdialog.cpp:337
 msgid "Import Stock Price history (CSV Format)"
@@ -6419,7 +6421,7 @@ msgstr "Ungültiger Typ"
 
 #: transdialog.cpp:170
 msgid "Duplicate Transaction"
-msgstr "Doppelte Buchungen "
+msgstr "Buchung duplizieren"
 
 #: transdialog.cpp:171
 msgid "Edit Transaction"
@@ -6427,7 +6429,7 @@ msgstr "Buchung bearbeiten"
 
 #: transdialog.cpp:530
 msgid "Populate Transaction #"
-msgstr "Buchung einpflegen #"
+msgstr "Ausfüllen von Buchung #"
 
 #: transdialog.cpp:552 usertransactionpanel.cpp:217
 msgid "Organize attachments of this transaction"
@@ -6468,7 +6470,7 @@ msgstr "Betrag für diese Buchung"
 
 #: transdialog.cpp:1217
 msgid "Specify to whom the transaction is going to"
-msgstr "Wohin soll die Buchung ausgeführt werden"
+msgstr "Legen Sie fest an wen die Buchung gehen soll"
 
 #: transdialog.cpp:1223 usertransactionpanel.cpp:105
 msgid "Specify the date of the transaction"
@@ -6717,8 +6719,8 @@ msgstr "Konto '%s' nicht gefunden!"
 #, c-format
 msgid "Transaction will be inserted with the first bank account:\n"
 "'%s' and marked as  'Follow Up'"
-msgstr "Transaktion wird mit dem ersten Bankkonto eingefügt:\n"
-"'%s' und als 'Follow Up' gekennzeichnet."
+msgstr "Die Buchung wird dem ersten Bankkonto:\n"
+"'%s' hinzugefügt und zur 'Überprüfung' gekennzeichnet"
 
 #: webapp.cpp:469
 msgid "Wrong WebApp account"
@@ -6774,7 +6776,7 @@ msgstr ""
 
 #: webappdialog.cpp:182
 msgid "Unable to insert transaction in MMEX database"
-msgstr "Die Transaktion kann nicht in MMEX Datenbank einfügt werden"
+msgstr "Die Buchung kann nicht in MMEX Datenbank einfügt werden"
 
 #: webappdialog.cpp:183
 msgid "WebApp communication error"
