@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-02-05 11:56+0300\n"
-"PO-Revision-Date: 2019-02-23 22:35\n"
+"PO-Revision-Date: 2019-02-23 23:03\n"
 "Last-Translator: vomikan <nikolay.akimov@gmail.com>\n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -422,10 +422,10 @@ msgid "An asset account having the same name has not been found.\n\n"
 "A single transaction for this asset can be associated with any account.\n"
 "Multiple asset transactions need to be associated with an asset account.\n\n"
 "Would you want to create one?\n\n"
-msgstr "Ein Anlagenkonto mit demselben Namen wurde nicht gefunden.\n\n"
-"Eine einzelne Transaktion für dieses Asset kann mit jedem Konto verknüpft werden.\n"
-"Mehrere Asset-Transaktionen müssen mit einem Asset-Konto verknüpft werden.\n"
-"Möchten Sie ein Anlagenkonto erstellen?\n"
+msgstr "Ein Anlagenkonto mit diesem Namen wurde nicht gefunden.\n\n"
+"Eine einzelne Buchung für diese Anlage kann mit jedem Konto verknüpft werden.\n"
+"Mehrere Anlagebuchungen müssen mit einem Anlagekonto verknüpft werden.\n\n"
+"Möchten Sie ein Anlagenkonto erstellen?\n\n"
 
 #: assetspanel.cpp:60 billsdepositspanel.cpp:101 mmcheckingpanel.cpp:1098
 #: reports/transactions.cpp:73 stockspanel.cpp:95
@@ -521,7 +521,7 @@ msgstr "&Neu "
 
 #: assetspanel.cpp:513 stockspanel.cpp:577
 msgid "&Add Trans "
-msgstr "&Transaktion hinzufügen "
+msgstr "Buchung &hinzufügen "
 
 #: assetspanel.cpp:518 stockspanel.cpp:582
 msgid "&View Trans "
@@ -571,8 +571,8 @@ msgid "This asset does not have its own account\n\n"
 "Multiple transactions for this asset are not recommended.\n"
 "Please use the popup: 'Open Asset Account' to track the transaction."
 msgstr "Dieser Vermögenswert hat kein eigenes Konto.\n\n"
-"Mehrere Transaktionen für diese Anlage werden nicht empfohlen.\n"
-"Bitte benutzen Sie das Popup: Öffnen Sie das Anlagenkonto, um die Transaktion zu verfolgen."
+"Mehrere Buchung für diese Anlage werden nicht empfohlen.\n"
+"Bitte benutzen Sie das Popup: Öffnen Sie das Anlagenkonto, um die Buchung zu verfolgen."
 
 #: assetspanel.cpp:784
 msgid "Asset Management"
@@ -865,7 +865,7 @@ msgstr "Benutzer zur Zahlungseingabe auffordern"
 
 #: billsdepositsdialog.cpp:482
 msgid "User requested to enter this transaction on the 'Date Paid'"
-msgstr "Der Benutzer hat gebeten, diese Transaktion am 'Zahlungsdatum' einzugeben."
+msgstr "Der Benutzer hat gebeten, diese Buchung am 'Zahlungsdatum' einzugeben"
 
 #: billsdepositsdialog.cpp:485
 msgid "Grant automatic execute"
@@ -881,7 +881,7 @@ msgstr "Buchungsdetails"
 
 #: billsdepositsdialog.cpp:526
 msgid "Specify the date the user is requested to enter this transaction"
-msgstr "Geben Sie das Datum an, an dem der Benutzer aufgefordert wird, diese Transaktion einzugeben"
+msgstr "Geben Sie das Datum an, an dem der Benutzer aufgefordert wird, diese Buchung einzugeben"
 
 #: billsdepositsdialog.cpp:529
 msgid "Advance or retard the user request date of this transaction"
@@ -4601,9 +4601,9 @@ msgid "Asset Accounts hold Asset transactions\n\n"
 "Asset transactions are created within the Assets View\n"
 "after the selection of the Asset within that view.\n\n"
 "Asset Accounts can also hold normal transactions to regular accounts."
-msgstr "Sachkonten beinhalten Sachtransaktionen\n\n"
-"Sachtransaktionen können der entsprechenden Ansicht erstellt werden, nachdem die entsprechende Anlage in dieser Ansicht ausgewählt wurde\n\n"
-"Sachkonten können auch normale Transaktionen auf reguläre Konten beinhalten."
+msgstr "Sachkonten beinhalten Sachbuchungen\n\n"
+"Sachbuchungen können in der entsprechenden Ansicht erstellt werden, nachdem die entsprechende Anlage in dieser Ansicht ausgewählt wurde.\n\n"
+"Sachkonten können auch normale Buchungen auf reguläre Konten beinhalten."
 
 #: mmframe.cpp:2336
 msgid "Asset Account Creation"
@@ -5628,11 +5628,11 @@ msgstr ""
 
 #: relocatecategorydialog.cpp:93
 msgid "Select Source Category"
-msgstr ""
+msgstr "Quellkategorie auswählen"
 
 #: relocatecategorydialog.cpp:98
 msgid "Select Destination Category"
-msgstr ""
+msgstr "Zielkategorie auswählen"
 
 #: relocatecategorydialog.cpp:111 relocatepayeedialog.cpp:111
 msgid "Relocate:"
@@ -5663,12 +5663,12 @@ msgstr "Gefundene Einträge in gespliteten Buchungen: %i"
 #: relocatecategorydialog.cpp:273 relocatepayeedialog.cpp:232
 #, c-format
 msgid "Records found in recurring transactions: %i"
-msgstr ""
+msgstr "Einträge in wiederkehrenden Transaktionen gefunden: %i"
 
 #: relocatecategorydialog.cpp:274
 #, c-format
 msgid "Records found in recurring split transactions: %i"
-msgstr ""
+msgstr "Einträge in wiederkehrenden geteilten Transaktionen gefunden: %i"
 
 #: relocatecategorydialog.cpp:275
 #, c-format
@@ -5686,11 +5686,11 @@ msgstr "Verwaltung der Empfänger/Zahler anzeigen "
 
 #: relocatepayeedialog.cpp:83
 msgid "Relocate all source payee to the destination payee"
-msgstr ""
+msgstr "Verschiebe vom bisherigen Zahlungsempfänger zum neuen Zahlungsempfänger"
 
 #: relocatepayeedialog.cpp:95
 msgid "Delete source payee after relocation"
-msgstr ""
+msgstr "Lösche bisherigen Zahlungsempfänger nach verschieben"
 
 #: relocatepayeedialog.cpp:151
 #, c-format
@@ -6004,7 +6004,7 @@ msgstr "Verwaltung der Anhänge dieser Aktie"
 
 #: sharetransactiondialog.cpp:262 stockdialog.cpp:283
 msgid "Display the web page for the specified Stock symbol"
-msgstr ""
+msgstr "Webseite für das angegebene Aktiensymbol anzeigen"
 
 #: sharetransactiondialog.cpp:272 stockdialog.cpp:290
 msgid "Enter notes associated with this investment"
@@ -6028,7 +6028,7 @@ msgstr "Geteilte Buchung"
 
 #: splittransactionsdialog.cpp:127
 msgid "Split Category Details"
-msgstr ""
+msgstr "Details zu geteilter Kategorie"
 
 #: splittransactionsdialog.cpp:206
 msgid "Invalid Total Amount"
@@ -6045,7 +6045,8 @@ msgstr "Neue Wertpapieranlage"
 #: stockdialog.cpp:156
 msgid "Initial share price.\n"
 "Recorded in share transaction"
-msgstr ""
+msgstr "Anfänglicher Aktienkurs.\n"
+"In geteilte Buchung aufgenommen"
 
 #: stockdialog.cpp:158
 msgid "Invalid in this view.\n"
@@ -6153,11 +6154,11 @@ msgstr "Import der Aktienpreisentwicklung (CSV Format)"
 
 #: stockdialog.cpp:339
 msgid "Delete selected Stock Price"
-msgstr ""
+msgstr "Ausgewählten Aktienkurs löschen"
 
 #: stockdialog.cpp:341
 msgid "Add Stock Price to history"
-msgstr ""
+msgstr "Aktienkurs zum Verlauf hinzufügen"
 
 #: stockdialog.cpp:417
 msgid "Held At"
@@ -6176,11 +6177,11 @@ msgstr ""
 
 #: stockdialog.cpp:567
 msgid "Stock History CSV Import"
-msgstr ""
+msgstr "Aktienentwicklung CSV Import"
 
 #: stockdialog.cpp:568 stockdialog.cpp:582
 msgid "Quotes imported from CSV: "
-msgstr ""
+msgstr "Kurse importiert aus CSV: "
 
 #: stockdialog.cpp:648
 msgid "Importing CSV"
@@ -6220,7 +6221,7 @@ msgstr "10 Jahre"
 
 #: stockdialog.cpp:689
 msgid "Max"
-msgstr ""
+msgstr "Max"
 
 #: stockdialog.cpp:695
 msgid "Specify type frequency of stock history"
@@ -6228,7 +6229,7 @@ msgstr ""
 
 #: stockdialog.cpp:696 stockdialog.cpp:720
 msgid "Stock History Update"
-msgstr ""
+msgstr "Aktualisierung der Aktienentwicklung"
 
 #: stockdialog.cpp:709
 msgid "1 Day"
@@ -6244,11 +6245,11 @@ msgstr ""
 
 #: stockdialog.cpp:732
 msgid "Stock history not found!"
-msgstr ""
+msgstr "Aktienentwicklung nicht gefunden!"
 
 #: stockdialog.cpp:733
 msgid "Stock History Error"
-msgstr ""
+msgstr "Aktienentwicklung Fehler"
 
 #: stockspanel.cpp:36
 msgid "Using MMEX it is possible to track stocks/mutual funds investments."
@@ -6268,7 +6269,7 @@ msgstr "Wenn das Feld Name leer ist, wird er eingefüllt werden, wenn die Kurse 
 
 #: stockspanel.cpp:99
 msgid "Share Total"
-msgstr ""
+msgstr "Anteile gesamt"
 
 #: stockspanel.cpp:101
 msgid "Init Value"
@@ -6451,7 +6452,7 @@ msgstr "Bestätige Eingabe neuer Empfänger"
 #: transdialog.cpp:724
 msgid "This transaction will exceed your account limit.\n\n"
 "Do you wish to continue?"
-msgstr "Diese Transaktion überschreitet ihr Kontolimit.\n\n"
+msgstr "Diese Buchung überschreitet ihr Kontolimit.\n\n"
 "Wollen sie fortfahren?"
 
 #: transdialog.cpp:1205
