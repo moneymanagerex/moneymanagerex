@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-02-05 11:56+0300\n"
-"PO-Revision-Date: 2019-02-23 13:33\n"
+"PO-Revision-Date: 2019-02-23 20:33\n"
 "Last-Translator: vomikan <nikolay.akimov@gmail.com>\n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -3380,7 +3380,8 @@ msgstr "Der Verlauf für das Symbol %s kann nicht heruntergeladen werden. Vorher
 #: maincurrencydialog.cpp:737
 msgid "Setting a new base currency will delete all historic rates,\n"
 "it's possible to re-download them after setting the new base currency."
-msgstr ""
+msgstr "Die Einstellung einer neuen Basiswährung wird alle historischen Kurse löschen, aber\n"
+"es ist möglich diese nach der Einstellung der neuen Basiswährung erneut herunterzuladen."
 
 #: maincurrencydialog.cpp:739
 msgid "Do you want to continue?"
@@ -3405,7 +3406,7 @@ msgstr "Eingabe %s ist ungültig"
 
 #: mmSimpleDialogs.cpp:129
 msgid "Please use this button for category selection."
-msgstr ""
+msgstr "Bitte verwenden Sie diese Schaltfläche für die Kategorieauswahl."
 
 #: mmSimpleDialogs.cpp:130
 msgid "Please use this button for category selection\n"
@@ -5964,7 +5965,7 @@ msgstr "Name der Firma, von der Sie Wertpapiere gekauft haben"
 
 #: sharetransactiondialog.cpp:202 stockdialog.cpp:202
 msgid "Stock Symbol"
-msgstr ""
+msgstr "Aktiensymbol"
 
 #: sharetransactiondialog.cpp:209
 msgid "Enter the stock symbol. (Optional) Include exchange. eg: IBM.BE"
@@ -5972,7 +5973,7 @@ msgstr "Kürzel der Wertpapieranlage angeben (z. B. CSCO oder GOOG)"
 
 #: sharetransactiondialog.cpp:212
 msgid "Share Number"
-msgstr ""
+msgstr "Aktiennummer"
 
 #: sharetransactiondialog.cpp:218
 msgid "Enter number of shares held"
@@ -5980,11 +5981,11 @@ msgstr "Anzahl der Anteile bzw. Aktien"
 
 #: sharetransactiondialog.cpp:223
 msgid "Share Price"
-msgstr ""
+msgstr "Aktienkurs"
 
 #: sharetransactiondialog.cpp:229
 msgid "Enter the current value for a single share unit"
-msgstr ""
+msgstr "Geben Sie den aktuellen Wert für eine einzelne Aktie-Einheit ein"
 
 #: sharetransactiondialog.cpp:238
 msgid "Enter any commission paid"
@@ -5992,7 +5993,7 @@ msgstr "Alle gezahlten Gebühren und Provisionen (Betrag ohne Währungszeichen e
 
 #: sharetransactiondialog.cpp:243
 msgid "Share Lot"
-msgstr ""
+msgstr "Aktienpaket"
 
 #: sharetransactiondialog.cpp:250
 msgid "Enter the LOT that this parcel os shares belong to"
