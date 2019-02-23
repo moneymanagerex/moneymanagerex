@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-02-05 11:56+0300\n"
-"PO-Revision-Date: 2019-02-23 13:04\n"
+"PO-Revision-Date: 2019-02-23 13:33\n"
 "Last-Translator: vomikan <nikolay.akimov@gmail.com>\n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -1187,7 +1187,7 @@ msgstr "MMEX ermöglicht regelmäßige Zahlungen/Überweisungen die als Transakt
 
 #: billsdepositspanel.cpp:171
 msgid "Tip: These transactions can be set up to activate - allowing the user to adjust any values on the due date."
-msgstr ""
+msgstr "Tipp: Diese Transaktionen können so eingestellt werden, dass der Benutzer alle Werte am Fälligkeitsdatum anpassen kann."
 
 #: billsdepositspanel.cpp:225 billsdepositspanel.cpp:888 mmframe.cpp:735
 #: mmhomepagepanel.cpp:433
@@ -1889,11 +1889,11 @@ msgstr "Geben Sie eine zulässige Dezimalzahl ein"
 
 #: customfieldeditdialog.cpp:174
 msgid "Panel's column"
-msgstr ""
+msgstr "Bedienfeld Spalte"
 
 #: customfieldeditdialog.cpp:179
 msgid "Select a value to represent the item on a panel"
-msgstr ""
+msgstr "Wählen Sie einen Wert, um das Element auf einem Bedienfeld darzustellen"
 
 #: customfieldeditdialog.cpp:221
 msgid "Changing field type will delete all content!"
@@ -5704,12 +5704,12 @@ msgstr "Zahlungsempfänger/Zahler verschieben Bestätigung"
 #: reports/budgetcategorysummary.cpp:130
 #, c-format
 msgid "Budget Categories for %s"
-msgstr ""
+msgstr "Budgetkategorien für %s"
 
 #: reports/budgetcategorysummary.cpp:130
 #, c-format
 msgid "Budget Category Summary for %s"
-msgstr ""
+msgstr "Budgetkategorie Zusammenfassung für %s"
 
 #: reports/budgetcategorysummary.cpp:133
 msgid "( Estimated Vs Actual )"
@@ -5742,15 +5742,15 @@ msgstr "Unterschied Ausgaben:"
 #: reports/budgetingperf.cpp:171
 #, c-format
 msgid "Budget Performance for %s"
-msgstr ""
+msgstr "Budgeterfüllung für %s"
 
 #: reports/budgetingperf.cpp:194 reports/budgetingperf.cpp:197
 msgid "Est."
-msgstr ""
+msgstr "Schätzung"
 
 #: reports/budgetingperf.cpp:195 reports/budgetingperf.cpp:198
 msgid "Act."
-msgstr ""
+msgstr "Empfehlung"
 
 #: reports/budgetingperf.cpp:199
 msgid "%"
@@ -5931,7 +5931,7 @@ msgstr "Gebühren"
 
 #: reports/summarystocks.cpp:193
 msgid "Stocks Performance Charts"
-msgstr ""
+msgstr "Aktienkursentwicklung"
 
 #: reports/transactions.cpp:60
 #, c-format
@@ -5944,7 +5944,7 @@ msgstr "Buchungsliste"
 
 #: sharetransactiondialog.cpp:64 sharetransactiondialog.cpp:83
 msgid "Add Share Transaction"
-msgstr ""
+msgstr "Aktientransaktion hinzufügen"
 
 #: sharetransactiondialog.cpp:90
 msgid "Edit Share Transaction"
