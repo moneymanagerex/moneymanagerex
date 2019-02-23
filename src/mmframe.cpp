@@ -1782,6 +1782,12 @@ void mmGUIFrame::createMenu()
     menuItemReportBug->SetBitmap(mmBitmap(png::BUG));
     menuHelp->Append(menuItemReportBug);
 
+    wxMenuItem* menuItemCrowdin = new wxMenuItem(menuHelp, MENU_CROWDIN
+        , _("Improve translation")
+        , _("Improve GUI Translation"), wxITEM_MAX);
+    menuItemCrowdin->SetBitmap(mmBitmap(png::CROWDIN));
+    menuHelp->Append(menuItemCrowdin);
+
     wxMenuItem* menuItemAppStart = new wxMenuItem(menuHelp, MENU_SHOW_APPSTART
         , _("Reopen &Start-up Dialog"), _("Show application start-up dialog"));
     menuItemAppStart->SetBitmap(mmBitmap(png::APPSTART));
@@ -2532,20 +2538,21 @@ void mmGUIFrame::OnBeNotified(wxCommandEvent& WXUNUSED(event))
 void mmGUIFrame::OnSimpleURLOpen(wxCommandEvent& event)
 {
     wxString url;
-    switch(event.GetId())
+    switch (event.GetId())
     {
-    case MENU_FACEBOOK: url=mmex::weblink::Facebook; break;
-    case MENU_TWITTER: url=mmex::weblink::Twitter; break;
-    case MENU_WEBSITE: url=mmex::weblink::WebSite; break;
-    case MENU_WIKI: url=mmex::weblink::Wiki; break;
-    case MENU_DONATE: url=mmex::weblink::Donate; break;
-    case MENU_REPORTISSUES: url=mmex::weblink::Forum; break;
-    case MENU_GOOGLEPLAY: url=mmex::weblink::GooglePlay; break;
-    case MENU_BUY_COFFEE: url=mmex::weblink::SquareCashGuan; break;
-    case MENU_RSS: url=mmex::weblink::NewsRSS; break;
-    case MENU_YOUTUBE: url=mmex::weblink::YouTube; break;
-    case MENU_GITHUB: url=mmex::weblink::GitHub; break;
-    case MENU_SLACK: url=mmex::weblink::Slack; break;
+    case MENU_FACEBOOK: url = mmex::weblink::Facebook; break;
+    case MENU_TWITTER: url = mmex::weblink::Twitter; break;
+    case MENU_WEBSITE: url = mmex::weblink::WebSite; break;
+    case MENU_WIKI: url = mmex::weblink::Wiki; break;
+    case MENU_DONATE: url = mmex::weblink::Donate; break;
+    case MENU_CROWDIN: url = mmex::weblink::Crowdin; break;
+    case MENU_REPORTISSUES: url = mmex::weblink::Forum; break;
+    case MENU_GOOGLEPLAY: url = mmex::weblink::GooglePlay; break;
+    case MENU_BUY_COFFEE: url = mmex::weblink::SquareCashGuan; break;
+    case MENU_RSS: url = mmex::weblink::NewsRSS; break;
+    case MENU_YOUTUBE: url = mmex::weblink::YouTube; break;
+    case MENU_GITHUB: url = mmex::weblink::GitHub; break;
+    case MENU_SLACK: url = mmex::weblink::Slack; break;
     }
     if (!url.IsEmpty()) wxLaunchDefaultBrowser(url);
 }

@@ -186,6 +186,7 @@ const wxString mmex::weblink::Donate = "https://www.paypal.com/cgi-bin/webscr?cm
 const wxString mmex::weblink::SquareCashGuan = "https://cash.me/$guanlisheng/1";
 const wxString mmex::weblink::Twitter = "https://twitter.com/MoneyManagerEx";
 const wxString mmex::weblink::Facebook = "https://www.facebook.com/MoneyManagerEx/";
+const wxString mmex::weblink::Crowdin = "https://crowdin.com/project/moneymanagerex/";
 
 // Yahoo API
 const wxString mmex::weblink::YahooQuotes = "https://query1.finance.yahoo.com/v7/finance/quote?symbols=%s&fields=regularMarketPrice,currency,shortName";

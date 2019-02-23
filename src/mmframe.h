@@ -285,6 +285,7 @@ private:
         MENU_RSS,
         MENU_SLACK,
         MENU_DONATE,
+        MENU_CROWDIN,
         MENU_REPORTISSUES,
         MENU_BUY_COFFEE,
         MENU_GOOGLEPLAY,
