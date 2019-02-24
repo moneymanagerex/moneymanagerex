@@ -140,7 +140,7 @@ void htmlWidgetStocks::calculate_stats(std::map<int, std::pair<double, double> >
     const auto &stocks = Model_Stock::instance().all();
     const wxDate today = wxDate::Today();
     for (const auto& stock : stocks)
-    {   
+    {
         double today_conv_rate = 1;
         double purchase_conv_rate = 1;
         Model_Account::Data *account = Model_Account::instance().get(stock.HELDAT);
@@ -148,18 +148,18 @@ void htmlWidgetStocks::calculate_stats(std::map<int, std::pair<double, double> >
         {
             today_conv_rate = Model_CurrencyHistory::getDayRate(account->CURRENCYID, today);
             purchase_conv_rate = Model_CurrencyHistory::getDayRate(account->CURRENCYID, stock.PURCHASEDATE);
-        }   
+        }
         std::pair<double, double>& values = stockStats[stock.HELDAT];
         double current_value = Model_Stock::CurrentValue(stock) * today_conv_rate;
         double gain_lost = (current_value - stock.VALUE * purchase_conv_rate - stock.COMMISSION * today_conv_rate);
         values.first += gain_lost;
         values.second += current_value;
         if (account && account->STATUS == VIEW_ACCOUNTS_OPEN_STR)
-        {   
+        {
             grand_total_ += current_value;
             grand_gain_lost_ += gain_lost;
-        }   
-    }   
+        }
+    }
 }
 
 double htmlWidgetStocks::get_total()
@@ -207,8 +207,8 @@ wxString htmlWidgetTop7Categories::getHTMLText()
     std::vector<std::pair<wxString, double> > topCategoryStats;
     getTopCategoryStats(topCategoryStats, date_range_);
     wxString output = "", data;
-    
-    if (!topCategoryStats.empty()) 
+
+    if (!topCategoryStats.empty())
     {
         for (const auto& i : topCategoryStats)
         {
@@ -321,12 +321,12 @@ htmlWidgetBillsAndDeposits::~htmlWidgetBillsAndDeposits()
 
 wxString htmlWidgetBillsAndDeposits::getHTMLText()
 {
-    wxString output = ""; 
+    wxString output = "";
 
-    //                    days, payee, description, amount, account
-    std::vector< std::tuple<int, wxString, wxString, double, const Model_Account::Data*> > bd_days;
+    //                    days, payee, description, amount, account, notes
+    std::vector< std::tuple<int, wxString, wxString, double, const Model_Account::Data*, wxString> > bd_days;
     for (const auto& entry : Model_Billsdeposits::instance().all(Model_Billsdeposits::COL_NEXTOCCURRENCEDATE))
-    {   
+    {
         int daysPayment = Model_Billsdeposits::daysPayment(&entry);
         if (daysPayment > 14)
             break; // Done searching for all to include
@@ -356,28 +356,28 @@ wxString htmlWidgetBillsAndDeposits::getHTMLText()
 
         wxString payeeStr = "";
         if (Model_Billsdeposits::type(entry) == Model_Billsdeposits::TRANSFER)
-        {   
+        {
             const Model_Account::Data *toaccount = Model_Account::instance().get(entry.TOACCOUNTID);
             if (toaccount) payeeStr = toaccount->ACCOUNTNAME;
             payeeStr += " &larr; " + accountStr;
-        }   
+        }
         else
-        {   
+        {
             const Model_Payee::Data* payee = Model_Payee::instance().get(entry.PAYEEID);
             payeeStr = accountStr;
             payeeStr += (Model_Billsdeposits::type(entry) == Model_Billsdeposits::WITHDRAWAL ? " &rarr; " : " &larr; ");
             if (payee) payeeStr += payee->PAYEENAME;
-        }   
+        }
         double amount = (Model_Billsdeposits::type(entry) == Model_Billsdeposits::WITHDRAWAL ? -entry.TRANSAMOUNT : entry.TRANSAMOUNT);
-        bd_days.push_back(std::make_tuple(daysPayment, payeeStr, daysRemainingStr, amount, account));
-    }   
+        bd_days.push_back(std::make_tuple(daysPayment, payeeStr, daysRemainingStr, amount, account, entry.NOTES));
+    }
 
     //std::sort(bd_days.begin(), bd_days.end());
     //std::reverse(bd_days.begin(), bd_days.end());
     ////////////////////////////////////
 
     if (!bd_days.empty())
-    {   
+    {
         static const wxString idStr = "BILLS_AND_DEPOSITS";
 
         output = "<table class='table'>\n<thead>\n<tr class='active'><th>";
@@ -392,7 +392,9 @@ wxString htmlWidgetBillsAndDeposits::getHTMLText()
 
         for (const auto& item : bd_days)
         {
-            output += wxString::Format("<tr %s>\n", std::get<0>(item) < 0 ? "class='danger'" : "");
+            output += wxString::Format("<tr %s %s>\n",
+                std::get<0>(item) < 0 ? "class='danger'" : "",
+                std::get<5>(item).IsEmpty() ? "" : "title='" + std::get<5>(item) + "'");
             output += "<td>" + std::get<1>(item) +"</td>"; //payee
             output += wxString::Format("<td class='money'>%s</td>\n"
                 , Model_Account::toCurrency(std::get<3>(item), std::get<4>(item)));
@@ -571,10 +573,10 @@ void mmHomePagePanel::getData()
     m_frames["HTMLSCALE"] = wxString::Format("%d", Option::instance().getHtmlFontSize());
 
     vAccts_ = Model_Setting::instance().ViewAccounts();
-    
+
     if (date_range_)
         date_range_->destroy();
- 
+
     if (Option::instance().getIgnoreFutureTransactions())
         date_range_ = new mmCurrentMonthToDate;
     else
@@ -597,7 +599,7 @@ void mmHomePagePanel::getData()
 
     m_frames["TERM_ACCOUNTS_INFO"] = getAccountsHTML(tBalance
         , accountStats, Model_Account::TERM);
-    
+
     m_frames["CRYPTO_WALLETS_INFO"] = getAccountsHTML(tBalance
         , accountStats, Model_Account::CRYPTO);
 
@@ -693,7 +695,7 @@ void mmHomePagePanel::setExpensesIncomeStatsData(std::map<int, std::pair<double,
             if (Model_Checking::TRANSDATE(pBankTransaction).IsLaterThan(date_range->today()))
                 continue; //skip future dated transactions
         }
-        
+
         // Do not include asset or stock transfers in income expense calculations.
         if (Model_Checking::foreignTransactionAsTransfer(pBankTransaction))
             continue;
