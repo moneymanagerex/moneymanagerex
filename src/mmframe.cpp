@@ -1784,7 +1784,7 @@ void mmGUIFrame::createMenu()
 
     wxMenuItem* menuItemCrowdin = new wxMenuItem(menuHelp, MENU_CROWDIN
         , _("Improve translation")
-        , _("Improve GUI Translation"), wxITEM_MAX);
+        , _("Improve GUI Translation"));
     menuItemCrowdin->SetBitmap(mmBitmap(png::CROWDIN));
     menuHelp->Append(menuItemCrowdin);
 
