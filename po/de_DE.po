@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-02-24 23:34+0300\n"
-"PO-Revision-Date: 2019-02-24 21:05\n"
+"PO-Revision-Date: 2019-02-24 21:43\n"
 "Last-Translator: vomikan <nikolay.akimov@gmail.com>\n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -4408,11 +4408,11 @@ msgstr "Melde den Entwicklern einen Fehler in der Anwendung"
 
 #: mmframe.cpp:1786
 msgid "Improve translation"
-msgstr ""
+msgstr "Verbessern der Übersetzung"
 
 #: mmframe.cpp:1787
 msgid "Improve GUI Translation"
-msgstr ""
+msgstr "Verbessern der GUI Übersetzung"
 
 #: mmframe.cpp:1792
 msgid "Reopen &Start-up Dialog"
