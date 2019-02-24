@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MMEX\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2019-02-21 20:25+0300\n"
+"POT-Creation-Date: 2019-02-24 23:34+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -437,7 +437,7 @@ msgstr ""
 #: assetspanel.cpp:63 billsdepositsdialog.cpp:569 billsdepositspanel.cpp:108
 #: customfieldlistdialog.cpp:54 filtertransdialog.cpp:284
 #: filtertransdialog.cpp:885 import_export/qif_import_gui.cpp:102
-#: import_export/qif_import_gui.cpp:231 mmhomepagepanel.cpp:799
+#: import_export/qif_import_gui.cpp:231 mmhomepagepanel.cpp:801
 #: reports/incexpenses.cpp:136 reports/transactions.cpp:79
 #: splitdetailsdialog.cpp:117 transactionsupdatedialog.cpp:133
 #: transdialog.cpp:467 usertransactionpanel.cpp:145 webappdialog.cpp:79
@@ -505,7 +505,7 @@ msgstr ""
 
 #: assetspanel.cpp:458 assetspanel.h:107 general_report_manager.cpp:671
 #: general_report_manager.cpp:948 mmframe.cpp:456 mmframe.cpp:725
-#: mmframe.cpp:1649 mmhomepagepanel.cpp:427 mmhomepagepanel.cpp:842
+#: mmframe.cpp:1649 mmhomepagepanel.cpp:429 mmhomepagepanel.cpp:844
 msgid "Assets"
 msgstr ""
 
@@ -927,7 +927,7 @@ msgstr ""
 
 #: billsdepositsdialog.cpp:573 billsdepositspanel.cpp:109
 #: budgetingpanel.cpp:321 filtertransdialog.cpp:495 filtertransdialog.cpp:503
-#: mmhomepagepanel.cpp:391 mmhomepagepanel.cpp:801
+#: mmhomepagepanel.cpp:391 mmhomepagepanel.cpp:803
 #: reports/budgetcategorysummary.cpp:184 reports/categexp.cpp:164
 #: reports/incexpenses.cpp:137 reports/transactions.cpp:82
 #: splitdetailsdialog.cpp:133 splittransactionsdialog.cpp:136
@@ -1193,7 +1193,7 @@ msgid "Tip: These transactions can be set up to activate - allowing the user to 
 msgstr ""
 
 #: billsdepositspanel.cpp:225 billsdepositspanel.cpp:888 mmframe.cpp:735
-#: mmhomepagepanel.cpp:433
+#: mmhomepagepanel.cpp:435
 msgid "Recurring Transactions"
 msgstr ""
 
@@ -1320,7 +1320,7 @@ msgstr ""
 msgid "Expense"
 msgstr ""
 
-#: budgetentrydialog.cpp:128 db/Table_Category.h:117 mmhomepagepanel.cpp:803
+#: budgetentrydialog.cpp:128 db/Table_Category.h:117 mmhomepagepanel.cpp:805
 #: reports/categexp.cpp:138 reports/incexpenses.cpp:107
 #: reports/incexpenses.cpp:240
 msgid "Income"
@@ -2317,7 +2317,7 @@ msgstr ""
 msgid "Opening MMEX Database - Error"
 msgstr ""
 
-#: filtertransdialog.cpp:50 mmhomepagepanel.cpp:722
+#: filtertransdialog.cpp:50 mmhomepagepanel.cpp:724
 #: model/Model_Billsdeposits.cpp:39 model/Model_Checking.cpp:38
 msgid "Reconciled"
 msgstr ""
@@ -2969,7 +2969,7 @@ msgid "Don't Care"
 msgstr ""
 
 #: import_export/univcsvdialog.cpp:109 mmcheckingpanel.cpp:1106
-#: mmhomepagepanel.cpp:723 reports/summary.cpp:164
+#: mmhomepagepanel.cpp:725 reports/summary.cpp:164
 msgid "Balance"
 msgstr ""
 
@@ -3842,17 +3842,17 @@ msgstr ""
 msgid "Toolbar"
 msgstr ""
 
-#: mmframe.cpp:450 mmframe.cpp:690 mmhomepagepanel.cpp:476
+#: mmframe.cpp:450 mmframe.cpp:690 mmhomepagepanel.cpp:478
 #: reports/summary.cpp:157
 msgid "Bank Accounts"
 msgstr ""
 
-#: mmframe.cpp:451 mmframe.cpp:695 mmhomepagepanel.cpp:477
+#: mmframe.cpp:451 mmframe.cpp:695 mmhomepagepanel.cpp:479
 #: reports/summary.cpp:158
 msgid "Credit Card Accounts"
 msgstr ""
 
-#: mmframe.cpp:452 mmframe.cpp:710 mmhomepagepanel.cpp:479
+#: mmframe.cpp:452 mmframe.cpp:710 mmhomepagepanel.cpp:481
 #: reports/summary.cpp:160
 msgid "Term Accounts"
 msgstr ""
@@ -3861,16 +3861,16 @@ msgstr ""
 msgid "Stock Portfolios"
 msgstr ""
 
-#: mmframe.cpp:454 mmframe.cpp:700 mmhomepagepanel.cpp:475
+#: mmframe.cpp:454 mmframe.cpp:700 mmhomepagepanel.cpp:477
 msgid "Cash Accounts"
 msgstr ""
 
-#: mmframe.cpp:455 mmframe.cpp:705 mmhomepagepanel.cpp:478
+#: mmframe.cpp:455 mmframe.cpp:705 mmhomepagepanel.cpp:480
 #: reports/summary.cpp:159
 msgid "Loan Accounts"
 msgstr ""
 
-#: mmframe.cpp:457 mmframe.cpp:730 mmhomepagepanel.cpp:480
+#: mmframe.cpp:457 mmframe.cpp:730 mmhomepagepanel.cpp:482
 #: reports/summary.cpp:161
 msgid "Crypto Wallets"
 msgstr ""
@@ -4417,7 +4417,7 @@ msgid "Improve translation"
 msgstr ""
 
 #: mmframe.cpp:1787
-msgid "Add/Improve GUI Translation"
+msgid "Improve GUI Translation"
 msgstr ""
 
 #: mmframe.cpp:1792
@@ -4764,7 +4764,7 @@ msgstr ""
 msgid "Total"
 msgstr ""
 
-#: mmhomepagepanel.cpp:126 mmhomepagepanel.cpp:760 reports/incexpenses.cpp:271
+#: mmhomepagepanel.cpp:126 mmhomepagepanel.cpp:762 reports/incexpenses.cpp:271
 #: reports/payee.cpp:147 reports/summarystocks.cpp:137
 #: splittransactionsdialog.cpp:141
 msgid "Total:"
@@ -4783,42 +4783,42 @@ msgstr ""
 msgid "Account / Payee"
 msgstr ""
 
-#: mmhomepagepanel.cpp:615
+#: mmhomepagepanel.cpp:617
 msgid "Upcoming Transactions"
 msgstr ""
 
-#: mmhomepagepanel.cpp:797
+#: mmhomepagepanel.cpp:799
 #, c-format
 msgid "Income vs Expenses: %s"
 msgstr ""
 
-#: mmhomepagepanel.cpp:807 reports/categexp.cpp:136
+#: mmhomepagepanel.cpp:809 reports/categexp.cpp:136
 #: reports/categovertimeperf.cpp:140 reports/incexpenses.cpp:111
 #: reports/incexpenses.cpp:241 reports/payee.cpp:124
 msgid "Expenses"
 msgstr ""
 
-#: mmhomepagepanel.cpp:811 reports/incexpenses.cpp:144
+#: mmhomepagepanel.cpp:813 reports/incexpenses.cpp:144
 msgid "Difference:"
 msgstr ""
 
-#: mmhomepagepanel.cpp:815
+#: mmhomepagepanel.cpp:817
 msgid "Income/Expenses"
 msgstr ""
 
-#: mmhomepagepanel.cpp:860
+#: mmhomepagepanel.cpp:862
 msgid "Transaction Statistics"
 msgstr ""
 
-#: mmhomepagepanel.cpp:864
+#: mmhomepagepanel.cpp:866
 msgid "Follow Up On Transactions: "
 msgstr ""
 
-#: mmhomepagepanel.cpp:868
+#: mmhomepagepanel.cpp:870
 msgid "Total Transactions: "
 msgstr ""
 
-#: mmhomepagepanel.cpp:886 reports/categexp.cpp:207
+#: mmhomepagepanel.cpp:888 reports/categexp.cpp:207
 #: reports/summarystocks.cpp:147 reports/transactions.cpp:172
 msgid "Grand Total:"
 msgstr ""
