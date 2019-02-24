@@ -59,11 +59,10 @@ void mmReportCashFlow::getStats(double& tInitialBalance, std::vector<ValueTrio>&
     std::map<wxDateTime, double> daily_balance;
     wxArrayInt account_id;
 
-    for (const auto& account : Model_Account::instance().all())
+    for (const auto& account : Model_Account::instance().find(
+        Model_Account::ACCOUNTTYPE(Model_Account::all_type()[Model_Account::INVESTMENT], NOT_EQUAL)
+        , Model_Account::STATUS(Model_Account::CLOSED, NOT_EQUAL)))
     {
-        if (Model_Account::status(account) == Model_Account::CLOSED
-            || Model_Account::type(account) == Model_Account::INVESTMENT) continue;
-
         if (accountArray_)
         {
             if (wxNOT_FOUND == accountArray_->Index(account.ACCOUNTNAME)) {
@@ -71,14 +70,12 @@ void mmReportCashFlow::getStats(double& tInitialBalance, std::vector<ValueTrio>&
             }
         }
 
-        const auto transactions = Model_Account::transaction(account);
-        if (transactions.empty()) continue;
-        
-        // Use account first transaction date for initial balance
-        const double initConvRate = Model_CurrencyHistory::getDayRate(account.CURRENCYID, transactions[0].TRANSDATE);
+        double initConvRate = Model_CurrencyHistory::getDayRate(account.CURRENCYID, today_);
         tInitialBalance += account.INITIALBAL * initConvRate;
-
+        
         account_id.Add(account.ACCOUNTID);
+
+        const auto transactions = Model_Account::transaction(account);
         for (const auto& tran : transactions)
         {
             // Do not include asset or stock transfers in income expense calculations.
@@ -253,7 +250,7 @@ wxString mmReportCashFlow::getHTMLText_i()
         for (const auto& entry : forecastVector)
         {
             LineGraphData val;
-            val.amount = entry.amount;
+            val.amount = entry.amount + tInitialBalance;
             val.xPos = mmGetDateForDisplay(entry.label);
             wxDate dateDt;
             dateDt.ParseISODate(entry.label);
