@@ -52,7 +52,7 @@ private:
     void OnTextEntered(wxCommandEvent& event);
 
     Model_Budget::Data* budgetEntry_;
-    wxChoice* m_choiceItem;
+    wxChoice* m_FrequencyChooser;
     mmTextCtrl* m_textAmount;
     wxChoice* m_choiceType;
 
