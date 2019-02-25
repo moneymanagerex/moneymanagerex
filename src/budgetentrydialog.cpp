@@ -22,6 +22,7 @@
 #include "paths.h"
 #include "constants.h"
 #include "mmTextCtrl.h"
+#include "mmSimpleDialogs.h"
 
 wxIMPLEMENT_DYNAMIC_CLASS(mmBudgetEntryDialog, wxDialog);
 
@@ -38,7 +39,7 @@ mmBudgetEntryDialog::mmBudgetEntryDialog(wxWindow* parent
     , Model_Budget::Data* entry
     , const wxString& categoryEstimate
     , const wxString& CategoryActual)
-    : m_choiceItem()
+    : m_FrequencyChooser()
     , m_textAmount()
     , m_choiceType()
     , catEstimateAmountStr_(categoryEstimate)
@@ -71,9 +72,9 @@ void mmBudgetEntryDialog::fillControls()
 {
     double amt = budgetEntry_->AMOUNT;
     int period = Model_Budget::period(budgetEntry_);
-    m_choiceItem->SetSelection(period);
+    m_FrequencyChooser->SetSelection(period);
     if (period == Model_Budget::NONE && amt == 0.0)
-        m_choiceItem->SetSelection(DEF_FREQ_MONTHLY);
+        m_FrequencyChooser->SetSelection(DEF_FREQ_MONTHLY);
 
     if (amt <= 0.0)
         m_choiceType->SetSelection(DEF_TYPE_EXPENSE);
@@ -134,11 +135,12 @@ void mmBudgetEntryDialog::CreateControls()
 
     itemGridSizer2->Add(new wxStaticText(itemPanel7, wxID_STATIC, _("Frequency:")), g_flagsH);
 
-    m_choiceItem = new wxChoice(itemPanel7, wxID_ANY
+    m_FrequencyChooser = new wxChoice(itemPanel7, wxID_ANY
         , wxDefaultPosition, wxDefaultSize, Model_Budget::all_period());
-    itemGridSizer2->Add(m_choiceItem, g_flagsExpand);
-    m_choiceItem->SetToolTip(_("Specify the frequency of the expense or deposit"));
-    m_choiceItem->Connect(wxID_ANY, wxEVT_CHAR, wxKeyEventHandler(mmBudgetEntryDialog::onChoiceChar), nullptr, this);
+    itemGridSizer2->Add(m_FrequencyChooser, g_flagsExpand);
+    m_FrequencyChooser->SetToolTip(_("Specify the frequency of the expense or deposit"));
+    m_FrequencyChooser->Connect(wxID_ANY, wxEVT_CHAR
+        , wxKeyEventHandler(mmBudgetEntryDialog::onChoiceChar), nullptr, this);
 
     itemGridSizer2->Add(new wxStaticText(itemPanel7, wxID_STATIC, _("Amount:")), g_flagsH);
 
@@ -164,21 +166,17 @@ void mmBudgetEntryDialog::CreateControls()
 void mmBudgetEntryDialog::OnOk(wxCommandEvent& event)
 {
     int typeSelection = m_choiceType->GetSelection();    
-    wxString period = Model_Budget::PERIOD_ENUM_CHOICES[m_choiceItem->GetSelection()].second;
+    wxString period = Model_Budget::PERIOD_ENUM_CHOICES[m_FrequencyChooser->GetSelection()].second;
     double amt = 0.0;
 
     if (!m_textAmount->checkValue(amt))
         return;
 
-    if (period == Model_Budget::PERIOD_ENUM_CHOICES[Model_Budget::NONE].second && amt > 0) {
-        m_choiceItem->SetFocus();
-        m_choiceItem->SetSelection(DEF_FREQ_MONTHLY);
-        event.Skip();
-        return;
-    }
-    
-    if (amt == 0.0)
+    if (amt == 0.0 || period == Model_Budget::PERIOD_ENUM_CHOICES[Model_Budget::NONE].second)
+    {
         period = Model_Budget::PERIOD_ENUM_CHOICES[Model_Budget::NONE].second;
+        amt = 0;
+    }
 
     if (typeSelection == DEF_TYPE_EXPENSE)
         amt = -amt;
@@ -192,16 +190,16 @@ void mmBudgetEntryDialog::OnOk(wxCommandEvent& event)
 
 void mmBudgetEntryDialog::onChoiceChar(wxKeyEvent& event) {
 
-    int i = m_choiceItem->GetSelection();
+    int i = m_FrequencyChooser->GetSelection();
     if (event.GetKeyCode()==WXK_DOWN) 
     {
         if (i < DEF_FREQ_DAILY ) 
-            m_choiceItem->SetSelection(++i);
+            m_FrequencyChooser->SetSelection(++i);
     } 
     else if (event.GetKeyCode()==WXK_UP)
     {
         if (i > DEF_FREQ_NONE)
-            m_choiceItem->SetSelection(--i);
+            m_FrequencyChooser->SetSelection(--i);
     } 
     else 
         event.Skip();
