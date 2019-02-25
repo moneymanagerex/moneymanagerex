@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-02-25 13:09+0300\n"
-"PO-Revision-Date: 2019-02-25 12:07\n"
+"PO-Revision-Date: 2019-02-25 20:24\n"
 "Last-Translator: vomikan <nikolay.akimov@gmail.com>\n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -6077,7 +6077,7 @@ msgstr ""
 
 #: stockdialog.cpp:219
 msgid "Specify the date of this initial share purchase"
-msgstr ""
+msgstr "Geben Sie das Datum dieses ersten Aktienkaufs an"
 
 #: stockdialog.cpp:223
 msgid "*Share Number"
@@ -6240,7 +6240,7 @@ msgstr "1 Woche"
 
 #: stockdialog.cpp:719
 msgid "Specify interval of stock history"
-msgstr ""
+msgstr "Intervall der Aktienentwicklung angeben"
 
 #: stockdialog.cpp:732
 msgid "Stock history not found!"
@@ -6512,7 +6512,7 @@ msgstr "Geben Sie eine Person, Firma oder Organisation für diese Buchung an."
 
 #: usertransactionpanel.cpp:207
 msgid "Specify a transaction code or associated check details"
-msgstr ""
+msgstr "Geben Sie einen Transaktionscode oder zugehörige Überprüfungsdetails an"
 
 #: usertransactionpanel.cpp:298
 msgid "Select the required account"
