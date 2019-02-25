@@ -70,13 +70,13 @@ void mmReportCashFlow::getStats(double& tInitialBalance, std::vector<ValueTrio>&
             }
         }
 
+        const auto transactions = Model_Account::transaction(account);
         double initConvRate = Model_CurrencyHistory::getDayRate(account.CURRENCYID,
-            transactions.empty() ? today_ : transactions[0].TRANSDATE);
+            transactions.empty() ? today_.FormatISODate() : transactions[0].TRANSDATE);
         tInitialBalance += account.INITIALBAL * initConvRate;
         
         account_id.Add(account.ACCOUNTID);
 
-        const auto transactions = Model_Account::transaction(account);
         for (const auto& tran : transactions)
         {
             // Do not include asset or stock transfers in income expense calculations.
