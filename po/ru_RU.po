@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-02-25 13:09+0300\n"
-"PO-Revision-Date: 2019-02-25 12:06\n"
+"PO-Revision-Date: 2019-02-25 13:55\n"
 "Last-Translator: vomikan <nikolay.akimov@gmail.com>\n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -1124,7 +1124,7 @@ msgstr "Категории"
 
 #: billsdepositsdialog.h:123
 msgid "Specify where the transaction is going to"
-msgstr "Укажите счёт куда будет произведено перечисление"
+msgstr "Укажите куда будет произведено перечисление"
 
 #: billsdepositsdialog.h:124 transdialog.cpp:1227
 msgid "Specify where the transaction is coming from"
