@@ -174,6 +174,7 @@ void mmBDDialog::dataToControls()
     {
         m_choice_repeat->Append(wxGetTranslation(entry.second));
     }
+    m_choice_repeat->SetSelection(MONTHLY);
 
     for (const auto& i : Model_Billsdeposits::all_type())
     {
@@ -461,7 +462,6 @@ void mmBDDialog::CreateControls()
     repeatBoxSizer->Add(m_btn_due_date, g_flagsExpand);
 
     itemFlexGridSizer5->Add(repeatBoxSizer);
-    m_choice_repeat->SetSelection(0);
 
     // Repeat Times --------------------------------------------
     staticTimesRepeat_ = new wxStaticText(this, wxID_STATIC, _("Payments Left"));
