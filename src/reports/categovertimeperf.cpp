@@ -43,9 +43,18 @@ mmReportCategoryOverTimePerformance::~mmReportCategoryOverTimePerformance()
     delete m_date_range;
 }
 
+int mmReportCategoryOverTimePerformance::report_parameters()
+{
+    return RepParams::NONE;
+}
+
 wxString mmReportCategoryOverTimePerformance::getHTMLText()
 {
     const int MONTHS_IN_PERIOD = 12; // including current month
+    if (m_date_range) {
+        delete m_date_range;
+    }
+    m_date_range = new mmLast12Months();
 
     //Get statistic
     std::map<int, std::map<int, std::map<int, double> > > categoryStats;
