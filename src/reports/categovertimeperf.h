@@ -28,6 +28,7 @@ class mmReportCategoryOverTimePerformance : public mmPrintableBase
 public:
     mmReportCategoryOverTimePerformance();
     ~mmReportCategoryOverTimePerformance();
+    virtual int report_parameters();
 
     wxString getHTMLText();
 
