@@ -70,7 +70,8 @@ void mmReportCashFlow::getStats(double& tInitialBalance, std::vector<ValueTrio>&
             }
         }
 
-        double initConvRate = Model_CurrencyHistory::getDayRate(account.CURRENCYID, today_);
+        double initConvRate = Model_CurrencyHistory::getDayRate(account.CURRENCYID,
+            transactions.empty() ? today_ : transactions[0].TRANSDATE);
         tInitialBalance += account.INITIALBAL * initConvRate;
         
         account_id.Add(account.ACCOUNTID);
