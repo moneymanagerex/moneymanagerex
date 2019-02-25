@@ -1,4 +1,4 @@
-﻿/*******************************************************
+/*******************************************************
 Copyright (C) 2006 Madhan Kanagavel
 Copyright (C) 2016 - 2018 Nikolay Akimov
 Copyright (C) 2018 Stefano Giorgio
@@ -759,9 +759,13 @@ bool mmFilterTransactionsDialog::checkAll(const Model_Checking::Full_Data &tran,
         ok = false;
     else if (getAmountRangeCheckBox() && !checkAmount<Model_Checking>(tran))
         ok = false;
-    else if (getNumberCheckBox() && getNumber() != tran.TRANSACTIONNUMBER)
+    else if (getNumberCheckBox() && (getNumber().empty()
+        ? !tran.TRANSACTIONNUMBER.empty()
+        : tran.TRANSACTIONNUMBER.empty() || !tran.TRANSACTIONNUMBER.Lower().Matches(getNumber().Lower())))
         ok = false;
-    else if (getNotesCheckBox() && !tran.NOTES.Lower().Contains(getNotes().Lower()))
+    else if (getNotesCheckBox() && (getNotes().empty()
+        ? !tran.NOTES.empty()
+        : tran.NOTES.empty() || !tran.NOTES.Lower().Matches(getNotes().Lower())))
         ok = false;
     else if (m_custom_fields->IsSomeWidgetChanged() && !m_custom_fields->IsDataFound(tran))
         ok = false;
@@ -784,9 +788,13 @@ bool mmFilterTransactionsDialog::checkAll(const Model_Billsdeposits::Full_Data &
         ok = false;
     else if (getAmountRangeCheckBox() && !checkAmount<Model_Billsdeposits>(tran))
         ok = false;
-    else if (getNumberCheckBox() && getNumber() != tran.TRANSACTIONNUMBER)
+    else if (getNumberCheckBox() && (getNumber().empty()
+        ? !tran.TRANSACTIONNUMBER.empty()
+        : tran.TRANSACTIONNUMBER.empty() || !tran.TRANSACTIONNUMBER.Lower().Matches(getNumber().Lower())))
         ok = false;
-    else if (getNotesCheckBox() && !tran.NOTES.Lower().Contains(getNotes().Lower()))
+    else if (getNotesCheckBox() && (getNotes().empty()
+        ? !tran.NOTES.empty()
+        : tran.NOTES.empty() || !tran.NOTES.Lower().Matches(getNotes().Lower())))
         ok = false;
     return ok;
 }
@@ -805,7 +813,8 @@ void mmFilterTransactionsDialog::getDescription(mmHTMLBuilder &hb)
     hb.addHeader(3, _("Filtering Details: "));
     // Extract the parameters from the transaction dialog and add them to the report.
     wxString filterDetails = to_json(true);
-    filterDetails.Replace(",\n", "<br>");
+    filterDetails.Replace("\n", "<br>");
+    filterDetails.Replace("\"\"", _("Empty value"));
     filterDetails.Replace("\"", "");
     filterDetails.replace(0, 1, ' ');
     filterDetails.RemoveLast(1);
@@ -909,21 +918,15 @@ wxString mmFilterTransactionsDialog::to_json(bool i18n)
     if (transNumberCheckBox_->IsChecked())
     {
         const wxString num = transNumberEdit_->GetValue();
-        if (!num.empty())
-        {
-            json_writer.Key(wxString(i18n ? _("Number") : "NUMBER").c_str());
-            json_writer.String(num.c_str());
-        }
+        json_writer.Key(wxString(i18n ? _("Number") : "NUMBER").c_str());
+        json_writer.String(num.c_str());
     }
 
     if (notesCheckBox_->IsChecked())
     {
         wxString notes = notesEdit_->GetValue();
-        if (!notes.empty())
-        {
-            json_writer.Key(wxString(i18n ? _("Notes") : "NOTES").c_str());
-            json_writer.String(notes.c_str());
-        }
+        json_writer.Key(wxString(i18n ? _("Notes") : "NOTES").c_str());
+        json_writer.String(notes.c_str());
     }
 
     for (const auto& entry : m_custom_fields->GetActiveCustomFields())
@@ -1070,17 +1073,28 @@ void mmFilterTransactionsDialog::from_json(const wxString &data)
     }
 
     //Number
-    Value& j_number = GetValueByPointerWithDefault(j_doc, "/NUMBER", "");
-    const wxString& s_number = j_number.IsString() ? j_number.GetString() : "";
-    transNumberCheckBox_->SetValue(!s_number.empty());
+    wxString s_number;
+    if (j_doc.HasMember("NUMBER") && j_doc["NUMBER"].IsString()) {
+        transNumberCheckBox_->SetValue(true);
+        Value& s = j_doc["NUMBER"];
+        s_number = s.GetString();
+    }
+    else {
+        transNumberCheckBox_->SetValue(false);
+    }
     transNumberEdit_->Enable(transNumberCheckBox_->IsChecked());
     transNumberEdit_->ChangeValue(s_number);
 
     //Notes
-    Value& j_notes = GetValueByPointerWithDefault(j_doc, "/NOTES", "");
-    const wxString& s_notes = j_notes.IsString() ? j_notes.GetString() : "";
-
-    notesCheckBox_->SetValue(!s_notes.empty());
+    wxString s_notes;
+    if (j_doc.HasMember("NOTES") && j_doc["NOTES"].IsString()) {
+        notesCheckBox_->SetValue(true);
+        Value& s = j_doc["NOTES"];
+        s_notes = s.GetString();
+    }
+    else {
+        notesCheckBox_->SetValue(false);
+    }
     notesEdit_->Enable(notesCheckBox_->IsChecked());
     notesEdit_->ChangeValue(s_notes);
 }
