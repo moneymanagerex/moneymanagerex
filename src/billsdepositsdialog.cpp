@@ -736,32 +736,31 @@ void mmBDDialog::OnPayee(wxCommandEvent& WXUNUSED(event))
     {
         m_bill_data.TOACCOUNTID = -1;
         mmPayeeDialog dlg(this, true);
+        dlg.DisableTools();
+        dlg.ShowModal();
 
-        if (dlg.ShowModal() == wxID_OK)
+        m_bill_data.PAYEEID = dlg.getPayeeId();
+        Model_Payee::Data* payee = Model_Payee::instance().get(m_bill_data.PAYEEID);
+        if (payee)
         {
-            m_bill_data.PAYEEID = dlg.getPayeeId();
-            Model_Payee::Data* payee = Model_Payee::instance().get(m_bill_data.PAYEEID);
-            if (payee)
+            bPayee_->SetLabelText(payee->PAYEENAME);
+            payeeUnknown_ = false;
+            // Only for new transactions: if user want to autofill last category used for payee.
+            // If this is a Split Transaction, ignore displaying last category for payee
+            if (payee->CATEGID != -1 && m_bill_data.local_splits.empty()
+                && Option::instance().getTransCategorySelection() == Option::LASTUSED
+                && !categUpdated_ && m_bill_data.BDID == 0)
             {
-                bPayee_->SetLabelText(payee->PAYEENAME);
-                payeeUnknown_ = false;
-                // Only for new transactions: if user want to autofill last category used for payee.
-                // If this is a Split Transaction, ignore displaying last category for payee
-                if (payee->CATEGID != -1 && m_bill_data.local_splits.empty()
-                    && Option::instance().getTransCategorySelection() == Option::LASTUSED
-                    && !categUpdated_ && m_bill_data.BDID == 0)
-                {
-                    m_bill_data.CATEGID = payee->CATEGID;
-                    m_bill_data.SUBCATEGID = payee->SUBCATEGID;
+                m_bill_data.CATEGID = payee->CATEGID;
+                m_bill_data.SUBCATEGID = payee->SUBCATEGID;
 
-                    bCategory_->SetLabelText(Model_Category::full_name(m_bill_data.CATEGID, m_bill_data.SUBCATEGID));
-                }
+                bCategory_->SetLabelText(Model_Category::full_name(m_bill_data.CATEGID, m_bill_data.SUBCATEGID));
             }
-            else
-            {
-                payeeUnknown_ = true;
-                resetPayeeString();
-            }
+        }
+        else
+        {
+            payeeUnknown_ = true;
+            resetPayeeString();
         }
     }
 }

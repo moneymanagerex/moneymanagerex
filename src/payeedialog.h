@@ -19,6 +19,7 @@
 #ifndef MM_EX_PAYEEDIALOG_H_
 #define MM_EX_PAYEEDIALOG_H_
 
+#include <wx/bmpbuttn.h>
 #include <wx/dialog.h>
 #include <map>
 class wxDataViewListCtrl;
@@ -35,6 +36,7 @@ public:
 
     int getPayeeId() const {return m_payee_id;}
     bool getRefreshRequested() const {return refreshRequested_;}
+    void DisableTools();
 
 private:
     enum cols
@@ -56,6 +58,7 @@ private:
 
     wxDataViewListCtrl* payeeListBox_;
     wxSearchCtrl* m_maskTextCtrl;
+    wxBitmapButton* m_magicButton;
 
     int m_payee_id;
     int m_payee_rename;
