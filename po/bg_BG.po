@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-02-25 13:09+0300\n"
-"PO-Revision-Date: 2019-02-26 09:46\n"
+"PO-Revision-Date: 2019-02-26 10:57\n"
 "Last-Translator: vomikan <nikolay.akimov@gmail.com>\n"
 "Language-Team: Bulgarian\n"
 "MIME-Version: 1.0\n"
@@ -4284,7 +4284,7 @@ msgstr "Отвори интернет страницата на Money Manager EX
 
 #: mmframe.cpp:1717
 msgid "Facebook"
-msgstr ""
+msgstr "Фейсбук"
 
 #: mmframe.cpp:1717
 msgid "Visit us on Facebook"
@@ -4292,35 +4292,35 @@ msgstr "Посетете ни във Facebook"
 
 #: mmframe.cpp:1720
 msgid "Twitter"
-msgstr ""
+msgstr "Twitter"
 
 #: mmframe.cpp:1720
 msgid "Follow us on Twitter"
-msgstr ""
+msgstr "Последвайте ни в Twitter"
 
 #: mmframe.cpp:1723
 msgid "YouTube"
-msgstr ""
+msgstr "YouTube"
 
 #: mmframe.cpp:1723
 msgid "Watch free video materials about MMEX"
-msgstr ""
+msgstr "Гледайте безплатно видео материали за MMEX"
 
 #: mmframe.cpp:1726
 msgid "Slack"
-msgstr ""
+msgstr "Slack"
 
 #: mmframe.cpp:1726
 msgid "Communicate online with MMEX team from your desktop or mobile device"
-msgstr ""
+msgstr "Общувате онлайн с MMEX представители от вашия работен плот или мобилно устройство"
 
 #: mmframe.cpp:1729
 msgid "GitHub"
-msgstr ""
+msgstr "GitHub"
 
 #: mmframe.cpp:1729
 msgid "Access open source code repository and track reported bug statuses"
-msgstr ""
+msgstr "Разгледайте хранилището за отворен код и проследете статусите на докладваните проблеми"
 
 #: mmframe.cpp:1732
 msgid "Wiki pages"
@@ -4615,35 +4615,35 @@ msgstr ""
 
 #: mmframe.cpp:2565
 msgid "Please follow these tasks before submitting new bug:"
-msgstr ""
+msgstr "Моля, изпълнете тези задачи, преди да подадете нов доклад за проблем (Bug Report):"
 
 #: mmframe.cpp:2566
 msgid "1. Use Help->Check for Updates in MMEX to get latest version - your problem can be fixed already."
-msgstr ""
+msgstr "1. Използвайте \"Помощ-> Проверка за актуализации\" в MMEX да получите последната версия - вашият проблем може вече да е отстранен."
 
 #: mmframe.cpp:2567
 msgid "2. Search https://github.com/moneymanagerex/moneymanagerex/issues?q=is:issue for similar problem - update existing issue instead of creating new one."
-msgstr ""
+msgstr "2. Потърсете в https://github.com/moneymanagerex/moneymanagerex/issues?q=is:issue за подобен проблем - актуализирайте съществуващ доклад за проблем вместо да създавате нов."
 
 #: mmframe.cpp:2568
 msgid "3. Put some descriptive name for your issue in the Title field above."
-msgstr ""
+msgstr "3. Задайте ясно описателно име за вашия проблем в полето Заглавие."
 
 #: mmframe.cpp:2569
 msgid "4. Replace this text (marked with >) with detailed description of your problem."
-msgstr ""
+msgstr "4. Заменете този текст (отбелязани с >) с подробно описание на вашия проблем."
 
 #: mmframe.cpp:2570
 msgid "Read https://www.chiark.greenend.org.uk/~sgtatham/bugs.html for useful tips."
-msgstr ""
+msgstr "Прочетете https://www.chiark.greenend.org.uk/~sgtatham/bugs.html за полезни съвети."
 
 #: mmframe.cpp:2571
 msgid "5. Include steps to reproduce your issue, attach screenshots where appropriate."
-msgstr ""
+msgstr "5. Посочете стъпки за възпроизвеждане на проблема, приложете екранни снимки където е подходящо."
 
 #: mmframe.cpp:2572
 msgid "6. Please do not remove information attached below this text."
-msgstr ""
+msgstr "6. Моля, не изтривайте информацията, приложена под този текст."
 
 #: mmframe.cpp:2649
 msgid "Choose HTML file to Export"
@@ -4674,16 +4674,16 @@ msgstr "Сигурни ли сте, че искате да изтриете\n"
 
 #: mmframe.cpp:2891
 msgid "Select the account to reallocate"
-msgstr ""
+msgstr "Изберете сметката за преместване"
 
 #: mmframe.cpp:2891 mmframe.cpp:2914
 msgid "Account Reallocation"
-msgstr ""
+msgstr "Преместване на сметка"
 
 #: mmframe.cpp:2913
 #, c-format
 msgid "Account: %s - Select new type."
-msgstr ""
+msgstr "Сметка: %s - изберете нов тип."
 
 #: mmframe.cpp:3014 payeedialog.cpp:315
 msgid "Payee Relocation Completed."
@@ -4700,16 +4700,16 @@ msgstr "Файла %s не е открит"
 
 #: mmframe.cpp:3111
 msgid "The language for this application has been changed. The change will take effect the next time the application is started."
-msgstr ""
+msgstr "Езикът на приложението бе променен. Промяната ще влязе в сила при следващато стартиране на приложението."
 
 #: mmframereport.cpp:71
 msgid "General Group Report"
-msgstr ""
+msgstr "Отчети - обща група"
 
 #: mmframereport.cpp:98 model/Model_Report.cpp:413 reports/forecast.cpp:88
 #: reports/myusage.cpp:234
 msgid "Caught exception"
-msgstr ""
+msgstr "Caught exception"
 
 #: mmframereport.cpp:113
 msgid "Transaction Report"
@@ -4755,7 +4755,7 @@ msgstr "Резюме"
 
 #: mmhomepagepanel.cpp:391
 msgid "Account / Payee"
-msgstr ""
+msgstr "Сметка / бенефициент"
 
 #: mmhomepagepanel.cpp:617
 msgid "Upcoming Transactions"
@@ -4778,7 +4778,7 @@ msgstr "Разлика:"
 
 #: mmhomepagepanel.cpp:817
 msgid "Income/Expenses"
-msgstr ""
+msgstr "Приходи/разходи"
 
 #: mmhomepagepanel.cpp:862
 msgid "Transaction Statistics"
@@ -4799,19 +4799,19 @@ msgstr "Краен сбор:"
 
 #: mmpanelbase.cpp:134
 msgid "Hide/Show Columns"
-msgstr ""
+msgstr "Показване/скриване на колони"
 
 #: mmpanelbase.cpp:135
 msgid "Hide this column"
-msgstr ""
+msgstr "Скрий тази колона"
 
 #: mmpanelbase.cpp:137
 msgid "Order by this column"
-msgstr ""
+msgstr "Подреди по тази колона"
 
 #: mmpanelbase.cpp:138
 msgid "Reset columns"
-msgstr ""
+msgstr "Възстанови колоните"
 
 #: mmreportspanel.cpp:282
 msgid "REPORTS"
@@ -4819,12 +4819,12 @@ msgstr "ОТЧЕТИ"
 
 #: mmreportspanel.cpp:297 mmreportspanel.cpp:375
 msgid "Period:"
-msgstr ""
+msgstr "Период:"
 
 #: mmreportspanel.cpp:304 reports/mmDateRange.cpp:222
 #: reports/reportbase.cpp:169
 msgid "Custom"
-msgstr ""
+msgstr "По избор"
 
 #: mmreportspanel.cpp:330 mmreportspanel.cpp:331 mmreportspanel.cpp:358
 #: mmreportspanel.cpp:359 mmreportspanel.cpp:411 mmreportspanel.cpp:412
