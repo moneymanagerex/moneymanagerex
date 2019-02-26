@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-02-25 13:09+0300\n"
-"PO-Revision-Date: 2019-02-26 08:14\n"
+"PO-Revision-Date: 2019-02-26 08:45\n"
 "Last-Translator: vomikan <nikolay.akimov@gmail.com>\n"
 "Language-Team: Bulgarian\n"
 "MIME-Version: 1.0\n"
@@ -1821,52 +1821,53 @@ msgstr "Детайли на потребителско поле"
 
 #: customfieldeditdialog.cpp:132
 msgid "Enter the name of the custom field"
-msgstr ""
+msgstr "Въведете име на потребителско поле"
 
 #: customfieldeditdialog.cpp:135
 msgid "Field Type"
-msgstr ""
+msgstr "Вид поле"
 
 #: customfieldeditdialog.cpp:139
 msgid "Select type of custom field"
-msgstr ""
+msgstr "Изберете типа на потребителско поле"
 
 #: customfieldeditdialog.cpp:142
 msgid "ToolTip"
-msgstr ""
+msgstr "Подсказка"
 
 #: customfieldeditdialog.cpp:144
 msgid "Enter the tooltip that will be shown"
-msgstr ""
+msgstr "Въведете подсказката, която ще бъде показана"
 
 #: customfieldeditdialog.cpp:147
 msgid "RegEx"
-msgstr ""
+msgstr "Регулярен израз (RegEx)"
 
 #: customfieldeditdialog.cpp:149
 msgid "Enter the RegEx to validate field"
-msgstr ""
+msgstr "Въведете RegEx израза за проверка на полето"
 
 #: customfieldeditdialog.cpp:152
 msgid "Autocomplete"
-msgstr ""
+msgstr "Автодовършване"
 
 #: customfieldeditdialog.cpp:155
 msgid "Enables autocomplete on custom field"
-msgstr ""
+msgstr "Позволява Автодовършване в потребителско поле"
 
 #: customfieldeditdialog.cpp:158 util.cpp:802
 msgid "Default"
-msgstr ""
+msgstr "Стандартно"
 
 #: customfieldeditdialog.cpp:160
 msgid "Enter the default for this field\n"
 "For date/time insert 'Now' to make current date/time as default"
-msgstr ""
+msgstr "Въведете стойността по подразбиране за това поле\n"
+"За дата/час - изпишете 'Now', за да направите текущата дата и час стандартни"
 
 #: customfieldeditdialog.cpp:164
 msgid "Choices"
-msgstr ""
+msgstr "Избори"
 
 #: customfieldeditdialog.cpp:166
 msgid "Enter the choices for this field separated with a semicolon"
@@ -1907,12 +1908,12 @@ msgstr ""
 
 #: customfieldlistdialog.cpp:55
 msgid "Properties"
-msgstr ""
+msgstr "Свойства"
 
 #: customfieldlistdialog.cpp:65
 #, c-format
 msgid "Personalize custom fields | %s"
-msgstr ""
+msgstr "Персонализиране на потребителски полета | %s"
 
 #: customfieldlistdialog.cpp:172
 msgid "Do you really want to delete this custom field and all its data?"
@@ -2173,33 +2174,34 @@ msgstr "Приход от инвестиции"
 
 #: dbupgrade.cpp:86
 msgid "upgrade"
-msgstr ""
+msgstr "актуализация"
 
 #: dbupgrade.cpp:110
 msgid "initialization"
-msgstr ""
+msgstr "инициализация"
 
 #: dbupgrade.cpp:129
 msgid "MMEX database error!"
-msgstr ""
+msgstr "Грешка в базата данни!"
 
 #: dbupgrade.cpp:130
 #, c-format
 msgid "MMEX database version %i doesn't work with this MMEX version.\n"
 "Please upgrade MMEX to newer version."
-msgstr ""
+msgstr "MMEX база данни версия %i не работи с тази версия на MMEX.\n"
+"Моля, актуализирайте MMEX до по-съвременна версия."
 
 #: dbupgrade.cpp:131 dbupgrade.cpp:150 dbupgrade.cpp:153 dbupgrade.cpp:162
 msgid "MMEX database upgrade"
-msgstr ""
+msgstr "Актуализация на MMEX база данни"
 
 #: dbupgrade.cpp:148
 msgid "MMEX database vacuum failed!"
-msgstr ""
+msgstr "Вакуумиране на MMEX база данни не успя!"
 
 #: dbupgrade.cpp:149
 msgid "MMEX still should work, but try to re-optimize it from Tools -> Database -> Optimize"
-msgstr ""
+msgstr "MMEX все още трябва да работи, но се опитайте оптимизирате базата данни повторно от Инструменти-> База данни-> Оптимизиране"
 
 #: dbupgrade.cpp:153
 #, c-format
@@ -2414,35 +2416,35 @@ msgstr "Детайли за филтриране:"
 
 #: filtertransdialog.cpp:817 filtertransdialog.cpp:1230
 msgid "Empty value"
-msgstr ""
+msgstr "Празна стойност"
 
 #: filtertransdialog.cpp:849
 msgid "Since"
-msgstr ""
+msgstr "От"
 
 #: filtertransdialog.cpp:851
 msgid "Before"
-msgstr ""
+msgstr "Преди"
 
 #: filtertransdialog.cpp:905
 msgid "Amount Min."
-msgstr ""
+msgstr "Минимална сума"
 
 #: filtertransdialog.cpp:913
 msgid "Amount Max."
-msgstr ""
+msgstr "Максимална сума"
 
 #: filtertransdialog.cpp:942
 msgid "Label"
-msgstr ""
+msgstr "Етикет"
 
 #: filtertransdialog.cpp:1226
 msgid "Please Enter"
-msgstr ""
+msgstr "Моля, въведете"
 
 #: filtertransdialog.cpp:1226
 msgid "Setting Name"
-msgstr ""
+msgstr "Име на настройка"
 
 #: filtertransdialog.cpp:1230
 msgid "Could not save settings"
