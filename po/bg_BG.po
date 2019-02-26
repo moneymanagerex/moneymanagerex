@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-02-25 13:09+0300\n"
-"PO-Revision-Date: 2019-02-26 08:45\n"
+"PO-Revision-Date: 2019-02-26 09:16\n"
 "Last-Translator: vomikan <nikolay.akimov@gmail.com>\n"
 "Language-Team: Bulgarian\n"
 "MIME-Version: 1.0\n"
@@ -2448,7 +2448,7 @@ msgstr "Име на настройка"
 
 #: filtertransdialog.cpp:1230
 msgid "Could not save settings"
-msgstr ""
+msgstr "Неуспех при запис на настройките"
 
 #: general_report_manager.cpp:237 general_report_manager.cpp:610
 msgid "General Reports Manager"
@@ -2531,11 +2531,11 @@ msgstr "Зареди файл с отчет:"
 
 #: general_report_manager.cpp:546 general_report_manager.cpp:976
 msgid "General Report Manager files (*.grm)"
-msgstr ""
+msgstr "Файлове на Управителя на общи доклади (*.grm)"
 
 #: general_report_manager.cpp:546 general_report_manager.cpp:976
 msgid "ZIP files (*.zip)"
-msgstr ""
+msgstr "ZIP файлове (* .zip)"
 
 #: general_report_manager.cpp:609
 #, c-format
@@ -2558,7 +2558,7 @@ msgstr "Смени група"
 
 #: general_report_manager.cpp:680 general_report_manager.cpp:845
 msgid "Rename Group"
-msgstr ""
+msgstr "Преименувай групата"
 
 #: general_report_manager.cpp:681
 msgid "UnGroup"
@@ -2587,15 +2587,15 @@ msgstr "Изтрий заглавието на отчета:"
 
 #: general_report_manager.cpp:827 general_report_manager.cpp:908
 msgid "Enter or choose name for the new report group"
-msgstr ""
+msgstr "Въведете или изберете име за новата група доклади"
 
 #: general_report_manager.cpp:828
 msgid "Change report group"
-msgstr ""
+msgstr "Промени групата за доклади"
 
 #: general_report_manager.cpp:844
 msgid "Enter or choose name for the new group"
-msgstr ""
+msgstr "Въведете или изберете име за новата група"
 
 #: general_report_manager.cpp:909
 msgid "Add Report Group"
@@ -2604,11 +2604,11 @@ msgstr "Добави група за отчети"
 #: general_report_manager.cpp:922
 #, c-format
 msgid "New Report %s"
-msgstr ""
+msgstr "Нов отчет %s"
 
 #: general_report_manager.cpp:935
 msgid "Report Name already exists"
-msgstr ""
+msgstr "Името на отчета вече съществува"
 
 #: general_report_manager.cpp:935 general_report_manager.cpp:942
 msgid "New Report"
@@ -2630,40 +2630,40 @@ msgstr "Универсалено CSV импортиране"
 
 #: import_export/parsers.cpp:89
 msgid "Unable to create file."
-msgstr ""
+msgstr "Не мога да създам файла."
 
 #: import_export/parsers.cpp:109 import_export/parsers.cpp:248
 msgid "Could not save file."
-msgstr ""
+msgstr "Не можах да запазя файла."
 
 #: import_export/parsers.cpp:109 import_export/parsers.cpp:248
 msgid "Export error"
-msgstr ""
+msgstr "Грешка при експортиране"
 
 #: import_export/parsers.cpp:135 import_export/parsers.cpp:144
 msgid "File is not in Excel XML Spreadsheet 2003 format."
-msgstr ""
+msgstr "Файлът не е във Excel XML Spreadsheet 2003 формат."
 
 #: import_export/parsers.cpp:135 import_export/parsers.cpp:144
 #: import_export/parsers.cpp:157 import_export/parsers.cpp:165
 msgid "Parsing error"
-msgstr ""
+msgstr "Грешка при разчитане"
 
 #: import_export/parsers.cpp:157
 msgid "Could not find Worksheet."
-msgstr ""
+msgstr "Не можах да открия Worksheet."
 
 #: import_export/parsers.cpp:163
 msgid "Table"
-msgstr ""
+msgstr "Таблица"
 
 #: import_export/parsers.cpp:165
 msgid "Could not find Table."
-msgstr ""
+msgstr "Не може да се намери таблица."
 
 #: import_export/parsers.cpp:216
 msgid "Transactions"
-msgstr ""
+msgstr "Транзакции"
 
 #: import_export/qif_export.cpp:42 import_export/qif_export.cpp:235
 #: import_export/qif_export.cpp:311
@@ -2727,7 +2727,7 @@ msgstr "Избери QIF файл за Експортиране"
 
 #: import_export/qif_export.cpp:281 import_export/qif_import_gui.cpp:706
 msgid "QIF Files (*.qif)"
-msgstr ""
+msgstr "QIF файлове (*.qif)"
 
 #: import_export/qif_export.cpp:300
 msgid "No Account available for export"
@@ -2778,7 +2778,7 @@ msgstr "Избери &файл"
 
 #: import_export/qif_import_gui.cpp:142 import_export/univcsvdialog.cpp:313
 msgid "Encoding:"
-msgstr ""
+msgstr "Знаков набор:"
 
 #: import_export/qif_import_gui.cpp:168
 msgid "Filtering Details:"
@@ -2790,11 +2790,11 @@ msgstr "Данни"
 
 #: import_export/qif_import_gui.cpp:265
 msgid "Use account number instead of account name"
-msgstr ""
+msgstr "Използвайте номер на сметка вместо име на сметка"
 
 #: import_export/qif_import_gui.cpp:269
 msgid "Include payee field in notes"
-msgstr ""
+msgstr "Включвай поле \"Получател\" в бележки"
 
 #: import_export/qif_import_gui.cpp:348 import_export/qif_import_gui.cpp:351
 #: import_export/qif_import_gui.cpp:504 import_export/qif_import_gui.cpp:1089
@@ -2881,7 +2881,7 @@ msgstr "Импортиране транзакция %i от %i"
 #: import_export/qif_import_gui.cpp:841 webapp.cpp:120
 #, c-format
 msgid "Error: %s"
-msgstr ""
+msgstr "Грешка: %s"
 
 #: import_export/qif_import_gui.cpp:852
 msgid "Importing Transfers"
@@ -2898,7 +2898,7 @@ msgstr "Импортирането приключи успешно"
 #: import_export/qif_import_gui.cpp:880 stockdialog.cpp:640
 #, c-format
 msgid "Total Imported: %ld"
-msgstr ""
+msgstr "Общо внесени: %ld"
 
 #: import_export/qif_import_gui.cpp:888 import_export/univcsvdialog.cpp:992
 msgid "Imported transactions discarded by user!"
@@ -2906,31 +2906,31 @@ msgstr "Импортираните транзакции бяха отказан�
 
 #: import_export/qif_import_gui.cpp:970
 msgid "Transaction code is missing"
-msgstr ""
+msgstr "Липсва код на транзакция"
 
 #: import_export/qif_import_gui.cpp:979
 msgid "Transaction Payee is missing or incorrect"
-msgstr ""
+msgstr "Липсващ или неправилен \"Получател\""
 
 #: import_export/qif_import_gui.cpp:991
 msgid "Date format or date mask is incorrect"
-msgstr ""
+msgstr "Маската или формата на дата е невалиден"
 
 #: import_export/qif_import_gui.cpp:1003
 msgid "Transaction Account is incorrect"
-msgstr ""
+msgstr "Невалидна сметка за тразакция"
 
 #: import_export/qif_import_gui.cpp:1012
 msgid "Transaction Account for transfer is incorrect"
-msgstr ""
+msgstr "Неправилна сметка за трансфер"
 
 #: import_export/qif_import_gui.cpp:1038
 msgid "Transaction Amount is incorrect"
-msgstr ""
+msgstr "Сумата на транзакцията е невалидна"
 
 #: import_export/qif_import_gui.cpp:1057
 msgid "Transaction Category is incorrect"
-msgstr ""
+msgstr "Неправилна \"Категория\""
 
 #: import_export/qif_import_gui.cpp:1146
 #, c-format
@@ -2944,7 +2944,7 @@ msgstr "Добавен получател: %s"
 
 #: import_export/univcsvdialog.cpp:101
 msgid "Amount +/-"
-msgstr ""
+msgstr "Сума +/-"
 
 #: import_export/univcsvdialog.cpp:103
 msgid "SubCategory"
@@ -2961,19 +2961,19 @@ msgstr "Баланс"
 
 #: import_export/univcsvdialog.cpp:110
 msgid "Import dialog"
-msgstr ""
+msgstr "Диалогов прозорец за внасяне"
 
 #: import_export/univcsvdialog.cpp:110
 msgid "Export dialog"
-msgstr ""
+msgstr "Диалогов прозорец за изнасяне"
 
 #: import_export/univcsvdialog.cpp:171
 msgid "&Browse"
-msgstr ""
+msgstr "Преглед"
 
 #: import_export/univcsvdialog.cpp:174
 msgid "Choose CSV data file to Import"
-msgstr ""
+msgstr "Изберете CSV файл за внасяне"
 
 #: import_export/univcsvdialog.cpp:174
 msgid "Choose CSV data file to Export"
@@ -2985,7 +2985,7 @@ msgstr "Запиши шаблон"
 
 #: import_export/univcsvdialog.cpp:200
 msgid "Specify the order of fields in the file"
-msgstr ""
+msgstr "Посочете реда на полетата във файла"
 
 #: import_export/univcsvdialog.cpp:231
 msgid "&MMEX format"
@@ -3021,7 +3021,7 @@ msgstr "Формат на дата:"
 
 #: import_export/univcsvdialog.cpp:298
 msgid "CSV Delimiter:"
-msgstr ""
+msgstr "CSV разделител:"
 
 #: import_export/univcsvdialog.cpp:304 optionsettingsmisc.cpp:180
 msgid "Specify the delimiter to use when importing/exporting CSV files"
@@ -3029,31 +3029,31 @@ msgstr "Посочи разделителят, който да се ползва
 
 #: import_export/univcsvdialog.cpp:327
 msgid "Export column titles"
-msgstr ""
+msgstr "Изнасяне на заглавия колони"
 
 #: import_export/univcsvdialog.cpp:336
 msgid "Amount +/-:"
-msgstr ""
+msgstr "Сума +/-:"
 
 #: import_export/univcsvdialog.cpp:342
 msgid "Positive values are deposits"
-msgstr ""
+msgstr "Положителни стойности са депозити"
 
 #: import_export/univcsvdialog.cpp:343
 msgid "Positive values are withdrawals"
-msgstr ""
+msgstr "Положителните стойности са тегления"
 
 #: import_export/univcsvdialog.cpp:359
 msgid "Rows to ignore"
-msgstr ""
+msgstr "Редове за прескачане"
 
 #: import_export/univcsvdialog.cpp:365
 msgid "From start: "
-msgstr ""
+msgstr "От Начало: "
 
 #: import_export/univcsvdialog.cpp:373
 msgid "From end: "
-msgstr ""
+msgstr "От края на: "
 
 #: import_export/univcsvdialog.cpp:381
 msgid "Preview"
@@ -3071,47 +3071,48 @@ msgstr "Експортирай файл"
 #, c-format
 msgid "Default account '%s' for this template does not exist.\n"
 "Please select a new account."
-msgstr ""
+msgstr "Акаунтът по подразбиране '%s' за този шаблон не съществува.\n"
+"Моля, изберете нов акаунт."
 
 #: import_export/univcsvdialog.cpp:503
 msgid "Account does not exist"
-msgstr ""
+msgstr "Сметката не съществува "
 
 #: import_export/univcsvdialog.cpp:831
 msgid "Incorrect fields specified for import!"
-msgstr ""
+msgstr "Неправилен полета, указани за внос!"
 
 #: import_export/univcsvdialog.cpp:832
 msgid "Date field is required."
-msgstr ""
+msgstr "Поле \"Дата\" е задължително."
 
 #: import_export/univcsvdialog.cpp:833
 msgid "Amount field or both Withdrawal and Deposit fields are required."
-msgstr ""
+msgstr "Полетата сума или изтегляне и внасяне са задължителни."
 
 #: import_export/univcsvdialog.cpp:834 import_export/univcsvdialog.cpp:962
 #: webappdialog.cpp:270
 msgid "Import"
-msgstr ""
+msgstr "Внасяне"
 
 #: import_export/univcsvdialog.cpp:884
 #, c-format
 msgid "Transactions imported to account %s: %ld"
-msgstr ""
+msgstr "Транзакции, внесени в сметка %s: %ld"
 
 #: import_export/univcsvdialog.cpp:895
 #, c-format
 msgid "Line %ld: Empty"
-msgstr ""
+msgstr "Ред %ld: празен"
 
 #: import_export/univcsvdialog.cpp:909
 #, c-format
 msgid "Line %ld: Error:"
-msgstr ""
+msgstr "Ред %ld: грешка:"
 
 #: import_export/univcsvdialog.cpp:911
 msgid "Invalid Date."
-msgstr ""
+msgstr "Неправилна Дата."
 
 #: import_export/univcsvdialog.cpp:912 mmTextCtrl.cpp:82
 msgid "Invalid Amount."
@@ -3119,42 +3120,42 @@ msgstr "Невалидно крайно количество."
 
 #: import_export/univcsvdialog.cpp:914
 msgid "Type (withdrawal/deposit) unknown."
-msgstr ""
+msgstr "Тип (изтегляне/внасяне) неизвестен."
 
 #: import_export/univcsvdialog.cpp:939
 #, c-format
 msgid "Line %ld: OK, imported."
-msgstr ""
+msgstr "Ред %ld: ОК, внесен."
 
 #: import_export/univcsvdialog.cpp:947 stockdialog.cpp:638
 #, c-format
 msgid "Total Lines: %ld"
-msgstr ""
+msgstr "Общо редове: %ld"
 
 #: import_export/univcsvdialog.cpp:949
 #, c-format
 msgid "Lines Selected to Import: %ld"
-msgstr ""
+msgstr "Редове, избрани за внасяне: %ld"
 
 #: import_export/univcsvdialog.cpp:951
 #, c-format
 msgid "Empty Lines: %ld"
-msgstr ""
+msgstr "Празни редове: %ld"
 
 #: import_export/univcsvdialog.cpp:953
 #, c-format
 msgid "Imported: %ld"
-msgstr ""
+msgstr "Внесени: %ld"
 
 #: import_export/univcsvdialog.cpp:955
 #, c-format
 msgid "Errored: %ld"
-msgstr ""
+msgstr "Грешки: %ld"
 
 #: import_export/univcsvdialog.cpp:958
 #, c-format
 msgid "Log file written to: %s"
-msgstr ""
+msgstr "Файл-дневник в: %s"
 
 #: import_export/univcsvdialog.cpp:961 stockdialog.cpp:646
 msgid "Please confirm saving..."
@@ -3162,7 +3163,7 @@ msgstr "Моля потвърдете записването..."
 
 #: import_export/univcsvdialog.cpp:993
 msgid "No imported transactions!"
-msgstr ""
+msgstr "Няма внесени транзакции!"
 
 #: import_export/univcsvdialog.cpp:1011
 msgid "Incorrect fields specified for export! Requires at least Date and Amount."
