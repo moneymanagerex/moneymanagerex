@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-02-25 13:09+0300\n"
-"PO-Revision-Date: 2019-02-25 12:08\n"
+"PO-Revision-Date: 2019-02-26 08:14\n"
 "Last-Translator: vomikan <nikolay.akimov@gmail.com>\n"
 "Language-Team: Bulgarian\n"
 "MIME-Version: 1.0\n"
@@ -28,7 +28,7 @@ msgstr "Лицензно споразумение"
 #: aboutdialog.cpp:41
 #, c-format
 msgid "About %s"
-msgstr ""
+msgstr "Относно %s"
 
 #: aboutdialog.cpp:146
 msgid "About"
@@ -36,7 +36,7 @@ msgstr "Относно"
 
 #: aboutdialog.cpp:151
 msgid "Authors"
-msgstr ""
+msgstr "Автори"
 
 #: aboutdialog.cpp:156
 msgid "Sponsors"
@@ -48,7 +48,7 @@ msgstr "Лиценз"
 
 #: aboutdialog.cpp:166
 msgid "Privacy"
-msgstr ""
+msgstr "Поверителност"
 
 #: aboutdialog.cpp:197 accountdialog.cpp:372 appstartdialog.cpp:136
 #: assetdialog.cpp:299 attachmentdialog.cpp:118 billsdepositsdialog.cpp:499
@@ -119,7 +119,7 @@ msgstr "Други"
 
 #: accountdialog.cpp:267
 msgid "Card Number:"
-msgstr ""
+msgstr "Номер на картата:"
 
 #: accountdialog.cpp:267
 msgid "Account Number:"
@@ -143,43 +143,43 @@ msgstr "Информация за Достъп:"
 
 #: accountdialog.cpp:298
 msgid "Statement"
-msgstr ""
+msgstr "Извлечение"
 
 #: accountdialog.cpp:306
 msgid "Statement:"
-msgstr ""
+msgstr "Извлечение:"
 
 #: accountdialog.cpp:307
 msgid "Locked"
-msgstr ""
+msgstr "Заключена"
 
 #: accountdialog.cpp:311
 msgid "Reconciled Date:"
-msgstr ""
+msgstr "Потвърден баланс:"
 
 #: accountdialog.cpp:316
 msgid "Minimum Bal:"
-msgstr ""
+msgstr "Минимален баланс:"
 
 #: accountdialog.cpp:323
 msgid "Credit"
-msgstr ""
+msgstr "Вноска"
 
 #: accountdialog.cpp:331
 msgid "Credit Limit:"
-msgstr ""
+msgstr "Кредитен лимит:"
 
 #: accountdialog.cpp:336
 msgid "Interest Rate:"
-msgstr ""
+msgstr "Лихвен процент:"
 
 #: accountdialog.cpp:340
 msgid "Payment Due Date:"
-msgstr ""
+msgstr "Датата на плащане:"
 
 #: accountdialog.cpp:345
 msgid "Minimum Payment:"
-msgstr ""
+msgstr "Минимална вноска:"
 
 #: accountdialog.cpp:367
 msgid "Organize attachments of this account"
@@ -235,19 +235,19 @@ msgstr "Въведете всякаква информация за достъп
 
 #: accountdialog.cpp:393
 msgid "Enable or disable the transaction Lock"
-msgstr ""
+msgstr "Активиране или деактивиране на заключването на транзакции"
 
 #: accountdialog.cpp:394
 msgid "The date of the transaction lock"
-msgstr ""
+msgstr "Датата на заключването на транзакцията"
 
 #: accountdialog.cpp:395
 msgid "Account balance lower limit. Zero to disable"
-msgstr ""
+msgstr "Долна граница на баланс по сметка. Нула за изключване"
 
 #: accountdialog.cpp:396
 msgid "Credit limit for the Account. Zero to disable"
-msgstr ""
+msgstr "Кредитен лимит за сметката. Нула за изключване"
 
 #: accountdialog.cpp:439
 msgid "Account Name "
@@ -316,7 +316,7 @@ msgstr "&Изход"
 #: appstartdialog.cpp:153
 #, c-format
 msgid "Open the previously opened database: %s"
-msgstr ""
+msgstr "Отвори последно ползваната база: %s"
 
 #: assetdialog.cpp:56 assetdialog.cpp:426 assetspanel.cpp:512
 msgid "New Asset"
@@ -328,11 +328,11 @@ msgstr "Промени актив"
 
 #: assetdialog.cpp:65 assetdialog.cpp:86 assetspanel.cpp:516
 msgid "Add Asset Transaction"
-msgstr ""
+msgstr "Транзакция за добавяне на актив"
 
 #: assetdialog.cpp:91
 msgid "Edit Asset Transaction"
-msgstr ""
+msgstr "Транзакция за промяна на актив"
 
 #: assetdialog.cpp:177
 msgid "Asset Details"
@@ -395,7 +395,7 @@ msgstr "% Промяна (Rate)"
 
 #: assetdialog.cpp:241
 msgid "Enter the rate at which the asset changes its value in percentage per year"
-msgstr ""
+msgstr "Въведете скоростта, с която активът променя стойността си в процент годишно"
 
 #: assetdialog.cpp:253
 msgid "Organize attachments of this asset"
@@ -407,11 +407,11 @@ msgstr "Въведете бележки свързани с този актив"
 
 #: assetdialog.cpp:262
 msgid "New Transaction Details"
-msgstr ""
+msgstr "Детайли за транзакция"
 
 #: assetdialog.cpp:265 sharetransactiondialog.cpp:280
 msgid "Edit Transaction Details"
-msgstr ""
+msgstr "Промяна на детайли по транзакция"
 
 #: assetdialog.cpp:300 constants.cpp:44 sharetransactiondialog.cpp:311
 msgid "&Cancel "
@@ -422,12 +422,15 @@ msgid "An asset account having the same name has not been found.\n\n"
 "A single transaction for this asset can be associated with any account.\n"
 "Multiple asset transactions need to be associated with an asset account.\n\n"
 "Would you want to create one?\n\n"
-msgstr ""
+msgstr "Не е открита сметка за Актив със същото име.\n\n"
+"Една транзакция за този актив може да бъде свързана с коя да е сметка.\n"
+"Множество транзакции с активи трябва да бъдат свързани със сметка за Актив.\n\n"
+"Искате ли да създадете такава?\n\n"
 
 #: assetspanel.cpp:60 billsdepositspanel.cpp:101 mmcheckingpanel.cpp:1098
 #: reports/transactions.cpp:73 stockspanel.cpp:95
 msgid "ID"
-msgstr ""
+msgstr "Номер за идентификация"
 
 #: assetspanel.cpp:63 billsdepositsdialog.cpp:569 billsdepositspanel.cpp:108
 #: customfieldlistdialog.cpp:54 filtertransdialog.cpp:284
@@ -458,15 +461,15 @@ msgstr "Д&ублирай Актив"
 
 #: assetspanel.cpp:104
 msgid "&Add Asset Transaction"
-msgstr ""
+msgstr "&Транзакция за добавяне на актив"
 
 #: assetspanel.cpp:105
 msgid "&View Asset Transactions"
-msgstr ""
+msgstr "&Преглед на транзакции с Актив"
 
 #: assetspanel.cpp:106
 msgid "&Open Asset Account"
-msgstr ""
+msgstr "&Откриване на сметка за Актив"
 
 #: assetspanel.cpp:108
 msgid "&Edit Asset"
@@ -492,7 +495,7 @@ msgstr "Потвърдете изтриването на актива"
 #: assetspanel.cpp:373 stockspanel.cpp:768 stockspanel.cpp:943
 #, c-format
 msgid "Total: %s"
-msgstr ""
+msgstr "Общо: %s"
 
 #: assetspanel.cpp:423
 msgid "MMEX allows you to track fixed assets like cars, houses, land and others. Each asset can have its value appreciate by a certain rate per year, depreciate by a certain rate per year, or not change in value. The total assets are added to your total financial worth."
@@ -518,15 +521,15 @@ msgstr "&Нов"
 
 #: assetspanel.cpp:515 stockspanel.cpp:577
 msgid "&Add Trans "
-msgstr ""
+msgstr "&Добави транзакция"
 
 #: assetspanel.cpp:520 stockspanel.cpp:582
 msgid "&View Trans "
-msgstr ""
+msgstr "&Преглед на транзакция"
 
 #: assetspanel.cpp:521
 msgid "View Asset Transactions"
-msgstr ""
+msgstr "Преглед на транзакции с Актив"
 
 #: assetspanel.cpp:525 attachmentdialog.cpp:285 billsdepositspanel.cpp:279
 #: categdialog.cpp:229 customfieldlistdialog.cpp:264 maincurrencydialog.cpp:208
@@ -561,21 +564,23 @@ msgstr "Въведи низ, за да открием свързани акти�
 #: assetspanel.cpp:669
 #, c-format
 msgid "Change in Value: %s %s"
-msgstr ""
+msgstr "Промяна в стойността: %s %s"
 
 #: assetspanel.cpp:783
 msgid "This asset does not have its own account\n\n"
 "Multiple transactions for this asset are not recommended.\n"
 "Please use the popup: 'Open Asset Account' to track the transaction."
-msgstr ""
+msgstr "Този актив няма собствена сметка\n\n"
+"Множество транзакции за този актив не се препоръчват.\n"
+"Моля, използвайте изскачащия прозорец: \"Отвори сметка за Актив\" за проследяване на транзакцията."
 
 #: assetspanel.cpp:786
 msgid "Asset Management"
-msgstr ""
+msgstr "Управление на активи"
 
 #: assetspanel.cpp:805
 msgid "Account \t Date\t   Value\n\n"
-msgstr ""
+msgstr "Сметка           Дата        Стойност\n\n"
 
 #: attachmentdialog.cpp:54 customfieldlistdialog.cpp:52
 #: import_export/qif_import_gui.cpp:97 import_export/univcsvdialog.cpp:1142
@@ -628,7 +633,7 @@ msgstr "Подреди прикачени неща | Ново %s"
 
 #: attachmentdialog.cpp:125 customfieldlistdialog.cpp:100 payeedialog.cpp:117
 msgid "Other tools"
-msgstr ""
+msgstr "Други инструменти"
 
 #: attachmentdialog.cpp:164
 msgid "Import attachment:"
@@ -636,7 +641,7 @@ msgstr "Импортирай прикачване:"
 
 #: attachmentdialog.cpp:166 import_export/univcsvdialog.cpp:1414
 msgid "All Files"
-msgstr ""
+msgstr "Всички файлове"
 
 #: attachmentdialog.cpp:174
 msgid "Enter a description for the new attachment:"
@@ -648,7 +653,7 @@ msgstr "Подреди прикачвания: Добави прикачване
 
 #: attachmentdialog.cpp:215
 msgid "Enter a new description for the attachment:"
-msgstr ""
+msgstr "Въведете описание за прикачването:"
 
 #: attachmentdialog.cpp:216
 msgid "Organize Attachments: Edit Attachment"
@@ -745,7 +750,7 @@ msgstr "Седмично"
 
 #: billsdepositsdialog.cpp:52 billsdepositspanel.cpp:47
 msgid "Fortnightly"
-msgstr ""
+msgstr "Две седмици"
 
 #: billsdepositsdialog.cpp:53 billsdepositspanel.cpp:48
 #: model/Model_Budget.cpp:57 option.cpp:115 option.cpp:120 option.cpp:123
@@ -788,19 +793,19 @@ msgstr "Дневно"
 
 #: billsdepositsdialog.cpp:61 billsdepositsdialog.cpp:1387
 msgid "In (x) Days"
-msgstr ""
+msgstr "В (x) дни"
 
 #: billsdepositsdialog.cpp:62 billsdepositsdialog.cpp:1387
 msgid "In (x) Months"
-msgstr ""
+msgstr "В (x) месеца"
 
 #: billsdepositsdialog.cpp:63
 msgid "Every (x) Days"
-msgstr ""
+msgstr "На всеки (x) дни"
 
 #: billsdepositsdialog.cpp:64
 msgid "Every (x) Months"
-msgstr ""
+msgstr "На всеки (X) месеца"
 
 #: billsdepositsdialog.cpp:65 billsdepositspanel.cpp:60
 msgid "Monthly (last day)"
@@ -812,23 +817,23 @@ msgstr "Месечно (последен работен ден)"
 
 #: billsdepositsdialog.cpp:145
 msgid "New Recurring Transaction"
-msgstr ""
+msgstr "Нови периодична транзакция"
 
 #: billsdepositsdialog.cpp:297
 msgid "Edit Recurring Transaction"
-msgstr ""
+msgstr "Редактиране на периодична транзакция"
 
 #: billsdepositsdialog.cpp:301
 msgid "Enter Recurring Transaction"
-msgstr ""
+msgstr "Добаване на периодична транзакция"
 
 #: billsdepositsdialog.cpp:394
 msgid "Transaction Dates"
-msgstr ""
+msgstr "Дати на транзакцията"
 
 #: billsdepositsdialog.cpp:416
 msgid "Recurring Transaction Details"
-msgstr ""
+msgstr "Детайли на повтаряща се транзакция"
 
 #: billsdepositsdialog.cpp:437
 msgid "Specify the date when this bill or deposit is due"
@@ -1717,19 +1722,19 @@ msgstr "Виж текущата година"
 
 #: constants.cpp:233
 msgid "View Current Financial Year"
-msgstr ""
+msgstr "Преглед на текущата финансова година"
 
 #: constants.cpp:234
 msgid "View Last Year"
-msgstr ""
+msgstr "Покажи миналата година"
 
 #: constants.cpp:235
 msgid "View Last Financial Year"
-msgstr ""
+msgstr "Преглед на миналата финансова година"
 
 #: constants.cpp:236
 msgid "View Since Statement Date"
-msgstr ""
+msgstr "Преглед от последната дата на извлечение"
 
 #: constants.cpp:239 mmframe.cpp:1294 mmframe.cpp:1830
 #: model/Model_Account.cpp:26
@@ -1754,7 +1759,7 @@ msgstr "Име на валута"
 
 #: currencydialog.cpp:151
 msgid "Currency Type"
-msgstr ""
+msgstr "Тип валута"
 
 #: currencydialog.cpp:165
 msgid "Currency Symbol"
@@ -1783,7 +1788,7 @@ msgstr "Скала"
 
 #: currencydialog.cpp:207
 msgid "Historic currency"
-msgstr ""
+msgstr "Исторически валута"
 
 #: currencydialog.cpp:212
 msgid "Value Display Sample:"
@@ -1804,15 +1809,15 @@ msgstr "Невалидно попълване"
 #: currencydialog.cpp:280
 #, c-format
 msgid "%s Shown As: %s"
-msgstr ""
+msgstr "%s показани като: %s"
 
 #: customfieldeditdialog.cpp:57
 msgid "New/Edit Custom Field"
-msgstr ""
+msgstr "Ново/редактиране на потребителско поле"
 
 #: customfieldeditdialog.cpp:120
 msgid "Custom Field Details"
-msgstr ""
+msgstr "Детайли на потребителско поле"
 
 #: customfieldeditdialog.cpp:132
 msgid "Enter the name of the custom field"
