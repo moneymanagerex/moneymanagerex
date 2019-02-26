@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-02-25 13:09+0300\n"
-"PO-Revision-Date: 2019-02-25 20:24\n"
+"PO-Revision-Date: 2019-02-26 20:25\n"
 "Last-Translator: vomikan <nikolay.akimov@gmail.com>\n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -6224,7 +6224,7 @@ msgstr "Max"
 
 #: stockdialog.cpp:695
 msgid "Specify type frequency of stock history"
-msgstr ""
+msgstr "Legen sie die Datumsperiode für die Aktienkursentwicklung fest"
 
 #: stockdialog.cpp:696 stockdialog.cpp:720
 msgid "Stock History Update"
