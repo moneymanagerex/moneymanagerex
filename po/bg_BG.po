@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-02-25 13:09+0300\n"
-"PO-Revision-Date: 2019-02-25 12:08\n"
+"PO-Revision-Date: 2019-02-26 09:46\n"
 "Last-Translator: vomikan <nikolay.akimov@gmail.com>\n"
 "Language-Team: Bulgarian\n"
 "MIME-Version: 1.0\n"
@@ -28,7 +28,7 @@ msgstr "Лицензно споразумение"
 #: aboutdialog.cpp:41
 #, c-format
 msgid "About %s"
-msgstr ""
+msgstr "Относно %s"
 
 #: aboutdialog.cpp:146
 msgid "About"
@@ -36,7 +36,7 @@ msgstr "Относно"
 
 #: aboutdialog.cpp:151
 msgid "Authors"
-msgstr ""
+msgstr "Автори"
 
 #: aboutdialog.cpp:156
 msgid "Sponsors"
@@ -48,7 +48,7 @@ msgstr "Лиценз"
 
 #: aboutdialog.cpp:166
 msgid "Privacy"
-msgstr ""
+msgstr "Поверителност"
 
 #: aboutdialog.cpp:197 accountdialog.cpp:372 appstartdialog.cpp:136
 #: assetdialog.cpp:299 attachmentdialog.cpp:118 billsdepositsdialog.cpp:499
@@ -119,7 +119,7 @@ msgstr "Други"
 
 #: accountdialog.cpp:267
 msgid "Card Number:"
-msgstr ""
+msgstr "Номер на картата:"
 
 #: accountdialog.cpp:267
 msgid "Account Number:"
@@ -143,43 +143,43 @@ msgstr "Информация за Достъп:"
 
 #: accountdialog.cpp:298
 msgid "Statement"
-msgstr ""
+msgstr "Извлечение"
 
 #: accountdialog.cpp:306
 msgid "Statement:"
-msgstr ""
+msgstr "Извлечение:"
 
 #: accountdialog.cpp:307
 msgid "Locked"
-msgstr ""
+msgstr "Заключена"
 
 #: accountdialog.cpp:311
 msgid "Reconciled Date:"
-msgstr ""
+msgstr "Потвърден баланс:"
 
 #: accountdialog.cpp:316
 msgid "Minimum Bal:"
-msgstr ""
+msgstr "Минимален баланс:"
 
 #: accountdialog.cpp:323
 msgid "Credit"
-msgstr ""
+msgstr "Вноска"
 
 #: accountdialog.cpp:331
 msgid "Credit Limit:"
-msgstr ""
+msgstr "Кредитен лимит:"
 
 #: accountdialog.cpp:336
 msgid "Interest Rate:"
-msgstr ""
+msgstr "Лихвен процент:"
 
 #: accountdialog.cpp:340
 msgid "Payment Due Date:"
-msgstr ""
+msgstr "Датата на плащане:"
 
 #: accountdialog.cpp:345
 msgid "Minimum Payment:"
-msgstr ""
+msgstr "Минимална вноска:"
 
 #: accountdialog.cpp:367
 msgid "Organize attachments of this account"
@@ -235,19 +235,19 @@ msgstr "Въведете всякаква информация за достъп
 
 #: accountdialog.cpp:393
 msgid "Enable or disable the transaction Lock"
-msgstr ""
+msgstr "Активиране или деактивиране на заключването на транзакции"
 
 #: accountdialog.cpp:394
 msgid "The date of the transaction lock"
-msgstr ""
+msgstr "Датата на заключването на транзакцията"
 
 #: accountdialog.cpp:395
 msgid "Account balance lower limit. Zero to disable"
-msgstr ""
+msgstr "Долна граница на баланс по сметка. Нула за изключване"
 
 #: accountdialog.cpp:396
 msgid "Credit limit for the Account. Zero to disable"
-msgstr ""
+msgstr "Кредитен лимит за сметката. Нула за изключване"
 
 #: accountdialog.cpp:439
 msgid "Account Name "
@@ -316,7 +316,7 @@ msgstr "&Изход"
 #: appstartdialog.cpp:153
 #, c-format
 msgid "Open the previously opened database: %s"
-msgstr ""
+msgstr "Отвори последно ползваната база: %s"
 
 #: assetdialog.cpp:56 assetdialog.cpp:426 assetspanel.cpp:512
 msgid "New Asset"
@@ -328,11 +328,11 @@ msgstr "Промени актив"
 
 #: assetdialog.cpp:65 assetdialog.cpp:86 assetspanel.cpp:516
 msgid "Add Asset Transaction"
-msgstr ""
+msgstr "Транзакция за добавяне на актив"
 
 #: assetdialog.cpp:91
 msgid "Edit Asset Transaction"
-msgstr ""
+msgstr "Транзакция за промяна на актив"
 
 #: assetdialog.cpp:177
 msgid "Asset Details"
@@ -395,7 +395,7 @@ msgstr "% Промяна (Rate)"
 
 #: assetdialog.cpp:241
 msgid "Enter the rate at which the asset changes its value in percentage per year"
-msgstr ""
+msgstr "Въведете скоростта, с която активът променя стойността си в процент годишно"
 
 #: assetdialog.cpp:253
 msgid "Organize attachments of this asset"
@@ -407,11 +407,11 @@ msgstr "Въведете бележки свързани с този актив"
 
 #: assetdialog.cpp:262
 msgid "New Transaction Details"
-msgstr ""
+msgstr "Детайли за транзакция"
 
 #: assetdialog.cpp:265 sharetransactiondialog.cpp:280
 msgid "Edit Transaction Details"
-msgstr ""
+msgstr "Промяна на детайли по транзакция"
 
 #: assetdialog.cpp:300 constants.cpp:44 sharetransactiondialog.cpp:311
 msgid "&Cancel "
@@ -422,12 +422,15 @@ msgid "An asset account having the same name has not been found.\n\n"
 "A single transaction for this asset can be associated with any account.\n"
 "Multiple asset transactions need to be associated with an asset account.\n\n"
 "Would you want to create one?\n\n"
-msgstr ""
+msgstr "Не е открита сметка за Актив със същото име.\n\n"
+"Една транзакция за този актив може да бъде свързана с коя да е сметка.\n"
+"Множество транзакции с активи трябва да бъдат свързани със сметка за Актив.\n\n"
+"Искате ли да създадете такава?\n\n"
 
 #: assetspanel.cpp:60 billsdepositspanel.cpp:101 mmcheckingpanel.cpp:1098
 #: reports/transactions.cpp:73 stockspanel.cpp:95
 msgid "ID"
-msgstr ""
+msgstr "Номер за идентификация"
 
 #: assetspanel.cpp:63 billsdepositsdialog.cpp:569 billsdepositspanel.cpp:108
 #: customfieldlistdialog.cpp:54 filtertransdialog.cpp:284
@@ -458,15 +461,15 @@ msgstr "Д&ублирай Актив"
 
 #: assetspanel.cpp:104
 msgid "&Add Asset Transaction"
-msgstr ""
+msgstr "&Транзакция за добавяне на актив"
 
 #: assetspanel.cpp:105
 msgid "&View Asset Transactions"
-msgstr ""
+msgstr "&Преглед на транзакции с Актив"
 
 #: assetspanel.cpp:106
 msgid "&Open Asset Account"
-msgstr ""
+msgstr "&Откриване на сметка за Актив"
 
 #: assetspanel.cpp:108
 msgid "&Edit Asset"
@@ -492,7 +495,7 @@ msgstr "Потвърдете изтриването на актива"
 #: assetspanel.cpp:373 stockspanel.cpp:768 stockspanel.cpp:943
 #, c-format
 msgid "Total: %s"
-msgstr ""
+msgstr "Общо: %s"
 
 #: assetspanel.cpp:423
 msgid "MMEX allows you to track fixed assets like cars, houses, land and others. Each asset can have its value appreciate by a certain rate per year, depreciate by a certain rate per year, or not change in value. The total assets are added to your total financial worth."
@@ -518,15 +521,15 @@ msgstr "&Нов"
 
 #: assetspanel.cpp:515 stockspanel.cpp:577
 msgid "&Add Trans "
-msgstr ""
+msgstr "&Добави транзакция"
 
 #: assetspanel.cpp:520 stockspanel.cpp:582
 msgid "&View Trans "
-msgstr ""
+msgstr "&Преглед на транзакция"
 
 #: assetspanel.cpp:521
 msgid "View Asset Transactions"
-msgstr ""
+msgstr "Преглед на транзакции с Актив"
 
 #: assetspanel.cpp:525 attachmentdialog.cpp:285 billsdepositspanel.cpp:279
 #: categdialog.cpp:229 customfieldlistdialog.cpp:264 maincurrencydialog.cpp:208
@@ -561,21 +564,23 @@ msgstr "Въведи низ, за да открием свързани акти�
 #: assetspanel.cpp:669
 #, c-format
 msgid "Change in Value: %s %s"
-msgstr ""
+msgstr "Промяна в стойността: %s %s"
 
 #: assetspanel.cpp:783
 msgid "This asset does not have its own account\n\n"
 "Multiple transactions for this asset are not recommended.\n"
 "Please use the popup: 'Open Asset Account' to track the transaction."
-msgstr ""
+msgstr "Този актив няма собствена сметка\n\n"
+"Множество транзакции за този актив не се препоръчват.\n"
+"Моля, използвайте изскачащия прозорец: \"Отвори сметка за Актив\" за проследяване на транзакцията."
 
 #: assetspanel.cpp:786
 msgid "Asset Management"
-msgstr ""
+msgstr "Управление на активи"
 
 #: assetspanel.cpp:805
 msgid "Account \t Date\t   Value\n\n"
-msgstr ""
+msgstr "Сметка           Дата        Стойност\n\n"
 
 #: attachmentdialog.cpp:54 customfieldlistdialog.cpp:52
 #: import_export/qif_import_gui.cpp:97 import_export/univcsvdialog.cpp:1142
@@ -628,7 +633,7 @@ msgstr "Подреди прикачени неща | Ново %s"
 
 #: attachmentdialog.cpp:125 customfieldlistdialog.cpp:100 payeedialog.cpp:117
 msgid "Other tools"
-msgstr ""
+msgstr "Други инструменти"
 
 #: attachmentdialog.cpp:164
 msgid "Import attachment:"
@@ -636,7 +641,7 @@ msgstr "Импортирай прикачване:"
 
 #: attachmentdialog.cpp:166 import_export/univcsvdialog.cpp:1414
 msgid "All Files"
-msgstr ""
+msgstr "Всички файлове"
 
 #: attachmentdialog.cpp:174
 msgid "Enter a description for the new attachment:"
@@ -648,7 +653,7 @@ msgstr "Подреди прикачвания: Добави прикачване
 
 #: attachmentdialog.cpp:215
 msgid "Enter a new description for the attachment:"
-msgstr ""
+msgstr "Въведете описание за прикачването:"
 
 #: attachmentdialog.cpp:216
 msgid "Organize Attachments: Edit Attachment"
@@ -745,7 +750,7 @@ msgstr "Седмично"
 
 #: billsdepositsdialog.cpp:52 billsdepositspanel.cpp:47
 msgid "Fortnightly"
-msgstr ""
+msgstr "Две седмици"
 
 #: billsdepositsdialog.cpp:53 billsdepositspanel.cpp:48
 #: model/Model_Budget.cpp:57 option.cpp:115 option.cpp:120 option.cpp:123
@@ -788,19 +793,19 @@ msgstr "Дневно"
 
 #: billsdepositsdialog.cpp:61 billsdepositsdialog.cpp:1387
 msgid "In (x) Days"
-msgstr ""
+msgstr "В (x) дни"
 
 #: billsdepositsdialog.cpp:62 billsdepositsdialog.cpp:1387
 msgid "In (x) Months"
-msgstr ""
+msgstr "В (x) месеца"
 
 #: billsdepositsdialog.cpp:63
 msgid "Every (x) Days"
-msgstr ""
+msgstr "На всеки (x) дни"
 
 #: billsdepositsdialog.cpp:64
 msgid "Every (x) Months"
-msgstr ""
+msgstr "На всеки (X) месеца"
 
 #: billsdepositsdialog.cpp:65 billsdepositspanel.cpp:60
 msgid "Monthly (last day)"
@@ -812,23 +817,23 @@ msgstr "Месечно (последен работен ден)"
 
 #: billsdepositsdialog.cpp:145
 msgid "New Recurring Transaction"
-msgstr ""
+msgstr "Нови периодична транзакция"
 
 #: billsdepositsdialog.cpp:297
 msgid "Edit Recurring Transaction"
-msgstr ""
+msgstr "Редактиране на периодична транзакция"
 
 #: billsdepositsdialog.cpp:301
 msgid "Enter Recurring Transaction"
-msgstr ""
+msgstr "Добаване на периодична транзакция"
 
 #: billsdepositsdialog.cpp:394
 msgid "Transaction Dates"
-msgstr ""
+msgstr "Дати на транзакцията"
 
 #: billsdepositsdialog.cpp:416
 msgid "Recurring Transaction Details"
-msgstr ""
+msgstr "Детайли на повтаряща се транзакция"
 
 #: billsdepositsdialog.cpp:437
 msgid "Specify the date when this bill or deposit is due"
@@ -1717,19 +1722,19 @@ msgstr "Виж текущата година"
 
 #: constants.cpp:233
 msgid "View Current Financial Year"
-msgstr ""
+msgstr "Преглед на текущата финансова година"
 
 #: constants.cpp:234
 msgid "View Last Year"
-msgstr ""
+msgstr "Покажи миналата година"
 
 #: constants.cpp:235
 msgid "View Last Financial Year"
-msgstr ""
+msgstr "Преглед на миналата финансова година"
 
 #: constants.cpp:236
 msgid "View Since Statement Date"
-msgstr ""
+msgstr "Преглед от последната дата на извлечение"
 
 #: constants.cpp:239 mmframe.cpp:1294 mmframe.cpp:1830
 #: model/Model_Account.cpp:26
@@ -1754,7 +1759,7 @@ msgstr "Име на валута"
 
 #: currencydialog.cpp:151
 msgid "Currency Type"
-msgstr ""
+msgstr "Тип валута"
 
 #: currencydialog.cpp:165
 msgid "Currency Symbol"
@@ -1783,7 +1788,7 @@ msgstr "Скала"
 
 #: currencydialog.cpp:207
 msgid "Historic currency"
-msgstr ""
+msgstr "Исторически валута"
 
 #: currencydialog.cpp:212
 msgid "Value Display Sample:"
@@ -1804,64 +1809,65 @@ msgstr "Невалидно попълване"
 #: currencydialog.cpp:280
 #, c-format
 msgid "%s Shown As: %s"
-msgstr ""
+msgstr "%s показани като: %s"
 
 #: customfieldeditdialog.cpp:57
 msgid "New/Edit Custom Field"
-msgstr ""
+msgstr "Ново/редактиране на потребителско поле"
 
 #: customfieldeditdialog.cpp:120
 msgid "Custom Field Details"
-msgstr ""
+msgstr "Детайли на потребителско поле"
 
 #: customfieldeditdialog.cpp:132
 msgid "Enter the name of the custom field"
-msgstr ""
+msgstr "Въведете име на потребителско поле"
 
 #: customfieldeditdialog.cpp:135
 msgid "Field Type"
-msgstr ""
+msgstr "Вид поле"
 
 #: customfieldeditdialog.cpp:139
 msgid "Select type of custom field"
-msgstr ""
+msgstr "Изберете типа на потребителско поле"
 
 #: customfieldeditdialog.cpp:142
 msgid "ToolTip"
-msgstr ""
+msgstr "Подсказка"
 
 #: customfieldeditdialog.cpp:144
 msgid "Enter the tooltip that will be shown"
-msgstr ""
+msgstr "Въведете подсказката, която ще бъде показана"
 
 #: customfieldeditdialog.cpp:147
 msgid "RegEx"
-msgstr ""
+msgstr "Регулярен израз (RegEx)"
 
 #: customfieldeditdialog.cpp:149
 msgid "Enter the RegEx to validate field"
-msgstr ""
+msgstr "Въведете RegEx израза за проверка на полето"
 
 #: customfieldeditdialog.cpp:152
 msgid "Autocomplete"
-msgstr ""
+msgstr "Автодовършване"
 
 #: customfieldeditdialog.cpp:155
 msgid "Enables autocomplete on custom field"
-msgstr ""
+msgstr "Позволява Автодовършване в потребителско поле"
 
 #: customfieldeditdialog.cpp:158 util.cpp:802
 msgid "Default"
-msgstr ""
+msgstr "Стандартно"
 
 #: customfieldeditdialog.cpp:160
 msgid "Enter the default for this field\n"
 "For date/time insert 'Now' to make current date/time as default"
-msgstr ""
+msgstr "Въведете стойността по подразбиране за това поле\n"
+"За дата/час - изпишете 'Now', за да направите текущата дата и час стандартни"
 
 #: customfieldeditdialog.cpp:164
 msgid "Choices"
-msgstr ""
+msgstr "Избори"
 
 #: customfieldeditdialog.cpp:166
 msgid "Enter the choices for this field separated with a semicolon"
@@ -1902,12 +1908,12 @@ msgstr ""
 
 #: customfieldlistdialog.cpp:55
 msgid "Properties"
-msgstr ""
+msgstr "Свойства"
 
 #: customfieldlistdialog.cpp:65
 #, c-format
 msgid "Personalize custom fields | %s"
-msgstr ""
+msgstr "Персонализиране на потребителски полета | %s"
 
 #: customfieldlistdialog.cpp:172
 msgid "Do you really want to delete this custom field and all its data?"
@@ -2168,33 +2174,34 @@ msgstr "Приход от инвестиции"
 
 #: dbupgrade.cpp:86
 msgid "upgrade"
-msgstr ""
+msgstr "актуализация"
 
 #: dbupgrade.cpp:110
 msgid "initialization"
-msgstr ""
+msgstr "инициализация"
 
 #: dbupgrade.cpp:129
 msgid "MMEX database error!"
-msgstr ""
+msgstr "Грешка в базата данни!"
 
 #: dbupgrade.cpp:130
 #, c-format
 msgid "MMEX database version %i doesn't work with this MMEX version.\n"
 "Please upgrade MMEX to newer version."
-msgstr ""
+msgstr "MMEX база данни версия %i не работи с тази версия на MMEX.\n"
+"Моля, актуализирайте MMEX до по-съвременна версия."
 
 #: dbupgrade.cpp:131 dbupgrade.cpp:150 dbupgrade.cpp:153 dbupgrade.cpp:162
 msgid "MMEX database upgrade"
-msgstr ""
+msgstr "Актуализация на MMEX база данни"
 
 #: dbupgrade.cpp:148
 msgid "MMEX database vacuum failed!"
-msgstr ""
+msgstr "Вакуумиране на MMEX база данни не успя!"
 
 #: dbupgrade.cpp:149
 msgid "MMEX still should work, but try to re-optimize it from Tools -> Database -> Optimize"
-msgstr ""
+msgstr "MMEX все още трябва да работи, но се опитайте оптимизирате базата данни повторно от Инструменти-> База данни-> Оптимизиране"
 
 #: dbupgrade.cpp:153
 #, c-format
@@ -2409,39 +2416,39 @@ msgstr "Детайли за филтриране:"
 
 #: filtertransdialog.cpp:817 filtertransdialog.cpp:1230
 msgid "Empty value"
-msgstr ""
+msgstr "Празна стойност"
 
 #: filtertransdialog.cpp:849
 msgid "Since"
-msgstr ""
+msgstr "От"
 
 #: filtertransdialog.cpp:851
 msgid "Before"
-msgstr ""
+msgstr "Преди"
 
 #: filtertransdialog.cpp:905
 msgid "Amount Min."
-msgstr ""
+msgstr "Минимална сума"
 
 #: filtertransdialog.cpp:913
 msgid "Amount Max."
-msgstr ""
+msgstr "Максимална сума"
 
 #: filtertransdialog.cpp:942
 msgid "Label"
-msgstr ""
+msgstr "Етикет"
 
 #: filtertransdialog.cpp:1226
 msgid "Please Enter"
-msgstr ""
+msgstr "Моля, въведете"
 
 #: filtertransdialog.cpp:1226
 msgid "Setting Name"
-msgstr ""
+msgstr "Име на настройка"
 
 #: filtertransdialog.cpp:1230
 msgid "Could not save settings"
-msgstr ""
+msgstr "Неуспех при запис на настройките"
 
 #: general_report_manager.cpp:237 general_report_manager.cpp:610
 msgid "General Reports Manager"
@@ -2524,11 +2531,11 @@ msgstr "Зареди файл с отчет:"
 
 #: general_report_manager.cpp:546 general_report_manager.cpp:976
 msgid "General Report Manager files (*.grm)"
-msgstr ""
+msgstr "Файлове на Управителя на общи доклади (*.grm)"
 
 #: general_report_manager.cpp:546 general_report_manager.cpp:976
 msgid "ZIP files (*.zip)"
-msgstr ""
+msgstr "ZIP файлове (* .zip)"
 
 #: general_report_manager.cpp:609
 #, c-format
@@ -2551,7 +2558,7 @@ msgstr "Смени група"
 
 #: general_report_manager.cpp:680 general_report_manager.cpp:845
 msgid "Rename Group"
-msgstr ""
+msgstr "Преименувай групата"
 
 #: general_report_manager.cpp:681
 msgid "UnGroup"
@@ -2580,15 +2587,15 @@ msgstr "Изтрий заглавието на отчета:"
 
 #: general_report_manager.cpp:827 general_report_manager.cpp:908
 msgid "Enter or choose name for the new report group"
-msgstr ""
+msgstr "Въведете или изберете име за новата група доклади"
 
 #: general_report_manager.cpp:828
 msgid "Change report group"
-msgstr ""
+msgstr "Промени групата за доклади"
 
 #: general_report_manager.cpp:844
 msgid "Enter or choose name for the new group"
-msgstr ""
+msgstr "Въведете или изберете име за новата група"
 
 #: general_report_manager.cpp:909
 msgid "Add Report Group"
@@ -2597,11 +2604,11 @@ msgstr "Добави група за отчети"
 #: general_report_manager.cpp:922
 #, c-format
 msgid "New Report %s"
-msgstr ""
+msgstr "Нов отчет %s"
 
 #: general_report_manager.cpp:935
 msgid "Report Name already exists"
-msgstr ""
+msgstr "Името на отчета вече съществува"
 
 #: general_report_manager.cpp:935 general_report_manager.cpp:942
 msgid "New Report"
@@ -2623,40 +2630,40 @@ msgstr "Универсалено CSV импортиране"
 
 #: import_export/parsers.cpp:89
 msgid "Unable to create file."
-msgstr ""
+msgstr "Не мога да създам файла."
 
 #: import_export/parsers.cpp:109 import_export/parsers.cpp:248
 msgid "Could not save file."
-msgstr ""
+msgstr "Не можах да запазя файла."
 
 #: import_export/parsers.cpp:109 import_export/parsers.cpp:248
 msgid "Export error"
-msgstr ""
+msgstr "Грешка при експортиране"
 
 #: import_export/parsers.cpp:135 import_export/parsers.cpp:144
 msgid "File is not in Excel XML Spreadsheet 2003 format."
-msgstr ""
+msgstr "Файлът не е във Excel XML Spreadsheet 2003 формат."
 
 #: import_export/parsers.cpp:135 import_export/parsers.cpp:144
 #: import_export/parsers.cpp:157 import_export/parsers.cpp:165
 msgid "Parsing error"
-msgstr ""
+msgstr "Грешка при разчитане"
 
 #: import_export/parsers.cpp:157
 msgid "Could not find Worksheet."
-msgstr ""
+msgstr "Не можах да открия Worksheet."
 
 #: import_export/parsers.cpp:163
 msgid "Table"
-msgstr ""
+msgstr "Таблица"
 
 #: import_export/parsers.cpp:165
 msgid "Could not find Table."
-msgstr ""
+msgstr "Не може да се намери таблица."
 
 #: import_export/parsers.cpp:216
 msgid "Transactions"
-msgstr ""
+msgstr "Транзакции"
 
 #: import_export/qif_export.cpp:42 import_export/qif_export.cpp:235
 #: import_export/qif_export.cpp:311
@@ -2720,7 +2727,7 @@ msgstr "Избери QIF файл за Експортиране"
 
 #: import_export/qif_export.cpp:281 import_export/qif_import_gui.cpp:706
 msgid "QIF Files (*.qif)"
-msgstr ""
+msgstr "QIF файлове (*.qif)"
 
 #: import_export/qif_export.cpp:300
 msgid "No Account available for export"
@@ -2771,7 +2778,7 @@ msgstr "Избери &файл"
 
 #: import_export/qif_import_gui.cpp:142 import_export/univcsvdialog.cpp:313
 msgid "Encoding:"
-msgstr ""
+msgstr "Знаков набор:"
 
 #: import_export/qif_import_gui.cpp:168
 msgid "Filtering Details:"
@@ -2783,11 +2790,11 @@ msgstr "Данни"
 
 #: import_export/qif_import_gui.cpp:265
 msgid "Use account number instead of account name"
-msgstr ""
+msgstr "Използвайте номер на сметка вместо име на сметка"
 
 #: import_export/qif_import_gui.cpp:269
 msgid "Include payee field in notes"
-msgstr ""
+msgstr "Включвай поле \"Получател\" в бележки"
 
 #: import_export/qif_import_gui.cpp:348 import_export/qif_import_gui.cpp:351
 #: import_export/qif_import_gui.cpp:504 import_export/qif_import_gui.cpp:1089
@@ -2874,7 +2881,7 @@ msgstr "Импортиране транзакция %i от %i"
 #: import_export/qif_import_gui.cpp:841 webapp.cpp:120
 #, c-format
 msgid "Error: %s"
-msgstr ""
+msgstr "Грешка: %s"
 
 #: import_export/qif_import_gui.cpp:852
 msgid "Importing Transfers"
@@ -2891,7 +2898,7 @@ msgstr "Импортирането приключи успешно"
 #: import_export/qif_import_gui.cpp:880 stockdialog.cpp:640
 #, c-format
 msgid "Total Imported: %ld"
-msgstr ""
+msgstr "Общо внесени: %ld"
 
 #: import_export/qif_import_gui.cpp:888 import_export/univcsvdialog.cpp:992
 msgid "Imported transactions discarded by user!"
@@ -2899,31 +2906,31 @@ msgstr "Импортираните транзакции бяха отказан�
 
 #: import_export/qif_import_gui.cpp:970
 msgid "Transaction code is missing"
-msgstr ""
+msgstr "Липсва код на транзакция"
 
 #: import_export/qif_import_gui.cpp:979
 msgid "Transaction Payee is missing or incorrect"
-msgstr ""
+msgstr "Липсващ или неправилен \"Получател\""
 
 #: import_export/qif_import_gui.cpp:991
 msgid "Date format or date mask is incorrect"
-msgstr ""
+msgstr "Маската или формата на дата е невалиден"
 
 #: import_export/qif_import_gui.cpp:1003
 msgid "Transaction Account is incorrect"
-msgstr ""
+msgstr "Невалидна сметка за тразакция"
 
 #: import_export/qif_import_gui.cpp:1012
 msgid "Transaction Account for transfer is incorrect"
-msgstr ""
+msgstr "Неправилна сметка за трансфер"
 
 #: import_export/qif_import_gui.cpp:1038
 msgid "Transaction Amount is incorrect"
-msgstr ""
+msgstr "Сумата на транзакцията е невалидна"
 
 #: import_export/qif_import_gui.cpp:1057
 msgid "Transaction Category is incorrect"
-msgstr ""
+msgstr "Неправилна \"Категория\""
 
 #: import_export/qif_import_gui.cpp:1146
 #, c-format
@@ -2937,7 +2944,7 @@ msgstr "Добавен получател: %s"
 
 #: import_export/univcsvdialog.cpp:101
 msgid "Amount +/-"
-msgstr ""
+msgstr "Сума +/-"
 
 #: import_export/univcsvdialog.cpp:103
 msgid "SubCategory"
@@ -2954,19 +2961,19 @@ msgstr "Баланс"
 
 #: import_export/univcsvdialog.cpp:110
 msgid "Import dialog"
-msgstr ""
+msgstr "Диалогов прозорец за внасяне"
 
 #: import_export/univcsvdialog.cpp:110
 msgid "Export dialog"
-msgstr ""
+msgstr "Диалогов прозорец за изнасяне"
 
 #: import_export/univcsvdialog.cpp:171
 msgid "&Browse"
-msgstr ""
+msgstr "Преглед"
 
 #: import_export/univcsvdialog.cpp:174
 msgid "Choose CSV data file to Import"
-msgstr ""
+msgstr "Изберете CSV файл за внасяне"
 
 #: import_export/univcsvdialog.cpp:174
 msgid "Choose CSV data file to Export"
@@ -2978,7 +2985,7 @@ msgstr "Запиши шаблон"
 
 #: import_export/univcsvdialog.cpp:200
 msgid "Specify the order of fields in the file"
-msgstr ""
+msgstr "Посочете реда на полетата във файла"
 
 #: import_export/univcsvdialog.cpp:231
 msgid "&MMEX format"
@@ -3014,7 +3021,7 @@ msgstr "Формат на дата:"
 
 #: import_export/univcsvdialog.cpp:298
 msgid "CSV Delimiter:"
-msgstr ""
+msgstr "CSV разделител:"
 
 #: import_export/univcsvdialog.cpp:304 optionsettingsmisc.cpp:180
 msgid "Specify the delimiter to use when importing/exporting CSV files"
@@ -3022,31 +3029,31 @@ msgstr "Посочи разделителят, който да се ползва
 
 #: import_export/univcsvdialog.cpp:327
 msgid "Export column titles"
-msgstr ""
+msgstr "Изнасяне на заглавия колони"
 
 #: import_export/univcsvdialog.cpp:336
 msgid "Amount +/-:"
-msgstr ""
+msgstr "Сума +/-:"
 
 #: import_export/univcsvdialog.cpp:342
 msgid "Positive values are deposits"
-msgstr ""
+msgstr "Положителни стойности са депозити"
 
 #: import_export/univcsvdialog.cpp:343
 msgid "Positive values are withdrawals"
-msgstr ""
+msgstr "Положителните стойности са тегления"
 
 #: import_export/univcsvdialog.cpp:359
 msgid "Rows to ignore"
-msgstr ""
+msgstr "Редове за прескачане"
 
 #: import_export/univcsvdialog.cpp:365
 msgid "From start: "
-msgstr ""
+msgstr "От Начало: "
 
 #: import_export/univcsvdialog.cpp:373
 msgid "From end: "
-msgstr ""
+msgstr "От края на: "
 
 #: import_export/univcsvdialog.cpp:381
 msgid "Preview"
@@ -3064,47 +3071,48 @@ msgstr "Експортирай файл"
 #, c-format
 msgid "Default account '%s' for this template does not exist.\n"
 "Please select a new account."
-msgstr ""
+msgstr "Акаунтът по подразбиране '%s' за този шаблон не съществува.\n"
+"Моля, изберете нов акаунт."
 
 #: import_export/univcsvdialog.cpp:503
 msgid "Account does not exist"
-msgstr ""
+msgstr "Сметката не съществува "
 
 #: import_export/univcsvdialog.cpp:831
 msgid "Incorrect fields specified for import!"
-msgstr ""
+msgstr "Неправилен полета, указани за внос!"
 
 #: import_export/univcsvdialog.cpp:832
 msgid "Date field is required."
-msgstr ""
+msgstr "Поле \"Дата\" е задължително."
 
 #: import_export/univcsvdialog.cpp:833
 msgid "Amount field or both Withdrawal and Deposit fields are required."
-msgstr ""
+msgstr "Полетата сума или изтегляне и внасяне са задължителни."
 
 #: import_export/univcsvdialog.cpp:834 import_export/univcsvdialog.cpp:962
 #: webappdialog.cpp:270
 msgid "Import"
-msgstr ""
+msgstr "Внасяне"
 
 #: import_export/univcsvdialog.cpp:884
 #, c-format
 msgid "Transactions imported to account %s: %ld"
-msgstr ""
+msgstr "Транзакции, внесени в сметка %s: %ld"
 
 #: import_export/univcsvdialog.cpp:895
 #, c-format
 msgid "Line %ld: Empty"
-msgstr ""
+msgstr "Ред %ld: празен"
 
 #: import_export/univcsvdialog.cpp:909
 #, c-format
 msgid "Line %ld: Error:"
-msgstr ""
+msgstr "Ред %ld: грешка:"
 
 #: import_export/univcsvdialog.cpp:911
 msgid "Invalid Date."
-msgstr ""
+msgstr "Неправилна Дата."
 
 #: import_export/univcsvdialog.cpp:912 mmTextCtrl.cpp:82
 msgid "Invalid Amount."
@@ -3112,42 +3120,42 @@ msgstr "Невалидно крайно количество."
 
 #: import_export/univcsvdialog.cpp:914
 msgid "Type (withdrawal/deposit) unknown."
-msgstr ""
+msgstr "Тип (изтегляне/внасяне) неизвестен."
 
 #: import_export/univcsvdialog.cpp:939
 #, c-format
 msgid "Line %ld: OK, imported."
-msgstr ""
+msgstr "Ред %ld: ОК, внесен."
 
 #: import_export/univcsvdialog.cpp:947 stockdialog.cpp:638
 #, c-format
 msgid "Total Lines: %ld"
-msgstr ""
+msgstr "Общо редове: %ld"
 
 #: import_export/univcsvdialog.cpp:949
 #, c-format
 msgid "Lines Selected to Import: %ld"
-msgstr ""
+msgstr "Редове, избрани за внасяне: %ld"
 
 #: import_export/univcsvdialog.cpp:951
 #, c-format
 msgid "Empty Lines: %ld"
-msgstr ""
+msgstr "Празни редове: %ld"
 
 #: import_export/univcsvdialog.cpp:953
 #, c-format
 msgid "Imported: %ld"
-msgstr ""
+msgstr "Внесени: %ld"
 
 #: import_export/univcsvdialog.cpp:955
 #, c-format
 msgid "Errored: %ld"
-msgstr ""
+msgstr "Грешки: %ld"
 
 #: import_export/univcsvdialog.cpp:958
 #, c-format
 msgid "Log file written to: %s"
-msgstr ""
+msgstr "Файл-дневник в: %s"
 
 #: import_export/univcsvdialog.cpp:961 stockdialog.cpp:646
 msgid "Please confirm saving..."
@@ -3155,31 +3163,31 @@ msgstr "Моля потвърдете записването..."
 
 #: import_export/univcsvdialog.cpp:993
 msgid "No imported transactions!"
-msgstr ""
+msgstr "Няма внесени транзакции!"
 
 #: import_export/univcsvdialog.cpp:1011
 msgid "Incorrect fields specified for export! Requires at least Date and Amount."
-msgstr ""
+msgstr "Неправилен полета, указани за износ! Изисква поне дата и сума."
 
 #: import_export/univcsvdialog.cpp:1012 import_export/univcsvdialog.cpp:1133
 msgid "Export"
-msgstr ""
+msgstr "Изнасяне във файл"
 
 #: import_export/univcsvdialog.cpp:1022
 msgid "Overwrite existing file?"
-msgstr ""
+msgstr "Да презапиша ли съществуващия файл?"
 
 #: import_export/univcsvdialog.cpp:1022
 msgid "File exists"
-msgstr ""
+msgstr "Файлът съществува"
 
 #: import_export/univcsvdialog.cpp:1028
 msgid "Failed to delete existing file. File may be locked by another program."
-msgstr ""
+msgstr "Неуспешно изтриване на съществуващ файл. Файлът може да е заключен от друга програма."
 
 #: import_export/univcsvdialog.cpp:1029
 msgid "Destination file error"
-msgstr ""
+msgstr "Грешка във файла местоназначение"
 
 #: import_export/univcsvdialog.cpp:1132
 #, c-format
@@ -3192,27 +3200,27 @@ msgstr "Избери CSV файл за импорт"
 
 #: import_export/univcsvdialog.cpp:1401
 msgid "Choose CSV data file to export"
-msgstr ""
+msgstr "Изберете CSV файл за износ"
 
 #: import_export/univcsvdialog.cpp:1404
 msgid "Choose XML data file to import"
-msgstr ""
+msgstr "Изберете XML файл за внасяне"
 
 #: import_export/univcsvdialog.cpp:1407
 msgid "Choose XML data file to export"
-msgstr ""
+msgstr "Изберете XML файл за изнасяне"
 
 #: import_export/univcsvdialog.cpp:1414
 msgid "XML Files (*.xml)"
-msgstr ""
+msgstr "XML файлове (*.xml)"
 
 #: import_export/univcsvdialog.cpp:1415 stockdialog.cpp:555
 msgid "CSV Files (*.csv)"
-msgstr ""
+msgstr "CSV файлове (*.csv)"
 
 #: maincurrencydialog.cpp:69
 msgid "Base"
-msgstr ""
+msgstr "Основа"
 
 #: maincurrencydialog.cpp:70 reports/summarystocks.cpp:180 stockdialog.cpp:424
 #: stockspanel.cpp:98
@@ -3221,11 +3229,11 @@ msgstr "Символ"
 
 #: maincurrencydialog.cpp:72
 msgid "Last Rate"
-msgstr ""
+msgstr "Последен курс"
 
 #: maincurrencydialog.cpp:73
 msgid "Hist."
-msgstr ""
+msgstr "Ист."
 
 #: maincurrencydialog.cpp:77 maincurrencydialog.cpp:348
 #: maincurrencydialog.cpp:633 maincurrencydialog.cpp:739
@@ -3234,7 +3242,7 @@ msgstr "Прозорец за валута"
 
 #: maincurrencydialog.cpp:157
 msgid "Update latest rate only for all used currencies"
-msgstr ""
+msgstr "Актуализирай само курса за всички ползвани валути"
 
 #: maincurrencydialog.cpp:160
 msgid "Online Update"
@@ -3242,55 +3250,55 @@ msgstr "Онлайн обновяване"
 
 #: maincurrencydialog.cpp:163
 msgid "Hide Unused"
-msgstr ""
+msgstr "Скрий неизползвани"
 
 #: maincurrencydialog.cpp:165
 msgid "Hide currencies unused in this database"
-msgstr ""
+msgstr "Скрий валути, неизползвани в тази база"
 
 #: maincurrencydialog.cpp:172
 msgid "Hide Historic"
-msgstr ""
+msgstr "Скрий исторически"
 
 #: maincurrencydialog.cpp:174
 msgid "Hide historical currencies"
-msgstr ""
+msgstr "Скрий исторически валути"
 
 #: maincurrencydialog.cpp:223
 msgid "Select the currently selected currency as the selected currency for the account"
-msgstr ""
+msgstr "Посочете текущо избраната валута като избрана валута за сметка"
 
 #: maincurrencydialog.cpp:225
 msgid "Select the currently selected currency as base currency"
-msgstr ""
+msgstr "Установи текущо избраната валута като базова валута"
 
 #: maincurrencydialog.cpp:239
 msgid "Currency History Options"
-msgstr ""
+msgstr "Настройки за валутна история"
 
 #: maincurrencydialog.cpp:263 stockdialog.cpp:324
 msgid "Diff."
-msgstr ""
+msgstr "Разл."
 
 #: maincurrencydialog.cpp:279
 msgid "Specify the date of currency value"
-msgstr ""
+msgstr "Посочете дата на валутна стойност"
 
 #: maincurrencydialog.cpp:286
 msgid "Enter the currency value"
-msgstr ""
+msgstr "Въведете стойността на валутата"
 
 #: maincurrencydialog.cpp:295
 msgid "Download Currency Values history"
-msgstr ""
+msgstr "Изтегляне история на валутни стойности "
 
 #: maincurrencydialog.cpp:296
 msgid "&Add / Update "
-msgstr ""
+msgstr "&Добавяне / актуализация "
 
 #: maincurrencydialog.cpp:298
 msgid "Add Currency Values to history"
-msgstr ""
+msgstr "Добави валутна стойност към история"
 
 #: maincurrencydialog.cpp:301
 msgid "Delete selected Currency Values"
@@ -3847,11 +3855,11 @@ msgstr ""
 #: mmframe.cpp:457 mmframe.cpp:730 mmhomepagepanel.cpp:482
 #: reports/summary.cpp:161
 msgid "Crypto Wallets"
-msgstr ""
+msgstr "Крипто портфейли"
 
 #: mmframe.cpp:499
 msgid "Auto Repeat Transactions"
-msgstr ""
+msgstr "Автоматично повторящи се транзакции"
 
 #: mmframe.cpp:685 mmframe.cpp:1833
 msgid "Home Page"
@@ -3859,7 +3867,7 @@ msgstr "Начална страница"
 
 #: mmframe.cpp:720
 msgid "Share Accounts"
-msgstr ""
+msgstr "Дялови сметки"
 
 #: mmframe.cpp:740 mmframe.cpp:1639
 msgid "Budget Setup"
@@ -3874,11 +3882,13 @@ msgstr "Помощ"
 msgid "Account: %s\n\n"
 "Balance at currency %s: %s\n"
 "Balance at currency %s: %s"
-msgstr ""
+msgstr "Сметка: %s\n\n"
+"Баланс при валута %s: %s\n"
+"Баланс при валута %s: %s"
 
 #: mmframe.cpp:1146
 msgid "Foreign Currency Account Balance"
-msgstr ""
+msgstr "Баланс на сметка в чужда валута"
 
 #: mmframe.cpp:1160
 msgid "Do you really want to delete the account?"
@@ -3906,7 +3916,7 @@ msgstr "&Промени акаунт"
 
 #: mmframe.cpp:1223 mmframe.cpp:1586
 msgid "&Reallocate Account"
-msgstr ""
+msgstr "&Премести сметка"
 
 #: mmframe.cpp:1224 mmframe.cpp:1270 mmframe.cpp:1590
 msgid "&Delete Account"
@@ -3914,7 +3924,7 @@ msgstr "&Изтрий акаунт"
 
 #: mmframe.cpp:1226
 msgid "&Foreign Currency Balance"
-msgstr ""
+msgstr "&Баланс чужда валута"
 
 #: mmframe.cpp:1227
 msgid "&Launch Account Website"
@@ -3922,7 +3932,7 @@ msgstr "&Отвори уебсайта на акаунта"
 
 #: mmframe.cpp:1257 mmframe.cpp:1570
 msgid "Hide/Show Report"
-msgstr ""
+msgstr "Скрий/Покажи отчет"
 
 #: mmframe.cpp:1269 mmframe.cpp:1578
 msgid "New &Account"
@@ -3938,7 +3948,7 @@ msgstr "&CSV файлове..."
 
 #: mmframe.cpp:1280 mmframe.cpp:1285 mmframe.cpp:1474 mmframe.cpp:1482
 msgid "&XML Files..."
-msgstr ""
+msgstr "&XML файлове..."
 
 #: mmframe.cpp:1281 mmframe.cpp:1286 mmframe.cpp:1475 mmframe.cpp:1483
 msgid "&QIF Files..."
@@ -3946,7 +3956,7 @@ msgstr "&QIF файлове..."
 
 #: mmframe.cpp:1285 mmframe.cpp:1482
 msgid "Import from XML (Excel format)"
-msgstr ""
+msgstr "Внасяне от XML (Excel формат)"
 
 #: mmframe.cpp:1296 optionsettingsview.cpp:62
 msgid "Accounts Visible"
@@ -3990,7 +4000,7 @@ msgstr "Експортирай към CSV"
 
 #: mmframe.cpp:1474
 msgid "Export to XML"
-msgstr ""
+msgstr "Изнасяне в XML"
 
 #: mmframe.cpp:1476
 msgid "&Report to HTML"
@@ -4002,11 +4012,11 @@ msgstr "Експортирай към HTML"
 
 #: mmframe.cpp:1477
 msgid "&Force WebApp sync"
-msgstr ""
+msgstr "&Принудителна WebApp синхронизация"
 
 #: mmframe.cpp:1477
 msgid "Force sync of accounts, payees and categories to WebApp"
-msgstr ""
+msgstr "Принудително синхронизирай сметки, бенефициенти и категории към WebApp"
 
 #: mmframe.cpp:1481
 msgid "Import from any CSV file"
@@ -4018,11 +4028,11 @@ msgstr "Импортирай от QIF"
 
 #: mmframe.cpp:1484
 msgid "&WebApp..."
-msgstr ""
+msgstr "&WebApp..."
 
 #: mmframe.cpp:1484
 msgid "Import from WebApp"
-msgstr ""
+msgstr "Внасяне от WebApp"
 
 #: mmframe.cpp:1490 mmframe.cpp:1864
 msgid "&Print..."
@@ -4050,11 +4060,11 @@ msgstr "Скрий/Покажи Навигационното дърво"
 
 #: mmframe.cpp:1506
 msgid "&Display Share Accounts"
-msgstr ""
+msgstr "Покажи &Дялови сметки"
 
 #: mmframe.cpp:1506
 msgid "Show/Hide Share Accounts in the navigation tree"
-msgstr ""
+msgstr "Покажи/Скрий дялови сметки в дървото за навигация"
 
 #: mmframe.cpp:1509
 msgid "Budgets: As &Financial Years"
@@ -4082,11 +4092,11 @@ msgstr "Покажи настройките на бюджета без обоб�
 
 #: mmframe.cpp:1515
 msgid "Budget Category Report: with &Summaries"
-msgstr ""
+msgstr "Доклад категории бюджет: с &резюмета"
 
 #: mmframe.cpp:1515
 msgid "Include the category summaries in the Budget Category Summary"
-msgstr ""
+msgstr "Включи резюметата на категории в Доклада категории бюджет"
 
 #: mmframe.cpp:1517
 msgid "Ignore F&uture Transactions"
@@ -4098,23 +4108,23 @@ msgstr "Игнорирай бъдещи транзакции"
 
 #: mmframe.cpp:1532 mmframe.cpp:1861
 msgid "Toggle Fullscreen\tF11"
-msgstr ""
+msgstr "Превключване на цял екран F11"
 
 #: mmframe.cpp:1532 mmframe.cpp:1861
 msgid "Toggle Fullscreen"
-msgstr ""
+msgstr "Превключване на цял екран"
 
 #: mmframe.cpp:1540
 msgid "Switch Application Language"
-msgstr ""
+msgstr "Промени езика на приложението"
 
 #: mmframe.cpp:1541
 msgid "Change language used for MMEX GUI"
-msgstr ""
+msgstr "Промяна на езика, използван за MMEX ГПИ"
 
 #: mmframe.cpp:1547
 msgid "system default"
-msgstr ""
+msgstr "системно по подразбиране"
 
 #: mmframe.cpp:1574
 msgid "Account &List"
@@ -4126,7 +4136,7 @@ msgstr "Покажи списъка с акаунти"
 
 #: mmframe.cpp:1586
 msgid "Change the account type of an account."
-msgstr ""
+msgstr "Промени типа на сметка"
 
 #: mmframe.cpp:1590
 msgid "Delete Account from database"
@@ -4178,7 +4188,7 @@ msgstr "&Настройки на бюджета"
 
 #: mmframe.cpp:1644
 msgid "&Recurring Transactions"
-msgstr ""
+msgstr "По&втарящи се транзакции"
 
 #: mmframe.cpp:1644
 msgid "Bills && Deposits"
@@ -4202,11 +4212,11 @@ msgstr "&Мениджър на основния отчет..."
 
 #: mmframe.cpp:1666
 msgid "&Custom Fields Manager..."
-msgstr ""
+msgstr "&Управител на потребителски полета..."
 
 #: mmframe.cpp:1666 mmframe.cpp:1839
 msgid "Custom Fields Manager"
-msgstr ""
+msgstr "Управител на потребителски полета"
 
 #: mmframe.cpp:1673 mmframe.cpp:1843
 msgid "&Options..."
@@ -4218,43 +4228,43 @@ msgstr "Покажи прозореца за Опции"
 
 #: mmframe.cpp:1681
 msgid "Set &Password"
-msgstr ""
+msgstr "Задай &парола"
 
 #: mmframe.cpp:1682
 msgid "Encrypt database or change password for database file"
-msgstr ""
+msgstr "Криптиране на базата данни или промяна паролата за базата данни"
 
 #: mmframe.cpp:1685
 msgid "Remove Password"
-msgstr ""
+msgstr "Премахване на парола"
 
 #: mmframe.cpp:1686
 msgid "Remove password and decrypt database file"
-msgstr ""
+msgstr "Премахване на парола и декриптиране файла база данни"
 
 #: mmframe.cpp:1689
 msgid "Optimize &Database"
-msgstr ""
+msgstr "&Оптимизиране на базата данни"
 
 #: mmframe.cpp:1690
 msgid "Optimize database space and performance"
-msgstr ""
+msgstr "Оптимизира производителността и заеманото пространство от базата данни"
 
 #: mmframe.cpp:1693
 msgid "Database Debug"
-msgstr ""
+msgstr "Debug на базата данни"
 
 #: mmframe.cpp:1694
 msgid "Generate database report or fix errors"
-msgstr ""
+msgstr "Генерирай отчет за базата данни или поправи грешки"
 
 #: mmframe.cpp:1700
 msgid "Database"
-msgstr ""
+msgstr "База данни"
 
 #: mmframe.cpp:1701
 msgid "Database management"
-msgstr ""
+msgstr "Управление на база данни"
 
 #: mmframe.cpp:1708 mmframe.cpp:1848
 msgid "&Help\tF1"
@@ -4262,15 +4272,15 @@ msgstr "&Помощ\tF1"
 
 #: mmframe.cpp:1708
 msgid "Read the User Manual"
-msgstr ""
+msgstr "Прочетете ръководството за потребителя"
 
 #: mmframe.cpp:1713
 msgid "Website"
-msgstr ""
+msgstr "Интернет страница"
 
 #: mmframe.cpp:1714
 msgid "Open the Money Manager EX website for latest news, updates etc"
-msgstr ""
+msgstr "Отвори интернет страницата на Money Manager EX за новини, актуализации"
 
 #: mmframe.cpp:1717
 msgid "Facebook"
