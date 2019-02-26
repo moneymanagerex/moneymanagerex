@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-02-25 13:09+0300\n"
-"PO-Revision-Date: 2019-02-26 09:16\n"
+"PO-Revision-Date: 2019-02-26 09:46\n"
 "Last-Translator: vomikan <nikolay.akimov@gmail.com>\n"
 "Language-Team: Bulgarian\n"
 "MIME-Version: 1.0\n"
@@ -3167,27 +3167,27 @@ msgstr "Няма внесени транзакции!"
 
 #: import_export/univcsvdialog.cpp:1011
 msgid "Incorrect fields specified for export! Requires at least Date and Amount."
-msgstr ""
+msgstr "Неправилен полета, указани за износ! Изисква поне дата и сума."
 
 #: import_export/univcsvdialog.cpp:1012 import_export/univcsvdialog.cpp:1133
 msgid "Export"
-msgstr ""
+msgstr "Изнасяне във файл"
 
 #: import_export/univcsvdialog.cpp:1022
 msgid "Overwrite existing file?"
-msgstr ""
+msgstr "Да презапиша ли съществуващия файл?"
 
 #: import_export/univcsvdialog.cpp:1022
 msgid "File exists"
-msgstr ""
+msgstr "Файлът съществува"
 
 #: import_export/univcsvdialog.cpp:1028
 msgid "Failed to delete existing file. File may be locked by another program."
-msgstr ""
+msgstr "Неуспешно изтриване на съществуващ файл. Файлът може да е заключен от друга програма."
 
 #: import_export/univcsvdialog.cpp:1029
 msgid "Destination file error"
-msgstr ""
+msgstr "Грешка във файла местоназначение"
 
 #: import_export/univcsvdialog.cpp:1132
 #, c-format
@@ -3200,27 +3200,27 @@ msgstr "Избери CSV файл за импорт"
 
 #: import_export/univcsvdialog.cpp:1401
 msgid "Choose CSV data file to export"
-msgstr ""
+msgstr "Изберете CSV файл за износ"
 
 #: import_export/univcsvdialog.cpp:1404
 msgid "Choose XML data file to import"
-msgstr ""
+msgstr "Изберете XML файл за внасяне"
 
 #: import_export/univcsvdialog.cpp:1407
 msgid "Choose XML data file to export"
-msgstr ""
+msgstr "Изберете XML файл за изнасяне"
 
 #: import_export/univcsvdialog.cpp:1414
 msgid "XML Files (*.xml)"
-msgstr ""
+msgstr "XML файлове (*.xml)"
 
 #: import_export/univcsvdialog.cpp:1415 stockdialog.cpp:555
 msgid "CSV Files (*.csv)"
-msgstr ""
+msgstr "CSV файлове (*.csv)"
 
 #: maincurrencydialog.cpp:69
 msgid "Base"
-msgstr ""
+msgstr "Основа"
 
 #: maincurrencydialog.cpp:70 reports/summarystocks.cpp:180 stockdialog.cpp:424
 #: stockspanel.cpp:98
@@ -3229,11 +3229,11 @@ msgstr "Символ"
 
 #: maincurrencydialog.cpp:72
 msgid "Last Rate"
-msgstr ""
+msgstr "Последен курс"
 
 #: maincurrencydialog.cpp:73
 msgid "Hist."
-msgstr ""
+msgstr "Ист."
 
 #: maincurrencydialog.cpp:77 maincurrencydialog.cpp:348
 #: maincurrencydialog.cpp:633 maincurrencydialog.cpp:739
@@ -3242,7 +3242,7 @@ msgstr "Прозорец за валута"
 
 #: maincurrencydialog.cpp:157
 msgid "Update latest rate only for all used currencies"
-msgstr ""
+msgstr "Актуализирай само курса за всички ползвани валути"
 
 #: maincurrencydialog.cpp:160
 msgid "Online Update"
@@ -3250,55 +3250,55 @@ msgstr "Онлайн обновяване"
 
 #: maincurrencydialog.cpp:163
 msgid "Hide Unused"
-msgstr ""
+msgstr "Скрий неизползвани"
 
 #: maincurrencydialog.cpp:165
 msgid "Hide currencies unused in this database"
-msgstr ""
+msgstr "Скрий валути, неизползвани в тази база"
 
 #: maincurrencydialog.cpp:172
 msgid "Hide Historic"
-msgstr ""
+msgstr "Скрий исторически"
 
 #: maincurrencydialog.cpp:174
 msgid "Hide historical currencies"
-msgstr ""
+msgstr "Скрий исторически валути"
 
 #: maincurrencydialog.cpp:223
 msgid "Select the currently selected currency as the selected currency for the account"
-msgstr ""
+msgstr "Посочете текущо избраната валута като избрана валута за сметка"
 
 #: maincurrencydialog.cpp:225
 msgid "Select the currently selected currency as base currency"
-msgstr ""
+msgstr "Установи текущо избраната валута като базова валута"
 
 #: maincurrencydialog.cpp:239
 msgid "Currency History Options"
-msgstr ""
+msgstr "Настройки за валутна история"
 
 #: maincurrencydialog.cpp:263 stockdialog.cpp:324
 msgid "Diff."
-msgstr ""
+msgstr "Разл."
 
 #: maincurrencydialog.cpp:279
 msgid "Specify the date of currency value"
-msgstr ""
+msgstr "Посочете дата на валутна стойност"
 
 #: maincurrencydialog.cpp:286
 msgid "Enter the currency value"
-msgstr ""
+msgstr "Въведете стойността на валутата"
 
 #: maincurrencydialog.cpp:295
 msgid "Download Currency Values history"
-msgstr ""
+msgstr "Изтегляне история на валутни стойности "
 
 #: maincurrencydialog.cpp:296
 msgid "&Add / Update "
-msgstr ""
+msgstr "&Добавяне / актуализация "
 
 #: maincurrencydialog.cpp:298
 msgid "Add Currency Values to history"
-msgstr ""
+msgstr "Добави валутна стойност към история"
 
 #: maincurrencydialog.cpp:301
 msgid "Delete selected Currency Values"
@@ -3855,11 +3855,11 @@ msgstr ""
 #: mmframe.cpp:457 mmframe.cpp:730 mmhomepagepanel.cpp:482
 #: reports/summary.cpp:161
 msgid "Crypto Wallets"
-msgstr ""
+msgstr "Крипто портфейли"
 
 #: mmframe.cpp:499
 msgid "Auto Repeat Transactions"
-msgstr ""
+msgstr "Автоматично повторящи се транзакции"
 
 #: mmframe.cpp:685 mmframe.cpp:1833
 msgid "Home Page"
@@ -3867,7 +3867,7 @@ msgstr "Начална страница"
 
 #: mmframe.cpp:720
 msgid "Share Accounts"
-msgstr ""
+msgstr "Дялови сметки"
 
 #: mmframe.cpp:740 mmframe.cpp:1639
 msgid "Budget Setup"
@@ -3882,11 +3882,13 @@ msgstr "Помощ"
 msgid "Account: %s\n\n"
 "Balance at currency %s: %s\n"
 "Balance at currency %s: %s"
-msgstr ""
+msgstr "Сметка: %s\n\n"
+"Баланс при валута %s: %s\n"
+"Баланс при валута %s: %s"
 
 #: mmframe.cpp:1146
 msgid "Foreign Currency Account Balance"
-msgstr ""
+msgstr "Баланс на сметка в чужда валута"
 
 #: mmframe.cpp:1160
 msgid "Do you really want to delete the account?"
@@ -3914,7 +3916,7 @@ msgstr "&Промени акаунт"
 
 #: mmframe.cpp:1223 mmframe.cpp:1586
 msgid "&Reallocate Account"
-msgstr ""
+msgstr "&Премести сметка"
 
 #: mmframe.cpp:1224 mmframe.cpp:1270 mmframe.cpp:1590
 msgid "&Delete Account"
@@ -3922,7 +3924,7 @@ msgstr "&Изтрий акаунт"
 
 #: mmframe.cpp:1226
 msgid "&Foreign Currency Balance"
-msgstr ""
+msgstr "&Баланс чужда валута"
 
 #: mmframe.cpp:1227
 msgid "&Launch Account Website"
@@ -3930,7 +3932,7 @@ msgstr "&Отвори уебсайта на акаунта"
 
 #: mmframe.cpp:1257 mmframe.cpp:1570
 msgid "Hide/Show Report"
-msgstr ""
+msgstr "Скрий/Покажи отчет"
 
 #: mmframe.cpp:1269 mmframe.cpp:1578
 msgid "New &Account"
@@ -3946,7 +3948,7 @@ msgstr "&CSV файлове..."
 
 #: mmframe.cpp:1280 mmframe.cpp:1285 mmframe.cpp:1474 mmframe.cpp:1482
 msgid "&XML Files..."
-msgstr ""
+msgstr "&XML файлове..."
 
 #: mmframe.cpp:1281 mmframe.cpp:1286 mmframe.cpp:1475 mmframe.cpp:1483
 msgid "&QIF Files..."
@@ -3954,7 +3956,7 @@ msgstr "&QIF файлове..."
 
 #: mmframe.cpp:1285 mmframe.cpp:1482
 msgid "Import from XML (Excel format)"
-msgstr ""
+msgstr "Внасяне от XML (Excel формат)"
 
 #: mmframe.cpp:1296 optionsettingsview.cpp:62
 msgid "Accounts Visible"
@@ -3998,7 +4000,7 @@ msgstr "Експортирай към CSV"
 
 #: mmframe.cpp:1474
 msgid "Export to XML"
-msgstr ""
+msgstr "Изнасяне в XML"
 
 #: mmframe.cpp:1476
 msgid "&Report to HTML"
@@ -4010,11 +4012,11 @@ msgstr "Експортирай към HTML"
 
 #: mmframe.cpp:1477
 msgid "&Force WebApp sync"
-msgstr ""
+msgstr "&Принудителна WebApp синхронизация"
 
 #: mmframe.cpp:1477
 msgid "Force sync of accounts, payees and categories to WebApp"
-msgstr ""
+msgstr "Принудително синхронизирай сметки, бенефициенти и категории към WebApp"
 
 #: mmframe.cpp:1481
 msgid "Import from any CSV file"
@@ -4026,11 +4028,11 @@ msgstr "Импортирай от QIF"
 
 #: mmframe.cpp:1484
 msgid "&WebApp..."
-msgstr ""
+msgstr "&WebApp..."
 
 #: mmframe.cpp:1484
 msgid "Import from WebApp"
-msgstr ""
+msgstr "Внасяне от WebApp"
 
 #: mmframe.cpp:1490 mmframe.cpp:1864
 msgid "&Print..."
@@ -4058,11 +4060,11 @@ msgstr "Скрий/Покажи Навигационното дърво"
 
 #: mmframe.cpp:1506
 msgid "&Display Share Accounts"
-msgstr ""
+msgstr "Покажи &Дялови сметки"
 
 #: mmframe.cpp:1506
 msgid "Show/Hide Share Accounts in the navigation tree"
-msgstr ""
+msgstr "Покажи/Скрий дялови сметки в дървото за навигация"
 
 #: mmframe.cpp:1509
 msgid "Budgets: As &Financial Years"
@@ -4090,11 +4092,11 @@ msgstr "Покажи настройките на бюджета без обоб�
 
 #: mmframe.cpp:1515
 msgid "Budget Category Report: with &Summaries"
-msgstr ""
+msgstr "Доклад категории бюджет: с &резюмета"
 
 #: mmframe.cpp:1515
 msgid "Include the category summaries in the Budget Category Summary"
-msgstr ""
+msgstr "Включи резюметата на категории в Доклада категории бюджет"
 
 #: mmframe.cpp:1517
 msgid "Ignore F&uture Transactions"
@@ -4106,23 +4108,23 @@ msgstr "Игнорирай бъдещи транзакции"
 
 #: mmframe.cpp:1532 mmframe.cpp:1861
 msgid "Toggle Fullscreen\tF11"
-msgstr ""
+msgstr "Превключване на цял екран F11"
 
 #: mmframe.cpp:1532 mmframe.cpp:1861
 msgid "Toggle Fullscreen"
-msgstr ""
+msgstr "Превключване на цял екран"
 
 #: mmframe.cpp:1540
 msgid "Switch Application Language"
-msgstr ""
+msgstr "Промени езика на приложението"
 
 #: mmframe.cpp:1541
 msgid "Change language used for MMEX GUI"
-msgstr ""
+msgstr "Промяна на езика, използван за MMEX ГПИ"
 
 #: mmframe.cpp:1547
 msgid "system default"
-msgstr ""
+msgstr "системно по подразбиране"
 
 #: mmframe.cpp:1574
 msgid "Account &List"
@@ -4134,7 +4136,7 @@ msgstr "Покажи списъка с акаунти"
 
 #: mmframe.cpp:1586
 msgid "Change the account type of an account."
-msgstr ""
+msgstr "Промени типа на сметка"
 
 #: mmframe.cpp:1590
 msgid "Delete Account from database"
@@ -4186,7 +4188,7 @@ msgstr "&Настройки на бюджета"
 
 #: mmframe.cpp:1644
 msgid "&Recurring Transactions"
-msgstr ""
+msgstr "По&втарящи се транзакции"
 
 #: mmframe.cpp:1644
 msgid "Bills && Deposits"
@@ -4210,11 +4212,11 @@ msgstr "&Мениджър на основния отчет..."
 
 #: mmframe.cpp:1666
 msgid "&Custom Fields Manager..."
-msgstr ""
+msgstr "&Управител на потребителски полета..."
 
 #: mmframe.cpp:1666 mmframe.cpp:1839
 msgid "Custom Fields Manager"
-msgstr ""
+msgstr "Управител на потребителски полета"
 
 #: mmframe.cpp:1673 mmframe.cpp:1843
 msgid "&Options..."
@@ -4226,43 +4228,43 @@ msgstr "Покажи прозореца за Опции"
 
 #: mmframe.cpp:1681
 msgid "Set &Password"
-msgstr ""
+msgstr "Задай &парола"
 
 #: mmframe.cpp:1682
 msgid "Encrypt database or change password for database file"
-msgstr ""
+msgstr "Криптиране на базата данни или промяна паролата за базата данни"
 
 #: mmframe.cpp:1685
 msgid "Remove Password"
-msgstr ""
+msgstr "Премахване на парола"
 
 #: mmframe.cpp:1686
 msgid "Remove password and decrypt database file"
-msgstr ""
+msgstr "Премахване на парола и декриптиране файла база данни"
 
 #: mmframe.cpp:1689
 msgid "Optimize &Database"
-msgstr ""
+msgstr "&Оптимизиране на базата данни"
 
 #: mmframe.cpp:1690
 msgid "Optimize database space and performance"
-msgstr ""
+msgstr "Оптимизира производителността и заеманото пространство от базата данни"
 
 #: mmframe.cpp:1693
 msgid "Database Debug"
-msgstr ""
+msgstr "Debug на базата данни"
 
 #: mmframe.cpp:1694
 msgid "Generate database report or fix errors"
-msgstr ""
+msgstr "Генерирай отчет за базата данни или поправи грешки"
 
 #: mmframe.cpp:1700
 msgid "Database"
-msgstr ""
+msgstr "База данни"
 
 #: mmframe.cpp:1701
 msgid "Database management"
-msgstr ""
+msgstr "Управление на база данни"
 
 #: mmframe.cpp:1708 mmframe.cpp:1848
 msgid "&Help\tF1"
@@ -4270,15 +4272,15 @@ msgstr "&Помощ\tF1"
 
 #: mmframe.cpp:1708
 msgid "Read the User Manual"
-msgstr ""
+msgstr "Прочетете ръководството за потребителя"
 
 #: mmframe.cpp:1713
 msgid "Website"
-msgstr ""
+msgstr "Интернет страница"
 
 #: mmframe.cpp:1714
 msgid "Open the Money Manager EX website for latest news, updates etc"
-msgstr ""
+msgstr "Отвори интернет страницата на Money Manager EX за новини, актуализации"
 
 #: mmframe.cpp:1717
 msgid "Facebook"
