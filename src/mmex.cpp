@@ -70,15 +70,32 @@ bool mmGUIApp::setGUILanguage(wxLanguage lang)
     trans->AddStdCatalog();
     if (!trans->AddCatalog("mmex", wxLANGUAGE_ENGLISH_US) && lang != wxLANGUAGE_ENGLISH_US)
     {
+        size_t count = trans->GetAvailableTranslations("mmex").GetCount();
+        wxString msg;
         if (lang==wxLANGUAGE_DEFAULT)
-            mmErrorDialogs::MessageWarning(NULL
-                ,_("Can not load translation for default language")
-                ,_("Language change"));
+        {
+            wxString best;
+#if wxCHECK_VERSION(3, 1, 2)
+// workaround for https://github.com/wxWidgets/wxWidgets/pull/1082
+            wxArrayString all = trans->GetAcceptableTranslations("mmex");
+            best = all.IsEmpty() ? "" : all[0];
+#else
+            best = trans->GetBestTranslation("mmex");
+#endif
+            if (best.IsEmpty())
+                best = wxLocale::GetLanguageName(wxLocale::GetSystemLanguage());
+            msg = wxString::Format(_("Cannot load a translation for the default language of your system (%s)."),
+                best);
+        }
         else
-            mmErrorDialogs::MessageWarning(NULL
-                ,wxString::Format(_("Can not load translation for selected language %s"),
-                    wxLocale::GetLanguageCanonicalName(lang))
-                ,_("Language change"));
+            msg = wxString::Format(_("Cannot load a translation for the selected language (%s)."),
+                wxLocale::GetLanguageName(lang));
+        msg += "\n\n";
+        if (count)
+            msg += wxString::Format(_("Please use the Switch Application Language option in View menu to select one of the %zu available languages."), count+1);
+        else
+            msg += _("There are no translation files installed.");
+        mmErrorDialogs::MessageWarning(NULL, msg, _("Language change"));
         wxDELETE(trans);
         return false;
     }
