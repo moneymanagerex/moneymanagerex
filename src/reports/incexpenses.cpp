@@ -112,7 +112,8 @@ wxString mmReportIncomeExpenses::getHTMLText()
     valueList.push_back(vt);
 
     wxArrayString labels;
-    labels.Add(_("Income vs Expenses"));
+    const auto label = wxGetTranslation(m_date_range->title());
+    labels.Add(label);
 
     hb.addDivRow();
     hb.addDivCol17_67();

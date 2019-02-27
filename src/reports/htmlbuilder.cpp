@@ -553,10 +553,7 @@ void mmHTMLBuilder::addBarChart(const wxArrayString& labels
 </script>
 )";
 
-    double scaleStepWidth = 1, max_value = 0;
-    double step = 10.0;
     int precision = Model_Currency::precision(Model_Currency::GetBaseCurrency());
-    int round = pow(10, precision);
 
     Document jsonDoc;
     jsonDoc.SetObject();
@@ -574,6 +571,8 @@ void mmHTMLBuilder::addBarChart(const wxArrayString& labels
     }
     dataObjValue.AddMember("labels", labelsArray, allocator);
 
+    double max_value = 0;
+    int round = pow(10, precision);
     Value datasets_array(kArrayType);
     for (const auto& entry : data)
     {
@@ -595,9 +594,7 @@ void mmHTMLBuilder::addBarChart(const wxArrayString& labels
         {
             double v = (floor(fabs(item) * round) / round);
             data_array.PushBack(v, allocator);
-            if (v > max_value) {
-                max_value = v;
-            }
+            max_value = std::max(v, max_value);
         }
         objValue.AddMember("data", data_array, allocator);
 
@@ -607,13 +604,18 @@ void mmHTMLBuilder::addBarChart(const wxArrayString& labels
 
     jsonDoc.AddMember("data", dataObjValue, allocator);
 
+    double vertical_steps = 10.0;
+    // Compute chart spacing and interval (chart forced to start at zero)
+    double scaleStepWidth = ceil(max_value / vertical_steps);
     // Compute chart spacing and interval (chart forced to start at zero)
     if (scaleStepWidth < 1.0)
         scaleStepWidth = 1.0;
     else {
-        scaleStepWidth = step * (int)(log10(max_value));
+        double s = (pow(10, ceil(log10(scaleStepWidth)) - 1.0));
+        if (s > 0) {
+            scaleStepWidth = ceil(scaleStepWidth / s) * s;
+        }
     }
-    step = ceil(max_value / scaleStepWidth);
 
     Value optionsValue;
     optionsValue.SetObject();
@@ -625,7 +627,7 @@ void mmHTMLBuilder::addBarChart(const wxArrayString& labels
     scale.PushBack((int)scaleStepWidth, allocator);
     optionsValue.AddMember("scaleStepWidth", scale, allocator);
     Value steps(kArrayType);
-    steps.PushBack(step, allocator);
+    steps.PushBack(vertical_steps, allocator);
     optionsValue.AddMember("scaleSteps", steps, allocator);
     jsonDoc.AddMember("options", optionsValue, allocator);
 
