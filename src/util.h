@@ -51,6 +51,13 @@ struct LineGraphData
     wxString label;
     double   amount;
 };
+struct BarGraphData
+{
+    wxString fillColor;
+    wxString strokeColor;
+    wxString title;
+    std::vector<double> data;
+};
 
 struct WebsiteNews
 {

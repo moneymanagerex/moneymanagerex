@@ -100,15 +100,15 @@ wxString mmReportIncomeExpenses::getHTMLText()
             income_expenses_pair.second += transaction.TRANSAMOUNT * convRate;
     }
 
-    ValueTrio vt;
-    std::vector<ValueTrio> valueList;
-    vt.amount = income_expenses_pair.first;
-    vt.color = "rgba(151,187,205,0.5)";
-    vt.label = _("Income");
+    BarGraphData vt;
+    std::vector<BarGraphData> valueList;
+    vt.data = { income_expenses_pair.first };
+    vt.fillColor = "rgba(151,187,205,0.5)";
+    vt.title = _("Income");
     valueList.push_back(vt);
-    vt.amount = income_expenses_pair.second;
-    vt.color = "rgba(220,66,66,0.5)";
-    vt.label = _("Expenses");
+    vt.data = { income_expenses_pair.second };
+    vt.fillColor = "rgba(220,66,66,0.5)";
+    vt.title = _("Expenses");
     valueList.push_back(vt);
 
     wxArrayString labels;
