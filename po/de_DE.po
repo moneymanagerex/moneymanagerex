@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-02-25 13:09+0300\n"
-"PO-Revision-Date: 2019-02-26 20:25\n"
+"PO-Revision-Date: 2019-02-27 20:29\n"
 "Last-Translator: vomikan <nikolay.akimov@gmail.com>\n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -1932,7 +1932,9 @@ msgstr "Benutzerdefiniertes Feld löschen bestätigen"
 msgid "This function will massive search & replace for \"%s\" custom field values\n"
 "It will match & replace only complete field value, no partial or middle-value replaces allowed\n"
 "Please consider that there isn't any validation!"
-msgstr ""
+msgstr "Diese Funktion sucht und ersetzt massiv nach \"%s\" in benutzerdefinierten Feldwerten.\n"
+"Es wird nur bei komplett übereinstimmenden Feldwerten ersetzt, es sind keine Teil- oder Mittelwertersetzungen erlaubt.\n"
+"Bitte beachten Sie, dass es keine Überprüfung gibt!"
 
 #: customfieldlistdialog.cpp:194
 msgid "Confirm Custom Field Content Update"
@@ -3529,7 +3531,7 @@ msgstr "Tipp: Sie können das Laufzeitverhalten von MMEX beinflussen, indem Sie 
 
 #: mmTips.h:32
 msgid "Tip: To print a statement with transactions from any arbitrary set of criteria, use the transaction filter to select the transactions you want and then do a print from the menu."
-msgstr ""
+msgstr "Tipp: Um eine Buchungsaufstellung für beliebige Kriterien zu drucken, verwenden Sie den Transaktionsfilter, um die gewünschten Buchungen auszuwählen, und wählen dann den Menüpunkt Drucken aus."
 
 #: mmTips.h:33
 msgid "Tip: Set exchange rate for currencies in case if you have accounts with different currencies."
@@ -3545,7 +3547,7 @@ msgstr "Hinweis zur Organisation der Kategorien: Bei der Eingabe einer Kombinati
 
 #: mmTips.h:38
 msgid "Tip to get out of debt: Pay yourself 10 percentage first. Put this into an account that is hard to touch. Make sure it is a chore to get the money out (you have to drive to the bank), so you will only tap it consciously and for major expenses."
-msgstr ""
+msgstr "Tipp um aus den Schulden herauszukommen: Lege 10 Prozent deiner Einnahmen auf ein Konto, auf das du nur schwer zugreifen kannst. Stelle sicher, dass es unbequem ist an das Geld heranzukommen, z. B. weil du dazu zur Bank fahren musst, so dass du das Geld nur bewusst und für größere Ausgaben abheben wirst."
 
 #: mmTips.h:39
 msgid "Tip to get out of debt: Establish an emergency fund."
