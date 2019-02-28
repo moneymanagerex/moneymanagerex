@@ -131,8 +131,9 @@ wxString mmReportBudgetingPerformance::getHTMLText()
     Model_Budget::instance().getBudgetEntry(m_date_selection, budgetPeriod, budgetAmt);
     std::map<int, std::map<int, std::map<int, double> > > categoryStats;
     Model_Category::instance().getCategoryStats(categoryStats
-        , &date_range, Option::instance().getIgnoreFutureTransactions(),
-        true, (evaluateTransfer ? &budgetAmt : nullptr));
+        , nullptr
+        , &date_range, Option::instance().getIgnoreFutureTransactions()
+        , true, (evaluateTransfer ? &budgetAmt : nullptr));
     //Init totals
     const auto &allCategories = Model_Category::instance().all(Model_Category::COL_CATEGNAME);
     const auto &allSubcategories = Model_Subcategory::instance().all(Model_Subcategory::COL_SUBCATEGNAME);

@@ -41,7 +41,7 @@ mmReportCategoryExpenses::~mmReportCategoryExpenses()
 
 int mmReportCategoryExpenses::report_parameters()
 {
-    return RepParams::DATE_RANGE | RepParams::CHART;
+    return RepParams::DATE_RANGE | RepParams::CHART | RepParams::ACCOUNTS_LIST;
 }
 
 void  mmReportCategoryExpenses::RefreshData()
@@ -50,6 +50,7 @@ void  mmReportCategoryExpenses::RefreshData()
     wxString color;
     std::map<int, std::map<int, std::map<int, double> > > categoryStats;
     Model_Category::instance().getCategoryStats(categoryStats
+        , accountArray_
         , const_cast<mmDateRange*>(m_date_range)
         , Option::instance().getIgnoreFutureTransactions()
         , false);

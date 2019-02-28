@@ -48,6 +48,7 @@ public:
     void initial_report(bool initial) { m_initial = initial; }
     void setSettings(const wxString& settings);
     void getDates(wxDateTime &begin, wxDateTime &end);
+    const wxString getAccountNames() const;
 
 protected:
     wxString m_title;

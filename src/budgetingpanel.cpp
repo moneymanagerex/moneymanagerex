@@ -411,6 +411,7 @@ void mmBudgetingPanel::initVirtualListControl()
     //Get statistics
     Model_Budget::instance().getBudgetEntry(budgetYearID_, budgetPeriod_, budgetAmt_);
     Model_Category::instance().getCategoryStats(categoryStats_
+        , nullptr
         , &date_range, Option::instance().getIgnoreFutureTransactions()
         , false, (evaluateTransfer ? &budgetAmt_ : 0));
 

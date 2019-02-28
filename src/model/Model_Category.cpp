@@ -157,6 +157,7 @@ bool Model_Category::has_income(int id, int sub_id)
 
 void Model_Category::getCategoryStats(
         std::map<int, std::map<int, std::map<int, double> > > &categoryStats
+        , const wxArrayString* accountArray
         , mmDateRange* date_range, bool ignoreFuture //TODO: deprecated
         , bool group_by_month
         , std::map<int, std::map<int, double> > *budgetAmt)
@@ -188,7 +189,18 @@ void Model_Category::getCategoryStats(
         , Model_Checking::TRANSDATE(date_range->start_date(), GREATER_OR_EQUAL)
         , Model_Checking::TRANSDATE(date_range->end_date(), LESS_OR_EQUAL)))
     {
-        const double convRate = Model_CurrencyHistory::getDayRate(Model_Account::instance().get(transaction.ACCOUNTID)->CURRENCYID, transaction.TRANSDATE);
+
+        if (accountArray)
+        {
+            const auto account = Model_Account::instance().get(transaction.ACCOUNTID);
+            if (wxNOT_FOUND == accountArray->Index(account->ACCOUNTNAME)) {
+                continue;
+            }
+        }
+
+
+        const double convRate = Model_CurrencyHistory::getDayRate(
+            Model_Account::instance().get(transaction.ACCOUNTID)->CURRENCYID, transaction.TRANSDATE);
         const wxDateTime &d = Model_Checking::TRANSDATE(transaction);
         int idx = group_by_month ? (d.GetYear()*100 + (int)d.GetMonth()) : 0;
         int categID = transaction.CATEGID;

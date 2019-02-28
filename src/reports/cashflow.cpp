@@ -220,24 +220,8 @@ wxString mmReportCashFlow::getHTMLText_i()
 
     const wxString& headerMsg = wxString::Format (_("Cash Flow Forecast for %i Years Ahead"), years);
     hb.addHeader(2, headerMsg );
-    wxString accountsMsg;
-    if (accountArray_) 
-    {
-        for (const auto& entry : *accountArray_) {
-            accountsMsg.Append((accountsMsg.empty() ? "" : ", ") + entry);
-        }
-    } 
-    else 
-    {
-        accountsMsg << _("All Accounts");
-    }
-    
-    if (accountsMsg.empty()) {
-        accountsMsg = _("None");
-    }
-    accountsMsg.Prepend(_("Accounts: "));
 
-    hb.addHeader(2, accountsMsg);
+    hb.addHeader(2, getAccountNames());
     hb.addDateNow();
     hb.addLineBreak();
 

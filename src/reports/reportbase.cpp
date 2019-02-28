@@ -248,6 +248,27 @@ void mmPrintableBase::getDates(wxDateTime &begin, wxDateTime &end)
     end = m_end_date;
 }
 
+const wxString mmPrintableBase::getAccountNames() const
+{
+    wxString accountsMsg;
+    if (accountArray_)
+    {
+        for (const auto& entry : *accountArray_) {
+            accountsMsg.Append((accountsMsg.empty() ? "" : ", ") + entry);
+        }
+    }
+    else
+    {
+        accountsMsg << _("All Accounts");
+    }
+
+    if (accountsMsg.empty()) {
+        accountsMsg = _("None");
+    }
+    accountsMsg.Prepend(_("Accounts: "));
+    return accountsMsg;
+}
+
 mmGeneralReport::mmGeneralReport(const Model_Report::Data* report)
 : mmPrintableBase(report->REPORTNAME)
 , m_report(report)
