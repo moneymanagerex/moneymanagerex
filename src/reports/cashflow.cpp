@@ -70,12 +70,12 @@ void mmReportCashFlow::getStats(double& tInitialBalance, std::vector<ValueTrio>&
             }
         }
 
-        const auto transactions = Model_Account::transaction(account);
-        double initConvRate = Model_CurrencyHistory::getDayRate(account.CURRENCYID,
-            transactions.empty() ? today_.FormatISODate() : transactions[0].TRANSDATE);
-        tInitialBalance += account.INITIALBAL * initConvRate;
+        double convRate = Model_CurrencyHistory::getDayRate(account.CURRENCYID
+            , today_.FormatISODate());
+        tInitialBalance += account.INITIALBAL * convRate;
         
         account_id.Add(account.ACCOUNTID);
+        const auto transactions = Model_Account::transaction(account);
 
         for (const auto& tran : transactions)
         {
