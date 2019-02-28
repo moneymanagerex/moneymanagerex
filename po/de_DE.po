@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-02-25 13:09+0300\n"
-"PO-Revision-Date: 2019-02-25 20:24\n"
+"PO-Revision-Date: 2019-02-27 21:35\n"
 "Last-Translator: vomikan <nikolay.akimov@gmail.com>\n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -1932,7 +1932,9 @@ msgstr "Benutzerdefiniertes Feld löschen bestätigen"
 msgid "This function will massive search & replace for \"%s\" custom field values\n"
 "It will match & replace only complete field value, no partial or middle-value replaces allowed\n"
 "Please consider that there isn't any validation!"
-msgstr ""
+msgstr "Diese Funktion sucht und ersetzt massiv nach \"%s\" in benutzerdefinierten Feldwerten.\n"
+"Es wird nur bei komplett übereinstimmenden Feldwerten ersetzt, es sind keine Teil- oder Mittelwertersetzungen erlaubt.\n"
+"Bitte beachten Sie, dass es keine Überprüfung gibt!"
 
 #: customfieldlistdialog.cpp:194
 msgid "Confirm Custom Field Content Update"
@@ -3529,7 +3531,7 @@ msgstr "Tipp: Sie können das Laufzeitverhalten von MMEX beinflussen, indem Sie 
 
 #: mmTips.h:32
 msgid "Tip: To print a statement with transactions from any arbitrary set of criteria, use the transaction filter to select the transactions you want and then do a print from the menu."
-msgstr ""
+msgstr "Tipp: Um eine Buchungsaufstellung für beliebige Kriterien zu drucken, verwenden Sie den Transaktionsfilter, um die gewünschten Buchungen auszuwählen, und wählen dann den Menüpunkt Drucken aus."
 
 #: mmTips.h:33
 msgid "Tip: Set exchange rate for currencies in case if you have accounts with different currencies."
@@ -3545,7 +3547,7 @@ msgstr "Hinweis zur Organisation der Kategorien: Bei der Eingabe einer Kombinati
 
 #: mmTips.h:38
 msgid "Tip to get out of debt: Pay yourself 10 percentage first. Put this into an account that is hard to touch. Make sure it is a chore to get the money out (you have to drive to the bank), so you will only tap it consciously and for major expenses."
-msgstr ""
+msgstr "Tipp um aus den Schulden herauszukommen: Lege 10 Prozent deiner Einnahmen auf ein Konto, auf das du nur schwer zugreifen kannst. Stelle sicher, dass es unbequem ist an das Geld heranzukommen, z. B. weil du dazu zur Bank fahren musst, so dass du das Geld nur bewusst und für größere Ausgaben abheben wirst."
 
 #: mmTips.h:39
 msgid "Tip to get out of debt: Establish an emergency fund."
@@ -4615,7 +4617,10 @@ msgid "Share Accounts hold Share transactions\n\n"
 "These accounts only become visible after associating a Stock to the Share Account\n"
 "Or by using the Menu View --> 'Display Share Accounts'\n"
 "Share Accounts can also hold normal transactions to regular account."
-msgstr ""
+msgstr "Aktienkonten beinhalten Aktientransaktionen\n\n"
+"Aktientransaktionen werden innerhalb der Aktienportfoliosicht nach der Auswahl der Unternehmensaktien in der zugehörigen Ansicht angelegt.\n"
+"Diese Konten werden erst sichtbar, wenn dem Aktienkonto eine Aktie zugeordnet wurde, oder dies über das Menü View -->'Aktienkonten anzeigen' aktiviert wurde.\n"
+"Aktienkonten können auch normale Transaktionen auf einem regulären Konto enthalten."
 
 #: mmframe.cpp:2354
 msgid "Share Account Creation"
@@ -5242,7 +5247,7 @@ msgstr "Setzt die Standardwährung der Datenbank mithilfe der 'Währungsdialoges
 
 #: optionsettingsgeneral.cpp:94
 msgid "Right click and select 'Set as Base Currency' in 'Currency Dialog'"
-msgstr ""
+msgstr "Klicken Sie mit der rechten Maustaste und wählen Sie 'Als Basiswährung festlegen' im 'Währungsdialog'"
 
 #: optionsettingsgeneral.cpp:110
 msgid "Specify the date format for display"
@@ -5550,7 +5555,7 @@ msgstr "Budgetverrechnung (Tage):"
 
 #: optionsettingsview.cpp:158
 msgid "Advance or retard the start date from the 1st of the month or year by the number of days"
-msgstr ""
+msgstr "Das Startdatum ab dem 1. des Monats bzw. des Jahres um die Anzahl der Tage vor- oder zurückstellen"
 
 #: optionsettingsview.cpp:163
 msgid "Report Options"
@@ -5623,7 +5628,7 @@ msgstr "Verwaltung der Kategorie anzeigen"
 
 #: relocatecategorydialog.cpp:90
 msgid "Relocate source category to the destination category"
-msgstr ""
+msgstr "Quellkategorie zur Zielkategorie verschieben"
 
 #: relocatecategorydialog.cpp:93
 msgid "Select Source Category"
@@ -5995,7 +6000,7 @@ msgstr "Aktienpaket"
 
 #: sharetransactiondialog.cpp:250
 msgid "Enter the LOT that this parcel os shares belong to"
-msgstr ""
+msgstr "Geben Sie die Charge ein, zu dem dieses Paket oder diese Aktien gehören"
 
 #: sharetransactiondialog.cpp:257 stockdialog.cpp:281
 msgid "Organize attachments of this stock"
@@ -6050,7 +6055,8 @@ msgstr "Anfänglicher Aktienkurs.\n"
 #: stockdialog.cpp:158
 msgid "Invalid in this view.\n"
 "View Transactions for values"
-msgstr ""
+msgstr "Ungültig für diese Ansicht.\n"
+"Buchhaltungstransaktionen für Werte anzeigen"
 
 #: stockdialog.cpp:195
 msgid "Name of the company issuing Shares"
@@ -6059,12 +6065,14 @@ msgstr "Name des Unternehmens, das die Aktien ausstellt"
 #: stockdialog.cpp:199
 msgid "Enter the associated Share Account name\n"
 "An account can be created on Save"
-msgstr ""
+msgstr "Geben Sie den zugehörigen Namen des Aktienkontos ein.\n"
+"Ein Konto kann beim Speichern erstellt werden"
 
 #: stockdialog.cpp:209
 msgid "Enter the Company's stock exchange symbol.\n"
 "(Optional) Include exchange. eg: IBM.BE"
-msgstr ""
+msgstr "Geben Sie das Börsensymbol des Unternehmens ein.\n"
+"(Optional) Inklusive Exchange. z.B.: IBM.BE"
 
 #: stockdialog.cpp:212 stockspanel.cpp:96
 msgid "*Date"
@@ -6073,7 +6081,8 @@ msgstr "*Datum"
 #: stockdialog.cpp:213
 msgid "Initial purchase date of shares.\n"
 "Recorded in share transaction"
-msgstr ""
+msgstr "Erstkaufdatum der Aktien.\n"
+"Erfasst in der Aktientransaktion"
 
 #: stockdialog.cpp:219
 msgid "Specify the date of this initial share purchase"
@@ -6113,7 +6122,7 @@ msgstr "Restbetrag der Gelder aus der Aktienanlage.\n"
 
 #: stockdialog.cpp:251
 msgid "Enter any commission paid or left over money from the purchase of shares."
-msgstr ""
+msgstr "Geben Sie alle Provisionen ein, die beim Kauf der Aktien gezahlt oder erhalten wurden."
 
 #: stockdialog.cpp:256
 msgid "Share price after the initial share purchase"
@@ -6166,13 +6175,16 @@ msgstr "Geführt bei"
 #: stockdialog.cpp:489
 msgid "A Share Account as the Company name has not been found.\n\n"
 "Do you want to create one?"
-msgstr ""
+msgstr "Ein Aktienkonto als Firmenname wurde nicht gefunden.\n\n"
+"Möchten Sie eines erstellen?"
 
 #: stockdialog.cpp:499
 msgid "The Company name does not have an associated Share Account.\n\n"
 "You may want to readjust the Company Name to an existing Share Account with the same name. If this is an existing Stock without a Share Account, it is recommended that a Share Account is created.\n\n"
 "Do you want to create a new Share Acccount?\n"
-msgstr ""
+msgstr "Der Firmenname hat kein zugehöriges Aktienkonto.\n\n"
+"Möglicherweise möchten Sie den Firmennamen einem bestehenden Aktienkonto mit gleichem Namen zuordnen. Wenn es sich um eine bestehende Aktie ohne Aktienkonto handelt, wird empfohlen, ein Aktienkonto einzurichten.\n\n"
+"Möchten Sie ein neues Aktienkonto erstellen?\n"
 
 #: stockdialog.cpp:567
 msgid "Stock History CSV Import"
@@ -6224,7 +6236,7 @@ msgstr "Max"
 
 #: stockdialog.cpp:695
 msgid "Specify type frequency of stock history"
-msgstr ""
+msgstr "Legen sie die Datumsperiode für die Aktienkursentwicklung fest"
 
 #: stockdialog.cpp:696 stockdialog.cpp:720
 msgid "Stock History Update"
@@ -6335,7 +6347,7 @@ msgstr "Ausgewählte Aktieanteil Buchungen anzeigen"
 
 #: stockspanel.cpp:588
 msgid "Edit selected stock investment and readjust current prices"
-msgstr ""
+msgstr "Bearbeiten Sie die ausgewählten Aktienanlagen und passen Sie die aktuellen Preise an"
 
 #: stockspanel.cpp:593
 msgid "Delete selected stock investment"
@@ -6496,7 +6508,7 @@ msgstr "&Transfer"
 
 #: usertransactionpanel.cpp:139
 msgid "Funds transfer from/to this account. Uncheck to set as Expense/Income."
-msgstr ""
+msgstr "Überweisung von/auf dieses Konto. Deaktivieren Sie das Kontrollkästchen, um diese als Aufwand/Ertrag zu kennzeichnen."
 
 #: usertransactionpanel.cpp:164
 msgid "Currency used for this transaction."
@@ -6799,7 +6811,7 @@ msgstr "Assistent zum Hinzufügen eines Kontos"
 #: wizard_newaccount.cpp:35
 #, c-format
 msgid "%s models all transactions as belonging to accounts."
-msgstr ""
+msgstr "%s formt alle Buchungen die zu einem Konten gehören."
 
 #: wizard_newaccount.cpp:36
 msgid "The next pages will help you create a new account.\n"
