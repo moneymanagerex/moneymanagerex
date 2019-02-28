@@ -541,7 +541,7 @@ void mmHTMLBuilder::addPieChart(std::vector<ValueTrio>& valueList, const wxStrin
 }
 
 void mmHTMLBuilder::addBarChart(const wxArrayString& labels
-    , const std::vector<ValueTrio>& data, const wxString& id
+    , const std::vector<BarGraphData>& data, const wxString& id
     , int x, int y)
 {
     static const wxString html_parts = R"(
@@ -553,10 +553,7 @@ void mmHTMLBuilder::addBarChart(const wxArrayString& labels
 </script>
 )";
 
-    double scaleStepWidth = 1;
-    double steps = 10.0;
     int precision = Model_Currency::precision(Model_Currency::GetBaseCurrency());
-    int round = pow(10, precision);
 
     Document jsonDoc;
     jsonDoc.SetObject();
@@ -574,6 +571,8 @@ void mmHTMLBuilder::addBarChart(const wxArrayString& labels
     }
     dataObjValue.AddMember("labels", labelsArray, allocator);
 
+    double max_value = 0;
+    int round = pow(10, precision);
     Value datasets_array(kArrayType);
     for (const auto& entry : data)
     {
@@ -581,36 +580,40 @@ void mmHTMLBuilder::addBarChart(const wxArrayString& labels
         objValue.SetObject();
 
         Value title, color;
-        title.SetString(entry.label.c_str(), allocator);
+        title.SetString(entry.title.c_str(), allocator);
         objValue.AddMember("title", title, allocator);
 
-        color.SetString(entry.color.c_str(), allocator);
+        color.SetString(entry.fillColor.c_str(), allocator);
         objValue.AddMember("fillColor", color, allocator);
 
-        color.SetString(entry.color.c_str(), allocator);
+        color.SetString(entry.strokeColor.c_str(), allocator);
         objValue.AddMember("strokeColor", color, allocator);
 
-        Value value(kArrayType);
-        double v = (floor(fabs(entry.amount) * round) / round);
-        value.PushBack(v, allocator);
-        objValue.AddMember("data", value, allocator);
+        Value data_array(kArrayType);
+        for (const auto& item : entry.data)
+        {
+            double v = (floor(fabs(item) * round) / round);
+            data_array.PushBack(v, allocator);
+            max_value = std::max(v, max_value);
+        }
+        objValue.AddMember("data", data_array, allocator);
 
         datasets_array.PushBack(objValue, allocator);
-
-        scaleStepWidth = std::max(entry.amount, scaleStepWidth);
     }
     dataObjValue.AddMember("datasets", datasets_array, allocator);
 
     jsonDoc.AddMember("data", dataObjValue, allocator);
 
-    scaleStepWidth = ceil(scaleStepWidth / steps);
+    double vertical_steps = 10.0;
     // Compute chart spacing and interval (chart forced to start at zero)
-    if (scaleStepWidth <= 1.0)
+    double scaleStepWidth = ceil(max_value / vertical_steps);
+    // Compute chart spacing and interval (chart forced to start at zero)
+    if (scaleStepWidth < 1.0)
         scaleStepWidth = 1.0;
     else {
         double s = (pow(10, ceil(log10(scaleStepWidth)) - 1.0));
         if (s > 0) {
-            scaleStepWidth = ceil(scaleStepWidth / s)*s;
+            scaleStepWidth = ceil(scaleStepWidth / s) * s;
         }
     }
 
@@ -623,9 +626,9 @@ void mmHTMLBuilder::addBarChart(const wxArrayString& labels
     Value scale(kArrayType);
     scale.PushBack((int)scaleStepWidth, allocator);
     optionsValue.AddMember("scaleStepWidth", scale, allocator);
-    Value step(kArrayType);
-    step.PushBack(10, allocator);
-    optionsValue.AddMember("scaleSteps", step, allocator);
+    Value steps(kArrayType);
+    steps.PushBack(vertical_steps, allocator);
+    optionsValue.AddMember("scaleSteps", steps, allocator);
     jsonDoc.AddMember("options", optionsValue, allocator);
 
     StringBuffer strbuf;

@@ -114,7 +114,7 @@ public:
     void addRadarChart(std::vector<ValueTrio>& actData, std::vector<ValueTrio>& estData, const wxString& id, int x = 300, int y = 300);
     void addPieChart(std::vector<ValueTrio>& valueList, const wxString& id, int x = 300, int y = 300);
     void addLineChart(const std::vector<LineGraphData>& data, const wxString& id, int colorNum, int x = 640, int y = 256, bool pointDot = false, bool showGridLines = true, bool datasetFill = false);
-    void addBarChart(const wxArrayString& labels, const std::vector<ValueTrio>& data, const wxString& id, int x = 192, int y = 256);
+    void addBarChart(const wxArrayString& labels, const std::vector<BarGraphData>& data, const wxString& id, int x = 192, int y = 256);
 
 private:
     wxString html_;

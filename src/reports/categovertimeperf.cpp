@@ -45,7 +45,7 @@ mmReportCategoryOverTimePerformance::~mmReportCategoryOverTimePerformance()
 
 int mmReportCategoryOverTimePerformance::report_parameters()
 {
-    return RepParams::NONE;
+    return RepParams::NONE | RepParams::CHART;
 }
 
 wxString mmReportCategoryOverTimePerformance::getHTMLText()
@@ -85,6 +85,7 @@ wxString mmReportCategoryOverTimePerformance::getHTMLText()
             totals[TOTAL][i.first] += value;
         }
         data.push_back(line);
+
         for (const auto& sub_category: Model_Category::sub_category(category))
         {
             int subcategID = sub_category.SUBCATEGID;
@@ -96,8 +97,8 @@ wxString mmReportCategoryOverTimePerformance::getHTMLText()
                 double value = i.second;
                 line.period[month++] = value;
                 line.overall += value;
-                totals[value<0][i.first] += value;
-                totals[value>=0][i.first] += 0;
+                totals[value < 0][i.first] += value;
+                totals[value >= 0][i.first] += 0;
                 totals[TOTAL][i.first] += value;
             }
             data.push_back(line);
@@ -111,17 +112,65 @@ wxString mmReportCategoryOverTimePerformance::getHTMLText()
     hb.addDateNow();
     hb.addLineBreak();
 
+    wxDateTime start_date = m_date_range->start_date();
+
+    //Chart
+    wxArrayString labels;
+    if (getChartSelection() == 0)
+    {
+        std::vector<BarGraphData> aData;
+        BarGraphData data_negative;
+        BarGraphData data_positive;
+        for (int i = 0; i < MONTHS_IN_PERIOD; i++)
+        {
+            wxDateTime d = wxDateTime(start_date).Add(wxDateSpan::Months(i));
+
+            double val_negative = 0;
+            double val_positive = 0;
+            for (const auto& entry : data)
+            {
+                if (entry.period[i] < 0)
+                    val_negative += -entry.period[i];
+                else
+                    val_positive += entry.period[i];
+            }
+
+            data_negative.data.push_back(val_negative);
+            data_positive.data.push_back(val_positive);
+
+            data_negative.title = _("Expenses");
+            data_positive.title = _("Income");
+
+            data_negative.fillColor = "rgba(220,66,66,0.5)";
+            data_positive.fillColor = "rgba(151,187,205,0.5)";
+
+            labels.Add(wxGetTranslation(wxDateTime::GetEnglishMonthName(d.GetMonth())));
+        }
+        aData.push_back(data_positive);
+        aData.push_back(data_negative);
+
+        if (!aData.empty())
+        {
+            hb.addDivRow();
+            hb.addDivCol17_67();
+            hb.addBarChart(labels, aData, "BarChart", 1000, 400);
+            hb.endDiv();
+            hb.endDiv();
+        }
+    }
+
     hb.startSortTable();
 
     //Add header
     hb.startThead();
     hb.startTableRow();
     hb.addTableHeaderCell(_("Category"));
-    wxDateTime start_date = m_date_range->start_date();
+
     for (int i = 0; i < MONTHS_IN_PERIOD; i++)
     {
         wxDateTime d = wxDateTime(start_date).Add(wxDateSpan::Months(i));
-        hb.addTableHeaderCell(wxGetTranslation(wxDateTime::GetEnglishMonthName(d.GetMonth(), wxDateTime::Name_Abbr)) + wxString::Format("<br>%i", d.GetYear()), true);
+        hb.addTableHeaderCell(wxGetTranslation(wxDateTime::GetEnglishMonthName(d.GetMonth()
+            , wxDateTime::Name_Abbr)) + wxString::Format("<br>%i", d.GetYear()), true);
     }
     hb.addTableHeaderCell(_("Overall"), true);
     hb.endTableRow();
