@@ -110,7 +110,7 @@ wxString mmReportCategoryOverTimePerformance::getHTMLText()
     hb.init();
     hb.addDivContainer();
     hb.addHeader(2, getReportTitle());
-    hb.addHeader(2, getAccountNames());
+    hb.addHeader(3, getAccountNames());
     hb.addDateNow();
     hb.addLineBreak();
 

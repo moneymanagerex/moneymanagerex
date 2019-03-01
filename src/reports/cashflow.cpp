@@ -83,7 +83,6 @@ void mmReportCashFlow::getStats(double& tInitialBalance, std::vector<ValueTrio>&
             if (Model_Checking::foreignTransactionAsTransfer(tran))
                 continue;
 
-            const double convRate = Model_CurrencyHistory::getDayRate(account.CURRENCYID, tran.TRANSDATE);
             daily_balance[Model_Checking::TRANSDATE(tran)] += Model_Checking::balance(tran, account.ACCOUNTID) * convRate;
         }
     }
@@ -220,8 +219,7 @@ wxString mmReportCashFlow::getHTMLText_i()
 
     const wxString& headerMsg = wxString::Format (_("Cash Flow Forecast for %i Years Ahead"), years);
     hb.addHeader(2, headerMsg );
-
-    hb.addHeader(2, getAccountNames());
+    hb.addHeader(3, getAccountNames());
     hb.addDateNow();
     hb.addLineBreak();
 

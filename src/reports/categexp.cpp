@@ -122,8 +122,9 @@ wxString mmReportCategoryExpenses::getHTMLText()
     hb.init();
     hb.addDivContainer();
     hb.addHeader(2, getReportTitle());
-    hb.addDateNow();
+    hb.addHeader(3, getAccountNames());
     hb.DisplayDateHeading(m_date_range->start_date(), m_date_range->end_date(), m_date_range->is_with_date());
+    hb.addDateNow();
 
     hb.addDivRow();
     hb.addDivCol17_67();

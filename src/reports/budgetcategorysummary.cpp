@@ -132,8 +132,8 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
 
     hb.addHeader(2, wxString::Format(headerStartupMsg
         ,  headingStr + "<br>" + _("( Estimated Vs Actual )")));
-    hb.addDateNow();
     hb.DisplayDateHeading(yearBegin, yearEnd);
+    hb.addDateNow();
 
     double estIncome = 0.0, estExpenses = 0.0, actIncome = 0.0, actExpenses = 0.0;
 
