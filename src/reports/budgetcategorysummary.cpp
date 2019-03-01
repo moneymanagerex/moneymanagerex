@@ -113,6 +113,7 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
     Model_Budget::instance().getBudgetEntry(m_date_selection, budgetPeriod, budgetAmt);
     std::map<int, std::map<int, std::map<int, double> > > categoryStats;
     Model_Category::instance().getCategoryStats(categoryStats
+        , nullptr
         , &date_range, Option::instance().getIgnoreFutureTransactions()
         , false, (evaluateTransfer ? &budgetAmt : nullptr));
 
@@ -131,8 +132,8 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
 
     hb.addHeader(2, wxString::Format(headerStartupMsg
         ,  headingStr + "<br>" + _("( Estimated Vs Actual )")));
-    hb.addDateNow();
     hb.DisplayDateHeading(yearBegin, yearEnd);
+    hb.addDateNow();
 
     double estIncome = 0.0, estExpenses = 0.0, actIncome = 0.0, actExpenses = 0.0;
 

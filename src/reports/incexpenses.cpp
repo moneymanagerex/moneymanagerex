@@ -44,35 +44,14 @@ int mmReportIncomeExpenses::report_parameters()
 
 wxString mmReportIncomeExpenses::getHTMLText()
 {
-    wxString headerMsg = _("Accounts: ");
-    if (accountArray_ == nullptr)
-    {
-        headerMsg << _("All Accounts");
-    }
-    else
-    {
-        int arrIdx = 0;
-        if ((int)accountArray_->size() == 0)
-            headerMsg << "?";
 
-        if (!accountArray_->empty())
-        {
-            headerMsg << accountArray_->Item(arrIdx);
-            arrIdx++;
-        }
-        while (arrIdx < (int)accountArray_->size())
-        {
-            headerMsg << ", " << accountArray_->Item(arrIdx);
-            arrIdx++;
-        }
-    }
     mmHTMLBuilder hb;
     hb.init();
     hb.addDivContainer();
     hb.addHeader(2, this->getReportTitle());
-    hb.addDateNow();
     hb.DisplayDateHeading(m_date_range->start_date(), m_date_range->end_date(), m_date_range->is_with_date());
-    hb.addHeader(3, headerMsg);
+    hb.addHeader(3, getAccountNames());
+    hb.addDateNow();
 
     std::pair<double, double> income_expenses_pair;
     for (const auto& transaction : Model_Checking::instance().find(
@@ -177,22 +156,7 @@ int mmReportIncomeExpensesMonthly::report_parameters()
 
 wxString mmReportIncomeExpensesMonthly::getHTMLText()
 {
-    wxString headerMsg = _("Accounts: ");
-    if (accountArray_ == nullptr)
-    {
-        headerMsg << _("All Accounts");
-    }
-    else
-    {
-        if ((int)accountArray_->size() == 0)
-            headerMsg << "?";
-
-        for (const auto& entry : *accountArray_)
-        { 
-            headerMsg << entry << ", ";
-        }
-        if (headerMsg.Mid(headerMsg.size() - 2, 2) == ", ") headerMsg.RemoveLast(2);
-    }
+    wxString headerMsg = getAccountNames();
 
     std::map<int, std::pair<double, double> > incomeExpensesStats;
     //TODO: init all the map values with 0.0
@@ -224,10 +188,11 @@ wxString mmReportIncomeExpensesMonthly::getHTMLText()
     hb.init();
     hb.addDivContainer();
     hb.addHeader(2, this->getReportTitle());
-    hb.addDateNow();
     hb.DisplayDateHeading(m_date_range->start_date(), m_date_range->end_date(), m_date_range->is_with_date());
     hb.addHeader(3, headerMsg);
+    hb.addDateNow();
     hb.addLineBreak();
+
     hb.addDivRow();
     hb.addDivCol17_67();
 

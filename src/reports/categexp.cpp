@@ -41,7 +41,7 @@ mmReportCategoryExpenses::~mmReportCategoryExpenses()
 
 int mmReportCategoryExpenses::report_parameters()
 {
-    return RepParams::DATE_RANGE | RepParams::CHART;
+    return RepParams::DATE_RANGE | RepParams::CHART | RepParams::ACCOUNTS_LIST;
 }
 
 void  mmReportCategoryExpenses::RefreshData()
@@ -50,6 +50,7 @@ void  mmReportCategoryExpenses::RefreshData()
     wxString color;
     std::map<int, std::map<int, std::map<int, double> > > categoryStats;
     Model_Category::instance().getCategoryStats(categoryStats
+        , accountArray_
         , const_cast<mmDateRange*>(m_date_range)
         , Option::instance().getIgnoreFutureTransactions()
         , false);
@@ -121,8 +122,9 @@ wxString mmReportCategoryExpenses::getHTMLText()
     hb.init();
     hb.addDivContainer();
     hb.addHeader(2, getReportTitle());
-    hb.addDateNow();
+    hb.addHeader(3, getAccountNames());
     hb.DisplayDateHeading(m_date_range->start_date(), m_date_range->end_date(), m_date_range->is_with_date());
+    hb.addDateNow();
 
     hb.addDivRow();
     hb.addDivCol17_67();

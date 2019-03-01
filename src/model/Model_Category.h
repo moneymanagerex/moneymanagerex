@@ -61,6 +61,7 @@ public:
     static bool has_income(int id, int sub_id = -1);
     static void getCategoryStats(
         std::map<int, std::map<int, std::map<int, double> > > &categoryStats
+        , const wxArrayString* accountArray
         , mmDateRange* date_range, bool ignoreFuture
         , bool group_by_month = true
         , std::map<int, std::map<int, double> > *budgetAmt = nullptr);

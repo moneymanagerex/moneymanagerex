@@ -45,7 +45,7 @@ mmReportCategoryOverTimePerformance::~mmReportCategoryOverTimePerformance()
 
 int mmReportCategoryOverTimePerformance::report_parameters()
 {
-    return RepParams::NONE | RepParams::CHART;
+    return RepParams::NONE | RepParams::CHART | RepParams::ACCOUNTS_LIST;
 }
 
 wxString mmReportCategoryOverTimePerformance::getHTMLText()
@@ -59,6 +59,7 @@ wxString mmReportCategoryOverTimePerformance::getHTMLText()
     //Get statistic
     std::map<int, std::map<int, std::map<int, double> > > categoryStats;
     Model_Category::instance().getCategoryStats(categoryStats
+        , accountArray_
         , const_cast<mmDateRange*>(m_date_range)
         , Option::instance().getIgnoreFutureTransactions());
 
@@ -109,6 +110,7 @@ wxString mmReportCategoryOverTimePerformance::getHTMLText()
     hb.init();
     hb.addDivContainer();
     hb.addHeader(2, getReportTitle());
+    hb.addHeader(3, getAccountNames());
     hb.addDateNow();
     hb.addLineBreak();
 
