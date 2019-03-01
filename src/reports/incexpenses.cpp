@@ -156,22 +156,7 @@ int mmReportIncomeExpensesMonthly::report_parameters()
 
 wxString mmReportIncomeExpensesMonthly::getHTMLText()
 {
-    wxString headerMsg = _("Accounts: ");
-    if (accountArray_ == nullptr)
-    {
-        headerMsg << _("All Accounts");
-    }
-    else
-    {
-        if ((int)accountArray_->size() == 0)
-            headerMsg << "?";
-
-        for (const auto& entry : *accountArray_)
-        { 
-            headerMsg << entry << ", ";
-        }
-        if (headerMsg.Mid(headerMsg.size() - 2, 2) == ", ") headerMsg.RemoveLast(2);
-    }
+    wxString headerMsg = getAccountNames();
 
     std::map<int, std::pair<double, double> > incomeExpensesStats;
     //TODO: init all the map values with 0.0
