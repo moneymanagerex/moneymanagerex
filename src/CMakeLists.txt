@@ -292,20 +292,6 @@ ADD_EXECUTABLE(${MMEX_EXE} WIN32 MACOSX_BUNDLE
     "${MACOSX_APP_ICON_FILE}"
     "${MMEX_RC}")
 
-IF(MMEX_WEBSERVER)
-    TARGET_SOURCES(${MMEX_EXE} PRIVATE
-        webserver.cpp
-        webserver.h)
-    SET_SOURCE_FILES_PROPERTIES(
-        constants.cpp
-        mmex.cpp
-        optiondialog.cpp
-        optionsettingsnet.cpp
-        optionsettingsnet.h
-        PROPERTIES COMPILE_DEFINITIONS MMEX_WEBSERVER)
-    TARGET_LINK_LIBRARIES(${MMEX_EXE} PRIVATE Mongoose)
-ENDIF()
-
 IF(";${CMAKE_CXX_COMPILE_FEATURES};" MATCHES ";cxx_std_11;")
     TARGET_COMPILE_FEATURES(${MMEX_EXE} PUBLIC cxx_std_11)
 ELSEIF(";${CMAKE_CXX_COMPILE_FEATURES};" MATCHES ";cxx_range_for;"

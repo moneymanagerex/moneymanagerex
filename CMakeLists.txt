@@ -34,7 +34,6 @@ SET(MMEX_VERSION_FULL ${CMAKE_MATCH_1}${CMAKE_MATCH_2})
 PROJECT(MMEX VERSION ${MMEX_VERSION})
 OPTION(MMEX_PORTABLE_INSTALL "Include an empty mmexini.db3 file in the Windows installation" ON)
 OPTION(MMEX_ENCRYPTION_OPTIONAL "Build even if encryption is not supported by wxsqlite library" OFF)
-OPTION(MMEX_WEBSERVER "Build MMEX with webserver function" ON)
 
 # Name of the resulted executable binary
 SET(MMEX_EXE mmex)
@@ -715,7 +714,6 @@ MESSAGE(STATUS "Install prefix : ${CMAKE_INSTALL_PREFIX}")
 IF(WIN32)
     MESSAGE(STATUS "Portable state : ${MMEX_PORTABLE_INSTALL}")
 ENDIF()
-MESSAGE(STATUS "Webserver      : ${MMEX_WEBSERVER}")
 MESSAGE(STATUS "DB encryption  : ${WXSQLITE3_HAVE_CODEC}")
 
 MESSAGE(STATUS "")

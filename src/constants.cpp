@@ -22,9 +22,6 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include <wx/utils.h>
 #include <wx/wxsqlite3.h>
 #include "lua.h"
-#ifdef MMEX_WEBSERVER
-#include "mongoose/mongoose.h"
-#endif
 #include "rapidjson/rapidjson.h"
 #include "DB_Upgrade.h" /* for dbLatestVersion */
 #include <curl/curl.h>
@@ -102,9 +99,6 @@ const wxString mmex::getProgramDescription()
             wxPlatformInfo::Get().GetToolkitMinorVersion())
         << bull + wxSQLITE3_VERSION_STRING
         << " (SQLite " << wxSQLite3Database::GetVersion() << ")\n"
-#ifdef MMEX_WEBSERVER
-        << bull + "Mongoose " << MG_VERSION << "\n"
-#endif
         << bull + "RapidJSON " << RAPIDJSON_VERSION_STRING << "\n"
         << bull + LUA_RELEASE << "\n"
         << bull + curl << "\n\n"
