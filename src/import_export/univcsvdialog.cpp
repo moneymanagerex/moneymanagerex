@@ -610,7 +610,7 @@ void mmUnivCSVDialog::OnAdd(wxCommandEvent& WXUNUSED(event))
         csvListBox_->SetSelection(target_position);
 
         auto itPos = csvFieldOrder_.begin() + target_position;
-        auto newIt = csvFieldOrder_.insert(itPos, item->getIndex());
+        csvFieldOrder_.insert(itPos, item->getIndex());
 
         if (item->getIndex() != UNIV_CSV_DONTCARE && item->getIndex() != UNIV_CSV_NOTES)
         {
