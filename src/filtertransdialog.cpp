@@ -86,9 +86,9 @@ mmFilterTransactionsDialog::mmFilterTransactionsDialog(wxWindow* parent, int acc
     , payeeID_(-1)
     , refAccountID_(account_id)
     , refAccountStr_("")
-    , m_filterStatus("")
     , m_min_amount(0)
     , m_max_amount(0)
+    , m_filterStatus("")
     , m_settings_id(-1)
 {
     int day = Model_Infotable::instance().GetIntInfo("FINANCIAL_YEAR_START_DAY", 1);
@@ -1251,6 +1251,6 @@ void mmFilterTransactionsDialog::OnSettingsSelected(wxCommandEvent& event)
 {
     int i = event.GetSelection();
     GetStoredSettings(i);
-    m_custom_fields->SetRefID(0); //TODO:
+    m_custom_fields->ResetRefID(); // TODO: m_custom_fields->SetRefID(0);
     dataToControls();
 }

@@ -158,7 +158,7 @@ bool Model_Category::has_income(int id, int sub_id)
 void Model_Category::getCategoryStats(
         std::map<int, std::map<int, std::map<int, double> > > &categoryStats
         , const wxArrayString* accountArray
-        , mmDateRange* date_range, bool ignoreFuture //TODO: deprecated
+        , mmDateRange* date_range, bool WXUNUSED(ignoreFuture) //TODO: deprecated
         , bool group_by_month
         , std::map<int, std::map<int, double> > *budgetAmt)
 {
@@ -227,7 +227,7 @@ void Model_Category::getCategoryStats(
         {
             for (const auto& entry: splits[transaction.id()])
             {
-                categoryStats[entry.CATEGID][entry.SUBCATEGID][idx] += entry.SPLITTRANSAMOUNT 
+                categoryStats[entry.CATEGID][entry.SUBCATEGID][idx] += entry.SPLITTRANSAMOUNT
                     * convRate * (Model_Checking::balance(transaction) < 0 ? -1 : 1);
             }
         }

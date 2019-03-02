@@ -165,16 +165,16 @@ struct curlBuff {
   char *memory;
   size_t size;
 };
- 
+
 static size_t
 curlWriteMemoryCallback(void *contents, size_t size, size_t nmemb, void *userp)
 {
   size_t realsize = size * nmemb;
   struct curlBuff *mem = (struct curlBuff *)userp;
- 
+
   char *tmp = (char *)realloc(mem->memory, mem->size + realsize + 1);
   if (tmp == NULL) {
-    /* out of memory! */ 
+    /* out of memory! */
     // printf("not enough memory (realloc returned NULL)\n");
     return 0;
   }
@@ -183,7 +183,7 @@ curlWriteMemoryCallback(void *contents, size_t size, size_t nmemb, void *userp)
   memcpy(&(mem->memory[mem->size]), contents, realsize);
   mem->size += realsize;
   mem->memory[mem->size] = 0;
- 
+
   return realsize;
 }
 
@@ -238,7 +238,7 @@ static int log_libcurl_debug(CURL *handle, curl_infotype type, char *data, size_
     default:
         return 0;
     }
-        
+
     return 0;
 }
 #endif
@@ -285,9 +285,9 @@ CURLcode http_get_data(const wxString& sSite, wxString& sOutput, const wxString&
 
     struct curlBuff chunk;
     curl_set_writedata_options(curl, chunk);
-        
+
     curl_easy_setopt(curl, CURLOPT_URL, static_cast<const char*>(sSite.mb_str()));
-    
+
     CURLcode err_code = curl_easy_perform(curl);
     if (err_code == CURLE_OK)
         sOutput = wxString::FromUTF8(chunk.memory);
@@ -301,7 +301,7 @@ CURLcode http_get_data(const wxString& sSite, wxString& sOutput, const wxString&
     return err_code;
 }
 
-CURLcode http_post_data(const wxString& sSite, const wxString& sData, const wxString& sContentType, wxString& sOutput) 
+CURLcode http_post_data(const wxString& sSite, const wxString& sData, const wxString& sContentType, wxString& sOutput)
 {
     CURL *curl = curl_easy_init();
     if (!curl) return CURLE_FAILED_INIT;
@@ -317,7 +317,7 @@ CURLcode http_post_data(const wxString& sSite, const wxString& sData, const wxSt
 
     curl_easy_setopt(curl, CURLOPT_URL, static_cast<const char*>(sSite.mb_str()));
     curl_easy_setopt(curl, CURLOPT_POSTFIELDS, static_cast<const char*>(sData.mb_str()));
-    
+
     CURLcode err_code = curl_easy_perform(curl);
     if (err_code == CURLE_OK)
         sOutput = wxString::FromUTF8(chunk.memory);
@@ -334,7 +334,7 @@ CURLcode http_post_data(const wxString& sSite, const wxString& sData, const wxSt
 CURLcode http_download_file(const wxString& sSite, const wxString& sPath)
 {
     wxLogDebug("http_download_file: URL = %s | Target = %s", sSite, sPath);
-    
+
     CURL *curl = curl_easy_init();
     if (!curl) return CURLE_FAILED_INIT;
 
@@ -371,7 +371,7 @@ bool getNewsRSS(std::vector<WebsiteNews>& WebsiteNewsList)
         return false;
 
     //simple validation to avoid bug #1083
-    if (!RssContent.Contains("</rss>")) 
+    if (!RssContent.Contains("</rss>"))
         return false;
 
     wxStringInputStream RssContentStream(RssContent);
@@ -440,7 +440,7 @@ bool get_yahoo_prices(std::vector<wxString>& symbols
     wxString buffer;
     for (const auto& entry : symbols)
     {
-        if (type == yahoo_price_type::FIAT) 
+        if (type == yahoo_price_type::FIAT)
         {
             buffer += wxString::Format("%s%s=X,", entry, base_currency_symbol);
         }
@@ -722,7 +722,7 @@ const wxDateTime getUserDefinedFinancialYear(bool prevDayRequired)
 
     if (dayNum <= 0 || dayNum > wxDateTime::GetNumberOfDays((wxDateTime::Month)monthNum, year))
         dayNum = 1;
-    
+
     wxDateTime financialYear(dayNum, (wxDateTime::Month)monthNum, year);
     if (prevDayRequired)
         financialYear.Subtract(wxDateSpan::Day());
@@ -910,7 +910,7 @@ void mmCalcValidator::OnChar(wxKeyEvent& event)
 
     wxChar decChar = text_field->GetDecimalPoint();
     bool numpad_dec_swap = (wxGetKeyState(wxKeyCode(WXK_NUMPAD_DECIMAL)) && decChar != str);
-    
+
     if (numpad_dec_swap)
         str = wxString(decChar);
 
@@ -953,8 +953,8 @@ mmDates::~mmDates()
 
 mmDates::mmDates()
     : m_date_formats_temp(g_date_formats_map)
-    , m_error_count(0)
     , m_today(wxDate::Today())
+    , m_error_count(0)
 {
     m_date_parsing_stat.clear();
     m_month_ago = m_today.Subtract(wxDateSpan::Months(1));
@@ -994,7 +994,7 @@ void mmDates::doHandleStatistics(const wxString &dateStr)
             if (mmParseDisplayStringToDate(dtdt, dateStr, mask))
             {
                 m_date_parsing_stat[mask] ++;
-                //Increase the date mask rating if parse date is recent (1 month ago) date 
+                //Increase the date mask rating if parse date is recent (1 month ago) date
                 if (dtdt <= m_today && dtdt >= m_month_ago)
                     m_date_parsing_stat[mask] ++;
             }

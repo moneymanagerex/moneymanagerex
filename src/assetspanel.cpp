@@ -396,8 +396,8 @@ END_EVENT_TABLE()
 /*******************************************************/
 
 mmAssetsPanel::mmAssetsPanel(mmGUIFrame* frame, wxWindow *parent, wxWindowID winid, const wxString& name)
-    : m_frame(frame)
-    , m_filter_type(Model_Asset::TYPE(-1))
+    : m_filter_type(Model_Asset::TYPE(-1))
+    , m_frame(frame)
     , m_header_text(nullptr)
     , m_listCtrlAssets(nullptr)
     , m_itemStaticTextMainFilter(nullptr)

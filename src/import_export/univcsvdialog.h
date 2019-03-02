@@ -183,7 +183,7 @@ private:
     int fromAccountID_;
     bool importSuccessful_;
     bool m_userDefinedDateMask;
-    int m_oject_in_focus;
+    int m_object_in_focus;
     bool m_reverce_sign;
 
     /// Creation

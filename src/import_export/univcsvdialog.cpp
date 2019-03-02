@@ -76,9 +76,6 @@ mmUnivCSVDialog::mmUnivCSVDialog(
 ) :
     dialogType_(dialogType),
     delimit_(","),
-    m_userDefinedDateMask(false),
-    m_choiceAmountFieldSign(nullptr),
-    m_choiceDecimalSeparator(nullptr),
     csvFieldCandicate_(nullptr),
     csvListBox_(nullptr),
     m_button_add_(nullptr),
@@ -92,7 +89,10 @@ mmUnivCSVDialog::mmUnivCSVDialog(
     m_spinIgnoreFirstRows_(nullptr),
     m_spinIgnoreLastRows_(nullptr),
     choiceDateFormat_(nullptr),
+    m_choiceAmountFieldSign(nullptr),
+    m_choiceDecimalSeparator(nullptr),
     importSuccessful_(false),
+    m_userDefinedDateMask(false),
     m_reverce_sign(false)
 {
     decimal_ = Model_Currency::GetBaseCurrency()->DECIMAL_POINT;
@@ -328,7 +328,7 @@ void mmUnivCSVDialog::CreateControls()
         flex_sizer->Add(m_checkBoxExportTitles, g_flagsH);
     }
 
-    // Determine meaning of "amount" field's sign- deposit or withdrawal. 
+    // Determine meaning of "amount" field's sign- deposit or withdrawal.
     // When importing, there format is given and can be either. Exporting is best to be consistent and so this option is not given.
     if (IsImporter())
     {
@@ -610,7 +610,7 @@ void mmUnivCSVDialog::OnAdd(wxCommandEvent& WXUNUSED(event))
         csvListBox_->SetSelection(target_position);
 
         auto itPos = csvFieldOrder_.begin() + target_position;
-        auto newIt = csvFieldOrder_.insert(itPos, item->getIndex());
+        csvFieldOrder_.insert(itPos, item->getIndex());
 
         if (item->getIndex() != UNIV_CSV_DONTCARE && item->getIndex() != UNIV_CSV_NOTES)
         {
@@ -1448,7 +1448,7 @@ void mmUnivCSVDialog::OnBrowse(wxCommandEvent& WXUNUSED(event))
             m_textDelimiter->ChangeValue(delimit_);
             delete sep;
 
-            // TODO: update_preview() is called twice. Once here and once in OnFileNameChanged(). 
+            // TODO: update_preview() is called twice. Once here and once in OnFileNameChanged().
             // This leads to double work and double error messages to the user.
             this->update_preview();
         }
@@ -1457,9 +1457,9 @@ void mmUnivCSVDialog::OnBrowse(wxCommandEvent& WXUNUSED(event))
 
 void mmUnivCSVDialog::OnListBox(wxCommandEvent& event)
 {
-    if (m_oject_in_focus == ID_LISTBOX_CANDICATE)
+    if (m_object_in_focus == ID_LISTBOX_CANDICATE)
         OnAdd(event);
-    else if (m_oject_in_focus == ID_LISTBOX)
+    else if (m_object_in_focus == ID_LISTBOX)
         OnRemove(event);
 }
 
@@ -1667,7 +1667,7 @@ void mmUnivCSVDialog::changeFocus(wxChildFocusEvent& event)
 {
     wxWindow *w = event.GetWindow();
     if (w)
-        m_oject_in_focus = w->GetId();
+        m_object_in_focus = w->GetId();
 }
 
 void mmUnivCSVDialog::OnSpinCtrlIgnoreRows(wxSpinEvent& WXUNUSED(event))
