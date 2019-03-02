@@ -28,7 +28,7 @@ public:
     using Model<DB_Table_REPORT>::get;
 
 public:
-    Model_Report(); 
+    Model_Report();
     ~Model_Report();
 
 public:
@@ -60,4 +60,4 @@ public:
     static bool PrepareSQL(wxString& sql, std::map <wxString, wxString>& rep_params);
 };
 
-#endif // 
+#endif

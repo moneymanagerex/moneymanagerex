@@ -41,7 +41,7 @@ wxString mmReportForecast::getHTMLText()
 {
     std::map<wxString, std::pair<double, double> > amount_by_day;
     Model_Checking::Data_Set all_trans;
-    
+
     if (m_date_range && m_date_range->is_with_date())
         all_trans = Model_Checking::instance().find(DB_Table_CHECKINGACCOUNT::TRANSDATE(m_date_range->start_date().FormatISODate(), GREATER_OR_EQUAL)
                     , DB_Table_CHECKINGACCOUNT::TRANSDATE(m_date_range->end_date().FormatISODate(), LESS_OR_EQUAL));
@@ -50,7 +50,7 @@ wxString mmReportForecast::getHTMLText()
 
     for (const auto & trx : all_trans)
     {
-        if (Model_Checking::type(trx) == Model_Checking::TRANSFER) 
+        if (Model_Checking::type(trx) == Model_Checking::TRANSFER)
             continue;
 
         amount_by_day[trx.TRANSDATE].first += Model_Checking::withdrawal(trx, -1);
@@ -75,7 +75,7 @@ wxString mmReportForecast::getHTMLText()
     report(L"HTMLSCALE") = wxString::Format("%d", Option::instance().getHtmlFontSize());
 
     wxString out = wxEmptyString;
-    try 
+    try
     {
         out = report.Process();
     }
@@ -130,7 +130,7 @@ datasets: [
   {
       fillColor : 'rgba(230, 21, 22, 0.7)',
       strokeColor : 'rgba(230, 21, 22, 1)',
-      pointColor : 'rgba(230, 21, 22, 1)', 
+      pointColor : 'rgba(230, 21, 22, 1)',
       pointStrokeColor : "#fff",
       data : [
 <TMPL_LOOP NAME=CONTENTS> <TMPL_IF NAME=__LAST__> <TMPL_VAR WITHDRAWAL> <TMPL_ELSE> <TMPL_VAR WITHDRAWAL>, </TMPL_IF> </TMPL_LOOP>],
@@ -139,7 +139,7 @@ datasets: [
   {
       fillColor : 'rgba(129, 172, 123, 0.7)',
       strokeColor : 'rgba(129, 172, 123, 1)',
-      pointColor : 'rgba(129, 172, 123, 1)', 
+      pointColor : 'rgba(129, 172, 123, 1)',
       pointStrokeColor : "#fff",
       data : [
 <TMPL_LOOP NAME=CONTENTS> <TMPL_IF NAME=__LAST__> <TMPL_VAR DEPOSIT> <TMPL_ELSE> <TMPL_VAR DEPOSIT>, </TMPL_IF> </TMPL_LOOP>],
@@ -156,7 +156,7 @@ window.onload = function() {
 function onChartChange(select){
   var value = select.value;
   if (value == "line") {
-    new Chart(document.getElementById("mycanvas").getContext("2d")).Line(data,opts); 
+    new Chart(document.getElementById("mycanvas").getContext("2d")).Line(data,opts);
   }
   else if (value == "bar") {
     new Chart(document.getElementById("mycanvas").getContext("2d")).Bar(data,opts);

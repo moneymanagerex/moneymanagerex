@@ -151,7 +151,7 @@ void Model_Usage::pageview(const wxWindow* window, int plt /* = 0 msec*/)
             current = current->GetParent();
             continue;
         }
-        documentPath = "/" + current->GetName() + documentPath; 
+        documentPath = "/" + current->GetName() + documentPath;
         current = current->GetParent();
     }
 

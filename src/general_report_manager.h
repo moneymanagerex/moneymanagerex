@@ -142,6 +142,6 @@ private:
         ID_DESCRIPTION,
         ID_REPORT_LIST,
     };
-    
+
 };
 

@@ -39,7 +39,7 @@ Model_Budget& Model_Budget::instance(wxSQLite3Database* db)
     ins.db_ = db;
     ins.destroy_cache();
     ins.ensure(db);
-    
+
     return ins;
 }
 

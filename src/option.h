@@ -77,7 +77,7 @@ public:
 
     void setBudgetIncludeTransfers(bool value);
     bool getBudgetIncludeTransfers() const;
-    
+
     void setBudgetSetupWithoutSummaries(bool value);
     bool getBudgetSetupWithoutSummaries() const;
 

@@ -130,7 +130,7 @@ void mmAttachmentDialog::CreateControls()
 }
 
 void mmAttachmentDialog::fillControls()
-{    
+{
     attachmentListBox_->DeleteAllItems();
 
     Model_Attachment::Data_Set attachments = Model_Attachment::instance().FilterAttachments(m_RefType, m_RefId);
@@ -170,7 +170,7 @@ void mmAttachmentDialog::AddAttachment()
 
     const wxString attachmentFileName = wxFileName(attachmentFilePath).GetName();
     const wxString attachmentFileExtension = wxFileName(attachmentFilePath).GetExt().MakeLower();
-    
+
     mmDialogComboBoxAutocomplete dlg(this, _("Enter a description for the new attachment:"),
         _("Organize Attachments: Add Attachment"), attachmentFileName, Model_Attachment::instance().allDescriptions());
 
@@ -285,7 +285,7 @@ void mmAttachmentDialog::OnItemRightClick(wxDataViewEvent& event)
     mainMenu->Append(new wxMenuItem(mainMenu, MENU_EDIT_ATTACHMENT, _("&Edit ")));
     if (!attachment) mainMenu->Enable(MENU_EDIT_ATTACHMENT, false);
     mainMenu->Append(new wxMenuItem(mainMenu, MENU_DELETE_ATTACHMENT, _("&Remove ")));
-    
+
     //Disable buttons
     wxString AttachmentsFolder = mmex::getPathAttachment(mmAttachmentManage::InfotablePathSetting());
     if (AttachmentsFolder == wxEmptyString || !wxDirExists(AttachmentsFolder))

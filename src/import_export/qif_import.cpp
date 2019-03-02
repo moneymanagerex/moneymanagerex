@@ -131,10 +131,10 @@ bool mmQIFImport::handle_file(wxFileInputStream& input)
         if (this->handle_line(line, qif_line))
         {
             qif_record_end = (qif_line.first == EOTLT);
-            if (qif_line.first == EOTLT) 
+            if (qif_line.first == EOTLT)
             {
                 QIF_Transaction tran;
-                // process qif_record 
+                // process qif_record
                 this->handle_qif_record(qif_record, tran);
                 // release qif_record
                 qif_record.clear();
@@ -161,7 +161,7 @@ bool mmQIFImport::handle_file(wxFileInputStream& input)
 bool mmQIFImport::handle_file(const wxString& input_file)
 {
     wxFileInputStream input(input_file);
-    return this->handle_file(input); 
+    return this->handle_file(input);
 }
 
 bool mmQIFImport::handle_line(const wxString& line, QIF_Line& qif_line)
@@ -185,7 +185,7 @@ bool mmQIFImport::handle_qif_line(const QIF_Line& qif_line, QIF_Transaction& tra
 {
     switch (qif_line.first)
     {
-    case Date: 
+    case Date:
         tran.D = qif_line.second;
         break;
     case Memo:

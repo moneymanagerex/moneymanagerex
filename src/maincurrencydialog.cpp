@@ -333,7 +333,7 @@ void mmMainCurrencyDialog::OnBtnEdit(wxCommandEvent& WXUNUSED(event))
 
 void mmMainCurrencyDialog::OnBtnSelect(wxCommandEvent& WXUNUSED(event))
 {
-    if (m_currency_id > -1) 
+    if (m_currency_id > -1)
         EndModal(wxID_OK);
 }
 
@@ -401,7 +401,7 @@ void mmMainCurrencyDialog::OnListItemSelected(wxDataViewEvent& event)
         {
             currName = currency->CURRENCYNAME;
             itemButtonEdit_->Enable();
-            wxString base_currency_symbol; 
+            wxString base_currency_symbol;
             Model_Currency::GetBaseCurrencySymbol(base_currency_symbol);
             m_button_download_history->Enable(currency->CURRENCY_SYMBOL != base_currency_symbol);
         }
@@ -546,7 +546,7 @@ void mmMainCurrencyDialog::ShowCurrencyHistory()
     {
         historyButtonAdd_->Enable();
         historyButtonDelete_->Enable();
-    }      
+    }
 
     Model_CurrencyHistory::Data_Set histData = Model_CurrencyHistory::instance().find(Model_CurrencyHistory::CURRENCYID(m_currency_id));
     std::stable_sort(histData.begin(), histData.end(), SorterByCURRDATE());
@@ -962,7 +962,7 @@ bool mmMainCurrencyDialog::GetOnlineHistory(std::map<wxDateTime, double> &histor
         historical_rates[i] = rate;
     }
 
-    wxLogDebug("Date: %s %s Today: %s %s" 
+    wxLogDebug("Date: %s %s Today: %s %s"
         , first_date.FormatISODate(), first_date.FormatISOTime()
         , today.FormatISODate(), today.FormatISOTime());
     return true;

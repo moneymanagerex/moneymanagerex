@@ -108,11 +108,11 @@ private:
     wxComboBox* choiceDateFormat_;
     wxCheckBox* accountCheckBox_;
     wxChoice* accountDropDown_;
-    wxCheckBox* accountNumberCheckBox_;     
+    wxCheckBox* accountNumberCheckBox_;
     wxCheckBox* payeeIsNotesCheckBox_;
     wxButton* btnOK_;
     mmChoiceAmountMask* m_choiceDecimalSeparator;
-    
+
     bool payeeIsNotes_; //Include payee field in notes
 
     enum EColumn

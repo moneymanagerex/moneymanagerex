@@ -67,4 +67,4 @@ public:
     static bool is_used(const Data& record);
 };
 
-#endif // 
+#endif

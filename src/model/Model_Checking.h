@@ -48,7 +48,7 @@ public:
         wxString ACCOUNTNAME, TOACCOUNTNAME;
         wxString PAYEENAME;
         wxString CATEGNAME;
-        
+
         // Reserved string variables for custom data
         wxString UDFC01;
         wxString UDFC02;
@@ -75,7 +75,7 @@ public:
     typedef std::vector<Full_Data> Full_Data_Set;
 
     struct SorterByBALANCE
-    { 
+    {
         template<class DATA>
         bool operator()(const DATA& x, const DATA& y)
         {

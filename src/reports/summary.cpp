@@ -297,8 +297,8 @@ wxString mmReportSummaryByDate::getHTMLText()
         totBalanceData.push_back(Model_Currency::toCurrency(balancePerDay[Model_Account::TERM]));
         totBalanceData.push_back(Model_Currency::toCurrency(balancePerDay[Model_Account::CRYPTO]));
 
-        total = balancePerDay[Model_Account::CASH] + balancePerDay[Model_Account::CHECKING] 
-            + balancePerDay[Model_Account::CREDIT_CARD] + balancePerDay[Model_Account::LOAN] 
+        total = balancePerDay[Model_Account::CASH] + balancePerDay[Model_Account::CHECKING]
+            + balancePerDay[Model_Account::CREDIT_CARD] + balancePerDay[Model_Account::LOAN]
             + balancePerDay[Model_Account::TERM] + balancePerDay[Model_Account::CRYPTO];
 
         totBalanceData.push_back(Model_Currency::toCurrency(total));

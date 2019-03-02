@@ -57,7 +57,7 @@ const wxString mmExportTransaction::getTransactionQIF(const Model_Checking::Full
         if (transNum.IsEmpty() && notes.IsEmpty())
             transNum = wxString::Format("#%i", full_tran.id());
     }
-    
+
     buffer << "D" << Model_Checking::TRANSDATE(full_tran).Format(dateMask) << "\n";
     buffer << "C" << (full_tran.STATUS == "R" ? "R" : "") << "\n";
     double value = Model_Checking::balance(full_tran

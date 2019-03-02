@@ -163,7 +163,7 @@ wxString mmReportTransactions::getHTMLText()
         const wxString totalStr = Model_Currency::toCurrency(curr_total.second, curr);
         grand_total += total_in_base_curr[curr_total.first];
         const std::vector<wxString> v{ totalStr };
-        if (total.size() > 1 
+        if (total.size() > 1
             || (curr->CURRENCY_SYMBOL != Model_Currency::GetBaseCurrency()->CURRENCY_SYMBOL))
             hb.addTotalRow(curr->CURRENCY_SYMBOL, 10, v);
     }

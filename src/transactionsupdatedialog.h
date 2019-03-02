@@ -56,8 +56,8 @@ private:
     wxChoice* m_status_choice;
     wxCheckBox* m_categ_checkbox;
     wxButton* m_categ_btn;
-	wxCheckBox* m_type_checkbox;
-	wxChoice* m_type_choice;
+    wxCheckBox* m_type_checkbox;
+    wxChoice* m_type_choice;
     wxCheckBox* m_amount_checkbox;
     mmTextCtrl* m_amount_ctrl;
     wxCheckBox* m_notes_checkbox;

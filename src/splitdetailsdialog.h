@@ -39,7 +39,7 @@ class SplitDetailDialog: public wxDialog
 public:
     /// Constructors
     SplitDetailDialog();
-    SplitDetailDialog( 
+    SplitDetailDialog(
         wxWindow* parent
         , Split &split
         , int transType

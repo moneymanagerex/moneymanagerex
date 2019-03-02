@@ -70,7 +70,7 @@ mmNewDatabaseWizard::mmNewDatabaseWizard(wxFrame *frame)
 /*
     wxButton* back = (wxButton*) FindWindow(wxID_BACKWARD);
     if (back) back->SetLabel(_("<- &Back"));
-    wxButton* next = (wxButton*) FindWindow(wxID_FORWARD); //FIXME: 
+    wxButton* next = (wxButton*) FindWindow(wxID_FORWARD); //FIXME:
     if (next) next->SetLabel(_("&Next ->"));
     wxButton* ca = (wxButton*) FindWindow(wxID_CANCEL);
     if (ca) ca->SetLabel(wxGetTranslation(g_CancelLabel));
@@ -117,7 +117,7 @@ mmNewDatabaseWizardPage::mmNewDatabaseWizardPage(mmNewDatabaseWizard* parent)
     {
         currencyID_ = base_currency->CURRENCYID;
         currName = wxGetTranslation(base_currency->CURRENCYNAME);
-	    Option::instance().setBaseCurrencyID(currencyID_);
+        Option::instance().setBaseCurrencyID(currencyID_);
     }
 
     itemButtonCurrency_ = new wxButton(this, wxID_ANY, currName, wxDefaultPosition, wxSize(220, -1), 0);

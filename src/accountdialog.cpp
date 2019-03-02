@@ -389,7 +389,7 @@ void mmNewAcctDialog::CreateControls()
         itemTextCtrl10->SetToolTip(_("Enter the URL of the website for the financial institution."));
         itemTextCtrl12->SetToolTip(_("Enter any contact information for the financial institution."));
         itemTextCtrl14->SetToolTip(_("Enter any login/access information for the financial institution. This is not secure as anyone with access to the mmb file can access it."));
-        
+
         m_statement_lock_ctrl->SetToolTip(_("Enable or disable the transaction Lock"));
         m_statement_date_ctrl->SetToolTip(_("The date of the transaction lock"));
         m_minimum_balance_ctrl->SetToolTip(_("Account balance lower limit. Zero to disable"));
@@ -472,7 +472,7 @@ void mmNewAcctDialog::OnOk(wxCommandEvent& WXUNUSED(event))
     double value = 0;
     m_credit_limit_ctrl->checkValue(value);
     m_account->CREDITLIMIT = value;
-    
+
     m_interest_rate_ctrl->checkValue(value);
     m_account->INTERESTRATE = value;
 

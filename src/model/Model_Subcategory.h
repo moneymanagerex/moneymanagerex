@@ -54,4 +54,4 @@ public:
     static bool is_used(int id);
 };
 
-#endif // 
+#endif

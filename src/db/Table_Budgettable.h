@@ -48,13 +48,13 @@ struct DB_Table_BUDGETTABLE : public DB_Table
     Data* fake_; // in case the entity not found
 
     /** Destructor: clears any data records stored in memory */
-    ~DB_Table_BUDGETTABLE() 
+    ~DB_Table_BUDGETTABLE()
     {
         delete this->fake_;
         destroy_cache();
     }
-     
-    /** Removes all records stored in memory (cache) for the table*/ 
+
+    /** Removes all records stored in memory (cache) for the table*/
     void destroy_cache()
     {
         std::for_each(cache_.begin(), cache_.end(), std::mem_fun(&Data::destroy));
@@ -72,8 +72,8 @@ struct DB_Table_BUDGETTABLE : public DB_Table
                 db->ExecuteUpdate("CREATE TABLE BUDGETTABLE(BUDGETENTRYID integer primary key, BUDGETYEARID integer, CATEGID integer, SUBCATEGID integer, PERIOD TEXT NOT NULL /* None, Weekly, Bi-Weekly, Monthly, Monthly, Bi-Monthly, Quarterly, Half-Yearly, Yearly, Daily*/, AMOUNT numeric NOT NULL)");
                 this->ensure_data(db);
             }
-            catch(const wxSQLite3Exception &e) 
-            { 
+            catch(const wxSQLite3Exception &e)
+            {
                 wxLogError("BUDGETTABLE: Exception %s", e.GetMessage().c_str());
                 return false;
             }
@@ -90,8 +90,8 @@ struct DB_Table_BUDGETTABLE : public DB_Table
         {
             db->ExecuteUpdate("CREATE INDEX IF NOT EXISTS IDX_BUDGETTABLE_BUDGETYEARID ON BUDGETTABLE(BUDGETYEARID)");
         }
-        catch(const wxSQLite3Exception &e) 
-        { 
+        catch(const wxSQLite3Exception &e)
+        {
             wxLogError("BUDGETTABLE: Exception %s", e.GetMessage().c_str());
             return false;
         }
@@ -104,43 +104,43 @@ struct DB_Table_BUDGETTABLE : public DB_Table
         db->Begin();
         db->Commit();
     }
-    
+
     struct BUDGETENTRYID : public DB_Column<int>
-    { 
-        static wxString name() { return "BUDGETENTRYID"; } 
+    {
+        static wxString name() { return "BUDGETENTRYID"; }
         explicit BUDGETENTRYID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
-    
+
     struct BUDGETYEARID : public DB_Column<int>
-    { 
-        static wxString name() { return "BUDGETYEARID"; } 
+    {
+        static wxString name() { return "BUDGETYEARID"; }
         explicit BUDGETYEARID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
-    
+
     struct CATEGID : public DB_Column<int>
-    { 
-        static wxString name() { return "CATEGID"; } 
+    {
+        static wxString name() { return "CATEGID"; }
         explicit CATEGID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
-    
+
     struct SUBCATEGID : public DB_Column<int>
-    { 
-        static wxString name() { return "SUBCATEGID"; } 
+    {
+        static wxString name() { return "SUBCATEGID"; }
         explicit SUBCATEGID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
-    
+
     struct PERIOD : public DB_Column<wxString>
-    { 
-        static wxString name() { return "PERIOD"; } 
+    {
+        static wxString name() { return "PERIOD"; }
         explicit PERIOD(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
-    
+
     struct AMOUNT : public DB_Column<double>
-    { 
-        static wxString name() { return "AMOUNT"; } 
+    {
+        static wxString name() { return "AMOUNT"; }
         explicit AMOUNT(const double &v, OP op = EQUAL): DB_Column<double>(v, op) {}
     };
-    
+
     typedef BUDGETENTRYID PRIMARY;
     enum COLUMN
     {
@@ -166,7 +166,7 @@ struct DB_Table_BUDGETTABLE : public DB_Table
             case COL_AMOUNT: return "AMOUNT";
             default: break;
         }
-        
+
         return "UNKNOWN";
     }
 
@@ -182,14 +182,14 @@ struct DB_Table_BUDGETTABLE : public DB_Table
 
         return COL_UNKNOWN;
     }
-    
+
     /** Data is a single record in the database table*/
     struct Data
     {
         friend struct DB_Table_BUDGETTABLE;
         /** This is a instance pointer to itself in memory. */
         Self* table_;
-    
+
         int BUDGETENTRYID; // primary key
         int BUDGETYEARID;
         int CATEGID;
@@ -211,16 +211,16 @@ struct DB_Table_BUDGETTABLE : public DB_Table
         {
             return this->id() < r.id();
         }
-        
+
         bool operator < (const Data* r) const
         {
             return this->id() < r->id();
         }
 
-        explicit Data(Self* table = 0) 
+        explicit Data(Self* table = 0)
         {
             table_ = table;
-        
+
             BUDGETENTRYID = -1;
             BUDGETYEARID = -1;
             CATEGID = -1;
@@ -231,7 +231,7 @@ struct DB_Table_BUDGETTABLE : public DB_Table
         explicit Data(wxSQLite3ResultSet& q, Self* table = 0)
         {
             table_ = table;
-        
+
             BUDGETENTRYID = q.GetInt(0);
             BUDGETYEARID = q.GetInt(1);
             CATEGID = q.GetInt(2);
@@ -340,7 +340,7 @@ struct DB_Table_BUDGETTABLE : public DB_Table
         bool save(wxSQLite3Database* db)
         {
             if (db && db->IsReadOnly()) return false;
-            if (!table_ || !db) 
+            if (!table_ || !db)
             {
                 wxLogError("can not save BUDGETTABLE");
                 return false;
@@ -352,12 +352,12 @@ struct DB_Table_BUDGETTABLE : public DB_Table
         /** Remove the record instance from memory and the database. */
         bool remove(wxSQLite3Database* db)
         {
-            if (!table_ || !db) 
+            if (!table_ || !db)
             {
                 wxLogError("can not remove BUDGETTABLE");
                 return false;
             }
-            
+
             return table_->remove(this, db);
         }
 
@@ -389,7 +389,7 @@ struct DB_Table_BUDGETTABLE : public DB_Table
         cache_.push_back(entity);
         return entity;
     }
-    
+
     /** Create a copy of the Data record and add to memory table (cache) */
     Self::Data* clone(const Data* e)
     {
@@ -436,13 +436,13 @@ struct DB_Table_BUDGETTABLE : public DB_Table
                 for(Cache::iterator it = cache_.begin(); it != cache_.end(); ++ it)
                 {
                     Self::Data* e = *it;
-                    if (e->id() == entity->id()) 
+                    if (e->id() == entity->id())
                         *e = *entity;  // in-place update
                 }
             }
         }
-        catch(const wxSQLite3Exception &e) 
-        { 
+        catch(const wxSQLite3Exception &e)
+        {
             wxLogError("BUDGETTABLE: Exception %s, %s", e.GetMessage().c_str(), entity->to_json());
             return false;
         }
@@ -471,12 +471,12 @@ struct DB_Table_BUDGETTABLE : public DB_Table
             for(Cache::iterator it = cache_.begin(); it != cache_.end(); ++ it)
             {
                 Self::Data* entity = *it;
-                if (entity->id() == id) 
+                if (entity->id() == id)
                 {
                     index_by_id_.erase(entity->id());
                     delete entity;
                 }
-                else 
+                else
                 {
                     c.push_back(entity);
                 }
@@ -484,8 +484,8 @@ struct DB_Table_BUDGETTABLE : public DB_Table
             cache_.clear();
             cache_.swap(c);
         }
-        catch(const wxSQLite3Exception &e) 
-        { 
+        catch(const wxSQLite3Exception &e)
+        {
             wxLogError("BUDGETTABLE: Exception %s", e.GetMessage().c_str());
             return false;
         }
@@ -511,7 +511,7 @@ struct DB_Table_BUDGETTABLE : public DB_Table
         for (Index_By_Id::iterator it = index_by_id_.begin(); it != index_by_id_.end(); ++ it)
         {
             Self::Data* item = it->second;
-            if (item->id() > 0 && match(item, args...)) 
+            if (item->id() > 0 && match(item, args...))
             {
                 ++ hit_;
                 return item;
@@ -522,14 +522,14 @@ struct DB_Table_BUDGETTABLE : public DB_Table
 
         return 0;
     }
-    
+
     /**
     * Search the memory table (Cache) for the data record.
     * If not found in memory, search the database and update the cache.
     */
     Self::Data* get(int id, wxSQLite3Database* db)
     {
-        if (id <= 0) 
+        if (id <= 0)
         {
             ++ skip_;
             return 0;
@@ -541,7 +541,7 @@ struct DB_Table_BUDGETTABLE : public DB_Table
             ++ hit_;
             return it->second;
         }
-        
+
         ++ miss_;
         Self::Data* entity = 0;
         wxString where = wxString::Format(" WHERE %s = ?", PRIMARY::name().c_str());
@@ -559,17 +559,17 @@ struct DB_Table_BUDGETTABLE : public DB_Table
             }
             stmt.Finalize();
         }
-        catch(const wxSQLite3Exception &e) 
-        { 
+        catch(const wxSQLite3Exception &e)
+        {
             wxLogError("%s: Exception %s", this->name().c_str(), e.GetMessage().c_str());
         }
-        
-        if (!entity) 
+
+        if (!entity)
         {
             entity = this->fake_;
             // wxLogError("%s: %d not found", this->name().c_str(), id);
         }
- 
+
         return entity;
     }
 
@@ -592,8 +592,8 @@ struct DB_Table_BUDGETTABLE : public DB_Table
 
             q.Finalize();
         }
-        catch(const wxSQLite3Exception &e) 
-        { 
+        catch(const wxSQLite3Exception &e)
+        {
             wxLogError("%s: Exception %s", this->name().c_str(), e.GetMessage().c_str());
         }
 

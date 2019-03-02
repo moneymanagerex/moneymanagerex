@@ -177,7 +177,7 @@ mmCurrentFinancialYear::mmCurrentFinancialYear(const int day, const int month)
         this->start_date_.Subtract(wxDateSpan::Months(this_month - month));
 
     this->start_date_.Subtract(wxDateSpan::Days(this->start_date_.GetDay() - 1)).Add(wxDateSpan::Days(day - 1));
-    
+
     this->end_date_ = this->start_date_;
     this->end_date_.Add(wxDateSpan::Year()).Subtract(wxDateSpan::Day());
     this->title_ = wxTRANSLATE("Current Financial Year");

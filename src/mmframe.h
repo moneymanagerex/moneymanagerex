@@ -246,7 +246,7 @@ private:
 
     /** Sets the database to the new database selected by the user */
     void SetDatabaseFile(const wxString& dbFileName, bool newDatabase = false, bool eencrypt = false, const wxString& password = wxEmptyString);
-    
+
     // Required to prevent memory leaks.
     CommitCallbackHook* m_commit_callback_hook;
     UpdateCallbackHook* m_update_callback_hook;

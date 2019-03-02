@@ -430,7 +430,7 @@ int mmWebApp::MMEX_InsertNewTransaction(webtran_holder& WebAppTrans)
 {
     int DeskNewTrID = 0;
     bool bDeleteTrWebApp = false;
-    
+
     int AccountID = -1;
     int ToAccountID = -1;
     int PayeeID = -1;
@@ -517,7 +517,7 @@ int mmWebApp::MMEX_InsertNewTransaction(webtran_holder& WebAppTrans)
         NewPayee->SUBCATEGID = SubCategoryID;
         int NewPayeeID = Model_Payee::instance().save(NewPayee);
         PayeeID = NewPayeeID;
-    }  
+    }
 
     //Create New Transaction
     Model_Checking::Data * desktopNewTransaction;

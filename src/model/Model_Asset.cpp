@@ -19,14 +19,14 @@
 #include "Model_Asset.h"
 #include <cmath>
 
-const std::vector<std::pair<Model_Asset::RATE, wxString> > Model_Asset::RATE_CHOICES = 
+const std::vector<std::pair<Model_Asset::RATE, wxString> > Model_Asset::RATE_CHOICES =
 {
     {Model_Asset::RATE_NONE, wxString(wxTRANSLATE("None"))}
     , {Model_Asset::RATE_APPRECIATE, wxString(wxTRANSLATE("Appreciates"))}
     , {Model_Asset::RATE_DEPRECIATE, wxString(wxTRANSLATE("Depreciates"))}
 };
 
-const std::vector<std::pair<Model_Asset::TYPE, wxString> > Model_Asset::TYPE_CHOICES = 
+const std::vector<std::pair<Model_Asset::TYPE, wxString> > Model_Asset::TYPE_CHOICES =
 {
     {Model_Asset::TYPE_PROPERTY, wxString(wxTRANSLATE("Property"))}
     , {Model_Asset::TYPE_AUTO, wxString(wxTRANSLATE("Automobile"))}
@@ -151,8 +151,8 @@ double Model_Asset::value(const Data* r)
     double sum = r->VALUE;
     wxDate start_date = STARTDATE(r);
     const wxDate today = wxDate::Today();
-	wxTimeSpan diff_time = today - start_date;
-	double diff_time_in_days = static_cast<double>(diff_time.GetDays());
+    wxTimeSpan diff_time = today - start_date;
+    double diff_time_in_days = static_cast<double>(diff_time.GetDays());
     switch (rate(r))
     {
     case RATE_NONE:

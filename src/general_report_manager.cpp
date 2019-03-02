@@ -37,7 +37,7 @@
 #include <wx/zipstrm.h>
 #include <wx/wxsqlite3.h>
 
-static const wxString SAMPLE_ASSETS_LUA = 
+static const wxString SAMPLE_ASSETS_LUA =
 R"(local total_balance = 0
 function handle_record(record)
     total_balance = total_balance + record:get('VALUE');
@@ -51,7 +51,7 @@ end
 static const wxString SAMPLE_ASSETS_SQL =
 R"(SELECT STARTDATE, ASSETNAME, ASSETTYPE, VALUE, NOTES, VALUECHANGE, VALUECHANGERATE FROM ASSETS;)";
 
-static const wxString SAMPLE_ASSETS_HTT = 
+static const wxString SAMPLE_ASSETS_HTT =
 R"(<!DOCTYPE html>
 <html>
 <head>
@@ -117,7 +117,7 @@ R"(<!DOCTYPE html>
         element.style.textAlign='right';
         if (element.innerHTML.indexOf("-") > -1) {
             element.style.color="#ff0000";
-        } 
+        }
         element.innerHTML = '<TMPL_VAR PFX_SYMBOL>' + currency(element.innerHTML) +'<TMPL_VAR SFX_SYMBOL>';
     }
 </script>
@@ -125,7 +125,7 @@ R"(<!DOCTYPE html>
 </html>
 )";
 
-static const char *HTT_CONTEINER = 
+static const char *HTT_CONTEINER =
 R"(<!DOCTYPE html>
 <html>
 <head>
@@ -179,7 +179,7 @@ R"(<!DOCTYPE html>
         element.style.textAlign='right';
         if (element.innerHTML.indexOf("-") > -1) {
             element.style.color="#ff0000";
-        } 
+        }
         element.innerHTML = '<TMPL_VAR PFX_SYMBOL>' + currency(element.innerHTML) +'<TMPL_VAR SFX_SYMBOL>';
     }
 </script>

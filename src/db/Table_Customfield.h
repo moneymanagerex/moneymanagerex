@@ -48,13 +48,13 @@ struct DB_Table_CUSTOMFIELD : public DB_Table
     Data* fake_; // in case the entity not found
 
     /** Destructor: clears any data records stored in memory */
-    ~DB_Table_CUSTOMFIELD() 
+    ~DB_Table_CUSTOMFIELD()
     {
         delete this->fake_;
         destroy_cache();
     }
-     
-    /** Removes all records stored in memory (cache) for the table*/ 
+
+    /** Removes all records stored in memory (cache) for the table*/
     void destroy_cache()
     {
         std::for_each(cache_.begin(), cache_.end(), std::mem_fun(&Data::destroy));
@@ -72,8 +72,8 @@ struct DB_Table_CUSTOMFIELD : public DB_Table
                 db->ExecuteUpdate("CREATE TABLE CUSTOMFIELD (FIELDID INTEGER NOT NULL PRIMARY KEY, REFTYPE TEXT NOT NULL /* Transaction, Stock, Asset, Bank Account, Repeating Transaction, Payee */, DESCRIPTION TEXT COLLATE NOCASE, TYPE TEXT NOT NULL /* String, Integer, Decimal, Boolean, Date, Time, SingleChoice, MultiChoice */, PROPERTIES TEXT NOT NULL)");
                 this->ensure_data(db);
             }
-            catch(const wxSQLite3Exception &e) 
-            { 
+            catch(const wxSQLite3Exception &e)
+            {
                 wxLogError("CUSTOMFIELD: Exception %s", e.GetMessage().c_str());
                 return false;
             }
@@ -90,8 +90,8 @@ struct DB_Table_CUSTOMFIELD : public DB_Table
         {
             db->ExecuteUpdate("CREATE INDEX IF NOT EXISTS IDX_CUSTOMFIELD_REF ON CUSTOMFIELD (REFTYPE)");
         }
-        catch(const wxSQLite3Exception &e) 
-        { 
+        catch(const wxSQLite3Exception &e)
+        {
             wxLogError("CUSTOMFIELD: Exception %s", e.GetMessage().c_str());
             return false;
         }
@@ -104,37 +104,37 @@ struct DB_Table_CUSTOMFIELD : public DB_Table
         db->Begin();
         db->Commit();
     }
-    
+
     struct FIELDID : public DB_Column<int>
-    { 
-        static wxString name() { return "FIELDID"; } 
+    {
+        static wxString name() { return "FIELDID"; }
         explicit FIELDID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
-    
+
     struct REFTYPE : public DB_Column<wxString>
-    { 
-        static wxString name() { return "REFTYPE"; } 
+    {
+        static wxString name() { return "REFTYPE"; }
         explicit REFTYPE(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
-    
+
     struct DESCRIPTION : public DB_Column<wxString>
-    { 
-        static wxString name() { return "DESCRIPTION"; } 
+    {
+        static wxString name() { return "DESCRIPTION"; }
         explicit DESCRIPTION(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
-    
+
     struct TYPE : public DB_Column<wxString>
-    { 
-        static wxString name() { return "TYPE"; } 
+    {
+        static wxString name() { return "TYPE"; }
         explicit TYPE(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
-    
+
     struct PROPERTIES : public DB_Column<wxString>
-    { 
-        static wxString name() { return "PROPERTIES"; } 
+    {
+        static wxString name() { return "PROPERTIES"; }
         explicit PROPERTIES(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
-    
+
     typedef FIELDID PRIMARY;
     enum COLUMN
     {
@@ -158,7 +158,7 @@ struct DB_Table_CUSTOMFIELD : public DB_Table
             case COL_PROPERTIES: return "PROPERTIES";
             default: break;
         }
-        
+
         return "UNKNOWN";
     }
 
@@ -173,14 +173,14 @@ struct DB_Table_CUSTOMFIELD : public DB_Table
 
         return COL_UNKNOWN;
     }
-    
+
     /** Data is a single record in the database table*/
     struct Data
     {
         friend struct DB_Table_CUSTOMFIELD;
         /** This is a instance pointer to itself in memory. */
         Self* table_;
-    
+
         int FIELDID; // primary key
         wxString REFTYPE;
         wxString DESCRIPTION;
@@ -201,23 +201,23 @@ struct DB_Table_CUSTOMFIELD : public DB_Table
         {
             return this->id() < r.id();
         }
-        
+
         bool operator < (const Data* r) const
         {
             return this->id() < r->id();
         }
 
-        explicit Data(Self* table = 0) 
+        explicit Data(Self* table = 0)
         {
             table_ = table;
-        
+
             FIELDID = -1;
         }
 
         explicit Data(wxSQLite3ResultSet& q, Self* table = 0)
         {
             table_ = table;
-        
+
             FIELDID = q.GetInt(0);
             REFTYPE = q.GetString(1);
             DESCRIPTION = q.GetString(2);
@@ -315,7 +315,7 @@ struct DB_Table_CUSTOMFIELD : public DB_Table
         bool save(wxSQLite3Database* db)
         {
             if (db && db->IsReadOnly()) return false;
-            if (!table_ || !db) 
+            if (!table_ || !db)
             {
                 wxLogError("can not save CUSTOMFIELD");
                 return false;
@@ -327,12 +327,12 @@ struct DB_Table_CUSTOMFIELD : public DB_Table
         /** Remove the record instance from memory and the database. */
         bool remove(wxSQLite3Database* db)
         {
-            if (!table_ || !db) 
+            if (!table_ || !db)
             {
                 wxLogError("can not remove CUSTOMFIELD");
                 return false;
             }
-            
+
             return table_->remove(this, db);
         }
 
@@ -364,7 +364,7 @@ struct DB_Table_CUSTOMFIELD : public DB_Table
         cache_.push_back(entity);
         return entity;
     }
-    
+
     /** Create a copy of the Data record and add to memory table (cache) */
     Self::Data* clone(const Data* e)
     {
@@ -410,13 +410,13 @@ struct DB_Table_CUSTOMFIELD : public DB_Table
                 for(Cache::iterator it = cache_.begin(); it != cache_.end(); ++ it)
                 {
                     Self::Data* e = *it;
-                    if (e->id() == entity->id()) 
+                    if (e->id() == entity->id())
                         *e = *entity;  // in-place update
                 }
             }
         }
-        catch(const wxSQLite3Exception &e) 
-        { 
+        catch(const wxSQLite3Exception &e)
+        {
             wxLogError("CUSTOMFIELD: Exception %s, %s", e.GetMessage().c_str(), entity->to_json());
             return false;
         }
@@ -445,12 +445,12 @@ struct DB_Table_CUSTOMFIELD : public DB_Table
             for(Cache::iterator it = cache_.begin(); it != cache_.end(); ++ it)
             {
                 Self::Data* entity = *it;
-                if (entity->id() == id) 
+                if (entity->id() == id)
                 {
                     index_by_id_.erase(entity->id());
                     delete entity;
                 }
-                else 
+                else
                 {
                     c.push_back(entity);
                 }
@@ -458,8 +458,8 @@ struct DB_Table_CUSTOMFIELD : public DB_Table
             cache_.clear();
             cache_.swap(c);
         }
-        catch(const wxSQLite3Exception &e) 
-        { 
+        catch(const wxSQLite3Exception &e)
+        {
             wxLogError("CUSTOMFIELD: Exception %s", e.GetMessage().c_str());
             return false;
         }
@@ -485,7 +485,7 @@ struct DB_Table_CUSTOMFIELD : public DB_Table
         for (Index_By_Id::iterator it = index_by_id_.begin(); it != index_by_id_.end(); ++ it)
         {
             Self::Data* item = it->second;
-            if (item->id() > 0 && match(item, args...)) 
+            if (item->id() > 0 && match(item, args...))
             {
                 ++ hit_;
                 return item;
@@ -496,14 +496,14 @@ struct DB_Table_CUSTOMFIELD : public DB_Table
 
         return 0;
     }
-    
+
     /**
     * Search the memory table (Cache) for the data record.
     * If not found in memory, search the database and update the cache.
     */
     Self::Data* get(int id, wxSQLite3Database* db)
     {
-        if (id <= 0) 
+        if (id <= 0)
         {
             ++ skip_;
             return 0;
@@ -515,7 +515,7 @@ struct DB_Table_CUSTOMFIELD : public DB_Table
             ++ hit_;
             return it->second;
         }
-        
+
         ++ miss_;
         Self::Data* entity = 0;
         wxString where = wxString::Format(" WHERE %s = ?", PRIMARY::name().c_str());
@@ -533,17 +533,17 @@ struct DB_Table_CUSTOMFIELD : public DB_Table
             }
             stmt.Finalize();
         }
-        catch(const wxSQLite3Exception &e) 
-        { 
+        catch(const wxSQLite3Exception &e)
+        {
             wxLogError("%s: Exception %s", this->name().c_str(), e.GetMessage().c_str());
         }
-        
-        if (!entity) 
+
+        if (!entity)
         {
             entity = this->fake_;
             // wxLogError("%s: %d not found", this->name().c_str(), id);
         }
- 
+
         return entity;
     }
 
@@ -566,8 +566,8 @@ struct DB_Table_CUSTOMFIELD : public DB_Table
 
             q.Finalize();
         }
-        catch(const wxSQLite3Exception &e) 
-        { 
+        catch(const wxSQLite3Exception &e)
+        {
             wxLogError("%s: Exception %s", this->name().c_str(), e.GetMessage().c_str());
         }
 

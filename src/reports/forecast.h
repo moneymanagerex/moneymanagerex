@@ -19,7 +19,7 @@
 #pragma once
 #include "reportbase.h"
 
-class mmReportForecast: public mmPrintableBase 
+class mmReportForecast: public mmPrintableBase
 {
 public:
     mmReportForecast();

@@ -72,4 +72,4 @@ public:
     wxArrayString allDescriptions();
 };
 
-#endif // 
+#endif

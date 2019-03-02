@@ -450,8 +450,8 @@ void mmQIFExportDialog::mmExportQIF()
             buffer << mmExportTransaction::getAccountHeaderQIF(entry.first);
             buffer << entry.second;
         }
-       
-            //Append extra transters 
+
+            //Append extra transters
             for (const auto &entry : extraTransfers)
             {
                 buffer << mmExportTransaction::getAccountHeaderQIF(entry.first);

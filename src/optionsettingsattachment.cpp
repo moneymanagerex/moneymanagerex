@@ -262,9 +262,10 @@ void OptionSettingsAttachment::SaveSettings()
             {
                 if (!wxRenameFile(mmex::getPathAttachment(m_old_path), attachmentFolderPath))
                     wxMessageBox(
-                    wxString::Format("%s\n\n", _("Error moving attachments folder: please move it manually!")) +
-                    wxString::Format("%s: %s\n", _("Origin"), mmex::getPathAttachment(m_old_path)) +
-                    wxString::Format("%s: %s", _("Destination"), attachmentFolderPath)
+                        wxString::Format("%s\n\n%s: %s\n%s: %s",
+                            _("Error moving attachments folder: please move it manually!"),
+                            _("Origin"), mmex::getPathAttachment(m_old_path),
+                            _("Destination"), attachmentFolderPath)
                     , _("Attachments folder migration")
                     , wxICON_ERROR);
             }

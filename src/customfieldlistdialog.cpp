@@ -105,7 +105,7 @@ void mmCustomFieldListDialog::CreateControls()
 }
 
 void mmCustomFieldListDialog::fillControls()
-{    
+{
     fieldListBox_->DeleteAllItems();
 
     Model_CustomField::Data_Set fields = Model_CustomField::instance().find(Model_CustomField::DB_Table_CUSTOMFIELD::REFTYPE(m_RefType));

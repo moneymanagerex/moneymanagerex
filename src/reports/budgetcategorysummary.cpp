@@ -127,7 +127,7 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
     hb.init();
     hb.addDivContainer();
     bool amply = Option::instance().getBudgetReportWithSummaries();
-    const wxString& headerStartupMsg = amply 
+    const wxString& headerStartupMsg = amply
         ? _("Budget Categories for %s") : _("Budget Category Summary for %s");
 
     hb.addHeader(2, wxString::Format(headerStartupMsg
@@ -230,7 +230,7 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
 
             catTotalsAmt = catTotalsEstimated = catTotalsActual = 0.0;
         }
-        
+
         catTotalsAmt += actual;
         catTotalsActual += actual;
         catTotalsEstimated += estimated;

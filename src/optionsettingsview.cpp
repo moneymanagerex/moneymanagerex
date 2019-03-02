@@ -152,7 +152,7 @@ void OptionSettingsView::Create()
     budgetSizer->Add(budget_offset_sizer);
 
     budget_offset_sizer->Add(new wxStaticText(this, wxID_STATIC, _("Budget Offset (days):")), g_flagsH);
-    
+
     m_budget_days_offset = new wxSpinCtrl(this, wxID_ANY
         , wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, -30, +30);
     m_budget_days_offset->SetToolTip(_("Advance or retard the start date from the 1st of the month or year by the number of days"));

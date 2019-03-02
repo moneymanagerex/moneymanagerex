@@ -112,7 +112,7 @@ wxDate Model_Billsdeposits::NEXTOCCURRENCEDATE(const Data* r)
 {
     return Model::to_date(r->NEXTOCCURRENCEDATE);
 }
-    
+
 wxDate Model_Billsdeposits::NEXTOCCURRENCEDATE(const Data& r)
 {
     return Model::to_date(r.NEXTOCCURRENCEDATE);
@@ -124,7 +124,7 @@ Model_Billsdeposits::TYPE Model_Billsdeposits::type(const wxString& r)
     const auto it = cache.find(r);
     if (it != cache.end()) return it->second;
 
-    for (const auto& t : TYPE_CHOICES) 
+    for (const auto& t : TYPE_CHOICES)
     {
         if (r.CmpNoCase(t.second) == 0)
         {
@@ -152,7 +152,7 @@ Model_Billsdeposits::STATUS_ENUM Model_Billsdeposits::status(const wxString& r)
 
     for (const auto & s : STATUS_ENUM_CHOICES)
     {
-        if (r.CmpNoCase(s.second) == 0) 
+        if (r.CmpNoCase(s.second) == 0)
         {
             cache.insert(std::make_pair(r, s.first));
             return s.first;
@@ -275,20 +275,20 @@ bool Model_Billsdeposits::allowExecution()
 
 bool Model_Billsdeposits::AllowTransaction(const Data& r, AccountBalance& bal)
 {
-	const int acct_id = r.ACCOUNTID;
+    const int acct_id = r.ACCOUNTID;
     Model_Account::Data* account = Model_Account::instance().get(acct_id);
-	double current_account_balance = 0;
+    double current_account_balance = 0;
 
-	AccountBalance::iterator itr_bal = bal.find(acct_id);
-	if (itr_bal != bal.end())
-	{
-		current_account_balance = itr_bal->second;
-	}
-	else
-	{
-		current_account_balance = Model_Account::balance(account);
-		bal[acct_id] = current_account_balance;
-	}
+    AccountBalance::iterator itr_bal = bal.find(acct_id);
+    if (itr_bal != bal.end())
+    {
+        current_account_balance = itr_bal->second;
+    }
+    else
+    {
+        current_account_balance = Model_Account::balance(account);
+        bal[acct_id] = current_account_balance;
+    }
 
     double new_value = r.TRANSAMOUNT;
 
@@ -317,10 +317,10 @@ bool Model_Billsdeposits::AllowTransaction(const Data& r, AccountBalance& bal)
         abort_transaction = false;
     }
 
-	if (!abort_transaction)
-	{
-		bal[acct_id] = new_value;
-	}
+    if (!abort_transaction)
+    {
+        bal[acct_id] = new_value;
+    }
 
     return !abort_transaction;
 }

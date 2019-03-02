@@ -271,7 +271,7 @@ void mmCustomFieldEditDialog::OnOk(wxCommandEvent& WXUNUSED(event))
         m_itemDigitScale->GetValue(),
         m_itemUDFC->GetString(m_itemUDFC->GetSelection())
         );
-    
+
     Model_CustomField::instance().save(m_field);
     EndModal(wxID_OK);
 }

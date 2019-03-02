@@ -116,7 +116,7 @@ billsDepositsListCtrl::billsDepositsListCtrl(mmBillsDepositsPanel* bdp, wxWindow
 
     m_col_width = "BD_COL%d_WIDTH";
     m_default_sort_column = m_bdp->col_sort();
-    
+
     for (const auto& entry : m_columns)
     {
         int count = GetColumnCount();
@@ -152,7 +152,7 @@ void billsDepositsListCtrl::OnColClick(wxListEvent& event)
     Model_Setting::instance().Set("BD_ASC", m_asc);
     Model_Setting::instance().Set("BD_SORT_COL", m_selected_col);
 
-    if (m_selected_row >= 0) 
+    if (m_selected_row >= 0)
         refreshVisualList(m_bdp->initVirtualListControl(m_bdp->bills_[m_selected_row].BDID));
     else
         refreshVisualList(m_bdp->initVirtualListControl(-1));
@@ -412,7 +412,7 @@ void billsDepositsListCtrl::OnItemRightClick(wxMouseEvent& event)
     menu.Append(MENU_TREEPOPUP_DELETE, _("&Delete Bills && Deposit Series..."));
     menu.AppendSeparator();
     menu.Append(MENU_TREEPOPUP_ORGANIZE_ATTACHMENTS, _("&Organize Attachments"));
-    
+
     menu.Enable(MENU_POPUP_BD_ENTER_OCCUR, item_active);
     menu.Enable(MENU_POPUP_BD_SKIP_OCCUR, item_active);
     menu.Enable(MENU_TREEPOPUP_EDIT, item_active);
@@ -885,5 +885,5 @@ void mmBillsDepositsPanel::OnFilterTransactions(wxMouseEvent& event)
 
 wxString  mmBillsDepositsPanel::BuildPage() const
 {
-    return listCtrlAccount_->BuildPage(_("Recurring Transactions")); 
+    return listCtrlAccount_->BuildPage(_("Recurring Transactions"));
 }

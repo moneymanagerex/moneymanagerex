@@ -246,7 +246,7 @@ void mmCurrencyDialog::OnOk(wxCommandEvent& WXUNUSED(event))
     const auto currency_symb = Model_Currency::instance().find(Model_Currency::CURRENCY_SYMBOL(symbol));
     if (!currency_symb.empty() && m_currency->CURRENCYID == -1)
         return mmErrorDialogs::InvalidSymbol(m_currencySymbol, true);
-    
+
     if (m_currency->DECIMAL_POINT.empty() || !wxString(".,").Contains(m_currency->DECIMAL_POINT))
         return mmErrorDialogs::ToolTip4Object(decTx_, _("Invalid Entry"), _("Decimal Char"));
 
@@ -263,7 +263,7 @@ void mmCurrencyDialog::OnOk(wxCommandEvent& WXUNUSED(event))
 }
 
 void mmCurrencyDialog::OnTextChanged(wxCommandEvent& WXUNUSED(event))
-{  
+{
     int scale = wxAtoi(scaleTx_->GetValue());
     m_currency->PFX_SYMBOL = pfxTx_->GetValue();
     m_currency->SFX_SYMBOL = sfxTx_->GetValue();

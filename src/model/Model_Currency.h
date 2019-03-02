@@ -88,4 +88,4 @@ public:
     static int precision(int account_id);
     static bool BoolOf(int value);
 };
-#endif // 
+#endif

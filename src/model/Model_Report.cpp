@@ -40,7 +40,7 @@ public:
     ~Record(){}
     /* Access functions for LuaGlue (The required conversion between char and wchar_t is done through wxString.) */
     std::string get(const char* index)
-    { 
+    {
         return std::string(wxString((*this)[wxString(index).ToStdWstring()]).ToUTF8());
     }
     void set(const char* index, const char * val)
@@ -53,7 +53,7 @@ Model_Report::Model_Report(): Model<DB_Table_REPORT>()
 {
 }
 
-Model_Report::~Model_Report() 
+Model_Report::~Model_Report()
 {
 }
 
@@ -208,7 +208,7 @@ bool Model_Report::PrepareSQL(wxString& sql, std::map <wxString, wxString>& rep_
 
     pos = sql.Lower().Find("&end_date");
     len = wxString("&end_date").size();
-    
+
     if (pos != wxNOT_FOUND)
     {
         wxDatePickerCtrl* end_date = (wxDatePickerCtrl*)
@@ -400,7 +400,7 @@ wxString Model_Report::get_html(const Data* r)
     report(L"ERRORS") = errors;
 
     wxString out = wxEmptyString;
-    try 
+    try
     {
         out = report.Process();
     }
@@ -472,9 +472,9 @@ bool Model_Report::outputReportFile(const wxString& str, const wxString& name)
     return ok;
 }
 
-wxString Model_Report::get_html(const Data& r) 
-{ 
-    return get_html(&r); 
+wxString Model_Report::get_html(const Data& r)
+{
+    return get_html(&r);
 }
 
 Model_Report::Data* Model_Report::get(const wxString& name)

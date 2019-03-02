@@ -341,7 +341,7 @@ void mmTransDialog::dataToControls()
                 }
             }
 
-			wxArrayString account_names = Model_Account::instance().all_checking_account_names(true);
+            wxArrayString account_names = Model_Account::instance().all_checking_account_names(true);
             cbPayee_->Insert(account_names, 0);
             Model_Account::Data *account = Model_Account::instance().get(m_trx_data.TOACCOUNTID);
             if (account)

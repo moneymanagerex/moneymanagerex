@@ -75,7 +75,7 @@ public:
     static bool HasShares(const int stock_id);
 
     /*
-    Return the link record for the checking account 
+    Return the link record for the checking account
     Equivalent SQL statements:
     select * from TRANSLINK where CHECKINGACCOUNTID = checking_id;
     */
@@ -83,7 +83,7 @@ public:
 
     /* Remove all records associated with the Translink list */
     static void RemoveTransLinkRecords(Model_Attachment::REFTYPE table_type, const int entry_id);
- 
+
     /* Remove the checking account entry and its associated transfer transaction. */
     static void RemoveTranslinkEntry(const int checking_account_id);
 

@@ -48,13 +48,13 @@ struct DB_Table_ACCOUNTLIST : public DB_Table
     Data* fake_; // in case the entity not found
 
     /** Destructor: clears any data records stored in memory */
-    ~DB_Table_ACCOUNTLIST() 
+    ~DB_Table_ACCOUNTLIST()
     {
         delete this->fake_;
         destroy_cache();
     }
-     
-    /** Removes all records stored in memory (cache) for the table*/ 
+
+    /** Removes all records stored in memory (cache) for the table*/
     void destroy_cache()
     {
         std::for_each(cache_.begin(), cache_.end(), std::mem_fun(&Data::destroy));
@@ -72,8 +72,8 @@ struct DB_Table_ACCOUNTLIST : public DB_Table
                 db->ExecuteUpdate("CREATE TABLE ACCOUNTLIST(ACCOUNTID integer primary key, ACCOUNTNAME TEXT COLLATE NOCASE NOT NULL UNIQUE, ACCOUNTTYPE TEXT NOT NULL /* Checking, Term, Investment, Credit Card */, ACCOUNTNUM TEXT, STATUS TEXT NOT NULL /* Open, Closed */, NOTES TEXT, HELDAT TEXT, WEBSITE TEXT, CONTACTINFO TEXT, ACCESSINFO TEXT, INITIALBAL numeric, FAVORITEACCT TEXT NOT NULL, CURRENCYID integer NOT NULL, STATEMENTLOCKED integer, STATEMENTDATE TEXT, MINIMUMBALANCE numeric, CREDITLIMIT numeric, INTERESTRATE numeric, PAYMENTDUEDATE text, MINIMUMPAYMENT numeric)");
                 this->ensure_data(db);
             }
-            catch(const wxSQLite3Exception &e) 
-            { 
+            catch(const wxSQLite3Exception &e)
+            {
                 wxLogError("ACCOUNTLIST: Exception %s", e.GetMessage().c_str());
                 return false;
             }
@@ -90,8 +90,8 @@ struct DB_Table_ACCOUNTLIST : public DB_Table
         {
             db->ExecuteUpdate("CREATE INDEX IF NOT EXISTS IDX_ACCOUNTLIST_ACCOUNTTYPE ON ACCOUNTLIST(ACCOUNTTYPE)");
         }
-        catch(const wxSQLite3Exception &e) 
-        { 
+        catch(const wxSQLite3Exception &e)
+        {
             wxLogError("ACCOUNTLIST: Exception %s", e.GetMessage().c_str());
             return false;
         }
@@ -104,127 +104,127 @@ struct DB_Table_ACCOUNTLIST : public DB_Table
         db->Begin();
         db->Commit();
     }
-    
+
     struct ACCOUNTID : public DB_Column<int>
-    { 
-        static wxString name() { return "ACCOUNTID"; } 
+    {
+        static wxString name() { return "ACCOUNTID"; }
         explicit ACCOUNTID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
-    
+
     struct ACCOUNTNAME : public DB_Column<wxString>
-    { 
-        static wxString name() { return "ACCOUNTNAME"; } 
+    {
+        static wxString name() { return "ACCOUNTNAME"; }
         explicit ACCOUNTNAME(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
-    
+
     struct ACCOUNTTYPE : public DB_Column<wxString>
-    { 
-        static wxString name() { return "ACCOUNTTYPE"; } 
+    {
+        static wxString name() { return "ACCOUNTTYPE"; }
         explicit ACCOUNTTYPE(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
-    
+
     struct ACCOUNTNUM : public DB_Column<wxString>
-    { 
-        static wxString name() { return "ACCOUNTNUM"; } 
+    {
+        static wxString name() { return "ACCOUNTNUM"; }
         explicit ACCOUNTNUM(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
-    
+
     struct STATUS : public DB_Column<wxString>
-    { 
-        static wxString name() { return "STATUS"; } 
+    {
+        static wxString name() { return "STATUS"; }
         explicit STATUS(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
-    
+
     struct NOTES : public DB_Column<wxString>
-    { 
-        static wxString name() { return "NOTES"; } 
+    {
+        static wxString name() { return "NOTES"; }
         explicit NOTES(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
-    
+
     struct HELDAT : public DB_Column<wxString>
-    { 
-        static wxString name() { return "HELDAT"; } 
+    {
+        static wxString name() { return "HELDAT"; }
         explicit HELDAT(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
-    
+
     struct WEBSITE : public DB_Column<wxString>
-    { 
-        static wxString name() { return "WEBSITE"; } 
+    {
+        static wxString name() { return "WEBSITE"; }
         explicit WEBSITE(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
-    
+
     struct CONTACTINFO : public DB_Column<wxString>
-    { 
-        static wxString name() { return "CONTACTINFO"; } 
+    {
+        static wxString name() { return "CONTACTINFO"; }
         explicit CONTACTINFO(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
-    
+
     struct ACCESSINFO : public DB_Column<wxString>
-    { 
-        static wxString name() { return "ACCESSINFO"; } 
+    {
+        static wxString name() { return "ACCESSINFO"; }
         explicit ACCESSINFO(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
-    
+
     struct INITIALBAL : public DB_Column<double>
-    { 
-        static wxString name() { return "INITIALBAL"; } 
+    {
+        static wxString name() { return "INITIALBAL"; }
         explicit INITIALBAL(const double &v, OP op = EQUAL): DB_Column<double>(v, op) {}
     };
-    
+
     struct FAVORITEACCT : public DB_Column<wxString>
-    { 
-        static wxString name() { return "FAVORITEACCT"; } 
+    {
+        static wxString name() { return "FAVORITEACCT"; }
         explicit FAVORITEACCT(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
-    
+
     struct CURRENCYID : public DB_Column<int>
-    { 
-        static wxString name() { return "CURRENCYID"; } 
+    {
+        static wxString name() { return "CURRENCYID"; }
         explicit CURRENCYID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
-    
+
     struct STATEMENTLOCKED : public DB_Column<int>
-    { 
-        static wxString name() { return "STATEMENTLOCKED"; } 
+    {
+        static wxString name() { return "STATEMENTLOCKED"; }
         explicit STATEMENTLOCKED(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
-    
+
     struct STATEMENTDATE : public DB_Column<wxString>
-    { 
-        static wxString name() { return "STATEMENTDATE"; } 
+    {
+        static wxString name() { return "STATEMENTDATE"; }
         explicit STATEMENTDATE(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
-    
+
     struct MINIMUMBALANCE : public DB_Column<double>
-    { 
-        static wxString name() { return "MINIMUMBALANCE"; } 
+    {
+        static wxString name() { return "MINIMUMBALANCE"; }
         explicit MINIMUMBALANCE(const double &v, OP op = EQUAL): DB_Column<double>(v, op) {}
     };
-    
+
     struct CREDITLIMIT : public DB_Column<double>
-    { 
-        static wxString name() { return "CREDITLIMIT"; } 
+    {
+        static wxString name() { return "CREDITLIMIT"; }
         explicit CREDITLIMIT(const double &v, OP op = EQUAL): DB_Column<double>(v, op) {}
     };
-    
+
     struct INTERESTRATE : public DB_Column<double>
-    { 
-        static wxString name() { return "INTERESTRATE"; } 
+    {
+        static wxString name() { return "INTERESTRATE"; }
         explicit INTERESTRATE(const double &v, OP op = EQUAL): DB_Column<double>(v, op) {}
     };
-    
+
     struct PAYMENTDUEDATE : public DB_Column<wxString>
-    { 
-        static wxString name() { return "PAYMENTDUEDATE"; } 
+    {
+        static wxString name() { return "PAYMENTDUEDATE"; }
         explicit PAYMENTDUEDATE(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
-    
+
     struct MINIMUMPAYMENT : public DB_Column<double>
-    { 
-        static wxString name() { return "MINIMUMPAYMENT"; } 
+    {
+        static wxString name() { return "MINIMUMPAYMENT"; }
         explicit MINIMUMPAYMENT(const double &v, OP op = EQUAL): DB_Column<double>(v, op) {}
     };
-    
+
     typedef ACCOUNTID PRIMARY;
     enum COLUMN
     {
@@ -278,7 +278,7 @@ struct DB_Table_ACCOUNTLIST : public DB_Table
             case COL_MINIMUMPAYMENT: return "MINIMUMPAYMENT";
             default: break;
         }
-        
+
         return "UNKNOWN";
     }
 
@@ -308,14 +308,14 @@ struct DB_Table_ACCOUNTLIST : public DB_Table
 
         return COL_UNKNOWN;
     }
-    
+
     /** Data is a single record in the database table*/
     struct Data
     {
         friend struct DB_Table_ACCOUNTLIST;
         /** This is a instance pointer to itself in memory. */
         Self* table_;
-    
+
         int ACCOUNTID; // primary key
         wxString ACCOUNTNAME;
         wxString ACCOUNTTYPE;
@@ -351,16 +351,16 @@ struct DB_Table_ACCOUNTLIST : public DB_Table
         {
             return this->id() < r.id();
         }
-        
+
         bool operator < (const Data* r) const
         {
             return this->id() < r->id();
         }
 
-        explicit Data(Self* table = 0) 
+        explicit Data(Self* table = 0)
         {
             table_ = table;
-        
+
             ACCOUNTID = -1;
             INITIALBAL = 0.0;
             CURRENCYID = -1;
@@ -374,7 +374,7 @@ struct DB_Table_ACCOUNTLIST : public DB_Table
         explicit Data(wxSQLite3ResultSet& q, Self* table = 0)
         {
             table_ = table;
-        
+
             ACCOUNTID = q.GetInt(0);
             ACCOUNTNAME = q.GetString(1);
             ACCOUNTTYPE = q.GetString(2);
@@ -637,7 +637,7 @@ struct DB_Table_ACCOUNTLIST : public DB_Table
         bool save(wxSQLite3Database* db)
         {
             if (db && db->IsReadOnly()) return false;
-            if (!table_ || !db) 
+            if (!table_ || !db)
             {
                 wxLogError("can not save ACCOUNTLIST");
                 return false;
@@ -649,12 +649,12 @@ struct DB_Table_ACCOUNTLIST : public DB_Table
         /** Remove the record instance from memory and the database. */
         bool remove(wxSQLite3Database* db)
         {
-            if (!table_ || !db) 
+            if (!table_ || !db)
             {
                 wxLogError("can not remove ACCOUNTLIST");
                 return false;
             }
-            
+
             return table_->remove(this, db);
         }
 
@@ -686,7 +686,7 @@ struct DB_Table_ACCOUNTLIST : public DB_Table
         cache_.push_back(entity);
         return entity;
     }
-    
+
     /** Create a copy of the Data record and add to memory table (cache) */
     Self::Data* clone(const Data* e)
     {
@@ -747,13 +747,13 @@ struct DB_Table_ACCOUNTLIST : public DB_Table
                 for(Cache::iterator it = cache_.begin(); it != cache_.end(); ++ it)
                 {
                     Self::Data* e = *it;
-                    if (e->id() == entity->id()) 
+                    if (e->id() == entity->id())
                         *e = *entity;  // in-place update
                 }
             }
         }
-        catch(const wxSQLite3Exception &e) 
-        { 
+        catch(const wxSQLite3Exception &e)
+        {
             wxLogError("ACCOUNTLIST: Exception %s, %s", e.GetMessage().c_str(), entity->to_json());
             return false;
         }
@@ -782,12 +782,12 @@ struct DB_Table_ACCOUNTLIST : public DB_Table
             for(Cache::iterator it = cache_.begin(); it != cache_.end(); ++ it)
             {
                 Self::Data* entity = *it;
-                if (entity->id() == id) 
+                if (entity->id() == id)
                 {
                     index_by_id_.erase(entity->id());
                     delete entity;
                 }
-                else 
+                else
                 {
                     c.push_back(entity);
                 }
@@ -795,8 +795,8 @@ struct DB_Table_ACCOUNTLIST : public DB_Table
             cache_.clear();
             cache_.swap(c);
         }
-        catch(const wxSQLite3Exception &e) 
-        { 
+        catch(const wxSQLite3Exception &e)
+        {
             wxLogError("ACCOUNTLIST: Exception %s", e.GetMessage().c_str());
             return false;
         }
@@ -822,7 +822,7 @@ struct DB_Table_ACCOUNTLIST : public DB_Table
         for (Index_By_Id::iterator it = index_by_id_.begin(); it != index_by_id_.end(); ++ it)
         {
             Self::Data* item = it->second;
-            if (item->id() > 0 && match(item, args...)) 
+            if (item->id() > 0 && match(item, args...))
             {
                 ++ hit_;
                 return item;
@@ -833,14 +833,14 @@ struct DB_Table_ACCOUNTLIST : public DB_Table
 
         return 0;
     }
-    
+
     /**
     * Search the memory table (Cache) for the data record.
     * If not found in memory, search the database and update the cache.
     */
     Self::Data* get(int id, wxSQLite3Database* db)
     {
-        if (id <= 0) 
+        if (id <= 0)
         {
             ++ skip_;
             return 0;
@@ -852,7 +852,7 @@ struct DB_Table_ACCOUNTLIST : public DB_Table
             ++ hit_;
             return it->second;
         }
-        
+
         ++ miss_;
         Self::Data* entity = 0;
         wxString where = wxString::Format(" WHERE %s = ?", PRIMARY::name().c_str());
@@ -870,17 +870,17 @@ struct DB_Table_ACCOUNTLIST : public DB_Table
             }
             stmt.Finalize();
         }
-        catch(const wxSQLite3Exception &e) 
-        { 
+        catch(const wxSQLite3Exception &e)
+        {
             wxLogError("%s: Exception %s", this->name().c_str(), e.GetMessage().c_str());
         }
-        
-        if (!entity) 
+
+        if (!entity)
         {
             entity = this->fake_;
             // wxLogError("%s: %d not found", this->name().c_str(), id);
         }
- 
+
         return entity;
     }
 
@@ -903,8 +903,8 @@ struct DB_Table_ACCOUNTLIST : public DB_Table
 
             q.Finalize();
         }
-        catch(const wxSQLite3Exception &e) 
-        { 
+        catch(const wxSQLite3Exception &e)
+        {
             wxLogError("%s: Exception %s", this->name().c_str(), e.GetMessage().c_str());
         }
 

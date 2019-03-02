@@ -96,7 +96,7 @@ bool Model_Setting::GetBoolSetting(const wxString& key, bool default_value)
     if (value == "TRUE") return true;
     if (value == "FALSE") return false;
 
-    return default_value; 
+    return default_value;
 }
 
 int Model_Setting::GetIntSetting(const wxString& key, int default_value)

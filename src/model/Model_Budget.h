@@ -60,4 +60,4 @@ public:
     static double getYearlyEstimate(const PERIOD_ENUM period, const double amount);
 };
 
-#endif // 
+#endif

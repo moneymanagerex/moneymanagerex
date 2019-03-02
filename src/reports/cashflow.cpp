@@ -73,7 +73,7 @@ void mmReportCashFlow::getStats(double& tInitialBalance, std::vector<ValueTrio>&
         double convRate = Model_CurrencyHistory::getDayRate(account.CURRENCYID
             , today_.FormatISODate());
         tInitialBalance += account.INITIALBAL * convRate;
-        
+
         account_id.Add(account.ACCOUNTID);
         const auto transactions = Model_Account::transaction(account);
 
@@ -155,7 +155,7 @@ void mmReportCashFlow::getStats(double& tInitialBalance, std::vector<ValueTrio>&
 
             fvec.push_back(rf);
 
-            if (processNumRepeats && (numRepeats <= 0)) 
+            if (processNumRepeats && (numRepeats <= 0))
                 break;
 
             nextOccurDate = Model_Billsdeposits::nextOccurDate(repeatsType, numRepeats, nextOccurDate);
@@ -171,7 +171,7 @@ void mmReportCashFlow::getStats(double& tInitialBalance, std::vector<ValueTrio>&
             {
                 if (numRepeats > 0)
                     numRepeats = -1;
-                else 
+                else
                     break;
             }
             else if (repeatsType == Model_Billsdeposits::REPEAT_EVERY_X_DAYS) // repeat every numRepeats Days
@@ -274,7 +274,7 @@ wxString mmReportCashFlow::getHTMLText_i()
     hb.startTbody();
     int colorNum = 0;
     for (int idx = 0; idx < (int)forecastVector.size(); idx++)
-    {        
+    {
         double balance = forecastVector[idx].amount + tInitialBalance;
         double diff = (idx == 0 ? 0 : forecastVector[idx].amount - forecastVector[idx-1].amount) ;
         const wxDateTime dtEnd = cashFlowReportType_ == MONTHLY
