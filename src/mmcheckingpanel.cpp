@@ -95,7 +95,7 @@ wxEND_EVENT_TABLE();
 
 //----------------------------------------------------------------------------
 
-mmCheckingPanel::mmCheckingPanel(wxWindow *parent, mmGUIFrame *frame, int accountID, int id) 
+mmCheckingPanel::mmCheckingPanel(wxWindow *parent, mmGUIFrame *frame, int accountID, int id)
     : m_trans_filter_dlg(0)
     , m_AccountID(accountID)
     , m_filteredBalance(0.0)
@@ -867,10 +867,10 @@ void mmCheckingPanel::OnFilterTransactions(wxMouseEvent& event)
     if (e == wxEVT_LEFT_DOWN)
     {
         m_trans_filter_dlg->setAccountToolTip(_("Select account used in transfer transactions"));
-        m_transFilterActive = (m_trans_filter_dlg->ShowModal() == wxID_OK 
+        m_transFilterActive = (m_trans_filter_dlg->ShowModal() == wxID_OK
             && m_trans_filter_dlg->SomethingSelected());
     }
-    else 
+    else
     {
         if (m_transFilterActive == false) {
             return;
@@ -878,8 +878,8 @@ void mmCheckingPanel::OnFilterTransactions(wxMouseEvent& event)
         m_transFilterActive = false;
         m_trans_filter_dlg->ResetFilterStatus();
     }
-    
-    m_bitmapTransFilter->SetBitmap(m_transFilterActive 
+
+    m_bitmapTransFilter->SetBitmap(m_transFilterActive
         ? mmBitmap(png::RIGHTARROW_ACTIVE) : mmBitmap(png::RIGHTARROW));
     SetTransactionFilterState(true);
 
@@ -1001,7 +1001,7 @@ void mmCheckingPanel::RefreshList(int transID)
     m_listCtrlAccount->refreshVisualList(transID);
 }
 
-void mmCheckingPanel::SetTransactionFilterState(bool active)
+void mmCheckingPanel::SetTransactionFilterState(bool WXUNUSED(active))
 {
 // FIXME: don't ignore active param or remove it
     m_bitmapMainFilter->Enable(!m_transFilterActive);
@@ -1163,7 +1163,7 @@ void TransactionListCtrl::OnListLeftClick(wxMouseEvent& event)
     }
 
     //m_cp->enableEditDeleteButtons(true);
-    
+
     event.Skip();
 }
 
@@ -1307,7 +1307,7 @@ void TransactionListCtrl::OnMarkTransaction(wxCommandEvent& event)
 
     bool bRefreshRequired = (status == "V") || (org_status == "V");
 
-    if ((m_cp->m_transFilterActive && m_cp->m_trans_filter_dlg->getStatusCheckBox()) 
+    if ((m_cp->m_transFilterActive && m_cp->m_trans_filter_dlg->getStatusCheckBox())
         || bRefreshRequired)
     {
         refreshVisualList(m_cp->m_trans[m_selectedIndex].TRANSID);
@@ -1903,7 +1903,7 @@ void TransactionListCtrl::OnMoveTransaction(wxCommandEvent& WXUNUSED(event))
 {
     if ((m_selectedIndex < 0)) return;
 
-	
+
 	// Abort if any transaction is locked.
 	for (long index : GetSelected()) {
 		Model_Checking::Data checking_entry = m_cp->m_trans[index];
@@ -1937,7 +1937,7 @@ void TransactionListCtrl::OnMoveTransaction(wxCommandEvent& WXUNUSED(event))
 			Model_Checking::Full_Data& tran = m_cp->m_trans[index];
 			transactions.push_back(tran);
 		}
-		
+
 		// Save the modification
 		for (auto transaction : transactions) {
 			transaction.ACCOUNTID = dest_account_id;

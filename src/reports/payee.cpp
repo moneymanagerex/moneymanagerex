@@ -83,7 +83,7 @@ void  mmReportPayeeExpenses::RefreshData()
                 return x.name < y.name;
         }
     );
-    
+
 
     for (const auto& entry : data_) {
         ValueTrio vt;
@@ -157,7 +157,7 @@ wxString mmReportPayeeExpenses::getHTMLText()
 }
 
 void mmReportPayeeExpenses::getPayeeStats(std::map<int, std::pair<double, double> > &payeeStats
-                                          , mmDateRange* date_range, bool ignoreFuture) const
+                                          , mmDateRange* date_range, bool WXUNUSED(ignoreFuture)) const
 {
 // FIXME: do not ignore ignoreFuture param
     const auto &transactions = Model_Checking::instance().find(

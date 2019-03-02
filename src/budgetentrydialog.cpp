@@ -5,12 +5,12 @@
  it under the terms of the GNU General Public License as published by
  the Free Software Foundation; either version 2 of the License, or
  (at your option) any later version.
- 
+
  This program is distributed in the hope that it will be useful,
  but WITHOUT ANY WARRANTY; without even the implied warranty of
  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  GNU General Public License for more details.
- 
+
  You should have received a copy of the GNU General Public License
  along with this program; if not, write to the Free Software
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
@@ -85,7 +85,7 @@ void mmBudgetEntryDialog::fillControls()
 }
 
 void mmBudgetEntryDialog::CreateControls()
-{    
+{
     wxBoxSizer* itemBoxSizer2 = new wxBoxSizer(wxVERTICAL);
     this->SetSizer(itemBoxSizer2);
 
@@ -98,13 +98,13 @@ void mmBudgetEntryDialog::CreateControls()
 
     wxFlexGridSizer* itemGridSizer2 = new wxFlexGridSizer(0, 2, 0, 0);
     itemPanel7->SetSizer(itemGridSizer2);
-    
+
     const Model_Category::Data* category = Model_Category::instance().get(budgetEntry_->CATEGID);
     const Model_Subcategory::Data* sub_category = (budgetEntry_->SUBCATEGID != -1 ? Model_Subcategory::instance().get(budgetEntry_->SUBCATEGID) : 0);
 
     wxStaticText* itemTextEstCatAmt = new wxStaticText(itemPanel7, wxID_STATIC, catEstimateAmountStr_);
     wxStaticText* itemTextActCatAmt = new wxStaticText(itemPanel7, wxID_STATIC, catActualAmountStr_);
-    
+
     itemGridSizer2->Add(new wxStaticText(itemPanel7, wxID_STATIC, _("Category: ")), g_flagsH);
     itemGridSizer2->Add(new wxStaticText(itemPanel7, wxID_STATIC, category->CATEGNAME), wxSizerFlags(g_flagsH).Align(wxALIGN_RIGHT));
     // only add the subcategory if it exists.
@@ -113,7 +113,7 @@ void mmBudgetEntryDialog::CreateControls()
             , _("Sub Category: "));
         wxStaticText* itemTextSubCatName = new wxStaticText(itemPanel7, wxID_STATIC
             , sub_category->SUBCATEGNAME);
-        
+
         itemGridSizer2->Add(itemTextSubCatTag, g_flagsH);
         itemGridSizer2->Add(itemTextSubCatName, wxSizerFlags(g_flagsH).Align(wxALIGN_RIGHT));
     }
@@ -124,7 +124,7 @@ void mmBudgetEntryDialog::CreateControls()
 
     itemGridSizer2->Add(new wxStaticText(itemPanel7, wxID_STATIC, _("Type:")), g_flagsH);
 
-    wxArrayString itemTypeStrings;  
+    wxArrayString itemTypeStrings;
     itemTypeStrings.Add(_("Expense"));
     itemTypeStrings.Add(_("Income"));
 
@@ -151,10 +151,10 @@ void mmBudgetEntryDialog::CreateControls()
     m_textAmount->Connect(wxID_ANY, wxEVT_COMMAND_TEXT_ENTER
         , wxCommandEventHandler(mmBudgetEntryDialog::OnTextEntered), nullptr, this);
     m_textAmount->SetFocus();
-    
+
     wxBoxSizer* itemBoxSizer9 = new wxBoxSizer(wxHORIZONTAL);
     itemBoxSizer2->Add(itemBoxSizer9, wxSizerFlags(g_flagsV).Center());
-   
+
     wxButton* itemButton7 = new wxButton(this, wxID_OK, _("&OK "));
     itemBoxSizer9->Add(itemButton7, g_flagsH);
 
@@ -163,9 +163,9 @@ void mmBudgetEntryDialog::CreateControls()
 }
 
 
-void mmBudgetEntryDialog::OnOk(wxCommandEvent& event)
+void mmBudgetEntryDialog::OnOk(wxCommandEvent& WXUNUSED(event))
 {
-    int typeSelection = m_choiceType->GetSelection();    
+    int typeSelection = m_choiceType->GetSelection();
     wxString period = Model_Budget::PERIOD_ENUM_CHOICES[m_FrequencyChooser->GetSelection()].second;
     double amt = 0.0;
 
@@ -191,17 +191,17 @@ void mmBudgetEntryDialog::OnOk(wxCommandEvent& event)
 void mmBudgetEntryDialog::onChoiceChar(wxKeyEvent& event) {
 
     int i = m_FrequencyChooser->GetSelection();
-    if (event.GetKeyCode()==WXK_DOWN) 
+    if (event.GetKeyCode()==WXK_DOWN)
     {
-        if (i < DEF_FREQ_DAILY ) 
+        if (i < DEF_FREQ_DAILY )
             m_FrequencyChooser->SetSelection(++i);
-    } 
+    }
     else if (event.GetKeyCode()==WXK_UP)
     {
         if (i > DEF_FREQ_NONE)
             m_FrequencyChooser->SetSelection(--i);
-    } 
-    else 
+    }
+    else
         event.Skip();
 
 }

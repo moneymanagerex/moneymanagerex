@@ -1251,6 +1251,6 @@ void mmFilterTransactionsDialog::OnSettingsSelected(wxCommandEvent& event)
 {
     int i = event.GetSelection();
     GetStoredSettings(i);
-    m_custom_fields->SetRefID(0); //TODO:
+    m_custom_fields->ResetRefID(); // TODO: m_custom_fields->SetRefID(0);
     dataToControls();
 }

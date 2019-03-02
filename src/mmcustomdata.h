@@ -67,7 +67,8 @@ public:
     wxWindowID GetBaseID() const { return m_init_control_id; }
     void SetLabelID(wxWindowID id) { m_init_label_id = id; }
     wxWindowID GetLabelID() const { return m_init_label_id; }
-    void SetRefID(int ref_id) { m_ref_id = -1; } //TODO:
+    void ResetRefID() { m_ref_id = -1; }
+    // TODO: void SetRefID(int ref_id) { m_ref_id = ref_id; }
     bool IsSomeWidgetChanged() const;
     bool IsDataFound(const Model_Checking::Full_Data &tran);
     void ResetWidgetsChanged();
