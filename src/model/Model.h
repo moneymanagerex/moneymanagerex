@@ -162,9 +162,9 @@ public:
     int save(std::vector<DATA>& rows)
     {
         this->Savepoint();
-        for (auto& r : rows) 
+        for (auto& r : rows)
         {
-            if (r.id() < 0) 
+            if (r.id() < 0)
                 wxLogDebug("Incorrect function call to save %s", r.to_json().c_str());
             this->save(&r);
         }
@@ -197,7 +197,7 @@ public:
         {
             get(item.id());
             if (++i >= max_num) break;
-        }       
+        }
     }
 
     // Return accomulated table stats as a json string

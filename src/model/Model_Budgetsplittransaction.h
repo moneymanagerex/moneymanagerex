@@ -49,4 +49,4 @@ public:
     int update(const Data_Set& rows, int transactionID);
 };
 
-#endif // 
+#endif

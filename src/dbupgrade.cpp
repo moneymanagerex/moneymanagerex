@@ -91,7 +91,7 @@ bool dbUpgrade::UpgradeToVersion(wxSQLite3Database * db, int version)
 
     if (!InitializeVersion(db, version))
         return false;
-    
+
     db->ReleaseSavepoint("MMEX_Upgrade");
 
     return true;
@@ -272,7 +272,7 @@ void dbUpgrade::SqlFileDebug(wxSQLite3Database* db)
             if (!txtFile.Eof())
                 txtLine = txtFile.GetNextLine();
         }
-    } 
+    }
 
     wxString txtMsg;
     for (; !txtFile.Eof() && txtLine.StartsWith("-- ",&txtLine); txtLine = txtFile.GetNextLine())

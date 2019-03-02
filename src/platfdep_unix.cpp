@@ -22,7 +22,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include <wx/filename.h>
 //----------------------------------------------------------------------------
 
-namespace 
+namespace
 {
 
 void SetInstallPrefix()
@@ -31,17 +31,17 @@ void SetInstallPrefix()
 
     wxFileName fname(p.GetExecutablePath());
     fname.SetFullName(wxGetEmptyString());
-    
+
     const wxArrayString &dirs = fname.GetDirs();
 
     if (dirs.Last().Lower() == "bin") // something like a /usr/bin or /usr/local/bin
         fname.RemoveLastDir();
-    
+
     if (wxStandardPaths *pp = dynamic_cast<wxStandardPaths*>(&p))
     pp->SetInstallPrefix(fname.GetFullPath());
 }
 
-} // namespace 
+} // namespace
 
 //----------------------------------------------------------------------------
 
@@ -53,7 +53,7 @@ const wxFileName mmex::GetSharedDir()
 {
     static wxFileName fname;
 
-    if (!fname.IsOk()) 
+    if (!fname.IsOk())
     {
         SetInstallPrefix();
         fname = wxFileName::DirName(wxStandardPaths::Get().GetDataDir());
@@ -70,7 +70,7 @@ const wxFileName mmex::GetDocDir()
 {
     static wxFileName fname;
 
-    if (!fname.IsOk()) 
+    if (!fname.IsOk())
     {
         fname = GetSharedDir();
 
@@ -93,7 +93,7 @@ const wxFileName mmex::GetResourceDir()
 {
     static wxFileName fname;
 
-    if (!fname.IsOk()) 
+    if (!fname.IsOk())
     {
         fname = GetSharedDir();
         fname.AppendDir("res");

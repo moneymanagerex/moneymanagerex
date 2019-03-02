@@ -117,7 +117,7 @@ private:
     wxTextCtrl* m_entered_notes;
     std::vector<wxString> m_frequent_notes;
     wxBitmapButton* m_attachment;
- 
+
     enum
     {
         ID_TRANS_DATE_SELECTOR = wxID_HIGHEST + 10,

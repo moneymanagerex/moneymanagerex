@@ -52,7 +52,7 @@ public:
     static wxDate CURRDATE(const Data& hist);
 
     static DB_Table_CURRENCYHISTORY::CURRDATE CURRDATE(const wxDate& date, OP op = EQUAL);
-    
+
     /** Adds or updates an element in currency history */
     int addUpdate(const int& currencyID, const wxDate& date, double price, UPDTYPE type);
 
@@ -64,9 +64,9 @@ public:
     static double getLastRate(const int& currencyID);
     /** Return the last currency rate not after the date */
     static double getLastRate(const int& currencyID, const wxString& dateISO);
-    
+
     /** Clears the currency History table */
     static void ResetCurrencyHistory();
 };
 
-#endif // 
+#endif

@@ -38,7 +38,7 @@ public:
 
     TransactionListCtrl(mmCheckingPanel* cp, wxWindow* parent
         , const wxWindowID id = wxID_ANY);
-    
+
     ~TransactionListCtrl();
 
     void createColumns(mmListCtrl &lst);
@@ -331,7 +331,7 @@ private:
         const wxPoint& pos = wxDefaultPosition,
         const wxSize& size = wxDefaultSize,
         long style = wxTAB_TRAVERSAL | wxNO_BORDER,
-        const wxString& name = "mmCheckingPanel" 
+        const wxString& name = "mmCheckingPanel"
     );
     void enableEditDeleteButtons(bool en);
 

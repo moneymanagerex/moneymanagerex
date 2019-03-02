@@ -60,7 +60,7 @@ Model_CustomField& Model_CustomField::instance()
 {
     return Singleton<Model_CustomField>::instance();
 }
-    
+
 ///** Return a dataset with fields linked to a specific object */
 //const Model_CustomField::Data_Set Model_CustomField::GetFields(Model_Attachment::REFTYPE RefType)
 //{
@@ -326,7 +326,7 @@ const wxString Model_CustomField::formatProperties(const wxString& Tooltip, cons
     Writer<StringBuffer> json_writer(json_buffer);
 
     json_writer.StartObject();
-    
+
     if (!Tooltip.empty()) {
         json_writer.Key("Tooltip");
         json_writer.String(Tooltip.c_str());

@@ -126,7 +126,7 @@ public:
     static wxString getFinancistoProject(wxString& sSubCateg);
 
     static qifAccountInfoType accountInfoType(const wxString& line);
-    static qifLineType lineType(const wxString& line); 
+    static qifLineType lineType(const wxString& line);
 
 public:
     bool handle_file(wxFileInputStream& input);
@@ -135,4 +135,4 @@ public:
     bool handle_qif_record(const QIF_Record & qif_record, QIF_Transaction& tran);
     bool handle_qif_line(const QIF_Line& qif_line, QIF_Transaction& tran);
 };
-#endif // 
+#endif

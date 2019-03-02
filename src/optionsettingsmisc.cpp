@@ -79,7 +79,7 @@ void OptionSettingsMisc::Create()
     // New transaction dialog settings
     wxStaticBox* transSettingsStaticBox = new wxStaticBox(this, wxID_STATIC, _("New Transaction Dialog Settings"));
     SetBoldFont(transSettingsStaticBox);
-    
+
     wxStaticBoxSizer* transSettingsStaticBoxSizer = new wxStaticBoxSizer(transSettingsStaticBox, wxVERTICAL);
     othersPanelSizer->Add(transSettingsStaticBoxSizer, wxSizerFlags(g_flagsExpand).Proportion(0));
 

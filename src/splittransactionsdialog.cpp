@@ -152,8 +152,8 @@ void SplitTransactionDialog::CreateControls()
     buttons_panel->SetSizer(buttons_sizer);
 
     wxSizerFlags flagsH = wxSizerFlags(g_flagsH).Border(wxLEFT | wxRIGHT | wxBOTTOM, 5).Center();
-	wxSizerFlags flagsV = wxSizerFlags(g_flagsV).Border(wxLEFT | wxRIGHT | wxBOTTOM, 5).Center();
-	wxBoxSizer* mainButtonSizer = new wxBoxSizer(wxVERTICAL);
+    wxSizerFlags flagsV = wxSizerFlags(g_flagsV).Border(wxLEFT | wxRIGHT | wxBOTTOM, 5).Center();
+    wxBoxSizer* mainButtonSizer = new wxBoxSizer(wxVERTICAL);
     wxBoxSizer* topRowButtonSizer = new wxBoxSizer(wxHORIZONTAL);
     wxBoxSizer* bottomRowButtonSizer = new wxBoxSizer(wxHORIZONTAL);
     mainButtonSizer->Add(topRowButtonSizer, flagsV);
@@ -207,7 +207,7 @@ void SplitTransactionDialog::OnOk( wxCommandEvent& WXUNUSED(event) )
     }
     else
     {
-        // finally 
+        // finally
         m_splits.swap(m_local_splits);
         EndModal(wxID_OK);
     }

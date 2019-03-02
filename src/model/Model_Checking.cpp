@@ -25,7 +25,7 @@
 #include <queue>
 #include "Model_Translink.h"
 
-const std::vector<std::pair<Model_Checking::TYPE, wxString> > Model_Checking::TYPE_CHOICES = 
+const std::vector<std::pair<Model_Checking::TYPE, wxString> > Model_Checking::TYPE_CHOICES =
 {
     {Model_Checking::WITHDRAWAL, wxString(wxTRANSLATE("Withdrawal"))}
     , {Model_Checking::DEPOSIT, wxString(wxTRANSLATE("Deposit"))}
@@ -45,7 +45,7 @@ Model_Checking::Model_Checking(): Model<DB_Table_CHECKINGACCOUNT>()
 {
 }
 
-Model_Checking::~Model_Checking() 
+Model_Checking::~Model_Checking()
 {
 }
 
@@ -149,7 +149,7 @@ Model_Checking::TYPE Model_Checking::type(const wxString& r)
     const auto it = cache.find(r);
     if (it != cache.end()) return it->second;
 
-    for (const auto& t : TYPE_CHOICES) 
+    for (const auto& t : TYPE_CHOICES)
     {
         if (r.CmpNoCase(t.second) == 0)
         {
@@ -178,7 +178,7 @@ Model_Checking::STATUS_ENUM Model_Checking::status(const wxString& r)
 
     for (const auto & s : STATUS_ENUM_CHOICES)
     {
-        if (r.CmpNoCase(s.second) == 0) 
+        if (r.CmpNoCase(s.second) == 0)
         {
             cache.insert(std::make_pair(r, s.first));
             return s.first;
@@ -531,7 +531,7 @@ const wxString Model_Checking::Full_Data::to_json()
         json_writer.Key("PAYEENAME");
         json_writer.String(this->PAYEENAME.c_str());
     }
-    
+
     if (this->has_split())
     {
         json_writer.Key("CATEGS");
@@ -555,7 +555,7 @@ const wxString Model_Checking::Full_Data::to_json()
 
     wxLogDebug("======= Model_Checking::FullData::to_json =======");
     wxLogDebug("FullData using rapidjson:\n%s", json_buffer.GetString());
-    
+
     return json_buffer.GetString();
 }
 

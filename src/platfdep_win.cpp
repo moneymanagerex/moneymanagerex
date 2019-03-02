@@ -29,12 +29,12 @@ static const wxFileName GetInstallDir()
 {
     const wxStandardPathsBase &p = wxStandardPaths::Get();
     wxFileName fname(p.GetExecutablePath());
-    
+
     const wxArrayString &dirs = fname.GetDirs();
 
     if (dirs.Last().Upper() == "BIN") // bin\mmex.exe
         fname.RemoveLastDir();
-    
+
     return fname;
 }
 
@@ -63,7 +63,7 @@ const wxFileName mmex::GetResourceDir()
 {
     static wxFileName fname;
 
-    if (!fname.IsOk()) 
+    if (!fname.IsOk())
     {
         fname = GetSharedDir();
         fname.AppendDir("res");

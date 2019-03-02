@@ -177,7 +177,7 @@ wxString mmReportCategoryOverTimePerformance::getHTMLText()
     hb.addTableHeaderCell(_("Overall"), true);
     hb.endTableRow();
     hb.endThead();
-    
+
     hb.startTbody();
     //Begin of table
     for (const auto& entry : data)

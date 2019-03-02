@@ -146,8 +146,8 @@ public:
     bool autoExecuteSilent();
     bool requireExecution();
     bool allowExecution();
-	typedef std::map<int, double> AccountBalance;
-	bool AllowTransaction(const Data& r, AccountBalance& bal);
+    typedef std::map<int, double> AccountBalance;
+    bool AllowTransaction(const Data& r, AccountBalance& bal);
 
     static int daysPayment(const Data* r);
     static int daysOverdue(const Data* r);
@@ -175,5 +175,5 @@ public:
     static const wxDateTime nextOccurDate(int type, int numRepeats, const wxDateTime& nextOccurDate);
 };
 
-#endif // 
+#endif
 

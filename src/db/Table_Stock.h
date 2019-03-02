@@ -48,13 +48,13 @@ struct DB_Table_STOCK : public DB_Table
     Data* fake_; // in case the entity not found
 
     /** Destructor: clears any data records stored in memory */
-    ~DB_Table_STOCK() 
+    ~DB_Table_STOCK()
     {
         delete this->fake_;
         destroy_cache();
     }
-     
-    /** Removes all records stored in memory (cache) for the table*/ 
+
+    /** Removes all records stored in memory (cache) for the table*/
     void destroy_cache()
     {
         std::for_each(cache_.begin(), cache_.end(), std::mem_fun(&Data::destroy));
@@ -72,8 +72,8 @@ struct DB_Table_STOCK : public DB_Table
                 db->ExecuteUpdate("CREATE TABLE STOCK(STOCKID integer primary key, HELDAT integer, PURCHASEDATE TEXT NOT NULL, STOCKNAME TEXT COLLATE NOCASE NOT NULL, SYMBOL TEXT, NUMSHARES numeric, PURCHASEPRICE numeric NOT NULL, NOTES TEXT, CURRENTPRICE numeric NOT NULL, VALUE numeric, COMMISSION numeric)");
                 this->ensure_data(db);
             }
-            catch(const wxSQLite3Exception &e) 
-            { 
+            catch(const wxSQLite3Exception &e)
+            {
                 wxLogError("STOCK: Exception %s", e.GetMessage().c_str());
                 return false;
             }
@@ -90,8 +90,8 @@ struct DB_Table_STOCK : public DB_Table
         {
             db->ExecuteUpdate("CREATE INDEX IF NOT EXISTS IDX_STOCK_HELDAT ON STOCK(HELDAT)");
         }
-        catch(const wxSQLite3Exception &e) 
-        { 
+        catch(const wxSQLite3Exception &e)
+        {
             wxLogError("STOCK: Exception %s", e.GetMessage().c_str());
             return false;
         }
@@ -104,73 +104,73 @@ struct DB_Table_STOCK : public DB_Table
         db->Begin();
         db->Commit();
     }
-    
+
     struct STOCKID : public DB_Column<int>
-    { 
-        static wxString name() { return "STOCKID"; } 
+    {
+        static wxString name() { return "STOCKID"; }
         explicit STOCKID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
-    
+
     struct HELDAT : public DB_Column<int>
-    { 
-        static wxString name() { return "HELDAT"; } 
+    {
+        static wxString name() { return "HELDAT"; }
         explicit HELDAT(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
-    
+
     struct PURCHASEDATE : public DB_Column<wxString>
-    { 
-        static wxString name() { return "PURCHASEDATE"; } 
+    {
+        static wxString name() { return "PURCHASEDATE"; }
         explicit PURCHASEDATE(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
-    
+
     struct STOCKNAME : public DB_Column<wxString>
-    { 
-        static wxString name() { return "STOCKNAME"; } 
+    {
+        static wxString name() { return "STOCKNAME"; }
         explicit STOCKNAME(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
-    
+
     struct SYMBOL : public DB_Column<wxString>
-    { 
-        static wxString name() { return "SYMBOL"; } 
+    {
+        static wxString name() { return "SYMBOL"; }
         explicit SYMBOL(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
-    
+
     struct NUMSHARES : public DB_Column<double>
-    { 
-        static wxString name() { return "NUMSHARES"; } 
+    {
+        static wxString name() { return "NUMSHARES"; }
         explicit NUMSHARES(const double &v, OP op = EQUAL): DB_Column<double>(v, op) {}
     };
-    
+
     struct PURCHASEPRICE : public DB_Column<double>
-    { 
-        static wxString name() { return "PURCHASEPRICE"; } 
+    {
+        static wxString name() { return "PURCHASEPRICE"; }
         explicit PURCHASEPRICE(const double &v, OP op = EQUAL): DB_Column<double>(v, op) {}
     };
-    
+
     struct NOTES : public DB_Column<wxString>
-    { 
-        static wxString name() { return "NOTES"; } 
+    {
+        static wxString name() { return "NOTES"; }
         explicit NOTES(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
-    
+
     struct CURRENTPRICE : public DB_Column<double>
-    { 
-        static wxString name() { return "CURRENTPRICE"; } 
+    {
+        static wxString name() { return "CURRENTPRICE"; }
         explicit CURRENTPRICE(const double &v, OP op = EQUAL): DB_Column<double>(v, op) {}
     };
-    
+
     struct VALUE : public DB_Column<double>
-    { 
-        static wxString name() { return "VALUE"; } 
+    {
+        static wxString name() { return "VALUE"; }
         explicit VALUE(const double &v, OP op = EQUAL): DB_Column<double>(v, op) {}
     };
-    
+
     struct COMMISSION : public DB_Column<double>
-    { 
-        static wxString name() { return "COMMISSION"; } 
+    {
+        static wxString name() { return "COMMISSION"; }
         explicit COMMISSION(const double &v, OP op = EQUAL): DB_Column<double>(v, op) {}
     };
-    
+
     typedef STOCKID PRIMARY;
     enum COLUMN
     {
@@ -206,7 +206,7 @@ struct DB_Table_STOCK : public DB_Table
             case COL_COMMISSION: return "COMMISSION";
             default: break;
         }
-        
+
         return "UNKNOWN";
     }
 
@@ -227,14 +227,14 @@ struct DB_Table_STOCK : public DB_Table
 
         return COL_UNKNOWN;
     }
-    
+
     /** Data is a single record in the database table*/
     struct Data
     {
         friend struct DB_Table_STOCK;
         /** This is a instance pointer to itself in memory. */
         Self* table_;
-    
+
         int STOCKID; // primary key
         int HELDAT;
         wxString PURCHASEDATE;
@@ -261,16 +261,16 @@ struct DB_Table_STOCK : public DB_Table
         {
             return this->id() < r.id();
         }
-        
+
         bool operator < (const Data* r) const
         {
             return this->id() < r->id();
         }
 
-        explicit Data(Self* table = 0) 
+        explicit Data(Self* table = 0)
         {
             table_ = table;
-        
+
             STOCKID = -1;
             HELDAT = -1;
             NUMSHARES = 0.0;
@@ -283,7 +283,7 @@ struct DB_Table_STOCK : public DB_Table
         explicit Data(wxSQLite3ResultSet& q, Self* table = 0)
         {
             table_ = table;
-        
+
             STOCKID = q.GetInt(0);
             HELDAT = q.GetInt(1);
             PURCHASEDATE = q.GetString(2);
@@ -447,7 +447,7 @@ struct DB_Table_STOCK : public DB_Table
         bool save(wxSQLite3Database* db)
         {
             if (db && db->IsReadOnly()) return false;
-            if (!table_ || !db) 
+            if (!table_ || !db)
             {
                 wxLogError("can not save STOCK");
                 return false;
@@ -459,12 +459,12 @@ struct DB_Table_STOCK : public DB_Table
         /** Remove the record instance from memory and the database. */
         bool remove(wxSQLite3Database* db)
         {
-            if (!table_ || !db) 
+            if (!table_ || !db)
             {
                 wxLogError("can not remove STOCK");
                 return false;
             }
-            
+
             return table_->remove(this, db);
         }
 
@@ -496,7 +496,7 @@ struct DB_Table_STOCK : public DB_Table
         cache_.push_back(entity);
         return entity;
     }
-    
+
     /** Create a copy of the Data record and add to memory table (cache) */
     Self::Data* clone(const Data* e)
     {
@@ -548,13 +548,13 @@ struct DB_Table_STOCK : public DB_Table
                 for(Cache::iterator it = cache_.begin(); it != cache_.end(); ++ it)
                 {
                     Self::Data* e = *it;
-                    if (e->id() == entity->id()) 
+                    if (e->id() == entity->id())
                         *e = *entity;  // in-place update
                 }
             }
         }
-        catch(const wxSQLite3Exception &e) 
-        { 
+        catch(const wxSQLite3Exception &e)
+        {
             wxLogError("STOCK: Exception %s, %s", e.GetMessage().c_str(), entity->to_json());
             return false;
         }
@@ -583,12 +583,12 @@ struct DB_Table_STOCK : public DB_Table
             for(Cache::iterator it = cache_.begin(); it != cache_.end(); ++ it)
             {
                 Self::Data* entity = *it;
-                if (entity->id() == id) 
+                if (entity->id() == id)
                 {
                     index_by_id_.erase(entity->id());
                     delete entity;
                 }
-                else 
+                else
                 {
                     c.push_back(entity);
                 }
@@ -596,8 +596,8 @@ struct DB_Table_STOCK : public DB_Table
             cache_.clear();
             cache_.swap(c);
         }
-        catch(const wxSQLite3Exception &e) 
-        { 
+        catch(const wxSQLite3Exception &e)
+        {
             wxLogError("STOCK: Exception %s", e.GetMessage().c_str());
             return false;
         }
@@ -623,7 +623,7 @@ struct DB_Table_STOCK : public DB_Table
         for (Index_By_Id::iterator it = index_by_id_.begin(); it != index_by_id_.end(); ++ it)
         {
             Self::Data* item = it->second;
-            if (item->id() > 0 && match(item, args...)) 
+            if (item->id() > 0 && match(item, args...))
             {
                 ++ hit_;
                 return item;
@@ -634,14 +634,14 @@ struct DB_Table_STOCK : public DB_Table
 
         return 0;
     }
-    
+
     /**
     * Search the memory table (Cache) for the data record.
     * If not found in memory, search the database and update the cache.
     */
     Self::Data* get(int id, wxSQLite3Database* db)
     {
-        if (id <= 0) 
+        if (id <= 0)
         {
             ++ skip_;
             return 0;
@@ -653,7 +653,7 @@ struct DB_Table_STOCK : public DB_Table
             ++ hit_;
             return it->second;
         }
-        
+
         ++ miss_;
         Self::Data* entity = 0;
         wxString where = wxString::Format(" WHERE %s = ?", PRIMARY::name().c_str());
@@ -671,17 +671,17 @@ struct DB_Table_STOCK : public DB_Table
             }
             stmt.Finalize();
         }
-        catch(const wxSQLite3Exception &e) 
-        { 
+        catch(const wxSQLite3Exception &e)
+        {
             wxLogError("%s: Exception %s", this->name().c_str(), e.GetMessage().c_str());
         }
-        
-        if (!entity) 
+
+        if (!entity)
         {
             entity = this->fake_;
             // wxLogError("%s: %d not found", this->name().c_str(), id);
         }
- 
+
         return entity;
     }
 
@@ -704,8 +704,8 @@ struct DB_Table_STOCK : public DB_Table
 
             q.Finalize();
         }
-        catch(const wxSQLite3Exception &e) 
-        { 
+        catch(const wxSQLite3Exception &e)
+        {
             wxLogError("%s: Exception %s", this->name().c_str(), e.GetMessage().c_str());
         }
 

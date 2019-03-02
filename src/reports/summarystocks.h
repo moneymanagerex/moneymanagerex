@@ -41,7 +41,7 @@ private:
     double m_stock_balance;
 };
 
-class mmReportChartStocks : public mmPrintableBase 
+class mmReportChartStocks : public mmPrintableBase
 {
 public:
     mmReportChartStocks();

@@ -86,4 +86,4 @@ public:
     void ShrinkUsageTable();
 };
 
-#endif // 
+#endif

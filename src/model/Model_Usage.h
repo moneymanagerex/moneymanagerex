@@ -47,10 +47,10 @@ private:
     wxArrayString m_json_usage, m_json_cache;
 
 public:
-    // Appends to usage array 
+    // Appends to usage array
     void AppendToUsage(const wxString& json_string);
 
-    // Appends to cache array 
+    // Appends to cache array
     void AppendToCache(const wxString& json_string);
 
     //Return a json string

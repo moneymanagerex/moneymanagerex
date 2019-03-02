@@ -36,4 +36,4 @@ public:
     static const wxString mm_acc_type(const wxString& qif_type);
 };
 
-#endif 
+#endif

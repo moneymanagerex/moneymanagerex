@@ -59,4 +59,4 @@ public:
     bool Exists(const wxString& year_name);
 };
 
-#endif // 
+#endif

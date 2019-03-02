@@ -58,4 +58,4 @@ public:
     int addUpdate(const wxString& symbol, const wxDate& date, double price, UPDTYPE type);
 };
 
-#endif // 
+#endif

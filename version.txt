@@ -4,7 +4,7 @@ Version History of Money Manager Ex
 - New: Addition of new option Budget Offset(days) (#1292)
 - New: CMake Builds for other Linux systems
 - Fix: CMake Builds for MSVS 2017
-- Fix: (#1291) Universal CSV Dialog error messages 
+- Fix: (#1291) Universal CSV Dialog error messages
 - Fix: (#1328) Date formats for reports
 - Fix: (#1301 & #1336) Icon Updates
 - Fix: (#1334) Reports sorting
@@ -25,7 +25,7 @@ Version History of Money Manager Ex
 - Fix: Menu selection for external internet links
 - Fix: Update various icons
 - Fix: General fixes and updates
-  
+
 1.4.0-alpha.1 (May 24, 2017)
 - Fix: Currency issues #1154 #1155 #1156 #1153
 - Fix: Issue #1120, Set focus
@@ -209,7 +209,7 @@ Version History of Money Manager Ex
 - Web Server
 - Attachments
 - Anonymous usage statistics
-- Updated Home Page Layout 
+- Updated Home Page Layout
 - Fix crash with wrong password on encrypted file
 
 1.0.0.3 (March 23, 2014)
@@ -345,7 +345,7 @@ Version History of Money Manager Ex
   - new 'Skip' transaction command.
 - New AMD64 build instructions.
 - Change to Home Page Income/Expenses reflect calculations of visible accounts.
-- Stocks Summary now displayed on Home Page with new Option and Menu:View item.   
+- Stocks Summary now displayed on Home Page with new Option and Menu:View item.
 - New icons in Accounts to highlight a transfer and direction for a transaction.
 - Currency dialogs updated - Now allows deletion of a currency.
 - Improved Backup options on Startup.
@@ -414,11 +414,11 @@ Version History of Money Manager Ex
 - New Arabic translation
 - Keystroke improvements for the checking panel (Nikolay)
 - Sorting of records on column click fixed (Vadim)
-- Fix for report "Category Income/Expense Over Last 12 Months", 
+- Fix for report "Category Income/Expense Over Last 12 Months",
   The "overall" amount was not equal to the previous columns total (Vadim)
 - QIF Export (Nikolay)
 - CSV Export improvements (Nikolay)
-- New Serbo-croatian translation 
+- New Serbo-croatian translation
 - Disabling of Edit and Delete Buttons when any transaction unselected (Pat)
 - Asset dialog show/hide controls (Pat)
 - Bank Accounts popup menu (Nikolay)
@@ -426,7 +426,7 @@ Version History of Money Manager Ex
 0.9.4.2 (Mar 17, 2009)
 - Fix potential crash in Account Transactions Screen
 - Added Bulgarian Translation (Ivan Gyokov)
-- Added Portuguese (Portugal) Translation (Fatela) 
+- Added Portuguese (Portugal) Translation (Fatela)
 - Fixed problem with transactions with large notes not displaying buttons properly (bberry)
 - Easier selection of existing payees by typing a few words
 - Fixed issue when updating entry with 0.0 value (LuckyArthur)
@@ -493,7 +493,7 @@ http://www.ecb.europa.eu/stats/exchange/eurofxref/html/index.en.html
  - For Currency dialog box, currency symbol textbox is changed to ComboBox so users can select existing currency symbols or input a new
 one
 
-0.9.3.0 
+0.9.3.0
 - Release under CodeLathe LLC
 - Fix customization bug (ajireland)
 - Fixed typo in dialog message (Xavier Grimwand)
@@ -527,7 +527,7 @@ one
 - Fix bug where deleting category didn't remove association from Payee table (Phil)
 - Show correct currency in Bills and Deposits Panel (MK)
 - Fix bug encrypting MMEX DB (Lion)
-- Patch from Vat on sorting transaction# column headers 
+- Patch from Vat on sorting transaction# column headers
 - Rename Brazilian language to be Portuguese (Users will need to reselect the correct language)
 - Fix bug when deleting last transaction and then deleting another transaction without focus
 - Don't clean split transactions unless table is present.
@@ -546,7 +546,7 @@ or via the Bills Deposits entries. This could cause weird behavior. (Lucky Arthu
 - More colorful palette for charts
 
 0.9.0.0 (Sep 16, 2007)
-- Add Password Protection support. 
+- Add Password Protection support.
 - Add Vietnamese Translation (Nicky)
 - Add Difference col for Income Vs Expenses(Patch from Bettega)
 - Show Negative amounts in Red for Payee Report (Patch from Bettega)
@@ -590,7 +590,7 @@ or via the Bills Deposits entries. This could cause weird behavior. (Lucky Arthu
 - Fix Multicurrency Bug in homepage (George)
 - Support exporting transfers to CSV files(Only from accounts will show it as transfer. Import
   requires exact account names to be available for it to work)
-- Fixed Bug causing crash when account was deleted with pending bills and deposits  
+- Fixed Bug causing crash when account was deleted with pending bills and deposits
 - Use new icons for MMEX
 - Fix bug in amount reported by split transaction in report (drazx, Fortuna)
 - Allow flexible date formats in Date options (Samer)
@@ -606,7 +606,7 @@ or via the Bills Deposits entries. This could cause weird behavior. (Lucky Arthu
 - Fix getting location of kaching.wav file (Ikkyu)
 - Fix crash when deleting last transaction in transaction view (Ikkyu)
 - Keep old category when creating a new payee (jpurrssey)
-- Fix a CSV import issue 
+- Fix a CSV import issue
 - Fix formatting for some reports
 
 0.8.0.5 (April 1, 2007)
@@ -615,7 +615,7 @@ or via the Bills Deposits entries. This could cause weird behavior. (Lucky Arthu
 - Improve keyboard handling with various dialogs
 - Fix quote escaping in notes (Thanks Paddy)
 - Fix bug where transfer transactions would disappear temporarily when an account was deleted
-- Fix bug where MMEX would crash when no category was selected and you clicked "Select" (Thanks miszka) 
+- Fix bug where MMEX would crash when no category was selected and you clicked "Select" (Thanks miszka)
 - Fix days remaining issue again! (Thanks Bob)
 - Add Feature 1678044 : option to use original date when copying/pasting transactions (Thanks ree321)
 - Add Feature 1633454 : Category column in transaction filter
@@ -673,7 +673,7 @@ or via the Bills Deposits entries. This could cause weird behavior. (Lucky Arthu
 0.8.0.0 (Dec 31, 2006)
 - Added shortcut keys to change transaction status in account view. (v for 'Void', r for 'Reconciled', u for 'Unreconciled', f for 'Followup')
 - Fixed Income vs Expense Report error
-- Upgraded to wxWidgets 2.8.0 
+- Upgraded to wxWidgets 2.8.0
 - wxAui Support for dockable window support (Thanks Priyank Bolia for the patch)
 - Fixed transaction filter not displaying categories
 - Added column indicating withdrawal or deposit for recurring transactions panel
@@ -837,7 +837,7 @@ or via the Bills Deposits entries. This could cause weird behavior. (Lucky Arthu
 - Ensure all strings are added to translations
 - Fix Bug 1476967: Initial Balance was not being accounted for in the Bank Account Ledger
 - Fix Bug 1476987: where the application was unable to locate translation files if the start
-- Fix Bug 1480118: Income vs Expenses should not take transfers into account  
+- Fix Bug 1480118: Income vs Expenses should not take transfers into account
 - Fix Bug 1479518: Scheduled transaction is reflected in summary of accounts
 - Fixed Locale Init issue causing translated UTF-8 strings not to appear correctly
 
@@ -852,10 +852,10 @@ or via the Bills Deposits entries. This could cause weird behavior. (Lucky Arthu
 - Add Feature 1472283: User settable CSV delimiter
 - Add Feature 1472279: Import should refresh account automatically
 - Add Feature 1472277: Insert space between currency symbol and amount
-- Add Feature 1455797: MMEX should allow import of CSV from MMEX.NET 	 
+- Add Feature 1455797: MMEX should allow import of CSV from MMEX.NET
 
 0.5.0.0 (April 16th, 2006)
-- Remove add account dialog when one clicks "Bank Accounts" node 
+- Remove add account dialog when one clicks "Bank Accounts" node
 - Add Bills & Deposit Tracking
 - Add Stock Investments
 - Fix Bug 1455804: No option to set date format to 'yy/mm/dd'
@@ -889,7 +889,7 @@ or via the Bills Deposits entries. This could cause weird behavior. (Lucky Arthu
 
 0.3.0.1 (Feb 20, 2006)
 - Options Dialog crashes when no db_ file is opened (Manav, alok.sathaye, Ikkyu)
-- New AppStart Dialog helping new users begin 
+- New AppStart Dialog helping new users begin
 - Creating new database prompts users to create new account.
 - Add Summary of Accounts Report
 - Add Printing Page Setup, Print Preview, Printing for reports

@@ -72,4 +72,4 @@ public:
     void SetCustomDialogSize(const wxString& RefType, const wxSize& Size);
 };
 
-#endif // 
+#endif

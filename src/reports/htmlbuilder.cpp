@@ -529,7 +529,7 @@ void mmHTMLBuilder::addPieChart(std::vector<ValueTrio>& valueList, const wxStrin
     optionsValue.AddMember("segmentShowStroke", false, allocator);
     optionsValue.AddMember("responsive", true, allocator);
     jsonDoc.AddMember("options", optionsValue, allocator);
-    
+
 
     StringBuffer strbuf;
     Writer<StringBuffer> writer(strbuf);

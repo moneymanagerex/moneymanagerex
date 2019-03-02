@@ -97,7 +97,7 @@ public:
         }
 
         return nullptr;
-    }   
+    }
 private:
     mmReportsPanel *m_reportPanel;
 };

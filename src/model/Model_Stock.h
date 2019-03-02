@@ -75,4 +75,4 @@ public:
     double getDailyBalanceAt(const Model_Account::Data *account, const wxDate& date);
 };
 
-#endif // 
+#endif

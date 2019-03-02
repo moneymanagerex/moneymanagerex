@@ -75,8 +75,8 @@ void relocatePayeeDialog::CreateControls()
 {
     wxSizerFlags flagsH, flagsV, flagsExpand;
     flagsH.Align(wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL).Border(wxALL, 5).Center();
-	flagsV.Align(wxALIGN_LEFT).Border(wxALL, 5).Center();
-	flagsExpand.Align(wxALIGN_LEFT).Border(wxALL, 5).Expand();
+    flagsV.Align(wxALIGN_LEFT).Border(wxALL, 5).Center();
+    flagsExpand.Align(wxALIGN_LEFT).Border(wxALL, 5).Expand();
     wxSize btnSize = wxSize(180,-1);
 
     wxStaticText* headerText = new wxStaticText( this, wxID_STATIC
@@ -112,7 +112,7 @@ void relocatePayeeDialog::CreateControls()
     request_sizer->Add(new wxStaticText( this, wxID_STATIC,_("to:")), flagsH);
     request_sizer->Add(cbSourcePayee_, flagsH);
     request_sizer->Add(cbDestPayee_, flagsH);
-    
+
     wxStaticLine* lineMiddle = new wxStaticLine(this, wxID_STATIC
         , wxDefaultPosition, wxDefaultSize, wxLI_HORIZONTAL);
 

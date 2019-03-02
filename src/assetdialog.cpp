@@ -373,7 +373,7 @@ void mmAssetDialog::OnOk(wxCommandEvent& WXUNUSED(event))
     m_asset->VALUECHANGERATE  = valueChangeRate;
     m_asset->ASSETTYPE        = asset_type;
 
-	int old_asset_id = m_asset->ASSETID;
+    int old_asset_id = m_asset->ASSETID;
     int new_asset_id = Model_Asset::instance().save(m_asset);
 
     if (old_asset_id < 0)
@@ -488,7 +488,7 @@ void mmAssetDialog::OnAttachments(wxCommandEvent& WXUNUSED(event))
 {
     const wxString& RefType = Model_Attachment::reftype_desc(Model_Attachment::ASSET);
     int RefId;
-    
+
     if (!this->m_asset)
         RefId = 0;
     else

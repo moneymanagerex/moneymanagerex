@@ -63,7 +63,7 @@ const char *usage_template = R"(
         {
             // fillColor : 'rgba(129, 172, 123, 0.5)',
             strokeColor : 'rgba(129, 172, 123, 1)',
-            // pointColor : 'rgba(129, 172, 123, 1)', 
+            // pointColor : 'rgba(129, 172, 123, 1)',
             // pointStrokeColor : "#fff",
             data : [ <TMPL_LOOP NAME=CONTENTS><TMPL_VAR FREQUENCY><TMPL_UNLESS NAME=__LAST__>,</TMPL_UNLESS></TMPL_LOOP> ],
             xPos: [ <TMPL_LOOP NAME=CONTENTS><TMPL_VAR USAGEDATE><TMPL_UNLESS NAME=__LAST__>,</TMPL_UNLESS></TMPL_LOOP> ],
@@ -92,7 +92,7 @@ const char *usage_template = R"(
     function onChartChange(select){
         var value = select.value;
         if (value == "line") {
-           new Chart(ctx).Line(data,opts); 
+           new Chart(ctx).Line(data,opts);
         }
         else if (value == "bar") {
            new Chart(ctx).Bar(data,opts);
@@ -168,7 +168,7 @@ wxString mmReportMyUsage::getHTMLText()
             if (!pobj.HasMember("start") || !pobj["start"].IsString())
                 continue;
             const auto s = wxString::FromUTF8(pobj["start"].GetString());
-            
+
             if (!pobj.HasMember("end") || !pobj["end"].IsString())
                 continue;
             const auto e = wxString::FromUTF8(pobj["end"].GetString());
@@ -221,7 +221,7 @@ wxString mmReportMyUsage::getHTMLText()
     report(L"HTMLSCALE") = wxString::Format("%d", Option::instance().getHtmlFontSize());
 
     wxString out = wxEmptyString;
-    try 
+    try
     {
         out = report.Process();
     }

@@ -634,10 +634,10 @@ void mmCheckingPanel::updateExtraTransactionData(int selIndex)
         m_info_panel->SetLabelText(full_tran.NOTES);
         wxString miniStr = full_tran.info();
 
-		if (Model_Checking::foreignTransaction(full_tran))
-		{
-			m_btnDuplicate->Enable(false);
-		}
+        if (Model_Checking::foreignTransaction(full_tran))
+        {
+            m_btnDuplicate->Enable(false);
+        }
 
         //Show only first line but full string set as tooltip
         if (miniStr.Find("\n") > 1 && !miniStr.IsEmpty())
@@ -776,8 +776,8 @@ void mmCheckingPanel::initFilterSettings()
     }
 
     if (date_range == NULL) {
-		date_range = new mmAllTime;
-	}
+        date_range = new mmAllTime;
+    }
 
     if (m_begin_date.empty()) {
         m_begin_date = date_range->start_date().FormatISODate();
@@ -1904,13 +1904,13 @@ void TransactionListCtrl::OnMoveTransaction(wxCommandEvent& WXUNUSED(event))
     if ((m_selectedIndex < 0)) return;
 
 
-	// Abort if any transaction is locked.
-	for (long index : GetSelected()) {
-		Model_Checking::Data checking_entry = m_cp->m_trans[index];
-		if (TransactionLocked(checking_entry.TRANSDATE)){
-			return;
-		}
-	}
+    // Abort if any transaction is locked.
+    for (long index : GetSelected()) {
+        Model_Checking::Data checking_entry = m_cp->m_trans[index];
+        if (TransactionLocked(checking_entry.TRANSDATE)){
+            return;
+        }
+    }
 
     const Model_Account::Data* source_account = Model_Account::instance().get(m_cp->m_AccountID);
     wxString source_name = source_account->ACCOUNTNAME;
@@ -1931,18 +1931,18 @@ void TransactionListCtrl::OnMoveTransaction(wxCommandEvent& WXUNUSED(event))
         else
             return;
 
-		// Update all selected transactions, first grab all transactions as we want to modify multiple ones in sequence and indices can change.
-		std::vector<Model_Checking::Full_Data> transactions;
-		for (long index : GetSelected()) {
-			Model_Checking::Full_Data& tran = m_cp->m_trans[index];
-			transactions.push_back(tran);
-		}
+        // Update all selected transactions, first grab all transactions as we want to modify multiple ones in sequence and indices can change.
+        std::vector<Model_Checking::Full_Data> transactions;
+        for (long index : GetSelected()) {
+            Model_Checking::Full_Data& tran = m_cp->m_trans[index];
+            transactions.push_back(tran);
+        }
 
-		// Save the modification
-		for (auto transaction : transactions) {
-			transaction.ACCOUNTID = dest_account_id;
-			Model_Checking::instance().save(&transaction);
-		}
+        // Save the modification
+        for (auto transaction : transactions) {
+            transaction.ACCOUNTID = dest_account_id;
+            Model_Checking::instance().save(&transaction);
+        }
 
         refreshVisualList();
     }

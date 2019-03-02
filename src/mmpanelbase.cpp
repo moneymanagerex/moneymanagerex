@@ -224,17 +224,17 @@ void mmListCtrl::SetColumnWidthSetting(int column_number, int column_width)
 }
 
 std::vector<long> mmListCtrl::GetSelected() {
-	std::vector<long> selected = std::vector<long>();
-	long item = -1;
+    std::vector<long> selected = std::vector<long>();
+    long item = -1;
 
-	for ( ;; )
-	{
-		item = GetNextItem(item, wxLIST_NEXT_ALL, wxLIST_STATE_SELECTED);    
-		if (item == -1) break;
-		else selected.push_back(item);
-	}
+    for ( ;; )
+    {
+        item = GetNextItem(item, wxLIST_NEXT_ALL, wxLIST_STATE_SELECTED);
+        if (item == -1) break;
+        else selected.push_back(item);
+    }
 
-	return selected;
+    return selected;
 }
 
 mmPanelBase::mmPanelBase()

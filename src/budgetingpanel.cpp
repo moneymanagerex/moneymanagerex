@@ -462,7 +462,7 @@ void mmBudgetingPanel::initVirtualListControl()
                 else
                     actIncome += actual;
             }
-    
+
             /***************************************************************************
              Update the TOTALS entry for the subcategory.
             ***************************************************************************/

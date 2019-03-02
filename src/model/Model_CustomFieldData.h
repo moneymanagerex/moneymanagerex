@@ -20,7 +20,7 @@
 #define MODEL_CUSTOMFIELDDATA_H
 
 #include "Model.h"
-#include "Model_Attachment.h" 
+#include "Model_Attachment.h"
 #include "Table_Customfielddata.h"
 
 class Model_CustomFieldData : public Model<DB_Table_CUSTOMFIELDDATA>
@@ -54,4 +54,4 @@ public:
     bool DeleteAllData(const wxString& RefType, int RefID);
 };
 
-#endif // 
+#endif

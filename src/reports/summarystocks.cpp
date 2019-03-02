@@ -172,7 +172,7 @@ wxString mmReportSummaryStocks::getHTMLText()
     return hb.getHTMLText();
 }
 
-void mmReportSummaryStocks::display_header(mmHTMLBuilder& hb) 
+void mmReportSummaryStocks::display_header(mmHTMLBuilder& hb)
 {
     hb.startThead();
     hb.startTableRow();

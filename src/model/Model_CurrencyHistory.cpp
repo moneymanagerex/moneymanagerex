@@ -96,7 +96,7 @@ double Model_CurrencyHistory::getDayRate(const int& currencyID, const wxDate& Da
 {
     if (currencyID == Model_Currency::GetBaseCurrency()->CURRENCYID || currencyID == -1)
         return 1;
-    
+
     Model_CurrencyHistory::Data_Set Data = Model_CurrencyHistory::instance().find(Model_CurrencyHistory::CURRENCYID(currencyID),Model_CurrencyHistory::CURRDATE(Date));
 
     if (!Data.empty())
@@ -145,7 +145,7 @@ double Model_CurrencyHistory::getDayRate(const int& currencyID, const wxDate& Da
             //TODO: Show warning alert but only one time?
             return 1;
         }
-        
+
         return Model_CurrencyHistory::instance().find(Model_CurrencyHistory::CURRENCYID(currencyID), Model_CurrencyHistory::CURRDATE(dNearest))[0].CURRVALUE;
     }
     else

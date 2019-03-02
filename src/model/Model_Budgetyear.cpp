@@ -118,7 +118,7 @@ bool Model_Budgetyear::Exists(const wxString& year_name)
 {
     for (const auto& record: this->all())
     {
-        if (record.BUDGETYEARNAME == year_name) 
+        if (record.BUDGETYEARNAME == year_name)
             return true;
     }
     return false;

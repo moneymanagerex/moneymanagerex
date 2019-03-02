@@ -33,7 +33,7 @@ const wxFileName mmex::GetDocDir()
 {
     static wxFileName fname;
 
-    if (!fname.IsOk()) 
+    if (!fname.IsOk())
     {
         fname = GetSharedDir();
         fname.AppendDir("doc");

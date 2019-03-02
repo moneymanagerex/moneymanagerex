@@ -78,4 +78,4 @@ private:
     wxArrayInt accounts_id_;
     wxArrayInt selected_accounts_id_;
 };
-#endif // 
+#endif

@@ -56,7 +56,7 @@ transactionsUpdateDialog::transactionsUpdateDialog(wxWindow* parent
     , m_status_choice(nullptr)
     , m_categ_checkbox(nullptr)
     , m_categ_btn(nullptr)
-	, m_type_checkbox(nullptr)
+    , m_type_checkbox(nullptr)
     , m_type_choice(nullptr)
     , m_amount_checkbox(nullptr)
     , m_amount_ctrl(nullptr)
@@ -130,19 +130,19 @@ void transactionsUpdateDialog::CreateControls()
     grid_sizer->Add(m_status_choice, g_flagsH);
 
     // Type --------------------------------------------
-	m_type_checkbox = new wxCheckBox(this, wxID_ANY, _("Type")
-		, wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
-	m_type_choice = new wxChoice(this, wxID_ANY
-		, wxDefaultPosition, wxDefaultSize);
-	m_type_choice->Enable(false);
+    m_type_checkbox = new wxCheckBox(this, wxID_ANY, _("Type")
+        , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
+    m_type_choice = new wxChoice(this, wxID_ANY
+        , wxDefaultPosition, wxDefaultSize);
+    m_type_choice->Enable(false);
 
-	for (const auto& i : Model_Checking::all_type())
-	{
-		m_type_choice->Append(wxGetTranslation(i), new wxStringClientData(i));
-	}
+    for (const auto& i : Model_Checking::all_type())
+    {
+        m_type_choice->Append(wxGetTranslation(i), new wxStringClientData(i));
+    }
 
-	grid_sizer->Add(m_type_checkbox, g_flagsH);
-	grid_sizer->Add(m_type_choice, g_flagsH);
+    grid_sizer->Add(m_type_checkbox, g_flagsH);
+    grid_sizer->Add(m_type_choice, g_flagsH);
 
     // Amount Field --------------------------------------------
     m_amount_checkbox = new wxCheckBox(this, wxID_ANY, _("Amount")
@@ -235,19 +235,19 @@ void transactionsUpdateDialog::OnOk(wxCommandEvent& WXUNUSED(event))
             return;
     }
 
-	wxString type = "";
-	if (m_type_checkbox->IsChecked())
-	{
-		int i = m_type_choice->GetSelection();
-		wxStringClientData* type_obj = ((i >= 0) && (i < (int)m_type_choice->GetCount()))
-			? (wxStringClientData*)m_type_choice->GetClientObject(i) : nullptr;
-		if (type_obj)
-			type = type_obj->GetData();
-		else
-			return mmErrorDialogs::ToolTip4Object(m_type_choice
-				, _("Selection can be made by using the dropdown button.")
-				, _("Invalid type"), wxICON_WARNING);
-	}
+    wxString type = "";
+    if (m_type_checkbox->IsChecked())
+    {
+        int i = m_type_choice->GetSelection();
+        wxStringClientData* type_obj = ((i >= 0) && (i < (int)m_type_choice->GetCount()))
+            ? (wxStringClientData*)m_type_choice->GetClientObject(i) : nullptr;
+        if (type_obj)
+            type = type_obj->GetData();
+        else
+            return mmErrorDialogs::ToolTip4Object(m_type_choice
+                , _("Selection can be made by using the dropdown button.")
+                , _("Invalid type"), wxICON_WARNING);
+    }
 
     int payee_id = -1;
     if (m_payee_checkbox->IsChecked())
@@ -265,7 +265,7 @@ void transactionsUpdateDialog::OnOk(wxCommandEvent& WXUNUSED(event))
             return mmErrorDialogs::InvalidCategory(m_categ_btn);
     }
 
-	const auto split = Model_Splittransaction::instance().get_all();
+    const auto split = Model_Splittransaction::instance().get_all();
 
     Model_Checking::instance().Savepoint();
 
@@ -296,14 +296,14 @@ void transactionsUpdateDialog::OnOk(wxCommandEvent& WXUNUSED(event))
         }
 
         if (m_amount_checkbox->IsChecked() && (split.find(trx->TRANSID) == split.end()))
-		{
-			trx->TRANSAMOUNT = amount;
-		}
-		if (m_categ_checkbox->IsChecked() && (split.find(trx->TRANSID) == split.end()))
-		{
-			trx->CATEGID = m_categ_id;
-			trx->SUBCATEGID = m_subcateg_id;
-		}
+        {
+            trx->TRANSAMOUNT = amount;
+        }
+        if (m_categ_checkbox->IsChecked() && (split.find(trx->TRANSID) == split.end()))
+        {
+            trx->CATEGID = m_categ_id;
+            trx->SUBCATEGID = m_subcateg_id;
+        }
 
         if (m_type_checkbox->IsChecked() && !Model_Checking::is_transfer(trx))
         {
@@ -346,8 +346,8 @@ void transactionsUpdateDialog::OnCheckboxClick(wxCommandEvent& event)
 {
 
     m_dpc->Enable(m_date_checkbox->IsChecked());
-	m_status_choice->Enable(m_status_checkbox->IsChecked());
-	m_type_choice->Enable(m_type_checkbox->IsChecked());
+    m_status_choice->Enable(m_status_checkbox->IsChecked());
+    m_type_choice->Enable(m_type_checkbox->IsChecked());
     m_payee->Enable(m_payee_checkbox->IsChecked());
     m_categ_btn->Enable(m_categ_checkbox->IsChecked());
     m_amount_ctrl->Enable(m_amount_checkbox->IsChecked());

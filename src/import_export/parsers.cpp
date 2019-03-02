@@ -165,7 +165,7 @@ bool FileXML::Load(const wxString& fileName, unsigned int itemsInLine)
         mmErrorDialogs::MessageError(pParentWindow_, _("Could not find Table."), _("Parsing error"));
         return false;
     }
-    
+
     // Rows
     for (wxXmlNode *rowElement = tableElement->GetChildren(); rowElement; rowElement = rowElement->GetNext())
     {
@@ -201,7 +201,7 @@ bool FileXML::Save(const wxString& fileName)
 
     // Open file
     wxXmlDocument xmlFile;
- 
+
     // Workbook
     wxXmlNode* workbookElement = new wxXmlNode(NULL, wxXML_ELEMENT_NODE, "Workbook");
     xmlFile.SetRoot(workbookElement);
@@ -214,7 +214,7 @@ bool FileXML::Save(const wxString& fileName)
     // Worksheet
     wxXmlNode* worksheetElement = new wxXmlNode(workbookElement, wxXML_ELEMENT_NODE, "Worksheet");
     worksheetElement->AddAttribute("ss:Name", _("Transactions")); //TODO: account name may be used here
-    // workbookElement->AddAttribute("ss:RightToLeft", "1");  
+    // workbookElement->AddAttribute("ss:RightToLeft", "1");
 
      // Table
     wxXmlNode* tableElement = new wxXmlNode(worksheetElement, wxXML_ELEMENT_NODE, "Table");

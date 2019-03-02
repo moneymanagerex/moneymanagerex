@@ -240,7 +240,7 @@ wxString mmReportIncomeExpensesMonthly::getHTMLText()
     hb.endTable();
     hb.endDiv();
     hb.endDiv();
-    hb.endDiv(); 
+    hb.endDiv();
     hb.end();
 
     return hb.getHTMLText();

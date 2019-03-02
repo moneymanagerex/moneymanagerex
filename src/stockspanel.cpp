@@ -32,7 +32,7 @@
 #include "Model_StockHistory.h"
 #include "Model_Infotable.h"
 
-static const wxString STOCKTIPS[] = { 
+static const wxString STOCKTIPS[] = {
     wxTRANSLATE("Using MMEX it is possible to track stocks/mutual funds investments."),
     wxTRANSLATE("To create new stocks entry the Symbol, Number of shares and Purchase prise should be entered."),
     wxTRANSLATE("Sample of UK (HSBC HLDG) share: HSBA.L"),
@@ -283,7 +283,7 @@ void StocksListCtrl::OnDeleteStocks(wxCommandEvent& WXUNUSED(event))
 void StocksListCtrl::OnMoveStocks(wxCommandEvent& WXUNUSED(event))
 {
     if (m_selected_row == -1) return;
-    
+
     const auto& accounts = Model_Account::instance().find(Model_Account::ACCOUNTTYPE(Model_Account::all_type()[Model_Account::INVESTMENT]));
     if (accounts.empty()) return;
 
@@ -399,7 +399,7 @@ void mmStocksPanel::ViewStockTransactions(int selectedIndex)
 {
     Model_Stock::Data* stock = &listCtrlAccount_->m_stocks[selectedIndex];
     Model_Translink::Data_Set stock_list = Model_Translink::TranslinkList(Model_Attachment::STOCK, stock->STOCKID);
- 
+
     // TODO create a panel to display all the information on one screen
     wxString msg = wxString::Format(_("Temporary Stock list: %s\n\n"
         "Date          Lot          Shares          Price        Commission\n\n"), Model_Account::get_account_name(stock->HELDAT));
@@ -411,7 +411,7 @@ void mmStocksPanel::ViewStockTransactions(int selectedIndex)
             Model_Checking::Data* stock_trans = Model_Checking::instance().get(stock_link.CHECKINGACCOUNTID);
             wxString sd = mmGetDateForDisplay(stock_trans->TRANSDATE);
             wxString sl = share_entry->SHARELOT;
-      
+
             int precision = share_entry->SHARENUMBER == floor(share_entry->SHARENUMBER) ? 0 : Option::instance().getSharePrecision();
             wxString sn = wxString::FromDouble(share_entry->SHARENUMBER, precision);
             wxString su = wxString::FromDouble(share_entry->SHAREPRICE, Option::instance().getSharePrecision());
@@ -726,7 +726,7 @@ wxString mmStocksPanel::GetPanelTitle(const Model_Account::Data& account) const
 }
 
 wxString mmStocksPanel::BuildPage() const
-{ 
+{
     const Model_Account::Data* account = Model_Account::instance().get(m_account_id);
     return listCtrlAccount_->BuildPage((account ? GetPanelTitle(*account) : ""));
 }
@@ -759,7 +759,7 @@ void mmStocksPanel::updateHeader()
         investment_balance = Model_Account::investment_balance(account);
     }
     double originalVal = investment_balance.second;
-    double total = investment_balance.first; 
+    double total = investment_balance.first;
 
     const wxString& diffStr = Model_Currency::toCurrency(total > originalVal ? total - originalVal : originalVal - total, m_currency);
     double diffPercents = (total > originalVal ? 1 : -1) * (total / originalVal*100.0 - 100.0);
@@ -830,7 +830,7 @@ bool mmStocksPanel::onlineQuoteRefresh(wxString& msg)
     }
 
     std::vector<wxString> symbols;
-	Model_Stock::Data_Set stock_list = Model_Stock::instance().all();
+    Model_Stock::Data_Set stock_list = Model_Stock::instance().all();
     for (const auto &stock : stock_list)
     {
         const wxString symbol = stock.SYMBOL.Upper();
@@ -857,7 +857,7 @@ bool mmStocksPanel::onlineQuoteRefresh(wxString& msg)
     for (auto &s : stock_list)
     {
         std::map<wxString, double>::const_iterator it = stocks_data.find(s.SYMBOL.Upper());
-        if (it == stocks_data.end()) 
+        if (it == stocks_data.end())
             continue;
         double dPrice = it->second;
 
@@ -868,7 +868,7 @@ bool mmStocksPanel::onlineQuoteRefresh(wxString& msg)
             if (s.STOCKNAME.empty()) s.STOCKNAME = s.SYMBOL;
             Model_Stock::instance().save(&s);
             Model_StockHistory::instance().addUpdate(s.SYMBOL
-				, wxDate::Now(), dPrice, Model_StockHistory::ONLINE);
+                , wxDate::Now(), dPrice, Model_StockHistory::ONLINE);
         }
     }
 

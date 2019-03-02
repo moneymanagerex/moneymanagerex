@@ -85,7 +85,7 @@ public:
         report(L"CONTENTS") = contents;
 
         wxString out = wxEmptyString;
-        try 
+        try
         {
             out = report.Process();
         }
@@ -146,7 +146,7 @@ void mmGUIFrame::updateReportNavigation(wxTreeItemId& reports, bool budget)
         bool bShow = !Option::instance().getHideReport(r);
         if (bShow && Option::instance().getBudgetReport(r))
             bShow = budget;
-        
+
         if (bShow)
         {
             const auto& reportName = Option::instance().getReportName(r);
@@ -158,7 +158,7 @@ void mmGUIFrame::updateReportNavigation(wxTreeItemId& reports, bool budget)
     }
 
     //////////////////////////////////////////////////////////////////
-    
+
     /*GRM Reports*/
     auto records = Model_Report::instance().all();
     //Sort by group name and report name

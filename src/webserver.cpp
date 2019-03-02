@@ -57,7 +57,7 @@ static void handle_sql(struct mg_connection* nc, struct http_message* hm)
         json_writer.Key(r.INFONAME.c_str());
         json_writer.String(r.INFOVALUE.c_str());
     }
-    
+
     json_writer.EndObject();
 
     std::cout<<json_buffer.GetString()<<std::endl;
@@ -68,7 +68,7 @@ static void handle_sql(struct mg_connection* nc, struct http_message* hm)
                 json_buffer.GetSize(), json_buffer.GetString());
 }
 
-static void ev_handler(struct mg_connection *nc, int ev, void *ev_data) 
+static void ev_handler(struct mg_connection *nc, int ev, void *ev_data)
 {
     struct http_message *hm = (struct http_message *) ev_data;
 
@@ -116,7 +116,7 @@ wxThread::ExitCode WebServerThread::Entry()
         mg_mgr_free(&mgr);
         return (wxThread::ExitCode)-1;
     }
-    
+
     mg_set_protocol_http_websocket(nc);
     std::string document_root(wxFileName(mmex::getReportFullFileName("index")).GetPath().c_str());
     s_http_server_opts.document_root = document_root.c_str();
@@ -124,7 +124,7 @@ wxThread::ExitCode WebServerThread::Entry()
 
     wxSetWorkingDirectory(wxString(s_http_server_opts.document_root));
 
-    // Serve requests 
+    // Serve requests
     while (IsAlive())
     {
         mg_mgr_poll(&mgr, 1000);

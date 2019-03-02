@@ -122,7 +122,7 @@ void mmStockDialog::DataToControls()
     m_share_price_ctrl->SetValue(m_stock->PURCHASEPRICE, account, currency_precision);
     m_current_price_ctrl->SetValue(m_stock->CURRENTPRICE, account, currency_precision);
     m_commission_ctrl->SetValue(m_stock->COMMISSION, account, currency_precision);
-    
+
     ShowStockHistory();
 }
 
@@ -417,14 +417,14 @@ void mmStockDialog::OnSave(wxCommandEvent& WXUNUSED(event))
         mmErrorDialogs::MessageInvalid(this, _("Held At"));
         return;
     }
-    
+
     const wxString& stockSymbol = m_stock_symbol_ctrl->GetValue();
     if (stockSymbol.empty())
     {
         mmErrorDialogs::MessageInvalid(this, _("Symbol"));
         return;
     }
-        
+
     const wxString pdate = m_purchase_date_ctrl->GetValue().FormatISODate();
     const wxString stockName = m_stock_name_ctrl->GetValue();
     const wxString notes = m_notes_ctrl->GetValue();
@@ -596,10 +596,10 @@ void mmStockDialog::OnHistoryImportButton(wxCommandEvent& WXUNUSED(event))
 
             const wxString& delimiter = Model_Infotable::instance().GetStringInfo("DELIMITER", mmex::DEFDELIMTER);
             csv2tab_separated_values(line, delimiter);
-            wxStringTokenizer tkz(line, "\t", wxTOKEN_RET_EMPTY_ALL);  
+            wxStringTokenizer tkz(line, "\t", wxTOKEN_RET_EMPTY_ALL);
             if ((int)tkz.CountTokens() < 2)
                 continue;
-            
+
             std::vector<wxString> tokens;
             while (tkz.HasMoreTokens())
             {
@@ -633,11 +633,11 @@ void mmStockDialog::OnHistoryImportButton(wxCommandEvent& WXUNUSED(event))
             countImported++;
         }
 
-        progressDlg->Destroy();       
+        progressDlg->Destroy();
 
-        wxString msg = wxString::Format(_("Total Lines: %ld"), countNumTotal); 
+        wxString msg = wxString::Format(_("Total Lines: %ld"), countNumTotal);
         msg << "\n";
-        msg << wxString::Format(_("Total Imported: %ld"), countImported); 
+        msg << wxString::Format(_("Total Imported: %ld"), countImported);
         msg << "\n";
         msg << _("Date") << "              " << _("Price");
         msg << "\n";
@@ -649,17 +649,17 @@ void mmStockDialog::OnHistoryImportButton(wxCommandEvent& WXUNUSED(event))
         {
             canceledbyuser = true;
         }
- 
+
         // Since all database transactions are only in memory,
         if (!canceledbyuser)
         {
-            // we need to save them to the database. 
+            // we need to save them to the database.
             for (auto &d : stockData)
                 Model_StockHistory::instance().save(d);
             // show the data
             ShowStockHistory();
         }
-        else 
+        else
         {
             //TODO: and discard the database changes.
         }

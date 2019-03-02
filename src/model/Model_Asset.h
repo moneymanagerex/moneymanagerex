@@ -55,7 +55,7 @@ public:
 public:
     static DB_Table_ASSETS::ASSETTYPE ASSETTYPE(TYPE type, OP op = EQUAL);
     static DB_Table_ASSETS::STARTDATE STARTDATE(const wxDate& date, OP op = EQUAL);
-    
+
 public:
     static wxArrayString all_rate();
     static wxArrayString all_type();
@@ -76,4 +76,4 @@ public:
     static double value(const Data& r);
 };
 
-#endif // 
+#endif

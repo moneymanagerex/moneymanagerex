@@ -59,7 +59,7 @@ public:
     bool getAccountCheckBox();
     int getAccountID();
     bool getCategoryCheckBox();
-  
+
     bool getSimilarStatus();
     int getCategId();
     int getSubCategId();

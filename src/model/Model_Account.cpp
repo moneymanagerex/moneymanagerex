@@ -97,7 +97,7 @@ wxArrayString Model_Account::all_type()
     static wxArrayString type;
     if (type.empty())
     {
-        for (const auto& item : TYPE_CHOICES) 
+        for (const auto& item : TYPE_CHOICES)
             type.Add(item.second);
     }
     return type;
@@ -172,7 +172,7 @@ Model_Currency::Data* Model_Account::currency(const Data* r)
         return Model_Currency::GetBaseCurrency();
     }
 }
-    
+
 Model_Currency::Data* Model_Account::currency(const Data& r)
 {
     return currency(&r);
@@ -208,7 +208,7 @@ double Model_Account::balance(const Data* r)
     double sum = r->INITIALBAL;
     for (const auto& tran: transaction(r))
     {
-        sum += Model_Checking::balance(tran, r->ACCOUNTID); 
+        sum += Model_Checking::balance(tran, r->ACCOUNTID);
     }
     return sum;
 }
@@ -237,7 +237,7 @@ std::pair<double, double> Model_Account::investment_balance(const Data& r)
 wxString Model_Account::toCurrency(double value, const Data* r)
 {
     return Model_Currency::toCurrency(value, currency(r));
-}    
+}
 
 wxString Model_Account::toString(double value, const Data* r, int precision)
 {
@@ -272,7 +272,7 @@ Model_Account::TYPE Model_Account::type(const Data* account)
     const auto it = cache.find(account->ACCOUNTTYPE);
     if (it != cache.end()) return it->second;
 
-    for (const auto& t : TYPE_CHOICES) 
+    for (const auto& t : TYPE_CHOICES)
     {
         if (account->ACCOUNTTYPE.CmpNoCase(t.second) == 0)
         {

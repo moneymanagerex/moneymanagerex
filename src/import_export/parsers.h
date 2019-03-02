@@ -36,7 +36,7 @@ public:
  // *********************** Import related methods ***********************
     // Opens and parses the input file in to an internal structure that allows calling the getter functions below.
     virtual bool Load(const wxString& fileName, unsigned int itemsInLine) = 0;
-    
+
     // Gets the number of lines that can be parsed.
     // Depending on type of file there may be lines that are not transactions.
     virtual unsigned int GetLinesCount() const = 0;

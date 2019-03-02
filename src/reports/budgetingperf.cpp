@@ -158,7 +158,7 @@ wxString mmReportBudgetingPerformance::getHTMLText()
             for (const Model_Subcategory::Data& subcategory : allSubcategories)
             {
                 if (subcategory.CATEGID == category.CATEGID)
-                    totals[category.CATEGID][subcategory.SUBCATEGID] 
+                    totals[category.CATEGID][subcategory.SUBCATEGID]
                     += categoryStats[category.CATEGID][subcategory.SUBCATEGID][i.first];
             }
         }
@@ -233,7 +233,7 @@ wxString mmReportBudgetingPerformance::getHTMLText()
             for (const auto &i : categoryStats[category.CATEGID][subcategory.SUBCATEGID])
                 monthlyActual[i.first] += i.second;
 
-            DisplayRow(hb, estimated, actual, category.CATEGNAME + ": " 
+            DisplayRow(hb, estimated, actual, category.CATEGNAME + ": "
                 + subcategory.SUBCATEGNAME, categoryStats[category.CATEGID][subcategory.SUBCATEGID]);
         }
     }

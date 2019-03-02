@@ -123,7 +123,7 @@ void mmPrintableBase::setAccounts(int selection, const wxString& name)
         case 1: // Select Accounts
             {
                 wxArrayString* accountSelections = new wxArrayString();
-                Model_Account::Data_Set accounts = 
+                Model_Account::Data_Set accounts =
                     (m_only_active ? Model_Account::instance().find(Model_Account::ACCOUNTTYPE(Model_Account::all_type()[Model_Account::INVESTMENT], NOT_EQUAL)
                         , Model_Account::STATUS(Model_Account::OPEN))
                     : Model_Account::instance().find(Model_Account::ACCOUNTTYPE(Model_Account::all_type()[Model_Account::INVESTMENT], NOT_EQUAL)));
@@ -302,7 +302,7 @@ mm_html_template::mm_html_template(const wxString& arg_template): html_template(
 
 void mm_html_template::load_context()
 {
-    (*this)(L"TODAY") = wxDate::Today().FormatISODate() 
+    (*this)(L"TODAY") = wxDate::Today().FormatISODate()
         + " " + wxDate::Now().FormatISOTime();
     for (const auto &r: Model_Infotable::instance().all())
         (*this)(r.INFONAME.ToStdWstring()) = r.INFOVALUE;

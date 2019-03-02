@@ -28,7 +28,7 @@ bool dbCheck::checkDB()
 {
     bool result = true;
     result = checkAccounts();
-    
+
     return result;
 }
 

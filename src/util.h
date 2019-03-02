@@ -196,7 +196,7 @@ public:
 private:
     std::map<wxString, wxString> m_date_formats_temp;
 
-    //Numbers of successfully applied Format Specifier for every handled date string 
+    //Numbers of successfully applied Format Specifier for every handled date string
     std::map<wxString, int> m_date_parsing_stat;
     wxDateTime m_today;
     wxDateTime m_month_ago;

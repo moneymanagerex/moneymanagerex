@@ -6,12 +6,12 @@
  it under the terms of the GNU General Public License as published by
  the Free Software Foundation; either version 2 of the License, or
  (at your option) any later version.
- 
+
  This program is distributed in the hope that it will be useful,
  but WITHOUT ANY WARRANTY; without even the implied warranty of
  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  GNU General Public License for more details.
- 
+
  You should have received a copy of the GNU General Public License
  along with this program; if not, write to the Free Software
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
@@ -53,7 +53,7 @@ bool mmHelpPanel::Create( wxWindow *parent, wxWindowID winid,
 }
 
 void mmHelpPanel::CreateControls()
-{    
+{
     wxBoxSizer* itemBoxSizer2 = new wxBoxSizer(wxVERTICAL);
     this->SetSizer(itemBoxSizer2);
 
@@ -74,13 +74,13 @@ void mmHelpPanel::CreateControls()
     itemBoxSizerHeader->Add(buttonBack, 0, wxLEFT, 5);
     itemBoxSizerHeader->Add(buttonFordward, 0, wxLEFT | wxRIGHT, 5);
     itemBoxSizerHeader->Add(itemStaticText9, 0, wxLEFT | wxTOP, 5);
-    
+
     /**************************************************************************
     Allows help files for a specific language.
 
     Main default help file name: ./help/index.html
     Default filename names can be found in mmex::getPathDoc(fileIndex)
-    
+
     Default help files will be used when the language help file are not found.
     **************************************************************************/
 
