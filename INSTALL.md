@@ -106,6 +106,10 @@ for DEB based Linux distributions or:
 
 for RPM based Linux distributions.
 
+> Linux Mint users should replace the `sudo bash` part in commands above
+> with `os=ubuntu dist=xenial sudo -E bash` for Mint 18 or with
+> `os=ubuntu dist=bionic sudo -E bash` for Mint 19.
+
 There are instructions to [manually add MMEX repo] to system configuration
 available too.
 
