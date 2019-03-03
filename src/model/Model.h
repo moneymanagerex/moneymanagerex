@@ -229,12 +229,10 @@ public:
     /** Show table statistics*/
     void show_statistics() const
     {
-        size_t cache_size = this->cache_.size();
-        size_t index_by_id_size = this->index_by_id_.size();
-#ifdef _WIN64
-        wxLogDebug("%s : (cache %llu, index_by_id %llu, hit %llu, miss %llu, skip %llu)", this->name(), cache_size, index_by_id_size, this->hit_, this->miss_, this->skip_);
-#else
-        wxLogDebug("%s : (cache %lu, index_by_id %lu, hit %lu, miss %lu, skip %lu)", this->name(), cache_size, index_by_id_size, this->hit_, this->miss_, this->skip_);
-#endif
+        wxLogDebug("%s : (cache %zu, index_by_id %zu, hit %zu, miss %zu, skip %zu)",
+            this->name(),
+            this->cache_.size(),
+            this->index_by_id_.size(),
+            this->hit_, this->miss_, this->skip_);
     }
 };
