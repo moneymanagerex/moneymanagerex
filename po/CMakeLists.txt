@@ -1,6 +1,8 @@
-if(NOT InMMEX)
+get_directory_property(m_hasParent PARENT_DIRECTORY)
+if(NOT m_hasParent)
     message(FATAL_ERROR "Use the top-level CMake script!")
 endif()
+unset(m_hasParent)
 
 find_package(Gettext REQUIRED)
 

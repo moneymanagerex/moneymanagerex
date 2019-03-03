@@ -1,5 +1,4 @@
 cmake_minimum_required(VERSION 3.1 FATAL_ERROR)
-set(InMMEX TRUE)
 
 find_package(Git REQUIRED)
 # Get the latest version tag
