@@ -5,7 +5,8 @@ Money Manager Ex
 [![stable]][GitHubLatest] [![unstable]][GitHubDL] [![s]][SourceForgeDL]
 [![gha]][GitHubDL] [![ghl]][GitHubLatest] [![p]][packagecloud] [![w]][website]
 [![i]][GitHubIssues] [![resolution time]][isitmaintained] [![grade]][Codacy]
-[![cd]][CodeDocs] [![c]][contributors] [![l]](LICENSE) [![o]][OpenHub]
+[![localized]][Crowdin] [![cd]][CodeDocs] [![c]][contributors] [![l]](LICENSE)
+[![o]][OpenHub]
 
 Money Manager Ex is a free, open-source, cross-platform, easy-to-use personal
 finance software. It primarily helps organize one's finances and keeps track
@@ -16,8 +17,8 @@ personal finance application. The design goals are to concentrate on
 simplicity and user-friendliness - something one can use everyday.
 
 MMEX is mainly written in C++11 and built on:  
-[wxWidgets] 3.0+ | [wxSQLite3] | [SQLite3] | [Mongoose] | [RapidJSON]
-| [ChartNew.JS] | [html-template] | [libcurl]
+[wxWidgets] 3.0+ | [wxSQLite3] | [SQLite3] | [RapidJSON] | [ChartNew.JS]
+| [html-template] | [libcurl]
 
 #### Supported platforms ####
 
@@ -32,12 +33,11 @@ MMEX is mainly written in C++11 and built on:
 Please follow installation instructions from [INSTALL.md] file.
 
 We invite you to explore and help us translate Money Manager Ex in [Crowdin].
-[![localized]][Crowdin]
 
 #### External public resources ####
 
 [Slack] | [Forum] | [Wiki] | [Facebook] | [YouTube] | [SourceForge] | [GitHub]
-| [Docker Hub] | [Snap Store] | [Twitter] [![tw]][Twitter] | [Crowdin]
+| [Docker Hub] | [Snap Store] | [Crowdin] | [Twitter] [![tw]][Twitter]
 
 #### Tips ####
 
@@ -72,7 +72,6 @@ We invite you to explore and help us translate Money Manager Ex in [Crowdin].
 [wxWidgets]: http://wxwidgets.org/
 [wxSQLite3]: https://github.com/utelle/wxsqlite3
 [SQLite3]: http://sqlite.org/
-[Mongoose]: https://github.com/cesanta/mongoose
 [RapidJSON]: http://rapidjson.org/
 [ChartNew.JS]: https://github.com/FVANCOP/ChartNew.js
 [html-template]: https://github.com/moneymanagerex/html-template
