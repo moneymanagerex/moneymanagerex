@@ -1,4 +1,4 @@
-FROM opensuse:42.1
+FROM opensuse/archive:42.1
 LABEL maintainer="developers@moneymanagerex.org"
 RUN zypper install -y --no-recommends \
       ccache \
