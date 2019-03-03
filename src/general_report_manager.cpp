@@ -350,13 +350,15 @@ void mmGeneralReportManager::CreateControls()
     /****************************************
      Separation Line
      ***************************************/
-    wxStaticLine* staticline1 = new wxStaticLine(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxLI_HORIZONTAL);
+    wxStaticLine* staticline1 = new wxStaticLine(this, wxID_ANY
+        , wxDefaultPosition, wxDefaultSize, wxLI_HORIZONTAL);
     mainBoxSizer->Add(staticline1, 0, wxEXPAND | wxALL, 1);
 
     /****************************************
      Bottom Panel
      ***************************************/
-    wxPanel* buttonPanel = new wxPanel(this, wxID_STATIC, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
+    wxPanel* buttonPanel = new wxPanel(this, wxID_STATIC
+        , wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
     mainBoxSizer->Add(buttonPanel, wxSizerFlags(g_flagsV).Center());
 
     wxBoxSizer* buttonPanelSizer = new wxBoxSizer(wxHORIZONTAL);
@@ -414,23 +416,29 @@ void mmGeneralReportManager::createEditorTab(wxNotebook* editors_notebook, int t
     wxPanel* panel = new wxPanel(editors_notebook, type + MAGIC_NUM);
     editors_notebook->InsertPage(tabID, panel, label);
     wxBoxSizer *sizer = new wxBoxSizer(wxVERTICAL);
-    panel->SetSizer(sizer);
-
-    MinimalEditor* templateText = new MinimalEditor(panel, type);
 
     if (type == ID_SQL_CONTENT)
     {
         wxBoxSizer *box_sizer3 = new wxBoxSizer(wxHORIZONTAL);
-        box_sizer3->Add(templateText, wxSizerFlags(g_flagsExpand).Proportion(3));
+        wxSplitterWindow *splitter_sql = new wxSplitterWindow(panel, wxID_ANY);
+        splitter_sql->SetSashGravity(0.9);
+        splitter_sql->SetMinimumPaneSize(150); // Smalest size of panels
+        box_sizer3->Add(splitter_sql, g_flagsExpand);
+
+        MinimalEditor* templateText = new MinimalEditor(splitter_sql, type);
+
 #if defined (__WXMSW__)
         long treeCtrlFlags = wxTR_SINGLE | wxTR_HAS_BUTTONS | wxTR_ROW_LINES;
 #else
         long treeCtrlFlags = wxTR_SINGLE | wxTR_HAS_BUTTONS;
 #endif
-        m_dbView = new wxTreeCtrl(panel, wxID_ANY, wxDefaultPosition
+        m_dbView = new wxTreeCtrl(splitter_sql, wxID_ANY, wxDefaultPosition
             , wxDefaultSize, treeCtrlFlags);
-        box_sizer3->Add(m_dbView, g_flagsExpand);
+
+        splitter_sql->SplitVertically(templateText, m_dbView);
+        splitter_sql->SetSashPosition(500);
         sizer->Add(box_sizer3, g_flagsExpand);
+
 #if wxUSE_DRAG_AND_DROP
         m_dbView->Connect(wxID_ANY, wxEVT_TREE_BEGIN_DRAG
             , wxTreeEventHandler(mmGeneralReportManager::OnBeginDrag)
@@ -468,7 +476,10 @@ void mmGeneralReportManager::createEditorTab(wxNotebook* editors_notebook, int t
         m_dbView->Expand(root_id);
     }
     else
-        sizer->Add(templateText, g_flagsExpand);
+    {
+        MinimalEditor* editorText = new MinimalEditor(panel, type);
+        sizer->Add(editorText, g_flagsExpand);
+    }
 
     panel->SetSizer(sizer);
     panel->Layout();
