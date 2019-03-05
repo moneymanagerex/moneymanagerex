@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-02-26 10:01+0300\n"
-"PO-Revision-Date: 2019-03-05 07:23\n"
+"PO-Revision-Date: 2019-03-05 18:26\n"
 "Last-Translator: vomikan <nikolay.akimov@gmail.com>\n"
 "Language-Team: Croatian\n"
 "MIME-Version: 1.0\n"
@@ -1986,7 +1986,7 @@ msgstr "Hrana"
 
 #: db/Table_Category.h:107
 msgid "Leisure"
-msgstr "Odmor"
+msgstr "Razonoda"
 
 #: db/Table_Category.h:108 model/Model_Asset.cpp:32
 msgid "Automobile"
