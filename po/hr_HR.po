@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-02-26 10:01+0300\n"
-"PO-Revision-Date: 2019-03-05 18:26\n"
+"PO-Revision-Date: 2019-03-05 18:53\n"
 "Last-Translator: vomikan <nikolay.akimov@gmail.com>\n"
 "Language-Team: Croatian\n"
 "MIME-Version: 1.0\n"
@@ -2131,7 +2131,7 @@ msgstr "Liječnik"
 
 #: db/Table_Subcategory.h:131
 msgid "Prescriptions"
-msgstr "Ljekovi"
+msgstr "Lijekovi"
 
 #: db/Table_Subcategory.h:132
 msgid "Auto"
@@ -2147,7 +2147,7 @@ msgstr "Stambeno"
 
 #: db/Table_Subcategory.h:136
 msgid "Travel"
-msgstr "Putovanje"
+msgstr "Putovanja"
 
 #: db/Table_Subcategory.h:137
 msgid "Lodging"
@@ -2179,7 +2179,7 @@ msgstr "Nadoknade"
 
 #: db/Table_Subcategory.h:145
 msgid "Investment Income"
-msgstr "Prihod od investiranja"
+msgstr "Prihod od investicija"
 
 #: dbupgrade.cpp:86
 msgid "upgrade"
