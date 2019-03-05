@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-02-26 10:01+0300\n"
-"PO-Revision-Date: 2019-03-03 07:55\n"
+"PO-Revision-Date: 2019-03-05 14:14\n"
 "Last-Translator: vomikan <nikolay.akimov@gmail.com>\n"
 "Language-Team: Hebrew\n"
 "MIME-Version: 1.0\n"
@@ -3802,21 +3802,21 @@ msgstr "בחירה מרובה"
 #: mmex.cpp:87
 #, c-format
 msgid "Cannot load a translation for the default language of your system (%s)."
-msgstr ""
+msgstr "לא ניתן לטעון תרגום לשפת ברירת המחדל של המערכת שלך (%s)."
 
 #: mmex.cpp:91
 #, c-format
 msgid "Cannot load a translation for the selected language (%s)."
-msgstr ""
+msgstr "לא ניתן לטעון תרגום לשפה שנבחרה (%s)."
 
 #: mmex.cpp:95
 #, c-format
 msgid "Please use the Switch Application Language option in View menu to select one of the %zu available languages."
-msgstr ""
+msgstr "נא להשתמש בבורר השפה בתפריט תצוגה כדי לבחור באחת השפות הזמינות %zu."
 
 #: mmex.cpp:97
 msgid "There are no translation files installed."
-msgstr ""
+msgstr "אין קבצי תרגום מותקנים."
 
 #: mmex.cpp:98 mmframe.cpp:3113
 msgid "Language change"
