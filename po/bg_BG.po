@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-02-26 10:01+0300\n"
-"PO-Revision-Date: 2019-03-03 07:55\n"
+"PO-Revision-Date: 2019-03-06 14:08\n"
 "Last-Translator: vomikan <nikolay.akimov@gmail.com>\n"
 "Language-Team: Bulgarian\n"
 "MIME-Version: 1.0\n"
@@ -837,15 +837,15 @@ msgstr "Детайли на повтаряща се транзакция"
 
 #: billsdepositsdialog.cpp:438
 msgid "Specify the date when this bill or deposit is due"
-msgstr ""
+msgstr "Задайте датата, към която когато тази сметка или депозит е дължима"
 
 #: billsdepositsdialog.cpp:442
 msgid "Retard or advance the date of the 'next occurrence'"
-msgstr ""
+msgstr "Изтегли назад или напред датата на 'следващо повторение'"
 
 #: billsdepositsdialog.cpp:448 billsdepositspanel.cpp:103
 msgid "Date Due"
-msgstr ""
+msgstr "Дължима на"
 
 #: billsdepositsdialog.cpp:452 billsdepositsdialog.cpp:1301
 msgid "Repeats"
@@ -853,27 +853,27 @@ msgstr "Повторения"
 
 #: billsdepositsdialog.cpp:460
 msgid "Advance the next occurring date with the specified values"
-msgstr ""
+msgstr "Давай към следващата дата на повторение с посочените стойности"
 
 #: billsdepositsdialog.cpp:467 billsdepositsdialog.cpp:1343
 msgid "Payments Left"
-msgstr ""
+msgstr "Оставащи плащания"
 
 #: billsdepositsdialog.cpp:481
 msgid "Request user to enter payment"
-msgstr ""
+msgstr "Задължи потребителя да входира плащане"
 
 #: billsdepositsdialog.cpp:482
 msgid "User requested to enter this transaction on the 'Date Paid'"
-msgstr ""
+msgstr "Потребителя задалължително трябва да въведе тази транзакция на 'Дата за плащане'"
 
 #: billsdepositsdialog.cpp:485
 msgid "Grant automatic execute"
-msgstr ""
+msgstr "Разреши автоматично изпълнение"
 
 #: billsdepositsdialog.cpp:486
 msgid "The requested payment will occur without user interaction"
-msgstr ""
+msgstr "Посоченито плащане ще се осъществява без потребителска намеса"
 
 #: billsdepositsdialog.cpp:511 transdialog.cpp:408
 msgid "Transaction Details"
@@ -881,7 +881,7 @@ msgstr "Детайли за транзакция"
 
 #: billsdepositsdialog.cpp:526
 msgid "Specify the date the user is requested to enter this transaction"
-msgstr ""
+msgstr "Посочи датата, на която потребителя трябва да въведе тази транзакция"
 
 #: billsdepositsdialog.cpp:529
 msgid "Advance or retard the user request date of this transaction"
@@ -893,7 +893,7 @@ msgstr ""
 
 #: billsdepositsdialog.cpp:541 billsdepositspanel.cpp:102
 msgid "Date Paid"
-msgstr ""
+msgstr "Дата на плащане"
 
 #: billsdepositsdialog.cpp:552 filtertransdialog.cpp:281 transdialog.cpp:1233
 msgid "Specify the status for the transaction"
@@ -1101,11 +1101,11 @@ msgstr "Грешка"
 
 #: billsdepositsdialog.cpp:1385 mmSimpleDialogs.cpp:262
 msgid "Invalid Choice"
-msgstr ""
+msgstr "Невалиден избор"
 
 #: billsdepositsdialog.cpp:1385
 msgid "Choose one of the following:"
-msgstr ""
+msgstr "Изберете едно от следните:"
 
 #: billsdepositsdialog.cpp:1459 transdialog.cpp:1195
 #: usertransactionpanel.cpp:199
@@ -1136,7 +1136,7 @@ msgstr "Посочи размера на тази транзакция"
 
 #: billsdepositsdialog.h:127
 msgid "Specify the amount to be transferred"
-msgstr ""
+msgstr "Посочете сумата за прехвърляне"
 
 #: billsdepositspanel.cpp:56
 #, c-format
@@ -1165,15 +1165,15 @@ msgstr "Честота"
 
 #: billsdepositspanel.cpp:111
 msgid "Repetitions"
-msgstr ""
+msgstr "Повторения"
 
 #: billsdepositspanel.cpp:112
 msgid "Autorepeat"
-msgstr ""
+msgstr "Автоматично повторение"
 
 #: billsdepositspanel.cpp:113 mmhomepagepanel.cpp:391
 msgid "Payment"
-msgstr ""
+msgstr "Плащане"
 
 #: billsdepositspanel.cpp:170
 msgid "MMEX allows regular payments to be set up as transactions. These transactions can also be regular deposits, or transfers that will occur at some future time. These transactions act as a reminder that an event is about to occur, and appears on the Home Page 14 days before the transaction is due. "
@@ -1181,12 +1181,12 @@ msgstr "MMEX позволява редовни плащания да бъдат 
 
 #: billsdepositspanel.cpp:171
 msgid "Tip: These transactions can be set up to activate - allowing the user to adjust any values on the due date."
-msgstr ""
+msgstr "Съвет: Тези транзакции могат да бъдат настроени да се активират - позволява на потребителя да коригира всякакви стойности на датата на падежа."
 
 #: billsdepositspanel.cpp:225 billsdepositspanel.cpp:888 mmframe.cpp:735
 #: mmhomepagepanel.cpp:435
 msgid "Recurring Transactions"
-msgstr ""
+msgstr "Повтарящи се транзакции"
 
 #: billsdepositspanel.cpp:241 filtertransdialog.cpp:117 mmcheckingpanel.cpp:448
 msgid "Transaction Filter"
@@ -1242,15 +1242,15 @@ msgstr "&Изтрийсметки && група от депозити"
 
 #: billsdepositspanel.cpp:459
 msgid "Manual"
-msgstr ""
+msgstr "Ръчно"
 
 #: billsdepositspanel.cpp:463
 msgid "Suggested"
-msgstr ""
+msgstr "Предложени"
 
 #: billsdepositspanel.cpp:467
 msgid "Automated"
-msgstr ""
+msgstr "Автоматизирани"
 
 #: billsdepositspanel.cpp:509 billsdepositspanel.cpp:575
 #: mmhomepagepanel.cpp:347
@@ -1408,7 +1408,7 @@ msgstr "Разходи:"
 
 #: budgetingpanel.cpp:317
 msgid "Icon"
-msgstr ""
+msgstr "Икона"
 
 #: budgetingpanel.cpp:319
 msgid "Sub Category"
@@ -1642,11 +1642,11 @@ msgstr "Изчисти настройки"
 
 #: constants.cpp:42
 msgid "Cancel"
-msgstr ""
+msgstr "Откажи"
 
 #: constants.cpp:48
 msgid "Close"
-msgstr ""
+msgstr "Затвори"
 
 #: constants.cpp:50
 msgid "&Close "
@@ -1654,35 +1654,35 @@ msgstr "&Затвори"
 
 #: constants.cpp:64 mmframe.cpp:2576
 msgid "Version: "
-msgstr ""
+msgstr "Версия: "
 
 #: constants.cpp:84 mmframe.cpp:2577
 msgid "Database version: "
-msgstr ""
+msgstr "Версия база данни: "
 
 #: constants.cpp:90 mmframe.cpp:2578
 msgid "Git commit: "
-msgstr ""
+msgstr "Git commit: "
 
 #: constants.cpp:94 mmframe.cpp:2579
 msgid "Git branch: "
-msgstr ""
+msgstr "Git branch: "
 
 #: constants.cpp:97 mmframe.cpp:2580
 msgid "MMEX is using the following support products:"
-msgstr ""
+msgstr "MMEX използва следните продукти за поддръжка:"
 
 #: constants.cpp:112 mmframe.cpp:2581
 msgid "Build on"
-msgstr ""
+msgstr "Създаден на"
 
 #: constants.cpp:112 mmframe.cpp:2582
 msgid "with:"
-msgstr ""
+msgstr "с:"
 
 #: constants.cpp:133 mmframe.cpp:2583
 msgid "Running on:"
-msgstr ""
+msgstr "Работи на:"
 
 #: constants.cpp:224
 msgid "View All Transactions"
@@ -3445,7 +3445,7 @@ msgstr "Невалидно име"
 
 #: mmSimpleDialogs.cpp:220 mmSimpleDialogs.cpp:234
 msgid "Already exist!"
-msgstr ""
+msgstr "Вече съществува!"
 
 #: mmSimpleDialogs.cpp:222
 msgid "Please type in a non empty name."
@@ -3792,21 +3792,21 @@ msgstr ""
 #: mmex.cpp:87
 #, c-format
 msgid "Cannot load a translation for the default language of your system (%s)."
-msgstr ""
+msgstr "Не мога да заредя превод за езика по подразбиране на вашата система (%s)."
 
 #: mmex.cpp:91
 #, c-format
 msgid "Cannot load a translation for the selected language (%s)."
-msgstr ""
+msgstr "Не мога да заредя превод за избраният език (%s)."
 
 #: mmex.cpp:95
 #, c-format
 msgid "Please use the Switch Application Language option in View menu to select one of the %zu available languages."
-msgstr ""
+msgstr "Моля, използвайте опцията Смени езика на приложението в менюто Изглед за да изберете един от %zu налични езици."
 
 #: mmex.cpp:97
 msgid "There are no translation files installed."
-msgstr ""
+msgstr "Няма инсталирани файлове за превод."
 
 #: mmex.cpp:98 mmframe.cpp:3113
 msgid "Language change"
