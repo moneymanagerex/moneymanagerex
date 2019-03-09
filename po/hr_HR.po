@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-02-26 10:01+0300\n"
-"PO-Revision-Date: 2019-03-05 18:53\n"
+"PO-Revision-Date: 2019-03-09 14:34\n"
 "Last-Translator: vomikan <nikolay.akimov@gmail.com>\n"
 "Language-Team: Croatian\n"
 "MIME-Version: 1.0\n"
@@ -1369,7 +1369,7 @@ msgstr "Prikaz ukupnih iznosa budžetskih kategorija"
 #: budgetingpanel.cpp:184 reports/budget.cpp:84
 #, c-format
 msgid "Financial Year: %s - %li"
-msgstr "Financijska godina: %s – %li"
+msgstr "Fiskalna godina: %s – %li"
 
 #: budgetingpanel.cpp:188 reports/budget.cpp:88
 #, c-format
@@ -1727,7 +1727,7 @@ msgstr "Prikaz tekuće godine"
 
 #: constants.cpp:233
 msgid "View Current Financial Year"
-msgstr "Prikaz tekuće financijske godine"
+msgstr "Prikaz tekuće fiskalne godine"
 
 #: constants.cpp:234
 msgid "View Last Year"
@@ -1735,7 +1735,7 @@ msgstr "Prikaz prošle godine"
 
 #: constants.cpp:235
 msgid "View Last Financial Year"
-msgstr "Prikaz prošle financijske godine"
+msgstr "Prikaz zadnje fiskalne godine"
 
 #: constants.cpp:236
 msgid "View Since Statement Date"
@@ -4091,11 +4091,11 @@ msgstr "Prikaži/Sakrij dioničke račune u navigacijskom stablu"
 
 #: mmframe.cpp:1509
 msgid "Budgets: As &Financial Years"
-msgstr "Budžeti: Kao financijske godine"
+msgstr "Budžeti: Kao fiskalne godine"
 
 #: mmframe.cpp:1509
 msgid "Display Budgets in Financial Year Format"
-msgstr "Prikaži budžete u formatu financijske godine"
+msgstr "Prikaži budžete u formatu fiskalne godine"
 
 #: mmframe.cpp:1511
 msgid "Budgets: &Include Transfers in Totals"
@@ -5271,7 +5271,7 @@ msgstr "Novi primjer formata datuma:"
 
 #: optionsettingsgeneral.cpp:120
 msgid "Financial Year"
-msgstr "Financijska godina"
+msgstr "Fiskalna godina"
 
 #: optionsettingsgeneral.cpp:127
 msgid "Start Day"
@@ -5279,7 +5279,7 @@ msgstr "Dan početka"
 
 #: optionsettingsgeneral.cpp:133
 msgid "Specify Day for start of financial year"
-msgstr "Odredi datum početka financijske godine"
+msgstr "Odredi datum početka fiskalne godine"
 
 #: optionsettingsgeneral.cpp:137
 msgid "Start Month"
@@ -5287,7 +5287,7 @@ msgstr "Mjesec početka"
 
 #: optionsettingsgeneral.cpp:149
 msgid "Specify month for start of financial year"
-msgstr "Odredi početni mjeses financijske godine"
+msgstr "Odredi početni mjesec fiskalne godine"
 
 #: optionsettingsgeneral.cpp:154
 msgid "Use Original Date when Pasting Transactions"
@@ -5547,7 +5547,7 @@ msgstr "Budžetske opcije"
 
 #: optionsettingsview.cpp:127
 msgid "View as Financial Years"
-msgstr "Prikaz kao financijske godine"
+msgstr "Prikaz kao fiskalne godine"
 
 #: optionsettingsview.cpp:133
 msgid "View with 'transfer' transactions"
@@ -5888,15 +5888,15 @@ msgstr "Prošla godina"
 
 #: reports/mmDateRange.cpp:183
 msgid "Current Financial Year"
-msgstr "Tekuća financijska godina"
+msgstr "Tekuća fiskalna godina"
 
 #: reports/mmDateRange.cpp:193
 msgid "Current Financial Year to Date"
-msgstr "Tekuća financijska godina do danas"
+msgstr "Tekuća fiskalna godina do danas"
 
 #: reports/mmDateRange.cpp:203
 msgid "Last Financial Year"
-msgstr "Prošla financijska godina"
+msgstr "Zadnja fiskalna godina"
 
 #: reports/mmDateRange.cpp:231
 msgid "Last 365 Days"
