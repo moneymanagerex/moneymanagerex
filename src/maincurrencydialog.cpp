@@ -255,6 +255,7 @@ void mmMainCurrencyDialog::CreateControls()
     // Add second column
     col1.SetId(1);
     col1.SetText(_("Value"));
+    col1.SetAlign(wxLIST_FORMAT_RIGHT);
     col1.SetWidth(100);
     valueListBox_->InsertColumn(1, col1);
 
