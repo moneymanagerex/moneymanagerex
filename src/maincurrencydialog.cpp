@@ -118,11 +118,11 @@ void mmMainCurrencyDialog::fillControls()
         if (skip_historic && (currency.HISTORIC == 1)) continue;
 
         wxVector<wxVariant> data;
-        data.push_back(wxVariant(baseCurrencyID == currencyID));
+        data.push_back(wxVariant(baseCurrencyID == currencyID ? "\u2691" : ""));
         data.push_back(wxVariant(currency.CURRENCY_SYMBOL));
         data.push_back(wxVariant(wxGetTranslation(currency.CURRENCYNAME)));
         data.push_back(wxVariant(wxString()<<Model_CurrencyHistory::getLastRate(currencyID, today)));
-        data.push_back(wxVariant(currency.HISTORIC == 1));
+        data.push_back(wxVariant(currency.HISTORIC == 1 ? "\u2713" : ""));
         currencyListBox_->AppendItem(data, (wxUIntPtr)currencyID);
         if (m_currency_id == currencyID)
         {
@@ -184,13 +184,13 @@ void mmMainCurrencyDialog::CreateControls()
     currencyListBox_ = new wxDataViewListCtrl( this
         , wxID_ANY, wxDefaultPosition, wxSize(-1, 200)/*, wxDV_HORIZ_RULES, mmDoubleValidator(4)*/);
 
-    currencyListBox_->AppendToggleColumn(ColName_[CURR_BASE], wxDATAVIEW_CELL_INERT, 30);
+    currencyListBox_->AppendTextColumn(ColName_[CURR_BASE], wxDATAVIEW_CELL_INERT, 30);
     currencyListBox_->AppendTextColumn(ColName_[CURR_SYMBOL], wxDATAVIEW_CELL_INERT, 60
         , wxALIGN_LEFT, wxDATAVIEW_COL_SORTABLE);
     currencyListBox_->AppendTextColumn(ColName_[CURR_NAME], wxDATAVIEW_CELL_INERT, 140
         , wxALIGN_LEFT, wxDATAVIEW_COL_SORTABLE);
     currencyListBox_->AppendTextColumn(ColName_[BASE_RATE], wxDATAVIEW_CELL_INERT, 80);
-    currencyListBox_->AppendToggleColumn(ColName_[CURR_HIST], wxDATAVIEW_CELL_INERT, 30);
+    currencyListBox_->AppendTextColumn(ColName_[CURR_HIST], wxDATAVIEW_CELL_INERT, 30);
 
     itemBoxSizer3->Add(currencyListBox_, g_flagsExpand);
 
