@@ -627,7 +627,7 @@ void mmStockDialog::OnHistoryImportButton(wxCommandEvent& WXUNUSED(event))
 
             if (rows.size()<10)
             {
-                dateStr <<  wxT ("  ") << priceStr;
+                dateStr << "  " << priceStr;
                 rows.push_back(dateStr);
             }
             countImported++;

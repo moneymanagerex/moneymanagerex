@@ -556,7 +556,7 @@ void mmMainCurrencyDialog::ShowCurrencyHistory()
             item.SetData(d.CURRHISTID);
             valueListBox_->InsertItem(item);
             valueListBox_->SetItem(idx, 0, mmGetDateForDisplay(d.CURRDATE));
-            valueListBox_->SetItem(idx, 1, wxString::Format(wxT("%f"), d.CURRVALUE));
+            valueListBox_->SetItem(idx, 1, wxString::Format("%f", d.CURRVALUE));
             idx++;
         }
         valueListBox_->RefreshItems(0, --idx);
