@@ -245,7 +245,7 @@ void mmMainCurrencyDialog::CreateControls()
         , wxLC_REPORT);
     historyStaticBox_Sizer->Add(valueListBox_, g_flagsExpand);
 
-    wxListItem col0, col1, col2;
+    wxListItem col0, col1;
     // Add first column
     col0.SetId(0);
     col0.SetText(_("Date"));
@@ -257,12 +257,6 @@ void mmMainCurrencyDialog::CreateControls()
     col1.SetText(_("Value"));
     col1.SetWidth(100);
     valueListBox_->InsertColumn(1, col1);
-
-    // Add third column
-    col2.SetId(2);
-    col2.SetText(_("Diff."));
-    col2.SetWidth(90);
-    valueListBox_->InsertColumn(2, col2);
 
     //History Buttons
     wxPanel* values_panel = new wxPanel(this, wxID_ANY);
@@ -560,11 +554,8 @@ void mmMainCurrencyDialog::ShowCurrencyHistory()
             item.SetId(idx);
             item.SetData(d.CURRHISTID);
             valueListBox_->InsertItem(item);
-            const wxString dispAmount = wxString::Format(wxT("%f"), d.CURRVALUE);
             valueListBox_->SetItem(idx, 0, mmGetDateForDisplay(d.CURRDATE));
-            valueListBox_->SetItem(idx, 1, dispAmount);
-            const wxString& priceAmount = wxEmptyString;
-            valueListBox_->SetItem(idx, 2, priceAmount);
+            valueListBox_->SetItem(idx, 1, wxString::Format(wxT("%f"), d.CURRVALUE));
             idx++;
         }
         valueListBox_->RefreshItems(0, --idx);
