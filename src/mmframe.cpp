@@ -2827,7 +2827,7 @@ void mmGUIFrame::OnAssets(wxCommandEvent& WXUNUSED(event))
 
 void mmGUIFrame::OnCurrency(wxCommandEvent& WXUNUSED(event))
 {
-    mmMainCurrencyDialog(this, false, false).ShowModal();
+    mmMainCurrencyDialog(this, -1, false).ShowModal();
     refreshPanelData();
 }
 //----------------------------------------------------------------------------
