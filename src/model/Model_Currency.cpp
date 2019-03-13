@@ -217,7 +217,7 @@ const wxString Model_Currency::fromString2Default(const wxString &s, const Data*
         if (!c->GROUP_SEPARATOR.empty())
             str.Replace(c->GROUP_SEPARATOR, wxEmptyString);
         if (!c->DECIMAL_POINT.empty())
-            str.Replace(c->DECIMAL_POINT, wxS("."));
+            str.Replace(c->DECIMAL_POINT, ".");
 
         wxRegEx pattern(R"([^0-9.+-/*()])");
         pattern.ReplaceAll(&str, wxEmptyString);

@@ -118,11 +118,11 @@ void mmMainCurrencyDialog::fillControls()
         if (skip_historic && (currency.HISTORIC == 1)) continue;
 
         wxVector<wxVariant> data;
-        data.push_back(wxVariant(baseCurrencyID == currencyID));
+        data.push_back(wxVariant(baseCurrencyID == currencyID ? "\u2691" : ""));
         data.push_back(wxVariant(currency.CURRENCY_SYMBOL));
         data.push_back(wxVariant(wxGetTranslation(currency.CURRENCYNAME)));
         data.push_back(wxVariant(wxString()<<Model_CurrencyHistory::getLastRate(currencyID, today)));
-        data.push_back(wxVariant(currency.HISTORIC == 1));
+        data.push_back(wxVariant(currency.HISTORIC == 1 ? "\u2713" : ""));
         currencyListBox_->AppendItem(data, (wxUIntPtr)currencyID);
         if (m_currency_id == currencyID)
         {
@@ -184,13 +184,13 @@ void mmMainCurrencyDialog::CreateControls()
     currencyListBox_ = new wxDataViewListCtrl( this
         , wxID_ANY, wxDefaultPosition, wxSize(-1, 200)/*, wxDV_HORIZ_RULES, mmDoubleValidator(4)*/);
 
-    currencyListBox_->AppendToggleColumn(ColName_[CURR_BASE], wxDATAVIEW_CELL_INERT, 30);
+    currencyListBox_->AppendTextColumn(ColName_[CURR_BASE], wxDATAVIEW_CELL_INERT, 30);
     currencyListBox_->AppendTextColumn(ColName_[CURR_SYMBOL], wxDATAVIEW_CELL_INERT, 60
         , wxALIGN_LEFT, wxDATAVIEW_COL_SORTABLE);
     currencyListBox_->AppendTextColumn(ColName_[CURR_NAME], wxDATAVIEW_CELL_INERT, 140
         , wxALIGN_LEFT, wxDATAVIEW_COL_SORTABLE);
     currencyListBox_->AppendTextColumn(ColName_[BASE_RATE], wxDATAVIEW_CELL_INERT, 80);
-    currencyListBox_->AppendToggleColumn(ColName_[CURR_HIST], wxDATAVIEW_CELL_INERT, 30);
+    currencyListBox_->AppendTextColumn(ColName_[CURR_HIST], wxDATAVIEW_CELL_INERT, 30);
 
     itemBoxSizer3->Add(currencyListBox_, g_flagsExpand);
 
@@ -245,7 +245,7 @@ void mmMainCurrencyDialog::CreateControls()
         , wxLC_REPORT);
     historyStaticBox_Sizer->Add(valueListBox_, g_flagsExpand);
 
-    wxListItem col0, col1, col2;
+    wxListItem col0, col1;
     // Add first column
     col0.SetId(0);
     col0.SetText(_("Date"));
@@ -255,14 +255,9 @@ void mmMainCurrencyDialog::CreateControls()
     // Add second column
     col1.SetId(1);
     col1.SetText(_("Value"));
+    col1.SetAlign(wxLIST_FORMAT_RIGHT);
     col1.SetWidth(100);
     valueListBox_->InsertColumn(1, col1);
-
-    // Add third column
-    col2.SetId(2);
-    col2.SetText(_("Diff."));
-    col2.SetWidth(90);
-    valueListBox_->InsertColumn(2, col2);
 
     //History Buttons
     wxPanel* values_panel = new wxPanel(this, wxID_ANY);
@@ -560,11 +555,8 @@ void mmMainCurrencyDialog::ShowCurrencyHistory()
             item.SetId(idx);
             item.SetData(d.CURRHISTID);
             valueListBox_->InsertItem(item);
-            const wxString dispAmount = wxString::Format(wxT("%f"), d.CURRVALUE);
             valueListBox_->SetItem(idx, 0, mmGetDateForDisplay(d.CURRDATE));
-            valueListBox_->SetItem(idx, 1, dispAmount);
-            const wxString& priceAmount = wxEmptyString;
-            valueListBox_->SetItem(idx, 2, priceAmount);
+            valueListBox_->SetItem(idx, 1, wxString::Format("%f", d.CURRVALUE));
             idx++;
         }
         valueListBox_->RefreshItems(0, --idx);
