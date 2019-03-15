@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-02-26 10:01+0300\n"
-"PO-Revision-Date: 2019-03-09 14:34\n"
+"PO-Revision-Date: 2019-03-15 23:03\n"
 "Last-Translator: vomikan <nikolay.akimov@gmail.com>\n"
 "Language-Team: Croatian\n"
 "MIME-Version: 1.0\n"
@@ -2707,7 +2707,7 @@ msgstr "Od datuma"
 
 #: import_export/qif_export.cpp:149 import_export/qif_import_gui.cpp:183
 msgid "To Date"
-msgstr "Do datuma"
+msgstr "Datum do"
 
 #: import_export/qif_export.cpp:162 import_export/qif_import_gui.cpp:277
 #: optionsettingsgeneral.cpp:98
@@ -5089,7 +5089,7 @@ msgstr "Izvještaj o prognozi"
 
 #: optiondialog.cpp:130
 msgid "General"
-msgstr "Opći"
+msgstr "Opće"
 
 #: optiondialog.cpp:131 optionsettingsview.cpp:54
 msgid "View Options"
