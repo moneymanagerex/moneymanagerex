@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-02-26 10:01+0300\n"
-"PO-Revision-Date: 2019-03-15 23:03\n"
+"PO-Revision-Date: 2019-03-15 23:33\n"
 "Last-Translator: vomikan <nikolay.akimov@gmail.com>\n"
 "Language-Team: Croatian\n"
 "MIME-Version: 1.0\n"
@@ -3031,11 +3031,11 @@ msgstr "Format datuma: "
 
 #: import_export/univcsvdialog.cpp:298
 msgid "CSV Delimiter:"
-msgstr "CSV odjeljivač:"
+msgstr "Znak razdvajanja za CSV:"
 
 #: import_export/univcsvdialog.cpp:304 optionsettingsmisc.cpp:180
 msgid "Specify the delimiter to use when importing/exporting CSV files"
-msgstr "Odredi odjeljivač, koji će se koristiti prilikom uvoza/izvoza CSV datoteke"
+msgstr "Odredi znak razdvajanja, koji će se koristiti prilikom uvoza/izvoza CSV datoteke"
 
 #: import_export/univcsvdialog.cpp:327
 msgid "Export column titles"
@@ -4051,7 +4051,7 @@ msgstr "Uvoz iz QIF-a"
 
 #: mmframe.cpp:1484
 msgid "&WebApp..."
-msgstr "&Web aplikacija …"
+msgstr "&Web aplikaciju …"
 
 #: mmframe.cpp:1484
 msgid "Import from WebApp"
@@ -5110,7 +5110,7 @@ msgstr "&Primijeni"
 #: optiondialog.cpp:189
 #, c-format
 msgid "%s page has been saved."
-msgstr "%s stranica je spremljena."
+msgstr "Stranica „%s” je spremljena."
 
 #: optionsettingsattachment.cpp:57
 msgid "Attachments Settings"
@@ -5275,7 +5275,7 @@ msgstr "Fiskalna godina"
 
 #: optionsettingsgeneral.cpp:127
 msgid "Start Day"
-msgstr "Dan početka"
+msgstr "Datum početka"
 
 #: optionsettingsgeneral.cpp:133
 msgid "Specify Day for start of financial year"
@@ -5391,7 +5391,7 @@ msgstr "CSV postavke"
 
 #: optionsettingsmisc.cpp:177
 msgid "Delimiter"
-msgstr "Odjeljivač"
+msgstr "Znak razdvajanja"
 
 #: optionsettingsnet.cpp:62
 msgid "WebApp Settings"
