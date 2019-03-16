@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-02-26 10:01+0300\n"
-"PO-Revision-Date: 2019-03-16 12:13\n"
+"PO-Revision-Date: 2019-03-16 12:44\n"
 "Last-Translator: vomikan <nikolay.akimov@gmail.com>\n"
 "Language-Team: Polish\n"
 "MIME-Version: 1.0\n"
@@ -3803,21 +3803,21 @@ msgstr "Wielokrotnego wyboru"
 #: mmex.cpp:87
 #, c-format
 msgid "Cannot load a translation for the default language of your system (%s)."
-msgstr ""
+msgstr "Nie można załadować tłumaczenia dla domyślnego języka systemowego (%s)."
 
 #: mmex.cpp:91
 #, c-format
 msgid "Cannot load a translation for the selected language (%s)."
-msgstr ""
+msgstr "Nie można załadować tłumaczenia dla wybranego języka (%s)."
 
 #: mmex.cpp:95
 #, c-format
 msgid "Please use the Switch Application Language option in View menu to select one of the %zu available languages."
-msgstr ""
+msgstr "Proszę użyć opcji Zmień język programu w menu Wygląd aby wybrać jeden z %zu dostępnych języków."
 
 #: mmex.cpp:97
 msgid "There are no translation files installed."
-msgstr ""
+msgstr "Nie zainstalowano plików z tłumaczeniami."
 
 #: mmex.cpp:98 mmframe.cpp:3113
 msgid "Language change"
@@ -5334,7 +5334,7 @@ msgstr "Ostatnio użyta dla beneficjenta"
 
 #: optionsettingsmisc.cpp:103
 msgid "Unused"
-msgstr "Nieużywane(y)"
+msgstr "Nieużywana"
 
 #: optionsettingsmisc.cpp:118
 msgid "Default Date:"
@@ -5982,7 +5982,7 @@ msgstr "Symbol akcji"
 
 #: sharetransactiondialog.cpp:209
 msgid "Enter the stock symbol. (Optional) Include exchange. eg: IBM.BE"
-msgstr "Wprowadź symbol akcji. (Opcjonalnie) zawierający kurs, np.: IBM.BE"
+msgstr "Wprowadź symbol akcji. Opcjonalnie zawierający symbol giełdy, np. IBM.BE"
 
 #: sharetransactiondialog.cpp:212
 msgid "Share Number"
@@ -6082,7 +6082,7 @@ msgstr "Wprowadź nazwę powiązanego konta akcji\n"
 msgid "Enter the Company's stock exchange symbol.\n"
 "(Optional) Include exchange. eg: IBM.BE"
 msgstr "Wprowadź symbol giełdowy akcji.\n"
-"Opcjonalnie zawierający symbol giełdy, np.: IBM.BE"
+"Opcjonalnie zawierający symbol giełdy, np. IBM.BE"
 
 #: stockdialog.cpp:212 stockspanel.cpp:96
 msgid "*Date"
