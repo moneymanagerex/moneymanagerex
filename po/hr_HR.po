@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-02-26 10:01+0300\n"
-"PO-Revision-Date: 2019-03-15 23:33\n"
+"PO-Revision-Date: 2019-03-16 01:33\n"
 "Last-Translator: vomikan <nikolay.akimov@gmail.com>\n"
 "Language-Team: Croatian\n"
 "MIME-Version: 1.0\n"
@@ -6575,43 +6575,43 @@ msgstr "UTF-8"
 
 #: util.cpp:816
 msgid "January"
-msgstr "Siječnja"
+msgstr "siječnja"
 
 #: util.cpp:816
 msgid "February"
-msgstr "Veljače"
+msgstr "veljače"
 
 #: util.cpp:816
 msgid "March"
-msgstr "Ožujka"
+msgstr "ožujka"
 
 #: util.cpp:817
 msgid "April"
-msgstr "Travnja"
+msgstr "travnja"
 
 #: util.cpp:817 util.cpp:825
 msgid "May"
-msgstr "Svibnja"
+msgstr "svibnja"
 
 #: util.cpp:817
 msgid "June"
-msgstr "Lipnja"
+msgstr "lipnja"
 
 #: util.cpp:818
 msgid "July"
-msgstr "Srpnja"
+msgstr "srpnja"
 
 #: util.cpp:818
 msgid "August"
-msgstr "Kolovoza"
+msgstr "kolovoza"
 
 #: util.cpp:818
 msgid "September"
-msgstr "Rujna"
+msgstr "rujna"
 
 #: util.cpp:819
 msgid "October"
-msgstr "Listopada"
+msgstr "listopada"
 
 #: util.cpp:819
 msgid "November"
