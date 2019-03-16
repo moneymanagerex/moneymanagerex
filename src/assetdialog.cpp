@@ -297,7 +297,7 @@ void mmAssetDialog::CreateControls()
     wxPanel* button_panel = new wxPanel(this, wxID_STATIC);
     wxBoxSizer* button_panel_sizer = new wxBoxSizer(wxHORIZONTAL);
     wxButton* ok_button = new wxButton(button_panel, wxID_OK, _("&OK "));
-    wxButton* cancel_button = new wxButton(button_panel, wxID_CANCEL, _("&Cancel "));
+    wxButton* cancel_button = new wxButton(button_panel, wxID_CANCEL, g_CancelLabel);
 
     main_sizer->Add(button_panel, wxSizerFlags(g_flagsV).Center());
     button_panel->SetSizer(button_panel_sizer);

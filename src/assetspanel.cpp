@@ -705,7 +705,7 @@ void mmAssetsPanel::OnMouseLeftDown ( wxMouseEvent& event )
 {
     int i = 0;
     wxMenu menu;
-    menu.Append(++i, wxGetTranslation(wxTRANSLATE("All")));
+    menu.Append(++i, _("All"));
 
     for (const auto& type: Model_Asset::all_type())
     {
