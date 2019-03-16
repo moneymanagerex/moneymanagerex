@@ -178,31 +178,31 @@ void OptionSettingsView::Create()
     viewsPanelSizer->Add(userColourSettingStBoxSizer, wxSizerFlags(g_flagsExpand).Proportion(0));
 
     int size_x = 55;
-    m_UDFCB1 = new wxButton(this, wxID_HIGHEST + 11, L"1  \u2588\u2588", wxDefaultPosition, wxSize(size_x, -1), 0);
+    m_UDFCB1 = new wxButton(this, wxID_HIGHEST + 11, u8"1  \u2588\u2588", wxDefaultPosition, wxSize(size_x, -1), 0);
     m_UDFCB1->SetForegroundColour(mmColors::userDefColor1);
     userColourSettingStBoxSizer->Add(m_UDFCB1, g_flagsH);
 
-    m_UDFCB2 = new wxButton(this, wxID_HIGHEST + 22, L"2  \u2588\u2588", wxDefaultPosition, wxSize(size_x, -1), 0);
+    m_UDFCB2 = new wxButton(this, wxID_HIGHEST + 22, u8"2  \u2588\u2588", wxDefaultPosition, wxSize(size_x, -1), 0);
     m_UDFCB2->SetForegroundColour(mmColors::userDefColor2);
     userColourSettingStBoxSizer->Add(m_UDFCB2, g_flagsH);
 
-    m_UDFCB3 = new wxButton(this, wxID_HIGHEST + 33, L"3  \u2588\u2588", wxDefaultPosition, wxSize(size_x, -1), 0);
+    m_UDFCB3 = new wxButton(this, wxID_HIGHEST + 33, u8"3  \u2588\u2588", wxDefaultPosition, wxSize(size_x, -1), 0);
     m_UDFCB3->SetForegroundColour(mmColors::userDefColor3);
     userColourSettingStBoxSizer->Add(m_UDFCB3, g_flagsH);
 
-    m_UDFCB4 = new wxButton(this, wxID_HIGHEST + 44, L"4  \u2588\u2588", wxDefaultPosition, wxSize(size_x, -1), 0);
+    m_UDFCB4 = new wxButton(this, wxID_HIGHEST + 44, u8"4  \u2588\u2588", wxDefaultPosition, wxSize(size_x, -1), 0);
     m_UDFCB4->SetForegroundColour(mmColors::userDefColor4);
     userColourSettingStBoxSizer->Add(m_UDFCB4, g_flagsH);
 
-    m_UDFCB5 = new wxButton(this, wxID_HIGHEST + 55, L"5  \u2588\u2588", wxDefaultPosition, wxSize(size_x, -1), 0);
+    m_UDFCB5 = new wxButton(this, wxID_HIGHEST + 55, u8"5  \u2588\u2588", wxDefaultPosition, wxSize(size_x, -1), 0);
     m_UDFCB5->SetForegroundColour(mmColors::userDefColor5);
     userColourSettingStBoxSizer->Add(m_UDFCB5, g_flagsH);
 
-    m_UDFCB6 = new wxButton(this, wxID_HIGHEST + 66, L"6  \u2588\u2588", wxDefaultPosition, wxSize(size_x, -1), 0);
+    m_UDFCB6 = new wxButton(this, wxID_HIGHEST + 66, u8"6  \u2588\u2588", wxDefaultPosition, wxSize(size_x, -1), 0);
     m_UDFCB6->SetForegroundColour(mmColors::userDefColor6);
     userColourSettingStBoxSizer->Add(m_UDFCB6, g_flagsH);
 
-    m_UDFCB7 = new wxButton(this, wxID_HIGHEST + 77, L"7  \u2588\u2588", wxDefaultPosition, wxSize(size_x, -1), 0);
+    m_UDFCB7 = new wxButton(this, wxID_HIGHEST + 77, u8"7  \u2588\u2588", wxDefaultPosition, wxSize(size_x, -1), 0);
     m_UDFCB7->SetForegroundColour(mmColors::userDefColor7);
     userColourSettingStBoxSizer->Add(m_UDFCB7, g_flagsH);
 

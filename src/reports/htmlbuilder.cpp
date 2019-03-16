@@ -281,7 +281,7 @@ void mmHTMLBuilder::addEmptyTableCell(const int number)
 void mmHTMLBuilder::addColorMarker(const wxString& color)
 {
     html_ += wxString::Format(tags::TABLE_CELL, "");
-    html_ += wxString::Format("<span style='font-family: serif; color: %s'>%s</span>", color, L"\u2588");
+    html_ += wxString::Format("<span style='font-family: serif; color: %s'>%s</span>", color, u8"\u2588");
     this->endTableCell();
 }
 

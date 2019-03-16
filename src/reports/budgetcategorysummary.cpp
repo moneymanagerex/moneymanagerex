@@ -118,7 +118,7 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
         , false, (evaluateTransfer ? &budgetAmt : nullptr));
 
     auto categs = Model_Category::all_categories();
-    categs[L"\uF8FF"] = std::make_pair(-1, -1); //last alphabetical charicter
+    categs[u8"\uF8FF"] = std::make_pair(-1, -1); //last alphabetical charicter
     int categID = -1;
     mmHTMLBuilder hb;
     //---------------------------------
