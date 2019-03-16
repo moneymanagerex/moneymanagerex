@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-02-26 10:01+0300\n"
-"PO-Revision-Date: 2019-03-16 01:33\n"
+"PO-Revision-Date: 2019-03-16 02:03\n"
 "Last-Translator: vomikan <nikolay.akimov@gmail.com>\n"
 "Language-Team: Croatian\n"
 "MIME-Version: 1.0\n"
@@ -6615,11 +6615,11 @@ msgstr "listopada"
 
 #: util.cpp:819
 msgid "November"
-msgstr "Studenog"
+msgstr "studenoga"
 
 #: util.cpp:819
 msgid "December"
-msgstr "Prosinca"
+msgstr "prosinca"
 
 #: util.cpp:824
 msgid "Jan"
