@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-02-26 10:01+0300\n"
-"PO-Revision-Date: 2019-03-03 07:54\n"
+"PO-Revision-Date: 2019-03-16 12:13\n"
 "Last-Translator: vomikan <nikolay.akimov@gmail.com>\n"
 "Language-Team: Polish\n"
 "MIME-Version: 1.0\n"
@@ -1267,7 +1267,7 @@ msgstr "%d dni pozostało"
 #: billsdepositspanel.cpp:528 billsdepositspanel.cpp:580
 #: billsdepositspanel.cpp:587 billsdepositspanel.cpp:591
 msgid "Inactive"
-msgstr " Nieaktywny(a)"
+msgstr "Nieaktywne"
 
 #: billsdepositspanel.cpp:519 mmhomepagepanel.cpp:348
 #, c-format
