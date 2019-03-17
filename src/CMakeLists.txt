@@ -298,8 +298,10 @@ add_executable(${MMEX_EXE} WIN32 MACOSX_BUNDLE
 if(";${CMAKE_CXX_COMPILE_FEATURES};" MATCHES ";cxx_std_11;")
     target_compile_features(${MMEX_EXE} PUBLIC cxx_std_11)
 elseif(";${CMAKE_CXX_COMPILE_FEATURES};" MATCHES ";cxx_range_for;"
-       AND ";${CMAKE_CXX_COMPILE_FEATURES};" MATCHES ";cxx_nullptr;")
-    target_compile_features(${MMEX_EXE} PUBLIC cxx_range_for cxx_nullptr)
+        AND ";${CMAKE_CXX_COMPILE_FEATURES};" MATCHES ";cxx_nullptr;"
+        AND ";${CMAKE_CXX_COMPILE_FEATURES};" MATCHES ";cxx_unicode_literals;")
+    target_compile_features(${MMEX_EXE} PUBLIC
+        cxx_range_for cxx_nullptr cxx_unicode_literals)
 else()
     include(CheckCXXCompilerFlag)
     CHECK_CXX_COMPILER_FLAG("-std=gnu++11" COMPILER_SUPPORTS_GXX11)
