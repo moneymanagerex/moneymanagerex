@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-02-26 10:01+0300\n"
-"PO-Revision-Date: 2019-03-17 00:59\n"
+"PO-Revision-Date: 2019-03-17 01:33\n"
 "Last-Translator: vomikan <nikolay.akimov@gmail.com>\n"
 "Language-Team: Croatian\n"
 "MIME-Version: 1.0\n"
@@ -3615,7 +3615,7 @@ msgstr "Za pronalaženje najsličnije transakcijske napomene, unesi bilo što"
 #: mmcheckingpanel.cpp:577
 #, c-format
 msgid "Account View: %s"
-msgstr "Prikaz računa : %s"
+msgstr "Prikaz računa za: %s"
 
 #: mmcheckingpanel.cpp:869
 msgid "Select account used in transfer transactions"
@@ -5983,7 +5983,7 @@ msgstr "Burzovna oznaka"
 
 #: sharetransactiondialog.cpp:209
 msgid "Enter the stock symbol. (Optional) Include exchange. eg: IBM.BE"
-msgstr "Unesi oznaku vlasničkog udjela. (Opcionalno) Uključi burzu, npr. IBM.BE"
+msgstr "Unesi burzovnu oznaku. (Opcionalno) Uključi burzu, npr. IBM.BE"
 
 #: sharetransactiondialog.cpp:212
 msgid "Share Number"
