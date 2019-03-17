@@ -25,6 +25,7 @@
 #include "reports/reportbase.h"
 #include "Model_Infotable.h"
 #include "Model_Setting.h"
+#include "wx_compat.h"
 #include <wx/sstream.h>
 #include <wx/xml/xml.h>
 #include <map>
@@ -814,17 +815,26 @@ const std::map<int, std::pair<wxConvAuto, wxString> > g_encoding = {
 static const wxString MONTHS[12] =
 {
     wxTRANSLATE("January"), wxTRANSLATE("February"), wxTRANSLATE("March")
-    , wxTRANSLATE("April"), wxTRANSLATE("May"), wxTRANSLATE("June")
-    , wxTRANSLATE("July"), wxTRANSLATE("August"), wxTRANSLATE("September")
-    , wxTRANSLATE("October"), wxTRANSLATE("November"), wxTRANSLATE("December")
+    , wxTRANSLATE("April"), wxGETTEXT_IN_CONTEXT("full month name", "May")
+    , wxTRANSLATE("June") , wxTRANSLATE("July"), wxTRANSLATE("August")
+    , wxTRANSLATE("September"), wxTRANSLATE("October")
+    , wxTRANSLATE("November"), wxTRANSLATE("December")
 };
 
 static const wxString MONTHS_SHORT[12] =
 {
-    wxTRANSLATE("Jan"), wxTRANSLATE("Feb"), wxTRANSLATE("Mar")
-    , wxTRANSLATE("Apr"), wxTRANSLATE("May"), wxTRANSLATE("Jun")
-    , wxTRANSLATE("Jul"), wxTRANSLATE("Aug"), wxTRANSLATE("Sep")
-    , wxTRANSLATE("Oct"), wxTRANSLATE("Nov"), wxTRANSLATE("Dec")
+    wxGETTEXT_IN_CONTEXT("3-letter abbreviation of month name", "Jan"),
+    wxGETTEXT_IN_CONTEXT("3-letter abbreviation of month name", "Feb"),
+    wxGETTEXT_IN_CONTEXT("3-letter abbreviation of month name", "Mar"),
+    wxGETTEXT_IN_CONTEXT("3-letter abbreviation of month name", "Apr"),
+    wxGETTEXT_IN_CONTEXT("3-letter abbreviation of month name", "May"),
+    wxGETTEXT_IN_CONTEXT("3-letter abbreviation of month name", "Jun"),
+    wxGETTEXT_IN_CONTEXT("3-letter abbreviation of month name", "Jul"),
+    wxGETTEXT_IN_CONTEXT("3-letter abbreviation of month name", "Aug"),
+    wxGETTEXT_IN_CONTEXT("3-letter abbreviation of month name", "Sep"),
+    wxGETTEXT_IN_CONTEXT("3-letter abbreviation of month name", "Oct"),
+    wxGETTEXT_IN_CONTEXT("3-letter abbreviation of month name", "Nov"),
+    wxGETTEXT_IN_CONTEXT("3-letter abbreviation of month name", "Dec")
 };
 
 static const wxString gDaysInWeek[7] =

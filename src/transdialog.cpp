@@ -332,7 +332,7 @@ void mmTransDialog::dataToControls()
 
             if (m_new_trx && !m_duplicate)
             {
-                const auto &categs = Model_Category::instance().find(Model_Category::CATEGNAME(wxGetTranslation("Transfer")));
+                const auto &categs = Model_Category::instance().find(Model_Category::CATEGNAME(_("Transfer")));
                 if (!categs.empty())
                 {
                     m_trx_data.SUBCATEGID = -1;

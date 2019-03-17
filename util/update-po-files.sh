@@ -1,6 +1,10 @@
 #!/bin/sh -e
 
-XGETTEXT_ARGS="-k_ -kwxGetTranslation -kwxTRANSLATE -kwxPLURAL:1,2 \
+XGETTEXT_ARGS="--keyword=_ \
+               --keyword=wxTRANSLATE \
+               --keyword=wxPLURAL:1,2 \
+               --keyword=wxGETTEXT_IN_CONTEXT:1c,2 \
+               --keyword=wxGETTEXT_IN_CONTEXT_PLURAL:1c,2,3 \
                --language=C++ \
                --sort-by-file \
                --add-comments=TRANSLATORS \
