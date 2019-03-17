@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-02-26 10:01+0300\n"
-"PO-Revision-Date: 2019-03-16 02:03\n"
+"PO-Revision-Date: 2019-03-17 00:59\n"
 "Last-Translator: vomikan <nikolay.akimov@gmail.com>\n"
 "Language-Team: Croatian\n"
 "MIME-Version: 1.0\n"
@@ -5979,7 +5979,7 @@ msgstr "Unesi ime poduzeća vlasničkog udjela"
 
 #: sharetransactiondialog.cpp:202 stockdialog.cpp:202
 msgid "Stock Symbol"
-msgstr "Oznaka vlasničkog udjela"
+msgstr "Burzovna oznaka"
 
 #: sharetransactiondialog.cpp:209
 msgid "Enter the stock symbol. (Optional) Include exchange. eg: IBM.BE"
@@ -6311,7 +6311,7 @@ msgstr "&Novi vlasnički udio"
 
 #: stockspanel.cpp:146
 msgid "&Add Stock Transactions"
-msgstr "&Dodaj transakciju za vlasnički udio"
+msgstr "&Dodaj transakcije vlasničkog udjela"
 
 #: stockspanel.cpp:147
 msgid "&View Stock Transactions"
