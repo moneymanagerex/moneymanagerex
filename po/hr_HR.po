@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-02-26 10:01+0300\n"
-"PO-Revision-Date: 2019-03-09 14:34\n"
+"PO-Revision-Date: 2019-03-17 01:33\n"
 "Last-Translator: vomikan <nikolay.akimov@gmail.com>\n"
 "Language-Team: Croatian\n"
 "MIME-Version: 1.0\n"
@@ -2707,7 +2707,7 @@ msgstr "Od datuma"
 
 #: import_export/qif_export.cpp:149 import_export/qif_import_gui.cpp:183
 msgid "To Date"
-msgstr "Do datuma"
+msgstr "Datum do"
 
 #: import_export/qif_export.cpp:162 import_export/qif_import_gui.cpp:277
 #: optionsettingsgeneral.cpp:98
@@ -3031,11 +3031,11 @@ msgstr "Format datuma: "
 
 #: import_export/univcsvdialog.cpp:298
 msgid "CSV Delimiter:"
-msgstr "CSV odjeljivač:"
+msgstr "Znak razdvajanja za CSV:"
 
 #: import_export/univcsvdialog.cpp:304 optionsettingsmisc.cpp:180
 msgid "Specify the delimiter to use when importing/exporting CSV files"
-msgstr "Odredi odjeljivač, koji će se koristiti prilikom uvoza/izvoza CSV datoteke"
+msgstr "Odredi znak razdvajanja, koji će se koristiti prilikom uvoza/izvoza CSV datoteke"
 
 #: import_export/univcsvdialog.cpp:327
 msgid "Export column titles"
@@ -3615,7 +3615,7 @@ msgstr "Za pronalaženje najsličnije transakcijske napomene, unesi bilo što"
 #: mmcheckingpanel.cpp:577
 #, c-format
 msgid "Account View: %s"
-msgstr "Prikaz računa : %s"
+msgstr "Prikaz računa za: %s"
 
 #: mmcheckingpanel.cpp:869
 msgid "Select account used in transfer transactions"
@@ -4051,7 +4051,7 @@ msgstr "Uvoz iz QIF-a"
 
 #: mmframe.cpp:1484
 msgid "&WebApp..."
-msgstr "&Web aplikacija …"
+msgstr "&Web aplikaciju …"
 
 #: mmframe.cpp:1484
 msgid "Import from WebApp"
@@ -5089,7 +5089,7 @@ msgstr "Izvještaj o prognozi"
 
 #: optiondialog.cpp:130
 msgid "General"
-msgstr "Opći"
+msgstr "Opće"
 
 #: optiondialog.cpp:131 optionsettingsview.cpp:54
 msgid "View Options"
@@ -5110,7 +5110,7 @@ msgstr "&Primijeni"
 #: optiondialog.cpp:189
 #, c-format
 msgid "%s page has been saved."
-msgstr "%s stranica je spremljena."
+msgstr "Stranica „%s” je spremljena."
 
 #: optionsettingsattachment.cpp:57
 msgid "Attachments Settings"
@@ -5275,7 +5275,7 @@ msgstr "Fiskalna godina"
 
 #: optionsettingsgeneral.cpp:127
 msgid "Start Day"
-msgstr "Dan početka"
+msgstr "Datum početka"
 
 #: optionsettingsgeneral.cpp:133
 msgid "Specify Day for start of financial year"
@@ -5391,7 +5391,7 @@ msgstr "CSV postavke"
 
 #: optionsettingsmisc.cpp:177
 msgid "Delimiter"
-msgstr "Odjeljivač"
+msgstr "Znak razdvajanja"
 
 #: optionsettingsnet.cpp:62
 msgid "WebApp Settings"
@@ -5979,11 +5979,11 @@ msgstr "Unesi ime poduzeća vlasničkog udjela"
 
 #: sharetransactiondialog.cpp:202 stockdialog.cpp:202
 msgid "Stock Symbol"
-msgstr "Oznaka vlasničkog udjela"
+msgstr "Burzovna oznaka"
 
 #: sharetransactiondialog.cpp:209
 msgid "Enter the stock symbol. (Optional) Include exchange. eg: IBM.BE"
-msgstr "Unesi oznaku vlasničkog udjela. (Opcionalno) Uključi burzu, npr. IBM.BE"
+msgstr "Unesi burzovnu oznaku. (Opcionalno) Uključi burzu, npr. IBM.BE"
 
 #: sharetransactiondialog.cpp:212
 msgid "Share Number"
@@ -6311,7 +6311,7 @@ msgstr "&Novi vlasnički udio"
 
 #: stockspanel.cpp:146
 msgid "&Add Stock Transactions"
-msgstr "&Dodaj transakciju za vlasnički udio"
+msgstr "&Dodaj transakcije vlasničkog udjela"
 
 #: stockspanel.cpp:147
 msgid "&View Stock Transactions"
@@ -6575,51 +6575,51 @@ msgstr "UTF-8"
 
 #: util.cpp:816
 msgid "January"
-msgstr "Siječnja"
+msgstr "siječnja"
 
 #: util.cpp:816
 msgid "February"
-msgstr "Veljače"
+msgstr "veljače"
 
 #: util.cpp:816
 msgid "March"
-msgstr "Ožujka"
+msgstr "ožujka"
 
 #: util.cpp:817
 msgid "April"
-msgstr "Travnja"
+msgstr "travnja"
 
 #: util.cpp:817 util.cpp:825
 msgid "May"
-msgstr "Svibnja"
+msgstr "svibnja"
 
 #: util.cpp:817
 msgid "June"
-msgstr "Lipnja"
+msgstr "lipnja"
 
 #: util.cpp:818
 msgid "July"
-msgstr "Srpnja"
+msgstr "srpnja"
 
 #: util.cpp:818
 msgid "August"
-msgstr "Kolovoza"
+msgstr "kolovoza"
 
 #: util.cpp:818
 msgid "September"
-msgstr "Rujna"
+msgstr "rujna"
 
 #: util.cpp:819
 msgid "October"
-msgstr "Listopada"
+msgstr "listopada"
 
 #: util.cpp:819
 msgid "November"
-msgstr "Studenog"
+msgstr "studenoga"
 
 #: util.cpp:819
 msgid "December"
-msgstr "Prosinca"
+msgstr "prosinca"
 
 #: util.cpp:824
 msgid "Jan"
