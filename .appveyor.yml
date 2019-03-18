@@ -17,7 +17,7 @@ matrix:
   - { comp: 141, image: Visual Studio 2015 }
   # duplicated - select only one
   - { comp: 120, image: Visual Studio 2017 }
-  - { comp: 140, image: Visual Studio 2015 }
+  - { comp: 140, image: Visual Studio 2017 }
   allow_failures:
   - configuration: Debug
 
@@ -47,11 +47,11 @@ environment:
   # - comp: 140
   # - { comp: 140, wxShared: 1 }
   # - { comp: 140, xp: _xp }
-  # - { comp: 140, xp: _xp, wxShared: 1 }
+  - { comp: 140, xp: _xp, wxShared: 1 }
   # - comp: 120
   # - { comp: 120, wxShared: 1 }
   # - { comp: 120, xp: _xp }
-  - { comp: 120, xp: _xp, wxShared: 1 }
+  # - { comp: 120, xp: _xp, wxShared: 1 }
   # v110 not working so far - see issue #1307 on GitHub
   # - comp: 110
   # - { comp: 110, wxShared: 1 }
