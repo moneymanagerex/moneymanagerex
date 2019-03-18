@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-03-18 16:27+0300\n"
-"PO-Revision-Date: 2019-03-18 13:35\n"
+"PO-Revision-Date: 2019-03-18 14:30\n"
 "Last-Translator: vomikan <nikolay.akimov@gmail.com>\n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -6572,7 +6572,7 @@ msgstr "Avril"
 #: util.cpp:818
 msgctxt "full month name"
 msgid "May"
-msgstr ""
+msgstr "Mai"
 
 #: util.cpp:819
 msgid "June"
@@ -6605,62 +6605,62 @@ msgstr "Décembre"
 #: util.cpp:826
 msgctxt "3-letter abbreviation of month name"
 msgid "Jan"
-msgstr ""
+msgstr "Janv"
 
 #: util.cpp:827
 msgctxt "3-letter abbreviation of month name"
 msgid "Feb"
-msgstr ""
+msgstr "Fév"
 
 #: util.cpp:828
 msgctxt "3-letter abbreviation of month name"
 msgid "Mar"
-msgstr ""
+msgstr "Mar"
 
 #: util.cpp:829
 msgctxt "3-letter abbreviation of month name"
 msgid "Apr"
-msgstr ""
+msgstr "Avr"
 
 #: util.cpp:830
 msgctxt "3-letter abbreviation of month name"
 msgid "May"
-msgstr ""
+msgstr "Mai"
 
 #: util.cpp:831
 msgctxt "3-letter abbreviation of month name"
 msgid "Jun"
-msgstr ""
+msgstr "Juin"
 
 #: util.cpp:832
 msgctxt "3-letter abbreviation of month name"
 msgid "Jul"
-msgstr ""
+msgstr "Juil"
 
 #: util.cpp:833
 msgctxt "3-letter abbreviation of month name"
 msgid "Aug"
-msgstr ""
+msgstr "Aoû"
 
 #: util.cpp:834
 msgctxt "3-letter abbreviation of month name"
 msgid "Sep"
-msgstr ""
+msgstr "Sep"
 
 #: util.cpp:835
 msgctxt "3-letter abbreviation of month name"
 msgid "Oct"
-msgstr ""
+msgstr "Oct"
 
 #: util.cpp:836
 msgctxt "3-letter abbreviation of month name"
 msgid "Nov"
-msgstr ""
+msgstr "Nov"
 
 #: util.cpp:837
 msgctxt "3-letter abbreviation of month name"
 msgid "Dec"
-msgstr ""
+msgstr "Déc"
 
 #: util.cpp:842
 msgid "Sunday"
