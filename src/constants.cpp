@@ -71,7 +71,7 @@ const wxString mmex::getProgramCopyright()
 }
 const wxString mmex::getProgramDescription()
 {
-    const wxString bull = L" \u2022 ";
+    const wxString bull = u8" \u2022 ";
     wxString description;
     wxString curl = curl_version();
         curl.Replace(" ","\n" + bull);
