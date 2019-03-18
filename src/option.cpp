@@ -234,7 +234,9 @@ const wxString Option::getLanguageISO6391(bool get_db)
         return wxEmptyString;
     if (m_language == wxLANGUAGE_DEFAULT)
         return wxTranslations::Get()->GetBestTranslation("mmex", wxLANGUAGE_ENGLISH_US).Left(2);
-    return wxLocale::GetLanguageCanonicalName(m_language).Left(2);
+
+    const auto lang = wxLocale::GetLanguageCanonicalName(m_language);
+    return lang.Left(2);
 }
 
 void Option::setUserName(const wxString& username)

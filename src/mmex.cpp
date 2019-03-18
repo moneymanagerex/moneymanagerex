@@ -60,8 +60,12 @@ wxLanguage mmGUIApp::getGUILanguage() const
 
 bool mmGUIApp::setGUILanguage(wxLanguage lang)
 {
-    if (lang == wxLANGUAGE_UNKNOWN) lang=wxLANGUAGE_DEFAULT;
-    if (lang == this->m_lang) return false;
+    if (lang == wxLANGUAGE_UNKNOWN) {
+        lang = wxLANGUAGE_DEFAULT;
+    }
+    if (lang == this->m_lang) {
+        return false;
+    }
     wxTranslations *trans = new wxTranslations;
     trans->SetLanguage(lang);
     trans->AddStdCatalog();
@@ -69,7 +73,7 @@ bool mmGUIApp::setGUILanguage(wxLanguage lang)
     {
         size_t count = trans->GetAvailableTranslations("mmex").GetCount();
         wxString msg;
-        if (lang==wxLANGUAGE_DEFAULT)
+        if (lang == wxLANGUAGE_DEFAULT)
         {
             wxString best;
 #if wxCHECK_VERSION(3, 1, 2)
@@ -84,20 +88,22 @@ bool mmGUIApp::setGUILanguage(wxLanguage lang)
             msg = wxString::Format(_("Cannot load a translation for the default language of your system (%s)."),
                 best);
         }
-        else
-            msg = wxString::Format(_("Cannot load a translation for the selected language (%s)."),
-                wxLocale::GetLanguageName(lang));
+        else {
+            msg = wxString::Format(_("Cannot load a translation for the selected language (%s).")
+                , wxLocale::GetLanguageName(lang));
+        }
         msg += "\n\n";
         if (count)
-            msg += wxString::Format(_("Please use the Switch Application Language option in View menu to select one of the %zu available languages."), count+1);
+            msg += wxString::Format(_("Please use the Switch Application Language option in View menu to select one of the %zu available languages."), count + 1);
         else
             msg += _("There are no translation files installed.");
+
         mmErrorDialogs::MessageWarning(NULL, msg, _("Language change"));
         wxDELETE(trans);
         return false;
     }
     wxTranslations::Set(trans);
-    this->m_lang=lang;
+    this->m_lang = lang;
     Option::instance().setLanguage(lang);
     return true;
 }
