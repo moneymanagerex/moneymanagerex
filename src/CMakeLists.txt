@@ -165,6 +165,7 @@ add_executable(${MMEX_EXE} WIN32 MACOSX_BUNDLE
     wizard_newdb.h
     wizard_update.cpp
     wizard_update.h
+    wx_compat.h
 
     import_export/export.cpp
     import_export/export.h

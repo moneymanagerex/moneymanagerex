@@ -339,8 +339,8 @@ void mmUnivCSVDialog::CreateControls()
 
         // Choice selection.
         m_choiceAmountFieldSign = new wxChoice(itemPanel7, wxID_ANY);
-        m_choiceAmountFieldSign->Append(wxGetTranslation(_("Positive values are deposits")));
-        m_choiceAmountFieldSign->Append(wxGetTranslation(_("Positive values are withdrawals")));
+        m_choiceAmountFieldSign->Append(_("Positive values are deposits"));
+        m_choiceAmountFieldSign->Append(_("Positive values are withdrawals"));
         m_choiceAmountFieldSign->SetSelection(PositiveIsDeposit);
         flex_sizer->Add(m_choiceAmountFieldSign, g_flagsH);
     }
