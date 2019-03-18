@@ -1,36 +1,39 @@
 version: '{build}'
 image:
+- Visual Studio 2019
 - Visual Studio 2017
-- Visual Studio 2015
+# - Visual Studio 2015
 configuration:
 - Release
 # - Debug
 platform:
 - x64
-- Win32
+- x86
 
 matrix:
   fast_finish: true
   exclude:
   # not installed
+  - { comp: 142, image: Visual Studio 2017 }
+  - { comp: 142, image: Visual Studio 2015 }
   - { comp: 141, image: Visual Studio 2015 }
+  - { xp: _xp,   image: Visual Studio 2019 }
   # duplicated - select only one
+  - { comp: 120, image: Visual Studio 2019 }
   - { comp: 120, image: Visual Studio 2017 }
-  - { comp: 140, image: Visual Studio 2015 }
+  - { comp: 140, image: Visual Studio 2017 }
+  - { comp: 140, image: Visual Studio 2019 }
   allow_failures:
   - configuration: Debug
 
 environment:
   # use cache with 7z compression
   APPVEYOR_CACHE_ENTRY_ZIP_ARGS: -t7z -m0=lzma -mx=9
-  # Use cygwin embedded gettext tools and Python 3.7
-  path: 'C:\Python37-x64;C:\Python37-x64\Scripts;%path%;C:\cygwin64\bin'
+  APPVEYOR_SAVE_CACHE_ON_ERROR: true
+  # Use cygwin embedded gettext tools and Python 3.8
+  path: 'C:\Python38-x64;C:\Python38-x64\Scripts;%path%;C:\cygwin64\bin'
   # clcache config
   clcVer: 4.1.0
-  # libcurl config
-  curlVer: 7_66_0
-  curldir: C:\curl-$(curlVer)
-  curlShared: OFF
   # wxWidgets config
   wxVer: 3.1.3
   wxwin: C:\wxWidgets-$(wxver)-$(configuration)
@@ -39,10 +42,12 @@ environment:
   # Microsoft compiler options
   CL: /MP
   matrix:
+  # - comp: 142
+  - { comp: 142, wxShared: 1 }
   # - comp: 141
-  - { comp: 141, wxShared: 1 }
+  # - { comp: 141, wxShared: 1 }
   # - { comp: 141, xp: _xp }
-  # - { comp: 141, xp: _xp, wxShared: 1 }
+  - { comp: 141, xp: _xp, wxShared: 1 }
   # - comp: 140
   # - { comp: 140, wxShared: 1 }
   # - { comp: 140, xp: _xp }
@@ -50,15 +55,18 @@ environment:
   # - comp: 120
   # - { comp: 120, wxShared: 1 }
   # - { comp: 120, xp: _xp }
-  - { comp: 120, xp: _xp, wxShared: 1 }
+  # - { comp: 120, xp: _xp, wxShared: 1 }
 
 init:
 # AppVeyor missing paths
-- if "%VS150COMNTOOLS%"=="" set "VS150COMNTOOLS=%ProgramFiles(x86)%\Microsoft Visual Studio\2017\Community\Common7\Tools\"
+- if "%VS160COMNTOOLS%"=="" if "%APPVEYOR_BUILD_WORKER_IMAGE%"=="Visual Studio 2019 Preview" set "VS160COMNTOOLS=%ProgramFiles(x86)%\Microsoft Visual Studio\2019\Preview\Common7\Tools\"
+- if "%VS160COMNTOOLS%"=="" if "%APPVEYOR_BUILD_WORKER_IMAGE:~0,18%"=="Visual Studio 2019" set "VS160COMNTOOLS=%ProgramFiles(x86)%\Microsoft Visual Studio\2019\Community\Common7\Tools\"
+- if "%VS150COMNTOOLS%"=="" if "%APPVEYOR_BUILD_WORKER_IMAGE:~0,18%"=="Visual Studio 2017" set "VS150COMNTOOLS=%ProgramFiles(x86)%\Microsoft Visual Studio\2017\Community\Common7\Tools\"
 # Set developer command prompt
-- if %platform:~-2%==64 (set arch=amd64) else (set arch=amd64_x86)
-- call set "vcvarsall=%%VS%comp%COMNTOOLS%%..\..\VC\vcvarsall.bat"
+- if /i %platform%==x64 (set arch=amd64) else (set arch=amd64_x86)
+- if %comp% LSS 141 call set "vcvarsall=%%VS%comp%COMNTOOLS%%..\..\VC\vcvarsall.bat"
 - if %comp%==141 set "vcvarsall=%VS150COMNTOOLS%..\..\VC\Auxiliary\Build\vcvarsall.bat"
+- if %comp%==142 set "vcvarsall=%VS160COMNTOOLS%..\..\VC\Auxiliary\Build\vcvarsall.bat"
 - call "%vcvarsall%" %arch%
 # detect MSVC compiler version
 - for /f "tokens=1,2 delims=." %%a in ('cl 2^>^&1 ^| findstr /r "\<[0-9][0-9]*\.[0-9][0-9]*\."') do (
@@ -66,32 +74,33 @@ init:
   )
 - echo %clver% > ..\MSVC_ver.txt
 # Set wxWidgets library paths
-- if %platform:~-2%==64 set wxSuff=_x64
+- if /i %platform%==x64 set wxSuff=_x64
 - set "wxcomp=%comp%"
 - if %comp:~0,2%==14 (if %wxVer%==3.1.3 set wxcomp=14x)
 - set "wxLibFolder=%wxwin%\lib\vc%wxcomp%%xp%%wxSuff%"
 - if %wxShared%==0 (set wxLibFolder=%wxLibFolder%_lib)
   else (set wxLibFolder=%wxLibFolder%_dll)
-# Set curl library paths
-- set "curlLibFolder=%curldir%\vc%comp%%xp%%wxSuff%_%configuration%"
-- if %curlShared%==OFF (set curlLibFolder=%curlLibFolder%_lib)
-  else (set curlLibFolder=%curlLibFolder%_dll)
 # Print some info
 - echo %APPVEYOR_BUILD_WORKER_IMAGE% %platform% v%comp%%xp% %configuration% %arch%
 # clcache unique directory
 - set "CLCACHE_DIR=C:\clcache-%APPVEYOR_BUILD_WORKER_IMAGE%-%platform%-v%comp%%xp%"
 # prepare cmake options
+- if /i %platform%==x64 (set "cmake_platf=x64") else (set "cmake_platf=Win32")
 - if %comp%==120 set "gen=12 2013"
 - if %comp%==140 set "gen=14 2015"
 - if %comp%==141 set "gen=15 2017"
-- if %platform:~-2%==64 set "gen=%gen% Win64"
+- if %comp%==142 (set "gen=16 2019" & set "cmake_plat=-A %cmake_platf%")
+- if %comp% LSS 142 if /i %platform%==x64 set "gen=%gen% Win64"
 # Microsoft compiler debug symbols option
-- if %configuration%==Debug (set "CL=%CL% /Z7")
+- if /i %configuration%==Debug (set "CL=%CL% /Z7")
+# vcpkg config
+- set VCPKG_ROOT=C:\Tools\vcpkg
+- set VCPKG_DEFAULT_TRIPLET=%platform%-windows
 
 cache:
 - '%wxwin%\lib -> ..\MSVC_ver.txt'
-- '%curlLibFolder% -> .appveyor.yml'
 - '%CLCACHE_DIR% -> ..\MSVC_ver.txt'
+- '%VCPKG_ROOT%\installed'
 
 install:
 # setup clcache
@@ -99,54 +108,31 @@ install:
 - copy clcache\clcache-%clcVer%\clcache.exe clcache\clcache-%clcVer%\cl.exe
 - if exist %APPVEYOR_BUILD_FOLDER%\clcache\clcache-%clcVer%\cl.exe set "PATH=%APPVEYOR_BUILD_FOLDER%\clcache\clcache-%clcVer%;%PATH%"
 - clcache -s
+# setup vcpkg
+- vcpkg integrate install
+- vcpkg list
+- vcpkg upgrade --no-dry-run
+- vcpkg install curl lua[cpp] rapidjson
 # wxWidgets, try to download pre-compiled version first
 - if %wxShared%==1 (
     curl -fsL --fail-early
       -O %wxURL%/wxMSW-%wxVer%_vc%wxcomp%%xp%%wxSuff%_Dev.7z
       -O %wxURL%/wxWidgets-%wxVer%-headers.7z &&
-    if %configuration%==Release
+    if /i %configuration%==Release
       curl -fsL -O %wxURL%/wxMSW-%wxVer%_vc%wxcomp%%xp%%wxSuff%_ReleaseDLL.7z
   ) || exit 0
 - if not exist wxMSW-%wxVer%_vc%wxcomp%%xp%%wxSuff%_Dev.7z
     curl -fsSL -O %wxURL%/wxWidgets-%wxVer%.7z
 - 7z x -y "-o%wxwin%" wx*-%wxVer%*.7z
 # wxWidgets, build script from build/tools/msvs/officialbuild.bat
-- if %configuration%==Release set "wxConf=BUILD=release"
-- if not %platform:~-2%==64 set "wxFlags=CPPFLAGS=/arch:SSE CFLAGS=/arch:SSE"
+- if /i %configuration%==Release set "wxConf=BUILD=release"
+- if /i %platform%==x86 set "wxFlags=CPPFLAGS=/arch:SSE CFLAGS=/arch:SSE"
 - if not exist "%wxLibFolder%" (
     echo Building wxWidgets %wxVer% &
     cd %wxwin%\build\msw &&
-    nmake /nologo /s /f makefile.vc %wxConf% COMPILER_VERSION=%comp%%xp%
+    nmake /nologo /s /f makefile.vc %wxConf% COMPILER_VERSION=%wxcomp%%xp%
       TARGET_CPU=%platform% DEBUG_INFO=default SHARED=%wxShared% VENDOR=mmex %wxFlags%
       wxUSE_UNSAFE_WXSTRING_CONV=0
-  )
-# libcurl
-- if %configuration%==Debug (set "curlConf=-DENABLE_DEBUG=ON")
-- if not exist "%curlLibFolder%" (
-    echo Building libcurl %curlVer% &
-    git clone -q --depth=1 --branch=curl-%curlVer% https://github.com/curl/curl.git %curldir%-src &&
-    mkdir %curldir%-src\build && cd %curldir%-src\build &&
-    cmake -T v%comp%%xp%,host=x64 -G "Visual Studio %gen%" %curlConf%
-      -DBUILD_CURL_EXE=OFF
-      -DBUILD_SHARED_LIBS=%curlShared%
-      -DCURL_DISABLE_LDAP=ON
-      -DCURL_DISABLE_LDAPS=ON
-      -DCURL_DISABLE_TELNET=ON
-      -DCURL_DISABLE_DICT=ON
-      -DCURL_DISABLE_FILE=ON
-      -DCURL_DISABLE_TFTP=ON
-      -DCURL_DISABLE_RTSP=ON
-      -DCURL_DISABLE_POP3=ON
-      -DCURL_DISABLE_IMAP=ON
-      -DCURL_DISABLE_SMTP=ON
-      -DCURL_DISABLE_GOPHER=ON
-      -DENABLE_MANUAL=OFF
-      -DCMAKE_USE_WINSSL=ON
-      -DBUILD_TESTING=OFF
-      -DCMAKE_INSTALL_PREFIX=%curlLibFolder%
-      .. &&
-    cmake --build . --target install --config %configuration%
-      -- /maxcpucount /verbosity:minimal /nologo /p:PreferredToolArchitecture=x64
   )
 
 before_build:
@@ -161,17 +147,18 @@ before_build:
 
 build_script:
 - mkdir build & cd build
-- if %configuration%==Debug
+- if /i %configuration%==Debug
     set "cmake_def=-DCMAKE_INSTALL_DEBUG_LIBRARIES=ON -DCMAKE_INSTALL_DEBUG_LIBRARIES_ONLY=ON"
-- set "cmake_def=%cmake_def% -DCMAKE_PREFIX_PATH=%curlLibFolder%"
-- cmake --graphviz=mmex.dot -T v%comp%%xp%,host=x64 -G "Visual Studio %gen%" %cmake_def% ..
+- cmake --graphviz=mmex.dot -T v%comp%%xp%,host=x64 -G "Visual Studio %gen%" %cmake_plat% %cmake_def% ..
 - cmake --build . --target package --config %configuration%
-    -- /maxcpucount /verbosity:minimal /nologo /p:PreferredToolArchitecture=x64
+    -- /maxcpucount /verbosity:minimal /nologo
+       /p:PreferredToolArchitecture=x64 /p:XPDeprecationWarning=false
 
 after_build:
 - clcache -s
+- vcpkg list
 # rename and move
-- if %configuration%==Debug set "pkgsuff=-debug"
+- if /i %configuration%==Debug set "pkgsuff=-debug"
 - for %%f in (*.exe *.zip) do
     if /i %%~xf==.exe (move "%%f" "..\%%~nf%xp%%pkgsuff%.exe")
     else (move "%%f" "..\%%~nf%xp%%pkgsuff%-portable.zip")
@@ -181,7 +168,7 @@ test: off
 on_success:
 # don't cache downloaded wxWidgets binaries
 - if %wxShared%==1 (
-    if exist wxMSW-%wxVer%_vc%comp%%xp%%wxSuff%_Dev.7z
+    if exist wxMSW-%wxVer%_vc%wxcomp%%xp%%wxSuff%_Dev.7z
       rmdir /s /q "%wxLibFolder%"
   )
 

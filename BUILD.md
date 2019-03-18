@@ -25,7 +25,8 @@ Microsoft Windows
    |--------------------|:-------:|:-------:|
    | Visual Studio 2013 |  12.0   |   120   |
    | Visual Studio 2015 |  14.0   |   140   |
-   | Visual Studio 2017 |  15.0   |   141   |
+   | Visual Studio 2017 |  15.x   |   141   |
+   | Visual Studio 2019 |  16.x   |   142   |
 
 2. If you use Visual Studio older then 2013 Update 1 download and install
    [Git for Windows] with default options.
