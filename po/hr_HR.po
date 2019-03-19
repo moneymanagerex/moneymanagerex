@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-03-18 16:27+0300\n"
-"PO-Revision-Date: 2019-03-18 13:37\n"
+"PO-Revision-Date: 2019-03-19 14:17\n"
 "Last-Translator: vomikan <nikolay.akimov@gmail.com>\n"
 "Language-Team: Croatian\n"
 "MIME-Version: 1.0\n"
@@ -6572,7 +6572,7 @@ msgstr "travnja"
 #: util.cpp:818
 msgctxt "full month name"
 msgid "May"
-msgstr ""
+msgstr "svibnja"
 
 #: util.cpp:819
 msgid "June"
