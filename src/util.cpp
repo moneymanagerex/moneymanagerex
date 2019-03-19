@@ -942,7 +942,6 @@ void mmCalcValidator::OnChar(wxKeyEvent& event)
         return text_field->WriteText(str);
     else
         event.Skip();
-
 }
 
 const wxString mmTrimAmount(const wxString& value, const wxString& decimal)
@@ -1018,8 +1017,9 @@ void mmDates::doHandleStatistics(const wxString &dateStr)
             for (const auto &i : invalidMask)
                 m_date_formats_temp.erase(i);
         }
-        else
+        else {
             m_error_count++;
+        }
     }
 }
 

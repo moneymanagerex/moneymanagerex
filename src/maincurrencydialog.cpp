@@ -108,28 +108,34 @@ void mmMainCurrencyDialog::fillControls()
 
     bool skip_unused = cbShowAll_->IsChecked();
     bool skip_historic = cbHideHistoric_->IsChecked();
-    wxString today = wxDate::Today().FormatISODate();
+    const wxString today = wxDate::Today().FormatISODate();
     for (const auto& currency : Model_Currency::instance().all(Model_Currency::COL_CURRENCYNAME))
     {
         int currencyID = currency.CURRENCYID;
-        bool currency_is_base = baseCurrencyID == currencyID;
+        bool is_base_currency = (baseCurrencyID == currencyID);
+        if (skip_unused && !is_base_currency && !Model_Account::is_used(currency)) {
+            continue;
+        }
 
-        if (skip_unused && !currency_is_base && !Model_Account::is_used(currency)) continue;
-        if (skip_historic && (currency.HISTORIC == 1)) continue;
+        bool is_currency_historical = (currency.HISTORIC == 1);
+        if (skip_historic && is_currency_historical) {
+            continue;
+        }
 
         wxVector<wxVariant> data;
-        data.push_back(wxVariant(baseCurrencyID == currencyID ? u8"\u2691" : u8""));
+        data.push_back(wxVariant(is_base_currency ? u8"\u2691" : u8""));
         data.push_back(wxVariant(currency.CURRENCY_SYMBOL));
         data.push_back(wxVariant(wxGetTranslation(currency.CURRENCYNAME)));
         data.push_back(wxVariant(wxString()<<Model_CurrencyHistory::getLastRate(currencyID, today)));
-        data.push_back(wxVariant(currency.HISTORIC == 1 ? u8"\u2713" : u8""));
+        data.push_back(wxVariant(is_currency_historical ? u8"\u2713" : u8""));
         currencyListBox_->AppendItem(data, (wxUIntPtr)currencyID);
         if (m_currency_id == currencyID)
         {
             currencyListBox_->SelectRow(currencyListBox_->GetItemCount() - 1);
             itemButtonEdit_->Enable();
-            if (!skip_unused)
-                itemButtonDelete_->Enable(!currency_is_base && !Model_Account::is_used(currency));
+            if (!skip_unused) {
+                itemButtonDelete_->Enable(!is_base_currency && !Model_Account::is_used(currency));
+            }
         }
     }
 
