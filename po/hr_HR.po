@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-03-18 16:27+0300\n"
-"PO-Revision-Date: 2019-03-19 15:08\n"
+"PO-Revision-Date: 2019-03-20 12:05\n"
 "Last-Translator: vomikan <nikolay.akimov@gmail.com>\n"
 "Language-Team: Croatian\n"
 "MIME-Version: 1.0\n"
@@ -99,7 +99,7 @@ msgstr "Odaberi valutu"
 
 #: accountdialog.cpp:238
 msgid "Favorite Account"
-msgstr "Glavni račun"
+msgstr "Favorizirani račun"
 
 #: accountdialog.cpp:248 assetdialog.cpp:247 assetspanel.cpp:66
 #: billsdepositsdialog.cpp:641 billsdepositspanel.cpp:115
@@ -1752,7 +1752,7 @@ msgstr "Zatvoreni"
 
 #: constants.cpp:235 mmframe.cpp:1293
 msgid "Favorites"
-msgstr "Često korišteni"
+msgstr "Favoriti"
 
 #: currencydialog.cpp:81
 msgid "Currency Manager"
