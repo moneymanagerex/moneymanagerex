@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-03-18 16:27+0300\n"
-"PO-Revision-Date: 2019-03-20 12:05\n"
+"PO-Revision-Date: 2019-03-20 14:13\n"
 "Last-Translator: vomikan <nikolay.akimov@gmail.com>\n"
 "Language-Team: Croatian\n"
 "MIME-Version: 1.0\n"
@@ -911,11 +911,11 @@ msgstr "Odredi vrstu transakcije koja će se stvorenti."
 
 #: billsdepositsdialog.cpp:560 transdialog.cpp:462
 msgid "&Advanced"
-msgstr "&Napredno"
+msgstr "&Dodatno"
 
 #: billsdepositsdialog.cpp:563 transdialog.cpp:1238
 msgid "Allows the setting of different amounts in the FROM and TO accounts."
-msgstr "Dozvoli postavljanje različitih iznosa u ulazne i izlazne račune."
+msgstr "Dozvoli postavljanje različitih iznosa u izlazne i ulazne račune."
 
 #: billsdepositsdialog.cpp:573 billsdepositspanel.cpp:109
 #: budgetingpanel.cpp:321 filtertransdialog.cpp:495 filtertransdialog.cpp:503
