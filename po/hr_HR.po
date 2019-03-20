@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-03-18 16:27+0300\n"
-"PO-Revision-Date: 2019-03-20 14:13\n"
+"PO-Revision-Date: 2019-03-20 14:54\n"
 "Last-Translator: vomikan <nikolay.akimov@gmail.com>\n"
 "Language-Team: Croatian\n"
 "MIME-Version: 1.0\n"
@@ -970,7 +970,7 @@ msgstr "Odaberi primtelja"
 
 #: billsdepositsdialog.cpp:615 transdialog.cpp:514
 msgid "Split"
-msgstr "Podijeli"
+msgstr "Podjela"
 
 #: billsdepositsdialog.cpp:618 transdialog.cpp:1235
 msgid "Use split Categories"
