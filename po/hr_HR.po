@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-03-18 16:27+0300\n"
-"PO-Revision-Date: 2019-03-19 15:08\n"
+"PO-Revision-Date: 2019-03-21 12:47\n"
 "Last-Translator: vomikan <nikolay.akimov@gmail.com>\n"
 "Language-Team: Croatian\n"
 "MIME-Version: 1.0\n"
@@ -99,7 +99,7 @@ msgstr "Odaberi valutu"
 
 #: accountdialog.cpp:238
 msgid "Favorite Account"
-msgstr "Glavni račun"
+msgstr "Favorizirani račun"
 
 #: accountdialog.cpp:248 assetdialog.cpp:247 assetspanel.cpp:66
 #: billsdepositsdialog.cpp:641 billsdepositspanel.cpp:115
@@ -495,7 +495,7 @@ msgstr "Ukupno: %s"
 
 #: assetspanel.cpp:423
 msgid "MMEX allows you to track fixed assets like cars, houses, land and others. Each asset can have its value appreciate by a certain rate per year, depreciate by a certain rate per year, or not change in value. The total assets are added to your total financial worth."
-msgstr "MMEX omogućuje praćenje dugotrajne materijalne imovine kao što su auti, kuće, zemljišta i drugo. Svaka imovina može povećati ili smanjiti svoju vrijednost po određenoj godišnjoj stopi ili ne mijenjati vrijednost. Ukupna imovina se dodaje na ukupnu financijsku vrijednost."
+msgstr "MMEX omogućuje praćenje dugotrajne imovine kao što su auti, kuće, zemljišta i drugo. Svaka imovina može povećati ili smanjiti svoju vrijednost po određenoj godišnjoj stopi ili ne mijenjati vrijednost. Ukupna imovina se dodaje na ukupnu financijsku vrijednost."
 
 #: assetspanel.cpp:458 assetspanel.h:107 general_report_manager.cpp:682
 #: general_report_manager.cpp:959 mmframe.cpp:456 mmframe.cpp:725
@@ -911,11 +911,11 @@ msgstr "Odredi vrstu transakcije koja će se stvorenti."
 
 #: billsdepositsdialog.cpp:560 transdialog.cpp:462
 msgid "&Advanced"
-msgstr "&Napredno"
+msgstr "&Dodatno"
 
 #: billsdepositsdialog.cpp:563 transdialog.cpp:1238
 msgid "Allows the setting of different amounts in the FROM and TO accounts."
-msgstr "Dozvoli postavljanje različitih iznosa u ulazne i izlazne račune."
+msgstr "Dozvoli postavljanje različitih iznosa u izlazne i ulazne račune."
 
 #: billsdepositsdialog.cpp:573 billsdepositspanel.cpp:109
 #: budgetingpanel.cpp:321 filtertransdialog.cpp:495 filtertransdialog.cpp:503
@@ -970,7 +970,7 @@ msgstr "Odaberi primtelja"
 
 #: billsdepositsdialog.cpp:615 transdialog.cpp:514
 msgid "Split"
-msgstr "Podijeli"
+msgstr "Podjela"
 
 #: billsdepositsdialog.cpp:618 transdialog.cpp:1235
 msgid "Use split Categories"
@@ -1752,7 +1752,7 @@ msgstr "Zatvoreni"
 
 #: constants.cpp:235 mmframe.cpp:1293
 msgid "Favorites"
-msgstr "Često korišteni"
+msgstr "Favoriti"
 
 #: currencydialog.cpp:81
 msgid "Currency Manager"
@@ -2224,7 +2224,7 @@ msgstr "MMEX baza podataka %s na verziju %i nije uspjelo!"
 
 #: dbupgrade.cpp:161
 msgid "Please restore DB from autocreated pre-upgrade backup and retry or contact MMEX support"
-msgstr "Vrati stanje baze podataka pomoću zaštitne kopije (stvorenu prije noadogradnje) i pokušaj ponovo ili kontaktiraj MMEX podršku"
+msgstr "Vrati stanje baze podataka pomoću sigurnosne kopije (stvorenu prije noadogradnje) i pokušaj ponovo ili kontaktiraj MMEX podršku"
 
 #: dbupgrade.cpp:237
 msgid "Load debug file"
@@ -3494,7 +3494,7 @@ msgstr "Preporuka: Redovito spremaj sigurnosne kopije tvoje .mmb datoteke baza p
 
 #: mmTips.h:24
 msgid "Recommendation: If upgrading to a new version of MMEX, make sure you backup your .mmb database file before doing so."
-msgstr "Preporuka: Ako nadograđuješ na novu verziju MMEX-a, prije nadogradnje stvori zaštitnu kopiju tvoje .mmb datoteke baze podataka."
+msgstr "Preporuka: Ako nadograđuješ na novu verziju MMEX-a, prije nadogradnje stvori sigurnosnu kopiju tvoje .mmb datoteke baze podataka."
 
 #: mmTips.h:25
 msgid "Recommendation: Use copy (Ctrl+C) and paste (Ctrl+V) for frequently used transactions."
@@ -3502,7 +3502,7 @@ msgstr "Preporuka: Koristi tipkovne prečace kopiranja (Ctrl+C) i lijepljena (Ct
 
 #: mmTips.h:26
 msgid "Tip: Remember to make backups of your .mmb."
-msgstr "Savjet: Stvaraj redovito zaštitne kopije tvoje .mmb datoteke baze podataka."
+msgstr "Savjet: Stvaraj redovito sigurnosne kopije tvoje .mmb datoteke baze podataka."
 
 #: mmTips.h:27
 msgid "Tip: The not encrypted .mmb file is insecure. That means anyone else having the proper know how can actually open the file and read the contents. So make sure that if you are storing any sensitive financial information it is properly guarded."
@@ -4031,11 +4031,11 @@ msgstr "Izvoz u HTML"
 
 #: mmframe.cpp:1477
 msgid "&Force WebApp sync"
-msgstr "&Prisilno sinkroniziraj web aplikaciju"
+msgstr "&Prisilno sinkroniziraj s WebApp aplikacijom"
 
 #: mmframe.cpp:1477
 msgid "Force sync of accounts, payees and categories to WebApp"
-msgstr "Prisili sinkronizaciju računa, plrimatelja i kategorija s web aplikacijom"
+msgstr "Prisili sinkronizaciju računa, primatelja i kategorija s WebApp aplikacijom"
 
 #: mmframe.cpp:1481
 msgid "Import from any CSV file"
@@ -4047,11 +4047,11 @@ msgstr "Uvoz iz QIF-a"
 
 #: mmframe.cpp:1484
 msgid "&WebApp..."
-msgstr "&Web aplikaciju …"
+msgstr "&WebApp …"
 
 #: mmframe.cpp:1484
 msgid "Import from WebApp"
-msgstr "Uvezi iz web aplikacije"
+msgstr "Uvezi iz WebApp aplikacije"
 
 #: mmframe.cpp:1490 mmframe.cpp:1864
 msgid "&Print..."
@@ -4555,7 +4555,7 @@ msgstr "Lozinka je uklonjena, baza podataka je dešifrirana."
 
 #: mmframe.cpp:2116
 msgid "Make sure you have a backup of DB before optimize it"
-msgstr "Napravi zaštitnu kopiju baze podataka prije optimiranja"
+msgstr "Napravi sigurnosnu kopiju baze podataka prije optimiranja"
 
 #: mmframe.cpp:2117 mmframe.cpp:2127
 msgid "DB Optimization"
@@ -4592,11 +4592,11 @@ msgstr "Nije moguće prepisati odabranu datoteku"
 
 #: mmframe.cpp:2236
 msgid "Accounts, payees and categories successfully syncronized to WebApp!"
-msgstr "Računi, plrimatelji i kategorije su uspješno sinkronizirani s web aplikacijom!"
+msgstr "Računi, primatelji i kategorije su uspješno sinkronizirani s WebApp aplikacijom!"
 
 #: mmframe.cpp:2236
 msgid "WebApp export"
-msgstr "Izvoz web aplikacije"
+msgstr "WebApp izvoz"
 
 #: mmframe.cpp:2268 mmframe.cpp:2287
 msgid "No account available to import to"
@@ -5299,7 +5299,7 @@ msgstr "Odaberi, da li želiš koristiti zvukove prilikom unosa transakcija"
 
 #: optionsettingsmisc.cpp:56
 msgid "Stock Quote Web Page"
-msgstr "Web stranica tečajeva vlasničkih udjela"
+msgstr "Web stranica burzovnih tečajeva"
 
 #: optionsettingsmisc.cpp:65
 msgid "Clear the field to Reset the value to system default."
@@ -5347,31 +5347,31 @@ msgstr "Standardni status:"
 
 #: optionsettingsmisc.cpp:135
 msgid "Database Backup"
-msgstr "Zaštitna kopija baze podataka"
+msgstr "Sigurnosna kopija baze podataka"
 
 #: optionsettingsmisc.cpp:142
 msgid "Create a new backup when MMEX Start"
-msgstr "Stvori novu zaštitnu kopiju prilikom pokretanja programa MMEX"
+msgstr "Stvori novu sigurnosnu kopiju prilikom pokretanja programa MMEX"
 
 #: optionsettingsmisc.cpp:144
 msgid "When MMEX Starts,\n"
 "creates the backup database: dbFile_start_YYYY-MM-DD.ext."
 msgstr "Kad se MMEX pokrene,\n"
-"stvara se zaštitna kopija baze podataka u obliku: dbFile_start_YYYY-MM-DD.ext."
+"stvara se sigurnosna kopija baze podataka u obliku: dbFile_start_YYYY-MM-DD.ext."
 
 #: optionsettingsmisc.cpp:149
 msgid "Backup database on exit."
-msgstr "Stvori zaštitnu kopiju baze podataka prilikom zatvaranja."
+msgstr "Stvori sigurnosnu kopiju baze podataka prilikom zatvaranja."
 
 #: optionsettingsmisc.cpp:151
 msgid "When MMEX shuts down and changes made to database,\n"
 "creates or updates the backup database: dbFile_update_YYYY-MM-DD.ext."
 msgstr "Kad se MMEX zatvori i kad su sve promjene spremljene u bazu podataka,\n"
-"stvara ili aktualizira zaštitnu kopiju baze podataka: dbFile_update_YYYY-MM-DD.ext."
+"stvara ili aktualizira sigurnosnu kopiju baze podataka: dbFile_update_YYYY-MM-DD.ext."
 
 #: optionsettingsmisc.cpp:159
 msgid "Specify max number of backup files"
-msgstr "Odredi makismalni broj datoteka zaštita podataka"
+msgstr "Odredi makismalni broj datoteka sigurnosnih kopija"
 
 #: optionsettingsmisc.cpp:162
 msgid "Max Files"
@@ -5387,7 +5387,7 @@ msgstr "Znak razdvajanja"
 
 #: optionsettingsnet.cpp:59
 msgid "WebApp Settings"
-msgstr "Postavke web aplikacije"
+msgstr "Postavke aplikacije WebApp"
 
 #: optionsettingsnet.cpp:66
 msgid "Url"
@@ -5411,7 +5411,7 @@ msgstr "Testiraj vezu"
 
 #: optionsettingsnet.cpp:86
 msgid "More information about WebApp"
-msgstr "Daljnje informacije o web aplikaciji"
+msgstr "Daljnje informacije o WebApp aplikaciji"
 
 #: optionsettingsnet.cpp:90
 msgid "Proxy Settings"
@@ -5487,11 +5487,11 @@ msgstr "Odaberi željenu verziju:"
 
 #: optionsettingsnet.cpp:187
 msgid "WebApp connection tested successfully!"
-msgstr "Testiranje veze s web aplikacijom je bilo uspješno!"
+msgstr "Testiranje veze s WebApp aplikacijom je bilo uspješno!"
 
 #: optionsettingsnet.cpp:187 optionsettingsnet.cpp:192
 msgid "WebApp connection test"
-msgstr "Testiranje veze s web aplikacijom"
+msgstr "Testiranje veze s WebApp aplikacijom"
 
 #: optionsettingsnet.cpp:192
 msgid "Some parameters are missing."
@@ -6692,7 +6692,7 @@ msgstr "Subota"
 
 #: webapp.cpp:111
 msgid "Wrong WebApp GUID:"
-msgstr "Pogrešan GUID web aplikacije:"
+msgstr "Pogrešan GUID za WebApp:"
 
 #: webapp.cpp:112
 msgid "please check it in network options."
@@ -6700,11 +6700,11 @@ msgstr "provjeri u mrežnim opcijama."
 
 #: webapp.cpp:113
 msgid "Wrong WebApp settings"
-msgstr "Pogrešne postavke u web aplikaciji"
+msgstr "Pogrešne WebApp postavke"
 
 #: webapp.cpp:118
 msgid "Unable to connect to WebApp:"
-msgstr "Ne mogu se spojiti s web aplikacijom:"
+msgstr "Ne mogu se spojiti s WebApp aplikacijom:"
 
 #: webapp.cpp:119
 msgid "please check settings and / or internet connection."
@@ -6712,16 +6712,16 @@ msgstr "provjeri postavke ili internetsku vezu."
 
 #: webapp.cpp:121
 msgid "WebApp connection error"
-msgstr "Greška prilikom povezivanja s web aplikacijom"
+msgstr "Greška prilikom povezivanja s WebApp aplikacijom"
 
 #: webapp.cpp:131
 msgid "Wrong WebApp API version:"
-msgstr "Pogrešna API verzija web aplikacije:"
+msgstr "Pogrešna API verzija WebApp aplikacije:"
 
 #: webapp.cpp:132
 #, c-format
 msgid "WebApp   API version -> %s"
-msgstr "Web aplikacija   API verzija -> %s"
+msgstr "WebApp   API verzija -> %s"
 
 #: webapp.cpp:133
 #, c-format
@@ -6730,7 +6730,7 @@ msgstr "Očekivana API verzija -> %s"
 
 #: webapp.cpp:134
 msgid "Wrong WebApp API version"
-msgstr "Pogrešna API verzija web aplikacije"
+msgstr "Pogrešna API verzija WebApp aplikacije"
 
 #: webapp.cpp:464
 #, c-format
@@ -6746,11 +6746,11 @@ msgstr "Transakcija će biti umetnuta s prvim bankovnim računom:\n"
 
 #: webapp.cpp:469
 msgid "Wrong WebApp account"
-msgstr "Pogrešan račun web aplikacije"
+msgstr "Pogrešan WebApp račun"
 
 #: webapp.cpp:551 webapp.cpp:584
 msgid "Unable to download attachments from webapp."
-msgstr "Neuspješno preuzimanje priloga s web aplikacije."
+msgstr "Neuspješno preuzimanje priloga s WebApp aplikacije."
 
 #: webapp.cpp:552
 msgid "Attachments folder not set or unavailable"
@@ -6762,7 +6762,7 @@ msgstr "Transakcija nije preuzeta:"
 
 #: webapp.cpp:554
 msgid "please fix attachments folder or delete attachments from WebApp"
-msgstr "popravi mapu priloga ili izbriši priloge iz web aplikacije"
+msgstr "popravi mapu priloga ili izbriši priloge iz WebApp aplikacije"
 
 #: webapp.cpp:555
 msgid "Attachment folder error"
@@ -6786,7 +6786,7 @@ msgstr "Greška u preuzimanju priloga"
 
 #: webappdialog.cpp:51
 msgid "Import WebApp transactions"
-msgstr "Uvezi transakcije web aplikacije"
+msgstr "Uvezi WebApp transakcije"
 
 #: webappdialog.cpp:94
 msgid "&Import all "
@@ -6802,7 +6802,7 @@ msgstr "Nije moguće unijeti transakcije u MMEX bazu podataka"
 
 #: webappdialog.cpp:183
 msgid "WebApp communication error"
-msgstr "Greška u komunikaciji s web aplikacijom"
+msgstr "Greška u komunikaciji s WebApp aplikacijom"
 
 #: webappdialog.cpp:269
 msgid "Open Attachment"
@@ -6906,8 +6906,8 @@ msgid "The next pages will help you create a new database.\n\n"
 msgstr "Slijedeće stranice će ti pomoći stvoriti novu bazu podataka.\n\n"
 "Tvoja datoteka baze podataka je spremljena s nastavkom .mmb.\n"
 "Budući da ova datoteka sadrži važne financijske podatke,\n"
-"preporučujemo izradu dnevne zaštitne kopije podataka u\n"
-"opcijama postavaka: „Stvori novu zaštitnu kopiju …”, i\n"
+"preporučujemo izradu dnevne sigurnosne kopije podataka u\n"
+"opcijama postavaka: „Stvori novu sigurnosnu kopiju …”, i\n"
 "spremi svoje zaštitne kopije na odvojenom mjestu.\n\n"
 "Ako zatreba, bazu podataka možeš kasnije šifrirati,\n"
 "koristeći opciju: „Spremi bazu podataka pod” i mijenjajući\n"
