@@ -450,7 +450,7 @@ wxString mmBillsDepositsPanel::getItem(long item, long column)
         return GetFrequency(&bill);
     case COL_REPEATS:
         if (bill.NUMOCCURRENCES == -1)
-            return u8"\u221E";
+            return L"\x221E";
         else
             return wxString::Format("%i", bill.NUMOCCURRENCES).Trim();
     case COL_AUTO:
