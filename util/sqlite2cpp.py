@@ -170,11 +170,8 @@ UPDATE OR IGNORE %s SET %s WHERE CURRENCY_SYMBOL='%s';''' % (self._table, row['C
 
     def to_string(self, sql=None):
         """Create the data for the .h file"""
-        utfc = ''
-        if self._table.upper() == 'CURRENCYFORMATS':
-            utfc = '#pragma execution_character_set("UTF-8")\n'
 
-        s = '''%s#pragma once
+        s = '''#pragma once
 
 #include "Table.h"
 
@@ -213,20 +210,20 @@ struct DB_Table_%s : public DB_Table
     Data* fake_; // in case the entity not found
 
     /** Destructor: clears any data records stored in memory */
-    ~DB_Table_%s() 
+    ~DB_Table_%s()
     {
         delete this->fake_;
         destroy_cache();
     }
-     
-    /** Removes all records stored in memory (cache) for the table*/ 
+
+    /** Removes all records stored in memory (cache) for the table*/
     void destroy_cache()
     {
         std::for_each(cache_.begin(), cache_.end(), std::mem_fun(&Data::destroy));
         cache_.clear();
         index_by_id_.clear(); // no memory release since it just stores pointer and the according objects are in cache
     }
-''' % (utfc, self._table, self._table, self._table)
+''' % (self._table, self._table, self._table)
 
         s += '''
     /** Creates the database table if the table does not exist*/
@@ -239,8 +236,8 @@ struct DB_Table_%s : public DB_Table
                 db->ExecuteUpdate("%s");
                 this->ensure_data(db);
             }
-            catch(const wxSQLite3Exception &e) 
-            { 
+            catch(const wxSQLite3Exception &e)
+            {
                 wxLogError("%s: Exception %%s", e.GetMessage().c_str());
                 return false;
             }
@@ -268,8 +265,8 @@ struct DB_Table_%s : public DB_Table
 
         s += '''
         }
-        catch(const wxSQLite3Exception &e) 
-        { 
+        catch(const wxSQLite3Exception &e)
+        {
             wxLogError("%s: Exception %%s", e.GetMessage().c_str());
             return false;
         }
@@ -303,8 +300,8 @@ struct DB_Table_%s : public DB_Table
         for field in self._fields:
             s += '''
     struct %s : public DB_Column<%s>
-    { 
-        static wxString name() { return "%s"; } 
+    {
+        static wxString name() { return "%s"; }
         explicit %s(const %s &v, OP op = EQUAL): DB_Column<%s>(v, op) {}
     };
     ''' % (field['name'], base_data_types_reverse[field['type']], field['name'],
@@ -341,7 +338,7 @@ struct DB_Table_%s : public DB_Table
         s += '''
             default: break;
         }
-        
+
         return "UNKNOWN";
     }
 '''
@@ -390,7 +387,7 @@ struct DB_Table_%s : public DB_Table
         {
             return this->id() < r.id();
         }
-        
+
         bool operator < (const Data* r) const
         {
             return this->id() < r->id();
@@ -398,7 +395,7 @@ struct DB_Table_%s : public DB_Table
 ''' % (self._primay_key, self._primay_key)
 
         s += '''
-        explicit Data(Self* table = 0) 
+        explicit Data(Self* table = 0)
         {
             table_ = table;
         '''
@@ -526,7 +523,7 @@ struct DB_Table_%s : public DB_Table
         bool save(wxSQLite3Database* db)
         {
             if (db && db->IsReadOnly()) return false;
-            if (!table_ || !db) 
+            if (!table_ || !db)
             {
                 wxLogError("can not save %s");
                 return false;
@@ -538,12 +535,12 @@ struct DB_Table_%s : public DB_Table
         /** Remove the record instance from memory and the database. */
         bool remove(wxSQLite3Database* db)
         {
-            if (!table_ || !db) 
+            if (!table_ || !db)
             {
                 wxLogError("can not remove %s");
                 return false;
             }
-            
+
             return table_->remove(this, db);
         }
 
@@ -582,7 +579,7 @@ struct DB_Table_%s : public DB_Table
         cache_.push_back(entity);
         return entity;
     }
-    
+
     /** Create a copy of the Data record and add to memory table (cache) */
     Self::Data* clone(const Data* e)
     {
@@ -637,13 +634,13 @@ struct DB_Table_%s : public DB_Table
                 for(Cache::iterator it = cache_.begin(); it != cache_.end(); ++ it)
                 {
                     Self::Data* e = *it;
-                    if (e->id() == entity->id()) 
+                    if (e->id() == entity->id())
                         *e = *entity;  // in-place update
                 }
             }
         }
-        catch(const wxSQLite3Exception &e) 
-        { 
+        catch(const wxSQLite3Exception &e)
+        {
             wxLogError("%s: Exception %%s, %%s", e.GetMessage().c_str(), entity->to_json());
             return false;
         }
@@ -673,12 +670,12 @@ struct DB_Table_%s : public DB_Table
             for(Cache::iterator it = cache_.begin(); it != cache_.end(); ++ it)
             {
                 Self::Data* entity = *it;
-                if (entity->id() == id) 
+                if (entity->id() == id)
                 {
                     index_by_id_.erase(entity->id());
                     delete entity;
                 }
-                else 
+                else
                 {
                     c.push_back(entity);
                 }
@@ -686,8 +683,8 @@ struct DB_Table_%s : public DB_Table
             cache_.clear();
             cache_.swap(c);
         }
-        catch(const wxSQLite3Exception &e) 
-        { 
+        catch(const wxSQLite3Exception &e)
+        {
             wxLogError("%s: Exception %%s", e.GetMessage().c_str());
             return false;
         }
@@ -715,7 +712,7 @@ struct DB_Table_%s : public DB_Table
         for (Index_By_Id::iterator it = index_by_id_.begin(); it != index_by_id_.end(); ++ it)
         {
             Self::Data* item = it->second;
-            if (item->id() > 0 && match(item, args...)) 
+            if (item->id() > 0 && match(item, args...))
             {
                 ++ hit_;
                 return item;
@@ -728,14 +725,14 @@ struct DB_Table_%s : public DB_Table
     }'''
 
         s += '''
-    
+
     /**
     * Search the memory table (Cache) for the data record.
     * If not found in memory, search the database and update the cache.
     */
     Self::Data* get(int id, wxSQLite3Database* db)
     {
-        if (id <= 0) 
+        if (id <= 0)
         {
             ++ skip_;
             return 0;
@@ -747,7 +744,7 @@ struct DB_Table_%s : public DB_Table
             ++ hit_;
             return it->second;
         }
-        
+
         ++ miss_;
         Self::Data* entity = 0;
         wxString where = wxString::Format(" WHERE %s = ?", PRIMARY::name().c_str());
@@ -765,17 +762,17 @@ struct DB_Table_%s : public DB_Table
             }
             stmt.Finalize();
         }
-        catch(const wxSQLite3Exception &e) 
-        { 
+        catch(const wxSQLite3Exception &e)
+        {
             wxLogError("%s: Exception %s", this->name().c_str(), e.GetMessage().c_str());
         }
-        
-        if (!entity) 
+
+        if (!entity)
         {
             entity = this->fake_;
             // wxLogError("%s: %d not found", this->name().c_str(), id);
         }
- 
+
         return entity;
     }
 '''
@@ -799,8 +796,8 @@ struct DB_Table_%s : public DB_Table
 
             q.Finalize();
         }
-        catch(const wxSQLite3Exception &e) 
-        { 
+        catch(const wxSQLite3Exception &e)
+        {
             wxLogError("%s: Exception %s", this->name().c_str(), e.GetMessage().c_str());
         }
 
@@ -858,7 +855,7 @@ struct DB_Table
 
     bool exists(wxSQLite3Database* db) const
     {
-       return db->TableExists(this->name()); 
+       return db->TableExists(this->name());
     }
 
     void drop(wxSQLite3Database* db) const
@@ -884,7 +881,7 @@ void condition(wxString& out, bool /*op_and*/, const Arg1& arg1)
 }
 
 template<typename Arg1, typename... Args>
-void condition(wxString& out, bool op_and, const Arg1& arg1, const Args&... args) 
+void condition(wxString& out, bool op_and, const Arg1& arg1, const Args&... args)
 {
     out += Arg1::name();
     switch (arg1.op_)
@@ -910,7 +907,7 @@ void bind(wxSQLite3Statement& stmt, int index, const Arg1& arg1)
 template<typename Arg1, typename... Args>
 void bind(wxSQLite3Statement& stmt, int index, const Arg1& arg1, const Args&... args)
 {
-    stmt.Bind(index, arg1.v_); 
+    stmt.Bind(index, arg1.v_);
     bind(stmt, index+1, args...);
 }
 
@@ -935,11 +932,11 @@ const typename TABLE::Data_Set find_by(TABLE* table, wxSQLite3Database* db, bool
 
         q.Finalize();
     }
-    catch(const wxSQLite3Exception &e) 
-    { 
+    catch(const wxSQLite3Exception &e)
+    {
         wxLogError("%s: Exception %s", table->name().c_str(), e.GetMessage().c_str());
     }
- 
+
     return result;
 }
 
@@ -952,7 +949,7 @@ bool match(const DATA* data, const Arg1& arg1)
 template<class DATA, typename Arg1, typename... Args>
 bool match(const DATA* data, const Arg1& arg1, const Args&... args)
 {
-    if (data->match(arg1)) 
+    if (data->match(arg1))
         return match(data, args...);
     else
         return false; // Short-circuit evaluation
@@ -962,7 +959,7 @@ bool match(const DATA* data, const Arg1& arg1, const Args&... args)
         transl = 'wxGetTranslation' if field == 'CURRENCYNAME' else ''
         code += '''
 struct SorterBy%s
-{ 
+{
     template<class DATA>
     bool operator()(const DATA& x, const DATA& y)
     {
@@ -1014,7 +1011,7 @@ if __name__ == '__main__':
             line = line.replace('_tr_', '')
 
         sql_txt = sql_txt + line
-    
+
     # Generate a table that does not contain translation code identifyer
     print( 'Generate SQL file: %s that can generate a clean database.' % sql_tables_data_filename)
     file_data = codecs.open(sql_tables_data_filename, 'w', 'utf-8')

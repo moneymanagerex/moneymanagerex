@@ -14,6 +14,9 @@ else()
     add_compile_options("-Wall" "-Wextra" "-Wno-unknown-pragmas")
 endif()
 
+# use UTF-8 for /source-charset and /execution-charset
+add_compile_options("$<$<C_COMPILER_ID:MSVC>:/utf-8>")
+add_compile_options("$<$<CXX_COMPILER_ID:MSVC>:/utf-8>")
 
 # Pass version numbers to the sources
 configure_file(versions.h.in versions.h @ONLY)

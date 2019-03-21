@@ -123,11 +123,11 @@ void mmMainCurrencyDialog::fillControls()
         }
 
         wxVector<wxVariant> data;
-        data.push_back(wxVariant(is_base_currency ? "\u2691" : ""));
+        data.push_back(wxVariant(is_base_currency ? L"\u2691" : L""));
         data.push_back(wxVariant(currency.CURRENCY_SYMBOL));
         data.push_back(wxVariant(wxGetTranslation(currency.CURRENCYNAME)));
         data.push_back(wxVariant(wxString()<<Model_CurrencyHistory::getLastRate(currencyID, today)));
-        data.push_back(wxVariant(is_currency_historical ? "\u2713" : ""));
+        data.push_back(wxVariant(is_currency_historical ? L"\u2713" : L""));
         currencyListBox_->AppendItem(data, (wxUIntPtr)currencyID);
         if (m_currency_id == currencyID)
         {
