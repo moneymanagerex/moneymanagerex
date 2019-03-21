@@ -13,7 +13,6 @@ matrix:
   fast_finish: true
   exclude:
   # not installed
-  - { comp: 110, image: Visual Studio 2017 }
   - { comp: 141, image: Visual Studio 2015 }
   # duplicated - select only one
   - { comp: 120, image: Visual Studio 2017 }
@@ -52,18 +51,12 @@ environment:
   # - { comp: 120, wxShared: 1 }
   # - { comp: 120, xp: _xp }
   # - { comp: 120, xp: _xp, wxShared: 1 }
-  # v110 not working so far - see issue #1307 on GitHub
-  # - comp: 110
-  # - { comp: 110, wxShared: 1 }
-  # - { comp: 110, xp: _xp }
-  # - { comp: 110, xp: _xp, wxShared: 1 }
 
 init:
 # AppVeyor missing paths
 - if "%VS150COMNTOOLS%"=="" set "VS150COMNTOOLS=%ProgramFiles(x86)%\Microsoft Visual Studio\2017\Community\Common7\Tools\"
 # Set developer command prompt
 - if %platform:~-2%==64 (set arch=amd64) else (set arch=amd64_x86)
-- if %comp% LSS 120 if %platform:~-2%==64 (set arch=x86_amd64) else (set arch=x86)
 - call set "vcvarsall=%%VS%comp%COMNTOOLS%%..\..\VC\vcvarsall.bat"
 - if %comp%==141 set "vcvarsall=%VS150COMNTOOLS%..\..\VC\Auxiliary\Build\vcvarsall.bat"
 - call "%vcvarsall%" %arch%
@@ -86,10 +79,9 @@ init:
 # clcache unique directory
 - set "CLCACHE_DIR=C:\clcache-%APPVEYOR_BUILD_WORKER_IMAGE%-%platform%-v%comp%%xp%"
 # prepare cmake options
-- if %comp%==110 (set "gen=11 2012" & set "tool=v%comp%%xp%")
-- if %comp%==120 (set "gen=12 2013" & set "tool=v%comp%%xp%,host=x64")
-- if %comp%==140 (set "gen=14 2015" & set "tool=v%comp%%xp%,host=x64")
-- if %comp%==141 (set "gen=15 2017" & set "tool=v%comp%%xp%,host=x64")
+- if %comp%==120 set "gen=12 2013"
+- if %comp%==140 set "gen=14 2015"
+- if %comp%==141 set "gen=15 2017"
 - if %platform:~-2%==64 set "gen=%gen% Win64"
 # Microsoft compiler debug symbols option
 - if %configuration%==Debug (set "CL=%CL% /Z7")
@@ -132,7 +124,7 @@ install:
     echo Building libcurl %curlVer% &
     git clone -q --depth=1 --branch=curl-%curlVer% https://github.com/curl/curl.git %curldir%-src &&
     mkdir %curldir%-src\build && cd %curldir%-src\build &&
-    cmake -T %tool% -G "Visual Studio %gen%" %curlConf%
+    cmake -T v%comp%%xp%,host=x64 -G "Visual Studio %gen%" %curlConf%
       -DBUILD_CURL_EXE=OFF
       -DBUILD_SHARED_LIBS=%curlShared%
       -DCURL_DISABLE_LDAP=ON
@@ -170,7 +162,7 @@ build_script:
 - if %configuration%==Debug
     set "cmake_def=-DCMAKE_INSTALL_DEBUG_LIBRARIES=ON -DCMAKE_INSTALL_DEBUG_LIBRARIES_ONLY=ON"
 - set "cmake_def=%cmake_def% -DCMAKE_PREFIX_PATH=%curlLibFolder%"
-- cmake --graphviz=mmex.dot -T %tool% -G "Visual Studio %gen%" %cmake_def% ..
+- cmake --graphviz=mmex.dot -T v%comp%%xp%,host=x64 -G "Visual Studio %gen%" %cmake_def% ..
 - cmake --build . --target package --config %configuration%
     -- /maxcpucount /verbosity:minimal /nologo /p:PreferredToolArchitecture=x64
 
