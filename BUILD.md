@@ -23,9 +23,6 @@ Microsoft Windows
 
    | Name               | Version | Toolset |
    |--------------------|:-------:|:-------:|
-   | Visual Studio 2008 |   9.0   |    90   |
-   | Visual Studio 2010 |  10.0   |   100   |
-   | Visual Studio 2012 |  11.0   |   110   |
    | Visual Studio 2013 |  12.0   |   120   |
    | Visual Studio 2015 |  14.0   |   140   |
    | Visual Studio 2017 |  15.0   |   141   |
