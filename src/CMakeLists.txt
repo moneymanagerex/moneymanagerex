@@ -298,6 +298,10 @@ add_executable(${MMEX_EXE} WIN32 MACOSX_BUNDLE
     "${MACOSX_APP_ICON_FILE}"
     "${MMEX_RC}")
 
+if(MSVC AND MSVC_VERSION LESS 1800)
+    message(SEND_ERROR "MSVC version too old. Please use VS2013 (12.0) or later for required C++11 features.")
+endif()
+
 if(";${CMAKE_CXX_COMPILE_FEATURES};" MATCHES ";cxx_std_11;")
     target_compile_features(${MMEX_EXE} PUBLIC cxx_std_11)
 elseif(";${CMAKE_CXX_COMPILE_FEATURES};" MATCHES ";cxx_range_for;"
