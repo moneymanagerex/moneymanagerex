@@ -14,9 +14,21 @@ else()
     add_compile_options("-Wall" "-Wextra" "-Wno-unknown-pragmas")
 endif()
 
-# use UTF-8 for /source-charset and /execution-charset
-add_compile_options("$<$<C_COMPILER_ID:MSVC>:/utf-8>")
-add_compile_options("$<$<CXX_COMPILER_ID:MSVC>:/utf-8>")
+if(MSVC)
+    include(CheckCXXCompilerFlag)
+    check_cxx_compiler_flag(/utf-8 MSVC_UFT8_CXX_FLAG)
+    if(MSVC_UFT8_CXX_FLAG)
+        # use UTF-8 for /source-charset and /execution-charset
+        add_compile_options(/utf-8)
+    else()
+        # use old pragma execution_character_set
+        file(GENERATE
+            OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/msvc_build_header_$<CONFIG>.h
+            CONTENT "#pragma execution_character_set(\"utf-8\")"
+        )
+        add_compile_options(/FI"${CMAKE_CURRENT_BINARY_DIR}/msvc_build_header_$<CONFIG>.h")
+    endif()
+endif()
 
 # Pass version numbers to the sources
 configure_file(versions.h.in versions.h @ONLY)
