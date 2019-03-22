@@ -2574,13 +2574,13 @@ void mmGUIFrame::OnReportBug(wxCommandEvent& WXUNUSED(event))
     std::vector<std::pair<wxString, wxString>> fixes = {
         { "\n\n", "<br>" }, { "\n", " " }, { "  ", " " },
         { "^" + _("Version: "), "\n<hr><small><b>Version</b>: " },
-        { _("Database version: "), u8"\u2022 db " },
-        { _("Git commit: "), u8"\u2022 git " },
+        { _("Database version: "), L"\u2022 db " },
+        { _("Git commit: "), L"\u2022 git " },
         { _("Git branch: "), "" },
-        { _("MMEX is using the following support products:") + u8" \u2022", "<b>Libs</b>:" },
+        { _("MMEX is using the following support products:") + L" \u2022", "<b>Libs</b>:" },
         { "<br>" + _("Build on"), "<br><b>Build</b>:" },
         { " " + _("with:"), "" },
-        { _("Running on:") + u8" \u2022", "<b>OS</b>:" },
+        { _("Running on:") + L" \u2022", "<b>OS</b>:" },
         { "(.)$", "\\1</small>" }
     };
     wxRegEx re;

@@ -14,6 +14,9 @@ else()
     add_compile_options("-Wall" "-Wextra" "-Wno-unknown-pragmas")
 endif()
 
+# use UTF-8 for /source-charset and /execution-charset
+add_compile_options("$<$<C_COMPILER_ID:MSVC>:/utf-8>")
+add_compile_options("$<$<CXX_COMPILER_ID:MSVC>:/utf-8>")
 
 # Pass version numbers to the sources
 configure_file(versions.h.in versions.h @ONLY)
@@ -299,10 +302,9 @@ if(";${CMAKE_CXX_COMPILE_FEATURES};" MATCHES ";cxx_std_11;")
     target_compile_features(${MMEX_EXE} PUBLIC cxx_std_11)
 elseif(";${CMAKE_CXX_COMPILE_FEATURES};" MATCHES ";cxx_range_for;"
         AND ";${CMAKE_CXX_COMPILE_FEATURES};" MATCHES ";cxx_nullptr;"
-        AND ";${CMAKE_CXX_COMPILE_FEATURES};" MATCHES ";cxx_variadic_templates;"
-        AND ";${CMAKE_CXX_COMPILE_FEATURES};" MATCHES ";cxx_unicode_literals;")
+        AND ";${CMAKE_CXX_COMPILE_FEATURES};" MATCHES ";cxx_variadic_templates;")
     target_compile_features(${MMEX_EXE} PUBLIC
-        cxx_range_for cxx_nullptr cxx_variadic_templates cxx_unicode_literals)
+        cxx_range_for cxx_nullptr cxx_variadic_templates)
 else()
     include(CheckCXXCompilerFlag)
     CHECK_CXX_COMPILER_FLAG("-std=gnu++11" COMPILER_SUPPORTS_GXX11)

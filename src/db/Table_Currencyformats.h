@@ -9,7 +9,6 @@
  * @author    Tomasz Słodkowicz
  * @date      2018-10-07 02:45:31.001407
  */
-#pragma execution_character_set("UTF-8")
 #pragma once
 
 #include "Table.h"
