@@ -27,7 +27,7 @@ function generateLangMenu(nav) {
         var f = document.createElement("span");
         f.setAttribute("class", "flag-icon flag-icon-" + d.flag);
         a.appendChild(f);
-        a.appendChild(document.createTextNode(" " + d.lang));
+        a.appendChild(document.createTextNode(d.lang));
         if (d.id !== docLang)
             nav.appendChild(a);
         nav.appendChild(document.createTextNode(" "));
