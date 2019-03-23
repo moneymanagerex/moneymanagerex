@@ -6,8 +6,14 @@
         var dir = 'en';
         var regex = new RegExp("[\\?&]lang=([^&]*)");
         var lang = regex.exec(window.location.search);
-        if (lang && /^(fr|de|hu|it|pl|es|ru)$/.test(lang[1]))
-            dir = lang[1];
+        if (lang) lang = lang[1];
+        else {
+            lang = navigator.language || navigator.userLanguage
+                   || navigator.browserLanguage || navigator.systemLanguage;
+            lang = lang.split('-')[0];
+        }
+        if (lang && /^(fr|de|hu|it|pl|es|ru)$/.test(lang))
+            dir = lang;
         window.location.replace(dir + "/index.html");
     </script>
 </head>
