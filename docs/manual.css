@@ -32,6 +32,43 @@ th, td { padding: 3px 10px; }
     margin-left: 0.8ex;
 }
 
+/* Print format */
+@media print {
+    @page { margin: 2cm; }
+
+    html {
+        font-family: "Times New Roman", Times, serif;
+        font-size: 12pt;
+        background: white;
+        color: black;
+        margin: 0; padding: 0;
+    }
+    a, blockquote, table, pre, img,
+    aside.sticky, aside.sticky::before {
+        page-break-inside: avoid;
+    }
+    aside.sticky::before { page-break-after: avoid; }
+    ul, ol, dl, aside.sticky { page-break-before: avoid; }
+
+    h1 { margin: 10vh 0 20vh; }
+    h2, h3, h4, h5, h6 {
+        page-break-after: avoid;
+        page-break-inside: avoid;
+        border: none;
+        padding: 0;
+        margin: 1em 0 0.5em;
+    }
+
+    a { color: black; text-decoration: underline dotted; }
+    a[href^=http]:after, a[href^=ftp]:after {
+        content: " [" attr(href) "]";
+        font-size: small;
+    }
+    a[href^="#"]:after { content: ""; }
+
+    nav, #back-to-top, form#donate { display: none; }
+}
+
 /* Back to top button */
 #back-to-top:hover { text-decoration: none; }
 #back-to-top {
@@ -99,8 +136,8 @@ kbd>kbd {
     box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px white inset;
     color: #333;
     display: inline-block;
-    font-family: Arial,Helvetica,sans-serif;
-    font-size: 11px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 0.75em;
     line-height: 1.4;
     margin: 0 .1em;
     padding: .1em .6em;
