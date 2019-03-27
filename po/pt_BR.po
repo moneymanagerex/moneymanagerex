@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-03-18 16:27+0300\n"
-"PO-Revision-Date: 2019-03-18 13:36\n"
+"PO-Revision-Date: 2019-03-27 17:34\n"
 "Last-Translator: vomikan <nikolay.akimov@gmail.com>\n"
 "Language-Team: Portuguese, Brazilian\n"
 "MIME-Version: 1.0\n"
@@ -3798,21 +3798,21 @@ msgstr "Múltipla escolha"
 #: mmex.cpp:88
 #, c-format
 msgid "Cannot load a translation for the default language of your system (%s)."
-msgstr ""
+msgstr "Não é possível carregar uma tradução para o idioma padrão do seu sistema (%s)."
 
 #: mmex.cpp:92
 #, c-format
 msgid "Cannot load a translation for the selected language (%s)."
-msgstr ""
+msgstr "Não é possível carregar a tradução para o idioma selecionado (%s)."
 
 #: mmex.cpp:97
 #, c-format
 msgid "Please use the Switch Application Language option in View menu to select one of the %zu available languages."
-msgstr ""
+msgstr "Por favor, use a opção Trocar Idioma da Aplicação no menu Exibir para selecionar um dos %zu idiomas disponíveis."
 
 #: mmex.cpp:99
 msgid "There are no translation files installed."
-msgstr ""
+msgstr "Não há arquivos de tradução instalados."
 
 #: mmex.cpp:101 mmframe.cpp:3113
 msgid "Language change"
@@ -6571,7 +6571,7 @@ msgstr "Abril"
 #: util.cpp:818
 msgctxt "full month name"
 msgid "May"
-msgstr ""
+msgstr "Maio"
 
 #: util.cpp:819
 msgid "June"
