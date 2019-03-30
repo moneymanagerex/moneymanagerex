@@ -296,6 +296,7 @@ else()
                 list(REMOVE_ITEM CURL_STATIC_LIBRARIES ${CURL_LIBRARIES})
                 add_library(CURL::libcurl STATIC IMPORTED)
                 set_target_properties(CURL::libcurl PROPERTIES
+                    INTERFACE_INCLUDE_DIRECTORIES "${CURL_STATIC_INCLUDE_DIRS}"
                     INTERFACE_SYSTEM_INCLUDE_DIRECTORIES "${CURL_STATIC_INCLUDE_DIRS}"
                     INTERFACE_COMPILE_DEFINITIONS CURL_STATICLIB
                     INTERFACE_LINK_LIBRARIES "${CURL_STATIC_LIBRARIES}"
@@ -305,6 +306,7 @@ else()
             else()
                 add_library(CURL::libcurl SHARED IMPORTED)
                 set_target_properties(CURL::libcurl PROPERTIES
+                    INTERFACE_INCLUDE_DIRECTORIES "${CURL_INCLUDE_DIRS}"
                     INTERFACE_SYSTEM_INCLUDE_DIRECTORIES "${CURL_INCLUDE_DIRS}")
                 if(WIN32)
                     set_target_properties(CURL::libcurl PROPERTIES
@@ -322,14 +324,11 @@ else()
         if(NOT CURL_LIBRARIES MATCHES "_imp.lib$|${CMAKE_SHARED_LIBRARY_SUFFIX}$")
             add_library(CURL::libcurl STATIC IMPORTED)
             set_target_properties(CURL::libcurl PROPERTIES
-                INTERFACE_SYSTEM_INCLUDE_DIRECTORIES "${CURL_INCLUDE_DIRS}"
                 INTERFACE_COMPILE_DEFINITIONS CURL_STATICLIB
                 IMPORTED_LINK_INTERFACE_LANGUAGES C
                 IMPORTED_LOCATION "${CURL_LIBRARIES}")
         else()
             add_library(CURL::libcurl SHARED IMPORTED)
-            set_target_properties(CURL::libcurl PROPERTIES
-                INTERFACE_SYSTEM_INCLUDE_DIRECTORIES "${CURL_INCLUDE_DIRS}")
             if(WIN32)
                 set_target_properties(CURL::libcurl PROPERTIES
                     IMPORTED_IMPLIB "${CURL_LIBRARIES}")
@@ -338,6 +337,9 @@ else()
                     IMPORTED_LOCATION "${CURL_LIBRARIES}")
             endif()
         endif()
+        set_target_properties(CURL::libcurl PROPERTIES
+            INTERFACE_INCLUDE_DIRECTORIES "${CURL_INCLUDE_DIRS}"
+            INTERFACE_SYSTEM_INCLUDE_DIRECTORIES "${CURL_INCLUDE_DIRS}")
         set(CURL_VERSION ${CURL_VERSION_STRING})
     endif()
 endif()
