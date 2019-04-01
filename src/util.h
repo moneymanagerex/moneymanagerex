@@ -178,7 +178,7 @@ const std::unordered_map<wxString, wxString> &date_formats_regex();
 const wxDateTime mmParseISODate(const wxString& str);
 const wxString mmGetDateForDisplay(const wxString &iso_date);
 bool mmParseDisplayStringToDate(wxDateTime& date, const wxString& sDate, const wxString& sDateMask);
-extern const std::map<wxString, wxString> g_date_formats_map;
+extern const std::map<wxString, wxString> g_date_formats_map();
 extern const std::map<int, std::pair<wxConvAuto, wxString> > g_encoding;
 const wxString mmTrimAmount(const wxString& value, const wxString& decimal);
 
@@ -208,7 +208,7 @@ private:
 
 inline bool mmDates::isDateFormatFound() const
 {
-    return m_date_formats_temp.size() < g_date_formats_map.size();
+    return m_date_formats_temp.size() < g_date_formats_map().size();
 }
 
 //Get the most appropriate human readable date mask.

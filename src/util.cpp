@@ -677,12 +677,12 @@ bool mmParseDisplayStringToDate(wxDateTime& date, const wxString& str_date, cons
         return true;
     }
 
-    const wxString& regex = date_formats_regex().at(sDateMask);
+    const wxString regex = date_formats_regex().at(sDateMask);
     wxRegEx pattern(regex);
 
     if (pattern.Matches(str_date))
     {
-        const auto& date_mask = g_date_formats_map.at(sDateMask);
+        const auto date_mask = g_date_formats_map().at(sDateMask);
         wxString date_str = pattern.GetMatch(str_date);
         if (!date_mask.Contains(" ")) {
             date_str.Replace(" ", "");
@@ -744,60 +744,53 @@ const std::unordered_map<wxString, wxString> &date_formats_regex()
     const wxString yy = "([0-9]{1,2})";
     const wxString yyyy = "(((19)|([2]([0]{1})))([0-9]{2}))";
     const wxString tail = "($|[^0-9])+";
-    date_regex["%d/%m/%y"] = wxString::Format("^%s/%s/%s%s", dd, mm, yy, tail);
-    date_regex["%d/%m/%Y"] = wxString::Format("^%s/%s/%s%s", dd, mm, yyyy, tail);
-    date_regex["%d-%m-%y"] = wxString::Format("^%s-%s-%s%s", dd, mm, yy, tail);
-    date_regex["%d-%m-%Y"] = wxString::Format("^%s-%s-%s%s", dd, mm, yyyy, tail);
-    date_regex["%d.%m.%y"] = wxString::Format("^%s\x2E%s\x2E%s%s", dd, mm, yy, tail);
-    date_regex["%d.%m.%Y"] = wxString::Format("^%s\x2E%s\x2E%s%s", dd, mm, yyyy, tail);
-    date_regex["%d,%m,%y"] = wxString::Format("^%s,%s,%s%s", dd, mm, yy, tail);
-    date_regex["%d/%m'%Y"] = wxString::Format("^%s/%s'%s%s", dd, mm, yyyy, tail);
-    date_regex["%d/%m'%y"] = wxString::Format("^%s/%s'%s%s", dd, mm, yy, tail);
-    date_regex["%d/%m %Y"] = wxString::Format("^%s/%s %s%s", dd, mm, yyyy, tail);
-    date_regex["%m/%d/%y"] = wxString::Format("^%s/%s/%s%s", mm, dd, yy, tail);
-    date_regex["%m/%d/%Y"] = wxString::Format("^%s/%s/%s%s", mm, dd, yyyy, tail);
-    date_regex["%m-%d-%y"] = wxString::Format("^%s-%s-%s%s", mm, dd, yy, tail);
-    date_regex["%m-%d-%Y"] = wxString::Format("^%s-%s-%s%s", mm, dd, yyyy, tail);
-    date_regex["%m/%d'%y"] = wxString::Format("^%s/%s'%s%s", mm, dd, yy, tail);
-    date_regex["%m/%d'%Y"] = wxString::Format("^%s/%s'%s%s", mm, dd, yyyy, tail);
-    date_regex["%y/%m/%d"] = wxString::Format("^%s/%s/%s%s", yy, mm, dd, tail);
-    date_regex["%y-%m-%d"] = wxString::Format("^%s-%s-%s%s", yy, mm, dd, tail);
-    date_regex["%Y/%m/%d"] = wxString::Format("^%s/%s/%s%s", yyyy, mm, dd, tail);
-    date_regex["%Y-%m-%d"] = wxString::Format("^%s-%s-%s%s", yyyy, mm, dd, tail);
-    date_regex["%Y.%m.%d"] = wxString::Format("^%s\x2E%s\x2E%s%s", yyyy, mm, dd, tail);
-    date_regex["%Y %m %d"] = wxString::Format("^%s %s %s%s", yyyy, mm, dd, tail);
-    date_regex["%Y%m%d"] = wxString::Format("^%s%s%s%s", yyyy, mm, dd, tail);
-    date_regex["%Y%d%m"] = wxString::Format("^%s%s%s%s", yyyy, mm, dd, tail);
+
+    for (const auto entry : g_date_formats_map())
+    {
+        wxString regexp = entry.first;
+        regexp.Replace("%d", dd);
+        regexp.Replace("%m", mm);
+        regexp.Replace("%Y", yyyy);
+        regexp.Replace("%y", yy);
+        regexp.Replace(".", "\\x2E");
+        regexp.Append(tail);
+        date_regex[entry.first] = regexp;
+    }
 
     return date_regex;
 }
 
-const std::map<wxString, wxString> g_date_formats_map = {
-    { "%Y-%m-%d", "YYYY-MM-DD" }
-    , { "%d/%m/%y", "DD/MM/YY" }
-    , { "%d/%m/%Y", "DD/MM/YYYY" }
-    , { "%d-%m-%y", "DD-MM-YY" }
-    , { "%d-%m-%Y", "DD-MM-YYYY" }
-    , { "%d.%m.%y", "DD.MM.YY" }
-    , { "%d.%m.%Y", "DD.MM.YYYY" }
-    , { "%d,%m,%y", "DD,MM,YY" }
-    , { "%d/%m'%Y", "DD/MM'YYYY" }
-    , { "%d/%m'%y", "DD/MM'YY" }
-    , { "%d/%m %Y", "DD/MM YYYY" }
-    , { "%m/%d/%y", "MM/DD/YY" }
-    , { "%m/%d/%Y", "MM/DD/YYYY" }
-    , { "%m-%d-%y", "MM-DD-YY" }
-    , { "%m-%d-%Y", "MM-DD-YYYY" }
-    , { "%m/%d'%y", "MM/DD'YY" }
-    , { "%m/%d'%Y", "MM/DD'YYYY" }
-    , { "%y/%m/%d", "YY/MM/DD" }
-    , { "%y-%m-%d", "YY-MM-DD" }
-    , { "%Y/%m/%d", "YYYY/MM/DD" }
-    , { "%Y.%m.%d", "YYYY.MM.DD" }
-    , { "%Y %m %d", "YYYY MM DD" }
-    , { "%Y%m%d", "YYYYMMDD" }
-    , { "%Y%d%m", "YYYYDDMM" }
-};
+const std::map<wxString, wxString> g_date_formats_map()
+{
+    static std::map<wxString, wxString> df;
+    if (!df.empty())
+        return df;
+
+    const auto local_date_fmt = wxLocale::GetInfo(wxLOCALE_SHORT_DATE_FMT);
+    const wxString formats[] = {
+        local_date_fmt,
+        "%Y-%m-%d", "%d/%m/%y", "%d/%m/%Y",
+        "%d-%m-%y", "%d-%m-%Y", "%d.%m.%y",
+        "%d.%m.%Y", "%d,%m,%y", "%d/%m'%Y",
+        "%d/%m'%y", "%d/%m %Y", "%m/%d/%y",
+        "%m/%d/%Y", "%m-%d-%y", "%m-%d-%Y",
+        "%m/%d'%y", "%m/%d'%Y", "%y/%m/%d",
+        "%y-%m-%d", "%Y/%m/%d", "%Y.%m.%d",
+        "%Y %m %d", "%Y%m%d",   "%Y%d%m"
+    };
+
+    for (const auto& entry : formats)
+    {
+        auto local_date_mask = entry;
+        local_date_mask.Replace("%Y", "YYYY");
+        local_date_mask.Replace("%y", "YY");
+        local_date_mask.Replace("%d", "DD");
+        local_date_mask.Replace("%m", "MM");
+        df[entry] = local_date_mask;
+    }
+
+    return df;
+}
 
 const std::map<int, std::pair<wxConvAuto, wxString> > g_encoding = {
     { 0, { wxConvAuto(wxFONTENCODING_SYSTEM), wxTRANSLATE("Default") } }
@@ -961,7 +954,7 @@ mmDates::~mmDates()
 }
 
 mmDates::mmDates()
-    : m_date_formats_temp(g_date_formats_map)
+    : m_date_formats_temp(g_date_formats_map())
     , m_today(wxDate::Today())
     , m_error_count(0)
 {
@@ -983,7 +976,7 @@ void mmDates::doFinalizeStatistics()
 
     if (result != m_date_parsing_stat.end()) {
         m_date_format = result->first;
-        m_date_mask = g_date_formats_map.at(m_date_format);
+        m_date_mask = g_date_formats_map().at(m_date_format);
     }
     else
         wxLogDebug("No date string has been handled");
