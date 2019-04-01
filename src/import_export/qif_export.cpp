@@ -370,7 +370,7 @@ void mmQIFExportDialog::mmExportQIF()
     bool write_to_file = toFileCheckBox_->GetValue();
     wxString sErrorMsg;
     wxString buffer;
-    int numRecords = 0;
+    size_t numRecords = 0;
 
     wxStringClientData* data_obj = (wxStringClientData*)m_choiceDateFormat->GetClientObject(m_choiceDateFormat->GetSelection());
     const wxString dateMask = data_obj->GetData();
@@ -416,7 +416,7 @@ void mmQIFExportDialog::mmExportQIF()
             //
 
             // if Cancel clicked
-            if (!progressDlg.Pulse(wxString::Format(_("Exporting transaction %i"), ++numRecords)))
+            if (!progressDlg.Pulse(wxString::Format(_("Exporting transaction %zu"), ++numRecords)))
                 break; // abort processing
 
             wxString trx_str;
@@ -471,7 +471,7 @@ void mmQIFExportDialog::mmExportQIF()
         *log_field_ << buffer;
 
     wxMessageDialog msgDlg(this
-        , wxString::Format(_("Number of transactions exported: %ld"), numRecords)
+        , wxString::Format(_("Number of transactions exported: %zu"), numRecords)
         , _("Export to QIF"), wxOK | wxICON_INFORMATION);
 
     wxButton* ok = wxStaticCast(FindWindow(wxID_OK), wxButton);
