@@ -63,6 +63,7 @@ private:
     wxCheckBox* dateToCheckBox_;
     wxDatePickerCtrl* fromDateCtrl_;
     wxDatePickerCtrl* toDateCtrl_;
+    wxStaticText* choiceDateFormat_label_;
     wxComboBox* m_choiceDateFormat;
     wxCheckBox* toFileCheckBox_;
     wxStaticText* file_name_label_;
@@ -70,8 +71,6 @@ private:
     wxTextCtrl* m_text_ctrl_;
     wxTextCtrl* log_field_;
     //wxLog *logger_;
-    wxRadioBox* m_radio_box_deprecated;
-    wxString delimit_deprecated_;
 
     /* Selected accounts values */
     wxArrayString m_accounts_name;
