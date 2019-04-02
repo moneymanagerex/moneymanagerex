@@ -186,7 +186,6 @@ void OptionSettingsGeneral::OnDateFormatChanged(wxCommandEvent& WXUNUSED(event))
         m_sample_date_text->SetLabelText(wxDateTime::Now().Format(m_date_format));
     }
 
-    return;
 }
 
 bool OptionSettingsGeneral::SaveFinancialYearStart()
