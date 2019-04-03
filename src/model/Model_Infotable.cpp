@@ -45,7 +45,6 @@ Model_Infotable& Model_Infotable::instance(wxSQLite3Database* db)
         ins.Set("MMEXVERSION", mmex::version::string);
         ins.Set("DATAVERSION", mmex::DATAVERSION);
         ins.Set("CREATEDATE", wxDateTime::Now());
-        ins.Set("DATEFORMAT", mmex::DEFDATEFORMAT);
     }
 
     return ins;
@@ -95,6 +94,16 @@ void Model_Infotable::Set(const wxString& key, const wxString& value)
 void Model_Infotable::Set(const wxString& key, const wxColour& value)
 {
     this->Set(key, wxString::Format("%d,%d,%d", value.Red(), value.Green(), value.Blue()));
+}
+
+//Deleter
+void Model_Infotable::Delete(const wxString& key)
+{
+    Data_Set items = this->find(INFONAME(key));
+    for (const auto entry : items)
+    {
+        this->remove(entry.id());
+    }
 }
 
 // Getter

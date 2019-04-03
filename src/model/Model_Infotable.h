@@ -52,6 +52,10 @@ public:
     void Set(const wxString& key, const wxColour& value);
 
 public:
+    //Deleter
+    void Delete(const wxString& key);
+
+public:
     // Getter
     bool GetBoolInfo(const wxString& key, bool default_value);
     int GetIntInfo(const wxString& key, int default_value);
