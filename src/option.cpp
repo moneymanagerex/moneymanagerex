@@ -93,8 +93,7 @@ struct Option::ReportInfo
 
 //----------------------------------------------------------------------------
 Option::Option()
-:   m_dateFormat(mmex::DEFDATEFORMAT)
-    , m_language(wxLANGUAGE_UNKNOWN)
+:   m_language(wxLANGUAGE_UNKNOWN)
     , m_databaseUpdated(false)
     , m_budgetFinancialYears(false)
     , m_budgetIncludeTransfers(false)
@@ -144,9 +143,11 @@ Option& Option::instance()
 //----------------------------------------------------------------------------
 void Option::LoadOptions(bool include_infotable)
 {
+    m_dateFormat = wxLocale::GetInfo(wxLOCALE_SHORT_DATE_FMT);
+
     if (include_infotable)
     {
-        m_dateFormat = Model_Infotable::instance().GetStringInfo("DATEFORMAT", mmex::DEFDATEFORMAT);
+        m_dateFormat = Model_Infotable::instance().GetStringInfo("DATEFORMAT", m_dateFormat);
         m_userNameString = Model_Infotable::instance().GetStringInfo("USERNAME", "");
         m_financialYearStartDayString = Model_Infotable::instance().GetStringInfo("FINANCIAL_YEAR_START_DAY", "1");
         m_financialYearStartMonthString = Model_Infotable::instance().GetStringInfo("FINANCIAL_YEAR_START_MONTH", "7");
@@ -163,7 +164,11 @@ void Option::LoadOptions(bool include_infotable)
         }
     }
 
-    m_language = static_cast<wxLanguage>(Model_Setting::instance().GetIntSetting(LANGUAGE_PARAMETER, wxLANGUAGE_UNKNOWN));
+    if (m_dateFormat.empty()) {
+        m_dateFormat = mmex::DEFDATEFORMAT;
+    }
+    m_language = static_cast<wxLanguage>(Model_Setting::instance()
+        .GetIntSetting(LANGUAGE_PARAMETER, wxLANGUAGE_UNKNOWN));
 
     m_budgetFinancialYears = Model_Setting::instance().GetBoolSetting(INIDB_BUDGET_FINANCIAL_YEARS, false);
     m_budgetIncludeTransfers = Model_Setting::instance().GetBoolSetting(INIDB_BUDGET_INCLUDE_TRANSFERS, false);
@@ -207,8 +212,15 @@ void Option::LoadOptions(bool include_infotable)
 
 void Option::setDateFormat(const wxString& dateformat)
 {
+    const auto local_date_fmt = wxLocale::GetInfo(wxLOCALE_SHORT_DATE_FMT);
     m_dateFormat = dateformat;
-    Model_Infotable::instance().Set("DATEFORMAT", dateformat);
+    if (dateformat == local_date_fmt) {
+        Model_Infotable::instance().Delete("DATEFORMAT");
+    }
+    else
+    {
+        Model_Infotable::instance().Set("DATEFORMAT", dateformat);
+    }
 }
 
 void Option::setLanguage(wxLanguage& language)

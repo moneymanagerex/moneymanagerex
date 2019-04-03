@@ -432,7 +432,7 @@ void mmUnivCSVDialog::CreateControls()
 
 void mmUnivCSVDialog::initDateMask()
 {
-    for (const auto& i : g_date_formats_map)
+    for (const auto& i : g_date_formats_map())
     {
         choiceDateFormat_->Append(i.second, new wxStringClientData(i.first));
         if (date_format_ == i.first) {
@@ -477,8 +477,8 @@ void mmUnivCSVDialog::SetSettings(const wxString &json_data)
     if (!df.empty())
     {
         date_format_ = df;
-        const auto pos = g_date_formats_map.find(date_format_);
-        if (pos != g_date_formats_map.end()) {
+        const auto pos = g_date_formats_map().find(date_format_);
+        if (pos != g_date_formats_map().end()) {
             choiceDateFormat_->SetStringSelection(pos->second);
         }
         else {

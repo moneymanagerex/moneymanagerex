@@ -101,7 +101,7 @@ void OptionSettingsGeneral::Create()
     generalPanelSizer->Add(dateFormatStaticBoxSizer, wxSizerFlags(g_flagsExpand).Proportion(0));
 
     m_date_format_choice = new wxChoice(this, ID_DIALOG_OPTIONS_WXCHOICE_DATE);
-    for (const auto& i : g_date_formats_map)
+    for (const auto& i : g_date_formats_map())
     {
         m_date_format_choice->Append(i.second, new wxStringClientData(i.first));
         if (m_date_format == i.first) m_date_format_choice->SetStringSelection(i.second);
@@ -151,12 +151,14 @@ void OptionSettingsGeneral::Create()
     //a bit more space visual appearance
     generalPanelSizer->AddSpacer(15);
 
-    m_use_org_date_copy_paste = new wxCheckBox(this, wxID_STATIC, _("Use Original Date when Pasting Transactions"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
+    m_use_org_date_copy_paste = new wxCheckBox(this, wxID_STATIC
+        , _("Use Original Date when Pasting Transactions"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     m_use_org_date_copy_paste->SetValue(GetIniDatabaseCheckboxValue(INIDB_USE_ORG_DATE_COPYPASTE, false));
     m_use_org_date_copy_paste->SetToolTip(_("Select whether to use the original transaction date or current date when copying/pasting transactions"));
     generalPanelSizer->Add(m_use_org_date_copy_paste, g_flagsV);
 
-    m_use_sound = new wxCheckBox(this, wxID_STATIC, _("Use Transaction Sound"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
+    m_use_sound = new wxCheckBox(this, wxID_STATIC, _("Use Transaction Sound")
+        , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     m_use_sound->SetValue(GetIniDatabaseCheckboxValue(INIDB_USE_TRANSACTION_SOUND, true));
     m_use_sound->SetToolTip(_("Select whether to use sounds when entering transactions"));
     generalPanelSizer->Add(m_use_sound, g_flagsV);
@@ -175,16 +177,15 @@ void OptionSettingsGeneral::OnCurrency(wxCommandEvent& WXUNUSED(event))
 
 void OptionSettingsGeneral::OnDateFormatChanged(wxCommandEvent& WXUNUSED(event))
 {
-    wxStringClientData* data = (wxStringClientData*) (m_date_format_choice->GetClientObject(m_date_format_choice->GetSelection()));
+    wxStringClientData* data = (wxStringClientData*)
+        (m_date_format_choice->GetClientObject(m_date_format_choice->GetSelection()));
+
     if (data)
     {
         m_date_format = data->GetData();
         m_sample_date_text->SetLabelText(wxDateTime::Now().Format(m_date_format));
     }
-    else
-    {
-        return;
-    }
+
 }
 
 bool OptionSettingsGeneral::SaveFinancialYearStart()
