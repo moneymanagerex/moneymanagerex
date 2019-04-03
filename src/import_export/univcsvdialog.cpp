@@ -343,14 +343,14 @@ void mmUnivCSVDialog::CreateControls()
         m_choiceAmountFieldSign->Append(_("Positive values are withdrawals"));
         m_choiceAmountFieldSign->SetSelection(PositiveIsDeposit);
         flex_sizer->Add(m_choiceAmountFieldSign, g_flagsH);
-    }
 
-    wxStaticText* itemStaticTextDigits = new wxStaticText(itemPanel7, wxID_ANY, _("Decimal Char"));
-    flex_sizer->Add(itemStaticTextDigits, g_flagsH);
-    m_choiceDecimalSeparator = new mmChoiceAmountMask(itemPanel7, ID_UD_DECIMAL);
-    flex_sizer->Add(m_choiceDecimalSeparator, g_flagsH);
-    m_choiceDecimalSeparator->Connect(ID_UD_DECIMAL
-        , wxEVT_COMMAND_CHOICE_SELECTED, wxCommandEventHandler(mmUnivCSVDialog::OnDecimalChange), nullptr, this);
+        wxStaticText* itemStaticTextDigits = new wxStaticText(itemPanel7, wxID_ANY, _("Decimal Char"));
+        flex_sizer->Add(itemStaticTextDigits, g_flagsH);
+        m_choiceDecimalSeparator = new mmChoiceAmountMask(itemPanel7, ID_UD_DECIMAL);
+        flex_sizer->Add(m_choiceDecimalSeparator, g_flagsH);
+        m_choiceDecimalSeparator->Connect(ID_UD_DECIMAL, wxEVT_COMMAND_CHOICE_SELECTED
+            , wxCommandEventHandler(mmUnivCSVDialog::OnDecimalChange), nullptr, this);
+    }
 
     // Select rows to import (not relevant for export)
     if (IsImporter())
@@ -362,23 +362,29 @@ void mmUnivCSVDialog::CreateControls()
         itemBoxSizer2->Add(rowSelectionStaticBoxSizer, 0, wxALL | wxEXPAND, 5);
 
         // "Ignore first" title, spin and event handler.
-        wxStaticText* itemStaticText7 = new wxStaticText(rowSelectionStaticBoxSizer->GetStaticBox(), wxID_ANY, _("From start: "));
+        wxStaticText* itemStaticText7 = new wxStaticText(rowSelectionStaticBoxSizer->GetStaticBox()
+            , wxID_ANY, _("From start: "));
         rowSelectionStaticBoxSizer->Add(itemStaticText7, g_flagsH);
         m_spinIgnoreFirstRows_ = new wxSpinCtrl(rowSelectionStaticBoxSizer->GetStaticBox(), ID_FIRST_ROW
             , wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS);
         rowSelectionStaticBoxSizer->Add(m_spinIgnoreFirstRows_, g_flagsH);
-        m_spinIgnoreFirstRows_->Connect(wxEVT_COMMAND_SPINCTRL_UPDATED, wxSpinEventHandler(mmUnivCSVDialog::OnSpinCtrlIgnoreRows), nullptr, this);
+        m_spinIgnoreFirstRows_->Connect(wxEVT_COMMAND_SPINCTRL_UPDATED
+            , wxSpinEventHandler(mmUnivCSVDialog::OnSpinCtrlIgnoreRows), nullptr, this);
 
         // "Ignore last" title, spin and event handler.
-        wxStaticText* itemStaticText8 = new wxStaticText(rowSelectionStaticBoxSizer->GetStaticBox(), wxID_ANY, _("From end: "));
+        wxStaticText* itemStaticText8 = new wxStaticText(rowSelectionStaticBoxSizer->GetStaticBox()
+            , wxID_ANY, _("From end: "));
         rowSelectionStaticBoxSizer->Add(itemStaticText8, g_flagsH);
-        m_spinIgnoreLastRows_ = new wxSpinCtrl(rowSelectionStaticBoxSizer->GetStaticBox(), ID_LAST_ROW, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 0, 0, 0);
+        m_spinIgnoreLastRows_ = new wxSpinCtrl(rowSelectionStaticBoxSizer->GetStaticBox()
+            , ID_LAST_ROW, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 0, 0, 0);
         rowSelectionStaticBoxSizer->Add(m_spinIgnoreLastRows_, g_flagsH);
-        m_spinIgnoreLastRows_->Connect(wxEVT_COMMAND_SPINCTRL_UPDATED, wxSpinEventHandler(mmUnivCSVDialog::OnSpinCtrlIgnoreRows), nullptr, this);
+        m_spinIgnoreLastRows_->Connect(wxEVT_COMMAND_SPINCTRL_UPDATED
+            , wxSpinEventHandler(mmUnivCSVDialog::OnSpinCtrlIgnoreRows), nullptr, this);
     }
 
     // Preview
-    wxStaticBoxSizer* m_staticbox = new wxStaticBoxSizer(new wxStaticBox(this, wxID_STATIC, _("Preview")), wxVERTICAL);
+    wxStaticBoxSizer* m_staticbox = new wxStaticBoxSizer(new wxStaticBox(this
+        , wxID_STATIC, _("Preview")), wxVERTICAL);
 
     m_list_ctrl_ = new wxListCtrl(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxLC_REPORT);
     m_staticbox->Add(m_list_ctrl_, 1, wxGROW | wxALL, 5);
