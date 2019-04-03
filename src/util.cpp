@@ -657,8 +657,9 @@ const wxString mmGetDateForDisplay(const wxString &iso_date)
 
     // Format date, store it and return it.
     wxString date_str = dateFormat;
-    if (date_str.Replace("%Y", iso_date.Mid(0, 4))==0)
+    if (date_str.Replace("%Y", iso_date.Mid(0, 4)) == 0) {
         date_str.Replace("%y", iso_date.Mid(2, 2));
+    }
     date_str.Replace("%m", iso_date.Mid(5, 2));
     date_str.Replace("%d", iso_date.Mid(8, 2));
     return dateLookup[iso_date] = date_str;
