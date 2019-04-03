@@ -350,11 +350,8 @@ void mmUnivCSVDialog::CreateControls()
         flex_sizer->Add(m_choiceDecimalSeparator, g_flagsH);
         m_choiceDecimalSeparator->Connect(ID_UD_DECIMAL, wxEVT_COMMAND_CHOICE_SELECTED
             , wxCommandEventHandler(mmUnivCSVDialog::OnDecimalChange), nullptr, this);
-    }
 
-    // Select rows to import (not relevant for export)
-    if (IsImporter())
-    {
+        // Select rows to import (not relevant for export)
         // Container.
         m_rowSelectionStaticBox_ = new wxStaticBox(this, wxID_ANY, _("Rows to ignore"));
         m_rowSelectionStaticBox_->SetFont(staticBoxFontSetting);
