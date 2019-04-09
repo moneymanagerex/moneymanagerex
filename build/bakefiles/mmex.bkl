@@ -101,7 +101,7 @@
         </data-files>
 
         <set var="popath">
-            <if cond="PLATFORM_MACOSX=='0'">$(DATADIR)/mmex/po</if>
+            <if cond="PLATFORM_MACOSX=='0'">$(DATADIR)/mmex/po/en</if>
             <if cond="PLATFORM_MACOSX=='1'">$(DATADIR)/po/en</if>
         </set>
 
@@ -234,7 +234,7 @@
         <!-- po/* -> mmex/po -->
 
         <data-files>
-            <install-to>$(PREFIX)/mmex/po</install-to>
+            <install-to>$(PREFIX)/mmex/po/en</install-to>
             <srcdir>$(SRCDIR)/po</srcdir>
             <files>*.mo</files>
         </data-files>
