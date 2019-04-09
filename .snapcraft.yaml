@@ -20,7 +20,19 @@ apps:
     plugs: [home, network, x11, opengl, pulseaudio, removable-media]
 
 parts:
+  config.guess:
+    plugin: dump
+    source: git://git.savannah.gnu.org/config.git
+    source-type: git
+    source-depth: 1
+    organize:
+      config.*: tmp/
+    stage:
+      - tmp/config.*
+    override-prime: 'true'
+
   bakefile:
+    after: [config.guess]
     plugin: autotools
     source: https://github.com/vslavik/bakefile/releases/download/v0.2.9/bakefile-0.2.9.tar.gz
     source-type: tar
@@ -28,6 +40,7 @@ parts:
       - python2.7-dev
       - python-libxml2
     override-build: |
+      cp -vf "${SNAPCRAFT_STAGE}"/tmp/config.* admin/
       snapcraftctl build
       ln -frs \
         "${SNAPCRAFT_PART_INSTALL}"/lib/bakefile/bakefile.py \
@@ -40,6 +53,7 @@ parts:
       - bin/*
       - lib/*
     override-prime: 'true'
+
   mmex:
     plugin: autotools
     source: .
@@ -47,6 +61,7 @@ parts:
       cd build/bakefiles
       bakefile_gen
       cd ../../auxd
+      rm -f config.*
       bakefilize -c -v
       cd ..
       aclocal -I m4 -I $SNAPCRAFT_STAGE/share/aclocal
