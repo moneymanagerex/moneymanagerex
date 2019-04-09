@@ -513,17 +513,27 @@ bool mmQIFImportDialog::completeTransaction(std::unordered_map <int, wxString> &
     {
         if (trx[Category].Mid(0,1) == "[" && trx[Category].Last() == ']')
         {
-            isTransfer = true;
             wxString toAccName = trx[Category].SubString(1, trx[Category].length() - 2);
-            trx[Category] = "Transfer";
-            trx[TrxType] = Model_Checking::all_type()[Model_Checking::TRANSFER];
-            trx[ToAccountName] = toAccName;
-            if (m_QIFaccounts.find(toAccName) == m_QIFaccounts.end())
+
+            if (toAccName == m_accountNameStr)
             {
-                std::unordered_map <int, wxString> a;
-                a[Description] = "[" + Model_Currency::GetBaseCurrency()->CURRENCY_SYMBOL + "]";
-                a[AccountType] = (trx.find(Description) != trx.end() ? trx.at(Description) : "");
-                m_QIFaccounts[toAccName] = a;
+                trx[Category] = trx[Payee];
+                trx[Payee] = toAccName;
+            }
+            else
+            {
+                isTransfer = true;
+                trx[Category] = "Transfer";
+                trx[TrxType] = Model_Checking::all_type()[Model_Checking::TRANSFER];
+                trx[ToAccountName] = toAccName;
+                trx[Memo] += (trx[Memo].empty() ? "" : "\n") + trx[Payee];
+                if (m_QIFaccounts.find(toAccName) == m_QIFaccounts.end())
+                {
+                    std::unordered_map <int, wxString> a;
+                    a[Description] = "[" + Model_Currency::GetBaseCurrency()->CURRENCY_SYMBOL + "]";
+                    a[AccountType] = (trx.find(Description) != trx.end() ? trx.at(Description) : "");
+                    m_QIFaccounts[toAccName] = a;
+                }
             }
         }
 
