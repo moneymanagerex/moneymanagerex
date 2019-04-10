@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-03-18 16:27+0300\n"
-"PO-Revision-Date: 2019-04-10 10:04\n"
+"PO-Revision-Date: 2019-04-10 10:34\n"
 "Last-Translator: vomikan <nikolay.akimov@gmail.com>\n"
 "Language-Team: Croatian\n"
 "MIME-Version: 1.0\n"
@@ -307,7 +307,7 @@ msgstr "Otvori %s web stranicu za najnovije vijesti, nadogradnje i itd."
 #: appstartdialog.cpp:123
 #, c-format
 msgid "Show this window next time %s starts"
-msgstr "Prikaži ovaj prozor slijedeći put kad se pokrene %s"
+msgstr "Prikaži ovaj prozor prilikom sljedećeg pokretanja %s‑a"
 
 #: appstartdialog.cpp:137
 msgid "&Exit "
@@ -1675,7 +1675,7 @@ msgstr "Git grana: "
 
 #: constants.cpp:94 mmframe.cpp:2580
 msgid "MMEX is using the following support products:"
-msgstr "MMEX koristi slijedeće proizvode za podršku:"
+msgstr "MMEX koristi sljedeće proizvode podrške:"
 
 #: constants.cpp:106 mmframe.cpp:2581
 msgid "Build on"
@@ -4861,7 +4861,7 @@ msgstr "Prethodno razdoblje"
 
 #: mmreportspanel.cpp:408 mmreportspanel.cpp:409
 msgid "Next Period"
-msgstr "Slijedeće razdoblje"
+msgstr "Sljedeće razdoblje"
 
 #: mmreportspanel.cpp:420 reports/reportbase.cpp:268
 msgid "Accounts: "
@@ -4893,7 +4893,7 @@ msgstr "Gotovina"
 
 #: model/Model_Account.cpp:33
 msgid "Checking"
-msgstr "Žiro/Tekući račun"
+msgstr "Tekući/Žiro račun"
 
 #: model/Model_Account.cpp:34
 msgid "Credit Card"
@@ -6825,9 +6825,9 @@ msgstr "%s postavlja sve transakcije da pripadaju računima."
 msgid "The next pages will help you create a new account.\n"
 "To help you get started, begin by making a list of all\n"
 "financial institutions where you hold an account."
-msgstr "Slijedeće stranice će ti pomoći stvoriti novi račun.\n"
-"Za početak, napravi popis svih financijski ustanova,\n"
-"gdje posjeduješ račun."
+msgstr "Sljedeće stranice će ti pomoći stvoriti novi račun.\n"
+"Za početak, izradi popis svih financijski ustanova\n"
+"u kojima posjeduješ račun."
 
 #: wizard_newaccount.cpp:80
 msgid "Account Name Invalid"
@@ -6903,7 +6903,7 @@ msgid "The next pages will help you create a new database.\n\n"
 "The database can later be encrypted if required, by\n"
 "using the option: 'Save database as' and changing the\n"
 "file type before saving."
-msgstr "Slijedeće stranice će ti pomoći stvoriti novu bazu podataka.\n\n"
+msgstr "Sljedeće stranice će ti pomoći stvoriti novu bazu podataka.\n\n"
 "Tvoja datoteka baze podataka je spremljena s nastavkom .mmb.\n"
 "Budući da ova datoteka sadrži važne financijske podatke,\n"
 "preporučujemo izradu dnevne sigurnosne kopije podataka u\n"
