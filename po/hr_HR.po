@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-03-18 16:27+0300\n"
-"PO-Revision-Date: 2019-04-10 10:34\n"
+"PO-Revision-Date: 2019-04-10 11:05\n"
 "Last-Translator: vomikan <nikolay.akimov@gmail.com>\n"
 "Language-Team: Croatian\n"
 "MIME-Version: 1.0\n"
@@ -1797,7 +1797,7 @@ msgstr "Povijesna valuta"
 
 #: currencydialog.cpp:212
 msgid "Value Display Sample:"
-msgstr "Prikaz primjera vrijednosti:"
+msgstr "Primjer prikaza vrijednosti:"
 
 #: currencydialog.cpp:225
 msgid "Save any changes made"
@@ -2246,7 +2246,7 @@ msgstr "Greška u MMEX ispravljanju grešaka"
 #: dbupgrade.cpp:268
 #, c-format
 msgid "This SQL debug script requires %li database version, but current database is version %i."
-msgstr "SQL skript ispravljanja grešaka zahtijeva verziju baze podataka %li, ali trenutačna verzija je %i."
+msgstr "Ova SQL skripta za ispravljanja grešaka zahtijeva verziju baze podataka %li, ali trenutačna verzija je %i."
 
 #: dbupgrade.cpp:284
 msgid "Debug script description:"
@@ -2254,7 +2254,7 @@ msgstr "Opis skripta za ispravljanje grešaka:"
 
 #: dbupgrade.cpp:284
 msgid "Please confirm running this SQL script."
-msgstr "Potvrdi korištenje ovog SQL skripta."
+msgstr "Potvrdi pokretanje ove SQL skripte."
 
 #: dbupgrade.cpp:284 dbupgrade.cpp:330 dbupgrade.cpp:362
 msgid "MMEX debug"
@@ -4327,7 +4327,7 @@ msgstr "Gledaj besplatne video materijale o MMEXu"
 
 #: mmframe.cpp:1726
 msgid "Slack"
-msgstr "Slobodno"
+msgstr "Slack"
 
 #: mmframe.cpp:1726
 msgid "Communicate online with MMEX team from your desktop or mobile device"
@@ -6843,13 +6843,13 @@ msgstr "Ime računa"
 
 #: wizard_newaccount.cpp:105
 msgid "Specify a descriptive name for the account."
-msgstr "Odredi opisno ime računa."
+msgstr "Odredi opisno ime za račun."
 
 #: wizard_newaccount.cpp:106
 msgid "This is generally the name of a financial institution\n"
 "where the account is held. For example: 'ABC Bank'."
-msgstr "Ovo je uglavnom ime financijske ustanove\n"
-"u kojoj imaš račun. Na primjer: „ABC banka”."
+msgstr "Ovdje se općenito zadaje ime financijske ustanove\n"
+"u kojoj se nalazi račun. Na primjer: „ABC banka”."
 
 #: wizard_newaccount.cpp:126
 msgid "Type of Account"
