@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-03-18 16:27+0300\n"
-"PO-Revision-Date: 2019-04-10 11:05\n"
+"PO-Revision-Date: 2019-04-10 11:38\n"
 "Last-Translator: vomikan <nikolay.akimov@gmail.com>\n"
 "Language-Team: Croatian\n"
 "MIME-Version: 1.0\n"
@@ -737,7 +737,7 @@ msgstr "Otvaranje priloga nije uspjelo"
 #: model/Model_Checking.cpp:37 optionsettingsmisc.cpp:87
 #: optionsettingsmisc.cpp:101 reports/reportbase.cpp:266
 msgid "None"
-msgstr "Ništa"
+msgstr "Bez"
 
 #: billsdepositsdialog.cpp:51 billsdepositspanel.cpp:46
 #: model/Model_Budget.cpp:55
@@ -926,7 +926,7 @@ msgstr "Dozvoli postavljanje različitih iznosa u izlazne i ulazne račune."
 #: transactionsupdatedialog.cpp:148 transdialog.cpp:485
 #: usertransactionpanel.cpp:149 webappdialog.cpp:82
 msgid "Amount"
-msgstr "Količina"
+msgstr "Iznos"
 
 #: billsdepositsdialog.cpp:586 transdialog.cpp:1218
 msgid "Specify the transfer amount in the To Account"
@@ -1789,7 +1789,7 @@ msgstr "Znak grupiranja"
 
 #: currencydialog.cpp:203
 msgid "Scale"
-msgstr "Razmjer"
+msgstr "Decimale"
 
 #: currencydialog.cpp:207
 msgid "Historic currency"
@@ -2422,7 +2422,7 @@ msgstr "Prikaži/sakrij prozor podešavajućeg polja"
 
 #: filtertransdialog.cpp:813
 msgid "Filtering Details: "
-msgstr "Filtriranje detalja: "
+msgstr "Detalji filtriranja: "
 
 #: filtertransdialog.cpp:817 filtertransdialog.cpp:1230
 msgid "Empty value"
@@ -2792,7 +2792,7 @@ msgstr "Kodiranje:"
 
 #: import_export/qif_import_gui.cpp:168
 msgid "Filtering Details:"
-msgstr "Pojedinosti filtriranja:"
+msgstr "Detalji filtriranja:"
 
 #: import_export/qif_import_gui.cpp:205
 msgid "Data"
@@ -4219,11 +4219,11 @@ msgstr "&Imovina"
 
 #: mmframe.cpp:1654
 msgid "&Transaction Report Filter..."
-msgstr "Filter izvještaja o transakcijama …"
+msgstr "&Filtar za izvještaje o transakcijama …"
 
 #: mmframe.cpp:1654 mmframe.cpp:1841
 msgid "Transaction Report Filter"
-msgstr "Filter izvještaja o transakcijama"
+msgstr "Filtar za izvještaje o transakcijama"
 
 #: mmframe.cpp:1661
 msgid "&General Report Manager..."
