@@ -498,8 +498,10 @@ void mmGeneralReportManager::OnSqlTest(wxCommandEvent& WXUNUSED(event))
     {
         m_sqlListBox->DeleteAllColumns();
         interval = wxGetUTCTimeMillis() - interval;
-        info->SetLabelText(wxString::Format(_("Row(s) returned: %i  Duration: %ld ms")
-            , (int) m_sqlQueryData.size(), interval.ToLong()));
+        info->SetLabelText(wxString::Format(wxPLURAL("%zu row returned, duration: %lld ms",
+                                                     "%zu rows returned, duration: %lld ms",
+                                                     m_sqlQueryData.size())
+            , m_sqlQueryData.size(), interval));
 
         MinimalEditor* templateText = static_cast<MinimalEditor*>(FindWindow(ID_TEMPLATE));
         std::vector<std::pair<wxString, int> > colHeaders;

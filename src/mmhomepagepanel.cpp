@@ -344,10 +344,10 @@ wxString htmlWidgetBillsAndDeposits::getHTMLText()
 
         int daysOverdue = Model_Billsdeposits::instance().daysOverdue(&entry);
         wxString daysRemainingStr = (daysPayment > 0
-            ? wxString::Format(_("%d days remaining"), daysPayment)
-            : wxString::Format(_("%d days delay!"), std::abs(daysPayment)));
+            ? wxString::Format(wxPLURAL("%d day remaining", "%d days remaining", daysPayment), daysPayment)
+            : wxString::Format(wxPLURAL("%d day delay!", "%d days delay!", -daysPayment), -daysPayment));
         if (daysOverdue < 0)
-            daysRemainingStr = wxString::Format(_("%d days overdue!"), std::abs(daysOverdue));
+            daysRemainingStr = wxString::Format(wxPLURAL("%d day overdue!", "%d days overdue!", -daysOverdue), -daysOverdue);
 
         wxString accountStr = "";
         const auto *account = Model_Account::instance().get(entry.ACCOUNTID);
