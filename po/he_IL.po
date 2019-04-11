@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2019-03-18 16:27+0300\n"
-"PO-Revision-Date: 2019-03-18 16:16\n"
+"POT-Creation-Date: 2019-04-11 11:38+0300\n"
+"PO-Revision-Date: 2019-04-11 08:46\n"
 "Last-Translator: vomikan <nikolay.akimov@gmail.com>\n"
 "Language-Team: Hebrew\n"
 "MIME-Version: 1.0\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: crowdin.com\n"
 "X-Poedit-Basepath: ../src\n"
-"X-Poedit-KeywordsList: _;wxTRANSLATE;wxGETTEXT_IN_CONTEXT:1c,2;wxGETTEXT_IN_CONTEXT_PLURAL:1c,2,3\n"
+"X-Poedit-KeywordsList: _;wxTRANSLATE;wxPLURAL:1,2;wxGETTEXT_IN_CONTEXT:1c,2;wxGETTEXT_IN_CONTEXT_PLURAL:1c,2,3\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: db/DB_Upgrade.h\n"
 "X-Poedit-SearchPathExcluded-1: db/Table_Currencyformats.h\n"
@@ -54,8 +54,8 @@ msgstr "פרטיות"
 #: assetdialog.cpp:299 attachmentdialog.cpp:118 billsdepositsdialog.cpp:499
 #: budgetentrydialog.cpp:158 budgetyeardialog.cpp:112
 #: budgetyearentrydialog.cpp:128 currencydialog.cpp:223
-#: customfieldeditdialog.cpp:188 import_export/qif_export.cpp:214
-#: import_export/qif_export.cpp:237 import_export/qif_import_gui.cpp:324
+#: customfieldeditdialog.cpp:188 import_export/qif_export.cpp:206
+#: import_export/qif_export.cpp:229 import_export/qif_import_gui.cpp:324
 #: optiondialog.cpp:150 payeedialog.cpp:128 relocatecategorydialog.cpp:125
 #: relocatepayeedialog.cpp:130 sharetransactiondialog.cpp:310
 #: splitdetailsdialog.cpp:157 splittransactionsdialog.cpp:170
@@ -89,7 +89,7 @@ msgstr "מצב חשבון:"
 msgid "Initial Balance: %s"
 msgstr "יתרת פתיחה: %s"
 
-#: accountdialog.cpp:225 import_export/univcsvdialog.cpp:1655
+#: accountdialog.cpp:225 import_export/univcsvdialog.cpp:1658
 msgid "Currency:"
 msgstr "מטבע:"
 
@@ -353,7 +353,7 @@ msgstr "הזנת שם הנכס"
 #: filtertransdialog.cpp:845 import_export/qif_import_gui.cpp:99
 #: import_export/univcsvdialog.cpp:99 maincurrencydialog.cpp:257
 #: maincurrencydialog.cpp:275 mmcheckingpanel.cpp:1099 mmreportspanel.cpp:344
-#: model/Model_CustomField.cpp:29 reports/cashflow.cpp:268
+#: model/Model_CustomField.cpp:29 reports/cashflow.cpp:271
 #: reports/summary.cpp:155 reports/transactions.cpp:74 stockdialog.cpp:310
 #: stockdialog.cpp:642 transactionsupdatedialog.cpp:106 transdialog.cpp:431
 #: usertransactionpanel.cpp:115 webappdialog.cpp:76
@@ -497,15 +497,15 @@ msgstr "סך כל: %s"
 msgid "MMEX allows you to track fixed assets like cars, houses, land and others. Each asset can have its value appreciate by a certain rate per year, depreciate by a certain rate per year, or not change in value. The total assets are added to your total financial worth."
 msgstr "MMEX מאפשר מעקוב אחר נכסים קבועים כגון מכוניות, בתים, קרקע ועוד. ערכו של כל נכס יכול לגדול או לקטון בשיעור מסויים בשנה, או, לא לשנות ערך כלל. סך כל ערכם של הנכסים מתווסף  לשווי הפיננסיי הכולל."
 
-#: assetspanel.cpp:458 assetspanel.h:107 general_report_manager.cpp:682
-#: general_report_manager.cpp:959 mmframe.cpp:456 mmframe.cpp:725
+#: assetspanel.cpp:458 assetspanel.h:107 general_report_manager.cpp:684
+#: general_report_manager.cpp:961 mmframe.cpp:456 mmframe.cpp:725
 #: mmframe.cpp:1649 mmhomepagepanel.cpp:429 mmhomepagepanel.cpp:844
 msgid "Assets"
 msgstr "נכסים"
 
 #: assetspanel.cpp:470 assetspanel.cpp:708 assetspanel.cpp:725
 #: constants.cpp:232 import_export/qif_export.cpp:63
-#: import_export/qif_export.cpp:64 import_export/qif_export.cpp:131
+#: import_export/qif_export.cpp:64 import_export/qif_export.cpp:123
 #: mmframe.cpp:1292
 msgid "All"
 msgstr "כולם"
@@ -579,7 +579,7 @@ msgid "Account \t Date\t   Value\n\n"
 msgstr "חשבון \t תאריך\t ערך\n\n"
 
 #: attachmentdialog.cpp:54 customfieldlistdialog.cpp:52
-#: import_export/qif_import_gui.cpp:97 import_export/univcsvdialog.cpp:1142
+#: import_export/qif_import_gui.cpp:97 import_export/univcsvdialog.cpp:1145
 #: payeedialog.cpp:65
 msgid "#"
 msgstr "#"
@@ -588,7 +588,7 @@ msgstr "#"
 msgid "Description"
 msgstr "תאור"
 
-#: attachmentdialog.cpp:56 import_export/qif_export.cpp:178
+#: attachmentdialog.cpp:56 import_export/qif_export.cpp:170
 #: import_export/univcsvdialog.cpp:171
 msgid "File"
 msgstr "קובץ"
@@ -635,7 +635,7 @@ msgstr "כלים אחרים"
 msgid "Import attachment:"
 msgstr "יבוא צרופה:"
 
-#: attachmentdialog.cpp:166 import_export/univcsvdialog.cpp:1414
+#: attachmentdialog.cpp:166 import_export/univcsvdialog.cpp:1417
 msgid "All Files"
 msgstr "כל הקבצים"
 
@@ -749,8 +749,8 @@ msgid "Fortnightly"
 msgstr "דו שבועי"
 
 #: billsdepositsdialog.cpp:53 billsdepositspanel.cpp:48
-#: model/Model_Budget.cpp:57 option.cpp:115 option.cpp:120 option.cpp:123
-#: option.cpp:126
+#: model/Model_Budget.cpp:57 option.cpp:114 option.cpp:119 option.cpp:122
+#: option.cpp:125
 msgid "Monthly"
 msgstr "חודשי"
 
@@ -770,7 +770,7 @@ msgid "Half-Yearly"
 msgstr "חצי שנתי"
 
 #: billsdepositsdialog.cpp:57 billsdepositspanel.cpp:52
-#: model/Model_Budget.cpp:61 option.cpp:116
+#: model/Model_Budget.cpp:61 option.cpp:115
 msgid "Yearly"
 msgstr "שנתי"
 
@@ -783,7 +783,7 @@ msgid "Four Weeks"
 msgstr "ארבעה שבועות"
 
 #: billsdepositsdialog.cpp:60 billsdepositspanel.cpp:55
-#: model/Model_Budget.cpp:62 option.cpp:127
+#: model/Model_Budget.cpp:62 option.cpp:126
 msgid "Daily"
 msgstr "יומי"
 
@@ -936,7 +936,7 @@ msgstr "הזנת הסכום להעברה לחשבון המקבל"
 #: billsdepositsdialog.cpp:874 billsdepositspanel.cpp:104
 #: filtertransdialog.cpp:203 filtertransdialog.cpp:835
 #: import_export/qif_import_gui.cpp:98 import_export/qif_import_gui.cpp:154
-#: import_export/qif_import_gui.cpp:224 import_export/qif_import_gui.cpp:796
+#: import_export/qif_import_gui.cpp:224 import_export/qif_import_gui.cpp:806
 #: reports/transactions.cpp:75 transdialog.cpp:295 transdialog.cpp:494
 #: usertransactionpanel.cpp:119 webappdialog.cpp:77
 msgid "Account"
@@ -1093,7 +1093,7 @@ msgid "Invalid value"
 msgstr "ערך לא תקין"
 
 #: billsdepositsdialog.cpp:1370 billsdepositsdialog.cpp:1379
-#: billsdepositsdialog.cpp:1387 general_report_manager.cpp:668
+#: billsdepositsdialog.cpp:1387 general_report_manager.cpp:670
 #: maincurrencydialog.cpp:455 mmframe.cpp:3068 mmreportspanel.cpp:261
 #: splittransactionsdialog.cpp:206 stockspanel.cpp:818 stockspanel.cpp:819
 msgid "Error"
@@ -1113,8 +1113,8 @@ msgid "Specify the category for this transaction"
 msgstr "בחירת קטגוריה עבור תנועה זו"
 
 #: billsdepositsdialog.cpp:1481 categdialog.cpp:118
-#: import_export/qif_export.cpp:123 option.cpp:117 option.cpp:118
-#: option.cpp:119 option.cpp:120 reports/categexp.cpp:232 transdialog.cpp:367
+#: import_export/qif_export.cpp:115 option.cpp:116 option.cpp:117
+#: option.cpp:118 option.cpp:119 reports/categexp.cpp:232 transdialog.cpp:367
 msgid "Categories"
 msgstr "קטגוריות"
 
@@ -1183,7 +1183,7 @@ msgstr "MMEX מאפשר להגדיר תשלומים קבועים כתנועות 
 msgid "Tip: These transactions can be set up to activate - allowing the user to adjust any values on the due date."
 msgstr "עצה:  ניתן להגדיר תנועות אלו שיפעלו אוטומטית – תהיה אפשרות להתאים את כל הערכים בתנועה  בתאריך היעד."
 
-#: billsdepositspanel.cpp:225 billsdepositspanel.cpp:888 mmframe.cpp:735
+#: billsdepositspanel.cpp:225 billsdepositspanel.cpp:877 mmframe.cpp:735
 #: mmhomepagepanel.cpp:435
 msgid "Recurring Transactions"
 msgstr "תנועות מחזרית"
@@ -1252,34 +1252,43 @@ msgstr "מוצע"
 msgid "Automated"
 msgstr "אוטומטי"
 
-#: billsdepositspanel.cpp:509 billsdepositspanel.cpp:575
-#: mmhomepagepanel.cpp:347
+#: billsdepositspanel.cpp:509 mmhomepagepanel.cpp:347
 #, c-format
-msgid "%d days remaining"
-msgstr "%d ימים נותרו"
+msgid "%d day remaining"
+msgid_plural "%d days remaining"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
-#: billsdepositspanel.cpp:514 billsdepositspanel.cpp:521
-#: billsdepositspanel.cpp:528 billsdepositspanel.cpp:580
-#: billsdepositspanel.cpp:587 billsdepositspanel.cpp:591
+#: billsdepositspanel.cpp:514 billsdepositspanel.cpp:520
+#: billsdepositspanel.cpp:528
 msgid "Inactive"
 msgstr "לא פעיל"
 
-#: billsdepositspanel.cpp:519 mmhomepagepanel.cpp:348
+#: billsdepositspanel.cpp:522 mmhomepagepanel.cpp:348
 #, c-format
-msgid "%d days delay!"
-msgstr "%d ימים באחור!"
+msgid "%d day delay!"
+msgid_plural "%d days delay!"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
-#: billsdepositspanel.cpp:526 billsdepositspanel.cpp:585
-#: mmhomepagepanel.cpp:350
+#: billsdepositspanel.cpp:530 mmhomepagepanel.cpp:350
 #, c-format
-msgid "%d days overdue!"
-msgstr "%d ימים בחריגה!"
+msgid "%d day overdue!"
+msgid_plural "%d days overdue!"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
-#: billsdepositspanel.cpp:637
+#: billsdepositspanel.cpp:626
 msgid "Do you really want to delete the series?"
 msgstr "האם למחוק את הסדרה?"
 
-#: billsdepositspanel.cpp:638
+#: billsdepositspanel.cpp:627
 msgid "Confirm Series Deletion"
 msgstr "אישור מחיקת סדרה"
 
@@ -1778,7 +1787,7 @@ msgid "Suffix Symbol"
 msgstr "סמל סיומת"
 
 #: currencydialog.cpp:186 currencydialog.cpp:251
-#: import_export/qif_import_gui.cpp:297 import_export/univcsvdialog.cpp:348
+#: import_export/qif_import_gui.cpp:297 import_export/univcsvdialog.cpp:347
 msgid "Decimal Char"
 msgstr "מפריד עשרוני"
 
@@ -1859,7 +1868,7 @@ msgstr "השלמה אוטומטית"
 msgid "Enables autocomplete on custom field"
 msgstr "מאפשר השלמת טקסט אוטומטית בשדות מותאמים"
 
-#: customfieldeditdialog.cpp:158 util.cpp:803
+#: customfieldeditdialog.cpp:158 util.cpp:797
 msgid "Default"
 msgstr "ברירת מחדל"
 
@@ -1968,8 +1977,12 @@ msgstr "האם לעדכן תוכן לריק?\n"
 
 #: customfieldlistdialog.cpp:231
 #, c-format
-msgid "%i occurrences founded and replaced!"
-msgstr "%i  מופעים נמצאו והוחלפו!"
+msgid "%zu occurrence founded and replaced!"
+msgid_plural "%zu occurrences founded and replaced!"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #: customfieldlistdialog.cpp:266
 msgid "&Massive content update "
@@ -2458,7 +2471,7 @@ msgstr "שם הגדרות"
 msgid "Could not save settings"
 msgstr "לא ניתן לשמור הגדרות"
 
-#: general_report_manager.cpp:237 general_report_manager.cpp:621
+#: general_report_manager.cpp:237 general_report_manager.cpp:623
 msgid "General Reports Manager"
 msgstr "מנהל דוחות כללי"
 
@@ -2466,7 +2479,7 @@ msgstr "מנהל דוחות כללי"
 msgid "Reports"
 msgstr "דוחות"
 
-#: general_report_manager.cpp:368 import_export/univcsvdialog.cpp:397
+#: general_report_manager.cpp:368 import_export/univcsvdialog.cpp:400
 #: mmframe.cpp:1287 mmframe.cpp:1485
 msgid "&Import"
 msgstr "&יבוא"
@@ -2475,7 +2488,7 @@ msgstr "&יבוא"
 msgid "Locate and load a report file."
 msgstr "אתר וטען קובץ דוח."
 
-#: general_report_manager.cpp:372 import_export/univcsvdialog.cpp:404
+#: general_report_manager.cpp:372 import_export/univcsvdialog.cpp:407
 #: mmframe.cpp:1282 mmframe.cpp:1478
 msgid "&Export"
 msgstr "&יצוא"
@@ -2526,113 +2539,117 @@ msgstr "יצירת תבנית"
 
 #: general_report_manager.cpp:501
 #, c-format
-msgid "Row(s) returned: %i  Duration: %ld ms"
-msgstr "שורה (ות ) הוחזרו : %i  משך:%ld ms"
+msgid "%zu row returned, duration: %lld ms"
+msgid_plural "%zu rows returned, duration: %lld ms"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
-#: general_report_manager.cpp:526
+#: general_report_manager.cpp:528
 msgid "SQL Syntax Error"
 msgstr "שגיאת תחביר SQL"
 
-#: general_report_manager.cpp:555
+#: general_report_manager.cpp:557
 msgid "Load report file:"
 msgstr "טען קובץ דוח:"
 
-#: general_report_manager.cpp:557 general_report_manager.cpp:987
+#: general_report_manager.cpp:559 general_report_manager.cpp:989
 msgid "General Report Manager files (*.grm)"
 msgstr "קובצי מנהל דוחות כללי (*.grm)"
 
-#: general_report_manager.cpp:557 general_report_manager.cpp:987
+#: general_report_manager.cpp:559 general_report_manager.cpp:989
 msgid "ZIP files (*.zip)"
 msgstr "‮קובצי ZIP ‭(*.zip)"
 
-#: general_report_manager.cpp:620
+#: general_report_manager.cpp:622
 #, c-format
 msgid "Unable to open file:\n"
 "%s\n\n"
 msgstr "לא ניתן לפתוח קובץ:\n"
 "%s\n\n"
 
-#: general_report_manager.cpp:685
+#: general_report_manager.cpp:687
 msgid "New Empty Report"
 msgstr "דוח (ריק) חדש"
 
-#: general_report_manager.cpp:686
+#: general_report_manager.cpp:688
 msgid "New Sample Report"
 msgstr "דוח דוגמא חדש"
 
-#: general_report_manager.cpp:689
+#: general_report_manager.cpp:691
 msgid "Change Group"
 msgstr "שינוי קבוצה"
 
-#: general_report_manager.cpp:691 general_report_manager.cpp:856
+#: general_report_manager.cpp:693 general_report_manager.cpp:858
 msgid "Rename Group"
 msgstr "שינוי שם קבוצה"
 
-#: general_report_manager.cpp:692
+#: general_report_manager.cpp:694
 msgid "UnGroup"
 msgstr "פרק קבוצה"
 
-#: general_report_manager.cpp:693
+#: general_report_manager.cpp:695
 msgid "Rename Report"
 msgstr "שינוי שם דוח"
 
-#: general_report_manager.cpp:695
+#: general_report_manager.cpp:697
 msgid "Delete Report"
 msgstr "מחיקת דוח"
 
-#: general_report_manager.cpp:790 general_report_manager.cpp:938
+#: general_report_manager.cpp:792 general_report_manager.cpp:940
 msgid "Enter the name for the report"
 msgstr "הזנת שם הדוח"
 
-#: general_report_manager.cpp:791 general_report_manager.cpp:939
+#: general_report_manager.cpp:793 general_report_manager.cpp:941
 #: mmframe.cpp:1250 mmframe.cpp:1661 mmframe.cpp:1838
 msgid "General Report Manager"
 msgstr "מנהל דוחות כללי"
 
-#: general_report_manager.cpp:809
+#: general_report_manager.cpp:811
 msgid "Delete the Report Title:"
 msgstr "מחיקת כותרת דוח:"
 
-#: general_report_manager.cpp:838 general_report_manager.cpp:919
+#: general_report_manager.cpp:840 general_report_manager.cpp:921
 msgid "Enter or choose name for the new report group"
 msgstr "הזנת או בחירת שם עבור קבוצת הדוחות החדשה"
 
-#: general_report_manager.cpp:839
+#: general_report_manager.cpp:841
 msgid "Change report group"
 msgstr "שינוי קבוצת דוחות"
 
-#: general_report_manager.cpp:855
+#: general_report_manager.cpp:857
 msgid "Enter or choose name for the new group"
 msgstr "הזנת או בחירת שם עבור הקבוצה החדשה"
 
-#: general_report_manager.cpp:920
+#: general_report_manager.cpp:922
 msgid "Add Report Group"
 msgstr "הוספת קבוצת דוחות"
 
-#: general_report_manager.cpp:933
+#: general_report_manager.cpp:935
 #, c-format
 msgid "New Report %s"
 msgstr "דוח חדש %s"
 
-#: general_report_manager.cpp:946
+#: general_report_manager.cpp:948
 msgid "Report Name already exists"
 msgstr "שם דוח קיים כבר"
 
-#: general_report_manager.cpp:946 general_report_manager.cpp:953
+#: general_report_manager.cpp:948 general_report_manager.cpp:955
 msgid "New Report"
 msgstr "דוח חדש"
 
-#: general_report_manager.cpp:984
+#: general_report_manager.cpp:986
 msgid "Choose file to Save As Report"
 msgstr "בחירת קובץ לשמירה כדוח"
 
-#: import_export/parsers.cpp:46 import_export/univcsvdialog.cpp:1431
+#: import_export/parsers.cpp:46 import_export/univcsvdialog.cpp:1434
 #: mmSimpleDialogs.cpp:169
 msgid "Unable to open file."
 msgstr "לא ניתן לפתוח קובץ."
 
 #: import_export/parsers.cpp:46 import_export/parsers.cpp:89
-#: import_export/univcsvdialog.cpp:875 mmframe.cpp:2268 mmframe.cpp:2287
+#: import_export/univcsvdialog.cpp:878 mmframe.cpp:2268 mmframe.cpp:2287
 msgid "Universal CSV Import"
 msgstr "אוניברסלי  CSV יבוא"
 
@@ -2673,8 +2690,8 @@ msgstr "לא נמצאה טבלה."
 msgid "Transactions"
 msgstr "תנועות"
 
-#: import_export/qif_export.cpp:42 import_export/qif_export.cpp:235
-#: import_export/qif_export.cpp:311
+#: import_export/qif_export.cpp:42 import_export/qif_export.cpp:227
+#: import_export/qif_export.cpp:300
 msgid "QIF Export"
 msgstr "יצוא QIF "
 
@@ -2686,97 +2703,99 @@ msgstr "פרמטרים"
 msgid "Log"
 msgstr "לוג"
 
-#: import_export/qif_export.cpp:111
-msgid "QIF"
-msgstr "QIF"
-
-#: import_export/qif_export.cpp:111
-msgid "CSV"
-msgstr "CSV"
-
-#: import_export/qif_export.cpp:129 mmframe.cpp:2840 mmframe.cpp:2844
+#: import_export/qif_export.cpp:121 mmframe.cpp:2840 mmframe.cpp:2844
 #: mmframe.cpp:2863 mmframe.cpp:2867
 msgid "Accounts"
 msgstr "חשבונות"
 
-#: import_export/qif_export.cpp:140 import_export/qif_import_gui.cpp:174
+#: import_export/qif_export.cpp:132 import_export/qif_import_gui.cpp:174
 msgid "From Date"
 msgstr "מתאריך"
 
-#: import_export/qif_export.cpp:149 import_export/qif_import_gui.cpp:183
+#: import_export/qif_export.cpp:141 import_export/qif_import_gui.cpp:183
 msgid "To Date"
 msgstr "עד תאריך"
 
-#: import_export/qif_export.cpp:162 import_export/qif_import_gui.cpp:277
+#: import_export/qif_export.cpp:154 import_export/qif_import_gui.cpp:277
 #: optionsettingsgeneral.cpp:98
 msgid "Date Format"
 msgstr "תבנית תאריך"
 
-#: import_export/qif_export.cpp:174
+#: import_export/qif_export.cpp:166
 msgid "Write to File"
 msgstr "כתוב לקובץ"
 
-#: import_export/qif_export.cpp:177 import_export/qif_import_gui.cpp:128
+#: import_export/qif_export.cpp:169 import_export/qif_import_gui.cpp:128
 #: import_export/univcsvdialog.cpp:159
 msgid "File Name:"
 msgstr "שם קובץ:"
 
-#: import_export/qif_export.cpp:200 import_export/univcsvdialog.cpp:423
+#: import_export/qif_export.cpp:192 import_export/univcsvdialog.cpp:426
 msgid "Clear"
 msgstr "ניקוי"
 
-#: import_export/qif_export.cpp:234
+#: import_export/qif_export.cpp:226
 msgid "Choose Account to Export from:"
 msgstr "בחירת חשבון ליצוא:"
 
-#: import_export/qif_export.cpp:279
+#: import_export/qif_export.cpp:271
 msgid "Choose QIF data file to Export"
 msgstr "בחירת מבנה נתונים QIF ליצוא"
 
-#: import_export/qif_export.cpp:281 import_export/qif_import_gui.cpp:706
+#: import_export/qif_export.cpp:273 import_export/qif_import_gui.cpp:716
 msgid "QIF Files (*.qif)"
 msgstr "‮קובצי QIF ‭(*.qif)"
 
-#: import_export/qif_export.cpp:300
+#: import_export/qif_export.cpp:289
 msgid "No Account available for export"
 msgstr "אין חשבון זמין ליצוא"
 
-#: import_export/qif_export.cpp:302
+#: import_export/qif_export.cpp:291
 msgid "No Accounts selected for export"
 msgstr "לא נבחר חשבון ליצוא"
 
-#: import_export/qif_export.cpp:304
+#: import_export/qif_export.cpp:293
 msgid "To Date less than From Date"
 msgstr "ערך שדה 'עד תאריך 'קטן מערך שדה 'מתאריך'"
 
-#: import_export/qif_export.cpp:382
+#: import_export/qif_export.cpp:372
 msgid "Categories exported"
 msgstr "קטגוריות יוצאו"
 
-#: import_export/qif_export.cpp:391 import_export/qif_import_gui.cpp:357
-#: import_export/qif_import_gui.cpp:790
+#: import_export/qif_export.cpp:382 import_export/qif_import_gui.cpp:357
+#: import_export/qif_import_gui.cpp:800
 msgid "Please wait"
 msgstr "נא המתן"
 
-#: import_export/qif_export.cpp:391
+#: import_export/qif_export.cpp:382
 msgid "Exporting"
 msgstr "יצוא"
 
-#: import_export/qif_export.cpp:419
+#: import_export/qif_export.cpp:410
 #, c-format
-msgid "Exporting transaction %i"
-msgstr "יצוא תנועות %i"
+msgid "Exporting transaction %zu"
+msgstr ""
 
-#: import_export/qif_export.cpp:474
+#: import_export/qif_export.cpp:469
 #, c-format
-msgid "Number of transactions exported: %ld"
-msgstr "מספר תנועות שיוצאו: %ld"
+msgid "Number of categories exported: %zu"
+msgstr ""
 
-#: import_export/qif_export.cpp:475 mmframe.cpp:1475
+#: import_export/qif_export.cpp:471
+#, c-format
+msgid "Number of transactions exported: %zu"
+msgstr ""
+
+#: import_export/qif_export.cpp:473
+#, c-format
+msgid "Number of accounts exported: %zu"
+msgstr ""
+
+#: import_export/qif_export.cpp:474 mmframe.cpp:1475
 msgid "Export to QIF"
 msgstr "יצוא ל QIF"
 
-#: import_export/qif_import_gui.cpp:79 import_export/qif_import_gui.cpp:890
+#: import_export/qif_import_gui.cpp:79 import_export/qif_import_gui.cpp:900
 msgid "QIF Import"
 msgstr "יבוא QIF"
 
@@ -2805,10 +2824,10 @@ msgid "Include payee field in notes"
 msgstr "כלול שדה מוטב בהערות"
 
 #: import_export/qif_import_gui.cpp:348 import_export/qif_import_gui.cpp:351
-#: import_export/qif_import_gui.cpp:504 import_export/qif_import_gui.cpp:1089
-#: import_export/univcsvdialog.cpp:674 import_export/univcsvdialog.cpp:783
-#: import_export/univcsvdialog.cpp:786 import_export/univcsvdialog.cpp:807
-#: import_export/univcsvdialog.cpp:814 transdialog.cpp:311 webapp.cpp:393
+#: import_export/qif_import_gui.cpp:504 import_export/qif_import_gui.cpp:1099
+#: import_export/univcsvdialog.cpp:677 import_export/univcsvdialog.cpp:786
+#: import_export/univcsvdialog.cpp:789 import_export/univcsvdialog.cpp:810
+#: import_export/univcsvdialog.cpp:817 transdialog.cpp:311 webapp.cpp:393
 #: webapp.cpp:401 webapp.cpp:409
 msgid "Unknown"
 msgstr "לא ידוע"
@@ -2819,134 +2838,133 @@ msgstr "סורק"
 
 #: import_export/qif_import_gui.cpp:385
 #, c-format
-msgid "Reading line %i, %ld ms"
-msgstr "קורא שורה %i, %ld ms"
+msgid "Reading line %zu, %lld ms"
+msgstr ""
 
 #: import_export/qif_import_gui.cpp:391
 #, c-format
-msgid "Line %i \t %s\n"
-msgstr "שורה %i \t %s\n"
-" \n"
+msgid "Line %zu \t %s\n"
+msgstr ""
 
 #: import_export/qif_import_gui.cpp:464
 #, c-format
-msgid "Number of lines read from QIF file: %i in %ld ms"
-msgstr "מספר תנועות שנקראו QIF מקובץ : %i ב %ld ms"
+msgid "Number of lines read from QIF file: %zu in %lld ms"
+msgstr ""
 
 #: import_export/qif_import_gui.cpp:467
 msgid "Press OK Button to continue"
 msgstr "לחץ על לחצן 'אישור' כדי להמשיך"
 
-#: import_export/qif_import_gui.cpp:648 import_export/qif_import_gui.cpp:677
-#: import_export/qif_import_gui.cpp:694
+#: import_export/qif_import_gui.cpp:658 import_export/qif_import_gui.cpp:687
+#: import_export/qif_import_gui.cpp:704
 msgid "OK"
 msgstr "אישור"
 
-#: import_export/qif_import_gui.cpp:650 import_export/qif_import_gui.cpp:653
+#: import_export/qif_import_gui.cpp:660 import_export/qif_import_gui.cpp:663
 msgid "Warning"
 msgstr "התראה"
 
-#: import_export/qif_import_gui.cpp:658 import_export/qif_import_gui.cpp:677
+#: import_export/qif_import_gui.cpp:668 import_export/qif_import_gui.cpp:687
 msgid "Missing"
 msgstr "חסר"
 
-#: import_export/qif_import_gui.cpp:704
+#: import_export/qif_import_gui.cpp:714
 msgid "Choose QIF data file to Import"
 msgstr "בחירת קובץ נתונים QIF ליבוא"
 
-#: import_export/qif_import_gui.cpp:783
+#: import_export/qif_import_gui.cpp:793
 msgid "Do you want to import all transaction ?"
 msgstr "האם לייבא את כל התנועות?"
 
-#: import_export/qif_import_gui.cpp:784
+#: import_export/qif_import_gui.cpp:794
 msgid "All missing account, payees and categories will be created."
 msgstr "כל החשבונות, המוטבים והקטגוריות החסרות ייווצרו."
 
-#: import_export/qif_import_gui.cpp:785
+#: import_export/qif_import_gui.cpp:795
 msgid "Confirm Import"
 msgstr "אישור יבוא"
 
-#: import_export/qif_import_gui.cpp:790
+#: import_export/qif_import_gui.cpp:800
 msgid "Importing"
 msgstr "מייבא"
 
-#: import_export/qif_import_gui.cpp:792
+#: import_export/qif_import_gui.cpp:802
 msgid "Importing Accounts"
 msgstr "מייבא חשבונות"
 
-#: import_export/qif_import_gui.cpp:799
+#: import_export/qif_import_gui.cpp:809
 msgid "Importing Payees"
 msgstr "מייבא מוטבים"
 
-#: import_export/qif_import_gui.cpp:802
+#: import_export/qif_import_gui.cpp:812
 msgid "Importing Categories"
 msgstr "מייבא קטגוריות"
 
-#: import_export/qif_import_gui.cpp:819
+#: import_export/qif_import_gui.cpp:829
 #, c-format
 msgid "Importing transaction %i of %i"
 msgstr "מייבא תנועות %i of %i"
 
-#: import_export/qif_import_gui.cpp:841 webapp.cpp:120
+#: import_export/qif_import_gui.cpp:851 webapp.cpp:120
 #, c-format
 msgid "Error: %s"
 msgstr "שגיאה: %s"
 
-#: import_export/qif_import_gui.cpp:852
+#: import_export/qif_import_gui.cpp:862
 msgid "Importing Transfers"
 msgstr "מייבא העברות"
 
-#: import_export/qif_import_gui.cpp:876
+#: import_export/qif_import_gui.cpp:886
 msgid "Importing Split transactions"
 msgstr "מייבא תנועות מפוצלות"
 
-#: import_export/qif_import_gui.cpp:880
+#: import_export/qif_import_gui.cpp:890
 msgid "Import finished successfully"
 msgstr "היבוא הסתיים בהצלחה"
 
-#: import_export/qif_import_gui.cpp:880 stockdialog.cpp:640
+#: import_export/qif_import_gui.cpp:890 stockdialog.cpp:640
 #, c-format
 msgid "Total Imported: %ld"
 msgstr "סך כל יובאו: %ld"
 
-#: import_export/qif_import_gui.cpp:888 import_export/univcsvdialog.cpp:992
+#: import_export/qif_import_gui.cpp:898 import_export/univcsvdialog.cpp:995
 msgid "Imported transactions discarded by user!"
 msgstr "תנועות מיובאות נמחקו על-ידי המשתמש!"
 
-#: import_export/qif_import_gui.cpp:970
+#: import_export/qif_import_gui.cpp:980
 msgid "Transaction code is missing"
 msgstr "קוד תנועה חסר"
 
-#: import_export/qif_import_gui.cpp:979
+#: import_export/qif_import_gui.cpp:989
 msgid "Transaction Payee is missing or incorrect"
 msgstr "המוטב בתנועה חסר או שגוי"
 
-#: import_export/qif_import_gui.cpp:991
+#: import_export/qif_import_gui.cpp:1001
 msgid "Date format or date mask is incorrect"
 msgstr "מתארך או מסיכת תאריך שגויים"
 
-#: import_export/qif_import_gui.cpp:1003
+#: import_export/qif_import_gui.cpp:1013
 msgid "Transaction Account is incorrect"
 msgstr "חשבון תנועה שגוי"
 
-#: import_export/qif_import_gui.cpp:1012
+#: import_export/qif_import_gui.cpp:1022
 msgid "Transaction Account for transfer is incorrect"
 msgstr "חשבון תנועה להעברה שגוי"
 
-#: import_export/qif_import_gui.cpp:1038
+#: import_export/qif_import_gui.cpp:1048
 msgid "Transaction Amount is incorrect"
 msgstr "חשבון תנועה שגוי"
 
-#: import_export/qif_import_gui.cpp:1057
+#: import_export/qif_import_gui.cpp:1067
 msgid "Transaction Category is incorrect"
 msgstr "קטגורית התנועה שגויה"
 
-#: import_export/qif_import_gui.cpp:1146
+#: import_export/qif_import_gui.cpp:1156
 #, c-format
 msgid "Added account: %s"
 msgstr "התווסף חשבון: %s"
 
-#: import_export/qif_import_gui.cpp:1175 import_export/univcsvdialog.cpp:790
+#: import_export/qif_import_gui.cpp:1185 import_export/univcsvdialog.cpp:793
 #, c-format
 msgid "Added payee: %s"
 msgstr "התווסף מוטב:  %s"
@@ -3052,11 +3070,11 @@ msgstr "ערכים חיוביים הם הפקדות"
 msgid "Positive values are withdrawals"
 msgstr "ערכים חיוביים הם משיכות"
 
-#: import_export/univcsvdialog.cpp:359
+#: import_export/univcsvdialog.cpp:356
 msgid "Rows to ignore"
 msgstr "שורות להתעלם"
 
-#: import_export/univcsvdialog.cpp:365
+#: import_export/univcsvdialog.cpp:363
 msgid "From start: "
 msgstr "מתחילת: "
 
@@ -3064,166 +3082,166 @@ msgstr "מתחילת: "
 msgid "From end: "
 msgstr "מסוף: "
 
-#: import_export/univcsvdialog.cpp:381
+#: import_export/univcsvdialog.cpp:384
 msgid "Preview"
 msgstr "תצוגה מקדימה"
 
-#: import_export/univcsvdialog.cpp:400
+#: import_export/univcsvdialog.cpp:403
 msgid "Import File"
 msgstr "יבוא קובץ"
 
-#: import_export/univcsvdialog.cpp:407
+#: import_export/univcsvdialog.cpp:410
 msgid "Export File"
 msgstr "יצוא קובץ"
 
-#: import_export/univcsvdialog.cpp:501
+#: import_export/univcsvdialog.cpp:504
 #, c-format
 msgid "Default account '%s' for this template does not exist.\n"
 "Please select a new account."
 msgstr "חשבון ברירת המחדל '%s' עבור תבנית זו אינה קיימת.\n"
 "אנא בחירת חשבון חדש."
 
-#: import_export/univcsvdialog.cpp:503
+#: import_export/univcsvdialog.cpp:506
 msgid "Account does not exist"
 msgstr "חשבון לא קיים"
 
-#: import_export/univcsvdialog.cpp:831
+#: import_export/univcsvdialog.cpp:834
 msgid "Incorrect fields specified for import!"
 msgstr "לפעולת היבוא, הוגדרו שדות שגויים!"
 
-#: import_export/univcsvdialog.cpp:832
+#: import_export/univcsvdialog.cpp:835
 msgid "Date field is required."
 msgstr "שדה תאריך הוא שדה חובה."
 
-#: import_export/univcsvdialog.cpp:833
+#: import_export/univcsvdialog.cpp:836
 msgid "Amount field or both Withdrawal and Deposit fields are required."
 msgstr "שדה סכום משיכה או הפקדה הוא שדה חובה."
 
-#: import_export/univcsvdialog.cpp:834 import_export/univcsvdialog.cpp:962
+#: import_export/univcsvdialog.cpp:837 import_export/univcsvdialog.cpp:965
 #: webappdialog.cpp:270
 msgid "Import"
 msgstr "יבוא"
 
-#: import_export/univcsvdialog.cpp:884
+#: import_export/univcsvdialog.cpp:887
 #, c-format
 msgid "Transactions imported to account %s: %ld"
 msgstr "תנועות יובאו לחשבון %s : %ld"
 
-#: import_export/univcsvdialog.cpp:895
+#: import_export/univcsvdialog.cpp:898
 #, c-format
 msgid "Line %ld: Empty"
 msgstr "שורה %ld: ריקה"
 
-#: import_export/univcsvdialog.cpp:909
+#: import_export/univcsvdialog.cpp:912
 #, c-format
 msgid "Line %ld: Error:"
 msgstr "שורה %ld: שגויה:"
 
-#: import_export/univcsvdialog.cpp:911
+#: import_export/univcsvdialog.cpp:914
 msgid "Invalid Date."
 msgstr "תאריך לא תקין."
 
-#: import_export/univcsvdialog.cpp:912 mmTextCtrl.cpp:82
+#: import_export/univcsvdialog.cpp:915 mmTextCtrl.cpp:82
 msgid "Invalid Amount."
 msgstr "סכום לא תקין."
 
-#: import_export/univcsvdialog.cpp:914
+#: import_export/univcsvdialog.cpp:917
 msgid "Type (withdrawal/deposit) unknown."
 msgstr "סוג (משיכה/הפקדה) לא מוכרים."
 
-#: import_export/univcsvdialog.cpp:939
+#: import_export/univcsvdialog.cpp:942
 #, c-format
 msgid "Line %ld: OK, imported."
 msgstr "שורה %ld: יובא בהצלחה."
 
-#: import_export/univcsvdialog.cpp:947 stockdialog.cpp:638
+#: import_export/univcsvdialog.cpp:950 stockdialog.cpp:638
 #, c-format
 msgid "Total Lines: %ld"
 msgstr "סך כל שורות: %ld"
 
-#: import_export/univcsvdialog.cpp:949
+#: import_export/univcsvdialog.cpp:952
 #, c-format
 msgid "Lines Selected to Import: %ld"
 msgstr "סך שורות שנבחרו לייבוא: %ld"
 
-#: import_export/univcsvdialog.cpp:951
+#: import_export/univcsvdialog.cpp:954
 #, c-format
 msgid "Empty Lines: %ld"
 msgstr "שורות ריקות: %ld"
 
-#: import_export/univcsvdialog.cpp:953
+#: import_export/univcsvdialog.cpp:956
 #, c-format
 msgid "Imported: %ld"
 msgstr "יובאו: %ld"
 
-#: import_export/univcsvdialog.cpp:955
+#: import_export/univcsvdialog.cpp:958
 #, c-format
 msgid "Errored: %ld"
 msgstr "שגויים: %ld"
 
-#: import_export/univcsvdialog.cpp:958
+#: import_export/univcsvdialog.cpp:961
 #, c-format
 msgid "Log file written to: %s"
 msgstr "קובץ לוג נכתב ל: %s"
 
-#: import_export/univcsvdialog.cpp:961 stockdialog.cpp:646
+#: import_export/univcsvdialog.cpp:964 stockdialog.cpp:646
 msgid "Please confirm saving..."
 msgstr "אישור שמירה..."
 
-#: import_export/univcsvdialog.cpp:993
+#: import_export/univcsvdialog.cpp:996
 msgid "No imported transactions!"
 msgstr "תנועות לא יובאו!"
 
-#: import_export/univcsvdialog.cpp:1011
+#: import_export/univcsvdialog.cpp:1014
 msgid "Incorrect fields specified for export! Requires at least Date and Amount."
 msgstr "לא הוגדרו השדות הנחוצים ליבוא! השדות המינימליים הדרושים הם תאריך וסכום."
 
-#: import_export/univcsvdialog.cpp:1012 import_export/univcsvdialog.cpp:1133
+#: import_export/univcsvdialog.cpp:1015 import_export/univcsvdialog.cpp:1136
 msgid "Export"
 msgstr "יצוא"
 
-#: import_export/univcsvdialog.cpp:1022
+#: import_export/univcsvdialog.cpp:1025
 msgid "Overwrite existing file?"
 msgstr "האם לדרוס קובץ קיים?"
 
-#: import_export/univcsvdialog.cpp:1022
+#: import_export/univcsvdialog.cpp:1025
 msgid "File exists"
 msgstr "קובץ קיים"
 
-#: import_export/univcsvdialog.cpp:1028
+#: import_export/univcsvdialog.cpp:1031
 msgid "Failed to delete existing file. File may be locked by another program."
 msgstr "לא ניתן למחוק את הקובץ הקיים. הקובץ עשוי להיות נעול על ידי תכנית אחרת."
 
-#: import_export/univcsvdialog.cpp:1029
+#: import_export/univcsvdialog.cpp:1032
 msgid "Destination file error"
 msgstr "שגיאת קובץ יעד"
 
-#: import_export/univcsvdialog.cpp:1132
+#: import_export/univcsvdialog.cpp:1135
 #, c-format
 msgid "Transactions exported: %ld"
 msgstr "תנועות יוצאו:  %ld"
 
-#: import_export/univcsvdialog.cpp:1398 stockdialog.cpp:554
+#: import_export/univcsvdialog.cpp:1401 stockdialog.cpp:554
 msgid "Choose CSV data file to import"
 msgstr "בחירת קובץ נתונים CSV לייבא"
 
-#: import_export/univcsvdialog.cpp:1401
+#: import_export/univcsvdialog.cpp:1404
 msgid "Choose CSV data file to export"
 msgstr "בחירת קובץ נתונים CSV ליצוא"
 
-#: import_export/univcsvdialog.cpp:1404
+#: import_export/univcsvdialog.cpp:1407
 msgid "Choose XML data file to import"
 msgstr "בחירת קובץ נתונים XML לייבא"
 
-#: import_export/univcsvdialog.cpp:1407
+#: import_export/univcsvdialog.cpp:1410
 msgid "Choose XML data file to export"
 msgstr "בחירת קובץ נתונים XML ליצוא"
 
-#: import_export/univcsvdialog.cpp:1414
+#: import_export/univcsvdialog.cpp:1417
 msgid "XML Files (*.xml)"
 msgstr "קבצי XML (*.xml)"
 
-#: import_export/univcsvdialog.cpp:1415 stockdialog.cpp:555
+#: import_export/univcsvdialog.cpp:1418 stockdialog.cpp:555
 msgid "CSV Files (*.csv)"
 msgstr "קובצי CSV (*.csv)"
 
@@ -4759,7 +4777,7 @@ msgid "Gain/Loss"
 msgstr "רוח/הפסד"
 
 #: mmhomepagepanel.cpp:103 reports/budgetingperf.cpp:188
-#: reports/cashflow.cpp:269 reports/categexp.cpp:167
+#: reports/cashflow.cpp:272 reports/categexp.cpp:167
 #: reports/categovertimeperf.cpp:201 reports/summary.cpp:162
 msgid "Total"
 msgstr "סך הכל"
@@ -4775,7 +4793,7 @@ msgstr "סך הכל:"
 msgid "Top Withdrawals: %s"
 msgstr "משיכות מובילות: %s"
 
-#: mmhomepagepanel.cpp:223 option.cpp:119 option.cpp:122 option.cpp:129
+#: mmhomepagepanel.cpp:223 option.cpp:118 option.cpp:121 option.cpp:128
 msgid "Summary"
 msgstr "סיכום"
 
@@ -5027,52 +5045,52 @@ msgstr "תסריט ה SQL:\n"
 "% s\n"
 "ישנה את מסד הנתונים! מבטל!"
 
-#: option.cpp:114 reports/myusage.cpp:108
+#: option.cpp:113 reports/myusage.cpp:108
 msgid "MMEX Usage Frequency"
 msgstr "תדירות שימוש ב MMEX"
 
-#: option.cpp:115 option.cpp:116
+#: option.cpp:114 option.cpp:115
 msgid "Summary of Accounts"
 msgstr "יתרת חשבונות"
 
-#: option.cpp:117 reports/categexp.cpp:222
+#: option.cpp:116 reports/categexp.cpp:222
 msgid "Where the Money Goes"
 msgstr "לאן הולך הכסף"
 
-#: option.cpp:118 reports/categexp.cpp:227
+#: option.cpp:117 reports/categexp.cpp:227
 msgid "Where the Money Comes From"
 msgstr "מאין מגיע הכסף"
 
-#: option.cpp:121
+#: option.cpp:120
 msgid "Payees"
 msgstr "מוטבים"
 
-#: option.cpp:122 option.cpp:123 reports/incexpenses.cpp:32
+#: option.cpp:121 option.cpp:122 reports/incexpenses.cpp:32
 #: reports/incexpenses.cpp:144
 msgid "Income vs Expenses"
 msgstr "הכנסות מול הוצאות"
 
-#: option.cpp:124 option.cpp:125
+#: option.cpp:123 option.cpp:124
 msgid "Budget"
 msgstr "תקציב"
 
-#: option.cpp:124 option.cpp:128
+#: option.cpp:123 option.cpp:127
 msgid "Performance"
 msgstr "ביצוע"
 
-#: option.cpp:125
+#: option.cpp:124
 msgid "Category Summary"
 msgstr "סיכום קטגוריה"
 
-#: option.cpp:126 option.cpp:127 reports/cashflow.cpp:35
+#: option.cpp:125 option.cpp:126 reports/cashflow.cpp:35
 msgid "Cash Flow"
 msgstr "תזרים מזומנים"
 
-#: option.cpp:128 option.cpp:129
+#: option.cpp:127 option.cpp:128
 msgid "Stocks Report"
 msgstr "דוח ניירות ערך"
 
-#: option.cpp:130
+#: option.cpp:129
 msgid "Forecast Report"
 msgstr "דוח תחזית"
 
@@ -5278,19 +5296,19 @@ msgstr "חודש התחלה"
 msgid "Specify month for start of financial year"
 msgstr "הזנת החודש הראשון בשנה הפיננסית"
 
-#: optionsettingsgeneral.cpp:154
+#: optionsettingsgeneral.cpp:155
 msgid "Use Original Date when Pasting Transactions"
 msgstr "להשתמש בתאריך מקורי בזמן רישום תנועה"
 
-#: optionsettingsgeneral.cpp:156
+#: optionsettingsgeneral.cpp:157
 msgid "Select whether to use the original transaction date or current date when copying/pasting transactions"
 msgstr "הגדרה באם להשתמש בתאריך מקורי או תאריך היום בזמן העתקה והדבקה של תנועה"
 
-#: optionsettingsgeneral.cpp:159
+#: optionsettingsgeneral.cpp:160
 msgid "Use Transaction Sound"
 msgstr "להשתמש בצליל תנועה"
 
-#: optionsettingsgeneral.cpp:161
+#: optionsettingsgeneral.cpp:163
 msgid "Select whether to use sounds when entering transactions"
 msgstr "הגדרה באם להשתמש בצליל בעת קליטת תנועה"
 
@@ -5751,9 +5769,13 @@ msgstr "סך הכל חודשי"
 #: reports/cashflow.cpp:220
 #, c-format
 msgid "Cash Flow Forecast for %i Years Ahead"
-msgstr "תחזית תזרים מזומנים ל %i שנים"
+msgid_plural "Cash Flow Forecast for %i Years Ahead"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
-#: reports/cashflow.cpp:270 reports/incexpenses.cpp:208 reports/payee.cpp:125
+#: reports/cashflow.cpp:273 reports/incexpenses.cpp:208 reports/payee.cpp:125
 msgid "Difference"
 msgstr "הפרש"
 
@@ -6547,144 +6569,144 @@ msgstr "שדה סיסמה לא יכול להישאר ריק."
 msgid "Wrong base currency to USD rate provided"
 msgstr "שער המרה ממטבע בסיס ל דולר ארה\"ב, שגוי"
 
-#: util.cpp:804
+#: util.cpp:798
 msgid "UTF-8"
 msgstr "UTF-8"
 
-#: util.cpp:817
+#: util.cpp:811
 msgid "January"
 msgstr "ינואר"
 
-#: util.cpp:817
+#: util.cpp:811
 msgid "February"
 msgstr "פברואר"
 
-#: util.cpp:817
+#: util.cpp:811
 msgid "March"
 msgstr "מרץ"
 
-#: util.cpp:818
+#: util.cpp:812
 msgid "April"
 msgstr "אפריל"
 
-#: util.cpp:818
+#: util.cpp:812
 msgctxt "full month name"
 msgid "May"
 msgstr "מאי"
 
-#: util.cpp:819
+#: util.cpp:813
 msgid "June"
 msgstr "יוני"
 
-#: util.cpp:819
+#: util.cpp:813
 msgid "July"
 msgstr "יולי"
 
-#: util.cpp:819
+#: util.cpp:813
 msgid "August"
 msgstr "אוגוסט"
 
-#: util.cpp:820
+#: util.cpp:814
 msgid "September"
 msgstr "ספטמבר"
 
-#: util.cpp:820
+#: util.cpp:814
 msgid "October"
 msgstr "אוקטובר"
 
-#: util.cpp:821
+#: util.cpp:815
 msgid "November"
 msgstr "נובמבר"
 
-#: util.cpp:821
+#: util.cpp:815
 msgid "December"
 msgstr "דצמבר"
 
-#: util.cpp:826
+#: util.cpp:820
 msgctxt "3-letter abbreviation of month name"
 msgid "Jan"
 msgstr "יוני"
 
-#: util.cpp:827
+#: util.cpp:821
 msgctxt "3-letter abbreviation of month name"
 msgid "Feb"
 msgstr "פבר"
 
-#: util.cpp:828
+#: util.cpp:822
 msgctxt "3-letter abbreviation of month name"
 msgid "Mar"
 msgstr "מרץ"
 
-#: util.cpp:829
+#: util.cpp:823
 msgctxt "3-letter abbreviation of month name"
 msgid "Apr"
 msgstr "אפר"
 
-#: util.cpp:830
+#: util.cpp:824
 msgctxt "3-letter abbreviation of month name"
 msgid "May"
 msgstr "מאי"
 
-#: util.cpp:831
+#: util.cpp:825
 msgctxt "3-letter abbreviation of month name"
 msgid "Jun"
 msgstr "יונ"
 
-#: util.cpp:832
+#: util.cpp:826
 msgctxt "3-letter abbreviation of month name"
 msgid "Jul"
 msgstr "יול"
 
-#: util.cpp:833
+#: util.cpp:827
 msgctxt "3-letter abbreviation of month name"
 msgid "Aug"
 msgstr "אוג"
 
-#: util.cpp:834
+#: util.cpp:828
 msgctxt "3-letter abbreviation of month name"
 msgid "Sep"
 msgstr "ספט"
 
-#: util.cpp:835
+#: util.cpp:829
 msgctxt "3-letter abbreviation of month name"
 msgid "Oct"
 msgstr "אוק"
 
-#: util.cpp:836
+#: util.cpp:830
 msgctxt "3-letter abbreviation of month name"
 msgid "Nov"
 msgstr "נוב"
 
-#: util.cpp:837
+#: util.cpp:831
 msgctxt "3-letter abbreviation of month name"
 msgid "Dec"
 msgstr "דצמ"
 
-#: util.cpp:842
+#: util.cpp:836
 msgid "Sunday"
 msgstr "ראשון"
 
-#: util.cpp:842
+#: util.cpp:836
 msgid "Monday"
 msgstr "שני"
 
-#: util.cpp:842
+#: util.cpp:836
 msgid "Tuesday"
 msgstr "שלישי"
 
-#: util.cpp:843
+#: util.cpp:837
 msgid "Wednesday"
 msgstr "רביעי"
 
-#: util.cpp:843
+#: util.cpp:837
 msgid "Thursday"
 msgstr "חמישי"
 
-#: util.cpp:843
+#: util.cpp:837
 msgid "Friday"
 msgstr "שישי"
 
-#: util.cpp:844
+#: util.cpp:838
 msgid "Saturday"
 msgstr "שבת"
 
