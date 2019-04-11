@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-04-11 11:38+0300\n"
-"PO-Revision-Date: 2019-04-11 14:59\n"
+"PO-Revision-Date: 2019-04-11 15:30\n"
 "Last-Translator: vomikan <nikolay.akimov@gmail.com>\n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -1257,7 +1257,7 @@ msgstr "Automatisé"
 #, c-format
 msgid "%d day remaining"
 msgid_plural "%d days remaining"
-msgstr[0] ""
+msgstr[0] "%d jour restant"
 msgstr[1] "%d jours restants"
 
 #: billsdepositspanel.cpp:514 billsdepositspanel.cpp:520
@@ -1269,15 +1269,15 @@ msgstr "Inactif"
 #, c-format
 msgid "%d day delay!"
 msgid_plural "%d days delay!"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d jour de retard !"
+msgstr[1] "%d jours de retard !"
 
 #: billsdepositspanel.cpp:530 mmhomepagepanel.cpp:350
 #, c-format
 msgid "%d day overdue!"
 msgid_plural "%d days overdue!"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "1 jour de retard !"
+msgstr[1] "%d jours de retard !"
 
 #: billsdepositspanel.cpp:626
 msgid "Do you really want to delete the series?"
@@ -1972,8 +1972,8 @@ msgstr "Voulez-vous remettre à zero ?\n"
 #, c-format
 msgid "%zu occurrence founded and replaced!"
 msgid_plural "%zu occurrences founded and replaced!"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%zu occurrence trouvée et remplacée!"
+msgstr[1] "%zu occurrences trouvées et remplacées!"
 
 #: customfieldlistdialog.cpp:266
 msgid "&Massive content update "
@@ -2534,8 +2534,8 @@ msgstr "Créer un modèle"
 #, c-format
 msgid "%zu row returned, duration: %lld ms"
 msgid_plural "%zu rows returned, duration: %lld ms"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%zu ligne retournée, durée : %lld ms"
+msgstr[1] "%zu lignes retournées, durée : %lld ms"
 
 #: general_report_manager.cpp:528
 msgid "SQL Syntax Error"
@@ -2765,22 +2765,22 @@ msgstr "&Exporter"
 #: import_export/qif_export.cpp:410
 #, c-format
 msgid "Exporting transaction %zu"
-msgstr ""
+msgstr "Exportation de la transaction %zu"
 
 #: import_export/qif_export.cpp:469
 #, c-format
 msgid "Number of categories exported: %zu"
-msgstr ""
+msgstr "Nombre de catégories exportées : %zu"
 
 #: import_export/qif_export.cpp:471
 #, c-format
 msgid "Number of transactions exported: %zu"
-msgstr ""
+msgstr "Nombre d'opérations exportées: %zu"
 
 #: import_export/qif_export.cpp:473
 #, c-format
 msgid "Number of accounts exported: %zu"
-msgstr ""
+msgstr "Nombre de comptes exportés : %zu"
 
 #: import_export/qif_export.cpp:474 mmframe.cpp:1475
 msgid "Export to QIF"
@@ -2830,7 +2830,7 @@ msgstr "En analyse"
 #: import_export/qif_import_gui.cpp:385
 #, c-format
 msgid "Reading line %zu, %lld ms"
-msgstr ""
+msgstr "Lecture ligne %zu, %lld ms"
 
 #: import_export/qif_import_gui.cpp:391
 #, c-format
@@ -5764,8 +5764,8 @@ msgstr "Total mensuel"
 #, c-format
 msgid "Cash Flow Forecast for %i Years Ahead"
 msgid_plural "Cash Flow Forecast for %i Years Ahead"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Prévision de trésorerie pour l'année prochaine"
+msgstr[1] "Prévision de trésorerie pour les %i prochaines années"
 
 #: reports/cashflow.cpp:273 reports/incexpenses.cpp:208 reports/payee.cpp:125
 msgid "Difference"
