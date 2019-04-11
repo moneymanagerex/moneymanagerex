@@ -217,7 +217,7 @@ wxString mmReportCashFlow::getHTMLText_i()
     hb.init();
     hb.addDivContainer();
 
-    const wxString& headerMsg = wxString::Format (wxPLURAL("Cash Flow Forecast for %i Years Ahead",
+    const wxString& headerMsg = wxString::Format (wxPLURAL("Cash Flow Forecast for %i Year Ahead",
                                                            "Cash Flow Forecast for %i Years Ahead",
                                                            years ),
                                                   years);
