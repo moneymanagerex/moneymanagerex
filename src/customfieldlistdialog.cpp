@@ -228,7 +228,7 @@ void mmCustomFieldListDialog::UpdateField()
     }
     Model_CustomFieldData::instance().save(data);
 
-    wxMessageBox(wxString::Format(_("%i occurrences founded and replaced!"), (int)data.size())
+    wxMessageBox(wxString::Format(wxPLURAL("%zu occurrence founded and replaced!", "%zu occurrences founded and replaced!", data.size()), data.size())
         , _("Update Custom Field Content"), wxOK | wxICON_INFORMATION);
 }
 

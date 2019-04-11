@@ -341,7 +341,7 @@ void mmQIFImportDialog::fillControls()
 
 bool mmQIFImportDialog::mmReadQIFFile()
 {
-    int numLines = 0;
+    size_t numLines = 0;
     vQIF_trxs_.clear();
     m_QIFaccounts.clear();
     m_QIFcategoryNames.clear();
@@ -376,19 +376,19 @@ bool mmQIFImportDialog::mmReadQIFFile()
     {
         ++numLines;
         const wxString lineStr = text.ReadLine();
-        if (lineStr.Length() == 0)
+        if (lineStr.IsEmpty())
             continue;
 
         if (numLines % 100 == 0)
         {
             interval = wxGetUTCTimeMillis() - start;
-            if (!progressDlg.Pulse(wxString::Format(_("Reading line %i, %ld ms")
-                , numLines, interval.ToLong())))
+            if (!progressDlg.Pulse(wxString::Format(_("Reading line %zu, %lld ms")
+                , numLines, interval)))
                 break;
         }
         if (numLines <= 50)
         {
-            *log_field_ << wxString::Format(_("Line %i \t %s\n"), numLines, lineStr);
+            *log_field_ << wxString::Format(_("Line %zu \t %s\n"), numLines, lineStr);
             if (numLines == 50)
                 *log_field_ << "-------------------------------------- 8< --------------------------------------\n";
         }
@@ -461,8 +461,8 @@ bool mmQIFImportDialog::mmReadQIFFile()
     progressDlg.Destroy();
 
     interval = wxGetUTCTimeMillis() - start;
-    wxString sMsg = wxString::Format(_("Number of lines read from QIF file: %i in %ld ms")
-        , int(numLines), interval.ToLong());
+    wxString sMsg = wxString::Format(_("Number of lines read from QIF file: %zu in %lld ms")
+        , numLines, interval);
     *log_field_ << sMsg << "\n";
     sMsg = wxString::Format(_("Press OK Button to continue"));
     *log_field_ << sMsg << "\n";

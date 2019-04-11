@@ -506,7 +506,7 @@ wxString mmBillsDepositsPanel::GetRemainingDays(const Model_Billsdeposits::Data*
 
     int daysRemaining = Model_Billsdeposits::daysPayment(item);
     int daysOverdue = Model_Billsdeposits::daysOverdue(item);
-    wxString text = wxString::Format(_("%d days remaining"), daysRemaining);
+    wxString text = wxString::Format(wxPLURAL("%d day remaining", "%d days remaining", daysRemaining), daysRemaining);
 
     if (daysRemaining == 0)
     {
@@ -516,16 +516,18 @@ wxString mmBillsDepositsPanel::GetRemainingDays(const Model_Billsdeposits::Data*
 
     if (daysRemaining < 0)
     {
-        text = wxString::Format(_("%d days delay!"), std::abs(daysRemaining));
         if (((repeats > 10) && (repeats < 15)) && (item->NUMOCCURRENCES < 0))
             text = _("Inactive");
+        else
+            text = wxString::Format(wxPLURAL("%d day delay!", "%d days delay!", -daysRemaining), -daysRemaining);
     }
 
     if (daysOverdue < 0)
     {
-        text = wxString::Format(_("%d days overdue!"), std::abs(daysOverdue));
         if (((repeats > 10) && (repeats < 15)) && (item->NUMOCCURRENCES < 0))
             text = _("Inactive");
+        else
+            text = wxString::Format(wxPLURAL("%d day overdue!", "%d days overdue!", -daysOverdue), -daysOverdue);
     }
 
     return text;
@@ -572,23 +574,10 @@ int billsDepositsListCtrl::OnGetItemImage(long item) const
     }
 
     int daysRemaining = Model_Billsdeposits::daysPayment(&m_bdp->bills_[item]);
-    wxString daysRemainingStr = wxString::Format(_("%d days remaining"), daysRemaining);
-
-    if (daysRemaining == 0)
-    {
-        if (((repeats > 10) && (repeats < 15)) && (m_bdp->bills_[item].NUMOCCURRENCES < 0))
-            daysRemainingStr = _("Inactive");
-    }
-
-    if (daysRemaining < 0)
-    {
-        daysRemainingStr = wxString::Format(_("%d days overdue!"), std::abs(daysRemaining));
-        if (((repeats > 10) && (repeats < 15)) && (m_bdp->bills_[item].NUMOCCURRENCES < 0))
-            daysRemainingStr = _("Inactive");
-    }
 
     /* Returns the icon to be shown for each entry */
-    if (daysRemainingStr == _("Inactive")) return -1;
+    if (daysRemaining <= 0 && repeats > 10 && repeats < 15 && m_bdp->bills_[item].NUMOCCURRENCES < 0)
+        return -1;
     if (daysRemaining < 0) return 0;
     if (bd_repeat_auto) return 1;
     if (bd_repeat_user) return 2;
