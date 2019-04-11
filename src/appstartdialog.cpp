@@ -76,7 +76,7 @@ mmAppStartDialog::~mmAppStartDialog()
     }
     catch (...)
     {
-        wxASSERT(false);
+        wxFAIL_MSG("cannot save SHOWBEGINAPP setting");
     }
 }
 
@@ -162,8 +162,8 @@ void mmAppStartDialog::SetCloseButtonToExit()
 
 void mmAppStartDialog::OnButtonAppstartHelpClick( wxCommandEvent& WXUNUSED(event) )
 {
-    int helpFileIndex_ = mmex::HTML_INDEX;
-    wxFileName helpIndexFile(mmex::getPathDoc((mmex::EDocFile)helpFileIndex_));
+    mmex::EDocFile helpFileIndex_ = mmex::HTML_INDEX;
+    wxFileName helpIndexFile(mmex::getPathDoc(helpFileIndex_));
     wxString url = "file://";
 
     const auto lang_code = Option::instance().getLanguageISO6391();
@@ -177,7 +177,7 @@ void mmAppStartDialog::OnButtonAppstartHelpClick( wxCommandEvent& WXUNUSED(event
     }
     else // load the default help file
     {
-        url << (mmex::getPathDoc((mmex::EDocFile)helpFileIndex_));
+        url << mmex::getPathDoc(helpFileIndex_);
     }
     wxLaunchDefaultBrowser(url);
 }

@@ -170,14 +170,14 @@ void OptionSettingsGeneral::OnCurrency(wxCommandEvent& WXUNUSED(event))
     mmMainCurrencyDialog(this, currencyID, false).ShowModal();
     currencyID = Option::instance().getBaseCurrencyID();
     Model_Currency::Data* currency = Model_Currency::instance().get(currencyID);
-    wxButton* bn = (wxButton*)FindWindow(ID_DIALOG_OPTIONS_BUTTON_CURRENCY);
+    wxButton* bn = static_cast<wxButton*>(FindWindow(ID_DIALOG_OPTIONS_BUTTON_CURRENCY));
     bn->SetLabelText(wxGetTranslation(currency->CURRENCYNAME));
     m_currency_id = currencyID;
 }
 
 void OptionSettingsGeneral::OnDateFormatChanged(wxCommandEvent& WXUNUSED(event))
 {
-    wxStringClientData* data = (wxStringClientData*)
+    wxStringClientData* data = static_cast<wxStringClientData*>
         (m_date_format_choice->GetClientObject(m_date_format_choice->GetSelection()));
 
     if (data)
@@ -197,7 +197,7 @@ bool OptionSettingsGeneral::SaveFinancialYearStart()
     int last_month_day = wxDateTime(1, wxDateTime::Month(month-1), 2015).GetLastMonthDay().GetDay();
 
     //Save Financial Year Start Day
-    wxSpinCtrl* fysDay = (wxSpinCtrl*) FindWindow(ID_DIALOG_OPTIONS_FINANCIAL_YEAR_START_DAY);
+    wxSpinCtrl* fysDay = static_cast<wxSpinCtrl*>(FindWindow(ID_DIALOG_OPTIONS_FINANCIAL_YEAR_START_DAY));
     int day = fysDay->GetValue();
     if (last_month_day < day)
         day = last_month_day;
@@ -208,7 +208,7 @@ bool OptionSettingsGeneral::SaveFinancialYearStart()
 
 void OptionSettingsGeneral::SaveSettings()
 {
-    wxTextCtrl* stun = (wxTextCtrl*) FindWindow(ID_DIALOG_OPTIONS_TEXTCTRL_USERNAME);
+    wxTextCtrl* stun = static_cast<wxTextCtrl*>(FindWindow(ID_DIALOG_OPTIONS_TEXTCTRL_USERNAME));
     Option::instance().setUserName(stun->GetValue());
 
     //Model_Infotable::instance().SetBaseCurrency(m_currency_id); Handled only inside MainCurrencyDialog to better manage CurrencyHistory changes

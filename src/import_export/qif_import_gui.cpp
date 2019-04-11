@@ -336,7 +336,7 @@ void mmQIFImportDialog::CreateControls()
 void mmQIFImportDialog::fillControls()
 {
     refreshTabs(TRX_TAB | ACC_TAB | PAYEE_TAB | CAT_TAB);
-    btnOK_->Enable(!file_name_ctrl_->GetValue().empty());
+    btnOK_->Enable(!file_name_ctrl_->IsEmpty());
 }
 
 bool mmQIFImportDialog::mmReadQIFFile()
@@ -627,11 +627,11 @@ void mmQIFImportDialog::refreshTabs(int tabs)
             data.push_back(wxVariant(trx.find(Amount) != trx.end() ? trx.at(Amount) : ""));
             data.push_back(wxVariant(trx.find(Memo) != trx.end() ? trx.at(Memo) : ""));
 
-            dataListBox_->AppendItem(data, (wxUIntPtr) num++);
+            dataListBox_->AppendItem(data, static_cast<wxUIntPtr>(num++));
         }
     }
 
-    if (int(tabs / ACC_TAB) % 2)
+    if ((tabs / ACC_TAB) % 2)
     {
         num = 0;
         accListBox_->DeleteAllItems();
@@ -672,11 +672,11 @@ void mmQIFImportDialog::refreshTabs(int tabs)
             data.push_back(wxVariant(type));
             data.push_back(wxVariant(currencySymbol));
             data.push_back(wxVariant(status));
-            accListBox_->AppendItem(data, (wxUIntPtr) num++);
+            accListBox_->AppendItem(data, static_cast<wxUIntPtr>(num++));
         }
     }
 
-    if (int(tabs / PAYEE_TAB) % 2)
+    if ((tabs / PAYEE_TAB) % 2)
     {
         payeeListBox_->DeleteAllItems();
         for (const auto& payee : m_payee_names)
@@ -685,11 +685,11 @@ void mmQIFImportDialog::refreshTabs(int tabs)
             data.push_back(wxVariant(payee));
             Model_Payee::Data* p = Model_Payee::instance().get(payee);
             data.push_back(wxVariant(p ? _("OK") : _("Missing")));
-            payeeListBox_->AppendItem(data, (wxUIntPtr) num++);
+            payeeListBox_->AppendItem(data, static_cast<wxUIntPtr>(num++));
         }
     }
 
-    if (int(tabs / CAT_TAB) % 2)
+    if ((tabs / CAT_TAB) % 2)
     {
         num = 0;
         const auto &c(Model_Category::all_categories());
@@ -702,7 +702,7 @@ void mmQIFImportDialog::refreshTabs(int tabs)
                 data.push_back(wxVariant("Missing"));
             else
                 data.push_back(wxVariant(_("OK")));
-            categoryListBox_->AppendItem(data, (wxUIntPtr) num++);
+            categoryListBox_->AppendItem(data, static_cast<wxUIntPtr>(num++));
         }
     }
 }
@@ -727,7 +727,7 @@ void mmQIFImportDialog::OnFileSearch(wxCommandEvent& WXUNUSED(event))
 
 void mmQIFImportDialog::OnDateMaskChange(wxCommandEvent& WXUNUSED(event))
 {
-    wxStringClientData* data = (wxStringClientData*)(choiceDateFormat_->GetClientObject(choiceDateFormat_->GetSelection()));
+    wxStringClientData* data = static_cast<wxStringClientData*>(choiceDateFormat_->GetClientObject(choiceDateFormat_->GetSelection()));
     if (data) m_dateFormatStr = data->GetData();
     m_userDefinedDateMask = true;
     refreshTabs(TRX_TAB);
@@ -765,7 +765,7 @@ void mmQIFImportDialog::OnCheckboxClick( wxCommandEvent& event )
         {
             accountDropDown_->Enable(true);
             m_accountNameStr = "";
-            wxStringClientData* data_obj = (wxStringClientData*)accountDropDown_->GetClientObject(accountDropDown_->GetSelection());
+            wxStringClientData* data_obj = static_cast<wxStringClientData*>(accountDropDown_->GetClientObject(accountDropDown_->GetSelection()));
             if (data_obj)
                 m_accountNameStr = data_obj->GetData();
         }
@@ -781,7 +781,7 @@ void mmQIFImportDialog::OnCheckboxClick( wxCommandEvent& event )
 
 void mmQIFImportDialog::OnAccountChanged(wxCommandEvent& WXUNUSED(event))
 {
-    wxStringClientData* data_obj = (wxStringClientData*)accountDropDown_->GetClientObject(accountDropDown_->GetSelection());
+    wxStringClientData* data_obj = static_cast<wxStringClientData*>(accountDropDown_->GetClientObject(accountDropDown_->GetSelection()));
     if (data_obj)
         m_accountNameStr = data_obj->GetData();
     refreshTabs(TRX_TAB);
@@ -887,7 +887,7 @@ void mmQIFImportDialog::OnOk(wxCommandEvent& WXUNUSED(event))
         joinSplit(trx_data_set, m_splitDataSets);
         saveSplit();
 
-        sMsg = _("Import finished successfully") + "\n" + wxString::Format(_("Total Imported: %ld"), (long)trx_data_set.size());
+        sMsg = _("Import finished successfully") + "\n" + wxString::Format(_("Total Imported: %zu"), trx_data_set.size());
         trx_data_set.clear();
         vQIF_trxs_.clear();
         btnOK_->Enable(false);
@@ -1264,7 +1264,7 @@ int mmQIFImportDialog::get_last_imported_acc()
 void mmQIFImportDialog::OnDecimalChange(wxCommandEvent& event)
 {
     int i = m_choiceDecimalSeparator->GetSelection();
-    wxStringClientData* type_obj = (wxStringClientData*)m_choiceDecimalSeparator->GetClientObject(i);
+    wxStringClientData* type_obj = static_cast<wxStringClientData*>(m_choiceDecimalSeparator->GetClientObject(i));
     if (type_obj) {
         decimal_ = type_obj->GetData();
     }

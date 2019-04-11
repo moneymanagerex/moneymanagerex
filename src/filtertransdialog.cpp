@@ -585,7 +585,7 @@ void mmFilterTransactionsDialog::getFilterStatus()
     int item = choiceStatus_->GetSelection();
     if (!getStatusCheckBox() || item < 0) return;
     wxStringClientData* status_obj =
-        (wxStringClientData*)choiceStatus_->GetClientObject(item);
+        static_cast<wxStringClientData*>(choiceStatus_->GetClientObject(item));
     if (status_obj) {
         m_filterStatus = status_obj->GetData().Left(1);
     }
@@ -638,17 +638,17 @@ template<class MODEL, class FULL_DATA>
 bool mmFilterTransactionsDialog::checkAmount(const FULL_DATA& tran)
 {
     bool ok = true, split_ok = false;
-    if (!amountMinEdit_->GetValue().IsEmpty() && m_min_amount > tran.TRANSAMOUNT)
+    if (!amountMinEdit_->IsEmpty() && m_min_amount > tran.TRANSAMOUNT)
         ok = false;
-    else if (!amountMaxEdit_->GetValue().IsEmpty() && m_max_amount < tran.TRANSAMOUNT)
+    else if (!amountMaxEdit_->IsEmpty() && m_max_amount < tran.TRANSAMOUNT)
         ok = false;
 
     if (tran.has_split())
     {
         for (const auto s : tran.m_splits)
         {
-            if ((amountMinEdit_->GetValue().IsEmpty() || m_min_amount <= s.SPLITTRANSAMOUNT)
-                && (amountMaxEdit_->GetValue().IsEmpty() || m_max_amount >= s.SPLITTRANSAMOUNT))
+            if ((amountMinEdit_->IsEmpty() || m_min_amount <= s.SPLITTRANSAMOUNT)
+                && (amountMaxEdit_->IsEmpty() || m_max_amount >= s.SPLITTRANSAMOUNT))
             {
                 split_ok = true;
                 break;
@@ -832,7 +832,7 @@ wxString mmFilterTransactionsDialog::to_json(bool i18n)
         const wxString acc = accountDropDown_->GetStringSelection();
         if (!acc.empty())
         {
-            json_writer.Key(wxString(i18n ? _("Account") : "ACCOUNT").c_str());
+            json_writer.Key((i18n ? _("Account") : "ACCOUNT").c_str());
             json_writer.String(acc.c_str());
         }
     }
@@ -842,27 +842,27 @@ wxString mmFilterTransactionsDialog::to_json(bool i18n)
         int i = m_date_ranges->GetSelection();
         const auto& title = m_all_date_ranges[i]->title();
         if (!title.empty()) {
-            json_writer.Key(wxString(i18n ? _("Date") : "DATE").c_str());
-            json_writer.String(wxString(i18n ? wxGetTranslation(title) : title).c_str());
+            json_writer.Key((i18n ? _("Date") : "DATE").c_str());
+            json_writer.String((i18n ? wxGetTranslation(title) : title).c_str());
         }
 
-        json_writer.Key(wxString(i18n ? _("Since") : "DATE1").c_str());
+        json_writer.Key((i18n ? _("Since") : "DATE1").c_str());
         json_writer.String(m_fromDateCtrl->GetValue().FormatISODate().c_str());
-        json_writer.Key(wxString(i18n ? _("Before") : "DATE2").c_str());
+        json_writer.Key((i18n ? _("Before") : "DATE2").c_str());
         json_writer.String(m_toDateControl->GetValue().FormatISODate().c_str());
     }
 
     if (payeeCheckBox_->IsChecked())
     {
-        json_writer.Key(wxString(i18n ? _("Payee") : "PAYEE").c_str());
+        json_writer.Key((i18n ? _("Payee") : "PAYEE").c_str());
         json_writer.String(cbPayee_->GetValue().c_str());
     }
 
     if (categoryCheckBox_->IsChecked())
     {
-        json_writer.Key(wxString(i18n ? _("Include Similar") : "SIMILAR_YN").c_str());
+        json_writer.Key((i18n ? _("Include Similar") : "SIMILAR_YN").c_str());
         json_writer.Bool(bSimilarCategoryStatus_);
-        json_writer.Key(wxString(i18n ? _("Category") : "CATEGORY").c_str());
+        json_writer.Key((i18n ? _("Category") : "CATEGORY").c_str());
         json_writer.String(btnCategory_->GetLabel().c_str());
     }
 
@@ -873,12 +873,12 @@ wxString mmFilterTransactionsDialog::to_json(bool i18n)
         s.Add(wxTRANSLATE("All Except Reconciled"));
         int item = choiceStatus_->GetSelection();
         wxString status;
-        if (0 <= item && item < (int)s.size())
+        if (0 <= item && static_cast<size_t>(item) < s.size())
             status = s[item];
         if (!status.empty())
         {
-            json_writer.Key(wxString(i18n ? _("Status") : "STATUS").c_str());
-            json_writer.String(wxString(i18n ? wxGetTranslation(status) : status).c_str());
+            json_writer.Key((i18n ? _("Status") : "STATUS").c_str());
+            json_writer.String((i18n ? wxGetTranslation(status) : status).c_str());
         }
     }
 
@@ -891,26 +891,26 @@ wxString mmFilterTransactionsDialog::to_json(bool i18n)
             << (cbTypeTransferFrom_->GetValue() && typeCheckBox_->GetValue() ? "F" : "");
         if (!type.empty())
         {
-            json_writer.Key(wxString(i18n ? _("Type") : "TYPE").c_str());
+            json_writer.Key((i18n ? _("Type") : "TYPE").c_str());
             json_writer.String(type.c_str());
         }
     }
 
     if (amountRangeCheckBox_->IsChecked())
     {
-        if (!amountMinEdit_->GetValue().empty())
+        if (!amountMinEdit_->IsEmpty())
         {
             double amount_min;
             amountMinEdit_->GetDouble(amount_min);
-            json_writer.Key(wxString(i18n ? _("Amount Min.") : "AMOUNT_MIN").c_str());
+            json_writer.Key((i18n ? _("Amount Min.") : "AMOUNT_MIN").c_str());
             json_writer.Double(amount_min);
         }
 
-        if (!amountMaxEdit_->GetValue().empty())
+        if (!amountMaxEdit_->IsEmpty())
         {
             double amount_max;
             amountMaxEdit_->GetDouble(amount_max);
-            json_writer.Key(wxString(i18n ? _("Amount Max.") : "AMOUNT_MAX").c_str());
+            json_writer.Key((i18n ? _("Amount Max.") : "AMOUNT_MAX").c_str());
             json_writer.Double(amount_max);
         }
     }
@@ -918,14 +918,14 @@ wxString mmFilterTransactionsDialog::to_json(bool i18n)
     if (transNumberCheckBox_->IsChecked())
     {
         const wxString num = transNumberEdit_->GetValue();
-        json_writer.Key(wxString(i18n ? _("Number") : "NUMBER").c_str());
+        json_writer.Key((i18n ? _("Number") : "NUMBER").c_str());
         json_writer.String(num.c_str());
     }
 
     if (notesCheckBox_->IsChecked())
     {
         wxString notes = notesEdit_->GetValue();
-        json_writer.Key(wxString(i18n ? _("Notes") : "NOTES").c_str());
+        json_writer.Key((i18n ? _("Notes") : "NOTES").c_str());
         json_writer.String(notes.c_str());
     }
 
@@ -939,7 +939,7 @@ wxString mmFilterTransactionsDialog::to_json(bool i18n)
     const wxString default_label = wxString::Format(_("%i: Empty"), m_setting_name->GetSelection() + 1);
     if (!label.empty() && label != default_label)
     {
-        json_writer.Key(wxString(i18n ? _("Label") : "LABEL").c_str());
+        json_writer.Key((i18n ? _("Label") : "LABEL").c_str());
         json_writer.String(label.c_str());
     }
 
@@ -1177,7 +1177,7 @@ bool mmFilterTransactionsDialog::getNotesCheckBox()
 
 void mmFilterTransactionsDialog::OnMoreFields(wxCommandEvent& WXUNUSED(event))
 {
-    wxBitmapButton* button = (wxBitmapButton*)FindWindow(wxID_MORE);
+    wxBitmapButton* button = static_cast<wxBitmapButton*>(FindWindow(wxID_MORE));
 
     if (m_custom_fields->IsCustomPanelShown())
     {
@@ -1198,7 +1198,7 @@ void mmFilterTransactionsDialog::OnDateRangeChanged(wxCommandEvent& WXUNUSED(eve
 {
     bool user_date = false;
     int i = this->m_date_ranges->GetSelection();
-    if (i >= 0 && i < (int)m_date_ranges->GetCount())
+    if (i >= 0 && static_cast<unsigned>(i) < m_date_ranges->GetCount())
     {
         const mmDateRange* date_range = static_cast<mmDateRange*>
             (m_date_ranges->GetClientData(i));
@@ -1210,7 +1210,7 @@ void mmFilterTransactionsDialog::OnDateRangeChanged(wxCommandEvent& WXUNUSED(eve
             m_fromDateCtrl->SetValue(date_range->start_date());
             m_toDateControl->SetValue(date_range->end_date());
 
-            user_date = (date_range->title() == wxString("Custom"));
+            user_date = date_range->title().IsSameAs("Custom");
         }
     }
     m_fromDateCtrl->Enable(user_date);

@@ -255,7 +255,7 @@ void mmAssetDialog::CreateControls()
     bAttachments_->SetToolTip(_("Organize attachments of this asset"));
 
     m_notes = new mmTextCtrl(this, IDC_NOTES, wxGetEmptyString()
-        , wxDefaultPosition, wxSize(-1, wxSize(m_dpc->GetSize()).GetHeight() * 5), wxTE_MULTILINE);
+        , wxDefaultPosition, wxSize(-1, m_dpc->GetSize().GetHeight() * 5), wxTE_MULTILINE);
     m_notes->SetToolTip(_("Enter notes associated with this asset"));
     details_frame_sizer->Add(m_notes, 0, wxGROW | wxLEFT | wxRIGHT | wxBOTTOM, 10);
 
@@ -357,7 +357,7 @@ void mmAssetDialog::OnOk(wxCommandEvent& WXUNUSED(event))
     }
 
     wxString asset_type = "";
-    wxStringClientData* type_obj = (wxStringClientData *)m_assetType->GetClientObject(m_assetType->GetSelection());
+    wxStringClientData* type_obj = static_cast<wxStringClientData *>(m_assetType->GetClientObject(m_assetType->GetSelection()));
     if (type_obj) asset_type = type_obj->GetData();
 
     bool is_new = !m_asset;
@@ -395,19 +395,19 @@ void mmAssetDialog::OnOk(wxCommandEvent& WXUNUSED(event))
     {
         if (g_err == UserTransactionPanel::GUI_ERROR::ACCOUNT)
         {
-            mmErrorDialogs::InvalidAccount((wxWindow*)m_transaction_panel->m_account, false, mmErrorDialogs::MESSAGE_POPUP_BOX);
+            mmErrorDialogs::InvalidAccount(m_transaction_panel->m_account, false, mmErrorDialogs::MESSAGE_POPUP_BOX);
         }
         else if (g_err == UserTransactionPanel::GUI_ERROR::PAYEE)
         {
-            mmErrorDialogs::InvalidPayee((wxWindow*)m_transaction_panel->m_payee, mmErrorDialogs::MESSAGE_POPUP_BOX);
+            mmErrorDialogs::InvalidPayee(m_transaction_panel->m_payee, mmErrorDialogs::MESSAGE_POPUP_BOX);
         }
         else if (g_err == UserTransactionPanel::GUI_ERROR::CATEGORY)
         {
-            mmErrorDialogs::InvalidCategory((wxWindow*)m_transaction_panel->m_category, true);
+            mmErrorDialogs::InvalidCategory(m_transaction_panel->m_category, true);
         }
         else if (g_err == UserTransactionPanel::GUI_ERROR::ENTRY)
         {
-            mmErrorDialogs::InvalidAmount((wxWindow*)m_transaction_panel->m_entered_amount);
+            mmErrorDialogs::InvalidAmount(m_transaction_panel->m_entered_amount);
         }
 
         return;

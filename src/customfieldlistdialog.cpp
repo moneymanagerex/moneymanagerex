@@ -109,7 +109,7 @@ void mmCustomFieldListDialog::fillControls()
     fieldListBox_->DeleteAllItems();
 
     Model_CustomField::Data_Set fields = Model_CustomField::instance().find(Model_CustomField::DB_Table_CUSTOMFIELD::REFTYPE(m_RefType));
-    if (fields.size() == 0) return;
+    if (fields.empty()) return;
 
     std::sort(fields.begin(), fields.end(), SorterByDESCRIPTION());
     int firstInTheListID = -1;
@@ -126,7 +126,7 @@ void mmCustomFieldListDialog::fillControls()
             Properties.Replace("\n", "", true);
             data.push_back(wxVariant(Properties));
         }
-        fieldListBox_->AppendItem(data, (wxUIntPtr)entry.FIELDID);
+        fieldListBox_->AppendItem(data, static_cast<wxUIntPtr>(entry.FIELDID));
     }
 
     m_field_id = firstInTheListID;
@@ -138,14 +138,14 @@ void mmCustomFieldListDialog::OnListItemSelected(wxDataViewEvent& event)
     int selected_index = fieldListBox_->ItemToRow(item);
 
     if (selected_index >= 0)
-        m_field_id = (int)fieldListBox_->GetItemData(item);
+        m_field_id = static_cast<int>(fieldListBox_->GetItemData(item));
     else
         m_field_id = -1;
 }
 
 void mmCustomFieldListDialog::AddField()
 {
-    mmCustomFieldEditDialog dlg(this, (Model_CustomField::Data*)nullptr, m_RefType);
+    mmCustomFieldEditDialog dlg(this, nullptr, m_RefType);
     if (dlg.ShowModal() != wxID_OK)
         return;
     fillControls();

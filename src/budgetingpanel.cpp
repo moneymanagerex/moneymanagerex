@@ -132,8 +132,9 @@ void mmBudgetingPanel::OnViewPopupSelected(wxCommandEvent& event)
         currentView_ = VIEW_EXPENSE;
     else if (evt == MENU_VIEW_SUMMARYBUDGETENTRIES)
         currentView_ = VIEW_SUMM;
-    else
-        wxASSERT(false);
+    else {
+        wxFAIL_MSG("unknown popup menu command");
+    }
 
     Model_Infotable::instance().Set("BUDGET_FILTER", currentView_);
 
@@ -205,7 +206,7 @@ void mmBudgetingPanel::UpdateBudgetHeading()
 {
     budgetReportHeading_->SetLabel(GetPanelTitle());
 
-    wxStaticText* header = (wxStaticText*)FindWindow(ID_PANEL_CHECKING_STATIC_PANELVIEW);
+    wxStaticText* header = static_cast<wxStaticText*>(FindWindow(ID_PANEL_CHECKING_STATIC_PANELVIEW));
     header->SetLabel(wxGetTranslation(currentView_));
 }
 
@@ -401,7 +402,8 @@ void mmBudgetingPanel::initVirtualListControl()
     }
     else
     {
-        int day = -1, month = -1;
+        int day = -1;
+        wxDateTime::Month month = wxDateTime::Month::Inv_Month;
         budgetDetails.AdjustYearValues(day, month, dtBegin);
         budgetDetails.AdjustDateForEndFinancialYear(dtEnd);
     }
@@ -484,12 +486,12 @@ void mmBudgetingPanel::initVirtualListControl()
             && DisplayEntryAllowed(-1, category.CATEGID))
         {
             budget_.push_back(std::make_pair(-1, category.CATEGID));
-            int transCatTotalIndex = (int)budget_.size() - 1;
+            size_t transCatTotalIndex = budget_.size() - 1;
             listCtrlBudget_->RefreshItem(transCatTotalIndex);
         }
     }
 
-    listCtrlBudget_->SetItemCount((int)budget_.size());
+    listCtrlBudget_->SetItemCount(budget_.size());
 
     wxString est_amount, act_amount, diff_amount;
     est_amount = Model_Currency::toCurrency(estIncome);
@@ -643,7 +645,7 @@ wxListItemAttr* budgetingListCtrl::OnGetItemAttr(long item) const
     if ((cp_->GetTransID(item) < 0) &&
         (cp_->GetCurrentView() != VIEW_SUMM))
     {
-        return (wxListItemAttr *)&attr3_;
+        return const_cast<wxListItemAttr*>(&attr3_);
     }
 
     /* Returns the alternating background pattern */

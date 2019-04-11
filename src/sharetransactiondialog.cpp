@@ -419,19 +419,19 @@ void ShareTransactionDialog::OnOk(wxCommandEvent& WXUNUSED(event))
     {
         if (g_err == UserTransactionPanel::GUI_ERROR::ACCOUNT)
         {
-            mmErrorDialogs::InvalidAccount((wxWindow*)m_transaction_panel->m_account, false, mmErrorDialogs::MESSAGE_POPUP_BOX);
+            mmErrorDialogs::InvalidAccount(m_transaction_panel->m_account, false, mmErrorDialogs::MESSAGE_POPUP_BOX);
         }
         else if (g_err == UserTransactionPanel::GUI_ERROR::PAYEE)
         {
-            mmErrorDialogs::InvalidPayee((wxWindow*)m_transaction_panel->m_payee, mmErrorDialogs::MESSAGE_POPUP_BOX);
+            mmErrorDialogs::InvalidPayee(m_transaction_panel->m_payee, mmErrorDialogs::MESSAGE_POPUP_BOX);
         }
         else if (g_err == UserTransactionPanel::GUI_ERROR::CATEGORY)
         {
-            mmErrorDialogs::InvalidCategory((wxWindow*)m_transaction_panel->m_category, true);
+            mmErrorDialogs::InvalidCategory(m_transaction_panel->m_category, true);
         }
         else if (g_err == UserTransactionPanel::GUI_ERROR::ENTRY)
         {
-            mmErrorDialogs::InvalidAmount((wxWindow*)m_transaction_panel->m_entered_amount);
+            mmErrorDialogs::InvalidAmount(m_transaction_panel->m_entered_amount);
         }
 
         return;
@@ -443,19 +443,19 @@ void ShareTransactionDialog::OnOk(wxCommandEvent& WXUNUSED(event))
 void ShareTransactionDialog::OnTextEntered(wxCommandEvent& WXUNUSED(event))
 {
     double share_num = 0;
-    if (!m_share_num_ctrl->GetValue().empty())
+    if (!m_share_num_ctrl->IsEmpty())
     {
         m_share_num_ctrl->GetDouble(share_num);
     }
 
     double share_price = 0;
-    if (!m_share_price_ctrl->GetValue().empty())
+    if (!m_share_price_ctrl->IsEmpty())
     {
         m_share_price_ctrl->GetDouble(share_price);
     }
 
     double share_commission = 0;
-    if (m_commission_ctrl != NULL && !m_commission_ctrl->GetValue().empty())
+    if (m_commission_ctrl != NULL && !m_commission_ctrl->IsEmpty())
     {
         m_commission_ctrl->GetDouble(share_commission);
     }

@@ -228,7 +228,7 @@ void transactionsUpdateDialog::OnOk(wxCommandEvent& WXUNUSED(event))
     wxString status = "";
     if (m_status_checkbox->IsChecked())
     {
-        wxStringClientData* status_obj = (wxStringClientData*)m_status_choice->GetClientObject(m_status_choice->GetSelection());
+        wxStringClientData* status_obj = static_cast<wxStringClientData*>(m_status_choice->GetClientObject(m_status_choice->GetSelection()));
         if (status_obj)
             status = Model_Checking::toShortStatus(status_obj->GetData());
         else
@@ -239,8 +239,8 @@ void transactionsUpdateDialog::OnOk(wxCommandEvent& WXUNUSED(event))
     if (m_type_checkbox->IsChecked())
     {
         int i = m_type_choice->GetSelection();
-        wxStringClientData* type_obj = ((i >= 0) && (i < (int)m_type_choice->GetCount()))
-            ? (wxStringClientData*)m_type_choice->GetClientObject(i) : nullptr;
+        wxStringClientData* type_obj = (i >= 0 && static_cast<unsigned>(i) < m_type_choice->GetCount())
+            ? static_cast<wxStringClientData*>(m_type_choice->GetClientObject(i)) : nullptr;
         if (type_obj)
             type = type_obj->GetData();
         else

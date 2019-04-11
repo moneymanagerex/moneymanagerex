@@ -171,8 +171,8 @@ bool Model_Report::PrepareSQL(wxString& sql, std::map <wxString, wxString>& rep_
 
     if (pos != wxNOT_FOUND)
     {
-        wxDatePickerCtrl* start_date = (wxDatePickerCtrl*)
-            wxWindow::FindWindowById(mmReportsPanel::RepPanel::ID_CHOICE_START_DATE);
+        wxDatePickerCtrl* start_date = static_cast<wxDatePickerCtrl*>
+            (wxWindow::FindWindowById(mmReportsPanel::RepPanel::ID_CHOICE_START_DATE));
         wxString date = wxDateTime::Today().FormatISODate();
         if (start_date) {
             date = start_date->GetValue().FormatISODate();
@@ -191,8 +191,8 @@ bool Model_Report::PrepareSQL(wxString& sql, std::map <wxString, wxString>& rep_
     len = wxString("&single_date").size();
     if (pos != wxNOT_FOUND)
     {
-        wxDatePickerCtrl* start_date = (wxDatePickerCtrl*)
-            wxWindow::FindWindowById(mmReportsPanel::RepPanel::ID_CHOICE_START_DATE);
+        wxDatePickerCtrl* start_date = static_cast<wxDatePickerCtrl*>
+            (wxWindow::FindWindowById(mmReportsPanel::RepPanel::ID_CHOICE_START_DATE));
         wxString date = wxDateTime::Today().FormatISODate();
         if (start_date) {
             date = start_date->GetValue().FormatISODate();
@@ -211,8 +211,8 @@ bool Model_Report::PrepareSQL(wxString& sql, std::map <wxString, wxString>& rep_
 
     if (pos != wxNOT_FOUND)
     {
-        wxDatePickerCtrl* end_date = (wxDatePickerCtrl*)
-            wxWindow::FindWindowById(mmReportsPanel::RepPanel::ID_CHOICE_END_DATE);
+        wxDatePickerCtrl* end_date = static_cast<wxDatePickerCtrl*>
+            (wxWindow::FindWindowById(mmReportsPanel::RepPanel::ID_CHOICE_END_DATE));
         wxString date = wxDateTime::Today().FormatISODate();
         if (end_date) {
             date = end_date->GetValue().FormatISODate();
@@ -230,8 +230,8 @@ bool Model_Report::PrepareSQL(wxString& sql, std::map <wxString, wxString>& rep_
     len = wxString("&budget_years").size();
     if (pos != wxNOT_FOUND)
     {
-        wxChoice* years = (wxChoice*)
-            wxWindow::FindWindowById(mmReportsPanel::RepPanel::ID_CHOICE_DATE_RANGE);
+        wxChoice* years = static_cast<wxChoice*>
+            (wxWindow::FindWindowById(mmReportsPanel::RepPanel::ID_CHOICE_DATE_RANGE));
         wxString date = wxString::Format("%i", wxDate::Today().GetYear());
         if (years) {
             date = years->GetStringSelection();

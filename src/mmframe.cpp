@@ -309,7 +309,7 @@ mmGUIFrame::~mmGUIFrame()
         cleanup();
     }
     catch (...) {
-        wxASSERT(false);
+        wxFAIL;
     }
 
     // Report database statistics
@@ -490,7 +490,6 @@ void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& WXUNUSED(event))
         bills.decode_fields(q1);
         bool allow_transaction = bills.AllowTransaction(q1, bal);
         const wxDateTime payment_date = bills.TRANSDATE(q1);
-        const wxDateTime next_date = bills.NEXTOCCURRENCEDATE(q1);
         if (bills.autoExecuteManual() && bills.requireExecution())
         {
             if (allow_transaction && bills.allowExecution())
@@ -511,7 +510,9 @@ void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& WXUNUSED(event))
         {
             if (bills.allowExecution())
             {
-                wxLogDebug("Next Date:%s | Payment Date: %s", next_date.FormatISODate(), payment_date.FormatISODate());
+                wxLogDebug("Next Date:%s | Payment Date: %s",
+                    bills.NEXTOCCURRENCEDATE(q1).FormatISODate(),
+                    payment_date.FormatISODate());
                 continueExecution = true;
                 Model_Checking::Data* tran = Model_Checking::instance().create();
 
@@ -580,7 +581,7 @@ void mmGUIFrame::saveSettings()
     this->GetSize(&value_w, &value_h);
     Model_Setting::instance().Set("SIZEW", value_w);
     Model_Setting::instance().Set("SIZEH", value_h);
-    Model_Setting::instance().Set("ISMAXIMIZED", (bool)this->IsMaximized());
+    Model_Setting::instance().Set("ISMAXIMIZED", this->IsMaximized());
     Model_Setting::instance().ReleaseSavepoint();
 }
 //----------------------------------------------------------------------------
@@ -1019,8 +1020,7 @@ void mmGUIFrame::OnSelChanged(wxTreeEvent& event)
             }
             else
             {
-                /* cannot find accountid */
-                wxASSERT(false);
+                wxFAIL_MSG("cannot find accountid");
             }
         }
     }
@@ -1985,7 +1985,7 @@ bool mmGUIFrame::createDataStore(const wxString& fileName, const bool openingNew
         mmNewDatabaseWizard* wizard = new mmNewDatabaseWizard(this);
         wizard->CenterOnParent();
         wizard->RunIt(true);
-        wxButton* next = (wxButton*) wizard->FindWindow(wxID_FORWARD); //FIXME:
+        wxButton* next = static_cast<wxButton*>(wizard->FindWindow(wxID_FORWARD)); //FIXME:
         if (next) next->SetLabel(_("&Next ->"));
 
         SetDataBaseParameters(fileName);

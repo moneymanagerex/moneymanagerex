@@ -176,7 +176,7 @@ wxString mmReportIncomeExpensesMonthly::getHTMLText()
         if (account) convRate = Model_CurrencyHistory::getDayRate(Model_Account::currency(account)->CURRENCYID, transaction.TRANSDATE);
 
         int idx = (Model_Checking::TRANSDATE(transaction).GetYear() * 100
-            + (int) Model_Checking::TRANSDATE(transaction).GetMonth());
+            + Model_Checking::TRANSDATE(transaction).GetMonth());
 
         if (Model_Checking::type(transaction) == Model_Checking::DEPOSIT)
             incomeExpensesStats[idx].first += transaction.TRANSAMOUNT * convRate;
@@ -220,8 +220,8 @@ wxString mmReportIncomeExpensesMonthly::getHTMLText()
             total_income += stats.second.first;
 
             hb.startTableRow();
-            hb.addTableCell(wxString() << (int) (stats.first / 100));
-            hb.addTableCellMonth(stats.first % 100);
+            hb.addTableCell(wxString() << stats.first / 100);
+            hb.addTableCellMonth(static_cast<wxDateTime::Month>(stats.first % 100));
             hb.addMoneyCell(stats.second.first);
             hb.addMoneyCell(stats.second.second);
             hb.addMoneyCell(stats.second.first - stats.second.second);

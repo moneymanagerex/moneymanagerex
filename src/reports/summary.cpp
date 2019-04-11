@@ -221,7 +221,9 @@ wxString mmReportSummaryByDate::getHTMLText()
         span = wxDateSpan::Years(1);
     }
     else
-        wxASSERT(0);
+    {
+        wxFAIL_MSG("unknown report mode");
+    }
 
     date = dateEnd;
     while (date.IsLaterThan(dateStart)) {

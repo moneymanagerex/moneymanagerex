@@ -708,7 +708,7 @@ void mmCheckingPanel::initViewTransactionsHeader()
 {
     const wxString& def_view = Model_Setting::instance().ViewTransactions();
     m_currentView = menu_labels().Index(Model_Infotable::instance().GetStringInfo(wxString::Format("CHECK_FILTER_ID_%d", m_AccountID), def_view));
-    if (m_currentView < 0 || m_currentView >= (int) menu_labels().size())
+    if (m_currentView < 0 || static_cast<size_t>(m_currentView) >= menu_labels().size())
         m_currentView = menu_labels().Index(VIEW_TRANS_ALL_STR);
 
     SetTransactionFilterState(m_currentView == MENU_VIEW_ALLTRANSACTIONS);
@@ -819,7 +819,7 @@ void mmCheckingPanel::OnViewPopupSelected(wxCommandEvent& event)
 
     m_listCtrlAccount->m_selectedIndex = -1;
 
-    Model_Infotable::instance().Set(wxString::Format("CHECK_FILTER_ID_%ld", (long) m_AccountID)
+    Model_Infotable::instance().Set(wxString::Format("CHECK_FILTER_ID_%d", m_AccountID)
         , menu_labels()[m_currentView]);
     initFilterSettings();
     RefreshList(m_listCtrlAccount->m_selectedID);
@@ -889,7 +889,7 @@ void mmCheckingPanel::OnFilterTransactions(wxMouseEvent& event)
 
 const wxString mmCheckingPanel::getItem(long item, long column)
 {
-    if (item < 0 || item >= (int)m_trans.size()) return "";
+    if (item < 0 || static_cast<size_t>(item) >= m_trans.size()) return "";
 
     const Model_Checking::Full_Data& tran = this->m_trans.at(item);
     switch (column)
@@ -935,7 +935,7 @@ void mmCheckingPanel::OnSearchTxtEntered(wxCommandEvent& event)
     const wxString search_string = event.GetString().Lower();
     if (search_string.IsEmpty()) return;
 
-    long last = (long)(m_listCtrlAccount->GetItemCount() - 1);
+    long last = m_listCtrlAccount->GetItemCount() - 1;
     long selectedItem = m_listCtrlAccount->GetNextItem(-1, wxLIST_NEXT_ALL, wxLIST_STATE_SELECTED);
     if (selectedItem <= 0 || selectedItem >= last) //nothing selected
         selectedItem = m_listCtrlAccount->g_asc ? last : 0;
@@ -1296,7 +1296,7 @@ void TransactionListCtrl::OnMarkTransaction(wxCommandEvent& event)
     else if (evt == MENU_TREEPOPUP_MARKVOID)               status = "V";
     else if (evt == MENU_TREEPOPUP_MARK_ADD_FLAG_FOLLOWUP) status = "F";
     else if (evt == MENU_TREEPOPUP_MARKDUPLICATE)          status = "D";
-    else wxASSERT(false);
+    else { wxFAIL_MSG("unknown transaction status"); }
 
     Model_Checking::Full_Data& trx = m_cp->m_trans[m_selectedIndex];
     TransactionStatus trx_status(trx);
@@ -1332,7 +1332,7 @@ void TransactionListCtrl::OnMarkAllTransactions(wxCommandEvent& event)
     else if (evt == MENU_TREEPOPUP_DELETE_VIEWED)              status = "X";
     else if (evt == MENU_TREEPOPUP_DELETE_FLAGGED)             status = "M";
     else if (evt == MENU_TREEPOPUP_DELETE_UNRECONCILED)        status = "0";
-    else  wxASSERT(false);
+    else { wxFAIL_MSG("unknown popup menu command"); }
 
     if (status == "X")
     {
@@ -1382,7 +1382,7 @@ void TransactionListCtrl::OnColClick(wxListEvent& event)
     else
         ColumnNr = m_ColumnHeaderNbr;
 
-    if (0 > ColumnNr || (size_t)ColumnNr >= m_columns.size() || ColumnNr == COL_IMGSTATUS) return;
+    if (ColumnNr < 0 || static_cast<size_t>(ColumnNr) >= m_columns.size() || ColumnNr == COL_IMGSTATUS) return;
 
     /* Clear previous column image */
     if (m_sortCol != ColumnNr) {
@@ -1456,7 +1456,7 @@ int TransactionListCtrl::OnGetItemColumnImage(long item, long column) const
 */
 wxListItemAttr* TransactionListCtrl::OnGetItemAttr(long item) const
 {
-    if (item < 0 || item >= (int)m_cp->m_trans.size()) return 0;
+    if (item < 0 || static_cast<size_t>(item) >= m_cp->m_trans.size()) return 0;
 
     const Model_Checking::Full_Data& tran = m_cp->m_trans[item];
     bool in_the_future = (tran.TRANSDATE > m_today);
@@ -1468,20 +1468,22 @@ wxListItemAttr* TransactionListCtrl::OnGetItemAttr(long item) const
 
     if (user_colour_id != 0)
     {
-        if      (user_colour_id == 1) return (wxListItemAttr*)&m_attr11;
-        else if (user_colour_id == 2) return (wxListItemAttr*)&m_attr12;
-        else if (user_colour_id == 3) return (wxListItemAttr*)&m_attr13;
-        else if (user_colour_id == 4) return (wxListItemAttr*)&m_attr14;
-        else if (user_colour_id == 5) return (wxListItemAttr*)&m_attr15;
-        else if (user_colour_id == 6) return (wxListItemAttr*)&m_attr16;
-        else if (user_colour_id == 7) return (wxListItemAttr*)&m_attr17;
+        if      (user_colour_id == 1) return const_cast<wxListItemAttr*>(&m_attr11);
+        else if (user_colour_id == 2) return const_cast<wxListItemAttr*>(&m_attr12);
+        else if (user_colour_id == 3) return const_cast<wxListItemAttr*>(&m_attr13);
+        else if (user_colour_id == 4) return const_cast<wxListItemAttr*>(&m_attr14);
+        else if (user_colour_id == 5) return const_cast<wxListItemAttr*>(&m_attr15);
+        else if (user_colour_id == 6) return const_cast<wxListItemAttr*>(&m_attr16);
+        else if (user_colour_id == 7) return const_cast<wxListItemAttr*>(&m_attr17);
     }
     if (in_the_future)
     {
-        return (item % 2 ? (wxListItemAttr*)&m_attr3 : (wxListItemAttr*)&m_attr4);
+        return (item % 2 ? const_cast<wxListItemAttr*>(&m_attr3)
+                         : const_cast<wxListItemAttr*>(&m_attr4));
     }
 
-    return (item % 2 ? (wxListItemAttr*)&m_attr1 : (wxListItemAttr*)&m_attr2);
+    return (item % 2 ? const_cast<wxListItemAttr*>(&m_attr1)
+                     : const_cast<wxListItemAttr*>(&m_attr2));
 }
 //----------------------------------------------------------------------------
 // If any of these keys are encountered, the search for the event handler
@@ -1540,7 +1542,7 @@ void TransactionListCtrl::OnCopy(wxCommandEvent& WXUNUSED(event))
             {
                 if (GetItemState(row, wxLIST_STATE_SELECTED) == wxLIST_STATE_SELECTED)
                 {
-                    for (int column = 0; column < (int) m_columns.size(); column++)
+                    for (size_t column = 0; column < m_columns.size(); column++)
                     {
                         if (GetColumnWidth(column) > 0)
                             data += OnGetItemText(row, column) + separator;
@@ -1551,7 +1553,7 @@ void TransactionListCtrl::OnCopy(wxCommandEvent& WXUNUSED(event))
         }
         else
         {
-            for (int column = 0; column < (int) m_columns.size(); column++)
+            for (int column = 0; column < static_cast<int>(m_columns.size()); column++)
             {
                 if (GetColumnWidth(column) > 0)
                     data += OnGetItemText(m_selectedIndex, column) + separator;
@@ -1875,7 +1877,7 @@ void TransactionListCtrl::refreshVisualList(int trans_id, bool filter)
     m_cp->sortTable();
     m_cp->markSelectedTransaction(trans_id);
 
-    long i = (long)m_cp->m_trans.size();
+    long i = static_cast<long>(m_cp->m_trans.size());
     if (m_topItemIndex >= i)
         m_topItemIndex = g_asc ? i - 1 : 0;
     if (m_selectedIndex > i - 1) m_selectedIndex = -1;
@@ -2020,7 +2022,7 @@ void TransactionListCtrl::OnListItemFocused(wxListEvent& WXUNUSED(event))
     min_date.ParseISODate(minDate);
     max_date.ParseISODate(maxDate);
 
-    int days = wxTimeSpan(max_date.Subtract(min_date)).GetDays();
+    int days = max_date.Subtract(min_date).GetDays();
 
     wxString msg;
     Model_Account::Data *account = Model_Account::instance().get(m_cp->m_AccountID);

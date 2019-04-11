@@ -618,7 +618,7 @@ void mmUnivCSVDialog::OnAdd(wxCommandEvent& WXUNUSED(event))
         if (item->getIndex() != UNIV_CSV_DONTCARE && item->getIndex() != UNIV_CSV_NOTES)
         {
             csvFieldCandicate_->Delete(index);
-            if (index < (int)csvFieldCandicate_->GetCount()) {
+            if (static_cast<size_t>(index) < csvFieldCandicate_->GetCount()) {
                 csvFieldCandicate_->SetSelection(index, true);
             }
             else {
@@ -642,8 +642,8 @@ void mmUnivCSVDialog::OnRemove(wxCommandEvent& WXUNUSED(event))
 
         if (item_index != UNIV_CSV_DONTCARE)
         {
-            int pos = 0;
-            for (pos = 0; pos < (int)csvFieldCandicate_->GetCount() - 1; pos++)
+            unsigned int pos;
+            for (pos = 0; pos < csvFieldCandicate_->GetCount() - 1; pos++)
             {
                 mmListBoxItem *item2 = static_cast<mmListBoxItem*>(csvFieldCandicate_->GetClientObject(pos));
                 if (item_index < item2->getIndex()) {
@@ -656,7 +656,7 @@ void mmUnivCSVDialog::OnRemove(wxCommandEvent& WXUNUSED(event))
         csvListBox_->Delete(index);
         csvFieldOrder_.erase(csvFieldOrder_.begin() + index);
 
-        if (index < (int)csvListBox_->GetCount()) {
+        if (static_cast<size_t>(index) < csvListBox_->GetCount()) {
             csvListBox_->SetSelection(index, true);
         }
         else {
@@ -703,7 +703,7 @@ void mmUnivCSVDialog::OnSave(wxCommandEvent& WXUNUSED(event))
     PrettyWriter<StringBuffer> json_writer(json_buffer);
     json_writer.StartObject();
 
-    wxRadioBox* c = (wxRadioBox*)FindWindow(wxID_APPLY);
+    wxRadioBox* c = static_cast<wxRadioBox*>(FindWindow(wxID_APPLY));
     int id = c->GetSelection();
     const wxString& settingsPrefix = GetSettingsPrfix();
     const wxString& setting_id = wxString::Format(settingsPrefix + "%d", id);
@@ -1204,7 +1204,7 @@ void mmUnivCSVDialog::update_preview()
                 if (!m_userDefinedDateMask
                     && row >= firstRow
                     && row < lastRow
-                    && (int)col == date_col)
+                    && col == static_cast<unsigned>(date_col))
                 {
                     dParser->doHandleStatistics(content);
                 }
@@ -1354,7 +1354,7 @@ void mmUnivCSVDialog::OnMoveUp(wxCommandEvent& WXUNUSED(event))
 void mmUnivCSVDialog::OnMoveDown(wxCommandEvent& WXUNUSED(event))
 {
     int index = csvListBox_->GetSelection();
-    if (index != wxNOT_FOUND && index != (int)csvListBox_->GetCount() - 1)
+    if (index != wxNOT_FOUND && static_cast<size_t>(index) != csvListBox_->GetCount() - 1)
     {
         mmListBoxItem* item = static_cast<mmListBoxItem*>(csvListBox_->GetClientObject(index));
         int item_index = item->getIndex();
@@ -1481,7 +1481,7 @@ void mmUnivCSVDialog::OnDelimiterChange(wxCommandEvent& event)
 void mmUnivCSVDialog::OnDecimalChange(wxCommandEvent& event)
 {
     int i = m_choiceDecimalSeparator->GetSelection();
-    wxStringClientData* type_obj = (wxStringClientData*)m_choiceDecimalSeparator->GetClientObject(i);
+    wxStringClientData* type_obj = static_cast<wxStringClientData*>(m_choiceDecimalSeparator->GetClientObject(i));
     if (type_obj) {
         decimal_ = type_obj->GetData();
     }
@@ -1597,7 +1597,7 @@ void mmUnivCSVDialog::parseToken(int index, const wxString& orig_token, tran_hol
         break;
 
     default:
-        wxASSERT(false);
+        wxFAIL_MSG("not mapped column");
         break;
     }
 }
@@ -1646,7 +1646,7 @@ void mmUnivCSVDialog::OnDateFormatChanged(wxCommandEvent& event)
     int i = event.GetId();
     if (i == ID_DATE_FORMAT)
     {
-        wxStringClientData* data = (wxStringClientData*)(choiceDateFormat_->GetClientObject(choiceDateFormat_->GetSelection()));
+        wxStringClientData* data = static_cast<wxStringClientData*>(choiceDateFormat_->GetClientObject(choiceDateFormat_->GetSelection()));
         if (data) date_format_ = data->GetData();
         *log_field_ << date_format_ << "\n";
     }

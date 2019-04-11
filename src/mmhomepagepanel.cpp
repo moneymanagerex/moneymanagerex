@@ -21,7 +21,7 @@ Copyright (C) 2014 Nikolay
 #include "mmex.h"
 #include "mmframe.h"
 #include "paths.h"
-#include "html_template.h"
+#include <html_template.h>
 #include "billsdepositspanel.h"
 #include "constants.h"
 #include "option.h"
@@ -714,9 +714,9 @@ void mmHomePagePanel::setExpensesIncomeStatsData(std::map<int, std::pair<double,
 
 /* Accounts */
 const wxString mmHomePagePanel::getAccountsHTML(double& tBalance
-    , std::map<int, std::pair<double, double> > &accountStats, int type) const
+    , std::map<int, std::pair<double, double> > &accountStats, enum Model_Account::TYPE type) const
 {
-    wxASSERT(acc_type_str.size() >= (size_t)type );
+    wxASSERT(acc_type_str.size() >= static_cast<size_t>(type));
     const wxString idStr = acc_type_str[type].first;
     wxString output = "<table class = 'sortable table'>\n";
     output += "<col style=\"width:50%\"><col style=\"width:25%\"><col style=\"width:25%\">\n";

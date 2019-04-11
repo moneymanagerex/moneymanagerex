@@ -171,9 +171,9 @@ static size_t
 curlWriteMemoryCallback(void *contents, size_t size, size_t nmemb, void *userp)
 {
   size_t realsize = size * nmemb;
-  struct curlBuff *mem = (struct curlBuff *)userp;
+  struct curlBuff *mem = static_cast<struct curlBuff *>(userp);
 
-  char *tmp = (char *)realloc(mem->memory, mem->size + realsize + 1);
+  char *tmp = static_cast<char *>(realloc(mem->memory, mem->size + realsize + 1));
   if (tmp == NULL) {
     /* out of memory! */
     // printf("not enough memory (realloc returned NULL)\n");
@@ -271,10 +271,10 @@ void curl_set_common_options(CURL* curl, const wxString& useragent = wxEmptyStri
 
 void curl_set_writedata_options(CURL* curl, curlBuff& chunk)
 {
-    chunk.memory = (char *)malloc(1);
+    chunk.memory = static_cast<char *>(malloc(1));
     chunk.size = 0;
     curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, curlWriteMemoryCallback);
-    curl_easy_setopt(curl, CURLOPT_WRITEDATA, (void *)&chunk);
+    curl_easy_setopt(curl, CURLOPT_WRITEDATA, &chunk);
 }
 
 CURLcode http_get_data(const wxString& sSite, wxString& sOutput, const wxString& useragent)
@@ -348,7 +348,7 @@ CURLcode http_download_file(const wxString& sSite, const wxString& sPath)
     }
 
     curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, curlWriteFileCallback);
-    curl_easy_setopt(curl, CURLOPT_WRITEDATA, (void *)&output);
+    curl_easy_setopt(curl, CURLOPT_WRITEDATA, &output);
 
     curl_easy_setopt(curl, CURLOPT_URL, static_cast<const char*>(sSite.mb_str()));
 
@@ -424,10 +424,7 @@ bool getNewsRSS(std::vector<WebsiteNews>& WebsiteNewsList)
         RssRoot = RssRoot->GetNext();
     }
 
-    if (WebsiteNewsList.size() == 0)
-        return false;
-
-    return true;
+    return !WebsiteNewsList.empty();
 }
 
 /* Currencies & stock prices */
@@ -494,7 +491,7 @@ bool get_yahoo_prices(std::vector<wxString>& symbols
                 const auto price = v["regularMarketPrice"].GetFloat();
                 currency_symbol = pattern.GetMatch(currency_symbol, 1);
 
-                wxLogDebug("item: %zu %s %.2f", (size_t)i, currency_symbol, price);
+                wxLogDebug("item: %u %s %f", i, currency_symbol, price);
                 out[currency_symbol] = (price <= 0 ? 1 : price);
             }
         }
@@ -519,7 +516,7 @@ bool get_yahoo_prices(std::vector<wxString>& symbols
             const auto currency = wxString::FromUTF8(v["currency"].GetString());
             double k = currency == "GBp" ? 100 : 1;
 
-            wxLogDebug("item: %zu %s %.2f", (size_t)i, symbol, price);
+            wxLogDebug("item: %u %s %f", i, symbol, price);
             out[symbol] = price <= 0 ? 1 : price / k;
         }
     }
@@ -531,7 +528,7 @@ bool get_crypto_currency_prices(std::vector<wxString>& symbols, double& usd_rate
     , std::map<wxString, double>& out
     , wxString& output)
 {
-    if (!usd_rate || usd_rate == 0)
+    if (!usd_rate)
     {
         output = _("Wrong base currency to USD rate provided");
         return false;
@@ -569,7 +566,7 @@ bool get_crypto_currency_prices(std::vector<wxString>& symbols, double& usd_rate
         if (!v["price"].IsFloat()) continue;
         auto price = v["price"].GetFloat();
         all_crypto_data[currency_symbol] = price;
-        wxLogDebug("item: %zu %s %.8f", (size_t)i, currency_symbol, price);
+        wxLogDebug("item: %u %s %.8f", i, currency_symbol, price);
     }
 
     for (auto& entry : symbols)
@@ -623,7 +620,7 @@ void csv2tab_separated_values(wxString& line, const wxString& delimit)
     while (tkz1.HasMoreTokens())
     {
         token = tkz1.GetNextToken();
-        if (0 == fmod((double)i, 2))
+        if (i % 2 == 0)
             token.Replace(delimit, "\t");
         temp_line << token;
         i++;
@@ -722,10 +719,10 @@ const wxDateTime getUserDefinedFinancialYear(bool prevDayRequired)
 
     int dayNum = wxAtoi(Option::instance().getFinancialYearStartDay());
 
-    if (dayNum <= 0 || dayNum > wxDateTime::GetNumberOfDays((wxDateTime::Month)monthNum, year))
+    if (dayNum <= 0 || dayNum > wxDateTime::GetNumberOfDays(static_cast<wxDateTime::Month>(monthNum), year))
         dayNum = 1;
 
-    wxDateTime financialYear(dayNum, (wxDateTime::Month)monthNum, year);
+    wxDateTime financialYear(dayNum, static_cast<wxDateTime::Month>(monthNum), year);
     if (prevDayRequired)
         financialYear.Subtract(wxDateSpan::Day());
     return financialYear;
@@ -899,7 +896,7 @@ void mmCalcValidator::OnChar(wxKeyEvent& event)
         return event.Skip();
 
 
-    wxString str((wxUniChar)keyCode, 1);
+    wxString str(static_cast<wxUniChar>(keyCode), 1);
     if (!(wxIsdigit(str[0]) || wxString("+-.,*/ ()").Contains(str)))
     {
         if ( !wxValidator::IsSilent() )
@@ -913,7 +910,7 @@ void mmCalcValidator::OnChar(wxKeyEvent& event)
         return event.Skip();
 
     wxChar decChar = text_field->GetDecimalPoint();
-    bool numpad_dec_swap = (wxGetKeyState(wxKeyCode(WXK_NUMPAD_DECIMAL)) && decChar != str);
+    bool numpad_dec_swap = (wxGetKeyState(WXK_NUMPAD_DECIMAL) && decChar != str);
 
     if (numpad_dec_swap)
         str = wxString(decChar);
