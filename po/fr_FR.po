@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-04-11 11:38+0300\n"
-"PO-Revision-Date: 2019-04-11 10:37\n"
+"PO-Revision-Date: 2019-04-11 14:59\n"
 "Last-Translator: vomikan <nikolay.akimov@gmail.com>\n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -1258,7 +1258,7 @@ msgstr "Automatisé"
 msgid "%d day remaining"
 msgid_plural "%d days remaining"
 msgstr[0] ""
-msgstr[1] ""
+msgstr[1] "%d jours restants"
 
 #: billsdepositspanel.cpp:514 billsdepositspanel.cpp:520
 #: billsdepositspanel.cpp:528
