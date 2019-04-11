@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-04-11 11:38+0300\n"
-"PO-Revision-Date: 2019-04-11 08:45\n"
+"PO-Revision-Date: 2019-04-11 09:35\n"
 "Last-Translator: vomikan <nikolay.akimov@gmail.com>\n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -1258,7 +1258,7 @@ msgid "%d day remaining"
 msgid_plural "%d days remaining"
 msgstr[0] ""
 msgstr[1] ""
-msgstr[2] ""
+msgstr[2] "%d дней осталось"
 msgstr[3] ""
 
 #: billsdepositspanel.cpp:514 billsdepositspanel.cpp:520
@@ -1270,9 +1270,9 @@ msgstr "Неактивный"
 #, c-format
 msgid "%d day delay!"
 msgid_plural "%d days delay!"
-msgstr[0] ""
+msgstr[0] "%d день просрочен!"
 msgstr[1] ""
-msgstr[2] ""
+msgstr[2] "%d дней задержки!"
 msgstr[3] ""
 
 #: billsdepositspanel.cpp:530 mmhomepagepanel.cpp:350
@@ -1281,7 +1281,7 @@ msgid "%d day overdue!"
 msgid_plural "%d days overdue!"
 msgstr[0] ""
 msgstr[1] ""
-msgstr[2] ""
+msgstr[2] "%d дней просрочено!"
 msgstr[3] ""
 
 #: billsdepositspanel.cpp:626
@@ -1981,7 +1981,7 @@ msgid "%zu occurrence founded and replaced!"
 msgid_plural "%zu occurrences founded and replaced!"
 msgstr[0] ""
 msgstr[1] ""
-msgstr[2] ""
+msgstr[2] "%zu вхождений найдено и заменено!"
 msgstr[3] ""
 
 #: customfieldlistdialog.cpp:266
