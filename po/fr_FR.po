@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-04-11 11:38+0300\n"
-"PO-Revision-Date: 2019-04-11 10:11\n"
+"PO-Revision-Date: 2019-04-11 10:37\n"
 "Last-Translator: vomikan <nikolay.akimov@gmail.com>\n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -1674,7 +1674,7 @@ msgstr "Gîte commit: "
 
 #: constants.cpp:91 mmframe.cpp:2579
 msgid "Git branch: "
-msgstr "Gîte branch: "
+msgstr "Branch Git : "
 
 #: constants.cpp:94 mmframe.cpp:2580
 msgid "MMEX is using the following support products:"
@@ -1682,7 +1682,7 @@ msgstr "MMEX utilise les produits suivant:"
 
 #: constants.cpp:106 mmframe.cpp:2581
 msgid "Build on"
-msgstr "Construire"
+msgstr "Compilé le"
 
 #: constants.cpp:106 mmframe.cpp:2582
 msgid "with:"
@@ -1690,7 +1690,7 @@ msgstr "avec:"
 
 #: constants.cpp:127 mmframe.cpp:2583
 msgid "Running on:"
-msgstr "Exécuter"
+msgstr "Mis en marche le:"
 
 #: constants.cpp:218
 msgid "View All Transactions"
@@ -1706,7 +1706,7 @@ msgstr "Mois en cours"
 
 #: constants.cpp:221
 msgid "View Last 30 days"
-msgstr "Voir les 30 derniers jours."
+msgstr "Voir les 30 derniers jours"
 
 #: constants.cpp:222
 msgid "View Last 90 days"
@@ -1718,7 +1718,7 @@ msgstr "Dernier mois"
 
 #: constants.cpp:224
 msgid "View Last 3 Months"
-msgstr "Voir les 3 derniers mois."
+msgstr "Voir les 3 derniers mois"
 
 #: constants.cpp:225
 msgid "View Last 12 Months"
@@ -1734,7 +1734,7 @@ msgstr "Voir année fiscale en cours"
 
 #: constants.cpp:228
 msgid "View Last Year"
-msgstr "Voir année passée"
+msgstr "Voir l'année passée"
 
 #: constants.cpp:229
 msgid "View Last Financial Year"
@@ -2566,7 +2566,7 @@ msgstr "Nouveau rapport vide"
 
 #: general_report_manager.cpp:688
 msgid "New Sample Report"
-msgstr "Nouvel Echantillon de rapport"
+msgstr "Nouvel exemple de rapport"
 
 #: general_report_manager.cpp:691
 msgid "Change Group"
@@ -3214,7 +3214,7 @@ msgstr "Opérations exportées: %ld"
 
 #: import_export/univcsvdialog.cpp:1401 stockdialog.cpp:554
 msgid "Choose CSV data file to import"
-msgstr "Choisir un fichier de données QIF à importer"
+msgstr "Sélectionner un fichier CSV à importer"
 
 #: import_export/univcsvdialog.cpp:1404
 msgid "Choose CSV data file to export"
@@ -5015,7 +5015,7 @@ msgstr "Booléen"
 
 #: model/Model_CustomField.cpp:30
 msgid "Time"
-msgstr "Temps"
+msgstr "Heure"
 
 #: model/Model_CustomField.cpp:31
 msgid "SingleChoice"
@@ -6626,7 +6626,7 @@ msgstr "Févr"
 #: util.cpp:822
 msgctxt "3-letter abbreviation of month name"
 msgid "Mar"
-msgstr "Mar"
+msgstr "Mars"
 
 #: util.cpp:823
 msgctxt "3-letter abbreviation of month name"
@@ -6746,7 +6746,7 @@ msgstr "Mauvaise version de l'API Webapp"
 #: webapp.cpp:464
 #, c-format
 msgid "Account '%s' not found!"
-msgstr "Compte'%s' non trouvé!"
+msgstr "Compte '%s' non trouvé!"
 
 #: webapp.cpp:466
 #, c-format
