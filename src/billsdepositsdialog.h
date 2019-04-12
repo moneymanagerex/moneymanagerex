@@ -78,7 +78,6 @@ private:
     void OnSplitChecked(wxCommandEvent& event);
     void OnAutoExecutionUserAckChecked(wxCommandEvent& event);
     void OnAutoExecutionSilentChecked(wxCommandEvent& event);
-    void OnCalendarSelChanged(wxCalendarEvent& event);
     void OnTextEntered(wxCommandEvent& event);
     int transID_;
 
@@ -131,15 +130,14 @@ private:
     void resetPayeeString();
     void setTooltips();
     void setCategoryLabel();
+    void OnPaidDateChanged(wxDateEvent& event);
+    void OnDueDateChanged(wxDateEvent& event);
     void OnAdvanceChecked(wxCommandEvent& event);
     void SetTransferControls(bool transfers = false);
     void SetAdvancedTransferControls(bool advanced = false);
     void SetSplitControls(bool split = false);
-    void OnTransDateForward(wxSpinEvent& event);
-    void OnTransDateBack(wxSpinEvent& event);
-    void OnNextOccurDateForward(wxSpinEvent& event);
-    void OnNextOccurDateBack(wxSpinEvent& event);
-    void SetNewDate(wxDatePickerCtrl* dpc, bool forward = true);
+    void OnSpinEventPaid(wxSpinEvent& event);
+    void OnSpinEventDue(wxSpinEvent& event);
     void OnFrequentUsedNotes(wxCommandEvent& event);
     void onNoteSelected(wxCommandEvent& event);
 
@@ -148,7 +146,6 @@ private:
     wxBitmapButton* m_btn_due_date;
     void OnRepeatTypeChanged(wxCommandEvent& event);
     void OnsetNextRepeatDate(wxCommandEvent& event);
-    void OnPeriodChange(wxCommandEvent& event);
     void setRepeatDetails();
 
     void activateSplitTransactionsDlg();
@@ -183,6 +180,7 @@ private:
         ID_DIALOG_BD_CHECKBOX_AUTO_EXECUTE_USERACK,
         ID_DIALOG_BD_CHECKBOX_AUTO_EXECUTE_SILENT,
         ID_DIALOG_BD_CALENDAR,
+        ID_DIALOG_BD_DUE_DATE,
         ID_DIALOG_BD_REPEAT_DATE_SPINNER,
         ID_PANEL_REPORTS_HTMLWINDOW,
         ID_PANEL_REPORTS_HEADER_PANEL,
