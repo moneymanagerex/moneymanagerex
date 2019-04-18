@@ -375,12 +375,13 @@ void Model_Billsdeposits::completeBDInSeries(int bdID)
                 numRepeats--;
         }
 
-        if (repeats == REPEAT_TYPE::REPEAT_NONE)
+        if (repeats == REPEAT_TYPE::REPEAT_NONE) {
             numRepeats = 0;
-        else if ((repeats == REPEAT_TYPE::REPEAT_IN_X_DAYS)
-            || (repeats == REPEAT_TYPE::REPEAT_IN_X_MONTHS))
+        }
+        else if (!(repeats == REPEAT_TYPE::REPEAT_IN_X_DAYS
+            || repeats == REPEAT_TYPE::REPEAT_IN_X_MONTHS))
         {
-            if (numRepeats != -1) numRepeats = -1;
+            bill->NUMOCCURRENCES = numRepeats;
         }
 
         bill->NEXTOCCURRENCEDATE = payment_date_update.FormatISODate();
@@ -390,7 +391,6 @@ void Model_Billsdeposits::completeBDInSeries(int bdID)
         if (payment_date_current > due_date_current)
             bill->TRANSDATE = payment_date_update.FormatISODate();
 
-        bill->NUMOCCURRENCES = numRepeats;
         save(bill);
 
         if (bill->NUMOCCURRENCES == REPEAT_TYPE::REPEAT_NONE)

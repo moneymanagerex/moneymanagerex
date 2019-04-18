@@ -77,7 +77,6 @@ wxBEGIN_EVENT_TABLE(mmBDDialog, wxDialog)
     EVT_BUTTON(ID_DIALOG_TRANS_BUTTONPAYEE, mmBDDialog::OnPayee)
     EVT_BUTTON(ID_DIALOG_TRANS_BUTTONTO, mmBDDialog::OnTo)
     EVT_BUTTON(wxID_FILE, mmBDDialog::OnAttachments)
-    EVT_BUTTON(wxID_APPLY, mmBDDialog::OnResetDatePaid)
     EVT_CHOICE(wxID_VIEW_DETAILS, mmBDDialog::OnTypeChanged)
     EVT_DATE_CHANGED(ID_DIALOG_TRANS_BUTTON_PAYDATE, mmBDDialog::OnPaidDateChanged)
     EVT_DATE_CHANGED(ID_DIALOG_BD_DUE_DATE, mmBDDialog::OnDueDateChanged)
@@ -203,11 +202,6 @@ void mmBDDialog::dataToControls()
     // Set the date paid
     wxDateTime field_date;
     field_date.ParseDate(m_bill_data.NEXTOCCURRENCEDATE);
-
-    if (m_enter_occur)
-    {
-        field_date.ParseDate(m_bill_data.TRANSDATE);
-    }
     m_date_paid->SetValue(field_date);
 
     // Set the due Date
@@ -292,14 +286,18 @@ void mmBDDialog::dataToControls()
     else
     {
         SetDialogHeader(_("Enter Recurring Transaction"));
+        m_date_paid->Disable();
+        spinTransDate_->Disable();
         m_choice_transaction_type->Disable();
-        m_date_due->Disable();
         m_choice_repeat->Disable();
         textAmount_->SetFocus();
         itemCheckBoxAutoExeSilent_->Disable();
         itemCheckBoxAutoExeUserAck_->Disable();
         textNumRepeats_->Disable();
         m_btn_due_date->Disable();
+
+        m_date_due->Disable();
+        spinNextOccDate_->Disable();
     }
 
     setTooltips();
@@ -382,27 +380,7 @@ void mmBDDialog::CreateControls()
     //mainBoxSizerOuter will align contents vertically
     mainBoxSizerOuter->Add(mainBoxSizerInner, g_flagsExpand);
 
-    /* Calendar */
-    wxStaticBox* calendarStaticBox = new wxStaticBox(this, wxID_ANY, _("Calendar"));
-    wxStaticBoxSizer* calendarStaticBoxSizer = new wxStaticBoxSizer(calendarStaticBox, wxHORIZONTAL);
-    repeatTransBoxSizer->Add(calendarStaticBoxSizer, 10, wxALIGN_CENTER | wxLEFT | wxBOTTOM | wxRIGHT, 15);
-
-    //TODO: Set these up as user selectable. Some users wish to have monday first in calendar!
-    bool startSunday = true;
-    bool showSuroundingWeeks = true;
-
-    int style = wxSUNKEN_BORDER | wxCAL_SHOW_HOLIDAYS | wxCAL_SEQUENTIAL_MONTH_SELECTION;
-    if (startSunday)
-        style = wxCAL_SUNDAY_FIRST | style;
-    else
-        style = wxCAL_MONDAY_FIRST | style;
-
-    if (showSuroundingWeeks)
-        style = wxCAL_SHOW_SURROUNDING_WEEKS | style;
-
-    m_calendar_ctrl = new wxCalendarCtrl(this, ID_DIALOG_BD_CALENDAR, wxDateTime()
-        , wxDefaultPosition, wxDefaultSize, style);
-    calendarStaticBoxSizer->Add(m_calendar_ctrl, 10, wxALL, 15);
+   
 
     /* Bills & Deposits Details */
     wxStaticBox* repeatDetailsStaticBox = new wxStaticBox(this, wxID_ANY, _("Recurring Transaction Details"));
@@ -433,15 +411,9 @@ void mmBDDialog::CreateControls()
     spinTransDate_->SetToolTip(_("Advance or retard the user request date of this transaction"));
     spinTransDate_->SetRange(-32768, 32768);
 
-    m_apply_due_date = new wxBitmapButton(this, wxID_APPLY
-        , mmBitmap(png::RECURRING), wxDefaultPosition
-        , wxSize( /*spinTransDate_->GetSize().GetY()*/ -1, m_date_paid->GetSize().GetY()));
-    m_apply_due_date->SetToolTip(_("Reset 'Date Paid' to 'Today's Date'"));
-
     wxBoxSizer* dueDateDateBoxSizer = new wxBoxSizer(wxHORIZONTAL);
     dueDateDateBoxSizer->Add(m_date_paid, g_flagsH);
     dueDateDateBoxSizer->Add(spinTransDate_, g_flagsH);
-    dueDateDateBoxSizer->Add(m_apply_due_date, g_flagsH);
 
     itemFlexGridSizer5->Add(new wxStaticText(this, wxID_STATIC, _("Date Due")), g_flagsH);
     itemFlexGridSizer5->Add(dueDateDateBoxSizer);
@@ -808,11 +780,6 @@ void mmBDDialog::OnAttachments(wxCommandEvent& WXUNUSED(event))
     dlg.ShowModal();
 }
 
-void mmBDDialog::OnResetDatePaid(wxCommandEvent& WXUNUSED(event))
-{
-    m_date_paid->SetValue(wxDateTime::Today());
-}
-
 void mmBDDialog::updateControlsForTransType()
 {
     wxStaticText* accountLabel = static_cast<wxStaticText*>(FindWindow(ID_DIALOG_TRANS_STATIC_ACCOUNT));
@@ -936,12 +903,6 @@ void mmBDDialog::onNoteSelected(wxCommandEvent& event)
 
 void mmBDDialog::OnOk(wxCommandEvent& WXUNUSED(event))
 {
-    Model_Account::Data *acc = Model_Account::instance().get(m_bill_data.ACCOUNTID);
-    if (!acc)
-    {
-        return mmErrorDialogs::InvalidAccount((wxWindow*)bAccount_, m_transfer, mmErrorDialogs::MESSAGE_POPUP_BOX);
-    }
-
     Model_Billsdeposits::Data bill_data;
     bill_data.ACCOUNTID = m_bill_data.ACCOUNTID;
     bill_data.TRANSAMOUNT = m_bill_data.TRANSAMOUNT;
@@ -951,6 +912,12 @@ void mmBDDialog::OnOk(wxCommandEvent& WXUNUSED(event))
 
     if (!Model_Billsdeposits::instance().AllowTransaction(bill_data, bal)) return;
     if (!textAmount_->checkValue(m_bill_data.TRANSAMOUNT)) return;
+
+    Model_Account::Data* acc = Model_Account::instance().get(m_bill_data.ACCOUNTID);
+    if (!acc)
+    {
+        return mmErrorDialogs::InvalidAccount((wxWindow*)bAccount_, m_transfer, mmErrorDialogs::MESSAGE_POPUP_BOX);
+    }
 
     m_bill_data.TOTRANSAMOUNT = m_bill_data.TRANSAMOUNT;
     if (m_transfer)
@@ -1092,7 +1059,9 @@ void mmBDDialog::OnOk(wxCommandEvent& WXUNUSED(event))
     else
     {
         // repeats now hold extra info. Need to get repeats from dialog selection
-        if ((m_choice_repeat->GetSelection() < INXDAYS) || (m_choice_repeat->GetSelection() > EVERYXMONTHS) || (m_bill_data.REPEATS > NONE))
+        if ((m_choice_repeat->GetSelection() < INXDAYS)
+            || (m_choice_repeat->GetSelection() > EVERYXMONTHS)
+            || (m_bill_data.REPEATS > NONE))
         {
             Model_Checking::Data* tran = Model_Checking::instance().create();
             tran->ACCOUNTID = m_bill_data.ACCOUNTID;
@@ -1105,7 +1074,7 @@ void mmBDDialog::OnOk(wxCommandEvent& WXUNUSED(event))
             tran->NOTES = m_bill_data.NOTES;
             tran->CATEGID = m_bill_data.CATEGID;
             tran->SUBCATEGID = m_bill_data.SUBCATEGID;
-            tran->TRANSDATE = m_bill_data.NEXTOCCURRENCEDATE;
+            tran->TRANSDATE = m_bill_data.TRANSDATE;
             tran->TOTRANSAMOUNT = m_bill_data.TOTRANSAMOUNT;
 
             int transID = Model_Checking::instance().save(tran);

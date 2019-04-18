@@ -69,7 +69,6 @@ private:
     void OnTo(wxCommandEvent& event);
     void OnTypeChanged(wxCommandEvent& event);
     void OnAttachments(wxCommandEvent& event);
-    void OnResetDatePaid(wxCommandEvent& WXUNUSED(event));
 
     void dataToControls();
     void updateControlsForTransType();
@@ -104,8 +103,6 @@ private:
 
     wxDatePickerCtrl* m_date_paid;      // Stored in ::NEXTOCCURRENCEDATE
     wxDatePickerCtrl* m_date_due;       // Stored in ::TRANSDATE
-    wxBitmapButton* m_apply_due_date;
-    wxCalendarCtrl* m_calendar_ctrl;
     wxChoice* m_choice_repeat;
     wxCheckBox* itemCheckBoxAutoExeUserAck_;
     wxCheckBox* itemCheckBoxAutoExeSilent_;
