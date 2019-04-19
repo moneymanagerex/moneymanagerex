@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-04-11 11:38+0300\n"
-"PO-Revision-Date: 2019-04-19 20:33\n"
+"PO-Revision-Date: 2019-04-19 21:08\n"
 "Last-Translator: Nikolay (vomikan)\n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -2842,7 +2842,7 @@ msgstr "Zeile %zu \t %s\n"
 #: import_export/qif_import_gui.cpp:464
 #, c-format
 msgid "Number of lines read from QIF file: %zu in %lld ms"
-msgstr ""
+msgstr "Anzahl der aus QIF-Datei gelesen Zeilen: %zu in %lld ms"
 
 #: import_export/qif_import_gui.cpp:467
 msgid "Press OK Button to continue"
@@ -5763,8 +5763,8 @@ msgstr "Monatlich Gesamt"
 #, c-format
 msgid "Cash Flow Forecast for %i Years Ahead"
 msgid_plural "Cash Flow Forecast for %i Years Ahead"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Geldfluss-Prognose für die kommenden %i Jahre"
+msgstr[1] "Geldfluss-Prognose für die kommenden %i Jahre"
 
 #: reports/cashflow.cpp:273 reports/incexpenses.cpp:208 reports/payee.cpp:125
 msgid "Difference"
