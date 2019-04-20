@@ -224,7 +224,6 @@ void mmBDDialog::dataToControls()
         }
     }
 
-    setRepeatDetails();
     if (m_bill_data.REPEATS == 0) {// if none
         textNumRepeats_->SetValue("");
     }
@@ -236,6 +235,7 @@ void mmBDDialog::dataToControls()
     else {
         m_choice_repeat->SetSelection(m_bill_data.REPEATS);
     }
+    setRepeatDetails();
 
     m_choice_transaction_type->SetSelection(Model_Billsdeposits::type(m_bill_data.TRANSCODE));
     updateControlsForTransType();
@@ -473,7 +473,7 @@ void mmBDDialog::CreateControls()
     buttonsPanelSizer->Add(cancelButton, g_flagsH);
     cancelButton->SetFocus();
 
-    repeatTransBoxSizer->Add(buttonsPanel, 0, wxALIGN_RIGHT | wxLEFT | wxBOTTOM | wxRIGHT, 5);
+    mainBoxSizerOuter->Add(buttonsPanel, 0, wxALIGN_CENTER_HORIZONTAL, 5);
 
     /************************************************************************************************************
     transactionPanel controlled by transPanelSizer - is contained in the transDetailsStaticBoxSizer.

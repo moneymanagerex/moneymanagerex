@@ -543,9 +543,9 @@ void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& WXUNUSED(event))
                 Model_Splittransaction::instance().save(checking_splits);
             }
             Model_Billsdeposits::instance().completeBDInSeries(q1.BDID);
+            createHomePage();
         }
     }
-    createHomePage();
 
     if (continueExecution)
     {
