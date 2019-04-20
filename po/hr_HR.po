@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-04-11 11:38+0300\n"
-"PO-Revision-Date: 2019-04-11 08:45\n"
-"Last-Translator: vomikan <nikolay.akimov@gmail.com>\n"
+"PO-Revision-Date: 2019-04-16 16:28\n"
+"Last-Translator: Nikolay (vomikan)\n"
 "Language-Team: Croatian\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1257,9 +1257,9 @@ msgstr "Automatsko"
 #, c-format
 msgid "%d day remaining"
 msgid_plural "%d days remaining"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Preostaje %d dan"
+msgstr[1] "Preostaju %d dana"
+msgstr[2] "Preostaje %d dana"
 
 #: billsdepositspanel.cpp:514 billsdepositspanel.cpp:520
 #: billsdepositspanel.cpp:528
@@ -1270,17 +1270,17 @@ msgstr "Neaktivno"
 #, c-format
 msgid "%d day delay!"
 msgid_plural "%d days delay!"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Odgođeno za %d dan!"
+msgstr[1] "Odgođeno za %d dana!"
+msgstr[2] "Odgođeno za %d dana!"
 
 #: billsdepositspanel.cpp:530 mmhomepagepanel.cpp:350
 #, c-format
 msgid "%d day overdue!"
 msgid_plural "%d days overdue!"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Dospjelo prije %d dan!"
+msgstr[1] "Dospjelo prije %d dana!"
+msgstr[2] "Dospjelo prije %d dana!"
 
 #: billsdepositspanel.cpp:626
 msgid "Do you really want to delete the series?"
@@ -1977,9 +1977,9 @@ msgstr "Želiš li aktualizirati na prazno?\n"
 #, c-format
 msgid "%zu occurrence founded and replaced!"
 msgid_plural "%zu occurrences founded and replaced!"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%zu događaj je nađen i zamijenjen!"
+msgstr[1] "%zu događaja su nađena i zamijenjena!"
+msgstr[2] "%zu događaja je nađeno i zamijenjeno!"
 
 #: customfieldlistdialog.cpp:266
 msgid "&Massive content update "
@@ -2539,9 +2539,9 @@ msgstr "Stvori predložak"
 #, c-format
 msgid "%zu row returned, duration: %lld ms"
 msgid_plural "%zu rows returned, duration: %lld ms"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%zu redak je vraćen, trajanje: %lld ms"
+msgstr[1] "%zu retka su vraćena, trajanje: %lld ms"
+msgstr[2] "%zu redaka je vraćeno, trajanje: %lld ms"
 
 #: general_report_manager.cpp:528
 msgid "SQL Syntax Error"
@@ -2771,22 +2771,22 @@ msgstr "Izvoz"
 #: import_export/qif_export.cpp:410
 #, c-format
 msgid "Exporting transaction %zu"
-msgstr ""
+msgstr "Izvoz transakcije %zu"
 
 #: import_export/qif_export.cpp:469
 #, c-format
 msgid "Number of categories exported: %zu"
-msgstr ""
+msgstr "Broj izvezenih kategorija: %zu"
 
 #: import_export/qif_export.cpp:471
 #, c-format
 msgid "Number of transactions exported: %zu"
-msgstr ""
+msgstr "Broj izvezenih transakcija: %zu"
 
 #: import_export/qif_export.cpp:473
 #, c-format
 msgid "Number of accounts exported: %zu"
-msgstr ""
+msgstr "Broj izvezenih računa: %zu"
 
 #: import_export/qif_export.cpp:474 mmframe.cpp:1475
 msgid "Export to QIF"
@@ -2836,17 +2836,17 @@ msgstr "Skeniram"
 #: import_export/qif_import_gui.cpp:385
 #, c-format
 msgid "Reading line %zu, %lld ms"
-msgstr ""
+msgstr "Učitavanje retka %zu, %lld ms"
 
 #: import_export/qif_import_gui.cpp:391
 #, c-format
 msgid "Line %zu \t %s\n"
-msgstr ""
+msgstr "Redak %zu \t %s\n"
 
 #: import_export/qif_import_gui.cpp:464
 #, c-format
 msgid "Number of lines read from QIF file: %zu in %lld ms"
-msgstr ""
+msgstr "Broj učitanih redaka iz QIF datoteke: %zu za %lld ms"
 
 #: import_export/qif_import_gui.cpp:467
 msgid "Press OK Button to continue"
@@ -5083,7 +5083,7 @@ msgstr "Ukupni iznos kategorije"
 
 #: option.cpp:125 option.cpp:126 reports/cashflow.cpp:35
 msgid "Cash Flow"
-msgstr "Novčani tijek"
+msgstr "Novčani tok"
 
 #: option.cpp:127 option.cpp:128
 msgid "Stocks Report"
@@ -5769,9 +5769,9 @@ msgstr "Mjesečno ukupno"
 #, c-format
 msgid "Cash Flow Forecast for %i Years Ahead"
 msgid_plural "Cash Flow Forecast for %i Years Ahead"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Prognoza novčanog toka za %i godinu unaprijed"
+msgstr[1] "Prognoza novčanog toka za %i godine unaprijed"
+msgstr[2] "Prognoza novčanog toka za %i godina unaprijed"
 
 #: reports/cashflow.cpp:273 reports/incexpenses.cpp:208 reports/payee.cpp:125
 msgid "Difference"
