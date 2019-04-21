@@ -1,4 +1,4 @@
-﻿/*******************************************************
+/*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
 
  This program is free software; you can redistribute it and/or modify
@@ -167,6 +167,7 @@ mmBillsDepositsPanel::mmBillsDepositsPanel(wxWindow *parent, wxWindowID winid
     , transFilterDlg_(nullptr)
     , bitmapTransFilter_(nullptr)
 {
+    m_today = wxDate::Today();
     this->tips_.Add(_("MMEX allows regular payments to be set up as transactions. These transactions can also be regular deposits, or transfers that will occur at some future time. These transactions act as a reminder that an event is about to occur, and appears on the Home Page 14 days before the transaction is due. "));
     this->tips_.Add(_("Tip: These transactions can be set up to activate - allowing the user to adjust any values on the due date."));
 
@@ -480,7 +481,7 @@ wxString mmBillsDepositsPanel::getItem(long item, long column)
     }
 }
 
-wxString mmBillsDepositsPanel::GetFrequency(const Model_Billsdeposits::Data* item)
+const wxString mmBillsDepositsPanel::GetFrequency(const Model_Billsdeposits::Data* item) const
 {
     int repeats = item->REPEATS;
     // DeMultiplex the Auto Executable fields.
@@ -495,7 +496,7 @@ wxString mmBillsDepositsPanel::GetFrequency(const Model_Billsdeposits::Data* ite
     return text;
 }
 
-wxString mmBillsDepositsPanel::GetRemainingDays(const Model_Billsdeposits::Data* item)
+const wxString mmBillsDepositsPanel::GetRemainingDays(const Model_Billsdeposits::Data* item) const
 {
     int repeats = item->REPEATS;
     // DeMultiplex the Auto Executable fields.
@@ -504,8 +505,10 @@ wxString mmBillsDepositsPanel::GetRemainingDays(const Model_Billsdeposits::Data*
     if (repeats >= BD_REPEATS_MULTIPLEX_BASE)    // Auto Execute Silent mode
         repeats -= BD_REPEATS_MULTIPLEX_BASE;
 
-    int daysRemaining = Model_Billsdeposits::daysPayment(item);
-    int daysOverdue = Model_Billsdeposits::daysOverdue(item);
+    int daysRemaining = Model_Billsdeposits::NEXTOCCURRENCEDATE(item)
+        .Subtract(this->getToday()).GetDays();
+    int daysOverdue = Model_Billsdeposits::TRANSDATE(item)
+        .Subtract(this->getToday()).GetDays();
     wxString text = wxString::Format(wxPLURAL("%d day remaining", "%d days remaining", daysRemaining), daysRemaining);
 
     if (daysRemaining == 0)
@@ -573,7 +576,8 @@ int billsDepositsListCtrl::OnGetItemImage(long item) const
         bd_repeat_auto = true;
     }
 
-    int daysRemaining = Model_Billsdeposits::daysPayment(&m_bdp->bills_[item]);
+    int daysRemaining = Model_Billsdeposits::NEXTOCCURRENCEDATE(m_bdp->bills_[item])
+        .Subtract(m_bdp->getToday()).GetDays();
 
     /* Returns the icon to be shown for each entry */
     if (daysRemaining <= 0 && repeats > 10 && repeats < 15 && m_bdp->bills_[item].NUMOCCURRENCES < 0)
