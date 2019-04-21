@@ -185,14 +185,16 @@ void mmPayeeDialog::OnListItemSelected(wxDataViewEvent& event)
     wxDataViewItem item = event.GetItem();
     int selected_index = payeeListBox_->ItemToRow(item);
 
-    if (selected_index >= 0)
-        m_payee_id = (int)payeeListBox_->GetItemData(item);
+    if (selected_index >= 0 && selected_index <= payeeListBox_->GetItemCount()) {
+        m_payee_id = static_cast<int>(payeeListBox_->GetItemData(item));
+    }
 }
 
 void mmPayeeDialog::OnListItemActivated(wxDataViewEvent& WXUNUSED(event))
 {
-    if (m_payee_id > 0 && m_payee_choose)
+    if (m_payee_id > 0 && m_payee_choose) {
         EndModal(wxID_OK);
+    }
 }
 
 void mmPayeeDialog::AddPayee()
@@ -374,9 +376,10 @@ void mmPayeeDialog::OnItemRightClick(wxDataViewEvent& event)
 
     mainMenu->Append(new wxMenuItem(mainMenu, MENU_RELOCATE_PAYEE, _("Relocate Payee")));
     //SetToolTip(_("Change all transactions using one Payee to another Payee"));
-    if (!payee || payeeListBox_->GetItemCount() < 2
-        || !Model_Payee::is_used(m_payee_id))
-            mainMenu->Enable(MENU_RELOCATE_PAYEE, false);
+    if (!payee || payeeListBox_->GetItemCount() < 2 || !Model_Payee::is_used(m_payee_id))
+    {
+        mainMenu->Enable(MENU_RELOCATE_PAYEE, false);
+    }
 
     PopupMenu(mainMenu);
     delete mainMenu;
@@ -400,10 +403,5 @@ void mmPayeeDialog::OnOk(wxCommandEvent& WXUNUSED(event))
         AddPayee();
     }
 
-    if (payeeListBox_->GetItemCount() > 0)
-    {
-        auto first = payeeListBox_->RowToItem(0);
-        m_payee_id = payeeListBox_->GetItemData(first);
-        EndModal(wxID_OK);
-    }
+    EndModal(wxID_OK);
 }

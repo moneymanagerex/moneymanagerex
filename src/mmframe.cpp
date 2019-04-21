@@ -490,6 +490,7 @@ void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& WXUNUSED(event))
         bills.decode_fields(q1);
         bool allow_transaction = bills.AllowTransaction(q1, bal);
         const wxDateTime payment_date = bills.TRANSDATE(q1);
+        const wxDateTime next_date = bills.NEXTOCCURRENCEDATE(q1);
         if (bills.autoExecuteManual() && bills.requireExecution())
         {
             if (allow_transaction && bills.allowExecution())
@@ -510,6 +511,7 @@ void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& WXUNUSED(event))
         {
             if (bills.allowExecution())
             {
+                wxLogDebug("Next Date:%s | Payment Date: %s", next_date.FormatISODate(), payment_date.FormatISODate());
                 continueExecution = true;
                 Model_Checking::Data* tran = Model_Checking::instance().create();
 
