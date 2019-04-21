@@ -393,12 +393,6 @@ void mmBDDialog::CreateControls()
     // change properties depending on system parameters
     int spinCtrlDirection = wxSP_VERTICAL;
     int interval = 0;
-#ifdef __WXMSW__
-    wxSize spinCtrlSize = wxSize(18, 22);
-    interval = 4;
-#else
-    wxSize spinCtrlSize = wxSize(16, -1);
-#endif
 
     // Date Due --------------------------------------------
 
@@ -406,8 +400,9 @@ void mmBDDialog::CreateControls()
         , wxDefaultDateTime, wxDefaultPosition, wxDefaultSize, wxDP_DROPDOWN | wxDP_SHOWCENTURY);
     m_date_paid->SetValue(wxDateTime::Now()); // Required for Mac: Does not default to today
     m_date_paid->SetToolTip(_("Specify the date the user is requested to enter this transaction"));
-    spinTransDate_ = new wxSpinButton(this, ID_DIALOG_TRANS_DATE_SPINNER,
-        wxDefaultPosition, spinCtrlSize, spinCtrlDirection | wxSP_ARROW_KEYS | wxSP_WRAP);
+    spinTransDate_ = new wxSpinButton(this, ID_DIALOG_TRANS_DATE_SPINNER
+        , wxDefaultPosition, wxSize(-1, wxSize(m_date_paid->GetSize()).GetHeight())
+        , spinCtrlDirection | wxSP_ARROW_KEYS | wxSP_WRAP);
     spinTransDate_->SetToolTip(_("Advance or retard the user request date of this transaction"));
     spinTransDate_->SetRange(-32768, 32768);
 
@@ -496,7 +491,8 @@ void mmBDDialog::CreateControls()
     m_date_due->SetToolTip(_("Specify the date when this bill or deposit is due"));
 
     spinNextOccDate_ = new wxSpinButton(transactionPanel, ID_DIALOG_BD_REPEAT_DATE_SPINNER
-        , wxDefaultPosition, spinCtrlSize, spinCtrlDirection | wxSP_ARROW_KEYS | wxSP_WRAP);
+        , wxDefaultPosition, wxSize(-1, wxSize(m_date_due->GetSize()).GetHeight())
+        , spinCtrlDirection | wxSP_ARROW_KEYS | wxSP_WRAP);
     spinNextOccDate_->SetToolTip(_("Retard or advance the date of the 'next occurrence'"));
     spinNextOccDate_->SetRange(-32768, 32768);
 
@@ -621,16 +617,15 @@ void mmBDDialog::CreateControls()
     RightAlign_sizer->Add(bAttachments_, g_flagsH);
     RightAlign_sizer->Add(bFrequentUsedNotes, g_flagsH);
 
-    wxSize notes_size = wxSize(200, 80);
     textNotes_ = new wxTextCtrl(transactionPanel, ID_DIALOG_TRANS_TEXTNOTES, ""
-        , wxDefaultPosition, notes_size, wxTE_MULTILINE);
+        , wxDefaultPosition, wxSize(-1, wxSize(m_date_due->GetSize()).GetHeight() * 5), wxTE_MULTILINE);
     textNotes_->SetToolTip(_("Specify any text notes you want to add to this transaction."));
-    transPanelSizer->Fit(this);
 
     transPanelSizer->Add(RightAlign_sizer, wxSizerFlags(g_flagsH).Align(wxALIGN_RIGHT).Border(wxALL, 0));
     box_sizer1->Add(textNotes_, wxSizerFlags(g_flagsExpand).Border(wxTOP, 5));
 
-    this->Fit();
+    Fit();
+    Centre();
 }
 
 void mmBDDialog::OnQuit(wxCloseEvent& WXUNUSED(event))
@@ -897,8 +892,9 @@ void mmBDDialog::OnFrequentUsedNotes(wxCommandEvent& WXUNUSED(event))
 void mmBDDialog::onNoteSelected(wxCommandEvent& event)
 {
     int i = event.GetId() - wxID_HIGHEST;
-    if (i > 0 && i <= (int)frequentNotes_.size())
+    if (i > 0 && i <= (int)frequentNotes_.size()) {
         textNotes_->ChangeValue(frequentNotes_[i - 1]);
+    }
 }
 
 void mmBDDialog::OnOk(wxCommandEvent& WXUNUSED(event))

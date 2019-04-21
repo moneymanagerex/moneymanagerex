@@ -417,14 +417,14 @@ void mmTransDialog::CreateControls()
     long date_style = wxDP_DROPDOWN | wxDP_SHOWCENTURY;
 
     dpc_ = new wxDatePickerCtrl(this, ID_DIALOG_TRANS_BUTTONDATE, wxDateTime::Today()
-        , wxDefaultPosition, wxSize(110, -1), date_style);
+        , wxDefaultPosition, wxDefaultSize, date_style);
 
     //Text field for day of the week
     itemStaticTextWeek_ = new wxStaticText(this, wxID_STATIC, "");
     // Display the day of the week
 
     spinCtrl_ = new wxSpinButton(this, ID_DIALOG_TRANS_DATE_SPINNER
-        , wxDefaultPosition, wxSize(18, wxSize(dpc_->GetSize()).GetHeight())
+        , wxDefaultPosition, wxSize(-1, wxSize(dpc_->GetSize()).GetHeight())
         , wxSP_VERTICAL | wxSP_ARROW_KEYS | wxSP_WRAP);
     spinCtrl_->SetRange (-32768, 32768);
 
@@ -438,24 +438,25 @@ void mmTransDialog::CreateControls()
     date_sizer->Add(itemStaticTextWeek_, g_flagsH);
 
     // Status --------------------------------------------
-    choiceStatus_ = new wxChoice(this, ID_DIALOG_TRANS_STATUS
-        , wxDefaultPosition, wxSize(110, -1));
+    choiceStatus_ = new wxChoice(this, ID_DIALOG_TRANS_STATUS);
 
-    for(const auto& i : Model_Checking::all_status())
+    for (const auto& i : Model_Checking::all_status()) {
         choiceStatus_->Append(wxGetTranslation(i), new wxStringClientData(i));
+    }
 
     flex_sizer->Add(new wxStaticText(this, wxID_STATIC, _("Status")), g_flagsH);
     flex_sizer->Add(choiceStatus_, g_flagsH);
 
     // Type --------------------------------------------
-    transaction_type_ = new wxChoice(this, ID_DIALOG_TRANS_TYPE
-        , wxDefaultPosition, wxSize(110, -1));
+    transaction_type_ = new wxChoice(this, ID_DIALOG_TRANS_TYPE);
 
     for (const auto& i : Model_Checking::all_type())
     {
         if (i != Model_Checking::all_type()[Model_Checking::TRANSFER]
             || Model_Account::instance().all().size() > 1)
+        {
             transaction_type_->Append(wxGetTranslation(i), new wxStringClientData(i));
+        }
     }
 
     cAdvanced_ = new wxCheckBox(this
@@ -471,11 +472,11 @@ void mmTransDialog::CreateControls()
 
     // Amount Fields --------------------------------------------
     m_textAmount = new mmTextCtrl(this, ID_DIALOG_TRANS_TEXTAMOUNT, ""
-        , wxDefaultPosition, wxSize(110, -1)
+        , wxDefaultPosition, wxDefaultSize
         , wxALIGN_RIGHT | wxTE_PROCESS_ENTER, mmCalcValidator());
 
     toTextAmount_ = new mmTextCtrl( this, ID_DIALOG_TRANS_TOTEXTAMOUNT, ""
-        , wxDefaultPosition, wxSize(110, -1)
+        , wxDefaultPosition, wxDefaultSize
         , wxALIGN_RIGHT | wxTE_PROCESS_ENTER, mmCalcValidator());
 
     wxBoxSizer* amountSizer = new wxBoxSizer(wxHORIZONTAL);
@@ -488,13 +489,12 @@ void mmTransDialog::CreateControls()
     flex_sizer->Add(amountSizer);
 
     // Account ---------------------------------------------
-    cbAccount_ = new wxComboBox(this, wxID_ANY, ""
-        , wxDefaultPosition, wxSize(230, -1));
+    cbAccount_ = new wxComboBox(this, wxID_ANY);
 
     account_label_ = new wxStaticText(this, wxID_STATIC, _("Account"));
     account_label_->SetFont(this->GetFont().Bold());
     flex_sizer->Add(account_label_, g_flagsH);
-    flex_sizer->Add(cbAccount_, g_flagsH);
+    flex_sizer->Add(cbAccount_, g_flagsExpand);
 
     // Payee ---------------------------------------------
     payee_label_ = new wxStaticText(this, wxID_STATIC, _("Payee"));
@@ -503,11 +503,10 @@ void mmTransDialog::CreateControls()
     /*Note: If you want to use EVT_TEXT_ENTER(id,func) to receive wxEVT_COMMAND_TEXT_ENTER events,
       you have to add the wxTE_PROCESS_ENTER window style flag.
       If you create a wxComboBox with the flag wxTE_PROCESS_ENTER, the tab key won't jump to the next control anymore.*/
-    cbPayee_ = new wxComboBox(this, ID_DIALOG_TRANS_PAYEECOMBO, ""
-        , wxDefaultPosition, wxSize(230, -1));
+    cbPayee_ = new wxComboBox(this, ID_DIALOG_TRANS_PAYEECOMBO);
 
     flex_sizer->Add(payee_label_, g_flagsH);
-    flex_sizer->Add(cbPayee_, g_flagsH);
+    flex_sizer->Add(cbPayee_, g_flagsExpand);
 
     // Split Category -------------------------------------------
     cSplit_ = new wxCheckBox(this, wxID_FORWARD
@@ -518,13 +517,12 @@ void mmTransDialog::CreateControls()
     flex_sizer->Add(cSplit_, g_flagsH);
 
     // Category -------------------------------------------------
-    bCategory_ = new wxButton(this, wxID_VIEW_DETAILS, ""
-        , wxDefaultPosition, wxSize(230, -1));
+    bCategory_ = new wxButton(this, wxID_VIEW_DETAILS);
 
     wxStaticText* categ_label = new wxStaticText(this, wxID_STATIC, _("Category"));
     categ_label->SetFont(this->GetFont().Bold());
     flex_sizer->Add(categ_label, g_flagsH);
-    flex_sizer->Add(bCategory_, g_flagsH);
+    flex_sizer->Add(bCategory_, g_flagsExpand);
 
     // Number  ---------------------------------------------
     textNumber_ = new mmTextCtrl(this
@@ -565,7 +563,7 @@ void mmTransDialog::CreateControls()
     RightAlign_sizer->Add(bFrequentUsedNotes, wxSizerFlags().Border(wxLEFT, 5));
 
     textNotes_ = new wxTextCtrl(this, ID_DIALOG_TRANS_TEXTNOTES
-        , "", wxDefaultPosition, wxSize(-1, 120), wxTE_MULTILINE);
+        , "", wxDefaultPosition, wxSize(-1, wxSize(dpc_->GetSize()).GetHeight() * 5), wxTE_MULTILINE);
     box_sizer_left->Add(textNotes_, wxSizerFlags(g_flagsExpand).Border(wxLEFT | wxRIGHT | wxBOTTOM, 10));
 
     /**********************************************************************************************
