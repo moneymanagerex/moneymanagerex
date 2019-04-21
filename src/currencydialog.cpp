@@ -1,4 +1,4 @@
-﻿/*******************************************************
+/*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
  Copyright (C) 2015 Gabriele-V
  Copyright (C) 2013-2017 Nikolay Akimov
@@ -151,30 +151,32 @@ void mmCurrencyDialog::CreateControls()
     wxStaticText* type_label = new wxStaticText(this, wxID_STATIC, _("Currency Type"));
     itemFlexGridSizer3->Add(type_label, g_flagsH);
     type_label->SetFont(this->GetFont().Bold());
-    m_currencyType = new wxChoice(this, ID_DIALOG_CURRENCY, wxDefaultPosition, wxSize(220, -1));
-    for (const auto& type : Model_Currency::instance().all_currency_types())
+    m_currencyType = new wxChoice(this, ID_DIALOG_CURRENCY);
+    m_currencyType->SetMinSize(wxSize(200, -1));
+    for (const auto& type : Model_Currency::instance().all_currency_types()) {
         m_currencyType->Append(wxGetTranslation(type), new wxStringClientData(type));
+    }
     itemFlexGridSizer3->Add(m_currencyType, g_flagsH);
 
     wxStaticText* name_label = new wxStaticText(this, wxID_STATIC, _("Currency Name"));
     itemFlexGridSizer3->Add(name_label, g_flagsH);
     name_label->SetFont(this->GetFont().Bold());
-    m_currencyName = new mmTextCtrl(this, ID_DIALOG_CURRENCY, "", wxDefaultPosition, wxSize(220, -1));
-    itemFlexGridSizer3->Add(m_currencyName, g_flagsH);
+    m_currencyName = new mmTextCtrl(this, ID_DIALOG_CURRENCY);
+    itemFlexGridSizer3->Add(m_currencyName, g_flagsExpand);
 
     wxStaticText* symbol_label = new wxStaticText(this, wxID_STATIC, _("Currency Symbol"));
     itemFlexGridSizer3->Add(symbol_label, g_flagsH);
     symbol_label->SetFont(this->GetFont().Bold());
-    m_currencySymbol = new mmTextCtrl(this, ID_DIALOG_CURRENCY, "", wxDefaultPosition, wxSize(220, -1));
+    m_currencySymbol = new mmTextCtrl(this, ID_DIALOG_CURRENCY);
     m_currencySymbol->SetMaxLength(3);
     itemFlexGridSizer3->Add(m_currencySymbol, g_flagsExpand);
 
     itemFlexGridSizer3->Add(new wxStaticText(this, wxID_STATIC, _("Prefix Symbol")), g_flagsH);
-    pfxTx_ = new wxTextCtrl(this, ID_DIALOG_CURRENCY, "");
+    pfxTx_ = new wxTextCtrl(this, ID_DIALOG_CURRENCY);
     itemFlexGridSizer3->Add(pfxTx_, g_flagsExpand);
 
     itemFlexGridSizer3->Add(new wxStaticText(this, wxID_STATIC, _("Suffix Symbol")), g_flagsH);
-    sfxTx_ = new wxTextCtrl(this, ID_DIALOG_CURRENCY, "");
+    sfxTx_ = new wxTextCtrl(this, ID_DIALOG_CURRENCY);
     itemFlexGridSizer3->Add(sfxTx_, g_flagsExpand);
 
     wxTextValidator valid(wxFILTER_INCLUDE_CHAR_LIST);

@@ -140,7 +140,7 @@ mmBDDialog::mmBDDialog(wxWindow* parent, int bdID, bool edit, bool enterOccur)
     long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX;
     Create(parent, wxID_ANY
         , _("New Recurring Transaction")
-        , wxDefaultPosition, wxSize(500, 300), style);
+        , wxDefaultPosition, wxDefaultSize, style);
 
 }
 

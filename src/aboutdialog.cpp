@@ -40,7 +40,7 @@ mmAboutDialog::mmAboutDialog(wxWindow* parent, int TabToOpen, const wxString &na
     const wxString caption = (TabToOpen == 4)
         ? _("License agreement") : wxString::Format(_("About %s"), mmex::getProgramName());
     Create(parent, wxID_ANY, caption, wxDefaultPosition
-        , wxSize(390, 550), wxCAPTION | wxRESIZE_BORDER | wxCLOSE_BOX, TabToOpen, name);
+        , wxDefaultSize, wxCAPTION | wxRESIZE_BORDER | wxCLOSE_BOX, TabToOpen, name);
     SetMinClientSize(wxSize(300, 400));
 }
 
@@ -62,9 +62,6 @@ bool mmAboutDialog::Create(wxWindow* parent
     {
         CreateControls(TabToOpen);
         InitControls();
-        //GetSizer()->Fit(this);
-        //GetSizer()->SetSizeHints(this);
-        //this->SetInitialSize();
         this->SetIcon(mmex::getProgramIcon());
         this->Centre();
     }
@@ -140,7 +137,8 @@ void mmAboutDialog::CreateControls(int TabToOpen)
 
     //Create tabs
     wxNotebook* about_notebook = new wxNotebook(this
-        , wxID_ANY, wxDefaultPosition, wxSize(400, 500), wxNB_MULTILINE);
+        , wxID_ANY, wxDefaultPosition, wxDefaultSize, wxNB_MULTILINE);
+    about_notebook->SetMinSize(wxSize(400, 500));
 
     wxPanel* about_tab = new wxPanel(about_notebook, wxID_ANY);
     about_notebook->AddPage(about_tab, _("About"));
@@ -200,6 +198,8 @@ void mmAboutDialog::CreateControls(int TabToOpen)
     itemBoxSizer->Add(button_OK, g_flagsCenter);
 
     about_notebook->ChangeSelection(TabToOpen);
+
+    GetSizer()->Fit(this);
 }
 
 void mmAboutDialog::OnLinkClicked(wxHtmlLinkEvent& event)
