@@ -82,8 +82,9 @@ mmNewAcctDialog::mmNewAcctDialog(Model_Account::Data* account, wxWindow* parent,
 {
     m_imageList = navtree_images_list();
     long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX;
-    Create(parent, wxID_ANY, _("New Account"), wxDefaultPosition, wxSize(550, 300), style, name);
+    Create(parent, wxID_ANY, _("New Account"), wxDefaultPosition, wxDefaultSize, style, name);
     this->Connect(wxID_ANY, wxEVT_CHILD_FOCUS, wxChildFocusEventHandler(mmNewAcctDialog::OnChangeFocus), nullptr, this);
+    this->SetMinSize(wxSize(550, 300));
 }
 
 mmNewAcctDialog::~mmNewAcctDialog()
@@ -233,12 +234,12 @@ void mmNewAcctDialog::CreateControls()
         ID_DIALOG_NEWACCT_BUTTON_CURRENCY, currName);
     grid_sizer->Add(itemButton71, g_flagsExpand);
 
-    wxCheckBox* itemCheckBox10 = new wxCheckBox(this
+    wxCheckBox* favoriteAccCheckBox = new wxCheckBox(this
         , ID_DIALOG_NEWACCT_CHKBOX_FAVACCOUNT
         , _("Favorite Account"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
-    itemCheckBox10->SetValue(TRUE);
+    favoriteAccCheckBox->SetValue(TRUE);
     grid_sizer->AddSpacer(1);
-    grid_sizer->Add(itemCheckBox10, g_flagsH);
+    grid_sizer->Add(favoriteAccCheckBox, g_flagsH);
 
     // Notes  ---------------------------------------------
 
@@ -250,7 +251,7 @@ void mmNewAcctDialog::CreateControls()
     notes_tab->SetSizer(notes_sizer);
 
     m_notesCtrl = new wxTextCtrl(notes_tab, ID_DIALOG_NEWACCT_TEXTCTRL_NOTES, ""
-        , wxDefaultPosition, wxSize(270, 180), wxTE_MULTILINE);
+        , wxDefaultPosition, wxSize(-1, wxSize(favoriteAccCheckBox->GetSize()).GetHeight() * 5), wxTE_MULTILINE);
     notes_sizer->Add(m_notesCtrl, g_flagsExpand);
     //
 
@@ -382,7 +383,7 @@ void mmNewAcctDialog::CreateControls()
         itemChoice6->SetToolTip(_("Specify if this account has been closed. Closed accounts are inactive in most calculations, reporting etc."));
         m_initbalance_ctrl->SetToolTip(_("Enter the initial balance in this account."));
         itemButton71->SetToolTip(_("Specify the currency to be used by this account."));
-        itemCheckBox10->SetToolTip(_("Select whether this is an account that is used often. This is used to filter accounts display view."));
+        favoriteAccCheckBox->SetToolTip(_("Select whether this is an account that is used often. This is used to filter accounts display view."));
         m_notesCtrl->SetToolTip(_("Enter user notes and details about this account."));
         itemTextCtrl6->SetToolTip(_("Enter the Account Number associated with this account."));
         itemTextCtrl8->SetToolTip(_("Enter the name of the financial institution in which the account is held."));

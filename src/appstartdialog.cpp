@@ -46,7 +46,7 @@ mmAppStartDialog::mmAppStartDialog(wxWindow* parent, const wxString& name)
 {
     long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX;
     Create(parent, wxID_ANY, mmex::getCaption(mmex::getTitleProgramVersion()),
-        wxDefaultPosition, wxSize(400, 300), style, name);
+        wxDefaultPosition, wxDefaultSize, style, name);
 }
 
 bool mmAppStartDialog::Create(wxWindow* parent, wxWindowID id, const wxString& caption

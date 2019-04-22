@@ -194,16 +194,17 @@ void mmAssetDialog::CreateControls()
 
     itemFlexGridSizer6->Add(new wxStaticText(asset_details_panel, wxID_STATIC, _("Date")), g_flagsH);
 
-    m_dpc = new wxDatePickerCtrl( asset_details_panel, wxID_ANY, wxDefaultDateTime,
-              wxDefaultPosition, wxSize(150, -1), wxDP_DROPDOWN|wxDP_SHOWCENTURY);
+    m_dpc = new wxDatePickerCtrl(asset_details_panel, wxID_ANY, wxDefaultDateTime
+        , wxDefaultPosition, wxDefaultSize, wxDP_DROPDOWN|wxDP_SHOWCENTURY);
     itemFlexGridSizer6->Add(m_dpc, g_flagsV);
     m_dpc->SetToolTip(_("Specify the date of purchase of asset"));
 
     itemFlexGridSizer6->Add(new wxStaticText(asset_details_panel, wxID_STATIC, _("Asset Type")), g_flagsH);
 
-    m_assetType = new wxChoice(asset_details_panel, wxID_STATIC, wxDefaultPosition, wxSize(150, -1));
-    for (const auto& a : Model_Asset::all_type())
+    m_assetType = new wxChoice(asset_details_panel, wxID_STATIC);
+    for (const auto& a : Model_Asset::all_type()) {
         m_assetType->Append(wxGetTranslation(a), new wxStringClientData(a));
+    }
 
     m_assetType->SetToolTip(_("Select type of asset"));
     m_assetType->SetSelection(Model_Asset::TYPE_PROPERTY);
@@ -215,7 +216,7 @@ void mmAssetDialog::CreateControls()
     v->SetFont(this->GetFont().Bold());
 
     m_value = new mmTextCtrl(asset_details_panel, IDC_VALUE, wxGetEmptyString()
-        , wxDefaultPosition, wxSize(150,-1), wxALIGN_RIGHT|wxTE_PROCESS_ENTER
+        , wxDefaultPosition, wxDefaultSize, wxALIGN_RIGHT|wxTE_PROCESS_ENTER
         , mmCalcValidator() );
     m_value->SetToolTip(_("Enter the current value of the asset"));
     itemFlexGridSizer6->Add(m_value, g_flagsV);
@@ -224,9 +225,10 @@ void mmAssetDialog::CreateControls()
 
     itemFlexGridSizer6->Add(new wxStaticText(asset_details_panel, wxID_STATIC, _("Change in Value")), g_flagsH);
 
-    m_valueChange = new wxChoice(asset_details_panel, IDC_COMBO_TYPE, wxDefaultPosition, wxSize(150, -1));
-    for(const auto& a : Model_Asset::all_rate())
+    m_valueChange = new wxChoice(asset_details_panel, IDC_COMBO_TYPE);
+    for (const auto& a : Model_Asset::all_rate()) {
         m_valueChange->Append(wxGetTranslation(a));
+    }
 
     m_valueChange->SetToolTip(_("Specify if the value of the asset changes over time"));
     m_valueChange->SetSelection(Model_Asset::RATE_NONE);
@@ -236,7 +238,7 @@ void mmAssetDialog::CreateControls()
     itemFlexGridSizer6->Add(m_valueChangeRateLabel, g_flagsV);
 
     m_valueChangeRate = new mmTextCtrl(asset_details_panel, IDC_RATE, wxGetEmptyString()
-        , wxDefaultPosition, wxSize(150,-1), wxALIGN_RIGHT|wxTE_PROCESS_ENTER
+        , wxDefaultPosition, wxDefaultSize, wxALIGN_RIGHT|wxTE_PROCESS_ENTER
         , mmCalcValidator());
     m_valueChangeRate->SetToolTip(_("Enter the rate at which the asset changes its value in percentage per year"));
     itemFlexGridSizer6->Add(m_valueChangeRate, g_flagsV);
@@ -252,7 +254,8 @@ void mmAssetDialog::CreateControls()
     itemFlexGridSizer6->Add(bAttachments_, wxSizerFlags(g_flagsV).Align(wxALIGN_RIGHT));
     bAttachments_->SetToolTip(_("Organize attachments of this asset"));
 
-    m_notes = new mmTextCtrl(this, IDC_NOTES, wxGetEmptyString(), wxDefaultPosition, wxSize(220, 170), wxTE_MULTILINE);
+    m_notes = new mmTextCtrl(this, IDC_NOTES, wxGetEmptyString()
+        , wxDefaultPosition, wxSize(-1, wxSize(m_dpc->GetSize()).GetHeight() * 5), wxTE_MULTILINE);
     m_notes->SetToolTip(_("Enter notes associated with this asset"));
     details_frame_sizer->Add(m_notes, 0, wxGROW | wxLEFT | wxRIGHT | wxBOTTOM, 10);
 
@@ -285,11 +288,6 @@ void mmAssetDialog::CreateControls()
     }
 
     if (m_hidden_trans_entry) HideTransactionPanel();
-    /********************************************************************
-    Separation Line
-    *********************************************************************/
-    wxStaticLine* separation_line = new wxStaticLine(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxLI_HORIZONTAL);
-    main_sizer->Add(separation_line, 0, wxEXPAND | wxALL, 1);
 
     /********************************************************************
     Button Panel

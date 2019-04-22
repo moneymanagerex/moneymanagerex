@@ -250,16 +250,20 @@ void mmBudgetingPanel::CreateControls()
     itemBoxSizerVHeader->Add(itemIncomeSizer);
 
     income_estimated_ = new wxStaticText(itemPanel3
-        , ID_DIALOG_BUDGETENTRY_SUMMARY_INCOME_EST, "$", wxDefaultPosition, wxSize(120, -1));
+        , ID_DIALOG_BUDGETENTRY_SUMMARY_INCOME_EST, "$");
+    income_estimated_->SetMinSize(wxSize(120, -1));
     income_actual_ = new wxStaticText(itemPanel3
-        , ID_DIALOG_BUDGETENTRY_SUMMARY_INCOME_ACT, "$", wxDefaultPosition, wxSize(120, -1));
+        , ID_DIALOG_BUDGETENTRY_SUMMARY_INCOME_ACT, "$");
+    income_actual_->SetMinSize(wxSize(120, -1));
     income_diff_ = new wxStaticText(itemPanel3
         , ID_DIALOG_BUDGETENTRY_SUMMARY_INCOME_DIF, "$");
 
     expenses_estimated_ = new wxStaticText(itemPanel3
-        , ID_DIALOG_BUDGETENTRY_SUMMARY_EXPENSES_EST, "$", wxDefaultPosition, wxSize(120, -1));
+        , ID_DIALOG_BUDGETENTRY_SUMMARY_EXPENSES_EST, "$");
+    expenses_estimated_->SetMinSize(wxSize(120, -1));
     expenses_actual_ = new wxStaticText(itemPanel3
-        , ID_DIALOG_BUDGETENTRY_SUMMARY_EXPENSES_ACT, "$", wxDefaultPosition, wxSize(120, -1));
+        , ID_DIALOG_BUDGETENTRY_SUMMARY_EXPENSES_ACT, "$");
+    expenses_actual_->SetMinSize(wxSize(120, -1));
     expenses_diff_ = new wxStaticText(itemPanel3
         , ID_DIALOG_BUDGETENTRY_SUMMARY_EXPENSES_DIF, "$");
 
