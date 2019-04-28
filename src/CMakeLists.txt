@@ -4,6 +4,8 @@ if(NOT m_hasParent)
 endif()
 unset(m_hasParent)
 
+include(CheckCXXCompilerFlag)
+
 # enable warnings while compile sources in src
 if(MSVC)
     string(REGEX REPLACE "(^| )[/-](w|W[0-4])( |$)" " " CMAKE_C_FLAGS "${CMAKE_C_FLAGS}")
@@ -11,11 +13,23 @@ if(MSVC)
     set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} /W4")
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /W4")
 else()
-    add_compile_options("-Wall" "-Wextra" "-Wno-unknown-pragmas")
+    check_cxx_compiler_flag(-Wduplicated-cond Wduplicated-cond)
+    check_cxx_compiler_flag(-Wduplicated-branches Wduplicated-branches)
+    check_cxx_compiler_flag(-Wnull-dereference Wnull-dereference)
+    check_cxx_compiler_flag(-Wlogical-op Wlogical-op)
+    add_compile_options(-Wall -Wextra -Wno-unknown-pragmas -Wformat=2
+        $<$<BOOL:${Wduplicated-cond}>:-Wduplicated-cond>
+        $<$<BOOL:${Wduplicated-branches}>:-Wduplicated-branches>
+        $<$<BOOL:${Wnull-dereference}>:-Wnull-dereference>
+        $<$<BOOL:${Wlogical-op}>:-Wlogical-op>)
+    if(NOT (CMAKE_COMPILER_IS_GNUCXX AND CMAKE_CXX_COMPILER_VERSION VERSION_LESS 6))
+        check_cxx_compiler_flag(-Wuseless-cast Wuseless-cast)
+        add_compile_options(-Werror=old-style-cast
+            $<$<BOOL:${Wuseless-cast}>:-Werror=useless-cast>)
+    endif()
 endif()
 
 if(MSVC)
-    include(CheckCXXCompilerFlag)
     check_cxx_compiler_flag(/utf-8 MSVC_UFT8_CXX_FLAG)
     if(MSVC_UFT8_CXX_FLAG)
         # use UTF-8 for /source-charset and /execution-charset
@@ -322,7 +336,6 @@ elseif(";${CMAKE_CXX_COMPILE_FEATURES};" MATCHES ";cxx_range_for;"
     target_compile_features(${MMEX_EXE} PUBLIC
         cxx_range_for cxx_nullptr cxx_variadic_templates)
 else()
-    include(CheckCXXCompilerFlag)
     CHECK_CXX_COMPILER_FLAG("-std=gnu++11" COMPILER_SUPPORTS_GXX11)
     CHECK_CXX_COMPILER_FLAG("-std=c++11" COMPILER_SUPPORTS_CXX11)
     CHECK_CXX_COMPILER_FLAG("-std=gnu++0x" COMPILER_SUPPORTS_GXX0X)

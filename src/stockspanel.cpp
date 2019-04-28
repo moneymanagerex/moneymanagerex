@@ -452,9 +452,9 @@ void StocksListCtrl::OnColClick(wxListEvent& event)
 void StocksListCtrl::doRefreshItems(int trx_id)
 {
     int selectedIndex = initVirtualListControl(trx_id, m_selected_col, m_asc);
-    long cnt = static_cast<long>(m_stocks.size());
+    size_t cnt = m_stocks.size();
 
-    if (selectedIndex >= cnt || selectedIndex < 0)
+    if (selectedIndex < 0 || static_cast<size_t>(selectedIndex) >= cnt)
         selectedIndex = m_asc ? cnt - 1 : 0;
 
     if (cnt>0)
@@ -913,13 +913,10 @@ wxString StocksListCtrl::getStockInfo(int selectedIndex) const
     stockavgPurchasePrice /= stocktotalnumShares;
 
     double numShares = m_stocks[selectedIndex].NUMSHARES;
-    wxString sNumShares = wxString::Format("%i", (int)numShares);
-    if (numShares - static_cast<long>(numShares) != 0.0)
-        sNumShares = wxString::Format("%.4f", numShares);
-
-    wxString sTotalNumShares = wxString::Format("%i", (int)stocktotalnumShares);
-    if ((stocktotalnumShares - static_cast<long>(stocktotalnumShares)) != 0.0)
-        sTotalNumShares = wxString::Format("%.4f", stocktotalnumShares);
+    wxString sNumShares = wxString::Format("%.*f",
+        (trunc(numShares) == numShares) ? 0 : 4, numShares);
+    wxString sTotalNumShares = wxString::Format("%.*f",
+        (trunc(stocktotalnumShares) == stocktotalnumShares) ? 0 : 4, stocktotalnumShares);
 
     double stockPurchasePrice = m_stocks[selectedIndex].PURCHASEPRICE;
     double stockCurrentPrice = m_stocks[selectedIndex].CURRENTPRICE;
@@ -958,17 +955,17 @@ wxString StocksListCtrl::getStockInfo(int selectedIndex) const
             , sTotalDifference, sTotalNumShares
             , Model_Currency::toCurrency(stocktotalgainloss)
             , wxNumberFormatter::ToString(stocktotalPercentage, 2)
-            , OnGetItemText(selectedIndex, (long)COL_NOTES));
+            , OnGetItemText(selectedIndex, COL_NOTES));
     }
     return additionInfo;
 }
 void mmStocksPanel::enableEditDeleteButtons(bool en)
 {
-    wxButton* bE = (wxButton*) FindWindow(wxID_EDIT);
-    wxButton* bA = (wxButton*) FindWindow(wxID_ADD);
-    wxButton* bV = (wxButton*)FindWindow(wxID_VIEW_DETAILS);
-    wxButton* bD = (wxButton*)FindWindow(wxID_DELETE);
-    wxButton* bM = (wxButton*)FindWindow(wxID_MOVE_FRAME);
+    wxButton* bE = static_cast<wxButton*>(FindWindow(wxID_EDIT));
+    wxButton* bA = static_cast<wxButton*>(FindWindow(wxID_ADD));
+    wxButton* bV = static_cast<wxButton*>(FindWindow(wxID_VIEW_DETAILS));
+    wxButton* bD = static_cast<wxButton*>(FindWindow(wxID_DELETE));
+    wxButton* bM = static_cast<wxButton*>(FindWindow(wxID_MOVE_FRAME));
 
     if (bE) bE->Enable(en);
     if (bA) bA->Enable(en);

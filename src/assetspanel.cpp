@@ -164,7 +164,7 @@ void mmAssetsListCtrl::OnListKeyDown(wxListEvent& event)
 
 void mmAssetsListCtrl::OnNewAsset(wxCommandEvent& WXUNUSED(event))
 {
-    mmAssetDialog dlg(this, m_panel->getAssetPanelFrame(), (Model_Asset::Data*)nullptr);
+    mmAssetDialog dlg(this, m_panel->getAssetPanelFrame(), nullptr, false);
     if (dlg.ShowModal() == wxID_OK)
     {
         doRefreshItems(dlg.getAssetData()->ASSETID);
@@ -176,9 +176,9 @@ void mmAssetsListCtrl::doRefreshItems(int trx_id)
 {
     int selectedIndex = initVirtualListControl(trx_id, m_selected_col, m_asc);
 
-    long cnt = static_cast<long>(m_panel->getAssetDataSet().size());
+    size_t cnt = m_panel->getAssetDataSet().size();
 
-    if (selectedIndex >= cnt || selectedIndex < 0)
+    if (selectedIndex < 0 || static_cast<size_t>(selectedIndex) >= cnt)
         selectedIndex = m_asc ? cnt - 1 : 0;
 
     if (cnt>0)
@@ -658,8 +658,8 @@ const wxString mmAssetsPanel::getItem(long item, long column) const
 
 void mmAssetsPanel::updateExtraAssetData(int selIndex)
 {
-    wxStaticText* st = (wxStaticText*)FindWindow(IDC_PANEL_ASSET_STATIC_DETAILS);
-    wxStaticText* stm = (wxStaticText*)FindWindow(IDC_PANEL_ASSET_STATIC_DETAILS_MINI);
+    wxStaticText* st = static_cast<wxStaticText*>(FindWindow(IDC_PANEL_ASSET_STATIC_DETAILS));
+    wxStaticText* stm = static_cast<wxStaticText*>(FindWindow(IDC_PANEL_ASSET_STATIC_DETAILS_MINI));
     if (selIndex > -1)
     {
         const Model_Asset::Data& asset = this->m_assets[selIndex];

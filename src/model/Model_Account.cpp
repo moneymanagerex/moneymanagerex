@@ -168,7 +168,7 @@ Model_Currency::Data* Model_Account::currency(const Data* r)
         return currency;
     else
     {
-        wxASSERT(false);
+        wxFAIL_MSG("currency not found");
         return Model_Currency::GetBaseCurrency();
     }
 }

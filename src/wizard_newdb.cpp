@@ -68,11 +68,11 @@ mmNewDatabaseWizard::mmNewDatabaseWizard(wxFrame *frame)
     GetPageAreaSizer()->Add(page1);
 
 /*
-    wxButton* back = (wxButton*) FindWindow(wxID_BACKWARD);
+    wxButton* back = static_cast<wxButton*>(FindWindow(wxID_BACKWARD));
     if (back) back->SetLabel(_("<- &Back"));
-    wxButton* next = (wxButton*) FindWindow(wxID_FORWARD); //FIXME:
+    wxButton* next = static_cast<wxButton*>(FindWindow(wxID_FORWARD)); //FIXME:
     if (next) next->SetLabel(_("&Next ->"));
-    wxButton* ca = (wxButton*) FindWindow(wxID_CANCEL);
+    wxButton* ca = static_cast<wxButton*>(FindWindow(wxID_CANCEL));
     if (ca) ca->SetLabel(wxGetTranslation(g_CancelLabel));
 */
 }

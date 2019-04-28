@@ -162,7 +162,7 @@ void dbUpgrade::UpgradeFailedMessage(const wxString& error, const wxString& step
         + error, _("MMEX database upgrade"), wxOK | wxICON_ERROR);
 }
 
-void dbUpgrade::BackupDB(const wxString& FileName, int BackupType, int FilesToKeep, int UpgradeVersion)
+void dbUpgrade::BackupDB(const wxString& FileName, enum BACKUPTYPE BackupType, unsigned FilesToKeep, int UpgradeVersion)
 {
     wxFileName fn(FileName);
     if (!fn.IsOk()) return;
@@ -222,7 +222,7 @@ void dbUpgrade::BackupDB(const wxString& FileName, int BackupType, int FilesToKe
             backupFile = wxFindNextFile();
         }
 
-        if (backupFileArray.Count() > (size_t)FilesToKeep)
+        if (backupFileArray.Count() > FilesToKeep)
         {
             backupFileArray.Sort(true);
             // ensure file is not read only before deleting file.

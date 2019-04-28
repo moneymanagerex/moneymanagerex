@@ -75,7 +75,7 @@ wxString mmReportCategoryOverTimePerformance::getHTMLText()
         int categID = category.CATEGID;
         line.name = category.CATEGNAME;
         line.overall = 0;
-        int month = 0;
+        unsigned month = 0;
         for (const auto &i : categoryStats[categID][-1])
         {
             double value = i.second;
@@ -125,7 +125,7 @@ wxString mmReportCategoryOverTimePerformance::getHTMLText()
         BarGraphData data_positive;
         for (int i = 0; i < MONTHS_IN_PERIOD; i++)
         {
-            wxDateTime d = wxDateTime(start_date).Add(wxDateSpan::Months(i));
+            wxDateTime d = start_date.Add(wxDateSpan::Months(i));
 
             double val_negative = 0;
             double val_positive = 0;
@@ -170,7 +170,7 @@ wxString mmReportCategoryOverTimePerformance::getHTMLText()
 
     for (int i = 0; i < MONTHS_IN_PERIOD; i++)
     {
-        wxDateTime d = wxDateTime(start_date).Add(wxDateSpan::Months(i));
+        wxDateTime d = start_date.Add(wxDateSpan::Months(i));
         hb.addTableHeaderCell(wxGetTranslation(wxDateTime::GetEnglishMonthName(d.GetMonth()
             , wxDateTime::Name_Abbr)) + wxString::Format("<br>%i", d.GetYear()), true);
     }

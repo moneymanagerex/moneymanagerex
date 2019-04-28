@@ -352,7 +352,7 @@ int mmBillsDepositsPanel::initVirtualListControl(int id)
         ++cnt;
     }
 
-    listCtrlAccount_->SetItemCount(static_cast<long>(bills_.size()));
+    listCtrlAccount_->SetItemCount(bills_.size());
     return selected_item;
 }
 
@@ -625,7 +625,7 @@ void billsDepositsListCtrl::OnEditBDSeries(wxCommandEvent& WXUNUSED(event))
 void billsDepositsListCtrl::OnDeleteBDSeries(wxCommandEvent& WXUNUSED(event))
 {
     if (m_selected_row < 0) return;
-    if (m_bdp->bills_.size() == 0) return;
+    if (m_bdp->bills_.empty()) return;
 
     wxMessageDialog msgDlg(this, _("Do you really want to delete the series?")
         , _("Confirm Series Deletion")
@@ -703,11 +703,11 @@ void mmBillsDepositsPanel::updateBottomPanelData(int selIndex)
 
 void mmBillsDepositsPanel::enableEditDeleteButtons(bool en)
 {
-    wxButton* bE = (wxButton*) FindWindow(wxID_EDIT);
-    wxButton* bD = (wxButton*) FindWindow(wxID_DELETE);
-    wxButton* bN = (wxButton*) FindWindow(wxID_PASTE);
-    wxButton* bS = (wxButton*) FindWindow(wxID_IGNORE);
-    wxButton* bA = (wxButton*)FindWindow(wxID_FILE);
+    wxButton* bE = static_cast<wxButton*>(FindWindow(wxID_EDIT));
+    wxButton* bD = static_cast<wxButton*>(FindWindow(wxID_DELETE));
+    wxButton* bN = static_cast<wxButton*>(FindWindow(wxID_PASTE));
+    wxButton* bS = static_cast<wxButton*>(FindWindow(wxID_IGNORE));
+    wxButton* bA = static_cast<wxButton*>(FindWindow(wxID_FILE));
     if (bE) bE->Enable(en);
     if (bD) bD->Enable(en);
     if (bN) bN->Enable(en);
@@ -811,7 +811,7 @@ wxString mmBillsDepositsPanel::tips()
 void billsDepositsListCtrl::refreshVisualList(int selected_index)
 {
 
-    if (selected_index >= (long)m_bdp->bills_.size() || selected_index < 0)
+    if (selected_index < 0 || static_cast<size_t>(selected_index) >= m_bdp->bills_.size())
         selected_index = - 1;
     if (!m_bdp->bills_.empty()) {
         RefreshItems(0, m_bdp->bills_.size() - 1);
@@ -831,7 +831,7 @@ void billsDepositsListCtrl::refreshVisualList(int selected_index)
 
 void billsDepositsListCtrl::RefreshList()
 {
-    if (m_bdp->bills_.size() == 0) return;
+    if (m_bdp->bills_.empty()) return;
     int id = -1;
     if (m_selected_row != -1)
     {

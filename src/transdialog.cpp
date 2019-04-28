@@ -424,7 +424,7 @@ void mmTransDialog::CreateControls()
     // Display the day of the week
 
     spinCtrl_ = new wxSpinButton(this, ID_DIALOG_TRANS_DATE_SPINNER
-        , wxDefaultPosition, wxSize(-1, wxSize(dpc_->GetSize()).GetHeight())
+        , wxDefaultPosition, wxSize(-1, dpc_->GetSize().GetHeight())
         , wxSP_VERTICAL | wxSP_ARROW_KEYS | wxSP_WRAP);
     spinCtrl_->SetRange (-32768, 32768);
 
@@ -563,7 +563,7 @@ void mmTransDialog::CreateControls()
     RightAlign_sizer->Add(bFrequentUsedNotes, wxSizerFlags().Border(wxLEFT, 5));
 
     textNotes_ = new wxTextCtrl(this, ID_DIALOG_TRANS_TEXTNOTES
-        , "", wxDefaultPosition, wxSize(-1, wxSize(dpc_->GetSize()).GetHeight() * 5), wxTE_MULTILINE);
+        , "", wxDefaultPosition, wxSize(-1, dpc_->GetSize().GetHeight() * 5), wxTE_MULTILINE);
     box_sizer_left->Add(textNotes_, wxSizerFlags(g_flagsExpand).Border(wxLEFT | wxRIGHT | wxBOTTOM, 10));
 
     /**********************************************************************************************
@@ -613,7 +613,7 @@ bool mmTransDialog::ValidateData()
     Model_Account::Data* account = Model_Account::instance().get(cbAccount_->GetValue());
     if (!account || Model_Account::type(account) == Model_Account::INVESTMENT)
     {
-        mmErrorDialogs::InvalidAccount((wxWindow*)cbAccount_);
+        mmErrorDialogs::InvalidAccount(cbAccount_);
         return false;
     }
     m_trx_data.ACCOUNTID = account->ACCOUNTID;
@@ -623,7 +623,7 @@ bool mmTransDialog::ValidateData()
         wxString payee_name = cbPayee_->GetValue();
         if (payee_name.IsEmpty())
         {
-            mmErrorDialogs::InvalidPayee((wxWindow*)cbPayee_);
+            mmErrorDialogs::InvalidPayee(cbPayee_);
             return false;
         }
 
@@ -667,7 +667,7 @@ bool mmTransDialog::ValidateData()
         if (!to_account || to_account->ACCOUNTID == m_trx_data.ACCOUNTID
             || Model_Account::type(to_account) == Model_Account::INVESTMENT)
         {
-            mmErrorDialogs::InvalidAccount((wxWindow*)cbPayee_, true);
+            mmErrorDialogs::InvalidAccount(cbPayee_, true);
             return false;
         }
         m_trx_data.TOACCOUNTID = to_account->ACCOUNTID;
@@ -683,7 +683,7 @@ bool mmTransDialog::ValidateData()
     if ((cSplit_->IsChecked() && local_splits.empty())
         || (!cSplit_->IsChecked() && Model_Category::full_name(m_trx_data.CATEGID, m_trx_data.SUBCATEGID).empty()))
     {
-        mmErrorDialogs::InvalidCategory((wxWindow*)bCategory_, false);
+        mmErrorDialogs::InvalidCategory(bCategory_, false);
         return false;
     }
 
@@ -905,7 +905,7 @@ void mmTransDialog::OnTransDateSpin(wxSpinEvent& event)
 void mmTransDialog::OnTransTypeChanged(wxCommandEvent& event)
 {
     const wxString old_type = m_trx_data.TRANSCODE;
-    wxStringClientData *client_obj = (wxStringClientData *) event.GetClientObject();
+    wxStringClientData *client_obj = static_cast<wxStringClientData*>(event.GetClientObject());
     if (client_obj) m_trx_data.TRANSCODE = client_obj->GetData();
     if (old_type != m_trx_data.TRANSCODE)
     {
@@ -1119,7 +1119,7 @@ void mmTransDialog::OnFrequentUsedNotes(wxCommandEvent& WXUNUSED(event))
 void mmTransDialog::OnNoteSelected(wxCommandEvent& event)
 {
     int i = event.GetId() - wxID_HIGHEST;
-    if (i > 0 && i <= (int)frequentNotes_.size())
+    if (i > 0 && static_cast<size_t>(i) <= frequentNotes_.size())
         textNotes_->ChangeValue(frequentNotes_[i - 1]);
 }
 
@@ -1129,7 +1129,7 @@ void mmTransDialog::OnOk(wxCommandEvent& WXUNUSED(event))
     m_trx_data.NOTES = textNotes_->GetValue();
     m_trx_data.TRANSACTIONNUMBER = textNumber_->GetValue();
     m_trx_data.TRANSDATE = dpc_->GetValue().FormatISODate();
-    wxStringClientData* status_obj = (wxStringClientData*) choiceStatus_->GetClientObject(choiceStatus_->GetSelection());
+    wxStringClientData* status_obj = static_cast<wxStringClientData*>(choiceStatus_->GetClientObject(choiceStatus_->GetSelection()));
     if (status_obj)
     {
         m_status.SetStatus(Model_Checking::toShortStatus(status_obj->GetData()), m_account_id, m_trx_data);
@@ -1172,7 +1172,7 @@ void mmTransDialog::OnOk(wxCommandEvent& WXUNUSED(event))
 void mmTransDialog::OnCancel(wxCommandEvent& WXUNUSED(event))
 {
 #ifndef __WXMAC__
-    if (object_in_focus_ != itemButtonCancel_->GetId() && wxGetKeyState(wxKeyCode(WXK_ESCAPE)))
+    if (object_in_focus_ != itemButtonCancel_->GetId() && wxGetKeyState(WXK_ESCAPE))
             return itemButtonCancel_->SetFocus();
 #endif
 
@@ -1247,7 +1247,7 @@ void mmTransDialog::OnQuit(wxCloseEvent& WXUNUSED(event))
 
 void mmTransDialog::OnMoreFields(wxCommandEvent& WXUNUSED(event))
 {
-    wxBitmapButton* button = (wxBitmapButton*)FindWindow(ID_DIALOG_TRANS_CUSTOMFIELDS);
+    wxBitmapButton* button = static_cast<wxBitmapButton*>(FindWindow(ID_DIALOG_TRANS_CUSTOMFIELDS));
 
     if (m_custom_fields->IsCustomPanelShown())
     {

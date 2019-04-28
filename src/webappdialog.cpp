@@ -131,7 +131,7 @@ void mmWebAppDialog::fillControls()
 
         data.push_back(wxVariant(WebTran.Notes)); //WEBTRAN_NOTES
         data.push_back(wxVariant(WebTran.Attachments)); //WEBTRAN_ATTACHMENTS
-        webtranListBox_->AppendItem(data, (wxUIntPtr)WebTran.ID);
+        webtranListBox_->AppendItem(data, static_cast<wxUIntPtr>(WebTran.ID));
     }
 }
 
@@ -142,7 +142,7 @@ void mmWebAppDialog::OnListItemActivated(wxDataViewEvent& event)
 
     if (selected_index >= 0)
     {
-        int WebTrID = (int)webtranListBox_->GetItemData(item);
+        int WebTrID = static_cast<int>(webtranListBox_->GetItemData(item));
         mmWebAppDialog::ImportWebTr(WebTrID, true);
         fillControls();
     }
@@ -210,7 +210,7 @@ void mmWebAppDialog::ImportWebTrSelected()
     wxDataViewItemArray Selected;
     webtranListBox_->GetSelections(Selected);
 
-    if (Selected.size() == 0)
+    if (Selected.empty())
         return;
 
     for (wxDataViewItem Item : Selected)
@@ -218,7 +218,7 @@ void mmWebAppDialog::ImportWebTrSelected()
         int selectedIndex_ = webtranListBox_->ItemToRow(Item);
         if (selectedIndex_ >= 0)
         {
-            int WebTrID = (int)webtranListBox_->GetItemData(Item);
+            int WebTrID = static_cast<int>(webtranListBox_->GetItemData(Item));
             mmWebAppDialog::ImportWebTr(WebTrID, true);
         }
     }
@@ -230,7 +230,7 @@ void mmWebAppDialog::DeleteWebTr()
     wxDataViewItemArray Selected;
     webtranListBox_->GetSelections(Selected);
 
-    if (Selected.size() == 0)
+    if (Selected.empty())
         return;
 
     for (wxDataViewItem Item : Selected)
@@ -238,7 +238,7 @@ void mmWebAppDialog::DeleteWebTr()
         int selectedIndex_ = webtranListBox_->ItemToRow(Item);
         if (selectedIndex_ >= 0)
         {
-            mmWebApp::WebApp_DeleteOneTransaction((int)webtranListBox_->GetItemData(Item));
+            mmWebApp::WebApp_DeleteOneTransaction(static_cast<int>(webtranListBox_->GetItemData(Item)));
         }
     }
     fillControls();

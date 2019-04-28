@@ -54,7 +54,7 @@ Model_CustomFieldData::Data* Model_CustomFieldData::get(int FieldID, int RefID)
     Model_CustomFieldData::Data_Set items = this->find(FIELDID(FieldID), REFID(RefID));
     if (!items.empty())
         return this->get(items[0].FIELDATADID, this->db_);
-    return (Model_CustomFieldData::Data*)nullptr;
+    return nullptr;
 }
 
 std::map<int, Model_CustomFieldData::Data_Set> Model_CustomFieldData::get_all(Model_Attachment::REFTYPE reftype)

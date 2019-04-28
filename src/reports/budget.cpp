@@ -28,17 +28,17 @@ mmReportBudget::mmReportBudget(): mmPrintableBase("mmReportBudget")
 mmReportBudget::~mmReportBudget()
 {}
 
-void mmReportBudget::SetDateToEndOfMonth(int month, wxDateTime& date) const
+void mmReportBudget::SetDateToEndOfMonth(const wxDateTime::Month month, wxDateTime& date) const
 {
     date.SetDay(28);
-    date.SetMonth((wxDateTime::Month)month);
+    date.SetMonth(month);
     date.SetToLastMonthDay();
 }
 
-void mmReportBudget::SetDateToEndOfYear(const int day, const int month, wxDateTime& date, bool isEndDate) const
+void mmReportBudget::SetDateToEndOfYear(const int day, const wxDateTime::Month month, wxDateTime& date, bool isEndDate) const
 {
     date.SetDay(day);
-    date.SetMonth((wxDateTime::Month)month);
+    date.SetMonth(month);
     if (isEndDate)
     {
         date.Subtract(wxDateSpan::Day());
@@ -51,15 +51,15 @@ void mmReportBudget::SetBudgetMonth(wxString budgetYearStr, wxDateTime& startDat
     wxStringTokenizer tz(budgetYearStr,"-");
     wxString yearStr = tz.GetNextToken();
     wxString monthStr = tz.GetNextToken();
-    int month = wxAtoi(monthStr) - 1;
-    startDate.SetMonth((wxDateTime::Month)month);
+    wxDateTime::Month month = static_cast<wxDateTime::Month>(wxAtoi(monthStr) - 1);
+    startDate.SetMonth(month);
     SetDateToEndOfMonth(month,endDate);
 }
 
-void mmReportBudget::GetFinancialYearValues(int& day, int& month) const
+void mmReportBudget::GetFinancialYearValues(int& day, wxDateTime::Month& month) const
 {
     day = wxAtoi(Option::instance().getFinancialYearStartDay());
-    month = wxAtoi(Option::instance().getFinancialYearStartMonth()) - 1;
+    month = static_cast<wxDateTime::Month>(wxAtoi(Option::instance().getFinancialYearStartMonth()) - 1);
     if ((day > 28) && (month == wxDateTime::Feb))
     {
         day = 28;
@@ -73,7 +73,7 @@ void mmReportBudget::GetFinancialYearValues(int& day, int& month) const
     }
 }
 
-const wxString mmReportBudget::AdjustYearValues(int day, int month, long year, const wxString& yearStr) const
+const wxString mmReportBudget::AdjustYearValues(int day, wxDateTime::Month month, int year, const wxString& yearStr) const
 {
     wxString ret = yearStr;
     if ((ret.length() < 5))
@@ -81,7 +81,7 @@ const wxString mmReportBudget::AdjustYearValues(int day, int month, long year, c
         if (Option::instance().getBudgetFinancialYears())
         {
             GetFinancialYearValues(day, month);
-            ret = wxString::Format(_("Financial Year: %s - %li"), yearStr, (year + 1));
+            ret = wxString::Format(_("Financial Year: %s - %i"), yearStr, (year + 1));
         }
         else
         {
@@ -96,7 +96,7 @@ const wxString mmReportBudget::AdjustYearValues(int day, int month, long year, c
     return ret;
 }
 
-void mmReportBudget::AdjustYearValues(int day, int month, wxDateTime& date) const
+void mmReportBudget::AdjustYearValues(int day, wxDateTime::Month month, wxDateTime& date) const
 {
     if (Option::instance().getBudgetFinancialYears())
     {
@@ -109,7 +109,8 @@ void mmReportBudget::AdjustDateForEndFinancialYear(wxDateTime& date) const
 {
     if (Option::instance().getBudgetFinancialYears())
     {
-        int day, month;
+        int day;
+        wxDateTime::Month month;
         GetFinancialYearValues(day, month);
         SetDateToEndOfYear(day, month, date);
     }

@@ -23,7 +23,7 @@
 #include "defs.h"
 #include <vector>
 #include "Model_Currency.h"
-#include "html_template.h"
+#include <html_template.h>
 #include "util.h"
 
 class mmHTMLBuilder
@@ -66,7 +66,7 @@ public:
 
     void addCurrencyCell(double amount, const Model_Currency::Data *currency = Model_Currency::instance().GetBaseCurrency(), int precision = -1);
     void addMoneyCell(double amount, int precision = -1);
-    void addTableCellMonth(int month);
+    void addTableCellMonth(const wxDateTime::Month month);
     void addColorMarker(const wxString& color);
     const wxString getColor(int i) const;
 

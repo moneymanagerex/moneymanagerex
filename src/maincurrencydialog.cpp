@@ -128,7 +128,7 @@ void mmMainCurrencyDialog::fillControls()
         data.push_back(wxVariant(wxGetTranslation(currency.CURRENCYNAME)));
         data.push_back(wxVariant(wxString()<<Model_CurrencyHistory::getLastRate(currencyID, today)));
         data.push_back(wxVariant(is_currency_historical ? L"\u2713" : L""));
-        currencyListBox_->AppendItem(data, (wxUIntPtr)currencyID);
+        currencyListBox_->AppendItem(data, static_cast<wxUIntPtr>(currencyID));
         if (m_currency_id == currencyID)
         {
             currencyListBox_->SelectRow(currencyListBox_->GetItemCount() - 1);
@@ -396,7 +396,7 @@ void mmMainCurrencyDialog::OnListItemSelected(wxDataViewEvent& event)
     if (selected_index >= 0)
     {
         wxDataViewItem item = event.GetItem();
-        m_currency_id = (int)currencyListBox_->GetItemData(item);
+        m_currency_id = static_cast<int>(currencyListBox_->GetItemData(item));
         Model_Currency::Data* currency = Model_Currency::instance().get(m_currency_id);
         if (currency)
         {
@@ -596,7 +596,7 @@ void mmMainCurrencyDialog::OnHistoryDelete(wxCommandEvent& WXUNUSED(event))
     {
         item = valueListBox_->GetNextItem(item, wxLIST_NEXT_ALL, wxLIST_STATE_SELECTED);
         if (item == -1) break;
-        Model_CurrencyHistory::instance().remove((int)valueListBox_->GetItemData(item));
+        Model_CurrencyHistory::instance().remove(static_cast<int>(valueListBox_->GetItemData(item)));
     }
     Model_CurrencyHistory::instance().ReleaseSavepoint();
 
@@ -926,7 +926,7 @@ bool mmMainCurrencyDialog::GetOnlineHistory(std::map<wxDateTime, double> &histor
     for (rapidjson::SizeType i = 0; i < timestamp.Size(); i++)
     {
         wxASSERT(timestamp[i].IsInt());
-        const auto time = wxDateTime((time_t)timestamp[i].GetInt()).GetDateOnly();
+        const auto time = wxDateTime(static_cast<time_t>(timestamp[i].GetInt())).GetDateOnly();
         if (quotes_closed[i].IsFloat())
         {
             double rate = quotes_closed[i].GetFloat();
@@ -940,8 +940,7 @@ bool mmMainCurrencyDialog::GetOnlineHistory(std::map<wxDateTime, double> &histor
         }
         else
         {
-            wxDateTime dt = wxDateTime((time_t)timestamp[i].GetInt());
-            wxLogDebug("%s %s", dt.FormatISODate(), wxDateTime::GetWeekDayName(dt.GetWeekDay()));
+            wxLogDebug("%s %s", time.FormatISODate(), wxDateTime::GetWeekDayName(time.GetWeekDay()));
         }
     }
 

@@ -123,33 +123,33 @@ void mmNewAcctDialog::fillControls()
 
     m_textAccountName->SetValue(m_account->ACCOUNTNAME);
 
-    wxTextCtrl* textCtrl = (wxTextCtrl*)FindWindow(ID_ACCTNUMBER);
+    wxTextCtrl* textCtrl = static_cast<wxTextCtrl*>(FindWindow(ID_ACCTNUMBER));
     textCtrl->SetValue(m_account->ACCOUNTNUM);
 
-    textCtrl = (wxTextCtrl*)FindWindow(ID_DIALOG_NEWACCT_TEXTCTRL_HELDAT);
+    textCtrl = static_cast<wxTextCtrl*>(FindWindow(ID_DIALOG_NEWACCT_TEXTCTRL_HELDAT));
     textCtrl->SetValue(m_account->HELDAT);
 
-    textCtrl = (wxTextCtrl*)FindWindow(ID_DIALOG_NEWACCT_TEXTCTRL_WEBSITE);
+    textCtrl = static_cast<wxTextCtrl*>(FindWindow(ID_DIALOG_NEWACCT_TEXTCTRL_WEBSITE));
     textCtrl->SetValue(m_account->WEBSITE);
 
-    textCtrl = (wxTextCtrl*)FindWindow(ID_DIALOG_NEWACCT_TEXTCTRL_CONTACT);
+    textCtrl = static_cast<wxTextCtrl*>(FindWindow(ID_DIALOG_NEWACCT_TEXTCTRL_CONTACT));
     textCtrl->SetValue(m_account->CONTACTINFO);
 
-    textCtrl = (wxTextCtrl*)FindWindow(ID_DIALOG_NEWACCT_TEXTCTRL_NOTES);
+    textCtrl = static_cast<wxTextCtrl*>(FindWindow(ID_DIALOG_NEWACCT_TEXTCTRL_NOTES));
     textCtrl->SetValue(m_account->NOTES);
 
-    wxChoice* itemAcctType = (wxChoice*)FindWindow(ID_DIALOG_NEWACCT_COMBO_ACCTTYPE);
+    wxChoice* itemAcctType = static_cast<wxChoice*>(FindWindow(ID_DIALOG_NEWACCT_COMBO_ACCTTYPE));
     itemAcctType->SetStringSelection(wxGetTranslation(m_account->ACCOUNTTYPE));
     itemAcctType->Enable(false);
 
-    wxChoice* choice = (wxChoice*)FindWindow(ID_DIALOG_NEWACCT_COMBO_ACCTSTATUS);
+    wxChoice* choice = static_cast<wxChoice*>(FindWindow(ID_DIALOG_NEWACCT_COMBO_ACCTSTATUS));
     choice->SetSelection(Model_Account::status(m_account));
 
-    wxCheckBox* itemCheckBox = (wxCheckBox*)FindWindow(ID_DIALOG_NEWACCT_CHKBOX_FAVACCOUNT);
+    wxCheckBox* itemCheckBox = static_cast<wxCheckBox*>(FindWindow(ID_DIALOG_NEWACCT_CHKBOX_FAVACCOUNT));
     itemCheckBox->SetValue(Model_Account::FAVORITEACCT(m_account));
 
     Model_Account::currency(m_account);
-    wxButton* bn = (wxButton*)FindWindow(ID_DIALOG_NEWACCT_BUTTON_CURRENCY);
+    wxButton* bn = static_cast<wxButton*>(FindWindow(ID_DIALOG_NEWACCT_BUTTON_CURRENCY));
     bn->SetLabelText(wxGetTranslation(Model_Account::currency(m_account)->CURRENCYNAME));
     m_currencyID = m_account->CURRENCYID;
 
@@ -251,7 +251,7 @@ void mmNewAcctDialog::CreateControls()
     notes_tab->SetSizer(notes_sizer);
 
     m_notesCtrl = new wxTextCtrl(notes_tab, ID_DIALOG_NEWACCT_TEXTCTRL_NOTES, ""
-        , wxDefaultPosition, wxSize(-1, wxSize(favoriteAccCheckBox->GetSize()).GetHeight() * 5), wxTE_MULTILINE);
+        , wxDefaultPosition, wxSize(-1, favoriteAccCheckBox->GetSize().GetHeight() * 5), wxTE_MULTILINE);
     notes_sizer->Add(m_notesCtrl, g_flagsExpand);
     //
 
@@ -408,7 +408,7 @@ void mmNewAcctDialog::OnCurrency(wxCommandEvent& WXUNUSED(event))
     if (mmMainCurrencyDialog::Execute(this, m_currencyID))
     {
         Model_Currency::Data* currency = Model_Currency::instance().get(m_currencyID);
-        wxButton* bn = (wxButton*)FindWindow(ID_DIALOG_NEWACCT_BUTTON_CURRENCY);
+        wxButton* bn = static_cast<wxButton*>(FindWindow(ID_DIALOG_NEWACCT_BUTTON_CURRENCY));
         bn->SetLabelText(wxGetTranslation(currency->CURRENCYNAME));
 
         double init_balance;
@@ -450,15 +450,15 @@ void mmNewAcctDialog::OnOk(wxCommandEvent& WXUNUSED(event))
 
     if (!this->m_account) this->m_account = Model_Account::instance().create();
 
-    wxTextCtrl* textCtrlAcctNumber = (wxTextCtrl*)FindWindow(ID_ACCTNUMBER);
-    wxTextCtrl* textCtrlHeldAt = (wxTextCtrl*)FindWindow(ID_DIALOG_NEWACCT_TEXTCTRL_HELDAT);
-    wxTextCtrl* textCtrlWebsite = (wxTextCtrl*)FindWindow(ID_DIALOG_NEWACCT_TEXTCTRL_WEBSITE);
-    wxTextCtrl* textCtrlContact = (wxTextCtrl*)FindWindow(ID_DIALOG_NEWACCT_TEXTCTRL_CONTACT);
+    wxTextCtrl* textCtrlAcctNumber = static_cast<wxTextCtrl*>(FindWindow(ID_ACCTNUMBER));
+    wxTextCtrl* textCtrlHeldAt = static_cast<wxTextCtrl*>(FindWindow(ID_DIALOG_NEWACCT_TEXTCTRL_HELDAT));
+    wxTextCtrl* textCtrlWebsite = static_cast<wxTextCtrl*>(FindWindow(ID_DIALOG_NEWACCT_TEXTCTRL_WEBSITE));
+    wxTextCtrl* textCtrlContact = static_cast<wxTextCtrl*>(FindWindow(ID_DIALOG_NEWACCT_TEXTCTRL_CONTACT));
 
-    wxChoice* choice = (wxChoice*)FindWindow(ID_DIALOG_NEWACCT_COMBO_ACCTSTATUS);
+    wxChoice* choice = static_cast<wxChoice*>(FindWindow(ID_DIALOG_NEWACCT_COMBO_ACCTSTATUS));
     m_account->STATUS = Model_Account::all_status()[choice->GetSelection()];
 
-    wxCheckBox* itemCheckBox = (wxCheckBox*)FindWindow(ID_DIALOG_NEWACCT_CHKBOX_FAVACCOUNT);
+    wxCheckBox* itemCheckBox = static_cast<wxCheckBox*>(FindWindow(ID_DIALOG_NEWACCT_CHKBOX_FAVACCOUNT));
     m_account->FAVORITEACCT = itemCheckBox->IsChecked() ? "TRUE" : "FALSE";
 
     m_account->ACCOUNTNAME = acctName;
@@ -535,7 +535,7 @@ void mmNewAcctDialog::OnChangeFocus(wxChildFocusEvent& event)
     int oject_in_focus = 0;
     if ( w ) oject_in_focus = w->GetId();
 
-    wxTextCtrl* textCtrl = (wxTextCtrl*) FindWindow(ID_DIALOG_NEWACCT_TEXTCTRL_ACCESSINFO);
+    wxTextCtrl* textCtrl = static_cast<wxTextCtrl*>(FindWindow(ID_DIALOG_NEWACCT_TEXTCTRL_ACCESSINFO));
     if (oject_in_focus == ID_DIALOG_NEWACCT_TEXTCTRL_ACCESSINFO)
     {
         if (!m_accessinfo_infocus)

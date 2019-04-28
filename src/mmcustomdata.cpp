@@ -79,8 +79,8 @@ bool mmCustomData::FillCustomFields(wxBoxSizer* box_sizer)
             fieldData->CONTENT = Model_CustomField::getDefault(field.PROPERTIES);
         }
 
-        wxWindowID controlID = GetBaseID() + (wxWindowID)field.FIELDID;
-        wxWindowID labelID = GetLabelID() + (wxWindowID)field.FIELDID;
+        wxWindowID controlID = GetBaseID() + field.FIELDID;
+        wxWindowID labelID = GetLabelID() + field.FIELDID;
 
         wxCheckBox* Description = new wxCheckBox(scrolled_window
             , labelID, field.DESCRIPTION
@@ -121,7 +121,7 @@ bool mmCustomData::FillCustomFields(wxBoxSizer* box_sizer)
                 value = 0;
             }
             else {
-                value = (int)test;
+                value = trunc(test);
                 SetWidgetChanged(controlID, wxString::Format("%i", value));
                 Description->SetValue(true);
             }
@@ -142,8 +142,7 @@ bool mmCustomData::FillCustomFields(wxBoxSizer* box_sizer)
                 value = 0;
             }
             else {
-                const auto& data = wxString::Format("%f", value);
-                SetWidgetChanged(controlID, data);
+                SetWidgetChanged(controlID, wxString::Format("%f", value));
                 Description->SetValue(true);
             }
 
@@ -229,7 +228,7 @@ bool mmCustomData::FillCustomFields(wxBoxSizer* box_sizer)
             CustomChoice->SetToolTip(Model_CustomField::getTooltip(field.PROPERTIES));
             grid_sizer_custom->Add(CustomChoice, g_flagsExpand);
 
-            if (Choices.size() == 0) {
+            if (Choices.empty()) {
                 CustomChoice->Enable(false);
             }
 
@@ -279,7 +278,7 @@ bool mmCustomData::FillCustomFields(wxBoxSizer* box_sizer)
 void mmCustomData::OnMultiChoice(wxCommandEvent& event)
 {
     long controlID = event.GetId();
-    wxButton* button = (wxButton*)m_dialog->FindWindow(controlID);
+    wxButton* button = static_cast<wxButton*>(m_dialog->FindWindow(controlID));
     if (!button) {
         return;
     }
@@ -359,42 +358,42 @@ const wxString mmCustomData::GetWidgetData(wxWindowID controlID) const
             const wxString class_name = w->GetEventHandler()->GetClassInfo()->GetClassName();
             if (class_name == "wxDatePickerCtrl")
             {
-                wxDatePickerCtrl* d = (wxDatePickerCtrl*)w;
+                wxDatePickerCtrl* d = static_cast<wxDatePickerCtrl*>(w);
                 data = d->GetValue().FormatISODate();
             }
             else if (class_name == "wxTimePickerCtrl")
             {
-                wxTimePickerCtrl* d = (wxTimePickerCtrl*)w;
+                wxTimePickerCtrl* d = static_cast<wxTimePickerCtrl*>(w);
                 data = d->GetValue().FormatISOTime();
             }
             else if (class_name == "wxSpinCtrlDouble")
             {
-                wxSpinCtrlDouble* d = (wxSpinCtrlDouble*)w;
+                wxSpinCtrlDouble* d = static_cast<wxSpinCtrlDouble*>(w);
                 data = wxString::Format("%f", d->GetValue());
             }
             else if (class_name == "wxSpinCtrl")
             {
-                wxSpinCtrl* d = (wxSpinCtrl*)w;
+                wxSpinCtrl* d = static_cast<wxSpinCtrl*>(w);
                 data = wxString::Format("%i", d->GetValue());
             }
             else if (class_name == "wxChoice")
             {
-                wxChoice* d = (wxChoice*)w;
+                wxChoice* d = static_cast<wxChoice*>(w);
                 data = d->GetStringSelection();
             }
             else if (class_name == "wxButton")
             {
-                wxButton* d = (wxButton*)w;
+                wxButton* d = static_cast<wxButton*>(w);
                 data = d->GetLabel();
             }
             else if (class_name == "wxTextCtrl")
             {
-                wxTextCtrl* d = (wxTextCtrl*)w;
+                wxTextCtrl* d = static_cast<wxTextCtrl*>(w);
                 data = d->GetValue();
             }
             else if (class_name == "wxCheckBox")
             {
-                wxCheckBox* d = (wxCheckBox*)w;
+                wxCheckBox* d = static_cast<wxCheckBox*>(w);
                 data = (d->GetValue() ? "TRUE" : "FALSE");
             }
         }
@@ -408,7 +407,7 @@ bool mmCustomData::SaveCustomValues(int ref_id)
 
     for (const auto &field : m_fields)
     {
-        wxWindowID controlID = GetBaseID() + (wxWindowID)field.FIELDID;
+        wxWindowID controlID = GetBaseID() + field.FIELDID;
         const auto& data = IsWidgetChanged(controlID) ? GetWidgetData(controlID) : "";
 
         Model_CustomFieldData::Data* fieldData = Model_CustomFieldData::instance().get(field.FIELDID, ref_id);
@@ -461,7 +460,7 @@ void mmCustomData::ResetWidgetsChanged()
     for (const auto& entry : m_data_changed)
     {
         auto label_id = entry.first - GetBaseID() + GetLabelID();
-        wxCheckBox* Description = (wxCheckBox*)m_dialog->FindWindow(label_id);
+        wxCheckBox* Description = static_cast<wxCheckBox*>(m_dialog->FindWindow(label_id));
         if (Description) {
             Description->SetValue(false);
             wxLogDebug("Description %i value = %s", label_id, "FALSE");
@@ -475,9 +474,9 @@ void mmCustomData::ClearSettings() const
 {
     for (const auto &field : m_fields)
     {
-        //wxWindowID controlID = GetBaseID() + (wxWindowID)field.FIELDID;
-        wxWindowID labelID = GetLabelID() + (wxWindowID)field.FIELDID;
-        wxCheckBox* cb = (wxCheckBox*)FindWindowById(labelID);
+        //wxWindowID controlID = GetBaseID() + field.FIELDID;
+        wxWindowID labelID = GetLabelID() + field.FIELDID;
+        wxCheckBox* cb = static_cast<wxCheckBox*>(FindWindowById(labelID));
         if (cb) cb->SetValue(false);
     }
 }
@@ -517,7 +516,7 @@ int mmCustomData::GetWidgetType(wxWindowID controlID) const
             return Model_CustomField::type(entry);
         }
     }
-    wxASSERT(false);
+    wxFAIL_MSG("unknown custom field type");
     return -1;
 
 }
@@ -572,7 +571,7 @@ void mmCustomData::SetWidgetChanged(wxWindowID id, const wxString& data)
     m_data_changed[id] = data;
 
     auto label_id = id - GetBaseID() + GetLabelID();
-    wxCheckBox* Description = (wxCheckBox*)m_dialog->FindWindow(label_id);
+    wxCheckBox* Description = static_cast<wxCheckBox*>(m_dialog->FindWindow(label_id));
     if (Description) {
         Description->SetValue(true);
         wxLogDebug("Description %i value = %i", label_id, 1);

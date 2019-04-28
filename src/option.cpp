@@ -442,7 +442,7 @@ int Option::getAccountImageId(int account_id, bool def) const
         else selectedImage = img::CRYPTO_ACC_NORMAL_PNG;
         break;
     default:
-        wxASSERT(false);
+        wxFAIL_MSG("unknown account type");
     }
     return selectedImage;
 }

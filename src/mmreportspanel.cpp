@@ -305,10 +305,10 @@ void mmReportsPanel::CreateControls()
             {
                 m_date_ranges->Append(date_range->local_title(), date_range);
             }
-            m_date_ranges->Append(_("Custom"), (mmDateRange *)nullptr);
+            m_date_ranges->Append(_("Custom"), static_cast<mmDateRange*>(nullptr));
 
             int sel_id = rb_->getDateSelection();
-            if (sel_id < 0 || sel_id >= m_all_date_ranges.size()) {
+            if (sel_id < 0 || static_cast<size_t>(sel_id) >= m_all_date_ranges.size()) {
                 sel_id = 0;
             }
             m_date_ranges->SetSelection(sel_id);
@@ -507,7 +507,7 @@ void mmReportsPanel::OnAccountChanged(wxCommandEvent& WXUNUSED(event))
         if ((sel == 1) || (sel != rb_->getAccountSelection()))
         {
             wxString accountSelection;
-            wxStringClientData* type_obj = (wxStringClientData *)m_accounts->GetClientObject(m_accounts->GetSelection());
+            wxStringClientData* type_obj = static_cast<wxStringClientData *>(m_accounts->GetClientObject(m_accounts->GetSelection()));
             if (type_obj) accountSelection = type_obj->GetData();
             rb_->setAccounts(sel, accountSelection);
 

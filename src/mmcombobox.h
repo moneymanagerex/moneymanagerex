@@ -49,10 +49,6 @@ public:
             this->AutoComplete(Model_Account::instance().all_checking_account_names());
 
     }
-    wxString GetValue() const
-    {
-        return wxTextCtrl::GetValue();
-    }
 
     void setSelection(int &id)
     {
@@ -79,7 +75,7 @@ public:
                     + "\n");
                 wxRichToolTip tip(errorHeader, errorMessage);
                 tip.SetIcon(wxICON_WARNING);
-                tip.ShowFor((wxWindow*) this);
+                tip.ShowFor(this);
                 this->SetFocus();
             }
         }

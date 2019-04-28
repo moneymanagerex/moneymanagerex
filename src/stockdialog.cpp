@@ -137,13 +137,13 @@ void mmStockDialog::UpdateControls()
     m_value_investment->SetLabelText(Model_Account::toCurrency(numShares*pPrice, account));
 
     //Disable history buttons on new stocks
-    wxBitmapButton* buttonDownload = (wxBitmapButton*) FindWindow(ID_BUTTON_DOWNLOAD);
+    wxBitmapButton* buttonDownload = static_cast<wxBitmapButton*>(FindWindow(ID_BUTTON_DOWNLOAD));
     buttonDownload->Enable(m_edit);
-    wxBitmapButton* buttonImport = (wxBitmapButton*) FindWindow(ID_BUTTON_IMPORT);
+    wxBitmapButton* buttonImport = static_cast<wxBitmapButton*>(FindWindow(ID_BUTTON_IMPORT));
     buttonImport->Enable(m_edit);
-    wxBitmapButton* buttonDel = (wxBitmapButton*) FindWindow(wxID_DELETE);
+    wxBitmapButton* buttonDel = static_cast<wxBitmapButton*>(FindWindow(wxID_DELETE));
     buttonDel->Enable(m_edit);
-    wxBitmapButton* buttonAdd = (wxBitmapButton*) FindWindow(wxID_ADD);
+    wxBitmapButton* buttonAdd = static_cast<wxBitmapButton*>(FindWindow(wxID_ADD));
     buttonAdd->Enable(m_edit);
 
     bool initial_shares = !Model_Translink::HasShares(m_stock_id);
@@ -597,7 +597,7 @@ void mmStockDialog::OnHistoryImportButton(wxCommandEvent& WXUNUSED(event))
             const wxString& delimiter = Model_Infotable::instance().GetStringInfo("DELIMITER", mmex::DEFDELIMTER);
             csv2tab_separated_values(line, delimiter);
             wxStringTokenizer tkz(line, "\t", wxTOKEN_RET_EMPTY_ALL);
-            if ((int)tkz.CountTokens() < 2)
+            if (tkz.CountTokens() < 2)
                 continue;
 
             std::vector<wxString> tokens;
@@ -798,21 +798,21 @@ void mmStockDialog::OnHistoryDownloadButton(wxCommandEvent& WXUNUSED(event))
     for (const auto &entry: history)
     {
         float dPrice = entry.second;
-        const wxString date_str = wxDateTime((time_t)entry.first).FormatISODate();
+        const wxString date_str = wxDateTime(static_cast<time_t>(entry.first)).FormatISODate();
         if (date_str == today) continue;
 
         if (Model_StockHistory::instance()
                 .find(
                     Model_StockHistory::SYMBOL(m_stock->SYMBOL)
                     , Model_StockHistory::DB_Table_STOCKHISTORY::DATE(date_str)
-                ).size() == 0
+                ).empty()
                 && dPrice > 0
             )
         {
             Model_StockHistory::Data *ndata = Model_StockHistory::instance().create();
             ndata->SYMBOL = m_stock->SYMBOL;
             ndata->DATE = date_str;
-            ndata->VALUE = (double)dPrice;
+            ndata->VALUE = dPrice;
             ndata->UPDTYPE = Model_StockHistory::ONLINE;
             Model_StockHistory::instance().save(ndata);
         }
@@ -882,7 +882,7 @@ void mmStockDialog::OnHistoryDeleteButton(wxCommandEvent& WXUNUSED(event))
 
         if (item == -1)
             break;
-        Model_StockHistory::instance().remove((int) m_price_listbox->GetItemData(item));
+        Model_StockHistory::instance().remove(static_cast<int>(m_price_listbox->GetItemData(item)));
     }
     Model_StockHistory::instance().ReleaseSavepoint();
     ShowStockHistory();

@@ -34,23 +34,23 @@ public:
     virtual ~mmReportBudget();
 
     /// Returns correct values for day and month, adjusted to financial year if required.
-    void AdjustYearValues(int day, int month, wxDateTime& year) const;
+    void AdjustYearValues(int day, wxDateTime::Month month, wxDateTime& year) const;
 
     /// Returns correct values for day and month, adjusted to financial year if required.
     /// Also returns a heading string for Month or Year reports.
-    const wxString AdjustYearValues(int day, int month, long year, const wxString& yearStr) const;
+    const wxString AdjustYearValues(int day, wxDateTime::Month month, int year, const wxString& yearStr) const;
 
     /// Sets date to end of financial year if required by user.
     void AdjustDateForEndFinancialYear(wxDateTime& date) const;
 
     /// Return day and month values to user defined financial year.
-    void GetFinancialYearValues(int& day, int& month) const;
+    void GetFinancialYearValues(int& day, wxDateTime::Month& month) const;
 
     /// Advance the given date to the end of the current month.
-    void SetDateToEndOfMonth(int month, wxDateTime& date) const;
+    void SetDateToEndOfMonth(const wxDateTime::Month month, wxDateTime& date) const;
 
     /// Advance the given date by one year.
-    void SetDateToEndOfYear(int day, int month, wxDateTime& date, bool isEndDate = true) const;
+    void SetDateToEndOfYear(int day, const wxDateTime::Month month, wxDateTime& date, bool isEndDate = true) const;
 
     /// sets the start and end dates for a budget month
     void SetBudgetMonth(wxString budgetYearStr, wxDateTime& startDate, wxDateTime& endDate) const;

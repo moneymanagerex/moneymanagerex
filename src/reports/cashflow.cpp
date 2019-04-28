@@ -182,7 +182,7 @@ void mmReportCashFlow::getStats(double& tInitialBalance, std::vector<ValueTrio>&
     } //end query
 
     const wxDateTime& dtBegin = today_;
-    for (int idx = 0; idx < (int) forecastVector.size(); idx++)
+    for (size_t idx = 0; idx < forecastVector.size(); idx++)
     {
         wxDateTime dtEnd = cashFlowReportType_ == MONTHLY
             ? dtBegin.Add(wxDateSpan::Months(idx)) : dtBegin.Add(wxDateSpan::Days(idx));
@@ -276,7 +276,7 @@ wxString mmReportCashFlow::getHTMLText_i()
 
     hb.startTbody();
     int colorNum = 0;
-    for (int idx = 0; idx < (int)forecastVector.size(); idx++)
+    for (size_t idx = 0; idx < forecastVector.size(); idx++)
     {
         double balance = forecastVector[idx].amount + tInitialBalance;
         double diff = (idx == 0 ? 0 : forecastVector[idx].amount - forecastVector[idx-1].amount) ;

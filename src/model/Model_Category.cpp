@@ -167,13 +167,13 @@ void Model_Category::getCategoryStats(
     const auto &allSubcategories = Model_Subcategory::instance().all();
     double value = 0;
     int columns = group_by_month ? 12 : 1;
-    const wxDateTime start_date = wxDateTime(date_range->end_date()).SetDay(1);
+    const wxDateTime start_date(1, date_range->end_date().GetMonth(), date_range->end_date().GetYear());
     for (const auto& category: Model_Category::instance().all())
     {
         for (int m = 0; m < columns; m++)
         {
             const wxDateTime d = start_date.Subtract(wxDateSpan::Months(m));
-            int idx = group_by_month ? (d.GetYear()*100 + (int)d.GetMonth()) : 0;
+            int idx = group_by_month ? (d.GetYear()*100 + d.GetMonth()) : 0;
             categoryStats[category.CATEGID][-1][idx] = value;
             for (const auto & sub_category : allSubcategories)
             {
@@ -202,7 +202,7 @@ void Model_Category::getCategoryStats(
         const double convRate = Model_CurrencyHistory::getDayRate(
             Model_Account::instance().get(transaction.ACCOUNTID)->CURRENCYID, transaction.TRANSDATE);
         const wxDateTime &d = Model_Checking::TRANSDATE(transaction);
-        int idx = group_by_month ? (d.GetYear()*100 + (int)d.GetMonth()) : 0;
+        int idx = group_by_month ? (d.GetYear()*100 + d.GetMonth()) : 0;
         int categID = transaction.CATEGID;
 
         if (categID > -1)

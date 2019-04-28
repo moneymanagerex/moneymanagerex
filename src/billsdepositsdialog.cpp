@@ -229,7 +229,7 @@ void mmBDDialog::dataToControls()
     }
 
     if (m_bill_data.REPEATS < NONE || m_bill_data.REPEATS > MONTHLYLASTBUSINESSDAY) {
-        wxASSERT(false);
+        wxFAIL;
         m_choice_repeat->SetSelection(MONTHLY);
     }
     else {
@@ -380,7 +380,7 @@ void mmBDDialog::CreateControls()
     //mainBoxSizerOuter will align contents vertically
     mainBoxSizerOuter->Add(mainBoxSizerInner, g_flagsExpand);
 
-   
+
 
     /* Bills & Deposits Details */
     wxStaticBox* repeatDetailsStaticBox = new wxStaticBox(this, wxID_ANY, _("Recurring Transaction Details"));
@@ -401,7 +401,7 @@ void mmBDDialog::CreateControls()
     m_date_paid->SetValue(wxDateTime::Now()); // Required for Mac: Does not default to today
     m_date_paid->SetToolTip(_("Specify the date the user is requested to enter this transaction"));
     spinTransDate_ = new wxSpinButton(this, ID_DIALOG_TRANS_DATE_SPINNER
-        , wxDefaultPosition, wxSize(-1, wxSize(m_date_paid->GetSize()).GetHeight())
+        , wxDefaultPosition, wxSize(-1, m_date_paid->GetSize().GetHeight())
         , spinCtrlDirection | wxSP_ARROW_KEYS | wxSP_WRAP);
     spinTransDate_->SetToolTip(_("Advance or retard the user request date of this transaction"));
     spinTransDate_->SetRange(-32768, 32768);
@@ -491,7 +491,7 @@ void mmBDDialog::CreateControls()
     m_date_due->SetToolTip(_("Specify the date when this bill or deposit is due"));
 
     spinNextOccDate_ = new wxSpinButton(transactionPanel, ID_DIALOG_BD_REPEAT_DATE_SPINNER
-        , wxDefaultPosition, wxSize(-1, wxSize(m_date_due->GetSize()).GetHeight())
+        , wxDefaultPosition, wxSize(-1, m_date_due->GetSize().GetHeight())
         , spinCtrlDirection | wxSP_ARROW_KEYS | wxSP_WRAP);
     spinNextOccDate_->SetToolTip(_("Retard or advance the date of the 'next occurrence'"));
     spinNextOccDate_->SetRange(-32768, 32768);
@@ -618,7 +618,7 @@ void mmBDDialog::CreateControls()
     RightAlign_sizer->Add(bFrequentUsedNotes, g_flagsH);
 
     textNotes_ = new wxTextCtrl(transactionPanel, ID_DIALOG_TRANS_TEXTNOTES, ""
-        , wxDefaultPosition, wxSize(-1, wxSize(m_date_due->GetSize()).GetHeight() * 5), wxTE_MULTILINE);
+        , wxDefaultPosition, wxSize(-1, m_date_due->GetSize().GetHeight() * 5), wxTE_MULTILINE);
     textNotes_->SetToolTip(_("Specify any text notes you want to add to this transaction."));
 
     transPanelSizer->Add(RightAlign_sizer, wxSizerFlags(g_flagsH).Align(wxALIGN_RIGHT).Border(wxALL, 0));
@@ -891,8 +891,8 @@ void mmBDDialog::OnFrequentUsedNotes(wxCommandEvent& WXUNUSED(event))
 
 void mmBDDialog::onNoteSelected(wxCommandEvent& event)
 {
-    int i = event.GetId() - wxID_HIGHEST;
-    if (i > 0 && i <= (int)frequentNotes_.size()) {
+    size_t i = event.GetId() - wxID_HIGHEST;
+    if (i > 0 && i <= frequentNotes_.size()) {
         textNotes_->ChangeValue(frequentNotes_[i - 1]);
     }
 }
@@ -912,7 +912,7 @@ void mmBDDialog::OnOk(wxCommandEvent& WXUNUSED(event))
     Model_Account::Data* acc = Model_Account::instance().get(m_bill_data.ACCOUNTID);
     if (!acc)
     {
-        return mmErrorDialogs::InvalidAccount((wxWindow*)bAccount_, m_transfer, mmErrorDialogs::MESSAGE_POPUP_BOX);
+        return mmErrorDialogs::InvalidAccount(bAccount_, m_transfer, mmErrorDialogs::MESSAGE_POPUP_BOX);
     }
 
     m_bill_data.TOTRANSAMOUNT = m_bill_data.TRANSAMOUNT;
@@ -921,7 +921,7 @@ void mmBDDialog::OnOk(wxCommandEvent& WXUNUSED(event))
         Model_Account::Data *to_acc = Model_Account::instance().get(m_bill_data.TOACCOUNTID);
         if (!to_acc || to_acc->ACCOUNTID == acc->ACCOUNTID)
         {
-            return mmErrorDialogs::InvalidAccount((wxWindow*)bPayee_, true);
+            return mmErrorDialogs::InvalidAccount(bPayee_, true);
         }
 
         if (m_advanced && !toTextAmount_->checkValue(m_bill_data.TOTRANSAMOUNT)) return;
@@ -931,7 +931,7 @@ void mmBDDialog::OnOk(wxCommandEvent& WXUNUSED(event))
         Model_Payee::Data *payee = Model_Payee::instance().get(m_bill_data.PAYEEID);
         if (!payee)
         {
-            mmErrorDialogs::InvalidPayee((wxWindow*)bPayee_);
+            mmErrorDialogs::InvalidPayee(bPayee_);
             return;
         }
     }
@@ -939,7 +939,7 @@ void mmBDDialog::OnOk(wxCommandEvent& WXUNUSED(event))
     if ((cSplit_->IsChecked() && m_bill_data.local_splits.empty())
         || (!cSplit_->IsChecked() && Model_Category::full_name(m_bill_data.CATEGID, m_bill_data.SUBCATEGID).empty()))
     {
-        return mmErrorDialogs::InvalidCategory((wxWindow*)bCategory_, false);
+        return mmErrorDialogs::InvalidCategory(bCategory_, false);
     }
 
 
@@ -1003,7 +1003,7 @@ void mmBDDialog::OnOk(wxCommandEvent& WXUNUSED(event))
         m_bill_data.TRANSDATE = m_date_paid->GetValue().FormatISODate();
     }
 
-    wxStringClientData* status_obj = (wxStringClientData *)m_choice_status->GetClientObject(m_choice_status->GetSelection());
+    wxStringClientData* status_obj = static_cast<wxStringClientData *>(m_choice_status->GetClientObject(m_choice_status->GetSelection()));
     if (status_obj)
     {
         m_bill_data.STATUS = Model_Billsdeposits::toShortStatus(status_obj->GetData());

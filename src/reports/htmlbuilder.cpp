@@ -89,7 +89,7 @@ static const wxString BR = "<br>\n";
 static const wxString NBSP = "&nbsp;";
 static const wxString CENTER = "<center>\n";
 static const wxString CENTER_END = "</center>\n";
-static const wxString TABLE_CELL_SPAN = "    <td colspan=\"%i\" >";
+static const wxString TABLE_CELL_SPAN = "    <td colspan=\"%zu\" >";
 static const wxString TABLE_CELL_RIGHT = "    <td style='text-align: right'>";
 static const wxString COLORS [] = {
       "rgba(135,206,250,0.7)"
@@ -202,7 +202,7 @@ void mmHTMLBuilder::addTotalRow(const wxString& caption, int cols
     , const std::vector<wxString>& data)
 {
     this->startTotalTableRow();
-    html_+= wxString::Format(tags::TABLE_CELL_SPAN, cols - (int)data.size());
+    html_+= wxString::Format(tags::TABLE_CELL_SPAN, cols - data.size());
     html_ += caption;
 
     for (unsigned long idx = 0; idx < data.size(); idx++)
@@ -292,12 +292,12 @@ const wxString mmHTMLBuilder::getColor(int i) const
     return color;
 }
 
-void mmHTMLBuilder::addTableCellMonth(int month)
+void mmHTMLBuilder::addTableCellMonth(const wxDateTime::Month month)
 {
     if (month >= 0 && month < 12) {
-        wxString f = wxString::Format(" sorttable_customkey = '%i'", (wxDateTime::Month)month);
+        wxString f = wxString::Format(" sorttable_customkey = '%i'", month);
         html_ += wxString::Format(tags::TABLE_CELL, f);
-        html_ += wxGetTranslation(wxDateTime::GetEnglishMonthName((wxDateTime::Month)month));
+        html_ += wxGetTranslation(wxDateTime::GetEnglishMonthName(month));
         this->endTableCell();
     }
     else
@@ -624,7 +624,7 @@ void mmHTMLBuilder::addBarChart(const wxArrayString& labels
     optionsValue.AddMember("scaleStartValue", 0, allocator);
     optionsValue.AddMember("scaleSteps", 0, allocator);
     Value scale(kArrayType);
-    scale.PushBack((int)scaleStepWidth, allocator);
+    scale.PushBack(static_cast<int>(scaleStepWidth), allocator);
     optionsValue.AddMember("scaleStepWidth", scale, allocator);
     Value steps(kArrayType);
     steps.PushBack(vertical_steps, allocator);

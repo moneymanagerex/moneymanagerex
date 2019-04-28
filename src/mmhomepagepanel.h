@@ -77,7 +77,7 @@ private:
     const wxString getGrandTotalsJSON(double& tBalance) const;
 
     const wxString getAccountsHTML(double& tBalance, std::map<int, std::pair<double, double> > &accountStats
-        , int type = Model_Account::CHECKING) const;
+        , enum Model_Account::TYPE type = Model_Account::CHECKING) const;
     void setAccountsData(std::map<int, std::pair<double, double> > &accountStats);
     void setExpensesIncomeStatsData(std::map<int, std::pair<double, double> > &incomeExpensesStats
         , mmDateRange* date_range) const;

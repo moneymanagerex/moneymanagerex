@@ -506,8 +506,8 @@ void mmGeneralReportManager::OnSqlTest(wxCommandEvent& WXUNUSED(event))
         MinimalEditor* templateText = static_cast<MinimalEditor*>(FindWindow(ID_TEMPLATE));
         std::vector<std::pair<wxString, int> > colHeaders;
         bool colsOK = this->getColumns(sql, colHeaders);
-        wxButton* b = (wxButton*) FindWindow(wxID_NEW);
-        b->Enable(colsOK && templateText->GetValue().empty());
+        wxButton* b = static_cast<wxButton*>(FindWindow(wxID_NEW));
+        b->Enable(colsOK && templateText->IsEmpty());
         int pos = 0;
         for (const auto& col : colHeaders)
         {
@@ -532,7 +532,7 @@ void mmGeneralReportManager::OnSqlTest(wxCommandEvent& WXUNUSED(event))
 void mmGeneralReportManager::OnNewTemplate(wxCommandEvent& WXUNUSED(event))
 {
     MinimalEditor* templateText = static_cast<MinimalEditor*>(FindWindow(ID_TEMPLATE));
-    if (!templateText->GetValue().empty()) return;
+    if (!templateText->IsEmpty()) return;
     MinimalEditor* sqlText = static_cast<MinimalEditor*>(FindWindow(ID_SQL_CONTENT));
 
     wxNotebook* n = static_cast<wxNotebook*>(FindWindow(ID_NOTEBOOK));
@@ -540,7 +540,7 @@ void mmGeneralReportManager::OnNewTemplate(wxCommandEvent& WXUNUSED(event))
 
     templateText->ChangeValue(this->getTemplate(sqlText->GetValue()));
 
-    wxButton* b = (wxButton*) FindWindow(wxID_NEW);
+    wxButton* b = static_cast<wxButton*>(FindWindow(wxID_NEW));
     b->Enable(false);
 
     wxCommandEvent evt;
@@ -729,7 +729,7 @@ void mmGeneralReportManager::OnSelChanged(wxTreeEvent& event)
     m_selectedItemID = event.GetItem();
     if (!m_selectedItemID) return;
 
-    wxNotebook* editors_notebook = (wxNotebook*) FindWindow(ID_NOTEBOOK);
+    wxNotebook* editors_notebook = static_cast<wxNotebook*>(FindWindow(ID_NOTEBOOK));
     MyTreeItemData* iData = dynamic_cast<MyTreeItemData*>(m_treeCtrl->GetItemData(m_selectedItemID));
     if (!iData)
     {
@@ -770,9 +770,9 @@ void mmGeneralReportManager::OnSelChanged(wxTreeEvent& event)
 
         if (m_sqlListBox) m_sqlListBox->DeleteAllItems();
         if (m_sqlListBox) m_sqlListBox->DeleteAllColumns();
-        wxButton* createTemplate = (wxButton*) FindWindow(wxID_NEW);
+        wxButton* createTemplate = static_cast<wxButton*>(FindWindow(wxID_NEW));
         if (createTemplate) createTemplate->Enable(false);
-        wxStaticText *info = (wxStaticText*)FindWindow(wxID_INFO);
+        wxStaticText *info = static_cast<wxStaticText*>(FindWindow(wxID_INFO));
         if (info) info->SetLabelText("");
 
         viewControls(true);
@@ -1011,10 +1011,10 @@ void mmGeneralReportManager::OnExportReport(wxCommandEvent& WXUNUSED(event))
 
 void mmGeneralReportManager::showHelp()
 {
-    wxFileName helpIndexFile(mmex::getPathDoc((mmex::EDocFile)mmex::HTML_CUSTOM_SQL));
+    wxFileName helpIndexFile(mmex::getPathDoc(mmex::HTML_CUSTOM_SQL));
     if (Option::instance().getLanguageISO6391() != "en")
         helpIndexFile.AppendDir(Option::instance().getLanguageISO6391());
-    wxString url = "file://" + mmex::getPathDoc((mmex::EDocFile)mmex::HTML_CUSTOM_SQL);
+    wxString url = "file://" + mmex::getPathDoc(mmex::HTML_CUSTOM_SQL);
     if (helpIndexFile.FileExists()) // Load the help file for the given language
     {
         url = "file://" + helpIndexFile.GetPathWithSep() + helpIndexFile.GetFullName();

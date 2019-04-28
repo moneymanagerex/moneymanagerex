@@ -89,7 +89,7 @@ void mmBudgetYearEntryDialog::CreateControls()
 
         int month = wxDate::GetCurrentMonth() + 1; // we require months(1..12)
         textMonth_ = new wxSpinCtrl(this, wxID_ANY
-            , wxEmptyString, wxDefaultPosition, wxSize(textYear_->GetSize())
+            , wxEmptyString, wxDefaultPosition, textYear_->GetSize()
             , wxSP_ARROW_KEYS, 1, 12, month);
         textMonth_->SetValue(month);
         textMonth_->SetToolTip(_("Specify the required month.\n"
@@ -107,7 +107,7 @@ void mmBudgetYearEntryDialog::CreateControls()
     itemYearStrings.Add("None");
 
     itemChoice_ = new wxChoice( this, wxID_ANY
-        , wxDefaultPosition, wxSize(textYear_->GetSize()), itemYearStrings );
+        , wxDefaultPosition, textYear_->GetSize(), itemYearStrings );
     itemGridSizer2->Add(itemChoice_, 0, wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL, 5);
     itemChoice_->SetToolTip(_("Specify year to base budget on."));
 

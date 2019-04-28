@@ -25,7 +25,7 @@
 #include "rapidjson/stringbuffer.h"
 using namespace rapidjson;
 
-#include "html_template.h"
+#include <html_template.h>
 using namespace tmpl;
 
 class wxString;

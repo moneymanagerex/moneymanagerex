@@ -34,7 +34,7 @@ wxEND_EVENT_TABLE()
 
 mmUpdateWizard::mmUpdateWizard(wxFrame *frame, const Value& new_version)
     : wxWizard(frame, wxID_ANY, _("Update Wizard")
-    , wxBitmap(wxNullBitmap), wxDefaultPosition, wxCAPTION | wxCLOSE_BOX | wxRESIZE_BORDER)
+    , wxNullBitmap, wxDefaultPosition, wxCAPTION | wxCLOSE_BOX | wxRESIZE_BORDER)
     , m_new_version(new_version)
 {
     page1 = new wxWizardPageSimple(this);
