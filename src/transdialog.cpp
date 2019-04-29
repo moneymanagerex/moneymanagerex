@@ -419,9 +419,16 @@ void mmTransDialog::CreateControls()
     dpc_ = new wxDatePickerCtrl(this, ID_DIALOG_TRANS_BUTTONDATE, wxDateTime::Today()
         , wxDefaultPosition, wxDefaultSize, date_style);
 
-    //Text field for day of the week
-    itemStaticTextWeek_ = new wxStaticText(this, wxID_STATIC, "");
-    // Display the day of the week
+    //Text field for name of day of the week
+    wxSize WeekDayNameMaxSize(wxDefaultSize);
+    for (wxDateTime::WeekDay d = wxDateTime::Sun;
+            d != wxDateTime::Inv_WeekDay;
+            d = wxDateTime::WeekDay(d+1))
+        WeekDayNameMaxSize.IncTo(GetTextExtent(
+            wxGetTranslation(wxDateTime::GetEnglishWeekDayName(d))));
+
+    itemStaticTextWeek_ = new wxStaticText(this, wxID_STATIC, "",
+        wxDefaultPosition, WeekDayNameMaxSize, wxST_NO_AUTORESIZE);
 
     spinCtrl_ = new wxSpinButton(this, ID_DIALOG_TRANS_DATE_SPINNER
         , wxDefaultPosition, wxSize(-1, dpc_->GetSize().GetHeight())
