@@ -240,12 +240,10 @@ void mmHTMLBuilder::addCurrencyCell(double amount, const Model_Currency::Data* c
 
 void mmHTMLBuilder::addMoneyCell(double amount, int precision)
 {
-    if (precision == -1)
-        precision = Model_Currency::precision(Model_Currency::GetBaseCurrency());
-    wxString f = wxString::Format( " class='money' sorttable_customkey = '%f' nowrap", amount);
-    html_ += wxString::Format(tags::TABLE_CELL, f);
-    html_ += Model_Currency::toString(amount, Model_Currency::GetBaseCurrency(), precision);
-    endTableCell();
+    // We should always present currency for monetary values
+    addCurrencyCell(amount, Model_Currency::GetBaseCurrency(), precision);
+
+    // TODO: verify if all values are in base currency at addMoneyCell call
 }
 
 void mmHTMLBuilder::addTableCellDate(const wxString& iso_date)
