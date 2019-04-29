@@ -228,7 +228,7 @@ void mmPrintableBase::setSettings(const wxString& settings)
 void mmPrintableBase::date_range(const mmDateRange* date_range, int selection)
 {
     m_date_range = date_range;
-    if (date_range != nullptr)
+    if (date_range)
     {
         m_begin_date = date_range->start_date();
         m_end_date = date_range->end_date();
@@ -277,13 +277,13 @@ mmGeneralReport::mmGeneralReport(const Model_Report::Data* report)
 
 wxString mmGeneralReport::getHTMLText()
 {
-    return Model_Report::instance().get_html(this->m_report);
+    return Model_Report::instance().get_html(m_report);
 }
 
 int mmGeneralReport::report_parameters()
 {
     int params = 0;
-    const auto content = this->m_report->SQLCONTENT.Lower();
+    const auto content = m_report->SQLCONTENT.Lower();
     if (content.Contains("&begin_date")
         || content.Contains("&end_date"))
         params |= RepParams::DATE_RANGE;
@@ -297,7 +297,7 @@ int mmGeneralReport::report_parameters()
 
 mm_html_template::mm_html_template(const wxString& arg_template): html_template(arg_template.ToStdWstring())
 {
-    this->load_context();
+    load_context();
 }
 
 void mm_html_template::load_context()

@@ -33,6 +33,7 @@
 #include "Model_Budgetyear.h"
 #include "Model_Infotable.h"
 #include <wx/webviewfshandler.h>
+#include <wx/wrapsizer.h>
 
 class WebViewHandlerReportsPage : public wxWebViewHandler
 {
@@ -80,7 +81,7 @@ public:
                     {
                         m_reportPanel->rb_->getHTMLText();
                     }
-                    m_reportPanel->browser_->LoadURL(getURL(mmex::getReportFullFileName(this->GetName())));
+                    m_reportPanel->browser_->LoadURL(getURL(mmex::getReportFullFileName(GetName())));
                 }
             }
         }
@@ -92,7 +93,7 @@ public:
             if (Model_Attachment::instance().all_type().Index(RefType) != wxNOT_FOUND && RefId > 0)
             {
                 mmAttachmentManage::OpenAttachmentFromPanelIcon(nullptr, RefType, RefId);
-                m_reportPanel->browser_->LoadURL(getURL(mmex::getReportFullFileName(this->GetName())));
+                m_reportPanel->browser_->LoadURL(getURL(mmex::getReportFullFileName(GetName())));
             }
         }
 
@@ -173,8 +174,6 @@ bool mmReportsPanel::Create(wxWindow *parent, wxWindowID winid
     wxDateTime start = wxDateTime::UNow();
 
     CreateControls();
-    GetSizer()->Fit(this);
-    GetSizer()->SetSizeHints(this);
 
     if (rb_)
     {
@@ -184,7 +183,7 @@ bool mmReportsPanel::Create(wxWindow *parent, wxWindowID winid
         else
             browser_->SetPage(error, "");
 
-        this->SetLabel(rb_->getReportTitle());
+        SetLabel(rb_->getReportTitle());
     }
     Model_Usage::instance().pageview(this, (wxDateTime::UNow() - start).GetMilliseconds().ToLong());
 
@@ -197,17 +196,17 @@ bool mmReportsPanel::saveReportText(wxString& error, bool initial)
     if (!rb_) return false;
 
     rb_->initial_report(initial);
-    if (this->m_date_ranges)
+    if (m_date_ranges)
     {
-        int selectedItem = this->m_date_ranges->GetSelection();
+        int selectedItem = m_date_ranges->GetSelection();
         int rp = rb_->report_parameters();
         if (rp & rb_->RepParams::DATE_RANGE)
         {
             mmDateRange* date = static_cast<mmDateRange*>
-                (this->m_date_ranges->GetClientData(selectedItem));
-            if (date == nullptr)
+                (m_date_ranges->GetClientData(selectedItem));
+            if (!date)
             {
-                if (m_cust_date == nullptr)
+                if (!m_cust_date)
                 {
                     wxDateTime begin_date;
                     wxDateTime end_date;
@@ -216,18 +215,18 @@ bool mmReportsPanel::saveReportText(wxString& error, bool initial)
                     {
                         m_cust_date = new mmSpecifiedRange(begin_date, end_date);
                         date = m_cust_date;
-                        this->m_start_date->SetValue(begin_date);
-                        this->m_end_date->SetValue(end_date);
+                        m_start_date->SetValue(begin_date);
+                        m_end_date->SetValue(end_date);
                         m_start_date->Enable(true);
                         m_end_date->Enable(true);
                     }
                     else
                     {
                         // Reinitialize to first date selection
-                        this->m_date_ranges->SetSelection(0);
+                        m_date_ranges->SetSelection(0);
                         date = *m_all_date_ranges.begin();
-                        this->m_start_date->SetValue(date->start_date());
-                        this->m_end_date->SetValue(date->end_date());
+                        m_start_date->SetValue(date->start_date());
+                        m_end_date->SetValue(date->end_date());
                         m_start_date->Enable(false);
                         m_end_date->Enable(false);
                     }
@@ -240,7 +239,7 @@ bool mmReportsPanel::saveReportText(wxString& error, bool initial)
         else if (rp & (rb_->RepParams::BUDGET_DATES | rb_->RepParams::ONLY_YEARS))
         {
             rb_->date_range(nullptr
-                , *reinterpret_cast<int*>(this->m_date_ranges->GetClientData(selectedItem)));
+                , *reinterpret_cast<int*>(m_date_ranges->GetClientData(selectedItem)));
         }
     }
 
@@ -269,22 +268,31 @@ bool mmReportsPanel::saveReportText(wxString& error, bool initial)
     return error.empty();
 }
 
+// Adjust wxStaticText size after font change
+// Workaround for not auto Layout() after SetFont()
+void mmSetOwnFont(wxStaticText* w, const wxFont& font)
+{
+    w->SetOwnFont(font);
+    wxString label = w->GetLabelText();
+    if (!label.IsEmpty())
+        w->SetInitialSize(w->GetTextExtent(label));
+}
+
 void mmReportsPanel::CreateControls()
 {
     wxBoxSizer* itemBoxSizer2 = new wxBoxSizer(wxVERTICAL);
-    this->SetSizer(itemBoxSizer2);
+    SetSizer(itemBoxSizer2);
 
-    wxPanel* itemPanel3 = new wxPanel(this, wxID_ANY
-        , wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
+    wxPanel* itemPanel3 = new wxPanel(this, wxID_ANY);
     itemBoxSizer2->Add(itemPanel3, 0, wxGROW|wxALL, 5);
 
-    wxBoxSizer* itemBoxSizerHeader = new wxBoxSizer(wxHORIZONTAL);
+    wxWrapSizer* itemBoxSizerHeader = new wxWrapSizer();
     itemPanel3->SetSizer(itemBoxSizerHeader);
 
     wxStaticText* itemStaticText9 = new wxStaticText(itemPanel3
         , wxID_ANY, _("REPORTS"));
-    itemStaticText9->SetFont(this->GetFont().Larger().Bold());
-    itemBoxSizerHeader->Add(itemStaticText9, 0, wxALL, 1);
+    mmSetOwnFont(itemStaticText9, GetFont().Larger().Bold());
+    itemBoxSizerHeader->Add(itemStaticText9, 0, wxALL | wxALIGN_CENTER_VERTICAL, 1);
     itemBoxSizerHeader->AddSpacer(30);
 
     if (rb_)
@@ -294,11 +302,10 @@ void mmReportsPanel::CreateControls()
         if (rp & rb_->RepParams::DATE_RANGE)
         {
             wxStaticText* itemStaticTextH1 = new wxStaticText(itemPanel3
-                , wxID_ANY, "");
-            itemStaticTextH1->SetFont(this->GetFont().Larger());
-            itemBoxSizerHeader->Add(itemStaticTextH1, 0, wxALL, 1);
+                , wxID_ANY, _("Period:"));
+            mmSetOwnFont(itemStaticTextH1, GetFont().Larger());
+            itemBoxSizerHeader->Add(itemStaticTextH1, 0, wxALL | wxALIGN_CENTER_VERTICAL, 1);
             itemBoxSizerHeader->AddSpacer(5);
-            itemStaticTextH1->SetLabel(_("Period:"));
             m_date_ranges = new wxChoice(itemPanel3, ID_CHOICE_DATE_RANGE);
 
             for (const auto & date_range: m_all_date_ranges)
@@ -337,11 +344,10 @@ void mmReportsPanel::CreateControls()
         else if (rp & rb_->RepParams::SINGLE_DATE)
         {
             wxStaticText* itemStaticTextH1 = new wxStaticText(itemPanel3
-                , wxID_ANY, "");
-            itemStaticTextH1->SetFont(this->GetFont().Larger());
-            itemBoxSizerHeader->Add(itemStaticTextH1, 0, wxALL, 1);
+                , wxID_ANY, _("Date"));
+            mmSetOwnFont(itemStaticTextH1, GetFont().Larger());
+            itemBoxSizerHeader->Add(itemStaticTextH1, 0, wxALL | wxALIGN_CENTER_VERTICAL, 1);
             itemBoxSizerHeader->AddSpacer(5);
-            itemStaticTextH1->SetLabel(_("Date"));
             long date_style = wxDP_DROPDOWN | wxDP_SHOWCENTURY;
             m_start_date = new wxDatePickerCtrl(itemPanel3, ID_CHOICE_START_DATE
                 , wxDefaultDateTime, wxDefaultPosition, wxDefaultSize, date_style);
@@ -357,11 +363,10 @@ void mmReportsPanel::CreateControls()
         {
             cleanupmem_ = true;
             wxStaticText* itemStaticTextH1 = new wxStaticText(itemPanel3
-                , wxID_ANY, "");
-            itemStaticTextH1->SetFont(this->GetFont().Larger());
-            itemBoxSizerHeader->Add(itemStaticTextH1, 0, wxALL, 1);
+                , wxID_ANY, _("Period:"));
+            mmSetOwnFont(itemStaticTextH1, GetFont().Larger());
+            itemBoxSizerHeader->Add(itemStaticTextH1, 0, wxALL | wxALIGN_CENTER_VERTICAL, 1);
             itemBoxSizerHeader->AddSpacer(5);
-            itemStaticTextH1->SetLabel(_("Period:"));
 
             m_date_ranges = new wxChoice(itemPanel3, ID_CHOICE_DATE_RANGE
                 , wxDefaultPosition, wxDefaultSize, 0, NULL, wxCB_SORT);
@@ -378,7 +383,7 @@ void mmReportsPanel::CreateControls()
                     continue;
 
                 int id = e.BUDGETYEARID;
-                m_date_ranges->Append(name, reinterpret_cast<void *>(new int(id)));
+                m_date_ranges->Append(name, new int(id));
 
                 if (!sel_found)
                 {
@@ -393,7 +398,7 @@ void mmReportsPanel::CreateControls()
             else
                 m_date_ranges->SetSelection(cur_selection);
             rb_->date_range(nullptr, *reinterpret_cast<int*>
-                (m_date_ranges->GetClientData(this->m_date_ranges->GetSelection())));
+                (m_date_ranges->GetClientData(m_date_ranges->GetSelection())));
 
             itemBoxSizerHeader->Add(m_date_ranges, 0, wxALL, 1);
             itemBoxSizerHeader->AddSpacer(30);
@@ -403,21 +408,20 @@ void mmReportsPanel::CreateControls()
         {
             wxButton *btnPrev = new wxButton(itemPanel3, ID_PREV_REPORT, _("Previous Period"));
             btnPrev->SetToolTip(_("Previous Period"));
-            itemBoxSizerHeader->Add(btnPrev, 0, wxRIGHT, 5);
+            itemBoxSizerHeader->Add(btnPrev, 0, wxRIGHT | wxALIGN_CENTER_VERTICAL, 5);
             itemBoxSizerHeader->AddSpacer(5);
             wxButton *btnNext = new wxButton(itemPanel3, ID_NEXT_REPORT, _("Next Period"));
             btnNext->SetToolTip(_("Next Period"));
-            itemBoxSizerHeader->Add(btnNext, 0, wxRIGHT, 5);
+            itemBoxSizerHeader->Add(btnNext, 0, wxRIGHT | wxALIGN_CENTER_VERTICAL, 5);
             itemBoxSizerHeader->AddSpacer(30);
         }
 
         if (rp & rb_->RepParams::ACCOUNTS_LIST)
         {
-            wxStaticText* itemStaticTextH1 = new wxStaticText(itemPanel3, wxID_ANY, "");
-            itemStaticTextH1->SetFont(this->GetFont().Larger());
-            itemBoxSizerHeader->Add(itemStaticTextH1, 0, wxALL, 1);
+            wxStaticText* itemStaticTextH1 = new wxStaticText(itemPanel3, wxID_ANY, _("Accounts:"));
+            mmSetOwnFont(itemStaticTextH1, GetFont().Larger());
+            itemBoxSizerHeader->Add(itemStaticTextH1, 0, wxALL | wxALIGN_CENTER_VERTICAL, 1);
             itemBoxSizerHeader->AddSpacer(5);
-            itemStaticTextH1->SetLabel(_("Accounts: "));
             m_accounts = new wxChoice(itemPanel3, ID_CHOICE_ACCOUNTS);
             m_accounts->Append(_("All Accounts"));
             m_accounts->Append(_("Specific Accounts"));
@@ -435,11 +439,10 @@ void mmReportsPanel::CreateControls()
         if (rp & rb_->RepParams::CHART)
         {
             wxStaticText* itemStaticTextH1 = new wxStaticText(itemPanel3
-                , wxID_ANY, "");
-            itemStaticTextH1->SetFont(this->GetFont().Larger());
-            itemBoxSizerHeader->Add(itemStaticTextH1, 0, wxALL, 1);
+                , wxID_ANY, _("Chart:"));
+            mmSetOwnFont(itemStaticTextH1, GetFont().Larger());
+            itemBoxSizerHeader->Add(itemStaticTextH1, 0, wxALL | wxALIGN_CENTER_VERTICAL, 1);
             itemBoxSizerHeader->AddSpacer(5);
-            itemStaticTextH1->SetLabel(_("Chart:"));
             m_chart = new wxChoice(itemPanel3, ID_CHOICE_CHART);
             m_chart->Append(_("Show"));
             m_chart->Append(_("Hide"));
@@ -472,11 +475,11 @@ void mmReportsPanel::OnDateRangeChanged(wxCommandEvent& WXUNUSED(event))
         if (rb_->report_parameters() & rb_->RepParams::DATE_RANGE)
         {
             const mmDateRange* date_range = static_cast<mmDateRange*>
-                (this->m_date_ranges->GetClientData(this->m_date_ranges->GetSelection()));
-            if (date_range != nullptr)
+                (m_date_ranges->GetClientData(m_date_ranges->GetSelection()));
+            if (date_range)
             {
-                this->m_start_date->SetValue(date_range->start_date());
-                this->m_end_date->SetValue(date_range->end_date());
+                m_start_date->SetValue(date_range->start_date());
+                m_end_date->SetValue(date_range->end_date());
             }
             else
             {
@@ -489,7 +492,7 @@ void mmReportsPanel::OnDateRangeChanged(wxCommandEvent& WXUNUSED(event))
         if (bGenReport)
         {
             wxString error;
-            if (this->saveReportText(error, false)) {
+            if (saveReportText(error, false)) {
                 browser_->LoadURL(getURL(mmex::getReportFullFileName(rb_->getFileName())));
             }
             else {
@@ -512,7 +515,7 @@ void mmReportsPanel::OnAccountChanged(wxCommandEvent& WXUNUSED(event))
             rb_->setAccounts(sel, accountSelection);
 
             wxString error;
-            if (this->saveReportText(error, false))
+            if (saveReportText(error, false))
                 browser_->LoadURL(getURL(mmex::getReportFullFileName(rb_->getFileName())));
             else
                 browser_->SetPage(error, "");
@@ -530,7 +533,7 @@ void mmReportsPanel::OnStartEndDateChanged(wxDateEvent& WXUNUSED(event))
             , m_end_date ? m_end_date->GetValue() : wxDateTime::Today());
 
         wxString error;
-        if (this->saveReportText(error, false))
+        if (saveReportText(error, false))
             browser_->LoadURL(getURL(mmex::getReportFullFileName(rb_->getFileName())));
         else
             browser_->SetPage(error, "");
@@ -567,11 +570,10 @@ void mmReportsPanel::OnChartChanged(wxCommandEvent& WXUNUSED(event))
             rb_->chart(sel);
 
             wxString error;
-            if (this->saveReportText(error, false))
+            if (saveReportText(error, false))
                 browser_->LoadURL(getURL(mmex::getReportFullFileName(rb_->getFileName())));
             else
                 browser_->SetPage(error, "");
         }
     }
 }
-
