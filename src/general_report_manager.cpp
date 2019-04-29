@@ -116,7 +116,7 @@ R"(<!DOCTYPE html>
         var element = elements[i];
         element.style.textAlign='right';
         if (element.innerHTML.indexOf("-") > -1) {
-            element.style.color="#ff0000";
+            element.style.color="red";
         }
         element.innerHTML = '<TMPL_VAR PFX_SYMBOL>' + currency(element.innerHTML) +'<TMPL_VAR SFX_SYMBOL>';
     }
@@ -178,7 +178,7 @@ R"(<!DOCTYPE html>
         var element = elements[i];
         element.style.textAlign='right';
         if (element.innerHTML.indexOf("-") > -1) {
-            element.style.color="#ff0000";
+            element.style.color="red";
         }
         element.innerHTML = '<TMPL_VAR PFX_SYMBOL>' + currency(element.innerHTML) +'<TMPL_VAR SFX_SYMBOL>';
     }
