@@ -104,7 +104,7 @@ public:
     void addHorizontalLine(int size = 0);
 
     /** Starts a table cell (use only if want to nest other elements inside */
-    void startTableCell(const wxString& width = "");
+    void startTableCell(const wxString& format = "");
     void endTableCell();
 
     const wxString getHTMLText() const;

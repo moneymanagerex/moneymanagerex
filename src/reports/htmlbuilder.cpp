@@ -33,7 +33,7 @@ static const wxString END = R"(
     for (var i = 0; i < elements.length; i++) {
         elements[i].style.textAlign = 'right';
         if (elements[i].innerHTML.indexOf('-') > -1) {
-            elements[i].style.color ='#ff0000';
+            elements[i].style.color ='red';
         }
     }
 </script>
@@ -50,7 +50,7 @@ static const char HTML[] = R"(<!DOCTYPE html>
 <style>
     /* Sortable tables */
     table.sortable thead {cursor: default;}
-    body { font-size: %s%%; }
+    body { font-size: %d%%; }
 </style>
 </head>
 <body>
@@ -72,24 +72,24 @@ static const wxString TBODY_END = "</tbody>\n";
 static const wxString TFOOT_START = "<tfoot>\n";
 static const wxString TFOOT_END = "</tfoot>\n";
 static const wxString TABLE_ROW = "  <tr>\n";
-static const wxString TABLE_ROW_BG = "  <tr %s>\n";
+static const wxString TABLE_ROW_BG = "  <tr style='background-color:%s'>\n";
 static const wxString TOTAL_TABLE_ROW = "  <tr class='success'>\n";
 static const wxString TABLE_ROW_END = "  </tr>\n";
 static const wxString TABLE_CELL = "    <td%s>";
 static const wxString MONEY_CELL = "    <td class='money'>";
 static const wxString TABLE_CELL_END = "</td>\n";
-static const wxString TABLE_CELL_LINK = "<a href=\"%s\">%s</a>\n";
+static const wxString TABLE_CELL_LINK = "<a href='%s'>%s</a>\n";
 static const wxString TABLE_HEADER = "<th%s>";
 static const wxString HEADER = "<h%i>%s</h%i>";
 static const wxString TABLE_HEADER_END = "</th>\n";
-static const wxString LINK = "<a href=\"%s\">%s</a>\n";
-static const wxString HOR_LINE = "<hr size=\"%i\">\n";
-static const wxString IMAGE = "<img src=\"%s\" border=\"0\">\n";
+static const wxString LINK = "<a href='%s'>%s</a>\n";
+static const wxString HOR_LINE = "<hr size='%i'>\n";
+static const wxString IMAGE = "<img src='%s' border='0'>\n";
 static const wxString BR = "<br>\n";
 static const wxString NBSP = "&nbsp;";
 static const wxString CENTER = "<center>\n";
 static const wxString CENTER_END = "</center>\n";
-static const wxString TABLE_CELL_SPAN = "    <td colspan=\"%zu\" >";
+static const wxString TABLE_CELL_SPAN = "    <td colspan='%zu'>";
 static const wxString TABLE_CELL_RIGHT = "    <td style='text-align: right'>";
 static const wxString COLORS [] = {
       "rgba(135,206,250,0.7)"
@@ -138,26 +138,20 @@ void mmHTMLBuilder::init()
 {
     html_ = wxString::Format(wxString::FromUTF8(tags::HTML)
         , mmex::getProgramName()
-        , wxString::Format("%d", Option::instance().getHtmlFontSize())
+        , Option::instance().getHtmlFontSize()
     );
 
     //Show user name if provided
-    if (Option::instance().getUserName() != "")
+    if (!Option::instance().getUserName().IsEmpty())
     {
-        startTable();
-        startTableRow();
-        startTableCell();
         addHeader(2, Option::instance().getUserName());
-        endTableCell();
-        endTableRow();
-        endTable();
         addHorizontalLine(2);
     }
 }
 
 void mmHTMLBuilder::addHeader(int level, const wxString& header)
 {
-    html_+= wxString::Format(tags::HEADER, level, header, level);
+    html_ += wxString::Format(tags::HEADER, level, header, level);
 }
 
 void mmHTMLBuilder::addDateNow()
@@ -187,73 +181,71 @@ void mmHTMLBuilder::startTfoot()
     html_ += tags::TFOOT_START;
 }
 
-void mmHTMLBuilder::addTotalRow(const wxString& caption
-    , int cols, double value)
+void mmHTMLBuilder::addTotalRow(const wxString& caption, int cols
+    , double value)
 {
-    this->startTotalTableRow();
-    html_+= wxString::Format(tags::TABLE_CELL_SPAN, cols - 1);
+    startTotalTableRow();
+    html_ += wxString::Format(tags::TABLE_CELL_SPAN, cols - static_cast<size_t>(1));
     html_ += caption;
-    this->endTableCell();
-    this->addMoneyCell(value);
-    this->endTableRow();
+    endTableCell();
+    addMoneyCell(value);
+    endTableRow();
 }
 
 void mmHTMLBuilder::addTotalRow(const wxString& caption, int cols
     , const std::vector<wxString>& data)
 {
-    this->startTotalTableRow();
-    html_+= wxString::Format(tags::TABLE_CELL_SPAN, cols - data.size());
+    startTotalTableRow();
+    html_ += wxString::Format(tags::TABLE_CELL_SPAN, cols - data.size());
     html_ += caption;
+    endTableCell();
 
-    for (unsigned long idx = 0; idx < data.size(); idx++)
+    for (const auto& value: data)
     {
-        this->endTableCell();
-        html_+= tags::TABLE_CELL_RIGHT;
-        html_ += data[idx];
+        html_ << tags::TABLE_CELL_RIGHT << value;
+        endTableCell();
     }
-    this->endTableCell();
-    this->endTableRow();
+    endTableRow();
 }
 
-void mmHTMLBuilder::addTotalRow(const wxString& caption, int cols, const std::vector<double>& data)
+void mmHTMLBuilder::addTotalRow(const wxString& caption, int cols
+    , const std::vector<double>& data)
 {
     std::vector<wxString> data_str;
     for (const auto& value: data)
         data_str.push_back(Model_Currency::toCurrency(value));
-    this->addTotalRow(caption, cols, data_str);
+    addTotalRow(caption, cols, data_str);
 }
 
 void mmHTMLBuilder::addTableHeaderCell(const wxString& value, const bool numeric, const bool sortable, const int cols, const bool center)
 {
     const wxString sort = (sortable ? "" : " class='sorttable_nosort'");
     const wxString align = (center ? " class='text-center'" : (numeric ? " class='text-right'" : " class='text-left'"));
-    const wxString cspan = (cols > 1 ? wxString::Format(" colspan=\"%i\"", cols) : "");
+    const wxString cspan = (cols > 1 ? wxString::Format(" colspan='%i'", cols) : "");
 
     html_ += wxString::Format(tags::TABLE_HEADER, sort + align + cspan);
-    html_ += (value);
-    html_+= tags::TABLE_HEADER_END;
+    html_ += value;
+    html_ += tags::TABLE_HEADER_END;
 }
 
 void mmHTMLBuilder::addCurrencyCell(double amount, const Model_Currency::Data* currency, int precision)
 {
     if (precision == -1)
         precision = Model_Currency::precision(currency);
-    const wxString s = Model_Currency::toCurrency(amount, currency, precision);
     const wxString f = wxString::Format(" class='money' sorttable_customkey = '%f' nowrap", amount);
     html_ += wxString::Format(tags::TABLE_CELL, f);
-    html_ += s;
-    this->endTableCell();
+    html_ += Model_Currency::toCurrency(amount, currency, precision);
+    endTableCell();
 }
 
 void mmHTMLBuilder::addMoneyCell(double amount, int precision)
 {
     if (precision == -1)
         precision = Model_Currency::precision(Model_Currency::GetBaseCurrency());
-    const wxString s = Model_Currency::toString(amount, Model_Currency::GetBaseCurrency(), precision);
     wxString f = wxString::Format( " class='money' sorttable_customkey = '%f' nowrap", amount);
     html_ += wxString::Format(tags::TABLE_CELL, f);
-    html_ += s;
-    this->endTableCell();
+    html_ += Model_Currency::toString(amount, Model_Currency::GetBaseCurrency(), precision);
+    endTableCell();
 }
 
 void mmHTMLBuilder::addTableCellDate(const wxString& iso_date)
@@ -261,7 +253,7 @@ void mmHTMLBuilder::addTableCellDate(const wxString& iso_date)
     html_ += wxString::Format(tags::TABLE_CELL
         , wxString::Format(" class='text-left' sorttable_customkey = '%s' nowrap", iso_date));
     html_ += mmGetDateForDisplay(iso_date);
-    this->endTableCell();
+    endTableCell();
 }
 
 void mmHTMLBuilder::addTableCell(const wxString& value, const bool numeric, const bool center)
@@ -269,27 +261,26 @@ void mmHTMLBuilder::addTableCell(const wxString& value, const bool numeric, cons
     const wxString align = (center ? " class='text-center'" : (numeric ? " class='text-right' nowrap" : " class='text-left'"));
     html_ += wxString::Format(tags::TABLE_CELL, align);
     html_ += value;
-    this->endTableCell();
+    endTableCell();
 }
 
 void mmHTMLBuilder::addEmptyTableCell(const int number)
 {
     for (int i = 0; i < number; i++)
-        addTableCell("");
+        html_ += wxString::Format(tags::TABLE_CELL + tags::TABLE_CELL_END, "");
 }
 
 void mmHTMLBuilder::addColorMarker(const wxString& color)
 {
     html_ += wxString::Format(tags::TABLE_CELL, "");
     html_ += wxString::Format("<span style='font-family: serif; color: %s'>%s</span>", color, L"\u2588");
-    this->endTableCell();
+    endTableCell();
 }
 
 const wxString mmHTMLBuilder::getColor(int i) const
 {
     int c = i % (sizeof(tags::COLORS) / sizeof(wxString));
-    const wxString& color = tags::COLORS[c];
-    return color;
+    return tags::COLORS[c];
 }
 
 void mmHTMLBuilder::addTableCellMonth(const wxDateTime::Month month)
@@ -298,10 +289,10 @@ void mmHTMLBuilder::addTableCellMonth(const wxDateTime::Month month)
         wxString f = wxString::Format(" sorttable_customkey = '%i'", month);
         html_ += wxString::Format(tags::TABLE_CELL, f);
         html_ += wxGetTranslation(wxDateTime::GetEnglishMonthName(month));
-        this->endTableCell();
+        endTableCell();
     }
     else
-        this->addTableCell("");
+        addEmptyTableCell();
 }
 
 void mmHTMLBuilder::addTableCellLink(const wxString& href
@@ -312,32 +303,25 @@ void mmHTMLBuilder::addTableCellLink(const wxString& href
 
 void mmHTMLBuilder::DisplayDateHeading(const wxDateTime& startDate, const wxDateTime& endDate, bool withDateRange)
 {
-
-    wxString todaysDate = "";
-    if (withDateRange)
-    {
-        todaysDate << wxString::Format(_("From %s till %s")
+    wxString text = withDateRange
+        ? wxString::Format(_("From %s till %s")
             , mmGetDateForDisplay(startDate.FormatISODate())
-            , mmGetDateForDisplay(endDate.FormatISODate()));
-    }
-    else
-    {
-        todaysDate << _("Over Time");
-    }
-    this->addHeader(3, todaysDate);
+            , mmGetDateForDisplay(endDate.FormatISODate()))
+        : _("Over Time");
+    addHeader(3, text);
 }
 
 void mmHTMLBuilder::addTableRow(const wxString& label, double data)
 {
-    this->startTableRow();
-    this->addTableCell(label);
-    this->addMoneyCell(data);
-    this->endTableRow();
+    startTableRow();
+    addTableCell(label);
+    addMoneyCell(data);
+    endTableRow();
 }
 
 void mmHTMLBuilder::end()
 {
-    html_+= tags::END;
+    html_ += tags::END;
 }
 void mmHTMLBuilder::addDivContainer()
 {
@@ -365,7 +349,7 @@ void mmHTMLBuilder::endDiv()
 }
 void mmHTMLBuilder::endTable()
 {
-    html_+= tags::TABLE_END;
+    html_ += tags::TABLE_END;
 }
 void mmHTMLBuilder::endThead()
 {
@@ -384,9 +368,10 @@ void mmHTMLBuilder::startTableRow()
 {
     html_ += tags::TABLE_ROW;
 }
+
 void mmHTMLBuilder::startTableRow(const wxString& color)
 {
-    html_ += wxString::Format(tags::TABLE_ROW_BG, wxString::Format("style='background-color:%s'", color));
+    html_ += wxString::Format(tags::TABLE_ROW_BG, color);
 }
 
 void mmHTMLBuilder::startTotalTableRow()
@@ -396,31 +381,31 @@ void mmHTMLBuilder::startTotalTableRow()
 
 void mmHTMLBuilder::endTableRow()
 {
-    html_+= tags::TABLE_ROW_END;
+    html_ += tags::TABLE_ROW_END;
 }
 
 void mmHTMLBuilder::addText(const wxString& text)
 {
-    html_+= text;
+    html_ += text;
 }
 
 void mmHTMLBuilder::addLineBreak()
 {
-    html_+= tags::BR;
+    html_ += tags::BR;
 }
 
 void mmHTMLBuilder::addHorizontalLine(int size)
 {
-    html_+= wxString::Format(tags::HOR_LINE, size);
+    html_ += wxString::Format(tags::HOR_LINE, size);
 }
 
-void mmHTMLBuilder::startTableCell(const wxString& width)
+void mmHTMLBuilder::startTableCell(const wxString& format)
 {
-    html_ += wxString::Format(tags::TABLE_CELL, width);
+    html_ += wxString::Format(tags::TABLE_CELL, format);
 }
 void mmHTMLBuilder::endTableCell()
 {
-    html_+= tags::TABLE_CELL_END;
+    html_ += tags::TABLE_CELL_END;
 }
 
 void mmHTMLBuilder::addRadarChart(std::vector<ValueTrio>& actData, std::vector<ValueTrio>& estData, const wxString& id, int x, int y)
@@ -477,7 +462,7 @@ void mmHTMLBuilder::addRadarChart(std::vector<ValueTrio>& actData, std::vector<V
     const auto ec = getColor(6);
     wxString datasets = wxString::Format(data_item, _("Actual"), ac, ac, ac, actValues);
     datasets += wxString::Format(data_item, _("Estimated"), ec, ec, ec, estValues);
-    this->addText(wxString::Format(html_parts, id, x, y, labels, datasets, id, opt));
+    addText(wxString::Format(html_parts, id, x, y, labels, datasets, id, opt));
 }
 
 void mmHTMLBuilder::addPieChart(std::vector<ValueTrio>& valueList, const wxString& id, int x, int y)
@@ -537,7 +522,7 @@ void mmHTMLBuilder::addPieChart(std::vector<ValueTrio>& valueList, const wxStrin
 
     const wxString data = strbuf.GetString();
 
-    this->addText(wxString::Format(html_parts, id, x, y, x/2, y/2, data, id));
+    addText(wxString::Format(html_parts, id, x, y, x/2, y/2, data, id));
 }
 
 void mmHTMLBuilder::addBarChart(const wxArrayString& labels
@@ -636,7 +621,7 @@ void mmHTMLBuilder::addBarChart(const wxArrayString& labels
     jsonDoc.Accept(writer);
 
     const wxString d = strbuf.GetString();
-    this->addText(wxString::Format(html_parts, id, x, y, x, y, d, id));
+    addText(wxString::Format(html_parts, id, x, y, x, y, d, id));
 }
 
 void mmHTMLBuilder::addLineChart(const std::vector<LineGraphData>& data, const wxString& id, int colorNum, int x, int y, bool pointDot, bool showGridLines, bool datasetFill)
@@ -720,7 +705,7 @@ var reportChart = new Chart(ctx).Line(d.data, d.options);
     const wxString d = strbuf.GetString();
 
     const auto text = (wxString::Format(html_parts, id, x, y, d, id));
-    this->addText(text);
+    addText(text);
 }
 
 const wxString mmHTMLBuilder::getHTMLText() const
@@ -733,4 +718,3 @@ std::ostream& operator << (std::ostream& os, const wxDateTime& date)
     os << date.FormatISODate();
     return os;
 }
-
