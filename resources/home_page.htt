@@ -1,11 +1,11 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta http-equiv='content-type' content='text/html; charset=utf-8' />
     <title>Home Page</title>
-    <script src="ChartNew.js"></script>
-    <script src="sorttable.js"></script>
-    <link href="master.css" rel="stylesheet" />
+    <script src='ChartNew.js'></script>
+    <script src='sorttable.js'></script>
+    <link href='master.css' rel='stylesheet' />
     <style>
         body {
             font-size: <TMPL_VAR HTMLSCALE>%;
@@ -14,9 +14,9 @@
 </head>
 <body>
 <div class='container'>
-    <table class="table-bordered" width="100%">
-        <tr valign="top">
-            <td width="50%">
+    <table class='table-bordered' width='100%'>
+        <tr valign='top'>
+            <td width='50%'>
                 <table class='table'>
                     <tfoot>
                         <tr class='success' style='font-weight:bold'>
@@ -61,24 +61,24 @@
                 <table class='table'>
                     <thead>
                         <tr class='active'>
-                            <th id="ive_name">#</th>
+                            <th id='ive_name'>#</th>
                             <th></th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td style='vertical-align:middle' width="70%">
+                            <td style='vertical-align:middle' width='70%'>
                             <div class='col-xs-11' style='min-width: 256px'>
-                                <canvas id="reportChart" width="312" height="256"></canvas>
+                                <canvas id='reportChart' width='312' height='256'></canvas>
                             </div>
                             </td>
-                            <td style='vertical-align:middle' width="30%">
+                            <td style='vertical-align:middle' width='30%'>
                             <div class='col-xs-11'>
                                 <table class='table'>
                                     <thead>
                                         <tr>
                                             <th id='ive_type'>Type</th>
-                                            <th id='ive_amount' class="text-right">Amount</th>
+                                            <th id='ive_amount' class='text-right'>Amount</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -92,7 +92,7 @@
                                         </tr>
                                     </tbody>
                                     <tfoot>
-                                        <tr class="total">
+                                        <tr class='total'>
                                             <td id='ive_difference_l'>Difference:</td>
                                             <td id='ive_difference' class='money'></td>
                                         </tr>
@@ -120,24 +120,24 @@
                     <!-- Chart -->
                     var font_size = 10 + 4*(<TMPL_VAR HTMLSCALE>/100 -1);
                     var data = {
-                        labels : [""],
+                        labels : [''],
                         datasets : [
                             {
-                                fillColor : "rgba(151,187,205,0.5)",
-                                strokeColor : "rgba(151,187,205,1)",
+                                fillColor : 'rgba(151,187,205,0.5)',
+                                strokeColor : 'rgba(151,187,205,1)',
                                 data : [ive_json[10]],
                                 title : ive_json[3]
                             },
                             {
-                                fillColor : "rgba(220,66,66,0.5)",
-                                strokeColor : "rgba(220,220,220,1)",
+                                fillColor : 'rgba(220,66,66,0.5)',
+                                strokeColor : 'rgba(220,220,220,1)',
                                 data : [ive_json[11]],
                                 title : ive_json[5]
                             },
                         ]
                     };
                     var options = {
-                        animationEasing: "easeOutQuint",
+                        animationEasing: 'easeOutQuint',
                         annotateDisplay : true,
                         responsive : true,
                         scaleOverride: true,
@@ -147,7 +147,7 @@
                         annotateFontSize: font_size,
                         scaleFontSize: font_size,
                     };
-                    var ctx = document.getElementById("reportChart").getContext("2d");
+                    var ctx = document.getElementById('reportChart').getContext('2d');
                     var reportChart = new Chart(ctx).Bar(data, options);
 
                 </script>
@@ -174,15 +174,15 @@
 <script>
     function toggleTable(id) {
         var elem = document.getElementById(id)
-        var label = document.getElementById(id + "_label")
-        var hide = elem.style.display == "none"
+        var label = document.getElementById(id + '_label')
+        var hide = elem.style.display == 'none'
         if (hide) {
-            elem.style.display = ""
-            label.innerHTML = "[-]"
+            elem.style.display = ''
+            label.innerHTML = '[-]'
         }
         else {
-            elem.style.display = "none"
-            label.innerHTML = "[+]"
+            elem.style.display = 'none'
+            label.innerHTML = '[+]'
         }
     }
     function createTableRowContent(rowObject, data, cellType){
@@ -215,27 +215,27 @@
     {toggleTable('TOP_CATEGORIES')};
 </script>
 <script>
-    var elements= document.getElementsByClassName("money");
+    var elements= document.getElementsByClassName('money');
     for (var i = 0; i < elements.length; i++) {
         var element = elements[i];
         element.style.textAlign='right';
-        if (element.innerHTML.indexOf("-") > -1) {
-            element.style.color="#ff0000";
+        if (element.innerHTML.indexOf('-') > -1) {
+            element.style.color='red';
         }
-        element.style.whiteSpace = "nowrap";
+        element.style.whiteSpace = 'nowrap';
     }
 </script>
 <script>
     var stats_json = <TMPL_VAR STATISTICS>;
     var tbody = document.getElementById('stats');
-    tbody.innerHTML = "";
+    tbody.innerHTML = '';
     for(var obj in stats_json){
         if (obj != 'NAME') {
             var row = document.createElement('tr');
             createTableData(row, obj);
-            var cell = document.createElement("td");    
+            var cell = document.createElement('td');
             var cellText = document.createTextNode(stats_json[obj]);
-			cell.style.textAlign='right';
+            cell.style.textAlign='right';
             cell.appendChild(cellText);
             row.appendChild(cell);
             tbody.appendChild(row);

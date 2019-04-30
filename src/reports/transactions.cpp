@@ -127,28 +127,25 @@ wxString mmReportTransactions::getHTMLText()
         //Notes
         hb.addTableCell(AttachmentsLink + transaction.NOTES);
 
-        if (monoAcc)
+        const Model_Account::Data* acc = account;
+        const Model_Currency::Data* curr = currency;
+        if (!monoAcc)
         {
-            const double amount = Model_Checking::balance(transaction, account->ACCOUNTID);
-            const double convRate = Model_CurrencyHistory::getDayRate(account->CURRENCYID, transaction.TRANSDATE);
-            hb.addCurrencyCell(amount, currency);
-            total[currency->CURRENCYID] += amount;
-            total_in_base_curr[currency->CURRENCYID] += amount * convRate;
+            acc = Model_Account::instance().get(transaction.ACCOUNTID);
+            curr = Model_Account::currency(acc);
+        }
+        if (acc)
+        {
+            const double amount = Model_Checking::balance(transaction, acc->ACCOUNTID);
+            const double convRate = Model_CurrencyHistory::getDayRate(curr->CURRENCYID, transaction.TRANSDATE);
+            hb.addCurrencyCell(amount, curr);
+            total[curr->CURRENCYID] += amount;
+            total_in_base_curr[curr->CURRENCYID] += amount * convRate;
         }
         else
         {
-            const auto acc = Model_Account::instance().get(transaction.ACCOUNTID);
-            if (acc)
-            {
-                const Model_Currency::Data* curr = Model_Account::currency(acc);
-                const double amount = Model_Checking::balance(transaction, transaction.ACCOUNTID);
-                const double convRate = Model_CurrencyHistory::getDayRate(curr->CURRENCYID, transaction.TRANSDATE);
-                hb.addCurrencyCell(amount, curr);
-                total[curr->CURRENCYID] += amount;
-                total_in_base_curr[curr->CURRENCYID] += amount * convRate;
-            }
-            else
-                hb.addTableCell("");
+            wxFAIL_MSG("account for transaction not found");
+            hb.addEmptyTableCell();
         }
         hb.endTableRow();
     }

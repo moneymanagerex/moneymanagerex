@@ -178,7 +178,7 @@ wxString mmReportCategoryExpenses::getHTMLText()
         hb.addTableCell(entry.name);
         hb.addMoneyCell(entry.amount);
         if (group_counter[entry.categs] > 1)
-            hb.addTableCell("");
+            hb.addEmptyTableCell();
         else
             hb.addMoneyCell(entry.amount);
         hb.endTableRow();
@@ -187,9 +187,9 @@ wxString mmReportCategoryExpenses::getHTMLText()
         {
             group = 0;
             hb.startTableRow("WhiteSmoke");
-            if (getChartSelection() == 0) hb.addTableCell("");
+            if (getChartSelection() == 0) hb.addEmptyTableCell();
             hb.addTableCell(_("Category Total: "));
-            hb.addTableCell("");
+            hb.addEmptyTableCell();
             hb.addMoneyCell(group_total[entry.categs]);
             hb.endTableRow();
         }

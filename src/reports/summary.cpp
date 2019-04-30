@@ -317,9 +317,7 @@ wxString mmReportSummaryByDate::getHTMLText()
         {
             hb.startTotalTableRow();
             hb.addTableCell(totBalanceData[k].Left(4));
-            for (int j = 0; j < x - 1; j++) {
-                hb.addTableCell("");
-            }
+            hb.addEmptyTableCell(x-1);
             hb.endTableRow();
         }
         hb.startTableRow();

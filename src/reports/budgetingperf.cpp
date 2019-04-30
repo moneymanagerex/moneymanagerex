@@ -56,7 +56,7 @@ void mmReportBudgetingPerformance::DisplayRow(mmHTMLBuilder &hb
 
             const auto val = Model_Currency::toString(i.second, Model_Currency::GetBaseCurrency());
             hb.startTableCell(wxString::Format(" style='text-align:right;%s' nowrap"
-                , (i.second - est < 0) ? "color:#FF0000;" : ""));
+                , (i.second - est < 0) ? "color:red;" : ""));
             hb.addText(val);
             hb.endTableCell();
         }
@@ -69,7 +69,7 @@ void mmReportBudgetingPerformance::DisplayRow(mmHTMLBuilder &hb
 
         const auto val = Model_Currency::toString(actual, Model_Currency::GetBaseCurrency());
         hb.startTableCell(wxString::Format(" style='text-align:right;%s' nowrap"
-            , (actual - estimated < 0) ? "color:#FF0000;" : "color:#009900;"));
+            , (actual - estimated < 0) ? "color:red;" : "color:#009900;"));
         hb.addText(val);
         hb.endTableCell();
 
