@@ -407,11 +407,9 @@ void mmTransDialog::CreateControls()
 
     wxStaticBox* static_box = new wxStaticBox(this, wxID_ANY, _("Transaction Details"));
     wxStaticBoxSizer* box_sizer_left = new wxStaticBoxSizer(static_box, wxVERTICAL);
-
-    box_sizer2->Add(box_sizer_left, g_flagsExpand);
-
     wxFlexGridSizer* flex_sizer = new wxFlexGridSizer(0, 2, 0, 0);
     box_sizer_left->Add(flex_sizer, g_flagsV);
+    box_sizer2->Add(box_sizer_left, g_flagsExpand);
 
     // Date --------------------------------------------
     long date_style = wxDP_DROPDOWN | wxDP_SHOWCENTURY;
@@ -487,8 +485,8 @@ void mmTransDialog::CreateControls()
         , wxALIGN_RIGHT | wxTE_PROCESS_ENTER, mmCalcValidator());
 
     wxBoxSizer* amountSizer = new wxBoxSizer(wxHORIZONTAL);
-    amountSizer->Add(m_textAmount, g_flagsH);
-    amountSizer->Add(toTextAmount_, g_flagsH);
+    amountSizer->Add(m_textAmount, g_flagsExpand);
+    amountSizer->Add(toTextAmount_, g_flagsExpand);
 
     wxStaticText* amount_label = new wxStaticText(this, wxID_STATIC, _("Amount"));
     amount_label->SetFont(this->GetFont().Bold());

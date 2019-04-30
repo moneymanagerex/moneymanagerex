@@ -367,25 +367,22 @@ void mmBDDialog::SetDialogParameters(const Model_Checking::Full_Data& transactio
 void mmBDDialog::CreateControls()
 {
     wxBoxSizer* mainBoxSizerOuter = new wxBoxSizer(wxVERTICAL);
-    wxBoxSizer* mainBoxSizerInner = new wxBoxSizer(wxHORIZONTAL);
-    wxBoxSizer* repeatTransBoxSizer = new wxBoxSizer(wxVERTICAL);
     this->SetSizer(mainBoxSizerOuter);
+    wxBoxSizer* repeatTransBoxSizer = new wxBoxSizer(wxVERTICAL);
+    wxBoxSizer* mainBoxSizerInner = new wxBoxSizer(wxHORIZONTAL);
 
     /**********************************************************************************************
      Determining where the controls go
     ***********************************************************************************************/
     //mainBoxSizerInner will align contents horizontally
-    mainBoxSizerInner->Add(repeatTransBoxSizer, g_flagsExpand);
-
+    mainBoxSizerInner->Add(repeatTransBoxSizer, g_flagsV);
     //mainBoxSizerOuter will align contents vertically
-    mainBoxSizerOuter->Add(mainBoxSizerInner, g_flagsExpand);
-
-
+    mainBoxSizerOuter->Add(mainBoxSizerInner, g_flagsV);
 
     /* Bills & Deposits Details */
     wxStaticBox* repeatDetailsStaticBox = new wxStaticBox(this, wxID_ANY, _("Recurring Transaction Details"));
     wxStaticBoxSizer* repeatDetailsStaticBoxSizer = new wxStaticBoxSizer(repeatDetailsStaticBox, wxHORIZONTAL);
-    repeatTransBoxSizer->Add(repeatDetailsStaticBoxSizer, 0, wxALIGN_CENTER | wxALL, 5);
+    repeatTransBoxSizer->Add(repeatDetailsStaticBoxSizer, 0, wxALL, 5);
 
     wxFlexGridSizer* itemFlexGridSizer5 = new wxFlexGridSizer(0, 2, 0, 0);
     repeatDetailsStaticBoxSizer->Add(itemFlexGridSizer5);
@@ -442,17 +439,17 @@ void mmBDDialog::CreateControls()
     setRepeatDetails();
 
     /* Auto Execution Status */
-    itemCheckBoxAutoExeUserAck_ = new wxCheckBox(this, ID_DIALOG_BD_CHECKBOX_AUTO_EXECUTE_USERACK,
-        _("Request user to enter payment"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
+    itemCheckBoxAutoExeUserAck_ = new wxCheckBox(this, ID_DIALOG_BD_CHECKBOX_AUTO_EXECUTE_USERACK
+       ,  _("Request user to enter payment"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     itemCheckBoxAutoExeUserAck_->SetToolTip(_("User requested to enter this transaction on the 'Date Paid'"));
 
-    itemCheckBoxAutoExeSilent_ = new wxCheckBox(this, ID_DIALOG_BD_CHECKBOX_AUTO_EXECUTE_SILENT,
-        _("Grant automatic execute"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
+    itemCheckBoxAutoExeSilent_ = new wxCheckBox(this, ID_DIALOG_BD_CHECKBOX_AUTO_EXECUTE_SILENT
+        , _("Grant automatic execute"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     itemCheckBoxAutoExeSilent_->SetToolTip(_("The requested payment will occur without user interaction"));
     itemCheckBoxAutoExeSilent_->Disable();
 
-    repeatTransBoxSizer->Add(itemCheckBoxAutoExeUserAck_, g_flagsV);
-    repeatTransBoxSizer->Add(itemCheckBoxAutoExeSilent_, g_flagsV);
+    repeatTransBoxSizer->Add(itemCheckBoxAutoExeUserAck_, g_flagsExpand);
+    repeatTransBoxSizer->Add(itemCheckBoxAutoExeSilent_, g_flagsExpand);
 
     /**********************************************************************************************
     Button Panel with OK and Cancel Buttons
@@ -468,29 +465,23 @@ void mmBDDialog::CreateControls()
     buttonsPanelSizer->Add(cancelButton, g_flagsH);
     cancelButton->SetFocus();
 
-    mainBoxSizerOuter->Add(buttonsPanel, 0, wxALIGN_CENTER_HORIZONTAL, 5);
+    mainBoxSizerOuter->Add(buttonsPanel, wxSizerFlags(g_flagsV).Center().Border(wxALL, 0));
 
-    /************************************************************************************************************
-    transactionPanel controlled by transPanelSizer - is contained in the transDetailsStaticBoxSizer.
-    *************************************************************************************************************/
+    /*************************************************************************************************************/
+
     wxStaticBox* transDetailsStaticBox = new wxStaticBox(this, wxID_REMOVE, _("Transaction Details"));
     wxStaticBoxSizer* transDetailsStaticBoxSizer = new wxStaticBoxSizer(transDetailsStaticBox, wxVERTICAL);
-    wxPanel* transactionPanel = new wxPanel(this, wxID_MOVE_FRAME, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
-    transDetailsStaticBoxSizer->Add(transactionPanel, g_flagsExpand);
+    wxFlexGridSizer* transPanelSizer = new wxFlexGridSizer(0, 2, 0, 0);
+    transDetailsStaticBoxSizer->Add(transPanelSizer, g_flagsV);
     mainBoxSizerInner->Add(transDetailsStaticBoxSizer, g_flagsExpand);
 
-    wxBoxSizer* box_sizer1 = new wxBoxSizer(wxVERTICAL);
-    transactionPanel->SetSizer(box_sizer1);
-    wxFlexGridSizer* transPanelSizer = new wxFlexGridSizer(0, 2, 0, 0);
-    box_sizer1->Add(transPanelSizer);
-
     // Trans Date --------------------------------------------
-    m_date_due = new wxDatePickerCtrl(transactionPanel, ID_DIALOG_BD_DUE_DATE, wxDefaultDateTime
+    m_date_due = new wxDatePickerCtrl(this, ID_DIALOG_BD_DUE_DATE, wxDefaultDateTime
         , wxDefaultPosition, wxDefaultSize, wxDP_DROPDOWN | wxDP_SHOWCENTURY);
     m_date_due->SetValue(wxDateTime::Now()); // Required for Mac: Does not default to today
     m_date_due->SetToolTip(_("Specify the date when this bill or deposit is due"));
 
-    spinNextOccDate_ = new wxSpinButton(transactionPanel, ID_DIALOG_BD_REPEAT_DATE_SPINNER
+    spinNextOccDate_ = new wxSpinButton(this, ID_DIALOG_BD_REPEAT_DATE_SPINNER
         , wxDefaultPosition, wxSize(-1, m_date_due->GetSize().GetHeight())
         , spinCtrlDirection | wxSP_ARROW_KEYS | wxSP_WRAP);
     spinNextOccDate_->SetToolTip(_("Retard or advance the date of the 'next occurrence'"));
@@ -500,11 +491,11 @@ void mmBDDialog::CreateControls()
     transDateBoxSizer->Add(m_date_due, g_flagsH);
     transDateBoxSizer->Add(spinNextOccDate_, 0, wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL | wxLEFT, interval);
 
-    transPanelSizer->Add(new wxStaticText(transactionPanel, wxID_STATIC, _("Date Paid")), g_flagsH);
+    transPanelSizer->Add(new wxStaticText(this, wxID_STATIC, _("Date Paid")), g_flagsH);
     transPanelSizer->Add(transDateBoxSizer);
 
     // Status --------------------------------------------
-    m_choice_status = new wxChoice(transactionPanel, ID_DIALOG_TRANS_STATUS);
+    m_choice_status = new wxChoice(this, ID_DIALOG_TRANS_STATUS);
 
     for (const auto& i : Model_Billsdeposits::all_status())
     {
@@ -513,13 +504,13 @@ void mmBDDialog::CreateControls()
     m_choice_status->SetSelection(Option::instance().getTransStatusReconciled());
     m_choice_status->SetToolTip(_("Specify the status for the transaction"));
 
-    transPanelSizer->Add(new wxStaticText(transactionPanel, wxID_STATIC, _("Status")), g_flagsH);
+    transPanelSizer->Add(new wxStaticText(this, wxID_STATIC, _("Status")), g_flagsH);
     transPanelSizer->Add(m_choice_status, g_flagsH);
 
     // Type --------------------------------------------
-    m_choice_transaction_type = new wxChoice(transactionPanel, wxID_VIEW_DETAILS);
+    m_choice_transaction_type = new wxChoice(this, wxID_VIEW_DETAILS);
     m_choice_transaction_type->SetToolTip(_("Specify the type of transactions to be created."));
-    cAdvanced_ = new wxCheckBox(transactionPanel, ID_DIALOG_TRANS_ADVANCED_CHECKBOX, _("&Advanced")
+    cAdvanced_ = new wxCheckBox(this, ID_DIALOG_TRANS_ADVANCED_CHECKBOX, _("&Advanced")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     cAdvanced_->SetValue(false);
     cAdvanced_->SetToolTip(_("Allows the setting of different amounts in the FROM and TO accounts."));
@@ -528,21 +519,21 @@ void mmBDDialog::CreateControls()
     typeSizer->Add(m_choice_transaction_type, g_flagsH);
     typeSizer->Add(cAdvanced_, g_flagsH);
 
-    transPanelSizer->Add(new wxStaticText(transactionPanel, wxID_STATIC, _("Type")), g_flagsH);
+    transPanelSizer->Add(new wxStaticText(this, wxID_STATIC, _("Type")), g_flagsH);
     transPanelSizer->Add(typeSizer);
 
     // Amount Fields --------------------------------------------
-    wxStaticText* amount_label = new wxStaticText(transactionPanel, wxID_STATIC, _("Amount"));
+    wxStaticText* amount_label = new wxStaticText(this, wxID_STATIC, _("Amount"));
     amount_label->SetFont(this->GetFont().Bold());
 
-    textAmount_ = new mmTextCtrl(transactionPanel, ID_DIALOG_TRANS_TEXTAMOUNT, ""
+    textAmount_ = new mmTextCtrl(this, ID_DIALOG_TRANS_TEXTAMOUNT, ""
         , wxDefaultPosition, wxDefaultSize, wxALIGN_RIGHT | wxTE_PROCESS_ENTER
         , mmCalcValidator());
     textAmount_->SetToolTip(amountNormalTip_);
     textAmount_->Connect(ID_DIALOG_TRANS_TEXTAMOUNT, wxEVT_COMMAND_TEXT_ENTER
         , wxCommandEventHandler(mmBDDialog::OnTextEntered), nullptr, this);
 
-    toTextAmount_ = new mmTextCtrl(transactionPanel, ID_DIALOG_TRANS_TOTEXTAMOUNT, ""
+    toTextAmount_ = new mmTextCtrl(this, ID_DIALOG_TRANS_TOTEXTAMOUNT, ""
         , wxDefaultPosition, wxDefaultSize, wxALIGN_RIGHT | wxTE_PROCESS_ENTER
         , mmCalcValidator());
     toTextAmount_->SetToolTip(_("Specify the transfer amount in the To Account"));
@@ -550,31 +541,31 @@ void mmBDDialog::CreateControls()
         , wxCommandEventHandler(mmBDDialog::OnTextEntered), nullptr, this);
 
     wxBoxSizer* amountSizer = new wxBoxSizer(wxHORIZONTAL);
-    amountSizer->Add(textAmount_, g_flagsH);
-    amountSizer->Add(toTextAmount_, g_flagsH);
+    amountSizer->Add(textAmount_, g_flagsExpand);
+    amountSizer->Add(toTextAmount_, g_flagsExpand);
 
     transPanelSizer->Add(amount_label, g_flagsH);
     transPanelSizer->Add(amountSizer);
 
     // Account ------------------------------------------------
-    wxStaticText* acc_label = new wxStaticText(transactionPanel, ID_DIALOG_TRANS_STATIC_ACCOUNT, _("Account"));
+    wxStaticText* acc_label = new wxStaticText(this, ID_DIALOG_TRANS_STATIC_ACCOUNT, _("Account"));
     acc_label->SetFont(this->GetFont().Bold());
     transPanelSizer->Add(acc_label, g_flagsH);
-    bAccount_ = new wxButton(transactionPanel, ID_DIALOG_BD_COMBOBOX_ACCOUNTNAME, _("Select Account"));
+    bAccount_ = new wxButton(this, ID_DIALOG_BD_COMBOBOX_ACCOUNTNAME, _("Select Account"));
     bAccount_->SetToolTip(_("Specify the Account that will own the recurring transaction"));
     transPanelSizer->Add(bAccount_, g_flagsExpand);
     // Payee ------------------------------------------------
-    wxStaticText* payee_label = new wxStaticText(transactionPanel, ID_DIALOG_TRANS_STATIC_PAYEE, _("Payee"));
+    wxStaticText* payee_label = new wxStaticText(this, ID_DIALOG_TRANS_STATIC_PAYEE, _("Payee"));
     payee_label->SetFont(this->GetFont().Bold());
 
-    bPayee_ = new wxButton(transactionPanel, ID_DIALOG_TRANS_BUTTONPAYEE, _("Select Payee"));
+    bPayee_ = new wxButton(this, ID_DIALOG_TRANS_BUTTONPAYEE, _("Select Payee"));
     bPayee_->SetToolTip(payeeWithdrawalTip_);
 
     transPanelSizer->Add(payee_label, g_flagsH);
     transPanelSizer->Add(bPayee_, g_flagsExpand);
 
     // Split Category -------------------------------------------
-    cSplit_ = new wxCheckBox(transactionPanel, ID_DIALOG_TRANS_SPLITCHECKBOX, _("Split")
+    cSplit_ = new wxCheckBox(this, ID_DIALOG_TRANS_SPLITCHECKBOX, _("Split")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     cSplit_->SetValue(FALSE);
     cSplit_->SetToolTip(_("Use split Categories"));
@@ -583,9 +574,9 @@ void mmBDDialog::CreateControls()
     transPanelSizer->Add(cSplit_, g_flagsH);
 
     // Category ---------------------------------------------
-    wxStaticText* categ_label = new wxStaticText(transactionPanel, wxID_STATIC, _("Category"));
+    wxStaticText* categ_label = new wxStaticText(this, wxID_STATIC, _("Category"));
     categ_label->SetFont(this->GetFont().Bold());
-    bCategory_ = new wxButton(transactionPanel, ID_DIALOG_TRANS_BUTTONCATEGS, _("Select Category")
+    bCategory_ = new wxButton(this, ID_DIALOG_TRANS_BUTTONCATEGS, _("Select Category")
         , wxDefaultPosition, wxDefaultSize, 0);
     //bCategory_->SetToolTip(_("Specify the category for this transaction"));
 
@@ -593,38 +584,39 @@ void mmBDDialog::CreateControls()
     transPanelSizer->Add(bCategory_, g_flagsExpand);
 
     // Number ---------------------------------------------
-    textNumber_ = new wxTextCtrl(transactionPanel, ID_DIALOG_TRANS_TEXTNUMBER);
+    textNumber_ = new wxTextCtrl(this, ID_DIALOG_TRANS_TEXTNUMBER);
     textNumber_->SetToolTip(_("Specify any associated check number or transaction number"));
 
-    transPanelSizer->Add(new wxStaticText(transactionPanel, wxID_STATIC, _("Number")), g_flagsH);
+    transPanelSizer->Add(new wxStaticText(this, wxID_STATIC, _("Number")), g_flagsH);
     transPanelSizer->Add(textNumber_, g_flagsExpand);
 
     // Notes ---------------------------------------------
-    transPanelSizer->Add(new wxStaticText(transactionPanel, wxID_STATIC, _("Notes")), g_flagsH);
+    transPanelSizer->Add(new wxStaticText(this, wxID_STATIC, _("Notes")), g_flagsH);
 
-    bAttachments_ = new wxBitmapButton(transactionPanel, wxID_FILE
+    bAttachments_ = new wxBitmapButton(this, wxID_FILE
         , mmBitmap(png::CLIP), wxDefaultPosition
         , wxSize(m_btn_due_date->GetSize().GetY(), m_btn_due_date->GetSize().GetY()));
     bAttachments_->SetToolTip(_("Organize attachments of this recurring transaction"));
 
-    wxButton* bFrequentUsedNotes = new wxButton(transactionPanel, ID_DIALOG_TRANS_BUTTON_FREQENTNOTES, "..."
+    wxButton* bFrequentUsedNotes = new wxButton(this, ID_DIALOG_TRANS_BUTTON_FREQENTNOTES, "..."
         , wxDefaultPosition, wxSize(bAttachments_->GetSize().GetX(), -1));
     bFrequentUsedNotes->SetToolTip(_("Select one of the frequently used notes"));
     bFrequentUsedNotes->Connect(ID_DIALOG_TRANS_BUTTON_FREQENTNOTES
         , wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(mmBDDialog::OnFrequentUsedNotes), nullptr, this);
 
     wxBoxSizer* RightAlign_sizer = new wxBoxSizer(wxHORIZONTAL);
+    transPanelSizer->Add(RightAlign_sizer, wxSizerFlags(g_flagsH).Align(wxALIGN_RIGHT).Border(wxALL, 0));
     RightAlign_sizer->Add(bAttachments_, g_flagsH);
     RightAlign_sizer->Add(bFrequentUsedNotes, g_flagsH);
 
-    textNotes_ = new wxTextCtrl(transactionPanel, ID_DIALOG_TRANS_TEXTNOTES, ""
+    textNotes_ = new wxTextCtrl(this, ID_DIALOG_TRANS_TEXTNOTES, ""
         , wxDefaultPosition, wxSize(-1, m_date_due->GetSize().GetHeight() * 5), wxTE_MULTILINE);
     textNotes_->SetToolTip(_("Specify any text notes you want to add to this transaction."));
 
-    transPanelSizer->Add(RightAlign_sizer, wxSizerFlags(g_flagsH).Align(wxALIGN_RIGHT).Border(wxALL, 0));
-    box_sizer1->Add(textNotes_, wxSizerFlags(g_flagsExpand).Border(wxTOP, 5));
+    transDetailsStaticBoxSizer->Add(textNotes_, g_flagsExpand);
 
     Fit();
+    Layout();
     Centre();
 }
 
