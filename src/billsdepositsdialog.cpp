@@ -295,9 +295,6 @@ void mmBDDialog::dataToControls()
         itemCheckBoxAutoExeUserAck_->Disable();
         textNumRepeats_->Disable();
         m_btn_due_date->Disable();
-
-        m_date_due->Disable();
-        spinNextOccDate_->Disable();
     }
 
     setTooltips();
@@ -1430,7 +1427,7 @@ void mmBDDialog::OnDueDateChanged(wxDateEvent& WXUNUSED(event))
     wxDateTime due_date = m_date_due->GetValue();
     wxDateTime paid_date = m_date_paid->GetValue();
 
-    if (paid_date > due_date)
+    if (!m_enter_occur && paid_date > due_date)
     {
         m_date_paid->SetValue(due_date);
     }
