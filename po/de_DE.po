@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-04-11 11:38+0300\n"
-"PO-Revision-Date: 2019-04-19 21:08\n"
+"PO-Revision-Date: 2019-05-04 05:24\n"
 "Last-Translator: Nikolay (vomikan)\n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -1257,7 +1257,7 @@ msgstr "Automatisiert"
 #, c-format
 msgid "%d day remaining"
 msgid_plural "%d days remaining"
-msgstr[0] "%d Tage verbleibend"
+msgstr[0] "%d Tag verbleibend"
 msgstr[1] "%d Tage verbleibend"
 
 #: billsdepositspanel.cpp:514 billsdepositspanel.cpp:520
@@ -1269,14 +1269,14 @@ msgstr "Inaktiv"
 #, c-format
 msgid "%d day delay!"
 msgid_plural "%d days delay!"
-msgstr[0] "%d Tage Verzögerung!"
-msgstr[1] "%d Tage verzōgert!"
+msgstr[0] "%d Tag Verzögerung!"
+msgstr[1] "%d Tage Verzögerung!"
 
 #: billsdepositspanel.cpp:530 mmhomepagepanel.cpp:350
 #, c-format
 msgid "%d day overdue!"
 msgid_plural "%d days overdue!"
-msgstr[0] "%d Tage überfällig!"
+msgstr[0] "%d Tag überfällig!"
 msgstr[1] "%d Tage überfällig!"
 
 #: billsdepositspanel.cpp:626
@@ -1973,8 +1973,8 @@ msgstr "Möchtest Sie den Inhalt auf 'leer' aktualisieren?\n"
 #, c-format
 msgid "%zu occurrence founded and replaced!"
 msgid_plural "%zu occurrences founded and replaced!"
-msgstr[0] "%zu Vorkommnisse gefunden und ersetzt!"
-msgstr[1] "%zu Vorkommnisse gefunden und ersetzt!"
+msgstr[0] "%zu Vorkommmen gefunden und ersetzt!"
+msgstr[1] "%zu Vorkommmen gefunden und ersetzt!"
 
 #: customfieldlistdialog.cpp:266
 msgid "&Massive content update "
@@ -2536,8 +2536,8 @@ msgstr "Neue Vorlage"
 #, c-format
 msgid "%zu row returned, duration: %lld ms"
 msgid_plural "%zu rows returned, duration: %lld ms"
-msgstr[0] "%zu Zeilen verarbeitet, Dauer: %lld ms"
-msgstr[1] "%zu Zeilen verarbeitet, Dauer: %lld ms"
+msgstr[0] "%zu Zeile gefunden, Dauer: %lld ms"
+msgstr[1] "%zu Zeilen gefunden, Dauer: %lld ms"
 
 #: general_report_manager.cpp:528
 msgid "SQL Syntax Error"
