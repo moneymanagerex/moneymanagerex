@@ -856,10 +856,18 @@ void  mmStockDialog::OnListValueEditingDone(wxDataViewEvent& event)
 {
     unsigned int col = event.GetColumn();
     unsigned int row = m_price_listbox->GetSelectedRow();
-
-    wxVariant value;
-    m_price_listbox->GetValue(value, row, col);
-    m_current_value = value.GetString();
+    int count = m_price_listbox->GetItemCount();
+    if (row >= 0 && row < count)
+    {
+        wxVariant value;
+        m_price_listbox->GetValue(value, row, col);
+        m_current_value = value.GetString();
+        m_price_listbox->SelectRow(row);
+    }
+    else
+    {
+        event.Veto();
+    }
 }
 
 void  mmStockDialog::OnListValueChanged(wxDataViewEvent& event)
