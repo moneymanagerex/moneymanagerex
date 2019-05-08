@@ -21,11 +21,11 @@
 
 #include <wx/dialog.h>
 #include "Model_Stock.h"
+#include <wx/dataview.h>
+
 class wxDatePickerCtrl;
 class mmTextCtrl;
 class mmGUIFrame;
-class wxListCtrl;
-class wxListEvent;
 class wxDateEvent;
 class wxStaticText;
 class wxBitmapButton;
@@ -64,10 +64,11 @@ private:
     void OnHistoryDownloadButton(wxCommandEvent& event);
     void OnHistoryAddButton(wxCommandEvent& event);
     void OnHistoryDeleteButton(wxCommandEvent& event);
-    void OnListItemSelected(wxListEvent& event);
     void OnFocusChange(wxChildFocusEvent& event);
     void OnDateChanged(wxDateEvent& WXUNUSED(event));
-    void OnSharePriceChanged(wxCommandEvent& WXUNUSED(event));
+    void OnListValueEditingDone(wxDataViewEvent& event);
+    void OnListValueChanged(wxDataViewEvent& event);
+    void OnTextEntered(wxCommandEvent& event);
 
     void CreateControls();
     void UpdateControls();
@@ -83,15 +84,22 @@ private:
     wxStaticText* m_share_price_txt;
     mmTextCtrl* m_notes_ctrl;
     mmTextCtrl* m_current_price_ctrl;
-    wxDatePickerCtrl* m_current_date_ctrl;
+    mmTextCtrl* m_hist_price_ctrl;
+    wxDatePickerCtrl* m_hist_date_ctrl;
     wxStaticText* m_value_investment;
     mmTextCtrl* m_commission_ctrl;
     wxBitmapButton* m_bAttachments;
-    wxListCtrl* m_price_listbox;
+    wxDataViewListCtrl* m_price_listbox;
 
     Model_Stock::Data* m_stock;
     bool m_edit;
+    bool debug_;
     int m_account_id;
+    wxString m_decimal_point;
+    int m_precision;
+    Model_Account::Data* m_account;
+    Model_Currency::Data* m_currency;
+    wxString m_current_value;
     mmGUIFrame* m_gui_frame;
     enum
     {
@@ -104,7 +112,6 @@ private:
         ID_STATIC_STOCK_VALUE,
         ID_TEXTCTRL_STOCK_COMMISSION,
         ID_DIALOG_STOCKS,
-        ID_DPC_CP_PDATE,
         ID_BUTTON_IMPORT,
         ID_BUTTON_DOWNLOAD
     };

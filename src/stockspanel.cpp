@@ -614,7 +614,7 @@ void mmStocksPanel::CreateControls()
 
     //Infobar-mini
     stock_details_short_ = new wxStaticText(BottomPanel, wxID_STATIC, strLastUpdate_);
-    BoxSizerHBottom->Add(stock_details_short_, 1, wxGROW | wxTOP | wxLEFT, 5);
+    BoxSizerHBottom->Add(stock_details_short_, g_flagsExpand);
     //Infobar
     stock_details_ = new wxStaticText(BottomPanel, wxID_STATIC, ""
         , wxDefaultPosition, wxSize(200, -1), wxTE_MULTILINE | wxTE_WORDWRAP);
@@ -936,8 +936,7 @@ wxString StocksListCtrl::getStockInfo(int selectedIndex) const
 
     wxString miniInfo = "";
     if (m_stocks[selectedIndex].SYMBOL != "")
-        miniInfo << "\t" << wxString::Format(_("Symbol: %s"), m_stocks[selectedIndex].SYMBOL) << "\t\t";
-    miniInfo << wxString::Format(_("Total: %s"), " (" + sTotalNumShares + ") ");
+        miniInfo << wxString::Format(_("Symbol: %s"), m_stocks[selectedIndex].SYMBOL) << "\t";
     m_stock_panel->stock_details_short_->SetLabelText(miniInfo);
 
     //Selected share info

@@ -93,7 +93,6 @@ void mmAttachmentDialog::Create(wxWindow* parent, const wxString& name)
     fillControls();
     GetSizer()->Fit(this);
     GetSizer()->SetSizeHints(this);
-    fillControls();
     SetIcon(mmex::getProgramIcon());
     Centre();
 }
