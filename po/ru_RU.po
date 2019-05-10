@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-04-11 11:38+0300\n"
-"PO-Revision-Date: 2019-05-06 16:54\n"
+"PO-Revision-Date: 2019-05-07 23:15\n"
 "Last-Translator: Nikolay (vomikan)\n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -5977,7 +5977,7 @@ msgstr "Введите название акционерной компании"
 
 #: sharetransactiondialog.cpp:202 stockdialog.cpp:202
 msgid "Stock Symbol"
-msgstr "Символы актива"
+msgstr "Тикер"
 
 #: sharetransactiondialog.cpp:209
 msgid "Enter the stock symbol. (Optional) Include exchange. eg: IBM.BE"
@@ -6017,7 +6017,7 @@ msgstr "Менеджер воложений для инвестиций"
 
 #: sharetransactiondialog.cpp:262 stockdialog.cpp:283
 msgid "Display the web page for the specified Stock symbol"
-msgstr "Отобразит веб-страницу для выбранного тикера"
+msgstr "Открыть веб-страницу для выбранного тикера"
 
 #: sharetransactiondialog.cpp:272 stockdialog.cpp:290
 msgid "Enter notes associated with this investment"
