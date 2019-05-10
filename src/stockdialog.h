@@ -62,30 +62,35 @@ private:
     void OnStockPriceButton(wxCommandEvent& event);
     void OnHistoryImportButton(wxCommandEvent& event);
     void OnHistoryDownloadButton(wxCommandEvent& event);
-    void OnHistoryAddButton(wxCommandEvent& event);
-    void OnHistoryDeleteButton(wxCommandEvent& event);
     void OnFocusChange(wxChildFocusEvent& event);
-    void OnDateChanged(wxDateEvent& WXUNUSED(event));
+    void OnSelectionChanged(wxDataViewEvent& event);
     void OnListValueEditingDone(wxDataViewEvent& event);
     void OnListValueChanged(wxDataViewEvent& event);
     void OnTextEntered(wxCommandEvent& event);
+    void OnMagicButton(wxCommandEvent& event);
+    void OnItemRightClick(wxDataViewEvent& event);
+    void OnMenuSelected(wxCommandEvent& event);
+    void OnHistoryAddUpdateEntry(wxCommandEvent& event);
+
+    void OnMenuAddSelected();
+    void OnHistoryDelete();
 
     void CreateControls();
     void UpdateControls();
     void DataToControls();
-    void ShowStockHistory();
+    void RefreshStockHistory();
     void CreateShareAccount(Model_Account::Data* stock_account);
 
     mmTextCtrl* m_stock_name_ctrl;
     mmTextCtrl* m_stock_symbol_ctrl;
     wxDatePickerCtrl* m_purchase_date_ctrl;
+    wxDatePickerCtrl* m_history_date_ctrl;
+    mmTextCtrl* m_exchange_text;
     mmTextCtrl* m_num_shares_ctrl;
     mmTextCtrl* m_share_price_ctrl;
     wxStaticText* m_share_price_txt;
     mmTextCtrl* m_notes_ctrl;
     mmTextCtrl* m_current_price_ctrl;
-    mmTextCtrl* m_hist_price_ctrl;
-    wxDatePickerCtrl* m_hist_date_ctrl;
     wxStaticText* m_value_investment;
     mmTextCtrl* m_commission_ctrl;
     wxBitmapButton* m_bAttachments;
@@ -107,13 +112,21 @@ private:
         ID_TEXTCTRL_STOCKNAME,
         ID_TEXTCTRL_STOCK_SYMBOL,
         ID_TEXTCTRL_NUMBER_SHARES,
+        ID_TEXTCTRL_HIST_EXCHRATE,
         ID_TEXTCTRL_STOCK_PP,
         ID_TEXTCTRL_STOCK_CP,
         ID_STATIC_STOCK_VALUE,
         ID_TEXTCTRL_STOCK_COMMISSION,
         ID_DIALOG_STOCKS,
         ID_BUTTON_IMPORT,
-        ID_BUTTON_DOWNLOAD
+        ID_BUTTON_DOWNLOAD,
+        ID_HIST_PANEL
+    };
+    enum menu_items
+    {
+        MENU_NEW_ENTRY = 1,
+        MENU_EDIT_ATTACHMENT,
+        MENU_DELETE_ENTRY,
     };
 };
 
