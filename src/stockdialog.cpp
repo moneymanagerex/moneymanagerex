@@ -81,9 +81,12 @@ mmStockDialog::mmStockDialog(wxWindow* parent
     , debug_(false)
 #endif
 {
+    if (m_stock)
+        m_account_id = m_stock->HELDAT;
+
     long style = wxCAPTION | wxRESIZE_BORDER | wxSYSTEM_MENU | wxCLOSE_BOX;
 
-    m_account = Model_Account::instance().get(m_stock->HELDAT);
+    m_account = Model_Account::instance().get(m_account_id);
     if (m_account) {
         m_currency = Model_Account::currency(m_account);
     }
@@ -318,6 +321,7 @@ void mmStockDialog::CreateControls()
     if (debug_) m_price_listbox->AppendTextColumn(_("#"), wxDATAVIEW_CELL_INERT, 30);
     m_price_listbox->AppendTextColumn(_("Date"));
     m_price_listbox->AppendTextColumn(_("Price"), wxDATAVIEW_CELL_EDITABLE);
+    m_price_listbox->AppendTextColumn("");
 
     //History Buttons
     wxPanel* buttons_panel = new wxPanel(this, wxID_ANY);
@@ -832,10 +836,12 @@ void mmStockDialog::ShowStockHistory()
         {
             const wxDate dtdt = Model_StockHistory::DATE(d);
             const wxString dispAmount = Model_Account::toString(d.VALUE, m_account, m_precision);
+            const wxString manual = d.UPDTYPE == Model_StockHistory::MANUAL ? "*" : "";
             wxVector<wxVariant> data;
             if (debug_) data.push_back(wxVariant(wxString::Format("%i", d.HISTID)));
             data.push_back(wxVariant(mmGetDateForDisplay(dtdt.FormatISODate())));
             data.push_back(wxVariant(dispAmount));
+            data.push_back(wxVariant(manual));
             m_price_listbox->AppendItem(data, static_cast<wxUIntPtr>(d.HISTID));
         }
     }
@@ -856,7 +862,7 @@ void  mmStockDialog::OnListValueEditingDone(wxDataViewEvent& event)
 {
     unsigned int col = event.GetColumn();
     unsigned int row = m_price_listbox->GetSelectedRow();
-    int count = m_price_listbox->GetItemCount();
+    unsigned int count = static_cast<unsigned int>(m_price_listbox->GetItemCount());
     if (row >= 0 && row < count)
     {
         wxVariant value;
@@ -894,6 +900,7 @@ void  mmStockDialog::OnListValueChanged(wxDataViewEvent& event)
         {
             m_current_value = amount;
             m_price_listbox->SetValue(wxVariant(amount), row, col);
+            m_price_listbox->SetValue(wxVariant("*"), row, col);
 
             wxDataViewItem item = m_price_listbox->GetSelection();
             int hist_id = static_cast<int>(m_price_listbox->GetItemData(item));
