@@ -78,7 +78,7 @@ private:
     void CreateControls();
     void UpdateControls();
     void DataToControls();
-    void RefreshStockHistory();
+    void RefreshStockHistory(const wxString& symbol);
     void CreateShareAccount(Model_Account::Data* stock_account);
 
     mmTextCtrl* m_stock_name_ctrl;
