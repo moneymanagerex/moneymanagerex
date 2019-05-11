@@ -930,13 +930,13 @@ void mmStockDialog::OnSelectionChanged(wxDataViewEvent& event)
 
 void  mmStockDialog::OnListValueEditingDone(wxDataViewEvent & event)
 {
-    unsigned int col = event.GetColumn();
-    unsigned int row = m_price_listbox->GetSelectedRow();
-    unsigned int count = static_cast<unsigned int>(m_price_listbox->GetItemCount());
+    int col = event.GetColumn();
+    int row = m_price_listbox->GetSelectedRow();
+    int count = m_price_listbox->GetItemCount();
     if (row >= 0 && row < count)
     {
         wxVariant value;
-        m_price_listbox->GetValue(value, row, col);
+        m_price_listbox->GetValue(value, static_cast<unsigned int>(row), static_cast<unsigned int>(col));
         m_current_value = value.GetString();
         m_price_listbox->SelectRow(row);
     }
