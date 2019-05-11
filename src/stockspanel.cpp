@@ -857,8 +857,10 @@ bool mmStocksPanel::onlineQuoteRefresh(wxString& msg)
     for (auto &s : stock_list)
     {
         std::map<wxString, double>::const_iterator it = stocks_data.find(s.SYMBOL.Upper());
-        if (it == stocks_data.end())
+        if (it == stocks_data.end()) {
             continue;
+        }
+
         double dPrice = it->second;
 
         if (dPrice != 0)

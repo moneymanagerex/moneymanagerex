@@ -835,11 +835,11 @@ void mmStockDialog::OnHistoryAddUpdateEntry(wxCommandEvent & WXUNUSED(event))
     }
     else
     {
-        Model_StockHistory::Data* stockHistуEntry = Model_StockHistory::instance().get(entries.begin()->SYMBOL, date);
-        stockHistуEntry->DATE = date.FormatISODate();
-        stockHistуEntry->VALUE = price;
-        stockHistуEntry->UPDTYPE = Model_StockHistory::MANUAL;
-        Model_StockHistory::instance().save(stockHistуEntry);
+        Model_StockHistory::Data* stockHistyEntry = Model_StockHistory::instance().get(entries.begin()->SYMBOL, date);
+        stockHistyEntry->DATE = date.FormatISODate();
+        stockHistyEntry->VALUE = price;
+        stockHistyEntry->UPDTYPE = Model_StockHistory::MANUAL;
+        Model_StockHistory::instance().save(stockHistyEntry);
     }
 
     //Hide fields afrer usage
