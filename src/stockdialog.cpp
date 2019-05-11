@@ -183,7 +183,7 @@ void mmStockDialog::UpdateControls()
         m_share_price_txt->SetToolTip(_("Invalid in this view.\nView Transactions for values"));
 
     const wxString symbol = m_stock_symbol_ctrl->GetValue().Upper();
-    if (!symbol.empty())
+    if (!symbol.empty() && m_price_listbox->GetItemCount() == 0)
     {
         m_stock_symbol_ctrl->SetValue(symbol);
         RefreshStockHistory(symbol);
@@ -905,7 +905,13 @@ void mmStockDialog::RefreshStockHistory(const wxString& symbol)
             data.push_back(wxVariant(manual));
             m_price_listbox->AppendItem(data, static_cast<wxUIntPtr>(d.HISTID));
         }
+
+        //wxDateTime dt = mmParseISODate(histData.begin()->DATE);
+        double amount = histData.begin()->VALUE;
+        //wxLogDebug("Date: %s | %.2f", dt.FormatISODate(), amount);
+        m_current_price_ctrl->SetValue(amount, m_precision);
     }
+
 }
 
 void mmStockDialog::OnFocusChange(wxChildFocusEvent & event)
