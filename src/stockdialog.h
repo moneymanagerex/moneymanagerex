@@ -81,25 +81,26 @@ private:
     void RefreshStockHistory(const wxString& symbol);
     void CreateShareAccount(Model_Account::Data* stock_account);
 
-    mmTextCtrl* m_stock_name_ctrl;
     mmTextCtrl* m_stock_symbol_ctrl;
-    wxDatePickerCtrl* m_purchase_date_ctrl;
-    wxDatePickerCtrl* m_history_date_ctrl;
-    mmTextCtrl* m_exchange_text;
-    mmTextCtrl* m_num_shares_ctrl;
-    mmTextCtrl* m_share_price_ctrl;
+    mmTextCtrl* m_stock_name_ctrl;
+    wxDatePickerCtrl* m_purchase_date_ctrl; //*Date
+    mmTextCtrl* m_num_shares_ctrl; //*Share Number
+    mmTextCtrl* m_share_price_ctrl; //*Share Price
     wxStaticText* m_share_price_txt;
-    mmTextCtrl* m_notes_ctrl;
-    mmTextCtrl* m_current_price_ctrl;
-    wxStaticText* m_value_investment;
     mmTextCtrl* m_commission_ctrl;
+    mmTextCtrl* m_current_price_ctrl;
+    mmTextCtrl* m_notes_ctrl;
+    wxStaticText* m_value_investment; //Current Value
     wxBitmapButton* m_bAttachments;
     wxDataViewListCtrl* m_price_listbox;
+    wxDatePickerCtrl* m_history_date_ctrl;
+    mmTextCtrl* m_exchange_text;
 
     Model_Stock::Data* m_stock;
     bool m_edit;
     bool debug_;
     int m_account_id;
+    int m_object_in_focus;
     wxString m_decimal_point;
     int m_precision;
     Model_Account::Data* m_account;
