@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-05-15 17:05+0300\n"
-"PO-Revision-Date: 2019-05-15 19:35\n"
+"PO-Revision-Date: 2019-05-15 20:05\n"
 "Last-Translator: Nikolay (vomikan)\n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -6252,11 +6252,11 @@ msgstr "Aktienentwicklung Fehler"
 
 #: stockdialog.cpp:1052
 msgid "Add/Update Stock Price history"
-msgstr ""
+msgstr "Aktienkursentwicklung hinzufügen/aktualisieren"
 
 #: stockdialog.cpp:1053
 msgid "Delete selected Stock Prices"
-msgstr ""
+msgstr "Ausgewählten Aktienkurs löschen"
 
 #: stockspanel.cpp:36
 msgid "Using MMEX it is possible to track stocks/mutual funds investments."
