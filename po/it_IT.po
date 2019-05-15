@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-05-15 17:05+0300\n"
-"PO-Revision-Date: 2019-05-15 14:15\n"
+"PO-Revision-Date: 2019-05-15 16:51\n"
 "Last-Translator: Nikolay (vomikan)\n"
 "Language-Team: Italian\n"
 "MIME-Version: 1.0\n"
@@ -2910,7 +2910,7 @@ msgstr "Importazione conclusa con successo"
 #: import_export/qif_import_gui.cpp:890
 #, c-format
 msgid "Total Imported: %zu"
-msgstr ""
+msgstr "Totale importato: %zu"
 
 #: import_export/qif_import_gui.cpp:898 import_export/univcsvdialog.cpp:995
 msgid "Imported transactions discarded by user!"
@@ -4866,7 +4866,7 @@ msgstr "Periodo successivo"
 
 #: mmreportspanel.cpp:421
 msgid "Accounts:"
-msgstr ""
+msgstr "Account:"
 
 #: mmreportspanel.cpp:426 reports/reportbase.cpp:262
 msgid "All Accounts"
@@ -5696,7 +5696,7 @@ msgstr "Conferma sostituzione beneficiario"
 #: reports/budget.cpp:84
 #, c-format
 msgid "Financial Year: %s - %i"
-msgstr ""
+msgstr "Anno finanziario: %s - %i"
 
 #: reports/budgetcategorysummary.cpp:131
 #, c-format
@@ -5761,8 +5761,8 @@ msgstr "Totale mensile"
 #, c-format
 msgid "Cash Flow Forecast for %i Year Ahead"
 msgid_plural "Cash Flow Forecast for %i Years Ahead"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Previsione del Flusso di Cassa per il prossimo %i Anno"
+msgstr[1] "Previsione del Flusso di Cassa per i prossimi %i anni"
 
 #: reports/cashflow.cpp:273 reports/incexpenses.cpp:208 reports/payee.cpp:125
 msgid "Difference"
@@ -6252,11 +6252,11 @@ msgstr "Errore andamento azioni"
 
 #: stockdialog.cpp:1052
 msgid "Add/Update Stock Price history"
-msgstr ""
+msgstr "Aggiungi/Aggiorna andamento valore azioni"
 
 #: stockdialog.cpp:1053
 msgid "Delete selected Stock Prices"
-msgstr ""
+msgstr "Elimina i valori selezionati"
 
 #: stockspanel.cpp:36
 msgid "Using MMEX it is possible to track stocks/mutual funds investments."
