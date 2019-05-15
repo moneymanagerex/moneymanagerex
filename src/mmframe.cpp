@@ -215,7 +215,7 @@ mmGUIFrame::mmGUIFrame(mmGUIApp* app, const wxString& title
     // tell wxAuiManager to manage this frame
     m_mgr.SetManagedWindow(this);
     SetIcon(mmex::getProgramIcon());
-    SetMinSize(wxSize(480, 275));
+    SetMinSize(wxSize(640, 480));
 
 #if (wxMAJOR_VERSION == 3 && wxMINOR_VERSION >= 1)
     // Initialize code to turn on Mac OS X Fullscreen capabilities (Lion and up only)
