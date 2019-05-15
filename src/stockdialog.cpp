@@ -251,7 +251,7 @@ void mmStockDialog::CreateControls()
 
     m_stock_symbol_ctrl = new mmTextCtrl(itemPanel5, ID_TEXTCTRL_STOCK_SYMBOL
         , "", wxDefaultPosition, wxDefaultSize, 0);
-    itemFlexGridSizer6->Add(m_stock_symbol_ctrl, g_flagsH);
+    itemFlexGridSizer6->Add(m_stock_symbol_ctrl, g_flagsExpand);
 
     // Name
     wxStaticText* company_name_txt = new wxStaticText(itemPanel5, wxID_STATIC, _("Company Name"));
@@ -263,7 +263,7 @@ void mmStockDialog::CreateControls()
     wxStaticText * date_txt = new wxStaticText(itemPanel5, wxID_STATIC, _("*Date"));
     itemFlexGridSizer6->Add(date_txt, g_flagsH);
     m_purchase_date_ctrl = new wxDatePickerCtrl(itemPanel5, ID_DPC_STOCK_PDATE
-        , wxDefaultDateTime, wxDefaultPosition, wxSize(150, -1), wxDP_DROPDOWN | wxDP_SHOWCENTURY);
+        , wxDefaultDateTime, wxDefaultPosition, wxDefaultSize, wxDP_DROPDOWN | wxDP_SHOWCENTURY);
 
     itemFlexGridSizer6->Add(m_purchase_date_ctrl, g_flagsH);
 
@@ -273,7 +273,7 @@ void mmStockDialog::CreateControls()
     number_txt->SetFont(this->GetFont().Bold());
     m_num_shares_ctrl = new mmTextCtrl(itemPanel5, ID_TEXTCTRL_NUMBER_SHARES, ""
         , wxDefaultPosition, wxSize(150, -1), wxALIGN_RIGHT | wxTE_PROCESS_ENTER, mmCalcValidator());
-    itemFlexGridSizer6->Add(m_num_shares_ctrl, g_flagsH);
+    itemFlexGridSizer6->Add(m_num_shares_ctrl, g_flagsExpand);
 
     //Purchase Price
     m_share_price_txt = new wxStaticText(itemPanel5, wxID_STATIC, _("*Share Price"));
@@ -282,21 +282,21 @@ void mmStockDialog::CreateControls()
     m_share_price_txt->SetFont(this->GetFont().Bold());
     m_share_price_ctrl = new mmTextCtrl(itemPanel5, ID_TEXTCTRL_STOCK_PP, ""
         , wxDefaultPosition, wxDefaultSize, wxALIGN_RIGHT | wxTE_PROCESS_ENTER, mmCalcValidator());
-    itemFlexGridSizer6->Add(m_share_price_ctrl, g_flagsH);
+    itemFlexGridSizer6->Add(m_share_price_ctrl, g_flagsExpand);
 
     //Commission
     wxStaticText * commission_txt = new wxStaticText(itemPanel5, wxID_STATIC, _("*Commission"));
     itemFlexGridSizer6->Add(commission_txt, g_flagsH);
     m_commission_ctrl = new mmTextCtrl(itemPanel5, ID_TEXTCTRL_STOCK_COMMISSION, "0", wxDefaultPosition
         , wxDefaultSize, wxALIGN_RIGHT | wxTE_PROCESS_ENTER, mmCalcValidator(), m_currency, "commission_ctrl");
-    itemFlexGridSizer6->Add(m_commission_ctrl, g_flagsH);
+    itemFlexGridSizer6->Add(m_commission_ctrl, g_flagsExpand);
 
     //Current Price
     wxStaticText * current_price_txt = new wxStaticText(itemPanel5, wxID_STATIC, _("Current Price"));
     itemFlexGridSizer6->Add(current_price_txt, g_flagsH);
     m_current_price_ctrl = new mmTextCtrl(itemPanel5, ID_TEXTCTRL_STOCK_CP, ""
         , wxDefaultPosition, wxSize(150, -1), wxALIGN_RIGHT | wxTE_PROCESS_ENTER, mmCalcValidator());
-    itemFlexGridSizer6->Add(m_current_price_ctrl, g_flagsH);
+    itemFlexGridSizer6->Add(m_current_price_ctrl, g_flagsExpand);
 
     //Current Value
     itemFlexGridSizer6->Add(new wxStaticText(itemPanel5, wxID_STATIC, _("Current Value")), g_flagsH);

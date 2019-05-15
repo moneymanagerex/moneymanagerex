@@ -196,11 +196,11 @@ double StocksListCtrl::GetGainLoss(long item) const
 {
     if (m_stocks[item].PURCHASEPRICE == 0)
     {
-        return m_stocks[item].NUMSHARES * m_stocks[item].CURRENTPRICE - (m_stocks[item].VALUE + m_stocks[item].COMMISSION);
+        return m_stocks[item].NUMSHARES * m_stocks[item].CURRENTPRICE - m_stocks[item].VALUE;
     }
     else
     {
-        return m_stocks[item].NUMSHARES * m_stocks[item].CURRENTPRICE - ((m_stocks[item].NUMSHARES * m_stocks[item].PURCHASEPRICE) + m_stocks[item].COMMISSION);
+        return m_stocks[item].NUMSHARES * (m_stocks[item].CURRENTPRICE - m_stocks[item].PURCHASEPRICE);
     }
 }
 
@@ -659,8 +659,8 @@ void StocksListCtrl::sortTable()
         std::stable_sort(m_stocks.begin(), m_stocks.end()
             , [](const Model_Stock::Data& x, const Model_Stock::Data& y)
         {
-            double valueX = x.VALUE - (x.VALUE + x.COMMISSION);
-            double valueY = y.VALUE - (y.VALUE + y.COMMISSION);
+            double valueX = x.CURRENTPRICE - x.VALUE;
+            double valueY = y.CURRENTPRICE - y.VALUE;
             return valueX < valueY;
         });
         break;
@@ -903,61 +903,35 @@ void mmStocksPanel::updateExtraStocksData(int selectedIndex)
 
 wxString StocksListCtrl::getStockInfo(int selectedIndex) const
 {
-    int purchasedTime = 0;
-    double stocktotalnumShares = 0;
-    double stockavgPurchasePrice = 0;
-    for (const auto& s: Model_Stock::instance().find(Model_Stock::SYMBOL(m_stocks[selectedIndex].SYMBOL)))
+    const auto currency = m_stock_panel->m_currency;
+    const auto symbol = m_stocks[selectedIndex].SYMBOL;
+
+    double total_purchase_price = 0;
+    double total_current_price = 0;
+    double total_shares = 0;
+    for (const auto& s: Model_Stock::instance().find(Model_Stock::SYMBOL(symbol)))
     {
-        purchasedTime++;
-        stocktotalnumShares += s.NUMSHARES;
-        stockavgPurchasePrice += s.VALUE;
+        total_shares += s.NUMSHARES;
+        total_purchase_price += s.VALUE * s.NUMSHARES;
+        total_current_price += s.CURRENTPRICE * s.NUMSHARES;
     }
-    stockavgPurchasePrice /= stocktotalnumShares;
 
-    double numShares = m_stocks[selectedIndex].NUMSHARES;
-    wxString sNumShares = wxString::Format("%.*f",
-        (trunc(numShares) == numShares) ? 0 : 4, numShares);
-    wxString sTotalNumShares = wxString::Format("%.*f",
-        (trunc(stocktotalnumShares) == stocktotalnumShares) ? 0 : 4, stocktotalnumShares);
-
-    double stockPurchasePrice = m_stocks[selectedIndex].PURCHASEPRICE;
-    double stockCurrentPrice = m_stocks[selectedIndex].CURRENTPRICE;
-    double stockDifference = stockCurrentPrice - stockPurchasePrice;
-
-    double stocktotalDifference = stockCurrentPrice - stockavgPurchasePrice;
-    //Commision don't calculates here
-    double stockPercentage = (stockCurrentPrice / stockPurchasePrice - 1.0)*100.0;
-    double stocktotalPercentage = (stockCurrentPrice / stockavgPurchasePrice - 1.0)*100.0;
-    double stocktotalgainloss = stocktotalDifference * stocktotalnumShares;
-
-    const wxString& sPurchasePrice = Model_Currency::toCurrency(stockPurchasePrice, m_stock_panel->m_currency, 4);
-    const wxString& sAvgPurchasePrice = Model_Currency::toCurrency(stockavgPurchasePrice, m_stock_panel->m_currency, 4);
-    const wxString& sCurrentPrice = Model_Currency::toCurrency(stockCurrentPrice, m_stock_panel->m_currency, 4);
-    const wxString& sDifference = Model_Currency::toCurrency(stockDifference, m_stock_panel->m_currency, 4);
-    const wxString& sTotalDifference = Model_Currency::toCurrency(stocktotalDifference);
+    double diff = total_current_price - total_purchase_price;
+    const wxString& sTotalCurrentPrice = Model_Currency::toCurrency(total_current_price, currency);
+    const wxString& sGainLostAmount = Model_Currency::toCurrency(abs(diff), currency);
+    double total_percentage = 100.0 * (1 - total_purchase_price / total_current_price);
 
     wxString miniInfo = "";
     if (m_stocks[selectedIndex].SYMBOL != "")
         miniInfo << wxString::Format(_("Symbol: %s"), m_stocks[selectedIndex].SYMBOL) << "\t";
     m_stock_panel->stock_details_short_->SetLabelText(miniInfo);
 
-    //Selected share info
-    wxString additionInfo = wxString::Format("|%s - %s| = %s, %s * %s = %s ( %s %% )\n"
-        , sCurrentPrice, sPurchasePrice, sDifference
-        , sDifference, sNumShares
-        , Model_Currency::toCurrency(GetGainLoss(selectedIndex))
-        , wxNumberFormatter::ToString(stockPercentage, 2));
-
     //Summary for account for selected symbol
-    if (purchasedTime > 1)
-    {
-        additionInfo += wxString::Format( "|%s - %s| = %s, %s * %s = %s ( %s %% )\n%s"
-            ,  sCurrentPrice, sAvgPurchasePrice, sTotalDifference
-            , sTotalDifference, sTotalNumShares
-            , Model_Currency::toCurrency(stocktotalgainloss)
-            , wxNumberFormatter::ToString(stocktotalPercentage, 2)
-            , OnGetItemText(selectedIndex, COL_NOTES));
-    }
+    wxString additionInfo = wxString::Format("%s %s ( %s %% )\n%s"
+        , wxString::Format(_("Total: %s"), sTotalCurrentPrice)
+        , wxString::Format(diff > 0 ? _("Gain: %s") : _("Loss: %s"), sGainLostAmount)
+        , wxNumberFormatter::ToString(total_percentage, 2)
+        , OnGetItemText(selectedIndex, COL_NOTES));
     return additionInfo;
 }
 void mmStocksPanel::enableEditDeleteButtons(bool en)
