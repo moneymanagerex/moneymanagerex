@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-05-15 17:05+0300\n"
-"PO-Revision-Date: 2019-05-15 14:14\n"
+"PO-Revision-Date: 2019-05-15 19:35\n"
 "Last-Translator: Nikolay (vomikan)\n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -2911,7 +2911,7 @@ msgstr "Import fertig beendet"
 #: import_export/qif_import_gui.cpp:890
 #, c-format
 msgid "Total Imported: %zu"
-msgstr ""
+msgstr "Insgesamt importiert: %zu"
 
 #: import_export/qif_import_gui.cpp:898 import_export/univcsvdialog.cpp:995
 msgid "Imported transactions discarded by user!"
@@ -4865,7 +4865,7 @@ msgstr "Nächster Zeitraum"
 
 #: mmreportspanel.cpp:421
 msgid "Accounts:"
-msgstr ""
+msgstr "Konten:"
 
 #: mmreportspanel.cpp:426 reports/reportbase.cpp:262
 msgid "All Accounts"
@@ -5696,7 +5696,7 @@ msgstr "Zahlungsempfänger/Zahler verschieben Bestätigung"
 #: reports/budget.cpp:84
 #, c-format
 msgid "Financial Year: %s - %i"
-msgstr ""
+msgstr "Geschäftsjahr: %s - %i"
 
 #: reports/budgetcategorysummary.cpp:131
 #, c-format
@@ -5761,8 +5761,8 @@ msgstr "Monatlich Gesamt"
 #, c-format
 msgid "Cash Flow Forecast for %i Year Ahead"
 msgid_plural "Cash Flow Forecast for %i Years Ahead"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Geldfluss-Prognosen %i Jahre im Voraus"
+msgstr[1] "Geldfluss-Prognosen für %i Jahr(e) im Voraus"
 
 #: reports/cashflow.cpp:273 reports/incexpenses.cpp:208 reports/payee.cpp:125
 msgid "Difference"
