@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-05-15 17:05+0300\n"
-"PO-Revision-Date: 2019-05-15 14:15\n"
+"PO-Revision-Date: 2019-05-15 14:45\n"
 "Last-Translator: Nikolay (vomikan)\n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -2909,7 +2909,7 @@ msgstr "Importation terminée correctement"
 #: import_export/qif_import_gui.cpp:890
 #, c-format
 msgid "Total Imported: %zu"
-msgstr ""
+msgstr "Total importé: %zu"
 
 #: import_export/qif_import_gui.cpp:898 import_export/univcsvdialog.cpp:995
 msgid "Imported transactions discarded by user!"
@@ -4866,7 +4866,7 @@ msgstr "Période suivante:"
 
 #: mmreportspanel.cpp:421
 msgid "Accounts:"
-msgstr ""
+msgstr "Comptes:"
 
 #: mmreportspanel.cpp:426 reports/reportbase.cpp:262
 msgid "All Accounts"
