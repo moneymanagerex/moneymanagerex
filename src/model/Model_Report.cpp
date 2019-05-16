@@ -187,8 +187,6 @@ bool Model_Report::PrepareSQL(wxString& sql, std::map <wxString, wxString>& rep_
 
     for (const auto& entry : SQLPLACEHOLDERS())
     {
-        wxLogDebug("%d %s %s", entry.ID, entry.label, entry.type);
-
         wxString value;
         int pos = sql.Lower().Find(entry.label);
         size_t len = wxString(entry.label).size();
