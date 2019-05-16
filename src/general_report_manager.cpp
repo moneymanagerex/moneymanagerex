@@ -487,10 +487,10 @@ void mmGeneralReportManager::createEditorTab(wxNotebook* editors_notebook, int t
 
 void mmGeneralReportManager::OnSqlTest(wxCommandEvent& WXUNUSED(event))
 {
-    MinimalEditor* sqlText = static_cast<MinimalEditor*>(FindWindow(ID_SQL_CONTENT));
-    wxStaticText* info = static_cast<wxStaticText*>(FindWindow(wxID_INFO));
-    const wxString& selected_sql = sqlText->GetStringSelection();
-    const wxString sql = selected_sql.empty() ? sqlText->GetValue() : selected_sql;
+    MinimalEditor* sqlText = wxDynamicCast(FindWindow(ID_SQL_CONTENT), MinimalEditor);
+    wxStaticText* info = wxDynamicCast(FindWindow(wxID_INFO), wxStaticText);
+    
+    const wxString sql = sqlText->GetSelectionEmpty() ? sqlText->GetValue() : sqlText->GetStringSelection();
 
     wxString SqlError;
     wxLongLong interval = wxGetUTCTimeMillis();
