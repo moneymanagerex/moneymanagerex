@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-05-15 17:05+0300\n"
-"PO-Revision-Date: 2019-05-16 07:00\n"
+"PO-Revision-Date: 2019-05-16 07:37\n"
 "Last-Translator: Nikolay (vomikan)\n"
 "Language-Team: Hebrew\n"
 "MIME-Version: 1.0\n"
@@ -1266,7 +1266,7 @@ msgid_plural "%d days delay!"
 msgstr[0] "%d ימים בעכוב!"
 msgstr[1] ""
 msgstr[2] ""
-msgstr[3] "%d ימים בעכוב!"
+msgstr[3] "%d ימים עכוב!"
 
 #: billsdepositspanel.cpp:533 mmhomepagepanel.cpp:352
 #, c-format
@@ -1974,7 +1974,7 @@ msgid "%zu occurrence founded and replaced!"
 msgid_plural "%zu occurrences founded and replaced!"
 msgstr[0] "%zu מופע נמצא והוחלף!"
 msgstr[1] ""
-msgstr[2] ""
+msgstr[2] "%zu מופעים נמצאו והוחלפו!"
 msgstr[3] "%zu מופעים נמצאו והוחלפו!"
 
 #: customfieldlistdialog.cpp:266
@@ -4874,7 +4874,7 @@ msgstr "תקופה הבאה"
 
 #: mmreportspanel.cpp:421
 msgid "Accounts:"
-msgstr ""
+msgstr "חשבונות:"
 
 #: mmreportspanel.cpp:426 reports/reportbase.cpp:262
 msgid "All Accounts"
@@ -5704,7 +5704,7 @@ msgstr "אישור העברת מוטב"
 #: reports/budget.cpp:84
 #, c-format
 msgid "Financial Year: %s - %i"
-msgstr ""
+msgstr "שנת כספים: %s - %i"
 
 #: reports/budgetcategorysummary.cpp:131
 #, c-format
@@ -5769,10 +5769,10 @@ msgstr "סך הכל חודשי"
 #, c-format
 msgid "Cash Flow Forecast for %i Year Ahead"
 msgid_plural "Cash Flow Forecast for %i Years Ahead"
-msgstr[0] ""
+msgstr[0] "תחזית תזרים מזומנים ל %i שנה קדימה"
 msgstr[1] ""
 msgstr[2] ""
-msgstr[3] ""
+msgstr[3] "תחזית תזרים מזומנים ל %i שנים קדימה"
 
 #: reports/cashflow.cpp:273 reports/incexpenses.cpp:208 reports/payee.cpp:125
 msgid "Difference"
@@ -6262,11 +6262,11 @@ msgstr "שגיאת ההיסטוריה ניירות ערך"
 
 #: stockdialog.cpp:1052
 msgid "Add/Update Stock Price history"
-msgstr ""
+msgstr "הוספה/עדכון היסטורית מחירי ניירות ערך"
 
 #: stockdialog.cpp:1053
 msgid "Delete selected Stock Prices"
-msgstr ""
+msgstr "מחיקת מחירי נמניות נבחרים"
 
 #: stockspanel.cpp:36
 msgid "Using MMEX it is possible to track stocks/mutual funds investments."
