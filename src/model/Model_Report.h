@@ -66,7 +66,7 @@ private:
         wxString def_value;
         int ID;
     };
-    static const std::vector<Values> SQLPLACEHOLDERS();
+    static const std::vector<Values> SqlPlaceHolders();
 };
 
 #endif

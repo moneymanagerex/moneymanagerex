@@ -78,7 +78,7 @@ Model_Report& Model_Report::instance(wxSQLite3Database* db)
     return ins;
 }
 
-const std::vector<Model_Report::Values> Model_Report::SQLPLACEHOLDERS()
+const std::vector<Model_Report::Values> Model_Report::SqlPlaceHolders()
 {
     const wxString def_date = wxDateTime::Today().FormatISODate();
     const wxString def_year = wxString::Format("%d", wxDateTime::Today().GetYear());
@@ -185,7 +185,7 @@ bool Model_Report::PrepareSQL(wxString& sql, std::map <wxString, wxString>& rep_
     if (sql.empty()) return false;
     if (sql.Last() != ';') sql += ';';
 
-    for (const auto& entry : SQLPLACEHOLDERS())
+    for (const auto& entry : SqlPlaceHolders())
     {
         wxString value;
         int pos = sql.Lower().Find(entry.label);
