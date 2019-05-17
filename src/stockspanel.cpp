@@ -919,7 +919,7 @@ wxString StocksListCtrl::getStockInfo(int selectedIndex) const
     double diff = total_current_price - total_purchase_price;
     const wxString& sTotalCurrentPrice = Model_Currency::toCurrency(total_current_price, currency);
     const wxString& sGainLostAmount = Model_Currency::toCurrency(abs(diff), currency);
-    double total_percentage = 100.0 * (1 - total_purchase_price / total_current_price);
+    double total_percentage = 100.0 * (total_current_price / total_purchase_price - 1);
 
     wxString miniInfo = "";
     if (m_stocks[selectedIndex].SYMBOL != "")
