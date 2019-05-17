@@ -487,10 +487,10 @@ void mmGeneralReportManager::createEditorTab(wxNotebook* editors_notebook, int t
 
 void mmGeneralReportManager::OnSqlTest(wxCommandEvent& WXUNUSED(event))
 {
-    MinimalEditor* sqlText = static_cast<MinimalEditor*>(FindWindow(ID_SQL_CONTENT));
-    wxStaticText* info = static_cast<wxStaticText*>(FindWindow(wxID_INFO));
-    const wxString& selected_sql = sqlText->GetStringSelection();
-    const wxString sql = selected_sql.empty() ? sqlText->GetValue() : selected_sql;
+    MinimalEditor* sqlText = wxDynamicCast(FindWindow(ID_SQL_CONTENT), MinimalEditor);
+    wxStaticText* info = wxDynamicCast(FindWindow(wxID_INFO), wxStaticText);
+    
+    wxString sql = sqlText->GetStringSelection().empty() ? sqlText->GetValue() : sqlText->GetStringSelection();
 
     wxString SqlError;
     wxLongLong interval = wxGetUTCTimeMillis();
@@ -1090,7 +1090,7 @@ void mmGeneralReportManager::getSqlTableInfo(std::vector<std::pair<wxString, wxA
     }
 }
 
-bool mmGeneralReportManager::getSqlQuery(/*in*/ const wxString& sql
+bool mmGeneralReportManager::getSqlQuery(/*in*/ wxString& sql
     , /*out*/ std::vector <std::vector <wxString> > &sqlQueryData
     , wxString &SqlError)
 {
@@ -1098,10 +1098,9 @@ bool mmGeneralReportManager::getSqlQuery(/*in*/ const wxString& sql
     int columnCount = 0;
     try
     {
-        wxString temp = sql;
         std::map <wxString, wxString> rep_params;
-        Model_Report::PrepareSQL(temp, rep_params);
-        wxSQLite3Statement stmt = this->m_db->PrepareStatement(temp);
+        Model_Report::PrepareSQL(sql, rep_params);
+        wxSQLite3Statement stmt = this->m_db->PrepareStatement(sql);
         if (!stmt.IsReadOnly())
             return false;
         q = stmt.ExecuteQuery();

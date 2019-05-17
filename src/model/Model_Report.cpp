@@ -25,6 +25,7 @@
 #include "reports/htmlbuilder.h"
 #include "reports/reportbase.h"
 #include "Model_Setting.h"
+#include "Model_Infotable.h"
 #include <LuaGlue/LuaGlue.h>
 #include "sqlite3.h"
 #include "mmreportspanel.h"
@@ -76,6 +77,24 @@ Model_Report& Model_Report::instance(wxSQLite3Database* db)
 
     return ins;
 }
+
+const std::vector<Model_Report::Values> Model_Report::SqlPlaceHolders()
+{
+    const wxString def_date = wxDateTime::Today().FormatISODate();
+    const wxString def_year = wxString::Format("%d", wxDateTime::Today().GetYear());
+    const wxString def_day = Model_Infotable::instance().GetStringInfo("FINANCIAL_YEAR_START_DAY", "1");
+    const wxString def_mon = Model_Infotable::instance().GetStringInfo("FINANCIAL_YEAR_START_MONTH", "1");
+
+    const std::vector<Model_Report::Values> v = {
+    {"&begin_date", "wxDatePickerCtrl", def_date, mmReportsPanel::RepPanel::ID_CHOICE_START_DATE},
+    {"&single_date", "wxDatePickerCtrl", def_date, mmReportsPanel::RepPanel::ID_CHOICE_START_DATE},
+    {"&end_date", "wxDatePickerCtrl", def_date, mmReportsPanel::RepPanel::ID_CHOICE_END_DATE},
+    {"&budget_years", "wxChoice", def_year, mmReportsPanel::RepPanel::ID_CHOICE_DATE_RANGE },
+    {"&fin_year_day", "wxString", def_day, -1},
+    {"&fin_year_month", "wxString", def_mon, -1},
+    };
+    return v;
+};
 
 bool Model_Report::get_objects_from_sql(const wxString& query, PrettyWriter<StringBuffer>& json_writer)
 {
@@ -166,86 +185,39 @@ bool Model_Report::PrepareSQL(wxString& sql, std::map <wxString, wxString>& rep_
     if (sql.empty()) return false;
     if (sql.Last() != ';') sql += ';';
 
-    int pos = sql.Lower().Find("&begin_date");
-    size_t len = wxString("&begin_date").size();
-
-    if (pos != wxNOT_FOUND)
+    for (const auto& entry : SqlPlaceHolders())
     {
-        wxDatePickerCtrl* start_date = static_cast<wxDatePickerCtrl*>
-            (wxWindow::FindWindowById(mmReportsPanel::RepPanel::ID_CHOICE_START_DATE));
-        wxString date = wxDateTime::Today().FormatISODate();
-        if (start_date) {
-            date = start_date->GetValue().FormatISODate();
-        }
+        wxString value;
+        int pos = sql.Lower().Find(entry.label);
+        size_t len = wxString(entry.label).size();
 
-        rep_params["begin_date"] = date;
-
-        while (pos != wxNOT_FOUND)
+        if (pos != wxNOT_FOUND)
         {
-            sql.replace(pos, len, date);
-            pos = sql.Lower().Find("&begin_date");
+            value = entry.def_value;
+
+            const auto w = wxWindow::FindWindowById(entry.ID);
+            //const auto name = w->GetClassInfo()->GetClassName();
+            if (w && entry.type == "wxDatePickerCtrl")
+            {
+                    wxDatePickerCtrl* date = static_cast<wxDatePickerCtrl*>(w);
+                    value = date->GetValue().FormatISODate();
+            }
+            else if (w && entry.type == "wxChoice")
+            {
+                    wxChoice* year = static_cast<wxChoice*>(w);
+                    value = year->GetStringSelection();
+            }
+
+            rep_params[entry.label.Mid(1)] = value;
+
+            while (pos != wxNOT_FOUND)
+            {
+                sql.replace(pos, len, value);
+                pos = sql.Lower().Find(entry.label);
+            }
         }
     }
 
-    pos = sql.Lower().Find("&single_date");
-    len = wxString("&single_date").size();
-    if (pos != wxNOT_FOUND)
-    {
-        wxDatePickerCtrl* start_date = static_cast<wxDatePickerCtrl*>
-            (wxWindow::FindWindowById(mmReportsPanel::RepPanel::ID_CHOICE_START_DATE));
-        wxString date = wxDateTime::Today().FormatISODate();
-        if (start_date) {
-            date = start_date->GetValue().FormatISODate();
-        }
-        rep_params["single_date"] = date;
-
-        while (pos != wxNOT_FOUND)
-        {
-            sql.replace(pos, len, date);
-            pos = sql.Lower().Find("&single_date");
-        }
-    }
-
-    pos = sql.Lower().Find("&end_date");
-    len = wxString("&end_date").size();
-
-    if (pos != wxNOT_FOUND)
-    {
-        wxDatePickerCtrl* end_date = static_cast<wxDatePickerCtrl*>
-            (wxWindow::FindWindowById(mmReportsPanel::RepPanel::ID_CHOICE_END_DATE));
-        wxString date = wxDateTime::Today().FormatISODate();
-        if (end_date) {
-            date = end_date->GetValue().FormatISODate();
-        }
-        rep_params["end_date"] = date;
-
-        while (pos != wxNOT_FOUND)
-        {
-            sql.replace(pos, len, date);
-            pos = sql.Lower().Find("&end_date");
-        }
-    }
-
-    pos = sql.Lower().Find("&budget_years");
-    len = wxString("&budget_years").size();
-    if (pos != wxNOT_FOUND)
-    {
-        wxChoice* years = static_cast<wxChoice*>
-            (wxWindow::FindWindowById(mmReportsPanel::RepPanel::ID_CHOICE_DATE_RANGE));
-        wxString date = wxString::Format("%i", wxDate::Today().GetYear());
-        if (years) {
-            date = years->GetStringSelection();
-        }
-        rep_params["budget_years"] = date;
-
-        while (pos != wxNOT_FOUND)
-        {
-            sql.replace(pos, len, date);
-            pos = sql.Lower().Find("&budget_years");
-        }
-    }
-
-    //TODO: other parameters
     return true;
 }
 
