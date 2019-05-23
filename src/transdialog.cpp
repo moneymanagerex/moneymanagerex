@@ -249,7 +249,7 @@ void mmTransDialog::dataToControls()
         cbAccount_->AutoComplete(account_list);
 
         bool acc_closed = false;
-        const auto &accounts = Model_Account::instance().find(
+        const auto& accounts = Model_Account::instance().find(
             Model_Account::ACCOUNTTYPE(Model_Account::all_type()[Model_Account::INVESTMENT], NOT_EQUAL));
         for (const auto &account : accounts)
         {
@@ -774,6 +774,7 @@ void mmTransDialog::OnFocusChange(wxChildFocusEvent& event)
     {
         object_in_focus_ = w->GetId();
     }
+
     m_currency = Model_Currency::GetBaseCurrency();
     wxString accountName = cbAccount_->GetValue();
     wxString toAccountName = cbPayee_->GetValue();
@@ -788,7 +789,6 @@ void mmTransDialog::OnFocusChange(wxChildFocusEvent& event)
     {
         m_currency = Model_Account::currency(account);
         cbAccount_->SetValue(account->ACCOUNTNAME);
-        m_trx_data.ACCOUNTID = account->ACCOUNTID;
     }
 
     if (!m_transfer)

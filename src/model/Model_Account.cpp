@@ -75,8 +75,12 @@ wxArrayString Model_Account::all_checking_account_names(bool skip_closed)
     wxArrayString accounts;
     for (const auto &account : this->all(COL_ACCOUNTNAME))
     {
-        if (type(account) == INVESTMENT) continue;
-        if (skip_closed && status(account) == CLOSED) continue;
+        if (skip_closed && status(account) == CLOSED)
+            continue;
+        if (type(account) == INVESTMENT)
+            continue;
+        if (account.ACCOUNTNAME.empty())
+            continue;
         accounts.Add(account.ACCOUNTNAME);
     }
     return accounts;
