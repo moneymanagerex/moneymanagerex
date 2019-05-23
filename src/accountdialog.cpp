@@ -445,8 +445,10 @@ void mmNewAcctDialog::OnOk(wxCommandEvent& WXUNUSED(event))
 
     Model_Currency::Data* currency = Model_Currency::instance().get(m_currencyID);
     m_initbalance_ctrl->Calculate(Model_Currency::precision(currency));
-    if (!m_initbalance_ctrl->checkValue(m_account->INITIALBAL, false))
+    double value = 0;
+    if (!m_initbalance_ctrl->checkValue(value, false))
         return;
+    m_account->INITIALBAL = value;
 
     if (!this->m_account) this->m_account = Model_Account::instance().create();
 
@@ -470,7 +472,7 @@ void mmNewAcctDialog::OnOk(wxCommandEvent& WXUNUSED(event))
     m_account->CURRENCYID = m_currencyID;
     m_account->ACCESSINFO = m_accessInfo;
 
-    double value = 0;
+    value = 0;
     m_credit_limit_ctrl->checkValue(value);
     m_account->CREDITLIMIT = value;
 
