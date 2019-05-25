@@ -138,8 +138,8 @@ install: |-
 
 before_script:
 - cd $TRAVIS_BUILD_DIR/src/db
-- python ../../util/sqlite2cpp.py ../../database/tables.sql && rm -f sql*.sql *.mmdbg
-- python ../../util/sqliteupgrade2cpp.py ../../database/incremental_upgrade
+- python3 ../../util/sqlite2cpp.py ../../database/tables.sql && rm -f sql*.sql *.mmdbg
+- python3 ../../util/sqliteupgrade2cpp.py ../../database/incremental_upgrade
 - cd ../.. && mkdir build && cd build
 
 script: |-
