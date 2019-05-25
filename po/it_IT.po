@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-05-25 17:42+0300\n"
-"PO-Revision-Date: 2019-05-25 15:15\n"
+"PO-Revision-Date: 2019-05-25 15:44\n"
 "Last-Translator: Nikolay (vomikan)\n"
 "Language-Team: Italian\n"
 "MIME-Version: 1.0\n"
@@ -6335,7 +6335,7 @@ msgstr "Lista titoli temporanea: %s\n\n"
 
 #: stockspanel.cpp:422
 msgid "View Stock Transactions"
-msgstr ""
+msgstr "Mostra Operazioni Titoli"
 
 #: stockspanel.cpp:574
 msgid "Create a new Stock investment in this portfolio"
