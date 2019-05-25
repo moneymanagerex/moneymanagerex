@@ -471,21 +471,21 @@ struct DB_Table_%s : public DB_Table
         void as_json(PrettyWriter<StringBuffer>& json_writer) const
         {'''
         for field in self._fields:
-            type = base_data_types_reverse[field['type']]
-            if type == 'int':
+            fieldtype = base_data_types_reverse[field['type']]
+            if fieldtype == 'int':
                 s += '''
             json_writer.Key("%s");
             json_writer.Int(this->%s);''' % (field['name'], field['name'])
-            elif type == 'double':
+            elif fieldtype == 'double':
                 s += '''
             json_writer.Key("%s");
             json_writer.Double(this->%s);''' % (field['name'], field['name'])
-            elif type == 'wxString':
+            elif fieldtype == 'wxString':
                 s += '''
             json_writer.Key("%s");
             json_writer.String(this->%s.c_str());''' % (field['name'], field['name'])
             else:
-                assert "Field type Error"
+                raise NotImplementedError("Field type '%s' unknown" % fieldtype)
 
         s += '''
         }'''
@@ -991,14 +991,14 @@ if __name__ == '__main__':
 '''% (os.path.basename(__file__), gitLastModified(__file__, sys.argv[1]) or 'unknown')
 
     conn, cur, sql_file = None, None, None
-    try:
-        sql_file = sys.argv[1]
-        conn = sqlite3.connect(":memory:")
-        conn.row_factory = sqlite3.Row
-        cur = conn.cursor()
-    except:
+    if len(sys.argv) != 2:
         print(__doc__)
         sys.exit(1)
+    sql_file = sys.argv[1]
+
+    conn = sqlite3.connect(":memory:")
+    conn.row_factory = sqlite3.Row
+    cur = conn.cursor()
 
     sql = ""
     sql_txt = '''-- NOTE:
