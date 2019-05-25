@@ -9,6 +9,7 @@ import os
 import sys
 import re
 import glob
+from io import open
 
 numbers = re.compile(r'(\d+)')
 def numericalSort(value):
@@ -22,29 +23,26 @@ def getVersion(path):
 
 def getFileContent(FileName):
     if os.path.exists(FileName):
-        fp = open(FileName, "r")
-        content = fp.read()
-        fp.close()
+        with open(FileName, "r", encoding='utf-8') as fp:
+            content = fp.read()
         return content
 
 def split_string(string, charleng):
     return [string[i:i+charleng] for i in range(0, len(string), charleng)]
 
-StrHeader = '''/** @file
+StrHeader = u'''/** @file
  * @brief     Compilation of SQL scripts to upgrade MMEX db version
  * @warning   Auto generated with %s script. DO NOT EDIT!
  * @copyright © 2016-2018 Gabriele-V
  * @date      %s
  */
-'''% (os.path.basename(__file__), str(datetime.datetime.now()))
 
-StrHeader += '''
 #ifndef DB_UPGRADE_H_
 #define DB_UPGRADE_H_
 
 #include <vector>
 #include <wx/string.h>
-'''
+'''% (os.path.basename(__file__), str(datetime.datetime.now()))
 
 StrUpgradeQuery = '''
 const std::vector<wxString> dbUpgradeQuery =
@@ -52,8 +50,12 @@ const std::vector<wxString> dbUpgradeQuery =
 '''
 
 LatestVersion = 0
-folder = sys.argv[1]
-for sqlfile in sorted(glob.glob(os.path.join(folder, 'database_version_*.sql')), key=numericalSort):
+sqlfiles = sorted(glob.glob(os.path.join(sys.argv[1], 'database_version_*.sql')), key=numericalSort)
+if not sqlfiles:
+    print(__doc__)
+    sys.exit(1)
+
+for sqlfile in sqlfiles:
     FileContent = getFileContent(sqlfile).replace('\n','\n\t\t')
     LatestVersion = getVersion(sqlfile)
     StrUpgradeQuery += '''\t// Upgrade to version %i'''%(LatestVersion)
@@ -71,6 +73,5 @@ strEnd = '''
 #endif // DB_UPGRADE_H_
 '''
 
-fp = open('DB_Upgrade.h', 'w')
-fp.write(StrHeader + StrLatestVersion + StrUpgradeQuery + strEnd)
-fp.close
+with open('DB_Upgrade.h', 'w', encoding='utf-8') as fp:
+    fp.write(StrHeader + StrLatestVersion + StrUpgradeQuery + strEnd)
