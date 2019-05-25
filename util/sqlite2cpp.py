@@ -6,8 +6,8 @@ Usage: python sqlite2cpp.py path_to_sql_file
 
 import sys
 import os
-import datetime
 import sqlite3
+import subprocess
 from io import open
 
 currency_unicode_patch_filename = 'currencies_update_patch_unicode_only.mmdbg'
@@ -968,6 +968,14 @@ struct SorterBy%s
     with open('Table.h', 'w', encoding='utf-8') as rfp:
         rfp.write(code)
 
+def gitLastModified(*fnames):
+    """return date string for the last commit modifing files given"""
+    cmd = ['git', 'log', '-n1', '--pretty=format:%ci', '--']
+    func = 'commonpath' if 'commonpath' in dir(os.path) else 'commonprefix'
+    cpath = os.path.dirname(getattr(os.path, func)(fnames)) or None
+    cmd.extend([os.path.relpath(f, cpath) if cpath else f for f in fnames])
+    return subprocess.check_output(cmd, universal_newlines=True, cwd=cpath)
+
 if __name__ == '__main__':
     header = u'''// -*- C++ -*-
 /** @file
@@ -980,7 +988,7 @@ if __name__ == '__main__':
  * @author    Tomasz Słodkowicz
  * @date      %s
  */
-'''% (os.path.basename(__file__), str(datetime.datetime.now()))
+'''% (os.path.basename(__file__), gitLastModified(__file__, sys.argv[1]) or 'unknown')
 
     conn, cur, sql_file = None, None, None
     try:
