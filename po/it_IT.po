@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2019-05-15 17:05+0300\n"
-"PO-Revision-Date: 2019-05-15 16:51\n"
+"POT-Creation-Date: 2019-05-25 17:42+0300\n"
+"PO-Revision-Date: 2019-05-25 15:15\n"
 "Last-Translator: Nikolay (vomikan)\n"
 "Language-Team: Italian\n"
 "MIME-Version: 1.0\n"
@@ -258,11 +258,11 @@ msgstr "Nome del Conto "
 msgid "Currency"
 msgstr "Valuta"
 
-#: accountdialog.cpp:503
+#: accountdialog.cpp:505
 msgid "Default Image"
 msgstr "Immagine predefinita:"
 
-#: accountdialog.cpp:510
+#: accountdialog.cpp:512
 #, c-format
 msgid "Image #%i"
 msgstr "Immagine #%i"
@@ -355,7 +355,7 @@ msgstr "Inserire il nome del Cespite"
 #: maincurrencydialog.cpp:275 mmcheckingpanel.cpp:1099 mmreportspanel.cpp:347
 #: model/Model_CustomField.cpp:29 reports/cashflow.cpp:271
 #: reports/summary.cpp:155 reports/transactions.cpp:74 stockdialog.cpp:334
-#: stockdialog.cpp:657 transactionsupdatedialog.cpp:106 transdialog.cpp:436
+#: stockdialog.cpp:661 transactionsupdatedialog.cpp:106 transdialog.cpp:436
 #: usertransactionpanel.cpp:115 webappdialog.cpp:76
 msgid "Date"
 msgstr "Data"
@@ -3139,7 +3139,7 @@ msgstr "Tipologia (prelievo/deposito) sconosciuta."
 msgid "Line %ld: OK, imported."
 msgstr "Riga %ld: OK, importato."
 
-#: import_export/univcsvdialog.cpp:950 stockdialog.cpp:653
+#: import_export/univcsvdialog.cpp:950 stockdialog.cpp:657
 #, c-format
 msgid "Total Lines: %ld"
 msgstr "Linee totali: %ld"
@@ -3169,7 +3169,7 @@ msgstr "Errore: %ld"
 msgid "Log file written to: %s"
 msgstr "File di log scritti: %s"
 
-#: import_export/univcsvdialog.cpp:964 stockdialog.cpp:661
+#: import_export/univcsvdialog.cpp:964 stockdialog.cpp:665
 msgid "Please confirm saving..."
 msgstr "Confermare salvataggio..."
 
@@ -3206,7 +3206,7 @@ msgstr "Errore file di destinazione"
 msgid "Transactions exported: %ld"
 msgstr "Operazioni esportate: %ld"
 
-#: import_export/univcsvdialog.cpp:1401 stockdialog.cpp:571
+#: import_export/univcsvdialog.cpp:1401 stockdialog.cpp:575
 msgid "Choose CSV data file to import"
 msgstr "Selezionare file CSV da esportare"
 
@@ -3226,7 +3226,7 @@ msgstr "Selezionare il file da esportare in XML"
 msgid "XML Files (*.xml)"
 msgstr "File XML (*. Xml)"
 
-#: import_export/univcsvdialog.cpp:1418 stockdialog.cpp:572
+#: import_export/univcsvdialog.cpp:1418 stockdialog.cpp:576
 msgid "CSV Files (*.csv)"
 msgstr "File CSV (*.csv)"
 
@@ -4736,7 +4736,7 @@ msgstr "La lingua di questa applicazione è stata cambiata. Il cambiamento avrà
 msgid "General Group Report"
 msgstr "Resoconto Gruppo Generale"
 
-#: mmframereport.cpp:98 model/Model_Report.cpp:413 reports/forecast.cpp:88
+#: mmframereport.cpp:98 model/Model_Report.cpp:385 reports/forecast.cpp:88
 #: reports/myusage.cpp:234
 msgid "Caught exception"
 msgstr "Errore di acquisizione"
@@ -4924,7 +4924,7 @@ msgstr "Cespite"
 msgid "Shares"
 msgstr "Azioni"
 
-#: model/Model_Account.cpp:134
+#: model/Model_Account.cpp:138
 msgid "Account Error"
 msgstr "Errore Conto"
 
@@ -5022,7 +5022,7 @@ msgstr "Scelta Multipla"
 msgid "Payee Error"
 msgstr "Errore Beneficiario"
 
-#: model/Model_Report.cpp:273
+#: model/Model_Report.cpp:245
 #, c-format
 msgid "The SQL script:\n"
 "%s \n"
@@ -5862,7 +5862,7 @@ msgstr "Ultimi 12 mesi"
 msgid "Current Year"
 msgstr "Anno in corso"
 
-#: reports/mmDateRange.cpp:148 stockdialog.cpp:703
+#: reports/mmDateRange.cpp:148 stockdialog.cpp:707
 msgid "Current Year to Date"
 msgstr "Anno in corso alla data"
 
@@ -6037,11 +6037,11 @@ msgstr "Dettagli categoria suddivisa"
 msgid "Invalid Total Amount"
 msgstr "Totale Complessivo non valido "
 
-#: stockdialog.cpp:160 stockdialog.cpp:534
+#: stockdialog.cpp:160 stockdialog.cpp:536
 msgid "Edit Stock Investment"
 msgstr "Modifica Investimento in Titoli"
 
-#: stockdialog.cpp:160 stockdialog.cpp:522
+#: stockdialog.cpp:160 stockdialog.cpp:524
 msgid "New Stock Investment"
 msgstr "Nuovo Investimento in Titoli"
 
@@ -6077,7 +6077,7 @@ msgstr "*Commissioni"
 msgid "Stock History Options"
 msgstr "Opzioni storico azioni"
 
-#: stockdialog.cpp:335 stockdialog.cpp:657
+#: stockdialog.cpp:335 stockdialog.cpp:661
 msgid "Price"
 msgstr "Valore"
 
@@ -6155,13 +6155,13 @@ msgstr "Importa andamento azioni (Formato CSV)"
 msgid "Held At"
 msgstr "Tenuto presso"
 
-#: stockdialog.cpp:520
+#: stockdialog.cpp:522
 msgid "A Share Account as the Company name has not been found.\n\n"
 "Do you want to create one?"
 msgstr "Un investimento con il nome della società non è stato trovato.\n\n"
 "vuoi crearne uno?"
 
-#: stockdialog.cpp:530
+#: stockdialog.cpp:532
 msgid "The Company name does not have an associated Share Account.\n\n"
 "You may want to readjust the Company Name to an existing Share Account with the same name. If this is an existing Stock without a Share Account, it is recommended that a Share Account is created.\n\n"
 "Do you want to create a new Share Acccount?\n"
@@ -6169,92 +6169,92 @@ msgstr "Il nome della società non ha un conto condiviso associato.\n\n"
 "È possibile aggiornare il nome dell'azienda su un Conto Condiviso esistente con lo stesso nome. Se questo è uno stock esistente senza un conto condiviso si consiglia di crearne uno.\n\n"
 "Vuoi creare un nuovo Conto Condiviso?\n"
 
-#: stockdialog.cpp:582
+#: stockdialog.cpp:586
 msgid "Stock History CSV Import"
 msgstr "Importazione CSV andamento azioni"
 
-#: stockdialog.cpp:583 stockdialog.cpp:597
+#: stockdialog.cpp:587 stockdialog.cpp:601
 msgid "Quotes imported from CSV: "
 msgstr "Valori importati da file CSV: "
 
-#: stockdialog.cpp:655
+#: stockdialog.cpp:659
 #, c-format
 msgid "Total Imported: %ld"
 msgstr "Totale importato: %ld"
 
-#: stockdialog.cpp:663
+#: stockdialog.cpp:667
 msgid "Importing CSV"
 msgstr "Importazione da file CSV"
 
-#: stockdialog.cpp:695 stockdialog.cpp:725
+#: stockdialog.cpp:699 stockdialog.cpp:729
 msgid "5 Days"
 msgstr "5 giorni"
 
-#: stockdialog.cpp:696 stockdialog.cpp:727
+#: stockdialog.cpp:700 stockdialog.cpp:731
 msgid "1 Month"
 msgstr "1 mese"
 
-#: stockdialog.cpp:697 stockdialog.cpp:728
+#: stockdialog.cpp:701 stockdialog.cpp:732
 msgid "3 Months"
 msgstr "3 Mesi"
 
-#: stockdialog.cpp:698
+#: stockdialog.cpp:702
 msgid "6 Months"
 msgstr "6 Mesi"
 
-#: stockdialog.cpp:699
+#: stockdialog.cpp:703
 msgid "1 Year"
 msgstr "1 anno"
 
-#: stockdialog.cpp:700
+#: stockdialog.cpp:704
 msgid "2 Years"
 msgstr "2 anni"
 
-#: stockdialog.cpp:701
+#: stockdialog.cpp:705
 msgid "5 Years"
 msgstr "5 anni"
 
-#: stockdialog.cpp:702
+#: stockdialog.cpp:706
 msgid "10 Years"
 msgstr "10 anni"
 
-#: stockdialog.cpp:704
+#: stockdialog.cpp:708
 msgid "Max"
 msgstr "Massimo"
 
-#: stockdialog.cpp:710
+#: stockdialog.cpp:714
 msgid "Specify type frequency of stock history"
 msgstr "Indicare la frequenza del valore azioni"
 
-#: stockdialog.cpp:711 stockdialog.cpp:735
+#: stockdialog.cpp:715 stockdialog.cpp:739
 msgid "Stock History Update"
 msgstr "Aggiornamento andamento azioni"
 
-#: stockdialog.cpp:724
+#: stockdialog.cpp:728
 msgid "1 Day"
 msgstr "Primo Giorno"
 
-#: stockdialog.cpp:726
+#: stockdialog.cpp:730
 msgid "1 Week"
 msgstr "1 settimana"
 
-#: stockdialog.cpp:734
+#: stockdialog.cpp:738
 msgid "Specify interval of stock history"
 msgstr "Specificare l'intervallo della storia dello stock di azioni"
 
-#: stockdialog.cpp:747
+#: stockdialog.cpp:751
 msgid "Stock history not found!"
 msgstr "Storico azioni non trovato!"
 
-#: stockdialog.cpp:748
+#: stockdialog.cpp:752
 msgid "Stock History Error"
 msgstr "Errore andamento azioni"
 
-#: stockdialog.cpp:1052
+#: stockdialog.cpp:1056
 msgid "Add/Update Stock Price history"
 msgstr "Aggiungi/Aggiorna andamento valore azioni"
 
-#: stockdialog.cpp:1053
+#: stockdialog.cpp:1057
 msgid "Delete selected Stock Prices"
 msgstr "Elimina i valori selezionati"
 
@@ -6332,6 +6332,10 @@ msgid "Temporary Stock list: %s\n\n"
 "Date          Lot          Shares          Price        Commission\n\n"
 msgstr "Lista titoli temporanea: %s\n\n"
 "Data          Lotto          Azioni          Prezzo          Commissioni\n\n"
+
+#: stockspanel.cpp:422
+msgid "View Stock Transactions"
+msgstr ""
 
 #: stockspanel.cpp:574
 msgid "Create a new Stock investment in this portfolio"
