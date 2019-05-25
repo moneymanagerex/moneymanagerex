@@ -419,7 +419,7 @@ void mmStocksPanel::ViewStockTransactions(int selectedIndex)
             msg << wxString::Format("%s     %s          %s               %s          %s\n", sd, sl, sn, su, sc);
         }
     }
-    wxMessageBox(msg, "View Stock Transactions");
+    wxMessageBox(msg, _("View Stock Transactions"));
 }
 
 void StocksListCtrl::OnColClick(wxListEvent& event)
