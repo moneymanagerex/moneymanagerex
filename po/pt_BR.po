@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-05-25 17:42+0300\n"
-"PO-Revision-Date: 2019-05-25 15:14\n"
+"PO-Revision-Date: 2019-05-30 11:44\n"
 "Last-Translator: Nikolay (vomikan)\n"
 "Language-Team: Portuguese, Brazilian\n"
 "MIME-Version: 1.0\n"
@@ -4866,7 +4866,7 @@ msgstr "Próximo Período"
 
 #: mmreportspanel.cpp:421
 msgid "Accounts:"
-msgstr ""
+msgstr "Contas:"
 
 #: mmreportspanel.cpp:426 reports/reportbase.cpp:262
 msgid "All Accounts"
