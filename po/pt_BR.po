@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-05-25 17:42+0300\n"
-"PO-Revision-Date: 2019-05-30 11:44\n"
+"PO-Revision-Date: 2019-05-30 12:16\n"
 "Last-Translator: Nikolay (vomikan)\n"
 "Language-Team: Portuguese, Brazilian\n"
 "MIME-Version: 1.0\n"
@@ -1250,8 +1250,8 @@ msgstr "Automatizado"
 #, c-format
 msgid "%d day remaining"
 msgid_plural "%d days remaining"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d dia restante"
+msgstr[1] "%d dias restantes"
 
 #: billsdepositspanel.cpp:517 billsdepositspanel.cpp:523
 #: billsdepositspanel.cpp:531
@@ -1262,15 +1262,15 @@ msgstr "Inativo"
 #, c-format
 msgid "%d day delay!"
 msgid_plural "%d days delay!"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d dia atrasado!"
+msgstr[1] "%d dias atrasados!"
 
 #: billsdepositspanel.cpp:533 mmhomepagepanel.cpp:352
 #, c-format
 msgid "%d day overdue!"
 msgid_plural "%d days overdue!"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d dia de atraso!"
+msgstr[1] "%d dias de atraso!"
 
 #: billsdepositspanel.cpp:630
 msgid "Do you really want to delete the series?"
@@ -1967,8 +1967,8 @@ msgstr "Você quer atualizar para branco?\n"
 #, c-format
 msgid "%zu occurrence founded and replaced!"
 msgid_plural "%zu occurrences founded and replaced!"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%zu ocorrência encontrada e substituída!"
+msgstr[1] "%zu ocorrências encontradas e substituídas!"
 
 #: customfieldlistdialog.cpp:266
 msgid "&Massive content update "
@@ -2528,8 +2528,8 @@ msgstr "Criar Modelo"
 #, c-format
 msgid "%zu row returned, duration: %lld ms"
 msgid_plural "%zu rows returned, duration: %lld ms"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%zu linha retornada, duração: %lld ms"
+msgstr[1] "%zu linhas retornadas, duração: %lld ms"
 
 #: general_report_manager.cpp:528
 msgid "SQL Syntax Error"
@@ -2759,22 +2759,22 @@ msgstr "Exportando"
 #: import_export/qif_export.cpp:410
 #, c-format
 msgid "Exporting transaction %zu"
-msgstr ""
+msgstr "Exportando transação %zu"
 
 #: import_export/qif_export.cpp:469
 #, c-format
 msgid "Number of categories exported: %zu"
-msgstr ""
+msgstr "Número de categorias exportadas: %zu"
 
 #: import_export/qif_export.cpp:471
 #, c-format
 msgid "Number of transactions exported: %zu"
-msgstr ""
+msgstr "Número de transações exportadas: %zu"
 
 #: import_export/qif_export.cpp:473
 #, c-format
 msgid "Number of accounts exported: %zu"
-msgstr ""
+msgstr "Número de contas exportadas: %zu"
 
 #: import_export/qif_export.cpp:474 mmframe.cpp:1477
 msgid "Export to QIF"
@@ -2824,17 +2824,17 @@ msgstr "Analisando"
 #: import_export/qif_import_gui.cpp:385
 #, c-format
 msgid "Reading line %zu, %lld ms"
-msgstr ""
+msgstr "Lendo linha %zu, %lld ms"
 
 #: import_export/qif_import_gui.cpp:391
 #, c-format
 msgid "Line %zu \t %s\n"
-msgstr ""
+msgstr "Linha %zu \t %s\n"
 
 #: import_export/qif_import_gui.cpp:464
 #, c-format
 msgid "Number of lines read from QIF file: %zu in %lld ms"
-msgstr ""
+msgstr "Número de linhas lidas do arquivo QIF: %zu em %lld ms"
 
 #: import_export/qif_import_gui.cpp:467
 msgid "Press OK Button to continue"
@@ -2910,7 +2910,7 @@ msgstr "Importação finalizada com sucesso"
 #: import_export/qif_import_gui.cpp:890
 #, c-format
 msgid "Total Imported: %zu"
-msgstr ""
+msgstr "Total Importado: %zu"
 
 #: import_export/qif_import_gui.cpp:898 import_export/univcsvdialog.cpp:995
 msgid "Imported transactions discarded by user!"
@@ -5696,7 +5696,7 @@ msgstr "Confirmação de Realocação de Beneficiário"
 #: reports/budget.cpp:84
 #, c-format
 msgid "Financial Year: %s - %i"
-msgstr ""
+msgstr "Exercício Financeiro: %s - %i"
 
 #: reports/budgetcategorysummary.cpp:131
 #, c-format
@@ -5761,8 +5761,8 @@ msgstr "Total Mensal"
 #, c-format
 msgid "Cash Flow Forecast for %i Year Ahead"
 msgid_plural "Cash Flow Forecast for %i Years Ahead"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Previsão de fluxo de caixa para %i ano à frente"
+msgstr[1] "Previsão de fluxo de caixa para %i anos à frente"
 
 #: reports/cashflow.cpp:273 reports/incexpenses.cpp:208 reports/payee.cpp:125
 msgid "Difference"
@@ -6252,11 +6252,11 @@ msgstr "Erro do Histórico de Ações"
 
 #: stockdialog.cpp:1056
 msgid "Add/Update Stock Price history"
-msgstr ""
+msgstr "Adicionar/Atualizar histórico de preços"
 
 #: stockdialog.cpp:1057
 msgid "Delete selected Stock Prices"
-msgstr ""
+msgstr "Excluir preço selecionado"
 
 #: stockspanel.cpp:36
 msgid "Using MMEX it is possible to track stocks/mutual funds investments."
@@ -6335,7 +6335,7 @@ msgstr "Lista de ações temporária:: %s\n\n"
 
 #: stockspanel.cpp:422
 msgid "View Stock Transactions"
-msgstr ""
+msgstr "Transações"
 
 #: stockspanel.cpp:574
 msgid "Create a new Stock investment in this portfolio"
