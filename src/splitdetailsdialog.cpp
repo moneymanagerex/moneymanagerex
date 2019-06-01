@@ -22,6 +22,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "constants.h"
 #include "mmSimpleDialogs.h"
 #include "validators.h"
+#include "paths.h"
 
 #include "Model_Category.h"
 
@@ -35,10 +36,10 @@ enum
 };
 
 wxBEGIN_EVENT_TABLE(SplitDetailDialog, wxDialog)
-    EVT_BUTTON( ID_BUTTONCATEGORY, SplitDetailDialog::OnButtonCategoryClick )
-    EVT_BUTTON( wxID_OK, SplitDetailDialog::OnButtonOKClick )
-    EVT_BUTTON( wxID_CANCEL, SplitDetailDialog::OnCancel )
-    EVT_TEXT_ENTER( ID_TEXTCTRLAMOUNT, SplitDetailDialog::onTextEntered )
+    EVT_BUTTON(ID_BUTTONCATEGORY, SplitDetailDialog::OnButtonCategoryClick)
+    EVT_BUTTON(wxID_OK, SplitDetailDialog::OnButtonOKClick)
+    EVT_BUTTON(wxID_CANCEL, SplitDetailDialog::OnCancel)
+    EVT_TEXT_ENTER(ID_TEXTCTRLAMOUNT, SplitDetailDialog::onTextEntered)
 wxEND_EVENT_TABLE()
 
 SplitDetailDialog::SplitDetailDialog()
@@ -68,13 +69,16 @@ bool SplitDetailDialog::Create(wxWindow* parent)
 {
     long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX;
     wxDialog::Create(parent, wxID_ANY, _("Split Detail Dialog")
-        , wxDefaultPosition, wxSize(400, 300), style);
+        , wxDefaultPosition, wxDefaultSize, style);
 
     CreateControls();
+    DataToControls();
+
+    Layout();
     GetSizer()->Fit(this);
     GetSizer()->SetSizeHints(this);
+    SetIcon(mmex::getProgramIcon());
     Centre();
-    DataToControls();
 
     return TRUE;
 }
@@ -93,8 +97,6 @@ void SplitDetailDialog::DataToControls()
         m_text_mount->SetFocus();
         m_text_mount->SelectAll();
     }
-    else
-        m_cancel_button->SetFocus();
 }
 
 void SplitDetailDialog::CreateControls()
@@ -127,23 +129,24 @@ void SplitDetailDialog::CreateControls()
         , 2, itemChoiceStrings);
     m_choice_type->SetSelection(split_.SPLITTRANSAMOUNT < 0 ? !transType_ : transType_);
     m_choice_type->SetToolTip(_("Specify the type of transactions to be created."));
-    controlSizer->Add(m_choice_type, g_flagsH);
+    controlSizer->Add(m_choice_type, g_flagsExpand);
 
     wxStaticText* staticTextAmount = new wxStaticText(itemPanel7
         , wxID_STATIC, _("Amount"));
     controlSizer->Add(staticTextAmount, g_flagsH);
 
     m_text_mount = new mmTextCtrl(itemPanel7, ID_TEXTCTRLAMOUNT, ""
-        , wxDefaultPosition, wxSize(110, -1), wxALIGN_RIGHT | wxTE_PROCESS_ENTER
+        , wxDefaultPosition, wxDefaultSize, wxALIGN_RIGHT | wxTE_PROCESS_ENTER
         , mmCalcValidator());
-    controlSizer->Add(m_text_mount, g_flagsH);
+    controlSizer->Add(m_text_mount, g_flagsExpand);
 
     wxStaticText* staticTextCategory = new wxStaticText(itemPanel7
         , wxID_STATIC, _("Category"));
     controlSizer->Add(staticTextCategory, g_flagsH);
     m_bcategory = new wxButton(itemPanel7, ID_BUTTONCATEGORY, ""
         , wxDefaultPosition, wxSize(200, -1));
-    controlSizer->Add(m_bcategory, g_flagsH);
+    m_bcategory->SetMinSize(wxSize(180, -1));
+    controlSizer->Add(m_bcategory, g_flagsExpand);
 
     /**************************************************************************
      Control Buttons
