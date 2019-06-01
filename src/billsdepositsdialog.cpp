@@ -209,20 +209,18 @@ void mmBDDialog::dataToControls()
     m_date_due->SetValue(field_date);
 
     // Have used repeatSel to multiplex auto repeat fields.
-    if (m_bill_data.REPEATS >= BD_REPEATS_MULTIPLEX_BASE)
+    switch (m_bill_data.REPEATS/BD_REPEATS_MULTIPLEX_BASE)
     {
-        m_bill_data.REPEATS -= BD_REPEATS_MULTIPLEX_BASE;
-        autoExecuteUserAck_ = true;
-        itemCheckBoxAutoExeUserAck_->SetValue(true);
-        itemCheckBoxAutoExeSilent_->Enable(true);
-
-        if (m_bill_data.REPEATS >= BD_REPEATS_MULTIPLEX_BASE)
-        {
-            m_bill_data.REPEATS -= BD_REPEATS_MULTIPLEX_BASE;
+        case 2:
             autoExecuteSilent_ = true;
             itemCheckBoxAutoExeSilent_->SetValue(true);
-        }
+            /* intentionally fall through */
+        case 1:
+            autoExecuteUserAck_ = true;
+            itemCheckBoxAutoExeUserAck_->SetValue(true);
+            itemCheckBoxAutoExeSilent_->Enable(true);
     }
+    m_bill_data.REPEATS %= BD_REPEATS_MULTIPLEX_BASE;
 
     if (m_bill_data.REPEATS == 0) {// if none
         textNumRepeats_->SetValue("");

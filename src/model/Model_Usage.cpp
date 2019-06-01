@@ -124,7 +124,7 @@ wxString uuid()
 class SendStatsThread : public wxThread
 {
 public:
-    SendStatsThread(const wxString& url) : wxThread()
+    explicit SendStatsThread(const wxString& url) : wxThread()
         , m_url(url) {};
     ~SendStatsThread() {};
 

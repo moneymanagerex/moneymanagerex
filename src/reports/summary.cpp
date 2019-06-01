@@ -128,7 +128,6 @@ mmReportSummaryByDate::mmReportSummaryByDate(int mode)
 wxString mmReportSummaryByDate::getHTMLText()
 {
     size_t account_types_num = Model_Account::INVESTMENT + 1;
-    double          total = 0.0;
     std::map<size_t, double> balancePerDay;
     mmHTMLBuilder   hb;
     wxString        datePrec;
@@ -256,6 +255,7 @@ wxString mmReportSummaryByDate::getHTMLText()
     for (const auto & dd : arDates)
     {
         int k = 0;
+        double total = 0.0;
         for (auto& account: Model_Account::instance().all())
         {
             if (Model_Account::type(account) != Model_Account::INVESTMENT)

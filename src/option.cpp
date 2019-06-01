@@ -62,7 +62,7 @@ struct Option::ReportInfo
         StocksReportSummary,
         ForecastReport,
     };
-    ReportInfo(wxString g, wxString n, bool t, Reports r) { group = g; name = n; type = t; id = r; }
+    ReportInfo(wxString g, wxString n, bool t, Reports r) : group(g), name(n), type(t), id(r) {}
     wxString group;
     wxString name;
     bool type;
@@ -108,6 +108,7 @@ Option::Option()
     , m_sharePrecision(4)
     , m_html_font_size(100)
     , m_ico_size(16)
+    , m_budget_days_offset(0)
     , m_hideReport(0)
 {
     m_reports.push_back(ReportInfo("", wxTRANSLATE("MMEX Usage Frequency"), false, ReportInfo::MyUsage));
@@ -186,10 +187,11 @@ void Option::LoadOptions(bool include_infotable)
     m_transDateDefault = Model_Setting::instance().GetIntSetting("TRANSACTION_DATE_DEFAULT", 0);
     m_usageStatistics = Model_Setting::instance().GetBoolSetting(INIDB_SEND_USAGE_STATS, true);
 
-    // Windows problem on high res screens Ref Issue #478
-    int default_font_size = 100;
 #ifdef _WINDOWS
-    default_font_size = 116;
+    // Windows problem on high res screens Ref Issue #478
+    int default_font_size = 116;
+#else
+    int default_font_size = 100;
 #endif
 
     m_html_font_size = Model_Setting::instance().GetIntSetting("HTMLSCALE", default_font_size);

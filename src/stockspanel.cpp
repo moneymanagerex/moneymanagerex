@@ -467,8 +467,6 @@ void StocksListCtrl::doRefreshItems(int trx_id)
             EnsureVisible(selectedIndex);
         }
     }
-    else
-        selectedIndex = -1;
 }
 
 /*******************************************************/

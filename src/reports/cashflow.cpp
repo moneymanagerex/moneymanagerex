@@ -104,10 +104,7 @@ void mmReportCashFlow::getStats(double& tInitialBalance, std::vector<ValueTrio>&
         double toAmt = entry.TOTRANSAMOUNT;
 
         // DeMultiplex the Auto Executable fields from the db entry: REPEATS
-        if (repeatsType >= BD_REPEATS_MULTIPLEX_BASE)    // Auto Execute User Acknowlegement required
-            repeatsType -= BD_REPEATS_MULTIPLEX_BASE;
-        if (repeatsType >= BD_REPEATS_MULTIPLEX_BASE)    // Auto Execute Silent mode
-            repeatsType -= BD_REPEATS_MULTIPLEX_BASE;
+        repeatsType %= BD_REPEATS_MULTIPLEX_BASE;
 
         bool processNumRepeats = numRepeats != -1 || repeatsType == 0;
         if (repeatsType == 0)

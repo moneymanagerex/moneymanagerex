@@ -83,7 +83,6 @@ void mmAboutDialog::InitControls()
     wxArrayString data;
     data.Add("");
 
-    int part = 0;
     hb.clear();
 
     //Read data from file
@@ -93,6 +92,7 @@ void mmAboutDialog::InitControls()
         wxFileInputStream input(filePath);
         wxTextInputStream text(input);
         wxRegEx link (R"(\[([^][]+)\]\(([^\(\)]+)\))", wxRE_EXTENDED);
+        int part = 0;
 
         while (input.IsOk() && !input.Eof())
         {
