@@ -46,9 +46,8 @@ mmPrintableBase::~mmPrintableBase()
     Document j_doc;
     if (!j_doc.Parse(m_settings.c_str()).HasParseError()) {
 
-        int id = -1;
         if (j_doc.HasMember("ID") && j_doc["ID"].IsInt()) {
-            id = j_doc["ID"].GetInt();
+            int id = j_doc["ID"].GetInt();
 
             StringBuffer json_buffer;
             PrettyWriter<StringBuffer> json_writer(json_buffer);

@@ -334,10 +334,7 @@ wxString htmlWidgetBillsAndDeposits::getHTMLText()
 
         int repeats = entry.REPEATS;
         // DeMultiplex the Auto Executable fields.
-        if (repeats >= BD_REPEATS_MULTIPLEX_BASE)    // Auto Execute User Acknowlegement required
-            repeats -= BD_REPEATS_MULTIPLEX_BASE;
-        if (repeats >= BD_REPEATS_MULTIPLEX_BASE)    // Auto Execute Silent mode
-            repeats -= BD_REPEATS_MULTIPLEX_BASE;
+        repeats %= BD_REPEATS_MULTIPLEX_BASE;
 
         if (daysPayment == 0 && repeats > 10 && repeats < 15 && entry.NUMOCCURRENCES < 0) {
             continue; // Inactive
