@@ -22,7 +22,9 @@
 #include "mmTextCtrl.h"
 #include "validators.h"
 #include "option.h"
+#include "paths.h"
 #include "reports/reportbase.h"
+#include "reports/htmlbuilder.h"
 #include "Model_Infotable.h"
 #include "Model_Setting.h"
 #include "wx_compat.h"
@@ -425,6 +427,74 @@ bool getNewsRSS(std::vector<WebsiteNews>& WebsiteNewsList)
     }
 
     return !WebsiteNewsList.empty();
+}
+
+bool prepare_bug_report_file(wxString& path)
+{
+    mmHTMLBuilder hb;
+
+    const std::vector<std::pair<wxString, wxString>> fixes = {
+    { "\n\n", "<br>" }, { "\n", " " }, { "  ", " " },
+    { "^" + _("Version: "), "\n<hr><small><b>Version</b>: " },
+    { _("Database version: "), L"\u2022 db " },
+    { _("Git commit: "), L"\u2022 git " },
+    { _("Git branch: "), "" },
+    { _("MMEX is using the following support products:") + L" \u2022", "<b>Libs</b>:" },
+    { "<br>" + _("Build on"), "<br><b>Build</b>:" },
+    { " " + _("with:"), "" },
+    { _("Running on:") + L" \u2022", "<b>OS</b>:" },
+    { "(.)$", "\\1</small>" }
+    };
+
+    wxRegEx re;
+    wxString diag = "&#9999;" + _("Replace this text with detailed description of your problem.");
+    diag << "\n";
+    diag << _("Please do not remove information attached below this text.");
+    diag << "&#9999;\n\n<hr>";
+    diag << mmex::getProgramDescription();
+
+    for (const auto& kv : fixes)
+    {
+        if (re.Compile(kv.first, wxRE_EXTENDED)) {
+            re.Replace(&diag, kv.second);
+        }
+    }
+
+    wxString req = mmex::weblink::BugReport + "/new?body=" + diag;
+
+    const wxString texts[] = {
+        _("1. Use Help->Check for Updates in MMEX to get latest version - your problem can be fixed already."),
+        wxString::Format(_("2. Search %s for similar problem - update existing issue instead of creating new one.")
+            , wxString::Format("<a href='%s'>%s</a>",  mmex::weblink::BugReport, _("this link"))),
+        wxString::Format(_("3. Read %s for useful tips.")
+            , wxString::Format("<a href='%s'>%s</a>",  mmex::weblink::Chiark, _("this link"))),
+        _("4. Come up with a descriptive name for your problem for the title."),
+        _("5. Include steps to reproduce your issue, attach screenshots where appropriate."),
+        wxString::Format(_("6. Before click the following link, be sure that you have already signed in to %s")
+            , wxString::Format("<a href='%s'>%s</a>",  mmex::weblink::GitHub, "GitHub")),
+        wxString::Format(_("7. Finally, Report a bug by click %s")
+            , wxString::Format("<a href='%s'>%s</a>",  req, _("this link")))
+    };
+
+    wxString msg;
+    for (const auto& string : texts) {
+        msg += string + "<br>" + "\n";
+    }
+    msg = wxString::Format(hb.getBugReportTemplate()
+        , _("Please follow these tasks before submitting new bug:")
+        , msg);
+
+    path = mmex::getTempFolder() + wxFileName::GetPathSeparator() + "bug_report.html";
+
+    wxFile file(path, wxFile::write);
+    if (file.IsOpened())
+    {
+        file.Write(msg);
+        file.Close();
+        return true;
+    }
+
+    return false;
 }
 
 /* Currencies & stock prices */

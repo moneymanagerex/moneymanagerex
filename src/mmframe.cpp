@@ -2563,84 +2563,10 @@ void mmGUIFrame::OnSimpleURLOpen(wxCommandEvent& event)
 
 void mmGUIFrame::OnReportBug(wxCommandEvent& WXUNUSED(event))
 {
-    const wxString BUG_TEMPLATE =
-        R"(<!DOCTYPE html>
-<html>
-<head>
-    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    <title>Bug Report</title>
-    <link href='master.css' rel='stylesheet' />
-</head>
-<body>
-<div class = "container">
-<h3>%s</h3>
-<div class = "col-xs-8">
-%s
-</div>
-</body>
-</html>
-)";
-
-    const std::vector<std::pair<wxString, wxString>> fixes = {
-    { "\n\n", "<br>" }, { "\n", " " }, { "  ", " " },
-    { "^" + _("Version: "), "\n<hr><small><b>Version</b>: " },
-    { _("Database version: "), L"\u2022 db " },
-    { _("Git commit: "), L"\u2022 git " },
-    { _("Git branch: "), "" },
-    { _("MMEX is using the following support products:") + L" \u2022", "<b>Libs</b>:" },
-    { "<br>" + _("Build on"), "<br><b>Build</b>:" },
-    { " " + _("with:"), "" },
-    { _("Running on:") + L" \u2022", "<b>OS</b>:" },
-    { "(.)$", "\\1</small>" }
-    };
-
-    wxRegEx re;
-    wxString diag = "&#9999;" + _("Replace this text with detailed description of your problem.");
-    diag << "\n";
-    diag << _("Please do not remove information attached below this text.");
-    diag << "&#9999;\n\n<hr>";
-    diag << mmex::getProgramDescription();
-
-    for (const auto& kv : fixes)
-    {
-        if (re.Compile(kv.first, wxRE_EXTENDED)) {
-            re.Replace(&diag, kv.second);
-        }
+    wxString bugReportFilePath;
+    if (prepare_bug_report_file(bugReportFilePath)) {
+        wxLaunchDefaultBrowser(bugReportFilePath);
     }
-
-    wxString req = mmex::weblink::BugReport + "/new?body=" + diag;
-
-    const wxString texts[] = {
-        _("1. Use Help->Check for Updates in MMEX to get latest version - your problem can be fixed already."),
-        wxString::Format(_("2. Search %s for similar problem - update existing issue instead of creating new one.")
-            , wxString::Format("<a href='%s'>%s</a>",  mmex::weblink::BugReport, _("this link"))),
-        wxString::Format(_("3. Read %s for useful tips.")
-            , wxString::Format("<a href='%s'>%s</a>",  mmex::weblink::Chiark, _("this link"))),
-        _("4. Come up with a descriptive name for your problem for the title."),
-        _("5. Include steps to reproduce your issue, attach screenshots where appropriate."),
-        wxString::Format(_("6. Before click the following link, be sure that you have already signed in to %s")
-            , wxString::Format("<a href='%s'>%s</a>",  mmex::weblink::GitHub, "GitHub")),
-        wxString::Format(_("7. Finally, Report a bug by click %s")
-            , wxString::Format("<a href='%s'>%s</a>",  req, _("this link")))
-    };
-
-    wxString msg;
-    for (const auto& string : texts) {
-        msg += string + "<br>" + "\n";
-    }
-    msg = wxString::Format(BUG_TEMPLATE
-        , _("Please follow these tasks before submitting new bug:")
-        , msg);
-
-    const wxString bugReportFilePath = mmex::getTempFolder() + wxFileName::GetPathSeparator() + "bug_report.html";
-
-    wxFile file(bugReportFilePath, wxFile::write);
-    if (file.IsOpened())
-    {
-        file.Write(msg);
-        file.Close();
-    }
-    wxLaunchDefaultBrowser(bugReportFilePath);
 }
 
 //----------------------------------------------------------------------------

@@ -124,6 +124,23 @@ static const wxString COLORS [] = {
     , "rgba(176,196,222,0.7)"
     , "rgba(85,107,47,0.7)"
     , "rgba(0,0,139,0.7)" };
+static const wxString BUG_TEMPLATE =
+R"(<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>Bug Report</title>
+    <link href='master.css' rel='stylesheet' />
+</head>
+<body>
+<div class = "container">
+<h3>%s</h3>
+<div class = "col-xs-8">
+%s
+</div>
+</body>
+</html>
+)";
 }
 
 mmHTMLBuilder::mmHTMLBuilder()
@@ -715,4 +732,9 @@ std::ostream& operator << (std::ostream& os, const wxDateTime& date)
 {
     os << date.FormatISODate();
     return os;
+}
+
+const wxString  mmHTMLBuilder::getBugReportTemplate() const
+{
+    return tags::BUG_TEMPLATE;
 }
