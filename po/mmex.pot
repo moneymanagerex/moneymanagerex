@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MMEX\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2019-06-01 15:50+0300\n"
+"POT-Creation-Date: 2019-06-01 19:20+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1657,35 +1657,35 @@ msgstr ""
 msgid "&Close "
 msgstr ""
 
-#: constants.cpp:61 util.cpp:438
+#: constants.cpp:61 util.cpp:436
 msgid "Version: "
 msgstr ""
 
-#: constants.cpp:81 util.cpp:439
+#: constants.cpp:81 util.cpp:437
 msgid "Database version: "
 msgstr ""
 
-#: constants.cpp:87 util.cpp:440
+#: constants.cpp:87 util.cpp:438
 msgid "Git commit: "
 msgstr ""
 
-#: constants.cpp:91 util.cpp:441
+#: constants.cpp:91 util.cpp:439
 msgid "Git branch: "
 msgstr ""
 
-#: constants.cpp:94 util.cpp:442
+#: constants.cpp:94 util.cpp:440
 msgid "MMEX is using the following support products:"
 msgstr ""
 
-#: constants.cpp:106 util.cpp:443
+#: constants.cpp:106 util.cpp:441
 msgid "Build on"
 msgstr ""
 
-#: constants.cpp:106 util.cpp:444
+#: constants.cpp:106 util.cpp:442
 msgid "with:"
 msgstr ""
 
-#: constants.cpp:127 util.cpp:445
+#: constants.cpp:127 util.cpp:443
 msgid "Running on:"
 msgstr ""
 
@@ -6535,48 +6535,48 @@ msgstr ""
 msgid "Password must not be empty."
 msgstr ""
 
-#: util.cpp:450
+#: util.cpp:457
 msgid "Replace this text with detailed description of your problem."
 msgstr ""
 
-#: util.cpp:452
+#: util.cpp:458
 msgid "Please do not remove information attached below this text."
 msgstr ""
 
-#: util.cpp:466
-msgid "1. Use Help->Check for Updates in MMEX to get latest version - your problem can be fixed already."
+#: util.cpp:463
+msgid "Use Help->Check for Updates in MMEX to get latest version - your problem can be fixed already."
 msgstr ""
 
-#: util.cpp:467
+#: util.cpp:464
 #, c-format
-msgid "2. Search %s for similar problem - update existing issue instead of creating new one."
+msgid "Search %s for similar problem - update existing issue instead of creating new one."
 msgstr ""
 
-#: util.cpp:468 util.cpp:470 util.cpp:476
+#: util.cpp:465 util.cpp:467 util.cpp:473
 msgid "this link"
 msgstr ""
 
-#: util.cpp:469
+#: util.cpp:466
 #, c-format
-msgid "3. Read %s for useful tips."
+msgid "Read %s for useful tips."
 msgstr ""
 
-#: util.cpp:471
-msgid "4. Come up with a descriptive name for your problem for the title."
+#: util.cpp:468
+msgid "Come up with a descriptive name for your problem for the title."
+msgstr ""
+
+#: util.cpp:469
+msgid "Include steps to reproduce your issue, attach screenshots where appropriate."
+msgstr ""
+
+#: util.cpp:470
+#, c-format
+msgid "Before click the following link, be sure that you have already signed in to %s."
 msgstr ""
 
 #: util.cpp:472
-msgid "5. Include steps to reproduce your issue, attach screenshots where appropriate."
-msgstr ""
-
-#: util.cpp:473
 #, c-format
-msgid "6. Before click the following link, be sure that you have already signed in to %s"
-msgstr ""
-
-#: util.cpp:475
-#, c-format
-msgid "7. Finally, Report a bug by click %s"
+msgid "Finally, report a bug by click %s."
 msgstr ""
 
 #: util.cpp:484

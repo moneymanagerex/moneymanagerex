@@ -431,8 +431,6 @@ bool getNewsRSS(std::vector<WebsiteNews>& WebsiteNewsList)
 
 bool prepare_bug_report_file(wxString& path)
 {
-    mmHTMLBuilder hb;
-
     const std::vector<std::pair<wxString, wxString>> fixes = {
     { "\n\n", "<br>" }, { "\n", " " }, { "  ", " " },
     { "^" + _("Version: "), "\n<hr><small><b>Version</b>: " },
@@ -447,11 +445,7 @@ bool prepare_bug_report_file(wxString& path)
     };
 
     wxRegEx re;
-    wxString diag = "&#9999;" + _("Replace this text with detailed description of your problem.");
-    diag << "\n";
-    diag << _("Please do not remove information attached below this text.");
-    diag << "&#9999;\n\n<hr>";
-    diag << mmex::getProgramDescription();
+    wxString diag = mmex::getProgramDescription();
 
     for (const auto& kv : fixes)
     {
@@ -460,26 +454,32 @@ bool prepare_bug_report_file(wxString& path)
         }
     }
 
-    wxString req = mmex::weblink::BugReport + "/new?body=" + diag;
+    wxString info = "> " + _("Replace this text with detailed description of your problem.") + "\n> ";
+    info << _("Please do not remove information attached below this text.") + "\n";
+
+    wxURI req = mmex::weblink::BugReport + "/new?body=" + info + diag;
 
     const wxString texts[] = {
-        _("1. Use Help->Check for Updates in MMEX to get latest version - your problem can be fixed already."),
-        wxString::Format(_("2. Search %s for similar problem - update existing issue instead of creating new one.")
+        _("Use Help->Check for Updates in MMEX to get latest version - your problem can be fixed already."),
+        wxString::Format(_("Search %s for similar problem - update existing issue instead of creating new one.")
             , wxString::Format("<a href='%s'>%s</a>",  mmex::weblink::BugReport, _("this link"))),
-        wxString::Format(_("3. Read %s for useful tips.")
+        wxString::Format(_("Read %s for useful tips.")
             , wxString::Format("<a href='%s'>%s</a>",  mmex::weblink::Chiark, _("this link"))),
-        _("4. Come up with a descriptive name for your problem for the title."),
-        _("5. Include steps to reproduce your issue, attach screenshots where appropriate."),
-        wxString::Format(_("6. Before click the following link, be sure that you have already signed in to %s")
+        _("Come up with a descriptive name for your problem for the title."),
+        _("Include steps to reproduce your issue, attach screenshots where appropriate."),
+        wxString::Format(_("Before click the following link, be sure that you have already signed in to %s.")
             , wxString::Format("<a href='%s'>%s</a>",  mmex::weblink::GitHub, "GitHub")),
-        wxString::Format(_("7. Finally, Report a bug by click %s")
-            , wxString::Format("<a href='%s'>%s</a>",  req, _("this link")))
+        wxString::Format(_("Finally, report a bug by click %s.")
+            , wxString::Format("<a href='%s'>%s</a>",  req.BuildURI(), _("this link")))
     };
 
-    wxString msg;
+    wxString msg = "<ol>";
     for (const auto& string : texts) {
-        msg += string + "<br>" + "\n";
+        msg += "<li>" + string + "</li>" + "\n";
     }
+    msg += "</ol>\n";
+
+    mmHTMLBuilder hb;
     msg = wxString::Format(hb.getBugReportTemplate()
         , _("Please follow these tasks before submitting new bug:")
         , msg);
