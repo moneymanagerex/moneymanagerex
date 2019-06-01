@@ -27,6 +27,7 @@ env:
   - OS=ubuntu DIST=bionic
   - OS=ubuntu DIST=cosmic
   - OS=ubuntu DIST=disco
+  - OS=ubuntu DIST=eoan
   - OS=ubuntu DIST=xenial ARCH=x86
   - OS=ubuntu DIST=zesty ARCH=x86
   - OS=ubuntu DIST=artful ARCH=x86
@@ -34,6 +35,8 @@ env:
   - OS=ubuntu DIST=cosmic ARCH=x86
   - OS=ubuntu DIST=disco ARCH=x86
   - OS=ubuntu DIST=disco ARCH=armhf
+  - OS=ubuntu DIST=eoan ARCH=x86
+  - OS=ubuntu DIST=eoan ARCH=armhf
   - OS=fedora DIST=24
   - OS=fedora DIST=25
   - OS=fedora DIST=26
@@ -90,6 +93,7 @@ matrix:
   - env: OS=ubuntu DIST=artful
   - env: OS=ubuntu DIST=cosmic
   - env: OS=ubuntu DIST=disco
+  - env: OS=ubuntu DIST=eoan
   - env: OS=ubuntu DIST=xenial ARCH=x86
   - env: OS=ubuntu DIST=zesty ARCH=x86
   - env: OS=ubuntu DIST=artful ARCH=x86
@@ -97,6 +101,8 @@ matrix:
   - env: OS=ubuntu DIST=cosmic ARCH=x86
   - env: OS=ubuntu DIST=disco ARCH=x86
   - env: OS=ubuntu DIST=disco ARCH=armhf
+  - env: OS=ubuntu DIST=eoan ARCH=x86
+  - env: OS=ubuntu DIST=eoan ARCH=armhf
   - env: OS=fedora DIST=24
   - env: OS=fedora DIST=25
   - env: OS=fedora DIST=26
@@ -138,8 +144,8 @@ install: |-
 
 before_script:
 - cd $TRAVIS_BUILD_DIR/src/db
-- python ../../util/sqlite2cpp.py ../../database/tables.sql && rm -f sql*.sql *.mmdbg
-- python ../../util/sqliteupgrade2cpp.py ../../database/incremental_upgrade
+- python3 ../../util/sqlite2cpp.py ../../database/tables.sql && rm -f sql*.sql *.mmdbg
+- python3 ../../util/sqliteupgrade2cpp.py ../../database/incremental_upgrade
 - cd ../.. && mkdir build && cd build
 
 script: |-

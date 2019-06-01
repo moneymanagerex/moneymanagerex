@@ -6,9 +6,9 @@ Usage: python sqlite2cpp.py path_to_sql_file
 
 import sys
 import os
-import datetime
 import sqlite3
-import codecs
+import subprocess
+from io import open
 
 currency_unicode_patch_filename = 'currencies_update_patch_unicode_only.mmdbg'
 currency_table_patch_filename = 'currencies_update_patch.mmdbg'
@@ -141,32 +141,29 @@ UPDATE OR IGNORE %s SET %s WHERE CURRENCY_SYMBOL='%s';''' % (self._table, row['C
            Only extract unicode data"""
         if self._table.upper() == 'CURRENCYFORMATS':
             print('Generate patch file: %s' % currency_unicode_patch_filename)
-            rfp = codecs.open(currency_unicode_patch_filename, 'w', 'utf-8')
             sf1 = '''-- MMEX Debug SQL - Update --
 -- MMEX db version required 13
 -- This script will add missing currencies and will overwrite all currencies params containing UTF8 in your database.'''
-            rfp.write(self.generate_currency_table_data(sf1, True))
-            rfp.close()
+            with open(currency_unicode_patch_filename, 'w', encoding='utf-8') as rfp:
+                rfp.write(self.generate_currency_table_data(sf1, True))
 
     def generate_currency_upgrade_patch(self):
         """Write currency_table_upgrade_patch file
            Extract all currency data"""
         if self._table.upper() == 'CURRENCYFORMATS':
             print('Generate patch file: %s' % currency_table_patch_filename)
-            rfp = codecs.open(currency_table_patch_filename, 'w', 'utf-8')
             sf1 = '''-- MMEX Debug SQL - Update --
 -- MMEX db version required 13
 -- This script will add missing currencies and will overwrite all currencies params in your database.'''
-            rfp.write(self.generate_currency_table_data(sf1, False))
-            rfp.close()
+            with open(currency_table_patch_filename, 'w', encoding='utf-8') as rfp:
+                rfp.write(self.generate_currency_table_data(sf1, False))
 
     def generate_class(self, header, sql):
         """ Write the data to the appropriate .h file"""
         print('Generate Table: %s' % self._table)
-        rfp = codecs.open('Table_%s.h' % self._table.title(), 'w', 'utf-8-sig')
-        rfp.write(header % 'CRUD implementation for %s SQLite table' % self._table)
-        rfp.write(self.to_string(sql))
-        rfp.close()
+        with open('Table_%s.h' % self._table.title(), 'w', encoding='utf-8') as rfp:
+            rfp.write(header % 'CRUD implementation for %s SQLite table' % self._table)
+            rfp.write(self.to_string(sql))
 
     def to_string(self, sql=None):
         """Create the data for the .h file"""
@@ -474,21 +471,21 @@ struct DB_Table_%s : public DB_Table
         void as_json(PrettyWriter<StringBuffer>& json_writer) const
         {'''
         for field in self._fields:
-            type = base_data_types_reverse[field['type']]
-            if type == 'int':
+            fieldtype = base_data_types_reverse[field['type']]
+            if fieldtype == 'int':
                 s += '''
             json_writer.Key("%s");
             json_writer.Int(this->%s);''' % (field['name'], field['name'])
-            elif type == 'double':
+            elif fieldtype == 'double':
                 s += '''
             json_writer.Key("%s");
             json_writer.Double(this->%s);''' % (field['name'], field['name'])
-            elif type == 'wxString':
+            elif fieldtype == 'wxString':
                 s += '''
             json_writer.Key("%s");
             json_writer.String(this->%s.c_str());''' % (field['name'], field['name'])
             else:
-                assert "Field type Error"
+                raise NotImplementedError("Field type '%s' unknown" % fieldtype)
 
         s += '''
         }'''
@@ -968,12 +965,19 @@ struct SorterBy%s
 };
 ''' % (field, transl, field, transl, field)
 
-    rfp = codecs.open('Table.h', 'w', 'utf-8-sig')
-    rfp.write(code)
-    rfp.close()
+    with open('Table.h', 'w', encoding='utf-8') as rfp:
+        rfp.write(code)
+
+def gitLastModified(*fnames):
+    """return date string for the last commit modifing files given"""
+    cmd = ['git', 'log', '-n1', '--pretty=format:%ci', '--']
+    func = 'commonpath' if 'commonpath' in dir(os.path) else 'commonprefix'
+    cpath = os.path.dirname(getattr(os.path, func)(fnames)) or None
+    cmd.extend([os.path.relpath(f, cpath) if cpath else f for f in fnames])
+    return subprocess.check_output(cmd, universal_newlines=True, cwd=cpath)
 
 if __name__ == '__main__':
-    header = '''// -*- C++ -*-
+    header = u'''// -*- C++ -*-
 /** @file
  * @brief     %%s
  * @warning   Auto generated with %s script. DO NOT EDIT!
@@ -984,17 +988,17 @@ if __name__ == '__main__':
  * @author    Tomasz Słodkowicz
  * @date      %s
  */
-'''% (os.path.basename(__file__), str(datetime.datetime.now()))
+'''% (os.path.basename(__file__), gitLastModified(__file__, sys.argv[1]) or 'unknown')
 
     conn, cur, sql_file = None, None, None
-    try:
-        sql_file = sys.argv[1]
-        conn = sqlite3.connect(":memory:")
-        conn.row_factory = sqlite3.Row
-        cur = conn.cursor()
-    except:
+    if len(sys.argv) != 2:
         print(__doc__)
         sys.exit(1)
+    sql_file = sys.argv[1]
+
+    conn = sqlite3.connect(":memory:")
+    conn.row_factory = sqlite3.Row
+    cur = conn.cursor()
 
     sql = ""
     sql_txt = '''-- NOTE:
@@ -1004,7 +1008,7 @@ if __name__ == '__main__':
 
 '''
 
-    for line in codecs.open(sql_file, 'r', 'utf-8' ):
+    for line in open(sql_file, 'r', encoding='utf-8'):
         sql = sql + line
 
         if line.find('_tr_') > 0: # Remove _tr_ identifyer for wxTRANSLATE
@@ -1014,9 +1018,8 @@ if __name__ == '__main__':
 
     # Generate a table that does not contain translation code identifyer
     print( 'Generate SQL file: %s that can generate a clean database.' % sql_tables_data_filename)
-    file_data = codecs.open(sql_tables_data_filename, 'w', 'utf-8')
-    file_data.write(sql_txt)
-    file_data.close()
+    with open(sql_tables_data_filename, 'w', encoding='utf-8') as file_data:
+        file_data.write(sql_txt)
 
     cur.executescript(sql)
 
@@ -1026,13 +1029,13 @@ if __name__ == '__main__':
         index = get_index_list(cur, table)
         data = get_data_initializer_list(cur, table)
         table = DB_Table(table, fields, index, data)
-        table.generate_class(header.decode('utf-8'), sql)
+        table.generate_class(header, sql)
         table.generate_unicode_currency_upgrade_patch()
         table.generate_currency_upgrade_patch()
         for field in fields:
             all_fields.add(field['name'])
 
-    generate_base_class(header.decode('utf-8'), all_fields)
+    generate_base_class(header, all_fields)
 
     conn.close()
     print('End of Run')

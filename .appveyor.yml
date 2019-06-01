@@ -23,8 +23,8 @@ matrix:
 environment:
   # use cache with 7z compression
   APPVEYOR_CACHE_ENTRY_ZIP_ARGS: -t7z -m0=lzma -mx=9
-  # Use cygwin embedded gettext tools
-  path: '%path%;C:\cygwin64\bin'
+  # Use cygwin embedded gettext tools and Python 3.7
+  path: 'C:\Python37-x64;C:\Python37-x64\Scripts;%path%;C:\cygwin64\bin'
   # clcache config
   clcVer: 4.1.0
   # libcurl config

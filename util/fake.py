@@ -15,22 +15,19 @@ all_payee = [payee[0] for payee in curs.fetchall()]
 curs.execute("select c.CATEGID, ifnull(s.SUBCATEGID, -1) from CATEGORY as c left join SUBCATEGORY as s ON (c.CATEGID = s.CATEGID)")
 all_category = [(c[0], c[1]) for c in curs.fetchall()]
 
-all_type = ("Withdrawal", "Deposit", "Transfer")
-all_status = ("V", "R", "N", "F", "D")
-
 today = date.today()
 
 for x in range(1, 100000):
-    account_id = all_account[random.randint(0, len(all_account) -1)]
-    payee_id = all_payee[random.randint(0, len(all_payee) -1)]
-    transcode = all_type[random.randint(0, len(all_type) - 2)]
-    category = all_category[random.randint(0, len(all_category) -1)]
+    account_id = random.choice(all_account)
+    payee_id = random.choice(all_payee)
+    transcode = random.choice(["Withdrawal", "Deposit"])
+    category = random.choice(all_category)
     amount = 1000 * random.random()
-    type = all_status[random.randint(0, len(all_status) -1)]
-    transdate = today + timedelta(days = random.randint(-1000,10)) 
-    
+    status = random.choice(["V", "R", "N", "F", "D"])
+    transdate = today + timedelta(days = random.randint(-1000,10))
+
     sql = '''INSERT INTO CHECKINGACCOUNT(ACCOUNTID, TOACCOUNTID, PAYEEID, TRANSCODE, TRANSAMOUNT, STATUS, TRANSACTIONNUMBER, NOTES, CATEGID, SUBCATEGID, TRANSDATE, FOLLOWUPID, TOTRANSAMOUNT)
-    VALUES(%d, -1, %d, "%s", %f, "%s", "%d", "", %d, %d, "%s", -1, %f)''' % (account_id, payee_id, transcode, amount, type, x, category[0], category[1], transdate, amount)
+    VALUES(%d, -1, %d, "%s", %f, "%s", "%d", "", %d, %d, "%s", -1, %f)''' % (account_id, payee_id, transcode, amount, status, x, category[0], category[1], transdate, amount)
     curs.execute(sql)
-    
+
 conn.commit()
