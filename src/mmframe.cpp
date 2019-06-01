@@ -2563,21 +2563,17 @@ void mmGUIFrame::OnSimpleURLOpen(wxCommandEvent& event)
 
 void mmGUIFrame::OnReportBug(wxCommandEvent& WXUNUSED(event))
 {
-    const wxString texts[] = {
+    std::vector<wxString> texts = {
+        _("Please follow these tasks before submitting new bug:"),
         _("1. Use Help->Check for Updates in MMEX to get latest version - your problem can be fixed already."),
         _("2. Search https://github.com/moneymanagerex/moneymanagerex/issues?q=is:issue for similar problem - update existing issue instead of creating new one."),
         _("3. Put some descriptive name for your issue in the Title field above."),
-        _("4. Read https://www.chiark.greenend.org.uk/~sgtatham/bugs.html for useful tips."),
+        _("4. Replace this text (marked with >) with detailed description of your problem."),
+        _("Read https://www.chiark.greenend.org.uk/~sgtatham/bugs.html for useful tips."),
         _("5. Include steps to reproduce your issue, attach screenshots where appropriate."),
+        _("6. Please do not remove information attached below this text.")
     };
-
-    wxString msg;
-    for (const auto& string : texts) {
-        msg += string + "\n";
-    }
-    wxMessageBox(msg, _("Please follow these tasks before submitting new bug:"));
-
-    const std::vector<std::pair<wxString, wxString>> fixes = {
+    std::vector<std::pair<wxString, wxString>> fixes = {
         { "\n\n", "<br>" }, { "\n", " " }, { "  ", " " },
         { "^" + _("Version: "), "\n<hr><small><b>Version</b>: " },
         { _("Database version: "), L"\u2022 db " },
@@ -2589,21 +2585,15 @@ void mmGUIFrame::OnReportBug(wxCommandEvent& WXUNUSED(event))
         { _("Running on:") + L" \u2022", "<b>OS</b>:" },
         { "(.)$", "\\1</small>" }
     };
-
     wxRegEx re;
-    wxString diag = _("Replace this text with detailed description of your problem.");
-    diag << "\n";
-    diag << _("Please do not remove information attached below this text.");
-    diag << "\n\n";
-    diag << mmex::getProgramDescription();
-    for (const auto& kv : fixes)
-    {
-        if (re.Compile(kv.first, wxRE_EXTENDED)) {
-            re.Replace(&diag, kv.second);
-        }
-    }
-
-    wxURI req = mmex::weblink::BugReport + "/new?body=" + diag;
+    wxString diag = mmex::getProgramDescription();
+    for (const auto& kv: fixes)
+        if (re.Compile(kv.first, wxRE_EXTENDED)) re.Replace(&diag, kv.second);
+    wxString api = "/new?body=";
+    for (const auto& text: texts)
+        api << "> " << text << "\n";
+    api << diag;
+    wxURI req = mmex::weblink::BugReport + api;
     wxLaunchDefaultBrowser(req.BuildURI());
 }
 
