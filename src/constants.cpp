@@ -181,6 +181,7 @@ const wxString mmex::weblink::SquareCashGuan = "https://cash.me/$guanlisheng/1";
 const wxString mmex::weblink::Twitter = "https://twitter.com/MoneyManagerEx";
 const wxString mmex::weblink::Facebook = "https://www.facebook.com/MoneyManagerEx/";
 const wxString mmex::weblink::Crowdin = "https://crowdin.com/project/moneymanagerex/";
+const wxString mmex::weblink::Chiark = "https://www.chiark.greenend.org.uk/~sgtatham/bugs.html";
 
 // Yahoo API
 const wxString mmex::weblink::YahooQuotes = "https://query1.finance.yahoo.com/v7/finance/quote?symbols=%s&fields=regularMarketPrice,currency,shortName";
@@ -198,15 +199,6 @@ const wxString mmex::weblink::WebApp = "https://github.com/moneymanagerex/web-mo
 
 // Will display the stock page when using Looks up the current value
 const wxString mmex::weblink::DefStockUrl = "https://finance.yahoo.com/echarts?s=%s";
-// Looks up the current value
-// const wxChar *const mmex::DEFSTOCKURL = "https://finance.yahoo.com/lookup?s=%s";
-
-// Using google: To specify the exchange, use exch:code
-// Using yahoo: To specify the exchange, use code.exch
-// const wxChar *const mmex::DEFSTOCKURL = "https://www.google.com/finance?q=%s";
-
-//US Dollar (USD) in Euro (EUR) Chart
-//https://www.google.com/finance?q=CURRENCY%3AUSD
 
 /* End namespace weblink */
 
