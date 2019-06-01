@@ -460,16 +460,16 @@ bool prepare_bug_report_file(wxString& path)
     wxURI req = mmex::weblink::BugReport + "/new?body=" + info + diag;
 
     const wxString texts[] = {
-        _("Use Help->Check for Updates in MMEX to get latest version - your problem can be fixed already."),
-        wxString::Format(_("Search %s for similar problem - update existing issue instead of creating new one.")
+        _("Use Help->Check for Updates in MMEX to get latest version, where your problem might be already fixed."),
+        wxString::Format(_("Search %s for similar problem. If so, update existing issue instead of creating a new one.")
             , wxString::Format("<a href='%s'>%s</a>",  mmex::weblink::BugReport, _("this link"))),
         wxString::Format(_("Read %s for useful tips.")
             , wxString::Format("<a href='%s'>%s</a>",  mmex::weblink::Chiark, _("this link"))),
-        _("Come up with a descriptive name for your problem for the title."),
-        _("Include steps to reproduce your issue, attach screenshots where appropriate."),
-        wxString::Format(_("Before click the following link, be sure that you have already signed in to %s.")
+        _("Come up with a descriptive name for your problem."),
+        _("Include steps to reproduce your problem, attach screenshots where appropriate."),
+        wxString::Format(_("Before click the following link, be sure that you have already signed in to the %s.")
             , wxString::Format("<a href='%s'>%s</a>",  mmex::weblink::GitHub, "GitHub")),
-        wxString::Format(_("Finally, report a bug by click %s.")
+        wxString::Format(_("Finally, report a bug by clicking %s.")
             , wxString::Format("<a href='%s'>%s</a>",  req.BuildURI(), _("this link")))
     };
 
@@ -481,7 +481,7 @@ bool prepare_bug_report_file(wxString& path)
 
     mmHTMLBuilder hb;
     msg = wxString::Format(hb.getBugReportTemplate()
-        , _("Please follow these tasks before submitting new bug:")
+        , _("Please, follow these instructions before submitting a new bug report:")
         , msg);
 
     path = mmex::getTempFolder() + wxFileName::GetPathSeparator() + "bug_report.html";
