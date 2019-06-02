@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-06-02 15:04+0300\n"
-"PO-Revision-Date: 2019-06-02 15:59\n"
+"PO-Revision-Date: 2019-06-02 16:24\n"
 "Last-Translator: Nikolay (vomikan)\n"
 "Language-Team: Croatian\n"
 "MIME-Version: 1.0\n"
@@ -5742,16 +5742,16 @@ msgstr "Navedi korake, potrebne za reprodukciju problema. Ako je potrebno, prilo
 #: reports/bugreport.h:84
 #, c-format
 msgid "Before click the following link, be sure that you have already signed in to the <a href='%s'>GitHub</a>."
-msgstr ""
+msgstr "Prije nego što pritisneš sljedeću poveznicu, provjeri da si prijavljen(a) na <a href='%s'>GitHub</a>."
 
 #: reports/bugreport.h:86
 #, c-format
 msgid "Finally, report a bug using GitHub <a href='%s'>online form</a> opened in your web browser."
-msgstr ""
+msgstr "Na kraju, prijavi grešku pomoću GitHub <a href='%s'>online obrasca</a> u tvom web-pregledniku."
 
 #: reports/bugreport.h:97
 msgid "Please, follow these instructions before submitting a new bug report:"
-msgstr ""
+msgstr "Molimo te, slijedi ove smjernice za slanje izvještaja o novoj grešci:"
 
 #: reports/cashflow.cpp:220
 #, c-format
