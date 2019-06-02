@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-06-02 15:04+0300\n"
-"PO-Revision-Date: 2019-06-02 15:05\n"
+"PO-Revision-Date: 2019-06-02 15:59\n"
 "Last-Translator: Nikolay (vomikan)\n"
 "Language-Team: Croatian\n"
 "MIME-Version: 1.0\n"
@@ -5719,25 +5719,25 @@ msgstr "Ne uklanjaj informacije priložene ispod ovog teksta."
 
 #: reports/bugreport.h:78
 msgid "Use Help->Check for Updates in MMEX to get latest version, where your problem might be already fixed."
-msgstr ""
+msgstr "Upotrijebi „Pomoć → Provjeri nadogradnje” u MMEX-u. S najnovijom verzijom su tvoji problemi možda već riješeni."
 
 #: reports/bugreport.h:79
 #, c-format
 msgid "Search <a href='%s'>a list of known issues</a> for similar problem. If so, update existing issue instead of creating a new one."
-msgstr ""
+msgstr "Pretraži <a href='%s'>popis poznatih problema</a> za sličnim problemima. Ako postoje, aktualiziraj postojeći problem umjesto pokretanja novog."
 
 #: reports/bugreport.h:81
 #, c-format
 msgid "Read <a href='%s'>How to Report Bugs Effectively</a> for useful tips."
-msgstr ""
+msgstr "Pročitaj <a href='%s'>Kako efektivno pirjaviti problem</a> za savjete."
 
 #: reports/bugreport.h:82
 msgid "Come up with a descriptive name for your problem."
-msgstr ""
+msgstr "Izmisli si jedan opisni naziv za tvoj problem."
 
 #: reports/bugreport.h:83
 msgid "Include steps to reproduce your problem, attach screenshots where appropriate."
-msgstr ""
+msgstr "Navedi korake, potrebne za reprodukciju problema. Ako je potrebno, priloži slike zaslona."
 
 #: reports/bugreport.h:84
 #, c-format
