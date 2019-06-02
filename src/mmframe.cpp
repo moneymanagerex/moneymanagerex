@@ -21,7 +21,7 @@
  ********************************************************/
 
 #include "mmframe.h"
-
+#include "reports/bugreport.h"
 #include "aboutdialog.h"
 #include "accountdialog.h"
 #include "appstartdialog.h"
@@ -2563,10 +2563,8 @@ void mmGUIFrame::OnSimpleURLOpen(wxCommandEvent& event)
 
 void mmGUIFrame::OnReportBug(wxCommandEvent& WXUNUSED(event))
 {
-    wxString bugReportFilePath;
-    if (prepare_bug_report_file(bugReportFilePath)) {
-        wxLaunchDefaultBrowser(bugReportFilePath);
-    }
+    mmPrintableBase* br = new mmBugReport();
+    createReportsPage(br, true);
 }
 
 //----------------------------------------------------------------------------

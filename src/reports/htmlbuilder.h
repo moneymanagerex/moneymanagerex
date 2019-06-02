@@ -108,7 +108,6 @@ public:
     void endTableCell();
 
     const wxString getHTMLText() const;
-    const wxString getBugReportTemplate() const;
 
     void addTableRow(const wxString& label, double data);
 

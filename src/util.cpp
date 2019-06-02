@@ -507,51 +507,6 @@ const wxString getProgramDescription(bool simple)
     return description;
 }
 
-bool prepare_bug_report_file(wxString& path)
-{
-    wxString diag = getProgramDescription(true);
-
-    wxString info = "> " + _("Replace this text (marked with >) with detailed description of your problem.") + "\n";
-    info << "> " + _("Please do not remove information attached below this text.") + "\n";
-
-    wxURI req = mmex::weblink::BugReport + "/new?body=" + info + "\n<hr>" + diag;
-
-    const wxString texts[] = {
-        _("Use Help->Check for Updates in MMEX to get latest version, where your problem might be already fixed."),
-        wxString::Format(_("Search <a href='%s'>a list of known issues</a> for similar problem. If so, update existing issue instead of creating a new one.")
-            ,  mmex::weblink::BugReport),
-        wxString::Format(_("Read <a href='%s'>How to Report Bugs Effectively</a> for useful tips."), mmex::weblink::Chiark),
-        _("Come up with a descriptive name for your problem."),
-        _("Include steps to reproduce your problem, attach screenshots where appropriate."),
-        wxString::Format(_("Before click the following link, be sure that you have already signed in to the <a href='%s'>GitHub</a>.")
-            ,  mmex::weblink::GitHub),
-        wxString::Format(_("Finally, report a bug using GitHub <a href='%s'>online form</a> opened in your web browser."), req.BuildURI())
-    };
-
-    wxString msg = "<ol>";
-    for (const auto& string : texts) {
-        msg += "<li>" + string + "</li>" + "\n";
-    }
-    msg += "</ol>\n";
-
-    mmHTMLBuilder hb;
-    msg = wxString::Format(hb.getBugReportTemplate()
-        , _("Please, follow these instructions before submitting a new bug report:")
-        , msg);
-
-    path = mmex::getTempFolder() + wxFileName::GetPathSeparator() + "bug_report.html";
-
-    wxFile file(path, wxFile::write);
-    if (file.IsOpened())
-    {
-        file.Write(msg);
-        file.Close();
-        return true;
-    }
-
-    return false;
-}
-
 /* Currencies & stock prices */
 
 bool get_yahoo_prices(std::vector<wxString>& symbols

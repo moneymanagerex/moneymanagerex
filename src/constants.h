@@ -62,7 +62,7 @@ namespace version
     const int Minor = MMEX_VERSION_MINOR;
     const int Patch = MMEX_VERSION_PATCH;
     const wxString string = MMEX_VERSION_FULL;
-    const int getDbLatestVersion();
+    int getDbLatestVersion();
 }
 
 namespace weblink

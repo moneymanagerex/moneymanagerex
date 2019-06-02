@@ -61,6 +61,7 @@ struct Option::ReportInfo
         StocksReportPerformance,
         StocksReportSummary,
         ForecastReport,
+        BugReport,
     };
     ReportInfo(wxString g, wxString n, bool t, Reports r) { group = g; name = n; type = t; id = r; }
     wxString group;

@@ -55,9 +55,15 @@ const wxString mmex::getProgramName()
 {
     return wxString("Money Manager Ex");
 }
+
 const wxString mmex::getTitleProgramVersion()
 {
     return mmex::version::string;
+}
+
+int mmex::version::getDbLatestVersion()
+{
+    return dbLatestVersion;
 }
 
 const wxString mmex::getProgramCopyright()
@@ -162,8 +168,3 @@ const wxString ATTACHMENTS_FOLDER_USERPROFILE = "%USERPROFILE%";
 const wxString ATTACHMENTS_FOLDER_APPDATA = "%APPDATA%";
 
 const wxString INIDB_NEWS_LAST_READ_DATE = "NEWS_LAST_READ_DATE";
-
-const int mmex::version::getDbLatestVersion()
-{
-    return dbLatestVersion;
-}
