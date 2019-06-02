@@ -19,7 +19,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 
 
 #include "dbupgrade.h"
-#include "constants.h"
+#include "util.h"
 
 #include <wx/filedlg.h>
 #include <wx/filename.h>
@@ -291,7 +291,7 @@ void dbUpgrade::SqlFileDebug(wxSQLite3Database* db)
         wxString txtLog = wxEmptyString;
 
         txtLog << wxString::Format("Current db file version: %i", dbUpgrade::GetCurrentVersion(db)) + wxTextFile::GetEOL();
-        txtLog << mmex::getProgramDescription() + wxTextFile::GetEOL();
+        txtLog << getProgramDescription() + wxTextFile::GetEOL();
 
         for (; !txtFile.Eof(); txtLine = txtFile.GetNextLine())
         {

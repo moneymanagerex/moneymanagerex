@@ -21,7 +21,6 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include <wx/filefn.h>
 #include <wx/utils.h>
 #include <wx/wxsqlite3.h>
-#include "lua.h"
 #include "rapidjson/rapidjson.h"
 #include "DB_Upgrade.h" /* for dbLatestVersion */
 #include <curl/curl.h>
@@ -56,9 +55,15 @@ const wxString mmex::getProgramName()
 {
     return wxString("Money Manager Ex");
 }
+
 const wxString mmex::getTitleProgramVersion()
 {
-    return _("Version: ") + mmex::version::string;
+    return mmex::version::string;
+}
+
+int mmex::version::getDbLatestVersion()
+{
+    return dbLatestVersion;
 }
 
 const wxString mmex::getProgramCopyright()
@@ -68,81 +73,6 @@ const wxString mmex::getProgramCopyright()
                        (__DATE__[ 9] - '0') *   10 + \
                        (__DATE__[10] - '0') )
     return wxString::Format("(c) 2005-%d Madhan Kanagavel", COMPILE_YEAR);
-}
-const wxString mmex::getProgramDescription()
-{
-    const wxString bull = L" \u2022 ";
-    wxString description;
-    wxString curl = curl_version();
-        curl.Replace(" ","\n" + bull);
-        curl.Replace("/", " ");
-
-    description << mmex::getTitleProgramVersion() << "\n"
-        << _("Database version: ") << dbLatestVersion
-#if WXSQLITE3_HAVE_CODEC
-        << " (" << wxSQLite3Cipher::GetCipherName(wxSQLite3Cipher::GetGlobalCipherDefault()) << ")"
-#endif
-        << "\n"
-#ifdef GIT_COMMIT_HASH
-        << _("Git commit: ") << GIT_COMMIT_HASH
-        << " (" << GIT_COMMIT_DATE << ")\n"
-#endif
-#ifdef GIT_BRANCH
-        << _("Git branch: ") << GIT_BRANCH << "\n"
-#endif
-
-        << "\n" << _("MMEX is using the following support products:") << "\n"
-        << bull + wxVERSION_STRING
-        << wxString::Format(" (%s %d.%d)\n",
-            wxPlatformInfo::Get().GetPortIdName(),
-            wxPlatformInfo::Get().GetToolkitMajorVersion(),
-            wxPlatformInfo::Get().GetToolkitMinorVersion())
-        << bull + wxSQLITE3_VERSION_STRING
-        << " (SQLite " << wxSQLite3Database::GetVersion() << ")\n"
-        << bull + "RapidJSON " << RAPIDJSON_VERSION_STRING << "\n"
-        << bull + LUA_RELEASE << "\n"
-        << bull + curl << "\n\n"
-
-        << _("Build on") << " " << __DATE__ << " " << __TIME__  << " " << _("with:") << "\n"
-        << bull + CMAKE_VERSION << "\n"
-        << bull + MAKE_VERSION << "\n"
-        << bull + GETTEXT_VERSION << "\n"
-#if defined(_MSC_VER)
-#ifdef VS_VERSION
-        << bull + "Microsoft Visual Studio " + VS_VERSION << "\n"
-#endif
-        << bull + "Microsoft Visual C++ " + CXX_VERSION << "\n"
-#elif defined(__clang__)
-        << bull + "Clang " + __VERSION__ << "\n"
-#elif (defined(__GNUC__) || defined(__GNUG__)) && !(defined(__clang__) || defined(__INTEL_COMPILER))
-        << bull + "GCC " + __VERSION__ << "\n"
-#endif
-#ifdef CMAKE_VS_WINDOWS_TARGET_PLATFORM_VERSION
-        << bull + CMAKE_VS_WINDOWS_TARGET_PLATFORM_VERSION << "\n"
-#endif
-#ifdef LINUX_DISTRO_STRING
-        << bull + LINUX_DISTRO_STRING << "\n"
-#endif
-
-        << "\n" << _("Running on:") << "\n"
-#ifdef __LINUX__
-        << bull + wxGetLinuxDistributionInfo().Description
-        << " \"" << wxGetLinuxDistributionInfo().CodeName << "\"\n"
-#endif
-        << bull + wxGetOsDescription() << "\n"
-        << bull + wxPlatformInfo::Get().GetDesktopEnvironment()
-        << " " << wxLocale::GetLanguageName(wxLocale::GetSystemLanguage())
-        << " (" << wxLocale::GetSystemEncodingName() << ")\n"
-        << wxString::Format(bull + "%ix%i %ibit %ix%ippi\n",
-            wxGetDisplaySize().GetX(),
-            wxGetDisplaySize().GetY(),
-            wxDisplayDepth(),
-            wxGetDisplayPPI().GetX(),
-            wxGetDisplayPPI().GetY())
-    ;
-    description.RemoveLast();
-
-    return description;
 }
 
 const wxString mmex::getCaption(const wxString& caption)
@@ -181,6 +111,7 @@ const wxString mmex::weblink::SquareCashGuan = "https://cash.me/$guanlisheng/1";
 const wxString mmex::weblink::Twitter = "https://twitter.com/MoneyManagerEx";
 const wxString mmex::weblink::Facebook = "https://www.facebook.com/MoneyManagerEx/";
 const wxString mmex::weblink::Crowdin = "https://crowdin.com/project/moneymanagerex/";
+const wxString mmex::weblink::Chiark = "https://www.chiark.greenend.org.uk/~sgtatham/bugs.html";
 
 // Yahoo API
 const wxString mmex::weblink::YahooQuotes = "https://query1.finance.yahoo.com/v7/finance/quote?symbols=%s&fields=regularMarketPrice,currency,shortName";
@@ -198,15 +129,6 @@ const wxString mmex::weblink::WebApp = "https://github.com/moneymanagerex/web-mo
 
 // Will display the stock page when using Looks up the current value
 const wxString mmex::weblink::DefStockUrl = "https://finance.yahoo.com/echarts?s=%s";
-// Looks up the current value
-// const wxChar *const mmex::DEFSTOCKURL = "https://finance.yahoo.com/lookup?s=%s";
-
-// Using google: To specify the exchange, use exch:code
-// Using yahoo: To specify the exchange, use code.exch
-// const wxChar *const mmex::DEFSTOCKURL = "https://www.google.com/finance?q=%s";
-
-//US Dollar (USD) in Euro (EUR) Chart
-//https://www.google.com/finance?q=CURRENCY%3AUSD
 
 /* End namespace weblink */
 

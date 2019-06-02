@@ -19,10 +19,13 @@
 
 #include "util.h"
 #include "constants.h"
+#include "lua.h"
 #include "mmTextCtrl.h"
 #include "validators.h"
 #include "option.h"
+#include "paths.h"
 #include "reports/reportbase.h"
+#include "reports/htmlbuilder.h"
 #include "Model_Infotable.h"
 #include "Model_Setting.h"
 #include "wx_compat.h"
@@ -425,6 +428,87 @@ bool getNewsRSS(std::vector<WebsiteNews>& WebsiteNewsList)
     }
 
     return !WebsiteNewsList.empty();
+}
+
+const wxString getProgramDescription(bool simple)
+{
+    const wxString bull = L" \u2022 ";
+    wxString description;
+    wxString curl = curl_version();
+    curl.Replace(" ", "\n" + bull);
+    curl.Replace("/", " ");
+
+    description << (simple ? "" : wxString::Format(_("Version: %s"), mmex::getTitleProgramVersion())) << "\n"
+        << (simple ? L"\u2022 db " : _("Database version: ")) << mmex::version::getDbLatestVersion()
+#if WXSQLITE3_HAVE_CODEC
+        << " (" << wxSQLite3Cipher::GetCipherName(wxSQLite3Cipher::GetGlobalCipherDefault()) << ")"
+#endif
+        << "\n"
+#ifdef GIT_COMMIT_HASH
+        << (simple ? L"\u2022 git " : _("Git commit: ")) << GIT_COMMIT_HASH
+        << " (" << GIT_COMMIT_DATE << ")"
+#endif
+#ifdef GIT_BRANCH
+        << (simple ? "" : _("Git branch: ")) << GIT_BRANCH
+#endif
+
+        << "\n" << (simple ? "Libs:" : _("MMEX is using the following support products:")) << "\n"
+        << bull + wxVERSION_STRING
+        << wxString::Format(" (%s %d.%d)\n",
+            wxPlatformInfo::Get().GetPortIdName(),
+            wxPlatformInfo::Get().GetToolkitMajorVersion(),
+            wxPlatformInfo::Get().GetToolkitMinorVersion())
+        << bull + wxSQLITE3_VERSION_STRING
+        << " (SQLite " << wxSQLite3Database::GetVersion() << ")\n"
+        << bull + "RapidJSON " << RAPIDJSON_VERSION_STRING << "\n"
+        << bull + LUA_RELEASE << "\n"
+        << bull + curl << "\n"
+
+        << (simple ? "Build:" : _("Build on")) << " " << __DATE__ << " " << __TIME__ << " "
+        << (simple ? "" : _("with:")) << "\n"
+        << bull + CMAKE_VERSION << "\n"
+        << bull + MAKE_VERSION << "\n"
+        << bull + GETTEXT_VERSION << "\n"
+#if defined(_MSC_VER)
+#ifdef VS_VERSION
+        << bull + (simple ? "MSVS" : "Microsoft Visual Studio ") + VS_VERSION << "\n"
+#endif
+        << bull + (simple ? "MSVSC++" : "Microsoft Visual C++ ") + CXX_VERSION << "\n"
+#elif defined(__clang__)
+        << bull + "Clang " + __VERSION__ << "\n"
+#elif (defined(__GNUC__) || defined(__GNUG__)) && !(defined(__clang__) || defined(__INTEL_COMPILER))
+        << bull + "GCC " + __VERSION__ << "\n"
+#endif
+#ifdef CMAKE_VS_WINDOWS_TARGET_PLATFORM_VERSION
+        << bull + CMAKE_VS_WINDOWS_TARGET_PLATFORM_VERSION << "\n"
+#endif
+#ifdef LINUX_DISTRO_STRING
+        << bull + LINUX_DISTRO_STRING << "\n"
+#endif
+
+        << (simple ? "OS:" : _("Running on:")) << "\n"
+#ifdef __LINUX__
+        << bull + wxGetLinuxDistributionInfo().Description
+        << " \"" << wxGetLinuxDistributionInfo().CodeName << "\"\n"
+#endif
+        << bull + wxGetOsDescription() << "\n"
+        << bull + wxPlatformInfo::Get().GetDesktopEnvironment()
+        << " " << wxLocale::GetLanguageName(wxLocale::GetSystemLanguage())
+        << " (" << wxLocale::GetSystemEncodingName() << ")\n"
+        << wxString::Format(bull + "%ix%i %ibit %ix%ippi\n",
+            wxGetDisplaySize().GetX(),
+            wxGetDisplaySize().GetY(),
+            wxDisplayDepth(),
+            wxGetDisplayPPI().GetX(),
+            wxGetDisplayPPI().GetY())
+        ;
+
+    description.RemoveLast();
+    if (simple) {
+        description.Replace("#", "&asymp;");
+    }
+
+    return description;
 }
 
 /* Currencies & stock prices */

@@ -45,7 +45,7 @@ mmAppStartDialog::mmAppStartDialog(wxWindow* parent, const wxString& name)
     , m_buttonExit(nullptr)
 {
     long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX;
-    Create(parent, wxID_ANY, mmex::getCaption(mmex::getTitleProgramVersion()),
+    Create(parent, wxID_ANY, mmex::getCaption(wxString::Format(_("Version: %s"), mmex::getTitleProgramVersion())),
         wxDefaultPosition, wxDefaultSize, style, name);
 }
 

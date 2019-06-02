@@ -49,7 +49,6 @@ extern const wxString DEFDELIMTER;
 const wxString getProgramName();
 const wxString getTitleProgramVersion();
 const wxString getProgramCopyright();
-const wxString getProgramDescription();
 const wxString getCaption(const wxString& caption);
 
 /*************************************************************************
@@ -63,6 +62,7 @@ namespace version
     const int Minor = MMEX_VERSION_MINOR;
     const int Patch = MMEX_VERSION_PATCH;
     const wxString string = MMEX_VERSION_FULL;
+    int getDbLatestVersion();
 }
 
 namespace weblink
@@ -81,6 +81,7 @@ namespace weblink
     extern const wxString BugReport;
     extern const wxString Donate;
     extern const wxString Crowdin;
+    extern const wxString Chiark;
     extern const wxString SquareCashGuan;
     extern const wxString Twitter;
     extern const wxString Facebook;
@@ -145,6 +146,7 @@ enum id
     MENU_BILLSDEPOSITS,
     MENU_STOCKS,
     MENU_GOTOACCOUNT,
+    MENU_REPORT_BUG,
     MENU_ASSETS,
     MENU_VIEW_BUDGET_FINANCIAL_YEARS,
     MENU_VIEW_BUDGET_SETUP_SUMMARY,

@@ -242,6 +242,7 @@ add_executable(${MMEX_EXE} WIN32 MACOSX_BUNDLE
     reports/budget.h
     reports/budgetingperf.cpp
     reports/budgetingperf.h
+    reports/bugreport.h
     reports/cashflow.cpp
     reports/cashflow.h
     reports/categexp.cpp
