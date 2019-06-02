@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2019-05-15 17:05+0300\n"
-"PO-Revision-Date: 2019-05-15 14:16\n"
+"POT-Creation-Date: 2019-05-25 17:42+0300\n"
+"PO-Revision-Date: 2019-05-25 15:15\n"
 "Last-Translator: Nikolay (vomikan)\n"
 "Language-Team: Croatian\n"
 "MIME-Version: 1.0\n"
@@ -258,11 +258,11 @@ msgstr "Ime računa"
 msgid "Currency"
 msgstr "Valuta"
 
-#: accountdialog.cpp:503
+#: accountdialog.cpp:505
 msgid "Default Image"
 msgstr "Standardna slika"
 
-#: accountdialog.cpp:510
+#: accountdialog.cpp:512
 #, c-format
 msgid "Image #%i"
 msgstr "Slika br.%i"
@@ -355,7 +355,7 @@ msgstr "Unesi ime imovine"
 #: maincurrencydialog.cpp:275 mmcheckingpanel.cpp:1099 mmreportspanel.cpp:347
 #: model/Model_CustomField.cpp:29 reports/cashflow.cpp:271
 #: reports/summary.cpp:155 reports/transactions.cpp:74 stockdialog.cpp:334
-#: stockdialog.cpp:657 transactionsupdatedialog.cpp:106 transdialog.cpp:436
+#: stockdialog.cpp:661 transactionsupdatedialog.cpp:106 transdialog.cpp:436
 #: usertransactionpanel.cpp:115 webappdialog.cpp:76
 msgid "Date"
 msgstr "Datum"
@@ -2915,7 +2915,7 @@ msgstr "Uvoz uspješan"
 #: import_export/qif_import_gui.cpp:890
 #, c-format
 msgid "Total Imported: %zu"
-msgstr ""
+msgstr "Ukupno uvezeno: %zu"
 
 #: import_export/qif_import_gui.cpp:898 import_export/univcsvdialog.cpp:995
 msgid "Imported transactions discarded by user!"
@@ -3144,7 +3144,7 @@ msgstr "Vrsta (isplata/uplata) nije poznata."
 msgid "Line %ld: OK, imported."
 msgstr "Redak %ld: U redu, uvezen."
 
-#: import_export/univcsvdialog.cpp:950 stockdialog.cpp:653
+#: import_export/univcsvdialog.cpp:950 stockdialog.cpp:657
 #, c-format
 msgid "Total Lines: %ld"
 msgstr "Ukupno redaka: %ld"
@@ -3174,7 +3174,7 @@ msgstr "S greškom: %ld"
 msgid "Log file written to: %s"
 msgstr "Dateteka dnevnika je zapisana u: %s"
 
-#: import_export/univcsvdialog.cpp:964 stockdialog.cpp:661
+#: import_export/univcsvdialog.cpp:964 stockdialog.cpp:665
 msgid "Please confirm saving..."
 msgstr "Potvrdi spremanje …"
 
@@ -3211,7 +3211,7 @@ msgstr "Greška u odredišnoj datoteci"
 msgid "Transactions exported: %ld"
 msgstr "Transakcije izvezene: %ld"
 
-#: import_export/univcsvdialog.cpp:1401 stockdialog.cpp:571
+#: import_export/univcsvdialog.cpp:1401 stockdialog.cpp:575
 msgid "Choose CSV data file to import"
 msgstr "Odaberi CSV datoteku, koju želiš uvesti"
 
@@ -3231,7 +3231,7 @@ msgstr "Odaberi XML datoteku, koju želiš izvesti"
 msgid "XML Files (*.xml)"
 msgstr "XML datoteke (*.xml)"
 
-#: import_export/univcsvdialog.cpp:1418 stockdialog.cpp:572
+#: import_export/univcsvdialog.cpp:1418 stockdialog.cpp:576
 msgid "CSV Files (*.csv)"
 msgstr "CSV datoteke (*.csv)"
 
@@ -4742,7 +4742,7 @@ msgstr "Jezik programa je promijenjen. Do promjene će doći prilikom sljedećeg
 msgid "General Group Report"
 msgstr "Opći grupni izvještaj"
 
-#: mmframereport.cpp:98 model/Model_Report.cpp:413 reports/forecast.cpp:88
+#: mmframereport.cpp:98 model/Model_Report.cpp:385 reports/forecast.cpp:88
 #: reports/myusage.cpp:234
 msgid "Caught exception"
 msgstr "Uhvaćena iznimka"
@@ -4872,7 +4872,7 @@ msgstr "Sljedeće razdoblje"
 
 #: mmreportspanel.cpp:421
 msgid "Accounts:"
-msgstr ""
+msgstr "Računi:"
 
 #: mmreportspanel.cpp:426 reports/reportbase.cpp:262
 msgid "All Accounts"
@@ -4930,7 +4930,7 @@ msgstr "Imovina"
 msgid "Shares"
 msgstr "Dionice"
 
-#: model/Model_Account.cpp:134
+#: model/Model_Account.cpp:138
 msgid "Account Error"
 msgstr "Greška u računu"
 
@@ -5028,7 +5028,7 @@ msgstr "Višestruki izbor"
 msgid "Payee Error"
 msgstr "Greška u primatelju"
 
-#: model/Model_Report.cpp:273
+#: model/Model_Report.cpp:245
 #, c-format
 msgid "The SQL script:\n"
 "%s \n"
@@ -5702,7 +5702,7 @@ msgstr "Odobrenje premještanja primatelja"
 #: reports/budget.cpp:84
 #, c-format
 msgid "Financial Year: %s - %i"
-msgstr ""
+msgstr "Fiskalna godina: %s – %i"
 
 #: reports/budgetcategorysummary.cpp:131
 #, c-format
@@ -5767,9 +5767,9 @@ msgstr "Mjesečno ukupno"
 #, c-format
 msgid "Cash Flow Forecast for %i Year Ahead"
 msgid_plural "Cash Flow Forecast for %i Years Ahead"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Prognoza novčanog toka za %i godinu unaprijed"
+msgstr[1] "Prognoza novčanog toka za %i godine unaprijed"
+msgstr[2] "Prognoza novčanog toka za %i godina unaprijed"
 
 #: reports/cashflow.cpp:273 reports/incexpenses.cpp:208 reports/payee.cpp:125
 msgid "Difference"
@@ -5869,7 +5869,7 @@ msgstr "Zadnjih 12 mjeseci"
 msgid "Current Year"
 msgstr "Tekuća godina"
 
-#: reports/mmDateRange.cpp:148 stockdialog.cpp:703
+#: reports/mmDateRange.cpp:148 stockdialog.cpp:707
 msgid "Current Year to Date"
 msgstr "Tekuća godina do danas"
 
@@ -6044,11 +6044,11 @@ msgstr "Detalji podijeljene kategorije"
 msgid "Invalid Total Amount"
 msgstr "Nevaljan ukupni iznos"
 
-#: stockdialog.cpp:160 stockdialog.cpp:534
+#: stockdialog.cpp:160 stockdialog.cpp:536
 msgid "Edit Stock Investment"
 msgstr "Uredi vlasnički udio"
 
-#: stockdialog.cpp:160 stockdialog.cpp:522
+#: stockdialog.cpp:160 stockdialog.cpp:524
 msgid "New Stock Investment"
 msgstr "Novi vlasnički udio"
 
@@ -6084,7 +6084,7 @@ msgstr "*Provizija"
 msgid "Stock History Options"
 msgstr "Opcije za povijest vlasničkog udjela"
 
-#: stockdialog.cpp:335 stockdialog.cpp:657
+#: stockdialog.cpp:335 stockdialog.cpp:661
 msgid "Price"
 msgstr "Cijena"
 
@@ -6162,13 +6162,13 @@ msgstr "Uvezi povijest cijena vlasničkog udjela (CSV format)"
 msgid "Held At"
 msgstr "Pri banci"
 
-#: stockdialog.cpp:520
+#: stockdialog.cpp:522
 msgid "A Share Account as the Company name has not been found.\n\n"
 "Do you want to create one?"
 msgstr "Nije nađen dionički račun s imenom poduzeća.\n\n"
 "Želiš li ga stvoriti?"
 
-#: stockdialog.cpp:530
+#: stockdialog.cpp:532
 msgid "The Company name does not have an associated Share Account.\n\n"
 "You may want to readjust the Company Name to an existing Share Account with the same name. If this is an existing Stock without a Share Account, it is recommended that a Share Account is created.\n\n"
 "Do you want to create a new Share Acccount?\n"
@@ -6176,94 +6176,94 @@ msgstr "Ime poduzeća nije povezano s dioničkim računom.\n\n"
 "Možda moraš podesiti ime poduzeća s postojećim dioničkim računom istog imena. Ako se radi o postojećem vlasničkom udjelu bez dioničkog računa, preporučujemo stvaranje dioničkog računa.\n\n"
 "Želiš li stvoriti novi dionički račun?\n"
 
-#: stockdialog.cpp:582
+#: stockdialog.cpp:586
 msgid "Stock History CSV Import"
 msgstr "CSV uvoz povijesti vlasničkog udjela"
 
-#: stockdialog.cpp:583 stockdialog.cpp:597
+#: stockdialog.cpp:587 stockdialog.cpp:601
 msgid "Quotes imported from CSV: "
 msgstr "Tečajevi uvezeni iz CSV datoteke: "
 
-#: stockdialog.cpp:655
+#: stockdialog.cpp:659
 #, c-format
 msgid "Total Imported: %ld"
 msgstr "Ukupno uvezeno: %ld"
 
-#: stockdialog.cpp:663
+#: stockdialog.cpp:667
 msgid "Importing CSV"
 msgstr "Uvoz CSV-a"
 
-#: stockdialog.cpp:695 stockdialog.cpp:725
+#: stockdialog.cpp:699 stockdialog.cpp:729
 msgid "5 Days"
 msgstr "5 dana"
 
-#: stockdialog.cpp:696 stockdialog.cpp:727
+#: stockdialog.cpp:700 stockdialog.cpp:731
 msgid "1 Month"
 msgstr "1 mjesec"
 
-#: stockdialog.cpp:697 stockdialog.cpp:728
+#: stockdialog.cpp:701 stockdialog.cpp:732
 msgid "3 Months"
 msgstr "3 mjeseca"
 
-#: stockdialog.cpp:698
+#: stockdialog.cpp:702
 msgid "6 Months"
 msgstr "6 mjeseci"
 
-#: stockdialog.cpp:699
+#: stockdialog.cpp:703
 msgid "1 Year"
 msgstr "1 godina"
 
-#: stockdialog.cpp:700
+#: stockdialog.cpp:704
 msgid "2 Years"
 msgstr "2 godine"
 
-#: stockdialog.cpp:701
+#: stockdialog.cpp:705
 msgid "5 Years"
 msgstr "5 godina"
 
-#: stockdialog.cpp:702
+#: stockdialog.cpp:706
 msgid "10 Years"
 msgstr "10 godina"
 
-#: stockdialog.cpp:704
+#: stockdialog.cpp:708
 msgid "Max"
 msgstr "Maks."
 
-#: stockdialog.cpp:710
+#: stockdialog.cpp:714
 msgid "Specify type frequency of stock history"
 msgstr "Odredi učestalost povijesti vlasničkog udjela"
 
-#: stockdialog.cpp:711 stockdialog.cpp:735
+#: stockdialog.cpp:715 stockdialog.cpp:739
 msgid "Stock History Update"
 msgstr "Aktualiziranje povijesti vlasničkog udjela"
 
-#: stockdialog.cpp:724
+#: stockdialog.cpp:728
 msgid "1 Day"
 msgstr "1 dan"
 
-#: stockdialog.cpp:726
+#: stockdialog.cpp:730
 msgid "1 Week"
 msgstr "1 tjedan"
 
-#: stockdialog.cpp:734
+#: stockdialog.cpp:738
 msgid "Specify interval of stock history"
 msgstr "Odredi interval povijesti vlasničkog udjela"
 
-#: stockdialog.cpp:747
+#: stockdialog.cpp:751
 msgid "Stock history not found!"
 msgstr "Povijest vlasničkog udjela nije nađena!"
 
-#: stockdialog.cpp:748
+#: stockdialog.cpp:752
 msgid "Stock History Error"
 msgstr "Greška u povijesti vlasničkog udjela"
 
-#: stockdialog.cpp:1052
+#: stockdialog.cpp:1056
 msgid "Add/Update Stock Price history"
-msgstr ""
+msgstr "Dodaj/Aktualiziraj povijest cijena vlasničkog udjela"
 
-#: stockdialog.cpp:1053
+#: stockdialog.cpp:1057
 msgid "Delete selected Stock Prices"
-msgstr ""
+msgstr "Izbriši odabrane cijene vlasničkih udjela"
 
 #: stockspanel.cpp:36
 msgid "Using MMEX it is possible to track stocks/mutual funds investments."
@@ -6339,6 +6339,10 @@ msgid "Temporary Stock list: %s\n\n"
 "Date          Lot          Shares          Price        Commission\n\n"
 msgstr "Privremeni popis vlasničkih udjela: %s\n\n"
 "Datum          Lot          Dionice          Cijena        Provizija\n\n"
+
+#: stockspanel.cpp:422
+msgid "View Stock Transactions"
+msgstr ""
 
 #: stockspanel.cpp:574
 msgid "Create a new Stock investment in this portfolio"
