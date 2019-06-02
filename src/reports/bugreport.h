@@ -19,8 +19,8 @@
 #pragma once
 #include "reportbase.h"
 
-const char* BUG_TEMPLATE =
-R"(<!DOCTYPE html>
+const char* bugreport_template = R"(
+<!DOCTYPE html>
 <html>
 <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
@@ -92,7 +92,7 @@ wxString mmBugReport::getHTMLText()
     }
     msg += "</ol>\n";
 
-    mm_html_template report(BUG_TEMPLATE);
+    mm_html_template report(bugreport_template);
     report(L"REPORTNAME") = this->getReportTitle();
     report(L"HEADER") = _("Please, follow these instructions before submitting a new bug report:");
     report(L"CONTENTS") = msg;
@@ -114,3 +114,4 @@ wxString mmBugReport::getHTMLText()
 
     return out;
 }
+
