@@ -445,11 +445,11 @@ const wxString getProgramDescription(bool simple)
 #endif
         << "\n"
 #ifdef GIT_COMMIT_HASH
-        << (simple ? L"\u2022 git " : _("Git commit: ")) << GIT_COMMIT_HASH
-        << " (" << GIT_COMMIT_DATE << ")\n"
+        << (simple ? L"\u2022 git " : _("Git commit: ")) << wxS(GIT_COMMIT_HASH)
+        << " (" << wxS(GIT_COMMIT_DATE) << ")"
 #endif
 #ifdef GIT_BRANCH
-        << (simple ? "" : _("Git branch: ")) << GIT_BRANCH << "\n"
+        << (simple ? "" : _("Git branch: ")) << wxS(GIT_BRANCH)
 #endif
 
         << "\n" << (simple ? "Libs:" : _("MMEX is using the following support products:")) << "\n"
@@ -471,22 +471,22 @@ const wxString getProgramDescription(bool simple)
         << bull + GETTEXT_VERSION << "\n"
 #if defined(_MSC_VER)
 #ifdef VS_VERSION
-        << bull + (simple ? "MSVS" : "Microsoft Visual Studio ") + VS_VERSION << "\n"
+        << bull + (simple ? "MSVS" : "Microsoft Visual Studio ") + wxS(VS_VERSION) << "\n"
 #endif
-        << bull + (simple ? "MSVSC++" : "Microsoft Visual C++ ") + CXX_VERSION << "\n"
+        << bull + (simple ? "MSVSC++" : "Microsoft Visual C++ ") + wxS(CXX_VERSION) << "\n"
 #elif defined(__clang__)
         << bull + "Clang " + __VERSION__ << "\n"
 #elif (defined(__GNUC__) || defined(__GNUG__)) && !(defined(__clang__) || defined(__INTEL_COMPILER))
         << bull + "GCC " + __VERSION__ << "\n"
 #endif
 #ifdef CMAKE_VS_WINDOWS_TARGET_PLATFORM_VERSION
-        << bull + CMAKE_VS_WINDOWS_TARGET_PLATFORM_VERSION << "\n"
+        << bull + wxS(CMAKE_VS_WINDOWS_TARGET_PLATFORM_VERSION) << "\n"
 #endif
 #ifdef LINUX_DISTRO_STRING
-        << bull + LINUX_DISTRO_STRING << "\n"
+        << bull + wxS(LINUX_DISTRO_STRING) << "\n"
 #endif
 
-        << "\n" << (simple ? "OS:" : _("Running on:")) << "\n"
+        << (simple ? "OS:" : _("Running on:")) << "\n"
 #ifdef __LINUX__
         << bull + wxGetLinuxDistributionInfo().Description
         << " \"" << wxGetLinuxDistributionInfo().CodeName << "\"\n"
@@ -503,6 +503,9 @@ const wxString getProgramDescription(bool simple)
             wxGetDisplayPPI().GetY())
         ;
     description.RemoveLast();
+    if (simple) {
+        description.Replace("#", "&asymp;");
+    }
 
     return description;
 }

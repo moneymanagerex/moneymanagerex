@@ -47,16 +47,22 @@ public:
     {
     }
 
-    virtual wxFSFile* GetFile (const wxString &uri)
+    virtual wxFSFile* GetFile(const wxString& uri)
     {
         mmGUIFrame* frame = m_reportPanel->m_frame;
         wxString sData;
-        if (uri.StartsWith("trxid:", &sData))
+        if (uri.StartsWith("https:", &sData))
+        {
+            wxLaunchDefaultBrowser(uri);
+            wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_REPORT_BUG);
+            frame->GetEventHandler()->AddPendingEvent(evt);
+        }
+        else if (uri.StartsWith("trxid:", &sData))
         {
             long transID = -1;
             if (sData.ToLong(&transID)) {
                 const Model_Checking::Data* transaction = Model_Checking::instance().get(transID);
-                if (transaction)
+                if (transaction && transaction->TRANSID > -1)
                 {
                     const Model_Account::Data* account = Model_Account::instance().get(transaction->ACCOUNTID);
                     if (account)
@@ -74,7 +80,7 @@ public:
             long transID = -1;
             if (sData.ToLong(&transID)) {
                 const Model_Checking::Data* transaction = Model_Checking::instance().get(transID);
-                if (transaction)
+                if (transaction && transaction->TRANSID > -1)
                 {
                     mmTransDialog dlg(nullptr, -1, transID, 0);
                     if (dlg.ShowModal() == wxID_OK)
@@ -85,7 +91,7 @@ public:
                 }
             }
         }
-        if (uri.StartsWith("attachment:", &sData))
+        else if (uri.StartsWith("attachment:", &sData))
         {
             const wxString RefType = sData.BeforeFirst('|');
             const int RefId = wxAtoi(sData.AfterFirst('|'));
@@ -124,6 +130,9 @@ mmReportsPanel::mmReportsPanel(
     , cleanupmem_(false)
     , m_frame(frame)
 {
+    int day = Model_Infotable::instance().GetIntInfo("FINANCIAL_YEAR_START_DAY", 1);
+    int month = Model_Infotable::instance().GetIntInfo("FINANCIAL_YEAR_START_MONTH", 7);
+
     m_all_date_ranges.push_back(new mmCurrentMonth());
     m_all_date_ranges.push_back(new mmCurrentMonthToDate());
     m_all_date_ranges.push_back(new mmLastMonth());
@@ -134,10 +143,6 @@ mmReportsPanel::mmReportsPanel(
     m_all_date_ranges.push_back(new mmCurrentYear());
     m_all_date_ranges.push_back(new mmCurrentYearToDate());
     m_all_date_ranges.push_back(new mmLastYear());
-
-    int day = Model_Infotable::instance().GetIntInfo("FINANCIAL_YEAR_START_DAY", 1);
-    int month = Model_Infotable::instance().GetIntInfo("FINANCIAL_YEAR_START_MONTH", 7);
-
     m_all_date_ranges.push_back(new mmCurrentFinancialYear(day, month));
     m_all_date_ranges.push_back(new mmCurrentFinancialYearToDate(day, month));
     m_all_date_ranges.push_back(new mmLastFinancialYear(day, month));
@@ -179,7 +184,10 @@ bool mmReportsPanel::Create(wxWindow *parent, wxWindowID winid
     {
         wxString error;
         if (saveReportText(error))
-            browser_->LoadURL(getURL(mmex::getReportFullFileName(rb_->getFileName())));
+        {
+            const auto rn = mmex::getReportFullFileName(rb_->getFileName());
+            browser_->LoadURL(getURL(rn));
+        }
         else
             browser_->SetPage(error, "");
 
@@ -458,6 +466,7 @@ void mmReportsPanel::CreateControls()
     browser_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new WebViewHandlerReportsPage(this, "trxid")));
     browser_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new WebViewHandlerReportsPage(this, "trx")));
     browser_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new WebViewHandlerReportsPage(this, "attachment")));
+    browser_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new WebViewHandlerReportsPage(this, "https")));
 
     itemBoxSizer2->Add(browser_, 1, wxGROW|wxALL, 1);
 }

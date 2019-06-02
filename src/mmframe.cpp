@@ -2564,6 +2564,7 @@ void mmGUIFrame::OnSimpleURLOpen(wxCommandEvent& event)
 void mmGUIFrame::OnReportBug(wxCommandEvent& WXUNUSED(event))
 {
     mmPrintableBase* br = new mmBugReport();
+    setNavTreeSection(_("Reports"));
     createReportsPage(br, true);
 }
 

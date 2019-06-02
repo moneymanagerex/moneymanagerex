@@ -24,14 +24,18 @@ R"(<!DOCTYPE html>
 <html>
 <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    <title>Bug Report</title>
+    <title><TMPL_VAR REPORTNAME></title>
     <link href='master.css' rel='stylesheet' />
+    <style>
+        canvas {min-height: 100px}
+        body {font-size: <TMPL_VAR HTMLSCALE>%}
+    </style>
 </head>
 <body>
 <div class = "container">
-<h3>%s</h3>
+<h3><TMPL_VAR HEADER></h3>
 <div class = "col-xs-8">
-%s
+<TMPL_VAR CONTENTS>
 </div>
 </body>
 </html>
@@ -88,11 +92,25 @@ wxString mmBugReport::getHTMLText()
     }
     msg += "</ol>\n";
 
+    mm_html_template report(BUG_TEMPLATE);
+    report(L"REPORTNAME") = this->getReportTitle();
+    report(L"HEADER") = _("Please, follow these instructions before submitting a new bug report:");
+    report(L"CONTENTS") = msg;
+    report(L"HTMLSCALE") = wxString::Format("%d", Option::instance().getHtmlFontSize());
 
-    msg = wxString::Format(BUG_TEMPLATE
-        , _("Please, follow these instructions before submitting a new bug report:")
-        , msg);
+    wxString out = wxEmptyString;
+    try
+    {
+        out = report.Process();
+    }
+    catch (const syntax_ex & e)
+    {
+        return e.what();
+    }
+    catch (...)
+    {
+        return _("Caught exception");
+    }
 
-
-    return msg;
+    return out;
 }
