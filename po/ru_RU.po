@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-06-02 15:04+0300\n"
-"PO-Revision-Date: 2019-06-02 14:34\n"
+"PO-Revision-Date: 2019-06-02 15:05\n"
 "Last-Translator: Nikolay (vomikan)\n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -5715,7 +5715,7 @@ msgstr "Отчет об ошибке"
 
 #: reports/bugreport.h:72
 msgid "Replace this text (marked with >) with detailed description of your problem."
-msgstr "Замените этот текст (с пометкой>) подробным описанием проблемы."
+msgstr "Замените этот текст (с пометкой >) подробным описанием проблемы."
 
 #: reports/bugreport.h:73
 msgid "Please do not remove information attached below this text."
@@ -5723,12 +5723,12 @@ msgstr "Пожалуйста, не удаляйте информацию, ука
 
 #: reports/bugreport.h:78
 msgid "Use Help->Check for Updates in MMEX to get latest version, where your problem might be already fixed."
-msgstr "В меню Помощь->Проверить обновления проверьте обновления, ваша проблема уже может быть исправлена."
+msgstr "В меню Помощь->Проверить проверьте обновления, ваша проблема уже может быть исправлена."
 
 #: reports/bugreport.h:79
 #, c-format
 msgid "Search <a href='%s'>a list of known issues</a> for similar problem. If so, update existing issue instead of creating a new one."
-msgstr "Проверьте <a href='%s'>список известных проблем</a> на предмет, что такая проблема уже зарегестрирована. Если да, обновите существующую заявку вместо создания новой."
+msgstr "Проверьте <a href='%s'>список известных проблем</a> на предмет, что такая проблема уже зарегистрирована. Если да, обновите существующую заявку вместо создания новой."
 
 #: reports/bugreport.h:81
 #, c-format
