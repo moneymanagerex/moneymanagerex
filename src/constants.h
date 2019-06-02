@@ -49,7 +49,6 @@ extern const wxString DEFDELIMTER;
 const wxString getProgramName();
 const wxString getTitleProgramVersion();
 const wxString getProgramCopyright();
-const wxString getProgramDescription();
 const wxString getCaption(const wxString& caption);
 
 /*************************************************************************
@@ -63,6 +62,7 @@ namespace version
     const int Minor = MMEX_VERSION_MINOR;
     const int Patch = MMEX_VERSION_PATCH;
     const wxString string = MMEX_VERSION_FULL;
+    const int getDbLatestVersion();
 }
 
 namespace weblink

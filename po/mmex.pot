@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MMEX\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2019-06-01 22:32+0300\n"
+"POT-Creation-Date: 2019-06-02 10:53+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -268,6 +268,11 @@ msgstr ""
 msgid "Image #%i"
 msgstr ""
 
+#: appstartdialog.cpp:48 util.cpp:441
+#, c-format
+msgid "Version: %s"
+msgstr ""
+
 #: appstartdialog.cpp:99
 msgid "Open Last Opened Database"
 msgstr ""
@@ -506,7 +511,7 @@ msgid "Assets"
 msgstr ""
 
 #: assetspanel.cpp:470 assetspanel.cpp:708 assetspanel.cpp:725
-#: constants.cpp:224 import_export/qif_export.cpp:63
+#: constants.cpp:148 import_export/qif_export.cpp:63
 #: import_export/qif_export.cpp:64 import_export/qif_export.cpp:123
 #: mmframe.cpp:1294
 msgid "All"
@@ -1086,7 +1091,7 @@ msgstr ""
 
 #: billsdepositsdialog.cpp:1301 billsdepositsdialog.cpp:1310
 #: filtertransdialog.cpp:495 filtertransdialog.cpp:503
-#: filtertransdialog.cpp:517 filtertransdialog.cpp:527 util.cpp:650
+#: filtertransdialog.cpp:517 filtertransdialog.cpp:527 util.cpp:705
 msgid "Invalid value"
 msgstr ""
 
@@ -1641,116 +1646,84 @@ msgstr ""
 msgid "Clear Settings"
 msgstr ""
 
-#: constants.cpp:39
+#: constants.cpp:38
 msgid "Cancel"
 msgstr ""
 
-#: constants.cpp:41
+#: constants.cpp:40
 msgid "&Cancel "
 msgstr ""
 
-#: constants.cpp:45
+#: constants.cpp:44
 msgid "Close"
 msgstr ""
 
-#: constants.cpp:47
+#: constants.cpp:46
 msgid "&Close "
 msgstr ""
 
-#: constants.cpp:61 util.cpp:436
-msgid "Version: "
-msgstr ""
-
-#: constants.cpp:81 util.cpp:437
-msgid "Database version: "
-msgstr ""
-
-#: constants.cpp:87 util.cpp:438
-msgid "Git commit: "
-msgstr ""
-
-#: constants.cpp:91 util.cpp:439
-msgid "Git branch: "
-msgstr ""
-
-#: constants.cpp:94 util.cpp:440
-msgid "MMEX is using the following support products:"
-msgstr ""
-
-#: constants.cpp:106 util.cpp:441
-msgid "Build on"
-msgstr ""
-
-#: constants.cpp:106 util.cpp:442
-msgid "with:"
-msgstr ""
-
-#: constants.cpp:127 util.cpp:443
-msgid "Running on:"
-msgstr ""
-
-#: constants.cpp:210
+#: constants.cpp:134
 msgid "View All Transactions"
 msgstr ""
 
-#: constants.cpp:211
+#: constants.cpp:135
 msgid "View Today"
 msgstr ""
 
-#: constants.cpp:212
+#: constants.cpp:136
 msgid "View Current Month"
 msgstr ""
 
-#: constants.cpp:213
+#: constants.cpp:137
 msgid "View Last 30 days"
 msgstr ""
 
-#: constants.cpp:214
+#: constants.cpp:138
 msgid "View Last 90 days"
 msgstr ""
 
-#: constants.cpp:215
+#: constants.cpp:139
 msgid "View Last Month"
 msgstr ""
 
-#: constants.cpp:216
+#: constants.cpp:140
 msgid "View Last 3 Months"
 msgstr ""
 
-#: constants.cpp:217
+#: constants.cpp:141
 msgid "View Last 12 Months"
 msgstr ""
 
-#: constants.cpp:218
+#: constants.cpp:142
 msgid "View Current Year"
 msgstr ""
 
-#: constants.cpp:219
+#: constants.cpp:143
 msgid "View Current Financial Year"
 msgstr ""
 
-#: constants.cpp:220
+#: constants.cpp:144
 msgid "View Last Year"
 msgstr ""
 
-#: constants.cpp:221
+#: constants.cpp:145
 msgid "View Last Financial Year"
 msgstr ""
 
-#: constants.cpp:222
+#: constants.cpp:146
 msgid "View Since Statement Date"
 msgstr ""
 
-#: constants.cpp:225 mmframe.cpp:1296 mmframe.cpp:1832
+#: constants.cpp:149 mmframe.cpp:1296 mmframe.cpp:1832
 #: model/Model_Account.cpp:26
 msgid "Open"
 msgstr ""
 
-#: constants.cpp:226 mmframe.cpp:1297 model/Model_Account.cpp:27
+#: constants.cpp:150 mmframe.cpp:1297 model/Model_Account.cpp:27
 msgid "Closed"
 msgstr ""
 
-#: constants.cpp:227 mmframe.cpp:1295
+#: constants.cpp:151 mmframe.cpp:1295
 msgid "Favorites"
 msgstr ""
 
@@ -1860,7 +1833,7 @@ msgstr ""
 msgid "Enables autocomplete on custom field"
 msgstr ""
 
-#: customfieldeditdialog.cpp:158 util.cpp:864
+#: customfieldeditdialog.cpp:158 util.cpp:919
 msgid "Default"
 msgstr ""
 
@@ -3383,7 +3356,7 @@ msgstr ""
 msgid "Could not find base currency symbol!"
 msgstr ""
 
-#: maincurrencydialog.cpp:825 stockspanel.cpp:828 util.cpp:542
+#: maincurrencydialog.cpp:825 stockspanel.cpp:828 util.cpp:597
 msgid "Nothing to update"
 msgstr ""
 
@@ -6515,216 +6488,240 @@ msgstr ""
 msgid "Account Selection"
 msgstr ""
 
-#: util.cpp:116
+#: util.cpp:117
 msgid "Encrypted database password"
 msgstr ""
 
-#: util.cpp:118
+#: util.cpp:119
 msgid "Enter password for database file"
 msgstr ""
 
-#: util.cpp:125
+#: util.cpp:126
 msgid "Re-enter password for database file"
 msgstr ""
 
-#: util.cpp:129
+#: util.cpp:130
 msgid "Confirm password failed."
 msgstr ""
 
-#: util.cpp:131
+#: util.cpp:132
 msgid "Password must not be empty."
 msgstr ""
 
-#: util.cpp:457
-msgid "Replace this text with detailed description of your problem."
+#: util.cpp:442
+msgid "Database version: "
 msgstr ""
 
-#: util.cpp:458
-msgid "Please do not remove information attached below this text."
+#: util.cpp:448
+msgid "Git commit: "
 msgstr ""
 
-#: util.cpp:463
-msgid "Use Help->Check for Updates in MMEX to get latest version, where your problem might be already fixed."
+#: util.cpp:452
+msgid "Git branch: "
 msgstr ""
 
-#: util.cpp:464
-#, c-format
-msgid "Search %s for similar problem. If so, update existing issue instead of creating a new one."
+#: util.cpp:455
+msgid "MMEX is using the following support products:"
 msgstr ""
 
-#: util.cpp:465 util.cpp:467 util.cpp:473
-msgid "this link"
-msgstr ""
-
-#: util.cpp:466
-#, c-format
-msgid "Read %s for useful tips."
+#: util.cpp:467
+msgid "Build on"
 msgstr ""
 
 #: util.cpp:468
+msgid "with:"
+msgstr ""
+
+#: util.cpp:489
+msgid "Running on:"
+msgstr ""
+
+#: util.cpp:514
+msgid "Replace this text (marked with >) with detailed description of your problem."
+msgstr ""
+
+#: util.cpp:515
+msgid "Please do not remove information attached below this text."
+msgstr ""
+
+#: util.cpp:520
+msgid "Use Help->Check for Updates in MMEX to get latest version, where your problem might be already fixed."
+msgstr ""
+
+#: util.cpp:521
+#, c-format
+msgid "Search <a href='%s'>a list of known issues</a> for similar problem. If so, update existing issue instead of creating a new one."
+msgstr ""
+
+#: util.cpp:523
+#, c-format
+msgid "Read <a href='%s'>How to Report Bugs Effectively</a> for useful tips."
+msgstr ""
+
+#: util.cpp:524
 msgid "Come up with a descriptive name for your problem."
 msgstr ""
 
-#: util.cpp:469
+#: util.cpp:525
 msgid "Include steps to reproduce your problem, attach screenshots where appropriate."
 msgstr ""
 
-#: util.cpp:470
+#: util.cpp:526
 #, c-format
-msgid "Before click the following link, be sure that you have already signed in to the %s."
+msgid "Before click the following link, be sure that you have already signed in to the <a href='%s'>GitHub</a>."
 msgstr ""
 
-#: util.cpp:472
+#: util.cpp:528
 #, c-format
-msgid "Finally, report a bug by clicking %s."
+msgid "Finally, report a bug using GitHub <a href='%s'>online form</a> opened in your web browser."
 msgstr ""
 
-#: util.cpp:484
+#: util.cpp:539
 msgid "Please, follow these instructions before submitting a new bug report:"
 msgstr ""
 
-#: util.cpp:603
+#: util.cpp:658
 msgid "Wrong base currency to USD rate provided"
 msgstr ""
 
-#: util.cpp:865
+#: util.cpp:920
 msgid "UTF-8"
 msgstr ""
 
-#: util.cpp:878
+#: util.cpp:933
 msgid "January"
 msgstr ""
 
-#: util.cpp:878
+#: util.cpp:933
 msgid "February"
 msgstr ""
 
-#: util.cpp:878
+#: util.cpp:933
 msgid "March"
 msgstr ""
 
-#: util.cpp:879
+#: util.cpp:934
 msgid "April"
 msgstr ""
 
-#: util.cpp:879
+#: util.cpp:934
 msgctxt "full month name"
 msgid "May"
 msgstr ""
 
-#: util.cpp:880
+#: util.cpp:935
 msgid "June"
 msgstr ""
 
-#: util.cpp:880
+#: util.cpp:935
 msgid "July"
 msgstr ""
 
-#: util.cpp:880
+#: util.cpp:935
 msgid "August"
 msgstr ""
 
-#: util.cpp:881
+#: util.cpp:936
 msgid "September"
 msgstr ""
 
-#: util.cpp:881
+#: util.cpp:936
 msgid "October"
 msgstr ""
 
-#: util.cpp:882
+#: util.cpp:937
 msgid "November"
 msgstr ""
 
-#: util.cpp:882
+#: util.cpp:937
 msgid "December"
 msgstr ""
 
-#: util.cpp:887
+#: util.cpp:942
 msgctxt "3-letter abbreviation of month name"
 msgid "Jan"
 msgstr ""
 
-#: util.cpp:888
+#: util.cpp:943
 msgctxt "3-letter abbreviation of month name"
 msgid "Feb"
 msgstr ""
 
-#: util.cpp:889
+#: util.cpp:944
 msgctxt "3-letter abbreviation of month name"
 msgid "Mar"
 msgstr ""
 
-#: util.cpp:890
+#: util.cpp:945
 msgctxt "3-letter abbreviation of month name"
 msgid "Apr"
 msgstr ""
 
-#: util.cpp:891
+#: util.cpp:946
 msgctxt "3-letter abbreviation of month name"
 msgid "May"
 msgstr ""
 
-#: util.cpp:892
+#: util.cpp:947
 msgctxt "3-letter abbreviation of month name"
 msgid "Jun"
 msgstr ""
 
-#: util.cpp:893
+#: util.cpp:948
 msgctxt "3-letter abbreviation of month name"
 msgid "Jul"
 msgstr ""
 
-#: util.cpp:894
+#: util.cpp:949
 msgctxt "3-letter abbreviation of month name"
 msgid "Aug"
 msgstr ""
 
-#: util.cpp:895
+#: util.cpp:950
 msgctxt "3-letter abbreviation of month name"
 msgid "Sep"
 msgstr ""
 
-#: util.cpp:896
+#: util.cpp:951
 msgctxt "3-letter abbreviation of month name"
 msgid "Oct"
 msgstr ""
 
-#: util.cpp:897
+#: util.cpp:952
 msgctxt "3-letter abbreviation of month name"
 msgid "Nov"
 msgstr ""
 
-#: util.cpp:898
+#: util.cpp:953
 msgctxt "3-letter abbreviation of month name"
 msgid "Dec"
 msgstr ""
 
-#: util.cpp:903
+#: util.cpp:958
 msgid "Sunday"
 msgstr ""
 
-#: util.cpp:903
+#: util.cpp:958
 msgid "Monday"
 msgstr ""
 
-#: util.cpp:903
+#: util.cpp:958
 msgid "Tuesday"
 msgstr ""
 
-#: util.cpp:904
+#: util.cpp:959
 msgid "Wednesday"
 msgstr ""
 
-#: util.cpp:904
+#: util.cpp:959
 msgid "Thursday"
 msgstr ""
 
-#: util.cpp:904
+#: util.cpp:959
 msgid "Friday"
 msgstr ""
 
-#: util.cpp:905
+#: util.cpp:960
 msgid "Saturday"
 msgstr ""
 

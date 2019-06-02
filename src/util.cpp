@@ -19,6 +19,7 @@
 
 #include "util.h"
 #include "constants.h"
+#include "lua.h"
 #include "mmTextCtrl.h"
 #include "validators.h"
 #include "option.h"
@@ -429,48 +430,102 @@ bool getNewsRSS(std::vector<WebsiteNews>& WebsiteNewsList)
     return !WebsiteNewsList.empty();
 }
 
+const wxString getProgramDescription(bool simple)
+{
+    const wxString bull = L" \u2022 ";
+    wxString description;
+    wxString curl = curl_version();
+    curl.Replace(" ", "\n" + bull);
+    curl.Replace("/", " ");
+
+    description << (simple ? "" : wxString::Format(_("Version: %s"), mmex::getTitleProgramVersion())) << "\n"
+        << (simple ? L"\u2022 db " : _("Database version: ")) << mmex::version::getDbLatestVersion()
+#if WXSQLITE3_HAVE_CODEC
+        << " (" << wxSQLite3Cipher::GetCipherName(wxSQLite3Cipher::GetGlobalCipherDefault()) << ")"
+#endif
+        << "\n"
+#ifdef GIT_COMMIT_HASH
+        << (simple ? L"\u2022 git " : _("Git commit: ")) << GIT_COMMIT_HASH
+        << " (" << GIT_COMMIT_DATE << ")\n"
+#endif
+#ifdef GIT_BRANCH
+        << (simple ? "" : _("Git branch: ")) << GIT_BRANCH << "\n"
+#endif
+
+        << "\n" << (simple ? "Libs:" : _("MMEX is using the following support products:")) << "\n"
+        << bull + wxVERSION_STRING
+        << wxString::Format(" (%s %d.%d)\n",
+            wxPlatformInfo::Get().GetPortIdName(),
+            wxPlatformInfo::Get().GetToolkitMajorVersion(),
+            wxPlatformInfo::Get().GetToolkitMinorVersion())
+        << bull + wxSQLITE3_VERSION_STRING
+        << " (SQLite " << wxSQLite3Database::GetVersion() << ")\n"
+        << bull + "RapidJSON " << RAPIDJSON_VERSION_STRING << "\n"
+        << bull + LUA_RELEASE << "\n"
+        << bull + curl << "\n"
+
+        << (simple ? "Build:" : _("Build on")) << " " << __DATE__ << " " << __TIME__ << " "
+        << (simple ? "" : _("with:")) << "\n"
+        << bull + CMAKE_VERSION << "\n"
+        << bull + MAKE_VERSION << "\n"
+        << bull + GETTEXT_VERSION << "\n"
+#if defined(_MSC_VER)
+#ifdef VS_VERSION
+        << bull + (simple ? "MSVS" : "Microsoft Visual Studio ") + VS_VERSION << "\n"
+#endif
+        << bull + (simple ? "MSVSC++" : "Microsoft Visual C++ ") + CXX_VERSION << "\n"
+#elif defined(__clang__)
+        << bull + "Clang " + __VERSION__ << "\n"
+#elif (defined(__GNUC__) || defined(__GNUG__)) && !(defined(__clang__) || defined(__INTEL_COMPILER))
+        << bull + "GCC " + __VERSION__ << "\n"
+#endif
+#ifdef CMAKE_VS_WINDOWS_TARGET_PLATFORM_VERSION
+        << bull + CMAKE_VS_WINDOWS_TARGET_PLATFORM_VERSION << "\n"
+#endif
+#ifdef LINUX_DISTRO_STRING
+        << bull + LINUX_DISTRO_STRING << "\n"
+#endif
+
+        << "\n" << (simple ? "OS:" : _("Running on:")) << "\n"
+#ifdef __LINUX__
+        << bull + wxGetLinuxDistributionInfo().Description
+        << " \"" << wxGetLinuxDistributionInfo().CodeName << "\"\n"
+#endif
+        << bull + wxGetOsDescription() << "\n"
+        << bull + wxPlatformInfo::Get().GetDesktopEnvironment()
+        << " " << wxLocale::GetLanguageName(wxLocale::GetSystemLanguage())
+        << " (" << wxLocale::GetSystemEncodingName() << ")\n"
+        << wxString::Format(bull + "%ix%i %ibit %ix%ippi\n",
+            wxGetDisplaySize().GetX(),
+            wxGetDisplaySize().GetY(),
+            wxDisplayDepth(),
+            wxGetDisplayPPI().GetX(),
+            wxGetDisplayPPI().GetY())
+        ;
+    description.RemoveLast();
+
+    return description;
+}
+
 bool prepare_bug_report_file(wxString& path)
 {
-    const std::vector<std::pair<wxString, wxString>> fixes = {
-    { "\n\n", "<br>" }, { "\n", " " }, { "  ", " " },
-    { "^" + _("Version: "), "\n<hr><small><b>Version</b>: " },
-    { _("Database version: "), L"\u2022 db " },
-    { _("Git commit: "), L"\u2022 git " },
-    { _("Git branch: "), "" },
-    { _("MMEX is using the following support products:") + L" \u2022", "<b>Libs</b>:" },
-    { "<br>" + _("Build on"), "<br><b>Build</b>:" },
-    { " " + _("with:"), "" },
-    { _("Running on:") + L" \u2022", "<b>OS</b>:" },
-    { "(.)$", "\\1</small>" }
-    };
+    wxString diag = getProgramDescription(true);
 
-    wxRegEx re;
-    wxString diag = mmex::getProgramDescription();
+    wxString info = "> " + _("Replace this text (marked with >) with detailed description of your problem.") + "\n";
+    info << "> " + _("Please do not remove information attached below this text.") + "\n";
 
-    for (const auto& kv : fixes)
-    {
-        if (re.Compile(kv.first, wxRE_EXTENDED)) {
-            re.Replace(&diag, kv.second);
-        }
-    }
-
-    wxString info = "> " + _("Replace this text with detailed description of your problem.") + "\n> ";
-    info << _("Please do not remove information attached below this text.") + "\n";
-
-    wxURI req = mmex::weblink::BugReport + "/new?body=" + info + diag;
+    wxURI req = mmex::weblink::BugReport + "/new?body=" + info + "\n<hr>" + diag;
 
     const wxString texts[] = {
         _("Use Help->Check for Updates in MMEX to get latest version, where your problem might be already fixed."),
-        wxString::Format(_("Search %s for similar problem. If so, update existing issue instead of creating a new one.")
-            , wxString::Format("<a href='%s'>%s</a>",  mmex::weblink::BugReport, _("this link"))),
-        wxString::Format(_("Read %s for useful tips.")
-            , wxString::Format("<a href='%s'>%s</a>",  mmex::weblink::Chiark, _("this link"))),
+        wxString::Format(_("Search <a href='%s'>a list of known issues</a> for similar problem. If so, update existing issue instead of creating a new one.")
+            ,  mmex::weblink::BugReport),
+        wxString::Format(_("Read <a href='%s'>How to Report Bugs Effectively</a> for useful tips."), mmex::weblink::Chiark),
         _("Come up with a descriptive name for your problem."),
         _("Include steps to reproduce your problem, attach screenshots where appropriate."),
-        wxString::Format(_("Before click the following link, be sure that you have already signed in to the %s.")
-            , wxString::Format("<a href='%s'>%s</a>",  mmex::weblink::GitHub, "GitHub")),
-        wxString::Format(_("Finally, report a bug by clicking %s.")
-            , wxString::Format("<a href='%s'>%s</a>",  req.BuildURI(), _("this link")))
+        wxString::Format(_("Before click the following link, be sure that you have already signed in to the <a href='%s'>GitHub</a>.")
+            ,  mmex::weblink::GitHub),
+        wxString::Format(_("Finally, report a bug using GitHub <a href='%s'>online form</a> opened in your web browser."), req.BuildURI())
     };
 
     wxString msg = "<ol>";
