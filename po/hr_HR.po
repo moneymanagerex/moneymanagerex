@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-06-02 15:04+0300\n"
-"PO-Revision-Date: 2019-06-02 14:06\n"
+"PO-Revision-Date: 2019-06-02 15:05\n"
 "Last-Translator: Nikolay (vomikan)\n"
 "Language-Team: Croatian\n"
 "MIME-Version: 1.0\n"
@@ -270,7 +270,7 @@ msgstr "Slika br.%i"
 #: appstartdialog.cpp:48 util.cpp:441
 #, c-format
 msgid "Version: %s"
-msgstr ""
+msgstr "Verzija: %s"
 
 #: appstartdialog.cpp:99
 msgid "Open Last Opened Database"
@@ -5707,15 +5707,15 @@ msgstr "Mjesečno ukupno"
 
 #: reports/bugreport.h:55
 msgid "Bug Report"
-msgstr ""
+msgstr "Izvještaj o grešci"
 
 #: reports/bugreport.h:72
 msgid "Replace this text (marked with >) with detailed description of your problem."
-msgstr ""
+msgstr "Zamijeni ovaj tekst (označen s >) s detaljnjim opisom tvojeg problema."
 
 #: reports/bugreport.h:73
 msgid "Please do not remove information attached below this text."
-msgstr ""
+msgstr "Ne uklanjaj informacije priložene ispod ovog teksta."
 
 #: reports/bugreport.h:78
 msgid "Use Help->Check for Updates in MMEX to get latest version, where your problem might be already fixed."
