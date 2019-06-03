@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-06-02 15:04+0300\n"
-"PO-Revision-Date: 2019-06-03 08:41\n"
+"PO-Revision-Date: 2019-06-03 10:06\n"
 "Last-Translator: Nikolay (vomikan)\n"
 "Language-Team: Hebrew\n"
 "MIME-Version: 1.0\n"
@@ -1718,7 +1718,7 @@ msgstr "הצגת 'ממועד' דף החשבון"
 #: constants.cpp:155 mmframe.cpp:1296 mmframe.cpp:1832
 #: model/Model_Account.cpp:26
 msgid "Open"
-msgstr "פעיל"
+msgstr "פעילים"
 
 #: constants.cpp:156 mmframe.cpp:1297 model/Model_Account.cpp:27
 msgid "Closed"
@@ -3935,7 +3935,7 @@ msgstr "פתיחת א&תר החשבון"
 
 #: mmframe.cpp:1259 mmframe.cpp:1572
 msgid "Hide/Show Report"
-msgstr "הצגת/הסתר דוח"
+msgstr "הצגת/הסתרת דוח"
 
 #: mmframe.cpp:1271 mmframe.cpp:1580
 msgid "New &Account"
@@ -4051,7 +4051,7 @@ msgstr "ס&רגל כלים"
 
 #: mmframe.cpp:1504
 msgid "Show/Hide the toolbar"
-msgstr "הצגת/הסתר סרגל כלים"
+msgstr "הצגת/הסתרת סרגל כלים"
 
 #: mmframe.cpp:1506
 msgid "&Navigation"
@@ -4059,7 +4059,7 @@ msgstr "&סרגל ניווט"
 
 #: mmframe.cpp:1506
 msgid "Show/Hide the Navigation tree control"
-msgstr "הצגת/הסתר את חלון הניווט"
+msgstr "הצגת/הסתרת חלון הניווט"
 
 #: mmframe.cpp:1508
 msgid "&Display Share Accounts"
@@ -4067,7 +4067,7 @@ msgstr "&הצגת חשבונות ניירות ערך"
 
 #: mmframe.cpp:1508
 msgid "Show/Hide Share Accounts in the navigation tree"
-msgstr "הצגת/הסתר חשבונות ניירות ערך בסרגל הניווט"
+msgstr "הצגת/הסתרת חשבונות ניירות ערך בסרגל הניווט"
 
 #: mmframe.cpp:1511
 msgid "Budgets: As &Financial Years"
@@ -4779,7 +4779,7 @@ msgstr "סך הכל כללי:"
 
 #: mmpanelbase.cpp:134
 msgid "Hide/Show Columns"
-msgstr "הצגת/הסתר עמודה"
+msgstr "הצגת/הסתרת עמודה"
 
 #: mmpanelbase.cpp:135
 msgid "Hide this column"
