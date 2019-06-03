@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-06-02 15:04+0300\n"
-"PO-Revision-Date: 2019-06-02 14:06\n"
+"PO-Revision-Date: 2019-06-03 08:04\n"
 "Last-Translator: Nikolay (vomikan)\n"
 "Language-Team: Hebrew\n"
 "MIME-Version: 1.0\n"
@@ -270,7 +270,7 @@ msgstr "צלמית #%i"
 #: appstartdialog.cpp:48 util.cpp:441
 #, c-format
 msgid "Version: %s"
-msgstr ""
+msgstr "גרסה: %s"
 
 #: appstartdialog.cpp:99
 msgid "Open Last Opened Database"
@@ -5709,19 +5709,19 @@ msgstr "סך הכל חודשי"
 
 #: reports/bugreport.h:55
 msgid "Bug Report"
-msgstr ""
+msgstr "דווח תקלה"
 
 #: reports/bugreport.h:72
 msgid "Replace this text (marked with >) with detailed description of your problem."
-msgstr ""
+msgstr "החלפת טקסט זה (מסומן ב>) עם תיאור מפורט של התקלה."
 
 #: reports/bugreport.h:73
 msgid "Please do not remove information attached below this text."
-msgstr ""
+msgstr "נא לא להסיר את המידע המצורף בתחית מלל זה."
 
 #: reports/bugreport.h:78
 msgid "Use Help->Check for Updates in MMEX to get latest version, where your problem might be already fixed."
-msgstr ""
+msgstr "ניתן להשתמש ב- עזרה-> בדיקת עדכונים ב- MMEX כדי לקבל את הגרסה העדכנית ביותר - יתכן כי התקלה תוקנה כבר."
 
 #: reports/bugreport.h:79
 #, c-format
