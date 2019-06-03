@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-06-02 15:04+0300\n"
-"PO-Revision-Date: 2019-06-02 14:07\n"
+"PO-Revision-Date: 2019-06-03 10:57\n"
 "Last-Translator: Nikolay (vomikan)\n"
 "Language-Team: Greek\n"
 "MIME-Version: 1.0\n"
@@ -270,7 +270,7 @@ msgstr ""
 #: appstartdialog.cpp:48 util.cpp:441
 #, c-format
 msgid "Version: %s"
-msgstr ""
+msgstr "Έκδοση: %s"
 
 #: appstartdialog.cpp:99
 msgid "Open Last Opened Database"
@@ -5658,11 +5658,11 @@ msgstr ""
 
 #: reports/bugreport.h:55
 msgid "Bug Report"
-msgstr ""
+msgstr "Αναφορά σφάλματος"
 
 #: reports/bugreport.h:72
 msgid "Replace this text (marked with >) with detailed description of your problem."
-msgstr ""
+msgstr "Αντικαταστήστε αυτό το κείμενο (που είναι σημειωμένο με >) με μια λεπτομερή περιγραφή του προβλήματός σας."
 
 #: reports/bugreport.h:73
 msgid "Please do not remove information attached below this text."
