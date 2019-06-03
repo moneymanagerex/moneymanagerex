@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-06-02 15:04+0300\n"
-"PO-Revision-Date: 2019-06-02 16:24\n"
+"PO-Revision-Date: 2019-06-02 22:37\n"
 "Last-Translator: Nikolay (vomikan)\n"
 "Language-Team: Croatian\n"
 "MIME-Version: 1.0\n"
@@ -6332,7 +6332,7 @@ msgstr "Privremeni popis vlasničkih udjela: %s\n\n"
 
 #: stockspanel.cpp:422
 msgid "View Stock Transactions"
-msgstr ""
+msgstr "Prikaz transakcija vlasničkih udjela"
 
 #: stockspanel.cpp:574
 msgid "Create a new Stock investment in this portfolio"
