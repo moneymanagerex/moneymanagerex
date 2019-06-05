@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-06-02 15:04+0300\n"
-"PO-Revision-Date: 2019-06-02 15:05\n"
+"PO-Revision-Date: 2019-06-03 09:16\n"
 "Last-Translator: Nikolay (vomikan)\n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -5723,7 +5723,7 @@ msgstr "Пожалуйста, не удаляйте информацию, ука
 
 #: reports/bugreport.h:78
 msgid "Use Help->Check for Updates in MMEX to get latest version, where your problem might be already fixed."
-msgstr "В меню Помощь->Проверить проверьте обновления, ваша проблема уже может быть исправлена."
+msgstr "В меню Помощь->Проверить обновления убедитесь, что у вас установлена новая версия программы, ваша проблема уже может быть исправлена."
 
 #: reports/bugreport.h:79
 #, c-format

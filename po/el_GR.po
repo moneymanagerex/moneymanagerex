@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-06-02 15:04+0300\n"
-"PO-Revision-Date: 2019-06-02 14:07\n"
+"PO-Revision-Date: 2019-06-03 11:26\n"
 "Last-Translator: Nikolay (vomikan)\n"
 "Language-Team: Greek\n"
 "MIME-Version: 1.0\n"
@@ -270,7 +270,7 @@ msgstr ""
 #: appstartdialog.cpp:48 util.cpp:441
 #, c-format
 msgid "Version: %s"
-msgstr ""
+msgstr "Έκδοση: %s"
 
 #: appstartdialog.cpp:99
 msgid "Open Last Opened Database"
@@ -5658,51 +5658,51 @@ msgstr ""
 
 #: reports/bugreport.h:55
 msgid "Bug Report"
-msgstr ""
+msgstr "Αναφορά σφάλματος"
 
 #: reports/bugreport.h:72
 msgid "Replace this text (marked with >) with detailed description of your problem."
-msgstr ""
+msgstr "Αντικαταστήστε αυτό το κείμενο (που είναι σημειωμένο με >) με μια λεπτομερή περιγραφή του προβλήματός σας."
 
 #: reports/bugreport.h:73
 msgid "Please do not remove information attached below this text."
-msgstr ""
+msgstr "Παρακαλούμε να μην αφαιρείτε τις πληροφορίες που έχουν επισυναφθεί κάτω από το κείμενο αυτό."
 
 #: reports/bugreport.h:78
 msgid "Use Help->Check for Updates in MMEX to get latest version, where your problem might be already fixed."
-msgstr ""
+msgstr "Χρησιμοποιήστε το Βοήθεια->Έλεγχος νέας έκδοσης του ΜΜΕΧ για να λάβετε την πιο ενημερωμένη έκδοση, όπου μπορεί το πρόβλημά σας να έχει ήδη επιλυθεί."
 
 #: reports/bugreport.h:79
 #, c-format
 msgid "Search <a href='%s'>a list of known issues</a> for similar problem. If so, update existing issue instead of creating a new one."
-msgstr ""
+msgstr "Αναζητήστε στο <a href='%s'> μια λίστα από ήδη γνωστά θέματα </a> για παρόμοια προβλήματα. Αν υπάρχει τέτοιο, ενημερώστε το υπάρχον θέμα αντί να δημιουργήσετε ένα νέο."
 
 #: reports/bugreport.h:81
 #, c-format
 msgid "Read <a href='%s'>How to Report Bugs Effectively</a> for useful tips."
-msgstr ""
+msgstr "Διαβάστε στο <a href='%s'> πως να δημιουργήσετε μια αναφορά σφάλματος αποδοτικά </a> για χρήσιμες οδηγίες."
 
 #: reports/bugreport.h:82
 msgid "Come up with a descriptive name for your problem."
-msgstr ""
+msgstr "Επανέλθετε με ένα περιγραφικό όνομα για το πρόβλημά σας."
 
 #: reports/bugreport.h:83
 msgid "Include steps to reproduce your problem, attach screenshots where appropriate."
-msgstr ""
+msgstr "Συμπεριλάβετε τα βήματα για να αναπαράγετε το πρόβλημά σας, επισυνάψτε στιγμιότυπα οθόνης όπου θεωρείτε απαραίτητο."
 
 #: reports/bugreport.h:84
 #, c-format
 msgid "Before click the following link, be sure that you have already signed in to the <a href='%s'>GitHub</a>."
-msgstr ""
+msgstr "Προτού ακολουθήσετε τον παρακάτω σύνδεσμο, σιγουρευτείτε ότι έχετε ήδη εισέλθει στο <a href='%s'>GitHub</a>."
 
 #: reports/bugreport.h:86
 #, c-format
 msgid "Finally, report a bug using GitHub <a href='%s'>online form</a> opened in your web browser."
-msgstr ""
+msgstr "Τέλος, αναφέρατε ένα σφάλμα χρησιμοποιώντας το GitHub <a href='%s'>online form</a> που έχει ανοίξει στον περιηγητή σας."
 
 #: reports/bugreport.h:97
 msgid "Please, follow these instructions before submitting a new bug report:"
-msgstr ""
+msgstr "Παρακαλούμε ακολουθήστε τις παρακάτω οδηγίες προτού υποβάλετε μια νέα αναφορά σφάλματος:"
 
 #: reports/cashflow.cpp:220
 #, c-format
