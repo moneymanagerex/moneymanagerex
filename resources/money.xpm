@@ -1,5 +1,5 @@
 /* XPM */
-static char* money_xpm[] = {
+static const char* money_xpm[] = {
 "156 158 155 2",
 "  	c None",
 ". 	c #A6D899",

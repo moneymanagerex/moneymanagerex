@@ -363,17 +363,15 @@ void UserTransactionPanel::SetNewDate(wxDatePickerCtrl* dpc, bool forward)
 
 void UserTransactionPanel::OnEnteredText(wxCommandEvent& event)
 {
-    Model_Currency::Data *currency = Model_Currency::GetBaseCurrency();
-    int currency_precision = Model_Currency::precision(currency);
-
-    Model_Account::Data *account = Model_Account::instance().get(m_account_id);
-    if (account)
-    {
-        currency = Model_Account::currency(account);
-    }
-
     if (event.GetId() == m_entered_amount->GetId())
     {
+        Model_Currency::Data *currency;
+        Model_Account::Data *account = Model_Account::instance().get(m_account_id);
+        if (account)
+            currency = Model_Account::currency(account);
+        else
+            currency = Model_Currency::GetBaseCurrency();
+        int currency_precision = Model_Currency::precision(currency);
         m_entered_amount->Calculate(currency_precision);
     }
 }

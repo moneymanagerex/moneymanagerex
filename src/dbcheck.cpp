@@ -27,21 +27,27 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 bool dbCheck::checkDB()
 {
     bool result = true;
-    result = checkAccounts();
-
+    result = result && checkAccounts();
+    result = result && checkAttachments();
+    result = result && checkBudgets();
+    result = result && checkBudgetYears();
+    result = result && checkCategories();
+    result = result && checkCurrencies();
+    result = result && checkPayees();
+    result = result && checkStocks();
+    result = result && checkSubcategories();
+    result = result && checkTransactions();
     return result;
 }
 
 bool dbCheck::checkAccounts()
 {
-    bool result = true;
-
     // Transactions
     const auto &transactions = Model_Checking::instance().all();
     for (const auto& trx : transactions)
         if (!Model_Account::instance().get(trx.ACCOUNTID) || (Model_Checking::type(trx) == Model_Checking::TRANSFER && !Model_Account::instance().get(trx.TOACCOUNTID)))
         {
-            result = false;
+            return false;
         }
 
     // BillsDeposits
@@ -49,7 +55,7 @@ bool dbCheck::checkAccounts()
     for (const auto& bill : bills)
         if (!Model_Account::instance().get(bill.ACCOUNTID) || (Model_Billsdeposits::type(bill) == Model_Billsdeposits::TRANSFER && !Model_Account::instance().get(bill.TOACCOUNTID)))
         {
-            result = false;
+            return false;
         }
 
     // Stocks
@@ -57,53 +63,53 @@ bool dbCheck::checkAccounts()
     for (const auto& stock : stocks)
         if (!Model_Account::instance().get(stock.HELDAT) || (Model_Account::type(Model_Account::instance().get(stock.HELDAT)) != Model_Account::INVESTMENT))
         {
-            result = false;
+            return false;
         }
 
-    return result;
+    return true;
 }
 
 bool dbCheck::checkAttachments()
 {
-    return true;
+    return true; // FIXME
 }
 
 bool dbCheck::checkBudgets()
 {
-    return true;
+    return true; // FIXME
 }
 
 bool dbCheck::checkBudgetYears()
 {
-    return true;
+    return true; // FIXME
 }
 
 bool dbCheck::checkCategories()
 {
-    return true;
+    return true; // FIXME
 }
 
 bool dbCheck::checkCurrencies()
 {
-    return true;
+    return true; // FIXME
 }
 
 bool dbCheck::checkPayees()
 {
-    return true;
+    return true; // FIXME
 }
 
 bool dbCheck::checkStocks()
 {
-    return true;
+    return true; // FIXME
 }
 
 bool dbCheck::checkSubcategories()
 {
-    return true;
+    return true; // FIXME
 }
 
 bool dbCheck::checkTransactions()
 {
-    return true;
+    return true; // FIXME
 }

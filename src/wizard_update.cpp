@@ -250,7 +250,7 @@ struct Version
 {
     long v[5];
 
-    Version(const wxString& tag)
+    explicit Version(const wxString& tag)
     {
         for(int i=0; i<5; i++) v[i]=0;
         wxRegEx re_ver("^v([0-9]+)\\.([0-9]+)(\\.([0-9]+))?(-(alpha|beta|rc)(\\.([0-9]+))?)?$", wxRE_EXTENDED);

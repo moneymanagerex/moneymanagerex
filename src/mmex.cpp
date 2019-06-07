@@ -42,6 +42,7 @@ static const wxCmdLineEntryDesc g_cmdLineDesc [] =
 //----------------------------------------------------------------------------
 
 mmGUIApp::mmGUIApp(): m_frame(0)
+    , m_checker(nullptr)
     , m_setting_db(0)
     , m_optParam(wxEmptyString)
     , m_lang(wxLANGUAGE_UNKNOWN)
