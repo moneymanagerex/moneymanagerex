@@ -438,21 +438,21 @@ const wxString getProgramDescription(bool simple)
     curl.Replace(" ", "\n" + bull);
     curl.Replace("/", " ");
 
-    description << (simple ? "" : wxString::Format(_("Version: %s"), mmex::getTitleProgramVersion())) << "\n"
-        << (simple ? L"\u2022 db " : _("Database version: ")) << mmex::version::getDbLatestVersion()
+    description << wxString::Format(simple ? "Version: %s" : _("Version: %s"), mmex::getTitleProgramVersion()) << "\n"
+        << bull << (simple ? "db " : _("Database version: ")) << mmex::version::getDbLatestVersion()
 #if WXSQLITE3_HAVE_CODEC
-        << " (" << wxSQLite3Cipher::GetCipherName(wxSQLite3Cipher::GetGlobalCipherDefault()) << ")"
+        << bull << " (" << wxSQLite3Cipher::GetCipherName(wxSQLite3Cipher::GetGlobalCipherDefault()) << ")"
 #endif
         << "\n"
 #ifdef GIT_COMMIT_HASH
-        << (simple ? L"\u2022 git " : _("Git commit: ")) << GIT_COMMIT_HASH
+        << bull << (simple ? "git " : _("Git commit: ")) << GIT_COMMIT_HASH
         << " (" << GIT_COMMIT_DATE << ")"
 #endif
 #ifdef GIT_BRANCH
-        << (simple ? "" : _("Git branch: ")) << GIT_BRANCH
+        << bull << (simple ? "" : _("Git branch: ")) << GIT_BRANCH
 #endif
-
-        << "\n" << (simple ? "Libs:" : _("MMEX is using the following support products:")) << "\n"
+        << "<br>\n"
+        << (simple ? "Libs:" : _("MMEX is using the following support products:")) << "\n"
         << bull + wxVERSION_STRING
         << wxString::Format(" (%s %d.%d)\n",
             wxPlatformInfo::Get().GetPortIdName(),
@@ -462,7 +462,8 @@ const wxString getProgramDescription(bool simple)
         << " (SQLite " << wxSQLite3Database::GetVersion() << ")\n"
         << bull + "RapidJSON " << RAPIDJSON_VERSION_STRING << "\n"
         << bull + LUA_RELEASE << "\n"
-        << bull + curl << "\n"
+        << bull + curl
+        << "<br>\n"
 
         << (simple ? "Build:" : _("Build on")) << " " << __DATE__ << " " << __TIME__ << " "
         << (simple ? "" : _("with:")) << "\n"
@@ -477,15 +478,15 @@ const wxString getProgramDescription(bool simple)
 #elif defined(__clang__)
         << bull + "Clang " + __VERSION__ << "\n"
 #elif (defined(__GNUC__) || defined(__GNUG__)) && !(defined(__clang__) || defined(__INTEL_COMPILER))
-        << bull + "GCC " + __VERSION__ << "\n"
+        << bull + "GCC " + __VERSION__
 #endif
 #ifdef CMAKE_VS_WINDOWS_TARGET_PLATFORM_VERSION
-        << bull + CMAKE_VS_WINDOWS_TARGET_PLATFORM_VERSION << "\n"
+        << bull + CMAKE_VS_WINDOWS_TARGET_PLATFORM_VERSION
 #endif
 #ifdef LINUX_DISTRO_STRING
-        << bull + LINUX_DISTRO_STRING << "\n"
+        << bull + LINUX_DISTRO_STRING
 #endif
-
+        << "<br>\n"
         << (simple ? "OS:" : _("Running on:")) << "\n"
 #ifdef __LINUX__
         << bull + wxGetLinuxDistributionInfo().Description
