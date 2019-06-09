@@ -1070,23 +1070,38 @@ bool mmGeneralReportManager::getColumns(const wxString& sql, std::vector<std::pa
 void mmGeneralReportManager::getSqlTableInfo(std::vector<std::pair<wxString, wxArrayString>> &sqlTableInfo)
 {
     const wxString sqlTables = "SELECT type, name FROM sqlite_master WHERE type = 'table' or type = 'view' ORDER BY type, name";
-    const wxString sqlColumns = "PRAGMA table_info(%s);";
     sqlTableInfo.clear();
 
     // Get a list of the database tables
-    wxSQLite3ResultSet qTables = this->m_db->ExecuteQuery(sqlTables);
-    while (qTables.NextRow())
+    wxSQLite3ResultSet qTables;
+    try
     {
-        const wxString table_name = qTables.GetAsString(1);
+        qTables = this->m_db->ExecuteQuery(sqlTables);
+        while (qTables.NextRow())
+        {
+            const wxString table_name = qTables.GetAsString(1);
 
-        // Get a list of the table columns
-        const wxString& sql = wxString::Format(sqlColumns, table_name);
-        wxSQLite3ResultSet qColumns = this->m_db->ExecuteQuery(sql);
-        wxArrayString column_names;
-        while (qColumns.NextRow())
-            column_names.push_back(qColumns.GetAsString(1));
+            // Get a list of the table columns
+            const wxString& sql = wxString::Format("PRAGMA table_info(%s);", table_name);
+            wxSQLite3ResultSet qColumns;
+            try
+            {
+                qColumns = this->m_db->ExecuteQuery(sql);
+                wxArrayString column_names;
+                while (qColumns.NextRow())
+                    column_names.push_back(qColumns.GetAsString(1));
 
-        sqlTableInfo.push_back(std::make_pair(table_name, column_names));
+                sqlTableInfo.push_back(std::make_pair(table_name, column_names));
+            }
+            catch (const wxSQLite3Exception &e)
+            {
+                wxLogError("%s\n Exception \n%s", sql, e.GetMessage().c_str());
+            }
+        }
+    }
+    catch (const wxSQLite3Exception &e)
+    {
+        wxLogError("SQL Exception: \n%s", e.GetMessage().c_str());
     }
 }
 
