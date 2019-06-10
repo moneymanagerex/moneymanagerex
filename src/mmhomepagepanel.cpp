@@ -116,10 +116,11 @@ wxString htmlWidgetStocks::getHTMLText()
             body += wxString::Format("<td class='money' sorttable_customkey='%f'>%s</td>\n"
                 , stockStats[account.ACCOUNTID].first
                 , Model_Account::toCurrency(stockStats[account.ACCOUNTID].first, &account));
+            const auto value = Model_Account::toCurrency(stockStats[account.ACCOUNTID].second, &account);
             body += wxString::Format("<td colspan='2' class='money' sorttable_customkey='%f'>%s</td>"
                 , stockStats[account.ACCOUNTID].second
-                , Model_Account::toCurrency(stockStats[account.ACCOUNTID].second, &account));
-            body += "</tr>";
+                , value);
+            body += "</tr>\n";
         }
 
         output += body;
@@ -142,22 +143,20 @@ void htmlWidgetStocks::calculate_stats(std::map<int, std::pair<double, double> >
     for (const auto& stock : stocks)
     {
         double today_conv_rate = 1;
-        double purchase_conv_rate = 1;
         Model_Account::Data *account = Model_Account::instance().get(stock.HELDAT);
         if (account)
         {
             today_conv_rate = Model_CurrencyHistory::getDayRate(account->CURRENCYID, today);
-            purchase_conv_rate = Model_CurrencyHistory::getDayRate(account->CURRENCYID, stock.PURCHASEDATE);
         }
         std::pair<double, double>& values = stockStats[stock.HELDAT];
-        double current_value = Model_Stock::CurrentValue(stock) * today_conv_rate;
-        double gain_lost = (current_value - stock.VALUE * purchase_conv_rate - stock.COMMISSION * today_conv_rate);
+        double current_value = Model_Stock::CurrentValue(stock);
+        double gain_lost = (current_value - stock.VALUE - stock.COMMISSION);
         values.first += gain_lost;
         values.second += current_value;
         if (account && account->STATUS == VIEW_ACCOUNTS_OPEN_STR)
         {
-            grand_total_ += current_value;
-            grand_gain_lost_ += gain_lost;
+            grand_total_ += current_value * today_conv_rate;
+            grand_gain_lost_ += gain_lost * today_conv_rate;
         }
     }
 }
@@ -904,7 +903,7 @@ void mmHomePagePanel::OnLinkClicked(wxWebViewEvent& event)
         wxString name = url.AfterLast('#');
 
         //Convert the JSON string from database to a json object
-        wxString str = Model_Infotable::instance().GetStringInfo("HOME_PAGE_STATUS", "");
+        wxString str = Model_Infotable::instance().GetStringInfo("HOME_PAGE_STATUS", "{}");
 
         wxLogDebug("======= mmHomePagePanel::OnLinkClicked =======");
         wxLogDebug("Name = %s", name);

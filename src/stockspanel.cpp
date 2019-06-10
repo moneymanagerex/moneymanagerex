@@ -761,8 +761,7 @@ void mmStocksPanel::updateHeader()
 
     const wxString& diffStr = Model_Currency::toCurrency(total > originalVal ? total - originalVal : originalVal - total, m_currency);
     double diffPercents = (total > originalVal ? 1 : -1) * (total / originalVal*100.0 - 100.0);
-    const wxString lbl = wxString::Format("%s     %s     %s     %s (%s %%)"
-        , wxString::Format(_("Total Shares: %s"), Total_Shares())
+    const wxString lbl = wxString::Format("%s     %s     %s (%s %%)"
         , wxString::Format(_("Total: %s"), Model_Currency::toCurrency(total + initVal, m_currency))
         , wxString::Format(_("Invested: %s"), Model_Currency::toCurrency(originalVal, m_currency))
         , wxString::Format(total > originalVal ? _("Gain: %s") : _("Loss: %s"), diffStr)
