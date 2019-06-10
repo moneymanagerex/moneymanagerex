@@ -402,7 +402,7 @@ bool getNewsRSS(std::vector<WebsiteNews>& WebsiteNewsList)
             {
                 wxString ElementName = News->GetName();
 
-                if (ElementName == "getReportTitle")
+                if (ElementName == "title")
                     website_news.Title = News->GetChildren()->GetContent();
                 else if (ElementName == "link")
                     website_news.Link = News->GetChildren()->GetContent();
@@ -417,10 +417,11 @@ bool getNewsRSS(std::vector<WebsiteNews>& WebsiteNewsList)
                     if (!Date.IsValid())
                         Date = wxDateTime::Today().Subtract(wxDateSpan::Year()); //Seems invalid date, mark it as 1 year old
                     website_news.Date = Date;
+                    wxLogDebug("%s -> %s", DateString, Date.FormatISODate());
                 }
                 News = News->GetNext();
             }
-            wxLogDebug("%s - %s", news_last_read_date.FormatISODate(), website_news.Date.FormatISODate());
+            wxLogDebug("Last Read Date:%s | Web Site News Date:%s", news_last_read_date.FormatISODate(), website_news.Date.FormatISODate());
             if (news_last_read_date.IsEarlierThan(website_news.Date))
                 WebsiteNewsList.push_back(website_news);
         }
