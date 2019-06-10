@@ -1015,13 +1015,14 @@ void mmFilterTransactionsDialog::from_json(const wxString &data)
     similarCategCheckBox_->Enable(categoryCheckBox_->IsChecked());
 
     wxStringTokenizer categ_token(s_category, ":", wxTOKEN_RET_EMPTY_ALL);
-    Model_Category::Data* category = Model_Category::instance().get(categ_token.GetNextToken().Trim());
+    const auto categ_name = categ_token.GetNextToken().Trim();
+    Model_Category::Data* category = Model_Category::instance().get(categ_name);
     if (category)
     {
         categID_ = category->CATEGID;
     }
     Model_Subcategory::Data* sub_category = 0;
-    const wxString& subcateg_name = categ_token.GetNextToken().Trim(false);
+    const auto subcateg_name = categ_token.GetNextToken().Trim(false);
     if (!subcateg_name.IsEmpty())
     {
         sub_category = Model_Subcategory::instance().get(subcateg_name, categID_);
