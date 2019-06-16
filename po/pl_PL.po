@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-06-02 15:04+0300\n"
-"PO-Revision-Date: 2019-06-02 14:06\n"
+"PO-Revision-Date: 2019-06-16 22:07\n"
 "Last-Translator: Nikolay (vomikan)\n"
 "Language-Team: Polish\n"
 "MIME-Version: 1.0\n"
@@ -270,7 +270,7 @@ msgstr "Obraz #%i"
 #: appstartdialog.cpp:48 util.cpp:441
 #, c-format
 msgid "Version: %s"
-msgstr ""
+msgstr "Wersja: %s"
 
 #: appstartdialog.cpp:99
 msgid "Open Last Opened Database"
@@ -2748,17 +2748,17 @@ msgstr ""
 #: import_export/qif_export.cpp:469
 #, c-format
 msgid "Number of categories exported: %zu"
-msgstr ""
+msgstr "Liczba wyeksportowanych kategorii: %zu"
 
 #: import_export/qif_export.cpp:471
 #, c-format
 msgid "Number of transactions exported: %zu"
-msgstr ""
+msgstr "Liczba wyeksportowanych transakcji: %zu"
 
 #: import_export/qif_export.cpp:473
 #, c-format
 msgid "Number of accounts exported: %zu"
-msgstr ""
+msgstr "Liczba wyeksportowanych kont: %zu"
 
 #: import_export/qif_export.cpp:474 mmframe.cpp:1477
 msgid "Export to QIF"
@@ -2813,7 +2813,7 @@ msgstr ""
 #: import_export/qif_import_gui.cpp:391
 #, c-format
 msgid "Line %zu \t %s\n"
-msgstr ""
+msgstr "Linia %zu \t %s\n"
 
 #: import_export/qif_import_gui.cpp:464
 #, c-format
@@ -4818,7 +4818,7 @@ msgstr "Następny okres"
 
 #: mmreportspanel.cpp:429
 msgid "Accounts:"
-msgstr ""
+msgstr "Konta:"
 
 #: mmreportspanel.cpp:434 reports/reportbase.cpp:262
 msgid "All Accounts"
@@ -5648,7 +5648,7 @@ msgstr "Potwierdzenie przeniesienia beneficjenta"
 #: reports/budget.cpp:84
 #, c-format
 msgid "Financial Year: %s - %i"
-msgstr ""
+msgstr "Rok finansowy: %s - %i"
 
 #: reports/budgetcategorysummary.cpp:131
 #, c-format
@@ -5715,15 +5715,15 @@ msgstr ""
 
 #: reports/bugreport.h:72
 msgid "Replace this text (marked with >) with detailed description of your problem."
-msgstr ""
+msgstr "Zastąp ten tekst (oznaczony >) dokładnym opisem twojego problemu."
 
 #: reports/bugreport.h:73
 msgid "Please do not remove information attached below this text."
-msgstr ""
+msgstr "Nie usuwaj informacji załączonych poniżej tego tekstu."
 
 #: reports/bugreport.h:78
 msgid "Use Help->Check for Updates in MMEX to get latest version, where your problem might be already fixed."
-msgstr ""
+msgstr "Użyj menu Pomoc->Sprawdź uaktualnienia w MMEX aby pobrać najnowszą wersję, w której twój problem może być już rozwiązany."
 
 #: reports/bugreport.h:79
 #, c-format
@@ -6258,7 +6258,7 @@ msgstr ""
 
 #: stockdialog.cpp:1057
 msgid "Delete selected Stock Prices"
-msgstr ""
+msgstr "Usuń wybrane ceny akcji"
 
 #: stockspanel.cpp:36
 msgid "Using MMEX it is possible to track stocks/mutual funds investments."
@@ -6337,7 +6337,7 @@ msgstr "Tymczasowa lista akcji: %s\n\n"
 
 #: stockspanel.cpp:422
 msgid "View Stock Transactions"
-msgstr ""
+msgstr "Pokaż transakcje na akcjach"
 
 #: stockspanel.cpp:574
 msgid "Create a new Stock investment in this portfolio"
