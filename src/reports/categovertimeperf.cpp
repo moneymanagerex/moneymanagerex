@@ -114,7 +114,7 @@ wxString mmReportCategoryOverTimePerformance::getHTMLText()
     hb.addDateNow();
     hb.addLineBreak();
 
-    wxDateTime start_date = m_date_range->start_date();
+    const wxDateTime start_date = m_date_range->start_date();
 
     //Chart
     wxArrayString labels;
@@ -145,8 +145,8 @@ wxString mmReportCategoryOverTimePerformance::getHTMLText()
 
             data_negative.fillColor = "rgba(220,66,66,0.5)";
             data_positive.fillColor = "rgba(151,187,205,0.5)";
-
-            labels.Add(wxGetTranslation(wxDateTime::GetEnglishMonthName(d.GetMonth())));
+            const auto mon = wxGetTranslation(wxDateTime::GetEnglishMonthName(d.GetMonth()));
+            labels.Add(mon);
         }
         aData.push_back(data_positive);
         aData.push_back(data_negative);
