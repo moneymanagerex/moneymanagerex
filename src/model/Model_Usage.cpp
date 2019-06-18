@@ -62,7 +62,7 @@ void Model_Usage::AppendToUsage(const wxString& json_string)
     wxLogDebug("===== Model_Usage::AppendToUsage =================");
     wxLogDebug("%s", json_string);
     wxLogDebug("\n");
-    this->m_json_usage.Add(json_string);
+    m_json_usage.Add(json_string);
 }
 
 void Model_Usage::AppendToCache(const wxString& json_string)
@@ -70,7 +70,7 @@ void Model_Usage::AppendToCache(const wxString& json_string)
     wxLogDebug("===== Model_Usage::AppendToCache =================");
     wxLogDebug("%s", json_string);
     wxLogDebug("\n");
-    this->m_json_cache.Add(json_string);
+    m_json_cache.Add(json_string);
 }
 
 wxString Model_Usage::To_JSON_String() const
@@ -90,8 +90,8 @@ wxString Model_Usage::To_JSON_String() const
         json_writer.StartArray();
         for (size_t i = 0; i < m_json_usage.GetCount(); i++)
         {
-            wxString item = m_json_usage.Item(i);
-            json_writer.String(item.c_str());
+            const char* item = m_json_usage.Item(i).c_str();
+            json_writer.RawValue(item, strlen(item), kObjectType);
         }
         json_writer.EndArray();
     }
@@ -100,8 +100,8 @@ wxString Model_Usage::To_JSON_String() const
         json_writer.StartArray();
         for (size_t i = 0; i < m_json_cache.GetCount(); i++)
         {
-            wxString item = m_json_cache.Item(i);
-            json_writer.String(item.c_str());
+            const char* item = m_json_cache.Item(i).c_str();
+            json_writer.RawValue(item, strlen(item), kObjectType);
         }
         json_writer.EndArray();
     }
@@ -133,7 +133,7 @@ protected:
     virtual ExitCode Entry();
 };
 
-void Model_Usage::pageview(const wxWindow* window, int plt /* = 0 msec*/)
+void Model_Usage::pageview(const wxWindow* window, long plt /* = 0 msec*/)
 {
     if (!window) return;
     if (window->GetName().IsEmpty()) return;
@@ -160,7 +160,7 @@ void Model_Usage::pageview(const wxWindow* window, int plt /* = 0 msec*/)
     return pageview(wxURI(documentPath).BuildURI(), wxURI(documentTitle).BuildURI(), plt);
 }
 
-void Model_Usage::timing(const wxString& documentPath, const wxString& documentTitle, int plt /* = 0 msec*/)
+void Model_Usage::timing(const wxString& documentPath, const wxString& documentTitle, long plt /* = 0 msec*/)
 {
     if (!Option::instance().getSendUsageStatistics())
     {
@@ -186,7 +186,7 @@ void Model_Usage::timing(const wxString& documentPath, const wxString& documentT
         { "av", mmex::version::string }, // application version
                                          // custom dimensions
         { "cd1", wxPlatformInfo::Get().GetPortIdShortName() },
-        { "plt", wxString::Format("%d", plt)}
+        { "plt", wxString::Format("%ld", plt)}
     };
 
     for (const auto& kv : parameters)
@@ -200,7 +200,7 @@ void Model_Usage::timing(const wxString& documentPath, const wxString& documentT
     thread->Run();
 }
 
-void Model_Usage::pageview(const wxString& documentPath, const wxString& documentTitle, int plt /* = 0 msec*/)
+void Model_Usage::pageview(const wxString& documentPath, const wxString& documentTitle, long plt /* = 0 msec*/)
 {
     if (!Option::instance().getSendUsageStatistics())
     {
@@ -226,7 +226,7 @@ void Model_Usage::pageview(const wxString& documentPath, const wxString& documen
         { "av", mmex::version::string }, // application version
                                          // custom dimensions
         { "cd1", wxPlatformInfo::Get().GetPortIdShortName() },
-        { "plt", wxString::Format("%d", plt)}
+        { "plt", wxString::Format("%ld", plt)}
     };
 
     for (const auto& kv : parameters)

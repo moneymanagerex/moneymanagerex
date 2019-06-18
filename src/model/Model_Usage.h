@@ -57,7 +57,7 @@ public:
     wxString To_JSON_String() const;
 
 public:
-    void pageview(const wxString& documentPath, const wxString& documentTitle, int plt = 0 /*msec*/);
-    void timing(const wxString& documentPath, const wxString& documentTitle, int plt = 0 /*msec*/);
-    void pageview(const wxWindow* window, int plt = 0 /*msec*/);
+    void pageview(const wxString& documentPath, const wxString& documentTitle, long plt = 0 /*msec*/);
+    void timing(const wxString& documentPath, const wxString& documentTitle, long plt = 0 /*msec*/);
+    void pageview(const wxWindow* window, long plt = 0 /*msec*/);
 };

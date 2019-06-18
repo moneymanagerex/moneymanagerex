@@ -140,49 +140,49 @@ wxString mmReportMyUsage::getHTMLText()
     {
         usage_by_day[usage.USAGEDATE].first += 1;
 
-        Document json_doc;
-        if (json_doc.Parse(usage.JSONCONTENT.c_str()).HasParseError()) {
-            continue;
-        }
+        // Document json_doc;
+        // if (json_doc.Parse(usage.JSONCONTENT.c_str()).HasParseError()) {
+        //     continue;
+        // }
 
-        // wxLogDebug("======= mmReportMyUsage::getHTMLText =======");
-        // wxLogDebug("RapidJson\n%s", JSON_PrettyFormated(json_doc));
+        // // wxLogDebug("======= mmReportMyUsage::getHTMLText =======");
+        // // wxLogDebug("RapidJson\n%s", JSON_PrettyFormated(json_doc));
 
-        if (!json_doc.HasMember("usage") || !json_doc["usage"].IsArray())
-            continue;
-        Value u = json_doc["usage"].GetArray();
+        // if (!json_doc.HasMember("usage") || !json_doc["usage"].IsArray())
+        //     continue;
+        // Value u = json_doc["usage"].GetArray();
 
-        for (Value::ConstValueIterator it = u.Begin(); it != u.End(); ++it)
-        {
-            if (!it->IsObject()) continue;
-            const auto pobj = it->GetObject();
+        // for (Value::ConstValueIterator it = u.Begin(); it != u.End(); ++it)
+        // {
+        //     if (!it->IsObject()) continue;
+        //     const auto pobj = it->GetObject();
 
-            if (!pobj.HasMember("module") || !pobj["module"].IsString())
-                continue;
-            auto module = wxString::FromUTF8(pobj["symbol"].GetString());
+        //     if (!pobj.HasMember("module") || !pobj["module"].IsString())
+        //         continue;
+        //     auto module = wxString::FromUTF8(pobj["module"].GetString());
 
-            if (!pobj.HasMember("module") || !pobj["module"].IsString())
-                continue;
-            module += wxString::FromUTF8(pobj["name"].GetString());
+        //     if (!pobj.HasMember("name") || !pobj["name"].IsString())
+        //         continue;
+        //     module += wxString::FromUTF8(pobj["name"].GetString());
 
-            if (!pobj.HasMember("start") || !pobj["start"].IsString())
-                continue;
-            const auto s = wxString::FromUTF8(pobj["start"].GetString());
+        //     if (!pobj.HasMember("start") || !pobj["start"].IsString())
+        //         continue;
+        //     const auto s = wxString::FromUTF8(pobj["start"].GetString());
 
-            if (!pobj.HasMember("end") || !pobj["end"].IsString())
-                continue;
-            const auto e = wxString::FromUTF8(pobj["end"].GetString());
+        //     if (!pobj.HasMember("end") || !pobj["end"].IsString())
+        //         continue;
+        //     const auto e = wxString::FromUTF8(pobj["end"].GetString());
 
-            wxDateTime start, end;
-            start.ParseISOCombined(s);
-            end.ParseISOCombined(e);
+        //     wxDateTime start, end;
+        //     start.ParseISOCombined(s);
+        //     end.ParseISOCombined(e);
 
-            long delta = end.Subtract(start).GetSeconds().ToLong();
-            if (delta < 1)
-                continue;
+        //     long delta = end.Subtract(start).GetSeconds().ToLong();
+        //     if (delta < 1)
+        //         continue;
 
-            // usage_by_day[usage.USAGEDATE].second += module + ";";
-        }
+        //     usage_by_day[usage.USAGEDATE].second += module + ";";
+        // }
     }
 
     if (usage_by_day.empty()) {
@@ -204,7 +204,7 @@ wxString mmReportMyUsage::getHTMLText()
     }
 
     mm_html_template report(usage_template);
-    report(L"REPORTNAME") = this->getReportTitle();
+    report(L"REPORTNAME") = getReportTitle();
     // report(L"_LINECHART") = _("Line Chart");
     // report(L"_BARCHART") = _("Bar Chart");
     report(L"_FREQUENCY") = _("Frequency");
