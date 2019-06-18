@@ -313,7 +313,7 @@ mmGUIFrame::~mmGUIFrame()
     }
 
     // Report database statistics
-    for (const auto & model : this->m_all_models)
+    for (const auto & model : m_all_models)
     {
         model->show_statistics();
         Model_Usage::instance().AppendToCache(model->GetTableStatsAsJson());
@@ -570,18 +570,18 @@ void mmGUIFrame::saveSettings()
     Model_Setting::instance().Set("AUIPERSPECTIVE", m_mgr.SavePerspective());
 
     // prevent values being saved while window is in an iconised state.
-    if (this->IsIconized()) this->Restore();
+    if (IsIconized()) Restore();
 
     int value_x = 0, value_y = 0;
-    this->GetPosition(&value_x, &value_y);
+    GetPosition(&value_x, &value_y);
     Model_Setting::instance().Set("ORIGINX", value_x);
     Model_Setting::instance().Set("ORIGINY", value_y);
 
     int value_w = 0, value_h = 0;
-    this->GetSize(&value_w, &value_h);
+    GetSize(&value_w, &value_h);
     Model_Setting::instance().Set("SIZEW", value_w);
     Model_Setting::instance().Set("SIZEH", value_h);
-    Model_Setting::instance().Set("ISMAXIMIZED", this->IsMaximized());
+    Model_Setting::instance().Set("ISMAXIMIZED", IsMaximized());
     Model_Setting::instance().ReleaseSavepoint();
 }
 //----------------------------------------------------------------------------
@@ -763,7 +763,7 @@ void mmGUIFrame::updateNavTreeControl()
     m_nav_tree_ctrl->SetItemBold(reports, true);
     m_nav_tree_ctrl->SetItemData(reports, new mmTreeItemData("Reports"));
 
-    this->updateReportNavigation(reports, have_budget);
+    updateReportNavigation(reports, have_budget);
 
     ///////////////////////////////////////////////////////////////////
 
@@ -1407,8 +1407,7 @@ void mmGUIFrame::createHomePage()
     json_writer.Double((wxDateTime::UNow()-time).GetMilliseconds().ToDouble()/1000);
     json_writer.EndObject();
 
-    const auto  j = json_buffer.GetString();
-    Model_Usage::instance().AppendToUsage(j);
+    Model_Usage::instance().AppendToUsage(json_buffer.GetString());
 }
 //----------------------------------------------------------------------------
 
@@ -1908,7 +1907,7 @@ bool mmGUIFrame::createDataStore(const wxString& fileName, const bool openingNew
 
     if (m_db)
     {
-        this->SetTitle(mmex::getCaption(mmex::isPortableMode() ? _("[portable mode]") : ""));
+        SetTitle(mmex::getCaption(mmex::isPortableMode() ? _("[portable mode]") : ""));
         resetNavTreeControl();
         cleanupHomePanel(false);
         menuEnableItems(false);
@@ -2251,7 +2250,7 @@ void mmGUIFrame::OnImportQIF(wxCommandEvent& WXUNUSED(event))
         Model_Account::Data* account = Model_Account::instance().get(account_id);
         setAccountNavTreeSection(account->ACCOUNTNAME);
         wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_GOTOACCOUNT);
-        this->GetEventHandler()->AddPendingEvent(evt);
+        GetEventHandler()->AddPendingEvent(evt);
     }
     else
     {
@@ -2493,7 +2492,7 @@ void mmGUIFrame::OnOptions(wxCommandEvent& WXUNUSED(event))
 {
     if (!m_db.get()) return;
 
-    mmOptionsDialog systemOptions(this, this->m_app);
+    mmOptionsDialog systemOptions(this, m_app);
     if (systemOptions.ShowModal() == wxID_OK)
     {
         //set the View Menu Option items the same as the options saved.
@@ -3053,7 +3052,7 @@ void mmGUIFrame::setGotoAccountID(int account_id, long transID)
 void mmGUIFrame::OnToggleFullScreen(wxCommandEvent& WXUNUSED(event))
 {
 #if (wxMAJOR_VERSION >= 3 && wxMINOR_VERSION >= 0)
-   this->ShowFullScreen(!IsFullScreen());
+   ShowFullScreen(!IsFullScreen());
 #endif
 }
 
