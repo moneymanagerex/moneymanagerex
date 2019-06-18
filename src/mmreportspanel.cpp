@@ -259,16 +259,17 @@ bool mmReportsPanel::saveReportText(wxString& error, bool initial)
     json_writer.String("Report");
     json_writer.Key("name");
     json_writer.String(rb_->getReportTitle().c_str());
-    json_writer.Key("start");
-    json_writer.String(wxDateTime::Now().FormatISOCombined().c_str());
 
     const auto file_name = rb_->getFileName();
     wxLogDebug("Report File Name: %s", file_name);
+
+    const auto time = wxDateTime::UNow();
+
     if (!Model_Report::outputReportFile(rb_->getHTMLText(), file_name))
         error = _("Error");
 
-    json_writer.Key("end");
-    json_writer.String(wxDateTime::Now().FormatISOCombined().c_str());
+    json_writer.Key("seconds");
+    json_writer.Double((wxDateTime::UNow()-time).GetMilliseconds().ToDouble()/1000);
     json_writer.EndObject();
 
     Model_Usage::instance().AppendToUsage(json_buffer.GetString());
