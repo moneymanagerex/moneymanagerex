@@ -43,7 +43,6 @@ Model_Infotable& Model_Infotable::instance(wxSQLite3Database* db)
     if (!ins.KeyExists("MMEXVERSION"))
     {
         ins.Set("MMEXVERSION", mmex::version::string);
-        ins.Set("DATAVERSION", mmex::DATAVERSION);
         ins.Set("CREATEDATE", wxDateTime::Now());
     }
 
@@ -59,57 +58,57 @@ Model_Infotable& Model_Infotable::instance()
 // Setter
 void Model_Infotable::Set(const wxString& key, int value)
 {
-    this->Set(key, wxString::Format("%d", value));
+    Set(key, wxString::Format("%d", value));
 }
 
 void Model_Infotable::Set(const wxString& key, const wxDateTime& date)
 {
-    this->Set(key, date.FormatISODate());
+    Set(key, date.FormatISODate());
 }
 
 void Model_Infotable::Set(const wxString& key, const wxString& value)
 {
-    if (!this->db_) return;
+    if (!db_) return;
 
-    Data* info = this->get_one(INFONAME(key));
+    Data* info = get_one(INFONAME(key));
     if (!info) // not cached
     {
-        Data_Set items = this->find(INFONAME(key));
-        if (!items.empty()) info = this->get(items[0].INFOID);
+        Data_Set items = find(INFONAME(key));
+        if (!items.empty()) info = get(items[0].INFOID);
     }
     if (info)
     {
         info->INFOVALUE= value;
-        info->save(this->db_);
+        info->save(db_);
     }
     else
     {
-        info = this->create();
+        info = create();
         info->INFONAME = key;
         info->INFOVALUE = value;
-        info->save(this->db_);
+        info->save(db_);
     }
 }
 
 void Model_Infotable::Set(const wxString& key, const wxColour& value)
 {
-    this->Set(key, wxString::Format("%d,%d,%d", value.Red(), value.Green(), value.Blue()));
+    Set(key, wxString::Format("%d,%d,%d", value.Red(), value.Green(), value.Blue()));
 }
 
 //Deleter
 void Model_Infotable::Delete(const wxString& key)
 {
-    Data_Set items = this->find(INFONAME(key));
+    Data_Set items = find(INFONAME(key));
     for (const auto entry : items)
     {
-        this->remove(entry.id());
+        remove(entry.id());
     }
 }
 
 // Getter
 bool Model_Infotable::GetBoolInfo(const wxString& key, bool default_value)
 {
-    const wxString value = this->GetStringInfo(key, "");
+    const wxString value = GetStringInfo(key, "");
     if (value == "1" || value.CmpNoCase("TRUE") == 0)
         return true;
     else if (value == "0" || value.CmpNoCase("FALSE") == 0)
@@ -120,7 +119,7 @@ bool Model_Infotable::GetBoolInfo(const wxString& key, bool default_value)
 
 int Model_Infotable::GetIntInfo(const wxString& key, int default_value)
 {
-    const wxString value = this->GetStringInfo(key, "");
+    const wxString value = GetStringInfo(key, "");
     if (!value.IsEmpty() && value.IsNumber())
         return wxAtoi(value);
 
@@ -129,12 +128,12 @@ int Model_Infotable::GetIntInfo(const wxString& key, int default_value)
 
 wxString Model_Infotable::GetStringInfo(const wxString& key, const wxString& default_value)
 {
-    Data* info = this->get_one(INFONAME(key));
+    Data* info = get_one(INFONAME(key));
     if (info)
         return info->INFOVALUE;
     else // not cached
     {
-        Data_Set items = this->find(INFONAME(key));
+        Data_Set items = find(INFONAME(key));
         if (!items.empty())
             return items[0].INFOVALUE;
     }
@@ -144,7 +143,7 @@ wxString Model_Infotable::GetStringInfo(const wxString& key, const wxString& def
 
 const wxColour Model_Infotable::GetColourSetting(const wxString& key, const wxColour& default_value)
 {
-    const wxString value = this->GetStringInfo(key, "");
+    const wxString value = GetStringInfo(key, "");
     if (!value.IsEmpty())
     {
         wxRegEx pattern("([0-9]{1,3}),([0-9]{1,3}),([0-9]{1,3})");
@@ -168,14 +167,7 @@ const wxColour Model_Infotable::GetColourSetting(const wxString& key, const wxCo
 /* Returns true if key setting found */
 bool Model_Infotable::KeyExists(const wxString& key)
 {
-    return !this->find(INFONAME(key)).empty();
-}
-
-bool Model_Infotable::checkDBVersion()
-{
-    if (!this->KeyExists("DATAVERSION")) return false;
-
-    return this->GetIntInfo("DATAVERSION", 0) >= mmex::MIN_DATAVERSION;
+    return !find(INFONAME(key)).empty();
 }
 
 loop_t Model_Infotable::to_loop_t()

@@ -36,9 +36,6 @@ extern const wxString g_CloseLabel;
 
 namespace mmex
 {
-extern const int MIN_DATAVERSION;
-extern const wxString DATAVERSION;
-
 extern const wxString DEFDATEFORMAT;
 extern const wxString DEFDELIMTER;
 

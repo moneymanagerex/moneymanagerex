@@ -46,8 +46,6 @@ const wxString g_CloseLabel =
     wxTRANSLATE("&Close ");
 #endif
 //---------------------------------------------------------------------------
-const int mmex::MIN_DATAVERSION = 2;
-const wxString mmex::DATAVERSION = "3";
 const wxString mmex::DEFDATEFORMAT = "%Y-%m-%d"; //ISO 8601
 const wxString mmex::DEFDELIMTER = ",";
 

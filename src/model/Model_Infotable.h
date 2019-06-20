@@ -64,8 +64,6 @@ public:
 
     /* Returns true if key setting found */
     bool KeyExists(const wxString& key);
-    /* Check database at minimum revision*/
-    bool checkDBVersion();
 
     static loop_t to_loop_t();
 
