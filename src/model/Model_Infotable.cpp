@@ -40,9 +40,9 @@ Model_Infotable& Model_Infotable::instance(wxSQLite3Database* db)
     ins.destroy_cache();
     ins.ensure(db);
     ins.preload();
-    if (!ins.KeyExists("MMEXVERSION"))
+    if (!ins.KeyExists("CREATOR"))
     {
-        ins.Set("MMEXVERSION", mmex::version::string);
+        ins.Set("CREATOR", mmex::version::string);
         ins.Set("CREATEDATE", wxDateTime::Now());
     }
 
