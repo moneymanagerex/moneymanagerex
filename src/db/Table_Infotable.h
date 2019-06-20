@@ -1,4 +1,4 @@
-﻿// -*- C++ -*-
+// -*- C++ -*-
 /** @file
  * @brief     CRUD implementation for INFOTABLE SQLite table
  * @warning   Auto generated with sqlite2cpp.py script. DO NOT EDIT!
@@ -7,7 +7,7 @@
  * @author    Guan Lisheng (guanlisheng@gmail.com)
  * @author    Stefano Giorgio (stef145g)
  * @author    Tomasz Słodkowicz
- * @date      2018-10-07 02:45:31.001407
+ * @date      2019-05-25 22:08:42 +0200
  */
 #pragma once
 
@@ -102,7 +102,6 @@ struct DB_Table_INFOTABLE : public DB_Table
     void ensure_data(wxSQLite3Database* db)
     {
         db->Begin();
-        db->ExecuteUpdate("INSERT INTO INFOTABLE VALUES ('1', 'DATAVERSION', '3')");
         db->Commit();
     }
 

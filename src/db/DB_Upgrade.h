@@ -2,7 +2,7 @@
  * @brief     Compilation of SQL scripts to upgrade MMEX db version
  * @warning   Auto generated with sqliteupgrade2cpp.py script. DO NOT EDIT!
  * @copyright © 2016-2018 Gabriele-V
- * @date      2018-05-16 01:30:26.593396
+ * @date      2019-05-25 22:08:42 +0200
  */
 
 #ifndef DB_UPGRADE_H_
@@ -11,7 +11,7 @@
 #include <vector>
 #include <wx/string.h>
 
-const int dbLatestVersion = 13;
+const int dbLatestVersion = 14;
 
 const std::vector<wxString> dbUpgradeQuery =
 {
@@ -233,8 +233,8 @@ const std::vector<wxString> dbUpgradeQuery =
 		INSERT OR IGNORE INTO CURRENCYFORMATS_V1 VALUES (NULL, 'Forint', 'Ft', '', '.', ' ', '100', '1', 'HUF', 'Traditional');
 		INSERT OR IGNORE INTO CURRENCYFORMATS_V1 VALUES (NULL, 'Iceland Krona', 'kr', '', '.', ' ', '1', '1', 'ISK', 'Traditional');
 		INSERT OR IGNORE INTO CURRENCYFORMATS_V1 VALUES (NULL, 'Indian Rupee', '₹', '', '.', ' ', '100', '1', 'INR', 'Traditional');
-		INSERT OR IGNORE INTO CU)"
-	R"(RRENCYFORMATS_V1 VALUES (NULL, 'Rupiah', 'Rp', '', '.', ' ', '100', '1', 'IDR', 'Traditional');
+		INSERT OR IGNORE INTO CURRENCYFORMATS_V1 VA)"
+	R"(LUES (NULL, 'Rupiah', 'Rp', '', '.', ' ', '100', '1', 'IDR', 'Traditional');
 		INSERT OR IGNORE INTO CURRENCYFORMATS_V1 VALUES (NULL, 'Special Drawing Rights', 'SDR', '', '.', ' ', '100', '1', 'XDR', 'Traditional');
 		INSERT OR IGNORE INTO CURRENCYFORMATS_V1 VALUES (NULL, 'Iranian Rial', '', '', '.', ' ', '100', '1', 'IRR', 'Traditional');
 		INSERT OR IGNORE INTO CURRENCYFORMATS_V1 VALUES (NULL, 'Iraqi Dinar', '', '', '.', ' ', '1000', '1', 'IQD', 'Traditional');
@@ -313,9 +313,9 @@ const std::vector<wxString> dbUpgradeQuery =
 		INSERT OR IGNORE INTO CURRENCYFORMATS_V1 VALUES (NULL, 'Turkmenistan New Manat', 'm', '', '.', ' ', '100', '1', 'TMT', 'Traditional');
 		INSERT OR IGNORE INTO CURRENCYFORMATS_V1 VALUES (NULL, 'Uganda Shilling', 'USh', '', '.', ' ', '1', '1', 'UGX', 'Traditional');
 		INSERT OR IGNORE INTO CURRENCYFORMATS_V1 VALUES (NULL, 'UAE Dirham', '', '', '.', ' ', '100', '1', 'AED', 'Traditional');
-		INSERT OR IGNORE INTO CURRENCYFORMATS_V1 VALUES (NULL, 'Peso Uruguayo', '$U', '', '.', ' ', '100', '1', 'UYU', 'Traditional'))"
-	R"(;
-		INSERT OR IGNORE INTO CURRENCYFORMATS_V1 VALUES (NULL, 'Uzbekistan Sum', '', '', '.', ' ', '100', '1', 'UZS', 'Traditional');
+		INSERT OR IGNORE INTO CURRENCYFORMATS_V1 VALUES (NULL, 'Peso Uruguayo', '$U', '', '.', ' ', '100', '1', 'UYU', 'Traditional');
+		INSERT OR IGNORE INTO CURRENCYF)"
+	R"(ORMATS_V1 VALUES (NULL, 'Uzbekistan Sum', '', '', '.', ' ', '100', '1', 'UZS', 'Traditional');
 		INSERT OR IGNORE INTO CURRENCYFORMATS_V1 VALUES (NULL, 'Vatu', 'VT', '', '.', ' ', '1', '1', 'VUV', 'Traditional');
 		INSERT OR IGNORE INTO CURRENCYFORMATS_V1 VALUES (NULL, 'Dong', '₫', '', '.', ' ', '1', '1', 'VND', 'Traditional');
 		INSERT OR IGNORE INTO CURRENCYFORMATS_V1 VALUES (NULL, 'Tala', 'WS$', '', '.', ' ', '100', '1', 'WST', 'Traditional');
@@ -388,8 +388,8 @@ const std::vector<wxString> dbUpgradeQuery =
 		INSERT OR IGNORE INTO CURRENCYFORMATS_V1 VALUES (NULL, 'Luxembourg Convertible Franc (before 1990-03)', '', '', '.', ',', '100', '1', 'LUC', 'Traditional');
 		INSERT OR IGNORE INTO CURRENCYFORMATS_V1 VALUES (NULL, 'Luxembourg Franc (before 2002-03)', '', '', '.', ',', '100', '1', 'LUF', 'Traditional');
 		INSERT OR IGNORE INTO CURRENCYFORMATS_V1 VALUES (NULL, 'Luxembourg Financial Franc (before 1990-03)', '', '', '.', ',', '100', '1', 'LUL', 'Traditional');
-		INSERT OR IGNORE I)"
-	R"(NTO CURRENCYFORMATS_V1 VALUES (NULL, 'Latvian Ruble (before 1994-12)', '', '', '.', ',', '100', '1', 'LVR', 'Traditional');
+		INSERT OR IGNORE INTO CURRENCYFORMATS_V1 VALUES (NULL, 'L)"
+	R"(atvian Ruble (before 1994-12)', '', '', '.', ',', '100', '1', 'LVR', 'Traditional');
 		INSERT OR IGNORE INTO CURRENCYFORMATS_V1 VALUES (NULL, 'Malagasy Franc (before 2004-12)', '', '', '.', ',', '100', '1', 'MGF', 'Traditional');
 		INSERT OR IGNORE INTO CURRENCYFORMATS_V1 VALUES (NULL, 'Mali Franc (before 1984-11)', '', '', '.', ',', '100', '1', 'MLF', 'Traditional');
 		INSERT OR IGNORE INTO CURRENCYFORMATS_V1 VALUES (NULL, 'Ouguiya', '', '', '.', ',', '100', '1', 'MRU', 'Traditional');
@@ -1292,10 +1292,10 @@ const std::vector<wxString> dbUpgradeQuery =
 		
 		-- rename table names used in GRM definitions
 		
-		UPDATE REPORT SET SQLCONTENT = REPLACE(SQLCONTENT, '_V1', '' ) WHERE SQLCONTENT LIKE '%_V1%';
-		UPDATE REPORT SET LUACONTENT = REPLACE(LUACONTENT, )"
-	R"('_V1', '' ) WHERE LUACONTENT LIKE '%_V1%';
-		UPDATE REPORT SET TEMPLATECONTENT = REPLACE(TEMPLATECONTENT, '_V1', '' ) WHERE TEMPLATECONTENT LIKE '%_V1%';
+		UPDATE REPORT SET SQLCONTENT = REPLACE(REPLACE(SQLCONTENT, '_V1', ''), '_v1', '') WHERE SQLCONTENT LIKE '%_V1%' COLLATE NOCASE;
+		UPDATE REPORT SET)"
+	R"( LUACONTENT = REPLACE(REPLACE(LUACONTENT, '_V1', ''), '_v1', '') WHERE LUACONTENT LIKE '%_V1%' COLLATE NOCASE;
+		UPDATE REPORT SET TEMPLATECONTENT = REPLACE(REPLACE(TEMPLATECONTENT, '_V1', ''), '_v1', '') WHERE TEMPLATECONTENT LIKE '%_V1%' COLLATE NOCASE;
 		
 		-- finish
 		
@@ -1336,6 +1336,30 @@ const std::vector<wxString> dbUpgradeQuery =
 		CREATE INDEX IDX_CURRENCYFORMATS_SYMBOL ON CURRENCYFORMATS(CURRENCY_SYMBOL);
 		
 		PRAGMA user_version = 13;)",
+
+	// Upgrade to version 14
+	R"(-- rename table names used in GRM definitions not renamed in buggy v11 to v12 script
+		
+		UPDATE REPORT SET SQLCONTENT = REPLACE(SQLCONTENT, '_v1', '' ) WHERE SQLCONTENT LIKE '%_v1%';
+		UPDATE REPORT SET LUACONTENT = REPLACE(LUACONTENT, '_v1', '' ) WHERE LUACONTENT LIKE '%_v1%';
+		UPDATE REPORT SET TEMPLATECONTENT = REPLACE(TEMPLATECONTENT, '_v1', '' ) WHERE TEMPLATECONTENT LIKE '%_v1%';
+		
+		-- transfers must always store sepaate statuses for each account
+		
+		UPDATE CHECKINGACCOUNT SET STATUS = STATUS || STATUS WHERE TRANSCODE = 'Transfer' AND STATUS LIKE '_';
+		UPDATE BILLSDEPOSITS   SET STATUS = STATUS || STATUS WHERE TRANSCODE = 'Transfer' AND STATUS LIKE '_';
+		
+		-- remove DATAVERSION replaced with user_version pragma
+		
+		DELETE FROM INFOTABLE WHERE INFONAME = 'DATAVERSION';
+		
+		-- rename to something meaningful
+		
+		UPDATE INFOTABLE SET INFONAME = 'CREATOR' WHERE INFONAME = 'MMEXVERSION';
+		
+		-- finish
+		
+		PRAGMA user_version = 14;)",
 
 };
 

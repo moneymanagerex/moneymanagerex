@@ -1,4 +1,4 @@
-﻿// -*- C++ -*-
+// -*- C++ -*-
 /** @file
  * @brief     CRUD implementation for CURRENCYFORMATS SQLite table
  * @warning   Auto generated with sqlite2cpp.py script. DO NOT EDIT!
@@ -7,7 +7,7 @@
  * @author    Guan Lisheng (guanlisheng@gmail.com)
  * @author    Stefano Giorgio (stef145g)
  * @author    Tomasz Słodkowicz
- * @date      2018-10-07 02:45:31.001407
+ * @date      2019-05-25 22:08:42 +0200
  */
 #pragma once
 
@@ -215,7 +215,7 @@ struct DB_Table_CURRENCYFORMATS : public DB_Table
         db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('111', '%s', 'K', '', '.', ' ', '100', 'PGK', 'Fiat', '0')", wxTRANSLATE("Kina")));
         db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('112', '%s', '', '', '.', ' ', '1', 'PYG', 'Fiat', '0')", wxTRANSLATE("Guarani")));
         db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('113', '%s', 'S/.', '', '.', ' ', '100', 'PEN', 'Fiat', '0')", wxTRANSLATE("Sol")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('114', '%s', '%s', '', '.', ' ', '100', 'PHP', 'Fiat', '0')", wxTRANSLATE("Philippine Piso"), L"₱"));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('114', '%s', '%s', '', '.', ' ', '100', 'PHP', 'Fiat', '0')", wxTRANSLATE("Philippine Peso"), L"₱"));
         db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('115', '%s', '', '%s', ',', '.', '100', 'PLN', 'Fiat', '0')", wxTRANSLATE("Zloty"), L"zł"));
         db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('116', '%s', 'QR', '', '.', ' ', '100', 'QAR', 'Fiat', '0')", wxTRANSLATE("Qatari Rial")));
         db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('117', '%s', 'L', '', '.', ' ', '100', 'RON', 'Fiat', '0')", wxTRANSLATE("Romanian Leu")));
@@ -253,7 +253,7 @@ struct DB_Table_CURRENCYFORMATS : public DB_Table
         db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('149', '%s', '%s', '', '.', ' ', '1', 'VND', 'Fiat', '0')", wxTRANSLATE("Dong"), L"₫"));
         db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('150', '%s', 'WS$', '', '.', ' ', '100', 'WST', 'Fiat', '0')", wxTRANSLATE("Tala")));
         db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('151', '%s', '', '', '.', ' ', '100', 'YER', 'Fiat', '0')", wxTRANSLATE("Yemeni Rial")));
-        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('152', '%s', 'Bs.', '', '.', ',', '100', 'VEF', 'Fiat', '0')", wxTRANSLATE("Bolívar")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('152', '%s', 'Bs.', '', '.', ',', '100', 'VEF', 'Fiat', '1')", wxTRANSLATE("Bolívar (before 2018-08)")));
         db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('153', '%s', '%s', '', '.', ',', '100000000', 'BTC', 'Crypto', '0')", wxTRANSLATE("Bitcoin"), L"Ƀ"));
         db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('154', '%s', '', '', '.', ',', '100', 'ADP', 'Fiat', '1')", wxTRANSLATE("Andorran Peseta (before 2003-07)")));
         db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('155', '%s', '', '', '.', ',', '100', 'AFA', 'Fiat', '1')", wxTRANSLATE("Afghani (before 2003-01)")));
@@ -381,6 +381,8 @@ struct DB_Table_CURRENCYFORMATS : public DB_Table
         db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('277', '%s', '', '', '.', ',', '100', 'ZWL', 'Fiat', '0')", wxTRANSLATE("Zimbabwe Dollar")));
         db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('278', '%s', '', '', '.', ',', '100', 'ZWN', 'Fiat', '1')", wxTRANSLATE("Zimbabwe Dollar (new) (before 2006-09)")));
         db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('279', '%s', '', '', '.', ',', '100', 'ZWR', 'Fiat', '1')", wxTRANSLATE("Zimbabwe Dollar (before 2009-06)")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('280', '%s', '', '', '.', ',', '100', 'VES', 'Fiat', '0')", wxTRANSLATE("Bolívar Soberano")));
+        db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('281', '%s', '', '', '.', ',', '10000', 'UYW', 'Fiat', '0')", wxTRANSLATE("Unidad Previsional")));
         db->Commit();
     }
 
