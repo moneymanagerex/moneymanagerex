@@ -28,6 +28,7 @@
 #include "reports/htmlbuilder.h"
 #include "Model_Infotable.h"
 #include "Model_Setting.h"
+#include "Model_CurrencyHistory.h"
 #include "wx_compat.h"
 #include <wx/sstream.h>
 #include <wx/xml/xml.h>
@@ -514,6 +515,105 @@ const wxString getProgramDescription(bool simple)
 }
 
 /* Currencies & stock prices */
+
+bool GetOnlineCurrencyRates(wxString& msg, int curr_id, bool used_only)
+{
+    wxString base_currency_symbol;
+
+    if (!Model_Currency::GetBaseCurrencySymbol(base_currency_symbol))
+    {
+        msg = _("Could not find base currency symbol!");
+        return false;
+    }
+
+    std::vector<wxString> fiat;
+    std::vector<wxString> crypto;
+
+    const auto& crypto_type = Model_Currency::currtype_desc(Model_Currency::CRYPTO);
+    auto currencies = Model_Currency::instance().find(Model_Currency::CURRENCY_SYMBOL(base_currency_symbol, NOT_EQUAL));
+    for (const auto& currency : currencies)
+    {
+        if (curr_id > 0 && currency.CURRENCYID != curr_id)
+            continue;
+        if (curr_id < 0 && !Model_Account::is_used(currency))
+            continue;
+        const auto symbol = currency.CURRENCY_SYMBOL;
+        if (symbol.IsEmpty())
+            continue;
+
+        if (currency.CURRENCY_TYPE == crypto_type)
+            crypto.push_back(symbol);
+        else
+            fiat.push_back(symbol);
+    }
+
+    wxString output;
+    std::map<wxString, double> currency_data;
+
+
+    if (!fiat.empty())
+    {
+        if (!get_yahoo_prices(fiat, currency_data, base_currency_symbol, output, yahoo_price_type::FIAT))
+        {
+            msg = output;
+        }
+    }
+
+    if (!crypto.empty())
+    {
+        double usd_rate = 1;
+        if (base_currency_symbol != "USD")
+        {
+            usd_rate = 0;
+            std::map<wxString, double> usd_data;
+            std::vector<wxString> usd_sign = { "USD" };
+            if (!get_yahoo_prices(usd_sign, usd_data, base_currency_symbol, output, yahoo_price_type::FIAT))
+            {
+                msg = output;
+            }
+            else
+            {
+                usd_rate = usd_data["USD"];
+            }
+        }
+
+        if (!get_crypto_currency_prices(crypto, usd_rate, currency_data, output))
+        {
+            msg = output;
+        }
+    }
+
+    if (fiat.empty() && crypto.empty())
+    {
+        msg = _("Nothing to update");
+        return false;
+    }
+
+    msg = _("Currency rates have been updated");
+    msg << "\n\n";
+
+    const wxDateTime today = wxDateTime::Today();
+    Model_CurrencyHistory::instance().Savepoint();
+    for (auto& currency : currencies)
+    {
+        if (!used_only && !Model_Account::is_used(currency)) continue;
+
+        const wxString currency_symbol = currency.CURRENCY_SYMBOL;
+        if (!currency_symbol.IsEmpty())
+        {
+            if (currency_data.find(currency_symbol) != currency_data.end())
+            {
+                const double new_rate = currency_data[currency_symbol];
+                msg << wxString::Format("%s\t -> %0.6f\n", currency_symbol, new_rate);
+                Model_CurrencyHistory::instance().addUpdate(currency.CURRENCYID, today, new_rate, Model_CurrencyHistory::ONLINE);
+            }
+        }
+    }
+
+    Model_CurrencyHistory::instance().ReleaseSavepoint();
+
+    return true;
+}
 
 bool get_yahoo_prices(std::vector<wxString>& symbols
     , std::map<wxString, double>& out

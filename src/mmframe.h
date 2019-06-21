@@ -206,6 +206,7 @@ private:
     void OnOptions(wxCommandEvent& event);
     void OnBudgetSetupDialog(wxCommandEvent& event);
     void OnCurrency(wxCommandEvent& event);
+    void OnRates(wxCommandEvent& event);
     void OnTransactionReport(wxCommandEvent& event);
     void OnGeneralReportManager(wxCommandEvent& event);
     void OnCustomFieldsManager(wxCommandEvent& event);
@@ -297,6 +298,7 @@ private:
         MENU_SHOW_APPSTART,
         MENU_EXPORT_HTML,
         MENU_CURRENCY,
+        MENU_RATES,
         MENU_LANG,
         MENU_LANG_MAX = MENU_LANG + wxLANGUAGE_USER_DEFINED,
 

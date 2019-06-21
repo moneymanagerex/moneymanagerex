@@ -851,6 +851,7 @@ bool mmStocksPanel::onlineQuoteRefresh(wxString& msg)
         return false;
     }
 
+    Model_StockHistory::instance().Savepoint();
     for (auto &s : stock_list)
     {
         std::map<wxString, double>::const_iterator it = stocks_data.find(s.SYMBOL.Upper());
@@ -870,6 +871,7 @@ bool mmStocksPanel::onlineQuoteRefresh(wxString& msg)
                 , wxDate::Now(), dPrice, Model_StockHistory::ONLINE);
         }
     }
+    Model_StockHistory::instance().ReleaseSavepoint();
 
     // Now refresh the display
     int selected_id = -1;
