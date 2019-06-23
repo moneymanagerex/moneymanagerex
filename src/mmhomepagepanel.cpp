@@ -1001,9 +1001,14 @@ void mmHomePagePanel::OnLinkClicked(wxWebViewEvent& event)
             }
         }
         else if (name == "CRYPTO_WALLETS_INFO") {
-            if (json_doc.HasMember("CRYPTO_WALLETS_INFO") && json_doc["CRYPTO_WALLETS_INFO"].IsBool()) {
+            if (json_doc.HasMember("CRYPTO_WALLETS_INFO") && json_doc["CRYPTO_WALLETS_INFO"].IsBool())
+            {
                 bool entry = !json_doc["CRYPTO_WALLETS_INFO"].GetBool();
                 json_doc["CRYPTO_WALLETS_INFO"] = entry;
+            }
+            else
+            {
+                json_doc.AddMember("TERM_ACCOUNTS_INFO", true, json_allocator);
             }
         }
 

@@ -169,7 +169,6 @@ EVT_MENU(MENU_TREEPOPUP_ACCOUNT_LIST, mmGUIFrame::OnAccountList)
 EVT_MENU(MENU_TREEPOPUP_ACCOUNT_EXPORT2CSV, mmGUIFrame::OnExportToCSV)
 EVT_MENU(MENU_TREEPOPUP_ACCOUNT_EXPORT2XML, mmGUIFrame::OnExportToXML)
 EVT_MENU(MENU_TREEPOPUP_ACCOUNT_EXPORT2QIF, mmGUIFrame::OnExportToQIF)
-//EVT_MENU(MENU_TREEPOPUP_ACCOUNT_IMPORTQIF, mmGUIFrame::OnImportQIF)
 EVT_MENU(MENU_TREEPOPUP_ACCOUNT_IMPORTUNIVCSV, mmGUIFrame::OnImportUniversalCSV)
 EVT_MENU(MENU_TREEPOPUP_ACCOUNT_IMPORTXML, mmGUIFrame::OnImportXML)
 EVT_MENU_RANGE(MENU_TREEPOPUP_ACCOUNT_VIEWALL, MENU_TREEPOPUP_ACCOUNT_VIEWCLOSED, mmGUIFrame::OnViewAccountsTemporaryChange)
@@ -207,6 +206,7 @@ mmGUIFrame::mmGUIFrame(mmGUIApp* app, const wxString& title
     , helpFileIndex_(-1)
     , homePage_(nullptr)
     , checkingAccountPage_(nullptr)
+    , stockAccountPage_(nullptr)
     , billsDepositsPanel_(nullptr)
     , budgetingPage_(nullptr)
     , m_hide_share_accounts(true)
@@ -1866,7 +1866,7 @@ void mmGUIFrame::createToolBar()
     toolBar_->AddSeparator();
     toolBar_->AddTool(wxID_PRINT, _("&Print..."), mmBitmap(png::PRINT), _("Print current view"));
 
-    toolBar_->AddTool(MENU_RATES, _("Download rates"), mmBitmap(png::CURRATES), _("Download Currency Values history"));
+    toolBar_->AddTool(MENU_RATES, _("Refresh"), mmBitmap(png::CURRATES), _("Refresh Stock Prices from Yahoo"));
 
     // after adding the buttons to the toolbar, must call Realize() to reflect changes
     toolBar_->Realize();
@@ -2381,16 +2381,29 @@ void mmGUIFrame::refreshPanelData()
     int id = panelCurrent_->GetId();
     wxLogDebug("Panel ID: %d", id);
     if (id == mmID_HOMEPAGE) //6000
+    {
         createHomePage();
+    }
     else if (id == mmID_CHECKING)
+    {
         checkingAccountPage_->RefreshList();
+    }
     else if (id == mmID_ASSETS)
-    { /*Nothing to do;*/
+    {
+        /*Nothing to do;*/
+    }
+    else if (id == mmID_STOCKS)
+    {
+        stockAccountPage_->RefreshList();
     }
     else if (id == mmID_BILLS)
+    {
         billsDepositsPanel_->RefreshList();
+    }
     else if (id == mmID_BUDGET)
+    {
         budgetingPage_->RefreshList();
+    }
     else if (id == mmID_REPORTS)
     {
         if (activeReport_) //TODO: budget reports and transaction report
@@ -2400,8 +2413,9 @@ void mmGUIFrame::refreshPanelData()
         }
     }
     else if (id == wxID_HELP)
+    {
         createHelpPage();
-
+    }
 }
 
 void mmGUIFrame::OnOrgCategories(wxCommandEvent& WXUNUSED(event))
@@ -2734,12 +2748,17 @@ void mmGUIFrame::createStocksAccountPage(int accountID)
     json_writer.Key("start");
     json_writer.String(wxDateTime::Now().FormatISOCombined().c_str());
 
-    //TODO: Refresh Panel
+    if (panelCurrent_->GetId() == mmID_STOCKS)
     {
-        //updateNavTreeControl();
+        stockAccountPage_->setAccountID(accountID);
+        stockAccountPage_->RefreshList();
+    }
+    else
+    {
         windowsFreezeThaw(homePanel_);
         wxSizer *sizer = cleanupHomePanel();
-        panelCurrent_ = new mmStocksPanel(accountID, this, homePanel_, mmID_STOCKS);
+        stockAccountPage_ = new mmStocksPanel(accountID, this, homePanel_, mmID_STOCKS);
+        panelCurrent_ = stockAccountPage_;
         sizer->Add(panelCurrent_, 1, wxGROW | wxALL, 1);
         homePanel_->Layout();
         windowsFreezeThaw(homePanel_);

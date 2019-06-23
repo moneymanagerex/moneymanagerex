@@ -38,6 +38,7 @@ class mmTreeItemData;
 class mmCheckingPanel;
 class mmBudgetingPanel;
 class mmBillsDepositsPanel;
+class mmStocksPanel;
 class mmFileHistory;
 class CommitCallbackHook;
 class UpdateCallbackHook;
@@ -130,6 +131,7 @@ private:
     mmHomePagePanel* homePage_;
     void createHomePage();
     mmCheckingPanel* checkingAccountPage_;
+    mmStocksPanel* stockAccountPage_;
     void createCheckingAccountPage(int accountID);
     void createStocksAccountPage(int accountID);
 
