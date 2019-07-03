@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-06-02 15:04+0300\n"
-"PO-Revision-Date: 2019-06-02 14:06\n"
+"PO-Revision-Date: 2019-07-03 14:55\n"
 "Last-Translator: Nikolay (vomikan)\n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -5702,15 +5702,15 @@ msgstr "Total mensuel"
 
 #: reports/bugreport.h:55
 msgid "Bug Report"
-msgstr ""
+msgstr "Rapport de bug"
 
 #: reports/bugreport.h:72
 msgid "Replace this text (marked with >) with detailed description of your problem."
-msgstr ""
+msgstr "Remplacez ce texte (marqué par >) avec une description détaillée de votre problème."
 
 #: reports/bugreport.h:73
 msgid "Please do not remove information attached below this text."
-msgstr ""
+msgstr "Veuillez ne pas effacer les informations jointes dessous ce texte."
 
 #: reports/bugreport.h:78
 msgid "Use Help->Check for Updates in MMEX to get latest version, where your problem might be already fixed."
@@ -5746,7 +5746,7 @@ msgstr ""
 
 #: reports/bugreport.h:97
 msgid "Please, follow these instructions before submitting a new bug report:"
-msgstr ""
+msgstr "Veuillez suivre ces instructions avant de soumettre un nouveau rapport de bogue :"
 
 #: reports/cashflow.cpp:220
 #, c-format
