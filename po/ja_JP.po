@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-06-02 15:04+0300\n"
-"PO-Revision-Date: 2019-06-02 14:06\n"
+"PO-Revision-Date: 2019-07-06 10:14\n"
 "Last-Translator: Nikolay (vomikan)\n"
 "Language-Team: Japanese\n"
 "MIME-Version: 1.0\n"
@@ -36,7 +36,7 @@ msgstr "このアプリについて"
 
 #: aboutdialog.cpp:149
 msgid "Authors"
-msgstr ""
+msgstr "作者"
 
 #: aboutdialog.cpp:154
 msgid "Sponsors"
@@ -48,7 +48,7 @@ msgstr "ライセンス"
 
 #: aboutdialog.cpp:164
 msgid "Privacy"
-msgstr ""
+msgstr "プライバシー"
 
 #: aboutdialog.cpp:195 accountdialog.cpp:373 appstartdialog.cpp:136
 #: assetdialog.cpp:297 attachmentdialog.cpp:117 billsdepositsdialog.cpp:458
@@ -61,7 +61,7 @@ msgstr ""
 #: splitdetailsdialog.cpp:160 splittransactionsdialog.cpp:172
 #: transactionsupdatedialog.cpp:213 transdialog.cpp:583
 msgid "&OK "
-msgstr ""
+msgstr "&OK "
 
 #: accountdialog.cpp:85 mmframe.cpp:1580 mmframe.cpp:1834
 #: wizard_newaccount.cpp:80 wizard_newaccount.cpp:87 wizard_newaccount.cpp:159
@@ -119,7 +119,7 @@ msgstr "その他"
 
 #: accountdialog.cpp:268
 msgid "Card Number:"
-msgstr ""
+msgstr "カード番号:"
 
 #: accountdialog.cpp:268
 msgid "Account Number:"
@@ -171,11 +171,11 @@ msgstr ""
 
 #: accountdialog.cpp:337
 msgid "Interest Rate:"
-msgstr ""
+msgstr "金利:"
 
 #: accountdialog.cpp:341
 msgid "Payment Due Date:"
-msgstr ""
+msgstr "支払期限日:"
 
 #: accountdialog.cpp:346
 msgid "Minimum Payment:"
@@ -638,7 +638,7 @@ msgstr "添付ファイルをインポート"
 
 #: attachmentdialog.cpp:165 import_export/univcsvdialog.cpp:1417
 msgid "All Files"
-msgstr ""
+msgstr "すべてのファイル"
 
 #: attachmentdialog.cpp:173
 msgid "Enter a description for the new attachment:"
