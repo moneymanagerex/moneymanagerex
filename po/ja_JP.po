@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-06-02 15:04+0300\n"
-"PO-Revision-Date: 2019-07-06 10:14\n"
+"PO-Revision-Date: 2019-07-06 10:44\n"
 "Last-Translator: Nikolay (vomikan)\n"
 "Language-Team: Japanese\n"
 "MIME-Version: 1.0\n"
@@ -23,7 +23,7 @@ msgstr ""
 
 #: aboutdialog.cpp:41
 msgid "License agreement"
-msgstr "ライセンス契約"
+msgstr "使用許諾契約"
 
 #: aboutdialog.cpp:41
 #, c-format
@@ -1162,7 +1162,7 @@ msgstr ""
 
 #: billsdepositspanel.cpp:113 mmhomepagepanel.cpp:393
 msgid "Payment"
-msgstr ""
+msgstr "支払い"
 
 #: billsdepositspanel.cpp:171
 msgid "MMEX allows regular payments to be set up as transactions. These transactions can also be regular deposits, or transfers that will occur at some future time. These transactions act as a reminder that an event is about to occur, and appears on the Home Page 14 days before the transaction is due. "
@@ -1639,7 +1639,7 @@ msgstr "キャンセル(&C) "
 
 #: constants.cpp:44
 msgid "Close"
-msgstr ""
+msgstr "閉じる"
 
 #: constants.cpp:46
 msgid "&Close "
@@ -1774,11 +1774,11 @@ msgstr ""
 
 #: customfieldeditdialog.cpp:57
 msgid "New/Edit Custom Field"
-msgstr ""
+msgstr "新規カスタムフィールド編集"
 
 #: customfieldeditdialog.cpp:120
 msgid "Custom Field Details"
-msgstr ""
+msgstr "ユーザー設定フィールド詳細"
 
 #: customfieldeditdialog.cpp:132
 msgid "Enter the name of the custom field"
@@ -1794,7 +1794,7 @@ msgstr ""
 
 #: customfieldeditdialog.cpp:142
 msgid "ToolTip"
-msgstr ""
+msgstr "ツールチップ"
 
 #: customfieldeditdialog.cpp:144
 msgid "Enter the tooltip that will be shown"
@@ -1818,7 +1818,7 @@ msgstr ""
 
 #: customfieldeditdialog.cpp:158 util.cpp:877
 msgid "Default"
-msgstr ""
+msgstr "初期値"
 
 #: customfieldeditdialog.cpp:160
 msgid "Enter the default for this field\n"
@@ -2222,11 +2222,11 @@ msgstr ""
 
 #: dbupgrade.cpp:333
 msgid "Save debug file"
-msgstr ""
+msgstr "デバッグファイルを保存"
 
 #: dbupgrade.cpp:333
 msgid "Text files (*.txt)"
-msgstr ""
+msgstr "テキスト・ファイル(*.txt)"
 
 #: dbupgrade.cpp:362
 msgid "DB maintenance completed, please close and re-open MMEX!"
@@ -2334,7 +2334,7 @@ msgstr "金額の範囲"
 
 #: filtertransdialog.cpp:351
 msgid "Settings"
-msgstr ""
+msgstr "設定"
 
 #: filtertransdialog.cpp:372 filtertransdialog.cpp:687
 #: filtertransdialog.cpp:939 filtertransdialog.cpp:1224
@@ -2352,7 +2352,7 @@ msgstr ""
 
 #: filtertransdialog.cpp:400
 msgid "&Activate "
-msgstr ""
+msgstr "アクティベート(&A) "
 
 #: filtertransdialog.cpp:401
 msgid "Activate the filter with these settings"
@@ -2463,7 +2463,7 @@ msgstr ""
 
 #: general_report_manager.cpp:408
 msgid "Lua"
-msgstr ""
+msgstr "Lua"
 
 #: general_report_manager.cpp:409
 msgid "Template"
@@ -2933,7 +2933,7 @@ msgstr ""
 
 #: import_export/univcsvdialog.cpp:171
 msgid "&Browse"
-msgstr ""
+msgstr "参照(&B)"
 
 #: import_export/univcsvdialog.cpp:174
 msgid "Choose CSV data file to Import"
