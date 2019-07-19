@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-06-02 15:04+0300\n"
-"PO-Revision-Date: 2019-06-13 09:46\n"
+"PO-Revision-Date: 2019-07-19 16:04\n"
 "Last-Translator: Nikolay (vomikan)\n"
 "Language-Team: Hebrew\n"
 "MIME-Version: 1.0\n"
@@ -1350,7 +1350,7 @@ msgstr "הצגת כל קטגוריות התקציב"
 
 #: budgetingpanel.cpp:59
 msgid "View Non-Zero Budget Categories"
-msgstr "הסתר קטגוריות תקציב בסכום אפס"
+msgstr "הסתרת קטגוריות תקציב בסכום אפס"
 
 #: budgetingpanel.cpp:60
 msgid "View Planned Budget Categories"
@@ -1637,7 +1637,7 @@ msgstr "התוצאה העברת קטגוריה"
 
 #: categdialog.cpp:667
 msgid "Hide Selected Category"
-msgstr "הסתר את הקטגוריה הנבחרת"
+msgstr "הסתרת הקטגוריה שנבחרו"
 
 #: categdialog.cpp:668
 msgid "Unhide Selected Category"
@@ -3245,11 +3245,11 @@ msgstr "עדכון מקוון"
 
 #: maincurrencydialog.cpp:169
 msgid "Hide Unused"
-msgstr "הסתר לא-בשימוש"
+msgstr "הסתרת לא בשימוש"
 
 #: maincurrencydialog.cpp:171
 msgid "Hide currencies unused in this database"
-msgstr "הסתר מטבעות שאינן בשימוש במסד נתונים זה"
+msgstr "הסתרת מטבעות שאינן בשימוש במסד נתונים זה"
 
 #: maincurrencydialog.cpp:178
 msgid "Hide Historic"
