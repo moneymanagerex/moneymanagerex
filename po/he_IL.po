@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-06-02 15:04+0300\n"
-"PO-Revision-Date: 2019-07-19 16:04\n"
+"PO-Revision-Date: 2019-07-19 16:35\n"
 "Last-Translator: Nikolay (vomikan)\n"
 "Language-Team: Hebrew\n"
 "MIME-Version: 1.0\n"
@@ -3253,11 +3253,11 @@ msgstr "הסתרת מטבעות שאינן בשימוש במסד נתונים ז
 
 #: maincurrencydialog.cpp:178
 msgid "Hide Historic"
-msgstr "הסתר היסטורי"
+msgstr "הסתרת היסטוריה"
 
 #: maincurrencydialog.cpp:180
 msgid "Hide historical currencies"
-msgstr "הסתר מטבעות היסטוריים"
+msgstr "הסתרת מטבעות היסטוריים"
 
 #: maincurrencydialog.cpp:229
 msgid "Select the currently selected currency as the selected currency for the account"
@@ -3293,7 +3293,7 @@ msgstr "הוספת  ערך מטבע להיסטוריה"
 
 #: maincurrencydialog.cpp:302
 msgid "Delete selected Currency Values"
-msgstr "מחיקת ערכי מטבע נבחרים"
+msgstr "מחיקת ערכי מטבע שנבחרו"
 
 #: maincurrencydialog.cpp:306
 msgid "Delete Currency Values history for unused currencies"
@@ -4291,7 +4291,7 @@ msgstr "פייסבוק"
 
 #: mmframe.cpp:1719
 msgid "Visit us on Facebook"
-msgstr "Facebookבקר אותנו ב"
+msgstr "בקרו אותנו בפייסבוק"
 
 #: mmframe.cpp:1722
 msgid "Twitter"
@@ -4783,7 +4783,7 @@ msgstr "הצגת/הסתרת עמודה"
 
 #: mmpanelbase.cpp:135
 msgid "Hide this column"
-msgstr "הסתר עמודה זו"
+msgstr "הסתרת עמודה זו"
 
 #: mmpanelbase.cpp:137
 msgid "Order by this column"
@@ -4836,7 +4836,7 @@ msgstr "הצגת"
 
 #: mmreportspanel.cpp:456
 msgid "Hide"
-msgstr "הסתר"
+msgstr "הסתרה"
 
 #: model/Model_Account.cpp:32 model/Model_Asset.cpp:36 reports/summary.cpp:156
 msgid "Cash"
@@ -6256,7 +6256,7 @@ msgstr "הוספה/עדכון היסטורית מחירי ניירות ערך"
 
 #: stockdialog.cpp:1057
 msgid "Delete selected Stock Prices"
-msgstr "מחיקת מחירי נמניות נבחרים"
+msgstr "מחיקת מחירי נמניות שנבחרו"
 
 #: stockspanel.cpp:36
 msgid "Using MMEX it is possible to track stocks/mutual funds investments."
