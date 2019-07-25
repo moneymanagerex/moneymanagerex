@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-06-02 15:04+0300\n"
-"PO-Revision-Date: 2019-07-03 14:55\n"
+"PO-Revision-Date: 2019-07-25 11:26\n"
 "Last-Translator: Nikolay (vomikan)\n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -270,7 +270,7 @@ msgstr "Image #%i"
 #: appstartdialog.cpp:48 util.cpp:441
 #, c-format
 msgid "Version: %s"
-msgstr ""
+msgstr "Version: %s"
 
 #: appstartdialog.cpp:99
 msgid "Open Last Opened Database"
@@ -5714,7 +5714,7 @@ msgstr "Veuillez ne pas effacer les informations jointes dessous ce texte."
 
 #: reports/bugreport.h:78
 msgid "Use Help->Check for Updates in MMEX to get latest version, where your problem might be already fixed."
-msgstr ""
+msgstr "Allez dans Aide->Vérifier les mises à jour dans MMEX pour obtenir la dernière version, où votre problème est peut-être corrigé."
 
 #: reports/bugreport.h:79
 #, c-format
