@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-06-02 15:04+0300\n"
-"PO-Revision-Date: 2019-07-25 11:55\n"
+"PO-Revision-Date: 2019-07-25 12:30\n"
 "Last-Translator: Nikolay (vomikan)\n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -4078,7 +4078,7 @@ msgstr "inclure les mouvements de transfert dans les totaux budgétaires"
 
 #: mmframe.cpp:1515
 msgid "Budget Setup: &Without Summaries"
-msgstr "Options de Budget: Sans résumé"
+msgstr "Configuration des Budget: Sans totaux"
 
 #: mmframe.cpp:1515
 msgid "Display the Budget Setup without category summaries"
