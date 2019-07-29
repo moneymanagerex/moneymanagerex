@@ -38,6 +38,7 @@ class mmTreeItemData;
 class mmCheckingPanel;
 class mmBudgetingPanel;
 class mmBillsDepositsPanel;
+class mmStocksPanel;
 class mmFileHistory;
 class CommitCallbackHook;
 class UpdateCallbackHook;
@@ -130,6 +131,7 @@ private:
     mmHomePagePanel* homePage_;
     void createHomePage();
     mmCheckingPanel* checkingAccountPage_;
+    mmStocksPanel* stockAccountPage_;
     void createCheckingAccountPage(int accountID);
     void createStocksAccountPage(int accountID);
 
@@ -206,6 +208,7 @@ private:
     void OnOptions(wxCommandEvent& event);
     void OnBudgetSetupDialog(wxCommandEvent& event);
     void OnCurrency(wxCommandEvent& event);
+    void OnRates(wxCommandEvent& event);
     void OnTransactionReport(wxCommandEvent& event);
     void OnGeneralReportManager(wxCommandEvent& event);
     void OnCustomFieldsManager(wxCommandEvent& event);
@@ -297,6 +300,7 @@ private:
         MENU_SHOW_APPSTART,
         MENU_EXPORT_HTML,
         MENU_CURRENCY,
+        MENU_RATES,
         MENU_LANG,
         MENU_LANG_MAX = MENU_LANG + wxLANGUAGE_USER_DEFINED,
 

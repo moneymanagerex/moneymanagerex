@@ -518,8 +518,8 @@ bool mmHomePagePanel::Create(wxWindow *parent
     wxPanelBase::Create(parent, winid, pos, size, style, name);
     wxDateTime start = wxDateTime::UNow();
 
-    createHTML();
     CreateControls();
+    createHTML();
     GetSizer()->Fit(this);
     GetSizer()->SetSizeHints(this);
 
@@ -540,7 +540,7 @@ void mmHomePagePanel::CreateControls()
     wxBoxSizer* itemBoxSizer2 = new wxBoxSizer(wxVERTICAL);
     this->SetSizer(itemBoxSizer2);
 
-    browser_ = wxWebView::New(this, mmID_BROWSER, getURL(mmex::getReportFullFileName("index")));
+    browser_ = wxWebView::New(this, mmID_BROWSER);
     browser_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new wxWebViewFSHandler("memory")));
     browser_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new WebViewHandlerHomePage(this, "assets")));
     browser_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new WebViewHandlerHomePage(this, "billsdeposits")));
@@ -636,6 +636,7 @@ void mmHomePagePanel::fillData()
         m_templateText.Replace(wxString::Format("<TMPL_VAR %s>", entry.first), entry.second);
     }
     Model_Report::outputReportFile(m_templateText, "index");
+    browser_->LoadURL(getURL(mmex::getReportFullFileName("index")));
 }
 
 void mmHomePagePanel::setAccountsData(std::map<int, std::pair<double, double> > &accountStats)
@@ -1000,9 +1001,14 @@ void mmHomePagePanel::OnLinkClicked(wxWebViewEvent& event)
             }
         }
         else if (name == "CRYPTO_WALLETS_INFO") {
-            if (json_doc.HasMember("CRYPTO_WALLETS_INFO") && json_doc["CRYPTO_WALLETS_INFO"].IsBool()) {
+            if (json_doc.HasMember("CRYPTO_WALLETS_INFO") && json_doc["CRYPTO_WALLETS_INFO"].IsBool())
+            {
                 bool entry = !json_doc["CRYPTO_WALLETS_INFO"].GetBool();
                 json_doc["CRYPTO_WALLETS_INFO"] = entry;
+            }
+            else
+            {
+                json_doc.AddMember("TERM_ACCOUNTS_INFO", true, json_allocator);
             }
         }
 

@@ -118,10 +118,14 @@ StocksListCtrl::StocksListCtrl(mmStocksPanel* cp, wxWindow *parent, wxWindowID w
             , Model_Setting::instance().GetIntSetting(wxString::Format(m_col_width, count), entry.WIDTH));
     }
 
-    initVirtualListControl(-1, m_selected_col, m_asc);
+    RefreshList();
+}
+
+void StocksListCtrl::RefreshList(int id)
+{
+    initVirtualListControl(id, m_selected_col, m_asc);
     if (!m_stocks.empty())
         EnsureVisible(m_stocks.size() - 1);
-
 }
 
 void StocksListCtrl::OnMouseRightClick(wxMouseEvent& event)
@@ -254,7 +258,7 @@ void StocksListCtrl::OnListKeyDown(wxListEvent& event)
 
 void StocksListCtrl::OnNewStocks(wxCommandEvent& WXUNUSED(event))
 {
-    mmStockDialog dlg(this, m_stock_panel->m_frame, nullptr, m_stock_panel->m_account_id);
+    mmStockDialog dlg(this, m_stock_panel->m_frame, nullptr, m_stock_panel->getAccountID());
     dlg.ShowModal();
     if (Model_Stock::instance().get(dlg.m_stock_id))
     {
@@ -287,7 +291,7 @@ void StocksListCtrl::OnMoveStocks(wxCommandEvent& WXUNUSED(event))
     const auto& accounts = Model_Account::instance().find(Model_Account::ACCOUNTTYPE(Model_Account::all_type()[Model_Account::INVESTMENT]));
     if (accounts.empty()) return;
 
-    const Model_Account::Data* from_account = Model_Account::instance().get(m_stock_panel->m_account_id);
+    const Model_Account::Data* from_account = Model_Account::instance().get(m_stock_panel->getAccountID());
     wxString headerMsg = wxString::Format(_("Moving Transaction from %s to..."), from_account->ACCOUNTNAME);
     mmSingleChoiceDialog scd(this, _("Select the destination Account "), headerMsg , accounts);
 
@@ -469,6 +473,104 @@ void StocksListCtrl::doRefreshItems(int trx_id)
     }
 }
 
+void StocksListCtrl::sortTable()
+{
+    std::sort(m_stocks.begin(), m_stocks.end());
+    switch (m_selected_col)
+    {
+    case StocksListCtrl::COL_ID:
+        std::stable_sort(m_stocks.begin(), m_stocks.end(), SorterBySTOCKID());
+        break;
+    case StocksListCtrl::COL_DATE:
+        std::stable_sort(m_stocks.begin(), m_stocks.end(), SorterByPURCHASEDATE());
+        break;
+    case StocksListCtrl::COL_NAME:
+        std::stable_sort(m_stocks.begin(), m_stocks.end(), SorterBySTOCKNAME());
+        break;
+    case StocksListCtrl::COL_SYMBOL:
+        std::stable_sort(m_stocks.begin(), m_stocks.end(), SorterBySYMBOL());
+        break;
+    case StocksListCtrl::COL_NUMBER:
+        std::stable_sort(m_stocks.begin(), m_stocks.end(), SorterByNUMSHARES());
+        break;
+    case StocksListCtrl::COL_PRICE:
+        std::stable_sort(m_stocks.begin(), m_stocks.end(), SorterByPURCHASEPRICE());
+        break;
+    case StocksListCtrl::COL_VALUE:
+        std::stable_sort(m_stocks.begin(), m_stocks.end()
+            , [](const Model_Stock::Data & x, const Model_Stock::Data & y)
+            {
+                double valueX = x.VALUE;
+                double valueY = y.VALUE;
+                return valueX < valueY;
+            });
+        break;
+    case StocksListCtrl::COL_GAIN_LOSS:
+        std::stable_sort(m_stocks.begin(), m_stocks.end()
+            , [](const Model_Stock::Data & x, const Model_Stock::Data & y)
+            {
+                double valueX = x.CURRENTPRICE - x.VALUE;
+                double valueY = y.CURRENTPRICE - y.VALUE;
+                return valueX < valueY;
+            });
+        break;
+    case StocksListCtrl::COL_CURRENT:
+        std::stable_sort(m_stocks.begin(), m_stocks.end(), SorterByCURRENTPRICE());
+        break;
+    case StocksListCtrl::COL_CURRVALUE:
+        std::stable_sort(m_stocks.begin(), m_stocks.end()
+            , [](const Model_Stock::Data & x, const Model_Stock::Data & y)
+            {
+                double valueX = Model_Stock::CurrentValue(x);
+                double valueY = Model_Stock::CurrentValue(y);
+                return valueX < valueY;
+            });
+        break;
+    case StocksListCtrl::COL_PRICEDATE:
+        //TODO
+        break;
+    case StocksListCtrl::COL_COMMISSION:
+        std::stable_sort(m_stocks.begin(), m_stocks.end(), SorterByCOMMISSION());
+        break;
+    case StocksListCtrl::COL_NOTES:
+        std::stable_sort(m_stocks.begin(), m_stocks.end(), SorterByNOTES());
+        break;
+    default:
+        break;
+    }
+    if (!m_asc) std::reverse(m_stocks.begin(), m_stocks.end());
+}
+
+int StocksListCtrl::initVirtualListControl(int id, int col, bool asc)
+{
+    m_stock_panel->updateHeader();
+    /* Clear all the records */
+    DeleteAllItems();
+
+    wxListItem item;
+    item.SetMask(wxLIST_MASK_IMAGE);
+    item.SetImage(asc ? 3 : 2);
+    SetColumn(col, item);
+
+    int acc_id = m_stock_panel->getAccountID();
+    m_stocks = Model_Stock::instance().find(Model_Stock::HELDAT(acc_id));
+    sortTable();
+
+    int cnt = 0, selected_item = -1;
+    for (const auto& stock : m_stocks)
+    {
+        if (id == stock.STOCKID)
+        {
+            selected_item = cnt;
+            break;
+        }
+        ++cnt;
+    }
+
+    SetItemCount(m_stocks.size());
+    return selected_item;
+}
+
 /*******************************************************/
 BEGIN_EVENT_TABLE(mmStocksPanel, wxPanel)
     EVT_BUTTON(wxID_NEW,         mmStocksPanel::OnNewStocks)
@@ -511,6 +613,7 @@ bool mmStocksPanel::Create(wxWindow *parent
         m_currency = Model_Currency::GetBaseCurrency();
 
     CreateControls();
+    updateExtraStocksData(-1);
     GetSizer()->Fit(this);
     GetSizer()->SetSizeHints(this);
 
@@ -522,6 +625,13 @@ bool mmStocksPanel::Create(wxWindow *parent
 mmStocksPanel::~mmStocksPanel()
 {
 }
+
+
+void mmStocksPanel::RefreshList()
+{
+    listCtrlAccount_->doRefreshItems();
+}
+
 
 void mmStocksPanel::CreateControls()
 {
@@ -617,105 +727,6 @@ void mmStocksPanel::CreateControls()
     stock_details_ = new wxStaticText(BottomPanel, wxID_STATIC, ""
         , wxDefaultPosition, wxSize(200, -1), wxTE_MULTILINE | wxTE_WORDWRAP);
     BoxSizerVBottom->Add(stock_details_, g_flagsExpandBorder1);
-
-    updateExtraStocksData(-1);
-}
-
-void StocksListCtrl::sortTable()
-{
-    std::sort(m_stocks.begin(), m_stocks.end());
-    switch (m_selected_col)
-    {
-    case StocksListCtrl::COL_ID:
-        std::stable_sort(m_stocks.begin(), m_stocks.end(), SorterBySTOCKID());
-        break;
-    case StocksListCtrl::COL_DATE:
-        std::stable_sort(m_stocks.begin(), m_stocks.end(), SorterByPURCHASEDATE());
-        break;
-    case StocksListCtrl::COL_NAME:
-        std::stable_sort(m_stocks.begin(), m_stocks.end(), SorterBySTOCKNAME());
-        break;
-    case StocksListCtrl::COL_SYMBOL:
-        std::stable_sort(m_stocks.begin(), m_stocks.end(), SorterBySYMBOL());
-        break;
-    case StocksListCtrl::COL_NUMBER:
-        std::stable_sort(m_stocks.begin(), m_stocks.end(), SorterByNUMSHARES());
-        break;
-    case StocksListCtrl::COL_PRICE:
-        std::stable_sort(m_stocks.begin(), m_stocks.end(), SorterByPURCHASEPRICE());
-        break;
-    case StocksListCtrl::COL_VALUE:
-        std::stable_sort(m_stocks.begin(), m_stocks.end()
-            , [](const Model_Stock::Data& x, const Model_Stock::Data& y)
-        {
-            double valueX = x.VALUE;
-            double valueY = y.VALUE;
-            return valueX < valueY;
-        });
-        break;
-    case StocksListCtrl::COL_GAIN_LOSS:
-        std::stable_sort(m_stocks.begin(), m_stocks.end()
-            , [](const Model_Stock::Data& x, const Model_Stock::Data& y)
-        {
-            double valueX = x.CURRENTPRICE - x.VALUE;
-            double valueY = y.CURRENTPRICE - y.VALUE;
-            return valueX < valueY;
-        });
-        break;
-    case StocksListCtrl::COL_CURRENT:
-        std::stable_sort(m_stocks.begin(), m_stocks.end(), SorterByCURRENTPRICE());
-        break;
-    case StocksListCtrl::COL_CURRVALUE:
-        std::stable_sort(m_stocks.begin(), m_stocks.end()
-            , [](const Model_Stock::Data& x, const Model_Stock::Data& y)
-        {
-            double valueX = Model_Stock::CurrentValue(x);
-            double valueY = Model_Stock::CurrentValue(y);
-            return valueX < valueY;
-        });
-        break;
-    case StocksListCtrl::COL_PRICEDATE:
-        //TODO
-        break;
-    case StocksListCtrl::COL_COMMISSION:
-        std::stable_sort(m_stocks.begin(), m_stocks.end(), SorterByCOMMISSION());
-        break;
-    case StocksListCtrl::COL_NOTES:
-        std::stable_sort(m_stocks.begin(), m_stocks.end(), SorterByNOTES());
-        break;
-    default:
-        break;
-    }
-    if (!m_asc) std::reverse(m_stocks.begin(), m_stocks.end());
-}
-
-int StocksListCtrl::initVirtualListControl(int id, int col, bool asc)
-{
-    m_stock_panel->updateHeader();
-    /* Clear all the records */
-    DeleteAllItems();
-
-    wxListItem item;
-    item.SetMask(wxLIST_MASK_IMAGE);
-    item.SetImage(asc ? 3 : 2);
-    SetColumn(col, item);
-
-    m_stocks = Model_Stock::instance().find(Model_Stock::HELDAT(m_stock_panel->m_account_id));
-    sortTable();
-
-    int cnt = 0, selected_item = -1;
-    for (const auto& stock: m_stocks)
-    {
-        if (id == stock.STOCKID)
-        {
-            selected_item = cnt;
-            break;
-        }
-        ++cnt;
-    }
-
-    SetItemCount(m_stocks.size());
-    return selected_item;
 }
 
 wxString mmStocksPanel::GetPanelTitle(const Model_Account::Data& account) const
@@ -769,6 +780,21 @@ void mmStocksPanel::updateHeader()
 
     header_total_->SetLabelText(lbl);
     this->Layout();
+}
+
+void mmStocksPanel::m_stock_details_short(const wxString& miniInfo)
+{
+    stock_details_short_->SetLabelText(miniInfo);
+}
+
+int mmStocksPanel::getAccountID()
+{
+    return m_account_id;
+}
+
+void mmStocksPanel::setAccountID(int id)
+{
+    m_account_id = id;
 }
 
 void mmStocksPanel::OnDeleteStocks(wxCommandEvent& event)
@@ -851,6 +877,7 @@ bool mmStocksPanel::onlineQuoteRefresh(wxString& msg)
         return false;
     }
 
+    Model_StockHistory::instance().Savepoint();
     for (auto &s : stock_list)
     {
         std::map<wxString, double>::const_iterator it = stocks_data.find(s.SYMBOL.Upper());
@@ -870,6 +897,7 @@ bool mmStocksPanel::onlineQuoteRefresh(wxString& msg)
                 , wxDate::Now(), dPrice, Model_StockHistory::ONLINE);
         }
     }
+    Model_StockHistory::instance().ReleaseSavepoint();
 
     // Now refresh the display
     int selected_id = -1;
@@ -916,12 +944,15 @@ wxString StocksListCtrl::getStockInfo(int selectedIndex) const
     double diff = total_current_price - total_purchase_price;
     const wxString& sTotalCurrentPrice = Model_Currency::toCurrency(total_current_price, currency);
     const wxString& sGainLostAmount = Model_Currency::toCurrency(abs(diff), currency);
-    double total_percentage = 100.0 * (total_current_price / total_purchase_price - 1);
+    double total_percentage = 0.0;
+    if (total_purchase_price != 0.0) {
+        total_percentage = 100.0 * (total_current_price / total_purchase_price - 1);
+    }
 
     wxString miniInfo = "";
     if (m_stocks[selectedIndex].SYMBOL != "")
         miniInfo << wxString::Format(_("Symbol: %s"), m_stocks[selectedIndex].SYMBOL) << "\t";
-    m_stock_panel->stock_details_short_->SetLabelText(miniInfo);
+    m_stock_panel->m_stock_details_short(miniInfo);
 
     //Summary for account for selected symbol
     wxString additionInfo = wxString::Format("%s %s ( %s %% )\n%s"

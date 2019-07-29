@@ -100,7 +100,6 @@ private:
     void OnItemRightClick(wxDataViewEvent& event);
     void OnMenuSelected(wxCommandEvent& event);
     bool SetBaseCurrency(int& baseCurrencyID);
-    bool GetOnlineRates(wxString &msg, int curr_id = -1);
     bool GetOnlineHistory(std::map<wxDateTime, double> &historical_rates, const wxString &symbol, wxString &msg);
 
     wxDataViewListCtrl* currencyListBox_;

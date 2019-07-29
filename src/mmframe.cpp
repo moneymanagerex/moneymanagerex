@@ -127,6 +127,7 @@ EVT_MENU(MENU_DB_DEBUG, mmGUIFrame::OnDebugDB)
 
 EVT_MENU(MENU_ASSETS, mmGUIFrame::OnAssets)
 EVT_MENU(MENU_CURRENCY, mmGUIFrame::OnCurrency)
+EVT_MENU(MENU_RATES, mmGUIFrame::OnRates)
 EVT_MENU(MENU_TRANSACTIONREPORT, mmGUIFrame::OnTransactionReport)
 EVT_MENU(wxID_VIEW_LIST, mmGUIFrame::OnGeneralReportManager)
 EVT_MENU(wxID_BROWSE, mmGUIFrame::OnCustomFieldsManager)
@@ -168,7 +169,6 @@ EVT_MENU(MENU_TREEPOPUP_ACCOUNT_LIST, mmGUIFrame::OnAccountList)
 EVT_MENU(MENU_TREEPOPUP_ACCOUNT_EXPORT2CSV, mmGUIFrame::OnExportToCSV)
 EVT_MENU(MENU_TREEPOPUP_ACCOUNT_EXPORT2XML, mmGUIFrame::OnExportToXML)
 EVT_MENU(MENU_TREEPOPUP_ACCOUNT_EXPORT2QIF, mmGUIFrame::OnExportToQIF)
-//EVT_MENU(MENU_TREEPOPUP_ACCOUNT_IMPORTQIF, mmGUIFrame::OnImportQIF)
 EVT_MENU(MENU_TREEPOPUP_ACCOUNT_IMPORTUNIVCSV, mmGUIFrame::OnImportUniversalCSV)
 EVT_MENU(MENU_TREEPOPUP_ACCOUNT_IMPORTXML, mmGUIFrame::OnImportXML)
 EVT_MENU_RANGE(MENU_TREEPOPUP_ACCOUNT_VIEWALL, MENU_TREEPOPUP_ACCOUNT_VIEWCLOSED, mmGUIFrame::OnViewAccountsTemporaryChange)
@@ -206,6 +206,7 @@ mmGUIFrame::mmGUIFrame(mmGUIApp* app, const wxString& title
     , helpFileIndex_(-1)
     , homePage_(nullptr)
     , checkingAccountPage_(nullptr)
+    , stockAccountPage_(nullptr)
     , billsDepositsPanel_(nullptr)
     , budgetingPage_(nullptr)
     , m_hide_share_accounts(true)
@@ -1865,6 +1866,8 @@ void mmGUIFrame::createToolBar()
     toolBar_->AddSeparator();
     toolBar_->AddTool(wxID_PRINT, _("&Print..."), mmBitmap(png::PRINT), _("Print current view"));
 
+    toolBar_->AddTool(MENU_RATES, _("Refresh"), mmBitmap(png::CURRATES), _("Refresh Stock Prices from Yahoo"));
+
     // after adding the buttons to the toolbar, must call Realize() to reflect changes
     toolBar_->Realize();
 }
@@ -2378,15 +2381,29 @@ void mmGUIFrame::refreshPanelData()
     int id = panelCurrent_->GetId();
     wxLogDebug("Panel ID: %d", id);
     if (id == mmID_HOMEPAGE) //6000
+    {
         createHomePage();
+    }
     else if (id == mmID_CHECKING)
+    {
         checkingAccountPage_->RefreshList();
+    }
     else if (id == mmID_ASSETS)
-        { /*Nothing to do;*/ }
+    {
+        /*Nothing to do;*/
+    }
+    else if (id == mmID_STOCKS)
+    {
+        stockAccountPage_->RefreshList();
+    }
     else if (id == mmID_BILLS)
+    {
         billsDepositsPanel_->RefreshList();
+    }
     else if (id == mmID_BUDGET)
+    {
         budgetingPage_->RefreshList();
+    }
     else if (id == mmID_REPORTS)
     {
         if (activeReport_) //TODO: budget reports and transaction report
@@ -2396,8 +2413,9 @@ void mmGUIFrame::refreshPanelData()
         }
     }
     else if (id == wxID_HELP)
+    {
         createHelpPage();
-
+    }
 }
 
 void mmGUIFrame::OnOrgCategories(wxCommandEvent& WXUNUSED(event))
@@ -2730,12 +2748,17 @@ void mmGUIFrame::createStocksAccountPage(int accountID)
     json_writer.Key("start");
     json_writer.String(wxDateTime::Now().FormatISOCombined().c_str());
 
-    //TODO: Refresh Panel
+    if (panelCurrent_->GetId() == mmID_STOCKS)
     {
-        //updateNavTreeControl();
+        stockAccountPage_->setAccountID(accountID);
+        stockAccountPage_->RefreshList();
+    }
+    else
+    {
         windowsFreezeThaw(homePanel_);
         wxSizer *sizer = cleanupHomePanel();
-        panelCurrent_ = new mmStocksPanel(accountID, this, homePanel_, mmID_STOCKS);
+        stockAccountPage_ = new mmStocksPanel(accountID, this, homePanel_, mmID_STOCKS);
+        panelCurrent_ = stockAccountPage_;
         sizer->Add(panelCurrent_, 1, wxGROW | wxALL, 1);
         homePanel_->Layout();
         windowsFreezeThaw(homePanel_);
@@ -2803,6 +2826,58 @@ void mmGUIFrame::OnCurrency(wxCommandEvent& WXUNUSED(event))
     mmMainCurrencyDialog(this, -1, false).ShowModal();
     refreshPanelData();
 }
+
+void mmGUIFrame::OnRates(wxCommandEvent& WXUNUSED(event))
+{
+    wxString msg;
+    GetOnlineCurrencyRates(msg);
+    wxLogDebug("%s", msg);
+
+    std::vector<wxString> symbols;
+    Model_Stock::Data_Set stock_list = Model_Stock::instance().all();
+    for (const auto& stock : stock_list)
+    {
+        const wxString symbol = stock.SYMBOL.Upper();
+        if (symbol.IsEmpty()) continue;
+        if (std::find(symbols.begin(), symbols.end(), symbol) == symbols.end())
+            symbols.push_back(symbol);
+    }
+
+    std::map<wxString, double > stocks_data;
+    if (get_yahoo_prices(symbols, stocks_data, "", msg, yahoo_price_type::SHARES))
+    {
+
+        Model_StockHistory::instance().Savepoint();
+        for (auto& s : stock_list)
+        {
+            std::map<wxString, double>::const_iterator it = stocks_data.find(s.SYMBOL.Upper());
+            if (it == stocks_data.end()) {
+                continue;
+            }
+
+            double dPrice = it->second;
+
+            if (dPrice != 0)
+            {
+                msg += wxString::Format("%s\t: %0.6f -> %0.6f\n", s.SYMBOL, s.CURRENTPRICE, dPrice);
+                s.CURRENTPRICE = dPrice;
+                if (s.STOCKNAME.empty()) s.STOCKNAME = s.SYMBOL;
+                Model_Stock::instance().save(&s);
+                Model_StockHistory::instance().addUpdate(s.SYMBOL
+                    , wxDate::Now(), dPrice, Model_StockHistory::ONLINE);
+            }
+        }
+        Model_StockHistory::instance().ReleaseSavepoint();
+        wxString strLastUpdate;
+        strLastUpdate.Printf(_("%s on %s"), wxDateTime::Now().FormatTime()
+            , mmGetDateForDisplay(wxDateTime::Now().FormatISODate()));
+        Model_Infotable::instance().Set("STOCKS_LAST_REFRESH_DATETIME", strLastUpdate);
+    }
+    wxLogDebug("%s", msg);
+
+    refreshPanelData();
+}
+
 //----------------------------------------------------------------------------
 
 void mmGUIFrame::OnEditAccount(wxCommandEvent& WXUNUSED(event))

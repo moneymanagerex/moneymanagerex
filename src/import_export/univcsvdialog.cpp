@@ -40,6 +40,7 @@
 #include <algorithm>
 #include <cctype>
 #include <string>
+#include <memory>
 #include <regex>
 
 #include <wx/xml/xml.h>
@@ -1170,14 +1171,14 @@ void mmUnivCSVDialog::update_preview()
             return;
 
         // Open and parse file
-        ITransactionsFile *pImporter = CreateFileHandler();
+        std::unique_ptr <ITransactionsFile> pImporter(CreateFileHandler());
         pImporter->Load(fileName, MAX_COLS);
 
         unsigned int totalLines = pImporter->GetLinesCount();
         unsigned int firstRow = m_spinIgnoreFirstRows_->GetValue();
         unsigned int lastRow = totalLines - m_spinIgnoreLastRows_->GetValue();
 
-        mmDates* dParser = new mmDates;
+        std::unique_ptr<mmDates> dParser(new mmDates);
 
         // Import- Add rows to preview
         for (unsigned int row = 0; row < totalLines; row++)
@@ -1213,7 +1214,6 @@ void mmUnivCSVDialog::update_preview()
                 m_list_ctrl_->SetItem(itemIndex, col, content);
             }
         }
-        delete pImporter;
 
         m_spinIgnoreLastRows_->SetRange(m_spinIgnoreLastRows_->GetMin(), m_list_ctrl_->GetItemCount());
         UpdateListItemBackground();
@@ -1228,8 +1228,6 @@ void mmUnivCSVDialog::update_preview()
                 m_userDefinedDateMask = true;
             }
         }
-
-        delete dParser;
     }
     else // exporter preview
     {

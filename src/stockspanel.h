@@ -39,6 +39,7 @@ public:
     StocksListCtrl(mmStocksPanel* cp, wxWindow *parent, wxWindowID winid = wxID_ANY);
     ~StocksListCtrl();
 
+    void RefreshList(int id = -1);
     void doRefreshItems(int trx_id = -1);
     void OnNewStocks(wxCommandEvent& event);
     void OnDeleteStocks(wxCommandEvent& event);
@@ -54,6 +55,7 @@ public:
     /* Helper Functions/data */
     Model_Stock::Data_Set m_stocks;
     /* updates thstockide checking panel data */
+    void OnListItemSelected(wxListEvent& event);
     int initVirtualListControl(int trx_id = -1, int col = 0, bool asc = true);
 
 private:
@@ -65,10 +67,7 @@ private:
     void OnListLeftClick(wxMouseEvent& event);
     void OnListItemActivated(wxListEvent& event);
     void OnColClick(wxListEvent& event);
-    void OnMarkTransaction(wxCommandEvent& event);
-    void OnMarkAllTransactions(wxCommandEvent& event);
     void OnListKeyDown(wxListEvent& event);
-    void OnListItemSelected(wxListEvent& event);
 
     mmStocksPanel* m_stock_panel;
     enum EColumn
@@ -118,7 +117,10 @@ public:
                  long style = wxTAB_TRAVERSAL | wxNO_BORDER,
                  const wxString& name = "mmStocksPanel");
 
-    void CreateControls();
+    void RefreshList();
+
+    mmGUIFrame* m_frame;
+    Model_Currency::Data* m_currency;
 
     /* Event handlers for Buttons */
     void OnNewStocks(wxCommandEvent& event);
@@ -126,26 +128,27 @@ public:
     void OnMoveStocks(wxCommandEvent& event);
     void OnEditStocks(wxCommandEvent& event);
     void OnOpenAttachment(wxCommandEvent& event);
-    void OnRefreshQuotes(wxCommandEvent& event);
     //Unhide the Edit and Delete buttons if any record selected
     void enableEditDeleteButtons(bool en);
-    void OnListItemActivated(int selectedIndex);
     void AddStockTransaction(int selectedIndex);
-    void OnListItemSelected(int selectedIndex);
-    //void OnViewPopupSelected(wxCommandEvent& event);
-
     void ViewStockTransactions(int selectedIndex);
 
-    int m_account_id;
-    Model_Currency::Data * m_currency;
-    void updateExtraStocksData(int selIndex);
-    wxStaticText* stock_details_short_;
-    void updateHeader();
-
     wxString BuildPage() const;
-    mmGUIFrame* m_frame;
+    void updateHeader();
+    void m_stock_details_short(const wxString& miniInfo);
+    int getAccountID();
+    void setAccountID(int id);
+    void OnListItemActivated(int selectedIndex);
+    void OnListItemSelected(int selectedIndex);
 
 private:
+    void OnRefreshQuotes(wxCommandEvent& WXUNUSED(event));
+
+    int m_account_id;
+    void CreateControls();
+    void updateExtraStocksData(int selIndex);
+    wxStaticText* stock_details_short_;
+
     StocksListCtrl* listCtrlAccount_;
     wxStaticText* stock_details_;
     void call_dialog(int selectedIndex);
@@ -157,14 +160,12 @@ private:
     wxBitmapButton* attachment_button_;
     wxBitmapButton* refresh_button_;
 
-    bool DownloadIsRequired(void);
     bool onlineQuoteRefresh(wxString& sError);
     wxString GetPanelTitle(const Model_Account::Data& account) const;
 
     wxString strLastUpdate_;
     bool StocksRefreshStatus_;
     wxDateTime LastRefreshDT_;
-
 };
 
 #endif
