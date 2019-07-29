@@ -40,6 +40,7 @@
 #include <algorithm>
 #include <cctype>
 #include <string>
+#include <memory>
 #include <regex>
 
 #include <wx/xml/xml.h>
