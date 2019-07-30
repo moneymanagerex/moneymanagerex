@@ -477,10 +477,11 @@ void mmUnivCSVDialog::SetSettings(const wxString &json_data)
     const wxString df = date_mask.IsString() ? date_mask.GetString() : "";
     if (!df.empty())
     {
-        date_format_ = df;
-        const auto pos = g_date_formats_map().find(date_format_);
-        if (pos != g_date_formats_map().end()) {
-            choiceDateFormat_->SetStringSelection(pos->second);
+        const auto m = g_date_formats_map();
+        if (m.find(df) != m.end()) {
+            const wxString mask = m.at(df);
+            choiceDateFormat_->SetStringSelection(mask);
+            date_format_ = df;
         }
         else {
             wxLogDebug("Unrecognized DATE_MASK %s", df);
@@ -1520,16 +1521,18 @@ void mmUnivCSVDialog::parseToken(int index, const wxString& orig_token, tran_hol
 
     case UNIV_CSV_AMOUNT:
     {
-        double result = wxAtof(mmTrimAmount(token, decimal_));
+        double amount;
+        const wxString amt = Model_Currency::fromString2Default(mmTrimAmount(token, decimal_));
+        amt.ToCDouble(&amount);
 
-        if ((result > 0.0 && !m_reverce_sign) || (result <= 0.0 && m_reverce_sign))
+        if ((amount > 0.0 && !m_reverce_sign) || (amount <= 0.0 && m_reverce_sign))
         {
             holder.Type = Model_Checking::all_type()[Model_Checking::DEPOSIT];
         }
 
-        holder.Amount = fabs(result);
-
+        holder.Amount = fabs(amount);
         break;
+
     }
     case UNIV_CSV_CATEGORY:
         category = Model_Category::instance().get(token);
