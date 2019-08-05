@@ -115,7 +115,7 @@ private:
     void OnEnterBDTransaction(wxCommandEvent& event);
     void OnSkipBDTransaction(wxCommandEvent& event);
     void OnOpenAttachment(wxCommandEvent& event);
-    void OnFilterTransactions(wxMouseEvent& event);
+    void OnFilterTransactions(wxCommandEvent& event);
 
     void sortTable();
 
@@ -130,7 +130,7 @@ private:
     wxStaticText* m_infoText;
     wxStaticText* m_infoTextMini;
     mmFilterTransactionsDialog* transFilterDlg_;
-    wxStaticBitmap* bitmapTransFilter_;
+    wxButton* m_bitmapTransFilter;
 
     enum EColumn
     {

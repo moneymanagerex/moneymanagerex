@@ -120,8 +120,8 @@ const wxString mmex::weblink::YahooQuotes = "https://query1.finance.yahoo.com/v7
 const wxString mmex::weblink::YahooQuotesHistory = "https://query1.finance.yahoo.com/v8/finance/chart/%s?range=%s&interval=%s&fields=currency";
 
 //CoinCap API
-const wxString mmex::weblink::CoinCap = "https://coincap.io/front";
-const wxString mmex::weblink::CoinCapHistory = "https://coincap.io/history/365day/%s";
+const wxString mmex::weblink::CoinCap = "api.coincap.io/v2/assets";
+const wxString mmex::weblink::CoinCapHistory = "https://api.coincap.io/v2/assets/%s/history?interval=d1";
 
 //
 const wxString mmex::weblink::GooglePlay = "https://play.google.com/store/apps/details?id=com.money.manager.ex";
@@ -137,18 +137,19 @@ const wxString INIDB_USE_TRANSACTION_SOUND = "USETRANSSOUND";
 const wxString INIDB_USE_ORG_DATE_COPYPASTE = "USEORIGDATEONCOPYPASTE";
 const wxString INIDB_SEND_USAGE_STATS = "SENDUSAGESTATS";
 
-const wxString VIEW_TRANS_ALL_STR            = wxTRANSLATE("View All Transactions");
-const wxString VIEW_TRANS_TODAY_STR          = wxTRANSLATE("View Today");
-const wxString VIEW_TRANS_CURRENT_MONTH_STR  = wxTRANSLATE("View Current Month");
-const wxString VIEW_TRANS_LAST_30_DAYS_STR   = wxTRANSLATE("View Last 30 days");
-const wxString VIEW_TRANS_LAST_90_DAYS_STR   = wxTRANSLATE("View Last 90 days");
-const wxString VIEW_TRANS_LAST_MONTH_STR     = wxTRANSLATE("View Last Month");
-const wxString VIEW_TRANS_LAST_3MONTHS_STR   = wxTRANSLATE("View Last 3 Months");
-const wxString VIEW_TRANS_LAST_12MONTHS_STR  = wxTRANSLATE("View Last 12 Months");
-const wxString VIEW_TRANS_CURRENT_YEAR_STR   = wxTRANSLATE("View Current Year");
-const wxString VIEW_TRANS_CURRENT_FIN_YEAR_STR = wxTRANSLATE("View Current Financial Year");
-const wxString VIEW_TRANS_LAST_YEAR_STR      = wxTRANSLATE("View Last Year");
-const wxString VIEW_TRANS_LAST_FIN_YEAR_STR  = wxTRANSLATE("View Last Financial Year");
+const wxString VIEW_TRANS_FILTER_DIALOG_STR   = wxTRANSLATE("Advanced Filter");
+const wxString VIEW_TRANS_ALL_STR             = wxTRANSLATE("View All Transactions");
+const wxString VIEW_TRANS_TODAY_STR           = wxTRANSLATE("View Today");
+const wxString VIEW_TRANS_CURRENT_MONTH_STR   = wxTRANSLATE("View Current Month");
+const wxString VIEW_TRANS_LAST_30_DAYS_STR    = wxTRANSLATE("View Last 30 days");
+const wxString VIEW_TRANS_LAST_90_DAYS_STR    = wxTRANSLATE("View Last 90 days");
+const wxString VIEW_TRANS_LAST_MONTH_STR      = wxTRANSLATE("View Last Month");
+const wxString VIEW_TRANS_LAST_3MONTHS_STR    = wxTRANSLATE("View Last 3 Months");
+const wxString VIEW_TRANS_LAST_12MONTHS_STR   = wxTRANSLATE("View Last 12 Months");
+const wxString VIEW_TRANS_CURRENT_YEAR_STR    = wxTRANSLATE("View Current Year");
+const wxString VIEW_TRANS_CRRNT_FIN_YEAR_STR  = wxTRANSLATE("View Current Financial Year");
+const wxString VIEW_TRANS_LAST_YEAR_STR       = wxTRANSLATE("View Last Year");
+const wxString VIEW_TRANS_LAST_FIN_YEAR_STR   = wxTRANSLATE("View Last Financial Year");
 const wxString VIEW_TRANS_SINCE_STATEMENT_STR = wxTRANSLATE("View Since Statement Date");
 
 const wxString VIEW_ACCOUNTS_ALL_STR = wxTRANSLATE("All");

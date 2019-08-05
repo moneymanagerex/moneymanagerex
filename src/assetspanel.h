@@ -26,6 +26,7 @@ class wxStaticText;
 class wxListEvent;
 class mmAssetsPanel;
 class mmGUIFrame;
+class wxButton;
 
 /* Custom ListCtrl class that implements virtual LC style */
 class mmAssetsListCtrl: public mmListCtrl
@@ -125,7 +126,7 @@ private:
     void OnSearchTxtEntered(wxCommandEvent& event);
     mmAssetsListCtrl* m_listCtrlAssets;
 
-    wxStaticText* m_itemStaticTextMainFilter;
+    wxButton* m_bitmapTransFilter;
 
     wxScopedPtr<wxImageList> m_imageList;
 
@@ -142,7 +143,7 @@ private:
     void OnDeleteAsset(wxCommandEvent& event);
     void OnEditAsset(wxCommandEvent& event);
     void OnOpenAttachment(wxCommandEvent& event);
-    void OnMouseLeftDown ( wxMouseEvent& event );
+    void OnMouseLeftDown(wxCommandEvent& event);
     void OnAddAssetTrans(wxCommandEvent& event);
     void OnViewAssetTrans(wxCommandEvent& event);
 

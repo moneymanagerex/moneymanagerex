@@ -29,6 +29,7 @@
 #include "Model_Infotable.h"
 #include "Model_Setting.h"
 #include "Model_CurrencyHistory.h"
+#include "Model_Currency.h"
 #include "wx_compat.h"
 #include <wx/sstream.h>
 #include <wx/xml/xml.h>
@@ -603,9 +604,14 @@ bool GetOnlineCurrencyRates(wxString& msg, int curr_id, bool used_only)
         {
             if (currency_data.find(currency_symbol) != currency_data.end())
             {
-                const double new_rate = currency_data[currency_symbol];
-                msg << wxString::Format("%s\t -> %0.6f\n", currency_symbol, new_rate);
-                Model_CurrencyHistory::instance().addUpdate(currency.CURRENCYID, today, new_rate, Model_CurrencyHistory::ONLINE);
+                double new_rate = currency_data[currency_symbol];
+                if (new_rate > 0)
+                {
+                    msg << wxString::Format("%s\t -> %0.6f\n", currency_symbol, new_rate);
+                    Model_CurrencyHistory::instance().addUpdate(currency.CURRENCYID, today, new_rate, Model_CurrencyHistory::ONLINE);
+                }
+                else
+                    msg << wxString::Format("%s\t -> %s\n", currency_symbol, _("Invalid value"));
             }
         }
     }
@@ -734,10 +740,10 @@ bool get_crypto_currency_prices(std::vector<wxString>& symbols, double& usd_rate
     Document json_doc;
     if (json_doc.Parse(json_data.c_str()).HasParseError())
         return false;
-
-    if (!json_doc.IsArray())
+    if (!json_doc.HasMember("data") && !json_doc["data"].IsArray())
         return false;
-    Value e = json_doc.GetArray();
+
+    Value e = json_doc["data"].GetArray();
 
     std::map<wxString, float> all_crypto_data;
 
@@ -747,12 +753,14 @@ bool get_crypto_currency_prices(std::vector<wxString>& symbols, double& usd_rate
             continue;
         Value v = e[i].GetObject();
 
-        if (!v["short"].IsString())  continue;
-        auto currency_symbol = wxString::FromUTF8(v["short"].GetString());
-        if (!v["price"].IsFloat()) continue;
-        auto price = v["price"].GetFloat();
-        all_crypto_data[currency_symbol] = price;
-        wxLogDebug("item: %u %s %.8f", i, currency_symbol, price);
+        if (!v["symbol"].IsString())  continue;
+        auto currency_symbol = wxString::FromUTF8(v["symbol"].GetString());
+        if (!v["priceUsd"].IsString()) continue;
+        auto price_str = wxString::FromUTF8(v["priceUsd"].GetString());
+        double amount;
+        price_str.ToCDouble(&amount);
+        all_crypto_data[currency_symbol] = amount;
+        wxLogDebug("item: %u %s %s = %.8f", i, currency_symbol, price_str, amount);
     }
 
     for (auto& entry : symbols)
@@ -763,7 +771,7 @@ bool get_crypto_currency_prices(std::vector<wxString>& symbols, double& usd_rate
             ok = true;
         }
         else
-            output << entry << "\t: " << _("Invalid value") << "\n";
+            out[entry] = -1;
     }
 
     return ok;

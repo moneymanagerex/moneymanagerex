@@ -607,6 +607,7 @@ void mmCustomData::ShowHideCustomPanel() const
         m_static_box->Hide();
     }
     else {
-        m_static_box->Show();
+        if (!m_fields.empty())
+            m_static_box->Show();
     }
 }

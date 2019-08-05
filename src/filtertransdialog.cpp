@@ -129,6 +129,7 @@ bool mmFilterTransactionsDialog::Create(wxWindow* parent
 
     CreateControls();
     GetStoredSettings(-1);
+    dataToControls();
 
     GetSizer()->Fit(this);
     GetSizer()->SetSizeHints(this);
@@ -225,13 +226,13 @@ void mmFilterTransactionsDialog::CreateControls()
 
     m_fromDateCtrl = new wxDatePickerCtrl(itemPanel, wxID_FIRST, wxDefaultDateTime
         , wxDefaultPosition, wxDefaultSize, wxDP_DROPDOWN);
-    m_toDateControl = new wxDatePickerCtrl(itemPanel, wxID_LAST, wxDefaultDateTime
+    m_toDateCtrl = new wxDatePickerCtrl(itemPanel, wxID_LAST, wxDefaultDateTime
         , wxDefaultPosition, wxDefaultSize, wxDP_DROPDOWN);
 
     wxBoxSizer* dateSizer = new wxBoxSizer(wxHORIZONTAL);
     dateSizer->Add(m_fromDateCtrl, g_flagsExpand);
     dateSizer->AddSpacer(5);
-    dateSizer->Add(m_toDateControl, g_flagsExpand);
+    dateSizer->Add(m_toDateCtrl, g_flagsExpand);
     itemPanelSizer->Add(dateSizer, wxSizerFlags(g_flagsExpand).Border(0));
     //--End of Row --------------------------------------------------------
 
@@ -451,6 +452,8 @@ void mmFilterTransactionsDialog::OnCheckboxClick(wxCommandEvent& event)
         notesEdit_->Enable(notesCheckBox_->IsChecked());
         transNumberEdit_->Enable(transNumberCheckBox_->IsChecked());
         m_date_ranges->Enable(m_dateRangeCheckBox->IsChecked());
+        m_fromDateCtrl->Enable(m_dateRangeCheckBox->IsChecked());
+        m_toDateCtrl->Enable(m_dateRangeCheckBox->IsChecked());
     }
 
     if (accountCheckBox_->IsChecked() && accountDropDown_->GetSelection() < 0) {
@@ -507,12 +510,12 @@ void mmFilterTransactionsDialog::OnButtonokClick(wxCommandEvent& WXUNUSED(event)
     if (m_dateRangeCheckBox->IsChecked())
     {
         m_begin_date = m_fromDateCtrl->GetValue().FormatISODate();
-        m_end_date = m_toDateControl->GetValue().FormatISODate();
+        m_end_date = m_toDateCtrl->GetValue().FormatISODate();
         if (m_begin_date > m_end_date)
         {
             const auto today = wxDate::Today().FormatISODate();
             int id = m_begin_date >= today
-                ? m_fromDateCtrl->GetId() : m_toDateControl->GetId();
+                ? m_fromDateCtrl->GetId() : m_toDateCtrl->GetId();
             return mmErrorDialogs::ToolTip4Object(FindWindow(id)
                 , _("Invalid value"), _("Date"));
         }
@@ -687,7 +690,7 @@ void mmFilterTransactionsDialog::clearSettings()
     const wxString& default_label = wxString::Format(_("%i: Empty"), i + 1);
     m_setting_name->SetString(i, default_label);
 
-    settings_string_.Clear();
+    settings_string_ = R"({"LABEL": "Clear"})";
     m_custom_fields->ClearSettings();
     dataToControls();
 
@@ -849,7 +852,7 @@ wxString mmFilterTransactionsDialog::to_json(bool i18n)
         json_writer.Key((i18n ? _("Since") : "DATE1").c_str());
         json_writer.String(m_fromDateCtrl->GetValue().FormatISODate().c_str());
         json_writer.Key((i18n ? _("Before") : "DATE2").c_str());
-        json_writer.String(m_toDateControl->GetValue().FormatISODate().c_str());
+        json_writer.String(m_toDateCtrl->GetValue().FormatISODate().c_str());
     }
 
     if (payeeCheckBox_->IsChecked())
@@ -951,7 +954,8 @@ wxString mmFilterTransactionsDialog::to_json(bool i18n)
 void mmFilterTransactionsDialog::from_json(const wxString &data)
 {
     Document j_doc;
-    if (j_doc.Parse(data.c_str()).HasParseError()) {
+    if (j_doc.Parse(data.c_str()).HasParseError())
+    {
         j_doc.Parse("{}");
     }
 
@@ -959,6 +963,11 @@ void mmFilterTransactionsDialog::from_json(const wxString &data)
     Value& j_label = GetValueByPointerWithDefault(j_doc, "/LABEL", "");
     const wxString& s_label = j_label.IsString() ? j_label.GetString() : "";
     m_setting_name->SetStringSelection(s_label);
+
+    if (s_label.empty())
+    {
+        return;
+    }
 
     //Account
     Value& j_account = GetValueByPointerWithDefault(j_doc, "/ACCOUNT", "");
@@ -985,11 +994,11 @@ void mmFilterTransactionsDialog::from_json(const wxString &data)
         Value& j_date2 = GetValueByPointerWithDefault(j_doc, "/DATE2", "");
         m_end_date = j_date2.IsString() ? j_date2.GetString() : "";
         m_fromDateCtrl->SetValue(mmParseISODate(m_begin_date));
-        m_toDateControl->SetValue(mmParseISODate(m_end_date));
+        m_toDateCtrl->SetValue(mmParseISODate(m_end_date));
     }
     m_dateRangeCheckBox->SetValue(!s_date.empty());
     m_fromDateCtrl->Enable(m_dateRangeCheckBox->IsChecked() && custom);
-    m_toDateControl->Enable(m_dateRangeCheckBox->IsChecked() && custom);
+    m_toDateCtrl->Enable(m_dateRangeCheckBox->IsChecked() && custom);
     m_date_ranges->Enable(m_dateRangeCheckBox->IsChecked());
 
 
@@ -1180,13 +1189,8 @@ void mmFilterTransactionsDialog::OnMoreFields(wxCommandEvent& WXUNUSED(event))
 {
     wxBitmapButton* button = static_cast<wxBitmapButton*>(FindWindow(wxID_MORE));
 
-    if (m_custom_fields->IsCustomPanelShown())
-    {
-        if (button) button->SetBitmap(mmBitmap(png::RIGHTARROWSIMPLE));
-    }
-    else
-    {
-        if (button) button->SetBitmap(mmBitmap(png::LEFTARROWSIMPLE));
+    if (button) {
+        button->SetBitmap(mmBitmap(m_custom_fields->IsCustomPanelShown() ? png::RIGHTARROWSIMPLE : png::LEFTARROWSIMPLE));
     }
 
     m_custom_fields->ShowHideCustomPanel();
@@ -1209,13 +1213,13 @@ void mmFilterTransactionsDialog::OnDateRangeChanged(wxCommandEvent& WXUNUSED(eve
             m_begin_date = date_range->start_date().FormatISODate();
             m_end_date = date_range->end_date().FormatISODate();
             m_fromDateCtrl->SetValue(date_range->start_date());
-            m_toDateControl->SetValue(date_range->end_date());
+            m_toDateCtrl->SetValue(date_range->end_date());
 
             user_date = date_range->title().IsSameAs("Custom");
         }
     }
     m_fromDateCtrl->Enable(user_date);
-    m_toDateControl->Enable(user_date);
+    m_toDateCtrl->Enable(user_date);
 }
 
 void mmFilterTransactionsDialog::OnSaveSettings(wxCommandEvent& WXUNUSED(event))
