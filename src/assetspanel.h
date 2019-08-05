@@ -26,6 +26,7 @@ class wxStaticText;
 class wxListEvent;
 class mmAssetsPanel;
 class mmGUIFrame;
+class wxButton;
 
 /* Custom ListCtrl class that implements virtual LC style */
 class mmAssetsListCtrl: public mmListCtrl
