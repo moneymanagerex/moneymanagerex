@@ -45,7 +45,6 @@ wxBEGIN_EVENT_TABLE(mmAssetsListCtrl, mmListCtrl)
     EVT_MENU(MENU_TREEPOPUP_DELETE, mmAssetsListCtrl::OnDeleteAsset)
     EVT_MENU(MENU_ON_DUPLICATE_TRANSACTION, mmAssetsListCtrl::OnDuplicateAsset)
     EVT_MENU(MENU_TREEPOPUP_ORGANIZE_ATTACHMENTS, mmAssetsListCtrl::OnOrganizeAttachments)
-
     EVT_LIST_KEY_DOWN(wxID_ANY, mmAssetsListCtrl::OnListKeyDown)
 wxEND_EVENT_TABLE()
 /*******************************************************/
@@ -389,6 +388,7 @@ BEGIN_EVENT_TABLE(mmAssetsPanel, wxPanel)
     EVT_BUTTON(wxID_VIEW_DETAILS , mmAssetsPanel::OnViewAssetTrans)
     EVT_BUTTON(wxID_DELETE, mmAssetsPanel::OnDeleteAsset)
     EVT_BUTTON(wxID_FILE, mmAssetsPanel::OnOpenAttachment)
+    EVT_BUTTON(wxID_FILE2, mmAssetsPanel::OnMouseLeftDown)
     EVT_MENU(wxID_ANY, mmAssetsPanel::OnViewPopupSelected)
     EVT_SEARCHCTRL_SEARCH_BTN(wxID_FIND, mmAssetsPanel::OnSearchTxtEntered)
     EVT_TEXT_ENTER(wxID_FIND, mmAssetsPanel::OnSearchTxtEntered)
@@ -400,7 +400,7 @@ mmAssetsPanel::mmAssetsPanel(mmGUIFrame* frame, wxWindow *parent, wxWindowID win
     , m_frame(frame)
     , m_header_text(nullptr)
     , m_listCtrlAssets(nullptr)
-    , m_itemStaticTextMainFilter(nullptr)
+    , m_bitmapTransFilter(nullptr)
     , m_tips()
 {
     Create(parent, winid, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL, name);
@@ -455,20 +455,17 @@ void mmAssetsPanel::CreateControls()
     wxBoxSizer* itemBoxSizerVHeader = new wxBoxSizer(wxVERTICAL);
     headerPanel->SetSizer(itemBoxSizerVHeader);
 
-    wxStaticText* itemStaticText9 = new wxStaticText( headerPanel, wxID_STATIC, _("Assets"));
+    wxStaticText* itemStaticText9 = new wxStaticText(headerPanel, wxID_STATIC, _("Assets"));
     itemStaticText9->SetFont(this->GetFont().Larger().Bold());
     itemBoxSizerVHeader->Add(itemStaticText9, g_flagsBorder1V);
 
     wxBoxSizer* itemBoxSizerHHeader2 = new wxBoxSizer(wxHORIZONTAL);
     itemBoxSizerVHeader->Add(itemBoxSizerHHeader2);
 
-    wxStaticBitmap* itemStaticBitmap3 = new wxStaticBitmap(headerPanel, wxID_STATIC, mmBitmap(png::RIGHTARROW));
-    itemBoxSizerHHeader2->Add(itemStaticBitmap3, g_flagsBorder1H);
-    //itemStaticBitmap3->Connect(ID_PANEL_CHECKING_STATIC_BITMAP_VIEW, wxEVT_RIGHT_DOWN, wxMouseEventHandler(mmAssetsPanel::OnFilterResetToViewAll), nullptr, this);
-    itemStaticBitmap3->Connect(wxID_STATIC, wxEVT_LEFT_DOWN, wxMouseEventHandler(mmAssetsPanel::OnMouseLeftDown), nullptr, this);
-
-    m_itemStaticTextMainFilter = new wxStaticText(headerPanel, wxID_STATIC, _("All"));
-    itemBoxSizerHHeader2->Add(m_itemStaticTextMainFilter, 0, wxALIGN_CENTER_VERTICAL | wxALL, 1);
+    m_bitmapTransFilter = new wxButton(headerPanel, wxID_FILE2);
+    m_bitmapTransFilter->SetBitmap(mmBitmap(png::RIGHTARROW));
+    m_bitmapTransFilter->SetLabel(_("All"));
+    itemBoxSizerHHeader2->Add(m_bitmapTransFilter, g_flagsBorder1H);
 
     m_header_text = new wxStaticText(headerPanel, wxID_STATIC, "");
     itemBoxSizerVHeader->Add(m_header_text, g_flagsBorder1V);
@@ -701,7 +698,7 @@ void mmAssetsPanel::enableEditDeleteButtons(bool enable)
     if (btn) btn->Enable(enable);
 }
 
-void mmAssetsPanel::OnMouseLeftDown ( wxMouseEvent& event )
+void mmAssetsPanel::OnMouseLeftDown(wxCommandEvent& event)
 {
     int i = 0;
     wxMenu menu;
@@ -722,14 +719,15 @@ void mmAssetsPanel::OnViewPopupSelected(wxCommandEvent& event)
 
     if (evt == 0)
     {
-        m_itemStaticTextMainFilter->SetLabelText(_("All"));
+        m_bitmapTransFilter->SetLabel(_("All"));
         this->m_filter_type = Model_Asset::TYPE(-1);
     }
     else
     {
         this->m_filter_type = Model_Asset::TYPE(evt - 1);
-        m_itemStaticTextMainFilter->SetLabelText(wxGetTranslation(Model_Asset::all_type()[evt - 1]));
+        m_bitmapTransFilter->SetLabel(wxGetTranslation(Model_Asset::all_type()[evt - 1]));
     }
+    this->Layout();
 
     int trx_id = -1;
     m_listCtrlAssets->doRefreshItems(trx_id);

@@ -129,7 +129,7 @@ private:
     wxChoice* accountDropDown_;
     wxCheckBox* m_dateRangeCheckBox;
     wxDatePickerCtrl* m_fromDateCtrl;
-    wxDatePickerCtrl* m_toDateControl;
+    wxDatePickerCtrl* m_toDateCtrl;
     wxCheckBox* payeeCheckBox_;
     wxComboBox* cbPayee_;
     wxCheckBox* categoryCheckBox_;

@@ -248,7 +248,7 @@ private:
         ID_PANEL_CHECKING_STATIC_BALHEADER4,
         ID_PANEL_CHECKING_STATIC_BALHEADER5,
         ID_PANEL_CHECKING_STATIC_DETAILS,
-        ID_PANEL_CHECKING_STATIC_BITMAP_FILTER,
+        ID_TRX_FILTER,
     };
     enum menu
     {
@@ -265,6 +265,7 @@ private:
         MENU_VIEW_LASTYEAR,
         MENU_VIEW_LASTFINANCIALYEAR,
         MENU_VIEW_STATEMENTDATE,
+        MENU_VIEW_FILTER_DIALOG,
     };
     static wxArrayString menu_labels()
     {
@@ -278,10 +279,11 @@ private:
         items.Add(VIEW_TRANS_LAST_3MONTHS_STR);
         items.Add(VIEW_TRANS_LAST_12MONTHS_STR);
         items.Add(VIEW_TRANS_CURRENT_YEAR_STR);
-        items.Add(VIEW_TRANS_CURRENT_FIN_YEAR_STR);
+        items.Add(VIEW_TRANS_CRRNT_FIN_YEAR_STR);
         items.Add(VIEW_TRANS_LAST_YEAR_STR);
         items.Add(VIEW_TRANS_LAST_FIN_YEAR_STR);
         items.Add(VIEW_TRANS_SINCE_STATEMENT_STR);
+        items.Add(VIEW_TRANS_FILTER_DIALOG_STR);
         return items;
     }
     wxDECLARE_EVENT_TABLE();
@@ -295,10 +297,7 @@ private:
     wxStaticText* m_header_text;
     wxStaticText* m_info_panel;
     wxStaticText* m_info_panel_mini;
-    wxStaticText* m_stxtMainFilter;
-    wxStaticText* m_statTextTransFilter;
-    wxStaticBitmap* m_bitmapTransFilter;
-    wxStaticBitmap* m_bitmapMainFilter;
+    wxButton* m_bitmapTransFilter;
     mmFilterTransactionsDialog* m_trans_filter_dlg;
 
     int m_currentView;
@@ -317,7 +316,7 @@ private:
     Model_Checking::Full_Data_Set m_trans;
 
     void initViewTransactionsHeader();
-    void initFilterSettings();
+    void setDateRange();
     void setAccountSummary();
     void sortTable();
     void filterTable();
@@ -341,15 +340,12 @@ private:
     void OnDuplicateTransaction(wxCommandEvent& event);
     void OnMoveTransaction(wxCommandEvent& event);
     void OnOpenAttachment(wxCommandEvent& event);
-    void OnMouseLeftDown( wxMouseEvent& event );
+    void OnMouseLeftDown( wxCommandEvent& event );
     void OnViewPopupSelected(wxCommandEvent& event);
-    void OnFilterTransactions(wxMouseEvent& event);
     void OnSearchTxtEntered(wxCommandEvent& event);
-    void OnFilterResetToViewAll(wxMouseEvent& event);
 
     void DeleteViewedTransactions();
     void DeleteFlaggedTransactions(const wxString& status);
-    void SetTransactionFilterState(bool active);
 
     /* updates the checking panel data */
     void showTips();
