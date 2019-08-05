@@ -38,7 +38,7 @@ wxBEGIN_EVENT_TABLE(mmPayeeDialog, wxDialog)
     EVT_BUTTON(wxID_CANCEL, mmPayeeDialog::OnCancel)
     EVT_BUTTON(wxID_OK, mmPayeeDialog::OnOk)
     EVT_BUTTON(wxID_APPLY, mmPayeeDialog::OnMagicButton)
-    EVT_TEXT(wxID_ANY, mmPayeeDialog::OnTextChanged)
+    EVT_TEXT(wxID_FIND, mmPayeeDialog::OnSearchTextChanged)
     EVT_DATAVIEW_ITEM_VALUE_CHANGED(wxID_ANY, mmPayeeDialog::OnDataChanged)
     EVT_DATAVIEW_ITEM_EDITING_STARTED(wxID_ANY, mmPayeeDialog::OnDataEditStart)
     EVT_DATAVIEW_SELECTION_CHANGED(wxID_ANY, mmPayeeDialog::OnListItemSelected)
@@ -137,8 +137,8 @@ void mmPayeeDialog::CreateControls()
 void mmPayeeDialog::fillControls()
 {
     payeeListBox_->DeleteAllItems();
-
-    for (const auto& payee : Model_Payee::instance().FilterPayees(m_maskStr))
+    const auto payees = Model_Payee::instance().FilterPayees(m_maskStr);
+    for (const auto& payee : payees)
     {
         const wxString full_category_name = Model_Category::instance().full_name(payee.CATEGID, payee.SUBCATEGID);
         wxVector<wxVariant> data;
@@ -322,7 +322,7 @@ void mmPayeeDialog::OnPayeeRelocate()
     }
 }
 
-void mmPayeeDialog::OnTextChanged(wxCommandEvent& event)
+void mmPayeeDialog::OnSearchTextChanged(wxCommandEvent& event)
 {
     m_maskStr = event.GetString();
     fillControls();
