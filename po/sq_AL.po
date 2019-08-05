@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-08-05 16:25+0300\n"
-"PO-Revision-Date: 2019-08-05 13:38\n"
+"PO-Revision-Date: 2019-08-05 22:34\n"
 "Last-Translator: Nikolay (vomikan)\n"
 "Language-Team: Albanian\n"
 "MIME-Version: 1.0\n"
@@ -28,7 +28,7 @@ msgstr "Marrveshja për liçencën"
 #: aboutdialog.cpp:41
 #, c-format
 msgid "About %s"
-msgstr ""
+msgstr "Rreth %s"
 
 #: aboutdialog.cpp:144
 msgid "About"
@@ -36,7 +36,7 @@ msgstr "Rreth nesh "
 
 #: aboutdialog.cpp:149
 msgid "Authors"
-msgstr ""
+msgstr "Autorët"
 
 #: aboutdialog.cpp:154
 msgid "Sponsors"
@@ -48,7 +48,7 @@ msgstr "Liçenca"
 
 #: aboutdialog.cpp:164
 msgid "Privacy"
-msgstr ""
+msgstr "Privatësia"
 
 #: aboutdialog.cpp:195 accountdialog.cpp:373 appstartdialog.cpp:136
 #: assetdialog.cpp:297 attachmentdialog.cpp:117 billsdepositsdialog.cpp:456
@@ -143,11 +143,11 @@ msgstr "Infromacionet e Kyçjes "
 
 #: accountdialog.cpp:299
 msgid "Statement"
-msgstr ""
+msgstr "Deklaratë"
 
 #: accountdialog.cpp:307
 msgid "Statement:"
-msgstr ""
+msgstr "Deklaratë:"
 
 #: accountdialog.cpp:308
 msgid "Locked"
@@ -171,7 +171,7 @@ msgstr ""
 
 #: accountdialog.cpp:337
 msgid "Interest Rate:"
-msgstr ""
+msgstr "Kursi i këmbimit:"
 
 #: accountdialog.cpp:341
 msgid "Payment Due Date:"
