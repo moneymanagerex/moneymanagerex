@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2019-08-05 12:23+0300\n"
-"PO-Revision-Date: 2019-08-05 09:42\n"
+"POT-Creation-Date: 2019-08-05 16:25+0300\n"
+"PO-Revision-Date: 2019-08-05 13:39\n"
 "Last-Translator: Nikolay (vomikan)\n"
 "Language-Team: Czech\n"
 "MIME-Version: 1.0\n"
@@ -499,7 +499,7 @@ msgstr "Celkem: %s"
 msgid "MMEX allows you to track fixed assets like cars, houses, land and others. Each asset can have its value appreciate by a certain rate per year, depreciate by a certain rate per year, or not change in value. The total assets are added to your total financial worth."
 msgstr "MMEX Vám umožňuje spravovat hmotný majetek jako např. auta, domy, půdu a další. Každý majetek má svou hodnotu, která se ročně zhodnocuje, znehodnocuje nebo svou hodnotu nemění. Celková hodnota majetku bude zahrnuta do celkové fiskální částky."
 
-#: assetspanel.cpp:458 assetspanel.h:107 general_report_manager.cpp:684
+#: assetspanel.cpp:458 assetspanel.h:108 general_report_manager.cpp:684
 #: general_report_manager.cpp:961 mmframe.cpp:457 mmframe.cpp:729
 #: mmframe.cpp:1652 mmhomepagepanel.cpp:427 mmhomepagepanel.cpp:843
 msgid "Assets"
