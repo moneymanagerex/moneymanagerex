@@ -88,7 +88,7 @@ private:
     void OnDataChanged(wxDataViewEvent& event);
     void OnMenuSelected(wxCommandEvent& event);
     void OnItemRightClick(wxDataViewEvent& event);
-    void OnTextChanged(wxCommandEvent& event);
+    void OnSearchTextChanged(wxCommandEvent& event);
     void OnMagicButton(wxCommandEvent& event);
 
     bool debug_;
