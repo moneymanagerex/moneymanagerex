@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-08-05 12:23+0300\n"
-"PO-Revision-Date: 2019-08-05 09:40\n"
+"PO-Revision-Date: 2019-08-05 10:24\n"
 "Last-Translator: Nikolay (vomikan)\n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -778,7 +778,7 @@ msgstr "Semestrielle"
 #: billsdepositsdialog.cpp:57 billsdepositspanel.cpp:52
 #: model/Model_Budget.cpp:61 option.cpp:117
 msgid "Yearly"
-msgstr "Annuelle"
+msgstr "Annuel"
 
 #: billsdepositsdialog.cpp:58 billsdepositspanel.cpp:53
 msgid "Four Months"
@@ -791,7 +791,7 @@ msgstr "Quatre semaines"
 #: billsdepositsdialog.cpp:60 billsdepositspanel.cpp:55
 #: model/Model_Budget.cpp:62 option.cpp:128
 msgid "Daily"
-msgstr "Quotidienne"
+msgstr "Quotidien"
 
 #: billsdepositsdialog.cpp:61 billsdepositsdialog.cpp:1315
 msgid "In (x) Days"
