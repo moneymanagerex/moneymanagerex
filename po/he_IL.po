@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-08-05 12:23+0300\n"
-"PO-Revision-Date: 2019-08-05 09:41\n"
+"PO-Revision-Date: 2019-08-05 12:45\n"
 "Last-Translator: Nikolay (vomikan)\n"
 "Language-Team: Hebrew\n"
 "MIME-Version: 1.0\n"
@@ -1665,7 +1665,7 @@ msgstr "&סגירה "
 
 #: constants.cpp:140
 msgid "Advanced Filter"
-msgstr ""
+msgstr "סינון מתקדם"
 
 #: constants.cpp:141
 msgid "View All Transactions"
