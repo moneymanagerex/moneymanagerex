@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2019-08-05 16:25+0300\n"
-"PO-Revision-Date: 2019-08-05 13:39\n"
+"POT-Creation-Date: 2019-08-06 10:14+0300\n"
+"PO-Revision-Date: 2019-08-06 07:26\n"
 "Last-Translator: Nikolay (vomikan)\n"
 "Language-Team: Bulgarian\n"
 "MIME-Version: 1.0\n"
@@ -5135,6 +5135,10 @@ msgstr "Избери папка, която да се ползва като ар
 
 #: optionsettingsattachment.cpp:257
 msgid "Attachments path has been changed!"
+msgstr ""
+
+#: optionsettingsattachment.cpp:258
+msgid "Do you want to move all attachments to the new location?"
 msgstr ""
 
 #: optionsettingsattachment.cpp:259 optionsettingsattachment.cpp:269
