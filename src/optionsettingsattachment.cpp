@@ -255,7 +255,7 @@ void OptionSettingsAttachment::SaveSettings()
         {
             int MoveResponse = wxMessageBox(
                 wxString::Format("%s\n", _("Attachments path has been changed!"))
-                + ("Do you want to move all attachments to the new location?")
+                + _("Do you want to move all attachments to the new location?")
                 , _("Attachments folder migration")
                 , wxYES_NO | wxYES_DEFAULT | wxICON_WARNING);
             if (MoveResponse == wxYES)
