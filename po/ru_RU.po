@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-08-06 10:14+0300\n"
-"PO-Revision-Date: 2019-08-06 07:22\n"
+"PO-Revision-Date: 2019-08-06 08:23\n"
 "Last-Translator: Nikolay (vomikan)\n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -1665,7 +1665,7 @@ msgstr "&Закрыть "
 
 #: constants.cpp:140
 msgid "Advanced Filter"
-msgstr ""
+msgstr "Расширенный фильтр"
 
 #: constants.cpp:141
 msgid "View All Transactions"
@@ -5172,7 +5172,7 @@ msgstr "Путь для вложений был изменен!"
 
 #: optionsettingsattachment.cpp:258
 msgid "Do you want to move all attachments to the new location?"
-msgstr ""
+msgstr "Вы хотите переместить все вложения в новое местоположение?"
 
 #: optionsettingsattachment.cpp:259 optionsettingsattachment.cpp:269
 msgid "Attachments folder migration"
