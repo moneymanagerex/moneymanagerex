@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2019-08-05 16:25+0300\n"
-"PO-Revision-Date: 2019-08-05 13:38\n"
+"POT-Creation-Date: 2019-08-06 10:14+0300\n"
+"PO-Revision-Date: 2019-08-06 07:24\n"
 "Last-Translator: Nikolay (vomikan)\n"
 "Language-Team: Dutch\n"
 "MIME-Version: 1.0\n"
@@ -5151,6 +5151,10 @@ msgstr "Kies een map voor het bijlagen archief"
 #: optionsettingsattachment.cpp:257
 msgid "Attachments path has been changed!"
 msgstr "Bijlagenpad is gewijzigd!"
+
+#: optionsettingsattachment.cpp:258
+msgid "Do you want to move all attachments to the new location?"
+msgstr ""
 
 #: optionsettingsattachment.cpp:259 optionsettingsattachment.cpp:269
 msgid "Attachments folder migration"
