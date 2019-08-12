@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-08-06 10:14+0300\n"
-"PO-Revision-Date: 2019-08-06 07:22\n"
+"PO-Revision-Date: 2019-08-12 11:41\n"
 "Last-Translator: Nikolay (vomikan)\n"
 "Language-Team: Portuguese, Brazilian\n"
 "MIME-Version: 1.0\n"
@@ -270,7 +270,7 @@ msgstr "Imagem #%i"
 #: appstartdialog.cpp:48 util.cpp:444
 #, c-format
 msgid "Version: %s"
-msgstr ""
+msgstr "Versão: %s"
 
 #: appstartdialog.cpp:99
 msgid "Open Last Opened Database"
@@ -1660,7 +1660,7 @@ msgstr "&Fechar"
 
 #: constants.cpp:140
 msgid "Advanced Filter"
-msgstr ""
+msgstr "Filtro avançado"
 
 #: constants.cpp:141
 msgid "View All Transactions"
@@ -5713,7 +5713,7 @@ msgstr "Total Mensal"
 
 #: reports/bugreport.h:55
 msgid "Bug Report"
-msgstr ""
+msgstr "Reportar bug"
 
 #: reports/bugreport.h:72
 msgid "Replace this text (marked with >) with detailed description of your problem."
