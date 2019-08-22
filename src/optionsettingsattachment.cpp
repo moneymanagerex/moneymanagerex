@@ -70,7 +70,8 @@ void OptionSettingsAttachment::Create()
     wxBoxSizer* attachDefinedSizer = new wxBoxSizer(wxHORIZONTAL);
     attachmentStaticBoxSizer->Add(attachDefinedSizer);
 
-    const wxString attachmentFolder = Model_Infotable::instance().GetStringInfo("ATTACHMENTSFOLDER:" + mmPlatformType(), "");
+    const wxString attachmentFolder = Model_Infotable::instance().GetStringInfo(
+        wxString::Format("ATTACHMENTSFOLDER:%s", mmPlatformType()), "");
     m_old_path = attachmentFolder;
 
     wxTextCtrl* textAttachment = new wxTextCtrl(this
@@ -146,7 +147,7 @@ void OptionSettingsAttachment::Create()
     const wxString LastDBPath = Model_Setting::instance().getLastDbPath();
     const wxFileName fn(LastDBPath);
     const wxString LastDBFileName = fn.FileName(LastDBPath).GetName();
-    const wxString subFolder = wxString::Format("MMEX_%s_Attachments", fn.FileName(LastDBPath).GetName());
+    const wxString subFolder = wxString::Format("MMEX_%s_Attachments", LastDBFileName);
     const wxString cbAttachmentsSubfolder_desc = _("Create and use Attachments subfolder");
 
     m_attachments_subfolder = new wxCheckBox(this, ID_DIALOG_OPTIONS_CHECKBOX_ATTACHMENTSSUBFOLDER

@@ -43,7 +43,6 @@ wxEND_EVENT_TABLE()
 
 mmAttachmentDialog::mmAttachmentDialog (wxWindow* parent, const wxString& RefType, int RefId, const wxString& name) :
     m_attachment_id(-1)
-    , m_RefType(RefType)
     , m_RefId(RefId)
     #ifdef _DEBUG
         , debug_(true)
@@ -54,8 +53,10 @@ mmAttachmentDialog::mmAttachmentDialog (wxWindow* parent, const wxString& RefTyp
     if (debug_) ColName_[ATTACHMENT_ID] = _("#");
     ColName_[ATTACHMENT_DESCRIPTION] = _("Description");
     ColName_[ATTACHMENT_FILENAME] = _("File");
+    m_RefType = RefType;
+    m_RefType.Replace(" ", "_");
 
-    Create(parent, name);
+    Create(parent, RefType, name);
 
     const wxString AttachmentsFolder = mmex::getPathAttachment(mmAttachmentManage::InfotablePathSetting());
 
@@ -75,16 +76,16 @@ mmAttachmentDialog::mmAttachmentDialog (wxWindow* parent, const wxString& RefTyp
     }
 }
 
-void mmAttachmentDialog::Create(wxWindow* parent, const wxString& name)
+void mmAttachmentDialog::Create(wxWindow* parent, const wxString& label, const wxString& name)
 {
     SetExtraStyle(GetExtraStyle()|wxWS_EX_BLOCK_EVENTS);
     long style = wxCAPTION | wxCLOSE_BOX | wxRESIZE_BORDER;
 
     wxString WindowTitle;
     if (m_RefId > 0)
-        WindowTitle = wxString::Format(_("Organize Attachments | %s %i"), wxGetTranslation(m_RefType), m_RefId);
+        WindowTitle = wxString::Format(_("Organize Attachments | %s %i"), wxGetTranslation(label), m_RefId);
     else
-        WindowTitle = wxString::Format(_("Organize Attachments | New %s"), wxGetTranslation(m_RefType));
+        WindowTitle = wxString::Format(_("Organize Attachments | New %s"), wxGetTranslation(label));
 
     if (!wxDialog::Create(parent, wxID_ANY, WindowTitle, wxDefaultPosition, wxDefaultSize, style, name))
         return;
@@ -181,8 +182,7 @@ void mmAttachmentDialog::AddAttachment()
     wxString AttachmentsFolder = mmex::getPathAttachment(mmAttachmentManage::InfotablePathSetting());
     int attachmentLastNumber = Model_Attachment::LastAttachmentNumber(m_RefType, m_RefId);
 
-    wxString importedFileName = m_RefType + "_" + wxString::Format("%i", m_RefId) + "_Attach"
-        + wxString::Format("%i", attachmentLastNumber + 1) + "." + attachmentFileExtension;
+    const wxString importedFileName =  wxString::Format("%s_%i_Attach%i.%s", m_RefType, m_RefId, ++attachmentLastNumber, attachmentFileExtension);
 
     if (mmAttachmentManage::CopyAttachment(attachmentFilePath, AttachmentsFolder + m_PathSep + m_RefType + m_PathSep + importedFileName))
     {

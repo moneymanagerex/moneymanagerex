@@ -426,7 +426,7 @@ void mmNewAcctDialog::OnCurrency(wxCommandEvent& WXUNUSED(event))
 
 void mmNewAcctDialog::OnAttachments(wxCommandEvent& WXUNUSED(event))
 {
-    wxString RefType = Model_Attachment::reftype_desc(Model_Attachment::BANKACCOUNT);
+    const wxString RefType = Model_Attachment::reftype_desc(Model_Attachment::BANKACCOUNT);
     mmAttachmentDialog dlg(this, RefType, m_account->ACCOUNTID);
     dlg.ShowModal();
 }

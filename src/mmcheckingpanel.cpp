@@ -39,6 +39,7 @@
 #include "transactionsupdatedialog.h"
 #include "util.h"
 #include "validators.h"
+#include "reports/htmlbuilder.h"
 
 //----------------------------------------------------------------------------
 #include <algorithm>
@@ -676,6 +677,10 @@ void mmCheckingPanel::initViewTransactionsHeader()
     {
         m_transFilterActive = m_trans_filter_dlg->SomethingSelected();
     }
+    m_bitmapTransFilter->SetBitmap(mmBitmap(m_transFilterActive ? png::RIGHTARROW_ACTIVE : png::RIGHTARROW));
+    mmHTMLBuilder hb;
+    m_trans_filter_dlg->getDescription(hb, false);
+    m_bitmapTransFilter->SetToolTip(hb.getHTMLText());
 }
 //----------------------------------------------------------------------------
 
