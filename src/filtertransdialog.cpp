@@ -89,7 +89,6 @@ mmFilterTransactionsDialog::mmFilterTransactionsDialog(wxWindow* parent, int acc
     , m_min_amount(0)
     , m_max_amount(0)
     , m_filterStatus("")
-    , m_settings_id(-1)
 {
     int day = Model_Infotable::instance().GetIntInfo("FINANCIAL_YEAR_START_DAY", 1);
     int month = Model_Infotable::instance().GetIntInfo("FINANCIAL_YEAR_START_MONTH", 7);
@@ -111,7 +110,6 @@ mmFilterTransactionsDialog::mmFilterTransactionsDialog(wxWindow* parent, int acc
     m_all_date_ranges.push_back(new mmLast365Days());
     m_all_date_ranges.push_back(new mmSpecifiedRange(wxDate::Today(), wxDate::Today()));
 
-    SetSettingsID(Model_Infotable::instance().GetIntInfo("TRANSACTIONS_FILTER_VIEW_NO", 0));
     m_custom_fields = new mmCustomDataTransaction(this, 0, wxID_HIGHEST + 11600);
     long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX;
     Create(parent, wxID_ANY, _("Transaction Filter"), wxDefaultPosition, wxSize(400, 300), style);
@@ -143,6 +141,7 @@ bool mmFilterTransactionsDialog::Create(wxWindow* parent
 
 int mmFilterTransactionsDialog::ShowModal()
 {
+    GetStoredSettings(-1);
     dataToControls();
     // rebuild the payee list as it may have changed
     BuildPayeeList();
@@ -372,7 +371,7 @@ void mmFilterTransactionsDialog::CreateControls()
 
         m_setting_name->AppendString(s_label.empty() ? wxString::Format(_("%i: Empty"), i + 1) : s_label);
     }
-    m_setting_name->Select(0);
+
     m_setting_name->Connect(wxID_APPLY, wxEVT_COMMAND_CHOICE_SELECTED
         , wxCommandEventHandler(mmFilterTransactionsDialog::OnSettingsSelected), nullptr, this);
 
@@ -532,7 +531,7 @@ void mmFilterTransactionsDialog::OnButtonokClick(wxCommandEvent& WXUNUSED(event)
         getFilterStatus();
         wxLogDebug(m_filterStatus);
     }
-    //SaveSettings();
+    SaveSettings(-1);
     EndModal(wxID_OK);
 }
 
@@ -669,10 +668,9 @@ void mmFilterTransactionsDialog::OnButtonClearClick(wxCommandEvent& WXUNUSED(eve
     OnCheckboxClick(evt);
 }
 
-wxString mmFilterTransactionsDialog::GetStoredSettings(int id)
+const wxString mmFilterTransactionsDialog::GetStoredSettings(int id)
 {
-    if (id < 0) id = 0;
-    Model_Setting::instance().Set("TRANSACTIONS_FILTER_VIEW_NO", id);
+    if (id < 0) id = -1;
     settings_string_ = Model_Infotable::instance().GetStringInfo(
         wxString::Format("TRANSACTIONS_FILTER_%d", id)
         , "");
@@ -695,7 +693,7 @@ void mmFilterTransactionsDialog::clearSettings()
     dataToControls();
 
     // Clear the settings for the allocated position
-    SaveSettings();
+    SaveSettings(i);
 }
 
 void mmFilterTransactionsDialog::OnPayeeUpdated(wxCommandEvent& event)
@@ -810,13 +808,15 @@ void mmFilterTransactionsDialog::OnTextEntered(wxCommandEvent& event)
         amountMaxEdit_->Calculate();
 }
 
-void mmFilterTransactionsDialog::getDescription(mmHTMLBuilder &hb)
+void mmFilterTransactionsDialog::getDescription(mmHTMLBuilder &hb, bool html)
 {
-    hb.addHorizontalLine();
-    hb.addHeader(3, _("Filtering Details: "));
+    if (html) {
+        hb.addHorizontalLine();
+        hb.addHeader(3, _("Filtering Details: "));
+    }
     // Extract the parameters from the transaction dialog and add them to the report.
     wxString filterDetails = to_json(true);
-    filterDetails.Replace("\n", "<br>");
+    if (html) filterDetails.Replace("\n", "<br>");
     filterDetails.Replace("\"\"", _("Empty value"));
     filterDetails.Replace("\"", "");
     filterDetails.replace(0, 1, ' ');
@@ -938,7 +938,11 @@ wxString mmFilterTransactionsDialog::to_json(bool i18n)
         json_writer.Key(entry.second.c_str());
     }
 
-    const wxString label = m_setting_name->GetStringSelection();
+    wxString label = m_setting_name->GetStringSelection();
+    if (m_setting_name->GetSelection() < 0) {
+        label = i18n ? _("Default") : "Default";
+    }
+
     const wxString default_label = wxString::Format(_("%i: Empty"), m_setting_name->GetSelection() + 1);
     if (!label.empty() && label != default_label)
     {
@@ -1237,17 +1241,14 @@ void mmFilterTransactionsDialog::OnSaveSettings(wxCommandEvent& WXUNUSED(event))
 
     m_setting_name->SetString(i, label);
 
-    SaveSettings();
-
+    SaveSettings(i);
 }
 
-void mmFilterTransactionsDialog::SaveSettings()
+void mmFilterTransactionsDialog::SaveSettings(int menu_item)
 {
-    int i = m_setting_name->GetSelection();
     settings_string_ = to_json();
-    Model_Infotable::instance().Set(wxString::Format("TRANSACTIONS_FILTER_%d", i), settings_string_);
-    Model_Infotable::instance().Set("TRANSACTIONS_FILTER_VIEW_NO", i);
-    wxLogDebug("========== Settings Saved to registry %i ==========\n %s", i, settings_string_);
+    Model_Infotable::instance().Set(wxString::Format("TRANSACTIONS_FILTER_%d", menu_item), settings_string_);
+    wxLogDebug("========== Settings Saved to registry %i ==========\n %s", menu_item, settings_string_);
 
     m_custom_fields->SaveCustomValues(0); //TODO: how to save it?
 }

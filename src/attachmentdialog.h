@@ -58,7 +58,7 @@ private:
 
     mmAttachmentDialog() : m_attachment_id(-1) {}
 
-    void Create(wxWindow* parent, const wxString& name = "mmAttachmentDialog");
+    void Create(wxWindow* parent, const wxString& label, const wxString& name = "mmAttachmentDialog");
     void CreateControls();
     void fillControls();
 

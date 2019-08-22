@@ -51,7 +51,7 @@ public:
 
     bool checkAll(const Model_Checking::Full_Data &tran, int accountID);
     bool checkAll(const Model_Billsdeposits::Full_Data &tran);
-    void getDescription(mmHTMLBuilder &hb);
+    void getDescription(mmHTMLBuilder &hb, bool html = true);
     bool SomethingSelected();
     void ResetFilterStatus();
     void setAccountToolTip(const wxString& tip) const;
@@ -103,14 +103,14 @@ private:
     /// Creates the controls and sizers
     void CreateControls();
     void dataToControls();
-    wxString GetStoredSettings(int id);
+    const wxString GetStoredSettings(int id);
 
     /// wxEVT_COMMAND_CHECKBOX_CLICKED event handler for ID_CHECKBOXACCOUNT
     void OnCheckboxClick( wxCommandEvent& event );
 
     void OnButtonokClick(wxCommandEvent& event);
     void OnButtoncancelClick(wxCommandEvent& event);
-    void SaveSettings();
+    void SaveSettings(int menu_item);
     void OnButtonClearClick(wxCommandEvent& event);
     void OnMoreFields(wxCommandEvent& event);
     void OnPayeeUpdated(wxCommandEvent& event);
@@ -165,9 +165,6 @@ private:
     double m_min_amount;
     double m_max_amount;
     wxString m_filterStatus;
-    int m_settings_id;
-    void SetSettingsID(int id) { m_settings_id = id; }
-    int GetSettingsID() { return m_settings_id; }
 
     mmCustomData* m_custom_fields;
     std::vector<mmDateRange*> m_all_date_ranges;
