@@ -755,6 +755,11 @@ const wxString mmStocksPanel::Total_Shares()
 void mmStocksPanel::updateHeader()
 {
     const Model_Account::Data* account = Model_Account::instance().get(m_account_id);
+    if (account)
+        m_currency = Model_Account::currency(account);
+    else
+        m_currency = Model_Currency::GetBaseCurrency();
+
     double initVal = 0;
     // + Transferred from other accounts - Transferred to other accounts
 
