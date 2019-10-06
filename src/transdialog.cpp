@@ -1254,14 +1254,10 @@ void mmTransDialog::OnMoreFields(wxCommandEvent& WXUNUSED(event))
 {
     wxBitmapButton* button = static_cast<wxBitmapButton*>(FindWindow(ID_DIALOG_TRANS_CUSTOMFIELDS));
 
-    if (m_custom_fields->IsCustomPanelShown())
-    {
-        if (button) button->SetBitmap(mmBitmap(png::RIGHTARROWSIMPLE));
-    }
-    else
-    {
-        if (button) button->SetBitmap(mmBitmap(png::LEFTARROWSIMPLE));
-    }
+    if (button)
+        button->SetBitmap(mmBitmap(m_custom_fields->IsCustomPanelShown()
+            ? png::RIGHTARROWSIMPLE
+            : png::LEFTARROWSIMPLE));
 
     m_custom_fields->ShowHideCustomPanel();
 
