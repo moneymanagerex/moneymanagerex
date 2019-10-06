@@ -445,10 +445,11 @@ wxString mmBillsDepositsPanel::getItem(long item, long column)
     case COL_FREQUENCY:
         return GetFrequency(&bill);
     case COL_REPEATS:
-        if (bill.NUMOCCURRENCES == -1)
-            return L"\x221E";
-        else
+        if (bill.NUMOCCURRENCES != -1)
             return wxString::Format("%i", bill.NUMOCCURRENCES).Trim();
+        if (bill.REPEATS == Model_Billsdeposits::REPEAT_NONE)
+            return wxEmptyString;
+        return L"\x221E";
     case COL_AUTO:
         switch (bill.REPEATS/BD_REPEATS_MULTIPLEX_BASE)
         {
