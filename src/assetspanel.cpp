@@ -463,8 +463,8 @@ void mmAssetsPanel::CreateControls()
     itemBoxSizerVHeader->Add(itemBoxSizerHHeader2);
 
     m_bitmapTransFilter = new wxButton(headerPanel, wxID_FILE2);
-    m_bitmapTransFilter->SetBitmap(mmBitmap(png::RIGHTARROW));
     m_bitmapTransFilter->SetLabel(_("All"));
+    m_bitmapTransFilter->SetBitmap(mmBitmap(png::RIGHTARROW));
     itemBoxSizerHHeader2->Add(m_bitmapTransFilter, g_flagsBorder1H);
 
     m_header_text = new wxStaticText(headerPanel, wxID_STATIC, "");

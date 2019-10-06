@@ -232,8 +232,8 @@ void mmBillsDepositsPanel::CreateControls()
     itemBoxSizerVHeader->Add(itemBoxSizerHHeader2);
 
     m_bitmapTransFilter = new wxButton(headerPanel, wxID_FILE2);
-    m_bitmapTransFilter->SetBitmap(mmBitmap(png::RIGHTARROW));
     m_bitmapTransFilter->SetLabel(_("Transaction Filter"));
+    m_bitmapTransFilter->SetBitmap(mmBitmap(png::RIGHTARROW));
 
     itemBoxSizerHHeader2->Add(m_bitmapTransFilter, g_flagsBorder1H);
 
@@ -827,20 +827,10 @@ void mmBillsDepositsPanel::RefreshList()
 
 void mmBillsDepositsPanel::OnFilterTransactions(wxCommandEvent& WXUNUSED(event))
 {
-    wxBitmap bitmapFilterIcon(mmBitmap(png::RIGHTARROW));
-
-    if (transFilterDlg_->ShowModal() == wxID_OK && transFilterDlg_->SomethingSelected())
-    {
-        transFilterActive_ = true;
-        bitmapFilterIcon = mmBitmap(png::RIGHTARROW_ACTIVE);
-    }
-    else
-    {
-        transFilterActive_ = false;
-    }
-
-    wxImage pic = bitmapFilterIcon.ConvertToImage();
-    m_bitmapTransFilter->SetBitmap(pic);
+    transFilterActive_ = transFilterDlg_->ShowModal() == wxID_OK && transFilterDlg_->SomethingSelected();
+    m_bitmapTransFilter->SetBitmap(mmBitmap(transFilterActive_
+        ? png::RIGHTARROW_ACTIVE
+        : png::RIGHTARROW));
 
     initVirtualListControl();
 }
