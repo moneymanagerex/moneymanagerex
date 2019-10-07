@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-08-06 10:14+0300\n"
-"PO-Revision-Date: 2019-08-06 07:22\n"
+"PO-Revision-Date: 2019-10-02 11:56\n"
 "Last-Translator: Nikolay (vomikan)\n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -270,7 +270,7 @@ msgstr "Imagen #%i"
 #: appstartdialog.cpp:48 util.cpp:444
 #, c-format
 msgid "Version: %s"
-msgstr ""
+msgstr "Versión: %s"
 
 #: appstartdialog.cpp:99
 msgid "Open Last Opened Database"
@@ -1255,8 +1255,8 @@ msgstr "Automatizado"
 #, c-format
 msgid "%d day remaining"
 msgid_plural "%d days remaining"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d día restante"
+msgstr[1] "%d días restantes"
 
 #: billsdepositspanel.cpp:499 billsdepositspanel.cpp:505
 #: billsdepositspanel.cpp:513

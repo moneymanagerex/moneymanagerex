@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-08-06 10:14+0300\n"
-"PO-Revision-Date: 2019-08-06 07:23\n"
+"PO-Revision-Date: 2019-10-04 10:34\n"
 "Last-Translator: Nikolay (vomikan)\n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -270,7 +270,7 @@ msgstr "Bild #%i"
 #: appstartdialog.cpp:48 util.cpp:444
 #, c-format
 msgid "Version: %s"
-msgstr ""
+msgstr "Version: %s"
 
 #: appstartdialog.cpp:99
 msgid "Open Last Opened Database"
@@ -1659,7 +1659,7 @@ msgstr "&Schließen "
 
 #: constants.cpp:140
 msgid "Advanced Filter"
-msgstr ""
+msgstr "Erweiterter Filter"
 
 #: constants.cpp:141
 msgid "View All Transactions"
@@ -5161,7 +5161,7 @@ msgstr "Der Pfad für Anhänge wurde geändert!"
 
 #: optionsettingsattachment.cpp:258
 msgid "Do you want to move all attachments to the new location?"
-msgstr ""
+msgstr "Möchten Sie alle Anhänge an den neuen Speicherort verschieben?"
 
 #: optionsettingsattachment.cpp:259 optionsettingsattachment.cpp:269
 msgid "Attachments folder migration"
@@ -5713,51 +5713,51 @@ msgstr "Monatlich Gesamt"
 
 #: reports/bugreport.h:55
 msgid "Bug Report"
-msgstr ""
+msgstr "Fehlerbericht"
 
 #: reports/bugreport.h:72
 msgid "Replace this text (marked with >) with detailed description of your problem."
-msgstr ""
+msgstr "Ersetzen Sie diesen Text (mit > markiert) mit einer detaillierter Beschreibung Ihres Problems."
 
 #: reports/bugreport.h:73
 msgid "Please do not remove information attached below this text."
-msgstr ""
+msgstr "Bitte entfernen Sie die unter diesem Text enthaltenen Informationen nicht."
 
 #: reports/bugreport.h:78
 msgid "Use Help->Check for Updates in MMEX to get latest version, where your problem might be already fixed."
-msgstr ""
+msgstr "Verwenden Sie Hilfe->Überprüfen Sie Updates in MMEX, um die neueste Version zu erhalten - Ihr Problem könnte bereits behoben sein."
 
 #: reports/bugreport.h:79
 #, c-format
 msgid "Search <a href='%s'>a list of known issues</a> for similar problem. If so, update existing issue instead of creating a new one."
-msgstr ""
+msgstr "Suche <a href='%s'>eine Liste bekannter Probleme</a> nach ähnlichen Problemen. Falls ja, aktualisiere existierendes Problem anstatt ein neues zu erstellen."
 
 #: reports/bugreport.h:81
 #, c-format
 msgid "Read <a href='%s'>How to Report Bugs Effectively</a> for useful tips."
-msgstr ""
+msgstr "Lesen Sie <a href='%s'>, wie Sie Fehler effektiv melden</a> für nützliche Tipps."
 
 #: reports/bugreport.h:82
 msgid "Come up with a descriptive name for your problem."
-msgstr ""
+msgstr "Geben Sie Ihrem Problem einen sprechenden Namem."
 
 #: reports/bugreport.h:83
 msgid "Include steps to reproduce your problem, attach screenshots where appropriate."
-msgstr ""
+msgstr "Geben Sie die Schritte an, um Ihr Problem zu reproduzieren. Ergänzen Sie Screenshots, wo es notwendig ist."
 
 #: reports/bugreport.h:84
 #, c-format
 msgid "Before click the following link, be sure that you have already signed in to the <a href='%s'>GitHub</a>."
-msgstr ""
+msgstr "Bevor Sie auf den folgenden Link klicken, stellen Sie sicher, dass Sie sich bereits beim <a href='%s'>GitHub</a> angemeldet haben."
 
 #: reports/bugreport.h:86
 #, c-format
 msgid "Finally, report a bug using GitHub <a href='%s'>online form</a> opened in your web browser."
-msgstr ""
+msgstr "Zum Schluss melde einen Fehler mit GitHub <a href='%s'>Online-Formular</a> in deinem Webbrowser geöffnet."
 
 #: reports/bugreport.h:97
 msgid "Please, follow these instructions before submitting a new bug report:"
-msgstr ""
+msgstr "Bitte befolgen Sie diese Schritte, bevor Sie einen neuen Fehler melden:"
 
 #: reports/cashflow.cpp:217
 #, c-format
@@ -6337,7 +6337,7 @@ msgstr "Temporäre Aktienliste: %s\n\n"
 
 #: stockspanel.cpp:426
 msgid "View Stock Transactions"
-msgstr ""
+msgstr "Aktienbuchung &anzeigen"
 
 #: stockspanel.cpp:682
 msgid "Create a new Stock investment in this portfolio"
