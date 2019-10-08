@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-08-06 10:14+0300\n"
-"PO-Revision-Date: 2019-08-06 07:25\n"
+"PO-Revision-Date: 2019-08-06 13:36\n"
 "Last-Translator: Nikolay (vomikan)\n"
 "Language-Team: Croatian\n"
 "MIME-Version: 1.0\n"
@@ -5168,7 +5168,7 @@ msgstr "Staza priloga je promijenjena!"
 
 #: optionsettingsattachment.cpp:258
 msgid "Do you want to move all attachments to the new location?"
-msgstr ""
+msgstr "Želiš li premjestiti sve priloge na novo mjesto?"
 
 #: optionsettingsattachment.cpp:259 optionsettingsattachment.cpp:269
 msgid "Attachments folder migration"
