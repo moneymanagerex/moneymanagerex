@@ -17,10 +17,12 @@ env:
   - OS=debian DIST=jessie
   - OS=debian DIST=stretch
   - OS=debian DIST=buster
+  - OS=debian DIST=bullseye
   - OS=debian DIST=jessie ARCH=x86
   - OS=debian DIST=stretch ARCH=x86
   - OS=debian DIST=stretch ARCH=armhf
   - OS=debian DIST=buster ARCH=x86
+  - OS=debian DIST=bullseye ARCH=x86
   - OS=ubuntu DIST=xenial
   - OS=ubuntu DIST=zesty
   - OS=ubuntu DIST=artful
@@ -84,16 +86,18 @@ matrix:
   - env: OS=debian DIST=jessie
   - env: OS=debian DIST=stretch
   - env: OS=debian DIST=buster
+  - env: OS=debian DIST=bullseye
   - env: OS=debian DIST=jessie ARCH=x86
   - env: OS=debian DIST=stretch ARCH=x86
   - env: OS=debian DIST=stretch ARCH=armhf
   - env: OS=debian DIST=buster ARCH=x86
+  - env: OS=debian DIST=bullseye ARCH=x86
   - env: OS=ubuntu DIST=xenial
   - env: OS=ubuntu DIST=zesty
   - env: OS=ubuntu DIST=artful
+  - env: OS=ubuntu DIST=bionic
   - env: OS=ubuntu DIST=cosmic
   - env: OS=ubuntu DIST=disco
-  - env: OS=ubuntu DIST=eoan
   - env: OS=ubuntu DIST=xenial ARCH=x86
   - env: OS=ubuntu DIST=zesty ARCH=x86
   - env: OS=ubuntu DIST=artful ARCH=x86
