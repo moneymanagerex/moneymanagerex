@@ -232,8 +232,8 @@ endif()
 
 
 # --------- wxWidgets dependency ---------
-if(CMAKE_VERSION VERSION_LESS 3.14)
-    # FindwxWidgets.cmake module will be fixed in CMake 3.14.0
+if(CMAKE_VERSION VERSION_LESS 3.16)
+    # FindwxWidgets.cmake module will be fixed in CMake 3.16
     list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/util")
 endif()
 set(wxWidgets_USE_REL_AND_DBG ON)

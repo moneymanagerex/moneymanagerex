@@ -32,7 +32,7 @@ environment:
   curldir: C:\curl-$(curlVer)
   curlShared: OFF
   # wxWidgets config
-  wxVer: 3.1.2
+  wxVer: 3.1.3
   wxwin: C:\wxWidgets-$(wxver)-$(configuration)
   wxShared: 0
   wxURL: https://github.com/wxWidgets/wxWidgets/releases/download/v$(wxver)
@@ -67,7 +67,9 @@ init:
 - echo %clver% > ..\MSVC_ver.txt
 # Set wxWidgets library paths
 - if %platform:~-2%==64 set wxSuff=_x64
-- set "wxLibFolder=%wxwin%\lib\vc%comp%%xp%%wxSuff%"
+- set "wxcomp=%comp%"
+- if %comp:~0,2%==14 (if %wxVer%==3.1.3 set wxcomp=14x)
+- set "wxLibFolder=%wxwin%\lib\vc%wxcomp%%xp%%wxSuff%"
 - if %wxShared%==0 (set wxLibFolder=%wxLibFolder%_lib)
   else (set wxLibFolder=%wxLibFolder%_dll)
 # Set curl library paths
@@ -100,12 +102,12 @@ install:
 # wxWidgets, try to download pre-compiled version first
 - if %wxShared%==1 (
     curl -fsL --fail-early
-      -O %wxURL%/wxMSW-%wxVer%_vc%comp%%xp%%wxSuff%_Dev.7z
+      -O %wxURL%/wxMSW-%wxVer%_vc%wxcomp%%xp%%wxSuff%_Dev.7z
       -O %wxURL%/wxWidgets-%wxVer%-headers.7z &&
     if %configuration%==Release
-      curl -fsL -O %wxURL%/wxMSW-%wxVer%_vc%comp%%xp%%wxSuff%_ReleaseDLL.7z
+      curl -fsL -O %wxURL%/wxMSW-%wxVer%_vc%wxcomp%%xp%%wxSuff%_ReleaseDLL.7z
   ) || exit 0
-- if not exist wxMSW-%wxVer%_vc%comp%%xp%%wxSuff%_Dev.7z
+- if not exist wxMSW-%wxVer%_vc%wxcomp%%xp%%wxSuff%_Dev.7z
     curl -fsSL -O %wxURL%/wxWidgets-%wxVer%.7z
 - 7z x -y "-o%wxwin%" wx*-%wxVer%*.7z
 # wxWidgets, build script from build/tools/msvs/officialbuild.bat

@@ -77,7 +77,7 @@ bool mmGUIApp::setGUILanguage(wxLanguage lang)
         if (lang == wxLANGUAGE_DEFAULT)
         {
             wxString best;
-#if wxCHECK_VERSION(3, 1, 2)
+#if wxCHECK_VERSION(3, 1, 2) && !wxCHECK_VERSION(3, 1, 3)
 // workaround for https://github.com/wxWidgets/wxWidgets/pull/1082
             wxArrayString all = trans->GetAcceptableTranslations("mmex");
             best = all.IsEmpty() ? "" : all[0];
