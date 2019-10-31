@@ -132,9 +132,9 @@ install: |-
       brew update && brew bundle --verbose --file=util/Brewfile
       ccache -cs && export PATH="/usr/local/opt/ccache/libexec:$PATH"
       cd $HOME
-      curl -fsSL -O https://github.com/wxWidgets/wxWidgets/releases/download/v3.1.2/wxWidgets-3.1.2.tar.bz2
+      curl -fsSL -O https://github.com/wxWidgets/wxWidgets/releases/download/v3.1.3/wxWidgets-3.1.3.tar.bz2
       tar xzf wxWidgets-*.tar.bz2
-      cd wxWidgets-3.1.2
+      cd wxWidgets-3.1.3
       ./configure --disable-shared --enable-cxx11 --with-cxx=11 \
         --with-macosx-version-min=$MACOSX_DEPLOYMENT_TARGET \
         --without-libtiff

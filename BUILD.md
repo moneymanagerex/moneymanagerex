@@ -34,9 +34,9 @@ Microsoft Windows
 
 4. Download [wxWidgets 3.x binaries]:
    - `wxWidgets-3.*.*_Headers.7z`
-   - one of `wxMSW-3.*.*-vc141_Dev.7z` or `wxMSW-3.*.*-vc141_x64_Dev.7z`
-   - one of `wxMSW-3.*.*-vc141_ReleaseDLL.7z`
-     or `wxMSW-3.*.*-vc141_x64_ReleaseDLL.7z`
+   - one of `wxMSW-3.*.*-vc14x_Dev.7z` or `wxMSW-3.*.*-vc14x_x64_Dev.7z`
+   - one of `wxMSW-3.*.*-vc14x_ReleaseDLL.7z`
+     or `wxMSW-3.*.*-vc14x_x64_ReleaseDLL.7z`
    
    Unpack archives to `c:\wxWidgets\` or `c:\Program Files\wxWidgets\`.
 
