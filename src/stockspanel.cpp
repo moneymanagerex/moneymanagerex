@@ -942,7 +942,7 @@ wxString StocksListCtrl::getStockInfo(int selectedIndex) const
     for (const auto& s: Model_Stock::instance().find(Model_Stock::SYMBOL(symbol)))
     {
         total_shares += s.NUMSHARES;
-        total_purchase_price += s.VALUE * s.NUMSHARES;
+        total_purchase_price += s.VALUE;
         total_current_price += s.CURRENTPRICE * s.NUMSHARES;
     }
 
@@ -960,7 +960,7 @@ wxString StocksListCtrl::getStockInfo(int selectedIndex) const
     m_stock_panel->m_stock_details_short(miniInfo);
 
     //Summary for account for selected symbol
-    wxString additionInfo = wxString::Format("%s %s ( %s %% )\n%s"
+    const wxString additionInfo = wxString::Format("%s %s ( %s %% )\n%s"
         , wxString::Format(_("Total: %s"), sTotalCurrentPrice)
         , wxString::Format(diff > 0 ? _("Gain: %s") : _("Loss: %s"), sGainLostAmount)
         , wxNumberFormatter::ToString(total_percentage, 2)
