@@ -54,6 +54,7 @@ env:
   # - OS=opensuse DIST=15.1 # see issue #1903 on GitHub
   - OS=archlinux
   - OS=el DIST=7 # DIST=6 doesn't provide webview in wxGTK3
+  - OS=el DIST=8
   - OS=slackware DIST=14.2 # DIST=14.1 has cmake 2.x
 
 matrix:
@@ -121,6 +122,7 @@ matrix:
   - env: OS=opensuse DIST=15.0
   - env: OS=opensuse DIST=15.1
   - env: OS=archlinux
+  - env: OS=el DIST=7
   - env: OS=slackware DIST=14.2
 
 install: |-
