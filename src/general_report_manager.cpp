@@ -1013,7 +1013,7 @@ void mmGeneralReportManager::showHelp()
 {
     wxFileName helpIndexFile(mmex::getPathDoc(mmex::HTML_CUSTOM_SQL));
     const auto lang = Option::instance().getLanguageISO6391();
-    if (lang != "en" & !lang.empty())
+    if (lang != "en" && !lang.empty())
         helpIndexFile.AppendDir(lang);
     wxString url = "file://" + mmex::getPathDoc(mmex::HTML_CUSTOM_SQL);
     if (helpIndexFile.FileExists()) // Load the help file for the given language
@@ -1021,7 +1021,6 @@ void mmGeneralReportManager::showHelp()
         url = "file://" + helpIndexFile.GetPathWithSep() + helpIndexFile.GetFullName();
     }
     m_outputHTML->LoadURL(url);
-    wxLogDebug("%s", url);
 }
 
 wxString mmGeneralReportManager::OnGetItemText(long item, long column) const
