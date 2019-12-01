@@ -886,6 +886,12 @@ void mmBDDialog::onNoteSelected(wxCommandEvent& event)
 
 void mmBDDialog::OnOk(wxCommandEvent& WXUNUSED(event))
 {
+    Model_Account::Data* acc = Model_Account::instance().get(m_bill_data.ACCOUNTID);
+    if (!acc)
+    {
+        return mmErrorDialogs::InvalidAccount(bAccount_, m_transfer, mmErrorDialogs::MESSAGE_POPUP_BOX);
+    }
+
     Model_Billsdeposits::Data bill_data;
     bill_data.ACCOUNTID = m_bill_data.ACCOUNTID;
     bill_data.TRANSAMOUNT = m_bill_data.TRANSAMOUNT;
@@ -895,12 +901,6 @@ void mmBDDialog::OnOk(wxCommandEvent& WXUNUSED(event))
 
     if (!Model_Billsdeposits::instance().AllowTransaction(bill_data, bal)) return;
     if (!textAmount_->checkValue(m_bill_data.TRANSAMOUNT)) return;
-
-    Model_Account::Data* acc = Model_Account::instance().get(m_bill_data.ACCOUNTID);
-    if (!acc)
-    {
-        return mmErrorDialogs::InvalidAccount(bAccount_, m_transfer, mmErrorDialogs::MESSAGE_POPUP_BOX);
-    }
 
     m_bill_data.TOTRANSAMOUNT = m_bill_data.TRANSAMOUNT;
     if (m_transfer)
