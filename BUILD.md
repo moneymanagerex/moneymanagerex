@@ -25,7 +25,8 @@ Microsoft Windows
    |--------------------|:-------:|:-------:|
    | Visual Studio 2013 |  12.0   |   120   |
    | Visual Studio 2015 |  14.0   |   140   |
-   | Visual Studio 2017 |  15.0   |   141   |
+   | Visual Studio 2017 |  15.x   |   141   |
+   | Visual Studio 2019 |  16.x   |   142   |
 
 2. If you use Visual Studio older then 2013 Update 1 download and install
    [Git for Windows] with default options.
@@ -34,9 +35,9 @@ Microsoft Windows
 
 4. Download [wxWidgets 3.x binaries]:
    - `wxWidgets-3.*.*_Headers.7z`
-   - one of `wxMSW-3.*.*-vc141_Dev.7z` or `wxMSW-3.*.*-vc141_x64_Dev.7z`
-   - one of `wxMSW-3.*.*-vc141_ReleaseDLL.7z`
-     or `wxMSW-3.*.*-vc141_x64_ReleaseDLL.7z`
+   - one of `wxMSW-3.*.*-vc14x_Dev.7z` or `wxMSW-3.*.*-vc14x_x64_Dev.7z`
+   - one of `wxMSW-3.*.*-vc14x_ReleaseDLL.7z`
+     or `wxMSW-3.*.*-vc14x_x64_ReleaseDLL.7z`
    
    Unpack archives to `c:\wxWidgets\` or `c:\Program Files\wxWidgets\`.
 

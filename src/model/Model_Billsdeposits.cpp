@@ -270,6 +270,7 @@ bool Model_Billsdeposits::AllowTransaction(const Data& r, AccountBalance& bal)
 {
     const int acct_id = r.ACCOUNTID;
     Model_Account::Data* account = Model_Account::instance().get(acct_id);
+    if (!account) return false;
     double current_account_balance = 0;
 
     AccountBalance::iterator itr_bal = bal.find(acct_id);
