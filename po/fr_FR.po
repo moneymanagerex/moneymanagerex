@@ -3,13 +3,13 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-08-06 10:14+0300\n"
-"PO-Revision-Date: 2019-08-07 11:48\n"
-"Last-Translator: Nikolay (vomikan)\n"
+"PO-Revision-Date: 2020-01-02 15:19\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: crowdin.com\n"
+"X-Generator: Poedit 2.2.3\n"
 "X-Poedit-Basepath: ../src\n"
 "X-Poedit-KeywordsList: _;wxTRANSLATE;wxPLURAL:1,2;wxGETTEXT_IN_CONTEXT:1c,2;wxGETTEXT_IN_CONTEXT_PLURAL:1c,2,3\n"
 "X-Poedit-SearchPath-0: .\n"
@@ -1660,7 +1660,7 @@ msgstr "Fermer"
 
 #: constants.cpp:140
 msgid "Advanced Filter"
-msgstr ""
+msgstr "Filtre avancé"
 
 #: constants.cpp:141
 msgid "View All Transactions"
@@ -5765,7 +5765,7 @@ msgstr "Veuillez suivre ces instructions avant de soumettre un nouveau rapport d
 msgid "Cash Flow Forecast for %i Year Ahead"
 msgid_plural "Cash Flow Forecast for %i Years Ahead"
 msgstr[0] "Prévision de trésorerie pour les %i prochaines années"
-msgstr[1] ""
+msgstr[1] "Prévision de trésorerie pour les %i prochaines années"
 
 #: reports/cashflow.cpp:270 reports/incexpenses.cpp:208 reports/payee.cpp:125
 msgid "Difference"
