@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-08-06 10:14+0300\n"
-"PO-Revision-Date: 2020-01-09 11:26\n"
+"PO-Revision-Date: 2020-01-09 11:59\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Dutch\n"
 "MIME-Version: 1.0\n"
@@ -2252,7 +2252,7 @@ msgstr "DB onderhoud voltooid, a.u.b. MMEX sluiten en opnieuw openen!"
 
 #: dbwrapper.cpp:58
 msgid "Error opening database file:"
-msgstr ""
+msgstr "Error bij het openen van het database bestand:"
 
 #: dbwrapper.cpp:62
 msgid "Can't open file"
@@ -2272,11 +2272,11 @@ msgstr "Foutief wachtwoord ingevoerd voor een beveiligd bestand"
 
 #: dbwrapper.cpp:92
 msgid "Attempt to open a file that is not a database file"
-msgstr ""
+msgstr "Poging om een bestand te openen dat geen database is"
 
 #: dbwrapper.cpp:93
 msgid "Corrupted database file"
-msgstr ""
+msgstr "Beschadigd databasebestand"
 
 #: dbwrapper.cpp:100 mmframe.cpp:1910
 msgid "Opening MMEX Database - Error"
@@ -2362,11 +2362,11 @@ msgstr "%i: Leeg"
 
 #: filtertransdialog.cpp:382
 msgid "Save active values into current Preset selection"
-msgstr ""
+msgstr "Sla alle actieve waarden op in de huidige voorkeursinstelling selectie"
 
 #: filtertransdialog.cpp:387
 msgid "Clear all fields for current Preset selection"
-msgstr ""
+msgstr "Verwijder alle velden voor huidige voorkeursinstelling selectie"
 
 #: filtertransdialog.cpp:401
 msgid "&Activate "
@@ -2394,39 +2394,39 @@ msgstr "Filter details: "
 
 #: filtertransdialog.cpp:820 filtertransdialog.cpp:1235
 msgid "Empty value"
-msgstr ""
+msgstr "Lege waarde"
 
 #: filtertransdialog.cpp:852
 msgid "Since"
-msgstr ""
+msgstr "Sinds"
 
 #: filtertransdialog.cpp:854
 msgid "Before"
-msgstr ""
+msgstr "Voordat"
 
 #: filtertransdialog.cpp:908
 msgid "Amount Min."
-msgstr ""
+msgstr "Min. bedrag."
 
 #: filtertransdialog.cpp:916
 msgid "Amount Max."
-msgstr ""
+msgstr "Max. bedrag."
 
 #: filtertransdialog.cpp:945
 msgid "Label"
-msgstr ""
+msgstr "Label"
 
 #: filtertransdialog.cpp:1231
 msgid "Please Enter"
-msgstr ""
+msgstr "Voer in"
 
 #: filtertransdialog.cpp:1231
 msgid "Setting Name"
-msgstr ""
+msgstr "Instellingsnaam"
 
 #: filtertransdialog.cpp:1235
 msgid "Could not save settings"
-msgstr ""
+msgstr "Kon deze wijzigingen niet opslaan"
 
 #: general_report_manager.cpp:237 general_report_manager.cpp:623
 msgid "General Reports Manager"
@@ -2473,15 +2473,15 @@ msgstr "Open het geselecteerd rapport."
 
 #: general_report_manager.cpp:395
 msgid "Output"
-msgstr ""
+msgstr "Resultaat"
 
 #: general_report_manager.cpp:407
 msgid "SQL"
-msgstr ""
+msgstr "SQL"
 
 #: general_report_manager.cpp:408
 msgid "Lua"
-msgstr ""
+msgstr "Lua"
 
 #: general_report_manager.cpp:409
 msgid "Template"
@@ -2489,7 +2489,7 @@ msgstr "Sjabloon"
 
 #: general_report_manager.cpp:450
 msgid "&Test"
-msgstr ""
+msgstr "&Test"
 
 #: general_report_manager.cpp:451
 msgid "Create Template"
@@ -2499,7 +2499,7 @@ msgstr "Sjabloon maken"
 #, c-format
 msgid "%zu row returned, duration: %lld ms"
 msgid_plural "%zu rows returned, duration: %lld ms"
-msgstr[0] ""
+msgstr[0] "%zu rij weergegeven, tijdsduur: %lld ms"
 msgstr[1] ""
 
 #: general_report_manager.cpp:528
@@ -2512,11 +2512,11 @@ msgstr "Laad rapportbestand:"
 
 #: general_report_manager.cpp:559 general_report_manager.cpp:989
 msgid "General Report Manager files (*.grm)"
-msgstr ""
+msgstr "Algemene Rapport Manager bestanden (*.grm)"
 
 #: general_report_manager.cpp:559 general_report_manager.cpp:989
 msgid "ZIP files (*.zip)"
-msgstr ""
+msgstr "Zip bestanden (*.zip)|*.zip"
 
 #: general_report_manager.cpp:622
 #, c-format
@@ -2649,11 +2649,11 @@ msgstr "Transacties"
 #: import_export/qif_export.cpp:42 import_export/qif_export.cpp:227
 #: import_export/qif_export.cpp:300
 msgid "QIF Export"
-msgstr ""
+msgstr "QIF-Bestand Exporteren"
 
 #: import_export/qif_export.cpp:99
 msgid "Parameters"
-msgstr ""
+msgstr "Parameters"
 
 #: import_export/qif_export.cpp:104 import_export/qif_import_gui.cpp:196
 msgid "Log"
@@ -2730,22 +2730,22 @@ msgstr "Exporteren"
 #: import_export/qif_export.cpp:410
 #, c-format
 msgid "Exporting transaction %zu"
-msgstr ""
+msgstr "Exporteren transactie %zu"
 
 #: import_export/qif_export.cpp:469
 #, c-format
 msgid "Number of categories exported: %zu"
-msgstr ""
+msgstr "Aantal categorieën geëxporteerd: %zu"
 
 #: import_export/qif_export.cpp:471
 #, c-format
 msgid "Number of transactions exported: %zu"
-msgstr ""
+msgstr "Aantal transacties geëxporteerd: %zu"
 
 #: import_export/qif_export.cpp:473
 #, c-format
 msgid "Number of accounts exported: %zu"
-msgstr ""
+msgstr "Aantal transacties geëxporteerd: %zu"
 
 #: import_export/qif_export.cpp:474 mmframe.cpp:1478
 msgid "Export to QIF"
@@ -2753,7 +2753,7 @@ msgstr "Export naar QIF-bestand"
 
 #: import_export/qif_import_gui.cpp:79 import_export/qif_import_gui.cpp:900
 msgid "QIF Import"
-msgstr ""
+msgstr "QIF-Bestand Importeren"
 
 #: import_export/qif_import_gui.cpp:129
 msgid "Choose &file"
@@ -2769,7 +2769,7 @@ msgstr "Filter details:"
 
 #: import_export/qif_import_gui.cpp:205
 msgid "Data"
-msgstr ""
+msgstr "Gegevens"
 
 #: import_export/qif_import_gui.cpp:265
 msgid "Use account number instead of account name"
@@ -2795,7 +2795,7 @@ msgstr "Controleren"
 #: import_export/qif_import_gui.cpp:385
 #, c-format
 msgid "Reading line %zu, %lld ms"
-msgstr ""
+msgstr "Regel lezen %zu, %lld ms"
 
 #: import_export/qif_import_gui.cpp:391
 #, c-format
@@ -3574,7 +3574,7 @@ msgstr "Geef de zoektekst die u in de transactienotities wilt opzoeken"
 #: mmcheckingpanel.cpp:537
 #, c-format
 msgid "Account View: %s"
-msgstr ""
+msgstr "Account weergave: %s"
 
 #: mmcheckingpanel.cpp:764
 msgid "Select account used in transfer transactions"
@@ -3749,7 +3749,7 @@ msgstr "Voer de naam van een bestaande begunstigde in, \n"
 
 #: mmcustomdata.cpp:59
 msgid "Custom fields"
-msgstr ""
+msgstr "Aangepaste velden"
 
 #: mmcustomdata.cpp:307
 msgid "Please select"
