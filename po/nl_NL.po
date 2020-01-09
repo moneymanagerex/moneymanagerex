@@ -3,13 +3,13 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-08-06 10:14+0300\n"
-"PO-Revision-Date: 2019-08-06 07:24\n"
-"Last-Translator: Nikolay (vomikan)\n"
+"PO-Revision-Date: 2020-01-09 11:26\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Dutch\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: crowdin.com\n"
+"X-Generator: Poedit 2.2.3\n"
 "X-Poedit-Basepath: ../src\n"
 "X-Poedit-KeywordsList: _;wxTRANSLATE;wxPLURAL:1,2;wxGETTEXT_IN_CONTEXT:1c,2;wxGETTEXT_IN_CONTEXT_PLURAL:1c,2,3\n"
 "X-Poedit-SearchPath-0: .\n"
@@ -36,11 +36,11 @@ msgstr "Over"
 
 #: aboutdialog.cpp:149
 msgid "Authors"
-msgstr ""
+msgstr "Auteurs"
 
 #: aboutdialog.cpp:154
 msgid "Sponsors"
-msgstr ""
+msgstr "Sponsors"
 
 #: aboutdialog.cpp:159
 msgid "License"
@@ -48,7 +48,7 @@ msgstr "Licentie"
 
 #: aboutdialog.cpp:164
 msgid "Privacy"
-msgstr ""
+msgstr "Privacy"
 
 #: aboutdialog.cpp:195 accountdialog.cpp:373 appstartdialog.cpp:136
 #: assetdialog.cpp:297 attachmentdialog.cpp:117 billsdepositsdialog.cpp:456
@@ -2019,7 +2019,7 @@ msgstr ""
 
 #: db/Table_Subcategory.h:108
 msgid "Internet"
-msgstr ""
+msgstr "Internet"
 
 #: db/Table_Subcategory.h:109
 msgid "Rent"
@@ -2218,15 +2218,15 @@ msgstr ""
 
 #: dbupgrade.cpp:284
 msgid "Debug script description:"
-msgstr ""
+msgstr "Debug script beschrijving:"
 
 #: dbupgrade.cpp:284
 msgid "Please confirm running this SQL script."
-msgstr ""
+msgstr "Bevestig het uitvoeren van dit SQL-script."
 
 #: dbupgrade.cpp:284 dbupgrade.cpp:330 dbupgrade.cpp:362
 msgid "MMEX debug"
-msgstr ""
+msgstr "MMEX debug"
 
 #: dbupgrade.cpp:318 dbupgrade.cpp:356
 msgid "Query error, please contact MMEX support!"
@@ -2244,7 +2244,7 @@ msgstr "Debugbestand opslaan"
 
 #: dbupgrade.cpp:333
 msgid "Text files (*.txt)"
-msgstr ""
+msgstr "Tekstbestanden (*.txt)"
 
 #: dbupgrade.cpp:362
 msgid "DB maintenance completed, please close and re-open MMEX!"
@@ -2264,7 +2264,7 @@ msgstr "U moet een pad naar een ander databestand opgeven"
 
 #: dbwrapper.cpp:90
 msgid "Possible reasons:"
-msgstr ""
+msgstr "Mogelijke redenen:"
 
 #: dbwrapper.cpp:91
 msgid "An incorrect password given for an encrypted file"
@@ -2352,13 +2352,13 @@ msgstr "Bedrag bereik"
 
 #: filtertransdialog.cpp:352
 msgid "Settings"
-msgstr ""
+msgstr "Instellingen"
 
 #: filtertransdialog.cpp:373 filtertransdialog.cpp:690
 #: filtertransdialog.cpp:942 filtertransdialog.cpp:1229
 #, c-format
 msgid "%i: Empty"
-msgstr ""
+msgstr "%i: Leeg"
 
 #: filtertransdialog.cpp:382
 msgid "Save active values into current Preset selection"
@@ -2370,23 +2370,23 @@ msgstr ""
 
 #: filtertransdialog.cpp:401
 msgid "&Activate "
-msgstr ""
+msgstr "&Activeren "
 
 #: filtertransdialog.cpp:402
 msgid "Activate the filter with these settings"
-msgstr ""
+msgstr "Activeer het filter met deze instellingen"
 
 #: filtertransdialog.cpp:404
 msgid "&Deactivate "
-msgstr ""
+msgstr "&Deactiveren "
 
 #: filtertransdialog.cpp:405
 msgid "Deactivate the filter"
-msgstr ""
+msgstr "Filter deactiveren"
 
 #: filtertransdialog.cpp:410 transdialog.cpp:588
 msgid "Show/Hide custom fields window"
-msgstr ""
+msgstr "Toon/Verberg aangepaste velden venster"
 
 #: filtertransdialog.cpp:816
 msgid "Filtering Details: "
@@ -2700,7 +2700,7 @@ msgstr "Selecteer QIF-bestand om te exporteren"
 
 #: import_export/qif_export.cpp:273 import_export/qif_import_gui.cpp:716
 msgid "QIF Files (*.qif)"
-msgstr ""
+msgstr "QIF bestanden (*.qif)"
 
 #: import_export/qif_export.cpp:289
 msgid "No Account available for export"
