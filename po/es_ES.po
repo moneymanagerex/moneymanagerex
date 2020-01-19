@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-08-06 10:14+0300\n"
-"PO-Revision-Date: 2020-01-19 11:15\n"
+"PO-Revision-Date: 2020-01-19 11:43\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -5719,11 +5719,11 @@ msgstr "Reemplace este texto (marcado con >) con una descripción detallada de s
 
 #: reports/bugreport.h:73
 msgid "Please do not remove information attached below this text."
-msgstr ""
+msgstr "Por favor, no elimine la información adjunta debajo de este texto."
 
 #: reports/bugreport.h:78
 msgid "Use Help->Check for Updates in MMEX to get latest version, where your problem might be already fixed."
-msgstr ""
+msgstr "Utilice Ayuda->Comprobar si hay actualizaciones en MMEX para obtener la última versión, donde su problema podría estar ya solucionado."
 
 #: reports/bugreport.h:79
 #, c-format
