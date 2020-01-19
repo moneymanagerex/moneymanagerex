@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-08-06 10:14+0300\n"
-"PO-Revision-Date: 2020-01-19 10:43\n"
+"PO-Revision-Date: 2020-01-19 11:15\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -3771,16 +3771,16 @@ msgstr "No se puede cargar una traducción para el idioma predeterminado de su s
 #: mmex.cpp:93
 #, c-format
 msgid "Cannot load a translation for the selected language (%s)."
-msgstr ""
+msgstr "No se puede cargar una traducción para el idioma seleccionado (%s)."
 
 #: mmex.cpp:98
 #, c-format
 msgid "Please use the Switch Application Language option in View menu to select one of the %zu available languages."
-msgstr ""
+msgstr "Utilice la opción Cambiar idioma de la aplicación en el menú Ver para seleccionar uno de los %zu idiomas disponibles."
 
 #: mmex.cpp:100
 msgid "There are no translation files installed."
-msgstr ""
+msgstr "No hay archivos de traducción instalados."
 
 #: mmex.cpp:102 mmframe.cpp:3161
 msgid "Language change"
@@ -4382,11 +4382,11 @@ msgstr "Reportar un error en la aplicación a los desarrolladores"
 
 #: mmframe.cpp:1789
 msgid "Improve translation"
-msgstr ""
+msgstr "Mejorar la traducción"
 
 #: mmframe.cpp:1790
 msgid "Improve GUI Translation"
-msgstr ""
+msgstr "Mejorar la traducción de la interfaz gráfica"
 
 #: mmframe.cpp:1795
 msgid "Reopen &Start-up Dialog"
@@ -4813,7 +4813,7 @@ msgstr "Siguiente período"
 
 #: mmreportspanel.cpp:429
 msgid "Accounts:"
-msgstr ""
+msgstr "Cuentas:"
 
 #: mmreportspanel.cpp:434 reports/reportbase.cpp:261
 msgid "All Accounts"
@@ -5159,7 +5159,7 @@ msgstr "¡La carpeta de los adjuntos se ha cambiado!"
 
 #: optionsettingsattachment.cpp:258
 msgid "Do you want to move all attachments to the new location?"
-msgstr ""
+msgstr "¿Quieres mover todos los archivos adjuntos a la nueva ubicación?"
 
 #: optionsettingsattachment.cpp:259 optionsettingsattachment.cpp:269
 msgid "Attachments folder migration"
@@ -5648,7 +5648,7 @@ msgstr "Confirmación de reorganización de beneficiario"
 #: reports/budget.cpp:84
 #, c-format
 msgid "Financial Year: %s - %i"
-msgstr ""
+msgstr "Año fiscal: %s - %i"
 
 #: reports/budgetcategorysummary.cpp:131
 #, c-format
@@ -5711,11 +5711,11 @@ msgstr "Total mensual"
 
 #: reports/bugreport.h:55
 msgid "Bug Report"
-msgstr ""
+msgstr "Informe de errores"
 
 #: reports/bugreport.h:72
 msgid "Replace this text (marked with >) with detailed description of your problem."
-msgstr ""
+msgstr "Reemplace este texto (marcado con >) con una descripción detallada de su problema."
 
 #: reports/bugreport.h:73
 msgid "Please do not remove information attached below this text."
