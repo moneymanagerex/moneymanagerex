@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-08-06 10:14+0300\n"
-"PO-Revision-Date: 2020-01-19 10:14\n"
+"PO-Revision-Date: 2020-01-19 10:43\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -2885,7 +2885,7 @@ msgstr "Importación finalizada correctamente"
 #: import_export/qif_import_gui.cpp:890
 #, c-format
 msgid "Total Imported: %zu"
-msgstr ""
+msgstr "Total importado: %zu"
 
 #: import_export/qif_import_gui.cpp:898 import_export/univcsvdialog.cpp:997
 msgid "Imported transactions discarded by user!"
@@ -3766,7 +3766,7 @@ msgstr "Varias opciones"
 #: mmex.cpp:89
 #, c-format
 msgid "Cannot load a translation for the default language of your system (%s)."
-msgstr ""
+msgstr "No se puede cargar una traducción para el idioma predeterminado de su sistema (%s)."
 
 #: mmex.cpp:93
 #, c-format
