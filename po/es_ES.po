@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-08-06 10:14+0300\n"
-"PO-Revision-Date: 2020-01-19 09:43\n"
+"PO-Revision-Date: 2020-01-19 10:14\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -1275,7 +1275,7 @@ msgstr[1] "¡%d días de retraso!"
 msgid "%d day overdue!"
 msgid_plural "%d days overdue!"
 msgstr[0] ""
-msgstr[1] ""
+msgstr[1] "¡%d días vencido!"
 
 #: billsdepositspanel.cpp:609
 msgid "Do you really want to delete the series?"
@@ -1520,7 +1520,7 @@ msgstr "Editar el nombre de una categoría existente"
 
 #: categdialog.cpp:235 categdialog.cpp:440
 msgid "Select an unused category to delete."
-msgstr ""
+msgstr "Seleccione una categoría no utilizada para eliminar."
 
 #: categdialog.cpp:240 maincurrencydialog.cpp:225
 msgid "&Select"
@@ -1592,15 +1592,15 @@ msgstr "Organizar Categorías: Error al borrar"
 
 #: categdialog.cpp:463
 msgid "This category cannot be deleted because it's used by transactions."
-msgstr ""
+msgstr "Esta categoría no puede ser eliminada porque es usada por transacciones."
 
 #: categdialog.cpp:470
 msgid "Delete an existing category."
-msgstr ""
+msgstr "Eliminar una categoría existente."
 
 #: categdialog.cpp:475
 msgid "Subcategories must be deleted before."
-msgstr ""
+msgstr "Las subcategorías deben ser eliminadas antes."
 
 #: categdialog.cpp:491
 #, c-format
@@ -1658,7 +1658,7 @@ msgstr "&Cerrar "
 
 #: constants.cpp:140
 msgid "Advanced Filter"
-msgstr ""
+msgstr "Filtro avanzado"
 
 #: constants.cpp:141
 msgid "View All Transactions"
@@ -1942,7 +1942,7 @@ msgstr "¿Quiere actualizar los blancos?\n"
 msgid "%zu occurrence founded and replaced!"
 msgid_plural "%zu occurrences founded and replaced!"
 msgstr[0] ""
-msgstr[1] ""
+msgstr[1] "¡%zu casos encontrados y reemplazados!"
 
 #: customfieldlistdialog.cpp:266
 msgid "&Massive content update "
@@ -2504,7 +2504,7 @@ msgstr "Crear plantilla"
 msgid "%zu row returned, duration: %lld ms"
 msgid_plural "%zu rows returned, duration: %lld ms"
 msgstr[0] ""
-msgstr[1] ""
+msgstr[1] "%zu filas devueltas, duración: %lld ms"
 
 #: general_report_manager.cpp:528
 msgid "SQL Syntax Error"
@@ -2734,22 +2734,22 @@ msgstr "Exportando"
 #: import_export/qif_export.cpp:410
 #, c-format
 msgid "Exporting transaction %zu"
-msgstr ""
+msgstr "Exportando transacción %zu"
 
 #: import_export/qif_export.cpp:469
 #, c-format
 msgid "Number of categories exported: %zu"
-msgstr ""
+msgstr "Número de categorías exportadas: %zu"
 
 #: import_export/qif_export.cpp:471
 #, c-format
 msgid "Number of transactions exported: %zu"
-msgstr ""
+msgstr "Número de transacciones exportadas: %zu"
 
 #: import_export/qif_export.cpp:473
 #, c-format
 msgid "Number of accounts exported: %zu"
-msgstr ""
+msgstr "Número de cuentas exportadas: %zu"
 
 #: import_export/qif_export.cpp:474 mmframe.cpp:1478
 msgid "Export to QIF"
@@ -2799,17 +2799,17 @@ msgstr "Buscando"
 #: import_export/qif_import_gui.cpp:385
 #, c-format
 msgid "Reading line %zu, %lld ms"
-msgstr ""
+msgstr "Leyendo línea %zu, %lld ms"
 
 #: import_export/qif_import_gui.cpp:391
 #, c-format
 msgid "Line %zu \t %s\n"
-msgstr ""
+msgstr "Línea %zu \t %s\n"
 
 #: import_export/qif_import_gui.cpp:464
 #, c-format
 msgid "Number of lines read from QIF file: %zu in %lld ms"
-msgstr ""
+msgstr "Número de líneas leídas desde el archivo QIF: %zu en %lld ms"
 
 #: import_export/qif_import_gui.cpp:467
 msgid "Press OK Button to continue"
