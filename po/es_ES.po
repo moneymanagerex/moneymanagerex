@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-08-06 10:14+0300\n"
-"PO-Revision-Date: 2020-01-19 12:18\n"
+"PO-Revision-Date: 2020-01-19 12:48\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -6555,7 +6555,7 @@ msgstr "Git commit: "
 
 #: util.cpp:455
 msgid "Git branch: "
-msgstr "Git branch: "
+msgstr "Rama de Git: "
 
 #: util.cpp:458
 msgid "MMEX is using the following support products:"
