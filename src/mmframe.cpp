@@ -1670,7 +1670,12 @@ void mmGUIFrame::createMenu()
     menuTools->AppendSeparator();
 
     wxMenuItem* menuItemOptions = new wxMenuItem(menuTools, wxID_PREFERENCES
-        , _("&Options..."), _("Show the Options Dialog"));
+#if defined __WXMAC__
+        , _("&Options...\tCtrl-,")
+#else
+        , _("&Options...")
+#endif
+        , _("Show the Options Dialog"));
     menuItemOptions->SetBitmap(mmBitmap(png::OPTIONS));
     menuTools->Append(menuItemOptions);
 
