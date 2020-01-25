@@ -1008,7 +1008,7 @@ void mmHomePagePanel::OnLinkClicked(wxWebViewEvent& event)
             }
             else
             {
-                json_doc.AddMember("TERM_ACCOUNTS_INFO", true, json_allocator);
+                json_doc.AddMember("CRYPTO_WALLETS_INFO", true, json_allocator);
             }
         }
 
