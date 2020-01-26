@@ -916,99 +916,20 @@ void mmHomePagePanel::OnLinkClicked(wxWebViewEvent& event)
         Document::AllocatorType& json_allocator = json_doc.GetAllocator();
         wxLogDebug("RapidJson Input\n%s", JSON_PrettyFormated(json_doc));
 
-        if (name == "TOP_CATEGORIES")
+        const wxString type[] = { "TOP_CATEGORIES", "INVEST", "ACCOUNTS_INFO","CARD_ACCOUNTS_INFO" ,"CASH_ACCOUNTS_INFO", "LOAN_ACCOUNTS_INFO", "TERM_ACCOUNTS_INFO" , "CRYPTO_WALLETS_INFO" };
+
+        for (const auto& entry : type)
         {
-            if (json_doc.HasMember("TOP_CATEGORIES") && json_doc["TOP_CATEGORIES"].IsBool())
+            if (name != entry) continue;
+
+            Value v_type(entry.c_str(), json_allocator);
+            if (json_doc.HasMember(v_type) && json_doc[v_type].IsBool())
             {
-                bool entry = !json_doc["TOP_CATEGORIES"].GetBool();
-                json_doc["TOP_CATEGORIES"] = entry;
+                json_doc[v_type] = !json_doc[v_type].GetBool();
             }
             else
             {
-                json_doc.AddMember("TOP_CATEGORIES", true, json_allocator);
-            }
-        }
-        else if (name == "INVEST")
-        {
-            if (json_doc.HasMember("INVEST") && json_doc["INVEST"].IsBool())
-            {
-                bool entry = !json_doc["INVEST"].GetBool();
-                json_doc["INVEST"] = entry;
-            }
-            else
-            {
-                json_doc.AddMember("INVEST", true, json_allocator);
-            }
-        }
-        else if (name == "ACCOUNTS_INFO")
-        {
-            if (json_doc.HasMember("ACCOUNTS_INFO") && json_doc["ACCOUNTS_INFO"].IsBool())
-            {
-                bool entry = !json_doc["ACCOUNTS_INFO"].GetBool();
-                json_doc["ACCOUNTS_INFO"] = entry;
-            }
-            else
-            {
-                json_doc.AddMember("ACCOUNTS_INFO", true, json_allocator);
-            }
-        }
-        else if (name == "CARD_ACCOUNTS_INFO")
-        {
-            if (json_doc.HasMember("CARD_ACCOUNTS_INFO") && json_doc["CARD_ACCOUNTS_INFO"].IsBool())
-            {
-                bool entry = !json_doc["CARD_ACCOUNTS_INFO"].GetBool();
-                json_doc["CARD_ACCOUNTS_INFO"] = entry;
-            }
-            else
-            {
-                json_doc.AddMember("CARD_ACCOUNTS_INFO", true, json_allocator);
-            }
-        }
-        else if (name == "CASH_ACCOUNTS_INFO")
-        {
-            if (json_doc.HasMember("CASH_ACCOUNTS_INFO") && json_doc["CASH_ACCOUNTS_INFO"].IsBool())
-            {
-                bool entry = !json_doc["CASH_ACCOUNTS_INFO"].GetBool();
-                json_doc["CASH_ACCOUNTS_INFO"] = entry;
-            }
-            else
-            {
-                json_doc.AddMember("CASH_ACCOUNTS_INFO", true, json_allocator);
-            }
-        }
-        else if (name == "LOAN_ACCOUNTS_INFO")
-        {
-            if (json_doc.HasMember("LOAN_ACCOUNTS_INFO") && json_doc["LOAN_ACCOUNTS_INFO"].IsBool())
-            {
-                bool entry = !json_doc["LOAN_ACCOUNTS_INFO"].GetBool();
-                json_doc["LOAN_ACCOUNTS_INFO"] = entry;
-            }
-            else
-            {
-                json_doc.AddMember("LOAN_ACCOUNTS_INFO", true, json_allocator);
-            }
-        }
-        else if (name == "TERM_ACCOUNTS_INFO")
-        {
-            if (json_doc.HasMember("TERM_ACCOUNTS_INFO") && json_doc["TERM_ACCOUNTS_INFO"].IsBool())
-            {
-                bool entry = !json_doc["TERM_ACCOUNTS_INFO"].GetBool();
-                json_doc["TERM_ACCOUNTS_INFO"] = entry;
-            }
-            else
-            {
-                json_doc.AddMember("TERM_ACCOUNTS_INFO", true, json_allocator);
-            }
-        }
-        else if (name == "CRYPTO_WALLETS_INFO") {
-            if (json_doc.HasMember("CRYPTO_WALLETS_INFO") && json_doc["CRYPTO_WALLETS_INFO"].IsBool())
-            {
-                bool entry = !json_doc["CRYPTO_WALLETS_INFO"].GetBool();
-                json_doc["CRYPTO_WALLETS_INFO"] = entry;
-            }
-            else
-            {
-                json_doc.AddMember("CRYPTO_WALLETS_INFO", true, json_allocator);
+                json_doc.AddMember(v_type, true, json_allocator);
             }
         }
 
