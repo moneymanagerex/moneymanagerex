@@ -3,13 +3,13 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-08-06 10:14+0300\n"
-"PO-Revision-Date: 2019-10-02 11:56\n"
-"Last-Translator: Nikolay (vomikan)\n"
+"PO-Revision-Date: 2020-01-19 12:48\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: crowdin.com\n"
+"X-Generator: Poedit 2.2.3\n"
 "X-Poedit-Basepath: ../src\n"
 "X-Poedit-KeywordsList: _;wxTRANSLATE;wxPLURAL:1,2;wxGETTEXT_IN_CONTEXT:1c,2;wxGETTEXT_IN_CONTEXT_PLURAL:1c,2,3\n"
 "X-Poedit-SearchPath-0: .\n"
@@ -61,7 +61,7 @@ msgstr "Privacidad"
 #: splitdetailsdialog.cpp:160 splittransactionsdialog.cpp:172
 #: transactionsupdatedialog.cpp:213 transdialog.cpp:583
 msgid "&OK "
-msgstr "&OK "
+msgstr "&Aceptar "
 
 #: accountdialog.cpp:85 mmframe.cpp:1581 mmframe.cpp:1835
 #: wizard_newaccount.cpp:80 wizard_newaccount.cpp:87 wizard_newaccount.cpp:159
@@ -431,7 +431,7 @@ msgstr "No se ha encontrado una cuenta de valores con el mismo nombre.\n\n"
 #: assetspanel.cpp:59 billsdepositspanel.cpp:102 mmcheckingpanel.cpp:1017
 #: reports/transactions.cpp:73 stockspanel.cpp:95
 msgid "ID"
-msgstr "ID"
+msgstr "Identificador"
 
 #: assetspanel.cpp:62 billsdepositsdialog.cpp:517 billsdepositspanel.cpp:109
 #: customfieldlistdialog.cpp:54 filtertransdialog.cpp:285
@@ -1267,15 +1267,15 @@ msgstr "Inactivo"
 #, c-format
 msgid "%d day delay!"
 msgid_plural "%d days delay!"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "¡%d día de retraso!"
+msgstr[1] "¡%d días de retraso!"
 
 #: billsdepositspanel.cpp:515 mmhomepagepanel.cpp:348
 #, c-format
 msgid "%d day overdue!"
 msgid_plural "%d days overdue!"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "¡%d día vencido!"
+msgstr[1] "¡%d días vencido!"
 
 #: billsdepositspanel.cpp:609
 msgid "Do you really want to delete the series?"
@@ -1520,7 +1520,7 @@ msgstr "Editar el nombre de una categoría existente"
 
 #: categdialog.cpp:235 categdialog.cpp:440
 msgid "Select an unused category to delete."
-msgstr ""
+msgstr "Seleccione una categoría no utilizada para eliminar."
 
 #: categdialog.cpp:240 maincurrencydialog.cpp:225
 msgid "&Select"
@@ -1592,15 +1592,15 @@ msgstr "Organizar Categorías: Error al borrar"
 
 #: categdialog.cpp:463
 msgid "This category cannot be deleted because it's used by transactions."
-msgstr ""
+msgstr "Esta categoría no puede ser eliminada porque es usada por transacciones."
 
 #: categdialog.cpp:470
 msgid "Delete an existing category."
-msgstr ""
+msgstr "Eliminar una categoría existente."
 
 #: categdialog.cpp:475
 msgid "Subcategories must be deleted before."
-msgstr ""
+msgstr "Las subcategorías deben ser eliminadas antes."
 
 #: categdialog.cpp:491
 #, c-format
@@ -1658,7 +1658,7 @@ msgstr "&Cerrar "
 
 #: constants.cpp:140
 msgid "Advanced Filter"
-msgstr ""
+msgstr "Filtro avanzado"
 
 #: constants.cpp:141
 msgid "View All Transactions"
@@ -1941,8 +1941,8 @@ msgstr "¿Quiere actualizar los blancos?\n"
 #, c-format
 msgid "%zu occurrence founded and replaced!"
 msgid_plural "%zu occurrences founded and replaced!"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "¡%zu caso encontrado y reemplazado!"
+msgstr[1] "¡%zu casos encontrados y reemplazados!"
 
 #: customfieldlistdialog.cpp:266
 msgid "&Massive content update "
@@ -2503,8 +2503,8 @@ msgstr "Crear plantilla"
 #, c-format
 msgid "%zu row returned, duration: %lld ms"
 msgid_plural "%zu rows returned, duration: %lld ms"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%zu fila devuelta, duración: %lld ms"
+msgstr[1] "%zu filas devueltas, duración: %lld ms"
 
 #: general_report_manager.cpp:528
 msgid "SQL Syntax Error"
@@ -2661,7 +2661,7 @@ msgstr "Parámetros"
 
 #: import_export/qif_export.cpp:104 import_export/qif_import_gui.cpp:196
 msgid "Log"
-msgstr "Log"
+msgstr "Informe"
 
 #: import_export/qif_export.cpp:121 mmframe.cpp:2888 mmframe.cpp:2892
 #: mmframe.cpp:2911 mmframe.cpp:2915
@@ -2734,22 +2734,22 @@ msgstr "Exportando"
 #: import_export/qif_export.cpp:410
 #, c-format
 msgid "Exporting transaction %zu"
-msgstr ""
+msgstr "Exportando transacción %zu"
 
 #: import_export/qif_export.cpp:469
 #, c-format
 msgid "Number of categories exported: %zu"
-msgstr ""
+msgstr "Número de categorías exportadas: %zu"
 
 #: import_export/qif_export.cpp:471
 #, c-format
 msgid "Number of transactions exported: %zu"
-msgstr ""
+msgstr "Número de transacciones exportadas: %zu"
 
 #: import_export/qif_export.cpp:473
 #, c-format
 msgid "Number of accounts exported: %zu"
-msgstr ""
+msgstr "Número de cuentas exportadas: %zu"
 
 #: import_export/qif_export.cpp:474 mmframe.cpp:1478
 msgid "Export to QIF"
@@ -2799,17 +2799,17 @@ msgstr "Buscando"
 #: import_export/qif_import_gui.cpp:385
 #, c-format
 msgid "Reading line %zu, %lld ms"
-msgstr ""
+msgstr "Leyendo línea %zu, %lld ms"
 
 #: import_export/qif_import_gui.cpp:391
 #, c-format
 msgid "Line %zu \t %s\n"
-msgstr ""
+msgstr "Línea %zu \t %s\n"
 
 #: import_export/qif_import_gui.cpp:464
 #, c-format
 msgid "Number of lines read from QIF file: %zu in %lld ms"
-msgstr ""
+msgstr "Número de líneas leídas desde el archivo QIF: %zu en %lld ms"
 
 #: import_export/qif_import_gui.cpp:467
 msgid "Press OK Button to continue"
@@ -2818,7 +2818,7 @@ msgstr "Presione el botón OK para continuar"
 #: import_export/qif_import_gui.cpp:658 import_export/qif_import_gui.cpp:687
 #: import_export/qif_import_gui.cpp:704
 msgid "OK"
-msgstr "OK"
+msgstr "Aceptar"
 
 #: import_export/qif_import_gui.cpp:660 import_export/qif_import_gui.cpp:663
 msgid "Warning"
@@ -2885,7 +2885,7 @@ msgstr "Importación finalizada correctamente"
 #: import_export/qif_import_gui.cpp:890
 #, c-format
 msgid "Total Imported: %zu"
-msgstr ""
+msgstr "Total importado: %zu"
 
 #: import_export/qif_import_gui.cpp:898 import_export/univcsvdialog.cpp:997
 msgid "Imported transactions discarded by user!"
@@ -3509,7 +3509,7 @@ msgstr "Consejo de la ventana de organizar categorías: Al pulsar una combinaci�
 
 #: mmTips.h:38
 msgid "Tip to get out of debt: Pay yourself 10 percentage first. Put this into an account that is hard to touch. Make sure it is a chore to get the money out (you have to drive to the bank), so you will only tap it consciously and for major expenses."
-msgstr "Consejos para no endeudarse: Reserve un 10% primero. Póngalo en una cuenta donde sea difícil sacarlo. Asegúrese que sea complicado acceder a él (por ejemplo, que tengas que ir al banco en coche), de esta manera solo lo usarás cuando sea realmente necesario."
+msgstr "Consejo para no endeudarse: Reserve un 10% primero. Póngalo en una cuenta con la que sea difícil operar. Asegúrese que sea complicado sacar el dinero (por ejemplo, que tenga que conducir para ir al banco), de esta manera sólo lo usará cuando sea realmente necesario."
 
 #: mmTips.h:39
 msgid "Tip to get out of debt: Establish an emergency fund."
@@ -3766,21 +3766,21 @@ msgstr "Varias opciones"
 #: mmex.cpp:89
 #, c-format
 msgid "Cannot load a translation for the default language of your system (%s)."
-msgstr ""
+msgstr "No se puede cargar una traducción para el idioma predeterminado de su sistema (%s)."
 
 #: mmex.cpp:93
 #, c-format
 msgid "Cannot load a translation for the selected language (%s)."
-msgstr ""
+msgstr "No se puede cargar una traducción para el idioma seleccionado (%s)."
 
 #: mmex.cpp:98
 #, c-format
 msgid "Please use the Switch Application Language option in View menu to select one of the %zu available languages."
-msgstr ""
+msgstr "Utilice la opción Cambiar idioma de la aplicación en el menú Ver para seleccionar uno de los %zu idiomas disponibles."
 
 #: mmex.cpp:100
 msgid "There are no translation files installed."
-msgstr ""
+msgstr "No hay archivos de traducción instalados."
 
 #: mmex.cpp:102 mmframe.cpp:3161
 msgid "Language change"
@@ -4382,11 +4382,11 @@ msgstr "Reportar un error en la aplicación a los desarrolladores"
 
 #: mmframe.cpp:1789
 msgid "Improve translation"
-msgstr ""
+msgstr "Mejorar la traducción"
 
 #: mmframe.cpp:1790
 msgid "Improve GUI Translation"
-msgstr ""
+msgstr "Mejorar la traducción de la interfaz gráfica"
 
 #: mmframe.cpp:1795
 msgid "Reopen &Start-up Dialog"
@@ -4402,7 +4402,7 @@ msgstr "Comprobar act&ualizaciones"
 
 #: mmframe.cpp:1800
 msgid "Check if a new MMEX version is available"
-msgstr "Comprobar si hay nuevas versiones de MMEX"
+msgstr "Comprobar si hay nueva versión de MMEX"
 
 #: mmframe.cpp:1805 mmframe.cpp:1850
 msgid "&About..."
@@ -4567,7 +4567,7 @@ msgstr "No es posible sobrescribir el fichero seleccionado"
 
 #: mmframe.cpp:2241
 msgid "Accounts, payees and categories successfully syncronized to WebApp!"
-msgstr "¡Cuentas, beneficiarios y categorías sincronizadas satisfactoriamente a la WebApp!"
+msgstr "¡Cuentas, beneficiarios y categorías sincronizadas correctamente en la WebApp!"
 
 #: mmframe.cpp:2241
 msgid "WebApp export"
@@ -4813,7 +4813,7 @@ msgstr "Siguiente período"
 
 #: mmreportspanel.cpp:429
 msgid "Accounts:"
-msgstr ""
+msgstr "Cuentas:"
 
 #: mmreportspanel.cpp:434 reports/reportbase.cpp:261
 msgid "All Accounts"
@@ -5159,7 +5159,7 @@ msgstr "¡La carpeta de los adjuntos se ha cambiado!"
 
 #: optionsettingsattachment.cpp:258
 msgid "Do you want to move all attachments to the new location?"
-msgstr ""
+msgstr "¿Quieres mover todos los archivos adjuntos a la nueva ubicación?"
 
 #: optionsettingsattachment.cpp:259 optionsettingsattachment.cpp:269
 msgid "Attachments folder migration"
@@ -5648,7 +5648,7 @@ msgstr "Confirmación de reorganización de beneficiario"
 #: reports/budget.cpp:84
 #, c-format
 msgid "Financial Year: %s - %i"
-msgstr ""
+msgstr "Año fiscal: %s - %i"
 
 #: reports/budgetcategorysummary.cpp:131
 #, c-format
@@ -5711,58 +5711,58 @@ msgstr "Total mensual"
 
 #: reports/bugreport.h:55
 msgid "Bug Report"
-msgstr ""
+msgstr "Informe de errores"
 
 #: reports/bugreport.h:72
 msgid "Replace this text (marked with >) with detailed description of your problem."
-msgstr ""
+msgstr "Reemplace este texto (marcado con >) con una descripción detallada de su problema."
 
 #: reports/bugreport.h:73
 msgid "Please do not remove information attached below this text."
-msgstr ""
+msgstr "Por favor, no elimine la información adjunta debajo de este texto."
 
 #: reports/bugreport.h:78
 msgid "Use Help->Check for Updates in MMEX to get latest version, where your problem might be already fixed."
-msgstr ""
+msgstr "Utilice Ayuda->Comprobar si hay actualizaciones en MMEX para obtener la última versión, donde su problema podría estar ya solucionado."
 
 #: reports/bugreport.h:79
 #, c-format
 msgid "Search <a href='%s'>a list of known issues</a> for similar problem. If so, update existing issue instead of creating a new one."
-msgstr ""
+msgstr "Busca en <a href='%s'>lista de problemas conocidos</a> para encontrar un problema similar. Si es así, actualiza el problema existente en lugar de crear uno nuevo."
 
 #: reports/bugreport.h:81
 #, c-format
 msgid "Read <a href='%s'>How to Report Bugs Effectively</a> for useful tips."
-msgstr ""
+msgstr "Leer <a href='%s'>Cómo informar de errores de forma efectiva</a> para obtener consejos útiles."
 
 #: reports/bugreport.h:82
 msgid "Come up with a descriptive name for your problem."
-msgstr ""
+msgstr "Ponga un nombre descriptivo para su problema."
 
 #: reports/bugreport.h:83
 msgid "Include steps to reproduce your problem, attach screenshots where appropriate."
-msgstr ""
+msgstr "Incluye pasos para reproducir tu problema, adjunta capturas de pantalla cuando sea apropiado."
 
 #: reports/bugreport.h:84
 #, c-format
 msgid "Before click the following link, be sure that you have already signed in to the <a href='%s'>GitHub</a>."
-msgstr ""
+msgstr "Antes de hacer clic en el siguiente enlace, asegúrate de que ya has iniciado sesión en <a href='%s'>GitHub</a>."
 
 #: reports/bugreport.h:86
 #, c-format
 msgid "Finally, report a bug using GitHub <a href='%s'>online form</a> opened in your web browser."
-msgstr ""
+msgstr "Finalmente, informa de un error usando el <a href='%s'>formulario en línea</a> de GitHub abierto en tu navegador web."
 
 #: reports/bugreport.h:97
 msgid "Please, follow these instructions before submitting a new bug report:"
-msgstr ""
+msgstr "Por favor, sigue estas instrucciones antes de enviar un nuevo informe de error:"
 
 #: reports/cashflow.cpp:217
 #, c-format
 msgid "Cash Flow Forecast for %i Year Ahead"
 msgid_plural "Cash Flow Forecast for %i Years Ahead"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Previsión de efectivo para %i año en adelante"
+msgstr[1] "Previsión de efectivo para %i años en adelante"
 
 #: reports/cashflow.cpp:270 reports/incexpenses.cpp:208 reports/payee.cpp:125
 msgid "Difference"
@@ -6252,11 +6252,11 @@ msgstr "Error en el histórico de acciones"
 
 #: stockdialog.cpp:1056
 msgid "Add/Update Stock Price history"
-msgstr ""
+msgstr "Añadir/Actualizar historial de precio de acciones"
 
 #: stockdialog.cpp:1057
 msgid "Delete selected Stock Prices"
-msgstr ""
+msgstr "Eliminar precios de acciones seleccionados"
 
 #: stockspanel.cpp:36
 msgid "Using MMEX it is possible to track stocks/mutual funds investments."
@@ -6335,7 +6335,7 @@ msgstr "Lista temporal de acciones: %s\n\n"
 
 #: stockspanel.cpp:426
 msgid "View Stock Transactions"
-msgstr ""
+msgstr "Ver transacciones de acciones"
 
 #: stockspanel.cpp:682
 msgid "Create a new Stock investment in this portfolio"
@@ -6555,7 +6555,7 @@ msgstr "Git commit: "
 
 #: util.cpp:455
 msgid "Git branch: "
-msgstr "Git branch: "
+msgstr "Rama de Git: "
 
 #: util.cpp:458
 msgid "MMEX is using the following support products:"
@@ -6604,7 +6604,7 @@ msgstr "Abril"
 #: util.cpp:1003
 msgctxt "full month name"
 msgid "May"
-msgstr ""
+msgstr "Mayo"
 
 #: util.cpp:1004
 msgid "June"
@@ -6637,62 +6637,62 @@ msgstr "Diciembre"
 #: util.cpp:1011
 msgctxt "3-letter abbreviation of month name"
 msgid "Jan"
-msgstr ""
+msgstr "Ene"
 
 #: util.cpp:1012
 msgctxt "3-letter abbreviation of month name"
 msgid "Feb"
-msgstr ""
+msgstr "Feb"
 
 #: util.cpp:1013
 msgctxt "3-letter abbreviation of month name"
 msgid "Mar"
-msgstr ""
+msgstr "Mar"
 
 #: util.cpp:1014
 msgctxt "3-letter abbreviation of month name"
 msgid "Apr"
-msgstr ""
+msgstr "Abr"
 
 #: util.cpp:1015
 msgctxt "3-letter abbreviation of month name"
 msgid "May"
-msgstr ""
+msgstr "May"
 
 #: util.cpp:1016
 msgctxt "3-letter abbreviation of month name"
 msgid "Jun"
-msgstr ""
+msgstr "Jun"
 
 #: util.cpp:1017
 msgctxt "3-letter abbreviation of month name"
 msgid "Jul"
-msgstr ""
+msgstr "Jul"
 
 #: util.cpp:1018
 msgctxt "3-letter abbreviation of month name"
 msgid "Aug"
-msgstr ""
+msgstr "Ago"
 
 #: util.cpp:1019
 msgctxt "3-letter abbreviation of month name"
 msgid "Sep"
-msgstr ""
+msgstr "Sep"
 
 #: util.cpp:1020
 msgctxt "3-letter abbreviation of month name"
 msgid "Oct"
-msgstr ""
+msgstr "Oct"
 
 #: util.cpp:1021
 msgctxt "3-letter abbreviation of month name"
 msgid "Nov"
-msgstr ""
+msgstr "Nov"
 
 #: util.cpp:1022
 msgctxt "3-letter abbreviation of month name"
 msgid "Dec"
-msgstr ""
+msgstr "Dic"
 
 #: util.cpp:1027
 msgid "Sunday"
