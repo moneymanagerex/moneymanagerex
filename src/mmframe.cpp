@@ -58,7 +58,6 @@
 #include "util.h"
 #include "webapp.h"
 #include "webappdialog.h"
-#include "webserver.h"
 #include "wizard_newdb.h"
 #include "wizard_newaccount.h"
 #include "wizard_update.h"

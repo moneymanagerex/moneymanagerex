@@ -343,7 +343,7 @@ void mmPayeeDialog::OnMenuSelected(wxCommandEvent& event)
 
 void mmPayeeDialog::OnMagicButton(wxCommandEvent& event)
 {
-    wxDataViewEvent evt(wxEVT_NULL);
+    wxDataViewEvent evt;
     OnItemRightClick(evt);
 }
 

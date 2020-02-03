@@ -33,8 +33,8 @@ Copyright (C) 2015 Yosef
 #include "model/allmodel.h"
 
 #include <algorithm>
-
-#include "csv_parser/csv_parser.hpp"
+#include <string>
+#include <iostream>
 #include <wx/xml/xml.h>
 
 wxIMPLEMENT_DYNAMIC_CLASS(mmUnivCSVDialog, wxDialog);
@@ -479,7 +479,7 @@ void mmUnivCSVDialog::SetSettings(const wxString &data)
     csvFieldOrder_.clear();
     for (int i = 0; i < 99; i++)
     {
-        const std::wstring w = to_wstring(i);
+        const std::wstring w = std::to_wstring(i);
         const wxString& value = wxString(json::String(o[w]));
         if (!value.empty())
         {
@@ -641,7 +641,7 @@ void mmUnivCSVDialog::OnSave(wxCommandEvent& /*event*/)
     int count = 0;
     for (std::vector<int>::const_iterator it = csvFieldOrder_.begin(); it != csvFieldOrder_.end(); ++it)
     {
-        const auto w = to_wstring(count++);
+        const auto w = std::to_wstring(count++);
         int i = *it;
         o[w] = json::String(CSVFieldName_[i].ToStdWstring());
         wxLogDebug("%i - %i - %s", count-1, i, CSVFieldName_[i]);
@@ -650,11 +650,11 @@ void mmUnivCSVDialog::OnSave(wxCommandEvent& /*event*/)
     if (IsImporter())
     {
         // Amount sign
-        o[L"AMOUNT_SIGN"] = json::String(to_wstring(m_choiceAmountFieldSign->GetCurrentSelection()));
+        o[L"AMOUNT_SIGN"] = json::String(std::to_wstring(m_choiceAmountFieldSign->GetCurrentSelection()));
 
         // Rows to ignore
-        o[L"IGNORE_FIRST_ROWS"] = json::String(to_wstring(m_spinIgnoreFirstRows_->GetValue()));
-        o[L"IGNORE_LAST_ROWS"] = json::String(to_wstring(m_spinIgnoreLastRows_->GetValue()));
+        o[L"IGNORE_FIRST_ROWS"] = json::String(std::to_wstring(m_spinIgnoreFirstRows_->GetValue()));
+        o[L"IGNORE_LAST_ROWS"] = json::String(std::to_wstring(m_spinIgnoreLastRows_->GetValue()));
     }
     else
     {

@@ -23,7 +23,6 @@
 #include "paths.h"
 #include "platfdep.h"
 #include "util.h"
-#include "webserver.h"
 
 #include "model/Model_Setting.h"
 #include "model/Model_Usage.h"
@@ -191,8 +190,6 @@ bool OnInitImpl(mmGUIApp* app)
 
     app->m_frame = new mmGUIFrame(app, mmex::getProgramName(), wxPoint(valx, valy), wxSize(valw, valh));
 
-    Mongoose_Service::instance().open();
-
     bool ok = app->m_frame->Show();
     if (isMax) app->m_frame->Maximize(true);
 
@@ -243,8 +240,6 @@ int mmGUIApp::OnExit()
     Model_Usage::instance().save(usage);
 
     if (m_setting_db) delete m_setting_db;
-
-    Mongoose_Service::instance().stop();
 
     //Delete mmex temp folder for current user
     wxFileName::Rmdir(mmex::getTempFolder(), wxPATH_RMDIR_RECURSIVE);

@@ -20,7 +20,6 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include <wx/string.h>
 #include <wx/filefn.h>
 #include "lua.hpp"
-#include "mongoose/mongoose.h"
 
 /*************************************************************************
  MMEX_VERSION
@@ -110,7 +109,6 @@ const wxString mmex::getProgramDescription()
         << wxVERSION_STRING << "\n"
         << "SQLite3 " << wxSQLite3Database::GetVersion() << "\n"
         << wxSQLITE3_VERSION_STRING << "\n"
-        << "Mongoose " << MG_VERSION << "\n"
         << LUA_VERSION << "\n";
 #if defined(_MSC_VER)
     description << "Microsoft Visual Studio " << _MSC_VER;

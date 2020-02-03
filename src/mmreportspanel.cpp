@@ -25,7 +25,6 @@
 #include "platfdep.h"
 #include "transdialog.h"
 #include "util.h"
-#include "webserver.h"
 #include "reports/htmlbuilder.h"
 #include "model/allmodel.h"
 

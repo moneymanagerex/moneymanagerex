@@ -23,7 +23,6 @@
 #include "paths.h"
 #include <wx/platinfo.h>
 #include <wx/intl.h>
-#include "mongoose/mongoose.h"
 #include "option.h"
 
 Model_Usage::Model_Usage()
@@ -89,31 +88,6 @@ wxString uuid()
         Model_Setting::instance().Set("UUID", UUID);
     }
     return UUID;
-}
-
-void SendStatsThread::ev_handler(struct mg_connection *nc, int ev, void *ev_data)
-{
-    struct http_message *hm = (struct http_message *) ev_data;
-	SendStatsThread* usage = (SendStatsThread*)nc->mgr->user_data;
-    int connect_status;
-
-    switch (ev)
-    {   
-        case MG_EV_CONNECT:
-            connect_status = * (int *) ev_data;
-            if (connect_status != 0)
-            {
-                usage->m_end = true; 
-            }
-            break;
-        case MG_EV_HTTP_REPLY:
-            printf("Got reply:\n%.*s\n", (int) hm->body.len, hm->body.p);
-            nc->flags |= MG_F_SEND_AND_CLOSE;
-            usage->m_end = true;
-            break;
-        default:
-            break;
-    }
 }
 
 void Model_Usage::pageview(const wxWindow* window)
@@ -202,36 +176,10 @@ SendStatsThread::~SendStatsThread()
 
 wxThread::ExitCode SendStatsThread::Entry()
 {
-	std::cout << m_url << std::endl;
-
-	struct mg_mgr mgr;
-	struct mg_connection *nc;
-
-	mg_mgr_init(&mgr, this);
-
-	std::string user_agent = "User-Agent: " + std::string(wxGetOsDescription().c_str()) + "\r\n";
-	std::cout << user_agent << std::endl;
-	nc = mg_connect_http(&mgr, SendStatsThread::ev_handler, m_url.c_str(), user_agent.c_str(), NULL); // GET
-
-    if (nc != nullptr)
-    {
-	    mg_set_protocol_http_websocket(nc);
-
-	    time_t ts_start = time(NULL);
-	    time_t ts_end = ts_start;
-	    this->m_end = false;
-
-	    while (!this->m_end)
-	    {
-		    if ((ts_end - ts_start) >= 1) // 1 sec
-		    {
-			    std::cout << "timeout" << std::endl;
-			    break;
-		    }
-		    ts_end = mg_mgr_poll(&mgr, 1000);
-	    }
-    }
-	mg_mgr_free(&mgr);
-
-	return nullptr;
+    wxLogDebug("Sending stats (thread %lu, priority %u, %s, %i cores): %s",
+        GetId(), GetPriority(), wxGetOsDescription(), GetCPUCount(), m_url);
+    wxString result = wxEmptyString;
+    //http_get_data(m_url, result, "User-Agent: " + wxGetOsDescription() + "\r\n");
+    wxLogDebug("Response: %s", result);
+    return nullptr;
 }
