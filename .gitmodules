@@ -34,3 +34,6 @@
 [submodule "3rd/sqlcipher"]
 	path = 3rd/sqlcipher
 	url = https://github.com/sqlcipher/sqlcipher.git
+[submodule "3rd\\rapidjson"]
+	path = 3rd\\rapidjson
+	url = https://github.com/Tencent/rapidjson

@@ -883,48 +883,32 @@ bool mmMainCurrencyDialog::SetBaseCurrency(int& baseCurrencyID)
 
 bool mmMainCurrencyDialog::HistoryDownloadBce()
 {
+
+    wxString base_currency_symbol;
+    wxString symbol = "USD";
     wxString XmlContent;
-    if (site_content(mmex::weblink::BceCurrencyHistory, XmlContent) != wxURL_NOERR)
-        return false;
 
-    wxStringInputStream XmlContentStream(XmlContent);
-    wxXmlDocument XmlDocument;
-    if (!XmlDocument.Load(XmlContentStream))
-        return false;
-    if (XmlDocument.GetRoot()->GetName() != "gesmes:Envelope")
-        return false;
-
-    wxXmlNode* XmlRoot = XmlDocument.GetRoot()->GetChildren();
-    while (XmlRoot->GetName() != "Cube")
-        XmlRoot = XmlRoot->GetNext();
-    if (XmlRoot->GetName() != "Cube")
-        return false;
-
-    double Rate;
-    wxDateTime HistoryDate;
-    XmlRoot = XmlRoot->GetChildren(); //Go inside <Cube>
-    while (XmlRoot) //<Cube time="2015-07-03">
+    if (!Model_Currency::GetBaseCurrencySymbol(base_currency_symbol))
     {
-        HistoryDate.ParseDate(XmlRoot->GetAttribute("time"));
-        CurrencyHistoryRate CurrencyHistory;
-        wxXmlNode* XmlRate = XmlRoot->GetChildren();
-        while (XmlRate) //<Cube currency="USD" rate="1.1096"/>
-        {
-            CurrencyHistory.BaseCurrency = "EUR";
-            CurrencyHistory.Date = HistoryDate;
-            CurrencyHistory.Currency = XmlRate->GetAttribute("currency");
-            XmlRate->GetAttribute("rate").ToDouble(&Rate);
-            CurrencyHistory.Rate = Rate;
-
-            _BceCurrencyHistoryRatesList.push_back(CurrencyHistory);
-            XmlRate = XmlRate->GetNext();
-        }
-        XmlRoot = XmlRoot->GetNext();
+        //msg = _("Could not find base currency symbol!");
+        return false;
     }
 
-    if (_BceCurrencyHistoryRatesList.size() == 0)
+    const wxString URL = wxString::Format(mmex::weblink::YahooQuotesHistory
+        , wxString::Format("%s%s=X", symbol, base_currency_symbol)
+        , "5y", "1d"); //TODO: ask range and interval
+
+    if (site_content(URL, XmlContent) != wxURL_NOERR)
         return false;
 
+    wxString json_data;
+    /*auto err_code = http_get_data(URL, json_data);
+    if (err_code != CURLE_OK)
+    {
+        //msg = json_data;
+        return false;
+    }
+    */
     return true;
 }
 

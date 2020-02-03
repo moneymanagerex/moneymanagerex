@@ -79,12 +79,11 @@ namespace weblink
     extern const wxString Donate;
     extern const wxString Twitter;
     extern const wxString Facebook;
-    extern const wxString YahooQuotes;
-    extern const wxString YahooQuotesHistory;
-    extern const wxString BceCurrencyHistory;
     extern const wxString DefStockUrl;
     extern const wxString GooglePlay;
     extern const wxString WebApp;
+    extern const wxString YahooQuotes;
+    extern const wxString YahooQuotesHistory;
 } // namespace weblink
 } // namespace mmex
 

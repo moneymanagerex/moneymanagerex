@@ -150,24 +150,19 @@ const wxString mmex::weblink::Donate = "https://www.paypal.com/cgi-bin/webscr?cm
 const wxString mmex::weblink::Twitter = "https://twitter.com/MoneyManagerEx";
 const wxString mmex::weblink::Facebook = "http://www.facebook.com/pages/Money-Manager-Ex/242286559144586";
 // https://greenido.wordpress.com/2009/12/22/yahoo-finance-hidden-api/
-const wxString mmex::weblink::YahooQuotes = "http://download.finance.yahoo.com/d/quotes.csv?s=%s&f=sl1c4n&e=.csv";
-const wxString mmex::weblink::YahooQuotesHistory = "http://ichart.finance.yahoo.com/table.csv?s=";
-const wxString mmex::weblink::BceCurrencyHistory = "http://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml";
-//const wxString mmex::weblink::BceCurrencyHistory = "http://192.168.6.1/eurofxref-hist.xml"; // used for debug
+
 const wxString mmex::weblink::GooglePlay = "https://play.google.com/store/apps/details?id=com.money.manager.ex";
 const wxString mmex::weblink::WebApp = "https://github.com/moneymanagerex/web-money-manager-ex";
 
 // Will display the stock page when using Looks up the current value
 const wxString mmex::weblink::DefStockUrl = "http://finance.yahoo.com/echarts?s=%s";
-// Looks up the current value
-// const wxChar *const mmex::DEFSTOCKURL = "http://finance.yahoo.com/lookup?s=%s";
 
-// Using google: To specify the exchange, use exch:code
-// Using yahoo: To specify the exchange, use code.exch
-// const wxChar *const mmex::DEFSTOCKURL = "http://www.google.com/finance?q=%s";
+// Yahoo API
+const wxString mmex::weblink::YahooQuotes = "https://query1.finance.yahoo.com/v7/finance/quote?symbols=%s&fields=regularMarketPrice,currency,shortName";
+/*"ValidRanges":["1d","5d","1mo","3mo","6mo","1y","2y","5y","10y","ytd","max"]
+   Valid intervals: [1m, 2m, 5m, 15m, 30m, 60m, 90m, 1h, 1d, 5d, 1wk, 1mo, 3mo]*/
+const wxString mmex::weblink::YahooQuotesHistory = "https://query1.finance.yahoo.com/v8/finance/chart/%s?range=%s&interval=%s&fields=currency";
 
-//US Dollar (USD) in Euro (EUR) Chart
-//http://www.google.com/finance?q=CURRENCY%3AUSD
 
 /* End namespace weblink */
 

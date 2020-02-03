@@ -684,10 +684,6 @@ void mmStockDialog::OnHistoryImportButton(wxCommandEvent& /*event*/)
 
 void mmStockDialog::OnHistoryDownloadButton(wxCommandEvent& /*event*/)
 {
-    /*
-    Example stock history download:
-    https://code.google.com/p/yahoo-finance-managed/wiki/csvHistQuotesDownload
-    */
 
     if (m_stock->SYMBOL.IsEmpty())
         return;

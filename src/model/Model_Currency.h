@@ -1,4 +1,4 @@
-﻿/*******************************************************
+/*******************************************************
  Copyright (C) 2013,2014 Guan Lisheng (guanlisheng@gmail.com)
 
  This program is free software; you can redistribute it and/or modify
@@ -52,6 +52,7 @@ public:
 
     /** Return the Data record of the base currency.*/
     static Data* GetBaseCurrency();
+    static bool GetBaseCurrencySymbol(wxString& base_currency_symbol);
 
     /** Resets all BASECONVRATE to 1 */
     static void ResetBaseConversionRates();

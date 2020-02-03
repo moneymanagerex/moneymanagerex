@@ -1,4 +1,4 @@
-﻿/*******************************************************
+/*******************************************************
  Copyright (C) 2013,2014 Guan Lisheng (guanlisheng@gmail.com)
 
  This program is free software; you can redistribute it and/or modify
@@ -75,6 +75,17 @@ Model_Currency::Data* Model_Currency::GetBaseCurrency()
     int currency_id = Option::instance().BaseCurrency();
     Model_Currency::Data* currency = Model_Currency::instance().get(currency_id);
     return currency;
+}
+
+bool Model_Currency::GetBaseCurrencySymbol(wxString& base_currency_symbol)
+{
+    const auto base_currency = GetBaseCurrency();
+    if (base_currency)
+    {
+        base_currency_symbol = base_currency->CURRENCY_SYMBOL;
+        return true;
+    }
+    return false;
 }
 
 void Model_Currency::ResetBaseConversionRates()
