@@ -18,6 +18,7 @@
 
 # default build dir
 /build/
+/bin/
 
 #snapcraft build dirs
 /snap/
