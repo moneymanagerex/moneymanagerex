@@ -1,6 +1,6 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
- Copyright (C) 2013-2014 Nikolay
+ Copyright (C) 2013-2020 Nikolay
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -17,6 +17,12 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
+#ifdef _MSC_VER
+#pragma comment(lib,"ws2_32.lib")
+#pragma comment(lib,"crypt32.lib")
+#pragma comment(lib,"wldap32.lib")
+#endif
+
 #include "util.h"
 #include "constants.h"
 #include "mmtextctrl.h"
@@ -24,9 +30,12 @@
 #include "model/Model_Currency.h"
 #include "model/Model_Infotable.h"
 #include "model/Model_Setting.h"
+#include "model/Model_CurrencyHistory.h"
 #include <wx/sstream.h>
 #include <wx/xml/xml.h>
 #include <map>
+
+using namespace rapidjson;
 //----------------------------------------------------------------------------
 
 int CaseInsensitiveCmp(const wxString &s1, const wxString &s2)
@@ -86,75 +95,15 @@ wxColour mmColors::userDefColor7;
 
 //*-------------------------------------------------------------------------*//
 
-int site_content(const wxString& sSite, wxString& sOutput)
- {
-    wxString proxyName = Model_Setting::instance().GetStringSetting("PROXYIP", "");
-    if (!proxyName.empty())
-    {
-        int proxyPort = Model_Setting::instance().GetIntSetting("PROXYPORT", 0);
-        const wxString& proxySettings = wxString::Format("%s:%d", proxyName, proxyPort);
-        wxURL::SetDefaultProxy(proxySettings);
-    }
-    else
-        wxURL::SetDefaultProxy(""); // Remove prior proxy
-
-    wxURL url(sSite);
-    int err_code = url.GetError();
-    if (err_code == wxURL_NOERR)
-    {
-        int networkTimeout = Model_Setting::instance().GetIntSetting("NETWORKTIMEOUT", 10); // default 10 secs
-        url.GetProtocol().SetTimeout(networkTimeout);
-        wxInputStream* in_stream = url.GetInputStream();
-        if (in_stream)
-        {
-            wxStringOutputStream out_stream(&sOutput);
-            in_stream->Read(out_stream);
-        }
-        else
-            err_code = -1; //Cannot get data from WWW!
-        delete in_stream;
-    }
-
-    if (err_code != wxURL_NOERR)
-    {
-        if      (err_code == wxURL_SNTXERR ) sOutput = _("Syntax error in the URL string");
-        else if (err_code == wxURL_NOPROTO ) sOutput = _("Found no protocol which can get this URL");
-        else if (err_code == wxURL_NOHOST  ) sOutput = _("A host name is required for this protocol");
-        else if (err_code == wxURL_NOPATH  ) sOutput = _("A path is required for this protocol");
-        else if (err_code == wxURL_CONNERR ) sOutput = _("Connection error");
-        else if (err_code == wxURL_PROTOERR) sOutput = _("An error occurred during negotiation");
-        else if (err_code == -1) sOutput = _("Cannot get data from WWW!");
-        else sOutput = _("Unknown error");
-    }
-    return err_code;
-}
-
-bool download_file(const wxString& site, const wxString& path)
-{
-    wxFileSystem fs;
-    wxFileSystem::AddHandler(new wxInternetFSHandler());
-    wxFSFile *file = fs.OpenFile(site);
-    if (file != NULL)
-    {
-        wxInputStream *in = file->GetStream();
-        if (in != NULL)
-        {
-            wxFileOutputStream output(path);
-            output.Write(*file->GetStream());
-            output.Close();
-            delete in;
-            return true;
-        }
-    }
-
-    return false;
-}
-
 //Get unread news or all news for last year
 const bool getNewsRSS(std::vector<WebsiteNews>& WebsiteNewsList)
 {
     wxString RssContent;
-    if (site_content(mmex::weblink::NewsRSS, RssContent) != wxURL_NOERR)
+    if (http_get_data(mmex::weblink::NewsRSS, RssContent) != wxURL_NOERR)
+        return false;
+
+    //simple validation to avoid bug #1083
+    if (!RssContent.Contains("</rss>"))
         return false;
 
     wxStringInputStream RssContentStream(RssContent);
@@ -564,3 +513,449 @@ void mmCalcValidator::OnChar(wxKeyEvent& event)
 
 }
 
+bool getOnlineCurrencyRates(wxString& msg, int curr_id, bool used_only)
+{
+    wxString base_currency_symbol;
+
+    if (!Model_Currency::GetBaseCurrencySymbol(base_currency_symbol))
+    {
+        msg = _("Could not find base currency symbol!");
+        return false;
+    }
+
+    std::vector<wxString> fiat;
+
+    auto currencies = Model_Currency::instance().find(Model_Currency::CURRENCY_SYMBOL(base_currency_symbol, NOT_EQUAL));
+    for (const auto& currency : currencies)
+    {
+        if (curr_id > 0 && currency.CURRENCYID != curr_id)
+            continue;
+        if (curr_id < 0 && !Model_Account::is_used(currency))
+            continue;
+        const auto symbol = currency.CURRENCY_SYMBOL;
+        if (symbol.IsEmpty())
+            continue;
+
+        fiat.push_back(symbol);
+    }
+
+    wxString output;
+    std::map<wxString, double> currency_data;
+
+
+    if (!fiat.empty())
+    {
+        if (!get_yahoo_prices(fiat, currency_data, base_currency_symbol, output, yahoo_price_type::SHARES))
+        {
+            msg = output;
+        }
+    }
+    else
+    {
+        msg = _("Nothing to update");
+        return false;
+    }
+
+    msg = _("Currency rates have been updated");
+    msg << "\n\n";
+
+    const wxDateTime today = wxDateTime::Today();
+    Model_CurrencyHistory::instance().Savepoint();
+    for (auto& currency : currencies)
+    {
+        if (!used_only && !Model_Account::is_used(currency)) continue;
+
+        const wxString currency_symbol = currency.CURRENCY_SYMBOL;
+        if (!currency_symbol.IsEmpty())
+        {
+            if (currency_data.find(currency_symbol) != currency_data.end())
+            {
+                double new_rate = currency_data[currency_symbol];
+                if (new_rate > 0)
+                {
+                    msg << wxString::Format("%s\t -> %0.6f\n", currency_symbol, new_rate);
+                    Model_CurrencyHistory::instance().addUpdate(currency.CURRENCYID, today, new_rate, Model_CurrencyHistory::ONLINE);
+                }
+                else
+                    msg << wxString::Format("%s\t -> %s\n", currency_symbol, _("Invalid value"));
+            }
+        }
+    }
+
+    Model_CurrencyHistory::instance().ReleaseSavepoint();
+
+    return true;
+}
+
+/* Currencies & stock prices */
+
+bool GetOnlineCurrencyRates(wxString& msg, int curr_id, bool used_only)
+{
+    wxString base_currency_symbol;
+
+    if (!Model_Currency::GetBaseCurrencySymbol(base_currency_symbol))
+    {
+        msg = _("Could not find base currency symbol!");
+        return false;
+    }
+
+    std::vector<wxString> fiat;
+
+    auto currencies = Model_Currency::instance().find(Model_Currency::CURRENCY_SYMBOL(base_currency_symbol, NOT_EQUAL));
+    for (const auto& currency : currencies)
+    {
+        if (curr_id > 0 && currency.CURRENCYID != curr_id)
+            continue;
+        if (curr_id < 0 && !Model_Account::is_used(currency))
+            continue;
+        const auto symbol = currency.CURRENCY_SYMBOL;
+        if (symbol.IsEmpty())
+            continue;
+
+        fiat.push_back(symbol);
+    }
+
+    wxString output;
+    std::map<wxString, double> currency_data;
+
+
+    if (!fiat.empty())
+    {
+        if (!get_yahoo_prices(fiat, currency_data, base_currency_symbol, output, yahoo_price_type::SHARES))
+        {
+            msg = output;
+        }
+    }
+    else
+    {
+        msg = _("Nothing to update");
+        return false;
+    }
+
+    msg = _("Currency rates have been updated");
+    msg << "\n\n";
+
+    const wxDateTime today = wxDateTime::Today();
+    Model_CurrencyHistory::instance().Savepoint();
+    for (auto& currency : currencies)
+    {
+        if (!used_only && !Model_Account::is_used(currency)) continue;
+
+        const wxString currency_symbol = currency.CURRENCY_SYMBOL;
+        if (!currency_symbol.IsEmpty())
+        {
+            if (currency_data.find(currency_symbol) != currency_data.end())
+            {
+                double new_rate = currency_data[currency_symbol];
+                if (new_rate > 0)
+                {
+                    msg << wxString::Format("%s\t -> %0.6f\n", currency_symbol, new_rate);
+                    Model_CurrencyHistory::instance().addUpdate(currency.CURRENCYID, today, new_rate, Model_CurrencyHistory::ONLINE);
+                }
+                else
+                    msg << wxString::Format("%s\t -> %s\n", currency_symbol, _("Invalid value"));
+            }
+        }
+    }
+
+    Model_CurrencyHistory::instance().ReleaseSavepoint();
+
+    return true;
+}
+
+bool get_yahoo_prices(std::vector<wxString>& symbols
+    , std::map<wxString, double>& out
+    , const wxString base_currency_symbol
+    , wxString& output
+    , int type)
+{
+    wxString buffer;
+    for (const auto& entry : symbols)
+    {
+        if (type == yahoo_price_type::FIAT)
+        {
+            buffer += wxString::Format("%s%s=X,", entry, base_currency_symbol);
+        }
+        else
+            buffer += entry + ",";
+    }
+    if (buffer.Right(1).Contains(",")) buffer.RemoveLast(1);
+
+    const auto URL = wxString::Format(mmex::weblink::YahooQuotes, buffer);
+
+    wxString json_data;
+    auto err_code = http_get_data(URL, json_data);
+    if (err_code != CURLE_OK)
+    {
+        output = json_data;
+        return false;
+    }
+
+    Document json_doc;
+    if (json_doc.Parse(json_data.c_str()).HasParseError())
+        return false;
+
+
+    Value r = json_doc["quoteResponse"].GetObject();
+    //if (!r.HasMember("error") || !r["error"].IsNull())
+    //    return false;
+
+    Value e = r["result"].GetArray();
+
+    if (e.Empty()) {
+        output = _("Nothing to update");
+        return false;
+    }
+
+    if (type == yahoo_price_type::FIAT)
+    {
+        wxRegEx pattern("^(...)...=X$");
+        for (rapidjson::SizeType i = 0; i < e.Size(); i++)
+        {
+            if (!e[i].IsObject()) continue;
+            Value v = e[i].GetObject();
+
+            if (!v.HasMember("symbol") || !v["symbol"].IsString())
+                continue;
+            auto currency_symbol = wxString::FromUTF8(v["symbol"].GetString());
+            if (pattern.Matches(currency_symbol))
+            {
+                if (!v.HasMember("regularMarketPrice") || !v["regularMarketPrice"].IsFloat())
+                    continue;
+                const auto price = v["regularMarketPrice"].GetFloat();
+                currency_symbol = pattern.GetMatch(currency_symbol, 1);
+
+                wxLogDebug("item: %u %s %f", i, currency_symbol, price);
+                out[currency_symbol] = (price <= 0 ? 1 : price);
+            }
+        }
+    }
+    else
+    {
+        for (rapidjson::SizeType i = 0; i < e.Size(); i++)
+        {
+            if (!e[i].IsObject()) continue;
+            Value v = e[i].GetObject();
+
+            if (!v.HasMember("regularMarketPrice") || !v["regularMarketPrice"].IsFloat())
+                continue;
+            auto price = v["regularMarketPrice"].GetFloat();
+
+            if (!v.HasMember("symbol") || !v["symbol"].IsString())
+                continue;
+            const auto symbol = wxString::FromUTF8(v["symbol"].GetString());
+
+            if (!v.HasMember("currency") || !v["currency"].IsString())
+                continue;
+            const auto currency = wxString::FromUTF8(v["currency"].GetString());
+            double k = currency == "GBp" ? 100 : 1;
+
+            wxLogDebug("item: %u %s %f", i, symbol, price);
+            out[symbol] = price <= 0 ? 1 : price / k;
+        }
+    }
+
+    return true;
+}
+
+//*-------------------------------- CURLcode -----------------------------------------*//
+
+struct curlBuff {
+    char *memory;
+    size_t size;
+};
+
+static size_t curlWriteMemoryCallback(void *contents, size_t size, size_t nmemb, void *userp)
+{
+    size_t realsize = size * nmemb;
+    struct curlBuff *mem = static_cast<struct curlBuff *>(userp);
+
+    char *tmp = static_cast<char *>(realloc(mem->memory, mem->size + realsize + 1));
+    if (tmp == NULL) {
+        /* out of memory! */
+        // printf("not enough memory (realloc returned NULL)\n");
+        return 0;
+    }
+
+    mem->memory = tmp;
+    memcpy(&(mem->memory[mem->size]), contents, realsize);
+    mem->size += realsize;
+    mem->memory[mem->size] = 0;
+
+    return realsize;
+}
+
+static size_t curlWriteFileCallback(void *contents, size_t size, size_t nmemb, wxFileOutputStream *stream)
+{
+    stream->Write(contents, size * nmemb);
+    return stream->LastWrite();
+}
+
+#ifdef _DEBUG
+static int log_libcurl_debug(CURL *handle, curl_infotype type, char *data, size_t size, void *userp)
+{
+    (void)handle; /* Not used */
+    (void)userp; /* Not used */
+    static const char * const s_infotype[] = {
+        "*", "<", ">", "{", "}", "(", ")"
+    };
+
+    wxString text(data, size);
+    wxStringTokenizer tokenizer;
+
+    switch (type) {
+    case CURLINFO_HEADER_OUT:
+    case CURLINFO_TEXT:
+    case CURLINFO_HEADER_IN:
+        tokenizer.SetString(text, "\n", wxTOKEN_STRTOK);
+        while (tokenizer.HasMoreTokens()) {
+            wxString line = tokenizer.GetNextToken();
+            line.Trim();
+            wxLogTrace("libcurl", "%s %s", s_infotype[type], line);
+        }
+        break;
+    case CURLINFO_DATA_OUT:
+    case CURLINFO_DATA_IN:
+    case CURLINFO_SSL_DATA_IN:
+    case CURLINFO_SSL_DATA_OUT:
+        if (wxLog::IsAllowedTraceMask("libcurl_data")) {
+            tokenizer.SetString(text, "\n", wxTOKEN_STRTOK);
+            while (tokenizer.HasMoreTokens()) {
+                wxString line = tokenizer.GetNextToken();
+                line.Trim();
+                wxLogTrace("libcurl_data", "%s %s", s_infotype[type], line);
+            }
+        }
+        else
+        {
+            wxLogTrace("libcurl", "%s [%zu bytes data]", s_infotype[type], size);
+        }
+        break;
+    case CURLINFO_END:
+    default:
+        return 0;
+    }
+
+    return 0;
+}
+#endif
+
+void curl_set_common_options(CURL* curl, const wxString& useragent = wxEmptyString) {
+    wxString proxyName = Model_Setting::instance().GetStringSetting("PROXYIP", "");
+    if (!proxyName.IsEmpty())
+    {
+        int proxyPort = Model_Setting::instance().GetIntSetting("PROXYPORT", 0);
+        const wxString& proxySettings = wxString::Format("%s:%d", proxyName, proxyPort);
+        curl_easy_setopt(curl, CURLOPT_PROXY, static_cast<const char*>(proxySettings.mb_str()));
+    }
+
+    int networkTimeout = Model_Setting::instance().GetIntSetting("NETWORKTIMEOUT", 10); // default 10 secs
+    curl_easy_setopt(curl, CURLOPT_TIMEOUT, networkTimeout);
+
+    if (useragent.IsEmpty())
+        curl_easy_setopt(curl, CURLOPT_USERAGENT, static_cast<const char*>(wxString::Format("%s/%s", mmex::getProgramName(), mmex::version::string).mb_str()));
+    else
+        curl_easy_setopt(curl, CURLOPT_USERAGENT, static_cast<const char*>(useragent.mb_str()));
+
+    curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1L);
+
+#ifdef _DEBUG
+    curl_easy_setopt(curl, CURLOPT_VERBOSE, 1L);
+    curl_easy_setopt(curl, CURLOPT_DEBUGFUNCTION, log_libcurl_debug);
+#endif
+}
+
+void curl_set_writedata_options(CURL* curl, curlBuff& chunk)
+{
+    chunk.memory = static_cast<char *>(malloc(1));
+    chunk.size = 0;
+    curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, curlWriteMemoryCallback);
+    curl_easy_setopt(curl, CURLOPT_WRITEDATA, &chunk);
+}
+
+CURLcode http_get_data(const wxString& sSite, wxString& sOutput, const wxString& useragent)
+{
+    CURL *curl = curl_easy_init();
+    if (!curl) return CURLE_FAILED_INIT;
+
+    curl_set_common_options(curl, useragent);
+
+    struct curlBuff chunk;
+    curl_set_writedata_options(curl, chunk);
+
+    curl_easy_setopt(curl, CURLOPT_URL, static_cast<const char*>(sSite.mb_str()));
+
+    CURLcode err_code = curl_easy_perform(curl);
+    if (err_code == CURLE_OK)
+        sOutput = wxString::FromUTF8(chunk.memory);
+    else {
+        sOutput = curl_easy_strerror(err_code); //TODO: translation
+        wxLogDebug("http_get_data: URL = %s error = %s", sSite, sOutput);
+    }
+
+    free(chunk.memory);
+    curl_easy_cleanup(curl);
+    return err_code;
+}
+
+CURLcode http_post_data(const wxString& sSite, const wxString& sData, const wxString& sContentType, wxString& sOutput)
+{
+    CURL *curl = curl_easy_init();
+    if (!curl) return CURLE_FAILED_INIT;
+
+    curl_set_common_options(curl);
+
+    struct curlBuff chunk;
+    curl_set_writedata_options(curl, chunk);
+
+    struct curl_slist *headers = NULL;
+    headers = curl_slist_append(headers, sContentType.mb_str());
+    curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headers);
+
+    curl_easy_setopt(curl, CURLOPT_URL, static_cast<const char*>(sSite.mb_str()));
+    curl_easy_setopt(curl, CURLOPT_POSTFIELDS, static_cast<const char*>(sData.mb_str()));
+
+    CURLcode err_code = curl_easy_perform(curl);
+    if (err_code == CURLE_OK)
+        sOutput = wxString::FromUTF8(chunk.memory);
+    else {
+        sOutput = curl_easy_strerror(err_code); //TODO: translation
+        wxLogDebug("http_post_data: URL = %s error = %s", sSite, sOutput);
+    }
+
+    free(chunk.memory);
+    curl_easy_cleanup(curl);
+    return err_code;
+}
+
+CURLcode http_download_file(const wxString& sSite, const wxString& sPath)
+{
+    wxLogDebug("http_download_file: URL = %s | Target = %s", sSite, sPath);
+
+    CURL *curl = curl_easy_init();
+    if (!curl) return CURLE_FAILED_INIT;
+
+    curl_set_common_options(curl);
+
+    wxFileOutputStream output(sPath);
+    if (!output.IsOk()) {
+        wxLogDebug("http_download_file: Failed to open output file: %s error = %d", sPath, output.GetLastError());
+        return CURLE_WRITE_ERROR;
+    }
+
+    curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, curlWriteFileCallback);
+    curl_easy_setopt(curl, CURLOPT_WRITEDATA, &output);
+
+    curl_easy_setopt(curl, CURLOPT_URL, static_cast<const char*>(sSite.mb_str()));
+
+    CURLcode err_code = curl_easy_perform(curl);
+    output.Close();
+    curl_easy_cleanup(curl);
+
+    if (err_code != CURLE_OK)
+    {
+        wxLogDebug("http_download_file: URL = %s error = %s", sSite, curl_easy_strerror(err_code));
+    }
+
+    return err_code;
+}

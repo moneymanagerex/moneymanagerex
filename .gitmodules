@@ -1,9 +1,6 @@
 [submodule "lib/wxsqlite3"]
 	path = lib/wxsqlite3
 	url = https://github.com/utelle/wxsqlite3.git
-[submodule "3rd/mongoose"]
-	path = 3rd/mongoose
-	url = https://github.com/cesanta/mongoose.git
 [submodule "3rd/LuaGlue"]
 	path = 3rd/LuaGlue
 	url = https://github.com/moneymanagerex/LuaGlue.git
@@ -13,9 +10,6 @@
 [submodule "3rd/cajun"]
 	path = 3rd/cajun
 	url = https://github.com/moneymanagerex/cajun.git
-[submodule "3rd/csv-parser"]
-	path = 3rd/csv-parser
-	url = https://github.com/moneymanagerex/csv-parser.git
 [submodule "lib/cppunit"]
 	path = lib/cppunit
 	url = https://github.com/moneymanagerex/cppunit.git
@@ -34,6 +28,6 @@
 [submodule "3rd/sqlcipher"]
 	path = 3rd/sqlcipher
 	url = https://github.com/sqlcipher/sqlcipher.git
-[submodule "3rd\\rapidjson"]
-	path = 3rd\\rapidjson
+[submodule "3rd/rapidjson"]
+	path = 3rd/rapidjson
 	url = https://github.com/Tencent/rapidjson

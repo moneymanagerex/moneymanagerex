@@ -22,9 +22,9 @@ Platforms
 * [wxWidgets](http://wxwidgets.org/) 3.0+
 * [wxSqlite3](https://github.com/utelle/wxsqlite3)
 * [SQLite3](http://sqlite.org/)
-* [Mongoose](https://www.cesanta.com/)
 * [ChartNew.JS](https://github.com/FVANCOP/ChartNew.js)
 * [html-template](https://github.com/moneymanagerex/html-template)
+* [libcurl](https://curl.haxx.se/libcurl/)
 
 ### Supported platforms:
 - Windows XP, Vista, 7, 8 and 10 (32/64 bits).

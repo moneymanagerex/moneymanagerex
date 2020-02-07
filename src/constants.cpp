@@ -20,6 +20,8 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include <wx/string.h>
 #include <wx/filefn.h>
 #include "lua.hpp"
+#include <curl/curl.h>
+#include "rapidjson/rapidjson.h"
 
 /*************************************************************************
  MMEX_VERSION
@@ -103,15 +105,21 @@ const wxString mmex::getProgramCopyright()
 }
 const wxString mmex::getProgramDescription()
 {
+    const wxString bull = L" \u2022 ";
+    wxString curl = curl_version();
+    curl.Replace(" ", "\n" + bull);
+    curl.Replace("/", " ");
+
     wxString description;
     description << _("MMEX is using the following support products") << ":\n"
         << "======================================\n"
-        << wxVERSION_STRING << "\n"
-        << "SQLite3 " << wxSQLite3Database::GetVersion() << "\n"
-        << wxSQLITE3_VERSION_STRING << "\n"
-        << LUA_VERSION << "\n";
+        << bull + wxVERSION_STRING << "\n"
+        << bull + "SQLite3 " << wxSQLite3Database::GetVersion() << "\n"
+        << bull + wxSQLITE3_VERSION_STRING << "\n"
+        << bull + LUA_VERSION << "\n"
+        << bull + curl << "\n";
 #if defined(_MSC_VER)
-    description << "Microsoft Visual Studio " << _MSC_VER;
+    description << bull << "Microsoft Visual Studio " << _MSC_VER;
 #elif defined(__clang__)
     description << "Clang/LLVM " << __VERSION__;
 #elif (defined(__GNUC__) || defined(__GNUG__)) && !(defined(__clang__) || defined(__INTEL_COMPILER))
@@ -138,6 +146,7 @@ const wxString mmex::weblink::addReferralToURL(const wxString& BaseURL, const wx
 
 const wxString mmex::weblink::WebSite = mmex::weblink::addReferralToURL("http://www.moneymanagerex.org", "Website");
 const wxString mmex::weblink::Update = wxString::Format("http://www.moneymanagerex.org/version.php?Version=%s", mmex::version::string);
+const wxString mmex::weblink::Releases = "https://api.github.com/repos/moneymanagerex/moneymanagerex/releases";
 const wxString mmex::weblink::UpdateLinks = wxString::Format("http://www.moneymanagerex.org/version.php?Version=%s&Links=true", mmex::version::string);
 const wxString mmex::weblink::Changelog = wxString::Format("http://www.moneymanagerex.org/version.php?Version=%s&ChangeLog=", mmex::version::string);
 const wxString mmex::weblink::Download = mmex::weblink::addReferralToURL("http://www.moneymanagerex.org/download", "Download");

@@ -117,11 +117,6 @@ void Option::DateFormat(const wxString& dateformat)
     Model_Infotable::instance().Set("DATEFORMAT", dateformat);
 }
 
-wxString Option::DateFormat()
-{
-    return m_dateFormat;
-}
-
 void Option::Language(wxString& language)
 {
     m_language = language;

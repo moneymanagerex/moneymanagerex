@@ -16,8 +16,7 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#ifndef MM_EX_OPTION_H_
-#define MM_EX_OPTION_H_
+#pragma once
 
 #include "defs.h"
 
@@ -38,7 +37,7 @@ public:
 
     // set and save the option: m_dateFormat
     void DateFormat(const wxString& datefornat);
-    wxString DateFormat();
+    const wxString DateFormat() const;
 
     // set and save the option: m_language
     void Language(wxString& language);
@@ -133,5 +132,7 @@ private:
     int m_ico_size;
 };
 
-#endif // MM_EX_OPTION_H_
-//----------------------------------------------------------------------------
+inline const wxString Option::DateFormat() const
+{
+    return m_dateFormat;
+}

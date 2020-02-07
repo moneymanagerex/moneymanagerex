@@ -855,8 +855,13 @@ void mmGUIFrame::loadNavTreeItemsStatus()
 
         mmTreeItemData* iData =
             dynamic_cast<mmTreeItemData*>(m_nav_tree_ctrl->GetItemData(next));
-        if (iData && json::Boolean(o[iData->getString().ToStdWstring()]))
-            m_nav_tree_ctrl->Expand(next);
+        if (iData)
+        {
+            auto index = iData->getString().ToStdWstring();
+            if (!index.empty() && json::Boolean(o[index])) {
+                m_nav_tree_ctrl->Expand(next);
+            }
+        }
     };
 
     SetEvtHandlerEnabled(true);

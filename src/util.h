@@ -16,13 +16,14 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#ifndef MM_EX_UTIL_H_
-#define MM_EX_UTIL_H_
+#pragma once
 
 #include "defs.h"
 #include "reports/reportbase.h"
 #include <wx/valnum.h>
 #include <map>
+#include <curl/curl.h>
+#include <rapidjson/document.h>
 
 class mmGUIApp;
 struct ValuePair
@@ -158,9 +159,14 @@ public:
 //----------------------------------------------------------------------------
 
 const bool getNewsRSS(std::vector<WebsiteNews>& WebsiteNewsList);
-int site_content(const wxString& site, wxString& output);
-bool download_file(const wxString& site, const wxString& path);
 const wxString getURL(const wxString& file);
+enum yahoo_price_type { FIAT = 0, SHARES };
+bool getOnlineCurrencyRates(wxString& msg, int curr_id = -1, bool used_only = true);
+bool get_yahoo_prices(std::vector<wxString>& symbols
+    , std::map<wxString, double>& out
+    , const wxString base_currency_symbol
+    , wxString& output
+    , int type);
 
 const wxString mmPlatformType();
 void windowsFreezeThaw(wxWindow* w);
@@ -175,5 +181,8 @@ const wxString mmGetNiceDateSimpleString(const wxDateTime &dt);
 extern const std::map<wxString, wxString> g_date_formats_map;
 extern const std::map<int, std::pair<wxConvAuto, wxString> > g_encoding;
 
-#endif // MM_EX_UTIL_H_
+CURLcode http_get_data(const wxString& site, wxString& output, const wxString& useragent = wxEmptyString);
+CURLcode http_post_data(const wxString& site, const wxString& data, const wxString& contentType, wxString& output);
+CURLcode http_download_file(const wxString& site, const wxString& path);
+
 //----------------------------------------------------------------------------

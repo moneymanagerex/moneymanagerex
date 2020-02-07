@@ -26,7 +26,6 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 /*******************************************************/
 wxBEGIN_EVENT_TABLE(OptionSettingsNet, wxPanel)
     EVT_TEXT(ID_DIALOG_OPTIONS_TEXTCTRL_PROXY, OptionSettingsNet::OnProxyChanged)
-    EVT_CHECKBOX(ID_DIALOG_OPTIONS_ENABLE_WEBSERVER, OptionSettingsNet::OnEnableWebserverChanged)
     EVT_CHECKBOX(ID_DIALOG_OPTIONS_UPDATES_CHECK, OptionSettingsNet::OnUpdateCheckChanged)
 wxEND_EVENT_TABLE()
 /*******************************************************/
@@ -104,30 +103,6 @@ void OptionSettingsNet::Create()
 
     proxyStaticBoxSizer->Add(flex_sizer3, g_flagsV);
 
-    // Web Server Settings
-    wxStaticBox* webserverStaticBox = new wxStaticBox(this, wxID_STATIC, _("Web Server"));
-    SetBoldFont(webserverStaticBox);
-    wxStaticBoxSizer* webserverStaticBoxSizer = new wxStaticBoxSizer(webserverStaticBox, wxVERTICAL);
-    networkPanelSizer->Add(webserverStaticBoxSizer, wxSizerFlags(g_flagsExpand).Proportion(0));
-
-    m_webserver_checkbox = new wxCheckBox(this, ID_DIALOG_OPTIONS_ENABLE_WEBSERVER
-        , _("Enable"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
-    m_webserver_checkbox->SetValue(GetIniDatabaseCheckboxValue("ENABLEWEBSERVER", false));
-    m_webserver_checkbox->SetToolTip(_("Enable internal web server when MMEX Starts."));
-
-    int webserverPort = Model_Setting::instance().GetIntSetting("WEBSERVERPORT", 8080);
-    m_webserver_port = new wxSpinCtrl(this, wxID_ANY,
-        wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 0, 65535, webserverPort);
-    m_webserver_port->SetValue(webserverPort);
-    m_webserver_port->SetToolTip(_("Specify web server port number"));
-
-    wxFlexGridSizer* flex_sizer4 = new wxFlexGridSizer(0, 4, 0, 0);
-    flex_sizer4->Add(m_webserver_checkbox, g_flagsH);
-    flex_sizer4->Add(new wxStaticText(this, wxID_STATIC, _("Port")), g_flagsH);
-    flex_sizer4->Add(m_webserver_port, g_flagsH);
-
-    webserverStaticBoxSizer->Add(flex_sizer4, g_flagsV);
-
     //Usage data send
     wxStaticBox* usageStaticBox = new wxStaticBox(this, wxID_STATIC, _("Usage statistics"));
     SetBoldFont(usageStaticBox);
@@ -185,7 +160,6 @@ void OptionSettingsNet::Create()
 
     wxCommandEvent evt;
     OptionSettingsNet::OnProxyChanged(evt);
-    OptionSettingsNet::OnEnableWebserverChanged(evt);
     OptionSettingsNet::OnUpdateCheckChanged(evt);
     SetSizer(networkPanelSizer);
 }
@@ -193,11 +167,6 @@ void OptionSettingsNet::Create()
 void OptionSettingsNet::OnProxyChanged(wxCommandEvent& event)
 {
     m_proxy_port->Enable(m_proxy_address->GetValue() != "");
-}
-
-void OptionSettingsNet::OnEnableWebserverChanged(wxCommandEvent& event)
-{
-    m_webserver_port->Enable(m_webserver_checkbox->GetValue());
 }
 
 void OptionSettingsNet::OnUpdateCheckChanged(wxCommandEvent& event)
@@ -215,9 +184,6 @@ void OptionSettingsNet::SaveSettings()
 
     wxTextCtrl* WebAppGUID = (wxTextCtrl*) FindWindow(ID_DIALOG_OPTIONS_TEXTCTRL_WEBAPPGUID);
     Model_Infotable::instance().Set("WEBAPPGUID", WebAppGUID->GetValue());
-
-    Model_Setting::instance().Set("ENABLEWEBSERVER", m_webserver_checkbox->GetValue());
-    Model_Setting::instance().Set("WEBSERVERPORT", m_webserver_port->GetValue());
 
     Option::instance().SendUsageStatistics(m_send_data->GetValue());
 

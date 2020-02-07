@@ -357,7 +357,6 @@ TARGET_SOURCES(MMEXTest PRIVATE
 
 
         "${CMAKE_SOURCE_DIR}/3rd/cgitemplate/html_template.cpp"
-        "${CMAKE_SOURCE_DIR}/3rd/mongoose/mongoose.c"
         )
 
 TARGET_COMPILE_DEFINITIONS(MMEXTest PRIVATE wxIMPLEMENT_WXWIN_MAIN=)

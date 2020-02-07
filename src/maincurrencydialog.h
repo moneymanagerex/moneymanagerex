@@ -17,8 +17,7 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#ifndef MM_EX_MAINCURRENCY_DIALOG_H_
-#define MM_EX_MAINCURRENCY_DIALOG_H_
+#pragma once
 
 #include "defs.h"
 #include <map>
@@ -121,9 +120,8 @@ private:
     bool m_static_dialog;
 
     std::vector<CurrencyHistoryRate> _BceCurrencyHistoryRatesList;
-    bool HistoryDownloadBce();
     bool ConvertHistoryRates(const std::vector<CurrencyHistoryRate>& Bce, std::vector<CurrencyHistoryRate>& ConvertedRate, const wxString& BaseCurrencySymbol);
+    bool GetOnlineHistory(std::map<wxDateTime, double> &historical_rates, const wxString &symbol, wxString &msg);
 };
 
-#endif // MM_EX_MAINCURRENCY_DIALOG_H_
 

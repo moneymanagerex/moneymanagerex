@@ -1,6 +1,6 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
- Copyright (C) 2010-2014 Nikolay
+ Copyright (C) 2010-2020 Nikolay
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -816,109 +816,67 @@ void mmStocksPanel::OnRefreshQuotes(wxCommandEvent& WXUNUSED(event))
 }
 
 /*** Trigger a quote download ***/
-bool mmStocksPanel::onlineQuoteRefresh(wxString& sError)
+bool mmStocksPanel::onlineQuoteRefresh(wxString& msg)
 {
-    if(listCtrlAccount_->m_stocks.empty())
+    wxString base_currency_symbol;
+    if (!Model_Currency::GetBaseCurrencySymbol(base_currency_symbol))
     {
-        sError = _("Nothing to update");
+        msg = _("Could not find base currency symbol!");
         return false;
     }
 
-    //Symbol, (Amount, Name)
-    std::map<wxString, std::pair<double, wxString> > stocks_data;
-    wxString site = "";
+    if (listCtrlAccount_->m_stocks.empty())
+    {
+        msg = _("Nothing to update");
+        return false;
+    }
 
+    std::vector<wxString> symbols;
     Model_Stock::Data_Set stock_list = Model_Stock::instance().all();
     for (const auto &stock : stock_list)
     {
         const wxString symbol = stock.SYMBOL.Upper();
-        if (!symbol.IsEmpty())
-        {
-            if (stocks_data.find(symbol) == stocks_data.end())
-            {
-                stocks_data[symbol] = std::make_pair(0, "");
-                site << symbol << "+";
-            }
-        }
+        if (symbol.IsEmpty()) continue;
+        if (std::find(symbols.begin(), symbols.end(), symbol) == symbols.end())
+            symbols.push_back(symbol);
     }
-    if (site.Right(1).Contains("+")) site.RemoveLast(1);
-
-    //Sample: http://finance.yahoo.com/d/quotes.csv?s=SBER.ME+GAZP.ME&f=sl1c4n&e=.csv
-    //Sample CSV: "SBER.ME",85.49,"RUB","SBERBANK"
-    site = wxString::Format(mmex::weblink::YahooQuotes, site);
 
     refresh_button_->SetBitmapLabel(mmBitmap(png::LED_YELLOW));
     stock_details_->SetLabelText(_("Connecting..."));
-    wxString sOutput;
 
-    int err_code = site_content(site, sOutput);
-    if (err_code != wxURL_NOERR)
+    std::map<wxString, double > stocks_data;
+    if (!get_yahoo_prices(symbols, stocks_data, base_currency_symbol, msg, yahoo_price_type::SHARES))
     {
-        sError = sOutput;
         return false;
     }
 
-    //--//
-    wxString stock_symbol_with_suffix, sName, stock_quote_currency;
-    double dPrice = 0.0;
-    int count = 0;
-
-    wxStringTokenizer tkz(sOutput, "\r\n");
-    while (tkz.HasMoreTokens())
+    if (stocks_data.empty())
     {
-        const wxString csvline = tkz.GetNextToken();
-        stock_symbol_with_suffix = "";
-        stock_quote_currency = "";
-        wxRegEx pattern("\"([^\"]+)\",([^,][0-9.]+),\"([^\"]*)\",\"([^\"]*)\"");
-        if (pattern.Matches(csvline))
-        {
-            stock_symbol_with_suffix = pattern.GetMatch(csvline, 1);
-            pattern.GetMatch(csvline, 2).ToDouble(&dPrice);
-            stock_quote_currency = pattern.GetMatch(csvline, 3);
-            sName = pattern.GetMatch(csvline, 4);
-        }
-
-        bool updated = !stock_symbol_with_suffix.IsEmpty();
-
-        /* HACK FOR GBP
-        http://sourceforge.net/p/moneymanagerex/bugs/414/
-        http://sourceforge.net/p/moneymanagerex/bugs/360/
-        1. If the share has GBp as currency, its downloaded value in pence
-        2. If the share has another currency, we don't need to modify the price
-        */
-
-        if (updated && dPrice > 0)
-        {
-            if (stock_quote_currency == "GBp")
-                dPrice = dPrice / 100;
-            stocks_data[stock_symbol_with_suffix].first = dPrice;
-            stocks_data[stock_symbol_with_suffix].second = sName;
-            sError << wxString::Format(_("%s\t -> %s\n")
-                , stock_symbol_with_suffix, wxString::Format("%0.4f", dPrice));
-            count++;
-        }
-    }
-
-    if (count == 0)
-    {
-        sError = _("Quotes not found");
+        msg = _("Quotes not found");
         return false;
     }
 
+    Model_StockHistory::instance().Savepoint();
     for (auto &s : stock_list)
     {
-        std::map<wxString, std::pair<double, wxString> >::const_iterator it = stocks_data.find(s.SYMBOL.Upper());
-        if (it == stocks_data.end()) continue;
-        dPrice = it->second.first;
+        std::map<wxString, double>::const_iterator it = stocks_data.find(s.SYMBOL.Upper());
+        if (it == stocks_data.end()) {
+            continue;
+        }
+
+        double dPrice = it->second;
 
         if (dPrice != 0)
         {
+            msg += wxString::Format("%s\t: %0.6f -> %0.6f\n", s.SYMBOL, s.CURRENTPRICE, dPrice);
             s.CURRENTPRICE = dPrice;
-            if (s.STOCKNAME.empty()) s.STOCKNAME = it->second.second;
+            if (s.STOCKNAME.empty()) s.STOCKNAME = s.SYMBOL;
             Model_Stock::instance().save(&s);
-            Model_StockHistory::instance().addUpdate(s.SYMBOL, wxDate::Now(), dPrice, Model_StockHistory::ONLINE);
+            Model_StockHistory::instance().addUpdate(s.SYMBOL
+                , wxDate::Now(), dPrice, Model_StockHistory::ONLINE);
         }
     }
+    Model_StockHistory::instance().ReleaseSavepoint();
 
     // Now refresh the display
     int selected_id = -1;
@@ -927,9 +885,8 @@ bool mmStocksPanel::onlineQuoteRefresh(wxString& sError)
     listCtrlAccount_->doRefreshItems(selected_id);
 
     // We are done!
-    LastRefreshDT_       = wxDateTime::Now();
+    LastRefreshDT_ = wxDateTime::Now();
     StocksRefreshStatus_ = true;
-    refresh_button_->SetBitmapLabel(mmBitmap(png::LED_GREEN));
 
     strLastUpdate_.Printf(_("%s on %s"), LastRefreshDT_.FormatTime()
         , mmGetDateForDisplay(LastRefreshDT_.FormatISODate()));

@@ -129,8 +129,6 @@ TARGET_SOURCES(mmex PRIVATE
         "${CMAKE_CURRENT_SOURCE_DIR}/webappdialog.cpp"
         "${CMAKE_CURRENT_SOURCE_DIR}/webappdialog.h"
         "${CMAKE_CURRENT_SOURCE_DIR}/webapp.h"
-        "${CMAKE_CURRENT_SOURCE_DIR}/webserver.cpp"
-        "${CMAKE_CURRENT_SOURCE_DIR}/webserver.h"
         "${CMAKE_CURRENT_SOURCE_DIR}/wizard_newaccount.cpp"
         "${CMAKE_CURRENT_SOURCE_DIR}/wizard_newaccount.h"
         "${CMAKE_CURRENT_SOURCE_DIR}/wizard_newdb.cpp"
@@ -261,10 +259,7 @@ TARGET_SOURCES(mmex PRIVATE
         "${CMAKE_CURRENT_SOURCE_DIR}/model/Model_Translink.h"
         "${CMAKE_CURRENT_SOURCE_DIR}/model/Model_Usage.cpp"
         "${CMAKE_CURRENT_SOURCE_DIR}/model/Model_Usage.h"
-
-
         "${CMAKE_SOURCE_DIR}/3rd/cgitemplate/html_template.cpp"
-        "${CMAKE_SOURCE_DIR}/3rd/mongoose/mongoose.c"
         )
 #OSX
 IF (UNIX AND APPLE)
