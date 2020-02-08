@@ -64,7 +64,6 @@ void wxPolarAreaChart::SliceArc::Resize(const wxSize &size)
 {
     wxDouble x = (size.GetX() / 2);
     wxDouble y = (size.GetY() / 2);
-    wxDouble radius = ((x < y) ? x : y);
 
     SetCenter(x, y);
 }

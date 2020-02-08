@@ -125,7 +125,6 @@ void wxChartsRadialGrid::DrawCircular(wxGraphicsContext &gc) const
     for (size_t i = 0; i < m_labels.size(); ++i)
     {
         wxDouble yCenterOffset = (i + 1) * (m_drawingArea / m_steps);
-        wxDouble yHeight = m_center.m_y - yCenterOffset;
 
         wxGraphicsPath path = gc.CreatePath();
         path.AddArc(m_center.m_x, m_center.m_y, yCenterOffset, 0, 2 * M_PI, true);

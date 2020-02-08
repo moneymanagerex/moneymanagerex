@@ -34,7 +34,7 @@
 /// @file
 
 #ifndef _WX_CHARTS_WXAREACHARTCTRL_H_
-#define _WX_CHARTS_WXAREACHARTCTRL_H
+#define _WX_CHARTS_WXAREACHARTCTRL_H_
 
 #include "wxchartctrl.h"
 #include "wxareachart.h"

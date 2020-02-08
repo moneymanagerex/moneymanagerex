@@ -34,7 +34,7 @@
 /// @file
 
 #ifndef _WX_CHARTS_WXMATH2DPLOTCTRL_H_
-#define _WX_CHARTS_WXMATH2DPLOTCTRL_H
+#define _WX_CHARTS_WXMATH2DPLOTCTRL_H_
 
 #include "wxchartctrl.h"
 #include "wxmath2dplot.h"

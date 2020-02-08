@@ -92,8 +92,6 @@ void wxChartsUtilities::BuildNumericalLabels(wxDouble minValue,
                                              const wxChartsLabelOptions &options,
                                              wxVector<wxChartsLabel> &labels)
 {
-    size_t stepDecimalPlaces = GetDecimalPlaces();
-
     for (size_t i = 0; i <= steps; ++i)
     {
         wxDouble value = minValue + (i * stepValue);//.toFixed(stepDecimalPlaces);

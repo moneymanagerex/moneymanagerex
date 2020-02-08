@@ -97,7 +97,7 @@ void wxDoughnutAndPieChartBase::SliceArc::Resize(const wxSize &size,
     wxDouble x = (size.GetX() / 2) - 2;
     wxDouble y = (size.GetY() / 2) - 2;
     wxDouble outerRadius = ((x < y) ? x : y) - (GetOptions().GetOutlineWidth() / 2);
-    wxDouble innerRadius = outerRadius * ((wxDouble)options.GetPercentageInnerCutout()) / 100;
+    wxDouble innerRadius = outerRadius * options.GetPercentageInnerCutout() / 100;
 
     SetCenter(x, y);
     SetRadiuses(outerRadius, innerRadius);
@@ -132,7 +132,7 @@ void wxDoughnutAndPieChartBase::SetData(const std::map<wxString, wxChartSliceDat
         wxDouble x = (m_size.GetX() / 2) - 2;
         wxDouble y = (m_size.GetY() / 2) - 2;
         wxDouble outerRadius = ((x < y) ? x : y) - (GetOptions().GetSliceStrokeWidth() / 2);
-        wxDouble innerRadius = outerRadius * ((wxDouble)GetOptions().GetPercentageInnerCutout()) / 100;
+        wxDouble innerRadius = outerRadius * (GetOptions().GetPercentageInnerCutout()) / 100;
 
         SliceArc::ptr newSlice = SliceArc::ptr(new SliceArc(slice,
                                                x, y, 0, 0, outerRadius, innerRadius, GetOptions().GetSliceStrokeWidth()));
