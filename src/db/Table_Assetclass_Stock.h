@@ -1,4 +1,4 @@
-﻿// -*- C++ -*-
+// -*- C++ -*-
 /** @file
  * @brief     CRUD implementation for ASSETCLASS_STOCK SQLite table
  * @warning   Auto generated with sqlite2cpp.py script. DO NOT EDIT!
@@ -7,7 +7,7 @@
  * @author    Guan Lisheng (guanlisheng@gmail.com)
  * @author    Stefano Giorgio (stef145g)
  * @author    Tomasz Słodkowicz
- * @date      2018-10-07 02:45:31.001407
+ * @date      2020-02-08 17:11:21 +0800
  */
 #pragma once
 
@@ -57,7 +57,7 @@ struct DB_Table_ASSETCLASS_STOCK : public DB_Table
     /** Removes all records stored in memory (cache) for the table*/
     void destroy_cache()
     {
-        std::for_each(cache_.begin(), cache_.end(), std::mem_fun(&Data::destroy));
+        std::for_each(cache_.begin(), cache_.end(), std::mem_fn(&Data::destroy));
         cache_.clear();
         index_by_id_.clear(); // no memory release since it just stores pointer and the according objects are in cache
     }
@@ -103,25 +103,25 @@ struct DB_Table_ASSETCLASS_STOCK : public DB_Table
         db->Begin();
         db->Commit();
     }
-
+    
     struct ID : public DB_Column<int>
     {
         static wxString name() { return "ID"; }
         explicit ID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
-
+    
     struct ASSETCLASSID : public DB_Column<int>
     {
         static wxString name() { return "ASSETCLASSID"; }
         explicit ASSETCLASSID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
-
+    
     struct STOCKSYMBOL : public DB_Column<wxString>
     {
         static wxString name() { return "STOCKSYMBOL"; }
         explicit STOCKSYMBOL(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
-
+    
     typedef ID PRIMARY;
     enum COLUMN
     {
@@ -154,14 +154,14 @@ struct DB_Table_ASSETCLASS_STOCK : public DB_Table
 
         return COL_UNKNOWN;
     }
-
+    
     /** Data is a single record in the database table*/
     struct Data
     {
         friend struct DB_Table_ASSETCLASS_STOCK;
         /** This is a instance pointer to itself in memory. */
         Self* table_;
-
+    
         int ID; // primary key
         int ASSETCLASSID;
         wxString STOCKSYMBOL;
@@ -189,7 +189,7 @@ struct DB_Table_ASSETCLASS_STOCK : public DB_Table
         explicit Data(Self* table = 0)
         {
             table_ = table;
-
+        
             ID = -1;
             ASSETCLASSID = -1;
         }
@@ -197,7 +197,7 @@ struct DB_Table_ASSETCLASS_STOCK : public DB_Table
         explicit Data(wxSQLite3ResultSet& q, Self* table = 0)
         {
             table_ = table;
-
+        
             ID = q.GetInt(0);
             ASSETCLASSID = q.GetInt(1);
             STOCKSYMBOL = q.GetString(2);

@@ -1,4 +1,4 @@
-﻿// -*- C++ -*-
+// -*- C++ -*-
 /** @file
  * @brief     CRUD implementation for SUBCATEGORY SQLite table
  * @warning   Auto generated with sqlite2cpp.py script. DO NOT EDIT!
@@ -7,7 +7,7 @@
  * @author    Guan Lisheng (guanlisheng@gmail.com)
  * @author    Stefano Giorgio (stef145g)
  * @author    Tomasz Słodkowicz
- * @date      2018-10-07 02:45:31.001407
+ * @date      2020-02-08 17:11:21 +0800
  */
 #pragma once
 
@@ -57,7 +57,7 @@ struct DB_Table_SUBCATEGORY : public DB_Table
     /** Removes all records stored in memory (cache) for the table*/
     void destroy_cache()
     {
-        std::for_each(cache_.begin(), cache_.end(), std::mem_fun(&Data::destroy));
+        std::for_each(cache_.begin(), cache_.end(), std::mem_fn(&Data::destroy));
         cache_.clear();
         index_by_id_.clear(); // no memory release since it just stores pointer and the according objects are in cache
     }
@@ -145,25 +145,25 @@ struct DB_Table_SUBCATEGORY : public DB_Table
         db->ExecuteUpdate(wxString::Format("INSERT INTO SUBCATEGORY VALUES ('41', '%s', '13')", wxTRANSLATE("Investment Income")));
         db->Commit();
     }
-
+    
     struct SUBCATEGID : public DB_Column<int>
     {
         static wxString name() { return "SUBCATEGID"; }
         explicit SUBCATEGID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
-
+    
     struct SUBCATEGNAME : public DB_Column<wxString>
     {
         static wxString name() { return "SUBCATEGNAME"; }
         explicit SUBCATEGNAME(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
-
+    
     struct CATEGID : public DB_Column<int>
     {
         static wxString name() { return "CATEGID"; }
         explicit CATEGID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
-
+    
     typedef SUBCATEGID PRIMARY;
     enum COLUMN
     {
@@ -196,14 +196,14 @@ struct DB_Table_SUBCATEGORY : public DB_Table
 
         return COL_UNKNOWN;
     }
-
+    
     /** Data is a single record in the database table*/
     struct Data
     {
         friend struct DB_Table_SUBCATEGORY;
         /** This is a instance pointer to itself in memory. */
         Self* table_;
-
+    
         int SUBCATEGID; // primary key
         wxString SUBCATEGNAME;
         int CATEGID;
@@ -231,7 +231,7 @@ struct DB_Table_SUBCATEGORY : public DB_Table
         explicit Data(Self* table = 0)
         {
             table_ = table;
-
+        
             SUBCATEGID = -1;
             CATEGID = -1;
         }
@@ -239,7 +239,7 @@ struct DB_Table_SUBCATEGORY : public DB_Table
         explicit Data(wxSQLite3ResultSet& q, Self* table = 0)
         {
             table_ = table;
-
+        
             SUBCATEGID = q.GetInt(0);
             SUBCATEGNAME = q.GetString(1);
             CATEGID = q.GetInt(2);

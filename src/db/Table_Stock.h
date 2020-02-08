@@ -1,4 +1,4 @@
-﻿// -*- C++ -*-
+// -*- C++ -*-
 /** @file
  * @brief     CRUD implementation for STOCK SQLite table
  * @warning   Auto generated with sqlite2cpp.py script. DO NOT EDIT!
@@ -7,7 +7,7 @@
  * @author    Guan Lisheng (guanlisheng@gmail.com)
  * @author    Stefano Giorgio (stef145g)
  * @author    Tomasz Słodkowicz
- * @date      2018-10-07 02:45:31.001407
+ * @date      2020-02-08 17:11:21 +0800
  */
 #pragma once
 
@@ -57,7 +57,7 @@ struct DB_Table_STOCK : public DB_Table
     /** Removes all records stored in memory (cache) for the table*/
     void destroy_cache()
     {
-        std::for_each(cache_.begin(), cache_.end(), std::mem_fun(&Data::destroy));
+        std::for_each(cache_.begin(), cache_.end(), std::mem_fn(&Data::destroy));
         cache_.clear();
         index_by_id_.clear(); // no memory release since it just stores pointer and the according objects are in cache
     }
@@ -104,73 +104,73 @@ struct DB_Table_STOCK : public DB_Table
         db->Begin();
         db->Commit();
     }
-
+    
     struct STOCKID : public DB_Column<int>
     {
         static wxString name() { return "STOCKID"; }
         explicit STOCKID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
-
+    
     struct HELDAT : public DB_Column<int>
     {
         static wxString name() { return "HELDAT"; }
         explicit HELDAT(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
-
+    
     struct PURCHASEDATE : public DB_Column<wxString>
     {
         static wxString name() { return "PURCHASEDATE"; }
         explicit PURCHASEDATE(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
-
+    
     struct STOCKNAME : public DB_Column<wxString>
     {
         static wxString name() { return "STOCKNAME"; }
         explicit STOCKNAME(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
-
+    
     struct SYMBOL : public DB_Column<wxString>
     {
         static wxString name() { return "SYMBOL"; }
         explicit SYMBOL(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
-
+    
     struct NUMSHARES : public DB_Column<double>
     {
         static wxString name() { return "NUMSHARES"; }
         explicit NUMSHARES(const double &v, OP op = EQUAL): DB_Column<double>(v, op) {}
     };
-
+    
     struct PURCHASEPRICE : public DB_Column<double>
     {
         static wxString name() { return "PURCHASEPRICE"; }
         explicit PURCHASEPRICE(const double &v, OP op = EQUAL): DB_Column<double>(v, op) {}
     };
-
+    
     struct NOTES : public DB_Column<wxString>
     {
         static wxString name() { return "NOTES"; }
         explicit NOTES(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
-
+    
     struct CURRENTPRICE : public DB_Column<double>
     {
         static wxString name() { return "CURRENTPRICE"; }
         explicit CURRENTPRICE(const double &v, OP op = EQUAL): DB_Column<double>(v, op) {}
     };
-
+    
     struct VALUE : public DB_Column<double>
     {
         static wxString name() { return "VALUE"; }
         explicit VALUE(const double &v, OP op = EQUAL): DB_Column<double>(v, op) {}
     };
-
+    
     struct COMMISSION : public DB_Column<double>
     {
         static wxString name() { return "COMMISSION"; }
         explicit COMMISSION(const double &v, OP op = EQUAL): DB_Column<double>(v, op) {}
     };
-
+    
     typedef STOCKID PRIMARY;
     enum COLUMN
     {
@@ -227,14 +227,14 @@ struct DB_Table_STOCK : public DB_Table
 
         return COL_UNKNOWN;
     }
-
+    
     /** Data is a single record in the database table*/
     struct Data
     {
         friend struct DB_Table_STOCK;
         /** This is a instance pointer to itself in memory. */
         Self* table_;
-
+    
         int STOCKID; // primary key
         int HELDAT;
         wxString PURCHASEDATE;
@@ -270,7 +270,7 @@ struct DB_Table_STOCK : public DB_Table
         explicit Data(Self* table = 0)
         {
             table_ = table;
-
+        
             STOCKID = -1;
             HELDAT = -1;
             NUMSHARES = 0.0;
@@ -283,7 +283,7 @@ struct DB_Table_STOCK : public DB_Table
         explicit Data(wxSQLite3ResultSet& q, Self* table = 0)
         {
             table_ = table;
-
+        
             STOCKID = q.GetInt(0);
             HELDAT = q.GetInt(1);
             PURCHASEDATE = q.GetString(2);

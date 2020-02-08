@@ -1,4 +1,4 @@
-﻿// -*- C++ -*-
+// -*- C++ -*-
 /** @file
  * @brief     CRUD implementation for CUSTOMFIELD SQLite table
  * @warning   Auto generated with sqlite2cpp.py script. DO NOT EDIT!
@@ -7,7 +7,7 @@
  * @author    Guan Lisheng (guanlisheng@gmail.com)
  * @author    Stefano Giorgio (stef145g)
  * @author    Tomasz Słodkowicz
- * @date      2018-10-07 02:45:31.001407
+ * @date      2020-02-08 17:11:21 +0800
  */
 #pragma once
 
@@ -57,7 +57,7 @@ struct DB_Table_CUSTOMFIELD : public DB_Table
     /** Removes all records stored in memory (cache) for the table*/
     void destroy_cache()
     {
-        std::for_each(cache_.begin(), cache_.end(), std::mem_fun(&Data::destroy));
+        std::for_each(cache_.begin(), cache_.end(), std::mem_fn(&Data::destroy));
         cache_.clear();
         index_by_id_.clear(); // no memory release since it just stores pointer and the according objects are in cache
     }
@@ -104,37 +104,37 @@ struct DB_Table_CUSTOMFIELD : public DB_Table
         db->Begin();
         db->Commit();
     }
-
+    
     struct FIELDID : public DB_Column<int>
     {
         static wxString name() { return "FIELDID"; }
         explicit FIELDID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
-
+    
     struct REFTYPE : public DB_Column<wxString>
     {
         static wxString name() { return "REFTYPE"; }
         explicit REFTYPE(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
-
+    
     struct DESCRIPTION : public DB_Column<wxString>
     {
         static wxString name() { return "DESCRIPTION"; }
         explicit DESCRIPTION(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
-
+    
     struct TYPE : public DB_Column<wxString>
     {
         static wxString name() { return "TYPE"; }
         explicit TYPE(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
-
+    
     struct PROPERTIES : public DB_Column<wxString>
     {
         static wxString name() { return "PROPERTIES"; }
         explicit PROPERTIES(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
-
+    
     typedef FIELDID PRIMARY;
     enum COLUMN
     {
@@ -173,14 +173,14 @@ struct DB_Table_CUSTOMFIELD : public DB_Table
 
         return COL_UNKNOWN;
     }
-
+    
     /** Data is a single record in the database table*/
     struct Data
     {
         friend struct DB_Table_CUSTOMFIELD;
         /** This is a instance pointer to itself in memory. */
         Self* table_;
-
+    
         int FIELDID; // primary key
         wxString REFTYPE;
         wxString DESCRIPTION;
@@ -210,14 +210,14 @@ struct DB_Table_CUSTOMFIELD : public DB_Table
         explicit Data(Self* table = 0)
         {
             table_ = table;
-
+        
             FIELDID = -1;
         }
 
         explicit Data(wxSQLite3ResultSet& q, Self* table = 0)
         {
             table_ = table;
-
+        
             FIELDID = q.GetInt(0);
             REFTYPE = q.GetString(1);
             DESCRIPTION = q.GetString(2);

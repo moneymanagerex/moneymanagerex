@@ -1,4 +1,4 @@
-﻿// -*- C++ -*-
+// -*- C++ -*-
 /** @file
  * @brief     CRUD implementation for ACCOUNTLIST SQLite table
  * @warning   Auto generated with sqlite2cpp.py script. DO NOT EDIT!
@@ -7,7 +7,7 @@
  * @author    Guan Lisheng (guanlisheng@gmail.com)
  * @author    Stefano Giorgio (stef145g)
  * @author    Tomasz Słodkowicz
- * @date      2018-10-07 02:45:31.001407
+ * @date      2020-02-08 17:11:21 +0800
  */
 #pragma once
 
@@ -57,7 +57,7 @@ struct DB_Table_ACCOUNTLIST : public DB_Table
     /** Removes all records stored in memory (cache) for the table*/
     void destroy_cache()
     {
-        std::for_each(cache_.begin(), cache_.end(), std::mem_fun(&Data::destroy));
+        std::for_each(cache_.begin(), cache_.end(), std::mem_fn(&Data::destroy));
         cache_.clear();
         index_by_id_.clear(); // no memory release since it just stores pointer and the according objects are in cache
     }
@@ -104,127 +104,127 @@ struct DB_Table_ACCOUNTLIST : public DB_Table
         db->Begin();
         db->Commit();
     }
-
+    
     struct ACCOUNTID : public DB_Column<int>
     {
         static wxString name() { return "ACCOUNTID"; }
         explicit ACCOUNTID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
-
+    
     struct ACCOUNTNAME : public DB_Column<wxString>
     {
         static wxString name() { return "ACCOUNTNAME"; }
         explicit ACCOUNTNAME(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
-
+    
     struct ACCOUNTTYPE : public DB_Column<wxString>
     {
         static wxString name() { return "ACCOUNTTYPE"; }
         explicit ACCOUNTTYPE(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
-
+    
     struct ACCOUNTNUM : public DB_Column<wxString>
     {
         static wxString name() { return "ACCOUNTNUM"; }
         explicit ACCOUNTNUM(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
-
+    
     struct STATUS : public DB_Column<wxString>
     {
         static wxString name() { return "STATUS"; }
         explicit STATUS(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
-
+    
     struct NOTES : public DB_Column<wxString>
     {
         static wxString name() { return "NOTES"; }
         explicit NOTES(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
-
+    
     struct HELDAT : public DB_Column<wxString>
     {
         static wxString name() { return "HELDAT"; }
         explicit HELDAT(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
-
+    
     struct WEBSITE : public DB_Column<wxString>
     {
         static wxString name() { return "WEBSITE"; }
         explicit WEBSITE(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
-
+    
     struct CONTACTINFO : public DB_Column<wxString>
     {
         static wxString name() { return "CONTACTINFO"; }
         explicit CONTACTINFO(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
-
+    
     struct ACCESSINFO : public DB_Column<wxString>
     {
         static wxString name() { return "ACCESSINFO"; }
         explicit ACCESSINFO(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
-
+    
     struct INITIALBAL : public DB_Column<double>
     {
         static wxString name() { return "INITIALBAL"; }
         explicit INITIALBAL(const double &v, OP op = EQUAL): DB_Column<double>(v, op) {}
     };
-
+    
     struct FAVORITEACCT : public DB_Column<wxString>
     {
         static wxString name() { return "FAVORITEACCT"; }
         explicit FAVORITEACCT(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
-
+    
     struct CURRENCYID : public DB_Column<int>
     {
         static wxString name() { return "CURRENCYID"; }
         explicit CURRENCYID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
-
+    
     struct STATEMENTLOCKED : public DB_Column<int>
     {
         static wxString name() { return "STATEMENTLOCKED"; }
         explicit STATEMENTLOCKED(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
-
+    
     struct STATEMENTDATE : public DB_Column<wxString>
     {
         static wxString name() { return "STATEMENTDATE"; }
         explicit STATEMENTDATE(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
-
+    
     struct MINIMUMBALANCE : public DB_Column<double>
     {
         static wxString name() { return "MINIMUMBALANCE"; }
         explicit MINIMUMBALANCE(const double &v, OP op = EQUAL): DB_Column<double>(v, op) {}
     };
-
+    
     struct CREDITLIMIT : public DB_Column<double>
     {
         static wxString name() { return "CREDITLIMIT"; }
         explicit CREDITLIMIT(const double &v, OP op = EQUAL): DB_Column<double>(v, op) {}
     };
-
+    
     struct INTERESTRATE : public DB_Column<double>
     {
         static wxString name() { return "INTERESTRATE"; }
         explicit INTERESTRATE(const double &v, OP op = EQUAL): DB_Column<double>(v, op) {}
     };
-
+    
     struct PAYMENTDUEDATE : public DB_Column<wxString>
     {
         static wxString name() { return "PAYMENTDUEDATE"; }
         explicit PAYMENTDUEDATE(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
-
+    
     struct MINIMUMPAYMENT : public DB_Column<double>
     {
         static wxString name() { return "MINIMUMPAYMENT"; }
         explicit MINIMUMPAYMENT(const double &v, OP op = EQUAL): DB_Column<double>(v, op) {}
     };
-
+    
     typedef ACCOUNTID PRIMARY;
     enum COLUMN
     {
@@ -308,14 +308,14 @@ struct DB_Table_ACCOUNTLIST : public DB_Table
 
         return COL_UNKNOWN;
     }
-
+    
     /** Data is a single record in the database table*/
     struct Data
     {
         friend struct DB_Table_ACCOUNTLIST;
         /** This is a instance pointer to itself in memory. */
         Self* table_;
-
+    
         int ACCOUNTID; // primary key
         wxString ACCOUNTNAME;
         wxString ACCOUNTTYPE;
@@ -360,7 +360,7 @@ struct DB_Table_ACCOUNTLIST : public DB_Table
         explicit Data(Self* table = 0)
         {
             table_ = table;
-
+        
             ACCOUNTID = -1;
             INITIALBAL = 0.0;
             CURRENCYID = -1;
@@ -374,7 +374,7 @@ struct DB_Table_ACCOUNTLIST : public DB_Table
         explicit Data(wxSQLite3ResultSet& q, Self* table = 0)
         {
             table_ = table;
-
+        
             ACCOUNTID = q.GetInt(0);
             ACCOUNTNAME = q.GetString(1);
             ACCOUNTTYPE = q.GetString(2);

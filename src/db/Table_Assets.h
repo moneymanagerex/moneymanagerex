@@ -1,4 +1,4 @@
-﻿// -*- C++ -*-
+// -*- C++ -*-
 /** @file
  * @brief     CRUD implementation for ASSETS SQLite table
  * @warning   Auto generated with sqlite2cpp.py script. DO NOT EDIT!
@@ -7,7 +7,7 @@
  * @author    Guan Lisheng (guanlisheng@gmail.com)
  * @author    Stefano Giorgio (stef145g)
  * @author    Tomasz Słodkowicz
- * @date      2018-10-07 02:45:31.001407
+ * @date      2020-02-08 17:11:21 +0800
  */
 #pragma once
 
@@ -57,7 +57,7 @@ struct DB_Table_ASSETS : public DB_Table
     /** Removes all records stored in memory (cache) for the table*/
     void destroy_cache()
     {
-        std::for_each(cache_.begin(), cache_.end(), std::mem_fun(&Data::destroy));
+        std::for_each(cache_.begin(), cache_.end(), std::mem_fn(&Data::destroy));
         cache_.clear();
         index_by_id_.clear(); // no memory release since it just stores pointer and the according objects are in cache
     }
@@ -104,55 +104,55 @@ struct DB_Table_ASSETS : public DB_Table
         db->Begin();
         db->Commit();
     }
-
+    
     struct ASSETID : public DB_Column<int>
     {
         static wxString name() { return "ASSETID"; }
         explicit ASSETID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
-
+    
     struct STARTDATE : public DB_Column<wxString>
     {
         static wxString name() { return "STARTDATE"; }
         explicit STARTDATE(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
-
+    
     struct ASSETNAME : public DB_Column<wxString>
     {
         static wxString name() { return "ASSETNAME"; }
         explicit ASSETNAME(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
-
+    
     struct VALUE : public DB_Column<double>
     {
         static wxString name() { return "VALUE"; }
         explicit VALUE(const double &v, OP op = EQUAL): DB_Column<double>(v, op) {}
     };
-
+    
     struct VALUECHANGE : public DB_Column<wxString>
     {
         static wxString name() { return "VALUECHANGE"; }
         explicit VALUECHANGE(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
-
+    
     struct NOTES : public DB_Column<wxString>
     {
         static wxString name() { return "NOTES"; }
         explicit NOTES(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
-
+    
     struct VALUECHANGERATE : public DB_Column<double>
     {
         static wxString name() { return "VALUECHANGERATE"; }
         explicit VALUECHANGERATE(const double &v, OP op = EQUAL): DB_Column<double>(v, op) {}
     };
-
+    
     struct ASSETTYPE : public DB_Column<wxString>
     {
         static wxString name() { return "ASSETTYPE"; }
         explicit ASSETTYPE(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
-
+    
     typedef ASSETID PRIMARY;
     enum COLUMN
     {
@@ -200,14 +200,14 @@ struct DB_Table_ASSETS : public DB_Table
 
         return COL_UNKNOWN;
     }
-
+    
     /** Data is a single record in the database table*/
     struct Data
     {
         friend struct DB_Table_ASSETS;
         /** This is a instance pointer to itself in memory. */
         Self* table_;
-
+    
         int ASSETID; // primary key
         wxString STARTDATE;
         wxString ASSETNAME;
@@ -240,7 +240,7 @@ struct DB_Table_ASSETS : public DB_Table
         explicit Data(Self* table = 0)
         {
             table_ = table;
-
+        
             ASSETID = -1;
             VALUE = 0.0;
             VALUECHANGERATE = 0.0;
@@ -249,7 +249,7 @@ struct DB_Table_ASSETS : public DB_Table
         explicit Data(wxSQLite3ResultSet& q, Self* table = 0)
         {
             table_ = table;
-
+        
             ASSETID = q.GetInt(0);
             STARTDATE = q.GetString(1);
             ASSETNAME = q.GetString(2);

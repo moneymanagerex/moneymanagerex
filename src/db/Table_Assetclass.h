@@ -1,4 +1,4 @@
-﻿// -*- C++ -*-
+// -*- C++ -*-
 /** @file
  * @brief     CRUD implementation for ASSETCLASS SQLite table
  * @warning   Auto generated with sqlite2cpp.py script. DO NOT EDIT!
@@ -7,7 +7,7 @@
  * @author    Guan Lisheng (guanlisheng@gmail.com)
  * @author    Stefano Giorgio (stef145g)
  * @author    Tomasz Słodkowicz
- * @date      2018-10-07 02:45:31.001407
+ * @date      2020-02-08 17:11:21 +0800
  */
 #pragma once
 
@@ -57,7 +57,7 @@ struct DB_Table_ASSETCLASS : public DB_Table
     /** Removes all records stored in memory (cache) for the table*/
     void destroy_cache()
     {
-        std::for_each(cache_.begin(), cache_.end(), std::mem_fun(&Data::destroy));
+        std::for_each(cache_.begin(), cache_.end(), std::mem_fn(&Data::destroy));
         cache_.clear();
         index_by_id_.clear(); // no memory release since it just stores pointer and the according objects are in cache
     }
@@ -103,37 +103,37 @@ struct DB_Table_ASSETCLASS : public DB_Table
         db->Begin();
         db->Commit();
     }
-
+    
     struct ID : public DB_Column<int>
     {
         static wxString name() { return "ID"; }
         explicit ID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
-
+    
     struct PARENTID : public DB_Column<int>
     {
         static wxString name() { return "PARENTID"; }
         explicit PARENTID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
-
+    
     struct NAME : public DB_Column<wxString>
     {
         static wxString name() { return "NAME"; }
         explicit NAME(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
-
+    
     struct ALLOCATION : public DB_Column<double>
     {
         static wxString name() { return "ALLOCATION"; }
         explicit ALLOCATION(const double &v, OP op = EQUAL): DB_Column<double>(v, op) {}
     };
-
+    
     struct SORTORDER : public DB_Column<int>
     {
         static wxString name() { return "SORTORDER"; }
         explicit SORTORDER(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
-
+    
     typedef ID PRIMARY;
     enum COLUMN
     {
@@ -172,14 +172,14 @@ struct DB_Table_ASSETCLASS : public DB_Table
 
         return COL_UNKNOWN;
     }
-
+    
     /** Data is a single record in the database table*/
     struct Data
     {
         friend struct DB_Table_ASSETCLASS;
         /** This is a instance pointer to itself in memory. */
         Self* table_;
-
+    
         int ID; // primary key
         int PARENTID;
         wxString NAME;
@@ -209,7 +209,7 @@ struct DB_Table_ASSETCLASS : public DB_Table
         explicit Data(Self* table = 0)
         {
             table_ = table;
-
+        
             ID = -1;
             PARENTID = -1;
             ALLOCATION = 0.0;
@@ -219,7 +219,7 @@ struct DB_Table_ASSETCLASS : public DB_Table
         explicit Data(wxSQLite3ResultSet& q, Self* table = 0)
         {
             table_ = table;
-
+        
             ID = q.GetInt(0);
             PARENTID = q.GetInt(1);
             NAME = q.GetString(2);

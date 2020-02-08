@@ -1,4 +1,4 @@
-﻿// -*- C++ -*-
+// -*- C++ -*-
 /** @file
  * @brief     CRUD implementation for CUSTOMFIELDDATA SQLite table
  * @warning   Auto generated with sqlite2cpp.py script. DO NOT EDIT!
@@ -7,7 +7,7 @@
  * @author    Guan Lisheng (guanlisheng@gmail.com)
  * @author    Stefano Giorgio (stef145g)
  * @author    Tomasz Słodkowicz
- * @date      2018-10-07 02:45:31.001407
+ * @date      2020-02-08 17:11:21 +0800
  */
 #pragma once
 
@@ -57,7 +57,7 @@ struct DB_Table_CUSTOMFIELDDATA : public DB_Table
     /** Removes all records stored in memory (cache) for the table*/
     void destroy_cache()
     {
-        std::for_each(cache_.begin(), cache_.end(), std::mem_fun(&Data::destroy));
+        std::for_each(cache_.begin(), cache_.end(), std::mem_fn(&Data::destroy));
         cache_.clear();
         index_by_id_.clear(); // no memory release since it just stores pointer and the according objects are in cache
     }
@@ -104,31 +104,31 @@ struct DB_Table_CUSTOMFIELDDATA : public DB_Table
         db->Begin();
         db->Commit();
     }
-
+    
     struct FIELDATADID : public DB_Column<int>
     {
         static wxString name() { return "FIELDATADID"; }
         explicit FIELDATADID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
-
+    
     struct FIELDID : public DB_Column<int>
     {
         static wxString name() { return "FIELDID"; }
         explicit FIELDID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
-
+    
     struct REFID : public DB_Column<int>
     {
         static wxString name() { return "REFID"; }
         explicit REFID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
-
+    
     struct CONTENT : public DB_Column<wxString>
     {
         static wxString name() { return "CONTENT"; }
         explicit CONTENT(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
-
+    
     typedef FIELDATADID PRIMARY;
     enum COLUMN
     {
@@ -164,14 +164,14 @@ struct DB_Table_CUSTOMFIELDDATA : public DB_Table
 
         return COL_UNKNOWN;
     }
-
+    
     /** Data is a single record in the database table*/
     struct Data
     {
         friend struct DB_Table_CUSTOMFIELDDATA;
         /** This is a instance pointer to itself in memory. */
         Self* table_;
-
+    
         int FIELDATADID; // primary key
         int FIELDID;
         int REFID;
@@ -200,7 +200,7 @@ struct DB_Table_CUSTOMFIELDDATA : public DB_Table
         explicit Data(Self* table = 0)
         {
             table_ = table;
-
+        
             FIELDATADID = -1;
             FIELDID = -1;
             REFID = -1;
@@ -209,7 +209,7 @@ struct DB_Table_CUSTOMFIELDDATA : public DB_Table
         explicit Data(wxSQLite3ResultSet& q, Self* table = 0)
         {
             table_ = table;
-
+        
             FIELDATADID = q.GetInt(0);
             FIELDID = q.GetInt(1);
             REFID = q.GetInt(2);

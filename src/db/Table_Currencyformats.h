@@ -1,4 +1,4 @@
-﻿// -*- C++ -*-
+// -*- C++ -*-
 /** @file
  * @brief     CRUD implementation for CURRENCYFORMATS SQLite table
  * @warning   Auto generated with sqlite2cpp.py script. DO NOT EDIT!
@@ -7,7 +7,7 @@
  * @author    Guan Lisheng (guanlisheng@gmail.com)
  * @author    Stefano Giorgio (stef145g)
  * @author    Tomasz Słodkowicz
- * @date      2018-10-07 02:45:31.001407
+ * @date      2020-02-08 17:11:21 +0800
  */
 #pragma once
 
@@ -57,7 +57,7 @@ struct DB_Table_CURRENCYFORMATS : public DB_Table
     /** Removes all records stored in memory (cache) for the table*/
     void destroy_cache()
     {
-        std::for_each(cache_.begin(), cache_.end(), std::mem_fun(&Data::destroy));
+        std::for_each(cache_.begin(), cache_.end(), std::mem_fn(&Data::destroy));
         cache_.clear();
         index_by_id_.clear(); // no memory release since it just stores pointer and the according objects are in cache
     }
@@ -383,67 +383,67 @@ struct DB_Table_CURRENCYFORMATS : public DB_Table
         db->ExecuteUpdate(wxString::Format("INSERT INTO CURRENCYFORMATS VALUES ('279', '%s', '', '', '.', ',', '100', 'ZWR', 'Fiat', '1')", wxTRANSLATE("Zimbabwe Dollar (before 2009-06)")));
         db->Commit();
     }
-
+    
     struct CURRENCYID : public DB_Column<int>
     {
         static wxString name() { return "CURRENCYID"; }
         explicit CURRENCYID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
-
+    
     struct CURRENCYNAME : public DB_Column<wxString>
     {
         static wxString name() { return "CURRENCYNAME"; }
         explicit CURRENCYNAME(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
-
+    
     struct PFX_SYMBOL : public DB_Column<wxString>
     {
         static wxString name() { return "PFX_SYMBOL"; }
         explicit PFX_SYMBOL(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
-
+    
     struct SFX_SYMBOL : public DB_Column<wxString>
     {
         static wxString name() { return "SFX_SYMBOL"; }
         explicit SFX_SYMBOL(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
-
+    
     struct DECIMAL_POINT : public DB_Column<wxString>
     {
         static wxString name() { return "DECIMAL_POINT"; }
         explicit DECIMAL_POINT(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
-
+    
     struct GROUP_SEPARATOR : public DB_Column<wxString>
     {
         static wxString name() { return "GROUP_SEPARATOR"; }
         explicit GROUP_SEPARATOR(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
-
+    
     struct SCALE : public DB_Column<int>
     {
         static wxString name() { return "SCALE"; }
         explicit SCALE(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
-
+    
     struct CURRENCY_SYMBOL : public DB_Column<wxString>
     {
         static wxString name() { return "CURRENCY_SYMBOL"; }
         explicit CURRENCY_SYMBOL(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
-
+    
     struct CURRENCY_TYPE : public DB_Column<wxString>
     {
         static wxString name() { return "CURRENCY_TYPE"; }
         explicit CURRENCY_TYPE(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
-
+    
     struct HISTORIC : public DB_Column<int>
     {
         static wxString name() { return "HISTORIC"; }
         explicit HISTORIC(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
-
+    
     typedef CURRENCYID PRIMARY;
     enum COLUMN
     {
@@ -497,14 +497,14 @@ struct DB_Table_CURRENCYFORMATS : public DB_Table
 
         return COL_UNKNOWN;
     }
-
+    
     /** Data is a single record in the database table*/
     struct Data
     {
         friend struct DB_Table_CURRENCYFORMATS;
         /** This is a instance pointer to itself in memory. */
         Self* table_;
-
+    
         int CURRENCYID; // primary key
         wxString CURRENCYNAME;
         wxString PFX_SYMBOL;
@@ -539,7 +539,7 @@ struct DB_Table_CURRENCYFORMATS : public DB_Table
         explicit Data(Self* table = 0)
         {
             table_ = table;
-
+        
             CURRENCYID = -1;
             SCALE = -1;
             HISTORIC = -1;
@@ -548,7 +548,7 @@ struct DB_Table_CURRENCYFORMATS : public DB_Table
         explicit Data(wxSQLite3ResultSet& q, Self* table = 0)
         {
             table_ = table;
-
+        
             CURRENCYID = q.GetInt(0);
             CURRENCYNAME = q.GetString(1);
             PFX_SYMBOL = q.GetString(2);

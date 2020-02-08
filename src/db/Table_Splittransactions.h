@@ -1,4 +1,4 @@
-﻿// -*- C++ -*-
+// -*- C++ -*-
 /** @file
  * @brief     CRUD implementation for SPLITTRANSACTIONS SQLite table
  * @warning   Auto generated with sqlite2cpp.py script. DO NOT EDIT!
@@ -7,7 +7,7 @@
  * @author    Guan Lisheng (guanlisheng@gmail.com)
  * @author    Stefano Giorgio (stef145g)
  * @author    Tomasz Słodkowicz
- * @date      2018-10-07 02:45:31.001407
+ * @date      2020-02-08 17:11:21 +0800
  */
 #pragma once
 
@@ -57,7 +57,7 @@ struct DB_Table_SPLITTRANSACTIONS : public DB_Table
     /** Removes all records stored in memory (cache) for the table*/
     void destroy_cache()
     {
-        std::for_each(cache_.begin(), cache_.end(), std::mem_fun(&Data::destroy));
+        std::for_each(cache_.begin(), cache_.end(), std::mem_fn(&Data::destroy));
         cache_.clear();
         index_by_id_.clear(); // no memory release since it just stores pointer and the according objects are in cache
     }
@@ -104,37 +104,37 @@ struct DB_Table_SPLITTRANSACTIONS : public DB_Table
         db->Begin();
         db->Commit();
     }
-
+    
     struct SPLITTRANSID : public DB_Column<int>
     {
         static wxString name() { return "SPLITTRANSID"; }
         explicit SPLITTRANSID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
-
+    
     struct TRANSID : public DB_Column<int>
     {
         static wxString name() { return "TRANSID"; }
         explicit TRANSID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
-
+    
     struct CATEGID : public DB_Column<int>
     {
         static wxString name() { return "CATEGID"; }
         explicit CATEGID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
-
+    
     struct SUBCATEGID : public DB_Column<int>
     {
         static wxString name() { return "SUBCATEGID"; }
         explicit SUBCATEGID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
-
+    
     struct SPLITTRANSAMOUNT : public DB_Column<double>
     {
         static wxString name() { return "SPLITTRANSAMOUNT"; }
         explicit SPLITTRANSAMOUNT(const double &v, OP op = EQUAL): DB_Column<double>(v, op) {}
     };
-
+    
     typedef SPLITTRANSID PRIMARY;
     enum COLUMN
     {
@@ -173,14 +173,14 @@ struct DB_Table_SPLITTRANSACTIONS : public DB_Table
 
         return COL_UNKNOWN;
     }
-
+    
     /** Data is a single record in the database table*/
     struct Data
     {
         friend struct DB_Table_SPLITTRANSACTIONS;
         /** This is a instance pointer to itself in memory. */
         Self* table_;
-
+    
         int SPLITTRANSID; // primary key
         int TRANSID;
         int CATEGID;
@@ -210,7 +210,7 @@ struct DB_Table_SPLITTRANSACTIONS : public DB_Table
         explicit Data(Self* table = 0)
         {
             table_ = table;
-
+        
             SPLITTRANSID = -1;
             TRANSID = -1;
             CATEGID = -1;
@@ -221,7 +221,7 @@ struct DB_Table_SPLITTRANSACTIONS : public DB_Table
         explicit Data(wxSQLite3ResultSet& q, Self* table = 0)
         {
             table_ = table;
-
+        
             SPLITTRANSID = q.GetInt(0);
             TRANSID = q.GetInt(1);
             CATEGID = q.GetInt(2);

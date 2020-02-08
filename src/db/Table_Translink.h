@@ -1,4 +1,4 @@
-﻿// -*- C++ -*-
+// -*- C++ -*-
 /** @file
  * @brief     CRUD implementation for TRANSLINK SQLite table
  * @warning   Auto generated with sqlite2cpp.py script. DO NOT EDIT!
@@ -7,7 +7,7 @@
  * @author    Guan Lisheng (guanlisheng@gmail.com)
  * @author    Stefano Giorgio (stef145g)
  * @author    Tomasz Słodkowicz
- * @date      2018-10-07 02:45:31.001407
+ * @date      2020-02-08 17:11:21 +0800
  */
 #pragma once
 
@@ -57,7 +57,7 @@ struct DB_Table_TRANSLINK : public DB_Table
     /** Removes all records stored in memory (cache) for the table*/
     void destroy_cache()
     {
-        std::for_each(cache_.begin(), cache_.end(), std::mem_fun(&Data::destroy));
+        std::for_each(cache_.begin(), cache_.end(), std::mem_fn(&Data::destroy));
         cache_.clear();
         index_by_id_.clear(); // no memory release since it just stores pointer and the according objects are in cache
     }
@@ -105,31 +105,31 @@ struct DB_Table_TRANSLINK : public DB_Table
         db->Begin();
         db->Commit();
     }
-
+    
     struct TRANSLINKID : public DB_Column<int>
     {
         static wxString name() { return "TRANSLINKID"; }
         explicit TRANSLINKID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
-
+    
     struct CHECKINGACCOUNTID : public DB_Column<int>
     {
         static wxString name() { return "CHECKINGACCOUNTID"; }
         explicit CHECKINGACCOUNTID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
-
+    
     struct LINKTYPE : public DB_Column<wxString>
     {
         static wxString name() { return "LINKTYPE"; }
         explicit LINKTYPE(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
-
+    
     struct LINKRECORDID : public DB_Column<int>
     {
         static wxString name() { return "LINKRECORDID"; }
         explicit LINKRECORDID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
-
+    
     typedef TRANSLINKID PRIMARY;
     enum COLUMN
     {
@@ -165,14 +165,14 @@ struct DB_Table_TRANSLINK : public DB_Table
 
         return COL_UNKNOWN;
     }
-
+    
     /** Data is a single record in the database table*/
     struct Data
     {
         friend struct DB_Table_TRANSLINK;
         /** This is a instance pointer to itself in memory. */
         Self* table_;
-
+    
         int TRANSLINKID; // primary key
         int CHECKINGACCOUNTID;
         wxString LINKTYPE;
@@ -201,7 +201,7 @@ struct DB_Table_TRANSLINK : public DB_Table
         explicit Data(Self* table = 0)
         {
             table_ = table;
-
+        
             TRANSLINKID = -1;
             CHECKINGACCOUNTID = -1;
             LINKRECORDID = -1;
@@ -210,7 +210,7 @@ struct DB_Table_TRANSLINK : public DB_Table
         explicit Data(wxSQLite3ResultSet& q, Self* table = 0)
         {
             table_ = table;
-
+        
             TRANSLINKID = q.GetInt(0);
             CHECKINGACCOUNTID = q.GetInt(1);
             LINKTYPE = q.GetString(2);

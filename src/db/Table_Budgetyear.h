@@ -1,4 +1,4 @@
-﻿// -*- C++ -*-
+// -*- C++ -*-
 /** @file
  * @brief     CRUD implementation for BUDGETYEAR SQLite table
  * @warning   Auto generated with sqlite2cpp.py script. DO NOT EDIT!
@@ -7,7 +7,7 @@
  * @author    Guan Lisheng (guanlisheng@gmail.com)
  * @author    Stefano Giorgio (stef145g)
  * @author    Tomasz Słodkowicz
- * @date      2018-10-07 02:45:31.001407
+ * @date      2020-02-08 17:11:21 +0800
  */
 #pragma once
 
@@ -57,7 +57,7 @@ struct DB_Table_BUDGETYEAR : public DB_Table
     /** Removes all records stored in memory (cache) for the table*/
     void destroy_cache()
     {
-        std::for_each(cache_.begin(), cache_.end(), std::mem_fun(&Data::destroy));
+        std::for_each(cache_.begin(), cache_.end(), std::mem_fn(&Data::destroy));
         cache_.clear();
         index_by_id_.clear(); // no memory release since it just stores pointer and the according objects are in cache
     }
@@ -104,19 +104,19 @@ struct DB_Table_BUDGETYEAR : public DB_Table
         db->Begin();
         db->Commit();
     }
-
+    
     struct BUDGETYEARID : public DB_Column<int>
     {
         static wxString name() { return "BUDGETYEARID"; }
         explicit BUDGETYEARID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
-
+    
     struct BUDGETYEARNAME : public DB_Column<wxString>
     {
         static wxString name() { return "BUDGETYEARNAME"; }
         explicit BUDGETYEARNAME(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
-
+    
     typedef BUDGETYEARID PRIMARY;
     enum COLUMN
     {
@@ -146,14 +146,14 @@ struct DB_Table_BUDGETYEAR : public DB_Table
 
         return COL_UNKNOWN;
     }
-
+    
     /** Data is a single record in the database table*/
     struct Data
     {
         friend struct DB_Table_BUDGETYEAR;
         /** This is a instance pointer to itself in memory. */
         Self* table_;
-
+    
         int BUDGETYEARID; // primary key
         wxString BUDGETYEARNAME;
 
@@ -180,14 +180,14 @@ struct DB_Table_BUDGETYEAR : public DB_Table
         explicit Data(Self* table = 0)
         {
             table_ = table;
-
+        
             BUDGETYEARID = -1;
         }
 
         explicit Data(wxSQLite3ResultSet& q, Self* table = 0)
         {
             table_ = table;
-
+        
             BUDGETYEARID = q.GetInt(0);
             BUDGETYEARNAME = q.GetString(1);
         }

@@ -1,4 +1,4 @@
-﻿// -*- C++ -*-
+// -*- C++ -*-
 /** @file
  * @brief     CRUD implementation for BILLSDEPOSITS SQLite table
  * @warning   Auto generated with sqlite2cpp.py script. DO NOT EDIT!
@@ -7,7 +7,7 @@
  * @author    Guan Lisheng (guanlisheng@gmail.com)
  * @author    Stefano Giorgio (stef145g)
  * @author    Tomasz Słodkowicz
- * @date      2018-10-07 02:45:31.001407
+ * @date      2020-02-08 17:11:21 +0800
  */
 #pragma once
 
@@ -57,7 +57,7 @@ struct DB_Table_BILLSDEPOSITS : public DB_Table
     /** Removes all records stored in memory (cache) for the table*/
     void destroy_cache()
     {
-        std::for_each(cache_.begin(), cache_.end(), std::mem_fun(&Data::destroy));
+        std::for_each(cache_.begin(), cache_.end(), std::mem_fn(&Data::destroy));
         cache_.clear();
         index_by_id_.clear(); // no memory release since it just stores pointer and the according objects are in cache
     }
@@ -104,109 +104,109 @@ struct DB_Table_BILLSDEPOSITS : public DB_Table
         db->Begin();
         db->Commit();
     }
-
+    
     struct BDID : public DB_Column<int>
     {
         static wxString name() { return "BDID"; }
         explicit BDID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
-
+    
     struct ACCOUNTID : public DB_Column<int>
     {
         static wxString name() { return "ACCOUNTID"; }
         explicit ACCOUNTID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
-
+    
     struct TOACCOUNTID : public DB_Column<int>
     {
         static wxString name() { return "TOACCOUNTID"; }
         explicit TOACCOUNTID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
-
+    
     struct PAYEEID : public DB_Column<int>
     {
         static wxString name() { return "PAYEEID"; }
         explicit PAYEEID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
-
+    
     struct TRANSCODE : public DB_Column<wxString>
     {
         static wxString name() { return "TRANSCODE"; }
         explicit TRANSCODE(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
-
+    
     struct TRANSAMOUNT : public DB_Column<double>
     {
         static wxString name() { return "TRANSAMOUNT"; }
         explicit TRANSAMOUNT(const double &v, OP op = EQUAL): DB_Column<double>(v, op) {}
     };
-
+    
     struct STATUS : public DB_Column<wxString>
     {
         static wxString name() { return "STATUS"; }
         explicit STATUS(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
-
+    
     struct TRANSACTIONNUMBER : public DB_Column<wxString>
     {
         static wxString name() { return "TRANSACTIONNUMBER"; }
         explicit TRANSACTIONNUMBER(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
-
+    
     struct NOTES : public DB_Column<wxString>
     {
         static wxString name() { return "NOTES"; }
         explicit NOTES(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
-
+    
     struct CATEGID : public DB_Column<int>
     {
         static wxString name() { return "CATEGID"; }
         explicit CATEGID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
-
+    
     struct SUBCATEGID : public DB_Column<int>
     {
         static wxString name() { return "SUBCATEGID"; }
         explicit SUBCATEGID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
-
+    
     struct TRANSDATE : public DB_Column<wxString>
     {
         static wxString name() { return "TRANSDATE"; }
         explicit TRANSDATE(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
-
+    
     struct FOLLOWUPID : public DB_Column<int>
     {
         static wxString name() { return "FOLLOWUPID"; }
         explicit FOLLOWUPID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
-
+    
     struct TOTRANSAMOUNT : public DB_Column<double>
     {
         static wxString name() { return "TOTRANSAMOUNT"; }
         explicit TOTRANSAMOUNT(const double &v, OP op = EQUAL): DB_Column<double>(v, op) {}
     };
-
+    
     struct REPEATS : public DB_Column<int>
     {
         static wxString name() { return "REPEATS"; }
         explicit REPEATS(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
-
+    
     struct NEXTOCCURRENCEDATE : public DB_Column<wxString>
     {
         static wxString name() { return "NEXTOCCURRENCEDATE"; }
         explicit NEXTOCCURRENCEDATE(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
-
+    
     struct NUMOCCURRENCES : public DB_Column<int>
     {
         static wxString name() { return "NUMOCCURRENCES"; }
         explicit NUMOCCURRENCES(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
-
+    
     typedef BDID PRIMARY;
     enum COLUMN
     {
@@ -281,14 +281,14 @@ struct DB_Table_BILLSDEPOSITS : public DB_Table
 
         return COL_UNKNOWN;
     }
-
+    
     /** Data is a single record in the database table*/
     struct Data
     {
         friend struct DB_Table_BILLSDEPOSITS;
         /** This is a instance pointer to itself in memory. */
         Self* table_;
-
+    
         int BDID; // primary key
         int ACCOUNTID;
         int TOACCOUNTID;
@@ -330,7 +330,7 @@ struct DB_Table_BILLSDEPOSITS : public DB_Table
         explicit Data(Self* table = 0)
         {
             table_ = table;
-
+        
             BDID = -1;
             ACCOUNTID = -1;
             TOACCOUNTID = -1;
@@ -347,7 +347,7 @@ struct DB_Table_BILLSDEPOSITS : public DB_Table
         explicit Data(wxSQLite3ResultSet& q, Self* table = 0)
         {
             table_ = table;
-
+        
             BDID = q.GetInt(0);
             ACCOUNTID = q.GetInt(1);
             TOACCOUNTID = q.GetInt(2);

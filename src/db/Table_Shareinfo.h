@@ -1,4 +1,4 @@
-﻿// -*- C++ -*-
+// -*- C++ -*-
 /** @file
  * @brief     CRUD implementation for SHAREINFO SQLite table
  * @warning   Auto generated with sqlite2cpp.py script. DO NOT EDIT!
@@ -7,7 +7,7 @@
  * @author    Guan Lisheng (guanlisheng@gmail.com)
  * @author    Stefano Giorgio (stef145g)
  * @author    Tomasz Słodkowicz
- * @date      2018-10-07 02:45:31.001407
+ * @date      2020-02-08 17:11:21 +0800
  */
 #pragma once
 
@@ -57,7 +57,7 @@ struct DB_Table_SHAREINFO : public DB_Table
     /** Removes all records stored in memory (cache) for the table*/
     void destroy_cache()
     {
-        std::for_each(cache_.begin(), cache_.end(), std::mem_fun(&Data::destroy));
+        std::for_each(cache_.begin(), cache_.end(), std::mem_fn(&Data::destroy));
         cache_.clear();
         index_by_id_.clear(); // no memory release since it just stores pointer and the according objects are in cache
     }
@@ -104,43 +104,43 @@ struct DB_Table_SHAREINFO : public DB_Table
         db->Begin();
         db->Commit();
     }
-
+    
     struct SHAREINFOID : public DB_Column<int>
     {
         static wxString name() { return "SHAREINFOID"; }
         explicit SHAREINFOID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
-
+    
     struct CHECKINGACCOUNTID : public DB_Column<int>
     {
         static wxString name() { return "CHECKINGACCOUNTID"; }
         explicit CHECKINGACCOUNTID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
-
+    
     struct SHARENUMBER : public DB_Column<double>
     {
         static wxString name() { return "SHARENUMBER"; }
         explicit SHARENUMBER(const double &v, OP op = EQUAL): DB_Column<double>(v, op) {}
     };
-
+    
     struct SHAREPRICE : public DB_Column<double>
     {
         static wxString name() { return "SHAREPRICE"; }
         explicit SHAREPRICE(const double &v, OP op = EQUAL): DB_Column<double>(v, op) {}
     };
-
+    
     struct SHARECOMMISSION : public DB_Column<double>
     {
         static wxString name() { return "SHARECOMMISSION"; }
         explicit SHARECOMMISSION(const double &v, OP op = EQUAL): DB_Column<double>(v, op) {}
     };
-
+    
     struct SHARELOT : public DB_Column<wxString>
     {
         static wxString name() { return "SHARELOT"; }
         explicit SHARELOT(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
-
+    
     typedef SHAREINFOID PRIMARY;
     enum COLUMN
     {
@@ -182,14 +182,14 @@ struct DB_Table_SHAREINFO : public DB_Table
 
         return COL_UNKNOWN;
     }
-
+    
     /** Data is a single record in the database table*/
     struct Data
     {
         friend struct DB_Table_SHAREINFO;
         /** This is a instance pointer to itself in memory. */
         Self* table_;
-
+    
         int SHAREINFOID; // primary key
         int CHECKINGACCOUNTID;
         double SHARENUMBER;
@@ -220,7 +220,7 @@ struct DB_Table_SHAREINFO : public DB_Table
         explicit Data(Self* table = 0)
         {
             table_ = table;
-
+        
             SHAREINFOID = -1;
             CHECKINGACCOUNTID = -1;
             SHARENUMBER = 0.0;
@@ -231,7 +231,7 @@ struct DB_Table_SHAREINFO : public DB_Table
         explicit Data(wxSQLite3ResultSet& q, Self* table = 0)
         {
             table_ = table;
-
+        
             SHAREINFOID = q.GetInt(0);
             CHECKINGACCOUNTID = q.GetInt(1);
             SHARENUMBER = q.GetDouble(2);
