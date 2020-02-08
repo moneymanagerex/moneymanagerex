@@ -262,7 +262,7 @@ if(CMAKE_VERSION VERSION_LESS 3.16)
     list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/util")
 endif()
 set(wxWidgets_USE_REL_AND_DBG ON)
-find_package(wxWidgets 2.9.2 REQUIRED
+find_package(wxWidgets 3.1.0 REQUIRED
     COMPONENTS core qa html xml aui adv stc webview base
     OPTIONAL_COMPONENTS scintilla)
 if(APPLE AND wxWidgets_LIBRARIES MATCHES "${CMAKE_STATIC_LIBRARY_PREFIX}wx_baseu-[0-9\\.]+${CMAKE_STATIC_LIBRARY_SUFFIX}")
