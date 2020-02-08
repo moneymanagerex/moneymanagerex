@@ -3,13 +3,13 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-08-06 10:14+0300\n"
-"PO-Revision-Date: 2019-08-06 07:26\n"
-"Last-Translator: Nikolay (vomikan)\n"
+"PO-Revision-Date: 2020-02-08 22:16\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Turkish\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: crowdin.com\n"
+"X-Generator: Poedit 2.2.3\n"
 "X-Poedit-Basepath: ../src\n"
 "X-Poedit-KeywordsList: _;wxTRANSLATE;wxPLURAL:1,2;wxGETTEXT_IN_CONTEXT:1c,2;wxGETTEXT_IN_CONTEXT_PLURAL:1c,2,3\n"
 "X-Poedit-SearchPath-0: .\n"
@@ -270,7 +270,7 @@ msgstr "İmaj #%i"
 #: appstartdialog.cpp:48 util.cpp:444
 #, c-format
 msgid "Version: %s"
-msgstr ""
+msgstr "Sürüm: %s"
 
 #: appstartdialog.cpp:99
 msgid "Open Last Opened Database"
@@ -321,7 +321,7 @@ msgstr "Çı&kış"
 #: appstartdialog.cpp:153
 #, c-format
 msgid "Open the previously opened database: %s"
-msgstr ""
+msgstr "Son açılan veritabanını aç: %s"
 
 #: assetdialog.cpp:56 assetdialog.cpp:424 assetspanel.cpp:509
 msgid "New Asset"
@@ -1253,7 +1253,7 @@ msgstr "Otomatik Olarak"
 #, c-format
 msgid "%d day remaining"
 msgid_plural "%d days remaining"
-msgstr[0] ""
+msgstr[0] "%d gün kaldı"
 msgstr[1] ""
 
 #: billsdepositspanel.cpp:499 billsdepositspanel.cpp:505
