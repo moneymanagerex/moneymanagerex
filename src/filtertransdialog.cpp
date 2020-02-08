@@ -75,7 +75,7 @@ mmFilterTransactionsDialog::~mmFilterTransactionsDialog()
     if (m_custom_fields)
         delete m_custom_fields;
 
-    std::for_each(m_all_date_ranges.begin(), m_all_date_ranges.end(), std::mem_fun(&mmDateRange::destroy));
+    std::for_each(m_all_date_ranges.begin(), m_all_date_ranges.end(), std::mem_fn(&mmDateRange::destroy));
     m_all_date_ranges.clear();
 }
 
