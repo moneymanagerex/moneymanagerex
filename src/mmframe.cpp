@@ -1415,6 +1415,7 @@ void mmGUIFrame::createHomePage()
 void mmGUIFrame::createReportsPage(mmPrintableBase* rs, bool cleanup)
 {
     if (!rs) return;
+    wxDateTime start = wxDateTime::UNow();
     m_nav_tree_ctrl->SetEvtHandlerEnabled(false);
 
     windowsFreezeThaw(homePanel_);
@@ -1429,6 +1430,7 @@ void mmGUIFrame::createReportsPage(mmPrintableBase* rs, bool cleanup)
 
     menuPrintingEnable(true);
     m_nav_tree_ctrl->SetEvtHandlerEnabled(true);
+    Model_Usage::instance().pageview(panelCurrent_, (wxDateTime::UNow() - start).GetMilliseconds().ToLong());
 }
 //----------------------------------------------------------------------------
 
