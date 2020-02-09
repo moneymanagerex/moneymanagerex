@@ -70,9 +70,7 @@ __All following commands must be run from this command prompt!__
 
 6. Clone [MMEX official Git repository] with submodules using command-line:
 
-       git clone --recursive https://github.com/moneymanagerex/moneymanagerex c:\projects\mmex
-
-   You can select MMEX version by adding `--branch v1.4.0` parameter.
+       git clone --recursive https://github.com/moneymanagerex/moneymanagerex c:\projects\mmex134 --branch v1.3.x
 
    If git command is not recognized and you want to use git installed with VS
    you should find `git.exe` file and add its directory to the `PATH` variable
@@ -118,7 +116,6 @@ tools to manage projects in VS IDE.
 
 1. Generate build environment using [CMake]
 
-       mkdir c:\projects\mmex\build
        cd c:\projects\mmex\build
        set "PATH=%PATH%;%DevEnvDir%CommonExtensions\Microsoft\CMake\CMake\bin"
        cmake -G "Visual Studio 15 2017" -DCMAKE_PREFIX_PATH=c:\libcurl ..
@@ -221,13 +218,10 @@ macOS with Homebrew
 
 #### 2. Download Sources
 
-    git clone --recursive https://github.com/moneymanagerex/moneymanagerex
-
-You can select MMEX version by adding `--branch v1.4.0` parameter.
+    git clone --recursive https://github.com/moneymanagerex/moneymanagerex --branch v1.3.x
 
 #### 3. Compile and Create Package
 
-    mkdir moneymanagerex/build
     cd moneymanagerex/build
     export MAKEFLAGS=-j4
     cmake -DCMAKE_BUILD_TYPE=Release ..
