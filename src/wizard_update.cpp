@@ -236,18 +236,29 @@ void mmUpdate::checkUpdates(const bool bSilent, wxFrame *frame)
     wxString latest_tag = current_tag;
     Value& latest_release = json_releases[0];
     Version latest(latest_tag);
-    wxLogDebug("curr ver = %s", current_tag);
+    wxLogDebug("Current vertion: = %s", current_tag);
 
     for (auto& r : json_releases.GetArray())
     {
-        if (_stable && r["prerelease"].IsTrue()) continue;
-        wxLogDebug("tag %s", r["tag_name"].GetString());
-        Version check(r["tag_name"].GetString());
+        const auto tag_name = r["tag_name"].GetString();
+        if (_stable && r["prerelease"].IsTrue()) {
+            wxLogDebug("[X] tag %s", tag_name);
+            continue;
+        }
+
+        Version check(tag_name);
         if (latest < check)
         {
             latest = check;
-            latest_tag = r["tag_name"].GetString();
-            if (latest_release != r) latest_release = r;
+            latest_tag = tag_name;
+            if (latest_release != r) {
+                latest_release = r;
+                wxLogDebug("[V] ----> tag %s", tag_name);
+            }
+        }
+        else
+        {
+            wxLogDebug("[X] tag %s", tag_name);
         }
     }
 
