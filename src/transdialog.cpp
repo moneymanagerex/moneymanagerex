@@ -111,8 +111,11 @@ mmTransDialog::mmTransDialog(wxWindow* parent
         Model_Account::Data* to_acc = Model_Account::instance().get(m_trx_data.TOACCOUNTID);
         if (to_acc) 
             m_to_currency = Model_Account::currency(to_acc);
-        if (m_to_currency) 
-            m_advanced = !m_new_trx && (m_currency->CURRENCYID != m_to_currency->CURRENCYID || m_trx_data.TRANSAMOUNT != m_trx_data.TOTRANSAMOUNT);
+        if (m_to_currency) {
+            m_advanced = !m_new_trx
+                && (m_currency->CURRENCYID != m_to_currency->CURRENCYID
+                    || m_trx_data.TRANSAMOUNT != m_trx_data.TOTRANSAMOUNT);
+        }
     }
 
     long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX;
@@ -177,8 +180,14 @@ void mmTransDialog::dataToControls()
         if (m_transfer)
         {
             if (!m_advanced)
-                m_trx_data.TOTRANSAMOUNT = m_trx_data.TRANSAMOUNT 
-                    * (m_to_currency ? m_currency->BASECONVRATE / m_to_currency->BASECONVRATE : 1);
+            {
+                double exch = 1;
+                if (m_to_currency && m_to_currency->BASECONVRATE > 0) {
+                    exch = m_currency->BASECONVRATE / m_to_currency->BASECONVRATE;
+                }
+                m_trx_data.TOTRANSAMOUNT = m_trx_data.TRANSAMOUNT * exch;
+            }
+                
             toTextAmount_->SetValue(m_trx_data.TOTRANSAMOUNT, Model_Currency::precision(m_trx_data.TOACCOUNTID));
         }
         else
