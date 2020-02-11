@@ -604,6 +604,7 @@ void mmGUIFrame::menuEnableItems(bool enable)
     menuBar_->FindItem(MENU_NEWACCT)->Enable(enable);
     menuBar_->FindItem(MENU_ACCTLIST)->Enable(enable);
     menuBar_->FindItem(MENU_ACCTEDIT)->Enable(enable);
+    menuBar_->FindItem(MENU_ACCOUNT_REALLOCATE)->Enable(enable);
     menuBar_->FindItem(MENU_ACCTDELETE)->Enable(enable);
 
     menuBar_->FindItem(MENU_ORGCATEGS)->Enable(enable);
@@ -622,12 +623,22 @@ void mmGUIFrame::menuEnableItems(bool enable)
     menuBar_->FindItem(MENU_BUDGETSETUPDIALOG)->Enable(enable);
     menuBar_->FindItem(MENU_TRANSACTIONREPORT)->Enable(enable);
 
+    menuBar_->FindItem(MENU_VIEW_HIDE_SHARE_ACCOUNTS)->Enable(enable);
+    menuBar_->FindItem(MENU_VIEW_BUDGET_FINANCIAL_YEARS)->Enable(enable);
+    menuBar_->FindItem(MENU_VIEW_BUDGET_TRANSFER_TOTAL)->Enable(enable);
+    menuBar_->FindItem(MENU_VIEW_BUDGET_SETUP_SUMMARY)->Enable(enable);
+    menuBar_->FindItem(MENU_VIEW_BUDGET_CATEGORY_SUMMARY)->Enable(enable);
+    menuBar_->FindItem(MENU_VIEW_IGNORE_FUTURE_TRANSACTIONS)->Enable(enable);
+    menuBar_->FindItem(MENU_DB_VACUUM)->Enable(enable);
+    menuBar_->FindItem(MENU_DB_DEBUG)->Enable(enable);
+
     toolBar_->EnableTool(MENU_NEWACCT, enable);
     toolBar_->EnableTool(MENU_ACCTLIST, enable);
     toolBar_->EnableTool(MENU_ORGPAYEE, enable);
     toolBar_->EnableTool(MENU_ORGCATEGS, enable);
     toolBar_->EnableTool(MENU_CURRENCY, enable);
     toolBar_->EnableTool(wxID_VIEW_LIST, enable);
+    toolBar_->EnableTool(wxID_PRINT, enable);
 }
 //----------------------------------------------------------------------------
 
