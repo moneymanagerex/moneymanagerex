@@ -1652,7 +1652,7 @@ void mmGUIFrame::createMenu()
     wxMenuItem* menuItemReportBug = new wxMenuItem(menuTools, MENU_REPORT_BUG
         , _("Report a Bug")
         , _("Report an error in application to the developers"));
-    // menuItemReportBug->SetBitmap(mmBitmap(png::BUG));
+    menuItemReportBug->SetBitmap(mmBitmap(png::BUG));
     menuHelp->Append(menuItemReportBug);
 
     wxMenuItem* menuItemAppStart = new wxMenuItem(menuTools, MENU_SHOW_APPSTART
