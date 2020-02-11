@@ -215,11 +215,10 @@ private:
     void OnHelp(wxCommandEvent& event);
     void OnShowAppStartDialog(wxCommandEvent& WXUNUSED(event));
     void OnCheckUpdate(wxCommandEvent& event);
-    void OnGooglePlay(wxCommandEvent& event);
-    void OnReportIssues(wxCommandEvent& event);
     void OnBeNotified(wxCommandEvent& event);
-    void OnFacebook(wxCommandEvent& event);
     void OnAbout(wxCommandEvent& event);
+    void OnSimpleURLOpen(wxCommandEvent& event);
+    void OnReportBug(wxCommandEvent& event);
 
     void OnItemRightClick(wxTreeEvent& event);
     void OnItemMenu(wxTreeEvent& event);
@@ -271,14 +270,26 @@ private:
         MENU_ORGPAYEE,
         MENU_BUDGETSETUPDIALOG,
         MENU_CHECKUPDATE,
-        MENU_GOOGLEPLAY,
         MENU_IMPORT,
         MENU_IMPORT_UNIVCSV,
         MENU_IMPORT_XML,
         MENU_IMPORT_WEBAPP,
-        MENU_REPORTISSUES,
         MENU_ANNOUNCEMENTMAILING,
-        MENU_FACEBOOK,
+        MENU_FACEBOOK, // start range for OnSimpleURLOpen
+        MENU_COMMUNITY,
+        MENU_WEBSITE,
+        MENU_WIKI,
+        MENU_YOUTUBE,
+        MENU_GITHUB,
+        MENU_RSS,
+        MENU_SLACK,
+        MENU_DONATE,
+        MENU_CROWDIN,
+        MENU_REPORTISSUES,
+        MENU_BUY_COFFEE,
+        MENU_GOOGLEPLAY,
+        MENU_TWITTER, // end range for OnSimpleURLOpen
+        MENU_REPORT_BUG,
         MENU_EXPORT_CSV,
         MENU_EXPORT_XML,
         MENU_EXPORT_QIF,

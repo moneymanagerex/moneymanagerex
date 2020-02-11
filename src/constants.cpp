@@ -158,7 +158,11 @@ const wxString mmex::weblink::BugReport = "http://bugreport.moneymanagerex.org";
 const wxString mmex::weblink::Donate = "https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=moneymanagerex%40gmail%2ecom&lc=US&item_name=MoneyManagerEx&no_note=0&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHostedGuest";
 const wxString mmex::weblink::Twitter = "https://twitter.com/MoneyManagerEx";
 const wxString mmex::weblink::Facebook = "http://www.facebook.com/pages/Money-Manager-Ex/242286559144586";
+const wxString mmex::weblink::SquareCashGuan = "https://cash.me/$guanlisheng/1";
 // https://greenido.wordpress.com/2009/12/22/yahoo-finance-hidden-api/
+const wxString mmex::weblink::GitHub = "https://github.com/moneymanagerex/moneymanagerex";
+const wxString mmex::weblink::YouTube = "http://www.youtube.com/user/moneymanagerex";
+const wxString mmex::weblink::Slack = "http://slack.moneymanagerex.org/";
 
 const wxString mmex::weblink::GooglePlay = "https://play.google.com/store/apps/details?id=com.money.manager.ex";
 const wxString mmex::weblink::WebApp = "https://github.com/moneymanagerex/web-money-manager-ex";

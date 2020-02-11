@@ -80,6 +80,10 @@ namespace weblink
     extern const wxString Donate;
     extern const wxString Twitter;
     extern const wxString Facebook;
+    extern const wxString GitHub;
+    extern const wxString YouTube;
+    extern const wxString Slack;
+    extern const wxString SquareCashGuan;
     extern const wxString DefStockUrl;
     extern const wxString GooglePlay;
     extern const wxString WebApp;
