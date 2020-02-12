@@ -1,7 +1,7 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
  Copyright (C) 2011 Stefano Giorgio
- Copyright (C) 2011-2016 Nikolay Akimov
+ Copyright (C) 2011-2020 Nikolay Akimov
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -477,9 +477,8 @@ void mmTransDialog::CreateControls()
         , ID_DIALOG_TRANS_TEXTNUMBER, "", wxDefaultPosition
         , wxDefaultSize, wxTE_PROCESS_ENTER);
 
-    wxButton* bAuto = new wxButton(this
-        , ID_DIALOG_TRANS_BUTTONTRANSNUM, "...", wxDefaultPosition
-        , wxSize(cbPayee_->GetSize().GetY(), cbPayee_->GetSize().GetY()));
+    wxBitmapButton* bAuto = new wxBitmapButton(this
+        , ID_DIALOG_TRANS_BUTTONTRANSNUM, mmBitmap(png::TRXNUM));
     bAuto->Connect(ID_DIALOG_TRANS_BUTTONTRANSNUM,
         wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(mmTransDialog::OnAutoTransNum), nullptr, this);
     bAuto->SetToolTip(_("Populate Transaction #"));

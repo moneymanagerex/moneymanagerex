@@ -149,7 +149,7 @@ void mmMainCurrencyDialog::CreateControls()
     itemBoxSizer2->Add(itemBoxSizer22, wxSizerFlags(g_flagsExpand).Proportion(0));
 
     wxBitmapButton* update_button = new wxBitmapButton(this
-        , wxID_STATIC, mmBitmap(png::UPDATE));
+        , wxID_STATIC, mmBitmap(png::CURRATES));
     itemBoxSizer22->Add(update_button, g_flagsH);
     update_button->Connect(wxID_STATIC, wxEVT_COMMAND_BUTTON_CLICKED
         , wxCommandEventHandler(mmMainCurrencyDialog::OnOnlineUpdateCurRate), nullptr, this);
@@ -277,7 +277,7 @@ void mmMainCurrencyDialog::CreateControls()
     wxStdDialogButtonSizer*  buttons_sizer = new wxStdDialogButtonSizer;
     buttons_panel->SetSizer(buttons_sizer);
 
-    wxBitmapButton* buttonDownload = new wxBitmapButton(buttons_panel, HISTORY_UPDATE, mmBitmap(png::UPDATE));
+    wxBitmapButton* buttonDownload = new wxBitmapButton(buttons_panel, HISTORY_UPDATE, mmBitmap(png::CURRATES));
     buttonDownload->SetToolTip(_("Download Currency Values history"));
     historyButtonAdd_ = new wxButton(buttons_panel, HISTORY_ADD, _("&Add / Update ")
         , wxDefaultPosition, wxSize(-1, buttonDownload->GetSize().GetY()));
