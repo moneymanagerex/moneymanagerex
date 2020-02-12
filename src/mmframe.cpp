@@ -817,6 +817,7 @@ void mmGUIFrame::updateNavTreeControl()
         if (!m_nav_tree_ctrl->ItemHasChildren(stocks)) m_nav_tree_ctrl->Delete(stocks);
         if (!m_nav_tree_ctrl->ItemHasChildren(cashAccounts)) m_nav_tree_ctrl->Delete(cashAccounts);
         if (!m_nav_tree_ctrl->ItemHasChildren(loanAccounts)) m_nav_tree_ctrl->Delete(loanAccounts);
+        if (!m_nav_tree_ctrl->ItemHasChildren(assets)) m_nav_tree_ctrl->Delete(assets);
 
         if (!m_nav_tree_ctrl->ItemHasChildren(shareAccounts) || m_hide_share_accounts)
         {
@@ -918,8 +919,12 @@ void mmGUIFrame::navTreeStateToJson()
 
         mmTreeItemData* iData =
             dynamic_cast<mmTreeItemData*>(m_nav_tree_ctrl->GetItemData(next));
-        if (iData && json::Boolean(m_nav_tree_ctrl->IsExpanded(next)))
-            o[iData->getString().ToStdWstring()] = json::Boolean(m_nav_tree_ctrl->IsExpanded(next));
+        if (iData)
+        {
+            auto index = iData->getString().ToStdWstring();
+            if (!index.empty() && json::Boolean(o[index]))
+                m_nav_tree_ctrl->Expand(next);
+        }
     };
     std::wstringstream ss;
     json::Writer::Write(o, ss);
