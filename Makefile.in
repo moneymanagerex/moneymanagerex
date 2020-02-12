@@ -104,10 +104,12 @@ MMEX_CFLAGS = -I$(srcdir)/lib/wxsqlite3/sqlite3/secure/src \
 	-I$(srcdir)/lib/wxsqlite3/include -I$(srcdir)/lib/lua/src -I$(srcdir)/lib \
 	-I$(srcdir)/3rd -I$(srcdir)/3rd/LuaGlue/include \
 	-I$(srcdir)/3rd/cgitemplate -I$(srcdir)/3rd/csv-parser/include \
+	-I$(srcdir)/3rd/rapidjson/include \
 	-I$(srcdir)/src -DNOPCH $(WX_CFLAGS) $(PIC_FLAG) $(CPPFLAGS) $(CFLAGS)
 MMEX_CXXFLAGS = -I$(srcdir)/lib/wxsqlite3/sqlite3/secure/src \
 	-I$(srcdir)/lib/wxsqlite3/include -I$(srcdir)/lib/lua/src -I$(srcdir)/lib \
 	-I$(srcdir)/3rd -I$(srcdir)/3rd/LuaGlue/include \
+	-I$(srcdir)/3rd/rapidjson/include \
 	-I$(srcdir)/3rd/cgitemplate -I$(srcdir)/3rd/csv-parser/include \
 	-I$(srcdir)/src -DNOPCH $(WX_CXXFLAGS) $(PIC_FLAG) $(CPPFLAGS) $(CXXFLAGS)
 MMEX_OBJECTS =  \
@@ -807,7 +809,7 @@ mmex_csv_parser.o: $(srcdir)/3rd/csv-parser/csv_parser.cpp
 	$(CXXC) -c -o $@ $(MMEX_CXXFLAGS) $(srcdir)/3rd/csv-parser/csv_parser.cpp
 
 mmex_resources_mmex_rc.o: $(srcdir)/resources/mmex.rc
-	$(WX_RESCOMP) -i$< -o$@  --include-dir $(srcdir)/lib/wxsqlite3/sqlite3/secure/src --include-dir $(srcdir)/lib/wxsqlite3/include --include-dir $(srcdir)/lib/lua/src --include-dir $(srcdir)/lib --include-dir $(srcdir)/3rd --include-dir $(srcdir)/3rd/LuaGlue/include --include-dir $(srcdir)/3rd/cgitemplate --include-dir $(srcdir)/3rd/csv-parser/include --include-dir $(srcdir)/src --define NOPCH
+	$(WX_RESCOMP) -i$< -o$@  --include-dir $(srcdir)/lib/wxsqlite3/sqlite3/secure/src --include-dir $(srcdir)/lib/wxsqlite3/include --include-dir $(srcdir)/lib/lua/src --include-dir $(srcdir)/lib --include-dir $(srcdir)/3rd --include-dir $(srcdir)/3rd/LuaGlue/include -includ-dir $(srcdir)/3rd/rapidjson/include --include-dir $(srcdir)/3rd/cgitemplate --include-dir $(srcdir)/3rd/csv-parser/include --include-dir $(srcdir)/src --define NOPCH
 
 
 # Include dependency info, if present:
