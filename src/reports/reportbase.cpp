@@ -24,10 +24,12 @@
 
 wxString mmPrintableBase::title() const
 {
-    if (!m_date_range) 
-        return m_title; 
-    else 
-        return m_title + " - " + m_date_range->title();
+    wxString title = m_title;
+    if (!m_date_range)
+        title += " - " + _("Custom");
+    else
+        title += " - " + wxGetTranslation(m_date_range->title());
+    return title;
 }
 
 mmGeneralReport::mmGeneralReport(const Model_Report::Data* report)

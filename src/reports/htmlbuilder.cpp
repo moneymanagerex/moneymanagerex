@@ -111,9 +111,10 @@ static const wxString COLORS [] = {
 
 mmHTMLBuilder::mmHTMLBuilder()
 {
-    today_.date = wxDateTime::Today();
-    today_.todays_date = wxString::Format(_("Today's Date: %s")
-		, mmGetNiceDateSimpleString(today_.date));
+    today_.date = wxDateTime::Now();
+    today_.todays_date = wxString::Format(_("Report Generated %s %s")
+        , mmGetDateForDisplay(today_.date.FormatISODate())
+        , today_.date.FormatISOTime());
 }
 
 void mmHTMLBuilder::init()
@@ -307,8 +308,8 @@ void mmHTMLBuilder::DisplayDateHeading(const wxDateTime& startDate, const wxDate
     if (withDateRange)
     {
         todaysDate << wxString::Format(_("From %s till %s")
-            , wxString(mmGetNiceDateSimpleString(startDate)).Prepend("<b>").Append("</b> ")
-            , wxString(mmGetNiceDateSimpleString(endDate)).Prepend("<b>").Append("</b> "));
+            , mmGetDateForDisplay(startDate.FormatISODate())
+            , mmGetDateForDisplay(endDate.FormatISODate()));
     }
     else
     {

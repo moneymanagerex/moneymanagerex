@@ -210,21 +210,6 @@ void csv2tab_separated_values(wxString& line, const wxString& delimit)
 }
 
 //* Date Functions----------------------------------------------------------*//
-const wxString mmGetNiceDateSimpleString(const wxDateTime &dt)
-{
-    wxString dateFmt = Option::instance().DateFormat();
-    dateFmt.Replace("%Y%m%d", "%Y %m %d");
-    dateFmt.Replace(".", " ");
-    dateFmt.Replace(",", " ");
-    dateFmt.Replace("/", " ");
-    dateFmt.Replace("-", " ");
-    dateFmt.Replace("%d", wxString::Format("%d", dt.GetDay()));
-    dateFmt.Replace("%Y", wxString::Format("%d", dt.GetYear()));
-    dateFmt.Replace("%y", wxString::Format("%d", dt.GetYear()).Mid(2,2));
-    dateFmt.Replace("%m", wxGetTranslation(wxDateTime::GetEnglishMonthName(dt.GetMonth())));
-
-    return dateFmt;
-}
 
 const wxString mmGetDateForDisplay(const wxString &iso_date)
 {

@@ -177,7 +177,6 @@ const std::map<wxString, wxString> &date_formats_regex();
 const wxDateTime mmParseISODate(const wxString& str);
 const wxString mmGetDateForDisplay(const wxString &iso_date);
 bool mmParseDisplayStringToDate(wxDateTime& date, const wxString& sDate, const wxString& sDateMask);
-const wxString mmGetNiceDateSimpleString(const wxDateTime &dt);
 extern const std::map<wxString, wxString> g_date_formats_map;
 extern const std::map<int, std::pair<wxConvAuto, wxString> > g_encoding;
 
