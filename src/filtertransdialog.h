@@ -120,6 +120,8 @@ private:
     wxString to_json();
     void from_json(const wxString &data);
 
+    bool isValuesCorrect();
+
     wxString settings_string_;
     wxString prev_value_;
     wxTextCtrl* m_settingLabel;

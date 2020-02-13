@@ -1,4 +1,4 @@
-﻿/*******************************************************
+/*******************************************************
 Copyright (C) 2006 Madhan Kanagavel
 Copyright (C) 2016 Nikolay Akimov
 
@@ -388,14 +388,18 @@ void mmFilterTransactionsDialog::OnCheckboxClick( wxCommandEvent& event )
     event.Skip();
 }
 
-void mmFilterTransactionsDialog::OnButtonokClick( wxCommandEvent& /*event*/ )
+bool mmFilterTransactionsDialog::isValuesCorrect()
 {
     if (accountCheckBox_->IsChecked())
     {
         refAccountStr_ = accountDropDown_->GetStringSelection();
         Model_Account::Data* account = Model_Account::instance().get(refAccountStr_);
-        if (account) 
+        if (account)
             refAccountID_ = account->ACCOUNTID;
+    }
+    else
+    {
+        refAccountID_ = -1;
     }
 
     if (payeeCheckBox_->IsChecked())
@@ -406,6 +410,12 @@ void mmFilterTransactionsDialog::OnButtonokClick( wxCommandEvent& /*event*/ )
             payeeID_ = payee->PAYEEID;
             payeeStr_ = payee->PAYEENAME;
         }
+        else
+        {
+            mmErrorDialogs::ToolTip4Object(cbPayee_
+                , _("Invalid value"), _("Payee"));
+            return false;
+        }
     }
 
     if (amountRangeCheckBox_->IsChecked())
@@ -413,31 +423,61 @@ void mmFilterTransactionsDialog::OnButtonokClick( wxCommandEvent& /*event*/ )
         Model_Currency::Data *currency = Model_Currency::GetBaseCurrency();
         Model_Account::Data *account = Model_Account::instance().get(refAccountID_);
         if (account) currency = Model_Account::currency(account);
+        int currency_precision = Model_Currency::precision(currency);
+        double min_amount = 0;
+        double max_amount = 0;
 
-        wxString minamt = amountMinEdit_->GetValue().Trim();
-        wxString maxamt = amountMaxEdit_->GetValue().Trim();
-        if (!minamt.IsEmpty())
+        if (!amountMinEdit_->Calculate(currency_precision))
         {
-            double amount;
-            if (!Model_Currency::fromString(minamt, amount, currency) || amount < 0)
-            {
-                mmErrorDialogs::MessageError(this, _("Invalid Amount Entered "), _("Error"));
-                return;
-            }
+            amountMinEdit_->GetDouble(min_amount);
+            mmErrorDialogs::ToolTip4Object(amountMinEdit_
+                , _("Invalid value"), _("Amount"));
+            return false;
         }
 
-        if (!maxamt.IsEmpty())
+        if (!amountMaxEdit_->Calculate(currency_precision))
         {
-            double amount;
-            if (!Model_Currency::fromString(maxamt, amount, currency) || amount < 0)
+            amountMaxEdit_->GetDouble(max_amount);
+            if (max_amount < min_amount)
             {
-                mmErrorDialogs::MessageError(this, _("Invalid Amount Entered "), _("Error"));
-                return;
+                mmErrorDialogs::ToolTip4Object(amountMaxEdit_
+                    , _("Invalid value"), _("Amount"));
+                return false;
             }
         }
     }
 
-    EndModal(wxID_OK);
+    if (dateRangeCheckBox_->IsChecked())
+    {
+        m_begin_date = fromDateCtrl_->GetValue().FormatISODate();
+        m_end_date = toDateControl_->GetValue().FormatISODate();
+        if (m_begin_date > m_end_date)
+        {
+            const auto today = wxDate::Today().FormatISODate();
+            int id = m_begin_date >= today
+                ? fromDateCtrl_->GetId() : toDateControl_->GetId();
+            mmErrorDialogs::ToolTip4Object(FindWindow(id)
+                , _("Invalid value"), _("Date"));
+            return false;
+        }
+    }
+
+    if (statusCheckBox_->IsChecked() && choiceStatus_->GetSelection() < 0)
+    {
+        int id = choiceStatus_->GetId();
+        mmErrorDialogs::ToolTip4Object(FindWindow(id)
+            , _("Invalid value"), _("Status"));
+        return false;
+    }
+
+    return true;
+}
+
+void mmFilterTransactionsDialog::OnButtonokClick( wxCommandEvent& /*event*/ )
+{
+    if (isValuesCorrect()) {
+        EndModal(wxID_OK);
+    }
 }
 
 void mmFilterTransactionsDialog::OnButtoncancelClick( wxCommandEvent& /*event*/ )
@@ -562,11 +602,14 @@ double mmFilterTransactionsDialog::getAmountMax()
 
 void mmFilterTransactionsDialog::OnButtonSaveClick( wxCommandEvent& /*event*/ )
 {
-    int i = m_radio_box_->GetSelection();
-    settings_string_ = to_json();
-    Model_Infotable::instance().Set(wxString::Format("TRANSACTIONS_FILTER_%d", i), settings_string_);
-    Model_Infotable::instance().Set("TRANSACTIONS_FILTER_VIEW_NO", i);
-    wxLogDebug("Settings Saved to registry %i\n %s", i, settings_string_);
+    if (isValuesCorrect())
+    {
+        int i = m_radio_box_->GetSelection();
+        settings_string_ = to_json();
+        Model_Infotable::instance().Set(wxString::Format("TRANSACTIONS_FILTER_%d", i), settings_string_);
+        Model_Infotable::instance().Set("TRANSACTIONS_FILTER_VIEW_NO", i);
+        wxLogDebug("Settings Saved to registry %i\n %s", i, settings_string_);
+    }
 }
 
 void mmFilterTransactionsDialog::OnButtonClearClick( wxCommandEvent& /*event*/ )
