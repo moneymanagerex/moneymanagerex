@@ -1,48 +1,187 @@
 language: cpp
-
 dist: trusty
-
-os:
-  - linux
-  - osx
-
-compiler:
-  - clang
-  - gcc
+sudo: required
+services: [ docker ]
+git: { depth: 10 } # don't clone all history from repo, leave 10 for build queue
+os: linux # default build params for matrix
+compiler: gcc
+cache: ccache
 
 env:
-- WXWIDGETS = wxwidgets
+  global:
+  - MAKEFLAGS=-j4
+  - BUILD_TYPE=$(if [[ "$TRAVIS_TAG" =~ ^v[0-9]+\.[0-9]+\.[0-9]+ ]]; then if [[ "$TRAVIS_TAG" =~ -[a-z] ]]; then echo RelWithDebInfo; else echo Release; fi; else echo Debug; fi)
+  matrix: # targets for linux
+  - OS=debian DIST=jessie
+  - OS=debian DIST=stretch
+  # - OS=debian DIST=buster # see issue #1331 on GitHub
+  - OS=debian DIST=jessie ARCH=x86
+  - OS=debian DIST=stretch ARCH=x86
+  # - OS=debian DIST=buster ARCH=x86 # see issue #1331 on GitHub
+  - OS=ubuntu DIST=xenial
+  - OS=ubuntu DIST=zesty
+  - OS=ubuntu DIST=artful
+  - OS=ubuntu DIST=bionic
+  - OS=ubuntu DIST=xenial ARCH=x86
+  - OS=ubuntu DIST=zesty ARCH=x86
+  - OS=ubuntu DIST=artful ARCH=x86
+  - OS=ubuntu DIST=bionic ARCH=x86
+  - OS=fedora
+  - OS=fedora DIST=24
+  - OS=fedora DIST=25
+  - OS=fedora DIST=26
+  # - OS=opensuse # see issue #1331 on GitHub
+  - OS=opensuse DIST=42.2
+  - OS=opensuse DIST=42.3
+  - OS=archlinux
+  - OS=el DIST=7 # DIST=6 doesn't provide webview in wxGTK3
+  - OS=linuxmint DIST=serena
+  - OS=linuxmint DIST=sonya
+  - OS=linuxmint DIST=sylvia
+  - OS=linuxmint DIST=tara
+  - OS=linuxmint DIST=sylvia ARCH=x86
+  - OS=linuxmint DIST=tara ARCH=x86
+  - OS=slackware DIST=14.2 # DIST=14.1 has cmake 2.x
 
-before_install:
-  - echo $TRAVIS_OS_NAME
-  # Linux
-  - if [ "$TRAVIS_OS_NAME" == "linux" ]; then sudo apt-key adv --fetch-keys http://repos.codelite.org/CodeLite.asc; fi
-  - if [ "$TRAVIS_OS_NAME" == "linux" ]; then sudo apt-add-repository 'deb http://repos.codelite.org/wx3.1.0/ubuntu/ trusty universe' -y; fi
-  - if [ "$TRAVIS_OS_NAME" == "linux" ]; then sudo apt-get update -q; fi
-  - if [ "$TRAVIS_OS_NAME" == "linux" ]; then sudo apt-get install libwxbase3.1-dev libwxgtk3.1-dev libwxgtk-webview3.1-dev; fi
-  # MacOS
-  - if [ "$TRAVIS_OS_NAME" == "osx" ]; then brew update; fi
-  - if [ "$TRAVIS_OS_NAME" == "osx" ]; then brew install wxmac; fi
-  - if [ "$TRAVIS_OS_NAME" == "osx" ]; then brew install gettext; fi
-  - if [ "$TRAVIS_OS_NAME" == "osx" ]; then brew link --force gettext; fi
+matrix:
+  fast_finish: true
+  include: # add non-linux targets
+  - { os: osx, osx_image: xcode6.4, env: OS=osx DIST=10.10 }
+  - { os: osx, osx_image: xcode8,   env: OS=osx DIST=10.11 }
+  - { os: osx, osx_image: xcode9.1, env: OS=macos DIST=10.12 }
+  - { os: osx, osx_image: xcode9.1, env: OS=macos DIST=10.13 }
+  - stage: nightly # used only to tag and trigger nightly build
+    sudo: false
+    cache: false
+    services: [ ]
+    git: { submodules: false, depth: 10 }
+    install: skip
+    before_script:
+    - git config --global credential.helper store
+    - echo "https://$GitHub_auth_token:x-oauth-basic@github.com" >$HOME/.git-credentials
+    - git config --global user.email "nobody@no.mail"
+    - git config --global user.name "Travis CI"
+    script:
+    - git tag -f nightly && git push -f --tags
+    after_success: skip
+    deploy: skip
+  allow_failures:
+  - env: OS=debian DIST=jessie
+  - env: OS=debian DIST=stretch
+  - env: OS=debian DIST=buster
+  - env: OS=debian DIST=jessie ARCH=x86
+  - env: OS=debian DIST=stretch ARCH=x86
+  - env: OS=debian DIST=buster ARCH=x86
+  - env: OS=ubuntu DIST=xenial
+  - env: OS=ubuntu DIST=zesty
+  - env: OS=ubuntu DIST=artful
+  - env: OS=ubuntu DIST=xenial ARCH=x86
+  - env: OS=ubuntu DIST=zesty ARCH=x86
+  - env: OS=ubuntu DIST=artful ARCH=x86
+  - env: OS=ubuntu DIST=bionic ARCH=x86
+  - env: OS=fedora
+  - env: OS=fedora DIST=24
+  - env: OS=fedora DIST=25
+  - env: OS=fedora DIST=26
+  - env: OS=opensuse
+  - env: OS=opensuse DIST=42.2
+  - env: OS=opensuse DIST=42.3
+  - env: OS=archlinux
+  - env: OS=linuxmint DIST=serena
+  - env: OS=linuxmint DIST=sonya
+  - env: OS=linuxmint DIST=sylvia
+  - env: OS=linuxmint DIST=tara
+  - env: OS=linuxmint DIST=sylvia ARCH=x86
+  - env: OS=linuxmint DIST=tara ARCH=x86
+  - env: OS=osx DIST=10.10
+  - env: OS=osx DIST=10.11
+  - env: OS=macos DIST=10.12
+  - env: OS=slackware DIST=14.2
+
+stages:
+  - name: nightly
+    if: type IN (api, cron)
+  - name: test
+    if: NOT type IN (api, cron)
+
+install: |-
+  DOCKER=moneymanagerex/mmex_build_env:$OS${DIST:+.$DIST}${ARCH:+.$ARCH}
+  case $TRAVIS_OS_NAME in
+    linux)
+      ccache -s || true
+      docker pull ${DOCKER}
+      docker build dockers/$OS${DIST:+.$DIST}${ARCH:+.$ARCH} --cache-from ${DOCKER} -t ${DOCKER}
+      ;;
+    osx)
+      MACOSX_DEPLOYMENT_TARGET=$DIST
+      brew update # see travis-ci/travis-ci#8552
+      for p in gettext ccache zlib;
+        do brew list $p >/dev/null || brew install --verbose $p; done
+      brew link --force gettext zlib
+      ccache -s && export PATH="/usr/local/opt/ccache/libexec:$PATH"
+      brew install --verbose wxmac --with-static --with-stl
+      ;;
+  esac
 
 before_script:
-  #- cd $TRAVIS_BUILD_DIR
-  - pwd && ls -l
-  - cmake .
+- cd src/db
+- python ../../util/sqlite2cpp.py ../../database/tables_v1.sql && rm -f sql*.sql *.mmdbg
+- python ../../util/sqliteupgrade2cpp.py ../../database
+- cd ../.. && mkdir build && cd build
 
-script:
-  - make -j4
-
-# blacklist
-branches:
-  except:
-    - legacy
+script: |-
+  CMAKE_CMD="cmake ${ARCH:+-DCMAKE_TOOLCHAIN_FILE=util/toolchain-$TRAVIS_OS_NAME-$ARCH.cmake} -DCMAKE_BUILD_TYPE=$BUILD_TYPE .."
+  case $TRAVIS_OS_NAME in
+    linux)
+      chmod -fR a+rwX $HOME/.ccache
+      docker run -it --rm -w /moneymanagerex/build -e MAKEFLAGS \
+                 -v $HOME/.ccache:/root/.ccache \
+                 -v $TRAVIS_BUILD_DIR:/moneymanagerex ${DOCKER} \
+        bash -c "$CMAKE_CMD && make package && eval \$MMEX_INST_CMD" ;;
+    osx)
+      $CMAKE_CMD && make package ;;
+  esac
 
 notifications: # set notification options
   email:
     recipients:
       - developers@moneymanagerex.org
-    # change is when the repo status goes from pass to fail or vice versa
-    on_success: change
+    on_success: change # change is when the repo status goes from pass to fail or vice versa
     on_failure: always
+
+after_success:
+- ccache -s || true
+# Rename mac packages
+- if [ $TRAVIS_OS_NAME = osx ]; then
+    for p in *.dmg; do mv -v $p ${p%Darwin.*}$OS$DIST.dmg; done; fi
+
+# Set encrypted variable 'GitHub_auth_token' in Travis repo settings to deploy packages
+# for tagged commits to GitHub Releases.
+# Set encrypted variable 'PACKAGECLOUD_TOKEN' in Travis repo settings to deploy packages
+# for tagged commits to packagecloud repo.
+deploy:
+- provider: releases
+  api_key: $GitHub_auth_token
+  file_glob: true
+  file: $TRAVIS_BUILD_DIR/build/*.{deb,rpm,dmg,txz,pkg.tar.xz}
+  skip_cleanup: true
+  prerelease: true
+  overwrite: true
+  on: # Set deploy conditions
+      # Deploy only when tag is specified
+      tags: true
+      # and only when API token is set
+      condition: "${#GitHub_auth_token} != 0"
+- provider: packagecloud
+  repository: ${TRAVIS_REPO_SLUG#*/}
+  username: ${TRAVIS_REPO_SLUG%/*}
+  token: $PACKAGECLOUD_TOKEN
+  dist: $OS/$DIST
+  package_glob: $TRAVIS_BUILD_DIR/build/*.{deb,rpm}
+  skip_cleanup: true
+  on: # Set deploy conditions
+      # Deploy only when tag is specified
+      tags: true
+      # and only packages generated by gcc from Linux
+      # and only when API token is set
+      condition: "$TRAVIS_OS_NAME = linux && ${#DIST} != 0 && $OS != slackware && ${#PACKAGECLOUD_TOKEN} != 0 && $TRAVIS_TAG != nightly"

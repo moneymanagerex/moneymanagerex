@@ -2,277 +2,331 @@ IF(NOT InMMEX)
     MESSAGE(FATAL_ERROR "Use the top-level CMake script!")
 ENDIF(NOT InMMEX)
 
-TARGET_SOURCES(mmex PRIVATE
-        "${CMAKE_CURRENT_SOURCE_DIR}/aboutdialog.cpp"
-        "${CMAKE_CURRENT_SOURCE_DIR}/aboutdialog.h"
-        "${CMAKE_CURRENT_SOURCE_DIR}/accountdialog.cpp"
-        "${CMAKE_CURRENT_SOURCE_DIR}/accountdialog.h"
-        "${CMAKE_CURRENT_SOURCE_DIR}/appstartdialog.cpp"
-        "${CMAKE_CURRENT_SOURCE_DIR}/appstartdialog.h"
-        "${CMAKE_CURRENT_SOURCE_DIR}/assetdialog.cpp"
-        "${CMAKE_CURRENT_SOURCE_DIR}/assetdialog.h"
-        "${CMAKE_CURRENT_SOURCE_DIR}/assetspanel.cpp"
-        "${CMAKE_CURRENT_SOURCE_DIR}/assetspanel.h"
-        "${CMAKE_CURRENT_SOURCE_DIR}/attachmentdialog.cpp"
-        "${CMAKE_CURRENT_SOURCE_DIR}/attachmentdialog.h"
-        "${CMAKE_CURRENT_SOURCE_DIR}/billsdepositsdialog.cpp"
-        "${CMAKE_CURRENT_SOURCE_DIR}/billsdepositsdialog.h"
-        "${CMAKE_CURRENT_SOURCE_DIR}/billsdepositspanel.cpp"
-        "${CMAKE_CURRENT_SOURCE_DIR}/billsdepositspanel.h"
-        "${CMAKE_CURRENT_SOURCE_DIR}/budgetentrydialog.cpp"
-        "${CMAKE_CURRENT_SOURCE_DIR}/budgetentrydialog.h"
-        "${CMAKE_CURRENT_SOURCE_DIR}/budgetingpanel.cpp"
-        "${CMAKE_CURRENT_SOURCE_DIR}/budgetingpanel.h"
-        "${CMAKE_CURRENT_SOURCE_DIR}/budgetyeardialog.cpp"
-        "${CMAKE_CURRENT_SOURCE_DIR}/budgetyeardialog.h"
-        "${CMAKE_CURRENT_SOURCE_DIR}/budgetyearentrydialog.cpp"
-        "${CMAKE_CURRENT_SOURCE_DIR}/budgetyearentrydialog.h"
-        "${CMAKE_CURRENT_SOURCE_DIR}/categdialog.cpp"
-        "${CMAKE_CURRENT_SOURCE_DIR}/categdialog.h"
-        "${CMAKE_CURRENT_SOURCE_DIR}/constants.cpp"
-        "${CMAKE_CURRENT_SOURCE_DIR}/constants.h"
-        "${CMAKE_CURRENT_SOURCE_DIR}/currencydialog.cpp"
-        "${CMAKE_CURRENT_SOURCE_DIR}/currencydialog.h"
-        "${CMAKE_CURRENT_SOURCE_DIR}/customfielddialog.cpp"
-        "${CMAKE_CURRENT_SOURCE_DIR}/customfielddialog.h"
-        "${CMAKE_CURRENT_SOURCE_DIR}/customfieldeditdialog.cpp"
-        "${CMAKE_CURRENT_SOURCE_DIR}/customfieldeditdialog.h"
-        "${CMAKE_CURRENT_SOURCE_DIR}/customfieldlistdialog.cpp"
-        "${CMAKE_CURRENT_SOURCE_DIR}/customfieldlistdialog.h"
-        "${CMAKE_CURRENT_SOURCE_DIR}/dbcheck.cpp"
-        "${CMAKE_CURRENT_SOURCE_DIR}/dbcheck.h"
-        "${CMAKE_CURRENT_SOURCE_DIR}/dbupgrade.cpp"
-        "${CMAKE_CURRENT_SOURCE_DIR}/dbupgrade.h"
-        "${CMAKE_CURRENT_SOURCE_DIR}/dbwrapper.cpp"
-        "${CMAKE_CURRENT_SOURCE_DIR}/dbwrapper.h"
-        "${CMAKE_CURRENT_SOURCE_DIR}/defs.h"
-        "${CMAKE_CURRENT_SOURCE_DIR}/filtertransdialog.cpp"
-        "${CMAKE_CURRENT_SOURCE_DIR}/filtertransdialog.h"
-        "${CMAKE_CURRENT_SOURCE_DIR}/general_report_manager.cpp"
-        "${CMAKE_CURRENT_SOURCE_DIR}/general_report_manager.h"
-        "${CMAKE_CURRENT_SOURCE_DIR}/images_list.cpp"
-        "${CMAKE_CURRENT_SOURCE_DIR}/images_list.h"
-        "${CMAKE_CURRENT_SOURCE_DIR}/maincurrencydialog.cpp"
-        "${CMAKE_CURRENT_SOURCE_DIR}/maincurrencydialog.h"
-        "${CMAKE_CURRENT_SOURCE_DIR}/minimal_editor.cpp"
-        "${CMAKE_CURRENT_SOURCE_DIR}/minimal_editor.h"
-        "${CMAKE_CURRENT_SOURCE_DIR}/mmCalculator.cpp"
-        "${CMAKE_CURRENT_SOURCE_DIR}/mmCalculator.h"
-        "${CMAKE_CURRENT_SOURCE_DIR}/mmcheckingpanel.cpp"
-        "${CMAKE_CURRENT_SOURCE_DIR}/mmcheckingpanel.h"
-        "${CMAKE_CURRENT_SOURCE_DIR}/mmcombobox.h"
-        "${CMAKE_CURRENT_SOURCE_DIR}/mmex.cpp"
-        "${CMAKE_CURRENT_SOURCE_DIR}/mmex.h"
-        "${CMAKE_CURRENT_SOURCE_DIR}/mmframe.cpp"
-        "${CMAKE_CURRENT_SOURCE_DIR}/mmframe.h"
-        "${CMAKE_CURRENT_SOURCE_DIR}/mmframereport.cpp"
-        "${CMAKE_CURRENT_SOURCE_DIR}/mmhelppanel.cpp"
-        "${CMAKE_CURRENT_SOURCE_DIR}/mmhelppanel.h"
-        "${CMAKE_CURRENT_SOURCE_DIR}/mmhomepagepanel.cpp"
-        "${CMAKE_CURRENT_SOURCE_DIR}/mmhomepagepanel.h"
-        "${CMAKE_CURRENT_SOURCE_DIR}/mmHook.h"
-        "${CMAKE_CURRENT_SOURCE_DIR}/mmpanelbase.cpp"
-        "${CMAKE_CURRENT_SOURCE_DIR}/mmpanelbase.h"
-        "${CMAKE_CURRENT_SOURCE_DIR}/mmreportspanel.cpp"
-        "${CMAKE_CURRENT_SOURCE_DIR}/mmreportspanel.h"
-        "${CMAKE_CURRENT_SOURCE_DIR}/mmSimpleDialogs.cpp"
-        "${CMAKE_CURRENT_SOURCE_DIR}/mmSimpleDialogs.h"
-        "${CMAKE_CURRENT_SOURCE_DIR}/mmtextctrl.h"
-        "${CMAKE_CURRENT_SOURCE_DIR}/mmTips.h"
-        "${CMAKE_CURRENT_SOURCE_DIR}/option.cpp"
-        "${CMAKE_CURRENT_SOURCE_DIR}/option.h"
-        "${CMAKE_CURRENT_SOURCE_DIR}/optiondialog.cpp"
-        "${CMAKE_CURRENT_SOURCE_DIR}/optiondialog.h"
-        "${CMAKE_CURRENT_SOURCE_DIR}/optionsettingsattachment.cpp"
-        "${CMAKE_CURRENT_SOURCE_DIR}/optionsettingsattachment.h"
-        "${CMAKE_CURRENT_SOURCE_DIR}/optionsettingsbase.cpp"
-        "${CMAKE_CURRENT_SOURCE_DIR}/optionsettingsbase.h"
-        "${CMAKE_CURRENT_SOURCE_DIR}/optionsettingsgeneral.cpp"
-        "${CMAKE_CURRENT_SOURCE_DIR}/optionsettingsgeneral.h"
-        "${CMAKE_CURRENT_SOURCE_DIR}/optionsettingsmisc.cpp"
-        "${CMAKE_CURRENT_SOURCE_DIR}/optionsettingsmisc.h"
-        "${CMAKE_CURRENT_SOURCE_DIR}/optionsettingsnet.cpp"
-        "${CMAKE_CURRENT_SOURCE_DIR}/optionsettingsnet.h"
-        "${CMAKE_CURRENT_SOURCE_DIR}/optionsettingsview.cpp"
-        "${CMAKE_CURRENT_SOURCE_DIR}/optionsettingsview.h"
-        "${CMAKE_CURRENT_SOURCE_DIR}/paths.cpp"
-        "${CMAKE_CURRENT_SOURCE_DIR}/paths.h"
-        "${CMAKE_CURRENT_SOURCE_DIR}/payeedialog.cpp"
-        "${CMAKE_CURRENT_SOURCE_DIR}/payeedialog.h"
-        "${CMAKE_CURRENT_SOURCE_DIR}/platfdep.h"
-        "${CMAKE_CURRENT_SOURCE_DIR}/recentfiles.cpp"
-        "${CMAKE_CURRENT_SOURCE_DIR}/recentfiles.h"
-        "${CMAKE_CURRENT_SOURCE_DIR}/relocatecategorydialog.cpp"
-        "${CMAKE_CURRENT_SOURCE_DIR}/relocatecategorydialog.h"
-        "${CMAKE_CURRENT_SOURCE_DIR}/relocatepayeedialog.cpp"
-        "${CMAKE_CURRENT_SOURCE_DIR}/relocatepayeedialog.h"
-        "${CMAKE_CURRENT_SOURCE_DIR}/resource.h"
-        "${CMAKE_CURRENT_SOURCE_DIR}/singleton.h"
-        "${CMAKE_CURRENT_SOURCE_DIR}/sharetransactiondialog.cpp"
-        "${CMAKE_CURRENT_SOURCE_DIR}/sharetransactiondialog.h"
-        "${CMAKE_CURRENT_SOURCE_DIR}/splitdetailsdialog.cpp"
-        "${CMAKE_CURRENT_SOURCE_DIR}/splitdetailsdialog.h"
-        "${CMAKE_CURRENT_SOURCE_DIR}/splittransactionsdialog.cpp"
-        "${CMAKE_CURRENT_SOURCE_DIR}/splittransactionsdialog.h"
-        "${CMAKE_CURRENT_SOURCE_DIR}/stockdialog.cpp"
-        "${CMAKE_CURRENT_SOURCE_DIR}/stockdialog.h"
-        "${CMAKE_CURRENT_SOURCE_DIR}/stockspanel.cpp"
-        "${CMAKE_CURRENT_SOURCE_DIR}/stockspanel.h"
-        "${CMAKE_CURRENT_SOURCE_DIR}/transdialog.cpp"
-        "${CMAKE_CURRENT_SOURCE_DIR}/transdialog.h"
-        "${CMAKE_CURRENT_SOURCE_DIR}/usertransactionpanel.cpp"
-        "${CMAKE_CURRENT_SOURCE_DIR}/usertransactionpanel.h"
-        "${CMAKE_CURRENT_SOURCE_DIR}/util.cpp"
-        "${CMAKE_CURRENT_SOURCE_DIR}/util.h"
-        "${CMAKE_CURRENT_SOURCE_DIR}/validators.h"
-        "${CMAKE_CURRENT_SOURCE_DIR}/webapp.cpp"
-        "${CMAKE_CURRENT_SOURCE_DIR}/webappdialog.cpp"
-        "${CMAKE_CURRENT_SOURCE_DIR}/webappdialog.h"
-        "${CMAKE_CURRENT_SOURCE_DIR}/webapp.h"
-        "${CMAKE_CURRENT_SOURCE_DIR}/wizard_newaccount.cpp"
-        "${CMAKE_CURRENT_SOURCE_DIR}/wizard_newaccount.h"
-        "${CMAKE_CURRENT_SOURCE_DIR}/wizard_newdb.cpp"
-        "${CMAKE_CURRENT_SOURCE_DIR}/wizard_newdb.h"
-        "${CMAKE_CURRENT_SOURCE_DIR}/wizard_update.cpp"
-        "${CMAKE_CURRENT_SOURCE_DIR}/wizard_update.h"
+# Pass version numbers to the sources
+CONFIGURE_FILE(versions.h.in versions.h @ONLY)
+INCLUDE_DIRECTORIES("${CMAKE_CURRENT_BINARY_DIR}")
 
-        "${CMAKE_CURRENT_SOURCE_DIR}/import_export/export.cpp"
-        "${CMAKE_CURRENT_SOURCE_DIR}/import_export/export.h"
-        "${CMAKE_CURRENT_SOURCE_DIR}/import_export/parsers.cpp"
-        "${CMAKE_CURRENT_SOURCE_DIR}/import_export/parsers.h"
-        "${CMAKE_CURRENT_SOURCE_DIR}/import_export/qif_export.cpp"
-        "${CMAKE_CURRENT_SOURCE_DIR}/import_export/qif_export.h"
-        "${CMAKE_CURRENT_SOURCE_DIR}/import_export/qif_import.cpp"
-        "${CMAKE_CURRENT_SOURCE_DIR}/import_export/qif_import_gui.cpp"
-        "${CMAKE_CURRENT_SOURCE_DIR}/import_export/qif_import_gui.h"
-        "${CMAKE_CURRENT_SOURCE_DIR}/import_export/qif_import.h"
-        "${CMAKE_CURRENT_SOURCE_DIR}/import_export/univcsvdialog.cpp"
-        "${CMAKE_CURRENT_SOURCE_DIR}/import_export/univcsvdialog.h"
-
-        "${CMAKE_CURRENT_SOURCE_DIR}/db/DB_Table_Accountlist_V1.h"
-        "${CMAKE_CURRENT_SOURCE_DIR}/db/DB_Table_Assets_V1.h"
-        "${CMAKE_CURRENT_SOURCE_DIR}/db/DB_Table_Attachment_V1.h"
-        "${CMAKE_CURRENT_SOURCE_DIR}/db/DB_Table_Billsdeposits_V1.h"
-        "${CMAKE_CURRENT_SOURCE_DIR}/db/DB_Table_Budgetsplittransactions_V1.h"
-        "${CMAKE_CURRENT_SOURCE_DIR}/db/DB_Table_Budgettable_V1.h"
-        "${CMAKE_CURRENT_SOURCE_DIR}/db/DB_Table_Budgetyear_V1.h"
-        "${CMAKE_CURRENT_SOURCE_DIR}/db/DB_Table_Category_V1.h"
-        "${CMAKE_CURRENT_SOURCE_DIR}/db/DB_Table_Checkingaccount_V1.h"
-        "${CMAKE_CURRENT_SOURCE_DIR}/db/DB_Table_Currencyformats_V1.h"
-        "${CMAKE_CURRENT_SOURCE_DIR}/db/DB_Table_Currencyhistory_V1.h"
-        "${CMAKE_CURRENT_SOURCE_DIR}/db/DB_Table_Customfielddata_V1.h"
-        "${CMAKE_CURRENT_SOURCE_DIR}/db/DB_Table_Customfield_V1.h"
-        "${CMAKE_CURRENT_SOURCE_DIR}/db/DB_Table.h"
-        "${CMAKE_CURRENT_SOURCE_DIR}/db/DB_Table_Infotable_V1.h"
-        "${CMAKE_CURRENT_SOURCE_DIR}/db/DB_Table_Payee_V1.h"
-        "${CMAKE_CURRENT_SOURCE_DIR}/db/DB_Table_Report_V1.h"
-        "${CMAKE_CURRENT_SOURCE_DIR}/db/DB_Table_Setting_V1.h"
-        "${CMAKE_CURRENT_SOURCE_DIR}/db/DB_Table_Shareinfo_V1.h"
-        "${CMAKE_CURRENT_SOURCE_DIR}/db/DB_Table_Splittransactions_V1.h"
-        "${CMAKE_CURRENT_SOURCE_DIR}/db/DB_Table_Stockhistory_V1.h"
-        "${CMAKE_CURRENT_SOURCE_DIR}/db/DB_Table_Stock_V1.h"
-        "${CMAKE_CURRENT_SOURCE_DIR}/db/DB_Table_Subcategory_V1.h"
-        "${CMAKE_CURRENT_SOURCE_DIR}/db/DB_Table_Translink_V1.h"
-        "${CMAKE_CURRENT_SOURCE_DIR}/db/DB_Table_Usage_V1.h"
-
-        "${CMAKE_CURRENT_SOURCE_DIR}/reports/allreport.h"
-        "${CMAKE_CURRENT_SOURCE_DIR}/reports/budgetcategorysummary.cpp"
-        "${CMAKE_CURRENT_SOURCE_DIR}/reports/budgetcategorysummary.h"
-        "${CMAKE_CURRENT_SOURCE_DIR}/reports/budget.cpp"
-        "${CMAKE_CURRENT_SOURCE_DIR}/reports/budget.h"
-        "${CMAKE_CURRENT_SOURCE_DIR}/reports/budgetingperf.cpp"
-        "${CMAKE_CURRENT_SOURCE_DIR}/reports/budgetingperf.h"
-        "${CMAKE_CURRENT_SOURCE_DIR}/reports/cashflow.cpp"
-        "${CMAKE_CURRENT_SOURCE_DIR}/reports/cashflow.h"
-        "${CMAKE_CURRENT_SOURCE_DIR}/reports/categexp.cpp"
-        "${CMAKE_CURRENT_SOURCE_DIR}/reports/categexp.h"
-        "${CMAKE_CURRENT_SOURCE_DIR}/reports/categovertimeperf.cpp"
-        "${CMAKE_CURRENT_SOURCE_DIR}/reports/categovertimeperf.h"
-        "${CMAKE_CURRENT_SOURCE_DIR}/reports/forecast.cpp"
-        "${CMAKE_CURRENT_SOURCE_DIR}/reports/forecast.h"
-        "${CMAKE_CURRENT_SOURCE_DIR}/reports/htmlbuilder.cpp"
-        "${CMAKE_CURRENT_SOURCE_DIR}/reports/htmlbuilder.h"
-        "${CMAKE_CURRENT_SOURCE_DIR}/reports/incexpenses.cpp"
-        "${CMAKE_CURRENT_SOURCE_DIR}/reports/incexpenses.h"
-        "${CMAKE_CURRENT_SOURCE_DIR}/reports/mmDateRange.cpp"
-        "${CMAKE_CURRENT_SOURCE_DIR}/reports/mmDateRange.h"
-        "${CMAKE_CURRENT_SOURCE_DIR}/reports/myusage.cpp"
-        "${CMAKE_CURRENT_SOURCE_DIR}/reports/myusage.h"
-        "${CMAKE_CURRENT_SOURCE_DIR}/reports/payee.cpp"
-        "${CMAKE_CURRENT_SOURCE_DIR}/reports/payee.h"
-        "${CMAKE_CURRENT_SOURCE_DIR}/reports/reportbase.cpp"
-        "${CMAKE_CURRENT_SOURCE_DIR}/reports/reportbase.h"
-        "${CMAKE_CURRENT_SOURCE_DIR}/reports/summary.cpp"
-        "${CMAKE_CURRENT_SOURCE_DIR}/reports/summary.h"
-        "${CMAKE_CURRENT_SOURCE_DIR}/reports/summarystocks.cpp"
-        "${CMAKE_CURRENT_SOURCE_DIR}/reports/summarystocks.h"
-        "${CMAKE_CURRENT_SOURCE_DIR}/reports/transactions.cpp"
-        "${CMAKE_CURRENT_SOURCE_DIR}/reports/transactions.h"
-
-        "${CMAKE_CURRENT_SOURCE_DIR}/model/allmodel.h"
-        "${CMAKE_CURRENT_SOURCE_DIR}/model/Model_Account.cpp"
-        "${CMAKE_CURRENT_SOURCE_DIR}/model/Model_Account.h"
-        "${CMAKE_CURRENT_SOURCE_DIR}/model/Model_Asset.cpp"
-        "${CMAKE_CURRENT_SOURCE_DIR}/model/Model_Asset.h"
-        "${CMAKE_CURRENT_SOURCE_DIR}/model/Model_Attachment.cpp"
-        "${CMAKE_CURRENT_SOURCE_DIR}/model/Model_Attachment.h"
-        "${CMAKE_CURRENT_SOURCE_DIR}/model/Model_Billsdeposits.cpp"
-        "${CMAKE_CURRENT_SOURCE_DIR}/model/Model_Billsdeposits.h"
-        "${CMAKE_CURRENT_SOURCE_DIR}/model/Model_Budget.cpp"
-        "${CMAKE_CURRENT_SOURCE_DIR}/model/Model_Budget.h"
-        "${CMAKE_CURRENT_SOURCE_DIR}/model/Model_Budgetsplittransaction.cpp"
-        "${CMAKE_CURRENT_SOURCE_DIR}/model/Model_Budgetsplittransaction.h"
-        "${CMAKE_CURRENT_SOURCE_DIR}/model/Model_Budgetyear.cpp"
-        "${CMAKE_CURRENT_SOURCE_DIR}/model/Model_Budgetyear.h"
-        "${CMAKE_CURRENT_SOURCE_DIR}/model/Model_Category.cpp"
-        "${CMAKE_CURRENT_SOURCE_DIR}/model/Model_Category.h"
-        "${CMAKE_CURRENT_SOURCE_DIR}/model/Model_Checking.cpp"
-        "${CMAKE_CURRENT_SOURCE_DIR}/model/Model_Checking.h"
-        "${CMAKE_CURRENT_SOURCE_DIR}/model/Model_Currency.cpp"
-        "${CMAKE_CURRENT_SOURCE_DIR}/model/Model_Currency.h"
-        "${CMAKE_CURRENT_SOURCE_DIR}/model/Model_CurrencyHistory.cpp"
-        "${CMAKE_CURRENT_SOURCE_DIR}/model/Model_CurrencyHistory.h"
-        "${CMAKE_CURRENT_SOURCE_DIR}/model/Model_CustomField.cpp"
-        "${CMAKE_CURRENT_SOURCE_DIR}/model/Model_CustomFieldData.cpp"
-        "${CMAKE_CURRENT_SOURCE_DIR}/model/Model_CustomFieldData.h"
-        "${CMAKE_CURRENT_SOURCE_DIR}/model/Model_CustomField.h"
-        "${CMAKE_CURRENT_SOURCE_DIR}/model/Model.h"
-        "${CMAKE_CURRENT_SOURCE_DIR}/model/Model_Infotable.cpp"
-        "${CMAKE_CURRENT_SOURCE_DIR}/model/Model_Infotable.h"
-        "${CMAKE_CURRENT_SOURCE_DIR}/model/Model_Payee.cpp"
-        "${CMAKE_CURRENT_SOURCE_DIR}/model/Model_Payee.h"
-        "${CMAKE_CURRENT_SOURCE_DIR}/model/Model_Report.cpp"
-        "${CMAKE_CURRENT_SOURCE_DIR}/model/Model_Report.h"
-        "${CMAKE_CURRENT_SOURCE_DIR}/model/Model_Setting.cpp"
-        "${CMAKE_CURRENT_SOURCE_DIR}/model/Model_Setting.h"
-        "${CMAKE_CURRENT_SOURCE_DIR}/model/Model_Shareinfo.cpp"
-        "${CMAKE_CURRENT_SOURCE_DIR}/model/Model_Shareinfo.h"
-        "${CMAKE_CURRENT_SOURCE_DIR}/model/Model_Splittransaction.cpp"
-        "${CMAKE_CURRENT_SOURCE_DIR}/model/Model_Splittransaction.h"
-        "${CMAKE_CURRENT_SOURCE_DIR}/model/Model_Stock.cpp"
-        "${CMAKE_CURRENT_SOURCE_DIR}/model/Model_Stock.h"
-        "${CMAKE_CURRENT_SOURCE_DIR}/model/Model_StockHistory.cpp"
-        "${CMAKE_CURRENT_SOURCE_DIR}/model/Model_StockHistory.h"
-        "${CMAKE_CURRENT_SOURCE_DIR}/model/Model_Subcategory.cpp"
-        "${CMAKE_CURRENT_SOURCE_DIR}/model/Model_Subcategory.h"
-        "${CMAKE_CURRENT_SOURCE_DIR}/model/Model_Translink.cpp"
-        "${CMAKE_CURRENT_SOURCE_DIR}/model/Model_Translink.h"
-        "${CMAKE_CURRENT_SOURCE_DIR}/model/Model_Usage.cpp"
-        "${CMAKE_CURRENT_SOURCE_DIR}/model/Model_Usage.h"
-        "${CMAKE_SOURCE_DIR}/3rd/cgitemplate/html_template.cpp"
-        )
-#OSX
-IF (UNIX AND APPLE)
-    TARGET_SOURCES(mmex PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/mac/platfdep.cpp")
+IF(APPLE)
+    SET(MMEX_PLAT_DIR mac)
+ELSEIF(UNIX)
+    SET(MMEX_PLAT_DIR unix)
+ELSEIF (WIN32)
+    SET(MMEX_PLAT_DIR win)
+    CONFIGURE_FILE(
+        "${PROJECT_SOURCE_DIR}/resources/mmex.rc.in"
+        mmex.rc @ONLY)
+    SET(MMEX_RC "${CMAKE_CURRENT_BINARY_DIR}/mmex.rc")
 ENDIF ()
-#*nix
-IF (UNIX AND NOT APPLE)
-    TARGET_SOURCES(mmex PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/unix/platfdep.cpp")
-ENDIF ()
-#Windows
-IF (WIN32)
-    TARGET_SOURCES(mmex PRIVATE
-            "${CMAKE_CURRENT_SOURCE_DIR}/win/platfdep.cpp"
-            "resources/mmex.rc")
 
-ENDIF ()
+ADD_LIBRARY(MMEXLib STATIC EXCLUDE_FROM_ALL
+    aboutdialog.cpp
+    aboutdialog.h
+    accountdialog.cpp
+    accountdialog.h
+    appstartdialog.cpp
+    appstartdialog.h
+    assetdialog.cpp
+    assetdialog.h
+    assetspanel.cpp
+    assetspanel.h
+    attachmentdialog.cpp
+    attachmentdialog.h
+    billsdepositsdialog.cpp
+    billsdepositsdialog.h
+    billsdepositspanel.cpp
+    billsdepositspanel.h
+    budgetentrydialog.cpp
+    budgetentrydialog.h
+    budgetingpanel.cpp
+    budgetingpanel.h
+    budgetyeardialog.cpp
+    budgetyeardialog.h
+    budgetyearentrydialog.cpp
+    budgetyearentrydialog.h
+    categdialog.cpp
+    categdialog.h
+    constants.cpp
+    constants.h
+    currencydialog.cpp
+    currencydialog.h
+    customfielddialog.cpp
+    customfielddialog.h
+    customfieldeditdialog.cpp
+    customfieldeditdialog.h
+    customfieldlistdialog.cpp
+    customfieldlistdialog.h
+    dbcheck.cpp
+    dbcheck.h
+    dbupgrade.cpp
+    dbupgrade.h
+    dbwrapper.cpp
+    dbwrapper.h
+    defs.h
+    filtertransdialog.cpp
+    filtertransdialog.h
+    general_report_manager.cpp
+    general_report_manager.h
+    images_list.cpp
+    images_list.h
+    maincurrencydialog.cpp
+    maincurrencydialog.h
+    minimal_editor.cpp
+    minimal_editor.h
+    mmCalculator.cpp
+    mmCalculator.h
+    mmcheckingpanel.cpp
+    mmcheckingpanel.h
+    mmcombobox.h
+    mmframe.cpp
+    mmframe.h
+    mmframereport.cpp
+    mmhelppanel.cpp
+    mmhelppanel.h
+    mmhomepagepanel.cpp
+    mmhomepagepanel.h
+    mmHook.h
+    mmpanelbase.cpp
+    mmpanelbase.h
+    mmreportspanel.cpp
+    mmreportspanel.h
+    mmSimpleDialogs.cpp
+    mmSimpleDialogs.h
+    mmTips.h
+    option.cpp
+    option.h
+    optiondialog.cpp
+    optiondialog.h
+    optionsettingsattachment.cpp
+    optionsettingsattachment.h
+    optionsettingsbase.cpp
+    optionsettingsbase.h
+    optionsettingsgeneral.cpp
+    optionsettingsgeneral.h
+    optionsettingsmisc.cpp
+    optionsettingsmisc.h
+    optionsettingsnet.cpp
+    optionsettingsnet.h
+    optionsettingsview.cpp
+    optionsettingsview.h
+    paths.cpp
+    paths.h
+    payeedialog.cpp
+    payeedialog.h
+    platfdep.h
+    recentfiles.cpp
+    recentfiles.h
+    relocatecategorydialog.cpp
+    relocatecategorydialog.h
+    relocatepayeedialog.cpp
+    relocatepayeedialog.h
+    resource.h
+    singleton.h
+    sharetransactiondialog.cpp
+    sharetransactiondialog.h
+    splitdetailsdialog.cpp
+    splitdetailsdialog.h
+    splittransactionsdialog.cpp
+    splittransactionsdialog.h
+    stockdialog.cpp
+    stockdialog.h
+    stockspanel.cpp
+    stockspanel.h
+    transdialog.cpp
+    transdialog.h
+    usertransactionpanel.cpp
+    usertransactionpanel.h
+    util.cpp
+    util.h
+    validators.h
+    webapp.cpp
+    webappdialog.cpp
+    webappdialog.h
+    webapp.h
+    wizard_newaccount.cpp
+    wizard_newaccount.h
+    wizard_newdb.cpp
+    wizard_newdb.h
+    wizard_update.cpp
+    wizard_update.h
+
+    import_export/export.cpp
+    import_export/export.h
+    import_export/parsers.cpp
+    import_export/parsers.h
+    import_export/qif_export.cpp
+    import_export/qif_export.h
+    import_export/qif_import.cpp
+    import_export/qif_import_gui.cpp
+    import_export/qif_import_gui.h
+    import_export/qif_import.h
+    import_export/univcsvdialog.cpp
+    import_export/univcsvdialog.h
+
+    db/DB_Table_Accountlist_V1.h
+    db/DB_Table_Assets_V1.h
+    db/DB_Table_Attachment_V1.h
+    db/DB_Table_Billsdeposits_V1.h
+    db/DB_Table_Budgetsplittransactions_V1.h
+    db/DB_Table_Budgettable_V1.h
+    db/DB_Table_Budgetyear_V1.h
+    db/DB_Table_Category_V1.h
+    db/DB_Table_Checkingaccount_V1.h
+    db/DB_Table_Currencyformats_V1.h
+    db/DB_Table_Currencyhistory_V1.h
+    db/DB_Table_Customfielddata_V1.h
+    db/DB_Table_Customfield_V1.h
+    db/DB_Table.h
+    db/DB_Table_Infotable_V1.h
+    db/DB_Table_Payee_V1.h
+    db/DB_Table_Report_V1.h
+    db/DB_Table_Setting_V1.h
+    db/DB_Table_Shareinfo_V1.h
+    db/DB_Table_Splittransactions_V1.h
+    db/DB_Table_Stockhistory_V1.h
+    db/DB_Table_Stock_V1.h
+    db/DB_Table_Subcategory_V1.h
+    db/DB_Table_Translink_V1.h
+    db/DB_Table_Usage_V1.h
+
+    reports/allreport.h
+    reports/budgetcategorysummary.cpp
+    reports/budgetcategorysummary.h
+    reports/budget.cpp
+    reports/budget.h
+    reports/budgetingperf.cpp
+    reports/budgetingperf.h
+    reports/cashflow.cpp
+    reports/cashflow.h
+    reports/categexp.cpp
+    reports/categexp.h
+    reports/categovertimeperf.cpp
+    reports/categovertimeperf.h
+    reports/forecast.cpp
+    reports/forecast.h
+    reports/htmlbuilder.cpp
+    reports/htmlbuilder.h
+    reports/incexpenses.cpp
+    reports/incexpenses.h
+    reports/mmDateRange.cpp
+    reports/mmDateRange.h
+    reports/myusage.cpp
+    reports/myusage.h
+    reports/payee.cpp
+    reports/payee.h
+    reports/reportbase.cpp
+    reports/reportbase.h
+    reports/summary.cpp
+    reports/summary.h
+    reports/summarystocks.cpp
+    reports/summarystocks.h
+    reports/transactions.cpp
+    reports/transactions.h
+
+    model/allmodel.h
+    model/Model_Account.cpp
+    model/Model_Account.h
+    model/Model_Asset.cpp
+    model/Model_Asset.h
+    model/Model_Attachment.cpp
+    model/Model_Attachment.h
+    model/Model_Billsdeposits.cpp
+    model/Model_Billsdeposits.h
+    model/Model_Budget.cpp
+    model/Model_Budget.h
+    model/Model_Budgetsplittransaction.cpp
+    model/Model_Budgetsplittransaction.h
+    model/Model_Budgetyear.cpp
+    model/Model_Budgetyear.h
+    model/Model_Category.cpp
+    model/Model_Category.h
+    model/Model_Checking.cpp
+    model/Model_Checking.h
+    model/Model_Currency.cpp
+    model/Model_Currency.h
+    model/Model_CurrencyHistory.cpp
+    model/Model_CurrencyHistory.h
+    model/Model_CustomField.cpp
+    model/Model_CustomFieldData.cpp
+    model/Model_CustomFieldData.h
+    model/Model_CustomField.h
+    model/Model.h
+    model/Model_Infotable.cpp
+    model/Model_Infotable.h
+    model/Model_Payee.cpp
+    model/Model_Payee.h
+    model/Model_Report.cpp
+    model/Model_Report.h
+    model/Model_Setting.cpp
+    model/Model_Setting.h
+    model/Model_Shareinfo.cpp
+    model/Model_Shareinfo.h
+    model/Model_Splittransaction.cpp
+    model/Model_Splittransaction.h
+    model/Model_Stock.cpp
+    model/Model_Stock.h
+    model/Model_StockHistory.cpp
+    model/Model_StockHistory.h
+    model/Model_Subcategory.cpp
+    model/Model_Subcategory.h
+    model/Model_Translink.cpp
+    model/Model_Translink.h
+    model/Model_Usage.cpp
+    model/Model_Usage.h
+
+    "${CMAKE_CURRENT_BINARY_DIR}/versions.h"
+    "${MMEX_PLAT_DIR}/platfdep.cpp")
+
+ADD_EXECUTABLE(${MMEX_EXE} WIN32 MACOSX_BUNDLE
+    mmex.cpp
+    mmex.h
+    "${MACOSX_APP_ICON_FILE}"
+    "${MMEX_RC}")
+
+IF(CMAKE_VERSION VERSION_LESS 3.1)
+    INCLUDE(CheckCXXCompilerFlag)
+    CHECK_CXX_COMPILER_FLAG("-std=gnu++11" COMPILER_SUPPORTS_GXX11)
+    CHECK_CXX_COMPILER_FLAG("-std=c++11" COMPILER_SUPPORTS_CXX11)
+    CHECK_CXX_COMPILER_FLAG("-std=gnu++0x" COMPILER_SUPPORTS_GXX0X)
+    CHECK_CXX_COMPILER_FLAG("-std=c++0x" COMPILER_SUPPORTS_CXX0X)
+    IF(COMPILER_SUPPORTS_GXX11)
+        TARGET_COMPILE_OPTIONS(MMEXLib PUBLIC -std=gnu++11)
+    ELSEIF(COMPILER_SUPPORTS_CXX11)
+        TARGET_COMPILE_OPTIONS(MMEXLib PUBLIC -std=c++11)
+    ELSEIF(COMPILER_SUPPORTS_GXX0X)
+        TARGET_COMPILE_OPTIONS(MMEXLib PUBLIC -std=gnu++0x)
+    ELSEIF(COMPILER_SUPPORTS_CXX0X)
+        TARGET_COMPILE_OPTIONS(MMEXLib PUBLIC -std=c++0x)
+    ELSE()
+        MESSAGE(SEND_ERROR "The compiler ${CMAKE_CXX_COMPILER} has no C++11 support.")
+    ENDIF()
+ELSEIF(CMAKE_VERSION VERSION_LESS 3.8)
+    TARGET_COMPILE_FEATURES(MMEXLib PUBLIC cxx_range_for)
+ELSE()
+    TARGET_COMPILE_FEATURES(MMEXLib PUBLIC cxx_std_11)
+ENDIF()
+
+TARGET_INCLUDE_DIRECTORIES(MMEXLib PUBLIC .)
+TARGET_LINK_LIBRARIES(${MMEX_EXE} MMEXLib)
+TARGET_LINK_LIBRARIES(MMEXLib
+    PUBLIC
+        wxSQLite3
+        RapidJSON
+        HTML-template
+        CURL::libcurl
+    PRIVATE
+        LuaGlue
+        Lua
+    )
+
+IF(MSVC)
+    # Based on this http://stackoverflow.com/a/8294669
+    # added solution to compile problems due to
+    # conflict between winsock and winsock2
+    # Partialy reinvented fix from commit
+    # commit 06accae1273e66ced469672151522e45eee685a9
+    TARGET_COMPILE_DEFINITIONS(MMEXLib PRIVATE WIN32_LEAN_AND_MEAN)
+ENDIF()
+
+INSTALL(TARGETS ${MMEX_EXE}
+    RUNTIME DESTINATION ${MMEX_BIN_DIR}
+    BUNDLE  DESTINATION .)

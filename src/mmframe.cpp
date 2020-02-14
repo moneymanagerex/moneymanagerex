@@ -75,9 +75,9 @@
 #include <wx/fs_mem.h>
 #include <stack>
 
-#include "cajun/json/elements.h"
-#include "cajun/json/reader.h"
-#include "cajun/json/writer.h"
+#include "../3rd/cajun/json/elements.h"
+#include "../3rd/cajun/json/reader.h"
+#include "../3rd/cajun/json/writer.h"
 
 //----------------------------------------------------------------------------
 

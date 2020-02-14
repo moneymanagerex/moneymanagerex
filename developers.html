@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<!-- Based on https://bl.ocks.org/mbostock/4183330 -->
+<style>
+h2 {
+  position: absolute;
+  top: 410px;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 18px;
+  text-align: center;
+  width: 800px;
+  color: white;
+}
+
+</style>
+<h2></h2>
+<script src="https://d3js.org/d3.v3.min.js"></script>
+<script src="https://d3js.org/queue.v1.min.js"></script>
+<script src="https://d3js.org/topojson.v1.min.js"></script>
+<script>
+
+var mmex_devs = {
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": { "name" : "Alen Siljak"},
+      "geometry": { "type": "Point", "coordinates": [16.3697, 48.2088] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name" : "Gabriele Villa"},
+      "geometry": { "type": "Point", "coordinates": [9.977855, 45.673776] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name" : "Lisheng Guan", "href" : "http://guanlisheng.com/" },
+      "geometry": { "type": "Point", "coordinates": [116.39053344726561, 39.916319613808135] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name" : "James Higley" },
+      "geometry": { "type": "Point", "coordinates": [-111.741117, 40.371423] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name" : "Patrick O'Malley" },
+      "geometry": { "type": "Point", "coordinates": [-95.1216, 39.5631] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "Stefano Giorgio" },
+      "geometry": { "type": "Point", "coordinates": [149.128894, -35.2819367] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "Nikolay Akimov" },
+      "geometry": { "type": "Point", "coordinates": [30.4001895, 60.0416222] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "Tomasz Słodkowicz" },
+      "geometry": { "type": "Point", "coordinates": [19.937, 50.062] }
+    }
+  ]
+};
+
+var width = 800,
+    height = 800;
+
+var projection = d3.geo.orthographic()
+    .translate([width / 2, height / 2])
+    .scale(width / 2 - 20)
+    .clipAngle(90)
+    .precision(0.6);
+
+var canvas = d3.select("body").append("canvas")
+    .attr("width", width)
+    .attr("height", height);
+
+var c = canvas.node().getContext("2d");
+
+var path = d3.geo.path()
+    .projection(projection)
+    .context(c);
+
+var title = d3.select("h2");
+
+queue()
+    .defer(d3.json, "https://unpkg.com/world-atlas@1/world/110m.json")
+    .await(ready);
+
+function ready(error, world) {
+  if (error) throw error;
+
+  var globe = {type: "Sphere"},
+      land = topojson.feature(world, world.objects.land),
+      devs = mmex_devs.features,
+      borders = topojson.mesh(world, world.objects.countries, function(a, b) { return a !== b; }),
+      i = -1,
+      n = devs.length;
+
+  (function transition() {
+    d3.transition()
+        .duration(1250)
+        .each("start", function() {
+          title.text(devs[i = (i + 1) % n].properties.name);
+        })
+        .tween("rotate", function() {
+          var p = d3.geo.centroid(devs[i]),
+              r = d3.interpolate(projection.rotate(), [-p[0], -p[1]]);
+          return function(t) {
+            projection.rotate(r(t));
+            c.clearRect(0, 0, width, height);
+            c.fillStyle = "#00e", c.beginPath(), path(globe), c.fill();
+            c.fillStyle = "#080", c.beginPath(), path(land), c.fill();
+            c.strokeStyle = "#fff", c.lineWidth = .5, c.beginPath(), path(borders), c.stroke();
+            c.strokeStyle = "#000", c.lineWidth = 2, c.beginPath(), path(globe), c.stroke();
+            c.strokeStyle = "#f00", c.beginPath(), path(mmex_devs), c.stroke();
+          };
+        })
+      .transition()
+        .each("end", transition);
+  })();
+}
+
+d3.select(self.frameElement).style("height", height + "px");
+
+</script>

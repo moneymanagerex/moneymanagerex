@@ -139,10 +139,10 @@ void Model_Usage::pageview(const std::string& documentPath, const std::string& d
         {"dp", documentPath},
         {"dt", documentTitle},
 //        {"geoid", },
-        {"ul", std::string(Option::instance().Language())},
+        {"ul", std::string(Option::instance().Language().c_str())},
         {"sr", std::string(wxString::Format("%ix%i", wxGetDisplaySize().GetX(), wxGetDisplaySize().GetY()).c_str())},
         {"vp", ""},
-        {"sd", std::string(wxString::Format("%i-bits", wxDisplayDepth()))},
+        {"sd", std::string(wxString::Format("%i-bits", wxDisplayDepth()).c_str())},
         // application
         {"an", "MoneyManagerEx"},
         {"av", std::string(mmex::version::string.c_str())}, // application version

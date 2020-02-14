@@ -1,0 +1,892 @@
+Version History of Money Manager Ex
+
+1.3.4 (Mar 11, 2020)
+- Fix: Monthly Summary of Accounts crash #1086
+- Fix: Loan accounts missing in Monthly Summary of Accounts report #1082
+- Update: Albanian and Swedish languages
+
+1.3.3 (Mar 04, 2017)
+- Fix: assets #1074 #1070
+- Feature: Search box not working #1060
+
+1.3.2 (Feb 25, 2017)
+- Fix: Programs and Features icon in Windows (SF Issue 972)
+- Fix: Albanian lang file
+- Fix: Prevent Crash on Home page Issue #1019
+- Fix: Hebrew, Hungarian Translations
+- Fix: Displayed Latin Currency symbols Issue #739
+- Fix: Crash on startup when files not found Issue #1033
+- Fix: Transaction Filter Crash, Account checked, none supplied. Issue #1043
+- Fix: Check for null pointer. Issue #979
+- Fix: Move Transaction. Issue #1063
+- Fix: HTML report expor. Issue #1064
+
+1.3.1 (Jan 7, 2017)
+- Fix: Automatic database backup on start-up.
+- Fix: Crash after adding first level category.
+- Fix: Translation updates.
+- Fix: General Issues #957, #969.
+- Fix: Incorrect bitmap size #971.
+- New: Donation link https://cash.me/$guanlisheng/1
+- Fix: Messages for import errors #975.
+- Fix: Performance Issues #977, #980.
+- Fix: Image or Icon for accounts #963.
+- Fix: Window "Currency rate updated" to big (Mac) #649.
+- New: Abkhazian, Albanian, Burmese, Catalan, Finnish, Korean, Malayalam, Persian, Thai translations added.
+
+1.3.0 (Dec 15, 2016)
+- New: Database upgrade management.
+- New: Enhanced visual effects using new Icons.
+- New: Reports upgrade providing improved date range support.
+- New: Account types: Cash, Loan.
+- New: Introduction of Custom Fields for transactions
+- New: Stocks & Shares Management upgrade using Share Accounts.
+- New: Asset Management Upgrade using Asset Accounts.
+- New: Mininum Balance on accounts.
+- New: Credit Limit on Accounts.
+- New: Lock account transactions to a reconciled date.
+- New: Multi transaction selection for various functions
+- Update: Bitcoin (BTC) support to 8 digit precision
+- Remove: Show/Hide void transactions
+- Fix: General bug fixex and documentation updates.
+
+1.2.7 (Apr 14, 2016)
+- Fix: Italian translation updated
+- Fix: Russian translation updated
+- Fix: Help files updated
+- Fix: Validate math expressions (Issue #659)
+- Fix: Items in Navigation keep disappearing in Ubuntu and MacOS (Issue #658)
+- Fix: Transactions color tag is lost in some specific case (Issue #788)
+- Fix: Minor fixes
+
+1.2.6 (Mar 6, 2016)
+- Fix: OK the default when entering a transaction (Issue #676)
+- Fix: most recent notes (Issue #677)
+- Fix: Fraction part may get lost after opening transaction for edit (Issue #690)
+- Fix: Grand Total missing stocks
+- Fix: Hebrew translation updated
+- Fix: Transaction Report formatting (Issue #717)
+- Fix: Monthly Summary of Accounts Report (Issue #610)
+- Fix: Minor fixes
+
+1.2.5 (Jan 26, 2016)
+- Fix: Portuguese_br translation updated
+- Fix: Split transaction not allowed ENTER Key or ARITMETIC EXPRESSIONS (Issue #648)
+- Fix: Monthly Summary of Accounts Report deleted (Issue #610)
+- Fix: QIF import fixes (Issue #617)
+- Fix: Cash account type added for android synchronisation (Issue #455)
+- Fix: Minor fixes
+
+1.2.4 (Dec 21, 2015)
+- New: Japanese translation added
+- Fix: Italiano translation updated
+- Fix: Home Page folder path fix
+- Fix: Speedup
+- Fix: QIF import fixes
+- Fix: CMD + C on OS X causes MMEX popup window to close (Issue #769)
+
+1.2.3 (Nov 4, 2015)
+- Fix: Translations update
+- Fix: Assertion 'datetime failed'  (Issue #536)
+- Fix: Delete currency (Issue #569)
+- Fix: Add attachments on duplicate transaction (Issue #570)
+- Fix: Wrong currency on repeating transactions (Issues #562, #568)
+- Fix: EOL support for CSV export/import (Issue #577)
+- Fix: ANSI encoding and date with time support for CSV import (Issue #579)
+- Fix: Problem with full screen mode on Mac (bug:742)
+- New: Currency added Venezuelan Bolivar
+- Fix: tmp folder permissions(Issue #559)
+
+1.2.2 (Jun 29, 2015)
+- Fix: Transaction Type Transfer From/To Error (bug:707)
+- Fix: Stock Account fix total value
+- Fix: Export of small withdrawals have wrong sign (bug:695)
+- Fix: Czech translation update
+- Fix: Colours on print and print preview are not the same (bug:722)
+- Fix: QIF import fixes (bug:712)
+- Fix: Cancel button label changed to Close for Currency dialogue (bug:714)
+- New: Lithuanian translation added
+
+1.2.1 (June 06, 2015)
+- Fix: Negative 'Initial Balance' (bug:672)
+- Fix: Recurring Transactions navigation issue (bug:679)
+- Fix: Spelling mistakes (bugs:676,677)
+- Fix: Temporary View Change (bug:684)
+- Fix: html format (issue 487)
+
+1.2.0 (April 28, 2015)
+- New: Introducing new account type - Credit Card
+- New: Monthly Summary of Accounts
+- New: Stock History Monitoring
+- New: My Usage Reports
+- New: MMEX News display on Home page
+- New: Apply button on Options Dialog saves displayed page.
+- New: Extra columns displayed in panels.
+- New: Command to change encrypted database password.
+- New: Command to compact the database
+- New: Import transactions from WebApp
+- New: Repeating transaction created from existing transaction
+- Functionality Change: Repeating Transaction.
+  'Next Occur Date' redefined as 'Payment Date' and 'Due Date'
+- Database Upgrade: Database version updated to version 3 with
+  auto data correction for Repeating Transactions.
+- Fix: Many bug fixes
+
+1.1.2 (November 16, 2014)
+- Recurring transaction dialog restyling
+- Added transaction filter to recurring transactions panel
+- Added more keywords into GRM
+- Fix CashFlow crash
+- Fix for recurring transactions with split categories
+- Fix PayPal QIF import (bug #543)
+- Fix stock update date format (bug #545)
+- Fix budget for substituted category (bug #546)
+- Fix category removal error on budget panel (bug #551)
+- Translations update
+
+1.1.1 (November 1, 2014)
+- Full UTF-8 and wide characters support in GRM and LUA
+- Full integration with WebApp @ http:\\webapp.moneymanagerex.org
+- Added "unknown" payee\category in QIF, CSV and WebApp import
+- Navigation panel status saving
+- New JS pie charts on report
+- Added option to reallocate account type
+- Added option to change password of encrypted DB
+- Added time-out option for web-calls
+- Added FullScreen support
+- Save transactions colours to database instead of local pc
+- Fix for '&' sign in notes (bug #441)
+- Fix new transaction with no payee in list (bug #450)
+- Fix deletion of two categories (bug #452)
+- Fix override categories in home page (bugs #447 #444)
+- Fix transaction filter transfers and payees (bugs #453 #457)
+- Fix for transfer between account with different currencies (bugs #462 #472)
+- Fix cash flow report (bug #481)
+- Fix space in amount(bug #493)
+- Fix wrong behaviour of split and new transactions
+
+1.1.0 (August 1, 2014)
+- Reports
+- Web Server
+- Attachments
+- Anonymous usage statistics
+- Updated Home Page Layout 
+- Fix crash with wrong password on encrypted file
+
+1.0.0.3 (March 23, 2014)
+- Include images in HTML export
+- Performance improvement for large number of payees
+- Fix transaction report (feature-request #282)
+- Restore frequently used notes feature (bugs #324)
+- Base currency not found (bugs #326)
+
+1.0.0.2 (February 19, 2014)
+- Fix advanced transfer amounts disappearing
+- Fix recurring transactions account invalid error
+- Fix closed stocks account shown (bugs #290)
+- Fix transfer transactions getting reset
+- Fix next transaction number
+- Fix for create new transaction
+- Fix for group separator
+- Fix for reconciled balance
+- Performance improvements
+- Updated sponsors
+
+1.0.0.1 (January 19, 2014)
+- Fix account number not saved (bug #259)
+- Fix translation items (bug #257)
+- Fix stock currency format (bug #262)
+- fix sound (bug #256)
+- fix asset value (bug #271)
+- fix transaction report crash (bug #273)
+- fix home page recurring transaction value (bug #274)
+- fix summary asset total (bug #275)
+- fix changing account causes amount to change (bug #278)
+- fix error message when category is deleted (bug #277)
+- fix csv file import (bug #276)
+- fix transaction advanced amount (bug #285)
+
+1.0.0.0 (December 28, 2013) (includes 0.9.9.2 changes)
+- Custom Reports has been temporarily removed  (under construction). Will be introduced in next release.
+- Account balance in CSV export [feature-requests:#136] (partial implementation)
+- Proxy server settings [feature-requests:#181]
+- Report added [feature-requests:#224]
+- Added 2nd graph [feature-requests:#239]
+- In place edit for assets
+- Fix crash when quitting from start page
+
+- Fix for currency separators [bugs:#224]
+- Fix to transaction dialog [bugs:#225]
+- Specify database to open on command line [feature-requests:#245]
+- Fix for translations [bugs:#222]
+- Fix account balance [bugs:#223]
+- Test project changed from UnitTest++ to cppunit (no tests currently written)
+
+- Fix cancel button [feature-requests:#255]
+- Added sorting in reports [feature-requests:#243], [feature-requests:#250]
+
+- Fix crash on export to HTML [bugs:#215]
+- Updated to wxWidgets 3.0
+- Updated to wxSQLLite3 version 3.0.5 (SQLite3 version 3.8.0.2)
+- Fix memory leaks
+- Restructured code so database is accessed via data classes instead of raw SQL [feature-requests:#244)
+
+- Updated to use C++11
+- Fix quarterly budget estimate calculation.
+- Fix help info by including a status bar.
+- Improved Navigation panel Account switching to fix:
+* Transaction Filter memory between accounts
+* Copy/Paste across accounts.
+- Updated icons
+- Fixed Search field for Checking accounts
+- Added sort order for Stocks and Assets panels [feature-requests:#247]
+
+- Updated Currency manager
+- Added set of user defined parameters for Transaction Report
+- Added user defined icons for accounts
+- New/Edit Transaction Dialogue updated
+* Simple line calculator added for amount fields
+* Split transactions improvements
+- Payee Dialogue updated
+- Categories Dialogue Updated
+- Added Filter for Recurring Transactions panel
+- Remove progress bar from Checking panel as too fast to be useful.
+- Fix crash using Transaction Report using Vista / USB
+- Fix crash using Cash Flow Report when a Recurring Transaction becomes inactive using frequency of: in/every x days/months
+- Added print and preview for Home Page
+- Duplicate Asset function added
+- QIF Export/Import updated
+
+- Fix transaction status (bug #234)
+- Fix exchange rates (bug #244)
+- Fix transaction not shown (bug #245)
+- Fix reconciled balance (bug #246)
+- Fix validators (bug #247)
+- Fix payee name (bug #249)
+- Fix sorting direction not remembered (bug #251)
+
+0.9.9.0 (May 1, 2012)
+- Externals updated to wxSQLite3 V: 3.0.0 (sqlite3 V: 3.7.10.0)
+- New dialog designs, updated keyboard and user interface features.
+- Budget Section Upgrade
+  - View as Calendar Years or Financial Years
+  - Budget Category summaries showing subcategory totals.
+  - Added Monthly Budgets.
+  - Allow transfer totals to be included in budget totals.
+  - Improved Help for Budget setup
+- Improved Split Categories
+  - Allows deposits and withdrawals in same transaction.
+  - Allows split categories to be edited.
+  - Allows quick viewing of split categories in transactions.
+- Improved Transaction Filtering - allowing edits to transactions.
+- Improved Navigation tree and Account type identification.
+- Improved CSV Inport/Export facility using a Universal Dialog.
+- Improved QIF Importing facility.
+- Recent files list added.
+- Backup feature now allows 4 backups at start and/or end when updated.
+- Improved Options Dialog. Allow user to cancel changes.
+- Improved Cash Flow Report.
+- Improved Custom SQL Report File Saving features.
+- Updated Help Files with improved Language support
+- Improve startup error handling.
+- Miscellaneous code improvements and bugfixes.
+
+0.9.8.0 (August 1, 2011)
+- Externals updated to wxSQLite3 V: 2.1.2 (sqlite3 V: 3.7.7.1)
+- New commands in Tools Menu for the Relocation of Categories and Payees.
+- New date format: YYYYMMDD
+- New user options for 'Transaction Dialog' behavior.
+  - Auto payee inclusion for transactions (user selectable)
+  - Auto category inclusion for transfer transactions (user selectable)
+  - Allow Status to be set to 'Reconciled' (user selectable)
+- Reintroduction of Custom Reports as installable reports.
+- Recurring Transactions:
+  - Allow transactions to be automatically entered with user control.
+  - Allow transactions to be automatically entered without user control.
+  - new 'Skip' transaction command.
+- New AMD64 build instructions.
+- Change to Home Page Income/Expenses reflect calculations of visible accounts.
+- Stocks Summary now displayed on Home Page with new Option and Menu:View item.   
+- New icons in Accounts to highlight a transfer and direction for a transaction.
+- Currency dialogs updated - Now allows deletion of a currency.
+- Improved Backup options on Startup.
+- Improved functionality of Transaction Report.
+- Expanded periods for Cash Flow Reports.
+- Improved sub reports in the reports section of Categories.
+- Hide Financial Year reports when they are the same as the Year Reports.
+- New Tools for the maintenance of Custom Reports.
+- Improved file import for CVS and QIF formats
+- Help files now will be displayed in the selected language if they exist.
+- Changed loading order of accounts. Now displayed in alphabetical order.
+- Improved performance of displays.
+- Rearrangement of: Delete Transaction(s) popup menu items.
+- Improve performance for QIF and CSV importing.
+- and bugfixes.
+
+0.9.7.0 (January 26, 2011)
+- wxSQLite3 updated to v 2.0.2 (sqlite3 v.3.7.4)
+- Move functionality for transactions added.
+- New type of accounts - Term account added.
+- Infobar added on the bottom of the checking accounts and assets panel.
+- Random tips for checking panel added.
+- Escape key will not close the New/Edit transaction window (for Chinese typing support).
+- Notes column for Assets added.
+- Logo in SVG format added. Created by zhart http://forum.ubuntu.ru.
+- New Financial Year Reports: Start date user definable, Default: 1 July - 30 June.
+- New Menu Items in View.
+- Assets: Value calculation changed to compound interest.
+- Transaction Statistics report now displays 5 years.
+- Help file has been updated.
+- and bugfixes.
+
+0.9.6.0 (May 11, 2010)
+- wxSQLite3 updated to v.1.9.9 (sqlite3 v.3.6.23.1).
+- CurrencyFormatter refactoring, bugfix for huge amounts (like a 1000000000000)
+- Alignment of some columns changed
+- 'Recent files' submenu removed
+- Main window title will contain "[portable mode]" suffix if mmex runs in portable mode
+- English/Russian HTML help updated
+- Unnecessary notes removed on the bottom of the main screen
+- Improvements of temporary files generation
+- Select Language dialog refactored
+- Ability to select language during setup, native HTML help will be installed if one presents
+- OnSaveAs refactoring & bugfix
+- x64 build on Windows
+- Ability to build rpm package on Linux
+- Installation directory changed to %ProgramFiles% (C:\Program Files\MoneyManagerEx)
+- User's database and settings files default location is %APPDATA%\MoneyManagerEx
+- Check whether user has write access on database's file
+- About dialog shows versions of libraries which where used to build MMEX
+
+0.9.5.1 (Nov 6, 2009)
+- Fix: changes reverted for popup menu "Viewing transaction from ..."
+- Fix: if record in BILLSDEPOSITS_V1 has invalid CATEGID (for example, -1),
+  this record does not appear in "Recurring Transactions".
+
+0.9.5 (Nov 3, 2009)
+- Fix for Mac Paths (Wesley Ellis)
+- Add Notes in Transaction Lists (Wesley Ellis, Vadim)
+- Better Currency Summary (Vadim)
+- Add "View Today's Transactions" (Vadim)
+- Add translations for categories (Vadim, Nikolay)
+- View all data (Nikolay)
+- More date formats (Nikolay)
+- Modified sound when adding transactions (madhan)
+- New Arabic translation
+- Keystroke improvements for the checking panel (Nikolay)
+- Sorting of records on column click fixed (Vadim)
+- Fix for report "Category Income/Expense Over Last 12 Months", 
+  The "overall" amount was not equal to the previous columns total (Vadim)
+- QIF Export (Nikolay)
+- CSV Export improvements (Nikolay)
+- New Serbo-croatian translation 
+- Disabling of Edit and Delete Buttons when any transaction unselected (Pat)
+- Asset dialog show/hide controls (Pat)
+- Bank Accounts popup menu (Nikolay)
+
+0.9.4.2 (Mar 17, 2009)
+- Fix potential crash in Account Transactions Screen
+- Added Bulgarian Translation (Ivan Gyokov)
+- Added Portuguese (Portugal) Translation (Fatela) 
+- Fixed problem with transactions with large notes not displaying buttons properly (bberry)
+- Easier selection of existing payees by typing a few words
+- Fixed issue when updating entry with 0.0 value (LuckyArthur)
+- Remove GCC warnings in 4.2.4 (Ho Yin Kwok)
+- Fix report update bugs after base currency is changed or currency rates are updated (Ho Yin Kwok)
+- Fix UK shares (Symbol = XXXX.L) price update bug(Ho Yin Kwok)
+- Fix PAYEEID is not equal to -1 and the values of TRANSAMOUNT and TOTRANSAMOUNT are not the same in the database for "Transfer" transaction(Ho Yin Kwok)
+- When user selects "Transfer" in the transaction dialog box, "From" account is set to the current account automatically(Ho Yin Kwok)
+- Other minor GUI bug fixes(Ho Yin Kwok)
+- Add subtotal of accounts (Jeancf)
+- Fix crash when changing language
+- Added Belgian Translation (DUTCH_BE) (Rol)
+- Added French User Manual (catacotox)
+- Added English UK Translation (mcrossley)
+- Added Russian User Manual (Nikolay)
+
+0.9.4.1 (Dec 30, 2008)
+- Fix additional extension in files saved as new database
+- Fix version in executable resource (LuckyArthur)
+
+0.9.4.0
+- MMEX now installs in %APPDATA% directory instead of program files by default in Windows
+- Fix crash on custom reports (Jaffa)
+- Fix display problems with cents (Ho Yin Kwok)
+- Fix hang with large amounts for top categories graph
+- Fix association of categories on CSV Import (Patch by Pieter)
+- Add New Budget Setup and Performance Report (Rohit Kumar)
+- Temporary workaround for Linux crash when clicking home page links
+========================
+Patch from (Ho Yin Kwok)
+========================
+- Add on-line currency rate update function:
+- Download latest currency rate data from European Central Bank
+- Based on the rate of the base currency, calculate the rates of other currencies and update them
+- Add a new column in the existing currency table
+Note: All supported currency symbols can be found from:
+http://www.ecb.europa.eu/stats/exchange/eurofxref/html/index.en.html
+- Add a new option to allow user to enable or disable online update currency rate function (default is disable).
+- In option dialog box, display more user friendly strings for data format
+- For "New/Edit Stock Investment" dialog box, if current price is empty, then current price is equal to purchase price.
+- Change "Notes" of the "New/Edit Asset" dialog box from single text control to multi-line text control
+- Change the description of the "Rate of Change"'s tooltip
+- Modify "New/Edit Stock Investment" dialog box
+- Modify "New/Edit Transaction" dialog box
+- Modify "Organize Payees" dialog box
+- Modify "Organize Categories" dialog box
+- Modify "New/Edit Recurring Transaction" dialog box
+- Help screen will not be shown when no database is opened
+- Remove unnecessary checking in mmGUIFrame::OnSelChanged() function
+- Currency dialog box will not resize its items so some texts are truncated.
+- Options dialog box will not resize its items so some texts are truncated.
+- Fix some "no new line" warnings
+- Do not display correct strings when "Language" is changed from "non-English" setting to "English" setting
+- Do not show "Rate of Change" value in "New/Edit Asset" dialog box
+- Fix generate incorrect "Rate of Change" value when currency' scale is wrong
+- Fix segmentation fault when "Refresh" button is pressed in "Stocks" panel and there is no stock in the list
+- Fix "To amount" is wrong when editing a transaction without click the "Advanced" button
+- MMEX do not add file extension automatically when it creates a new database file
+- When previous opened "emb" database is deleted, the password dialog box is shown when MMEX starts.
+- Stock value to zero bug (Bug Request ID 2157523)
+- Modify some strings (we have to modify po files)
+- When MMEX creates a new datebase, only "mmb" type is available. If user wants to have a "emb" type database, he/she has to use
+"Save as" function.
+ - For Currency dialog box, currency symbol textbox is changed to ComboBox so users can select existing currency symbols or input a new
+one
+
+0.9.3.0 
+- Release under CodeLathe LLC
+- Fix customization bug (ajireland)
+- Fixed typo in dialog message (Xavier Grimwand)
+- Made QIF Import Type:BANK, CASH, CCARD account type string compares case insensitive (dan)
+- Remove *.png files left over after MMEX closes (Kenny)
+- Make "Income" and "Expenses" labels centered (George)
+- Fixed bug in getLatestTransactionNumber (Igor)
+- Added workaround for "uk.finance.yahoo.com" to convert downloaded stock value to pence (Gerald etc)
+- Added 'Daily' recurring transaction (aHfUi)
+- Fix double comparisons in Budget screens leading to wrong images being displayed when amounts are equal(luckyarthur)
+- Allow transaction report to specify only top category (which will sum all children category) (Ami, Sania)
+- Fixed minor issue where 'single quote' was being displayed as multiple quotes till DB was reopened (luckyarthur, paddy)
+- Fixed Deposit, Withdrawal strings not being translated (imendes)
+- Added BugTrap crash report support for Win32 version
+- Updated German translation (STiGMaTa_ch)
+- Fixed several strings that were not translated (STiGMaTa_ch)
+- Added Gain/Loss in the Stocks View (Jason McWhorter)
+- Hide Non-Favorite accounts in HomeScreen depending upon view options(Jason McWhorter)
+- Added Romanian Translation (Munteanu & Florin)
+- Added Indonesian Translation (Dindin)
+- Add Swedish Translation (Andreas & Tomplast)
+- Add Notes in transaction reports so they can be printed (Bava)
+- Fix & not showing up in Notes details (Bava)
+- Move to SQLITE 3.6.0 and wxSQLite 1.9.0
+- Move to VC Express 2008 for Windows build
+- Make user name appear immediately after database is created
+- Fix bug in Loading Custom SQL from files (Paul)
+
+0.9.2.0 (Nov 18, 2007)
+- Fix bug where changing payee for Split Transaction can lead to bad data in reports (Kyosuke)
+- Fix bug where deleting category didn't remove association from Payee table (Phil)
+- Show correct currency in Bills and Deposits Panel (MK)
+- Fix bug encrypting MMEX DB (Lion)
+- Patch from Vat on sorting transaction# column headers 
+- Rename Brazilian language to be Portuguese (Users will need to reselect the correct language)
+- Fix bug when deleting last transaction and then deleting another transaction without focus
+- Don't clean split transactions unless table is present.
+- Add tools->Convert to Non Encrypted DB option to convert encrypted DB to non-encrypted DB
+- Fix CashFlow to account for NumRepeats = None(Ami)
+
+0.9.1.0 (Oct 9, 2007)
+- Fix bug where split transaction entries were being orphaned in the DB either in the account view
+or via the Bills Deposits entries. This could cause wierd behavior. (Lucky Arthur)
+- Fixed issue where split transaction amounts weren't being reported correctly if transactions were repeated. (within the same transaction) (manuel)
+- Make stock symbol match case insensitive (geraldnz )
+- Fix text vertical spacing in several panels in Linux (Ikkyu)
+- Improved Help File (Terry Wick)
+- Added "Everything except Reconciled Transactions View" (Jim)
+- Crash when pressing "Delete"  when account view is empty (Fangles)
+- More colorful palette for charts
+
+0.9.0.0 (Sep 16, 2007)
+- Add Password Protection support. 
+- Add Vietnamese Translation (Nicky)
+- Add Difference col for Income Vs Expenses(Patch from Bettega)
+- Show Negative amounts in Red for Payee Report (Patch from Bettega)
+- Add default reports for "Where the Money Goes" and "Where the Money Comes From"
+- Change default Yahoo server for Quotes download
+
+0.8.3.9 (Sep 11, 2007)
+- Fix problem with Where the Money Goes and Where the Money Comes From(MK, Juraj, Fortuna)
+- Fix crash when attempting to print or export (Fortuna)
+
+0.8.0.9 (Sep 8, 2007)
+- Split transactions doesn't show up correctly in many reports and in transaction filter (Jose Carlos Ferreira)
+- Where the Money Goes and categories reports are not working correctly. (Jose Carlos Ferreira)
+- Fix problem when switching transaction from split to normal and vice versa (Jose Carlos Ferreira)
+- Deposit wasnt shown in the UnivCSV import (thanks VadaCurry)
+
+0.8.0.8 (Sep 7, 2007)
+- Custom SQL Query Tool to create custom reports
+- Add % to actual/estimated amounts in Budget report (Juraj)
+- Reconciled balance incorrect for cross currency transactions (Shippers)
+- Fix transactions when viewed descending (Patch from Igor)
+- Add automatic Transaction Number (Patch from Igor)
+- Allow !Bank Qif import (Johnny Mac)
+- Fix funky DataFormat setup in Options dialog
+(Prerelease 1 through 4)
+- Fix crash when pressing CTRL+R in account screen
+- Add pie charts for categories
+- Fix bug where favorite accounts were not being displayed correctly (Jota)
+- Reconciled balance should show initial balance correctly(Jota)
+- Add support for split categories in a single transaction
+- Add Income vs Expenses and Top Categories Graphical Reports
+- Add automatic stock price download for various stock exchanges supported by Yahoo
+(Patch submitted by Greg Newton)
+- Fix Bug 1625307: Account Balances Length not showing full amount without refresh
+- Fix Bug 1695918: Language Selection Button shows blank text when canceled
+- Add Feature 1695853: Add Indicator that indicates Future Entries in the Register
+- Add Income/Expense views for Budgeting Panel
+- Add extension for Univ CSV template files
+- Fix Bug: Not show closed accounts in account summary and in report summary
+- Add view of transactions for current month and last month
+- Fix Multicurrency Bug in homepage (George)
+- Support exporting transfers to CSV files(Only from accounts will show it as transfer. Import
+  requires exact account names to be available for it to work)
+- Fixed Bug causing crash when account was deleted with pending bills and deposits  
+- Use new icons for MMEX
+- Fix bug in amount reported by split transaction in report (drazx, Fortuna)
+- Allow flexible date formats in Date options (Samer)
+- Add Color option for future dates
+- Cleaner HTML formatting for summary and all reports (Patch submitted by Paulo Lopes)
+- Add new reports for expenses/income/categories
+- Fix bug with graph formatting
+
+
+0.8.0.6 (April 10, 2007)
+- Fix currency conversions for stock accounts (Thanks Jai)
+- Fix broken selection of items in Ubuntu when adding new transaction (Ikkyu)
+- Fix getting location of kaching.wav file (Ikkyu)
+- Fix crash when deleting last transaction in transaction view (Ikkyu)
+- Keep old category when creating a new payee (jpurrssey)
+- Fix a CSV import issue 
+- Fix formatting for some reports
+
+0.8.0.5 (April 1, 2007)
+- Fix bug calculating Quarterly estimated amounts in Budget performance report
+- Fix more bugs with currency conversions with multiple currencies (Thanks George)
+- Improve keyboard handling with various dialogs
+- Fix quote escaping in notes (Thanks Paddy)
+- Fix bug where transfer transactions would disappear temporarily when an account was deleted
+- Fix bug where MMEX would crash when no category was selected and you clicked "Select" (Thanks miszka) 
+- Fix days remaining issue again! (Thanks Bob)
+- Add Feature 1678044 : option to use original date when copying/pasting transactions (Thanks ree321)
+- Add Feature 1633454 : Category column in transaction filter
+- Show list of top expense categories in home page (refreshed only when file is opened)
+- Add Feature 1657704 : Duplicate Transactions are now flagged as 'Duplicate' (Patch Submitted by Stuart, Thanks!)
+- Fix bug in budget performance report where certain subcategories werenot being displayed
+- Show category expenses over time in "Where the Money Goes" report
+- Add "Load/Save" buttons for the Universal CSV importer dialog to save often used CSV configurations
+- Improve Universal CSV importer dialog (Thanks to Patch submitted by Stuart)
+- Add Kaching sound when entering transactions (can be turned off)
+- Added Hungarian Translation (Thanks Tarjanyi Csaba)
+- Add Focused Item fix in account view screen when deleting items (Patch by Stuart)
+- Add optional argument to MMEX that specifies where it should find the data directory
+
+0.8.0.4 (Feb 28, 2007)
+- Add Copy/Paste transactions within same account
+- Added Transaction Statistics report to view number of transactions over time
+- Fixed bug where a blank category can be entered
+- Fixed bug with QIF import when payee is missing(Thanks Mark)
+- Fix view sorting in account view
+- Fixed Bug 1645981: Unable to switch languages in Linux
+- Fixed Bug 1666530: Payee filter not working in filter transactions(Thanks VM)
+- Fixed Bug 1658366: Account view drops digits now and then
+- Fixed Bug 1657456: Orphan Transactions when deleting account
+- Fixed Bug 1657452: Initial Balance not taken into account for stock accounts
+- Added Spanish Translation (Thanks Javier)
+- Added Dutch Translation (Thanks Theo Kamphuis)
+
+0.8.0.3 (Jan 21, 2007)
+- Added Cash Flow Forecast report
+- Added Category column to Transaction list
+- Fixed univcsv import issue if payee already exists (thanks Ktmam)
+- Added Feature: 1634931: Account column in recurring transactions.
+- Added Feature: 1553039: Upcoming Bills & Deposits shows amount in homepage
+- Speeded up reporting performance
+- Fixed Bug 1483407: Date in home page not displayed in correct language
+- Fixed Bug 1636630: Program crashes when checking for updates
+- Fixed Bug 1633722: Long Account Notes Hides Buttons
+- Fixed Bug 1634984: Payee List should be sorted
+- Fixed Bug 1631030: Account Balance Issue when viewing 30 days/3 months
+- Fixed Bug 1582380: Clicking Home Page tree doesn't work after navigating using home page link
+- Added Norwegian translation (Thanks Fredrik Strand & Torbjorn Kvande)
+
+0.8.0.2 (Jan 09, 2007)
+- Fixed SQLITE Error when creating accounts
+- Added Tamil Translation (Thanks Gopi and Muguntharaj)
+- Fixed Bug 1628265: Wrong dates for Last Month Reports
+- Fixed Bug 1631034: Home page' form ignores currency conversion
+- Fixed Bug 1631778: Crash after version upgrade from 7.0.0/7.0.1 to 8.0.1
+- Refresh Category/Payee Text if names are changed, Listview still needs to be refreshed
+
+0.8.0.1 (Jan 1, 2007)
+- Fixed translation files not being loaded
+
+0.8.0.0 (Dec 31, 2006)
+- Added shortcut keys to change transaction status in account view. (v for 'Void', r for 'Reconciled', u for 'Unreconciled', f for 'Followup')
+- Fixed Income vs Expense Report error
+- Upgraded to wxWidgets 2.8.0 
+- wxAui Support for dockable window support (Thanks Priyank Bolia for the patch)
+- Fixed transaction filter not displaying categories
+- Added column indicating withdrawal or deposit for recurring transactions panel
+- Added Polish Translation (Thanks Andrzej)
+- Added Croatian Translation (Thanks Goran Bobanovic)
+
+0.7.0.7 (December 11, 2006)
+- Home page summary not showing initial balance (Thanks Bob!)
+
+0.7.0.6 (December 10, 2006)
+- Add sections on importing into user manual
+- Fixed bug with importing from QIF when languages other than english are used (Thanks Jean!)
+- Added transaction number search ability in transaction filter report (1585949)
+- Fixed bug with deleting transactions introduced in a recent build (Thanks Joseph Schmigel!)
+- Fixed several build errors/coredump with Linux build
+- 4x Speed up loading of home page with database with lots of transactions
+  (More optimizations coming soon)
+- Added UK POUND to MMEX currency list
+
+0.7.0.5 (November 29, 2006) Development Release
+- Really fixed bug where editing transactions did not take effect (Thanks Fortuna)
+
+0.7.0.4 (November 29, 2006) Development Release
+- Fixed bug where editing transactions did not take effect (Thanks Fortuna)
+- Fixed bug where entering transactions in bills and deposits screen did not show up in account view (Thanks Bob!)
+- Fixed bug where currency setting was not being used when showing withdrawals and deposits (Thanks Hx)
+- Fixed bug where entering transaction caused no data to be entered (Thanks Hx)
+
+0.7.0.3 (November 29, 2006) Development Release
+- Fixed Bug 1604492: Crash on setting currency
+
+0.7.0.2 (November 28, 2006) Development Release
+- Added caching for transaction data to make it load faster
+- Fixed Delete Button not working for assets
+- Fixed Bug 1591507: Recurring Entries order on home page
+- Fixed Bug 1595116: From field ignored on transfer transaction
+- Fixed Bug 1593422: Balance not considering void transactions
+- Ensure transactions with same date always are sorted correctly
+- Added option to specify default transaction view when viewing account transactions
+- Reworked the Currency Dialog screens to be more intuitive
+- Fixed Bug 1601619: Right click on REPORTS crashes
+- Fixed Bug 1602179: Nonlocalizable strings
+
+0.7.0.1 (November 4, 2006)
+- Don't select category when category dialog is closed (Thanks Mark!)
+- Fixed Bug 1553574: Allow currencies with 3 significant decimals
+- Fixed some menu disable/enable logic when no database is loaded
+- Allow QIF import even when Payee field is not present
+- Fix Bug 1553157: Last Calendar Month calculation off by one bug
+- Fix Bug with reporting number of days remaining for Recurring transactions
+- Fix Bug 1560453 For asset having changing value purchased current year, value is zero
+- Fix Bug 1554818 Incorrect change when transaction type is changed to Transfer type
+- Fix Bug 1563345 QIF Import date format not functioning correctly
+- Added Hebrew Translation (Thanks Ykpui)
+
+0.7.0.0 (Sep 2, 2006)
+- Ability to create custom transaction reports that can be filtered by most fields
+- Make QIF import date format use the format specified in the Tools->Options (Ozgreg)
+- Add German Translation (Thanks Schrempfi!)
+- Fixed Bug 1544586:Summary should show base currency symbol
+- Fixed Bug 1540582:Transfer transactions without considering the exchange rate
+- Fixed Bug 1543123:Incorrect Balance When Viewing Un-Reconciled Transactions
+- Fixed Bug 1550745:Sorting the browser descending is not done correctly
+- Add Feature 1543906: Four Week Frequency (Repeats)
+- Add Feature 1519713: Add more items to tool bar
+- Add Feature 1548136: allow sorting in account view for reconciled column
+- Always store relative paths to mmb files if possible to make using USB key based usage easier
+- Fix issues with Universal CSV importer
+- Add Withdrawal, Deposit CSV fields for Universal CSV importer
+- Ignore 'U' linetype for QIF files when importing
+- Add Feature 1545449: List of transactions on the chosen category
+- Add some intelligence when checking for updates
+
+0.6.2.0 (June 23, 2006)
+- Add Feature: 1503501 Add printable view for assets, stocks
+- Fix translation for some strings
+- Add Russian Translation (Thanks KarmaSV!)
+- Add Simple Chinese Translation (Thanks Extraf!)
+- Add Brazilian Portuguese Translation (Thanks Jose Carlos)
+- Several small bug fixes
+- Remove row lines under Linux build
+- Allow bills and deposits date to be modified when entering transaction.
+- Fix bug in reporting transactions that happened the first of the month
+- Allow negative initial balance
+- Fixed Bug 1521281: Allow QIF payees to be empty
+
+0.6.1.0 (June 25, 2006)
+- Added Universal CSV importer that can handle different CSV order. Use File->Import->Universal CSV Files.
+- Fixed problem when saving .mmb file under a folder with a ' in the path.
+- Fixed problem with entering fractional number of shares
+- Fixed Bug 1510256: single quote becomes double quote in notes.
+- Fixed Bug 1510255: singe quote in CSV import field causes error
+- Fixed Bug 1455808: Currency with no cents like Korean Won arent correct
+- Fixed Bi-Weekly values in budget performance report
+- Fixed "To Whom The Money Goes - Last 30 Days"
+
+0.6.0.1 (June 19, 2006)
+- Fixed problem with QIF import when there were no categories
+- Fixed problem with QIF import and transaction numbers
+- Fix missing translations for several fields
+- Fix Budget Report - Missing Weekly Transactions
+- Improve reporting of Income vs Expenses so that it is easier to compare trends
+- Add Feature 1503265: Allow changing transaction type of existing transaction
+- Fix 1503266: Range days are one day off
+- Add Feature 1502894:Sort sub categs alphabetically
+- Add Feature 1503503:Add menus for Edit and Delete Accounts
+- Added Czech Translation (Thanks Josef Remes!)
+- Added Chinese Translation (Thanks Kyosuke!)
+- Fixed Bug 1504882:Amt deposited using Transfer Transaction doesn't update
+
+0.6 (June 3, 2006)
+- Added ability to import from QIF files (tested from MS Money)
+- Add icons for all menus
+- Sort Bills and Deposits by days remaining column
+- Add ability to display jpeg, png in user help
+- Add customizable colors
+- Fix column alignment for several panels
+- Add Feature 1492006:Date fields in window for "New Series"
+- Add Feature 1482233:Add weekly and Bi weekly ....to Budget setup
+- Add Feature 1480766:Allow automatic backup of .mmb file
+- Add Feature 1493309:Add Linkable Accounts from main page
+- Add Feature 1491278:Add 4 Month frequency for Bills & Deposits
+- Fix bug in Quarterly bills and deposits calculation of next occurence date
+- Show upcoming bills and deposits in homepage only if not empty
+- Add Feature 1455825:Add Flag for follow up transactions display in main screen
+- Fix 1494231:Init Balance funky init balance entry
+- Fix 1482172:Launch website does not work in Win2K (I hope)
+- Added ability to change stock URL webpage
+
+0.5.5.1 (May 17, 2006)
+- Fix add account, and then edit problem for stock accounts
+- Clicking stock account nodes shows only stocks from those stock accounts
+
+0.5.5.0 (May 16, 2006)
+- Add ability to store fixed assets that can depreciate or appreciate over time.
+- Fix 1480735 : Add ability to change languages using the options dialog
+- Fix 1488715 : Crash when editing first stock investment using 'edit' button
+- Disable Right click menu for budget years
+- Add wizard for adding new database
+- Add wizard for adding new account
+- Fix problem where stock investments summary only showed balance from first stock investment
+- Allow fractional number of shares for stocks
+- Change column alignment for stocks panel
+- Add total amount for stocks panel
+- Add ability to launch webpage (hard coded to Google's website for US stocks) for stock symbol
+
+0.5.2.2 (May 9th, 2006)
+- Fix Bug 1482171 Frequency in Budget Entry is not being saved correctly
+
+0.5.2.1 (May 2nd, 2006)
+- Updated French Translation
+- Fix Locale issue that causes an SQLITE Error
+- Transaction amounts are automatically trimmed.
+
+0.5.2.0 (May 2nd, 2006)
+- Added credits for translators
+- AppStartDialog starts centered in screen
+- Added Italian, French translations
+- Added start location to be specified in installer shortcut
+- Improved entry of budget values for income/expenses.
+- Ensure all strings are added to translations
+- Fix Bug 1476967: Initial Balance was not being accounted for in the Bank Account Ledger
+- Fix Bug 1476987: where the application was unable to locate translation files if the start
+- Fix Bug 1480118: Income vs Expenses should not take transfers into account  
+- Fix Bug 1479518: Scheduled transaction is reflected in summary of accounts
+- Fixed Locale Init issue causing translated UTF-8 strings not to appear correctly
+
+0.5.1.0 (April 22th, 2006)
+- Add support for non-english languages
+- Fix Bug 1473991: SQLite error [1] submitting Transaction with New payee
+- Fix Bug 1471747: Crash when click on EnterTransaction
+- Fix Bug 1471743: mmBillsDepositsPanel
+- Fix Bug 1471740: Use $(ProjectDir) Macro
+- Fix Bug 1455810: Help HTML file doesnt display
+- Add Feature 1474172: Show reconciled balance
+- Add Feature 1472283: User settable CSV delimiter
+- Add Feature 1472279: Import should refresh account automatically
+- Add Feature 1472277: Insert space between currency symbol and amount
+- Add Feature 1455797: MMEX should allow import of CSV from MMEX.NET 	 
+
+0.5.0.0 (April 16th, 2006)
+- Remove add account dialog when one clicks "Bank Accounts" node 
+- Add Bills & Deposit Tracking
+- Add Stock Investments
+- Fix Bug 1455804: No option to set date format to 'yy/mm/dd'
+- Fix Bug 1470420: App Does not start id last used data file is not found.
+- Fix Bug 1455806: Korean Won Symbol not displaying correctly
+- Fix Bug 1455827: No Selection in AppStart Dialog causes problems
+- Fix Bug 1470420: App Does not start id last used data file is not found.
+
+0.4.0.0 (March,2006)
+- Budgeting is now functional
+- Budgeting 12 month performance report
+- Changed home page to using HTML view
+- Add last opened database name in app start dialog (KL Teh)
+- The CSV import now take the date format option. Import/Export expects date to be in that format.(KL Teh)
+- CSV import no longer reports missing lines as having no date (KL Teh)
+- Transaction Number not being displayed (ikkyu)
+- Unable to see help file (ikkyu)
+- Mark imported transactions as needing followup
+- Export bug that prevented transactions containing only category from working
+
+0.3.0.2 (Feb 26, 2006)
+- Update user manual
+- Remembers category for payee
+- Remembers column layout
+- All reports can be exported to HTML files
+- Configurable Transaction viewer based on transaction status
+- Delete transactions based on current view
+- Fix '&' problem with payee names
+- Add filter view transactions to certain date ranges
+- Payee, Income vs Expenses reports
+
+0.3.0.1 (Feb 20, 2006)
+- Options Dialog crashes when no db_ file is opened (Manav, alok.sathaye, Ikkyu)
+- New AppStart Dialog helping new users begin 
+- Creating new database prompts users to create new account.
+- Add Summary of Accounts Report
+- Add Printing Page Setup, Print Preview, Printing for reports
+- Disallow negative numbers in transaction amounts
+- About dialog displays version history
+- Reports for categories over time
+- Now compiles and runs under Linux
+- Import CSV shows more diagnostic messages
+
+0.3.0.0 (Feb 16, 2006)
+- Checking account list controls now are "virtual" with very good performance even with millions of records
+- Added "Flag for Followup" status
+- Now can set status in transaction dialog
+- Options Dialog now viewable
+- Ability to mark all transactions to a certain type
+- Add icons for telling transaction types apart easily
+- Void transactions are not considered when computing balance on accounts
+- While adding new transaction to account, use of aprostophe (') in some field causes SQL error (KL Teh)
+- Add ability to specify arbitrary transfer amounts for From and To accounts
+- Main summary correctly accounts for baseconvrate
+- Main summary uses base currency for database
+- Date Format can be changed via options
+- Nicer icons
+- Remove setting locale
+
+0.2.0.1 (Feb 11, 2006)
+- French locale chosen when "English" was chosen (bpuhanic@...)
+
+0.2.0.0 (Feb 10, 2006)
+- Clean up of database fields
+- Database import from old versions
+- Complete currency data management
+- several bug fixes
+- Import and Export to CSV
+- Language Support
+
+0.1.0.0 (Feb 5, 2006)
+- Checking Accounts with Withdrawal, Deposit and Transfer transactions functional
+- Saving, loading databases

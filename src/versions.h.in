@@ -1,0 +1,28 @@
+//----------------------------------------------------------------------------
+// WARNING: The file versions.h is produced by CMake. If you want to make
+//          some changes in this file please use the templated version
+//          versions.h.in and rerun cmake to produce a refreshed
+//          version of versions.h
+//
+// Note:    MMEX version changes are made in the main CMakeLists.txt
+//----------------------------------------------------------------------------
+
+#define MMEX_VERSION_MAJOR @MMEX_VERSION_MAJOR@
+#define MMEX_VERSION_MINOR @MMEX_VERSION_MINOR@
+#define MMEX_VERSION_PATCH @MMEX_VERSION_PATCH@
+#define MMEX_VERSION_ALPHA @MMEX_VERSION_ALPHA@
+#define MMEX_VERSION_BETA  @MMEX_VERSION_BETA@
+#define MMEX_VERSION_RC    @MMEX_VERSION_RC@
+
+#cmakedefine GIT_COMMIT_HASH "@GIT_COMMIT_HASH@"
+#cmakedefine GIT_COMMIT_DATE "@GIT_COMMIT_DATE@"
+#cmakedefine GIT_BRANCH      "@GIT_BRANCH@"
+
+#define CMAKE_VERSION   "CMake @CMAKE_VERSION@"
+#define CMAKE_GENERATOR "@CMAKE_GENERATOR@"
+#define MAKE_VERSION    "@CMAKE_MAKE_VERSION@"
+#define GETTEXT_VERSION "gettext @GETTEXT_VERSION_STRING@"
+#define CXX_VERSION     "@CMAKE_CXX_COMPILER_VERSION@"
+#cmakedefine VS_VERSION "@VS_VERSION@"
+#cmakedefine CMAKE_VS_WINDOWS_TARGET_PLATFORM_VERSION "Windows SDK @CMAKE_VS_WINDOWS_TARGET_PLATFORM_VERSION@"
+#cmakedefine LINUX_DISTRO_STRING "@LINUX_DISTRO_STRING@"

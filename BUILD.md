@@ -70,7 +70,9 @@ __All following commands must be run from this command prompt!__
 
 6. Clone [MMEX official Git repository] with submodules using command-line:
 
-       git clone --recursive https://github.com/moneymanagerex/moneymanagerex c:\projects\mmex134 --branch v1.3.x
+       git clone --recursive https://github.com/moneymanagerex/moneymanagerex c:\projects\mmex
+
+   You can select MMEX version by adding `--branch v1.4.0` parameter.
 
    If git command is not recognized and you want to use git installed with VS
    you should find `git.exe` file and add its directory to the `PATH` variable
@@ -96,12 +98,15 @@ __All following commands must be run from this command prompt!__
 8. [Download sources of curl], unpack them to `c:\` and build [libcurl]
    library with following commands:
 
-       mkdir c:\curl-*.**.*\build
-       cd c:\curl-*.**.*\build
+       mkdir c:\curl-<version>\build
+       cd c:\curl-<version>\build
        set "PATH=%PATH%;%DevEnvDir%CommonExtensions\Microsoft\CMake\CMake\bin"
-       cmake -G "Visual Studio 15 2017" -DBUILD_CURL_EXE=OFF -DCURL_STATICLIB=ON -DCMAKE_USE_WINSSL=ON -DCMAKE_INSTALL_PREFIX=c:\libcurl ..
+       cmake -G "Visual Studio 15 2017" -DBUILD_CURL_EXE=OFF -DHTTP_ONLY=ON ^
+         -DENABLE_MANUAL=OFF -DBUILD_TESTING=OFF -DCURL_STATICLIB=ON ^
+         -DCMAKE_USE_WINSSL=ON -DCMAKE_INSTALL_PREFIX=c:\libcurl ..
        set "CL=/MP"
-       cmake --build . --target install --config Release --clean-first -- /maxcpucount /verbosity:minimal /nologo /p:PreferredToolArchitecture=x64
+       cmake --build . --target install --config Release --clean-first ^
+         -- /maxcpucount /verbosity:minimal /nologo /p:PreferredToolArchitecture=x64
 
    Replace `Visual Studio 15 2017` with `Visual Studio 15 2017 Win64`
    for 64-bit.
@@ -116,6 +121,7 @@ tools to manage projects in VS IDE.
 
 1. Generate build environment using [CMake]
 
+       mkdir c:\projects\mmex\build
        cd c:\projects\mmex\build
        set "PATH=%PATH%;%DevEnvDir%CommonExtensions\Microsoft\CMake\CMake\bin"
        cmake -G "Visual Studio 15 2017" -DCMAKE_PREFIX_PATH=c:\libcurl ..
@@ -218,10 +224,13 @@ macOS with Homebrew
 
 #### 2. Download Sources
 
-    git clone --recursive https://github.com/moneymanagerex/moneymanagerex --branch v1.3.x
+    git clone --recursive https://github.com/moneymanagerex/moneymanagerex
+
+You can select MMEX version by adding `--branch v1.4.0` parameter.
 
 #### 3. Compile and Create Package
 
+    mkdir moneymanagerex/build
     cd moneymanagerex/build
     export MAKEFLAGS=-j4
     cmake -DCMAKE_BUILD_TYPE=Release ..

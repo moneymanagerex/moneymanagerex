@@ -1,0 +1,18 @@
+# $Id$
+# Maintainer: @CPACK_PACKAGE_CONTACT@
+# Contributor: Tomasz Słodkowicz <slodki@users.noreply.github.com>
+# Contributor: Jaroslav Lichtblau <svetlemodry@archlinux.org>
+# Contributor: TDY <tdy@gmx.com>
+
+pkgname=@CPACK_PACKAGE_NAME@
+pkgver=@CPACK_PACKAGE_VERSION@
+pkgrel=1
+pkgdesc="@CPACK_PACKAGE_DESCRIPTION_SUMMARY@"
+arch=('@ARCHLINUX_ARCH@')
+url="@CPACK_DEBIAN_PACKAGE_HOMEPAGE@"
+license=('@CPACK_RPM_PACKAGE_LICENSE@')
+depends=('wxgtk3' 'webkit2gtk')
+replaces=('moneymanagerex')
+
+build() { make -C "${startdir}"; }
+package() { make -C "${startdir}" DESTDIR="${pkgdir}" install; }

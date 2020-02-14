@@ -5,21 +5,27 @@ Usage: python sqliteupgrade2cpp.py path_to_database_folder
 '''
 
 import datetime
-import fnmatch
 import os
 import sys
+import re
+import glob
 
-def getVersion(FileName):
-    FileName = FileName[17:]
-    Version = FileName.partition(".")[0]
+numbers = re.compile(r'(\d+)')
+def numericalSort(value):
+    parts = numbers.split(value)
+    parts[1::2] = map(int, parts[1::2])
+    return parts
+
+def getVersion(path):
+    Version = numbers.search(os.path.basename(path)).group(1)
     return int(Version) if Version else 0
 
 def getFileContent(FileName):
-  if os.path.exists(FileName):
-    fp = open(FileName, "r")
-    content = fp.read()
-    fp.close()
-    return content
+    if os.path.exists(FileName):
+        fp = open(FileName, "r")
+        content = fp.read()
+        fp.close()
+        return content
 
 StrHeader = '''//=============================================================================
 /**
@@ -51,12 +57,10 @@ const std::vector<wxString> dbUpgradeQuery =
 
 LatestVersion = 0
 folder = sys.argv[1]
-for root, dirs, files in os.walk(folder):
-        for name in sorted(files, key=getVersion):
-            if fnmatch.fnmatch(name, 'database_version_*.sql'):
-                FileContent = getFileContent(os.path.join(folder, name)).replace('\n','\n        ')
-                LatestVersion = getVersion(name)
-                StrUpgradeQuery += '''    // Upgrade to version %i
+for sqlfile in sorted(glob.glob(os.path.join(folder, 'database_version_*.sql')), key=numericalSort):
+    FileContent = getFileContent(sqlfile).replace('\n','\n        ')
+    LatestVersion = getVersion(sqlfile)
+    StrUpgradeQuery += '''    // Upgrade to version %i
     R"(
         %s
     )",

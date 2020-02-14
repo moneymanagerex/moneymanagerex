@@ -1,33 +1,24 @@
-[submodule "lib/wxsqlite3"]
-	path = lib/wxsqlite3
-	url = https://github.com/utelle/wxsqlite3.git
 [submodule "3rd/LuaGlue"]
 	path = 3rd/LuaGlue
 	url = https://github.com/moneymanagerex/LuaGlue.git
 [submodule "3rd/cgitemplate"]
 	path = 3rd/cgitemplate
 	url = https://github.com/moneymanagerex/html-template.git
-[submodule "3rd/cajun"]
-	path = 3rd/cajun
-	url = https://github.com/moneymanagerex/cajun.git
-[submodule "lib/cppunit"]
-	path = lib/cppunit
-	url = https://github.com/moneymanagerex/cppunit.git
 [submodule "3rd/sorttable.js"]
 	path = 3rd/sorttable.js
 	url = https://github.com/diepes/sorttable.js.git
 [submodule "3rd/ChartNew.js"]
 	path = 3rd/ChartNew.js
 	url = https://github.com/FVANCOP/ChartNew.js
-[submodule "3rd/ctpp"]
-	path = 3rd/ctpp
-	url = https://github.com/moneymanagerex/ctpp.git
 [submodule "database"]
 	path = database
 	url = https://github.com/moneymanagerex/database
-[submodule "3rd/sqlcipher"]
-	path = 3rd/sqlcipher
-	url = https://github.com/sqlcipher/sqlcipher.git
 [submodule "3rd/rapidjson"]
 	path = 3rd/rapidjson
 	url = https://github.com/Tencent/rapidjson
+[submodule "3rd/wxsqlite3"]
+	path = 3rd/wxsqlite3
+	url = https://github.com/utelle/wxsqlite3.git
+[submodule "3rd/lua"]
+	path = 3rd/lua
+	url = https://github.com/lua/lua.git

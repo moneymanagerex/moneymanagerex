@@ -10,6 +10,10 @@ import datetime
 import sqlite3
 import codecs
 
+currency_unicode_patch_filename = 'currencies_update_patch_unicode_only.mmdbg'
+currency_table_patch_filename = 'currencies_update_patch.mmdbg'
+sql_tables_data_filename = 'sql_tables_v1.sql'
+
 # http://stackoverflow.com/questions/196345/how-to-check-if-a-string-in-python-is-in-ascii
 def is_ascii(s):
     """Class: Check for Ascii String"""
@@ -30,14 +34,23 @@ def is_trans(s):
 
     return False
 
+def adjust_translate(s):
+    """Return the correct translated syntax for c++"""
+    trans_str = s.replace("_tr_", "").replace('"','')
+    trans_str = 'wxTRANSLATE("' + trans_str + '")'
+
+    return trans_str
 
 def translation_for(s):
     """Return the correct translated syntax for c++"""
+    trans_str = ''
     if not is_ascii(s):  # it is unicode string
-        trans_str = 'L"%s"' % s
+        if len(s) > 4 and s[0:4] == "_tr_": # requires wxTRANSLATE for cpp
+            trans_str = adjust_translate(s)
+        else:
+            trans_str = 'L"%s"' % s
     else:
-        trans_str = s.replace("_tr_", "")
-        trans_str = 'wxTRANSLATE("' + trans_str + '")'
+        trans_str = adjust_translate(s)
 
     return trans_str
 
@@ -53,7 +66,7 @@ def get_table_list(cursor):
     return [(row[0], row[1]) for row in cursor.fetchall()]
 
 
-def _table_info(cursor, name):
+def get_table_info(cursor, name):
     cursor.execute('PRAGMA table_info(%s)' % name)
     # cid, name, type, notnull, dflt_value, pk
     return [{'cid': field[0],
@@ -103,8 +116,49 @@ class DB_Table:
         self._index = index
         self._data = data
 
+    def generate_currency_table_data(self, sf1, utf_only):
+        """Extract currency table data from table_v1
+           Return string of update commands
+           Will only get unicode data line when utf_only is true"""
+
+        for row in self._data:
+            values = ', '.join(["%s='%s'" % (k, row[k]) for k in row.keys() if k.upper() != 'CURRENCYID' and k.upper() != 'CURRENCY_SYMBOL'])
+            values = values.replace('_tr_', '')
+
+            if not utf_only or not is_ascii(values):
+                sf1 += '''
+INSERT OR IGNORE INTO %s (CURRENCYNAME, CURRENCY_SYMBOL) VALUES ('%s', '%s');
+UPDATE OR IGNORE %s SET %s WHERE CURRENCY_SYMBOL='%s';''' % (self._table, row['CURRENCYNAME'].replace('_tr_', ''), row['CURRENCY_SYMBOL'], self._table, values, row['CURRENCY_SYMBOL'])
+
+        return sf1
+
+    def generate_unicode_currency_upgrade_patch(self):
+        """Write database_version data to file
+           Only extract unicode data"""
+        if self._table.upper() == 'CURRENCYFORMATS_V1':
+            print 'Generate patch file: %s' % currency_unicode_patch_filename
+            rfp = codecs.open(currency_unicode_patch_filename, 'w', 'utf-8')
+            sf1 = '''-- MMEX Debug SQL - Update --
+-- MMEX db version required 10
+-- This script will add missing currencies and will overwrite all currencies params containing UTF8 in your database.'''
+            rfp.write(self.generate_currency_table_data(sf1, True))
+            rfp.close()
+
+    def generate_currency_upgrade_patch(self):
+        """Write currency_table_upgrade_patch file
+           Extract all currency data"""
+        if self._table.upper() == 'CURRENCYFORMATS_V1':
+            print 'Generate patch file: %s' % currency_table_patch_filename
+            rfp = codecs.open(currency_table_patch_filename, 'w', 'utf-8')
+            sf1 = '''-- MMEX Debug SQL - Update --
+-- MMEX db version required 10
+-- This script will add missing currencies and will overwrite all currencies params in your database.'''
+            rfp.write(self.generate_currency_table_data(sf1, False))
+            rfp.close()
+
     def generate_class(self, header, sql):
         """ Write the data to the appropriate .h file"""
+        print 'Generate Table: %s' % self._table
         rfp = codecs.open('DB_Table_' + self._table.title() + '.h', 'w', 'utf-8-sig')
         rfp.write(header + self.to_string(sql))
         rfp.close()
@@ -115,10 +169,7 @@ class DB_Table:
         if self._table.upper() == 'CURRENCYFORMATS_V1':
             utfc = '#pragma execution_character_set("UTF-8")\n'
 
-        s = '''
-%s
-#ifndef DB_TABLE_%s_H
-#define DB_TABLE_%s_H
+        s = '''%s#pragma once
 
 #include "DB_Table.h"
 
@@ -126,22 +177,29 @@ struct DB_Table_%s : public DB_Table
 {
     struct Data;
     typedef DB_Table_%s Self;
+
     /** A container to hold list of Data records for the table*/
     struct Data_Set : public std::vector<Self::Data>
     {
-        std::wstring to_json(json::Array& a) const
+        /**Return the data records as a json array string */
+        wxString to_json() const
         {
+            StringBuffer json_buffer;
+            PrettyWriter<StringBuffer> json_writer(json_buffer);
+
+            json_writer.StartArray();
             for (const auto & item: *this)
             {
-                json::Object o;
-                item.to_json(o);
-                a.Insert(o);
+                json_writer.StartObject();
+                item.as_json(json_writer);
+                json_writer.EndObject();
             }
-            std::wstringstream ss;
-            json::Writer::Write(a, ss);
-            return ss.str();
+            json_writer.EndArray();
+
+            return json_buffer.GetString();
         }
     };
+
     /** A container to hold a list of Data record pointers for the table in memory*/
     typedef std::vector<Self::Data*> Cache;
     typedef std::map<int, Self::Data*> Index_By_Id;
@@ -163,7 +221,7 @@ struct DB_Table_%s : public DB_Table
         cache_.clear();
         index_by_id_.clear(); // no memory release since it just stores pointer and the according objects are in cache
     }
-''' % (utfc, self._table.upper(), self._table.upper(), self._table, self._table, self._table)
+''' % (utfc, self._table, self._table, self._table)
 
         s += '''
     /** Creates the database table if the table does not exist*/
@@ -243,7 +301,8 @@ struct DB_Table_%s : public DB_Table
     { 
         static wxString name() { return "%s"; } 
         explicit %s(const %s &v, OP op = EQUAL): DB_Column<%s>(v, op) {}
-    };''' % (field['name'], base_data_types_reverse[field['type']], field['name'],
+    };
+    ''' % (field['name'], base_data_types_reverse[field['type']], field['name'],
              field['name'], base_data_types_reverse[field['type']],
              base_data_types_reverse[field['type']])
 
@@ -310,12 +369,22 @@ struct DB_Table_%s : public DB_Table
             field['name'], field['pk'] and '//  primary key' or '')
 
         s += '''
-        int id() const { return %s; }
-        void id(int id) { %s = id; }
+
+        int id() const
+        {
+            return %s;
+        }
+
+        void id(int id)
+        {
+            %s = id;
+        }
+
         bool operator < (const Data& r) const
         {
             return this->id() < r.id();
         }
+        
         bool operator < (const Data* r) const
         {
             return this->id() < r->id();
@@ -376,44 +445,59 @@ struct DB_Table_%s : public DB_Table
             ftype = base_data_types_reverse[field['type']]
             if ftype == 'wxString':
                 s += '''
+
         bool match(const Self::%s &in) const
         {
             return this->%s.CmpNoCase(in.v_) == 0;
         }''' % (field['name'], field['name'])
             else:
                 s += '''
+
         bool match(const Self::%s &in) const
         {
             return this->%s == in.v_;
         }''' % (field['name'], field['name'])
 
         s += '''
+
+        // Return the data record as a json string
         wxString to_json() const
         {
-            json::Object o;
-            this->to_json(o);
-            std::wstringstream ss;
-            json::Writer::Write(o, ss);
-            return ss.str();
-        }
-        
-        int to_json(json::Object& o) const
-        {'''
+            StringBuffer json_buffer;
+            PrettyWriter<StringBuffer> json_writer(json_buffer);
 
+			json_writer.StartObject();			
+			this->as_json(json_writer);
+            json_writer.EndObject();
+
+            return json_buffer.GetString();
+        }
+
+        // Add the field data as json key:value pairs
+        void as_json(PrettyWriter<StringBuffer>& json_writer) const
+        {'''
         for field in self._fields:
             type = base_data_types_reverse[field['type']]
-            if type == 'wxString':
+            if type == 'int':
                 s += '''
-            o[L"%s"] = json::String(this->%s.ToStdWstring());''' % (field['name'], field['name'])
+            json_writer.Key("%s");
+            json_writer.Int(this->%s);''' % (field['name'], field['name'])
+            elif type == 'double':
+                s += '''
+            json_writer.Key("%s");
+            json_writer.Double(this->%s);''' % (field['name'], field['name'])
+            elif type == 'wxString':
+                s += '''
+            json_writer.Key("%s");
+            json_writer.String(this->%s.c_str());''' % (field['name'], field['name'])
             else:
-                s += '''
-            o[L"%s"] = json::Number(this->%s);''' % (field['name'], field['name'])
+                assert "Field type Error"
 
         s += '''
-            return 0;
         }'''
 
         s += '''
+
         row_t to_row_t() const
         {
             row_t row;'''
@@ -426,6 +510,7 @@ struct DB_Table_%s : public DB_Table
         }'''
 
         s += '''
+
         void to_template(html_template& t) const
         {'''
         for field in self._fields:
@@ -464,8 +549,6 @@ struct DB_Table_%s : public DB_Table
 
         void destroy()
         {
-            //if (this->id() < 0)
-            //    wxSafeShowMessage("unsaved object", this->to_json());
             delete this;
         }
     };
@@ -725,32 +808,33 @@ struct DB_Table_%s : public DB_Table
     }
 '''
         s += '''};
-#endif //
+
 '''
         return s
 
 def generate_base_class(header, fields=set):
     """Generate the base class"""
-    rfp = open('DB_Table.h', 'wb')
-    code = header + '''
-#ifndef DB_TABLE_H
-#define DB_TABLE_H
+    code = header + '''#pragma once
 
 #include <vector>
 #include <map>
 #include <algorithm>
 #include <functional>
 #include <wx/wxsqlite3.h>
-#include <wx/intl.h> 
+#include <wx/intl.h>
 
-#include "cajun/json/elements.h"
-#include "cajun/json/reader.h"
-#include "cajun/json/writer.h"
+#include "rapidjson/document.h"
+#include "rapidjson/pointer.h"
+#include "rapidjson/prettywriter.h"
+#include "rapidjson/stringbuffer.h"
+using namespace rapidjson;
+
 #include "html_template.h"
 using namespace tmpl;
 
 class wxString;
 enum OP { EQUAL = 0, GREATER, LESS, GREATER_OR_EQUAL, LESS_OR_EQUAL, NOT_EQUAL };
+
 template<class V>
 struct DB_Column
 {
@@ -873,21 +957,19 @@ bool match(const DATA* data, const Arg1& arg1, const Args&... args)
 }
 '''
     for field in sorted(fields):
+        transl = 'wxGetTranslation' if field == 'CURRENCYNAME' else ''
         code += '''
 struct SorterBy%s
 { 
     template<class DATA>
     bool operator()(const DATA& x, const DATA& y)
     {
-        return x.%s < y.%s;
+        return %s(x.%s) < %s(y.%s);
     }
 };
-''' % (field, field, field)
+''' % (field, transl, field, transl, field)
 
-    code += '''
-#endif // 
-'''
-    rfp = open('db_table.h', 'w')
+    rfp = open('DB_Table.h', 'w')
     rfp.write(code)
     rfp.close()
 
@@ -895,8 +977,8 @@ if __name__ == '__main__':
     header = '''// -*- C++ -*-
 //=============================================================================
 /**
- *      Copyright (c) 2013 - %s Guan Lisheng (guanlisheng@gmail.com)
- *      Modifications: (c) 2017 Stefano Giorgio
+ *      Copyright: (c) 2013 - %s Guan Lisheng (guanlisheng@gmail.com)
+ *      Copyright: (c) 2017 - 2018 Stefano Giorgio (stef145g)
  *
  *      @file
  *
@@ -922,22 +1004,42 @@ if __name__ == '__main__':
         sys.exit(1)
 
     sql = ""
+    sql_txt = '''-- NOTE:
+-- This file has been AUTO GENERATED from database/tables_v1.sql
+-- All translation identifers "_tr_" have been removed.
+-- This file can be used to manually generate a database.
+
+'''
+
     for line in open(sql_file, 'rb'):
         sql = sql + line
+
+        if line.find('_tr_') > 0: # Remove _tr_ identifyer for wxTRANSLATE
+            line = line.replace('_tr_', '')
+
+        sql_txt = sql_txt + line
+    
+    # Generate a table that does not contain translation code identifyer
+    print 'Generate SQL file: %s that can generate a clean database.' % sql_tables_data_filename
+    file_data = codecs.open(sql_tables_data_filename, 'w')
+    file_data.write(sql_txt)
+    file_data.close()
 
     cur.executescript(sql)
 
     all_fields = set()
     for table, sql in get_table_list(cur):
-        fields = _table_info(cur, table)
+        fields = get_table_info(cur, table)
         index = get_index_list(cur, table)
         data = get_data_initializer_list(cur, table)
         table = DB_Table(table, fields, index, data)
-        print 'Generate Table: %s' % table._table
         table.generate_class(header, sql)
+        table.generate_unicode_currency_upgrade_patch()
+        table.generate_currency_upgrade_patch()
         for field in fields:
             all_fields.add(field['name'])
 
     generate_base_class(header, all_fields)
 
     conn.close()
+    print 'End of Run'

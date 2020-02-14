@@ -20,8 +20,8 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "model/Model_Usage.h"
 #include "reports/htmlbuilder.h"
 #include "model/Model_Report.h"
-#include "cajun/json/elements.h"
-#include "cajun/json/reader.h"
+#include "../3rd/cajun/json/elements.h"
+#include "../3rd/cajun/json/reader.h"
 
 const char *usage_template = R"(
 <!DOCTYPE html>
