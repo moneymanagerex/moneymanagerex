@@ -51,8 +51,7 @@ private:
     void OnLinkClicked(wxHtmlLinkEvent& event);
 
     wxHtmlWindow* about_text_;
-    wxHtmlWindow* developers_text_;
-    wxHtmlWindow* artwork_text_;
+    wxHtmlWindow* authors_text_;
     wxHtmlWindow* sponsors_text_;
     wxHtmlWindow* license_text_;
     wxHtmlWindow* privacy_text_;

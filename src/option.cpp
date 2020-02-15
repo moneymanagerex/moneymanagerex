@@ -31,7 +31,7 @@
 //----------------------------------------------------------------------------
 Option::Option()
 :   m_dateFormat(mmex::DEFDATEFORMAT)
-    , m_language("english")
+    , m_language("en_US")
     , m_databaseUpdated(false)
     , m_budgetFinancialYears(false)
     , m_budgetIncludeTransfers(false)
@@ -77,7 +77,7 @@ void Option::LoadOptions(bool include_infotable)
         }
     }
 
-    m_language = Model_Setting::instance().GetStringSetting(LANGUAGE_PARAMETER, "english");
+    m_language = Model_Setting::instance().GetStringSetting(LANGUAGE_PARAMETER, "en_US");
 
     m_budgetFinancialYears = Model_Setting::instance().GetBoolSetting(INIDB_BUDGET_FINANCIAL_YEARS, false);
     m_budgetIncludeTransfers = Model_Setting::instance().GetBoolSetting(INIDB_BUDGET_INCLUDE_TRANSFERS, false);
@@ -127,7 +127,7 @@ wxString Option::Language(bool get_db)
 {
     if (get_db)
     {
-        m_language = Model_Setting::instance().GetStringSetting(LANGUAGE_PARAMETER, "english");
+        m_language = Model_Setting::instance().GetStringSetting(LANGUAGE_PARAMETER, "en_US");
     }
 
     return m_language;

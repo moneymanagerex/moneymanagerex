@@ -264,7 +264,7 @@ mmGUIFrame::mmGUIFrame(mmGUIApp* app, const wxString& title
     // Show license agreement at first open
     if (Model_Setting::instance().GetStringSetting(INIDB_SEND_USAGE_STATS, "") == "")
     {
-        mmAboutDialog(this, 5).ShowModal();
+        mmAboutDialog(this, 4).ShowModal();
         Option::instance().SendUsageStatistics(true);
     }
 

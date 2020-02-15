@@ -161,7 +161,8 @@ bool OnInitImpl(mmGUIApp* app)
     Model_Usage::instance(app->m_setting_db);
 
     /* Force setting MMEX language parameter if it has not been set. */
-    mmDialogs::mmSelectLanguage(app, 0, !Model_Setting::instance().ContainsSetting(LANGUAGE_PARAMETER));
+	wxString lang_name;
+    mmDialogs::mmSelectLanguage(app, 0, lang_name, !Model_Setting::instance().ContainsSetting(LANGUAGE_PARAMETER));
 
     /* Load general MMEX Custom Settings */
     Option::instance().LoadOptions(false);

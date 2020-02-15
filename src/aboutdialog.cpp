@@ -20,10 +20,9 @@
 #include "constants.h"
 #include "paths.h"
 #include "reports/htmlbuilder.h"
-#include "db/DB_Upgrade.h"
 #include <wx/statline.h>
 #include <wx/version.h>
-#include <wx/wxsqlite3.h>
+#include <wx/regex.h>
 
 wxIMPLEMENT_DYNAMIC_CLASS(mmAboutDialog, wxDialog);
 
@@ -33,8 +32,7 @@ wxEND_EVENT_TABLE()
 
 mmAboutDialog::mmAboutDialog(wxWindow* parent, int TabToOpen, const wxString &name)
 : about_text_(nullptr)
-, developers_text_(nullptr)
-, artwork_text_(nullptr)
+, authors_text_(nullptr)
 , sponsors_text_(nullptr)
 , license_text_(nullptr)
 , privacy_text_(nullptr)
@@ -42,7 +40,7 @@ mmAboutDialog::mmAboutDialog(wxWindow* parent, int TabToOpen, const wxString &na
     const wxString caption = (TabToOpen == 4)
         ? _("License agreement") : wxString::Format(_("About %s"), mmex::getProgramName());
     Create(parent, wxID_ANY, caption, wxDefaultPosition
-        , wxSize(440, 600), wxCAPTION | wxRESIZE_BORDER | wxCLOSE_BOX, TabToOpen, name);
+        , wxDefaultSize, wxCAPTION | wxRESIZE_BORDER | wxCLOSE_BOX, TabToOpen, name);
     SetMinClientSize(wxSize(300, 400));
 }
 
@@ -64,9 +62,6 @@ bool mmAboutDialog::Create(wxWindow* parent
     {
         CreateControls(TabToOpen);
         InitControls();
-        //GetSizer()->Fit(this);
-        //GetSizer()->SetSizeHints(this);
-        //this->SetInitialSize();
         this->SetIcon(mmex::getProgramIcon());
         this->Centre();
     }
@@ -78,30 +73,9 @@ void mmAboutDialog::InitControls()
 {
     mmHTMLBuilder hb;
     wxString html = mmex::getProgramDescription();
-    html.Replace("======================================\n", "");
     html.Replace("\n", "<br>");
-    html << "<br><hr>" << "\n";
-    hb.addHeader(1, "Money Manager Ex");
+    hb.addHeader(1, mmex::getProgramName());
     hb.addText(html);
-    hb.addLineBreak();
-    hb.addTableCellLink(mmex::weblink::WebSite, _("Website"));
-    hb.addLineBreak();
-    hb.addTableCellLink(mmex::weblink::Forum, _("Forum"));
-    hb.addLineBreak();
-    hb.addTableCellLink(mmex::weblink::Wiki, _("Wiki page"));
-    hb.addLineBreak();
-    hb.addTableCellLink(mmex::weblink::BugReport, _("Bug reports"));
-    hb.addLineBreak();
-    hb.addLineBreak();
-    hb.addTableCellLink(mmex::weblink::Facebook, _("Follow MMEX on Facebook"));
-    hb.addLineBreak();
-    hb.addTableCellLink(mmex::weblink::Twitter, _("Follow MMEX on Twitter"));
-    hb.addLineBreak();
-    hb.addTableCellLink(mmex::weblink::Donate, _("Donate"));
-    hb.addLineBreak();
-    hb.addTableCellLink("https://cash.me/$guanlisheng/1", _("Buy us a coffee"));
-    hb.addLineBreak();
-
     hb.end();
     html = hb.getHTMLText();
     about_text_->SetPage(html);
@@ -109,7 +83,6 @@ void mmAboutDialog::InitControls()
     wxArrayString data;
     data.Add("");
 
-    int part = 0;
     hb.clear();
 
     //Read data from file
@@ -118,12 +91,14 @@ void mmAboutDialog::InitControls()
     {
         wxFileInputStream input(filePath);
         wxTextInputStream text(input);
+        wxRegEx link (R"(\[([^][]+)\]\(([^\(\)]+)\))", wxRE_EXTENDED);
+        int part = 0;
 
         while (input.IsOk() && !input.Eof())
         {
             wxString line = text.ReadLine();
             if (line.StartsWith("============="))
-                line = "<hr>\n";
+                line = "";
             else if (line.StartsWith("##"))
             {
                 line.Replace("##", "<H3>");
@@ -142,15 +117,17 @@ void mmAboutDialog::InitControls()
                 data.Add("");
             }
             else
+            {
+                link.Replace(&line,"<a href='\\2'>\\1</a>");
                 data[part] << line;
+            }
         }
     }
 
-    developers_text_->SetPage(data[0]);
-    if (data.GetCount() > 1) artwork_text_->SetPage(data[1]);
-    if (data.GetCount() > 2) sponsors_text_->SetPage(data[2]);
-    if (data.GetCount() > 3) license_text_->SetPage(data[3]);
-    if (data.GetCount() > 4) privacy_text_->SetPage(data[4]);
+    authors_text_->SetPage(data[0]);
+    if (data.GetCount() > 1) sponsors_text_->SetPage(data[1]);
+    if (data.GetCount() > 2) license_text_->SetPage(data[2]);
+    if (data.GetCount() > 3) privacy_text_->SetPage(data[3]);
 }
 
 void mmAboutDialog::CreateControls(int TabToOpen)
@@ -158,32 +135,20 @@ void mmAboutDialog::CreateControls(int TabToOpen)
     wxBoxSizer* itemBoxSizer = new wxBoxSizer(wxVERTICAL);
     this->SetSizer(itemBoxSizer);
 
-    wxStaticText* versionStaticText = new wxStaticText( this, wxID_STATIC
-        , "Money Manager EX - " + mmex::getTitleProgramVersion() + " " + wxString::Format(_("(DB v.%i)"), dbLatestVersion));
-    versionStaticText->SetFont(this->GetFont().Larger().Bold());
-    itemBoxSizer->Add(versionStaticText, g_flagsCenter);
-
-    wxStaticText* itemStaticText88 = new wxStaticText(this
-        , wxID_STATIC, mmex::getProgramCopyright());
-
     //Create tabs
     wxNotebook* about_notebook = new wxNotebook(this
-        , wxID_ANY, wxDefaultPosition, wxSize(400, 500), wxNB_MULTILINE);
+        , wxID_ANY, wxDefaultPosition, wxDefaultSize, wxNB_MULTILINE);
+    about_notebook->SetMinSize(wxSize(400, 500));
 
     wxPanel* about_tab = new wxPanel(about_notebook, wxID_ANY);
     about_notebook->AddPage(about_tab, _("About"));
     wxBoxSizer *about_sizer = new wxBoxSizer(wxVERTICAL);
     about_tab->SetSizer(about_sizer);
 
-    wxPanel* developers_tab = new wxPanel(about_notebook, wxID_ANY);
-    about_notebook->AddPage(developers_tab, _("Developers"));
-    wxBoxSizer *developers_sizer = new wxBoxSizer(wxVERTICAL);
-    developers_tab->SetSizer(developers_sizer);
-
-    wxPanel* artwork_tab = new wxPanel(about_notebook, wxID_ANY);
-    about_notebook->AddPage(artwork_tab, _("Artwork"));
-    wxBoxSizer *artwork_sizer = new wxBoxSizer(wxVERTICAL);
-    artwork_tab->SetSizer(artwork_sizer);
+    wxPanel* authors_tab = new wxPanel(about_notebook, wxID_ANY);
+    about_notebook->AddPage(authors_tab, _("Authors"));
+    wxBoxSizer *authors_sizer = new wxBoxSizer(wxVERTICAL);
+    authors_tab->SetSizer(authors_sizer);
 
     wxPanel* sponsors_tab = new wxPanel(about_notebook, wxID_ANY);
     about_notebook->AddPage(sponsors_tab, _("Sponsors"));
@@ -205,15 +170,10 @@ void mmAboutDialog::CreateControls(int TabToOpen)
         , wxHW_SCROLLBAR_AUTO | wxSUNKEN_BORDER | wxHSCROLL | wxVSCROLL);
     about_sizer->Add(about_text_, g_flagsExpand);
 
-    developers_text_ = new wxHtmlWindow(developers_tab
+    authors_text_ = new wxHtmlWindow(authors_tab
         , wxID_ANY, wxDefaultPosition, wxDefaultSize
         , wxHW_SCROLLBAR_AUTO | wxSUNKEN_BORDER | wxHSCROLL | wxVSCROLL);
-    developers_sizer->Add(developers_text_, g_flagsExpand);
-
-    artwork_text_ = new wxHtmlWindow(artwork_tab
-        , wxID_ANY, wxDefaultPosition, wxDefaultSize
-        , wxHW_SCROLLBAR_AUTO | wxSUNKEN_BORDER | wxHSCROLL | wxVSCROLL);
-    artwork_sizer->Add(artwork_text_, g_flagsExpand);
+    authors_sizer->Add(authors_text_, g_flagsExpand);
 
     sponsors_text_ = new wxHtmlWindow(sponsors_tab
         , wxID_ANY, wxDefaultPosition, wxDefaultSize
@@ -232,14 +192,14 @@ void mmAboutDialog::CreateControls(int TabToOpen)
 
     itemBoxSizer->Add(about_notebook, g_flagsExpand);
 
-    itemBoxSizer->Add(itemStaticText88, g_flagsCenter);
-
     wxButton* button_OK = new wxButton(this, wxID_OK, _("&OK "));
     button_OK->SetDefault();
     button_OK->SetFocus();
     itemBoxSizer->Add(button_OK, g_flagsCenter);
 
     about_notebook->ChangeSelection(TabToOpen);
+
+    GetSizer()->Fit(this);
 }
 
 void mmAboutDialog::OnLinkClicked(wxHtmlLinkEvent& event)
