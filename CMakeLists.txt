@@ -235,38 +235,33 @@ ENDIF()
 
 
 # --------- wxWidgets dependency ---------
-SET(wxWidgets_USE_REL_AND_DBG ON)
-IF(WIN32)
-    #wxScintilla is needed on Windows
-    FIND_PACKAGE(wxWidgets REQUIRED
-        core qa net html xml aui adv stc webview base scintilla REQUIRED)
-ELSE()
-    FIND_PACKAGE(wxWidgets REQUIRED
-        core qa net html xml aui adv stc webview base REQUIRED)
-ENDIF()
-IF(wxWidgets_VERSION_STRING AND wxWidgets_VERSION_STRING VERSION_LESS 2.9.2)
-    MESSAGE(SEND_ERROR "wxWidget version to old.")
-ENDIF()
-IF(APPLE AND wxWidgets_LIBRARIES MATCHES "${CMAKE_STATIC_LIBRARY_PREFIX}wx_baseu-[0-9\\.]+${CMAKE_STATIC_LIBRARY_SUFFIX}")
+if(CMAKE_VERSION VERSION_LESS 3.16)
+    # FindwxWidgets.cmake module will be fixed in CMake 3.16
+    list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/util")
+endif()
+set(wxWidgets_USE_REL_AND_DBG ON)
+find_package(wxWidgets 2.9.2 REQUIRED
+    COMPONENTS core qa html xml aui adv stc webview base
+    OPTIONAL_COMPONENTS scintilla)
+if(APPLE AND wxWidgets_LIBRARIES MATCHES "${CMAKE_STATIC_LIBRARY_PREFIX}wx_baseu-[0-9\\.]+${CMAKE_STATIC_LIBRARY_SUFFIX}")
     # use static libs in place of dynamic if using static wxMac
-    FOREACH(deplib png jpeg tiff z)
-        FIND_LIBRARY(${deplib}path ${CMAKE_STATIC_LIBRARY_PREFIX}${deplib}${CMAKE_STATIC_LIBRARY_SUFFIX})
-        IF(${deplib}path)
-            STRING(REPLACE "-l${deplib}" "${${deplib}path}"
+    foreach(deplib png jpeg)
+        find_library(${deplib}path ${CMAKE_STATIC_LIBRARY_PREFIX}${deplib}${CMAKE_STATIC_LIBRARY_SUFFIX})
+        if(${deplib}path)
+            string(REPLACE "-l${deplib}" "${${deplib}path}"
                 wxWidgets_LIBRARIES "${wxWidgets_LIBRARIES}")
-        ENDIF()
-    ENDFOREACH()
-    UNSET(deplib)
-    UNSET(${deplib}path)
-ENDIF()
-ADD_LIBRARY(wxWidgets INTERFACE)
-TARGET_INCLUDE_DIRECTORIES(wxWidgets INTERFACE ${wxWidgets_INCLUDE_DIRS})
-TARGET_LINK_LIBRARIES(wxWidgets INTERFACE ${wxWidgets_LIBRARIES})
-TARGET_COMPILE_OPTIONS(wxWidgets INTERFACE ${wxWidgets_CXX_FLAGS})
-TARGET_COMPILE_DEFINITIONS(wxWidgets INTERFACE ${wxWidgets_DEFINITIONS}
+        endif()
+    endforeach()
+    unset(deplib)
+    unset(${deplib}path)
+endif()
+add_library(wxWidgets INTERFACE)
+target_include_directories(wxWidgets SYSTEM INTERFACE ${wxWidgets_INCLUDE_DIRS})
+target_link_libraries(wxWidgets INTERFACE ${wxWidgets_LIBRARIES})
+target_compile_options(wxWidgets INTERFACE ${wxWidgets_CXX_FLAGS})
+target_compile_definitions(wxWidgets INTERFACE ${wxWidgets_DEFINITIONS}
     wxNO_UNSAFE_WXSTRING_CONV=1
     $<$<CONFIG:Debug>:${wxWidgets_DEFINITIONS_DEBUG}>)
-
 
 # --------- curl dependency ---------
 FIND_PACKAGE(CURL QUIET COMPONENTS libcurl CONFIG)
