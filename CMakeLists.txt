@@ -241,7 +241,7 @@ if(CMAKE_VERSION VERSION_LESS 3.16)
 endif()
 set(wxWidgets_USE_REL_AND_DBG ON)
 find_package(wxWidgets 2.9.2 REQUIRED
-    COMPONENTS net gl core qa html xml aui adv stc webview base xrc propgrid ribbon richtext media
+    COMPONENTS net core qa html xml aui adv stc webview base xrc propgrid ribbon richtext media
     OPTIONAL_COMPONENTS scintilla)
 if(APPLE AND wxWidgets_LIBRARIES MATCHES "${CMAKE_STATIC_LIBRARY_PREFIX}wx_baseu-[0-9\\.]+${CMAKE_STATIC_LIBRARY_SUFFIX}")
     # use static libs in place of dynamic if using static wxMac
