@@ -1,0 +1,2 @@
+brew 'ccache'
+brew 'gettext', link: true
