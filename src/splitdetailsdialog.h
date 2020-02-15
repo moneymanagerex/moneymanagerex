@@ -21,7 +21,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #define MM_EX_SPLITDETAILSDIALOG_H_
 
 #include "defs.h"
-#include "mmtextctrl.h"
+#include "mmTextCtrl.h"
 #include "model/Model_Splittransaction.h"
 
 #ifndef wxCLOSE_BOX

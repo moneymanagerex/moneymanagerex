@@ -24,7 +24,7 @@
 #include "defs.h"
 #include "paths.h"
 #include "validators.h"
-#include "mmtextctrl.h"
+#include "mmTextCtrl.h"
 #include "mmSimpleDialogs.h"
 
 #include <wx/combobox.h>
