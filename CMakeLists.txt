@@ -353,7 +353,6 @@ IF(WIN32)
             LIST(APPEND MMEX_WXDLLS
                 wxbase${WXDLLPREF}
                 wxbase${WXDLLPREF}_net
-                wxbase${WXDLLPREF}_gl
                 wxbase${WXDLLPREF}_xml
                 wxmsw${WXDLLPREF}_adv
                 wxmsw${WXDLLPREF}_aui
@@ -368,7 +367,6 @@ IF(WIN32)
             LIST(APPEND MMEX_WXDLLS
                 wxbase${WXDLLPREF}
                 wxbase${WXDLLPREF}_net
-                wxbase${WXDLLPREF}_gl
                 wxbase${WXDLLPREF}_xml
                 wxmsw${WXDLLPREF}_adv
                 wxmsw${WXDLLPREF}_aui
