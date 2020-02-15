@@ -153,7 +153,7 @@ void mmQIFExportDialog::CreateControls()
 
     wxStaticText* dateFormat = new wxStaticText(main_tab, wxID_STATIC, _("Date Format"));
     m_choiceDateFormat = new wxComboBox(main_tab, wxID_ANY);
-    for (const auto& i : g_date_formats_map)
+    for (const auto& i : g_date_formats_map())
     {
         m_choiceDateFormat->Append(i.second, new wxStringClientData(i.first));
         if (dateFormatStr == i.first) m_choiceDateFormat->SetStringSelection(i.second);

@@ -96,7 +96,6 @@ const wxString mmex::getProgramName()
 }
 const wxString mmex::getTitleProgramVersion()
 {
-	//    wxString caption = wxString::Format(_("%1$s - %2$s"), mmex::getProgramName(), mmex::getTitleProgramVersion());
     return wxString::Format(_("Version: %s"), mmex::version::string);
 }
 
@@ -112,7 +111,8 @@ const wxString mmex::getProgramDescription()
     curl.Replace("/", " ");
 
     wxString description;
-    description << _("MMEX is using the following support products") << ":\n"
+	description << mmex::getTitleProgramVersion() << "\n\n";
+    description << _("MMEX is using the following support products:") << "\n"
         << "======================================\n"
         << bull + wxVERSION_STRING << "\n"
         << bull + "SQLite3 " << wxSQLite3Database::GetVersion() << "\n"

@@ -26,6 +26,12 @@
 #include <rapidjson/document.h>
 
 class mmGUIApp;
+
+//Returns a JSON formatted string in readable form
+wxString JSON_PrettyFormated(rapidjson::Document& j_doc);
+//Returns a JSON formatted string from RapidJson DOM
+wxString JSON_Formated(rapidjson::Document& j_doc);
+
 struct ValuePair
 {
     wxString label;
@@ -177,7 +183,7 @@ const std::map<wxString, wxString> &date_formats_regex();
 const wxDateTime mmParseISODate(const wxString& str);
 const wxString mmGetDateForDisplay(const wxString &iso_date);
 bool mmParseDisplayStringToDate(wxDateTime& date, const wxString& sDate, const wxString& sDateMask);
-extern const std::map<wxString, wxString> g_date_formats_map;
+extern const std::map<wxString, wxString> g_date_formats_map();
 extern const std::map<int, std::pair<wxConvAuto, wxString> > g_encoding;
 
 CURLcode http_get_data(const wxString& site, wxString& output, const wxString& useragent = wxEmptyString);

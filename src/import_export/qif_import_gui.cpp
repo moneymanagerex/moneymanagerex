@@ -142,7 +142,7 @@ void mmQIFImportDialog::CreateControls()
 
     wxStaticText* dateFormat = new wxStaticText(this, wxID_STATIC, _("Date Format"));
     choiceDateFormat_ = new wxComboBox(this, wxID_ANY);
-    for (const auto& i : g_date_formats_map)
+    for (const auto& i : g_date_formats_map())
     {
         choiceDateFormat_->Append(i.second, new wxStringClientData(i.first));
         if (m_dateFormatStr == i.first) choiceDateFormat_->SetStringSelection(i.second);
@@ -308,7 +308,7 @@ void mmQIFImportDialog::fillControls()
 bool mmQIFImportDialog::mmReadQIFFile()
 {
     int numLines = 0;
-    std::map<wxString, wxString> date_formats_temp = g_date_formats_map;
+    std::map<wxString, wxString> date_formats_temp = g_date_formats_map();
     vQIF_trxs_.clear();
     m_QIFaccounts.clear();
     m_QIFcategoryNames.clear();
@@ -659,9 +659,9 @@ void mmQIFImportDialog::getDateMask()
 
         for (const auto& d : m_date_parsing_stat)
         {
-            wxLogDebug("%s \t%i", g_date_formats_map.at(d.first), d.second);
+            wxLogDebug("%s \t%i", g_date_formats_map().at(d.first), d.second);
 
-            choiceDateFormat_->Append(g_date_formats_map.at(d.first), new wxStringClientData(d.first));
+            choiceDateFormat_->Append(g_date_formats_map().at(d.first), new wxStringClientData(d.first));
             if (d.second > count)
             {
                 count = d.second;
@@ -669,7 +669,7 @@ void mmQIFImportDialog::getDateMask()
             }
         }
     }
-    choiceDateFormat_->SetStringSelection(g_date_formats_map.at(m_dateFormatStr));
+    choiceDateFormat_->SetStringSelection(g_date_formats_map().at(m_dateFormatStr));
 }
 
 void mmQIFImportDialog::OnFileSearch(wxCommandEvent& /*event*/)

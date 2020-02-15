@@ -36,6 +36,25 @@
 #include <map>
 
 using namespace rapidjson;
+
+wxString JSON_PrettyFormated(rapidjson::Document& j_doc)
+{
+	StringBuffer j_buffer;
+	PrettyWriter<StringBuffer> j_writer(j_buffer);
+	j_doc.Accept(j_writer);
+
+	return j_buffer.GetString();
+}
+
+wxString JSON_Formated(rapidjson::Document& j_doc)
+{
+	StringBuffer j_buffer;
+	Writer<StringBuffer> j_writer(j_buffer);
+	j_doc.Accept(j_writer);
+
+	return j_buffer.GetString();
+}
+
 //----------------------------------------------------------------------------
 
 int CaseInsensitiveCmp(const wxString &s1, const wxString &s2)
@@ -339,31 +358,37 @@ const std::map<wxString, wxString> &date_formats_regex()
     return date_regex;
 }
 
-const std::map<wxString, wxString> g_date_formats_map = {
-    { "%Y-%m-%d", "YYYY-MM-DD" }
-    , { "%d/%m/%y", "DD/MM/YY" }
-    , { "%d/%m/%Y", "DD/MM/YYYY" }
-    , { "%d-%m-%y", "DD-MM-YY" }
-    , { "%d-%m-%Y", "DD-MM-YYYY" }
-    , { "%d.%m.%y", "DD.MM.YY" }
-    , { "%d.%m.%Y", "DD.MM.YYYY" }
-    , { "%d,%m,%y", "DD,MM,YY" }
-    , { "%d/%m'%Y", "DD/MM'YYYY" }
-    , { "%d/%m %Y", "DD/MM YYYY" }
-    , { "%m/%d/%y", "MM/DD/YY" }
-    , { "%m/%d/%Y", "MM/DD/YYYY" }
-    , { "%m-%d-%y", "MM-DD-YY" }
-    , { "%m-%d-%Y", "MM-DD-YYYY" }
-    , { "%m/%d'%y", "MM/DD'YY" }
-    , { "%m/%d'%Y", "MM/DD'YYYY" }
-    , { "%y/%m/%d", "YY/MM/DD" }
-    , { "%y-%m-%d", "YY-MM-DD" }
-    , { "%Y/%m/%d", "YYYY/MM/DD" }
-    , { "%Y.%m.%d", "YYYY.MM.DD" }
-    , { "%Y %m %d", "YYYY MM DD" }
-    , { "%Y%m%d", "YYYYMMDD" }
-    , { "%Y%d%m", "YYYYDDMM" }
-};
+const std::map<wxString, wxString> g_date_formats_map()
+{
+	static std::map<wxString, wxString> df;
+	if (!df.empty())
+		return df;
+
+	const auto local_date_fmt = wxLocale::GetInfo(wxLOCALE_SHORT_DATE_FMT);
+	const wxString formats[] = {
+		local_date_fmt,
+		"%Y-%m-%d", "%d/%m/%y", "%d/%m/%Y",
+		"%d-%m-%y", "%d-%m-%Y", "%d.%m.%y",
+		"%d.%m.%Y", "%d,%m,%y", "%d/%m'%Y",
+		"%d/%m'%y", "%d/%m %Y", "%m/%d/%y",
+		"%m/%d/%Y", "%m-%d-%y", "%m-%d-%Y",
+		"%m/%d'%y", "%m/%d'%Y", "%y/%m/%d",
+		"%y-%m-%d", "%Y/%m/%d", "%Y.%m.%d",
+		"%Y %m %d", "%Y%m%d",   "%Y%d%m"
+	};
+
+	for (const auto& entry : formats)
+	{
+		auto local_date_mask = entry;
+		local_date_mask.Replace("%Y", "YYYY");
+		local_date_mask.Replace("%y", "YY");
+		local_date_mask.Replace("%d", "DD");
+		local_date_mask.Replace("%m", "MM");
+		df[entry] = local_date_mask;
+	}
+
+	return df;
+}
 
 const std::map<int, std::pair<wxConvAuto, wxString> > g_encoding = {
     { 0, { wxConvAuto(wxFONTENCODING_SYSTEM), wxTRANSLATE("Default") } }

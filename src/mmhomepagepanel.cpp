@@ -920,54 +920,45 @@ const wxString mmHomePagePanel::displayGrandTotals(double& tBalance)
 
 void mmHomePagePanel::OnLinkClicked(wxWebViewEvent& event)
 {
-    const wxString& url = event.GetURL();
+	const wxString& url = event.GetURL();
 
-    if (url.Contains("#"))
-    {
-        wxString name = url.AfterLast('#');
-        wxLogDebug("%s", name);
+	if (url.Contains("#"))
+	{
+		wxString name = url.AfterLast('#');
 
-        //Read data from ini DB as JSON then convert it to json::Object
-        wxString str = Model_Infotable::instance().GetStringInfo("HOME_PAGE_STATUS", "");
-        if (!(str.StartsWith("{") && str.EndsWith("}"))) str = "{}";
-        std::wstringstream ss;
-        ss << str.ToStdWstring();
-        json::Object o;
-        json::Reader::Read(o, ss);
+		//Convert the JSON string from database to a json object
+		wxString str = Model_Infotable::instance().GetStringInfo("HOME_PAGE_STATUS", "{}");
 
-        if (name == "TOP_CATEGORIES") {
-            bool entry = !json::Boolean(o[L"TOP_CATEGORIES"]);
-            o[L"TOP_CATEGORIES"] = json::Boolean(entry);
-        }
-        else if (name == "INVEST") {
-            bool entry = !json::Boolean(o[L"INVEST"]);
-            o[L"INVEST"] = json::Boolean(entry);
-        }
-        else if (name == "ACCOUNTS_INFO") {
-            bool entry = !json::Boolean(o[L"ACCOUNTS_INFO"]);
-            o[L"ACCOUNTS_INFO"] = json::Boolean(entry);
-        }
-        else if (name == "CARD_ACCOUNTS_INFO") {
-            bool entry = !json::Boolean(o[L"CARD_ACCOUNTS_INFO"]);
-            o[L"CARD_ACCOUNTS_INFO"] = json::Boolean(entry);
-        }
-        else if (name == "CASH_ACCOUNTS_INFO") {
-            bool entry = !json::Boolean(o[L"CASH_ACCOUNTS_INFO"]);
-            o[L"CASH_ACCOUNTS_INFO"] = json::Boolean(entry);
-        }
-        else if (name == "LOAN_ACCOUNTS_INFO") {
-            bool entry = !json::Boolean(o[L"LOAN_ACCOUNTS_INFO"]);
-            o[L"LOAN_ACCOUNTS_INFO"] = json::Boolean(entry);
-        }
-        else if (name == "TERM_ACCOUNTS_INFO") {
-            bool entry = !json::Boolean(o[L"TERM_ACCOUNTS_INFO"]);
-            o[L"TERM_ACCOUNTS_INFO"] = json::Boolean(entry);
-        }
+		wxLogDebug("======= mmHomePagePanel::OnLinkClicked =======");
+		wxLogDebug("Name = %s", name);
 
-        std::wstringstream wss;
-        json::Writer::Write(o, wss);
-        wxLogDebug("%s", wss.str());
-        wxLogDebug("==========================================");
-        Model_Infotable::instance().Set("HOME_PAGE_STATUS", wss.str());
-    }
+		Document json_doc;
+		if (json_doc.Parse(str.c_str()).HasParseError())
+			return;
+
+		Document::AllocatorType& json_allocator = json_doc.GetAllocator();
+		wxLogDebug("RapidJson Input\n%s", JSON_PrettyFormated(json_doc));
+
+		const wxString type[] = { "TOP_CATEGORIES", "INVEST", "ACCOUNTS_INFO","CARD_ACCOUNTS_INFO" ,"CASH_ACCOUNTS_INFO", "LOAN_ACCOUNTS_INFO", "TERM_ACCOUNTS_INFO" , "CRYPTO_WALLETS_INFO" };
+
+		for (const auto& entry : type)
+		{
+			if (name != entry) continue;
+
+			Value v_type(entry.c_str(), json_allocator);
+			if (json_doc.HasMember(v_type) && json_doc[v_type].IsBool())
+			{
+				json_doc[v_type] = !json_doc[v_type].GetBool();
+			}
+			else
+			{
+				json_doc.AddMember(v_type, true, json_allocator);
+			}
+		}
+
+		wxLogDebug("Saving updated RapidJson\n%s", JSON_PrettyFormated(json_doc));
+		wxLogDebug("======= mmHomePagePanel::OnLinkClicked =======");
+
+		Model_Infotable::instance().Set("HOME_PAGE_STATUS", JSON_PrettyFormated(json_doc));
+	}
 }
