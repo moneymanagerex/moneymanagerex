@@ -22,9 +22,9 @@
 #include "Model.h"
 #include "db/DB_Table_Report_V1.h"
 
-#include "../3rd/cajun/json/elements.h"
-#include "../3rd/cajun/json/reader.h"
-#include "../3rd/cajun/json/writer.h"
+#include "json/elements.h"
+#include "json/reader.h"
+#include "json/writer.h"
 
 class Model_Report : public Model<DB_Table_REPORT_V1>
 {

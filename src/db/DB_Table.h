@@ -26,9 +26,9 @@
 #include <wx/wxsqlite3.h>
 #include <wx/intl.h> 
 
-#include "../3rd/cajun/json/elements.h"
-#include "../3rd/cajun/json/reader.h"
-#include "../3rd/cajun/json/writer.h"
+#include "json/elements.h"
+#include "json/reader.h"
+#include "json/writer.h"
 #include "html_template.h"
 using namespace tmpl;
 

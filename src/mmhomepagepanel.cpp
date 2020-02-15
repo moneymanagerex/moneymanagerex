@@ -33,9 +33,9 @@ Copyright (C) 2014 Nikolay
 
 #include "model/allmodel.h"
 
-#include "../3rd/cajun/json/elements.h"
-#include "../3rd/cajun/json/reader.h"
-#include "../3rd/cajun/json/writer.h"
+#include "json/elements.h"
+#include "json/reader.h"
+#include "json/writer.h"
 
 static const wxString TOP_CATEGS = R"(
 <table class = 'table'>
