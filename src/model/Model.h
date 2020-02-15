@@ -1,5 +1,6 @@
 /*******************************************************
- Copyright (C) 2013,2014 Guan Lisheng (guanlisheng@gmail.com)
+Copyright (C) 2013 - 2018 Guan Lisheng (guanlisheng@gmail.com)
+Copyright (C) 2018 Stefano Giorgio (stef145g)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -15,26 +16,16 @@
  along with this program; if not, write to the Free Software
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
-
-#ifndef MODEL_H
-#define MODEL_H
-
-#ifdef _MSC_VER
-#pragma warning (disable:4100)
-#endif
+#pragma once
 
 #include <vector>
-#include <map>
 #include <unordered_map>
 #include <algorithm>
 #include <wx/datetime.h>
-#include "singleton.h"
-#include <wx/sharedptr.h>
 #include <wx/log.h>
-#include <wx/string.h>
 #include "db/DB_Table.h"
+#include "singleton.h"
 
-class wxString;
 class wxSQLite3Statement;
 class wxSQLite3Database;
 class wxSQLite3ResultSet;
@@ -76,6 +67,7 @@ public:
     {
         this->db_->Rollback("MMEX");
     }
+
 protected:
     static wxDate to_date(const wxString& str_date)
     {
@@ -88,9 +80,11 @@ protected:
         cache.insert(std::make_pair(str_date, date));
         return date;
     }
+
 public:
-    virtual json::Object cache_to_json() const = 0;
+    virtual wxString  GetTableStatsAsJson() const = 0;
     virtual void show_statistics() const = 0;
+
 protected:
     wxSQLite3Database* db_;
 };
@@ -168,9 +162,9 @@ public:
     int save(std::vector<DATA>& rows)
     {
         this->Savepoint();
-        for (auto& r : rows) 
+        for (auto& r : rows)
         {
-            if (r.id() < 0) 
+            if (r.id() < 0)
                 wxLogDebug("Incorrect function call to save %s", r.to_json().c_str());
             this->save(&r);
         }
@@ -203,32 +197,42 @@ public:
         {
             get(item.id());
             if (++i >= max_num) break;
-        }       
+        }
     }
 
-    json::Object cache_to_json() const
+    // Return accomulated table stats as a json string
+    wxString  GetTableStatsAsJson() const
     {
-        json::Object o;
-        o[L"table"] = json::String(this->name().ToStdWstring());
-        o[L"cached"] = json::Number(this->cache_.size());
-        o[L"index_by_id"] = json::Number(this->index_by_id_.size());
-        o[L"hit"] = json::Number(this->hit_);
-        o[L"miss"] = json::Number(this->miss_);
-        o[L"skip"] = json::Number(this->skip_);
+        StringBuffer json_buffer;
+        Writer<StringBuffer> json_writer(json_buffer);
+        json_writer.StartObject();
+        json_writer.Key("table");
+        json_writer.String(this->name().c_str());
+        json_writer.Key("cached");
+        json_writer.Int(this->cache_.size());
+        json_writer.Key("index_by_id");
+        json_writer.Int(this->index_by_id_.size());
+        json_writer.Key("hit");
+        json_writer.Int(this->hit_);
+        json_writer.Key("miss");
+        json_writer.Int(this->miss_);
+        json_writer.Key("skip");
+        json_writer.Int(this->skip_);
+        json_writer.EndObject();
 
-        return o;
+        wxLogDebug("======== Model.h : GetTableStatsAsJson =======");
+        wxLogDebug("%s", json_buffer.GetString());
+
+        return json_buffer.GetString();
     }
+
     /** Show table statistics*/
     void show_statistics() const
     {
-        size_t cache_size = this->cache_.size();
-        size_t index_by_id_size = this->index_by_id_.size();
-#ifdef _WIN64
-        wxLogDebug("%s : (cache %llu, index_by_id %llu, hit %llu, miss %llu, skip %llu)", this->name(), cache_size, index_by_id_size, this->hit_, this->miss_, this->skip_);
-#else
-        wxLogDebug("%s : (cache %lu, index_by_id %lu, hit %lu, miss %lu, skip %lu)", this->name(), cache_size, index_by_id_size, this->hit_, this->miss_, this->skip_);
-#endif
+        wxLogDebug("%s : (cache %zu, index_by_id %zu, hit %zu, miss %zu, skip %zu)",
+            this->name(),
+            this->cache_.size(),
+            this->index_by_id_.size(),
+            this->hit_, this->miss_, this->skip_);
     }
 };
-
-#endif // 

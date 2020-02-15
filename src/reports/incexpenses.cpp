@@ -67,7 +67,7 @@ wxString mmReportIncomeExpenses::getHTMLText()
     mmHTMLBuilder hb;
     hb.init();
     hb.addDivContainer();
-    hb.addHeader(2, this->title());
+    hb.addHeader(2, this->getReportTitle());
     hb.DisplayDateHeading(m_date_range->start_date(), m_date_range->end_date(), m_date_range->is_with_date());
     hb.addDateNow();
 
@@ -150,8 +150,7 @@ wxString mmReportIncomeExpenses::getHTMLText()
     hb.endDiv();
     hb.end();
 
-    Model_Report::outputReportFile(hb.getHTMLText());
-    return "";
+	return hb.getHTMLText();
 }
 
 mmReportIncomeExpensesSpecificAccounts::mmReportIncomeExpensesSpecificAccounts()
@@ -237,7 +236,7 @@ wxString mmReportIncomeExpensesMonthly::getHTMLText()
     mmHTMLBuilder hb;
     hb.init();
     hb.addDivContainer();
-    hb.addHeader(2, this->title());
+    hb.addHeader(2, this->getReportTitle());
     hb.DisplayDateHeading(m_date_range->start_date(), m_date_range->end_date(), m_date_range->is_with_date());
     hb.addHeader(3, headerMsg);
     hb.addLineBreak();
@@ -291,8 +290,7 @@ wxString mmReportIncomeExpensesMonthly::getHTMLText()
     hb.endDiv(); 
     hb.end();
 
-    Model_Report::outputReportFile(hb.getHTMLText());
-    return "";
+    return hb.getHTMLText();
 }
 
 mmReportIncomeExpensesMonthlySpecificAccounts::mmReportIncomeExpensesMonthlySpecificAccounts()

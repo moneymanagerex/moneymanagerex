@@ -307,8 +307,7 @@ wxString Model_Report::get_html(const Data* r)
         return _("Caught exception");
     }
 
-    outputReportFile(out);
-    return "";
+    return out;
 }
 
 void Model_Report::prepareTempFolder()
@@ -350,12 +349,21 @@ bool Model_Report::WindowsUpdateRegistry()
 #endif
 }
 
-void Model_Report::outputReportFile(const wxString& str)
+bool Model_Report::outputReportFile(const wxString& str, const wxString& name)
 {
-    wxFileOutputStream index_output(mmex::getReportIndex());
-    wxTextOutputStream index_file(index_output);
-    index_file << str;
-    index_output.Close();
+	bool ok = true;
+	wxFileOutputStream index_output(mmex::getReportFullFileName(name));
+	if (index_output.IsOk())
+	{
+		wxTextOutputStream index_file(index_output);
+		index_file << str;
+		index_output.Close();
+	}
+	else
+	{
+		ok = false;
+	}
+	return ok;
 }
 
 wxString Model_Report::get_html(const Data& r) 

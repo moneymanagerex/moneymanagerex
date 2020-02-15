@@ -306,6 +306,5 @@ wxString mmReportSummaryByDate::getHTMLText()
 
     totBalanceData.clear();
 
-    Model_Report::outputReportFile(hb.getHTMLText());
-    return "";
+	return hb.getHTMLText();
 }

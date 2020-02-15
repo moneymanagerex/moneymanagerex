@@ -30,6 +30,11 @@
 #include "json/reader.h"
 #include "json/writer.h"
 #include "html_template.h"
+#include "rapidjson/document.h"
+#include "rapidjson/pointer.h"
+#include "rapidjson/prettywriter.h"
+#include "rapidjson/stringbuffer.h"
+using namespace rapidjson;
 using namespace tmpl;
 
 class wxString;

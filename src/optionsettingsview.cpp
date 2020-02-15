@@ -143,7 +143,7 @@ void OptionSettingsView::Create()
     m_ignore_future_transactions = new wxCheckBox(this, wxID_STATIC
         , _("View Reports without Future Transactions")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
-    m_ignore_future_transactions->SetValue(Option::instance().IgnoreFutureTransactions());
+    m_ignore_future_transactions->SetValue(Option::instance().getIgnoreFutureTransactions());
     viewsPanelSizer->Add(m_ignore_future_transactions, g_flagsV);
 
     // Colours settings

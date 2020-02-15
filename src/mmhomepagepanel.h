@@ -80,6 +80,8 @@ private:
     void getExpensesIncomeStats(std::map<int, std::pair<double, double> > &incomeExpensesStats
         , mmDateRange* date_range) const;
     int countFollowUp_, total_transactions_;
+	void setExpensesIncomeStatsData(std::map<int, std::pair<double, double> > &incomeExpensesStats
+		, mmDateRange* date_range) const;
 };
 
 #endif

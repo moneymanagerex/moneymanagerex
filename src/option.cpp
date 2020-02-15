@@ -227,6 +227,7 @@ void Option::BudgetReportWithSummaries(bool value)
     m_budgetReportWithSummaries = value;
 
 }
+
 bool Option::BudgetReportWithSummaries()
 {
     return m_budgetReportWithSummaries;
@@ -238,12 +239,6 @@ void Option::IgnoreFutureTransactions(bool value)
     m_ignoreFutureTransactions = value;
 }
 
-bool Option::IgnoreFutureTransactions()
-{
-    return m_ignoreFutureTransactions;
-}
-
-
 void Option::TransPayeeSelection(int value)
 {
     Model_Setting::instance().Set("TRANSACTION_PAYEE_NONE", value);
@@ -254,7 +249,6 @@ int Option::TransPayeeSelection()
 {
     return m_transPayeeSelection;
 }
-
 
 void Option::TransCategorySelection(int value)
 {
@@ -401,4 +395,16 @@ const int Option::AccountImageId(int account_id, bool def)
         wxASSERT(false);
     }
     return selectedImage;
+}
+
+const wxString Option::getLanguageISO6391(bool get_db)
+{
+	int language = wxLocale::GetSystemLanguage();
+	if (language == wxLANGUAGE_UNKNOWN)
+		return wxEmptyString;
+	if (language == wxLANGUAGE_DEFAULT)
+		return wxTranslations::Get()->GetBestTranslation("mmex", wxLANGUAGE_ENGLISH_US).Left(2);
+
+	const auto lang = wxLocale::GetLanguageCanonicalName(language);
+	return lang.Left(2);
 }

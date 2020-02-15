@@ -117,7 +117,7 @@ private:
     void OnTextEntered(wxCommandEvent& event);
 
     void OnCategs(wxCommandEvent& event);
-    wxString to_json();
+	const wxString to_json(bool i18n = false);
     void from_json(const wxString &data);
 
     bool isValuesCorrect();

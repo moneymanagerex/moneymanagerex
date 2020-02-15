@@ -68,20 +68,18 @@ wxBEGIN_EVENT_TABLE(budgetingListCtrl, mmListCtrl)
 wxEND_EVENT_TABLE()
 /*******************************************************/
 mmBudgetingPanel::mmBudgetingPanel(int budgetYearID
-    , wxWindow *parent, mmGUIFrame* frame, wxWindowID winid
-    , const wxPoint& pos, const wxSize& size
-    , long style,const wxString& name)
-    : m_imageList(nullptr)
-    , listCtrlBudget_(nullptr)
-    , budgetYearID_(budgetYearID)
-    , m_frame(frame)
-    , budgetReportHeading_(nullptr)
-    , income_estimated_(nullptr)
-    , income_actual_(nullptr)
-    , income_diff_(nullptr)
-    , expenses_estimated_(nullptr)
-    , expenses_actual_(nullptr)
-    , expenses_diff_(nullptr)
+	, wxWindow *parent, wxWindowID winid
+	, const wxPoint& pos, const wxSize& size
+	, long style, const wxString& name)
+	: listCtrlBudget_(nullptr)
+	, budgetYearID_(budgetYearID)
+	, m_imageList(nullptr)
+	, income_estimated_(nullptr)
+	, income_actual_(nullptr)
+	, income_diff_(nullptr)
+	, expenses_estimated_(nullptr)
+	, expenses_actual_(nullptr)
+	, expenses_diff_(nullptr)
 {
     Create(parent, winid, pos, size, style, name);
 }
@@ -394,7 +392,7 @@ void mmBudgetingPanel::initVirtualListControl()
     //Get statistics
     Model_Budget::instance().getBudgetEntry(budgetYearID_, budgetPeriod_, budgetAmt_);
     Model_Category::instance().getCategoryStats(categoryStats_
-        , &date_range, Option::instance().IgnoreFutureTransactions()
+        , &date_range, Option::instance().getIgnoreFutureTransactions()
         , false, true, (evaluateTransfer ? &budgetAmt_ : 0));
 
     const Model_Subcategory::Data_Set& allSubcategories = Model_Subcategory::instance().all(Model_Subcategory::COL_SUBCATEGNAME);

@@ -67,7 +67,7 @@ wxString mmReportForecast::getHTMLText()
     }
 
     mm_html_template report(this->m_template);
-    report(L"REPORTNAME") = this->title();
+    report(L"REPORTNAME") = this->getReportTitle();
     report(L"CONTENTS") = contents;
     report(L"GRAND") = wxString::Format("%ld", (long)amount_by_day.size());
     report(L"HTMLSCALE") = wxString::Format("%d", Option::instance().HtmlFontSize());
@@ -86,8 +86,7 @@ wxString mmReportForecast::getHTMLText()
         return _("Caught exception");
     }
 
-    Model_Report::outputReportFile(out);
-    return "";
+	return out;
 }
 
 const char * mmReportForecast::m_template = R"(

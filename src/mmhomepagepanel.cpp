@@ -560,7 +560,7 @@ void mmHomePagePanel::getData()
     if (date_range_)
         date_range_->destroy();
  
-    if (Option::instance().IgnoreFutureTransactions())
+    if (Option::instance().getIgnoreFutureTransactions())
         date_range_ = new mmCurrentMonthToDate;
     else
         date_range_ = new mmCurrentMonth;
@@ -613,19 +613,18 @@ const wxString mmHomePagePanel::getToggles()
 
 void mmHomePagePanel::fillData()
 {
-    for (const auto& entry : m_frames)
-    {
-        m_templateText.Replace(wxString::Format("<TMPL_VAR %s>", entry.first), entry.second);
-    }
-    Model_Report::outputReportFile(m_templateText);
-    browser_->LoadURL(getURL(mmex::getReportIndex()));
-    wxLogDebug("Loading file:%s", mmex::getReportIndex());
+	for (const auto& entry : m_frames)
+	{
+		m_templateText.Replace(wxString::Format("<TMPL_VAR %s>", entry.first), entry.second);
+	}
+	Model_Report::outputReportFile(m_templateText, "index");
+	browser_->LoadURL(getURL(mmex::getReportFullFileName("index")));
 }
 
 void mmHomePagePanel::get_account_stats(std::map<int, std::pair<double, double> > &accountStats)
 {
     Model_Checking::Data_Set all_trans;
-    if (Option::instance().IgnoreFutureTransactions())
+    if (Option::instance().getIgnoreFutureTransactions())
     {
         all_trans = Model_Checking::instance().find(
             DB_Table_CHECKINGACCOUNT_V1::TRANSDATE(date_range_->today().FormatISODate(), LESS_OR_EQUAL));
@@ -660,7 +659,7 @@ void mmHomePagePanel::getExpensesIncomeStats(std::map<int, std::pair<double, dou
     , mmDateRange* date_range)const
 {
     //Initialization
-    bool ignoreFuture = Option::instance().IgnoreFutureTransactions();
+    bool ignoreFuture = Option::instance().getIgnoreFutureTransactions();
     wxDateTime start_date = wxDateTime(date_range->end_date()).SetDay(1);
 
     //Calculations
@@ -759,93 +758,164 @@ const wxString mmHomePagePanel::displayAccounts(double& tBalance, std::map<int, 
 //* Income vs Expenses *//
 const wxString mmHomePagePanel::displayIncomeVsExpenses()
 {
-    json::Object o;
-    o.Clear();
-    std::wstringstream ss;
+	double tIncome = 0.0, tExpenses = 0.0;
+	std::map<int, std::pair<double, double> > incomeExpensesStats;
+	setExpensesIncomeStatsData(incomeExpensesStats, date_range_);
 
-    double tIncome = 0.0, tExpenses = 0.0;
-    std::map<int, std::pair<double, double> > incomeExpensesStats;
-    getExpensesIncomeStats(incomeExpensesStats, date_range_);
+	for (const auto& account : Model_Account::instance().all())
+	{
+		int idx = account.ACCOUNTID;
+		tIncome += incomeExpensesStats[idx].first;
+		tExpenses += incomeExpensesStats[idx].second;
+	}
+	// Compute chart spacing and interval (chart forced to start at zero)
+	double steps = 10.0;
+	double scaleStepWidth = ceil(std::max(tIncome, tExpenses) / steps);
+	if (scaleStepWidth <= 1.0)
+		scaleStepWidth = 1.0;
+	else {
+		double s = (pow(10, ceil(log10(scaleStepWidth)) - 1.0));
+		if (s > 0) scaleStepWidth = ceil(scaleStepWidth / s)*s;
+	}
 
-    for (const auto& account : Model_Account::instance().all())
-    {
-        int idx = account.ACCOUNTID;
-        tIncome += incomeExpensesStats[idx].first;
-        tExpenses += incomeExpensesStats[idx].second;
-    }
-    // Compute chart spacing and interval (chart forced to start at zero)
-    double steps = 10.0;
-    double scaleStepWidth = ceil(std::max(tIncome, tExpenses) / steps);
-    if (scaleStepWidth <= 1.0)
-        scaleStepWidth = 1.0;
-    else {
-        double s = (pow(10, ceil(log10(scaleStepWidth)) - 1.0));
-        if (s > 0) scaleStepWidth = ceil(scaleStepWidth / s)*s;
-    }
+	StringBuffer json_buffer;
+	PrettyWriter<StringBuffer> json_writer(json_buffer);
+	json_writer.StartObject();
+	json_writer.Key("0");
+	json_writer.String(wxString::Format(_("Income vs Expenses: %s"), date_range_->local_title()).c_str());
+	json_writer.Key("1");
+	json_writer.String(_("Type").c_str());
+	json_writer.Key("2");
+	json_writer.String(_("Amount").c_str());
+	json_writer.Key("3");
+	json_writer.String(_("Income").c_str());
+	json_writer.Key("4");
+	json_writer.String(Model_Currency::toCurrency(tIncome).c_str());
+	json_writer.Key("5");
+	json_writer.String(_("Expenses").c_str());
+	json_writer.Key("6");
+	json_writer.String(Model_Currency::toCurrency(tExpenses).c_str());
+	json_writer.Key("7");
+	json_writer.String(_("Difference:").c_str());
+	json_writer.Key("8");
+	json_writer.String(Model_Currency::toCurrency(tIncome - tExpenses).c_str());
+	json_writer.Key("9");
+	json_writer.String(_("Income/Expenses").c_str());
+	json_writer.Key("10");
+	json_writer.String(wxString::FromCDouble(tIncome, 2).c_str());
+	json_writer.Key("11");
+	json_writer.String(wxString::FromCDouble(tExpenses, 2).c_str());
+	json_writer.Key("12");
+	json_writer.Int(steps);
+	json_writer.Key("13");
+	json_writer.Int(scaleStepWidth);
+	json_writer.EndObject();
 
-    o[L"0"] = json::String(wxString::Format(_("Income vs Expenses: %s"), date_range_->local_title()).ToStdWstring());
-    o[L"1"] = json::String(_("Type").ToStdWstring());
-    o[L"2"] = json::String(_("Amount").ToStdWstring());
-    o[L"3"] = json::String(_("Income").ToStdWstring());
-    o[L"4"] = json::String(Model_Currency::toCurrency(tIncome).ToStdWstring());
-    o[L"5"] = json::String(_("Expenses").ToStdWstring());
-    o[L"6"] = json::String(Model_Currency::toCurrency(tExpenses).ToStdWstring());
-    o[L"7"] = json::String(_("Difference:").ToStdWstring());
-    o[L"8"] = json::String(Model_Currency::toCurrency(tIncome - tExpenses).ToStdWstring());
-    o[L"9"] = json::String(_("Income/Expenses").ToStdWstring());
-    o[L"10"] = json::String(wxString::Format("%.2f", tIncome).ToStdWstring());
-    o[L"11"] = json::String(wxString::Format("%.2f", tExpenses).ToStdWstring());
-    o[L"12"] = json::Number(steps);
-    o[L"13"] = json::Number(scaleStepWidth);
+	wxLogDebug("======= mmHomePagePanel::getIncomeVsExpensesJSON =======");
+	wxLogDebug("RapidJson\n%s", json_buffer.GetString());
 
-    json::Writer::Write(o, ss);
-    return ss.str();
+	return json_buffer.GetString();
+}
+
+void mmHomePagePanel::setExpensesIncomeStatsData(std::map<int, std::pair<double, double> > &incomeExpensesStats
+	, mmDateRange* date_range) const
+{
+	//Initialization
+	bool ignoreFuture = Option::instance().getIgnoreFutureTransactions();
+
+	//Calculations
+	const auto &transactions = Model_Checking::instance().find(
+		Model_Checking::TRANSDATE(date_range->start_date(), GREATER_OR_EQUAL)
+		, Model_Checking::TRANSDATE(date_range->end_date(), LESS_OR_EQUAL)
+		, Model_Checking::STATUS(Model_Checking::VOID_, NOT_EQUAL)
+		, Model_Checking::TRANSCODE(Model_Checking::TRANSFER, NOT_EQUAL)
+	);
+
+	for (const auto& pBankTransaction : transactions)
+	{
+		if (ignoreFuture)
+		{
+			if (Model_Checking::TRANSDATE(pBankTransaction).IsLaterThan(date_range->today()))
+				continue; //skip future dated transactions
+		}
+
+		// Do not include asset or stock transfers in income expense calculations.
+		if (Model_Checking::foreignTransactionAsTransfer(pBankTransaction))
+			continue;
+
+		const double convRate = Model_CurrencyHistory::getDayRate(Model_Account::instance().get(pBankTransaction.ACCOUNTID)->CURRENCYID, pBankTransaction.TRANSDATE);
+
+		int idx = pBankTransaction.ACCOUNTID;
+		if (Model_Checking::type(pBankTransaction) == Model_Checking::DEPOSIT)
+			incomeExpensesStats[idx].first += pBankTransaction.TRANSAMOUNT * convRate;
+		else
+			incomeExpensesStats[idx].second += pBankTransaction.TRANSAMOUNT * convRate;
+	}
 }
 
 //* Assets *//
 const wxString mmHomePagePanel::displayAssets(double& tBalance)
 {
-    json::Object o;
-    std::wstringstream ss;
+	double asset_balance = Model_Asset::instance().balance();
+	tBalance += asset_balance;
 
-    double asset_balance = Model_Asset::instance().balance();
-    tBalance += asset_balance;
+	StringBuffer json_buffer;
+	PrettyWriter<StringBuffer> json_writer(json_buffer);
+	json_writer.StartObject();
+	json_writer.Key("NAME");
+	json_writer.String(_("Assets").c_str());
+	json_writer.Key("VALUE");
+	json_writer.String(Model_Currency::toCurrency(asset_balance).c_str());
+	json_writer.EndObject();
 
-    o[L"NAME"] = json::String(_("Assets").ToStdWstring());
-    o[L"VALUE"] = json::String(Model_Currency::toCurrency(asset_balance).ToStdWstring());
+	wxLogDebug("======= mmHomePagePanel::getAssetsJSON =======");
+	wxLogDebug("RapidJson\n%s", json_buffer.GetString());
 
-    json::Writer::Write(o, ss);
-    return ss.str();
+	return json_buffer.GetString();
 }
 
 const wxString mmHomePagePanel::getStatWidget()
 {
-    json::Object o;
-    std::wstringstream ss;
+	StringBuffer json_buffer;
+	PrettyWriter<StringBuffer> json_writer(json_buffer);
+	json_writer.StartObject();
 
-    o[L"NAME"] = json::String(_("Transaction Statistics").ToStdWstring());
-    if (this->countFollowUp_ > 0)
-    {
-        o[json::String(_("Follow Up On Transactions: ").ToStdWstring())] = json::Number(this->countFollowUp_);
-    }
-    o[json::String(_("Total Transactions: ").ToStdWstring())] = json::Number(this->total_transactions_);
+	json_writer.Key("NAME");
+	json_writer.String(_("Transaction Statistics").c_str());
 
-    json::Writer::Write(o, ss);
-    return ss.str();
+	if (this->countFollowUp_ > 0)
+	{
+		json_writer.Key(_("Follow Up On Transactions: ").c_str());
+		json_writer.Double(this->countFollowUp_);
+	}
+
+	json_writer.Key(_("Total Transactions: ").c_str());
+	json_writer.Int(this->total_transactions_);
+	json_writer.EndObject();
+
+	wxLogDebug("======= mmHomePagePanel::getStatWidget =======");
+	wxLogDebug("RapidJson\n%s", json_buffer.GetString());
+
+	return json_buffer.GetString();
 }
 
 const wxString mmHomePagePanel::displayGrandTotals(double& tBalance)
 {
-    json::Object o;
-    std::wstringstream ss;
+	const wxString tBalanceStr = Model_Currency::toCurrency(tBalance);
 
-    const wxString tBalanceStr = Model_Currency::toCurrency(tBalance);
+	StringBuffer json_buffer;
+	PrettyWriter<StringBuffer> json_writer(json_buffer);
+	json_writer.StartObject();
+	json_writer.Key("NAME");
+	json_writer.String(_("Grand Total:").c_str());
+	json_writer.Key("VALUE");
+	json_writer.String(tBalanceStr.c_str());
+	json_writer.EndObject();
 
-    o[L"NAME"] = json::String(_("Grand Total:").ToStdWstring());
-    o[L"VALUE"] = json::String(tBalanceStr.ToStdWstring());
+	wxLogDebug("======= mmHomePagePanel::getGrandTotalsJSON =======");
+	wxLogDebug("RapidJson\n%s", json_buffer.GetString());
 
-    json::Writer::Write(o, ss);
-    return ss.str();
+	return json_buffer.GetString();
 }
 
 void mmHomePagePanel::OnLinkClicked(wxWebViewEvent& event)

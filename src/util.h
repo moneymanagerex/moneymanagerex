@@ -87,7 +87,7 @@ public:
         : id_(0)
         , isString_(true)
         , isBudgetingNode_(false)
-        , stringData_("report@" + report->title())
+        , stringData_("report@" + report->getReportTitle())
         , report_(report)
     {}
     mmTreeItemData(const wxString& string)

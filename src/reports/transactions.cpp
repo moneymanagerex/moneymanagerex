@@ -159,8 +159,7 @@ wxString mmReportTransactions::getHTMLText()
     hb.endDiv();
     hb.end();
 
-    Model_Report::outputReportFile(hb.getHTMLText());
-    return "";
+	return hb.getHTMLText();
 }
 
 void mmReportTransactions::Run(mmFilterTransactionsDialog* dlg)

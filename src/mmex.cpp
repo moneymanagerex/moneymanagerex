@@ -234,17 +234,25 @@ bool mmGUIApp::OnInit()
 
 int mmGUIApp::OnExit()
 {
-    wxLogDebug("OnExit()");
-    Model_Usage::Data* usage = Model_Usage::instance().create();
-    usage->USAGEDATE = wxDate::Today().FormatISODate();
-    usage->JSONCONTENT = Model_Usage::instance().to_string();
-    Model_Usage::instance().save(usage);
+	wxLogDebug("OnExit()");
+	Model_Usage::Data* usage = Model_Usage::instance().create();
+	usage->USAGEDATE = wxDate::Today().FormatISODate();
 
-    if (m_setting_db) delete m_setting_db;
+	wxString rj = Model_Usage::instance().To_JSON_String();
+	wxLogDebug("===== mmGUIApp::OnExit ===========================");
+	wxLogDebug("RapidJson\n%s", rj);
 
-    //Delete mmex temp folder for current user
-    wxFileName::Rmdir(mmex::getTempFolder(), wxPATH_RMDIR_RECURSIVE);
+	usage->JSONCONTENT = rj;
+	Model_Usage::instance().save(usage);
 
-    delete m_checker;
-    return 0;
+	if (m_setting_db) delete m_setting_db;
+
+	/* CURL Cleanup */
+	curl_global_cleanup();
+
+	//Delete mmex temp folder for current user
+	wxFileName::Rmdir(mmex::getTempFolder(), wxPATH_RMDIR_RECURSIVE);
+
+	delete m_checker;
+	return 0;
 }

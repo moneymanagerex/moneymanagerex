@@ -55,13 +55,13 @@ class mmBudgetingPanel : public mmPanelBase
     wxDECLARE_EVENT_TABLE();
 
 public:
-    mmBudgetingPanel(int budgetYearID
-        , wxWindow *parent, mmGUIFrame *frame
-        , wxWindowID winid = wxID_ANY
-        , const wxPoint& pos = wxDefaultPosition
-        , const wxSize& size = wxDefaultSize
-        , long style = wxTAB_TRAVERSAL | wxNO_BORDER
-        , const wxString& name = "mmBudgetingPanel");
+	mmBudgetingPanel(int budgetYearID
+		, wxWindow *parent
+		, wxWindowID winid = wxID_ANY
+		, const wxPoint& pos = wxDefaultPosition
+		, const wxSize& size = wxDefaultSize
+		, long style = wxTAB_TRAVERSAL | wxNO_BORDER
+		, const wxString& name = "mmBudgetingPanel");
     ~mmBudgetingPanel();
 
     /* updates the checking panel data */

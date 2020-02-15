@@ -42,6 +42,8 @@ public:
     // set and save the option: m_language
     void Language(wxString& language);
     wxString Language(bool get_db = false);
+	// get 2-letter ISO 639-1 code
+	const wxString getLanguageISO6391(bool get_db = false);
 
     // set and save the option: m_userNameString
     void UserName(const wxString& username);
@@ -76,9 +78,6 @@ public:
     void BudgetReportWithSummaries(bool value);
     bool BudgetReportWithSummaries();
 
-    void IgnoreFutureTransactions(bool value);
-    bool IgnoreFutureTransactions();
-
     void TransPayeeSelection(int value);
     int TransPayeeSelection();
 
@@ -105,6 +104,10 @@ public:
     int IconSize();
 
     const int AccountImageId(int account_id, bool def = false);
+	bool getSendUsageStatistics() const;
+
+    void IgnoreFutureTransactions(bool value);
+	bool getIgnoreFutureTransactions() const;
 
 private:
     wxString m_dateFormat;
@@ -135,4 +138,14 @@ private:
 inline const wxString Option::DateFormat() const
 {
     return m_dateFormat;
+}
+
+inline bool Option::getSendUsageStatistics() const
+{
+	return m_usageStatistics;
+}
+
+inline bool Option::getIgnoreFutureTransactions() const
+{
+	return m_ignoreFutureTransactions;
 }

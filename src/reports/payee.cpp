@@ -50,7 +50,7 @@ void  mmReportPayeeExpenses::RefreshData()
 
     std::map<int, std::pair<double, double> > payeeStats;
     getPayeeStats(payeeStats, const_cast<mmDateRange*>(m_date_range)
-        , Option::instance().IgnoreFutureTransactions());
+        , Option::instance().getIgnoreFutureTransactions());
 
     data_holder line;
 
@@ -97,7 +97,7 @@ wxString mmReportPayeeExpenses::getHTMLText()
     mmHTMLBuilder hb;
     hb.init();
     hb.addDivContainer();
-    hb.addHeader(2, title());
+    hb.addHeader(2, getReportTitle());
     hb.DisplayDateHeading(m_date_range->start_date(), m_date_range->end_date(), m_date_range->is_with_date());
 
     hb.addDivRow();
@@ -146,8 +146,7 @@ wxString mmReportPayeeExpenses::getHTMLText()
     hb.endDiv();
     hb.end();
 
-    Model_Report::outputReportFile(hb.getHTMLText());
-    return "";
+	return hb.getHTMLText();
 }
 
 void mmReportPayeeExpenses::getPayeeStats(std::map<int, std::pair<double, double> > &payeeStats

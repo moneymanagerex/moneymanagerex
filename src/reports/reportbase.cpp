@@ -22,16 +22,6 @@
 #include "mmDateRange.h"
 #include "model/Model_Account.h"
 
-wxString mmPrintableBase::title() const
-{
-    wxString title = m_title;
-    if (!m_date_range)
-        title += " - " + _("Custom");
-    else
-        title += " - " + wxGetTranslation(m_date_range->title());
-    return title;
-}
-
 mmGeneralReport::mmGeneralReport(const Model_Report::Data* report)
 : mmPrintableBase(report->REPORTNAME)
 , m_report(report)
@@ -102,4 +92,26 @@ void mm_html_template::load_context()
 
     const Model_Currency::Data* currency = Model_Currency::GetBaseCurrency();
     if (currency) currency->to_template(*this);
+}
+
+const wxString mmPrintableBase::getReportTitle() const
+{
+	wxString title = m_title;
+	if (m_date_range)
+	{
+		if (m_date_range->title().IsEmpty())
+			title += " - " + _("Custom");
+		else
+			title += " - " + wxGetTranslation(m_date_range->title());
+	}
+	return title;
+}
+
+const wxString mmPrintableBase::getFileName() const
+{
+	wxString file_name = getReportTitle();
+	file_name.Replace(" - ", "-");
+	file_name.Replace(" ", "_");
+	file_name.Replace("/", "-");
+	return file_name;
 }

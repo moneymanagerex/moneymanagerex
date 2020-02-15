@@ -1,5 +1,6 @@
 /*******************************************************
- Copyright (C) 2013,2014 Guan Lisheng (guanlisheng@gmail.com)
+Copyright (C) 2013 - 2018 Guan Lisheng (guanlisheng@gmail.com)
+Copyright (C) 2018 Stefano Giorgio (stef145g)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -22,6 +23,7 @@
 #include "constants.h"
 #include "paths.h"
 #include <wx/platinfo.h>
+#include <wx/thread.h>
 #include <wx/intl.h>
 #include "option.h"
 
@@ -55,33 +57,62 @@ Model_Usage& Model_Usage::instance()
     return Singleton<Model_Usage>::instance();
 }
 
-void Model_Usage::append(const json::Object& o)
+void Model_Usage::AppendToUsage(const wxString& json_string)
 {
-    this->a.Insert(o);
+    wxLogDebug("===== Model_Usage::AppendToUsage =================");
+    wxLogDebug("%s", json_string);
+    wxLogDebug("\n");
+    m_json_usage.Add(json_string);
 }
 
-void Model_Usage::append_cache_usage(const json::Object& o)
+void Model_Usage::AppendToCache(const wxString& json_string)
 {
-    this->m_cache.Insert(o);
+    wxLogDebug("===== Model_Usage::AppendToCache =================");
+    wxLogDebug("%s", json_string);
+    wxLogDebug("\n");
+    m_json_cache.Add(json_string);
 }
 
-std::wstring Model_Usage::to_string() const
+wxString Model_Usage::To_JSON_String() const
 {
-    json::Object o;
-    o[L"start"] = json::String(m_start.FormatISOCombined(' ').ToStdWstring());
-    o[L"end"] = json::String(wxDateTime::Now().FormatISOCombined(' ').ToStdWstring());
-    o[L"usage"] = a;
-    o[L"cache"] = m_cache;
+    StringBuffer json_buffer;
+    PrettyWriter<StringBuffer> json_writer(json_buffer);
 
-    std::wstringstream ss;
-    json::Writer::Write(o, ss);
-    return ss.str();
+    json_writer.StartObject();
+    json_writer.Key("start");
+    json_writer.String(m_start.FormatISOCombined(' ').c_str());
+
+    json_writer.Key("end");
+    json_writer.String(wxDateTime::Now().FormatISOCombined(' ').c_str());
+
+    json_writer.Key("usage");
+    {
+        json_writer.StartArray();
+        for (size_t i = 0; i < m_json_usage.GetCount(); i++)
+        {
+            const char* item = m_json_usage.Item(i).c_str();
+            json_writer.RawValue(item, strlen(item), kObjectType);
+        }
+        json_writer.EndArray();
+    }
+    json_writer.Key("cache");
+    {
+        json_writer.StartArray();
+        for (size_t i = 0; i < m_json_cache.GetCount(); i++)
+        {
+            const char* item = m_json_cache.Item(i).c_str();
+            json_writer.RawValue(item, strlen(item), kObjectType);
+        }
+        json_writer.EndArray();
+    }
+    json_writer.EndObject();
+    return json_buffer.GetString();
 }
 
 wxString uuid()
 {
     wxString UUID = Model_Setting::instance().GetStringSetting("UUID", wxEmptyString);
-    if (UUID == wxEmptyString || UUID.length() < wxString("mac_20140428075834123").length())
+    if (UUID.IsEmpty() || UUID.Length() < wxString("mac_20140428075834123").Length())
     {
         wxDateTime now = wxDateTime::UNow();
         UUID = wxString::Format("%s_%s", wxPlatformInfo::Get().GetPortIdShortName(), now.Format("%Y%m%d%H%M%S%l"));
@@ -90,7 +121,19 @@ wxString uuid()
     return UUID;
 }
 
-void Model_Usage::pageview(const wxWindow* window)
+class SendStatsThread : public wxThread
+{
+public:
+    explicit SendStatsThread(const wxString& url) : wxThread()
+        , m_url(url) {};
+    ~SendStatsThread() {};
+
+protected:
+    wxString m_url;
+    virtual ExitCode Entry();
+};
+
+void Model_Usage::pageview(const wxWindow* window, long plt /* = 0 msec*/)
 {
     if (!window) return;
     if (window->GetName().IsEmpty()) return;
@@ -108,70 +151,93 @@ void Model_Usage::pageview(const wxWindow* window)
             current = current->GetParent();
             continue;
         }
-        documentPath = "/" + current->GetName() + documentPath; 
+        documentPath = "/" + current->GetName() + documentPath;
         current = current->GetParent();
     }
 
-    return pageview(wxURI(documentPath).BuildURI(), wxURI(documentTitle).BuildURI());
+    if (plt)
+        timing(wxURI(documentPath).BuildURI(), wxURI(documentTitle).BuildURI(), plt);
+    return pageview(wxURI(documentPath).BuildURI(), wxURI(documentTitle).BuildURI(), plt);
 }
 
-void Model_Usage::pageview(const wxString& documentPath, const wxString& documentTitle)
+void Model_Usage::timing(const wxString& documentPath, const wxString& documentTitle, long plt /* = 0 msec*/)
 {
-    return pageview(std::string(documentPath.c_str()), std::string(documentTitle.c_str()));
-}
-
-void Model_Usage::pageview(const std::string& documentPath, const std::string& documentTitle)
-{
-    if (!Option::instance().SendUsageStatistics())
+    if (!Option::instance().getSendUsageStatistics())
     {
         return;
     }
 
-    static std::string GA_URL_ENDPOINT = "http://www.google-analytics.com/collect?";
+    wxString url = mmex::weblink::GA;
 
-    std::string url = GA_URL_ENDPOINT;
-
-    std::map<std::string, std::string> parameters = {
-        {"v", "1"},
-        {"t", "pageview"},
-        {"tid", "UA-51521761-6"},
-        {"cid", std::string(uuid().c_str())},
-        {"dp", documentPath},
-        {"dt", documentTitle},
-//        {"geoid", },
-        {"ul", std::string(Option::instance().Language().c_str())},
-        {"sr", std::string(wxString::Format("%ix%i", wxGetDisplaySize().GetX(), wxGetDisplaySize().GetY()).c_str())},
-        {"vp", ""},
-        {"sd", std::string(wxString::Format("%i-bits", wxDisplayDepth()).c_str())},
+    std::vector<std::pair<wxString, wxString>> parameters = {
+        { "v", "1" },
+        { "t", "timing" },
+        { "tid", "UA-51521761-6" },
+        { "cid", uuid() },
+        { "dp", documentPath },
+        { "dt", documentTitle },
+        //        {"geoid", },
+        { "ul", Option::instance().getLanguageISO6391() },
+        { "sr", wxString::Format("%ix%i", wxGetDisplaySize().GetX(), wxGetDisplaySize().GetY()) },
+        { "vp", "" },
+        { "sd", wxString::Format("%i-bits", wxDisplayDepth()) },
         // application
-        {"an", "MoneyManagerEx"},
-        {"av", std::string(mmex::version::string.c_str())}, // application version
-        // custom dimensions
-        {"cd1", std::string(wxPlatformInfo::Get().GetPortIdShortName().c_str())},
+        { "an", "MoneyManagerEx" },
+        { "av", mmex::version::string }, // application version
+                                         // custom dimensions
+        { "cd1", wxPlatformInfo::Get().GetPortIdShortName() },
+        { "plt", wxString::Format("%ld", plt)}
     };
 
-    for (const auto & kv : parameters)
+    for (const auto& kv : parameters)
     {
         if (kv.second.empty()) continue;
-        url += kv.first + "=" + kv.second + "&";
+        url += wxString::Format("%s=%s&", kv.first, kv.second);
     }
 
-    url.back() = ' '; // override the last &
-
-	// Spawn thread to send statistics
-	SendStatsThread* thread = new SendStatsThread(url);
-	if (thread)
-		thread->Run();
+    // Spawn thread to send statistics
+    SendStatsThread* thread = new SendStatsThread(url.RemoveLast()); // override the last &
+    thread->Run();
 }
 
-SendStatsThread::SendStatsThread(const std::string& url) : wxThread()
-, m_url(url)
-, m_end(false)
+void Model_Usage::pageview(const wxString& documentPath, const wxString& documentTitle, long plt /* = 0 msec*/)
 {
-}
+    if (!Option::instance().getSendUsageStatistics())
+    {
+        return;
+    }
 
-SendStatsThread::~SendStatsThread()
-{
+    wxString url = mmex::weblink::GA;
+
+    std::vector<std::pair<wxString, wxString>> parameters = {
+        { "v", "1" },
+        { "t", "pageview" },
+        { "tid", "UA-51521761-6" },
+        { "cid", uuid() },
+        { "dp", documentPath },
+        { "dt", documentTitle },
+        //        {"geoid", },
+        { "ul", Option::instance().getLanguageISO6391() },
+        { "sr", wxString::Format("%ix%i", wxGetDisplaySize().GetX(), wxGetDisplaySize().GetY()) },
+        { "vp", "" },
+        { "sd", wxString::Format("%i-bits", wxDisplayDepth()) },
+        // application
+        { "an", "MoneyManagerEx" },
+        { "av", mmex::version::string }, // application version
+                                         // custom dimensions
+        { "cd1", wxPlatformInfo::Get().GetPortIdShortName() },
+        { "plt", wxString::Format("%ld", plt)}
+    };
+
+    for (const auto& kv : parameters)
+    {
+        if (kv.second.empty()) continue;
+        url += wxString::Format("%s=%s&", kv.first, kv.second);
+    }
+
+    // Spawn thread to send statistics
+    SendStatsThread* thread = new SendStatsThread(url.RemoveLast()); // override the last &
+    thread->Run();
 }
 
 wxThread::ExitCode SendStatsThread::Entry()
@@ -179,7 +245,7 @@ wxThread::ExitCode SendStatsThread::Entry()
     wxLogDebug("Sending stats (thread %lu, priority %u, %s, %i cores): %s",
         GetId(), GetPriority(), wxGetOsDescription(), GetCPUCount(), m_url);
     wxString result = wxEmptyString;
-    //http_get_data(m_url, result, "User-Agent: " + wxGetOsDescription() + "\r\n");
+    http_get_data(m_url, result, "User-Agent: " + wxGetOsDescription() + "\r\n");
     wxLogDebug("Response: %s", result);
     return nullptr;
 }

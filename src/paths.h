@@ -50,6 +50,7 @@ const wxString getPathAttachment(const wxString &AttachmentsFolder);
 bool isPortableMode();
 const wxString getReportIndex();
 const wxString getTempFolder();
+const wxString getReportFullFileName(const wxString& name);
 
 } // namespace mmex
 

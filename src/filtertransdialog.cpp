@@ -815,89 +815,110 @@ void mmFilterTransactionsDialog::getDescription(mmHTMLBuilder &hb)
     hb.addText(filterDetails);
 }
 
-wxString mmFilterTransactionsDialog::to_json()
+const wxString mmFilterTransactionsDialog::to_json(bool i18n)
 {
-    json::Object o;
-    o.Clear();
-    const wxString label = m_settingLabel->GetValue().Trim();
-    if (!label.empty()) o[L"LABEL"] = json::String(label.ToStdWstring());
-    if (accountCheckBox_->IsChecked())
-    {
-        const wxString acc = accountDropDown_->GetStringSelection();
-        if (!acc.empty()) o[L"ACCOUNT"] = json::String(acc.ToStdWstring());
-    }
-    if (dateRangeCheckBox_->IsChecked())
-    {
-        o[L"DATE1"] = json::String(fromDateCtrl_->GetValue().FormatISODate().ToStdWstring());
-        o[L"DATE2"] = json::String(toDateControl_->GetValue().FormatISODate().ToStdWstring());
-    }
-    if (payeeCheckBox_->IsChecked())
-    {
-        wxString wxpayee = cbPayee_->GetValue();
-        //TODO: Here is big problem for UTF8 usage!!! wxString::ToStdString() does not working
-        //for some strings like Kubalíková
-        //but cyrillic working Николай = Николай (РќРёРєРѕР»Р°Р№)
-        //Kubalíková ----> KubalГ­kovГЎ
-        wxCharBuffer buffer = wxpayee.ToUTF8();
-        std::string str_std(buffer.data(), strlen(buffer.data()));
-        std::wstring test = wxpayee.ToStdWstring();
-        wxLogDebug("utf8: %s|to_chars %s|from_chars %s|std::string: %s"
-            , wxpayee, str_std, wxString(str_std.c_str(), wxConvUTF8), test);
+	StringBuffer json_buffer;
+	PrettyWriter<StringBuffer> json_writer(json_buffer);
+	json_writer.StartObject();
 
-        if (!test.empty()) o[L"PAYEE"] = json::String(test);
-    }
-    if (categoryCheckBox_->IsChecked())
-    {
-        o[L"SIMILAR_YN"] = json::Boolean(bSimilarCategoryStatus_);
-        o[L"CATEGORY"] = json::String(btnCategory_->GetLabel().ToStdWstring());
-    }
-    if (statusCheckBox_->IsChecked())
-    {
-        int item = choiceStatus_->GetSelection();
-        wxString status;
-        if (0 <= item && item < (int)Model_Checking::all_status().size())
-            status = Model_Checking::all_status()[item];
-        if (!status.empty()) o[L"STATUS"] = json::String(status.ToStdWstring());
-    }
-    if (typeCheckBox_->IsChecked())
-    {
-        wxString type = wxString()
-            << (cbTypeWithdrawal_->GetValue() && typeCheckBox_->GetValue() ? "W" : "")
-            << (cbTypeDeposit_->GetValue() && typeCheckBox_->GetValue() ? "D" : "")
-            << (cbTypeTransferTo_->GetValue() && typeCheckBox_->GetValue() ? "T" : "")
-            << (cbTypeTransferFrom_->GetValue() && typeCheckBox_->GetValue() ? "F" : "");
-        if (!type.empty()) o[L"TYPE"] = json::String(type.ToStdWstring());
-    }
+	if (accountCheckBox_->IsChecked())
+	{
+		const wxString acc = accountDropDown_->GetStringSelection();
+		if (!acc.empty())
+		{
+			json_writer.Key((i18n ? _("Account") : "ACCOUNT").c_str());
+			json_writer.String(acc.c_str());
+		}
+	}
 
-    if (amountRangeCheckBox_->IsChecked())
-    {
-        if (!amountMinEdit_->GetValue().empty())
-        {
-            double amount_min;
-            amountMinEdit_->GetDouble(amount_min);
-            o[L"AMOUNT_MIN"] = json::Number(amount_min);
-        }
-        if (!amountMaxEdit_->GetValue().empty())
-        {
-            double amount_max;
-            amountMaxEdit_->GetDouble(amount_max);
-            o[L"AMOUNT_MAX"] = json::Number(amount_max);
-        }
-    }
-    if (transNumberCheckBox_->IsChecked())
-    {
-        const wxString num = transNumberEdit_->GetValue();
-        if (!num.empty()) o[L"NUMBER"] = json::String(num.ToStdWstring());
-    }
-    if (notesCheckBox_->IsChecked())
-    {
-        const wxString notes = notesEdit_->GetValue();
-        if (!notes.empty()) o[L"NOTES"] = json::String(notes.ToStdWstring());
-    }
+	if (dateRangeCheckBox_->IsChecked())
+	{
+		json_writer.Key((i18n ? _("Since") : "DATE1").c_str());
+		json_writer.String(fromDateCtrl_->GetValue().FormatISODate().c_str());
+		json_writer.Key((i18n ? _("Before") : "DATE2").c_str());
+		json_writer.String(toDateControl_->GetValue().FormatISODate().c_str());
+	}
 
-    std::wstringstream ss;
-    json::Writer::Write(o, ss);
-    return ss.str();
+	if (payeeCheckBox_->IsChecked())
+	{
+		json_writer.Key((i18n ? _("Payee") : "PAYEE").c_str());
+		json_writer.String(cbPayee_->GetValue().c_str());
+	}
+
+	if (categoryCheckBox_->IsChecked())
+	{
+		json_writer.Key((i18n ? _("Include Similar") : "SIMILAR_YN").c_str());
+		json_writer.Bool(bSimilarCategoryStatus_);
+		json_writer.Key((i18n ? _("Category") : "CATEGORY").c_str());
+		json_writer.String(btnCategory_->GetLabel().c_str());
+	}
+
+	if (statusCheckBox_->IsChecked())
+	{
+		wxArrayString s = Model_Checking::all_status();
+		s.Add(wxTRANSLATE("Un-Reconciled"));
+		s.Add(wxTRANSLATE("All Except Reconciled"));
+		int item = choiceStatus_->GetSelection();
+		wxString status;
+		if (0 <= item && static_cast<size_t>(item) < s.size())
+			status = s[item];
+		if (!status.empty())
+		{
+			json_writer.Key((i18n ? _("Status") : "STATUS").c_str());
+			json_writer.String((i18n ? wxGetTranslation(status) : status).c_str());
+		}
+	}
+
+	if (typeCheckBox_->IsChecked())
+	{
+		wxString type = wxString()
+			<< (cbTypeWithdrawal_->GetValue() && typeCheckBox_->GetValue() ? "W" : "")
+			<< (cbTypeDeposit_->GetValue() && typeCheckBox_->GetValue() ? "D" : "")
+			<< (cbTypeTransferTo_->GetValue() && typeCheckBox_->GetValue() ? "T" : "")
+			<< (cbTypeTransferFrom_->GetValue() && typeCheckBox_->GetValue() ? "F" : "");
+		if (!type.empty())
+		{
+			json_writer.Key((i18n ? _("Type") : "TYPE").c_str());
+			json_writer.String(type.c_str());
+		}
+	}
+
+	if (amountRangeCheckBox_->IsChecked())
+	{
+		if (!amountMinEdit_->IsEmpty())
+		{
+			double amount_min;
+			amountMinEdit_->GetDouble(amount_min);
+			json_writer.Key((i18n ? _("Amount Min.") : "AMOUNT_MIN").c_str());
+			json_writer.Double(amount_min);
+		}
+
+		if (!amountMaxEdit_->IsEmpty())
+		{
+			double amount_max;
+			amountMaxEdit_->GetDouble(amount_max);
+			json_writer.Key((i18n ? _("Amount Max.") : "AMOUNT_MAX").c_str());
+			json_writer.Double(amount_max);
+		}
+	}
+
+	if (transNumberCheckBox_->IsChecked())
+	{
+		const wxString num = transNumberEdit_->GetValue();
+		json_writer.Key((i18n ? _("Number") : "NUMBER").c_str());
+		json_writer.String(num.c_str());
+	}
+
+	if (notesCheckBox_->IsChecked())
+	{
+		wxString notes = notesEdit_->GetValue();
+		json_writer.Key((i18n ? _("Notes") : "NOTES").c_str());
+		json_writer.String(notes.c_str());
+	}
+
+	json_writer.EndObject();
+
+	return json_buffer.GetString();
 }
 
 void mmFilterTransactionsDialog::from_json(const wxString &data)

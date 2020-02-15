@@ -34,7 +34,8 @@ public:
     virtual ~mmPrintableBase() {}
     virtual wxString getHTMLText() = 0;
     virtual void RefreshData() {}
-    virtual wxString title() const;
+	virtual const wxString getReportTitle() const;
+	virtual const wxString getFileName() const;
     virtual bool has_date_range() { return false;}
     void date_range(const mmDateRange* date_range, int selection) { this->m_date_range = date_range; this->m_date_selection = selection; }
     int getDateSelection() { return this->m_date_selection; }

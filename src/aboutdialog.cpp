@@ -38,7 +38,8 @@ mmAboutDialog::mmAboutDialog(wxWindow* parent, int TabToOpen, const wxString &na
 , privacy_text_(nullptr)
 {
     const wxString caption = (TabToOpen == 4)
-        ? _("License agreement") : wxString::Format(_("About %s"), mmex::getProgramName());
+        ? _("License agreement") 
+		: wxString::Format(_("%1$s - %2$s"), mmex::getProgramName(), mmex::getTitleProgramVersion());
     Create(parent, wxID_ANY, caption, wxDefaultPosition
         , wxDefaultSize, wxCAPTION | wxRESIZE_BORDER | wxCLOSE_BOX, TabToOpen, name);
     SetMinClientSize(wxSize(300, 400));

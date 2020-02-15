@@ -178,7 +178,7 @@ wxString mmReportMyUsage::getHTMLText()
     }
 
     mm_html_template report(usage_template);
-    report(L"REPORTNAME") = this->title();
+    report(L"REPORTNAME") = this->getReportTitle();
     report(L"CONTENTS") = contents;
     report(L"GRAND") = wxString::Format("%ld", (long)all_usage.size());
     report(L"HTMLSCALE") = wxString::Format("%d", Option::instance().HtmlFontSize());
@@ -197,6 +197,5 @@ wxString mmReportMyUsage::getHTMLText()
         return _("Caught exception");
     }
 
-    Model_Report::outputReportFile(out);
-    return "";
+	return out;
 }

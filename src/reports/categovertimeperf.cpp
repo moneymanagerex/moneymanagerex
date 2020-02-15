@@ -49,7 +49,7 @@ wxString mmReportCategoryOverTimePerformance::getHTMLText()
     std::map<int, std::map<int, std::map<int, double> > > categoryStats;
     Model_Category::instance().getCategoryStats(categoryStats
         , const_cast<mmDateRange*>(m_date_range)
-        , Option::instance().IgnoreFutureTransactions());
+        , Option::instance().getIgnoreFutureTransactions());
 
     //Init totals
     //Type(Withdrawal/Income/Summ), month, value
@@ -96,7 +96,7 @@ wxString mmReportCategoryOverTimePerformance::getHTMLText()
     mmHTMLBuilder hb;
     hb.init();
     hb.addDivContainer();
-    hb.addHeader(2, title());
+    hb.addHeader(2, getReportTitle());
     hb.addDateNow();
     hb.addLineBreak();
 
@@ -156,7 +156,6 @@ wxString mmReportCategoryOverTimePerformance::getHTMLText()
     hb.endDiv();
     hb.end();
 
-    Model_Report::outputReportFile(hb.getHTMLText());
-    return "";
+	return hb.getHTMLText();
 }
 //----------------------------------------------------------------------------

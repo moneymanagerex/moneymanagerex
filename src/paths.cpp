@@ -243,3 +243,11 @@ const wxIcon& mmex::getProgramIcon()
     return icon;
 }
 //----------------------------------------------------------------------------
+
+const wxString mmex::getReportFullFileName(const wxString& WXUNUSED(name))
+{
+	// FIXME: remove name param or use it below inplace of "index"
+	return wxString::Format("%s%s%shtml", mmex::getTempFolder()
+		, "index"
+		, wxString(wxFILE_SEP_EXT));
+}

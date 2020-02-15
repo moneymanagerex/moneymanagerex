@@ -90,7 +90,7 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
     std::map<int, std::map<int, double> > budgetAmt;
     Model_Budget::instance().getBudgetEntry(budgetYearID_, budgetPeriod, budgetAmt);
     std::map<int, std::map<int, std::map<int, double> > > categoryStats;
-    Model_Category::instance().getCategoryStats(categoryStats, &date_range, Option::instance().IgnoreFutureTransactions(),
+    Model_Category::instance().getCategoryStats(categoryStats, &date_range, Option::instance().getIgnoreFutureTransactions(),
         false, true, (evaluateTransfer ? &budgetAmt : nullptr));
 
     mmHTMLBuilder hb;
@@ -214,6 +214,5 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
     hb.endDiv();
     hb.end();
 
-    Model_Report::outputReportFile(hb.getHTMLText());
-    return "";
+	return hb.getHTMLText();
 }
