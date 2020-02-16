@@ -134,11 +134,9 @@ wxString mmex::getPathDoc(const EDocFile& f)
 
     wxASSERT(f >= 0 && f < DOC_FILES_MAX);
 
-    wxString path = GetDocDir().GetPath();
-    path += wxFileName::GetPathSeparator();
-    path += files[f];
-
-    return path;
+    wxString path = files[f];
+    path.Replace("/", wxFileName::GetPathSeparator());
+    return path.Prepend(GetDocDir().GetPathWithSep());
 }
 //----------------------------------------------------------------------------
 
@@ -162,15 +160,14 @@ wxString mmex::getPathResource(EResFile f)
 const wxString mmex::getPathShared(ESharedFile f)
 {
     static const wxString files[SHARED_FILES_MAX] = {
-      "po"
+      "locale"
     };
 
     wxASSERT(f >= 0 && f < SHARED_FILES_MAX);
 
-    wxFileName fname = GetSharedDir();
-    fname.SetFullName(files[f]);
-
-    return fname.GetFullPath();
+    wxString path = files[f];
+    path.Replace("/", wxFILE_SEP_PATH);
+    return path.Prepend(GetSharedDir().GetPathWithSep());
 }
 //----------------------------------------------------------------------------
 

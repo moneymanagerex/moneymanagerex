@@ -44,7 +44,12 @@ static const wxCmdLineEntryDesc g_cmdLineDesc [] =
 
 //----------------------------------------------------------------------------
 
-mmGUIApp::mmGUIApp(): m_frame(0), m_setting_db(0), m_optParam("")
+mmGUIApp::mmGUIApp(): m_frame(0)
+, m_checker(nullptr)
+, m_setting_db(0)
+, m_optParam(wxEmptyString)
+, m_lang(wxLANGUAGE_UNKNOWN)
+, m_locale(wxLANGUAGE_DEFAULT)
 {
 #if wxUSE_ON_FATAL_EXCEPTION
     // catch fatal exceptions
@@ -52,10 +57,66 @@ mmGUIApp::mmGUIApp(): m_frame(0), m_setting_db(0), m_optParam("")
 #endif
 }
 
+wxLanguage mmGUIApp::getGUILanguage() const
+{
+    return this->m_lang;
+}
+
 wxLocale& mmGUIApp::getLocale()
 {
     return this->m_locale;
 }
+
+bool mmGUIApp::setGUILanguage(wxLanguage lang)
+{
+    if (lang == wxLANGUAGE_UNKNOWN) {
+        lang = wxLANGUAGE_DEFAULT;
+    }
+    if (lang == this->m_lang) {
+        return false;
+    }
+    wxTranslations *trans = new wxTranslations;
+    trans->SetLanguage(lang);
+    trans->AddStdCatalog();
+    if (!trans->AddCatalog("mmex", wxLANGUAGE_ENGLISH_US) && lang != wxLANGUAGE_ENGLISH_US)
+    {
+        size_t count = trans->GetAvailableTranslations("mmex").GetCount();
+        wxString msg;
+        if (lang == wxLANGUAGE_DEFAULT)
+        {
+            wxString best;
+#if wxCHECK_VERSION(3, 1, 2) && !wxCHECK_VERSION(3, 1, 3)
+            // workaround for https://github.com/wxWidgets/wxWidgets/pull/1082
+            wxArrayString all = trans->GetAcceptableTranslations("mmex");
+            best = all.IsEmpty() ? "" : all[0];
+#else
+            best = trans->GetBestTranslation("mmex");
+#endif
+            if (best.IsEmpty())
+                best = wxLocale::GetLanguageName(wxLocale::GetSystemLanguage());
+            msg = wxString::Format(_("Cannot load a translation for the default language of your system (%s)."),
+                best);
+        }
+        else {
+            msg = wxString::Format(_("Cannot load a translation for the selected language (%s).")
+                , wxLocale::GetLanguageName(lang));
+        }
+        msg += "\n\n";
+        if (count)
+            msg += wxString::Format(_("Please use the Switch Application Language option in View menu to select one of the %zu available languages."), count + 1);
+        else
+            msg += _("There are no translation files installed.");
+
+        mmErrorDialogs::MessageWarning(NULL, msg, _("Language change"));
+        wxDELETE(trans);
+        return false;
+    }
+    wxTranslations::Set(trans);
+    this->m_lang = lang;
+    Option::instance().setLanguage(lang);
+    return true;
+}
+
 
 void mmGUIApp::OnInitCmdLine(wxCmdLineParser& parser)
 {
@@ -156,17 +217,18 @@ bool OnInitImpl(mmGUIApp* app)
     /* Initialize Image Handlers */
     wxInitAllImageHandlers();
 
-    app->m_setting_db = new wxSQLite3Database();
-    app->m_setting_db->Open(mmex::getPathUser(mmex::SETTINGS));
-    Model_Setting::instance(app->m_setting_db);
-    Model_Usage::instance(app->m_setting_db);
+    app->setSettingDB(new wxSQLite3Database());
+    app->getSettingDB()->Open(mmex::getPathUser(mmex::SETTINGS));
+    Model_Setting::instance(app->getSettingDB());
+    Model_Setting::instance().ShrinkUsageTable();
 
-    /* Force setting MMEX language parameter if it has not been set. */
-	wxString lang_name;
-    mmDialogs::mmSelectLanguage(app, 0, lang_name, !Model_Setting::instance().ContainsSetting(LANGUAGE_PARAMETER));
+    Model_Usage::instance(app->getSettingDB());
 
     /* Load general MMEX Custom Settings */
     Option::instance().LoadOptions(false);
+
+    /* set preffered GUI language */
+    app->setGUILanguage(Option::instance().getLanguageID());
 
     /* Was App Maximized? */
     bool isMax = Model_Setting::instance().GetBoolSetting("ISMAXIMIZED", true);
@@ -183,12 +245,12 @@ bool OnInitImpl(mmGUIApp* app)
     /* Load Dimensions of Window */
     int valx = Model_Setting::instance().GetIntSetting("ORIGINX", 50);
     int valy = Model_Setting::instance().GetIntSetting("ORIGINY", 50);
-    int valw = Model_Setting::instance().GetIntSetting("SIZEW", sys_screen_x/4*3);
-    int valh = Model_Setting::instance().GetIntSetting("SIZEH", sys_screen_y/4*3);
+    int valw = Model_Setting::instance().GetIntSetting("SIZEW", sys_screen_x / 4 * 3);
+    int valh = Model_Setting::instance().GetIntSetting("SIZEH", sys_screen_y / 4 * 3);
 
     //BUGFIX: #214 MMEX Window is "off screen"
-    if (valx >= sys_screen_x ) valx = sys_screen_x - valw;
-    if (valy >= sys_screen_y ) valy = sys_screen_y - valh;
+    if (valx >= sys_screen_x) valx = sys_screen_x - valw;
+    if (valy >= sys_screen_y) valy = sys_screen_y - valh;
 
     app->m_frame = new mmGUIFrame(app, mmex::getProgramName(), wxPoint(valx, valy), wxSize(valw, valh));
 

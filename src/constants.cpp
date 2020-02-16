@@ -148,6 +148,8 @@ const wxString mmex::weblink::Slack = "http://slack.moneymanagerex.org/";
 
 const wxString mmex::weblink::GooglePlay = "https://play.google.com/store/apps/details?id=com.money.manager.ex";
 const wxString mmex::weblink::WebApp = "https://github.com/moneymanagerex/web-money-manager-ex";
+const wxString mmex::weblink::Chiark = "https://www.chiark.greenend.org.uk/~sgtatham/bugs.html";
+const wxString mmex::weblink::Crowdin = "https://crowdin.com/project/moneymanagerex/";
 
 // Will display the stock page when using Looks up the current value
 const wxString mmex::weblink::DefStockUrl = "http://finance.yahoo.com/echarts?s=%s";

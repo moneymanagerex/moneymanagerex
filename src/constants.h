@@ -89,6 +89,8 @@ namespace weblink
     extern const wxString DefStockUrl;
     extern const wxString GooglePlay;
     extern const wxString WebApp;
+    extern const wxString Chiark;
+    extern const wxString Crowdin;
     extern const wxString YahooQuotes;
     extern const wxString YahooQuotesHistory;
 } // namespace weblink
@@ -140,7 +142,7 @@ enum id
     mmID_REPORTS,
     mmID_CHECKING,
     mmID_BROWSER,
-
+    MENU_REPORT_BUG,
     MENU_BILLSDEPOSITS,
     MENU_STOCKS,
     MENU_GOTOACCOUNT,

@@ -31,7 +31,7 @@
 //----------------------------------------------------------------------------
 Option::Option()
 :   m_dateFormat(mmex::DEFDATEFORMAT)
-    , m_language("en_US")
+    , m_language(wxLANGUAGE_UNKNOWN)
     , m_databaseUpdated(false)
     , m_budgetFinancialYears(false)
     , m_budgetIncludeTransfers(false)
@@ -77,7 +77,7 @@ void Option::LoadOptions(bool include_infotable)
         }
     }
 
-    m_language = Model_Setting::instance().GetStringSetting(LANGUAGE_PARAMETER, "en_US");
+    m_language = static_cast<wxLanguage>(Model_Setting::instance().GetIntSetting(LANGUAGE_PARAMETER, wxLANGUAGE_UNKNOWN));
 
     m_budgetFinancialYears = Model_Setting::instance().GetBoolSetting(INIDB_BUDGET_FINANCIAL_YEARS, false);
     m_budgetIncludeTransfers = Model_Setting::instance().GetBoolSetting(INIDB_BUDGET_INCLUDE_TRANSFERS, false);
@@ -117,19 +117,13 @@ void Option::DateFormat(const wxString& dateformat)
     Model_Infotable::instance().Set("DATEFORMAT", dateformat);
 }
 
-void Option::Language(wxString& language)
-{
-    m_language = language;
-    Model_Setting::instance().Set(LANGUAGE_PARAMETER, language);
-}
-
-wxString Option::Language(bool get_db)
+wxLanguage Option::getLanguageID(bool get_db)
 {
     if (get_db)
     {
-        m_language = Model_Setting::instance().GetStringSetting(LANGUAGE_PARAMETER, "en_US");
+        m_language = static_cast<wxLanguage>(Model_Setting::instance().GetIntSetting(LANGUAGE_PARAMETER, wxLANGUAGE_UNKNOWN));
     }
-
+   
     return m_language;
 }
 
@@ -399,12 +393,18 @@ const int Option::AccountImageId(int account_id, bool def)
 
 const wxString Option::getLanguageISO6391(bool get_db)
 {
-	int language = wxLocale::GetSystemLanguage();
-	if (language == wxLANGUAGE_UNKNOWN)
-		return wxEmptyString;
-	if (language == wxLANGUAGE_DEFAULT)
-		return wxTranslations::Get()->GetBestTranslation("mmex", wxLANGUAGE_ENGLISH_US).Left(2);
+    Option::getLanguageID(get_db);
+    if (m_language == wxLANGUAGE_UNKNOWN)
+        return wxEmptyString;
+    if (m_language == wxLANGUAGE_DEFAULT)
+        return wxTranslations::Get()->GetBestTranslation("mmex", wxLANGUAGE_ENGLISH_US).Left(2);
 
-	const auto lang = wxLocale::GetLanguageCanonicalName(language);
-	return lang.Left(2);
+    const auto lang = wxLocale::GetLanguageCanonicalName(m_language);
+    return lang.Left(2);
+}
+
+void Option::setLanguage(wxLanguage& language)
+{
+    m_language = language;
+    Model_Setting::instance().Set(LANGUAGE_PARAMETER, language);
 }

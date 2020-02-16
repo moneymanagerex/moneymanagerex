@@ -59,6 +59,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "../resources/household_obj_png.h"
 #include "../resources/import_png.h"
 #include "../resources/jewellery_png.h"
+#include "../resources/language_png.h"
 #include "../resources/leds_png.h"
 #include "../resources/loan_account_png.h"
 #include "../resources/loss_png.h"
@@ -237,6 +238,7 @@ const wxBitmap mmBitmap(int ref)
     case HOUSEHOLD_OBJ: return x == 16 ? wxBITMAP_PNG_FROM_DATA(household_obj) : x == 24 ? wxBITMAP_PNG_FROM_DATA(household_obj24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(household_obj32) : wxBITMAP_PNG_FROM_DATA(household_obj48);
     case IMPORT: return x == 16 ? wxBITMAP_PNG_FROM_DATA(import) : x == 24 ? wxBITMAP_PNG_FROM_DATA(import24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(import32) : wxBITMAP_PNG_FROM_DATA(import48);
     case JEWELLERY: return x == 16 ? wxBITMAP_PNG_FROM_DATA(jewellery) : x == 24 ? wxBITMAP_PNG_FROM_DATA(jewellery24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(jewellery32) : wxBITMAP_PNG_FROM_DATA(jewellery48);
+    case LANG: return x == 16 ? wxBITMAP_PNG_FROM_DATA(language) : x == 24 ? wxBITMAP_PNG_FROM_DATA(language24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(language32) : wxBITMAP_PNG_FROM_DATA(language48);
     case LED_GREEN: return x == 16 ? wxBITMAP_PNG_FROM_DATA(led_green) : x == 24 ? wxBITMAP_PNG_FROM_DATA(led_green24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(led_green32) : wxBITMAP_PNG_FROM_DATA(led_green48);
     case LED_OFF: return x == 16 ? wxBITMAP_PNG_FROM_DATA(led_off) : x == 24 ? wxBITMAP_PNG_FROM_DATA(led_off24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(led_off32) : wxBITMAP_PNG_FROM_DATA(led_off48);
     case LED_RED: return x == 16 ? wxBITMAP_PNG_FROM_DATA(led_red) : x == 24 ? wxBITMAP_PNG_FROM_DATA(led_red24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(led_red32) : wxBITMAP_PNG_FROM_DATA(led_red48);

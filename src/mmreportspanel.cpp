@@ -44,7 +44,13 @@ public:
     {
         mmGUIFrame* frame = m_reportPanel->m_frame;
         wxString sData;
-        if (uri.StartsWith("trxid:", &sData))
+        if (uri.StartsWith("https:", &sData))
+        {
+            wxLaunchDefaultBrowser(uri);
+            wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_REPORT_BUG);
+            frame->GetEventHandler()->AddPendingEvent(evt);
+        }
+        else if (uri.StartsWith("trxid:", &sData))
         {
             long transID = -1;
             if (sData.ToLong(&transID)) {

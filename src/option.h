@@ -40,10 +40,10 @@ public:
     const wxString DateFormat() const;
 
     // set and save the option: m_language
-    void Language(wxString& language);
-    wxString Language(bool get_db = false);
+    wxLanguage getLanguageID(bool get_db = false);
 	// get 2-letter ISO 639-1 code
 	const wxString getLanguageISO6391(bool get_db = false);
+    void setLanguage(wxLanguage& language);
 
     // set and save the option: m_userNameString
     void UserName(const wxString& username);
@@ -111,7 +111,7 @@ public:
 
 private:
     wxString m_dateFormat;
-    wxString m_language;
+    wxLanguage m_language;
     wxString m_userNameString;
     wxString m_financialYearStartDayString;
     wxString m_financialYearStartMonthString;

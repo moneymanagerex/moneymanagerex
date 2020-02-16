@@ -55,6 +55,7 @@ public:
     ~mmGUIFrame();
 public:
     mmGUIApp *m_app;
+
 public:
     void setGotoAccountID(int account_id, long transID = -1);
     bool financialYearIsDifferent()
@@ -167,7 +168,6 @@ private:
     void OnExportToXML(wxCommandEvent& event);
     void OnExportToQIF(wxCommandEvent& event);
     void OnExportToHtml(wxCommandEvent& event);
-    void OnImportQFX(wxCommandEvent& event);
     void OnImportUniversalCSV(wxCommandEvent& event);
     void OnImportXML(wxCommandEvent& event);
     void OnImportQIF(wxCommandEvent& event);
@@ -181,6 +181,7 @@ private:
 
     bool m_hide_share_accounts;
     void OnHideShareAccounts(wxCommandEvent &event);
+    void OnChangeGUILanguage(wxCommandEvent &event);
 
     void OnViewToolbar(wxCommandEvent &event);
     void OnViewStatusbar(wxCommandEvent &event);
@@ -296,6 +297,8 @@ private:
         MENU_SHOW_APPSTART,
         MENU_EXPORT_HTML,
         MENU_CURRENCY,
+        MENU_LANG,
+        MENU_LANG_MAX = MENU_LANG + wxLANGUAGE_USER_DEFINED,
 
         MENU_IMPORT_MMNETCSV,
         MENU_IMPORT_QIF,

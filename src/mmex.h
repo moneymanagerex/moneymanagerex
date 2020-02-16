@@ -34,21 +34,28 @@ class mmGUIApp : public wxApp
 public:
     mmGUIApp();
 
+    wxLanguage getGUILanguage() const;
+    bool setGUILanguage(wxLanguage lang);
     wxLocale& getLocale();
     virtual void OnInitCmdLine(wxCmdLineParser& parser);
     virtual bool OnCmdLineParsed(wxCmdLineParser& parser);
     mmGUIFrame* m_frame;
-    wxSQLite3Database* m_setting_db;
-    wxString m_optParam;
+    const wxString getOptParam() const { return m_optParam; }
+    wxSQLite3Database* getSettingDB() const { return m_setting_db; }
+    void setSettingDB(wxSQLite3Database* db) { m_setting_db = db; }
+
 
 private:
+    wxString m_optParam;
+    wxSQLite3Database* m_setting_db;
     void reportFatalException(wxDebugReport::Context);
-    wxLocale m_locale; // locale we'll be using
     bool OnInit();
     int OnExit();
     void OnFatalException(); // called when a crash occurs in this application
     void HandleEvent(wxEvtHandler *handler, wxEventFunction func, wxEvent& event) const;
     wxSingleInstanceChecker* m_checker;
+    wxLanguage m_lang; // GUI translation language displayed
+    wxLocale m_locale;
 
 public:
     virtual int FilterEvent(wxEvent& event);

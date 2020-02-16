@@ -25,6 +25,7 @@
 #include "paths.h"
 #include "platfdep.h"
 #include "util.h"
+#include "option.h"
 
 #include "model/Model_Infotable.h"
 #include "model/Model_Report.h"
@@ -996,18 +997,16 @@ void mmGeneralReportManager::OnExportReport(wxCommandEvent& /*event*/)
 
 void mmGeneralReportManager::showHelp()
 {
-    wxFileName helpIndexFile(mmex::getPathDoc((mmex::EDocFile)mmex::HTML_CUSTOM_SQL));
-    if (Option::instance().Language() != "english" && Option::instance().Language() != "")
-    {
-        helpIndexFile.AppendDir(Option::instance().Language());
-    }
-    wxString url = "file://" + mmex::getPathDoc((mmex::EDocFile)mmex::HTML_CUSTOM_SQL);
+    wxFileName helpIndexFile(mmex::getPathDoc(mmex::HTML_CUSTOM_SQL));
+    const auto lang = Option::instance().getLanguageISO6391();
+    if (lang != "en" && !lang.empty())
+        helpIndexFile.AppendDir(lang);
+    wxString url = "file://" + mmex::getPathDoc(mmex::HTML_CUSTOM_SQL);
     if (helpIndexFile.FileExists()) // Load the help file for the given language
     {
         url = "file://" + helpIndexFile.GetPathWithSep() + helpIndexFile.GetFullName();
     }
     m_outputHTML->LoadURL(url);
-    wxLogDebug("%s", url);
 }
 
 wxString mmGeneralReportManager::OnGetItemText(long item, long column) const

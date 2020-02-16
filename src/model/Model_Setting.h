@@ -82,6 +82,8 @@ public:
 
     wxString ViewTransactions();
     void SetViewTransactions(const wxString& value);
+    
+    void ShrinkUsageTable();
 };
 
-#endif // 
+#endif 

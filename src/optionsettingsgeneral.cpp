@@ -29,7 +29,6 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 wxBEGIN_EVENT_TABLE(OptionSettingsGeneral, wxPanel)
     EVT_BUTTON(ID_DIALOG_OPTIONS_BUTTON_CURRENCY, OptionSettingsGeneral::OnCurrency)
     EVT_CHOICE(ID_DIALOG_OPTIONS_WXCHOICE_DATE, OptionSettingsGeneral::OnDateFormatChanged)
-    EVT_BUTTON(ID_DIALOG_OPTIONS_BUTTON_LANGUAGE, OptionSettingsGeneral::OnLanguageChanged)
 wxEND_EVENT_TABLE()
 /*******************************************************/
 
@@ -74,21 +73,6 @@ void OptionSettingsGeneral::Create()
     userNameTextCtr->SetToolTip(_("The User Name is used as a title for the database."));
     headerStaticBoxSizer->Add(userNameTextCtr, g_flagsExpand);
     generalPanelSizer->Add(headerStaticBoxSizer, wxSizerFlags(g_flagsExpand).Proportion(0));
-
-    // Language Settings
-    wxStaticBox* languageStaticBox = new wxStaticBox(this, wxID_STATIC, _("Language"));
-    SetBoldFont(languageStaticBox);
-    wxStaticBoxSizer* languageStaticBoxSizer = new wxStaticBoxSizer(languageStaticBox, wxHORIZONTAL);
-    generalPanelSizer->Add(languageStaticBoxSizer, wxSizerFlags(g_flagsExpand).Proportion(0));
-
-    m_current_language = Model_Setting::instance().GetStringSetting(LANGUAGE_PARAMETER, "en_US");
-	const auto lang = wxLocale::GetSystemLanguage();
-	wxString current_language_name = wxLocale::GetLanguageName(lang);
-    wxButton* languageButton = new wxButton(this, ID_DIALOG_OPTIONS_BUTTON_LANGUAGE
-        , current_language_name
-        , wxDefaultPosition, wxSize(150, -1), 0);
-    languageButton->SetToolTip(_("Specify the language to use"));
-    languageStaticBoxSizer->Add(languageButton, g_flagsH);
 
     // Currency Settings
     wxStaticBox* currencyStaticBox = new wxStaticBox(this, wxID_STATIC, _("Currency"));
@@ -208,17 +192,6 @@ void OptionSettingsGeneral::OnDateFormatChanged(wxCommandEvent& /*event*/)
     }
 }
 
-void OptionSettingsGeneral::OnLanguageChanged(wxCommandEvent& /*event*/)
-{
-	wxString lang_name;
-    const wxString lang = mmDialogs::mmSelectLanguage(this->m_app, this, lang_name, true, false);
-    if (lang.empty()) return;
-
-	wxButton *btn = (wxButton*)FindWindow(ID_DIALOG_OPTIONS_BUTTON_LANGUAGE);
-    wxASSERT(btn);
-    btn->SetLabelText(lang_name);
-}
-
 bool OptionSettingsGeneral::SaveFinancialYearStart()
 {
     //Save Financial Year Start Month
@@ -241,9 +214,6 @@ void OptionSettingsGeneral::SaveSettings()
 {
     wxTextCtrl* stun = (wxTextCtrl*) FindWindow(ID_DIALOG_OPTIONS_TEXTCTRL_USERNAME);
     Option::instance().UserName(stun->GetValue());
-
-	wxString lang_name;
-    mmDialogs::mmSelectLanguage(this->m_app, this, lang_name,false);
 
     Option::instance().DateFormat(m_date_format);
     SaveFinancialYearStart();

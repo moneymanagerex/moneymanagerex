@@ -114,6 +114,7 @@ enum png {
     HOUSEHOLD_OBJ,
     IMPORT,
     JEWELLERY,
+    LANG,
     LED_GREEN,
     LED_OFF,
     LED_RED,

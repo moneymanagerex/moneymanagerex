@@ -32,7 +32,7 @@ const wxFileName mmex::GetInstallDir()
     
     const wxArrayString &dirs = fname.GetDirs();
 
-    if (dirs.Last().Upper() == "BIN") // bin\mmex.exe
+    if (dirs.Last().Lower() == "bin") // something like a /usr/bin or /usr/local/bin
         fname.RemoveLastDir();
     
     return fname;

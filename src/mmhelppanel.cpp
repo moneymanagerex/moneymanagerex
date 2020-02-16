@@ -82,26 +82,18 @@ void mmHelpPanel::CreateControls()
 
     Main default help file name: ./help/index.html
     Default filename names can be found in mmex::getPathDoc(fileIndex)
-    
-    Language files now reside in their own language subdirectory in ./help/
-    example: russian language - changed to: ./help/russian/index.html
 
     Default help files will be used when the language help file are not found.
     **************************************************************************/
+
     int helpFileIndex = m_frame->getHelpFileIndex();
- 
-    wxFileName helpIndexFile(mmex::getPathDoc((mmex::EDocFile)helpFileIndex));
-    if (Option::instance().Language() != "english" && Option::instance().Language() != "")
-    {
-        helpIndexFile.AppendDir(Option::instance().Language());
-    }
-    wxString url = "file://" + mmex::getPathDoc((mmex::EDocFile)helpFileIndex);
-    if (helpIndexFile.FileExists()) // Load the help file for the given language
-    {
-        url = "file://" + helpIndexFile.GetPathWithSep() + helpIndexFile.GetFullName();
-    }
-    browser_->LoadURL(url);
-    wxLogDebug("%s", url);
+    const wxString help_file = wxString::Format("file://%s?lang=%s"
+        , mmex::getPathDoc(static_cast<mmex::EDocFile>(helpFileIndex))
+        , Option::instance().getLanguageISO6391());
+
+    //wxLogDebug("%s", help_file);
+    browser_ = wxWebView::New(this, wxID_ANY, help_file);
+    itemBoxSizer2->Add(browser_, 1, wxGROW | wxALL, 1);
 }
 
 void mmHelpPanel::sortTable()

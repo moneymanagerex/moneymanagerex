@@ -63,6 +63,7 @@
 #include "wizard_update.h"
 
 #include "reports/allreport.h"
+#include "reports/bugreport.h"
 
 #include "import_export/qif_export.h"
 #include "import_export/qif_import_gui.h"
@@ -161,6 +162,7 @@ EVT_MENU(MENU_TREEPOPUP_ACCOUNT_EXPORT2QIF, mmGUIFrame::OnExportToQIF)
 EVT_MENU(MENU_TREEPOPUP_ACCOUNT_IMPORTUNIVCSV, mmGUIFrame::OnImportUniversalCSV)
 EVT_MENU(MENU_TREEPOPUP_ACCOUNT_IMPORTXML, mmGUIFrame::OnImportXML)
 EVT_MENU_RANGE(MENU_TREEPOPUP_ACCOUNT_VIEWALL, MENU_TREEPOPUP_ACCOUNT_VIEWCLOSED, mmGUIFrame::OnViewAccountsTemporaryChange)
+EVT_MENU_RANGE(MENU_LANG + 1, MENU_LANG_MAX, mmGUIFrame::OnChangeGUILanguage)
 
 /*Automatic processing of repeat transactions*/
 EVT_TIMER(AUTO_REPEAT_TRANSACTIONS_TIMER_ID, mmGUIFrame::OnAutoRepeatTransactionsTimer)
@@ -210,7 +212,7 @@ mmGUIFrame::mmGUIFrame(mmGUIApp* app, const wxString& title
 #endif
     // decide if we need to show app start dialog
     bool from_scratch = false;
-    wxFileName dbpath = m_app->m_optParam;
+    wxFileName dbpath = m_app->getOptParam();
     if (!dbpath.IsOk())
     {
         from_scratch = Model_Setting::instance().GetBoolSetting("SHOWBEGINAPP", true);
@@ -1458,6 +1460,32 @@ void mmGUIFrame::createMenu()
     menuView->AppendSeparator();
     menuView->Append(menuItemToggleFullscreen);
 #endif
+
+    wxMenuItem* menuItemLanguage = new wxMenuItem(menuView, MENU_LANG
+        , _("Switch Application Language")
+        , _("Change language used for MMEX GUI"));
+    menuItemLanguage->SetBitmap(mmBitmap(png::LANG));
+    wxMenu *menuLang = new wxMenu;
+
+    wxArrayString lang_files = wxTranslations::Get()->GetAvailableTranslations("mmex");
+    std::map<wxString, std::pair<int, wxString>> langs;
+    menuLang->AppendRadioItem(MENU_LANG + 1 + wxLANGUAGE_DEFAULT, _("system default"))
+        ->Check(m_app->getGUILanguage() == wxLANGUAGE_DEFAULT);
+    for (auto & file : lang_files)
+    {
+        const wxLanguageInfo* info = wxLocale::FindLanguageInfo(file);
+        if (info)
+            langs[info->Description] = std::make_pair(info->Language, info->CanonicalName);
+    }
+    langs[wxLocale::GetLanguageName(wxLANGUAGE_ENGLISH_US)] = std::make_pair(wxLANGUAGE_ENGLISH_US, "en_US");
+    for (auto const& lang : langs)
+    {
+        menuLang->AppendRadioItem(MENU_LANG + 1 + lang.second.first, lang.first, lang.second.second)
+            ->Check(lang.second.first == m_app->getGUILanguage());
+    }
+    menuItemLanguage->SetSubMenu(menuLang);
+    menuView->Append(menuItemLanguage);
+
     wxMenu *menuAccounts = new wxMenu;
 
     wxMenuItem* menuItemAcctList = new wxMenuItem(menuAccounts, MENU_ACCTLIST
@@ -2472,6 +2500,7 @@ void mmGUIFrame::OnSimpleURLOpen(wxCommandEvent& event)
     case MENU_WEBSITE: url = mmex::weblink::WebSite; break;
     case MENU_WIKI: url = mmex::weblink::Wiki; break;
     case MENU_DONATE: url = mmex::weblink::Donate; break;
+    case MENU_CROWDIN: url = mmex::weblink::Crowdin; break;
     case MENU_REPORTISSUES: url = mmex::weblink::Forum; break;
     case MENU_GOOGLEPLAY: url = mmex::weblink::GooglePlay; break;
     case MENU_BUY_COFFEE: url = mmex::weblink::SquareCashGuan; break;
@@ -2484,18 +2513,19 @@ void mmGUIFrame::OnSimpleURLOpen(wxCommandEvent& event)
 }
 //----------------------------------------------------------------------------
 
-void mmGUIFrame::OnReportBug(wxCommandEvent& /*event*/)
-{
-    wxLaunchDefaultBrowser(mmex::weblink::BugReport);
-}
-//----------------------------------------------------------------------------
-
 void mmGUIFrame::OnBeNotified(wxCommandEvent& /*event*/)
 {
     Model_Setting::instance().Set(INIDB_NEWS_LAST_READ_DATE, wxDate::Today().FormatISODate());
     wxLaunchDefaultBrowser(mmex::weblink::News);
 }
 //----------------------------------------------------------------------------
+
+void mmGUIFrame::OnReportBug(wxCommandEvent& WXUNUSED(event))
+{
+    mmPrintableBase* br = new mmBugReport();
+    setNavTreeSection(_("Reports"));
+    createReportsPage(br, true);
+}
 
 void mmGUIFrame::OnAbout(wxCommandEvent& WXUNUSED(event))
 {
@@ -2995,3 +3025,12 @@ void mmGUIFrame::OnClose(wxCloseEvent&)
     Destroy();
 }
 
+void mmGUIFrame::OnChangeGUILanguage(wxCommandEvent& event)
+{
+    wxLanguage lang = static_cast<wxLanguage>(event.GetId() - MENU_LANG - 1);
+    if (lang != m_app->getGUILanguage() && m_app->setGUILanguage(lang))
+        mmErrorDialogs::MessageWarning(this
+            , _("The language for this application has been changed. "
+                "The change will take effect the next time the application is started.")
+            , _("Language change"));
+}

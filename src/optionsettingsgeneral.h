@@ -46,7 +46,6 @@ private:
 
     void OnCurrency(wxCommandEvent& event);
     void OnDateFormatChanged(wxCommandEvent& event);
-    void OnLanguageChanged(wxCommandEvent& event);
 
     bool SaveFinancialYearStart();
 
@@ -58,7 +57,6 @@ private:
 
     int m_currency_id;
     wxString m_date_format;
-    wxString m_current_language;
 
     wxCheckBox* m_use_org_date_copy_paste;
     wxCheckBox* m_use_sound;
@@ -67,7 +65,6 @@ private:
     {
         ID_DIALOG_OPTIONS_BUTTON_CURRENCY = wxID_HIGHEST + 10,
         ID_DIALOG_OPTIONS_WXCHOICE_DATE,
-        ID_DIALOG_OPTIONS_BUTTON_LANGUAGE,
         ID_DIALOG_OPTIONS_TEXTCTRL_USERNAME,
         ID_DIALOG_OPTIONS_FINANCIAL_YEAR_START_DAY,
         ID_DIALOG_OPTIONS_FINANCIAL_YEAR_START_MONTH

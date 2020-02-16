@@ -37,8 +37,6 @@ public:
     {
         return wxSingleChoiceDialog::ShowModal();
     }
-private:
-    void fix_translation();
 };
 
 class mmDialogComboBoxAutocomplete : public wxDialog
@@ -59,15 +57,6 @@ private:
     wxString Message, Default;
     wxArrayString Choices;
     wxComboBox* cbText_;
-};
-
-class mmDialogs
-{
-public:
-    static const wxString mmSelectLanguage(mmGUIApp *app, wxWindow* window
-        , wxString& lang_name
-		, bool forced_show_dlg, bool save_setting = true);
-    static const wxString selectLanguageDlg(wxWindow *parent, const wxString &langPath, wxString& lang_name, bool verbose);
 };
 
 class mmGUIApp;

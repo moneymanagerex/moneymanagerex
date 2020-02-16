@@ -161,13 +161,13 @@ void mmAppStartDialog::SetCloseButtonToExit()
 
 void mmAppStartDialog::OnButtonAppstartHelpClick( wxCommandEvent& /*event*/ )
 {
-    int helpFileIndex_ = mmex::HTML_INDEX;
-    wxFileName helpIndexFile(mmex::getPathDoc((mmex::EDocFile)helpFileIndex_));
+    mmex::EDocFile helpFileIndex_ = mmex::HTML_INDEX;
+    wxFileName helpIndexFile(mmex::getPathDoc(helpFileIndex_));
     wxString url = "file://";
 
-    if (Option::instance().Language() != "english" && Option::instance().Language() != "")
-    {
-        helpIndexFile.AppendDir(Option::instance().Language());
+    const auto lang_code = Option::instance().getLanguageISO6391();
+    if (lang_code != "en") {
+        helpIndexFile.AppendDir(lang_code);
     }
 
     if (helpIndexFile.FileExists()) // Load the help file for the given language
@@ -176,7 +176,7 @@ void mmAppStartDialog::OnButtonAppstartHelpClick( wxCommandEvent& /*event*/ )
     }
     else // load the default help file
     {
-        url << (mmex::getPathDoc((mmex::EDocFile)helpFileIndex_));
+        url << mmex::getPathDoc(helpFileIndex_);
     }
     wxLaunchDefaultBrowser(url);
 }

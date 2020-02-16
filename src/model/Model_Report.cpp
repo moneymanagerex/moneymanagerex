@@ -19,6 +19,7 @@
 #include "Model_Report.h"
 #include "constants.h"
 #include "paths.h"
+#include "option.h"
 #include "platfdep.h"
 #include "attachmentdialog.h"
 #include "reports/htmlbuilder.h"
@@ -297,7 +298,7 @@ wxString Model_Report::get_html(const Data* r)
         auto s = wxString(wxFileName::GetPathSeparator());
         s.Replace("\\", "\\\\");
         report(L"FILESEPARATOR") = s;
-        report(L"LANGUAGE") = Model_Setting::instance().GetStringSetting(LANGUAGE_PARAMETER, "en_US");
+        report(L"LANGUAGE") = Option::instance().getLanguageISO6391();
         report(L"HTMLSCALE") = wxString::Format("%d", Option::instance().HtmlFontSize());
     }
     report(L"ERRORS") = errors;
