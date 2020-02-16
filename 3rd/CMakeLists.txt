@@ -33,6 +33,7 @@ ELSE()
         lua/lauxlib.c
         lua/lauxlib.h
         lua/lbaselib.c
+        lua/lbitlib.c
         lua/lcode.c
         lua/lcode.h
         lua/lcorolib.c
@@ -50,7 +51,6 @@ ELSE()
         lua/lgc.h
         lua/linit.c
         lua/liolib.c
-        lua/ljumptab.h
         lua/llex.c
         lua/llex.h
         lua/llimits.h
@@ -62,7 +62,6 @@ ELSE()
         lua/lobject.h
         lua/lopcodes.c
         lua/lopcodes.h
-        lua/lopnames.h
         lua/loslib.c
         lua/lparser.c
         lua/lparser.h
@@ -90,7 +89,6 @@ ELSE()
         lua/lvm.h
         lua/lzio.c
         lua/lzio.h
-        lua/onelua.c
     )
     #add C++ wrapper for Lua include files
     CONFIGURE_FILE(${PROJECT_SOURCE_DIR}/resources/lua.hpp lua.hpp COPYONLY)
@@ -102,7 +100,7 @@ ELSE()
             LUA_USE_STRTODHEX
             LUA_USE_AFORMAT
             LUA_USE_LONGLONG
-            LUA_COMPAT_5_3)
+            LUA_COMPAT_5_2)
     ENDIF()
 
     IF(LINUX)
@@ -121,7 +119,7 @@ ELSE()
     string(REGEX REPLACE "[^0-9.]+" "" LUA_VERSION_STRING ${LUA_VERSION_STRING})
 
 ENDIF(LUA_FOUND)
-TARGET_COMPILE_DEFINITIONS(Lua INTERFACE LUA_COMPAT_5_3)
+TARGET_COMPILE_DEFINITIONS(Lua INTERFACE LUA_COMPAT_5_2)
 
 ADD_LIBRARY(HTML-template STATIC EXCLUDE_FROM_ALL cgitemplate/html_template.cpp)
 TARGET_INCLUDE_DIRECTORIES(HTML-template INTERFACE cgitemplate)
