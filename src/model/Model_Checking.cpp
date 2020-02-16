@@ -23,7 +23,6 @@
 #include "Model_Category.h"
 #include <queue>
 #include "Model_Translink.h"
-using namespace json;
 
 const std::vector<std::pair<Model_Checking::TYPE, wxString> > Model_Checking::TYPE_CHOICES = 
 {
@@ -506,28 +505,28 @@ void Model_Checking::putDataToTransaction(Data *r, const Data &data)
 
 const wxString Model_Checking::Full_Data::to_json()
 {
-    Object o;
+    json::Object o;
     Model_Checking::Data::to_json(o);
-    o[L"ACCOUNTNAME"] = String(this->ACCOUNTNAME.ToStdWstring());
+    o[L"ACCOUNTNAME"] = json::String(this->ACCOUNTNAME.ToStdWstring());
     if (is_transfer(this))
-        o[L"TOACCOUNTNAME"] = String(this->TOACCOUNTNAME.ToStdWstring());
+        o[L"TOACCOUNTNAME"] = json::String(this->TOACCOUNTNAME.ToStdWstring());
     else
-        o[L"PAYEENAME"] = String(this->PAYEENAME.ToStdWstring());
+        o[L"PAYEENAME"] = json::String(this->PAYEENAME.ToStdWstring());
 
     if (this->has_split())
     {
-        Array a;
+		json::Array a;
         for (const auto & item : m_splits)
         {
-            Object s;
+			json::Object s;
             const std::wstring categ = Model_Category::full_name(item.CATEGID, item.SUBCATEGID).ToStdWstring();
-            s[categ] = Number(item.SPLITTRANSAMOUNT);
+            s[categ] = json::Number(item.SPLITTRANSAMOUNT);
             a.Insert(s);
         }
-        o[L"CATEGS"] = Array(a);
+        o[L"CATEGS"] = json::Array(a);
     }
     else
-        o[L"CATEG"] = String(Model_Category::full_name(this->CATEGID, this->SUBCATEGID).ToStdWstring());
+        o[L"CATEG"] = json::String(Model_Category::full_name(this->CATEGID, this->SUBCATEGID).ToStdWstring());
 
     std::wstringstream ss;
     json::Writer::Write(o, ss);

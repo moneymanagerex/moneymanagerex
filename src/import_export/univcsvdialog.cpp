@@ -647,47 +647,75 @@ void mmUnivCSVDialog::OnLoad()
 //Saves the field order to a template file
 void mmUnivCSVDialog::OnSave(wxCommandEvent& /*event*/)
 {
-    json::Object o;
+	StringBuffer json_buffer;
+	PrettyWriter<StringBuffer> json_writer(json_buffer);
+	json_writer.StartObject();
 
-    wxRadioBox* c = (wxRadioBox*) FindWindow(wxID_APPLY);
-    int id = c->GetSelection();
-    const wxString& settingsPrefix = GetSettingsPrfix();
-    const wxString& setting_id = wxString::Format(settingsPrefix +"%d", id);
-    wxLogDebug("%s", setting_id);
+	wxRadioBox* c = static_cast<wxRadioBox*>(FindWindow(wxID_APPLY));
+	int id = c->GetSelection();
+	const wxString& settingsPrefix = GetSettingsPrfix();
+	const wxString& setting_id = wxString::Format(settingsPrefix + "%d", id);
 
-    o[L"ACCOUNT_NAME"] = json::String(m_choice_account_->GetStringSelection().ToStdWstring());
-    o[L"DATE_MASK"] = json::String(date_format_.ToStdWstring());
-    o[L"DELIMITER"] = json::String(delimit_.ToStdWstring());
-    const wxString fileName = m_text_ctrl_->GetValue();
-    if (!fileName.empty()) o[L"FILE_NAME"] = json::String(fileName.ToStdWstring());
+	const auto an = m_choice_account_->GetStringSelection();
+	if (!an.empty())
+	{
+		json_writer.Key("ACCOUNT_NAME");
+		json_writer.String(an.c_str());
+	}
+	if (!date_format_.empty())
+	{
+		json_writer.Key("DATE_MASK");
+		json_writer.String(date_format_.c_str());
+	}
+	if (!delimit_.empty())
+	{
+		json_writer.Key("DELIMITER");
+		json_writer.String(delimit_.c_str());
+	}
 
-    int count = 0;
-    for (std::vector<int>::const_iterator it = csvFieldOrder_.begin(); it != csvFieldOrder_.end(); ++it)
-    {
-        const auto w = std::to_wstring(count++);
-        int i = *it;
-        o[w] = json::String(CSVFieldName_[i].ToStdWstring());
-        wxLogDebug("%i - %i - %s", count-1, i, CSVFieldName_[i]);
-    }
+	const auto fileName = m_text_ctrl_->GetValue();
+	if (!fileName.empty())
+	{
+		json_writer.Key("FILE_NAME");
+		json_writer.String(fileName.c_str());
+	}
 
-    if (IsImporter())
-    {
-        // Amount sign
-        o[L"AMOUNT_SIGN"] = json::String(std::to_wstring(m_choiceAmountFieldSign->GetCurrentSelection()));
+	if (IsImporter())
+	{
+		// Amount sign
+		const auto s = m_choiceAmountFieldSign->GetCurrentSelection();
+		json_writer.Key("AMOUNT_SIGN");
+		json_writer.Int(s);
 
-        // Rows to ignore
-        o[L"IGNORE_FIRST_ROWS"] = json::String(std::to_wstring(m_spinIgnoreFirstRows_->GetValue()));
-        o[L"IGNORE_LAST_ROWS"] = json::String(std::to_wstring(m_spinIgnoreLastRows_->GetValue()));
-    }
-    else
-    {
-        o[L"EXPORT_TITLES"] = json::Boolean(m_checkBoxExportTitles->IsChecked());
-    }
+		// Rows to ignore
+		const auto ifr = m_spinIgnoreFirstRows_->GetValue();
+		json_writer.Key("IGNORE_FIRST_ROWS");
+		json_writer.Int(ifr);
 
-    std::wstringstream ss;
-    json::Writer::Write(o, ss);
-    Model_Setting::instance().Set(wxString::Format(settingsPrefix+"%d", id), ss.str());
-    Model_Setting::instance().Set(settingsPrefix+"CURRENT", id); // TODO: is this ever used?
+		const auto ilr = m_spinIgnoreLastRows_->GetValue();
+		json_writer.Key("IGNORE_LAST_ROWS");
+		json_writer.Int(ilr);
+	}
+	else
+	{
+		const auto et = m_checkBoxExportTitles->IsChecked();
+		json_writer.Key("EXPORT_TITLES");
+		json_writer.Bool(et);
+	}
+
+	json_writer.Key("FIELDS");
+	json_writer.StartArray();
+	for (std::vector<int>::const_iterator it = csvFieldOrder_.begin(); it != csvFieldOrder_.end(); ++it)
+	{
+		int i = *it;
+		json_writer.String(CSVFieldName_[i].c_str());
+	}
+	json_writer.EndArray();
+	json_writer.EndObject();
+
+	const wxString json_data = json_buffer.GetString();
+
+	Model_Setting::instance().Set(setting_id, json_data);
 }
 
 bool mmUnivCSVDialog::validateData(tran_holder & holder)
