@@ -34,7 +34,7 @@ struct DB_Table_CHECKINGACCOUNT_V1 : public DB_Table
             for (const auto & item: *this)
             {
                 json::Object o;
-                item.to_json(o);
+                item.as_json(o);
                 a.Insert(o);
             }
             std::wstringstream ss;
@@ -395,13 +395,13 @@ struct DB_Table_CHECKINGACCOUNT_V1 : public DB_Table
         wxString to_json() const
         {
             json::Object o;
-            this->to_json(o);
+            this->as_json(o);
             std::wstringstream ss;
             json::Writer::Write(o, ss);
             return ss.str();
         }
         
-        int to_json(json::Object& o) const
+        int as_json(json::Object& o) const
         {
             o[L"TRANSID"] = json::Number(this->TRANSID);
             o[L"ACCOUNTID"] = json::Number(this->ACCOUNTID);

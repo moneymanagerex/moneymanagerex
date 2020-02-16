@@ -510,7 +510,7 @@ void Model_Checking::putDataToTransaction(Data *r, const Data &data)
 const wxString Model_Checking::Full_Data::to_json()
 {
     json::Object o;
-    int i = Model_Checking::Data::to_json(o);
+    int i = Model_Checking::Data::as_json(o);
     wxASSERT(i != 0);
     o[L"ACCOUNTNAME"] = json::String(this->ACCOUNTNAME.ToStdWstring());
     if (is_transfer(this))
