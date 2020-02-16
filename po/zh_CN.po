@@ -3,13 +3,13 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-08-06 10:14+0300\n"
-"PO-Revision-Date: 2019-08-06 07:26\n"
-"Last-Translator: Nikolay (vomikan)\n"
+"PO-Revision-Date: 2020-02-16 20:35\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: crowdin.com\n"
+"X-Generator: Poedit 2.2.3\n"
 "X-Poedit-Basepath: ../src\n"
 "X-Poedit-KeywordsList: _;wxTRANSLATE;wxPLURAL:1,2;wxGETTEXT_IN_CONTEXT:1c,2;wxGETTEXT_IN_CONTEXT_PLURAL:1c,2,3\n"
 "X-Poedit-SearchPath-0: .\n"
@@ -36,7 +36,7 @@ msgstr "关于"
 
 #: aboutdialog.cpp:149
 msgid "Authors"
-msgstr ""
+msgstr "作者"
 
 #: aboutdialog.cpp:154
 msgid "Sponsors"
@@ -270,7 +270,7 @@ msgstr "图像 #%i"
 #: appstartdialog.cpp:48 util.cpp:444
 #, c-format
 msgid "Version: %s"
-msgstr ""
+msgstr "版本：%s"
 
 #: appstartdialog.cpp:99
 msgid "Open Last Opened Database"
@@ -321,7 +321,7 @@ msgstr "退出(&E) "
 #: appstartdialog.cpp:153
 #, c-format
 msgid "Open the previously opened database: %s"
-msgstr ""
+msgstr "打开先前打开的数据库： %s"
 
 #: assetdialog.cpp:56 assetdialog.cpp:424 assetspanel.cpp:509
 msgid "New Asset"
@@ -400,11 +400,11 @@ msgstr "% 比率"
 
 #: assetdialog.cpp:243
 msgid "Enter the rate at which the asset changes its value in percentage per year"
-msgstr ""
+msgstr "输入资产每年以百分比变化的比率"
 
 #: assetdialog.cpp:255
 msgid "Organize attachments of this asset"
-msgstr ""
+msgstr "组织账户的附件"
 
 #: assetdialog.cpp:259
 msgid "Enter notes associated with this asset"
@@ -497,7 +497,7 @@ msgstr "总计：%s"
 
 #: assetspanel.cpp:423
 msgid "MMEX allows you to track fixed assets like cars, houses, land and others. Each asset can have its value appreciate by a certain rate per year, depreciate by a certain rate per year, or not change in value. The total assets are added to your total financial worth."
-msgstr ""
+msgstr "MMEX允许您跟踪固定资产，如汽车、房屋、土地和其他资产。 每项资产的价值可按每年一定的汇率升值，每年折旧以一定的汇率折旧，或不改变价值。 总资产被添加到您的总金融价值中。"
 
 #: assetspanel.cpp:458 assetspanel.h:108 general_report_manager.cpp:684
 #: general_report_manager.cpp:961 mmframe.cpp:457 mmframe.cpp:729
@@ -562,7 +562,7 @@ msgstr "输入任意字符串来查找相关的资产"
 #: assetspanel.cpp:666
 #, c-format
 msgid "Change in Value: %s %s"
-msgstr ""
+msgstr "值变化: %s %s"
 
 #: assetspanel.cpp:781
 msgid "This asset does not have its own account\n\n"
@@ -638,15 +638,15 @@ msgstr "导入附件："
 
 #: attachmentdialog.cpp:165 import_export/univcsvdialog.cpp:1416
 msgid "All Files"
-msgstr ""
+msgstr "所有文件"
 
 #: attachmentdialog.cpp:173
 msgid "Enter a description for the new attachment:"
-msgstr ""
+msgstr "输入新附件的描述："
 
 #: attachmentdialog.cpp:174
 msgid "Organize Attachments: Add Attachment"
-msgstr ""
+msgstr "组织附件：添加附件"
 
 #: attachmentdialog.cpp:214
 msgid "Enter a new description for the attachment:"
