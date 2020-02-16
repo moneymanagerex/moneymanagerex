@@ -24,6 +24,10 @@
 #include <queue>
 #include "Model_Translink.h"
 
+#include "json/elements.h"
+#include "json/reader.h"
+#include "json/writer.h"
+
 const std::vector<std::pair<Model_Checking::TYPE, wxString> > Model_Checking::TYPE_CHOICES = 
 {
     {Model_Checking::WITHDRAWAL, wxString(wxTRANSLATE("Withdrawal"))}
