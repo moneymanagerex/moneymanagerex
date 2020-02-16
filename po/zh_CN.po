@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-08-06 10:14+0300\n"
-"PO-Revision-Date: 2020-02-16 21:33\n"
+"PO-Revision-Date: 2020-02-16 22:03\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
@@ -1748,7 +1748,7 @@ msgstr "精度"
 
 #: currencydialog.cpp:209
 msgid "Historic currency"
-msgstr ""
+msgstr "历史汇率"
 
 #: currencydialog.cpp:214
 msgid "Value Display Sample:"
@@ -1756,11 +1756,11 @@ msgstr ""
 
 #: currencydialog.cpp:227
 msgid "Save any changes made"
-msgstr ""
+msgstr "保存所做的任何更改"
 
 #: currencydialog.cpp:231
 msgid "Any changes will be lost without update"
-msgstr ""
+msgstr "未更新以前任何更改都将丢失"
 
 #: currencydialog.cpp:253 currencydialog.cpp:256 mmSimpleDialogs.cpp:153
 msgid "Invalid Entry"
@@ -2161,7 +2161,7 @@ msgstr ""
 
 #: dbupgrade.cpp:149
 msgid "MMEX still should work, but try to re-optimize it from Tools -> Database -> Optimize"
-msgstr ""
+msgstr "MMEX 仍可以工作，但请尝试从 工具 -> 数据库 -> 优化 重新优化"
 
 #: dbupgrade.cpp:153
 #, c-format
@@ -2444,7 +2444,7 @@ msgstr "保存(&S) "
 
 #: general_report_manager.cpp:379
 msgid "Save changes."
-msgstr ""
+msgstr "保存更改。"
 
 #: general_report_manager.cpp:381
 msgid "&Run"
@@ -2476,7 +2476,7 @@ msgstr ""
 
 #: general_report_manager.cpp:451
 msgid "Create Template"
-msgstr ""
+msgstr "创建模板"
 
 #: general_report_manager.cpp:501
 #, c-format
@@ -2498,21 +2498,22 @@ msgstr ""
 
 #: general_report_manager.cpp:559 general_report_manager.cpp:989
 msgid "ZIP files (*.zip)"
-msgstr ""
+msgstr "Zip 文件 (*.zip)"
 
 #: general_report_manager.cpp:622
 #, c-format
 msgid "Unable to open file:\n"
 "%s\n\n"
-msgstr ""
+msgstr "无法打开文件：\n"
+"%s\n\n"
 
 #: general_report_manager.cpp:687
 msgid "New Empty Report"
-msgstr ""
+msgstr "新建报表"
 
 #: general_report_manager.cpp:688
 msgid "New Sample Report"
-msgstr ""
+msgstr "新建模板报表"
 
 #: general_report_manager.cpp:691
 msgid "Change Group"
@@ -2681,7 +2682,7 @@ msgstr "选择QIF数据文件导出"
 
 #: import_export/qif_export.cpp:273 import_export/qif_import_gui.cpp:716
 msgid "QIF Files (*.qif)"
-msgstr ""
+msgstr "QIF文件 (*.qif)"
 
 #: import_export/qif_export.cpp:289
 msgid "No Account available for export"
@@ -5119,7 +5120,7 @@ msgstr ""
 
 #: optionsettingsattachment.cpp:258
 msgid "Do you want to move all attachments to the new location?"
-msgstr ""
+msgstr "您想要将所有附件移动到新位置吗？"
 
 #: optionsettingsattachment.cpp:259 optionsettingsattachment.cpp:269
 msgid "Attachments folder migration"
@@ -5377,7 +5378,7 @@ msgstr "启动时检查"
 
 #: optionsettingsnet.cpp:154
 msgid "Enable to automatically check if new MMEX version is available at StartUp"
-msgstr ""
+msgstr "启用以自动检查在启动时是否有新的 MMEX 版本"
 
 #: optionsettingsnet.cpp:157
 msgid "Stable"
@@ -5397,11 +5398,11 @@ msgstr ""
 
 #: optionsettingsnet.cpp:187
 msgid "WebApp connection tested successfully!"
-msgstr ""
+msgstr "WebApp 连接测试成功！"
 
 #: optionsettingsnet.cpp:187 optionsettingsnet.cpp:192
 msgid "WebApp connection test"
-msgstr ""
+msgstr "WebApp 连接测试"
 
 #: optionsettingsnet.cpp:192
 msgid "Some parameters are missing."
@@ -5457,7 +5458,7 @@ msgstr ""
 
 #: optionsettingsview.cpp:163
 msgid "Report Options"
-msgstr ""
+msgstr "报表选项"
 
 #: optionsettingsview.cpp:169
 msgid "View without Future Transactions"
@@ -5493,7 +5494,7 @@ msgstr ""
 
 #: payeedialog.cpp:230 payeedialog.cpp:246
 msgid "Organize Payees: Edit Payee"
-msgstr ""
+msgstr "收款人管理：编辑收款人"
 
 #: payeedialog.cpp:260
 msgid "Payee in use."
@@ -5712,7 +5713,7 @@ msgstr ""
 
 #: reports/bugreport.h:97
 msgid "Please, follow these instructions before submitting a new bug report:"
-msgstr ""
+msgstr "请在提交新的 bug 报告之前遵循这些说明:"
 
 #: reports/cashflow.cpp:217
 #, c-format
@@ -6134,35 +6135,35 @@ msgstr "从CSV文件导入"
 
 #: stockdialog.cpp:699 stockdialog.cpp:729
 msgid "5 Days"
-msgstr ""
+msgstr "5 天"
 
 #: stockdialog.cpp:700 stockdialog.cpp:731
 msgid "1 Month"
-msgstr ""
+msgstr "1 个月"
 
 #: stockdialog.cpp:701 stockdialog.cpp:732
 msgid "3 Months"
-msgstr ""
+msgstr "3 个月"
 
 #: stockdialog.cpp:702
 msgid "6 Months"
-msgstr ""
+msgstr "6 个月"
 
 #: stockdialog.cpp:703
 msgid "1 Year"
-msgstr ""
+msgstr "1 年"
 
 #: stockdialog.cpp:704
 msgid "2 Years"
-msgstr ""
+msgstr "2 年"
 
 #: stockdialog.cpp:705
 msgid "5 Years"
-msgstr ""
+msgstr "5 年"
 
 #: stockdialog.cpp:706
 msgid "10 Years"
-msgstr ""
+msgstr "10 年"
 
 #: stockdialog.cpp:708
 msgid "Max"
@@ -6178,11 +6179,11 @@ msgstr ""
 
 #: stockdialog.cpp:728
 msgid "1 Day"
-msgstr ""
+msgstr "1 天"
 
 #: stockdialog.cpp:730
 msgid "1 Week"
-msgstr ""
+msgstr "1 周"
 
 #: stockdialog.cpp:738
 msgid "Specify interval of stock history"
@@ -6546,7 +6547,7 @@ msgstr "四月"
 #: util.cpp:1003
 msgctxt "full month name"
 msgid "May"
-msgstr ""
+msgstr "5 月"
 
 #: util.cpp:1004
 msgid "June"
@@ -6579,52 +6580,52 @@ msgstr "十二月"
 #: util.cpp:1011
 msgctxt "3-letter abbreviation of month name"
 msgid "Jan"
-msgstr ""
+msgstr "1 月"
 
 #: util.cpp:1012
 msgctxt "3-letter abbreviation of month name"
 msgid "Feb"
-msgstr ""
+msgstr "2 月"
 
 #: util.cpp:1013
 msgctxt "3-letter abbreviation of month name"
 msgid "Mar"
-msgstr ""
+msgstr "3 月"
 
 #: util.cpp:1014
 msgctxt "3-letter abbreviation of month name"
 msgid "Apr"
-msgstr ""
+msgstr "4 月"
 
 #: util.cpp:1015
 msgctxt "3-letter abbreviation of month name"
 msgid "May"
-msgstr ""
+msgstr "5 月"
 
 #: util.cpp:1016
 msgctxt "3-letter abbreviation of month name"
 msgid "Jun"
-msgstr ""
+msgstr "6 月"
 
 #: util.cpp:1017
 msgctxt "3-letter abbreviation of month name"
 msgid "Jul"
-msgstr ""
+msgstr "7 月"
 
 #: util.cpp:1018
 msgctxt "3-letter abbreviation of month name"
 msgid "Aug"
-msgstr ""
+msgstr "8 月"
 
 #: util.cpp:1019
 msgctxt "3-letter abbreviation of month name"
 msgid "Sep"
-msgstr ""
+msgstr "9 月"
 
 #: util.cpp:1020
 msgctxt "3-letter abbreviation of month name"
 msgid "Oct"
-msgstr ""
+msgstr "10 月"
 
 #: util.cpp:1021
 msgctxt "3-letter abbreviation of month name"
@@ -6895,16 +6896,16 @@ msgstr "基本货币没有设置"
 
 #: wizard_update.cpp:36
 msgid "Update Wizard"
-msgstr ""
+msgstr "更新向导"
 
 #: wizard_update.cpp:46
 msgid "A new version of MMEX is available!"
-msgstr ""
+msgstr "有新版本的 MMEX 可用！"
 
 #: wizard_update.cpp:47
 #, c-format
 msgid "Your version is %s"
-msgstr ""
+msgstr "您当前的版本是 %s"
 
 #: wizard_update.cpp:48
 #, c-format
@@ -6913,15 +6914,15 @@ msgstr ""
 
 #: wizard_update.cpp:56
 msgid "What's new:"
-msgstr ""
+msgstr "新版本变化："
 
 #: wizard_update.cpp:61
 msgid "Click on Finish to open our download webpage."
-msgstr ""
+msgstr "点击完成打开我们的下载页。"
 
 #: wizard_update.cpp:338 wizard_update.cpp:353
 msgid "Unable to check for updates!"
-msgstr ""
+msgstr "无法检查更新！"
 
 #: wizard_update.cpp:339 wizard_update.cpp:354
 msgid "Error: "
@@ -6929,9 +6930,9 @@ msgstr ""
 
 #: wizard_update.cpp:340 wizard_update.cpp:357 wizard_update.cpp:394
 msgid "MMEX Update Check"
-msgstr ""
+msgstr "MMEX 更新检查"
 
 #: wizard_update.cpp:393
 msgid "You already have the latest version"
-msgstr ""
+msgstr "您现在安装的是最新版本"
 
