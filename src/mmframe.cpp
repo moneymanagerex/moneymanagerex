@@ -70,14 +70,8 @@
 
 #include "model/allmodel.h"
 
-#include "search/Search.h"
-
 #include <wx/fs_mem.h>
 #include <stack>
-
-#include "../3rd/cajun/json/elements.h"
-#include "../3rd/cajun/json/reader.h"
-#include "../3rd/cajun/json/writer.h"
 
 //----------------------------------------------------------------------------
 

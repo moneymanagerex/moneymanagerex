@@ -39,9 +39,9 @@ mmReportCategoryExpenses::~mmReportCategoryExpenses()
 {
 }
 
-bool mmReportCategoryExpenses::has_date_range()
+int mmReportCategoryExpenses::report_parameters()
 {
-    return true;
+    return RepParams::SINGLE_DATE;
 }
 
 void  mmReportCategoryExpenses::RefreshData()

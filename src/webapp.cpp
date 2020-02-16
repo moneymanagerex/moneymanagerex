@@ -17,14 +17,16 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ********************************************************/
 
 
-#include "attachmentdialog.h"
 #include "webapp.h"
-#include "model/allmodel.h"
+#include "attachmentdialog.h"
 #include "paths.h"
 #include "transdialog.h"
 #include "util.h"
-#include <wx/sstream.h>
-#include <wx/protocol/http.h>
+#include "model/Model_Account.h"
+#include "model/Model_Attachment.h"
+#include "model/Model_Category.h"
+#include "model/Model_Subcategory.h"
+#include "model/Model_Infotable.h"
 
 //Expected WebAppVersion
 const wxString WebAppParam::ApiExpectedVersion = "1.0.1";
@@ -33,7 +35,6 @@ const wxString WebAppParam::ApiExpectedVersion = "1.0.1";
 const wxString mmWebApp::getUrl()
 {
     wxString Url = Model_Infotable::instance().GetStringInfo("WEBAPPURL", "");
-    Url.Replace("https://", "http://");
     return Url;
 }
 
@@ -70,7 +71,7 @@ const wxString mmWebApp::WebApp_getApiVersion()
 {
     wxString outputMessage;
     http_get_data(mmWebApp::getServicesPageURL() + "&" + WebAppParam::CheckApiVersion, outputMessage);
-
+    // TODO: check for errors?
     return outputMessage;
 }
 
@@ -140,14 +141,6 @@ bool mmWebApp::WebApp_CheckApiVersion()
 //POST data as JSON
 int mmWebApp::WebApp_SendJson(wxString& Website, const wxString& JsonData, wxString& Output)
 {
-    wxHTTP http;
-    int ErrorCode = 0;
-
-    //Build string connection
-    Website.Replace("http://", "");
-    wxString BaseServerAddress = Website.SubString(0, Website.Find("/")-1);
-    wxString PagePath = Website.SubString(Website.Find("/"), Website.Length());
-
     //Create multipart form
     wxString Boundary = "Custom_Boundary_MMEX_WebApp";
     wxString Text = wxEmptyString;
@@ -156,41 +149,9 @@ int mmWebApp::WebApp_SendJson(wxString& Website, const wxString& JsonData, wxStr
     Text.Append(wxString::Format("%s\r\n", JsonData));
     Text.Append(wxString::Format("\r\n--%s--\r\n", Boundary));
 
-    http.SetPostText("multipart/form-data; boundary=" + Boundary, Text);
+    wxString ContentType = wxString::Format("Content-Type: multipart/form-data; boundary=%s", Boundary);
 
-    if (http.Connect(BaseServerAddress))
-    {
-        ErrorCode = http.GetError();
-        if (ErrorCode == wxPROTO_NOERR)
-        {
-            wxInputStream *httpStream = http.GetInputStream(PagePath);
-            if (httpStream)
-            {
-                wxStringOutputStream out_stream(&Output);
-                httpStream->Read(out_stream);
-            }
-            else
-                ErrorCode = -1;
-            wxDELETE(httpStream);
-        }
-        http.Close();
-    }
-    else
-        ErrorCode = http.GetError();
-
-    if (ErrorCode != wxPROTO_NOERR)
-    {
-        if (ErrorCode == wxPROTO_NETERR) Output = _("A generic network error occurred");
-        else if (ErrorCode == wxPROTO_PROTERR) Output = _("An error occurred during negotiation");
-        else if (ErrorCode == wxPROTO_CONNERR) Output = _("The client failed to connect the server");
-        else if (ErrorCode == wxPROTO_INVVAL) Output = _("Invalid value");
-        else if (ErrorCode == wxPROTO_NOFILE) Output = _("The remote file doesn't exist");
-        else if (ErrorCode == wxPROTO_RCNCT) Output = _("An error occurred during reconnection");
-        else if (ErrorCode == wxPROTO_STREAMING) Output = _("Someone tried to send a command during a transfer");
-        else if (ErrorCode == -1) Output = _("Cannot get data from website");
-        else Output = _("Unknown error");
-    }
-    return ErrorCode;
+    return http_post_data(Website, Text, ContentType, Output);
 }
 
 
@@ -206,28 +167,36 @@ bool mmWebApp::WebApp_DeleteAllAccount()
 // Update Account on WebApp
 bool mmWebApp::WebApp_UpdateAccount()
 {
-    int i = 0;
-    json::Object jsonAccountList;
-    std::wstringstream jsonAccountStream;
-    wxString outputMessage;
+    StringBuffer json_buffer;
+    PrettyWriter<StringBuffer> json_writer(json_buffer);
 
-    wxString UpdateAccountUrl = mmWebApp::getServicesPageURL() + "&" + WebAppParam::ImportAccount + "=true";
+    json_writer.StartObject();
+    json_writer.Key("Accounts");
 
-    mmWebApp::WebApp_DeleteAllAccount();
+    json_writer.StartArray();
 
-    for (const auto &Account : Model_Account::instance().all(Model_Account::COL_ACCOUNTNAME))
+    for (const auto &account : Model_Account::instance().all(Model_Account::COL_ACCOUNTNAME))
     {
-        if (Model_Account::type(Account) != Model_Account::INVESTMENT && Model_Account::status(Account) != Model_Account::CLOSED)
-            jsonAccountList[L"Accounts"][i][L"AccountName"] = json::String(Account.ACCOUNTNAME.ToStdWstring());
-        i++;
+        if (Model_Account::type(account) != Model_Account::INVESTMENT && Model_Account::status(account) != Model_Account::CLOSED)
+        {
+            json_writer.StartObject();
+            json_writer.Key("AccountName");
+            json_writer.String(account.ACCOUNTNAME.c_str());
+            json_writer.EndObject();
+        }
     }
 
-    json::Writer::Write(jsonAccountList, jsonAccountStream);
-    wxString AccountList = jsonAccountStream.str();
+    json_writer.EndArray();
+    json_writer.EndObject();
 
-    int ErrorCode = mmWebApp::WebApp_SendJson(UpdateAccountUrl, AccountList, outputMessage);
+    mmWebApp::WebApp_DeleteAllAccount();
+    wxString update_account_url = mmWebApp::getServicesPageURL() + "&" + WebAppParam::ImportAccount + "=true";
+    wxString json_account_list = json_buffer.GetString();
+    wxString output_message;
 
-    return mmWebApp::returnResult(ErrorCode, outputMessage);
+    int error_code = mmWebApp::WebApp_SendJson(update_account_url, json_account_list, output_message);
+
+    return mmWebApp::returnResult(error_code, output_message);
 }
 
 //Delete all payee on WebApp
@@ -242,42 +211,49 @@ bool mmWebApp::WebApp_DeleteAllPayee()
 //Update payee on WebApp
 bool mmWebApp::WebApp_UpdatePayee()
 {
-    int i = 0;
-    json::Object jsonPayeeList;
-    std::wstringstream jsonPayeeStream;
-    wxString outputMessage, DefCategoryName, DefSubCategoryName;
+    StringBuffer json_buffer;
+    PrettyWriter<StringBuffer> json_writer(json_buffer);
 
-    wxString UpdatePayeeUrl = mmWebApp::getServicesPageURL() + "&" + WebAppParam::ImportPayee + "=true";
+    json_writer.StartObject();
+    json_writer.Key("Payees");
 
-    mmWebApp::WebApp_DeleteAllPayee();
+    json_writer.StartArray();
 
-    for (const auto &Payee : Model_Payee::instance().all(Model_Payee::COL_PAYEENAME))
+    wxString def_category_name, def_subcategory_name;
+    for (const auto &payee : Model_Payee::instance().all(Model_Payee::COL_PAYEENAME))
     {
-        const Model_Category::Data* DefCategory = Model_Category::instance().get(Payee.CATEGID);
-        if (DefCategory != nullptr)
-            DefCategoryName = DefCategory->CATEGNAME;
+        const Model_Category::Data* def_category = Model_Category::instance().get(payee.CATEGID);
+        if (def_category != nullptr)
+            def_category_name = def_category->CATEGNAME;
         else
-            DefCategoryName = "None";
+            def_category_name = "None";
 
-        const Model_Subcategory::Data* DefSubCategory = Model_Subcategory::instance().get(Payee.SUBCATEGID);
-        if (DefSubCategory != nullptr)
-            DefSubCategoryName = DefSubCategory->SUBCATEGNAME;
+        const Model_Subcategory::Data* def_subcategory = Model_Subcategory::instance().get(payee.SUBCATEGID);
+        if (def_subcategory != nullptr)
+            def_subcategory_name = def_subcategory->SUBCATEGNAME;
         else
-            DefSubCategoryName = "None";
-        
-        jsonPayeeList[L"Payees"][i][L"PayeeName"] = json::String(Payee.PAYEENAME.ToStdWstring());
-        jsonPayeeList[L"Payees"][i][L"DefCateg"] = json::String(DefCategoryName.ToStdWstring());
-        jsonPayeeList[L"Payees"][i][L"DefSubCateg"] = json::String(DefSubCategoryName.ToStdWstring());
+            def_subcategory_name = "None";
 
-        i++;
+        json_writer.StartObject();
+        json_writer.Key("PayeeName");
+        json_writer.String(payee.PAYEENAME.c_str());
+        json_writer.Key("DefCateg");
+        json_writer.String(def_category_name.c_str());
+        json_writer.Key("DefSubCateg");
+        json_writer.String(def_subcategory_name.c_str());
+        json_writer.EndObject();
     }
 
-    json::Writer::Write(jsonPayeeList, jsonPayeeStream);
-    wxString PayeesList = jsonPayeeStream.str();
+    json_writer.EndArray();
+    json_writer.EndObject();
 
-    int ErrorCode = mmWebApp::WebApp_SendJson(UpdatePayeeUrl, PayeesList, outputMessage);
+    mmWebApp::WebApp_DeleteAllPayee();
+    wxString update_payee_url = mmWebApp::getServicesPageURL() + "&" + WebAppParam::ImportPayee + "=true";
+    wxString json_payee_list = json_buffer.GetString();
+    wxString output_message;
+    int error_code = mmWebApp::WebApp_SendJson(update_payee_url, json_payee_list, output_message);
 
-    return mmWebApp::returnResult(ErrorCode, outputMessage);
+    return mmWebApp::returnResult(error_code, output_message);
 }
 
 //Delete all category on WebApp
@@ -292,113 +268,156 @@ bool mmWebApp::WebApp_DeleteAllCategory()
 //Update category on WebApp
 bool mmWebApp::WebApp_UpdateCategory()
 {
-    int i = 0;
-    json::Object jsonCategoryList;
-    std::wstringstream jsonCategoryStream;
-    wxString outputMessage, SubCategoryName;
+    StringBuffer json_buffer;
+    PrettyWriter<StringBuffer> json_writer(json_buffer);
 
-    wxString UpdateCategoryUrl = mmWebApp::getServicesPageURL() + "&" + WebAppParam::ImportCategory + "=true";
+    json_writer.StartObject();
+    json_writer.Key("Categories");
 
-    mmWebApp::WebApp_DeleteAllCategory();
-
+    json_writer.StartArray();
     const auto &categories = Model_Category::instance().all();
     for (const Model_Category::Data& category : categories)
     {
-        bool FirstCategoryRun = true;
-        bool SubCategoryFound = false;
-        jsonCategoryList[L"Categories"][i][L"CategoryName"] = json::String(category.CATEGNAME.ToStdWstring());
+        bool first_category_run = true;
+        bool sub_category_found = false;
+
+        json_writer.StartObject();
+        json_writer.Key("CategoryName");
+        json_writer.String(category.CATEGNAME.c_str());
+
         for (const auto &sub_category : Model_Category::sub_category(category))
         {
-            SubCategoryFound = true;
-            if (FirstCategoryRun == true)
+            sub_category_found = true;
+            if (first_category_run == true)
             {
-                jsonCategoryList[L"Categories"][i][L"SubCategoryName"] = json::String(sub_category.SUBCATEGNAME.ToStdWstring());
-                i++;
-                FirstCategoryRun = false;
+                json_writer.Key("SubCategoryName");
+                json_writer.String(sub_category.SUBCATEGNAME.c_str());
+                json_writer.EndObject();
+
+                first_category_run = false;
             }
             else
             {
-                jsonCategoryList[L"Categories"][i][L"CategoryName"] = json::String(category.CATEGNAME.ToStdWstring());
-                jsonCategoryList[L"Categories"][i][L"SubCategoryName"] = json::String(sub_category.SUBCATEGNAME.ToStdWstring());
-                i++;
-                FirstCategoryRun = false;
+                json_writer.StartObject();
+                json_writer.Key("CategoryName");
+                json_writer.String(category.CATEGNAME.c_str());
+
+                json_writer.Key("SubCategoryName");
+                json_writer.String(sub_category.SUBCATEGNAME.c_str());
+                json_writer.EndObject();
+
+                first_category_run = false;
             }
         }
 
-        if (SubCategoryFound == false)
-            jsonCategoryList[L"Categories"][i][L"SubCategoryName"] = json::String(L"None");
-        else
-            i--;
-
-        i++;
+        if (sub_category_found == false)
+        {
+            json_writer.Key("SubCategoryName");
+            json_writer.String("None");
+            json_writer.EndObject();
+        }
     }
 
-    json::Writer::Write(jsonCategoryList, jsonCategoryStream);
-    wxString CategoryList = jsonCategoryStream.str();
+    json_writer.EndArray();
+    json_writer.EndObject();
 
-    int ErrorCode = mmWebApp::WebApp_SendJson(UpdateCategoryUrl, CategoryList, outputMessage);
+    mmWebApp::WebApp_DeleteAllCategory();
+    wxString update_category_url = mmWebApp::getServicesPageURL() + "&" + WebAppParam::ImportCategory + "=true";
+    wxString category_list = json_buffer.GetString();
+    wxString output_message;
+    int error_code = mmWebApp::WebApp_SendJson(update_category_url, category_list, output_message);
 
-    return mmWebApp::returnResult(ErrorCode, outputMessage);
+    return mmWebApp::returnResult(error_code, output_message);
 }
 
 //Download new transactions
 bool mmWebApp::WebApp_DownloadNewTransaction(WebTranVector& WebAppTransactions_, const bool CheckOnly)
 {
     wxString NewTransactionJSON;
-    int ErrorCode = http_get_data(mmWebApp::getServicesPageURL() + "&" + WebAppParam::DownloadNewTransaction, NewTransactionJSON);
+    CURLcode ErrorCode = http_get_data(mmWebApp::getServicesPageURL() + "&" + WebAppParam::DownloadNewTransaction, NewTransactionJSON);
 
-    if (NewTransactionJSON == "null" || NewTransactionJSON.IsEmpty() || ErrorCode != 0)
+    if (NewTransactionJSON == "null" || NewTransactionJSON.IsEmpty() || ErrorCode != CURLE_OK)
         return false;
     else if (CheckOnly)
         return true;
     else
     {
-        json::Object jsonTransaction;
-        std::wstringstream jsonTransactionStream;
-
-        if (!(NewTransactionJSON.StartsWith("{") && NewTransactionJSON.EndsWith("}"))) return true;
-        jsonTransactionStream << NewTransactionJSON.ToStdWstring();
-        json::Reader::Read(jsonTransaction, jsonTransactionStream);
+        Document j_doc;
+        if (j_doc.Parse(NewTransactionJSON.c_str()).HasParseError())
+            return true;
 
         //Define variables
         webtran_holder WebTran;
         WebAppTransactions_.clear();
-        std::wstring TrProgrStr;
-        wxString dtStr,Payee,Category,SubCategory;
 
-        for (int i = 0; i < static_cast<int>(jsonTransaction.Size()); i++)
+        for (auto& m : j_doc.GetObject())
         {
-            TrProgrStr = std::to_wstring(i);
-            
-            WebTran.ID = wxAtoi(wxString(json::String(jsonTransaction[TrProgrStr][L"ID"])));
-            
-            dtStr = wxString(json::String(jsonTransaction[TrProgrStr][L"Date"]));
-            WebTran.Date = mmParseISODate(dtStr);
-      
-            WebTran.Account = wxString(json::String(jsonTransaction[TrProgrStr][L"Account"]));
-            WebTran.ToAccount = wxString(json::String(jsonTransaction[TrProgrStr][L"ToAccount"]));
-            WebTran.Status = wxString(json::String(jsonTransaction[TrProgrStr][L"Status"]));
-            WebTran.Type = wxString(json::String(jsonTransaction[TrProgrStr][L"Type"]));
+            Value trx = m.value.GetObject();
 
-            Payee = wxString(json::String(jsonTransaction[TrProgrStr][L"Payee"]));
-            if (Payee == "None" || Payee.IsEmpty()) Payee = _("Unknown");
-            WebTran.Payee = Payee;
+            if (trx.HasMember("ID") && trx["ID"].IsString()) {
+                WebTran.ID = wxAtoi(trx["ID"].GetString());
+            }
 
-            Category = wxString(json::String(jsonTransaction[TrProgrStr][L"Category"]));
-            if (Category == "None" || Category.IsEmpty()) Category = _("Unknown");
-            WebTran.Category = Category;
+            if (trx.HasMember("Date") && trx["Date"].IsString()) {
+                WebTran.Date = mmParseISODate(wxString::FromUTF8(trx["Date"].GetString()));
+            }
 
-            SubCategory = wxString(json::String(jsonTransaction[TrProgrStr][L"SubCategory"]));
-            if (SubCategory == "None" || SubCategory.IsEmpty()) SubCategory = wxEmptyString;
-            WebTran.SubCategory = SubCategory;
+            if (trx.HasMember("Amount") && trx["Amount"].IsString()) {
+                wxString sAmount = trx["Amount"].GetString();
+                double dAmount;
+                if (!sAmount.ToDouble(&dAmount))
+                    dAmount = 0;
+                WebTran.Amount = dAmount;
+            }
 
-            //Amount -> TODO: Test with json::Number
-            wxString jsonAmount = wxString(json::String(jsonTransaction[TrProgrStr][L"Amount"]));
-            double TransactionAmount; jsonAmount.ToDouble(&TransactionAmount);
-            WebTran.Amount = TransactionAmount;
+            if (trx.HasMember("Account") && trx["Account"].IsString()) {
+                WebTran.Account =wxString::FromUTF8(trx["Account"].GetString());
+            }
 
-            WebTran.Notes = wxString(json::String(jsonTransaction[TrProgrStr][L"Notes"]));
-            WebTran.Attachments = wxString(json::String(jsonTransaction[TrProgrStr][L"Attachments"]));
+            if (trx.HasMember("ToAccount") && trx["ToAccount"].IsString()) {
+                WebTran.ToAccount = wxString::FromUTF8(trx["ToAccount"].GetString());
+            }
+
+            if (trx.HasMember("Status") && trx["Status"].IsString()) {
+                WebTran.Status = wxString::FromUTF8(trx["Status"].GetString());
+            }
+
+            if (trx.HasMember("Type") && trx["Type"].IsString()) {
+                WebTran.Type = wxString::FromUTF8(trx["Type"].GetString());
+            }
+
+
+            if (trx.HasMember("Payee") && trx["Payee"].IsString()) {
+                wxString Payee = wxString::FromUTF8(trx["Payee"].GetString());
+                if (Payee == "None" || Payee.IsEmpty()) {
+                    Payee = _("Unknown");
+                }
+                WebTran.Payee = Payee;
+            }
+
+            if (trx.HasMember("Category") && trx["Category"].IsString()) {
+                wxString Category = wxString::FromUTF8(trx["Category"].GetString());
+                if (Category == "None" || Category.IsEmpty()) {
+                    Category = _("Unknown");
+                }
+                WebTran.Category = Category;
+            }
+
+            if (trx.HasMember("SubCategory") && trx["SubCategory"].IsString()) {
+                wxString SubCategory = wxString::FromUTF8(trx["SubCategory"].GetString());
+                if (SubCategory == "None" || SubCategory.IsEmpty()) {
+                    SubCategory = _("Unknown");
+                }
+                WebTran.SubCategory = SubCategory;
+            }
+
+            if (trx.HasMember("Notes") && trx["Notes"].IsString()) {
+                WebTran.Notes = wxString::FromUTF8(trx["Notes"].GetString());
+            }
+
+            if (trx.HasMember("Attachments") && trx["Attachments"].IsString()) {
+                WebTran.Attachments = wxString::FromUTF8(trx["Attachments"].GetString());
+            }
 
             WebAppTransactions_.push_back(WebTran);
         }
@@ -411,7 +430,7 @@ int mmWebApp::MMEX_InsertNewTransaction(webtran_holder& WebAppTrans)
 {
     int DeskNewTrID = 0;
     bool bDeleteTrWebApp = false;
-    
+
     int AccountID = -1;
     int ToAccountID = -1;
     int PayeeID = -1;
@@ -498,7 +517,7 @@ int mmWebApp::MMEX_InsertNewTransaction(webtran_holder& WebAppTrans)
         NewPayee->SUBCATEGID = SubCategoryID;
         int NewPayeeID = Model_Payee::instance().save(NewPayee);
         PayeeID = NewPayeeID;
-    }  
+    }
 
     //Create New Transaction
     Model_Checking::Data * desktopNewTransaction;
@@ -526,7 +545,7 @@ int mmWebApp::MMEX_InsertNewTransaction(webtran_holder& WebAppTrans)
             wxString AttachmentsFolder = mmex::getPathAttachment(mmAttachmentManage::InfotablePathSetting());
             if (AttachmentsFolder == wxEmptyString || !wxDirExists(AttachmentsFolder))
             {
-                DeskNewTrID = Model_Checking::instance().remove(DeskNewTrID);
+                Model_Checking::instance().remove(DeskNewTrID);
                 DeskNewTrID = -1;
 
                 wxString msgStr = wxString() << _("Unable to download attachments from webapp.") << "\n"
@@ -559,7 +578,7 @@ int mmWebApp::MMEX_InsertNewTransaction(webtran_holder& WebAppTrans)
                     }
                     else
                     {
-                        DeskNewTrID = Model_Checking::instance().remove(DeskNewTrID);
+                        Model_Checking::instance().remove(DeskNewTrID);
                         DeskNewTrID = -1;
 
                         wxString msgStr = wxString() << _("Unable to download attachments from webapp.") << "\n"
@@ -571,7 +590,7 @@ int mmWebApp::MMEX_InsertNewTransaction(webtran_holder& WebAppTrans)
 
                     WebAppAttachmentName = wxEmptyString;
 
-                } //End loop throught attachments
+                } //End loop thought attachments
                 bDeleteTrWebApp = true;
             }
         }
@@ -621,8 +640,9 @@ wxString mmWebApp::WebApp_GetAttachment(const wxString& AttachmentFileName)
     if (http_download_file(URL, FilePath) == CURLE_OK)
         return FilePath;
     else
-        return wxEmptyString;
+    return wxEmptyString;
 }
+
 
 //Update account in MMEX
 bool mmWebApp::MMEX_WebApp_UpdateAccount()

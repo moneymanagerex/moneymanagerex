@@ -222,28 +222,31 @@ void mmReportsPanel::CreateControls()
     itemStaticText9->SetFont(this->GetFont().Larger().Bold());
     itemBoxSizerHeader->Add(itemStaticText9, 0, wxALL, 1);
 
-    if (rb_ && rb_->has_date_range())
+    if (rb_)
     {
-        m_date_ranges = new wxChoice(itemPanel3, ID_CHOICE_DATE_RANGE);
-
-        for (const auto & date_range: m_all_date_ranges)
+        if (rb_->RepParams::SINGLE_DATE & rb_->report_parameters())
         {
-            m_date_ranges->Append(date_range->local_title(), date_range);
+            m_date_ranges = new wxChoice(itemPanel3, ID_CHOICE_DATE_RANGE);
+
+            for (const auto & date_range : m_all_date_ranges)
+            {
+                m_date_ranges->Append(date_range->local_title(), date_range);
+            }
+            m_date_ranges->SetSelection(rb_->getDateSelection());
+
+            itemBoxSizerHeader->Add(m_date_ranges, 0, wxALL, 1);
+            const mmDateRange* date_range = *m_all_date_ranges.begin();
+            m_start_date = new wxDatePickerCtrl(itemPanel3, wxID_ANY);
+            m_start_date->SetValue(date_range->start_date());
+            m_start_date->Enable(false);
+
+            m_end_date = new wxDatePickerCtrl(itemPanel3, wxID_ANY);
+            m_end_date->SetValue(date_range->end_date());
+            m_end_date->Enable(false);
+
+            itemBoxSizerHeader->Add(m_start_date, 0, wxALL, 1);
+            itemBoxSizerHeader->Add(m_end_date, 0, wxALL, 1);
         }
-        m_date_ranges->SetSelection(rb_->getDateSelection());
-
-        itemBoxSizerHeader->Add(m_date_ranges, 0, wxALL, 1);
-        const mmDateRange* date_range = *m_all_date_ranges.begin();
-        m_start_date = new wxDatePickerCtrl(itemPanel3, wxID_ANY);
-        m_start_date->SetValue(date_range->start_date());
-        m_start_date->Enable(false);
-
-        m_end_date = new wxDatePickerCtrl(itemPanel3, wxID_ANY);
-        m_end_date->SetValue(date_range->end_date());
-        m_end_date->Enable(false);
-
-        itemBoxSizerHeader->Add(m_start_date, 0, wxALL, 1);
-        itemBoxSizerHeader->Add(m_end_date, 0, wxALL, 1);
     }
 
     browser_ = wxWebView::New(this, mmID_BROWSER);

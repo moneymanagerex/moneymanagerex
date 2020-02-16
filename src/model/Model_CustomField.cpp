@@ -115,83 +115,126 @@ wxArrayString Model_CustomField::all_type()
 
 wxString Model_CustomField::getTooltip(const wxString& Properties)
 {
-    json::Object jsonProperties;
-    std::wstringstream jsonPropertiesStream;
-
-    jsonPropertiesStream << Properties.ToStdWstring();
-    json::Reader::Read(jsonProperties, jsonPropertiesStream);
-    return wxString(json::String(jsonProperties[L"Tooltip"]));
+    Document json_doc;
+    if (!json_doc.Parse(Properties.c_str()).HasParseError())
+    {
+        if (json_doc.HasMember("Tooltip") && json_doc["Tooltip"].IsString()) {
+            Value& s = json_doc["Tooltip"];
+            return s.GetString();
+        }
+    }
+    return "";
 }
 
 wxString Model_CustomField::getRegEx(const wxString& Properties)
 {
-    json::Object jsonProperties;
-    std::wstringstream jsonPropertiesStream;
-
-    jsonPropertiesStream << Properties.ToStdWstring();
-    json::Reader::Read(jsonProperties, jsonPropertiesStream);
-    return wxString(json::String(jsonProperties[L"RegEx"]));
+    Document json_doc;
+    if (!json_doc.Parse(Properties.c_str()).HasParseError())
+    {
+        if (json_doc.HasMember("RegEx") && json_doc["RegEx"].IsString()) {
+            Value& s = json_doc["RegEx"];
+            return s.GetString();
+        }
+    }
+    return "";
 }
 
 bool Model_CustomField::getAutocomplete(const wxString& Properties)
 {
-    json::Object jsonProperties;
-    std::wstringstream jsonPropertiesStream;
-
-    jsonPropertiesStream << Properties.ToStdWstring();
-    json::Reader::Read(jsonProperties, jsonPropertiesStream);
-    return json::Boolean(jsonProperties[L"Autocomplete"]);
+    Document json_doc;
+    if (!json_doc.Parse(Properties.c_str()).HasParseError())
+    {
+        if (json_doc.HasMember("Autocomplete") && json_doc["Autocomplete"].IsBool()) {
+            Value& b = json_doc["Autocomplete"];
+            return b.GetBool();
+        }
+    }
+    return false;
 }
 
 wxString Model_CustomField::getDefault(const wxString& Properties)
 {
-    json::Object jsonProperties;
-    std::wstringstream jsonPropertiesStream;
-
-    jsonPropertiesStream << Properties.ToStdWstring();
-    json::Reader::Read(jsonProperties, jsonPropertiesStream);
-    return wxString(json::String(jsonProperties[L"Default"]));
+    Document json_doc;
+    if (!json_doc.Parse(Properties.c_str()).HasParseError())
+    {
+        if (json_doc.HasMember("Default") && json_doc["Default"].IsString()) {
+            Value& s = json_doc["Default"];
+            return s.GetString();
+        }
+    }
+    return "";
 }
 
 wxArrayString Model_CustomField::getChoices(const wxString& Properties)
 {
-    json::Object jsonProperties;
-    std::wstringstream jsonPropertiesStream;
-    wxArrayString Choices;
-
-    jsonPropertiesStream << Properties.ToStdWstring();
-    json::Reader::Read(jsonProperties, jsonPropertiesStream);
-
-    const json::Array& jsonChoices = jsonProperties[L"Choices"];
-    for (json::Array::const_iterator it = jsonChoices.Begin(); it != jsonChoices.End(); ++it)
+    wxArrayString choices;
+    Document json_doc;
+    if (!json_doc.Parse(Properties.c_str()).HasParseError())
     {
-        const json::Object& obj = *it;
-        Choices.Add(wxString(json::String(obj[L"Choice"])));
+        if (json_doc.HasMember("Choice") && json_doc["Choice"].IsArray())
+        {
+            Value& sa = json_doc["Choice"];
+            for (const auto& entry : sa.GetArray())
+            {
+                choices.Add(entry.GetString());
+            }
+        }
     }
 
-    return Choices;
+    return choices;
 }
 
 wxString Model_CustomField::formatProperties(const wxString& Tooltip, const wxString& RegEx, bool Autocomplete, const wxString& Default, const wxArrayString& Choices)
 {
-    json::Object jsonProperties;
-    std::wstringstream jsonPropertiesStream;
-    json::Array jsonChoices;
-    wxString outputMessage;
+    StringBuffer json_buffer;
+    Writer<StringBuffer> json_writer(json_buffer);
 
-    jsonProperties[L"Tooltip"] = json::String(Tooltip.ToStdWstring());
-    jsonProperties[L"RegEx"] = json::String(RegEx.ToStdWstring());
-    jsonProperties[L"Autocomplete"] = json::Boolean(Autocomplete);
-    jsonProperties[L"Default"] = json::String(Default.ToStdWstring());
+    json_writer.StartObject();
 
-    for (const auto &choice : Choices)
-    {
-        json::Object o;
-        o[L"Choice"] = json::String(choice.ToStdWstring());
-        jsonChoices.Insert(o);
+    if (!Tooltip.empty()) {
+        json_writer.Key("Tooltip");
+        json_writer.String(Tooltip.c_str());
     }
-    jsonProperties[L"Choices"] = json::Array(jsonChoices);
 
-    json::Writer::Write(jsonProperties, jsonPropertiesStream);
-    return jsonPropertiesStream.str();
+    if (!RegEx.empty()) {
+        json_writer.Key("RegEx");
+        json_writer.String(RegEx.c_str());
+    }
+
+    if (Autocomplete) {
+        json_writer.Key("Autocomplete");
+        json_writer.Bool(Autocomplete);
+    }
+
+    if (!Default.empty()) {
+        json_writer.Key("Default");
+        json_writer.String(Default.c_str());
+    }
+
+    if (!Choices.empty())
+    {
+        json_writer.Key("Choice");
+        json_writer.StartArray();
+        for (const auto &choice : Choices)
+        {
+            json_writer.String(choice.c_str());
+        }
+        json_writer.EndArray();
+    }
+
+    /* TODO
+    if (DigitScale) {
+        json_writer.Key("DigitScale");
+        json_writer.Int(DigitScale);
+    }
+
+    if (!udfc_str.empty()) {
+        json_writer.Key("UDFC");
+        json_writer.String(udfc_str.c_str());
+    }
+    */
+
+    json_writer.EndObject();
+
+    return json_buffer.GetString();
 }

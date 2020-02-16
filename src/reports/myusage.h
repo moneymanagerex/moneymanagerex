@@ -19,12 +19,12 @@
 #pragma once
 #include "reportbase.h"
 
-class mmReportMyUsage: public mmPrintableBase 
+class mmReportMyUsage: public mmPrintableBase
 {
 public:
     mmReportMyUsage();
     virtual ~mmReportMyUsage();
 
-    virtual bool has_date_range();
+    virtual int report_parameters();
     virtual wxString getHTMLText();
 };

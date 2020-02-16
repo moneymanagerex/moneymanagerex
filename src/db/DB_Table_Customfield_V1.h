@@ -1,8 +1,8 @@
 ﻿// -*- C++ -*-
 //=============================================================================
 /**
- *      Copyright (c) 2013 - 2017 Guan Lisheng (guanlisheng@gmail.com)
- *      Modifications: (c) 2017 Stefano Giorgio
+ *      Copyright: (c) 2013 - 2020 Guan Lisheng (guanlisheng@gmail.com)
+ *      Copyright: (c) 2017 - 2018 Stefano Giorgio (stef145g)
  *
  *      @file
  *
@@ -11,14 +11,11 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2017-01-15 15:26:20.475000.
+ *          AUTO GENERATED at 2020-02-16 19:01:17.538000.
  *          DO NOT EDIT!
  */
 //=============================================================================
-
-
-#ifndef DB_TABLE_CUSTOMFIELD_V1_H
-#define DB_TABLE_CUSTOMFIELD_V1_H
+#pragma once
 
 #include "DB_Table.h"
 
@@ -26,22 +23,29 @@ struct DB_Table_CUSTOMFIELD_V1 : public DB_Table
 {
     struct Data;
     typedef DB_Table_CUSTOMFIELD_V1 Self;
+
     /** A container to hold list of Data records for the table*/
     struct Data_Set : public std::vector<Self::Data>
     {
-        std::wstring to_json(json::Array& a) const
+        /**Return the data records as a json array string */
+        wxString to_json() const
         {
+            StringBuffer json_buffer;
+            PrettyWriter<StringBuffer> json_writer(json_buffer);
+
+            json_writer.StartArray();
             for (const auto & item: *this)
             {
-                json::Object o;
-                item.to_json(o);
-                a.Insert(o);
+                json_writer.StartObject();
+                item.as_json(json_writer);
+                json_writer.EndObject();
             }
-            std::wstringstream ss;
-            json::Writer::Write(a, ss);
-            return ss.str();
+            json_writer.EndArray();
+
+            return json_buffer.GetString();
         }
     };
+
     /** A container to hold a list of Data record pointers for the table in memory*/
     typedef std::vector<Self::Data*> Cache;
     typedef std::map<int, Self::Data*> Index_By_Id;
@@ -112,26 +116,31 @@ struct DB_Table_CUSTOMFIELD_V1 : public DB_Table
         static wxString name() { return "FIELDID"; } 
         explicit FIELDID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
+    
     struct REFTYPE : public DB_Column<wxString>
     { 
         static wxString name() { return "REFTYPE"; } 
         explicit REFTYPE(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
+    
     struct DESCRIPTION : public DB_Column<wxString>
     { 
         static wxString name() { return "DESCRIPTION"; } 
         explicit DESCRIPTION(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
+    
     struct TYPE : public DB_Column<wxString>
     { 
         static wxString name() { return "TYPE"; } 
         explicit TYPE(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
+    
     struct PROPERTIES : public DB_Column<wxString>
     { 
         static wxString name() { return "PROPERTIES"; } 
         explicit PROPERTIES(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
+    
     typedef FIELDID PRIMARY;
     enum COLUMN
     {
@@ -182,12 +191,22 @@ struct DB_Table_CUSTOMFIELD_V1 : public DB_Table
         wxString DESCRIPTION;
         wxString TYPE;
         wxString PROPERTIES;
-        int id() const { return FIELDID; }
-        void id(int id) { FIELDID = id; }
+
+        int id() const
+        {
+            return FIELDID;
+        }
+
+        void id(int id)
+        {
+            FIELDID = id;
+        }
+
         bool operator < (const Data& r) const
         {
             return this->id() < r.id();
         }
+        
         bool operator < (const Data* r) const
         {
             return this->id() < r->id();
@@ -228,44 +247,60 @@ struct DB_Table_CUSTOMFIELD_V1 : public DB_Table
         {
             return false;
         }
+
         bool match(const Self::FIELDID &in) const
         {
             return this->FIELDID == in.v_;
         }
+
         bool match(const Self::REFTYPE &in) const
         {
             return this->REFTYPE.CmpNoCase(in.v_) == 0;
         }
+
         bool match(const Self::DESCRIPTION &in) const
         {
             return this->DESCRIPTION.CmpNoCase(in.v_) == 0;
         }
+
         bool match(const Self::TYPE &in) const
         {
             return this->TYPE.CmpNoCase(in.v_) == 0;
         }
+
         bool match(const Self::PROPERTIES &in) const
         {
             return this->PROPERTIES.CmpNoCase(in.v_) == 0;
         }
+
+        // Return the data record as a json string
         wxString to_json() const
         {
-            json::Object o;
-            this->to_json(o);
-            std::wstringstream ss;
-            json::Writer::Write(o, ss);
-            return ss.str();
+            StringBuffer json_buffer;
+            PrettyWriter<StringBuffer> json_writer(json_buffer);
+
+			json_writer.StartObject();			
+			this->as_json(json_writer);
+            json_writer.EndObject();
+
+            return json_buffer.GetString();
         }
-        
-        int to_json(json::Object& o) const
+
+        // Add the field data as json key:value pairs
+        void as_json(PrettyWriter<StringBuffer>& json_writer) const
         {
-            o[L"FIELDID"] = json::Number(this->FIELDID);
-            o[L"REFTYPE"] = json::String(this->REFTYPE.ToStdWstring());
-            o[L"DESCRIPTION"] = json::String(this->DESCRIPTION.ToStdWstring());
-            o[L"TYPE"] = json::String(this->TYPE.ToStdWstring());
-            o[L"PROPERTIES"] = json::String(this->PROPERTIES.ToStdWstring());
-            return 0;
+            json_writer.Key("FIELDID");
+            json_writer.Int(this->FIELDID);
+            json_writer.Key("REFTYPE");
+            json_writer.String(this->REFTYPE.c_str());
+            json_writer.Key("DESCRIPTION");
+            json_writer.String(this->DESCRIPTION.c_str());
+            json_writer.Key("TYPE");
+            json_writer.String(this->TYPE.c_str());
+            json_writer.Key("PROPERTIES");
+            json_writer.String(this->PROPERTIES.c_str());
         }
+
         row_t to_row_t() const
         {
             row_t row;
@@ -276,6 +311,7 @@ struct DB_Table_CUSTOMFIELD_V1 : public DB_Table
             row(L"PROPERTIES") = PROPERTIES;
             return row;
         }
+
         void to_template(html_template& t) const
         {
             t(L"FIELDID") = FIELDID;
@@ -312,8 +348,6 @@ struct DB_Table_CUSTOMFIELD_V1 : public DB_Table
 
         void destroy()
         {
-            //if (this->id() < 0)
-            //    wxSafeShowMessage("unsaved object", this->to_json());
             delete this;
         }
     };
@@ -550,4 +584,4 @@ struct DB_Table_CUSTOMFIELD_V1 : public DB_Table
         return result;
     }
 };
-#endif //
+

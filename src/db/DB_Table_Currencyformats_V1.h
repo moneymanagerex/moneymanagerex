@@ -1,8 +1,8 @@
 ﻿// -*- C++ -*-
 //=============================================================================
 /**
- *      Copyright (c) 2013 - 2017 Guan Lisheng (guanlisheng@gmail.com)
- *      Modifications: (c) 2017 Stefano Giorgio
+ *      Copyright: (c) 2013 - 2020 Guan Lisheng (guanlisheng@gmail.com)
+ *      Copyright: (c) 2017 - 2018 Stefano Giorgio (stef145g)
  *
  *      @file
  *
@@ -11,15 +11,12 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2017-01-15 15:26:20.475000.
+ *          AUTO GENERATED at 2020-02-16 19:01:17.538000.
  *          DO NOT EDIT!
  */
 //=============================================================================
-
 #pragma execution_character_set("UTF-8")
-
-#ifndef DB_TABLE_CURRENCYFORMATS_V1_H
-#define DB_TABLE_CURRENCYFORMATS_V1_H
+#pragma once
 
 #include "DB_Table.h"
 
@@ -27,22 +24,29 @@ struct DB_Table_CURRENCYFORMATS_V1 : public DB_Table
 {
     struct Data;
     typedef DB_Table_CURRENCYFORMATS_V1 Self;
+
     /** A container to hold list of Data records for the table*/
     struct Data_Set : public std::vector<Self::Data>
     {
-        std::wstring to_json(json::Array& a) const
+        /**Return the data records as a json array string */
+        wxString to_json() const
         {
+            StringBuffer json_buffer;
+            PrettyWriter<StringBuffer> json_writer(json_buffer);
+
+            json_writer.StartArray();
             for (const auto & item: *this)
             {
-                json::Object o;
-                item.to_json(o);
-                a.Insert(o);
+                json_writer.StartObject();
+                item.as_json(json_writer);
+                json_writer.EndObject();
             }
-            std::wstringstream ss;
-            json::Writer::Write(a, ss);
-            return ss.str();
+            json_writer.EndArray();
+
+            return json_buffer.GetString();
         }
     };
+
     /** A container to hold a list of Data record pointers for the table in memory*/
     typedef std::vector<Self::Data*> Cache;
     typedef std::map<int, Self::Data*> Index_By_Id;
@@ -266,56 +270,67 @@ struct DB_Table_CURRENCYFORMATS_V1 : public DB_Table
         static wxString name() { return "CURRENCYID"; } 
         explicit CURRENCYID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
+    
     struct CURRENCYNAME : public DB_Column<wxString>
     { 
         static wxString name() { return "CURRENCYNAME"; } 
         explicit CURRENCYNAME(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
+    
     struct PFX_SYMBOL : public DB_Column<wxString>
     { 
         static wxString name() { return "PFX_SYMBOL"; } 
         explicit PFX_SYMBOL(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
+    
     struct SFX_SYMBOL : public DB_Column<wxString>
     { 
         static wxString name() { return "SFX_SYMBOL"; } 
         explicit SFX_SYMBOL(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
+    
     struct DECIMAL_POINT : public DB_Column<wxString>
     { 
         static wxString name() { return "DECIMAL_POINT"; } 
         explicit DECIMAL_POINT(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
+    
     struct GROUP_SEPARATOR : public DB_Column<wxString>
     { 
         static wxString name() { return "GROUP_SEPARATOR"; } 
         explicit GROUP_SEPARATOR(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
+    
     struct UNIT_NAME : public DB_Column<wxString>
     { 
         static wxString name() { return "UNIT_NAME"; } 
         explicit UNIT_NAME(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
+    
     struct CENT_NAME : public DB_Column<wxString>
     { 
         static wxString name() { return "CENT_NAME"; } 
         explicit CENT_NAME(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
+    
     struct SCALE : public DB_Column<int>
     { 
         static wxString name() { return "SCALE"; } 
         explicit SCALE(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
+    
     struct BASECONVRATE : public DB_Column<double>
     { 
         static wxString name() { return "BASECONVRATE"; } 
         explicit BASECONVRATE(const double &v, OP op = EQUAL): DB_Column<double>(v, op) {}
     };
+    
     struct CURRENCY_SYMBOL : public DB_Column<wxString>
     { 
         static wxString name() { return "CURRENCY_SYMBOL"; } 
         explicit CURRENCY_SYMBOL(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
+    
     typedef CURRENCYID PRIMARY;
     enum COLUMN
     {
@@ -390,12 +405,22 @@ struct DB_Table_CURRENCYFORMATS_V1 : public DB_Table
         int SCALE;
         double BASECONVRATE;
         wxString CURRENCY_SYMBOL;
-        int id() const { return CURRENCYID; }
-        void id(int id) { CURRENCYID = id; }
+
+        int id() const
+        {
+            return CURRENCYID;
+        }
+
+        void id(int id)
+        {
+            CURRENCYID = id;
+        }
+
         bool operator < (const Data& r) const
         {
             return this->id() < r.id();
         }
+        
         bool operator < (const Data* r) const
         {
             return this->id() < r->id();
@@ -450,74 +475,102 @@ struct DB_Table_CURRENCYFORMATS_V1 : public DB_Table
         {
             return false;
         }
+
         bool match(const Self::CURRENCYID &in) const
         {
             return this->CURRENCYID == in.v_;
         }
+
         bool match(const Self::CURRENCYNAME &in) const
         {
             return this->CURRENCYNAME.CmpNoCase(in.v_) == 0;
         }
+
         bool match(const Self::PFX_SYMBOL &in) const
         {
             return this->PFX_SYMBOL.CmpNoCase(in.v_) == 0;
         }
+
         bool match(const Self::SFX_SYMBOL &in) const
         {
             return this->SFX_SYMBOL.CmpNoCase(in.v_) == 0;
         }
+
         bool match(const Self::DECIMAL_POINT &in) const
         {
             return this->DECIMAL_POINT.CmpNoCase(in.v_) == 0;
         }
+
         bool match(const Self::GROUP_SEPARATOR &in) const
         {
             return this->GROUP_SEPARATOR.CmpNoCase(in.v_) == 0;
         }
+
         bool match(const Self::UNIT_NAME &in) const
         {
             return this->UNIT_NAME.CmpNoCase(in.v_) == 0;
         }
+
         bool match(const Self::CENT_NAME &in) const
         {
             return this->CENT_NAME.CmpNoCase(in.v_) == 0;
         }
+
         bool match(const Self::SCALE &in) const
         {
             return this->SCALE == in.v_;
         }
+
         bool match(const Self::BASECONVRATE &in) const
         {
             return this->BASECONVRATE == in.v_;
         }
+
         bool match(const Self::CURRENCY_SYMBOL &in) const
         {
             return this->CURRENCY_SYMBOL.CmpNoCase(in.v_) == 0;
         }
+
+        // Return the data record as a json string
         wxString to_json() const
         {
-            json::Object o;
-            this->to_json(o);
-            std::wstringstream ss;
-            json::Writer::Write(o, ss);
-            return ss.str();
+            StringBuffer json_buffer;
+            PrettyWriter<StringBuffer> json_writer(json_buffer);
+
+			json_writer.StartObject();			
+			this->as_json(json_writer);
+            json_writer.EndObject();
+
+            return json_buffer.GetString();
         }
-        
-        int to_json(json::Object& o) const
+
+        // Add the field data as json key:value pairs
+        void as_json(PrettyWriter<StringBuffer>& json_writer) const
         {
-            o[L"CURRENCYID"] = json::Number(this->CURRENCYID);
-            o[L"CURRENCYNAME"] = json::String(this->CURRENCYNAME.ToStdWstring());
-            o[L"PFX_SYMBOL"] = json::String(this->PFX_SYMBOL.ToStdWstring());
-            o[L"SFX_SYMBOL"] = json::String(this->SFX_SYMBOL.ToStdWstring());
-            o[L"DECIMAL_POINT"] = json::String(this->DECIMAL_POINT.ToStdWstring());
-            o[L"GROUP_SEPARATOR"] = json::String(this->GROUP_SEPARATOR.ToStdWstring());
-            o[L"UNIT_NAME"] = json::String(this->UNIT_NAME.ToStdWstring());
-            o[L"CENT_NAME"] = json::String(this->CENT_NAME.ToStdWstring());
-            o[L"SCALE"] = json::Number(this->SCALE);
-            o[L"BASECONVRATE"] = json::Number(this->BASECONVRATE);
-            o[L"CURRENCY_SYMBOL"] = json::String(this->CURRENCY_SYMBOL.ToStdWstring());
-            return 0;
+            json_writer.Key("CURRENCYID");
+            json_writer.Int(this->CURRENCYID);
+            json_writer.Key("CURRENCYNAME");
+            json_writer.String(this->CURRENCYNAME.c_str());
+            json_writer.Key("PFX_SYMBOL");
+            json_writer.String(this->PFX_SYMBOL.c_str());
+            json_writer.Key("SFX_SYMBOL");
+            json_writer.String(this->SFX_SYMBOL.c_str());
+            json_writer.Key("DECIMAL_POINT");
+            json_writer.String(this->DECIMAL_POINT.c_str());
+            json_writer.Key("GROUP_SEPARATOR");
+            json_writer.String(this->GROUP_SEPARATOR.c_str());
+            json_writer.Key("UNIT_NAME");
+            json_writer.String(this->UNIT_NAME.c_str());
+            json_writer.Key("CENT_NAME");
+            json_writer.String(this->CENT_NAME.c_str());
+            json_writer.Key("SCALE");
+            json_writer.Int(this->SCALE);
+            json_writer.Key("BASECONVRATE");
+            json_writer.Double(this->BASECONVRATE);
+            json_writer.Key("CURRENCY_SYMBOL");
+            json_writer.String(this->CURRENCY_SYMBOL.c_str());
         }
+
         row_t to_row_t() const
         {
             row_t row;
@@ -534,6 +587,7 @@ struct DB_Table_CURRENCYFORMATS_V1 : public DB_Table
             row(L"CURRENCY_SYMBOL") = CURRENCY_SYMBOL;
             return row;
         }
+
         void to_template(html_template& t) const
         {
             t(L"CURRENCYID") = CURRENCYID;
@@ -576,8 +630,6 @@ struct DB_Table_CURRENCYFORMATS_V1 : public DB_Table
 
         void destroy()
         {
-            //if (this->id() < 0)
-            //    wxSafeShowMessage("unsaved object", this->to_json());
             delete this;
         }
     };
@@ -820,4 +872,4 @@ struct DB_Table_CURRENCYFORMATS_V1 : public DB_Table
         return result;
     }
 };
-#endif //
+

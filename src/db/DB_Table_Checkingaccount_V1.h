@@ -1,8 +1,8 @@
 ﻿// -*- C++ -*-
 //=============================================================================
 /**
- *      Copyright (c) 2013 - 2017 Guan Lisheng (guanlisheng@gmail.com)
- *      Modifications: (c) 2017 Stefano Giorgio
+ *      Copyright: (c) 2013 - 2020 Guan Lisheng (guanlisheng@gmail.com)
+ *      Copyright: (c) 2017 - 2018 Stefano Giorgio (stef145g)
  *
  *      @file
  *
@@ -11,14 +11,11 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2017-01-15 15:26:20.475000.
+ *          AUTO GENERATED at 2020-02-16 19:01:17.538000.
  *          DO NOT EDIT!
  */
 //=============================================================================
-
-
-#ifndef DB_TABLE_CHECKINGACCOUNT_V1_H
-#define DB_TABLE_CHECKINGACCOUNT_V1_H
+#pragma once
 
 #include "DB_Table.h"
 
@@ -26,22 +23,29 @@ struct DB_Table_CHECKINGACCOUNT_V1 : public DB_Table
 {
     struct Data;
     typedef DB_Table_CHECKINGACCOUNT_V1 Self;
+
     /** A container to hold list of Data records for the table*/
     struct Data_Set : public std::vector<Self::Data>
     {
-        std::wstring to_json(json::Array& a) const
+        /**Return the data records as a json array string */
+        wxString to_json() const
         {
+            StringBuffer json_buffer;
+            PrettyWriter<StringBuffer> json_writer(json_buffer);
+
+            json_writer.StartArray();
             for (const auto & item: *this)
             {
-                json::Object o;
-                item.as_json(o);
-                a.Insert(o);
+                json_writer.StartObject();
+                item.as_json(json_writer);
+                json_writer.EndObject();
             }
-            std::wstringstream ss;
-            json::Writer::Write(a, ss);
-            return ss.str();
+            json_writer.EndArray();
+
+            return json_buffer.GetString();
         }
     };
+
     /** A container to hold a list of Data record pointers for the table in memory*/
     typedef std::vector<Self::Data*> Cache;
     typedef std::map<int, Self::Data*> Index_By_Id;
@@ -113,71 +117,85 @@ struct DB_Table_CHECKINGACCOUNT_V1 : public DB_Table
         static wxString name() { return "TRANSID"; } 
         explicit TRANSID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
+    
     struct ACCOUNTID : public DB_Column<int>
     { 
         static wxString name() { return "ACCOUNTID"; } 
         explicit ACCOUNTID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
+    
     struct TOACCOUNTID : public DB_Column<int>
     { 
         static wxString name() { return "TOACCOUNTID"; } 
         explicit TOACCOUNTID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
+    
     struct PAYEEID : public DB_Column<int>
     { 
         static wxString name() { return "PAYEEID"; } 
         explicit PAYEEID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
+    
     struct TRANSCODE : public DB_Column<wxString>
     { 
         static wxString name() { return "TRANSCODE"; } 
         explicit TRANSCODE(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
+    
     struct TRANSAMOUNT : public DB_Column<double>
     { 
         static wxString name() { return "TRANSAMOUNT"; } 
         explicit TRANSAMOUNT(const double &v, OP op = EQUAL): DB_Column<double>(v, op) {}
     };
+    
     struct STATUS : public DB_Column<wxString>
     { 
         static wxString name() { return "STATUS"; } 
         explicit STATUS(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
+    
     struct TRANSACTIONNUMBER : public DB_Column<wxString>
     { 
         static wxString name() { return "TRANSACTIONNUMBER"; } 
         explicit TRANSACTIONNUMBER(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
+    
     struct NOTES : public DB_Column<wxString>
     { 
         static wxString name() { return "NOTES"; } 
         explicit NOTES(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
+    
     struct CATEGID : public DB_Column<int>
     { 
         static wxString name() { return "CATEGID"; } 
         explicit CATEGID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
+    
     struct SUBCATEGID : public DB_Column<int>
     { 
         static wxString name() { return "SUBCATEGID"; } 
         explicit SUBCATEGID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
+    
     struct TRANSDATE : public DB_Column<wxString>
     { 
         static wxString name() { return "TRANSDATE"; } 
         explicit TRANSDATE(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
+    
     struct FOLLOWUPID : public DB_Column<int>
     { 
         static wxString name() { return "FOLLOWUPID"; } 
         explicit FOLLOWUPID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
+    
     struct TOTRANSAMOUNT : public DB_Column<double>
     { 
         static wxString name() { return "TOTRANSAMOUNT"; } 
         explicit TOTRANSAMOUNT(const double &v, OP op = EQUAL): DB_Column<double>(v, op) {}
     };
+    
     typedef TRANSID PRIMARY;
     enum COLUMN
     {
@@ -264,12 +282,22 @@ struct DB_Table_CHECKINGACCOUNT_V1 : public DB_Table
         wxString TRANSDATE;
         int FOLLOWUPID;
         double TOTRANSAMOUNT;
-        int id() const { return TRANSID; }
-        void id(int id) { TRANSID = id; }
+
+        int id() const
+        {
+            return TRANSID;
+        }
+
+        void id(int id)
+        {
+            TRANSID = id;
+        }
+
         bool operator < (const Data& r) const
         {
             return this->id() < r.id();
         }
+        
         bool operator < (const Data* r) const
         {
             return this->id() < r->id();
@@ -336,88 +364,123 @@ struct DB_Table_CHECKINGACCOUNT_V1 : public DB_Table
         {
             return false;
         }
+
         bool match(const Self::TRANSID &in) const
         {
             return this->TRANSID == in.v_;
         }
+
         bool match(const Self::ACCOUNTID &in) const
         {
             return this->ACCOUNTID == in.v_;
         }
+
         bool match(const Self::TOACCOUNTID &in) const
         {
             return this->TOACCOUNTID == in.v_;
         }
+
         bool match(const Self::PAYEEID &in) const
         {
             return this->PAYEEID == in.v_;
         }
+
         bool match(const Self::TRANSCODE &in) const
         {
             return this->TRANSCODE.CmpNoCase(in.v_) == 0;
         }
+
         bool match(const Self::TRANSAMOUNT &in) const
         {
             return this->TRANSAMOUNT == in.v_;
         }
+
         bool match(const Self::STATUS &in) const
         {
             return this->STATUS.CmpNoCase(in.v_) == 0;
         }
+
         bool match(const Self::TRANSACTIONNUMBER &in) const
         {
             return this->TRANSACTIONNUMBER.CmpNoCase(in.v_) == 0;
         }
+
         bool match(const Self::NOTES &in) const
         {
             return this->NOTES.CmpNoCase(in.v_) == 0;
         }
+
         bool match(const Self::CATEGID &in) const
         {
             return this->CATEGID == in.v_;
         }
+
         bool match(const Self::SUBCATEGID &in) const
         {
             return this->SUBCATEGID == in.v_;
         }
+
         bool match(const Self::TRANSDATE &in) const
         {
             return this->TRANSDATE.CmpNoCase(in.v_) == 0;
         }
+
         bool match(const Self::FOLLOWUPID &in) const
         {
             return this->FOLLOWUPID == in.v_;
         }
+
         bool match(const Self::TOTRANSAMOUNT &in) const
         {
             return this->TOTRANSAMOUNT == in.v_;
         }
+
+        // Return the data record as a json string
         wxString to_json() const
         {
-            json::Object o;
-            this->as_json(o);
-            std::wstringstream ss;
-            json::Writer::Write(o, ss);
-            return ss.str();
+            StringBuffer json_buffer;
+            PrettyWriter<StringBuffer> json_writer(json_buffer);
+
+			json_writer.StartObject();			
+			this->as_json(json_writer);
+            json_writer.EndObject();
+
+            return json_buffer.GetString();
         }
-        
-        void as_json(json::Object& o) const
+
+        // Add the field data as json key:value pairs
+        void as_json(PrettyWriter<StringBuffer>& json_writer) const
         {
-            o[L"TRANSID"] = json::Number(this->TRANSID);
-            o[L"ACCOUNTID"] = json::Number(this->ACCOUNTID);
-            o[L"TOACCOUNTID"] = json::Number(this->TOACCOUNTID);
-            o[L"PAYEEID"] = json::Number(this->PAYEEID);
-            o[L"TRANSCODE"] = json::String(this->TRANSCODE.ToStdWstring());
-            o[L"TRANSAMOUNT"] = json::Number(this->TRANSAMOUNT);
-            o[L"STATUS"] = json::String(this->STATUS.ToStdWstring());
-            o[L"TRANSACTIONNUMBER"] = json::String(this->TRANSACTIONNUMBER.ToStdWstring());
-            o[L"NOTES"] = json::String(this->NOTES.ToStdWstring());
-            o[L"CATEGID"] = json::Number(this->CATEGID);
-            o[L"SUBCATEGID"] = json::Number(this->SUBCATEGID);
-            o[L"TRANSDATE"] = json::String(this->TRANSDATE.ToStdWstring());
-            o[L"FOLLOWUPID"] = json::Number(this->FOLLOWUPID);
-            o[L"TOTRANSAMOUNT"] = json::Number(this->TOTRANSAMOUNT);
+            json_writer.Key("TRANSID");
+            json_writer.Int(this->TRANSID);
+            json_writer.Key("ACCOUNTID");
+            json_writer.Int(this->ACCOUNTID);
+            json_writer.Key("TOACCOUNTID");
+            json_writer.Int(this->TOACCOUNTID);
+            json_writer.Key("PAYEEID");
+            json_writer.Int(this->PAYEEID);
+            json_writer.Key("TRANSCODE");
+            json_writer.String(this->TRANSCODE.c_str());
+            json_writer.Key("TRANSAMOUNT");
+            json_writer.Double(this->TRANSAMOUNT);
+            json_writer.Key("STATUS");
+            json_writer.String(this->STATUS.c_str());
+            json_writer.Key("TRANSACTIONNUMBER");
+            json_writer.String(this->TRANSACTIONNUMBER.c_str());
+            json_writer.Key("NOTES");
+            json_writer.String(this->NOTES.c_str());
+            json_writer.Key("CATEGID");
+            json_writer.Int(this->CATEGID);
+            json_writer.Key("SUBCATEGID");
+            json_writer.Int(this->SUBCATEGID);
+            json_writer.Key("TRANSDATE");
+            json_writer.String(this->TRANSDATE.c_str());
+            json_writer.Key("FOLLOWUPID");
+            json_writer.Int(this->FOLLOWUPID);
+            json_writer.Key("TOTRANSAMOUNT");
+            json_writer.Double(this->TOTRANSAMOUNT);
         }
+
         row_t to_row_t() const
         {
             row_t row;
@@ -437,6 +500,7 @@ struct DB_Table_CHECKINGACCOUNT_V1 : public DB_Table
             row(L"TOTRANSAMOUNT") = TOTRANSAMOUNT;
             return row;
         }
+
         void to_template(html_template& t) const
         {
             t(L"TRANSID") = TRANSID;
@@ -482,8 +546,6 @@ struct DB_Table_CHECKINGACCOUNT_V1 : public DB_Table
 
         void destroy()
         {
-            //if (this->id() < 0)
-            //    wxSafeShowMessage("unsaved object", this->to_json());
             delete this;
         }
     };
@@ -729,4 +791,4 @@ struct DB_Table_CHECKINGACCOUNT_V1 : public DB_Table
         return result;
     }
 };
-#endif //
+

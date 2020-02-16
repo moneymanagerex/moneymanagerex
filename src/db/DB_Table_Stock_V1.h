@@ -1,8 +1,8 @@
 ﻿// -*- C++ -*-
 //=============================================================================
 /**
- *      Copyright (c) 2013 - 2017 Guan Lisheng (guanlisheng@gmail.com)
- *      Modifications: (c) 2017 Stefano Giorgio
+ *      Copyright: (c) 2013 - 2020 Guan Lisheng (guanlisheng@gmail.com)
+ *      Copyright: (c) 2017 - 2018 Stefano Giorgio (stef145g)
  *
  *      @file
  *
@@ -11,14 +11,11 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2017-01-15 15:26:20.475000.
+ *          AUTO GENERATED at 2020-02-16 19:01:17.538000.
  *          DO NOT EDIT!
  */
 //=============================================================================
-
-
-#ifndef DB_TABLE_STOCK_V1_H
-#define DB_TABLE_STOCK_V1_H
+#pragma once
 
 #include "DB_Table.h"
 
@@ -26,22 +23,29 @@ struct DB_Table_STOCK_V1 : public DB_Table
 {
     struct Data;
     typedef DB_Table_STOCK_V1 Self;
+
     /** A container to hold list of Data records for the table*/
     struct Data_Set : public std::vector<Self::Data>
     {
-        std::wstring to_json(json::Array& a) const
+        /**Return the data records as a json array string */
+        wxString to_json() const
         {
+            StringBuffer json_buffer;
+            PrettyWriter<StringBuffer> json_writer(json_buffer);
+
+            json_writer.StartArray();
             for (const auto & item: *this)
             {
-                json::Object o;
-                item.to_json(o);
-                a.Insert(o);
+                json_writer.StartObject();
+                item.as_json(json_writer);
+                json_writer.EndObject();
             }
-            std::wstringstream ss;
-            json::Writer::Write(a, ss);
-            return ss.str();
+            json_writer.EndArray();
+
+            return json_buffer.GetString();
         }
     };
+
     /** A container to hold a list of Data record pointers for the table in memory*/
     typedef std::vector<Self::Data*> Cache;
     typedef std::map<int, Self::Data*> Index_By_Id;
@@ -112,56 +116,67 @@ struct DB_Table_STOCK_V1 : public DB_Table
         static wxString name() { return "STOCKID"; } 
         explicit STOCKID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
+    
     struct HELDAT : public DB_Column<int>
     { 
         static wxString name() { return "HELDAT"; } 
         explicit HELDAT(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
+    
     struct PURCHASEDATE : public DB_Column<wxString>
     { 
         static wxString name() { return "PURCHASEDATE"; } 
         explicit PURCHASEDATE(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
+    
     struct STOCKNAME : public DB_Column<wxString>
     { 
         static wxString name() { return "STOCKNAME"; } 
         explicit STOCKNAME(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
+    
     struct SYMBOL : public DB_Column<wxString>
     { 
         static wxString name() { return "SYMBOL"; } 
         explicit SYMBOL(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
+    
     struct NUMSHARES : public DB_Column<double>
     { 
         static wxString name() { return "NUMSHARES"; } 
         explicit NUMSHARES(const double &v, OP op = EQUAL): DB_Column<double>(v, op) {}
     };
+    
     struct PURCHASEPRICE : public DB_Column<double>
     { 
         static wxString name() { return "PURCHASEPRICE"; } 
         explicit PURCHASEPRICE(const double &v, OP op = EQUAL): DB_Column<double>(v, op) {}
     };
+    
     struct NOTES : public DB_Column<wxString>
     { 
         static wxString name() { return "NOTES"; } 
         explicit NOTES(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
+    
     struct CURRENTPRICE : public DB_Column<double>
     { 
         static wxString name() { return "CURRENTPRICE"; } 
         explicit CURRENTPRICE(const double &v, OP op = EQUAL): DB_Column<double>(v, op) {}
     };
+    
     struct VALUE : public DB_Column<double>
     { 
         static wxString name() { return "VALUE"; } 
         explicit VALUE(const double &v, OP op = EQUAL): DB_Column<double>(v, op) {}
     };
+    
     struct COMMISSION : public DB_Column<double>
     { 
         static wxString name() { return "COMMISSION"; } 
         explicit COMMISSION(const double &v, OP op = EQUAL): DB_Column<double>(v, op) {}
     };
+    
     typedef STOCKID PRIMARY;
     enum COLUMN
     {
@@ -236,12 +251,22 @@ struct DB_Table_STOCK_V1 : public DB_Table
         double CURRENTPRICE;
         double VALUE;
         double COMMISSION;
-        int id() const { return STOCKID; }
-        void id(int id) { STOCKID = id; }
+
+        int id() const
+        {
+            return STOCKID;
+        }
+
+        void id(int id)
+        {
+            STOCKID = id;
+        }
+
         bool operator < (const Data& r) const
         {
             return this->id() < r.id();
         }
+        
         bool operator < (const Data* r) const
         {
             return this->id() < r->id();
@@ -300,74 +325,102 @@ struct DB_Table_STOCK_V1 : public DB_Table
         {
             return false;
         }
+
         bool match(const Self::STOCKID &in) const
         {
             return this->STOCKID == in.v_;
         }
+
         bool match(const Self::HELDAT &in) const
         {
             return this->HELDAT == in.v_;
         }
+
         bool match(const Self::PURCHASEDATE &in) const
         {
             return this->PURCHASEDATE.CmpNoCase(in.v_) == 0;
         }
+
         bool match(const Self::STOCKNAME &in) const
         {
             return this->STOCKNAME.CmpNoCase(in.v_) == 0;
         }
+
         bool match(const Self::SYMBOL &in) const
         {
             return this->SYMBOL.CmpNoCase(in.v_) == 0;
         }
+
         bool match(const Self::NUMSHARES &in) const
         {
             return this->NUMSHARES == in.v_;
         }
+
         bool match(const Self::PURCHASEPRICE &in) const
         {
             return this->PURCHASEPRICE == in.v_;
         }
+
         bool match(const Self::NOTES &in) const
         {
             return this->NOTES.CmpNoCase(in.v_) == 0;
         }
+
         bool match(const Self::CURRENTPRICE &in) const
         {
             return this->CURRENTPRICE == in.v_;
         }
+
         bool match(const Self::VALUE &in) const
         {
             return this->VALUE == in.v_;
         }
+
         bool match(const Self::COMMISSION &in) const
         {
             return this->COMMISSION == in.v_;
         }
+
+        // Return the data record as a json string
         wxString to_json() const
         {
-            json::Object o;
-            this->to_json(o);
-            std::wstringstream ss;
-            json::Writer::Write(o, ss);
-            return ss.str();
+            StringBuffer json_buffer;
+            PrettyWriter<StringBuffer> json_writer(json_buffer);
+
+			json_writer.StartObject();			
+			this->as_json(json_writer);
+            json_writer.EndObject();
+
+            return json_buffer.GetString();
         }
-        
-        int to_json(json::Object& o) const
+
+        // Add the field data as json key:value pairs
+        void as_json(PrettyWriter<StringBuffer>& json_writer) const
         {
-            o[L"STOCKID"] = json::Number(this->STOCKID);
-            o[L"HELDAT"] = json::Number(this->HELDAT);
-            o[L"PURCHASEDATE"] = json::String(this->PURCHASEDATE.ToStdWstring());
-            o[L"STOCKNAME"] = json::String(this->STOCKNAME.ToStdWstring());
-            o[L"SYMBOL"] = json::String(this->SYMBOL.ToStdWstring());
-            o[L"NUMSHARES"] = json::Number(this->NUMSHARES);
-            o[L"PURCHASEPRICE"] = json::Number(this->PURCHASEPRICE);
-            o[L"NOTES"] = json::String(this->NOTES.ToStdWstring());
-            o[L"CURRENTPRICE"] = json::Number(this->CURRENTPRICE);
-            o[L"VALUE"] = json::Number(this->VALUE);
-            o[L"COMMISSION"] = json::Number(this->COMMISSION);
-            return 0;
+            json_writer.Key("STOCKID");
+            json_writer.Int(this->STOCKID);
+            json_writer.Key("HELDAT");
+            json_writer.Int(this->HELDAT);
+            json_writer.Key("PURCHASEDATE");
+            json_writer.String(this->PURCHASEDATE.c_str());
+            json_writer.Key("STOCKNAME");
+            json_writer.String(this->STOCKNAME.c_str());
+            json_writer.Key("SYMBOL");
+            json_writer.String(this->SYMBOL.c_str());
+            json_writer.Key("NUMSHARES");
+            json_writer.Double(this->NUMSHARES);
+            json_writer.Key("PURCHASEPRICE");
+            json_writer.Double(this->PURCHASEPRICE);
+            json_writer.Key("NOTES");
+            json_writer.String(this->NOTES.c_str());
+            json_writer.Key("CURRENTPRICE");
+            json_writer.Double(this->CURRENTPRICE);
+            json_writer.Key("VALUE");
+            json_writer.Double(this->VALUE);
+            json_writer.Key("COMMISSION");
+            json_writer.Double(this->COMMISSION);
         }
+
         row_t to_row_t() const
         {
             row_t row;
@@ -384,6 +437,7 @@ struct DB_Table_STOCK_V1 : public DB_Table
             row(L"COMMISSION") = COMMISSION;
             return row;
         }
+
         void to_template(html_template& t) const
         {
             t(L"STOCKID") = STOCKID;
@@ -426,8 +480,6 @@ struct DB_Table_STOCK_V1 : public DB_Table
 
         void destroy()
         {
-            //if (this->id() < 0)
-            //    wxSafeShowMessage("unsaved object", this->to_json());
             delete this;
         }
     };
@@ -670,4 +722,4 @@ struct DB_Table_STOCK_V1 : public DB_Table
         return result;
     }
 };
-#endif //
+

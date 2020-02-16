@@ -1,8 +1,8 @@
 ﻿// -*- C++ -*-
 //=============================================================================
 /**
- *      Copyright (c) 2013 - 2017 Guan Lisheng (guanlisheng@gmail.com)
- *      Modifications: (c) 2017 Stefano Giorgio
+ *      Copyright: (c) 2013 - 2020 Guan Lisheng (guanlisheng@gmail.com)
+ *      Copyright: (c) 2017 - 2018 Stefano Giorgio (stef145g)
  *
  *      @file
  *
@@ -11,14 +11,11 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2017-01-15 15:26:20.475000.
+ *          AUTO GENERATED at 2020-02-16 19:01:17.538000.
  *          DO NOT EDIT!
  */
 //=============================================================================
-
-
-#ifndef DB_TABLE_ASSETS_V1_H
-#define DB_TABLE_ASSETS_V1_H
+#pragma once
 
 #include "DB_Table.h"
 
@@ -26,22 +23,29 @@ struct DB_Table_ASSETS_V1 : public DB_Table
 {
     struct Data;
     typedef DB_Table_ASSETS_V1 Self;
+
     /** A container to hold list of Data records for the table*/
     struct Data_Set : public std::vector<Self::Data>
     {
-        std::wstring to_json(json::Array& a) const
+        /**Return the data records as a json array string */
+        wxString to_json() const
         {
+            StringBuffer json_buffer;
+            PrettyWriter<StringBuffer> json_writer(json_buffer);
+
+            json_writer.StartArray();
             for (const auto & item: *this)
             {
-                json::Object o;
-                item.to_json(o);
-                a.Insert(o);
+                json_writer.StartObject();
+                item.as_json(json_writer);
+                json_writer.EndObject();
             }
-            std::wstringstream ss;
-            json::Writer::Write(a, ss);
-            return ss.str();
+            json_writer.EndArray();
+
+            return json_buffer.GetString();
         }
     };
+
     /** A container to hold a list of Data record pointers for the table in memory*/
     typedef std::vector<Self::Data*> Cache;
     typedef std::map<int, Self::Data*> Index_By_Id;
@@ -112,41 +116,49 @@ struct DB_Table_ASSETS_V1 : public DB_Table
         static wxString name() { return "ASSETID"; } 
         explicit ASSETID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
+    
     struct STARTDATE : public DB_Column<wxString>
     { 
         static wxString name() { return "STARTDATE"; } 
         explicit STARTDATE(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
+    
     struct ASSETNAME : public DB_Column<wxString>
     { 
         static wxString name() { return "ASSETNAME"; } 
         explicit ASSETNAME(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
+    
     struct VALUE : public DB_Column<double>
     { 
         static wxString name() { return "VALUE"; } 
         explicit VALUE(const double &v, OP op = EQUAL): DB_Column<double>(v, op) {}
     };
+    
     struct VALUECHANGE : public DB_Column<wxString>
     { 
         static wxString name() { return "VALUECHANGE"; } 
         explicit VALUECHANGE(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
+    
     struct NOTES : public DB_Column<wxString>
     { 
         static wxString name() { return "NOTES"; } 
         explicit NOTES(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
+    
     struct VALUECHANGERATE : public DB_Column<double>
     { 
         static wxString name() { return "VALUECHANGERATE"; } 
         explicit VALUECHANGERATE(const double &v, OP op = EQUAL): DB_Column<double>(v, op) {}
     };
+    
     struct ASSETTYPE : public DB_Column<wxString>
     { 
         static wxString name() { return "ASSETTYPE"; } 
         explicit ASSETTYPE(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
+    
     typedef ASSETID PRIMARY;
     enum COLUMN
     {
@@ -209,12 +221,22 @@ struct DB_Table_ASSETS_V1 : public DB_Table
         wxString NOTES;
         double VALUECHANGERATE;
         wxString ASSETTYPE;
-        int id() const { return ASSETID; }
-        void id(int id) { ASSETID = id; }
+
+        int id() const
+        {
+            return ASSETID;
+        }
+
+        void id(int id)
+        {
+            ASSETID = id;
+        }
+
         bool operator < (const Data& r) const
         {
             return this->id() < r.id();
         }
+        
         bool operator < (const Data* r) const
         {
             return this->id() < r->id();
@@ -263,59 +285,81 @@ struct DB_Table_ASSETS_V1 : public DB_Table
         {
             return false;
         }
+
         bool match(const Self::ASSETID &in) const
         {
             return this->ASSETID == in.v_;
         }
+
         bool match(const Self::STARTDATE &in) const
         {
             return this->STARTDATE.CmpNoCase(in.v_) == 0;
         }
+
         bool match(const Self::ASSETNAME &in) const
         {
             return this->ASSETNAME.CmpNoCase(in.v_) == 0;
         }
+
         bool match(const Self::VALUE &in) const
         {
             return this->VALUE == in.v_;
         }
+
         bool match(const Self::VALUECHANGE &in) const
         {
             return this->VALUECHANGE.CmpNoCase(in.v_) == 0;
         }
+
         bool match(const Self::NOTES &in) const
         {
             return this->NOTES.CmpNoCase(in.v_) == 0;
         }
+
         bool match(const Self::VALUECHANGERATE &in) const
         {
             return this->VALUECHANGERATE == in.v_;
         }
+
         bool match(const Self::ASSETTYPE &in) const
         {
             return this->ASSETTYPE.CmpNoCase(in.v_) == 0;
         }
+
+        // Return the data record as a json string
         wxString to_json() const
         {
-            json::Object o;
-            this->to_json(o);
-            std::wstringstream ss;
-            json::Writer::Write(o, ss);
-            return ss.str();
+            StringBuffer json_buffer;
+            PrettyWriter<StringBuffer> json_writer(json_buffer);
+
+			json_writer.StartObject();			
+			this->as_json(json_writer);
+            json_writer.EndObject();
+
+            return json_buffer.GetString();
         }
-        
-        int to_json(json::Object& o) const
+
+        // Add the field data as json key:value pairs
+        void as_json(PrettyWriter<StringBuffer>& json_writer) const
         {
-            o[L"ASSETID"] = json::Number(this->ASSETID);
-            o[L"STARTDATE"] = json::String(this->STARTDATE.ToStdWstring());
-            o[L"ASSETNAME"] = json::String(this->ASSETNAME.ToStdWstring());
-            o[L"VALUE"] = json::Number(this->VALUE);
-            o[L"VALUECHANGE"] = json::String(this->VALUECHANGE.ToStdWstring());
-            o[L"NOTES"] = json::String(this->NOTES.ToStdWstring());
-            o[L"VALUECHANGERATE"] = json::Number(this->VALUECHANGERATE);
-            o[L"ASSETTYPE"] = json::String(this->ASSETTYPE.ToStdWstring());
-            return 0;
+            json_writer.Key("ASSETID");
+            json_writer.Int(this->ASSETID);
+            json_writer.Key("STARTDATE");
+            json_writer.String(this->STARTDATE.c_str());
+            json_writer.Key("ASSETNAME");
+            json_writer.String(this->ASSETNAME.c_str());
+            json_writer.Key("VALUE");
+            json_writer.Double(this->VALUE);
+            json_writer.Key("VALUECHANGE");
+            json_writer.String(this->VALUECHANGE.c_str());
+            json_writer.Key("NOTES");
+            json_writer.String(this->NOTES.c_str());
+            json_writer.Key("VALUECHANGERATE");
+            json_writer.Double(this->VALUECHANGERATE);
+            json_writer.Key("ASSETTYPE");
+            json_writer.String(this->ASSETTYPE.c_str());
         }
+
         row_t to_row_t() const
         {
             row_t row;
@@ -329,6 +373,7 @@ struct DB_Table_ASSETS_V1 : public DB_Table
             row(L"ASSETTYPE") = ASSETTYPE;
             return row;
         }
+
         void to_template(html_template& t) const
         {
             t(L"ASSETID") = ASSETID;
@@ -368,8 +413,6 @@ struct DB_Table_ASSETS_V1 : public DB_Table
 
         void destroy()
         {
-            //if (this->id() < 0)
-            //    wxSafeShowMessage("unsaved object", this->to_json());
             delete this;
         }
     };
@@ -609,4 +652,4 @@ struct DB_Table_ASSETS_V1 : public DB_Table
         return result;
     }
 };
-#endif //
+

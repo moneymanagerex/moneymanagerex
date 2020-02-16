@@ -35,9 +35,9 @@ mmReportIncomeExpenses::~mmReportIncomeExpenses()
 {
 }
 
-bool mmReportIncomeExpenses::has_date_range()
+int mmReportIncomeExpenses::report_parameters()
 {
-    return true;
+    return RepParams::SINGLE_DATE;
 }
 
 wxString mmReportIncomeExpenses::getHTMLText()
@@ -178,9 +178,9 @@ mmReportIncomeExpensesMonthly::~mmReportIncomeExpensesMonthly()
 {
 }
 
-bool mmReportIncomeExpensesMonthly::has_date_range()
+int mmReportIncomeExpensesMonthly::report_parameters()
 {
-    return true;
+    return RepParams::SINGLE_DATE;
 }
 
 wxString mmReportIncomeExpensesMonthly::getHTMLText()

@@ -33,10 +33,6 @@ Copyright (C) 2014 Nikolay
 
 #include "model/allmodel.h"
 
-#include "json/elements.h"
-#include "json/reader.h"
-#include "json/writer.h"
-
 static const wxString TOP_CATEGS = R"(
 <table class = 'table'>
   <tr class='active'>

@@ -26,7 +26,7 @@ class mmReportIncomeExpenses : public mmPrintableBaseSpecificAccounts
 public:
     mmReportIncomeExpenses();
     virtual ~mmReportIncomeExpenses();
-    virtual bool has_date_range();
+    virtual int report_parameters();
     virtual wxString getHTMLText();
 };
 
@@ -44,7 +44,7 @@ class mmReportIncomeExpensesMonthly : public mmPrintableBaseSpecificAccounts
 public:
     mmReportIncomeExpensesMonthly();
     virtual ~mmReportIncomeExpensesMonthly();
-    virtual bool has_date_range();
+    virtual int report_parameters();
     virtual wxString getHTMLText();
 };
 

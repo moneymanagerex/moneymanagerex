@@ -191,9 +191,9 @@ mmReportChartStocks::~mmReportChartStocks()
 {
 }
 
-bool mmReportChartStocks::has_date_range()
+int mmReportChartStocks::report_parameters()
 {
-    return true;
+    return RepParams::SINGLE_DATE;
 }
 
 wxString mmReportChartStocks::getHTMLText()

@@ -36,7 +36,7 @@ public:
     virtual void RefreshData() {}
 	virtual const wxString getReportTitle() const;
 	virtual const wxString getFileName() const;
-    virtual bool has_date_range() { return false;}
+    virtual int report_parameters() { return RepParams::NONE; }
     void date_range(const mmDateRange* date_range, int selection) { this->m_date_range = date_range; this->m_date_selection = selection; }
     int getDateSelection() { return this->m_date_selection; }
     void initial_report(bool initial) { m_initial = initial; }
@@ -48,6 +48,16 @@ protected:
 
 public:
     static const char * m_template;
+    enum RepParams
+    {
+        NONE = 0
+        , SINGLE_DATE = 1
+        , DATE_RANGE = 2
+        , BUDGET_DATES = 4
+        , ONLY_YEARS = 8
+        , ACCOUNTS_LIST = 16
+        , CHART = 32
+    };
 };
 
 class mmGeneralReport : public mmPrintableBase

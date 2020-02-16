@@ -1,8 +1,8 @@
 ﻿// -*- C++ -*-
 //=============================================================================
 /**
- *      Copyright (c) 2013 - 2017 Guan Lisheng (guanlisheng@gmail.com)
- *      Modifications: (c) 2017 Stefano Giorgio
+ *      Copyright: (c) 2013 - 2020 Guan Lisheng (guanlisheng@gmail.com)
+ *      Copyright: (c) 2017 - 2018 Stefano Giorgio (stef145g)
  *
  *      @file
  *
@@ -11,14 +11,11 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2017-01-15 15:26:20.475000.
+ *          AUTO GENERATED at 2020-02-16 19:01:17.538000.
  *          DO NOT EDIT!
  */
 //=============================================================================
-
-
-#ifndef DB_TABLE_BUDGETYEAR_V1_H
-#define DB_TABLE_BUDGETYEAR_V1_H
+#pragma once
 
 #include "DB_Table.h"
 
@@ -26,22 +23,29 @@ struct DB_Table_BUDGETYEAR_V1 : public DB_Table
 {
     struct Data;
     typedef DB_Table_BUDGETYEAR_V1 Self;
+
     /** A container to hold list of Data records for the table*/
     struct Data_Set : public std::vector<Self::Data>
     {
-        std::wstring to_json(json::Array& a) const
+        /**Return the data records as a json array string */
+        wxString to_json() const
         {
+            StringBuffer json_buffer;
+            PrettyWriter<StringBuffer> json_writer(json_buffer);
+
+            json_writer.StartArray();
             for (const auto & item: *this)
             {
-                json::Object o;
-                item.to_json(o);
-                a.Insert(o);
+                json_writer.StartObject();
+                item.as_json(json_writer);
+                json_writer.EndObject();
             }
-            std::wstringstream ss;
-            json::Writer::Write(a, ss);
-            return ss.str();
+            json_writer.EndArray();
+
+            return json_buffer.GetString();
         }
     };
+
     /** A container to hold a list of Data record pointers for the table in memory*/
     typedef std::vector<Self::Data*> Cache;
     typedef std::map<int, Self::Data*> Index_By_Id;
@@ -112,11 +116,13 @@ struct DB_Table_BUDGETYEAR_V1 : public DB_Table
         static wxString name() { return "BUDGETYEARID"; } 
         explicit BUDGETYEARID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
+    
     struct BUDGETYEARNAME : public DB_Column<wxString>
     { 
         static wxString name() { return "BUDGETYEARNAME"; } 
         explicit BUDGETYEARNAME(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
+    
     typedef BUDGETYEARID PRIMARY;
     enum COLUMN
     {
@@ -155,12 +161,22 @@ struct DB_Table_BUDGETYEAR_V1 : public DB_Table
     
         int BUDGETYEARID;//  primary key
         wxString BUDGETYEARNAME;
-        int id() const { return BUDGETYEARID; }
-        void id(int id) { BUDGETYEARID = id; }
+
+        int id() const
+        {
+            return BUDGETYEARID;
+        }
+
+        void id(int id)
+        {
+            BUDGETYEARID = id;
+        }
+
         bool operator < (const Data& r) const
         {
             return this->id() < r.id();
         }
+        
         bool operator < (const Data* r) const
         {
             return this->id() < r->id();
@@ -195,29 +211,39 @@ struct DB_Table_BUDGETYEAR_V1 : public DB_Table
         {
             return false;
         }
+
         bool match(const Self::BUDGETYEARID &in) const
         {
             return this->BUDGETYEARID == in.v_;
         }
+
         bool match(const Self::BUDGETYEARNAME &in) const
         {
             return this->BUDGETYEARNAME.CmpNoCase(in.v_) == 0;
         }
+
+        // Return the data record as a json string
         wxString to_json() const
         {
-            json::Object o;
-            this->to_json(o);
-            std::wstringstream ss;
-            json::Writer::Write(o, ss);
-            return ss.str();
+            StringBuffer json_buffer;
+            PrettyWriter<StringBuffer> json_writer(json_buffer);
+
+			json_writer.StartObject();			
+			this->as_json(json_writer);
+            json_writer.EndObject();
+
+            return json_buffer.GetString();
         }
-        
-        int to_json(json::Object& o) const
+
+        // Add the field data as json key:value pairs
+        void as_json(PrettyWriter<StringBuffer>& json_writer) const
         {
-            o[L"BUDGETYEARID"] = json::Number(this->BUDGETYEARID);
-            o[L"BUDGETYEARNAME"] = json::String(this->BUDGETYEARNAME.ToStdWstring());
-            return 0;
+            json_writer.Key("BUDGETYEARID");
+            json_writer.Int(this->BUDGETYEARID);
+            json_writer.Key("BUDGETYEARNAME");
+            json_writer.String(this->BUDGETYEARNAME.c_str());
         }
+
         row_t to_row_t() const
         {
             row_t row;
@@ -225,6 +251,7 @@ struct DB_Table_BUDGETYEAR_V1 : public DB_Table
             row(L"BUDGETYEARNAME") = BUDGETYEARNAME;
             return row;
         }
+
         void to_template(html_template& t) const
         {
             t(L"BUDGETYEARID") = BUDGETYEARID;
@@ -258,8 +285,6 @@ struct DB_Table_BUDGETYEAR_V1 : public DB_Table
 
         void destroy()
         {
-            //if (this->id() < 0)
-            //    wxSafeShowMessage("unsaved object", this->to_json());
             delete this;
         }
     };
@@ -493,4 +518,4 @@ struct DB_Table_BUDGETYEAR_V1 : public DB_Table
         return result;
     }
 };
-#endif //
+

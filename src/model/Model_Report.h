@@ -20,11 +20,7 @@
 #define MODEL_REPORT_H
 
 #include "Model.h"
-#include "db/DB_Table_Report_V1.h"
-
-#include "json/elements.h"
-#include "json/reader.h"
-#include "json/writer.h"
+#include "db\DB_Table_Report_V1.h"
 
 class Model_Report : public Model<DB_Table_REPORT_V1>
 {
@@ -51,7 +47,7 @@ public:
     static Model_Report& instance();
 
 public:
-    bool get_objects_from_sql(const wxString& query, json::Object& o);
+    bool get_objects_from_sql(const wxString& query, PrettyWriter<StringBuffer>& json_writer);
     wxArrayString allGroupNames();
     wxString get_html(const Data* r);
     wxString get_html(const Data& r);

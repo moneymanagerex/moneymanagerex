@@ -29,10 +29,9 @@ mmReportForecast::~mmReportForecast()
 {
 }
 
-
-bool mmReportForecast::has_date_range()
+int mmReportForecast::report_parameters()
 {
-    return true;
+    return RepParams::SINGLE_DATE;
 }
 
 wxString mmReportForecast::getHTMLText()

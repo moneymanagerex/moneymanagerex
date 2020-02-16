@@ -19,11 +19,10 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #ifndef MM_EX_WEBAPP_H_
 #define MM_EX_WEBAPP_H_
 
-#include "defs.h"
-#include <wx/spinctrl.h>
 #include <vector>
+#include <wx/string.h>
+#include <wx/datetime.h>
 
-class wxString;
 //Parameters used in services.php
 namespace WebAppParam
 {
