@@ -22,6 +22,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "lua.hpp"
 #include <curl/curl.h>
 #include "rapidjson/rapidjson.h"
+#include "db/DB_Upgrade.h"
 
 /*************************************************************************
  MMEX_VERSION
@@ -103,31 +104,10 @@ const wxString mmex::getProgramCopyright()
 {
     return wxString::Format("(c) 2005-%d Madhan Kanagavel", wxDateTime::Now().GetCurrentYear());
 }
-const wxString mmex::getProgramDescription()
+
+int mmex::version::getDbLatestVersion()
 {
-    const wxString bull = L" \u2022 ";
-    wxString curl = curl_version();
-    curl.Replace(" ", "\n" + bull);
-    curl.Replace("/", " ");
-
-    wxString description;
-	description << mmex::getTitleProgramVersion() << "\n\n";
-    description << _("MMEX is using the following support products:") << "\n"
-        << "======================================\n"
-        << bull + wxVERSION_STRING << "\n"
-        << bull + "SQLite3 " << wxSQLite3Database::GetVersion() << "\n"
-        << bull + wxSQLITE3_VERSION_STRING << "\n"
-        << bull + LUA_VERSION << "\n"
-        << bull + curl << "\n";
-#if defined(_MSC_VER)
-    description << bull << "Microsoft Visual Studio " << _MSC_VER;
-#elif defined(__clang__)
-    description << "Clang/LLVM " << __VERSION__;
-#elif (defined(__GNUC__) || defined(__GNUG__)) && !(defined(__clang__) || defined(__INTEL_COMPILER))
-    description << "GNU GCC/G++ " << __VERSION__;
-#endif
-
-    return description;
+	return dbLatestVersion;
 }
 
 /* Namespace weblink */

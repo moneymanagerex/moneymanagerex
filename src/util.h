@@ -175,6 +175,7 @@ bool get_yahoo_prices(std::vector<wxString>& symbols
     , int type);
 
 const wxString mmPlatformType();
+const wxString getProgramDescription(bool simple = false);
 void windowsFreezeThaw(wxWindow* w);
 
 //* Date Functions----------------------------------------------------------*//

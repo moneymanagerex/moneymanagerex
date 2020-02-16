@@ -19,6 +19,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 
 #include "dbupgrade.h"
 #include "constants.h"
+#include "util.h"
 
 #include <wx/filedlg.h>
 #include <wx/filename.h>
@@ -256,7 +257,7 @@ void dbUpgrade::SqlFileDebug(wxSQLite3Database * db)
             }
         }
 
-        txtLog << wxTextFile::GetEOL() << wxTextFile::GetEOL() << wxTextFile::GetEOL() << mmex::getProgramDescription();
+        txtLog << wxTextFile::GetEOL() << wxTextFile::GetEOL() << wxTextFile::GetEOL() << getProgramDescription();
 
         wxTextEntryDialog dlg(nullptr, _("Send this log to MMEX support team:\npress OK to save to file or Cancel to exit"),
             _("MMEX debug"), txtLog, wxOK | wxCANCEL | wxCENTRE | wxTE_MULTILINE);

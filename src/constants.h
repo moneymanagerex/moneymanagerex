@@ -18,6 +18,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #pragma once
 
 #include "defs.h"
+#include "versions.h"
 //----------------------------------------------------------------------------
 
 class wxString;
@@ -48,7 +49,6 @@ extern const wxString DEFDELIMTER;
 const wxString getProgramName();
 const wxString getTitleProgramVersion();
 const wxString getProgramCopyright();
-const wxString getProgramDescription();
 
 namespace version
 {
@@ -61,6 +61,7 @@ namespace version
     extern const wxString string;
     extern const wxString generateProgramVersion
         (int vMajor, int vMinor, int vPatch, int vAlpha, int vBeta, int vRC);
+	int getDbLatestVersion();
 }
 
 namespace weblink

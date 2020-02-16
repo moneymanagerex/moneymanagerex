@@ -200,31 +200,31 @@ public:
         }
     }
 
-    // Return accomulated table stats as a json string
-    wxString  GetTableStatsAsJson() const
-    {
-        StringBuffer json_buffer;
-        Writer<StringBuffer> json_writer(json_buffer);
-        json_writer.StartObject();
-        json_writer.Key("table");
-        json_writer.String(this->name().c_str());
-        json_writer.Key("cached");
-        json_writer.Int(this->cache_.size());
-        json_writer.Key("index_by_id");
-        json_writer.Int(this->index_by_id_.size());
-        json_writer.Key("hit");
-        json_writer.Int(this->hit_);
-        json_writer.Key("miss");
-        json_writer.Int(this->miss_);
-        json_writer.Key("skip");
-        json_writer.Int(this->skip_);
-        json_writer.EndObject();
+	// Return accomulated table stats as a json string
+	wxString  GetTableStatsAsJson() const
+	{
+		StringBuffer json_buffer;
+		rapidjson::Writer<StringBuffer> json_writer(json_buffer);
+		json_writer.StartObject();
+		json_writer.Key("table");
+		json_writer.String(this->name().c_str());
+		json_writer.Key("cached");
+		json_writer.Int(this->cache_.size());
+		json_writer.Key("index_by_id");
+		json_writer.Int(this->index_by_id_.size());
+		json_writer.Key("hit");
+		json_writer.Int(this->hit_);
+		json_writer.Key("miss");
+		json_writer.Int(this->miss_);
+		json_writer.Key("skip");
+		json_writer.Int(this->skip_);
+		json_writer.EndObject();
 
-        wxLogDebug("======== Model.h : GetTableStatsAsJson =======");
-        wxLogDebug("%s", json_buffer.GetString());
+		wxLogDebug("======== Model.h : GetTableStatsAsJson =======");
+		wxLogDebug("%s", json_buffer.GetString());
 
-        return json_buffer.GetString();
-    }
+		return json_buffer.GetString();
+	}
 
     /** Show table statistics*/
     void show_statistics() const
