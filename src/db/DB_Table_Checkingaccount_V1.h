@@ -401,7 +401,7 @@ struct DB_Table_CHECKINGACCOUNT_V1 : public DB_Table
             return ss.str();
         }
         
-        int as_json(json::Object& o) const
+        void as_json(json::Object& o) const
         {
             o[L"TRANSID"] = json::Number(this->TRANSID);
             o[L"ACCOUNTID"] = json::Number(this->ACCOUNTID);
@@ -417,7 +417,6 @@ struct DB_Table_CHECKINGACCOUNT_V1 : public DB_Table
             o[L"TRANSDATE"] = json::String(this->TRANSDATE.ToStdWstring());
             o[L"FOLLOWUPID"] = json::Number(this->FOLLOWUPID);
             o[L"TOTRANSAMOUNT"] = json::Number(this->TOTRANSAMOUNT);
-            return 0;
         }
         row_t to_row_t() const
         {

@@ -553,7 +553,7 @@ bool getOnlineCurrencyRates(wxString& msg, int curr_id, bool used_only)
 
     if (!fiat.empty())
     {
-        if (!get_yahoo_prices(fiat, currency_data, base_currency_symbol, output, yahoo_price_type::SHARES))
+        if (!get_yahoo_prices(fiat, currency_data, base_currency_symbol, output, yahoo_price_type::FIAT))
         {
             msg = output;
         }
