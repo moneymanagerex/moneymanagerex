@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-08-06 10:14+0300\n"
-"PO-Revision-Date: 2020-02-16 20:35\n"
+"PO-Revision-Date: 2020-02-16 21:03\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
@@ -404,7 +404,7 @@ msgstr "输入资产每年以百分比变化的比率"
 
 #: assetdialog.cpp:255
 msgid "Organize attachments of this asset"
-msgstr "组织账户的附件"
+msgstr "管理账户的附件"
 
 #: assetdialog.cpp:259
 msgid "Enter notes associated with this asset"
@@ -599,7 +599,7 @@ msgstr "没有指定附件文件夹的位置。"
 
 #: attachmentdialog.cpp:65
 msgid "Please set it in Tools -> Options -> Attachments"
-msgstr ""
+msgstr "请在工具 -> 选项 -> 附件中设置它"
 
 #: attachmentdialog.cpp:66
 msgid "Attachment folder not defined"
@@ -611,7 +611,7 @@ msgstr "无法找到附件文件夹："
 
 #: attachmentdialog.cpp:73
 msgid "Please verify that above path is correct"
-msgstr ""
+msgstr "请确认以上路径是否正确"
 
 #: attachmentdialog.cpp:74
 msgid "Attachments folder not found"
@@ -620,12 +620,12 @@ msgstr "未定义附件文件夹"
 #: attachmentdialog.cpp:85
 #, c-format
 msgid "Organize Attachments | %s %i"
-msgstr ""
+msgstr "管理附件 | %s %i"
 
 #: attachmentdialog.cpp:87
 #, c-format
 msgid "Organize Attachments | New %s"
-msgstr ""
+msgstr "管理附件 | 新 %s"
 
 #: attachmentdialog.cpp:124 customfieldlistdialog.cpp:100 payeedialog.cpp:118
 #: stockdialog.cpp:407
@@ -650,15 +650,15 @@ msgstr "组织附件：添加附件"
 
 #: attachmentdialog.cpp:214
 msgid "Enter a new description for the attachment:"
-msgstr ""
+msgstr "输入附件的新描述："
 
 #: attachmentdialog.cpp:215
 msgid "Organize Attachments: Edit Attachment"
-msgstr ""
+msgstr "管理附件：编辑附件"
 
 #: attachmentdialog.cpp:238
 msgid "Do you really want to delete this attachment?"
-msgstr ""
+msgstr "您真的要删除这个附件吗？"
 
 #: attachmentdialog.cpp:239
 msgid "Confirm Attachment Deletion"
@@ -686,51 +686,51 @@ msgstr ""
 
 #: attachmentdialog.cpp:344
 msgid "This directory and its files are automatically managed by Money Manager EX software."
-msgstr ""
+msgstr "此目录及其文件由Money Manager EX软件自动管理。"
 
 #: attachmentdialog.cpp:346
 msgid "Please do not remove, rename or modify manually directories and files."
-msgstr ""
+msgstr "请不要移除、重命名或手动修改此目录及其文件。"
 
 #: attachmentdialog.cpp:380 attachmentdialog.cpp:388
 msgid "Destination file already exist:"
-msgstr ""
+msgstr "目标文件已存在："
 
 #: attachmentdialog.cpp:383
 msgid "File not found in attachments. Please delete or rename it."
-msgstr ""
+msgstr "附件中找不到此文件。请删除或重命名。"
 
 #: attachmentdialog.cpp:384 attachmentdialog.cpp:392
 msgid "Destination file already exist"
-msgstr ""
+msgstr "目标文件已存在"
 
 #: attachmentdialog.cpp:391
 msgid "File already found in attachments"
-msgstr ""
+msgstr "文件在附件中已存在"
 
 #: attachmentdialog.cpp:434
 msgid "Attachment not found:"
-msgstr ""
+msgstr "附件未找到："
 
 #: attachmentdialog.cpp:437
 msgid "Do you want to continue and delete attachment on database?"
-msgstr ""
+msgstr "您想要继续并删除数据库上的附件吗？"
 
 #: attachmentdialog.cpp:438
 msgid "Delete attachment failed"
-msgstr ""
+msgstr "删除附件失败"
 
 #: attachmentdialog.cpp:451
 msgid "Unable to open file:"
-msgstr ""
+msgstr "无法打开文件："
 
 #: attachmentdialog.cpp:454
 msgid "Please verify that file exists and user has rights to read it."
-msgstr ""
+msgstr "请验证文件存在且用户有读取权限。"
 
 #: attachmentdialog.cpp:455
 msgid "Open attachment failed"
-msgstr ""
+msgstr "打开附件失败"
 
 #: billsdepositsdialog.cpp:50 billsdepositspanel.cpp:45
 #: filtertransdialog.cpp:49 mmSimpleDialogs.cpp:35 model/Model_Asset.cpp:24
@@ -790,19 +790,19 @@ msgstr "每天"
 
 #: billsdepositsdialog.cpp:61 billsdepositsdialog.cpp:1315
 msgid "In (x) Days"
-msgstr ""
+msgstr "在 (x) 天"
 
 #: billsdepositsdialog.cpp:62 billsdepositsdialog.cpp:1315
 msgid "In (x) Months"
-msgstr ""
+msgstr "在 (x) 个月"
 
 #: billsdepositsdialog.cpp:63
 msgid "Every (x) Days"
-msgstr ""
+msgstr "每 (x) 天"
 
 #: billsdepositsdialog.cpp:64
 msgid "Every (x) Months"
-msgstr ""
+msgstr "每 (x) 个月"
 
 #: billsdepositsdialog.cpp:65 billsdepositspanel.cpp:60
 msgid "Monthly (last day)"
@@ -814,7 +814,7 @@ msgstr "每月（过去营业日）"
 
 #: billsdepositsdialog.cpp:142
 msgid "New Recurring Transaction"
-msgstr ""
+msgstr "新的定期交易"
 
 #: billsdepositsdialog.cpp:282
 msgid "Edit Recurring Transaction"
@@ -830,11 +830,11 @@ msgstr "定期交易详情"
 
 #: billsdepositsdialog.cpp:394
 msgid "Specify the date the user is requested to enter this transaction"
-msgstr ""
+msgstr "指定用户需要输入此交易的日期"
 
 #: billsdepositsdialog.cpp:398
 msgid "Advance or retard the user request date of this transaction"
-msgstr ""
+msgstr "提早或推迟此交易的用户请求日期"
 
 #: billsdepositsdialog.cpp:405 billsdepositspanel.cpp:104
 msgid "Date Due"
@@ -846,7 +846,7 @@ msgstr "重复"
 
 #: billsdepositsdialog.cpp:417
 msgid "Advance the next occurring date with the specified values"
-msgstr ""
+msgstr "以指定的值提前下一个发生日期"
 
 #: billsdepositsdialog.cpp:424 billsdepositsdialog.cpp:1272
 msgid "Payments Left"
@@ -878,7 +878,7 @@ msgstr "指定下一笔账单或存款的日期"
 
 #: billsdepositsdialog.cpp:482
 msgid "Retard or advance the date of the 'next occurrence'"
-msgstr ""
+msgstr "推迟或提前“下一次发生”的日期"
 
 #: billsdepositsdialog.cpp:489 billsdepositspanel.cpp:103
 msgid "Date Paid"
@@ -943,7 +943,7 @@ msgstr "选择账户"
 
 #: billsdepositsdialog.cpp:550
 msgid "Specify the Account that will own the recurring transaction"
-msgstr ""
+msgstr "指定此定期交易所属的账户"
 
 #: billsdepositsdialog.cpp:553 billsdepositsdialog.cpp:802
 #: billsdepositspanel.cpp:106 filtertransdialog.cpp:239
@@ -1002,7 +1002,7 @@ msgstr "账号"
 
 #: billsdepositsdialog.cpp:594
 msgid "Organize attachments of this recurring transaction"
-msgstr ""
+msgstr "管理此定期交易的附件"
 
 #: billsdepositsdialog.cpp:598 transdialog.cpp:554 usertransactionpanel.cpp:224
 msgid "Select one of the frequently used notes"
@@ -1353,7 +1353,7 @@ msgstr "预算分类摘要"
 #: budgetingpanel.cpp:185
 #, c-format
 msgid "Financial Year: %s - %li"
-msgstr ""
+msgstr "会计年度: %s - %li"
 
 #: budgetingpanel.cpp:189 reports/budget.cpp:88
 #, c-format
@@ -1642,7 +1642,7 @@ msgstr "关闭(&C)"
 
 #: constants.cpp:140
 msgid "Advanced Filter"
-msgstr ""
+msgstr "高级过滤"
 
 #: constants.cpp:141
 msgid "View All Transactions"
@@ -1719,7 +1719,7 @@ msgstr "货币名字"
 
 #: currencydialog.cpp:151
 msgid "Currency Type"
-msgstr ""
+msgstr "货币类型"
 
 #: currencydialog.cpp:167
 msgid "Currency Symbol"
@@ -1773,7 +1773,7 @@ msgstr ""
 
 #: customfieldeditdialog.cpp:57
 msgid "New/Edit Custom Field"
-msgstr ""
+msgstr "新建/编辑自定义字段"
 
 #: customfieldeditdialog.cpp:120
 msgid "Custom Field Details"
@@ -1850,12 +1850,12 @@ msgstr ""
 
 #: customfieldeditdialog.cpp:221
 msgid "Changing field type will delete all content!"
-msgstr ""
+msgstr "更改字段类型将删除所有内容！"
 
 #: customfieldeditdialog.cpp:222 customfieldeditdialog.cpp:244 mmframe.cpp:2121
 #: mmframe.cpp:2140
 msgid "Do you want to proceed?"
-msgstr ""
+msgstr "您想要继续吗？"
 
 #: customfieldeditdialog.cpp:223 customfieldeditdialog.cpp:245
 msgid "Custom Field Change"
@@ -1867,20 +1867,20 @@ msgstr ""
 
 #: customfieldlistdialog.cpp:55
 msgid "Properties"
-msgstr ""
+msgstr "属性"
 
 #: customfieldlistdialog.cpp:65
 #, c-format
 msgid "Personalize custom fields | %s"
-msgstr ""
+msgstr "个性化自定义字段 | %s"
 
 #: customfieldlistdialog.cpp:172
 msgid "Do you really want to delete this custom field and all its data?"
-msgstr ""
+msgstr "您真的想要删除此自定义字段及其所有数据吗？"
 
 #: customfieldlistdialog.cpp:173
 msgid "Confirm Custom Field Deletion"
-msgstr ""
+msgstr "确认自定义字段删除"
 
 #: customfieldlistdialog.cpp:191
 #, c-format
@@ -1891,17 +1891,17 @@ msgstr ""
 
 #: customfieldlistdialog.cpp:194
 msgid "Confirm Custom Field Content Update"
-msgstr ""
+msgstr "确认自定义字段内容更新"
 
 #: customfieldlistdialog.cpp:199
 msgid "Find what"
-msgstr ""
+msgstr "查找内容"
 
 #: customfieldlistdialog.cpp:199 customfieldlistdialog.cpp:205
 #: customfieldlistdialog.cpp:211 customfieldlistdialog.cpp:217
 #: customfieldlistdialog.cpp:232
 msgid "Update Custom Field Content"
-msgstr ""
+msgstr "更新自定义字段内容"
 
 #: customfieldlistdialog.cpp:203
 msgid "Do you want to update blank content?\n"
