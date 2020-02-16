@@ -140,20 +140,21 @@ bool OnInitImpl(mmGUIApp* app)
 {
     app->SetAppName(mmex::GetAppName());
 
-    /* Setting Locale causes unexpected problems, so default to English Locale */
-    app->getLocale().Init(wxLANGUAGE_ENGLISH);
+    /* initialize GUI with best language */
+    wxTranslations *trans = new wxTranslations;
+    trans->SetLanguage(wxLANGUAGE_DEFAULT);
+    trans->AddStdCatalog();
+    trans->AddCatalog("mmex", wxLANGUAGE_ENGLISH_US);
+    wxTranslations::Set(trans);
 
     Model_Report::prepareTempFolder();
     Model_Report::WindowsUpdateRegistry();
 
+    /* Initialize CURL */
+    curl_global_init(CURL_GLOBAL_ALL);
+
     /* Initialize Image Handlers */
     wxInitAllImageHandlers();
-
-    /* Initialize File System Handlers */
-    wxFileSystem::AddHandler(new wxMemoryFSHandler());
-    wxFileSystem::AddHandler(new wxInternetFSHandler());
-    wxFileSystem::AddHandler(new wxArchiveFSHandler());
-    wxFileSystem::AddHandler(new wxFilterFSHandler());
 
     app->m_setting_db = new wxSQLite3Database();
     app->m_setting_db->Open(mmex::getPathUser(mmex::SETTINGS));
