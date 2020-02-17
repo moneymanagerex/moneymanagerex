@@ -77,42 +77,42 @@ matrix:
     after_success: skip
     deploy: skip
   allow_failures:
-  - OS=debian DIST=jessie
-  - OS=debian DIST=stretch
-  - OS=debian DIST=buster
-  - OS=debian DIST=bullseye
-  - OS=debian DIST=jessie ARCH=x86
-  - OS=debian DIST=stretch ARCH=x86
-  - OS=debian DIST=buster ARCH=x86
-  - OS=debian DIST=bullseye ARCH=x86
-  - OS=ubuntu DIST=xenial
-  - OS=ubuntu DIST=zesty
-  - OS=ubuntu DIST=bionic
-  - OS=ubuntu DIST=xenial ARCH=x86
-  - OS=ubuntu DIST=zesty ARCH=x86
-  - OS=ubuntu DIST=bionic ARCH=x86
-  - OS=ubuntu DIST=disco
-  - OS=ubuntu DIST=disco ARCH=x86
-  - OS=ubuntu DIST=eoan
-  - OS=ubuntu DIST=eoan ARCH=x86
-  - OS=fedora
-  - OS=fedora DIST=30
-  - OS=fedora DIST=31
-  - OS=opensuse
-  - OS=opensuse DIST=15.1
-  - OS=archlinux
-  - OS=el DIST=7
-  - OS=el DIST=8
-  - OS=linuxmint DIST=sylvia
-  - OS=linuxmint DIST=tara
-  - OS=linuxmint DIST=tessa
-  - OS=linuxmint DIST=tina
-  - OS=linuxmint DIST=tricia
-  - OS=linuxmint DIST=sylvia ARCH=x86
-  - OS=linuxmint DIST=tara ARCH=x86
-  - OS=linuxmint DIST=tessa ARCH=x86
-  - OS=linuxmint DIST=tina ARCH=x86
-  - OS=linuxmint DIST=tricia ARCH=x86
+  - env: debian DIST=jessie
+  - env: debian DIST=stretch
+  - env: debian DIST=buster
+  - env: debian DIST=bullseye
+  - env: debian DIST=jessie ARCH=x86
+  - env: debian DIST=stretch ARCH=x86
+  - env: debian DIST=buster ARCH=x86
+  - env: debian DIST=bullseye ARCH=x86
+  - env: ubuntu DIST=xenial
+  - env: ubuntu DIST=zesty
+  - env: ubuntu DIST=bionic
+  - env: ubuntu DIST=xenial ARCH=x86
+  - env: ubuntu DIST=zesty ARCH=x86
+  - env: ubuntu DIST=bionic ARCH=x86
+  - env: ubuntu DIST=disco
+  - env: ubuntu DIST=disco ARCH=x86
+  - env: ubuntu DIST=eoan
+  - env: ubuntu DIST=eoan ARCH=x86
+  - env: fedora
+  - env: fedora DIST=30
+  - env: fedora DIST=31
+  - env: opensuse
+  - env: opensuse DIST=15.1
+  - env: archlinux
+  - env: el DIST=7
+  - env: el DIST=8
+  - env: linuxmint DIST=sylvia
+  - env: linuxmint DIST=tara
+  - env: linuxmint DIST=tessa
+  - env: linuxmint DIST=tina
+  - env: linuxmint DIST=tricia
+  - env: linuxmint DIST=sylvia ARCH=x86
+  - env: linuxmint DIST=tara ARCH=x86
+  - env: linuxmint DIST=tessa ARCH=x86
+  - env: linuxmint DIST=tina ARCH=x86
+  - env: linuxmint DIST=tricia ARCH=x86
 
 stages:
   - name: nightly
