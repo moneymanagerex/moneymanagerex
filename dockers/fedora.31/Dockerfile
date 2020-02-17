@@ -1,4 +1,4 @@
-FROM fedora:28
+FROM fedora:30
 LABEL maintainer="developers@moneymanagerex.org"
 RUN dnf -y install --setopt=install_weak_deps=False \
       ccache \

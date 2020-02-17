@@ -38,25 +38,25 @@ env:
   - OS=ubuntu DIST=eoan ARCH=x86
   - OS=ubuntu DIST=eoan ARCH=armhf
   - OS=fedora
-  - OS=fedora DIST=24
-  - OS=fedora DIST=25
-  - OS=fedora DIST=26
-  - OS=fedora DIST=27
-  - OS=fedora DIST=28
-  - OS=fedora DIST=29
   - OS=fedora DIST=30
+  - OS=fedora DIST=31
   # - OS=opensuse # see issue #1903 on GitHub
   - OS=opensuse DIST=42.1
   # - OS=opensuse # see issue #1331 on GitHub
-  - OS=opensuse DIST=42.2
-  - OS=opensuse DIST=42.3
+  - OS=opensuse DIST=15.1
   - OS=archlinux
   - OS=el DIST=7 # DIST=6 doesn't provide webview in wxGTK3
   - OS=el DIST=8
   - OS=linuxmint DIST=sylvia
   - OS=linuxmint DIST=tara
+  - OS=linuxmint DIST=tessa
+  - OS=linuxmint DIST=tina
+  - OS=linuxmint DIST=tricia
   - OS=linuxmint DIST=sylvia ARCH=x86
   - OS=linuxmint DIST=tara ARCH=x86
+  - OS=linuxmint DIST=tessa ARCH=x86
+  - OS=linuxmint DIST=tina ARCH=x86
+  - OS=linuxmint DIST=tricia ARCH=x86
 
 matrix:
   fast_finish: true
