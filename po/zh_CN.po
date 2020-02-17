@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-08-06 10:14+0300\n"
-"PO-Revision-Date: 2020-02-17 13:26\n"
+"PO-Revision-Date: 2020-02-17 14:09\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
@@ -1915,7 +1915,8 @@ msgstr "替换为"
 #: customfieldlistdialog.cpp:215
 msgid "Do you want to update to blank?\n"
 "Press no if you want to abort replace procedure!"
-msgstr ""
+msgstr "您想要更新为空吗？\n"
+"如果您想要中止替换程序，请按“不”！"
 
 #: customfieldlistdialog.cpp:231
 #, c-format
@@ -2401,15 +2402,15 @@ msgstr ""
 
 #: filtertransdialog.cpp:1231
 msgid "Please Enter"
-msgstr ""
+msgstr "请输入"
 
 #: filtertransdialog.cpp:1231
 msgid "Setting Name"
-msgstr ""
+msgstr "设置名称"
 
 #: filtertransdialog.cpp:1235
 msgid "Could not save settings"
-msgstr ""
+msgstr "无法保存设置"
 
 #: general_report_manager.cpp:237 general_report_manager.cpp:623
 msgid "General Reports Manager"
@@ -2456,7 +2457,7 @@ msgstr ""
 
 #: general_report_manager.cpp:395
 msgid "Output"
-msgstr ""
+msgstr "输出"
 
 #: general_report_manager.cpp:407
 msgid "SQL"
@@ -2472,7 +2473,7 @@ msgstr "模板"
 
 #: general_report_manager.cpp:450
 msgid "&Test"
-msgstr ""
+msgstr "测试(&T)"
 
 #: general_report_manager.cpp:451
 msgid "Create Template"
@@ -2494,7 +2495,7 @@ msgstr ""
 
 #: general_report_manager.cpp:559 general_report_manager.cpp:989
 msgid "General Report Manager files (*.grm)"
-msgstr ""
+msgstr "常规报表管理器文件 (*.grm)"
 
 #: general_report_manager.cpp:559 general_report_manager.cpp:989
 msgid "ZIP files (*.zip)"
@@ -2517,7 +2518,7 @@ msgstr "新建模板报表"
 
 #: general_report_manager.cpp:691
 msgid "Change Group"
-msgstr ""
+msgstr "更改分组"
 
 #: general_report_manager.cpp:693 general_report_manager.cpp:858
 msgid "Rename Group"
@@ -2550,28 +2551,28 @@ msgstr "删除报表标题："
 
 #: general_report_manager.cpp:840 general_report_manager.cpp:921
 msgid "Enter or choose name for the new report group"
-msgstr ""
+msgstr "输入或选择新报表分组的名称"
 
 #: general_report_manager.cpp:841
 msgid "Change report group"
-msgstr ""
+msgstr "更改报表分组"
 
 #: general_report_manager.cpp:857
 msgid "Enter or choose name for the new group"
-msgstr ""
+msgstr "输入或选择新分组的名称"
 
 #: general_report_manager.cpp:922
 msgid "Add Report Group"
-msgstr ""
+msgstr "添加报表分组"
 
 #: general_report_manager.cpp:935
 #, c-format
 msgid "New Report %s"
-msgstr ""
+msgstr "新建报表 %s"
 
 #: general_report_manager.cpp:948
 msgid "Report Name already exists"
-msgstr ""
+msgstr "报表名称已存在"
 
 #: general_report_manager.cpp:948 general_report_manager.cpp:955
 msgid "New Report"
@@ -2605,16 +2606,16 @@ msgstr "导出错误"
 
 #: import_export/parsers.cpp:135 import_export/parsers.cpp:144
 msgid "File is not in Excel XML Spreadsheet 2003 format."
-msgstr ""
+msgstr "文件不在 Excel XML 工作表 2003 格式中。"
 
 #: import_export/parsers.cpp:135 import_export/parsers.cpp:144
 #: import_export/parsers.cpp:157 import_export/parsers.cpp:165
 msgid "Parsing error"
-msgstr ""
+msgstr "解析出错"
 
 #: import_export/parsers.cpp:157
 msgid "Could not find Worksheet."
-msgstr ""
+msgstr "找不到工作表。"
 
 #: import_export/parsers.cpp:163
 msgid "Table"
@@ -2622,7 +2623,7 @@ msgstr "表格"
 
 #: import_export/parsers.cpp:165
 msgid "Could not find Table."
-msgstr ""
+msgstr "找不到数据表。"
 
 #: import_export/parsers.cpp:216
 msgid "Transactions"
@@ -2661,7 +2662,7 @@ msgstr "日期格式"
 
 #: import_export/qif_export.cpp:166
 msgid "Write to File"
-msgstr ""
+msgstr "写入文件"
 
 #: import_export/qif_export.cpp:169 import_export/qif_import_gui.cpp:128
 #: import_export/univcsvdialog.cpp:160
@@ -2841,12 +2842,12 @@ msgstr "正在导入类别"
 #: import_export/qif_import_gui.cpp:829
 #, c-format
 msgid "Importing transaction %i of %i"
-msgstr ""
+msgstr "导入交易 %i / %i"
 
 #: import_export/qif_import_gui.cpp:851 webapp.cpp:120
 #, c-format
 msgid "Error: %s"
-msgstr ""
+msgstr "错误：%s"
 
 #: import_export/qif_import_gui.cpp:862
 msgid "Importing Transfers"
@@ -3053,7 +3054,7 @@ msgstr ""
 
 #: import_export/univcsvdialog.cpp:838
 msgid "Amount field or both Withdrawal and Deposit fields are required."
-msgstr ""
+msgstr "必须填写金额字段并在分类中选择是支出或收入。"
 
 #: import_export/univcsvdialog.cpp:839 import_export/univcsvdialog.cpp:967
 #: webappdialog.cpp:270
@@ -3085,7 +3086,7 @@ msgstr "不可用数量。"
 
 #: import_export/univcsvdialog.cpp:919
 msgid "Type (withdrawal/deposit) unknown."
-msgstr ""
+msgstr "类型(支出/存款) 未知。"
 
 #: import_export/univcsvdialog.cpp:944
 #, c-format
@@ -6434,7 +6435,7 @@ msgstr ""
 
 #: usertransactionpanel.cpp:134
 msgid "Withdraw funds from or deposit funds to this Account."
-msgstr ""
+msgstr "从该账户提取资金或将资金存入该账户。"
 
 #: usertransactionpanel.cpp:136
 msgid "&Transfer"
