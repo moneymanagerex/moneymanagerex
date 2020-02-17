@@ -102,12 +102,21 @@ const wxString mmex::getTitleProgramVersion()
 
 const wxString mmex::getProgramCopyright()
 {
-    return wxString::Format("(c) 2005-%d Madhan Kanagavel", wxDateTime::Now().GetCurrentYear());
+#define COMPILE_YEAR ( (__DATE__[ 7] - '0') * 1000 + \
+                       (__DATE__[ 8] - '0') *  100 + \
+                       (__DATE__[ 9] - '0') *   10 + \
+                       (__DATE__[10] - '0') )
+    return wxString::Format("(c) 2005-%d Madhan Kanagavel", COMPILE_YEAR);
 }
 
 int mmex::version::getDbLatestVersion()
 {
 	return dbLatestVersion;
+}
+
+const wxString mmex::getCaption(const wxString& caption)
+{
+    return mmex::getProgramName() + (caption.IsEmpty() ? wxGetEmptyString() : " - " + caption);
 }
 
 /* Namespace weblink */

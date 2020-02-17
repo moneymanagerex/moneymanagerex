@@ -62,21 +62,17 @@ void mmHelpPanel::CreateControls()
     wxBoxSizer* itemBoxSizerHeader = new wxBoxSizer(wxHORIZONTAL);
     itemPanel3->SetSizer(itemBoxSizerHeader);
 
-    wxButton* buttonBack     = new wxButton(itemPanel3, wxID_BACKWARD, _("&Back"));
-    wxButton* buttonFordward = new wxButton(itemPanel3, wxID_FORWARD, _("&Forward") );
+    wxButton* buttonBack = new wxButton(itemPanel3, wxID_BACKWARD, _("&Back"));
+    wxButton* buttonFordward = new wxButton(itemPanel3, wxID_FORWARD, _("&Forward"));
 
-    wxString helpHeader = wxString::Format(_("%1$s - %2$s"), mmex::getProgramName(), _("Help"));
     wxStaticText* itemStaticText9 = new wxStaticText(itemPanel3, wxID_ANY
-        , helpHeader);
+        , mmex::getCaption(_("Help")));
     itemStaticText9->SetFont(this->GetFont().Larger().Bold());
 
     itemBoxSizerHeader->Add(buttonBack, 0, wxLEFT, 5);
     itemBoxSizerHeader->Add(buttonFordward, 0, wxLEFT | wxRIGHT, 5);
     itemBoxSizerHeader->Add(itemStaticText9, 0, wxLEFT | wxTOP, 5);
 
-    browser_ = wxWebView::New(this, wxID_ANY);
-    itemBoxSizer2->Add(browser_, 1, wxGROW | wxALL, 1);
-    
     /**************************************************************************
     Allows help files for a specific language.
 

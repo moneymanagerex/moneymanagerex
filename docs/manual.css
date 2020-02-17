@@ -1,0 +1,198 @@
+/* HTML formatting */
+html {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    margin: 0 10px;
+    line-height: 1.3
+}
+
+a { text-decoration: none; }
+a:hover, a:focus { text-decoration: underline dotted; }
+a:focus { outline: thin dotted; }
+
+dt { margin-top: 0.5ex; }
+dt::after { content: ":"; }
+
+h2, h3 {
+    margin-top: 30px;
+    margin-bottom: 5px;
+    border-top: 1px solid lightgray;
+    padding-top: 15px;
+    clear: both;
+}
+
+table {
+    max-width: 100%;
+    border-collapse: collapse;
+}
+th, td { padding: 3px 10px; }
+
+.shadow { box-shadow: 8px 8px 10px #aaa; }
+#language-menu .flag-icon {
+    margin-right: 0.5ex;
+    margin-left: 0.8ex;
+}
+
+/* Print format */
+@media print {
+    @page { margin: 2cm; }
+
+    html {
+        font-family: "Times New Roman", Times, serif;
+        font-size: 12pt;
+        background: white;
+        color: black;
+        margin: 0; padding: 0;
+    }
+    a, blockquote, table, pre, img,
+    aside.sticky, aside.sticky::before {
+        page-break-inside: avoid;
+    }
+    aside.sticky::before { page-break-after: avoid; }
+    ul, ol, dl, aside.sticky { page-break-before: avoid; }
+
+    h1 { margin: 10vh 0 20vh; }
+    h2, h3, h4, h5, h6 {
+        page-break-after: avoid;
+        page-break-inside: avoid;
+        border: none;
+        padding: 0;
+        margin: 1em 0 0.5em;
+    }
+
+    a { color: black; text-decoration: underline dotted; }
+    a[href^=http]:after, a[href^=ftp]:after {
+        content: " [" attr(href) "]";
+        font-size: small;
+    }
+    a[href^="#"]:after { content: ""; }
+
+    nav, #back-to-top, form#donate { display: none; }
+}
+
+/* Back to top button */
+#back-to-top:hover { text-decoration: none; }
+#back-to-top {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    text-decoration: none;
+    color: black;
+    padding: 1em;
+    z-index: 100;
+}
+
+/* PayPal donation form */
+form#donate { float: right; }
+
+/* table of contents */
+nav#toc { font-size: small; }
+nav#toc ol {
+    list-style-type: none;
+    counter-reset: tocitem;
+    padding: 0;
+}
+nav#toc ol > li {
+    display: table;
+    counter-increment: tocitem;
+}
+nav#toc ol > li .icon {
+    width: 1em;
+    float: left;
+    color: grey;
+    transform: scale(1.3);
+}
+nav#toc ol > li:before {
+    content: counters(tocitem, ".") ". ";
+    display: table-cell;
+    padding-right: 0.3em;
+}
+nav#toc ol ol { margin-left: 1em; }
+nav#toc li ol > li:before { content: counters(tocitem, ".") ". "; }
+
+/* h2 and h3 auto-numbering */
+body { counter-reset: section; }
+h2 { counter-reset: subsection; }
+h2::before {
+    counter-increment: section;
+    content: counter(section) ". ";
+}
+h3::before {
+   counter-increment: subsection;
+   content: counter(section) "." counter(subsection) ". ";
+}
+
+/* key / menu sequences */
+kbd.menu,
+kbd.key,
+kbd>samp,
+kbd>kbd {
+    -moz-border-radius: 3px;
+    -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px white inset;
+    -webkit-border-radius: 3px;
+    -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px white inset;
+    background-color: #f7f7f7;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px white inset;
+    color: #333;
+    display: inline-block;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 0.75em;
+    line-height: 1.4;
+    margin: 0 .1em;
+    padding: .1em .6em;
+    text-shadow: 0 1px 0 white;
+}
+
+/* currency formatting */
+.negative { color: red; }
+.right { text-align: right; }
+
+/* sticky notes for tips and notes */
+:root {
+    --rotation-angle: -6deg;
+}
+
+aside.sticky {
+    display: block;
+    position: relative;
+    top: -5px;
+    float: right;
+    width: 12em;
+    height: auto;
+    padding: 1em;
+    margin: 0.5em;
+    border: 1px solid lightgray;
+    text-decoration: none;
+    font-size: small;
+    color: black;
+    /* Firefox */
+    -moz-box-shadow:5px 5px 7px rgba(33,33,33,1);
+    /* Safari+Chrome */
+    -webkit-box-shadow: 5px 5px 7px rgba(33,33,33,.7);
+    /* Opera */
+    box-shadow: 5px 5px 7px rgba(33,33,33,.7);
+    transform: rotate(var(--rotation-angle));
+    -ms-transform: rotate(var(--rotation-angle));
+    -webkit-transform: rotate(var(--rotation-angle));
+    -o-transform: rotate(var(--rotation-angle));
+    -moz-transform: rotate(var(--rotation-angle));
+}
+
+aside.sticky::before {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 0.5ex;
+}
+
+.notes { background:#ffc; }
+.notes::before {
+    content: 'Note';
+    color: red;
+}
+
+.tips { background:#bafbc0; }
+.tips::before {
+    content: 'Tip';
+    color: blue;
+}

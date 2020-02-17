@@ -49,6 +49,7 @@ extern const wxString DEFDELIMTER;
 const wxString getProgramName();
 const wxString getTitleProgramVersion();
 const wxString getProgramCopyright();
+const wxString getCaption(const wxString& caption);
 
 namespace version
 {

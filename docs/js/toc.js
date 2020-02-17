@@ -1,35 +1,58 @@
 /*
  * Dynamic Table of Contents script
  * by Matt Whitlock <http://www.whitsoftdev.com/>
+ * modified by Tomasz Słodkowicz
  */
+"use strict";
 
 function createLink(href, innerHTML) {
-	var a = document.createElement("a");
-	a.setAttribute("href", href);
-	a.innerHTML = innerHTML;
-	return a;
+    var a = document.createElement("a");
+    a.setAttribute("href", href);
+    a.innerHTML = innerHTML;
+    return a;
 }
 
-function generateTOC(toc) {
-	var i2 = 0, i3 = 0;
-	toc = toc.appendChild(document.createElement("ul"));
-	for (var i = 0; i < document.body.childNodes.length; ++i) {
-		var node = document.body.childNodes[i];
-		var tagName = node.nodeName.toLowerCase();
-		if (tagName == "h3") {
-			++i3;
-			if (i3 == 1) toc.lastChild.appendChild(document.createElement("ul"));
-			var section = i2 + "." + i3;
-			node.insertBefore(document.createTextNode(section + ". "), node.firstChild);
-			node.id = "section" + section;
-			toc.lastChild.lastChild.appendChild(document.createElement("li")).appendChild(createLink("#section" + section, node.innerHTML));
-		}
-		else if (tagName == "h2") {
-			++i2, i3 = 0;
-			var section = i2;
-			node.insertBefore(document.createTextNode(section + ". "), node.firstChild);
-			node.id = "section" + section;
-			toc.appendChild(h2item = document.createElement("li")).appendChild(createLink("#section" + section, node.innerHTML));
-		}
-	}
+function addTOC(list, node) {
+    list.appendChild(document.createElement("li"))
+        .appendChild(createLink("#" + node.id, node.innerHTML));
+}
+
+function generateTOC(nav) {
+    var i2 = 0, i3 = 0;
+    nav = nav.appendChild(document.createElement("ol"));
+    [].forEach.call(document.querySelectorAll("h2, h3"), function(node) {
+        if (node.nodeName === "H3") {
+            if (i3 === 0)
+                nav.lastChild.appendChild(document.createElement("ol"));
+            node.id = "section" + i2 + "." + (++i3);
+            addTOC(nav.lastChild.lastChild, node);
+        }
+        else if (node.nodeName === "H2") {
+            i3 = 0;
+            node.id = "section" + (++i2);
+            addTOC(nav, node);
+        }
+    });
+}
+
+function collapseNode(n, bool) {
+    [].forEach.call(n.childNodes, function(n) {
+        if (n.nodeName === "OL")
+            n.style.display = bool ? "none" : "";
+    });
+    n.firstChild.textContent = bool ? "⯈" : "⯆";
+    n.firstChild.style.cursor = bool ? "zoom-in" : "zoom-out";
+    // n.firstChild.title = bool ? "expand" : "collapse";
+    n.firstChild.onclick = function(){collapseNode(n, !bool);};
+}
+
+function collapseTOC(nav, bool) {
+    [].forEach.call(nav.firstChild.childNodes, function(n) {
+        var icon = document.createElement("span");
+        icon.innerHTML = "&nbsp;";
+        icon.className = "icon";
+        n.insertBefore(icon, n.firstChild);
+        if (n.lastChild.nodeName === "OL")
+            collapseNode(n, bool);
+    });
 }
