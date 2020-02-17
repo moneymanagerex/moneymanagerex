@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-08-06 10:14+0300\n"
-"PO-Revision-Date: 2020-02-16 22:03\n"
+"PO-Revision-Date: 2020-02-17 12:55\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
@@ -3324,7 +3324,7 @@ msgstr ""
 
 #: maincurrencydialog.cpp:737
 msgid "Do you want to continue?"
-msgstr ""
+msgstr "您想要继续吗？"
 
 #: maincurrencydialog.cpp:759 util.cpp:526
 msgid "Could not find base currency symbol!"
@@ -6869,7 +6869,11 @@ msgid "The next pages will help you create a new database.\n\n"
 "The database can later be encrypted if required, by\n"
 "using the option: 'Save database as' and changing the\n"
 "file type before saving."
-msgstr ""
+msgstr "下一页将帮助您创建一个新数据库。\n\n"
+"您的数据库会以 .mmb 后缀的文件进行存储。\n"
+"由于此文件包含重要的财务信息，\n"
+"我们推荐在选项设置中选中“在打开前先备份”以创建日常备份，并将备份存储在一个单独的位置。\n\n"
+"如有必要您可以在日后加密您的数据库，只需要点击选项“另存数据库”并选择保存类型为加密的 mmb 文件。"
 
 #: wizard_newdb.cpp:127
 msgid "Base Currency for account"
@@ -6880,7 +6884,7 @@ msgid "Specify the base (or default) currency to be used for the\n"
 "database. The base currency can later be changed by using\n"
 "the options dialog. New accounts, will use this currency by\n"
 "default, and can be changed when editing account details."
-msgstr ""
+msgstr "指定此数据库使用的基本 (或默认) 货币。此后可以使用选项对话框更改基本货币。新建的账户默认会使用此货币，且可以在编辑账户详细信息时进行更改。"
 
 #: wizard_newdb.cpp:153
 msgid "(Optional) Specify a title or your name."
