@@ -13,7 +13,7 @@ env:
   - CMAKE_BUILD_PARALLEL_LEVEL=4
   - MAKEFLAGS=-j$CMAKE_BUILD_PARALLEL_LEVEL
   - BUILD_TYPE=$(if [[ "$TRAVIS_TAG" =~ ^v[0-9]+\.[0-9]+\.[0-9]+ ]]; then if [[ "$TRAVIS_TAG" =~ -[a-z] ]]; then echo RelWithDebInfo; else echo Release; fi; else echo Debug; fi)
-  matrix: # targets for linux
+ jobs: # targets for linux
   - OS=debian DIST=jessie
   - OS=debian DIST=stretch
   - OS=debian DIST=buster
@@ -55,14 +55,13 @@ env:
   - OS=linuxmint DIST=tina ARCH=x86
   - OS=linuxmint DIST=tricia ARCH=x86
 
-matrix:
+jobs:
   fast_finish: true
   include: # add non-linux targets
   - { os: osx, osx_image: xcode8,   env: OS=osx DIST=10.11 }
   - { os: osx, osx_image: xcode9.1, env: OS=macos DIST=10.12 }
   - { os: osx, osx_image: xcode9.1, env: OS=macos DIST=10.13 }
   - stage: nightly # used only to tag and trigger nightly build
-    sudo: false
     cache: pip
     services: [ ]
     git: { submodules: false, depth: 10 }
@@ -190,7 +189,7 @@ deploy:
   api_key: $GitHub_auth_token
   file_glob: true
   file: $TRAVIS_BUILD_DIR/build/*.{deb,rpm,dmg,txz,pkg.tar.xz}
-  skip_cleanup: true
+  cleanup: false
   prerelease: true
   overwrite: true
   on: # Set deploy conditions
@@ -204,7 +203,7 @@ deploy:
   token: $PACKAGECLOUD_TOKEN
   dist: $OS/$DIST
   package_glob: $TRAVIS_BUILD_DIR/build/*.{deb,rpm}
-  skip_cleanup: true
+  cleanup: false
   on: # Set deploy conditions
       # Deploy only when tag is specified
       tags: true
