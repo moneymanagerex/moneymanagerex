@@ -27,18 +27,14 @@ env:
   # - OS=debian DIST=buster ARCH=x86 # see issue #1331 on GitHub
   - OS=ubuntu DIST=xenial
   - OS=ubuntu DIST=zesty
-  - OS=ubuntu DIST=artful
   - OS=ubuntu DIST=bionic
-  - OS=ubuntu DIST=cosmic
-  - OS=ubuntu DIST=disco
-  - OS=ubuntu DIST=eoan
   - OS=ubuntu DIST=xenial ARCH=x86
   - OS=ubuntu DIST=zesty ARCH=x86
-  - OS=ubuntu DIST=artful ARCH=x86
   - OS=ubuntu DIST=bionic ARCH=x86
-  - OS=ubuntu DIST=cosmic ARCH=x86
+  - OS=ubuntu DIST=disco
   - OS=ubuntu DIST=disco ARCH=x86
   - OS=ubuntu DIST=disco ARCH=armhf
+  - OS=ubuntu DIST=eoan
   - OS=ubuntu DIST=eoan ARCH=x86
   - OS=ubuntu DIST=eoan ARCH=armhf
   - OS=fedora
