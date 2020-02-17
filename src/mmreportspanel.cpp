@@ -40,7 +40,7 @@ public:
     {
     }
 
-    virtual wxFSFile* GetFile (const wxString &uri)
+    virtual wxFSFile* GetFile(const wxString &uri)
     {
         mmGUIFrame* frame = m_reportPanel->m_frame;
         wxString sData;
@@ -55,7 +55,7 @@ public:
             long transID = -1;
             if (sData.ToLong(&transID)) {
                 const Model_Checking::Data* transaction = Model_Checking::instance().get(transID);
-                if (transaction)
+                if (transaction && transaction->TRANSID > -1)
                 {
                     const Model_Account::Data* account = Model_Account::instance().get(transaction->ACCOUNTID);
                     if (account) {
@@ -72,7 +72,7 @@ public:
             long transID = -1;
             if (sData.ToLong(&transID)) {
                 const Model_Checking::Data* transaction = Model_Checking::instance().get(transID);
-                if (transaction)
+                if (transaction && transaction->TRANSID > -1)
                 {
                     mmTransDialog dlg(nullptr, -1, transID, 0);
                     if (dlg.ShowModal() == wxID_OK)
@@ -83,7 +83,7 @@ public:
                 }
             }
         }
-        if (uri.StartsWith("attachment:", &sData))
+        else if (uri.StartsWith("attachment:", &sData))
         {
             const wxString RefType = sData.BeforeFirst('|');
             const int RefId = wxAtoi(sData.AfterFirst('|'));
@@ -260,6 +260,7 @@ void mmReportsPanel::CreateControls()
     browser_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new WebViewHandlerReportsPage(this, "trxid")));
     browser_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new WebViewHandlerReportsPage(this, "trx")));
     browser_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new WebViewHandlerReportsPage(this, "attachment")));
+    browser_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new WebViewHandlerReportsPage(this, "https")));
 
     itemBoxSizer2->Add(browser_, 1, wxGROW|wxALL, 1);
 }

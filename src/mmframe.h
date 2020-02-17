@@ -290,7 +290,6 @@ private:
         MENU_BUY_COFFEE,
         MENU_GOOGLEPLAY,
         MENU_TWITTER, // end range for OnSimpleURLOpen
-        MENU_REPORT_BUG,
         MENU_EXPORT_CSV,
         MENU_EXPORT_XML,
         MENU_EXPORT_QIF,
