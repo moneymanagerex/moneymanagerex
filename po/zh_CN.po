@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-08-06 10:14+0300\n"
-"PO-Revision-Date: 2020-02-17 12:55\n"
+"PO-Revision-Date: 2020-02-17 13:26\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
@@ -1505,7 +1505,7 @@ msgstr "编辑已存在的分类的名称"
 
 #: categdialog.cpp:235 categdialog.cpp:440
 msgid "Select an unused category to delete."
-msgstr ""
+msgstr "选择一个未使用的分类删除。"
 
 #: categdialog.cpp:240 maincurrencydialog.cpp:225
 msgid "&Select"
@@ -1580,7 +1580,7 @@ msgstr ""
 
 #: categdialog.cpp:470
 msgid "Delete an existing category."
-msgstr ""
+msgstr "删除一个现有分类。"
 
 #: categdialog.cpp:475
 msgid "Subcategories must be deleted before."
@@ -2307,7 +2307,7 @@ msgstr ""
 
 #: filtertransdialog.cpp:265
 msgid "Include all subcategories for the selected category."
-msgstr ""
+msgstr "包含选中分类的所有子分类。"
 
 #: filtertransdialog.cpp:291 import_export/univcsvdialog.cpp:108
 #: mmcheckingpanel.cpp:1023 model/Model_Billsdeposits.cpp:31
@@ -2895,7 +2895,7 @@ msgstr ""
 
 #: import_export/qif_import_gui.cpp:1067
 msgid "Transaction Category is incorrect"
-msgstr ""
+msgstr "交易分类不正确"
 
 #: import_export/qif_import_gui.cpp:1156
 #, c-format
@@ -3337,7 +3337,7 @@ msgstr ""
 
 #: mmSimpleDialogs.cpp:159
 msgid "Please use this button for category selection."
-msgstr ""
+msgstr "请使用此按钮来选择分类。"
 
 #: mmSimpleDialogs.cpp:160
 msgid "Please use this button for category selection\n"
@@ -4881,7 +4881,7 @@ msgstr "银行账户"
 
 #: model/Model_Attachment.cpp:28
 msgid "Recurring Transaction"
-msgstr ""
+msgstr "定期交易"
 
 #: model/Model_Billsdeposits.cpp:306
 msgid "A recurring transaction will exceed your account limit.\n\n"
@@ -4890,7 +4890,7 @@ msgstr ""
 
 #: model/Model_Billsdeposits.cpp:308
 msgid "MMEX Recurring Transaction Check"
-msgstr ""
+msgstr "MMEX 定期交易检查"
 
 #: model/Model_Budget.cpp:56
 msgid "Bi-Weekly"
@@ -4922,11 +4922,11 @@ msgstr "时间"
 
 #: model/Model_CustomField.cpp:31
 msgid "SingleChoice"
-msgstr ""
+msgstr "单选"
 
 #: model/Model_CustomField.cpp:32
 msgid "MultiChoice"
-msgstr ""
+msgstr "多选"
 
 #: model/Model_Payee.cpp:80
 msgid "Payee Error"
@@ -5024,7 +5024,7 @@ msgstr "用于 %s 的附件压缩文件夹："
 
 #: optionsettingsattachment.cpp:68
 msgid "Every OS type (Win, Mac, Unix) has its attachment folder"
-msgstr ""
+msgstr "每个操作系统 (Win, Mac, Unix) 都有其自己的附件文件夹"
 
 #: optionsettingsattachment.cpp:85
 msgid "Browse for folder"
@@ -5084,7 +5084,7 @@ msgstr "导入后删除文件"
 
 #: optionsettingsattachment.cpp:164
 msgid "Select to delete file after import in attachments archive"
-msgstr ""
+msgstr "选择在附件归档中导入后删除文件"
 
 #: optionsettingsattachment.cpp:168
 msgid "When remove attachment, move file instead of delete"
@@ -5092,7 +5092,7 @@ msgstr "移除附件时，移动附件代替删除"
 
 #: optionsettingsattachment.cpp:170
 msgid "Select to don't delete file when attachment is removed, but instead move it to 'Deleted' subfolder"
-msgstr ""
+msgstr "选择移除附件时不删除附件文件，而是将其移动到“已删除”子文件夹"
 
 #: optionsettingsattachment.cpp:179
 msgid "Application data directory"
@@ -5112,11 +5112,11 @@ msgstr "用户定义"
 
 #: optionsettingsattachment.cpp:210
 msgid "Choose folder to set as attachments archive"
-msgstr ""
+msgstr "选择要设置为附件归档的文件夹"
 
 #: optionsettingsattachment.cpp:257
 msgid "Attachments path has been changed!"
-msgstr ""
+msgstr "附件路径已更改！"
 
 #: optionsettingsattachment.cpp:258
 msgid "Do you want to move all attachments to the new location?"
@@ -5128,7 +5128,7 @@ msgstr "附件文件夹迁移"
 
 #: optionsettingsattachment.cpp:266
 msgid "Error moving attachments folder: please move it manually!"
-msgstr ""
+msgstr "移动附件文件夹时出错：请手动移动它！"
 
 #: optionsettingsattachment.cpp:267
 msgid "Origin"
@@ -5526,15 +5526,15 @@ msgstr "重定位对话框"
 
 #: relocatecategorydialog.cpp:90
 msgid "Relocate source category to the destination category"
-msgstr ""
+msgstr "将源分类重新定位到目标分类"
 
 #: relocatecategorydialog.cpp:93
 msgid "Select Source Category"
-msgstr ""
+msgstr "选择源分类"
 
 #: relocatecategorydialog.cpp:98
 msgid "Select Destination Category"
-msgstr ""
+msgstr "选择目标分类"
 
 #: relocatecategorydialog.cpp:111 relocatepayeedialog.cpp:111
 msgid "Relocate:"
@@ -5960,7 +5960,7 @@ msgstr ""
 
 #: sharetransactiondialog.cpp:257 stockdialog.cpp:401
 msgid "Organize attachments of this stock"
-msgstr ""
+msgstr "管理此股票的附件"
 
 #: sharetransactiondialog.cpp:262 stockdialog.cpp:402
 msgid "Display the web page for the specified Stock symbol"
@@ -6383,7 +6383,7 @@ msgstr "移动交易 #"
 
 #: transdialog.cpp:563 usertransactionpanel.cpp:217
 msgid "Organize attachments of this transaction"
-msgstr ""
+msgstr "管理此交易的附件"
 
 #: transdialog.cpp:644
 #, c-format
@@ -6728,7 +6728,7 @@ msgstr "无法从 WebApp 下载附件。"
 
 #: webapp.cpp:552
 msgid "Attachments folder not set or unavailable"
-msgstr ""
+msgstr "附件文件夹未设置或不可用"
 
 #: webapp.cpp:553
 msgid "Transaction not downloaded:"
@@ -6740,7 +6740,7 @@ msgstr ""
 
 #: webapp.cpp:555
 msgid "Attachment folder error"
-msgstr ""
+msgstr "附件文件夹错误"
 
 #: webapp.cpp:575
 msgid "Attachment"
@@ -6756,7 +6756,7 @@ msgstr ""
 
 #: webapp.cpp:587
 msgid "Attachment download error"
-msgstr ""
+msgstr "下载附件失败"
 
 #: webappdialog.cpp:51
 msgid "Import WebApp transactions"
@@ -6799,7 +6799,9 @@ msgstr "%s 将所有交易建模为从属账户。"
 msgid "The next pages will help you create a new account.\n"
 "To help you get started, begin by making a list of all\n"
 "financial institutions where you hold an account."
-msgstr ""
+msgstr "下一个页面将帮助您创建一个新帐户。\n"
+"为了帮助您开始，首先请列一张您持有账户的所有\n"
+"金融机构列表。"
 
 #: wizard_newaccount.cpp:80
 msgid "Account Name Invalid"
@@ -6820,7 +6822,7 @@ msgstr ""
 #: wizard_newaccount.cpp:106
 msgid "This is generally the name of a financial institution\n"
 "where the account is held. For example: 'ABC Bank'."
-msgstr ""
+msgstr "这通常是账户所在金融机构的名称。例如：“ABC Bank”。"
 
 #: wizard_newaccount.cpp:126
 msgid "Type of Account"
@@ -6888,11 +6890,11 @@ msgstr "指定此数据库使用的基本 (或默认) 货币。此后可以使�
 
 #: wizard_newdb.cpp:153
 msgid "(Optional) Specify a title or your name."
-msgstr ""
+msgstr "(可选) 指定一个标题或您的名字。"
 
 #: wizard_newdb.cpp:154
 msgid "Used as a database title for displayed and printed reports."
-msgstr ""
+msgstr "用作显示和打印报表的数据库标题。"
 
 #: wizard_newdb.cpp:165
 msgid "Base Currency Not Set"
