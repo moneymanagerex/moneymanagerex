@@ -21,7 +21,6 @@ env:
   # - OS=debian DIST=buster # see issue #1331 on GitHub
   - OS=debian DIST=jessie ARCH=x86
   - OS=debian DIST=stretch ARCH=x86
-  - OS=debian DIST=stretch ARCH=armhf
   - OS=debian DIST=buster ARCH=x86
   - OS=debian DIST=bullseye ARCH=x86
   # - OS=debian DIST=buster ARCH=x86 # see issue #1331 on GitHub
@@ -33,15 +32,13 @@ env:
   - OS=ubuntu DIST=bionic ARCH=x86
   - OS=ubuntu DIST=disco
   - OS=ubuntu DIST=disco ARCH=x86
-  - OS=ubuntu DIST=disco ARCH=armhf
   - OS=ubuntu DIST=eoan
   - OS=ubuntu DIST=eoan ARCH=x86
-  - OS=ubuntu DIST=eoan ARCH=armhf
   - OS=fedora
   - OS=fedora DIST=30
   - OS=fedora DIST=31
   # - OS=opensuse # see issue #1903 on GitHub
-  - OS=opensuse DIST=42.1
+  - OS=opensuse
   # - OS=opensuse # see issue #1331 on GitHub
   - OS=opensuse DIST=15.1
   - OS=archlinux
