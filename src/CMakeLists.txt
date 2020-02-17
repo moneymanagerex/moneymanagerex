@@ -43,7 +43,6 @@ ADD_LIBRARY(MMEXLib STATIC EXCLUDE_FROM_ALL
     budgetyeardialog.h
     budgetyearentrydialog.cpp
     budgetyearentrydialog.h
-    bugreport.h
     categdialog.cpp
     categdialog.h
     constants.cpp
@@ -190,6 +189,7 @@ ADD_LIBRARY(MMEXLib STATIC EXCLUDE_FROM_ALL
     db/DB_Table_Usage_V1.h
 
     reports/allreport.h
+    reports/bugreport.h
     reports/budgetcategorysummary.cpp
     reports/budgetcategorysummary.h
     reports/budget.cpp
