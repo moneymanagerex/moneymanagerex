@@ -1,7 +1,8 @@
 FROM debian:bullseye-slim
 LABEL maintainer="developers@moneymanagerex.org"
-RUN dpkg --add-architecture i386 && apt-get update \
- && apt-get install -y --no-install-recommends \
+RUN dpkg --add-architecture i386 && aptitude update \
+ && aptitude install -y --no-install-recommends \
+      libc6 \
       build-essential \
       ccache \
       cmake \
