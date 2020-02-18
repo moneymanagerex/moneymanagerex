@@ -16,13 +16,11 @@ env:
   matrix: # targets for linux
   - OS=debian DIST=jessie
   - OS=debian DIST=stretch
-  - OS=debian DIST=buster
   - OS=debian DIST=bullseye
   # - OS=debian DIST=buster # see issue #1331 on GitHub
-  - OS=debian DIST=jessie ARCH=x86
-  - OS=debian DIST=stretch ARCH=x86
-  - OS=debian DIST=buster ARCH=x86
-  - OS=debian DIST=bullseye ARCH=x86
+  #- OS=debian DIST=jessie ARCH=x86
+  #- OS=debian DIST=stretch ARCH=x86
+  #- OS=debian DIST=bullseye ARCH=x86
   # - OS=debian DIST=buster ARCH=x86 # see issue #1331 on GitHub
   - OS=ubuntu DIST=xenial
   - OS=ubuntu DIST=zesty
@@ -58,7 +56,6 @@ env:
 matrix:
   fast_finish: true
   include: # add non-linux targets
-  - { os: osx, osx_image: xcode8,   env: OS=osx DIST=10.11 }
   - { os: osx, osx_image: xcode9.1, env: OS=macos DIST=10.12 }
   - { os: osx, osx_image: xcode9.1, env: OS=macos DIST=10.13 }
   - stage: nightly # used only to tag and trigger nightly build
@@ -142,6 +139,7 @@ install: |-
         --with-macosx-version-min=$MACOSX_DEPLOYMENT_TARGET \
         --without-libtiff
       make install
+      cd $TRAVIS_BUILD_DIR
       ;;
   esac
 
