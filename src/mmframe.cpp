@@ -264,6 +264,10 @@ mmGUIFrame::mmGUIFrame(mmGUIApp* app, const wxString& title
         Option::instance().SendUsageStatistics(true);
     }
 
+    //Check for new version at startup
+    if (Model_Setting::instance().GetBoolSetting("UPDATECHECK", true))
+        mmUpdate::checkUpdates(true,this);
+
     //Show appstart
     if (from_scratch || !dbpath.IsOk())
     {
@@ -2482,7 +2486,7 @@ void mmGUIFrame::OnHelp(wxCommandEvent& /*event*/)
 
 void mmGUIFrame::OnCheckUpdate(wxCommandEvent& /*event*/)
 {
-    mmUpdateWizard::mmUpdateWizard(this);
+    mmUpdate::checkUpdates(false, this);
 }
 //----------------------------------------------------------------------------
 
