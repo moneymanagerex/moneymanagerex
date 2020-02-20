@@ -19,43 +19,28 @@
 
 #include <wx/wizard.h>
 #include <wx/frame.h>
-#include "rapidjson/document.h"
 #include "option.h"
-
-using namespace rapidjson;
-
-class mmUpdate
-{
-public:
-    static void checkUpdates(const bool bSilent, wxFrame *frame);
-
-};
 
 class mmUpdateWizard : public wxWizard
 {
 public:
-    mmUpdateWizard(wxFrame *frame, const Value& new_version);
-    void RunIt(bool modal);
-
-    const Value& m_new_version;
+    mmUpdateWizard(wxWindow* parent);
 
 private:
-    wxWizardPageSimple* page1;
-    void PageChanged(wxWizardEvent& WXUNUSED(event));
+    void Create(wxWindow* parent
+        , wxWindowID id
+        , const wxString& caption
+        , const wxPoint& pos
+        , const wxSize& size
+        , long style
+        , const wxString& name = "mmUpdateWizard"
+    );
+    void CreateControls();
+    void checkUpdates();
+    wxHtmlWindow* update_text_;
     void LinkClicked(wxHtmlLinkEvent& WXUNUSED(event));
+    void OnCancel(wxCommandEvent& /*event*/);
 
     wxDECLARE_EVENT_TABLE();
 };
 //----------------------------------------------------------------------------
-
-class mmUpdateWizardPage2 : public wxWizardPageSimple
-{
-public:
-    mmUpdateWizardPage2(mmUpdateWizard* parent);
-    void OnDownload();
-
-private:
-    wxString m_download_url;
-
-    wxDECLARE_EVENT_TABLE();
-};
