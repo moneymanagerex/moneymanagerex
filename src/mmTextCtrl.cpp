@@ -1,5 +1,5 @@
 /*******************************************************
-Copyright (C) 2006-2017 Nikolay Akimov
+Copyright (C) 2006-2020 Nikolay Akimov
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -93,5 +93,12 @@ bool mmTextCtrl::checkValue(double &amount, bool positive_value)
 
 wxChar mmTextCtrl::GetDecimalPoint()
 {
-    return m_currency->DECIMAL_POINT[0];
+    wxChar dp;
+    if (!m_currency->DECIMAL_POINT.empty()) {
+        dp = m_currency->DECIMAL_POINT[0];
+    }
+    else {
+        dp = wxNumberFormatter::GetDecimalSeparator();
+    }
+    return dp;
 }

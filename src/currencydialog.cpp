@@ -181,7 +181,7 @@ void mmCurrencyDialog::CreateControls()
     itemFlexGridSizer3->Add(grpTx_, g_flagsExpand);
 
     wxIntegerValidator<int> valInt(&m_scale
-        , wxNUM_VAL_THOUSANDS_SEPARATOR | wxNUM_VAL_ZERO_AS_BLANK);
+        , wxNUM_VAL_THOUSANDS_SEPARATOR);
     valInt.SetMin(0); // Only allow positive numbers
     valInt.SetMax(SCALE);
     itemFlexGridSizer3->Add(new wxStaticText(this, wxID_STATIC, _("Scale")), g_flagsH);
@@ -244,16 +244,22 @@ void mmCurrencyDialog::OnOk(wxCommandEvent& /*event*/)
     else
         m_currency->BASECONVRATE = 1;
 
-    if ((m_currency->GROUP_SEPARATOR == m_currency->DECIMAL_POINT)
-        || (!wxString(" .,").Contains(m_currency->GROUP_SEPARATOR)))
-        return mmErrorDialogs::ToolTip4Object(grpTx_
-            , _("Invalid Entry")
-            , _("Grouping Char"));
-    if (!wxString(".,").Contains(m_currency->DECIMAL_POINT)
-        || m_currency->DECIMAL_POINT.empty())
-        return mmErrorDialogs::ToolTip4Object(decTx_
-            , _("Invalid Entry")
-            , _("Decimal Char"));
+    if (m_currency->SCALE > 1)
+    {
+        if (!wxString(".,").Contains(m_currency->DECIMAL_POINT)
+            || m_currency->DECIMAL_POINT.empty()) {
+            return mmErrorDialogs::ToolTip4Object(decTx_
+                , _("Invalid Entry")
+                , _("Decimal Char"));
+        }
+
+        if ((m_currency->GROUP_SEPARATOR == m_currency->DECIMAL_POINT)
+            || (!wxString(" .,").Contains(m_currency->GROUP_SEPARATOR)))
+            return mmErrorDialogs::ToolTip4Object(grpTx_
+                , _("Invalid Entry")
+                , _("Grouping Char"));
+
+    }
     
     Model_Currency::instance().save(m_currency);
     EndModal(wxID_OK);

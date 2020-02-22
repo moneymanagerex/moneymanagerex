@@ -199,7 +199,7 @@ wxString Model_Currency::toString(double value, const Data* currency, int precis
 const wxString Model_Currency::fromString2Default(const wxString &s, const Data* currency)
 {
     wxString str = s;
-    const Data* c = currency ? currency : Model_Currency::GetBaseCurrency();;
+    const Data* c = currency ? currency : Model_Currency::GetBaseCurrency();
 
     if (!c->GROUP_SEPARATOR.empty())
         str.Replace(c->GROUP_SEPARATOR, "");
