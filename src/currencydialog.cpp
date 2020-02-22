@@ -192,7 +192,7 @@ void mmCurrencyDialog::CreateControls()
     itemFlexGridSizer3->Add(new wxStaticText(this, wxID_STATIC, _("Conversion to Base Rate")), g_flagsH);
     baseConvRate_ = new mmTextCtrl(this, ID_DIALOG_CURRENCY_RATE, ""
         , wxDefaultPosition, wxDefaultSize, wxALIGN_RIGHT | wxTE_PROCESS_ENTER
-        , mmCalcValidator());
+        , mmCalcValidator(), m_currency);
     itemFlexGridSizer3->Add(baseConvRate_, g_flagsExpand);
 
     //--------------------------
@@ -233,7 +233,7 @@ void mmCurrencyDialog::OnOk(wxCommandEvent& /*event*/)
     bool base_currency = (Model_Currency::GetBaseCurrency()->CURRENCYID == m_currency->CURRENCYID);
     if (!base_currency)
     {
-        if (baseConvRate_->Calculate(SCALE))
+        if (baseConvRate_->Calculate(m_scale))
             baseConvRate_->GetDouble(m_currency->BASECONVRATE);
         if (!baseConvRate_->checkValue(m_currency->BASECONVRATE)
             || m_currency->BASECONVRATE <= 0.0)
@@ -293,6 +293,6 @@ void mmCurrencyDialog::OnTextChanged(wxCommandEvent& event)
 
 void mmCurrencyDialog::OnTextEntered(wxCommandEvent& event)
 {
-    if (baseConvRate_->Calculate(SCALE))
+    if (baseConvRate_->Calculate(m_scale))
         baseConvRate_->GetDouble(m_currency->BASECONVRATE);
 }

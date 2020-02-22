@@ -120,6 +120,7 @@ private:
     wxString amountTransferTip_;
     wxSpinButton* spinNextOccDate_;
     wxSpinButton* spinTransDate_;
+    Model_Currency::Data *m_currency;
 
     void setToolTipsForType(Model_Billsdeposits::TYPE transType, bool enableAdvanced = false);
     void resetPayeeString();

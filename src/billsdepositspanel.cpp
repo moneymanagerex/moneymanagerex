@@ -123,6 +123,7 @@ billsDepositsListCtrl::billsDepositsListCtrl(mmBillsDepositsPanel* bdp, wxWindow
 
 billsDepositsListCtrl::~billsDepositsListCtrl()
 {
+    wxLogDebug("Exit billsDepositsListCtrl");
 }
 
 void billsDepositsListCtrl::OnColClick(wxListEvent& event)

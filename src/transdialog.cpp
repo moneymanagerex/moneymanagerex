@@ -424,11 +424,11 @@ void mmTransDialog::CreateControls()
     // Amount Fields --------------------------------------------
     m_textAmount = new mmTextCtrl(this, ID_DIALOG_TRANS_TEXTAMOUNT, ""
         , wxDefaultPosition, wxSize(110, -1)
-        , wxALIGN_RIGHT | wxTE_PROCESS_ENTER, mmCalcValidator());
+        , wxALIGN_RIGHT | wxTE_PROCESS_ENTER, mmCalcValidator(), m_currency);
 
     toTextAmount_ = new mmTextCtrl( this, ID_DIALOG_TRANS_TOTEXTAMOUNT, ""
         , wxDefaultPosition, wxSize(110, -1)
-        , wxALIGN_RIGHT | wxTE_PROCESS_ENTER, mmCalcValidator());
+        , wxALIGN_RIGHT | wxTE_PROCESS_ENTER, mmCalcValidator(), m_currency);
 
     wxBoxSizer* amountSizer = new wxBoxSizer(wxHORIZONTAL);
     amountSizer->Add(m_textAmount, g_flagsH);
@@ -980,7 +980,7 @@ void mmTransDialog::onTextEntered(wxCommandEvent& WXUNUSED(event))
 {
     if (object_in_focus_ == m_textAmount->GetId())
     {
-        if (m_textAmount->Calculate(Model_Currency::precision(m_currency)))
+        if (m_textAmount->Calculate())
         {
             m_textAmount->GetDouble(m_trx_data.TRANSAMOUNT);
         }
@@ -989,7 +989,7 @@ void mmTransDialog::onTextEntered(wxCommandEvent& WXUNUSED(event))
     }
     else if (object_in_focus_ == m_textAmount->GetId())
     {
-        m_textAmount->Calculate(Model_Currency::precision(m_currency));
+        m_textAmount->Calculate();
     }
     else if (object_in_focus_ == textNumber_->GetId())
     {
