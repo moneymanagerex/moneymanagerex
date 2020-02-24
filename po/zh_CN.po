@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-08-06 10:14+0300\n"
-"PO-Revision-Date: 2020-02-17 14:09\n"
+"PO-Revision-Date: 2020-02-24 18:34\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
@@ -423,7 +423,10 @@ msgid "An asset account having the same name has not been found.\n\n"
 "A single transaction for this asset can be associated with any account.\n"
 "Multiple asset transactions need to be associated with an asset account.\n\n"
 "Would you want to create one?\n\n"
-msgstr ""
+msgstr "找不到具有相同名称的资产账户。\n\n"
+"此资产的单项交易可以与任何账户关联起来。\n"
+"多个资产交易需要与一个资产帐户关联。\n\n"
+"你想要创建一个吗？\n\n"
 
 #: assetspanel.cpp:59 billsdepositspanel.cpp:102 mmcheckingpanel.cpp:1017
 #: reports/transactions.cpp:73 stockspanel.cpp:95
@@ -2176,7 +2179,7 @@ msgstr "MMEX 数据库 %s 升级到版本 %i 失败！"
 
 #: dbupgrade.cpp:161
 msgid "Please restore DB from autocreated pre-upgrade backup and retry or contact MMEX support"
-msgstr ""
+msgstr "请从自动预更新备份恢复数据库并重试或联系 MMEX 支持"
 
 #: dbupgrade.cpp:237
 msgid "Load debug file"
@@ -2304,7 +2307,7 @@ msgstr "选择日期区间"
 
 #: filtertransdialog.cpp:263 filtertransdialog.cpp:866
 msgid "Include Similar"
-msgstr ""
+msgstr "包含相似的"
 
 #: filtertransdialog.cpp:265
 msgid "Include all subcategories for the selected category."
@@ -2382,19 +2385,19 @@ msgstr ""
 
 #: filtertransdialog.cpp:852
 msgid "Since"
-msgstr ""
+msgstr "从"
 
 #: filtertransdialog.cpp:854
 msgid "Before"
-msgstr ""
+msgstr "之前"
 
 #: filtertransdialog.cpp:908
 msgid "Amount Min."
-msgstr ""
+msgstr "最小金额"
 
 #: filtertransdialog.cpp:916
 msgid "Amount Max."
-msgstr ""
+msgstr "最大金额"
 
 #: filtertransdialog.cpp:945
 msgid "Label"
@@ -2428,7 +2431,7 @@ msgstr "导入(&I)"
 
 #: general_report_manager.cpp:370
 msgid "Locate and load a report file."
-msgstr ""
+msgstr "查找并加载报表文件。"
 
 #: general_report_manager.cpp:372 import_export/univcsvdialog.cpp:408
 #: mmframe.cpp:1285 mmframe.cpp:1481
@@ -2437,7 +2440,7 @@ msgstr "导出(&E)"
 
 #: general_report_manager.cpp:374
 msgid "Export the report to a new file."
-msgstr ""
+msgstr "导出报表到新文件。"
 
 #: general_report_manager.cpp:377 stockdialog.cpp:375
 msgid "&Save "
@@ -2491,7 +2494,7 @@ msgstr ""
 
 #: general_report_manager.cpp:557
 msgid "Load report file:"
-msgstr ""
+msgstr "加载报表文件："
 
 #: general_report_manager.cpp:559 general_report_manager.cpp:989
 msgid "General Report Manager files (*.grm)"
