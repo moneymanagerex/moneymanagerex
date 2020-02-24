@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-08-06 10:14+0300\n"
-"PO-Revision-Date: 2020-02-24 18:34\n"
+"PO-Revision-Date: 2020-02-24 19:05\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
@@ -2795,7 +2795,7 @@ msgstr ""
 
 #: import_export/qif_import_gui.cpp:467
 msgid "Press OK Button to continue"
-msgstr ""
+msgstr "按“确定”按钮继续"
 
 #: import_export/qif_import_gui.cpp:658 import_export/qif_import_gui.cpp:687
 #: import_export/qif_import_gui.cpp:704
@@ -2816,11 +2816,11 @@ msgstr ""
 
 #: import_export/qif_import_gui.cpp:793
 msgid "Do you want to import all transaction ?"
-msgstr ""
+msgstr "您想要导入所有交易吗？"
 
 #: import_export/qif_import_gui.cpp:794
 msgid "All missing account, payees and categories will be created."
-msgstr ""
+msgstr "将创建所有缺少的帐户、收款人和类别。"
 
 #: import_export/qif_import_gui.cpp:795
 msgid "Confirm Import"
