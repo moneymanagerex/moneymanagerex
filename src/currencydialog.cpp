@@ -1,7 +1,7 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
  Copyright (C) 2015 Gabriele-V
- Copyright (C) 2013-2017 Nikolay Akimov
+ Copyright (C) 2013-2020 Nikolay Akimov
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -199,7 +199,7 @@ void mmCurrencyDialog::CreateControls()
     grpTx_->SetMaxLength(1);
     itemFlexGridSizer3->Add(grpTx_, g_flagsExpand);
 
-    wxIntegerValidator<int> valInt(&m_scale, wxNUM_VAL_THOUSANDS_SEPARATOR | wxNUM_VAL_ZERO_AS_BLANK);
+    wxIntegerValidator<int> valInt(&m_scale, wxNUM_VAL_THOUSANDS_SEPARATOR);
     valInt.SetMin(0); // Only allow positive numbers
     valInt.SetMax(SCALE);
     itemFlexGridSizer3->Add(new wxStaticText(this, wxID_STATIC, _("Scale")), g_flagsH);
@@ -249,11 +249,22 @@ void mmCurrencyDialog::OnOk(wxCommandEvent& WXUNUSED(event))
     if (!currency_symb.empty() && m_currency->CURRENCYID == -1)
         return mmErrorDialogs::InvalidSymbol(m_currencySymbol, true);
 
-    if (m_currency->DECIMAL_POINT.empty() || !wxString(".,").Contains(m_currency->DECIMAL_POINT))
-        return mmErrorDialogs::ToolTip4Object(decTx_, _("Invalid Entry"), _("Decimal Char"));
+    if (m_currency->SCALE > 1)
+    {
+        if (!wxString(".,").Contains(m_currency->DECIMAL_POINT)
+            || m_currency->DECIMAL_POINT.empty()) {
+            return mmErrorDialogs::ToolTip4Object(decTx_
+                , _("Invalid Entry")
+                , _("Decimal Char"));
+        }
 
-    if ((m_currency->GROUP_SEPARATOR == m_currency->DECIMAL_POINT) || (!wxString(" .,").Contains(m_currency->GROUP_SEPARATOR)))
-        return mmErrorDialogs::ToolTip4Object(grpTx_, _("Invalid Entry"), _("Grouping Char"));
+        if ((m_currency->GROUP_SEPARATOR == m_currency->DECIMAL_POINT)
+            || (!wxString(" .,").Contains(m_currency->GROUP_SEPARATOR)))
+            return mmErrorDialogs::ToolTip4Object(grpTx_
+                , _("Invalid Entry")
+                , _("Grouping Char"));
+
+    }
 
     Model_Currency::instance().save(m_currency);
     EndModal(wxID_OK);
