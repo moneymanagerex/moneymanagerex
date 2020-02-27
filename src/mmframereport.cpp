@@ -136,12 +136,6 @@ void mmGUIFrame::updateReportNavigation(wxTreeItemId& reports, wxTreeItemId& bud
         , new mmTreeItemData("Categories"
         , new mmReportCategoryExpensesCategories()));
 
-    wxTreeItemId categsOverTime = m_nav_tree_ctrl->AppendItem(categs
-        , _("Over Time"), img::PIECHART_PNG, img::PIECHART_PNG);
-    m_nav_tree_ctrl->SetItemData(categsOverTime
-        , new mmTreeItemData("Categories - Over Time"
-        , new mmReportCategoryOverTimePerformance()));
-
     wxTreeItemId payeesOverTime = m_nav_tree_ctrl->AppendItem(reports
         , _("Payees"), img::PIECHART_PNG, img::PIECHART_PNG);
     m_nav_tree_ctrl->SetItemData(payeesOverTime

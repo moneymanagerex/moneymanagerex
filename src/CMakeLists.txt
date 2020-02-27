@@ -200,8 +200,6 @@ ADD_LIBRARY(MMEXLib STATIC EXCLUDE_FROM_ALL
     reports/cashflow.h
     reports/categexp.cpp
     reports/categexp.h
-    reports/categovertimeperf.cpp
-    reports/categovertimeperf.h
     reports/forecast.cpp
     reports/forecast.h
     reports/htmlbuilder.cpp

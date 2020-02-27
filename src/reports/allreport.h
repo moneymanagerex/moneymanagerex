@@ -23,7 +23,6 @@
 #include "budgetingperf.h"
 #include "cashflow.h"
 #include "categexp.h"
-#include "categovertimeperf.h"
 #include "htmlbuilder.h"
 #include "incexpenses.h"
 #include "mmDateRange.h"
