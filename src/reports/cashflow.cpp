@@ -35,8 +35,7 @@ mmReportCashFlow::mmReportCashFlow(int cashflowreporttype)
     , activeBankAccounts_(false)
     , cashFlowReportType_(cashflowreporttype)
     , m_cashflowSpecificAccounts(false)
-    , today_(wxDateTime::Today())
-    , colorId_(0)
+    , today_(wxDate::Today().SetDay(1))
 {}
 
 mmReportCashFlow::~mmReportCashFlow()
@@ -58,9 +57,10 @@ wxString mmReportCashFlow::getHTMLText()
     return this->getHTMLText_i();
 }
 
-void mmReportCashFlow::getStats(double& tInitialBalance, std::vector<ValueTrio>& forecastVector)
+void mmReportCashFlow::getStats(double& tInitialBalance, std::vector<LineGraphData>& forecastVector)
 {
-    int years = cashFlowReportType_ == YEARLY ? 10 : 1;// Monthly for 10 years or Daily for 1 year
+    bool monthly = cashFlowReportType_ == MONTHLY;
+    int years = monthly ? 10 : 1;// Monthly for 10 years or Daily for 1 year
     std::map<wxDateTime, double> daily_balance;
     wxArrayInt account_id;
 
@@ -99,8 +99,9 @@ void mmReportCashFlow::getStats(double& tInitialBalance, std::vector<ValueTrio>&
     // We now know the total balance on the account
     // Start by walking through the recurring transaction list
 
-    const wxDateTime yearFromNow = today_.Add(wxDateSpan::Years(years));
+    const wxDateTime yearFromNow = wxDate(today_).Add(wxDateSpan::Years(years));
     forecastVec fvec;
+    wxLogDebug("%s - %s", today_.FormatISODate(), yearFromNow.FormatISODate());
 
     for (const auto& entry : Model_Billsdeposits::instance().all())
     {
@@ -191,15 +192,12 @@ void mmReportCashFlow::getStats(double& tInitialBalance, std::vector<ValueTrio>&
         } // end while
     } //end query
 
-    const wxDateTime& dtBegin = today_;
+    wxDateTime dtEnd = today_;
     for (int idx = 0; idx < (int) forecastVector.size(); idx++)
     {
-        wxDateTime dtEnd = cashFlowReportType_ == YEARLY 
-            ? dtBegin.Add(wxDateSpan::Months(idx)) : dtBegin.Add(wxDateSpan::Days(idx));
-
         for (const auto& balance : fvec)
         {
-            if (balance.date.IsBetween(dtBegin, dtEnd))
+            if (balance.date.IsBetween(today_, dtEnd))
                 forecastVector[idx].amount += balance.amount;
         }
 
@@ -208,18 +206,31 @@ void mmReportCashFlow::getStats(double& tInitialBalance, std::vector<ValueTrio>&
             if (!d_balance.first.IsLaterThan(dtEnd))
                 forecastVector[idx].amount += d_balance.second;
         }
-        forecastVector[idx].label = mmGetDateForDisplay(dtEnd.FormatISODate());
+
+        const auto dt_str = mmGetDateForDisplay(dtEnd.FormatISODate());
+        if (monthly || (dtEnd.GetDay() == today_.GetDay())) {
+            forecastVector[idx].label = dt_str;
+        }
+        forecastVector[idx].xPos = dt_str;
+
+        if (monthly) {
+            dtEnd.Add(wxDateSpan::Month());
+        }
+        else {
+            dtEnd.Add(wxDateSpan::Day());
+        }
     }
 }
 
 wxString mmReportCashFlow::getHTMLText_i()
 {
-    int years = cashFlowReportType_ == YEARLY ? 10 : 1;// Monthly for 10 years or Daily for 1 year
+    bool monthly_report = (cashFlowReportType_ == MONTHLY);
+    int years = cashFlowReportType_ == MONTHLY ? 10 : 1;// Monthly for 10 years or Daily for 1 year
     double tInitialBalance = 0.0;
 
     // Now we have a vector of dates and amounts over next year
-    int forecastItemsNum = cashFlowReportType_ == YEARLY ? 12 * years : 366 * years;
-    std::vector<ValueTrio> forecastVector(forecastItemsNum, {"", "", 0.0});
+    int forecastItemsNum = cashFlowReportType_ == MONTHLY ? 12 * years : 366 * years;
+    std::vector<LineGraphData> forecastVector(forecastItemsNum, {"", "", 0.0});
     getStats(tInitialBalance, forecastVector);
 
     mmHTMLBuilder hb;
@@ -252,7 +263,7 @@ wxString mmReportCashFlow::getHTMLText_i()
     hb.addDateNow();
     hb.addLineBreak();
 
-    //hb.addLineChart(forecastVector, "test");
+    hb.addLineChart(forecastVector, "cashflow", 0, 1000, 400, false, monthly_report);
     hb.addDivRow();
     hb.addDivCol17_67();
     hb.startTable();
@@ -265,26 +276,31 @@ wxString mmReportCashFlow::getHTMLText_i()
     hb.endThead();
 
     hb.startTbody();
-    for (int idx = 0; idx < (int)forecastVector.size(); idx++)
-    {        
-        double balance = forecastVector[idx].amount + tInitialBalance;
-        double diff = (idx == 0 ? 0 : forecastVector[idx].amount - forecastVector[idx-1].amount) ;
-        const wxDateTime dtEnd = cashFlowReportType_ == YEARLY
-            ? today_.Add(wxDateSpan::Months(idx)) : today_.Add(wxDateSpan::Days(idx));
-
+    int colorId = 0;
+    wxDateTime dtEnd = today_;
+    double prev_amount = forecastVector.begin()->amount;
+    for (const auto & item :forecastVector)
+    {    
         // Add a separator for each year/month in daily cash flow report
-        if (cashFlowReportType_ == YEARLY)
-        {
-            colorId_ = dtEnd.GetYear() % 2;
+        if (monthly_report) {
+            colorId = dtEnd.GetYear() % 2;
         }
-        else
-        {
-            const wxDateTime& firstDayOfTheMonth = wxDateTime(dtEnd).SetDay(1);
-            if (dtEnd == firstDayOfTheMonth) colorId_ = ++colorId_ % 2;
+        else {
+            colorId = static_cast<int>(dtEnd.GetMonth()) % 2;
         }
 
-        hb.startTableRow(COLORS[colorId_]);
-        hb.addTableCell(forecastVector[idx].label);
+        double balance = item.amount + tInitialBalance;
+        double diff = item.amount - prev_amount;
+        prev_amount = item.amount;
+        if (monthly_report) {
+            dtEnd.Add(wxDateSpan::Month());
+        }
+        else {
+            dtEnd.Add(wxDateSpan::Day());
+        }
+
+        hb.startTableRow(COLORS[colorId]);
+        hb.addTableCell(item.xPos);
         hb.addMoneyCell(balance);
         hb.addMoneyCell(diff);
         hb.endTableRow();
@@ -324,7 +340,7 @@ mmReportCashFlowTermAccounts::mmReportCashFlowTermAccounts()
 mmReportCashFlowSpecificAccounts::mmReportCashFlowSpecificAccounts()
 : mmReportCashFlow(0)
 {
-    this->cashFlowReportType_ = YEARLY;
+    this->cashFlowReportType_ = MONTHLY;
     this->m_cashflowSpecificAccounts = true;
 }
 

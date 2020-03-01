@@ -52,6 +52,13 @@ struct WebsiteNews
     wxString Description;
 };
 
+struct LineGraphData
+{
+    wxString xPos;
+    wxString label;
+    double   amount;
+};
+
 class mmListBoxItem: public wxClientData
 {
 public:
@@ -59,19 +66,16 @@ public:
         : index_(index), name_(name)
     {}
 
-    int getIndex() const
-    {
-        return index_;
-    }
-    wxString getName() const
-    {
-        return name_;
-    }
+    int getIndex() const;
+    wxString getName() const;
 
 private:
     int index_;
     wxString name_;
 };
+
+inline int mmListBoxItem::getIndex() const { return index_; }
+inline wxString mmListBoxItem::getName() const {return name_;}
 
 class mmTreeItemData : public wxTreeItemData
 {

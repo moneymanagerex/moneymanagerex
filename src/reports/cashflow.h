@@ -33,7 +33,7 @@ public:
 
 protected:
     wxString getHTMLText_i();
-    void getStats(double& tInitialBalance, std::vector<ValueTrio>& forecastVector);
+    void getStats(double& tInitialBalance, std::vector<LineGraphData>& forecastVector);
     void activateTermAccounts();
     void activateBankAccounts();
 
@@ -51,11 +51,10 @@ protected:
     bool activeBankAccounts_;
     int cashFlowReportType_;
     bool m_cashflowSpecificAccounts;
-    enum { YEARLY = 0, DAILY };
+    enum { MONTHLY = 0, DAILY };
 
     static const int yearsNum_ = 10;
     const wxDateTime today_;
-    int colorId_;
 
 };
 

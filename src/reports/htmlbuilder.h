@@ -113,7 +113,7 @@ public:
     void addTableRowBold(const wxString& label, double data);
 
     void addPieChart(std::vector<ValueTrio>& valueList, const wxString& id, const int x = 300, const int y = 300);
-    void addLineChart(const std::vector<ValueTrio>& data, const wxString& id, const int index, const int x = 640, const int y = 256, bool pointDot = false, bool showGridLines = true, bool datasetFill = false);
+    void addLineChart(const std::vector<LineGraphData>& data, const wxString& id, const int index, const int x = 640, const int y = 256, bool pointDot = false, bool showGridLines = true, bool datasetFill = false);
     void addBarChart(const wxString & labels, const std::vector<ValueTrio>& data, const wxString& id, const int x = 192, const int y = 256);
 
 private:
