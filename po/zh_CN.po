@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-08-06 10:14+0300\n"
-"PO-Revision-Date: 2020-02-24 19:05\n"
+"PO-Revision-Date: 2020-03-03 17:16\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
@@ -1097,7 +1097,7 @@ msgstr ""
 
 #: billsdepositsdialog.cpp:1314
 msgid "Choose one of the following:"
-msgstr ""
+msgstr "选择下面的一个:"
 
 #: billsdepositsdialog.cpp:1373 transdialog.cpp:1198
 #: usertransactionpanel.cpp:199
@@ -1128,7 +1128,7 @@ msgstr "指定交易的金额"
 
 #: billsdepositsdialog.h:123
 msgid "Specify the amount to be transferred"
-msgstr ""
+msgstr "指定要转移的金额"
 
 #: billsdepositspanel.cpp:56
 #, c-format
@@ -1816,7 +1816,7 @@ msgstr "自动完成"
 
 #: customfieldeditdialog.cpp:155
 msgid "Enables autocomplete on custom field"
-msgstr ""
+msgstr "启用自定义字段自动完成"
 
 #: customfieldeditdialog.cpp:158 util.cpp:988
 msgid "Default"
@@ -1825,7 +1825,8 @@ msgstr "默认"
 #: customfieldeditdialog.cpp:160
 msgid "Enter the default for this field\n"
 "For date/time insert 'Now' to make current date/time as default"
-msgstr ""
+msgstr "输入此字段的默认值\n"
+"对于日期/时间来说插入 'Now' 将当前日期/时间作为默认值"
 
 #: customfieldeditdialog.cpp:164
 msgid "Choices"
@@ -1841,7 +1842,7 @@ msgstr ""
 
 #: customfieldeditdialog.cpp:171
 msgid "Enter the decimal digits scale allowed"
-msgstr ""
+msgstr "输入允许的十进制位数"
 
 #: customfieldeditdialog.cpp:174
 msgid "Panel's column"
@@ -1862,11 +1863,11 @@ msgstr "您想要继续吗？"
 
 #: customfieldeditdialog.cpp:223 customfieldeditdialog.cpp:245
 msgid "Custom Field Change"
-msgstr ""
+msgstr "自定义字段更改"
 
 #: customfieldeditdialog.cpp:243
 msgid "You have modified choices: ones removed will be cleaned!"
-msgstr ""
+msgstr "您已修改了选项：删除的选项将被清理！"
 
 #: customfieldlistdialog.cpp:55
 msgid "Properties"
