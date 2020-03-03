@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-08-06 10:14+0300\n"
-"PO-Revision-Date: 2020-03-03 17:57\n"
+"PO-Revision-Date: 2020-03-03 18:51\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
@@ -6475,19 +6475,19 @@ msgstr ""
 
 #: usertransactionpanel.cpp:299
 msgid "Account Selection"
-msgstr ""
+msgstr "账户选择"
 
 #: util.cpp:119
 msgid "Encrypted database password"
-msgstr ""
+msgstr "加密数据库密码"
 
 #: util.cpp:121
 msgid "Enter password for database file"
-msgstr ""
+msgstr "输入数据库文件密码"
 
 #: util.cpp:128
 msgid "Re-enter password for database file"
-msgstr ""
+msgstr "再次输入数据库文件密码"
 
 #: util.cpp:132
 msgid "Confirm password failed."
@@ -6495,27 +6495,27 @@ msgstr "确认密码失败。"
 
 #: util.cpp:134
 msgid "Password must not be empty."
-msgstr ""
+msgstr "密码不能为空。"
 
 #: util.cpp:445
 msgid "Database version: "
-msgstr ""
+msgstr "数据库版本： "
 
 #: util.cpp:451
 msgid "Git commit: "
-msgstr ""
+msgstr "Git commit: "
 
 #: util.cpp:455
 msgid "Git branch: "
-msgstr ""
+msgstr "Git branch: "
 
 #: util.cpp:458
 msgid "MMEX is using the following support products:"
-msgstr ""
+msgstr "MMEX 正在使用以下产品进行支持："
 
 #: util.cpp:471
 msgid "Build on"
-msgstr ""
+msgstr "构建于"
 
 #: util.cpp:472
 msgid "with:"
@@ -6523,19 +6523,19 @@ msgstr ""
 
 #: util.cpp:493
 msgid "Running on:"
-msgstr ""
+msgstr "运行于："
 
 #: util.cpp:593
 msgid "Currency rates have been updated"
-msgstr ""
+msgstr "货币汇率已更新"
 
 #: util.cpp:725
 msgid "Wrong base currency to USD rate provided"
-msgstr ""
+msgstr "所提供的基本货币与美元汇率错误"
 
 #: util.cpp:989
 msgid "UTF-8"
-msgstr ""
+msgstr "UTF-8"
 
 #: util.cpp:1002
 msgid "January"
@@ -6639,12 +6639,12 @@ msgstr "10 月"
 #: util.cpp:1021
 msgctxt "3-letter abbreviation of month name"
 msgid "Nov"
-msgstr ""
+msgstr "11 月"
 
 #: util.cpp:1022
 msgctxt "3-letter abbreviation of month name"
 msgid "Dec"
-msgstr ""
+msgstr "12 月"
 
 #: util.cpp:1027
 msgid "Sunday"
@@ -6676,7 +6676,7 @@ msgstr "周六"
 
 #: webapp.cpp:111
 msgid "Wrong WebApp GUID:"
-msgstr ""
+msgstr "错误的 WebApp GUID："
 
 #: webapp.cpp:112
 msgid "please check it in network options."
@@ -6705,27 +6705,28 @@ msgstr "错误的 WebApp API 版本："
 #: webapp.cpp:132
 #, c-format
 msgid "WebApp   API version -> %s"
-msgstr ""
+msgstr "WebApp API 版本 -> %s"
 
 #: webapp.cpp:133
 #, c-format
 msgid "Expected API version -> %s"
-msgstr ""
+msgstr "预期的 API 版本 -> %s"
 
 #: webapp.cpp:134
 msgid "Wrong WebApp API version"
-msgstr ""
+msgstr "错误的 WebApp API 版本"
 
 #: webapp.cpp:464
 #, c-format
 msgid "Account '%s' not found!"
-msgstr ""
+msgstr "账户 '%s' 未找到！"
 
 #: webapp.cpp:466
 #, c-format
 msgid "Transaction will be inserted with the first bank account:\n"
 "'%s' and marked as  'Follow Up'"
-msgstr ""
+msgstr "交易将被插入第一个银行账户：\n"
+"\"%s\" 并标记为“跟进”"
 
 #: webapp.cpp:469
 msgid "Wrong WebApp account"
@@ -6745,7 +6746,7 @@ msgstr "交易未下载："
 
 #: webapp.cpp:554
 msgid "please fix attachments folder or delete attachments from WebApp"
-msgstr ""
+msgstr "请修复附件文件夹或从WebApp 中删除附件"
 
 #: webapp.cpp:555
 msgid "Attachment folder error"
@@ -6757,11 +6758,11 @@ msgstr "附件"
 
 #: webapp.cpp:585
 msgid "Communication error"
-msgstr ""
+msgstr "通信错误"
 
 #: webapp.cpp:586
 msgid "Transaction not downloaded: please close and open MMEX to try re-download transaction"
-msgstr ""
+msgstr "交易未下载：请关闭并打开 MMEX 以尝试重新下载交易"
 
 #: webapp.cpp:587
 msgid "Attachment download error"
@@ -6769,7 +6770,7 @@ msgstr "下载附件失败"
 
 #: webappdialog.cpp:51
 msgid "Import WebApp transactions"
-msgstr ""
+msgstr "导入 WebApp 交易"
 
 #: webappdialog.cpp:94
 msgid "&Import all "
@@ -6785,7 +6786,7 @@ msgstr "无法在 MMEX 数据库中插入交易记录"
 
 #: webappdialog.cpp:183
 msgid "WebApp communication error"
-msgstr ""
+msgstr "WebApp 通信错误"
 
 #: webappdialog.cpp:269
 msgid "Open Attachment"
@@ -6826,7 +6827,7 @@ msgstr "账户名称"
 
 #: wizard_newaccount.cpp:105
 msgid "Specify a descriptive name for the account."
-msgstr ""
+msgstr "指定账户的描述性名称。"
 
 #: wizard_newaccount.cpp:106
 msgid "This is generally the name of a financial institution\n"
@@ -6839,24 +6840,29 @@ msgstr "账户分类"
 
 #: wizard_newaccount.cpp:130
 msgid "Select the type of account you want to create:"
-msgstr ""
+msgstr "选择您想要创建哪种类型的账户："
 
 #: wizard_newaccount.cpp:131
 msgid "General bank accounts cover a wide variety of account\n"
 "types like Checking, Savings etc."
-msgstr ""
+msgstr "普通银行账户涵盖各种各样的账户\n"
+"类型，如支票账户，储蓄账户等。"
 
 #: wizard_newaccount.cpp:136
 msgid "Investment accounts are specialized accounts that only\n"
 "have stock/mutual fund investments associated with them."
-msgstr ""
+msgstr "投资账户是专门账户，只有\n"
+"与股票/证券投资基金相关联的投资。"
 
 #: wizard_newaccount.cpp:141
 msgid "Term accounts are specialized bank accounts. Intended for asset\n"
 "type accounts such as Term Deposits and Bonds. These accounts\n"
 "can have regular money coming in and out, being outside the\n"
 "general income stream."
-msgstr ""
+msgstr "定期账户是专门的银行账户。为资产\n"
+"类账户，如定期存款和债券等。 这些账户\n"
+"可以有经常性的进出资金，在\n"
+"一般收入流之外。"
 
 #: wizard_newaccount.cpp:157
 msgid "Base Account Currency Not set."
@@ -6864,7 +6870,7 @@ msgstr "没有设置基本货币。"
 
 #: wizard_newaccount.cpp:158
 msgid "Set that first using Tools->Options menu and then add a new account."
-msgstr ""
+msgstr "首先使用工具->选项菜单，然后添加一个新帐户。"
 
 #: wizard_newdb.cpp:30
 msgid "New Database Wizard"
@@ -6925,7 +6931,7 @@ msgstr "您当前的版本是 %s"
 #: wizard_update.cpp:48
 #, c-format
 msgid "New version is %s (published at %s)"
-msgstr ""
+msgstr "新版本是 %s (发布于 %s)"
 
 #: wizard_update.cpp:56
 msgid "What's new:"
@@ -6941,7 +6947,7 @@ msgstr "无法检查更新！"
 
 #: wizard_update.cpp:339 wizard_update.cpp:354
 msgid "Error: "
-msgstr ""
+msgstr "错误： "
 
 #: wizard_update.cpp:340 wizard_update.cpp:357 wizard_update.cpp:394
 msgid "MMEX Update Check"
