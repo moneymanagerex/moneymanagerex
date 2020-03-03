@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-08-06 10:14+0300\n"
-"PO-Revision-Date: 2020-03-03 17:16\n"
+"PO-Revision-Date: 2020-03-03 17:57\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
@@ -1891,7 +1891,9 @@ msgstr "确认自定义字段删除"
 msgid "This function will massive search & replace for \"%s\" custom field values\n"
 "It will match & replace only complete field value, no partial or middle-value replaces allowed\n"
 "Please consider that there isn't any validation!"
-msgstr ""
+msgstr "此函数将大规模搜索并替换\"%s\"自定义字段值\n"
+"它将匹配并只替换完整的字段值，不允许替换部分或中值\n"
+"此处不会有任何验证还请三思而行！"
 
 #: customfieldlistdialog.cpp:194
 msgid "Confirm Custom Field Content Update"
@@ -1910,7 +1912,8 @@ msgstr "更新自定义字段内容"
 #: customfieldlistdialog.cpp:203
 msgid "Do you want to update blank content?\n"
 "Press no if you want to abort replace procedure!"
-msgstr ""
+msgstr "您想要更新为空内容吗？\n"
+"如果您想要中止替换程序，请按“不”！"
 
 #: customfieldlistdialog.cpp:211
 msgid "Replace with"
@@ -2374,7 +2377,7 @@ msgstr ""
 
 #: filtertransdialog.cpp:410 transdialog.cpp:588
 msgid "Show/Hide custom fields window"
-msgstr ""
+msgstr "显示/隐藏自定义字段窗口"
 
 #: filtertransdialog.cpp:816
 msgid "Filtering Details: "
@@ -2382,7 +2385,7 @@ msgstr "过滤细节"
 
 #: filtertransdialog.cpp:820 filtertransdialog.cpp:1235
 msgid "Empty value"
-msgstr ""
+msgstr "空值"
 
 #: filtertransdialog.cpp:852
 msgid "Since"
@@ -2402,7 +2405,7 @@ msgstr "最大金额"
 
 #: filtertransdialog.cpp:945
 msgid "Label"
-msgstr ""
+msgstr "标签"
 
 #: filtertransdialog.cpp:1231
 msgid "Please Enter"
@@ -2457,7 +2460,7 @@ msgstr "运行"
 
 #: general_report_manager.cpp:383
 msgid "Run selected report."
-msgstr ""
+msgstr "运行选定的报表。"
 
 #: general_report_manager.cpp:395
 msgid "Output"
@@ -2744,7 +2747,7 @@ msgstr "导入QIF"
 
 #: import_export/qif_import_gui.cpp:129
 msgid "Choose &file"
-msgstr ""
+msgstr "选择文件（F）"
 
 #: import_export/qif_import_gui.cpp:142 import_export/univcsvdialog.cpp:314
 msgid "Encoding:"
@@ -2752,7 +2755,7 @@ msgstr "编码："
 
 #: import_export/qif_import_gui.cpp:168
 msgid "Filtering Details:"
-msgstr ""
+msgstr "过滤细节："
 
 #: import_export/qif_import_gui.cpp:205
 msgid "Data"
@@ -2760,7 +2763,7 @@ msgstr ""
 
 #: import_export/qif_import_gui.cpp:265
 msgid "Use account number instead of account name"
-msgstr ""
+msgstr "使用账号代替账号名称"
 
 #: import_export/qif_import_gui.cpp:269
 msgid "Include payee field in notes"
@@ -3145,7 +3148,7 @@ msgstr "导出(&E)"
 
 #: import_export/univcsvdialog.cpp:1027
 msgid "Overwrite existing file?"
-msgstr ""
+msgstr "覆盖已存在的文件？"
 
 #: import_export/univcsvdialog.cpp:1027
 msgid "File exists"
@@ -3153,7 +3156,7 @@ msgstr "文件已存在"
 
 #: import_export/univcsvdialog.cpp:1033
 msgid "Failed to delete existing file. File may be locked by another program."
-msgstr ""
+msgstr "删除现有文件失败。文件可能会被其他程序锁定。"
 
 #: import_export/univcsvdialog.cpp:1034
 msgid "Destination file error"
@@ -3212,7 +3215,7 @@ msgstr "货币信息"
 
 #: maincurrencydialog.cpp:163
 msgid "Update latest rate only for all used currencies"
-msgstr ""
+msgstr "仅更新所有用过的货币的最新汇率"
 
 #: maincurrencydialog.cpp:166
 msgid "Online Update"
@@ -3232,7 +3235,7 @@ msgstr ""
 
 #: maincurrencydialog.cpp:180
 msgid "Hide historical currencies"
-msgstr ""
+msgstr "隐藏历史货币"
 
 #: maincurrencydialog.cpp:229
 msgid "Select the currently selected currency as the selected currency for the account"
@@ -3244,19 +3247,19 @@ msgstr "选择当前被选分类作为交易的分类"
 
 #: maincurrencydialog.cpp:245
 msgid "Currency History Options"
-msgstr ""
+msgstr "货币历史选项"
 
 #: maincurrencydialog.cpp:280
 msgid "Specify the date of currency value"
-msgstr ""
+msgstr "指定货币值的日期"
 
 #: maincurrencydialog.cpp:287
 msgid "Enter the currency value"
-msgstr ""
+msgstr "输入货币值"
 
 #: maincurrencydialog.cpp:296
 msgid "Download Currency Values history"
-msgstr ""
+msgstr "下载货币值历史记录"
 
 #: maincurrencydialog.cpp:297
 msgid "&Add / Update "
@@ -3268,24 +3271,24 @@ msgstr "添加货币价值到历史"
 
 #: maincurrencydialog.cpp:302
 msgid "Delete selected Currency Values"
-msgstr ""
+msgstr "删除选定的货币值"
 
 #: maincurrencydialog.cpp:306
 msgid "Delete Currency Values history for unused currencies"
-msgstr ""
+msgstr "删除未使用货币的货币值历史"
 
 #: maincurrencydialog.cpp:348
 msgid "Do you really want to delete the selected Currency?"
-msgstr ""
+msgstr "您真的要删除选定的货币吗？"
 
 #: maincurrencydialog.cpp:374
 msgid "Base Currency Selection"
-msgstr ""
+msgstr "基本货币选择"
 
 #: maincurrencydialog.cpp:422
 #, c-format
 msgid "Currency History Options: %s "
-msgstr ""
+msgstr "货币历史选项： %s "
 
 #: maincurrencydialog.cpp:447
 msgid "Online update currency rate"
@@ -3301,17 +3304,17 @@ msgstr "在线更新现金汇率(&U)"
 
 #: maincurrencydialog.cpp:612
 msgid "No currency selected!"
-msgstr ""
+msgstr "未选择货币！"
 
 #: maincurrencydialog.cpp:612 maincurrencydialog.cpp:627
 #: maincurrencydialog.cpp:675
 msgid "Currency history error"
-msgstr ""
+msgstr "货币历史错误"
 
 #: maincurrencydialog.cpp:625
 #, c-format
 msgid "Unable to download %s currency rates"
-msgstr ""
+msgstr "无法下载 %s 货币汇率"
 
 #: maincurrencydialog.cpp:630
 msgid "Do you want to add also dates without any transaction?"
@@ -3325,7 +3328,8 @@ msgstr ""
 #: maincurrencydialog.cpp:735
 msgid "Setting a new base currency will delete all historic rates,\n"
 "it's possible to re-download them after setting the new base currency."
-msgstr ""
+msgstr "设置新的基础货币将会删除所有历史汇率。\n"
+"在设置新的基础货币之后可以重新下载它们。"
 
 #: maincurrencydialog.cpp:737
 msgid "Do you want to continue?"
@@ -3355,11 +3359,11 @@ msgstr "分类无效"
 
 #: mmSimpleDialogs.cpp:169
 msgid "File name is empty."
-msgstr ""
+msgstr "文件名为空。"
 
 #: mmSimpleDialogs.cpp:170
 msgid "Please select the file for this operation."
-msgstr ""
+msgstr "请仅为此操作选择一个文件"
 
 #: mmSimpleDialogs.cpp:179
 msgid "Invalid Account"
@@ -3367,11 +3371,11 @@ msgstr "账户不可用"
 
 #: mmSimpleDialogs.cpp:182
 msgid "Please select the account for this transaction."
-msgstr ""
+msgstr "请选择此交易的帐户。"
 
 #: mmSimpleDialogs.cpp:184
 msgid "Please specify which account the transfer is going to."
-msgstr ""
+msgstr "请指定将转账到哪个账户。"
 
 #: mmSimpleDialogs.cpp:186 transactionsupdatedialog.cpp:248
 msgid "Selection can be made by using the dropdown button."
@@ -3764,7 +3768,7 @@ msgstr ""
 
 #: mmex.cpp:102 mmframe.cpp:3161
 msgid "Language change"
-msgstr ""
+msgstr "修改语言"
 
 #: mmex.cpp:136
 msgid "Fatal error occurred.\n"
@@ -3890,7 +3894,7 @@ msgstr "删除账户(&D)"
 
 #: mmframe.cpp:1229
 msgid "&Foreign Currency Balance"
-msgstr ""
+msgstr "外币余额（F）"
 
 #: mmframe.cpp:1230
 msgid "&Launch Account Website"
@@ -3898,7 +3902,7 @@ msgstr "打开账户网页(&L)"
 
 #: mmframe.cpp:1260 mmframe.cpp:1573
 msgid "Hide/Show Report"
-msgstr ""
+msgstr "隐藏/显示报表"
 
 #: mmframe.cpp:1272 mmframe.cpp:1581
 msgid "New &Account"
@@ -4178,11 +4182,11 @@ msgstr "通用报告管理器..(&G)"
 
 #: mmframe.cpp:1669
 msgid "&Custom Fields Manager..."
-msgstr ""
+msgstr "自定义字段管理器..."
 
 #: mmframe.cpp:1669 mmframe.cpp:1842
 msgid "Custom Fields Manager"
-msgstr ""
+msgstr "自定义字段管理器"
 
 #: mmframe.cpp:1676 mmframe.cpp:1846
 msgid "&Options..."
@@ -4194,7 +4198,7 @@ msgstr "显示选项对话框"
 
 #: mmframe.cpp:1684
 msgid "Set &Password"
-msgstr ""
+msgstr "设置密码"
 
 #: mmframe.cpp:1685
 msgid "Encrypt database or change password for database file"
@@ -4222,7 +4226,7 @@ msgstr "数据库调试"
 
 #: mmframe.cpp:1697
 msgid "Generate database report or fix errors"
-msgstr ""
+msgstr "生成数据库报表或修复错误"
 
 #: mmframe.cpp:1703
 msgid "Database"
@@ -4230,7 +4234,7 @@ msgstr "数据库"
 
 #: mmframe.cpp:1704
 msgid "Database management"
-msgstr ""
+msgstr "数据库管理"
 
 #: mmframe.cpp:1711 mmframe.cpp:1851
 msgid "&Help\tF1"
@@ -4354,7 +4358,7 @@ msgstr ""
 
 #: mmframe.cpp:1783
 msgid "Report a Bug"
-msgstr ""
+msgstr "提交 Bug"
 
 #: mmframe.cpp:1784
 msgid "Report an error in application to the developers"
@@ -4382,7 +4386,7 @@ msgstr "检查更新(&U)"
 
 #: mmframe.cpp:1800
 msgid "Check if a new MMEX version is available"
-msgstr ""
+msgstr "检查是否有新的 MMEX 版本"
 
 #: mmframe.cpp:1805 mmframe.cpp:1850
 msgid "&About..."
@@ -4418,7 +4422,7 @@ msgstr "新增"
 
 #: mmframe.cpp:1836
 msgid "Show Home Page"
-msgstr ""
+msgstr "显示主页"
 
 #: mmframe.cpp:1838
 msgid "Show Organize Categories Dialog"
@@ -4454,19 +4458,19 @@ msgstr "从 Yahoo 刷新股票价格"
 
 #: mmframe.cpp:1908
 msgid "Cannot locate database file to open."
-msgstr ""
+msgstr "无法定位要打开的数据库文件。"
 
 #: mmframe.cpp:1916 mmframe.cpp:2010
 msgid "[portable mode]"
-msgstr ""
+msgstr "[便携模式]"
 
 #: mmframe.cpp:1955
 msgid "Have MMEX support provided you a debug/patch file?"
-msgstr ""
+msgstr "MMEX 支持是否给您提供了调试/补丁文件？"
 
 #: mmframe.cpp:1955
 msgid "MMEX upgrade"
-msgstr ""
+msgstr "MMEX 升级"
 
 #: mmframe.cpp:1992
 msgid "&Next ->"
@@ -4478,11 +4482,11 @@ msgstr "选择要创建的数据库文件"
 
 #: mmframe.cpp:2053 mmframe.cpp:2077 mmframe.cpp:2158
 msgid "MMEX database files (*.mmb)"
-msgstr ""
+msgstr "MMEX 数据库文件(*.mmb)"
 
 #: mmframe.cpp:2055 mmframe.cpp:2160
 msgid "Encrypted MMEX database files (*.mmb)"
-msgstr ""
+msgstr "加密的 MMEX 数据库文件 (*.mmb)"
 
 #: mmframe.cpp:2075
 msgid "Choose database file to open"
@@ -4494,11 +4498,11 @@ msgstr "密码更改完成。"
 
 #: mmframe.cpp:2097
 msgid "Encryption Password Change"
-msgstr ""
+msgstr "加密密码更改"
 
 #: mmframe.cpp:2105
 msgid "Please confirm database decryption and password removal."
-msgstr ""
+msgstr "请确认解密数据库并移除密码。"
 
 #: mmframe.cpp:2106 mmframe.cpp:2113
 msgid "Encryption Password Removal"
@@ -4525,7 +4529,7 @@ msgstr "数据库优化完成，之前的大小 %s，之后的大小 %s。\n"
 
 #: mmframe.cpp:2140
 msgid "Please use this function only if explicitly requested by MMEX support"
-msgstr ""
+msgstr "请只在 MMEX 支持明确请求时使用此功能"
 
 #: mmframe.cpp:2141
 msgid "DB Debug"
@@ -5045,19 +5049,19 @@ msgstr "图例"
 
 #: optionsettingsattachment.cpp:102 optionsettingsattachment.cpp:177
 msgid "User documents directory"
-msgstr ""
+msgstr "用户文档目录"
 
 #: optionsettingsattachment.cpp:103
 msgid "User profile folder"
-msgstr ""
+msgstr "用户配置文件文件夹"
 
 #: optionsettingsattachment.cpp:104
 msgid "Folder of .mmb database file"
-msgstr ""
+msgstr ".mmb 数据库文件的文件夹"
 
 #: optionsettingsattachment.cpp:105
 msgid "MMEX Application data folder"
-msgstr ""
+msgstr "MMEX 应用程序数据文件夹"
 
 #: optionsettingsattachment.cpp:111
 msgid "Other OS folders "
@@ -5069,15 +5073,15 @@ msgstr "未设置"
 
 #: optionsettingsattachment.cpp:124
 msgid "Windows folder"
-msgstr ""
+msgstr "Windows 文件夹"
 
 #: optionsettingsattachment.cpp:132
 msgid "Mac folder"
-msgstr ""
+msgstr "Mac 文件夹"
 
 #: optionsettingsattachment.cpp:140
 msgid "Unix folder"
-msgstr ""
+msgstr "Unix 文件夹"
 
 #: optionsettingsattachment.cpp:150
 msgid "Create and use Attachments subfolder"
@@ -5153,7 +5157,7 @@ msgstr "用户名称"
 
 #: optionsettingsgeneral.cpp:74
 msgid "The User Name is used as a title for the database."
-msgstr ""
+msgstr "用户名用作数据库的标题。"
 
 #: optionsettingsgeneral.cpp:85
 msgid "Base Currency"
@@ -5165,7 +5169,7 @@ msgstr "货币设置"
 
 #: optionsettingsgeneral.cpp:93
 msgid "Sets the database default Currency using the 'Currency Dialog'"
-msgstr ""
+msgstr "使用 '货币对话框' 设置数据库默认货币"
 
 #: optionsettingsgeneral.cpp:94
 msgid "Right click and select 'Set as Base Currency' in 'Currency Dialog'"
@@ -5674,7 +5678,7 @@ msgstr ""
 
 #: reports/bugreport.h:55
 msgid "Bug Report"
-msgstr ""
+msgstr "Bug 报告"
 
 #: reports/bugreport.h:72
 msgid "Replace this text (marked with >) with detailed description of your problem."
@@ -6676,11 +6680,11 @@ msgstr ""
 
 #: webapp.cpp:112
 msgid "please check it in network options."
-msgstr ""
+msgstr "请在网络选项中进行检查。"
 
 #: webapp.cpp:113
 msgid "Wrong WebApp settings"
-msgstr ""
+msgstr "错误的 WebApp 设置"
 
 #: webapp.cpp:118
 msgid "Unable to connect to WebApp:"
@@ -6688,15 +6692,15 @@ msgstr "无法连接到 WebApp："
 
 #: webapp.cpp:119
 msgid "please check settings and / or internet connection."
-msgstr ""
+msgstr "请检查设置或互联网连接。"
 
 #: webapp.cpp:121
 msgid "WebApp connection error"
-msgstr ""
+msgstr "WebApp 连接错误"
 
 #: webapp.cpp:131
 msgid "Wrong WebApp API version:"
-msgstr ""
+msgstr "错误的 WebApp API 版本："
 
 #: webapp.cpp:132
 #, c-format
@@ -6725,7 +6729,7 @@ msgstr ""
 
 #: webapp.cpp:469
 msgid "Wrong WebApp account"
-msgstr ""
+msgstr "错误的 WebApp 帐户"
 
 #: webapp.cpp:551 webapp.cpp:584
 msgid "Unable to download attachments from webapp."
