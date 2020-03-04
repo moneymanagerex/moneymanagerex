@@ -35,10 +35,12 @@ mmUpdateWizard::mmUpdateWizard(wxFrame *frame, const Value& new_version)
 
     wxDateTime pub_date;
     wxString::const_iterator end;
-    pub_date.ParseFormat(wxString(m_new_version["published_at"].GetString()), "%Y-%m-%dT%H:%M:%SZ", &end);
+    const wxString pub_date_str = wxString(m_new_version["published_at"].GetString());
+    pub_date.ParseFormat(pub_date_str, "%Y-%m-%dT%H:%M:%SZ", &end);
     const wxString displayMsg = wxString()
         << _("A new version of MMEX is available!") << "\n\n"
-        << wxString::Format(_("Your version is %s"), mmex::version::string) << "\n"
+        << wxString::Format(_("Your version is %s")
+            , mmex::version::string) << "\n"
         << wxString::Format(_("New version is %s (published at %s)")
             , m_new_version["tag_name"].GetString() + 1
             , pub_date.Format(Option::instance().DateFormat())) << "\n";
@@ -232,7 +234,7 @@ void mmUpdate::checkUpdates(const bool bSilent, wxFrame *frame)
 
     const int _stable = Model_Setting::instance().GetIntSetting("UPDATESOURCE", 0) == 0;
 
-    wxString current_tag("v" + mmex::version::string);
+    const wxString current_tag = wxString("v" + mmex::version::string).Lower();
     wxString latest_tag = current_tag;
     Value& latest_release = json_releases[0];
     Version latest(latest_tag);
