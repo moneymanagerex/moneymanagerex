@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-08-06 10:14+0300\n"
-"PO-Revision-Date: 2020-03-07 19:14\n"
+"PO-Revision-Date: 2020-03-07 19:56\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
@@ -571,7 +571,9 @@ msgstr "值变化: %s %s"
 msgid "This asset does not have its own account\n\n"
 "Multiple transactions for this asset are not recommended.\n"
 "Please use the popup: 'Open Asset Account' to track the transaction."
-msgstr ""
+msgstr "此资产没有自己的帐户\n\n"
+"此资产不推荐多个交易。\n"
+"请使用弹出窗口：“打开资产帐户”来跟踪交易。"
 
 #: assetspanel.cpp:784
 msgid "Asset Management"
@@ -857,7 +859,7 @@ msgstr "剩余付款数"
 
 #: billsdepositsdialog.cpp:438
 msgid "Request user to enter payment"
-msgstr ""
+msgstr "要求用户输入付款"
 
 #: billsdepositsdialog.cpp:439
 msgid "User requested to enter this transaction on the 'Date Paid'"
@@ -865,11 +867,11 @@ msgstr ""
 
 #: billsdepositsdialog.cpp:442
 msgid "Grant automatic execute"
-msgstr ""
+msgstr "授权自动执行"
 
 #: billsdepositsdialog.cpp:443
 msgid "The requested payment will occur without user interaction"
-msgstr ""
+msgstr "请求的付款将在没有用户交互的情况下发生。"
 
 #: billsdepositsdialog.cpp:467 transdialog.cpp:408
 msgid "Transaction Details"
@@ -1056,27 +1058,32 @@ msgstr "每四个月"
 #: billsdepositsdialog.cpp:1239
 msgid "Specify period in Days to activate.\n"
 "Becomes blank when not active."
-msgstr ""
+msgstr "指定时间段以激活。\n"
+"在未激活时变为空。"
 
 #: billsdepositsdialog.cpp:1248
 msgid "Specify period in Months to activate.\n"
 "Becomes blank when not active."
-msgstr ""
+msgstr "指定几个月的时间段来激活。\n"
+"在未激活时变为空。"
 
 #: billsdepositsdialog.cpp:1257
 msgid "Specify period in Days to activate.\n"
 "Leave blank when not active."
-msgstr ""
+msgstr "指定时间段以激活。\n"
+"在未激活时留空。"
 
 #: billsdepositsdialog.cpp:1265
 msgid "Specify period in Months to activate.\n"
 "Leave blank when not active."
-msgstr ""
+msgstr "指定几个月的时间段来激活。\n"
+"在未激活时变为空。"
 
 #: billsdepositsdialog.cpp:1273
 msgid "Specify the number of payments to be made.\n"
 "Leave blank if the payments continue forever."
-msgstr ""
+msgstr "指定要支付的付款数量。\n"
+"如果是持续付款，请留空。"
 
 #: billsdepositsdialog.cpp:1299 billsdepositsdialog.cpp:1308
 #: filtertransdialog.cpp:498 filtertransdialog.cpp:506
@@ -1093,7 +1100,7 @@ msgstr "错误"
 
 #: billsdepositsdialog.cpp:1314 mmSimpleDialogs.cpp:262
 msgid "Invalid Choice"
-msgstr ""
+msgstr "无效的选择"
 
 #: billsdepositsdialog.cpp:1314
 msgid "Choose one of the following:"
@@ -1173,7 +1180,7 @@ msgstr ""
 
 #: billsdepositspanel.cpp:173
 msgid "Tip: These transactions can be set up to activate - allowing the user to adjust any values on the due date."
-msgstr ""
+msgstr "提示：这些交易可以设置为激活 - 并允许用户在截止日期前调整任何值。"
 
 #: billsdepositspanel.cpp:227 billsdepositspanel.cpp:849 mmframe.cpp:739
 #: mmhomepagepanel.cpp:433
@@ -2694,11 +2701,11 @@ msgstr "QIF文件 (*.qif)"
 
 #: import_export/qif_export.cpp:289
 msgid "No Account available for export"
-msgstr ""
+msgstr "没有账户可供导出"
 
 #: import_export/qif_export.cpp:291
 msgid "No Accounts selected for export"
-msgstr ""
+msgstr "没有选择要导出的账户"
 
 #: import_export/qif_export.cpp:293
 msgid "To Date less than From Date"
@@ -2816,7 +2823,7 @@ msgstr "丢失"
 
 #: import_export/qif_import_gui.cpp:714
 msgid "Choose QIF data file to Import"
-msgstr ""
+msgstr "选择要导入的 QIF 数据文件"
 
 #: import_export/qif_import_gui.cpp:793
 msgid "Do you want to import all transaction ?"
@@ -3442,11 +3449,11 @@ msgstr ""
 
 #: mmTips.h:23
 msgid "Recommendation: Always backup your .mmb database file regularly."
-msgstr ""
+msgstr "建议：总是定期备份您的 .mmb 数据库文件。"
 
 #: mmTips.h:24
 msgid "Recommendation: If upgrading to a new version of MMEX, make sure you backup your .mmb database file before doing so."
-msgstr ""
+msgstr "建议：如果要升级到 MMEX 的新版本，请确保您已经提前备份了您的 .mmb 数据库文件。"
 
 #: mmTips.h:25
 msgid "Recommendation: Use copy (Ctrl+C) and paste (Ctrl+V) for frequently used transactions."
@@ -3454,7 +3461,7 @@ msgstr ""
 
 #: mmTips.h:26
 msgid "Tip: Remember to make backups of your .mmb."
-msgstr ""
+msgstr "提示：记住要备份您的 .mmb。"
 
 #: mmTips.h:27
 msgid "Tip: The not encrypted .mmb file is insecure. That means anyone else having the proper know how can actually open the file and read the contents. So make sure that if you are storing any sensitive financial information it is properly guarded."
@@ -3482,7 +3489,7 @@ msgstr ""
 
 #: mmTips.h:33
 msgid "Tip: Set exchange rate for currencies in case if you have accounts with different currencies."
-msgstr ""
+msgstr "提示：如果您有不同的货币帐户，请为货币设置汇率。"
 
 #: mmTips.h:35
 msgid "Organize Categories Dialog Tip: Pressing the h key will cycle through all categories starting with the letter h"
@@ -3692,7 +3699,7 @@ msgstr ""
 #: mmcheckingpanel.cpp:1272
 #, c-format
 msgid "Do you really want to delete all the \"%s\" transactions shown?"
-msgstr ""
+msgstr "您真的想要删除显示的所有 \"%s\"交易吗？"
 
 #: mmcheckingpanel.cpp:1619
 msgid "Do you really want to delete the selected transaction?"
@@ -3700,12 +3707,12 @@ msgstr "确认删除这笔交易？"
 
 #: mmcheckingpanel.cpp:1672 transdialog.cpp:704 transdialog.cpp:737
 msgid "MMEX Transaction Check"
-msgstr ""
+msgstr "MMEX 交易检查"
 
 #: mmcheckingpanel.cpp:1838 stockspanel.cpp:295
 #, c-format
 msgid "Moving Transaction from %s to..."
-msgstr ""
+msgstr "正在将交易从 %s 移动到..."
 
 #: mmcheckingpanel.cpp:1841 stockspanel.cpp:296
 msgid "Select the destination Account "
@@ -3718,30 +3725,31 @@ msgstr "定期交易已经保存。"
 #: mmcheckingpanel.cpp:1948
 #, c-format
 msgid "Transactions selected: %ld"
-msgstr ""
+msgstr "选择的交易： %ld"
 
 #: mmcheckingpanel.cpp:1950
 #, c-format
 msgid "Selected transactions balance: %s"
-msgstr ""
+msgstr "所选交易余额： %s"
 
 #: mmcheckingpanel.cpp:1953
 #, c-format
 msgid "Days between selected transactions: %d"
-msgstr ""
+msgstr "所选交易之间的天数： %d"
 
 #: mmcombobox.h:74
 msgid "Please type in an exiting payee name,\n"
 "or make a selection using the dropdown button."
-msgstr ""
+msgstr "请输入新的收款人，\n"
+"或使用下拉按钮进行选择。"
 
 #: mmcustomdata.cpp:59
 msgid "Custom fields"
-msgstr ""
+msgstr "自定义字段"
 
 #: mmcustomdata.cpp:307
 msgid "Please select"
-msgstr ""
+msgstr "请选择"
 
 #: mmcustomdata.cpp:307
 msgid "Multi Choice"
