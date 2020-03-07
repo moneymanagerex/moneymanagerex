@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-08-06 10:14+0300\n"
-"PO-Revision-Date: 2020-03-03 18:51\n"
+"PO-Revision-Date: 2020-03-07 19:14\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
@@ -2221,7 +2221,7 @@ msgstr "MMEX debug"
 
 #: dbupgrade.cpp:318 dbupgrade.cpp:356
 msgid "Query error, please contact MMEX support!"
-msgstr ""
+msgstr "查询错误，请联系 MMEX 支持！"
 
 #: dbupgrade.cpp:329
 msgid "Send this log to MMEX support team:\n"
@@ -2357,15 +2357,15 @@ msgstr ""
 
 #: filtertransdialog.cpp:387
 msgid "Clear all fields for current Preset selection"
-msgstr ""
+msgstr "清除当前预选择的所有字段"
 
 #: filtertransdialog.cpp:401
 msgid "&Activate "
-msgstr ""
+msgstr "激活（A） "
 
 #: filtertransdialog.cpp:402
 msgid "Activate the filter with these settings"
-msgstr ""
+msgstr "使用这些设置激活过滤器"
 
 #: filtertransdialog.cpp:404
 msgid "&Deactivate "
@@ -2494,7 +2494,7 @@ msgstr[0] ""
 
 #: general_report_manager.cpp:528
 msgid "SQL Syntax Error"
-msgstr ""
+msgstr "SQL 语法错误"
 
 #: general_report_manager.cpp:557
 msgid "Load report file:"
@@ -2647,7 +2647,7 @@ msgstr "参数"
 
 #: import_export/qif_export.cpp:104 import_export/qif_import_gui.cpp:196
 msgid "Log"
-msgstr ""
+msgstr "日志"
 
 #: import_export/qif_export.cpp:121 mmframe.cpp:2888 mmframe.cpp:2892
 #: mmframe.cpp:2911 mmframe.cpp:2915
@@ -2879,27 +2879,27 @@ msgstr ""
 
 #: import_export/qif_import_gui.cpp:980
 msgid "Transaction code is missing"
-msgstr ""
+msgstr "缺少交易代码"
 
 #: import_export/qif_import_gui.cpp:989
 msgid "Transaction Payee is missing or incorrect"
-msgstr ""
+msgstr "交易收款人丢失或不正确"
 
 #: import_export/qif_import_gui.cpp:1001
 msgid "Date format or date mask is incorrect"
-msgstr ""
+msgstr "日期格式或日期掩码不正确"
 
 #: import_export/qif_import_gui.cpp:1013
 msgid "Transaction Account is incorrect"
-msgstr ""
+msgstr "交易帐户不正确"
 
 #: import_export/qif_import_gui.cpp:1022
 msgid "Transaction Account for transfer is incorrect"
-msgstr ""
+msgstr "转账交易账户不正确"
 
 #: import_export/qif_import_gui.cpp:1048
 msgid "Transaction Amount is incorrect"
-msgstr ""
+msgstr "交易金额不正确"
 
 #: import_export/qif_import_gui.cpp:1067
 msgid "Transaction Category is incorrect"
@@ -2908,7 +2908,7 @@ msgstr "交易分类不正确"
 #: import_export/qif_import_gui.cpp:1156
 #, c-format
 msgid "Added account: %s"
-msgstr ""
+msgstr "已添加账户： %s"
 
 #: import_export/qif_import_gui.cpp:1185 import_export/univcsvdialog.cpp:795
 #, c-format
@@ -2917,7 +2917,7 @@ msgstr "增加收款人：%s"
 
 #: import_export/univcsvdialog.cpp:102
 msgid "Amount +/-"
-msgstr ""
+msgstr "金额 +/-"
 
 #: import_export/univcsvdialog.cpp:104
 msgid "SubCategory"
@@ -3006,7 +3006,7 @@ msgstr "导出标题行"
 
 #: import_export/univcsvdialog.cpp:337
 msgid "Amount +/-:"
-msgstr ""
+msgstr "金额 +/-:"
 
 #: import_export/univcsvdialog.cpp:343
 msgid "Positive values are deposits"
@@ -3053,11 +3053,11 @@ msgstr "账户不存在"
 
 #: import_export/univcsvdialog.cpp:836
 msgid "Incorrect fields specified for import!"
-msgstr ""
+msgstr "指定导入的字段不正确！"
 
 #: import_export/univcsvdialog.cpp:837
 msgid "Date field is required."
-msgstr ""
+msgstr "日期字段是必填的。"
 
 #: import_export/univcsvdialog.cpp:838
 msgid "Amount field or both Withdrawal and Deposit fields are required."
@@ -3136,11 +3136,11 @@ msgstr "请确认保存……"
 
 #: import_export/univcsvdialog.cpp:998
 msgid "No imported transactions!"
-msgstr ""
+msgstr "没有导入的交易 ！"
 
 #: import_export/univcsvdialog.cpp:1016
 msgid "Incorrect fields specified for export! Requires at least Date and Amount."
-msgstr ""
+msgstr "指定用于导出的字段不正确！至少需要日期和金额。"
 
 #: import_export/univcsvdialog.cpp:1017 import_export/univcsvdialog.cpp:1138
 msgid "Export"
@@ -3160,12 +3160,12 @@ msgstr "删除现有文件失败。文件可能会被其他程序锁定。"
 
 #: import_export/univcsvdialog.cpp:1034
 msgid "Destination file error"
-msgstr ""
+msgstr "目标文件错误"
 
 #: import_export/univcsvdialog.cpp:1137
 #, c-format
 msgid "Transactions exported: %ld"
-msgstr ""
+msgstr "交易已导出： %ld"
 
 #: import_export/univcsvdialog.cpp:1400 stockdialog.cpp:574
 msgid "Choose CSV data file to import"
@@ -3193,7 +3193,7 @@ msgstr "CSV 文件 (*.csv)"
 
 #: maincurrencydialog.cpp:69
 msgid "Base"
-msgstr ""
+msgstr "基数"
 
 #: maincurrencydialog.cpp:70 reports/summarystocks.cpp:180 stockdialog.cpp:460
 #: stockspanel.cpp:98
