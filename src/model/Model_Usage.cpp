@@ -19,6 +19,7 @@ Copyright (C) 2018 Stefano Giorgio (stef145g)
 
 #include "Model_Usage.h"
 #include "Model_Setting.h"
+#include "Model_Infotable.h"
 #include "util.h"
 #include "constants.h"
 #include "paths.h"
@@ -109,16 +110,33 @@ wxString Model_Usage::To_JSON_String() const
     return json_buffer.GetString();
 }
 
-wxString uuid()
+std::pair<wxString /*UUID*/, wxString /*UID*/> uuid()
 {
     wxString UUID = Model_Setting::instance().GetStringSetting("UUID", wxEmptyString);
-    if (UUID.IsEmpty() || UUID.Length() < wxString("mac_20140428075834123").Length())
+    wxString UID = Model_Infotable::instance().GetStringInfo("UID", wxEmptyString);
+
+    if (!UUID.IsEmpty() && !UID.IsEmpty())
+        return std::make_pair(UUID, UID);
+
+    if (UUID.IsEmpty() && UID.IsEmpty())
     {
         wxDateTime now = wxDateTime::UNow();
-        UUID = wxString::Format("%s_%s", wxPlatformInfo::Get().GetPortIdShortName(), now.Format("%Y%m%d%H%M%S%l"));
+        UUID = UID = wxString::Format("%s_%s", wxPlatformInfo::Get().GetPortIdShortName(), now.Format("%Y%m%d%H%M%S%l"));
+        Model_Setting::instance().Set("UUID", UUID);
+        Model_Infotable::instance().Set("UID", UID);
+    }
+    else if (UUID.IsEmpty())
+    {
+        UUID = UID;
         Model_Setting::instance().Set("UUID", UUID);
     }
-    return UUID;
+    else if (UID.IsEmpty())
+    {
+        UID = UUID;
+        Model_Infotable::instance().Set("UID", UID);
+    }
+
+    return std::make_pair(UUID, UID);
 }
 
 class SendStatsThread : public wxThread
@@ -173,7 +191,8 @@ void Model_Usage::timing(const wxString& documentPath, const wxString& documentT
         { "v", "1" },
         { "t", "timing" },
         { "tid", "UA-51521761-6" },
-        { "cid", uuid() },
+        { "cid", uuid().first },
+        { "uid", uuid().second},
         { "dp", documentPath },
         { "dt", documentTitle },
         //        {"geoid", },
@@ -213,7 +232,8 @@ void Model_Usage::pageview(const wxString& documentPath, const wxString& documen
         { "v", "1" },
         { "t", "pageview" },
         { "tid", "UA-51521761-6" },
-        { "cid", uuid() },
+        { "cid", uuid().first },
+        { "uid", uuid().second},
         { "dp", documentPath },
         { "dt", documentTitle },
         //        {"geoid", },
