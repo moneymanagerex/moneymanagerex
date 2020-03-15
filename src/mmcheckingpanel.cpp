@@ -694,7 +694,10 @@ void mmCheckingPanel::initFilterSettings()
 	}
 
     m_begin_date = date_range->start_date().FormatISODate();
-    m_end_date = date_range->end_date().FormatISODate();
+    bool ignore_future = Option::instance().getIgnoreFutureTransactions();
+    m_end_date = ignore_future
+        ? date_range->end_date().FormatISODate()
+        : "9999-12-31";
     delete date_range;
 }
 
