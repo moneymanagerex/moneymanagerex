@@ -1864,6 +1864,14 @@ bool mmGUIFrame::createDataStore(const wxString& fileName, const wxString& pwd, 
 
         InitializeModelTables();
 
+        wxString UID = Model_Infotable::instance().GetStringInfo("UID", wxEmptyString);
+        if (UID.IsEmpty())
+        {
+            UID = Model_Setting::instance().GetStringSetting("UUID", wxEmptyString);
+            Model_Infotable::instance().Set("UID", UID);
+        }
+        Model_Setting::instance().Set("UID", UID);
+
         // ** OBSOLETE **
         // Mantained only for really old compatibility reason and replaced by dbupgrade.cpp
         if (!Model_Infotable::instance().checkDBVersion())

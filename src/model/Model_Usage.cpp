@@ -19,7 +19,6 @@ Copyright (C) 2018 Stefano Giorgio (stef145g)
 
 #include "Model_Usage.h"
 #include "Model_Setting.h"
-#include "Model_Infotable.h"
 #include "util.h"
 #include "constants.h"
 #include "paths.h"
@@ -113,7 +112,7 @@ wxString Model_Usage::To_JSON_String() const
 std::pair<wxString /*UUID*/, wxString /*UID*/> uuid()
 {
     wxString UUID = Model_Setting::instance().GetStringSetting("UUID", wxEmptyString);
-    wxString UID = Model_Infotable::instance().GetStringInfo("UID", wxEmptyString);
+    wxString UID = Model_Setting::instance().GetStringSetting("UID", wxEmptyString);
 
     if (!UUID.IsEmpty() && !UID.IsEmpty())
         return std::make_pair(UUID, UID);
@@ -123,7 +122,7 @@ std::pair<wxString /*UUID*/, wxString /*UID*/> uuid()
         wxDateTime now = wxDateTime::UNow();
         UUID = UID = wxString::Format("%s_%s", wxPlatformInfo::Get().GetPortIdShortName(), now.Format("%Y%m%d%H%M%S%l"));
         Model_Setting::instance().Set("UUID", UUID);
-        Model_Infotable::instance().Set("UID", UID);
+        Model_Setting::instance().Set("UID", UID);
     }
     else if (UUID.IsEmpty())
     {
@@ -133,7 +132,7 @@ std::pair<wxString /*UUID*/, wxString /*UID*/> uuid()
     else if (UID.IsEmpty())
     {
         UID = UUID;
-        Model_Infotable::instance().Set("UID", UID);
+        Model_Setting::instance().Set("UID", UID);
     }
 
     return std::make_pair(UUID, UID);
