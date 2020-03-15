@@ -142,7 +142,11 @@ inline const wxString Option::DateFormat() const
 
 inline bool Option::getSendUsageStatistics() const
 {
-	return m_usageStatistics;
+#ifdef _DEBUG
+    return false;
+#else
+    return m_usageStatistics;
+#endif
 }
 
 inline bool Option::getIgnoreFutureTransactions() const
