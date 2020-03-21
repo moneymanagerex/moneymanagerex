@@ -116,7 +116,6 @@ private:
     wxButton* historyButtonDelete_;
 
     int m_currency_id;
-    int selectedIndex_;
     bool m_static_dialog;
 
     std::vector<CurrencyHistoryRate> _BceCurrencyHistoryRatesList;

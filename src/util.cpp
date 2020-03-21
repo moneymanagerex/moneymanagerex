@@ -531,7 +531,9 @@ bool getOnlineCurrencyRates(wxString& msg, int curr_id, bool used_only)
         return false;
     }
 
-    std::vector<wxString> fiat;
+    std::map<wxString, double> fiat;
+    const wxDateTime today = wxDateTime::Today();
+    const wxString today_str = today.FormatISODate();
 
     auto currencies = Model_Currency::instance().find(Model_Currency::CURRENCY_SYMBOL(base_currency_symbol, NOT_EQUAL));
     for (const auto& currency : currencies)
@@ -544,30 +546,42 @@ bool getOnlineCurrencyRates(wxString& msg, int curr_id, bool used_only)
         if (symbol.IsEmpty())
             continue;
 
-        fiat.push_back(symbol);
+        fiat[symbol] = Model_CurrencyHistory::getDayRate(currency.CURRENCYID, today_str);
     }
 
-    wxString output;
-    std::map<wxString, double> currency_data;
-
-
-    if (!fiat.empty())
-    {
-        if (!get_yahoo_prices(fiat, currency_data, base_currency_symbol, output, yahoo_price_type::FIAT))
-        {
-            msg = output;
-        }
-    }
-    else
+    if (fiat.empty())
     {
         msg = _("Nothing to update");
         return false;
     }
 
-    msg = _("Currency rates have been updated");
-    msg << "\n\n";
+    wxString output;
+    std::map<wxString, double> currency_data;
 
-    const wxDateTime today = wxDateTime::Today();
+    if (get_yahoo_prices(fiat, currency_data, base_currency_symbol, output, yahoo_price_type::FIAT))
+    {
+
+        msg << _("Currency rates have been updated");
+        msg << "\n\n";
+        for (const auto & item : fiat)
+        {
+            auto value0 = item.second;
+            if (currency_data.find(item.first) != currency_data.end())
+            {
+                auto value1 = currency_data[item.first];
+                msg << wxString::Format("%s %f -> %f\n", item.first, value0, value1);
+            }
+            else
+            {
+                msg << wxString::Format("%s %f -> %s\n", item.first, value0, _("Invalid value"));
+            }
+        }
+    }
+    else
+    {
+        msg = output;
+    }
+
     Model_CurrencyHistory::instance().Savepoint();
     for (auto& currency : currencies)
     {
@@ -581,11 +595,8 @@ bool getOnlineCurrencyRates(wxString& msg, int curr_id, bool used_only)
                 double new_rate = currency_data[currency_symbol];
                 if (new_rate > 0)
                 {
-                    msg << wxString::Format("%s\t -> %0.6f\n", currency_symbol, new_rate);
                     Model_CurrencyHistory::instance().addUpdate(currency.CURRENCYID, today, new_rate, Model_CurrencyHistory::ONLINE);
                 }
-                else
-                    msg << wxString::Format("%s\t -> %s\n", currency_symbol, _("Invalid value"));
             }
         }
     }
@@ -597,81 +608,7 @@ bool getOnlineCurrencyRates(wxString& msg, int curr_id, bool used_only)
 
 /* Currencies & stock prices */
 
-bool GetOnlineCurrencyRates(wxString& msg, int curr_id, bool used_only)
-{
-    wxString base_currency_symbol;
-
-    if (!Model_Currency::GetBaseCurrencySymbol(base_currency_symbol))
-    {
-        msg = _("Could not find base currency symbol!");
-        return false;
-    }
-
-    std::vector<wxString> fiat;
-
-    auto currencies = Model_Currency::instance().find(Model_Currency::CURRENCY_SYMBOL(base_currency_symbol, NOT_EQUAL));
-    for (const auto& currency : currencies)
-    {
-        if (curr_id > 0 && currency.CURRENCYID != curr_id)
-            continue;
-        if (curr_id < 0 && !Model_Account::is_used(currency))
-            continue;
-        const auto symbol = currency.CURRENCY_SYMBOL;
-        if (symbol.IsEmpty())
-            continue;
-
-        fiat.push_back(symbol);
-    }
-
-    wxString output;
-    std::map<wxString, double> currency_data;
-
-
-    if (!fiat.empty())
-    {
-        if (!get_yahoo_prices(fiat, currency_data, base_currency_symbol, output, yahoo_price_type::SHARES))
-        {
-            msg = output;
-        }
-    }
-    else
-    {
-        msg = _("Nothing to update");
-        return false;
-    }
-
-    msg = _("Currency rates have been updated");
-    msg << "\n\n";
-
-    const wxDateTime today = wxDateTime::Today();
-    Model_CurrencyHistory::instance().Savepoint();
-    for (auto& currency : currencies)
-    {
-        if (!used_only && !Model_Account::is_used(currency)) continue;
-
-        const wxString currency_symbol = currency.CURRENCY_SYMBOL;
-        if (!currency_symbol.IsEmpty())
-        {
-            if (currency_data.find(currency_symbol) != currency_data.end())
-            {
-                double new_rate = currency_data[currency_symbol];
-                if (new_rate > 0)
-                {
-                    msg << wxString::Format("%s\t -> %0.6f\n", currency_symbol, new_rate);
-                    Model_CurrencyHistory::instance().addUpdate(currency.CURRENCYID, today, new_rate, Model_CurrencyHistory::ONLINE);
-                }
-                else
-                    msg << wxString::Format("%s\t -> %s\n", currency_symbol, _("Invalid value"));
-            }
-        }
-    }
-
-    Model_CurrencyHistory::instance().ReleaseSavepoint();
-
-    return true;
-}
-
-bool get_yahoo_prices(std::vector<wxString>& symbols
+bool get_yahoo_prices(std::map<wxString, double>& symbols
     , std::map<wxString, double>& out
     , const wxString base_currency_symbol
     , wxString& output
@@ -682,10 +619,10 @@ bool get_yahoo_prices(std::vector<wxString>& symbols
     {
         if (type == yahoo_price_type::FIAT)
         {
-            buffer += wxString::Format("%s%s=X,", entry, base_currency_symbol);
+            buffer += wxString::Format("%s%s=X,", entry.first, base_currency_symbol);
         }
         else
-            buffer += entry + ",";
+            buffer += entry.first + ",";
     }
     if (buffer.Right(1).Contains(",")) buffer.RemoveLast(1);
 

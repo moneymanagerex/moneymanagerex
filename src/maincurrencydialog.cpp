@@ -72,7 +72,7 @@ mmMainCurrencyDialog::mmMainCurrencyDialog(
     ColName_[CURR_NAME]   = _("Name");
     ColName_[BASE_RATE]   = _("Last Rate");
 
-    m_currency_id = currencyID == -1 ? Option::instance().BaseCurrency() : currencyID;
+    m_currency_id = currencyID == -1 ? Option::instance().getBaseCurrencyID() : currencyID;
     long style = wxCAPTION | wxRESIZE_BORDER | wxSYSTEM_MENU | wxCLOSE_BOX;
     Create(parent, wxID_ANY, _("Currency Dialog"), wxDefaultPosition, wxDefaultSize, style);
 }
@@ -97,8 +97,9 @@ bool mmMainCurrencyDialog::Create(wxWindow* parent
 
 void mmMainCurrencyDialog::fillControls()
 {
+    int selected_index = currencyListBox_->GetSelectedRow();
     currencyListBox_->DeleteAllItems();
-    int baseCurrencyID = Option::instance().BaseCurrency();
+    int baseCurrencyID = Option::instance().getBaseCurrencyID();
 
     cbShowAll_->SetValue(Model_Infotable::instance().GetBoolInfo("SHOW_HIDDEN_CURRENCIES", true));
 
@@ -117,16 +118,16 @@ void mmMainCurrencyDialog::fillControls()
         data.push_back(wxVariant(currency.CURRENCYNAME));
         data.push_back(wxVariant(wxString()<<Model_CurrencyHistory::getLastRate(currencyID)));
         currencyListBox_->AppendItem(data, (wxUIntPtr)currencyID);
-        if (selectedIndex_ == currencyListBox_->GetItemCount() - 1)
+        if (selected_index == currencyListBox_->GetItemCount() - 1)
         {
-            currencyListBox_->SelectRow(selectedIndex_);
+            currencyListBox_->SelectRow(selected_index);
             itemButtonEdit_->Enable();
             m_currency_id = currencyID;
         }
         if (m_currency_id == currencyID)
         {
-            selectedIndex_ = currencyListBox_->GetItemCount() - 1;
-            currencyListBox_->SelectRow(selectedIndex_);
+            selected_index = currencyListBox_->GetItemCount() - 1;
+            currencyListBox_->SelectRow(selected_index);
             itemButtonEdit_->Enable();
         }
     }
@@ -303,7 +304,6 @@ void mmMainCurrencyDialog::OnBtnAdd(wxCommandEvent& /*event*/)
     if (dlg.ShowModal() == wxID_OK)
     {
         m_currency_id = dlg.getCurrencyID();
-        selectedIndex_ = -1;
     }
 
     fillControls();
@@ -319,12 +319,14 @@ void mmMainCurrencyDialog::OnBtnEdit(wxCommandEvent& /*event*/)
 
 void mmMainCurrencyDialog::OnBtnSelect(wxCommandEvent& /*event*/)
 {
-    if (selectedIndex_ > -1) EndModal(wxID_OK);
+    if (m_currency_id > -1)
+        EndModal(wxID_OK);
 }
 
 void mmMainCurrencyDialog::OnBtnDelete(wxCommandEvent& /*event*/)
 {
-    if (selectedIndex_ < 0) return;
+    int selected_index = currencyListBox_->GetSelectedRow();
+    if (selected_index < 0) return;
 
     Model_Currency::Data* currency = Model_Currency::instance().get(m_currency_id);
     if (!currency) return;
@@ -333,7 +335,6 @@ void mmMainCurrencyDialog::OnBtnDelete(wxCommandEvent& /*event*/)
         , wxYES_NO | wxNO_DEFAULT | wxICON_ERROR) == wxYES)
     {
         Model_Currency::instance().remove(m_currency_id);
-        selectedIndex_ = -1;
         m_currency_id = -1;
         fillControls();
     }
@@ -356,8 +357,6 @@ bool mmMainCurrencyDialog::Execute(wxWindow* parent, int& currencyID)
 
 bool mmMainCurrencyDialog::Execute(int& currencyID)
 {
-    bool result = false;
-
     mmMainCurrencyDialog dlg(NULL, currencyID);
     dlg.m_static_dialog = true;
     dlg.SetTitle(_("Base Currency Selection"));
@@ -367,25 +366,22 @@ bool mmMainCurrencyDialog::Execute(int& currencyID)
     dlg.historyButtonAdd_->Enable(false);
     dlg.historyButtonDelete_->Enable(false);
 
-    if (dlg.ShowModal() == wxID_OK)
-    {
-        currencyID = dlg.m_currency_id;
-        result = true;
-    }
+    bool ok = dlg.ShowModal() == wxID_OK;
+    currencyID = dlg.m_currency_id;
     dlg.Destroy();
 
-    return result;
+    return ok;
 }
 
 void mmMainCurrencyDialog::OnListItemSelected(wxDataViewEvent& event)
 {
-    wxDataViewItem item = event.GetItem();
-    selectedIndex_ = currencyListBox_->ItemToRow(item);
+    int selected_index = currencyListBox_->GetSelectedRow();
 
     wxString currName;
-    if (selectedIndex_ >= 0)
+    if (selected_index >= 0)
     {
-        m_currency_id = (int) currencyListBox_->GetItemData(item);
+        wxDataViewItem item = event.GetItem();
+        m_currency_id = (int)currencyListBox_->GetItemData(item);
         Model_Currency::Data* currency = Model_Currency::instance().get(m_currency_id);
         if (currency)
         {
@@ -395,7 +391,7 @@ void mmMainCurrencyDialog::OnListItemSelected(wxDataViewEvent& event)
     }
     if (!bEnableSelect_)    // prevent user deleting currencies when editing accounts.
     {
-        int baseCurrencyID = Option::instance().BaseCurrency();
+        int baseCurrencyID = Option::instance().getBaseCurrencyID();
         Model_Currency::Data* currency = Model_Currency::instance().get(m_currency_id);
         if (currency)
         {
@@ -487,7 +483,7 @@ void mmMainCurrencyDialog::OnItemRightClick(wxDataViewEvent& event)
     mainMenu->Append(new wxMenuItem(mainMenu, MENU_ITEM2, _("Online Update Currency Rate")));
     mainMenu->Append(new wxMenuItem(mainMenu, MENU_ITEM3, _("&Edit ")));
 
-    int baseCurrencyID = Option::instance().BaseCurrency();
+    int baseCurrencyID = Option::instance().getBaseCurrencyID();
     if (baseCurrencyID == m_currency_id)
         mainMenu->Enable(MENU_ITEM1, false);
 
@@ -512,7 +508,7 @@ void mmMainCurrencyDialog::ShowCurrencyHistory()
     if (m_static_dialog) return;    //Abort when trying to set base currency
     valueListBox_->DeleteAllItems();
 
-    int baseCurrencyID = Option::instance().BaseCurrency();
+    int baseCurrencyID = Option::instance().getBaseCurrencyID();
     if (m_currency_id <= 0 || m_currency_id == baseCurrencyID)
     {
         historyButtonAdd_->Disable();
@@ -705,7 +701,7 @@ void mmMainCurrencyDialog::OnHistoryDeselected(wxListEvent& event)
 
 bool mmMainCurrencyDialog::SetBaseCurrency(int& baseCurrencyID)
 {
-    int baseCurrencyOLD = Option::instance().BaseCurrency();
+    int baseCurrencyOLD = Option::instance().getBaseCurrencyID();
     if (baseCurrencyID == baseCurrencyOLD)
         return true;
 
@@ -716,8 +712,11 @@ bool mmMainCurrencyDialog::SetBaseCurrency(int& baseCurrencyID)
     Model_Currency::instance().save(BaseCurrency);
 
     Model_Currency::Data* BaseCurrencyOLD = Model_Currency::instance().get(baseCurrencyOLD);
-    BaseCurrencyOLD->BASECONVRATE = 0;
-    Model_Currency::instance().save(BaseCurrencyOLD);
+    if (BaseCurrencyOLD)
+    {
+        BaseCurrencyOLD->BASECONVRATE = 1;
+        Model_Currency::instance().save(BaseCurrencyOLD);
+    }
 
     Model_CurrencyHistory::instance().Savepoint();
     for (const auto& r : Model_CurrencyHistory::instance().find(Model_CurrencyHistory::CURRENCYID(baseCurrencyID)))
@@ -776,8 +775,6 @@ bool mmMainCurrencyDialog::SetBaseCurrency(int& baseCurrencyID)
     }
     Model_CurrencyHistory::instance().ReleaseSavepoint();
 
-    fillControls();
-    ShowCurrencyHistory();
     return true;
 }
 

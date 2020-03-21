@@ -60,7 +60,7 @@ public:
     // set the base currency ID
     void BaseCurrency(int base_currency_id);
     // returns the base currency ID
-    int BaseCurrency();
+    int getBaseCurrencyID();
 
     // set and save the option: m_databaseUpdated
     void DatabaseUpdated(bool value);

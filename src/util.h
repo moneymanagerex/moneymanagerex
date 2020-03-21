@@ -172,7 +172,7 @@ const bool getNewsRSS(std::vector<WebsiteNews>& WebsiteNewsList);
 const wxString getURL(const wxString& file);
 enum yahoo_price_type { FIAT = 0, SHARES };
 bool getOnlineCurrencyRates(wxString& msg, int curr_id = -1, bool used_only = true);
-bool get_yahoo_prices(std::vector<wxString>& symbols
+bool get_yahoo_prices(std::map<wxString, double>& symbols
     , std::map<wxString, double>& out
     , const wxString base_currency_symbol
     , wxString& output

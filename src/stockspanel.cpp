@@ -831,14 +831,13 @@ bool mmStocksPanel::onlineQuoteRefresh(wxString& msg)
         return false;
     }
 
-    std::vector<wxString> symbols;
+    std::map<wxString, double> symbols;
     Model_Stock::Data_Set stock_list = Model_Stock::instance().all();
     for (const auto &stock : stock_list)
     {
         const wxString symbol = stock.SYMBOL.Upper();
         if (symbol.IsEmpty()) continue;
-        if (std::find(symbols.begin(), symbols.end(), symbol) == symbols.end())
-            symbols.push_back(symbol);
+        symbols[symbol] = stock.VALUE;
     }
 
     refresh_button_->SetBitmapLabel(mmBitmap(png::LED_YELLOW));

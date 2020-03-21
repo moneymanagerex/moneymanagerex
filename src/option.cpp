@@ -166,7 +166,7 @@ void Option::BaseCurrency(int base_currency_id)
     Model_Infotable::instance().Set("BASECURRENCYID", base_currency_id);
 }
 
-int Option::BaseCurrency()
+int Option::getBaseCurrencyID()
 {
     return m_baseCurrency;
 }

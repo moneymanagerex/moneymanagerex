@@ -72,7 +72,7 @@ wxArrayString Model_Currency::all_currency_symbols()
 // Getter
 Model_Currency::Data* Model_Currency::GetBaseCurrency()
 {
-    int currency_id = Option::instance().BaseCurrency();
+    int currency_id = Option::instance().getBaseCurrencyID();
     Model_Currency::Data* currency = Model_Currency::instance().get(currency_id);
     return currency;
 }
@@ -184,8 +184,7 @@ wxString Model_Currency::toString(double value, const Data* currency, int precis
     precision = (precision >= 0 ? precision : (currency ? log10(currency->SCALE) : 2));
     int style = wxNumberFormatter::Style_WithThousandsSep;
     wxString s = wxNumberFormatter::ToString(value, precision, style);
-    if (s == "-0.00") s = "0.00";
-    else if (s == "-0.0") s = "0.0";
+
     if (currency)
     {
         s.Replace(os_group_separator(), "\t");
@@ -193,31 +192,39 @@ wxString Model_Currency::toString(double value, const Data* currency, int precis
         s.Replace("\t", currency->GROUP_SEPARATOR);
         s.Replace("\x05", currency->DECIMAL_POINT);
     }
+    
+    if (value >= 0.00 && s.SubString(1, 1) == "-")
+        s.Remove(1);
+
     return s;
 }
 
 const wxString Model_Currency::fromString2Default(const wxString &s, const Data* currency)
 {
     wxString str = s;
-    const Data* c = currency ? currency : Model_Currency::GetBaseCurrency();
+    const auto bc = Model_Currency::GetBaseCurrency();
+    const Data* c = currency ? currency : bc;
 
-    if (!c->GROUP_SEPARATOR.empty())
-        str.Replace(c->GROUP_SEPARATOR, "");
-    if (!c->DECIMAL_POINT.empty())
-        str.Replace(c->DECIMAL_POINT, wxNumberFormatter::GetDecimalSeparator());
+    if (c)
+    {
+        if (!c->GROUP_SEPARATOR.empty())
+            str.Replace(c->GROUP_SEPARATOR, wxEmptyString);
+        if (!c->DECIMAL_POINT.empty())
+            str.Replace(c->DECIMAL_POINT, wxNumberFormatter::GetDecimalSeparator());
 
-    wxRegEx pattern(R"([^0-9.,+-\/\*\(\)])");
-    pattern.ReplaceAll(&str, "");
-    //wxLogDebug("%s = %s", s, str);
-    
+        wxRegEx pattern(R"([^0-9.+-/*()])");
+        pattern.ReplaceAll(&str, wxEmptyString);
+    }
     return str;
 }
 
 bool Model_Currency::fromString(wxString s, double& val, const Data* currency)
 {
     bool done = true;
-    if (!wxNumberFormatter::FromString(fromString2Default(s, currency), &val))
+    const auto value = fromString2Default(s, currency);
+    if (!wxNumberFormatter::FromString(value, &val))
         done = false;
+
     return done;
 }
 

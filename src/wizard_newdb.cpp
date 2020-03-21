@@ -172,16 +172,17 @@ bool mmNewDatabaseWizardPage::TransferDataFromWindow()
 
 void mmNewDatabaseWizardPage::OnCurrency(wxCommandEvent& /*event*/)
 {
-    currencyID_ = Option::instance().BaseCurrency();
-
-    if (mmMainCurrencyDialog::Execute(this, currencyID_) && currencyID_ != -1)
+    while (true)
     {
+        currencyID_ = Option::instance().getBaseCurrencyID();
+        mmMainCurrencyDialog::Execute(this, currencyID_);
         Model_Currency::Data* currency = Model_Currency::instance().get(currencyID_);
         if (currency)
         {
-            itemButtonCurrency_->SetLabelText(currency->CURRENCYNAME);
+            itemButtonCurrency_->SetLabelText(wxGetTranslation(currency->CURRENCYNAME));
             currencyID_ = currency->CURRENCYID;
             Option::instance().BaseCurrency(currencyID_);
+            break;
         }
     }
 }
