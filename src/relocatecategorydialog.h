@@ -20,7 +20,10 @@
 #ifndef MM_EX_RELOCATECATEGORYDIALOG_H_
 #define MM_EX_RELOCATECATEGORYDIALOG_H_
 
-#include "defs.h"
+#include <wx/dialog.h>
+class wxButton;
+class wxStaticText;
+class wxButton;
 
 class relocateCategoryDialog : public wxDialog
 {
@@ -48,10 +51,11 @@ public:
     int updatedCategoriesCount() const;
 
 private:
-
+    void IsOkOk();
     int m_sourceCatID;
     int m_sourceSubCatID;
     wxButton* m_buttonSource;
+    wxStaticText* m_info;
 
     int m_destCatID;
     int m_destSubCatID;
