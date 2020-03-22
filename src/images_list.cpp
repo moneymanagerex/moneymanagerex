@@ -79,6 +79,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "../resources/property_png.h"
 #include "../resources/puzzle_png.h"
 #include "../resources/reallocate_acc_png.h"
+#include "../resources/reloc_png.h"
 #include "../resources/recurring_png.h"
 #include "../resources/rightarrow_png.h"
 #include "../resources/run_png.h"
@@ -235,6 +236,7 @@ const wxBitmap mmBitmap(int ref)
     case GRM: return x == 16 ? wxBITMAP_PNG_FROM_DATA(grm) : x == 24 ? wxBITMAP_PNG_FROM_DATA(grm24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(grm32) : wxBITMAP_PNG_FROM_DATA(grm48);
     case HELP: return x == 16 ? wxBITMAP_PNG_FROM_DATA(help) : x == 24 ? wxBITMAP_PNG_FROM_DATA(help24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(help32) : wxBITMAP_PNG_FROM_DATA(help48);
     case HOME: return x == 16 ? wxBITMAP_PNG_FROM_DATA(home) : x == 24 ? wxBITMAP_PNG_FROM_DATA(home24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(home32) : wxBITMAP_PNG_FROM_DATA(home48);
+    case RELOCATION: return x == 16 ? wxBITMAP_PNG_FROM_DATA(reloc) : x == 24 ? wxBITMAP_PNG_FROM_DATA(reloc24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(reloc32) : wxBITMAP_PNG_FROM_DATA(reloc48);
     case HOUSEHOLD_OBJ: return x == 16 ? wxBITMAP_PNG_FROM_DATA(household_obj) : x == 24 ? wxBITMAP_PNG_FROM_DATA(household_obj24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(household_obj32) : wxBITMAP_PNG_FROM_DATA(household_obj48);
     case IMPORT: return x == 16 ? wxBITMAP_PNG_FROM_DATA(import) : x == 24 ? wxBITMAP_PNG_FROM_DATA(import24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(import32) : wxBITMAP_PNG_FROM_DATA(import48);
     case JEWELLERY: return x == 16 ? wxBITMAP_PNG_FROM_DATA(jewellery) : x == 24 ? wxBITMAP_PNG_FROM_DATA(jewellery24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(jewellery32) : wxBITMAP_PNG_FROM_DATA(jewellery48);

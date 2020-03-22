@@ -1533,19 +1533,23 @@ void mmGUIFrame::createMenu()
     menuItemCurrency->SetBitmap(mmBitmap(png::CURR));
     menuTools->Append(menuItemCurrency);
 
-    wxMenu *menuRelocation = new wxMenu;
-    wxMenuItem* menuItemCategoryRelocation = new wxMenuItem(menuRelocation
+    wxMenuItem* menuItemCategoryRelocation = new wxMenuItem(menuTools
         , MENU_CATEGORY_RELOCATION, _("&Categories...")
         , _("Reassign all categories to another category"));
     menuItemCategoryRelocation->SetBitmap(mmBitmap(png::CATEGORY_RELOCATION));
-    wxMenuItem* menuItemPayeeRelocation = new wxMenuItem(menuRelocation
+    wxMenuItem* menuItemPayeeRelocation = new wxMenuItem(menuTools
         , MENU_PAYEE_RELOCATION, _("&Payees...")
         , _("Reassign all payees to another payee"));
     menuItemPayeeRelocation->SetBitmap(mmBitmap(png::PAYEE_RELOCATION));
+    wxMenuItem* menuItemRelocation = new wxMenuItem(menuTools
+        , MENU_RELOCATION, _("Relocation of...")
+        , _("Relocate Categories && Payees"));
+    menuItemRelocation->SetBitmap(mmBitmap(png::RELOCATION));
+    wxMenu *menuRelocation = new wxMenu;
     menuRelocation->Append(menuItemCategoryRelocation);
     menuRelocation->Append(menuItemPayeeRelocation);
-    menuTools->AppendSubMenu(menuRelocation, _("Relocation of...")
-        , _("Relocate Categories && Payees"));
+    menuItemRelocation->SetSubMenu(menuRelocation);
+    menuTools->Append(menuItemRelocation);
 
     menuTools->AppendSeparator();
 
