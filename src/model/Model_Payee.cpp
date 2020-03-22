@@ -96,6 +96,19 @@ const wxArrayString Model_Payee::all_payee_names()
     return payees;
 }
 
+const wxArrayString Model_Payee::used_payee_names()
+{
+    wxArrayString payees;
+    for (const auto &payee : this->all(COL_PAYEENAME))
+    {
+        if (is_used(payee.PAYEEID))
+        {
+            payees.Add(payee.PAYEENAME);
+        }
+    }
+    return payees;
+}
+
 bool Model_Payee::is_used(int id)
 {
     const auto &trans = Model_Checking::instance().find(Model_Checking::PAYEEID(id));

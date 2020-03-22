@@ -173,12 +173,8 @@ void mmCheckingPanel::sortTable()
     case TransactionListCtrl::COL_NOTES:
         std::stable_sort(this->m_trans.begin(), this->m_trans.end(), SorterByNOTES());
         break;
-    default:
-        if (m_listCtrlAccount->m_prevSortCol != m_listCtrlAccount->g_sortcol)
-        {
-            std::stable_sort(this->m_trans.begin(), this->m_trans.end(), SorterByTRANSDATE());
-            m_listCtrlAccount->m_prevSortCol = m_listCtrlAccount->getSortColumn();
-        }
+    case TransactionListCtrl::COL_DATE:
+        std::stable_sort(this->m_trans.begin(), this->m_trans.end(), SorterByTRANSDATE());
         break;
     }
 
@@ -1281,16 +1277,19 @@ void TransactionListCtrl::OnColClick(wxListEvent& event)
     if (0 > ColumnNr || ColumnNr >= COL_MAX || ColumnNr == COL_IMGSTATUS) return;
 
     /* Clear previous column image */
-    setColumnImage(m_sortCol, -1);
+    if (m_sortCol != ColumnNr) {
+        setColumnImage(m_sortCol, -1);
+    }
 
-    if (g_sortcol == ColumnNr && event.GetId() != MENU_HEADER_SORT) m_asc = !m_asc; // toggle sort order
+    if(g_sortcol == ColumnNr && event.GetId() != MENU_HEADER_SORT) {
+        m_asc = !m_asc; // toggle sort order
+    }
     g_asc = m_asc;
 
     m_prevSortCol = m_sortCol;
     m_sortCol = toEColumn(ColumnNr);
     g_sortcol = m_sortCol;
 
-    setColumnImage(m_sortCol, m_asc ? ICON_ASC : ICON_DESC);
     Model_Setting::instance().Set("CHECK_ASC", (g_asc ? 1 : 0));
     Model_Setting::instance().Set("CHECK_SORT_COL", g_sortcol);
 
