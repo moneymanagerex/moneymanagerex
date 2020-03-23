@@ -1321,8 +1321,9 @@ void mmGUIFrame::createHomePage()
 		homePanel_->Layout();
 		windowsFreezeThaw(homePanel_);
 	}
-	if (m_nav_tree_ctrl->GetRootItem().IsOk())
-		m_nav_tree_ctrl->SelectItem(m_nav_tree_ctrl->GetRootItem());
+    if (m_nav_tree_ctrl->GetRootItem().IsOk()) {
+        m_nav_tree_ctrl->SelectItem(m_nav_tree_ctrl->GetRootItem());
+    }
 	m_nav_tree_ctrl->SetEvtHandlerEnabled(true);
 
 	json_writer.Key("seconds");
