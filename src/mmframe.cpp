@@ -939,23 +939,7 @@ void mmGUIFrame::OnSelChanged(wxTreeEvent& event)
         if (iData->isBudgetingNode())
         {
             int year = iData->getData();
-
-            wxTreeItemId idparent = m_nav_tree_ctrl->GetItemParent(selectedItem);
-            mmTreeItemData* iParentData = dynamic_cast<mmTreeItemData*>(m_nav_tree_ctrl->GetItemData(idparent));
-            if (iParentData->getString() == "item@Budget Performance") //FIXME: this is report
-            {
-                mmPrintableBase* rs = new mmReportBudgetingPerformance(year);
-                createReportsPage(rs, true);
-            }
-            else if (iParentData->getString() == "item@Budget Setup Performance") //FIXME: this is report
-            {
-                mmPrintableBase* rs = new mmReportBudgetCategorySummary(year);
-                createReportsPage(rs, true);
-            }
-            else
-            {
-                createBudgetingPage(year);
-            }
+            createBudgetingPage(year);
         }
         else
         {

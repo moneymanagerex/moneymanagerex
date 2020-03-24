@@ -115,7 +115,7 @@ mmReportMyUsage::~mmReportMyUsage()
 
 int mmReportMyUsage::report_parameters()
 {
-    return RepParams::SINGLE_DATE;
+    return RepParams::DATE_RANGE;
 }
 
 wxString mmReportMyUsage::getHTMLText()

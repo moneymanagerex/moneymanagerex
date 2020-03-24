@@ -30,21 +30,35 @@ class wxArrayString;
 class mmPrintableBase
 {
 public:
-    mmPrintableBase(const wxString& title): m_title(title), m_date_range(nullptr), m_initial(true), m_date_selection(0) {}
-    virtual ~mmPrintableBase() {}
+    mmPrintableBase(const wxString& title);
+    virtual ~mmPrintableBase();
     virtual wxString getHTMLText() = 0;
     virtual void RefreshData() {}
 	virtual const wxString getReportTitle() const;
 	virtual const wxString getFileName() const;
     virtual int report_parameters() { return RepParams::NONE; }
-    void date_range(const mmDateRange* date_range, int selection) { this->m_date_range = date_range; this->m_date_selection = selection; }
-    int getDateSelection() { return this->m_date_selection; }
+    void date_range(const mmDateRange* date_range, int selection);
     void initial_report(bool initial) { m_initial = initial; }
+
+    int getDateSelection() const;
+    int getAccountSelection() const;
+    int getChartSelection() const;
+    const wxString getAccountNames() const;
+    void chart(int selection);
+    void setAccounts(int selection, const wxString& name);
+
 protected:
     wxString m_title;
     const mmDateRange* m_date_range;
     bool m_initial;
     int m_date_selection;
+    int m_account_selection;
+    int m_chart_selection;
+    const wxArrayString* accountArray_;
+    bool m_only_active;
+    wxString m_settings;
+    wxDateTime m_begin_date;
+    wxDateTime m_end_date;
 
 public:
     static const char * m_template;
@@ -60,6 +74,10 @@ public:
     };
 };
 
+inline int mmPrintableBase::getDateSelection() const { return this->m_date_selection; }
+inline int mmPrintableBase::getAccountSelection() const { return this->m_account_selection; }
+inline int mmPrintableBase::getChartSelection() const { return this->m_chart_selection; }
+
 class mmGeneralReport : public mmPrintableBase
 {
 public:
@@ -67,6 +85,7 @@ public:
 
 public:
     wxString getHTMLText();
+    virtual int report_parameters();
 
 private:
     const Model_Report::Data* m_report;

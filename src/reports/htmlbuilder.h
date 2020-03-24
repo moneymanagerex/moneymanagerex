@@ -61,7 +61,7 @@ public:
     void addTotalRow(const wxString& caption, int cols, const std::vector<double>& data);
 
     /** Add a Table header cell */
-    void addTableHeaderCell(const wxString& value, const bool numeric = false, const bool sortable = true);
+    void addTableHeaderCell(const wxString& value, const bool numeric = false, const bool sortable = true, const int cols = 1, const bool center = false);
 
     void addCurrencyCell(double amount, const Model_Currency::Data *currency = Model_Currency::instance().GetBaseCurrency(), int precision = -1);
     void addMoneyCell(double amount, int precision = -1);
@@ -72,7 +72,7 @@ public:
 
     /** Add a Cell value */
     void addTableCellDate(const wxString& iso_date);
-    void addTableCell(const wxString& value, const bool numeric = false);
+    void addTableCell(const wxString& value, bool numeric = false, bool center = false);
     void addEmptyTableCell(const int number = 1);
 
     /** Add a Cell value */
@@ -112,9 +112,10 @@ public:
     void addTableRow(const wxString& label, double data);
     void addTableRowBold(const wxString& label, double data);
 
+    void addRadarChart(std::vector<ValueTrio>& actData, std::vector<ValueTrio>& estData, const wxString& id, int x = 300, int y = 300);
     void addPieChart(std::vector<ValueTrio>& valueList, const wxString& id, const int x = 300, const int y = 300);
     void addLineChart(const std::vector<LineGraphData>& data, const wxString& id, const int index, const int x = 640, const int y = 256, bool pointDot = false, bool showGridLines = true, bool datasetFill = false);
-    void addBarChart(const wxString & labels, const std::vector<ValueTrio>& data, const wxString& id, const int x = 192, const int y = 256);
+    void addBarChart(const wxArrayString& labels, const std::vector<BarGraphData>& data, const wxString& id, int x = 192, int y = 256);
 
 private:
     wxString html_;

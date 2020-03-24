@@ -20,6 +20,7 @@
 #include "Model_Checking.h"
 #include "Model_Billsdeposits.h"
 #include "Model_Account.h"
+#include "Model_CurrencyHistory.h"
 #include "reports/mmDateRange.h"
 #include <tuple>
 
@@ -155,30 +156,24 @@ bool Model_Category::has_income(int id, int sub_id)
 }
 
 void Model_Category::getCategoryStats(
-        std::map<int, std::map<int, std::map<int, double> > > &categoryStats
-        , mmDateRange* date_range, bool ignoreFuture //TODO: deprecated
-        , bool group_by_month, bool with_date
-        , std::map<int, std::map<int, double> > *budgetAmt)
+    std::map<int, std::map<int, std::map<int, double> > > &categoryStats
+    , const wxArrayString* accountArray
+    , mmDateRange* date_range, bool WXUNUSED(ignoreFuture) //TODO: deprecated
+    , bool group_by_month
+    , std::map<int, std::map<int, double> > *budgetAmt)
 {
     //Initialization
-    //Get base currency rates for all accounts
-    std::map<int, double> acc_conv_rates;
-    for (const auto& account: Model_Account::instance().all())
-    {
-        Model_Currency::Data* currency = Model_Account::currency(account);
-        acc_conv_rates[account.ACCOUNTID] = currency ? currency->BASECONVRATE : 0;
-    }
     //Set std::map with zerros
     const auto &allSubcategories = Model_Subcategory::instance().all();
     double value = 0;
     int columns = group_by_month ? 12 : 1;
-    const wxDateTime start_date = wxDateTime(date_range->end_date()).SetDay(1);
-    for (const auto& category: Model_Category::instance().all())
+    const wxDateTime start_date(1, date_range->end_date().GetMonth(), date_range->end_date().GetYear());
+    for (const auto& category : Model_Category::instance().all())
     {
         for (int m = 0; m < columns; m++)
         {
-            const wxDateTime &d = wxDateTime(start_date).Subtract(wxDateSpan::Months(m));
-            int idx = group_by_month ? (d.GetYear()*100 + (int)d.GetMonth()) : 0;
+            const wxDateTime d = start_date.Subtract(wxDateSpan::Months(m));
+            int idx = group_by_month ? (d.GetYear() * 100 + d.GetMonth()) : 0;
             categoryStats[category.CATEGID][-1][idx] = value;
             for (const auto & sub_category : allSubcategories)
             {
@@ -188,17 +183,26 @@ void Model_Category::getCategoryStats(
         }
     }
     //Calculations
-    const wxDate today = date_range->today();
     auto splits = Model_Splittransaction::instance().get_all();
-    for (const auto& transaction: Model_Checking::instance().find(
+    for (const auto& transaction : Model_Checking::instance().find(
         Model_Checking::STATUS(Model_Checking::VOID_, NOT_EQUAL)
         , Model_Checking::TRANSDATE(date_range->start_date(), GREATER_OR_EQUAL)
         , Model_Checking::TRANSDATE(date_range->end_date(), LESS_OR_EQUAL)))
     {
-        // We got this far, get the currency conversion rate for this account
-        double convRate = acc_conv_rates[transaction.ACCOUNTID];
+
+        if (accountArray)
+        {
+            const auto account = Model_Account::instance().get(transaction.ACCOUNTID);
+            if (wxNOT_FOUND == accountArray->Index(account->ACCOUNTNAME)) {
+                continue;
+            }
+        }
+
+
+        const double convRate = Model_CurrencyHistory::getDayRate(
+            Model_Account::instance().get(transaction.ACCOUNTID)->CURRENCYID, transaction.TRANSDATE);
         const wxDateTime &d = Model_Checking::TRANSDATE(transaction);
-        int idx = group_by_month ? (d.GetYear()*100 + (int)d.GetMonth()) : 0;
+        int idx = group_by_month ? (d.GetYear() * 100 + d.GetMonth()) : 0;
         int categID = transaction.CATEGID;
 
         if (categID > -1)
@@ -221,12 +225,11 @@ void Model_Category::getCategoryStats(
         }
         else
         {
-            for (const auto& entry: splits[transaction.id()])
+            for (const auto& entry : splits[transaction.id()])
             {
-                categoryStats[entry.CATEGID][entry.SUBCATEGID][idx] += entry.SPLITTRANSAMOUNT 
+                categoryStats[entry.CATEGID][entry.SUBCATEGID][idx] += entry.SPLITTRANSAMOUNT
                     * convRate * (Model_Checking::balance(transaction) < 0 ? -1 : 1);
             }
         }
     }
 }
-

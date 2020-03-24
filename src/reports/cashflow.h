@@ -1,5 +1,6 @@
 /*******************************************************
 Copyright (C) 2006-2012
+Copyright (C) 2017 James Higley
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -23,19 +24,19 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include <vector>
 #include "util.h"
 
-class mmReportCashFlow : public mmPrintableBaseSpecificAccounts
+class mmReportCashFlow : public mmPrintableBase
 {
 public:
-    explicit mmReportCashFlow(int cashflowreporttype);
+    enum TYPE { MONTHLY = 0, DAILY };
+    explicit mmReportCashFlow(TYPE cashflowreporttype);
     virtual ~mmReportCashFlow();
 
     virtual wxString getHTMLText();
+    virtual int report_parameters();
 
 protected:
     wxString getHTMLText_i();
-    void getStats(double& tInitialBalance, std::vector<LineGraphData>& forecastVector);
-    void activateTermAccounts();
-    void activateBankAccounts();
+    void getStats(double& tInitialBalance, std::vector<ValueTrio>& forecastVector);
 
 protected:
     struct mmRepeatForecast
@@ -47,46 +48,10 @@ protected:
     typedef std::vector<mmRepeatForecast> forecastVec;
     std::vector<forecastVec> bdForecastVec;
 
-    bool activeTermAccounts_;
-    bool activeBankAccounts_;
-    int cashFlowReportType_;
-    bool m_cashflowSpecificAccounts;
-    enum { MONTHLY = 0, DAILY };
+    TYPE cashFlowReportType_;
 
     static const int yearsNum_ = 10;
     const wxDateTime today_;
-
-};
-
-class mmReportCashFlowAllAccounts : public mmReportCashFlow
-{
-public:
-    mmReportCashFlowAllAccounts();
-};
-
-class mmReportCashFlowBankAccounts : public mmReportCashFlow
-{
-public:
-    mmReportCashFlowBankAccounts();
-};
-
-class mmReportCashFlowTermAccounts: public mmReportCashFlow
-{
-public:
-    mmReportCashFlowTermAccounts();
-};
-
-class mmReportCashFlowSpecificAccounts: public mmReportCashFlow
-{
-public:
-    mmReportCashFlowSpecificAccounts();
-    wxString getHTMLText();
-};
-
-class mmReportDailyCashFlowSpecificAccounts: public mmReportCashFlowSpecificAccounts
-{
-public:
-    mmReportDailyCashFlowSpecificAccounts();
 };
 
 #endif // MM_EX_REPORTCASHFLOW_H_

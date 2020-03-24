@@ -137,7 +137,7 @@ wxString mmReportSummaryByDate::getHTMLText()
     hb.init();
     hb.addDivContainer();
     hb.addHeader(2, wxString::Format(_("Accounts Balance - %s")
-        , mode_ == 0 ? _("Monthly Report") : ""/*_("Yearly Report")*/));
+        , mode_ == MONTHLY ? _("Monthly Report") : _("Yearly Report")));
     hb.addDateNow();
     hb.addLineBreak();
 
@@ -199,14 +199,21 @@ wxString mmReportSummaryByDate::getHTMLText()
         i++;
     }
 
-    if (mode_ == 0)
+    if (mode_ == MONTHLY)
     {
         dateEnd -= wxDateSpan::Months(1);
         dateEnd.SetToLastMonthDay(dateEnd.GetMonth(), dateEnd.GetYear());
         span = wxDateSpan::Months(1);
     }
+    else if (mode_ == YEARLY)
+    {
+        dateEnd.Set(31, wxDateTime::Dec, wxDateTime::Now().GetYear());
+        span = wxDateSpan::Years(1);
+    }
     else
-        wxASSERT(0);
+    {
+        wxFAIL_MSG("unknown report mode");
+    }
 
     date = dateEnd;
     while (date.IsLaterThan(dateStart))
@@ -308,3 +315,11 @@ wxString mmReportSummaryByDate::getHTMLText()
 
 	return hb.getHTMLText();
 }
+
+mmReportSummaryByDateMontly::mmReportSummaryByDateMontly()
+    : mmReportSummaryByDate(MONTHLY)
+{}
+
+mmReportSummaryByDateYearly::mmReportSummaryByDateYearly()
+    : mmReportSummaryByDate(YEARLY)
+{}

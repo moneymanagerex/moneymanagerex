@@ -86,6 +86,19 @@ bool mmDialogComboBoxAutocomplete::Create(wxWindow* parent, wxWindowID id,
     return true;
 }
 
+//mmMultiChoiceDialog
+mmMultiChoiceDialog::mmMultiChoiceDialog()
+{
+}
+mmMultiChoiceDialog::mmMultiChoiceDialog(wxWindow* parent, const wxString& message,
+    const wxString& caption, const Model_Account::Data_Set& accounts)
+{
+    wxArrayString choices;
+    for (const auto & item : accounts) choices.Add(item.ACCOUNTNAME);
+    wxMultiChoiceDialog::Create(parent, message, caption, choices);
+}
+
+
 /* Error Messages --------------------------------------------------------*/
 
 void mmErrorDialogs::MessageError(wxWindow *parent

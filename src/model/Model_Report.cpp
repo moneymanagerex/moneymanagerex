@@ -22,6 +22,7 @@
 #include "option.h"
 #include "platfdep.h"
 #include "attachmentdialog.h"
+#include "mmreportspanel.h"
 #include "reports/htmlbuilder.h"
 #include "model/Model_Setting.h"
 #include "LuaGlue/LuaGlue.h"
@@ -74,6 +75,24 @@ Model_Report& Model_Report::instance(wxSQLite3Database* db)
 
     return ins;
 }
+
+const std::vector<Model_Report::Values> Model_Report::SqlPlaceHolders()
+{
+    const wxString def_date = wxDateTime::Today().FormatISODate();
+    const wxString def_year = wxString::Format("%d", wxDateTime::Today().GetYear());
+    const wxString def_day = Model_Infotable::instance().GetStringInfo("FINANCIAL_YEAR_START_DAY", "1");
+    const wxString def_mon = Model_Infotable::instance().GetStringInfo("FINANCIAL_YEAR_START_MONTH", "1");
+
+    const std::vector<Model_Report::Values> v = {
+    {"&begin_date", "wxDatePickerCtrl", def_date, mmReportsPanel::RepPanel::ID_CHOICE_START_DATE},
+    {"&single_date", "wxDatePickerCtrl", def_date, mmReportsPanel::RepPanel::ID_CHOICE_START_DATE},
+    {"&end_date", "wxDatePickerCtrl", def_date, mmReportsPanel::RepPanel::ID_CHOICE_END_DATE},
+    {"&budget_years", "wxChoice", def_year, mmReportsPanel::RepPanel::ID_CHOICE_DATE_RANGE },
+    {"&fin_year_day", "wxString", def_day, -1},
+    {"&fin_year_month", "wxString", def_mon, -1},
+    };
+    return v;
+};
 
 bool Model_Report::get_objects_from_sql(const wxString& query, PrettyWriter<StringBuffer>& json_writer)
 {
@@ -158,6 +177,48 @@ wxArrayString Model_Report::allGroupNames()
     return groups;
 }
 
+bool Model_Report::PrepareSQL(wxString& sql, std::map <wxString, wxString>& rep_params)
+{
+    sql.Trim();
+    if (sql.empty()) return false;
+    if (sql.Last() != ';') sql += ';';
+
+    for (const auto& entry : SqlPlaceHolders())
+    {
+        wxString value;
+        int pos = sql.Lower().Find(entry.label);
+        size_t len = wxString(entry.label).size();
+
+        if (pos != wxNOT_FOUND)
+        {
+            value = entry.def_value;
+
+            const auto w = wxWindow::FindWindowById(entry.ID);
+            //const auto name = w->GetClassInfo()->GetClassName();
+            if (w && entry.type == "wxDatePickerCtrl")
+            {
+                wxDatePickerCtrl* date = static_cast<wxDatePickerCtrl*>(w);
+                value = date->GetValue().FormatISODate();
+            }
+            else if (w && entry.type == "wxChoice")
+            {
+                wxChoice* year = static_cast<wxChoice*>(w);
+                value = year->GetStringSelection();
+            }
+
+            rep_params[entry.label.Mid(1)] = value;
+
+            while (pos != wxNOT_FOUND)
+            {
+                sql.replace(pos, len, value);
+                pos = sql.Lower().Find(entry.label);
+            }
+        }
+    }
+
+    return true;
+}
+
 wxString Model_Report::get_html(const Data* r)
 {
     mm_html_template report(r->TEMPLATECONTENT);
@@ -170,11 +231,12 @@ wxString Model_Report::get_html(const Data* r)
 
     wxSQLite3ResultSet q;
     int columnCount = 0;
+    wxString sql = r->SQLCONTENT;
+    std::map <wxString, wxString> rep_params;
     try
     {
-        wxString sql = r->SQLCONTENT;
-        sql.Trim();
-        if (!sql.empty() && sql.Last() != ';') sql += ';';
+        PrepareSQL(sql, rep_params);
+
         wxSQLite3Statement stmt = this->db_->PrepareStatement(sql);
         if (!stmt.IsReadOnly())
         {
@@ -291,6 +353,10 @@ wxString Model_Report::get_html(const Data* r)
 
     report(L"CONTENTS") = contents;
     {
+        for (const auto& item : rep_params)
+        {
+            report(item.first.Upper().ToStdWstring()) = item.second;
+        }
         auto p = mmex::getPathAttachment(mmAttachmentManage::InfotablePathSetting());
         //javascript does not handle backslashs
         p.Replace("\\", "\\\\");
@@ -304,7 +370,7 @@ wxString Model_Report::get_html(const Data* r)
     report(L"ERRORS") = errors;
 
     wxString out = wxEmptyString;
-    try 
+    try
     {
         out = report.Process();
     }

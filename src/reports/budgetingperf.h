@@ -1,5 +1,6 @@
 /*******************************************************
  Copyright (C) 2006-2012
+ Copyright (C) 2017 James Higley
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -25,16 +26,16 @@
 class mmReportBudgetingPerformance : public mmReportBudget
 {
 public:
-    explicit mmReportBudgetingPerformance(int budgetYearID);
+    mmReportBudgetingPerformance();
     virtual ~mmReportBudgetingPerformance();
 
+    virtual int report_parameters();
     virtual wxString getHTMLText();
 
 private:
-    int budgetYearID_;
-
-    const wxString DisplayEstimateMonths(double estimated);
-    const wxString DisplayActualMonths(double estimated, std::map<int, double>& actual);
+    void DisplayRow(mmHTMLBuilder &hb, double estimated, double actual
+        , const wxString& catName, const std::map<int, double>& stats
+        , bool bTotalRow = false);
 };
 
 #endif // MM_EX_REPORTBUDGETING_PERFORMANCE_H_

@@ -384,16 +384,24 @@ void mmBudgetingPanel::initVirtualListControl()
     }
     else
     {
-        int day = -1, month = -1;
+        int day = -1;
+        wxDateTime::Month month = wxDateTime::Month::Inv_Month;
         budgetDetails.AdjustYearValues(day, month, dtBegin);
         budgetDetails.AdjustDateForEndFinancialYear(dtEnd);
     }
+
+    /* // Readjust dates by the Budget Offset Option
+    Option::instance().setBudgetDateOffset(dtBegin);
+    m_budget_offset_date = dtBegin.FormatISODate();
+    Option::instance().setBudgetDateOffset(dtEnd); */
     mmSpecifiedRange date_range(dtBegin, dtEnd);
+
     //Get statistics
     Model_Budget::instance().getBudgetEntry(budgetYearID_, budgetPeriod_, budgetAmt_);
     Model_Category::instance().getCategoryStats(categoryStats_
+        , nullptr
         , &date_range, Option::instance().getIgnoreFutureTransactions()
-        , false, true, (evaluateTransfer ? &budgetAmt_ : 0));
+        , false, (evaluateTransfer ? &budgetAmt_ : 0));
 
     const Model_Subcategory::Data_Set& allSubcategories = Model_Subcategory::instance().all(Model_Subcategory::COL_SUBCATEGNAME);
     for (const auto& category : Model_Category::instance().all(Model_Category::COL_CATEGNAME))
@@ -442,7 +450,7 @@ void mmBudgetingPanel::initVirtualListControl()
                 else
                     actIncome += actual;
             }
-    
+
             /***************************************************************************
              Update the TOTALS entry for the subcategory.
             ***************************************************************************/
@@ -456,21 +464,21 @@ void mmBudgetingPanel::initVirtualListControl()
         budgetTotals_[category.CATEGID].first = catTotalsEstimated;
         budgetTotals_[category.CATEGID].second = catTotalsActual;
 
-        if ((!Option::instance().BudgetSetupWithoutSummaries() || currentView_ == VIEW_SUMM)
+        if ( currentView_ == VIEW_SUMM
             && DisplayEntryAllowed(-1, category.CATEGID))
         {
             budget_.push_back(std::make_pair(-1, category.CATEGID));
-            int transCatTotalIndex = (int)budget_.size() - 1;
+            size_t transCatTotalIndex = budget_.size() - 1;
             listCtrlBudget_->RefreshItem(transCatTotalIndex);
         }
     }
 
-    listCtrlBudget_->SetItemCount((int)budget_.size());
+    listCtrlBudget_->SetItemCount(budget_.size());
 
     wxString est_amount, act_amount, diff_amount;
     est_amount = Model_Currency::toCurrency(estIncome);
     act_amount = Model_Currency::toCurrency(actIncome);
-    diff_amount = Model_Currency::toCurrency(estIncome - actIncome);
+    diff_amount = Model_Currency::toCurrency(actIncome - estIncome);
 
     income_estimated_->SetLabelText(est_amount);
     income_actual_->SetLabelText(act_amount);
@@ -480,7 +488,7 @@ void mmBudgetingPanel::initVirtualListControl()
     if (actExpenses < 0.0) actExpenses = -actExpenses;
     est_amount = Model_Currency::toCurrency(estExpenses);
     act_amount = Model_Currency::toCurrency(actExpenses);
-    diff_amount = Model_Currency::toCurrency(estExpenses - actExpenses);
+    diff_amount = Model_Currency::toCurrency(actExpenses - estExpenses);
 
     expenses_estimated_->SetLabelText(est_amount);
     expenses_actual_->SetLabelText(act_amount);

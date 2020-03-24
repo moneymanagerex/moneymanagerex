@@ -30,7 +30,7 @@
 #include <sys/time.h>
 #endif
 
-class wxStyledTextCtrl;
+class wxSQLite3Database;
 class mmGeneralReportManager;
 
 class sqlListCtrl : public mmListCtrl
@@ -71,7 +71,7 @@ private:
     void OnImportReportEvt(wxCommandEvent& event);
     void importReport();
     bool openZipFile(const wxString &reportFileName
-        , wxString &htt, wxString &sql, wxString &lua, wxString &readme, wxString &reportName);
+        , wxString &htt, wxString &sql, wxString &lua, wxString &readme);
     void OnUpdateReport(wxCommandEvent& event);
     void OnExportReport(wxCommandEvent& event);
     void OnRun(wxCommandEvent& event);
@@ -94,7 +94,7 @@ private:
 
     bool getColumns(const wxString& sql, std::vector<std::pair<wxString, int> > &colHeaders);
     void getSqlTableInfo(std::vector<std::pair<wxString, wxArrayString>> &sqlTableInfo);
-    bool getSqlQuery(/*in*/ const wxString& sql, /*out*/ std::vector <std::vector <wxString> > &sqlQueryData, wxString& SqlError);
+    bool getSqlQuery(/*in*/ wxString& sql, /*out*/ std::vector <std::vector <wxString> > &sqlQueryData, wxString& SqlError);
     wxString getTemplate(const wxString& sql);
     std::vector <std::vector <wxString> > m_sqlQueryData;
 
@@ -142,6 +142,6 @@ private:
         ID_DESCRIPTION,
         ID_REPORT_LIST,
     };
-    
+
 };
 

@@ -57,6 +57,16 @@ public:
 
 public:
     Data* get(const wxString& name);
+    static bool PrepareSQL(wxString& sql, std::map <wxString, wxString>& rep_params);
+private:
+    struct Values
+    {
+        wxString label;
+        wxString type;
+        wxString def_value;
+        int ID;
+    };
+    static const std::vector<Values> SqlPlaceHolders();
 };
 
 #endif // 

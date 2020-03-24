@@ -23,6 +23,13 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 #include "model/Model_Account.h"
 
+#include <wx/choicdlg.h>
+#include <wx/dialog.h>
+#include <wx/choice.h>
+class wxComboBox;
+class wxTextCtrl;
+class wxChoice;
+
 class mmSingleChoiceDialog : public wxSingleChoiceDialog
 {
 public:
@@ -57,6 +64,20 @@ private:
     wxString Message, Default;
     wxArrayString Choices;
     wxComboBox* cbText_;
+};
+
+class mmMultiChoiceDialog : public wxMultiChoiceDialog
+{
+public:
+    using wxMultiChoiceDialog::ShowModal;
+
+    mmMultiChoiceDialog();
+    mmMultiChoiceDialog(wxWindow* parent, const wxString& message,
+        const wxString& caption, const Model_Account::Data_Set& accounts);
+    int ShowModal()
+    {
+        return wxMultiChoiceDialog::ShowModal();
+    }
 };
 
 class mmGUIApp;

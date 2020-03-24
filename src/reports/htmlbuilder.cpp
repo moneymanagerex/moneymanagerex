@@ -26,7 +26,7 @@
 
 namespace tags
 {
-static const wxString END = R"(
+    static const wxString END = R"(
 </body>
 <script>
     var elements = document.getElementsByClassName('money');
@@ -39,7 +39,7 @@ static const wxString END = R"(
 </script>
 </html>
 )";
-static const char HTML[] = R"(<!DOCTYPE html>
+    static const char HTML[] = R"(<!DOCTYPE html>
 <html><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>%s - Report</title>
@@ -54,59 +54,59 @@ static const char HTML[] = R"(<!DOCTYPE html>
 </head>
 <body>
 )";
-static const wxString DIV_CONTAINER = "<div class='container'>\n";
-static const wxString DIV_ROW = "<div class='row'>\n";
-static const wxString DIV_COL8 = "<div class='col-xs-2'></div>\n<div class='col-xs-8'>\n"; //17_67%
-static const wxString DIV_COL4 = "<div class='col-xs-4'></div>\n<div class='col-xs-4'>\n"; //33_33%
-static const wxString DIV_COL3 = "<div class='col-xs-3'></div>\n<div class='col-xs-6'>\n"; //25_50%
-static const wxString DIV_COL1 = "<div class='col-xs-1'></div>\n"; //8%
-static const wxString DIV_END = "</div>\n";
-static const wxString TABLE_START = "<table class='table'>\n";
-static const wxString SORTTABLE_START = "<table class='sortable table'>\n";
-static const wxString TABLE_END = "</table>\n";
-static const wxString THEAD_START = "<thead>\n";
-static const wxString THEAD_END = "</thead>\n";
-static const wxString TBODY_START = "<tbody>\n";
-static const wxString TBODY_END = "</tbody>\n";
-static const wxString TFOOT_START = "<tfoot>\n";
-static const wxString TFOOT_END = "</tfoot>\n";
-static const wxString TABLE_ROW = "  <tr>\n";
-static const wxString TABLE_ROW_BG = "  <tr %s>\n";
-static const wxString TOTAL_TABLE_ROW = "  <tr class='success'>\n";
-static const wxString TABLE_ROW_END = "  </tr>\n";
-static const wxString TABLE_CELL = "    <td%s>";
-static const wxString MONEY_CELL = "    <td class='money'>";
-static const wxString TABLE_CELL_END = "</td>\n";
-static const wxString TABLE_CELL_LINK = "<a href=\"%s\">%s</a>\n";
-static const wxString TABLE_HEADER = "<th%s>";
-static const wxString HEADER = "<h%i>%s</h%i>";
-static const wxString TABLE_HEADER_END = "</th>\n";
-static const wxString LINK = "<a href=\"%s\">%s</a>\n";
-static const wxString HOR_LINE = "<hr size=\"%i\">\n";
-static const wxString IMAGE = "<img src=\"%s\" border=\"0\">\n";
-static const wxString BR = "<br>\n";
-static const wxString NBSP = "&nbsp;";
-static const wxString CENTER = "<center>\n";
-static const wxString CENTER_END = "</center>\n";
-static const wxString TABLE_CELL_SPAN = "    <td colspan=\"%i\" >";
-static const wxString TABLE_CELL_RIGHT = "    <td style='text-align: right'>";
-static const wxString COLORS [] = {
-    "rgba(0, 121, 234, 0.7)"
-    , "rgba(238, 42, 0, 0.7)"
-    , "rgba(247, 151, 49, 0.7)"
-    , "rgba(189, 127, 174, 0.7)"
-    , "rgba(255, 243, 171, 0.7)"
-    , "rgba(102, 204, 204, 0.7)"
-    , "rgba(0, 204, 204, 0.7)"
-    , "rgba(100, 145, 170, 0.7)"
-    , "rgba(232, 193, 69, 0.7)"
-    , "rgba(51, 153, 153, 0.7)"
-    , "rgba(210, 154, 247, 0.7)"
-    , "rgba(143, 234, 123, 0.7)"
-    , "rgba(255, 255, 59, 0.7)"
-    , "rgba(122, 179, 62, 0.7)"
-    , "rgba(66, 68, 63, 0.7)"
-    , "rgba(0, 102, 102, 0.7)"};
+    static const wxString DIV_CONTAINER = "<div class='container'>\n";
+    static const wxString DIV_ROW = "<div class='row'>\n";
+    static const wxString DIV_COL8 = "<div class='col-xs-2'></div>\n<div class='col-xs-8'>\n"; //17_67%
+    static const wxString DIV_COL4 = "<div class='col-xs-4'></div>\n<div class='col-xs-4'>\n"; //33_33%
+    static const wxString DIV_COL3 = "<div class='col-xs-3'></div>\n<div class='col-xs-6'>\n"; //25_50%
+    static const wxString DIV_COL1 = "<div class='col-xs-1'></div>\n"; //8%
+    static const wxString DIV_END = "</div>\n";
+    static const wxString TABLE_START = "<table class='table'>\n";
+    static const wxString SORTTABLE_START = "<table class='sortable table'>\n";
+    static const wxString TABLE_END = "</table>\n";
+    static const wxString THEAD_START = "<thead>\n";
+    static const wxString THEAD_END = "</thead>\n";
+    static const wxString TBODY_START = "<tbody>\n";
+    static const wxString TBODY_END = "</tbody>\n";
+    static const wxString TFOOT_START = "<tfoot>\n";
+    static const wxString TFOOT_END = "</tfoot>\n";
+    static const wxString TABLE_ROW = "  <tr>\n";
+    static const wxString TABLE_ROW_BG = "  <tr %s>\n";
+    static const wxString TOTAL_TABLE_ROW = "  <tr class='success'>\n";
+    static const wxString TABLE_ROW_END = "  </tr>\n";
+    static const wxString TABLE_CELL = "    <td%s>";
+    static const wxString MONEY_CELL = "    <td class='money'>";
+    static const wxString TABLE_CELL_END = "</td>\n";
+    static const wxString TABLE_CELL_LINK = "<a href=\"%s\">%s</a>\n";
+    static const wxString TABLE_HEADER = "<th%s>";
+    static const wxString HEADER = "<h%i>%s</h%i>";
+    static const wxString TABLE_HEADER_END = "</th>\n";
+    static const wxString LINK = "<a href=\"%s\">%s</a>\n";
+    static const wxString HOR_LINE = "<hr size=\"%i\">\n";
+    static const wxString IMAGE = "<img src=\"%s\" border=\"0\">\n";
+    static const wxString BR = "<br>\n";
+    static const wxString NBSP = "&nbsp;";
+    static const wxString CENTER = "<center>\n";
+    static const wxString CENTER_END = "</center>\n";
+    static const wxString TABLE_CELL_SPAN = "    <td colspan=\"%i\" >";
+    static const wxString TABLE_CELL_RIGHT = "    <td style='text-align: right'>";
+    static const wxString COLORS[] = {
+        "rgba(0, 121, 234, 0.7)"
+        , "rgba(238, 42, 0, 0.7)"
+        , "rgba(247, 151, 49, 0.7)"
+        , "rgba(189, 127, 174, 0.7)"
+        , "rgba(255, 243, 171, 0.7)"
+        , "rgba(102, 204, 204, 0.7)"
+        , "rgba(0, 204, 204, 0.7)"
+        , "rgba(100, 145, 170, 0.7)"
+        , "rgba(232, 193, 69, 0.7)"
+        , "rgba(51, 153, 153, 0.7)"
+        , "rgba(210, 154, 247, 0.7)"
+        , "rgba(143, 234, 123, 0.7)"
+        , "rgba(255, 255, 59, 0.7)"
+        , "rgba(122, 179, 62, 0.7)"
+        , "rgba(66, 68, 63, 0.7)"
+        , "rgba(0, 102, 102, 0.7)" };
 }
 
 mmHTMLBuilder::mmHTMLBuilder()
@@ -140,7 +140,7 @@ void mmHTMLBuilder::init()
 
 void mmHTMLBuilder::addHeader(int level, const wxString& header)
 {
-    html_+= wxString::Format(tags::HEADER, level, header, level);
+    html_ += wxString::Format(tags::HEADER, level, header, level);
 }
 
 void mmHTMLBuilder::addDateNow()
@@ -174,7 +174,7 @@ void mmHTMLBuilder::addTotalRow(const wxString& caption
     , int cols, double value)
 {
     this->startTotalTableRow();
-    html_+= wxString::Format(tags::TABLE_CELL_SPAN, cols - 1);
+    html_ += wxString::Format(tags::TABLE_CELL_SPAN, cols - 1);
     html_ += caption;
     this->endTableCell();
     this->addMoneyCell(value);
@@ -185,13 +185,13 @@ void mmHTMLBuilder::addTotalRow(const wxString& caption, int cols
     , const std::vector<wxString>& data)
 {
     this->startTotalTableRow();
-    html_+= wxString::Format(tags::TABLE_CELL_SPAN, cols - (int)data.size());
+    html_ += wxString::Format(tags::TABLE_CELL_SPAN, cols - (int)data.size());
     html_ += caption;
 
     for (unsigned long idx = 0; idx < data.size(); idx++)
     {
         this->endTableCell();
-        html_+= tags::TABLE_CELL_RIGHT;
+        html_ += tags::TABLE_CELL_RIGHT;
         html_ += data[idx];
     }
     this->endTableCell();
@@ -201,18 +201,20 @@ void mmHTMLBuilder::addTotalRow(const wxString& caption, int cols
 void mmHTMLBuilder::addTotalRow(const wxString& caption, int cols, const std::vector<double>& data)
 {
     std::vector<wxString> data_str;
-    for (const auto& value: data)
+    for (const auto& value : data)
         data_str.push_back(Model_Currency::toCurrency(value));
     this->addTotalRow(caption, cols, data_str);
 }
 
-void mmHTMLBuilder::addTableHeaderCell(const wxString& value, const bool numeric, const bool sortable)
+void mmHTMLBuilder::addTableHeaderCell(const wxString& value, const bool numeric, const bool sortable, const int cols, const bool center)
 {
     const wxString sort = (sortable ? "" : " class='sorttable_nosort'");
-    const wxString align = (numeric ? " class='text-right'" : " class='text-left'");
-    html_ += wxString::Format(tags::TABLE_HEADER, sort + align);
-    html_ += (value);
-    html_+= tags::TABLE_HEADER_END;
+    const wxString align = (center ? " class='text-center'" : (numeric ? " class='text-right'" : " class='text-left'"));
+    const wxString cspan = (cols > 1 ? wxString::Format(" colspan='%i'", cols) : "");
+
+    html_ += wxString::Format(tags::TABLE_HEADER, sort + align + cspan);
+    html_ += value;
+    html_ += tags::TABLE_HEADER_END;
 }
 
 void mmHTMLBuilder::addCurrencyCell(double amount, const Model_Currency::Data* currency, int precision)
@@ -231,7 +233,7 @@ void mmHTMLBuilder::addMoneyCell(double amount, int precision)
     if (precision == -1)
         precision = Model_Currency::precision(Model_Currency::GetBaseCurrency());
     const wxString s = Model_Currency::toString(amount, Model_Currency::GetBaseCurrency(), precision);
-    wxString f = wxString::Format( " class='money' sorttable_customkey = '%f' nowrap", amount);
+    wxString f = wxString::Format(" class='money' sorttable_customkey = '%f' nowrap", amount);
     html_ += wxString::Format(tags::TABLE_CELL, f);
     html_ += s;
     this->endTableCell();
@@ -245,9 +247,9 @@ void mmHTMLBuilder::addTableCellDate(const wxString& iso_date)
     this->endTableCell();
 }
 
-void mmHTMLBuilder::addTableCell(const wxString& value, const bool numeric)
+void mmHTMLBuilder::addTableCell(const wxString& value, bool numeric, bool center)
 {
-    const wxString align = numeric ? " class='text-right' nowrap" : " class='text-left'";
+    const wxString align = (center ? " class='text-center'" : (numeric ? " class='text-right' nowrap" : " class='text-left'"));
     html_ += wxString::Format(tags::TABLE_CELL, align);
     html_ += value;
     this->endTableCell();
@@ -256,7 +258,7 @@ void mmHTMLBuilder::addTableCell(const wxString& value, const bool numeric)
 void mmHTMLBuilder::addEmptyTableCell(const int number)
 {
     for (int i = 0; i < number; i++)
-        addTableCell("");
+        this->addTableCell("");
 }
 
 void mmHTMLBuilder::addColorMarker(const wxString& color)
@@ -298,7 +300,7 @@ void mmHTMLBuilder::addTableCellMonth(int month)
 void mmHTMLBuilder::addTableCellLink(const wxString& href
     , const wxString& value)
 {
-    addTableCell(wxString::Format(tags::TABLE_CELL_LINK, href, value ));
+    addTableCell(wxString::Format(tags::TABLE_CELL_LINK, href, value));
 }
 
 void mmHTMLBuilder::DisplayDateHeading(const wxDateTime& startDate, const wxDateTime& endDate, bool withDateRange)
@@ -328,7 +330,7 @@ void mmHTMLBuilder::addTableRow(const wxString& label, double data)
 
 void mmHTMLBuilder::end()
 {
-    html_+= tags::END;
+    html_ += tags::END;
 }
 void mmHTMLBuilder::addDivContainer()
 {
@@ -356,7 +358,7 @@ void mmHTMLBuilder::endDiv()
 }
 void mmHTMLBuilder::endTable()
 {
-    html_+= tags::TABLE_END;
+    html_ += tags::TABLE_END;
 }
 void mmHTMLBuilder::endThead()
 {
@@ -387,22 +389,22 @@ void mmHTMLBuilder::startTotalTableRow()
 
 void mmHTMLBuilder::endTableRow()
 {
-    html_+= tags::TABLE_ROW_END;
+    html_ += tags::TABLE_ROW_END;
 }
 
 void mmHTMLBuilder::addText(const wxString& text)
 {
-    html_+= text;
+    html_ += text;
 }
 
 void mmHTMLBuilder::addLineBreak()
 {
-    html_+= tags::BR;
+    html_ += tags::BR;
 }
 
 void mmHTMLBuilder::addHorizontalLine(int size)
 {
-    html_+= wxString::Format(tags::HOR_LINE, size);
+    html_ += wxString::Format(tags::HOR_LINE, size);
 }
 
 void mmHTMLBuilder::startTableCell(const wxString& width)
@@ -411,7 +413,64 @@ void mmHTMLBuilder::startTableCell(const wxString& width)
 }
 void mmHTMLBuilder::endTableCell()
 {
-    html_+= tags::TABLE_CELL_END;
+    html_ += tags::TABLE_CELL_END;
+}
+
+void mmHTMLBuilder::addRadarChart(std::vector<ValueTrio>& actData, std::vector<ValueTrio>& estData, const wxString& id, int x, int y)
+{
+    static const wxString html_parts = R"(
+<canvas id='%s' width ='%i' height='%i'></canvas>
+<script type='text/javascript'>
+  var data = {
+    labels : [%s],
+    datasets : [%s]
+  };
+  var ctx = document.getElementById('%s').getContext('2d');
+  var options = %s;
+  var reportChart = new Chart(ctx).Radar(data, options);
+</script>
+)";
+
+    static const wxString data_item = R"(
+{
+  'label' : '%s',
+  'fillColor' : '%s',
+  'strokeColor' : '%s',
+  'pointColor' : '%s',
+  'pointStrokeColor' : '#fff',
+  'data' : [%s],
+},)";
+
+    static const wxString opt = R"(
+{
+  datasetFill: false,
+  inGraphDataShow : false,
+  annotateDisplay : true,
+  responsive: true,
+  pointDot : false,
+  showGridLines: true
+}
+)";
+
+    wxString labels = "";
+    wxString actValues = "";
+    wxString estValues = "";
+
+    for (const auto& entry : actData)
+    {
+        labels += wxString::Format("'%s',", entry.label);
+        actValues += wxString::FromCDouble(fabs(entry.amount), 2) + ",";
+    }
+    for (const auto& entry : estData)
+    {
+        estValues += wxString::FromCDouble(fabs(entry.amount), 2) + ",";
+    }
+
+    const auto ac = getColor(8);
+    const auto ec = getColor(6);
+    wxString datasets = wxString::Format(data_item, _("Actual"), ac, ac, ac, actValues);
+    datasets += wxString::Format(data_item, _("Estimated"), ec, ec, ec, estValues);
+    addText(wxString::Format(html_parts, id, x, y, labels, datasets, id, opt));
 }
 
 void mmHTMLBuilder::addPieChart(std::vector<ValueTrio>& valueList, const wxString& id, const int x, const int y)
@@ -474,65 +533,103 @@ void mmHTMLBuilder::addPieChart(std::vector<ValueTrio>& valueList, const wxStrin
     addText(wxString::Format(html_parts, id, x, y, x / 2, y / 2, data, id));
 }
 
-void mmHTMLBuilder::addBarChart(const wxString &labels, const std::vector<ValueTrio>& data, const wxString& id, const int x, const int y)
+void mmHTMLBuilder::addBarChart(const wxArrayString& labels
+    , const std::vector<BarGraphData>& data, const wxString& id
+    , int x, int y)
 {
-    StringBuffer json_buffer;
-    PrettyWriter<StringBuffer> json_writer(json_buffer);
+    static const wxString html_parts = R"(
+<canvas id='%s' width ='%i' height='%i' style='min-width: %dpx; min-height: %dpx'></canvas>
+<script>
+  var d = %s;
+  var ctx = document.getElementById('%s').getContext('2d');
+  var reportChart = new Chart(ctx).Bar(d.data, d.options);
+</script>
+)";
 
-    double steps = 10.0;
-    double scaleStepWidth = 1;
+    int precision = Model_Currency::precision(Model_Currency::GetBaseCurrency());
 
-    json_writer.StartArray();
-    for (const auto& item : data)
+    Document jsonDoc;
+    jsonDoc.SetObject();
+    Document::AllocatorType& allocator = jsonDoc.GetAllocator();
+
+    Value dataObjValue;
+    dataObjValue.SetObject();
+
+    Value labelsArray(kArrayType);
+    for (const auto& entry : labels)
     {
-        json_writer.StartObject();
-        json_writer.Key("fillColor");
-        json_writer.String(item.color.c_str());
-        json_writer.Key("strokeColor");
-        json_writer.String(item.color.c_str());
-        json_writer.Key("title");
-        json_writer.String(item.label.c_str());
-        {
-            json_writer.Key("data");
-            json_writer.StartArray();
-            json_writer.Double(item.amount);
-            json_writer.EndArray();
-        }
-        json_writer.EndObject();
-        scaleStepWidth = std::max(item.amount, scaleStepWidth);
+        Value label_str;
+        label_str.SetString(entry.c_str(), allocator);
+        labelsArray.PushBack(label_str, allocator);
     }
-    json_writer.EndArray();
+    dataObjValue.AddMember("labels", labelsArray, allocator);
 
-    const wxString values = json_buffer.GetString();
+    double max_value = 0;
+    int round = pow(10, precision);
+    Value datasets_array(kArrayType);
+    for (const auto& entry : data)
+    {
+        Value objValue;
+        objValue.SetObject();
 
-    static const wxString js = "<script>\n"
-        "var data = {\n"
-        "  labels : [%s],\n"
-        "  datasets : %s"
-        "};\n"
-        "var options = {\n"
-        "  scaleOverride: true,\n"
-        "  annotateDisplay : true,\n"
-        //"  responsive : true,\n"
-        "  scaleStartValue : 0,\n"
-        "  scaleSteps : [10],\n"
-        "  scaleStepWidth : [%i]\n"
-        "};\n"
-        "var ctx = document.getElementById('%s').getContext('2d');\n"
-        "var reportChart = new Chart(ctx).Bar(data, options);\n"
-        "</script>\n";
+        Value title, color;
+        title.SetString(entry.title.c_str(), allocator);
+        objValue.AddMember("title", title, allocator);
 
-    scaleStepWidth = ceil(scaleStepWidth / steps);
+        color.SetString(entry.fillColor.c_str(), allocator);
+        objValue.AddMember("fillColor", color, allocator);
+
+        color.SetString(entry.strokeColor.c_str(), allocator);
+        objValue.AddMember("strokeColor", color, allocator);
+
+        Value data_array(kArrayType);
+        for (const auto& item : entry.data)
+        {
+            double v = (floor(fabs(item) * round) / round);
+            data_array.PushBack(v, allocator);
+            max_value = std::max(v, max_value);
+        }
+        objValue.AddMember("data", data_array, allocator);
+
+        datasets_array.PushBack(objValue, allocator);
+    }
+    dataObjValue.AddMember("datasets", datasets_array, allocator);
+
+    jsonDoc.AddMember("data", dataObjValue, allocator);
+
+    double vertical_steps = 10.0;
     // Compute chart spacing and interval (chart forced to start at zero)
-    if (scaleStepWidth <= 1.0)
+    double scaleStepWidth = ceil(max_value / vertical_steps);
+    // Compute chart spacing and interval (chart forced to start at zero)
+    if (scaleStepWidth < 1.0)
         scaleStepWidth = 1.0;
     else {
         double s = (pow(10, ceil(log10(scaleStepWidth)) - 1.0));
-        if (s > 0) scaleStepWidth = ceil(scaleStepWidth / s)*s;
+        if (s > 0) {
+            scaleStepWidth = ceil(scaleStepWidth / s) * s;
+        }
     }
 
-    this->addText(wxString::Format("<canvas id='%s' width ='%i' height='%i' style='min-width: %dpx; min-height: %dpx'></canvas>\n", id, x, y, x, y));
-    this->addText(wxString::Format(js, "", values, (int)scaleStepWidth, id));
+    Value optionsValue;
+    optionsValue.SetObject();
+    optionsValue.AddMember("scaleOverride", true, allocator);
+    optionsValue.AddMember("annotateDisplay", true, allocator);
+    optionsValue.AddMember("scaleStartValue", 0, allocator);
+    optionsValue.AddMember("scaleSteps", 0, allocator);
+    Value scale(kArrayType);
+    scale.PushBack(static_cast<int>(scaleStepWidth), allocator);
+    optionsValue.AddMember("scaleStepWidth", scale, allocator);
+    Value steps(kArrayType);
+    steps.PushBack(vertical_steps, allocator);
+    optionsValue.AddMember("scaleSteps", steps, allocator);
+    jsonDoc.AddMember("options", optionsValue, allocator);
+
+    StringBuffer strbuf;
+    Writer<StringBuffer> writer(strbuf);
+    jsonDoc.Accept(writer);
+
+    const wxString d = strbuf.GetString();
+    addText(wxString::Format(html_parts, id, x, y, x, y, d, id));
 }
 
 void mmHTMLBuilder::addLineChart(const std::vector<LineGraphData>& data, const wxString& id, int colorNum, int x, int y, bool pointDot, bool showGridLines, bool datasetFill)

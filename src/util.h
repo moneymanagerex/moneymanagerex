@@ -59,6 +59,14 @@ struct LineGraphData
     double   amount;
 };
 
+struct BarGraphData
+{
+    wxString fillColor;
+    wxString strokeColor;
+    wxString title;
+    std::vector<double> data;
+};
+
 class mmListBoxItem: public wxClientData
 {
 public:

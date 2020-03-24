@@ -1,5 +1,6 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
+ Copyright (C) 2017 James Higley
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -26,24 +27,21 @@
 class mmReportCategoryExpenses : public mmPrintableBase
 {
 public:
-    explicit mmReportCategoryExpenses(const wxString& title, int type);
+    enum TYPE { GOES = 0, COME , MONTHLY, SUMMARY };
+    explicit mmReportCategoryExpenses(const wxString& title, enum TYPE type);
     virtual ~mmReportCategoryExpenses();
 
     virtual void RefreshData();
     virtual int report_parameters();
     virtual wxString getHTMLText();
 
-public:
-    enum TYPE { NONE = 0, GOES, COME, CATEGORY};
-
 protected:
-    int type_;
+    enum TYPE type_;
 
 private:
     // structure for sorting of data
     struct data_holder { wxString color;  wxString name; double amount; int categs; };
     std::vector<data_holder> data_;
-    std::vector<ValueTrio> valueList_;
 };
 
 class mmReportCategoryExpensesGoes: public mmReportCategoryExpenses
@@ -58,10 +56,31 @@ public:
     mmReportCategoryExpensesComes();
 };
 
+class mmReportCategorySummary : public mmReportCategoryExpenses
+{
+public:
+    mmReportCategorySummary();
+};
+
 class mmReportCategoryExpensesCategories : public mmReportCategoryExpenses
 {
 public:
     mmReportCategoryExpensesCategories();
+};
+
+//----------------------------------------------------------------------------
+
+class mmReportCategoryOverTimePerformance : public mmPrintableBase
+{
+public:
+    mmReportCategoryOverTimePerformance();
+    ~mmReportCategoryOverTimePerformance();
+    virtual int report_parameters();
+
+    wxString getHTMLText();
+
+protected:
+    enum TYPE { INCOME = 0, EXPENSES, TOTAL, MAX };
 };
 
 #endif // MM_EX_REPORTCATEGEXP_H_

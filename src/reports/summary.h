@@ -25,38 +25,30 @@
 #include "model/Model.h"
 #include "model/Model_Account.h"
 
-#if 0
-// structure for sorting of data
-struct summary_data_holder { wxString name; wxString link; double balance; };
-
-class mmReportSummary : public mmPrintableBase
-{
-public:
-    mmReportSummary();
-    virtual void RefreshData();
-    virtual wxString getHTMLText();
-
-private:
-    std::vector<summary_data_holder> dataChecking_;
-    std::vector<summary_data_holder> dataTerm_;
-    double tBalance_;
-    double tTBalance_;
-    double stockBalance_;
-    double asset_balance_;
-    double totalBalance_;
-};
-#endif
 
 class mmReportSummaryByDate : public mmPrintableBase
 {
 public:
     mmReportSummaryByDate(int mode);
     wxString getHTMLText();
-
+protected:
+    enum TYPE { MONTHLY = 0, YEARLY };
 private:
     int mode_;
 
     typedef std::map<wxDate, double> balanceMap;
+};
+
+class mmReportSummaryByDateMontly : public mmReportSummaryByDate
+{
+public:
+    mmReportSummaryByDateMontly();
+};
+
+class mmReportSummaryByDateYearly : public mmReportSummaryByDate
+{
+public:
+    mmReportSummaryByDateYearly();
 };
 
 #endif //_MM_EX_REPORTSUMMARY_H_
