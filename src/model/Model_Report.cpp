@@ -84,15 +84,22 @@ const std::vector<Model_Report::Values> Model_Report::SqlPlaceHolders()
     const wxString def_mon = Model_Infotable::instance().GetStringInfo("FINANCIAL_YEAR_START_MONTH", "1");
 
     const std::vector<Model_Report::Values> v = {
-    {"&begin_date", "wxDatePickerCtrl", def_date, mmReportsPanel::RepPanel::ID_CHOICE_START_DATE},
-    {"&single_date", "wxDatePickerCtrl", def_date, mmReportsPanel::RepPanel::ID_CHOICE_START_DATE},
-    {"&end_date", "wxDatePickerCtrl", def_date, mmReportsPanel::RepPanel::ID_CHOICE_END_DATE},
-    {"&budget_years", "wxChoice", def_year, mmReportsPanel::RepPanel::ID_CHOICE_DATE_RANGE },
-    {"&fin_year_day", "wxString", def_day, -1},
-    {"&fin_year_month", "wxString", def_mon, -1},
+    {"&begin_date", "wxDatePickerCtrl", def_date, mmReportsPanel::RepPanel::ID_CHOICE_START_DATE, _("Begin date: ")},
+    {"&single_date", "wxDatePickerCtrl", def_date, mmReportsPanel::RepPanel::ID_CHOICE_START_DATE, _("Date: ")},
+    {"&end_date", "wxDatePickerCtrl", def_date, mmReportsPanel::RepPanel::ID_CHOICE_END_DATE, _("End date: ")},
     };
     return v;
 };
+
+const std::vector<std::pair<wxString, wxString>> Model_Report::getParamNames()
+{
+    std::vector<std::pair<wxString, wxString>> v;
+    for (const auto& entry : SqlPlaceHolders())
+    {
+        v.push_back(std::make_pair(entry.label, entry.name));
+    }
+    return v;
+}
 
 bool Model_Report::get_objects_from_sql(const wxString& query, PrettyWriter<StringBuffer>& json_writer)
 {
@@ -200,7 +207,7 @@ bool Model_Report::PrepareSQL(wxString& sql, std::map <wxString, wxString>& rep_
                 wxDatePickerCtrl* date = static_cast<wxDatePickerCtrl*>(w);
                 value = date->GetValue().FormatISODate();
             }
-            else if (w && entry.type == "wxChoice")
+            if (w && entry.type == "wxChoice")
             {
                 wxChoice* year = static_cast<wxChoice*>(w);
                 value = year->GetStringSelection();

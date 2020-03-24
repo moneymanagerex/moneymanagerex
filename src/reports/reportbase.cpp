@@ -205,8 +205,6 @@ int mmGeneralReport::report_parameters()
         params |= RepParams::DATE_RANGE;
     else if (content.Contains("&single_date"))
         params |= RepParams::SINGLE_DATE;
-    else if (content.Contains("&budget_years"))
-        params |= RepParams::ONLY_YEARS;
 
     return params;
 }

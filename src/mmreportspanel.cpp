@@ -205,7 +205,8 @@ bool mmReportsPanel::saveReportText(wxString& error, bool initial)
             }
             rb_->date_range(date_range, selectedItem);
         }
-        else if (rp & (rb_->RepParams::BUDGET_DATES | rb_->RepParams::ONLY_YEARS))
+        
+        if (rp & (rb_->RepParams::BUDGET_DATES | rb_->RepParams::ONLY_YEARS))
         {
             rb_->date_range(nullptr
                 , *reinterpret_cast<int*>(m_date_ranges->GetClientData(selectedItem)));
@@ -327,7 +328,8 @@ void mmReportsPanel::CreateControls()
             itemBoxSizerHeader->Add(m_start_date, 0, wxALL, 1);
             itemBoxSizerHeader->AddSpacer(30);
         }
-        else if (rp & (rb_->RepParams::BUDGET_DATES | rb_->RepParams::ONLY_YEARS))
+        
+        if (rp & (rb_->RepParams::BUDGET_DATES | rb_->RepParams::ONLY_YEARS))
         {
             cleanupmem_ = true;
             wxStaticText* itemStaticTextH1 = new wxStaticText(itemPanel3
@@ -429,15 +431,23 @@ void mmReportsPanel::OnDateRangeChanged(wxCommandEvent& /*event*/)
     const mmDateRange* date_range = static_cast<mmDateRange*>(this->m_date_ranges->GetClientData(this->m_date_ranges->GetSelection()));
     if (date_range)
     {
-        m_start_date->Enable(false);
-        m_end_date->Enable(false);
-        this->m_start_date->SetValue(date_range->start_date());
-        this->m_end_date->SetValue(date_range->end_date());
+        if (m_start_date) {
+            m_start_date->Enable(false);
+            this->m_start_date->SetValue(date_range->start_date());
+        }
+        if (m_end_date) {
+            m_end_date->Enable(false);
+            this->m_end_date->SetValue(date_range->end_date());
+        }
     }
     else
     {
-        m_start_date->Enable();
-        m_end_date->Enable();
+        if (m_start_date) {
+            m_start_date->Enable();
+        }
+        if (m_end_date) {
+            m_end_date->Enable();
+        }
     }
 
     wxString error;

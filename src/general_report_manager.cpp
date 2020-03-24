@@ -101,6 +101,7 @@ R"(<!DOCTYPE html>
     <hr>    <TMPL_VAR ERROR>
 </TMPL_LOOP>
 
+</body>
 <script>
     <!-- Format double to base currency -->
     function currency(n) {
@@ -121,7 +122,6 @@ R"(<!DOCTYPE html>
         element.innerHTML = '<TMPL_VAR PFX_SYMBOL>' + currency(element.innerHTML) +'<TMPL_VAR SFX_SYMBOL>';
     }
 </script>
-</body>
 </html>
 )";
 
@@ -159,10 +159,12 @@ R"(<!DOCTYPE html>
 </table>
 </div>
 </div>
+%s
+</div>
 <TMPL_LOOP ERRORS>
     <TMPL_VAR ERROR>
 </TMPL_LOOP>
-</div>
+</body>
 <script>
     <!-- Format double to base currency -->
     function currency(n) {
@@ -183,7 +185,6 @@ R"(<!DOCTYPE html>
         element.innerHTML = '<TMPL_VAR PFX_SYMBOL>' + currency(element.innerHTML) +'<TMPL_VAR SFX_SYMBOL>';
     }
 </script>
-</body>
 </html>
 )";
 
@@ -1139,10 +1140,24 @@ bool mmGeneralReportManager::getSqlQuery(/*in*/ wxString& sql
     return true;
 }
 
-wxString mmGeneralReportManager::getTemplate(const wxString& sql)
+wxString mmGeneralReportManager::getTemplate(wxString& sql)
 {
-    wxString body, header;
+    wxString body, header, SqlError;
+
+    std::map <wxString, wxString> rep_params;
+    try
+    {
+        Model_Report::PrepareSQL(sql, rep_params);
+    }
+    catch (const wxSQLite3Exception& e)
+    {
+        SqlError = e.GetMessage();
+        SqlError.Replace(" or missing database[1]:", "");
+        return SqlError;
+    }
+
     std::vector<std::pair<wxString, int> > colHeaders;
+
     this->getColumns(sql, colHeaders);
     for (const auto& col : colHeaders)
     {
@@ -1154,7 +1169,17 @@ wxString mmGeneralReportManager::getTemplate(const wxString& sql)
         else
             body += wxString::Format("        <td><TMPL_VAR \"%s\"></td>\n", col.first);
     }
-    return wxString::Format(HTT_CONTEINER, header, body);
+
+    wxString params = rep_params.empty() ? "" : _("Parameters:");
+    for (const auto& entry : rep_params)
+    {
+        for (const auto & item : Model_Report::getParamNames()) {
+            if (entry.first == item.first.Mid(1)) {
+                params += wxString::Format("<BR> %s <TMPL_VAR %s>", item.second, entry.first);
+            }
+        }
+    }
+    return wxString::Format(HTT_CONTEINER, header, body, params);
 }
 
 #if wxUSE_DRAG_AND_DROP
