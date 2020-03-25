@@ -1,32 +1,40 @@
-IF(NOT InMMEX)
-    MESSAGE(FATAL_ERROR "Use the top-level CMake script!")
-ENDIF(NOT InMMEX)
+get_directory_property(m_hasParent PARENT_DIRECTORY)
+if(NOT m_hasParent)
+    message(FATAL_ERROR "Use the top-level CMake script!")
+endif()
+unset(m_hasParent)
 
 # disable all warnings while compile sources in 3rd
-IF(MSVC)
-    SET_DIRECTORY_PROPERTIES(PROPERTIES COMPILE_OPTIONS /W0)
-ELSE()
-    SET_DIRECTORY_PROPERTIES(PROPERTIES COMPILE_OPTIONS -w)
-ENDIF()
+if(MSVC)
+    string(REGEX REPLACE "(^| )[/-]W[0-4]( |$)" " " CMAKE_C_FLAGS "${CMAKE_C_FLAGS}")
+    string(REGEX REPLACE "(^| )[/-]W[0-4]( |$)" " " CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}")
+    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} /W0")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /W0")
+else()
+    add_compile_options("-w")
+endif()
 
-ADD_LIBRARY(RapidJSON INTERFACE)
-TARGET_INCLUDE_DIRECTORIES(RapidJSON INTERFACE
-    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/rapidjson/include>)
+find_package(RapidJSON 1.1 QUIET CONFIG)
+if(NOT RapidJSON_FOUND)
+    find_package(RapidJSON 1.1 QUIET)
+endif()
+if(NOT RapidJSON_FOUND)
+    set(RAPIDJSON_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/rapidjson/include")
+endif()
+message(STATUS "Found RapidJSON: ${RAPIDJSON_INCLUDE_DIRS}")
+add_library(RapidJSON INTERFACE)
+target_include_directories(RapidJSON SYSTEM INTERFACE
+    $<BUILD_INTERFACE:${RAPIDJSON_INCLUDE_DIRS}>)
 
-ADD_LIBRARY(cajun INTERFACE)
-TARGET_INCLUDE_DIRECTORIES(cajun INTERFACE
-    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/cajun>)
+add_library(LuaGlue INTERFACE)
+target_include_directories(LuaGlue SYSTEM INTERFACE LuaGlue/include)
 
-ADD_LIBRARY(LuaGlue INTERFACE)
-TARGET_INCLUDE_DIRECTORIES(LuaGlue INTERFACE LuaGlue/include)
-
-FIND_PACKAGE(Lua) 
-IF(LUA_FOUND)
-    MESSAGE(STATUS "Found Lua: ${LUA_LIBRARIES} (found version \"${LUA_VERSION_STRING}\")") 
-    ADD_LIBRARY(Lua INTERFACE)
-    TARGET_INCLUDE_DIRECTORIES(Lua INTERFACE ${LUA_INCLUDE_DIR})
-    TARGET_LINK_LIBRARIES(Lua INTERFACE ${LUA_LIBRARIES})
-ELSE()
+find_package(Lua)
+if(LUA_FOUND)
+    add_library(Lua INTERFACE)
+    target_include_directories(Lua SYSTEM INTERFACE ${LUA_INCLUDE_DIR})
+    target_link_libraries(Lua INTERFACE ${LUA_LIBRARIES})
+else()
     add_library(Lua STATIC EXCLUDE_FROM_ALL
         lua/lapi.c
         lua/lapi.h
@@ -91,76 +99,92 @@ ELSE()
         lua/lzio.h
     )
     #add C++ wrapper for Lua include files
-    CONFIGURE_FILE(${PROJECT_SOURCE_DIR}/resources/lua.hpp lua.hpp COPYONLY)
-    TARGET_INCLUDE_DIRECTORIES(Lua INTERFACE lua ${CMAKE_CURRENT_BINARY_DIR})
-    IF(NOT WIN32)
-        TARGET_COMPILE_DEFINITIONS(Lua PRIVATE
+    configure_file(${PROJECT_SOURCE_DIR}/resources/lua.hpp lua.hpp COPYONLY)
+    target_include_directories(Lua SYSTEM INTERFACE lua ${CMAKE_CURRENT_BINARY_DIR})
+    if(NOT WIN32)
+        target_compile_definitions(Lua PRIVATE
             LUA_USE_POSIX
             LUA_USE_DLOPEN
             LUA_USE_STRTODHEX
             LUA_USE_AFORMAT
             LUA_USE_LONGLONG
             LUA_COMPAT_5_2)
-    ENDIF()
+    endif()
 
-    IF(LINUX)
-        INCLUDE(CheckLibraryExists)
+    if(LINUX)
+        include(CheckLibraryExists)
         CHECK_LIBRARY_EXISTS(${CMAKE_DL_LIBS} dlopen "" HAVE_DLOPEN)
-        IF(NOT HAVE_DLOPEN)
-            MESSAGE(SEND_ERROR "Could not find required dl library.")
-        ENDIF()
-        TARGET_LINK_LIBRARIES(Lua PRIVATE ${CMAKE_DL_LIBS})
-    ENDIF()
+        if(NOT HAVE_DLOPEN)
+            message(SEND_ERROR "Could not find required dl library.")
+        endif()
+        target_link_libraries(Lua PRIVATE ${CMAKE_DL_LIBS})
+    endif()
 
     file(STRINGS lua/lua.h
         LUA_VERSION_STRING
         REGEX "#define LUA_VERSION_(MAJOR|MINOR|RELEASE)[\t ]+\"[0-9]+\"")
     string(REPLACE ";" "." LUA_VERSION_STRING "${LUA_VERSION_STRING}")
     string(REGEX REPLACE "[^0-9.]+" "" LUA_VERSION_STRING ${LUA_VERSION_STRING})
+endif()
 
-ENDIF(LUA_FOUND)
-TARGET_COMPILE_DEFINITIONS(Lua INTERFACE LUA_COMPAT_5_2)
+target_compile_definitions(Lua INTERFACE LUA_COMPAT_5_2)
 
-ADD_LIBRARY(HTML-template STATIC EXCLUDE_FROM_ALL cgitemplate/html_template.cpp)
-TARGET_INCLUDE_DIRECTORIES(HTML-template INTERFACE cgitemplate)
 
-FIND_PACKAGE(PkgConfig)
-IF(PkgConfig_FOUND)
+add_library(HTML-template STATIC EXCLUDE_FROM_ALL cgitemplate/html_template.cpp)
+target_include_directories(HTML-template SYSTEM INTERFACE cgitemplate)
+
+find_package(PkgConfig)
+if(PkgConfig_FOUND)
     PKG_SEARCH_MODULE(wxSQLite3 QUIET wxsqlite3-3.0 wxsqlite3 wxsqlite>=3)
-ENDIF()
-IF(wxSQLite3_FOUND)
-    MESSAGE(STATUS "Found wxSQLite3: ${wxSQLite3_LIBRARIES} (found version \"${wxSQLite3_VERSION}\")")
-    ADD_LIBRARY(wxSQLite3 INTERFACE)
-    TARGET_INCLUDE_DIRECTORIES(wxSQLite3 INTERFACE ${wxSQLite3_INCLUDE_DIRS})
-    TARGET_LINK_LIBRARIES(wxSQLite3 INTERFACE ${wxSQLite3_LIBRARIES} wxWidgets)
-    TARGET_COMPILE_OPTIONS(wxSQLite3 INTERFACE ${wxSQLite3_CFLAGS})
-ELSE()
-    FILE(STRINGS wxsqlite3/include/wx/wxsqlite3_version.h
+endif()
+
+if(wxSQLite3_FOUND)
+    message(STATUS "Found wxSQLite3: ${wxSQLite3_LIBRARIES} (found version \"${wxSQLite3_VERSION}\")")
+
+    file(WRITE "${CMAKE_BINARY_DIR}${CMAKE_FILES_DIRECTORY}/CMakeTmp/WXSQLITE3_HAVE_CODEC.c"
+        "#include <wx/wxsqlite3opt.h>\n#if !WXSQLITE3_HAVE_CODEC\n#error\n#endif\n\nint main(int argc, char** argv)\n{\n  (void)argv;\n  (void)argc;\n  return 0;\n}\n")
+    try_compile(WXSQLITE3_HAVE_CODEC ${CMAKE_BINARY_DIR}
+        "${CMAKE_BINARY_DIR}${CMAKE_FILES_DIRECTORY}/CMakeTmp/WXSQLITE3_HAVE_CODEC.c"
+        CMAKE_FLAGS "-DINCLUDE_DIRECTORIES:STRING=${wxSQLite3_INCLUDE_DIRS}")
+    set(WXSQLITE3_HAVE_CODEC ${WXSQLITE3_HAVE_CODEC} CACHE INTERNAL "Have symbol ${SYMBOL}")
+
+    if(WXSQLITE3_HAVE_CODEC OR MMEX_ENCRYPTION_OPTIONAL)
+        add_library(wxSQLite3 INTERFACE)
+        target_include_directories(wxSQLite3 SYSTEM INTERFACE ${wxSQLite3_INCLUDE_DIRS})
+        target_link_libraries(wxSQLite3 INTERFACE ${wxSQLite3_LIBRARIES} wxWidgets)
+        target_compile_options(wxSQLite3 INTERFACE ${wxSQLite3_CFLAGS})
+    else()
+        message(WARNING "wxSQLite3 found does not support database encryption - compiling from sources")
+    endif()
+endif()
+if(NOT wxSQLite3_FOUND OR NOT (WXSQLITE3_HAVE_CODEC OR MMEX_ENCRYPTION_OPTIONAL))
+    set(WXSQLITE3_HAVE_CODEC ON)
+    file(STRINGS wxsqlite3/include/wx/wxsqlite3_version.h
         wxSQLite3_VERSION LIMIT_COUNT 1
             REGEX "#define WXSQLITE3_VERSION_STRING[\t ]+\"[^\"]+ [0-9.]+\"")
-    STRING(REGEX REPLACE ".+\"[^\"]+ ([0-9.]+)\".*" \\1 wxSQLite3_VERSION ${wxSQLite3_VERSION})
-    IF(wxSQLite3_VERSION VERSION_LESS 4)
-        SET(sqlite3_dir sqlite3/secure)
-    ELSE()
-        SET(sqlite3_dir sqlite3secure)
-    ENDIF()
-    ADD_LIBRARY(SQLite3 STATIC EXCLUDE_FROM_ALL wxsqlite3/${sqlite3_dir}/src/sqlite3secure.c)
-    TARGET_INCLUDE_DIRECTORIES(SQLite3 PUBLIC wxsqlite3/${sqlite3_dir}/src)
+    string(REGEX REPLACE ".+\"[^\"]+ ([0-9.]+)\".*" \\1 wxSQLite3_VERSION ${wxSQLite3_VERSION})
+    if(wxSQLite3_VERSION VERSION_LESS 4)
+        set(sqlite3_dir sqlite3/secure)
+    else()
+        set(sqlite3_dir sqlite3secure)
+    endif()
+    add_library(SQLite3 STATIC EXCLUDE_FROM_ALL wxsqlite3/${sqlite3_dir}/src/sqlite3secure.c)
+    target_include_directories(SQLite3 SYSTEM PUBLIC wxsqlite3/${sqlite3_dir}/src)
 
-    IF(LINUX)
-        INCLUDE(CheckLibraryExists)
+    if(LINUX)
+        include(CheckLibraryExists)
         CHECK_LIBRARY_EXISTS(${CMAKE_DL_LIBS} dlopen "" HAVE_DLOPEN)
-        IF(NOT HAVE_DLOPEN)
-            MESSAGE(SEND_ERROR "Could not find required dl library.")
-        ENDIF()
-        TARGET_LINK_LIBRARIES(SQLite3 PRIVATE ${CMAKE_DL_LIBS})
-    ENDIF()
+        if(NOT HAVE_DLOPEN)
+            message(SEND_ERROR "Could not find required dl library.")
+        endif()
+        target_link_libraries(SQLite3 PRIVATE ${CMAKE_DL_LIBS})
+    endif()
 
-    ADD_LIBRARY(wxSQLite3 STATIC EXCLUDE_FROM_ALL wxsqlite3/src/wxsqlite3.cpp)
-    TARGET_INCLUDE_DIRECTORIES(wxSQLite3 PUBLIC wxsqlite3/include)
-    TARGET_LINK_LIBRARIES(wxSQLite3 PUBLIC wxWidgets SQLite3)
+    add_library(wxSQLite3 STATIC EXCLUDE_FROM_ALL wxsqlite3/src/wxsqlite3.cpp)
+    target_include_directories(wxSQLite3 SYSTEM PUBLIC wxsqlite3/include)
+    target_link_libraries(wxSQLite3 PUBLIC wxWidgets SQLite3)
 
-    TARGET_COMPILE_DEFINITIONS(SQLite3
+    target_compile_definitions(SQLite3
         PRIVATE
             NOPCH
             SQLITE_CORE
@@ -174,49 +198,55 @@ ELSE()
             HAVE_ISBLANK
         PUBLIC
             SQLITE_HAS_CODEC
-            CODEC_TYPE=CODEC_TYPE_AES128)
-    TARGET_COMPILE_DEFINITIONS(wxSQLite3
+            CODEC_TYPE=CODEC_TYPE_AES128
+            WXSQLITE3_USE_SQLCIPHER_LEGACY)
+    target_compile_definitions(wxSQLite3
         PUBLIC
             WXSQLITE3_HAVE_CODEC
             WXSQLITE3_HAVE_METADATA
             WXSQLITE3_USER_AUTHENTICATION)
 
-    IF(CMAKE_VERSION VERSION_LESS 3.1)
-        INCLUDE(CheckCXXCompilerFlag)
+    if(";${CMAKE_CXX_COMPILE_FEATURES};" MATCHES ";cxx_std_11;")
+        target_compile_features(wxSQLite3 PRIVATE cxx_std_11)
+    elseif(";${CMAKE_CXX_COMPILE_FEATURES};" MATCHES ";cxx_range_for;")
+        target_compile_features(wxSQLite3 PRIVATE cxx_range_for)
+    else()
+        include(CheckCXXCompilerFlag)
         CHECK_CXX_COMPILER_FLAG("-std=gnu++11" COMPILER_SUPPORTS_GXX11)
         CHECK_CXX_COMPILER_FLAG("-std=c++11" COMPILER_SUPPORTS_CXX11)
         CHECK_CXX_COMPILER_FLAG("-std=gnu++0x" COMPILER_SUPPORTS_GXX0X)
         CHECK_CXX_COMPILER_FLAG("-std=c++0x" COMPILER_SUPPORTS_CXX0X)
-        IF(COMPILER_SUPPORTS_GXX11)
-            TARGET_COMPILE_OPTIONS(wxSQLite3 PRIVATE -std=gnu++11)
-        ELSEIF(COMPILER_SUPPORTS_CXX11)
-            TARGET_COMPILE_OPTIONS(wxSQLite3 PRIVATE -std=c++11)
-        ELSEIF(COMPILER_SUPPORTS_GXX0X)
-            TARGET_COMPILE_OPTIONS(wxSQLite3 PRIVATE -std=gnu++0x)
-        ELSEIF(COMPILER_SUPPORTS_CXX0X)
-            TARGET_COMPILE_OPTIONS(wxSQLite3 PRIVATE -std=c++0x)
-        ELSE()
-            MESSAGE(SEND_ERROR "The compiler ${CMAKE_CXX_COMPILER} has no C++11 support.")
-        ENDIF()
-    ELSEIF(CMAKE_VERSION VERSION_LESS 3.8)
-        TARGET_COMPILE_FEATURES(wxSQLite3 PRIVATE cxx_range_for)
-    ELSE()
-        TARGET_COMPILE_FEATURES(wxSQLite3 PRIVATE cxx_std_11)
-    ENDIF()
+        if(COMPILER_SUPPORTS_GXX11)
+            target_compile_options(wxSQLite3 PRIVATE -std=gnu++11)
+        elseif(COMPILER_SUPPORTS_CXX11)
+            target_compile_options(wxSQLite3 PRIVATE -std=c++11)
+        elseif(COMPILER_SUPPORTS_GXX0X)
+            target_compile_options(wxSQLite3 PRIVATE -std=gnu++0x)
+        elseif(COMPILER_SUPPORTS_CXX0X)
+            target_compile_options(wxSQLite3 PRIVATE -std=c++0x)
+        else()
+            message(SEND_ERROR "The compiler ${CMAKE_CXX_COMPILER} has no C++11 support.")
+        endif()
+    endif()
 
-    IF(NOT MSVC) # wxSQLite3 security ext doesn't require C 99 for MSVC
-        IF(CMAKE_VERSION VERSION_LESS 3.1)
-            INCLUDE(CheckCCompilerFlag)
+    if(NOT MSVC) # wxSQLite3 security ext doesn't require C 99 for MSVC
+        if(";${CMAKE_C_COMPILE_FEATURES};" MATCHES ";c_std_99;")
+            target_compile_features(SQLite3 PRIVATE c_std_99)
+        elseif(";${CMAKE_C_COMPILE_FEATURES};" MATCHES ";c_restrict;")
+            target_compile_features(SQLite3 PRIVATE c_restrict)
+        else()
+            include(CheckCCompilerFlag)
             CHECK_C_COMPILER_FLAG("-std=c99" COMPILER_SUPPORTS_C99)
-            IF(COMPILER_SUPPORTS_C99)
-                TARGET_COMPILE_OPTIONS(SQLite3 PRIVATE -std=c99)
-            ELSE()
-                MESSAGE(SEND_ERROR "The compiler ${CMAKE_C_COMPILER} has no C99 support.")
-            ENDIF()
-        ELSEIF(CMAKE_VERSION VERSION_LESS 3.8)
-            TARGET_COMPILE_FEATURES(SQLite3 PRIVATE c_restrict)
-        ELSE()
-            TARGET_COMPILE_FEATURES(SQLite3 PRIVATE c_std_99)
-        ENDIF()
-    ENDIF(NOT MSVC)
-ENDIF(wxSQLite3_FOUND)
+            if(COMPILER_SUPPORTS_C99)
+                target_compile_options(SQLite3 PRIVATE -std=c99)
+            else()
+                message(SEND_ERROR "The compiler ${CMAKE_C_COMPILER} has no C99 support.")
+            endif()
+        endif()
+    endif()
+endif()
+
+set(RapidJSON_VERSION ${RapidJSON_VERSION} PARENT_SCOPE)
+set(Lua_VERSION ${LUA_VERSION_STRING} PARENT_SCOPE)
+set(wxSQLite3_VERSION ${wxSQLite3_VERSION} PARENT_SCOPE)
+set(WXSQLITE3_HAVE_CODEC ${WXSQLITE3_HAVE_CODEC} PARENT_SCOPE)

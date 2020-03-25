@@ -16,34 +16,42 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#ifndef MM_EX_PLATFDEP_H_
-#define MM_EX_PLATFDEP_H_
 //----------------------------------------------------------------------------
-/*
-        Platform-dependent API.
-*/
+#include "platfdep.h"
+#include <wx/stdpaths.h>
+#include <wx/filename.h>
 //----------------------------------------------------------------------------
 
-class wxFileName;
-class wxString;
-
-namespace mmex
+const wxFileName mmex::GetSharedDir()
 {
-    const wxFileName GetDocDir();
-    const wxFileName GetResourceDir();
-    const wxFileName GetSharedDir();
-    const wxFileName GetUserDir(bool create);
-    const wxFileName GetLogDir(bool create);
-    const wxFileName GetInstallDir();
-
-    /*
-        wxStandardPaths uses wxApp::GetAppName(), so you should
-        call wxApp::SetAppName(mmex::GetAppName()) in wxApp::OnInit().
-
-        Use mmex::getProgramName() for others purposes.
-        */
-    const wxString GetAppName();
-} // namespace mmex
-
+    static wxFileName fname(wxFileName::DirName(wxStandardPaths::Get().GetDataDir()));
+    return fname;
+}
 //----------------------------------------------------------------------------
-#endif // MM_EX_PLATFDEP_H_
+
+const wxFileName mmex::GetDocDir()
+{
+    static wxFileName fname;
+
+    if (!fname.IsOk())
+    {
+        fname = GetSharedDir();
+        fname.AppendDir("doc");
+    }
+
+    return fname;
+}
+//----------------------------------------------------------------------------
+
+const wxFileName mmex::GetResourceDir()
+{
+    static wxFileName fname(wxFileName::DirName(wxStandardPaths::Get().GetResourcesDir()));
+    return fname;
+}
+//----------------------------------------------------------------------------
+
+const wxString mmex::GetAppName()
+{
+    return "MoneyManagerEx";
+}
+//----------------------------------------------------------------------------

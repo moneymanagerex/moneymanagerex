@@ -15,7 +15,6 @@
  *          DO NOT EDIT!
  */
 //=============================================================================
-#pragma execution_character_set("UTF-8")
 #pragma once
 
 #include "DB_Table.h"

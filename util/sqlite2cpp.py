@@ -165,11 +165,7 @@ UPDATE OR IGNORE %s SET %s WHERE CURRENCY_SYMBOL='%s';''' % (self._table, row['C
 
     def to_string(self, sql=None):
         """Create the data for the .h file"""
-        utfc = ''
-        if self._table.upper() == 'CURRENCYFORMATS_V1':
-            utfc = '#pragma execution_character_set("UTF-8")\n'
-
-        s = '''%s#pragma once
+        s = '''#pragma once
 
 #include "DB_Table.h"
 
@@ -221,7 +217,7 @@ struct DB_Table_%s : public DB_Table
         cache_.clear();
         index_by_id_.clear(); // no memory release since it just stores pointer and the according objects are in cache
     }
-''' % (utfc, self._table, self._table, self._table)
+''' % (self._table, self._table, self._table)
 
         s += '''
     /** Creates the database table if the table does not exist*/

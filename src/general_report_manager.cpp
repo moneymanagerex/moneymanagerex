@@ -539,7 +539,9 @@ void mmGeneralReportManager::OnNewTemplate(wxCommandEvent& WXUNUSED(event))
     wxNotebook* n = static_cast<wxNotebook*>(FindWindow(ID_NOTEBOOK));
     n->SetSelection(ID_TAB_HTT);
 
-    templateText->ChangeValue(this->getTemplate(sqlText->GetValue()));
+    wxString sql_txt = sqlText->GetValue();
+    const wxString tmplt = getTemplate(sql_txt);
+    templateText->ChangeValue(tmplt);
 
     wxButton* b = static_cast<wxButton*>(FindWindow(wxID_NEW));
     b->Enable(false);
