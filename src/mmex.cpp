@@ -178,7 +178,7 @@ int mmGUIApp::FilterEvent(wxEvent &event)
 
     if (event.GetEventType() == wxEVT_SHOW)
     {
-        wxWindow *win = (wxWindow*)event.GetEventObject();
+        wxWindow *win = static_cast<wxWindow*>(event.GetEventObject());
 
         if (win && win->IsTopLevel() && win != this->m_frame) // wxDialog & wxFrame http://docs.wxwidgets.org/trunk/classwx_top_level_window.html
         {

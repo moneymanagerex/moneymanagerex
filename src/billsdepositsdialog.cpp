@@ -1412,7 +1412,7 @@ void mmBDDialog::activateSplitTransactionsDlg()
             m_bill_data.TRANSAMOUNT = 0;
         }
         Split s;
-        s.SPLITTRANSAMOUNT = bDeposit ? m_bill_data.TRANSAMOUNT : m_bill_data.TRANSAMOUNT;
+        s.SPLITTRANSAMOUNT = m_bill_data.TRANSAMOUNT;
         s.CATEGID = m_bill_data.CATEGID;
         s.SUBCATEGID = m_bill_data.SUBCATEGID;
         m_bill_data.local_splits.push_back(s);

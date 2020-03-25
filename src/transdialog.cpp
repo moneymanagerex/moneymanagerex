@@ -563,7 +563,7 @@ bool mmTransDialog::validateData()
     Model_Account::Data* account = Model_Account::instance().get(cbAccount_->GetValue());
     if (!account || Model_Account::type(account) == Model_Account::INVESTMENT)
     {
-        mmErrorDialogs::InvalidAccount((wxWindow*)cbAccount_);
+        mmErrorDialogs::InvalidAccount(static_cast<wxWindow*>(cbAccount_));
         return false;
     }
     m_trx_data.ACCOUNTID = account->ACCOUNTID;
@@ -573,7 +573,7 @@ bool mmTransDialog::validateData()
         wxString payee_name = cbPayee_->GetValue();
         if (payee_name.IsEmpty())
         {
-            mmErrorDialogs::InvalidPayee((wxWindow*)cbPayee_);
+            mmErrorDialogs::InvalidPayee(static_cast<wxWindow*>(cbPayee_));
             return false;
         }
 
@@ -616,7 +616,7 @@ bool mmTransDialog::validateData()
         Model_Account::Data *to_account = Model_Account::instance().get(cbPayee_->GetValue());
         if (!to_account || to_account->ACCOUNTID == m_trx_data.ACCOUNTID || Model_Account::type(to_account) == Model_Account::INVESTMENT)
         {
-            mmErrorDialogs::InvalidAccount((wxWindow*)cbPayee_, true);
+            mmErrorDialogs::InvalidAccount(static_cast<wxWindow*>(cbPayee_), true);
             return false;
         }
         m_trx_data.TOACCOUNTID = to_account->ACCOUNTID;
@@ -632,7 +632,7 @@ bool mmTransDialog::validateData()
     if ((cSplit_->IsChecked() && local_splits.empty())
         || (!cSplit_->IsChecked() && Model_Category::full_name(m_trx_data.CATEGID, m_trx_data.SUBCATEGID).empty()))
     {
-        mmErrorDialogs::InvalidCategory((wxWindow*)bCategory_, false);
+        mmErrorDialogs::InvalidCategory(static_cast<wxWindow*>(bCategory_), false);
         return false;
     }
 
