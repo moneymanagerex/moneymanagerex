@@ -122,7 +122,7 @@ stages:
 install: |-
   case $TRAVIS_OS_NAME in
     linux)
-	  DOCKER=moneymanagerex/mmex_build_env:$OS${DIST:+.$DIST}${ARCH:+.$ARCH}
+      DOCKER=moneymanagerex/mmex_build_env:$OS${DIST:+.$DIST}${ARCH:+.$ARCH}
       ccache -cs || true
       docker pull ${DOCKER}
       docker build dockers/$OS${DIST:+.$DIST}${ARCH:+.$ARCH} --cache-from ${DOCKER} -t ${DOCKER}
@@ -156,8 +156,8 @@ script: |-
       docker run -it --rm -w /moneymanagerex/build -e MAKEFLAGS \
                  -v $HOME/.ccache:/root/.ccache \
                  -v $TRAVIS_BUILD_DIR:/moneymanagerex ${DOCKER} \
-        bash -c "$CMAKE_CMD -DCMAKE_BUILD_TYPE=$BUILD_TYPE && cmake --build . --target package && eval \$MMEX_INST_CMD" 
-	  ;;
+        bash -c "$CMAKE_CMD -DCMAKE_BUILD_TYPE=$BUILD_TYPE && cmake --build . --target package && eval \$MMEX_INST_CMD"
+      ;;
     osx)
       export CXXFLAGS=-stdlib=libc++ # exports required by Xcode 10 or later
       export LDFLAGS=-stdlib=libc++
