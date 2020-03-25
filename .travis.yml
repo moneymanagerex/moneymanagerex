@@ -120,10 +120,10 @@ stages:
     if: NOT type IN (api, cron)
 
 install: |-
-  DOCKER=moneymanagerex/mmex_build_env:$OS${DIST:+.$DIST}${ARCH:+.$ARCH}
   case $TRAVIS_OS_NAME in
     linux)
-      ccache -s || true
+	  DOCKER=moneymanagerex/mmex_build_env:$OS${DIST:+.$DIST}${ARCH:+.$ARCH}
+      ccache -cs || true
       docker pull ${DOCKER}
       docker build dockers/$OS${DIST:+.$DIST}${ARCH:+.$ARCH} --cache-from ${DOCKER} -t ${DOCKER}
       ;;
@@ -139,12 +139,11 @@ install: |-
         --with-macosx-version-min=$MACOSX_DEPLOYMENT_TARGET \
         --without-libtiff
       make install
-      cd $TRAVIS_BUILD_DIR
       ;;
   esac
 
 before_script:
-- cd src/db
+- cd $TRAVIS_BUILD_DIR/src/db
 - python ../../util/sqlite2cpp.py ../../database/tables_v1.sql && rm -f sql*.sql *.mmdbg
 - python ../../util/sqliteupgrade2cpp.py ../../database
 - cd ../.. && mkdir build && cd build
@@ -157,7 +156,8 @@ script: |-
       docker run -it --rm -w /moneymanagerex/build -e MAKEFLAGS \
                  -v $HOME/.ccache:/root/.ccache \
                  -v $TRAVIS_BUILD_DIR:/moneymanagerex ${DOCKER} \
-        bash -c "$CMAKE_CMD && make package && eval \$MMEX_INST_CMD" ;;
+        bash -c "$CMAKE_CMD -DCMAKE_BUILD_TYPE=$BUILD_TYPE && cmake --build . --target package && eval \$MMEX_INST_CMD" 
+	  ;;
     osx)
       export CXXFLAGS=-stdlib=libc++ # exports required by Xcode 10 or later
       export LDFLAGS=-stdlib=libc++
