@@ -347,7 +347,7 @@ const std::map<wxString, wxString> &date_formats_regex()
         regexp.Replace("%m", mm);
         regexp.Replace("%Y", yyyy);
         regexp.Replace("%y", yy);
-        //regexp.Replace(".", R"(\x2E)");
+        regexp.Replace(".", R"(\.)");
         regexp.Append(tail);
         date_regex[entry.first] = regexp;
     }
