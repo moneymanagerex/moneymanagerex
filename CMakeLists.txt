@@ -15,18 +15,6 @@ if(DEFINED ENV{VCPKG_DEFAULT_TRIPLET} AND NOT DEFINED VCPKG_TARGET_TRIPLET)
     set(VCPKG_TARGET_TRIPLET "$ENV{VCPKG_DEFAULT_TRIPLET}" CACHE STRING "")
 endif()
 
-find_package(Git REQUIRED)
-# Get the latest version tag
-execute_process(COMMAND ${GIT_EXECUTABLE} describe --match v* --tags --abbrev=0
-    WORKING_DIRECTORY ${CMAKE_HOME_DIRECTORY}
-    OUTPUT_VARIABLE GIT_TAG_VERSION
-    OUTPUT_STRIP_TRAILING_WHITESPACE
-    TIMEOUT 4 ERROR_QUIET)
-message(STATUS "Git tag: ${GIT_TAG_VERSION}")
-if(NOT GIT_TAG_VERSION MATCHES "^v([0-9]+\\x2E[0-9]+\\x2E[0-9]+)(-([^ ]+))*")
-    message(FATAL_ERROR "Unable to determine MMEX version tag from sources!")
-endif()
-
 # ---------------------------------------------------------------------------
 # MMEX uses semantic versioning Ref: http://semver.org
 #
@@ -45,9 +33,31 @@ endif()
 # ./resources/mmex.rc
 # ---------------------------------------------------------------------------
 
-set(MMEX_VERSION ${CMAKE_MATCH_1})
-set(MMEX_VERSION_UNSTABLE ${CMAKE_MATCH_3})
-set(MMEX_VERSION_FULL ${CMAKE_MATCH_1}${CMAKE_MATCH_2})
+set(MMEX_VERSION 1.3.4)
+SET(MMEX_VERSION_ALPHA -1)
+SET(MMEX_VERSION_BETA 3)
+SET(MMEX_VERSION_RC -1)
+
+# Adjusting semantic versioning for alpha/beta/rc version
+IF(MMEX_VERSION_ALPHA EQUAL 0)
+    SET(MMEX_VERSION_UNSTABLE alpha)
+ELSEIF(MMEX_VERSION_ALPHA GREATER 0)
+    SET(MMEX_VERSION_UNSTABLE alpha${MMEX_VERSION_ALPHA})
+ELSEIF(MMEX_VERSION_BETA EQUAL 0)
+    SET(MMEX_VERSION_UNSTABLE beta)
+ELSEIF(MMEX_VERSION_BETA GREATER 0)
+    SET(MMEX_VERSION_UNSTABLE beta${MMEX_VERSION_BETA})
+ELSEIF(MMEX_VERSION_RC EQUAL 0)
+    SET(MMEX_VERSION_UNSTABLE rc)
+ELSEIF(MMEX_VERSION_RC GREATER 0)
+    SET(MMEX_VERSION_UNSTABLE rc${MMEX_VERSION_RC})
+ENDIF()
+SET(MMEX_VERSION_WITH_UNSTABLE ${MMEX_VERSION})
+IF(MMEX_VERSION_UNSTABLE)
+    SET(MMEX_VERSION_WITH_UNSTABLE "${MMEX_VERSION}~${MMEX_VERSION_UNSTABLE}")
+ENDIF()
+
+set(MMEX_VERSION_FULL ${MMEX_VERSION_WITH_UNSTABLE})
 
 project(MMEX VERSION ${MMEX_VERSION})
 option(MMEX_PORTABLE_INSTALL "Include an empty mmexini.db3 file in the Windows installation" ON)
@@ -55,7 +65,6 @@ option(MMEX_ENCRYPTION_OPTIONAL "Build even if encryption is not supported by wx
 
 # Name of the resulted executable binary
 set(MMEX_EXE mmex)
-
 
 # Find Git commit details to put into versions.h later
 # Get the current working branch
