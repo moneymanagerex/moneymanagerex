@@ -176,7 +176,7 @@ public:
 };
 //----------------------------------------------------------------------------
 
-const bool getNewsRSS(std::vector<WebsiteNews>& WebsiteNewsList);
+bool getNewsRSS(std::vector<WebsiteNews>& WebsiteNewsList);
 const wxString getURL(const wxString& file);
 enum yahoo_price_type { FIAT = 0, SHARES };
 bool getOnlineCurrencyRates(wxString& msg, int curr_id = -1, bool used_only = true);

@@ -27,7 +27,7 @@ using namespace rapidjson;
 class mmUpdate
 {
 public:
-    static void checkUpdates(const bool bSilent, wxFrame *frame);
+    static void checkUpdates(bool bSilent, wxFrame *frame);
 
 };
 

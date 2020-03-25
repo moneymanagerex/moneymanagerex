@@ -116,7 +116,7 @@ wxColour mmColors::userDefColor7;
 //*-------------------------------------------------------------------------*//
 
 //Get unread news or all news for last year
-const bool getNewsRSS(std::vector<WebsiteNews>& WebsiteNewsList)
+bool getNewsRSS(std::vector<WebsiteNews>& WebsiteNewsList)
 {
     wxString RssContent;
     if (http_get_data(mmex::weblink::NewsRSS, RssContent) != wxURL_NOERR)

@@ -552,12 +552,12 @@ const wxString Model_Checking::Full_Data::to_json()
     return json_buffer.GetString();
 }
 
-const bool Model_Checking::foreignTransaction(const Data& data)
+bool Model_Checking::foreignTransaction(const Data& data)
 {
     return (data.TOACCOUNTID > 0) && ((data.TRANSCODE == all_type()[DEPOSIT]) || (data.TRANSCODE == all_type()[WITHDRAWAL]));
 }
 
-const bool Model_Checking::foreignTransactionAsTransfer(const Data& data)
+bool Model_Checking::foreignTransactionAsTransfer(const Data& data)
 {
     return foreignTransaction(data) && (data.TOACCOUNTID == Model_Translink::AS_TRANSFER);
 }

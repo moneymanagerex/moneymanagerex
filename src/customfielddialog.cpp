@@ -247,7 +247,7 @@ void mmCustomFieldDialog::OnMove(const wxPoint & RefPos, const wxSize & RefSize)
     this->Move(wxPoint(RefPos.x + RefSize.GetWidth(), RefPos.y));
 }
 
-void mmCustomFieldDialog::OnSave(const bool OpenStatus)
+void mmCustomFieldDialog::OnSave(bool OpenStatus)
 {
     if (!IsShown())
         return;

@@ -51,7 +51,7 @@ const wxDateTime mmDateRange::today() const
     return this->today_;
 }
 
-const bool mmDateRange::is_with_date() const
+bool mmDateRange::is_with_date() const
 {
     return true;
 }

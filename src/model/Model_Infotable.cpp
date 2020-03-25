@@ -181,7 +181,7 @@ bool Model_Infotable::OpenCustomDialog(const wxString& RefType)
     return GetBoolInfo("CUSTOMDIALOG_OPEN:" + RefType, false);
 }
 
-void Model_Infotable::SetOpenCustomDialog(const wxString& RefType, const bool Status)
+void Model_Infotable::SetOpenCustomDialog(const wxString& RefType, bool Status)
 {
     Set("CUSTOMDIALOG_OPEN:" + RefType, Status);
 }

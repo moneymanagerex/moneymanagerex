@@ -55,7 +55,7 @@ private:
 
 public:
     void OnMove(const wxPoint& RefPos, const wxSize& RefSize);
-    void OnSave(const bool OpenStatus);
+    void OnSave(bool OpenStatus);
 };
 
 #endif

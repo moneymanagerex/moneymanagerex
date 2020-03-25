@@ -198,7 +198,7 @@ struct Version
 //--------------
 //mmUpdate Class
 //--------------
-void mmUpdate::checkUpdates(const bool bSilent, wxFrame *frame)
+void mmUpdate::checkUpdates(bool bSilent, wxFrame *frame)
 {
     wxString resp;
     CURLcode err_code = http_get_data(mmex::weblink::Releases, resp);

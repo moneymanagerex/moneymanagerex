@@ -67,7 +67,7 @@ public:
 
 public:
     bool OpenCustomDialog(const wxString& RefType);
-    void SetOpenCustomDialog(const wxString& RefType, const bool Status);
+    void SetOpenCustomDialog(const wxString& RefType, bool Status);
     wxSize CustomDialogSize(const wxString& RefType);
     void SetCustomDialogSize(const wxString& RefType, const wxSize& Size);
 };
