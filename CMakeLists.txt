@@ -1,237 +1,263 @@
-CMAKE_MINIMUM_REQUIRED(VERSION 3.0 FATAL_ERROR)
-SET(InMMEX TRUE)
+cmake_minimum_required(VERSION 3.1 FATAL_ERROR)
 
-PROJECT(MMEX VERSION 1.3.4)
-OPTION(MMEX_PORTABLE_INSTALL "Include an empty mmexini.db3 file in the Windows installation" ON) 
+if(DEFINED ENV{VCPKG_ROOT})
+    if(NOT DEFINED CMAKE_TOOLCHAIN_FILE)
+        set(CMAKE_TOOLCHAIN_FILE "$ENV{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake"
+            CACHE STRING "")
+    elseif(NOT CMAKE_TOOLCHAIN_FILE MATCHES "vcpkg.cmake$")
+        set(VCPKG_CHAINLOAD_TOOLCHAIN_FILE "${CMAKE_TOOLCHAIN_FILE}")
+        set(CMAKE_TOOLCHAIN_FILE "$ENV{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake"
+            CACHE STRING "")
+    endif()
+endif()
 
-# Name of the resulted executable binary
-SET(MMEX_EXE mmex)
+if(DEFINED ENV{VCPKG_DEFAULT_TRIPLET} AND NOT DEFINED VCPKG_TARGET_TRIPLET)
+    set(VCPKG_TARGET_TRIPLET "$ENV{VCPKG_DEFAULT_TRIPLET}" CACHE STRING "")
+endif()
+
+find_package(Git REQUIRED)
+# Get the latest version tag
+execute_process(COMMAND ${GIT_EXECUTABLE} describe --match v* --tags --abbrev=0
+    WORKING_DIRECTORY ${CMAKE_HOME_DIRECTORY}
+    OUTPUT_VARIABLE GIT_TAG_VERSION
+    OUTPUT_STRIP_TRAILING_WHITESPACE
+    TIMEOUT 4 ERROR_QUIET)
+if(NOT GIT_TAG_VERSION MATCHES "^v([0-9]+\\.[0-9]+\\.[0-9]+)(-([^ ]+))*")
+    message(FATAL_ERROR "Unable to determine MMEX version tag from sources!")
+endif()
 
 # ---------------------------------------------------------------------------
 # MMEX uses semantic versioning Ref: http://semver.org
 #
-# PROJECT VERSION - Format: MAJOR.MINOR.PATCH
+# PROJECT VERSION - Format: MAJOR.MINOR.PATCH-UNSTABLE
 # Update the version definition for the PROJECT as follows:
 # 1. MAJOR version when incompatible API changes are made.
 # 2. MINOR version adding functionality in a backwards-compatible manner.
 # 3. PATCH version makeing backwards-compatible bug fixes.
-#
-# Alpha, Beta, RC = -1 (Stable) won't add any suffix
-# Alpha, Beta, RC = 0 (Unstable) will add suffix to version without number
-# Alpha, Beta, RC > 0 (Unstable) will add suffix to version with number
+# 4. UNSTABLE = alpha, alpha.1, beta, beta.4, rc, rc.3
+#    - used as additional version suffix, must be unset for stable version
+
 # ---------------------------------------------------------------------------
 # By setting the application version here, CMake will transfer the variable
 # values to the corresponding variable names in the following files:
 # ./src/versions.h
 # ./resources/mmex.rc
 # ---------------------------------------------------------------------------
-SET(MMEX_VERSION_ALPHA -1)
-SET(MMEX_VERSION_BETA 1)
-SET(MMEX_VERSION_RC -1)
 
-# Adjusting semantic versioning for alpha/beta/rc version
-IF(MMEX_VERSION_ALPHA EQUAL 0)
-    SET(MMEX_VERSION_UNSTABLE alpha)
-ELSEIF(MMEX_VERSION_ALPHA GREATER 0)
-    SET(MMEX_VERSION_UNSTABLE alpha${MMEX_VERSION_ALPHA})
-ELSEIF(MMEX_VERSION_BETA EQUAL 0)
-    SET(MMEX_VERSION_UNSTABLE beta)
-ELSEIF(MMEX_VERSION_BETA GREATER 0)
-    SET(MMEX_VERSION_UNSTABLE beta${MMEX_VERSION_BETA})
-ELSEIF(MMEX_VERSION_RC EQUAL 0)
-    SET(MMEX_VERSION_UNSTABLE rc)
-ELSEIF(MMEX_VERSION_RC GREATER 0)
-    SET(MMEX_VERSION_UNSTABLE rc${MMEX_VERSION_RC})
-ENDIF()
-SET(MMEX_VERSION_WITH_UNSTABLE ${MMEX_VERSION})
-IF(MMEX_VERSION_UNSTABLE)
-    SET(MMEX_VERSION_WITH_UNSTABLE "${MMEX_VERSION}~${MMEX_VERSION_UNSTABLE}")
-ENDIF()
+set(MMEX_VERSION ${CMAKE_MATCH_1})
+set(MMEX_VERSION_UNSTABLE ${CMAKE_MATCH_3})
+set(MMEX_VERSION_FULL ${CMAKE_MATCH_1}${CMAKE_MATCH_2})
+
+project(MMEX VERSION ${MMEX_VERSION})
+option(MMEX_PORTABLE_INSTALL "Include an empty mmexini.db3 file in the Windows installation" ON)
+option(MMEX_ENCRYPTION_OPTIONAL "Build even if encryption is not supported by wxsqlite library" OFF)
+
+# Name of the resulted executable binary
+set(MMEX_EXE mmex)
+
 
 # Find Git commit details to put into versions.h later
-FIND_PACKAGE(Git)
-IF(Git_FOUND)
-    # Get the current working branch
-    EXECUTE_PROCESS(COMMAND ${GIT_EXECUTABLE} symbolic-ref --short -q HEAD
-        WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
-        OUTPUT_VARIABLE GIT_BRANCH
-        OUTPUT_STRIP_TRAILING_WHITESPACE
-        TIMEOUT 4 ERROR_QUIET)
-    # Get the latest abbreviated commit hash of the working branch
-    EXECUTE_PROCESS(COMMAND ${GIT_EXECUTABLE} log -1 --format=%h
-        WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
-        OUTPUT_VARIABLE GIT_COMMIT_HASH
-        OUTPUT_STRIP_TRAILING_WHITESPACE
-        TIMEOUT 4 ERROR_QUIET)
-    # Get the latest commit date of the working branch
-    EXECUTE_PROCESS(COMMAND ${GIT_EXECUTABLE} log -1 --format=%cd --date=short
-        WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
-        OUTPUT_VARIABLE GIT_COMMIT_DATE
-        OUTPUT_STRIP_TRAILING_WHITESPACE
-        TIMEOUT 4 ERROR_QUIET)
-ENDIF()
+# Get the current working branch
+execute_process(COMMAND ${GIT_EXECUTABLE} symbolic-ref --short -q HEAD
+    WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
+    OUTPUT_VARIABLE GIT_BRANCH
+    OUTPUT_STRIP_TRAILING_WHITESPACE
+    TIMEOUT 4 ERROR_QUIET)
+# Get the latest abbreviated commit hash of the working branch
+execute_process(COMMAND ${GIT_EXECUTABLE} log -1 --format=%h
+    WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
+    OUTPUT_VARIABLE GIT_COMMIT_HASH
+    OUTPUT_STRIP_TRAILING_WHITESPACE
+    TIMEOUT 4 ERROR_QUIET)
+# Get the latest commit date of the working branch
+execute_process(COMMAND ${GIT_EXECUTABLE} log -1 --format=%cd --date=short
+    WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
+    OUTPUT_VARIABLE GIT_COMMIT_DATE
+    OUTPUT_STRIP_TRAILING_WHITESPACE
+    TIMEOUT 4 ERROR_QUIET)
 
-IF(CMAKE_SYSTEM_NAME STREQUAL "Linux")
+if(CMAKE_SYSTEM_NAME STREQUAL "Linux")
     # define shortcut
-    SET(LINUX TRUE)
+    set(LINUX TRUE)
 
     # Detect Linux distribution (if possible)
-    FIND_PROGRAM(LSB_RELEASE lsb_release
+    find_program(LSB_RELEASE lsb_release
         DOC "tool to read linux distribution name")
-    IF(LSB_RELEASE)
-        EXECUTE_PROCESS(COMMAND lsb_release -is
+    if(LSB_RELEASE)
+        execute_process(COMMAND lsb_release -is
             OUTPUT_VARIABLE LINUX_DISTRO
             OUTPUT_STRIP_TRAILING_WHITESPACE ERROR_QUIET)
-        EXECUTE_PROCESS(COMMAND lsb_release -cs
+        execute_process(COMMAND lsb_release -cs
             OUTPUT_VARIABLE LINUX_DISTRO_CODENAME
             OUTPUT_STRIP_TRAILING_WHITESPACE ERROR_QUIET)
-        EXECUTE_PROCESS(COMMAND lsb_release -rs
+        execute_process(COMMAND lsb_release -rs
             OUTPUT_VARIABLE LINUX_DISTRO_REL
             OUTPUT_STRIP_TRAILING_WHITESPACE ERROR_QUIET)
-    ELSE()
-        IF(EXISTS /etc/slackware-version)
-            FILE(STRINGS /etc/slackware-version LINUX_DISTRO LIMIT_COUNT 1)
-            IF(LINUX_DISTRO MATCHES "^([^.]+) +([0-9.]+)")
-                SET(LINUX_DISTRO "${CMAKE_MATCH_1}")
-                SET(LINUX_DISTRO_REL ${CMAKE_MATCH_2})
-            ENDIF()
-        ELSE()
-            MESSAGE(SEND_ERROR "lsb_release tool not found.")
-        ENDIF()
-    ENDIF()
-    IF(NOT LINUX_DISTRO OR NOT LINUX_DISTRO_REL)
-        MESSAGE(SEND_ERROR "Could not find a GNU/Linux distribution info")
-    ENDIF()
-    SET(LINUX_DISTRO_STRING "${LINUX_DISTRO} ${LINUX_DISTRO_REL}")
-    IF(LINUX_DISTRO_CODENAME STREQUAL "n/a")
-        UNSET(LINUX_DISTRO_CODENAME)
-    ELSEIF(LINUX_DISTRO_CODENAME)
-        SET(LINUX_DISTRO_STRING "${LINUX_DISTRO_STRING} '${LINUX_DISTRO_CODENAME}'")
-    ENDIF()
-ENDIF()
+    else()
+        if(EXISTS /etc/slackware-version)
+            file(STRINGS /etc/slackware-version LINUX_DISTRO LIMIT_COUNT 1)
+            if(LINUX_DISTRO MATCHES "^([^.]+) +([0-9.]+)")
+                set(LINUX_DISTRO "${CMAKE_MATCH_1}")
+                set(LINUX_DISTRO_REL ${CMAKE_MATCH_2})
+            endif()
+        else()
+            message(SEND_ERROR "lsb_release tool not found.")
+        endif()
+    endif()
+    if(NOT LINUX_DISTRO OR NOT LINUX_DISTRO_REL)
+        message(SEND_ERROR "Could not find a GNU/Linux distribution info")
+    endif()
+    set(LINUX_DISTRO_STRING "${LINUX_DISTRO} ${LINUX_DISTRO_REL}")
+    if(LINUX_DISTRO_CODENAME STREQUAL "n/a")
+        if(LINUX_DISTRO STREQUAL "Debian")
+            execute_process(COMMAND lsb_release -ds
+                OUTPUT_VARIABLE LINUX_DISTRO_CODENAME
+                OUTPUT_STRIP_TRAILING_WHITESPACE ERROR_QUIET)
+            if(LINUX_DISTRO_CODENAME MATCHES " ([a-z]+)/sid$")
+                set(LINUX_DISTRO_CODENAME ${CMAKE_MATCH_1})
+            else()
+                unset(LINUX_DISTRO_CODENAME)
+            endif()
+        else()
+            unset(LINUX_DISTRO_CODENAME)
+        endif()
+    endif()
+    if(LINUX_DISTRO_CODENAME)
+        set(LINUX_DISTRO_STRING "${LINUX_DISTRO_STRING} '${LINUX_DISTRO_CODENAME}'")
+    endif()
+endif()
 
-GET_FILENAME_COMPONENT(CMAKE_MAKE_NAME "${CMAKE_MAKE_PROGRAM}" NAME_WE)
-IF(CMAKE_MAKE_NAME STREQUAL "MSBuild")
-    EXECUTE_PROCESS(COMMAND "${CMAKE_MAKE_PROGRAM}" /nologo /version
+get_filename_component(CMAKE_MAKE_NAME "${CMAKE_MAKE_PROGRAM}" NAME_WE)
+if(CMAKE_MAKE_NAME STREQUAL "MSBuild")
+    execute_process(COMMAND "${CMAKE_MAKE_PROGRAM}" /nologo /version
         OUTPUT_VARIABLE CMAKE_MAKE_VERSION
         OUTPUT_STRIP_TRAILING_WHITESPACE ERROR_QUIET)
-    SET(CMAKE_MAKE_VERSION "MSBuild ${CMAKE_MAKE_VERSION}")
-ELSEIF(CMAKE_MAKE_NAME STREQUAL "ninja")
-    EXECUTE_PROCESS(COMMAND "${CMAKE_MAKE_PROGRAM}" --version
+    set(CMAKE_MAKE_VERSION "MSBuild ${CMAKE_MAKE_VERSION}")
+elseif(CMAKE_MAKE_NAME STREQUAL "ninja")
+    execute_process(COMMAND "${CMAKE_MAKE_PROGRAM}" --version
         OUTPUT_VARIABLE CMAKE_MAKE_VERSION
         OUTPUT_STRIP_TRAILING_WHITESPACE ERROR_QUIET)
-    SET(CMAKE_MAKE_VERSION "Ninja ${CMAKE_MAKE_VERSION}")
-ELSE()
-    EXECUTE_PROCESS(COMMAND "${CMAKE_MAKE_PROGRAM}" --version
+    set(CMAKE_MAKE_VERSION "Ninja ${CMAKE_MAKE_VERSION}")
+elseif(CMAKE_MAKE_NAME STREQUAL "xcodebuild")
+    execute_process(COMMAND "${CMAKE_MAKE_PROGRAM}" -version
         OUTPUT_VARIABLE CMAKE_MAKE_VERSION
         OUTPUT_STRIP_TRAILING_WHITESPACE ERROR_QUIET)
-    STRING(REGEX REPLACE "\n.*" "" CMAKE_MAKE_VERSION "${CMAKE_MAKE_VERSION}")
-ENDIF()
-IF(DEFINED ENV{VisualStudioVersion})
-    SET(VS_VERSION $ENV{VisualStudioVersion})
-ENDIF()
+    string(REGEX REPLACE "\n.*" "" CMAKE_MAKE_VERSION "${CMAKE_MAKE_VERSION}")
+else()
+    execute_process(COMMAND "${CMAKE_MAKE_PROGRAM}" --version
+        OUTPUT_VARIABLE CMAKE_MAKE_VERSION
+        OUTPUT_STRIP_TRAILING_WHITESPACE ERROR_QUIET)
+    string(REGEX REPLACE "\n.*" "" CMAKE_MAKE_VERSION "${CMAKE_MAKE_VERSION}")
+endif()
+if(DEFINED ENV{VisualStudioVersion})
+    set(VS_VERSION $ENV{VisualStudioVersion})
+endif()
 
 
 # --------- Set compiler parameters ---------
-IF(MSVC)
+if(MSVC)
     # using Visual Studio C++
-    ADD_DEFINITIONS(-D_CRT_SECURE_NO_WARNINGS)
-ELSEIF(CMAKE_CXX_COMPILER_ID MATCHES "Clang")
-    # using regular Clang or AppleClang
-    IF(LINUX_DISTRO STREQUAL "Ubuntu")
-        # Due to bug in Ubuntu
-        # http://stackoverflow.com/questions/37096062/get-a-basic-c-program-to-compile-using-clang-on-ubuntu-16
-        SET(CMAKE_CXX_FLAGS "-stdlib=libstdc++ ${CMAKE_CXX_FLAGS}")
-    ELSEIF(APPLE)
-        SET(CMAKE_CXX_FLAGS "-stdlib=libc++ ${CMAKE_CXX_FLAGS}")
-    ENDIF()
-ENDIF()
+    add_definitions(-D_CRT_SECURE_NO_WARNINGS)
+elseif(CMAKE_CXX_COMPILER_ID STREQUAL AppleClang)
+    # force libc++, not libstdc++ for Xcode 10
+    # https://developer.apple.com/documentation/xcode_release_notes/xcode_10_release_notes#3035631
+    set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -stdlib=libc++ -lc++abi")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -stdlib=libc++")
+endif()
+
 
 # try to use clcache/ccache to speed up builds
-IF(NOT CCACHE_PROGRAM)
-    IF(MSVC)
-        FIND_PROGRAM(CCACHE_PROGRAM clcache)
-        SET(_PARAM --help)
-    ELSE()
-        FIND_PROGRAM(CCACHE_PROGRAM ccache)
-        SET(_PARAM --version)
-    ENDIF()
-    IF(CCACHE_PROGRAM)
-        EXECUTE_PROCESS(COMMAND "${CCACHE_PROGRAM}" ${_PARAM}
+if(NOT CCACHE_PROGRAM)
+    if(MSVC)
+        find_program(CCACHE_PROGRAM clcache)
+        set(_PARAM --help)
+    else()
+        find_program(CCACHE_PROGRAM ccache)
+        set(_PARAM --version)
+    endif()
+    if(CCACHE_PROGRAM)
+        execute_process(COMMAND "${CCACHE_PROGRAM}" ${_PARAM}
             OUTPUT_VARIABLE CCACHE_VERSION
             OUTPUT_STRIP_TRAILING_WHITESPACE ERROR_QUIET)
-        STRING(REGEX REPLACE "\n.*" "" CCACHE_VERSION "${CCACHE_VERSION}")
-        STRING(REGEX REPLACE ".* " "" CCACHE_VERSION "${CCACHE_VERSION}")
-        STRING(REGEX REPLACE "^v" "" CCACHE_VERSION "${CCACHE_VERSION}")
-        IF(CCACHE_VERSION)
-            MESSAGE(STATUS "Found compile cache tool: ${CCACHE_PROGRAM} (found version \"${CCACHE_VERSION}\")")
-        ELSE()
-            MESSAGE(STATUS "Found compile cache tool: ${CCACHE_PROGRAM}")
-        ENDIF()
-    ELSE()
-        MESSAGE(STATUS "Could NOT find compile cache tool (ccache or clcache)")
-    ENDIF()
-    UNSET(_PARAM)
-ENDIF()
-IF(CCACHE_PROGRAM)
-    IF(MSVC)
-        FUNCTION(any_target_hook)
-            SET(NON_COMPILE_TARGETS INTERFACE IMPORTED UNKNOWN ALIAS) 
-            LIST(FIND NON_COMPILE_TARGETS "${ARGV1}" found)
-            IF(${found} GREATER -1)
-                RETURN()
-            ENDIF()
-                
-            SET_TARGET_PROPERTIES(${ARGV0} PROPERTIES VS_GLOBAL_CLToolExe       clcache.exe)
-            SET_TARGET_PROPERTIES(${ARGV0} PROPERTIES VS_GLOBAL_CLToolPath      "${CLCACHE_DIR}")
-            SET_TARGET_PROPERTIES(${ARGV0} PROPERTIES VS_GLOBAL_TrackFileAccess false)
-        ENDFUNCTION()
+        string(REGEX REPLACE "\n.*" "" CCACHE_VERSION "${CCACHE_VERSION}")
+        string(REGEX REPLACE ".* " "" CCACHE_VERSION "${CCACHE_VERSION}")
+        string(REGEX REPLACE "^v" "" CCACHE_VERSION "${CCACHE_VERSION}")
+        if(CCACHE_VERSION)
+            message(STATUS "Found compile cache tool: ${CCACHE_PROGRAM} (found version \"${CCACHE_VERSION}\")")
+        else()
+            message(STATUS "Found compile cache tool: ${CCACHE_PROGRAM}")
+        endif()
+    else()
+        message(STATUS "Could NOT find compile cache tool (ccache or clcache)")
+    endif()
+    unset(_PARAM)
+endif()
+if(CCACHE_PROGRAM)
+    if(MSVC)
+        get_filename_component(CCACHE_EXEC "${CCACHE_PROGRAM}" NAME CACHE)
+        get_filename_component(CCACHE_PATH "${CCACHE_PROGRAM}" DIRECTORY CACHE)
+        file(TO_NATIVE_PATH "${CCACHE_PATH}" CCACHE_PATH)
+        if(NOT CMAKE_VERSION VERSION_LESS 3.13)
+            list(APPEND CMAKE_VS_GLOBALS
+                "CLToolExe=${CCACHE_EXEC}"
+                "CLToolPath=${CCACHE_PATH}"
+                "TrackFileAccess=false")
+        elseif(NOT DEFINED ENV{VCPKG_ROOT})
+            function(any_target_hook)
+                set(NON_COMPILE_TARGETS INTERFACE IMPORTED UNKNOWN ALIAS)
+                list(FIND NON_COMPILE_TARGETS "${ARGV1}" found)
+                if(${found} GREATER -1)
+                    return()
+                endif()
 
-        FUNCTION(add_library)
-            _add_library(${ARGN})
-            any_target_hook(${ARGN})
-        ENDFUNCTION()
+                set_target_properties(${ARGV0} PROPERTIES VS_GLOBAL_CLToolExe       "${CCACHE_EXEC}")
+                set_target_properties(${ARGV0} PROPERTIES VS_GLOBAL_CLToolPath      "${CCACHE_PATH}")
+                set_target_properties(${ARGV0} PROPERTIES VS_GLOBAL_TrackFileAccess false)
+            endfunction()
 
-        FUNCTION(add_executable)
-            _add_executable(${ARGN})
-            any_target_hook(${ARGN})
-        ENDFUNCTION()
-    ELSE()
-        IF(NOT CMAKE_VERSION VERSION_LESS 3.4)
-            SET(CMAKE_C_COMPILER_LAUNCHER "${CCACHE_PROGRAM}")
-            SET(CMAKE_CXX_COMPILER_LAUNCHER "${CCACHE_PROGRAM}")
-        ELSE()
-            SET_PROPERTY(GLOBAL PROPERTY RULE_LAUNCH_COMPILE "${CCACHE_PROGRAM}")
-            SET_PROPERTY(GLOBAL PROPERTY RULE_LAUNCH_LINK "${CCACHE_PROGRAM}")
-        ENDIF()
-    ENDIF()
-ENDIF()
+            function(add_library)
+                _add_library(${ARGN})
+                any_target_hook(${ARGN})
+            endfunction()
 
+            function(add_executable)
+                _add_executable(${ARGN})
+                any_target_hook(${ARGN})
+            endfunction()
+        endif()
+    else()
+        if(NOT CMAKE_VERSION VERSION_LESS 3.4)
+            set(CMAKE_C_COMPILER_LAUNCHER "${CCACHE_PROGRAM}")
+            set(CMAKE_CXX_COMPILER_LAUNCHER "${CCACHE_PROGRAM}")
+        else()
+            set_property(GLOBAL PROPERTY RULE_LAUNCH_COMPILE "${CCACHE_PROGRAM}")
+            set_property(GLOBAL PROPERTY RULE_LAUNCH_LINK "${CCACHE_PROGRAM}")
+        endif()
+    endif()
+endif()
 
 # --------- cmake --grapgviz settings ---------
-FILE(WRITE "${CMAKE_BINARY_DIR}/CMakeGraphVizOptions.cmake" "
-    SET(GRAPHVIZ_GRAPH_NAME \"MMEX build dependency graph\")
-    SET(GRAPHVIZ_GENERATE_PER_TARGET FALSE)
-    SET(GRAPHVIZ_GENERATE_DEPENDERS FALSE)
+file(WRITE "${CMAKE_BINARY_DIR}/CMakeGraphVizOptions.cmake" "
+    set(GRAPHVIZ_GRAPH_NAME \"MMEX build dependency graph\")
+    set(GRAPHVIZ_GENERATE_PER_TARGET FALSE)
+    set(GRAPHVIZ_GENERATE_DEPENDERS FALSE)
 ")
 
 # --------- Set various location ---------
-IF(APPLE)
+if(APPLE)
     # Preparing for configure icons
-    SET(MACOSX_APP_ICON_NAME mmex.icns)
+    set(MACOSX_APP_ICON_NAME mmex.icns)
     # Setting path to icon
-    SET(MACOSX_APP_ICON_FILE "${PROJECT_SOURCE_DIR}/resources/${MACOSX_APP_ICON_NAME}")
-    # Real setting of icons
-    SET(MACOSX_BUNDLE_ICON_FILE "${MACOSX_APP_ICON_NAME}")
-    SET(MMEX_DOC_DIR ${MMEX_EXE}.app/Contents/SharedSupport/doc)
-    SET(MMEX_RES_DIR ${MMEX_EXE}.app/Contents/Resources)
-ELSEIF(WIN32)
-    SET(MMEX_DOC_DIR .)
-    SET(MMEX_RES_DIR res)
-ELSE()
-    SET(MMEX_DOC_DIR share/doc/mmex)
-    SET(MMEX_RES_DIR share/mmex/res)
-ENDIF()
+    set(MACOSX_APP_ICON_FILE "${PROJECT_SOURCE_DIR}/resources/${MACOSX_APP_ICON_NAME}")
+    set(MMEX_DOC_DIR ${MMEX_EXE}.app/Contents/SharedSupport/doc)
+    set(MMEX_RES_DIR ${MMEX_EXE}.app/Contents/Resources)
+elseif(WIN32)
+    set(MMEX_DOC_DIR .)
+    set(MMEX_RES_DIR res)
+else()
+    set(MMEX_DOC_DIR share/doc/mmex)
+    set(MMEX_RES_DIR share/mmex/res)
+endif()
 
 
 # --------- wxWidgets dependency ---------
@@ -264,95 +290,164 @@ target_compile_definitions(wxWidgets INTERFACE ${wxWidgets_DEFINITIONS}
     $<$<CONFIG:Debug>:${wxWidgets_DEFINITIONS_DEBUG}>)
 
 # --------- curl dependency ---------
-FIND_PACKAGE(CURL QUIET COMPONENTS libcurl CONFIG)
-IF(CURL_FOUND)
-    MESSAGE(STATUS "Found CURL: ${CURL_LIBRARIES} (found version \"${CURL_VERSION}\")")
-    SET(CURL_VERSION_STRING ${CURL_VERSION})
-ELSE()
-    FIND_PACKAGE(CURL REQUIRED COMPONENTS libcurl MODULE)
-    ADD_LIBRARY(CURL INTERFACE)
-    TARGET_INCLUDE_DIRECTORIES(CURL INTERFACE ${CURL_INCLUDE_DIRS})
-    TARGET_LINK_LIBRARIES(CURL INTERFACE ${CURL_LIBRARIES})
-    ADD_LIBRARY(CURL::libcurl ALIAS CURL)
-ENDIF()
-IF(WIN32 AND CURL_LIBRARIES MATCHES "${CMAKE_STATIC_LIBRARY_SUFFIX}$")
-    SET_TARGET_PROPERTIES(CURL::libcurl PROPERTIES INTERFACE_COMPILE_DEFINITIONS CURL_STATICLIB)
-ENDIF()
-
+# curl version >=7.57 can have config files
+find_package(CURL QUIET COMPONENTS libcurl CONFIG)
+if(NOT CURL_FOUND AND NOT CURL_VERSION VERSION_LESS 7.62)
+    # curl 7.62 removed support for COMPONENTS
+    find_package(CURL QUIET CONFIG)
+endif()
+if(CURL_FOUND)
+    message(STATUS "Found CURL: ${CURL_LIBRARIES} (found version \"${CURL_VERSION}\")")
+    get_target_property(LIBCURL_TYPE CURL::libcurl TYPE)
+    # CURL_STATICLIB is missing for curl versions <7.61.1
+    if(CURL_VERSION VERSION_LESS 7.61.1 AND LIBCURL_TYPE STREQUAL STATIC_LIBRARY)
+        set_target_properties(CURL::libcurl PROPERTIES
+            INTERFACE_COMPILE_DEFINITIONS CURL_STATICLIB)
+    endif()
+else()
+    set(CMAKE_FIND_LIBRARY_PREFIXES ${CMAKE_FIND_LIBRARY_PREFIXES} lib)
+    set(CMAKE_FIND_LIBRARY_SUFFIXES ${CMAKE_FIND_LIBRARY_SUFFIXES} _imp.lib -d.lib -d_imp.lib)
+    find_package(PkgConfig)
+    if(PkgConfig_FOUND)
+        set(PKG_CONFIG_USE_CMAKE_PREFIX_PATH ON)
+        PKG_SEARCH_MODULE(CURL libcurl)
+        if(CURL_FOUND)
+            # CMake <3.12 workaround
+            if(NOT CURL_LINK_LIBRARIES)
+                find_library(CURL_LINK_LIBRARIES NAMES ${CURL_LIBRARIES}
+                    HINTS "${CURL_LIBDIR}" NO_DEFAULT_PATH)
+                if(NOT CURL_LINK_LIBRARIES)
+                    message(WARNING "CURL library file cannot be found!")
+                endif()
+            endif()
+            if(NOT CURL_LINK_LIBRARIES MATCHES "_imp.lib$|${CMAKE_SHARED_LIBRARY_SUFFIX}$")
+                list(REMOVE_ITEM CURL_STATIC_LIBRARIES ${CURL_LIBRARIES})
+                add_library(CURL::libcurl STATIC IMPORTED)
+                set_target_properties(CURL::libcurl PROPERTIES
+                    INTERFACE_INCLUDE_DIRECTORIES "${CURL_STATIC_INCLUDE_DIRS}"
+                    INTERFACE_SYSTEM_INCLUDE_DIRECTORIES "${CURL_STATIC_INCLUDE_DIRS}"
+                    INTERFACE_COMPILE_DEFINITIONS CURL_STATICLIB
+                    INTERFACE_LINK_LIBRARIES "${CURL_STATIC_LIBRARIES}"
+                    IMPORTED_LINK_INTERFACE_LANGUAGES C
+                    IMPORTED_LOCATION "${CURL_LINK_LIBRARIES}")
+                link_directories(CURL_STATIC_LIBRARY_DIRS)
+            else()
+                add_library(CURL::libcurl SHARED IMPORTED)
+                set_target_properties(CURL::libcurl PROPERTIES
+                    INTERFACE_INCLUDE_DIRECTORIES "${CURL_INCLUDE_DIRS}"
+                    INTERFACE_SYSTEM_INCLUDE_DIRECTORIES "${CURL_INCLUDE_DIRS}")
+                if(WIN32)
+                    set_target_properties(CURL::libcurl PROPERTIES
+                        IMPORTED_IMPLIB "${CURL_LINK_LIBRARIES}")
+                else()
+                    set_target_properties(CURL::libcurl PROPERTIES
+                        IMPORTED_LOCATION "${CURL_LINK_LIBRARIES}")
+                endif()
+            endif()
+            message(STATUS "Found CURL: ${CURL_LINK_LIBRARIES} (found version \"${CURL_VERSION}\")")
+        endif()
+    endif()
+    if(NOT CURL_FOUND)
+        find_package(CURL REQUIRED COMPONENTS libcurl MODULE)
+        if(NOT CURL_LIBRARIES MATCHES "_imp.lib$|${CMAKE_SHARED_LIBRARY_SUFFIX}$")
+            add_library(CURL::libcurl STATIC IMPORTED)
+            set_target_properties(CURL::libcurl PROPERTIES
+                INTERFACE_COMPILE_DEFINITIONS CURL_STATICLIB
+                IMPORTED_LINK_INTERFACE_LANGUAGES C
+                IMPORTED_LOCATION "${CURL_LIBRARIES}")
+        else()
+            add_library(CURL::libcurl SHARED IMPORTED)
+            if(WIN32)
+                set_target_properties(CURL::libcurl PROPERTIES
+                    IMPORTED_IMPLIB "${CURL_LIBRARIES}")
+            else()
+                set_target_properties(CURL::libcurl PROPERTIES
+                    IMPORTED_LOCATION "${CURL_LIBRARIES}")
+            endif()
+        endif()
+        set_target_properties(CURL::libcurl PROPERTIES
+            INTERFACE_INCLUDE_DIRECTORIES "${CURL_INCLUDE_DIRS}"
+            INTERFACE_SYSTEM_INCLUDE_DIRECTORIES "${CURL_INCLUDE_DIRS}")
+        set(CURL_VERSION ${CURL_VERSION_STRING})
+    endif()
+endif()
 
 # --------- Collect sources and targets ---------
-SET(MMEX_BIN_DIR bin)
+set(MMEX_BIN_DIR bin)
 
 ## Tuning for VisualStudio IDE ##
-IF(MSVC)
-    MESSAGE(STATUS "Tuning for Visual Studio IDE")
+if(MSVC)
+    message(STATUS "Tuning for Visual Studio IDE")
 
-    IF(CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
-        SET(CMAKE_INSTALL_PREFIX "${PROJECT_BINARY_DIR}/install"
+    if(CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
+        set(CMAKE_INSTALL_PREFIX "${PROJECT_BINARY_DIR}/install"
             CACHE PATH "Install directory used by INSTALL target" FORCE)
-    ENDIF()
-    SET(CMAKE_RUNTIME_OUTPUT_DIRECTORY $<1:${CMAKE_INSTALL_PREFIX}/${MMEX_BIN_DIR}>)
-    IF(NOT CMAKE_VERSION VERSION_LESS 3.3)
-        SET(CMAKE_VS_INCLUDE_INSTALL_TO_DEFAULT_BUILD ON)
-    ENDIF()
-ENDIF()
+    endif()
+    set(CMAKE_RUNTIME_OUTPUT_DIRECTORY $<1:${CMAKE_INSTALL_PREFIX}/${MMEX_BIN_DIR}>)
+    if(NOT CMAKE_VERSION VERSION_LESS 3.3)
+        set(CMAKE_VS_INCLUDE_INSTALL_TO_DEFAULT_BUILD ON)
+    endif()
+endif()
 
 
 ## Subdirectories with targets ##
-ADD_SUBDIRECTORY(3rd)
-ADD_SUBDIRECTORY(po)
-ADD_SUBDIRECTORY(src)
+add_subdirectory(3rd)
+add_subdirectory(po)
+add_subdirectory(src)
 
 ## Tuning for VisualStudio IDE ##
-IF(NOT CMAKE_VERSION VERSION_LESS 3.6)
+if(NOT CMAKE_VERSION VERSION_LESS 3.6)
     set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT ${MMEX_EXE})
-ENDIF()
+endif()
 
 # --------- Install ---------
 # Before moving to INSTALL commands for macOS bundle this needs to be set
-IF(APPLE)
+if(APPLE)
+    string(REGEX REPLACE "^(.).*\\.([0-9]+)$" "\\1\\2" MMEX_VERSION_UNSTABLE_SHORT ${MMEX_VERSION_UNSTABLE})
+
     # Configure variables that are substituted into the plist
     # https://cmake.org/cmake/help/latest/prop_tgt/MACOSX_BUNDLE_INFO_PLIST.html
+    # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Introduction/Introduction.html
 
-    SET_TARGET_PROPERTIES(${MMEX_EXE} PROPERTIES
-        # Set CFBundleName, which controls the application menu label
-        MACOSX_BUNDLE_BUNDLE_NAME ${MMEX_EXE}
-        # Set CFBundleVersion to the git describe output. Apple docs say it should be "three non-negative, period-separated integers with the first integer being greater than zero"
-        MACOSX_BUNDLE_BUNDLE_VERSION ${MMEX_VERSION}
-        # Set CFBundleExecutable
-        #MACOSX_BUNDLE_EXECUTABLE_NAME "${OUTPUT_NAME}"
-        # Set CFBundleShortVersionString to "2.0.0". This is displayed in the Finder and Spotlight.
+    set_target_properties(${MMEX_EXE} PROPERTIES
+        MACOSX_BUNDLE_BUNDLE_NAME ${PROJECT_NAME}
+        MACOSX_BUNDLE_EXECUTABLE_NAME ${MMEX_EXE}
+        MACOSX_BUNDLE_GUI_IDENTIFIER org.moneymanagerex.${MMEX_EXE}
+        MACOSX_BUNDLE_BUNDLE_VERSION ${MMEX_VERSION}${MMEX_VERSION_UNSTABLE_SHORT}
         MACOSX_BUNDLE_SHORT_VERSION_STRING ${MMEX_VERSION}
+        MACOSX_BUNDLE_LONG_VERSION_STRING ${MMEX_VERSION_FULL}
+        MACOSX_BUNDLE_COPYRIGHT "Copyright В© 2009-2017 Nikolay\nCopyright В© 2011-2017 LiSheng\nCopyright В© 2013-2017 James, Gabriele\nCopyright В© 2010-2017 Stefano\nCopyright В© 2009-2010 VaDiM, Wesley Ellis"
+        MACOSX_BUNDLE_ICON_FILE ${MACOSX_APP_ICON_NAME}
         # Set the path to the plist template
-        MACOSX_BUNDLE_INFO_PLIST "${PROJECT_SOURCE_DIR}/resources/Info.plist")
-ENDIF()
+        MACOSX_BUNDLE_INFO_PLIST "${PROJECT_SOURCE_DIR}/resources/MacOSXBundleInfo.plist.in")
+endif()
 
-IF(WIN32)
-    IF(MMEX_PORTABLE_INSTALL)
+if(WIN32)
+    if(MMEX_PORTABLE_INSTALL)
         # Besides normal installable version, for windows the portable
         # version needs additionall files
-        FILE(WRITE "${CMAKE_CURRENT_BINARY_DIR}/mmexini.db3" "")
-        INSTALL(FILES
+        file(WRITE "${CMAKE_CURRENT_BINARY_DIR}/mmexini.db3" "")
+        install(FILES
             "${CMAKE_CURRENT_BINARY_DIR}/mmexini.db3"
             DESTINATION "${MMEX_DOC_DIR}")
-    ENDIF()
+    endif()
 
     # add shared wxWidgets DLLs
-    GET_FILENAME_COMPONENT(WXDLLSUFF "${wxWidgets_LIB_DIR}" NAME)
-    IF(WXDLLSUFF MATCHES "_dll$")
-        STRING(REPLACE _dll .dll WXDLLSUFF ${WXDLLSUFF})
-        SET(WXDLLPREF ${wxWidgets_VERSION_MAJOR}${wxWidgets_VERSION_MINOR})
+    get_filename_component(WXDLLSUFF "${wxWidgets_LIB_DIR}" NAME)
+    if(WXDLLSUFF MATCHES "_dll$")
+        string(REPLACE _dll .dll WXDLLSUFF ${WXDLLSUFF})
+        set(WXDLLPREF ${wxWidgets_VERSION_MAJOR}${wxWidgets_VERSION_MINOR})
         # DLL filenames are different for different versions
         # see https://github.com/wxWidgets/wxWidgets/blob/master/build/tools/msvs/package.bat#L42
-        IF(wxWidgets_VERSION_MINOR MATCHES "^[13579]$")
-            SET(WXDLLPREF ${WXDLLPREF}${wxWidgets_VERSION_PATCH})
-        ENDIF()
-        SET(WXDLLPREF ${WXDLLPREF}u)
-        
-        IF(NOT CMAKE_INSTALL_DEBUG_LIBRARIES_ONLY)
-            LIST(APPEND MMEX_WXDLLS
+        if(wxWidgets_VERSION_MINOR MATCHES "^[13579]$")
+            set(WXDLLPREF ${WXDLLPREF}${wxWidgets_VERSION_PATCH})
+        endif()
+        set(WXDLLPREF ${WXDLLPREF}u)
+
+        if(NOT CMAKE_INSTALL_DEBUG_LIBRARIES_ONLY)
+            list(APPEND MMEX_WXDLLS
                 wxbase${WXDLLPREF}
-                wxbase${WXDLLPREF}_net
+				wxbase${WXDLLPREF}_net
                 wxbase${WXDLLPREF}_xml
                 wxmsw${WXDLLPREF}_adv
                 wxmsw${WXDLLPREF}_aui
@@ -361,12 +456,12 @@ IF(WIN32)
                 wxmsw${WXDLLPREF}_qa
                 wxmsw${WXDLLPREF}_stc
                 wxmsw${WXDLLPREF}_webview)
-        ENDIF()
-        IF(CMAKE_INSTALL_DEBUG_LIBRARIES)
-            SET(WXDLLPREF ${WXDLLPREF}d)
-            LIST(APPEND MMEX_WXDLLS
+        endif()
+        if(CMAKE_INSTALL_DEBUG_LIBRARIES)
+            set(WXDLLPREF ${WXDLLPREF}d)
+            list(APPEND MMEX_WXDLLS
                 wxbase${WXDLLPREF}
-                wxbase${WXDLLPREF}_net
+				wxbase${WXDLLPREF}_net
                 wxbase${WXDLLPREF}_xml
                 wxmsw${WXDLLPREF}_adv
                 wxmsw${WXDLLPREF}_aui
@@ -375,57 +470,57 @@ IF(WIN32)
                 wxmsw${WXDLLPREF}_qa
                 wxmsw${WXDLLPREF}_stc
                 wxmsw${WXDLLPREF}_webview)
-        ENDIF()
-        UNSET(WXDLLPREF)
+        endif()
+        unset(WXDLLPREF)
 
         # check custom build name vs original one
-        FOREACH(m_dll ${MMEX_WXDLLS})
-            SET(m_dll "${wxWidgets_LIB_DIR}/${m_dll}")
-            IF(EXISTS "${m_dll}_vc_mmex.dll")
-                LIST(APPEND CMAKE_INSTALL_SYSTEM_RUNTIME_LIBS "${m_dll}_vc_mmex.dll")
-            ELSEIF(EXISTS "${m_dll}_vc_custom.dll")
-                LIST(APPEND CMAKE_INSTALL_SYSTEM_RUNTIME_LIBS "${m_dll}_vc_custom.dll")
-            ELSEIF(EXISTS "${m_dll}_${WXDLLSUFF}")
-                LIST(APPEND CMAKE_INSTALL_SYSTEM_RUNTIME_LIBS "${m_dll}_${WXDLLSUFF}")
-            ELSE()
-                MESSAGE(STATUS "${m_dll}_${WXDLLSUFF} not found")
-            ENDIF()
-        ENDFOREACH()
-        UNSET(m_dll)
-        UNSET(MMEX_WXDLLS)
-        UNSET(WXDLLSUFF)
-    ENDIF()
+        foreach(m_dll ${MMEX_WXDLLS})
+            set(m_dll "${wxWidgets_LIB_DIR}/${m_dll}")
+            foreach(m_ext vc_mmex.dll vc_custom.dll vc_x64_custom.dll "${WXDLLSUFF}" NOTFOUND)
+                if(EXISTS "${m_dll}_${m_ext}")
+                    list(APPEND CMAKE_INSTALL_SYSTEM_RUNTIME_LIBS "${m_dll}_${m_ext}")
+                    break()
+                elseif(NOT m_ext)
+                    message(SEND_ERROR "${m_dll}_${WXDLLSUFF} not found")
+                endif()
+            endforeach()
+        endforeach()
+        unset(m_dll)
+        unset(m_ext)
+        unset(MMEX_WXDLLS)
+        unset(WXDLLSUFF)
+    endif()
 
     # This may be required to run on old Windows version
-    SET(CMAKE_INSTALL_UCRT_LIBRARIES ON)
+    set(CMAKE_INSTALL_UCRT_LIBRARIES ON)
 
     # Following can be used for Debug builds, but
     # cannot be redistributed according to
     # https://www.visualstudio.com/productinfo/2017-redistribution-vs#visual-c-runtime-files
     # https://www.visualstudio.com/license-terms/distributable-code-microsoft-visual-studio-2015-rc-microsoft-visual-studio-2015-sdk-rc-includes-utilities-buildserver-files/#visual-c-runtime
     # https://docs.microsoft.com/cpp/ide/determining-which-dlls-to-redistribute
-    # SET(CMAKE_INSTALL_DEBUG_LIBRARIES ON)
-    # SET(CMAKE_INSTALL_DEBUG_LIBRARIES_ONLY ON)
+    # set(CMAKE_INSTALL_DEBUG_LIBRARIES ON)
+    # set(CMAKE_INSTALL_DEBUG_LIBRARIES_ONLY ON)
 
-    INCLUDE(InstallRequiredSystemLibraries)
-ENDIF()
+    include(InstallRequiredSystemLibraries)
+endif()
 
 # Help Files
-INSTALL(FILES
+install(FILES
     contrib.txt
     license.txt
     version.txt
     README.TXT
     DESTINATION "${MMEX_DOC_DIR}")
-INSTALL(DIRECTORY
+install(DIRECTORY
     docs/
     DESTINATION "${MMEX_DOC_DIR}/help")
-INSTALL(FILES
+install(FILES
     resources/master.css
     DESTINATION "${MMEX_DOC_DIR}/help")
 
 # Resources
-INSTALL(FILES
+install(FILES
     3rd/ChartNew.js/ChartNew.js
     3rd/ChartNew.js/Add-ins/format.js
     3rd/sorttable.js/sorttable.js
@@ -434,224 +529,225 @@ INSTALL(FILES
     resources/master.css
     DESTINATION "${MMEX_RES_DIR}")
 
-IF(LINUX)
+if(LINUX)
     # .desktop File
-    INSTALL(FILES
+    install(FILES
         resources/mmex.desktop
         DESTINATION share/applications)
-ENDIF()
+endif()
 
 # Icons
-IF(LINUX)
-    INSTALL(FILES
+if(LINUX)
+    install(FILES
         resources/mmex.svg
         DESTINATION share/icons/hicolor/scalable/apps)
-ELSEIF(APPLE)
-    INSTALL(FILES
+elseif(APPLE)
+    install(FILES
         "${MACOSX_APP_ICON_FILE}"
         DESTINATION "${MMEX_RES_DIR}")
-ELSEIF(WIN32)
-    INSTALL(FILES
+elseif(WIN32)
+    install(FILES
         resources/mmex.ico
         DESTINATION "${MMEX_RES_DIR}")
-ENDIF()
+endif()
 
 
 # --------- CPack ---------
-SET(CPACK_PACKAGE_NAME ${MMEX_EXE})
-SET(CPACK_PACKAGE_VERSION ${MMEX_VERSION_WITH_UNSTABLE})
-SET(CPACK_PACKAGE_VERSION_MAJOR ${MMEX_VERSION_MAJOR})
-SET(CPACK_PACKAGE_VERSION_MINOR ${MMEX_VERSION_MINOR})
-SET(CPACK_PACKAGE_VERSION_PATCH ${MMEX_VERSION_PATCH})
-SET(CPACK_PACKAGE_CONTACT "MoneyManagerEx Developers <developers@moneymanagerex.org>")
-SET(CPACK_PACKAGE_DESCRIPTION_SUMMARY "Simple to use financial management software")
-SET(CPACK_PACKAGE_DESCRIPTION "Money Manager Ex (MMEX) is a free, open-source, cross-platform, easy-to-use personal finance software. It primarily helps organize one's finances and keeps track of where, when and how the money goes. MMEX includes all the basic features that 90% of users would want to see in a personal finance application. The design goals are to concentrate on simplicity and user friendliness - something one can use everyday.")
-SET(CPACK_PACKAGE_ICON "${PROJECT_SOURCE_DIR}/resources/mmex.ico")
-SET(CPACK_RESOURCE_FILE_LICENSE "${PROJECT_SOURCE_DIR}/license.txt")
-SET(CPACK_RESOURCE_FILE_README "${PROJECT_SOURCE_DIR}/README.TXT")
+set(CPACK_PACKAGE_NAME ${MMEX_EXE})
+set(CPACK_PACKAGE_VERSION ${MMEX_VERSION_FULL})
+set(CPACK_PACKAGE_VERSION_MAJOR ${MMEX_VERSION_MAJOR})
+set(CPACK_PACKAGE_VERSION_MINOR ${MMEX_VERSION_MINOR})
+set(CPACK_PACKAGE_VERSION_PATCH ${MMEX_VERSION_PATCH})
+set(CPACK_PACKAGE_CONTACT "MoneyManagerEx Developers <developers@moneymanagerex.org>")
+set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "Simple to use financial management software")
+set(CPACK_PACKAGE_DESCRIPTION "Money Manager Ex (MMEX) is a free, open-source, cross-platform, easy-to-use personal finance software. It primarily helps organize one's finances and keeps track of where, when and how the money goes. MMEX includes all the basic features that 90% of users would want to see in a personal finance application. The design goals are to concentrate on simplicity and user friendliness - something one can use everyday.")
+set(CPACK_PACKAGE_ICON "${PROJECT_SOURCE_DIR}/resources/mmex.ico")
+set(CPACK_RESOURCE_FILE_LICENSE "${PROJECT_SOURCE_DIR}/license.txt")
+set(CPACK_RESOURCE_FILE_README "${PROJECT_SOURCE_DIR}/README.TXT")
 # TODO: do we package Debug builds with stripped binaries?
-SET(CPACK_STRIP_FILES ON)
-SET(CPACK_DEBIAN_PACKAGE_SECTION misc)
-SET(CPACK_DEBIAN_PACKAGE_PRIORITY extra)
-SET(CPACK_DEBIAN_PACKAGE_HOMEPAGE http://www.moneymanagerex.org/)
-SET(CPACK_DEBIAN_PACKAGE_REPLACES moneymanagerex)
-SET(CPACK_DEBIAN_PACKAGE_SHLIBDEPS ON)
-SET(CPACK_DEBIAN_PACKAGE_DEPENDS wx${wxWidgets_VERSION_MAJOR}.${wxWidgets_VERSION_MINOR}-i18n:all)
-SET(CPACK_DEBIAN_FILE_NAME DEB-DEFAULT)
-SET(CPACK_RPM_FILE_NAME RPM-DEFAULT)
-SET(CPACK_RPM_PACKAGE_LICENSE GPL-2+)
-SET(CPACK_RPM_PACKAGE_URL ${CPACK_DEBIAN_PACKAGE_HOMEPAGE})
-SET(CPACK_RPM_PACKAGE_OBSOLETES ${CPACK_DEBIAN_PACKAGE_REPLACES})
-SET(CPACK_RPM_PACKAGE_AUTOREQ ON)
-SET(CPACK_RPM_PACKAGE_DESCRIPTION ${CPACK_PACKAGE_DESCRIPTION})
-SET(CPACK_RPM_EXCLUDE_FROM_AUTO_FILELIST_ADDITION
+set(CPACK_STRIP_FILES ON)
+set(CPACK_DEBIAN_PACKAGE_SECTION misc)
+set(CPACK_DEBIAN_PACKAGE_PRIORITY extra)
+set(CPACK_DEBIAN_PACKAGE_HOMEPAGE http://www.moneymanagerex.org/)
+set(CPACK_DEBIAN_PACKAGE_REPLACES moneymanagerex)
+set(CPACK_DEBIAN_PACKAGE_SHLIBDEPS ON)
+set(CPACK_DEBIAN_PACKAGE_RELEASE 1)
+set(CPACK_DEBIAN_PACKAGE_DEPENDS wx${wxWidgets_VERSION_MAJOR}.${wxWidgets_VERSION_MINOR}-i18n)
+set(CPACK_DEBIAN_FILE_NAME DEB-DEFAULT)
+set(CPACK_RPM_FILE_NAME RPM-DEFAULT)
+set(CPACK_RPM_PACKAGE_LICENSE GPL-2+)
+set(CPACK_RPM_PACKAGE_URL ${CPACK_DEBIAN_PACKAGE_HOMEPAGE})
+set(CPACK_RPM_PACKAGE_OBSOLETES ${CPACK_DEBIAN_PACKAGE_REPLACES})
+set(CPACK_RPM_PACKAGE_AUTOREQ ON)
+set(CPACK_RPM_PACKAGE_DESCRIPTION ${CPACK_PACKAGE_DESCRIPTION})
+set(CPACK_RPM_PACKAGE_RELEASE_DIST ON)
+set(CPACK_RPM_EXCLUDE_FROM_AUTO_FILELIST_ADDITION
     /usr/share/applications
     /usr/share/icons
     /usr/share/icons/hicolor
     /usr/share/icons/hicolor/scalable
     /usr/share/icons/hicolor/scalable/apps)
 # TODO: distribute dbg packages
-# SET(CPACK_RPM_DEBUGINFO_PACKAGE ON)
-# SET(CPACK_RPM_DEBUGINFO_FILE_NAME RPM-DEFAULT)
+# set(CPACK_RPM_DEBUGINFO_PACKAGE ON)
+# set(CPACK_RPM_DEBUGINFO_FILE_NAME RPM-DEFAULT)
 
-IF(LINUX)
-    IF(LINUX_DISTRO STREQUAL "Ubuntu")
-        SET(CPACK_GENERATOR DEB)
-        SET(CPACK_DEBIAN_PACKAGE_RELEASE "0ubuntu1~${LINUX_DISTRO_CODENAME}")
-    ELSEIF(LINUX_DISTRO STREQUAL "Debian" OR LINUX_DISTRO STREQUAL "LinuxMint")
-        SET(CPACK_GENERATOR DEB)
-        SET(CPACK_DEBIAN_PACKAGE_RELEASE "1~${LINUX_DISTRO_CODENAME}")
-    ELSEIF(LINUX_DISTRO STREQUAL "Fedora")
-        SET(CPACK_GENERATOR RPM)
-        SET(CPACK_RPM_PACKAGE_RELEASE_DIST ".fc${LINUX_DISTRO_REL}")
-    ELSEIF(LINUX_DISTRO STREQUAL "CentOS")
-        SET(CPACK_GENERATOR RPM)
-        STRING(REGEX REPLACE "\\..*" "" CPACK_RPM_PACKAGE_RELEASE_DIST ${LINUX_DISTRO_REL})
-        SET(CPACK_RPM_PACKAGE_RELEASE_DIST ".el${CPACK_RPM_PACKAGE_RELEASE_DIST}.centos")
-    ELSEIF(LINUX_DISTRO MATCHES "openSUSE")
-        SET(CPACK_GENERATOR RPM)
-        SET(CPACK_RPM_PACKAGE_REQUIRES wxWidgets-lang)
-        SET(CPACK_RPM_PACKAGE_RELEASE_DIST ".opensuse${LINUX_DISTRO_REL}")
-        SET(CPACK_RPM_PACKAGE_RELEASE 1)
-    ELSEIF(LINUX_DISTRO STREQUAL "Slackware")
-        SET(CPACK_GENERATOR TXZ)            
-        IF(CMAKE_SIZEOF_VOID_P EQUAL 8)
-            SET(CPACK_SYSTEM_NAME x86_64)
-        ELSE()
-            SET(CPACK_SYSTEM_NAME i586)
-        ENDIF()
-        INSTALL(FILES util/slackware-desc
+if(LINUX)
+    if(LINUX_DISTRO STREQUAL "Ubuntu" OR LINUX_DISTRO STREQUAL "Debian" OR LINUX_DISTRO STREQUAL "LinuxMint" OR LINUX_DISTRO STREQUAL "Raspbian")
+        set(CPACK_GENERATOR DEB)
+        set(CPACK_DEBIAN_PACKAGE_RELEASE "${CPACK_DEBIAN_PACKAGE_RELEASE}~${LINUX_DISTRO_CODENAME}")
+    elseif(LINUX_DISTRO STREQUAL "Fedora")
+        set(CPACK_GENERATOR RPM)
+        set(CPACK_RPM_PACKAGE_RELEASE_DIST ".fc${LINUX_DISTRO_REL}")
+    elseif(LINUX_DISTRO STREQUAL "CentOS")
+        set(CPACK_GENERATOR RPM)
+        string(REGEX REPLACE "\\..*" "" CPACK_RPM_PACKAGE_RELEASE_DIST ${LINUX_DISTRO_REL})
+        set(CPACK_RPM_PACKAGE_RELEASE_DIST ".el${CPACK_RPM_PACKAGE_RELEASE_DIST}.centos")
+    elseif(LINUX_DISTRO MATCHES "openSUSE" OR (LINUX_DISTRO MATCHES "SUSE" AND LINUX_DISTRO_REL VERSION_GREATER 42))
+        set(CPACK_GENERATOR RPM)
+        set(CPACK_RPM_PACKAGE_REQUIRES wxWidgets-lang)
+        set(CPACK_RPM_PACKAGE_RELEASE_DIST ".opensuse${LINUX_DISTRO_REL}")
+        set(CPACK_RPM_PACKAGE_RELEASE 1)
+    elseif(LINUX_DISTRO STREQUAL "Slackware")
+        set(CPACK_GENERATOR TXZ)
+        if(CMAKE_SIZEOF_VOID_P EQUAL 8)
+            set(CPACK_SYSTEM_NAME x86_64)
+        else()
+            set(CPACK_SYSTEM_NAME i586)
+        endif()
+        install(FILES util/slackware-desc
                 DESTINATION /install RENAME slack-desc)
-        INSTALL(PROGRAMS util/slackware-doinst.sh
+        install(PROGRAMS util/slackware-doinst.sh
                 DESTINATION /install RENAME doinst.sh)
-        SET(CPACK_SYSTEM_NAME ${CPACK_SYSTEM_NAME}-1_slack${LINUX_DISTRO_REL})
-        SET(CPACK_SET_DESTDIR ON)
-        SET(CPACK_PACKAGING_INSTALL_PREFIX /usr) # not working?
-        SET(CMAKE_INSTALL_PREFIX /usr)
-        SET(CPACK_INCLUDE_TOPLEVEL_DIRECTORY OFF)
-    ELSEIF(LINUX_DISTRO STREQUAL "Arch")
-    ELSE()
-        MESSAGE(WARNING "Unknown Linux distribution - generating generic package.")
-    ENDIF()
-ELSEIF(APPLE)
-    SET(CPACK_GENERATOR DragNDrop)
-    SET(CPACK_DMG_VOLUME_NAME "Money Manager Ex")
-    SET(CPACK_DMG_FORMAT UDZO)
-    SET(CPACK_DMG_BACKGROUND_IMAGE "${PROJECT_SOURCE_DIR}/resources/dmg-background.png")
-    SET(CPACK_DMG_DS_STORE "${PROJECT_SOURCE_DIR}/resources/.DS_Store")
-    SET(CPACK_PACKAGE_ICON "${PROJECT_SOURCE_DIR}/resources/mmex-package.icns")
-    SET(CPACK_BUNDLE_PLIST "${PROJECT_SOURCE_DIR}/resources/Info.plist")
-ELSEIF(WIN32)
+        set(CPACK_SYSTEM_NAME ${CPACK_SYSTEM_NAME}-1_slack${LINUX_DISTRO_REL})
+        set(CPACK_SET_DESTDIR ON)
+        set(CPACK_PACKAGING_INSTALL_PREFIX /usr) # not working?
+        set(CMAKE_INSTALL_PREFIX /usr)
+        set(CPACK_INCLUDE_TOPLEVEL_DIRECTORY OFF)
+    elseif(LINUX_DISTRO STREQUAL "Arch")
+    else()
+        message(WARNING "Unknown Linux distribution - generating generic package.")
+    endif()
+elseif(APPLE)
+    set(CPACK_GENERATOR DragNDrop)
+    set(CPACK_DMG_VOLUME_NAME "Money Manager Ex")
+    set(CPACK_DMG_FORMAT UDZO)
+    set(CPACK_DMG_BACKGROUND_IMAGE "${PROJECT_SOURCE_DIR}/resources/dmg-background.png")
+    set(CPACK_DMG_DS_STORE "${PROJECT_SOURCE_DIR}/resources/dmg-DS_Store")
+    set(CPACK_PACKAGE_ICON "${PROJECT_SOURCE_DIR}/resources/mmex-package.icns")
+    set(CPACK_BUNDLE_PLIST "${PROJECT_SOURCE_DIR}/resources/Info.plist")
+elseif(WIN32)
     # With using http://nsis.sourceforge.net/Main_Page
-    SET(CPACK_GENERATOR NSIS ZIP)
-    SET(CPACK_PACKAGE_INSTALL_DIRECTORY "Money Manager EX")
-    SET(CPACK_PACKAGE_ICON "${PROJECT_SOURCE_DIR}/resources\\\\mmex.ico")
-    SET(CPACK_NSIS_MUI_ICON "${CPACK_PACKAGE_ICON}")
-    SET(CPACK_NSIS_MUI_UNIICON "${CPACK_PACKAGE_ICON}")
-    SET(CPACK_NSIS_INSTALLED_ICON_NAME "${MMEX_BIN_DIR}\\\\${MMEX_EXE}${CMAKE_EXECUTABLE_SUFFIX}")
-    SET(CPACK_NSIS_MUI_FINISHPAGE_RUN ${MMEX_EXE}${CMAKE_EXECUTABLE_SUFFIX})
-    SET(CPACK_NSIS_URL_INFO_ABOUT ${CPACK_DEBIAN_PACKAGE_HOMEPAGE})
-    SET(CPACK_NSIS_CONTACT "${CPACK_PACKAGE_CONTACT}")
-    SET(CPACK_NSIS_CREATE_ICONS_EXTRA
+    set(CPACK_GENERATOR NSIS ZIP)
+    set(CPACK_PACKAGE_INSTALL_DIRECTORY "Money Manager EX")
+    set(CPACK_PACKAGE_ICON "${PROJECT_SOURCE_DIR}/resources\\\\mmex.ico")
+    set(CPACK_NSIS_MUI_ICON "${CPACK_PACKAGE_ICON}")
+    set(CPACK_NSIS_MUI_UNIICON "${CPACK_PACKAGE_ICON}")
+    set(CPACK_NSIS_INSTALLED_ICON_NAME "${MMEX_BIN_DIR}\\\\${MMEX_EXE}${CMAKE_EXECUTABLE_SUFFIX}")
+    set(CPACK_NSIS_MUI_FINISHPAGE_RUN ${MMEX_EXE}${CMAKE_EXECUTABLE_SUFFIX})
+    set(CPACK_NSIS_URL_INFO_ABOUT ${CPACK_DEBIAN_PACKAGE_HOMEPAGE})
+    set(CPACK_NSIS_CONTACT "${CPACK_PACKAGE_CONTACT}")
+    set(CPACK_NSIS_CREATE_ICONS_EXTRA
             "CreateShortCut '$SMPROGRAMS\\\\$STARTMENU_FOLDER\\\\Money Manager EX.lnk' '$INSTDIR\\\\${MMEX_BIN_DIR}\\\\${MMEX_EXE}${CMAKE_EXECUTABLE_SUFFIX}'")
-    SET(CPACK_NSIS_DELETE_ICONS_EXTRA "Delete '$SMPROGRAMS\\\\$START_MENU\\\\Money Manager EX.lnk'")
-    SET(CPACK_NSIS_ENABLE_UNINSTALL_BEFORE_INSTALL ON)
-ENDIF()
+    set(CPACK_NSIS_DELETE_ICONS_EXTRA "Delete '$SMPROGRAMS\\\\$START_MENU\\\\Money Manager EX.lnk'")
+    set(CPACK_NSIS_ENABLE_UNINSTALL_BEFORE_INSTALL ON)
+endif()
 
-IF(LINUX_DISTRO STREQUAL "Arch")
+if(LINUX_DISTRO STREQUAL "Arch")
     # Use dedicated tool to build Arch Linux package
-    SET(CMAKE_INSTALL_PREFIX /usr)
-    IF (CMAKE_SIZEOF_VOID_P EQUAL 8)
-        SET(ARCHLINUX_ARCH x86_64)
-    ELSE()
-        SET(ARCHLINUX_ARCH i686)
-    ENDIF()
-    CONFIGURE_FILE(util/PKGBUILD.in PKGBUILD @ONLY)
+    set(CMAKE_INSTALL_PREFIX /usr)
+    if(CMAKE_SIZEOF_VOID_P EQUAL 8)
+        set(ARCHLINUX_ARCH x86_64)
+    else()
+        set(ARCHLINUX_ARCH i686)
+    endif()
+    string(REPLACE - . CPACK_PACKAGE_VERSION ${MMEX_VERSION_FULL})
+    configure_file(util/PKGBUILD.in PKGBUILD @ONLY)
 
     # allow use reserved for cpack package target
-    CMAKE_POLICY(PUSH)
-    IF(POLICY CMP0037)
-        CMAKE_POLICY(SET CMP0037 OLD)
-    ENDIF()
-    ADD_CUSTOM_TARGET(package
+    cmake_policy(PUSH)
+    if(POLICY CMP0037)
+        cmake_policy(SET CMP0037 OLD)
+    endif()
+    add_custom_target(package
         COMMAND sh -c "if [ `id -u` -eq 0 ]; then chown nobody -R . && runuser nobody -c makepkg; else makepkg; fi"
         VERBATIM)
-    CMAKE_POLICY(POP)
-ELSE()
+    cmake_policy(POP)
+else()
     # workarount for old CMake without DEB-DEFAULT/RPM-DEFAULT support
-    IF(CMAKE_VERSION VERSION_LESS 3.6)
-        IF(CPACK_GENERATOR STREQUAL "DEB")
-            IF(NOT CPACK_DEBIAN_PACKAGE_ARCHITECTURE)
-                FIND_PROGRAM(DPKG_CMD dpkg DOC "Debian packaging tool")
-                IF(NOT DPKG_CMD)
-                    MESSAGE("CPackDeb: Can not find dpkg in your path, default architecture to i386.")
-                    SET(CPACK_DEBIAN_PACKAGE_ARCHITECTURE i386)
-                ENDIF()
-                EXECUTE_PROCESS(COMMAND "${DPKG_CMD}" --print-architecture
+    if(CMAKE_VERSION VERSION_LESS 3.6)
+        if(CPACK_GENERATOR STREQUAL "DEB")
+            if(NOT CPACK_DEBIAN_PACKAGE_ARCHITECTURE)
+                find_program(DPKG_CMD dpkg DOC "Debian packaging tool")
+                if(NOT DPKG_CMD)
+                    message("CPackDeb: Can not find dpkg in your path, default architecture to i386.")
+                    set(CPACK_DEBIAN_PACKAGE_ARCHITECTURE i386)
+                endif()
+                execute_process(COMMAND "${DPKG_CMD}" --print-architecture
                     OUTPUT_VARIABLE CPACK_DEBIAN_PACKAGE_ARCHITECTURE
                     OUTPUT_STRIP_TRAILING_WHITESPACE ERROR_QUIET)
-            ENDIF()
-            SET(CPACK_PACKAGE_FILE_NAME "${CPACK_PACKAGE_NAME}_${CPACK_PACKAGE_VERSION}-${CPACK_DEBIAN_PACKAGE_RELEASE}_${CPACK_DEBIAN_PACKAGE_ARCHITECTURE}")
-        ELSEIF(CPACK_GENERATOR STREQUAL "RPM")
-            IF(NOT CPACK_RPM_PACKAGE_ARCHITECTURE)
-                EXECUTE_PROCESS(COMMAND uname -m
+            endif()
+            set(CPACK_PACKAGE_FILE_NAME "${CPACK_PACKAGE_NAME}_${CPACK_PACKAGE_VERSION}-${CPACK_DEBIAN_PACKAGE_RELEASE}_${CPACK_DEBIAN_PACKAGE_ARCHITECTURE}")
+        elseif(CPACK_GENERATOR STREQUAL "RPM")
+            if(NOT CPACK_RPM_PACKAGE_ARCHITECTURE)
+                execute_process(COMMAND uname -m
                     OUTPUT_VARIABLE CPACK_RPM_PACKAGE_ARCHITECTURE
                     OUTPUT_STRIP_TRAILING_WHITESPACE ERROR_QUIET)
-            ENDIF()
-            SET(CPACK_PACKAGE_FILE_NAME "${CPACK_PACKAGE_NAME}-${CPACK_PACKAGE_VERSION}-${CPACK_RPM_PACKAGE_RELEASE}${CPACK_RPM_PACKAGE_RELEASE_DIST}-${CPACK_RPM_PACKAGE_ARCHITECTURE}")
-        ENDIF()
-    ENDIF(CMAKE_VERSION VERSION_LESS 3.6)
+            endif()
+            set(CPACK_PACKAGE_FILE_NAME "${CPACK_PACKAGE_NAME}-${CPACK_PACKAGE_VERSION}-${CPACK_RPM_PACKAGE_RELEASE}${CPACK_RPM_PACKAGE_RELEASE_DIST}-${CPACK_RPM_PACKAGE_ARCHITECTURE}")
+        endif()
+    endif()
 
-    INCLUDE(CPack)
-ENDIF()
+    include(CPack)
+endif()
 
 
 # --------- Print summary after configuration stage ---------
-MESSAGE(STATUS "")
-MESSAGE(STATUS "MMEX configuration summary")
-MESSAGE(STATUS "==========================")
-MESSAGE(STATUS "Version        : ${MMEX_VERSION_WITH_UNSTABLE}")
-IF(GIT_COMMIT_HASH)
-    MESSAGE(STATUS "Commit         : ${GIT_COMMIT_HASH} (${GIT_COMMIT_DATE})")
-ENDIF()
-IF(GIT_BRANCH)
-    MESSAGE(STATUS "Branch         : ${GIT_BRANCH}")
-ENDIF()
-MESSAGE(STATUS "Host system    : ${CMAKE_HOST_SYSTEM_NAME} ${CMAKE_HOST_SYSTEM_PROCESSOR}")
-IF(CMAKE_SIZEOF_VOID_P EQUAL 8)
-    MESSAGE(STATUS "Target system  : ${CMAKE_SYSTEM_NAME} x86_64")
-ELSE()
-    MESSAGE(STATUS "Target system  : ${CMAKE_SYSTEM_NAME} x86")
-ENDIF()
-IF(CMAKE_BUILD_TYPE)
-    MESSAGE(STATUS "Build types    : ${CMAKE_BUILD_TYPE}")
-ELSE()
-    MESSAGE(STATUS "Build types    : ${CMAKE_CONFIGURATION_TYPES}")
-ENDIF()
-MESSAGE(STATUS "Generator      : ${CMAKE_GENERATOR}")
-IF(MSVC)
-    IF(CMAKE_VS_PLATFORM_TOOLSET)
-        MESSAGE(STATUS "Toolset        : ${CMAKE_VS_PLATFORM_TOOLSET}")
-        IF(CMAKE_VS_PLATFORM_TOOLSET_HOST_ARCHITECTURE)
-            MESSAGE(STATUS "Toolset host   : ${CMAKE_VS_PLATFORM_TOOLSET_HOST_ARCHITECTURE}")
-        ENDIF()
-    ENDIF()
-    IF(CMAKE_VS_PLATFORM_NAME)
-        MESSAGE(STATUS "Platform       : ${CMAKE_VS_PLATFORM_NAME}")
-    ENDIF()
-    MESSAGE(STATUS "VC install dir : $ENV{VCINSTALLDIR}")
-    IF(CMAKE_INSTALL_SYSTEM_RUNTIME_LIBS)
-        FOREACH(m_dll ${CMAKE_INSTALL_SYSTEM_RUNTIME_LIBS})
-            GET_FILENAME_COMPONENT(m_dll ${m_dll} NAME_WE)
-            SET(m_dlls "${m_dlls} ${m_dll}")
-        ENDFOREACH()
-        MESSAGE(STATUS "Run-time DLLs  :${m_dlls}")
-    ENDIF()
-ENDIF()
-MESSAGE(STATUS "Install prefix : ${CMAKE_INSTALL_PREFIX}")
-IF(WIN32)
-    MESSAGE(STATUS "Portable state : ${MMEX_PORTABLE_INSTALL}")
-ENDIF()
+message(STATUS "")
+message(STATUS "MMEX configuration summary")
+message(STATUS "==========================")
+message(STATUS "Version        : ${MMEX_VERSION_FULL}")
+if(GIT_COMMIT_HASH)
+    message(STATUS "Commit         : ${GIT_COMMIT_HASH} (${GIT_COMMIT_DATE})")
+endif()
+if(GIT_BRANCH)
+    message(STATUS "Branch         : ${GIT_BRANCH}")
+endif()
+message(STATUS "Host system    : ${CMAKE_HOST_SYSTEM_NAME} ${CMAKE_HOST_SYSTEM_PROCESSOR}")
+if(APPLE AND CMAKE_OSX_DEPLOYMENT_TARGET)
+    message(STATUS "Target system  : ${CMAKE_SYSTEM_NAME} ${CMAKE_SYSTEM_PROCESSOR} >= ${CMAKE_OSX_DEPLOYMENT_TARGET}")
+else()
+    message(STATUS "Target system  : ${CMAKE_SYSTEM_NAME} ${CMAKE_SYSTEM_PROCESSOR}")
+endif()
+if(CMAKE_BUILD_TYPE)
+    message(STATUS "Build types    : ${CMAKE_BUILD_TYPE}")
+else()
+    message(STATUS "Build types    : ${CMAKE_CONFIGURATION_TYPES}")
+endif()
+message(STATUS "Generator      : ${CMAKE_GENERATOR}")
+if(MSVC)
+    if(CMAKE_VS_PLATFORM_TOOLSET)
+        message(STATUS "Toolset        : ${CMAKE_VS_PLATFORM_TOOLSET}")
+        if(CMAKE_VS_PLATFORM_TOOLSET_HOST_ARCHITECTURE)
+            message(STATUS "Toolset host   : ${CMAKE_VS_PLATFORM_TOOLSET_HOST_ARCHITECTURE}")
+        endif()
+    endif()
+    if(CMAKE_VS_PLATFORM_NAME)
+        message(STATUS "Platform       : ${CMAKE_VS_PLATFORM_NAME}")
+    endif()
+    message(STATUS "VC install dir : $ENV{VCINSTALLDIR}")
+    if(CMAKE_INSTALL_SYSTEM_RUNTIME_LIBS)
+        foreach(m_dll ${CMAKE_INSTALL_SYSTEM_RUNTIME_LIBS})
+            get_filename_component(m_dll ${m_dll} NAME_WE)
+            set(m_dlls "${m_dlls} ${m_dll}")
+        endforeach()
+        message(STATUS "Run-time DLLs  :${m_dlls}")
+    endif()
+endif()
+message(STATUS "Install prefix : ${CMAKE_INSTALL_PREFIX}")
+if(WIN32)
+    message(STATUS "Portable state : ${MMEX_PORTABLE_INSTALL}")
+endif()
+message(STATUS "DB encryption  : ${WXSQLITE3_HAVE_CODEC}")
 
 message(STATUS "")
 message(STATUS "Versions")
