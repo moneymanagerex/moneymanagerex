@@ -160,7 +160,7 @@ void mmAssetsListCtrl::OnListKeyDown(wxListEvent& event)
 
 void mmAssetsListCtrl::OnNewAsset(wxCommandEvent& /*event*/)
 {
-    mmAssetDialog dlg(this, m_panel->m_frame, (Model_Asset::Data*)nullptr);
+    mmAssetDialog dlg(this, m_panel->m_frame, static_cast<Model_Asset::Data*>(nullptr));
     if (dlg.ShowModal() == wxID_OK)
     {
         doRefreshItems(dlg.m_asset->ASSETID);
@@ -644,8 +644,8 @@ wxString mmAssetsPanel::getItem(long item, long column)
 
 void mmAssetsPanel::updateExtraAssetData(int selIndex)
 {
-    wxStaticText* st = (wxStaticText*)FindWindow(IDC_PANEL_ASSET_STATIC_DETAILS);
-    wxStaticText* stm = (wxStaticText*)FindWindow(IDC_PANEL_ASSET_STATIC_DETAILS_MINI);
+    wxStaticText* st = static_cast<wxStaticText*>(FindWindow(IDC_PANEL_ASSET_STATIC_DETAILS));
+    wxStaticText* stm = static_cast<wxStaticText*>(FindWindow(IDC_PANEL_ASSET_STATIC_DETAILS_MINI));
     if (selIndex > -1)
     {
         const Model_Asset::Data& asset = this->m_assets[selIndex];

@@ -25,7 +25,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 /*
     The root directory of the installation of MMEX.
 */
-const wxFileName GetInstallDir()
+static const wxFileName GetInstallDir()
 {
     const wxStandardPathsBase &p = wxStandardPaths::Get();
     wxFileName fname(p.GetExecutablePath());

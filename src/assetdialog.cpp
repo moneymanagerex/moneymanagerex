@@ -361,7 +361,7 @@ void mmAssetDialog::OnOk(wxCommandEvent& /*event*/)
     }
 
     wxString asset_type = "";
-    wxStringClientData* type_obj = (wxStringClientData *)m_assetType->GetClientObject(m_assetType->GetSelection());
+    wxStringClientData* type_obj = static_cast<wxStringClientData *>(m_assetType->GetClientObject(m_assetType->GetSelection()));
     if (type_obj) asset_type = type_obj->GetData();
 
     bool is_new = !m_asset;
