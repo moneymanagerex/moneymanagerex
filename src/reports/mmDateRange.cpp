@@ -211,7 +211,7 @@ mmAllTime::mmAllTime()
     this->end_date_ = wxDateTime(31, wxDateTime::Dec, 9999);
 }
 
-const bool mmAllTime::is_with_date() const
+bool mmAllTime::is_with_date() const
 {
     return false;
 }

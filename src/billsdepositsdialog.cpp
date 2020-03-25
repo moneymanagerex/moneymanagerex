@@ -1403,8 +1403,6 @@ void mmBDDialog::OnPeriodChange(wxCommandEvent& /*event*/)
 
 void mmBDDialog::activateSplitTransactionsDlg()
 {
-    bool bDeposit = (m_bill_data.TRANSCODE == Model_Billsdeposits::all_type()[Model_Checking::DEPOSIT]);
-
     if (m_bill_data.CATEGID > -1 && m_bill_data.local_splits.empty())
     {
         if (!textAmount_->GetDouble(m_bill_data.TRANSAMOUNT))
