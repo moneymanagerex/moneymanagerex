@@ -22,6 +22,7 @@ execute_process(COMMAND ${GIT_EXECUTABLE} describe --match v* --tags --abbrev=0
     OUTPUT_VARIABLE GIT_TAG_VERSION
     OUTPUT_STRIP_TRAILING_WHITESPACE
     TIMEOUT 4 ERROR_QUIET)
+message(STATUS "Git tag: ${GIT_TAG_VERSION}")
 if(NOT GIT_TAG_VERSION MATCHES "^v([0-9]+\\x2E[0-9]+\\x2E[0-9]+)(-([^ ]+))*")
     message(FATAL_ERROR "Unable to determine MMEX version tag from sources!")
 endif()
