@@ -40,8 +40,8 @@ wxEND_EVENT_TABLE()
 
 mmAppStartDialog::mmAppStartDialog(wxWindow* parent, const wxString& name)
     : itemCheckBox(nullptr)
-    , m_buttonExit(nullptr)
     , m_buttonClose(nullptr)
+    , m_buttonExit(nullptr)
 {
     wxString caption = wxString::Format(_("%1$s - %2$s"), mmex::getProgramName(), mmex::getTitleProgramVersion());
     long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX;
