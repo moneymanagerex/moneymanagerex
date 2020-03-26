@@ -368,7 +368,7 @@ void mmQIFExportDialog::mmExportQIF()
     wxString buffer;
     int numRecords = 0;
 
-    wxStringClientData* data_obj = (wxStringClientData*)m_choiceDateFormat->GetClientObject(m_choiceDateFormat->GetSelection());
+    wxStringClientData* data_obj = static_cast<wxStringClientData*>(m_choiceDateFormat->GetClientObject(m_choiceDateFormat->GetSelection()));
     const wxString dateMask = data_obj->GetData();
 
     //Export categories

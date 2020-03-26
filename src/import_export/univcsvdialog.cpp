@@ -1049,7 +1049,7 @@ void mmUnivCSVDialog::update_preview()
     ++colCount;
     int date_position = 0;
     int MAX_ROWS_IN_PREVIEW = 20;
-    int MAX_COLS = 30; // Not including line number col.
+    unsigned int MAX_COLS = 30; // Not including line number col.
     const wxString NOTES_FIELD_NAME = getCSVFieldName(UNIV_CSV_NOTES);
     const wxString DATE_FIELD_NAME = getCSVFieldName(UNIV_CSV_DATE);
     for (std::vector<int>::const_iterator it = csvFieldOrder_.begin(); it != csvFieldOrder_.end(); ++ it)
@@ -1521,7 +1521,7 @@ void mmUnivCSVDialog::OnDateFormatChanged(wxCommandEvent& event)
     int i = event.GetId();
     if (i == ID_DATE_FORMAT)
     {
-        wxStringClientData* data = (wxStringClientData*)(choiceDateFormat_->GetClientObject(choiceDateFormat_->GetSelection()));
+        wxStringClientData* data = static_cast<wxStringClientData*>(choiceDateFormat_->GetClientObject(choiceDateFormat_->GetSelection()));
         if (data) date_format_ = data->GetData();
         *log_field_ << date_format_ << "\n";
     }

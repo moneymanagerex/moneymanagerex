@@ -88,7 +88,7 @@ void mmBudgetYearEntryDialog::CreateControls()
 
         int month = wxDate::GetCurrentMonth() + 1; // we require months(1..12)
         textMonth_ = new wxSpinCtrl(this, wxID_ANY
-            , wxEmptyString, wxDefaultPosition, wxSize(textYear_->GetSize())
+            , wxEmptyString, wxDefaultPosition, textYear_->GetSize()
             , wxSP_ARROW_KEYS, 1, 12, month);
         textMonth_->SetValue(month);
         textMonth_->SetToolTip(_("Specify the required month.\n"

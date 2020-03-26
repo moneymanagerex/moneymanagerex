@@ -701,7 +701,7 @@ void mmQIFImportDialog::OnFileSearch(wxCommandEvent& /*event*/)
 
 void mmQIFImportDialog::OnDateMaskChange(wxCommandEvent& /*event*/)
 {
-    wxStringClientData* data = (wxStringClientData*)(choiceDateFormat_->GetClientObject(choiceDateFormat_->GetSelection()));
+    wxStringClientData* data = static_cast<wxStringClientData*>(choiceDateFormat_->GetClientObject(choiceDateFormat_->GetSelection()));
     if (data) m_dateFormatStr = data->GetData();
     m_userDefinedDateMask = true;
     refreshTabs(TRX_TAB);
@@ -739,7 +739,7 @@ void mmQIFImportDialog::OnCheckboxClick( wxCommandEvent& event )
         {
             accountDropDown_->Enable(true);
             m_accountNameStr = "";
-            wxStringClientData* data_obj = (wxStringClientData*)accountDropDown_->GetClientObject(accountDropDown_->GetSelection());
+            wxStringClientData* data_obj = static_cast<wxStringClientData*>(accountDropDown_->GetClientObject(accountDropDown_->GetSelection()));
             if (data_obj)
                 m_accountNameStr = data_obj->GetData();
         }
@@ -755,7 +755,7 @@ void mmQIFImportDialog::OnCheckboxClick( wxCommandEvent& event )
 
 void mmQIFImportDialog::OnAccountChanged(wxCommandEvent& /*event*/)
 {
-    wxStringClientData* data_obj = (wxStringClientData*) accountDropDown_->GetClientObject(accountDropDown_->GetSelection());
+    wxStringClientData* data_obj = static_cast<wxStringClientData*>(accountDropDown_->GetClientObject(accountDropDown_->GetSelection()));
     if (data_obj)
         m_accountNameStr = data_obj->GetData();
     refreshTabs(TRX_TAB);

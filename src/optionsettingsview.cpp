@@ -207,13 +207,13 @@ void OptionSettingsView::OnNavTreeColorChanged(wxCommandEvent& event)
 void OptionSettingsView::SaveSettings()
 {
     wxString accVisible = VIEW_ACCOUNTS_ALL_STR;
-    wxStringClientData* visible_acc_obj = (wxStringClientData *)m_choice_visible->GetClientObject(m_choice_visible->GetSelection());
+    wxStringClientData* visible_acc_obj = static_cast<wxStringClientData*>(m_choice_visible->GetClientObject(m_choice_visible->GetSelection()));
     if (visible_acc_obj)
         accVisible = visible_acc_obj->GetData();
     Model_Setting::instance().SetViewAccounts(accVisible);
 
     wxString transVisible = VIEW_TRANS_ALL_STR;
-    wxStringClientData* visible_obj = (wxStringClientData *)m_choice_trans_visible->GetClientObject(m_choice_trans_visible->GetSelection());
+    wxStringClientData* visible_obj = static_cast<wxStringClientData*>(m_choice_trans_visible->GetClientObject(m_choice_trans_visible->GetSelection()));
     if (visible_obj)
         transVisible = visible_obj->GetData();
     Model_Setting::instance().SetViewTransactions(transVisible);

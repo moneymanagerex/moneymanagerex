@@ -1056,7 +1056,7 @@ void mmBDDialog::OnOk(wxCommandEvent& /*event*/)
         m_bill_data.TRANSDATE = m_date_paid->GetValue().FormatISODate();
     }
 
-    wxStringClientData* status_obj = (wxStringClientData *) m_choice_status->GetClientObject(m_choice_status->GetSelection());
+    wxStringClientData* status_obj = static_cast<wxStringClientData*>(m_choice_status->GetClientObject(m_choice_status->GetSelection()));
     if (status_obj)
     {
         m_bill_data.STATUS = Model_Billsdeposits::toShortStatus(status_obj->GetData());

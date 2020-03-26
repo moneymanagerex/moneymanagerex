@@ -180,7 +180,7 @@ void OptionSettingsGeneral::OnCurrency(wxCommandEvent& /*event*/)
 
 void OptionSettingsGeneral::OnDateFormatChanged(wxCommandEvent& /*event*/)
 {
-    wxStringClientData* data = (wxStringClientData*) (m_date_format_choice->GetClientObject(m_date_format_choice->GetSelection()));
+    wxStringClientData* data = static_cast<wxStringClientData*>(m_date_format_choice->GetClientObject(m_date_format_choice->GetSelection()));
     if (data)
     {
         m_date_format = data->GetData();

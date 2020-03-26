@@ -805,7 +805,7 @@ void mmTransDialog::OnSpin(wxSpinEvent& event)
 void mmTransDialog::OnTransTypeChanged(wxCommandEvent& event)
 {
     const wxString old_type = m_trx_data.TRANSCODE;
-    wxStringClientData *client_obj = (wxStringClientData *) event.GetClientObject();
+    wxStringClientData *client_obj = static_cast<wxStringClientData*>(event.GetClientObject());
     if (client_obj) m_trx_data.TRANSCODE = client_obj->GetData();
     if (old_type != m_trx_data.TRANSCODE)
     {
@@ -1034,7 +1034,7 @@ void mmTransDialog::OnOk(wxCommandEvent& event)
     m_trx_data.NOTES = textNotes_->GetValue();
     m_trx_data.TRANSACTIONNUMBER = textNumber_->GetValue();
     m_trx_data.TRANSDATE = dpc_->GetValue().FormatISODate();
-    wxStringClientData* status_obj = (wxStringClientData*) choiceStatus_->GetClientObject(choiceStatus_->GetSelection());
+    wxStringClientData* status_obj = static_cast<wxStringClientData*>(choiceStatus_->GetClientObject(choiceStatus_->GetSelection()));
     if (status_obj) m_trx_data.STATUS = Model_Checking::toShortStatus(status_obj->GetData());
 
     if (!validateData()) return;
