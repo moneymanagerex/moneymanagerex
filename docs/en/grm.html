@@ -60,14 +60,12 @@
 
     <h4>Report Parameters</h4>
     <p>
-        For MMEX version 1.4.0 there is a possibility to transfer dates into a
+        For MMEX version 1.3.4 there is a possibility to transfer dates into a
         report's SQL script.
-        There are six options available: <var>&single_date</var>,
-        <var>&begin_date</var>, <var>&end_date</var>, <var>&budget_years</var>,
-        <var>&fin_year_day</var>, <var>&fin_year_month</var>.
+        There are three options available: <var>&single_date</var>,
+        <var>&begin_date</var>, <var>&end_date</var>.
         In case if a SQL contains one of the parameter above it will be
-        replaced with a date from a calendar widget or a value from the MMEX
-        settings.
+        replaced with a date from a calendar widget.
         For example, this SQL script returns all accounts balances for the
         specified date:
     </p>
@@ -75,19 +73,22 @@
     select ACCOUNTID, STATUS
         , (case when TRANSCODE = 'Deposit' then TRANSAMOUNT else -TRANSAMOUNT end) as TRANSAMOUNT
         , TRANSDATE
-    from CHECKINGACCOUNT
+    from CHECKINGACCOUNT_V1    
+    where STATUS <> 'V'
+        and TRANSDATE <= '&single_date'
     union all
-    select TOACCOUNTID, STATUS, TOTRANSAMOUNT ,TRANSDATE
-    from CHECKINGACCOUNT
+    select TOACCOUNTID, STATUS
+        , TOTRANSAMOUNT ,TRANSDATE
+    from CHECKINGACCOUNT_V1
     where TRANSCODE = 'Transfer'
+        and STATUS <> 'V'
+        and TRANSDATE <= '&single_date'
     )
-select a.ACCOUNTNAME,
+select a.ACCOUNTNAME, a.ACCOUNTTYPE,
 total(TRANSAMOUNT) + a.INITIALBAL as Balance
-from ACCOUNTLIST as a, b
-where a.STATUS = 'Open'
-    and b.ACCOUNTID = a.ACCOUNTID
-    and b.STATUS &lt;&gt; 'V'
-    and b.TRANSDATE &lt;= '<var>&single_date</var>'
+from ACCOUNTLIST_V1 as a
+left join b on a.ACCOUNTID=b.ACCOUNTID
+where a.STATUS = 'Open'  and a.ACCOUNTTYPE !='Investment'
 group by a.ACCOUNTNAME order by a.ACCOUNTNAME asc;
 </code></pre>
     <img class="shadow" alt="GRM report output using single date parameter
@@ -107,7 +108,7 @@ group by a.ACCOUNTNAME order by a.ACCOUNTNAME asc;
 
     <footer><p><small>
         Copyright &copy; 2005-2009 Madhan Kanagavel<br>
-        Copyright &copy; 2013-2019 MMEX contributors<br>
+        Copyright &copy; 2013-2020 MMEX contributors<br>
         <span id="translator">Translators: MMEX contributors</span>
     </small></p></footer>
     <script>

@@ -26,7 +26,7 @@ MinimalEditor::MinimalEditor(wxWindow* parent, wxWindowID id)
     }
 bool MinimalEditor::SetFont(const wxFont& font)
     {
-        StyleSetFont(wxSTC_STYLE_DEFAULT, (wxFont&) font);
+        StyleSetFont(wxSTC_STYLE_DEFAULT, font);
         return wxStyledTextCtrl::SetFont(font);
     }
 

@@ -381,7 +381,7 @@ void mmMainCurrencyDialog::OnListItemSelected(wxDataViewEvent& event)
     if (selected_index >= 0)
     {
         wxDataViewItem item = event.GetItem();
-        m_currency_id = (int)currencyListBox_->GetItemData(item);
+        m_currency_id = static_cast<int>(currencyListBox_->GetItemData(item));
         Model_Currency::Data* currency = Model_Currency::instance().get(m_currency_id);
         if (currency)
         {
@@ -571,7 +571,7 @@ void mmMainCurrencyDialog::OnHistoryDelete(wxCommandEvent& /*event*/)
     {
         item = valueListBox_->GetNextItem(item, wxLIST_NEXT_ALL, wxLIST_STATE_SELECTED);
         if (item == -1) break;
-        Model_CurrencyHistory::instance().remove((int)valueListBox_->GetItemData(item));
+        Model_CurrencyHistory::instance().remove(static_cast<int>(valueListBox_->GetItemData(item)));
     }
     Model_CurrencyHistory::instance().ReleaseSavepoint();
 

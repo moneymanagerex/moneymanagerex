@@ -638,7 +638,7 @@ void mmCheckingPanel::initViewTransactionsHeader()
 {
     const wxString& def_view = Model_Setting::instance().ViewTransactions();
     m_currentView = menu_labels().Index(Model_Infotable::instance().GetStringInfo(wxString::Format("CHECK_FILTER_ID_%d", m_AccountID), def_view));
-    if (m_currentView < 0 || m_currentView >= (int) menu_labels().size())
+    if (m_currentView < 0 || m_currentView >= static_cast<int>(menu_labels().size()))
         m_currentView = menu_labels().Index(VIEW_TRANS_ALL_STR);
 
     SetTransactionFilterState(m_currentView == MENU_VIEW_ALLTRANSACTIONS);
@@ -794,7 +794,7 @@ void mmCheckingPanel::OnFilterTransactions(wxMouseEvent& event)
 
 const wxString mmCheckingPanel::getItem(long item, long column)
 {
-    if (item < 0 || item >= (int)m_trans.size()) return "";
+    if (item < 0 || item >= static_cast<int>(m_trans.size())) return "";
 
     const Model_Checking::Full_Data& tran = this->m_trans.at(item);
     switch (column)
@@ -895,7 +895,7 @@ void mmCheckingPanel::RefreshList(int transID)
     m_listCtrlAccount->refreshVisualList(transID);
 }
 
-void mmCheckingPanel::SetTransactionFilterState(bool active)
+void mmCheckingPanel::SetTransactionFilterState(bool WXUNUSED(active))
 {
     m_bitmapMainFilter->Enable(!m_transFilterActive);
     m_stxtMainFilter->Enable(!m_transFilterActive);
@@ -948,17 +948,17 @@ TransactionListCtrl::TransactionListCtrl(
     m_cp(cp),
     m_selectedIndex(-1),
     m_selectedForCopy(-1),
-    m_attr1(*wxBLACK, mmColors::listAlternativeColor0, wxNullFont),
-    m_attr2(*wxBLACK, mmColors::listAlternativeColor1, wxNullFont),
-    m_attr3(mmColors::listFutureDateColor, mmColors::listAlternativeColor0, wxNullFont),
-    m_attr4(mmColors::listFutureDateColor, mmColors::listAlternativeColor1, wxNullFont),
-    m_attr11(*wxBLACK, mmColors::userDefColor1, wxNullFont),
-    m_attr12(*wxBLACK, mmColors::userDefColor2, wxNullFont),
-    m_attr13(*wxBLACK, mmColors::userDefColor3, wxNullFont),
-    m_attr14(*wxBLACK, mmColors::userDefColor4, wxNullFont),
-    m_attr15(*wxBLACK, mmColors::userDefColor5, wxNullFont),
-    m_attr16(*wxYELLOW, mmColors::userDefColor6, wxNullFont),
-    m_attr17(*wxYELLOW, mmColors::userDefColor7, wxNullFont),
+    m_attr1(new wxListItemAttr(*wxBLACK, mmColors::listAlternativeColor0, wxNullFont)),
+    m_attr2(new wxListItemAttr(*wxBLACK, mmColors::listAlternativeColor1, wxNullFont)),
+    m_attr3(new wxListItemAttr(mmColors::listFutureDateColor, mmColors::listAlternativeColor0, wxNullFont)),
+    m_attr4(new wxListItemAttr(mmColors::listFutureDateColor, mmColors::listAlternativeColor1, wxNullFont)),
+    m_attr11(new wxListItemAttr(*wxBLACK, mmColors::userDefColor1, wxNullFont)),
+    m_attr12(new wxListItemAttr(*wxBLACK, mmColors::userDefColor2, wxNullFont)),
+    m_attr13(new wxListItemAttr(*wxBLACK, mmColors::userDefColor3, wxNullFont)),
+    m_attr14(new wxListItemAttr(*wxBLACK, mmColors::userDefColor4, wxNullFont)),
+    m_attr15(new wxListItemAttr(*wxBLACK, mmColors::userDefColor5, wxNullFont)),
+    m_attr16(new wxListItemAttr(*wxYELLOW, mmColors::userDefColor6, wxNullFont)),
+    m_attr17(new wxListItemAttr(*wxYELLOW, mmColors::userDefColor7, wxNullFont)),
     m_sortCol(COL_DEF_SORT),
     g_sortcol(COL_DEF_SORT),
     m_prevSortCol(COL_DEF_SORT),
@@ -1348,7 +1348,7 @@ int TransactionListCtrl::OnGetItemColumnImage(long item, long column) const
 */
 wxListItemAttr* TransactionListCtrl::OnGetItemAttr(long item) const
 {
-    if (item < 0 || item >= (int)m_cp->m_trans.size()) return 0;
+    if (item < 0 || item >= static_cast<int>(m_cp->m_trans.size())) return 0;
 
     const Model_Checking::Full_Data& tran = m_cp->m_trans[item];
     bool in_the_future = (tran.TRANSDATE > m_today);
@@ -1360,20 +1360,20 @@ wxListItemAttr* TransactionListCtrl::OnGetItemAttr(long item) const
 
     if (user_colour_id != 0)
     {
-        if      (user_colour_id == 1) return (wxListItemAttr*)&m_attr11;
-        else if (user_colour_id == 2) return (wxListItemAttr*)&m_attr12;
-        else if (user_colour_id == 3) return (wxListItemAttr*)&m_attr13;
-        else if (user_colour_id == 4) return (wxListItemAttr*)&m_attr14;
-        else if (user_colour_id == 5) return (wxListItemAttr*)&m_attr15;
-        else if (user_colour_id == 6) return (wxListItemAttr*)&m_attr16;
-        else if (user_colour_id == 7) return (wxListItemAttr*)&m_attr17;
+        if      (user_colour_id == 1) return m_attr11;
+        else if (user_colour_id == 2) return m_attr12;
+        else if (user_colour_id == 3) return m_attr13;
+        else if (user_colour_id == 4) return m_attr14;
+        else if (user_colour_id == 5) return m_attr15;
+        else if (user_colour_id == 6) return m_attr16;
+        else if (user_colour_id == 7) return m_attr17;
     }
     if (in_the_future)
     {
-        return (item % 2 ? (wxListItemAttr*)&m_attr3 : (wxListItemAttr*)&m_attr4);
+        return (item % 2 ? m_attr3 : m_attr4);
     }
 
-    return (item % 2 ? (wxListItemAttr*)&m_attr1 : (wxListItemAttr*)&m_attr2);
+    return (item % 2 ? m_attr1 : m_attr2);
 }
 //----------------------------------------------------------------------------
 // If any of these keys are encountered, the search for the event handler
