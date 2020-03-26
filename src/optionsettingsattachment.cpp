@@ -228,7 +228,7 @@ void OptionSettingsAttachment::OnAttachmentsPathChanged(wxCommandEvent& event)
     if (!att) return;
     wxString AttachmentsFolder = mmex::getPathAttachment(att->GetValue());
 
-    wxStaticText* text = (wxStaticText*) FindWindow(ID_DIALOG_OPTIONS_STATICTEXT_ATTACHMENTSTEXT);
+    wxStaticText* text = static_cast<wxStaticText*>(FindWindow(ID_DIALOG_OPTIONS_STATICTEXT_ATTACHMENTSTEXT));
     text->SetLabelText(_("Real path:") + "\n" + AttachmentsFolder);
 }
 

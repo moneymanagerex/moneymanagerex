@@ -984,7 +984,7 @@ void mmBDDialog::OnOk(wxCommandEvent& /*event*/)
         Model_Payee::Data *payee = Model_Payee::instance().get(m_bill_data.PAYEEID);
         if (!payee)
         {
-            mmErrorDialogs::InvalidPayee((wxWindow*) bPayee_);
+            mmErrorDialogs::InvalidPayee(static_cast<wxWindow*>(bPayee_));
             return;
         }
     }

@@ -106,7 +106,7 @@ void mmBudgetYearEntryDialog::CreateControls()
     itemYearStrings.Add("None");
     
     itemChoice_ = new wxChoice( this, wxID_ANY 
-        , wxDefaultPosition, wxSize(textYear_->GetSize()), itemYearStrings );
+        , wxDefaultPosition, textYear_->GetSize(), itemYearStrings );
     itemGridSizer2->Add(itemChoice_, 0, wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL, 5);
     itemChoice_->SetToolTip(_("Specify year to base budget on."));
 

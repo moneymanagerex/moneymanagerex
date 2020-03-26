@@ -192,7 +192,7 @@ void mmBudgetingPanel::UpdateBudgetHeading()
 {
     budgetReportHeading_->SetLabel(GetPanelTitle());
 
-    wxStaticText* header = (wxStaticText*)FindWindow(ID_PANEL_CHECKING_STATIC_PANELVIEW);
+    wxStaticText* header = static_cast<wxStaticText*>(FindWindow(ID_PANEL_CHECKING_STATIC_PANELVIEW));
     header->SetLabel(wxGetTranslation(currentView_));
 }
 
