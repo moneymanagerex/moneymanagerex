@@ -65,7 +65,7 @@ void mmFileHistory::Save()
     {
         wxString buf;
         buf.Printf("RECENT_DB_%d", i);
-        if (i < (int)GetCount())
+        if (i < static_cast<int>(GetCount()))
             Model_Setting::instance().Set(buf, GetHistoryFile(i));
         else
             Model_Setting::instance().Set(buf, wxString(""));

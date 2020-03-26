@@ -387,7 +387,7 @@ void UserTransactionPanel::OnFrequentNotes(wxCommandEvent& WXUNUSED(event))
 void UserTransactionPanel::onSelectedNote(wxCommandEvent& event)
 {
     int i = event.GetId() - wxID_HIGHEST;
-    if (i > 0 && i <= (int) m_frequent_notes.size())
+    if (i > 0 && i <= static_cast<int>(m_frequent_notes.size()))
         m_entered_notes->ChangeValue(m_frequent_notes[i - 1]);
 }
 

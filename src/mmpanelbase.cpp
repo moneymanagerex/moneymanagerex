@@ -118,10 +118,10 @@ void mmListCtrl::OnColRightClick(wxListEvent& event)
     if (m_columns.size() > 0 && !m_col_width.IsEmpty())
     {
         m_ColumnHeaderNbr = event.GetColumn();
-        if (0 > m_ColumnHeaderNbr || m_ColumnHeaderNbr >= (int)m_columns.size()) return;
+        if (0 > m_ColumnHeaderNbr || m_ColumnHeaderNbr >= static_cast<int>(m_columns.size())) return;
         wxMenu menu;
         wxMenu *submenu = new wxMenu;
-        for (int i = 0; i < (int)m_columns.size(); i++)
+        for (int i = 0; i < static_cast<int>(m_columns.size()); i++)
         {
             int id = MENU_HEADER_COLUMN + i;
             submenu->AppendCheckItem(id, m_columns[i].HEADER);
@@ -176,7 +176,7 @@ void mmListCtrl::OnHeaderSort(wxCommandEvent& event)
 void mmListCtrl::OnHeaderReset(wxCommandEvent& event)
 {
     wxString parameter_name;
-    for (int i = 0; i < (int)m_columns.size(); i++)
+    for (int i = 0; i < static_cast<int>(m_columns.size()); i++)
     {
         SetColumnWidth(i, m_columns[i].WIDTH);
         if (!m_col_width.IsEmpty())
@@ -196,7 +196,7 @@ void mmListCtrl::OnHeaderColumn(wxCommandEvent& event)
 {
     int id = event.GetId();
     int columnNbr = id - MENU_HEADER_COLUMN;
-    if (columnNbr >= 0 && columnNbr < (int)m_columns.size() && !m_col_width.IsEmpty())
+    if (columnNbr >= 0 && columnNbr < static_cast<int>(m_columns.size()) && !m_col_width.IsEmpty())
     {
         int default_width = m_columns[columnNbr].WIDTH;
         if (default_width == 0)

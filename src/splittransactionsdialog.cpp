@@ -215,7 +215,7 @@ void SplitTransactionDialog::OnOk( wxCommandEvent& /*event*/ )
 
 void SplitTransactionDialog::OnButtonRemoveClick( wxCommandEvent& event )
 {
-    if (selectedIndex_ < 0 || selectedIndex_ >= (int)this->m_local_splits.size())
+    if (selectedIndex_ < 0 || selectedIndex_ >= static_cast<int>(this->m_local_splits.size()))
         return;
     this->m_local_splits.erase(this->m_local_splits.begin() + selectedIndex_);
     selectedIndex_ = -1;
@@ -235,7 +235,7 @@ void SplitTransactionDialog::UpdateSplitTotal()
 
 void SplitTransactionDialog::EditEntry(int index)
 {
-    if (index < 0 || index >= (int)this->m_local_splits.size()) return;
+    if (index < 0 || index >= static_cast<int>(this->m_local_splits.size())) return;
     SplitDetailDialog sdd(this, m_local_splits[index], transType_, accountID_);
     if (sdd.ShowModal() == wxID_OK)
     {
@@ -268,7 +268,7 @@ void SplitTransactionDialog::SetDisplaySplitCategories()
 
 void SplitTransactionDialog::SetDisplayEditDeleteButtons()
 {
-    bool active = selectedIndex_ >= 0 && selectedIndex_ < (int)this->m_local_splits.size();
+    bool active = selectedIndex_ >= 0 && selectedIndex_ < static_cast<int>(this->m_local_splits.size());
     itemButtonEdit_->Enable(active);
     itemButtonDelete_->Enable(active);
 }

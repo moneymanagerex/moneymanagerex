@@ -572,7 +572,7 @@ void mmUnivCSVDialog::OnAdd(wxCommandEvent& /*event*/)
         if (item->getIndex() != UNIV_CSV_DONTCARE)
         {
             csvFieldCandicate_->Delete(index);
-            if (index < (int)csvFieldCandicate_->GetCount())
+            if (index < static_cast<int>(csvFieldCandicate_->GetCount()))
                 csvFieldCandicate_->SetSelection(index, true);
             else
                 csvFieldCandicate_->SetSelection(csvFieldCandicate_->GetCount() - 1, true);
@@ -595,7 +595,7 @@ void mmUnivCSVDialog::OnRemove(wxCommandEvent& /*event*/)
         if (item_index != UNIV_CSV_DONTCARE)
         {
             int pos = 0;
-            for (pos = 0; pos < (int)csvFieldCandicate_->GetCount() - 1; pos ++)
+            for (pos = 0; pos < static_cast<int>(csvFieldCandicate_->GetCount() - 1); pos ++)
             {
                 mmListBoxItem *item2 = static_cast<mmListBoxItem*>(csvFieldCandicate_->GetClientObject(pos));
                 if (item_index < item2->getIndex())
@@ -607,7 +607,7 @@ void mmUnivCSVDialog::OnRemove(wxCommandEvent& /*event*/)
         csvListBox_->Delete(index);
         csvFieldOrder_.erase(csvFieldOrder_.begin() + index);
 
-        if (index < (int)csvListBox_->GetCount())
+        if (index < static_cast<int>(csvListBox_->GetCount()))
             csvListBox_->SetSelection(index, true);
         else
             csvListBox_->SetSelection(csvListBox_->GetCount() - 1, true);
@@ -1234,7 +1234,7 @@ void mmUnivCSVDialog::OnMoveUp(wxCommandEvent& /*event*/)
 void mmUnivCSVDialog::OnMoveDown(wxCommandEvent& /*event*/)
 {
     int index = csvListBox_->GetSelection();
-    if (index != wxNOT_FOUND && index != (int)csvListBox_->GetCount() - 1)
+    if (index != wxNOT_FOUND && index != static_cast<int>(csvListBox_->GetCount()) - 1)
     {
         mmListBoxItem* item = static_cast<mmListBoxItem*>(csvListBox_->GetClientObject(index));
         int item_index = item->getIndex();

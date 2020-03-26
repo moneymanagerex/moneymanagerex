@@ -616,7 +616,7 @@ void mmStockDialog::OnHistoryImportButton(wxCommandEvent& /*event*/)
             const wxString& delimiter = Model_Infotable::instance().GetStringInfo("DELIMITER", mmex::DEFDELIMTER);
             csv2tab_separated_values(line, delimiter);
             wxStringTokenizer tkz(line, "\t", wxTOKEN_RET_EMPTY_ALL);  
-            if ((int)tkz.CountTokens() < 2)
+            if (static_cast<int>(tkz.CountTokens()) < 2)
                 continue;
             
             std::vector<wxString> tokens;
@@ -902,7 +902,7 @@ void mmStockDialog::OnHistoryDeleteButton(wxCommandEvent& /*event*/)
 
         if (item == -1)
             break;
-        Model_StockHistory::instance().remove((int) m_price_listbox->GetItemData(item));
+        Model_StockHistory::instance().remove(static_cast<int>(m_price_listbox->GetItemData(item)));
     }
     Model_StockHistory::instance().ReleaseSavepoint();
     ShowStockHistory();

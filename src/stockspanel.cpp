@@ -918,11 +918,11 @@ wxString StocksListCtrl::getStockInfo(int selectedIndex) const
     stockavgPurchasePrice /= stocktotalnumShares;
 
     double numShares = m_stocks[selectedIndex].NUMSHARES;
-    wxString sNumShares = wxString::Format("%i", (int)numShares);
+    wxString sNumShares = wxString::Format("%i", static_cast<int>(numShares));
     if (numShares - static_cast<long>(numShares) != 0.0)
         sNumShares = wxString::Format("%.4f", numShares);
 
-    wxString sTotalNumShares = wxString::Format("%i", (int)stocktotalnumShares);
+    wxString sTotalNumShares = wxString::Format("%i", static_cast<int>(stocktotalnumShares));
     if ((stocktotalnumShares - static_cast<long>(stocktotalnumShares)) != 0.0)
         sTotalNumShares = wxString::Format("%.4f", stocktotalnumShares);
 
