@@ -119,7 +119,7 @@ wxColour mmColors::userDefColor7;
 bool getNewsRSS(std::vector<WebsiteNews>& WebsiteNewsList)
 {
     wxString RssContent;
-    if (http_get_data(mmex::weblink::NewsRSS, RssContent) != wxURL_NOERR)
+    if (http_get_data(mmex::weblink::NewsRSS, RssContent) != CURLE_OK)
         return false;
 
     //simple validation to avoid bug #1083
