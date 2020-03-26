@@ -117,7 +117,7 @@ void mmMainCurrencyDialog::fillControls()
         data.push_back(wxVariant(currency.CURRENCY_SYMBOL));
         data.push_back(wxVariant(currency.CURRENCYNAME));
         data.push_back(wxVariant(wxString()<<Model_CurrencyHistory::getLastRate(currencyID)));
-        currencyListBox_->AppendItem(data, (wxUIntPtr)currencyID);
+        currencyListBox_->AppendItem(data, static_cast<wxUIntPtr>(currencyID));
         if (selected_index == currencyListBox_->GetItemCount() - 1)
         {
             currencyListBox_->SelectRow(selected_index);

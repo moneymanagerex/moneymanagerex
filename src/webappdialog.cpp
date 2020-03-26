@@ -133,7 +133,7 @@ void mmWebAppDialog::fillControls()
 
         data.push_back(wxVariant(WebTran.Notes)); //WEBTRAN_NOTES
         data.push_back(wxVariant(WebTran.Attachments)); //WEBTRAN_ATTACHMENTS
-        webtranListBox_->AppendItem(data, (wxUIntPtr)WebTran.ID);
+        webtranListBox_->AppendItem(data, static_cast<wxUIntPtr>(WebTran.ID));
     }
 }
 

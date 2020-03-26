@@ -110,7 +110,7 @@ void SplitTransactionDialog::DataToControls()
         wxVector<wxVariant> data;
         data.push_back(wxVariant(Model_Category::full_name(entry.CATEGID, entry.SUBCATEGID)));
         data.push_back(wxVariant(Model_Currency::toString(entry.SPLITTRANSAMOUNT, currency)));
-        lcSplit_->AppendItem(data, (wxUIntPtr)lcSplit_->GetItemCount());
+        lcSplit_->AppendItem(data, static_cast<wxUIntPtr>(lcSplit_->GetItemCount()));
     }
     if (lcSplit_->GetItemCount() > selectedIndex_ && selectedIndex_ >= 0)
         lcSplit_->SelectRow(selectedIndex_);

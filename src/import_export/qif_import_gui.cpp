@@ -550,7 +550,7 @@ void mmQIFImportDialog::refreshTabs(int tabs)
             data.push_back(wxVariant(map.find(Amount) != map.end() ? map.at(Amount) : ""));
             data.push_back(wxVariant(map.find(Memo) != map.end() ? map.at(Memo) : ""));
 
-            dataListBox_->AppendItem(data, (wxUIntPtr) num++);
+            dataListBox_->AppendItem(data, static_cast<wxUIntPtr>(num++));
         }
     }
 
@@ -585,7 +585,7 @@ void mmQIFImportDialog::refreshTabs(int tabs)
             }
             data.push_back(wxVariant(currencySymbol));
             data.push_back(wxVariant(status));
-            accListBox_->AppendItem(data, (wxUIntPtr) num++);
+            accListBox_->AppendItem(data, static_cast<wxUIntPtr>(num++));
         }
     }
 
@@ -598,7 +598,7 @@ void mmQIFImportDialog::refreshTabs(int tabs)
             data.push_back(wxVariant(payee));
             Model_Payee::Data* p = Model_Payee::instance().get(payee); 
             data.push_back(wxVariant(p ? _("OK") : _("Missing")));
-            payeeListBox_->AppendItem(data, (wxUIntPtr) num++);
+            payeeListBox_->AppendItem(data, static_cast<wxUIntPtr>(num++));
         }
     }
 
@@ -615,7 +615,7 @@ void mmQIFImportDialog::refreshTabs(int tabs)
                 data.push_back(wxVariant("Missing"));
             else
                 data.push_back(wxVariant(_("OK")));
-            categoryListBox_->AppendItem(data, (wxUIntPtr) num++);
+            categoryListBox_->AppendItem(data, static_cast<wxUIntPtr>(num++));
         }
     }
 }

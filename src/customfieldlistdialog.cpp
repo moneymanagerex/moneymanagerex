@@ -130,7 +130,7 @@ void mmCustomFieldListDialog::fillControls()
             Properties.Replace("\n", "", true);
             data.push_back(wxVariant(Properties));
         }
-        fieldListBox_->AppendItem(data, (wxUIntPtr)entry.FIELDID);
+        fieldListBox_->AppendItem(data, static_cast<wxUIntPtr>(entry.FIELDID));
     }
 
     m_field_id = firstInTheListID;
