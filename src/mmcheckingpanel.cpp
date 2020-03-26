@@ -727,7 +727,7 @@ void mmCheckingPanel::OnViewPopupSelected(wxCommandEvent& event)
 
     m_listCtrlAccount->m_selectedIndex = -1;
 
-    Model_Infotable::instance().Set(wxString::Format("CHECK_FILTER_ID_%ld", (long) m_AccountID)
+    Model_Infotable::instance().Set(wxString::Format("CHECK_FILTER_ID_%ld", static_cast<long>(m_AccountID))
         , menu_labels()[m_currentView]);
     initFilterSettings();
     RefreshList(m_listCtrlAccount->m_selectedID);
@@ -829,7 +829,7 @@ void mmCheckingPanel::OnSearchTxtEntered(wxCommandEvent& event)
     const wxString search_string = event.GetString().Lower();
     if (search_string.IsEmpty()) return;
 
-    long last = (long)(m_listCtrlAccount->GetItemCount() - 1);
+    long last = static_cast<long>(m_listCtrlAccount->GetItemCount() - 1);
     long selectedItem = m_listCtrlAccount->GetNextItem(-1, wxLIST_NEXT_ALL, wxLIST_STATE_SELECTED);
     if (selectedItem <= 0 || selectedItem >= last) //nothing selected
         selectedItem = m_listCtrlAccount->g_asc ? last : 0;
@@ -1739,7 +1739,7 @@ void TransactionListCtrl::refreshVisualList(int trans_id, bool filter)
     m_cp->sortTable();
     m_cp->markSelectedTransaction(trans_id);
 
-    long i = (long)m_cp->m_trans.size();
+    long i = static_cast<long>(m_cp->m_trans.size());
     if (m_topItemIndex >= i)
         m_topItemIndex = g_asc ? i - 1 : 0;
     if (m_selectedIndex > i - 1) m_selectedIndex = -1;

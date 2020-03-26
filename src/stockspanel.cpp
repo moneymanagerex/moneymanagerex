@@ -963,18 +963,18 @@ wxString StocksListCtrl::getStockInfo(int selectedIndex) const
             , sTotalDifference, sTotalNumShares
             , Model_Currency::toCurrency(stocktotalgainloss)
             , wxNumberFormatter::ToString(stocktotalPercentage, 2)
-            , OnGetItemText(selectedIndex, (long)COL_NOTES));
+            , OnGetItemText(selectedIndex, static_cast<long>(COL_NOTES)));
     }
     return additionInfo;
 }
 void mmStocksPanel::enableEditDeleteButtons(bool en)
 {
-    wxButton* bN = (wxButton*) FindWindow(wxID_NEW);
-    wxButton* bE = (wxButton*) FindWindow(wxID_EDIT);
-    wxButton* bA = (wxButton*) FindWindow(wxID_ADD);
-    wxButton* bV = (wxButton*)FindWindow(wxID_VIEW_DETAILS);
-    wxButton* bD = (wxButton*)FindWindow(wxID_DELETE);
-    wxButton* bM = (wxButton*)FindWindow(wxID_MOVE_FRAME);
+    wxButton* bN = static_cast<wxButton*>(FindWindow(wxID_NEW));
+    wxButton* bE = static_cast<wxButton*>(FindWindow(wxID_EDIT));
+    wxButton* bA = static_cast<wxButton*>(FindWindow(wxID_ADD));
+    wxButton* bV = static_cast<wxButton*>(FindWindow(wxID_VIEW_DETAILS));
+    wxButton* bD = static_cast<wxButton*>(FindWindow(wxID_DELETE));
+    wxButton* bM = static_cast<wxButton*>(FindWindow(wxID_MOVE_FRAME));
     if (bN) bN->Enable(!en);
     if (bE) bE->Enable(en);
     if (bA) bA->Enable(en);

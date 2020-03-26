@@ -169,7 +169,7 @@ void OptionSettingsGeneral::OnCurrency(wxCommandEvent& /*event*/)
     {
         currencyID = Option::instance().getBaseCurrencyID();
         Model_Currency::Data* currency = Model_Currency::instance().get(currencyID);
-        wxButton* bn = (wxButton*) FindWindow(ID_DIALOG_OPTIONS_BUTTON_CURRENCY);
+        wxButton* bn = static_cast<wxButton*>(FindWindow(ID_DIALOG_OPTIONS_BUTTON_CURRENCY));
         bn->SetLabelText(currency->CURRENCYNAME);
         m_currency_id = currencyID;
 

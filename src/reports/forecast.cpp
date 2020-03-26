@@ -68,7 +68,7 @@ wxString mmReportForecast::getHTMLText()
     mm_html_template report(this->m_template);
     report(L"REPORTNAME") = this->getReportTitle();
     report(L"CONTENTS") = contents;
-    report(L"GRAND") = wxString::Format("%ld", (long)amount_by_day.size());
+    report(L"GRAND") = wxString::Format("%ld", static_cast<long>(amount_by_day.size()));
     report(L"HTMLSCALE") = wxString::Format("%d", Option::instance().HtmlFontSize());
 
     wxString out = wxEmptyString;

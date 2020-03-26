@@ -705,11 +705,11 @@ void mmBillsDepositsPanel::updateBottomPanelData(int selIndex)
 
 void mmBillsDepositsPanel::enableEditDeleteButtons(bool en)
 {
-    wxButton* bE = (wxButton*) FindWindow(wxID_EDIT);
-    wxButton* bD = (wxButton*) FindWindow(wxID_DELETE);
-    wxButton* bN = (wxButton*) FindWindow(wxID_PASTE);
-    wxButton* bS = (wxButton*) FindWindow(wxID_IGNORE);
-    wxButton* bA = (wxButton*)FindWindow(wxID_FILE);
+    wxButton* bE = static_cast<wxButton*>(FindWindow(wxID_EDIT));
+    wxButton* bD = static_cast<wxButton*>(FindWindow(wxID_DELETE));
+    wxButton* bN = static_cast<wxButton*>(FindWindow(wxID_PASTE));
+    wxButton* bS = static_cast<wxButton*>(FindWindow(wxID_IGNORE));
+    wxButton* bA = static_cast<wxButton*>(FindWindow(wxID_FILE));
     if (bE) bE->Enable(en);
     if (bD) bD->Enable(en);
     if (bN) bN->Enable(en);
@@ -813,7 +813,7 @@ wxString mmBillsDepositsPanel::tips()
 void billsDepositsListCtrl::refreshVisualList(int selected_index)
 {
 
-    if (selected_index >= (long)m_bdp->bills_.size() || selected_index < 0)
+    if (selected_index >= static_cast<long>(m_bdp->bills_.size()) || selected_index < 0)
         selected_index = - 1;
     if (!m_bdp->bills_.empty()) {
         RefreshItems(0, m_bdp->bills_.size() - 1);

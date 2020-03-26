@@ -234,9 +234,9 @@ void mmPrintableBaseSpecificAccounts::getSpecificAccounts()
     }
 
     wxMultiChoiceDialog mcd(0, _("Choose Accounts"), m_title, accounts);
-    wxButton* ok = (wxButton*) mcd.FindWindow(wxID_OK);
+    wxButton* ok = static_cast<wxButton*>(mcd.FindWindow(wxID_OK));
     if (ok) ok->SetLabel(_("&OK "));
-    wxButton* ca = (wxButton*) mcd.FindWindow(wxID_CANCEL);
+    wxButton* ca = static_cast<wxButton*>(mcd.FindWindow(wxID_CANCEL));
     if (ca) ca->SetLabel(wxGetTranslation(g_CancelLabel));
 
     if (mcd.ShowModal() == wxID_OK)
