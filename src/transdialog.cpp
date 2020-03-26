@@ -1125,7 +1125,7 @@ void mmTransDialog::OnOk(wxCommandEvent& event)
 void mmTransDialog::OnCancel(wxCommandEvent& /*event*/)
 {
 #ifndef __WXMAC__
-    if (object_in_focus_ != itemButtonCancel_->GetId() && wxKeyCode(WXK_ESCAPE)) 
+    if (object_in_focus_ != itemButtonCancel_->GetId() && WXK_ESCAPE) 
             return itemButtonCancel_->SetFocus();
 #endif
 
