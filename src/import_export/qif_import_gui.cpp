@@ -842,7 +842,7 @@ void mmQIFImportDialog::OnOk(wxCommandEvent& /*event*/)
         joinSplit(trx_data_set, m_splitDataSets);
         saveSplit();
 
-        sMsg = _("Import finished successfully") + "\n" + wxString::Format(_("Total Imported : %ld"), (long)trx_data_set.size());
+        sMsg = _("Import finished successfully") + "\n" + wxString::Format(_("Total Imported : %ld"), static_cast<long>(trx_data_set.size()));
         trx_data_set.clear();
         vQIF_trxs_.clear();
         btnOK_->Enable(false);

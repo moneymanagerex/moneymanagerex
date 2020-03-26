@@ -191,7 +191,7 @@ void OptionSettingsAttachment::OnAttachmentsButton(wxCommandEvent& /*event*/)
 
 void OptionSettingsAttachment::OnAttachmentsMenu(wxCommandEvent& event)
 {
-    wxTextCtrl* att = (wxTextCtrl*) FindWindow(ID_DIALOG_OPTIONS_TEXTCTRL_ATTACHMENT);
+    wxTextCtrl* att = static_cast<wxTextCtrl*>(FindWindow(ID_DIALOG_OPTIONS_TEXTCTRL_ATTACHMENT));
     if (!att) return;
     wxString AttachmentsFolder = mmex::getPathAttachment(att->GetValue());
 
@@ -224,7 +224,7 @@ void OptionSettingsAttachment::OnAttachmentsMenu(wxCommandEvent& event)
 
 void OptionSettingsAttachment::OnAttachmentsPathChanged(wxCommandEvent& event)
 {
-    wxTextCtrl* att = (wxTextCtrl*) FindWindow(ID_DIALOG_OPTIONS_TEXTCTRL_ATTACHMENT);
+    wxTextCtrl* att = static_cast<wxTextCtrl*>(FindWindow(ID_DIALOG_OPTIONS_TEXTCTRL_ATTACHMENT));
     if (!att) return;
     wxString AttachmentsFolder = mmex::getPathAttachment(att->GetValue());
 
@@ -240,7 +240,7 @@ void OptionSettingsAttachment::OnAttachmentsSubfolderChanged(wxCommandEvent& eve
 
 void OptionSettingsAttachment::SaveSettings()
 {
-    wxTextCtrl* attTextCtrl = (wxTextCtrl*) FindWindow(ID_DIALOG_OPTIONS_TEXTCTRL_ATTACHMENT);
+    wxTextCtrl* attTextCtrl = static_cast<wxTextCtrl*>(FindWindow(ID_DIALOG_OPTIONS_TEXTCTRL_ATTACHMENT));
     wxString attachmentFolder = attTextCtrl->GetValue().Trim();
     Model_Infotable::instance().Set("ATTACHMENTSFOLDER:" + mmPlatformType(), attachmentFolder);
     Model_Infotable::instance().Set("ATTACHMENTSSUBFOLDER", m_attachments_subfolder->GetValue());

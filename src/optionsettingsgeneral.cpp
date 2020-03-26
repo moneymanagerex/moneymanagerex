@@ -201,7 +201,7 @@ bool OptionSettingsGeneral::SaveFinancialYearStart()
     int last_month_day = wxDateTime(1, wxDateTime::Month(month-1), 2015).GetLastMonthDay().GetDay();
 
     //Save Financial Year Start Day
-    wxSpinCtrl* fysDay = (wxSpinCtrl*) FindWindow(ID_DIALOG_OPTIONS_FINANCIAL_YEAR_START_DAY);
+    wxSpinCtrl* fysDay = static_cast<wxSpinCtrl*>(FindWindow(ID_DIALOG_OPTIONS_FINANCIAL_YEAR_START_DAY));
     int day = fysDay->GetValue();
     if (last_month_day < day)
         day = last_month_day;
@@ -212,7 +212,7 @@ bool OptionSettingsGeneral::SaveFinancialYearStart()
 
 void OptionSettingsGeneral::SaveSettings()
 {
-    wxTextCtrl* stun = (wxTextCtrl*) FindWindow(ID_DIALOG_OPTIONS_TEXTCTRL_USERNAME);
+    wxTextCtrl* stun = static_cast<wxTextCtrl*>(FindWindow(ID_DIALOG_OPTIONS_TEXTCTRL_USERNAME));
     Option::instance().UserName(stun->GetValue());
 
     Option::instance().DateFormat(m_date_format);

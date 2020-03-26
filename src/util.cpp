@@ -218,7 +218,7 @@ void csv2tab_separated_values(wxString& line, const wxString& delimit)
     while (tkz1.HasMoreTokens())
     {
         token = tkz1.GetNextToken();
-        if (0 == fmod((double)i, 2))
+        if (0 == fmod(static_cast<double>(i), 2))
             token.Replace(delimit, "\t");
         temp_line << token;
         i++;

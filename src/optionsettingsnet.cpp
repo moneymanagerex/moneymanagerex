@@ -179,10 +179,10 @@ void OptionSettingsNet::SaveSettings()
     Model_Setting::instance().Set("PROXYIP", m_proxy_address->GetValue());
     Model_Setting::instance().Set("PROXYPORT", m_proxy_port->GetValue());
 
-    wxTextCtrl* WebAppURL = (wxTextCtrl*) FindWindow(ID_DIALOG_OPTIONS_TEXTCTRL_WEBAPPURL);
+    wxTextCtrl* WebAppURL = static_cast<wxTextCtrl*>(FindWindow(ID_DIALOG_OPTIONS_TEXTCTRL_WEBAPPURL));
     Model_Infotable::instance().Set("WEBAPPURL", WebAppURL->GetValue());
 
-    wxTextCtrl* WebAppGUID = (wxTextCtrl*) FindWindow(ID_DIALOG_OPTIONS_TEXTCTRL_WEBAPPGUID);
+    wxTextCtrl* WebAppGUID = static_cast<wxTextCtrl*>(FindWindow(ID_DIALOG_OPTIONS_TEXTCTRL_WEBAPPGUID));
     Model_Infotable::instance().Set("WEBAPPGUID", WebAppGUID->GetValue());
 
     Option::instance().SendUsageStatistics(m_send_data->GetValue());

@@ -142,13 +142,13 @@ void mmStockDialog::UpdateControls()
 
     //Disable history buttons on new stocks
 
-    wxBitmapButton* buttonDownload = (wxBitmapButton*) FindWindow(ID_BUTTON_DOWNLOAD);
+    wxBitmapButton* buttonDownload = static_cast<wxBitmapButton*>(FindWindow(ID_BUTTON_DOWNLOAD));
     buttonDownload->Enable(m_edit);
-    wxBitmapButton* buttonImport = (wxBitmapButton*) FindWindow(ID_BUTTON_IMPORT);
+    wxBitmapButton* buttonImport = static_cast<wxBitmapButton*>(FindWindow(ID_BUTTON_IMPORT));
     buttonImport->Enable(m_edit);
-    wxBitmapButton* buttonDel = (wxBitmapButton*) FindWindow(wxID_DELETE);
+    wxBitmapButton* buttonDel = static_cast<wxBitmapButton*>(FindWindow(wxID_DELETE));
     buttonDel->Enable(m_edit);
-    wxBitmapButton* buttonAdd = (wxBitmapButton*) FindWindow(wxID_ADD);
+    wxBitmapButton* buttonAdd = static_cast<wxBitmapButton*>(FindWindow(wxID_ADD));
     buttonAdd->Enable(m_edit);
 
     bool initial_shares = !Model_Translink::HasShares(m_stock_id);
