@@ -674,7 +674,7 @@ void billsDepositsListCtrl::OnOrganizeAttachments(wxCommandEvent& /*event*/)
     refreshVisualList(m_bdp->initVirtualListControl(RefId));
 }
 
-void billsDepositsListCtrl::OnOpenAttachment(wxCommandEvent& event)
+void billsDepositsListCtrl::OnOpenAttachment(wxCommandEvent& WXUNUSED(event))
 {
     if (m_selected_row == -1) return;
     int RefId = m_bdp->bills_[m_selected_row].BDID;
@@ -684,7 +684,7 @@ void billsDepositsListCtrl::OnOpenAttachment(wxCommandEvent& event)
     refreshVisualList(m_bdp->initVirtualListControl(RefId));
 }
 
-void billsDepositsListCtrl::OnListItemActivated(wxListEvent& /*event*/)
+void billsDepositsListCtrl::OnListItemActivated(wxListEvent& WXUNUSED(event))
 {
     if (m_selected_row == -1) return;
 
