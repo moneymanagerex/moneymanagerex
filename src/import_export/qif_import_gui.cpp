@@ -29,11 +29,11 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include <wx/progdlg.h>
 
 enum tab_id {
-    LOG_TAB = 0,
-    TRX_TAB = 1,
-    ACC_TAB = 2,
-    PAYEE_TAB = 4,
-    CAT_TAB = 8,
+    LOG_TAB = 1,
+    TRX_TAB = 2,
+    ACC_TAB = 4,
+    PAYEE_TAB = 8,
+    CAT_TAB = 16,
 };
 
 //map Quicken !Account type strings to Model_Account::TYPE
@@ -301,7 +301,7 @@ void mmQIFImportDialog::CreateControls()
 
 void mmQIFImportDialog::fillControls()
 {
-    refreshTabs(TRX_TAB | ACC_TAB | PAYEE_TAB | CAT_TAB);
+    refreshTabs(LOG_TAB | TRX_TAB | ACC_TAB | PAYEE_TAB | CAT_TAB);
     btnOK_->Enable(!file_name_ctrl_->GetValue().empty());
 }
 
@@ -405,7 +405,7 @@ bool mmQIFImportDialog::mmReadQIFFile()
     
     interval = wxGetUTCTimeMillis() - start;
     wxString sMsg = wxString::Format(_("Number of lines read from QIF file: %i in %ld ms")
-        , int(numLines), interval.ToLong());
+        , numLines, interval.ToLong());
     *log_field_ << sMsg << "\n";
     sMsg = wxString::Format(_("Press OK Button to continue"));
     *log_field_ << sMsg << "\n";
@@ -495,7 +495,7 @@ void mmQIFImportDialog::compliteTransaction(std::map <int, wxString> &trx, const
 void mmQIFImportDialog::refreshTabs(int tabs)
 {
     int num = 0;
-    if (tabs%2)
+    if (tabs & LOG_TAB)
     {
         wxString acc;
         dataListBox_->DeleteAllItems();
@@ -554,7 +554,7 @@ void mmQIFImportDialog::refreshTabs(int tabs)
         }
     }
 
-    if (int(tabs / ACC_TAB) % 2)
+    if (tabs & ACC_TAB)
     {
         num = 0;
         accListBox_->DeleteAllItems();
@@ -589,7 +589,7 @@ void mmQIFImportDialog::refreshTabs(int tabs)
         }
     }
 
-    if (int(tabs / PAYEE_TAB) % 2)
+    if (tabs & PAYEE_TAB)
     {
         payeeListBox_->DeleteAllItems();
         for (const auto& payee : m_payee_names)
@@ -602,7 +602,7 @@ void mmQIFImportDialog::refreshTabs(int tabs)
         }
     }
 
-    if (int(tabs / CAT_TAB) % 2)
+    if (tabs & CAT_TAB)
     {
         num = 0;
         const auto &c(Model_Category::all_categories());
