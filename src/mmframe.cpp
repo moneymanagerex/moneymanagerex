@@ -576,7 +576,7 @@ void mmGUIFrame::saveSettings()
     this->GetSize(&value_w, &value_h);
     Model_Setting::instance().Set("SIZEW", value_w);
     Model_Setting::instance().Set("SIZEH", value_h);
-    Model_Setting::instance().Set("ISMAXIMIZED", (bool)this->IsMaximized());
+    Model_Setting::instance().Set("ISMAXIMIZED", static_cast<bool>(this->IsMaximized()));
     Model_Setting::instance().ReleaseSavepoint();
 }
 //----------------------------------------------------------------------------
@@ -1355,11 +1355,6 @@ void mmGUIFrame::createHelpPage()
 
 void mmGUIFrame::createMenu()
 {
-    int vFontSize = Option::instance().HtmlFontSize();
-    int x = 16;
-    if (vFontSize >= 300) x = 48;
-    else if (vFontSize >= 200) x = 32;
-
     wxMenu *menu_file = new wxMenu;
 
     wxMenuItem* menuItemNew = new wxMenuItem(menu_file, MENU_NEW, _("&New Database\tCtrl-N"), _("New Database"));
