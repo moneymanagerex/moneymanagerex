@@ -320,7 +320,7 @@ int Option::IconSize()
     return m_ico_size;
 }
 
-const int Option::AccountImageId(int account_id, bool def)
+int Option::AccountImageId(int account_id, bool def)
 {
     int max = acc_img::MAX_XPM - img::LAST_NAVTREE_PNG;
     int min = 1;

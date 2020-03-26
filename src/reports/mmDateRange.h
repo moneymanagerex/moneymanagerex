@@ -109,19 +109,19 @@ public:
 class mmCurrentFinancialYear: public mmDateRange
 {
 public:
-    mmCurrentFinancialYear(const int day, const int month);
+    mmCurrentFinancialYear(int day, int month);
 };
 
 class mmCurrentFinancialYearToDate : public mmDateRange
 {
 public:
-    mmCurrentFinancialYearToDate(const int day, const int month);
+    mmCurrentFinancialYearToDate(int day, int month);
 };
 
 class mmLastFinancialYear : public mmDateRange
 {
 public:
-    mmLastFinancialYear(const int day, const int month);
+    mmLastFinancialYear(int day, int month);
 };
 
 class mmAllTime: public mmDateRange

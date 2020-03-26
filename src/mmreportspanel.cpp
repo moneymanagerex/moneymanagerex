@@ -89,7 +89,7 @@ public:
         else if (uri.StartsWith("attachment:", &sData))
         {
             const wxString RefType = sData.BeforeFirst('|');
-            const int RefId = wxAtoi(sData.AfterFirst('|'));
+            int RefId = wxAtoi(sData.AfterFirst('|'));
 
             if (Model_Attachment::instance().all_type().Index(RefType) != wxNOT_FOUND && RefId > 0)
             {

@@ -123,7 +123,7 @@ void mmListCtrl::OnColRightClick(wxListEvent& event)
         wxMenu *submenu = new wxMenu;
         for (int i = 0; i < (int)m_columns.size(); i++)
         {
-            const int id = MENU_HEADER_COLUMN + i;
+            int id = MENU_HEADER_COLUMN + i;
             submenu->AppendCheckItem(id, m_columns[i].HEADER);
             if (Model_Setting::instance().GetIntSetting(wxString::Format(m_col_width, i), m_columns[i].WIDTH) != 0)
                 submenu->Check(id, true);

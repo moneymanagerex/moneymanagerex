@@ -52,7 +52,7 @@ bool mmAppStartDialog::Create(wxWindow* parent, wxWindowID id, const wxString& c
     , const wxPoint& pos, const wxSize& size, long style, const wxString& name)
 {
     SetExtraStyle(GetExtraStyle()|wxWS_EX_BLOCK_EVENTS);
-    bool ok = wxDialog::Create(parent, id, caption, pos, size, style);
+    bool ok = wxDialog::Create(parent, id, caption, pos, size, style, name);
 
     if (ok) {
         SetIcon(mmex::getProgramIcon());

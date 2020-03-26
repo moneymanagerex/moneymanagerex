@@ -162,7 +162,7 @@ mmLastYear::mmLastYear()
     this->title_ = wxTRANSLATE("Last Year");
 }
 
-mmCurrentFinancialYear::mmCurrentFinancialYear(const int day, const int month)
+mmCurrentFinancialYear::mmCurrentFinancialYear(int day, int month)
 : mmDateRange()
 {
     int this_month = this->start_date_.GetMonth() + 1;
@@ -183,7 +183,7 @@ mmCurrentFinancialYear::mmCurrentFinancialYear(const int day, const int month)
     this->title_ = wxTRANSLATE("Current Financial Year");
 }
 
-mmCurrentFinancialYearToDate::mmCurrentFinancialYearToDate(const int day, const int month)
+mmCurrentFinancialYearToDate::mmCurrentFinancialYearToDate(int day, int month)
 : mmDateRange()
 {
     mmCurrentFinancialYear current_financial_year(day, month);
@@ -193,7 +193,7 @@ mmCurrentFinancialYearToDate::mmCurrentFinancialYearToDate(const int day, const 
     this->title_ = wxTRANSLATE("Current Financial Year to Date");
 }
 
-mmLastFinancialYear::mmLastFinancialYear(const int day, const int month)
+mmLastFinancialYear::mmLastFinancialYear(int day, int month)
 : mmDateRange()
 {
     mmCurrentFinancialYear current_financial_year(day, month);

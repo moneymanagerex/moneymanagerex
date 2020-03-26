@@ -1048,8 +1048,8 @@ void mmUnivCSVDialog::update_preview()
     this->m_list_ctrl_->SetColumnWidth(colCount, 30);
     ++colCount;
     int date_position = 0;
-    const int MAX_ROWS_IN_PREVIEW = 20;
-    const int MAX_COLS = 30; // Not including line number col.
+    int MAX_ROWS_IN_PREVIEW = 20;
+    int MAX_COLS = 30; // Not including line number col.
     const wxString NOTES_FIELD_NAME = getCSVFieldName(UNIV_CSV_NOTES);
     const wxString DATE_FIELD_NAME = getCSVFieldName(UNIV_CSV_DATE);
     for (std::vector<int>::const_iterator it = csvFieldOrder_.begin(); it != csvFieldOrder_.end(); ++ it)
@@ -1559,8 +1559,8 @@ void mmUnivCSVDialog::OnSpinCtrlIgnoreLastRows(wxSpinEvent& event)
 
 void mmUnivCSVDialog::UpdateListItemBackground()
 {
-    const int firstRow = m_spinIgnoreFirstRows_->GetValue();
-    const int lastRow = m_list_ctrl_->GetItemCount() - m_spinIgnoreLastRows_->GetValue() - 1;
+    int firstRow = m_spinIgnoreFirstRows_->GetValue();
+    int lastRow = m_list_ctrl_->GetItemCount() - m_spinIgnoreLastRows_->GetValue() - 1;
     for (int row = 0; row < m_list_ctrl_->GetItemCount(); row++)
     {
         m_list_ctrl_->SetItemBackgroundColour(row, row >= firstRow && row <= lastRow ? m_list_ctrl_->GetBackgroundColour() :*wxLIGHT_GREY);

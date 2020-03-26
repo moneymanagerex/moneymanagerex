@@ -297,7 +297,7 @@ void mmBudgetingPanel::CreateControls()
 
 budgetingListCtrl::budgetingListCtrl(mmBudgetingPanel* cp, wxWindow *parent, const wxWindowID id)
     : mmListCtrl(parent, id)
-    , attr3_(mmColors::listAlternativeColor1, mmColors::listFutureDateColor, wxNullFont)
+    , attr3_(new wxListItemAttr(mmColors::listAlternativeColor1, mmColors::listFutureDateColor, wxNullFont))
     , cp_(cp)
     , selectedIndex_(-1)
 {
@@ -627,7 +627,7 @@ wxListItemAttr* budgetingListCtrl::OnGetItemAttr(long item) const
     if ((cp_->GetTransID(item) < 0) &&
         (cp_->GetCurrentView() != VIEW_SUMM))
     {
-        return (wxListItemAttr *)&attr3_;
+        return attr3_;
     }
 
     /* Returns the alternating background pattern */

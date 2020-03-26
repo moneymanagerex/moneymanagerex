@@ -602,7 +602,7 @@ void mmMainCurrencyDialog::OnHistoryUpdate(wxCommandEvent& /*event*/)
             , _("Currency history error"));
     }
 
-    const int msgResult = wxMessageBox(_("Do you want to add also dates without any transaction?")
+    int msgResult = wxMessageBox(_("Do you want to add also dates without any transaction?")
         , _("Currency Dialog"), wxYES_NO | wxNO_DEFAULT | wxICON_WARNING);
     bool CheckDate;
     if (msgResult == wxYES || msgResult == wxNO)

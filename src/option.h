@@ -103,7 +103,7 @@ public:
     void IconSize(int value);
     int IconSize();
 
-    const int AccountImageId(int account_id, bool def = false);
+    int AccountImageId(int account_id, bool def = false);
 	bool getSendUsageStatistics() const;
 
     void IgnoreFutureTransactions(bool value);
