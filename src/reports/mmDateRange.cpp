@@ -207,7 +207,8 @@ mmLastFinancialYear::mmLastFinancialYear(int day, int month)
 {
     mmCurrentFinancialYear current_financial_year(day, month);
     this->start_date_ = current_financial_year.start_date().Subtract(wxDateSpan::Year());
-    this->end_date_ = current_financial_year.end_date().Subtract(wxDateSpan::Year());
+    this->end_date_ = this->start_date_;
+    this->end_date_.Add(wxDateSpan::Year()).Subtract(wxDateSpan::Day());
 
     this->title_ = wxTRANSLATE("Last Financial Year");
 }
