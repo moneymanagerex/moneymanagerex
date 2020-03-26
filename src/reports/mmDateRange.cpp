@@ -135,7 +135,7 @@ mmLast3Months::mmLast3Months()
 mmLast12Months::mmLast12Months()
 : mmDateRange()
 {
-    this->end_date_ = wxDateTime(this->start_date_).GetLastMonthDay();
+    this->end_date_ = this->start_date_.GetLastMonthDay();
     this->start_date_ = end_date_;
     this->start_date_.SetDay(1);
     this->start_date_
@@ -148,7 +148,8 @@ mmCurrentYear::mmCurrentYear()
 : mmDateRange()
 {
     this->start_date_.SetDay(1).SetMonth(wxDateTime::Jan);
-    this->end_date_ = wxDateTime(start_date_).SetMonth(wxDateTime::Dec).SetDay(31);
+    this->end_date_ = start_date_;
+    this->end_date_.SetMonth(wxDateTime::Dec).SetDay(31);
     this->title_ = wxTRANSLATE("Current Year");
 }
 
@@ -173,7 +174,8 @@ mmCurrentFinancialYear::mmCurrentFinancialYear(int day, int month)
 : mmDateRange()
 {
     int this_month = this->start_date_.GetMonth() + 1;
-    auto finDate = wxDateTime(this->start_date_).SetDay(1).SetMonth(wxDateTime::Month(month - 1));
+    auto finDate = this->start_date_;
+    finDate.SetDay(1).SetMonth(wxDateTime::Month(month - 1));
     auto last_month_day = finDate.GetLastMonthDay().GetDay();
     wxASSERT(day <= last_month_day);
     finDate.SetDay(day <= last_month_day ? day : last_month_day);
@@ -233,7 +235,8 @@ mmSpecifiedRange::mmSpecifiedRange(const wxDateTime& start, const wxDateTime& en
 
 mmLast365Days::mmLast365Days() : mmDateRange()
 {
-    this->start_date_ = wxDateTime(end_date_).Subtract(wxDateSpan::Months(12)).Add(wxDateSpan::Days(1));
+    this->start_date_ = end_date_;
+    this->start_date_.Subtract(wxDateSpan::Months(12)).Add(wxDateSpan::Days(1));
     // no change to end_date_
     this->title_ = wxTRANSLATE("Last 365 Days");
 }
