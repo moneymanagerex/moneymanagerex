@@ -897,7 +897,7 @@ void mmBDDialog::updateControlsForTransType()
     if (cAdvanced_->IsChecked())
         SetAdvancedTransferControls(true);
     prevType_ = m_choice_transaction_type->GetSelection();
-    setToolTipsForType((Model_Billsdeposits::TYPE)prevType_, m_transfer);
+    setToolTipsForType(static_cast<Model_Billsdeposits::TYPE>(prevType_), m_transfer);
 }
 
 void mmBDDialog::resetPayeeString()
@@ -946,7 +946,7 @@ void mmBDDialog::OnFrequentUsedNotes(wxCommandEvent& WXUNUSED(event))
 void mmBDDialog::onNoteSelected(wxCommandEvent& event)
 {
     int i = event.GetId() - wxID_HIGHEST;
-    if (i > 0 && i <= (int)frequentNotes_.size())
+    if (i > 0 && i <= static_cast<int>(frequentNotes_.size()))
         textNotes_->ChangeValue(frequentNotes_[i - 1]);
 }
 
@@ -955,7 +955,7 @@ void mmBDDialog::OnOk(wxCommandEvent& /*event*/)
     Model_Account::Data *acc = Model_Account::instance().get(m_bill_data.ACCOUNTID);
     if (!acc)
     {
-        return mmErrorDialogs::InvalidAccount((wxWindow*) bAccount_);
+        return mmErrorDialogs::InvalidAccount(static_cast<wxWindow*>(bAccount_));
     }
 
     Model_Billsdeposits::Data bill_data;
@@ -974,7 +974,7 @@ void mmBDDialog::OnOk(wxCommandEvent& /*event*/)
         Model_Account::Data *to_acc = Model_Account::instance().get(m_bill_data.TOACCOUNTID);
         if (!to_acc || to_acc->ACCOUNTID == acc->ACCOUNTID)
         {
-            return mmErrorDialogs::InvalidAccount((wxWindow*) bPayee_, true);
+            return mmErrorDialogs::InvalidAccount(static_cast<wxWindow*>(bPayee_), true);
         }
 
         if (m_advanced && !toTextAmount_->checkValue(m_bill_data.TOTRANSAMOUNT)) return;

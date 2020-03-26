@@ -144,7 +144,7 @@ void mmAttachmentDialog::fillControls()
         if (debug_) data.push_back(wxVariant(wxString::Format("%i", entry.ATTACHMENTID)));
         data.push_back(wxVariant(entry.DESCRIPTION));
         data.push_back(wxVariant(entry.REFTYPE + m_PathSep + entry.FILENAME));
-        attachmentListBox_->AppendItem(data, (wxUIntPtr)entry.ATTACHMENTID);
+        attachmentListBox_->AppendItem(data, static_cast<wxUIntPtr>(entry.ATTACHMENTID));
     }
 
     m_attachment_id = firstInTheListAttachentID;
@@ -156,7 +156,7 @@ void mmAttachmentDialog::OnListItemSelected(wxDataViewEvent& event)
     int selected_index = attachmentListBox_->ItemToRow(item);
 
     if (selected_index >= 0)
-        m_attachment_id = (int)attachmentListBox_->GetItemData(item);
+        m_attachment_id = static_cast<int>(attachmentListBox_->GetItemData(item));
 }
 
 void mmAttachmentDialog::AddAttachment()
