@@ -189,7 +189,7 @@ void dbUpgrade::BackupDB(const wxString& FileName, int BackupType, int FilesToKe
             backupFile = wxFindNextFile();
         }
 
-        if (backupFileArray.Count() > (size_t)FilesToKeep)
+        if (backupFileArray.Count() > static_cast<size_t>(FilesToKeep))
         {
             backupFileArray.Sort(true);
             // ensure file is not read only before deleting file.

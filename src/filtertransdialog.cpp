@@ -523,7 +523,7 @@ wxString mmFilterTransactionsDialog::getStatus() const
 {
     wxString status;
     wxStringClientData* status_obj =
-        (wxStringClientData *)choiceStatus_->GetClientObject(choiceStatus_->GetSelection());
+        static_cast<wxStringClientData*>(choiceStatus_->GetClientObject(choiceStatus_->GetSelection()));
     if (status_obj) status = status_obj->GetData().Left(1);
     status.Replace("N", "");
     return status;
