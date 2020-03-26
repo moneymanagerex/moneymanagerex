@@ -234,7 +234,7 @@ void mmUpdate::checkUpdates(bool bSilent, wxFrame *frame)
 
     const int _stable = Model_Setting::instance().GetIntSetting("UPDATESOURCE", 0) == 0;
 
-    const wxString current_tag = wxString("v" + mmex::version::string).Lower();
+    const wxString current_tag = ("v" + mmex::version::string).Lower();
     wxString latest_tag = current_tag;
     Value& latest_release = json_releases[0];
     Version latest(latest_tag);
