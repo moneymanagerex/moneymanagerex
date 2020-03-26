@@ -1008,8 +1008,7 @@ TransactionListCtrl::TransactionListCtrl(
 }
 
 TransactionListCtrl::~TransactionListCtrl()
-{
-}
+{}
 
 //----------------------------------------------------------------------------
 void TransactionListCtrl::createColumns(mmListCtrl &lst)
@@ -1358,22 +1357,31 @@ wxListItemAttr* TransactionListCtrl::OnGetItemAttr(long item) const
     if (user_colour_id < 0 ) user_colour_id = 0;
     else if (user_colour_id > 7) user_colour_id = 0;
 
-    if (user_colour_id != 0)
-    {
-        if      (user_colour_id == 1) return m_attr11;
-        else if (user_colour_id == 2) return m_attr12;
-        else if (user_colour_id == 3) return m_attr13;
-        else if (user_colour_id == 4) return m_attr14;
-        else if (user_colour_id == 5) return m_attr15;
-        else if (user_colour_id == 6) return m_attr16;
-        else if (user_colour_id == 7) return m_attr17;
-    }
-    if (in_the_future)
-    {
-        return (item % 2 ? m_attr3 : m_attr4);
+    if (user_colour_id == 0) {
+        if (in_the_future){
+            return (item % 2 ? m_attr3.get() : m_attr4.get());
+        }
+        return (item % 2 ? m_attr1.get() : m_attr2.get());
     }
 
-    return (item % 2 ? m_attr1 : m_attr2);
+    switch (user_colour_id)
+    { 
+    case 1:
+        return m_attr11.get();
+    case 2:
+        return m_attr12.get();
+    case 3:
+        return m_attr13.get();
+    case 4:
+        return m_attr14.get();
+    case 5:
+        return m_attr15.get();
+    case 6:
+        return m_attr16.get();
+    case 7:
+        return m_attr17.get();
+    }
+    return (item % 2 ? m_attr1.get() : m_attr2.get());
 }
 //----------------------------------------------------------------------------
 // If any of these keys are encountered, the search for the event handler
