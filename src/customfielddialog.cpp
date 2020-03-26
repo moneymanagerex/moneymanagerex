@@ -273,44 +273,44 @@ void mmCustomFieldDialog::OnSave(bool OpenStatus)
         {
         case Model_CustomField::STRING:
             {
-                wxTextCtrl* CustomString = (wxTextCtrl*)FindWindow(controlID);
+                wxTextCtrl* CustomString = static_cast<wxTextCtrl*>(FindWindow(controlID));
                 if (CustomString != nullptr)
                     Data = CustomString->GetValue().Trim();
             }
             break;
         case Model_CustomField::INTEGER:
             {
-                wxSpinCtrl* CustomInteger = (wxSpinCtrl*)FindWindow(controlID);
+                wxSpinCtrl* CustomInteger = static_cast<wxSpinCtrl*>(FindWindow(controlID));
                 if (CustomInteger) Data = wxString::Format("%i", CustomInteger->GetValue());
             }
             break;
         case Model_CustomField::DECIMAL:
             {
-                wxSpinCtrlDouble* CustomDecimal = (wxSpinCtrlDouble*)FindWindow(controlID);
+                wxSpinCtrlDouble* CustomDecimal = static_cast<wxSpinCtrlDouble*>(FindWindow(controlID));
                 if (CustomDecimal) Data = wxString::Format("%f", CustomDecimal->GetValue());
             }
             break;
         case Model_CustomField::BOOLEAN:
             {
-                wxCheckBox* CustomBoolean = (wxCheckBox*)FindWindow(controlID);
+                wxCheckBox* CustomBoolean = static_cast<wxCheckBox*>(FindWindow(controlID));
                 if (CustomBoolean) Data = (CustomBoolean->GetValue()) ? "TRUE" : "FALSE";
             }
             break;
         case Model_CustomField::DATE:
             {
-                wxDatePickerCtrl* CustomDate = (wxDatePickerCtrl*)FindWindow(controlID);
+                wxDatePickerCtrl* CustomDate = static_cast<wxDatePickerCtrl*>(FindWindow(controlID));
                 if (CustomDate) Data = CustomDate->GetValue().FormatISODate();
             }
             break;
         case Model_CustomField::TIME:
             {
-                wxTimePickerCtrl* CustomTime = (wxTimePickerCtrl*)FindWindow(controlID);
+                wxTimePickerCtrl* CustomTime = static_cast<wxTimePickerCtrl*>(FindWindow(controlID));
                 if (CustomTime) Data = CustomTime->GetValue().FormatISOTime();
             }
             break;
         case Model_CustomField::SINGLECHOICE:
             {
-                wxChoice* CustomSingleChoice = (wxChoice*)FindWindow(controlID);
+                wxChoice* CustomSingleChoice = static_cast<wxChoice*>(FindWindow(controlID));
                 if (CustomSingleChoice) Data = CustomSingleChoice->GetStringSelection();
             }
             break;

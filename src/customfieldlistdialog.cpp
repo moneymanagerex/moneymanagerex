@@ -142,14 +142,14 @@ void mmCustomFieldListDialog::OnListItemSelected(wxDataViewEvent& event)
     int selected_index = fieldListBox_->ItemToRow(item);
 
     if (selected_index >= 0)
-        m_field_id = (int)fieldListBox_->GetItemData(item);
+        m_field_id = static_cast<int>(fieldListBox_->GetItemData(item));
     else
         m_field_id = -1;
 }
 
 void mmCustomFieldListDialog::AddField()
 {
-    mmCustomFieldEditDialog dlg(this, (Model_CustomField::Data*)nullptr, m_RefType);
+    mmCustomFieldEditDialog dlg(this, static_cast<Model_CustomField::Data*>(nullptr), m_RefType);
     if (dlg.ShowModal() != wxID_OK)
         return;
     fillControls();
@@ -234,7 +234,7 @@ void mmCustomFieldListDialog::UpdateField()
     }
     Model_CustomFieldData::instance().save(data);
 
-    wxMessageBox(wxString::Format(_("%i occurrences founded and replaced!"), (int)data.size())
+    wxMessageBox(wxString::Format(_("%i occurrences founded and replaced!"), static_cast<int>(data.size()))
         , _("Update Custom Field Content"), wxOK | wxICON_INFORMATION);
     m_refresh = true;
 }

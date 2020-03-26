@@ -992,7 +992,7 @@ void mmBDDialog::OnOk(wxCommandEvent& /*event*/)
     if ((cSplit_->IsChecked() && m_bill_data.local_splits.empty())
         || (!cSplit_->IsChecked() && Model_Category::full_name(m_bill_data.CATEGID, m_bill_data.SUBCATEGID).empty()))
     {
-        return mmErrorDialogs::InvalidCategory((wxWindow*)bCategory_, false);
+        return mmErrorDialogs::InvalidCategory(static_cast<wxWindow*>(bCategory_), false);
     }
 
 
