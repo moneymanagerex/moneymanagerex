@@ -379,7 +379,7 @@ void mmTransDialog::CreateControls()
     // Display the day of the week
 
     spinCtrl_ = new wxSpinButton(this, wxID_STATIC
-        , wxDefaultPosition, wxSize(18, wxSize(dpc_->GetSize()).GetHeight())
+        , wxDefaultPosition, wxSize(18, (dpc_->GetSize()).GetHeight())
         , wxSP_VERTICAL | wxSP_ARROW_KEYS | wxSP_WRAP);
     spinCtrl_->SetRange (-32768, 32768);
 
@@ -1125,7 +1125,7 @@ void mmTransDialog::OnOk(wxCommandEvent& event)
 void mmTransDialog::OnCancel(wxCommandEvent& /*event*/)
 {
 #ifndef __WXMAC__
-    if (object_in_focus_ != itemButtonCancel_->GetId() && wxGetKeyState(wxKeyCode(WXK_ESCAPE))) 
+    if (object_in_focus_ != itemButtonCancel_->GetId() && wxKeyCode(WXK_ESCAPE)) 
             return itemButtonCancel_->SetFocus();
 #endif
 

@@ -288,9 +288,9 @@ const wxString mmHTMLBuilder::getRandomColor(bool positive)
 void mmHTMLBuilder::addTableCellMonth(int month)
 {
     if (month >= 0 && month < 12) {
-        wxString f = wxString::Format(" sorttable_customkey = '%i'", (wxDateTime::Month)month);
+        wxString f = wxString::Format(" sorttable_customkey = '%i'", static_cast<wxDateTime::Month>(month));
         html_ += wxString::Format(tags::TABLE_CELL, f);
-        html_ += wxGetTranslation(wxDateTime::GetMonthName((wxDateTime::Month)month));
+        html_ += wxGetTranslation(wxDateTime::GetMonthName(static_cast<wxDateTime::Month>(month)));
         this->endTableCell();
     }
     else

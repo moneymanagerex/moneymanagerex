@@ -316,10 +316,10 @@ const wxDateTime getUserDefinedFinancialYear(bool prevDayRequired)
 
     int dayNum = wxAtoi(Option::instance().FinancialYearStartDay());
 
-    if (dayNum <= 0 || dayNum > wxDateTime::GetNumberOfDays((wxDateTime::Month)monthNum, year))
+    if (dayNum <= 0 || dayNum > wxDateTime::GetNumberOfDays(static_cast<wxDateTime::Month>(monthNum), year))
         dayNum = 1;
     
-    wxDateTime financialYear(dayNum, (wxDateTime::Month)monthNum, year);
+    wxDateTime financialYear(dayNum, static_cast<wxDateTime::Month>(monthNum), year);
     if (prevDayRequired)
         financialYear.Subtract(wxDateSpan::Day());
     return financialYear;

@@ -67,7 +67,6 @@ mmNewAcctDialog::mmNewAcctDialog()
 
 mmNewAcctDialog::mmNewAcctDialog(Model_Account::Data* account, wxWindow* parent, const wxString &name)
     : m_account(account)
-    , m_currencyID(-1)
     , m_textAccountName(nullptr)
     , m_notesCtrl(nullptr)
     , m_initbalance_ctrl(nullptr)
@@ -84,7 +83,13 @@ mmNewAcctDialog::mmNewAcctDialog(Model_Account::Data* account, wxWindow* parent,
 {
     m_imageList = navtree_images_list();
     long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX;
-    Create(parent, wxID_ANY, _("New Account"), wxDefaultPosition, wxSize(550, 300), style, name);
+
+    m_currencyID = m_account->CURRENCYID;
+    Model_Currency::Data* currency = Model_Currency::instance().get(m_currencyID);
+    wxASSERT(currency);
+
+    Create(parent, wxID_ANY, _("New Account"), wxDefaultPosition, wxDefaultSize, style, name);
+    this->SetMinSize(wxSize(550, 300));
     this->Connect(wxID_ANY, wxEVT_CHILD_FOCUS, wxChildFocusEventHandler(mmNewAcctDialog::OnChangeFocus), nullptr, this);
 }
 
@@ -152,7 +157,6 @@ void mmNewAcctDialog::fillControls()
     Model_Account::currency(m_account);
     wxButton* bn = static_cast<wxButton*>(FindWindow(ID_DIALOG_NEWACCT_BUTTON_CURRENCY));
     bn->SetLabelText(Model_Account::currency(m_account)->CURRENCYNAME);
-    m_currencyID = m_account->CURRENCYID;
 
     double initBal = m_account->INITIALBAL;
     m_initbalance_ctrl->SetValue(Model_Currency::toString(initBal, Model_Account::currency(m_account)));
@@ -441,10 +445,10 @@ void mmNewAcctDialog::OnOk(wxCommandEvent& /*event*/)
             return mmErrorDialogs::MessageInvalid(this, _("Account Name "));
     }
 
-    if (m_currencyID == -1)
+    Model_Currency::Data* currency = Model_Currency::instance().get(m_currencyID);
+    if (!currency)
         return mmErrorDialogs::MessageInvalid(this, _("Currency"));
 
-    Model_Currency::Data* currency = Model_Currency::instance().get(m_currencyID);
     m_initbalance_ctrl->Calculate(Model_Currency::precision(currency));
     if (!m_initbalance_ctrl->checkValue(m_account->INITIALBAL, false))
         return;
