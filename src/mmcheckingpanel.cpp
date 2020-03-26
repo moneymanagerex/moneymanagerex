@@ -1451,7 +1451,7 @@ void TransactionListCtrl::OnCopy(wxCommandEvent& WXUNUSED(event))
         }
         else
         {
-            for (int column = 0; column < (int) m_columns.size(); column++)
+            for (int column = 0; column < static_cast<int>(m_columns.size()); column++)
             {
                 if (GetColumnWidth(column) > 0)
                     data += OnGetItemText(m_selectedIndex, column) + seperator;

@@ -185,7 +185,7 @@ void mmHTMLBuilder::addTotalRow(const wxString& caption, int cols
     , const std::vector<wxString>& data)
 {
     this->startTotalTableRow();
-    html_ += wxString::Format(tags::TABLE_CELL_SPAN, cols - (int)data.size());
+    html_ += wxString::Format(tags::TABLE_CELL_SPAN, cols - static_cast<int>(data.size()));
     html_ += caption;
 
     for (unsigned long idx = 0; idx < data.size(); idx++)
