@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-08-06 10:14+0300\n"
-"PO-Revision-Date: 2020-03-27 18:29\n"
+"PO-Revision-Date: 2020-03-27 19:04\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
@@ -6264,11 +6264,11 @@ msgstr "新增股票(&N)"
 
 #: stockspanel.cpp:150
 msgid "&Add Stock Transactions"
-msgstr "添加股票交易（&A）"
+msgstr "添加股票交 （&A）"
 
 #: stockspanel.cpp:151
 msgid "&View Stock Transactions"
-msgstr ""
+msgstr "查看股票交易（&V）"
 
 #: stockspanel.cpp:153
 msgid "&Edit Stock Investment"
@@ -6280,7 +6280,7 @@ msgstr "删除股票(&D)"
 
 #: stockspanel.cpp:157
 msgid "Stock &Web Page"
-msgstr ""
+msgstr "股票报价网页（&W）"
 
 #: stockspanel.cpp:273
 msgid "Do you really want to delete the stock investment?"
@@ -6298,11 +6298,11 @@ msgstr ""
 
 #: stockspanel.cpp:426
 msgid "View Stock Transactions"
-msgstr ""
+msgstr "查看股票交易"
 
 #: stockspanel.cpp:682
 msgid "Create a new Stock investment in this portfolio"
-msgstr ""
+msgstr "在此投资组合中创建新的股票投资"
 
 #: stockspanel.cpp:686
 msgid "Add or remove shares to the selected Stock"
