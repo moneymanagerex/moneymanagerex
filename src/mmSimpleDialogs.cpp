@@ -27,6 +27,36 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 #include <wx/richtooltip.h>
 
+mmChoiceAmountMask::mmChoiceAmountMask(wxWindow* parent, wxWindowID id)
+    : wxChoice(parent, id)
+{
+    static const std::vector <std::pair<wxString, wxString> > DATA = {
+          {".", "."}
+        , {",", ","}
+        , {wxTRANSLATE("None"), ""}
+    };
+
+    for (const auto& entry : DATA) {
+        this->Append(wxGetTranslation(entry.first)
+            , new wxStringClientData(entry.second));
+    }
+
+    Model_Currency::Data* base_currency = Model_Currency::GetBaseCurrency();
+    const auto decimal_point = base_currency->DECIMAL_POINT;
+
+    SetDecimalChar(decimal_point);
+}
+
+void mmChoiceAmountMask::SetDecimalChar(const wxString& str)
+{
+    if (str == ".")
+        SetSelection(0);
+    else if (str == ",")
+        SetSelection(1);
+    else
+        SetSelection(2);
+}
+
 //mmSingleChoiceDialog
 mmSingleChoiceDialog::mmSingleChoiceDialog()
 {

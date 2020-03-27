@@ -1,5 +1,29 @@
 cmake_minimum_required(VERSION 3.0 FATAL_ERROR)
 
+# ---------------------------------------------------------------------------
+# MMEX uses semantic versioning Ref: http://semver.org
+#
+# PROJECT VERSION - Format: MAJOR.MINOR.PATCH-UNSTABLE
+# Update the version definition for the PROJECT as follows:
+# 1. MAJOR version when incompatible API changes are made.
+# 2. MINOR version adding functionality in a backwards-compatible manner.
+# 3. PATCH version makeing backwards-compatible bug fixes.
+# 4. UNSTABLE = alpha, alpha.1, beta, beta.4, rc, rc.3
+#    - used as additional version suffix, must be unset for stable version
+
+# By setting the application version here, CMake will transfer the variable
+# values to the corresponding variable names in the following files:
+# ./src/versions.h
+# ./resources/mmex.rc
+# ---------------------------------------------------------------------------
+
+set(MMEX_VERSION 1.3.4)
+SET(MMEX_VERSION_ALPHA -1)
+SET(MMEX_VERSION_BETA 3)
+SET(MMEX_VERSION_RC -1)
+
+# ---------------------------------------------------------------------------
+
 if(DEFINED ENV{VCPKG_ROOT})
     if(NOT DEFINED CMAKE_TOOLCHAIN_FILE)
         set(CMAKE_TOOLCHAIN_FILE "$ENV{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake"
@@ -14,29 +38,6 @@ endif()
 if(DEFINED ENV{VCPKG_DEFAULT_TRIPLET} AND NOT DEFINED VCPKG_TARGET_TRIPLET)
     set(VCPKG_TARGET_TRIPLET "$ENV{VCPKG_DEFAULT_TRIPLET}" CACHE STRING "")
 endif()
-
-# ---------------------------------------------------------------------------
-# MMEX uses semantic versioning Ref: http://semver.org
-#
-# PROJECT VERSION - Format: MAJOR.MINOR.PATCH-UNSTABLE
-# Update the version definition for the PROJECT as follows:
-# 1. MAJOR version when incompatible API changes are made.
-# 2. MINOR version adding functionality in a backwards-compatible manner.
-# 3. PATCH version makeing backwards-compatible bug fixes.
-# 4. UNSTABLE = alpha, alpha.1, beta, beta.4, rc, rc.3
-#    - used as additional version suffix, must be unset for stable version
-
-# ---------------------------------------------------------------------------
-# By setting the application version here, CMake will transfer the variable
-# values to the corresponding variable names in the following files:
-# ./src/versions.h
-# ./resources/mmex.rc
-# ---------------------------------------------------------------------------
-
-set(MMEX_VERSION 1.3.4)
-SET(MMEX_VERSION_ALPHA -1)
-SET(MMEX_VERSION_BETA 3)
-SET(MMEX_VERSION_RC -1)
 
 # Adjusting semantic versioning for alpha/beta/rc version
 IF(MMEX_VERSION_ALPHA EQUAL 0)

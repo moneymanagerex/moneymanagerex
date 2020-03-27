@@ -19,23 +19,21 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #ifndef MM_EX_EXPORT_H_
 #define MM_EX_EXPORT_H_
 
-#include "model/Model_Splittransaction.h"
 #include "model/Model_Checking.h"
 
 class mmExportTransaction
 {
 
 public:
-    ~mmExportTransaction();
+    virtual ~mmExportTransaction();
     mmExportTransaction();
 
-    static const wxString getTransactionQIF(const Model_Checking::Full_Data & tran, int accountID, const wxString& dateMask);
-    static const wxString getTransactionCSV(const Model_Checking::Full_Data & tran, int accountID, const wxString& dateMask);
+    static const wxString getTransactionQIF(const Model_Checking::Full_Data & tran, const wxString& dateMask, bool reverce = false);
     static const wxString getAccountHeaderQIF(int accountID);
     static const wxString getCategoriesQIF();
-    static const wxString getCategoriesCSV();
-
+    static const std::unordered_map <wxString, int> m_QIFaccountTypes;
+    static const wxString qif_acc_type(const wxString& mmex_type);
+    static const wxString mm_acc_type(const wxString& qif_type);
 };
 
-
-#endif 
+#endif

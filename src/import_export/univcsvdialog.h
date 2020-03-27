@@ -19,11 +19,19 @@
 #ifndef MM_EX_UNIVCSVDIALOG_H_
 #define MM_EX_UNIVCSVDIALOG_H_
 
-#include "defs.h"
 #include <vector>
 #include <map>
-
-#include <wx/spinctrl.h>
+#include <wx/dialog.h>
+#include "Model_Checking.h"
+#include "mmSimpleDialogs.h"
+class wxSpinCtrl;
+class wxSpinEvent;
+class wxListBox;
+class wxListCtrl;
+class wxChoice;
+class wxTextCtrl;
+class wxStaticBox;
+class wxCheckBox;
 
 #define ID_MYDIALOG8 10040
 #define SYMBOL_UNIVCSVDIALOG_STYLE wxCAPTION|wxRESIZE_BORDER|wxSYSTEM_MENU|wxCLOSE_BOX
@@ -46,6 +54,7 @@
 #define ID_ENCODING 10107
 #define ID_FIRST_ROW 10108
 #define ID_LAST_ROW 10109
+#define ID_UD_DECIMAL 10110
 ////@end control identifiers
 
 /*!
@@ -129,7 +138,7 @@ private:
     struct tran_holder
     {
         wxDateTime Date;
-        wxString Type;
+        wxString Type = Model_Checking::all_type()[Model_Checking::WITHDRAWAL];
         wxString Status = "";
         int ToAccountID = -1;
         double ToAmount = 0.0;
@@ -139,9 +148,11 @@ private:
         double Amount = 0.0;
         wxString Number;
         wxString Notes;
+        bool valid = true;
     };
     EDialogType dialogType_;
     wxString delimit_;
+    wxString decimal_;
 
     std::vector<int> csvFieldOrder_;
     wxListBox* csvFieldCandicate_;
@@ -165,12 +176,15 @@ private:
     wxString date_format_;
 
     wxChoice* m_choiceAmountFieldSign;
+    mmChoiceAmountMask* m_choiceDecimalSeparator;
     enum amountFieldSignValues { PositiveIsDeposit, PositiveIsWithdrawal };
     wxCheckBox* m_checkBoxExportTitles;
 
     int fromAccountID_;
     bool importSuccessful_;
-    int m_oject_in_focus;
+    bool m_userDefinedDateMask;
+    int m_object_in_focus;
+    bool m_reverce_sign;
 
     /// Creation
     bool Create(wxWindow* parent,
@@ -197,13 +211,13 @@ private:
     void OnBrowse(wxCommandEvent& event);
     void OnListBox(wxCommandEvent& event);
     void OnDelimiterChange(wxCommandEvent& event);
+    void OnDecimalChange(wxCommandEvent& event);
     void OnButtonClear(wxCommandEvent& event);
     void OnFileNameEntered(wxCommandEvent& event);
     void OnFileNameChanged(wxCommandEvent& event);
     void OnDateFormatChanged(wxCommandEvent& event);
     void changeFocus(wxChildFocusEvent& event);
-    void OnSpinCtrlIgnoreFirstRows(wxSpinEvent& event);
-    void OnSpinCtrlIgnoreLastRows(wxSpinEvent& event);
+    void OnSpinCtrlIgnoreRows(wxSpinEvent& event);
 
     void OnLoad();
     void UpdateListItemBackground();
@@ -211,12 +225,11 @@ private:
     void initDelimiter();
     void initDateMask();
 
-    wxBitmap GetBitmapResource(const wxString& name);
-    wxIcon GetIconResource(const wxString& name);
-    const bool ShowToolTips();
+    bool ShowToolTips();
     void OnSettingsSelected(wxCommandEvent& event);
     wxString GetStoredSettings(int id);
     void SetSettings(const wxString &data);
     ITransactionsFile *CreateFileHandler();
 };
+
 #endif

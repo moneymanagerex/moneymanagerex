@@ -2206,7 +2206,7 @@ void mmGUIFrame::OnExportToQIF(wxCommandEvent& /*event*/)
 void mmGUIFrame::OnImportQIF(wxCommandEvent& /*event*/)
 {
 
-    mmQIFImportDialog dlg(this);
+    mmQIFImportDialog dlg(this, gotoAccountID_);
     dlg.ShowModal();
     int account_id = dlg.get_last_imported_acc();
     updateNavTreeControl();

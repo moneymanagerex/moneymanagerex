@@ -204,3 +204,62 @@ CURLcode http_post_data(const wxString& site, const wxString& data, const wxStri
 CURLcode http_download_file(const wxString& site, const wxString& path);
 
 //----------------------------------------------------------------------------
+
+const wxString mmTrimAmount(const wxString& value, const wxString& decimal);
+
+class mmDates
+{
+public:
+    mmDates();
+    ~mmDates();
+    void doHandleStatistics(const wxString &dateStr);
+    const wxString getDateMask() const;
+    const wxString getDateFormat() const;
+    void doFinalizeStatistics();
+    int getErrorCount() const;
+    bool isDateFormatFound() const;
+private:
+    std::map<wxString, wxString> m_date_formats_temp;
+
+    //Numbers of successfully applied Format Specifier for every handled date string
+    std::map<wxString, int> m_date_parsing_stat;
+    wxDateTime m_today;
+    wxDateTime m_month_ago;
+    wxString m_date_mask; //Human readable date format like DD/MM/YYYY
+    wxString m_date_format; //Date Format Specifier like %d/%m/%Y
+    int m_error_count;
+    int MAX_ATTEMPTS = 3;
+};
+
+inline bool mmDates::isDateFormatFound() const
+{
+    return m_date_formats_temp.size() < g_date_formats_map().size();
+}
+
+//Get the most appropriate human readable date mask.
+inline const wxString mmDates::getDateMask() const
+{
+    return m_date_mask;
+}
+
+//Get the most appropriate date Format Specifier.
+inline const wxString mmDates::getDateFormat() const
+{
+    return m_date_format;
+}
+inline int mmDates::getErrorCount() const
+{
+    return m_error_count;
+}
+
+class mmSeparator
+{
+public:
+    mmSeparator();
+    ~mmSeparator();
+    bool isStringHasSeparator(const wxString &string);
+    const wxString getSeparator() const;
+private:
+    std::map<wxString, int> m_separators;
+
+};

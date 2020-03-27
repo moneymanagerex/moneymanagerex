@@ -19,7 +19,10 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "export.h"
 #include "constants.h"
 #include "util.h"
-#include "model/allmodel.h"
+#include "model/Model_Checking.h"
+#include "model/Model_Account.h"
+#include "model/Model_Currency.h"
+#include "model/Model_Category.h"
 
 mmExportTransaction::mmExportTransaction()
 {}
@@ -28,32 +31,41 @@ mmExportTransaction::~mmExportTransaction()
 {}
 
 const wxString mmExportTransaction::getTransactionQIF(const Model_Checking::Full_Data& full_tran
-    , int accountID, const wxString& dateMask)
+    , const wxString& dateMask, bool reverce)
 {
-    bool out = full_tran.ACCOUNTID == accountID;
+    bool transfer = Model_Checking::is_transfer(full_tran.TRANSCODE);
 
     wxString buffer = "";
     wxString categ = full_tran.m_splits.empty() ? full_tran.CATEGNAME : "";
     wxString transNum = full_tran.TRANSACTIONNUMBER;
     wxString notes = (full_tran.NOTES);
+    wxString payee = full_tran.PAYEENAME;
 
-    if (Model_Checking::type(full_tran) == Model_Checking::TRANSFER)
+    if (transfer)
     {
-        categ = "[" + (out ? full_tran.TOACCOUNTNAME : full_tran.ACCOUNTNAME) + "]";
+        const auto acc_in = Model_Account::instance().get(full_tran.ACCOUNTID);
+        const auto acc_to = Model_Account::instance().get(full_tran.TOACCOUNTID);
+        const auto curr_in = Model_Currency::instance().get(acc_in->CURRENCYID);
+        const auto curr_to = Model_Currency::instance().get(acc_to->CURRENCYID);
 
+        categ = "[" + (reverce ? full_tran.ACCOUNTNAME : full_tran.TOACCOUNTNAME) + "]";
+        payee = wxString::Format("%s %s %s -> %s %s %s"
+            , wxString::FromCDouble(full_tran.TRANSAMOUNT, 2), curr_in->CURRENCY_SYMBOL, acc_in->ACCOUNTNAME
+            , wxString::FromCDouble(full_tran.TOTRANSAMOUNT, 2), curr_to->CURRENCY_SYMBOL, acc_to->ACCOUNTNAME);
         //Transaction number used to make transaction unique
         // to proper merge transfer records
         if (transNum.IsEmpty() && notes.IsEmpty())
             transNum = wxString::Format("#%i", full_tran.id());
     }
-    
+
     buffer << "D" << Model_Checking::TRANSDATE(full_tran).Format(dateMask) << "\n";
-    double value = Model_Checking::balance(full_tran, (out ? full_tran.ACCOUNTID : full_tran.TOACCOUNTID));
-    int style = wxNumberFormatter::Style_None;
-    const wxString& s = wxNumberFormatter::ToString(value, 2, style);
+    buffer << "C" << (full_tran.STATUS == "R" ? "R" : "") << "\n";
+    double value = Model_Checking::balance(full_tran
+        , (reverce ? full_tran.TOACCOUNTID : full_tran.ACCOUNTID));
+    const wxString& s = wxString::FromCDouble(value, 2);
     buffer << "T" << s << "\n";
-    if (!full_tran.PAYEENAME.empty())
-        buffer << "P" << full_tran.PAYEENAME << "\n";
+    if (!payee.empty())
+        buffer << "P" << payee << "\n";
     if (!transNum.IsEmpty())
         buffer << "N" << transNum << "\n";
     if (!categ.IsEmpty())
@@ -70,7 +82,7 @@ const wxString mmExportTransaction::getTransactionQIF(const Model_Checking::Full
         double valueSplit = split_entry.SPLITTRANSAMOUNT;
         if (Model_Checking::type(full_tran) == Model_Checking::WITHDRAWAL)
             valueSplit = -valueSplit;
-        const wxString split_amount = wxNumberFormatter::ToString(valueSplit, 2, style);
+        const wxString split_amount = wxString::FromCDouble(valueSplit, 2);
         const wxString split_categ = Model_Category::full_name(split_entry.CATEGID, split_entry.SUBCATEGID);
         buffer << "S" << split_categ << "\n"
             << "$" << split_amount << "\n";
@@ -80,104 +92,28 @@ const wxString mmExportTransaction::getTransactionQIF(const Model_Checking::Full
     return buffer;
 }
 
-const wxString mmExportTransaction::getTransactionCSV(const Model_Checking::Full_Data & full_tran, int accountID, const wxString& dateMask)
-{
-    bool out = full_tran.ACCOUNTID == accountID;
-
-    const wxString delimit = Model_Infotable::instance().GetStringInfo("DELIMITER", mmex::DEFDELIMTER);
-
-    wxString buffer = "";
-    int trans_id = full_tran.id();
-    const wxString& accountName = (!out ? full_tran.PAYEENAME : full_tran.ACCOUNTNAME);
-    wxString categ = full_tran.m_splits.empty() ? full_tran.CATEGNAME : "";
-    wxString transNum = full_tran.TRANSACTIONNUMBER;
-    wxString notes = (full_tran.NOTES);
-    notes.Replace("''", "'");
-    notes.Replace("\n", "\\n");
-
-    if (Model_Checking::type(full_tran) == Model_Checking::TRANSFER)
-    {
-        categ = "[" + (!out ? full_tran.ACCOUNTNAME : full_tran.PAYEENAME) + "]";
-
-        //Transaction number used to make transaction unique
-        // to proper merge transfer records
-        if (transNum.IsEmpty() && notes.IsEmpty())
-            transNum = wxString::Format("#%i", full_tran.id());
-    }
-
-    if (!full_tran.m_splits.empty())
-    {
-        for (const auto &split_entry : full_tran.m_splits)
-        {
-            double value = split_entry.SPLITTRANSAMOUNT;
-            if (Model_Checking::type(full_tran) == Model_Checking::WITHDRAWAL)
-                value = -value;
-            const wxString split_amount = wxString() << value;
-
-            const wxString split_categ = Model_Category::full_name(split_entry.CATEGID, split_entry.SUBCATEGID);
-
-            buffer << trans_id << delimit
-                << inQuotes(accountName, delimit) << delimit
-                << inQuotes(mmGetDateForDisplay(full_tran.TRANSDATE), delimit) << delimit
-                << inQuotes(full_tran.PAYEENAME, delimit) << delimit
-                << full_tran.STATUS << delimit
-                << full_tran.TRANSCODE << delimit
-                << inQuotes(split_categ, delimit) << delimit
-                << inQuotes(split_amount, delimit) << delimit
-                << "" << delimit
-                << inQuotes(notes, delimit)
-                << "\n";
-        }
-
-    }
-    else
-    {
-        buffer << trans_id << delimit
-            << inQuotes(accountName, delimit) << delimit
-            << inQuotes(mmGetDateForDisplay(full_tran.TRANSDATE), delimit) << delimit
-            << inQuotes(full_tran.PAYEENAME, delimit) << delimit
-            << full_tran.STATUS << delimit
-            << full_tran.TRANSCODE << delimit
-            << inQuotes(categ, delimit) << delimit
-            << Model_Checking::balance(full_tran, (out ? full_tran.ACCOUNTID : full_tran.TOACCOUNTID)) << delimit
-            << "" << delimit
-            << inQuotes(notes, delimit)
-            << "\n";
-    }
-    return buffer;
-}
-
 const wxString mmExportTransaction::getAccountHeaderQIF(int accountID)
 {
     wxString buffer = "";
-    wxString account_name = "";
-    wxString currency_symbol = "";
-    Model_Checking::Data_Set enties = Model_Checking::instance().find_or(Model_Checking::ACCOUNTID(accountID)
-        , Model_Checking::TOACCOUNTID(accountID));
-    if (!enties.empty())
+    wxString currency_symbol = Model_Currency::GetBaseCurrency()->CURRENCY_SYMBOL;
+    Model_Account::Data *account = Model_Account::instance().get(accountID);
+    if (account)
     {
-        double dInitBalance = 0;
-        Model_Account::Data *account = Model_Account::instance().get(accountID);
-        if (account)
+        double dInitBalance = account->INITIALBAL;
+        Model_Currency::Data *currency = Model_Currency::instance().get(account->CURRENCYID);
+        if (currency)
         {
-            account_name = account->ACCOUNTNAME;
-            dInitBalance = account->INITIALBAL;
-            Model_Currency::Data *currency = Model_Currency::instance().get(account->CURRENCYID);
-            if (currency)
-            {
-                currency_symbol = currency->CURRENCY_SYMBOL;
-            }
+            currency_symbol = currency->CURRENCY_SYMBOL;
         }
 
-        wxString currency_code = "[" + currency_symbol + "]";
-
-        const wxString sInitBalance = wxString::Format("%f", dInitBalance);
+        const wxString currency_code = "[" + currency_symbol + "]";
+        const wxString sInitBalance = Model_Currency::toString(dInitBalance, currency);
 
         buffer = wxString("!Account") << "\n"
-            << "N" << account_name << "\n"
-            << "TBank" << "\n"
+            << "N" << account->ACCOUNTNAME << "\n"
+            << "T" << qif_acc_type(account->ACCOUNTTYPE) << "\n"
             << "D" << currency_code << "\n"
-            << (dInitBalance != 0 ? wxString("$") << sInitBalance << "\n" : "")
+            << (dInitBalance != 0 ? wxString::Format("$%s\n", sInitBalance) : "")
             << "^" << "\n"
             << "!Type:Cash" << "\n";
     }
@@ -211,29 +147,45 @@ const wxString mmExportTransaction::getCategoriesQIF()
         }
     }
     return buffer_qif;
-
 }
 
-const wxString mmExportTransaction::getCategoriesCSV()
+//map Quicken !Account type strings to Model_Account::TYPE
+// (not sure whether these need to be translated)
+const std::unordered_map<wxString, int> mmExportTransaction::m_QIFaccountTypes =
 {
-    wxString buffer_csv ="";
-    wxString delimit = Model_Infotable::instance().GetStringInfo("DELIMITER", mmex::DEFDELIMTER);
+    std::make_pair(wxString("Cash"), Model_Account::CASH), //Cash Flow: Cash Account
+    std::make_pair(wxString("Bank"), Model_Account::CHECKING), //Cash Flow: Checking Account
+    std::make_pair(wxString("CCard"), Model_Account::CREDIT_CARD), //Cash Flow: Credit Card Account
+    std::make_pair(wxString("Invst"), Model_Account::INVESTMENT), //Investing: Investment Account
+    std::make_pair(wxString("Oth A"), Model_Account::CHECKING), //Property & Debt: Asset
+    std::make_pair(wxString("Oth L"), Model_Account::CHECKING), //Property & Debt: Liability
+    std::make_pair(wxString("Invoice"), Model_Account::CHECKING), //Invoice (Quicken for Business only)
+};
 
-    for (const auto& category: Model_Category::instance().all())
+const wxString mmExportTransaction::qif_acc_type(const wxString& mmex_type)
+{
+    wxString qif_acc_type = m_QIFaccountTypes.begin()->first;
+    for (const auto &item : m_QIFaccountTypes)
     {
-        const wxString& categ_name = category.CATEGNAME;
-//        bool bIncome = Model_Category::has_income(category.CATEGID);
-        buffer_csv << categ_name << delimit << "\n";
-
-        for (const auto& sub_category: Model_Category::sub_category(category))
+        if (item.second == Model_Account::all_type().Index(mmex_type))
         {
-//            bIncome = Model_Category::has_income(category.CATEGID, sub_category.SUBCATEGID);
-            wxString full_categ_name = wxString()
-                << categ_name << delimit
-                << sub_category.SUBCATEGNAME;
-            buffer_csv << full_categ_name << "\n";
+            qif_acc_type = item.first;
+            break;
         }
     }
-    return buffer_csv;
+    return qif_acc_type;
 }
 
+const wxString mmExportTransaction::mm_acc_type(const wxString& qif_type)
+{
+    wxString mm_acc_type = Model_Account::all_type()[Model_Account::CASH];
+    for (const auto &item : m_QIFaccountTypes)
+    {
+        if (item.first == qif_type)
+        {
+            mm_acc_type = Model_Account::all_type()[(item.second)];
+            break;
+        }
+    }
+    return mm_acc_type;
+}

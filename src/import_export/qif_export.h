@@ -1,5 +1,5 @@
 /*******************************************************
-Copyright (C) 2012 Nikolay
+Copyright (C) 2012 Nikolay Akimov
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -30,8 +30,9 @@ class mmQIFExportDialog : public wxDialog
 
 public:
     mmQIFExportDialog() {}
+    //virtual ~mmQIFExportDialog() {}
 
-    mmQIFExportDialog(wxWindow* parent);
+    mmQIFExportDialog(wxWindow* parent /*, int gotoAccountID*/);
 
     bool Create(wxWindow* parent
         , wxWindowID id
@@ -41,22 +42,19 @@ public:
         , long style);
 
 private:
-    void OnQuit(wxCloseEvent& event);
-    void OnCancel(wxCommandEvent& event);
-    void OnOk(wxCommandEvent& /*event*/);
     void mmExportQIF();
-    void OnAccountsButton(wxCommandEvent& /*event*/);
-    void OnCheckboxClick(wxCommandEvent& /*event*/);
+    void OnAccountsButton(wxCommandEvent& WXUNUSED(event));
+    void OnCheckboxClick(wxCommandEvent& WXUNUSED(event));
     void OnFileNameEntered(wxCommandEvent& event);
     void OnFileNameChanged(wxCommandEvent& event);
     void OnFileSearch(wxCommandEvent& event);
-    void OnButtonClear(wxCommandEvent& /*event*/);
+    void OnButtonClear(wxCommandEvent& WXUNUSED(event));
     void CreateControls();
     void fillControls();
+    void OnQuit(wxCloseEvent& event);
+    void OnCancel(wxCommandEvent& event);
+    void OnOk(wxCommandEvent& WXUNUSED(event));
 
-    wxArrayInt accounts_id_;
-    /* Selected accounts id */
-    wxArrayInt selected_accounts_id_;
 
     wxCheckBox* cCategs_;
     wxCheckBox* accountsCheckBox_;
@@ -65,6 +63,7 @@ private:
     wxCheckBox* dateToCheckBox_;
     wxDatePickerCtrl* fromDateCtrl_;
     wxDatePickerCtrl* toDateCtrl_;
+    wxStaticText* choiceDateFormat_label_;
     wxComboBox* m_choiceDateFormat;
     wxCheckBox* toFileCheckBox_;
     wxStaticText* file_name_label_;
@@ -72,8 +71,10 @@ private:
     wxTextCtrl* m_text_ctrl_;
     wxTextCtrl* log_field_;
     //wxLog *logger_;
-    wxRadioBox* m_radio_box_;
-    wxString delimit_;
-    wxArrayString accounts_name_;
+
+    /* Selected accounts values */
+    wxArrayString m_accounts_name;
+    wxArrayInt accounts_id_;
+    wxArrayInt selected_accounts_id_;
 };
-#endif // 
+#endif
