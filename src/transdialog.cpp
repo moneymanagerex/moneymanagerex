@@ -972,8 +972,15 @@ void mmTransDialog::OnCustomFields(wxCommandEvent& /*event*/)
     const wxString& RefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
     int TransID = m_trx_data.TRANSID;
     if (m_duplicate) TransID = -1;
-    CustomFieldDialog_ = new mmCustomFieldDialog(this, GetScreenPosition(), GetSize(), RefType, TransID);
-    CustomFieldDialog_->Show();
+    if (!CustomFieldDialog_)
+        CustomFieldDialog_ = new mmCustomFieldDialog(this, GetScreenPosition(), GetSize(), RefType, TransID);
+
+    if (CustomFieldDialog_->IsShown()) {
+        CustomFieldDialog_->Hide();
+    }
+    else {
+        CustomFieldDialog_->Show();
+    }
 }
 
 void mmTransDialog::onTextEntered(wxCommandEvent& WXUNUSED(event))
