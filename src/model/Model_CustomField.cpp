@@ -238,3 +238,16 @@ wxString Model_CustomField::formatProperties(const wxString& Tooltip, const wxSt
 
     return json_buffer.GetString();
 }
+
+int Model_CustomField::getDigitScale(const wxString& Properties)
+{
+    Document json_doc;
+    if (!json_doc.Parse(Properties.c_str()).HasParseError())
+    {
+        if (json_doc.HasMember("DigitScale") && json_doc["DigitScale"].IsInt()) {
+            Value& s = json_doc["DigitScale"];
+            return s.GetInt();
+        }
+    }
+    return 0;
+}

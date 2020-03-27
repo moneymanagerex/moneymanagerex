@@ -211,6 +211,7 @@ private:
     void OnBudgetSetupDialog(wxCommandEvent& event);
     void OnCurrency(wxCommandEvent& event);
     void OnTransactionReport(wxCommandEvent& event);
+    void OnCustomFieldsManager(wxCommandEvent& event);
     void OnGeneralReportManager(wxCommandEvent& event);
 
     void OnHelp(wxCommandEvent& event);

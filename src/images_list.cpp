@@ -53,6 +53,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "../resources/github_png.h"
 #include "../resources/globe_png.h"
 #include "../resources/google_play_png.h"
+#include "../resources/custom_fields_png.h"
 #include "../resources/grm_png.h"
 #include "../resources/help_png.h"
 #include "../resources/home_png.h"
@@ -86,6 +87,8 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "../resources/save_png.h"
 #include "../resources/saveas_png.h"
 #include "../resources/savings_acc_png.h"
+#include "../resources/simplearrow_left_png.h"
+#include "../resources/simplearrow_right_png.h"
 #include "../resources/slack_png.h"
 #include "../resources/status_d_png.h"
 #include "../resources/status_f_png.h"
@@ -232,7 +235,10 @@ const wxBitmap mmBitmap(int ref)
     case FORUM: return x == 16 ? wxBITMAP_PNG_FROM_DATA(forum) : x == 24 ? wxBITMAP_PNG_FROM_DATA(forum24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(forum32) : wxBITMAP_PNG_FROM_DATA(forum48);
     case FULLSCREEN: return x == 16 ? wxBITMAP_PNG_FROM_DATA(fullscreen) : x == 24 ? wxBITMAP_PNG_FROM_DATA(fullscreen24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(fullscreen32) : wxBITMAP_PNG_FROM_DATA(fullscreen48);
     case GITHUB: return x == 16 ? wxBITMAP_PNG_FROM_DATA(github) : x == 24 ? wxBITMAP_PNG_FROM_DATA(github24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(github32) : wxBITMAP_PNG_FROM_DATA(github48);
+    case LEFTARROWSIMPLE: return x == 16 ? wxBITMAP_PNG_FROM_DATA(simplearrow_left) : x == 24 ? wxBITMAP_PNG_FROM_DATA(simplearrow_left24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(simplearrow_left32) : wxBITMAP_PNG_FROM_DATA(simplearrow_left48);
+    case RIGHTARROWSIMPLE: return x == 16 ? wxBITMAP_PNG_FROM_DATA(simplearrow_right) : x == 24 ? wxBITMAP_PNG_FROM_DATA(simplearrow_right24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(simplearrow_right32) : wxBITMAP_PNG_FROM_DATA(simplearrow_right48);
     case GOOGLE_PLAY: return x == 16 ? wxBITMAP_PNG_FROM_DATA(google_play) : x == 24 ? wxBITMAP_PNG_FROM_DATA(google_play24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(google_play32) : wxBITMAP_PNG_FROM_DATA(google_play48);
+    case CUSTOM: return x == 16 ? wxBITMAP_PNG_FROM_DATA(custom_fields) : x == 24 ? wxBITMAP_PNG_FROM_DATA(custom_fields24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(custom_fields32) : wxBITMAP_PNG_FROM_DATA(custom_fields48);
     case GRM: return x == 16 ? wxBITMAP_PNG_FROM_DATA(grm) : x == 24 ? wxBITMAP_PNG_FROM_DATA(grm24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(grm32) : wxBITMAP_PNG_FROM_DATA(grm48);
     case HELP: return x == 16 ? wxBITMAP_PNG_FROM_DATA(help) : x == 24 ? wxBITMAP_PNG_FROM_DATA(help24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(help32) : wxBITMAP_PNG_FROM_DATA(help48);
     case HOME: return x == 16 ? wxBITMAP_PNG_FROM_DATA(home) : x == 24 ? wxBITMAP_PNG_FROM_DATA(home24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(home32) : wxBITMAP_PNG_FROM_DATA(home48);

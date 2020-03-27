@@ -1471,7 +1471,7 @@ void TransactionListCtrl::OnDuplicateTransaction(wxCommandEvent& event)
     mmTransDialog dlg(this, m_cp->m_AccountID, transaction_id, m_cp->m_account_balance, true);
     if (dlg.ShowModal() == wxID_OK)
     {
-        m_selectedIndex = dlg.getTransactionID();
+        m_selectedIndex = dlg.GetTransactionID();
         refreshVisualList(m_selectedIndex);
     }
     m_topItemIndex = GetTopItem() + GetCountPerPage() - 1;
@@ -1699,7 +1699,7 @@ void TransactionListCtrl::OnNewTransaction(wxCommandEvent& event)
     if (dlg.ShowModal() == wxID_OK)
     {
         m_cp->mmPlayTransactionSound();
-        refreshVisualList(dlg.getTransactionID());
+        refreshVisualList(dlg.GetTransactionID());
     }
 }
 
@@ -1709,7 +1709,7 @@ void TransactionListCtrl::OnNewTransferTransaction(wxCommandEvent& /*event*/)
     if (dlg.ShowModal() == wxID_OK)
     {
         m_cp->mmPlayTransactionSound();
-        refreshVisualList(dlg.getTransactionID());
+        refreshVisualList(dlg.GetTransactionID());
     }
 }
 //----------------------------------------------------------------------------

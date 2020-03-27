@@ -61,6 +61,7 @@ public:
     static wxString getDefault(const wxString& Properties);
     static wxArrayString getChoices(const wxString& Properties);
     static wxString formatProperties(const wxString& Tooltip, const wxString& RegEx, bool Autocomplete, const wxString& Default, const wxArrayString& Choices);
+    static int getDigitScale(const wxString& Properties);
 };
 
 #endif // 

@@ -1,6 +1,7 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
- Copyright (C) 2011 Nikolay & Stefano Giorgio
+ Copyright (C) 2011-2017 Nikolay
+ Copyright (C) 2011-2017 Stefano Giorgio [stef145g]
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -20,17 +21,20 @@
 #ifndef MM_EX_TRANSDIALOG_H_
 #define MM_EX_TRANSDIALOG_H_
 
+#include "mmcustomdata.h"
 #include "defs.h"
-#include "customfielddialog.h"
 
-#include "model/Model_Checking.h"
-#include "model/Model_Payee.h"
-#include "model/Model_Splittransaction.h"
+#include "Model_Checking.h"
+#include "Model_Payee.h"
+#include "Model_CustomFieldData.h"
+#include "Model_Splittransaction.h"
 
 #include <wx/spinbutt.h>
 
 class wxDatePickerCtrl;
 class mmTextCtrl;
+class wxString;
+class mmCustomData;
 
 class mmTransDialog : public wxDialog
 {
@@ -61,38 +65,38 @@ public:
     );
 
     void SetDialogTitle(const wxString& title);
-    int getAccountID() { return m_trx_data.ACCOUNTID; }
-    int getToAccountID() { return m_trx_data.TOACCOUNTID; }
-    int getTransactionID() { return m_trx_data.TRANSID; }
+    int GetAccountID() { return m_trx_data.ACCOUNTID; }
+    int GetToAccountID() { return m_trx_data.TOACCOUNTID; }
+    int GetTransactionID() { return m_trx_data.TRANSID; }
 
 private:
+    mmCustomData* m_custom_fields;
     void CreateControls();
     void dataToControls();
-    bool validateData();
+    bool ValidateData();
+    void SetEventHandlers();
 
     void OnSplitChecked(wxCommandEvent& event);
     void OnOk(wxCommandEvent& event);
     void OnCancel(wxCommandEvent& event);
+    void OnMoreFields(wxCommandEvent& event);
     void OnQuit(wxCloseEvent& event);
-    void OnStartupCustomFields();
-    void OnMove(wxMoveEvent& event);
     void OnCategs(wxCommandEvent& event);
     void OnAttachments(wxCommandEvent& event);
-    void OnCustomFields(wxCommandEvent& event);
     void OnAccountOrPayeeUpdated(wxCommandEvent& event);
     void OnDpcKillFocus(wxFocusEvent& event);
     void OnAutoTransNum(wxCommandEvent& event);
     void OnFrequentUsedNotes(wxCommandEvent& event);
-    void onNoteSelected(wxCommandEvent& event);
+    void OnNoteSelected(wxCommandEvent& event);
     void OnTransTypeChanged(wxCommandEvent& event);
-    void OnSpin(wxSpinEvent&);
+    void OnTransDateSpin(wxSpinEvent&);
     void OnDateChanged(wxDateEvent& event);
-    void onFocusChange(wxChildFocusEvent& event);
-    void onTextEntered(wxCommandEvent& event);
+    void OnFocusChange(wxChildFocusEvent& event);
+    void OnTextEntered(wxCommandEvent& event);
     void OnAdvanceChecked(wxCommandEvent& event);
-    void activateSplitTransactionsDlg();
-    void setTooltips();
-    void setCategoryForPayee(const Model_Payee::Data *payee);
+    void ActivateSplitTransactionsDlg();
+    void SetTooltips();
+    void SetCategoryForPayee(const Model_Payee::Data *payee);
 
     mmTextCtrl* textNumber_;
     mmTextCtrl* m_textAmount;
@@ -100,7 +104,6 @@ private:
     wxTextCtrl* textNotes_;
     wxButton* bCategory_;
     wxButton* bAttachments_;
-    wxButton* bCustomFields_;
     wxComboBox* cbAccount_;
     wxComboBox* cbPayee_;
     wxCheckBox* cSplit_;
@@ -113,9 +116,7 @@ private:
     wxStaticText* itemStaticTextWeek_;
     wxStaticText* account_label_;
     wxStaticText* payee_label_;
-    mmCustomFieldDialog* CustomFieldDialog_;
 
-    int m_type;
     bool m_transfer;
     bool m_new_trx;
     bool m_duplicate;
@@ -124,6 +125,8 @@ private:
     double m_current_balance;
 
     int object_in_focus_;
+    int m_account_id;
+    wxString m_status;
 
     DB_Table_CHECKINGACCOUNT_V1::Data m_trx_data;
     std::vector<Split> local_splits;
@@ -163,7 +166,10 @@ private:
         ID_DIALOG_TRANS_BUTTON_FREQENTNOTES,
         ID_DIALOG_TRANS_DATE_SPINNER,
         ID_DIALOG_TRANS_CUSTOMFIELDS,
+        ID_CUSTOMFIELD,
     };
+
+
 };
 
 #endif

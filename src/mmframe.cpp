@@ -33,6 +33,7 @@
 #include "budgetyeardialog.h"
 #include "categdialog.h"
 #include "constants.h"
+#include "customfieldlistdialog.h"
 #include "dbcheck.h"
 #include "dbupgrade.h"
 #include "dbwrapper.h"
@@ -120,6 +121,7 @@ EVT_MENU(MENU_DB_DEBUG, mmGUIFrame::OnDebugDB)
 EVT_MENU(MENU_ASSETS, mmGUIFrame::OnAssets)
 EVT_MENU(MENU_CURRENCY, mmGUIFrame::OnCurrency)
 EVT_MENU(MENU_TRANSACTIONREPORT, mmGUIFrame::OnTransactionReport)
+EVT_MENU(wxID_BROWSE, mmGUIFrame::OnCustomFieldsManager)
 EVT_MENU(wxID_VIEW_LIST, mmGUIFrame::OnGeneralReportManager)
 EVT_MENU(MENU_TREEPOPUP_LAUNCHWEBSITE, mmGUIFrame::OnLaunchAccountWebsite)
 EVT_MENU(MENU_TREEPOPUP_ACCOUNTATTACHMENTS, mmGUIFrame::OnAccountAttachments)
@@ -596,6 +598,7 @@ void mmGUIFrame::menuEnableItems(bool enable)
     menuBar_->FindItem(MENU_CATEGORY_RELOCATION)->Enable(enable);
     menuBar_->FindItem(MENU_PAYEE_RELOCATION)->Enable(enable);
     menuBar_->FindItem(wxID_VIEW_LIST)->Enable(enable);
+    menuBar_->FindItem(wxID_BROWSE)->Enable(enable);
     menuBar_->FindItem(MENU_CONVERT_ENC_DB)->Enable(enable);
 
     menuBar_->FindItem(MENU_IMPORT)->Enable(enable);
@@ -613,6 +616,7 @@ void mmGUIFrame::menuEnableItems(bool enable)
     menuBar_->FindItem(MENU_VIEW_BUDGET_SETUP_SUMMARY)->Enable(enable);
     menuBar_->FindItem(MENU_VIEW_BUDGET_CATEGORY_SUMMARY)->Enable(enable);
     menuBar_->FindItem(MENU_VIEW_IGNORE_FUTURE_TRANSACTIONS)->Enable(enable);
+
     menuBar_->FindItem(MENU_DB_VACUUM)->Enable(enable);
     menuBar_->FindItem(MENU_DB_DEBUG)->Enable(enable);
 
@@ -622,6 +626,10 @@ void mmGUIFrame::menuEnableItems(bool enable)
     toolBar_->EnableTool(MENU_ORGCATEGS, enable);
     toolBar_->EnableTool(MENU_CURRENCY, enable);
     toolBar_->EnableTool(wxID_VIEW_LIST, enable);
+    toolBar_->EnableTool(wxID_BROWSE, enable);
+    toolBar_->EnableTool(MENU_TRANSACTIONREPORT, enable);
+    toolBar_->EnableTool(wxID_PREFERENCES, enable);
+    toolBar_->EnableTool(wxID_NEW, enable);
     toolBar_->EnableTool(wxID_PRINT, enable);
 }
 //----------------------------------------------------------------------------
@@ -1562,6 +1570,11 @@ void mmGUIFrame::createMenu()
     menuItemGRM->SetBitmap(mmBitmap(png::GRM));
     menuTools->Append(menuItemGRM);
 
+    wxMenuItem* menuItemCF = new wxMenuItem(menuTools, wxID_BROWSE
+        , _("&Custom Fields Manager..."), _("Custom Fields Manager"));
+    menuItemCF->SetBitmap(mmBitmap(png::CUSTOM));
+    menuTools->Append(menuItemCF);
+
     menuTools->AppendSeparator();
 
     wxMenuItem* menuItemOptions = new wxMenuItem(menuTools, wxID_PREFERENCES
@@ -2394,8 +2407,8 @@ void mmGUIFrame::OnNewTransaction(wxCommandEvent& /*event*/)
 
         if (dlg.ShowModal() == wxID_OK)
         {
-            gotoAccountID_ = dlg.getAccountID();
-            gotoTransID_ = dlg.getTransactionID();
+            gotoAccountID_ = dlg.GetAccountID();
+            gotoTransID_ = dlg.GetTransactionID();
             Model_Account::Data * account = Model_Account::instance().get(gotoAccountID_);
             if (account)
             {
@@ -2429,6 +2442,16 @@ void mmGUIFrame::OnTransactionReport(wxCommandEvent& /*event*/)
         createReportsPage(rs, true);
         setNavTreeSection(_("Reports"));
     }
+}
+
+void mmGUIFrame::OnCustomFieldsManager(wxCommandEvent& WXUNUSED(event))
+{
+    if (!m_db) return;
+    const wxString& ref_type = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
+
+    mmCustomFieldListDialog dlg(this, ref_type);
+    dlg.ShowModal();
+    createHomePage();
 }
 
 void mmGUIFrame::OnGeneralReportManager(wxCommandEvent& /*event*/)
