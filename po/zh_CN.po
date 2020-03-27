@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-08-06 10:14+0300\n"
-"PO-Revision-Date: 2020-03-07 19:56\n"
+"PO-Revision-Date: 2020-03-27 18:29\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
@@ -6224,19 +6224,19 @@ msgstr ""
 
 #: stockspanel.cpp:36
 msgid "Using MMEX it is possible to track stocks/mutual funds investments."
-msgstr ""
+msgstr "利用 MMEX 可以追踪股票/共同基金投资。"
 
 #: stockspanel.cpp:37
 msgid "To create new stocks entry the Symbol, Number of shares and Purchase prise should be entered."
-msgstr ""
+msgstr "要创建新的股票条目，必须输入股票数量和购买价格。"
 
 #: stockspanel.cpp:38
 msgid "Sample of UK (HSBC HLDG) share: HSBA.L"
-msgstr ""
+msgstr "以英国汇丰银行(HSBC HLDG) 股票为例: HSBA.L"
 
 #: stockspanel.cpp:39
 msgid "If the Stock Name field is empty it will be filed when prices updated"
-msgstr ""
+msgstr "如果股票名称字段为空，当价格更新时它将被归档"
 
 #: stockspanel.cpp:99
 msgid "Share Total"
@@ -6264,7 +6264,7 @@ msgstr "新增股票(&N)"
 
 #: stockspanel.cpp:150
 msgid "&Add Stock Transactions"
-msgstr ""
+msgstr "添加股票交易（&A）"
 
 #: stockspanel.cpp:151
 msgid "&View Stock Transactions"
@@ -6406,7 +6406,8 @@ msgstr "管理此交易的附件"
 #, c-format
 msgid "Do you want to add new payee: \n"
 "%s?"
-msgstr ""
+msgstr "您想要添加新的收款人: \n"
+"%s？"
 
 #: transdialog.cpp:645
 msgid "Confirm to add new payee"
@@ -6415,15 +6416,16 @@ msgstr "确定添加新收款人"
 #: transdialog.cpp:735
 msgid "This transaction will exceed your account limit.\n\n"
 "Do you wish to continue?"
-msgstr ""
+msgstr "此交易将超过您的账户限额。\n\n"
+"您想要继续吗？"
 
 #: transdialog.cpp:1216
 msgid "Specify account the money is taken from"
-msgstr ""
+msgstr "指定钱来自于的账户"
 
 #: transdialog.cpp:1217
 msgid "Specify account the money is moved to"
-msgstr ""
+msgstr "指定钱被移动到的账户"
 
 #: transdialog.cpp:1218
 msgid "Specify the transfer amount in the From Account."
@@ -6431,11 +6433,11 @@ msgstr "指定转账来源账户。"
 
 #: transdialog.cpp:1226
 msgid "Specify account for the transaction"
-msgstr ""
+msgstr "指定交易的账户"
 
 #: transdialog.cpp:1228
 msgid "Specify to whom the transaction is going to"
-msgstr ""
+msgstr "指定交易的对象"
 
 #: transdialog.cpp:1234 usertransactionpanel.cpp:105
 msgid "Specify the date of the transaction"
@@ -6447,7 +6449,7 @@ msgstr "指定交易日期"
 
 #: usertransactionpanel.cpp:122
 msgid "Please select the Account that will be associated with this transaction"
-msgstr ""
+msgstr "请选择与该交易相关联的账户"
 
 #: usertransactionpanel.cpp:134
 msgid "Withdraw funds from or deposit funds to this Account."
@@ -6459,7 +6461,7 @@ msgstr "转帐(&T)"
 
 #: usertransactionpanel.cpp:139
 msgid "Funds transfer from/to this account. Uncheck to set as Expense/Income."
-msgstr ""
+msgstr "从该账户转出/转入资金。取消选中可设置为费用/收入。"
 
 #: usertransactionpanel.cpp:164
 msgid "Currency used for this transaction."
@@ -6467,7 +6469,7 @@ msgstr "设定转账使用的货币。"
 
 #: usertransactionpanel.cpp:183
 msgid "Specify the status for this transaction"
-msgstr ""
+msgstr "指定此交易的状态"
 
 #: usertransactionpanel.cpp:191
 msgid "Specify a person, Company or Organisation for this transaction."
@@ -6475,11 +6477,11 @@ msgstr "为转账指定一个人，公司或者组织。"
 
 #: usertransactionpanel.cpp:207
 msgid "Specify a transaction code or associated check details"
-msgstr ""
+msgstr "指定交易代码或关联的检查详细信息"
 
 #: usertransactionpanel.cpp:298
 msgid "Select the required account"
-msgstr ""
+msgstr "选择所需的帐户"
 
 #: usertransactionpanel.cpp:299
 msgid "Account Selection"
@@ -6527,7 +6529,7 @@ msgstr "构建于"
 
 #: util.cpp:472
 msgid "with:"
-msgstr ""
+msgstr "与："
 
 #: util.cpp:493
 msgid "Running on:"
