@@ -96,6 +96,12 @@ public:
     void SharePrecision(int value);
     int SharePrecision();
 
+    // Allows a year or financial year to start before or after the 1st of the month.
+    void setBudgetDaysOffset(int value);
+    int getBudgetDaysOffset() const;
+    /**Re-adjust date by the date offset value*/
+    void setBudgetDateOffset(wxDateTime& date) const;
+
     /* stored value in percantage for scale html font and other objects */
     void HtmlFontSize(int value);
     int HtmlFontSize();
@@ -133,6 +139,8 @@ private:
 
     int m_html_font_size;
     int m_ico_size;
+
+    int m_budget_days_offset;
 };
 
 inline const wxString Option::DateFormat() const
@@ -152,4 +160,9 @@ inline bool Option::getSendUsageStatistics() const
 inline bool Option::getIgnoreFutureTransactions() const
 {
 	return m_ignoreFutureTransactions;
+}
+
+inline int Option::getBudgetDaysOffset() const
+{
+    return m_budget_days_offset;
 }

@@ -46,19 +46,20 @@ public:
     const wxString getAccountNames() const;
     void chart(int selection);
     void setAccounts(int selection, const wxString& name);
+    void setSelection(int sel);
 
 protected:
     wxString m_title;
     const mmDateRange* m_date_range;
     bool m_initial;
     int m_date_selection;
-    int m_account_selection;
     int m_chart_selection;
     const wxArrayString* accountArray_;
     bool m_only_active;
     wxString m_settings;
     wxDateTime m_begin_date;
     wxDateTime m_end_date;
+    int m_account_selection;
 
 public:
     static const char * m_template;
@@ -74,9 +75,11 @@ public:
     };
 };
 
+inline void mmPrintableBase::setSelection(int sel) { m_date_selection = sel; }
 inline int mmPrintableBase::getDateSelection() const { return this->m_date_selection; }
 inline int mmPrintableBase::getAccountSelection() const { return this->m_account_selection; }
 inline int mmPrintableBase::getChartSelection() const { return this->m_chart_selection; }
+inline void mmPrintableBase::chart(int selection) { m_chart_selection = selection; }
 
 class mmGeneralReport : public mmPrintableBase
 {

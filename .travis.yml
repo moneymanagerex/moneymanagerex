@@ -25,8 +25,8 @@ env:
   - OS=ubuntu DIST=xenial
   - OS=ubuntu DIST=zesty
   - OS=ubuntu DIST=bionic
-  - OS=ubuntu DIST=xenial ARCH=x86
-  - OS=ubuntu DIST=zesty ARCH=x86
+  #- OS=ubuntu DIST=xenial ARCH=x86
+  #- OS=ubuntu DIST=zesty ARCH=x86
   - OS=ubuntu DIST=bionic ARCH=x86
   - OS=ubuntu DIST=disco
   - OS=ubuntu DIST=disco ARCH=x86

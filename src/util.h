@@ -191,13 +191,25 @@ const wxString getProgramDescription(bool simple = false);
 void windowsFreezeThaw(wxWindow* w);
 
 //* Date Functions----------------------------------------------------------*//
+static const wxString MONTHS[12] =
+{
+    wxTRANSLATE("January"), wxTRANSLATE("February"), wxTRANSLATE("March")
+    , wxTRANSLATE("April"), wxTRANSLATE("May"), wxTRANSLATE("June")
+    , wxTRANSLATE("July"), wxTRANSLATE("August"), wxTRANSLATE("September")
+    , wxTRANSLATE("October"), wxTRANSLATE("November"), wxTRANSLATE("December")
+};
+
 const wxDateTime getUserDefinedFinancialYear(bool prevDayRequired = false);
+const wxString mmGetMonthName(wxDateTime::Month month);
 const std::map<wxString, wxString> &date_formats_regex();
 const wxDateTime mmParseISODate(const wxString& str);
 const wxString mmGetDateForDisplay(const wxString &iso_date);
 bool mmParseDisplayStringToDate(wxDateTime& date, const wxString& sDate, const wxString& sDateMask);
 extern const std::map<wxString, wxString> g_date_formats_map();
 extern const std::map<int, std::pair<wxConvAuto, wxString> > g_encoding;
+
+inline const wxString mmGetMonthName(wxDateTime::Month month) { return MONTHS[static_cast<int>(month)]; }
+//----------------------------------------------------------------------------
 
 CURLcode http_get_data(const wxString& site, wxString& output, const wxString& useragent = wxEmptyString);
 CURLcode http_post_data(const wxString& site, const wxString& data, const wxString& contentType, wxString& output);

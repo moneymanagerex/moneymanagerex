@@ -99,36 +99,32 @@ public:
         }
 
         return nullptr;
-    }   
+    }
 private:
     mmReportsPanel *m_reportPanel;
 };
 
-enum
-{
-    ID_CHOICE_DATE_RANGE = wxID_HIGHEST + 1,
-};
-
 wxBEGIN_EVENT_TABLE(mmReportsPanel, wxPanel)
-    EVT_CHOICE(ID_CHOICE_DATE_RANGE, mmReportsPanel::OnDateRangeChanged)
-    EVT_CHOICE(ID_CHOICE_ACCOUNTS, mmReportsPanel::OnAccountChanged)
-    EVT_DATE_CHANGED(wxID_ANY, mmReportsPanel::OnStartEndDateChanged)
-    EVT_CHOICE(ID_CHOICE_CHART, mmReportsPanel::OnChartChanged)
-
+EVT_CHOICE(ID_CHOICE_DATE_RANGE, mmReportsPanel::OnDateRangeChanged)
+EVT_CHOICE(ID_CHOICE_ACCOUNTS, mmReportsPanel::OnAccountChanged)
+EVT_DATE_CHANGED(wxID_ANY, mmReportsPanel::OnStartEndDateChanged)
+EVT_CHOICE(ID_CHOICE_CHART, mmReportsPanel::OnChartChanged)
 wxEND_EVENT_TABLE()
 
 mmReportsPanel::mmReportsPanel(
     mmPrintableBase* rb, bool cleanupReport, wxWindow *parent, mmGUIFrame* frame,
     wxWindowID winid, const wxPoint& pos,
     const wxSize& size, long style,
-    const wxString& name )
+    const wxString& name)
     : rb_(rb)
+    , m_frame(frame)
     , m_date_ranges(nullptr)
+    , m_start_date(nullptr)
+    , m_end_date(nullptr)
     , m_accounts(nullptr)
     , m_chart(nullptr)
     , cleanup_(cleanupReport)
     , cleanupmem_(false)
-    , m_frame(frame)
 {
     m_all_date_ranges.push_back(new mmCurrentMonth());
     m_all_date_ranges.push_back(new mmCurrentMonthToDate());
@@ -192,6 +188,8 @@ bool mmReportsPanel::saveReportText(wxString& error, bool initial)
     if (m_date_ranges)
     {
         int selectedItem = m_date_ranges->GetSelection();
+        wxASSERT(selectedItem >= 0 && selectedItem < static_cast<int>(m_date_ranges->GetCount()));
+
         int rp = rb_->report_parameters();
         if (rp & rb_->RepParams::DATE_RANGE)
         {
@@ -205,14 +203,18 @@ bool mmReportsPanel::saveReportText(wxString& error, bool initial)
             }
             rb_->date_range(date_range, selectedItem);
         }
-        
+
         if (rp & (rb_->RepParams::BUDGET_DATES | rb_->RepParams::ONLY_YEARS))
         {
-            rb_->date_range(nullptr
-                , *reinterpret_cast<int*>(m_date_ranges->GetClientData(selectedItem)));
+            wxString id_str = "0";
+            wxStringClientData* obj =
+                static_cast<wxStringClientData*>(m_date_ranges->GetClientObject(selectedItem));
+            if (obj) id_str = obj->GetData();
+            int id = wxAtoi(id_str);
+            rb_->setSelection(id);
         }
     }
-
+    /**/
     StringBuffer json_buffer;
     Writer<StringBuffer> json_writer(json_buffer);
 
@@ -278,6 +280,7 @@ void mmReportsPanel::CreateControls()
             itemBoxSizerHeader->Add(itemStaticTextH1, 0, wxALL | wxALIGN_CENTER_VERTICAL, 1);
             itemBoxSizerHeader->AddSpacer(5);
             m_date_ranges = new wxChoice(itemPanel3, ID_CHOICE_DATE_RANGE);
+            m_date_ranges->SetName("DateRanges");
 
             for (const auto & date_range : m_all_date_ranges)
             {
@@ -328,7 +331,7 @@ void mmReportsPanel::CreateControls()
             itemBoxSizerHeader->Add(m_start_date, 0, wxALL, 1);
             itemBoxSizerHeader->AddSpacer(30);
         }
-        
+
         if (rp & (rb_->RepParams::BUDGET_DATES | rb_->RepParams::ONLY_YEARS))
         {
             cleanupmem_ = true;
@@ -341,9 +344,6 @@ void mmReportsPanel::CreateControls()
             m_date_ranges = new wxChoice(itemPanel3, ID_CHOICE_DATE_RANGE
                 , wxDefaultPosition, wxDefaultSize, 0, NULL, wxCB_SORT);
 
-            int prev_selection = rb_->getDateSelection();
-            int cur_selection = 0;
-            bool sel_found = false;
             for (const auto& e : Model_Budgetyear::instance().all(Model_Budgetyear::COL_BUDGETYEARNAME))
             {
                 const wxString& name = e.BUDGETYEARNAME;
@@ -352,23 +352,15 @@ void mmReportsPanel::CreateControls()
                     && name.length() >= 5) // Only add YEARS
                     continue;
 
-                int id = e.BUDGETYEARID;
-                m_date_ranges->Append(name, new int(id));
+                m_date_ranges->Append(name, new wxStringClientData(wxString::Format("%i", e.BUDGETYEARID)));
 
-                if (!sel_found)
-                {
-                    if (prev_selection == id)
-                        sel_found = true;
-                    else
-                        cur_selection++;
-                }
             }
-            if (!sel_found)
-                m_date_ranges->SetSelection(m_date_ranges->GetCount() - 1); // Set to latest budget
-            else
-                m_date_ranges->SetSelection(cur_selection);
-            rb_->date_range(nullptr, *reinterpret_cast<int*>
-                (m_date_ranges->GetClientData(m_date_ranges->GetSelection())));
+
+            int sel_id = rb_->getDateSelection();
+            if (sel_id < 0 || static_cast<size_t>(sel_id) >= m_date_ranges->GetCount()) {
+                sel_id = 0;
+            }
+            m_date_ranges->SetSelection(sel_id);
 
             itemBoxSizerHeader->Add(m_date_ranges, 0, wxALL, 1);
             itemBoxSizerHeader->AddSpacer(30);
@@ -426,26 +418,23 @@ void mmReportsPanel::PrintPage()
     browser_->Print();
 }
 
-void mmReportsPanel::OnDateRangeChanged(wxCommandEvent& /*event*/)
+void mmReportsPanel::OnDateRangeChanged(wxCommandEvent& event)
 {
-    const mmDateRange* date_range = static_cast<mmDateRange*>(this->m_date_ranges->GetClientData(this->m_date_ranges->GetSelection()));
-    if (date_range)
+    const wxString i = m_date_ranges->GetName();
+
+    if (i == "DateRanges")
     {
-        if (m_start_date) {
+        const mmDateRange* date_range = static_cast<mmDateRange*>(this->m_date_ranges->GetClientData(this->m_date_ranges->GetSelection()));
+        if (date_range)
+        {
             m_start_date->Enable(false);
             this->m_start_date->SetValue(date_range->start_date());
-        }
-        if (m_end_date) {
             m_end_date->Enable(false);
             this->m_end_date->SetValue(date_range->end_date());
         }
-    }
-    else
-    {
-        if (m_start_date) {
+        else
+        {
             m_start_date->Enable();
-        }
-        if (m_end_date) {
             m_end_date->Enable();
         }
     }

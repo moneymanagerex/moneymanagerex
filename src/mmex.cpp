@@ -92,10 +92,11 @@ bool mmGUIApp::setGUILanguage(wxLanguage lang)
 #else
             best = trans->GetBestTranslation("mmex");
 #endif
-            if (best.IsEmpty())
+            if (best.IsEmpty()) {
                 best = wxLocale::GetLanguageName(wxLocale::GetSystemLanguage());
-            msg = wxString::Format(_("Cannot load a translation for the default language of your system (%s)."),
-                best);
+                msg = wxString::Format(_("Cannot load a translation for the default language of your system (%s)."),
+                    best);
+            }
         }
         else {
             msg = wxString::Format(_("Cannot load a translation for the selected language (%s).")

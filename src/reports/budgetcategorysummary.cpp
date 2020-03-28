@@ -66,7 +66,7 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
     wxDateTime::wxDateTime_t startDay = 1;
     long tmp;
     wxDateTime::Month startMonth = wxDateTime::Jan;
-    int startYear;
+    int startYear = wxDateTime::Today().GetYear();
 
     wxString value = Model_Budgetyear::instance().Get(m_date_selection);
     wxString budget_month, budget_year = value;
@@ -78,12 +78,10 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
         budget_month = pattern.GetMatch(value, 3);
     }
 
-    if (!budget_year.ToLong(&tmp)) {
-        startYear = wxDateTime::Today().GetYear();
-        budget_year = wxString::Format("%d", startYear);
-    }
-    else
+    if (budget_year.ToLong(&tmp))
         startYear = static_cast<int>(tmp); // 0 <= tmp <= 9999
+
+    budget_year = wxString::Format("%d", startYear);
 
     if (budget_month.ToLong(&tmp))
         startMonth = static_cast<wxDateTime::Month>(--tmp);
@@ -92,18 +90,23 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
     wxDateTime yearEnd = yearBegin;
 
     bool monthlyBudget = (!budget_month.empty());
-    if (monthlyBudget)
+    if (monthlyBudget) {
         yearEnd.Add(wxDateSpan::Month()).Subtract(wxDateSpan::Day());
+        budget_year = wxString::Format("%i-%ld", startYear, tmp);
+    }
     else
         yearEnd.Add(wxDateSpan::Year()).Subtract(wxDateSpan::Day());
 
     // Readjust dates by the Budget Offset Option
-    //Option::instance().setBudgetDateOffset(yearBegin);
-    //Option::instance().setBudgetDateOffset(yearEnd);
+    Option::instance().setBudgetDateOffset(yearBegin);
+    Option::instance().setBudgetDateOffset(yearEnd);
     mmSpecifiedRange date_range(yearBegin, yearEnd);
 
     bool evaluateTransfer = false;
-
+    if (Option::instance().BudgetIncludeTransfers())
+    {
+        evaluateTransfer = true;
+    }
     //Get statistics
     std::map<int, std::map<int, Model_Budget::PERIOD_ENUM> > budgetPeriod;
     std::map<int, std::map<int, double> > budgetAmt;

@@ -82,8 +82,6 @@ public:
         ID_CHOICE_ACCOUNTS,
         ID_CHOICE_START_DATE,
         ID_CHOICE_END_DATE,
-        ID_PREV_REPORT,
-        ID_NEXT_REPORT,
         ID_CHOICE_CHART,
     };
 };

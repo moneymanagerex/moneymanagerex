@@ -116,8 +116,8 @@ wxString mmReportBudgetingPerformance::getHTMLText()
     yearEnd.Add(wxDateSpan::Year()).Subtract(wxDateSpan::Day());
 
     // Readjust dates by the Budget Offset Option
-    //Option::instance().BudgetDateOffset(yearBegin);
-    //Option::instance().BudgetDateOffset(yearEnd);
+    Option::instance().setBudgetDateOffset(yearBegin);
+    Option::instance().setBudgetDateOffset(yearEnd);
     mmSpecifiedRange date_range(yearBegin, yearEnd);
 
     bool evaluateTransfer = false;

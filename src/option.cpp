@@ -46,6 +46,7 @@ Option::Option()
     , m_sharePrecision(4)
     , m_html_font_size(100)
     , m_ico_size(16)
+    , m_budget_days_offset(0)
 {}
 
 //----------------------------------------------------------------------------
@@ -65,6 +66,7 @@ void Option::LoadOptions(bool include_infotable)
         m_financialYearStartMonthString = Model_Infotable::instance().GetStringInfo("FINANCIAL_YEAR_START_MONTH", "7");
         m_sharePrecision = Model_Infotable::instance().GetIntInfo("SHARE_PRECISION", 4);
         m_baseCurrency = Model_Infotable::instance().GetIntInfo("BASECURRENCYID", -1);
+        m_budget_days_offset = Model_Infotable::instance().GetIntInfo("BUDGET_DAYS_OFFSET", 0);
         // Ensure that base currency is set for the database.
         while (m_baseCurrency < 1)
         {
@@ -308,6 +310,18 @@ void Option::HtmlFontSize(int value)
 int Option::HtmlFontSize()
 {
     return m_html_font_size;
+}
+
+void Option::setBudgetDaysOffset(int value)
+{
+    Model_Infotable::instance().Set("BUDGET_DAYS_OFFSET", value);
+    m_budget_days_offset = value;
+}
+
+void Option::setBudgetDateOffset(wxDateTime& date) const
+{
+    if (m_budget_days_offset != 0)
+        date.Add(wxDateSpan::Days(m_budget_days_offset));
 }
 
 void Option::IconSize(int value)

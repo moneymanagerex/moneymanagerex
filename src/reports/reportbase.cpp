@@ -128,11 +128,6 @@ const wxString mmPrintableBase::getAccountNames() const
     return accountsMsg;
 }
 
-void mmPrintableBase::chart(int selection)
-{
-    m_chart_selection = selection;
-}
-
 void mmPrintableBase::setAccounts(int selection, const wxString& name)
 {
     if ((selection == 1) || (m_account_selection != selection))

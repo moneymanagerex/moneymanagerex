@@ -400,14 +400,6 @@ const std::map<int, std::pair<wxConvAuto, wxString> > g_encoding = {
     , { 9, { wxConvAuto(wxFONTENCODING_CP1257), wxTRANSLATE("1257") } }
 };
 
-static const wxString MONTHS[12] =
-{
-    wxTRANSLATE("January"), wxTRANSLATE("February"), wxTRANSLATE("March")
-    , wxTRANSLATE("April"), wxTRANSLATE("May"), wxTRANSLATE("June")
-    , wxTRANSLATE("July"), wxTRANSLATE("August"), wxTRANSLATE("September")
-    , wxTRANSLATE("October"), wxTRANSLATE("November"), wxTRANSLATE("December")
-};
-
 static const wxString MONTHS_SHORT[12] =
 {
     wxTRANSLATE("Jan"), wxTRANSLATE("Feb"), wxTRANSLATE("Mar")

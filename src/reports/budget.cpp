@@ -90,7 +90,8 @@ const wxString mmReportBudget::AdjustYearValues(int day, wxDateTime::Month month
     }
     else
     {
-        ret = wxString::Format(_("Month: %s"), yearStr);
+        const wxString month_str = wxGetTranslation(mmGetMonthName(month));
+        ret = wxString::Format(_("Year: %i Month: %s"), year, month_str);
     }
 
     return ret;

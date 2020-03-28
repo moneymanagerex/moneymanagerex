@@ -205,40 +205,19 @@ void mmGUIFrame::updateReportNavigation(wxTreeItemId& reports, wxTreeItemId& bud
 
     
     //////////////////////////////////////////////////////////////////
-    wxTreeItemId budgetPerformance;
-    wxTreeItemId budgetSetupPerformance;
 
-    size_t i = 0;
-    for (const auto& e : Model_Budgetyear::instance().all(Model_Budgetyear::COL_BUDGETYEARNAME))
+    size_t i = Model_Budgetyear::instance().all().size();
+    if (i > 0)
     {
-        if (!i)
-        { // first loop only
-            budgetPerformance = m_nav_tree_ctrl->AppendItem(reports
-                , _("Budget Performance"), img::PIECHART_PNG, img::PIECHART_PNG);
-            m_nav_tree_ctrl->SetItemData(budgetPerformance, new mmTreeItemData("Budget Performance"));
+        wxTreeItemId budgetPerformance = m_nav_tree_ctrl->AppendItem(reports
+            , _("Budget Performance"), img::PIECHART_PNG, img::PIECHART_PNG);
+        m_nav_tree_ctrl->SetItemData(budgetPerformance, new mmTreeItemData("Budget Performance"
+            , new mmReportBudgetingPerformance()));
 
-            budgetSetupPerformance = m_nav_tree_ctrl->AppendItem(reports
-                , _("Budget Category Summary"), img::PIECHART_PNG, img::PIECHART_PNG);
-            m_nav_tree_ctrl->SetItemData(budgetSetupPerformance, new mmTreeItemData("Budget Setup Performance"));
-        }
-
-        int id = e.BUDGETYEARID;
-        const wxString& name = e.BUDGETYEARNAME;
-
-        wxTreeItemId bYear = m_nav_tree_ctrl->AppendItem(budgeting, name, img::CALENDAR_PNG, img::CALENDAR_PNG);
-        m_nav_tree_ctrl->SetItemData(bYear, new mmTreeItemData(id, true));
-
-        // Only add YEARS for Budget Performance
-        if (name.length() < 5)
-        {
-            wxTreeItemId bYearData = m_nav_tree_ctrl->AppendItem(budgetPerformance
-                , name, img::PIECHART_PNG, img::PIECHART_PNG);
-            m_nav_tree_ctrl->SetItemData(bYearData, new mmTreeItemData(id, true));
-        }
-        wxTreeItemId bYearSetupData = m_nav_tree_ctrl->AppendItem(budgetSetupPerformance
-            , name, img::PIECHART_PNG, img::PIECHART_PNG);
-        m_nav_tree_ctrl->SetItemData(bYearSetupData, new mmTreeItemData(id, true));
-        ++i;
+        wxTreeItemId budgetSetupPerformance = m_nav_tree_ctrl->AppendItem(reports
+            , _("Budget Category Summary"), img::PIECHART_PNG, img::PIECHART_PNG);
+        m_nav_tree_ctrl->SetItemData(budgetSetupPerformance, new mmTreeItemData("Budget Setup Performance"
+            , new mmReportBudgetCategorySummary()));
     }
 
     ///////////////////////////////////////////////////////////////////
