@@ -27,4 +27,6 @@ public:
 
     virtual int report_parameters();
     virtual wxString getHTMLText();
+private:
+    static const char * usage_template;
 };

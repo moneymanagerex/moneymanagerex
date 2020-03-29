@@ -17,6 +17,7 @@
  ********************************************************/
 
 #include "forecast.h"
+#include "util.h"
 #include "model/Model_Checking.h"
 
 class mm_html_template;
@@ -68,6 +69,11 @@ wxString mmReportForecast::getHTMLText()
     mm_html_template report(this->m_template);
     report(L"REPORTNAME") = this->getReportTitle();
     report(L"CONTENTS") = contents;
+    wxDateTime today = wxDateTime::Now();
+    const wxString current_day_time = wxString::Format(_("Report Generated %s %s")
+        , mmGetDateForDisplay(today.FormatISODate())
+        , today.FormatISOTime());
+    report(L"TODAY") = current_day_time;
     report(L"GRAND") = wxString::Format("%ld", static_cast<long>(amount_by_day.size()));
     report(L"HTMLSCALE") = wxString::Format("%d", Option::instance().HtmlFontSize());
 

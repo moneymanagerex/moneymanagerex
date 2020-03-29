@@ -305,19 +305,18 @@ void mmHTMLBuilder::addTableCellLink(const wxString& href
 
 void mmHTMLBuilder::DisplayDateHeading(const wxDateTime& startDate, const wxDateTime& endDate, bool withDateRange)
 {
-
-    wxString todaysDate = today_.todays_date + tags::BR + tags::BR;
+    wxString sDate;
     if (withDateRange)
     {
-        todaysDate << wxString::Format(_("From %s till %s")
+        sDate << wxString::Format(_("From %s till %s")
             , mmGetDateForDisplay(startDate.FormatISODate())
             , mmGetDateForDisplay(endDate.FormatISODate()));
     }
     else
     {
-        todaysDate << _("Over Time");
+        sDate << _("Over Time");
     }
-    this->addHeader(3, todaysDate);
+    this->addHeader(3, sDate);
 }
 
 void mmHTMLBuilder::addTableRow(const wxString& label, double data)

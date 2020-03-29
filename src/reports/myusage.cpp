@@ -23,87 +23,6 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "model/Model_Usage.h"
 #include "model/Model_Report.h"
 
-const char *usage_template = R"(
-<!DOCTYPE html>
-<html>
-<head>
-    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    <title><TMPL_VAR REPORTNAME></title>
-    <script src = "ChartNew.js"></script>
-    <script src = "format.js"></script>
-    <script src = "sorttable.js"></script>
-    <link href = "master.css" rel = "stylesheet" />
-    <style>
-        canvas {min-height: 100px}
-        body {font-size: <TMPL_VAR HTMLSCALE>%}
-    </style>
-</head>
-<body>
-
-<div class = "container">
-<h3><TMPL_VAR REPORTNAME>
-
-<!--
-<select id="chart-type" onchange='onChartChange(this)'>
-    <option value="line" selected><TMPL_VAR _LINECHART></option>
-    <option value="bar"><TMPL_VAR _BARCHART></option>
-</select>
--->
-</h3>
-<TMPL_VAR TODAY><hr>
-
-<div class = "row">
-<canvas id="mycanvas"></canvas>
-<script>
-    var data = {
-    labels: [ <TMPL_VAR STARTDATE>, <TMPL_VAR ENDDATE> ],
-    xBegin: <TMPL_VAR STARTDATE>,
-    xEnd: <TMPL_VAR ENDDATE>,
-    datasets: [
-        {
-            // fillColor : 'rgba(129, 172, 123, 0.5)',
-            strokeColor : 'rgba(129, 172, 123, 1)',
-            // pointColor : 'rgba(129, 172, 123, 1)',
-            // pointStrokeColor : "#fff",
-            data : [ <TMPL_LOOP NAME=CONTENTS><TMPL_VAR FREQUENCY><TMPL_UNLESS NAME=__LAST__>,</TMPL_UNLESS></TMPL_LOOP> ],
-            xPos: [ <TMPL_LOOP NAME=CONTENTS><TMPL_VAR USAGEDATE><TMPL_UNLESS NAME=__LAST__>,</TMPL_UNLESS></TMPL_LOOP> ],
-            title : "<TMPL_VAR _FREQUENCY>"
-        }
-        ]
-    }
-    var opts= {
-        annotateDisplay: true,
-        responsive: true,
-        yAxisMinimumInterval: 1,
-        extrapolateMissingData: false,
-        datasetFill: false,
-        pointDot : false,
-        linkType: 1,
-        fmtV2: "date",
-        fmtXLabel: "date"
-    };
-
-    var ctx = document.getElementById("mycanvas").getContext("2d");
-
-    window.onload = function() {
-        var myBar = new Chart(ctx).Line(data,opts);
-    }
-/*
-    function onChartChange(select){
-        var value = select.value;
-        if (value == "line") {
-           new Chart(ctx).Line(data,opts);
-        }
-        else if (value == "bar") {
-           new Chart(ctx).Bar(data,opts);
-        }
-    }
-*/
-</script>
-</div></div></body>
-</html>
-)";
-
 mmReportMyUsage::mmReportMyUsage()
 : mmPrintableBase(_("MMEX Usage Frequency"))
 {
@@ -219,6 +138,12 @@ wxString mmReportMyUsage::getHTMLText()
     report(L"CONTENTS") = contents;
     report(L"GRAND") = wxString::Format("%zu", all_usage.size());
     report(L"HTMLSCALE") = wxString::Format("%d", Option::instance().HtmlFontSize());
+    
+    wxDateTime today = wxDateTime::Now();
+    const wxString current_day_time = wxString::Format(_("Report Generated %s %s")
+        , mmGetDateForDisplay(today.FormatISODate())
+        , today.FormatISOTime());
+    report(L"TODAY") = current_day_time;
 
     wxString out = wxEmptyString;
     try
@@ -236,3 +161,84 @@ wxString mmReportMyUsage::getHTMLText()
 
     return out;
 }
+
+const char* mmReportMyUsage::usage_template = R"(
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title><TMPL_VAR REPORTNAME></title>
+    <script src = "ChartNew.js"></script>
+    <script src = "format.js"></script>
+    <script src = "sorttable.js"></script>
+    <link href = "master.css" rel = "stylesheet" />
+    <style>
+        canvas {min-height: 100px}
+        body {font-size: <TMPL_VAR HTMLSCALE>%}
+    </style>
+</head>
+<body>
+
+<div class = "container">
+<h3><TMPL_VAR REPORTNAME>
+
+<!--
+<select id="chart-type" onchange='onChartChange(this)'>
+    <option value="line" selected><TMPL_VAR _LINECHART></option>
+    <option value="bar"><TMPL_VAR _BARCHART></option>
+</select>
+-->
+</h3>
+<TMPL_VAR TODAY><hr>
+
+<div class = "row">
+<canvas id="mycanvas"></canvas>
+<script>
+    var data = {
+    labels: [ <TMPL_VAR STARTDATE>, <TMPL_VAR ENDDATE> ],
+    xBegin: <TMPL_VAR STARTDATE>,
+    xEnd: <TMPL_VAR ENDDATE>,
+    datasets: [
+        {
+            // fillColor : 'rgba(129, 172, 123, 0.5)',
+            strokeColor : 'rgba(129, 172, 123, 1)',
+            // pointColor : 'rgba(129, 172, 123, 1)',
+            // pointStrokeColor : "#fff",
+            data : [ <TMPL_LOOP NAME=CONTENTS><TMPL_VAR FREQUENCY><TMPL_UNLESS NAME=__LAST__>,</TMPL_UNLESS></TMPL_LOOP> ],
+            xPos: [ <TMPL_LOOP NAME=CONTENTS><TMPL_VAR USAGEDATE><TMPL_UNLESS NAME=__LAST__>,</TMPL_UNLESS></TMPL_LOOP> ],
+            title : "<TMPL_VAR _FREQUENCY>"
+        }
+        ]
+    }
+    var opts= {
+        annotateDisplay: true,
+        responsive: true,
+        yAxisMinimumInterval: 1,
+        extrapolateMissingData: false,
+        datasetFill: false,
+        pointDot : false,
+        linkType: 1,
+        fmtV2: "date",
+        fmtXLabel: "date"
+    };
+
+    var ctx = document.getElementById("mycanvas").getContext("2d");
+
+    window.onload = function() {
+        var myBar = new Chart(ctx).Line(data,opts);
+    }
+/*
+    function onChartChange(select){
+        var value = select.value;
+        if (value == "line") {
+           new Chart(ctx).Line(data,opts);
+        }
+        else if (value == "bar") {
+           new Chart(ctx).Bar(data,opts);
+        }
+    }
+*/
+</script>
+</div></div></body>
+</html>
+)";
