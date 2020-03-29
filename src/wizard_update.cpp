@@ -19,6 +19,8 @@
 #include "wizard_update.h"
 #include "constants.h"
 #include "util.h"
+#include "paths.h"
+#include "reports/htmlbuilder.h"
 #include "model/Model_Setting.h"
 #include "rapidjson/error/en.h"
 
@@ -26,71 +28,90 @@ wxBEGIN_EVENT_TABLE(mmUpdateWizard, wxWizard)
     EVT_HTML_LINK_CLICKED(wxID_ANY, mmUpdateWizard::LinkClicked)
 wxEND_EVENT_TABLE()
 
-mmUpdateWizard::mmUpdateWizard(wxFrame *frame, const Value& new_version)
+const char* update_template = R"(
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+</head>
+<body>
+<table>
+  <tr>
+    <th>%s</th>
+    <th>%s</th>
+    <th>%s</th>
+  </tr>
+%s
+</table>
+</body>
+</html>
+)";
+
+mmUpdateWizard::mmUpdateWizard(wxFrame *frame, const Document& json_releases, wxArrayInt new_releases)
     : wxWizard(frame, wxID_ANY, _("Update Wizard")
         , wxNullBitmap, wxDefaultPosition, wxCAPTION | wxCLOSE_BOX | wxRESIZE_BORDER)
-    , m_new_version(new_version)
 {
+    this->SetIcon(mmex::getProgramIcon());
     page1 = new wxWizardPageSimple(this);
+    
+    int i = 0;
+    wxString displayMsg = wxString::Format(_("Your version is %s"), mmex::version::string) + "\n\n";
+    displayMsg += _("A new version of MMEX is available!") + "\n";
+    displayMsg += _("What's new:") + "\n";
+    wxString body;
 
-    wxDateTime pub_date;
-    wxString::const_iterator end;
-    const wxString pub_date_str = wxString(m_new_version["published_at"].GetString());
-    pub_date.ParseFormat(pub_date_str, "%Y-%m-%dT%H:%M:%SZ", &end);
-    const wxString displayMsg = wxString()
-        << _("A new version of MMEX is available!") << "\n\n"
-        << wxString::Format(_("Your version is %s")
-            , mmex::version::string) << "\n"
-        << wxString::Format(_("New version is %s (published at %s)")
-            , m_new_version["tag_name"].GetString() + 1
-            , pub_date.Format(Option::instance().DateFormat())) << "\n";
+    for (auto& r : json_releases.GetArray())
+    {
+        if (new_releases.Index(i) != wxNOT_FOUND) 
+        {
+
+            bool p = (r.HasMember("prerelease") && r["prerelease"].IsBool() && r["prerelease"].GetBool());
+            const auto prerelease = !p ? _("Stable") : _("Unstable");
+
+            const auto html_url = (r.HasMember("html_url") && r["html_url"].IsString())
+                ? r["html_url"].GetString() : "";
+
+            const auto tag = (r.HasMember("tag_name") && r["tag_name"].IsString())
+                ? r["tag_name"].GetString() : "";
+
+            const auto published_at = (r.HasMember("published_at") && r["published_at"].IsString())
+                ? r["published_at"].GetString() : "";
+            wxDateTime pub_date;
+            wxString::const_iterator end;
+            pub_date.ParseFormat(published_at, "%Y-%m-%dT%H:%M:%SZ", &end);
+            const wxString pd = pub_date.FormatISODate();
+
+            wxString link = wxString::Format(R"(<a href="%s">%s</a>)", html_url, tag);
+            const wxString github = "https://github.com/moneymanagerex/moneymanagerex/releases/tag/";
+            const wxString sf = "https://sourceforge.net/projects/moneymanagerex/files/";
+            if (link.Contains(github)) link.Replace(github, sf);
+            body += wxString::Format(R"(<tr><td>%s</td><td>%s</td><td>%s</td></tr>)"
+                , link, prerelease, pd);
+        }
+
+    i++;
+    }
+
+    body = wxString::Format(update_template, _("Version"), _("Status"), _("Date"), body);
 
     wxBoxSizer *page1_sizer = new wxBoxSizer(wxVERTICAL);
     page1->SetSizer(page1_sizer);
 
     wxStaticText *updateText = new wxStaticText(page1, wxID_ANY, displayMsg);
-    wxStaticText *whatsnew = new wxStaticText(page1, wxID_ANY, _("What's new:"));
+    updateText->SetFont(this->GetFont().Larger().Bold());
     wxHtmlWindow *changelog = new wxHtmlWindow(page1
-        , wxID_ANY, wxDefaultPosition, wxSize(450, 250)
+        , wxID_ANY, wxDefaultPosition, wxDefaultSize
         , wxHW_SCROLLBAR_AUTO | wxSUNKEN_BORDER | wxHSCROLL | wxVSCROLL);
-    wxStaticText *instruction = new wxStaticText(page1, wxID_ANY,
-        _("Click on Finish to open our download webpage."));
-    // _("Click on next to download it now or visit our website to download."));
-    // TODO: Download file in wizard page2
+    changelog->SetMinSize(wxSize(250, 250));
 
     page1_sizer->Add(updateText);
-    page1_sizer->Add(whatsnew, wxSizerFlags(g_flagsV).Border(wxBOTTOM, 0));
     page1_sizer->Add(changelog, wxSizerFlags(g_flagsExpand).Border(wxTOP, 0));
-    page1_sizer->Add(instruction, wxSizerFlags(g_flagsV).Border(wxTOP, 10));
-
-    wxString body = m_new_version["body"].GetString();
-
-    // ---- Convert Markup
-
-    // img with link
-    // skip images hosted via unsupported https
-    wxRegEx re("\\[!\\[([^]]+)\\]\\(([ \t]*https://[^)]+)\\)\\]\\(([^)]+)\\)", wxRE_EXTENDED);
-    re.Replace(&body, "<a href=\"\\3\">\\1</a>");
-    re.Compile("\\[!\\[([^]]+)\\]\\(([^)]+)\\)\\]\\(([^)]+)\\)", wxRE_EXTENDED);
-    re.Replace(&body, "<a href=\"\\3\"><img src=\"\\2\" alt=\"\\1\"></a>");
-
-    // img
-    // skip images hosted via unsupported https
-    re.Compile("!\\[([^]]+)\\]\\([ \t]*https://[^)]+\\)", wxRE_EXTENDED);
-    re.Replace(&body, "\\1");
-    re.Compile("!\\[([^]]+)\\]\\(([^)]+)\\)", wxRE_EXTENDED);
-    re.Replace(&body, "<img src=\"\\2\" alt=\"\\1\">");
-
-    // link
-    re.Compile("\\[([^]]+)\\]\\(([^)]+)\\)", wxRE_EXTENDED);
-    re.Replace(&body, "<a href=\"\\2\">\\1</a>");
-
-    body.Replace("\n", "\n<p>");
-    wxLogDebug("loading webpage:\n%s", body);
-    wxImage::AddHandler(new wxPNGHandler);
-    changelog->SetPage("<html><body>" + body + "</body></html>");
 
     GetPageAreaSizer()->Add(page1);
+    setControlEnable(wxID_CANCEL);
+    setControlEnable(wxID_BACKWARD);
+
+    changelog->SetPage(body);
 }
 
 void mmUpdateWizard::RunIt(bool modal)
@@ -99,16 +120,10 @@ void mmUpdateWizard::RunIt(bool modal)
     {
         if (RunWizard(page1))
         {
-            wxLaunchDefaultBrowser(m_new_version["html_url"].GetString()); //TODO: Download file in wizard page2
+            //wxLaunchDefaultBrowser(m_new_version["html_url"].GetString()); //TODO: Download file in wizard page2
         }
 
         Destroy();
-    }
-    else
-    {
-        FinishLayout();
-        ShowPage(page1);
-        Show(true);
     }
 }
 
@@ -119,28 +134,31 @@ void mmUpdateWizard::LinkClicked(wxHtmlLinkEvent& evt)
 
 struct Version
 {
-    long v[5];
+    enum version { MAJOR = 0, MINOR, PATCH, TYPE, NUM, MAX };
+    enum parcer {MAJ = 1, MIN, PAT, SKIP, RTYPE, SKIP2, UNUM};
+    long v[MAX];
 
     explicit Version(const wxString& tag)
     {
         for (int i = 0; i < 5; i++) v[i] = 0;
-        wxRegEx re_ver("^v([0-9]+)\\.([0-9]+)(\\.([0-9]+))?(-(alpha|beta|rc)(\\.([0-9]+))?)?$", wxRE_EXTENDED);
-        if (re_ver.Matches(tag))
-            for (size_t i = 0; i < re_ver.GetMatchCount(); i++)
+        wxRegEx re_ver(R"(^v([0-9]+)\.([0-9]+)\.([0-9]+)?(-(alpha|beta|rc)(\.([0-9]+))?)?$)", wxRE_EXTENDED);
+        if (re_ver.Matches(tag)) {
+            for (size_t i = 0; i < re_ver.GetMatchCount(); ++i)
             {
                 wxString val = re_ver.GetMatch(tag, i);
                 switch (i)
                 {
-                case 1: val.ToCLong(&v[0]); break;
-                case 2: val.ToCLong(&v[1]); break;
-                case 4: val.ToCLong(&v[2]); break;
-                case 6: if (val == "alpha") v[3] = -3;
-                        else if (val == "beta") v[3] = -2;
-                        else v[3] = -1;
+                case MAJ: val.ToCLong(&v[MAJOR]); break;
+                case MIN: val.ToCLong(&v[MINOR]); break;
+                case PAT: val.ToCLong(&v[PATCH]); break;
+                case RTYPE: if (val == "alpha") v[TYPE] = -3;
+                        else if (val == "beta") v[TYPE] = -2;
+                        else v[TYPE] = -1;
                     break;
-                case 8: val.ToCLong(&v[4]); break;
+                case parcer::UNUM: val.ToCLong(&v[NUM]); break;
                 }
             }
+        }
     }
 
     bool operator < (const Version& other)
@@ -232,41 +250,37 @@ void mmUpdate::checkUpdates(bool bSilent, wxFrame *frame)
 
     wxLogDebug("======= mmUpdate::checkUpdates =======");
 
-    const int _stable = Model_Setting::instance().GetIntSetting("UPDATESOURCE", 0) == 0;
+    bool s = mmex::version::isStable();
+    const int _stable = s ?
+        Model_Setting::instance().GetIntSetting("UPDATESOURCE", 0) == 0
+        : 0;
 
     const wxString current_tag = ("v" + mmex::version::string).Lower();
-    wxString latest_tag = current_tag;
-    Value& latest_release = json_releases[0];
-    Version latest(latest_tag);
+    Version current(current_tag);
     wxLogDebug("Current vertion: = %s", current_tag);
-
+    wxArrayInt new_releas;
+    int i = 0;
     for (auto& r : json_releases.GetArray())
     {
         const auto tag_name = r["tag_name"].GetString();
         if (_stable && r["prerelease"].IsTrue()) {
-            wxLogDebug("[X] tag %s", tag_name);
+            wxLogDebug("[S] tag %s", tag_name);
             continue;
         }
 
         Version check(tag_name);
-        if (latest < check)
-        {
-            latest = check;
-            latest_tag = tag_name;
-            if (latest_release != r) {
-                latest_release = r;
-                wxLogDebug("[V] ----> tag %s", tag_name);
-            }
-        }
-        else
-        {
+        if (current < check) {
+            wxLogDebug("[V] tag %s", tag_name);
+            new_releas.Add(i);
+        } else {
             wxLogDebug("[X] tag %s", tag_name);
         }
+        i++;
     }
 
-    if (current_tag != latest_tag)
+    if (!new_releas.empty())
     {
-        mmUpdateWizard* wizard = new mmUpdateWizard(frame, latest_release);
+        mmUpdateWizard* wizard = new mmUpdateWizard(frame, json_releases, new_releas);
         wizard->CenterOnParent();
         wizard->RunIt(true);
     }

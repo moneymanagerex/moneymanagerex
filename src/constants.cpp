@@ -43,10 +43,16 @@ const int mmex::version::Major = 1;
 const int mmex::version::Minor = 3;
 const int mmex::version::Patch = 4;
 const int mmex::version::Alpha = -1;
-const int mmex::version::Beta  = 3;
-const int mmex::version::RC    = -1;
+const int mmex::version::Beta  = -1;
+const int mmex::version::RC    = 0;
 const wxString mmex::version::string = mmex::version::generateProgramVersion(mmex::version::Major, mmex::version::Minor, mmex::version::Patch
     ,mmex::version::Alpha, mmex::version::Beta, mmex::version::RC);
+
+bool mmex::version::isStable()
+{
+    bool i = (Alpha == -1 && Beta == -1 && RC == -1);
+    return i;
+}
 
 const wxString mmex::version::generateProgramVersion(int vMajor, int vMinor, int vPatch, int vAlpha, int vBeta, int vRC)
 {

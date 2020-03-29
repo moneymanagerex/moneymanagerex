@@ -80,7 +80,16 @@ bool mmGUIApp::setGUILanguage(wxLanguage lang)
     trans->AddStdCatalog();
     if (!trans->AddCatalog("mmex", wxLANGUAGE_ENGLISH_US) && lang != wxLANGUAGE_ENGLISH_US)
     {
-        size_t count = trans->GetAvailableTranslations("mmex").GetCount();
+        auto lang_files = trans->GetAvailableTranslations("mmex");
+        wxString languages;
+        for (auto & file : lang_files)
+        { 
+            const wxLanguageInfo* info = wxLocale::FindLanguageInfo(file);
+            if (info) {
+                languages << info->Description + "\n";
+            }
+        }
+
         wxString msg;
         if (lang == wxLANGUAGE_DEFAULT)
         {
@@ -103,8 +112,8 @@ bool mmGUIApp::setGUILanguage(wxLanguage lang)
                 , wxLocale::GetLanguageName(lang));
         }
         msg += "\n\n";
-        if (count)
-            msg += wxString::Format(_("Please use the Switch Application Language option in View menu to select one of the %zu available languages."), count + 1);
+        if (lang_files.GetCount())
+            msg += wxString::Format(_("Please use the Switch Application Language option in View menu to select one of the following available languages:\n%s"), languages);
         else
             msg += _("There are no translation files installed.");
 

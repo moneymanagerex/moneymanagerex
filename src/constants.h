@@ -60,6 +60,7 @@ namespace version
     extern const int Beta;
     extern const int RC;
     extern const wxString string;
+    extern bool isStable();
     extern const wxString generateProgramVersion
         (int vMajor, int vMinor, int vPatch, int vAlpha, int vBeta, int vRC);
 	int getDbLatestVersion();

@@ -63,7 +63,6 @@ int CaseInsensitiveCmp(const wxString &s1, const wxString &s2)
     return s1.CmpNoCase(s2);
 }
 
-//----------------------------------------------------------------------------
 void correctEmptyFileExt(const wxString& ext, wxString & fileName)
 {
     wxFileName tempFileName(fileName);

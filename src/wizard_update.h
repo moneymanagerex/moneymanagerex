@@ -34,28 +34,20 @@ public:
 class mmUpdateWizard : public wxWizard
 {
 public:
-    mmUpdateWizard(wxFrame *frame, const Value& new_version);
+    mmUpdateWizard(wxFrame *frame, const Document& json_releases, wxArrayInt new_releases);
     void RunIt(bool modal);
-
-    const Value& m_new_version;
 
 private:
     wxWizardPageSimple* page1;
-    void PageChanged(wxWizardEvent& WXUNUSED(event));
     void LinkClicked(wxHtmlLinkEvent& WXUNUSED(event));
+    void setControlEnable(int id);
 
     wxDECLARE_EVENT_TABLE();
 };
 //----------------------------------------------------------------------------
 
-class mmUpdateWizardPage2 : public wxWizardPageSimple
+inline void mmUpdateWizard::setControlEnable(int id)
 {
-public:
-    mmUpdateWizardPage2(mmUpdateWizard* parent);
-    void OnDownload();
-
-private:
-    wxString m_download_url;
-
-    wxDECLARE_EVENT_TABLE();
-};
+    wxWindow *win = wxWindow::FindWindowById(id);
+    if (win) win->Hide();
+}
