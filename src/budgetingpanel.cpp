@@ -630,11 +630,11 @@ wxListItemAttr* budgetingListCtrl::OnGetItemAttr(long item) const
     if ((cp_->GetTransID(item) < 0) &&
         (cp_->GetCurrentView() != VIEW_SUMM))
     {
-        return attr3_;
+        return attr3_.get();
     }
 
     /* Returns the alternating background pattern */
-    return (item % 2) ? attr2_ : attr1_;
+    return (item % 2) ? attr2_.get() : attr1_.get();
 }
 
 void budgetingListCtrl::OnListItemActivated(wxListEvent& event)

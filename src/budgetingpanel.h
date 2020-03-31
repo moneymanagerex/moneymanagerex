@@ -45,7 +45,7 @@ public:
     void OnListItemActivated(wxListEvent& event);
 
 private:
-    wxListItemAttr* attr3_; // style3
+    wxSharedPtr<wxListItemAttr> attr3_; // style3
     mmBudgetingPanel* cp_;
     long selectedIndex_;
 };

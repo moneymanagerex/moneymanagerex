@@ -952,8 +952,9 @@ void mmGUIFrame::OnSelChanged(wxTreeEvent& event)
     if (!selectedItem) return;
 
     mmTreeItemData* iData = dynamic_cast<mmTreeItemData*>(m_nav_tree_ctrl->GetItemData(selectedItem));
-    selectedItemData_ = iData;
     if (!iData) return;
+
+    selectedItemData_ = iData;
 
     activeReport_ = false;
     if (!iData->isStringData())
@@ -1022,6 +1023,7 @@ void mmGUIFrame::OnSelChanged(wxTreeEvent& event)
             AddPendingEvent(*evt.get());
             return;
         }
+
         activeReport_ = true;
         createReportsPage(iData->get_report(), false);
     }
@@ -2671,6 +2673,7 @@ void mmGUIFrame::createCheckingAccountPage(int accountID)
 
 	const auto time = wxDateTime::UNow();
 
+    m_nav_tree_ctrl->SetEvtHandlerEnabled(false);
 	if (panelCurrent_->GetId() == mmID_CHECKING)
 	{
 		checkingAccountPage_->DisplayAccountDetails(accountID);
@@ -2697,6 +2700,7 @@ void mmGUIFrame::createCheckingAccountPage(int accountID)
 	{
 		checkingAccountPage_->SetSelectedTransaction(gotoTransID_);
 	}
+    m_nav_tree_ctrl->SetEvtHandlerEnabled(false);
 }
 
 void mmGUIFrame::createStocksAccountPage(int accountID)

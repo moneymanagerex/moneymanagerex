@@ -43,8 +43,6 @@ mmListCtrl::mmListCtrl(wxWindow *parent, wxWindowID winid)
 
 mmListCtrl::~mmListCtrl()
 {
-    if (attr1_) delete attr1_;
-    if (attr2_) delete attr2_;
     /*
       Save the column widths of the list control. This will ensure that the
       column widths get set incase the OnItemResize does not work on some systems.
@@ -61,7 +59,7 @@ mmListCtrl::~mmListCtrl()
 
 wxListItemAttr* mmListCtrl::OnGetItemAttr(long row) const
 {
-    return (row % 2) ? attr2_ : attr1_;
+    return (row % 2) ? attr2_.get() : attr1_.get();
 }
 
 wxString mmListCtrl::BuildPage(const wxString &title) const
