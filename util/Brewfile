@@ -1,2 +1,5 @@
 brew 'ccache'
 brew 'gettext', link: true
+brew 'pkgconfig'
+brew 'wxmac'
+brew 'cmake'
