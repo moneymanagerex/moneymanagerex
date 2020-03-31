@@ -373,7 +373,7 @@ void mmGUIFrame::cleanupNavTreeControl(wxTreeItemId& item)
             cleanupNavTreeControl(childitem);
         }
         mmTreeItemData* iData = dynamic_cast<mmTreeItemData*>(m_nav_tree_ctrl->GetItemData(item));
-        m_nav_tree_ctrl->SetItemData(item, 0);
+        m_nav_tree_ctrl->SetItemData(item, nullptr);
         if (iData)
             delete iData;
         item = m_nav_tree_ctrl->GetNextSibling(item);
@@ -646,11 +646,13 @@ void mmGUIFrame::createControls()
 #if defined (__WXGTK__) || defined (__WXMAC__)
     // Under GTK, row lines look ugly
     m_nav_tree_ctrl = new wxTreeCtrl( this, ID_NAVTREECTRL,
-        wxDefaultPosition, wxSize(100, 100));
+        wxDefaultPosition, wxDefaultSize);
 #else
     m_nav_tree_ctrl = new wxTreeCtrl(this, ID_NAVTREECTRL,
-        wxDefaultPosition, wxSize(100, 100), wxTR_SINGLE | wxTR_HAS_BUTTONS | wxTR_ROW_LINES);
+        wxDefaultPosition, wxDefaultSize, wxTR_SINGLE | wxTR_HAS_BUTTONS | wxTR_ROW_LINES);
+
 #endif
+    m_nav_tree_ctrl->SetMinSize(wxSize(100, 100));
 
     m_nav_tree_ctrl->AssignImageList(navtree_images_list());
     m_nav_tree_ctrl->Connect(ID_NAVTREECTRL, wxEVT_TREE_SEL_CHANGED, wxTreeEventHandler(mmGUIFrame::OnSelChanged), nullptr, this);
@@ -724,7 +726,7 @@ void mmGUIFrame::updateNavTreeControl()
 
     const auto all_budgets
         = Model_Budgetyear::instance().all(Model_Budgetyear::COL_BUDGETYEARNAME);
-    for (const auto& e : Model_Budgetyear::instance().all(Model_Budgetyear::COL_BUDGETYEARNAME))
+    for (const auto& e : all_budgets)
     {
         int id = e.BUDGETYEARID;
         const wxString& name = e.BUDGETYEARNAME;
@@ -958,22 +960,20 @@ void mmGUIFrame::OnSelChanged(wxTreeEvent& event)
     {
         if (iData->isBudgetingNode())
         {
-            int year = iData->getData();
-            createBudgetingPage(year);
+            int budgetID = iData->getData();
+            createBudgetingPage(budgetID);
         }
         else
         {
-            int data = iData->getData();
-            Model_Account::Data* account = Model_Account::instance().get(data);
+            int accountID = iData->getData();
+            Model_Account::Data* account = Model_Account::instance().get(accountID);
             if (account)
             {
-                gotoAccountID_ = data;
+                gotoAccountID_ = accountID;
                 if (Model_Account::type(account) != Model_Account::INVESTMENT)
                     createCheckingAccountPage(gotoAccountID_);
                 else
                     createStocksAccountPage(gotoAccountID_);
-                m_nav_tree_ctrl->SetFocus();
-                menuPrintingEnable(true);
             }
             else
             {
@@ -981,6 +981,8 @@ void mmGUIFrame::OnSelChanged(wxTreeEvent& event)
                 wxASSERT(false);
             }
         }
+        m_nav_tree_ctrl->SetFocus();
+        menuPrintingEnable(true);
     }
     else
     {
@@ -1008,7 +1010,7 @@ void mmGUIFrame::OnSelChanged(wxTreeEvent& event)
             createHomePage();
             return;
         }
-        wxCommandEvent *evt = 0;
+        wxSharedPtr<wxCommandEvent> evt;
         if (data == "item@Assets")
             evt = new wxCommandEvent(wxEVT_COMMAND_MENU_SELECTED, MENU_ASSETS);
         else if (data == "item@Bills & Deposits")
@@ -1017,8 +1019,7 @@ void mmGUIFrame::OnSelChanged(wxTreeEvent& event)
             evt = new wxCommandEvent(wxEVT_COMMAND_MENU_SELECTED, MENU_TRANSACTIONREPORT);
         if (evt)
         {
-            AddPendingEvent(*evt);
-            delete evt;
+            AddPendingEvent(*evt.get());
             return;
         }
         activeReport_ = true;
@@ -1250,127 +1251,6 @@ void mmGUIFrame::OnViewAccountsTemporaryChange(wxCommandEvent& e)
     Model_Setting::instance().SetViewAccounts(vAccts);
 }
 
-//----------------------------------------------------------------------------
-
-void mmGUIFrame::createBudgetingPage(int budgetYearID)
-{
-	StringBuffer json_buffer;
-	Writer<StringBuffer> json_writer(json_buffer);
-
-	json_writer.StartObject();
-	json_writer.Key("module");
-	json_writer.String("Budget Panel");
-
-	const auto time = wxDateTime::UNow();
-
-	m_nav_tree_ctrl->SetEvtHandlerEnabled(false);
-	if (panelCurrent_->GetId() == mmID_BUDGET)
-	{
-		budgetingPage_->DisplayBudgetingDetails(budgetYearID);
-	}
-	else
-	{
-		windowsFreezeThaw(homePanel_);
-		wxSizer *sizer = cleanupHomePanel();
-
-		budgetingPage_ = new mmBudgetingPanel(budgetYearID
-			, homePanel_, mmID_BUDGET, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
-		panelCurrent_ = budgetingPage_;
-
-		sizer->Add(panelCurrent_, 1, wxGROW | wxALL, 1);
-		homePanel_->Layout();
-		windowsFreezeThaw(homePanel_);
-	}
-
-	json_writer.Key("seconds");
-	json_writer.Double((wxDateTime::UNow() - time).GetMilliseconds().ToDouble() / 1000);
-	json_writer.EndObject();
-
-	Model_Usage::instance().AppendToUsage(json_buffer.GetString());
-
-	menuPrintingEnable(true);
-	m_nav_tree_ctrl->SetEvtHandlerEnabled(true);
-}
-//----------------------------------------------------------------------------
-
-void mmGUIFrame::createHomePage()
-{
-	StringBuffer json_buffer;
-	Writer<StringBuffer> json_writer(json_buffer);
-
-	json_writer.StartObject();
-	json_writer.Key("module");
-	json_writer.String("Home Page");
-
-	const auto time = wxDateTime::UNow();
-
-	m_nav_tree_ctrl->SetEvtHandlerEnabled(false);
-	int id = panelCurrent_ ? panelCurrent_->GetId() : -1;
-	/* Update home page details only if it is being displayed */
-	if (id == mmID_HOMEPAGE)
-	{
-		homePage_->createHTML();
-	}
-	else
-	{
-		windowsFreezeThaw(homePanel_);
-		wxSizer *sizer = cleanupHomePanel();
-		homePage_ = new mmHomePagePanel(homePanel_
-			, this, mmID_HOMEPAGE
-			, wxDefaultPosition, wxDefaultSize
-			, wxNO_BORDER | wxTAB_TRAVERSAL
-		);
-		panelCurrent_ = homePage_;
-		sizer->Add(panelCurrent_, 1, wxGROW | wxALL, 1);
-		homePanel_->Layout();
-		windowsFreezeThaw(homePanel_);
-	}
-    if (m_nav_tree_ctrl->GetRootItem().IsOk()) {
-        m_nav_tree_ctrl->SelectItem(m_nav_tree_ctrl->GetRootItem());
-    }
-	m_nav_tree_ctrl->SetEvtHandlerEnabled(true);
-
-	json_writer.Key("seconds");
-	json_writer.Double((wxDateTime::UNow() - time).GetMilliseconds().ToDouble() / 1000);
-	json_writer.EndObject();
-
-	Model_Usage::instance().AppendToUsage(json_buffer.GetString());
-}
-//----------------------------------------------------------------------------
-
-void mmGUIFrame::createReportsPage(mmPrintableBase* rs, bool cleanup)
-{
-    if (!rs) return;
-    m_nav_tree_ctrl->SetEvtHandlerEnabled(false);
-
-    windowsFreezeThaw(homePanel_);
-    wxSizer *sizer = cleanupHomePanel();
-    panelCurrent_ = new mmReportsPanel(rs
-        , cleanup, homePanel_, this, mmID_REPORTS
-        , wxDefaultPosition, wxDefaultSize, wxNO_BORDER | wxTAB_TRAVERSAL);
-
-    sizer->Add(panelCurrent_, 1, wxGROW | wxALL, 1);
-    homePanel_->Layout();
-    windowsFreezeThaw(homePanel_);
-
-    menuPrintingEnable(true);
-    m_nav_tree_ctrl->SetEvtHandlerEnabled(true);
-}
-//----------------------------------------------------------------------------
-
-void mmGUIFrame::createHelpPage()
-{
-    m_nav_tree_ctrl->SetEvtHandlerEnabled(false);
-    windowsFreezeThaw(homePanel_);
-    wxSizer *sizer = cleanupHomePanel();
-    panelCurrent_ = new mmHelpPanel(homePanel_, this, wxID_HELP
-        , wxDefaultPosition, wxDefaultSize, wxNO_BORDER | wxTAB_TRAVERSAL);
-    sizer->Add(panelCurrent_, 1, wxGROW | wxALL, 1);
-    homePanel_->Layout();
-    windowsFreezeThaw(homePanel_);
-    menuPrintingEnable(true);
-    m_nav_tree_ctrl->SetEvtHandlerEnabled(true);
-}
 //----------------------------------------------------------------------------
 
 void mmGUIFrame::createMenu()
@@ -2623,6 +2503,88 @@ void mmGUIFrame::OnBillsDeposits(wxCommandEvent& WXUNUSED(event))
 {
     createBillsDeposits();
 }
+//----------------------------------------------------------------------------
+
+void mmGUIFrame::createHomePage()
+{
+    StringBuffer json_buffer;
+    Writer<StringBuffer> json_writer(json_buffer);
+
+    json_writer.StartObject();
+    json_writer.Key("module");
+    json_writer.String("Home Page");
+
+    const auto time = wxDateTime::UNow();
+
+    m_nav_tree_ctrl->SetEvtHandlerEnabled(false);
+    int id = panelCurrent_ ? panelCurrent_->GetId() : -1;
+    /* Update home page details only if it is being displayed */
+    if (id == mmID_HOMEPAGE)
+    {
+        homePage_->createHTML();
+    }
+    else
+    {
+        windowsFreezeThaw(homePanel_);
+        wxSizer *sizer = cleanupHomePanel();
+        homePage_ = new mmHomePagePanel(homePanel_
+            , this, mmID_HOMEPAGE
+            , wxDefaultPosition, wxDefaultSize
+            , wxNO_BORDER | wxTAB_TRAVERSAL
+        );
+        panelCurrent_ = homePage_;
+        sizer->Add(panelCurrent_, 1, wxGROW | wxALL, 1);
+        homePanel_->Layout();
+        windowsFreezeThaw(homePanel_);
+    }
+    if (m_nav_tree_ctrl->GetRootItem().IsOk()) {
+        m_nav_tree_ctrl->SelectItem(m_nav_tree_ctrl->GetRootItem());
+    }
+    m_nav_tree_ctrl->SetEvtHandlerEnabled(true);
+
+    json_writer.Key("seconds");
+    json_writer.Double((wxDateTime::UNow() - time).GetMilliseconds().ToDouble() / 1000);
+    json_writer.EndObject();
+
+    Model_Usage::instance().AppendToUsage(json_buffer.GetString());
+}
+//----------------------------------------------------------------------------
+
+void mmGUIFrame::createReportsPage(mmPrintableBase* rs, bool cleanup)
+{
+    if (!rs) return;
+    m_nav_tree_ctrl->SetEvtHandlerEnabled(false);
+
+    windowsFreezeThaw(homePanel_);
+    wxSizer *sizer = cleanupHomePanel();
+    panelCurrent_ = new mmReportsPanel(rs
+        , cleanup, homePanel_, this, mmID_REPORTS
+        , wxDefaultPosition, wxDefaultSize, wxNO_BORDER | wxTAB_TRAVERSAL);
+
+    sizer->Add(panelCurrent_, 1, wxGROW | wxALL, 1);
+    homePanel_->Layout();
+    windowsFreezeThaw(homePanel_);
+
+    menuPrintingEnable(true);
+    m_nav_tree_ctrl->SetEvtHandlerEnabled(true);
+}
+//----------------------------------------------------------------------------
+
+void mmGUIFrame::createHelpPage()
+{
+    m_nav_tree_ctrl->SetEvtHandlerEnabled(false);
+    windowsFreezeThaw(homePanel_);
+    wxSizer *sizer = cleanupHomePanel();
+    panelCurrent_ = new mmHelpPanel(homePanel_, this, wxID_HELP
+        , wxDefaultPosition, wxDefaultSize, wxNO_BORDER | wxTAB_TRAVERSAL);
+    sizer->Add(panelCurrent_, 1, wxGROW | wxALL, 1);
+    homePanel_->Layout();
+    windowsFreezeThaw(homePanel_);
+    menuPrintingEnable(true);
+    m_nav_tree_ctrl->SetEvtHandlerEnabled(true);
+}
+//----------------------------------------------------------------------------
+
 void mmGUIFrame::createBillsDeposits()
 {
 	StringBuffer json_buffer;
@@ -2659,6 +2621,45 @@ void mmGUIFrame::createBillsDeposits()
 }
 //----------------------------------------------------------------------------
 
+void mmGUIFrame::createBudgetingPage(int budgetYearID)
+{
+    StringBuffer json_buffer;
+    Writer<StringBuffer> json_writer(json_buffer);
+
+    json_writer.StartObject();
+    json_writer.Key("module");
+    json_writer.String("Budget Panel");
+
+    const auto time = wxDateTime::UNow();
+
+    m_nav_tree_ctrl->SetEvtHandlerEnabled(false);
+    if (panelCurrent_->GetId() == mmID_BUDGET)
+    {
+        budgetingPage_->DisplayBudgetingDetails(budgetYearID);
+    }
+    else
+    {
+        windowsFreezeThaw(homePanel_);
+        wxSizer *sizer = cleanupHomePanel();
+
+        budgetingPage_ = new mmBudgetingPanel(budgetYearID, homePanel_, this, mmID_BUDGET);
+        panelCurrent_ = budgetingPage_;
+        sizer->Add(panelCurrent_, 1, wxGROW | wxALL, 1);
+        homePanel_->Layout();
+        windowsFreezeThaw(homePanel_);
+    }
+
+    json_writer.Key("seconds");
+    json_writer.Double((wxDateTime::UNow() - time).GetMilliseconds().ToDouble() / 1000);
+    json_writer.EndObject();
+
+    Model_Usage::instance().AppendToUsage(json_buffer.GetString());
+
+    menuPrintingEnable(true);
+    m_nav_tree_ctrl->SetEvtHandlerEnabled(true);
+}
+//----------------------------------------------------------------------------
+
 void mmGUIFrame::createCheckingAccountPage(int accountID)
 {
 	StringBuffer json_buffer;
@@ -2678,8 +2679,7 @@ void mmGUIFrame::createCheckingAccountPage(int accountID)
 	{
 		windowsFreezeThaw(homePanel_);
 		wxSizer *sizer = cleanupHomePanel();
-		checkingAccountPage_ = new mmCheckingPanel(homePanel_
-			, this, accountID, mmID_CHECKING);
+		checkingAccountPage_ = new mmCheckingPanel(homePanel_, this, accountID, mmID_CHECKING);
 		panelCurrent_ = checkingAccountPage_;
 		sizer->Add(panelCurrent_, 1, wxGROW | wxALL, 1);
 		homePanel_->Layout();

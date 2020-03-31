@@ -68,18 +68,21 @@ wxBEGIN_EVENT_TABLE(budgetingListCtrl, mmListCtrl)
 wxEND_EVENT_TABLE()
 /*******************************************************/
 mmBudgetingPanel::mmBudgetingPanel(int budgetYearID
-	, wxWindow *parent, wxWindowID winid
-	, const wxPoint& pos, const wxSize& size
-	, long style, const wxString& name)
-	: listCtrlBudget_(nullptr)
-	, budgetYearID_(budgetYearID)
-	, m_imageList(nullptr)
-	, income_estimated_(nullptr)
-	, income_actual_(nullptr)
-	, income_diff_(nullptr)
-	, expenses_estimated_(nullptr)
-	, expenses_actual_(nullptr)
-	, expenses_diff_(nullptr)
+    , wxWindow *parent, mmGUIFrame *frame
+    , wxWindowID winid
+    , const wxPoint& pos, const wxSize& size
+    , long style, const wxString& name)
+    : budgetYearID_(budgetYearID)
+    , m_frame(frame)
+    , listCtrlBudget_(nullptr)
+    , m_imageList(nullptr)
+    , income_estimated_(nullptr)
+    , income_actual_(nullptr)
+    , income_diff_(nullptr)
+    , expenses_estimated_(nullptr)
+    , expenses_actual_(nullptr)
+    , expenses_diff_(nullptr)
+    , budgetReportHeading_(nullptr)
 {
     Create(parent, winid, pos, size, style, name);
 }
@@ -107,7 +110,7 @@ bool mmBudgetingPanel::Create(wxWindow *parent
 
 mmBudgetingPanel::~mmBudgetingPanel()
 {
-    if (m_imageList) delete m_imageList;
+
 }
 
 void mmBudgetingPanel::OnViewPopupSelected(wxCommandEvent& event)
@@ -276,7 +279,7 @@ void mmBudgetingPanel::CreateControls()
 
     listCtrlBudget_ = new budgetingListCtrl(this, this, wxID_ANY);
 
-    listCtrlBudget_->SetImageList(m_imageList, wxIMAGE_LIST_SMALL);
+    //listCtrlBudget_->SetImageList(m_imageList.get(), wxIMAGE_LIST_SMALL);
     listCtrlBudget_->InsertColumn(COL_ICON, (" "));
     listCtrlBudget_->InsertColumn(COL_CATEGORY, listCtrlBudget_->m_columns[COL_CATEGORY].HEADER);
     listCtrlBudget_->InsertColumn(COL_SUBCATEGORY, listCtrlBudget_->m_columns[COL_SUBCATEGORY].HEADER);
@@ -292,7 +295,7 @@ void mmBudgetingPanel::CreateControls()
             , listCtrlBudget_->m_columns[i].WIDTH);
         listCtrlBudget_->SetColumnWidth(i, col);
     }
-    itemBoxSizer2->Add(listCtrlBudget_, 1, wxGROW | wxALL, 1);
+    itemBoxSizer2->Add(listCtrlBudget_.get(), 1, wxGROW | wxALL, 1);
 }
 
 budgetingListCtrl::budgetingListCtrl(mmBudgetingPanel* cp, wxWindow *parent, const wxWindowID id)

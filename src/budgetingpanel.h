@@ -56,7 +56,7 @@ class mmBudgetingPanel : public mmPanelBase
 
 public:
 	mmBudgetingPanel(int budgetYearID
-		, wxWindow *parent
+		, wxWindow *parent, mmGUIFrame *frame
 		, wxWindowID winid = wxID_ANY
 		, const wxPoint& pos = wxDefaultPosition
 		, const wxSize& size = wxDefaultSize
@@ -99,10 +99,10 @@ private:
     std::map<int, std::map<int, double> > budgetAmt_;
     std::map<int, std::map<int, std::map<int, double> > > categoryStats_;
     bool monthlyBudget_;
-    budgetingListCtrl* listCtrlBudget_;
+    wxSharedPtr<budgetingListCtrl> listCtrlBudget_;
     wxString currentView_;
     int budgetYearID_;
-    wxImageList* m_imageList;
+    wxSharedPtr<wxImageList> m_imageList;
     wxStaticText* budgetReportHeading_;
     wxStaticText* income_estimated_;
     wxStaticText* income_actual_;

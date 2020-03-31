@@ -255,6 +255,8 @@ private:
         MENU_VIEW_LASTFINANCIALYEAR,
         MENU_VIEW_STATEMENTDATE,
     };
+
+private:
     static wxArrayString menu_labels()
     {
         wxArrayString items;
@@ -288,8 +290,9 @@ private:
     wxStaticText* m_statTextTransFilter;
     wxStaticBitmap* m_bitmapTransFilter;
     wxStaticBitmap* m_bitmapMainFilter;
-    mmFilterTransactionsDialog* m_trans_filter_dlg;
+    wxSharedPtr<mmFilterTransactionsDialog> m_trans_filter_dlg;
 
+private:
     int m_currentView;
     int m_AccountID;
     bool m_transFilterActive;
@@ -322,6 +325,8 @@ private:
         long style = wxTAB_TRAVERSAL | wxNO_BORDER,
         const wxString& name = "mmCheckingPanel" 
     );
+
+private:
     void enableEditDeleteButtons(bool en);
 
     void OnNewTransaction(wxCommandEvent& event);
@@ -348,9 +353,7 @@ private:
     /* Getter for Virtual List Control */
     const wxString getItem(long item, long column);
 
-private:
     static void mmPlayTransactionSound();
-private:
     mmGUIFrame* m_frame;
 };
 //----------------------------------------------------------------------------

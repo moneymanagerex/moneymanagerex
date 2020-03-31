@@ -83,16 +83,19 @@ private:
 };
 
 inline int mmListBoxItem::getIndex() const { return index_; }
-inline wxString mmListBoxItem::getName() const {return name_;}
+inline wxString mmListBoxItem::getName() const { return name_; }
+
+//----------------------------------------------------------------------------
 
 class mmTreeItemData : public wxTreeItemData
 {
 public:
     mmTreeItemData(int id, bool isBudget)
         : id_(id)
+        , stringData_(wxString::Format("%i", id))
         , isString_(false)
         , isBudgetingNode_(isBudget)
-        , report_(0)
+        , report_(nullptr)
     {}
     mmTreeItemData(const wxString& string, mmPrintableBase* report)
         : id_(0)
@@ -113,41 +116,32 @@ public:
         , isString_(true)
         , isBudgetingNode_(false)
         , stringData_("item@" + string)
-        , report_(0)
+        , report_(nullptr)
     {}
-    ~mmTreeItemData()
-    {
-        if (report_) delete report_;
-    }
+    
+    ~mmTreeItemData() {}
 
-    int getData() const
-    {
-        return id_;
-    }
-    const wxString getString() const
-    {
-        return stringData_;
-    }
-    mmPrintableBase* get_report() const
-    {
-        return report_;
-    }
-    bool isStringData() const
-    {
-        return isString_;
-    }
-    bool isBudgetingNode() const
-    {
-        return isBudgetingNode_;
-    }
+    int getData() const;
+    const wxString getString() const;
+    mmPrintableBase* get_report() const;
+    bool isStringData() const;
+    bool isBudgetingNode() const;
 
 private:
     int id_;
     bool isString_;
     bool isBudgetingNode_;
     wxString stringData_;
-    mmPrintableBase* report_;
+    wxSharedPtr<mmPrintableBase> report_;
 };
+
+inline int mmTreeItemData::getData() const { return id_; }
+inline const wxString mmTreeItemData::getString() const { return stringData_; }
+inline mmPrintableBase* mmTreeItemData::get_report() const { return report_.get(); }
+inline bool mmTreeItemData::isStringData() const { return isString_; }
+inline bool mmTreeItemData::isBudgetingNode() const { return isBudgetingNode_; }
+
+//----------------------------------------------------------------------------
 
 int CaseInsensitiveCmp(const wxString &s1, const wxString &s2);
 const wxString inQuotes(const wxString& label, const wxString& delimiter);

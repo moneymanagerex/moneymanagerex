@@ -96,7 +96,7 @@ mmCheckingPanel::mmCheckingPanel(wxWindow *parent, mmGUIFrame *frame, int accoun
     , m_AccountID(accountID)
     , m_account(Model_Account::instance().get(accountID))
     , m_currency(Model_Account::currency(m_account))
-    , m_trans_filter_dlg(0)
+    , m_trans_filter_dlg(nullptr)
     , m_frame(frame)
 {
     long style = wxTAB_TRAVERSAL | wxNO_BORDER;
@@ -110,7 +110,6 @@ mmCheckingPanel::mmCheckingPanel(wxWindow *parent, mmGUIFrame *frame, int accoun
 */
 mmCheckingPanel::~mmCheckingPanel()
 {
-    if (m_trans_filter_dlg) delete m_trans_filter_dlg;
 }
 
 bool mmCheckingPanel::Create(
