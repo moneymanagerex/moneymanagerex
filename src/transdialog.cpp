@@ -48,20 +48,20 @@
 wxIMPLEMENT_DYNAMIC_CLASS(mmTransDialog, wxDialog);
 
 wxBEGIN_EVENT_TABLE(mmTransDialog, wxDialog)
-    EVT_BUTTON(ID_DIALOG_TRANS_CUSTOMFIELDS, mmTransDialog::OnMoreFields)
-    EVT_BUTTON(wxID_OK, mmTransDialog::OnOk)
-    EVT_BUTTON(wxID_CANCEL, mmTransDialog::OnCancel)
+    EVT_CHILD_FOCUS(mmTransDialog::OnFocusChange)
+    EVT_DATE_CHANGED(ID_DIALOG_TRANS_BUTTONDATE, mmTransDialog::OnDateChanged)
+    EVT_SPIN(ID_DIALOG_TRANS_DATE_SPINNER, mmTransDialog::OnTransDateSpin)
+    EVT_COMBOBOX(wxID_ANY, mmTransDialog::OnAccountOrPayeeUpdated)
     EVT_BUTTON(wxID_VIEW_DETAILS, mmTransDialog::OnCategs)
-    EVT_BUTTON(wxID_FILE, mmTransDialog::OnAttachments)
-    EVT_CLOSE(mmTransDialog::OnQuit)
     EVT_CHOICE(ID_DIALOG_TRANS_TYPE, mmTransDialog::OnTransTypeChanged)
     EVT_CHECKBOX(ID_DIALOG_TRANS_ADVANCED_CHECKBOX, mmTransDialog::OnAdvanceChecked)
     EVT_CHECKBOX(wxID_FORWARD, mmTransDialog::OnSplitChecked)
-    EVT_CHILD_FOCUS(mmTransDialog::OnFocusChange)
-    EVT_SPIN(ID_DIALOG_TRANS_DATE_SPINNER,mmTransDialog::OnTransDateSpin)
-    EVT_DATE_CHANGED(ID_DIALOG_TRANS_BUTTONDATE, mmTransDialog::OnDateChanged)
-    EVT_COMBOBOX(wxID_ANY, mmTransDialog::OnAccountOrPayeeUpdated)
+    EVT_BUTTON(wxID_FILE, mmTransDialog::OnAttachments)
+    EVT_BUTTON(ID_DIALOG_TRANS_CUSTOMFIELDS, mmTransDialog::OnMoreFields)
     EVT_MENU(wxID_ANY, mmTransDialog::OnNoteSelected)
+    EVT_BUTTON(wxID_OK, mmTransDialog::OnOk)
+    EVT_BUTTON(wxID_CANCEL, mmTransDialog::OnCancel)
+    EVT_CLOSE(mmTransDialog::OnQuit)
 wxEND_EVENT_TABLE()
 
 void mmTransDialog::SetEventHandlers()
@@ -1061,7 +1061,7 @@ void mmTransDialog::OnCategs(wxCommandEvent& WXUNUSED(event))
     else
     {
         mmCategDialog dlg(this, m_trx_data.CATEGID, m_trx_data.SUBCATEGID);
-        if (dlg.ShowModal() == wxID_APPLY)
+        if (dlg.ShowModal() == wxID_OK)
         {
             m_trx_data.CATEGID = dlg.getCategId();
             m_trx_data.SUBCATEGID = dlg.getSubCategId();

@@ -111,14 +111,14 @@ double Model_CurrencyHistory::getDayRate(const int& currencyID, const wxDate& Da
         wxDateTime dFuture, dPast, dNearest;
         wxString DateISO = Date.FormatISODate();
 
-        const wxString sqlPast = wxString::Format("SELECT MAX(currdate) FROM CURRENCYHISTORY WHERE currencyid = '%i' AND currdate <= '%s';", currencyID, DateISO);
+        const wxString sqlPast = wxString::Format("SELECT MAX(currdate) FROM CURRENCYHISTORY_V1 WHERE currencyid = '%i' AND currdate <= '%s';", currencyID, DateISO);
         wxSQLite3ResultSet rsPast = Model_CurrencyHistory::instance().db_->ExecuteQuery(sqlPast);
         while (rsPast.NextRow())
         {
             dPast.ParseDate(rsPast.GetAsString(0));
         }
 
-        const wxString sqlFuture = wxString::Format("SELECT MIN(currdate) FROM CURRENCYHISTORY WHERE currencyid = '%i' AND currdate >= '%s';", currencyID, DateISO);
+        const wxString sqlFuture = wxString::Format("SELECT MIN(currdate) FROM CURRENCYHISTORY_V1 WHERE currencyid = '%i' AND currdate >= '%s';", currencyID, DateISO);
         wxSQLite3ResultSet rsFuture = Model_CurrencyHistory::instance().db_->ExecuteQuery(sqlFuture);
         while (rsFuture.NextRow())
         {
