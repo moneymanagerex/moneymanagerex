@@ -2700,7 +2700,7 @@ void mmGUIFrame::createCheckingAccountPage(int accountID)
 	{
 		checkingAccountPage_->SetSelectedTransaction(gotoTransID_);
 	}
-    m_nav_tree_ctrl->SetEvtHandlerEnabled(false);
+    m_nav_tree_ctrl->SetEvtHandlerEnabled(true);
 }
 
 void mmGUIFrame::createStocksAccountPage(int accountID)

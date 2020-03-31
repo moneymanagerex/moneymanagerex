@@ -63,9 +63,13 @@ mmMainCurrencyDialog::mmMainCurrencyDialog(
     wxWindow* parent
     , int currencyID
     , bool bEnableSelect
-) : currencyListBox_(nullptr),
-    bEnableSelect_(bEnableSelect),
-    m_static_dialog(false)
+)   : currencyListBox_(nullptr)
+    , buttonDownloadHistory_(nullptr)
+    , buttonDelUnusedHistory_(nullptr)
+    , itemButtonEdit_(nullptr)
+    , itemButtonDelete_(nullptr)
+    ,  bEnableSelect_(bEnableSelect)
+    , m_static_dialog(false)
 {
     ColName_[CURR_BASE]   = " ";
     ColName_[CURR_SYMBOL] = _("Symbol");
@@ -99,21 +103,23 @@ void mmMainCurrencyDialog::fillControls()
 {
     int selected_index = currencyListBox_->GetSelectedRow();
     currencyListBox_->DeleteAllItems();
-    int baseCurrencyID = Option::instance().getBaseCurrencyID();
 
     cbShowAll_->SetValue(Model_Infotable::instance().GetBoolInfo("SHOW_HIDDEN_CURRENCIES", true));
+
+    int base_currency_id = -1;
+    if (Model_Currency::GetBaseCurrency()) {
+        base_currency_id = Model_Currency::GetBaseCurrency()->CURRENCYID;
+    }
 
     bool skip_unused = !cbShowAll_->IsChecked();
     for (const auto& currency : Model_Currency::instance().all(Model_Currency::COL_CURRENCYNAME))
     {
         int currencyID = currency.CURRENCYID;
-        bool currency_is_base = false;
-        if (Model_Currency::GetBaseCurrency()) currency_is_base = Model_Currency::GetBaseCurrency()->CURRENCYID == currencyID;
 
-        if (skip_unused && !(Model_Account::is_used(currency) || currency_is_base)) continue;
+        if (skip_unused && !(Model_Account::is_used(currency) || currencyID == base_currency_id)) continue;
 
         wxVector<wxVariant> data;
-        data.push_back(wxVariant(baseCurrencyID == currencyID));
+        data.push_back(wxVariant(base_currency_id == currencyID));
         data.push_back(wxVariant(currency.CURRENCY_SYMBOL));
         data.push_back(wxVariant(currency.CURRENCYNAME));
         data.push_back(wxVariant(wxString()<<Model_CurrencyHistory::getLastRate(currencyID)));
@@ -173,7 +179,8 @@ void mmMainCurrencyDialog::CreateControls()
 
     //TODO:provide proper style and fix validator (does not working)
     currencyListBox_ = new wxDataViewListCtrl( this
-        , wxID_ANY, wxDefaultPosition, wxSize(-1, 200)/*, wxDV_HORIZ_RULES, mmDoubleValidator(4)*/);
+        , wxID_ANY, wxDefaultPosition, wxDefaultSize /*, wxDV_HORIZ_RULES, mmDoubleValidator(4)*/);
+    currencyListBox_->SetMinSize(wxSize(-1, 200));
 
     currencyListBox_->AppendToggleColumn(ColName_[CURR_BASE], wxDATAVIEW_CELL_INERT, 30);
     currencyListBox_->AppendTextColumn(ColName_[CURR_SYMBOL], wxDATAVIEW_CELL_INERT, 60
@@ -263,6 +270,7 @@ void mmMainCurrencyDialog::CreateControls()
         wxDefaultPosition, wxSize(120, -1), wxDP_DROPDOWN | wxDP_SHOWCENTURY);
     values_sizer->Add(valueDatePicker_, g_flagsH);
     valueDatePicker_->SetToolTip(_("Specify the date of currency value"));
+    valueDatePicker_->Disable();
 
     values_sizer->Add(new wxStaticText(values_panel, wxID_STATIC, _("Value")), g_flagsH);
 
@@ -271,28 +279,34 @@ void mmMainCurrencyDialog::CreateControls()
         , mmCalcValidator());
     valueTextBox_->SetToolTip(_("Enter the currency value"));
     values_sizer->Add(valueTextBox_, g_flagsH);
+    valueTextBox_->Disable();
 
     wxPanel* buttons_panel = new wxPanel(this, wxID_ANY);
     historyStaticBox_Sizer->Add(buttons_panel, wxSizerFlags(g_flagsV).Centre());
     wxStdDialogButtonSizer*  buttons_sizer = new wxStdDialogButtonSizer;
     buttons_panel->SetSizer(buttons_sizer);
 
-    wxBitmapButton* buttonDownload = new wxBitmapButton(buttons_panel, HISTORY_UPDATE, mmBitmap(png::CURRATES));
-    buttonDownload->SetToolTip(_("Download Currency Values history"));
+    buttonDownloadHistory_ = new wxBitmapButton(buttons_panel, HISTORY_UPDATE, mmBitmap(png::CURRATES));
+    buttonDownloadHistory_->SetToolTip(_("Download Currency Values history"));
     historyButtonAdd_ = new wxButton(buttons_panel, HISTORY_ADD, _("&Add / Update ")
-        , wxDefaultPosition, wxSize(-1, buttonDownload->GetSize().GetY()));
+        , wxDefaultPosition, wxSize(-1, buttonDownloadHistory_->GetSize().GetY()));
     historyButtonAdd_->SetToolTip(_("Add Currency Values to history"));
-    historyButtonDelete_ = new wxButton(buttons_panel, HISTORY_DELETE, _("&Delete ")
-        , wxDefaultPosition, wxSize(-1, buttonDownload->GetSize().GetY()));
-    historyButtonDelete_->SetToolTip(_("Delete selected Currency Values"));
+    buttonDownloadHistory_->Disable();
 
-    wxBitmapButton* buttonDelUnusedHistory = new wxBitmapButton(buttons_panel
+    historyButtonDelete_ = new wxButton(buttons_panel, HISTORY_DELETE, _("&Delete ")
+        , wxDefaultPosition, wxSize(-1, buttonDownloadHistory_->GetSize().GetY()));
+    historyButtonDelete_->SetToolTip(_("Delete selected Currency Values"));
+    historyButtonDelete_->Disable();
+
+    buttonDelUnusedHistory_ = new wxBitmapButton(buttons_panel
         , HISTORY_DELUNUSED, mmBitmap(png::VOID_STAT));
-    buttonDelUnusedHistory->SetToolTip(_("Delete Currency Values history for unused currencies"));
-    buttons_sizer->Add(buttonDownload, g_flagsH);
+    buttonDelUnusedHistory_->SetToolTip(_("Delete Currency Values history for unused currencies"));
+    buttonDelUnusedHistory_->Disable();
+
+    buttons_sizer->Add(buttonDownloadHistory_, g_flagsH);
     buttons_sizer->Add(historyButtonAdd_, g_flagsH);
     buttons_sizer->Add(historyButtonDelete_, g_flagsH);
-    buttons_sizer->Add(buttonDelUnusedHistory, g_flagsH);
+    buttons_sizer->Add(buttonDelUnusedHistory_, g_flagsH);
 
     this->SetMinSize(wxSize(800,550));
     this->Fit();
@@ -377,7 +391,6 @@ void mmMainCurrencyDialog::OnListItemSelected(wxDataViewEvent& event)
 {
     int selected_index = currencyListBox_->GetSelectedRow();
 
-    wxString currName;
     if (selected_index >= 0)
     {
         wxDataViewItem item = event.GetItem();
@@ -385,22 +398,20 @@ void mmMainCurrencyDialog::OnListItemSelected(wxDataViewEvent& event)
         Model_Currency::Data* currency = Model_Currency::instance().get(m_currency_id);
         if (currency)
         {
-            currName = currency->CURRENCYNAME;
             itemButtonEdit_->Enable();
-        }
-    }
-    if (!bEnableSelect_)    // prevent user deleting currencies when editing accounts.
-    {
-        int baseCurrencyID = Option::instance().getBaseCurrencyID();
-        Model_Currency::Data* currency = Model_Currency::instance().get(m_currency_id);
-        if (currency)
-        {
-            itemButtonDelete_->Enable(!Model_Account::is_used(currency) && m_currency_id != baseCurrencyID);
-            currName = currency->CURRENCYNAME;
-        }
-    }
 
-    historyStaticBox_->SetLabel(wxString::Format(_("Currency History Options: %s "), currName));
+            if (!bEnableSelect_)    // prevent user deleting currencies when editing accounts.
+            {
+                int baseCurrencyID = Option::instance().getBaseCurrencyID();
+                itemButtonDelete_->Enable(!Model_Account::is_used(currency) && m_currency_id != baseCurrencyID);
+                buttonDownloadHistory_->Enable(m_currency_id != baseCurrencyID);
+                buttonDelUnusedHistory_->Enable(m_currency_id != baseCurrencyID);
+                valueDatePicker_->Enable(m_currency_id != baseCurrencyID);
+                valueTextBox_->Enable(m_currency_id != baseCurrencyID);
+            }
+            historyStaticBox_->SetLabel(wxString::Format(_("Currency History Options: %s "), currency->CURRENCYNAME));
+        }
+    }
 
     valueDatePicker_->SetValue(wxDateTime::Today());
     valueTextBox_->SetValue(wxEmptyString);
@@ -484,8 +495,10 @@ void mmMainCurrencyDialog::OnItemRightClick(wxDataViewEvent& event)
     mainMenu->Append(new wxMenuItem(mainMenu, MENU_ITEM3, _("&Edit ")));
 
     int baseCurrencyID = Option::instance().getBaseCurrencyID();
-    if (baseCurrencyID == m_currency_id)
+    if (baseCurrencyID == m_currency_id) {
         mainMenu->Enable(MENU_ITEM1, false);
+        mainMenu->Enable(MENU_ITEM2, false);
+    }
 
     PopupMenu(mainMenu);
     delete mainMenu;
@@ -554,7 +567,7 @@ void mmMainCurrencyDialog::OnHistoryAdd(wxCommandEvent& /*event*/)
     Model_Currency::Data* currency = Model_Currency::instance().get(m_currency_id);
     wxString currentPriceStr = valueTextBox_->GetValue().Trim();
     if (!Model_Currency::fromString(currentPriceStr, dPrice, currency) || (dPrice < 0.0))
-        return;
+        return mmErrorDialogs::ToolTip4Object(valueTextBox_, _("Invalid Entry"), _("Amount"));
     Model_CurrencyHistory::instance().addUpdate(m_currency_id, valueDatePicker_->GetValue(), dPrice, Model_CurrencyHistory::MANUAL);
 
     fillControls();

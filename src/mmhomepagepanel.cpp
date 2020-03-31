@@ -131,14 +131,14 @@ void htmlWidgetStocks::calculate_stats(std::map<int, std::pair<double, double> >
     this->grand_total_ = 0;
     this->grand_gain_lost_ = 0;
     const auto &stocks = Model_Stock::instance().all();
+    const wxDate today = wxDate::Today();
     for (const auto& stock : stocks)
     {   
         double conv_rate = 1;
         Model_Account::Data *account = Model_Account::instance().get(stock.HELDAT);
         if (account)
         {   
-            Model_Currency::Data *currency = Model_Currency::instance().get(account->CURRENCYID);
-            conv_rate = currency->BASECONVRATE;
+            conv_rate = Model_CurrencyHistory::getDayRate(account->CURRENCYID, today);
         }   
         std::pair<double, double>& values = stockStats[stock.HELDAT];
         double current_value = Model_Stock::CurrentValue(stock);
@@ -223,10 +223,10 @@ void htmlWidgetTop7Categories::getTopCategoryStats(
 {
     //Get base currency rates for all accounts
     std::map<int, double> acc_conv_rates;
+    const wxDate today = wxDate::Today();
     for (const auto& account: Model_Account::instance().all())
     {
-        Model_Currency::Data* currency = Model_Account::currency(account);
-        acc_conv_rates[account.ACCOUNTID] = currency->BASECONVRATE;
+        acc_conv_rates[account.ACCOUNTID] = Model_CurrencyHistory::getDayRate(account.CURRENCYID, today);
     }
     //Temporary map
     std::map<std::pair<int /*category*/, int /*sub category*/>, double> stat;
@@ -718,13 +718,14 @@ const wxString mmHomePagePanel::displayAccounts(double& tBalance, std::map<int, 
 
     double tReconciled = 0;
     wxString body = "";
+    const wxDate today = wxDate::Today();
     for (const auto& account : Model_Account::instance().all(Model_Account::COL_ACCOUNTNAME))
     {
         if (Model_Account::type(account) != type || Model_Account::status(account) == Model_Account::CLOSED) continue;
 
         Model_Currency::Data* currency = Model_Account::currency(account);
-        if (!currency) currency = Model_Currency::GetBaseCurrency();
-        double currency_rate = currency->BASECONVRATE;
+
+        double currency_rate = Model_CurrencyHistory::getDayRate(account.CURRENCYID, today);
         double bal = account.INITIALBAL + accountStats[account.ACCOUNTID].second; //Model_Account::balance(account);
         double reconciledBal = account.INITIALBAL + accountStats[account.ACCOUNTID].first;
         tBalance += bal * currency_rate;

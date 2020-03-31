@@ -36,7 +36,7 @@ wxBEGIN_EVENT_TABLE(mmCurrencyDialog, wxDialog)
 EVT_BUTTON(wxID_OK, mmCurrencyDialog::OnOk)
 EVT_BUTTON(wxID_CANCEL, mmCurrencyDialog::OnCancel)
 EVT_TEXT(ID_DIALOG_CURRENCY, mmCurrencyDialog::OnTextChanged)
-EVT_TEXT_ENTER(ID_DIALOG_CURRENCY_RATE, mmCurrencyDialog::OnTextEntered)
+EVT_CHECKBOX(ID_DIALOG_CURRENCY, mmCurrencyDialog::OnTextChanged)
 wxEND_EVENT_TABLE()
 
 static const int SCALE = 9;
@@ -54,7 +54,6 @@ mmCurrencyDialog::mmCurrencyDialog(wxWindow* parent, const Model_Currency::Data 
     , m_currencyName(nullptr)
     , sampleText_(nullptr)
     , m_currencySymbol(nullptr)
-    , baseConvRate_(nullptr)
     , pfxTx_(nullptr)
     , sfxTx_(nullptr)
     , decTx_(nullptr)
@@ -128,14 +127,7 @@ void mmCurrencyDialog::fillControls()
         m_scale = log10(m_currency->SCALE);
         const wxString& scale_value = wxString::Format("%i", m_scale);
         scaleTx_->ChangeValue(scale_value);
-        bool baseCurrency = (Option::instance().getBaseCurrencyID() == m_currency->CURRENCYID);
-        baseConvRate_->SetValue((baseCurrency ? 1.00 : m_currency->BASECONVRATE), SCALE);
-        baseConvRate_->Enable(!baseCurrency);
         m_currencySymbol->ChangeValue(m_currency->CURRENCY_SYMBOL);
-    }
-    else
-    {
-        baseConvRate_->SetValue(1.00, SCALE);
     }
 }
 
@@ -202,12 +194,6 @@ void mmCurrencyDialog::CreateControls()
         , wxALIGN_RIGHT, valInt);
     itemFlexGridSizer3->Add(scaleTx_, g_flagsExpand);
 
-    itemFlexGridSizer3->Add(new wxStaticText(this, wxID_STATIC, _("Conversion to Base Rate")), g_flagsH);
-    baseConvRate_ = new mmTextCtrl(this, ID_DIALOG_CURRENCY_RATE, ""
-        , wxDefaultPosition, wxDefaultSize, wxALIGN_RIGHT | wxTE_PROCESS_ENTER
-        , mmCalcValidator(), m_currency);
-    itemFlexGridSizer3->Add(baseConvRate_, g_flagsExpand);
-
     //--------------------------
     wxStaticBox* itemStaticBox_01 = new wxStaticBox(this, wxID_STATIC, _("Value Display Sample:"));
     wxStaticBoxSizer* itemStaticBoxSizer_01 = new wxStaticBoxSizer(itemStaticBox_01, wxHORIZONTAL);
@@ -235,10 +221,6 @@ void mmCurrencyDialog::OnOk(wxCommandEvent& /*event*/)
     if (name.empty())
         return mmErrorDialogs::InvalidName(m_currencyName);
 
-    const auto &currency_name = Model_Currency::instance().find(Model_Currency::CURRENCYNAME(name));
-    if (!currency_name.empty() && m_currency->CURRENCYID == -1)
-        return mmErrorDialogs::InvalidName(m_currencyName, true);
-
     const wxString symbol = m_currencySymbol->GetValue().Trim();
     if (name.empty() || symbol.empty())
         return mmErrorDialogs::InvalidName(m_currencySymbol);
@@ -246,20 +228,6 @@ void mmCurrencyDialog::OnOk(wxCommandEvent& /*event*/)
     const auto currency_symb = Model_Currency::instance().find(Model_Currency::CURRENCY_SYMBOL(symbol));
     if (!currency_symb.empty() && m_currency->CURRENCYID == -1)
         return mmErrorDialogs::InvalidSymbol(m_currencySymbol, true);
-
-    const auto bc = Model_Currency::GetBaseCurrency();
-    if (!bc)
-    {
-        if (baseConvRate_->Calculate(m_scale))
-            baseConvRate_->GetDouble(m_currency->BASECONVRATE);
-        if (!baseConvRate_->checkValue(m_currency->BASECONVRATE)
-            || m_currency->BASECONVRATE <= 0.0)
-            return mmErrorDialogs::ToolTip4Object(baseConvRate_
-                , _("Invalid Amount.")
-                , _("Conversion to Base Rate"));
-    }
-    else
-        m_currency->BASECONVRATE = 1;
 
     if (m_currency->SCALE > 1)
     {
@@ -277,7 +245,7 @@ void mmCurrencyDialog::OnOk(wxCommandEvent& /*event*/)
                 , _("Grouping Char"));
 
     }
-    
+
     Model_Currency::instance().save(m_currency);
     EndModal(wxID_OK);
 }
@@ -306,10 +274,4 @@ void mmCurrencyDialog::OnTextChanged(wxCommandEvent& event)
     dispAmount = wxString::Format(_("%.2f Shown As: %s"), base_amount
         , Model_Currency::toCurrency(base_amount, m_currency));
     sampleText_->SetLabelText(dispAmount);
-}
-
-void mmCurrencyDialog::OnTextEntered(wxCommandEvent& event)
-{
-    if (baseConvRate_->Calculate(m_scale))
-        baseConvRate_->GetDouble(m_currency->BASECONVRATE);
 }

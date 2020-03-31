@@ -107,6 +107,8 @@ private:
     bool bEnableSelect_;
     wxButton* itemButtonEdit_;
     wxButton* itemButtonDelete_;
+    wxBitmapButton* buttonDownloadHistory_;
+    wxBitmapButton* buttonDelUnusedHistory_;
     wxCheckBox* cbShowAll_;
     wxListCtrl* valueListBox_;
     wxDatePickerCtrl* valueDatePicker_;
