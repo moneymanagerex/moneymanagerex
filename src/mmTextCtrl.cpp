@@ -56,7 +56,7 @@ bool mmTextCtrl::Calculate(int alt_precision)
 
     LuaGlue state;
     state.open().glue();
-    std::string lua_f = wxString::Format(R"(function calc() return %s; end)", str.ToStdString()).mb_str();
+    std::string lua_f = std::string(wxString::Format(R"(function calc() return %s; end)", str).mb_str());
 
     if(!state.doString(lua_f))
     {
