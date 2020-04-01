@@ -70,7 +70,7 @@ public:
     int GetTransactionID() { return m_trx_data.TRANSID; }
 
 private:
-    mmCustomData* m_custom_fields;
+    wxSharedPtr<mmCustomData> m_custom_fields;
     void CreateControls();
     void dataToControls();
     bool ValidateData();

@@ -17,6 +17,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ********************************************************/
 
 #include "mmTextCtrl.h"
+#include "mmSimpleDialogs.h"
 #include <wx/log.h>
 #include <wx/richtooltip.h>
 #include <LuaGlue/LuaGlue.h>
@@ -50,29 +51,41 @@ void mmTextCtrl::SetValue(double value, const Model_Currency::Data* currency, in
 
 bool mmTextCtrl::Calculate(int alt_precision)
 {
-    const wxString str = Model_Currency::fromString2Default(this->GetValue(), m_currency);
+    const wxString str = Model_Currency::fromString2Lua(this->GetValue(), m_currency);
     if (str.empty()) return false;
 
     LuaGlue state;
     state.open().glue();
-    std::string lua_f = "function calc() return " + str.ToStdString() + "; end";
+    std::string lua_f = wxString::Format(R"(function calc() return %s; end)", str.ToStdString()).mb_str();
+
     if(!state.doString(lua_f))
     {
-        wxLogDebug("lua calc() err: %s", state.lastError().c_str());
+        wxRegEx pattern(R"(\d*:([^\>]*)$)");
+        wxString err = state.lastError().c_str();
+        if (pattern.Matches(err))
+        {
+            err = pattern.GetMatch(err, 1);
+        }
+        mmErrorDialogs::ToolTip4Object(this, err, _("Invalid Value"));
+        this->ChangeValue(str);
         return false;
     }
 
-    const double res = state.invokeFunction<double>("calc");
-    const int precision = alt_precision >= 0 ? alt_precision : log10(m_currency->SCALE);
-    this->ChangeValue(Model_Currency::toString(res, m_currency, precision));
-    this->SetInsertionPoint(this->GetValue().Len());
+    double res = state.invokeFunction<double>("calc");
+    int precision = alt_precision >= 0 ? alt_precision : log10(m_currency->SCALE);
+    const wxString res_str = Model_Currency::toString(res, m_currency, precision);
+    this->ChangeValue(res_str);
+    this->SetInsertionPoint(res_str.Len());
+
     return true;
 }
 
 bool mmTextCtrl::GetDouble(double &amount) const
 {
     wxString amountStr = this->GetValue().Trim();
-    return Model_Currency::fromString(amountStr, amount, m_currency);
+    const auto in = amountStr;
+    bool r = Model_Currency::fromString(amountStr, amount, m_currency);
+    return r;
 }
 
 bool mmTextCtrl::checkValue(double &amount, bool positive_value)

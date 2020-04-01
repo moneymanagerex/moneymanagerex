@@ -145,16 +145,14 @@ mmTransDialog::mmTransDialog(wxWindow* parent
     m_custom_fields = new mmCustomDataTransaction(this, ref_id, ID_CUSTOMFIELD);
 
     long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX;
-    Create(parent, wxID_ANY, "", wxDefaultPosition, wxSize(500, 400), style, name);
+    Create(parent, wxID_ANY, "", wxDefaultPosition, wxDefaultSize, style, name);
+    this->SetMinSize(wxSize(500, 400));
 
     dataToControls();
 }
 
 mmTransDialog::~mmTransDialog()
-{
-   if (m_custom_fields)
-        delete m_custom_fields;
-}
+{}
 
 bool mmTransDialog::Create(wxWindow* parent, wxWindowID id, const wxString& caption
     , const wxPoint& pos, const wxSize& size, long style, const wxString& name)

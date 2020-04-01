@@ -199,10 +199,18 @@ wxString Model_Currency::toString(double value, const Data* currency, int precis
     return s;
 }
 
+const wxString Model_Currency::fromString2Lua(const wxString &s, const Data* currency)
+{
+    auto str = fromString2Default(s, currency);
+    str.Replace(wxNumberFormatter::GetDecimalSeparator(), ".");
+    return str;
+}
+
 const wxString Model_Currency::fromString2Default(const wxString &s, const Data* currency)
 {
+    if (s.empty()) return s;
     wxString str = s;
-    const auto bc = Model_Currency::GetBaseCurrency();
+    const auto bc = GetBaseCurrency();
     const Data* c = currency ? currency : bc;
 
     if (c)
