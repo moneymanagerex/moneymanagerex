@@ -85,6 +85,7 @@ namespace weblink
     extern const wxString Twitter;
     extern const wxString Facebook;
     extern const wxString GitHub;
+    extern const wxString GitHubLogin;
     extern const wxString YouTube;
     extern const wxString Slack;
     extern const wxString SquareCashGuan;

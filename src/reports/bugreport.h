@@ -67,7 +67,7 @@ int mmBugReport::report_parameters()
 
 wxString mmBugReport::getHTMLText()
 {
-    wxString diag = getProgramDescription(true);
+    wxString diag = getProgramDescription(1);
 
     wxString info = "> " + _("Replace this text (marked with >) with detailed description of your problem.") + "\n";
     info << "> " + _("Please do not remove information attached below this text.") + "\n";
@@ -78,11 +78,13 @@ wxString mmBugReport::getHTMLText()
         _("Use Help->Check for Updates in MMEX to get latest version, where your problem might be already fixed."),
         wxString::Format(_("Search <a href='%s'>a list of known issues</a> for similar problem. If so, update existing issue instead of creating a new one.")
             ,  mmex::weblink::BugReport),
+        wxString::Format(_("As you know, <a href='%s'>a forum</a> for users is available where you can discuss problems and find solutions."), mmex::weblink::Forum),
+        wxString::Format(_("Please, join our community in <a href='%s'>Slack</a>. Here you can also pose your question and learn a latest news."), mmex::weblink::Slack),
         wxString::Format(_("Read <a href='%s'>How to Report Bugs Effectively</a> for useful tips."), mmex::weblink::Chiark),
         _("Come up with a descriptive name for your problem."),
         _("Include steps to reproduce your problem, attach screenshots where appropriate."),
         wxString::Format(_("Before click the following link, be sure that you have already signed in to the <a href='%s'>GitHub</a>.")
-            ,  mmex::weblink::GitHub),
+            ,  mmex::weblink::GitHubLogin),
         wxString::Format(_("Finally, report a bug using GitHub <a href='%s'>online form</a> opened in your web browser."), req.BuildURI())
     };
 
@@ -96,7 +98,7 @@ wxString mmBugReport::getHTMLText()
     report(L"REPORTNAME") = this->getReportTitle();
     report(L"HEADER") = _("Please, follow these instructions before submitting a new bug report:");
     report(L"CONTENTS") = msg;
-    report(L"HTMLSCALE") = wxString::Format("%d", Option::instance().HtmlFontSize());
+    report(L"HTMLSCALE") = wxString::Format("%d", Option::instance().HtmlFontSize() * 3 / 2);
 
     wxString out = wxEmptyString;
     try

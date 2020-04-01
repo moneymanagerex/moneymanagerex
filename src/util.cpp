@@ -896,20 +896,27 @@ CURLcode http_download_file(const wxString& sSite, const wxString& sPath)
     return err_code;
 }
 
-const wxString getProgramDescription(bool simple)
+//All components version in TXT, HTML, ABOUT
+const wxString getProgramDescription(int type)
 {
 	const wxString bull = L" \u2022 ";
-	wxString description;
-	wxString curl = curl_version();
-	curl.Replace(" ", "\n" + bull);
-	curl.Replace("/", " ");
+    wxString eol;
+    bool simple = true;
+    switch (type) {
+        case 0: eol = "\n"; break;
+        case 1: eol = "<br>\n"; break;
+        case 2: eol = "\n"; simple = false;  break;
+    }
 
-	description << wxString::Format(simple ? "Version: %s" : _("Version: %s"), mmex::getTitleProgramVersion()) << "\n"
+	wxString description;
+
+	description << wxString::Format(simple ? "Version: %s" : _("Version: %s"), mmex::getTitleProgramVersion()) << eol
 		<< bull << (simple ? "db " : _("Database version: ")) << mmex::version::getDbLatestVersion()
 #if WXSQLITE3_HAVE_CODEC
 		<< bull << " (" << wxSQLite3Cipher::GetCipherName(wxSQLite3Cipher::GetGlobalCipherDefault()) << ")"
 #endif
-		<< "\n"
+		<< eol
+
 #ifdef GIT_COMMIT_HASH
 		<< bull << (simple ? "git " : _("Git commit: ")) << GIT_COMMIT_HASH
 		<< " (" << GIT_COMMIT_DATE << ")"
@@ -917,30 +924,37 @@ const wxString getProgramDescription(bool simple)
 #ifdef GIT_BRANCH
 		<< bull << (simple ? "" : _("Git branch: ")) << GIT_BRANCH
 #endif
-		<< "<br>\n"
-		<< (simple ? "Libs:" : _("MMEX is using the following support products:")) << "\n"
+		<< eol << eol
+
+		<< (simple ? "Libs:" : _("MMEX is using the following support products:")) << eol
 		<< bull + wxVERSION_STRING
-		<< wxString::Format(" (%s %d.%d)\n",
+		<< wxString::Format(" (%s %d.%d)",
 			wxPlatformInfo::Get().GetPortIdName(),
 			wxPlatformInfo::Get().GetToolkitMajorVersion(),
 			wxPlatformInfo::Get().GetToolkitMinorVersion())
+        << eol
+
 		<< bull + wxSQLITE3_VERSION_STRING
-		<< " (SQLite " << wxSQLite3Database::GetVersion() << ")\n"
-		<< bull + "RapidJSON " << RAPIDJSON_VERSION_STRING << "\n"
-		<< bull + LUA_RELEASE << "\n"
-		<< bull + curl
-		<< "<br>\n"
+		<< " (SQLite " << wxSQLite3Database::GetVersion() << ")" 
+        << eol
+		
+        << bull + "RapidJSON " << RAPIDJSON_VERSION_STRING << eol
+		
+        << bull + LUA_RELEASE << eol
+		
+        << bull + curl_version() << eol << eol
 
 		<< (simple ? "Build:" : _("Build on")) << " " << __DATE__ << " " << __TIME__ << " "
-		<< (simple ? "" : _("with:")) << "\n"
-		<< bull + CMAKE_VERSION << "\n"
-		<< bull + MAKE_VERSION << "\n"
-		<< bull + GETTEXT_VERSION << "\n"
+		<< (simple ? "" : _("with:")) << eol
+		
+        << bull + CMAKE_VERSION << eol
+		<< bull + MAKE_VERSION << eol
+		<< bull + GETTEXT_VERSION << eol
 #if defined(_MSC_VER)
 #ifdef VS_VERSION
-		<< bull + (simple ? "MSVS" : "Microsoft Visual Studio ") + VS_VERSION << "\n"
+		<< bull + (simple ? "MSVS" : "Microsoft Visual Studio ") + VS_VERSION << eol
 #endif
-		<< bull + (simple ? "MSVSC++" : "Microsoft Visual C++ ") + CXX_VERSION << "\n"
+		<< bull + (simple ? "MSVSC++" : "Microsoft Visual C++ ") + CXX_VERSION << eol
 #elif defined(__clang__)
 		<< bull + "Clang " + __VERSION__ << "\n"
 #elif (defined(__GNUC__) || defined(__GNUG__)) && !(defined(__clang__) || defined(__INTEL_COMPILER))
@@ -952,16 +966,16 @@ const wxString getProgramDescription(bool simple)
 #ifdef LINUX_DISTRO_STRING
 		<< bull + LINUX_DISTRO_STRING
 #endif
-		<< "<br>\n"
-		<< (simple ? "OS:" : _("Running on:")) << "\n"
+		<< eol << eol
+		<< (simple ? "OS:" : _("Running on:")) << eol
 #ifdef __LINUX__
 		<< bull + wxGetLinuxDistributionInfo().Description
 		<< " \"" << wxGetLinuxDistributionInfo().CodeName << "\"\n"
 #endif
-		<< bull + wxGetOsDescription() << "\n"
+		<< bull + wxGetOsDescription() << eol
 		<< bull + wxPlatformInfo::Get().GetDesktopEnvironment()
 		<< " " << wxLocale::GetLanguageName(wxLocale::GetSystemLanguage())
-		<< " (" << wxLocale::GetSystemEncodingName() << ")\n"
+		<< " (" << wxLocale::GetSystemEncodingName() << ")" << eol
 		<< wxString::Format(bull + "%ix%i %ibit %ix%ippi\n",
 			wxGetDisplaySize().GetX(),
 			wxGetDisplaySize().GetY(),

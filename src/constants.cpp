@@ -158,6 +158,7 @@ const wxString mmex::weblink::Facebook = "http://www.facebook.com/pages/Money-Ma
 const wxString mmex::weblink::SquareCashGuan = "https://cash.me/$guanlisheng/1";
 // https://greenido.wordpress.com/2009/12/22/yahoo-finance-hidden-api/
 const wxString mmex::weblink::GitHub = "https://github.com/moneymanagerex/moneymanagerex";
+const wxString mmex::weblink::GitHubLogin = "https://github.com/login";
 const wxString mmex::weblink::YouTube = "http://www.youtube.com/user/moneymanagerex";
 const wxString mmex::weblink::Slack = "http://slack.moneymanagerex.org/";
 

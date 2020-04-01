@@ -45,7 +45,8 @@ public:
     {
         mmGUIFrame* frame = m_reportPanel->m_frame;
         wxString sData;
-        if (uri.StartsWith("https:", &sData))
+        wxRegEx pattern(R"(^https?:\/\/)");
+        if (pattern.Matches(uri))
         {
             wxLaunchDefaultBrowser(uri);
             wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_REPORT_BUG);
@@ -409,6 +410,7 @@ void mmReportsPanel::CreateControls()
     browser_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new WebViewHandlerReportsPage(this, "trx")));
     browser_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new WebViewHandlerReportsPage(this, "attachment")));
     browser_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new WebViewHandlerReportsPage(this, "https")));
+    browser_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new WebViewHandlerReportsPage(this, "http")));
 
     itemBoxSizer2->Add(browser_, 1, wxGROW | wxALL, 1);
 }
