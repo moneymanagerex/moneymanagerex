@@ -18,6 +18,7 @@
 
 #include "wizard_update.h"
 #include "constants.h"
+#include "mmTips.h"
 #include "util.h"
 #include "paths.h"
 #include "reports/htmlbuilder.h"
@@ -40,6 +41,7 @@ const char* update_template = R"(
     <th>%s</th>
     <th>%s</th>
     <th>%s</th>
+    <th>%s</th>
   </tr>
 %s
 </table>
@@ -56,8 +58,7 @@ mmUpdateWizard::mmUpdateWizard(wxFrame *frame, const Document& json_releases, wx
     
     int i = 0;
     wxString displayMsg = wxString::Format(_("Your version is %s"), mmex::version::string) + "\n\n";
-    displayMsg += _("A new version of MMEX is available!") + "\n";
-    displayMsg += _("What's new:") + "\n";
+    displayMsg += _("A new version of MMEX is available!");
     wxString body;
 
     for (auto& r : json_releases.GetArray())
@@ -80,19 +81,19 @@ mmUpdateWizard::mmUpdateWizard(wxFrame *frame, const Document& json_releases, wx
             wxString::const_iterator end;
             pub_date.ParseFormat(published_at, "%Y-%m-%dT%H:%M:%SZ", &end);
             const wxString pd = pub_date.FormatISODate();
+            const wxString time = pub_date.FormatISOTime();
 
             wxString link = wxString::Format(R"(<a href="%s">%s</a>)", html_url, tag);
             const wxString github = "https://github.com/moneymanagerex/moneymanagerex/releases/tag/";
             const wxString sf = "https://sourceforge.net/projects/moneymanagerex/files/";
             if (link.Contains(github)) link.Replace(github, sf);
-            body += wxString::Format(R"(<tr><td>%s</td><td>%s</td><td>%s</td></tr>)"
-                , link, prerelease, pd);
+            body += wxString::Format(R"(<tr><td>%s</td><td>%s</td><td>%s</td><td>%s</td></tr>)"
+                , link, prerelease, pd, time);
         }
-
-    i++;
+        i++;
     }
 
-    body = wxString::Format(update_template, _("Version"), _("Status"), _("Date"), body);
+    body = wxString::Format(update_template, _("Version"), _("Status"), _("Date"), _("Time"), body);
 
     wxBoxSizer *page1_sizer = new wxBoxSizer(wxVERTICAL);
     page1->SetSizer(page1_sizer);
@@ -102,10 +103,13 @@ mmUpdateWizard::mmUpdateWizard(wxFrame *frame, const Document& json_releases, wx
     wxHtmlWindow *changelog = new wxHtmlWindow(page1
         , wxID_ANY, wxDefaultPosition, wxDefaultSize
         , wxHW_SCROLLBAR_AUTO | wxSUNKEN_BORDER | wxHSCROLL | wxVSCROLL);
-    changelog->SetMinSize(wxSize(250, 250));
+    changelog->SetMinSize(wxSize(350, 250));
 
-    page1_sizer->Add(updateText);
+    wxStaticText *tipsText = new wxStaticText(page1, wxID_ANY, TIPS[1]);
+
+    page1_sizer->Add(updateText, g_flagsCenter);
     page1_sizer->Add(changelog, wxSizerFlags(g_flagsExpand).Border(wxTOP, 0));
+    page1_sizer->Add(tipsText, g_flagsCenter);
 
     GetPageAreaSizer()->Add(page1);
     setControlEnable(wxID_CANCEL);

@@ -80,15 +80,22 @@ bool mmGUIApp::setGUILanguage(wxLanguage lang)
     trans->AddStdCatalog();
     if (!trans->AddCatalog("mmex", wxLANGUAGE_ENGLISH_US) && lang != wxLANGUAGE_ENGLISH_US)
     {
-        auto lang_files = trans->GetAvailableTranslations("mmex");
-        lang_files.Sort();
-        wxString languages_list;
-        for (auto & file : lang_files)
+        wxArrayString lang_files = trans->GetAvailableTranslations("mmex");
+        lang_files.Add("en_US");
+        wxArrayString lang_names;
+        for (const auto & file : lang_files)
         { 
             const wxLanguageInfo* info = wxLocale::FindLanguageInfo(file);
             if (info) {
-                languages_list << info->Description + ", ";
+                lang_names.Add(info->Description);
             }
+        }
+        lang_names.Sort();
+
+        wxString languages_list;
+        for (const auto & name : lang_names)
+        {
+            languages_list += name + ", ";
         }
         languages_list.RemoveLast(2);
 

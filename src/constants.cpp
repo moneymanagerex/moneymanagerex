@@ -103,7 +103,7 @@ const wxString mmex::getProgramName()
 }
 const wxString mmex::getTitleProgramVersion()
 {
-    return wxString::Format(_("Version: %s"), mmex::version::string);
+    return wxString::Format("%s", mmex::version::string);
 }
 
 const wxString mmex::getProgramCopyright()

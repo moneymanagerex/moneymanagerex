@@ -119,7 +119,7 @@ void mmMainCurrencyDialog::fillControls()
         if (skip_unused && !(Model_Account::is_used(currency) || currencyID == base_currency_id)) continue;
 
         wxVector<wxVariant> data;
-        data.push_back(wxVariant(base_currency_id == currencyID));
+        data.push_back(wxVariant(base_currency_id == currencyID ? L"\u2691" : L""));
         data.push_back(wxVariant(currency.CURRENCY_SYMBOL));
         data.push_back(wxVariant(currency.CURRENCYNAME));
         data.push_back(wxVariant(wxString()<<Model_CurrencyHistory::getLastRate(currencyID)));
@@ -182,7 +182,7 @@ void mmMainCurrencyDialog::CreateControls()
         , wxID_ANY, wxDefaultPosition, wxDefaultSize /*, wxDV_HORIZ_RULES, mmDoubleValidator(4)*/);
     currencyListBox_->SetMinSize(wxSize(-1, 200));
 
-    currencyListBox_->AppendToggleColumn(ColName_[CURR_BASE], wxDATAVIEW_CELL_INERT, 30);
+    currencyListBox_->AppendTextColumn(ColName_[CURR_BASE], wxDATAVIEW_CELL_INERT, 30);
     currencyListBox_->AppendTextColumn(ColName_[CURR_SYMBOL], wxDATAVIEW_CELL_INERT, 60
         , wxALIGN_LEFT, wxDATAVIEW_COL_SORTABLE);
     currencyListBox_->AppendTextColumn(ColName_[CURR_NAME], wxDATAVIEW_CELL_INERT, 170
@@ -288,10 +288,12 @@ void mmMainCurrencyDialog::CreateControls()
 
     buttonDownloadHistory_ = new wxBitmapButton(buttons_panel, HISTORY_UPDATE, mmBitmap(png::CURRATES));
     buttonDownloadHistory_->SetToolTip(_("Download Currency Values history"));
+    buttonDownloadHistory_->Disable();
+
     historyButtonAdd_ = new wxButton(buttons_panel, HISTORY_ADD, _("&Add / Update ")
         , wxDefaultPosition, wxSize(-1, buttonDownloadHistory_->GetSize().GetY()));
     historyButtonAdd_->SetToolTip(_("Add Currency Values to history"));
-    buttonDownloadHistory_->Disable();
+    historyButtonAdd_->Disable();
 
     historyButtonDelete_ = new wxButton(buttons_panel, HISTORY_DELETE, _("&Delete ")
         , wxDefaultPosition, wxSize(-1, buttonDownloadHistory_->GetSize().GetY()));
