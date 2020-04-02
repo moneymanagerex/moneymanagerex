@@ -72,12 +72,12 @@ bool SplitDetailDialog::Create(wxWindow* parent)
         , wxDefaultPosition, wxDefaultSize, style);
 
     CreateControls();
+    SetIcon(mmex::getProgramIcon());
     DataToControls();
 
     Layout();
     GetSizer()->Fit(this);
     GetSizer()->SetSizeHints(this);
-    SetIcon(mmex::getProgramIcon());
     Centre();
 
     return TRUE;

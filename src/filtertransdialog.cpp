@@ -91,7 +91,7 @@ mmFilterTransactionsDialog::mmFilterTransactionsDialog(wxWindow* parent)
     , bSimilarCategoryStatus_(false)
 {
     long style = wxCAPTION | wxRESIZE_BORDER | wxSYSTEM_MENU | wxCLOSE_BOX;
-    Create(parent, wxID_ANY, _("Transaction Filter"), wxDefaultPosition, wxSize(400, 300), style);
+    Create(parent, wxID_ANY, _("Transaction Filter"), wxDefaultPosition, wxDefaultSize, style);
 }
 
 bool mmFilterTransactionsDialog::Create(wxWindow* parent
@@ -106,6 +106,9 @@ bool mmFilterTransactionsDialog::Create(wxWindow* parent
 
     CreateControls();
     GetStoredSettings(-1);
+    wxCommandEvent* evt = new wxCommandEvent(wxEVT_CHECKBOX, wxID_ANY);
+    AddPendingEvent(*evt);
+    delete evt;
 
     GetSizer()->Fit(this);
     GetSizer()->SetSizeHints(this);
@@ -774,8 +777,14 @@ bool mmFilterTransactionsDialog::checkAll(const Model_Checking::Data &tran
     else if (getTypeCheckBox() && !allowType(tran.TRANSCODE, accountID == tran.ACCOUNTID)) ok = false;
     else if (getAmountRangeCheckBoxMin() && getAmountMin() > tran.TRANSAMOUNT) ok = false;
     else if (getAmountRangeCheckBoxMax() && getAmountMax() < tran.TRANSAMOUNT) ok = false;
-    else if (getNumberCheckBox() && getNumber() != tran.TRANSACTIONNUMBER) ok = false;
-    else if (getNotesCheckBox() && !tran.NOTES.Lower().Contains(getNotes().Lower())) ok = false;
+    else if (getNumberCheckBox() && (getNumber().empty()
+        ? !tran.TRANSACTIONNUMBER.empty()
+        : tran.TRANSACTIONNUMBER.empty() || !tran.TRANSACTIONNUMBER.Lower().Matches(getNumber().Lower())))
+        ok = false;
+    else if (getNotesCheckBox() && (getNotes().empty()
+        ? !tran.NOTES.empty()
+        : tran.NOTES.empty() || !tran.NOTES.Lower().Matches(getNotes().Lower())))
+        ok = false;
     return ok;
 }
 bool mmFilterTransactionsDialog::checkAll(const Model_Billsdeposits::Data &tran, const std::map<int, Model_Budgetsplittransaction::Data_Set>& split)
@@ -790,8 +799,14 @@ bool mmFilterTransactionsDialog::checkAll(const Model_Billsdeposits::Data &tran,
     else if (getTypeCheckBox() && !allowType(tran.TRANSCODE, true)) ok = false;
     else if (getAmountRangeCheckBoxMin() && getAmountMin() > tran.TRANSAMOUNT) ok = false;
     else if (getAmountRangeCheckBoxMax() && getAmountMax() < tran.TRANSAMOUNT) ok = false;
-    else if (getNumberCheckBox() && getNumber() != tran.TRANSACTIONNUMBER) ok = false;
-    else if (getNotesCheckBox() && !tran.NOTES.Lower().Contains(getNotes().Lower())) ok = false;
+    else if (getNumberCheckBox() && (getNumber().empty()
+        ? !tran.TRANSACTIONNUMBER.empty()
+        : tran.TRANSACTIONNUMBER.empty() || !tran.TRANSACTIONNUMBER.Lower().Matches(getNumber().Lower())))
+        ok = false;
+    else if (getNotesCheckBox() && (getNotes().empty()
+        ? !tran.NOTES.empty()
+        : tran.NOTES.empty() || !tran.NOTES.Lower().Matches(getNotes().Lower())))
+        ok = false;
     return ok;
 }
 
@@ -809,7 +824,9 @@ void mmFilterTransactionsDialog::getDescription(mmHTMLBuilder &hb)
     hb.addHeader(3, _("Filtering Details: "));
     // Extract the parameters from the transaction dialog and add them to the report.
     wxString filterDetails = to_json();
-    filterDetails.Replace(",\n", "<br>");
+    filterDetails.Replace("\n", "<br>");
+    filterDetails.Replace(R"("")", _("Empty value"));
+    filterDetails.Replace("\"", "");
     filterDetails.replace(0, 1, ' ');
     filterDetails.RemoveLast(1);
     hb.addText(filterDetails);

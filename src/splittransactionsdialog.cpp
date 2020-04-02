@@ -22,6 +22,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "constants.h"
 #include "mmSimpleDialogs.h"
 #include "util.h"
+#include "paths.h"
 
 #include "model/Model_Account.h"
 #include "model/Model_Category.h"
@@ -89,11 +90,12 @@ bool SplitTransactionDialog::Create(wxWindow* parent
     wxDialog::Create( parent, id, caption, pos, size, style, name);
 
     CreateControls();
+    SetIcon(mmex::getProgramIcon());
+    DataToControls();
+
     GetSizer()->Fit(this);
     GetSizer()->SetSizeHints(this);
     Centre();
-
-    DataToControls();
 
     return TRUE;
 }
@@ -185,6 +187,7 @@ void SplitTransactionDialog::OnButtonAddClick( wxCommandEvent& /*event*/ )
     {
         this->m_local_splits.push_back(sdd.getResult());
         items_changed_ = true;
+        selectedIndex_ = lcSplit_->GetItemCount();
     }
     DataToControls();
 }

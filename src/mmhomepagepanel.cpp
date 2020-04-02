@@ -321,12 +321,14 @@ htmlWidgetBillsAndDeposits::~htmlWidgetBillsAndDeposits()
 wxString htmlWidgetBillsAndDeposits::getHTMLText()
 {
     wxString output = ""; 
+    wxDate today = wxDate::Today();
 
     //                    days, payee, description, amount, account
     std::vector< std::tuple<int, wxString, wxString, double, const Model_Account::Data*> > bd_days;
     for (const auto& entry : Model_Billsdeposits::instance().all(Model_Billsdeposits::COL_NEXTOCCURRENCEDATE))
     {   
-        int daysPayment = Model_Billsdeposits::daysPayment(&entry);
+        int daysPayment = Model_Billsdeposits::NEXTOCCURRENCEDATE(&entry)
+            .Subtract(today).GetDays();
         if (daysPayment > 14)
             break; // Done searching for all to include
 
@@ -341,7 +343,8 @@ wxString htmlWidgetBillsAndDeposits::getHTMLText()
             continue; // Inactive
         }
 
-        int daysOverdue = Model_Billsdeposits::instance().daysOverdue(&entry);
+        int daysOverdue = Model_Billsdeposits::TRANSDATE(&entry)
+            .Subtract(today).GetDays();
         wxString daysRemainingStr = (daysPayment > 0
             ? wxString::Format(_("%d days remaining"), daysPayment)
             : wxString::Format(_("%d days delay!"), std::abs(daysPayment)));

@@ -147,9 +147,6 @@ public:
 	typedef std::map<int, double> AccountBalance;
 	bool AllowTransaction(const Data& r, AccountBalance& bal);
 
-    static int daysPayment(const Data* r);
-    static int daysOverdue(const Data* r);
-
 private:
     bool m_autoExecuteManual;
     bool m_autoExecuteSilent;

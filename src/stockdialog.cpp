@@ -477,25 +477,30 @@ void mmStockDialog::OnSave(wxCommandEvent& /*event*/)
     Model_StockHistory::instance().addUpdate(m_stock->SYMBOL, m_current_date_ctrl->GetValue(), m_stock->CURRENTPRICE, Model_StockHistory::MANUAL);
     ShowStockHistory();
 
-    Model_Account::Data* share_account = Model_Account::instance().get(m_stock_name_ctrl->GetValue());
-    if (!share_account && !m_edit)
+    if (!stockName.empty())
     {
-        if (wxMessageBox(_("Share Account not found.\n\nWould you want to create one?")
-            , _("New Stock Investment"), wxOK | wxCANCEL | wxICON_INFORMATION) == wxOK)
+
+        Model_Account::Data* share_account = Model_Account::instance().get(m_stock_name_ctrl->GetValue());
+        if (!share_account && !m_edit)
         {
-            CreateShareAccount(account);
+            if (wxMessageBox(_("Share Account not found.\n\n"
+                "Do you want to create one?")
+                , _("New Stock Investment"), wxOK | wxCANCEL | wxICON_INFORMATION) == wxOK)
+            {
+                CreateShareAccount(account, stockName);
+            }
         }
-    }
-    else if (!share_account)
-    {
-        if (wxMessageBox(_(
-            "Share Account not found.\n\n"
-            "Would you want to create one?\n"
-            "Creating a new account will affect Share Account connections\n"
-            "and will therefore require manual readjustment.")
-            , _("Edit Stock Investment"), wxOK | wxCANCEL | wxICON_WARNING) == wxOK)
+        else if (!share_account)
         {
-            CreateShareAccount(account);
+            if (wxMessageBox(_(
+                "The Company name does not have an associated Share Account.\n\n"
+                "You may want to readjust the Company Name to an existing Share Account with the same name. "
+                "If this is an existing Stock without a Share Account, it is recommended that a Share Account is created.\n\n"
+                "Do you want to create a new Share Acccount?\n")
+                , _("Edit Stock Investment"), wxYES_NO | wxICON_WARNING) == wxYES)
+            {
+                CreateShareAccount(account, stockName);
+            }
         }
     }
 
@@ -503,10 +508,11 @@ void mmStockDialog::OnSave(wxCommandEvent& /*event*/)
     UpdateControls();
 }
 
-void mmStockDialog::CreateShareAccount(Model_Account::Data* stock_account)
+void mmStockDialog::CreateShareAccount(Model_Account::Data* stock_account, const wxString& name)
 {
+    if (name.empty()) return;
     Model_Account::Data* share_account = Model_Account::instance().create();
-    share_account->ACCOUNTNAME = m_stock_name_ctrl->GetValue();
+    share_account->ACCOUNTNAME = name;
     share_account->ACCOUNTTYPE = Model_Account::all_type()[Model_Account::SHARES];
 
     share_account->FAVORITEACCT = "TRUE";

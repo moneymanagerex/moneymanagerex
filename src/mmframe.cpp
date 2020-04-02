@@ -1472,7 +1472,7 @@ void mmGUIFrame::createMenu()
     menuTools->AppendSeparator();
 
     wxMenuItem* menuItemOptions = new wxMenuItem(menuTools, wxID_PREFERENCES
-        , _("&Options..."), _("Show the Options Dialog"));
+        , _("&Options...\tCtrl-,"), _("Show the Options Dialog"));
     menuItemOptions->SetBitmap(mmBitmap(png::OPTIONS));
     menuTools->Append(menuItemOptions);
 
@@ -1740,7 +1740,7 @@ bool mmGUIFrame::createDataStore(const wxString& fileName, const wxString& pwd, 
         m_db->SetUpdateHook(m_update_callback_hook);
 
         //Check if DB upgrade needed
-        if (dbUpgrade::CheckUpgradeDB(m_db.get()))
+        if (dbUpgrade::isUpgradeDBrequired(m_db.get()))
         {
             //DB backup is handled inside UpgradeDB
             if (!dbUpgrade::UpgradeDB(m_db.get(), fileName))

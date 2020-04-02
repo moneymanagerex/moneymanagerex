@@ -532,7 +532,8 @@ void mmBDDialog::CreateControls()
     amountNormalTip_   = _("Specify the amount for this transaction");
     amountTransferTip_ = _("Specify the amount to be transferred");
 
-    wxStaticText* staticTextAmount = new wxStaticText(transactionPanel, wxID_STATIC, _("Amount"));
+    wxStaticText* amount_label = new wxStaticText(transactionPanel, wxID_STATIC, _("Amount"));
+    amount_label->SetFont(this->GetFont().Bold());
 
     textAmount_ = new mmTextCtrl(transactionPanel, ID_DIALOG_TRANS_TEXTAMOUNT, ""
         , wxDefaultPosition, wxSize(110, -1), wxALIGN_RIGHT|wxTE_PROCESS_ENTER
@@ -552,17 +553,21 @@ void mmBDDialog::CreateControls()
     amountSizer->Add(textAmount_, g_flagsH);
     amountSizer->Add(toTextAmount_, g_flagsH);
 
-    transPanelSizer->Add(staticTextAmount, g_flagsH);
+    transPanelSizer->Add(amount_label, g_flagsH);
     transPanelSizer->Add(amountSizer);
 
     // Account ------------------------------------------------
-    transPanelSizer->Add(new wxStaticText(transactionPanel, ID_DIALOG_TRANS_STATIC_ACCOUNT, _("Account")), g_flagsH);
+    wxStaticText* acc_label = new wxStaticText(transactionPanel, ID_DIALOG_TRANS_STATIC_ACCOUNT, _("Account"));
+    acc_label->SetFont(this->GetFont().Bold());
+    transPanelSizer->Add(acc_label, g_flagsH);
     bAccount_ = new wxButton(transactionPanel, ID_DIALOG_BD_COMBOBOX_ACCOUNTNAME, _("Select Account")
         , wxDefaultPosition, wxSize(230, -1));
     bAccount_->SetToolTip(_("Specify the Account that will own the recurring transaction"));
     transPanelSizer->Add(bAccount_, g_flagsH);
+
     // Payee ------------------------------------------------
-    wxStaticText* staticTextPayee = new wxStaticText(transactionPanel, ID_DIALOG_TRANS_STATIC_PAYEE, _("Payee"));
+    wxStaticText* payee_label = new wxStaticText(transactionPanel, ID_DIALOG_TRANS_STATIC_PAYEE, _("Payee"));
+    payee_label->SetFont(this->GetFont().Bold());
 
     bPayee_ = new wxButton(transactionPanel, ID_DIALOG_TRANS_BUTTONPAYEE, _("Select Payee")
         , wxDefaultPosition, wxSize(230, -1), 0);
@@ -570,7 +575,7 @@ void mmBDDialog::CreateControls()
 
     bPayee_->SetToolTip(payeeWithdrawalTip_);
 
-    transPanelSizer->Add(staticTextPayee, g_flagsH);
+    transPanelSizer->Add(payee_label, g_flagsH);
     transPanelSizer->Add(bPayee_, g_flagsH);
 
     // Split Category -------------------------------------------
@@ -583,12 +588,13 @@ void mmBDDialog::CreateControls()
     transPanelSizer->Add(cSplit_, g_flagsH);
 
     // Category ---------------------------------------------
-    wxStaticText* staticTextCategory = new wxStaticText( transactionPanel, wxID_STATIC, _("Category"));
+    wxStaticText* categ_label = new wxStaticText(transactionPanel, wxID_STATIC, _("Category"));
+    categ_label->SetFont(this->GetFont().Bold());
     bCategory_ = new wxButton(transactionPanel, ID_DIALOG_TRANS_BUTTONCATEGS, _("Select Category")
         , wxDefaultPosition, wxSize(230, -1), 0);
     //bCategory_->SetToolTip(_("Specify the category for this transaction"));
 
-    transPanelSizer->Add(staticTextCategory, g_flagsH);
+    transPanelSizer->Add(categ_label, g_flagsH);
     transPanelSizer->Add(bCategory_, g_flagsH);
 
     // Number ---------------------------------------------
@@ -722,7 +728,7 @@ void mmBDDialog::OnPayee(wxCommandEvent& /*event*/)
     {
         m_bill_data.PAYEEID = -1;
         mmSingleChoiceDialog scd(this, _("Account name"), _("Select Account")
-            , Model_Account::instance().all_checking_account_names());
+            , Model_Account::instance().all_checking_account_names(true));
         if (scd.ShowModal() == wxID_OK)
         {
             const wxString& acctName = scd.GetStringSelection();
@@ -730,41 +736,38 @@ void mmBDDialog::OnPayee(wxCommandEvent& /*event*/)
             if (to_acc) {
                 m_bill_data.TOACCOUNTID = to_acc->id();
                 bPayee_->SetLabelText(to_acc->ACCOUNTNAME);
-
-                toTextAmount_->SetValue(m_bill_data.TOTRANSAMOUNT, to_acc);
             }
         }
     }
     else
     {
         m_bill_data.TOACCOUNTID = -1;
-        mmPayeeDialog dlg(this,true);
+        mmPayeeDialog dlg(this, true);
+        dlg.DisableTools();
+        dlg.ShowModal();
 
-        if (dlg.ShowModal() == wxID_OK)
+        m_bill_data.PAYEEID = dlg.getPayeeId();
+        Model_Payee::Data* payee = Model_Payee::instance().get(m_bill_data.PAYEEID);
+        if (payee)
         {
-            m_bill_data.PAYEEID = dlg.getPayeeId();
-            Model_Payee::Data* payee = Model_Payee::instance().get(m_bill_data.PAYEEID);
-            if (payee)
+            bPayee_->SetLabelText(payee->PAYEENAME);
+            payeeUnknown_ = false;
+            // Only for new transactions: if user want to autofill last category used for payee.
+            // If this is a Split Transaction, ignore displaying last category for payee
+            if (payee->CATEGID != -1 && m_bill_data.local_splits.empty()
+                && Option::instance().TransCategorySelection() == Option::LASTUSED
+                && !categUpdated_ && m_bill_data.BDID == 0)
             {
-                bPayee_->SetLabelText(payee->PAYEENAME);
-                payeeUnknown_ = false;
-                // Only for new transactions: if user want to autofill last category used for payee.
-                // If this is a Split Transaction, ignore displaying last category for payee
-                if (payee->CATEGID != -1 && m_bill_data.local_splits.empty() 
-                    && Option::instance().TransCategorySelection() == Option::LASTUSED 
-                    && !categUpdated_ && m_bill_data.BDID == 0)
-                {
-                    m_bill_data.CATEGID = payee->CATEGID;
-                    m_bill_data.SUBCATEGID = payee->SUBCATEGID;
+                m_bill_data.CATEGID = payee->CATEGID;
+                m_bill_data.SUBCATEGID = payee->SUBCATEGID;
 
-                    bCategory_->SetLabelText(Model_Category::full_name(m_bill_data.CATEGID, m_bill_data.SUBCATEGID));
-                }
+                bCategory_->SetLabelText(Model_Category::full_name(m_bill_data.CATEGID, m_bill_data.SUBCATEGID));
             }
-            else
-            {
-                payeeUnknown_ = true;
-                resetPayeeString();
-            }
+        }
+        else
+        {
+            payeeUnknown_ = true;
+            resetPayeeString();
         }
     }
 }

@@ -93,10 +93,11 @@ public:
     int getColumnsNumber() { return COL_MAX; }
     int col_sort() { return COL_PAYMENT_DATE; }
 
-    static wxString GetFrequency(const Model_Billsdeposits::Data* item);
-    static wxString GetRemainingDays(const Model_Billsdeposits::Data* item);
+    const wxString GetFrequency(const Model_Billsdeposits::Data* item) const;
+    const wxString GetRemainingDays(const Model_Billsdeposits::Data* item) const;
 
     wxString BuildPage() const;
+    wxDate getToday() const;
 
 private:
     void CreateControls();
@@ -125,6 +126,7 @@ private:
     billsDepositsListCtrl* listCtrlAccount_;
     wxStaticText* m_infoText;
     wxStaticText* m_infoTextMini;
+    wxDate m_today;
 
     enum EColumn
     {
@@ -154,5 +156,8 @@ private:
 
     wxArrayString tips_;
 };
+
+inline wxDate mmBillsDepositsPanel::getToday() const { return m_today; }
+
 #endif
 

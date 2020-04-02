@@ -31,9 +31,9 @@ class mmPayeeDialog : public wxDialog
 
 public:
     mmPayeeDialog(wxWindow* parent, bool payee_choose, const wxString &name = "mmPayeeDialog");
-
-    int getPayeeId() const {return m_payee_id;}
-    bool getRefreshRequested() const {return refreshRequested_;}
+    void DisableTools();
+    int getPayeeId() const;
+    bool getRefreshRequested() const;
 
 private:
     enum cols
@@ -55,6 +55,7 @@ private:
 
     wxDataViewListCtrl* payeeListBox_;
     wxSearchCtrl* m_maskTextCtrl;
+    wxBitmapButton* m_magicButton;
 
     int m_payee_id;
     int m_payee_rename;
@@ -63,6 +64,7 @@ private:
     bool refreshRequested_;
     std::map<int, wxString> ColName_;
 
+private:
     mmPayeeDialog() : m_payee_id(-1), refreshRequested_(false) {}
 
     void Create(wxWindow* parent, const wxString &name);
@@ -89,5 +91,9 @@ private:
 
     bool debug_;
 };
+
+inline void mmPayeeDialog::DisableTools() { m_magicButton->Disable(); }
+inline int mmPayeeDialog::getPayeeId() const { return m_payee_id; }
+inline bool mmPayeeDialog::getRefreshRequested() const { return refreshRequested_; }
 
 #endif // MM_EX_PAYEEDIALOG_H_

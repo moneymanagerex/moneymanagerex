@@ -236,10 +236,8 @@ void Model_Billsdeposits::decode_fields(const Data& q1)
         m_allowExecution = true;
     }
 
-    if (this->daysPayment(&q1) < 1)
-    {
-        m_requireExecution = true;
-    }
+    m_requireExecution = (Model_Billsdeposits::NEXTOCCURRENCEDATE(&q1)
+        .Subtract(wxDate::Today()).GetDays() < 1);
 }
 
 bool Model_Billsdeposits::autoExecuteManual()
@@ -312,32 +310,6 @@ bool Model_Billsdeposits::AllowTransaction(const Data& r, AccountBalance& bal)
 	}
 
     return !abort_transaction;
-}
-
-int Model_Billsdeposits::daysPayment(const Data* r)
-{
-    const wxDate& payment_date = Model_Billsdeposits::NEXTOCCURRENCEDATE(r);
-    wxTimeSpan ts = payment_date.Subtract(wxDateTime::Now());
-    int daysRemaining = ts.GetDays();
-    int minutesRemaining = ts.GetMinutes();
-
-    if (minutesRemaining > 0)
-        daysRemaining += 1;
-
-    return daysRemaining;
-}
-
-int Model_Billsdeposits::daysOverdue(const Data* r)
-{
-    const wxDate& overdue_date = Model_Billsdeposits::TRANSDATE(r);
-    wxTimeSpan ts = overdue_date.Subtract(wxDateTime::Now());
-    int daysRemaining = ts.GetDays();
-    int minutesRemaining = ts.GetMinutes();
-
-    if (minutesRemaining > 0)
-        daysRemaining += 1;
-
-    return daysRemaining;
 }
 
 void Model_Billsdeposits::completeBDInSeries(int bdID)

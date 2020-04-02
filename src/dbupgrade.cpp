@@ -97,13 +97,6 @@ bool dbUpgrade::InitializeVersion(wxSQLite3Database* db, int version)
     }
 }
 
-bool dbUpgrade::CheckUpgradeDB(wxSQLite3Database * db)
-{
-    int ver = GetCurrentVersion(db);
-
-    return (ver != dbLatestVersion) ? true : false;
-}
-
 bool dbUpgrade::UpgradeDB(wxSQLite3Database * db, const wxString& DbFileName)
 {
     int ver = GetCurrentVersion(db);

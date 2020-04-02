@@ -33,11 +33,13 @@ class dbUpgrade
     static bool UpgradeToVersion(wxSQLite3Database * db, int version);
 public:
     static bool InitializeVersion(wxSQLite3Database* db, int version = dbLatestVersion);
-    static bool CheckUpgradeDB(wxSQLite3Database* db);
+    static bool isUpgradeDBrequired(wxSQLite3Database* db);
     static bool UpgradeDB(wxSQLite3Database* db, const wxString& DbFileName);
     static void BackupDB(const wxString& Filename, int BackupType, int FilesToKeep, int UpgradeVersion = 0);
     enum BACKUPTYPE { START = 0, CLOSE, VERSION_UPGRADE };
     static void SqlFileDebug(wxSQLite3Database * db);
 };
+
+inline bool dbUpgrade::isUpgradeDBrequired(wxSQLite3Database * db) { return GetCurrentVersion(db) != dbLatestVersion; }
 
 #endif // MM_EX_DBUPGRADE_H_
