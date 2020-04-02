@@ -271,19 +271,28 @@ void dbUpgrade::SqlFileDebug(wxSQLite3Database * db)
     else if (txtFile.GetFirstLine().Contains("-- MMEX Debug SQL - Update --"))
     {
         db->Savepoint("MMEX_Debug");
-        wxString txtLine;
+        wxString txtLine, sql;
         for (txtLine = txtFile.GetNextLine(); !txtFile.Eof(); txtLine = txtFile.GetNextLine())
         {
-            try
+            txtLine.Trim();
+            if (!txtLine.empty() && !txtLine.StartsWith("--"))
+                sql += sql.empty() ? txtLine : "\n" + txtLine;
+
+            if (sql.EndsWith(";"))
             {
-                wxSQLite3Statement stmt = db->PrepareStatement(txtLine);
-                stmt.ExecuteUpdate();
-            }
-            catch (const wxSQLite3Exception& e)
-            {
-                wxMessageBox(_("Query error, please contact MMEX support!") + "\n\n" + e.GetMessage(), _("MMEX debug error"), wxOK | wxICON_ERROR);
-                db->Rollback("MMEX_Debug");
-                return;
+                wxLogDebug("%s", sql);
+                try
+                {
+                    wxSQLite3Statement stmt = db->PrepareStatement(sql);
+                    sql = "";
+                    stmt.ExecuteUpdate();
+                }
+                catch (const wxSQLite3Exception& e)
+                {
+                    wxMessageBox(_("Query error, please contact MMEX support!") + "\n\n" + e.GetMessage(), _("MMEX debug error"), wxOK | wxICON_ERROR);
+                    db->Rollback("MMEX_Debug");
+                    return;
+                }
             }
         }
         db->ReleaseSavepoint("MMEX_Debug");
