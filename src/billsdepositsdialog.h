@@ -1,6 +1,7 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
- Copyright (C) 2016 Nikolay & Stefano Giorgio
+ Copyright (C) 2016 Stefano Giorgio
+ Copyright (C) 2016 Nikolay Akimov
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -20,15 +21,19 @@
 #ifndef MM_EX_BDDIALOG_H_
 #define MM_EX_BDDIALOG_H_
 
-#include "defs.h"
-#include <wx/spinbutt.h>
 #include <wx/dialog.h>
-#include "mmTextCtrl.h"
-#include "splittransactionsdialog.h"
-#include "model/Model_Budgetsplittransaction.h"
 #include "model/Model_Billsdeposits.h"
-
+#include "model/Model_Checking.h"
 class wxDatePickerCtrl;
+class wxSpinButton;
+class wxSpinEvent;
+class wxStaticText;
+class mmTextCtrl;
+class wxCalendarCtrl;
+class wxCalendarEvent;
+class wxCheckBox;
+class wxChoice;
+class wxBitmapButton;
 
 class mmBDDialog : public wxDialog
 {
@@ -64,7 +69,6 @@ private:
     void OnTo(wxCommandEvent& event);
     void OnTypeChanged(wxCommandEvent& event);
     void OnAttachments(wxCommandEvent& event);
-    void OnResetDatePaid(wxCommandEvent& WXUNUSED(event));
 
     void dataToControls();
     void updateControlsForTransType();
@@ -73,7 +77,6 @@ private:
     void OnSplitChecked(wxCommandEvent& event);
     void OnAutoExecutionUserAckChecked(wxCommandEvent& event);
     void OnAutoExecutionSilentChecked(wxCommandEvent& event);
-    void OnCalendarSelChanged(wxCalendarEvent& event);
     void OnTextEntered(wxCommandEvent& event);
     int transID_;
 
@@ -100,9 +103,7 @@ private:
 
     wxDatePickerCtrl* m_date_paid;      // Stored in ::NEXTOCCURRENCEDATE
     wxDatePickerCtrl* m_date_due;       // Stored in ::TRANSDATE
-    wxBitmapButton* m_apply_due_date;
-    wxCalendarCtrl* m_calendar_ctrl;
-    wxChoice* itemRepeats_;
+    wxChoice* m_choice_repeat;
     wxCheckBox* itemCheckBoxAutoExeUserAck_;
     wxCheckBox* itemCheckBoxAutoExeSilent_;
     bool autoExecuteUserAck_;
@@ -115,38 +116,37 @@ private:
     int prevType_;
     std::vector<wxString> frequentNotes_;
 
-    wxString payeeWithdrawalTip_;
-    wxString amountNormalTip_;
-    wxString amountTransferTip_;
+    const wxString payeeWithdrawalTip_ = _("Specify where the transaction is going to");
+    const wxString payeeDepositTip_ = _("Specify where the transaction is coming from");
+    const wxString payeeTransferTip_ = _("Specify which account the transfer is going to");
+    const wxString amountNormalTip_ = _("Specify the amount for this transaction");
+    const wxString amountTransferTip_ = _("Specify the amount to be transferred");
     wxSpinButton* spinNextOccDate_;
     wxSpinButton* spinTransDate_;
-    Model_Currency::Data *m_currency;
 
-    void setToolTipsForType(Model_Billsdeposits::TYPE transType, bool enableAdvanced = false);
     void resetPayeeString();
     void setTooltips();
     void setCategoryLabel();
+    void OnPaidDateChanged(wxDateEvent& event);
+    void OnDueDateChanged(wxDateEvent& event);
     void OnAdvanceChecked(wxCommandEvent& event);
     void SetTransferControls(bool transfers = false);
     void SetAdvancedTransferControls(bool advanced = false);
     void SetSplitControls(bool split = false);
-    void OnTransDateForward(wxSpinEvent& event);
-    void OnTransDateBack(wxSpinEvent& event);
-    void OnNextOccurDateForward(wxSpinEvent& event);
-    void OnNextOccurDateBack(wxSpinEvent& event);
-    void SetNewDate(wxDatePickerCtrl* dpc, bool forward = true);
+    void OnSpinEventPaid(wxSpinEvent& event);
+    void OnSpinEventDue(wxSpinEvent& event);
     void OnFrequentUsedNotes(wxCommandEvent& event);
     void onNoteSelected(wxCommandEvent& event);
 
     wxStaticText* staticTimesRepeat_;
     wxStaticText* staticTextRepeats_;
-    wxButton* m_btn_due_date;
+    wxBitmapButton* m_btn_due_date;
     void OnRepeatTypeChanged(wxCommandEvent& event);
     void OnsetNextRepeatDate(wxCommandEvent& event);
-    void OnPeriodChange(wxCommandEvent& event);
     void setRepeatDetails();
 
     void activateSplitTransactionsDlg();
+    static const std::vector<std::pair<int, wxString> > BILLSDEPOSITS_REPEATS;
 
     enum
     {
@@ -177,6 +177,7 @@ private:
         ID_DIALOG_BD_CHECKBOX_AUTO_EXECUTE_USERACK,
         ID_DIALOG_BD_CHECKBOX_AUTO_EXECUTE_SILENT,
         ID_DIALOG_BD_CALENDAR,
+        ID_DIALOG_BD_DUE_DATE,
         ID_DIALOG_BD_REPEAT_DATE_SPINNER,
         ID_PANEL_REPORTS_HTMLWINDOW,
         ID_PANEL_REPORTS_HEADER_PANEL,

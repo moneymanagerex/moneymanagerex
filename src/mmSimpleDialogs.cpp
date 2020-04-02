@@ -172,7 +172,7 @@ void mmErrorDialogs::InvalidFile(wxWindow *object, bool open)
     tip.ShowFor(object);
 }
 
-void mmErrorDialogs::InvalidAccount(wxWindow *object, bool transfer)
+void mmErrorDialogs::InvalidAccount(wxWindow *object, bool transfer, TOOL_TIP tm)
 {
     const wxString& errorHeader = _("Invalid Account");
     wxString errorMessage;
@@ -182,6 +182,10 @@ void mmErrorDialogs::InvalidAccount(wxWindow *object, bool transfer)
         errorMessage = _("Please specify which account the transfer is going to.");
 
     wxString errorTips = _("Selection can be made by using the dropdown button.");
+    if (tm == TOOL_TIP::MESSAGE_POPUP_BOX)
+    {
+        errorTips = _("Activating the button will provide a selection box where the account can be selected.");
+    }
     errorMessage = errorMessage + "\n\n" + errorTips + "\n";
 
     wxRichToolTip tip(errorHeader, errorMessage);

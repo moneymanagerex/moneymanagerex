@@ -222,15 +222,20 @@ void mmGUIFrame::updateReportNavigation(wxTreeItemId& reports, wxTreeItemId& bud
 
     ///////////////////////////////////////////////////////////////////
 
-    wxTreeItemId stocksReport = m_nav_tree_ctrl->AppendItem(reports
-        , _("Stocks Report"), img::PIECHART_PNG, img::PIECHART_PNG);
-    m_nav_tree_ctrl->SetItemData(stocksReport, new mmTreeItemData("Stocks Report",
-        new mmReportChartStocks()));
+    Model_Account::Data_Set investments_account = Model_Account::instance().find(
+        Model_Account::ACCOUNTTYPE(Model_Account::all_type()[Model_Account::INVESTMENT], EQUAL));
+    if (!investments_account.empty())
+    {
+        wxTreeItemId stocksReport = m_nav_tree_ctrl->AppendItem(reports
+            , _("Stocks Report"), img::PIECHART_PNG, img::PIECHART_PNG);
+        m_nav_tree_ctrl->SetItemData(stocksReport, new mmTreeItemData("Stocks Report",
+            new mmReportChartStocks()));
 
-    wxTreeItemId stocksReportSummary = m_nav_tree_ctrl->AppendItem(stocksReport
-        , _("Summary"), img::PIECHART_PNG, img::PIECHART_PNG);
-    m_nav_tree_ctrl->SetItemData(stocksReportSummary, new mmTreeItemData("Summary of Stocks"
-        , new mmReportSummaryStocks()));
+        wxTreeItemId stocksReportSummary = m_nav_tree_ctrl->AppendItem(stocksReport
+            , _("Summary"), img::PIECHART_PNG, img::PIECHART_PNG);
+        m_nav_tree_ctrl->SetItemData(stocksReportSummary, new mmTreeItemData("Summary of Stocks"
+            , new mmReportSummaryStocks()));
+    }
 
     //////////////////////////////////////////////////////////////////
     
