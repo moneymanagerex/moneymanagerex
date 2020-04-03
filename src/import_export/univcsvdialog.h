@@ -119,6 +119,8 @@ public:
     }
 
 private:
+    wxButton* itemButton_Import_;
+
     enum EUnivCvs
     {
         UNIV_CSV_DATE = 0,
@@ -150,6 +152,7 @@ private:
         wxString Notes;
         bool valid = true;
     };
+private:
     EDialogType dialogType_;
     wxString delimit_;
     wxString decimal_;
@@ -163,6 +166,7 @@ private:
     wxChoice* m_choice_account_;
     wxListCtrl* m_list_ctrl_; //preview
     wxTextCtrl* m_text_ctrl_;
+    wxTextCtrl* m_setting_name_ctrl_;
     wxTextCtrl* log_field_;
     wxTextCtrl* m_textDelimiter;
     wxStaticBox* m_rowSelectionStaticBox_;
@@ -170,7 +174,7 @@ private:
     wxSpinCtrl* m_spinIgnoreLastRows_;
 
     std::map<int, wxString> CSVFieldName_;
-
+private:
     wxChoice* choiceDateFormat_;
     wxChoice* m_choiceEncoding;
     wxString date_format_;
@@ -193,7 +197,7 @@ private:
                 const wxPoint& pos = SYMBOL_UNIVCSVDIALOG_POSITION,
                 const wxSize& size = SYMBOL_UNIVCSVDIALOG_SIZE,
                 long style = SYMBOL_UNIVCSVDIALOG_STYLE);
-
+private:
     /// Creates the controls and sizers
     void CreateControls();
     void OnAdd(wxCommandEvent& event);
@@ -204,7 +208,7 @@ private:
     bool isIndexPresent(int index) const;
     const wxString getCSVFieldName(int index) const;
     void parseToken(int index, const wxString& token, tran_holder & holder);
-    void OnSave(wxCommandEvent& event);
+    void OnSettingsSave(wxCommandEvent& event);
     void OnMoveUp(wxCommandEvent& event);
     void OnMoveDown(wxCommandEvent& event);
     void OnStandard(wxCommandEvent& event);
@@ -215,10 +219,10 @@ private:
     void OnButtonClear(wxCommandEvent& event);
     void OnFileNameEntered(wxCommandEvent& event);
     void OnFileNameChanged(wxCommandEvent& event);
-    void OnDateFormatChanged(wxCommandEvent& event);
+    void OnChoiceChanged(wxCommandEvent& event);
     void changeFocus(wxChildFocusEvent& event);
     void OnSpinCtrlIgnoreRows(wxSpinEvent& event);
-
+private:
     void OnLoad();
     void UpdateListItemBackground();
     void update_preview();

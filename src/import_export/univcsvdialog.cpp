@@ -53,13 +53,13 @@ EVT_BUTTON(wxID_ADD, mmUnivCSVDialog::OnAdd)
 EVT_BUTTON(ID_UNIVCSVBUTTON_IMPORT, mmUnivCSVDialog::OnImport)
 EVT_BUTTON(ID_UNIVCSVBUTTON_EXPORT, mmUnivCSVDialog::OnExport)
 EVT_BUTTON(wxID_REMOVE, mmUnivCSVDialog::OnRemove)
-EVT_BUTTON(wxID_SAVEAS, mmUnivCSVDialog::OnSave)
+EVT_BUTTON(wxID_SAVEAS, mmUnivCSVDialog::OnSettingsSave)
 EVT_BUTTON(wxID_UP, mmUnivCSVDialog::OnMoveUp)
 EVT_BUTTON(wxID_DOWN, mmUnivCSVDialog::OnMoveDown)
 EVT_BUTTON(wxID_STANDARD, mmUnivCSVDialog::OnStandard)
 EVT_BUTTON(wxID_BROWSE, mmUnivCSVDialog::OnBrowse)
 EVT_LISTBOX_DCLICK(wxID_ANY, mmUnivCSVDialog::OnListBox)
-EVT_CHOICE(ID_DATE_FORMAT, mmUnivCSVDialog::OnDateFormatChanged)
+EVT_CHOICE(wxID_ANY, mmUnivCSVDialog::OnChoiceChanged)
 wxEND_EVENT_TABLE()
 
 //----------------------------------------------------------------------------
@@ -77,6 +77,7 @@ mmUnivCSVDialog::mmUnivCSVDialog(
 ) :
     dialogType_(dialogType),
     delimit_(","),
+    itemButton_Import_(nullptr),
     csvFieldCandicate_(nullptr),
     csvListBox_(nullptr),
     m_button_add_(nullptr),
@@ -84,6 +85,7 @@ mmUnivCSVDialog::mmUnivCSVDialog(
     m_choice_account_(nullptr),
     m_list_ctrl_(nullptr),
     m_text_ctrl_(nullptr),
+    m_setting_name_ctrl_(nullptr),
     log_field_(nullptr),
     m_textDelimiter(nullptr),
     m_rowSelectionStaticBox_(nullptr),
@@ -162,7 +164,8 @@ void mmUnivCSVDialog::CreateControls()
     itemStaticText5->SetFont(staticBoxFontSetting);
 
     m_text_ctrl_ = new wxTextCtrl(itemPanel6
-        , ID_FILE_NAME, wxEmptyString, wxDefaultPosition, wxSize(300, -1), wxTE_PROCESS_ENTER);
+        , ID_FILE_NAME, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_PROCESS_ENTER);
+    m_text_ctrl_->SetMinSize(wxSize(300, -1));
     itemBoxSizer7->Add(m_text_ctrl_, 1, wxALL | wxGROW, 5);
     m_text_ctrl_->Connect(ID_FILE_NAME
         , wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler(mmUnivCSVDialog::OnFileNameChanged), nullptr, this);
@@ -187,9 +190,13 @@ void mmUnivCSVDialog::CreateControls()
         , wxID_APPLY, "", wxDefaultPosition, wxDefaultSize
         , sizeof(settings_choice) / sizeof(wxString)
         , settings_choice, 10, wxRA_SPECIFY_COLS);
-    itemBoxSizer76->Add(radio_box, wxSizerFlags(g_flagsH).Center().Proportion(1));
+    itemBoxSizer76->Add(radio_box, wxSizerFlags(g_flagsH).Center().Proportion(0));
     radio_box->Connect(wxID_APPLY, wxEVT_COMMAND_RADIOBOX_SELECTED
         , wxCommandEventHandler(mmUnivCSVDialog::OnSettingsSelected), nullptr, this);
+
+    m_setting_name_ctrl_ = new wxTextCtrl(itemPanel67, ID_FILE_NAME);
+    itemBoxSizer76->Add(m_setting_name_ctrl_, wxSizerFlags(g_flagsH).Center().Proportion(1));
+    m_setting_name_ctrl_->SetToolTip(_("Template name"));
 
     wxBitmapButton* itemButton_Save = new wxBitmapButton(itemPanel67
         , wxID_SAVEAS, mmBitmap(png::SAVEAS));
@@ -275,9 +282,9 @@ void mmUnivCSVDialog::CreateControls()
     flex_sizer->Add(itemStaticText6, g_flagsH);
     itemStaticText6->SetFont(staticBoxFontSetting);
 
-    m_choice_account_ = new wxChoice(itemPanel7, wxID_ACCOUNT, wxDefaultPosition, wxSize(210, -1)
+    m_choice_account_ = new wxChoice(itemPanel7, wxID_ACCOUNT, wxDefaultPosition, wxDefaultSize
         , Model_Account::instance().all_checking_account_names(), 0);
-    m_choice_account_->SetSelection(0);
+    m_choice_account_->SetMinSize(wxSize(210, -1));
     flex_sizer->Add(m_choice_account_, g_flagsH);
 
     wxStaticLine*  m_staticline2 = new wxStaticLine(this
@@ -398,10 +405,11 @@ void mmUnivCSVDialog::CreateControls()
 
     if (IsImporter())
     {
-        wxButton* itemButton_Import = new wxButton(itemPanel5, ID_UNIVCSVBUTTON_IMPORT, _("&Import")
+        itemButton_Import_ = new wxButton(itemPanel5, ID_UNIVCSVBUTTON_IMPORT, _("&Import")
             , wxDefaultPosition, wxDefaultSize, 0);
-        itemBoxSizer6->Add(itemButton_Import, 0, wxALIGN_CENTER | wxALL, 5);
-        itemButton_Import->SetToolTip(_("Import File"));
+        itemBoxSizer6->Add(itemButton_Import_, 0, wxALIGN_CENTER | wxALL, 5);
+        itemButton_Import_->SetToolTip(_("Import File"));
+        itemButton_Import_->Disable();
     }
     else
     {
@@ -467,14 +475,21 @@ wxString mmUnivCSVDialog::GetStoredSettings(int id)
 
 void mmUnivCSVDialog::SetSettings(const wxString &json_data)
 {
+    if (json_data.empty()) return;
+
     Document json_doc;
     if (json_doc.Parse(json_data.c_str()).HasParseError()) {
         json_doc.Parse("{}");
     }
 
+    //Setting name
+    Value& template_name = GetValueByPointerWithDefault(json_doc, "/SETTING_NAME", "");
+    const wxString setting_name = wxString::FromUTF8(template_name.IsString() ? template_name.GetString() : "");
+    m_setting_name_ctrl_->ChangeValue(setting_name);
+
     //Date Mask
     Value& date_mask = GetValueByPointerWithDefault(json_doc, "/DATE_MASK", "");
-    const wxString df = date_mask.IsString() ? date_mask.GetString() : "";
+    const wxString df = wxString::FromUTF8(date_mask.IsString() ? date_mask.GetString() : "");
     if (!df.empty())
     {
         const auto m = g_date_formats_map();
@@ -492,12 +507,12 @@ void mmUnivCSVDialog::SetSettings(const wxString &json_data)
 
     //File
     Value& file_name = GetValueByPointerWithDefault(json_doc, "/FILE_NAME", "");
-    const auto fn = file_name.IsString() ? file_name.GetString() : "";
+    const auto fn = wxString::FromUTF8(file_name.IsString() ? file_name.GetString() : "");
     m_text_ctrl_->ChangeValue(fn);
 
     // Account
     Value& account_name = GetValueByPointerWithDefault(json_doc, "/ACCOUNT_NAME", "");
-    const wxString& an = account_name.IsString() ? account_name.GetString() : "";
+    const wxString& an = wxString::FromUTF8(account_name.IsString() ? account_name.GetString() : "");
     if (!an.empty())
     {
         int itemIndex = m_choice_account_->FindString(an);
@@ -530,6 +545,11 @@ void mmUnivCSVDialog::SetSettings(const wxString &json_data)
         decimal_ = d;
         m_choiceDecimalSeparator->SetDecimalChar(decimal_);
     }
+
+    //Encoding
+    Value& v_encoding = GetValueByPointerWithDefault(json_doc, "/ENCODING", "");
+    const wxString e = wxString::FromUTF8(v_encoding.IsString() ? v_encoding.GetString() : "");
+    m_choiceEncoding->SetStringSelection(wxGetTranslation(e));
 
     //CSV fields
     csvFieldOrder_.clear();
@@ -699,7 +719,7 @@ void mmUnivCSVDialog::OnLoad()
 }
 
 //Saves the field order to a template file
-void mmUnivCSVDialog::OnSave(wxCommandEvent& WXUNUSED(event))
+void mmUnivCSVDialog::OnSettingsSave(wxCommandEvent& WXUNUSED(event))
 {
     StringBuffer json_buffer;
     PrettyWriter<StringBuffer> json_writer(json_buffer);
@@ -709,6 +729,20 @@ void mmUnivCSVDialog::OnSave(wxCommandEvent& WXUNUSED(event))
     int id = c->GetSelection();
     const wxString& settingsPrefix = GetSettingsPrfix();
     const wxString& setting_id = wxString::Format(settingsPrefix + "%d", id);
+
+    const auto fileName = m_text_ctrl_->GetValue();
+    if (!fileName.empty())
+    {
+        json_writer.Key("FILE_NAME");
+        json_writer.String(fileName.c_str());
+    }
+
+    const auto s_name = m_setting_name_ctrl_->GetValue();
+    if (!s_name.empty())
+    {
+        json_writer.Key("SETTING_NAME");
+        json_writer.String(s_name.c_str());
+    }
 
     const auto an = m_choice_account_->GetStringSelection();
     if (!an.empty())
@@ -731,11 +765,12 @@ void mmUnivCSVDialog::OnSave(wxCommandEvent& WXUNUSED(event))
     json_writer.Key("DECIMAL");
     json_writer.String(decimal.c_str());
 
-    const auto fileName = m_text_ctrl_->GetValue();
-    if (!fileName.empty())
+
+    const auto encoding = g_encoding.at(m_choiceEncoding->GetSelection()).second;
+    if (!encoding.empty())
     {
-        json_writer.Key("FILE_NAME");
-        json_writer.String(fileName.c_str());
+        json_writer.Key("ENCODING");
+        json_writer.String(encoding.c_str());
     }
 
     if (IsImporter())
@@ -1639,7 +1674,7 @@ void mmUnivCSVDialog::OnFileNameEntered(wxCommandEvent& event)
     this->GetEventHandler()->AddPendingEvent(evt);
 }
 
-void mmUnivCSVDialog::OnDateFormatChanged(wxCommandEvent& event)
+void mmUnivCSVDialog::OnChoiceChanged(wxCommandEvent& event)
 {
     int sel = event.GetInt();
     if (sel == wxNOT_FOUND)
@@ -1657,6 +1692,9 @@ void mmUnivCSVDialog::OnDateFormatChanged(wxCommandEvent& event)
         Model_Account::Data* account = Model_Account::instance().get(acctName);
         Model_Currency::Data* currency = Model_Account::currency(account);
         *log_field_ << _("Currency:") << " " << wxGetTranslation(currency->CURRENCYNAME) << "\n";
+        if (account) {
+            itemButton_Import_->Enable();
+        }
     }
     else if (i == ID_ENCODING)
     {
