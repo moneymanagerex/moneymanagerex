@@ -44,8 +44,9 @@ mmAppStartDialog::mmAppStartDialog(wxWindow* parent, const wxString& name)
     , m_buttonExit(nullptr)
 {
     wxString caption = wxString::Format(_("%1$s - %2$s"), mmex::getProgramName(), mmex::getTitleProgramVersion());
-    long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX;
-    Create(parent, wxID_ANY, caption, wxDefaultPosition, wxSize(400, 300), style, name);
+    long style = wxCAPTION | wxRESIZE_BORDER | wxSYSTEM_MENU | wxCLOSE_BOX;
+    Create(parent, wxID_ANY, caption, wxDefaultPosition, wxDefaultSize, style, name);
+    SetMinSize(wxSize(400, 300));
 }
 
 bool mmAppStartDialog::Create(wxWindow* parent, wxWindowID id, const wxString& caption

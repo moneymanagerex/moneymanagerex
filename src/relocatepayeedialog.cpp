@@ -50,7 +50,8 @@ relocatePayeeDialog::relocatePayeeDialog(wxWindow* parent, int source_payee_id)
 
     long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX;
 
-    Create(parent, wxID_STATIC, _("Relocate Payee Dialog"), wxDefaultPosition, wxSize(500, 300), style);
+    Create(parent, wxID_STATIC, _("Relocate Payee Dialog"), wxDefaultPosition, wxDefaultSize, style);
+    SetMinSize(wxSize(500, 300));
 }
 
 bool relocatePayeeDialog::Create(wxWindow* parent

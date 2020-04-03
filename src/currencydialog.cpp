@@ -75,7 +75,8 @@ mmCurrencyDialog::mmCurrencyDialog(wxWindow* parent, const Model_Currency::Data 
     }
 
     long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX;
-    Create(parent, wxID_STATIC, _("Currency Manager"), wxDefaultPosition, wxSize(500, 300), style);
+    Create(parent, wxID_STATIC, _("Currency Manager"), wxDefaultPosition, wxDefaultSize, style);
+    SetMinSize(wxSize(500, 300));
 }
 
 bool mmCurrencyDialog::Create(wxWindow* parent, wxWindowID id

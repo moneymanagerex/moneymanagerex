@@ -504,7 +504,7 @@ const wxString mmBillsDepositsPanel::GetRemainingDays(const Model_Billsdeposits:
         .Subtract(this->getToday()).GetDays();
     int daysOverdue = Model_Billsdeposits::TRANSDATE(item)
         .Subtract(this->getToday()).GetDays();
-    wxString text = wxString::Format(_("%d days remaining"), daysRemaining);
+    wxString text = wxString::Format(wxPLURAL("%d day remaining", "%d days remaining", daysRemaining), daysRemaining);
 
     if (daysRemaining == 0)
     {
@@ -514,14 +514,14 @@ const wxString mmBillsDepositsPanel::GetRemainingDays(const Model_Billsdeposits:
 
     if (daysRemaining < 0)
     {
-        text = wxString::Format(_("%d days delay!"), std::abs(daysRemaining));
+        text = wxString::Format(wxPLURAL("%d day delay!", "%d days delay!", -daysRemaining), -daysRemaining);
         if (((repeats > 10) && (repeats < 15)) && (item->NUMOCCURRENCES < 0))
             text = _("Inactive");
     }
 
     if (daysOverdue < 0)
     {
-        text = wxString::Format(_("%d days overdue!"), std::abs(daysOverdue));
+        text = wxString::Format(wxPLURAL("%d day overdue!", "%d days overdue!", -daysOverdue), -daysOverdue);
         if (((repeats > 10) && (repeats < 15)) && (item->NUMOCCURRENCES < 0))
             text = _("Inactive");
     }
@@ -571,7 +571,7 @@ int billsDepositsListCtrl::OnGetItemImage(long item) const
 
     int daysRemaining = Model_Billsdeposits::NEXTOCCURRENCEDATE(m_bdp->bills_[item])
         .Subtract(m_bdp->getToday()).GetDays();
-    wxString daysRemainingStr = wxString::Format(_("%d days remaining"), daysRemaining);
+    wxString daysRemainingStr = wxString::Format(wxPLURAL("%d day remaining", "%d days remaining", daysRemaining), daysRemaining);
 
     if (daysRemaining == 0)
     {
@@ -581,7 +581,7 @@ int billsDepositsListCtrl::OnGetItemImage(long item) const
 
     if (daysRemaining < 0)
     {
-        daysRemainingStr = wxString::Format(_("%d days overdue!"), std::abs(daysRemaining));
+        daysRemainingStr = wxString::Format(wxPLURAL("%d day overdue!", "%d days overdue!", std::abs(daysRemaining)), std::abs(daysRemaining));
         if (((repeats > 10) && (repeats < 15)) && (m_bdp->bills_[item].NUMOCCURRENCES < 0))
             daysRemainingStr = _("Inactive");
     }

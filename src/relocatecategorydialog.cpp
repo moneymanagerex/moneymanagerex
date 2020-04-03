@@ -50,7 +50,8 @@ relocateCategoryDialog::relocateCategoryDialog(wxWindow* parent
     m_changedRecords =  0;
 
     long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX;
-    Create(parent, wxID_ANY, _("Relocate Category Dialog"), wxDefaultPosition, wxSize(500, 300), style);
+    Create(parent, wxID_ANY, _("Relocate Category Dialog"), wxDefaultPosition, wxDefaultSize, style);
+    SetMinSize(wxSize(500, 300));
 }
 
 bool relocateCategoryDialog::Create(wxWindow* parent

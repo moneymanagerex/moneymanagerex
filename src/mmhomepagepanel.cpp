@@ -346,10 +346,10 @@ wxString htmlWidgetBillsAndDeposits::getHTMLText()
         int daysOverdue = Model_Billsdeposits::TRANSDATE(&entry)
             .Subtract(today).GetDays();
         wxString daysRemainingStr = (daysPayment > 0
-            ? wxString::Format(_("%d days remaining"), daysPayment)
-            : wxString::Format(_("%d days delay!"), std::abs(daysPayment)));
+            ? wxString::Format(wxPLURAL("%d day remaining", "%d days remaining", daysPayment), daysPayment)
+            : wxString::Format(wxPLURAL("%d day delay!", "%d days delay!", -daysPayment), -daysPayment));
         if (daysOverdue < 0)
-            daysRemainingStr = wxString::Format(_("%d days overdue!"), std::abs(daysOverdue));
+            daysRemainingStr = wxString::Format(wxPLURAL("%d day overdue!", "%d days overdue!", std::abs(daysOverdue)), std::abs(daysOverdue));
 
         wxString payeeStr = "";
         if (Model_Billsdeposits::type(entry) == Model_Billsdeposits::TRANSFER)
@@ -683,7 +683,6 @@ void mmHomePagePanel::getExpensesIncomeStats(std::map<int, std::pair<double, dou
             continue;
 
         // We got this far, get the currency conversion rate for this account
-        Model_Account::Data *account = Model_Account::instance().get(pBankTransaction.ACCOUNTID);
         double convRate = Model_CurrencyHistory::getDayRate(Model_Account::instance().get(pBankTransaction.ACCOUNTID)->CURRENCYID, pBankTransaction.TRANSDATE);
 
         int idx = pBankTransaction.ACCOUNTID;
@@ -940,7 +939,7 @@ void mmHomePagePanel::OnLinkClicked(wxWebViewEvent& event)
 		Document::AllocatorType& json_allocator = json_doc.GetAllocator();
 		wxLogDebug("RapidJson Input\n%s", JSON_PrettyFormated(json_doc));
 
-		const wxString type[] = { "TOP_CATEGORIES", "INVEST", "ACCOUNTS_INFO","CARD_ACCOUNTS_INFO" ,"CASH_ACCOUNTS_INFO", "LOAN_ACCOUNTS_INFO", "TERM_ACCOUNTS_INFO" , "CRYPTO_WALLETS_INFO" };
+        const wxString type[] = { "TOP_CATEGORIES", "INVEST", "ACCOUNTS_INFO", "CARD_ACCOUNTS_INFO", "CASH_ACCOUNTS_INFO", "LOAN_ACCOUNTS_INFO", "TERM_ACCOUNTS_INFO" };
 
 		for (const auto& entry : type)
 		{

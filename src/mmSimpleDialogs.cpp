@@ -85,7 +85,8 @@ mmDialogComboBoxAutocomplete::mmDialogComboBoxAutocomplete(wxWindow *parent, con
     Message(message)
 {
     long style = wxCAPTION | wxRESIZE_BORDER | wxCLOSE_BOX;
-    Create(parent, wxID_STATIC, caption, wxDefaultPosition, wxSize(300, 100), style);
+    Create(parent, wxID_STATIC, caption, wxDefaultPosition, wxDefaultSize, style);
+    SetMinSize(wxSize(300, 100));
 }
 
 bool mmDialogComboBoxAutocomplete::Create(wxWindow* parent, wxWindowID id,
@@ -101,7 +102,8 @@ bool mmDialogComboBoxAutocomplete::Create(wxWindow* parent, wxWindowID id,
     wxStaticText* headerText = new wxStaticText(this, wxID_STATIC, Message);
     Sizer->Add(headerText, flags);
     Sizer->AddSpacer(15);
-    cbText_ = new wxComboBox(this, wxID_STATIC, Default, wxDefaultPosition, wxSize(150, -1), Choices);
+    cbText_ = new wxComboBox(this, wxID_STATIC, Default, wxDefaultPosition, wxDefaultSize, Choices);
+    cbText_->SetMinSize(wxSize(150, -1));
     cbText_->AutoComplete(Choices);
     Sizer->Add(cbText_, wxSizerFlags().Border(wxLEFT | wxRIGHT, 15).Expand());
     Sizer->AddSpacer(20);
