@@ -1072,7 +1072,7 @@ bool mmQIFImportDialog::completeTransaction(/*in*/ const std::unordered_map <int
             s->CATEGID = categID;
             s->SUBCATEGID = m_QIFcategoryNames[c].second;
             double amount;
-            const wxString& amtSplit = Model_Currency::fromString2Default(amtToken.GetNextToken());
+            const wxString& amtSplit = Model_Currency::fromString2Lua(amtToken.GetNextToken(), nullptr);
             amtSplit.ToCDouble(&amount);
             s->SPLITTRANSAMOUNT = (Model_Checking::is_deposit(trx) ? amount : -amount);
             s->TRANSID = trx->TRANSID;

@@ -117,8 +117,9 @@ mmTransDialog::mmTransDialog(wxWindow* parent
     else
     {
         Model_Checking::getTransactionData(m_trx_data, transaction);
-        for (const auto& item : Model_Checking::splittransaction(transaction))
-            local_splits.push_back({ item.CATEGID, item.SUBCATEGID, item.SPLITTRANSAMOUNT });
+        const auto s = Model_Checking::splittransaction(transaction);
+        for (const auto& item : s)
+            m_local_splits.push_back({ item.CATEGID, item.SUBCATEGID, item.SPLITTRANSAMOUNT });
     }
 
     Model_Account::Data* acc = Model_Account::instance().get(m_trx_data.ACCOUNTID);
@@ -325,7 +326,7 @@ void mmTransDialog::dataToControls()
             if (cSplit_->IsChecked())
             {
                 cSplit_->SetValue(false);
-                local_splits.clear();
+                m_local_splits.clear();
             }
 
             if (m_new_trx && !m_duplicate)
@@ -357,13 +358,13 @@ void mmTransDialog::dataToControls()
 
     if (!skip_category_init_)
     {
-        bool has_split = !local_splits.empty();
+        bool has_split = !m_local_splits.empty();
         wxString fullCategoryName;
         bCategory_->UnsetToolTip();
         if (has_split)
         {
             fullCategoryName = _("Categories");
-            m_textAmount->SetValue(Model_Splittransaction::get_total(local_splits));
+            m_textAmount->SetValue(Model_Splittransaction::get_total(m_local_splits));
             m_trx_data.CATEGID = -1;
             m_trx_data.SUBCATEGID = -1;
         }
@@ -379,7 +380,7 @@ void mmTransDialog::dataToControls()
         cSplit_->SetValue(has_split);
         skip_category_init_ = true;
     }
-    m_textAmount->Enable(local_splits.empty());
+    m_textAmount->Enable(m_local_splits.empty());
     cSplit_->Enable(!m_transfer);
 
     if (!skip_notes_init_) //Notes & Transaction Number
@@ -683,7 +684,7 @@ bool mmTransDialog::ValidateData()
         m_trx_data.PAYEEID = -1;
     }
 
-    if ((cSplit_->IsChecked() && local_splits.empty())
+    if ((cSplit_->IsChecked() && m_local_splits.empty())
         || (!cSplit_->IsChecked() && Model_Category::full_name(m_trx_data.CATEGID, m_trx_data.SUBCATEGID).empty()))
     {
         mmErrorDialogs::InvalidCategory(bCategory_, false);
@@ -847,27 +848,27 @@ void mmTransDialog::ActivateSplitTransactionsDlg()
         m_trx_data.TRANSAMOUNT = 0;
 
     const auto full_category_name = Model_Category::full_name(m_trx_data.CATEGID, m_trx_data.SUBCATEGID);
-    if (!full_category_name.empty() && local_splits.empty() && m_trx_data.TRANSAMOUNT != 0)
+    if (!full_category_name.empty() && m_local_splits.empty() && m_trx_data.TRANSAMOUNT != 0)
     {
         Split s;
         s.SPLITTRANSAMOUNT = m_trx_data.TRANSAMOUNT;
         s.CATEGID = m_trx_data.CATEGID;
         s.SUBCATEGID = m_trx_data.SUBCATEGID;
-        local_splits.push_back(s);
+        m_local_splits.push_back(s);
     }
 
-    SplitTransactionDialog dlg(this, local_splits
+    SplitTransactionDialog dlg(this, m_local_splits
         , bDeposit ? Model_Checking::DEPOSIT : Model_Checking::WITHDRAWAL
         , m_trx_data.ACCOUNTID
         , m_trx_data.TRANSAMOUNT);
 
     if (dlg.ShowModal() == wxID_OK)
     {
-        local_splits = dlg.getResult();
+        m_local_splits = dlg.getResult();
     }
-    if (!local_splits.empty())
+    if (!m_local_splits.empty())
     {
-        m_trx_data.TRANSAMOUNT = Model_Splittransaction::get_total(local_splits);
+        m_trx_data.TRANSAMOUNT = Model_Splittransaction::get_total(m_local_splits);
         skip_category_init_ = !dlg.isItemsChanged();
     }
 }
@@ -962,7 +963,7 @@ void mmTransDialog::SetCategoryForPayee(const Model_Payee::Data *payee)
     // Only for new transactions: if user want to autofill last category used for payee.
     // If this is a Split Transaction, ignore displaying last category for payee
     if (Option::instance().TransCategorySelection() != Option::NONE
-        && !categUpdated_ && local_splits.empty() && m_new_trx && !m_duplicate)
+        && !categUpdated_ && m_local_splits.empty() && m_new_trx && !m_duplicate)
     {
         // if payee has memory of last category used then display last category for payee
         Model_Category::Data *category = Model_Category::instance().get(payee->CATEGID);
@@ -997,18 +998,18 @@ void mmTransDialog::OnSplitChecked(wxCommandEvent& WXUNUSED(event))
     }
     else
     {
-        if (local_splits.size() > 1)
+        if (m_local_splits.size() > 1)
         {
             //Delete split items first (data protection)
             cSplit_->SetValue(true);
         }
         else
         {
-            if (local_splits.size() == 1)
+            if (m_local_splits.size() == 1)
             {
-                m_trx_data.CATEGID = local_splits.begin()->CATEGID;
-                m_trx_data.SUBCATEGID = local_splits.begin()->SUBCATEGID;
-                m_trx_data.TRANSAMOUNT = local_splits.begin()->SPLITTRANSAMOUNT;
+                m_trx_data.CATEGID = m_local_splits.begin()->CATEGID;
+                m_trx_data.SUBCATEGID = m_local_splits.begin()->SUBCATEGID;
+                m_trx_data.TRANSAMOUNT = m_local_splits.begin()->SPLITTRANSAMOUNT;
 
                 if (m_trx_data.TRANSAMOUNT < 0)
                 {
@@ -1020,7 +1021,7 @@ void mmTransDialog::OnSplitChecked(wxCommandEvent& WXUNUSED(event))
             {
                 m_trx_data.TRANSAMOUNT = 0;
             }
-            local_splits.clear();
+            m_local_splits.clear();
         }
     }
     skip_category_init_ = false;
@@ -1148,7 +1149,7 @@ void mmTransDialog::OnOk(wxCommandEvent& WXUNUSED(event))
     m_trx_data.TRANSID = Model_Checking::instance().save(r);
 
     Model_Splittransaction::Data_Set splt;
-    for (const auto& entry : local_splits)
+    for (const auto& entry : m_local_splits)
     {
         Model_Splittransaction::Data *s = Model_Splittransaction::instance().create();
         s->CATEGID = entry.CATEGID;
@@ -1192,7 +1193,7 @@ void mmTransDialog::SetTooltips()
 {
     bCategory_->UnsetToolTip();
     skip_tooltips_init_ = true;
-    if (this->local_splits.empty())
+    if (this->m_local_splits.empty())
         bCategory_->SetToolTip(_("Specify the category for this transaction"));
     else {
         const Model_Currency::Data* currency = Model_Currency::GetBaseCurrency();
@@ -1200,7 +1201,7 @@ void mmTransDialog::SetTooltips()
         if (account)
             currency = Model_Account::currency(account);
 
-        bCategory_->SetToolTip(Model_Splittransaction::get_tooltip(local_splits, currency));
+        bCategory_->SetToolTip(Model_Splittransaction::get_tooltip(m_local_splits, currency));
     }
     if (!m_new_trx) return;
 

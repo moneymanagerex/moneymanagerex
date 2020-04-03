@@ -129,7 +129,7 @@ private:
     wxString m_status;
 
     DB_Table_CHECKINGACCOUNT_V1::Data m_trx_data;
-    std::vector<Split> local_splits;
+    std::vector<Split> m_local_splits;
     Model_Currency::Data *m_currency;
     Model_Currency::Data *m_to_currency;
 

@@ -872,6 +872,7 @@ void mmCheckingPanel::DisplaySplitCategories(int transID)
 
     Model_Checking::Data *transaction = Model_Checking::instance().get(transID);
     auto splits = Model_Checking::splittransaction(transaction);
+
     std::vector<Split> splt;
     for (const auto& entry : splits) {
         Split s;
