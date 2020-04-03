@@ -19,6 +19,7 @@
 
 #include "Model_Translink.h"
 #include "Model_Shareinfo.h"
+#include "Model_CurrencyHistory.h"
 
 Model_Translink::Model_Translink()
     : Model<DB_Table_TRANSLINK_V1>()
@@ -206,13 +207,15 @@ void Model_Translink::UpdateAssetValue(Model_Asset::Data* asset_entry)
             if (!Model_Checking::foreignTransactionAsTransfer(*asset_trans))
             {
                 Model_Currency::Data* asset_currency = Model_Account::currency(Model_Account::instance().get(asset_trans->ACCOUNTID));
+                const double conv_rate = Model_CurrencyHistory::getDayRate(asset_currency->CURRENCYID, asset_trans->TRANSDATE);
+
                 if (asset_trans->TRANSCODE == Model_Checking::all_type()[Model_Checking::DEPOSIT])
                 {
-                    new_value -= asset_trans->TRANSAMOUNT * asset_currency->BASECONVRATE; // Withdrawal from asset value
+                    new_value -= asset_trans->TRANSAMOUNT * conv_rate; // Withdrawal from asset value
                 }
                 else
                 {
-                    new_value += asset_trans->TRANSAMOUNT * asset_currency->BASECONVRATE;  // Deposit to asset value
+                    new_value += asset_trans->TRANSAMOUNT * conv_rate;  // Deposit to asset value
                 }
 
                 asset_entry->VALUE = new_value;

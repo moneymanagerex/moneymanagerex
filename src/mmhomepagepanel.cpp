@@ -684,7 +684,7 @@ void mmHomePagePanel::getExpensesIncomeStats(std::map<int, std::pair<double, dou
 
         // We got this far, get the currency conversion rate for this account
         Model_Account::Data *account = Model_Account::instance().get(pBankTransaction.ACCOUNTID);
-        double convRate = (account ? Model_Account::currency(account)->BASECONVRATE : 1);
+        double convRate = Model_CurrencyHistory::getDayRate(Model_Account::instance().get(pBankTransaction.ACCOUNTID)->CURRENCYID, pBankTransaction.TRANSDATE);
 
         int idx = pBankTransaction.ACCOUNTID;
         if (Model_Checking::type(pBankTransaction) == Model_Checking::DEPOSIT)
@@ -844,7 +844,7 @@ void mmHomePagePanel::setExpensesIncomeStatsData(std::map<int, std::pair<double,
 		if (Model_Checking::foreignTransactionAsTransfer(pBankTransaction))
 			continue;
 
-		const double convRate = Model_CurrencyHistory::getDayRate(Model_Account::instance().get(pBankTransaction.ACCOUNTID)->CURRENCYID, pBankTransaction.TRANSDATE);
+		double convRate = Model_CurrencyHistory::getDayRate(Model_Account::instance().get(pBankTransaction.ACCOUNTID)->CURRENCYID, pBankTransaction.TRANSDATE);
 
 		int idx = pBankTransaction.ACCOUNTID;
 		if (Model_Checking::type(pBankTransaction) == Model_Checking::DEPOSIT)
