@@ -994,7 +994,7 @@ const wxString getProgramDescription(int type)
 
 // ----------------------------------------
 
-const wxString mmTrimAmount(const wxString& value, const wxString& decimal)
+const wxString mmTrimAmount(const wxString& value, const wxString& decimal, const wxString& replace_decimal)
 {
     wxString str;
     wxString valid_strings = "-0123456789" + decimal;
@@ -1002,6 +1002,9 @@ const wxString mmTrimAmount(const wxString& value, const wxString& decimal)
         if (valid_strings.Contains(c)) {
             str += c;
         }
+    }
+    if (!replace_decimal.empty()) {
+        str.Replace(decimal, replace_decimal);
     }
     return str;
 }

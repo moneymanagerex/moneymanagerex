@@ -1137,6 +1137,7 @@ void mmTransDialog::OnOk(wxCommandEvent& WXUNUSED(event))
     if (status_obj)
     {
         m_status = Model_Checking::toShortStatus(status_obj->GetData());
+        m_trx_data.STATUS = m_status;
     }
 
     if (!ValidateData()) return;

@@ -1533,6 +1533,8 @@ void mmUnivCSVDialog::parseToken(int index, const wxString& orig_token, tran_hol
     Model_Subcategory::Data* sub_category = nullptr;
 
     wxDateTime dtdt;
+    double amount;
+
     switch (index)
     {
     case UNIV_CSV_DATE:
@@ -1555,20 +1557,40 @@ void mmUnivCSVDialog::parseToken(int index, const wxString& orig_token, tran_hol
         break;
 
     case UNIV_CSV_AMOUNT:
-    {
-        double amount;
-        const wxString amt = Model_Currency::fromString2Default(mmTrimAmount(token, decimal_));
-        amt.ToCDouble(&amount);
+        mmTrimAmount(token, decimal_, ".").ToCDouble(&amount);
 
-        if ((amount > 0.0 && !m_reverce_sign) || (amount <= 0.0 && m_reverce_sign))
-        {
+        if ((amount > 0.0 && !m_reverce_sign) || (amount <= 0.0 && m_reverce_sign)) {
             holder.Type = Model_Checking::all_type()[Model_Checking::DEPOSIT];
         }
 
         holder.Amount = fabs(amount);
         break;
 
-    }
+    case UNIV_CSV_DEPOSIT:
+        if (token.IsEmpty())
+            return;
+        // do nothing if an amount has already been stored by a previous call
+        if (holder.Amount != 0.0)
+            break;
+
+        mmTrimAmount(token, decimal_, ".").ToCDouble(&amount);
+
+        holder.Amount = fabs(amount);
+        holder.Type = Model_Checking::all_type()[Model_Checking::DEPOSIT];
+        break;
+
+    case UNIV_CSV_WITHDRAWAL:
+        if (token.IsEmpty())
+            return;
+        // do nothing if an amount has already been stored by a previous call
+        if (holder.Amount != 0.0)
+            break;
+
+        mmTrimAmount(token, decimal_, ".").ToCDouble(&amount);
+
+        holder.Amount = fabs(amount);
+        break;
+
     case UNIV_CSV_CATEGORY:
         category = Model_Category::instance().get(token);
         if (!category)
@@ -1607,25 +1629,6 @@ void mmUnivCSVDialog::parseToken(int index, const wxString& orig_token, tran_hol
 
     case UNIV_CSV_DONTCARE:
         // do nothing
-        break;
-
-    case UNIV_CSV_DEPOSIT:
-        if (token.IsEmpty())
-            return;
-        // do nothing if an amount has already been stored by a previous call
-        if (holder.Amount != 0.0)
-            break;
-        holder.Amount = fabs(wxAtof(mmTrimAmount(token, decimal_)));
-        holder.Type = Model_Checking::all_type()[Model_Checking::DEPOSIT];
-        break;
-
-    case UNIV_CSV_WITHDRAWAL:
-        if (token.IsEmpty())
-            return;
-        // do nothing if an amount has already been stored by a previous call
-        if (holder.Amount != 0.0)
-            break;
-        holder.Amount = fabs(wxAtof(mmTrimAmount(token, decimal_)));
         break;
 
     case UNIV_CSV_BALANCE:

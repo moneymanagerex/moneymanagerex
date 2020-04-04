@@ -211,7 +211,7 @@ CURLcode http_download_file(const wxString& site, const wxString& path);
 
 //----------------------------------------------------------------------------
 
-const wxString mmTrimAmount(const wxString& value, const wxString& decimal);
+const wxString mmTrimAmount(const wxString& value, const wxString& decimal, const wxString& replace_decimal ="");
 
 class mmDates
 {

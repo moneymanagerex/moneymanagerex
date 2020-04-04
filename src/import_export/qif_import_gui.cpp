@@ -76,7 +76,8 @@ mmQIFImportDialog::mmQIFImportDialog(wxWindow* parent, int account_id)
     decimal_ = Model_Currency::GetBaseCurrency()->DECIMAL_POINT;
     payeeIsNotes_ = false;
     long style = wxCAPTION | wxRESIZE_BORDER | wxSYSTEM_MENU | wxCLOSE_BOX;
-    Create(parent, wxID_ANY, _("QIF Import"), wxDefaultPosition, wxSize(500, 300), style);
+    Create(parent, wxID_ANY, _("QIF Import"), wxDefaultPosition, wxDefaultSize, style);
+    SetMinSize(wxSize(500, 300));
 
     const auto &acc = Model_Account::instance().get(account_id);
     if (acc)
@@ -500,10 +501,6 @@ bool mmQIFImportDialog::completeTransaction(std::unordered_map <int, wxString> &
         }
     }
 
-    if (trx.find(Payee) == trx.end()) {
-        trx[Payee] = _("Unknown");
-    }
-
     if (trx[Payee] == "Opening Balance") {
         trx[Memo] += (trx[Memo].empty() ? "" : "\n") + trx[Payee];
         trx[Category] = trx[Payee];
@@ -548,9 +545,16 @@ bool mmQIFImportDialog::completeTransaction(std::unordered_map <int, wxString> &
 
     if (!isTransfer)
     {
-        int i = m_payee_names.Index(trx[Payee], false);
-        if (i == wxNOT_FOUND)
-            m_payee_names.Add(trx[Payee]);
+        wxString payee_name = trx.find(Payee) != trx.end() ? trx[Payee] : "";
+        if (payee_name.empty()) {
+            payee_name = trx.find(AccountName) != trx.end() ? trx[AccountName] : _("Unknown");
+            trx[Payee] = payee_name;
+        }
+
+        int i = m_payee_names.Index(payee_name, false);
+        if (i == wxNOT_FOUND) {
+            m_payee_names.Add(payee_name);
+        }
         else
             trx[Payee] = m_payee_names.Item(i);
     }
@@ -1043,13 +1047,16 @@ bool mmQIFImportDialog::completeTransaction(/*in*/ const std::unordered_map <int
     trx->STATUS = status;
 
     trx->FOLLOWUPID = -1;
-    const wxString value = mmTrimAmount(t.find(Amount) != t.end() ? t[Amount] : "", decimal_);
+    const wxString value = mmTrimAmount(t.find(Amount) != t.end() ? t[Amount] : "", decimal_, ".");
     if (value.empty())
     {
         msg = _("Transaction Amount is incorrect");
         return false;
     }
-    double amt = wxAtof(value);
+
+    double amt;
+    value.ToCDouble(&amt);
+
     trx->TRANSAMOUNT = fabs(amt);
     trx->TOTRANSAMOUNT = transfer ? amt : trx->TRANSAMOUNT;
 
@@ -1071,8 +1078,10 @@ bool mmQIFImportDialog::completeTransaction(/*in*/ const std::unordered_map <int
             Model_Splittransaction::Data* s = Model_Splittransaction::instance().create();
             s->CATEGID = categID;
             s->SUBCATEGID = m_QIFcategoryNames[c].second;
+
+            wxString amtSplit = amtToken.GetNextToken();
+            amtSplit = mmTrimAmount(amtSplit, decimal_, ".");
             double amount;
-            const wxString& amtSplit = Model_Currency::fromString2Lua(amtToken.GetNextToken(), nullptr);
             amtSplit.ToCDouble(&amount);
             s->SPLITTRANSAMOUNT = (Model_Checking::is_deposit(trx) ? amount : -amount);
             s->TRANSID = trx->TRANSID;
