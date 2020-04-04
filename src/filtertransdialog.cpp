@@ -838,6 +838,15 @@ const wxString mmFilterTransactionsDialog::to_json(bool i18n)
 	PrettyWriter<StringBuffer> json_writer(json_buffer);
 	json_writer.StartObject();
 
+
+    auto s_name = m_settingLabel->GetValue();
+    s_name.Trim();
+    if (!s_name.empty())
+    {
+        json_writer.Key((i18n ? _("Name") :"LABEL").c_str());
+        json_writer.String(s_name.c_str());
+    }
+
 	if (accountCheckBox_->IsChecked())
 	{
 		const wxString acc = accountDropDown_->GetStringSelection();
@@ -940,6 +949,8 @@ const wxString mmFilterTransactionsDialog::to_json(bool i18n)
 
 void mmFilterTransactionsDialog::from_json(const wxString &data)
 {
+    if (data.empty()) return;
+
 	Document j_doc;
 	if (j_doc.Parse(data.c_str()).HasParseError())
 	{
@@ -950,11 +961,6 @@ void mmFilterTransactionsDialog::from_json(const wxString &data)
 	Value& j_label = GetValueByPointerWithDefault(j_doc, "/LABEL", "");
 	const wxString& s_label = j_label.IsString() ? j_label.GetString() : "";
 	m_settingLabel->SetValue(s_label);
-
-	if (s_label.empty())
-	{
-		return;
-	}
 
 	//Account
 	Value& j_account = GetValueByPointerWithDefault(j_doc, "/ACCOUNT", "");
