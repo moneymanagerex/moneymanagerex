@@ -112,230 +112,365 @@ Greg Chapman
 
 ---------------------------------------
 ##Sponsors
+2020
+Digital IT Consultant
+Neil Vincent
+Michael Ellis
+Frederick Hansen
+Ehab Fanous
+Christian BELAIR
+Officer Young
+Glenn Fowler
+
+2019
+Leon Hall
+Carlos ESTEVAO
+Martin Mannarella
+Bob Applegate
+Dorothy Dean
+Jörg Jan Kock
+David Kricker
+John Stenson
+Alexander Habegger
+Peter Csernak
+Peter Hulm
+Brian Crow
+Fabrice BERNIER
+Gerd Scherer
+Peter Laubert
+Robert D Quinlan
+Jon Hyams
+Lorenzo Giustino
+Dan Miller
+Renaud Cadet
+
+2018
+Harold Kron
+Martin Mannarella
+George Cucak
+Daniel DA SILVA
+Roger Chandler
+Andreas Löwenhagen
+Gisèle Turcotte
+Betsy & Chuck
+Hubert Behmer
+Janine Pepi
+Karin Goodfellow
+Pascal Revéreault
+Ryszard Goń
+Philippe CURTIL
+Yusri Latib
+Brian Crow
+Jean Marc Berlandi
+John Weaving
+BRET ADAMS
+Carlos ESTEVAO
+DSBsoft
+Eliezer Gomez Gomez
+Fabrizio Bongiovanni
+Giovanni Bellinghieri
+Graham Young
+Jonathan Garcia
+Phil Alsop
+Stephen Pheasant
+Vito Croce
+Lina Mažulė
+Balasubramanian N
+CodeCape
+Eduardo Claudio Mallet
+Nikki Isabel Laynes
+ISABELLE CASTANG
+Jose A Sanz Martín
+Etta niswonger
+Jesus Marcelino Medina Sevilla
+John Toumpis
+matteo cigola
+Ricardo Filipe P Faustino
+Lorenzo Giustino
+paulo silveira goncalves
+Claudio Bottieri
+Hugo Sottomayor
+
 2017
-1. Brian Marstella
-2. Eduardo Claudio Mallet
+Willem Dubelaar
+Kenneth Drobnack
+Ann French
+GIUSEPPE MAFFIONE
+Aldo Cadloni
+Bronislav Bagar
+Richard Connell
+Betsy & Chuck
+Don Taylor
+Enrico De Tomasi
+Gisèle Turcotte
+Robert Van Etterijck
+Paul Greig
+Phillip Andrew
+Andreas Löwenhagen
+Daniel CAUVIN
+David Stacey
+Douglas R Taylor
+Dr John Carpenter
+Gilles Biette
+Guillaume Levasseur
+Hubert Behmer
+Jeremy McEachron
+Michael Ellis
+Michel EVERS
+Santiago Durango
+william Doscher
+Barry Petersen
+John Stewart
+Brian Marstella
+Peter Pfister
+Luis Fernando Sturmer Da Rosa
+Gérard Mouscardès
+VSP AVVO
+Martin Berg
+Alexander Prog
+Darren Kelly
+Dausto Cobianchi
+David Coons
+ISABELLE CASTANG
+Jacqueline Hunter
+Jeffrey Pilling
+John Weaving
+Jose Manuel Marrero León
+Lorraine Haines
+Michel CARUEL
+Michel Patenaude
+Mimi Barbier
+Paolo Marchiori
+Vincent Barbour
+Michelle Kamber
+Andrew Peter Grigg
+Carlos Eduardo Alonso
+Eduardo Claudio Mallet
+Ming Wai Tang
+Siew Yan Soon
+Yury Siamashka
+Jorge Luis Botero
+Jonathan Thomas
+Brian Crow
+Alfonso Caianiello
+Carlos Sousa
+Clifford Dawson
+Devin LaSalle
+Edgar Bazan Castaneda
+Francisco Fos Ros
+Gummarus Van Sand
+Manuel Azevedo
+Marek Rozenberg
+Martin Garside
+Raffaele Testera
+Sean Baber
+Simon Bleasdale
+Tobias Fischer
+Joel Delcompare
+MD PAMD ASHRAF
+Pornchai Krongsawatkul
+paulo silveira goncalves
+Luis Duarte
+Francesco Caccia
 
 2016
-1. Fabio Giorgieri
-2. BRET ADAMS
-3. Vic Forte
-4. Osman Goni
-5. Dorothy Dean
-6. Veli Tokmen
-7. CARLOS MARTIN RECIO
-8. Garry Smith
-9. Angela Ruyle
-10. Gisèle Turcotte
-11. Sihar Simbolon
-12. Jesus Pinto Cosgaya
-13. Ian Shaw
-14. ĽUBOMÍR NIKOLÍNI
-15. Michael Sirna
-16. Random Netzley
-17. James Mork
-18. Csaba Bihari
-19. Pedro Pires
-20. Thomas Crawley
-21. Massimo BORSETTO
-22. José Hamilton Rosário
-23. Hany ElHawary
-24. Richard Clegg
-25. Philip Cook
-26. Rudolf Leuenberger
-27. JHM Designs Publications
-28. Vic Forte
-29. Carlo Basile
-30. Christophe Pot
-31. Marcin Magnus
-32. Gernie Melliza
-33. Annaclerio Cattelan
-34. Sean Baber
-35. Nasser Kaviani
-36. Robert Edser
-37. Alain Benzimra
-38. Mark Balko
-39. Johannes Traxler
-40. Isabel Pires Monteiro
-41. Wiesław Stawiszyński
-42. Eduardo Siri
-43. Eric PINCHON
-44. Étienne Bourgeois
-45. Sergii Stepanchuk
-46. Francois Verret
-47. 伊筠 錢
-48. Emanuele Pizzurno
-49. Jean Paul Dion
-50. Steven Godfrey
-51. VSP AVVO
-52. Pinhas Gold
-53. Jose Manuel Marrero León
-54. Athanasios Tsoutsaios
-55. Irene Dunn
-56. Franck Vilenstein
-57. Gary Ferland
-58. Style Scissors
-59. Gábor Glück
-60. Halidou ROUAMBA
-61. José Hamilton Rosário
-62. Blair Boyle
-63. Edgar Lloren
-64. A Kloosterman
-65. VU MUN VO
-66. Per Hovland
-67. Juan Quintana
-68. Andinet Shiferaw
-69. H John Boeschen
-70. Harvey Brewer
-71. sabine Duchesne
-72. Mimi Barbier
-73. Andras Radacsi
-74. Clément Martin
-75. Robert Coverston
-76. Andrew Peter Grigg
-77. Judith Campbell
-78. Kennet Härmälä
-79. Jeffrey Pilling
-80. Paolo Marchiori
-81. Peter Helfer
-82. Hubert Behmer
-83. Andreas Löwenhagen
-84. Eduardo Siri
-85. Del Hardesty
-86. Alberto Ghilardi
-87. Horst Weber
-88. Marius Raht
-89. Christian Turier
+Dorothy Dean
+Jean Paul Dion
+Gábor Glück
+Peter Helfer
+Del Hardesty
+Eric PINCHON
+Gisèle Turcotte
+Hany ElHawary
+Harvey Brewer
+VSP AVVO
+Vic Forte
+Andreas Löwenhagen
+Horst Weber
+Mark Balko
+Pinhas Gold
+Angela Ruyle
+Francois Verret
+Gary Ferland
+Horst Dewitz
+Hubert Behmer
+Ian Shaw
+Johannes Traxler
+Marius Raht
+thomas crawley
+Étienne Bourgeois
+Christophe Pot
+veli tokmen
+nasser kaviani
+Eduardo Siri
+Blair Boyle
+CARLOS MARTIN RECIO
+Christian Turier
+JHM Designs Publications
+Philip Cook
+Random Woodworking
+Robert Coverston
+Csaba Bihari
+Per Hovland
+Jeffrey Pilling
+Andras Radacsi
+Kennet Härmälä
+alberto ghilardi
+Athanasios Tsoutsaios
+BRET ADAMS
+Carlo Basile
+Clément Martin
+Emanuele Pizzurno
+Fabio Giorgieri
+H John Boeschen
+Irene Dunn
+James Mork
+Jesus Pinto Cosgaya
+Judith Campbell
+Michael Sirna
+Mimi Barbier
+Paolo Marchiori
+Pedro Pires
+sabine Duchesne
+ĽUBOMÍR NIKOLÍNI
+Rudolf Leuenberger
+Sergii Stepanchuk
+Wiesław Stawiszyński
+Edgar Lloren
+Garry Smith
+MUN VO VU
+Robert Edser
+伊筠 錢
+José Hamilton Rosário
+Sean Baber
+A Kloosterman
+alain benzimra
+Annaclerio Cattelan
+Franck Vilenstein
+Jose Manuel Marrero León
+Massimo BORSETTO
+Osman Goni
+Steven Godfrey
+Marcin Magnus
+Gernie Melliza
+Halidou ROUAMBA
+Style Scissors
+Andinet Shiferaw
+sihar simbolon
+Juan Quintana
+Andrew Peter Grigg
+Richard Clegg
+Lisheng Guan
+Isabel Pires Monteiro
 
 2015
-1. Heinrich Hasler
-2. Michael Cockshott
-3. Krisztian Rada
-4. Michele Chinellato
-5. Rudolf Leuenberger
-6. Gregory Majewski
-7. Bruno MAILLARD
-8. Yury Siamashka
-9. Adam Bishop
-10. Michael Scutt
-11. Kurt Tremp
-12. JEAN GUILLEN
-13. Peter Hulm
-14. CHIEN YI-YUN
-15. Christophe DEMETRIADIS
-16. Olzo Franco Solano
-17. BRUECKNER RENE
-18. David Piears
-19. CHRISTIAN SCHOENENBERGER
-20. Todd Smith
-21. Thomas Prior
-22. Filippo Levati
-23. Erich Oswald
-24. Martin Kopecky
-25. Александр Грицюк
-26. JOSE MARIA ALVAREZ
-27. Balázs Terjék
-28. Nina Neuhaus
-29. Roman Riabenko
-30. Urs Wuffli
-31. AF Christensen
-32. Kevin Luken
-33. Richard Watts
-34. Terry Mort
-35. Kieron McGeever
-36. Paul Croft
-37. Daniele Leucci
-38. Julio Gomez
-39. Stephane Vitalis-brun
-40. Lukáš Novák
-41. Sezer Gülsay
-42. Emanuele Fabbri
-43. Style Scissors
-44. Henry R
-45. Stefan Andersson
-46. Renaud Cadet
-47. David Piears
-48. Patrick Eigensatz
-49. Adam Gallagher
-50. Josef Remes
-51. Terence Hughes
-52. Vincent Sinha
-53. Aliaksandr Vareika
-54. Neo Affinis S.L.
-55. Style Scissors
-56. Yves Macherel
-57. SATER KLAUDIA GĄSIECKA
-58. Atanas Vasilev
-59. ick Gardner
-60. Stephen G Donald
-61. Harvey Brewer
-62. Jose Manuel Marrero León
-63. Wisnu Baskoro
-64. Guy SCHLOSSER
-65. Jiří Vyskočil
-66. Mogens Bjerg
-67. Giuseppe Conti
-68. Vito Croce
-69. Leslie Shipp
-70. Kevin Hawkins
-71. Jose Manuel Marrero León
-72. Petr Prikryl
-73. Steve Hefferman
-74. Carl Steinhauser
-75. Helen Mercer
-76. Robert Van Etterijck
-77. Lucas Wronski
-78. Andreas Löwenhagen
-79. Eduardo Claudio Mallet
-80. MADA GSM
+Paul Croft
+Richard Watts
+Vincent Sinha
+BRUECKNER RENE
+Urs Wuffli
+CHRISTIAN SCHOENENBERGER
+Michael Scutt
+Terence Hughes
+David Piears
+AF Christensen
+Bruno MAILLARD
+Christophe DEMETRIADIS
+Gregory Majewski
+Kieron McGeever
+Michael Cockshott
+Neo Affinis S.L.
+Stephen G Donald
+Krisztian Rada
+Kurt Tremp
+Александр Грицюк
+Steve Hefferman
+Carl Steinhauser
+Stephane Vitalis-brun
+Daniele Leucci
+Adam Gallagher
+Mogens Bjerg
+clarence weaver
+Emanuele Fabbri
+Erich Oswald
+Filippo Levati
+Guy SCHLOSSER
+Henry R
+JEAN GUILLEN
+JOSE MARIA ALVAREZ ORDOÑEZ
+Michele Chinellato
+Mick Gardner
+Nina Neuhaus
+Todd Smith
+Josef Remes
+Lukáš Novák
+Martin Kopecky
+Roman Riabenko
+SATER KLAUDIA GĄSIECKA
+Adam Bishop
+Leslie Shipp
+YI-YUN CHIEN
+Petr Prikryl
+Helen Mercer
+Thomas Prior
+Lucas Wronski
+Gianluca Federici
+giuseppe conti
+Kevin Hawkins
+Kevin Luken
+Olzo Franco Solano
+Stefan Andersson
+Terry Mort
+Balázs Terjék
+Heinrich Hasler
+Sezer Gülsay
+Yves Macherel
+Julio Gomez
+MADA GSM
+Patrick Eigensatz
+Atanas Vasilev
+Jiří Vyskočil
+ALIAKSANDR VAREIKA
+Wisnu Baskoro
 
 2014
-1. [CodeLathe LLC](http://www.tonido.com/)
-2. Geoff Mulhall
-3. Fabio Toffolo	
-4. Bruce McLendon
-5. Dimitrios Valsamis
-6. Eleanor Batchelder
-7. Pascal Fürhoff
-8. Panos Sapikas
-9. Jean-François GATEAU
-10. Janos Horvath
-11. Sasa Mrvos
-12. Douglas R Taylor
-13. Xiaoyun Wang
-14. Ken Huband
-15. 巩 固
-16. Matt Young
-17. Михаил Зайченко
-18. Adam Gallagher
-19. Jasmine Glaese
-20. Barry Plotkind
-21. Jiri Pitzmos
-22. Alain Scheidle
-23. Frédéric Vandendris
-24. Chris Butler
-25. Abdul Malik
-26. Michael Schickenberg
-27. Glenn Silberman
-28. Gerardo Villalobos Pineda
-29. Javier LLaneza Braña
-30. Michael Creswell
-31. Martin Freye
-32. Franciscus Johannes van der Loo
-33. Michel Aroichane
-34. Carl Bolling
-35. Alain Rouault
-36. David Tomlin
-37. Sergio M. Aranda
-38. Petr Prikryl
-39. Marco Secchi
-40. Pedro Rocha
-41. Steve Hefferman
-42. Andy Boyce
-43. Nigel Sharpe
-44. Joseph Miner
-45. Robert Gumpright
-45. Ryan McAlister
+[CodeLathe LLC](http://www.tonido.com/)
+Geoff Mulhall
+fabio toffolo
+Michael Creswell
+Alain Rouault
+ALAIN SCHEIDLE
+David Tomlin
+Jasmine Glaese
+Nigel Sharpe
+Pedro Rocha
+Robert Gumpright
+SERGIO M. ARANDA
+Andy Boyce
+Joseph Miner
+Michel Aroichane
+barry plotkind
+Carl Bolling
+Chris Butler
+Franciscus Johannes van der Loo
+Frédéric Vandendris
+Glenn Silberman
+Javier LLaneza Braña
+Ken Huband
+marco secchi
+Matt Young
+Michael Schickenberg
+Jiri Pitzmos
+Sasa Mrvos
+Михаил Зайченко
+abdul malik
+LA CASTELLINA snc di Cappelli Faldi &...
+Martin Freye
+Ryan McAlister
+Xiaoyun Wang
+Gerardo Villalobos Pineda
+固 巩
+立胜 关
 
 2005-2013
 CodeLathe LLC
