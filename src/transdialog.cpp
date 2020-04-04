@@ -914,14 +914,14 @@ void mmTransDialog::OnTransTypeChanged(wxCommandEvent& event)
     if (old_type != m_trx_data.TRANSCODE)
     {
         m_transfer = Model_Checking::is_transfer(m_trx_data.TRANSCODE);
-        if (m_transfer)
+        if (m_transfer) {
             m_trx_data.PAYEEID = -1;
-        else
-        {
+            skip_payee_init_ = false;
+        } else {
             m_trx_data.TOTRANSAMOUNT = m_trx_data.TRANSAMOUNT;
             m_trx_data.TOACCOUNTID = -1;
+            skip_payee_init_ = true;
         }
-        skip_payee_init_ = false;
         skip_account_init_ = false;
         skip_tooltips_init_ = false;
         dataToControls();
