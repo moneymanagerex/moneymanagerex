@@ -17,7 +17,7 @@ env:
   # Ubuntu
   - OS=ubuntu DIST=eoan
   - OS=ubuntu DIST=disco
-  - OS=ubuntu DIST=cosmic
+  #- OS=ubuntu DIST=cosmic
   - OS=ubuntu DIST=bionic
   - OS=ubuntu DIST=xenial
   # Debian
@@ -47,8 +47,6 @@ matrix:
   - { os: osx, osx_image: xcode11.2.1, env: OS=macos DIST=10.14 }
   - { os: osx, osx_image: xcode11.1, env: OS=macos DIST=10.14 }
   - { os: osx, osx_image: xcode10.1, env: OS=macos DIST=10.13 }
-  - { os: osx, osx_image: xcode9.1, env: OS=macos DIST=10.13 }
-  - { os: osx, osx_image: xcode9.1, env: OS=macos DIST=10.12 }
   - stage: nightly # used only to tag and trigger nightly build
     sudo: false
     cache: pip
