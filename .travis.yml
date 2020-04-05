@@ -1,5 +1,5 @@
 language: cpp
-dist: bionic 
+dist: xenial 
 sudo: required
 services: [ docker ]
 git: { depth: false }

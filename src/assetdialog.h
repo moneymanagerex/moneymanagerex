@@ -56,28 +56,26 @@ private:
     void dataToControls();
     void changeFocus(wxChildFocusEvent& event);
     void OnQuit(wxCloseEvent& event);
-
     void CreateAssetAccount();
     void HideTransactionPanel();
-    bool m_hidden_trans_entry;
-    Model_Translink::Data* m_transfer_entry;
-    Model_Checking::Data* m_checking_entry;
-
-    bool assetRichText;
-
+private:
+    mmGUIFrame* m_gui_frame;
+    wxChoice*  m_assetType;
     mmTextCtrl* m_assetName;
     wxDatePickerCtrl* m_dpc;
     mmTextCtrl* m_notes;
     mmTextCtrl* m_value;
     mmTextCtrl* m_valueChangeRate;
-    wxChoice*  m_assetType;
     wxChoice*  m_valueChange;
     wxStaticText* m_valueChangeRateLabel;
     wxBitmapButton* bAttachments_;
     wxStaticBox* m_transaction_frame;
     UserTransactionPanel* m_transaction_panel;
+    Model_Translink::Data* m_transfer_entry;
+    Model_Checking::Data* m_checking_entry;
     wxString m_dialog_heading;
-    mmGUIFrame* m_gui_frame;
+    bool m_hidden_trans_entry;
+    bool assetRichText;
 
     enum
     {
