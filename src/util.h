@@ -92,9 +92,9 @@ class mmTreeItemData : public wxTreeItemData
 public:
     mmTreeItemData(int id, bool isBudget)
         : id_(id)
-        , stringData_(wxString::Format("%i", id))
         , isString_(false)
         , isBudgetingNode_(isBudget)
+        , stringData_(wxString::Format("%i", id))
         , report_(nullptr)
     {}
     mmTreeItemData(const wxString& string, mmPrintableBase* report)
