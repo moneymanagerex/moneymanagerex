@@ -130,17 +130,13 @@ install: |-
       docker build dockers/$OS${DIST:+.$DIST}${ARCH:+.$ARCH} --cache-from ${DOCKER} -t ${DOCKER}
       ;;
     osx)
-      export MACOSX_DEPLOYMENT_TARGET=$DIST
-      brew update-reset && brew bundle --verbose --file=util/Brewfile
-      ccache -cs && export PATH="/usr/local/opt/ccache/libexec:$PATH"
-      #cd $HOME
-      #curl -fsSL -O https://github.com/wxWidgets/wxWidgets/releases/download/v3.1.3/wxWidgets-3.1.3.tar.bz2
-      #tar xzf wxWidgets-*.tar.bz2
-      #cd wxWidgets-3.1.3
-      #./configure --disable-shared --enable-cxx11 --with-cxx=11 \
-      #  --with-macosx-version-min=$MACOSX_DEPLOYMENT_TARGET \
-      #  --without-libtiff --enable-utf8 --enable-utf8only --enable-monolithic
-      #make install
+      MACOSX_DEPLOYMENT_TARGET=$DIST
+      brew update # see travis-ci/travis-ci#8552
+      for p in gettext ccache zlib cmake;
+        do brew list $p >/dev/null || brew install --verbose $p; done
+      brew link --force gettext zlib
+      ccache -s && export PATH="/usr/local/opt/ccache/libexec:$PATH"
+      brew install --verbose wxmac --with-static --with-stl
       ;;
   esac
 
@@ -161,12 +157,7 @@ script: |-
         bash -c "$CMAKE_CMD -DCMAKE_BUILD_TYPE=$BUILD_TYPE && cmake --build . --target package && eval \$MMEX_INST_CMD"
       ;;
     osx)
-      export CXXFLAGS=-stdlib=libc++ # exports required by Xcode 10 or later
-      export LDFLAGS=-stdlib=libc++
-      $CMAKE_CMD -G Xcode && cmake --build . --target package --config $BUILD_TYPE -- \
-        CC=/usr/local/opt/ccache/libexec/clang \
-        CPLUSPLUS=/usr/local/opt/ccache/libexec/clang++ | \
-        xcpretty -c -f `xcpretty-travis-formatter`; test ${PIPESTATUS[0]} -eq 0
+      $CMAKE_CMD && make package
       ;;
   esac
 
