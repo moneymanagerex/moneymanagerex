@@ -282,40 +282,33 @@ void mmTransDialog::dataToControls()
         wxString payee_tooltip = "";
         if (!m_transfer)
         {
-            if (!Model_Checking::is_deposit(m_trx_data.TRANSCODE))
-            {
+            if (!Model_Checking::is_deposit(m_trx_data.TRANSCODE)) {
                 payee_label_->SetLabelText(_("Payee"));
             }
-            else
-            {
+            else {
                 payee_label_->SetLabelText(_("From"));
             }
 
             account_label_->SetLabelText(_("Account"));
-            if (!Model_Checking::foreignTransaction(m_trx_data))
-            {
+            if (!Model_Checking::foreignTransaction(m_trx_data)) {
                 m_trx_data.TOACCOUNTID = -1;
             }
 
             wxArrayString all_payees = Model_Payee::instance().all_payee_names();
-            if (!all_payees.empty())
-            {
+            if (!all_payees.empty()) {
                 cbPayee_->Insert(all_payees, 0);
                 cbPayee_->AutoComplete(all_payees);
             }
 
-            if (m_new_trx && (Option::instance().TransPayeeSelection() == Option::UNUSED))
-            {
+            if (m_new_trx && (Option::instance().TransPayeeSelection() == Option::UNUSED)) {
                 cbPayee_->Enable(false);
                 cbPayee_->ChangeValue(_("Unknown"));
             }
 
             Model_Payee::Data* payee = Model_Payee::instance().get(m_trx_data.PAYEEID);
-            if (payee)
-            {
+            if (payee) {
                 cbPayee_->ChangeValue(payee->PAYEENAME);
-                if (m_new_trx && (Option::instance().TransPayeeSelection() == Option::NONE))
-                {
+                if (m_new_trx && (Option::instance().TransPayeeSelection() == Option::NONE)) {
                     cbPayee_->ChangeValue("");
                 }
             }
@@ -913,14 +906,13 @@ void mmTransDialog::OnTransTypeChanged(wxCommandEvent& event)
     if (client_obj) m_trx_data.TRANSCODE = client_obj->GetData();
     if (old_type != m_trx_data.TRANSCODE)
     {
+        skip_payee_init_ = false;
         m_transfer = Model_Checking::is_transfer(m_trx_data.TRANSCODE);
         if (m_transfer) {
             m_trx_data.PAYEEID = -1;
-            skip_payee_init_ = false;
         } else {
             m_trx_data.TOTRANSAMOUNT = m_trx_data.TRANSAMOUNT;
             m_trx_data.TOACCOUNTID = -1;
-            skip_payee_init_ = true;
         }
         skip_account_init_ = false;
         skip_tooltips_init_ = false;
