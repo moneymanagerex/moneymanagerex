@@ -245,7 +245,7 @@ wxThread::ExitCode SendStatsThread::Entry()
     wxLogDebug("Sending stats (thread %lu, priority %u, %s, %i cores): %s",
         GetId(), GetPriority(), wxGetOsDescription(), GetCPUCount(), m_url);
     wxString result = wxEmptyString;
-    http_get_data(m_url, result, "User-Agent: " + wxGetOsDescription() + "\r\n");
+    http_get_data(m_url, result, wxGetOsDescription() + "\r\n");
     wxLogDebug("Response: %s", result);
     return nullptr;
 }
