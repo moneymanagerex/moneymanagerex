@@ -301,87 +301,20 @@ target_compile_definitions(wxWidgets INTERFACE ${wxWidgets_DEFINITIONS}
     $<$<CONFIG:Debug>:${wxWidgets_DEFINITIONS_DEBUG}>)
 
 # --------- curl dependency ---------
-# curl version >=7.57 can have config files
-find_package(CURL QUIET COMPONENTS libcurl CONFIG)
-if(NOT CURL_FOUND AND NOT CURL_VERSION VERSION_LESS 7.62)
-    # curl 7.62 removed support for COMPONENTS
-    find_package(CURL QUIET CONFIG)
-endif()
-if(CURL_FOUND)
-    message(STATUS "1)Found CURL: ${CURL_LIBRARIES} (found version \"${CURL_VERSION}\")")
-    get_target_property(LIBCURL_TYPE CURL::libcurl TYPE)
-    # CURL_STATICLIB is missing for curl versions <7.61.1
-    if(CURL_VERSION VERSION_LESS 7.61.1 AND LIBCURL_TYPE STREQUAL STATIC_LIBRARY)
-        set_target_properties(CURL::libcurl PROPERTIES
-            INTERFACE_COMPILE_DEFINITIONS CURL_STATICLIB)
-    endif()
-else()
-    set(CMAKE_FIND_LIBRARY_PREFIXES ${CMAKE_FIND_LIBRARY_PREFIXES} lib)
-    set(CMAKE_FIND_LIBRARY_SUFFIXES ${CMAKE_FIND_LIBRARY_SUFFIXES} _imp.lib -d.lib -d_imp.lib)
-    find_package(PkgConfig)
-    if(PkgConfig_FOUND)
-        set(PKG_CONFIG_USE_CMAKE_PREFIX_PATH ON)
-        PKG_SEARCH_MODULE(CURL libcurl)
-        if(CURL_FOUND)
-            # CMake <3.12 workaround
-            if(NOT CURL_LINK_LIBRARIES)
-                find_library(CURL_LINK_LIBRARIES NAMES ${CURL_LIBRARIES}
-                    HINTS "${CURL_LIBDIR}" NO_DEFAULT_PATH)
-                if(NOT CURL_LINK_LIBRARIES)
-                    message(WARNING "CURL library file cannot be found!")
-                endif()
-            endif()
-            if(NOT CURL_LINK_LIBRARIES MATCHES "_imp.lib$|${CMAKE_SHARED_LIBRARY_SUFFIX}$")
-                list(REMOVE_ITEM CURL_STATIC_LIBRARIES ${CURL_LIBRARIES})
-                add_library(CURL::libcurl STATIC IMPORTED)
-                set_target_properties(CURL::libcurl PROPERTIES
-                    INTERFACE_INCLUDE_DIRECTORIES "${CURL_STATIC_INCLUDE_DIRS}"
-                    INTERFACE_SYSTEM_INCLUDE_DIRECTORIES "${CURL_STATIC_INCLUDE_DIRS}"
-                    INTERFACE_COMPILE_DEFINITIONS CURL_STATICLIB
-                    INTERFACE_LINK_LIBRARIES "${CURL_STATIC_LIBRARIES}"
-                    IMPORTED_LINK_INTERFACE_LANGUAGES C
-                    IMPORTED_LOCATION "${CURL_LINK_LIBRARIES}")
-                link_directories(CURL_STATIC_LIBRARY_DIRS)
-            else()
-                add_library(CURL::libcurl SHARED IMPORTED)
-                set_target_properties(CURL::libcurl PROPERTIES
-                    INTERFACE_INCLUDE_DIRECTORIES "${CURL_INCLUDE_DIRS}"
-                    INTERFACE_SYSTEM_INCLUDE_DIRECTORIES "${CURL_INCLUDE_DIRS}")
-                if(WIN32)
-                    set_target_properties(CURL::libcurl PROPERTIES
-                        IMPORTED_IMPLIB "${CURL_LINK_LIBRARIES}")
-                else()
-                    set_target_properties(CURL::libcurl PROPERTIES
-                        IMPORTED_LOCATION "${CURL_LINK_LIBRARIES}")
-                endif()
-            endif()
-            message(STATUS "2)Found CURL: ${CURL_LINK_LIBRARIES} (found version \"${CURL_VERSION}\")")
-        endif()
-    endif()
-    if(NOT CURL_FOUND)
-        find_package(CURL REQUIRED COMPONENTS libcurl MODULE)
-        if(NOT CURL_LIBRARIES MATCHES "_imp.lib$|${CMAKE_SHARED_LIBRARY_SUFFIX}$")
-            add_library(CURL::libcurl STATIC IMPORTED)
-            set_target_properties(CURL::libcurl PROPERTIES
-                INTERFACE_COMPILE_DEFINITIONS CURL_STATICLIB
-                IMPORTED_LINK_INTERFACE_LANGUAGES C
-                IMPORTED_LOCATION "${CURL_LIBRARIES}")
-        else()
-            add_library(CURL::libcurl ALIAS CURL)
-            if(WIN32)
-                set_target_properties(CURL::libcurl PROPERTIES
-                    IMPORTED_IMPLIB "${CURL_LIBRARIES}")
-            else()
-                set_target_properties(CURL::libcurl PROPERTIES
-                    IMPORTED_LOCATION "${CURL_LIBRARIES}")
-            endif()
-        endif()
-        set_target_properties(CURL::libcurl PROPERTIES
-            INTERFACE_INCLUDE_DIRECTORIES "${CURL_INCLUDE_DIRS}"
-            INTERFACE_SYSTEM_INCLUDE_DIRECTORIES "${CURL_INCLUDE_DIRS}")
-        set(CURL_VERSION ${CURL_VERSION_STRING})
-    endif()
-endif()
+FIND_PACKAGE(CURL QUIET COMPONENTS libcurl CONFIG)
+IF(CURL_FOUND)
+    MESSAGE(STATUS "Found CURL: ${CURL_LIBRARIES} (found version \"${CURL_VERSION}\")")
+    SET(CURL_VERSION_STRING ${CURL_VERSION})
+ELSE()
+    FIND_PACKAGE(CURL REQUIRED COMPONENTS libcurl MODULE)
+    ADD_LIBRARY(CURL INTERFACE)
+    TARGET_INCLUDE_DIRECTORIES(CURL INTERFACE ${CURL_INCLUDE_DIRS})
+    TARGET_LINK_LIBRARIES(CURL INTERFACE ${CURL_LIBRARIES})
+    ADD_LIBRARY(CURL::libcurl ALIAS CURL)
+ENDIF()
+IF(WIN32 AND CURL_LIBRARIES MATCHES "${CMAKE_STATIC_LIBRARY_SUFFIX}$")
+    SET_TARGET_PROPERTIES(CURL::libcurl PROPERTIES INTERFACE_COMPILE_DEFINITIONS CURL_STATICLIB)
+ENDIF()
 
 # --------- Collect sources and targets ---------
 set(MMEX_BIN_DIR bin)
