@@ -25,7 +25,6 @@
 
 #include "util.h"
 #include "constants.h"
-#include "mmTextCtrl.h"
 #include "validators.h"
 #include "model/Model_Currency.h"
 #include "model/Model_Infotable.h"
@@ -441,76 +440,14 @@ void windowsFreezeThaw(wxWindow* w)
         w->Freeze();
 }
 
-// ----------------------------------------------------------------------------
-// mmCalcValidator
-// Same as previous, but substitute dec char according to currency configuration
-// ----------------------------------------------------------------------------
+//--------------------------------------------------------------------
 
 IMPLEMENT_DYNAMIC_CLASS(mmCalcValidator, wxTextValidator)
 BEGIN_EVENT_TABLE(mmCalcValidator, wxTextValidator)
 EVT_CHAR(mmCalcValidator::OnChar)
 END_EVENT_TABLE()
 
-mmCalcValidator::mmCalcValidator() : wxTextValidator(wxFILTER_INCLUDE_CHAR_LIST)
-{
-    wxArrayString list;
-    for (const auto& c : " 1234567890.,(/+-*)")
-    {
-        list.Add(c);
-    }
-    SetIncludes(list);
-}
-
-void mmCalcValidator::OnChar(wxKeyEvent& event)
-{
-	if (!m_validatorWindow)
-		return event.Skip();
-
-	int keyCode = event.GetKeyCode();
-
-	// we don't filter special keys and delete
-	if (keyCode < WXK_SPACE || keyCode == WXK_DELETE || keyCode >= WXK_START)
-		return event.Skip();
-
-
-	wxString str(static_cast<wxUniChar>(keyCode), 1);
-	if (!(wxIsdigit(str[0]) || wxString("+-.,*/ ()").Contains(str)))
-	{
-		if (!wxValidator::IsSilent())
-			wxBell();
-
-		return; // eat message
-	}
-	// only if it's a wxTextCtrl
-	mmTextCtrl* text_field = wxDynamicCast(m_validatorWindow, mmTextCtrl);
-	if (!m_validatorWindow || !text_field)
-		return event.Skip();
-
-	wxChar decChar = text_field->GetDecimalPoint();
-	bool numpad_dec_swap = (wxGetKeyState(WXK_NUMPAD_DECIMAL) && decChar != str);
-
-	if (numpad_dec_swap)
-		str = wxString(decChar);
-
-	// if decimal point, check if it's already in the string
-	if (str == '.' || str == ',')
-	{
-		const wxString value = text_field->GetValue();
-		size_t ind = value.rfind(decChar);
-		if (ind < value.Length())
-		{
-			// check if after last decimal point there is an operation char (+-/*)
-			if (value.find('+', ind + 1) >= value.Length() && value.find('-', ind + 1) >= value.Length() &&
-				value.find('*', ind + 1) >= value.Length() && value.find('/', ind + 1) >= value.Length())
-				return;
-		}
-	}
-
-	if (numpad_dec_swap)
-		return text_field->WriteText(str);
-	else
-		event.Skip();
-}
+//--------------------------------------------------------------------
 
 bool getOnlineCurrencyRates(wxString& msg, int curr_id, bool used_only)
 {
