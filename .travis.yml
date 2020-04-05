@@ -14,9 +14,9 @@ env:
   - MAKEFLAGS=-j$CMAKE_BUILD_PARALLEL_LEVEL
   - BUILD_TYPE=$(if [[ "$TRAVIS_TAG" =~ ^v[0-9]+\.[0-9]+\.[0-9]+ ]]; then if [[ "$TRAVIS_TAG" =~ -[a-z] ]]; then echo RelWithDebInfo; else echo Release; fi; else echo Debug; fi)
   matrix: # targets for linux
-  - OS=debian DIST=jessie
-  - OS=debian DIST=stretch
-  - OS=debian DIST=bullseye
+  ##- OS=debian DIST=jessie
+  ##- OS=debian DIST=stretch
+  ##- OS=debian DIST=bullseye
   # - OS=debian DIST=buster # see issue #1331 on GitHub
   #- OS=debian DIST=jessie ARCH=x86
   #- OS=debian DIST=stretch ARCH=x86
@@ -27,37 +27,39 @@ env:
   - OS=ubuntu DIST=bionic
   #- OS=ubuntu DIST=xenial ARCH=x86
   #- OS=ubuntu DIST=zesty ARCH=x86
-  - OS=ubuntu DIST=bionic ARCH=x86
-  - OS=ubuntu DIST=disco
-  - OS=ubuntu DIST=disco ARCH=x86
-  - OS=ubuntu DIST=eoan
-  - OS=ubuntu DIST=eoan ARCH=x86
-  - OS=fedora
-  - OS=fedora DIST=30
-  - OS=fedora DIST=31
+  ##- OS=ubuntu DIST=bionic ARCH=x86
+  ##- OS=ubuntu DIST=disco
+  ##- OS=ubuntu DIST=disco ARCH=x86
+  ##- OS=ubuntu DIST=eoan
+  ##- OS=ubuntu DIST=eoan ARCH=x86
+  ##- OS=fedora
+  ##- OS=fedora DIST=30
+  ##- OS=fedora DIST=31
   # - OS=opensuse # see issue #1903 on GitHub
-  - OS=opensuse DIST=42.2
+  ##- OS=opensuse DIST=42.2
   #- OS=opensuse DIST=42.3
   # - OS=opensuse DIST=15.1
   #- OS=archlinux
-  - OS=el DIST=7 # DIST=6 doesn't provide webview in wxGTK3
+  ##- OS=el DIST=7 # DIST=6 doesn't provide webview in wxGTK3
   - OS=el DIST=8
-  - OS=linuxmint DIST=sylvia
-  - OS=linuxmint DIST=tara
-  - OS=linuxmint DIST=tessa
-  - OS=linuxmint DIST=tina
-  - OS=linuxmint DIST=tricia
-  - OS=linuxmint DIST=sylvia ARCH=x86
-  - OS=linuxmint DIST=tara ARCH=x86
-  - OS=linuxmint DIST=tessa ARCH=x86
-  - OS=linuxmint DIST=tina ARCH=x86
-  - OS=linuxmint DIST=tricia ARCH=x86
+  ##- OS=linuxmint DIST=sylvia
+  ##- OS=linuxmint DIST=tara
+  ##- OS=linuxmint DIST=tessa
+  ##- OS=linuxmint DIST=tina
+  ##- OS=linuxmint DIST=tricia
+  ##- OS=linuxmint DIST=sylvia ARCH=x86
+  ##- OS=linuxmint DIST=tara ARCH=x86
+  ##- OS=linuxmint DIST=tessa ARCH=x86
+  ##- OS=linuxmint DIST=tina ARCH=x86
+  ##- OS=linuxmint DIST=tricia ARCH=x86
 
 matrix:
   fast_finish: true
   include: # add non-linux targets
-  - { os: osx, osx_image: xcode9.1, env: OS=macos DIST=10.12 }
-  - { os: osx, osx_image: xcode9.1, env: OS=macos DIST=10.13 }
+  - { os: osx, osx_image: xcode11.3.1, env: OS=macos DIST=10.14 }
+  - { os: osx, osx_image: xcode11.2.1, env: OS=macos DIST=10.14 }
+  - { os: osx, osx_image: xcode11.1, env: OS=macos DIST=10.14 }
+  - { os: osx, osx_image: xcode10.1, env: OS=macos DIST=10.13 }
   - stage: nightly # used only to tag and trigger nightly build
     sudo: false
     cache: pip
