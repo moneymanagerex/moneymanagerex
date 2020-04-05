@@ -60,6 +60,8 @@ matrix:
   - { os: osx, osx_image: xcode11.2.1, env: OS=macos DIST=10.14 }
   - { os: osx, osx_image: xcode11.1, env: OS=macos DIST=10.14 }
   - { os: osx, osx_image: xcode10.1, env: OS=macos DIST=10.13 }
+  - { os: osx, osx_image: xcode9.1, env: OS=macos DIST=10.13 }
+  - { os: osx, osx_image: xcode9.1, env: OS=macos DIST=10.12 }
   - stage: nightly # used only to tag and trigger nightly build
     sudo: false
     cache: pip
@@ -130,13 +132,9 @@ install: |-
       docker build dockers/$OS${DIST:+.$DIST}${ARCH:+.$ARCH} --cache-from ${DOCKER} -t ${DOCKER}
       ;;
     osx)
-      MACOSX_DEPLOYMENT_TARGET=$DIST
-      brew update # see travis-ci/travis-ci#8552
-      for p in gettext ccache zlib cmake;
-        do brew list $p >/dev/null || brew install --verbose $p; done
-      brew link --force gettext zlib
-      ccache -s && export PATH="/usr/local/opt/ccache/libexec:$PATH"
-      brew install --verbose wxmac --with-static --with-stl
+      export MACOSX_DEPLOYMENT_TARGET=$DIST
+      brew update-reset && brew bundle --verbose --file=util/Brewfile
+      ccache -cs && export PATH="/usr/local/opt/ccache/libexec:$PATH"
       ;;
   esac
 
@@ -157,7 +155,12 @@ script: |-
         bash -c "$CMAKE_CMD -DCMAKE_BUILD_TYPE=$BUILD_TYPE && cmake --build . --target package && eval \$MMEX_INST_CMD"
       ;;
     osx)
-      $CMAKE_CMD && make package
+      export CXXFLAGS=-stdlib=libc++ # exports required by Xcode 10 or later
+      export LDFLAGS=-stdlib=libc++
+      $CMAKE_CMD -G Xcode && cmake --build . --target package --config $BUILD_TYPE -- \
+        CC=/usr/local/opt/ccache/libexec/clang \
+        CPLUSPLUS=/usr/local/opt/ccache/libexec/clang++ | \
+        xcpretty -c -f `xcpretty-travis-formatter`; test ${PIPESTATUS[0]} -eq 0
       ;;
   esac
 
