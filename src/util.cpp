@@ -1053,3 +1053,31 @@ bool mmSeparator::isStringHasSeparator(const wxString &string)
     }
     return result;
 }
+
+const wxString md2html(const wxString& md)
+{
+    wxString body = md;
+    // ---- Convert Markup
+
+    // img with link
+    // skip images hosted via unsupported https
+    wxRegEx re("\\[!\\[([^]]+)\\]\\(([ \t]*https://[^)]+)\\)\\]\\(([^)]+)\\)", wxRE_EXTENDED);
+    re.Replace(&body, "<a href=\"\\3\">\\1</a>");
+    re.Compile("\\[!\\[([^]]+)\\]\\(([^)]+)\\)\\]\\(([^)]+)\\)", wxRE_EXTENDED);
+    re.Replace(&body, "<a href=\"\\3\"><img src=\"\\2\" alt=\"\\1\"></a>");
+
+    // img
+    // skip images hosted via unsupported https
+    re.Compile("!\\[([^]]+)\\]\\([ \t]*https://[^)]+\\)", wxRE_EXTENDED);
+    re.Replace(&body, "\\1");
+    re.Compile("!\\[([^]]+)\\]\\(([^)]+)\\)", wxRE_EXTENDED);
+    re.Replace(&body, "<img src=\"\\2\" alt=\"\\1\">");
+
+    // link
+    re.Compile("\\[([^]]+)\\]\\(([^)]+)\\)", wxRE_EXTENDED);
+    re.Replace(&body, "<a href=\"\\2\">\\1</a>");
+
+    body.Replace("\n", "\n<p>");
+    
+    return body;
+}

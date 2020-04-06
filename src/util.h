@@ -183,6 +183,7 @@ bool get_yahoo_prices(std::map<wxString, double>& symbols
 const wxString mmPlatformType();
 const wxString getProgramDescription(int type = 0);
 void windowsFreezeThaw(wxWindow* w);
+const wxString md2html(const wxString& md);
 
 //* Date Functions----------------------------------------------------------*//
 static const wxString MONTHS[12] =

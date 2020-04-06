@@ -33,18 +33,10 @@ const char* update_template = R"(
 <!DOCTYPE html>
 <html>
 <head>
-    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 </head>
 <body>
-<table>
-  <tr>
-    <th>%s</th>
-    <th>%s</th>
-    <th>%s</th>
-    <th>%s</th>
-  </tr>
 %s
-</table>
 </body>
 </html>
 )";
@@ -59,7 +51,7 @@ mmUpdateWizard::mmUpdateWizard(wxFrame *frame, const Document& json_releases, wx
     int i = 0;
     wxString displayMsg = wxString::Format(_("Your version is %s"), mmex::version::string) + "\n\n";
     displayMsg += _("A new version of MMEX is available!");
-    wxString body;
+    wxString html;
 
     for (auto& r : json_releases.GetArray())
     {
@@ -83,17 +75,22 @@ mmUpdateWizard::mmUpdateWizard(wxFrame *frame, const Document& json_releases, wx
             const wxString pd = pub_date.FormatISODate();
             const wxString time = pub_date.FormatISOTime();
 
+            const auto body = md2html((r.HasMember("body") && r["body"].IsString())
+                ? r["body"].GetString() : "");
+
             wxString link = wxString::Format(R"(<a href="%s">%s</a>)", html_url, tag);
             const wxString github = "https://github.com/moneymanagerex/moneymanagerex/releases/tag/";
             const wxString sf = "https://sourceforge.net/projects/moneymanagerex/files/";
             if (link.Contains(github)) link.Replace(github, sf);
-            body += wxString::Format(R"(<tr><td>%s</td><td>%s</td><td>%s</td><td>%s</td></tr>)"
-                , link, prerelease, pd, time);
+            html += wxString::Format(R"(<table><tr align='left'><th>%s</th><th>%s</th><th>%s</th><th>%s</th></tr>)"
+                , _("Version"), _("Status"), _("Date"), _("Time"));
+            html += wxString::Format(R"(<tr><td>%s</td><td>%s</td><td>%s</td><td>%s</td></tr><tr><td colspan='4'>%s</td></tr></table><hr>)"
+                , link, prerelease, pd, time, body);
         }
         i++;
     }
 
-    body = wxString::Format(update_template, _("Version"), _("Status"), _("Date"), _("Time"), body);
+    html = wxString::Format(update_template, html);
 
     wxBoxSizer *page1_sizer = new wxBoxSizer(wxVERTICAL);
     page1->SetSizer(page1_sizer);
@@ -105,7 +102,7 @@ mmUpdateWizard::mmUpdateWizard(wxFrame *frame, const Document& json_releases, wx
         , wxHW_SCROLLBAR_AUTO | wxSUNKEN_BORDER | wxHSCROLL | wxVSCROLL);
     changelog->SetMinSize(wxSize(350, 250));
 
-    wxStaticText *tipsText = new wxStaticText(page1, wxID_ANY, TIPS[1]);
+    wxStaticText *tipsText = new wxStaticText(page1, wxID_ANY, wxGetTranslation(TIPS[1]));
 
     page1_sizer->Add(updateText, g_flagsCenter);
     page1_sizer->Add(changelog, wxSizerFlags(g_flagsExpand).Border(wxTOP, 0));
@@ -115,7 +112,7 @@ mmUpdateWizard::mmUpdateWizard(wxFrame *frame, const Document& json_releases, wx
     setControlEnable(wxID_CANCEL);
     setControlEnable(wxID_BACKWARD);
 
-    changelog->SetPage(body);
+    changelog->SetPage(html);
 }
 
 void mmUpdateWizard::RunIt(bool modal)

@@ -44,9 +44,8 @@ static const wxCmdLineEntryDesc g_cmdLineDesc [] =
 
 //----------------------------------------------------------------------------
 
-mmGUIApp::mmGUIApp(): m_frame(0)
-, m_checker(nullptr)
-, m_setting_db(0)
+mmGUIApp::mmGUIApp(): m_frame(nullptr)
+, m_setting_db(nullptr)
 , m_optParam(wxEmptyString)
 , m_lang(wxLANGUAGE_UNKNOWN)
 , m_locale(wxLANGUAGE_DEFAULT)
@@ -69,16 +68,20 @@ wxLocale& mmGUIApp::getLocale()
 
 bool mmGUIApp::setGUILanguage(wxLanguage lang)
 {
-    if (lang == wxLANGUAGE_UNKNOWN) {
-        lang = wxLANGUAGE_DEFAULT;
-    }
-    if (lang == this->m_lang) {
+    if (lang == this->m_lang && lang != wxLANGUAGE_UNKNOWN) {
         return false;
     }
     wxTranslations *trans = new wxTranslations;
     trans->SetLanguage(lang);
     trans->AddStdCatalog();
-    if (!trans->AddCatalog("mmex", wxLANGUAGE_ENGLISH_US) && lang != wxLANGUAGE_ENGLISH_US)
+    if (trans->AddCatalog("mmex", wxLANGUAGE_ENGLISH_US) || lang == wxLANGUAGE_ENGLISH_US || lang == wxLANGUAGE_DEFAULT)
+    {
+        wxTranslations::Set(trans);
+        this->m_lang = lang;
+        Option::instance().setLanguage(lang);
+        return true;
+    }
+    else
     {
         wxArrayString lang_files = trans->GetAvailableTranslations("mmex");
         lang_files.Add("en_US");
@@ -100,7 +103,7 @@ bool mmGUIApp::setGUILanguage(wxLanguage lang)
         languages_list.RemoveLast(2);
 
         wxString msg;
-        if (lang == wxLANGUAGE_DEFAULT)
+        if (lang != wxLANGUAGE_UNKNOWN)
         {
             wxString best;
 #if wxCHECK_VERSION(3, 1, 2) && !wxCHECK_VERSION(3, 1, 3)
@@ -121,19 +124,14 @@ bool mmGUIApp::setGUILanguage(wxLanguage lang)
                 , wxLocale::GetLanguageName(lang));
         }
         msg += "\n\n";
-        if (lang_files.GetCount())
+        if (lang == wxLANGUAGE_UNKNOWN) {
             msg += wxString::Format(_("Please use the Switch Application Language option in View menu to select one of the following available languages:\n\n%s"), languages_list);
-        else
-            msg += _("There are no translation files installed.");
+        }
 
         mmErrorDialogs::MessageWarning(NULL, msg, _("Language change"));
         wxDELETE(trans);
         return false;
     }
-    wxTranslations::Set(trans);
-    this->m_lang = lang;
-    Option::instance().setLanguage(lang);
-    return true;
 }
 
 
@@ -153,7 +151,7 @@ bool mmGUIApp::OnCmdLineParsed(wxCmdLineParser& parser)
 /*
     See also: wxStackWalker, wxDebugReportUpload.
 */
-void mmGUIApp::reportFatalException(wxDebugReport::Context ctx)
+void mmGUIApp::ReportFatalException(wxDebugReport::Context ctx)
 {
     // TODO email it or upload it
     wxDebugReportCompress report;
@@ -212,13 +210,37 @@ int mmGUIApp::FilterEvent(wxEvent &event)
 
 void mmGUIApp::OnFatalException()
 {
-    reportFatalException(wxDebugReport::Context_Exception);
+    ReportFatalException(wxDebugReport::Context_Exception);
 }
 //----------------------------------------------------------------------------
 
 bool OnInitImpl(mmGUIApp* app)
 {
     app->SetAppName(mmex::GetAppName());
+
+    app->SetSettingDB(new wxSQLite3Database());
+    app->GetSettingDB()->Open(mmex::getPathUser(mmex::SETTINGS));
+    Model_Setting::instance(app->GetSettingDB());
+
+    bool isUsed = Model_Setting::instance().GetBoolSetting("ISUSED", false);
+    if (isUsed) 
+    {
+        int response = wxMessageBox(_(
+            "Settings DB is already opened by another mmex instance or some other application.\n"
+            "It's strongly recommended to close all other applications that can use the DB.\n\n"
+            "Possible it may be as result of a programm crash in previous usage.\n\n"
+            "Would you like to continue?")
+            , _("MMEX Instance Check"), wxYES_NO | wxNO_DEFAULT | wxICON_WARNING);
+        if (response == wxNO) {
+            return false;
+        }
+    }
+
+    Model_Setting::instance().ShrinkUsageTable();
+    Model_Usage::instance(app->GetSettingDB());
+
+    /* Load general MMEX Custom Settings */
+    Option::instance().LoadOptions(false);
 
     /* initialize GUI with best language */
     wxTranslations *trans = new wxTranslations;
@@ -236,21 +258,8 @@ bool OnInitImpl(mmGUIApp* app)
     /* Initialize Image Handlers */
     wxInitAllImageHandlers();
 
-    app->setSettingDB(new wxSQLite3Database());
-    app->getSettingDB()->Open(mmex::getPathUser(mmex::SETTINGS));
-    Model_Setting::instance(app->getSettingDB());
-    Model_Setting::instance().ShrinkUsageTable();
-
-    Model_Usage::instance(app->getSettingDB());
-
-    /* Load general MMEX Custom Settings */
-    Option::instance().LoadOptions(false);
-
     /* set preffered GUI language */
     app->setGUILanguage(Option::instance().getLanguageID());
-
-    /* Was App Maximized? */
-    bool isMax = Model_Setting::instance().GetBoolSetting("ISMAXIMIZED", true);
 
     //Get System screen size
 #ifdef _MSC_VER
@@ -274,6 +283,9 @@ bool OnInitImpl(mmGUIApp* app)
     app->m_frame = new mmGUIFrame(app, mmex::getProgramName(), wxPoint(valx, valy), wxSize(valw, valh));
 
     bool ok = app->m_frame->Show();
+
+    /* Was App Maximized? */
+    bool isMax = Model_Setting::instance().GetBoolSetting("ISMAXIMIZED", true);
     if (isMax) app->m_frame->Maximize(true);
 
     // success: wxApp::OnRun() will be called which will enter the main message
@@ -286,16 +298,6 @@ bool OnInitImpl(mmGUIApp* app)
 //----------------------------------------------------------------------------
 bool mmGUIApp::OnInit()
 {
-    m_checker = new wxSingleInstanceChecker;
-    if (m_checker->IsAnotherRunning())
-    {
-        wxMessageBox(_(
-            "MMEX is already running...\n\n"
-            "Multiple instances are no longer supported."), _("MMEX Instance Check"));
-        delete m_checker;
-        return false;
-    }
-
     bool ok = false;
 
     try
@@ -311,11 +313,21 @@ bool mmGUIApp::OnInit()
         wxLogError("%s", e.what());
     }
 
+    if (ok) {
+        Model_Setting::instance().Set("ISUSED", true);
+    }
+    else
+    {
+        GetSettingDB()->Close();
+        delete m_setting_db;
+    }
     return ok;
 }
 
 int mmGUIApp::OnExit()
 {
+    Model_Setting::instance().Set("ISUSED", false);
+
 	wxLogDebug("OnExit()");
 	Model_Usage::Data* usage = Model_Usage::instance().create();
 	usage->USAGEDATE = wxDate::Today().FormatISODate();
@@ -335,6 +347,5 @@ int mmGUIApp::OnExit()
 	//Delete mmex temp folder for current user
 	wxFileName::Rmdir(mmex::getTempFolder(), wxPATH_RMDIR_RECURSIVE);
 
-	delete m_checker;
 	return 0;
 }

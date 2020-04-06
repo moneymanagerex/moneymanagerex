@@ -180,9 +180,10 @@ void Model_Setting::SetViewTransactions(const wxString& value)
     Set("VIEWTRANSACTIONS", value);
 }
 
+// Trim usage settings in case if values greater than 500k
 void Model_Setting::ShrinkUsageTable()
 {
-    const wxULongLong max_size = 524287;    //500K
+    const wxULongLong max_size = 524287;
     const wxULongLong file_size = wxFileName(mmex::getPathUser(mmex::SETTINGS)).GetSize();
     if (file_size < max_size)
     {

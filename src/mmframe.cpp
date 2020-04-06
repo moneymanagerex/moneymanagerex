@@ -77,7 +77,7 @@
 
 //----------------------------------------------------------------------------
 
-int REPEAT_TRANS_DELAY_TIME = 7000; // 7 seconds
+int REPEAT_TRANS_DELAY_TIME = 3000; // 3 seconds
 //----------------------------------------------------------------------------
 
 wxBEGIN_EVENT_TABLE(mmGUIFrame, wxFrame)
@@ -214,7 +214,7 @@ mmGUIFrame::mmGUIFrame(mmGUIApp* app, const wxString& title
 #endif
     // decide if we need to show app start dialog
     bool from_scratch = false;
-    wxFileName dbpath = m_app->getOptParam();
+    wxFileName dbpath = m_app->GetOptParam();
     if (!dbpath.IsOk())
     {
         from_scratch = Model_Setting::instance().GetBoolSetting("SHOWBEGINAPP", true);
@@ -347,6 +347,7 @@ void mmGUIFrame::ShutdownDatabase()
 {
     if (m_db)
     {
+        Model_Infotable::instance().Set("ISUSED", false);
         m_db->SetCommitHook(nullptr);
         m_db->Close();
         delete m_commit_callback_hook;
@@ -1858,12 +1859,26 @@ bool mmGUIFrame::openFile(const wxString& fileName, bool openingNew, const wxStr
         m_recentFiles->AddFileToHistory(fileName);
         menuEnableItems(true);
         menuPrintingEnable(false);
-        autoRepeatTransactionsTimer_.Start(REPEAT_TRANS_DELAY_TIME, wxTIMER_ONE_SHOT);
 
         if (m_db->IsEncrypted())
         {
             menuBar_->FindItem(MENU_CHANGE_ENCRYPT_PASSWORD)->Enable(true);
         }
+
+        bool isUsed = Model_Infotable::instance().GetBoolInfo("ISUSED", false);
+        if (isUsed) {
+            int response = wxMessageBox(_(
+                "Database that you trying to open is already opened by another mmex instance...\n"
+                "To avoid data loss or conflict, it's strongly recommended to close all other applications that can use the DB.\n\n"
+                "Possible it may be as result of a programm crash in previous usage.\n\n"
+                "Would you like to continue?")
+                , _("MMEX Instance Check"), wxYES_NO | wxNO_DEFAULT | wxICON_WARNING);
+            if (response == wxNO)
+                return false;
+        }
+
+        Model_Infotable::instance().Set("ISUSED", true);
+        autoRepeatTransactionsTimer_.Start(REPEAT_TRANS_DELAY_TIME, wxTIMER_ONE_SHOT);
     }
     else return false;
 
