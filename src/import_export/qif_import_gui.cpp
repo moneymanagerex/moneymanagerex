@@ -1109,11 +1109,6 @@ bool mmQIFImportDialog::completeTransaction(/*in*/ const std::unordered_map <int
             trx->CATEGID = (m_QIFcategoryNames[_("Unknown")].first);
             trx->SUBCATEGID = -1;
         }
-        else
-        {
-            trx->CATEGID = (m_QIFcategoryNames[categStr].first);
-            trx->SUBCATEGID = (m_QIFcategoryNames[categStr].second);
-        }
     }
     return true;
 }
@@ -1255,9 +1250,11 @@ void mmQIFImportDialog::getOrCreateCategories()
         const wxString categStr = token.GetNextToken();
         const wxString subcategStr = token.GetNextToken();
         const auto c = Model_Category::instance().get(categStr);
-        if (c) categID = c->CATEGID;
-        const auto s = Model_Subcategory::instance().get(subcategStr, categID);
-        if (s) subcategID = s->SUBCATEGID;
+        if (c) {
+            categID = c->CATEGID;
+            const auto s = Model_Subcategory::instance().get(subcategStr, categID);
+            if (s) subcategID = s->SUBCATEGID;
+        }
         m_QIFcategoryNames[item.first] = std::make_pair(categID, subcategID);
     }
 }
