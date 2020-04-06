@@ -648,7 +648,7 @@ void mmFilterTransactionsDialog::setAccountToolTip(const wxString& tip) const
 
 void mmFilterTransactionsDialog::clearSettings()
 {
-    settings_string_.Clear();
+    settings_string_ = "{}";
     dataToControls();
 }
 void mmFilterTransactionsDialog::datePresetMenuSelected( wxCommandEvent& event )
@@ -994,30 +994,34 @@ void mmFilterTransactionsDialog::from_json(const wxString &data)
 	categoryCheckBox_->SetValue(!s_category.empty());
 	btnCategory_->Enable(categoryCheckBox_->IsChecked());
 
-	bSimilarCategoryStatus_ = false;
-	if (j_doc.HasMember("SIMILAR_YN") && j_doc["SIMILAR_YN"].IsBool())
-	{
-		bSimilarCategoryStatus_ = j_doc["SIMILAR_YN"].GetBool();
-	}
-	similarCategCheckBox_->SetValue(bSimilarCategoryStatus_);
-	similarCategCheckBox_->Enable(categoryCheckBox_->IsChecked());
-
-	wxStringTokenizer categ_token(s_category, ":", wxTOKEN_RET_EMPTY_ALL);
+    subcategID_ = -1;
+    categID_ = -1;
+    wxStringTokenizer categ_token(s_category, ":", wxTOKEN_RET_EMPTY_ALL);
 	const auto categ_name = categ_token.GetNextToken().Trim();
 	Model_Category::Data* category = Model_Category::instance().get(categ_name);
-	if (category)
-	{
-		categID_ = category->CATEGID;
-	}
-	Model_Subcategory::Data* sub_category = 0;
-	const auto subcateg_name = categ_token.GetNextToken().Trim(false);
-	if (!subcateg_name.IsEmpty())
-	{
-		sub_category = Model_Subcategory::instance().get(subcateg_name, categID_);
-		if (sub_category)
-			subcategID_ = sub_category->SUBCATEGID;
-	}
-	btnCategory_->SetLabelText(Model_Category::full_name(categID_, subcategID_));
+    if (category)
+    {
+        categID_ = category->CATEGID;
+
+        Model_Subcategory::Data* sub_category = nullptr;
+        const auto subcateg_name = categ_token.GetNextToken().Trim(false);
+        if (!subcateg_name.IsEmpty())
+        {
+            sub_category = Model_Subcategory::instance().get(subcateg_name, categID_);
+            if (sub_category)
+                subcategID_ = sub_category->SUBCATEGID;
+        }
+        btnCategory_->SetLabelText(Model_Category::full_name(categID_, subcategID_));
+
+        bSimilarCategoryStatus_ = false;
+        if (j_doc.HasMember("SIMILAR_YN") && j_doc["SIMILAR_YN"].IsBool())
+        {
+            bSimilarCategoryStatus_ = j_doc["SIMILAR_YN"].GetBool();
+        }
+        similarCategCheckBox_->SetValue(bSimilarCategoryStatus_);
+        similarCategCheckBox_->Enable(categoryCheckBox_->IsChecked());
+
+    }
 
 	//Status
 	Value& j_status = GetValueByPointerWithDefault(j_doc, "/STATUS", "");

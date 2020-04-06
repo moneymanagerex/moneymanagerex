@@ -126,6 +126,8 @@ bool mmGUIApp::setGUILanguage(wxLanguage lang)
         msg += "\n\n";
         if (lang == wxLANGUAGE_UNKNOWN) {
             msg += wxString::Format(_("Please use the Switch Application Language option in View menu to select one of the following available languages:\n\n%s"), languages_list);
+            m_lang = wxLANGUAGE_DEFAULT;
+            Option::instance().setLanguage(m_lang);
         }
 
         mmErrorDialogs::MessageWarning(NULL, msg, _("Language change"));
