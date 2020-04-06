@@ -1011,17 +1011,16 @@ void mmFilterTransactionsDialog::from_json(const wxString &data)
             if (sub_category)
                 subcategID_ = sub_category->SUBCATEGID;
         }
-        btnCategory_->SetLabelText(Model_Category::full_name(categID_, subcategID_));
-
-        bSimilarCategoryStatus_ = false;
-        if (j_doc.HasMember("SIMILAR_YN") && j_doc["SIMILAR_YN"].IsBool())
-        {
-            bSimilarCategoryStatus_ = j_doc["SIMILAR_YN"].GetBool();
-        }
-        similarCategCheckBox_->SetValue(bSimilarCategoryStatus_);
-        similarCategCheckBox_->Enable(categoryCheckBox_->IsChecked());
-
     }
+    btnCategory_->SetLabelText(Model_Category::full_name(categID_, subcategID_));
+
+    bSimilarCategoryStatus_ = false;
+    if (j_doc.HasMember("SIMILAR_YN") && j_doc["SIMILAR_YN"].IsBool())
+    {
+        bSimilarCategoryStatus_ = j_doc["SIMILAR_YN"].GetBool();
+    }
+    similarCategCheckBox_->SetValue(bSimilarCategoryStatus_);
+    similarCategCheckBox_->Enable(categoryCheckBox_->IsChecked());
 
 	//Status
 	Value& j_status = GetValueByPointerWithDefault(j_doc, "/STATUS", "");
