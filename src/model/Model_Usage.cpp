@@ -259,12 +259,13 @@ void Model_Usage::pageview(const wxString& documentPath, const wxString& documen
     thread->Run();
 }
 
+extern WXDLLIMPEXP_DATA_WEBVIEW(const char) wxWebViewBackendDefault[];
 wxThread::ExitCode SendStatsThread::Entry()
 {
     wxLogDebug("Sending stats (thread %lu, priority %u, %s, %i cores): %s",
         GetId(), GetPriority(), wxGetOsDescription(), GetCPUCount(), m_url);
     wxString result = wxEmptyString;
-    http_get_data(m_url, result, wxGetOsDescription() + "\r\n");
+    http_get_data(m_url, result, wxString::Format("%s/%s (%s; %s) %s", mmex::getProgramName(), mmex::version::string, wxPlatformInfo::Get().GetOperatingSystemFamilyName(), wxGetOsDescription(), wxWebViewBackendDefault));
     wxLogDebug("Response: %s", result);
     return nullptr;
 }
