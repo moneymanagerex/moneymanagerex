@@ -15,38 +15,35 @@ env:
   - BUILD_TYPE=$(if [[ "$TRAVIS_TAG" =~ ^v[0-9]+\.[0-9]+\.[0-9]+ ]]; then if [[ "$TRAVIS_TAG" =~ -[a-z] ]]; then echo RelWithDebInfo; else echo Release; fi; else echo Debug; fi)
   matrix: # targets for linux
   # Ubuntu
-  - OS=ubuntu DIST=eoan
-  - OS=ubuntu DIST=disco
+  ##- OS=ubuntu DIST=eoan
+  ##- OS=ubuntu DIST=disco
   #- OS=ubuntu DIST=cosmic
   - OS=ubuntu DIST=bionic
-  - OS=ubuntu DIST=xenial
+  ##- OS=ubuntu DIST=xenial
   # Debian
   # - OS=debian DIST=buster # see issue #1331 on GitHub
-  - OS=debian DIST=stretch
-  - OS=debian DIST=jessie
+  ##- OS=debian DIST=stretch
+  ##- OS=debian DIST=jessie
   # Fedora
-  - OS=fedora DIST=31
+  ##- OS=fedora DIST=31
   # Open SuSe
   # - OS=opensuse # see issue #1903 on GitHub
-  - OS=opensuse DIST=42.2
+  ##- OS=opensuse DIST=42.2
   # Arch Linux
   #- OS=archlinux
   # elementary OS
-  - OS=el DIST=8
+  ##- OS=el DIST=8
   # Linux Mint
-  - OS=linuxmint DIST=tricia
-  - OS=linuxmint DIST=tina
-  - OS=linuxmint DIST=tessa
-  - OS=linuxmint DIST=tara
-  - OS=linuxmint DIST=sylvia
+  ##- OS=linuxmint DIST=tricia
+  ##- OS=linuxmint DIST=tina
+  ##- OS=linuxmint DIST=tessa
+  ##- OS=linuxmint DIST=tara
+  ##- OS=linuxmint DIST=sylvia
 
 matrix:
   fast_finish: true
   include: # add non-linux targets
-  - { os: osx, osx_image: xcode11.3.1, env: OS=macos DIST=10.14 }
-  - { os: osx, osx_image: xcode11.2.1, env: OS=macos DIST=10.14 }
-  - { os: osx, osx_image: xcode11.1, env: OS=macos DIST=10.14 }
-  - { os: osx, osx_image: xcode10.1, env: OS=macos DIST=10.13 }
+  - { os: osx, osx_image: xcode11.2, env: OS=macos DIST=10.7, compiler: clang }
   - stage: nightly # used only to tag and trigger nightly build
     sudo: false
     cache: pip
@@ -124,7 +121,8 @@ install: |-
       curl -fsSL -O https://github.com/wxWidgets/wxWidgets/releases/download/v3.1.3/wxWidgets-3.1.3.tar.bz2
       tar xzf wxWidgets-*.tar.bz2
       cd wxWidgets-3.1.3
-      ./configure --disable-shared --enable-cxx11 --with-cxx=11 \
+      make distclean
+      ./configure --enable-unicode --with-osx-cocoa --disable-debug --disable-shared --enable-cxx11 --with-cxx=11 \
         --with-macosx-version-min=$MACOSX_DEPLOYMENT_TARGET \
         --without-libtiff
       make install
