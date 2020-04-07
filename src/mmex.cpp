@@ -119,10 +119,7 @@ bool mmGUIApp::setGUILanguage(wxLanguage lang)
                     best);
             }
         }
-        else {
-            msg = wxString::Format(_("Cannot load a translation for the selected language (%s).")
-                , wxLocale::GetLanguageName(lang));
-        }
+
         msg += "\n\n";
         if (lang == wxLANGUAGE_UNKNOWN) {
             msg += wxString::Format(_("Please use the Switch Application Language option in View menu to select one of the following available languages:\n\n%s"), languages_list);
@@ -228,7 +225,7 @@ bool OnInitImpl(mmGUIApp* app)
     if (isUsed) 
     {
         int response = wxMessageBox(_(
-            "Settings DB is already opened by another mmex instance or some other application.\n"
+            "Settings DB is already opened by another instance of MMEX.\n"
             "It's strongly recommended to close all other applications that can use the DB.\n\n"
             "Possible it may be as result of a programm crash in previous usage.\n\n"
             "Would you like to continue?")
