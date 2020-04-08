@@ -87,7 +87,6 @@ private:
 
 private:
     wxDatePickerCtrl* m_date_selector;
-    wxSpinButton* m_date_controller;
 
     wxButton* m_account;
     wxChoice* m_status_selector;

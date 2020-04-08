@@ -80,6 +80,15 @@ private:
     void OnTextEntered(wxCommandEvent& event);
     int transID_;
 
+    bool payeeUnknown_;
+    bool m_new_bill;
+    bool m_enter_occur;
+    bool autoExecuteUserAck_;
+    bool autoExecuteSilent_;
+    bool m_advanced;
+    bool categUpdated_;
+    bool m_transfer;
+
     wxTextCtrl* textNumber_;
     mmTextCtrl* textAmount_;
     mmTextCtrl* toTextAmount_;
@@ -92,27 +101,19 @@ private:
     wxButton* bAttachments_;
     wxCheckBox* cSplit_;
     wxCheckBox* cAdvanced_;
-    bool payeeUnknown_;
-
     wxChoice* m_choice_status;
     wxChoice* m_choice_transaction_type;
-
-    bool m_new_bill;
-    bool m_transfer;
-    bool m_enter_occur;
-
     wxDatePickerCtrl* m_date_paid;      // Stored in ::NEXTOCCURRENCEDATE
     wxDatePickerCtrl* m_date_due;       // Stored in ::TRANSDATE
     wxChoice* m_choice_repeat;
     wxCheckBox* itemCheckBoxAutoExeUserAck_;
     wxCheckBox* itemCheckBoxAutoExeSilent_;
-    bool autoExecuteUserAck_;
-    bool autoExecuteSilent_;
+    wxStaticText* staticTimesRepeat_;
+    wxStaticText* staticTextRepeats_;
+    wxBitmapButton* m_btn_due_date;
 
     Model_Billsdeposits::Bill_Data m_bill_data;
 
-    bool m_advanced;
-    bool categUpdated_;
     int prevType_;
     std::vector<wxString> frequentNotes_;
 
@@ -121,8 +122,6 @@ private:
     const wxString payeeTransferTip_ = _("Specify which account the transfer is going to");
     const wxString amountNormalTip_ = _("Specify the amount for this transaction");
     const wxString amountTransferTip_ = _("Specify the amount to be transferred");
-    wxSpinButton* spinNextOccDate_;
-    wxSpinButton* spinTransDate_;
 
     void resetPayeeString();
     void setTooltips();
@@ -138,9 +137,6 @@ private:
     void OnFrequentUsedNotes(wxCommandEvent& event);
     void onNoteSelected(wxCommandEvent& event);
 
-    wxStaticText* staticTimesRepeat_;
-    wxStaticText* staticTextRepeats_;
-    wxBitmapButton* m_btn_due_date;
     void OnRepeatTypeChanged(wxCommandEvent& event);
     void OnsetNextRepeatDate(wxCommandEvent& event);
     void setRepeatDetails();

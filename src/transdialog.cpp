@@ -420,18 +420,20 @@ void mmTransDialog::CreateControls()
     itemStaticTextWeek_ = new wxStaticText(this, wxID_STATIC, "",
         wxDefaultPosition, WeekDayNameMaxSize, wxST_NO_AUTORESIZE);
 
-    spinCtrl_ = new wxSpinButton(this, ID_DIALOG_TRANS_DATE_SPINNER
-        , wxDefaultPosition, wxSize(-1, dpc_->GetSize().GetHeight())
-        , wxSP_VERTICAL | wxSP_ARROW_KEYS | wxSP_WRAP);
-    spinCtrl_->SetRange (-32768, 32768);
-
     wxStaticText* name_label = new wxStaticText(this, wxID_STATIC, _("Date"));
     flex_sizer->Add(name_label, g_flagsH);
     name_label->SetFont(this->GetFont().Bold());
     wxBoxSizer* date_sizer = new wxBoxSizer(wxHORIZONTAL);
     flex_sizer->Add(date_sizer);
     date_sizer->Add(dpc_, g_flagsH);
-    date_sizer->Add(spinCtrl_, g_flagsH);
+#ifndef __WXMAC__
+    wxSpinButton* spinCtrl = new wxSpinButton(this, ID_DIALOG_TRANS_DATE_SPINNER
+        , wxDefaultPosition, wxSize(-1, dpc_->GetSize().GetHeight())
+        , wxSP_VERTICAL | wxSP_ARROW_KEYS | wxSP_WRAP);
+    spinCtrl->SetRange(-32768, 32768);
+    spinCtrl->SetToolTip(_("Retard or advance the date of the transaction"));
+    date_sizer->Add(spinCtrl, g_flagsH);
+#endif
     date_sizer->Add(itemStaticTextWeek_, g_flagsH);
 
     // Status --------------------------------------------
@@ -887,10 +889,11 @@ void mmTransDialog::OnTransDateSpin(wxSpinEvent& event)
 {
     wxDateTime date = dpc_->GetValue();
     int value = event.GetPosition();
+    wxSpinButton* spinCtrl = static_cast<wxSpinButton*>(event.GetEventObject());
 
     date = date.Add(wxDateSpan::Days(value));
     dpc_->SetValue(date);
-    spinCtrl_->SetValue(0);
+    spinCtrl->SetValue(0);
 
     //process date change event for set weekday name
     wxDateEvent dateEvent(dpc_, date, wxEVT_DATE_CHANGED);
@@ -1224,7 +1227,6 @@ void mmTransDialog::SetTooltips()
 
     // Not dynamically changed tooltips
     dpc_->SetToolTip(_("Specify the date of the transaction"));
-    spinCtrl_->SetToolTip(_("Retard or advance the date of the transaction"));
     choiceStatus_->SetToolTip(_("Specify the status for the transaction"));
     transaction_type_->SetToolTip(_("Specify the type of transactions to be created."));
     cSplit_->SetToolTip(_("Use split Categories"));

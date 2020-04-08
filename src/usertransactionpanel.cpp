@@ -95,13 +95,15 @@ void UserTransactionPanel::Create()
         , wxDefaultPosition, std_half_size, wxDP_DROPDOWN | wxDP_SHOWCENTURY);
     m_date_selector->SetToolTip(_("Specify the date of the transaction"));
 
-    m_date_controller = new wxSpinButton(this, ID_TRANS_DATE_CONTROLLER
-        , wxDefaultPosition, spinCtrlSize, spinCtrlDirection | wxSP_ARROW_KEYS | wxSP_WRAP);
-    m_date_controller->SetToolTip(_("Retard or advance the date of the transaction"));
-
     wxBoxSizer* date_sizer = new wxBoxSizer(wxHORIZONTAL);
     date_sizer->Add(m_date_selector, g_flagsH);
-    date_sizer->Add(m_date_controller, 0, wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL | wxLEFT, interval);
+
+#ifndef __WXMAC__
+    wxSpinButton* date_controller = new wxSpinButton(this, ID_TRANS_DATE_CONTROLLER
+        , wxDefaultPosition, spinCtrlSize, spinCtrlDirection | wxSP_ARROW_KEYS | wxSP_WRAP);
+    date_controller->SetToolTip(_("Retard or advance the date of the transaction"));
+    date_sizer->Add(date_controller, 0, wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL | wxLEFT, interval);
+#endif
 
     transPanelSizer->Add(new wxStaticText(this, wxID_STATIC, _("Date")), g_flagsH);
     transPanelSizer->Add(date_sizer);
