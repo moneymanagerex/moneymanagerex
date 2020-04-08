@@ -279,7 +279,7 @@ void mmBudgetingPanel::CreateControls()
 
     listCtrlBudget_ = new budgetingListCtrl(this, this, wxID_ANY);
 
-    //listCtrlBudget_->SetImageList(m_imageList.get(), wxIMAGE_LIST_SMALL);
+    listCtrlBudget_->SetImageList(m_imageList.get(), wxIMAGE_LIST_SMALL);
     listCtrlBudget_->InsertColumn(COL_ICON, (" "));
     listCtrlBudget_->InsertColumn(COL_CATEGORY, listCtrlBudget_->m_columns[COL_CATEGORY].HEADER);
     listCtrlBudget_->InsertColumn(COL_SUBCATEGORY, listCtrlBudget_->m_columns[COL_SUBCATEGORY].HEADER);

@@ -43,7 +43,8 @@ env:
 matrix:
   fast_finish: true
   include: # add non-linux targets
-  - { os: osx, osx_image: xcode11.3, env: OS=macos DIST=10.7, compiler: clang }
+  - { os: osx, osx_image: xcode11.1, env: OS=macos DIST=10.12, compiler: clang }
+  - { os: osx, osx_image: xcode11.1, env: OS=macos DIST=10.7, compiler: clang }
   - stage: nightly # used only to tag and trigger nightly build
     sudo: false
     cache: pip
