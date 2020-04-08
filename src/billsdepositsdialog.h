@@ -87,7 +87,7 @@ private:
     bool autoExecuteSilent_;
     bool m_advanced;
     bool categUpdated_;
-    bool m_transfer;
+    int prevType_;
 
     wxTextCtrl* textNumber_;
     mmTextCtrl* textAmount_;
@@ -112,9 +112,9 @@ private:
     wxStaticText* staticTextRepeats_;
     wxBitmapButton* m_btn_due_date;
 
+    bool m_transfer;
     Model_Billsdeposits::Bill_Data m_bill_data;
 
-    int prevType_;
     std::vector<wxString> frequentNotes_;
 
     const wxString payeeWithdrawalTip_ = _("Specify where the transaction is going to");
