@@ -19,7 +19,6 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "constants.h"
 #include <wx/string.h>
 #include <wx/filefn.h>
-#include "lua.hpp"
 #include <curl/curl.h>
 #include "rapidjson/rapidjson.h"
 #include "db/DB_Upgrade.h"

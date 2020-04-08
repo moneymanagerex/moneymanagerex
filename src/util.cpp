@@ -33,7 +33,8 @@
 #include <wx/sstream.h>
 #include <wx/xml/xml.h>
 #include <map>
-#include "lua.h"
+#include <lua.hpp>
+
 
 using namespace rapidjson;
 
