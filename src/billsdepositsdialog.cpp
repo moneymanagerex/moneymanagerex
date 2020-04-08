@@ -415,7 +415,7 @@ void mmBDDialog::CreateControls()
     wxBoxSizer* dueDateDateBoxSizer = new wxBoxSizer(wxHORIZONTAL);
     dueDateDateBoxSizer->Add(m_date_paid, g_flagsH);
 
-#ifdef __WXMAC__
+#ifndef __WXMAC__
     int spinCtrlDirection = wxSP_VERTICAL;
     wxSpinButton* spinTransDate = new wxSpinButton(this, ID_DIALOG_TRANS_DATE_SPINNER
         , wxDefaultPosition, wxSize(-1, m_date_paid->GetSize().GetHeight())
@@ -502,7 +502,7 @@ void mmBDDialog::CreateControls()
     wxBoxSizer* transDateBoxSizer = new wxBoxSizer(wxHORIZONTAL);
     transDateBoxSizer->Add(m_date_due, g_flagsH);
 
-#ifdef __WXMAC__
+#ifndef __WXMAC__
     int interval = 0;
     wxSpinButton* spinNextOccDate = new wxSpinButton(this, ID_DIALOG_BD_REPEAT_DATE_SPINNER
         , wxDefaultPosition, wxSize(-1, m_date_due->GetSize().GetHeight())

@@ -415,7 +415,7 @@ void mmTransDialog::CreateControls()
             d != wxDateTime::Inv_WeekDay;
             d = wxDateTime::WeekDay(d+1))
         WeekDayNameMaxSize.IncTo(GetTextExtent(
-            wxGetTranslation(wxDateTime::GetEnglishWeekDayName(d))));
+            wxGetTranslation(wxDateTime::GetEnglishWeekDayName(d))+ " "));
 
     itemStaticTextWeek_ = new wxStaticText(this, wxID_STATIC, "",
         wxDefaultPosition, WeekDayNameMaxSize, wxST_NO_AUTORESIZE);
