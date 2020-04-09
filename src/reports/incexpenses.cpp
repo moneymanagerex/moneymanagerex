@@ -26,6 +26,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "model/Model_Account.h"
 #include "model/Model_Checking.h"
 #include "model/Model_CurrencyHistory.h"
+#include "model/Model_Category.h"
 
 
 mmReportIncomeExpenses::mmReportIncomeExpenses()
@@ -151,12 +152,16 @@ mmReportIncomeExpensesMonthly::~mmReportIncomeExpensesMonthly()
 
 int mmReportIncomeExpensesMonthly::report_parameters()
 {
-    return RepParams::DATE_RANGE | RepParams::ACCOUNTS_LIST;
+    return RepParams::DATE_RANGE | RepParams::ACCOUNTS_LIST | RepParams::CHART;
 }
 
 wxString mmReportIncomeExpensesMonthly::getHTMLText()
 {
+
     wxString headerMsg = getAccountNames();
+
+    struct data_holder { wxString name; double period[2]; double overall; } line;
+    std::vector<data_holder> data;
 
     std::map<int, std::pair<double, double> > incomeExpensesStats;
     //TODO: init all the map values with 0.0
@@ -174,14 +179,24 @@ wxString mmReportIncomeExpensesMonthly::getHTMLText()
         double convRate = 1;
         // We got this far, get the currency conversion rate for this account
         if (account) convRate = Model_CurrencyHistory::getDayRate(Model_Account::currency(account)->CURRENCYID, transaction.TRANSDATE);
+        int year = Model_Checking::TRANSDATE(transaction).GetYear();
 
-        int idx = (Model_Checking::TRANSDATE(transaction).GetYear() * 100
-            + Model_Checking::TRANSDATE(transaction).GetMonth());
+        int idx = (year * 100 + Model_Checking::TRANSDATE(transaction).GetMonth());
 
-        if (Model_Checking::type(transaction) == Model_Checking::DEPOSIT)
+        if (Model_Checking::type(transaction) == Model_Checking::DEPOSIT) {
             incomeExpensesStats[idx].first += transaction.TRANSAMOUNT * convRate;
-        else if (Model_Checking::type(transaction) == Model_Checking::WITHDRAWAL)
+        }
+        else if (Model_Checking::type(transaction) == Model_Checking::WITHDRAWAL) {
             incomeExpensesStats[idx].second += transaction.TRANSAMOUNT * convRate;
+        }
+    }
+
+    for (const auto entry : incomeExpensesStats)
+    {
+        line.name = wxString::Format("%i", entry.first);
+        line.period[0] = entry.second.first;
+        line.period[1] = entry.second.second;
+        data.push_back(line);
     }
 
     mmHTMLBuilder hb;
@@ -192,6 +207,61 @@ wxString mmReportIncomeExpensesMonthly::getHTMLText()
     hb.addHeader(3, headerMsg);
     hb.addDateNow();
     hb.addLineBreak();
+
+
+    //Chart
+    const wxDateTime start_date = m_date_range->start_date();
+    wxDateSpan s = m_date_range->end_date().GetLastMonthDay().DiffAsDateSpan(start_date);
+    int m = s.GetYears() * 12 + s.GetMonths() + 1;
+    m = m > 60 ? 60 : m;
+
+    wxLogDebug("%s %s %i", start_date.FormatISODate(), m_date_range->end_date().FormatISODate(), m);
+
+    wxArrayString labels;
+    if (getChartSelection() == 0)
+    {
+        std::vector<BarGraphData> aData;
+        BarGraphData data_negative;
+        BarGraphData data_positive;
+        for (int i = 0; i < m; i++)
+        {
+            double val_negative = 0;
+            double val_positive = 0;
+            wxDateTime d = start_date.Add(wxDateSpan::Months(i));
+            int idx = (d.GetYear() * 100 + d.GetMonth());
+
+            for (const auto& item : data) {
+                if (item.name == wxString::Format("%i", idx)) {
+                    val_negative = item.period[0];
+                    val_positive = item.period[1];
+                    break;
+                }
+            }
+
+            data_negative.data.push_back(val_negative);
+            data_positive.data.push_back(val_positive);
+
+            data_negative.title = _("Expenses");
+            data_positive.title = _("Income");
+
+            data_negative.fillColor = "rgba(220,66,66,0.5)";
+            data_positive.fillColor = "rgba(151,187,205,0.5)";
+            const auto label = wxString::Format("%s %i", wxGetTranslation(wxDateTime::GetEnglishMonthName(d.GetMonth())), d.GetYear());
+            labels.Add(label);
+        }
+        aData.push_back(data_positive);
+        aData.push_back(data_negative);
+
+        if (!aData.empty())
+        {
+            hb.addDivRow();
+            hb.addDivCol17_67();
+            hb.addBarChart(labels, aData, "BarChart", 1000, 400);
+            hb.endDiv();
+            hb.endDiv();
+        }
+    }
+
 
     hb.addDivRow();
     hb.addDivCol17_67();
@@ -229,12 +299,12 @@ wxString mmReportIncomeExpensesMonthly::getHTMLText()
         }
         hb.endTbody();
 
-        std::vector<double> data;
-        data.push_back(total_income);
-        data.push_back(total_expenses);
-        data.push_back(total_income - total_expenses);
+        std::vector<double> totals;
+        totals.push_back(total_income);
+        totals.push_back(total_expenses);
+        totals.push_back(total_income - total_expenses);
 
-        hb.addTotalRow(_("Total:"), 5, data);
+        hb.addTotalRow(_("Total:"), 5, totals);
 
     }
     hb.endTable();
