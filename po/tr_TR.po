@@ -3,13 +3,13 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2019-08-06 10:14+0300\n"
-"PO-Revision-Date: 2019-08-06 07:26\n"
-"Last-Translator: Nikolay (vomikan)\n"
+"PO-Revision-Date: 2020-02-08 22:44\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Turkish\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: crowdin.com\n"
+"X-Generator: Poedit 2.2.3\n"
 "X-Poedit-Basepath: ../src\n"
 "X-Poedit-KeywordsList: _;wxTRANSLATE;wxPLURAL:1,2;wxGETTEXT_IN_CONTEXT:1c,2;wxGETTEXT_IN_CONTEXT_PLURAL:1c,2,3\n"
 "X-Poedit-SearchPath-0: .\n"
@@ -270,7 +270,7 @@ msgstr "İmaj #%i"
 #: appstartdialog.cpp:48 util.cpp:444
 #, c-format
 msgid "Version: %s"
-msgstr ""
+msgstr "Sürüm: %s"
 
 #: appstartdialog.cpp:99
 msgid "Open Last Opened Database"
@@ -321,7 +321,7 @@ msgstr "Çı&kış"
 #: appstartdialog.cpp:153
 #, c-format
 msgid "Open the previously opened database: %s"
-msgstr ""
+msgstr "Son açılan veritabanını aç: %s"
 
 #: assetdialog.cpp:56 assetdialog.cpp:424 assetspanel.cpp:509
 msgid "New Asset"
@@ -1098,7 +1098,7 @@ msgstr "Hata"
 
 #: billsdepositsdialog.cpp:1314 mmSimpleDialogs.cpp:262
 msgid "Invalid Choice"
-msgstr ""
+msgstr "Geçersiz seçim"
 
 #: billsdepositsdialog.cpp:1314
 msgid "Choose one of the following:"
@@ -1253,7 +1253,7 @@ msgstr "Otomatik Olarak"
 #, c-format
 msgid "%d day remaining"
 msgid_plural "%d days remaining"
-msgstr[0] ""
+msgstr[0] "%d gün kaldı"
 msgstr[1] ""
 
 #: billsdepositspanel.cpp:499 billsdepositspanel.cpp:505
@@ -1265,7 +1265,7 @@ msgstr "Etkin değil"
 #, c-format
 msgid "%d day delay!"
 msgid_plural "%d days delay!"
-msgstr[0] ""
+msgstr[0] "%d gün gecikme!"
 msgstr[1] ""
 
 #: billsdepositspanel.cpp:515 mmhomepagepanel.cpp:348
@@ -2023,7 +2023,7 @@ msgstr "Doğalgaz"
 
 #: db/Table_Subcategory.h:108
 msgid "Internet"
-msgstr ""
+msgstr "İnternet"
 
 #: db/Table_Subcategory.h:109
 msgid "Rent"
@@ -3577,7 +3577,7 @@ msgstr "En yakın işlem notlarında bulmak için herhangi bir dize girin"
 #: mmcheckingpanel.cpp:537
 #, c-format
 msgid "Account View: %s"
-msgstr ""
+msgstr "Hesap Görünümü: %s"
 
 #: mmcheckingpanel.cpp:764
 msgid "Select account used in transfer transactions"
@@ -3779,7 +3779,7 @@ msgstr ""
 
 #: mmex.cpp:100
 msgid "There are no translation files installed."
-msgstr ""
+msgstr "Yüklü çeviri dosyası yok."
 
 #: mmex.cpp:102 mmframe.cpp:3161
 msgid "Language change"
@@ -3917,7 +3917,7 @@ msgstr "Hesap Internet Sayfasına Bağ&lan"
 
 #: mmframe.cpp:1260 mmframe.cpp:1573
 msgid "Hide/Show Report"
-msgstr ""
+msgstr "Raporu Göster/Gizle"
 
 #: mmframe.cpp:1272 mmframe.cpp:1581
 msgid "New &Account"
@@ -4810,7 +4810,7 @@ msgstr "Sonraki Dönem"
 
 #: mmreportspanel.cpp:429
 msgid "Accounts:"
-msgstr ""
+msgstr "Hesaplar:"
 
 #: mmreportspanel.cpp:434 reports/reportbase.cpp:261
 msgid "All Accounts"
@@ -5340,7 +5340,7 @@ msgstr "WebApp Ayarları"
 
 #: optionsettingsnet.cpp:66
 msgid "Url"
-msgstr ""
+msgstr "Link"
 
 #: optionsettingsnet.cpp:70
 msgid "Specify the Web App URL without final slash"
@@ -5699,7 +5699,7 @@ msgstr "Ger."
 
 #: reports/budgetingperf.cpp:200
 msgid "%"
-msgstr ""
+msgstr "%"
 
 #: reports/budgetingperf.cpp:242
 msgid "Monthly Total"
@@ -5707,7 +5707,7 @@ msgstr "Aylık Toplam"
 
 #: reports/bugreport.h:55
 msgid "Bug Report"
-msgstr ""
+msgstr "Hata Raporu"
 
 #: reports/bugreport.h:72
 msgid "Replace this text (marked with >) with detailed description of your problem."
@@ -5715,7 +5715,7 @@ msgstr ""
 
 #: reports/bugreport.h:73
 msgid "Please do not remove information attached below this text."
-msgstr ""
+msgstr "Lütfen bu metnin altına eklenmiş bilgileri kaldırmayın."
 
 #: reports/bugreport.h:78
 msgid "Use Help->Check for Updates in MMEX to get latest version, where your problem might be already fixed."
@@ -5751,7 +5751,7 @@ msgstr ""
 
 #: reports/bugreport.h:97
 msgid "Please, follow these instructions before submitting a new bug report:"
-msgstr ""
+msgstr "Yeni hata kaydı göndermeden önce lütfen bu adımları izleyin:"
 
 #: reports/cashflow.cpp:217
 #, c-format
@@ -6251,7 +6251,7 @@ msgstr ""
 
 #: stockdialog.cpp:1057
 msgid "Delete selected Stock Prices"
-msgstr ""
+msgstr "Seçilen menkul değer fiyatını silin"
 
 #: stockspanel.cpp:36
 msgid "Using MMEX it is possible to track stocks/mutual funds investments."
@@ -6525,7 +6525,7 @@ msgstr "Şifreli veritabanı şifresi"
 
 #: util.cpp:121
 msgid "Enter password for database file"
-msgstr ""
+msgstr "Veritabanı dosyası için parola girin"
 
 #: util.cpp:128
 msgid "Re-enter password for database file"
@@ -6598,7 +6598,7 @@ msgstr "Nisan"
 #: util.cpp:1003
 msgctxt "full month name"
 msgid "May"
-msgstr ""
+msgstr "Mayıs"
 
 #: util.cpp:1004
 msgid "June"
@@ -6631,32 +6631,32 @@ msgstr "Aralık"
 #: util.cpp:1011
 msgctxt "3-letter abbreviation of month name"
 msgid "Jan"
-msgstr ""
+msgstr "Ocak"
 
 #: util.cpp:1012
 msgctxt "3-letter abbreviation of month name"
 msgid "Feb"
-msgstr ""
+msgstr "Şubat"
 
 #: util.cpp:1013
 msgctxt "3-letter abbreviation of month name"
 msgid "Mar"
-msgstr ""
+msgstr "Mart"
 
 #: util.cpp:1014
 msgctxt "3-letter abbreviation of month name"
 msgid "Apr"
-msgstr ""
+msgstr "Nisan"
 
 #: util.cpp:1015
 msgctxt "3-letter abbreviation of month name"
 msgid "May"
-msgstr ""
+msgstr "Mayıs"
 
 #: util.cpp:1016
 msgctxt "3-letter abbreviation of month name"
 msgid "Jun"
-msgstr ""
+msgstr "Haziran"
 
 #: util.cpp:1017
 msgctxt "3-letter abbreviation of month name"
