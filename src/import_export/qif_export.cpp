@@ -41,7 +41,10 @@ mmQIFExportDialog::mmQIFExportDialog(wxWindow * parent, int type)
 {
     m_type = type;
     long style = wxCAPTION | wxRESIZE_BORDER | wxSYSTEM_MENU | wxCLOSE_BOX;
-    Create(parent, wxID_ANY, _("QIF Export"), wxDefaultPosition, wxSize(500, 300), style);
+    Create(parent, wxID_ANY
+        , m_type == QIF ? _("QIF Export") : _("JSON Export")
+        , wxDefaultPosition, wxDefaultSize, style);
+    SetMinSize(wxSize(500, 300));
 }
 
 bool mmQIFExportDialog::Create(wxWindow* parent, wxWindowID id, const wxString& caption
