@@ -1,4 +1,5 @@
+brew 'cmake'
+brew 'pkgconfig'
 brew 'ccache'
 brew 'gettext', link: true
-brew 'pkgconfig'
-brew 'cmake'
+brew 'zlib', link: true
