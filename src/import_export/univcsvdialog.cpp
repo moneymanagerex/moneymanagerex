@@ -1696,7 +1696,7 @@ void mmUnivCSVDialog::OnChoiceChanged(wxCommandEvent& event)
         Model_Currency::Data* currency = Model_Account::currency(account);
         *log_field_ << _("Currency:") << " " << wxGetTranslation(currency->CURRENCYNAME) << "\n";
         if (account) {
-            itemButton_Import_->Enable();
+            if (IsImporter()) itemButton_Import_->Enable();
         }
     }
     else if (i == ID_ENCODING)

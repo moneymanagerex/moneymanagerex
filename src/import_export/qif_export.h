@@ -29,10 +29,11 @@ class mmQIFExportDialog : public wxDialog
     wxDECLARE_EVENT_TABLE();
 
 public:
+    enum type { QIF = 0, JSON };
     mmQIFExportDialog() {}
     //virtual ~mmQIFExportDialog() {}
 
-    mmQIFExportDialog(wxWindow* parent /*, int gotoAccountID*/);
+    mmQIFExportDialog(wxWindow* parent, int type);
 
     bool Create(wxWindow* parent
         , wxWindowID id
@@ -42,9 +43,12 @@ public:
         , long style);
 
 private:
+
+    int m_type;
     void mmExportQIF();
     void OnAccountsButton(wxCommandEvent& WXUNUSED(event));
     void OnCheckboxClick(wxCommandEvent& WXUNUSED(event));
+    void OnChoiceType(wxCommandEvent& event);
     void OnFileNameEntered(wxCommandEvent& event);
     void OnFileNameChanged(wxCommandEvent& event);
     void OnFileSearch(wxCommandEvent& event);

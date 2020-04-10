@@ -34,6 +34,9 @@ public:
     static const std::unordered_map <wxString, int> m_QIFaccountTypes;
     static const wxString qif_acc_type(const wxString& mmex_type);
     static const wxString mm_acc_type(const wxString& qif_type);
+
+    static void getTransactionJSON(PrettyWriter<StringBuffer>& json_writer, const Model_Checking::Full_Data & tran);
+    static void getCategoriesJSON(PrettyWriter<StringBuffer>& json_writer);
 };
 
 #endif

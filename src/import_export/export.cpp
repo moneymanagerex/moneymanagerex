@@ -18,11 +18,16 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 #include "export.h"
 #include "constants.h"
+#include "paths.h"
 #include "util.h"
-#include "model/Model_Checking.h"
 #include "model/Model_Account.h"
-#include "model/Model_Currency.h"
+#include "model/Model_Attachment.h"
 #include "model/Model_Category.h"
+#include "model/Model_Checking.h"
+#include "model/Model_Currency.h"
+#include "model/Model_CustomField.h"
+#include "model/Model_CustomFieldData.h"
+
 
 mmExportTransaction::mmExportTransaction()
 {}
@@ -188,4 +193,157 @@ const wxString mmExportTransaction::mm_acc_type(const wxString& qif_type)
         }
     }
     return mm_acc_type;
+}
+
+// JSON Export ----------------------------------------------------------------------------
+void mmExportTransaction::getCategoriesJSON(PrettyWriter<StringBuffer>& json_writer)
+{
+    json_writer.Key("CATEGORIES");
+    json_writer.StartArray();
+    for (const auto& category : Model_Category::instance().all())
+    {
+        const wxString& categ_name = category.CATEGNAME;
+        bool bIncome = Model_Category::has_income(category.CATEGID);
+        json_writer.String(categ_name.c_str());
+
+        for (const auto& sub_category : Model_Category::sub_category(category))
+        {
+            bIncome = Model_Category::has_income(category.CATEGID, sub_category.SUBCATEGID);
+            bool bSubcateg = sub_category.CATEGID != -1;
+            wxString full_categ_name = wxString()
+                << categ_name << (bSubcateg ? wxString() << ":" : wxString() << "")
+                << sub_category.SUBCATEGNAME;
+            json_writer.String(full_categ_name.c_str());
+        }
+    }
+    json_writer.EndArray();
+}
+
+void mmExportTransaction::getTransactionJSON(PrettyWriter<StringBuffer>& json_writer, const Model_Checking::Full_Data& full_tran)
+{
+
+    bool transfer = Model_Checking::is_transfer(full_tran.TRANSCODE);
+
+    wxString categ = full_tran.m_splits.empty() ? full_tran.CATEGNAME : "";
+    wxString transNum = full_tran.TRANSACTIONNUMBER;
+    wxString notes = (full_tran.NOTES);
+    wxString payee = full_tran.PAYEENAME;
+
+    const auto acc_in = Model_Account::instance().get(full_tran.ACCOUNTID);
+
+    json_writer.StartObject();
+    full_tran.as_json(json_writer);
+    if (acc_in) {
+        const auto curr_in = Model_Currency::instance().get(acc_in->CURRENCYID);
+        json_writer.Key("ACCOUNT_NAME");
+        json_writer.String(acc_in->ACCOUNTNAME.c_str());
+        if (curr_in) {
+            json_writer.Key("ACCOUNT_CURRENCY");
+            json_writer.String(curr_in->CURRENCY_SYMBOL.c_str());
+        }
+    }
+    if (transfer) {
+        const auto acc_to = Model_Account::instance().get(full_tran.TOACCOUNTID);
+        if (acc_to) {
+            json_writer.Key("TO_ACCOUNT_NAME");
+            json_writer.String(acc_to->ACCOUNTNAME.c_str());
+            const auto curr_to = Model_Currency::instance().get(acc_to->CURRENCYID);
+            if (curr_to) {
+                json_writer.Key("TO_ACCOUNT_CURRENCY");
+                json_writer.String(curr_to->CURRENCY_SYMBOL.c_str());
+            }
+        }
+    }
+    else {
+        json_writer.Key("PAYEE_NAME");
+        json_writer.String(payee.c_str());
+    }
+
+    if (full_tran.m_splits.empty()) {
+        json_writer.Key("CATEGORY_NAME");
+        json_writer.String(categ.c_str());
+    }
+    else {
+        json_writer.Key("CATEGORIES");
+        json_writer.StartArray();
+        for (const auto &split_entry : full_tran.m_splits)
+        {
+            double valueSplit = split_entry.SPLITTRANSAMOUNT;
+            if (Model_Checking::type(full_tran) == Model_Checking::WITHDRAWAL)
+                valueSplit = -valueSplit;
+            const wxString split_amount = wxString::FromCDouble(valueSplit, 2);
+            const wxString split_categ = Model_Category::full_name(split_entry.CATEGID, split_entry.SUBCATEGID);
+
+            json_writer.StartObject();
+            json_writer.Key("CATEGID");
+            json_writer.Int(split_entry.CATEGID);
+            json_writer.Key("SUBCATEGID");
+            json_writer.Int(split_entry.SUBCATEGID);
+            json_writer.Key("CATEGORY_NAME");
+            json_writer.String(split_categ.c_str());
+            json_writer.Key("AMOUNT");
+            json_writer.Double(valueSplit);
+            json_writer.EndObject();
+
+        }
+        json_writer.EndArray();
+    }
+
+    const wxString RefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
+    Model_Attachment::Data_Set attachments = Model_Attachment::instance().FilterAttachments(RefType, full_tran.id());
+
+    if (!attachments.empty())
+    {
+        const wxString folder = Model_Infotable::instance().GetStringInfo("ATTACHMENTSFOLDER:" + mmPlatformType(), "");
+        const wxString AttachmentsFolder = mmex::getPathAttachment(folder);
+        json_writer.Key("ATTACHMENTS");
+        json_writer.StartArray();
+        for (const auto &entry : attachments)
+        {
+            json_writer.StartObject();
+            json_writer.Key("FILENAME");
+            json_writer.String(entry.FILENAME.c_str());
+            json_writer.Key("DESCRIPTION");
+            json_writer.String(entry.DESCRIPTION.c_str());
+            json_writer.Key("PATH");
+            json_writer.String(AttachmentsFolder.c_str());
+            json_writer.EndObject();
+        }
+        json_writer.EndArray();
+
+    }
+
+    auto data = Model_CustomFieldData::instance().find(Model_CustomFieldData::REFID(full_tran.id()));
+    auto f = Model_CustomField::instance().find(Model_CustomField::REFTYPE(RefType));
+    if (!data.empty())
+    {
+        json_writer.Key("CUSTOM_FIELDS");
+        json_writer.StartArray();
+        for (const auto &entry : data)
+        {
+
+            auto field = Model_CustomField::instance().find(
+                Model_CustomField::REFTYPE(RefType)
+                , Model_CustomField::FIELDID(entry.FIELDID));
+
+            for (const auto& i : field)
+            {
+                json_writer.StartObject();
+
+                json_writer.Key("DESCRIPTION");
+                json_writer.String(i.DESCRIPTION.c_str());
+                json_writer.Key("CONTENT");
+                json_writer.String(entry.CONTENT.c_str());
+                json_writer.Key("TYPE");
+                json_writer.String(i.TYPE.c_str());
+                json_writer.Key("PROPERTIES");
+                json_writer.RawValue(i.PROPERTIES.c_str(), i.PROPERTIES.size(), rapidjson::Type::kObjectType);
+
+                json_writer.EndObject();
+            }
+        }
+        json_writer.EndArray();
+    }
+
+    json_writer.EndObject();
 }

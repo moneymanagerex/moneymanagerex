@@ -167,6 +167,7 @@ private:
     void OnExportToCSV(wxCommandEvent& event);
     void OnExportToXML(wxCommandEvent& event);
     void OnExportToQIF(wxCommandEvent& event);
+    void OnExportToJSON(wxCommandEvent& event);
     void OnExportToHtml(wxCommandEvent& event);
     void OnImportUniversalCSV(wxCommandEvent& event);
     void OnImportXML(wxCommandEvent& event);
@@ -294,6 +295,7 @@ private:
         MENU_EXPORT_CSV,
         MENU_EXPORT_XML,
         MENU_EXPORT_QIF,
+        MENU_EXPORT_JSON,
         MENU_SHOW_APPSTART,
         MENU_EXPORT_HTML,
         MENU_CURRENCY,
@@ -336,6 +338,7 @@ private:
         MENU_TREEPOPUP_ACCOUNT_EXPORT2CSV,
         MENU_TREEPOPUP_ACCOUNT_EXPORT2XML,
         MENU_TREEPOPUP_ACCOUNT_EXPORT2QIF,
+        MENU_TREEPOPUP_ACCOUNT_EXPORT2JSON,
         MENU_TREEPOPUP_ACCOUNT_IMPORTCSV,
         MENU_TREEPOPUP_ACCOUNT_IMPORTQIF,
         MENU_TREEPOPUP_ACCOUNT_IMPORTUNIVCSV,
