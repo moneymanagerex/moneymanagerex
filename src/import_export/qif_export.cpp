@@ -26,6 +26,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "model/Model_Infotable.h"
 #include "model/Model_Account.h"
 #include "model/Model_Category.h"
+#include "model/Model_Attachment.h"
 
 wxIMPLEMENT_DYNAMIC_CLASS(mmQIFExportDialog, wxDialog);
 
@@ -424,6 +425,10 @@ void mmQIFExportDialog::mmExportQIF()
     }
 
     std::unordered_map <int /*account ID*/, wxString> allAccounts4Export;
+    wxArrayInt allPayees4Export;
+    const wxString RefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
+    wxArrayInt allAttachments4Export;
+
     const auto transactions = Model_Checking::instance().find(
         Model_Checking::STATUS(Model_Checking::VOID_, NOT_EQUAL));
 
@@ -472,6 +477,13 @@ void mmQIFExportDialog::mmExportQIF()
             case JSON:
                 mmExportTransaction::getTransactionJSON(json_writer, full_tran);
                 allAccounts4Export[accID] = "";
+                if (allPayees4Export.Index(full_tran.PAYEEID) == wxNOT_FOUND && full_tran.TRANSCODE != Model_Checking::all_type()[Model_Checking::TRANSFER])
+                    allPayees4Export.Add(full_tran.PAYEEID);
+
+                if (!Model_Attachment::instance().FilterAttachments(RefType, full_tran.id()).empty()
+                    && allAttachments4Export.Index(full_tran.TRANSID) == wxNOT_FOUND) {
+                    allAttachments4Export.Add(full_tran.TRANSID);
+                }
                 break;
             default:
 
@@ -516,6 +528,8 @@ void mmQIFExportDialog::mmExportQIF()
             break;
         case JSON:
             mmExportTransaction::getAccountsJSON(json_writer, allAccounts4Export);
+            mmExportTransaction::getPayeesJSON(json_writer, allPayees4Export);
+            mmExportTransaction::getAttachmentsJSON(json_writer, allAttachments4Export);
             break;
         }
     }

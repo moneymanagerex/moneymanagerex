@@ -26,6 +26,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "model/Model_Checking.h"
 #include "model/Model_Currency.h"
 #include "model/Model_CustomField.h"
+#include "model/Model_Payee.h"
 #include "model/Model_CustomFieldData.h"
 
 
@@ -221,6 +222,27 @@ void mmExportTransaction::getAccountsJSON(PrettyWriter<StringBuffer>& json_write
     json_writer.EndArray();
 }
 
+void mmExportTransaction::getPayeesJSON(PrettyWriter<StringBuffer>& json_writer, wxArrayInt& allPayeess4Export)
+{
+    if (!allPayeess4Export.empty())
+    {
+        json_writer.Key("payees");
+        json_writer.StartArray();
+        for (const auto& entry : allPayeess4Export) {
+            Model_Payee::Data* p = Model_Payee::instance().get(entry);
+            if (p) {
+                json_writer.StartObject();
+                json_writer.Key("id");
+                json_writer.Int(p->PAYEEID);
+                json_writer.Key("name");
+                json_writer.String(p->PAYEENAME.c_str());
+                json_writer.EndObject();
+            }
+        }
+        json_writer.EndArray();
+    }
+}
+
 void mmExportTransaction::getCategoriesJSON(PrettyWriter<StringBuffer>& json_writer)
 {
     json_writer.Key("categories");
@@ -253,6 +275,42 @@ void mmExportTransaction::getCategoriesJSON(PrettyWriter<StringBuffer>& json_wri
         json_writer.EndObject();
     }
     json_writer.EndArray();
+}
+
+void mmExportTransaction::getAttachmentsJSON(PrettyWriter<StringBuffer>& json_writer, wxArrayInt& allAttachment4Export)
+{
+    const wxString RefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
+    Model_Attachment::Data_Set attachments = Model_Attachment::instance().all();
+
+    const wxString folder = Model_Infotable::instance().GetStringInfo("ATTACHMENTSFOLDER:" + mmPlatformType(), "");
+    const wxString AttachmentsFolder = mmex::getPathAttachment(folder);
+
+    if (!allAttachment4Export.empty())
+    {
+        json_writer.Key("attachments");
+        json_writer.StartObject();
+        json_writer.Key("folder");
+        json_writer.String(folder.c_str());
+        json_writer.Key("full_path");
+        json_writer.String(AttachmentsFolder.c_str());
+
+        json_writer.Key("attachments_data");
+        json_writer.StartArray();
+        for (const auto& entry : attachments)
+        {
+            if (entry.REFTYPE != RefType) continue;
+            json_writer.StartObject();
+            json_writer.Key("id");
+            json_writer.Int(entry.ATTACHMENTID);
+            json_writer.Key("description");
+            json_writer.String(entry.DESCRIPTION.c_str());
+            json_writer.Key("file_name");
+            json_writer.String(entry.FILENAME.c_str());
+            json_writer.EndObject();
+        }
+        json_writer.EndArray();
+        json_writer.EndObject();
+    }
 }
 
 void mmExportTransaction::getTransactionJSON(PrettyWriter<StringBuffer>& json_writer, const Model_Checking::Full_Data& full_tran)
@@ -295,14 +353,7 @@ void mmExportTransaction::getTransactionJSON(PrettyWriter<StringBuffer>& json_wr
         json_writer.StartArray();
         for (const auto &entry : attachments)
         {
-            json_writer.StartObject();
-            json_writer.Key("FILENAME");
-            json_writer.String(entry.FILENAME.c_str());
-            json_writer.Key("DESCRIPTION");
-            json_writer.String(entry.DESCRIPTION.c_str());
-            json_writer.Key("PATH");
-            json_writer.String(AttachmentsFolder.c_str());
-            json_writer.EndObject();
+            json_writer.Int(entry.ATTACHMENTID);
         }
         json_writer.EndArray();
 
@@ -323,18 +374,7 @@ void mmExportTransaction::getTransactionJSON(PrettyWriter<StringBuffer>& json_wr
 
             for (const auto& i : field)
             {
-                json_writer.StartObject();
-
-                json_writer.Key("DESCRIPTION");
-                json_writer.String(i.DESCRIPTION.c_str());
-                json_writer.Key("CONTENT");
-                json_writer.String(entry.CONTENT.c_str());
-                json_writer.Key("TYPE");
-                json_writer.String(i.TYPE.c_str());
-                json_writer.Key("PROPERTIES");
-                json_writer.RawValue(i.PROPERTIES.c_str(), i.PROPERTIES.size(), rapidjson::Type::kObjectType);
-
-                json_writer.EndObject();
+                json_writer.Int(i.FIELDID);
             }
         }
         json_writer.EndArray();
