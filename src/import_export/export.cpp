@@ -196,75 +196,72 @@ const wxString mmExportTransaction::mm_acc_type(const wxString& qif_type)
 }
 
 // JSON Export ----------------------------------------------------------------------------
+
+void mmExportTransaction::getAccountsJSON(PrettyWriter<StringBuffer>& json_writer, std::unordered_map <int /*account ID*/, wxString>& allAccounts4Export)
+{
+    json_writer.Key("accounts");
+    json_writer.StartArray();
+    for (const auto &entry : allAccounts4Export)
+    {
+        Model_Account::Data* a = Model_Account::instance().get(entry.first);
+        const auto c = Model_Currency::instance().get(a->CURRENCYID);
+        json_writer.StartObject();
+        json_writer.Key("id");
+        json_writer.Int(a->ACCOUNTID);
+        json_writer.Key("name");
+        json_writer.String(a->ACCOUNTNAME.c_str());
+        json_writer.Key("initialBalance");
+        json_writer.Double(a->INITIALBAL);
+        json_writer.Key("type");
+        json_writer.String(a->ACCOUNTTYPE.c_str());
+        json_writer.Key("currency");
+        json_writer.String(c->CURRENCY_SYMBOL.c_str());
+        json_writer.EndObject();
+    }
+    json_writer.EndArray();
+}
+
 void mmExportTransaction::getCategoriesJSON(PrettyWriter<StringBuffer>& json_writer)
 {
-    json_writer.Key("CATEGORIES");
+    json_writer.Key("categories");
     json_writer.StartArray();
     for (const auto& category : Model_Category::instance().all())
     {
-        const wxString& categ_name = category.CATEGNAME;
-        bool bIncome = Model_Category::has_income(category.CATEGID);
-        json_writer.String(categ_name.c_str());
+        json_writer.StartObject();
+        json_writer.Key("id");
+        json_writer.Int(category.CATEGID);
+        json_writer.Key("name");
+        json_writer.String(category.CATEGNAME.c_str());
 
-        for (const auto& sub_category : Model_Category::sub_category(category))
+        const auto sub_categ = Model_Category::sub_category(category);
+        if (!sub_categ.empty())
         {
-            bIncome = Model_Category::has_income(category.CATEGID, sub_category.SUBCATEGID);
-            bool bSubcateg = sub_category.CATEGID != -1;
-            wxString full_categ_name = wxString()
-                << categ_name << (bSubcateg ? wxString() << ":" : wxString() << "")
-                << sub_category.SUBCATEGNAME;
-            json_writer.String(full_categ_name.c_str());
+            json_writer.Key("sub_categories");
+            json_writer.StartArray();
+            for (const auto& sub_category : sub_categ)
+            {
+                auto test = sub_categ.to_json();
+                json_writer.StartObject();
+                json_writer.Key("id");
+                json_writer.Int(sub_category.CATEGID);
+                json_writer.Key("name");
+                json_writer.String(sub_category.SUBCATEGNAME.c_str());
+                json_writer.EndObject();
+            }
+            json_writer.EndArray();
         }
+        json_writer.EndObject();
     }
     json_writer.EndArray();
 }
 
 void mmExportTransaction::getTransactionJSON(PrettyWriter<StringBuffer>& json_writer, const Model_Checking::Full_Data& full_tran)
 {
-
-    bool transfer = Model_Checking::is_transfer(full_tran.TRANSCODE);
-
-    wxString categ = full_tran.m_splits.empty() ? full_tran.CATEGNAME : "";
-    wxString transNum = full_tran.TRANSACTIONNUMBER;
-    wxString notes = (full_tran.NOTES);
-    wxString payee = full_tran.PAYEENAME;
-
-    const auto acc_in = Model_Account::instance().get(full_tran.ACCOUNTID);
-
     json_writer.StartObject();
     full_tran.as_json(json_writer);
-    if (acc_in) {
-        const auto curr_in = Model_Currency::instance().get(acc_in->CURRENCYID);
-        json_writer.Key("ACCOUNT_NAME");
-        json_writer.String(acc_in->ACCOUNTNAME.c_str());
-        if (curr_in) {
-            json_writer.Key("ACCOUNT_CURRENCY");
-            json_writer.String(curr_in->CURRENCY_SYMBOL.c_str());
-        }
-    }
-    if (transfer) {
-        const auto acc_to = Model_Account::instance().get(full_tran.TOACCOUNTID);
-        if (acc_to) {
-            json_writer.Key("TO_ACCOUNT_NAME");
-            json_writer.String(acc_to->ACCOUNTNAME.c_str());
-            const auto curr_to = Model_Currency::instance().get(acc_to->CURRENCYID);
-            if (curr_to) {
-                json_writer.Key("TO_ACCOUNT_CURRENCY");
-                json_writer.String(curr_to->CURRENCY_SYMBOL.c_str());
-            }
-        }
-    }
-    else {
-        json_writer.Key("PAYEE_NAME");
-        json_writer.String(payee.c_str());
-    }
 
-    if (full_tran.m_splits.empty()) {
-        json_writer.Key("CATEGORY_NAME");
-        json_writer.String(categ.c_str());
-    }
-    else {
-        json_writer.Key("CATEGORIES");
+    if (!full_tran.m_splits.empty()) {
+        json_writer.Key("division");
         json_writer.StartArray();
         for (const auto &split_entry : full_tran.m_splits)
         {
@@ -275,13 +272,11 @@ void mmExportTransaction::getTransactionJSON(PrettyWriter<StringBuffer>& json_wr
             const wxString split_categ = Model_Category::full_name(split_entry.CATEGID, split_entry.SUBCATEGID);
 
             json_writer.StartObject();
-            json_writer.Key("CATEGID");
+            json_writer.Key("category_id");
             json_writer.Int(split_entry.CATEGID);
-            json_writer.Key("SUBCATEGID");
+            json_writer.Key("sub_category_id");
             json_writer.Int(split_entry.SUBCATEGID);
-            json_writer.Key("CATEGORY_NAME");
-            json_writer.String(split_categ.c_str());
-            json_writer.Key("AMOUNT");
+            json_writer.Key("amount");
             json_writer.Double(valueSplit);
             json_writer.EndObject();
 

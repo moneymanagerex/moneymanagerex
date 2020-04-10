@@ -408,7 +408,7 @@ void mmQIFExportDialog::mmExportQIF()
     json_writer.StartObject();
 
     //Export categories
-    if (exp_categ)
+    if (exp_categ || m_type == JSON)
     {
         switch (m_type)
         {
@@ -423,13 +423,15 @@ void mmQIFExportDialog::mmExportQIF()
         numCategories = Model_Category::instance().all_categories().size();
     }
 
-    json_writer.Key("TRANSACTIONS");
-    json_writer.StartArray();
-
     std::unordered_map <int /*account ID*/, wxString> allAccounts4Export;
+    const auto transactions = Model_Checking::instance().find(
+        Model_Checking::STATUS(Model_Checking::VOID_, NOT_EQUAL));
 
-    if (exp_transactions)
+    if (exp_transactions && !transactions.empty())
     {
+        json_writer.Key("transactions");
+        json_writer.StartArray();
+
         /* Array to store QIF tarts for selected accounts */
         std::unordered_map <int /*account ID*/, wxString> extraTransfers;
 
@@ -441,9 +443,7 @@ void mmQIFExportDialog::mmExportQIF()
         const wxString begin_date = fromDateCtrl_->GetValue().FormatISODate();
         const wxString end_date = toDateCtrl_->GetValue().FormatISODate();
 
-        for (const auto& transaction : Model_Checking::instance().find(
-            Model_Checking::STATUS(Model_Checking::VOID_, NOT_EQUAL))
-        )
+        for (const auto& transaction : transactions)
         {
             //Filtering
             if (dateFromCheckBox_->IsChecked() && transaction.TRANSDATE < begin_date)
@@ -496,13 +496,10 @@ void mmQIFExportDialog::mmExportQIF()
             }
         }
         json_writer.EndArray();
-        json_writer.EndObject();
 
         switch (m_type)
         {
-        case JSON:
-           buffer << json_buffer.GetString(); break;
-        default:
+        case QIF:
             //Export accounts
             for (const auto &entry : allAccounts4Export)
             {
@@ -516,7 +513,20 @@ void mmQIFExportDialog::mmExportQIF()
                 buffer << mmExportTransaction::getAccountHeaderQIF(entry.first);
                 buffer << entry.second;
             }
+            break;
+        case JSON:
+            mmExportTransaction::getAccountsJSON(json_writer, allAccounts4Export);
+            break;
         }
+    }
+    json_writer.EndObject();
+
+    switch (m_type)
+    {
+    case JSON:
+        buffer << json_buffer.GetString(); break;
+    case QIF:
+        break;
     }
 
     if (write_to_file)
