@@ -20,6 +20,7 @@
 #define MM_EX_REPORTSPANEL_H_
 
 #include "mmpanelbase.h"
+#include "mmSimpleDialogs.h"
 #include "reports/reportbase.h"
 class mmGUIFrame;
 class mmDateRange;
@@ -57,6 +58,7 @@ public:
     void OnStartEndDateChanged(wxDateEvent& event);
     void OnAccountChanged(wxCommandEvent& event);
     void OnChartChanged(wxCommandEvent& event);
+    void OnMonthChanged(wxCommandEvent& event);
 
 protected:
     std::vector<mmDateRange*> m_all_date_ranges;
@@ -72,6 +74,7 @@ protected:
 private:
     bool cleanup_;
     bool cleanupmem_;
+    int m_shift;
     wxString htmlreport_;
 public:
     mmGUIFrame *m_frame;

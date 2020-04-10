@@ -68,10 +68,11 @@ public:
         NONE = 0
         , SINGLE_DATE = 1
         , DATE_RANGE = 2
-        , BUDGET_DATES = 4
-        , ONLY_YEARS = 8
-        , ACCOUNTS_LIST = 16
-        , CHART = 32
+        , MONTHES = 4
+        , BUDGET_DATES = 8
+        , ONLY_YEARS = 16
+        , ACCOUNTS_LIST = 32
+        , CHART = 64
     };
 };
 

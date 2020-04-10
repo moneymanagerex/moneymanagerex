@@ -110,6 +110,7 @@ EVT_CHOICE(ID_CHOICE_DATE_RANGE, mmReportsPanel::OnDateRangeChanged)
 EVT_CHOICE(ID_CHOICE_ACCOUNTS, mmReportsPanel::OnAccountChanged)
 EVT_DATE_CHANGED(wxID_ANY, mmReportsPanel::OnStartEndDateChanged)
 EVT_CHOICE(ID_CHOICE_CHART, mmReportsPanel::OnChartChanged)
+EVT_BUTTON(wxID_ANY, mmReportsPanel::OnMonthChanged)
 wxEND_EVENT_TABLE()
 
 mmReportsPanel::mmReportsPanel(
@@ -126,6 +127,7 @@ mmReportsPanel::mmReportsPanel(
     , m_chart(nullptr)
     , cleanup_(cleanupReport)
     , cleanupmem_(false)
+    , m_shift(0)
 {
     m_all_date_ranges.push_back(new mmCurrentMonth());
     m_all_date_ranges.push_back(new mmCurrentMonthToDate());
@@ -332,6 +334,21 @@ void mmReportsPanel::CreateControls()
             itemBoxSizerHeader->Add(m_start_date, 0, wxALL, 1);
             itemBoxSizerHeader->AddSpacer(30);
         }
+        else if (rp && rb_->RepParams::MONTHES)
+        {
+            wxStaticText* itemStaticTextH1 = new wxStaticText(itemPanel3
+                , wxID_ANY, _("Date"));
+            mmSetOwnFont(itemStaticTextH1, GetFont().Larger());
+            itemBoxSizerHeader->Add(itemStaticTextH1, 0, wxALL | wxALIGN_CENTER_VERTICAL, 1);
+            itemBoxSizerHeader->AddSpacer(5);
+
+            mmDateYearMonth* up_down_month = new mmDateYearMonth(itemPanel3);
+            up_down_month->Connect(wxEVT_BUTTON, wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(mmDateYearMonth::OnButtonPress), nullptr, this);
+            rb_->setSelection(m_shift);
+            
+            itemBoxSizerHeader->Add(up_down_month, 0, wxALL, 1);
+            itemBoxSizerHeader->AddSpacer(30);
+        }
 
         if (rp & (rb_->RepParams::BUDGET_DATES | rb_->RepParams::ONLY_YEARS))
         {
@@ -473,7 +490,6 @@ void mmReportsPanel::OnStartEndDateChanged(wxDateEvent& WXUNUSED(event))
 {
     if (rb_)
     {
-
         wxString error;
         if (saveReportText(error, false))
             browser_->LoadURL(getURL(mmex::getReportFullFileName(rb_->getFileName())));
@@ -497,5 +513,29 @@ void mmReportsPanel::OnChartChanged(wxCommandEvent& WXUNUSED(event))
             else
                 browser_->SetPage(error, "");
         }
+    }
+}
+
+void mmReportsPanel::OnMonthChanged(wxCommandEvent& event)
+{
+    if (rb_)
+    {
+        int button_id = event.GetId();
+        switch (button_id)
+        {
+        case wxID_DOWN:
+            m_shift--;
+            break;
+        case wxID_UP:
+            m_shift++;
+            break;
+        }
+        rb_->setSelection(m_shift);
+
+        wxString error;
+        if (saveReportText(error, false))
+            browser_->LoadURL(getURL(mmex::getReportFullFileName(rb_->getFileName())));
+        else
+            browser_->SetPage(error, "");
     }
 }

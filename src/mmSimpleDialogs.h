@@ -108,4 +108,18 @@ public:
     static void InvalidSymbol(wxTextCtrl *textBox, bool alreadyexist = false);
     static void ToolTip4Object(wxWindow *object, const wxString &message, const wxString &title, int ico = wxICON_WARNING);
 };
+
+class mmDateYearMonth : public wxPanel
+{
+    wxDECLARE_EVENT_TABLE();
+public:
+    mmDateYearMonth();
+    mmDateYearMonth(wxWindow *parent);
+    void OnButtonPress(wxCommandEvent& event);
+
+private:
+    wxWindow* m_parent;
+    bool Create(wxWindow* parent, wxWindowID id);
+};
+
 #endif // MM_EX_MMSIMPLEDIALOGS_H_

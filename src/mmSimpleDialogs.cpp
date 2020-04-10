@@ -118,7 +118,7 @@ bool mmDialogComboBoxAutocomplete::Create(wxWindow* parent, wxWindowID id,
     return true;
 }
 
-//mmMultiChoiceDialog
+// mmMultiChoiceDialog --------------------------------------------
 mmMultiChoiceDialog::mmMultiChoiceDialog()
 {
 }
@@ -128,6 +128,48 @@ mmMultiChoiceDialog::mmMultiChoiceDialog(wxWindow* parent, const wxString& messa
     wxArrayString choices;
     for (const auto & item : accounts) choices.Add(item.ACCOUNTNAME);
     wxMultiChoiceDialog::Create(parent, message, caption, choices);
+}
+
+// mmDateYearMonth --------------------------------------------
+
+wxBEGIN_EVENT_TABLE(mmDateYearMonth, wxPanel)
+EVT_BUTTON(wxID_ANY, mmDateYearMonth::OnButtonPress)
+wxEND_EVENT_TABLE()
+
+mmDateYearMonth::mmDateYearMonth()
+{
+}
+
+mmDateYearMonth::mmDateYearMonth(wxWindow *parent) :
+    m_parent(parent)
+{
+    Create(parent, wxID_STATIC);
+}
+
+bool mmDateYearMonth::Create(wxWindow* parent, wxWindowID id)
+{
+    wxWindow::Create(parent, id);
+
+    wxBoxSizer* box_sizer = new wxBoxSizer(wxHORIZONTAL);
+    wxButton* buttonLeft = new wxButton(this, wxID_DOWN, "<<");
+    buttonLeft->SetMinSize(wxSize(32, -1));
+    wxButton* buttonRight = new wxButton(this, wxID_UP, ">>");
+    buttonRight->SetMinSize(wxSize(32, -1));
+
+    box_sizer->Add(buttonLeft);
+    box_sizer->Add(buttonRight);
+
+    this->SetSizer(box_sizer);
+    GetSizer()->Fit(this);
+    GetSizer()->SetSizeHints(this);
+    Centre();
+    Fit();
+    return TRUE;
+}
+
+void mmDateYearMonth::OnButtonPress(wxCommandEvent& event)
+{
+    m_parent->GetEventHandler()->AddPendingEvent(event);
 }
 
 

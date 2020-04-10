@@ -255,22 +255,27 @@ mmReportCategoryOverTimePerformance::~mmReportCategoryOverTimePerformance()
 
 int mmReportCategoryOverTimePerformance::report_parameters()
 {
-    return RepParams::NONE | RepParams::CHART | RepParams::ACCOUNTS_LIST;
+    return RepParams::MONTHES | RepParams::CHART | RepParams::ACCOUNTS_LIST;
 }
 
 wxString mmReportCategoryOverTimePerformance::getHTMLText()
 {
     const int MONTHS_IN_PERIOD = 12; // including current month
-    if (m_date_range) {
-        delete m_date_range;
-    }
-    m_date_range = new mmLast12Months();
+
+    wxDate sd = m_date_range->start_date();
+    wxDate ed = m_date_range->end_date();
+    sd.Add(wxDateSpan::Months(m_date_selection));
+    ed.Add(wxDateSpan::Months(m_date_selection)).GetLastMonthDay();
+ 
+    wxLogDebug("%s - %s %i", sd.FormatISODate(), ed.FormatISODate(), m_date_selection);
+
+    mmDateRange* date_range = new mmSpecifiedRange(sd, ed);
 
     //Get statistic
     std::map<int, std::map<int, std::map<int, double> > > categoryStats;
     Model_Category::instance().getCategoryStats(categoryStats
         , accountArray_
-        , const_cast<mmDateRange*>(m_date_range)
+        , const_cast<mmDateRange*>(date_range)
         , Option::instance().getIgnoreFutureTransactions());
 
     //Init totals
@@ -324,7 +329,8 @@ wxString mmReportCategoryOverTimePerformance::getHTMLText()
     hb.addDateNow();
     hb.addLineBreak();
 
-    const wxDateTime start_date = m_date_range->start_date();
+    const wxDateTime start_date = date_range->start_date();
+    delete date_range;
 
     //Chart
     wxArrayString labels;
