@@ -275,7 +275,7 @@ wxString mmReportCategoryOverTimePerformance::getHTMLText()
     std::map<int, std::map<int, std::map<int, double> > > categoryStats;
     Model_Category::instance().getCategoryStats(categoryStats
         , accountArray_
-        , const_cast<mmDateRange*>(date_range)
+        , date_range
         , Option::instance().getIgnoreFutureTransactions());
 
     //Init totals
