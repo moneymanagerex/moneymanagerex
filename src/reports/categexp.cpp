@@ -266,8 +266,6 @@ wxString mmReportCategoryOverTimePerformance::getHTMLText()
     wxDate ed = m_date_range->end_date();
     sd.Add(wxDateSpan::Months(m_date_selection));
     ed.Add(wxDateSpan::Months(m_date_selection)).GetLastMonthDay();
- 
-    wxLogDebug("%s - %s %i", sd.FormatISODate(), ed.FormatISODate(), m_date_selection);
 
     mmDateRange* date_range = new mmSpecifiedRange(sd, ed);
 
@@ -326,6 +324,7 @@ wxString mmReportCategoryOverTimePerformance::getHTMLText()
     hb.addDivContainer();
     hb.addHeader(2, getReportTitle());
     hb.addHeader(3, getAccountNames());
+    hb.DisplayDateHeading(date_range->start_date(), date_range->end_date(), date_range->is_with_date());
     hb.addDateNow();
     hb.addLineBreak();
 
@@ -361,8 +360,8 @@ wxString mmReportCategoryOverTimePerformance::getHTMLText()
 
             data_negative.fillColor = "rgba(220,66,66,0.5)";
             data_positive.fillColor = "rgba(151,187,205,0.5)";
-            const auto mon = wxGetTranslation(wxDateTime::GetEnglishMonthName(d.GetMonth()));
-            labels.Add(mon);
+            const auto label = wxString::Format("%s %i", wxGetTranslation(wxDateTime::GetEnglishMonthName(d.GetMonth())), d.GetYear());
+            labels.Add(label);
         }
         aData.push_back(data_positive);
         aData.push_back(data_negative);
