@@ -334,7 +334,7 @@ void mmReportsPanel::CreateControls()
             itemBoxSizerHeader->Add(m_start_date, 0, wxALL, 1);
             itemBoxSizerHeader->AddSpacer(30);
         }
-        else if (rp && rb_->RepParams::MONTHES)
+        else if (rp & rb_->RepParams::MONTHES)
         {
             wxStaticText* itemStaticTextH1 = new wxStaticText(itemPanel3
                 , wxID_ANY, _("Date"));
