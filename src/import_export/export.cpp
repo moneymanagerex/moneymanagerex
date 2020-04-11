@@ -28,6 +28,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "model/Model_CustomField.h"
 #include "model/Model_Payee.h"
 #include "model/Model_CustomFieldData.h"
+#include "model/Model_CustomField.h"
 
 
 mmExportTransaction::mmExportTransaction()
@@ -277,42 +278,6 @@ void mmExportTransaction::getCategoriesJSON(PrettyWriter<StringBuffer>& json_wri
     json_writer.EndArray();
 }
 
-void mmExportTransaction::getAttachmentsJSON(PrettyWriter<StringBuffer>& json_writer, wxArrayInt& allAttachment4Export)
-{
-    const wxString RefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
-    Model_Attachment::Data_Set attachments = Model_Attachment::instance().all();
-
-    const wxString folder = Model_Infotable::instance().GetStringInfo("ATTACHMENTSFOLDER:" + mmPlatformType(), "");
-    const wxString AttachmentsFolder = mmex::getPathAttachment(folder);
-
-    if (!allAttachment4Export.empty())
-    {
-        json_writer.Key("attachments");
-        json_writer.StartObject();
-        json_writer.Key("folder");
-        json_writer.String(folder.c_str());
-        json_writer.Key("full_path");
-        json_writer.String(AttachmentsFolder.c_str());
-
-        json_writer.Key("attachments_data");
-        json_writer.StartArray();
-        for (const auto& entry : attachments)
-        {
-            if (entry.REFTYPE != RefType) continue;
-            json_writer.StartObject();
-            json_writer.Key("id");
-            json_writer.Int(entry.ATTACHMENTID);
-            json_writer.Key("description");
-            json_writer.String(entry.DESCRIPTION.c_str());
-            json_writer.Key("file_name");
-            json_writer.String(entry.FILENAME.c_str());
-            json_writer.EndObject();
-        }
-        json_writer.EndArray();
-        json_writer.EndObject();
-    }
-}
-
 void mmExportTransaction::getTransactionJSON(PrettyWriter<StringBuffer>& json_writer, const Model_Checking::Full_Data& full_tran)
 {
     json_writer.StartObject();
@@ -381,4 +346,116 @@ void mmExportTransaction::getTransactionJSON(PrettyWriter<StringBuffer>& json_wr
     }
 
     json_writer.EndObject();
+}
+
+void mmExportTransaction::getAttachmentsJSON(PrettyWriter<StringBuffer>& json_writer, wxArrayInt& allAttachment4Export)
+{
+
+    if (!allAttachment4Export.empty())
+    {
+        const wxString RefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
+        const wxString folder = Model_Infotable::instance().GetStringInfo("ATTACHMENTSFOLDER:" + mmPlatformType(), "");
+        const wxString AttachmentsFolder = mmex::getPathAttachment(folder);
+
+        json_writer.Key("attachments");
+        json_writer.StartObject();
+
+        json_writer.Key("folder");
+        json_writer.String(folder.c_str());
+        json_writer.Key("full_path");
+        json_writer.String(AttachmentsFolder.c_str());
+        json_writer.Key("reference_type");
+        json_writer.String(RefType.c_str());
+
+        json_writer.Key("attachments_data");
+        json_writer.StartArray();
+
+        Model_Attachment::Data_Set attachments = Model_Attachment::instance().all();
+        for (const auto& entry : attachments)
+        {
+            if (entry.REFTYPE != RefType) continue;
+            if (allAttachment4Export.Index(entry.REFID) == wxNOT_FOUND) continue;
+
+            json_writer.StartObject();
+
+            json_writer.Key("id");
+            json_writer.Int(entry.ATTACHMENTID);
+            json_writer.Key("description");
+            json_writer.String(entry.DESCRIPTION.c_str());
+            json_writer.Key("file_name");
+            json_writer.String(entry.FILENAME.c_str());
+
+            json_writer.EndObject();
+        }
+        json_writer.EndArray();
+        json_writer.EndObject();
+    }
+}
+
+
+
+void mmExportTransaction::getCustomFieldsJSON(PrettyWriter<StringBuffer>& json_writer, wxArrayInt& allCustomFields4Export)
+{
+
+    if (!allCustomFields4Export.empty())
+    {
+        const wxString RefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
+
+        json_writer.Key("custom_fields");
+        json_writer.StartObject();
+        
+        // Data
+        json_writer.Key("custom_fields_data");
+        json_writer.StartArray();
+
+        wxArrayInt cd;
+        Model_CustomFieldData::Data_Set cds = Model_CustomFieldData::instance().all();
+        for (const auto & entry : cds)
+        {
+            if (allCustomFields4Export.Index(entry.FIELDATADID) != wxNOT_FOUND)
+                if (cd.Index(entry.FIELDID) == wxNOT_FOUND) 
+                    cd.Add(entry.FIELDID);
+
+            json_writer.StartObject();
+            json_writer.Key("FIELDID");
+            json_writer.Int(entry.FIELDID);
+            json_writer.Key("FIELDATADID");
+            json_writer.Int(entry.FIELDATADID);
+            json_writer.Key("REFID");
+            json_writer.Int(entry.REFID);
+            json_writer.Key("CONTENT");
+            json_writer.String(entry.CONTENT.c_str());
+            json_writer.EndObject();
+
+        }
+        json_writer.EndArray();
+
+        //Settings
+        json_writer.Key("custom_fields_settings");
+        json_writer.StartArray();
+
+        Model_CustomField::Data_Set custom_fields = Model_CustomField::instance().find(Model_CustomField::DB_Table_CUSTOMFIELD_V1::REFTYPE(RefType));
+        for (const auto& entry : custom_fields)
+        {
+            if (entry.REFTYPE != RefType) continue;
+            if (cd.Index(entry.FIELDID) == wxNOT_FOUND) continue;
+            json_writer.StartObject();
+
+            json_writer.Key("id");
+            json_writer.Int(entry.FIELDID);
+            json_writer.Key("reference_type");
+            json_writer.String(entry.REFTYPE.c_str());
+            json_writer.Key("description");
+            json_writer.String(entry.DESCRIPTION.c_str());
+            json_writer.Key("type");
+            json_writer.String(entry.TYPE.c_str());
+            json_writer.Key("properties");
+            json_writer.RawValue(entry.PROPERTIES.c_str(), entry.PROPERTIES.size(), rapidjson::Type::kObjectType);
+
+            json_writer.EndObject();
+        }
+        json_writer.EndArray();
+        json_writer.EndObject();
+
+    }
 }

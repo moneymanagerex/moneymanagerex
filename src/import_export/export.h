@@ -37,9 +37,10 @@ public:
 
     static void getTransactionJSON(PrettyWriter<StringBuffer>& json_writer, const Model_Checking::Full_Data & tran);
     static void getCategoriesJSON(PrettyWriter<StringBuffer>& json_writer);
-    static void getAttachmentsJSON(PrettyWriter<StringBuffer>& json_writer, wxArrayInt& allAttachment4Export);
     static void getAccountsJSON(PrettyWriter<StringBuffer>& json_writer, std::unordered_map <int /*account ID*/, wxString>& allAccounts4Export);
     static void getPayeesJSON(PrettyWriter<StringBuffer>& json_writer, wxArrayInt& allPayeess4Export);
+    static void getAttachmentsJSON(PrettyWriter<StringBuffer>& json_writer, wxArrayInt& allAttachment4Export);
+    static void getCustomFieldsJSON(PrettyWriter<StringBuffer>& json_writer, wxArrayInt& allCustomFields4Export);
 };
 
 #endif

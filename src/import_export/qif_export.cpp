@@ -27,6 +27,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "model/Model_Account.h"
 #include "model/Model_Category.h"
 #include "model/Model_Attachment.h"
+#include "model/Model_CustomFieldData.h"
 
 wxIMPLEMENT_DYNAMIC_CLASS(mmQIFExportDialog, wxDialog);
 
@@ -428,6 +429,7 @@ void mmQIFExportDialog::mmExportQIF()
     wxArrayInt allPayees4Export;
     const wxString RefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
     wxArrayInt allAttachments4Export;
+    wxArrayInt allCustomFields4Export;
 
     const auto transactions = Model_Checking::instance().find(
         Model_Checking::STATUS(Model_Checking::VOID_, NOT_EQUAL));
@@ -484,7 +486,15 @@ void mmQIFExportDialog::mmExportQIF()
                     && allAttachments4Export.Index(full_tran.TRANSID) == wxNOT_FOUND) {
                     allAttachments4Export.Add(full_tran.TRANSID);
                 }
+                for (const auto & entry : Model_CustomFieldData::instance().find(Model_CustomFieldData::REFID(full_tran.id())))
+                {
+                    if (allCustomFields4Export.Index(entry.FIELDATADID) == wxNOT_FOUND) {
+                        allCustomFields4Export.Add(entry.FIELDATADID);
+                    }
+                }
+                
                 break;
+            
             default:
 
                 bool reverce = false;
@@ -530,6 +540,7 @@ void mmQIFExportDialog::mmExportQIF()
             mmExportTransaction::getAccountsJSON(json_writer, allAccounts4Export);
             mmExportTransaction::getPayeesJSON(json_writer, allPayees4Export);
             mmExportTransaction::getAttachmentsJSON(json_writer, allAttachments4Export);
+            mmExportTransaction::getCustomFieldsJSON(json_writer, allCustomFields4Export);
             break;
         }
     }
