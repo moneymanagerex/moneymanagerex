@@ -75,8 +75,8 @@ bool mmCustomFieldDialog::Create(wxWindow* parent, wxWindowID id
 
     wxFrame::Create(parent, id, WindowTitle, pos, size, style);
 
-    CreateFillControls();
     SetEvtHandlerEnabled(false);
+    CreateFillControls();
     SetEvtHandlerEnabled(true);
 
     wxSize dlgSize = Model_Infotable::instance().CustomDialogSize(m_RefType);

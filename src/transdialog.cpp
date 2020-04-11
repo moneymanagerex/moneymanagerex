@@ -161,7 +161,11 @@ bool mmTransDialog::Create(wxWindow* parent, wxWindowID id, const wxString& capt
     SetExtraStyle(GetExtraStyle()|wxWS_EX_BLOCK_EVENTS);
     wxDialog::Create(parent, id, caption, pos, size, style, name);
 
+    SetEvtHandlerEnabled(false);
     CreateControls();
+    SetEventHandlers();
+    SetEvtHandlerEnabled(true);
+
     GetSizer()->Fit(this);
     GetSizer()->SetSizeHints(this);
 
@@ -171,7 +175,6 @@ bool mmTransDialog::Create(wxWindow* parent, wxWindowID id, const wxString& capt
 
     Centre();
     Fit();
-    SetEventHandlers();
     return TRUE;
 }
 

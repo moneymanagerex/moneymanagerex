@@ -56,6 +56,7 @@ mmCustomDataTransaction::mmCustomDataTransaction(wxDialog* dialog, int ref_id, w
 
 bool mmCustomData::FillCustomFields(wxBoxSizer* box_sizer)
 {
+    SetEvtHandlerEnabled(false);
     m_static_box = new wxStaticBox(m_dialog, wxID_ANY, _("Custom fields"));
     wxStaticBoxSizer* box_sizer_right = new wxStaticBoxSizer(m_static_box, wxVERTICAL);
     box_sizer->Add(box_sizer_right, g_flagsExpand);
@@ -77,7 +78,7 @@ bool mmCustomData::FillCustomFields(wxBoxSizer* box_sizer)
             fieldData = Model_CustomFieldData::instance().create();
             fieldData->FIELDID = field.FIELDID;
             fieldData->REFID = m_ref_id;
-            fieldData->CONTENT = Model_CustomField::getDefault(field.PROPERTIES);
+            fieldData->CONTENT = "";
         }
 
         wxWindowID controlID = GetBaseID() + field.FIELDID;
@@ -101,8 +102,11 @@ bool mmCustomData::FillCustomFields(wxBoxSizer* box_sizer)
             CustomString->SetToolTip(Model_CustomField::getTooltip(field.PROPERTIES));
             if (Model_CustomField::getAutocomplete(field.PROPERTIES))
             {
-                const wxArrayString& values = Model_CustomFieldData::instance().allValue(field.FIELDID);
+                const auto hint = Model_CustomField::getDefault(field.PROPERTIES);
+                wxArrayString values = Model_CustomFieldData::instance().allValue(field.FIELDID);
+                values.Add(hint);
                 CustomString->AutoComplete(values);
+                CustomString->SetHint(hint);
             }
             grid_sizer_custom->Add(CustomString, g_flagsExpand);
 
@@ -273,6 +277,7 @@ bool mmCustomData::FillCustomFields(wxBoxSizer* box_sizer)
     box_sizer_right->Add(scrolled_window, g_flagsExpand);
     m_static_box->Hide();
 
+    SetEvtHandlerEnabled(true);
     return true;
 }
 
@@ -409,7 +414,9 @@ bool mmCustomData::SaveCustomValues(int ref_id)
     for (const auto &field : m_fields)
     {
         wxWindowID controlID = GetBaseID() + field.FIELDID;
-        const auto& data = IsWidgetChanged(controlID) ? GetWidgetData(controlID) : "";
+        bool c = IsWidgetChanged(controlID);
+        if (!c) continue;
+        const auto& data = GetWidgetData(controlID);
 
         Model_CustomFieldData::Data* fieldData = Model_CustomFieldData::instance().get(field.FIELDID, ref_id);
         if (!data.empty())
@@ -553,9 +560,7 @@ void mmCustomData::OnTimeChanged(wxDateEvent& event)
 
 bool mmCustomData::IsWidgetChanged(wxWindowID id)
 {
-    const wxString& value = m_data_changed.find(id) == m_data_changed.end()
-        ? wxString(wxEmptyString) : m_data_changed.at(id);
-    return !value.empty();
+    return (m_data_changed.find(id) != m_data_changed.end());
 }
 
 bool mmCustomData::IsSomeWidgetChanged() const
@@ -575,7 +580,7 @@ void mmCustomData::SetWidgetChanged(wxWindowID id, const wxString& data)
     wxCheckBox* Description = static_cast<wxCheckBox*>(m_dialog->FindWindow(label_id));
     if (Description) {
         Description->SetValue(true);
-        wxLogDebug("Description %i value = %i", label_id, 1);
+        wxLogDebug("Widget ID: %i value = %s", label_id, data);
     }
 }
 
