@@ -110,7 +110,7 @@ EVT_CHOICE(ID_CHOICE_DATE_RANGE, mmReportsPanel::OnDateRangeChanged)
 EVT_CHOICE(ID_CHOICE_ACCOUNTS, mmReportsPanel::OnAccountChanged)
 EVT_DATE_CHANGED(wxID_ANY, mmReportsPanel::OnStartEndDateChanged)
 EVT_CHOICE(ID_CHOICE_CHART, mmReportsPanel::OnChartChanged)
-EVT_BUTTON(wxID_ANY, mmReportsPanel::OnMonthChanged)
+EVT_BUTTON(wxID_ANY, mmReportsPanel::OnShiftPressed)
 wxEND_EVENT_TABLE()
 
 mmReportsPanel::mmReportsPanel(
@@ -515,20 +515,11 @@ void mmReportsPanel::OnChartChanged(wxCommandEvent& WXUNUSED(event))
     }
 }
 
-void mmReportsPanel::OnMonthChanged(wxCommandEvent& event)
+void mmReportsPanel::OnShiftPressed(wxCommandEvent& event)
 {
     if (rb_)
     {
-        int button_id = event.GetId();
-        switch (button_id)
-        {
-        case wxID_DOWN:
-            m_shift--;
-            break;
-        case wxID_UP:
-            m_shift++;
-            break;
-        }
+        m_shift = event.GetInt();
         rb_->setSelection(m_shift);
 
         wxString error;

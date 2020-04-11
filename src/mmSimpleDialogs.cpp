@@ -142,6 +142,7 @@ mmDateYearMonth::mmDateYearMonth()
 
 mmDateYearMonth::mmDateYearMonth(wxWindow *parent) :
     m_parent(parent)
+    , m_shift(0)
 {
     Create(parent, wxID_STATIC);
 }
@@ -151,13 +152,19 @@ bool mmDateYearMonth::Create(wxWindow* parent, wxWindowID id)
     wxWindow::Create(parent, id);
 
     wxBoxSizer* box_sizer = new wxBoxSizer(wxHORIZONTAL);
-    wxButton* buttonLeft = new wxButton(this, wxID_DOWN, "<<");
-    buttonLeft->SetMinSize(wxSize(32, -1));
-    wxButton* buttonRight = new wxButton(this, wxID_UP, ">>");
-    buttonRight->SetMinSize(wxSize(32, -1));
+    wxButton* button12Left = new wxButton(this, wxID_BACKWARD, "<<");
+    button12Left->SetMinSize(wxSize(24, -1));
+    wxButton* buttonLeft = new wxButton(this, wxID_DOWN, "<");
+    buttonLeft->SetMinSize(wxSize(24, -1));
+    wxButton* buttonRight = new wxButton(this, wxID_UP, ">");
+    buttonRight->SetMinSize(wxSize(24, -1));
+    wxButton* button12Right = new wxButton(this, wxID_FORWARD, ">>");
+    button12Right->SetMinSize(wxSize(24, -1));
 
+    box_sizer->Add(button12Left);
     box_sizer->Add(buttonLeft);
     box_sizer->Add(buttonRight);
+    box_sizer->Add(button12Right);
 
     this->SetSizer(box_sizer);
     GetSizer()->Fit(this);
@@ -169,6 +176,24 @@ bool mmDateYearMonth::Create(wxWindow* parent, wxWindowID id)
 
 void mmDateYearMonth::OnButtonPress(wxCommandEvent& event)
 {
+    int button_id = event.GetId();
+    switch (button_id)
+    {
+    case wxID_DOWN:
+        m_shift--;
+        break;
+    case wxID_UP:
+        m_shift++;
+        break;
+    case wxID_FORWARD:
+        m_shift += 12;
+        break;
+    case wxID_BACKWARD:
+        m_shift -= 12;
+        break;
+    }
+    event.SetInt(m_shift);
+
     m_parent->GetEventHandler()->AddPendingEvent(event);
 }
 

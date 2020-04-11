@@ -120,6 +120,7 @@ public:
 private:
     wxWindow* m_parent;
     bool Create(wxWindow* parent, wxWindowID id);
+    int m_shift;
 };
 
 #endif // MM_EX_MMSIMPLEDIALOGS_H_

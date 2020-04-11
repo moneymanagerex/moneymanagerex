@@ -58,7 +58,7 @@ public:
     void OnStartEndDateChanged(wxDateEvent& event);
     void OnAccountChanged(wxCommandEvent& event);
     void OnChartChanged(wxCommandEvent& event);
-    void OnMonthChanged(wxCommandEvent& event);
+    void OnShiftPressed(wxCommandEvent& event);
 
 protected:
     std::vector<mmDateRange*> m_all_date_ranges;
