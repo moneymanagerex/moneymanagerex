@@ -228,7 +228,11 @@ bool Model_Report::PrepareSQL(wxString& sql, std::map <wxString, wxString>& rep_
 
 wxString Model_Report::get_html(const Data* r)
 {
-    mm_html_template report(r->TEMPLATECONTENT);
+    wxString sql = r->SQLCONTENT;
+    wxString templatecontent = r->TEMPLATECONTENT;
+    //TODO: if (templatecontent.empty()) somthing like: mmGeneralReportManager::getTemplate(sql)
+
+    mm_html_template report(templatecontent);
     r->to_template(report);
 
     loop_t contents;
@@ -238,7 +242,6 @@ wxString Model_Report::get_html(const Data* r)
 
     wxSQLite3ResultSet q;
     int columnCount = 0;
-    wxString sql = r->SQLCONTENT;
     std::map <wxString, wxString> rep_params;
     try
     {

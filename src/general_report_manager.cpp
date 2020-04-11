@@ -1142,7 +1142,7 @@ bool mmGeneralReportManager::getSqlQuery(/*in*/ wxString& sql
     return true;
 }
 
-wxString mmGeneralReportManager::getTemplate(wxString& sql)
+const wxString mmGeneralReportManager::getTemplate(wxString& sql)
 {
     wxString body, header, SqlError;
 
