@@ -430,7 +430,16 @@ void mmExportTransaction::getCustomFieldsJSON(PrettyWriter<StringBuffer>& json_w
             if (cd.Index(entry.FIELDID) == wxNOT_FOUND) continue;
 
             json_writer.StartObject();
-            entry.as_json(json_writer);
+            json_writer.Key("ID");
+            json_writer.Int(entry.FIELDID);
+            json_writer.Key("REFTYPE");
+            json_writer.String(entry.REFTYPE.c_str());
+            json_writer.Key("DESCRIPTION");
+            json_writer.String(entry.DESCRIPTION.c_str());
+            json_writer.Key("TYPE");
+            json_writer.String(entry.TYPE.c_str());
+            json_writer.Key("PROPERTIES");
+            json_writer.RawValue(entry.PROPERTIES.c_str(), entry.PROPERTIES.size(), rapidjson::Type::kObjectType);
             json_writer.EndObject();
         }
         json_writer.EndArray();
