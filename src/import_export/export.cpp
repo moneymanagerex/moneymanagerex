@@ -201,22 +201,22 @@ const wxString mmExportTransaction::mm_acc_type(const wxString& qif_type)
 
 void mmExportTransaction::getAccountsJSON(PrettyWriter<StringBuffer>& json_writer, std::unordered_map <int /*account ID*/, wxString>& allAccounts4Export)
 {
-    json_writer.Key("accounts");
+    json_writer.Key("ACCOUNTS");
     json_writer.StartArray();
     for (const auto &entry : allAccounts4Export)
     {
         Model_Account::Data* a = Model_Account::instance().get(entry.first);
         const auto c = Model_Currency::instance().get(a->CURRENCYID);
         json_writer.StartObject();
-        json_writer.Key("id");
+        json_writer.Key("ID");
         json_writer.Int(a->ACCOUNTID);
-        json_writer.Key("name");
+        json_writer.Key("NAME");
         json_writer.String(a->ACCOUNTNAME.c_str());
-        json_writer.Key("initialBalance");
+        json_writer.Key("INITIAL_BALANCE");
         json_writer.Double(a->INITIALBAL);
-        json_writer.Key("type");
+        json_writer.Key("TYPE");
         json_writer.String(a->ACCOUNTTYPE.c_str());
-        json_writer.Key("currency");
+        json_writer.Key("CURRENCY_SYMBOL");
         json_writer.String(c->CURRENCY_SYMBOL.c_str());
         json_writer.EndObject();
     }
@@ -227,16 +227,20 @@ void mmExportTransaction::getPayeesJSON(PrettyWriter<StringBuffer>& json_writer,
 {
     if (!allPayeess4Export.empty())
     {
-        json_writer.Key("payees");
+        json_writer.Key("PAYEES");
         json_writer.StartArray();
         for (const auto& entry : allPayeess4Export) {
             Model_Payee::Data* p = Model_Payee::instance().get(entry);
             if (p) {
                 json_writer.StartObject();
-                json_writer.Key("id");
+                json_writer.Key("ID");
                 json_writer.Int(p->PAYEEID);
-                json_writer.Key("name");
+                json_writer.Key("NAME");
                 json_writer.String(p->PAYEENAME.c_str());
+                json_writer.Key("CATEGORY_ID");
+                json_writer.Int(p->CATEGID);
+                json_writer.Key("SUBCATEGORY_ID");
+                json_writer.Int(p->SUBCATEGID);
                 json_writer.EndObject();
             }
         }
@@ -246,28 +250,28 @@ void mmExportTransaction::getPayeesJSON(PrettyWriter<StringBuffer>& json_writer,
 
 void mmExportTransaction::getCategoriesJSON(PrettyWriter<StringBuffer>& json_writer)
 {
-    json_writer.Key("categories");
+    json_writer.Key("CATEGORIES");
     json_writer.StartArray();
     for (const auto& category : Model_Category::instance().all())
     {
         json_writer.StartObject();
-        json_writer.Key("id");
+        json_writer.Key("ID");
         json_writer.Int(category.CATEGID);
-        json_writer.Key("name");
+        json_writer.Key("NAME");
         json_writer.String(category.CATEGNAME.c_str());
 
         const auto sub_categ = Model_Category::sub_category(category);
         if (!sub_categ.empty())
         {
-            json_writer.Key("sub_categories");
+            json_writer.Key("SUB_CATEGORIES");
             json_writer.StartArray();
             for (const auto& sub_category : sub_categ)
             {
                 auto test = sub_categ.to_json();
                 json_writer.StartObject();
-                json_writer.Key("id");
+                json_writer.Key("ID");
                 json_writer.Int(sub_category.CATEGID);
-                json_writer.Key("name");
+                json_writer.Key("NAME");
                 json_writer.String(sub_category.SUBCATEGNAME.c_str());
                 json_writer.EndObject();
             }
@@ -284,7 +288,7 @@ void mmExportTransaction::getTransactionJSON(PrettyWriter<StringBuffer>& json_wr
     full_tran.as_json(json_writer);
 
     if (!full_tran.m_splits.empty()) {
-        json_writer.Key("division");
+        json_writer.Key("DIVISION");
         json_writer.StartArray();
         for (const auto &split_entry : full_tran.m_splits)
         {
@@ -295,11 +299,11 @@ void mmExportTransaction::getTransactionJSON(PrettyWriter<StringBuffer>& json_wr
             const wxString split_categ = Model_Category::full_name(split_entry.CATEGID, split_entry.SUBCATEGID);
 
             json_writer.StartObject();
-            json_writer.Key("category_id");
+            json_writer.Key("CATEGORY_ID");
             json_writer.Int(split_entry.CATEGID);
-            json_writer.Key("sub_category_id");
+            json_writer.Key("SUBCATEGORY_ID");
             json_writer.Int(split_entry.SUBCATEGID);
-            json_writer.Key("amount");
+            json_writer.Key("AMOUNT");
             json_writer.Double(valueSplit);
             json_writer.EndObject();
 
@@ -357,17 +361,17 @@ void mmExportTransaction::getAttachmentsJSON(PrettyWriter<StringBuffer>& json_wr
         const wxString folder = Model_Infotable::instance().GetStringInfo("ATTACHMENTSFOLDER:" + mmPlatformType(), "");
         const wxString AttachmentsFolder = mmex::getPathAttachment(folder);
 
-        json_writer.Key("attachments");
+        json_writer.Key("ATTACHMENTS");
         json_writer.StartObject();
 
-        json_writer.Key("folder");
+        json_writer.Key("FOLDER");
         json_writer.String(folder.c_str());
-        json_writer.Key("full_path");
+        json_writer.Key("FULL_PATH");
         json_writer.String(AttachmentsFolder.c_str());
-        json_writer.Key("reference_type");
+        json_writer.Key("REFTYPE");
         json_writer.String(RefType.c_str());
 
-        json_writer.Key("attachments_data");
+        json_writer.Key("ATTACHMENTS_DATA");
         json_writer.StartArray();
 
         Model_Attachment::Data_Set attachments = Model_Attachment::instance().all();
@@ -377,22 +381,13 @@ void mmExportTransaction::getAttachmentsJSON(PrettyWriter<StringBuffer>& json_wr
             if (allAttachment4Export.Index(entry.REFID) == wxNOT_FOUND) continue;
 
             json_writer.StartObject();
-
-            json_writer.Key("id");
-            json_writer.Int(entry.ATTACHMENTID);
-            json_writer.Key("description");
-            json_writer.String(entry.DESCRIPTION.c_str());
-            json_writer.Key("file_name");
-            json_writer.String(entry.FILENAME.c_str());
-
+            entry.as_json(json_writer);
             json_writer.EndObject();
         }
         json_writer.EndArray();
         json_writer.EndObject();
     }
 }
-
-
 
 void mmExportTransaction::getCustomFieldsJSON(PrettyWriter<StringBuffer>& json_writer, wxArrayInt& allCustomFields4Export)
 {
@@ -401,11 +396,11 @@ void mmExportTransaction::getCustomFieldsJSON(PrettyWriter<StringBuffer>& json_w
     {
         const wxString RefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
 
-        json_writer.Key("custom_fields");
+        json_writer.Key("CUSTOM_FIELDS");
         json_writer.StartObject();
         
         // Data
-        json_writer.Key("custom_fields_data");
+        json_writer.Key("CUSTOM_FIELDS_DATA");
         json_writer.StartArray();
 
         wxArrayInt cd;
@@ -416,22 +411,16 @@ void mmExportTransaction::getCustomFieldsJSON(PrettyWriter<StringBuffer>& json_w
                 if (cd.Index(entry.FIELDID) == wxNOT_FOUND) 
                     cd.Add(entry.FIELDID);
 
+
             json_writer.StartObject();
-            json_writer.Key("FIELDID");
-            json_writer.Int(entry.FIELDID);
-            json_writer.Key("FIELDATADID");
-            json_writer.Int(entry.FIELDATADID);
-            json_writer.Key("REFID");
-            json_writer.Int(entry.REFID);
-            json_writer.Key("CONTENT");
-            json_writer.String(entry.CONTENT.c_str());
+            entry.as_json(json_writer);
             json_writer.EndObject();
 
         }
         json_writer.EndArray();
 
         //Settings
-        json_writer.Key("custom_fields_settings");
+        json_writer.Key("CUSTOM_FIELDS_SETTINGS");
         json_writer.StartArray();
 
         Model_CustomField::Data_Set custom_fields = Model_CustomField::instance().find(Model_CustomField::DB_Table_CUSTOMFIELD_V1::REFTYPE(RefType));
@@ -439,19 +428,9 @@ void mmExportTransaction::getCustomFieldsJSON(PrettyWriter<StringBuffer>& json_w
         {
             if (entry.REFTYPE != RefType) continue;
             if (cd.Index(entry.FIELDID) == wxNOT_FOUND) continue;
+
             json_writer.StartObject();
-
-            json_writer.Key("id");
-            json_writer.Int(entry.FIELDID);
-            json_writer.Key("reference_type");
-            json_writer.String(entry.REFTYPE.c_str());
-            json_writer.Key("description");
-            json_writer.String(entry.DESCRIPTION.c_str());
-            json_writer.Key("type");
-            json_writer.String(entry.TYPE.c_str());
-            json_writer.Key("properties");
-            json_writer.RawValue(entry.PROPERTIES.c_str(), entry.PROPERTIES.size(), rapidjson::Type::kObjectType);
-
+            entry.as_json(json_writer);
             json_writer.EndObject();
         }
         json_writer.EndArray();
