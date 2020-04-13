@@ -171,7 +171,7 @@ void OptionSettingsAttachment::Create()
     attachmentStaticBoxSizer->Add(m_trash_attachments, g_flagsV);
 }
 
-void OptionSettingsAttachment::OnAttachmentsButton(wxCommandEvent& /*event*/)
+void OptionSettingsAttachment::OnAttachmentsButton(wxCommandEvent& WXUNUSED(event))
 {
     wxMenu * attachmentsMenu = new wxMenu;
     wxMenuItem* menuItem = new wxMenuItem(attachmentsMenu, wxID_HIGHEST, _("System documents directory"));
@@ -222,7 +222,7 @@ void OptionSettingsAttachment::OnAttachmentsMenu(wxCommandEvent& event)
     OnAttachmentsPathChanged(event);
 }
 
-void OptionSettingsAttachment::OnAttachmentsPathChanged(wxCommandEvent& event)
+void OptionSettingsAttachment::OnAttachmentsPathChanged(wxCommandEvent& WXUNUSED(event))
 {
     wxTextCtrl* att = static_cast<wxTextCtrl*>(FindWindow(ID_DIALOG_OPTIONS_TEXTCTRL_ATTACHMENT));
     if (!att) return;

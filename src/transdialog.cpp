@@ -1029,7 +1029,7 @@ void mmTransDialog::OnSplitChecked(wxCommandEvent& WXUNUSED(event))
 
 void mmTransDialog::OnAutoTransNum(wxCommandEvent& WXUNUSED(event))
 {
-    auto d = Model_Checking::TRANSDATE(m_trx_data).Subtract(wxDateSpan::Days(30));
+    auto d = Model_Checking::TRANSDATE(m_trx_data).Subtract(wxDateSpan::Days(300));
     double next_number = 0, temp_num;
     const auto numbers = Model_Checking::instance()
         .find(Model_Checking::ACCOUNTID(m_trx_data.ACCOUNTID, EQUAL)

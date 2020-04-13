@@ -154,7 +154,7 @@ void mmListCtrl::PopupSelected(wxCommandEvent& event)
     }
 }
 
-void mmListCtrl::OnHeaderHide(wxCommandEvent& event)
+void mmListCtrl::OnHeaderHide(wxCommandEvent& WXUNUSED(event))
 {
     if (m_ColumnHeaderNbr >= 0 && !m_col_width.IsEmpty())
     {
@@ -171,7 +171,7 @@ void mmListCtrl::OnHeaderSort(wxCommandEvent& event)
     OnColClick(e);
 }
 
-void mmListCtrl::OnHeaderReset(wxCommandEvent& event)
+void mmListCtrl::OnHeaderReset(wxCommandEvent& WXUNUSED(event))
 {
     wxString parameter_name;
     for (int i = 0; i < static_cast<int>(m_columns.size()); i++)

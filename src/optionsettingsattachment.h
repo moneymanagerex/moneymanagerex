@@ -42,9 +42,9 @@ public:
 private:
     void Create();
 
-    void OnAttachmentsButton(wxCommandEvent& event);
+    void OnAttachmentsButton(wxCommandEvent& WXUNUSED(event));
     void OnAttachmentsMenu(wxCommandEvent& event);
-    void OnAttachmentsPathChanged(wxCommandEvent& event);
+    void OnAttachmentsPathChanged(wxCommandEvent& WXUNUSED(event));
     void OnAttachmentsSubfolderChanged(wxCommandEvent& event);
 
 private:

@@ -63,9 +63,9 @@ protected:
     /* Headers Right Click*/
     void PopupSelected(wxCommandEvent& event);
     void OnHeaderColumn(wxCommandEvent& event);
-    void OnHeaderHide(wxCommandEvent& event);
+    void OnHeaderHide(wxCommandEvent& WXUNUSED(event));
     void OnHeaderSort(wxCommandEvent& event);
-    void OnHeaderReset(wxCommandEvent& event);
+    void OnHeaderReset(wxCommandEvent& WXUNUSED(event));
 
     int m_ColumnHeaderNbr;
     enum {

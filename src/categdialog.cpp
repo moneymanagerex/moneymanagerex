@@ -90,7 +90,7 @@ mmCategDialog::mmCategDialog(wxWindow* parent
 
     long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX | wxRESIZE_BORDER;
     Create(parent, ID_DIALOG_CATEGORY, _("Organize Categories")
-        , wxDefaultPosition, wxSize(500, 300), style);
+        , wxDefaultPosition, wxDefaultSize, style);
 }
 
 bool mmCategDialog::Create(wxWindow* parent, wxWindowID id
@@ -100,8 +100,10 @@ bool mmCategDialog::Create(wxWindow* parent, wxWindowID id
     SetExtraStyle(GetExtraStyle() | wxWS_EX_BLOCK_EVENTS);
     wxDialog::Create(parent, id, caption, pos, size, style);
 
+    SetEvtHandlerEnabled(false);
     CreateControls();
     fillControls();
+    SetEvtHandlerEnabled(true);
 
     GetSizer()->Fit(this);
     GetSizer()->SetSizeHints(this);
@@ -421,11 +423,11 @@ void mmCategDialog::OnSelChanged(wxTreeEvent& event)
     if (!selectedItemId_) return;
     if (selectedItemId != selectedItemId_) m_treeCtrl->SelectItem(selectedItemId_);
 
+    m_categ_id = -1;
+    m_subcateg_id = -1;
     const bool bRootSelected = selectedItemId_ == root_;
     if (bRootSelected)
     {
-        m_categ_id = -1;
-        m_subcateg_id = -1;
         m_buttonDelete->Disable();
         m_buttonDelete->SetToolTip(_("Select an unused category to delete."));
     }
@@ -435,8 +437,10 @@ void mmCategDialog::OnSelChanged(wxTreeEvent& event)
             dynamic_cast<mmTreeItemCateg*>(m_treeCtrl->GetItemData(selectedItemId_));
         wxASSERT(iData);
 
-        m_categ_id = iData->getCategData()->CATEGID;
-        m_subcateg_id = iData->getSubCategData()->SUBCATEGID;
+        if (iData) {
+            m_categ_id = iData->getCategData()->CATEGID;
+            m_subcateg_id = iData->getSubCategData()->SUBCATEGID;
+        }
 
         bool bUsed = Model_Category::is_used(m_categ_id, m_subcateg_id);
         if (m_subcateg_id == -1)

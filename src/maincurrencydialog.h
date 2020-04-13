@@ -90,11 +90,11 @@ private:
 
     void ShowCurrencyHistory();
     void OnHistoryAdd(wxCommandEvent& event);
-    void OnHistoryDelete(wxCommandEvent& event);
-    void OnHistoryUpdate(wxCommandEvent& event);
-    void OnHistoryDeleteUnused(wxCommandEvent& event);
+    void OnHistoryDelete(wxCommandEvent& WXUNUSED(event));
+    void OnHistoryUpdate(wxCommandEvent& WXUNUSED(event));
+    void OnHistoryDeleteUnused(wxCommandEvent& WXUNUSED(event));
     void OnHistorySelected(wxListEvent& event);
-    void OnHistoryDeselected(wxListEvent& event);
+    void OnHistoryDeselected(wxListEvent& WXUNUSED(event));
 
     void OnOnlineUpdateCurRate(wxCommandEvent& event);
     bool OnlineUpdateCurRate(int curr_id = -1, bool hide = true);

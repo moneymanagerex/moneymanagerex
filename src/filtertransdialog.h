@@ -124,7 +124,6 @@ private:
 
     wxString settings_string_;
     wxString prev_value_;
-    wxTextCtrl* m_settingLabel;
     wxCheckBox* accountCheckBox_;
     wxChoice* accountDropDown_;
     wxCheckBox* dateRangeCheckBox_;
@@ -155,11 +154,12 @@ private:
 
     int categID_;
     int subcategID_;
-    bool bSimilarCategoryStatus_;
     int payeeID_;
-    wxString payeeStr_;
     int refAccountID_;
     wxString refAccountStr_;
+    bool bSimilarCategoryStatus_;
+    wxTextCtrl* m_settingLabel;
+    wxString payeeStr_;
 };
 
 #endif

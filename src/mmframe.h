@@ -185,13 +185,12 @@ private:
     void OnChangeGUILanguage(wxCommandEvent &event);
 
     void OnViewToolbar(wxCommandEvent &event);
-    void OnViewStatusbar(wxCommandEvent &event);
     void OnViewLinks(wxCommandEvent &event);
-    void OnViewBudgetFinancialYears(wxCommandEvent &event);
-    void OnViewBudgetTransferTotal(wxCommandEvent &event);
-    void OnViewBudgetSetupSummary(wxCommandEvent &event);
-    void OnViewBudgetCategorySummary(wxCommandEvent &event);
-    void OnViewIgnoreFutureTransactions(wxCommandEvent &event);
+    void OnViewBudgetFinancialYears(wxCommandEvent& WXUNUSED(event));
+    void OnViewBudgetTransferTotal(wxCommandEvent& WXUNUSED(event));
+    void OnViewBudgetSetupSummary(wxCommandEvent& WXUNUSED(event));
+    void OnViewBudgetCategorySummary(wxCommandEvent& WXUNUSED(event));
+    void OnViewIgnoreFutureTransactions(wxCommandEvent& WXUNUSED(event));
     void OnViewToolbarUpdateUI(wxUpdateUIEvent &event);
     void OnViewLinksUpdateUI(wxUpdateUIEvent &event);
 

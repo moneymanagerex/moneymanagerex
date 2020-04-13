@@ -2937,31 +2937,31 @@ void mmGUIFrame::RefreshNavigationTree()
     updateNavTreeControl();
 }
 
-void mmGUIFrame::OnViewBudgetFinancialYears(wxCommandEvent &event)
+void mmGUIFrame::OnViewBudgetFinancialYears(wxCommandEvent& WXUNUSED(event))
 {
     Option::instance().BudgetFinancialYears(!Option::instance().BudgetFinancialYears());
     refreshPanelData();
 }
 
-void mmGUIFrame::OnViewBudgetTransferTotal(wxCommandEvent &event)
+void mmGUIFrame::OnViewBudgetTransferTotal(wxCommandEvent& WXUNUSED(event))
 {
     Option::instance().BudgetIncludeTransfers(!Option::instance().BudgetIncludeTransfers());
     refreshPanelData();
 }
 
-void mmGUIFrame::OnViewBudgetSetupSummary(wxCommandEvent &event)
+void mmGUIFrame::OnViewBudgetSetupSummary(wxCommandEvent& WXUNUSED(event))
 {
     Option::instance().BudgetSetupWithoutSummaries(!Option::instance().BudgetSetupWithoutSummaries());
     refreshPanelData();
 }
 
-void mmGUIFrame::OnViewBudgetCategorySummary(wxCommandEvent &event)
+void mmGUIFrame::OnViewBudgetCategorySummary(wxCommandEvent& WXUNUSED(event))
 {
     Option::instance().BudgetReportWithSummaries(!Option::instance().BudgetReportWithSummaries());
     refreshPanelData();
 }
 
-void mmGUIFrame::OnViewIgnoreFutureTransactions(wxCommandEvent &event)
+void mmGUIFrame::OnViewIgnoreFutureTransactions(wxCommandEvent& WXUNUSED(event))
 {
     Option::instance().IgnoreFutureTransactions(!Option::instance().getIgnoreFutureTransactions());
     updateNavTreeControl();

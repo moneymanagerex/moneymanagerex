@@ -576,7 +576,7 @@ void mmMainCurrencyDialog::OnHistoryAdd(wxCommandEvent& /*event*/)
     ShowCurrencyHistory();
 }
 
-void mmMainCurrencyDialog::OnHistoryDelete(wxCommandEvent& /*event*/)
+void mmMainCurrencyDialog::OnHistoryDelete(wxCommandEvent& WXUNUSED(event))
 {
     if (valueListBox_->GetSelectedItemCount() <= 0) return;
 
@@ -594,7 +594,7 @@ void mmMainCurrencyDialog::OnHistoryDelete(wxCommandEvent& /*event*/)
     ShowCurrencyHistory();
 }
 
-void mmMainCurrencyDialog::OnHistoryUpdate(wxCommandEvent& /*event*/)
+void mmMainCurrencyDialog::OnHistoryUpdate(wxCommandEvent& WXUNUSED(event))
 {
     if (m_static_dialog) return;    //Abort when trying to set base currency
     Model_Currency::Data* CurrentCurrency = Model_Currency::instance().get(m_currency_id);
@@ -665,7 +665,7 @@ void mmMainCurrencyDialog::OnHistoryUpdate(wxCommandEvent& /*event*/)
             , _("Currency history error"));
 }
 
-void mmMainCurrencyDialog::OnHistoryDeleteUnused(wxCommandEvent& /*event*/)
+void mmMainCurrencyDialog::OnHistoryDeleteUnused(wxCommandEvent& WXUNUSED(event))
 {
     if (m_static_dialog) return;    //Abort when trying to set base currency
     Model_CurrencyHistory::instance().Savepoint();
@@ -708,7 +708,7 @@ void mmMainCurrencyDialog::OnHistorySelected(wxListEvent& event)
     }
 }
 
-void mmMainCurrencyDialog::OnHistoryDeselected(wxListEvent& event)
+void mmMainCurrencyDialog::OnHistoryDeselected(wxListEvent& WXUNUSED(event))
 {
     valueDatePicker_->SetValue(wxDateTime::Today());
     valueTextBox_->SetValue(wxEmptyString);
