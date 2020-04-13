@@ -97,61 +97,10 @@ double Model_CurrencyHistory::getDayRate(const int& currencyID, const wxDate& Da
     if (currencyID == Model_Currency::GetBaseCurrency()->CURRENCYID || currencyID == -1)
         return 1;
 
-    Model_CurrencyHistory::Data_Set Data = Model_CurrencyHistory::instance().find(Model_CurrencyHistory::CURRENCYID(currencyID), Model_CurrencyHistory::CURRDATE(Date));
-
-    if (!Data.empty())
-    {
-        //Rate found for specified day
-        return Data.back().CURRVALUE;
-    }
-    else if (Model_CurrencyHistory::instance().find(Model_CurrencyHistory::CURRENCYID(currencyID)).size() > 0)
-    {
-        //Rate not found for specified day
-        //Custom query requested to speed-up performances, no way to obtain it with our ORM
-        wxDateTime dFuture, dPast, dNearest;
-        wxString DateISO = Date.FormatISODate();
-
-        const wxString sqlPast = wxString::Format("SELECT MAX(currdate) FROM CURRENCYHISTORY_V1 WHERE currencyid = '%i' AND currdate <= '%s';", currencyID, DateISO);
-        wxSQLite3ResultSet rsPast = Model_CurrencyHistory::instance().db_->ExecuteQuery(sqlPast);
-        while (rsPast.NextRow())
-        {
-            dPast.ParseDate(rsPast.GetAsString(0));
-        }
-
-        const wxString sqlFuture = wxString::Format("SELECT MIN(currdate) FROM CURRENCYHISTORY_V1 WHERE currencyid = '%i' AND currdate >= '%s';", currencyID, DateISO);
-        wxSQLite3ResultSet rsFuture = Model_CurrencyHistory::instance().db_->ExecuteQuery(sqlFuture);
-        while (rsFuture.NextRow())
-        {
-            dFuture.ParseDate(rsFuture.GetAsString(0));
-        }
-
-        if (dPast.IsValid() && dFuture.IsValid())
-        {
-            const wxTimeSpan spanPast = Date.Subtract(dPast);
-            const wxTimeSpan spanFuture = dFuture.Subtract(Date);
-
-            dNearest = spanPast <= spanFuture ? dPast : dFuture;
-        }
-        else if (dPast.IsValid())
-        {
-            dNearest = dPast;
-        }
-        else if (dFuture.IsValid())
-        {
-            dNearest = dFuture;
-        }
-        else
-        {
-            //TODO: Show warning alert but only one time?
-            return 1;
-        }
-
-        return Model_CurrencyHistory::instance().find(Model_CurrencyHistory::CURRENCYID(currencyID), Model_CurrencyHistory::CURRDATE(dNearest))[0].CURRVALUE;
-    }
-    else
-    {
-        return 1;
-    }
+    Model_CurrencyHistory::Data_Set Data = Model_CurrencyHistory::instance().find(Model_CurrencyHistory::CURRENCYID(currencyID)
+        , Model_CurrencyHistory::CURRDATE(Date, LESS_OR_EQUAL));
+    double  nearest = Data.empty() ? 1 : Data.back().CURRVALUE;
+    return nearest;
 }
 
 /** Return the last attachment number linked to a specific object */
