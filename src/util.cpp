@@ -600,7 +600,7 @@ bool get_yahoo_prices(std::map<wxString, double>& symbols
                 currency_symbol = pattern.GetMatch(currency_symbol, 1);
 
                 wxLogDebug("item: %u %s %f", i, currency_symbol, price);
-                out[currency_symbol] = (price <= 0 ? 1 : price);
+                out[currency_symbol] = (price <= 0 ? 0 : price);
             }
         }
     }
@@ -625,7 +625,7 @@ bool get_yahoo_prices(std::map<wxString, double>& symbols
             double k = currency == "GBp" ? 100 : 1;
 
             wxLogDebug("item: %u %s %f", i, symbol, price);
-            out[symbol] = price <= 0 ? 1 : price / k;
+            out[symbol] = price <= 0 ? 0 : price / k;
         }
     }
 

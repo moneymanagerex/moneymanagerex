@@ -58,11 +58,19 @@ void OptionSettingsMisc::Create()
 
     othersPanelSizer->Add(itemStaticTextURL, g_flagsV);
 
+    wxArrayString list;
+    list.Add(mmex::weblink::DefStockUrl);
+    //list.Add("https://www.morningstar.com/stocks/xnas/%s/quote");
+    //list.Add("https://www.marketwatch.com/investing/stock/%s");
+    //list.Add("https://www.ifcmarkets.co.in/en/market-data/stocks-prices/%s");
+
     wxString stockURL = Model_Infotable::instance().GetStringInfo("STOCKURL", mmex::weblink::DefStockUrl);
-    wxTextCtrl* itemTextCtrURL = new wxTextCtrl(this
-        , ID_DIALOG_OPTIONS_TEXTCTRL_STOCKURL, stockURL);
-    othersPanelSizer->Add(itemTextCtrURL, wxSizerFlags(g_flagsExpand).Proportion(0));
-    itemTextCtrURL->SetToolTip(_("Clear the field to Reset the value to system default."));
+    wxComboBox* itemListOfURL = new wxComboBox(this, ID_DIALOG_OPTIONS_TEXTCTRL_STOCKURL, ""
+        , wxDefaultPosition, wxDefaultSize, list);
+    itemListOfURL->SetValue(stockURL);
+
+    othersPanelSizer->Add(itemListOfURL, wxSizerFlags(g_flagsExpand).Proportion(0));
+    itemListOfURL->SetToolTip(_("Clear the field to Reset the value to system default."));
 
     // Share Precision
     wxFlexGridSizer* share_precision_sizer = new wxFlexGridSizer(0, 2, 0, 0);
@@ -194,7 +202,7 @@ void OptionSettingsMisc::OnBackupChanged(wxCommandEvent& event)
 
 void OptionSettingsMisc::SaveStocksUrl()
 {
-    wxTextCtrl* url = static_cast<wxTextCtrl*>(FindWindow(ID_DIALOG_OPTIONS_TEXTCTRL_STOCKURL));
+    wxComboBox* url = static_cast<wxComboBox*>(FindWindow(ID_DIALOG_OPTIONS_TEXTCTRL_STOCKURL));
     wxString stockURL = url->GetValue();
     if (!stockURL.IsEmpty())
     {

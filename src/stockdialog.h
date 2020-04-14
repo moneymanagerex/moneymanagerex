@@ -76,10 +76,11 @@ private:
     mmTextCtrl* m_num_shares_ctrl;
     mmTextCtrl* m_purchase_price_ctrl;
     mmTextCtrl* m_notes_ctrl;
-    mmTextCtrl* m_current_price_ctrl;
-    wxDatePickerCtrl* m_current_date_ctrl;
+    mmTextCtrl* m_history_price_ctrl;
+    wxDatePickerCtrl* m_history_date_ctrl;
     wxStaticText* m_value_investment;
     mmTextCtrl* m_commission_ctrl;
+    mmTextCtrl* m_current_price_ctrl;
     wxBitmapButton* m_bAttachments;
     wxListCtrl* m_price_listbox;
 
@@ -97,6 +98,7 @@ private:
         ID_TEXTCTRL_STOCK_CP,
         ID_STATIC_STOCK_VALUE,
         ID_TEXTCTRL_STOCK_COMMISSION,
+        ID_TEXTCTRL_STOCK_CURR_PRICE,
         ID_DIALOG_STOCKS,
         ID_DPC_CP_PDATE,
         ID_BUTTON_IMPORT,
