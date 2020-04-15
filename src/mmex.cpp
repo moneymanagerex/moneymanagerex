@@ -38,10 +38,10 @@ wxIMPLEMENT_APP(mmGUIApp);
 
 static const wxCmdLineEntryDesc g_cmdLineDesc [] =
 {
-    { wxCMD_LINE_PARAM, nullptr, nullptr, wxT_2("database file"), wxCMD_LINE_VAL_STRING, wxCMD_LINE_PARAM_OPTIONAL },
-    { wxCMD_LINE_OPTION, "i", "mmexini",   "path to mmexini.db3" },
     { wxCMD_LINE_SWITCH, "h", "help", "\nTo open a determined database (.mmb) file from a shortcut or command line, set the path to the database file as a parameter.",
         wxCMD_LINE_VAL_NONE, wxCMD_LINE_OPTION_HELP },
+    { wxCMD_LINE_OPTION, "i", "mmexini",   "path to mmexini.db3" },
+    { wxCMD_LINE_PARAM, nullptr, nullptr, wxT_2("database file"), wxCMD_LINE_VAL_STRING, wxCMD_LINE_PARAM_OPTIONAL },
     { wxCMD_LINE_NONE }
 };
 
@@ -145,16 +145,12 @@ void mmGUIApp::OnInitCmdLine(wxCmdLineParser& parser)
 
 bool mmGUIApp::OnCmdLineParsed(wxCmdLineParser& parser)
 {
-    for (const auto& arg : parser.GetArguments())
-    {
-        const auto argument = arg.GetStrVal();
-        if (argument.EndsWith(".db3")) {
-            m_optParam2 = argument;
-        }
-        else if (argument.EndsWith(".mmb")) {
-            m_optParam1 = argument;
-        }
-    }
+    wxString ini_file;
+    if (parser.Found("i", &ini_file))
+        m_optParam2 = ini_file;
+
+    if (parser.GetParamCount() > 0)
+        m_optParam1 = parser.GetParam(0);
 
     return true;
 }
