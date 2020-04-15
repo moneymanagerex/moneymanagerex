@@ -16,8 +16,6 @@ env:
   matrix: # targets for linux
   # Ubuntu
   - OS=ubuntu DIST=eoan
-  - OS=ubuntu DIST=disco
-  #- OS=ubuntu DIST=cosmic
   - OS=ubuntu DIST=bionic
   - OS=ubuntu DIST=xenial
   # Debian
@@ -106,6 +104,7 @@ install: |-
     osx)
       export MACOSX_DEPLOYMENT_TARGET=$DIST
       brew update-reset && brew bundle --verbose --file=util/Brewfile
+      brew link gettext --force
       ccache -cs && export PATH="/usr/local/opt/ccache/libexec:$PATH"
       ;;
   esac
