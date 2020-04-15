@@ -39,6 +39,9 @@ wxIMPLEMENT_APP(mmGUIApp);
 static const wxCmdLineEntryDesc g_cmdLineDesc [] =
 {
     { wxCMD_LINE_PARAM, nullptr, nullptr, wxT_2("database file"), wxCMD_LINE_VAL_STRING, wxCMD_LINE_PARAM_OPTIONAL },
+    { wxCMD_LINE_OPTION, "i", "mmexini",   "path to mmexini.db3" },
+    { wxCMD_LINE_SWITCH, "h", "help", "\nTo open a determined database (.mmb) file from a shortcut or command line, set the path to the database file as a parameter.",
+        wxCMD_LINE_VAL_NONE, wxCMD_LINE_OPTION_HELP },
     { wxCMD_LINE_NONE }
 };
 
@@ -46,7 +49,8 @@ static const wxCmdLineEntryDesc g_cmdLineDesc [] =
 
 mmGUIApp::mmGUIApp(): m_frame(nullptr)
 , m_setting_db(nullptr)
-, m_optParam(wxEmptyString)
+, m_optParam1(wxEmptyString)
+, m_optParam2(wxEmptyString)
 , m_lang(wxLANGUAGE_UNKNOWN)
 , m_locale(wxLANGUAGE_DEFAULT)
 {
@@ -136,13 +140,22 @@ bool mmGUIApp::setGUILanguage(wxLanguage lang)
 
 void mmGUIApp::OnInitCmdLine(wxCmdLineParser& parser)
 {
-    parser.SetDesc (g_cmdLineDesc);
+    parser.SetDesc(g_cmdLineDesc);
 }
 
 bool mmGUIApp::OnCmdLineParsed(wxCmdLineParser& parser)
 {
-    if(parser.GetParamCount() > 0)
-        m_optParam = parser.GetParam(0);
+    for (const auto& arg : parser.GetArguments())
+    {
+        const auto argument = arg.GetStrVal();
+        if (argument.EndsWith(".db3")) {
+            m_optParam2 = argument;
+        }
+        else if (argument.EndsWith(".mmb")) {
+            m_optParam1 = argument;
+        }
+    }
+
     return true;
 }
 
@@ -218,7 +231,14 @@ bool OnInitImpl(mmGUIApp* app)
     app->SetAppName(mmex::GetAppName());
 
     app->SetSettingDB(new wxSQLite3Database());
-    app->GetSettingDB()->Open(mmex::getPathUser(mmex::SETTINGS));
+    wxString file_path = mmex::getPathUser(mmex::SETTINGS);
+    if (!app->GetIniParam().empty()) {
+        if (wxFileName::FileExists(app->GetIniParam()))
+        {
+            file_path = app->GetIniParam();
+        }
+    }
+    app->GetSettingDB()->Open(file_path);
     Model_Setting::instance(app->GetSettingDB());
 
     bool isUsed = Model_Setting::instance().GetBoolSetting("ISUSED", false);
@@ -317,8 +337,9 @@ bool mmGUIApp::OnInit()
     }
     else
     {
-        GetSettingDB()->Close();
-        delete m_setting_db;
+        wxSharedPtr<wxSQLite3Database> db;
+        db = GetSettingDB(); 
+        if (db) db->Close();
     }
     return ok;
 }
