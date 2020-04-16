@@ -57,10 +57,8 @@ public:
 private:
     wxString GetHomePageText() const;
     wxWebView* browser_;
-    mmDateRange* date_range_;
     void CreateControls();
     void sortTable() {}
-    wxString vAccts_;
 
     wxString m_templateText;
     std::map <wxString, wxString> m_frames;
@@ -68,20 +66,7 @@ private:
     void getData();
     void fillData();
     void OnLinkClicked(wxWebViewEvent& event);
-    const wxString displayAssets(double& tBalance);
-    const wxString displayIncomeVsExpenses();
-    const wxString getStatWidget();
     const wxString getToggles();
-    const wxString displayGrandTotals(double& tBalance);
-
-    const wxString displayAccounts(double& tBalance, std::map<int, std::pair<double, double> > &accountStats
-        , int type = Model_Account::CHECKING);
-    void get_account_stats(std::map<int, std::pair<double, double> > &accountStats);
-    void getExpensesIncomeStats(std::map<int, std::pair<double, double> > &incomeExpensesStats
-        , mmDateRange* date_range) const;
-    int countFollowUp_, total_transactions_;
-	void setExpensesIncomeStatsData(std::map<int, std::pair<double, double> > &incomeExpensesStats
-		, mmDateRange* date_range) const;
 };
 
 #endif
