@@ -1062,14 +1062,14 @@ const wxString md2html(const wxString& md)
 
     // img with link
     // skip images hosted via unsupported https
-    wxRegEx re(R"(\[!\[([^]]+)\]\(([ \t]*https://[^)]+)\)\]\(([^)]+)\))", wxRE_EXTENDED);
+    wxRegEx re(R"(\[!\[([^]]+)\]\(([ \t]*https:\/\/[^)]+)\)\]\(([^)]+)\))", wxRE_EXTENDED);
     re.Replace(&body, R"(<a href="\3">\1</a>)");
     re.Compile(R"(\[!\[([^]]+)\]\(([^)]+)\)\]\(([^)]+)\))", wxRE_EXTENDED);
     re.Replace(&body, R"(<a href="\3"><img src="\2" alt="\1"></a>)");
 
     // img
     // skip images hosted via unsupported https
-    re.Compile(R"(!\[([^]]+)\]\([ \t]*https://[^)]+\))", wxRE_EXTENDED);
+    re.Compile(R"(!\[([^]]+)\]\([ \t]*https:\/\/[^)]+\))", wxRE_EXTENDED);
     re.Replace(&body, R"(\1)");
     re.Compile(R"(!\[([^]]+)\]\(([^)]+)\))", wxRE_EXTENDED);
     re.Replace(&body, R"(<img src="\2" alt="\1">)");

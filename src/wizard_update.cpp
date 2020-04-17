@@ -34,8 +34,11 @@ const char* update_template = R"(
 <html>
 <head>
   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <link href="memory:master.css" rel="stylesheet" />
 </head>
 <body>
+<h2>%s</h2>
+<h3>%s</h3>
 %s
 </body>
 </html>
@@ -49,15 +52,13 @@ mmUpdateWizard::mmUpdateWizard(wxFrame *frame, const Document& json_releases, wx
     page1 = new wxWizardPageSimple(this);
     
     int i = 0;
-    wxString displayMsg = wxString::Format(_("Your version is %s"), mmex::version::string) + "\n\n";
-    displayMsg += _("A new version of MMEX is available!");
+
     wxString html;
 
     for (auto& r : json_releases.GetArray())
     {
         if (new_releases.Index(i) != wxNOT_FOUND) 
         {
-
             bool p = (r.HasMember("prerelease") && r["prerelease"].IsBool() && r["prerelease"].GetBool());
             const auto prerelease = !p ? _("Stable") : _("Unstable");
 
@@ -82,37 +83,36 @@ mmUpdateWizard::mmUpdateWizard(wxFrame *frame, const Document& json_releases, wx
             const wxString github = "https://github.com/moneymanagerex/moneymanagerex/releases/tag/";
             const wxString sf = "https://sourceforge.net/projects/moneymanagerex/files/";
             if (link.Contains(github)) link.Replace(github, sf);
-            html += wxString::Format(R"(<table><tr align='left'><th>%s</th><th>%s</th><th>%s</th><th>%s</th></tr>)"
+            html += wxString::Format("<table class='table'><thead><tr><th>%s</th><th>%s</th><th>%s</th><th>%s</th></tr></thead>\n"
                 , _("Version"), _("Status"), _("Date"), _("Time"));
-            html += wxString::Format(R"(<tr><td>%s</td><td>%s</td><td>%s</td><td>%s</td></tr><tr><td colspan='4'>%s</td></tr></table><hr>)"
+            html += wxString::Format("<tbody><tr class='success'><td>%s</td><td>%s</td><td>%s</td><td>%s</td></tr><tr class='active'><td colspan='4'>%s</td></tr><tbody></table><hr>\n\n"
                 , link, prerelease, pd, time, body);
         }
         i++;
     }
 
-    html = wxString::Format(update_template, html);
+    wxString ver = wxString::Format(_("Your version is %s"), mmex::version::string);
+    wxString header = _("A new version of MMEX is available!");
+    html = wxString::Format(update_template, header, ver, html);
 
     wxBoxSizer *page1_sizer = new wxBoxSizer(wxVERTICAL);
     page1->SetSizer(page1_sizer);
 
-    wxStaticText *updateText = new wxStaticText(page1, wxID_ANY, displayMsg);
-    updateText->SetFont(this->GetFont().Larger().Bold());
-    wxHtmlWindow *changelog = new wxHtmlWindow(page1
+    wxHtmlWindow* browser = new wxHtmlWindow(page1
         , wxID_ANY, wxDefaultPosition, wxDefaultSize
         , wxHW_SCROLLBAR_AUTO | wxSUNKEN_BORDER | wxHSCROLL | wxVSCROLL);
-    changelog->SetMinSize(wxSize(350, 250));
+    browser->SetMinSize(wxSize(350, 250));
 
     wxStaticText *tipsText = new wxStaticText(page1, wxID_ANY, wxGetTranslation(TIPS[1]));
 
-    page1_sizer->Add(updateText, g_flagsCenter);
-    page1_sizer->Add(changelog, wxSizerFlags(g_flagsExpand).Border(wxTOP, 0));
+    page1_sizer->Add(browser, wxSizerFlags(g_flagsExpand).Border(wxTOP, 0));
     page1_sizer->Add(tipsText, g_flagsCenter);
 
     GetPageAreaSizer()->Add(page1);
     setControlEnable(wxID_CANCEL);
     setControlEnable(wxID_BACKWARD);
 
-    changelog->SetPage(html);
+    browser->SetPage(html);
 }
 
 void mmUpdateWizard::RunIt(bool modal)
