@@ -1,5 +1,6 @@
 /*******************************************************
  Copyright (C) 2014 Gabriele-V
+ Copyright (C) 2020 Nikolay Akimov
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -24,9 +25,11 @@
 #include "reports/htmlbuilder.h"
 #include "model/Model_Setting.h"
 #include "rapidjson/error/en.h"
+#include <wx/webview.h>
+#include <wx/webviewfshandler.h>
+#include <wx/fs_mem.h>
 
 wxBEGIN_EVENT_TABLE(mmUpdateWizard, wxWizard)
-    EVT_HTML_LINK_CLICKED(wxID_ANY, mmUpdateWizard::LinkClicked)
 wxEND_EVENT_TABLE()
 
 const char* update_template = R"(
@@ -43,6 +46,36 @@ const char* update_template = R"(
 </body>
 </html>
 )";
+
+
+class WebViewHandlerUpdatePage : public wxWebViewHandler
+{
+public:
+    WebViewHandlerUpdatePage(mmUpdateWizard* parent, const wxString& protocol)
+        : wxWebViewHandler(protocol)
+        , parent_(parent)
+    {
+    }
+
+    virtual ~WebViewHandlerUpdatePage()
+    {
+    }
+
+    virtual wxFSFile* GetFile(const wxString &uri)
+    {
+        wxLaunchDefaultBrowser(uri);
+        wxWebView* browser = static_cast<wxWebView*>(parent_->FindWindow(wxID_CONTEXT_HELP));
+        if (browser) browser->LoadURL("memory:update.html");
+        return nullptr;
+    }
+private:
+    mmUpdateWizard* parent_;
+};
+
+mmUpdateWizard::~mmUpdateWizard()
+{
+    wxMemoryFSHandler::RemoveFile("update.html");
+}
 
 mmUpdateWizard::mmUpdateWizard(wxFrame *frame, const Document& json_releases, wxArrayInt new_releases)
     : wxWizard(frame, wxID_ANY, _("Update Wizard")
@@ -98,10 +131,14 @@ mmUpdateWizard::mmUpdateWizard(wxFrame *frame, const Document& json_releases, wx
     wxBoxSizer *page1_sizer = new wxBoxSizer(wxVERTICAL);
     page1->SetSizer(page1_sizer);
 
-    wxHtmlWindow* browser = new wxHtmlWindow(page1
-        , wxID_ANY, wxDefaultPosition, wxDefaultSize
-        , wxHW_SCROLLBAR_AUTO | wxSUNKEN_BORDER | wxHSCROLL | wxVSCROLL);
-    browser->SetMinSize(wxSize(350, 250));
+    wxMemoryFSHandler::AddFile("update.html", html);
+
+    wxWebView* browser = wxWebView::New(page1, wxID_CONTEXT_HELP, wxWebViewDefaultURLStr);
+    browser->EnableContextMenu(false);
+    browser->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new wxWebViewFSHandler("memory")));
+    browser->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new WebViewHandlerUpdatePage(this, "https")));
+    browser->LoadURL("memory:update.html");
+
 
     wxStaticText *tipsText = new wxStaticText(page1, wxID_ANY, wxGetTranslation(TIPS[1]));
 
@@ -112,7 +149,6 @@ mmUpdateWizard::mmUpdateWizard(wxFrame *frame, const Document& json_releases, wx
     setControlEnable(wxID_CANCEL);
     setControlEnable(wxID_BACKWARD);
 
-    browser->SetPage(html);
 }
 
 void mmUpdateWizard::RunIt(bool modal)
@@ -126,11 +162,6 @@ void mmUpdateWizard::RunIt(bool modal)
 
         Destroy();
     }
-}
-
-void mmUpdateWizard::LinkClicked(wxHtmlLinkEvent& evt)
-{
-    wxLaunchDefaultBrowser(evt.GetLinkInfo().GetHref());
 }
 
 struct Version
@@ -217,7 +248,7 @@ struct Version
 //--------------
 //mmUpdate Class
 //--------------
-void mmUpdate::checkUpdates(bool bSilent, wxFrame *frame)
+void mmUpdate::checkUpdates(wxFrame *frame, bool bSilent)
 {
     wxString resp;
     CURLcode err_code = http_get_data(mmex::weblink::Releases, resp);
