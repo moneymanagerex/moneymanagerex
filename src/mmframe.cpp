@@ -726,16 +726,49 @@ void mmGUIFrame::updateNavTreeControl()
     m_nav_tree_ctrl->SetItemData(budgeting, new mmTreeItemData("Budgeting"));
     m_nav_tree_ctrl->SetItemBold(budgeting, true);
 
-    const auto all_budgets
-        = Model_Budgetyear::instance().all(Model_Budgetyear::COL_BUDGETYEARNAME);
-    for (const auto& e : all_budgets)
-    {
-        int id = e.BUDGETYEARID;
-        const wxString& name = e.BUDGETYEARNAME;
+    const auto all_budgets = Model_Budgetyear::instance().all(Model_Budgetyear::COL_BUDGETYEARNAME);
+    if (!all_budgets.empty())
+    { 
+        std::map <wxString, int> years;
+        wxRegEx pattern_year = R"(^([0-9]{4})$)";
+        wxRegEx pattern_month = R"(^([0-9]{4})-([0-9]{2})$)";
+        for (const auto& e : all_budgets)
+        {
+            const wxString& name = e.BUDGETYEARNAME;
+            if (pattern_year.Matches(name))
+            {
+                years[name] = e.BUDGETYEARID;
 
-        wxTreeItemId bYear = m_nav_tree_ctrl->AppendItem(budgeting
-            , name, img::CALENDAR_PNG, img::CALENDAR_PNG);
-        m_nav_tree_ctrl->SetItemData(bYear, new mmTreeItemData(id, true));
+            }
+            else
+            {
+                if (pattern_month.Matches(name)) {
+                    wxString root_year = pattern_month.GetMatch(name, 1);
+                    if (years.find(root_year) == years.end()) {
+                        years[root_year] = e.BUDGETYEARID;
+                    }
+                }
+            }
+        }
+
+        for (const auto& entry : years)
+        {
+            wxTreeItemId year_budget;
+            for (const auto& e : all_budgets)
+            {
+                if (entry.second == e.BUDGETYEARID) {
+                    year_budget = m_nav_tree_ctrl->AppendItem(budgeting
+                        , e.BUDGETYEARNAME, img::CALENDAR_PNG, img::CALENDAR_PNG);
+                    m_nav_tree_ctrl->SetItemData(year_budget, new mmTreeItemData(e.BUDGETYEARID, true));
+                }
+                else if (pattern_month.Matches(e.BUDGETYEARNAME) && pattern_month.GetMatch(e.BUDGETYEARNAME, 1) == entry.first)
+                {
+                    wxTreeItemId month_budget = m_nav_tree_ctrl->AppendItem(year_budget
+                        , e.BUDGETYEARNAME, img::CALENDAR_PNG, img::CALENDAR_PNG);
+                    m_nav_tree_ctrl->SetItemData(month_budget, new mmTreeItemData(e.BUDGETYEARID, true));
+                }
+            }
+        }
     }
 
     wxTreeItemId reports = m_nav_tree_ctrl->AppendItem(root, _("Reports"), img::PIECHART_PNG, img::PIECHART_PNG);
