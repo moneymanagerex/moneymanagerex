@@ -27,8 +27,7 @@ using namespace rapidjson;
 class mmUpdate
 {
 public:
-    static void checkUpdates(bool bSilent, wxFrame *frame);
-
+    static void checkUpdates(wxFrame *frame, bool bSilent);
 };
 
 class mmUpdateWizard : public wxWizard
@@ -36,10 +35,10 @@ class mmUpdateWizard : public wxWizard
 public:
     mmUpdateWizard(wxFrame *frame, const Document& json_releases, wxArrayInt new_releases);
     void RunIt(bool modal);
+    ~mmUpdateWizard();
 
 private:
     wxWizardPageSimple* page1;
-    void LinkClicked(wxHtmlLinkEvent& WXUNUSED(event));
     void setControlEnable(int id);
 
     wxDECLARE_EVENT_TABLE();

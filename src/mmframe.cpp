@@ -269,7 +269,7 @@ mmGUIFrame::mmGUIFrame(mmGUIApp* app, const wxString& title
 
     //Check for new version at startup
     if (Model_Setting::instance().GetBoolSetting("UPDATECHECK", true))
-        mmUpdate::checkUpdates(true,this);
+        mmUpdate::checkUpdates(this, true);
 
     //Show appstart
     if (from_scratch || !dbpath.IsOk())
@@ -1678,8 +1678,6 @@ void mmGUIFrame::CreateToolBar()
     toolBar_->AddSeparator();
     toolBar_->AddTool(wxID_NEW, _("New"), mmBitmap(png::NEW_TRX), _("New Transaction"));
     toolBar_->AddSeparator();
-    toolBar_->AddTool(wxID_ABOUT, _("&About..."), mmBitmap(png::ABOUT), _("Show about dialog"));
-    toolBar_->AddTool(wxID_HELP, _("&Help\tF1"), mmBitmap(png::HELP), _("Show the Help file"));
     
     wxString news_array;
     for (const auto& entry : g_WebsiteNewsList)
@@ -1688,7 +1686,7 @@ void mmGUIFrame::CreateToolBar()
     const wxBitmap news_ico = (g_WebsiteNewsList.size() > 0) 
         ? mmBitmap(png::NEW_NEWS) 
         : mmBitmap(png::NEWS);
-    toolBar_->AddSeparator();
+
     toolBar_->AddTool(MENU_ANNOUNCEMENTMAILING, _("News"), news_ico, news_array);
 
     toolBar_->AddSeparator();
@@ -1696,6 +1694,10 @@ void mmGUIFrame::CreateToolBar()
 
     toolBar_->AddSeparator();
     toolBar_->AddTool(wxID_PRINT, _("&Print..."), mmBitmap(png::PRINT), _("Print current view"));
+
+    toolBar_->AddSeparator();
+    toolBar_->AddTool(wxID_ABOUT, _("&About..."), mmBitmap(png::ABOUT), _("Show about dialog"));
+    toolBar_->AddTool(wxID_HELP, _("&Help\tF1"), mmBitmap(png::HELP), _("Show the Help file"));
 
     // after adding the buttons to the toolbar, must call Realize() to reflect changes
     toolBar_->Realize();
@@ -2451,7 +2453,7 @@ void mmGUIFrame::OnHelp(wxCommandEvent& /*event*/)
 
 void mmGUIFrame::OnCheckUpdate(wxCommandEvent& /*event*/)
 {
-    mmUpdate::checkUpdates(false, this);
+    mmUpdate::checkUpdates(this, false);
 }
 //----------------------------------------------------------------------------
 

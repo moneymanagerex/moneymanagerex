@@ -229,7 +229,7 @@ bool mmReportsPanel::saveReportText(bool initial)
 
     const auto time = wxDateTime::UNow();
 
-    const auto name = getVFname4print("rep", rb_->getHTMLText());
+    const auto& name = getVFname4print("rep", rb_->getHTMLText());
     browser_->LoadURL(name);
 
     json_writer.Key("seconds");

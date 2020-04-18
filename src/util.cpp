@@ -1067,7 +1067,17 @@ const wxString getVFname4print(const wxString& name, const wxString& data)
         fid = 0;
     }
 
-    wxCharBuffer char_buffer = data.ToUTF8();
+    wxCharBuffer char_buffer;
+    if (data.empty()) {
+        wxString d = data;
+        d = R"(<html><head><meta charset="UTF-8" /></head><body>%s</body></html>)";
+        d = wxString::Format(d, _("Error"));
+        char_buffer = d.ToUTF8();
+    }
+    else {
+        char_buffer = data.ToUTF8();
+    }
+
     wxMemoryFSHandler::AddFile(wxString::Format("%s%i.htm", name, fid), char_buffer, strlen(char_buffer));
     return wxString::Format("memory:%s%i.htm", name, fid);
 }

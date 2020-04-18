@@ -117,7 +117,7 @@ mmHomePagePanel::mmHomePagePanel(wxWindow *parent, mmGUIFrame *frame
 mmHomePagePanel::~mmHomePagePanel()
 {
     m_frame->menuPrintingEnable(false);
-    clearVFprintedFiles("rep");
+    clearVFprintedFiles("hp");
 }
 
 wxString mmHomePagePanel::GetHomePageText() const
@@ -159,6 +159,9 @@ void mmHomePagePanel::CreateControls()
     this->SetSizer(itemBoxSizer2);
 
     browser_ = wxWebView::New(this, mmID_BROWSER);
+#ifndef _DEBUG
+    browser_->EnableContextMenu(false);
+#endif
     browser_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new wxWebViewFSHandler("memory")));
     browser_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new WebViewHandlerHomePage(this, "assets")));
     browser_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new WebViewHandlerHomePage(this, "billsdeposits")));
@@ -245,7 +248,7 @@ void mmHomePagePanel::fillData()
 		m_templateText.Replace(wxString::Format("<TMPL_VAR %s>", entry.first), entry.second);
 	}
 
-    const auto name = getVFname4print("rep", m_templateText);
+    const auto name = getVFname4print("hp", m_templateText);
     browser_->LoadURL(name);
 
 }

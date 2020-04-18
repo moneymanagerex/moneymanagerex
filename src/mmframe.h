@@ -80,7 +80,7 @@ public:
 
 private:
     std::vector<const ModelBase*> m_all_models;
-private:
+
     /* handles to SQLite Database */
     wxSharedPtr<wxSQLite3Database> m_db;
 
@@ -104,7 +104,7 @@ private:
     wxTreeCtrl* m_nav_tree_ctrl;
     wxMenuBar *menuBar_;
     wxToolBar* toolBar_;
-
+private:
     mmTreeItemData* selectedItemData_;
 
     wxTreeItemId getTreeItemfor(const wxTreeItemId& itemID, const wxString& accountName) const;
@@ -136,7 +136,7 @@ private:
     mmCheckingPanel* checkingAccountPage_;
     void createCheckingAccountPage(int accountID);
     void createStocksAccountPage(int accountID);
-
+private:
     mmBillsDepositsPanel* billsDepositsPanel_;
     void createBillsDeposits();
 
@@ -156,7 +156,7 @@ private:
     void SetDataBaseParameters(const wxString& fileName);
     void OnLaunchAccountWebsite(wxCommandEvent& event);
     void OnAccountAttachments(wxCommandEvent& event);
-
+private:
     void OnNew(wxCommandEvent& event);
     void OnOpen(wxCommandEvent& event);
     void OnConvertEncryptedDB(wxCommandEvent& event);
@@ -179,7 +179,7 @@ private:
     void OnAssets(wxCommandEvent& event);
     void OnGotoAccount(wxCommandEvent& WXUNUSED(event));
     void OnGotoStocksAccount(wxCommandEvent& WXUNUSED(event));
-
+private:
     bool m_hide_share_accounts;
     void OnHideShareAccounts(wxCommandEvent &event);
     void OnChangeGUILanguage(wxCommandEvent &event);
@@ -199,7 +199,7 @@ private:
     void OnEditAccount(wxCommandEvent& event);
     void OnDeleteAccount(wxCommandEvent& event);
     void OnReallocateAccount(wxCommandEvent& event);
-
+private:
     void OnOrgCategories(wxCommandEvent& event);
     void OnOrgPayees(wxCommandEvent& event);
     void OnCategoryRelocation(wxCommandEvent& event);
@@ -221,7 +221,7 @@ private:
     void OnAbout(wxCommandEvent& event);
     void OnSimpleURLOpen(wxCommandEvent& event);
     void OnReportBug(wxCommandEvent& event);
-
+private:
     void OnItemRightClick(wxTreeEvent& event);
     void OnItemMenu(wxTreeEvent& event);
     void OnSelChanged(wxTreeEvent& event);
@@ -237,7 +237,7 @@ private:
 
     void processPendingEvents();
     void ReallocateAccount(int accountID);
-
+private:
     /* Recent Files */
     mmFileHistory* m_recentFiles;
     wxMenu* m_menuRecentFiles;
@@ -252,7 +252,7 @@ private:
     CommitCallbackHook* m_commit_callback_hook;
     UpdateCallbackHook* m_update_callback_hook;
     void ShutdownDatabase();
-
+private:
     // any class wishing to process wxWindows events must use this macro
     wxDECLARE_EVENT_TABLE();
     enum

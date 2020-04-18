@@ -242,7 +242,7 @@ mmGeneralReportManager::mmGeneralReportManager(wxWindow* parent, wxSQLite3Databa
 
 mmGeneralReportManager::~mmGeneralReportManager()
 {
-    clearVFprintedFiles("rep");
+    clearVFprintedFiles("grm");
 }
 
 bool mmGeneralReportManager::Create(wxWindow* parent
@@ -668,7 +668,8 @@ void mmGeneralReportManager::OnRun(wxCommandEvent& WXUNUSED(event))
         browser_->ClearBackground();
 
         mmGeneralReport gr(report); //TODO: limit 500 line
-        const auto name = getVFname4print("rep", gr.getHTMLText());
+        auto data = gr.getHTMLText();
+        const auto& name = getVFname4print("grm", data);
         browser_->LoadURL(name);
     }
 }

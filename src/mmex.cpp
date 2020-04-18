@@ -284,7 +284,7 @@ bool OnInitImpl(mmGUIApp* app)
                 data += text.ReadLine() + "\n";
             }
             const auto file_name = wxFileName(source_file).GetFullName();
-            wxLogDebug("File: %s has benn copied to VFS", file_name);
+            wxLogDebug("File: %s has been copied to VFS", file_name);
             wxMemoryFSHandler::AddFile(file_name, data);
         }
     }
