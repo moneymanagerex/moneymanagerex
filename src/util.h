@@ -171,7 +171,6 @@ public:
 //----------------------------------------------------------------------------
 
 bool getNewsRSS(std::vector<WebsiteNews>& WebsiteNewsList);
-const wxString getURL(const wxString& file);
 enum yahoo_price_type { FIAT = 0, SHARES };
 bool getOnlineCurrencyRates(wxString& msg, int curr_id = -1, bool used_only = true);
 bool get_yahoo_prices(std::map<wxString, double>& symbols
@@ -184,6 +183,9 @@ const wxString mmPlatformType();
 const wxString getProgramDescription(int type = 0);
 void windowsFreezeThaw(wxWindow* w);
 const wxString md2html(const wxString& md);
+const wxString getVFname4print(const wxString& name, const wxString& data);
+void clearVFprintedFiles(const wxString& name);
+void prepareTempFolder();
 
 //* Date Functions----------------------------------------------------------*//
 static const wxString MONTHS[12] =

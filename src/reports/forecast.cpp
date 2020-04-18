@@ -101,9 +101,9 @@ const char * mmReportForecast::m_template = R"(
     <meta charset="UTF-8" />
     <meta http - equiv = "Content-Type" content = "text/html" />
     <title><TMPL_VAR REPORTNAME></title>
-    <script src = "ChartNew.js"></script>
-    <script src = "sorttable.js"></script>
-    <link href = "master.css" rel = "stylesheet" />
+    <script src = "memory:ChartNew.js"></script>
+    <script src = "memory:sorttable.js"></script>
+    <link href = "memory:master.css" rel = "stylesheet" />
     <style>
         canvas {max-height: 400px; min-height: 100px;}
         body {font-size: <TMPL_VAR HTMLSCALE>%;};

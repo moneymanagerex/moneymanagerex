@@ -99,7 +99,7 @@ private:
     std::vector <std::vector <wxString> > m_sqlQueryData;
 
     wxSQLite3Database* m_db;
-    wxWebView* m_outputHTML;
+    wxWebView* browser_;
 
     wxButton* m_buttonOpen;
     wxButton* m_buttonSave;

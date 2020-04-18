@@ -25,6 +25,8 @@
 
 #include "util.h"
 #include "constants.h"
+#include "platfdep.h"
+#include "paths.h"
 #include "validators.h"
 #include "model/Model_Currency.h"
 #include "model/Model_Infotable.h"
@@ -34,6 +36,7 @@
 #include <wx/xml/xml.h>
 #include <map>
 #include <lua.hpp>
+#include <wx/fs_mem.h>
 
 
 using namespace rapidjson;
@@ -418,15 +421,6 @@ static const wxString gDaysInWeek[7] =
 const wxString mmPlatformType()
 {
     return wxPlatformInfo::Get().GetOperatingSystemFamilyName().substr(0, 3);
-}
-
-const wxString getURL(const wxString& file)
-{
-    wxString index = file;
-#ifdef __WXGTK__
-    index.Prepend("file://");
-#endif
-    return index;
 }
 
 void windowsFreezeThaw(wxWindow* w)
@@ -1055,6 +1049,44 @@ bool mmSeparator::isStringHasSeparator(const wxString &string)
     return result;
 }
 
+const wxString getVFname4print(const wxString& name, const wxString& data)
+{
+    wxFileSystem::AddHandler(new wxMemoryFSHandler);
+    int fid = 0;
+    wxFileSystem fsys;
+    wxFSFile *f0 = fsys.OpenFile(wxString::Format("memory:%s0.htm", name));
+    if (f0) {
+        delete f0;
+        wxMemoryFSHandler::RemoveFile(wxString::Format("%s0.htm", name));
+        fid = 1;
+    }
+    wxFSFile *f1 = fsys.OpenFile(wxString::Format("memory:%s1.htm", name));
+    if (f1) {
+        delete f1;
+        wxMemoryFSHandler::RemoveFile(wxString::Format("%s1.htm", name));
+        fid = 0;
+    }
+
+    wxCharBuffer char_buffer = data.ToUTF8();
+    wxMemoryFSHandler::AddFile(wxString::Format("%s%i.htm", name, fid), char_buffer, strlen(char_buffer));
+    return wxString::Format("memory:%s%i.htm", name, fid);
+}
+
+void clearVFprintedFiles(const wxString& name)
+{
+    wxFileSystem fsys;
+    wxFSFile *f0 = fsys.OpenFile(wxString::Format("memory:%s0.htm", name));
+    if (f0) {
+        delete f0;
+        wxMemoryFSHandler::RemoveFile(wxString::Format("%s0.htm", name));
+    }
+    wxFSFile *f1 = fsys.OpenFile(wxString::Format("memory:%s1.htm", name));
+    if (f1) {
+        delete f1;
+        wxMemoryFSHandler::RemoveFile(wxString::Format("%s1.htm", name));
+    }
+}
+
 const wxString md2html(const wxString& md)
 {
     wxString body = md;
@@ -1085,4 +1117,10 @@ const wxString md2html(const wxString& md)
     body.Replace("\n", "\n<p>");
     
     return body;
+}
+
+void prepareTempFolder()
+{
+    const wxString tempDir = mmex::getTempFolder();
+    wxFileName::Mkdir(tempDir, 511, wxPATH_MKDIR_FULL);
 }

@@ -264,8 +264,38 @@ bool OnInitImpl(mmGUIApp* app)
     trans->AddCatalog("mmex", wxLANGUAGE_ENGLISH_US);
     wxTranslations::Set(trans);
 
-    Model_Report::prepareTempFolder();
-    Model_Report::WindowsUpdateRegistry();
+    prepareTempFolder(); //TODO: if false what todo? It used only for mmWebApp::WebApp_GetAttachment
+
+    wxFileSystem::AddHandler(new wxMemoryFSHandler);
+
+    //Read files from resources
+    const wxString res_dir = mmex::GetResourceDir().GetPathWithSep();
+    wxArrayString files_array;
+    wxDir::GetAllFiles(res_dir, &files_array);
+    for (const auto& source_file : files_array)
+    {
+        wxString data;
+        if (wxFileName::FileExists(source_file))
+        {
+            wxFileInputStream input(source_file);
+            wxTextInputStream text(input);
+
+            while (input.IsOk() && !input.Eof()) {
+                data += text.ReadLine() + "\n";
+            }
+            const auto file_name = wxFileName(source_file).GetFullName();
+            wxLogDebug("File: %s has benn copied to VFS", file_name);
+            wxMemoryFSHandler::AddFile(file_name, data);
+        }
+    }
+
+#if defined (__WXMSW__)
+        // https://msdn.microsoft.com/en-us/library/ee330730(v=vs.85).aspx
+        // https://kevinragsdale.net/windows-10-and-the-web-browser-control/
+        wxRegKey Key(wxRegKey::HKCU, R"(Software\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_BROWSER_EMULATION)");
+        if (!Key.Create(true) && Key.SetValue(wxFileName(wxStandardPaths::Get().GetExecutablePath()).GetFullName(), 11001))
+            wxASSERT(false);
+#endif
 
     /* Initialize CURL */
     curl_global_init(CURL_GLOBAL_ALL);
@@ -359,9 +389,9 @@ int mmGUIApp::OnExit()
 
 	/* CURL Cleanup */
 	curl_global_cleanup();
-
-	//Delete mmex temp folder for current user
-	wxFileName::Rmdir(mmex::getTempFolder(), wxPATH_RMDIR_RECURSIVE);
+    
+    //Delete mmex temp folder for current user
+    wxFileName::Rmdir(mmex::getTempFolder(), wxPATH_RMDIR_RECURSIVE);
 
 	return 0;
 }

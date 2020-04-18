@@ -43,9 +43,9 @@ namespace tags
 <html><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>%s - Report</title>
-<link href = 'master.css' rel = 'stylesheet' />
-<script src = 'ChartNew.js'></script>
-<script src = 'sorttable.js'></script>
+<link href = 'memory:master.css' rel = 'stylesheet' />
+<script src = 'memory:ChartNew.js'></script>
+<script src = 'memory:sorttable.js'></script>
 <style>
     /* Sortable tables */
     table.sortable thead {cursor: default;}

@@ -57,8 +57,8 @@ R"(<!DOCTYPE html>
 <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <title><TMPL_VAR REPORTNAME></title>
-    <script src = "sorttable.js"></script>
-    <link href="master.css" rel="stylesheet">
+    <script src = "memory:sorttable.js"></script>
+    <link href = "memory:master.css" rel="stylesheet">
 </head>
 <body>
 <div class = "container">
@@ -131,9 +131,9 @@ R"(<!DOCTYPE html>
 <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <title><TMPL_VAR REPORTNAME></title>
-    <script src = "ChartNew.js"></script>
-    <script src = "sorttable.js"></script>
-    <link href = "master.css" rel = "stylesheet">
+    <script src = "memory:ChartNew.js"></script>
+    <script src = "memory:sorttable.js"></script>
+    <link href = "memory:master.css" rel = "stylesheet">
 </head>
 <body>
 <div class = "container">
@@ -224,7 +224,7 @@ sqlListCtrl::sqlListCtrl(mmGeneralReportManager* grm, wxWindow *parent, wxWindow
 
 mmGeneralReportManager::mmGeneralReportManager(wxWindow* parent, wxSQLite3Database* db)
     : m_db(db)
-    , m_outputHTML(nullptr)
+    , browser_(nullptr)
     , m_buttonOpen(nullptr)
     , m_buttonSave(nullptr)
     , m_buttonSaveAs(nullptr)
@@ -242,6 +242,7 @@ mmGeneralReportManager::mmGeneralReportManager(wxWindow* parent, wxSQLite3Databa
 
 mmGeneralReportManager::~mmGeneralReportManager()
 {
+    clearVFprintedFiles("rep");
 }
 
 bool mmGeneralReportManager::Create(wxWindow* parent
@@ -396,8 +397,8 @@ void mmGeneralReportManager::createOutputTab(wxNotebook* editors_notebook, int t
     editors_notebook->InsertPage(type, out_tab, _("Output"));
     wxBoxSizer *out_sizer = new wxBoxSizer(wxVERTICAL);
     out_tab->SetSizer(out_sizer);
-    m_outputHTML = wxWebView::New(out_tab, ID_WEB);
-    out_sizer->Add(m_outputHTML, g_flagsExpand);
+    browser_ = wxWebView::New(out_tab, ID_WEB);
+    out_sizer->Add(browser_, g_flagsExpand);
     out_tab->SetSizerAndFit(out_sizer);
 }
 
@@ -648,7 +649,7 @@ void mmGeneralReportManager::OnUpdateReport(wxCommandEvent& WXUNUSED(event))
         report->DESCRIPTION = descriptionText->GetValue();
 
         Model_Report::instance().save(report);
-        m_outputHTML->SetPage(report->DESCRIPTION, "");
+        browser_->SetPage(report->DESCRIPTION, "");
     }
 }
 
@@ -664,13 +665,11 @@ void mmGeneralReportManager::OnRun(wxCommandEvent& WXUNUSED(event))
     {
         wxNotebook* n = static_cast<wxNotebook*>(FindWindow(ID_NOTEBOOK));
         n->SetSelection(ID_TAB_OUT);
-        m_outputHTML->ClearBackground();
+        browser_->ClearBackground();
 
         mmGeneralReport gr(report); //TODO: limit 500 line
-        if (Model_Report::outputReportFile(gr.getHTMLText(), "grm"))
-            m_outputHTML->LoadURL(getURL(mmex::getReportFullFileName("grm")));
-        else
-            m_outputHTML->SetPage(_("Error"), "");
+        const auto name = getVFname4print("rep", gr.getHTMLText());
+        browser_->LoadURL(name);
     }
 }
 
@@ -769,7 +768,7 @@ void mmGeneralReportManager::OnSelChanged(wxTreeEvent& event)
         if (!description.Contains("<!DOCTYPE html"))
             description.Replace("\n", "<BR>\n");
 
-        m_outputHTML->SetPage(description, "");
+        browser_->SetPage(description, "");
 
         if (m_sqlListBox) m_sqlListBox->DeleteAllItems();
         if (m_sqlListBox) m_sqlListBox->DeleteAllColumns();
@@ -1023,7 +1022,7 @@ void mmGeneralReportManager::showHelp()
     {
         url = "file://" + helpIndexFile.GetPathWithSep() + helpIndexFile.GetFullName();
     }
-    m_outputHTML->LoadURL(url);
+    browser_->LoadURL(url);
 }
 
 wxString mmGeneralReportManager::OnGetItemText(long item, long column) const

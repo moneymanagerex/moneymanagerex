@@ -168,10 +168,10 @@ const char* mmReportMyUsage::usage_template = R"(
 <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <title><TMPL_VAR REPORTNAME></title>
-    <script src = "ChartNew.js"></script>
-    <script src = "format.js"></script>
-    <script src = "sorttable.js"></script>
-    <link href = "master.css" rel = "stylesheet" />
+    <script src = "memory:ChartNew.js"></script>
+    <script src = "memory:format.js"></script>
+    <script src = "memory:sorttable.js"></script>
+    <link href = "memory:master.css" rel = "stylesheet" />
     <style>
         canvas {min-height: 100px}
         body {font-size: <TMPL_VAR HTMLSCALE>%}

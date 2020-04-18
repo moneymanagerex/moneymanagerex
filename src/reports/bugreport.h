@@ -25,7 +25,7 @@ const char* bugreport_template = R"(
 <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <title><TMPL_VAR REPORTNAME></title>
-    <link href='master.css' rel='stylesheet' />
+    <link href='memory:master.css' rel='stylesheet' />
     <style>
         canvas {min-height: 100px}
         body {font-size: <TMPL_VAR HTMLSCALE>%}

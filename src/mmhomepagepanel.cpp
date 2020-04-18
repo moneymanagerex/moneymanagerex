@@ -1,4 +1,4 @@
-/*******************************************************
+﻿/*******************************************************
 Copyright (C) 2006 Madhan Kanagavel
 Copyright (C) 2014 - 2020 Nikolay Akimov
 
@@ -34,7 +34,7 @@ Copyright (C) 2014 - 2020 Nikolay Akimov
 
 #include "model/allmodel.h"
 
-
+#include <wx/fs_mem.h>
 
 
 class WebViewHandlerHomePage : public wxWebViewHandler
@@ -117,6 +117,7 @@ mmHomePagePanel::mmHomePagePanel(wxWindow *parent, mmGUIFrame *frame
 mmHomePagePanel::~mmHomePagePanel()
 {
     m_frame->menuPrintingEnable(false);
+    clearVFprintedFiles("rep");
 }
 
 wxString mmHomePagePanel::GetHomePageText() const
@@ -243,8 +244,10 @@ void mmHomePagePanel::fillData()
 	{
 		m_templateText.Replace(wxString::Format("<TMPL_VAR %s>", entry.first), entry.second);
 	}
-	Model_Report::outputReportFile(m_templateText, "index");
-	browser_->LoadURL(getURL(mmex::getReportFullFileName("index")));
+
+    const auto name = getVFname4print("rep", m_templateText);
+    browser_->LoadURL(name);
+
 }
 
 

@@ -227,24 +227,9 @@ const wxString mmex::getTempFolder()
     return wxString::Format("%s%s%s%s", path, wxString(wxFILE_SEP_PATH), folder, wxString(wxFILE_SEP_PATH));
 }
 
-const wxString mmex::getReportIndex()
-{
-    return wxString::Format("%sindex%shtml", mmex::getTempFolder(), wxString(wxFILE_SEP_EXT));
-}
-
-//----------------------------------------------------------------------------
-
 const wxIcon& mmex::getProgramIcon()
 {
     static wxIcon icon(mmexico_xpm);
     return icon;
 }
-//----------------------------------------------------------------------------
 
-const wxString mmex::getReportFullFileName(const wxString& WXUNUSED(name))
-{
-	// FIXME: remove name param or use it below inplace of "index"
-	return wxString::Format("%s%s%shtml", mmex::getTempFolder()
-		, "index"
-		, wxString(wxFILE_SEP_EXT));
-}

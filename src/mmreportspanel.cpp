@@ -83,7 +83,7 @@ public:
                         m_reportPanel->rb_->getHTMLText();
                         m_reportPanel->saveReportText(error);
                     }
-                    m_reportPanel->browser_->LoadURL(getURL(mmex::getReportIndex()));
+                    m_reportPanel->browser_->LoadURL("memory:index.htm");
                 }
             }
         }
@@ -95,7 +95,7 @@ public:
             if (Model_Attachment::instance().all_type().Index(RefType) != wxNOT_FOUND && RefId > 0)
             {
                 mmAttachmentManage::OpenAttachmentFromPanelIcon(nullptr, RefType, RefId);
-                m_reportPanel->browser_->LoadURL(getURL(mmex::getReportIndex()));
+                m_reportPanel->browser_->LoadURL("memory:index.htm");
             }
         }
 
@@ -158,6 +158,7 @@ mmReportsPanel::~mmReportsPanel()
         delete rb_;
     std::for_each(m_all_date_ranges.begin(), m_all_date_ranges.end(), std::mem_fun(&mmDateRange::destroy));
     m_all_date_ranges.clear();
+    clearVFprintedFiles("rep");
 }
 
 bool mmReportsPanel::Create(wxWindow *parent, wxWindowID winid
@@ -171,20 +172,16 @@ bool mmReportsPanel::Create(wxWindow *parent, wxWindowID winid
     GetSizer()->Fit(this);
     GetSizer()->SetSizeHints(this);
 
-    wxString error;
-    if (saveReportText(error))
-        browser_->LoadURL(getURL(mmex::getReportIndex()));
-    else
-        browser_->SetPage(error, "");
+    saveReportText();
 
     Model_Usage::instance().pageview(this);
 
     return TRUE;
 }
 
-bool mmReportsPanel::saveReportText(wxString& error, bool initial)
+bool mmReportsPanel::saveReportText(bool initial)
 {
-    error = "";
+
     if (!rb_) return false;
 
     rb_->initial_report(initial);
@@ -232,8 +229,8 @@ bool mmReportsPanel::saveReportText(wxString& error, bool initial)
 
     const auto time = wxDateTime::UNow();
 
-    if (!Model_Report::outputReportFile(rb_->getHTMLText(), file_name))
-        error = _("Error");
+    const auto name = getVFname4print("rep", rb_->getHTMLText());
+    browser_->LoadURL(name);
 
     json_writer.Key("seconds");
     json_writer.Double((wxDateTime::UNow() - time).GetMilliseconds().ToDouble() / 1000);
@@ -241,7 +238,7 @@ bool mmReportsPanel::saveReportText(wxString& error, bool initial)
 
     Model_Usage::instance().AppendToUsage(json_buffer.GetString());
 
-    return error.empty();
+    return true;
 }
 
 // Adjust wxStaticText size after font change
@@ -458,10 +455,7 @@ void mmReportsPanel::OnDateRangeChanged(wxCommandEvent& event)
     }
 
     wxString error;
-    if (this->saveReportText(error, false))
-        browser_->LoadURL(getURL(mmex::getReportIndex()));
-    else
-        browser_->SetPage(error, "");
+    saveReportText(false);
 }
 
 void mmReportsPanel::OnAccountChanged(wxCommandEvent& WXUNUSED(event))
@@ -476,11 +470,7 @@ void mmReportsPanel::OnAccountChanged(wxCommandEvent& WXUNUSED(event))
             if (type_obj) accountSelection = type_obj->GetData();
             rb_->setAccounts(sel, accountSelection);
 
-            wxString error;
-            if (saveReportText(error, false))
-                browser_->LoadURL(getURL(mmex::getReportFullFileName(rb_->getFileName())));
-            else
-                browser_->SetPage(error, "");
+            saveReportText(false);
         }
     }
 }
@@ -489,11 +479,7 @@ void mmReportsPanel::OnStartEndDateChanged(wxDateEvent& WXUNUSED(event))
 {
     if (rb_)
     {
-        wxString error;
-        if (saveReportText(error, false))
-            browser_->LoadURL(getURL(mmex::getReportFullFileName(rb_->getFileName())));
-        else
-            browser_->SetPage(error, "");
+        saveReportText(false);
     }
 }
 
@@ -505,12 +491,7 @@ void mmReportsPanel::OnChartChanged(wxCommandEvent& WXUNUSED(event))
         if ((sel == 1) || (sel != rb_->getChartSelection()))
         {
             rb_->chart(sel);
-
-            wxString error;
-            if (saveReportText(error, false))
-                browser_->LoadURL(getURL(mmex::getReportFullFileName(rb_->getFileName())));
-            else
-                browser_->SetPage(error, "");
+            saveReportText(false);
         }
     }
 }
@@ -521,11 +502,6 @@ void mmReportsPanel::OnShiftPressed(wxCommandEvent& event)
     {
         m_shift = event.GetInt();
         rb_->setSelection(m_shift);
-
-        wxString error;
-        if (saveReportText(error, false))
-            browser_->LoadURL(getURL(mmex::getReportFullFileName(rb_->getFileName())));
-        else
-            browser_->SetPage(error, "");
+        saveReportText(false);
     }
 }

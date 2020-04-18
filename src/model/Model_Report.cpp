@@ -27,6 +27,7 @@
 #include "model/Model_Setting.h"
 #include "LuaGlue/LuaGlue.h"
 #include "sqlite3.h"
+#include <wx/fs_mem.h>
 
 #if defined (__WXMSW__)
     #include <wx/msw/registry.h>
@@ -394,62 +395,6 @@ wxString Model_Report::get_html(const Data* r)
     }
 
     return out;
-}
-
-void Model_Report::prepareTempFolder()
-{
-    const wxString resDir = mmex::GetResourceDir().GetPathWithSep();
-    const wxString tempDir = mmex::getTempFolder();
-    wxFileName::Mkdir(tempDir, 511, wxPATH_MKDIR_FULL);
-    wxArrayString filesArray;
-    wxDir::GetAllFiles(resDir, &filesArray);
-    for (const auto& sourceFile : filesArray)
-    {
-        const wxString repFile = tempDir + wxFileName(sourceFile).GetFullName();
-        if (::wxFileExists(sourceFile))
-        {
-            if (!::wxFileExists(repFile)
-                || wxFileName(sourceFile).GetModificationTime() > wxFileName(repFile).GetModificationTime())
-            {
-                if (!::wxCopyFile(sourceFile, repFile))
-                    wxLogError("Could not copy %s !", sourceFile);
-                else
-                    wxLogDebug("Coping file:\n %s \nto\n %s", sourceFile, repFile);
-            }
-        }
-    }
-}
-
-bool Model_Report::WindowsUpdateRegistry()
-{
-#if defined (__WXMSW__)
-    // https://msdn.microsoft.com/en-us/library/ee330730(v=vs.85).aspx
-    // https://kevinragsdale.net/windows-10-and-the-web-browser-control/
-    wxRegKey Key(wxRegKey::HKCU, "Software\\Microsoft\\Internet Explorer\\Main\\FeatureControl\\FEATURE_BROWSER_EMULATION");
-    if (Key.Create(true) && Key.SetValue(wxFileName(wxStandardPaths::Get().GetExecutablePath()).GetFullName(), 11001))
-        return true;
-    else
-        return false;
-#else
-    return true;
-#endif
-}
-
-bool Model_Report::outputReportFile(const wxString& str, const wxString& name)
-{
-	bool ok = true;
-	wxFileOutputStream index_output(mmex::getReportFullFileName(name));
-	if (index_output.IsOk())
-	{
-		wxTextOutputStream index_file(index_output);
-		index_file << str;
-		index_output.Close();
-	}
-	else
-	{
-		ok = false;
-	}
-	return ok;
 }
 
 wxString Model_Report::get_html(const Data& r) 
