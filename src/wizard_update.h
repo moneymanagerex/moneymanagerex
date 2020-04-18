@@ -27,20 +27,21 @@ using namespace rapidjson;
 class mmUpdate
 {
 public:
-    static void checkUpdates(wxFrame *frame, bool bSilent);
+    static void checkUpdates(bool bSilent, wxFrame *frame);
 
 };
 
 class mmUpdateWizard : public wxWizard
 {
 public:
-    ~mmUpdateWizard();
     mmUpdateWizard(wxFrame *frame, const Document& json_releases, wxArrayInt new_releases);
     void RunIt(bool modal);
 
 private:
     wxWizardPageSimple* page1;
+    void LinkClicked(wxHtmlLinkEvent& WXUNUSED(event));
     void setControlEnable(int id);
+
     wxDECLARE_EVENT_TABLE();
 };
 //----------------------------------------------------------------------------

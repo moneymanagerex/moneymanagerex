@@ -51,7 +51,6 @@
 #include "optiondialog.h"
 #include "paths.h"
 #include "payeedialog.h"
-#include "platfdep.h"
 #include "relocatecategorydialog.h"
 #include "relocatepayeedialog.h"
 #include "recentfiles.h"
@@ -204,29 +203,6 @@ mmGUIFrame::mmGUIFrame(mmGUIApp* app, const wxString& title
     , m_hide_share_accounts(true)
     , autoRepeatTransactionsTimer_(this, AUTO_REPEAT_TRANSACTIONS_TIMER_ID)
 {
-    wxFileSystem::AddHandler(new wxMemoryFSHandler);
-
-    //Read files from resourcer
-    const wxString res_dir = mmex::GetResourceDir().GetPathWithSep();
-    wxArrayString files_array;
-    wxDir::GetAllFiles(res_dir, &files_array);
-    for (const auto& source_file : files_array)
-    {
-        wxString data;
-        if (wxFileName::FileExists(source_file))
-        {
-            wxFileInputStream input(source_file);
-            wxTextInputStream text(input);
-
-            while (input.IsOk() && !input.Eof()) {
-                data += text.ReadLine() + "\n";
-            }
-            const auto file_name = wxFileName(source_file).GetFullName();
-            wxLogDebug("File: %s has benn copied to VFS", file_name);
-            wxMemoryFSHandler:: AddFile(file_name, data);
-        }
-    }
-
     // tell wxAuiManager to manage this frame
     m_mgr.SetManagedWindow(this);
     SetIcon(mmex::getProgramIcon());
@@ -293,7 +269,7 @@ mmGUIFrame::mmGUIFrame(mmGUIApp* app, const wxString& title
 
     //Check for new version at startup
     if (Model_Setting::instance().GetBoolSetting("UPDATECHECK", true))
-        mmUpdate::checkUpdates(this, true);
+        mmUpdate::checkUpdates(true,this);
 
     //Show appstart
     if (from_scratch || !dbpath.IsOk())
