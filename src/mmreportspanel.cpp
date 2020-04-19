@@ -79,9 +79,8 @@ public:
                     mmTransDialog dlg(nullptr, -1, transID, 0);
                     if (dlg.ShowModal() == wxID_OK)
                     {
-                        wxString error;
                         m_reportPanel->rb_->getHTMLText();
-                        m_reportPanel->saveReportText(error);
+                        m_reportPanel->saveReportText();
                     }
                     m_reportPanel->browser_->LoadURL("memory:index.htm");
                 }
