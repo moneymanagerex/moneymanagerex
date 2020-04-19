@@ -730,8 +730,8 @@ void mmGUIFrame::updateNavTreeControl()
     if (!all_budgets.empty())
     { 
         std::map <wxString, int> years;
-        wxRegEx pattern_year = "^([0-9]{4})$";
-        wxRegEx pattern_month = "^([0-9]{4})-([0-9]{2})$";
+        wxRegEx pattern_year("^([0-9]{4})$");
+        wxRegEx pattern_month("^([0-9]{4})-([0-9]{2})$");
         for (const auto& e : all_budgets)
         {
             const wxString& name = e.BUDGETYEARNAME;
