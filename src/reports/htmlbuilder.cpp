@@ -611,6 +611,8 @@ void mmHTMLBuilder::addBarChart(const wxArrayString& labels
 
     Value optionsValue;
     optionsValue.SetObject();
+
+    optionsValue.AddMember("responsive", true, allocator);
     optionsValue.AddMember("scaleOverride", true, allocator);
     optionsValue.AddMember("annotateDisplay", true, allocator);
     optionsValue.AddMember("scaleStartValue", 0, allocator);
@@ -695,6 +697,7 @@ var reportChart = new Chart(ctx).Line(d.data, d.options);
     //Options
     Value optionsValue;
     optionsValue.SetObject();
+    optionsValue.AddMember("responsive", true, allocator);
     optionsValue.AddMember("datasetFill", datasetFill, allocator);
     optionsValue.AddMember("inGraphDataShow", false, allocator);
     optionsValue.AddMember("annotateDisplay", true, allocator);

@@ -253,7 +253,7 @@ wxString mmReportCashFlow::getHTMLText_i()
         {
             hb.addDivRow();
             hb.addDivCol17_67();
-            hb.addLineChart(aData, "cashflow", 0, 1000, 400, false, monthly_report);
+            hb.addLineChart(aData, "cashflow", 0, 640, 480, false, monthly_report);
             hb.endDiv();
             hb.endDiv();
         }

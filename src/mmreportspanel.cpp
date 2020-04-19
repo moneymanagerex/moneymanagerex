@@ -82,7 +82,8 @@ public:
                         m_reportPanel->rb_->getHTMLText();
                         m_reportPanel->saveReportText();
                     }
-                    m_reportPanel->browser_->LoadURL("memory:index.htm");
+                    const auto name = getVFname4print("rep", m_reportPanel->getPrintableBase()->getHTMLText());
+                    m_reportPanel->browser_->LoadURL(name);
                 }
             }
         }
@@ -94,7 +95,8 @@ public:
             if (Model_Attachment::instance().all_type().Index(RefType) != wxNOT_FOUND && RefId > 0)
             {
                 mmAttachmentManage::OpenAttachmentFromPanelIcon(nullptr, RefType, RefId);
-                m_reportPanel->browser_->LoadURL("memory:index.htm");
+                const auto name = getVFname4print("rep", m_reportPanel->getPrintableBase()->getHTMLText());
+                m_reportPanel->browser_->LoadURL(name);
             }
         }
 

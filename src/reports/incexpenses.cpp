@@ -104,7 +104,7 @@ wxString mmReportIncomeExpenses::getHTMLText()
             hb.startTableCell(" style='vertical-align:middle' width='70%'");
             hb.addDivCol17_67();
             if (!valueList.empty())
-                hb.addBarChart(labels, valueList, "BarChart");
+                hb.addBarChart(labels, valueList, "BarChart", 640, 480);
             hb.endDiv();
             hb.endTableCell();
 
@@ -256,7 +256,7 @@ wxString mmReportIncomeExpensesMonthly::getHTMLText()
         {
             hb.addDivRow();
             hb.addDivCol17_67();
-            hb.addBarChart(labels, aData, "BarChart", 1000, 400);
+            hb.addBarChart(labels, aData, "BarChart", 640, 480);
             hb.endDiv();
             hb.endDiv();
         }

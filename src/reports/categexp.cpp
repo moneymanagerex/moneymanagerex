@@ -370,7 +370,7 @@ wxString mmReportCategoryOverTimePerformance::getHTMLText()
         {
             hb.addDivRow();
             hb.addDivCol17_67();
-            hb.addBarChart(labels, aData, "BarChart", 1000, 400);
+            hb.addBarChart(labels, aData, "BarChart", 640, 480);
             hb.endDiv();
             hb.endDiv();
         }
