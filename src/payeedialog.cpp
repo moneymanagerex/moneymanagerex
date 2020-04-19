@@ -145,6 +145,11 @@ void mmPayeeDialog::fillControls()
         data.push_back(wxVariant(full_category_name));
         payeeListBox_->AppendItem(data, static_cast<wxUIntPtr>(payee.PAYEEID));
     }
+    if (payeeListBox_->GetItemCount() > 0)
+    {
+        auto first = payeeListBox_->RowToItem(0);
+        m_payee_id = payeeListBox_->GetItemData(first);
+    }
 }
 
 void mmPayeeDialog::OnDataEditStart(wxDataViewEvent& event)
@@ -388,7 +393,11 @@ void mmPayeeDialog::OnOk(wxCommandEvent& /*event*/)
     {
         AddPayee();
     }
-    if (payeeListBox_->GetItemCount() > 0)
+    else if (payeeListBox_->GetSelectedItemsCount() > 0)
+    {
+        EndModal(wxID_OK);
+    }
+    else if (payeeListBox_->GetItemCount() > 0)
     {
         auto first = payeeListBox_->RowToItem(0);
         m_payee_id = payeeListBox_->GetItemData(first);
