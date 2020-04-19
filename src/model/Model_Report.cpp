@@ -287,11 +287,15 @@ wxString Model_Report::get_html(const Data* r)
         end().open().glue();
 
     bool skip_lua = r->LUACONTENT.IsEmpty();
+
     bool lua_status = state.doString(std::string(r->LUACONTENT.ToUTF8()));
     if (!skip_lua && !lua_status)
     {
         error(L"ERROR") = wxString("failed to doString : ") + r->LUACONTENT + wxString(" err: ") + wxString(state.lastError());
         errors += error;
+    }
+    else {
+        state.doString(R"(sys_locale=os.setlocale("", "numeric"); print(os.setlocale("C", "numeric"));)");
     }
 
     while (q.NextRow())
@@ -361,6 +365,10 @@ wxString Model_Report::get_html(const Data* r)
 
     for (const auto& item : result)
         report(item.first) = item.second;
+
+    if (!skip_lua || lua_status) {
+        state.doString(R"(print(os.setlocale(sys_locale, "numeric"));)");
+    }
 
     report(L"CONTENTS") = contents;
     {
