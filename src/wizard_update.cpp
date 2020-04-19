@@ -86,6 +86,7 @@ mmUpdateWizard::mmUpdateWizard(wxFrame *frame, const Document& json_releases, wx
     : wxWizard(frame, wxID_ANY, _("Update Wizard")
         , wxNullBitmap, wxDefaultPosition, wxCAPTION | wxCLOSE_BOX | wxRESIZE_BORDER)
 {
+
     this->SetIcon(mmex::getProgramIcon());
     page1 = new wxWizardPageSimple(this);
     
@@ -140,7 +141,7 @@ mmUpdateWizard::mmUpdateWizard(wxFrame *frame, const Document& json_releases, wx
 
     wxWebView* browser = wxWebView::New(page1, wxID_CONTEXT_HELP, wxWebViewDefaultURLStr);
 #ifndef _DEBUG
-    browser_->EnableContextMenu(false);
+    browser->EnableContextMenu(false);
 #endif
     browser->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new wxWebViewFSHandler("memory")));
     browser->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new WebViewHandlerUpdatePage(this, "https")));

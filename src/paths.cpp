@@ -143,7 +143,6 @@ wxString mmex::getPathDoc(const EDocFile& f)
 wxString mmex::getPathResource(EResFile f)
 {
     static const wxString files[RES_FILES_MAX] = {
-      "mmex.ico",
       "kaching.wav",
       "home_page.htt"
     };
