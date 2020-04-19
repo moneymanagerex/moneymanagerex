@@ -45,7 +45,7 @@ matrix:
   #- { os: osx, osx_image: xcode11.2.1, env: OS=macos DIST=10.14 }
   #- { os: osx, osx_image: xcode10.1, env: OS=macos DIST=10.14 } 
   #- { os: osx, osx_image: xcode10.1, env: OS=macos DIST=10.13 } 
-  - { os: osx, osx_image: xcode10.1, env: OS=macos DIST=10.12 } 
+  #- { os: osx, osx_image: xcode10.1, env: OS=macos DIST=10.12 } 
   - stage: nightly # used only to tag and trigger nightly build
     sudo: false
     cache: pip
@@ -123,12 +123,15 @@ script: |-
       docker run -it --rm -w /moneymanagerex/build -e MAKEFLAGS \
                  -v $HOME/.ccache:/root/.ccache \
                  -v $TRAVIS_BUILD_DIR:/moneymanagerex ${DOCKER} \
-        bash -c "$CMAKE_CMD -DCMAKE_BUILD_TYPE=$BUILD_TYPE && $CMAKE_CMD --build . --target package && eval \$MMEX_INST_CMD"
+        bash -c "$CMAKE_CMD -DCMAKE_BUILD_TYPE=$BUILD_TYPE && cmake --build . --target package && eval \$MMEX_INST_CMD"
       ;;
     osx)
       export CXXFLAGS=-stdlib=libc++ # exports required by Xcode 10 or later
       export LDFLAGS=-stdlib=libc++
-      $CMAKE_CMD -DCMAKE_BUILD_TYPE=$BUILD_TYPE && $CMAKE_CMD --build . --target package
+      $CMAKE_CMD -G Xcode && cmake --build . --target package --config $BUILD_TYPE -- \
+        CC=/usr/local/opt/ccache/libexec/clang \
+        CPLUSPLUS=/usr/local/opt/ccache/libexec/clang++ | \
+        xcpretty -c -f `xcpretty-travis-formatter`; test ${PIPESTATUS[0]} -eq 0
       ;;
   esac
 
