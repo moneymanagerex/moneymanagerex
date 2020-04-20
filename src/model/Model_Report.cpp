@@ -295,7 +295,7 @@ wxString Model_Report::get_html(const Data* r)
         errors += error;
     }
     else {
-        state.doString(R"(sys_locale=os.setlocale("", "numeric"); print(os.setlocale("C", "numeric"));)");
+        //state.doString(R"(sys_locale=os.setlocale("", "numeric"); print(os.setlocale("C", "numeric"));)");
     }
 
     while (q.NextRow())
@@ -367,7 +367,7 @@ wxString Model_Report::get_html(const Data* r)
         report(item.first) = item.second;
 
     if (!skip_lua || lua_status) {
-        state.doString(R"(print(os.setlocale(sys_locale, "numeric"));)");
+        //state.doString(R"(print(os.setlocale(sys_locale, "numeric"));)");
     }
 
     report(L"CONTENTS") = contents;
