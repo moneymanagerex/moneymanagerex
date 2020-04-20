@@ -100,7 +100,13 @@ install: |-
     osx)
       export MACOSX_DEPLOYMENT_TARGET=$DIST
       brew update && brew bundle --verbose --file=util/Brewfile
-      brew link gettext --force
+      #brew link gettext --force
+      curl -fsSL -O http://ftp.gnu.org/gnu/gettext/gettext-0.20.2.tar.gz
+      tar xzvf gettext-0.20.2.2.tar.gz
+      cd gettext-0.18.1.1
+      ./configure
+      make
+      make install      
       ccache -cs && export PATH="/usr/local/opt/ccache/libexec:$PATH"
       ;;
   esac
