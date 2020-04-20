@@ -28,3 +28,4 @@ RUN usermod nobody -a -G root -d /root -s /usr/bin/bash \
  && sed -i '/^BUILDENV=/s/!ccache/ccache/' /etc/makepkg.conf
 
 ENV MMEX_INST_CMD pacman -U --noconfirm ./mmex-*.pkg.tar.xz
+

@@ -419,4 +419,3 @@ Model_Report::Data* Model_Report::get(const wxString& name)
     if (!items.empty()) report = this->get(items[0].id(), this->db_);
     return report;
 }
-
