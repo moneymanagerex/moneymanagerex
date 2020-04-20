@@ -39,10 +39,18 @@ const char* update_template = R"(
 <head>
   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <link href="memory:master.css" rel="stylesheet" />
+<style>
+.header .image, 
+.header .text {
+    display: inline-block;
+    vertical-align: middle;
+    border:10px;
+}
+</style>
 </head>
 <body>
-<h2>%s</h2>
-<h3>%s</h3>
+<header class="header"><div class="image"><img src="memory:logo.png" title="moneymanagerex.org" width="64" height="64" /></div>
+<div class="text"><h2>%s</h2><h3>%s</h3></div></header>
 %s
 </body>
 </html>
@@ -136,8 +144,6 @@ mmUpdateWizard::mmUpdateWizard(wxFrame *frame, const Document& json_releases, wx
 
     wxBoxSizer *page1_sizer = new wxBoxSizer(wxVERTICAL);
     page1->SetSizer(page1_sizer);
-
-    wxMemoryFSHandler::AddFile("update.html", html);
 
     wxWebView* browser = wxWebView::New(page1, wxID_CONTEXT_HELP, wxWebViewDefaultURLStr);
 #ifndef _DEBUG

@@ -31,7 +31,7 @@
 #include <wx/fs_arc.h>
 #include <wx/fs_filter.h>
 #include <wx/fs_mem.h>
-
+#include "../resources/money.xpm"
 //----------------------------------------------------------------------------
 wxIMPLEMENT_APP(mmGUIApp);
 //----------------------------------------------------------------------------
@@ -288,6 +288,9 @@ bool OnInitImpl(mmGUIApp* app)
             wxMemoryFSHandler::AddFile(file_name, data);
         }
     }
+    wxImage::AddHandler(new wxPNGHandler);
+    wxMemoryFSHandler::AddFile("logo.png",
+        wxBitmap(money_xpm), wxBITMAP_TYPE_PNG);
 
 #if defined (__WXMSW__)
         // https://msdn.microsoft.com/en-us/library/ee330730(v=vs.85).aspx
