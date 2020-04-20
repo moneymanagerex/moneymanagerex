@@ -31,6 +31,7 @@
 #include <wx/fs_arc.h>
 #include <wx/fs_filter.h>
 #include <wx/fs_mem.h>
+#include <wx/mstream.h>
 #include "../resources/money.xpm"
 //----------------------------------------------------------------------------
 wxIMPLEMENT_APP(mmGUIApp);
@@ -278,14 +279,13 @@ bool OnInitImpl(mmGUIApp* app)
         if (wxFileName::FileExists(source_file))
         {
             wxFileInputStream input(source_file);
-            wxTextInputStream text(input);
-
-            while (input.IsOk() && !input.Eof()) {
-                data += text.ReadLine() + "\n";
-            }
+            wxMemoryOutputStream memOut(nullptr);
+            input.Read(memOut);
+            wxStreamBuffer* buffer = memOut.GetOutputStreamBuffer();
             const auto file_name = wxFileName(source_file).GetFullName();
             wxLogDebug("File: %s has been copied to VFS", file_name);
-            wxMemoryFSHandler::AddFile(file_name, data);
+            wxMemoryFSHandler::AddFile(file_name, buffer->GetBufferStart()
+                , buffer->GetBufferSize());
         }
     }
     wxImage::AddHandler(new wxPNGHandler);
