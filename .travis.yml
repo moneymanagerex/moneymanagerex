@@ -103,7 +103,7 @@ install: |-
       #brew link gettext --force
       curl -fsSL -O http://ftp.gnu.org/gnu/gettext/gettext-0.20.2.tar.gz
       tar xzvf gettext-0.20.2.2.tar.gz
-      cd gettext-0.18.1.1
+      cd gettext-0.20.2
       ./configure
       make
       make install      
