@@ -115,6 +115,21 @@ wxColour mmColors::userDefColor5;
 wxColour mmColors::userDefColor6;
 wxColour mmColors::userDefColor7;
 
+wxColour getUDColour(int c)
+{
+    switch (c) 
+    {
+    case 1: return  mmColors::userDefColor1;
+    case 2: return  mmColors::userDefColor2;
+    case 3: return  mmColors::userDefColor3;
+    case 4: return  mmColors::userDefColor4;
+    case 5: return  mmColors::userDefColor5;
+    case 6: return  mmColors::userDefColor6;
+    case 7: return  mmColors::userDefColor7;
+    }
+    return wxColour(wxNullColour);
+}
+
 //*-------------------------------------------------------------------------*//
 
 //Get unread news or all news for last year

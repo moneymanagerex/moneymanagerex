@@ -381,7 +381,7 @@ wxString Model_Checking::Full_Data::info() const
 {
     // TODO more info
     wxDate date = Model_Checking::TRANSDATE(this);
-    wxString info = wxGetTranslation(date.GetWeekDayName(date.GetWeekDay()));
+    wxString info = wxGetTranslation(wxDate::GetEnglishWeekDayName(date.GetWeekDay()));
     return info;
 }
 

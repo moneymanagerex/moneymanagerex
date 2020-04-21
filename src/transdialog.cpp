@@ -58,7 +58,9 @@ wxBEGIN_EVENT_TABLE(mmTransDialog, wxDialog)
     EVT_CHECKBOX(wxID_FORWARD, mmTransDialog::OnSplitChecked)
     EVT_BUTTON(wxID_FILE, mmTransDialog::OnAttachments)
     EVT_BUTTON(ID_DIALOG_TRANS_CUSTOMFIELDS, mmTransDialog::OnMoreFields)
-    EVT_MENU(wxID_ANY, mmTransDialog::OnNoteSelected)
+    EVT_MENU_RANGE(wxID_LOWEST, wxID_LOWEST + 20, mmTransDialog::OnNoteSelected)
+    EVT_MENU_RANGE(wxID_HIGHEST , wxID_HIGHEST + 8, mmTransDialog::OnColourSelected)
+    EVT_BUTTON(wxID_INFO, mmTransDialog::OnColourButton)
     EVT_BUTTON(wxID_OK, mmTransDialog::OnOk)
     EVT_BUTTON(wxID_CANCEL, mmTransDialog::OnCancel)
     EVT_CLOSE(mmTransDialog::OnQuit)
@@ -183,6 +185,8 @@ void mmTransDialog::dataToControls()
     Model_Checking::getFrequentUsedNotes(frequentNotes_, m_trx_data.ACCOUNTID);
     wxButton* bFrequentUsedNotes = static_cast<wxButton*>(FindWindow(ID_DIALOG_TRANS_BUTTON_FREQENTNOTES));
     bFrequentUsedNotes->Enable(!frequentNotes_.empty());
+    
+    bColours_->SetBackgroundColour(getUDColour(m_trx_data.FOLLOWUPID));
 
     if (!skip_date_init_) //Date
     {
@@ -543,26 +547,34 @@ void mmTransDialog::CreateControls()
     number_sizer->Add(textNumber_, g_flagsExpand);
     number_sizer->Add(bAuto, g_flagsH);
 
+    // Attachments ---------------------------------------------
+    bAttachments_ = new wxBitmapButton(this, wxID_FILE
+        , mmBitmap(png::CLIP), wxDefaultPosition
+        , wxSize(wxSize(cbPayee_->GetSize().GetY(), cbPayee_->GetSize().GetY())));
+    bAttachments_->SetToolTip(_("Organize attachments of this transaction"));
+
+    // Colours ---------------------------------------------
+    bColours_ = new wxButton(this, wxID_INFO, " ", wxDefaultPosition, bAttachments_->GetSize(), 0);
+    //bColours->SetBackgroundColour(mmColors::userDefColor1);
+    bColours_->SetToolTip(_("User Colors"));
+
+
     // Notes ---------------------------------------------
     flex_sizer->Add(new wxStaticText(this, wxID_STATIC, _("Notes")), g_flagsH);
     wxButton* bFrequentUsedNotes = new wxButton(this, ID_DIALOG_TRANS_BUTTON_FREQENTNOTES
         , "...", wxDefaultPosition
-        , wxSize(cbPayee_->GetSize().GetY(), cbPayee_->GetSize().GetY()), 0);
+        , bAttachments_->GetSize(), 0);
     bFrequentUsedNotes->SetToolTip(_("Select one of the frequently used notes"));
     bFrequentUsedNotes->Connect(ID_DIALOG_TRANS_BUTTON_FREQENTNOTES
         , wxEVT_COMMAND_BUTTON_CLICKED
         , wxCommandEventHandler(mmTransDialog::OnFrequentUsedNotes), nullptr, this);
 
-    // Attachments ---------------------------------------------
-    bAttachments_ = new wxBitmapButton(this, wxID_FILE
-        , mmBitmap(png::CLIP), wxDefaultPosition
-        , wxSize(bFrequentUsedNotes->GetSize().GetY(), bFrequentUsedNotes->GetSize().GetY()));
-    bAttachments_->SetToolTip(_("Organize attachments of this transaction"));
 
     wxBoxSizer* RightAlign_sizer = new wxBoxSizer(wxHORIZONTAL);
     flex_sizer->Add(RightAlign_sizer, wxSizerFlags(g_flagsH).Align(wxALIGN_RIGHT));
     RightAlign_sizer->Add(bAttachments_, wxSizerFlags().Border(wxRIGHT, 5));
-    RightAlign_sizer->Add(bFrequentUsedNotes, wxSizerFlags().Border(wxLEFT, 5));
+    RightAlign_sizer->Add(bColours_, wxSizerFlags().Border(wxRIGHT, 5));
+    RightAlign_sizer->Add(bFrequentUsedNotes, wxSizerFlags().Border(wxRIGHT, 5));
 
     textNotes_ = new wxTextCtrl(this, ID_DIALOG_TRANS_TEXTNOTES
         , "", wxDefaultPosition, wxSize(-1, dpc_->GetSize().GetHeight() * 5), wxTE_MULTILINE);
@@ -1110,7 +1122,7 @@ void mmTransDialog::OnTextEntered(wxCommandEvent& WXUNUSED(event))
 void mmTransDialog::OnFrequentUsedNotes(wxCommandEvent& WXUNUSED(event))
 {
     wxMenu menu;
-    int id = wxID_HIGHEST;
+    int id = wxID_LOWEST;
     for (const auto& entry : frequentNotes_)
     {
         const wxString& label = entry.Mid(0, 30) + (entry.size() > 30 ? "..." : "");
@@ -1123,7 +1135,7 @@ void mmTransDialog::OnFrequentUsedNotes(wxCommandEvent& WXUNUSED(event))
 
 void mmTransDialog::OnNoteSelected(wxCommandEvent& event)
 {
-    int i = event.GetId() - wxID_HIGHEST;
+    int i = event.GetId() - wxID_LOWEST;
     if (i > 0 && static_cast<size_t>(i) <= frequentNotes_.size())
         textNotes_->ChangeValue(frequentNotes_[i - 1]);
 }
@@ -1263,4 +1275,34 @@ void mmTransDialog::OnMoreFields(wxCommandEvent& WXUNUSED(event))
 
     this->SetMinSize(wxSize(0, 0));
     this->Fit();
+}
+
+void mmTransDialog::OnColourButton(wxCommandEvent& /*event*/)
+{
+    wxCommandEvent ev(wxEVT_COMMAND_MENU_SELECTED, wxID_INFO);
+    ev.SetEventObject(this);
+
+    wxMenu* mainMenu = new wxMenu;
+
+    wxMenuItem* menuItem = new wxMenuItem(mainMenu, wxID_HIGHEST
+        , wxString::Format(_("Clear colour"), 0));
+    mainMenu->Append(menuItem);
+
+    for (int i = 1; i <= 7; ++i)
+    {
+        menuItem = new wxMenuItem(mainMenu, wxID_HIGHEST + i
+            , wxString::Format(_("Colour #%i"), i));
+        menuItem->SetBackgroundColour(getUDColour(i)); //SetBitmap(m_imageList->GetBitmap(i));
+        mainMenu->Append(menuItem);
+    }
+
+    PopupMenu(mainMenu);
+    delete mainMenu;
+}
+
+void mmTransDialog::OnColourSelected(wxCommandEvent& event)
+{
+    int selected_nemu_item = event.GetId() - wxID_HIGHEST;
+    bColours_->SetBackgroundColour(getUDColour(selected_nemu_item));
+    m_trx_data.FOLLOWUPID = selected_nemu_item;
 }

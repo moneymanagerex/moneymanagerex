@@ -83,6 +83,8 @@ private:
     void OnQuit(wxCloseEvent& event);
     void OnCategs(wxCommandEvent& event);
     void OnAttachments(wxCommandEvent& event);
+    void OnColourButton(wxCommandEvent& event);
+    void OnColourSelected(wxCommandEvent& event);
     void OnAccountOrPayeeUpdated(wxCommandEvent& event);
     void OnDpcKillFocus(wxFocusEvent& event);
     void OnAutoTransNum(wxCommandEvent& event);
@@ -97,13 +99,14 @@ private:
     void ActivateSplitTransactionsDlg();
     void SetTooltips();
     void SetCategoryForPayee(const Model_Payee::Data *payee);
-
+private:
     mmTextCtrl* textNumber_;
     mmTextCtrl* m_textAmount;
     mmTextCtrl* toTextAmount_;
     wxTextCtrl* textNotes_;
     wxButton* bCategory_;
     wxButton* bAttachments_;
+    wxButton* bColours_;
     wxComboBox* cbAccount_;
     wxComboBox* cbPayee_;
     wxCheckBox* cSplit_;
