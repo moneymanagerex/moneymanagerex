@@ -32,8 +32,9 @@ class mmWebAppDialog : public wxDialog
 
 public:
     mmWebAppDialog(wxWindow* parent, const wxString& name = "mmWebAppDialog");
-
+    ~mmWebAppDialog();
     bool getRefreshRequested() const { return refreshRequested_; }
+    void fillControls();
 
 private:
     enum cols
@@ -59,16 +60,20 @@ private:
 
     wxDataViewListCtrl* webtranListBox_;
     wxSearchCtrl* m_maskTextCtrl;
+    wxTextCtrl* url_text_;
+    wxTextCtrl* guid_text_;
+    wxBitmapButton* net_button_;
+    wxTimer autoWebAppDialogTimer_;
 
+    bool refreshRequested_;
     int m_webtran_id;
     mmWebApp::WebTranVector WebAppTransactions_;
-    bool refreshRequested_;
 
     mmWebAppDialog() : m_webtran_id(-1), refreshRequested_(false) {}
 
     void Create(wxWindow* parent, const wxString& name = "mmWebAppDialog");
     void CreateControls();
-    void fillControls();
+    void OnAutoFillData(wxTimerEvent& /*event*/);
 
     void OnCancel(wxCommandEvent& /*event*/);
     void OnApply(wxCommandEvent& /*event*/);
@@ -84,6 +89,7 @@ private:
     void ImportWebTrSelected();
     void DeleteWebTr();
     void OpenAttachment();
+    void OnButtonHelpClick(wxCommandEvent& WXUNUSED(event));
 };
 
 #endif // MM_EX_PAYEEDIALOG_H_

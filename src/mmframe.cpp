@@ -472,7 +472,7 @@ void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& /*event*/)
             mmWebApp::WebApp_UpdateCategory();
 
             mmWebApp::WebTranVector dummy;
-            if (mmWebApp::WebApp_DownloadNewTransaction(dummy, true))
+            if (mmWebApp::WebApp_DownloadNewTransaction(dummy, true) == CURLE_OK)
             {
                 mmWebAppDialog dlg(this);
                 dlg.ShowModal();
@@ -2232,16 +2232,14 @@ void mmGUIFrame::OnImportXML(wxCommandEvent& /*event*/)
 
 void mmGUIFrame::OnImportWebApp(wxCommandEvent& /*event*/)
 {
-    if (mmWebApp::WebApp_CheckEnabled())
-    {
-        if (mmWebApp::WebApp_CheckGuid() && mmWebApp::WebApp_CheckApiVersion())
-        {
-            mmWebAppDialog dlg(this);
-            dlg.ShowModal();
-            if (dlg.getRefreshRequested())
-                refreshPanelData();
-        }
+    mmWebAppDialog dlg(this);
+    if (dlg.ShowModal() == wxID_HELP) {
+        helpFileIndex_ = mmex::HTML_WEBAPP;
+        wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED,wxID_HELP);
+        GetEventHandler()->AddPendingEvent(evt);
     }
+    if (dlg.getRefreshRequested())
+        refreshPanelData();
 }
 //----------------------------------------------------------------------------
 
@@ -2445,7 +2443,6 @@ void mmGUIFrame::OnOptions(wxCommandEvent& /*event*/)
 
 void mmGUIFrame::OnHelp(wxCommandEvent& /*event*/)
 {
-    helpFileIndex_ = mmex::HTML_INDEX;
     createHelpPage();
     setNavTreeSection(_("Help"));
 }

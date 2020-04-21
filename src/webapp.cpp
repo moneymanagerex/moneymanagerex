@@ -331,15 +331,15 @@ bool mmWebApp::WebApp_UpdateCategory()
 }
 
 //Download new transactions
-bool mmWebApp::WebApp_DownloadNewTransaction(WebTranVector& WebAppTransactions_, const bool CheckOnly)
+int mmWebApp::WebApp_DownloadNewTransaction(WebTranVector& WebAppTransactions_, const bool CheckOnly)
 {
     wxString NewTransactionJSON;
     CURLcode ErrorCode = http_get_data(mmWebApp::getServicesPageURL() + "&" + WebAppParam::DownloadNewTransaction, NewTransactionJSON);
 
     if (NewTransactionJSON == "null" || NewTransactionJSON.IsEmpty() || ErrorCode != CURLE_OK)
-        return false;
+        return ErrorCode;
     else if (CheckOnly)
-        return true;
+        return ErrorCode;
     else
     {
         Document j_doc;

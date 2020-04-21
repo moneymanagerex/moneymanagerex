@@ -159,7 +159,7 @@ private:
         MENU_TREEPOPUP_DELETE2,
         ID_PANEL_CHECKING_STATIC_BITMAP_VIEW,
     };
-
+private:
     DECLARE_NO_COPY_CLASS(TransactionListCtrl)
     wxDECLARE_EVENT_TABLE();
 
@@ -195,7 +195,7 @@ private:
     int OnPaste(Model_Checking::Data* tran);
 
     bool TransactionLocked(const wxString& transdate);
-
+private:
     /* The topmost visible item - this will be used to set
     where to display the list again after refresh */
     long m_topItemIndex;

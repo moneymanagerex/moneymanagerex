@@ -23,6 +23,8 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "transdialog.h"
 #include "util.h"
 #include "webapp.h"
+#include "mmSimpleDialogs.h"
+#include <wx/timer.h>
 
 wxIMPLEMENT_DYNAMIC_CLASS(mmWebAppDialog, wxDialog);
 
@@ -33,22 +35,42 @@ wxBEGIN_EVENT_TABLE(mmWebAppDialog, wxDialog)
     EVT_DATAVIEW_ITEM_ACTIVATED(wxID_ANY, mmWebAppDialog::OnListItemActivated)
     EVT_DATAVIEW_ITEM_CONTEXT_MENU(wxID_ANY, mmWebAppDialog::OnItemRightClick)
     EVT_MENU_RANGE(MENU_OPEN_ATTACHMENT, MENU_DELETE_WEBTRAN, mmWebAppDialog::OnMenuSelected)
+    EVT_BUTTON(wxID_HELP, mmWebAppDialog::OnButtonHelpClick)
+    EVT_TIMER(wxID_REFRESH, mmWebAppDialog::OnAutoFillData)
 wxEND_EVENT_TABLE()
 
+mmWebAppDialog::~mmWebAppDialog()
+{
+    autoWebAppDialogTimer_.Stop();
+}
+
+void mmWebAppDialog::OnAutoFillData(wxTimerEvent& /*event*/)
+{
+    fillControls();
+}
+
+void mmWebAppDialog::OnButtonHelpClick(wxCommandEvent& WXUNUSED(event))
+{
+    EndModal(wxID_HELP);
+}
 
 mmWebAppDialog::mmWebAppDialog(wxWindow *parent, const wxString& name) :
     m_webtran_id(-1)
-    , m_maskTextCtrl()
-    , webtranListBox_()
+    , webtranListBox_(nullptr)
+    , m_maskTextCtrl(nullptr)
+    , url_text_(nullptr)
+    , guid_text_(nullptr)
+    , net_button_(nullptr)
     , refreshRequested_(false)
+    , autoWebAppDialogTimer_(this, wxID_REFRESH)
 {
     Create(parent, name);
+    autoWebAppDialogTimer_.Start(500, true);
 }
 
 void mmWebAppDialog::Create(wxWindow* parent, const wxString& name)
 {
     SetExtraStyle(GetExtraStyle() | wxWS_EX_BLOCK_EVENTS);
-
     long style = wxCAPTION | wxCLOSE_BOX | wxRESIZE_BORDER;
     if (!wxDialog::Create(parent, wxID_ANY, _("Import WebApp transactions")
         , wxDefaultPosition, wxDefaultSize, style, name))
@@ -62,16 +84,47 @@ void mmWebAppDialog::Create(wxWindow* parent, const wxString& name)
     GetSizer()->SetSizeHints(this);
 
     SetIcon(mmex::getProgramIcon());
-
-    fillControls();
-
     Centre();
+
 }
 
 void mmWebAppDialog::CreateControls()
 {
     wxBoxSizer* mainBoxSizer = new wxBoxSizer(wxVERTICAL);
 
+    // Header --------------------------------------------
+    wxFlexGridSizer* flex_sizer = new wxFlexGridSizer(0, 6, 0, 0);
+
+    net_button_ = new wxBitmapButton(this
+        , wxID_EXECUTE, mmBitmap(png::LED_OFF));
+    net_button_->SetLabelText(_("Refresh"));
+    net_button_->SetToolTip(_("Network status"));
+    flex_sizer->Add(net_button_, g_flagsCenter);
+    wxStaticText* url_label = new wxStaticText(this, wxID_STATIC, _("Url"));
+    url_text_ = new wxTextCtrl(this, wxID_FILE, wxEmptyString
+        , wxDefaultPosition, wxDefaultSize, wxTE_READONLY);
+    url_text_->SetMinSize(wxSize(220, -1));
+    url_text_->Enable(false);
+    url_text_->SetValue(mmWebApp::getUrl());
+
+    wxStaticText* guid_label = new wxStaticText(this, wxID_STATIC, _("GUID"));
+    guid_text_ = new wxTextCtrl(this, wxID_FILE, wxEmptyString
+        , wxDefaultPosition, wxDefaultSize, wxTE_READONLY);
+    guid_text_->SetMinSize(wxSize(220, -1));
+    guid_text_->Enable(false);
+    guid_text_->SetValue(mmWebApp::getGuid());
+
+    wxBitmapButton* help_button = new wxBitmapButton(this
+        , wxID_HELP, mmBitmap(png::HELP));
+
+    flex_sizer->Add(url_label, g_flagsH);
+    flex_sizer->Add(url_text_, g_flagsExpand);
+    flex_sizer->Add(guid_label, g_flagsH);
+    flex_sizer->Add(guid_text_, g_flagsExpand);
+    flex_sizer->Add(help_button, g_flagsCenter);
+    mainBoxSizer->Add(flex_sizer, wxSizerFlags(g_flagsExpand).Proportion(0));
+
+    // ListBox --------------------------------------------
     webtranListBox_ = new wxDataViewListCtrl(this, wxID_ANY, wxDefaultPosition, wxSize(800, 500), wxDV_MULTIPLE | wxDV_ROW_LINES);
 
     webtranListBox_->AppendTextColumn("#", wxDATAVIEW_CELL_INERT, wxLIST_AUTOSIZE_USEHEADER); //WEBTRAN_ID
@@ -84,17 +137,19 @@ void mmWebAppDialog::CreateControls()
     webtranListBox_->AppendTextColumn(_("Amount"), wxDATAVIEW_CELL_INERT, wxLIST_AUTOSIZE_USEHEADER); //WEBTRAN_AMOUNT, 
     webtranListBox_->AppendTextColumn(_("Notes"), wxDATAVIEW_CELL_INERT, wxLIST_AUTOSIZE_USEHEADER); //WEBTRAN_NOTES, 
     webtranListBox_->AppendTextColumn(_("Attachments"), wxDATAVIEW_CELL_INERT, wxLIST_AUTOSIZE_USEHEADER); //WEBTRAN_ATTACHMENTS, 
-    mainBoxSizer->Add(webtranListBox_, wxSizerFlags(g_flagsExpand).Border(wxALL, 10));
+    mainBoxSizer->Add(webtranListBox_, g_flagsExpand);
 
     wxPanel* buttons_panel = new wxPanel(this, wxID_ANY);
-    mainBoxSizer->Add(buttons_panel, wxSizerFlags(g_flagsExpand).Proportion(0));
+    mainBoxSizer->Add(buttons_panel, g_flagsCenter);
     wxBoxSizer*  tools_sizer = new wxBoxSizer(wxVERTICAL);
     buttons_panel->SetSizer(tools_sizer);
 
     wxStdDialogButtonSizer*  buttons_sizer = new wxStdDialogButtonSizer;
     tools_sizer->Add(buttons_sizer, wxSizerFlags(g_flagsV).Center());
     wxButton* buttonOK = new wxButton(buttons_panel, wxID_OK, _("&Import all "));
+    buttonOK->Enable(false);
     wxButton* buttonApply = new wxButton(buttons_panel, wxID_APPLY, _("Import and open all "));
+    buttonApply->Enable(false);
     wxButton* btnCancel = new wxButton(buttons_panel, wxID_CANCEL, wxGetTranslation(g_CancelLabel));
 
     buttons_sizer->Add(buttonOK, g_flagsH);
@@ -106,10 +161,25 @@ void mmWebAppDialog::CreateControls()
 
 void mmWebAppDialog::fillControls()
 {
+    if (mmWebApp::getUrl().empty()){
+        return mmErrorDialogs::ToolTip4Object(url_text_, _("Empty value"), _("Error"));
+    }
+    if (mmWebApp::getGuid().empty()) {
+        return mmErrorDialogs::ToolTip4Object(guid_text_, _("Empty value"), _("Error"));
+    }
+
+    if (!mmWebApp::WebApp_CheckGuid() || !mmWebApp::WebApp_CheckApiVersion()) {
+        return net_button_->SetBitmap(mmBitmap(png::LED_OFF));
+    }
+
     webtranListBox_->DeleteAllItems();
     WebAppTransactions_.clear();
 
-    mmWebApp::WebApp_DownloadNewTransaction(WebAppTransactions_, false);
+    if (mmWebApp::WebApp_DownloadNewTransaction(WebAppTransactions_, false) != CURLE_OK) {
+
+        return net_button_->SetBitmap(mmBitmap(png::LED_RED));
+    }
+    net_button_->SetBitmap(mmBitmap(png::LED_GREEN));
 
     for (const auto& WebTran : WebAppTransactions_)
     {
@@ -134,6 +204,14 @@ void mmWebAppDialog::fillControls()
         data.push_back(wxVariant(WebTran.Notes)); //WEBTRAN_NOTES
         data.push_back(wxVariant(WebTran.Attachments)); //WEBTRAN_ATTACHMENTS
         webtranListBox_->AppendItem(data, static_cast<wxUIntPtr>(WebTran.ID));
+    }
+
+    if (!WebAppTransactions_.empty())
+    {
+        wxButton* buttonOK = static_cast<wxButton*>(FindWindow(wxID_OK));
+        if (buttonOK) buttonOK->Enable(true);
+        wxButton* buttonApply = static_cast<wxButton*>(FindWindow(wxID_APPLY));
+        if (buttonApply) buttonApply->Enable(true);
     }
 }
 

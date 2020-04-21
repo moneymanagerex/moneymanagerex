@@ -46,8 +46,6 @@ namespace WebAppParam
 
 class mmWebApp
 {
-const static wxString getUrl();
-const static wxString getGuid();
 
 /** Return services page URL with GUID inserted */
 const static wxString getServicesPageURL();
@@ -61,6 +59,8 @@ static bool WebApp_DeleteAllCategory();
 static wxString WebApp_DownloadOneAttachment(const wxString& AttachmentName, int DesktopTransactionID, int AttachmentNr);
 
 public:
+    const static wxString getUrl();
+    const static wxString getGuid();
     /*WebApp transaction Structure*/
     struct webtran_holder
     {
@@ -100,7 +100,7 @@ public:
     static bool WebApp_UpdateCategory();
 
     /** Download new transaction */
-    static bool WebApp_DownloadNewTransaction(WebTranVector& WebAppTransactions_, const bool CheckOnly);
+    static int WebApp_DownloadNewTransaction(WebTranVector& WebAppTransactions_, const bool CheckOnly);
 
     /** Insert transaction in MMEX desktop, returns transaction ID */
     static int MMEX_InsertNewTransaction(webtran_holder& WebAppTrans);
