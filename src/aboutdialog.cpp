@@ -87,7 +87,7 @@ void mmAboutDialog::InitControls()
     hb.clear();
 
     //Read data from file
-    wxString filePath = mmex::getPathDoc(mmex::F_CONTRIB);
+    wxString filePath = mmex::getPathDoc(mmex::F_CONTRIB, false);
     if (wxFileName::FileExists(filePath))
     {
         wxFileInputStream input(filePath);

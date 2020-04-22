@@ -269,7 +269,7 @@ bool OnInitImpl(mmGUIApp* app)
 
     wxFileSystem::AddHandler(new wxMemoryFSHandler);
 
-    //Read files from resources
+    //Copy files from resources to VFS
     const wxString res_dir = mmex::GetResourceDir().GetPathWithSep();
     wxArrayString files_array;
     wxDir::GetAllFiles(res_dir, &files_array);
@@ -278,11 +278,14 @@ bool OnInitImpl(mmGUIApp* app)
         wxString data;
         if (wxFileName::FileExists(source_file))
         {
+            const auto file_name = wxFileName(source_file).GetFullName();
+            const auto file_etx = wxFileName(file_name).GetExt();
+            if (file_etx == "mo") continue;
+
             wxFileInputStream input(source_file);
             wxMemoryOutputStream memOut(nullptr);
             input.Read(memOut);
             wxStreamBuffer* buffer = memOut.GetOutputStreamBuffer();
-            const auto file_name = wxFileName(source_file).GetFullName();
             wxLogDebug("File: %s has been copied to VFS", file_name);
             wxMemoryFSHandler::AddFile(file_name, buffer->GetBufferStart()
                 , buffer->GetBufferSize());

@@ -49,7 +49,6 @@
 #include "mmSimpleDialogs.h"
 #include "mmHook.h"
 #include "optiondialog.h"
-#include "paths.h"
 #include "payeedialog.h"
 #include "relocatecategorydialog.h"
 #include "relocatepayeedialog.h"

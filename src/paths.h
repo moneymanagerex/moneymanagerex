@@ -32,7 +32,7 @@ namespace mmex
 {
 
 enum EDocFile { F_README = 0, F_CONTRIB, F_LICENSE, F_VERSION, HTML_INDEX, HTML_WEBAPP, HTML_CUSTOM_SQL, HTML_INVESTMENT, HTML_BUDGET, DOC_FILES_MAX };
-wxString getPathDoc(const EDocFile& f);
+wxString getPathDoc(EDocFile f, bool url = true);
 
 enum EResFile { TRANS_SOUND = 0, HOME_PAGE_TEMPLATE, RES_FILES_MAX };
 wxString getPathResource(EResFile f);

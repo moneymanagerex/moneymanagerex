@@ -305,5 +305,6 @@ void mmErrorDialogs::ToolTip4Object(wxWindow *object, const wxString &message, c
 {
     wxRichToolTip tip(title, message);
     tip.SetIcon(ico);
+    tip.SetBackgroundColour(object->GetParent()->GetBackgroundColour());
     tip.ShowFor(object);
 }

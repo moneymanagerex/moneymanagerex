@@ -1014,15 +1014,7 @@ void mmGeneralReportManager::OnExportReport(wxCommandEvent& WXUNUSED(event))
 
 void mmGeneralReportManager::showHelp()
 {
-    wxFileName helpIndexFile(mmex::getPathDoc(mmex::HTML_CUSTOM_SQL));
-    const auto lang = Option::instance().getLanguageISO6391();
-    if (lang != "en" && !lang.empty())
-        helpIndexFile.AppendDir(lang);
-    wxString url = "file://" + mmex::getPathDoc(mmex::HTML_CUSTOM_SQL);
-    if (helpIndexFile.FileExists()) // Load the help file for the given language
-    {
-        url = "file://" + helpIndexFile.GetPathWithSep() + helpIndexFile.GetFullName();
-    }
+    const auto url = mmex::getPathDoc(mmex::HTML_CUSTOM_SQL);
     browser_->LoadURL(url);
 }
 

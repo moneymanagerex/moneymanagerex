@@ -119,25 +119,49 @@ bool mmex::isPortableMode()
 }
 //----------------------------------------------------------------------------
 
-wxString mmex::getPathDoc(const EDocFile& f)
+wxString mmex::getPathDoc(EDocFile f, bool url)
 {
+    if (f < 0 || f >= DOC_FILES_MAX) f = static_cast<EDocFile>(HTML_INDEX);
     static const wxString files[DOC_FILES_MAX] = {
       "README.TXT",
       "contrib.txt",
       "license.txt",
       "version.txt",
-      "help/index.html",
-      "help/index.html#section11.1",
-      "help/grm.html",
-      "help/stocks_and_shares.html",
-      "help/budget.html",
+      "help%sindex.html",
+      "help%sindex.html#section11.1",
+      "help%sgrm.html",
+      "help%sstocks_and_shares.html",
+      "help%sbudget.html",
     };
-
-    wxASSERT(f >= 0 && f < DOC_FILES_MAX);
-
     wxString path = files[f];
-    path.Replace("/", wxFileName::GetPathSeparator());
-    return path.Prepend(GetDocDir().GetPathWithSep());
+    wxString section;
+    wxRegEx pattern(R"(^([^#]+)#([^#]+)$)");
+    if (pattern.Matches(path)) {
+        section = pattern.GetMatch(path, 2);
+        path = pattern.GetMatch(path, 1);
+    }
+
+    const auto lang_code = Option::instance().getLanguageISO6391(); 
+    path = wxString::Format(path, wxFileName::GetPathSeparator() + lang_code + wxFileName::GetPathSeparator());
+
+    wxFileName helpIndexFile(GetDocDir());
+    path.Prepend(helpIndexFile.GetPathWithSep());
+    wxFileName helpFullPath(path);
+
+    if (!helpFullPath.FileExists()) // Load the help file for the given language
+    {
+        path = files[f];
+        path.Replace("%s", wxFileName::GetPathSeparator());
+        wxFileName help(GetDocDir());
+        path.Prepend(help.GetPathWithSep());
+    }
+    if (url)
+        path.Prepend("file://");
+    if (!section.empty()) {
+        path.Append("#" + section);
+    }
+
+    return path;
 }
 //----------------------------------------------------------------------------
 

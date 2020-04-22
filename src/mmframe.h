@@ -30,6 +30,7 @@ Copyright (C) 2014 Guan Lisheng (guanlisheng@gmail.com)
 #include "option.h"
 #include "constants.h"
 #include "util.h"
+#include "paths.h"
 
 //----------------------------------------------------------------------------
 class wxSQLite3Database;
@@ -64,10 +65,9 @@ public:
                 Option::instance().FinancialYearStartMonth() != "1");
     }
     /// return the index (mmex::EDocFile) to return the correct file.
-    int getHelpFileIndex() const
-    {
-        return helpFileIndex_;
-    }
+    int getHelpFileIndex() const;
+    void setHelpFileIndex();
+
 
     void setAccountNavTreeSection(const wxString& accountName);
     bool setNavTreeSection(const wxString &sectionName);
@@ -349,6 +349,10 @@ private:
         AUTO_REPEAT_TRANSACTIONS_TIMER_ID,
     };
 };
+
+
+inline int mmGUIFrame::getHelpFileIndex() const { return helpFileIndex_; }
+inline void mmGUIFrame::setHelpFileIndex() { helpFileIndex_ = mmex::EDocFile::HTML_INDEX; }
 //----------------------------------------------------------------------------
 #endif // MM_FRAME_H_
 //----------------------------------------------------------------------------
