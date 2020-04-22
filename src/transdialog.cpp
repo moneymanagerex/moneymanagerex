@@ -1292,7 +1292,11 @@ void mmTransDialog::OnColourButton(wxCommandEvent& /*event*/)
     {
         menuItem = new wxMenuItem(mainMenu, wxID_HIGHEST + i
             , wxString::Format(_("Colour #%i"), i));
-        menuItem->SetBackgroundColour(getUDColour(i)); //SetBitmap(m_imageList->GetBitmap(i));
+#ifdef __WXMSW__
+        menuItem->SetBackgroundColour(getUDColour(i)); //only available for the wxMSW port.
+#else
+        menuItem->SetTextColour(getUDColour(i));
+#endif
         mainMenu->Append(menuItem);
     }
 

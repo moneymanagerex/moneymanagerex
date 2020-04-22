@@ -127,7 +127,7 @@ wxColour getUDColour(int c)
     case 6: return  mmColors::userDefColor6;
     case 7: return  mmColors::userDefColor7;
     }
-    return wxColour(wxNullColour);
+    return wxNullColour;
 }
 
 //*-------------------------------------------------------------------------*//
