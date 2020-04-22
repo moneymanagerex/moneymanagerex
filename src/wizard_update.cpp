@@ -188,7 +188,7 @@ struct Version
     explicit Version(const wxString& tag)
     {
         for (int i = 0; i < 5; i++) v[i] = 0;
-        wxRegEx re_ver(R"(^v([0-9]+)\.([0-9]+)\.([0-9]+)?(-(alpha|beta|rc)(\.([0-9]+))?)?$)", wxRE_EXTENDED);
+        wxRegEx re_ver(R"(^v([0-9]+)\.([0-9]+)\.(-?[0-9]+)?(-(alpha|beta|rc)(\.([0-9]+))?)?$)", wxRE_EXTENDED);
         if (re_ver.Matches(tag)) {
             for (size_t i = 0; i < re_ver.GetMatchCount(); ++i)
             {
@@ -200,7 +200,8 @@ struct Version
                 case PAT: val.ToCLong(&v[PATCH]); break;
                 case RTYPE: if (val == "alpha") v[TYPE] = -3;
                         else if (val == "beta") v[TYPE] = -2;
-                        else v[TYPE] = -1;
+                        else if (val == "rc") v[TYPE] = -1;
+                        else v[TYPE] = 0;
                     break;
                 case parcer::UNUM: val.ToCLong(&v[NUM]); break;
                 }
