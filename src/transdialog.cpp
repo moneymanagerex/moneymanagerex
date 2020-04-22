@@ -550,7 +550,7 @@ void mmTransDialog::CreateControls()
     // Attachments ---------------------------------------------
     bAttachments_ = new wxBitmapButton(this, wxID_FILE
         , mmBitmap(png::CLIP), wxDefaultPosition
-        , wxSize(wxSize(cbPayee_->GetSize().GetY(), cbPayee_->GetSize().GetY())));
+        , wxSize(cbPayee_->GetSize().GetY(), cbPayee_->GetSize().GetY()));
     bAttachments_->SetToolTip(_("Organize attachments of this transaction"));
 
     // Colours ---------------------------------------------
@@ -1294,9 +1294,17 @@ void mmTransDialog::OnColourButton(wxCommandEvent& /*event*/)
             , wxString::Format(_("Colour #%i"), i));
 #ifdef __WXMSW__
         menuItem->SetBackgroundColour(getUDColour(i)); //only available for the wxMSW port.
-#else
-        menuItem->SetTextColour(getUDColour(i));
 #endif
+        wxBitmap bitmap(mmBitmap(png::EMPTY).GetSize());
+        wxMemoryDC memoryDC(bitmap);
+        wxRect rect(memoryDC.GetSize());
+
+        memoryDC.SetBackground(wxBrush(getUDColour(i)));
+        memoryDC.Clear();
+        memoryDC.DrawBitmap(mmBitmap(png::EMPTY), 0, 0, true);
+        memoryDC.SelectObject(wxNullBitmap);
+        menuItem->SetBitmap(bitmap);
+
         mainMenu->Append(menuItem);
     }
 
