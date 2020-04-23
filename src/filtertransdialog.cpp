@@ -777,9 +777,8 @@ bool mmFilterTransactionsDialog::checkAll(const Model_Checking::Data &tran
     else if (getTypeCheckBox() && !allowType(tran.TRANSCODE, accountID == tran.ACCOUNTID)) ok = false;
     else if (getAmountRangeCheckBoxMin() && getAmountMin() > tran.TRANSAMOUNT) ok = false;
     else if (getAmountRangeCheckBoxMax() && getAmountMax() < tran.TRANSAMOUNT) ok = false;
-    else if (getNumberCheckBox() && (getNumber().empty()
-        ? !tran.TRANSACTIONNUMBER.empty()
-        : tran.TRANSACTIONNUMBER.empty() || !tran.TRANSACTIONNUMBER.Lower().Matches(getNumber().Lower())))
+    else if (getNumberCheckBox() && (getNumber().empty() ? !tran.TRANSACTIONNUMBER.empty()
+        : !tran.TRANSACTIONNUMBER.Lower().Matches(getNumber().Lower())))
         ok = false;
     else if (getNotesCheckBox() && (getNotes().empty() ? !tran.NOTES.empty()
         : !tran.NOTES.Lower().Matches(getNotes().Lower())))
@@ -822,7 +821,7 @@ void mmFilterTransactionsDialog::getDescription(mmHTMLBuilder &hb)
     hb.addHorizontalLine();
     hb.addHeader(3, _("Filtering Details: "));
     // Extract the parameters from the transaction dialog and add them to the report.
-    wxString filterDetails = to_json();
+    wxString filterDetails = to_json(true);
     filterDetails.Replace("\n", "<br>");
     filterDetails.Replace(R"("")", _("Empty value"));
     filterDetails.Replace("\"", "");
