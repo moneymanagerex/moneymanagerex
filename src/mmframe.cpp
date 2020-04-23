@@ -398,7 +398,8 @@ wxTreeItemId mmGUIFrame::getTreeItemfor(const wxTreeItemId& itemID, const wxStri
 
     while (navTreeID.IsOk())
     {
-        if (accountName == m_nav_tree_ctrl->GetItemText(navTreeID))
+        const auto text = m_nav_tree_ctrl->GetItemText(navTreeID);
+        if (accountName == text)
             break;
         else
             navTreeID = m_nav_tree_ctrl->GetNextChild(itemID, treeDummyValue);
@@ -2389,8 +2390,9 @@ void mmGUIFrame::OnTransactionReport(wxCommandEvent& /*event*/)
     {
         mmReportTransactions* rs = new mmReportTransactions(dlg->getAccountID(), dlg);
         createReportsPage(rs, true);
-        setNavTreeSection(_("Reports"));
     }
+    setNavTreeSection(_("Reports"));
+    m_nav_tree_ctrl->Refresh();
 }
 
 void mmGUIFrame::OnCustomFieldsManager(wxCommandEvent& WXUNUSED(event))

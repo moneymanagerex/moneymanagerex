@@ -106,8 +106,8 @@ private:
     /// wxEVT_COMMAND_CHECKBOX_CLICKED event handler for ID_CHECKBOXACCOUNT
     void OnCheckboxClick( wxCommandEvent& event );
 
-    void OnButtonokClick(wxCommandEvent& event);
-    void OnButtoncancelClick(wxCommandEvent& event);
+    void OnButtonOkClick(wxCommandEvent& event);
+    void OnButtonCancelClick(wxCommandEvent& event);
     void OnButtonSaveClick(wxCommandEvent& event);
     void OnButtonClearClick(wxCommandEvent& event);
     void OnSettingsSelected(wxCommandEvent& event);

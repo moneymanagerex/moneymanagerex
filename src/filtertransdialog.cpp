@@ -69,8 +69,8 @@ wxIMPLEMENT_DYNAMIC_CLASS(mmFilterTransactionsDialog, wxDialog);
 
 wxBEGIN_EVENT_TABLE( mmFilterTransactionsDialog, wxDialog )
     EVT_CHECKBOX(wxID_ANY, mmFilterTransactionsDialog::OnCheckboxClick)
-    EVT_BUTTON(wxID_OK, mmFilterTransactionsDialog::OnButtonokClick)
-    EVT_BUTTON(wxID_CANCEL, mmFilterTransactionsDialog::OnButtoncancelClick)
+    EVT_BUTTON(wxID_OK, mmFilterTransactionsDialog::OnButtonOkClick)
+    EVT_BUTTON(wxID_CANCEL, mmFilterTransactionsDialog::OnButtonCancelClick)
     EVT_BUTTON(wxID_SAVE, mmFilterTransactionsDialog::OnButtonSaveClick)
     EVT_BUTTON(wxID_CLEAR, mmFilterTransactionsDialog::OnButtonClearClick)
     EVT_MENU(wxID_ANY, mmFilterTransactionsDialog::datePresetMenuSelected)
@@ -476,14 +476,14 @@ bool mmFilterTransactionsDialog::isValuesCorrect()
     return true;
 }
 
-void mmFilterTransactionsDialog::OnButtonokClick( wxCommandEvent& /*event*/ )
+void mmFilterTransactionsDialog::OnButtonOkClick( wxCommandEvent& /*event*/ )
 {
     if (isValuesCorrect()) {
         EndModal(wxID_OK);
     }
 }
 
-void mmFilterTransactionsDialog::OnButtoncancelClick( wxCommandEvent& /*event*/ )
+void mmFilterTransactionsDialog::OnButtonCancelClick( wxCommandEvent& /*event*/ )
 {
     EndModal(wxID_CANCEL);
 }
@@ -781,9 +781,8 @@ bool mmFilterTransactionsDialog::checkAll(const Model_Checking::Data &tran
         ? !tran.TRANSACTIONNUMBER.empty()
         : tran.TRANSACTIONNUMBER.empty() || !tran.TRANSACTIONNUMBER.Lower().Matches(getNumber().Lower())))
         ok = false;
-    else if (getNotesCheckBox() && (getNotes().empty()
-        ? !tran.NOTES.empty()
-        : tran.NOTES.empty() || !tran.NOTES.Lower().Matches(getNotes().Lower())))
+    else if (getNotesCheckBox() && (getNotes().empty() ? !tran.NOTES.empty()
+        : !tran.NOTES.Lower().Matches(getNotes().Lower())))
         ok = false;
     return ok;
 }
