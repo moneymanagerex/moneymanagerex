@@ -86,6 +86,7 @@ enum png {
     CC_CLOSED,
     CC_FAVORITE,
     CC_NORMAL,
+    CLEAR,
     CLEARLIST,
     CLIP,
     COMMUNITY,

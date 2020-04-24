@@ -212,6 +212,7 @@ private:
     void OnMoveUp(wxCommandEvent& event);
     void OnMoveDown(wxCommandEvent& event);
     void OnStandard(wxCommandEvent& event);
+    void OnButtonClearClick(wxCommandEvent& event);
     void OnBrowse(wxCommandEvent& event);
     void OnListBox(wxCommandEvent& event);
     void OnDelimiterChange(wxCommandEvent& event);

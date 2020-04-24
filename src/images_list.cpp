@@ -35,6 +35,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "../resources/category_relocation_png.h"
 #include "../resources/change_password_png.h"
 #include "../resources/clearlist_png.h"
+#include "../resources/clear_png.h"
 #include "../resources/clip_png.h"
 #include "../resources/coin_png.h"
 #include "../resources/community_png.h"
@@ -214,6 +215,7 @@ const wxBitmap mmBitmap(int ref)
     case CC_CLOSED: return x == 16 ? wxBITMAP_PNG_FROM_DATA(cc_closed) : x == 24 ? wxBITMAP_PNG_FROM_DATA(cc_closed24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(cc_closed32) : wxBITMAP_PNG_FROM_DATA(cc_closed48);
     case CC_FAVORITE: return x == 16 ? wxBITMAP_PNG_FROM_DATA(cc_favorite) : x == 24 ? wxBITMAP_PNG_FROM_DATA(cc_favorite24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(cc_favorite32) : wxBITMAP_PNG_FROM_DATA(cc_favorite48);
     case CC_NORMAL: return x == 16 ? wxBITMAP_PNG_FROM_DATA(cc_normal) : x == 24 ? wxBITMAP_PNG_FROM_DATA(cc_normal24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(cc_normal32) : wxBITMAP_PNG_FROM_DATA(cc_normal48);
+    case CLEAR: return x == 16 ? wxBITMAP_PNG_FROM_DATA(clear) : x == 24 ? wxBITMAP_PNG_FROM_DATA(clear24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(clear32) : wxBITMAP_PNG_FROM_DATA(clear48);
     case CLEARLIST: return x == 16 ? wxBITMAP_PNG_FROM_DATA(clearlist) : x == 24 ? wxBITMAP_PNG_FROM_DATA(clearlist24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(clearlist32) : wxBITMAP_PNG_FROM_DATA(clearlist48);
     case CLIP: return x == 16 ? wxBITMAP_PNG_FROM_DATA(clip) : x == 24 ? wxBITMAP_PNG_FROM_DATA(clip24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(clip32) : wxBITMAP_PNG_FROM_DATA(clip48);
     case COMMUNITY: return x == 16 ? wxBITMAP_PNG_FROM_DATA(community) : x == 24 ? wxBITMAP_PNG_FROM_DATA(community24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(community32) : wxBITMAP_PNG_FROM_DATA(community48);

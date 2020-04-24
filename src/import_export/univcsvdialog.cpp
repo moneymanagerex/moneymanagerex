@@ -56,6 +56,7 @@ EVT_BUTTON(wxID_REMOVE, mmUnivCSVDialog::OnRemove)
 EVT_BUTTON(wxID_SAVEAS, mmUnivCSVDialog::OnSettingsSave)
 EVT_BUTTON(wxID_UP, mmUnivCSVDialog::OnMoveUp)
 EVT_BUTTON(wxID_DOWN, mmUnivCSVDialog::OnMoveDown)
+EVT_BUTTON(wxID_CLEAR, mmUnivCSVDialog::OnButtonClearClick)
 EVT_BUTTON(wxID_STANDARD, mmUnivCSVDialog::OnStandard)
 EVT_BUTTON(wxID_BROWSE, mmUnivCSVDialog::OnBrowse)
 EVT_LISTBOX_DCLICK(wxID_ANY, mmUnivCSVDialog::OnListBox)
@@ -110,6 +111,7 @@ mmUnivCSVDialog::mmUnivCSVDialog(
     CSVFieldName_[UNIV_CSV_WITHDRAWAL] = wxTRANSLATE("Withdrawal");
     CSVFieldName_[UNIV_CSV_DEPOSIT] = wxTRANSLATE("Deposit");
     CSVFieldName_[UNIV_CSV_BALANCE] = wxTRANSLATE("Balance");
+    
     Create(parent, IsImporter() ? _("Import dialog") : _("Export dialog"), id, pos, size, style);
     this->Connect(wxID_ANY, wxEVT_CHILD_FOCUS, wxChildFocusEventHandler(mmUnivCSVDialog::changeFocus), nullptr, this);
 }
@@ -202,6 +204,11 @@ void mmUnivCSVDialog::CreateControls()
         , wxID_SAVEAS, mmBitmap(png::SAVEAS));
     itemBoxSizer76->Add(itemButton_Save, wxSizerFlags(g_flagsH).Center().Proportion(0));
     itemButton_Save->SetToolTip(_("Save Template"));
+
+    wxBitmapButton* itemButtonClear = new wxBitmapButton(itemPanel67
+        , wxID_CLEAR, mmBitmap(png::CLEAR));
+    itemBoxSizer76->Add(itemButtonClear, wxSizerFlags(g_flagsH).Center().Proportion(0));
+    itemButtonClear->SetToolTip(_("Clear Settings"));
 
     //
     wxStaticText* itemStaticText3 = new wxStaticText(this, wxID_STATIC
@@ -475,7 +482,10 @@ wxString mmUnivCSVDialog::GetStoredSettings(int id)
 
 void mmUnivCSVDialog::SetSettings(const wxString &json_data)
 {
-    if (json_data.empty()) return;
+    if (json_data.empty()) {
+        m_setting_name_ctrl_->ChangeValue("");
+        return;
+    }
 
     Document json_doc;
     if (json_doc.Parse(json_data.c_str()).HasParseError()) {
@@ -713,7 +723,7 @@ void mmUnivCSVDialog::OnLoad()
     for (const auto& entry : CSVFieldName_)
     {
         std::vector<int>::const_iterator loc = find(csvFieldOrder_.begin(), csvFieldOrder_.end(), entry.first);
-        if (loc == csvFieldOrder_.end() || entry.first == UNIV_CSV_DONTCARE)
+        if (loc == csvFieldOrder_.end() || entry.first == UNIV_CSV_DONTCARE || entry.first == UNIV_CSV_NOTES)
             csvFieldCandicate_->Append(wxGetTranslation(entry.second), new mmListBoxItem(entry.first, entry.second));
     }
 }
@@ -1203,8 +1213,11 @@ void mmUnivCSVDialog::update_preview()
         const wxString fileName = m_text_ctrl_->GetValue();
         wxFileName csv_file(fileName);
 
-        if (fileName.IsEmpty() || !csv_file.FileExists())
+        if (fileName.IsEmpty() || !csv_file.FileExists()) {
+            itemButton_Import_->Disable();
             return;
+        }
+        itemButton_Import_->Enable();
 
         // Open and parse file
         std::unique_ptr <ITransactionsFile> pImporter(CreateFileHandler());
@@ -1424,6 +1437,12 @@ void mmUnivCSVDialog::OnStandard(wxCommandEvent& WXUNUSED(event))
 
     update_preview();
 }
+
+void mmUnivCSVDialog::OnButtonClearClick(wxCommandEvent& WXUNUSED(event))
+{
+    SetSettings("{}");
+}
+
 
 void mmUnivCSVDialog::OnBrowse(wxCommandEvent& WXUNUSED(event))
 {
