@@ -421,7 +421,7 @@ int mmWebApp::WebApp_DownloadNewTransaction(WebTranVector& WebAppTransactions_, 
 
             WebAppTransactions_.push_back(WebTran);
         }
-        return true;
+        return CURLE_OK;
     }
 }
 

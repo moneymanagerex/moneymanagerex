@@ -32,6 +32,7 @@ wxBEGIN_EVENT_TABLE(mmWebAppDialog, wxDialog)
     EVT_BUTTON(wxID_CANCEL, mmWebAppDialog::OnCancel)
     EVT_BUTTON(wxID_APPLY, mmWebAppDialog::OnApply)
     EVT_BUTTON(wxID_OK, mmWebAppDialog::OnOk)
+    EVT_BUTTON(wxID_EXECUTE, mmWebAppDialog::OnCheckNetwork)
     EVT_DATAVIEW_ITEM_ACTIVATED(wxID_ANY, mmWebAppDialog::OnListItemActivated)
     EVT_DATAVIEW_ITEM_CONTEXT_MENU(wxID_ANY, mmWebAppDialog::OnItemRightClick)
     EVT_MENU_RANGE(MENU_OPEN_ATTACHMENT, MENU_DELETE_WEBTRAN, mmWebAppDialog::OnMenuSelected)
@@ -157,6 +158,11 @@ void mmWebAppDialog::CreateControls()
     buttons_sizer->Add(btnCancel, g_flagsH);
 
     this->SetSizer(mainBoxSizer);
+}
+
+void mmWebAppDialog::OnCheckNetwork(wxCommandEvent& /*event*/)
+{
+    fillControls();
 }
 
 void mmWebAppDialog::fillControls()

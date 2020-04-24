@@ -463,7 +463,7 @@ void mmGUIFrame::setAccountNavTreeSection(const wxString& accountName)
 void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& /*event*/)
 {
     //WebApp check
-    if (mmWebApp::WebApp_CheckEnabled())
+    if (mmWebApp::WebApp_CheckEnabled() && false)
     {
         if (mmWebApp::WebApp_CheckGuid() && mmWebApp::WebApp_CheckApiVersion())
         {

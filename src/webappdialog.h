@@ -78,6 +78,7 @@ private:
     void OnCancel(wxCommandEvent& /*event*/);
     void OnApply(wxCommandEvent& /*event*/);
     void OnOk(wxCommandEvent& /*event*/);
+    void OnCheckNetwork(wxCommandEvent& /*event*/);
 
     bool ImportWebTr(int WebTrID, bool open);
     void ImportAllWebTr(const bool open);
