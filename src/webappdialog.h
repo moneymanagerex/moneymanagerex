@@ -65,6 +65,7 @@ private:
     wxBitmapButton* net_button_;
     wxTimer autoWebAppDialogTimer_;
 
+    wxArrayString tempFiles_;
     bool refreshRequested_;
     int m_webtran_id;
     mmWebApp::WebTranVector WebAppTransactions_;

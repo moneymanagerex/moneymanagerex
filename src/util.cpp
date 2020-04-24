@@ -1143,9 +1143,3 @@ const wxString md2html(const wxString& md)
     
     return body;
 }
-
-void prepareTempFolder()
-{
-    const wxString tempDir = mmex::getTempFolder();
-    wxFileName::Mkdir(tempDir, 511, wxPATH_MKDIR_FULL);
-}

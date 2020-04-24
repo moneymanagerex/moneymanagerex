@@ -186,7 +186,6 @@ void windowsFreezeThaw(wxWindow* w);
 const wxString md2html(const wxString& md);
 const wxString getVFname4print(const wxString& name, const wxString& data);
 void clearVFprintedFiles(const wxString& name);
-void prepareTempFolder();
 
 //* Date Functions----------------------------------------------------------*//
 static const wxString MONTHS[12] =

@@ -243,14 +243,6 @@ const wxString mmex::getPathAttachment(const wxString &attachmentsFolder)
     return AttachmentsFolder;
 }
 
-const wxString mmex::getTempFolder()
-{
-    const wxString path = mmex::isPortableMode() ? mmex::GetUserDir(false).GetPath() : wxStandardPaths::Get().GetTempDir();
-    const wxString folder = mmex::isPortableMode() ? "tmp"
-        : wxString::Format("%s_%s_tmp", mmex::GetAppName(), ::wxGetUserId());
-    return wxString::Format("%s%s%s%s", path, wxString(wxFILE_SEP_PATH), folder, wxString(wxFILE_SEP_PATH));
-}
-
 const wxIcon& mmex::getProgramIcon()
 {
     static wxIcon icon(mmexico_xpm);

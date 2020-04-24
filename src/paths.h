@@ -49,8 +49,6 @@ const wxString getPathUser(EUserFile f);
 const wxString getPathAttachment(const wxString &AttachmentsFolder);
 bool isPortableMode();
 
-const wxString getTempFolder();
-
 } // namespace mmex
 
 //----------------------------------------------------------------------------

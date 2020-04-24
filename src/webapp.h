@@ -109,7 +109,7 @@ public:
     static bool WebApp_DeleteOneTransaction(int WebAppTransactionId);
 
     /* Return attachment URL */
-    static wxString WebApp_GetAttachment(const wxString& AttachmentFileName);
+    static bool WebApp_DownloadAttachment(wxString& AttachmentFileName);
 
     //FUNCTIONS CALLED IN MMEX TO UPDATE ON CHANGE
     /** Update all payees on WebApp if enabled */

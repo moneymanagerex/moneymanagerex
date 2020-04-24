@@ -43,6 +43,10 @@ wxEND_EVENT_TABLE()
 mmWebAppDialog::~mmWebAppDialog()
 {
     autoWebAppDialogTimer_.Stop();
+    for (const auto& entry : tempFiles_)
+    {
+        wxRemoveFile(entry);
+    }
 }
 
 void mmWebAppDialog::OnAutoFillData(wxTimerEvent& /*event*/)
@@ -284,9 +288,11 @@ void mmWebAppDialog::OpenAttachment()
         {
             wxString AttachmentName = webtranListBox_->GetTextValue(selectedIndex_, WEBTRAN_ATTACHMENTS);
             AttachmentName = AttachmentName.BeforeFirst(';');
-            wxString Path = mmWebApp::WebApp_GetAttachment(AttachmentName);
-            if (Path != wxEmptyString)
-                wxLaunchDefaultApplication(Path);
+            if (mmWebApp::WebApp_DownloadAttachment(AttachmentName)) {
+                wxLaunchDefaultApplication(AttachmentName);
+                tempFiles_.Add(AttachmentName);
+            }
+
         }
     }
 }
@@ -351,14 +357,14 @@ void mmWebAppDialog::OnItemRightClick(wxDataViewEvent& event)
     wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, wxID_ANY);
     evt.SetEventObject(this);
 
-    wxMenu* mainMenu = new wxMenu;
-    mainMenu->Append(new wxMenuItem(mainMenu, MENU_OPEN_ATTACHMENT, _("Open Attachment")));
-    mainMenu->Append(new wxMenuItem(mainMenu, MENU_IMPORT_WEBTRAN, _("Import")));
-    mainMenu->Append(new wxMenuItem(mainMenu, MENU_DELETE_WEBTRAN, _("Delete")));
+    wxSharedPtr<wxMenu> mainMenu;
+    mainMenu = new wxMenu;
+    mainMenu->Append(new wxMenuItem(mainMenu.get(), MENU_OPEN_ATTACHMENT, _("Open Attachment")));
+    mainMenu->Append(new wxMenuItem(mainMenu.get(), MENU_IMPORT_WEBTRAN, _("Import")));
+    mainMenu->Append(new wxMenuItem(mainMenu.get(), MENU_DELETE_WEBTRAN, _("Delete")));
     if (Selected.size() != 1) mainMenu->Enable(MENU_OPEN_ATTACHMENT, false);
 
-    PopupMenu(mainMenu);
-    delete mainMenu;
+    PopupMenu(mainMenu.get());
     event.Skip();
 }
 

@@ -265,8 +265,6 @@ bool OnInitImpl(mmGUIApp* app)
     trans->AddCatalog("mmex", wxLANGUAGE_ENGLISH_US);
     wxTranslations::Set(trans);
 
-    prepareTempFolder(); //TODO: if false what todo? It used only for mmWebApp::WebApp_GetAttachment
-
     wxFileSystem::AddHandler(new wxMemoryFSHandler);
 
     //Copy files from resources to VFS
@@ -395,9 +393,6 @@ int mmGUIApp::OnExit()
 
 	/* CURL Cleanup */
 	curl_global_cleanup();
-    
-    //Delete mmex temp folder for current user
-    wxFileName::Rmdir(mmex::getTempFolder(), wxPATH_RMDIR_RECURSIVE);
 
 	return 0;
 }
