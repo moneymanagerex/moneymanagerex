@@ -22,6 +22,7 @@
 
 class wxListEvent;
 class mmAssetsPanel;
+class wxButton;
 
 /* Custom ListCtrl class that implements virtual LC style */
 class mmAssetsListCtrl: public mmListCtrl
@@ -100,9 +101,9 @@ public:
 private:
     void enableEditDeleteButtons(bool enable);
     void OnSearchTxtEntered(wxCommandEvent& event);
+    
     mmAssetsListCtrl* m_listCtrlAssets;
-
-    wxStaticText* itemStaticTextMainFilter_;
+    wxButton* m_bitmapTransFilter;
     wxStaticText* header_text_;
 
     wxScopedPtr<wxImageList> m_imageList;
@@ -120,7 +121,7 @@ private:
     void OnDeleteAsset(wxCommandEvent& event);
     void OnEditAsset(wxCommandEvent& event);
     void OnOpenAttachment(wxCommandEvent& event);
-    void OnMouseLeftDown ( wxMouseEvent& event );
+    void OnMouseLeftDown(wxCommandEvent& event);
     void OnAddAssetTrans(wxCommandEvent& event);
     void OnViewAssetTrans(wxCommandEvent& event);
 
