@@ -60,7 +60,7 @@ static const wxString DATE_PRESETTINGS[] =
     VIEW_TRANS_LAST_3MONTHS_STR,
     VIEW_TRANS_LAST_12MONTHS_STR,
     VIEW_TRANS_CURRENT_YEAR_STR,
-    VIEW_TRANS_CURRENT_FIN_YEAR_STR,
+    VIEW_TRANS_CRRNT_FIN_YEAR_STR,
     VIEW_TRANS_LAST_YEAR_STR,
     VIEW_TRANS_LAST_FIN_YEAR_STR
 };
@@ -105,7 +105,7 @@ bool mmFilterTransactionsDialog::Create(wxWindow* parent
     wxDialog::Create(parent, id, caption, pos, size, style);
 
     CreateControls();
-    GetStoredSettings(-1);
+    SetStoredSettings(-1);
     wxCommandEvent* evt = new wxCommandEvent(wxEVT_CHECKBOX, wxID_ANY);
     AddPendingEvent(*evt);
     delete evt;
@@ -624,11 +624,10 @@ void mmFilterTransactionsDialog::OnButtonClearClick( wxCommandEvent& /*event*/ )
 
 void mmFilterTransactionsDialog::OnSettingsSelected( wxCommandEvent& event )
 {
-    GetStoredSettings(event.GetSelection());
-    dataToControls();
+    SetStoredSettings(event.GetSelection());
 }
 
-wxString mmFilterTransactionsDialog::GetStoredSettings(int id)
+void mmFilterTransactionsDialog::SetStoredSettings(int id)
 {
     if (id < 0) {
         id = Model_Infotable::instance().GetIntInfo("TRANSACTIONS_FILTER_VIEW_NO", 0);
@@ -638,7 +637,7 @@ wxString mmFilterTransactionsDialog::GetStoredSettings(int id)
     settings_string_ = Model_Infotable::instance().GetStringInfo(
         wxString::Format("TRANSACTIONS_FILTER_%d", id)
         , "");
-    return settings_string_;
+    dataToControls();
 }
 
 void mmFilterTransactionsDialog::setAccountToolTip(const wxString& tip) const
@@ -691,7 +690,7 @@ void mmFilterTransactionsDialog::setPresettings(const wxString& view)
         date_range = new mmLast12Months;
     else if (view == VIEW_TRANS_CURRENT_YEAR_STR)
         date_range = new mmCurrentYear;
-    else if (view == VIEW_TRANS_CURRENT_FIN_YEAR_STR)
+    else if (view == VIEW_TRANS_CRRNT_FIN_YEAR_STR)
         date_range = new mmCurrentFinancialYear(wxAtoi(Option::instance().FinancialYearStartDay())
         , wxAtoi(Option::instance().FinancialYearStartMonth()));
     else if (view == VIEW_TRANS_LAST_YEAR_STR)
@@ -814,6 +813,17 @@ void mmFilterTransactionsDialog::OnTextEntered(wxCommandEvent& event)
         amountMinEdit_->Calculate();
     else if (event.GetId() == amountMaxEdit_->GetId())
         amountMaxEdit_->Calculate();
+}
+
+const wxString mmFilterTransactionsDialog::getDescriptionToolTip()
+{
+    wxString filterDetails = to_json(true);
+    filterDetails.Replace(R"("")", _("Empty value"));
+    filterDetails.Replace("\"", "");
+    filterDetails.replace(0, 1, ' ');
+    filterDetails.RemoveLast(1);
+    filterDetails.Append("\n ");
+    return filterDetails;
 }
 
 void mmFilterTransactionsDialog::getDescription(mmHTMLBuilder &hb)
@@ -1178,4 +1188,9 @@ bool mmFilterTransactionsDialog::getNumberCheckBox()
 bool mmFilterTransactionsDialog::getNotesCheckBox()
 {
     return notesCheckBox_->IsChecked();
+}
+
+void mmFilterTransactionsDialog::ResetFilterStatus()
+{
+    //m_custom_fields->ResetWidgetsChanged();
 }

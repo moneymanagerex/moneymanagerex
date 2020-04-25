@@ -46,7 +46,9 @@ public:
         , const std::map<int, Model_Splittransaction::Data_Set>& split);
     bool checkAll(const Model_Billsdeposits::Data &tran
         , const std::map<int, Model_Budgetsplittransaction::Data_Set>& split);
+    const wxString getDescriptionToolTip();
     void getDescription(mmHTMLBuilder &hb);
+    void ResetFilterStatus();
     bool isSomethingSelected();
     void setAccountToolTip(const wxString& tip) const;
     bool getStatusCheckBox();
@@ -57,6 +59,7 @@ public:
     bool getSimilarStatus();
     int getCategId();
     int getSubCategId();
+    void SetStoredSettings(int id);
 
 private:
     void BuildPayeeList();
@@ -101,7 +104,6 @@ private:
     /// Creates the controls and sizers
     void CreateControls();
     void dataToControls();
-    wxString GetStoredSettings(int id);
 
     /// wxEVT_COMMAND_CHECKBOX_CLICKED event handler for ID_CHECKBOXACCOUNT
     void OnCheckboxClick( wxCommandEvent& event );

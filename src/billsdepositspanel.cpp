@@ -847,20 +847,17 @@ void mmBillsDepositsPanel::RefreshList()
 
 void mmBillsDepositsPanel::OnFilterTransactions(wxCommandEvent& WXUNUSED(event))
 {
-    wxBitmap bitmapFilterIcon(mmBitmap(png::RIGHTARROW));
 
     if (transFilterDlg_->ShowModal() == wxID_OK && transFilterDlg_->isSomethingSelected())
     {
         transFilterActive_ = true;
-        bitmapFilterIcon = mmBitmap(png::RIGHTARROW_ACTIVE);
+        m_bitmapTransFilter->SetBitmap(mmBitmap(png::RIGHTARROW_ACTIVE));
     }
     else 
     {
         transFilterActive_ = false;
+        m_bitmapTransFilter->SetBitmap(mmBitmap(png::RIGHTARROW));
     }
-
-    wxImage pic = bitmapFilterIcon.ConvertToImage();
-    m_bitmapTransFilter->SetBitmap(pic);
 
     initVirtualListControl();
 }

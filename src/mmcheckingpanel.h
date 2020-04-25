@@ -22,6 +22,7 @@ Copyright (C) 2013, 2014 Nikolay
 #define MM_EX_CHECKINGPANEL_H_
 //----------------------------------------------------------------------------
 #include "mmpanelbase.h"
+#include "constants.h"
 #include "reports/mmDateRange.h"
 #include "model/Model_Checking.h"
 #include "model/Model_Account.h"
@@ -237,8 +238,9 @@ private:
         ID_PANEL_CHECKING_STATIC_BALHEADER4,
         ID_PANEL_CHECKING_STATIC_BALHEADER5,
         ID_PANEL_CHECKING_STATIC_DETAILS,
-        ID_PANEL_CHECKING_STATIC_BITMAP_FILTER,
+        ID_TRX_FILTER,
     };
+
     enum menu
     {
         MENU_VIEW_ALLTRANSACTIONS = 0,
@@ -254,30 +256,33 @@ private:
         MENU_VIEW_LASTYEAR,
         MENU_VIEW_LASTFINANCIALYEAR,
         MENU_VIEW_STATEMENTDATE,
+        MENU_VIEW_FILTER_DIALOG,
     };
-
 private:
     static wxArrayString menu_labels()
     {
         wxArrayString items;
-        items.Add(wxTRANSLATE("View All Transactions"));
-        items.Add(wxTRANSLATE("View Today"));
-        items.Add(wxTRANSLATE("View Current Month"));
-        items.Add(wxTRANSLATE("View Last 30 days"));
-        items.Add(wxTRANSLATE("View Last 90 days"));
-        items.Add(wxTRANSLATE("View Last Month"));
-        items.Add(wxTRANSLATE("View Last 3 Months"));
-        items.Add(wxTRANSLATE("View Last 12 Months"));
-        items.Add(wxTRANSLATE("View Current Year"));
-        items.Add(wxTRANSLATE("View Current Financial Year"));
-        items.Add(wxTRANSLATE("View Last Year"));
-        items.Add(wxTRANSLATE("View Last Financial Year"));
-        items.Add(wxTRANSLATE("View Since Statement Date"));
+        items.Add(VIEW_TRANS_ALL_STR); //0
+        items.Add(VIEW_TRANS_TODAY_STR);
+        items.Add(VIEW_TRANS_CURRENT_MONTH_STR);
+        items.Add(VIEW_TRANS_LAST_30_DAYS_STR);
+        items.Add(VIEW_TRANS_LAST_90_DAYS_STR);
+        items.Add(VIEW_TRANS_LAST_MONTH_STR);  //5
+        items.Add(VIEW_TRANS_LAST_3MONTHS_STR);
+        items.Add(VIEW_TRANS_LAST_12MONTHS_STR);
+        items.Add(VIEW_TRANS_CURRENT_YEAR_STR);
+        items.Add(VIEW_TRANS_CRRNT_FIN_YEAR_STR);
+        items.Add(VIEW_TRANS_LAST_YEAR_STR); //10
+        items.Add(VIEW_TRANS_LAST_FIN_YEAR_STR);
+        items.Add(VIEW_TRANS_SINCE_STATEMENT_STR);
+        items.Add(VIEW_TRANS_FILTER_DIALOG_STR);
         return items;
     }
+
     wxDECLARE_EVENT_TABLE();
     friend class TransactionListCtrl; // needs access to m_core, initdb_, ...
 
+    wxButton* m_bitmapTransFilter;
     wxButton* m_btnNew;
     wxButton* m_btnEdit;
     wxButton* m_btnDuplicate;
@@ -286,10 +291,8 @@ private:
     wxStaticText* m_header_text;
     wxStaticText* m_info_panel;
     wxStaticText* m_info_panel_mini;
-    wxStaticText* m_stxtMainFilter;
     wxStaticText* m_statTextTransFilter;
-    wxStaticBitmap* m_bitmapTransFilter;
-    wxStaticBitmap* m_bitmapMainFilter;
+
     wxSharedPtr<mmFilterTransactionsDialog> m_trans_filter_dlg;
 
 private:
@@ -335,15 +338,12 @@ private:
     void OnDuplicateTransaction(wxCommandEvent& event);
     void OnMoveTransaction(wxCommandEvent& event);
     void OnOpenAttachment(wxCommandEvent& event);
-    void OnMouseLeftDown( wxMouseEvent& event );
+    void OnMouseLeftDown( wxCommandEvent& event );
     void OnViewPopupSelected(wxCommandEvent& event);
-    void OnFilterTransactions(wxMouseEvent& event);
     void OnSearchTxtEntered(wxCommandEvent& event);
-    void OnFilterResetToViewAll(wxMouseEvent& event);
 
     void DeleteViewedTransactions();
     void DeleteFlaggedTransactions(const wxString& status);
-    void SetTransactionFilterState(bool active);
 
     /* updates the checking panel data */
     void showTips();

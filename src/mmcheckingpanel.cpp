@@ -50,6 +50,7 @@ wxBEGIN_EVENT_TABLE(mmCheckingPanel, wxPanel)
     EVT_BUTTON(wxID_REMOVE,      mmCheckingPanel::OnDeleteTransaction)
     EVT_BUTTON(wxID_DUPLICATE,    mmCheckingPanel::OnDuplicateTransaction)
     EVT_BUTTON(wxID_FILE, mmCheckingPanel::OnOpenAttachment)
+    EVT_BUTTON(ID_TRX_FILTER, mmCheckingPanel::OnMouseLeftDown)
     EVT_MENU_RANGE(wxID_HIGHEST + MENU_VIEW_ALLTRANSACTIONS, wxID_HIGHEST + MENU_VIEW_ALLTRANSACTIONS + menu_labels().size()
         , mmCheckingPanel::OnViewPopupSelected)
     EVT_SEARCHCTRL_SEARCH_BTN(wxID_FIND, mmCheckingPanel::OnSearchTxtEntered)
@@ -126,7 +127,6 @@ bool mmCheckingPanel::Create(
 
     m_transFilterActive = false;
     m_trans_filter_dlg = new mmFilterTransactionsDialog(this);
-    SetTransactionFilterState(true);
 
     initViewTransactionsHeader();
     initFilterSettings();
@@ -299,31 +299,17 @@ void mmCheckingPanel::markSelectedTransaction(int trans_id)
 }
 //----------------------------------------------------------------------------
 
-void mmCheckingPanel::OnMouseLeftDown( wxMouseEvent& event )
+void mmCheckingPanel::OnMouseLeftDown(wxCommandEvent& event)
 {
-    // depending on the clicked control's window id.
-    switch( event.GetId() )
+
+    wxMenu menu;
+    int id = wxID_HIGHEST + MENU_VIEW_ALLTRANSACTIONS;
+    for (const auto& i : menu_labels())
     {
-        case ID_PANEL_CHECKING_STATIC_BITMAP_FILTER :
-        {
-            wxCommandEvent ev(wxEVT_COMMAND_MENU_SELECTED, ID_PANEL_CHECKING_STATIC_BITMAP_FILTER);
-            GetEventHandler()->AddPendingEvent(ev);
-
-            break;
-        }
-        default:
-        {
-            wxMenu menu;
-            int id = wxID_HIGHEST + MENU_VIEW_ALLTRANSACTIONS;
-            for (const auto& i : menu_labels())
-            {
-                menu.Append(id++, wxGetTranslation(i));
-            }
-            PopupMenu(&menu, event.GetPosition());
-
-            break;
-        }
+        menu.Append(id++, wxGetTranslation(i));
     }
+    PopupMenu(&menu);
+
     event.Skip();
 }
 
@@ -350,33 +336,19 @@ void mmCheckingPanel::CreateControls()
     itemBoxSizerVHeader2->Add(m_header_text, g_flagsBorder1H);
 
     wxBoxSizer* itemBoxSizerHHeader2 = new wxBoxSizer(wxHORIZONTAL);
-    wxFlexGridSizer* itemFlexGridSizerHHeader2 = new wxFlexGridSizer(5, 1, 1);
+    wxFlexGridSizer* itemFlexGridSizerHHeader2 = new wxFlexGridSizer(3, 1, 1);
     itemBoxSizerVHeader2->Add(itemBoxSizerHHeader2);
     itemBoxSizerHHeader2->Add(itemFlexGridSizerHHeader2);
 
-    m_bitmapMainFilter = new wxStaticBitmap(headerPanel, wxID_PAGE_SETUP
-        , mmBitmap(png::RIGHTARROW));
-    itemFlexGridSizerHHeader2->Add(m_bitmapMainFilter, g_flagsBorder1H);
-    m_bitmapMainFilter->Connect(wxID_ANY, wxEVT_RIGHT_DOWN
-        , wxMouseEventHandler(mmCheckingPanel::OnFilterResetToViewAll), nullptr, this);
-    m_bitmapMainFilter->Connect(wxID_ANY, wxEVT_LEFT_DOWN
-        , wxMouseEventHandler(mmCheckingPanel::OnMouseLeftDown), nullptr, this);
+    m_bitmapTransFilter = new wxButton(headerPanel, ID_TRX_FILTER);
+    m_bitmapTransFilter->SetBitmap(mmBitmap(png::RIGHTARROW));
+    m_bitmapTransFilter->SetMinSize(wxSize(220, -1));
 
-    m_stxtMainFilter = new wxStaticText(headerPanel, wxID_ANY, "", wxDefaultPosition, wxSize(250, -1));
-    itemFlexGridSizerHHeader2->Add(m_stxtMainFilter, g_flagsBorder1H);
+    itemFlexGridSizerHHeader2->Add(m_bitmapTransFilter, g_flagsBorder1H);
 
     itemFlexGridSizerHHeader2->AddSpacer(20);
 
-    m_bitmapTransFilter = new wxStaticBitmap(headerPanel, ID_PANEL_CHECKING_STATIC_BITMAP_FILTER
-        , mmBitmap(png::RIGHTARROW));
-    itemFlexGridSizerHHeader2->Add(m_bitmapTransFilter, g_flagsBorder1H);
-    m_bitmapTransFilter->Connect(wxID_ANY, wxEVT_LEFT_DOWN
-        , wxMouseEventHandler(mmCheckingPanel::OnFilterTransactions), nullptr, this);
-    m_bitmapTransFilter->Connect(wxID_ANY, wxEVT_RIGHT_DOWN
-        , wxMouseEventHandler(mmCheckingPanel::OnFilterTransactions), nullptr, this);
-
-    m_statTextTransFilter = new wxStaticText(headerPanel, wxID_ANY
-        , _("Transaction Filter"));
+    m_statTextTransFilter = new wxStaticText(headerPanel, wxID_ANY, "");
     itemFlexGridSizerHHeader2->Add(m_statTextTransFilter, g_flagsBorder1H);
 
     wxStaticText* itemStaticText12 = new wxStaticText(headerPanel
@@ -640,97 +612,114 @@ void mmCheckingPanel::initViewTransactionsHeader()
     if (m_currentView < 0 || m_currentView >= static_cast<int>(menu_labels().size()))
         m_currentView = menu_labels().Index(VIEW_TRANS_ALL_STR);
 
-    SetTransactionFilterState(m_currentView == MENU_VIEW_ALLTRANSACTIONS);
-    m_stxtMainFilter->SetLabelText(wxGetTranslation(menu_labels()[m_currentView]));
 }
 //----------------------------------------------------------------------------
 void mmCheckingPanel::initFilterSettings()
 {
+    m_transFilterActive = false;
+    wxString label = "";
+    m_bitmapTransFilter->UnsetToolTip();
     mmDateRange* date_range = NULL;
+    bool show_future = !Option::instance().getIgnoreFutureTransactions();
+    const wxString& future_date_string = wxDateTime(31, wxDateTime::Dec, 9999).FormatISODate();
+    m_begin_date = "";
+    m_end_date = "";
 
-    if (!m_transFilterActive)
-    {
-        if (m_currentView == MENU_VIEW_TODAY)
-            date_range = new mmToday;
-        else if (m_currentView == MENU_VIEW_CURRENTMONTH)
-            date_range = new mmCurrentMonth;
-        else if (m_currentView == MENU_VIEW_LAST30)
-            date_range = new mmLast30Days;
-        else if (m_currentView == MENU_VIEW_LAST90)
-            date_range = new mmLast90Days;
-        else if (m_currentView == MENU_VIEW_LASTMONTH)
-            date_range = new mmLastMonth;
-        else if (m_currentView == MENU_VIEW_LAST3MONTHS)
-            date_range = new mmLast3Months;
-        else if (m_currentView == MENU_VIEW_LAST12MONTHS)
-            date_range = new mmLast12Months;
-        else if (m_currentView == MENU_VIEW_CURRENTYEAR)
-            date_range = new mmCurrentYear;
-        else if (m_currentView == MENU_VIEW_CURRENTFINANCIALYEAR)
-            date_range = new mmCurrentFinancialYear(wxAtoi(Option::instance().FinancialYearStartDay())
-                , wxAtoi(Option::instance().FinancialYearStartMonth()));
-        else if (m_currentView == MENU_VIEW_LASTYEAR)
-            date_range = new mmLastYear;
-        else if (m_currentView == MENU_VIEW_LASTFINANCIALYEAR)
-            date_range = new mmLastFinancialYear(wxAtoi(Option::instance().FinancialYearStartDay())
-                , wxAtoi(Option::instance().FinancialYearStartMonth()));
-        else if (m_currentView == MENU_VIEW_STATEMENTDATE)
+    switch (m_currentView) {
+    case MENU_VIEW_TODAY:
+        date_range = new mmToday;
+        break;
+    case MENU_VIEW_CURRENTMONTH:
+        date_range = new mmCurrentMonth;
+        if (show_future) m_end_date = future_date_string;
+        break;
+    case MENU_VIEW_LAST30:
+        date_range = new mmLast30Days;
+        if (show_future) m_end_date = future_date_string;
+        break;
+    case MENU_VIEW_LAST90:
+        date_range = new mmLast90Days;
+        if (show_future) m_end_date = future_date_string;
+        break;
+    case MENU_VIEW_LASTMONTH:
+        date_range = new mmLastMonth;
+        break;
+    case MENU_VIEW_LAST3MONTHS:
+        date_range = new mmLast3Months;
+        break;
+    case MENU_VIEW_LAST12MONTHS:
+        date_range = new mmLast12Months;
+        break;
+    case  MENU_VIEW_CURRENTYEAR:
+        date_range = new mmCurrentYear;
+        if (show_future) m_end_date = future_date_string;
+        break;
+    case  MENU_VIEW_CURRENTFINANCIALYEAR:
+        date_range = new mmCurrentFinancialYear(wxAtoi(Option::instance().FinancialYearStartDay())
+            , wxAtoi(Option::instance().FinancialYearStartMonth()));
+        if (show_future) m_end_date = future_date_string;
+        break;
+    case  MENU_VIEW_LASTYEAR:
+        date_range = new mmLastYear;
+        break;
+    case  MENU_VIEW_LASTFINANCIALYEAR:
+        date_range = new mmLastFinancialYear(wxAtoi(Option::instance().FinancialYearStartDay())
+            , wxAtoi(Option::instance().FinancialYearStartMonth()));
+        break;
+    case  MENU_VIEW_STATEMENTDATE:
+        if (Model_Account::BoolOf(m_account->STATEMENTLOCKED))
         {
-            if (Model_Account::BoolOf(m_account->STATEMENTLOCKED))
-            {
-                date_range = new mmSpecifiedRange(Model_Account::DateOf(m_account->STATEMENTDATE)
-                    .Add(wxDateSpan::Day()), wxDateTime::Today());
-            }
+            date_range = new mmSpecifiedRange(Model_Account::DateOf(m_account->STATEMENTDATE)
+                .Add(wxDateSpan::Day()), wxDateTime::Today());
+            label = mmGetDateForDisplay(date_range->start_date().FormatISODate());
         }
-    }
-	if (date_range == NULL)
-	{
-		date_range = new mmAllTime;
-	}
+        break;
+    case MENU_VIEW_FILTER_DIALOG:
+        m_trans_filter_dlg->SetStoredSettings(-1);
+        m_bitmapTransFilter->SetToolTip(m_trans_filter_dlg->getDescriptionToolTip());
+        m_transFilterActive = true;
+        break;
 
-    m_begin_date = date_range->start_date().FormatISODate();
-    bool ignore_future = Option::instance().getIgnoreFutureTransactions();
-    m_end_date = ignore_future
-        ? date_range->end_date().FormatISODate()
-        : "9999-12-31";
+    }
+
+
+    if (date_range == NULL) {
+        date_range = new mmAllTime;
+    }
+
+    if (m_begin_date.empty()) {
+        m_begin_date = date_range->start_date().FormatISODate();
+    }
+
+    if (m_end_date.empty()) {
+        m_end_date = date_range->end_date().FormatISODate();
+    }
     delete date_range;
-}
 
-void mmCheckingPanel::OnFilterResetToViewAll(wxMouseEvent& event) {
-
-    if (m_currentView == MENU_VIEW_ALLTRANSACTIONS)
-    {
-        event.Skip();
-        return;
-    }
-
-    m_currentView = MENU_VIEW_ALLTRANSACTIONS;
-    m_stxtMainFilter->SetLabelText(wxGetTranslation(menu_labels()[m_currentView]));
-    SetTransactionFilterState(true);
-    initFilterSettings();
-
-    m_listCtrlAccount->m_selectedIndex = -1;
-    RefreshList();
-    this->Layout();
+    const auto item = menu_labels()[m_currentView];
+    Model_Infotable::instance().Set(wxString::Format("CHECK_FILTER_ID_%d", m_AccountID), item);
+    m_bitmapTransFilter->SetLabel(wxGetTranslation(item));
+    m_bitmapTransFilter->SetBitmap(m_transFilterActive ? mmBitmap(png::RIGHTARROW_ACTIVE) : mmBitmap(png::RIGHTARROW));
+    m_statTextTransFilter->SetLabelText(label);
 }
 
 void mmCheckingPanel::OnViewPopupSelected(wxCommandEvent& event)
 {
     m_currentView = event.GetId() - wxID_HIGHEST;
 
-    if (m_currentView == MENU_VIEW_ALLTRANSACTIONS)
-        m_transFilterActive = false;
+    m_transFilterActive = false;
 
-    m_stxtMainFilter->SetLabelText(wxGetTranslation(menu_labels()[m_currentView]));
-    SetTransactionFilterState(m_currentView == MENU_VIEW_ALLTRANSACTIONS);
+    if (m_currentView == MENU_VIEW_FILTER_DIALOG)
+    {
+        m_trans_filter_dlg->setAccountToolTip(_("Select account used in transfer transactions"));
+        m_transFilterActive = (m_trans_filter_dlg->ShowModal() == wxID_OK
+            && m_trans_filter_dlg->isSomethingSelected());
+        if (!m_transFilterActive)
+            m_currentView = MENU_VIEW_ALLTRANSACTIONS;
+    }
 
-    m_listCtrlAccount->m_selectedIndex = -1;
-
-    Model_Infotable::instance().Set(wxString::Format("CHECK_FILTER_ID_%ld", static_cast<long>(m_AccountID))
-        , menu_labels()[m_currentView]);
     initFilterSettings();
     RefreshList(m_listCtrlAccount->m_selectedID);
-    m_stxtMainFilter->Layout();
 }
 
 void mmCheckingPanel::DeleteViewedTransactions()
@@ -766,30 +755,6 @@ void mmCheckingPanel::DeleteFlaggedTransactions(const wxString& status)
     }
     Model_Checking::instance().ReleaseSavepoint();
 }
-
-void mmCheckingPanel::OnFilterTransactions(wxMouseEvent& event)
-{
-    int e = event.GetEventType();
-
-    if (e == wxEVT_LEFT_DOWN)
-    {
-        m_trans_filter_dlg->setAccountToolTip(_("Select account used in transfer transactions"));
-        m_transFilterActive = (m_trans_filter_dlg->ShowModal() == wxID_OK 
-            && m_trans_filter_dlg->isSomethingSelected());
-    }
-    else 
-    {
-        if (m_transFilterActive == false) return;
-        m_transFilterActive = false;
-    }
-    
-    m_bitmapTransFilter->SetBitmap(m_transFilterActive 
-        ? mmBitmap(png::RIGHTARROW_ACTIVE) : mmBitmap(png::RIGHTARROW));
-    SetTransactionFilterState(true);
-
-    RefreshList(m_listCtrlAccount->m_selectedID);
-}
-
 
 const wxString mmCheckingPanel::getItem(long item, long column)
 {
@@ -893,12 +858,6 @@ void mmCheckingPanel::DisplaySplitCategories(int transID)
 void mmCheckingPanel::RefreshList(int transID)
 {
     m_listCtrlAccount->refreshVisualList(transID);
-}
-
-void mmCheckingPanel::SetTransactionFilterState(bool WXUNUSED(active))
-{
-    m_bitmapMainFilter->Enable(!m_transFilterActive);
-    m_stxtMainFilter->Enable(!m_transFilterActive);
 }
 
 void mmCheckingPanel::SetSelectedTransaction(int transID)

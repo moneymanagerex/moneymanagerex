@@ -99,6 +99,7 @@ namespace weblink
 } // namespace weblink
 } // namespace mmex
 
+extern const wxString VIEW_TRANS_FILTER_DIALOG_STR;
 extern const wxString VIEW_TRANS_ALL_STR;
 extern const wxString VIEW_TRANS_TODAY_STR;
 extern const wxString VIEW_TRANS_CURRENT_MONTH_STR;
@@ -108,9 +109,10 @@ extern const wxString VIEW_TRANS_LAST_MONTH_STR;
 extern const wxString VIEW_TRANS_LAST_3MONTHS_STR;
 extern const wxString VIEW_TRANS_LAST_12MONTHS_STR;
 extern const wxString VIEW_TRANS_CURRENT_YEAR_STR;
-extern const wxString VIEW_TRANS_CURRENT_FIN_YEAR_STR;
+extern const wxString VIEW_TRANS_CRRNT_FIN_YEAR_STR;
 extern const wxString VIEW_TRANS_LAST_YEAR_STR;
 extern const wxString VIEW_TRANS_LAST_FIN_YEAR_STR;
+extern const wxString VIEW_TRANS_SINCE_STATEMENT_STR;
 
 extern const wxString VIEW_ACCOUNTS_ALL_STR;
 extern const wxString VIEW_ACCOUNTS_OPEN_STR;
