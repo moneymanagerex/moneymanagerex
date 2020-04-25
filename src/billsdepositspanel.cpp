@@ -64,6 +64,7 @@ wxBEGIN_EVENT_TABLE(mmBillsDepositsPanel, wxPanel)
     EVT_BUTTON(wxID_PASTE, mmBillsDepositsPanel::OnEnterBDTransaction)
     EVT_BUTTON(wxID_IGNORE, mmBillsDepositsPanel::OnSkipBDTransaction)
     EVT_BUTTON(wxID_FILE, mmBillsDepositsPanel::OnOpenAttachment)
+    EVT_BUTTON(wxID_FILE2, mmBillsDepositsPanel::OnFilterTransactions)
 wxEND_EVENT_TABLE()
 /*******************************************************/
 wxBEGIN_EVENT_TABLE(billsDepositsListCtrl, mmListCtrl)
@@ -158,7 +159,7 @@ mmBillsDepositsPanel::mmBillsDepositsPanel(wxWindow *parent, wxWindowID winid
     : m_imageList(nullptr)
     , listCtrlAccount_(nullptr)
     , transFilterDlg_(nullptr)
-    , bitmapTransFilter_(nullptr)
+    , m_bitmapTransFilter(nullptr)
     , m_infoTextMini(nullptr)
     , m_infoText(nullptr)
 {
@@ -224,17 +225,10 @@ void mmBillsDepositsPanel::CreateControls()
     wxBoxSizer* itemBoxSizerHHeader2 = new wxBoxSizer(wxHORIZONTAL);
     itemBoxSizerVHeader->Add(itemBoxSizerHHeader2);
 
-    bitmapTransFilter_ = new wxStaticBitmap(headerPanel, wxID_ANY, mmBitmap(png::RIGHTARROW));
-    itemBoxSizerHHeader2->Add(bitmapTransFilter_, g_flagsBorder1H);
-    bitmapTransFilter_->Connect(wxID_ANY, wxEVT_LEFT_DOWN
-        , wxMouseEventHandler(mmBillsDepositsPanel::OnFilterTransactions), nullptr, this);
-    bitmapTransFilter_->Connect(wxID_ANY, wxEVT_RIGHT_DOWN
-        , wxMouseEventHandler(mmBillsDepositsPanel::OnFilterTransactions), nullptr, this);
-
-    itemBoxSizerHHeader2->AddSpacer(5);
-    wxStaticText* statTextTransFilter_ = new wxStaticText(headerPanel, wxID_ANY
-        , _("Transaction Filter"));
-    itemBoxSizerHHeader2->Add(statTextTransFilter_, 0, wxALIGN_CENTER_VERTICAL | wxALL, 1);
+    m_bitmapTransFilter = new wxButton(headerPanel, wxID_FILE2);
+    m_bitmapTransFilter->SetBitmap(mmBitmap(png::RIGHTARROW));
+    m_bitmapTransFilter->SetLabel(_("Transaction Filter"));
+    itemBoxSizerHHeader2->Add(m_bitmapTransFilter, g_flagsBorder1H);
 
     /* ---------------------- */
     wxSplitterWindow* itemSplitterWindowBillsDeposit = new wxSplitterWindow(this
@@ -851,33 +845,22 @@ void mmBillsDepositsPanel::RefreshList()
     listCtrlAccount_->RefreshList();
 }
 
-void mmBillsDepositsPanel::OnFilterTransactions(wxMouseEvent& event)
+void mmBillsDepositsPanel::OnFilterTransactions(wxCommandEvent& WXUNUSED(event))
 {
-
-    int e = event.GetEventType();
-
     wxBitmap bitmapFilterIcon(mmBitmap(png::RIGHTARROW));
 
-    if (e == wxEVT_LEFT_DOWN)
+    if (transFilterDlg_->ShowModal() == wxID_OK && transFilterDlg_->isSomethingSelected())
     {
-
-        if (transFilterDlg_->ShowModal() == wxID_OK && transFilterDlg_->somethingSelected())
-        {
-            transFilterActive_ = true;
-            bitmapFilterIcon = mmBitmap(png::RIGHTARROW_ACTIVE);
-        }
-        else
-        {
-            transFilterActive_ = false;
-        }
-
-    } else {
-        if (transFilterActive_ == false) return;
+        transFilterActive_ = true;
+        bitmapFilterIcon = mmBitmap(png::RIGHTARROW_ACTIVE);
+    }
+    else 
+    {
         transFilterActive_ = false;
     }
 
     wxImage pic = bitmapFilterIcon.ConvertToImage();
-    bitmapTransFilter_->SetBitmap(pic);
+    m_bitmapTransFilter->SetBitmap(pic);
 
     initVirtualListControl();
 }

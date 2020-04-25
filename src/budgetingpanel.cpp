@@ -36,8 +36,6 @@ enum
     MENU_VIEW_INCOMEBUDGETENTRIES,
     MENU_VIEW_SUMMARYBUDGETENTRIES,
     MENU_VIEW_EXPENSEBUDGETENTRIES,
-    ID_PANEL_BUDGETENTRY_STATIC_BITMAP_VIEW,
-    ID_PANEL_CHECKING_STATIC_PANELVIEW,
     ID_PANEL_REPORTS_HEADER_PANEL,
     ID_DIALOG_BUDGETENTRY_SUMMARY_INCOME_ACT,
     ID_DIALOG_BUDGETENTRY_SUMMARY_INCOME_DIF,
@@ -58,7 +56,7 @@ static const wxString VIEW_SUMM = wxTRANSLATE("View Budget Category Summary");
 
 /*******************************************************/
 wxBEGIN_EVENT_TABLE(mmBudgetingPanel, wxPanel)
-    EVT_LEFT_DOWN(mmBudgetingPanel::OnMouseLeftDown)
+    EVT_BUTTON(wxID_FILE2, mmBudgetingPanel::OnMouseLeftDown)
     EVT_MENU(wxID_ANY, mmBudgetingPanel::OnViewPopupSelected)
 wxEND_EVENT_TABLE()
 /*******************************************************/
@@ -83,6 +81,7 @@ mmBudgetingPanel::mmBudgetingPanel(int budgetYearID
     , expenses_actual_(nullptr)
     , expenses_diff_(nullptr)
     , budgetReportHeading_(nullptr)
+    , m_bitmapTransFilter(nullptr)
 {
     Create(parent, winid, pos, size, style, name);
 }
@@ -145,25 +144,18 @@ void mmBudgetingPanel::RefreshList()
         listCtrlBudget_->EnsureVisible(0);
 }
 
-void mmBudgetingPanel::OnMouseLeftDown(wxMouseEvent& event)
+void mmBudgetingPanel::OnMouseLeftDown(wxCommandEvent& event)
 {
-    // depending on the clicked control's window id.
-    switch (event.GetId())
-    {
-        case ID_PANEL_BUDGETENTRY_STATIC_BITMAP_VIEW :
-        {
-            wxMenu menu;
-            menu.Append(MENU_VIEW_ALLBUDGETENTRIES, wxGetTranslation(VIEW_ALL));
-            menu.Append(MENU_VIEW_PLANNEDBUDGETENTRIES, wxGetTranslation(VIEW_PLANNED));
-            menu.Append(MENU_VIEW_NONZEROBUDGETENTRIES, wxGetTranslation(VIEW_NON_ZERO));
-            menu.Append(MENU_VIEW_INCOMEBUDGETENTRIES, wxGetTranslation(VIEW_INCOME));
-            menu.Append(MENU_VIEW_EXPENSEBUDGETENTRIES, wxGetTranslation(VIEW_EXPENSE));
-            menu.AppendSeparator();
-            menu.Append(MENU_VIEW_SUMMARYBUDGETENTRIES, wxGetTranslation(VIEW_SUMM));
-            PopupMenu(&menu, event.GetPosition());
-            break;
-        }
-    }
+    wxMenu menu;
+    menu.Append(MENU_VIEW_ALLBUDGETENTRIES, wxGetTranslation(VIEW_ALL));
+    menu.Append(MENU_VIEW_PLANNEDBUDGETENTRIES, wxGetTranslation(VIEW_PLANNED));
+    menu.Append(MENU_VIEW_NONZEROBUDGETENTRIES, wxGetTranslation(VIEW_NON_ZERO));
+    menu.Append(MENU_VIEW_INCOMEBUDGETENTRIES, wxGetTranslation(VIEW_INCOME));
+    menu.Append(MENU_VIEW_EXPENSEBUDGETENTRIES, wxGetTranslation(VIEW_EXPENSE));
+    menu.AppendSeparator();
+    menu.Append(MENU_VIEW_SUMMARYBUDGETENTRIES, wxGetTranslation(VIEW_SUMM));
+    PopupMenu(&menu);
+
     event.Skip();
 }
 
@@ -194,9 +186,7 @@ wxString mmBudgetingPanel::GetPanelTitle() const
 void mmBudgetingPanel::UpdateBudgetHeading()
 {
     budgetReportHeading_->SetLabel(GetPanelTitle());
-
-    wxStaticText* header = static_cast<wxStaticText*>(FindWindow(ID_PANEL_CHECKING_STATIC_PANELVIEW));
-    header->SetLabel(wxGetTranslation(currentView_));
+    m_bitmapTransFilter->SetLabel(wxGetTranslation(currentView_));
 }
 
 void mmBudgetingPanel::CreateControls()
@@ -225,16 +215,10 @@ void mmBudgetingPanel::CreateControls()
     wxBoxSizer* itemBoxSizerHHeader2 = new wxBoxSizer(wxHORIZONTAL);
     itemBoxSizerVHeader->Add(itemBoxSizerHHeader2, 0, wxALL, 1);
 
-    wxStaticBitmap* itemStaticBitmap3 = new wxStaticBitmap(itemPanel3
-        , ID_PANEL_BUDGETENTRY_STATIC_BITMAP_VIEW
-        , mmBitmap(png::RIGHTARROW));
-    itemStaticBitmap3->Connect(ID_PANEL_BUDGETENTRY_STATIC_BITMAP_VIEW, wxEVT_LEFT_DOWN
-        , wxMouseEventHandler(mmBudgetingPanel::OnMouseLeftDown), nullptr, this);
-    itemBoxSizerHHeader2->Add(itemStaticBitmap3, 0, wxALIGN_CENTER_VERTICAL|wxALL, 1);
-
-    wxStaticText* itemStaticText18 = new wxStaticText(itemPanel3
-        , ID_PANEL_CHECKING_STATIC_PANELVIEW, "");
-    itemBoxSizerHHeader2->Add(itemStaticText18, 0, wxALL, 1);
+    m_bitmapTransFilter = new wxButton(itemPanel3, wxID_FILE2);
+    m_bitmapTransFilter->SetBitmap(mmBitmap(png::RIGHTARROW));
+    m_bitmapTransFilter->SetMinSize(wxSize(220, -1));
+    itemBoxSizerHHeader2->Add(m_bitmapTransFilter, g_flagsBorder1H);
 
     wxFlexGridSizer* itemIncomeSizer = new wxFlexGridSizer(0, 7, 5, 10);
     itemBoxSizerVHeader->Add(itemIncomeSizer);

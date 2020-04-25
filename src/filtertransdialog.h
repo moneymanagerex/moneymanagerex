@@ -47,7 +47,7 @@ public:
     bool checkAll(const Model_Billsdeposits::Data &tran
         , const std::map<int, Model_Budgetsplittransaction::Data_Set>& split);
     void getDescription(mmHTMLBuilder &hb);
-    bool somethingSelected();
+    bool isSomethingSelected();
     void setAccountToolTip(const wxString& tip) const;
     bool getStatusCheckBox();
     bool getAccountCheckBox();

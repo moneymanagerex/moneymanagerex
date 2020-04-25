@@ -507,7 +507,7 @@ void mmFilterTransactionsDialog::OnCategs(wxCommandEvent& /*event*/)
     }
 }
 
-bool mmFilterTransactionsDialog::somethingSelected()
+bool mmFilterTransactionsDialog::isSomethingSelected()
 {
     return
         getAccountCheckBox()

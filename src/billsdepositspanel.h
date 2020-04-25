@@ -150,9 +150,9 @@ private:
     };
 
     bool transFilterActive_;
-    void OnFilterTransactions(wxMouseEvent& event);
+    void OnFilterTransactions(wxCommandEvent& WXUNUSED(event));
     mmFilterTransactionsDialog* transFilterDlg_;
-    wxStaticBitmap* bitmapTransFilter_;
+    wxButton* m_bitmapTransFilter;
 
     wxArrayString tips_;
 };

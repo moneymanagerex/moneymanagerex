@@ -775,7 +775,7 @@ void mmCheckingPanel::OnFilterTransactions(wxMouseEvent& event)
     {
         m_trans_filter_dlg->setAccountToolTip(_("Select account used in transfer transactions"));
         m_transFilterActive = (m_trans_filter_dlg->ShowModal() == wxID_OK 
-            && m_trans_filter_dlg->somethingSelected());
+            && m_trans_filter_dlg->isSomethingSelected());
     }
     else 
     {
