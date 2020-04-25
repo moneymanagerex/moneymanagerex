@@ -1,6 +1,6 @@
 /*******************************************************
 Copyright (C) 2006 Madhan Kanagavel
-Copyright (C) 2016 Nikolay Akimov
+Copyright (C) 2016 - 2020 Nikolay Akimov
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by

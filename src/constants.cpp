@@ -40,7 +40,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *************************************************************************/
 const int mmex::version::Major = 1;
 const int mmex::version::Minor = 3;
-const int mmex::version::Patch = -5;
+const int mmex::version::Patch = 5;
 const int mmex::version::Alpha = -1;
 const int mmex::version::Beta  = 2;
 const int mmex::version::RC    = -1;
