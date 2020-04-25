@@ -6,7 +6,7 @@
 
 function generateLangMenu(nav) {
     var list = [
-        { id: "en", flag: "gb", lang: "English"   },
+        { id: "en", flag: "en", lang: "English"   },
         { id: "de", flag: "de", lang: "German"    },
         { id: "fr", flag: "fr", lang: "French"    },
         { id: "hu", flag: "hu", lang: "Hungarian" },
