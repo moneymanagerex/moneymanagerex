@@ -2798,6 +2798,7 @@ void mmGUIFrame::OnGotoAccount(wxCommandEvent& WXUNUSED(event))
         proper_type = Model_Account::type(acc) != Model_Account::INVESTMENT;
     if (proper_type)
         createCheckingAccountPage(gotoAccountID_);
+    m_nav_tree_ctrl->Refresh();
 }
 
 void mmGUIFrame::OnGotoStocksAccount(wxCommandEvent& WXUNUSED(event))
@@ -2808,6 +2809,7 @@ void mmGUIFrame::OnGotoStocksAccount(wxCommandEvent& WXUNUSED(event))
         proper_type = Model_Account::type(acc) == Model_Account::INVESTMENT;
     if (proper_type)
         createStocksAccountPage(gotoAccountID_);
+    m_nav_tree_ctrl->Refresh();
 }
 
 void mmGUIFrame::OnAssets(wxCommandEvent& /*event*/)

@@ -76,7 +76,7 @@ public:
                 const Model_Checking::Data* transaction = Model_Checking::instance().get(transID);
                 if (transaction && transaction->TRANSID > -1)
                 {
-                    mmTransDialog dlg(nullptr, -1, transID, 0);
+                    mmTransDialog dlg(frame, -1, transID, 0);
                     if (dlg.ShowModal() == wxID_OK)
                     {
                         m_reportPanel->rb_->getHTMLText();
@@ -94,7 +94,7 @@ public:
 
             if (Model_Attachment::instance().all_type().Index(RefType) != wxNOT_FOUND && RefId > 0)
             {
-                mmAttachmentManage::OpenAttachmentFromPanelIcon(nullptr, RefType, RefId);
+                mmAttachmentManage::OpenAttachmentFromPanelIcon(frame, RefType, RefId);
                 const auto name = getVFname4print("rep", m_reportPanel->getPrintableBase()->getHTMLText());
                 m_reportPanel->browser_->LoadURL(name);
             }

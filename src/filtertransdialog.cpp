@@ -777,10 +777,10 @@ bool mmFilterTransactionsDialog::checkAll(const Model_Checking::Data &tran
     else if (getAmountRangeCheckBoxMin() && getAmountMin() > tran.TRANSAMOUNT) ok = false;
     else if (getAmountRangeCheckBoxMax() && getAmountMax() < tran.TRANSAMOUNT) ok = false;
     else if (getNumberCheckBox() && (getNumber().empty() ? !tran.TRANSACTIONNUMBER.empty()
-        : !tran.TRANSACTIONNUMBER.Lower().Matches(getNumber().Lower())))
+        : tran.TRANSACTIONNUMBER.empty() || !tran.TRANSACTIONNUMBER.Lower().Matches(getNumber().Lower())))
         ok = false;
     else if (getNotesCheckBox() && (getNotes().empty() ? !tran.NOTES.empty()
-        : !tran.NOTES.Lower().Matches(getNotes().Lower())))
+        : tran.NOTES.empty() || !tran.NOTES.Lower().Matches(getNotes().Lower())))
         ok = false;
     return ok;
 }
