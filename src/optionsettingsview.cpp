@@ -111,10 +111,19 @@ void OptionSettingsView::Create()
     m_scale_factor = new wxSpinCtrl(this, wxID_ANY
         , wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, min, max);
 
-    int vFontSize = Option::instance().HtmlFontSize();
+    int vFontSize = Option::instance().getHtmlFontSize();
     m_scale_factor->SetValue(vFontSize);
     m_scale_factor->SetToolTip(_("Specify which scale factor is used for the report pages"));
     view_sizer1->Add(m_scale_factor, g_flagsH);
+    
+    // Icon size
+    int vIconSize = Option::instance().getIconSize();
+    view_sizer1->Add(new wxStaticText(this, wxID_STATIC, _("Icons size")), g_flagsH);
+    m_icon_size = new wxSlider(this, wxID_RESIZE_FRAME, vIconSize, 16, 48
+        , wxDefaultPosition, wxDefaultSize, wxSL_HORIZONTAL | wxSL_VALUE_LABEL);
+    m_icon_size->SetLineSize(8);
+    m_icon_size->SetTickFreq(8);
+    view_sizer1->Add(m_icon_size, g_flagsH);
 
     // Budget options
     m_budget_financial_years = new wxCheckBox(this, wxID_STATIC, _("View Budgets as Financial Years")
@@ -219,7 +228,12 @@ void OptionSettingsView::SaveSettings()
     Model_Setting::instance().SetViewTransactions(transVisible);
 
     int size = m_scale_factor->GetValue();
-    Option::instance().HtmlFontSize(size);
+    Option::instance().setHTMLFontSizes(size);
+
+    size = m_icon_size->GetValue();
+    size = static_cast<int>((4 + size) / 8) * 8;
+    if (size == 40) size = 48;
+    Option::instance().setIconSize(size);
 
     Option::instance().BudgetFinancialYears(m_budget_financial_years->GetValue());
     Option::instance().BudgetIncludeTransfers(m_budget_include_transfers->GetValue());

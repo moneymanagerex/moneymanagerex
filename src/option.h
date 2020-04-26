@@ -103,11 +103,11 @@ public:
     void setBudgetDateOffset(wxDateTime& date) const;
 
     /* stored value in percantage for scale html font and other objects */
-    void HtmlFontSize(int value);
-    int HtmlFontSize();
+    void setHTMLFontSizes(int value);
+    int getHtmlFontSize();
 
-    void IconSize(int value);
-    int IconSize();
+    void setIconSize(int value);
+    int getIconSize();
 
     int AccountImageId(int account_id, bool def = false);
 	bool getSendUsageStatistics() const;

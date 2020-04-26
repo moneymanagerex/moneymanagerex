@@ -75,7 +75,7 @@ wxString mmReportForecast::getHTMLText()
         , today.FormatISOTime());
     report(L"TODAY") = current_day_time;
     report(L"GRAND") = wxString::Format("%ld", static_cast<long>(amount_by_day.size()));
-    report(L"HTMLSCALE") = wxString::Format("%d", Option::instance().HtmlFontSize());
+    report(L"HTMLSCALE") = wxString::Format("%d", Option::instance().getHtmlFontSize());
 
     wxString out = wxEmptyString;
     try 

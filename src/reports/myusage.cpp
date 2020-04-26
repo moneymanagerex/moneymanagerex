@@ -137,7 +137,7 @@ wxString mmReportMyUsage::getHTMLText()
                             _end_date.GetDay());
     report(L"CONTENTS") = contents;
     report(L"GRAND") = wxString::Format("%zu", all_usage.size());
-    report(L"HTMLSCALE") = wxString::Format("%d", Option::instance().HtmlFontSize());
+    report(L"HTMLSCALE") = wxString::Format("%d", Option::instance().getHtmlFontSize());
     
     wxDateTime today = wxDateTime::Now();
     const wxString current_day_time = wxString::Format(_("Report Generated %s %s")

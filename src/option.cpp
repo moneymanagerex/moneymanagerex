@@ -45,7 +45,7 @@ Option::Option()
     , m_transDateDefault(0)
     , m_sharePrecision(4)
     , m_html_font_size(100)
-    , m_ico_size(16)
+    , m_ico_size(24)
     , m_budget_days_offset(0)
 {}
 
@@ -98,19 +98,7 @@ void Option::LoadOptions(bool include_infotable)
     m_usageStatistics = Model_Setting::instance().GetBoolSetting(INIDB_SEND_USAGE_STATS, true);
 
     m_html_font_size = Model_Setting::instance().GetIntSetting("HTMLSCALE", 100);
-    m_ico_size = 16;
-    if (m_html_font_size >= 300)
-    {
-        m_ico_size = 48;
-    }
-    else if (m_html_font_size >= 200)
-    {
-        m_ico_size = 32;
-    }
-    else if (m_html_font_size >= 150)
-    {
-        m_ico_size = 24;
-    }
+    m_ico_size = Model_Setting::instance().GetIntSetting("ICONSIZE", 24);
 }
 
 void Option::DateFormat(const wxString& dateformat)
@@ -301,15 +289,26 @@ bool Option::SendUsageStatistics()
     return m_usageStatistics;
 }
 
-void Option::HtmlFontSize(int value)
+void Option::setHTMLFontSizes(int value)
 {
     Model_Setting::instance().Set("HTMLSCALE", value);
     m_html_font_size = value;
 }
 
-int Option::HtmlFontSize()
+void Option::setIconSize(int value)
+{
+    Model_Setting::instance().Set("ICONSIZE", value);
+    m_ico_size = value;
+}
+
+int Option::getHtmlFontSize()
 {
     return m_html_font_size;
+}
+
+int Option::getIconSize()
+{
+    return m_ico_size;
 }
 
 void Option::setBudgetDaysOffset(int value)
@@ -322,16 +321,6 @@ void Option::setBudgetDateOffset(wxDateTime& date) const
 {
     if (m_budget_days_offset != 0)
         date.Add(wxDateSpan::Days(m_budget_days_offset));
-}
-
-void Option::IconSize(int value)
-{
-    m_ico_size = value;
-}
-
-int Option::IconSize()
-{
-    return m_ico_size;
 }
 
 int Option::AccountImageId(int account_id, bool def)

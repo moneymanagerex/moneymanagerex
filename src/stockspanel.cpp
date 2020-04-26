@@ -74,7 +74,7 @@ StocksListCtrl::StocksListCtrl(mmStocksPanel* cp, wxWindow *parent, wxWindowID w
     , m_stock_panel(cp)
     , m_imageList(0)
 {
-    int x = Option::instance().IconSize();
+    int x = Option::instance().getIconSize();
     m_imageList = new wxImageList(x, x);
     m_imageList->Add(mmBitmap(png::PROFIT));
     m_imageList->Add(mmBitmap(png::LOSS));

@@ -432,8 +432,7 @@ void mmBDDialog::CreateControls()
     staticTextRepeats_ = new wxStaticText(this, wxID_STATIC, _("Repeats"));
     itemFlexGridSizer5->Add(staticTextRepeats_, g_flagsH);
 
-    m_choice_repeat = new wxChoice(this, ID_DIALOG_BD_COMBOBOX_REPEATS
-        , wxDefaultPosition, m_date_paid->GetSize());
+    m_choice_repeat = new wxChoice(this, ID_DIALOG_BD_COMBOBOX_REPEATS);
 
     wxBoxSizer* repeatBoxSizer = new wxBoxSizer(wxHORIZONTAL);
     m_btn_due_date = new wxBitmapButton(this, ID_DIALOG_TRANS_BUTTONTRANSNUM, mmBitmap(png::RIGHTARROW));

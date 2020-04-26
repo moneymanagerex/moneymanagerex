@@ -121,7 +121,7 @@ void mmHTMLBuilder::init()
 {
     html_ = wxString::Format(wxString::FromUTF8(tags::HTML)
         , mmex::getProgramName()
-        , wxString::Format("%d", Option::instance().HtmlFontSize())
+        , wxString::Format("%d", Option::instance().getHtmlFontSize())
     );
 
     //Show user name if provided

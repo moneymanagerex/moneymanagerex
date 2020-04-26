@@ -189,7 +189,7 @@ void mmHomePagePanel::getTemplate()
 
 void mmHomePagePanel::getData()
 {
-    m_frames["HTMLSCALE"] = wxString::Format("%d", Option::instance().HtmlFontSize());
+    m_frames["HTMLSCALE"] = wxString::Format("%d", Option::instance().getHtmlFontSize());
  
     double tBalance = 0.0, cardBalance = 0.0, termBalance = 0.0, cashBalance = 0.0, loanBalance = 0.0;
 
