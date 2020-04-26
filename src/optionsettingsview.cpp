@@ -231,7 +231,7 @@ void OptionSettingsView::SaveSettings()
     Option::instance().setHTMLFontSizes(size);
 
     size = m_icon_size->GetValue();
-    size = static_cast<int>((4 + size) / 8) * 8;
+    size = ((4 + size) / 8) * 8;
     if (size == 40) size = 48;
     Option::instance().setIconSize(size);
 
