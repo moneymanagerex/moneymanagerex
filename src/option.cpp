@@ -45,7 +45,7 @@ Option::Option()
     , m_transDateDefault(0)
     , m_sharePrecision(4)
     , m_html_font_size(100)
-    , m_ico_size(24)
+    , m_ico_size(16)
     , m_budget_days_offset(0)
 {}
 
@@ -98,7 +98,7 @@ void Option::LoadOptions(bool include_infotable)
     m_usageStatistics = Model_Setting::instance().GetBoolSetting(INIDB_SEND_USAGE_STATS, true);
 
     m_html_font_size = Model_Setting::instance().GetIntSetting("HTMLSCALE", 100);
-    m_ico_size = Model_Setting::instance().GetIntSetting("ICONSIZE", 24);
+    m_ico_size = Model_Setting::instance().GetIntSetting("ICONSIZE", 16);
 }
 
 void Option::DateFormat(const wxString& dateformat)

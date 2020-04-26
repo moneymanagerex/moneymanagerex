@@ -1658,7 +1658,7 @@ void mmGUIFrame::CreateToolBar()
 {
     int all_icons_size = Option::instance().getIconSize();
     int main_menu_icon_size = all_icons_size + 8;
-    if (main_menu_icon_size == 40) main_menu_icon_size = 48;
+    if (main_menu_icon_size >= 40) main_menu_icon_size = 48;
     Option::instance().setIconSize(main_menu_icon_size);
 
     long style = wxTB_FLAT | wxTB_NODIVIDER;
