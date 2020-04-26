@@ -308,7 +308,7 @@ void mmBDDialog::dataToControls()
         SetDialogHeader(_("Enter Recurring Transaction"));
         m_date_paid->Disable();
         wxSpinButton* spinTransDate = static_cast<wxSpinButton*>(FindWindow(ID_DIALOG_TRANS_DATE_SPINNER));
-        spinTransDate->Disable();
+        if (spinTransDate) spinTransDate->Disable();
         m_choice_transaction_type->Disable();
         m_choice_repeat->Disable();
         textAmount_->SetFocus();

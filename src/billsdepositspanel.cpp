@@ -622,10 +622,10 @@ void billsDepositsListCtrl::OnEditBDSeries(wxCommandEvent& /*event*/)
         refreshVisualList(m_bdp->initVirtualListControl(dlg.GetTransID()));
 }
 
-void billsDepositsListCtrl::OnDeleteBDSeries(wxCommandEvent& /*event*/)
+void billsDepositsListCtrl::OnDeleteBDSeries(wxCommandEvent& event)
 {
+    if (m_bdp->bills_.empty()) return;
     if (m_selected_row < 0) return;
-    if (m_bdp->bills_.size() == 0) return;
 
     wxMessageDialog msgDlg(this, _("Do you really want to delete the series?")
         , _("Confirm Series Deletion")
