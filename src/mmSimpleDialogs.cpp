@@ -226,9 +226,8 @@ void mmErrorDialogs::InvalidCategory(wxWindow *win, bool simple)
         ? _("Please use this button for category selection.")
         : _("Please use this button for category selection\n"
             "or use the 'Split' checkbox for multiple categories.");
-    wxRichToolTip tip(_("Invalid Category"), msg + "\n");
-    tip.SetIcon(wxICON_WARNING);
-    tip.ShowFor(win);
+
+    ToolTip4Object(win, msg + "\n", _("Invalid Category"));
 }
 
 void mmErrorDialogs::InvalidFile(wxWindow *object, bool open)
@@ -236,9 +235,7 @@ void mmErrorDialogs::InvalidFile(wxWindow *object, bool open)
     const wxString errorHeader = open ? _("Unable to open file.") : _("File name is empty.");
     const wxString errorMessage = _("Please select the file for this operation.");
 
-    wxRichToolTip tip(errorHeader, errorMessage);
-    tip.SetIcon(wxICON_WARNING);
-    tip.ShowFor(object);
+    ToolTip4Object(object, errorMessage, errorHeader);
 }
 
 void mmErrorDialogs::InvalidAccount(wxWindow *object, bool transfer, TOOL_TIP tm)
@@ -257,9 +254,7 @@ void mmErrorDialogs::InvalidAccount(wxWindow *object, bool transfer, TOOL_TIP tm
     }
     errorMessage = errorMessage + "\n\n" + errorTips + "\n";
 
-    wxRichToolTip tip(errorHeader, errorMessage);
-    tip.SetIcon(wxICON_WARNING);
-    tip.ShowFor(object);
+    ToolTip4Object(object, errorMessage, errorHeader);
 }
 
 void mmErrorDialogs::InvalidPayee(wxWindow *object)
@@ -268,9 +263,7 @@ void mmErrorDialogs::InvalidPayee(wxWindow *object)
     const wxString& errorMessage = _("Please type in a new payee,\n"
             "or make a selection using the dropdown button.")
         + "\n";
-    wxRichToolTip tip(errorHeader, errorMessage);
-    tip.SetIcon(wxICON_WARNING);
-    tip.ShowFor(object);
+    ToolTip4Object(object, errorMessage, errorHeader);
 }
 
 void mmErrorDialogs::InvalidName(wxTextCtrl *textBox, bool alreadyexist)
@@ -282,9 +275,7 @@ void mmErrorDialogs::InvalidName(wxTextCtrl *textBox, bool alreadyexist)
     else
         errorMessage = _("Please type in a non empty name.");
 
-    wxRichToolTip tip(errorHeader, errorMessage);
-    tip.SetIcon(wxICON_WARNING);
-    tip.ShowFor(textBox);
+    ToolTip4Object(textBox, errorMessage, errorHeader);
 }
 
 void mmErrorDialogs::InvalidSymbol(wxTextCtrl *textBox, bool alreadyexist)
@@ -295,10 +286,8 @@ void mmErrorDialogs::InvalidSymbol(wxTextCtrl *textBox, bool alreadyexist)
         errorMessage = _("Already exist!");
     else
         errorMessage = _("Please type in a non empty symbol.");
-
-    wxRichToolTip tip(errorHeader, errorMessage);
-    tip.SetIcon(wxICON_WARNING);
-    tip.ShowFor(textBox);
+ 
+    ToolTip4Object(textBox, errorMessage, errorHeader);
 }
 
 void mmErrorDialogs::ToolTip4Object(wxWindow *object, const wxString &message, const wxString &title, int ico)

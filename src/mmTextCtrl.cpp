@@ -92,13 +92,13 @@ bool mmTextCtrl::checkValue(double &amount, bool positive_value)
 {
     if (!GetDouble(amount) || (positive_value && amount < 0))
     {
-        wxRichToolTip tip(_("Invalid Amount."),
-            wxString(positive_value ? _("Please enter a positive or calculated value.") : _("Please enter a calculated value."))
+        mmErrorDialogs::ToolTip4Object(this
+            , wxString(positive_value ? _("Please enter a positive or calculated value.") : _("Please enter a calculated value."))
             + "\n\n"
-            + _("Tip: For calculations, enter expressions like (2+2)*(2+2)\nCalculations will be evaluated and the result used as the entry."));
-        tip.SetIcon(wxICON_WARNING);
-        tip.ShowFor(this);
-        SetFocus();
+            + _("Tip: For calculations, enter expressions like (2+2)*(2+2)\nCalculations will be evaluated and the result used as the entry.")
+            , _("Invalid Amount.")
+            , wxICON_WARNING);
+        //SetFocus();
         return false;
     }
     return true;

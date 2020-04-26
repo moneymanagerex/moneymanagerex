@@ -21,6 +21,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include <wx/textctrl.h>
 #include <wx/combobox.h>
 #include <wx/string.h>
+#include "mmSimpleDialogs.h"
 #include "model/Model_Account.h"
 #include "model/Model_Payee.h"
 #include <wx/richtooltip.h>
@@ -75,12 +76,12 @@ public:
             if (p) id = p->PAYEEID;
             else {
                 const wxString errorHeader = _("Invalid Payee");
-                const wxString errorMessage = (_("Please type in an exiting payee name,\nor make a selection using the dropdown button.")
+                const wxString errorMessage = (_("Please type in an exiting payee name,\n"
+                    "or make a selection using the dropdown button.")
                     + "\n");
-                wxRichToolTip tip(errorHeader, errorMessage);
-                tip.SetIcon(wxICON_WARNING);
-                tip.ShowFor((wxWindow*) this);
-                this->SetFocus();
+                mmErrorDialogs::ToolTip4Object(this
+                    , errorMessage, errorHeader, wxICON_WARNING);
+                //this->SetFocus();
             }
         }
         else {
