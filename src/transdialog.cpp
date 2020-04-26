@@ -905,10 +905,10 @@ void mmTransDialog::OnTransDateSpin(wxSpinEvent& event)
     wxDateTime date = dpc_->GetValue();
     int value = event.GetPosition();
     wxSpinButton* spinCtrl = static_cast<wxSpinButton*>(event.GetEventObject());
+    if (spinCtrl) spinCtrl->SetValue(0);
 
     date = date.Add(wxDateSpan::Days(value));
     dpc_->SetValue(date);
-    spinCtrl->SetValue(0);
 
     //process date change event for set weekday name
     wxDateEvent dateEvent(dpc_, date, wxEVT_DATE_CHANGED);
