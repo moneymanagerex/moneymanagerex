@@ -114,13 +114,33 @@ Greg Chapman
 ##Sponsors
 2020
 Digital IT Consultant
+Adam Gallagher
 Neil Vincent
-Michael Ellis
+Richard Watts
+Ruedi Kehl
 Frederick Hansen
+Michael Ellis
 Ehab Fanous
+Hubert Behmer
+Michael Sloan
+Kurt Tremp
+Michael Mileo
 Christian BELAIR
+Betsy & Chuck
+Dennis Smith
+Eliezer Gomez Gomez
+James Pearsall
+John Weaving
+Kieron McGeever
+Michael Wraight
 Officer Young
+Sergio Zanatta
+Andreas Mueller
 Glenn Fowler
+Joan Warren
+Brian Crow
+Eric Laval
+Gerald Mead
 
 2019
 Leon Hall
@@ -131,7 +151,7 @@ Dorothy Dean
 Jörg Jan Kock
 David Kricker
 John Stenson
-Alexander Habegger
+Alexander Prog
 Peter Csernak
 Peter Hulm
 Brian Crow

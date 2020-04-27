@@ -41,32 +41,42 @@ void mmFileHistory::Clear()
 
 void mmFileHistory::Load()
 {
-    int fileCount = 1;
-    wxString buf;
-    buf.Printf("RECENT_DB_%d", fileCount);
+    wxString buf, historyFile;
 
-    wxString historyFile;
-    while (fileCount <= GetMaxFiles())
+    for (int i = GetMaxFiles(); i > 0 ; i--)
     {
-        historyFile = Model_Setting::instance().GetStringSetting(buf, wxEmptyString);
-        if (!historyFile.empty())
+        if (i == 0)
         {
+            historyFile = Model_Setting::instance().GetStringSetting("LASTFILENAME", "");
+        }
+        else {
+            buf.Printf("RECENT_DB_%d", i);
+            historyFile = Model_Setting::instance().GetStringSetting(buf, wxEmptyString);
+        }
+        if (!historyFile.empty()) {
             AddFileToHistory(historyFile);
         }
-        buf.Printf("RECENT_DB_%d", GetMaxFiles() - fileCount);
-        fileCount++;
     }
 }
 
 void mmFileHistory::Save()
 {
     Model_Setting::instance().Savepoint();
-    for (int i = 1; i < GetMaxFiles(); i++)
+    wxString buf, historyFile;
+    for (int i = 0; i < GetMaxFiles(); i++)
     {
-        wxString buf;
-        buf.Printf("RECENT_DB_%d", i);
-        if (i < static_cast<int>(GetCount()))
-            Model_Setting::instance().Set(buf, GetHistoryFile(i));
+        buf = wxString::Format("RECENT_DB_%d", i + 1);
+        if (i < static_cast<int>(GetCount())) {
+            if (i == 0)
+            {
+                historyFile = Model_Setting::instance().GetStringSetting("LASTFILENAME", "");
+            }
+            else {
+                historyFile = GetHistoryFile(i);
+            }
+            wxLogDebug("%s %s", buf, historyFile);
+            Model_Setting::instance().Set(buf, historyFile);
+        }
         else
             Model_Setting::instance().Set(buf, wxString(""));
     }
