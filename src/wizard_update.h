@@ -30,23 +30,19 @@ public:
     static void checkUpdates(wxFrame *frame, bool bSilent);
 };
 
-class mmUpdateWizard : public wxWizard
+class mmUpdateWizard : public wxDialog
 {
 public:
-    mmUpdateWizard(wxFrame *frame, const Document& json_releases, wxArrayInt new_releases);
-    void RunIt(bool modal);
+    mmUpdateWizard(wxWindow* parent, const Document& json_releases, wxArrayInt new_releases, const wxString& top_version);
+
     ~mmUpdateWizard();
 
 private:
-    wxWizardPageSimple* page1;
-    void setControlEnable(int id);
+
+    void CreateControls(const Document& json_releases, wxArrayInt new_releases);
+    wxString top_version_;
+    wxCheckBox* showUpdateCheckBox_;
 
     wxDECLARE_EVENT_TABLE();
 };
 //----------------------------------------------------------------------------
-
-inline void mmUpdateWizard::setControlEnable(int id)
-{
-    wxWindow *win = wxWindow::FindWindowById(id);
-    if (win) win->Hide();
-}

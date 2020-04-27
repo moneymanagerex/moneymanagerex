@@ -30,7 +30,7 @@
 #include <wx/webviewfshandler.h>
 #include <wx/fs_mem.h>
 
-wxBEGIN_EVENT_TABLE(mmUpdateWizard, wxWizard)
+wxBEGIN_EVENT_TABLE(mmUpdateWizard, wxDialog)
 wxEND_EVENT_TABLE()
 
 const char* update_template = R"(
@@ -87,97 +87,125 @@ private:
 mmUpdateWizard::~mmUpdateWizard()
 {
     clearVFprintedFiles("rep");
+    bool isActive = showUpdateCheckBox_->GetValue();
+    if (!isActive) {
+        Model_Setting::instance().Set("UPDATE_LAST_CHECKED_VERSION", top_version_);
+    }
+    else {
+        Model_Setting::instance().Set("UPDATE_LAST_CHECKED_VERSION", ("v" + mmex::version::string).Lower());
+    }
+}
+
+mmUpdateWizard::mmUpdateWizard(wxWindow* parent, const Document& json_releases, wxArrayInt new_releases, const wxString& top_version)
+    : top_version_(top_version)
+    , showUpdateCheckBox_(nullptr)
+{
+
+    SetExtraStyle(GetExtraStyle() | wxWS_EX_BLOCK_EVENTS);
+
+    bool isDialogCreated = wxDialog::Create(parent, wxID_ANY, _("Update Wizard")
+        , wxDefaultPosition, wxDefaultSize
+        , wxCAPTION | wxRESIZE_BORDER | wxCLOSE_BOX, "mmUpdateWizard");
+
+    if (isDialogCreated) 
+    {
+        SetMinSize(wxSize(600, 400));
+
+        CreateControls(json_releases, new_releases);
+
+        this->SetIcon(mmex::getProgramIcon());
+        this->Centre();
+        this->Layout();
+    }
 }
 
 
-mmUpdateWizard::mmUpdateWizard(wxFrame *frame, const Document& json_releases, wxArrayInt new_releases)
-    : wxWizard(frame, wxID_ANY, _("Update Wizard")
-        , wxNullBitmap, wxDefaultPosition, wxCAPTION | wxCLOSE_BOX | wxRESIZE_BORDER)
+void mmUpdateWizard::CreateControls(const Document& json_releases, wxArrayInt new_releases)
 {
-
-    this->SetIcon(mmex::getProgramIcon());
-    page1 = new wxWizardPageSimple(this);
     
     int i = 0;
-
-    wxString html;
+    bool isHistory = false;
+    wxString html, separator = " ";
 
     for (auto& r : json_releases.GetArray())
     {
-        if (new_releases.Index(i) != wxNOT_FOUND) 
-        {
-            bool p = (r.HasMember("prerelease") && r["prerelease"].IsBool() && r["prerelease"].GetBool());
-            const auto prerelease = !p ? _("Stable") : _("Unstable");
-
-            const auto html_url = (r.HasMember("html_url") && r["html_url"].IsString())
-                ? r["html_url"].GetString() : "";
-
-            const auto tag = (r.HasMember("tag_name") && r["tag_name"].IsString())
-                ? r["tag_name"].GetString() : "";
-
-            const auto published_at = (r.HasMember("published_at") && r["published_at"].IsString())
-                ? r["published_at"].GetString() : "";
-            wxDateTime pub_date;
-            wxString::const_iterator end;
-            pub_date.ParseFormat(published_at, "%Y-%m-%dT%H:%M:%SZ", &end);
-            const wxString pd = pub_date.FormatISODate();
-            const wxString time = pub_date.FormatISOTime();
-
-            const auto body = md2html((r.HasMember("body") && r["body"].IsString())
-                ? r["body"].GetString() : "");
-
-            wxString link = wxString::Format(R"(<a href="%s">%s</a>)", html_url, tag);
-            const wxString github = "https://github.com/moneymanagerex/moneymanagerex/releases/tag/";
-            const wxString sf = "https://sourceforge.net/projects/moneymanagerex/files/";
-            if (link.Contains(github)) link.Replace(github, sf);
-            html += wxString::Format("<table class='table'><thead><tr><th>%s</th><th>%s</th><th>%s</th><th>%s</th></tr></thead>\n"
-                , _("Version"), _("Status"), _("Date"), _("Time"));
-            html += wxString::Format("<tbody><tr class='success'><td>%s</td><td>%s</td><td>%s</td><td>%s</td></tr><tr class='active'><td colspan='4'>%s</td></tr><tbody></table><hr>\n\n"
-                , link, prerelease, pd, time, body);
+        if (!isHistory && new_releases.Index(i) == wxNOT_FOUND) {
+            isHistory = true;
+            separator = wxString::Format("<h3> %s </h3>", _("Historical releases:"));
         }
+
+        bool p = (r.HasMember("prerelease") && r["prerelease"].IsBool() && r["prerelease"].GetBool());
+        const auto prerelease = !p ? _("Stable") : _("Unstable");
+
+        const auto html_url = (r.HasMember("html_url") && r["html_url"].IsString())
+            ? r["html_url"].GetString() : "";
+
+        const auto tag = (r.HasMember("tag_name") && r["tag_name"].IsString())
+            ? r["tag_name"].GetString() : "";
+
+        const auto published_at = (r.HasMember("published_at") && r["published_at"].IsString())
+            ? r["published_at"].GetString() : "";
+        wxDateTime pub_date;
+        wxString::const_iterator end;
+        pub_date.ParseFormat(published_at, "%Y-%m-%dT%H:%M:%SZ", &end);
+        const wxString pd = pub_date.FormatISODate();
+        const wxString time = pub_date.FormatISOTime();
+
+        const auto body = md2html((r.HasMember("body") && r["body"].IsString())
+            ? r["body"].GetString() : "");
+
+        wxString link = wxString::Format(R"(<a href="%s">%s</a>)", html_url, tag);
+        const wxString github = "https://github.com/moneymanagerex/moneymanagerex/releases/tag/";
+        const wxString sf = "https://sourceforge.net/projects/moneymanagerex/files/";
+        if (link.Contains(github)) link.Replace(github, sf);
+        html += wxString::Format("%s<table class='table'><thead><tr><th>%s</th><th>%s</th><th>%s</th><th>%s</th></tr></thead>\n"
+            , separator, _("Version"), _("Status"), _("Date"), _("Time"));
+        html += wxString::Format("<tbody><tr class='success'><td>%s</td><td>%s</td><td>%s</td><td>%s</td></tr>"
+            "<tr class='active'><td colspan='4'>%s</td></tr><tbody></table>\n\n"
+            , link, prerelease, pd, time, body);
+        separator = "<hr>\n";
         i++;
     }
 
-    wxString ver = wxString::Format(_("Your version is %s"), mmex::version::string);
-    wxString header = _("A new version of MMEX is available!");
-    html = wxString::Format(update_template, header, ver, html);
+    wxString version = new_releases.empty() ? _("You already have the latest version") : _("A new version of MMEX is available!");
+    wxString header = wxString::Format(_("Your version is %s"), mmex::version::string);
+    html = wxString::Format(update_template, header, version, html);
 
     wxBoxSizer *page1_sizer = new wxBoxSizer(wxVERTICAL);
-    page1->SetSizer(page1_sizer);
+    this->SetSizer(page1_sizer);
 
-    wxWebView* browser = wxWebView::New(page1, wxID_CONTEXT_HELP, wxWebViewDefaultURLStr);
+    wxWebView* browser = wxWebView::New(this, wxID_CONTEXT_HELP, wxWebViewDefaultURLStr);
 #ifndef _DEBUG
     browser->EnableContextMenu(false);
 #endif
     browser->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new wxWebViewFSHandler("memory")));
     browser->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new WebViewHandlerUpdatePage(this, "https")));
 
-    wxStaticText *tipsText = new wxStaticText(page1, wxID_ANY, wxGetTranslation(TIPS[1]));
+    wxStaticText *tipsText = new wxStaticText(this, wxID_ANY, wxGetTranslation(TIPS[1]));
 
     page1_sizer->Add(browser, wxSizerFlags(g_flagsExpand).Border(wxTOP, 0));
     page1_sizer->Add(tipsText, g_flagsCenter);
 
-    GetPageAreaSizer()->Add(page1);
-    setControlEnable(wxID_CANCEL);
-    setControlEnable(wxID_BACKWARD);
-
     const auto name = getVFname4print("rep", html);
     browser->LoadURL(name);
     browser->SetLabelText(name);
+
+    const wxString showAppStartString = wxString::Format(_("Show this window next time %s starts")
+        , mmex::getProgramName());
+    showUpdateCheckBox_ = new wxCheckBox(this, wxID_ANY, showAppStartString, wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
+    showUpdateCheckBox_->SetValue(true);
+    page1_sizer->Add(showUpdateCheckBox_, g_flagsV);
+
+
+    wxButton* buttonOk = new wxButton(this, wxID_OK, _("&OK "));
+    page1_sizer->Add(buttonOk, g_flagsCenter);
+
+    buttonOk->SetDefault();
+    buttonOk->SetFocus();
+
+    GetSizer()->Fit(this);
 }
 
-void mmUpdateWizard::RunIt(bool modal)
-{
-    if (modal)
-    {
-        if (RunWizard(page1))
-        {
-            //wxLaunchDefaultBrowser(m_new_version["html_url"].GetString()); //TODO: Download file in wizard page2
-        }
-
-        Destroy();
-    }
-}
 
 struct Version
 {
@@ -302,11 +330,16 @@ void mmUpdate::checkUpdates(wxFrame *frame, bool bSilent)
     const int _stable = s ?
         Model_Setting::instance().GetIntSetting("UPDATESOURCE", 0) == 0
         : 0;
-
     const wxString current_tag = ("v" + mmex::version::string).Lower();
+    const wxString last_checked = Model_Setting::instance().GetStringSetting("UPDATE_LAST_CHECKED_VERSION", current_tag);
+
+    bool is_update_available = false;
     Version current(current_tag);
+    Version top(current_tag);
+    wxString top_version;
+    Version last(last_checked);
     wxLogDebug("Current vertion: = %s", current_tag);
-    wxArrayInt new_releas;
+    wxArrayInt new_releases;
     int i = 0;
     for (auto& r : json_releases.GetArray())
     {
@@ -317,24 +350,28 @@ void mmUpdate::checkUpdates(wxFrame *frame, bool bSilent)
         }
 
         Version check(tag_name);
+
         if (current < check) {
             wxLogDebug("[V] tag %s", tag_name);
-            new_releas.Add(i);
+            new_releases.Add(i);
+            if (top < check) {
+                top = check;
+                top_version = wxString::FromUTF8(tag_name);
+                if (last < top) {
+                    is_update_available = true;
+                }
+            }
         } else {
             wxLogDebug("[X] tag %s", tag_name);
         }
         i++;
     }
 
-    if (!new_releas.empty())
+    if (!bSilent || (is_update_available && !new_releases.empty()))
     {
-        mmUpdateWizard* wizard = new mmUpdateWizard(frame, json_releases, new_releas);
+        mmUpdateWizard* wizard = new mmUpdateWizard(frame, json_releases, new_releases, top_version);
         wizard->CenterOnParent();
-        wizard->RunIt(true);
+        wizard->ShowModal();
     }
-    else if (!bSilent)
-    {
-        wxMessageBox(_("You already have the latest version"),
-            _("MMEX Update Check"), wxICON_INFORMATION);
-    }
+
 }
