@@ -29,9 +29,31 @@ class wxDialog;
 
 class mmCustomData : public wxDialog
 {
+public:
+    mmCustomData();
+    bool FillCustomFields(wxBoxSizer* box_sizer);
+    bool SaveCustomValues(int ref_id);
+    const wxString GetWidgetData(wxWindowID controlID) const;
+    int GetWidgetType(wxWindowID controlID) const;
+    size_t GetCustomFieldsCount() const;
+    size_t GetActiveCustomFieldsCount() const;
+    std::map<wxString, wxString> GetActiveCustomFields() const;
+    void SetBaseID(wxWindowID id);
+    wxWindowID GetBaseID() const;
+    void SetLabelID(wxWindowID id);
+    wxWindowID GetLabelID() const;
+    void ResetRefID();
+    // TODO: void SetRefID(int ref_id) { m_ref_id = ref_id; }
+    bool IsSomeWidgetChanged() const;
+    bool IsDataFound(const Model_Checking::Full_Data &tran);
+    void ResetWidgetsChanged();
+    void ClearSettings() const;
+    bool IsCustomPanelShown() const;
+    void ShowHideCustomPanel() const;
 
 protected:
     mmCustomData(wxDialog* dialog, const wxString& ref_type, int ref_id);
+
 private:
     wxDialog* m_dialog;
     wxStaticBox* m_static_box;
@@ -53,29 +75,14 @@ private:
     void ResetWidgetChanged(wxWindowID id);
     wxWindowID m_init_control_id;
     wxWindowID m_init_label_id;
-
-public:
-    mmCustomData();
-    bool FillCustomFields(wxBoxSizer* box_sizer);
-    bool SaveCustomValues(int ref_id);
-    const wxString GetWidgetData(wxWindowID controlID) const;
-    int GetWidgetType(wxWindowID controlID) const;
-    size_t GetCustomFieldsCount() const { return m_fields.size(); }
-    size_t GetActiveCustomFieldsCount() const;
-    std::map<wxString, wxString> GetActiveCustomFields() const;
-    void SetBaseID(wxWindowID id) { m_init_control_id = id; }
-    wxWindowID GetBaseID() const { return m_init_control_id; }
-    void SetLabelID(wxWindowID id) { m_init_label_id = id; }
-    wxWindowID GetLabelID() const { return m_init_label_id; }
-    void ResetRefID() { m_ref_id = -1; }
-    // TODO: void SetRefID(int ref_id) { m_ref_id = ref_id; }
-    bool IsSomeWidgetChanged() const;
-    bool IsDataFound(const Model_Checking::Full_Data &tran);
-    void ResetWidgetsChanged();
-    void ClearSettings() const;
-    bool IsCustomPanelShown() const;
-    void ShowHideCustomPanel() const;
 };
+
+inline size_t mmCustomData::GetCustomFieldsCount() const { return m_fields.size(); }
+inline void  mmCustomData::SetBaseID(wxWindowID id) { m_init_control_id = id; }
+inline wxWindowID  mmCustomData::GetBaseID() const { return m_init_control_id; }
+inline void  mmCustomData::SetLabelID(wxWindowID id) { m_init_label_id = id; }
+inline wxWindowID  mmCustomData::GetLabelID() const { return m_init_label_id; }
+inline void  mmCustomData::ResetRefID() { m_ref_id = -1; }
 
 class mmCustomDataTransaction : public mmCustomData
 {
