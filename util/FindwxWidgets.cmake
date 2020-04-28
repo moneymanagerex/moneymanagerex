@@ -447,6 +447,7 @@ if(wxWidgets_FIND_STYLE STREQUAL "win32")
       D:/
       ENV ProgramFiles
     PATH_SUFFIXES
+      wxWidgets-3.1.3
       wxWidgets-3.1.0
       wxWidgets-3.0.2
       wxWidgets-3.0.1
@@ -506,7 +507,7 @@ if(wxWidgets_FIND_STYLE STREQUAL "win32")
       set(_WX_TOOL vc)
       set(_WX_TOOLVER ${MSVC_TOOLSET_VERSION})
       # support for a lib/vc14x_x64_dll/ path from wxW 3.1.3 distribution
-      string(REGEX REPLACE ".$" "x" _WX_TOOLVERx ${_WX_TOOLVER})
+      string(REGEX REPLACE ".$" "x" _WX_TOOLVERx "${_WX_TOOLVER}")
       if(CMAKE_SIZEOF_VOID_P EQUAL 8)
         set(_WX_ARCH _x64)
       endif()
