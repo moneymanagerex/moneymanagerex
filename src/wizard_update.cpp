@@ -218,9 +218,9 @@ struct Version
         for (int i = 0; i < 5; i++) v[i] = 0;
         wxRegEx re_ver(R"(^v([0-9]+)\.([0-9]+)\.(-?[0-9]+)?(-(alpha|beta|rc)(\.([0-9]+))?)?$)", wxRE_EXTENDED);
         if (re_ver.Matches(tag)) {
-            for (size_t i = 0; i < re_ver.GetMatchCount(); ++i)
+            for (size_t i = 1; i < re_ver.GetMatchCount(); ++i)
             {
-                wxString val = re_ver.GetMatch(tag, i);
+                wxString val = re_ver.GetMatch(tag, i).Lower();
                 switch (i)
                 {
                 case MAJ: val.ToCLong(&v[MAJOR]); break;
