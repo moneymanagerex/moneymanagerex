@@ -347,7 +347,7 @@ void mmGUIFrame::ShutdownDatabase()
 {
     if (m_db)
     {
-        Model_Infotable::instance().Set("ISUSED", false);
+        Model_Setting::instance().Set("ISUSED", false);
         m_db->SetCommitHook(nullptr);
         m_db->Close();
         delete m_commit_callback_hook;
