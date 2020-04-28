@@ -1,28 +1,4 @@
-cmake_minimum_required(VERSION 3.0 FATAL_ERROR)
-
-# ---------------------------------------------------------------------------
-# MMEX uses semantic versioning Ref: http://semver.org
-#
-# PROJECT VERSION - Format: MAJOR.MINOR.PATCH-UNSTABLE
-# Update the version definition for the PROJECT as follows:
-# 1. MAJOR version when incompatible API changes are made.
-# 2. MINOR version adding functionality in a backwards-compatible manner.
-# 3. PATCH version makeing backwards-compatible bug fixes.
-# 4. UNSTABLE = alpha, alpha.1, beta, beta.4, rc, rc.3
-#    - used as additional version suffix, must be unset for stable version
-
-# By setting the application version here, CMake will transfer the variable
-# values to the corresponding variable names in the following files:
-# ./src/versions.h
-# ./resources/mmex.rc
-# ---------------------------------------------------------------------------
-
-set(MMEX_VERSION 1.3.5)
-SET(MMEX_VERSION_ALPHA 0)
-SET(MMEX_VERSION_BETA -1)
-SET(MMEX_VERSION_RC -1)
-
-# ---------------------------------------------------------------------------
+cmake_minimum_required(VERSION 3.1 FATAL_ERROR)
 
 if(DEFINED ENV{VCPKG_ROOT})
     if(NOT DEFINED CMAKE_TOOLCHAIN_FILE)
@@ -39,26 +15,35 @@ if(DEFINED ENV{VCPKG_DEFAULT_TRIPLET} AND NOT DEFINED VCPKG_TARGET_TRIPLET)
     set(VCPKG_TARGET_TRIPLET "$ENV{VCPKG_DEFAULT_TRIPLET}" CACHE STRING "")
 endif()
 
-# Adjusting semantic versioning for alpha/beta/rc version
-IF(MMEX_VERSION_ALPHA EQUAL 0)
-    SET(MMEX_VERSION_UNSTABLE alpha)
-ELSEIF(MMEX_VERSION_ALPHA GREATER 0)
-    SET(MMEX_VERSION_UNSTABLE alpha${MMEX_VERSION_ALPHA})
-ELSEIF(MMEX_VERSION_BETA EQUAL 0)
-    SET(MMEX_VERSION_UNSTABLE beta)
-ELSEIF(MMEX_VERSION_BETA GREATER 0)
-    SET(MMEX_VERSION_UNSTABLE beta${MMEX_VERSION_BETA})
-ELSEIF(MMEX_VERSION_RC EQUAL 0)
-    SET(MMEX_VERSION_UNSTABLE rc)
-ELSEIF(MMEX_VERSION_RC GREATER 0)
-    SET(MMEX_VERSION_UNSTABLE rc${MMEX_VERSION_RC})
-ENDIF()
-SET(MMEX_VERSION_WITH_UNSTABLE ${MMEX_VERSION})
-IF(MMEX_VERSION_UNSTABLE)
-    SET(MMEX_VERSION_WITH_UNSTABLE "${MMEX_VERSION}~${MMEX_VERSION_UNSTABLE}")
-ENDIF()
-
-set(MMEX_VERSION_FULL ${MMEX_VERSION_WITH_UNSTABLE})
+find_package(Git REQUIRED)
+# Get the latest version tag
+execute_process(COMMAND ${GIT_EXECUTABLE} describe --match v* --tags --abbrev=0
+    WORKING_DIRECTORY ${CMAKE_HOME_DIRECTORY}
+    OUTPUT_VARIABLE GIT_TAG_VERSION
+    OUTPUT_STRIP_TRAILING_WHITESPACE
+    TIMEOUT 4 ERROR_QUIET)
+if(NOT GIT_TAG_VERSION MATCHES "^v([0-9]+\\.[0-9]+\\.[0-9]+)(-([^ ]+))*")
+    message(FATAL_ERROR "Unable to determine MMEX version tag from sources!")
+endif()
+# ---------------------------------------------------------------------------
+# MMEX uses semantic versioning Ref: http://semver.org
+#
+# PROJECT VERSION - Format: MAJOR.MINOR.PATCH-UNSTABLE
+# Update the version definition for the PROJECT as follows:
+# 1. MAJOR version when incompatible API changes are made.
+# 2. MINOR version adding functionality in a backwards-compatible manner.
+# 3. PATCH version makeing backwards-compatible bug fixes.
+# 4. UNSTABLE = alpha, alpha.1, beta, beta.4, rc, rc.3
+#    - used as additional version suffix, must be unset for stable version
+# ---------------------------------------------------------------------------
+# By setting the application version here, CMake will transfer the variable
+# values to the corresponding variable names in the following files:
+# ./src/versions.h
+# ./resources/mmex.rc
+# ---------------------------------------------------------------------------
+set(MMEX_VERSION ${CMAKE_MATCH_1})
+set(MMEX_VERSION_UNSTABLE ${CMAKE_MATCH_3})
+set(MMEX_VERSION_FULL ${CMAKE_MATCH_1}${CMAKE_MATCH_2})
 
 project(MMEX VERSION ${MMEX_VERSION})
 option(MMEX_PORTABLE_INSTALL "Include an empty mmexini.db3 file in the Windows installation" ON)
@@ -176,7 +161,6 @@ elseif(CMAKE_CXX_COMPILER_ID STREQUAL AppleClang)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -stdlib=libc++")
 endif()
 
-
 # try to use clcache/ccache to speed up builds
 if(NOT CCACHE_PROGRAM)
     if(MSVC)
@@ -247,6 +231,7 @@ if(CCACHE_PROGRAM)
     endif()
 endif()
 
+
 # --------- cmake --grapgviz settings ---------
 file(WRITE "${CMAKE_BINARY_DIR}/CMakeGraphVizOptions.cmake" "
     set(GRAPHVIZ_GRAPH_NAME \"MMEX build dependency graph\")
@@ -277,7 +262,7 @@ if(CMAKE_VERSION VERSION_LESS 3.16)
     list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/util")
 endif()
 set(wxWidgets_USE_REL_AND_DBG ON)
-find_package(wxWidgets 2.9.2 REQUIRED
+find_package(wxWidgets 3.0.0 REQUIRED
     COMPONENTS core qa html xml aui adv stc webview base
     OPTIONAL_COMPONENTS scintilla)
 if(APPLE AND wxWidgets_LIBRARIES MATCHES "${CMAKE_STATIC_LIBRARY_PREFIX}wx_baseu-[0-9\\.]+${CMAKE_STATIC_LIBRARY_SUFFIX}")
@@ -299,6 +284,7 @@ target_compile_options(wxWidgets INTERFACE ${wxWidgets_CXX_FLAGS})
 target_compile_definitions(wxWidgets INTERFACE ${wxWidgets_DEFINITIONS}
     wxNO_UNSAFE_WXSTRING_CONV=1
     $<$<CONFIG:Debug>:${wxWidgets_DEFINITIONS_DEBUG}>)
+
 
 # --------- curl dependency ---------
 # curl version >=7.57 can have config files
@@ -383,6 +369,7 @@ else()
     endif()
 endif()
 
+
 # --------- Collect sources and targets ---------
 set(MMEX_BIN_DIR bin)
 
@@ -427,7 +414,7 @@ if(APPLE)
         MACOSX_BUNDLE_BUNDLE_VERSION ${MMEX_VERSION}${MMEX_VERSION_UNSTABLE_SHORT}
         MACOSX_BUNDLE_SHORT_VERSION_STRING ${MMEX_VERSION}
         MACOSX_BUNDLE_LONG_VERSION_STRING ${MMEX_VERSION_FULL}
-        MACOSX_BUNDLE_COPYRIGHT "Copyright В© 2009-2017 Nikolay\nCopyright В© 2011-2017 LiSheng\nCopyright В© 2013-2017 James, Gabriele\nCopyright В© 2010-2017 Stefano\nCopyright В© 2009-2010 VaDiM, Wesley Ellis"
+        MACOSX_BUNDLE_COPYRIGHT "Copyright © 2009-2017 Nikolay\nCopyright © 2011-2017 LiSheng\nCopyright © 2013-2017 James, Gabriele\nCopyright © 2010-2017 Stefano\nCopyright © 2009-2010 VaDiM, Wesley Ellis"
         MACOSX_BUNDLE_ICON_FILE ${MACOSX_APP_ICON_NAME}
         # Set the path to the plist template
         MACOSX_BUNDLE_INFO_PLIST "${PROJECT_SOURCE_DIR}/resources/MacOSXBundleInfo.plist.in")
@@ -458,7 +445,6 @@ if(WIN32)
         if(NOT CMAKE_INSTALL_DEBUG_LIBRARIES_ONLY)
             list(APPEND MMEX_WXDLLS
                 wxbase${WXDLLPREF}
-				wxbase${WXDLLPREF}_net
                 wxbase${WXDLLPREF}_xml
                 wxmsw${WXDLLPREF}_adv
                 wxmsw${WXDLLPREF}_aui
@@ -472,7 +458,6 @@ if(WIN32)
             set(WXDLLPREF ${WXDLLPREF}d)
             list(APPEND MMEX_WXDLLS
                 wxbase${WXDLLPREF}
-				wxbase${WXDLLPREF}_net
                 wxbase${WXDLLPREF}_xml
                 wxmsw${WXDLLPREF}_adv
                 wxmsw${WXDLLPREF}_aui
@@ -525,9 +510,6 @@ install(FILES
     DESTINATION "${MMEX_DOC_DIR}")
 install(DIRECTORY
     docs/
-    DESTINATION "${MMEX_DOC_DIR}/help")
-install(FILES
-    resources/master.css
     DESTINATION "${MMEX_DOC_DIR}/help")
 
 # Resources
@@ -762,7 +744,7 @@ message(STATUS "DB encryption  : ${WXSQLITE3_HAVE_CODEC}")
 
 message(STATUS "")
 message(STATUS "Versions")
-message(STATUS "--========--")
+message(STATUS "========")
 message(STATUS "${CMAKE_HOST_SYSTEM_NAME} ${CMAKE_HOST_SYSTEM_VERSION}")
 if(LINUX_DISTRO_STRING)
     message(STATUS "${LINUX_DISTRO_STRING}")
@@ -802,4 +784,4 @@ if(CURL_VERSION)
     message(STATUS "curl ${CURL_VERSION}")
 endif()
 message(STATUS "gettext ${GETTEXT_VERSION_STRING}")
-message(STATUS "------------------ 8< -----------------")
+message(STATUS "")
