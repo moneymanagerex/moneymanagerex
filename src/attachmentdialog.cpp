@@ -252,11 +252,11 @@ void mmAttachmentDialog::DeleteAttachment()
 
 void mmAttachmentDialog::OnDropFiles(wxDropFilesEvent& event)
 {
-    if (event.GetNumberOfFiles() > 0) {
-
+    if (event.GetNumberOfFiles() > 0)
+    {
         wxString* dropped = event.GetFiles();
-
-        for (int i = 0; i < event.GetNumberOfFiles(); i++) {
+        for (int i = 0; i < event.GetNumberOfFiles(); i++)
+        {
             wxString FilePath = dropped[i];
             if (wxFileExists(FilePath))
                 AddAttachment(FilePath);
