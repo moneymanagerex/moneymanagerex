@@ -77,34 +77,6 @@ void OptionSettingsView::Create()
     view_sizer1->Add(m_choice_visible, g_flagsH);
     m_choice_visible->SetToolTip(_("Specify which accounts are visible"));
 
-    view_sizer1->Add(new wxStaticText(this, wxID_STATIC, _("Transactions Visible")), g_flagsH);
-
-    wxArrayString view_strings;
-    view_strings.Add(VIEW_TRANS_ALL_STR);
-    view_strings.Add(VIEW_TRANS_TODAY_STR);
-    view_strings.Add(VIEW_TRANS_CURRENT_MONTH_STR);
-    view_strings.Add(VIEW_TRANS_LAST_30_DAYS_STR);
-    view_strings.Add(VIEW_TRANS_LAST_90_DAYS_STR);
-    view_strings.Add(VIEW_TRANS_LAST_MONTH_STR);
-    view_strings.Add(VIEW_TRANS_LAST_3MONTHS_STR);
-    view_strings.Add(VIEW_TRANS_LAST_12MONTHS_STR);
-    view_strings.Add(VIEW_TRANS_CURRENT_YEAR_STR);
-    view_strings.Add(VIEW_TRANS_CRRNT_FIN_YEAR_STR);
-    view_strings.Add(VIEW_TRANS_LAST_YEAR_STR);
-    view_strings.Add(VIEW_TRANS_LAST_FIN_YEAR_STR);
-
-    m_choice_trans_visible = new wxChoice(this, wxID_ANY, wxDefaultPosition, wxDefaultSize);
-    for (const auto &entry : view_strings) {
-        m_choice_trans_visible->Append(wxGetTranslation(entry)
-            , new wxStringClientData(entry));
-    }
-
-    view_sizer1->Add(m_choice_trans_visible, g_flagsH);
-
-    const wxString vTrans = Model_Setting::instance().ViewTransactions();
-    m_choice_trans_visible->SetStringSelection(wxGetTranslation(vTrans));
-    m_choice_trans_visible->SetToolTip(_("Specify which transactions are visible by default"));
-
     view_sizer1->Add(new wxStaticText(this, wxID_STATIC, _("HTML scale factor")), g_flagsH);
 
     int max = 300; int min = 25;
@@ -220,12 +192,6 @@ void OptionSettingsView::SaveSettings()
     if (visible_acc_obj)
         accVisible = visible_acc_obj->GetData();
     Model_Setting::instance().SetViewAccounts(accVisible);
-
-    wxString transVisible = VIEW_TRANS_ALL_STR;
-    wxStringClientData* visible_obj = static_cast<wxStringClientData*>(m_choice_trans_visible->GetClientObject(m_choice_trans_visible->GetSelection()));
-    if (visible_obj)
-        transVisible = visible_obj->GetData();
-    Model_Setting::instance().SetViewTransactions(transVisible);
 
     int size = m_scale_factor->GetValue();
     Option::instance().setHTMLFontSizes(size);

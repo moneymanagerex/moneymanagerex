@@ -56,7 +56,6 @@ private:
     wxButton* m_UDFCB7;
 
     wxChoice* m_choice_visible;
-    wxChoice* m_choice_trans_visible;
     wxSpinCtrl* m_scale_factor;
     wxSlider* m_icon_size;
 
