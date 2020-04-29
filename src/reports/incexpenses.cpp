@@ -221,8 +221,9 @@ wxString mmReportIncomeExpensesMonthly::getHTMLText()
     if (getChartSelection() == 0)
     {
         std::vector<BarGraphData> aData;
-        BarGraphData data_negative;
         BarGraphData data_positive;
+        BarGraphData data_negative;
+
         for (int i = 0; i < m; i++)
         {
             double val_negative = 0;
@@ -232,21 +233,22 @@ wxString mmReportIncomeExpensesMonthly::getHTMLText()
 
             for (const auto& item : data) {
                 if (item.name == wxString::Format("%i", idx)) {
-                    val_negative = item.period[0];
-                    val_positive = item.period[1];
+                    val_positive = item.period[0];
+                    val_negative = item.period[1];
                     break;
                 }
             }
 
-            data_negative.data.push_back(val_negative);
             data_positive.data.push_back(val_positive);
+            data_negative.data.push_back(val_negative);
 
-            data_negative.title = _("Expenses");
             data_positive.title = _("Income");
+            data_negative.title = _("Expenses");
 
             data_negative.fillColor = "rgba(220,66,66,0.5)";
             data_positive.fillColor = "rgba(151,187,205,0.5)";
-            const auto label = wxString::Format("%s %i", wxGetTranslation(wxDateTime::GetEnglishMonthName(d.GetMonth())), d.GetYear());
+            const auto label = wxString::Format("%s %i", wxGetTranslation(
+                wxDateTime::GetEnglishMonthName(d.GetMonth())), d.GetYear());
             labels.Add(label);
         }
         aData.push_back(data_positive);
