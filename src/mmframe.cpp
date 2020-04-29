@@ -74,7 +74,7 @@
 #include <wx/fs_mem.h>
 #include <stack>
 
-//----------------------------------------------------------------------------
+ //----------------------------------------------------------------------------
 
 int REPEAT_TRANS_DELAY_TIME = 3000; // 3 seconds
 //----------------------------------------------------------------------------
@@ -293,7 +293,7 @@ mmGUIFrame::mmGUIFrame(mmGUIApp* app, const wxString& title
         }
     }
 
-    const wxAcceleratorEntry entries [] =
+    const wxAcceleratorEntry entries[] =
     {
         wxAcceleratorEntry(wxACCEL_NORMAL, WXK_F9, wxID_NEW),
         wxAcceleratorEntry(wxACCEL_NORMAL, WXK_F5, wxID_REFRESH),
@@ -312,12 +312,12 @@ mmGUIFrame::~mmGUIFrame()
     catch (...) {
         wxASSERT(false);
     }
-    
+
     // Report database statistics
     for (const auto & model : this->m_all_models)
     {
         model->show_statistics();
-		Model_Usage::instance().AppendToCache(model->GetTableStatsAsJson());
+        Model_Usage::instance().AppendToCache(model->GetTableStatsAsJson());
     }
 }
 //----------------------------------------------------------------------------
@@ -348,7 +348,7 @@ void mmGUIFrame::ShutdownDatabase()
 {
     if (m_db)
     {
-        if(!Model_Infotable::instance().cache_.empty()) //Cache empty on InfoTable means instance never initialized
+        if (!Model_Infotable::instance().cache_.empty()) //Cache empty on InfoTable means instance never initialized
             Model_Infotable::instance().Set("ISUSED", false);
         m_db->SetCommitHook(nullptr);
         m_db->Close();
@@ -415,7 +415,7 @@ bool mmGUIFrame::setAccountInSection(const wxString& sectionName, const wxString
     m_nav_tree_ctrl->SetEvtHandlerEnabled(false);
     bool accountFound = false;
     wxTreeItemId rootItem = getTreeItemfor(m_nav_tree_ctrl->GetRootItem()
-		, wxGetTranslation(sectionName));
+        , wxGetTranslation(sectionName));
     if (rootItem.IsOk() && m_nav_tree_ctrl->ItemHasChildren(rootItem))
     {
         m_nav_tree_ctrl->ExpandAllChildren(rootItem);
@@ -452,13 +452,13 @@ bool mmGUIFrame::setNavTreeSection(const wxString &sectionName)
 //----------------------------------------------------------------------------
 void mmGUIFrame::setAccountNavTreeSection(const wxString& accountName)
 {
-	if (setAccountInSection(wxTRANSLATE("Bank Accounts"), accountName)) return;
-	if (setAccountInSection(wxTRANSLATE("Credit Card Accounts"), accountName)) return;
-	if (setAccountInSection(wxTRANSLATE("Term Accounts"), accountName)) return;
-	if (setAccountInSection(wxTRANSLATE("Stock Portfolios"), accountName)) return;
-	if (setAccountInSection(wxTRANSLATE("Cash Accounts"), accountName)) return;
-	if (setAccountInSection(wxTRANSLATE("Loan Accounts"), accountName)) return;
-	if (setAccountInSection(wxTRANSLATE("Assets"), accountName)) return;
+    if (setAccountInSection(wxTRANSLATE("Bank Accounts"), accountName)) return;
+    if (setAccountInSection(wxTRANSLATE("Credit Card Accounts"), accountName)) return;
+    if (setAccountInSection(wxTRANSLATE("Term Accounts"), accountName)) return;
+    if (setAccountInSection(wxTRANSLATE("Stock Portfolios"), accountName)) return;
+    if (setAccountInSection(wxTRANSLATE("Cash Accounts"), accountName)) return;
+    if (setAccountInSection(wxTRANSLATE("Loan Accounts"), accountName)) return;
+    if (setAccountInSection(wxTRANSLATE("Assets"), accountName)) return;
 }
 
 //----------------------------------------------------------------------------
@@ -487,8 +487,8 @@ void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& /*event*/)
     //Auto recurring transaction
     bool continueExecution = false;
 
-	Model_Billsdeposits::AccountBalance bal;
-	Model_Billsdeposits& bills = Model_Billsdeposits::instance();
+    Model_Billsdeposits::AccountBalance bal;
+    Model_Billsdeposits& bills = Model_Billsdeposits::instance();
     for (const auto& q1 : bills.all())
     {
         bills.decode_fields(q1);
@@ -649,7 +649,7 @@ void mmGUIFrame::createControls()
 {
 #if defined (__WXGTK__) || defined (__WXMAC__)
     // Under GTK, row lines look ugly
-    m_nav_tree_ctrl = new wxTreeCtrl( this, ID_NAVTREECTRL,
+    m_nav_tree_ctrl = new wxTreeCtrl(this, ID_NAVTREECTRL,
         wxDefaultPosition, wxDefaultSize);
 #else
     m_nav_tree_ctrl = new wxTreeCtrl(this, ID_NAVTREECTRL,
@@ -665,13 +665,13 @@ void mmGUIFrame::createControls()
         wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL | wxTR_SINGLE | wxNO_BORDER);
 
     m_mgr.AddPane(m_nav_tree_ctrl, wxAuiPaneInfo()
-        . Name("Navigation")
-        . BestSize(wxSize(200, 100)).MinSize(wxSize(100, 100))
-        . Left());
+        .Name("Navigation")
+        .BestSize(wxSize(200, 100)).MinSize(wxSize(100, 100))
+        .Left());
 
     m_mgr.AddPane(homePanel_, wxAuiPaneInfo()
-        . Name("Home").Caption("Home")
-        . CenterPane().PaneBorder(false));
+        .Name("Home").Caption("Home")
+        .CenterPane().PaneBorder(false));
 }
 //----------------------------------------------------------------------------
 
@@ -707,7 +707,7 @@ void mmGUIFrame::updateNavTreeControl()
     wxTreeItemId termAccounts = m_nav_tree_ctrl->AppendItem(root, _("Term Accounts"), img::TERMACCOUNT_PNG, img::TERMACCOUNT_PNG);
     m_nav_tree_ctrl->SetItemData(termAccounts, new mmTreeItemData("Term Accounts"));
     m_nav_tree_ctrl->SetItemBold(termAccounts, true);
-    
+
     wxTreeItemId stocks = m_nav_tree_ctrl->AppendItem(root, _("Stock Portfolios"), img::STOCK_ACC_PNG, img::STOCK_ACC_PNG);
     m_nav_tree_ctrl->SetItemData(stocks, new mmTreeItemData("Stocks"));
     m_nav_tree_ctrl->SetItemBold(stocks, true);
@@ -730,7 +730,7 @@ void mmGUIFrame::updateNavTreeControl()
 
     const auto all_budgets = Model_Budgetyear::instance().all(Model_Budgetyear::COL_BUDGETYEARNAME);
     if (!all_budgets.empty())
-    { 
+    {
         std::map <wxString, int> years;
 
         wxRegEx pattern_year(R"(^([0-9]{4})$)");
@@ -791,7 +791,7 @@ void mmGUIFrame::updateNavTreeControl()
     {
         /* Start Populating the dynamic data */
         wxString vAccts = Model_Setting::instance().ViewAccounts();
-        wxASSERT(vAccts == VIEW_ACCOUNTS_ALL_STR || vAccts == VIEW_ACCOUNTS_FAVORITES_STR 
+        wxASSERT(vAccts == VIEW_ACCOUNTS_ALL_STR || vAccts == VIEW_ACCOUNTS_FAVORITES_STR
             || vAccts == VIEW_ACCOUNTS_OPEN_STR || vAccts == VIEW_ACCOUNTS_CLOSED_STR);
 
         for (const auto& account : Model_Account::instance().all(Model_Account::COL_ACCOUNTNAME))
@@ -810,26 +810,26 @@ void mmGUIFrame::updateNavTreeControl()
             switch (Model_Account::type(account))
             {
             case Model_Account::INVESTMENT:
+            {
+                tacct = m_nav_tree_ctrl->AppendItem(stocks, account.ACCOUNTNAME, selectedImage, selectedImage);
+                // find all the accounts associated with this stock portfolio
+                Model_Stock::Data_Set stock_account_list = Model_Stock::instance()
+                    .find(Model_Stock::HELDAT(account.ACCOUNTID));
+                // Put the names of the Stock_entry names as children of the stock account.
+                for (const auto &stock_entry : stock_account_list)
                 {
-                    tacct = m_nav_tree_ctrl->AppendItem(stocks, account.ACCOUNTNAME, selectedImage, selectedImage);
-                    // find all the accounts associated with this stock portfolio
-                    Model_Stock::Data_Set stock_account_list = Model_Stock::instance()
-                        .find(Model_Stock::HELDAT(account.ACCOUNTID));
-                    // Put the names of the Stock_entry names as children of the stock account.
-                    for (const auto &stock_entry : stock_account_list)
+                    if (Model_Translink::HasShares(stock_entry.STOCKID))
                     {
-                        if (Model_Translink::HasShares(stock_entry.STOCKID))
+                        wxTreeItemId se = m_nav_tree_ctrl->AppendItem(tacct, stock_entry.STOCKNAME, selectedImage, selectedImage);
+                        int account_id = stock_entry.STOCKID;
+                        if (Model_Translink::ShareAccountId(account_id))
                         {
-                            wxTreeItemId se = m_nav_tree_ctrl->AppendItem(tacct, stock_entry.STOCKNAME, selectedImage, selectedImage);
-                            int account_id = stock_entry.STOCKID;
-                            if (Model_Translink::ShareAccountId(account_id))
-                            {
-                                m_nav_tree_ctrl->SetItemData(se, new mmTreeItemData(account_id, false));
-                            }
+                            m_nav_tree_ctrl->SetItemData(se, new mmTreeItemData(account_id, false));
                         }
                     }
                 }
-                break;
+            }
+            break;
             case Model_Account::SHARES:
                 tacct = m_nav_tree_ctrl->AppendItem(shareAccounts, account.ACCOUNTNAME, selectedImage, selectedImage);
                 break;
@@ -879,53 +879,53 @@ void mmGUIFrame::updateNavTreeControl()
 
 void mmGUIFrame::loadNavTreeItemsStatus()
 {
-	/* Load Nav Tree Control */
-	SetEvtHandlerEnabled(false);
-	wxTreeItemId root = m_nav_tree_ctrl->GetRootItem();
-	m_nav_tree_ctrl->Expand(root);
+    /* Load Nav Tree Control */
+    SetEvtHandlerEnabled(false);
+    wxTreeItemId root = m_nav_tree_ctrl->GetRootItem();
+    m_nav_tree_ctrl->Expand(root);
 
-	const wxString& str = Model_Infotable::instance().GetStringInfo("NAV_TREE_STATUS", "");
-	Document json_doc;
-	if (json_doc.Parse(str.c_str()).HasParseError()) {
-		json_doc.Parse("{}");
-	}
+    const wxString& str = Model_Infotable::instance().GetStringInfo("NAV_TREE_STATUS", "");
+    Document json_doc;
+    if (json_doc.Parse(str.c_str()).HasParseError()) {
+        json_doc.Parse("{}");
+    }
 
-	std::stack<wxTreeItemId> items;
-	if (m_nav_tree_ctrl->GetRootItem().IsOk()) {
-		items.push(m_nav_tree_ctrl->GetRootItem());
-	}
+    std::stack<wxTreeItemId> items;
+    if (m_nav_tree_ctrl->GetRootItem().IsOk()) {
+        items.push(m_nav_tree_ctrl->GetRootItem());
+    }
 
-	while (!items.empty())
-	{
-		wxTreeItemId next = items.top();
-		items.pop();
+    while (!items.empty())
+    {
+        wxTreeItemId next = items.top();
+        items.pop();
 
-		wxTreeItemIdValue cookie;
-		wxTreeItemId nextChild = m_nav_tree_ctrl->GetFirstChild(next, cookie);
-		while (nextChild.IsOk())
-		{
-			if (m_nav_tree_ctrl->HasChildren(nextChild)) items.push(nextChild);
-			nextChild = m_nav_tree_ctrl->GetNextSibling(nextChild);
-		}
+        wxTreeItemIdValue cookie;
+        wxTreeItemId nextChild = m_nav_tree_ctrl->GetFirstChild(next, cookie);
+        while (nextChild.IsOk())
+        {
+            if (m_nav_tree_ctrl->HasChildren(nextChild)) items.push(nextChild);
+            nextChild = m_nav_tree_ctrl->GetNextSibling(nextChild);
+        }
 
-		mmTreeItemData* iData =
-			dynamic_cast<mmTreeItemData*>(m_nav_tree_ctrl->GetItemData(next));
-		if (iData)
-		{
-			const wxString& nav_key = iData->getString();
-			wxLogDebug("-%s-", nav_key);
-			if (json_doc.HasMember(nav_key.c_str()))
-			{
-				Value json_key(nav_key.c_str(), json_doc.GetAllocator());
-				if (json_doc[json_key].IsBool() && json_doc[json_key].GetBool())
-				{
-					m_nav_tree_ctrl->Expand(next);
-				}
-			}
-		}
-	}
+        mmTreeItemData* iData =
+            dynamic_cast<mmTreeItemData*>(m_nav_tree_ctrl->GetItemData(next));
+        if (iData)
+        {
+            const wxString& nav_key = iData->getString();
+            wxLogDebug("-%s-", nav_key);
+            if (json_doc.HasMember(nav_key.c_str()))
+            {
+                Value json_key(nav_key.c_str(), json_doc.GetAllocator());
+                if (json_doc[json_key].IsBool() && json_doc[json_key].GetBool())
+                {
+                    m_nav_tree_ctrl->Expand(next);
+                }
+            }
+        }
+    }
 
-	SetEvtHandlerEnabled(true);
+    SetEvtHandlerEnabled(true);
 }
 
 void mmGUIFrame::OnTreeItemExpanded(wxTreeEvent& event)
@@ -947,40 +947,40 @@ void mmGUIFrame::OnTreeItemCollapsed(wxTreeEvent& event)
 
 void mmGUIFrame::navTreeStateToJson()
 {
-	StringBuffer json_buffer;
-	PrettyWriter<StringBuffer> json_writer(json_buffer);
-	json_writer.StartObject();
+    StringBuffer json_buffer;
+    PrettyWriter<StringBuffer> json_writer(json_buffer);
+    json_writer.StartObject();
 
-	std::stack<wxTreeItemId> items;
-	if (m_nav_tree_ctrl->GetRootItem().IsOk())
-		items.push(m_nav_tree_ctrl->GetRootItem());
+    std::stack<wxTreeItemId> items;
+    if (m_nav_tree_ctrl->GetRootItem().IsOk())
+        items.push(m_nav_tree_ctrl->GetRootItem());
 
-	while (!items.empty())
-	{
-		wxTreeItemId next = items.top();
-		items.pop();
+    while (!items.empty())
+    {
+        wxTreeItemId next = items.top();
+        items.pop();
 
-		wxTreeItemIdValue cookie;
-		wxTreeItemId nextChild = m_nav_tree_ctrl->GetFirstChild(next, cookie);
-		while (nextChild.IsOk())
-		{
-			if (m_nav_tree_ctrl->HasChildren(nextChild)) items.push(nextChild);
-			nextChild = m_nav_tree_ctrl->GetNextSibling(nextChild);
-		}
+        wxTreeItemIdValue cookie;
+        wxTreeItemId nextChild = m_nav_tree_ctrl->GetFirstChild(next, cookie);
+        while (nextChild.IsOk())
+        {
+            if (m_nav_tree_ctrl->HasChildren(nextChild)) items.push(nextChild);
+            nextChild = m_nav_tree_ctrl->GetNextSibling(nextChild);
+        }
 
-		mmTreeItemData* iData = dynamic_cast<mmTreeItemData*>(m_nav_tree_ctrl->GetItemData(next));
-		if (iData && iData->isStringData() && m_nav_tree_ctrl->IsExpanded(next))
-		{
-			json_writer.Key(iData->getString().c_str());
-			json_writer.Bool(m_nav_tree_ctrl->IsExpanded(next));
-		}
-	};
-	json_writer.EndObject();
+        mmTreeItemData* iData = dynamic_cast<mmTreeItemData*>(m_nav_tree_ctrl->GetItemData(next));
+        if (iData && iData->isStringData() && m_nav_tree_ctrl->IsExpanded(next))
+        {
+            json_writer.Key(iData->getString().c_str());
+            json_writer.Bool(m_nav_tree_ctrl->IsExpanded(next));
+        }
+    };
+    json_writer.EndObject();
 
-	const wxString nav_tree_status = json_buffer.GetString();
-	wxLogDebug("=========== navTreeStateToJson =============================");
-	wxLogDebug(nav_tree_status);
-	Model_Infotable::instance().Set("NAV_TREE_STATUS", nav_tree_status);
+    const wxString nav_tree_status = json_buffer.GetString();
+    wxLogDebug("=========== navTreeStateToJson =============================");
+    wxLogDebug(nav_tree_status);
+    Model_Infotable::instance().Set("NAV_TREE_STATUS", nav_tree_status);
 }
 //----------------------------------------------------------------------------
 
@@ -1278,7 +1278,7 @@ void mmGUIFrame::OnViewAccountsTemporaryChange(wxCommandEvent& e)
     const wxString vAccts = Model_Setting::instance().ViewAccounts();
     wxString temp_view = VIEW_ACCOUNTS_ALL_STR;
     //Set view ALL & Refresh Navigation Panel
-    switch (evt_id) 
+    switch (evt_id)
     {
     case MENU_TREEPOPUP_ACCOUNT_VIEWALL: temp_view = VIEW_ACCOUNTS_ALL_STR; break;
     case MENU_TREEPOPUP_ACCOUNT_VIEWFAVORITE: temp_view = VIEW_ACCOUNTS_FAVORITES_STR; break;
@@ -1687,13 +1687,13 @@ void mmGUIFrame::CreateToolBar()
     toolBar_->AddSeparator();
     toolBar_->AddTool(wxID_NEW, _("New"), mmBitmap(png::NEW_TRX), _("New Transaction"));
     toolBar_->AddSeparator();
-    
+
     wxString news_array;
     for (const auto& entry : g_WebsiteNewsList)
         news_array += entry.Title + "\n";
     if (news_array.empty()) news_array = _("Register/View Release &Notifications");
-    const wxBitmap news_ico = (g_WebsiteNewsList.size() > 0) 
-        ? mmBitmap(png::NEW_NEWS) 
+    const wxBitmap news_ico = (g_WebsiteNewsList.size() > 0)
+        ? mmBitmap(png::NEW_NEWS)
         : mmBitmap(png::NEWS);
 
     toolBar_->AddTool(MENU_ANNOUNCEMENTMAILING, _("News"), news_ico, news_array);
@@ -1882,7 +1882,7 @@ void mmGUIFrame::SetDataBaseParameters(const wxString& fileName)
 {
     wxString title = wxString::Format(_("%1$s - %2$s"), mmex::getProgramName(), fileName);
     if (mmex::isPortableMode())
-        title = wxString::Format(_("%1$s - %2$s"), title,  (" [" + _("portable mode") + ']'));
+        title = wxString::Format(_("%1$s - %2$s"), title, (" [" + _("portable mode") + ']'));
 
     SetTitle(title);
 
@@ -1944,7 +1944,7 @@ void mmGUIFrame::OnNew(wxCommandEvent& /*event*/)
         wxEmptyString,
         "MMB Files(*.mmb)|*.mmb",
         wxFD_SAVE | wxFD_OVERWRITE_PROMPT
-        );
+    );
 
     if (dlg.ShowModal() != wxID_OK)
         return;
@@ -1967,7 +1967,7 @@ void mmGUIFrame::OnOpen(wxCommandEvent& /*event*/)
         , "MMB Files(*.mmb)|*.mmb|Encrypted MMB files (*.emb)|*.emb"
         , wxFD_FILE_MUST_EXIST | wxFD_OPEN
         , this
-        );
+    );
 
     if (!fileName.empty())
     {
@@ -1984,7 +1984,7 @@ void mmGUIFrame::OnConvertEncryptedDB(wxCommandEvent& /*event*/)
         , "Encrypted MMB files (*.emb)|*.emb"
         , wxFD_FILE_MUST_EXIST
         , this
-        );
+    );
 
     if (encFileName.empty())
         return;
@@ -1999,7 +1999,7 @@ void mmGUIFrame::OnConvertEncryptedDB(wxCommandEvent& /*event*/)
         , wxEmptyString
         , "MMB Files(*.mmb)|*.mmb"
         , wxFD_SAVE | wxFD_OVERWRITE_PROMPT
-        );
+    );
 
     if (dlg.ShowModal() != wxID_OK)
         return;
@@ -2049,17 +2049,17 @@ void mmGUIFrame::OnChangeEncryptPassword(wxCommandEvent& /*event*/)
 void mmGUIFrame::OnVacuumDB(wxCommandEvent& /*event*/)
 {
     wxMessageDialog msgDlg(this
-        , wxString::Format("%s\n\n%s",_("Make sure you have a backup of DB before optimize it"),_("Do you want to proceed?"))
+        , wxString::Format("%s\n\n%s", _("Make sure you have a backup of DB before optimize it"), _("Do you want to proceed?"))
         , _("DB Optimization"), wxYES_NO | wxNO_DEFAULT | wxICON_WARNING);
     if (msgDlg.ShowModal() == wxID_YES)
     {
         const wxString SizeBefore = wxFileName(m_filename).GetHumanReadableSize();
         m_db->Vacuum();
         const wxString SizeAfter = wxFileName(m_filename).GetHumanReadableSize();
-        wxMessageBox(wxString::Format( 
+        wxMessageBox(wxString::Format(
             _("Database Optimization Completed!\n\n"
-            "Size before: %s\n"
-            "Size after: %s\n"), SizeBefore, SizeAfter),
+                "Size before: %s\n"
+                "Size after: %s\n"), SizeBefore, SizeAfter),
             _("DB Optimization"));
     }
 }
@@ -2093,7 +2093,7 @@ void mmGUIFrame::OnSaveAs(wxCommandEvent& /*event*/)
         wxEmptyString,
         "MMB Files(*.mmb)|*.mmb|Encrypted MMB files (*.emb)|*.emb",
         wxFD_SAVE | wxFD_OVERWRITE_PROMPT
-        );
+    );
 
     if (dlg.ShowModal() != wxID_OK) return;
 
@@ -2246,7 +2246,7 @@ void mmGUIFrame::OnImportWebApp(wxCommandEvent& /*event*/)
     mmWebAppDialog dlg(this);
     if (dlg.ShowModal() == wxID_HELP) {
         helpFileIndex_ = mmex::HTML_WEBAPP;
-        wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED,wxID_HELP);
+        wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, wxID_HELP);
         GetEventHandler()->AddPendingEvent(evt);
     }
     if (dlg.getRefreshRequested())
@@ -2278,7 +2278,7 @@ void mmGUIFrame::OnNewAccount(wxCommandEvent& /*event*/)
                 "Asset transactions are created within the Assets View\n"
                 "after the selection of the Asset within that view.\n\n"
                 "Asset Accounts can also hold normal transactions to regular accounts."
-                ), _("Asset Account Creation"));
+            ), _("Asset Account Creation"));
         }
 
         if (account->ACCOUNTTYPE == Model_Account::all_type()[Model_Account::SHARES])
@@ -2290,7 +2290,7 @@ void mmGUIFrame::OnNewAccount(wxCommandEvent& /*event*/)
                 "These accounts only become visible after associating a Stock to the Share Account\n"
                 "Or by using the Menu View --> 'Display Share Accounts'\n"
                 "Share Accounts can also hold normal transactions to regular account."
-                ), _("Share Account Creation"));
+            ), _("Share Account Creation"));
         }
 
         updateNavTreeControl();
@@ -2318,8 +2318,9 @@ void mmGUIFrame::refreshPanelData()
         createHomePage();
     else if (id == mmID_CHECKING)
         checkingAccountPage_->RefreshList();
-    else if (id == mmID_ASSETS) 
-        { /*Nothing to do;*/ }
+    else if (id == mmID_ASSETS)
+    { /*Nothing to do;*/
+    }
     else if (id == mmID_BILLS)
         billsDepositsPanel_->RefreshList();
     else if (id == mmID_BUDGET)
@@ -2350,7 +2351,7 @@ void mmGUIFrame::OnOrgCategories(wxCommandEvent& /*event*/)
 
 void mmGUIFrame::OnOrgPayees(wxCommandEvent& /*event*/)
 {
-    mmPayeeDialog dlg(this,false);
+    mmPayeeDialog dlg(this, false);
     dlg.ShowModal();
     if (dlg.getRefreshRequested())
     {
@@ -2505,7 +2506,7 @@ void mmGUIFrame::OnReportBug(wxCommandEvent& WXUNUSED(event))
 
 void mmGUIFrame::OnAbout(wxCommandEvent& WXUNUSED(event))
 {
-    mmAboutDialog(this,0).ShowModal();
+    mmAboutDialog(this, 0).ShowModal();
 }
 //----------------------------------------------------------------------------
 
@@ -2555,7 +2556,7 @@ void mmGUIFrame::OnExportToHtml(wxCommandEvent& WXUNUSED(event))
     wxString fileName = wxFileSelector(_("Choose HTML file to Export")
         , wxEmptyString, wxEmptyString, wxEmptyString
         , "*.html", wxFD_SAVE | wxFD_OVERWRITE_PROMPT);
-    
+
     if (!fileName.empty())
     {
         wxString htmlText = panelCurrent_->BuildPage();
@@ -2656,37 +2657,37 @@ void mmGUIFrame::createHelpPage()
 
 void mmGUIFrame::createBillsDeposits()
 {
-	StringBuffer json_buffer;
-	Writer<StringBuffer> json_writer(json_buffer);
+    StringBuffer json_buffer;
+    Writer<StringBuffer> json_writer(json_buffer);
 
-	json_writer.StartObject();
-	json_writer.Key("module");
-	json_writer.String("Bills & Deposits Panel");
+    json_writer.StartObject();
+    json_writer.Key("module");
+    json_writer.String("Bills & Deposits Panel");
 
-	const auto time = wxDateTime::UNow();
+    const auto time = wxDateTime::UNow();
 
-	if (panelCurrent_->GetId() == mmID_BILLS)
-	{
-		billsDepositsPanel_->RefreshList();
-	}
-	else
-	{
-		wxSizer *sizer = cleanupHomePanel();
-		billsDepositsPanel_ = new mmBillsDepositsPanel(homePanel_, mmID_BILLS
-			, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
-		panelCurrent_ = billsDepositsPanel_;
+    if (panelCurrent_->GetId() == mmID_BILLS)
+    {
+        billsDepositsPanel_->RefreshList();
+    }
+    else
+    {
+        wxSizer *sizer = cleanupHomePanel();
+        billsDepositsPanel_ = new mmBillsDepositsPanel(homePanel_, mmID_BILLS
+            , wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
+        panelCurrent_ = billsDepositsPanel_;
 
-		sizer->Add(panelCurrent_, 1, wxGROW | wxALL, 1);
+        sizer->Add(panelCurrent_, 1, wxGROW | wxALL, 1);
 
-		homePanel_->Layout();
-		menuPrintingEnable(true);
-	}
+        homePanel_->Layout();
+        menuPrintingEnable(true);
+    }
 
-	json_writer.Key("seconds");
-	json_writer.Double((wxDateTime::UNow() - time).GetMilliseconds().ToDouble() / 1000);
-	json_writer.EndObject();
+    json_writer.Key("seconds");
+    json_writer.Double((wxDateTime::UNow() - time).GetMilliseconds().ToDouble() / 1000);
+    json_writer.EndObject();
 
-	Model_Usage::instance().AppendToUsage(json_buffer.GetString());
+    Model_Usage::instance().AppendToUsage(json_buffer.GetString());
 }
 //----------------------------------------------------------------------------
 
@@ -2731,55 +2732,55 @@ void mmGUIFrame::createBudgetingPage(int budgetYearID)
 
 void mmGUIFrame::createCheckingAccountPage(int accountID)
 {
-	StringBuffer json_buffer;
-	Writer<StringBuffer> json_writer(json_buffer);
+    StringBuffer json_buffer;
+    Writer<StringBuffer> json_writer(json_buffer);
 
-	json_writer.StartObject();
-	json_writer.Key("module");
-	json_writer.String("Checking Panel");
+    json_writer.StartObject();
+    json_writer.Key("module");
+    json_writer.String("Checking Panel");
 
-	const auto time = wxDateTime::UNow();
+    const auto time = wxDateTime::UNow();
 
     m_nav_tree_ctrl->SetEvtHandlerEnabled(false);
-	if (panelCurrent_->GetId() == mmID_CHECKING)
-	{
-		checkingAccountPage_->DisplayAccountDetails(accountID);
-	}
-	else
-	{
-		windowsFreezeThaw(homePanel_);
-		wxSizer *sizer = cleanupHomePanel();
-		checkingAccountPage_ = new mmCheckingPanel(homePanel_, this, accountID, mmID_CHECKING);
-		panelCurrent_ = checkingAccountPage_;
-		sizer->Add(panelCurrent_, 1, wxGROW | wxALL, 1);
-		homePanel_->Layout();
-		windowsFreezeThaw(homePanel_);
-	}
+    if (panelCurrent_->GetId() == mmID_CHECKING)
+    {
+        checkingAccountPage_->DisplayAccountDetails(accountID);
+    }
+    else
+    {
+        windowsFreezeThaw(homePanel_);
+        wxSizer *sizer = cleanupHomePanel();
+        checkingAccountPage_ = new mmCheckingPanel(homePanel_, this, accountID, mmID_CHECKING);
+        panelCurrent_ = checkingAccountPage_;
+        sizer->Add(panelCurrent_, 1, wxGROW | wxALL, 1);
+        homePanel_->Layout();
+        windowsFreezeThaw(homePanel_);
+    }
 
-	json_writer.Key("seconds");
-	json_writer.Double((wxDateTime::UNow() - time).GetMilliseconds().ToDouble() / 1000);
-	json_writer.EndObject();
+    json_writer.Key("seconds");
+    json_writer.Double((wxDateTime::UNow() - time).GetMilliseconds().ToDouble() / 1000);
+    json_writer.EndObject();
 
-	Model_Usage::instance().AppendToUsage(json_buffer.GetString());
+    Model_Usage::instance().AppendToUsage(json_buffer.GetString());
 
-	menuPrintingEnable(true);
-	if (gotoTransID_ > 0)
-	{
-		checkingAccountPage_->SetSelectedTransaction(gotoTransID_);
-	}
+    menuPrintingEnable(true);
+    if (gotoTransID_ > 0)
+    {
+        checkingAccountPage_->SetSelectedTransaction(gotoTransID_);
+    }
     m_nav_tree_ctrl->SetEvtHandlerEnabled(true);
 }
 
 void mmGUIFrame::createStocksAccountPage(int accountID)
 {
-	StringBuffer json_buffer;
-	Writer<StringBuffer> json_writer(json_buffer);
+    StringBuffer json_buffer;
+    Writer<StringBuffer> json_writer(json_buffer);
 
-	json_writer.StartObject();
-	json_writer.Key("module");
-	json_writer.String("Stock Panel");
+    json_writer.StartObject();
+    json_writer.Key("module");
+    json_writer.String("Stock Panel");
 
-	const auto time = wxDateTime::UNow();
+    const auto time = wxDateTime::UNow();
 
     //TODO: Refresh Panel
     {
@@ -2792,11 +2793,11 @@ void mmGUIFrame::createStocksAccountPage(int accountID)
         windowsFreezeThaw(homePanel_);
     }
 
-	json_writer.Key("seconds");
-	json_writer.Double((wxDateTime::UNow() - time).GetMilliseconds().ToDouble() / 1000);
-	json_writer.EndObject();
+    json_writer.Key("seconds");
+    json_writer.Double((wxDateTime::UNow() - time).GetMilliseconds().ToDouble() / 1000);
+    json_writer.EndObject();
 
-	Model_Usage::instance().AppendToUsage(json_buffer.GetString());
+    Model_Usage::instance().AppendToUsage(json_buffer.GetString());
 }
 
 //----------------------------------------------------------------------------
@@ -2825,28 +2826,28 @@ void mmGUIFrame::OnGotoStocksAccount(wxCommandEvent& WXUNUSED(event))
 
 void mmGUIFrame::OnAssets(wxCommandEvent& /*event*/)
 {
-	StringBuffer json_buffer;
-	Writer<StringBuffer> json_writer(json_buffer);
+    StringBuffer json_buffer;
+    Writer<StringBuffer> json_writer(json_buffer);
 
-	json_writer.StartObject();
-	json_writer.Key("module");
-	json_writer.String("Asset Panel");
+    json_writer.StartObject();
+    json_writer.Key("module");
+    json_writer.String("Asset Panel");
 
-	const auto time = wxDateTime::UNow();
+    const auto time = wxDateTime::UNow();
 
-	windowsFreezeThaw(homePanel_);
-	wxSizer *sizer = cleanupHomePanel();
-	panelCurrent_ = new mmAssetsPanel(this, homePanel_, mmID_ASSETS);
-	sizer->Add(panelCurrent_, 1, wxGROW | wxALL, 1);
-	homePanel_->Layout();
-	windowsFreezeThaw(homePanel_);
-	menuPrintingEnable(true);
+    windowsFreezeThaw(homePanel_);
+    wxSizer *sizer = cleanupHomePanel();
+    panelCurrent_ = new mmAssetsPanel(this, homePanel_, mmID_ASSETS);
+    sizer->Add(panelCurrent_, 1, wxGROW | wxALL, 1);
+    homePanel_->Layout();
+    windowsFreezeThaw(homePanel_);
+    menuPrintingEnable(true);
 
-	json_writer.Key("seconds");
-	json_writer.Double((wxDateTime::UNow() - time).GetMilliseconds().ToDouble() / 1000);
-	json_writer.EndObject();
+    json_writer.Key("seconds");
+    json_writer.Double((wxDateTime::UNow() - time).GetMilliseconds().ToDouble() / 1000);
+    json_writer.EndObject();
 
-	Model_Usage::instance().AppendToUsage(json_buffer.GetString());
+    Model_Usage::instance().AppendToUsage(json_buffer.GetString());
 }
 //----------------------------------------------------------------------------
 
@@ -3023,7 +3024,7 @@ void mmGUIFrame::OnCategoryRelocation(wxCommandEvent& /*event*/)
         wxString msgStr;
         msgStr << _("Category Relocation Completed.") << "\n\n"
             << wxString::Format(_("Records have been updated in the database: %i"),
-            dlg.updatedCategoriesCount());
+                dlg.updatedCategoriesCount());
         wxMessageBox(msgStr, _("Category Relocation Result"));
         refreshPanelData();
     }
@@ -3038,7 +3039,7 @@ void mmGUIFrame::OnPayeeRelocation(wxCommandEvent& /*event*/)
         wxString msgStr;
         msgStr << _("Payee Relocation Completed.") << "\n\n"
             << wxString::Format(_("Records have been updated in the database: %i"),
-            dlg.updatedPayeesCount())
+                dlg.updatedPayeesCount())
             << "\n\n";
         wxMessageBox(msgStr, _("Payee Relocation Result"));
         refreshPanelData();
@@ -3116,7 +3117,7 @@ void mmGUIFrame::setGotoAccountID(int account_id, long transID)
 void mmGUIFrame::OnToggleFullScreen(wxCommandEvent& WXUNUSED(event))
 {
 #if (wxMAJOR_VERSION >= 3 && wxMINOR_VERSION >= 0)
-   this->ShowFullScreen(!IsFullScreen());
+    this->ShowFullScreen(!IsFullScreen());
 #endif
 }
 
