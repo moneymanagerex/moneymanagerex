@@ -64,13 +64,14 @@ private:
     void CreateControls();
     void fillControls();
 
-    void AddAttachment();
+    void AddAttachment(wxString Path = "");
     void OpenAttachment();
     void EditAttachment();
     void DeleteAttachment();
     void OnCancel(wxCommandEvent& /*event*/);
     void OnOk(wxCommandEvent& /*event*/);
 
+    void OnDropFiles(wxDropFilesEvent& event);
     void OnListItemSelected(wxDataViewEvent& event);
     void OnMenuSelected(wxCommandEvent& event);
     void OnItemRightClick(wxDataViewEvent& event);
