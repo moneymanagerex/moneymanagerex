@@ -336,7 +336,8 @@ void mmGUIFrame::cleanup()
     /* Delete the GUI */
     cleanupHomePanel(false);
     ShutdownDatabase();
-    /// Update the database according to user requirements
+
+    // Backup the database according to user requirements
     if (Option::instance().DatabaseUpdated() && Model_Setting::instance().GetBoolSetting("BACKUPDB_UPDATE", false))
     {
         dbUpgrade::BackupDB(m_filename, dbUpgrade::BACKUPTYPE::CLOSE, Model_Setting::instance().GetIntSetting("MAX_BACKUP_FILES", 4));
@@ -347,7 +348,8 @@ void mmGUIFrame::ShutdownDatabase()
 {
     if (m_db)
     {
-        Model_Infotable::instance().Set("ISUSED", false);
+        if(!Model_Infotable::instance().cache_.empty()) //Cache empty on InfoTable means instance never initialized
+            Model_Infotable::instance().Set("ISUSED", false);
         m_db->SetCommitHook(nullptr);
         m_db->Close();
         delete m_commit_callback_hook;
