@@ -265,8 +265,8 @@ wxString mmReportCategoryOverTimePerformance::getHTMLText()
     wxDate sd = m_date_range->start_date();
     wxDate ed = m_date_range->end_date();
     sd.Add(wxDateSpan::Months(m_date_selection));
-    ed.Add(wxDateSpan::Months(m_date_selection)).GetLastMonthDay();
-
+    ed.Add(wxDateSpan::Months(m_date_selection));
+    ed = ed.GetLastMonthDay();
     mmDateRange* date_range = new mmSpecifiedRange(sd, ed);
 
     //Get statistic
