@@ -108,6 +108,8 @@ void mmAttachmentDialog::CreateControls()
     if (debug_) attachmentListBox_->AppendTextColumn(ColName_[ATTACHMENT_ID], wxDATAVIEW_CELL_INERT, 30);
     attachmentListBox_->AppendTextColumn(ColName_[ATTACHMENT_DESCRIPTION], wxDATAVIEW_CELL_INERT, 150);
     attachmentListBox_->AppendTextColumn(ColName_[ATTACHMENT_FILENAME], wxDATAVIEW_CELL_INERT, 300);
+    attachmentListBox_->DragAcceptFiles(true);
+    attachmentListBox_->Connect(wxEVT_DROP_FILES, wxDropFilesEventHandler(mmAttachmentDialog::OnDropFiles), NULL, this);
     mainBoxSizer->Add(attachmentListBox_, wxSizerFlags(g_flagsExpand).Border(wxALL, 10));
 
     wxPanel* buttons_panel = new wxPanel(this, wxID_ANY);
@@ -150,28 +152,22 @@ void mmAttachmentDialog::fillControls()
     m_attachment_id = firstInTheListAttachentID;
 }
 
-void mmAttachmentDialog::OnListItemSelected(wxDataViewEvent& event)
+void mmAttachmentDialog::AddAttachment(wxString FilePath)
 {
-    wxDataViewItem item = event.GetItem();
-    int selected_index = attachmentListBox_->ItemToRow(item);
+    if (FilePath.empty())
+    {
+        FilePath = wxFileSelector(_("Import attachment:")
+            , wxEmptyString, wxEmptyString, wxEmptyString
+            , "All Files |*.*"
+            , wxFD_FILE_MUST_EXIST);
 
-    if (selected_index >= 0)
-        m_attachment_id = static_cast<int>(attachmentListBox_->GetItemData(item));
-}
+        if (FilePath.empty()) return;
+    }
 
-void mmAttachmentDialog::AddAttachment()
-{
-    const wxString attachmentFilePath = wxFileSelector(_("Import attachment:")
-        , wxEmptyString, wxEmptyString, wxEmptyString
-        , "All Files |*.*"
-        , wxFD_FILE_MUST_EXIST);
-
-    if (attachmentFilePath.empty()) return;
-
-    const wxString attachmentFileName = wxFileName(attachmentFilePath).GetName();
-    const wxString attachmentFileExtension = wxFileName(attachmentFilePath).GetExt().MakeLower();
+    const wxString attachmentFileName = wxFileName(FilePath).GetName();
+    const wxString attachmentFileExtension = wxFileName(FilePath).GetExt().MakeLower();
     
-    mmDialogComboBoxAutocomplete dlg(this, _("Enter a description for the new attachment:"),
+    mmDialogComboBoxAutocomplete dlg(this, _("Enter a description for the new attachment:") + wxString::Format("\n(%s)", FilePath),
         _("Organize Attachments: Add Attachment"), attachmentFileName, Model_Attachment::instance().allDescriptions(true));
 
     if (dlg.ShowModal() != wxID_OK)
@@ -185,7 +181,7 @@ void mmAttachmentDialog::AddAttachment()
     wxString importedFileName = m_RefType + "_" + wxString::Format("%i", m_RefId) + "_Attach"
         + wxString::Format("%i", attachmentLastNumber + 1) + "." + attachmentFileExtension;
 
-    if (mmAttachmentManage::CopyAttachment(attachmentFilePath, AttachmentsFolder + m_PathSep + m_RefType + m_PathSep + importedFileName))
+    if (mmAttachmentManage::CopyAttachment(FilePath, AttachmentsFolder + m_PathSep + m_RefType + m_PathSep + importedFileName))
     {
         Model_Attachment::Data* NewAttachment = Model_Attachment::instance().create();
         NewAttachment->REFTYPE = m_RefType;
@@ -254,6 +250,38 @@ void mmAttachmentDialog::DeleteAttachment()
     }
 }
 
+void mmAttachmentDialog::OnDropFiles(wxDropFilesEvent& event)
+{
+    if (event.GetNumberOfFiles() > 0)
+    {
+        wxString* dropped = event.GetFiles();
+        for (int i = 0; i < event.GetNumberOfFiles(); i++)
+        {
+            wxString FilePath = dropped[i];
+            if (wxFileExists(FilePath))
+                AddAttachment(FilePath);
+        }
+    }
+}
+
+void mmAttachmentDialog::OnListItemSelected(wxDataViewEvent& event)
+{
+    wxDataViewItem item = event.GetItem();
+    int selected_index = attachmentListBox_->ItemToRow(item);
+
+    if (selected_index >= 0)
+        m_attachment_id = static_cast<int>(attachmentListBox_->GetItemData(item));
+}
+
+void mmAttachmentDialog::OnListItemActivated(wxDataViewEvent& event)
+{
+    Model_Attachment::Data *attachment = Model_Attachment::instance().get(m_attachment_id);
+    wxString attachmentFilePath = mmex::getPathAttachment(mmAttachmentManage::InfotablePathSetting())
+        + m_PathSep + attachment->REFTYPE + m_PathSep + attachment->FILENAME;
+
+    mmAttachmentManage::OpenAttachment(attachmentFilePath);
+}
+
 void mmAttachmentDialog::OnMenuSelected(wxCommandEvent& event)
 {
     switch(event.GetId())
@@ -303,15 +331,6 @@ void mmAttachmentDialog::OnItemRightClick(wxDataViewEvent& event)
     PopupMenu(mainMenu);
     delete mainMenu;
     event.Skip();
-}
-
-void mmAttachmentDialog::OnListItemActivated(wxDataViewEvent& event)
-{
-    Model_Attachment::Data *attachment = Model_Attachment::instance().get(m_attachment_id);
-    wxString attachmentFilePath = mmex::getPathAttachment(mmAttachmentManage::InfotablePathSetting())
-        + m_PathSep + attachment->REFTYPE + m_PathSep + attachment->FILENAME;
-
-    mmAttachmentManage::OpenAttachment(attachmentFilePath);
 }
 
 void mmAttachmentDialog::OnCancel(wxCommandEvent& /*event*/)
