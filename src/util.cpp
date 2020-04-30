@@ -43,20 +43,20 @@ using namespace rapidjson;
 
 wxString JSON_PrettyFormated(rapidjson::Document& j_doc)
 {
-	StringBuffer j_buffer;
-	PrettyWriter<StringBuffer> j_writer(j_buffer);
-	j_doc.Accept(j_writer);
+    StringBuffer j_buffer;
+    PrettyWriter<StringBuffer> j_writer(j_buffer);
+    j_doc.Accept(j_writer);
 
-	return j_buffer.GetString();
+    return j_buffer.GetString();
 }
 
 wxString JSON_Formated(rapidjson::Document& j_doc)
 {
-	StringBuffer j_buffer;
-	Writer<StringBuffer> j_writer(j_buffer);
-	j_doc.Accept(j_writer);
+    StringBuffer j_buffer;
+    Writer<StringBuffer> j_writer(j_buffer);
+    j_doc.Accept(j_writer);
 
-	return j_buffer.GetString();
+    return j_buffer.GetString();
 }
 
 //----------------------------------------------------------------------------
@@ -78,12 +78,12 @@ const wxString inQuotes(const wxString& l, const wxString& delimiter)
     wxString label = l;
     if (label.Contains(delimiter) || label.Contains("\""))
     {
-        label.Replace("\"","\"\"", true);
+        label.Replace("\"", "\"\"", true);
         label = wxString() << "\"" << label << "\"";
     }
 
-    label.Replace("\t","    ", true);
-    label.Replace("\n"," ", true);
+    label.Replace("\t", "    ", true);
+    label.Replace("\n", " ", true);
     return label;
 }
 
@@ -117,7 +117,7 @@ wxColour mmColors::userDefColor7;
 
 wxColour getUDColour(int c)
 {
-    switch (c) 
+    switch (c)
     {
     case 1: return  mmColors::userDefColor1;
     case 2: return  mmColors::userDefColor2;
@@ -269,7 +269,7 @@ const wxString mmGetDateForDisplay(const wxString &iso_date)
 
     // Format date, store it and return it.
     wxString date_str = dateFormat;
-    if (date_str.Replace("%Y", iso_date.Mid(0, 4))==0)
+    if (date_str.Replace("%Y", iso_date.Mid(0, 4)) == 0)
         date_str.Replace("%y", iso_date.Mid(2, 2));
     date_str.Replace("%m", iso_date.Mid(5, 2));
     date_str.Replace("%d", iso_date.Mid(8, 2));
@@ -335,7 +335,7 @@ const wxDateTime getUserDefinedFinancialYear(bool prevDayRequired)
 
     if (dayNum <= 0 || dayNum > wxDateTime::GetNumberOfDays(static_cast<wxDateTime::Month>(monthNum), year))
         dayNum = 1;
-    
+
     wxDateTime financialYear(dayNum, static_cast<wxDateTime::Month>(monthNum), year);
     if (prevDayRequired)
         financialYear.Subtract(wxDateSpan::Day());
@@ -374,34 +374,34 @@ const std::map<wxString, wxString> &date_formats_regex()
 
 const std::map<wxString, wxString> g_date_formats_map()
 {
-	static std::map<wxString, wxString> df;
-	if (!df.empty())
-		return df;
+    static std::map<wxString, wxString> df;
+    if (!df.empty())
+        return df;
 
-	const auto local_date_fmt = wxLocale::GetInfo(wxLOCALE_SHORT_DATE_FMT);
-	const wxString formats[] = {
-		local_date_fmt,
-		"%Y-%m-%d", "%d/%m/%y", "%d/%m/%Y",
-		"%d-%m-%y", "%d-%m-%Y", "%d.%m.%y",
-		"%d.%m.%Y", "%d,%m,%y", "%d/%m'%Y",
-		"%d/%m'%y", "%d/%m %Y", "%m/%d/%y",
-		"%m/%d/%Y", "%m-%d-%y", "%m-%d-%Y",
-		"%m/%d'%y", "%m/%d'%Y", "%y/%m/%d",
-		"%y-%m-%d", "%Y/%m/%d", "%Y.%m.%d",
-		"%Y %m %d", "%Y%m%d",   "%Y%d%m"
-	};
+    const auto local_date_fmt = wxLocale::GetInfo(wxLOCALE_SHORT_DATE_FMT);
+    const wxString formats[] = {
+        local_date_fmt,
+        "%Y-%m-%d", "%d/%m/%y", "%d/%m/%Y",
+        "%d-%m-%y", "%d-%m-%Y", "%d.%m.%y",
+        "%d.%m.%Y", "%d,%m,%y", "%d/%m'%Y",
+        "%d/%m'%y", "%d/%m %Y", "%m/%d/%y",
+        "%m/%d/%Y", "%m-%d-%y", "%m-%d-%Y",
+        "%m/%d'%y", "%m/%d'%Y", "%y/%m/%d",
+        "%y-%m-%d", "%Y/%m/%d", "%Y.%m.%d",
+        "%Y %m %d", "%Y%m%d",   "%Y%d%m"
+    };
 
-	for (const auto& entry : formats)
-	{
-		auto local_date_mask = entry;
-		local_date_mask.Replace("%Y", "YYYY");
-		local_date_mask.Replace("%y", "YY");
-		local_date_mask.Replace("%d", "DD");
-		local_date_mask.Replace("%m", "MM");
-		df[entry] = local_date_mask;
-	}
+    for (const auto& entry : formats)
+    {
+        auto local_date_mask = entry;
+        local_date_mask.Replace("%Y", "YYYY");
+        local_date_mask.Replace("%y", "YY");
+        local_date_mask.Replace("%d", "DD");
+        local_date_mask.Replace("%m", "MM");
+        df[entry] = local_date_mask;
+    }
 
-	return df;
+    return df;
 }
 
 const std::map<int, std::pair<wxConvAuto, wxString> > g_encoding = {
@@ -791,7 +791,7 @@ CURLcode http_post_data(const wxString& sSite, const wxString& sData, const wxSt
     struct curlBuff chunk;
     curl_set_writedata_options(curl, chunk);
 
-    struct curl_slist *headers = NULL;
+    struct curl_slist* headers = nullptr;
     headers = curl_slist_append(headers, sContentType.mb_str());
     curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headers);
 
@@ -808,6 +808,7 @@ CURLcode http_post_data(const wxString& sSite, const wxString& sData, const wxSt
 
     free(chunk.memory);
     curl_easy_cleanup(curl);
+    curl_slist_free_all(headers);
     return err_code;
 }
 
@@ -846,97 +847,97 @@ CURLcode http_download_file(const wxString& sSite, const wxString& sPath)
 //All components version in TXT, HTML, ABOUT
 const wxString getProgramDescription(int type)
 {
-	const wxString bull = L" \u2022 ";
+    const wxString bull = L" \u2022 ";
     wxString eol;
     bool simple = true;
     switch (type) {
-        case 0: eol = "\n"; break;
-        case 1: eol = "<br>\n"; break;
-        case 2: eol = "\n"; simple = false;  break;
+    case 0: eol = "\n"; break;
+    case 1: eol = "<br>\n"; break;
+    case 2: eol = "\n"; simple = false;  break;
     }
 
-	wxString description;
+    wxString description;
 
-	description << wxString::Format(simple ? "Version: %s" : _("Version: %s"), mmex::getTitleProgramVersion()) << eol
-		<< bull << (simple ? "db " : _("Database version: ")) << mmex::version::getDbLatestVersion()
+    description << wxString::Format(simple ? "Version: %s" : _("Version: %s"), mmex::getTitleProgramVersion()) << eol
+        << bull << (simple ? "db " : _("Database version: ")) << mmex::version::getDbLatestVersion()
 #if WXSQLITE3_HAVE_CODEC
-		<< bull << " (" << wxSQLite3Cipher::GetCipherName(wxSQLite3Cipher::GetGlobalCipherDefault()) << ")"
+        << bull << " (" << wxSQLite3Cipher::GetCipherName(wxSQLite3Cipher::GetGlobalCipherDefault()) << ")"
 #endif
-		<< eol
+        << eol
 
 #ifdef GIT_COMMIT_HASH
-		<< bull << (simple ? "git " : _("Git commit: ")) << GIT_COMMIT_HASH
-		<< " (" << GIT_COMMIT_DATE << ")"
+        << bull << (simple ? "git " : _("Git commit: ")) << GIT_COMMIT_HASH
+        << " (" << GIT_COMMIT_DATE << ")"
 #endif
 #ifdef GIT_BRANCH
-		<< bull << (simple ? "" : _("Git branch: ")) << GIT_BRANCH
+        << bull << (simple ? "" : _("Git branch: ")) << GIT_BRANCH
 #endif
-		<< eol << eol
+        << eol << eol
 
-		<< (simple ? "Libs:" : _("MMEX is using the following support products:")) << eol
-		<< bull + wxVERSION_STRING
-		<< wxString::Format(" (%s %d.%d)",
-			wxPlatformInfo::Get().GetPortIdName(),
-			wxPlatformInfo::Get().GetToolkitMajorVersion(),
-			wxPlatformInfo::Get().GetToolkitMinorVersion())
+        << (simple ? "Libs:" : _("MMEX is using the following support products:")) << eol
+        << bull + wxVERSION_STRING
+        << wxString::Format(" (%s %d.%d)",
+            wxPlatformInfo::Get().GetPortIdName(),
+            wxPlatformInfo::Get().GetToolkitMajorVersion(),
+            wxPlatformInfo::Get().GetToolkitMinorVersion())
         << eol
 
-		<< bull + wxSQLITE3_VERSION_STRING
-		<< " (SQLite " << wxSQLite3Database::GetVersion() << ")" 
+        << bull + wxSQLITE3_VERSION_STRING
+        << " (SQLite " << wxSQLite3Database::GetVersion() << ")"
         << eol
-		
+
         << bull + "RapidJSON " << RAPIDJSON_VERSION_STRING << eol
-		
+
         << bull + LUA_RELEASE << eol
-		
+
         << bull + curl_version() << eol << eol
 
-		<< (simple ? "Build:" : _("Build on")) << " " << __DATE__ << " " << __TIME__ << " "
-		<< (simple ? "" : _("with:")) << eol
-		
+        << (simple ? "Build:" : _("Build on")) << " " << __DATE__ << " " << __TIME__ << " "
+        << (simple ? "" : _("with:")) << eol
+
         << bull + CMAKE_VERSION << eol
-		<< bull + MAKE_VERSION << eol
-		<< bull + GETTEXT_VERSION << eol
+        << bull + MAKE_VERSION << eol
+        << bull + GETTEXT_VERSION << eol
 #if defined(_MSC_VER)
 #ifdef VS_VERSION
-		<< bull + (simple ? "MSVS" : "Microsoft Visual Studio ") + VS_VERSION << eol
+        << bull + (simple ? "MSVS" : "Microsoft Visual Studio ") + VS_VERSION << eol
 #endif
-		<< bull + (simple ? "MSVSC++" : "Microsoft Visual C++ ") + CXX_VERSION << eol
+        << bull + (simple ? "MSVSC++" : "Microsoft Visual C++ ") + CXX_VERSION << eol
 #elif defined(__clang__)
-		<< bull + "Clang " + __VERSION__ << "\n"
+        << bull + "Clang " + __VERSION__ << "\n"
 #elif (defined(__GNUC__) || defined(__GNUG__)) && !(defined(__clang__) || defined(__INTEL_COMPILER))
-		<< bull + "GCC " + __VERSION__
+        << bull + "GCC " + __VERSION__
 #endif
 #ifdef CMAKE_VS_WINDOWS_TARGET_PLATFORM_VERSION
-		<< bull + CMAKE_VS_WINDOWS_TARGET_PLATFORM_VERSION
+        << bull + CMAKE_VS_WINDOWS_TARGET_PLATFORM_VERSION
 #endif
 #ifdef LINUX_DISTRO_STRING
-		<< bull + LINUX_DISTRO_STRING
+        << bull + LINUX_DISTRO_STRING
 #endif
-		<< eol << eol
-		<< (simple ? "OS:" : _("Running on:")) << eol
+        << eol << eol
+        << (simple ? "OS:" : _("Running on:")) << eol
 #ifdef __LINUX__
-		<< bull + wxGetLinuxDistributionInfo().Description
-		<< " \"" << wxGetLinuxDistributionInfo().CodeName << "\"\n"
+        << bull + wxGetLinuxDistributionInfo().Description
+        << " \"" << wxGetLinuxDistributionInfo().CodeName << "\"\n"
 #endif
-		<< bull + wxGetOsDescription() << eol
-		<< bull + wxPlatformInfo::Get().GetDesktopEnvironment()
-		<< " " << wxLocale::GetLanguageName(wxLocale::GetSystemLanguage())
-		<< " (" << wxLocale::GetSystemEncodingName() << ")" << eol
-		<< wxString::Format(bull + "%ix%i %ibit %ix%ippi\n",
-			wxGetDisplaySize().GetX(),
-			wxGetDisplaySize().GetY(),
-			wxDisplayDepth(),
-			wxGetDisplayPPI().GetX(),
-			wxGetDisplayPPI().GetY())
-		;
+        << bull + wxGetOsDescription() << eol
+        << bull + wxPlatformInfo::Get().GetDesktopEnvironment()
+        << " " << wxLocale::GetLanguageName(wxLocale::GetSystemLanguage())
+        << " (" << wxLocale::GetSystemEncodingName() << ")" << eol
+        << wxString::Format(bull + "%ix%i %ibit %ix%ippi\n",
+            wxGetDisplaySize().GetX(),
+            wxGetDisplaySize().GetY(),
+            wxDisplayDepth(),
+            wxGetDisplayPPI().GetX(),
+            wxGetDisplayPPI().GetY())
+        ;
 
-	description.RemoveLast();
-	if (simple) {
-		description.Replace("#", "&asymp;");
-	}
+    description.RemoveLast();
+    if (simple) {
+        description.Replace("#", "&asymp;");
+    }
 
-	return description;
+    return description;
 }
 
 // ----------------------------------------
@@ -1140,6 +1141,6 @@ const wxString md2html(const wxString& md)
     re.Replace(&body, R"(<a href="https://github.com/moneymanagerex/moneymanagerex/issues/\1">#\1</a>)");
 
     body.Replace("\n", "\n<p>");
-    
+
     return body;
 }

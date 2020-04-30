@@ -191,6 +191,10 @@ void mmWebAppDialog::fillControls()
     }
     net_button_->SetBitmap(mmBitmap(png::LED_GREEN));
 
+    mmWebApp::WebApp_UpdateAccount();
+    mmWebApp::WebApp_UpdatePayee();
+    mmWebApp::WebApp_UpdateCategory();
+
     for (const auto& WebTran : WebAppTransactions_)
     {
         wxVector<wxVariant> data;
