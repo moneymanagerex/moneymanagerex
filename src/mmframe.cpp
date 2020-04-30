@@ -465,22 +465,13 @@ void mmGUIFrame::setAccountNavTreeSection(const wxString& accountName)
 void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& /*event*/)
 {
     //WebApp check
-    if (mmWebApp::WebApp_CheckEnabled() && false)
+    if (mmWebApp::WebApp_CheckEnabled())
     {
         if (mmWebApp::WebApp_CheckGuid() && mmWebApp::WebApp_CheckApiVersion())
         {
             mmWebApp::WebApp_UpdateAccount();
             mmWebApp::WebApp_UpdatePayee();
             mmWebApp::WebApp_UpdateCategory();
-
-            mmWebApp::WebTranVector dummy;
-            if (mmWebApp::WebApp_DownloadNewTransaction(dummy, true) == CURLE_OK)
-            {
-                mmWebAppDialog dlg(this);
-                dlg.ShowModal();
-                if (dlg.getRefreshRequested())
-                    refreshPanelData();
-            }
         }
     }
 
