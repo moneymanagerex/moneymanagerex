@@ -1,6 +1,6 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
- Copyright (C) 2012, 2013 Nikolay
+ Copyright (C) 2012 - 2020 Nikolay Akimov
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -27,33 +27,37 @@
 wxIMPLEMENT_DYNAMIC_CLASS(mmAboutDialog, wxDialog);
 
 wxBEGIN_EVENT_TABLE(mmAboutDialog, wxDialog)
-    EVT_HTML_LINK_CLICKED(wxID_ANY, mmAboutDialog::OnLinkClicked)
+    EVT_HTML_LINK_CLICKED(wxID_ANY, mmAboutDialog::handleLink)
 wxEND_EVENT_TABLE()
 
-mmAboutDialog::mmAboutDialog(wxWindow* parent, int TabToOpen, const wxString &name)
-: about_text_(nullptr)
-, authors_text_(nullptr)
-, sponsors_text_(nullptr)
-, license_text_(nullptr)
-, privacy_text_(nullptr)
+mmAboutDialog::mmAboutDialog()
 {
-    const wxString caption = (TabToOpen == 4)
-        ? _("License agreement") 
-		: wxString::Format(_("%1$s - %2$s"), mmex::getProgramName(), mmex::getTitleProgramVersion());
-    Create(parent, wxID_ANY, caption, wxDefaultPosition
-        , wxDefaultSize, wxCAPTION | wxRESIZE_BORDER | wxCLOSE_BOX, TabToOpen, name);
+}
+
+mmAboutDialog::mmAboutDialog(wxWindow* parent, int tabToOpenNo, const wxString &name)
+    : aboutText_(nullptr)
+    , authorsText_(nullptr)
+    , sponsorsText_(nullptr)
+    , licenseText_(nullptr)
+    , privacyText_(nullptr)
+{
+    const wxString caption = (tabToOpenNo == 4)
+        ? _("License agreement")
+        : wxString::Format(_("%1$s - %2$s"), ::mmex::getProgramName(), ::mmex::getTitleProgramVersion());
+    createWindow(parent, wxID_ANY, caption, wxDefaultPosition
+        , wxDefaultSize, wxCAPTION | wxRESIZE_BORDER | wxCLOSE_BOX, tabToOpenNo, name);
     SetMinClientSize(wxSize(300, 400));
 }
 
-bool mmAboutDialog::Create(wxWindow* parent
+bool mmAboutDialog::createWindow(wxWindow* parent
     , wxWindowID id
     , const wxString& caption
     , const wxPoint& pos
     , const wxSize& size
     , long style
-    , int TabToOpen
+    , int tabToOpenNo
     , const wxString &name
-    )
+)
 {
     SetExtraStyle(GetExtraStyle() | wxWS_EX_BLOCK_EVENTS);
 
@@ -61,25 +65,25 @@ bool mmAboutDialog::Create(wxWindow* parent
 
     if (ok)
     {
-        CreateControls(TabToOpen);
-        InitControls();
-        this->SetIcon(mmex::getProgramIcon());
+        createControls(tabToOpenNo);
+        initControls();
+        this->SetIcon(::mmex::getProgramIcon());
         this->Centre();
     }
 
     return ok;
 }
 
-void mmAboutDialog::InitControls()
+void mmAboutDialog::initControls()
 {
     mmHTMLBuilder hb;
     wxString html = getProgramDescription(2);
     html.Replace("\n", "<br>");
-    hb.addHeader(1, mmex::getProgramName());
+    hb.addHeader(1, ::mmex::getProgramName());
     hb.addText(html);
     hb.end();
     html = hb.getHTMLText();
-    about_text_->SetPage(html);
+    aboutText_->SetPage(html);
 
     wxArrayString data;
     data.Add("");
@@ -87,12 +91,12 @@ void mmAboutDialog::InitControls()
     hb.clear();
 
     //Read data from file
-    wxString filePath = mmex::getPathDoc(mmex::F_CONTRIB, false);
+    wxString filePath = ::mmex::getPathDoc(mmex::F_CONTRIB, false);
     if (wxFileName::FileExists(filePath))
     {
         wxFileInputStream input(filePath);
         wxTextInputStream text(input);
-        wxRegEx link (R"(\[([^][]+)\]\(([^\(\)]+)\))", wxRE_EXTENDED);
+        wxRegEx link(R"(\[([^][]+)\]\(([^\(\)]+)\))", wxRE_EXTENDED);
         int part = 0;
 
         while (input.IsOk() && !input.Eof())
@@ -119,93 +123,93 @@ void mmAboutDialog::InitControls()
             }
             else
             {
-                link.Replace(&line,"<a href='\\2'>\\1</a>");
+                link.Replace(&line, R"(<a href='\2'>\1</a>)");
                 data[part] << line;
             }
         }
     }
 
-    authors_text_->SetPage(data[0]);
-    if (data.GetCount() > 1) sponsors_text_->SetPage(data[1]);
-    if (data.GetCount() > 2) license_text_->SetPage(data[2]);
-    if (data.GetCount() > 3) privacy_text_->SetPage(data[3]);
+    authorsText_->SetPage(data[0]);
+    if (data.GetCount() > 1) sponsorsText_->SetPage(data[1]);
+    if (data.GetCount() > 2) licenseText_->SetPage(data[2]);
+    if (data.GetCount() > 3) privacyText_->SetPage(data[3]);
 }
 
-void mmAboutDialog::CreateControls(int TabToOpen)
+void mmAboutDialog::createControls(int tabToOpenNo)
 {
     wxBoxSizer* itemBoxSizer = new wxBoxSizer(wxVERTICAL);
     this->SetSizer(itemBoxSizer);
 
     //Create tabs
-    wxNotebook* about_notebook = new wxNotebook(this
+    wxNotebook* aboutNotebook = new wxNotebook(this
         , wxID_ANY, wxDefaultPosition, wxDefaultSize, wxNB_MULTILINE);
-    about_notebook->SetMinSize(wxSize(400, 500));
+    aboutNotebook->SetMinSize(wxSize(400, 500));
 
-    wxPanel* about_tab = new wxPanel(about_notebook, wxID_ANY);
-    about_notebook->AddPage(about_tab, _("About"));
-    wxBoxSizer *about_sizer = new wxBoxSizer(wxVERTICAL);
-    about_tab->SetSizer(about_sizer);
+    wxPanel* aboutTab = new wxPanel(aboutNotebook, wxID_ANY);
+    aboutNotebook->AddPage(aboutTab, _("About"));
+    wxBoxSizer *aboutSizer = new wxBoxSizer(wxVERTICAL);
+    aboutTab->SetSizer(aboutSizer);
 
-    wxPanel* authors_tab = new wxPanel(about_notebook, wxID_ANY);
-    about_notebook->AddPage(authors_tab, _("Authors"));
-    wxBoxSizer *authors_sizer = new wxBoxSizer(wxVERTICAL);
-    authors_tab->SetSizer(authors_sizer);
+    wxPanel* authorsTab = new wxPanel(aboutNotebook, wxID_ANY);
+    aboutNotebook->AddPage(authorsTab, _("Authors"));
+    wxBoxSizer *authorsSizer = new wxBoxSizer(wxVERTICAL);
+    authorsTab->SetSizer(authorsSizer);
 
-    wxPanel* sponsors_tab = new wxPanel(about_notebook, wxID_ANY);
-    about_notebook->AddPage(sponsors_tab, _("Sponsors"));
-    wxBoxSizer *sponsors_sizer = new wxBoxSizer(wxVERTICAL);
-    sponsors_tab->SetSizer(sponsors_sizer);
+    wxPanel* sponsorsTab = new wxPanel(aboutNotebook, wxID_ANY);
+    aboutNotebook->AddPage(sponsorsTab, _("Sponsors"));
+    wxBoxSizer *sponsorsSizer = new wxBoxSizer(wxVERTICAL);
+    sponsorsTab->SetSizer(sponsorsSizer);
 
-    wxPanel* license_tab = new wxPanel(about_notebook, wxID_ANY);
-    about_notebook->AddPage(license_tab, _("License"));
-    wxBoxSizer *license_sizer = new wxBoxSizer(wxVERTICAL);
-    license_tab->SetSizer(license_sizer);
+    wxPanel* licenseTab = new wxPanel(aboutNotebook, wxID_ANY);
+    aboutNotebook->AddPage(licenseTab, _("License"));
+    wxBoxSizer *licenseSizer = new wxBoxSizer(wxVERTICAL);
+    licenseTab->SetSizer(licenseSizer);
 
-    wxPanel* privacy_tab = new wxPanel(about_notebook, wxID_ANY);
-    about_notebook->AddPage(privacy_tab, _("Privacy"));
-    wxBoxSizer *privacy_sizer = new wxBoxSizer(wxVERTICAL);
-    privacy_tab->SetSizer(privacy_sizer);
+    wxPanel* privacyTab = new wxPanel(aboutNotebook, wxID_ANY);
+    aboutNotebook->AddPage(privacyTab, _("Privacy"));
+    wxBoxSizer *privacySizer = new wxBoxSizer(wxVERTICAL);
+    privacyTab->SetSizer(privacySizer);
 
-    about_text_ = new wxHtmlWindow(about_tab
+    aboutText_ = new wxHtmlWindow(aboutTab
         , wxID_ANY, wxDefaultPosition, wxDefaultSize
         , wxHW_SCROLLBAR_AUTO | wxSUNKEN_BORDER | wxHSCROLL | wxVSCROLL);
-    about_sizer->Add(about_text_, g_flagsExpand);
+    aboutSizer->Add(aboutText_, g_flagsExpand);
 
-    authors_text_ = new wxHtmlWindow(authors_tab
+    authorsText_ = new wxHtmlWindow(authorsTab
         , wxID_ANY, wxDefaultPosition, wxDefaultSize
         , wxHW_SCROLLBAR_AUTO | wxSUNKEN_BORDER | wxHSCROLL | wxVSCROLL);
-    authors_sizer->Add(authors_text_, g_flagsExpand);
+    authorsSizer->Add(authorsText_, g_flagsExpand);
 
-    sponsors_text_ = new wxHtmlWindow(sponsors_tab
+    sponsorsText_ = new wxHtmlWindow(sponsorsTab
         , wxID_ANY, wxDefaultPosition, wxDefaultSize
         , wxHW_SCROLLBAR_AUTO | wxSUNKEN_BORDER | wxHSCROLL | wxVSCROLL);
-    sponsors_sizer->Add(sponsors_text_, g_flagsExpand);
+    sponsorsSizer->Add(sponsorsText_, g_flagsExpand);
 
-    license_text_ = new wxHtmlWindow(license_tab
+    licenseText_ = new wxHtmlWindow(licenseTab
         , wxID_ANY, wxDefaultPosition, wxDefaultSize
         , wxHW_SCROLLBAR_AUTO | wxSUNKEN_BORDER | wxHSCROLL | wxVSCROLL);
-    license_sizer->Add(license_text_, g_flagsExpand);
+    licenseSizer->Add(licenseText_, g_flagsExpand);
 
-    privacy_text_ = new wxHtmlWindow(privacy_tab
+    privacyText_ = new wxHtmlWindow(privacyTab
         , wxID_ANY, wxDefaultPosition, wxDefaultSize
         , wxHW_SCROLLBAR_AUTO | wxSUNKEN_BORDER | wxHSCROLL | wxVSCROLL);
-    privacy_sizer->Add(privacy_text_, g_flagsExpand);
+    privacySizer->Add(privacyText_, g_flagsExpand);
 
-    itemBoxSizer->Add(about_notebook, g_flagsExpand);
+    itemBoxSizer->Add(aboutNotebook, g_flagsExpand);
 
-    wxButton* button_OK = new wxButton(this, wxID_OK, _("&OK "));
-    button_OK->SetDefault();
-    button_OK->SetFocus();
-    itemBoxSizer->Add(button_OK, g_flagsCenter);
+    wxButton* buttonOk = new wxButton(this, wxID_OK, _("&OK "));
+    buttonOk->SetDefault();
+    buttonOk->SetFocus();
+    itemBoxSizer->Add(buttonOk, g_flagsCenter);
 
-    about_notebook->ChangeSelection(TabToOpen);
+    aboutNotebook->ChangeSelection(tabToOpenNo);
 
     GetSizer()->Fit(this);
 }
 
-void mmAboutDialog::OnLinkClicked(wxHtmlLinkEvent& event)
+void mmAboutDialog::handleLink(wxHtmlLinkEvent& event)
 {
-    wxHtmlLinkInfo link_info = event.GetLinkInfo();
-    wxString sURL = link_info.GetHref();
-    wxLaunchDefaultBrowser(sURL);
+    wxHtmlLinkInfo linkInfo = event.GetLinkInfo();
+    wxString url = linkInfo.GetHref();
+    wxLaunchDefaultBrowser(url);
 }

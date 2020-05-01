@@ -31,32 +31,29 @@ class mmAboutDialog : public wxDialog
     wxDECLARE_EVENT_TABLE();
 
 public:
-    mmAboutDialog() {}
-    mmAboutDialog(wxWindow* parent, int TabToOpen, const wxString &name = "mmAboutDialog");
+    mmAboutDialog();
+    mmAboutDialog(wxWindow* parent, int tabToOpenNo, const wxString &name = "mmAboutDialog");
 
 private:
-    bool Create(wxWindow* parent
+    bool createWindow(wxWindow* parent
         , wxWindowID id
         , const wxString& caption
         , const wxPoint& pos
         , const wxSize& size
         , long style
-        , int TabToOpen
+        , int tabToOpenNo
         , const wxString &name
         );
-    void CreateControls(int TabToOpen);
-    void InitControls();
-    void OnVersionHistory(wxCommandEvent& event);
-    void OnContributerList(wxCommandEvent& event);
-    void OnLinkClicked(wxHtmlLinkEvent& event);
+    void createControls(int tabToOpenNo);
+    void initControls();
+    void handleLink(wxHtmlLinkEvent& event);
 
-    wxHtmlWindow* about_text_;
-    wxHtmlWindow* authors_text_;
-    wxHtmlWindow* sponsors_text_;
-    wxHtmlWindow* license_text_;
-    wxHtmlWindow* privacy_text_;
+    wxHtmlWindow* aboutText_;
+    wxHtmlWindow* authorsText_;
+    wxHtmlWindow* sponsorsText_;
+    wxHtmlWindow* licenseText_;
+    wxHtmlWindow* privacyText_;
 
 };
 
 #endif // MM_EX_ABOUTDIALOG_H_
-
