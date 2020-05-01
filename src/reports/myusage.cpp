@@ -34,7 +34,7 @@ mmReportMyUsage::~mmReportMyUsage()
 
 int mmReportMyUsage::report_parameters()
 {
-    return RepParams::DATE_RANGE;
+    return RepParams::DATE_RANGE | RepParams::CHART;
 }
 
 wxString mmReportMyUsage::getHTMLText()
@@ -53,90 +53,70 @@ wxString mmReportMyUsage::getHTMLText()
         wxASSERT(_start_date.ParseISODate(all_usage.front().USAGEDATE));
         wxASSERT(_end_date.ParseISODate(all_usage.back().USAGEDATE));
     }
-    std::map<wxString, std::pair<int, wxString> > usage_by_day;
+
+    std::map<wxString, int> usage_by_module;
 
     for (const auto & usage : all_usage)
     {
-        usage_by_day[usage.USAGEDATE].first += 1;
+         Document json_doc;
+         if (json_doc.Parse(usage.JSONCONTENT.c_str()).HasParseError()) {
+             continue;
+         }
 
-        // Document json_doc;
-        // if (json_doc.Parse(usage.JSONCONTENT.c_str()).HasParseError()) {
-        //     continue;
-        // }
+         //wxLogDebug("======= mmReportMyUsage::getHTMLText =======");
+         //wxLogDebug("RapidJson\n%s", JSON_PrettyFormated(json_doc));
 
-        // // wxLogDebug("======= mmReportMyUsage::getHTMLText =======");
-        // // wxLogDebug("RapidJson\n%s", JSON_PrettyFormated(json_doc));
+         if (!json_doc.HasMember("usage") || !json_doc["usage"].IsArray())
+             continue;
+         Value u = json_doc["usage"].GetArray();
 
-        // if (!json_doc.HasMember("usage") || !json_doc["usage"].IsArray())
-        //     continue;
-        // Value u = json_doc["usage"].GetArray();
+         for (Value::ConstValueIterator it = u.Begin(); it != u.End(); ++it)
+         {
+             if (!it->IsObject()) continue;
+             const auto pobj = it->GetObject();
 
-        // for (Value::ConstValueIterator it = u.Begin(); it != u.End(); ++it)
-        // {
-        //     if (!it->IsObject()) continue;
-        //     const auto pobj = it->GetObject();
+             if (!pobj.HasMember("module") || !pobj["module"].IsString())
+                 continue;
+             auto module = wxString::FromUTF8(pobj["module"].GetString());
 
-        //     if (!pobj.HasMember("module") || !pobj["module"].IsString())
-        //         continue;
-        //     auto module = wxString::FromUTF8(pobj["module"].GetString());
+             if (!pobj.HasMember("name") || !pobj["name"].IsString())
+                 continue;
+             module += " / " + wxString::FromUTF8(pobj["name"].GetString());
 
-        //     if (!pobj.HasMember("name") || !pobj["name"].IsString())
-        //         continue;
-        //     module += wxString::FromUTF8(pobj["name"].GetString());
+             if (!pobj.HasMember("seconds") || !pobj["seconds"].IsDouble())
+                 continue;
+             const auto s = pobj["seconds"].GetDouble();
 
-        //     if (!pobj.HasMember("start") || !pobj["start"].IsString())
-        //         continue;
-        //     const auto s = wxString::FromUTF8(pobj["start"].GetString());
-
-        //     if (!pobj.HasMember("end") || !pobj["end"].IsString())
-        //         continue;
-        //     const auto e = wxString::FromUTF8(pobj["end"].GetString());
-
-        //     wxDateTime start, end;
-        //     start.ParseISOCombined(s);
-        //     end.ParseISOCombined(e);
-
-        //     long delta = end.Subtract(start).GetSeconds().ToLong();
-        //     if (delta < 1)
-        //         continue;
-
-        //     usage_by_day[usage.USAGEDATE].second += module + ";";
-        // }
+             usage_by_module[module] += 1;
+         }
     }
 
-    if (usage_by_day.empty()) {
-        usage_by_day[wxDateTime::Today().FormatISODate()] = std::make_pair(0, "");
+    if (usage_by_module.empty()) {
+        usage_by_module[_("Empty value")] = 0;
+    }
+
+    std::map<int, wxString> usage_by_frequency;
+    for (const auto i : usage_by_module) {
+        usage_by_frequency[i.second] = i.first;
     }
 
     loop_t contents;
-    wxDateTime day;
-    for (auto it = usage_by_day.begin(); it != usage_by_day.end(); ++ it)
+    for (auto it = usage_by_frequency.begin(); it != usage_by_frequency.end(); ++it)
     {
         row_t r;
-        wxASSERT(day.ParseISODate(it->first));
-        r(L"USAGEDATE") = wxString::Format("new Date(%d,%d,%d,0,0,0)",
-                             day.GetYear(), day.GetMonth(), day.GetDay());
-        r(L"FREQUENCY") = wxString::Format("%d", it->second.first);
-        // r(L"SLOW") = it->second.second;
+
+        r(L"MODULE_NAME") = it->second;
+        r(L"FREQUENCY") = wxString::Format("%d", it->first);
 
         contents += r;
     }
 
     mm_html_template report(usage_template);
+    report(L"CANVAS") = getChartSelection() == 0 ? R"(<canvas id="MY_CANVAS"></canvas>)" : "";
     report(L"REPORTNAME") = getReportTitle();
-    // report(L"_LINECHART") = _("Line Chart");
-    // report(L"_BARCHART") = _("Bar Chart");
-    report(L"_FREQUENCY") = _("Frequency");
-    report(L"STARTDATE") = wxString::Format("new Date(%d,%d,%d,0,0,0)",
-                            _start_date.GetYear(),
-                            _start_date.GetMonth(),
-                            _start_date.GetDay());
-    report(L"ENDDATE") = wxString::Format("new Date(%d,%d,%d,0,0,0)",
-                            _end_date.GetYear(),
-                            _end_date.GetMonth(),
-                            _end_date.GetDay());
+    report(L"HEADER_FREQUENCY") = _("Frequency");
+    report(L"HEADER_NAME") = _("Reports");
     report(L"CONTENTS") = contents;
-    report(L"GRAND") = wxString::Format("%zu", all_usage.size());
     report(L"HTMLSCALE") = wxString::Format("%d", Option::instance().getHtmlFontSize());
     
     wxDateTime today = wxDateTime::Now();
@@ -166,79 +146,78 @@ const char* mmReportMyUsage::usage_template = R"(
 <!DOCTYPE html>
 <html>
 <head>
-    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    <title><TMPL_VAR REPORTNAME></title>
-    <script src = "memory:ChartNew.js"></script>
-    <script src = "memory:format.js"></script>
-    <script src = "memory:sorttable.js"></script>
-    <link href = "memory:master.css" rel = "stylesheet" />
-    <style>
-        canvas {min-height: 100px}
-        body {font-size: <TMPL_VAR HTMLSCALE>%}
-    </style>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <title><TMPL_VAR REPORTNAME></title>
+  <script src = "memory:ChartNew.js"></script>
+  <script src = "memory:format.js"></script>
+  <script src = "memory:sorttable.js"></script>
+  <link href = "memory:master.css" rel = "stylesheet" />
+  <style>
+    canvas {min-height: 100px}
+    body {font-size: <TMPL_VAR HTMLSCALE>%}
+  </style>
 </head>
 <body>
 
 <div class = "container">
 <h3><TMPL_VAR REPORTNAME>
 
-<!--
-<select id="chart-type" onchange='onChartChange(this)'>
-    <option value="line" selected><TMPL_VAR _LINECHART></option>
-    <option value="bar"><TMPL_VAR _BARCHART></option>
-</select>
--->
 </h3>
 <TMPL_VAR TODAY><hr>
 
 <div class = "row">
-<canvas id="mycanvas"></canvas>
+<TMPL_VAR CANVAS">
 <script>
-    var data = {
-    labels: [ <TMPL_VAR STARTDATE>, <TMPL_VAR ENDDATE> ],
-    xBegin: <TMPL_VAR STARTDATE>,
-    xEnd: <TMPL_VAR ENDDATE>,
-    datasets: [
-        {
-            // fillColor : 'rgba(129, 172, 123, 0.5)',
-            strokeColor : 'rgba(129, 172, 123, 1)',
-            // pointColor : 'rgba(129, 172, 123, 1)',
-            // pointStrokeColor : "#fff",
-            data : [ <TMPL_LOOP NAME=CONTENTS><TMPL_VAR FREQUENCY><TMPL_UNLESS NAME=__LAST__>,</TMPL_UNLESS></TMPL_LOOP> ],
-            xPos: [ <TMPL_LOOP NAME=CONTENTS><TMPL_VAR USAGEDATE><TMPL_UNLESS NAME=__LAST__>,</TMPL_UNLESS></TMPL_LOOP> ],
-            title : "<TMPL_VAR _FREQUENCY>"
-        }
-        ]
+function getRandomColor() {
+    var letters = '0123456789ABCDEF'.split('');
+    var color = '#';
+    for (var i = 0; i < 6; i++ ) {
+        color += letters[Math.floor(Math.random() * 16)];
     }
-    var opts= {
-        annotateDisplay: true,
-        responsive: true,
-        yAxisMinimumInterval: 1,
-        extrapolateMissingData: false,
-        datasetFill: false,
-        pointDot : false,
-        linkType: 1,
-        fmtV2: "date",
-        fmtXLabel: "date"
-    };
+    return color;
+};
+  var d = {
+  data:
+    [
+<TMPL_LOOP NAME=CONTENTS>
+      {
+        title : '<TMPL_VAR MODULE_NAME>',
+        color : getRandomColor(),
+        value : <TMPL_VAR FREQUENCY>
+      },
+</TMPL_LOOP>
+    ]
+  };
+  var opts= {
+    annotateDisplay: true,
+    responsive: true,
+    segmentShowStroke: false
+  };
 
-    var ctx = document.getElementById("mycanvas").getContext("2d");
+  var ctx = document.getElementById("MY_CANVAS").getContext("2d");
 
-    window.onload = function() {
-        var myBar = new Chart(ctx).Line(data,opts);
-    }
-/*
-    function onChartChange(select){
-        var value = select.value;
-        if (value == "line") {
-           new Chart(ctx).Line(data,opts);
-        }
-        else if (value == "bar") {
-           new Chart(ctx).Bar(data,opts);
-        }
-    }
-*/
+  window.onload = function() {
+      var myBar = new Chart(ctx).Pie(d.data,opts);
+  }
+
 </script>
-</div></div></body>
+</div>
+<table class='table sortable'>
+<thead>
+  <tr>
+<th><TMPL_VAR HEADER_NAME></th>
+<th><TMPL_VAR HEADER_FREQUENCY></th>
+  </tr>
+</thead>
+<tbody>
+<TMPL_LOOP NAME=CONTENTS>
+  <tr class='success'>
+    <td class="sorttable_customkey="<TMPL_VAR MODULE_NAME>"><TMPL_VAR MODULE_NAME></td>
+    <td class="sorttable_customkey="<TMPL_VAR FREQUENCY>"><TMPL_VAR FREQUENCY></td>
+  </tr>
+</TMPL_LOOP>
+</tbody>
+</table>
+</div></body>
 </html>
 )";
