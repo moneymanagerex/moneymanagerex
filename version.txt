@@ -1,9 +1,30 @@
 Version History of Money Manager Ex
 
+1.3.5-beta.3 (May 01, 2020)
+Fixes:
+#2417 Transaction Filter does not open
+#2416 Crash when entering next occurrence of a recurring transaction
+#2410 Notes fiels in CSV import
+#2401 #2402 #2403 #2404 #2394
+Features:
+#2425 Icon sizes
+#2392 Transaction colour
+
 1.3.4 (Mar 11, 2020)
-- Fix: Monthly Summary of Accounts crash #1086
-- Fix: Loan accounts missing in Monthly Summary of Accounts report #1082
-- Update: Albanian and Swedish languages
+Fixes:
+#2395 Graph scaling
+#2387 Storage mmexini.db3
+#2229 Account attachments fail to open
+#2382 Bug - select category in recurring transaction
+#2379 Transaction auto number
+#2036 Categories:Monthly report - add date ranges
+#2375 Custom Field String issue
+#2369 Transaction dialog outlook (MAC)
+#2031 Default category is not assigned automatically for known payee during .qif import
+#1146 Possibility to run several mmex apps
+Features:
+#2391 Grouping on Budget Setup
+#2231 Export to JSON
 
 1.3.3 (Mar 04, 2017)
 - Fix: assets #1074 #1070
