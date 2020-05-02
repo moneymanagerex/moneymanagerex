@@ -135,25 +135,25 @@ bool mmHomePagePanel::Create(wxWindow *parent
     SetExtraStyle(GetExtraStyle() | wxWS_EX_BLOCK_EVENTS);
     wxPanelBase::Create(parent, winid, pos, size, style, name);
 
-    CreateControls();
+    createControls();
     GetSizer()->Fit(this);
     GetSizer()->SetSizeHints(this);
 
-    createHTML();
+    createHtml();
 
     Model_Usage::instance().pageview(this);
 
     return TRUE;
 }
 
-void  mmHomePagePanel::createHTML()
+void  mmHomePagePanel::createHtml()
 {
     getTemplate();
     getData();
     fillData();
 }
 
-void mmHomePagePanel::CreateControls()
+void mmHomePagePanel::createControls()
 {
     wxBoxSizer* itemBoxSizer2 = new wxBoxSizer(wxVERTICAL);
     this->SetSizer(itemBoxSizer2);

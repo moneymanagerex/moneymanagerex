@@ -50,14 +50,14 @@ public:
 
     wxString BuildPage() const { return GetHomePageText(); }
     void PrintPage();
-    void createHTML();
+    void createHtml();
 
 public:
     mmGUIFrame* m_frame;
 private:
     wxString GetHomePageText() const;
     wxWebView* browser_;
-    void CreateControls();
+    void createControls();
     void sortTable() {}
 
     wxString m_templateText;

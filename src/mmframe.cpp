@@ -120,6 +120,7 @@ EVT_MENU(MENU_DB_DEBUG, mmGUIFrame::OnDebugDB)
 
 EVT_MENU(MENU_ASSETS, mmGUIFrame::OnAssets)
 EVT_MENU(MENU_CURRENCY, mmGUIFrame::OnCurrency)
+EVT_MENU(MENU_RATES, mmGUIFrame::OnRates)
 EVT_MENU(MENU_TRANSACTIONREPORT, mmGUIFrame::OnTransactionReport)
 EVT_MENU(wxID_BROWSE, mmGUIFrame::OnCustomFieldsManager)
 EVT_MENU(wxID_VIEW_LIST, mmGUIFrame::OnGeneralReportManager)
@@ -225,7 +226,7 @@ mmGUIFrame::mmGUIFrame(mmGUIApp* app, const wxString& title
     }
 
     //Read news
-    getNewsRSS(g_WebsiteNewsList);
+    getNewsRSS(websiteNewsArray_);
 
     /* Create the Controls for the frame */
     createMenu();
@@ -1368,13 +1369,17 @@ void mmGUIFrame::createMenu()
     menuView->Append(menuItemBudgetCategorySummary);
     menuView->AppendSeparator();
     menuView->Append(menuItemIgnoreFutureTransactions);
+    menuView->AppendSeparator();
+
 #if (wxMAJOR_VERSION >= 3 && wxMINOR_VERSION >= 0)
     wxMenuItem* menuItemToggleFullscreen = new wxMenuItem(menuView, MENU_VIEW_TOGGLE_FULLSCREEN
-        , _("Toggle Fullscreen\tF11"), _("Toggle Fullscreen"), wxITEM_CHECK);
-    menuView->AppendSeparator();
+        , _("Toggle Fullscreen\tShift+tF11")
+        , _("Toggle Fullscreen"));
+    menuItemToggleFullscreen->SetBitmap(mmBitmap(png::FULLSCREEN));
     menuView->Append(menuItemToggleFullscreen);
 #endif
 
+    menuView->AppendSeparator();
     wxMenuItem* menuItemLanguage = new wxMenuItem(menuView, MENU_LANG
         , _("Switch Application Language")
         , _("Change language used for MMEX GUI"));
@@ -1431,6 +1436,13 @@ void mmGUIFrame::createMenu()
 
     // Tools Menu
     wxMenu *menuTools = new wxMenu;
+
+    wxMenuItem* menuItemRates = new wxMenuItem(menuTools
+        , MENU_RATES, _("Download Rates..."), _("Download Currency and Stock rates"));
+    menuItemRates->SetBitmap(mmBitmap(png::CURRATES));
+    menuTools->Append(menuItemRates);
+
+    menuTools->AppendSeparator();
 
     wxMenuItem* menuItemCateg = new wxMenuItem(menuTools
         , MENU_ORGCATEGS, _("Organize &Categories..."), _("Organize Categories"));
@@ -1683,14 +1695,18 @@ void mmGUIFrame::CreateToolBar()
     toolBar_->AddSeparator();
 
     wxString news_array;
-    for (const auto& entry : g_WebsiteNewsList)
+    for (const auto& entry : websiteNewsArray_) {
         news_array += entry.Title + "\n";
-    if (news_array.empty()) news_array = _("Register/View Release &Notifications");
-    const wxBitmap news_ico = (g_WebsiteNewsList.size() > 0)
+    }
+    if (news_array.empty()) {
+        news_array = _("Register/View Release &Notifications");
+    }
+    const wxBitmap news_ico = (websiteNewsArray_.size() > 0)
         ? mmBitmap(png::NEW_NEWS)
         : mmBitmap(png::NEWS);
-
     toolBar_->AddTool(MENU_ANNOUNCEMENTMAILING, _("News"), news_ico, news_array);
+
+    toolBar_->AddTool(MENU_RATES, _("Download rates"), mmBitmap(png::CURRATES), _("Download Currency and Stock rates"));
 
     toolBar_->AddSeparator();
     toolBar_->AddTool(MENU_VIEW_TOGGLE_FULLSCREEN, _("Toggle Fullscreen\tF11"), mmBitmap(png::FULLSCREEN), _("Toggle Fullscreen"));
@@ -2585,7 +2601,7 @@ void mmGUIFrame::createHomePage()
     /* Update home page details only if it is being displayed */
     if (id == mmID_HOMEPAGE)
     {
-        homePage_->createHTML();
+        homePage_->createHtml();
     }
     else
     {
@@ -2848,6 +2864,58 @@ void mmGUIFrame::OnAssets(wxCommandEvent& /*event*/)
 void mmGUIFrame::OnCurrency(wxCommandEvent& /*event*/)
 {
     mmMainCurrencyDialog(this, false, false).ShowModal();
+    refreshPanelData();
+}
+//----------------------------------------------------------------------------
+
+void mmGUIFrame::OnRates(wxCommandEvent& WXUNUSED(event))
+{
+    wxString msg;
+    getOnlineCurrencyRates(msg);
+    wxLogDebug("%s", msg);
+
+    std::map<wxString, double> symbols;
+    Model_Stock::Data_Set stock_list = Model_Stock::instance().all();
+    for (const auto& stock : stock_list)
+    {
+        const wxString symbol = stock.SYMBOL.Upper();
+        if (symbol.IsEmpty()) continue;
+        symbols[symbol] = stock.CURRENTPRICE;
+    }
+
+    std::map<wxString, double> stocks_data;
+    if (get_yahoo_prices(symbols, stocks_data, "", msg, yahoo_price_type::SHARES))
+    {
+
+        Model_StockHistory::instance().Savepoint();
+        for (auto& s : stock_list)
+        {
+            std::map<wxString, double>::const_iterator it = stocks_data.find(s.SYMBOL.Upper());
+            if (it == stocks_data.end()) {
+                continue;
+            }
+
+            double dPrice = it->second;
+
+            if (dPrice != 0)
+            {
+                msg += wxString::Format("%s\t: %0.6f -> %0.6f\n", s.SYMBOL, s.CURRENTPRICE, dPrice);
+                s.CURRENTPRICE = dPrice;
+                if (s.STOCKNAME.empty()) s.STOCKNAME = s.SYMBOL;
+                Model_Stock::instance().save(&s);
+                Model_StockHistory::instance().addUpdate(s.SYMBOL
+                    , wxDate::Now(), dPrice, Model_StockHistory::ONLINE);
+            }
+        }
+        Model_StockHistory::instance().ReleaseSavepoint();
+        wxString strLastUpdate;
+        strLastUpdate.Printf(_("%s on %s"), wxDateTime::Now().FormatTime()
+            , mmGetDateForDisplay(wxDateTime::Now().FormatISODate()));
+        Model_Infotable::instance().Set("STOCKS_LAST_REFRESH_DATETIME", strLastUpdate);
+    }
+
+    wxLogDebug("%s", msg);
+
     refreshPanelData();
 }
 //----------------------------------------------------------------------------
