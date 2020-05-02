@@ -2874,47 +2874,50 @@ void mmGUIFrame::OnRates(wxCommandEvent& WXUNUSED(event))
     getOnlineCurrencyRates(msg);
     wxLogDebug("%s", msg);
 
-    std::map<wxString, double> symbols;
     Model_Stock::Data_Set stock_list = Model_Stock::instance().all();
-    for (const auto& stock : stock_list)
-    {
-        const wxString symbol = stock.SYMBOL.Upper();
-        if (symbol.IsEmpty()) continue;
-        symbols[symbol] = stock.CURRENTPRICE;
-    }
+    if (!stock_list.empty()) {
 
-    std::map<wxString, double> stocks_data;
-    if (get_yahoo_prices(symbols, stocks_data, "", msg, yahoo_price_type::SHARES))
-    {
-
-        Model_StockHistory::instance().Savepoint();
-        for (auto& s : stock_list)
+        std::map<wxString, double> symbols;
+        for (const auto& stock : stock_list)
         {
-            std::map<wxString, double>::const_iterator it = stocks_data.find(s.SYMBOL.Upper());
-            if (it == stocks_data.end()) {
-                continue;
-            }
-
-            double dPrice = it->second;
-
-            if (dPrice != 0)
-            {
-                msg += wxString::Format("%s\t: %0.6f -> %0.6f\n", s.SYMBOL, s.CURRENTPRICE, dPrice);
-                s.CURRENTPRICE = dPrice;
-                if (s.STOCKNAME.empty()) s.STOCKNAME = s.SYMBOL;
-                Model_Stock::instance().save(&s);
-                Model_StockHistory::instance().addUpdate(s.SYMBOL
-                    , wxDate::Now(), dPrice, Model_StockHistory::ONLINE);
-            }
+            const wxString symbol = stock.SYMBOL.Upper();
+            if (symbol.IsEmpty()) continue;
+            symbols[symbol] = stock.CURRENTPRICE;
         }
-        Model_StockHistory::instance().ReleaseSavepoint();
-        wxString strLastUpdate;
-        strLastUpdate.Printf(_("%s on %s"), wxDateTime::Now().FormatTime()
-            , mmGetDateForDisplay(wxDateTime::Now().FormatISODate()));
-        Model_Infotable::instance().Set("STOCKS_LAST_REFRESH_DATETIME", strLastUpdate);
-    }
 
-    wxLogDebug("%s", msg);
+        std::map<wxString, double> stocks_data;
+        if (get_yahoo_prices(symbols, stocks_data, "", msg, yahoo_price_type::SHARES))
+        {
+
+            Model_StockHistory::instance().Savepoint();
+            for (auto& s : stock_list)
+            {
+                std::map<wxString, double>::const_iterator it = stocks_data.find(s.SYMBOL.Upper());
+                if (it == stocks_data.end()) {
+                    continue;
+                }
+
+                double dPrice = it->second;
+
+                if (dPrice != 0)
+                {
+                    msg += wxString::Format("%s\t: %0.6f -> %0.6f\n", s.SYMBOL, s.CURRENTPRICE, dPrice);
+                    s.CURRENTPRICE = dPrice;
+                    if (s.STOCKNAME.empty()) s.STOCKNAME = s.SYMBOL;
+                    Model_Stock::instance().save(&s);
+                    Model_StockHistory::instance().addUpdate(s.SYMBOL
+                        , wxDate::Now(), dPrice, Model_StockHistory::ONLINE);
+                }
+            }
+            Model_StockHistory::instance().ReleaseSavepoint();
+            wxString strLastUpdate;
+            strLastUpdate.Printf(_("%s on %s"), wxDateTime::Now().FormatTime()
+                , mmGetDateForDisplay(wxDateTime::Now().FormatISODate()));
+            Model_Infotable::instance().Set("STOCKS_LAST_REFRESH_DATETIME", strLastUpdate);
+        }
+
+        wxLogDebug("%s", msg);
+    }
 
     refreshPanelData();
 }

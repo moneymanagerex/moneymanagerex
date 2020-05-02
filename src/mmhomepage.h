@@ -77,7 +77,6 @@ public:
     const wxString getHTMLText();
 };
 
-
 class htmlWidgetStatistics
 {
 public:
@@ -110,3 +109,10 @@ private:
     void get_account_stats();
 };
 
+
+class htmlWidgetCurrency
+{
+public:
+    ~htmlWidgetCurrency();
+    const wxString getHtmlText();
+};

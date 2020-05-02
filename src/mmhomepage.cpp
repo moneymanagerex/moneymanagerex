@@ -631,8 +631,8 @@ const wxString htmlWidgetAccounts::displayAccounts(double& tBalance, int type = 
 
     const wxString idStr = typeStr[type].first;
     wxString output = "<table class = 'sortable table'>\n";
-    output += "<col style=\"width:50%\"><col style=\"width:25%\"><col style=\"width:25%\">\n";
-    output += "<thead><tr><th nowrap>";
+    output += R"(<col style="width:50%"><col style="width:25%"><col style="width:25%">)";
+    output += "<thead><tr><th nowrap>\n";
     output += typeStr[type].second;
 
     output += "</th><th class = 'text-right'>" + _("Reconciled") + "</th>\n";
@@ -684,3 +684,86 @@ htmlWidgetAccounts::~htmlWidgetAccounts()
 {
 }
 
+// Currency exchange rates
+const wxString htmlWidgetCurrency::getHtmlText()
+{
+
+    const char* currencyRatesTemplate = R"(
+<div class = "container">
+<b><TMPL_VAR FRAME_NAME></b>
+<table class="table">
+<thead>
+<tr><th></th> <TMPL_VAR HEADER></tr>
+</thead>
+<tbody>
+<TMPL_LOOP NAME=CONTENTS>
+<tr><td class ='success'><TMPL_VAR CURRENCY_SYMBOL></td><TMPL_VAR CONVERSION_RATE></tr>
+</TMPL_LOOP>
+</tbody>
+</table>
+</div>
+)";
+
+
+    const wxString today = wxDate::Today().FormatISODate();
+    const wxString baseCurrencySymbol = Model_Currency::GetBaseCurrency()->CURRENCY_SYMBOL;
+    std::map<wxString, double> usedRates;
+    const auto currencies = Model_Currency::instance().all();
+    for (const auto currency : currencies)
+    {
+        if (Model_Account::is_used(currency)) {
+            double convertionRate = Model_CurrencyHistory::getDayRate(currency.CURRENCYID
+                , today);
+            usedRates[currency.CURRENCY_SYMBOL] = convertionRate;
+        }
+    }
+
+    if (usedRates.size() == 1) {
+        return "";
+    }
+    wxString header;
+    loop_t contents;
+    for (const auto i: usedRates)
+    {
+        row_t r;
+        r(L"CURRENCY_SYMBOL") = i.first;
+        wxString row;
+        for (const auto j : usedRates)
+        {
+            row += wxString::Format("<td%s>%s</td>" //<td class ='active'>
+                , j.first == i.first ? " class ='active'" : ""
+                , j.first == i.first ? "" : Model_Currency::toString(
+                    j.second / i.second, nullptr, 4)
+            );
+        }
+        header += wxString::Format("<th>%s</th>", i.first);
+        r(L"CONVERSION_RATE") = row;
+
+        contents += r;
+    }
+    mm_html_template report(currencyRatesTemplate);
+    report(L"CONTENTS") = contents;
+    report(L"FRAME_NAME") = _("Currency Exchange Rates");
+    report(L"HEADER") = header;
+    
+    wxString out = wxEmptyString;
+    try
+    {
+        out = report.Process();
+    }
+    catch (const syntax_ex& e)
+    {
+        return e.what();
+    }
+    catch (...)
+    {
+        return _("Caught exception");
+    }
+
+    return out;
+
+}
+
+htmlWidgetCurrency::~htmlWidgetCurrency()
+{
+}

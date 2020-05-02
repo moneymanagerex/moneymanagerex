@@ -18,6 +18,8 @@
     <table class="table-bordered" width="100%">
         <tr valign="top">
             <td width="50%">
+                <!--Grand total-->
+                <div class = "container">
                 <table class='table'>
                     <tfoot>
                         <tr class='success' style='font-weight:bold'>
@@ -26,20 +28,26 @@
                         </tr>
                     </tfoot>
                 </table>
+                </div>
                 <script>
                     var grand_json = <TMPL_VAR GRAND_TOTAL>;
                     document.getElementById('grand_name').innerHTML=grand_json['NAME'];
                     document.getElementById('grand_value').innerHTML=grand_json['VALUE'];
                 </script>
                 <!--Accounts-->
+                <div class = "container">
                 <TMPL_VAR ACCOUNTS_INFO>
                 <TMPL_VAR CARD_ACCOUNTS_INFO>
                 <TMPL_VAR CASH_ACCOUNTS_INFO>
                 <TMPL_VAR LOAN_ACCOUNTS_INFO>
                 <TMPL_VAR TERM_ACCOUNTS_INFO>
+                </div>
                 <!--Stocks-->
+                <div class = "container">
                 <TMPL_VAR STOCKS_INFO>
+                </dev>
                 <!--Assets-->
+                <div class = "container">
                 <table class='table'>
                     <tfoot>
                         <tr class='total'>
@@ -50,14 +58,17 @@
                         </tr>
                     </tfoot>
                 </table>
+                </div>
                 <script>
                     var assets_json = <TMPL_VAR ASSETS_INFO>;
                     document.getElementById('assets_name').innerHTML=assets_json['NAME'];
                     document.getElementById('assets_value').innerHTML=assets_json['VALUE'];
                 </script>
+                <TMPL_VAR CURRENCY_RATES>
             </td>
             <td>
                 <!--Income vs Expenses: Current Month-->
+                <div class = "container">
                 <table class='table'>
                     <thead>
                         <tr class='active'>
@@ -104,7 +115,7 @@
                         </tr>
                     </tbody>
                 </table>
-
+                </div>
                 <script>
                     var ive_json = <TMPL_VAR INCOME_VS_EXPENSES>;
 
@@ -156,6 +167,7 @@
                 <!--Top Withdrawals: Last 30 Days-->
                 <TMPL_VAR TOP_CATEGORIES>
                 <!--Transaction Statistics -->
+                <div class = "container">
                 <table class='table'>
                 <thead>
                     <tr class='active'>
@@ -166,6 +178,7 @@
                 <tbody id='stats'>
                 </tbody>
                 </table>
+                </div>
                 <!--Transaction Statistics end-->
             </td>
         </tr>
@@ -234,7 +247,7 @@
             createTableData(row, obj);
             var cell = document.createElement("td");    
             var cellText = document.createTextNode(stats_json[obj]);
-			cell.style.textAlign='right';
+            cell.style.textAlign='right';
             cell.appendChild(cellText);
             row.appendChild(cell);
             tbody.appendChild(row);

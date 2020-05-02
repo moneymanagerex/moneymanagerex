@@ -148,8 +148,17 @@ bool mmHomePagePanel::Create(wxWindow *parent
 
 void  mmHomePagePanel::createHtml()
 {
-    getTemplate();
-    getData();
+    // Read template from file
+    m_templateText.clear();
+    const wxString template_path = mmex::getPathResource(mmex::HOME_PAGE_TEMPLATE);
+    wxFileInputStream input(template_path);
+    wxTextInputStream text(input, "\x09", wxConvUTF8);
+    while (input.IsOk() && !input.Eof())
+    {
+        m_templateText += text.ReadLine() + "\n";
+    }
+
+    insertDataIntoTemplate();
     fillData();
 }
 
@@ -175,19 +184,7 @@ void mmHomePagePanel::PrintPage()
     browser_->Print();
 }
 
-void mmHomePagePanel::getTemplate()
-{
-    m_templateText.clear();
-    const wxString template_path = mmex::getPathResource(mmex::HOME_PAGE_TEMPLATE);
-    wxFileInputStream input(template_path);
-    wxTextInputStream text(input, "\x09", wxConvUTF8);
-    while (input.IsOk() && !input.Eof())
-    {
-        m_templateText += text.ReadLine() + "\n";
-    }
-}
-
-void mmHomePagePanel::getData()
+void mmHomePagePanel::insertDataIntoTemplate()
 {
     m_frames["HTMLSCALE"] = wxString::Format("%d", Option::instance().getHtmlFontSize());
  
@@ -233,6 +230,8 @@ void mmHomePagePanel::getData()
     m_frames["STATISTICS"] = stat_widget.getHTMLText();
     m_frames["TOGGLES"] = getToggles();
 
+    htmlWidgetCurrency currency_rates;
+    m_frames["CURRENCY_RATES"] = currency_rates.getHtmlText();
 }
 
 const wxString mmHomePagePanel::getToggles()
