@@ -162,10 +162,14 @@
                     var reportChart = new Chart(ctx).Bar(data, options);
 
                 </script>
+                <div class = "container">
                 <!--Upcoming Transactions-->
                 <TMPL_VAR BILLS_AND_DEPOSITS>
+                </div>
                 <!--Top Withdrawals: Last 30 Days-->
+                <div class = "container">
                 <TMPL_VAR TOP_CATEGORIES>
+                </div>
                 <!--Transaction Statistics -->
                 <div class = "container">
                 <table class='table'>
