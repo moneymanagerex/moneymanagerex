@@ -193,7 +193,7 @@ wxString Model_Currency::toString(double value, const Data* currency, int precis
         s.Replace("\x05", currency->DECIMAL_POINT);
     }
     
-    if (value >= 0.00 && s.SubString(1, 1) == "-")
+    if (value >= 0.0 && s.SubString(1, 1) == "-")
         s.Remove(1);
 
     return s;
@@ -220,9 +220,10 @@ const wxString Model_Currency::fromString2Default(const wxString &s, const Data*
         if (!c->DECIMAL_POINT.empty())
             str.Replace(c->DECIMAL_POINT, wxNumberFormatter::GetDecimalSeparator());
 
-        wxRegEx pattern(R"([^0-9.+-/*()])");
+        wxRegEx pattern(R"([^0-9.,+-/*()])");
         pattern.ReplaceAll(&str, wxEmptyString);
     }
+    wxLogDebug("%s -> %s", s, str);
     return str;
 }
 

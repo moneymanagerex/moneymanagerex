@@ -365,8 +365,7 @@ int mmWebApp::WebApp_DownloadNewTransaction(WebTranVector& WebAppTransactions_, 
             if (trx.HasMember("Amount") && trx["Amount"].IsString()) {
                 wxString sAmount = trx["Amount"].GetString();
                 double dAmount;
-                if (!sAmount.ToDouble(&dAmount))
-                    dAmount = 0;
+                sAmount.ToCDouble(&dAmount);
                 WebTran.Amount = dAmount;
             }
 
