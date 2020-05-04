@@ -1,5 +1,5 @@
 /*******************************************************
-Copyright (C) 2013-2016 Nikolay
+Copyright (C) 2013-2020 Nikolay
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -44,11 +44,11 @@ enum tab_id {
 wxIMPLEMENT_DYNAMIC_CLASS(mmQIFImportDialog, wxDialog);
 
 wxBEGIN_EVENT_TABLE(mmQIFImportDialog, wxDialog)
-    EVT_CHECKBOX(wxID_ANY, mmQIFImportDialog::OnCheckboxClick )
-    EVT_BUTTON(wxID_OK, mmQIFImportDialog::OnOk)
-    EVT_BUTTON(wxID_CANCEL, mmQIFImportDialog::OnCancel)
-    EVT_CHOICE(wxID_ANY, mmQIFImportDialog::OnAccountChanged)
-    EVT_CLOSE(mmQIFImportDialog::OnQuit)
+EVT_CHECKBOX(wxID_ANY, mmQIFImportDialog::OnCheckboxClick)
+EVT_BUTTON(wxID_OK, mmQIFImportDialog::OnOk)
+EVT_BUTTON(wxID_CANCEL, mmQIFImportDialog::OnCancel)
+EVT_CHOICE(wxID_ANY, mmQIFImportDialog::OnAccountChanged)
+EVT_CLOSE(mmQIFImportDialog::OnQuit)
 wxEND_EVENT_TABLE()
 
 mmQIFImportDialog::mmQIFImportDialog(wxWindow* parent, int account_id)
@@ -92,18 +92,18 @@ wxString mmQIFImportDialog::OnGetItemText(long item, long column) const
 bool mmQIFImportDialog::Create(wxWindow* parent, wxWindowID id, const wxString& caption
     , const wxPoint& pos, const wxSize& size, long style)
 {
-    SetExtraStyle(GetExtraStyle()|wxWS_EX_BLOCK_EVENTS);
+    SetExtraStyle(GetExtraStyle() | wxWS_EX_BLOCK_EVENTS);
     wxDialog::Create(parent, id, caption, pos, size, style);
 
     ColName_[COL_ID] = _("#");
     ColName_[COL_ACCOUNT] = _("Account");
-    ColName_[COL_DATE]     = _("Date");
-    ColName_[COL_NUMBER]   = _("Number");
-    ColName_[COL_PAYEE]    = _("Payee");
-    ColName_[COL_TYPE]     = _("Type");
+    ColName_[COL_DATE] = _("Date");
+    ColName_[COL_NUMBER] = _("Number");
+    ColName_[COL_PAYEE] = _("Payee");
+    ColName_[COL_TYPE] = _("Type");
     ColName_[COL_CATEGORY] = _("Category");
-    ColName_[COL_VALUE]    = _("Value");
-    ColName_[COL_NOTES]    = _("Notes");
+    ColName_[COL_VALUE] = _("Value");
+    ColName_[COL_NOTES] = _("Notes");
 
     CreateControls();
     fillControls();
@@ -136,7 +136,7 @@ void mmQIFImportDialog::CreateControls()
 
     flex_sizer->Add(file_name_label, g_flagsH);
     flex_sizer->Add(button_search_, g_flagsH);
-    main_sizer->Add(file_name_ctrl_, 0, wxALL|wxGROW, 5);
+    main_sizer->Add(file_name_ctrl_, 0, wxALL | wxGROW, 5);
     left_sizer->Add(flex_sizer, g_flagsExpand);
 
     //Encoding
@@ -182,7 +182,7 @@ void mmQIFImportDialog::CreateControls()
 
     // To Date
     dateToCheckBox_ = new wxCheckBox(static_box, wxID_FILE9, _("To Date")
-        , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE );
+        , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     toDateCtrl_ = new wxDatePickerCtrl(static_box, wxID_STATIC, wxDefaultDateTime
         , wxDefaultPosition, wxSize(150, -1), wxDP_DROPDOWN);
     toDateCtrl_->Enable(false);
@@ -199,7 +199,7 @@ void mmQIFImportDialog::CreateControls()
     log_tab->SetSizer(log_sizer);
 
     log_field_ = new wxTextCtrl(log_tab, wxID_ANY, ""
-        , wxDefaultPosition, wxSize(500, -1), wxTE_MULTILINE|wxHSCROLL );
+        , wxDefaultPosition, wxSize(500, -1), wxTE_MULTILINE | wxHSCROLL);
     log_sizer->Add(log_field_, g_flagsExpand);
 
     wxPanel* data_tab = new wxPanel(qif_notebook, wxID_ANY);
@@ -322,7 +322,7 @@ void mmQIFImportDialog::CreateControls()
     wxStdDialogButtonSizer*  buttons_sizer = new wxStdDialogButtonSizer;
     buttons_panel->SetSizer(buttons_sizer);
 
-    btnOK_ = new wxButton( buttons_panel, wxID_OK, _("&OK "));
+    btnOK_ = new wxButton(buttons_panel, wxID_OK, _("&OK "));
     wxButton* itemButtonCancel_ = new wxButton(buttons_panel, wxID_CANCEL, wxGetTranslation(g_CloseLabel));
     btnOK_->Connect(wxID_OK, wxEVT_COMMAND_BUTTON_CLICKED
         , wxCommandEventHandler(mmQIFImportDialog::OnOk), nullptr, this);
@@ -478,7 +478,7 @@ bool mmQIFImportDialog::completeTransaction(std::unordered_map <int, wxString> &
 
     bool isTransfer = false;
 
-    if (accName.empty()){
+    if (accName.empty()) {
         trx[AccountName] = m_accountNameStr;
     }
     else {
@@ -508,7 +508,7 @@ bool mmQIFImportDialog::completeTransaction(std::unordered_map <int, wxString> &
 
     if (trx.find(Category) != trx.end())
     {
-        if (trx[Category].Mid(0,1) == "[" && trx[Category].Last() == ']')
+        if (trx[Category].Mid(0, 1) == "[" && trx[Category].Last() == ']')
         {
             wxString toAccName = trx[Category].SubString(1, trx[Category].length() - 2);
 
@@ -565,7 +565,7 @@ bool mmQIFImportDialog::completeTransaction(std::unordered_map <int, wxString> &
 
     wxString amtStr = (trx.find(Amount) == trx.end() ? "" : trx[Amount]);
     if (!isTransfer) {
-        if (amtStr.Mid(0,1) == "-")
+        if (amtStr.Mid(0, 1) == "-")
             trx[TrxType] = Model_Checking::all_type()[Model_Checking::WITHDRAWAL];
         else if (!amtStr.empty())
             trx[TrxType] = Model_Checking::all_type()[Model_Checking::DEPOSIT];
@@ -587,14 +587,14 @@ void mmQIFImportDialog::refreshTabs(int tabs)
             Model_Account::Data* account = Model_Account::instance().getByAccNum(trx.at(AccountName));
             data.push_back(wxVariant(wxString::Format("%i", num + 1)));
             data.push_back(
-                    wxVariant(
-                        trx.find(AccountName) != trx.end()
-                            && (trx.at(AccountName).empty() || accountCheckBox_->IsChecked())
-                                ? m_accountNameStr
-                                : ((accountNumberCheckBox_->IsChecked() && account)
-                                    ? account->ACCOUNTNAME : trx.at(AccountName)
-                                  )
-                    )
+                wxVariant(
+                    trx.find(AccountName) != trx.end()
+                    && (trx.at(AccountName).empty() || accountCheckBox_->IsChecked())
+                    ? m_accountNameStr
+                    : ((accountNumberCheckBox_->IsChecked() && account)
+                        ? account->ACCOUNTNAME : trx.at(AccountName)
+                        )
+                )
             );
 
             wxString dateStr = "";
@@ -648,8 +648,8 @@ void mmQIFImportDialog::refreshTabs(int tabs)
             currencySymbol = currencySymbol.SubString(1, currencySymbol.length() - 2);
 
             Model_Account::Data* account = (accountNumberCheckBox_->IsChecked())
-              ? Model_Account::instance().getByAccNum(acc.first)
-              : Model_Account::instance().get(acc.first);
+                ? Model_Account::instance().getByAccNum(acc.first)
+                : Model_Account::instance().get(acc.first);
 
             wxString status;
             const wxString type = acc.second.find(AccountType) != acc.second.end()
@@ -737,7 +737,7 @@ void mmQIFImportDialog::OnDateMaskChange(wxCommandEvent& WXUNUSED(event))
     refreshTabs(TRX_TAB);
 }
 
-void mmQIFImportDialog::OnCheckboxClick( wxCommandEvent& event )
+void mmQIFImportDialog::OnCheckboxClick(wxCommandEvent& event)
 {
     int t = TRX_TAB;
 
@@ -800,13 +800,13 @@ void mmQIFImportDialog::OnOk(wxCommandEvent& WXUNUSED(event))
         , wxYES_NO | wxNO_DEFAULT | wxICON_QUESTION);
     if (msgDlg.ShowModal() == wxID_YES)
     {
-        int numTransactions = vQIF_trxs_.size();
+        int nTransactions = vQIF_trxs_.size();
         wxProgressDialog progressDlg(_("Please wait"), _("Importing")
-            , numTransactions + 1, this, wxPD_APP_MODAL | wxPD_CAN_ABORT | wxPD_AUTO_HIDE);
+            , nTransactions + 1, this, wxPD_APP_MODAL | wxPD_CAN_ABORT | wxPD_AUTO_HIDE);
         progressDlg.Update(1, _("Importing Accounts"));
         if (getOrCreateAccounts() == 0 && !accountCheckBox_->GetValue())
         {
-            progressDlg.Update(numTransactions + 1);
+            progressDlg.Update(nTransactions + 1);
             return mmErrorDialogs::MessageInvalid(this, _("Account"));
         }
         mmWebApp::MMEX_WebApp_UpdateAccount();
@@ -827,11 +827,11 @@ void mmQIFImportDialog::OnOk(wxCommandEvent& WXUNUSED(event))
         const auto end_date = fromDateCtrl_->GetValue().FormatISODate();
         for (const auto& entry : vQIF_trxs_)
         {
-            if (count % 100 == 0 || count == numTransactions)
+            if (count % 100 == 0 || count == nTransactions)
             {
                 if (!progressDlg.Update(count
-                    , wxString::Format(_("Importing transaction %i of %i"), count, numTransactions))) // if cancel clicked
-                        break; // abort processing
+                    , wxString::Format(_("Importing transaction %i of %i"), count, nTransactions))) // if cancel clicked
+                    break; // abort processing
             }
             //
             Model_Checking::Data *trx = Model_Checking::instance().create();
@@ -1092,7 +1092,7 @@ bool mmQIFImportDialog::completeTransaction(/*in*/ const std::unordered_map <int
     }
     else
     {
-        wxString categStr = (t.find(Category) != t.end()  ? t.at(Category) : "");
+        wxString categStr = (t.find(Category) != t.end() ? t.at(Category) : "");
         if (categStr.empty())
         {
             Model_Payee::Data* payee = Model_Payee::instance().get(trx->PAYEEID);
@@ -1102,13 +1102,19 @@ bool mmQIFImportDialog::completeTransaction(/*in*/ const std::unordered_map <int
                 trx->SUBCATEGID = payee->SUBCATEGID;
             }
             categStr = Model_Category::full_name(trx->CATEGID, trx->SUBCATEGID);
+
+            if (categStr.empty())
+            {
+                trx->CATEGID = (m_QIFcategoryNames[_("Unknown")].first);
+                trx->SUBCATEGID = -1;
+            }
+        }
+        else
+        {
+            trx->CATEGID = (m_QIFcategoryNames[categStr].first);
+            trx->SUBCATEGID = (m_QIFcategoryNames[categStr].second);
         }
 
-        if (categStr.empty())
-        {
-            trx->CATEGID = (m_QIFcategoryNames[_("Unknown")].first);
-            trx->SUBCATEGID = -1;
-        }
     }
     return true;
 }
@@ -1143,7 +1149,7 @@ int mmQIFImportDialog::getOrCreateAccounts()
 
             const auto type = item.second.find(AccountType) != item.second.end() ? item.second.at(AccountType) : "";
             account->ACCOUNTTYPE = mmExportTransaction::mm_acc_type(type);
-                //Model_Account::all_type()[Model_Account::CHECKING];
+            //Model_Account::all_type()[Model_Account::CHECKING];
             account->ACCOUNTNAME = item.first;
             account->INITIALBAL = 0;
 
