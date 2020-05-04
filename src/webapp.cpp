@@ -236,11 +236,11 @@ bool mmWebApp::WebApp_UpdatePayee()
 
         json_writer.StartObject();
         json_writer.Key("PayeeName");
-        json_writer.String(payee.PAYEENAME.c_str());
+        json_writer.String(payee.PAYEENAME.utf8_str());
         json_writer.Key("DefCateg");
-        json_writer.String(def_category_name.c_str());
+        json_writer.String(def_category_name.utf8_str());
         json_writer.Key("DefSubCateg");
-        json_writer.String(def_subcategory_name.c_str());
+        json_writer.String(def_subcategory_name.utf8_str());
         json_writer.EndObject();
     }
 
@@ -283,7 +283,7 @@ bool mmWebApp::WebApp_UpdateCategory()
 
         json_writer.StartObject();
         json_writer.Key("CategoryName");
-        json_writer.String(category.CATEGNAME.c_str());
+        json_writer.String(category.CATEGNAME.utf8_str());
 
         for (const auto &sub_category : Model_Category::sub_category(category))
         {
@@ -291,7 +291,7 @@ bool mmWebApp::WebApp_UpdateCategory()
             if (first_category_run == true)
             {
                 json_writer.Key("SubCategoryName");
-                json_writer.String(sub_category.SUBCATEGNAME.c_str());
+                json_writer.String(sub_category.SUBCATEGNAME.utf8_str());
                 json_writer.EndObject();
 
                 first_category_run = false;
@@ -300,10 +300,10 @@ bool mmWebApp::WebApp_UpdateCategory()
             {
                 json_writer.StartObject();
                 json_writer.Key("CategoryName");
-                json_writer.String(category.CATEGNAME.c_str());
+                json_writer.String(category.CATEGNAME.utf8_str());
 
                 json_writer.Key("SubCategoryName");
-                json_writer.String(sub_category.SUBCATEGNAME.c_str());
+                json_writer.String(sub_category.SUBCATEGNAME.utf8_str());
                 json_writer.EndObject();
 
                 first_category_run = false;
@@ -343,7 +343,7 @@ int mmWebApp::WebApp_DownloadNewTransaction(WebTranVector& WebAppTransactions_, 
     else
     {
         Document j_doc;
-        if (j_doc.Parse(NewTransactionJSON.c_str()).HasParseError())
+        if (j_doc.Parse(NewTransactionJSON.utf8_str()).HasParseError())
             return true;
 
         //Define variables
@@ -359,7 +359,7 @@ int mmWebApp::WebApp_DownloadNewTransaction(WebTranVector& WebAppTransactions_, 
             }
 
             if (trx.HasMember("Date") && trx["Date"].IsString()) {
-                WebTran.Date = mmParseISODate(wxString::FromUTF8(trx["Date"].GetString()));
+                WebTran.Date = mmParseISODate(wxString(trx["Date"].GetString(), wxConvUTF8));
             }
 
             if (trx.HasMember("Amount") && trx["Amount"].IsString()) {
@@ -370,24 +370,24 @@ int mmWebApp::WebApp_DownloadNewTransaction(WebTranVector& WebAppTransactions_, 
             }
 
             if (trx.HasMember("Account") && trx["Account"].IsString()) {
-                WebTran.Account =wxString::FromUTF8(trx["Account"].GetString());
+                WebTran.Account = wxString(trx["Account"].GetString(), wxConvUTF8);
             }
 
             if (trx.HasMember("ToAccount") && trx["ToAccount"].IsString()) {
-                WebTran.ToAccount = wxString::FromUTF8(trx["ToAccount"].GetString());
+                WebTran.ToAccount = wxString(trx["ToAccount"].GetString(), wxConvUTF8);
             }
 
             if (trx.HasMember("Status") && trx["Status"].IsString()) {
-                WebTran.Status = wxString::FromUTF8(trx["Status"].GetString());
+                WebTran.Status = wxString(trx["Status"].GetString(), wxConvUTF8);
             }
 
             if (trx.HasMember("Type") && trx["Type"].IsString()) {
-                WebTran.Type = wxString::FromUTF8(trx["Type"].GetString());
+                WebTran.Type = wxString(trx["Type"].GetString(), wxConvUTF8);
             }
 
 
             if (trx.HasMember("Payee") && trx["Payee"].IsString()) {
-                wxString Payee = wxString::FromUTF8(trx["Payee"].GetString());
+                wxString Payee = wxString(trx["Payee"].GetString(), wxConvUTF8);
                 if (Payee == "None" || Payee.IsEmpty()) {
                     Payee = _("Unknown");
                 }
@@ -395,7 +395,7 @@ int mmWebApp::WebApp_DownloadNewTransaction(WebTranVector& WebAppTransactions_, 
             }
 
             if (trx.HasMember("Category") && trx["Category"].IsString()) {
-                wxString Category = wxString::FromUTF8(trx["Category"].GetString());
+                wxString Category = wxString(trx["Category"].GetString(), wxConvUTF8);
                 if (Category == "None" || Category.IsEmpty()) {
                     Category = _("Unknown");
                 }
@@ -403,7 +403,7 @@ int mmWebApp::WebApp_DownloadNewTransaction(WebTranVector& WebAppTransactions_, 
             }
 
             if (trx.HasMember("SubCategory") && trx["SubCategory"].IsString()) {
-                wxString SubCategory = wxString::FromUTF8(trx["SubCategory"].GetString());
+                wxString SubCategory = wxString(trx["SubCategory"].GetString(), wxConvUTF8);
                 if (SubCategory == "None" || SubCategory.IsEmpty()) {
                     SubCategory = _("Unknown");
                 }
@@ -411,11 +411,11 @@ int mmWebApp::WebApp_DownloadNewTransaction(WebTranVector& WebAppTransactions_, 
             }
 
             if (trx.HasMember("Notes") && trx["Notes"].IsString()) {
-                WebTran.Notes = wxString::FromUTF8(trx["Notes"].GetString());
+                WebTran.Notes = wxString(trx["Notes"].GetString(), wxConvUTF8);
             }
 
             if (trx.HasMember("Attachments") && trx["Attachments"].IsString()) {
-                WebTran.Attachments = wxString::FromUTF8(trx["Attachments"].GetString());
+                WebTran.Attachments = wxString(trx["Attachments"].GetString(), wxConvUTF8);
             }
 
             WebAppTransactions_.push_back(WebTran);
