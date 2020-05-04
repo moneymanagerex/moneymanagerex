@@ -157,7 +157,6 @@ private:
     wxBitmapButton* attachment_button_;
     wxBitmapButton* refresh_button_;
 
-    bool DownloadIsRequired(void);
     bool onlineQuoteRefresh(wxString& sError);
     wxString GetPanelTitle(const Model_Account::Data& account) const;
 

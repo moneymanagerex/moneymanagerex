@@ -798,7 +798,8 @@ void mmStocksPanel::OnOpenAttachment(wxCommandEvent& event)
 void mmStocksPanel::OnRefreshQuotes(wxCommandEvent& WXUNUSED(event))
 {
     wxString sError = "";
-    if (onlineQuoteRefresh(sError))
+    bool ok = onlineQuoteRefresh(sError);
+    if (ok)
     {
         const wxString header = _("Stock prices successfully updated");
         stock_details_->SetLabelText(header);
@@ -844,22 +845,19 @@ bool mmStocksPanel::onlineQuoteRefresh(wxString& msg)
     stock_details_->SetLabelText(_("Connecting..."));
 
     std::map<wxString, double > stocks_data;
-    if (!get_yahoo_prices(symbols, stocks_data, base_currency_symbol, msg, yahoo_price_type::SHARES))
-    {
+    bool ok = get_yahoo_prices(symbols, stocks_data, base_currency_symbol, msg, yahoo_price_type::SHARES);
+    if (!ok) {
         return false;
     }
 
-    if (stocks_data.empty())
-    {
-        msg = _("Quotes not found");
-        return false;
-    }
+    std::map<wxString, double> nonYahooSymbols;
 
     Model_StockHistory::instance().Savepoint();
     for (auto &s : stock_list)
     {
         std::map<wxString, double>::const_iterator it = stocks_data.find(s.SYMBOL.Upper());
         if (it == stocks_data.end()) {
+            nonYahooSymbols[s.SYMBOL.Upper()] = 0;
             continue;
         }
 
@@ -876,6 +874,11 @@ bool mmStocksPanel::onlineQuoteRefresh(wxString& msg)
         }
     }
     Model_StockHistory::instance().ReleaseSavepoint();
+
+    for (const auto& entry : nonYahooSymbols)
+    {
+        msg += wxString::Format("%s\t: %s\n", entry.first, _("Missing"));
+    }
 
     // Now refresh the display
     int selected_id = -1;

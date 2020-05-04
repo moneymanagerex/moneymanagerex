@@ -555,14 +555,17 @@ bool get_yahoo_prices(std::map<wxString, double>& symbols
     wxString buffer;
     for (const auto& entry : symbols)
     {
-        if (type == yahoo_price_type::FIAT)
-        {
+        if (type == yahoo_price_type::FIAT) {
             buffer += wxString::Format("%s%s=X,", entry.first, base_currency_symbol);
         }
-        else
+        else {
             buffer += entry.first + ",";
+        }
     }
-    if (buffer.Right(1).Contains(",")) buffer.RemoveLast(1);
+
+    if (buffer.Right(1).Contains(",")) {
+        buffer.RemoveLast(1);
+    }
 
     const auto URL = wxString::Format(mmex::weblink::YahooQuotes, buffer);
 
