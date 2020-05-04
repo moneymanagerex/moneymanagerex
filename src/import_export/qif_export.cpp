@@ -549,7 +549,7 @@ void mmQIFExportDialog::mmExportQIF()
     switch (m_type)
     {
     case JSON:
-        buffer << wxString(json_buffer.GetString(), wxConvUTF8); break;
+        buffer << wxString::FromUTF8(json_buffer.GetString()); break;
     case QIF:
         break;
     }

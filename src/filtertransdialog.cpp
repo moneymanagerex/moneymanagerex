@@ -953,7 +953,7 @@ const wxString mmFilterTransactionsDialog::to_json(bool i18n)
 
     json_writer.EndObject();
 
-    return wxString(json_buffer.GetString(), wxConvUTF8);
+    return wxString::FromUTF8(json_buffer.GetString());
 }
 
 void mmFilterTransactionsDialog::from_json(const wxString &data)
@@ -968,21 +968,21 @@ void mmFilterTransactionsDialog::from_json(const wxString &data)
 
     //Label
     Value& j_label = GetValueByPointerWithDefault(j_doc, "/LABEL", "");
-    const wxString& s_label = j_label.IsString() ? wxString(j_label.GetString(), wxConvUTF8) : "";
+    const wxString& s_label = j_label.IsString() ? wxString::FromUTF8(j_label.GetString()) : "";
     m_settingLabel->SetValue(s_label);
 
     //Account
     Value& j_account = GetValueByPointerWithDefault(j_doc, "/ACCOUNT", "");
-    const wxString& s_account = j_account.IsString() ? wxString(j_account.GetString(), wxConvUTF8) : "";
+    const wxString& s_account = j_account.IsString() ? wxString::FromUTF8(j_account.GetString()) : "";
     accountCheckBox_->SetValue(!s_account.empty());
     accountDropDown_->Enable(accountCheckBox_->IsChecked());
     accountDropDown_->SetStringSelection(s_account);
 
     //Dates
     Value& j_date1 = GetValueByPointerWithDefault(j_doc, "/DATE1", "");
-    m_begin_date = j_date1.IsString() ? wxString(j_date1.GetString(), wxConvUTF8) : "";
+    m_begin_date = j_date1.IsString() ? wxString::FromUTF8(j_date1.GetString()) : "";
     Value& j_date2 = GetValueByPointerWithDefault(j_doc, "/DATE2", "");
-    m_end_date = j_date2.IsString() ? wxString(j_date2.GetString(), wxConvUTF8) : "";
+    m_end_date = j_date2.IsString() ? wxString::FromUTF8(j_date2.GetString()) : "";
     dateRangeCheckBox_->SetValue(!m_begin_date.empty() || !m_end_date.empty());
     fromDateCtrl_->Enable(dateRangeCheckBox_->IsChecked());
     toDateControl_->Enable(dateRangeCheckBox_->IsChecked());
@@ -992,14 +992,14 @@ void mmFilterTransactionsDialog::from_json(const wxString &data)
 
     //Payee
     Value& j_payee = GetValueByPointerWithDefault(j_doc, "/PAYEE", "");
-    const wxString& s_payee = j_payee.IsString() ? wxString(j_payee.GetString(), wxConvUTF8) : "";
+    const wxString& s_payee = j_payee.IsString() ? wxString::FromUTF8(j_payee.GetString()) : "";
     payeeCheckBox_->SetValue(!s_payee.empty());
     cbPayee_->Enable(payeeCheckBox_->IsChecked());
     cbPayee_->SetValue(s_payee);
 
     //Category
     Value& j_category = GetValueByPointerWithDefault(j_doc, "/CATEGORY", "");
-    const wxString& s_category = j_category.IsString() ? wxString(j_category.GetString(), wxConvUTF8) : "";
+    const wxString& s_category = j_category.IsString() ? wxString::FromUTF8(j_category.GetString()) : "";
     categoryCheckBox_->SetValue(!s_category.empty());
     btnCategory_->Enable(categoryCheckBox_->IsChecked());
 
@@ -1078,7 +1078,7 @@ void mmFilterTransactionsDialog::from_json(const wxString &data)
     if (j_doc.HasMember("NUMBER") && j_doc["NUMBER"].IsString()) {
         transNumberCheckBox_->SetValue(true);
         Value& s = j_doc["NUMBER"];
-        s_number = wxString(s.GetString(), wxConvUTF8);
+        s_number = wxString::FromUTF8(s.GetString());
     }
     else {
         transNumberCheckBox_->SetValue(false);
@@ -1091,7 +1091,7 @@ void mmFilterTransactionsDialog::from_json(const wxString &data)
     if (j_doc.HasMember("NOTES") && j_doc["NOTES"].IsString()) {
         notesCheckBox_->SetValue(true);
         Value& s = j_doc["NOTES"];
-        s_notes = wxString(s.GetString(), wxConvUTF8);
+        s_notes = wxString::FromUTF8(s.GetString());
     }
     else {
         notesCheckBox_->SetValue(false);

@@ -120,7 +120,7 @@ wxString Model_CustomField::getTooltip(const wxString& Properties)
     {
         if (json_doc.HasMember("Tooltip") && json_doc["Tooltip"].IsString()) {
             Value& s = json_doc["Tooltip"];
-            return wxString(s.GetString(), wxConvUTF8);
+            return wxString::FromUTF8(s.GetString());
         }
     }
     return "";
@@ -133,7 +133,7 @@ wxString Model_CustomField::getRegEx(const wxString& Properties)
     {
         if (json_doc.HasMember("RegEx") && json_doc["RegEx"].IsString()) {
             Value& s = json_doc["RegEx"];
-            return wxString(s.GetString(), wxConvUTF8);
+            return wxString::FromUTF8(s.GetString());
         }
     }
     return "";
@@ -159,7 +159,7 @@ wxString Model_CustomField::getDefault(const wxString& Properties)
     {
         if (json_doc.HasMember("Default") && json_doc["Default"].IsString()) {
             Value& s = json_doc["Default"];
-            return wxString(s.GetString(), wxConvUTF8);
+            return wxString::FromUTF8(s.GetString());
         }
     }
     return "";
@@ -176,7 +176,7 @@ wxArrayString Model_CustomField::getChoices(const wxString& Properties)
             Value& sa = json_doc["Choice"];
             for (const auto& entry : sa.GetArray())
             {
-                choices.Add(wxString(entry.GetString(), wxConvUTF8));
+                choices.Add(wxString::FromUTF8(entry.GetString()));
             }
         }
     }
@@ -237,7 +237,7 @@ wxString Model_CustomField::formatProperties(const wxString& Tooltip, const wxSt
 
     json_writer.EndObject();
 
-    return wxString(json_buffer.GetString(), wxConvUTF8);
+    return wxString::FromUTF8(json_buffer.GetString());
 }
 
 int Model_CustomField::getDigitScale(const wxString& Properties)

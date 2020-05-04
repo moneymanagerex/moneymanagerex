@@ -310,7 +310,7 @@ void mmUpdate::checkUpdates(wxFrame *frame, bool bSilent)
     // https://developer.github.com/v3/repos/releases/#list-releases-for-a-repository
 
     Document json_releases;
-    ParseResult res = json_releases.Parse(resp.c_str());
+    ParseResult res = json_releases.Parse(resp.utf8_str());
     if (!res || !json_releases.IsArray())
     {
         if (!bSilent)

@@ -11,7 +11,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2020-02-16 19:01:17.538000.
+ *          AUTO GENERATED at 2020-05-04 17:41:56.665000.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -80,7 +80,7 @@ struct DB_Table_CHECKINGACCOUNT_V1 : public DB_Table
             }
             catch(const wxSQLite3Exception &e) 
             { 
-                wxLogError("CHECKINGACCOUNT_V1: Exception %s", e.GetMessage().c_str());
+                wxLogError("CHECKINGACCOUNT_V1: Exception %s", e.GetMessage().utf8_str());
                 return false;
             }
         }
@@ -99,7 +99,7 @@ struct DB_Table_CHECKINGACCOUNT_V1 : public DB_Table
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("CHECKINGACCOUNT_V1: Exception %s", e.GetMessage().c_str());
+            wxLogError("CHECKINGACCOUNT_V1: Exception %s", e.GetMessage().utf8_str());
             return false;
         }
 
@@ -460,21 +460,21 @@ struct DB_Table_CHECKINGACCOUNT_V1 : public DB_Table
             json_writer.Key("PAYEEID");
             json_writer.Int(this->PAYEEID);
             json_writer.Key("TRANSCODE");
-            json_writer.String(this->TRANSCODE.c_str());
+            json_writer.String(this->TRANSCODE.utf8_str());
             json_writer.Key("TRANSAMOUNT");
             json_writer.Double(this->TRANSAMOUNT);
             json_writer.Key("STATUS");
-            json_writer.String(this->STATUS.c_str());
+            json_writer.String(this->STATUS.utf8_str());
             json_writer.Key("TRANSACTIONNUMBER");
-            json_writer.String(this->TRANSACTIONNUMBER.c_str());
+            json_writer.String(this->TRANSACTIONNUMBER.utf8_str());
             json_writer.Key("NOTES");
-            json_writer.String(this->NOTES.c_str());
+            json_writer.String(this->NOTES.utf8_str());
             json_writer.Key("CATEGID");
             json_writer.Int(this->CATEGID);
             json_writer.Key("SUBCATEGID");
             json_writer.Int(this->SUBCATEGID);
             json_writer.Key("TRANSDATE");
-            json_writer.String(this->TRANSDATE.c_str());
+            json_writer.String(this->TRANSDATE.utf8_str());
             json_writer.Key("FOLLOWUPID");
             json_writer.Int(this->FOLLOWUPID);
             json_writer.Key("TOTRANSAMOUNT");
@@ -634,7 +634,7 @@ struct DB_Table_CHECKINGACCOUNT_V1 : public DB_Table
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("CHECKINGACCOUNT_V1: Exception %s, %s", e.GetMessage().c_str(), entity->to_json());
+            wxLogError("CHECKINGACCOUNT_V1: Exception %s, %s", e.GetMessage().utf8_str(), entity->to_json());
             return false;
         }
 
@@ -677,7 +677,7 @@ struct DB_Table_CHECKINGACCOUNT_V1 : public DB_Table
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("CHECKINGACCOUNT_V1: Exception %s", e.GetMessage().c_str());
+            wxLogError("CHECKINGACCOUNT_V1: Exception %s", e.GetMessage().utf8_str());
             return false;
         }
 
@@ -735,7 +735,7 @@ struct DB_Table_CHECKINGACCOUNT_V1 : public DB_Table
         
         ++ miss_;
         Self::Data* entity = 0;
-        wxString where = wxString::Format(" WHERE %s = ?", PRIMARY::name().c_str());
+        wxString where = wxString::Format(" WHERE %s = ?", PRIMARY::name().utf8_str());
         try
         {
             wxSQLite3Statement stmt = db->PrepareStatement(this->query() + where);
@@ -752,13 +752,13 @@ struct DB_Table_CHECKINGACCOUNT_V1 : public DB_Table
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("%s: Exception %s", this->name().c_str(), e.GetMessage().c_str());
+            wxLogError("%s: Exception %s", this->name().utf8_str(), e.GetMessage().utf8_str());
         }
         
         if (!entity) 
         {
             entity = this->fake_;
-            // wxLogError("%s: %d not found", this->name().c_str(), id);
+            // wxLogError("%s: %d not found", this->name().utf8_str(), id);
         }
  
         return entity;
@@ -785,7 +785,7 @@ struct DB_Table_CHECKINGACCOUNT_V1 : public DB_Table
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("%s: Exception %s", this->name().c_str(), e.GetMessage().c_str());
+            wxLogError("%s: Exception %s", this->name().utf8_str(), e.GetMessage().utf8_str());
         }
 
         return result;

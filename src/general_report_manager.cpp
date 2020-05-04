@@ -1090,13 +1090,13 @@ void mmGeneralReportManager::getSqlTableInfo(std::vector<std::pair<wxString, wxA
             }
             catch (const wxSQLite3Exception &e)
             {
-                wxLogError("%s\n Exception \n%s", sql, e.GetMessage().c_str());
+                wxLogError("%s\n Exception \n%s", sql, e.GetMessage().utf8_str());
             }
         }
     }
     catch (const wxSQLite3Exception &e)
     {
-        wxLogError("SQL Exception: \n%s", e.GetMessage().c_str());
+        wxLogError("SQL Exception: \n%s", e.GetMessage().utf8_str());
     }
 }
 

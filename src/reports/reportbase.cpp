@@ -60,10 +60,10 @@ mmPrintableBase::~mmPrintableBase()
             }
 
             json_writer.Key("DATE1");
-            json_writer.String(m_begin_date.FormatISODate().c_str());
+            json_writer.String(m_begin_date.FormatISODate().utf8_str());
 
             json_writer.Key("DATE2");
-            json_writer.String(m_end_date.FormatISODate().c_str());
+            json_writer.String(m_end_date.FormatISODate().utf8_str());
 
             if (m_account_selection)
             {
@@ -92,7 +92,7 @@ mmPrintableBase::~mmPrintableBase()
             json_writer.EndObject();
 
             const wxString& rj_key = wxString::Format("REPORT_%d", id);
-            const wxString& rj_value = wxString(json_buffer.GetString(), wxConvUTF8);
+            const wxString& rj_value = wxString::FromUTF8(json_buffer.GetString());
             Model_Infotable::instance().Set(rj_key, rj_value);
         }
     }
@@ -267,22 +267,22 @@ void mm_html_template::load_context()
 
 const wxString mmPrintableBase::getReportTitle() const
 {
-	wxString title = m_title;
-	if (m_date_range)
-	{
-		if (m_date_range->title().IsEmpty())
-			title += " - " + _("Custom");
-		else
-			title += " - " + wxGetTranslation(m_date_range->title());
-	}
-	return title;
+    wxString title = m_title;
+    if (m_date_range)
+    {
+        if (m_date_range->title().IsEmpty())
+            title += " - " + _("Custom");
+        else
+            title += " - " + wxGetTranslation(m_date_range->title());
+    }
+    return title;
 }
 
 const wxString mmPrintableBase::getFileName() const
 {
-	wxString file_name = getReportTitle();
-	file_name.Replace(" - ", "-");
-	file_name.Replace(" ", "_");
-	file_name.Replace("/", "-");
-	return file_name;
+    wxString file_name = getReportTitle();
+    file_name.Replace(" - ", "-");
+    file_name.Replace(" ", "_");
+    file_name.Replace("/", "-");
+    return file_name;
 }

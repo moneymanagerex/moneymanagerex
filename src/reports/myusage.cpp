@@ -59,7 +59,7 @@ wxString mmReportMyUsage::getHTMLText()
     for (const auto & usage : all_usage)
     {
          Document json_doc;
-         if (json_doc.Parse(usage.JSONCONTENT.c_str()).HasParseError()) {
+         if (json_doc.Parse(usage.JSONCONTENT.utf8_str()).HasParseError()) {
              continue;
          }
 

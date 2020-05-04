@@ -817,7 +817,7 @@ bool mmMainCurrencyDialog::GetOnlineHistory(std::map<wxDateTime, double> &histor
     }
 
     Document json_doc;
-    if (json_doc.Parse(json_data.c_str()).HasParseError())
+    if (json_doc.Parse(json_data.utf8_str()).HasParseError())
     {
         return false;
     }

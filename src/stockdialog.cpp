@@ -772,7 +772,7 @@ void mmStockDialog::OnHistoryDownloadButton(wxCommandEvent& /*event*/)
     while (true)
     {
         Document json_doc;
-        if (json_doc.Parse(json_data.c_str()).HasParseError()) {
+        if (json_doc.Parse(json_data.utf8_str()).HasParseError()) {
             break;
         }
         else if (!json_doc.HasMember("chart") || !json_doc["chart"].IsObject()) {

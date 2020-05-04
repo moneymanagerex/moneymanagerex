@@ -494,7 +494,7 @@ void mmUnivCSVDialog::SetSettings(const wxString &json_data)
 
     //Setting name
     Value& template_name = GetValueByPointerWithDefault(json_doc, "/SETTING_NAME", "sn");
-    const wxString setting_name =template_name.IsString() ? wxString(template_name.GetString(), wxConvUTF8) : "??";
+    const wxString setting_name =template_name.IsString() ? wxString::FromUTF8(template_name.GetString()) : "??";
     m_setting_name_ctrl_->ChangeValue(setting_name);
 
     //Date Mask
@@ -819,7 +819,7 @@ void mmUnivCSVDialog::OnSettingsSave(wxCommandEvent& WXUNUSED(event))
     json_writer.EndArray();
     json_writer.EndObject();
 
-    const wxString json_data = wxString(json_buffer.GetString(), wxConvUTF8);
+    const wxString json_data = wxString::FromUTF8(json_buffer.GetString());
 
     Model_Setting::instance().Set(setting_id, json_data);
 }
