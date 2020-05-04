@@ -488,13 +488,13 @@ void mmUnivCSVDialog::SetSettings(const wxString &json_data)
     }
 
     Document json_doc;
-    if (json_doc.Parse(json_data.c_str()).HasParseError()) {
+    if (json_doc.Parse(json_data.utf8_str()).HasParseError()) {
         json_doc.Parse("{}");
     }
 
     //Setting name
-    Value& template_name = GetValueByPointerWithDefault(json_doc, "/SETTING_NAME", "");
-    const wxString setting_name = wxString::FromUTF8(template_name.IsString() ? template_name.GetString() : "");
+    Value& template_name = GetValueByPointerWithDefault(json_doc, "/SETTING_NAME", "sn");
+    const wxString setting_name =template_name.IsString() ? wxString(template_name.GetString(), wxConvUTF8) : "??";
     m_setting_name_ctrl_->ChangeValue(setting_name);
 
     //Date Mask
@@ -549,11 +549,14 @@ void mmUnivCSVDialog::SetSettings(const wxString &json_data)
     }
 
     //Decimal Char
-    Value& v_decimal = GetValueByPointerWithDefault(json_doc, "/DECIMAL", "");
-    const wxString d = wxString::FromUTF8(v_decimal.IsString() ? v_decimal.GetString() : "");
-    if (!d.empty()) {
-        decimal_ = d;
-        m_choiceDecimalSeparator->SetDecimalChar(decimal_);
+    if (IsImporter())
+    {
+        Value& v_decimal = GetValueByPointerWithDefault(json_doc, "/DECIMAL", "");
+        const wxString d = wxString::FromUTF8(v_decimal.IsString() ? v_decimal.GetString() : "");
+        if (!d.empty()) {
+            decimal_ = d;
+            m_choiceDecimalSeparator->SetDecimalChar(decimal_);
+        }
     }
 
     //Encoding
@@ -744,43 +747,43 @@ void mmUnivCSVDialog::OnSettingsSave(wxCommandEvent& WXUNUSED(event))
     if (!fileName.empty())
     {
         json_writer.Key("FILE_NAME");
-        json_writer.String(fileName.c_str());
+        json_writer.String(fileName.utf8_str());
     }
 
     const auto s_name = m_setting_name_ctrl_->GetValue();
     if (!s_name.empty())
     {
         json_writer.Key("SETTING_NAME");
-        json_writer.String(s_name.c_str());
+        json_writer.String(s_name.utf8_str());
     }
 
     const auto an = m_choice_account_->GetStringSelection();
     if (!an.empty())
     {
         json_writer.Key("ACCOUNT_NAME");
-        json_writer.String(an.c_str());
+        json_writer.String(an.utf8_str());
     }
     if (!date_format_.empty())
     {
         json_writer.Key("DATE_MASK");
-        json_writer.String(date_format_.c_str());
+        json_writer.String(date_format_.utf8_str());
     }
     if (!delimit_.empty())
     {
         json_writer.Key("DELIMITER");
-        json_writer.String(delimit_.c_str());
+        json_writer.String(delimit_.utf8_str());
     }
 
     wxString decimal = (decimal_.empty() ? m_choiceDecimalSeparator->GetStringSelection() : decimal_);
     json_writer.Key("DECIMAL");
-    json_writer.String(decimal.c_str());
+    json_writer.String(decimal.utf8_str());
 
 
     const auto encoding = g_encoding.at(m_choiceEncoding->GetSelection()).second;
     if (!encoding.empty())
     {
         json_writer.Key("ENCODING");
-        json_writer.String(encoding.c_str());
+        json_writer.String(encoding.utf8_str());
     }
 
     if (IsImporter())
@@ -811,12 +814,12 @@ void mmUnivCSVDialog::OnSettingsSave(wxCommandEvent& WXUNUSED(event))
     for (std::vector<int>::const_iterator it = csvFieldOrder_.begin(); it != csvFieldOrder_.end(); ++it)
     {
         int i = *it;
-        json_writer.String(CSVFieldName_[i].c_str());
+        json_writer.String(CSVFieldName_[i].utf8_str());
     }
     json_writer.EndArray();
     json_writer.EndObject();
 
-    const wxString json_data = json_buffer.GetString();
+    const wxString json_data = wxString(json_buffer.GetString(), wxConvUTF8);
 
     Model_Setting::instance().Set(setting_id, json_data);
 }
