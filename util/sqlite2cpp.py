@@ -232,7 +232,7 @@ struct DB_Table_%s : public DB_Table
             }
             catch(const wxSQLite3Exception &e) 
             { 
-                wxLogError("%s: Exception %%s", e.GetMessage().c_str());
+                wxLogError("%s: Exception %%s", e.GetMessage().utf8_str());
                 return false;
             }
         }
@@ -261,7 +261,7 @@ struct DB_Table_%s : public DB_Table
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("%s: Exception %%s", e.GetMessage().c_str());
+            wxLogError("%s: Exception %%s", e.GetMessage().utf8_str());
             return false;
         }
 
@@ -485,7 +485,7 @@ struct DB_Table_%s : public DB_Table
             elif type == 'wxString':
                 s += '''
             json_writer.Key("%s");
-            json_writer.String(this->%s.c_str());''' % (field['name'], field['name'])
+            json_writer.String(this->%s.utf8_str());''' % (field['name'], field['name'])
             else:
                 assert "Field type Error"
 
@@ -640,7 +640,7 @@ struct DB_Table_%s : public DB_Table
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("%s: Exception %%s, %%s", e.GetMessage().c_str(), entity->to_json());
+            wxLogError("%s: Exception %%s, %%s", e.GetMessage().utf8_str(), entity->to_json());
             return false;
         }
 
@@ -684,7 +684,7 @@ struct DB_Table_%s : public DB_Table
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("%s: Exception %%s", e.GetMessage().c_str());
+            wxLogError("%s: Exception %%s", e.GetMessage().utf8_str());
             return false;
         }
 
@@ -746,7 +746,7 @@ struct DB_Table_%s : public DB_Table
         
         ++ miss_;
         Self::Data* entity = 0;
-        wxString where = wxString::Format(" WHERE %s = ?", PRIMARY::name().c_str());
+        wxString where = wxString::Format(" WHERE %s = ?", PRIMARY::name().utf8_str());
         try
         {
             wxSQLite3Statement stmt = db->PrepareStatement(this->query() + where);
@@ -763,13 +763,13 @@ struct DB_Table_%s : public DB_Table
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("%s: Exception %s", this->name().c_str(), e.GetMessage().c_str());
+            wxLogError("%s: Exception %s", this->name().utf8_str(), e.GetMessage().utf8_str());
         }
         
         if (!entity) 
         {
             entity = this->fake_;
-            // wxLogError("%s: %d not found", this->name().c_str(), id);
+            // wxLogError("%s: %d not found", this->name().utf8_str(), id);
         }
  
         return entity;
@@ -797,7 +797,7 @@ struct DB_Table_%s : public DB_Table
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("%s: Exception %s", this->name().c_str(), e.GetMessage().c_str());
+            wxLogError("%s: Exception %s", this->name().utf8_str(), e.GetMessage().utf8_str());
         }
 
         return result;
@@ -931,7 +931,7 @@ const typename TABLE::Data_Set find_by(TABLE* table, wxSQLite3Database* db, bool
     }
     catch(const wxSQLite3Exception &e) 
     { 
-        wxLogError("%s: Exception %s", table->name().c_str(), e.GetMessage().c_str());
+        wxLogError("%s: Exception %s", table->name().utf8_str(), e.GetMessage().utf8_str());
     }
  
     return result;

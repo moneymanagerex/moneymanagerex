@@ -223,7 +223,7 @@ bool mmReportsPanel::saveReportText(bool initial)
     json_writer.Key("module");
     json_writer.String("Report");
     json_writer.Key("name");
-    json_writer.String(rb_->getReportTitle().c_str());
+    json_writer.String(rb_->getReportTitle().utf8_str());
 
     const auto file_name = rb_->getFileName();
     wxLogDebug("Report File Name: %s", file_name);

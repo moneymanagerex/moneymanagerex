@@ -181,7 +181,7 @@ bool mmWebApp::WebApp_UpdateAccount()
         {
             json_writer.StartObject();
             json_writer.Key("AccountName");
-            json_writer.String(account.ACCOUNTNAME.c_str());
+            json_writer.String(account.ACCOUNTNAME.utf8_str());
             json_writer.EndObject();
         }
     }
@@ -359,7 +359,7 @@ int mmWebApp::WebApp_DownloadNewTransaction(WebTranVector& WebAppTransactions_, 
             }
 
             if (trx.HasMember("Date") && trx["Date"].IsString()) {
-                WebTran.Date = mmParseISODate(wxString(trx["Date"].GetString(), wxConvUTF8));
+                WebTran.Date = mmParseISODate(wxString::FromUTF8(trx["Date"].GetString()));
             }
 
             if (trx.HasMember("Amount") && trx["Amount"].IsString()) {
@@ -370,24 +370,24 @@ int mmWebApp::WebApp_DownloadNewTransaction(WebTranVector& WebAppTransactions_, 
             }
 
             if (trx.HasMember("Account") && trx["Account"].IsString()) {
-                WebTran.Account = wxString(trx["Account"].GetString(), wxConvUTF8);
+                WebTran.Account = wxString::FromUTF8(trx["Account"].GetString());
             }
 
             if (trx.HasMember("ToAccount") && trx["ToAccount"].IsString()) {
-                WebTran.ToAccount = wxString(trx["ToAccount"].GetString(), wxConvUTF8);
+                WebTran.ToAccount = wxString::FromUTF8(trx["ToAccount"].GetString());
             }
 
             if (trx.HasMember("Status") && trx["Status"].IsString()) {
-                WebTran.Status = wxString(trx["Status"].GetString(), wxConvUTF8);
+                WebTran.Status = wxString::FromUTF8(trx["Status"].GetString());
             }
 
             if (trx.HasMember("Type") && trx["Type"].IsString()) {
-                WebTran.Type = wxString(trx["Type"].GetString(), wxConvUTF8);
+                WebTran.Type = wxString::FromUTF8(trx["Type"].GetString());
             }
 
 
             if (trx.HasMember("Payee") && trx["Payee"].IsString()) {
-                wxString Payee = wxString(trx["Payee"].GetString(), wxConvUTF8);
+                wxString Payee = wxString::FromUTF8(trx["Payee"].GetString());
                 if (Payee == "None" || Payee.IsEmpty()) {
                     Payee = _("Unknown");
                 }
@@ -395,7 +395,7 @@ int mmWebApp::WebApp_DownloadNewTransaction(WebTranVector& WebAppTransactions_, 
             }
 
             if (trx.HasMember("Category") && trx["Category"].IsString()) {
-                wxString Category = wxString(trx["Category"].GetString(), wxConvUTF8);
+                wxString Category = wxString::FromUTF8(trx["Category"].GetString());
                 if (Category == "None" || Category.IsEmpty()) {
                     Category = _("Unknown");
                 }
@@ -403,7 +403,7 @@ int mmWebApp::WebApp_DownloadNewTransaction(WebTranVector& WebAppTransactions_, 
             }
 
             if (trx.HasMember("SubCategory") && trx["SubCategory"].IsString()) {
-                wxString SubCategory = wxString(trx["SubCategory"].GetString(), wxConvUTF8);
+                wxString SubCategory = wxString::FromUTF8(trx["SubCategory"].GetString());
                 if (SubCategory == "None" || SubCategory.IsEmpty()) {
                     SubCategory = _("Unknown");
                 }
@@ -411,11 +411,11 @@ int mmWebApp::WebApp_DownloadNewTransaction(WebTranVector& WebAppTransactions_, 
             }
 
             if (trx.HasMember("Notes") && trx["Notes"].IsString()) {
-                WebTran.Notes = wxString(trx["Notes"].GetString(), wxConvUTF8);
+                WebTran.Notes = wxString::FromUTF8(trx["Notes"].GetString());
             }
 
             if (trx.HasMember("Attachments") && trx["Attachments"].IsString()) {
-                WebTran.Attachments = wxString(trx["Attachments"].GetString(), wxConvUTF8);
+                WebTran.Attachments = wxString::FromUTF8(trx["Attachments"].GetString());
             }
 
             WebAppTransactions_.push_back(WebTran);

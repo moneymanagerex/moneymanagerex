@@ -11,7 +11,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2020-02-16 19:01:17.538000.
+ *          AUTO GENERATED at 2020-05-04 17:41:56.665000.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -80,7 +80,7 @@ struct DB_Table_ASSETS_V1 : public DB_Table
             }
             catch(const wxSQLite3Exception &e) 
             { 
-                wxLogError("ASSETS_V1: Exception %s", e.GetMessage().c_str());
+                wxLogError("ASSETS_V1: Exception %s", e.GetMessage().utf8_str());
                 return false;
             }
         }
@@ -98,7 +98,7 @@ struct DB_Table_ASSETS_V1 : public DB_Table
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("ASSETS_V1: Exception %s", e.GetMessage().c_str());
+            wxLogError("ASSETS_V1: Exception %s", e.GetMessage().utf8_str());
             return false;
         }
 
@@ -345,19 +345,19 @@ struct DB_Table_ASSETS_V1 : public DB_Table
             json_writer.Key("ASSETID");
             json_writer.Int(this->ASSETID);
             json_writer.Key("STARTDATE");
-            json_writer.String(this->STARTDATE.c_str());
+            json_writer.String(this->STARTDATE.utf8_str());
             json_writer.Key("ASSETNAME");
-            json_writer.String(this->ASSETNAME.c_str());
+            json_writer.String(this->ASSETNAME.utf8_str());
             json_writer.Key("VALUE");
             json_writer.Double(this->VALUE);
             json_writer.Key("VALUECHANGE");
-            json_writer.String(this->VALUECHANGE.c_str());
+            json_writer.String(this->VALUECHANGE.utf8_str());
             json_writer.Key("NOTES");
-            json_writer.String(this->NOTES.c_str());
+            json_writer.String(this->NOTES.utf8_str());
             json_writer.Key("VALUECHANGERATE");
             json_writer.Double(this->VALUECHANGERATE);
             json_writer.Key("ASSETTYPE");
-            json_writer.String(this->ASSETTYPE.c_str());
+            json_writer.String(this->ASSETTYPE.utf8_str());
         }
 
         row_t to_row_t() const
@@ -495,7 +495,7 @@ struct DB_Table_ASSETS_V1 : public DB_Table
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("ASSETS_V1: Exception %s, %s", e.GetMessage().c_str(), entity->to_json());
+            wxLogError("ASSETS_V1: Exception %s, %s", e.GetMessage().utf8_str(), entity->to_json());
             return false;
         }
 
@@ -538,7 +538,7 @@ struct DB_Table_ASSETS_V1 : public DB_Table
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("ASSETS_V1: Exception %s", e.GetMessage().c_str());
+            wxLogError("ASSETS_V1: Exception %s", e.GetMessage().utf8_str());
             return false;
         }
 
@@ -596,7 +596,7 @@ struct DB_Table_ASSETS_V1 : public DB_Table
         
         ++ miss_;
         Self::Data* entity = 0;
-        wxString where = wxString::Format(" WHERE %s = ?", PRIMARY::name().c_str());
+        wxString where = wxString::Format(" WHERE %s = ?", PRIMARY::name().utf8_str());
         try
         {
             wxSQLite3Statement stmt = db->PrepareStatement(this->query() + where);
@@ -613,13 +613,13 @@ struct DB_Table_ASSETS_V1 : public DB_Table
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("%s: Exception %s", this->name().c_str(), e.GetMessage().c_str());
+            wxLogError("%s: Exception %s", this->name().utf8_str(), e.GetMessage().utf8_str());
         }
         
         if (!entity) 
         {
             entity = this->fake_;
-            // wxLogError("%s: %d not found", this->name().c_str(), id);
+            // wxLogError("%s: %d not found", this->name().utf8_str(), id);
         }
  
         return entity;
@@ -646,7 +646,7 @@ struct DB_Table_ASSETS_V1 : public DB_Table
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("%s: Exception %s", this->name().c_str(), e.GetMessage().c_str());
+            wxLogError("%s: Exception %s", this->name().utf8_str(), e.GetMessage().utf8_str());
         }
 
         return result;

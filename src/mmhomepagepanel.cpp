@@ -268,7 +268,7 @@ void mmHomePagePanel::OnLinkClicked(wxWebViewEvent& event)
         wxLogDebug("Name = %s", name);
 
         Document json_doc;
-        if (json_doc.Parse(str.c_str()).HasParseError())
+        if (json_doc.Parse(str.utf8_str()).HasParseError())
             return;
 
         Document::AllocatorType& json_allocator = json_doc.GetAllocator();
@@ -280,7 +280,7 @@ void mmHomePagePanel::OnLinkClicked(wxWebViewEvent& event)
         {
             if (name != entry) continue;
 
-            Value v_type(entry.c_str(), json_allocator);
+            Value v_type(entry.utf8_str(), json_allocator);
             if (json_doc.HasMember(v_type) && json_doc[v_type].IsBool())
             {
                 json_doc[v_type] = !json_doc[v_type].GetBool();

@@ -512,17 +512,17 @@ const wxString Model_Checking::Full_Data::to_json()
     Model_Checking::Data::as_json(json_writer);
 
     json_writer.Key("ACCOUNTNAME");
-    json_writer.String(this->ACCOUNTNAME.c_str());
+    json_writer.String(this->ACCOUNTNAME.utf8_str());
 
     if (is_transfer(this))
     {
         json_writer.Key("TOACCOUNTNAME");
-        json_writer.String(this->TOACCOUNTNAME.c_str());
+        json_writer.String(this->TOACCOUNTNAME.utf8_str());
     }
     else
     {
         json_writer.Key("PAYEENAME");
-        json_writer.String(this->PAYEENAME.c_str());
+        json_writer.String(this->PAYEENAME.utf8_str());
     }
 
     if (this->has_split())
@@ -532,7 +532,7 @@ const wxString Model_Checking::Full_Data::to_json()
         for (const auto & item : m_splits)
         {
             json_writer.StartObject();
-            json_writer.Key(Model_Category::full_name(item.CATEGID, item.SUBCATEGID).c_str());
+            json_writer.Key(Model_Category::full_name(item.CATEGID, item.SUBCATEGID).utf8_str());
             json_writer.Double(item.SPLITTRANSAMOUNT);
             json_writer.EndObject();
         }
@@ -541,7 +541,7 @@ const wxString Model_Checking::Full_Data::to_json()
     else
     {
         json_writer.Key("CATEG");
-        json_writer.String(Model_Category::full_name(this->CATEGID, this->SUBCATEGID).c_str());
+        json_writer.String(Model_Category::full_name(this->CATEGID, this->SUBCATEGID).utf8_str());
     }
 
     json_writer.EndObject();

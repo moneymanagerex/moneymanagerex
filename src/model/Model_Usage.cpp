@@ -80,17 +80,17 @@ wxString Model_Usage::To_JSON_String() const
 
     json_writer.StartObject();
     json_writer.Key("start");
-    json_writer.String(m_start.FormatISOCombined(' ').c_str());
+    json_writer.String(m_start.FormatISOCombined(' ').utf8_str());
 
     json_writer.Key("end");
-    json_writer.String(wxDateTime::Now().FormatISOCombined(' ').c_str());
+    json_writer.String(wxDateTime::Now().FormatISOCombined(' ').utf8_str());
 
     json_writer.Key("usage");
     {
         json_writer.StartArray();
         for (size_t i = 0; i < m_json_usage.GetCount(); i++)
         {
-            const char* item = m_json_usage.Item(i).c_str();
+            const char* item = m_json_usage.Item(i).utf8_str();
             json_writer.RawValue(item, strlen(item), kObjectType);
         }
         json_writer.EndArray();
@@ -100,7 +100,7 @@ wxString Model_Usage::To_JSON_String() const
         json_writer.StartArray();
         for (size_t i = 0; i < m_json_cache.GetCount(); i++)
         {
-            const char* item = m_json_cache.Item(i).c_str();
+            const char* item = m_json_cache.Item(i).utf8_str();
             json_writer.RawValue(item, strlen(item), kObjectType);
         }
         json_writer.EndArray();

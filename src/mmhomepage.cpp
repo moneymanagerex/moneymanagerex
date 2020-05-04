@@ -419,29 +419,29 @@ const wxString htmlWidgetIncomeVsExpenses::getHTMLText()
     PrettyWriter<StringBuffer> json_writer(json_buffer);
     json_writer.StartObject();
     json_writer.Key("0");
-    json_writer.String(wxString::Format(_("Income vs Expenses: %s"), date_range.get()->local_title()).c_str());
+    json_writer.String(wxString::Format(_("Income vs Expenses: %s"), date_range.get()->local_title()).utf8_str());
     json_writer.Key("1");
-    json_writer.String(_("Type").c_str());
+    json_writer.String(_("Type").utf8_str());
     json_writer.Key("2");
-    json_writer.String(_("Amount").c_str());
+    json_writer.String(_("Amount").utf8_str());
     json_writer.Key("3");
-    json_writer.String(_("Income").c_str());
+    json_writer.String(_("Income").utf8_str());
     json_writer.Key("4");
-    json_writer.String(Model_Currency::toCurrency(tIncome).c_str());
+    json_writer.String(Model_Currency::toCurrency(tIncome).utf8_str());
     json_writer.Key("5");
-    json_writer.String(_("Expenses").c_str());
+    json_writer.String(_("Expenses").utf8_str());
     json_writer.Key("6");
-    json_writer.String(Model_Currency::toCurrency(tExpenses).c_str());
+    json_writer.String(Model_Currency::toCurrency(tExpenses).utf8_str());
     json_writer.Key("7");
-    json_writer.String(_("Difference:").c_str());
+    json_writer.String(_("Difference:").utf8_str());
     json_writer.Key("8");
-    json_writer.String(Model_Currency::toCurrency(tIncome - tExpenses).c_str());
+    json_writer.String(Model_Currency::toCurrency(tIncome - tExpenses).utf8_str());
     json_writer.Key("9");
-    json_writer.String(_("Income/Expenses").c_str());
+    json_writer.String(_("Income/Expenses").utf8_str());
     json_writer.Key("10");
-    json_writer.String(wxString::FromCDouble(tIncome, 2).c_str());
+    json_writer.String(wxString::FromCDouble(tIncome, 2).utf8_str());
     json_writer.Key("11");
-    json_writer.String(wxString::FromCDouble(tExpenses, 2).c_str());
+    json_writer.String(wxString::FromCDouble(tExpenses, 2).utf8_str());
     json_writer.Key("12");
     json_writer.Int(steps);
     json_writer.Key("13");
@@ -465,7 +465,7 @@ const wxString htmlWidgetStatistics::getHTMLText()
     json_writer.StartObject();
 
     json_writer.Key("NAME");
-    json_writer.String(_("Transaction Statistics").c_str());
+    json_writer.String(_("Transaction Statistics").utf8_str());
 
     wxSharedPtr<mmDateRange> date_range;
     if (Option::instance().getIgnoreFutureTransactions())
@@ -508,11 +508,11 @@ const wxString htmlWidgetStatistics::getHTMLText()
 
     if (countFollowUp > 0)
     {
-        json_writer.Key(_("Follow Up On Transactions: ").c_str());
+        json_writer.Key(_("Follow Up On Transactions: ").utf8_str());
         json_writer.Double(countFollowUp);
     }
 
-    json_writer.Key(_("Total Transactions: ").c_str());
+    json_writer.Key(_("Total Transactions: ").utf8_str());
     json_writer.Int(total_transactions);
     json_writer.EndObject();
 
@@ -534,9 +534,9 @@ const wxString htmlWidgetGrandTotals::getHTMLText(double& tBalance)
     PrettyWriter<StringBuffer> json_writer(json_buffer);
     json_writer.StartObject();
     json_writer.Key("NAME");
-    json_writer.String(_("Grand Total:").c_str());
+    json_writer.String(_("Grand Total:").utf8_str());
     json_writer.Key("VALUE");
-    json_writer.String(tBalanceStr.c_str());
+    json_writer.String(tBalanceStr.utf8_str());
     json_writer.EndObject();
 
     wxLogDebug("======= mmHomePagePanel::getGrandTotalsJSON =======");
@@ -558,9 +558,9 @@ const wxString htmlWidgetAssets::getHTMLText(double& tBalance)
     PrettyWriter<StringBuffer> json_writer(json_buffer);
     json_writer.StartObject();
     json_writer.Key("NAME");
-    json_writer.String(_("Assets").c_str());
+    json_writer.String(_("Assets").utf8_str());
     json_writer.Key("VALUE");
-    json_writer.String(Model_Currency::toCurrency(asset_balance).c_str());
+    json_writer.String(Model_Currency::toCurrency(asset_balance).utf8_str());
     json_writer.EndObject();
 
     wxLogDebug("======= mmHomePagePanel::getAssetsJSON =======");

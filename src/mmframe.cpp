@@ -968,7 +968,7 @@ void mmGUIFrame::navTreeStateToJson()
     };
     json_writer.EndObject();
 
-    const wxString nav_tree_status = wxString(json_buffer.GetString(), wxConvUTF8);
+    const wxString nav_tree_status = wxString::FromUTF8(json_buffer.GetString());
     wxLogDebug("=========== navTreeStateToJson =============================");
     wxLogDebug(nav_tree_status);
     Model_Infotable::instance().Set("NAV_TREE_STATUS", nav_tree_status);

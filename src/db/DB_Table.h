@@ -11,7 +11,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2020-02-16 19:01:17.538000.
+ *          AUTO GENERATED at 2020-05-04 17:41:56.665000.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -136,7 +136,7 @@ const typename TABLE::Data_Set find_by(TABLE* table, wxSQLite3Database* db, bool
     }
     catch(const wxSQLite3Exception &e) 
     { 
-        wxLogError("%s: Exception %s", table->name().c_str(), e.GetMessage().c_str());
+        wxLogError("%s: Exception %s", table->name().utf8_str(), e.GetMessage().utf8_str());
     }
  
     return result;
