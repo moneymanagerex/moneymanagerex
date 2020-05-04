@@ -211,7 +211,7 @@ void mmExportTransaction::getAccountsJSON(PrettyWriter<StringBuffer>& json_write
         json_writer.Key("ID");
         json_writer.Int(a->ACCOUNTID);
         json_writer.Key("NAME");
-        json_writer.String(a->ACCOUNTNAME.c_str());
+        json_writer.String(a->ACCOUNTNAME.utf8_str());
         json_writer.Key("INITIAL_BALANCE");
         json_writer.Double(a->INITIALBAL);
         json_writer.Key("TYPE");
@@ -236,7 +236,7 @@ void mmExportTransaction::getPayeesJSON(PrettyWriter<StringBuffer>& json_writer,
                 json_writer.Key("ID");
                 json_writer.Int(p->PAYEEID);
                 json_writer.Key("NAME");
-                json_writer.String(p->PAYEENAME.c_str());
+                json_writer.String(p->PAYEENAME.utf8_str());
                 json_writer.Key("CATEGORY_ID");
                 json_writer.Int(p->CATEGID);
                 json_writer.Key("SUBCATEGORY_ID");
@@ -258,7 +258,7 @@ void mmExportTransaction::getCategoriesJSON(PrettyWriter<StringBuffer>& json_wri
         json_writer.Key("ID");
         json_writer.Int(category.CATEGID);
         json_writer.Key("NAME");
-        json_writer.String(category.CATEGNAME.c_str());
+        json_writer.String(category.CATEGNAME.utf8_str());
 
         const auto sub_categ = Model_Category::sub_category(category);
         if (!sub_categ.empty())
@@ -272,7 +272,7 @@ void mmExportTransaction::getCategoriesJSON(PrettyWriter<StringBuffer>& json_wri
                 json_writer.Key("ID");
                 json_writer.Int(sub_category.CATEGID);
                 json_writer.Key("NAME");
-                json_writer.String(sub_category.SUBCATEGNAME.c_str());
+                json_writer.String(sub_category.SUBCATEGNAME.utf8_str());
                 json_writer.EndObject();
             }
             json_writer.EndArray();
