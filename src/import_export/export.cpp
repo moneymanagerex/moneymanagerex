@@ -199,7 +199,8 @@ const wxString mmExportTransaction::mm_acc_type(const wxString& qif_type)
 
 // JSON Export ----------------------------------------------------------------------------
 
-void mmExportTransaction::getAccountsJSON(PrettyWriter<StringBuffer>& json_writer, std::unordered_map <int /*account ID*/, wxString>& allAccounts4Export)
+void mmExportTransaction::getAccountsJSON(PrettyWriter<StringBuffer>& json_writer
+    , std::unordered_map <int /*account ID*/, wxString>& allAccounts4Export)
 {
     json_writer.Key("ACCOUNTS");
     json_writer.StartArray();
@@ -215,9 +216,9 @@ void mmExportTransaction::getAccountsJSON(PrettyWriter<StringBuffer>& json_write
         json_writer.Key("INITIAL_BALANCE");
         json_writer.Double(a->INITIALBAL);
         json_writer.Key("TYPE");
-        json_writer.String(a->ACCOUNTTYPE.c_str());
+        json_writer.String(a->ACCOUNTTYPE.utf8_str());
         json_writer.Key("CURRENCY_SYMBOL");
-        json_writer.String(c->CURRENCY_SYMBOL.c_str());
+        json_writer.String(c->CURRENCY_SYMBOL.utf8_str());
         json_writer.EndObject();
     }
     json_writer.EndArray();
@@ -365,11 +366,11 @@ void mmExportTransaction::getAttachmentsJSON(PrettyWriter<StringBuffer>& json_wr
         json_writer.StartObject();
 
         json_writer.Key("FOLDER");
-        json_writer.String(folder.c_str());
+        json_writer.String(folder.utf8_str());
         json_writer.Key("FULL_PATH");
-        json_writer.String(AttachmentsFolder.c_str());
+        json_writer.String(AttachmentsFolder.utf8_str());
         json_writer.Key("REFTYPE");
-        json_writer.String(RefType.c_str());
+        json_writer.String(RefType.utf8_str());
 
         json_writer.Key("ATTACHMENTS_DATA");
         json_writer.StartArray();
@@ -433,13 +434,13 @@ void mmExportTransaction::getCustomFieldsJSON(PrettyWriter<StringBuffer>& json_w
             json_writer.Key("ID");
             json_writer.Int(entry.FIELDID);
             json_writer.Key("REFTYPE");
-            json_writer.String(entry.REFTYPE.c_str());
+            json_writer.String(entry.REFTYPE.utf8_str());
             json_writer.Key("DESCRIPTION");
-            json_writer.String(entry.DESCRIPTION.c_str());
+            json_writer.String(entry.DESCRIPTION.utf8_str());
             json_writer.Key("TYPE");
-            json_writer.String(entry.TYPE.c_str());
+            json_writer.String(entry.TYPE.utf8_str());
             json_writer.Key("PROPERTIES");
-            json_writer.RawValue(entry.PROPERTIES.c_str(), entry.PROPERTIES.size(), rapidjson::Type::kObjectType);
+            json_writer.RawValue(entry.PROPERTIES.utf8_str(), entry.PROPERTIES.utf8_str().length(), rapidjson::Type::kObjectType);
             json_writer.EndObject();
         }
         json_writer.EndArray();
