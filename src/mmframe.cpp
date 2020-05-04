@@ -876,7 +876,7 @@ void mmGUIFrame::loadNavigationTreeItemsStatusFromJson()
     wxTreeItemId root = m_nav_tree_ctrl->GetRootItem();
     m_nav_tree_ctrl->Expand(root);
 
-    const wxString& str = wxString(Model_Infotable::instance().GetStringInfo("NAV_TREE_STATUS", ""), wxConvUTF8);
+    const wxString& str = Model_Infotable::instance().GetStringInfo("NAV_TREE_STATUS", "");
     Document json_doc;
     if (json_doc.Parse(str.utf8_str()).HasParseError()) {
         json_doc.Parse("{}");

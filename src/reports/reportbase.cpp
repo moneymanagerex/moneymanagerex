@@ -41,7 +41,7 @@ mmPrintableBase::mmPrintableBase(const wxString& title)
 mmPrintableBase::~mmPrintableBase()
 {
     Document j_doc;
-    if (!j_doc.Parse(m_settings.c_str()).HasParseError()) {
+    if (!j_doc.Parse(m_settings.utf8_str()).HasParseError()) {
 
         if (j_doc.HasMember("ID") && j_doc["ID"].IsInt()) {
             int id = j_doc["ID"].GetInt();
@@ -77,7 +77,7 @@ mmPrintableBase::~mmPrintableBase()
                     json_writer.StartArray();
                     for (const auto& entry : *accountArray_)
                     {
-                        json_writer.String(entry.c_str());
+                        json_writer.String(entry.utf8_str());
                     }
                     json_writer.EndArray();
                 }
@@ -92,7 +92,7 @@ mmPrintableBase::~mmPrintableBase()
             json_writer.EndObject();
 
             const wxString& rj_key = wxString::Format("REPORT_%d", id);
-            const wxString& rj_value = json_buffer.GetString();
+            const wxString& rj_value = wxString(json_buffer.GetString(), wxConvUTF8);
             Model_Infotable::instance().Set(rj_key, rj_value);
         }
     }
