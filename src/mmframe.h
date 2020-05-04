@@ -145,7 +145,7 @@ private:
 
     void createControls();
     /*Set nav tree items status from JSON data with stored in DB*/
-    void loadNavTreeItemsStatus();
+    void loadNavigationTreeItemsStatusFromJson();
     /*save Settings LASTFILENAME AUIPERSPECTIVE SIZES*/
     void saveSettings();
     void menuEnableItems(bool enable);

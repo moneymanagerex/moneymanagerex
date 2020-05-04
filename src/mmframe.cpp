@@ -848,7 +848,7 @@ void mmGUIFrame::updateNavTreeControl()
             m_nav_tree_ctrl->SetItemData(tacct, new mmTreeItemData(account.ACCOUNTID, false));
         }
 
-        loadNavTreeItemsStatus();
+        loadNavigationTreeItemsStatusFromJson();
         if (!m_nav_tree_ctrl->ItemHasChildren(accounts)) m_nav_tree_ctrl->Delete(accounts);
         if (!m_nav_tree_ctrl->ItemHasChildren(cardAccounts)) m_nav_tree_ctrl->Delete(cardAccounts);
         if (!m_nav_tree_ctrl->ItemHasChildren(termAccounts)) m_nav_tree_ctrl->Delete(termAccounts);
@@ -869,16 +869,16 @@ void mmGUIFrame::updateNavTreeControl()
     m_nav_tree_ctrl->SetEvtHandlerEnabled(true);
 }
 
-void mmGUIFrame::loadNavTreeItemsStatus()
+void mmGUIFrame::loadNavigationTreeItemsStatusFromJson()
 {
     /* Load Nav Tree Control */
     SetEvtHandlerEnabled(false);
     wxTreeItemId root = m_nav_tree_ctrl->GetRootItem();
     m_nav_tree_ctrl->Expand(root);
 
-    const wxString& str = Model_Infotable::instance().GetStringInfo("NAV_TREE_STATUS", "");
+    const wxString& str = wxString(Model_Infotable::instance().GetStringInfo("NAV_TREE_STATUS", ""), wxConvUTF8);
     Document json_doc;
-    if (json_doc.Parse(str.c_str()).HasParseError()) {
+    if (json_doc.Parse(str.utf8_str()).HasParseError()) {
         json_doc.Parse("{}");
     }
 
@@ -904,11 +904,10 @@ void mmGUIFrame::loadNavTreeItemsStatus()
             dynamic_cast<mmTreeItemData*>(m_nav_tree_ctrl->GetItemData(next));
         if (iData)
         {
-            const wxString& nav_key = iData->getString();
-            wxLogDebug("-%s-", nav_key);
-            if (json_doc.HasMember(nav_key.c_str()))
+            const wxString nav_key = iData->getString();
+            if (json_doc.HasMember(nav_key.utf8_str()))
             {
-                Value json_key(nav_key.c_str(), json_doc.GetAllocator());
+                Value json_key(nav_key.utf8_str(), json_doc.GetAllocator());
                 if (json_doc[json_key].IsBool() && json_doc[json_key].GetBool())
                 {
                     m_nav_tree_ctrl->Expand(next);
@@ -963,13 +962,13 @@ void mmGUIFrame::navTreeStateToJson()
         mmTreeItemData* iData = dynamic_cast<mmTreeItemData*>(m_nav_tree_ctrl->GetItemData(next));
         if (iData && iData->isStringData() && m_nav_tree_ctrl->IsExpanded(next))
         {
-            json_writer.Key(iData->getString().c_str());
+            json_writer.Key(iData->getString().utf8_str());
             json_writer.Bool(m_nav_tree_ctrl->IsExpanded(next));
         }
     };
     json_writer.EndObject();
 
-    const wxString nav_tree_status = json_buffer.GetString();
+    const wxString nav_tree_status = wxString(json_buffer.GetString(), wxConvUTF8);
     wxLogDebug("=========== navTreeStateToJson =============================");
     wxLogDebug(nav_tree_status);
     Model_Infotable::instance().Set("NAV_TREE_STATUS", nav_tree_status);
