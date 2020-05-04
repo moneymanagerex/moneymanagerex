@@ -49,8 +49,8 @@ public:
 public:
     bool get_objects_from_sql(const wxString& query, PrettyWriter<StringBuffer>& json_writer);
     wxArrayString allGroupNames();
-    wxString get_html(const Data* r);
-    wxString get_html(const Data& r);
+    int get_html(const Data* r, wxString& out);
+    //wxString get_html(const Data& r);
 
 public:
     Data* get(const wxString& name);

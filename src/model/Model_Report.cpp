@@ -227,19 +227,14 @@ bool Model_Report::PrepareSQL(wxString& sql, std::map <wxString, wxString>& rep_
     return true;
 }
 
-wxString Model_Report::get_html(const Data* r)
+int Model_Report::get_html(const Data* r, wxString& out)
 {
     wxString sql = r->SQLCONTENT;
     wxString templatecontent = r->TEMPLATECONTENT;
-    //TODO: if (templatecontent.empty()) somthing like: mmGeneralReportManager::getTemplate(sql)
-
-    mm_html_template report(templatecontent);
-    r->to_template(report);
-
-    loop_t contents;
-
-    loop_t errors;
-    row_t error;
+    if (templatecontent.empty()) {
+        out = _("Template is empty");
+        return 3;
+    }
 
     wxSQLite3ResultSet q;
     int columnCount = 0;
@@ -251,7 +246,8 @@ wxString Model_Report::get_html(const Data* r)
         wxSQLite3Statement stmt = this->db_->PrepareStatement(sql);
         if (!stmt.IsReadOnly())
         {
-            return wxString::Format(_("The SQL script:\n%s \nwill modify database! aborted!"), r->SQLCONTENT);
+            out = wxString::Format(_("The SQL script:\n%s \nwill modify database! aborted!"), r->SQLCONTENT);
+            return -1;
         }
         else
         {
@@ -261,12 +257,19 @@ wxString Model_Report::get_html(const Data* r)
     }
     catch (const wxSQLite3Exception& e)
     {
-        return e.GetMessage();
+        out = e.GetMessage();
+        return e.GetErrorCode();
     }
 
     std::map <std::wstring, int> colHeaders;
 
+    mm_html_template report(templatecontent);
+    r->to_template(report);
+    loop_t contents;
+    loop_t errors;
+    row_t error;
     loop_t columns;
+
     for (int i = 0; i < columnCount; ++i)
     {
         int col_type = q.GetColumnType(i);
@@ -388,26 +391,22 @@ wxString Model_Report::get_html(const Data* r)
     }
     report(L"ERRORS") = errors;
 
-    wxString out = wxEmptyString;
     try
     {
         out = report.Process();
     }
     catch (const syntax_ex& e)
     {
-        return e.what();
+        out = e.what();
+        return 1;
     }
     catch (...)
     {
-        return _("Caught exception");
+        out = _("Caught exception");
+        return 2;
     }
 
-    return out;
-}
-
-wxString Model_Report::get_html(const Data& r) 
-{ 
-    return get_html(&r); 
+    return 0;
 }
 
 Model_Report::Data* Model_Report::get(const wxString& name)

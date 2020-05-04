@@ -188,7 +188,43 @@ mmGeneralReport::mmGeneralReport(const Model_Report::Data* report)
 
 wxString mmGeneralReport::getHTMLText()
 {
-    return Model_Report::instance().get_html(this->m_report);
+    wxString out;
+    int error = Model_Report::instance().get_html(this->m_report, out);
+    if (error != 0) {
+        const char* error_template = R"(
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Error</title>
+    <style type="text/css">
+    h1.error {
+        left: 0;
+        line-height: 50px;
+        margin-top: -15px;
+        position: absolute;
+        text-align: center;
+        top: 15%;
+        width: 90%;
+        font-size: 2em;
+        color: #dadada;
+        -webkit-text-fill-color: #dadada;
+        -webkit-text-stroke-width: 1px;
+        -webkit-text-stroke-color: black;
+    }
+    </style>
+</head>
+<body>
+    <h1 class="error"><TMPL_VAR ERROR></h1> </body>
+</html>
+)";
+        wxString html = error_template;
+        html.Replace("<TMPL_VAR ERROR>", out);
+        out.swap(html);
+    }
+
+    return out;
 }
 
 int mmGeneralReport::report_parameters()
