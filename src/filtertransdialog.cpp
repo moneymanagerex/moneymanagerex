@@ -852,8 +852,8 @@ const wxString mmFilterTransactionsDialog::to_json(bool i18n)
     s_name.Trim();
     if (!s_name.empty())
     {
-        json_writer.Key((i18n ? _("Name") : "LABEL").c_str());
-        json_writer.String(s_name.c_str());
+        json_writer.Key((i18n ? _("Name") : "LABEL").utf8_str());
+        json_writer.String(s_name.utf8_str());
     }
 
     if (accountCheckBox_->IsChecked())
@@ -861,31 +861,31 @@ const wxString mmFilterTransactionsDialog::to_json(bool i18n)
         const wxString acc = accountDropDown_->GetStringSelection();
         if (!acc.empty())
         {
-            json_writer.Key((i18n ? _("Account") : "ACCOUNT").c_str());
-            json_writer.String(acc.c_str());
+            json_writer.Key((i18n ? _("Account") : "ACCOUNT").utf8_str());
+            json_writer.String(acc.utf8_str());
         }
     }
 
     if (dateRangeCheckBox_->IsChecked())
     {
-        json_writer.Key((i18n ? _("Since") : "DATE1").c_str());
-        json_writer.String(fromDateCtrl_->GetValue().FormatISODate().c_str());
-        json_writer.Key((i18n ? _("Before") : "DATE2").c_str());
-        json_writer.String(toDateControl_->GetValue().FormatISODate().c_str());
+        json_writer.Key((i18n ? _("Since") : "DATE1").utf8_str());
+        json_writer.String(fromDateCtrl_->GetValue().FormatISODate().utf8_str());
+        json_writer.Key((i18n ? _("Before") : "DATE2").utf8_str());
+        json_writer.String(toDateControl_->GetValue().FormatISODate().utf8_str());
     }
 
     if (payeeCheckBox_->IsChecked())
     {
-        json_writer.Key((i18n ? _("Payee") : "PAYEE").c_str());
-        json_writer.String(cbPayee_->GetValue().c_str());
+        json_writer.Key((i18n ? _("Payee") : "PAYEE").utf8_str());
+        json_writer.String(cbPayee_->GetValue().utf8_str());
     }
 
     if (categoryCheckBox_->IsChecked())
     {
-        json_writer.Key((i18n ? _("Include Similar") : "SIMILAR_YN").c_str());
+        json_writer.Key((i18n ? _("Include Similar") : "SIMILAR_YN").utf8_str());
         json_writer.Bool(bSimilarCategoryStatus_);
-        json_writer.Key((i18n ? _("Category") : "CATEGORY").c_str());
-        json_writer.String(btnCategory_->GetLabel().c_str());
+        json_writer.Key((i18n ? _("Category") : "CATEGORY").utf8_str());
+        json_writer.String(btnCategory_->GetLabel().utf8_str());
     }
 
     if (statusCheckBox_->IsChecked())
@@ -899,8 +899,8 @@ const wxString mmFilterTransactionsDialog::to_json(bool i18n)
             status = s[item];
         if (!status.empty())
         {
-            json_writer.Key((i18n ? _("Status") : "STATUS").c_str());
-            json_writer.String((i18n ? wxGetTranslation(status) : status).c_str());
+            json_writer.Key((i18n ? _("Status") : "STATUS").utf8_str());
+            json_writer.String((i18n ? wxGetTranslation(status) : status).utf8_str());
         }
     }
 
@@ -913,8 +913,8 @@ const wxString mmFilterTransactionsDialog::to_json(bool i18n)
             << (cbTypeTransferFrom_->GetValue() && typeCheckBox_->GetValue() ? "F" : "");
         if (!type.empty())
         {
-            json_writer.Key((i18n ? _("Type") : "TYPE").c_str());
-            json_writer.String(type.c_str());
+            json_writer.Key((i18n ? _("Type") : "TYPE").utf8_str());
+            json_writer.String(type.utf8_str());
         }
     }
 
@@ -924,7 +924,7 @@ const wxString mmFilterTransactionsDialog::to_json(bool i18n)
         {
             double amount_min;
             amountMinEdit_->GetDouble(amount_min);
-            json_writer.Key((i18n ? _("Amount Min.") : "AMOUNT_MIN").c_str());
+            json_writer.Key((i18n ? _("Amount Min.") : "AMOUNT_MIN").utf8_str());
             json_writer.Double(amount_min);
         }
 
@@ -932,7 +932,7 @@ const wxString mmFilterTransactionsDialog::to_json(bool i18n)
         {
             double amount_max;
             amountMaxEdit_->GetDouble(amount_max);
-            json_writer.Key((i18n ? _("Amount Max.") : "AMOUNT_MAX").c_str());
+            json_writer.Key((i18n ? _("Amount Max.") : "AMOUNT_MAX").utf8_str());
             json_writer.Double(amount_max);
         }
     }
@@ -940,20 +940,20 @@ const wxString mmFilterTransactionsDialog::to_json(bool i18n)
     if (transNumberCheckBox_->IsChecked())
     {
         const wxString num = transNumberEdit_->GetValue();
-        json_writer.Key((i18n ? _("Number") : "NUMBER").c_str());
-        json_writer.String(num.c_str());
+        json_writer.Key((i18n ? _("Number") : "NUMBER").utf8_str());
+        json_writer.String(num.utf8_str());
     }
 
     if (notesCheckBox_->IsChecked())
     {
         wxString notes = notesEdit_->GetValue();
-        json_writer.Key((i18n ? _("Notes") : "NOTES").c_str());
-        json_writer.String(notes.c_str());
+        json_writer.Key((i18n ? _("Notes") : "NOTES").utf8_str());
+        json_writer.String(notes.utf8_str());
     }
 
     json_writer.EndObject();
 
-    return json_buffer.GetString();
+    return wxString(json_buffer.GetString(), wxConvUTF8);
 }
 
 void mmFilterTransactionsDialog::from_json(const wxString &data)
@@ -961,28 +961,28 @@ void mmFilterTransactionsDialog::from_json(const wxString &data)
     if (data.empty()) return;
 
     Document j_doc;
-    if (j_doc.Parse(data.c_str()).HasParseError())
+    if (j_doc.Parse(data.utf8_str()).HasParseError())
     {
         j_doc.Parse("{}");
     }
 
     //Label
     Value& j_label = GetValueByPointerWithDefault(j_doc, "/LABEL", "");
-    const wxString& s_label = j_label.IsString() ? j_label.GetString() : "";
+    const wxString& s_label = j_label.IsString() ? wxString(j_label.GetString(), wxConvUTF8) : "";
     m_settingLabel->SetValue(s_label);
 
     //Account
     Value& j_account = GetValueByPointerWithDefault(j_doc, "/ACCOUNT", "");
-    const wxString& s_account = j_account.IsString() ? j_account.GetString() : "";
+    const wxString& s_account = j_account.IsString() ? wxString(j_account.GetString(), wxConvUTF8) : "";
     accountCheckBox_->SetValue(!s_account.empty());
     accountDropDown_->Enable(accountCheckBox_->IsChecked());
     accountDropDown_->SetStringSelection(s_account);
 
     //Dates
     Value& j_date1 = GetValueByPointerWithDefault(j_doc, "/DATE1", "");
-    m_begin_date = j_date1.IsString() ? j_date1.GetString() : "";
+    m_begin_date = j_date1.IsString() ? wxString(j_date1.GetString(), wxConvUTF8) : "";
     Value& j_date2 = GetValueByPointerWithDefault(j_doc, "/DATE2", "");
-    m_end_date = j_date2.IsString() ? j_date2.GetString() : "";
+    m_end_date = j_date2.IsString() ? wxString(j_date2.GetString(), wxConvUTF8) : "";
     dateRangeCheckBox_->SetValue(!m_begin_date.empty() || !m_end_date.empty());
     fromDateCtrl_->Enable(dateRangeCheckBox_->IsChecked());
     toDateControl_->Enable(dateRangeCheckBox_->IsChecked());
@@ -992,14 +992,14 @@ void mmFilterTransactionsDialog::from_json(const wxString &data)
 
     //Payee
     Value& j_payee = GetValueByPointerWithDefault(j_doc, "/PAYEE", "");
-    const wxString& s_payee = j_payee.IsString() ? j_payee.GetString() : "";
+    const wxString& s_payee = j_payee.IsString() ? wxString(j_payee.GetString(), wxConvUTF8) : "";
     payeeCheckBox_->SetValue(!s_payee.empty());
     cbPayee_->Enable(payeeCheckBox_->IsChecked());
     cbPayee_->SetValue(s_payee);
 
     //Category
     Value& j_category = GetValueByPointerWithDefault(j_doc, "/CATEGORY", "");
-    const wxString& s_category = j_category.IsString() ? j_category.GetString() : "";
+    const wxString& s_category = j_category.IsString() ? wxString(j_category.GetString(), wxConvUTF8) : "";
     categoryCheckBox_->SetValue(!s_category.empty());
     btnCategory_->Enable(categoryCheckBox_->IsChecked());
 
@@ -1078,7 +1078,7 @@ void mmFilterTransactionsDialog::from_json(const wxString &data)
     if (j_doc.HasMember("NUMBER") && j_doc["NUMBER"].IsString()) {
         transNumberCheckBox_->SetValue(true);
         Value& s = j_doc["NUMBER"];
-        s_number = s.GetString();
+        s_number = wxString(s.GetString(), wxConvUTF8);
     }
     else {
         transNumberCheckBox_->SetValue(false);
@@ -1091,7 +1091,7 @@ void mmFilterTransactionsDialog::from_json(const wxString &data)
     if (j_doc.HasMember("NOTES") && j_doc["NOTES"].IsString()) {
         notesCheckBox_->SetValue(true);
         Value& s = j_doc["NOTES"];
-        s_notes = s.GetString();
+        s_notes = wxString(s.GetString(), wxConvUTF8);
     }
     else {
         notesCheckBox_->SetValue(false);
