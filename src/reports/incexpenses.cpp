@@ -54,6 +54,15 @@ wxString mmReportIncomeExpenses::getHTMLText()
     hb.addHeader(3, getAccountNames());
     hb.addDateNow();
 
+    // Account ID, currency rate for today
+    std::map<int, double> curencyRates;
+    wxDate todayDate = wxDate::Today();
+    for (const auto& account : Model_Account::instance().all())
+    {
+        double convRate = Model_CurrencyHistory::getDayRate(Model_Account::currency(account)->CURRENCYID, todayDate);
+        curencyRates[account.ACCOUNTID] = convRate;
+    }
+
     std::pair<double, double> income_expenses_pair;
     for (const auto& transaction : Model_Checking::instance().find(
         Model_Checking::TRANSDATE(m_date_range->start_date(), GREATER_OR_EQUAL)
@@ -65,14 +74,12 @@ wxString mmReportIncomeExpenses::getHTMLText()
             continue;
 
         Model_Account::Data *account = Model_Account::instance().get(transaction.ACCOUNTID);
-        if (accountArray_)
-        {
+        if (accountArray_) {
             if (!account || wxNOT_FOUND == accountArray_->Index(account->ACCOUNTNAME))
                 continue;
         }
-        double convRate = 1;
-        // We got this far, get the currency conversion rate for this account
-        if (account) convRate = Model_CurrencyHistory::getDayRate(Model_Account::currency(account)->CURRENCYID,transaction.TRANSDATE);
+
+        double convRate = curencyRates[transaction.ACCOUNTID];
 
         if (Model_Checking::type(transaction) == Model_Checking::DEPOSIT)
             income_expenses_pair.first += transaction.TRANSAMOUNT * convRate;
@@ -160,6 +167,15 @@ wxString mmReportIncomeExpensesMonthly::getHTMLText()
 
     wxString headerMsg = getAccountNames();
 
+    // Account ID, currency rate for today
+    std::map<int, double> curencyRates;
+    wxDate todayDate = wxDate::Today();
+    for (const auto& account : Model_Account::instance().all())
+    {
+        double convRate = Model_CurrencyHistory::getDayRate(Model_Account::currency(account)->CURRENCYID, todayDate);
+        curencyRates[account.ACCOUNTID] = convRate;
+    }
+
     struct data_holder { wxString name; double period[2]; double overall; } line;
     std::vector<data_holder> data;
 
@@ -176,9 +192,9 @@ wxString mmReportIncomeExpensesMonthly::getHTMLText()
             if (!account || wxNOT_FOUND == accountArray_->Index(account->ACCOUNTNAME))
                 continue;
         }
-        double convRate = 1;
-        // We got this far, get the currency conversion rate for this account
-        if (account) convRate = Model_CurrencyHistory::getDayRate(Model_Account::currency(account)->CURRENCYID, transaction.TRANSDATE);
+
+        double convRate = curencyRates[transaction.ACCOUNTID];
+
         int year = Model_Checking::TRANSDATE(transaction).GetYear();
 
         int idx = (year * 100 + Model_Checking::TRANSDATE(transaction).GetMonth());
@@ -273,11 +289,11 @@ wxString mmReportIncomeExpensesMonthly::getHTMLText()
         hb.startThead();
         {
             hb.startTableRow();
-              hb.addTableHeaderCell(_("Year"));
-              hb.addTableHeaderCell(_("Month"));
-              hb.addTableHeaderCell(_("Income"), true);
-              hb.addTableHeaderCell(_("Expenses"), true);
-              hb.addTableHeaderCell(_("Difference"), true);
+            hb.addTableHeaderCell(_("Year"));
+            hb.addTableHeaderCell(_("Month"));
+            hb.addTableHeaderCell(_("Income"), true);
+            hb.addTableHeaderCell(_("Expenses"), true);
+            hb.addTableHeaderCell(_("Difference"), true);
             hb.endTableRow();
         }
         hb.endThead();
