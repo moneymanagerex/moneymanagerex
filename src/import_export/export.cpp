@@ -271,7 +271,7 @@ void mmExportTransaction::getCategoriesJSON(PrettyWriter<StringBuffer>& json_wri
                 auto test = sub_categ.to_json();
                 json_writer.StartObject();
                 json_writer.Key("ID");
-                json_writer.Int(sub_category.CATEGID);
+                json_writer.Int(sub_category.SUBCATEGID);
                 json_writer.Key("NAME");
                 json_writer.String(sub_category.SUBCATEGNAME.utf8_str());
                 json_writer.EndObject();
