@@ -17,7 +17,7 @@ env:
   # Ubuntu
   - OS=ubuntu DIST=eoan
   - OS=ubuntu DIST=bionic
-  - OS=ubuntu DIST=xenial
+  - OS=ubuntu DIST=xenial.16.04
   # Debian
   # - OS=debian DIST=buster # see issue #1331 on GitHub
   - OS=debian DIST=stretch
