@@ -700,7 +700,8 @@ const wxString htmlWidgetCurrency::getHtmlText()
     const char* currencyRatesTemplate = R"(
 <div class = "container">
 <b><TMPL_VAR FRAME_NAME></b>
-<table class="table">
+<a id='CURRENCY_RATES_label' onclick='toggleTable("CURRENCY_RATES");' href='#CURRENCY_RATES' oncontextmenu='return false;'>[-]</a>
+<table class="table" id='CURRENCY_RATES'>
 <thead>
 <tr><th></th> <TMPL_VAR HEADER></tr>
 </thead>

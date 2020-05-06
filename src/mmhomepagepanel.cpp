@@ -274,7 +274,16 @@ void mmHomePagePanel::OnLinkClicked(wxWebViewEvent& event)
         Document::AllocatorType& json_allocator = json_doc.GetAllocator();
         wxLogDebug("RapidJson Input\n%s", JSON_PrettyFormated(json_doc));
 
-        const wxString type[] = { "TOP_CATEGORIES", "INVEST", "ACCOUNTS_INFO", "CARD_ACCOUNTS_INFO", "CASH_ACCOUNTS_INFO", "LOAN_ACCOUNTS_INFO", "TERM_ACCOUNTS_INFO" };
+        const wxString type[] = {
+            "TOP_CATEGORIES"
+            , "INVEST"
+            , "ACCOUNTS_INFO"
+            , "CARD_ACCOUNTS_INFO"
+            , "CASH_ACCOUNTS_INFO"
+            , "LOAN_ACCOUNTS_INFO"
+            , "TERM_ACCOUNTS_INFO"
+            , "CURRENCY_RATES"
+        };
 
         for (const auto& entry : type)
         {

@@ -213,22 +213,12 @@
     function createTableData(rowObject, data){
         createTableRowContent(rowObject, data, 'td');
     }
-    var toggle_json = <TMPL_VAR TOGGLES>;
-    //toggleTable('BILLS_AND_DEPOSITS');
-    if (!toggle_json['ACCOUNTS_INFO'] && document.getElementById('ACCOUNTS_INFO'))
-    {toggleTable('ACCOUNTS_INFO')};
-    if (!toggle_json['TERM_ACCOUNTS_INFO'] && document.getElementById('TERM_ACCOUNTS_INFO'))
-    {toggleTable('TERM_ACCOUNTS_INFO')};
-    if (!toggle_json['CARD_ACCOUNTS_INFO'] && document.getElementById('CARD_ACCOUNTS_INFO'))
-    {toggleTable('CARD_ACCOUNTS_INFO')};
-    if (!toggle_json['CASH_ACCOUNTS_INFO'] && document.getElementById('CASH_ACCOUNTS_INFO'))
-    {toggleTable('CASH_ACCOUNTS_INFO')};
-    if (!toggle_json['LOAN_ACCOUNTS_INFO'] && document.getElementById('LOAN_ACCOUNTS_INFO'))
-    {toggleTable('LOAN_ACCOUNTS_INFO')};
-    if (!toggle_json['INVEST'] && document.getElementById('INVEST'))
-    {toggleTable('INVEST')};
-    if (!toggle_json['TOP_CATEGORIES'] && document.getElementById('TOP_CATEGORIES'))
-    {toggleTable('TOP_CATEGORIES')};
+    var t = <TMPL_VAR TOGGLES>;
+    for (var k in t) {
+        if (!t[k] && document.getElementById(k)){
+            toggleTable(k)
+        };
+    }
 </script>
 <script>
     var elements= document.getElementsByClassName("money");
