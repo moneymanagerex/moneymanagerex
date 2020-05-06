@@ -482,11 +482,15 @@ void mmCategDialog::OnEdit(wxCommandEvent& /*event*/)
         return;
 
     const wxString old_name = m_treeCtrl->GetItemText(selectedItemId_);
-    const wxString msg = wxString::Format(_("Enter a new name for %s"), old_name);
-    const wxString text = wxGetTextFromUser(msg
-        , _("Edit Category"), old_name);
-    if (text.IsEmpty() || old_name == text)
+    const wxString msg = wxString::Format(_("Enter a new name for '%s'"), old_name);
+    wxString text = wxGetTextFromUser(msg, _("Edit Category"), old_name);
+    if (text.IsEmpty() || old_name == text) {
         return;
+    }
+
+    if (text.Contains(":")) {
+        text.Replace(":", "|");
+    }
 
     mmTreeItemCateg* iData = dynamic_cast<mmTreeItemCateg*>
         (m_treeCtrl->GetItemData(selectedItemId_));
