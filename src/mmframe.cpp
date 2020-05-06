@@ -1923,16 +1923,18 @@ bool mmGUIFrame::openFile(const wxString& fileName, bool openingNew, const wxStr
             menuBar_->FindItem(MENU_CHANGE_ENCRYPT_PASSWORD)->Enable(true);
         }
 
-        bool isUsed = Model_Infotable::instance().GetBoolInfo("ISUSED", false);
-        if (isUsed) {
-            int response = wxMessageBox(_(
-                "Database that you trying to open is already opened by another MMEX instance...\n"
-                "To avoid data loss or conflict, it's strongly recommended to close all other applications that can use the DB.\n\n"
-                "Possible it may be as result of a programm crash in previous usage.\n\n"
-                "Would you like to continue?")
-                , _("MMEX Instance Check"), wxYES_NO | wxNO_DEFAULT | wxICON_WARNING);
-            if (response == wxNO)
-                return false;
+        if (!m_app->GetSilentParam()) {
+            bool isUsed = Model_Infotable::instance().GetBoolInfo("ISUSED", false);
+            if (isUsed) {
+                int response = wxMessageBox(_(
+                    "Database that you trying to open has been markrd as opened by another MMEX instance...\n"
+                    "To avoid data loss or conflict, it's strongly recommended to close all other applications that can use the DB.\n\n"
+                    "Possible it may be as result of a programm crash in previous usage.\n\n"
+                    "Would you like to continue?")
+                    , _("MMEX Instance Check"), wxYES_NO | wxNO_DEFAULT | wxICON_WARNING);
+                if (response == wxNO)
+                    return false;
+            }
         }
 
         Model_Infotable::instance().Set("ISUSED", true);
@@ -2529,7 +2531,9 @@ void mmGUIFrame::OnPrintPage(wxCommandEvent& WXUNUSED(event))
 void mmGUIFrame::showBeginAppDialog(bool fromScratch)
 {
     mmAppStartDialog dlg(this);
-    if (fromScratch) dlg.SetCloseButtonToExit();
+    if (fromScratch) {
+        dlg.SetCloseButtonToExit();
+    }
 
     int end_mod = dlg.ShowModal();
     if (end_mod == wxID_EXIT)
@@ -2539,7 +2543,9 @@ void mmGUIFrame::showBeginAppDialog(bool fromScratch)
     else if (end_mod == wxID_FILE1)
     {
         wxFileName fname(Model_Setting::instance().getLastDbPath());
-        if (fname.IsOk()) SetDatabaseFile(fname.GetFullPath());
+        if (fname.IsOk()) {
+            SetDatabaseFile(fname.GetFullPath());
+        }
     }
     else if (end_mod == wxID_OPEN)
     {
