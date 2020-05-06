@@ -271,7 +271,6 @@ void mmCustomFieldEditDialog::OnChangeType(wxCommandEvent& /*event*/)
     {
     case Model_CustomField::STRING:
         {
-            m_itemRegEx->Enable(false);
             m_itemAutocomplete->Enable(true);
             m_itemChoices->Enable(false);
             m_itemChoices->SetValue(wxEmptyString);
@@ -279,7 +278,13 @@ void mmCustomFieldEditDialog::OnChangeType(wxCommandEvent& /*event*/)
         break;
     case Model_CustomField::SINGLECHOICE:
         {
-            m_itemRegEx->Enable(false);
+            m_itemAutocomplete->Enable(false);
+            m_itemAutocomplete->SetValue(false);
+            m_itemChoices->Enable(true);
+        }
+        break;
+    case Model_CustomField::MULTICHOICE:
+        {
             m_itemAutocomplete->Enable(false);
             m_itemAutocomplete->SetValue(false);
             m_itemChoices->Enable(true);
@@ -287,7 +292,6 @@ void mmCustomFieldEditDialog::OnChangeType(wxCommandEvent& /*event*/)
         break;
     default:
         {
-            m_itemRegEx->Enable(false);
             m_itemAutocomplete->Enable(false);
             m_itemAutocomplete->SetValue(false);
             m_itemChoices->Enable(false);

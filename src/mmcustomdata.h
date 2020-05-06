@@ -32,6 +32,7 @@ class mmCustomData : public wxDialog
 public:
     mmCustomData();
     bool FillCustomFields(wxBoxSizer* box_sizer);
+    bool ValidateCustomValues(int ref_id);
     bool SaveCustomValues(int ref_id);
     const wxString GetWidgetData(wxWindowID controlID) const;
     int GetWidgetType(wxWindowID controlID) const;
