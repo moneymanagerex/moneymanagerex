@@ -405,7 +405,8 @@ int mmWebApp::WebApp_DownloadNewTransaction(WebTranVector& WebAppTransactions_, 
             if (trx.HasMember("SubCategory") && trx["SubCategory"].IsString()) {
                 wxString SubCategory = wxString::FromUTF8(trx["SubCategory"].GetString());
                 if (SubCategory == "None" || SubCategory.IsEmpty()) {
-                    SubCategory = _("Unknown");
+                    //Empty and not "Unknown" because it could be a category without any subcategory: if categories are not used at all, Unknown as category is enough
+                    SubCategory = wxEmptyString;
                 }
                 WebTran.SubCategory = SubCategory;
             }
