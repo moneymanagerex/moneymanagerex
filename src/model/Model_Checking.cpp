@@ -24,7 +24,7 @@
 #include <queue>
 #include "Model_Translink.h"
 
-const std::vector<std::pair<Model_Checking::TYPE, wxString> > Model_Checking::TYPE_CHOICES = 
+const std::vector<std::pair<Model_Checking::TYPE, wxString> > Model_Checking::TYPE_CHOICES =
 {
     {Model_Checking::WITHDRAWAL, wxString(wxTRANSLATE("Withdrawal"))}
     , {Model_Checking::DEPOSIT, wxString(wxTRANSLATE("Deposit"))}
@@ -40,11 +40,11 @@ const std::vector<std::pair<Model_Checking::STATUS_ENUM, wxString> > Model_Check
     , {Model_Checking::DUPLICATE_, wxString(wxTRANSLATE("Duplicate"))}
 };
 
-Model_Checking::Model_Checking(): Model<DB_Table_CHECKINGACCOUNT_V1>()
+Model_Checking::Model_Checking() : Model<DB_Table_CHECKINGACCOUNT_V1>()
 {
 }
 
-Model_Checking::~Model_Checking() 
+Model_Checking::~Model_Checking()
 {
 }
 
@@ -135,7 +135,7 @@ Model_Checking::TYPE Model_Checking::type(const wxString& r)
     const auto it = cache.find(r);
     if (it != cache.end()) return it->second;
 
-    for (const auto& t : TYPE_CHOICES) 
+    for (const auto& t : TYPE_CHOICES)
     {
         if (r.CmpNoCase(t.second) == 0)
         {
@@ -164,7 +164,7 @@ Model_Checking::STATUS_ENUM Model_Checking::status(const wxString& r)
 
     for (const auto & s : STATUS_ENUM_CHOICES)
     {
-        if (r.CmpNoCase(s.second) == 0) 
+        if (r.CmpNoCase(s.second) == 0)
         {
             cache.insert(std::make_pair(r, s.first));
             return s.first;
@@ -289,7 +289,7 @@ Model_Checking::Full_Data::Full_Data() : Data(0), BALANCE(0), AMOUNT(0)
 }
 
 Model_Checking::Full_Data::Full_Data(const Data& r) : Data(r), BALANCE(0), AMOUNT(0)
-    , m_splits(Model_Splittransaction::instance().find(Model_Splittransaction::TRANSID(r.TRANSID)))
+, m_splits(Model_Splittransaction::instance().find(Model_Splittransaction::TRANSID(r.TRANSID)))
 {
     ACCOUNTNAME = Model_Account::get_account_name(r.ACCOUNTID);
 
@@ -302,7 +302,7 @@ Model_Checking::Full_Data::Full_Data(const Data& r) : Data(r), BALANCE(0), AMOUN
     {
         PAYEENAME = Model_Payee::get_payee_name(r.PAYEEID);
     }
-    
+
     if (!m_splits.empty())
     {
         for (const auto& entry : m_splits)
@@ -332,7 +332,7 @@ Model_Checking::Full_Data::Full_Data(const Data& r
     {
         PAYEENAME = Model_Payee::get_payee_name(r.PAYEEID);
     }
-    
+
     if (!m_splits.empty())
     {
         for (const auto& entry : m_splits)
@@ -398,13 +398,13 @@ void Model_Checking::getFrequentUsedNotes(std::vector<wxString> &frequentNotes, 
         counterMap[entry.NOTES]--;
 
     std::priority_queue<std::pair<int, wxString> > q; // largest element to appear as the top
-    for (const auto & kv: counterMap)
+    for (const auto & kv : counterMap)
     {
         q.push(std::make_pair(kv.second, kv.first));
         if (q.size() > max) q.pop(); // keep fixed queue as max
     }
 
-    while(!q.empty())
+    while (!q.empty())
     {
         const auto & kv = q.top();
         frequentNotes.push_back(kv.second);
@@ -547,9 +547,9 @@ const wxString Model_Checking::Full_Data::to_json()
     json_writer.EndObject();
 
     wxLogDebug("======= Model_Checking::FullData::to_json =======");
-    wxLogDebug("FullData using rapidjson:\n%s", json_buffer.GetString());
+    wxLogDebug("FullData using rapidjson:\n%s", wxString::FromUTF8(json_buffer.GetString()));
 
-    return json_buffer.GetString();
+    return wxString::FromUTF8(json_buffer.GetString());
 }
 
 bool Model_Checking::foreignTransaction(const Data& data)

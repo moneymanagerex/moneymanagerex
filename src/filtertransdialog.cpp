@@ -1033,14 +1033,14 @@ void mmFilterTransactionsDialog::from_json(const wxString &data)
 
     //Status
     Value& j_status = GetValueByPointerWithDefault(j_doc, "/STATUS", "");
-    const wxString& s_status = j_status.IsString() ? j_status.GetString() : "";
+    const wxString& s_status = j_status.IsString() ? wxString::FromUTF8(j_status.GetString()) : "";
     statusCheckBox_->SetValue(!s_status.empty());
     choiceStatus_->Enable(statusCheckBox_->IsChecked());
     choiceStatus_->SetStringSelection(wxGetTranslation(s_status));
 
     //Type
     Value& j_type = GetValueByPointerWithDefault(j_doc, "/TYPE", "");
-    const wxString& s_type = j_type.IsString() ? j_type.GetString() : "";
+    const wxString& s_type = j_type.IsString() ? wxString::FromUTF8(j_type.GetString()) : "";
     typeCheckBox_->SetValue(!s_type.empty());
     cbTypeWithdrawal_->SetValue(s_type.Contains("W"));
     cbTypeWithdrawal_->Enable(typeCheckBox_->IsChecked());
