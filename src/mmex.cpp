@@ -33,25 +33,29 @@
 #include <wx/fs_mem.h>
 #include <wx/mstream.h>
 #include "../resources/money.xpm"
-//----------------------------------------------------------------------------
+ //----------------------------------------------------------------------------
 wxIMPLEMENT_APP(mmGUIApp);
 //----------------------------------------------------------------------------
 
-static const wxCmdLineEntryDesc g_cmdLineDesc [] =
+static const wxCmdLineEntryDesc g_cmdLineDesc[] =
 {
-    { wxCMD_LINE_SWITCH, "h", "help", "\nTo open a determined database (.mmb) file from a shortcut or command line, set the path to the database file as a parameter.",
-        wxCMD_LINE_VAL_NONE, wxCMD_LINE_OPTION_HELP },
-    { wxCMD_LINE_OPTION, "i", "mmexini",   "path to mmexini.db3" },
+    { wxCMD_LINE_SWITCH, "h", "help", "", wxCMD_LINE_VAL_NONE, wxCMD_LINE_OPTION_HELP },
+    { wxCMD_LINE_SWITCH, "s", "silent", "Do not show warning messages at startup.", wxCMD_LINE_VAL_NONE, wxCMD_LINE_PARAM_OPTIONAL },
+    { wxCMD_LINE_OPTION, "i", "mmexini",   "where <str> is a path to mmexini.db3"
+        "\n\nTo open a determined database(.mmb) file from a shortcut or command line, set the path to the database file as a parameter."
+        "\n\nThe file with the application settings mmexini.db3 can be used separately."
+        " Otherwise, it is taken from the home directory or the root folder of the application."},
     { wxCMD_LINE_PARAM, nullptr, nullptr, wxT_2("database file"), wxCMD_LINE_VAL_STRING, wxCMD_LINE_PARAM_OPTIONAL },
     { wxCMD_LINE_NONE }
 };
 
 //----------------------------------------------------------------------------
 
-mmGUIApp::mmGUIApp(): m_frame(nullptr)
+mmGUIApp::mmGUIApp() : m_frame(nullptr)
 , m_setting_db(nullptr)
 , m_optParam1(wxEmptyString)
 , m_optParam2(wxEmptyString)
+, m_optParamSilent(false)
 , m_lang(wxLANGUAGE_UNKNOWN)
 , m_locale(wxLANGUAGE_DEFAULT)
 {
@@ -92,7 +96,7 @@ bool mmGUIApp::setGUILanguage(wxLanguage lang)
         lang_files.Add("en_US");
         wxArrayString lang_names;
         for (const auto & file : lang_files)
-        { 
+        {
             const wxLanguageInfo* info = wxLocale::FindLanguageInfo(file);
             if (info) {
                 lang_names.Add(info->Description);
@@ -152,6 +156,10 @@ bool mmGUIApp::OnCmdLineParsed(wxCmdLineParser& parser)
 
     if (parser.GetParamCount() > 0)
         m_optParam1 = parser.GetParam(0);
+
+    if (parser.FoundSwitch("s")) {
+        m_optParamSilent = true;
+    }
 
     return true;
 }
@@ -238,20 +246,6 @@ bool OnInitImpl(mmGUIApp* app)
     app->GetSettingDB()->Open(file_path);
     Model_Setting::instance(app->GetSettingDB());
 
-    bool isUsed = Model_Setting::instance().GetBoolSetting("ISUSED", false);
-    if (isUsed) 
-    {
-        int response = wxMessageBox(_(
-            "Settings DB is already opened by another instance of MMEX.\n"
-            "It's strongly recommended to close all other applications that can use the DB.\n\n"
-            "Possible it may be as result of a programm crash in previous usage.\n\n"
-            "Would you like to continue?")
-            , _("MMEX Instance Check"), wxYES_NO | wxNO_DEFAULT | wxICON_WARNING);
-        if (response == wxNO) {
-            return false;
-        }
-    }
-
     Model_Setting::instance().ShrinkUsageTable();
     Model_Usage::instance(app->GetSettingDB());
 
@@ -294,11 +288,11 @@ bool OnInitImpl(mmGUIApp* app)
         wxBitmap(money_xpm), wxBITMAP_TYPE_PNG);
 
 #if defined (__WXMSW__)
-        // https://msdn.microsoft.com/en-us/library/ee330730(v=vs.85).aspx
-        // https://kevinragsdale.net/windows-10-and-the-web-browser-control/
-        wxRegKey Key(wxRegKey::HKCU, R"(Software\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_BROWSER_EMULATION)");
-        if (!Key.Create(true) && Key.SetValue(wxFileName(wxStandardPaths::Get().GetExecutablePath()).GetFullName(), 11001))
-            wxASSERT(false);
+    // https://msdn.microsoft.com/en-us/library/ee330730(v=vs.85).aspx
+    // https://kevinragsdale.net/windows-10-and-the-web-browser-control/
+    wxRegKey Key(wxRegKey::HKCU, R"(Software\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_BROWSER_EMULATION)");
+    if (!Key.Create(true) && Key.SetValue(wxFileName(wxStandardPaths::Get().GetExecutablePath()).GetFullName(), 11001))
+        wxASSERT(false);
 #endif
 
     /* Initialize CURL */
@@ -362,37 +356,36 @@ bool mmGUIApp::OnInit()
         wxLogError("%s", e.what());
     }
 
-    if (ok) {
-        Model_Setting::instance().Set("ISUSED", true);
-    }
-    else
-    {
+    if (!ok) {
         wxSharedPtr<wxSQLite3Database> db;
-        db = GetSettingDB(); 
-        if (db) db->Close();
+        db = GetSettingDB();
+        if (db) {
+            db->Close();
+        }
     }
+
     return ok;
 }
 
 int mmGUIApp::OnExit()
 {
-    Model_Setting::instance().Set("ISUSED", false);
+    wxLogDebug("OnExit()");
+    Model_Usage::Data* usage = Model_Usage::instance().create();
+    usage->USAGEDATE = wxDate::Today().FormatISODate();
 
-	wxLogDebug("OnExit()");
-	Model_Usage::Data* usage = Model_Usage::instance().create();
-	usage->USAGEDATE = wxDate::Today().FormatISODate();
+    wxString rj = Model_Usage::instance().To_JSON_String();
+    wxLogDebug("===== mmGUIApp::OnExit ===========================");
+    wxLogDebug("RapidJson\n%s", rj);
 
-	wxString rj = Model_Usage::instance().To_JSON_String();
-	wxLogDebug("===== mmGUIApp::OnExit ===========================");
-	wxLogDebug("RapidJson\n%s", rj);
+    usage->JSONCONTENT = rj;
+    Model_Usage::instance().save(usage);
 
-	usage->JSONCONTENT = rj;
-	Model_Usage::instance().save(usage);
+    if (m_setting_db) {
+        delete m_setting_db;
+    }
 
-	if (m_setting_db) delete m_setting_db;
+    /* CURL Cleanup */
+    curl_global_cleanup();
 
-	/* CURL Cleanup */
-	curl_global_cleanup();
-
-	return 0;
+    return 0;
 }

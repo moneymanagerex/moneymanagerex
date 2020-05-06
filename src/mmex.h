@@ -43,12 +43,14 @@ public:
     mmGUIFrame* m_frame;
     const wxString GetOptParam() const;
     const wxString GetIniParam() const;
+    const bool GetSilentParam() const;
     wxSQLite3Database* GetSettingDB() const;
     void SetSettingDB(wxSQLite3Database* db);
 
 private:
     wxString m_optParam1;
     wxString m_optParam2;
+    bool m_optParamSilent;
     wxSQLite3Database* m_setting_db;
     void ReportFatalException(wxDebugReport::Context);
     bool OnInit();
@@ -63,6 +65,7 @@ private:
 inline wxSQLite3Database* mmGUIApp::GetSettingDB() const { return m_setting_db; }
 inline const wxString mmGUIApp::GetOptParam() const { return m_optParam1; }
 inline const wxString mmGUIApp::GetIniParam() const { return m_optParam2; }
+inline const bool mmGUIApp::GetSilentParam() const { return m_optParamSilent; }
 inline void mmGUIApp::SetSettingDB(wxSQLite3Database* db) { m_setting_db = db; }
 
 //----------------------------------------------------------------------------
