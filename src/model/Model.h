@@ -33,7 +33,7 @@ class wxSQLite3ResultSet;
 typedef wxDateTime wxDate;
 
 #if (wxMAJOR_VERSION == 3 && wxMINOR_VERSION >= 1)
-    // wx 3.1 has implemented such hash
+// wx 3.1 has implemented such hash
 #else
 namespace std
 {
@@ -51,7 +51,7 @@ namespace std
 class ModelBase
 {
 public:
-    ModelBase():db_(0) {};
+    ModelBase() :db_(0) {};
     virtual ~ModelBase() {};
 
 public:
@@ -90,7 +90,7 @@ protected:
 };
 
 template<class DB_TABLE>
-class Model: public ModelBase, public DB_TABLE
+class Model : public ModelBase, public DB_TABLE
 {
 public:
     using DB_TABLE::all;
@@ -221,9 +221,9 @@ public:
         json_writer.EndObject();
 
         wxLogDebug("======== Model.h : GetTableStatsAsJson =======");
-        wxLogDebug("%s", json_buffer.GetString());
+        wxLogDebug("%s", wxString::FromUTF8(json_buffer.GetString()));
 
-        return json_buffer.GetString();
+        return wxString::FromUTF8(json_buffer.GetString());
     }
 
     /** Show table statistics*/

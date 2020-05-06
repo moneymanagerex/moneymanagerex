@@ -28,7 +28,7 @@ Copyright (C) 2018 Stefano Giorgio (stef145g)
 #include "option.h"
 
 Model_Usage::Model_Usage()
-: Model<DB_Table_USAGE_V1>()
+    : Model<DB_Table_USAGE_V1>()
 {
 }
 
@@ -106,7 +106,7 @@ wxString Model_Usage::To_JSON_String() const
         json_writer.EndArray();
     }
     json_writer.EndObject();
-    return json_buffer.GetString();
+    return wxString::FromUTF8(json_buffer.GetString());
 }
 
 std::pair<wxString /*UUID*/, wxString /*UID*/> uuid()

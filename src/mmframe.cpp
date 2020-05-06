@@ -2625,7 +2625,7 @@ void mmGUIFrame::createHomePage()
     json_writer.Double((wxDateTime::UNow() - time).GetMilliseconds().ToDouble() / 1000);
     json_writer.EndObject();
 
-    Model_Usage::instance().AppendToUsage(json_buffer.GetString());
+    Model_Usage::instance().AppendToUsage(wxString::FromUTF8(json_buffer.GetString()));
 }
 //----------------------------------------------------------------------------
 
@@ -2696,7 +2696,7 @@ void mmGUIFrame::createBillsDeposits()
     json_writer.Double((wxDateTime::UNow() - time).GetMilliseconds().ToDouble() / 1000);
     json_writer.EndObject();
 
-    Model_Usage::instance().AppendToUsage(json_buffer.GetString());
+    Model_Usage::instance().AppendToUsage(wxString::FromUTF8(json_buffer.GetString()));
 }
 //----------------------------------------------------------------------------
 
@@ -2732,7 +2732,7 @@ void mmGUIFrame::createBudgetingPage(int budgetYearID)
     json_writer.Double((wxDateTime::UNow() - time).GetMilliseconds().ToDouble() / 1000);
     json_writer.EndObject();
 
-    Model_Usage::instance().AppendToUsage(json_buffer.GetString());
+    Model_Usage::instance().AppendToUsage(wxString::FromUTF8(json_buffer.GetString()));
 
     menuPrintingEnable(true);
     m_nav_tree_ctrl->SetEvtHandlerEnabled(true);
@@ -2770,7 +2770,7 @@ void mmGUIFrame::createCheckingAccountPage(int accountID)
     json_writer.Double((wxDateTime::UNow() - time).GetMilliseconds().ToDouble() / 1000);
     json_writer.EndObject();
 
-    Model_Usage::instance().AppendToUsage(json_buffer.GetString());
+    Model_Usage::instance().AppendToUsage(wxString::FromUTF8(json_buffer.GetString()));
 
     menuPrintingEnable(true);
     if (gotoTransID_ > 0)
@@ -2806,7 +2806,7 @@ void mmGUIFrame::createStocksAccountPage(int accountID)
     json_writer.Double((wxDateTime::UNow() - time).GetMilliseconds().ToDouble() / 1000);
     json_writer.EndObject();
 
-    Model_Usage::instance().AppendToUsage(json_buffer.GetString());
+    Model_Usage::instance().AppendToUsage(wxString::FromUTF8(json_buffer.GetString()));
 }
 
 //----------------------------------------------------------------------------
@@ -2856,7 +2856,7 @@ void mmGUIFrame::OnAssets(wxCommandEvent& /*event*/)
     json_writer.Double((wxDateTime::UNow() - time).GetMilliseconds().ToDouble() / 1000);
     json_writer.EndObject();
 
-    Model_Usage::instance().AppendToUsage(json_buffer.GetString());
+    Model_Usage::instance().AppendToUsage(wxString::FromUTF8(json_buffer.GetString()));
 }
 //----------------------------------------------------------------------------
 

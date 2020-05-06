@@ -245,7 +245,7 @@ void htmlWidgetTop7Categories::getTopCategoryStats(
 
     std::stable_sort(categoryStats.begin(), categoryStats.end()
         , [](const std::pair<wxString, double> x, const std::pair<wxString, double> y)
-        { return x.second < y.second; }
+    { return x.second < y.second; }
     );
 
     int counter = 0;
@@ -458,9 +458,9 @@ const wxString htmlWidgetIncomeVsExpenses::getHTMLText()
     json_writer.EndObject();
 
     wxLogDebug("======= mmHomePagePanel::getIncomeVsExpensesJSON =======");
-    wxLogDebug("RapidJson\n%s", json_buffer.GetString());
+    wxLogDebug("RapidJson\n%s", wxString::FromUTF8(json_buffer.GetString()));
 
-    return json_buffer.GetString();
+    return wxString::FromUTF8(json_buffer.GetString());
 }
 
 htmlWidgetIncomeVsExpenses::~htmlWidgetIncomeVsExpenses()
@@ -526,9 +526,9 @@ const wxString htmlWidgetStatistics::getHTMLText()
     json_writer.EndObject();
 
     wxLogDebug("======= mmHomePagePanel::getStatWidget =======");
-    wxLogDebug("RapidJson\n%s", json_buffer.GetString());
+    wxLogDebug("RapidJson\n%s", wxString::FromUTF8(json_buffer.GetString()));
 
-    return json_buffer.GetString();
+    return wxString::FromUTF8(json_buffer.GetString());
 }
 
 htmlWidgetStatistics::~htmlWidgetStatistics()
@@ -549,9 +549,9 @@ const wxString htmlWidgetGrandTotals::getHTMLText(double& tBalance)
     json_writer.EndObject();
 
     wxLogDebug("======= mmHomePagePanel::getGrandTotalsJSON =======");
-    wxLogDebug("RapidJson\n%s", json_buffer.GetString());
+    wxLogDebug("RapidJson\n%s", wxString::FromUTF8(json_buffer.GetString()));
 
-    return json_buffer.GetString();
+    return wxString::FromUTF8(json_buffer.GetString());
 }
 
 htmlWidgetGrandTotals::~htmlWidgetGrandTotals()
@@ -573,9 +573,9 @@ const wxString htmlWidgetAssets::getHTMLText(double& tBalance)
     json_writer.EndObject();
 
     wxLogDebug("======= mmHomePagePanel::getAssetsJSON =======");
-    wxLogDebug("RapidJson\n%s", json_buffer.GetString());
+    wxLogDebug("RapidJson\n%s", wxString::FromUTF8(json_buffer.GetString()));
 
-    return json_buffer.GetString();
+    return wxString::FromUTF8(json_buffer.GetString());
 }
 
 htmlWidgetAssets::~htmlWidgetAssets()
@@ -732,7 +732,7 @@ const wxString htmlWidgetCurrency::getHtmlText()
     }
     wxString header;
     loop_t contents;
-    for (const auto i: usedRates)
+    for (const auto i : usedRates)
     {
         row_t r;
         r(L"CURRENCY_SYMBOL") = i.first;
@@ -754,7 +754,7 @@ const wxString htmlWidgetCurrency::getHtmlText()
     report(L"CONTENTS") = contents;
     report(L"FRAME_NAME") = _("Currency Exchange Rates");
     report(L"HEADER") = header;
-    
+
     wxString out = wxEmptyString;
     try
     {

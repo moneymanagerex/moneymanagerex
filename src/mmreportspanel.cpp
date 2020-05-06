@@ -237,7 +237,7 @@ bool mmReportsPanel::saveReportText(bool initial)
     json_writer.Double((wxDateTime::UNow() - time).GetMilliseconds().ToDouble() / 1000);
     json_writer.EndObject();
 
-    Model_Usage::instance().AppendToUsage(json_buffer.GetString());
+    Model_Usage::instance().AppendToUsage(wxString::FromUTF8(json_buffer.GetString()));
 
     return true;
 }
@@ -343,7 +343,7 @@ void mmReportsPanel::CreateControls()
             mmDateYearMonth* up_down_month = new mmDateYearMonth(itemPanel3);
             up_down_month->Connect(wxEVT_BUTTON, wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(mmDateYearMonth::OnButtonPress), nullptr, this);
             rb_->setSelection(m_shift);
-            
+
             itemBoxSizerHeader->Add(up_down_month, 0, wxALL, 1);
             itemBoxSizerHeader->AddSpacer(30);
         }
