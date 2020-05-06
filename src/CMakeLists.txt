@@ -91,8 +91,6 @@ add_executable(${MMEX_EXE} WIN32 MACOSX_BUNDLE
     constants.h
     currencydialog.cpp
     currencydialog.h
-    customfielddialog.cpp
-    customfielddialog.h
     customfieldeditdialog.cpp
     customfieldeditdialog.h
     customfieldlistdialog.cpp
