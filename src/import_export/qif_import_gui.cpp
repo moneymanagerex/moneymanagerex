@@ -1234,8 +1234,15 @@ void mmQIFImportDialog::getOrCreateCategories()
     {
         wxStringTokenizer token(item.first, ":");
         const wxString categStr = token.GetNextToken();
-        const wxString subcategStr = token.GetNextToken();
-        if (subcategStr.empty()) continue;
+        wxString subcategStr = token.GetNextToken();
+        if (subcategStr.empty()) {
+            continue;
+        }
+
+        if (subcategStr.Contains(":")) {
+            subcategStr.Replace(":", "|");
+        }
+
         Model_Category::Data *c = Model_Category::instance().get(categStr);
         wxASSERT(c);
 

@@ -1614,6 +1614,7 @@ void mmUnivCSVDialog::parseToken(int index, const wxString& orig_token, tran_hol
         break;
 
     case UNIV_CSV_CATEGORY:
+        token.Replace(":", "|");
         category = Model_Category::instance().get(token);
         if (!category)
         {
@@ -1629,7 +1630,8 @@ void mmUnivCSVDialog::parseToken(int index, const wxString& orig_token, tran_hol
         if (holder.CategoryID == -1)
             return;
 
-        sub_category = (!token.IsEmpty() ? Model_Subcategory::instance().get(token, holder.CategoryID) : 0);
+        token.Replace(":", "|");
+        sub_category = (!token.IsEmpty() ? Model_Subcategory::instance().get(token, holder.CategoryID) : nullptr);
         if (!sub_category)
         {
             sub_category = Model_Subcategory::instance().create();
