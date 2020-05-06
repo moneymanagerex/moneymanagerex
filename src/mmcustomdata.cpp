@@ -81,7 +81,7 @@ bool mmCustomData::FillCustomFields(wxBoxSizer* box_sizer)
             fieldData = Model_CustomFieldData::instance().create();
             fieldData->FIELDID = field.FIELDID;
             fieldData->REFID = m_ref_id;
-            fieldData->CONTENT = "";
+            fieldData->CONTENT = Model_CustomField::getDefault(field.PROPERTIES);
         }
 
         wxWindowID controlID = GetBaseID() + field.FIELDID;
@@ -95,13 +95,6 @@ bool mmCustomData::FillCustomFields(wxBoxSizer* box_sizer)
             , wxCommandEventHandler(mmCustomData::OnCheckBoxActivated), nullptr, this);
 
         grid_sizer_custom->Add(Description, g_flagsH);
-
-        //Set default value
-        if (fieldData->CONTENT.empty())
-        {
-            wxString Default = Model_CustomField::getDefault(field.PROPERTIES);
-            fieldData->CONTENT = Default;
-        }
 
         switch (Model_CustomField::type(field))
         {
