@@ -72,6 +72,7 @@
 #include "model/allmodel.h"
 
 #include <wx/fs_mem.h>
+#include <wx/busyinfo.h>
 #include <stack>
 
  //----------------------------------------------------------------------------
@@ -2873,6 +2874,17 @@ void mmGUIFrame::OnCurrency(wxCommandEvent& /*event*/)
 
 void mmGUIFrame::OnRates(wxCommandEvent& WXUNUSED(event))
 {
+    wxBusyInfo info
+    (
+        wxBusyInfoFlags()
+        .Parent(this)
+        .Title(_("Downloading stock prices from Yahoo"))
+        .Text(_("Please wait..."))
+        .Foreground(*wxWHITE)
+        .Background(wxColour(104, 179, 51))
+        .Transparency(4 * wxALPHA_OPAQUE / 5)
+    );
+
     wxString msg;
     getOnlineCurrencyRates(msg);
     wxLogDebug("%s", msg);
