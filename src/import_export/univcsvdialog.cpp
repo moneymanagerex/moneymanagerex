@@ -98,7 +98,7 @@ mmUnivCSVDialog::mmUnivCSVDialog(
     importSuccessful_(false),
     m_userDefinedDateMask(false),
     m_reverce_sign(false),
-    depositType_("debit")
+    depositType_(Model_Checking::all_type()[Model_Checking::DEPOSIT])
 {
     decimal_ = Model_Currency::GetBaseCurrency()->DECIMAL_POINT;
     CSVFieldName_[UNIV_CSV_DATE] = wxTRANSLATE("Date");
@@ -495,7 +495,7 @@ void mmUnivCSVDialog::SetSettings(const wxString &json_data)
     }
 
     //Setting name
-    Value& template_name = GetValueByPointerWithDefault(json_doc, "/SETTING_NAME", "sn");
+    Value& template_name = GetValueByPointerWithDefault(json_doc, "/SETTING_NAME", "");
     const wxString setting_name =template_name.IsString() ? wxString::FromUTF8(template_name.GetString()) : "??";
     m_setting_name_ctrl_->ChangeValue(setting_name);
 
@@ -673,10 +673,9 @@ void mmUnivCSVDialog::OnAdd(wxCommandEvent& WXUNUSED(event))
             }
         }
 
-        if (i->getName() == CSVFieldName_[UNIV_CSV_TYPE]) {
-            m_choiceAmountFieldSign->Append(wxString::Format(_("Deposit is if type %s"), depositType_));
-            wxCommandEvent* evt = new wxCommandEvent(wxEVT_CHOICE, wxID_REPLACE);
-            AddPendingEvent(*evt);
+        if (IsImporter() && i->getIndex()== UNIV_CSV_TYPE) {
+            m_choiceAmountFieldSign->Append(wxString::Format(_("Positive if type has '%s'"), depositType_));
+            m_choiceAmountFieldSign->Select(DefindByType);
         }
 
         this->update_preview();
@@ -706,7 +705,7 @@ void mmUnivCSVDialog::OnRemove(wxCommandEvent& WXUNUSED(event))
             csvFieldCandicate_->Insert(wxGetTranslation(item_name), pos, new mmListBoxItem(item_index, item_name));
         }
 
-        if (item_index == UNIV_CSV_TYPE) {
+        if (IsImporter() && item_index == UNIV_CSV_TYPE) {
             m_choiceAmountFieldSign->Delete(DefindByType);
             m_choiceAmountFieldSign->SetSelection(PositiveIsDeposit);
         }
@@ -742,10 +741,10 @@ void mmUnivCSVDialog::OnLoad()
     {
         const wxString& item_name = CSVFieldName_[entry];
         csvListBox_->Append(wxGetTranslation(item_name), new mmListBoxItem(entry, item_name));
-        if (entry == UNIV_CSV_TYPE) {
+        if (IsImporter() && entry == UNIV_CSV_TYPE) {
             unsigned int i = m_choiceAmountFieldSign->GetCount();
             if ( i <= DefindByType) {
-                m_choiceAmountFieldSign->AppendString(wxString::Format(_("Positive is if type %s"), depositType_));
+                m_choiceAmountFieldSign->AppendString(wxString::Format(_("Positive if type has '%s'"), depositType_));
             }
             m_choiceAmountFieldSign->SetSelection(DefindByType);
         }
@@ -921,7 +920,7 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& WXUNUSED(event))
             , _("Import"), wxICON_WARNING);
 
     bool canceledbyuser = false;
-    long countImported = 0;
+    long nImportedLines = 0;
     const wxString acctName = m_choice_account_->GetStringSelection();
     Model_Account::Data* from_account = Model_Account::instance().get(acctName);
 
@@ -966,20 +965,20 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& WXUNUSED(event))
     );
 
     m_reverce_sign = m_choiceAmountFieldSign->GetCurrentSelection() == PositiveIsWithdrawal;
-    for (long lineNum = firstRow; lineNum < lastRow; lineNum++)
+    for (long nLines = firstRow; nLines < lastRow; nLines++)
     {
         const wxString& progressMsg = wxString::Format(_("Transactions imported to account %s: %ld")
-            , "'" + acctName + "'", countImported);
-        if (!progressDlg.Update(lineNum - firstRow, progressMsg))
+            , "'" + acctName + "'", nImportedLines);
+        if (!progressDlg.Update(nLines - firstRow, progressMsg))
         {
             canceledbyuser = true;
             break; // abort processing
         }
 
-        unsigned int numTokens = pParser->GetItemsCount(lineNum);
+        unsigned int numTokens = pParser->GetItemsCount(nLines);
         if (numTokens == 0)
         {
-            wxString msg = wxString::Format(_("Line %ld: Empty"), lineNum + 1);
+            wxString msg = wxString::Format(_("Line %ld: Empty"), nLines + 1);
             log << msg << endl;
             *log_field_ << msg << "\n";
             countEmptyLines++;
@@ -988,12 +987,12 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& WXUNUSED(event))
 
         tran_holder holder;
         for (size_t i = 0; i < csvFieldOrder_.size() && i < numTokens; ++i) {
-            parseToken(csvFieldOrder_[i], pParser->GetItem(lineNum, i).Trim(false /*from left*/), holder);
+            parseToken(csvFieldOrder_[i], pParser->GetItem(nLines, i).Trim(false /*from left*/), holder);
         }
 
         if (!validateData(holder))
         {
-            wxString msg = wxString::Format(_("Line %ld: Error:"), lineNum + 1);
+            wxString msg = wxString::Format(_("Line %ld: Error:"), nLines + 1);
             if (!holder.Date.IsValid())
                 msg << " " << _("Invalid Date.");
             if (!holder.Amount) msg << " " << _("Invalid Amount.");
@@ -1022,8 +1021,8 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& WXUNUSED(event))
 
         Model_Checking::instance().save(pTransaction);
 
-        countImported++;
-        wxString msg = wxString::Format(_("Line %ld: OK, imported."), lineNum + 1);
+        nImportedLines++;
+        wxString msg = wxString::Format(_("Line %ld: OK, imported."), nLines + 1);
         log << msg << endl;
         *log_field_ << msg << "\n";
     }
@@ -1037,19 +1036,19 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& WXUNUSED(event))
     msg << "\n\n";
     msg << wxString::Format(_("Empty Lines: %ld"), countEmptyLines);
     msg << "\n";
-    msg << wxString::Format(_("Imported: %ld"), countImported);
+    msg << wxString::Format(_("Imported: %ld"), nImportedLines);
     msg << "\n";
     msg << wxString::Format(_("Errored: %ld")
-        , linesToImport - countEmptyLines - countImported);
+        , linesToImport - countEmptyLines - nImportedLines);
     msg << "\n\n";
     msg << wxString::Format(_("Log file written to: %s"), logFile.GetFullPath());
 
     if (!canceledbyuser && wxMessageBox(
-        msg + (countImported > 0 ? "\n\n" + _("Please confirm saving...") : "")
+        msg + (nImportedLines > 0 ? "\n\n" + _("Please confirm saving...") : "")
         , _("Import")
-        , wxOK | (countImported > 0 ? wxCANCEL : 0)
-        | (countImported == 0 ? wxICON_ERROR :
-            countImported < linesToImport - countEmptyLines
+        , wxOK | (nImportedLines > 0 ? wxCANCEL : 0)
+        | (nImportedLines == 0 ? wxICON_ERROR :
+            nImportedLines < linesToImport - countEmptyLines
             ? wxICON_EXCLAMATION
             : wxICON_INFORMATION
             )
@@ -1059,7 +1058,7 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& WXUNUSED(event))
     msg << "\n\n";
 
     // Since all database transactions are only in memory,
-    if (!canceledbyuser && countImported > 0)
+    if (!canceledbyuser && nImportedLines > 0)
     {
         // we need to save them to the database.
         Model_Checking::instance().ReleaseSavepoint();
@@ -1085,7 +1084,7 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& WXUNUSED(event))
 
     outputLog.Close();
 
-    if (!canceledbyuser && countImported > 0) Close();
+    if (!canceledbyuser && nImportedLines > 0) Close();
 }
 
 void mmUnivCSVDialog::OnExport(wxCommandEvent& WXUNUSED(event))
@@ -1204,6 +1203,9 @@ void mmUnivCSVDialog::OnExport(wxCommandEvent& WXUNUSED(event))
             case UNIV_CSV_BALANCE:
                 entry = Model_Currency::toString(account_balance, currency);
                 itemType = ITransactionsFile::TYPE_NUMBER;
+                break;
+            case UNIV_CSV_TYPE:
+                entry = depositType_;
                 break;
             case UNIV_CSV_DONTCARE:
             default:
@@ -1390,6 +1392,9 @@ void mmUnivCSVDialog::update_preview()
                         break;
                     case UNIV_CSV_BALANCE:
                         text << inQuotes(Model_Currency::toString(account_balance, currency), delimit);
+                        break;
+                    case UNIV_CSV_TYPE:
+                        text << pBankTransaction.TRANSCODE;
                         break;
                     case UNIV_CSV_DONTCARE:
                     default:
@@ -1772,7 +1777,11 @@ void mmUnivCSVDialog::OnChoiceChanged(wxCommandEvent& event)
     else if (i == wxID_REPLACE)
     {
         if (m_choiceAmountFieldSign->GetSelection() == DefindByType) {
-            depositType_ = wxGetTextFromUser(_("Type string for positive values"), "test", depositType_);
+            depositType_ = wxGetTextFromUser(_("Please, type the word indicating positive values in your CSV file, e.g. 'debit'"), _("Enter a value"), depositType_);
+            if (depositType_.empty()) {
+                depositType_ = Model_Checking::all_type()[Model_Checking::DEPOSIT];
+            }
+            m_choiceAmountFieldSign->SetString(DefindByType, wxString::Format(_("Positive if type has '%s'"), depositType_));
             m_choiceAmountFieldSign->SetSelection(DefindByType);
         }
     }
