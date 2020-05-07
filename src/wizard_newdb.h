@@ -25,8 +25,6 @@
 #include <wx/button.h>
 #include "option.h"
 
-//----------------------------------------------------------------------------
-
 class mmNewDatabaseWizard : public wxWizard
 {
 public:
@@ -35,11 +33,7 @@ public:
 
 private:
     wxWizardPageSimple* page1;
-    void OnWizardCancel(wxWizardEvent& event);
-
-    wxDECLARE_EVENT_TABLE();
 };
-//----------------------------------------------------------------------------
 
 class mmNewDatabaseWizardPage : public wxWizardPageSimple
 {
@@ -58,6 +52,4 @@ private:
     wxDECLARE_EVENT_TABLE();
 };
 
-//----------------------------------------------------------------------------
 #endif // MM_EX_WIZARD_NEWDB_H_
-//----------------------------------------------------------------------------
