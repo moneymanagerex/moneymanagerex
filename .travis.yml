@@ -15,6 +15,7 @@ env:
   - BUILD_TYPE=$(if [[ "$TRAVIS_TAG" =~ ^v[0-9]+\.[0-9]+\.[0-9]+ ]]; then if [[ "$TRAVIS_TAG" =~ -[a-z] ]]; then echo RelWithDebInfo; else echo Release; fi; else echo Debug; fi)
   matrix: # targets for linux
   # Ubuntu
+  - OS=ubuntu DIST=focal
   - OS=ubuntu DIST=eoan
   - OS=ubuntu DIST=bionic
   - OS=ubuntu DIST=xenial

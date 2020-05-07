@@ -2875,6 +2875,7 @@ void mmGUIFrame::OnCurrency(wxCommandEvent& /*event*/)
 void mmGUIFrame::OnRates(wxCommandEvent& WXUNUSED(event))
 {
     wxBusyInfo info
+#if (wxMAJOR_VERSION == 3 && wxMINOR_VERSION >= 1)
     (
         wxBusyInfoFlags()
         .Parent(this)
@@ -2884,7 +2885,9 @@ void mmGUIFrame::OnRates(wxCommandEvent& WXUNUSED(event))
         .Background(wxColour(104, 179, 51))
         .Transparency(4 * wxALPHA_OPAQUE / 5)
     );
-
+#else
+    (_("Downloading stock prices from Yahoo"), this);
+#endif
     wxString msg;
     getOnlineCurrencyRates(msg);
     wxLogDebug("%s", msg);
