@@ -92,31 +92,12 @@ public:
                     const wxSize& size = SYMBOL_UNIVCSVDIALOG_SIZE,
                     long style = SYMBOL_UNIVCSVDIALOG_STYLE);
 
-    bool ImportCompletedSuccessfully()
-    {
-        return importSuccessful_;
-    }
-    int ImportedAccountID()
-    {
-        return fromAccountID_;
-    }
-
-    bool IsImporter() const
-    {
-        return dialogType_ == DIALOG_TYPE_IMPORT_CSV || dialogType_ == DIALOG_TYPE_IMPORT_XML;
-    }
-    bool IsXML() const
-    {
-        return dialogType_ == DIALOG_TYPE_IMPORT_XML || dialogType_ == DIALOG_TYPE_EXPORT_XML;
-    }
-    bool IsCSV() const
-    {
-        return !IsXML();
-    }
-    wxString GetSettingsPrfix() const
-    {
-        return IsXML() ? "XML_SETTINGS_" : "CSV_SETTINGS_";
-    }
+    bool isImportCompletedSuccessfully() const;
+    int ImportedAccountID() const;
+    bool IsImporter() const;
+    bool IsXML() const;
+    bool IsCSV() const;
+    wxString GetSettingsPrfix() const;
 
 private:
     wxButton* itemButton_Import_;
@@ -134,9 +115,11 @@ private:
         UNIV_CSV_WITHDRAWAL,
         UNIV_CSV_DEPOSIT,
         UNIV_CSV_BALANCE,
+        UNIV_CSV_TYPE,
         UNIV_CSV_LAST
     };
 
+private:
     struct tran_holder
     {
         wxDateTime Date;
@@ -181,7 +164,7 @@ private:
 
     wxChoice* m_choiceAmountFieldSign;
     mmChoiceAmountMask* m_choiceDecimalSeparator;
-    enum amountFieldSignValues { PositiveIsDeposit, PositiveIsWithdrawal };
+    enum amountFieldSignValues { PositiveIsDeposit, PositiveIsWithdrawal, DefindByType };
     wxCheckBox* m_checkBoxExportTitles;
 
     int fromAccountID_;
@@ -189,6 +172,7 @@ private:
     bool m_userDefinedDateMask;
     int m_object_in_focus;
     bool m_reverce_sign;
+    wxString depositType_;
 
     /// Creation
     bool Create(wxWindow* parent,
@@ -236,5 +220,31 @@ private:
     void SetSettings(const wxString &data);
     ITransactionsFile *CreateFileHandler();
 };
+
+inline bool mmUnivCSVDialog::isImportCompletedSuccessfully() const
+{
+    return importSuccessful_;
+}
+inline int mmUnivCSVDialog::ImportedAccountID() const
+{
+    return fromAccountID_;
+}
+
+inline bool mmUnivCSVDialog::IsImporter() const
+{
+    return dialogType_ == DIALOG_TYPE_IMPORT_CSV || dialogType_ == DIALOG_TYPE_IMPORT_XML;
+}
+inline bool mmUnivCSVDialog::IsXML() const
+{
+    return dialogType_ == DIALOG_TYPE_IMPORT_XML || dialogType_ == DIALOG_TYPE_EXPORT_XML;
+}
+inline bool mmUnivCSVDialog::IsCSV() const
+{
+    return !IsXML();
+}
+inline wxString mmUnivCSVDialog::GetSettingsPrfix() const
+{
+    return IsXML() ? "XML_SETTINGS_" : "CSV_SETTINGS_";
+}
 
 #endif

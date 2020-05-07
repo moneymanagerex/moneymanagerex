@@ -97,12 +97,13 @@ mmUnivCSVDialog::mmUnivCSVDialog(
     m_choiceDecimalSeparator(nullptr),
     importSuccessful_(false),
     m_userDefinedDateMask(false),
-    m_reverce_sign(false)
+    m_reverce_sign(false),
+    depositType_("debit")
 {
     decimal_ = Model_Currency::GetBaseCurrency()->DECIMAL_POINT;
     CSVFieldName_[UNIV_CSV_DATE] = wxTRANSLATE("Date");
     CSVFieldName_[UNIV_CSV_PAYEE] = wxTRANSLATE("Payee");
-    CSVFieldName_[UNIV_CSV_AMOUNT] = wxTRANSLATE("Amount +/-");
+    CSVFieldName_[UNIV_CSV_AMOUNT] = wxTRANSLATE("Amount");
     CSVFieldName_[UNIV_CSV_CATEGORY] = wxTRANSLATE("Category");
     CSVFieldName_[UNIV_CSV_SUBCATEGORY] = wxTRANSLATE("SubCategory");
     CSVFieldName_[UNIV_CSV_TRANSNUM] = wxTRANSLATE("Number");
@@ -111,6 +112,7 @@ mmUnivCSVDialog::mmUnivCSVDialog(
     CSVFieldName_[UNIV_CSV_WITHDRAWAL] = wxTRANSLATE("Withdrawal");
     CSVFieldName_[UNIV_CSV_DEPOSIT] = wxTRANSLATE("Deposit");
     CSVFieldName_[UNIV_CSV_BALANCE] = wxTRANSLATE("Balance");
+    CSVFieldName_[UNIV_CSV_TYPE] = wxTRANSLATE("Type");
     
     Create(parent, IsImporter() ? _("Import dialog") : _("Export dialog"), id, pos, size, style);
     this->Connect(wxID_ANY, wxEVT_CHILD_FOCUS, wxChildFocusEventHandler(mmUnivCSVDialog::changeFocus), nullptr, this);
@@ -348,12 +350,12 @@ void mmUnivCSVDialog::CreateControls()
     if (IsImporter())
     {
         // Text title.
-        wxStaticText* itemStaticTextAmount = new wxStaticText(itemPanel7, wxID_ANY, _("Amount +/-:"));
+        wxStaticText* itemStaticTextAmount = new wxStaticText(itemPanel7, wxID_ANY, _("Amount:"));
         flex_sizer->Add(itemStaticTextAmount, g_flagsH);
         itemStaticTextAmount->SetFont(staticBoxFontSetting);
 
         // Choice selection.
-        m_choiceAmountFieldSign = new wxChoice(itemPanel7, wxID_ANY);
+        m_choiceAmountFieldSign = new wxChoice(itemPanel7, wxID_REPLACE);
         m_choiceAmountFieldSign->Append(_("Positive values are deposits"));
         m_choiceAmountFieldSign->Append(_("Positive values are withdrawals"));
         m_choiceAmountFieldSign->SetSelection(PositiveIsDeposit);
@@ -591,10 +593,20 @@ void mmUnivCSVDialog::SetSettings(const wxString &json_data)
     if (IsImporter())
     {
         // Amount sign.
-        if (json_doc.HasMember("AMOUNT_SIGN") && json_doc["AMOUNT_SIGN"].IsInt())
-        {
+        if (json_doc.HasMember("AMOUNT_SIGN") && json_doc["AMOUNT_SIGN"].IsInt()) {
             int val = json_doc["AMOUNT_SIGN"].GetInt();
             m_choiceAmountFieldSign->Select(val);
+            if (val == DefindByType) {
+                if (json_doc.HasMember("TYPE_DEPOSIT") && json_doc["TYPE_DEPOSIT"].IsString()) {
+                    depositType_ = wxString::FromUTF8(json_doc["TYPE_DEPOSIT"].GetString());
+                }
+            }
+        }
+        else {
+            if (m_choiceAmountFieldSign->GetCount() > DefindByType) {
+                m_choiceAmountFieldSign->Delete(DefindByType);
+                m_choiceAmountFieldSign->Select(PositiveIsDeposit);
+            }
         }
 
         // Row selection settings.
@@ -661,6 +673,12 @@ void mmUnivCSVDialog::OnAdd(wxCommandEvent& WXUNUSED(event))
             }
         }
 
+        if (i->getName() == CSVFieldName_[UNIV_CSV_TYPE]) {
+            m_choiceAmountFieldSign->Append(wxString::Format(_("Deposit is if type %s"), depositType_));
+            wxCommandEvent* evt = new wxCommandEvent(wxEVT_CHOICE, wxID_REPLACE);
+            AddPendingEvent(*evt);
+        }
+
         this->update_preview();
     }
 }
@@ -686,6 +704,11 @@ void mmUnivCSVDialog::OnRemove(wxCommandEvent& WXUNUSED(event))
                 }
             }
             csvFieldCandicate_->Insert(wxGetTranslation(item_name), pos, new mmListBoxItem(item_index, item_name));
+        }
+
+        if (item_index == UNIV_CSV_TYPE) {
+            m_choiceAmountFieldSign->Delete(DefindByType);
+            m_choiceAmountFieldSign->SetSelection(PositiveIsDeposit);
         }
 
         csvListBox_->Delete(index);
@@ -715,19 +738,26 @@ const wxString mmUnivCSVDialog::getCSVFieldName(int index) const
 void mmUnivCSVDialog::OnLoad()
 {
     csvListBox_->Clear();
-    long num = 0;
     for (const auto& entry : csvFieldOrder_)
     {
         const wxString& item_name = CSVFieldName_[entry];
-        csvListBox_->Append(wxGetTranslation(item_name), new mmListBoxItem(num++, item_name));
+        csvListBox_->Append(wxGetTranslation(item_name), new mmListBoxItem(entry, item_name));
+        if (entry == UNIV_CSV_TYPE) {
+            unsigned int i = m_choiceAmountFieldSign->GetCount();
+            if ( i <= DefindByType) {
+                m_choiceAmountFieldSign->AppendString(wxString::Format(_("Positive is if type %s"), depositType_));
+            }
+            m_choiceAmountFieldSign->SetSelection(DefindByType);
+        }
     }
     // update csvFieldCandicate_
     csvFieldCandicate_->Clear();
     for (const auto& entry : CSVFieldName_)
     {
         std::vector<int>::const_iterator loc = find(csvFieldOrder_.begin(), csvFieldOrder_.end(), entry.first);
-        if (loc == csvFieldOrder_.end() || entry.first == UNIV_CSV_DONTCARE || entry.first == UNIV_CSV_NOTES)
+        if (loc == csvFieldOrder_.end() || entry.first == UNIV_CSV_DONTCARE || entry.first == UNIV_CSV_NOTES) {
             csvFieldCandicate_->Append(wxGetTranslation(entry.second), new mmListBoxItem(entry.first, entry.second));
+        }
     }
 }
 
@@ -792,6 +822,10 @@ void mmUnivCSVDialog::OnSettingsSave(wxCommandEvent& WXUNUSED(event))
         const auto s = m_choiceAmountFieldSign->GetCurrentSelection();
         json_writer.Key("AMOUNT_SIGN");
         json_writer.Int(s);
+        if (s == DefindByType) {
+            json_writer.Key("TYPE_DEPOSIT");
+            json_writer.String(depositType_.utf8_str());
+        }
 
         // Rows to ignore
         const auto ifr = m_spinIgnoreFirstRows_->GetValue();
@@ -1581,34 +1615,11 @@ void mmUnivCSVDialog::parseToken(int index, const wxString& orig_token, tran_hol
     case UNIV_CSV_AMOUNT:
         mmTrimAmount(token, decimal_, ".").ToCDouble(&amount);
 
-        if ((amount > 0.0 && !m_reverce_sign) || (amount <= 0.0 && m_reverce_sign)) {
-            holder.Type = Model_Checking::all_type()[Model_Checking::DEPOSIT];
+        if (std::find(csvFieldOrder_.begin(), csvFieldOrder_.end(), UNIV_CSV_TYPE) == csvFieldOrder_.end()) {
+            if ((amount > 0.0 && !m_reverce_sign) || (amount <= 0.0 && m_reverce_sign)) {
+                holder.Type = Model_Checking::all_type()[Model_Checking::DEPOSIT];
+            }
         }
-
-        holder.Amount = fabs(amount);
-        break;
-
-    case UNIV_CSV_DEPOSIT:
-        if (token.IsEmpty())
-            return;
-        // do nothing if an amount has already been stored by a previous call
-        if (holder.Amount != 0.0)
-            break;
-
-        mmTrimAmount(token, decimal_, ".").ToCDouble(&amount);
-
-        holder.Amount = fabs(amount);
-        holder.Type = Model_Checking::all_type()[Model_Checking::DEPOSIT];
-        break;
-
-    case UNIV_CSV_WITHDRAWAL:
-        if (token.IsEmpty())
-            return;
-        // do nothing if an amount has already been stored by a previous call
-        if (holder.Amount != 0.0)
-            break;
-
-        mmTrimAmount(token, decimal_, ".").ToCDouble(&amount);
 
         holder.Amount = fabs(amount);
         break;
@@ -1642,17 +1653,48 @@ void mmUnivCSVDialog::parseToken(int index, const wxString& orig_token, tran_hol
         holder.SubCategoryID = sub_category->SUBCATEGID;
         break;
 
+    case UNIV_CSV_TRANSNUM:
+        holder.Number = token;
+        break;
+
     case UNIV_CSV_NOTES:
         token.Replace("\\n", "\n");
         holder.Notes += token + "\n";
         break;
 
-    case UNIV_CSV_TRANSNUM:
-        holder.Number = token;
-        break;
-
     case UNIV_CSV_DONTCARE:
         // do nothing
+        break;
+
+    case UNIV_CSV_WITHDRAWAL:
+        if (token.IsEmpty())
+            return;
+        // do nothing if an amount has already been stored by a previous call
+        if (holder.Amount != 0.0)
+            break;
+
+        mmTrimAmount(token, decimal_, ".").ToCDouble(&amount);
+
+        holder.Amount = fabs(amount);
+        break;
+
+    case UNIV_CSV_DEPOSIT:
+        if (token.IsEmpty())
+            return;
+        // do nothing if an amount has already been stored by a previous call
+        if (holder.Amount != 0.0)
+            break;
+
+        mmTrimAmount(token, decimal_, ".").ToCDouble(&amount);
+
+        holder.Amount = fabs(amount);
+        holder.Type = Model_Checking::all_type()[Model_Checking::DEPOSIT];
+        break;
+
+    case UNIV_CSV_TYPE:
+        if (token == "debit") {
+            holder.Type = Model_Checking::all_type()[Model_Checking::DEPOSIT];
+        }
         break;
 
     case UNIV_CSV_BALANCE:
@@ -1727,7 +1769,13 @@ void mmUnivCSVDialog::OnChoiceChanged(wxCommandEvent& event)
     {
         *log_field_ << m_choiceEncoding->GetStringSelection() << "\n";
     }
-
+    else if (i == wxID_REPLACE)
+    {
+        if (m_choiceAmountFieldSign->GetSelection() == DefindByType) {
+            depositType_ = wxGetTextFromUser(_("Type string for positive values"), "test", depositType_);
+            m_choiceAmountFieldSign->SetSelection(DefindByType);
+        }
+    }
     m_userDefinedDateMask = true;
     this->update_preview();
 }

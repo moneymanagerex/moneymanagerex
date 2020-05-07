@@ -2223,7 +2223,7 @@ void mmGUIFrame::OnImportUniversalCSV(wxCommandEvent& /*event*/)
 
     mmUnivCSVDialog univCSVDialog(this, mmUnivCSVDialog::DIALOG_TYPE_IMPORT_CSV);
     univCSVDialog.ShowModal();
-    if (univCSVDialog.ImportCompletedSuccessfully())
+    if (univCSVDialog.isImportCompletedSuccessfully())
     {
         Model_Account::Data* account = Model_Account::instance().get(univCSVDialog.ImportedAccountID());
         createCheckingAccountPage(univCSVDialog.ImportedAccountID());
@@ -2242,7 +2242,7 @@ void mmGUIFrame::OnImportXML(wxCommandEvent& /*event*/)
 
     mmUnivCSVDialog univCSVDialog(this, mmUnivCSVDialog::DIALOG_TYPE_IMPORT_XML);
     univCSVDialog.ShowModal();
-    if (univCSVDialog.ImportCompletedSuccessfully())
+    if (univCSVDialog.isImportCompletedSuccessfully())
     {
         Model_Account::Data* account = Model_Account::instance().get(univCSVDialog.ImportedAccountID());
         createCheckingAccountPage(univCSVDialog.ImportedAccountID());
