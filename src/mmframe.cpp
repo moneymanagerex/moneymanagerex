@@ -468,12 +468,10 @@ void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& /*event*/)
     //WebApp check
     if (mmWebApp::WebApp_CheckEnabled())
     {
-        if (mmWebApp::WebApp_CheckGuid() && mmWebApp::WebApp_CheckApiVersion())
-        {
-            mmWebApp::WebApp_UpdateAccount();
-            mmWebApp::WebApp_UpdatePayee();
-            mmWebApp::WebApp_UpdateCategory();
-        }
+        mmWebAppDialog dlg(this, true);
+        dlg.ShowModal();
+        if (dlg.getRefreshRequested())
+            refreshPanelData();
     }
 
     //Auto recurring transaction
@@ -2254,7 +2252,7 @@ void mmGUIFrame::OnImportXML(wxCommandEvent& /*event*/)
 
 void mmGUIFrame::OnImportWebApp(wxCommandEvent& /*event*/)
 {
-    mmWebAppDialog dlg(this);
+    mmWebAppDialog dlg(this, false);
     if (dlg.ShowModal() == wxID_HELP) {
         helpFileIndex_ = mmex::HTML_WEBAPP;
         wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, wxID_HELP);
