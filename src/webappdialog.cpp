@@ -37,7 +37,7 @@ wxBEGIN_EVENT_TABLE(mmWebAppDialog, wxDialog)
     EVT_DATAVIEW_ITEM_CONTEXT_MENU(wxID_ANY, mmWebAppDialog::OnItemRightClick)
     EVT_MENU_RANGE(MENU_OPEN_ATTACHMENT, MENU_DELETE_WEBTRAN, mmWebAppDialog::OnMenuSelected)
     EVT_BUTTON(wxID_HELP, mmWebAppDialog::OnButtonHelpClick)
-    EVT_TIMER(wxID_REFRESH, mmWebAppDialog::OnAutoFillData)
+    EVT_TIMER(wxID_REFRESH, mmWebAppDialog::OnTimer)
 wxEND_EVENT_TABLE()
 
 mmWebAppDialog::~mmWebAppDialog()
@@ -49,17 +49,12 @@ mmWebAppDialog::~mmWebAppDialog()
     }
 }
 
-void mmWebAppDialog::OnAutoFillData(wxTimerEvent& /*event*/)
-{
-    fillControls();
-}
-
 void mmWebAppDialog::OnButtonHelpClick(wxCommandEvent& WXUNUSED(event))
 {
     EndModal(wxID_HELP);
 }
 
-mmWebAppDialog::mmWebAppDialog(wxWindow *parent, const wxString& name) :
+mmWebAppDialog::mmWebAppDialog(wxWindow *parent, const bool startup, const wxString& name) :
     m_webtran_id(-1)
     , webtranListBox_(nullptr)
     , m_maskTextCtrl(nullptr)
@@ -67,10 +62,12 @@ mmWebAppDialog::mmWebAppDialog(wxWindow *parent, const wxString& name) :
     , guid_text_(nullptr)
     , net_button_(nullptr)
     , refreshRequested_(false)
+    , isStartup_(false)
+    , isFilledOnce_(false)
     , autoWebAppDialogTimer_(this, wxID_REFRESH)
 {
+    isStartup_ = startup;
     Create(parent, name);
-    autoWebAppDialogTimer_.Start(500, true);
 }
 
 void mmWebAppDialog::Create(wxWindow* parent, const wxString& name)
@@ -90,44 +87,54 @@ void mmWebAppDialog::Create(wxWindow* parent, const wxString& name)
 
     SetIcon(mmex::getProgramIcon());
     Centre();
-
 }
 
 void mmWebAppDialog::CreateControls()
 {
-    wxBoxSizer* mainBoxSizer = new wxBoxSizer(wxVERTICAL);
+    mainBoxSizer_ = new wxBoxSizer(wxVERTICAL);
 
     // Header --------------------------------------------
     wxFlexGridSizer* flex_sizer = new wxFlexGridSizer(0, 6, 0, 0);
 
-    net_button_ = new wxBitmapButton(this
-        , wxID_EXECUTE, mmBitmap(png::LED_OFF));
-    net_button_->SetLabelText(_("Refresh"));
-    net_button_->SetToolTip(_("Network status"));
+    net_button_ = new wxBitmapButton(this, wxID_EXECUTE, mmBitmap(png::LED_OFF));
+    net_button_->SetToolTip(_("Network status (click to refresh)"));
     flex_sizer->Add(net_button_, g_flagsCenter);
+
     wxStaticText* url_label = new wxStaticText(this, wxID_STATIC, _("Url"));
-    url_text_ = new wxTextCtrl(this, wxID_FILE, wxEmptyString
-        , wxDefaultPosition, wxDefaultSize, wxTE_READONLY);
-    url_text_->SetMinSize(wxSize(220, -1));
+    url_text_ = new wxTextCtrl(this, wxID_FILE, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_READONLY);
+    url_text_->SetMinSize(wxSize(300, -1));
     url_text_->Enable(false);
     url_text_->SetValue(mmWebApp::getUrl());
+    url_text_->SetToolTip(mmWebApp::getUrl());
 
     wxStaticText* guid_label = new wxStaticText(this, wxID_STATIC, _("GUID"));
-    guid_text_ = new wxTextCtrl(this, wxID_FILE, wxEmptyString
-        , wxDefaultPosition, wxDefaultSize, wxTE_READONLY);
-    guid_text_->SetMinSize(wxSize(220, -1));
+    guid_text_ = new wxTextCtrl(this, wxID_FILE, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_READONLY);
+    guid_text_->SetMinSize(wxSize(300, -1));
     guid_text_->Enable(false);
     guid_text_->SetValue(mmWebApp::getGuid());
 
-    wxBitmapButton* help_button = new wxBitmapButton(this
-        , wxID_HELP, mmBitmap(png::HELP));
+    wxBitmapButton* help_button = new wxBitmapButton(this, wxID_HELP, mmBitmap(png::HELP));
 
     flex_sizer->Add(url_label, g_flagsH);
-    flex_sizer->Add(url_text_, g_flagsExpand);
+    flex_sizer->Add(url_text_, g_flagsH);
     flex_sizer->Add(guid_label, g_flagsH);
-    flex_sizer->Add(guid_text_, g_flagsExpand);
-    flex_sizer->Add(help_button, g_flagsCenter);
-    mainBoxSizer->Add(flex_sizer, wxSizerFlags(g_flagsExpand).Proportion(0));
+    flex_sizer->Add(guid_text_, g_flagsH);
+    flex_sizer->Add(help_button, g_flagsH);
+    mainBoxSizer_->Add(flex_sizer, wxSizerFlags(g_flagsV).Center());
+
+    //Loading --------------------------------------------
+    loadingSizer_ = new wxFlexGridSizer(0, 2, 0, 0);
+
+    wxStaticText* gauge_label = new wxStaticText(this, wxID_STATIC, _("Checking for new transactions..."));
+    gauge_ = new wxGauge(this, wxID_STATIC, 100, wxDefaultPosition, wxDefaultSize, wxGA_HORIZONTAL, wxDefaultValidator);
+    gauge_->SetMinSize(wxSize(300, -1));
+
+    loadingSizer_->Add(gauge_label, g_flagsH);
+    loadingSizer_->Add(gauge_, g_flagsH);
+    mainBoxSizer_->Add(loadingSizer_, wxSizerFlags(g_flagsV).Center());
+
+    gauge_->Pulse();
+    autoWebAppDialogTimer_.Start(500, false);
 
     // ListBox --------------------------------------------
     webtranListBox_ = new wxDataViewListCtrl(this, wxID_ANY, wxDefaultPosition, wxSize(800, 500), wxDV_MULTIPLE | wxDV_ROW_LINES);
@@ -142,10 +149,10 @@ void mmWebAppDialog::CreateControls()
     webtranListBox_->AppendTextColumn(_("Amount"), wxDATAVIEW_CELL_INERT, wxLIST_AUTOSIZE_USEHEADER); //WEBTRAN_AMOUNT, 
     webtranListBox_->AppendTextColumn(_("Notes"), wxDATAVIEW_CELL_INERT, wxLIST_AUTOSIZE_USEHEADER); //WEBTRAN_NOTES, 
     webtranListBox_->AppendTextColumn(_("Attachments"), wxDATAVIEW_CELL_INERT, wxLIST_AUTOSIZE_USEHEADER); //WEBTRAN_ATTACHMENTS, 
-    mainBoxSizer->Add(webtranListBox_, g_flagsExpand);
+    mainBoxSizer_->Add(webtranListBox_, g_flagsExpand);
 
     wxPanel* buttons_panel = new wxPanel(this, wxID_ANY);
-    mainBoxSizer->Add(buttons_panel, g_flagsCenter);
+    mainBoxSizer_->Add(buttons_panel, g_flagsCenter);
     wxBoxSizer*  tools_sizer = new wxBoxSizer(wxVERTICAL);
     buttons_panel->SetSizer(tools_sizer);
 
@@ -161,7 +168,7 @@ void mmWebAppDialog::CreateControls()
     buttons_sizer->Add(buttonApply, g_flagsH);
     buttons_sizer->Add(btnCancel, g_flagsH);
 
-    this->SetSizer(mainBoxSizer);
+    this->SetSizer(mainBoxSizer_);
 }
 
 void mmWebAppDialog::OnCheckNetwork(wxCommandEvent& /*event*/)
@@ -171,30 +178,41 @@ void mmWebAppDialog::OnCheckNetwork(wxCommandEvent& /*event*/)
 
 void mmWebAppDialog::fillControls()
 {
-    if (mmWebApp::getUrl().empty()){
+    isFilledOnce_ = true;
+    net_button_->SetBitmap(mmBitmap(png::LED_OFF));
+    webtranListBox_->DeleteAllItems();
+    WebAppTransactions_.clear();
+    mainBoxSizer_->Show(loadingSizer_, true);
+
+    if (mmWebApp::getUrl().empty())
+    {
+        mainBoxSizer_->Hide(loadingSizer_, true);
         return mmErrorDialogs::ToolTip4Object(url_text_, _("Empty value"), _("Error"));
     }
-    if (mmWebApp::getGuid().empty()) {
+    if (mmWebApp::getGuid().empty())
+    {
+        mainBoxSizer_->Hide(loadingSizer_, true);
         return mmErrorDialogs::ToolTip4Object(guid_text_, _("Empty value"), _("Error"));
     }
 
-    if (!mmWebApp::WebApp_CheckGuid() || !mmWebApp::WebApp_CheckApiVersion()) {
-        return net_button_->SetBitmap(mmBitmap(png::LED_OFF));
+    if (!mmWebApp::WebApp_CheckGuid() || !mmWebApp::WebApp_CheckApiVersion())
+    {
+        mainBoxSizer_->Hide(loadingSizer_, true);
+        return;
     }
 
-    webtranListBox_->DeleteAllItems();
-    WebAppTransactions_.clear();
-
-    if (mmWebApp::WebApp_DownloadNewTransaction(WebAppTransactions_, false) != CURLE_OK) {
-
+    if (mmWebApp::WebApp_DownloadNewTransaction(WebAppTransactions_, false) != CURLE_OK)
+    {
+        mainBoxSizer_->Hide(loadingSizer_, true);
         return net_button_->SetBitmap(mmBitmap(png::LED_RED));
     }
+
     net_button_->SetBitmap(mmBitmap(png::LED_GREEN));
 
     for (const auto& WebTran : WebAppTransactions_)
     {
         wxVector<wxVariant> data;
-        data.push_back(wxVariant(wxString::Format(wxT("%i"),WebTran.ID))); //WEBTRAN_ID
+        data.push_back(wxVariant(wxString::Format(wxT("%i"), WebTran.ID))); //WEBTRAN_ID
         data.push_back(wxVariant(mmGetDateForDisplay(WebTran.Date.FormatISODate()))); //WEBTRAN_DATE
         data.push_back(wxVariant(WebTran.Account)); //WEBTRAN_ACCOUNT
         data.push_back(wxVariant(WebTran.Status)); //WEBTRAN_STATUS
@@ -222,6 +240,25 @@ void mmWebAppDialog::fillControls()
         if (buttonOK) buttonOK->Enable(true);
         wxButton* buttonApply = static_cast<wxButton*>(FindWindow(wxID_APPLY));
         if (buttonApply) buttonApply->Enable(true);
+    }
+    else if (isStartup_)
+    {
+        this->Close();
+    }
+
+    mainBoxSizer_->Hide(loadingSizer_, true);
+}
+
+void mmWebAppDialog::OnTimer(wxTimerEvent& /*event*/)
+{
+    if (gauge_)
+    {
+        gauge_->Pulse();
+    }
+
+    if (!isFilledOnce_)
+    {
+        fillControls();
     }
 }
 
@@ -288,7 +325,8 @@ void mmWebAppDialog::OpenAttachment()
         {
             wxString AttachmentName = webtranListBox_->GetTextValue(selectedIndex_, WEBTRAN_ATTACHMENTS);
             AttachmentName = AttachmentName.BeforeFirst(';');
-            if (mmWebApp::WebApp_DownloadAttachment(AttachmentName)) {
+            if (mmWebApp::WebApp_DownloadAttachment(AttachmentName))
+            {
                 wxLaunchDefaultApplication(AttachmentName);
                 tempFiles_.Add(AttachmentName);
             }
@@ -297,7 +335,7 @@ void mmWebAppDialog::OpenAttachment()
     }
 }
 
-void mmWebAppDialog::ImportWebTrSelected()
+void mmWebAppDialog::ImportWebTrSelected(const bool open)
 {
     wxDataViewItemArray Selected;
     webtranListBox_->GetSelections(Selected);
@@ -311,7 +349,7 @@ void mmWebAppDialog::ImportWebTrSelected()
         if (selectedIndex_ >= 0)
         {
             int WebTrID = static_cast<int>(webtranListBox_->GetItemData(Item));
-            mmWebAppDialog::ImportWebTr(WebTrID, true);
+            mmWebAppDialog::ImportWebTr(WebTrID, open);
         }
     }
     fillControls();
@@ -343,7 +381,8 @@ void mmWebAppDialog::OnMenuSelected(wxCommandEvent& event)
     switch (event.GetId())
     {
     case MENU_OPEN_ATTACHMENT: OpenAttachment(); break;
-    case MENU_IMPORT_WEBTRAN: ImportWebTrSelected(); break;
+    case MENU_IMPORT_WEBTRAN: ImportWebTrSelected(false); break;
+    case MENU_IMPORTOPEN_WEBTRAN: ImportWebTrSelected(true); break;
     case MENU_DELETE_WEBTRAN: DeleteWebTr(); break;
     default: break;
     }
@@ -361,6 +400,7 @@ void mmWebAppDialog::OnItemRightClick(wxDataViewEvent& event)
     mainMenu = new wxMenu;
     mainMenu->Append(new wxMenuItem(mainMenu.get(), MENU_OPEN_ATTACHMENT, _("Open Attachment")));
     mainMenu->Append(new wxMenuItem(mainMenu.get(), MENU_IMPORT_WEBTRAN, _("Import")));
+    mainMenu->Append(new wxMenuItem(mainMenu.get(), MENU_IMPORTOPEN_WEBTRAN, _("Import and open")));
     mainMenu->Append(new wxMenuItem(mainMenu.get(), MENU_DELETE_WEBTRAN, _("Delete")));
     if (Selected.size() != 1) mainMenu->Enable(MENU_OPEN_ATTACHMENT, false);
 

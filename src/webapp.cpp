@@ -396,6 +396,7 @@ int mmWebApp::WebApp_DownloadNewTransaction(WebTranVector& WebAppTransactions_, 
 
             if (trx.HasMember("Category") && trx["Category"].IsString()) {
                 wxString Category = wxString::FromUTF8(trx["Category"].GetString());
+                Category.Replace(":", "|");
                 if (Category == "None" || Category.IsEmpty()) {
                     Category = _("Unknown");
                 }
@@ -404,6 +405,7 @@ int mmWebApp::WebApp_DownloadNewTransaction(WebTranVector& WebAppTransactions_, 
 
             if (trx.HasMember("SubCategory") && trx["SubCategory"].IsString()) {
                 wxString SubCategory = wxString::FromUTF8(trx["SubCategory"].GetString());
+                SubCategory.Replace(":", "|");
                 if (SubCategory == "None" || SubCategory.IsEmpty()) {
                     //Empty and not "Unknown" because it could be a category without any subcategory: if categories are not used at all, Unknown as category is enough
                     SubCategory = wxEmptyString;
