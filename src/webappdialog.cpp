@@ -114,6 +114,10 @@ void mmWebAppDialog::CreateControls()
     guid_text_->SetValue(mmWebApp::getGuid());
 
     wxBitmapButton* help_button = new wxBitmapButton(this, wxID_HELP, mmBitmap(png::HELP));
+    if (isStartup_)
+    {
+        help_button->Disable();
+    }
 
     flex_sizer->Add(url_label, g_flagsH);
     flex_sizer->Add(url_text_, g_flagsH);
