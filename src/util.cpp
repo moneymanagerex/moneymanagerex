@@ -1070,7 +1070,6 @@ bool mmSeparator::isStringHasSeparator(const wxString &string)
 
 const wxString getVFname4print(const wxString& name, const wxString& data)
 {
-    wxFileSystem::AddHandler(new wxMemoryFSHandler);
     int fid = 0;
     wxFileSystem fsys;
     wxFSFile *f0 = fsys.OpenFile(wxString::Format("memory:%s0.htm", name));
