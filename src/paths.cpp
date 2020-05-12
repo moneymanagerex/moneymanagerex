@@ -252,3 +252,10 @@ const wxIcon& mmex::getProgramIcon()
     return icon;
 }
 
+const wxString mmex::getTempFolder()
+{
+    const wxString path = mmex::isPortableMode() ? mmex::GetUserDir(false).GetPath() : wxStandardPaths::Get().GetTempDir();
+    const wxString folder = mmex::isPortableMode() ? "tmp"
+        : wxString::Format("%s_%s_tmp", mmex::GetAppName(), ::wxGetUserId());
+    return wxString::Format("%s%s%s%s", path, wxString(wxFILE_SEP_PATH), folder, wxString(wxFILE_SEP_PATH));
+}

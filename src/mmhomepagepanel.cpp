@@ -34,9 +34,6 @@ Copyright (C) 2014 - 2020 Nikolay Akimov
 
 #include "model/allmodel.h"
 
-#include <wx/fs_mem.h>
-
-
 class WebViewHandlerHomePage : public wxWebViewHandler
 {
 public:

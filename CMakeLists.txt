@@ -19,7 +19,7 @@ cmake_minimum_required(VERSION 3.0 FATAL_ERROR)
 
 set(MMEX_VERSION 1.3.5)
 SET(MMEX_VERSION_ALPHA -1)
-SET(MMEX_VERSION_BETA 5)
+SET(MMEX_VERSION_BETA 6)
 SET(MMEX_VERSION_RC -1)
 
 # ---------------------------------------------------------------------------
@@ -538,6 +538,7 @@ install(FILES
     resources/home_page.htt
     resources/kaching.wav
     resources/master.css
+    resources/mmex.png
     DESTINATION "${MMEX_RES_DIR}")
 
 if(LINUX)

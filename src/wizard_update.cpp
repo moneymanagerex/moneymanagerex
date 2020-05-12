@@ -49,7 +49,7 @@ const char* update_template = R"(
 </style>
 </head>
 <body>
-<header class="header"><div class="image"><img src="memory:logo.png" title="moneymanagerex.org" width="64" height="64" /></div>
+<header class="header"><div class="image"><img src="memory:mmex.png" title="moneymanagerex.org" width="64" height="64" /></div>
 <div class="text"><h2>%s</h2><h3>%s</h3></div></header>
 %s
 </body>

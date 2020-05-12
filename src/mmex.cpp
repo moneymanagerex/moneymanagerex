@@ -259,6 +259,9 @@ bool OnInitImpl(mmGUIApp* app)
     trans->AddCatalog("mmex", wxLANGUAGE_ENGLISH_US);
     wxTranslations::Set(trans);
 
+    // Resource files
+#ifndef __WXGTK__
+
     wxFileSystem::AddHandler(new wxMemoryFSHandler);
 
     //Copy files from resources to VFS
@@ -283,9 +286,33 @@ bool OnInitImpl(mmGUIApp* app)
                 , buffer->GetBufferSize());
         }
     }
-    wxImage::AddHandler(new wxPNGHandler);
-    wxMemoryFSHandler::AddFile("logo.png",
-        wxBitmap(money_xpm), wxBITMAP_TYPE_PNG);
+
+#else
+
+    const wxString resDir = mmex::GetResourceDir().GetPathWithSep();
+    const wxString tempDir = mmex::getTempFolder();
+    wxFileName::Mkdir(tempDir, 511, wxPATH_MKDIR_FULL);
+    wxArrayString filesArray;
+    wxDir::GetAllFiles(resDir, &filesArray);
+    for (const auto& sourceFile : filesArray)
+    {
+        const wxString repFile = tempDir + wxFileName(sourceFile).GetFullName();
+        if (::wxFileExists(sourceFile))
+        {
+            if (!::wxFileExists(repFile)
+                || wxFileName(sourceFile).GetModificationTime() > wxFileName(repFile).GetModificationTime())
+            {
+                if (!::wxCopyFile(sourceFile, repFile))
+                    wxLogError("Could not copy %s !", sourceFile);
+                else
+                    wxLogDebug("Coping file:\n %s \nto\n %s", sourceFile, repFile);
+            }
+        }
+    }
+    ::wxCopyFile(resDir + "mmex.svg", tempDir + "mmex.svg");
+
+#endif
+
 
 #if defined (__WXMSW__)
     // https://msdn.microsoft.com/en-us/library/ee330730(v=vs.85).aspx
@@ -386,6 +413,9 @@ int mmGUIApp::OnExit()
 
     /* CURL Cleanup */
     curl_global_cleanup();
+
+    //Delete mmex temp folder for current user
+    wxFileName::Rmdir(mmex::getTempFolder(), wxPATH_RMDIR_RECURSIVE);
 
     return 0;
 }

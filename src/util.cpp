@@ -1070,6 +1070,8 @@ bool mmSeparator::isStringHasSeparator(const wxString &string)
 
 const wxString getVFname4print(const wxString& name, const wxString& data)
 {
+#ifndef __WXGTK__
+
     int fid = 0;
     wxFileSystem fsys;
     wxFSFile *f0 = fsys.OpenFile(wxString::Format("memory:%s0.htm", name));
@@ -1090,6 +1092,25 @@ const wxString getVFname4print(const wxString& name, const wxString& data)
 
     wxMemoryFSHandler::AddFile(wxString::Format("%s%i.htm", name, fid), char_buffer, strlen(char_buffer));
     return wxString::Format("memory:%s%i.htm", name, fid);
+
+#else
+    wxString txt = data;
+    txt.Replace("memory:", "");
+
+    const auto f = wxString::Format("%s%s%shtml", mmex::getTempFolder()
+        , name
+        , wxString(wxFILE_SEP_EXT));
+
+    wxFileOutputStream index_output(f);
+    if (index_output.IsOk())
+    {
+        wxTextOutputStream index_file(index_output);
+        index_file << txt;
+        index_output.Close();
+    }
+    return "file://" + f;
+
+#endif
 }
 
 void clearVFprintedFiles(const wxString& name)
