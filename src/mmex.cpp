@@ -309,7 +309,6 @@ bool OnInitImpl(mmGUIApp* app)
             }
         }
     }
-    ::wxCopyFile(resDir + "mmex.svg", tempDir + "mmex.svg");
 
 #endif
 
