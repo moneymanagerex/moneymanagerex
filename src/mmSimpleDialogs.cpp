@@ -149,17 +149,28 @@ mmDateYearMonth::mmDateYearMonth(wxWindow *parent) :
 
 bool mmDateYearMonth::Create(wxWindow* parent, wxWindowID id)
 {
+    int y =
+#ifdef __WXGTK__
+        32;
+#else
+        24;
+#endif
     wxWindow::Create(parent, id);
 
     wxBoxSizer* box_sizer = new wxBoxSizer(wxHORIZONTAL);
     wxButton* button12Left = new wxButton(this, wxID_BACKWARD, "<<");
-    button12Left->SetMinSize(wxSize(24, -1));
+    button12Left->SetMinSize(wxSize(y, -1));
     wxButton* buttonLeft = new wxButton(this, wxID_DOWN, "<");
-    buttonLeft->SetMinSize(wxSize(24, -1));
+    buttonLeft->SetMinSize(wxSize(y, -1));
     wxButton* buttonRight = new wxButton(this, wxID_UP, ">");
-    buttonRight->SetMinSize(wxSize(24, -1));
+    buttonRight->SetMinSize(wxSize(y, -1));
     wxButton* button12Right = new wxButton(this, wxID_FORWARD, ">>");
-    button12Right->SetMinSize(wxSize(24, -1));
+    button12Right->SetMinSize(wxSize(y, -1));
+
+    button12Left->SetToolTip(_("Subtract one year"));
+    buttonLeft->SetToolTip(_("Subtract one month"));
+    buttonRight->SetToolTip(_("Add one month"));
+    button12Right->SetToolTip(_("Add one year"));
 
     box_sizer->Add(button12Left);
     box_sizer->Add(buttonLeft);
