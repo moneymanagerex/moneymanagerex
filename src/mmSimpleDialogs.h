@@ -60,16 +60,15 @@ public:
     mmDialogComboBoxAutocomplete(wxWindow *parent, const wxString& message, const wxString& caption,
         const wxString& defaultText, const wxArrayString& choices);
 
-    wxString getText()
-    {
-        return cbText_->GetValue();
-    };
+    const wxString getText() const;
 
 private:
     bool Create(wxWindow* parent, wxWindowID id,
         const wxString& caption, const wxPoint& pos, const wxSize& size, long style);
-    wxString Message, Default;
+    wxString Default;
     wxArrayString Choices;
+    wxString Message;
+
     wxComboBox* cbText_;
 };
 

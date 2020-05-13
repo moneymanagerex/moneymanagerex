@@ -78,11 +78,18 @@ mmSingleChoiceDialog::mmSingleChoiceDialog(wxWindow* parent, const wxString& mes
 mmDialogComboBoxAutocomplete::mmDialogComboBoxAutocomplete()
 {
 }
+
+const wxString mmDialogComboBoxAutocomplete::getText() const
+{
+    return cbText_->GetValue();
+};
+
 mmDialogComboBoxAutocomplete::mmDialogComboBoxAutocomplete(wxWindow *parent, const wxString& message, const wxString& caption,
     const wxString& defaultText, const wxArrayString& choices)
     : Default(defaultText),
     Choices(choices),
-    Message(message)
+    Message(message),
+    cbText_(nullptr)
 {
     long style = wxCAPTION | wxRESIZE_BORDER | wxCLOSE_BOX;
     Create(parent, wxID_STATIC, caption, wxDefaultPosition, wxDefaultSize, style);
@@ -151,7 +158,7 @@ bool mmDateYearMonth::Create(wxWindow* parent, wxWindowID id)
 {
     int y =
 #ifdef __WXGTK__
-        32;
+        48;
 #else
         24;
 #endif
