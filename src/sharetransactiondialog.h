@@ -55,19 +55,19 @@ private:
     void OnTextEntered(wxCommandEvent& event);
 
 private:
+    Model_Stock::Data* m_stock;
     mmTextCtrl* m_stock_name_ctrl;
-    mmTextCtrl* m_stock_symbol_ctrl;
     mmTextCtrl* m_share_num_ctrl;
+    mmTextCtrl* m_stock_symbol_ctrl;
     mmTextCtrl* m_share_price_ctrl;
     mmTextCtrl* m_share_lot_ctrl;
-    mmTextCtrl* m_commission_ctrl;
+    mmTextCtrl* m_share_commission_ctrl;
     mmTextCtrl* m_notes_ctrl;
 	wxBitmapButton* m_attachments_btn;
 
     UserTransactionPanel* m_transaction_panel;
     wxString m_dialog_heading;
 
-    Model_Stock::Data* m_stock;
     Model_Checking::Data* m_checking_entry;
     Model_Translink::Data* m_translink_entry;
     Model_Shareinfo::Data* m_share_entry;
