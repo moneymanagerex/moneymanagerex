@@ -966,16 +966,16 @@ void mmStockDialog::ShowStockHistory()
     size_t rows = histData.size() - 1;
     if (!histData.empty())
     {
-        for (int idx = 0; idx < histData.size(); idx++ )
+        for (size_t idx = 0; idx < histData.size(); idx++ )
         {
             wxListItem item;
-            item.SetId(idx);
+            item.SetId(static_cast<long>(idx));
             item.SetData(histData.at(idx).HISTID);
             m_price_listbox->InsertItem(item);
             const wxDate dtdt = Model_StockHistory::DATE(histData.at(idx));
             const wxString dispAmount = Model_Account::toString(histData.at(idx).VALUE, account, Option::instance().SharePrecision());
-            m_price_listbox->SetItem(idx, 0, mmGetDateForDisplay(histData.at(idx).DATE));
-            m_price_listbox->SetItem(idx, 1, dispAmount);
+            m_price_listbox->SetItem(static_cast<long>(idx), 0, mmGetDateForDisplay(histData.at(idx).DATE));
+            m_price_listbox->SetItem(static_cast<long>(idx), 1, dispAmount);
             if (idx == 0)
             {
                 m_history_date_ctrl->SetValue(dtdt);
