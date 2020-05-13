@@ -434,7 +434,7 @@ void ShareTransactionDialog::OnTextEntered(wxCommandEvent& WXUNUSED(event))
     }
 
     double share_commission = 0;
-    if (!m_share_commission_ctrl->GetValue().empty())
+    if (m_share_commission_ctrl && !m_share_commission_ctrl->GetValue().empty())
     {
         m_share_commission_ctrl->GetDouble(share_commission);
     }

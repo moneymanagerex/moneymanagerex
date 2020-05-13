@@ -73,7 +73,7 @@ private:
     Model_Shareinfo::Data* m_share_entry;
     enum
     {
-        ID_STOCKTRANS_DATEPICKER_CHANGE = wxID_HIGHEST + 800,
+        ID_STOCKTRANS_DATEPICKER_CHANGE = wxID_HIGHEST + 820,
         ID_STOCKTRANS_SHARE_NAME,
         ID_STOCKTRANS_SHARE_SYMBOL,
         ID_STOCKTRANS_SHARE_NUMBER,
