@@ -57,7 +57,7 @@ private:
 
     wxChoice* m_choice_visible;
     wxSpinCtrl* m_scale_factor;
-    wxSlider* m_icon_size;
+    wxSpinCtrl* m_icon_size;
 
     wxCheckBox* m_budget_financial_years;
     wxCheckBox* m_budget_include_transfers;

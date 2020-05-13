@@ -91,11 +91,10 @@ void OptionSettingsView::Create()
     // Icon size
     int vIconSize = Option::instance().getIconSize();
     view_sizer1->Add(new wxStaticText(this, wxID_STATIC, _("Icons size")), g_flagsH);
-    m_icon_size = new wxSlider(this, wxID_RESIZE_FRAME, vIconSize, 16, 48
-        , wxDefaultPosition, wxDefaultSize, wxSL_HORIZONTAL | wxSL_VALUE_LABEL);
-    m_icon_size->SetLineSize(8);
-    m_icon_size->SetTickFreq(8);
+    m_icon_size = new wxSpinCtrl(this, wxID_RESIZE_FRAME
+        , wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 16, 48);
     view_sizer1->Add(m_icon_size, g_flagsH);
+    m_icon_size->SetValue(vIconSize);
 
     // Budget options
     m_budget_financial_years = new wxCheckBox(this, wxID_STATIC, _("View Budgets as Financial Years")
