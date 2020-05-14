@@ -175,7 +175,7 @@ void mmCustomFieldEditDialog::CreateControls()
     itemButton30->SetFocus();
 }
 
-void mmCustomFieldEditDialog::OnOk(wxCommandEvent& /*event*/)
+void mmCustomFieldEditDialog::OnOk(wxCommandEvent& WXUNUSED(event))
 {
     const wxString name = m_itemDescription->GetValue().Trim();
     if (name.empty())
@@ -255,17 +255,17 @@ void mmCustomFieldEditDialog::OnOk(wxCommandEvent& /*event*/)
     EndModal(wxID_OK);
 }
 
-void mmCustomFieldEditDialog::OnCancel(wxCommandEvent& /*event*/)
+void mmCustomFieldEditDialog::OnCancel(wxCommandEvent& WXUNUSED(event))
 {
     EndModal(wxID_CANCEL);
 }
 
-void mmCustomFieldEditDialog::OnQuit(wxCloseEvent& /*event*/)
+void mmCustomFieldEditDialog::OnQuit(wxCloseEvent& WXUNUSED(event))
 {
     EndModal(wxID_CANCEL);
 }
 
-void mmCustomFieldEditDialog::OnChangeType(wxCommandEvent& /*event*/)
+void mmCustomFieldEditDialog::OnChangeType(wxCommandEvent& WXUNUSED(event))
 {
     switch (m_itemType->GetSelection())
     {

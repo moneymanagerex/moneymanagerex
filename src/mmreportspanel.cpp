@@ -434,7 +434,7 @@ void mmReportsPanel::PrintPage()
     browser_->Print();
 }
 
-void mmReportsPanel::OnDateRangeChanged(wxCommandEvent& event)
+void mmReportsPanel::OnDateRangeChanged(wxCommandEvent& WXUNUSED(event))
 {
     const wxString i = m_date_ranges->GetName();
 

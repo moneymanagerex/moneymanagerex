@@ -234,7 +234,7 @@ void mmCurrencyDialog::CreateControls()
     itemButton25->SetToolTip(_("Any changes will be lost without update"));
 }
 
-void mmCurrencyDialog::OnOk(wxCommandEvent& /*event*/)
+void mmCurrencyDialog::OnOk(wxCommandEvent& WXUNUSED(event))
 {
     const wxString name = m_currencyName->GetValue().Trim();
     if (name.empty())
@@ -274,7 +274,7 @@ void mmCurrencyDialog::OnCancel(wxCommandEvent& /*event*/)
     EndModal(wxID_CANCEL);
 }
 
-void mmCurrencyDialog::OnTextChanged(wxCommandEvent& event)
+void mmCurrencyDialog::OnTextChanged(wxCommandEvent& WXUNUSED(event))
 {
     int scale = wxAtoi(scaleTx_->GetValue());
     m_currency->PFX_SYMBOL = pfxTx_->GetValue();
@@ -294,7 +294,7 @@ void mmCurrencyDialog::OnTextChanged(wxCommandEvent& event)
     sampleText_->SetLabelText(dispAmount);
 }
 
-void mmCurrencyDialog::OnTextEntered(wxCommandEvent& event)
+void mmCurrencyDialog::OnTextEntered(wxCommandEvent& WXUNUSED(event))
 {
     if (baseConvRate_->Calculate(SCALE))
         baseConvRate_->GetDouble(m_currency->BASECONVRATE);
