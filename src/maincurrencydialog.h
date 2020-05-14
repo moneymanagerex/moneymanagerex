@@ -104,6 +104,7 @@ private:
 
     wxDataViewListCtrl* currencyListBox_;
     std::map<int, wxString> ColName_;
+    bool bHistoryEnabled_;
     bool bEnableSelect_;
     wxButton* itemButtonEdit_;
     wxButton* itemButtonDelete_;

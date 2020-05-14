@@ -378,15 +378,6 @@ const wxString htmlWidgetIncomeVsExpenses::getHTMLText()
         , Model_Checking::TRANSCODE(Model_Checking::TRANSFER, NOT_EQUAL)
     );
 
-    // Account ID, currency rate for today
-    std::map<int, double> curencyRates;
-    wxDate todayDate = wxDate::Today();
-    for (const auto& account : Model_Account::instance().all())
-    {
-        double convRate = Model_CurrencyHistory::getDayRate(Model_Account::currency(account)->CURRENCYID, todayDate);
-        curencyRates[account.ACCOUNTID] = convRate;
-    }
-
     for (const auto& pBankTransaction : transactions)
     {
         if (ignoreFuture)
@@ -399,7 +390,7 @@ const wxString htmlWidgetIncomeVsExpenses::getHTMLText()
         if (Model_Checking::foreignTransactionAsTransfer(pBankTransaction))
             continue;
 
-        double convRate = curencyRates[pBankTransaction.ACCOUNTID];
+        double convRate = Model_CurrencyHistory::getDayRate(Model_Account::instance().get(pBankTransaction.ACCOUNTID)->CURRENCYID, pBankTransaction.TRANSDATE);
 
         int idx = pBankTransaction.ACCOUNTID;
         if (Model_Checking::type(pBankTransaction) == Model_Checking::DEPOSIT)

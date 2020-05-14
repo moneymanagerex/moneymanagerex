@@ -180,6 +180,7 @@ const wxString mmex::weblink::YahooQuotesHistory = "https://query1.finance.yahoo
 /* End namespace weblink */
 
 const wxString LANGUAGE_PARAMETER = "LANGUAGE";
+const wxString INIDB_USE_CURRENCY_HISTORY = "USECURRENCYHISTORY";
 const wxString INIDB_USE_TRANSACTION_SOUND = "USETRANSSOUND";
 const wxString INIDB_USE_ORG_DATE_COPYPASTE = "USEORIGDATEONCOPYPASTE";
 const wxString INIDB_SEND_USAGE_STATS = "SENDUSAGESTATS";

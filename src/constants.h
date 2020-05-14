@@ -120,6 +120,7 @@ extern const wxString VIEW_ACCOUNTS_CLOSED_STR;
 extern const wxString VIEW_ACCOUNTS_FAVORITES_STR;
 
 extern const wxString LANGUAGE_PARAMETER;
+extern const wxString INIDB_USE_CURRENCY_HISTORY;
 extern const wxString INIDB_USE_TRANSACTION_SOUND;
 extern const wxString INIDB_USE_ORG_DATE_COPYPASTE;
 extern const wxString INIDB_SEND_USAGE_STATS;
