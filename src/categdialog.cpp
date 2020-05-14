@@ -45,14 +45,14 @@ EVT_MENU(wxID_ANY, mmCategDialog::OnMenuSelected)
 wxEND_EVENT_TABLE()
 
 mmCategDialog::mmCategDialog()
-: m_treeCtrl(nullptr)
-, m_buttonAdd(nullptr)
-, m_buttonEdit(nullptr)
-, m_buttonSelect(nullptr)
-, m_buttonDelete(nullptr)
-, m_buttonRelocate(nullptr)
-, m_cbExpand(nullptr)
-, m_cbShowAll(nullptr)
+    : m_treeCtrl(nullptr)
+    , m_buttonAdd(nullptr)
+    , m_buttonEdit(nullptr)
+    , m_buttonSelect(nullptr)
+    , m_buttonDelete(nullptr)
+    , m_buttonRelocate(nullptr)
+    , m_cbExpand(nullptr)
+    , m_cbShowAll(nullptr)
 {
     // Initialize fields in constructor
     m_categ_id = -1;
@@ -60,14 +60,13 @@ mmCategDialog::mmCategDialog()
     m_init_selected_categ_id = -1;
     m_init_selected_subcateg_id = -1;
     selectedItemId_ = 0;
-    m_enable_select = false;
-    m_enable_relocate = false;
+    m_IsSelection = false;
     m_refresh_requested = false;
 }
 
 mmCategDialog::mmCategDialog(wxWindow* parent
-    , int category_id, int subcategory_id
-    , bool bEnableRelocate, bool bEnableSelect)
+    , bool bIsSelection
+    , int category_id, int subcategory_id)
 {
     // Initialize fields in constructor
     m_categ_id = category_id;
@@ -75,8 +74,7 @@ mmCategDialog::mmCategDialog(wxWindow* parent
     m_init_selected_categ_id = category_id;
     m_init_selected_subcateg_id = subcategory_id;
     selectedItemId_ = 0;
-    m_enable_select = bEnableSelect;
-    m_enable_relocate = bEnableRelocate;
+    m_IsSelection = bIsSelection;
     m_refresh_requested = false;
 
     //Get Hidden Categories id from stored string
@@ -145,7 +143,7 @@ void mmCategDialog::fillControls()
                 {
                     wxTreeItemId subcateg = m_treeCtrl->AppendItem(maincat, sub_category.SUBCATEGNAME);
                     m_treeCtrl->SetItemData(subcateg, new mmTreeItemCateg(category, sub_category));
-                    if (!bShow) 
+                    if (!bShow)
                         m_treeCtrl->SetItemTextColour(subcateg, wxColour("GREY"));
 
                     if (m_categ_id == category.CATEGID && m_subcateg_id == sub_category.SUBCATEGID)
@@ -165,9 +163,11 @@ void mmCategDialog::fillControls()
     m_treeCtrl->EnsureVisible(selectedItemId_);
 
     m_buttonSelect->Disable();
+    if (!m_IsSelection)
+        m_buttonSelect->Hide();
     m_buttonEdit->Disable();
     m_buttonAdd->Enable();
-    m_buttonRelocate->Enable(m_enable_relocate);
+    m_buttonRelocate->Enable(!m_IsSelection);
 
     setTreeSelection(m_categ_id, m_subcateg_id);
 }
@@ -206,7 +206,7 @@ void mmCategDialog::CreateControls()
     itemBoxSizer33->Add(m_cbShowAll, g_flagsH);
 
 #if defined (__WXGTK__) || defined (__WXMAC__)
-    m_treeCtrl = new wxTreeCtrl( this, wxID_ANY,
+    m_treeCtrl = new wxTreeCtrl(this, wxID_ANY,
         wxDefaultPosition, wxSize(200, 380));
 #else
     m_treeCtrl = new wxTreeCtrl(this, wxID_ANY
@@ -221,7 +221,7 @@ void mmCategDialog::CreateControls()
     buttonsPanel->SetSizer(buttonsSizer);
 
     wxStdDialogButtonSizer* itemBoxSizer66 = new wxStdDialogButtonSizer;
-    buttonsSizer->Add(itemBoxSizer66);
+    buttonsSizer->Add(itemBoxSizer66, wxSizerFlags(g_flagsV).Border(wxALL, 0).Center());
 
     m_buttonAdd = new wxButton(buttonsPanel, wxID_ADD, _("&Add "));
     itemBoxSizer66->Add(m_buttonAdd, g_flagsH);
@@ -236,10 +236,10 @@ void mmCategDialog::CreateControls()
     m_buttonDelete->SetToolTip(_("Delete an existing category. The category cannot be used by existing transactions."));
 
     wxStdDialogButtonSizer* itemBoxSizer9 = new wxStdDialogButtonSizer;
-    buttonsSizer->Add(itemBoxSizer9, wxSizerFlags(g_flagsExpand).Border(wxALL, 0));
+    buttonsSizer->Add(itemBoxSizer9, wxSizerFlags(g_flagsV).Border(wxALL, 0).Center());
 
     m_buttonSelect = new wxButton(buttonsPanel, wxID_OK, _("&Select"));
-    itemBoxSizer9->Add(m_buttonSelect, wxSizerFlags(g_flagsExpand).Proportion(4));
+    itemBoxSizer9->Add(m_buttonSelect, g_flagsH);
     m_buttonSelect->SetToolTip(_("Select the currently selected category as the selected category for the transaction"));
 
     //Some interfaces has no any close buttons, it may confuse user. Cancel button added
@@ -400,7 +400,7 @@ void mmCategDialog::OnBSelect(wxCommandEvent& /*event*/)
 
 void mmCategDialog::OnDoubleClicked(wxTreeEvent& /*event*/)
 {
-    if (selectedItemId_ != root_ && selectedItemId_ && m_enable_select)
+    if (selectedItemId_ != root_ && selectedItemId_ && m_IsSelection)
     {
         mmTreeItemCateg* iData = dynamic_cast<mmTreeItemCateg*>
             (m_treeCtrl->GetItemData(selectedItemId_));
@@ -473,7 +473,7 @@ void mmCategDialog::OnSelChanged(wxTreeEvent& event)
 
     m_buttonAdd->Enable(m_subcateg_id == -1);
     m_buttonEdit->Enable(!bRootSelected);
-    m_buttonSelect->Enable(!bRootSelected);
+    m_buttonSelect->Enable(m_IsSelection && !bRootSelected);
 }
 
 void mmCategDialog::OnEdit(wxCommandEvent& /*event*/)
@@ -596,7 +596,7 @@ void mmCategDialog::OnCategoryRelocation(wxCommandEvent& /*event*/)
         wxString msgStr;
         msgStr << _("Category Relocation Completed.") << "\n\n"
             << wxString::Format(_("Records have been updated in the database: %i"),
-            dlg.updatedCategoriesCount());
+                dlg.updatedCategoriesCount());
         wxMessageBox(msgStr, _("Category Relocation Result"));
         m_refresh_requested = true;
         fillControls();

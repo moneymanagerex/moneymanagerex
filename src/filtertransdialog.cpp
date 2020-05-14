@@ -494,7 +494,7 @@ void mmFilterTransactionsDialog::OnCategs(wxCommandEvent& /*event*/)
     Model_Subcategory::Data* sub_category = Model_Subcategory::instance().get(subcategID_);
     int categID = category ? category->CATEGID : -1;
     int subcategID = sub_category ? sub_category->SUBCATEGID : -1;
-    mmCategDialog dlg(this, categID, subcategID, false);
+    mmCategDialog dlg(this, true, categID, subcategID);
 
     if (dlg.ShowModal() == wxID_OK)
     {
