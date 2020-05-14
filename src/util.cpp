@@ -520,25 +520,29 @@ bool getOnlineCurrencyRates(wxString& msg, int curr_id, bool used_only)
         msg = output;
     }
 
+    Model_Currency::instance().Savepoint();
     Model_CurrencyHistory::instance().Savepoint();
     for (auto& currency : currencies)
     {
         if (!used_only && !Model_Account::is_used(currency)) continue;
 
         const wxString currency_symbol = currency.CURRENCY_SYMBOL;
-        if (!currency_symbol.IsEmpty())
+        if (!currency_symbol.IsEmpty() && currency_data.find(currency_symbol) != currency_data.end())
         {
-            if (currency_data.find(currency_symbol) != currency_data.end())
+            double new_rate = currency_data[currency_symbol];
+            if (new_rate > 0)
             {
-                double new_rate = currency_data[currency_symbol];
-                if (new_rate > 0)
-                {
+                if(Option::instance().getCurrencyHistoryEnabled())
                     Model_CurrencyHistory::instance().addUpdate(currency.CURRENCYID, today, new_rate, Model_CurrencyHistory::ONLINE);
+                else
+                {
+                    currency.BASECONVRATE = new_rate;
+                    Model_Currency::instance().save(&currency);
                 }
             }
         }
     }
-
+    Model_Currency::instance().ReleaseSavepoint();
     Model_CurrencyHistory::instance().ReleaseSavepoint();
 
     return true;

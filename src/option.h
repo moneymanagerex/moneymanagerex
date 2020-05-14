@@ -41,8 +41,8 @@ public:
 
     // set and save the option: m_language
     wxLanguage getLanguageID(bool get_db = false);
-	// get 2-letter ISO 639-1 code
-	const wxString getLanguageISO6391(bool get_db = false);
+    // get 2-letter ISO 639-1 code
+    const wxString getLanguageISO6391(bool get_db = false);
     void setLanguage(wxLanguage& language);
 
     // set and save the option: m_userNameString
@@ -110,10 +110,13 @@ public:
     int getIconSize();
 
     int AccountImageId(int account_id, bool def = false);
-	bool getSendUsageStatistics() const;
+    bool getSendUsageStatistics() const;
 
     void IgnoreFutureTransactions(bool value);
-	bool getIgnoreFutureTransactions() const;
+    bool getIgnoreFutureTransactions() const;
+
+    void CurrencyHistoryEnabled(bool value);
+    bool getCurrencyHistoryEnabled() const;
 
 private:
     wxString m_dateFormat;
@@ -122,6 +125,7 @@ private:
     wxString m_financialYearStartDayString;
     wxString m_financialYearStartMonthString;
     int m_baseCurrency;
+    bool m_currencyHistoryEnabled;
 
     bool m_databaseUpdated;
     bool m_budgetFinancialYears;            //INIDB_BUDGET_FINANCIAL_YEARS
@@ -157,9 +161,14 @@ inline bool Option::getSendUsageStatistics() const
 #endif
 }
 
+inline bool Option::getCurrencyHistoryEnabled() const
+{
+    return m_currencyHistoryEnabled;
+}
+
 inline bool Option::getIgnoreFutureTransactions() const
 {
-	return m_ignoreFutureTransactions;
+    return m_ignoreFutureTransactions;
 }
 
 inline int Option::getBudgetDaysOffset() const

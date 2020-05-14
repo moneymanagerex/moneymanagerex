@@ -55,6 +55,7 @@ private:
     void OnOk(wxCommandEvent& event);
     void OnCancel(wxCommandEvent& event);
     void OnTextChanged(wxCommandEvent& event);
+    void OnTextEntered(wxCommandEvent& event);
 
     Model_Currency::Data* m_currency;
     int m_scale;
@@ -62,6 +63,7 @@ private:
     mmTextCtrl* m_currencyName;
     wxStaticText* sampleText_;
     mmTextCtrl* m_currencySymbol;
+    mmTextCtrl* baseConvRate_;
     wxTextCtrl* pfxTx_;
     wxTextCtrl* sfxTx_;
     wxTextCtrl* decTx_;

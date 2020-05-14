@@ -906,7 +906,7 @@ void mmStockDialog::OnHistoryAddButton(wxCommandEvent& /*event*/)
     {
         listStr = m_price_listbox->GetItemText(i, 0);
         mmParseDisplayStringToDate(dt, listStr, Option::instance().DateFormat());
-        if (dt.FormatISODate() == m_history_date_ctrl->GetValue().FormatISODate())
+        if (dt.IsSameDate(m_history_date_ctrl->GetValue()))
             break;
     }
     if (i == m_price_listbox->GetItemCount())
@@ -916,7 +916,7 @@ void mmStockDialog::OnHistoryAddButton(wxCommandEvent& /*event*/)
         {
             listStr = m_price_listbox->GetItemText(i, 0);
             mmParseDisplayStringToDate(dt, listStr, Option::instance().DateFormat());
-            if (dt.FormatISODate() < m_history_date_ctrl->GetValue().FormatISODate())
+            if (dt.GetDateOnly() < m_history_date_ctrl->GetValue().GetDateOnly())
                 break;
         }
         wxListItem item;
