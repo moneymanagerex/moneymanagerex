@@ -117,7 +117,7 @@ const wxString mmex::getProgramCopyright()
 
 int mmex::version::getDbLatestVersion()
 {
-	return dbLatestVersion;
+    return dbLatestVersion;
 }
 
 const wxString mmex::getCaption(const wxString& caption)

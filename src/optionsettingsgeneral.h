@@ -39,7 +39,7 @@ public:
     ~OptionSettingsGeneral();
 
 public:
-    virtual void SaveSettings();
+    virtual bool SaveSettings();
 
 private:
     void Create();

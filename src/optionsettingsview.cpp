@@ -184,7 +184,7 @@ void OptionSettingsView::OnNavTreeColorChanged(wxCommandEvent& event)
     }
 }
 
-void OptionSettingsView::SaveSettings()
+bool OptionSettingsView::SaveSettings()
 {
     wxString accVisible = VIEW_ACCOUNTS_ALL_STR;
     wxStringClientData* visible_acc_obj = static_cast<wxStringClientData*>(m_choice_visible->GetClientObject(m_choice_visible->GetSelection()));
@@ -221,4 +221,6 @@ void OptionSettingsView::SaveSettings()
     Model_Infotable::instance().Set("USER_COLOR5", mmColors::userDefColor5);
     Model_Infotable::instance().Set("USER_COLOR6", mmColors::userDefColor6);
     Model_Infotable::instance().Set("USER_COLOR7", mmColors::userDefColor7);
+
+    return true;
 }

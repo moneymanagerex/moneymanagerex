@@ -37,17 +37,18 @@ public:
     ~OptionSettingsAttachment();
 
 public:
-    virtual void SaveSettings();
+    virtual bool SaveSettings();
 
 private:
     void Create();
 
     void OnAttachmentsButton(wxCommandEvent& WXUNUSED(event));
-    void OnAttachmentsMenu(wxCommandEvent& event);
     void OnAttachmentsPathChanged(wxCommandEvent& WXUNUSED(event));
     void OnAttachmentsSubfolderChanged(wxCommandEvent& event);
 
 private:
+    wxComboBox* m_attachments_path;
+    wxStaticText* m_attachments_preview;
     wxCheckBox* m_attachments_subfolder;
     wxCheckBox* m_delete_attachments;
     wxCheckBox* m_trash_attachments;
@@ -57,7 +58,6 @@ private:
     {
         ID_DIALOG_OPTIONS_TEXTCTRL_ATTACHMENT = wxID_HIGHEST + 10,
         ID_DIALOG_OPTIONS_BUTTON_ATTACHMENTSFOLDER,
-        ID_DIALOG_OPTIONS_STATICTEXT_ATTACHMENTSTEXT,
         ID_DIALOG_OPTIONS_CHECKBOX_ATTACHMENTSSUBFOLDER,
     };
 };

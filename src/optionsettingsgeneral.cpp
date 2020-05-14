@@ -216,7 +216,7 @@ bool OptionSettingsGeneral::SaveFinancialYearStart()
     return last_month_day < day;
 }
 
-void OptionSettingsGeneral::SaveSettings()
+bool OptionSettingsGeneral::SaveSettings()
 {
     wxTextCtrl* stun = static_cast<wxTextCtrl*>(FindWindow(ID_DIALOG_OPTIONS_TEXTCTRL_USERNAME));
     Option::instance().UserName(stun->GetValue());
@@ -228,4 +228,6 @@ void OptionSettingsGeneral::SaveSettings()
 
     Model_Setting::instance().Set(INIDB_USE_ORG_DATE_COPYPASTE, m_use_org_date_copy_paste->GetValue());
     Model_Setting::instance().Set(INIDB_USE_TRANSACTION_SOUND, m_use_sound->GetValue());
+
+    return true;
 }
