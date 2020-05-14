@@ -1072,7 +1072,7 @@ void mmTransDialog::OnCategs(wxCommandEvent& WXUNUSED(event))
     }
     else
     {
-        mmCategDialog dlg(this, m_trx_data.CATEGID, m_trx_data.SUBCATEGID);
+        mmCategDialog dlg(this, true, m_trx_data.CATEGID, m_trx_data.SUBCATEGID);
         if (dlg.ShowModal() == wxID_OK)
         {
             m_trx_data.CATEGID = dlg.getCategId();

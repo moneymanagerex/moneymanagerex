@@ -328,7 +328,7 @@ void UserTransactionPanel::OnTransPayeeButton(wxCommandEvent& WXUNUSED(event))
 
 void UserTransactionPanel::OnTransCategoryButton(wxCommandEvent& WXUNUSED(event))
 {
-    mmCategDialog dlg(this, m_category_id, m_subcategory_id);
+    mmCategDialog dlg(this, true, m_category_id, m_subcategory_id);
     if (dlg.ShowModal() == wxID_OK)
     {
         m_category_id = dlg.getCategId();

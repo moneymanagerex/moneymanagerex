@@ -171,7 +171,7 @@ void SplitDetailDialog::CreateControls()
 
 void SplitDetailDialog::OnButtonCategoryClick( wxCommandEvent& event )
 {
-    mmCategDialog dlg(this, split_.CATEGID, split_.SUBCATEGID);
+    mmCategDialog dlg(this, true, split_.CATEGID, split_.SUBCATEGID);
     if (dlg.ShowModal() == wxID_OK)
     {
         split_.CATEGID = dlg.getCategId();

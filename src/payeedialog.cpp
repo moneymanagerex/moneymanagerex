@@ -284,7 +284,7 @@ void mmPayeeDialog::DefineDefaultCategory()
     Model_Payee::Data *payee = Model_Payee::instance().get(m_payee_id);
     if (payee)
     {
-        mmCategDialog dlg(this, payee->CATEGID, payee->SUBCATEGID, false);
+        mmCategDialog dlg(this, true, payee->CATEGID, payee->SUBCATEGID);
         if (dlg.ShowModal() == wxID_OK)
         {
             payee->CATEGID = dlg.getCategId();
