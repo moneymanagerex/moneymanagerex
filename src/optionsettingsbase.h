@@ -27,7 +27,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 class OptionSettingsBase : public wxPanel
 {
 public:
-    virtual void SaveSettings() = 0;
+    virtual bool SaveSettings() = 0;
 
     wxControl* SetBoldFont(wxControl* control);
     bool GetIniDatabaseCheckboxValue(const wxString& dbField, bool defaultState);

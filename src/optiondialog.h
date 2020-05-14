@@ -39,7 +39,7 @@ public:
 
 public:
     /// Saves the updated System Options to the appropriate databases.
-    void SaveNewSystemSettings();
+    bool SaveNewSystemSettings();
     mmGUIApp* m_app;
 
 private:

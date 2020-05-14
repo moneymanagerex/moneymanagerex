@@ -157,22 +157,29 @@ void mmOptionsDialog::CreateControls()
 }
 
 /// Saves the updated System Options to the appropriate databases.
-void mmOptionsDialog::SaveNewSystemSettings()
+bool mmOptionsDialog::SaveNewSystemSettings()
 {
+    bool bResult = true;
+
     Model_Infotable::instance().Savepoint();
     Model_Setting::instance().Savepoint();
 
     for (const auto notebook_panel : m_panel_list)
-        notebook_panel->SaveSettings();
+    {
+        if (!notebook_panel->SaveSettings())
+            bResult = false;
+    }
 
     Model_Setting::instance().ReleaseSavepoint();
     Model_Infotable::instance().ReleaseSavepoint();
+
+    return bResult;
 }
 
 void mmOptionsDialog::OnOk(wxCommandEvent& /*event*/)
 {
-    this->SaveNewSystemSettings();
-    EndModal(wxID_OK);
+    if(this->SaveNewSystemSettings())
+        EndModal(wxID_OK);
 }
 
 void mmOptionsDialog::OnApply(wxCommandEvent& /*event*/)
@@ -181,11 +188,12 @@ void mmOptionsDialog::OnApply(wxCommandEvent& /*event*/)
     Model_Setting::instance().Savepoint();
 
     int selected_page = m_notebook->GetSelection();
-    m_panel_list[selected_page]->SaveSettings();
+    if (m_panel_list[selected_page]->SaveSettings())
+    {
+        const wxString& msg = wxString::Format(_("%s page has been saved."), m_notebook->GetPageText(selected_page));
+        wxMessageBox(msg, _("MMEX Options"));
+    }
 
     Model_Setting::instance().ReleaseSavepoint();
     Model_Infotable::instance().ReleaseSavepoint();
-
-    const wxString& msg = wxString::Format(_("%s page has been saved."), m_notebook->GetPageText(selected_page));
-    wxMessageBox(msg, _("MMEX Options"));
 }

@@ -216,7 +216,7 @@ void OptionSettingsMisc::SaveStocksUrl()
     }
 }
 
-void OptionSettingsMisc::SaveSettings()
+bool OptionSettingsMisc::SaveSettings()
 {
     wxChoice* itemChoice = static_cast<wxChoice*>(FindWindow(ID_DIALOG_OPTIONS_DEFAULT_TRANSACTION_PAYEE));
     Option::instance().TransPayeeSelection(itemChoice->GetSelection());
@@ -244,4 +244,6 @@ void OptionSettingsMisc::SaveSettings()
     wxTextCtrl* st = static_cast<wxTextCtrl*>(FindWindow(ID_DIALOG_OPTIONS_TEXTCTRL_DELIMITER4));
     const wxString& delim = st->GetValue();
     if (!delim.IsEmpty()) Model_Infotable::instance().Set("DELIMITER", delim);
+
+    return true;
 }
