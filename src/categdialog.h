@@ -47,7 +47,7 @@ public:
     mmCategDialog();
     mmCategDialog(wxWindow* parent
         , bool bIsSelection
-        , int category_id = -1, int subcategory_id = -1);
+        , int category_id, int subcategory_id);
 
     bool Create(wxWindow* parent
         , wxWindowID id
