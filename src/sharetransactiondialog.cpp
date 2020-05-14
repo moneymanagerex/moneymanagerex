@@ -42,9 +42,6 @@ wxBEGIN_EVENT_TABLE(ShareTransactionDialog, wxDialog)
     EVT_BUTTON(wxID_CANCEL, ShareTransactionDialog::OnCancel)
     EVT_BUTTON(wxID_INDEX, ShareTransactionDialog::OnStockPriceButton)
     EVT_CLOSE(ShareTransactionDialog::OnQuit)
-    EVT_TEXT(ID_STOCKTRANS_SHARE_NUMBER, ShareTransactionDialog::OnTextEntered)
-    EVT_TEXT(ID_STOCKTRANS_SHARE_PRICE, ShareTransactionDialog::OnTextEntered)
-    EVT_TEXT(ID_STOCKTRANS_SHARE_COMMISSION, ShareTransactionDialog::OnTextEntered)
 wxEND_EVENT_TABLE()
 
 ShareTransactionDialog::ShareTransactionDialog()
@@ -217,6 +214,9 @@ void ShareTransactionDialog::CreateControls()
     itemFlexGridSizer6->Add(m_share_num_ctrl, g_flagsH);
     m_share_num_ctrl->SetToolTip(_("Enter number of shares held"));
 
+    m_share_num_ctrl->Connect(ID_STOCKTRANS_SHARE_NUMBER, wxEVT_COMMAND_TEXT_ENTER
+        , wxCommandEventHandler(ShareTransactionDialog::OnTextEntered), nullptr, this);
+
     //Share Price
     wxStaticText* pprice = new wxStaticText(stock_details_panel, wxID_STATIC, _("Share Price"));
     pprice->SetFont(this->GetFont().Bold());
@@ -227,6 +227,9 @@ void ShareTransactionDialog::CreateControls()
     itemFlexGridSizer6->Add(m_share_price_ctrl, g_flagsH);
     m_share_price_ctrl->SetToolTip(_("Enter the current value for a single share unit"));
 
+    m_share_price_ctrl->Connect(ID_STOCKTRANS_SHARE_PRICE, wxEVT_COMMAND_TEXT_ENTER
+        , wxCommandEventHandler(ShareTransactionDialog::OnTextEntered), nullptr, this);
+
     // Commission
     itemFlexGridSizer6->Add(new wxStaticText(stock_details_panel, wxID_STATIC, _("Commission")), g_flagsH);
     m_share_commission_ctrl = new mmTextCtrl(stock_details_panel, ID_STOCKTRANS_SHARE_COMMISSION, "0"
@@ -234,6 +237,9 @@ void ShareTransactionDialog::CreateControls()
     m_share_commission_ctrl->SetMinSize(wxSize(150, -1));
     itemFlexGridSizer6->Add(m_share_commission_ctrl, g_flagsH);
     m_share_commission_ctrl->SetToolTip(_("Enter any commission paid"));
+
+    m_share_commission_ctrl->Connect(ID_STOCKTRANS_SHARE_COMMISSION, wxEVT_COMMAND_TEXT_ENTER
+        , wxCommandEventHandler(ShareTransactionDialog::OnTextEntered), nullptr, this);
 
     //Share Lot
     wxStaticText* lot_text = new wxStaticText(stock_details_panel, wxID_STATIC, _("Share Lot"));
