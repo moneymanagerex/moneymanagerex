@@ -164,12 +164,12 @@ void OptionSettingsNet::Create()
     SetSizer(networkPanelSizer);
 }
 
-void OptionSettingsNet::OnProxyChanged(wxCommandEvent& event)
+void OptionSettingsNet::OnProxyChanged(wxCommandEvent& WXUNUSED(event))
 {
     m_proxy_port->Enable(m_proxy_address->GetValue() != "");
 }
 
-void OptionSettingsNet::OnUpdateCheckChanged(wxCommandEvent& event)
+void OptionSettingsNet::OnUpdateCheckChanged(wxCommandEvent& WXUNUSED(event))
 {
     m_update_source->Enable(m_check_update->GetValue());
 }
