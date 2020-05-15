@@ -433,7 +433,7 @@ void mmTransDialog::CreateControls()
     wxBoxSizer* date_sizer = new wxBoxSizer(wxHORIZONTAL);
     flex_sizer->Add(date_sizer);
     date_sizer->Add(dpc_, g_flagsH);
-#ifndef __WXMAC__
+#ifdef __WXMSW__
     wxSpinButton* spinCtrl = new wxSpinButton(this, ID_DIALOG_TRANS_DATE_SPINNER
         , wxDefaultPosition, wxSize(-1, dpc_->GetSize().GetHeight())
         , wxSP_VERTICAL | wxSP_ARROW_KEYS | wxSP_WRAP);
