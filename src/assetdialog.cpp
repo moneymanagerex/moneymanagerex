@@ -379,7 +379,7 @@ void mmAssetDialog::OnOk(wxCommandEvent& /*event*/)
     m_asset->VALUECHANGERATE  = valueChangeRate;
     m_asset->ASSETTYPE        = asset_type;
 
-	int old_asset_id = m_asset->ASSETID;
+    int old_asset_id = m_asset->ASSETID;
     int new_asset_id = Model_Asset::instance().save(m_asset);
 
     if (old_asset_id < 0)

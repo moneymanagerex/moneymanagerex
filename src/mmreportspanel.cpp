@@ -81,14 +81,10 @@ public:
                 {
                     if (Model_Checking::foreignTransaction(*transaction))
                     {
-                        //TODO
-#if 0
                         Model_Translink::Data translink = Model_Translink::TranslinkRecord(transId);
                         if (translink.LINKTYPE == Model_Attachment::reftype_desc(Model_Attachment::STOCK))
                         {
-                            Model_Translink::Data translink = Model_Translink::TranslinkRecord(transId);
-                            static_cast<wxWindow*>(nullptr);
-                            ShareTransactionDialog dlg(static_cast<wxWindow*>(nullptr), &translink, &transaction);
+                            ShareTransactionDialog dlg(frame, &translink, transaction);
                             if (dlg.ShowModal() == wxID_OK)
                             {
                                 m_reportPanel->rb_->getHTMLText();
@@ -97,15 +93,13 @@ public:
                         }
                         else
                         {
-                            Model_Translink::Data translink = Model_Translink::TranslinkRecord(transId);
-                            mmAssetDialog dlg(static_cast<wxWindow*>(frame), frame, &translink, &transaction);
+                            mmAssetDialog dlg(frame, frame, &translink, transaction);
                             if (dlg.ShowModal() == wxID_OK)
                             {
                                 m_reportPanel->rb_->getHTMLText();
                                 m_reportPanel->saveReportText();
                             }
                         }
-#endif
                     }
                     else
                     {

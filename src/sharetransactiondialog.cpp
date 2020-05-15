@@ -91,6 +91,10 @@ ShareTransactionDialog::ShareTransactionDialog(wxWindow* parent, Model_Translink
             m_share_entry = Model_Shareinfo::ShareEntry(translink_entry->CHECKINGACCOUNTID);
         }
     }
+    if (checking_entry)
+    {
+        m_checking_entry = checking_entry;
+    }
     long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX;
     Create(parent, wxID_ANY, m_dialog_heading, wxDefaultPosition, wxSize(400, 300), style);
 }
