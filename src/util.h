@@ -90,10 +90,11 @@ inline wxString mmListBoxItem::getName() const { return name_; }
 class mmTreeItemData : public wxTreeItemData
 {
 public:
-    mmTreeItemData(int id, bool isBudget)
+    mmTreeItemData(int id, bool isBudget, bool isReadOnly)
         : id_(id)
         , isString_(false)
         , isBudgetingNode_(isBudget)
+        , isReadOnly_(isReadOnly)
         , stringData_(wxString::Format("%i", id))
         , report_(nullptr)
     {}
@@ -101,6 +102,7 @@ public:
         : id_(0)
         , isString_(true)
         , isBudgetingNode_(false)
+        , isReadOnly_(false)
         , stringData_("report@" + string)
         , report_(report)
     {}
@@ -108,13 +110,15 @@ public:
         : id_(0)
         , isString_(true)
         , isBudgetingNode_(false)
+        , isReadOnly_(false)
         , stringData_("report@" + report->getReportTitle())
         , report_(report)
     {}
-    mmTreeItemData(const wxString& string)
+    mmTreeItemData(const wxString& string, bool isReadOnly)
         : id_(0)
         , isString_(true)
         , isBudgetingNode_(false)
+        , isReadOnly_(isReadOnly)
         , stringData_("item@" + string)
         , report_(nullptr)
     {}
@@ -126,11 +130,13 @@ public:
     mmPrintableBase* get_report() const;
     bool isStringData() const;
     bool isBudgetingNode() const;
+    bool isReadOnly() const;
 
 private:
     int id_;
     bool isString_;
     bool isBudgetingNode_;
+    bool isReadOnly_;
     wxString stringData_;
     wxSharedPtr<mmPrintableBase> report_;
 };
@@ -140,6 +146,7 @@ inline const wxString mmTreeItemData::getString() const { return stringData_; }
 inline mmPrintableBase* mmTreeItemData::get_report() const { return report_.get(); }
 inline bool mmTreeItemData::isStringData() const { return isString_; }
 inline bool mmTreeItemData::isBudgetingNode() const { return isBudgetingNode_; }
+inline bool mmTreeItemData::isReadOnly() const { return isReadOnly_; }
 
 //----------------------------------------------------------------------------
 
