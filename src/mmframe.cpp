@@ -848,13 +848,25 @@ void mmGUIFrame::updateNavTreeControl()
         }
 
         loadNavigationTreeItemsStatusFromJson();
-        if (!m_nav_tree_ctrl->ItemHasChildren(accounts)) m_nav_tree_ctrl->Delete(accounts);
-        if (!m_nav_tree_ctrl->ItemHasChildren(cardAccounts)) m_nav_tree_ctrl->Delete(cardAccounts);
-        if (!m_nav_tree_ctrl->ItemHasChildren(termAccounts)) m_nav_tree_ctrl->Delete(termAccounts);
-        if (!m_nav_tree_ctrl->ItemHasChildren(stocks)) m_nav_tree_ctrl->Delete(stocks);
-        if (!m_nav_tree_ctrl->ItemHasChildren(cashAccounts)) m_nav_tree_ctrl->Delete(cashAccounts);
-        if (!m_nav_tree_ctrl->ItemHasChildren(loanAccounts)) m_nav_tree_ctrl->Delete(loanAccounts);
 
+        if (!m_nav_tree_ctrl->ItemHasChildren(accounts)) {
+            m_nav_tree_ctrl->Delete(accounts);
+        }
+        if (!m_nav_tree_ctrl->ItemHasChildren(cardAccounts)) {
+            m_nav_tree_ctrl->Delete(cardAccounts);
+        }
+        if (!m_nav_tree_ctrl->ItemHasChildren(termAccounts)) {
+            m_nav_tree_ctrl->Delete(termAccounts);
+        }
+        if (!m_nav_tree_ctrl->ItemHasChildren(stocks)) {
+            m_nav_tree_ctrl->Delete(stocks);
+        }
+        if (!m_nav_tree_ctrl->ItemHasChildren(cashAccounts)) {
+            m_nav_tree_ctrl->Delete(cashAccounts);
+        }
+        if (!m_nav_tree_ctrl->ItemHasChildren(loanAccounts)) {
+            m_nav_tree_ctrl->Delete(loanAccounts);
+        }
         if (!m_nav_tree_ctrl->ItemHasChildren(shareAccounts) || m_hide_share_accounts)
         {
             m_nav_tree_ctrl->Delete(shareAccounts);

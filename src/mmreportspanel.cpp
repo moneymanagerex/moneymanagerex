@@ -16,13 +16,15 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#include "mmreportspanel.h"
+#include "assetdialog.h"
 #include "attachmentdialog.h"
+#include "mmreportspanel.h"
 #include "mmex.h"
 #include "mmframe.h"
 #include "mmcheckingpanel.h"
 #include "paths.h"
 #include "platfdep.h"
+#include "sharetransactiondialog.h"
 #include "transdialog.h"
 #include "util.h"
 #include "reports/htmlbuilder.h"
@@ -71,16 +73,48 @@ public:
         }
         else if (uri.StartsWith("trx:", &sData))
         {
-            long transID = -1;
-            if (sData.ToLong(&transID)) {
-                const Model_Checking::Data* transaction = Model_Checking::instance().get(transID);
+            long transId = -1;
+            if (sData.ToLong(&transId))
+            {
+                Model_Checking::Data* transaction = Model_Checking::instance().get(transId);
                 if (transaction && transaction->TRANSID > -1)
                 {
-                    mmTransDialog dlg(frame, -1, transID, 0);
-                    if (dlg.ShowModal() == wxID_OK)
+                    if (Model_Checking::foreignTransaction(*transaction))
                     {
-                        m_reportPanel->rb_->getHTMLText();
-                        m_reportPanel->saveReportText();
+                        //TODO
+#if 0
+                        Model_Translink::Data translink = Model_Translink::TranslinkRecord(transId);
+                        if (translink.LINKTYPE == Model_Attachment::reftype_desc(Model_Attachment::STOCK))
+                        {
+                            Model_Translink::Data translink = Model_Translink::TranslinkRecord(transId);
+                            static_cast<wxWindow*>(nullptr);
+                            ShareTransactionDialog dlg(static_cast<wxWindow*>(nullptr), &translink, &transaction);
+                            if (dlg.ShowModal() == wxID_OK)
+                            {
+                                m_reportPanel->rb_->getHTMLText();
+                                m_reportPanel->saveReportText();
+                            }
+                        }
+                        else
+                        {
+                            Model_Translink::Data translink = Model_Translink::TranslinkRecord(transId);
+                            mmAssetDialog dlg(static_cast<wxWindow*>(frame), frame, &translink, &transaction);
+                            if (dlg.ShowModal() == wxID_OK)
+                            {
+                                m_reportPanel->rb_->getHTMLText();
+                                m_reportPanel->saveReportText();
+                            }
+                        }
+#endif
+                    }
+                    else
+                    {
+                        mmTransDialog dlg(frame, -1, transId, 0);
+                        if (dlg.ShowModal() == wxID_OK)
+                        {
+                            m_reportPanel->rb_->getHTMLText();
+                            m_reportPanel->saveReportText();
+                        }
                     }
                     const auto name = getVFname4print("rep", m_reportPanel->getPrintableBase()->getHTMLText());
                     m_reportPanel->browser_->LoadURL(name);
