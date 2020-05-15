@@ -98,7 +98,7 @@ private:
     void OnAdvanceChecked(wxCommandEvent& event);
     void ActivateSplitTransactionsDlg();
     void SetTooltips();
-    void SetCategoryForPayee(const Model_Payee::Data *payee);
+    void SetCategoryForPayee(const Model_Payee::Data *payee = nullptr);
 private:
     mmTextCtrl* textNumber_;
     mmTextCtrl* m_textAmount;
