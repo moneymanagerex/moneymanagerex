@@ -367,15 +367,26 @@ bool mmAttachmentManage::CreateReadmeFile(const wxString& FolderPath)
     ReadmeText << wxTextFile::GetEOL();
     ReadmeText << _("Please do not remove, rename or modify manually directories and files.") << wxTextFile::GetEOL();
 
-    if (!wxFileExists(ReadmeFilePath))
+    if (wxFileExists(ReadmeFilePath))
     {
-        wxFile file(ReadmeFilePath, wxFile::write);
-
-        if (file.IsOpened())
+        return true;
+    }
+    else
+    {
+        try
         {
-            file.Write(ReadmeText);
-            file.Close();
-            return true;
+            wxFile file(ReadmeFilePath, wxFile::write);
+
+            if (file.IsOpened())
+            {
+                file.Write(ReadmeText);
+                file.Close();
+                return true;
+            }
+        }
+        catch (...)
+        {
+            return false;
         }
     }
 

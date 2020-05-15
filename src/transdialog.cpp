@@ -167,8 +167,7 @@ bool mmTransDialog::Create(wxWindow* parent, wxWindowID id, const wxString& capt
     CreateControls();
 
     SetIcon(mmex::getProgramIcon());
-    m_duplicate ? SetDialogTitle(_("Duplicate Transaction"))
-                : SetDialogTitle(m_new_trx ? _("New Transaction") : _("Edit Transaction"));
+    m_duplicate ? SetDialogTitle(_("Duplicate Transaction")) : SetDialogTitle(m_new_trx ? _("New Transaction") : _("Edit Transaction"));
 
     GetSizer()->Fit(this);
     GetSizer()->SetSizeHints(this);
@@ -229,7 +228,6 @@ void mmTransDialog::dataToControls()
                     if (convRateTo > 0)
                     {
                         const double convRate = Model_CurrencyHistory::getDayRate(m_currency->CURRENCYID, m_trx_data.TRANSDATE);
-
                         exch = convRate / convRateTo;
                     }
                 }
@@ -290,7 +288,8 @@ void mmTransDialog::dataToControls()
         wxString payee_tooltip = "";
         if (!m_transfer)
         {
-            if (!Model_Checking::is_deposit(m_trx_data.TRANSCODE)) {
+            if (!Model_Checking::is_deposit(m_trx_data.TRANSCODE))
+            {
                 payee_label_->SetLabelText(_("Payee"));
             }
             else {
@@ -298,7 +297,8 @@ void mmTransDialog::dataToControls()
             }
 
             account_label_->SetLabelText(_("Account"));
-            if (!Model_Checking::foreignTransaction(m_trx_data)) {
+            if (!Model_Checking::foreignTransaction(m_trx_data))
+            {
                 m_trx_data.TOACCOUNTID = -1;
             }
 
@@ -308,15 +308,32 @@ void mmTransDialog::dataToControls()
                 cbPayee_->AutoComplete(all_payees);
             }
 
-            if (m_new_trx && (Option::instance().TransPayeeSelection() == Option::UNUSED)) {
-                cbPayee_->Enable(false);
+            if (m_new_trx && !m_duplicate && Option::instance().TransPayeeSelection() == Option::LASTUSED)
+            {
+                Model_Account::Data* account = Model_Account::instance().get(cbAccount_->GetValue());
+                Model_Checking::Data_Set transactions = Model_Checking::instance().find(
+                    Model_Checking::TRANSCODE(Model_Checking::TRANSFER, NOT_EQUAL)
+                    , Model_Checking::ACCOUNTID(account->ACCOUNTID, EQUAL)
+                    , Model_Checking::TRANSDATE(wxDateTime::Today(), LESS_OR_EQUAL));
+
+                if (!transactions.empty()) {
+                    Model_Payee::Data* payee = Model_Payee::instance().get(transactions.back().PAYEEID);
+                    cbPayee_->ChangeValue(payee->PAYEENAME);
+                }
+            }
+
+            if (m_new_trx && (Option::instance().TransPayeeSelection() == Option::UNUSED))
+            {
                 cbPayee_->ChangeValue(_("Unknown"));
             }
 
             Model_Payee::Data* payee = Model_Payee::instance().get(m_trx_data.PAYEEID);
-            if (payee) {
+            if (payee)
+            {
                 cbPayee_->ChangeValue(payee->PAYEENAME);
             }
+
+            mmTransDialog::SetCategoryForPayee();
         }
         else //transfer
         {
@@ -371,7 +388,8 @@ void mmTransDialog::dataToControls()
             Model_Category::Data *category = Model_Category::instance().get(m_trx_data.CATEGID);
             Model_Subcategory::Data *subcategory = (Model_Subcategory::instance().get(m_trx_data.SUBCATEGID));
             fullCategoryName = Model_Category::full_name(category, subcategory);
-            if (fullCategoryName.IsEmpty()) {
+            if (fullCategoryName.IsEmpty())
+            {
                 fullCategoryName = _("Select Category");
             }
         }
@@ -413,8 +431,7 @@ void mmTransDialog::CreateControls()
     // Date --------------------------------------------
     long date_style = wxDP_DROPDOWN | wxDP_SHOWCENTURY;
 
-    dpc_ = new wxDatePickerCtrl(this, ID_DIALOG_TRANS_BUTTONDATE, wxDateTime::Today()
-        , wxDefaultPosition, wxDefaultSize, date_style);
+    dpc_ = new wxDatePickerCtrl(this, ID_DIALOG_TRANS_BUTTONDATE, wxDateTime::Today(), wxDefaultPosition, wxDefaultSize, date_style);
 
     //Text field for name of day of the week
     wxSize WeekDayNameMaxSize(wxDefaultSize);
@@ -424,8 +441,7 @@ void mmTransDialog::CreateControls()
         WeekDayNameMaxSize.IncTo(GetTextExtent(
             wxGetTranslation(wxDateTime::GetEnglishWeekDayName(d))+ " "));
 
-    itemStaticTextWeek_ = new wxStaticText(this, wxID_STATIC, "",
-        wxDefaultPosition, WeekDayNameMaxSize, wxST_NO_AUTORESIZE);
+    itemStaticTextWeek_ = new wxStaticText(this, wxID_STATIC, "", wxDefaultPosition, WeekDayNameMaxSize, wxST_NO_AUTORESIZE);
 
     wxStaticText* name_label = new wxStaticText(this, wxID_STATIC, _("Date"));
     flex_sizer->Add(name_label, g_flagsH);
@@ -458,8 +474,7 @@ void mmTransDialog::CreateControls()
 
     for (const auto& i : Model_Checking::all_type())
     {
-        if (i != Model_Checking::all_type()[Model_Checking::TRANSFER]
-            || Model_Account::instance().all().size() > 1)
+        if (i != Model_Checking::all_type()[Model_Checking::TRANSFER] || Model_Account::instance().all().size() > 1)
         {
             transaction_type_->Append(wxGetTranslation(i), new wxStringClientData(i));
         }
@@ -477,13 +492,9 @@ void mmTransDialog::CreateControls()
     typeSizer->Add(cAdvanced_, g_flagsH);
 
     // Amount Fields --------------------------------------------
-    m_textAmount = new mmTextCtrl(this, ID_DIALOG_TRANS_TEXTAMOUNT, ""
-        , wxDefaultPosition, wxDefaultSize
-        , wxALIGN_RIGHT | wxTE_PROCESS_ENTER, mmCalcValidator());
+    m_textAmount = new mmTextCtrl(this, ID_DIALOG_TRANS_TEXTAMOUNT, "", wxDefaultPosition, wxDefaultSize, wxALIGN_RIGHT | wxTE_PROCESS_ENTER, mmCalcValidator());
 
-    toTextAmount_ = new mmTextCtrl( this, ID_DIALOG_TRANS_TOTEXTAMOUNT, ""
-        , wxDefaultPosition, wxDefaultSize
-        , wxALIGN_RIGHT | wxTE_PROCESS_ENTER, mmCalcValidator());
+    toTextAmount_ = new mmTextCtrl( this, ID_DIALOG_TRANS_TOTEXTAMOUNT, "", wxDefaultPosition, wxDefaultSize, wxALIGN_RIGHT | wxTE_PROCESS_ENTER, mmCalcValidator());
 
     wxBoxSizer* amountSizer = new wxBoxSizer(wxHORIZONTAL);
     amountSizer->Add(m_textAmount, g_flagsExpand);
@@ -515,8 +526,7 @@ void mmTransDialog::CreateControls()
     flex_sizer->Add(cbPayee_, g_flagsExpand);
 
     // Split Category -------------------------------------------
-    cSplit_ = new wxCheckBox(this, wxID_FORWARD
-        , _("Split"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE );
+    cSplit_ = new wxCheckBox(this, wxID_FORWARD, _("Split"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE );
     cSplit_->SetValue(FALSE);
 
     flex_sizer->AddSpacer(20);  // Fill empty space.
@@ -531,14 +541,10 @@ void mmTransDialog::CreateControls()
     flex_sizer->Add(bCategory_, g_flagsExpand);
 
     // Number  ---------------------------------------------
-    textNumber_ = new mmTextCtrl(this
-        , ID_DIALOG_TRANS_TEXTNUMBER, "", wxDefaultPosition
-        , wxDefaultSize, wxTE_PROCESS_ENTER);
+    textNumber_ = new mmTextCtrl(this, ID_DIALOG_TRANS_TEXTNUMBER, "", wxDefaultPosition, wxDefaultSize, wxTE_PROCESS_ENTER);
 
-    wxBitmapButton* bAuto = new wxBitmapButton(this
-        , ID_DIALOG_TRANS_BUTTONTRANSNUM, mmBitmap(png::TRXNUM));
-    bAuto->Connect(ID_DIALOG_TRANS_BUTTONTRANSNUM,
-        wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(mmTransDialog::OnAutoTransNum), nullptr, this);
+    wxBitmapButton* bAuto = new wxBitmapButton(this, ID_DIALOG_TRANS_BUTTONTRANSNUM, mmBitmap(png::TRXNUM));
+    bAuto->Connect(ID_DIALOG_TRANS_BUTTONTRANSNUM, wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(mmTransDialog::OnAutoTransNum), nullptr, this);
     bAuto->SetToolTip(_("Populate Transaction #"));
 
     flex_sizer->Add(new wxStaticText(this, wxID_STATIC, _("Number")), g_flagsH);
@@ -548,9 +554,7 @@ void mmTransDialog::CreateControls()
     number_sizer->Add(bAuto, g_flagsH);
 
     // Attachments ---------------------------------------------
-    bAttachments_ = new wxBitmapButton(this, wxID_FILE
-        , mmBitmap(png::CLIP), wxDefaultPosition
-        , wxSize(cbPayee_->GetSize().GetY(), cbPayee_->GetSize().GetY()));
+    bAttachments_ = new wxBitmapButton(this, wxID_FILE, mmBitmap(png::CLIP), wxDefaultPosition, wxSize(cbPayee_->GetSize().GetY(), cbPayee_->GetSize().GetY()));
     bAttachments_->SetToolTip(_("Organize attachments of this transaction"));
 
     // Colours ---------------------------------------------
@@ -561,9 +565,7 @@ void mmTransDialog::CreateControls()
 
     // Notes ---------------------------------------------
     flex_sizer->Add(new wxStaticText(this, wxID_STATIC, _("Notes")), g_flagsH);
-    wxButton* bFrequentUsedNotes = new wxButton(this, ID_DIALOG_TRANS_BUTTON_FREQENTNOTES
-        , "...", wxDefaultPosition
-        , bAttachments_->GetSize(), 0);
+    wxButton* bFrequentUsedNotes = new wxButton(this, ID_DIALOG_TRANS_BUTTON_FREQENTNOTES, "...", wxDefaultPosition, bAttachments_->GetSize(), 0);
     bFrequentUsedNotes->SetToolTip(_("Select one of the frequently used notes"));
     bFrequentUsedNotes->Connect(ID_DIALOG_TRANS_BUTTON_FREQENTNOTES
         , wxEVT_COMMAND_BUTTON_CLICKED
@@ -576,8 +578,7 @@ void mmTransDialog::CreateControls()
     RightAlign_sizer->Add(bColours_, wxSizerFlags().Border(wxRIGHT, 5));
     RightAlign_sizer->Add(bFrequentUsedNotes, wxSizerFlags().Border(wxRIGHT, 5));
 
-    textNotes_ = new wxTextCtrl(this, ID_DIALOG_TRANS_TEXTNOTES
-        , "", wxDefaultPosition, wxSize(-1, dpc_->GetSize().GetHeight() * 5), wxTE_MULTILINE);
+    textNotes_ = new wxTextCtrl(this, ID_DIALOG_TRANS_TEXTNOTES, "", wxDefaultPosition, wxSize(-1, dpc_->GetSize().GetHeight() * 5), wxTE_MULTILINE);
     box_sizer_left->Add(textNotes_, wxSizerFlags(g_flagsExpand).Border(wxLEFT | wxRIGHT | wxBOTTOM, 10));
 
     /**********************************************************************************************
@@ -592,8 +593,7 @@ void mmTransDialog::CreateControls()
     wxButton* itemButtonOK = new wxButton(buttons_panel, wxID_OK, _("&OK "));
     itemButtonCancel_ = new wxButton(buttons_panel, wxID_CANCEL, wxGetTranslation(g_CancelLabel));
 
-    wxBitmapButton* itemButtonHide = new wxBitmapButton(buttons_panel
-        , ID_DIALOG_TRANS_CUSTOMFIELDS, mmBitmap(png::RIGHTARROWSIMPLE));
+    wxBitmapButton* itemButtonHide = new wxBitmapButton(buttons_panel, ID_DIALOG_TRANS_CUSTOMFIELDS, mmBitmap(png::RIGHTARROWSIMPLE));
     itemButtonHide->SetToolTip(_("Show/Hide custom fields window"));
     if (m_custom_fields->GetCustomFieldsCount() == 0) {
         itemButtonHide->Hide();
@@ -970,6 +970,31 @@ void mmTransDialog::OnAccountOrPayeeUpdated(wxCommandEvent& WXUNUSED(event))
 
 void mmTransDialog::SetCategoryForPayee(const Model_Payee::Data *payee)
 {
+    // Only for new transactions: if user do not want to use categories.
+    // If this is a Split Transaction, ignore displaying last category for payee
+    if (Option::instance().TransCategorySelection() == Option::UNUSED
+        && !categUpdated_ && m_local_splits.empty() && m_new_trx && !m_duplicate)
+    {
+        Model_Category::Data *category = Model_Category::instance().get(_("Unknown"));
+        if (!category)
+        {
+            category = Model_Category::instance().create();
+            category->CATEGNAME = _("Unknown");
+            Model_Category::instance().save(category);
+        }
+
+        m_trx_data.CATEGID = category->CATEGID;
+        bCategory_->SetLabelText(_("Unknown"));
+        return;
+    }
+
+    if (!payee)
+    {
+        payee = Model_Payee::instance().get(cbPayee_->GetValue());
+        if (!payee)
+            return;
+    }
+
     // Only for new transactions: if user want to autofill last category used for payee.
     // If this is a Split Transaction, ignore displaying last category for payee
     if (Option::instance().TransCategorySelection() == Option::LASTUSED
@@ -1043,9 +1068,7 @@ void mmTransDialog::OnAutoTransNum(wxCommandEvent& WXUNUSED(event))
 {
     auto d = Model_Checking::TRANSDATE(m_trx_data).Subtract(wxDateSpan::Days(300));
     double next_number = 0, temp_num;
-    const auto numbers = Model_Checking::instance()
-        .find(Model_Checking::ACCOUNTID(m_trx_data.ACCOUNTID, EQUAL)
-        , Model_Checking::TRANSDATE(d, GREATER_OR_EQUAL));
+    const auto numbers = Model_Checking::instance().find(Model_Checking::ACCOUNTID(m_trx_data.ACCOUNTID, EQUAL), Model_Checking::TRANSDATE(d, GREATER_OR_EQUAL));
     for (const auto &num : numbers)
     {
         if (num.TRANSACTIONNUMBER.empty() || !num.TRANSACTIONNUMBER.IsNumber()) continue;
@@ -1268,9 +1291,7 @@ void mmTransDialog::OnMoreFields(wxCommandEvent& WXUNUSED(event))
     wxBitmapButton* button = static_cast<wxBitmapButton*>(FindWindow(ID_DIALOG_TRANS_CUSTOMFIELDS));
 
     if (button)
-        button->SetBitmap(mmBitmap(m_custom_fields->IsCustomPanelShown()
-            ? png::RIGHTARROWSIMPLE
-            : png::LEFTARROWSIMPLE));
+        button->SetBitmap(mmBitmap(m_custom_fields->IsCustomPanelShown() ? png::RIGHTARROWSIMPLE : png::LEFTARROWSIMPLE));
 
     m_custom_fields->ShowHideCustomPanel();
 
@@ -1285,14 +1306,12 @@ void mmTransDialog::OnColourButton(wxCommandEvent& /*event*/)
 
     wxMenu* mainMenu = new wxMenu;
 
-    wxMenuItem* menuItem = new wxMenuItem(mainMenu, wxID_HIGHEST
-        , wxString::Format(_("Clear colour"), 0));
+    wxMenuItem* menuItem = new wxMenuItem(mainMenu, wxID_HIGHEST, wxString::Format(_("Clear colour"), 0));
     mainMenu->Append(menuItem);
 
     for (int i = 1; i <= 7; ++i)
     {
-        menuItem = new wxMenuItem(mainMenu, wxID_HIGHEST + i
-            , wxString::Format(_("Colour #%i"), i));
+        menuItem = new wxMenuItem(mainMenu, wxID_HIGHEST + i, wxString::Format(_("Colour #%i"), i));
 #ifdef __WXMSW__
         menuItem->SetBackgroundColour(getUDColour(i)); //only available for the wxMSW port.
 #endif

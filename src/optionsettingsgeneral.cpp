@@ -68,8 +68,7 @@ void OptionSettingsGeneral::Create()
     headerStaticBoxSizer->Add(new wxStaticText(this, wxID_STATIC, _("User Name")), g_flagsH);
 
     wxString userName = Model_Infotable::instance().GetStringInfo("USERNAME", "");
-    wxTextCtrl* userNameTextCtr = new wxTextCtrl(this, ID_DIALOG_OPTIONS_TEXTCTRL_USERNAME
-        , userName, wxDefaultPosition, wxSize(200, -1));
+    wxTextCtrl* userNameTextCtr = new wxTextCtrl(this, ID_DIALOG_OPTIONS_TEXTCTRL_USERNAME, userName, wxDefaultPosition, wxSize(200, -1));
     userNameTextCtr->SetToolTip(_("The User Name is used as a title for the database."));
     headerStaticBoxSizer->Add(userNameTextCtr, g_flagsExpand);
     generalPanelSizer->Add(headerStaticBoxSizer, wxSizerFlags(g_flagsExpand).Proportion(0));
