@@ -132,7 +132,6 @@ EVT_MENU(MENU_VIEW_LINKS, mmGUIFrame::OnViewLinks)
 EVT_MENU(MENU_VIEW_HIDE_SHARE_ACCOUNTS, mmGUIFrame::OnHideShareAccounts)
 EVT_MENU(MENU_VIEW_BUDGET_FINANCIAL_YEARS, mmGUIFrame::OnViewBudgetFinancialYears)
 EVT_MENU(MENU_VIEW_BUDGET_TRANSFER_TOTAL, mmGUIFrame::OnViewBudgetTransferTotal)
-EVT_MENU(MENU_VIEW_BUDGET_SETUP_SUMMARY, mmGUIFrame::OnViewBudgetSetupSummary)
 EVT_MENU(MENU_VIEW_BUDGET_CATEGORY_SUMMARY, mmGUIFrame::OnViewBudgetCategorySummary)
 EVT_MENU(MENU_VIEW_IGNORE_FUTURE_TRANSACTIONS, mmGUIFrame::OnViewIgnoreFutureTransactions)
 
@@ -608,7 +607,6 @@ void mmGUIFrame::menuEnableItems(bool enable)
     menuBar_->FindItem(MENU_VIEW_HIDE_SHARE_ACCOUNTS)->Enable(enable);
     menuBar_->FindItem(MENU_VIEW_BUDGET_FINANCIAL_YEARS)->Enable(enable);
     menuBar_->FindItem(MENU_VIEW_BUDGET_TRANSFER_TOTAL)->Enable(enable);
-    menuBar_->FindItem(MENU_VIEW_BUDGET_SETUP_SUMMARY)->Enable(enable);
     menuBar_->FindItem(MENU_VIEW_BUDGET_CATEGORY_SUMMARY)->Enable(enable);
     menuBar_->FindItem(MENU_VIEW_IGNORE_FUTURE_TRANSACTIONS)->Enable(enable);
 
@@ -1361,8 +1359,6 @@ void mmGUIFrame::createMenu()
         _("Budgets: As &Financial Years"), _("Display Budgets in Financial Year Format"), wxITEM_CHECK);
     wxMenuItem* menuItemBudgetTransferTotal = new wxMenuItem(menuView, MENU_VIEW_BUDGET_TRANSFER_TOTAL,
         _("Budgets: &Include Transfers in Totals"), _("Include the transfer transactions in the Budget Totals"), wxITEM_CHECK);
-    wxMenuItem* menuItemBudgetSetupWithoutSummary = new wxMenuItem(menuView, MENU_VIEW_BUDGET_SETUP_SUMMARY,
-        _("Budget Setup: &Without Summaries"), _("Display the Budget Setup without category summaries"), wxITEM_CHECK);
     wxMenuItem* menuItemBudgetCategorySummary = new wxMenuItem(menuView, MENU_VIEW_BUDGET_CATEGORY_SUMMARY,
         _("Budget Category Report: with &Summaries"), _("Include the category summaries in the Budget Category Summary"), wxITEM_CHECK);
     wxMenuItem* menuItemIgnoreFutureTransactions = new wxMenuItem(menuView, MENU_VIEW_IGNORE_FUTURE_TRANSACTIONS,
@@ -1375,7 +1371,6 @@ void mmGUIFrame::createMenu()
     menuView->Append(menuItemBudgetFinancialYears);
     menuView->Append(menuItemBudgetTransferTotal);
     menuView->AppendSeparator();
-    menuView->Append(menuItemBudgetSetupWithoutSummary);
     menuView->Append(menuItemBudgetCategorySummary);
     menuView->AppendSeparator();
     menuView->Append(menuItemIgnoreFutureTransactions);
@@ -1665,7 +1660,6 @@ void mmGUIFrame::createMenu()
 
     menuBar_->Check(MENU_VIEW_BUDGET_FINANCIAL_YEARS, Option::instance().BudgetFinancialYears());
     menuBar_->Check(MENU_VIEW_BUDGET_TRANSFER_TOTAL, Option::instance().BudgetIncludeTransfers());
-    menuBar_->Check(MENU_VIEW_BUDGET_SETUP_SUMMARY, Option::instance().BudgetSetupWithoutSummaries());
     menuBar_->Check(MENU_VIEW_BUDGET_CATEGORY_SUMMARY, Option::instance().BudgetReportWithSummaries());
     menuBar_->Check(MENU_VIEW_IGNORE_FUTURE_TRANSACTIONS, Option::instance().getIgnoreFutureTransactions());
 }
@@ -2461,7 +2455,6 @@ void mmGUIFrame::OnOptions(wxCommandEvent& /*event*/)
         //set the View Menu Option items the same as the options saved.
         menuBar_->FindItem(MENU_VIEW_BUDGET_FINANCIAL_YEARS)->Check(Option::instance().BudgetFinancialYears());
         menuBar_->FindItem(MENU_VIEW_BUDGET_TRANSFER_TOTAL)->Check(Option::instance().BudgetIncludeTransfers());
-        menuBar_->FindItem(MENU_VIEW_BUDGET_SETUP_SUMMARY)->Check(Option::instance().BudgetSetupWithoutSummaries());
         menuBar_->FindItem(MENU_VIEW_BUDGET_CATEGORY_SUMMARY)->Check(Option::instance().BudgetReportWithSummaries());
         menuBar_->FindItem(MENU_VIEW_IGNORE_FUTURE_TRANSACTIONS)->Check(Option::instance().getIgnoreFutureTransactions());
         menuBar_->Refresh();
@@ -3088,12 +3081,6 @@ void mmGUIFrame::OnViewBudgetFinancialYears(wxCommandEvent& WXUNUSED(event))
 void mmGUIFrame::OnViewBudgetTransferTotal(wxCommandEvent& WXUNUSED(event))
 {
     Option::instance().BudgetIncludeTransfers(!Option::instance().BudgetIncludeTransfers());
-    refreshPanelData();
-}
-
-void mmGUIFrame::OnViewBudgetSetupSummary(wxCommandEvent& WXUNUSED(event))
-{
-    Option::instance().BudgetSetupWithoutSummaries(!Option::instance().BudgetSetupWithoutSummaries());
     refreshPanelData();
 }
 

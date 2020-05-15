@@ -35,7 +35,6 @@ Option::Option()
     , m_databaseUpdated(false)
     , m_budgetFinancialYears(false)
     , m_budgetIncludeTransfers(false)
-    , m_budgetSetupWithoutSummaries(false)
     , m_budgetReportWithSummaries(true)
     , m_ignoreFutureTransactions(false)
     , m_currencyHistoryEnabled(false)
@@ -85,7 +84,6 @@ void Option::LoadOptions(bool include_infotable)
 
     m_budgetFinancialYears = Model_Setting::instance().GetBoolSetting(INIDB_BUDGET_FINANCIAL_YEARS, false);
     m_budgetIncludeTransfers = Model_Setting::instance().GetBoolSetting(INIDB_BUDGET_INCLUDE_TRANSFERS, false);
-    m_budgetSetupWithoutSummaries = Model_Setting::instance().GetBoolSetting(INIDB_BUDGET_SETUP_WITHOUT_SUMMARY, false);
     m_budgetReportWithSummaries = Model_Setting::instance().GetBoolSetting(INIDB_BUDGET_SUMMARY_WITHOUT_CATEG, true);
     m_ignoreFutureTransactions = Model_Setting::instance().GetBoolSetting(INIDB_IGNORE_FUTURE_TRANSACTIONS, false);
 
@@ -200,17 +198,6 @@ void Option::BudgetIncludeTransfers(bool value)
 bool Option::BudgetIncludeTransfers()
 {
     return m_budgetIncludeTransfers;
-}
-
-void Option::BudgetSetupWithoutSummaries(bool value)
-{
-    Model_Setting::instance().Set(INIDB_BUDGET_SETUP_WITHOUT_SUMMARY, value);
-    m_budgetSetupWithoutSummaries = value;
-}
-
-bool Option::BudgetSetupWithoutSummaries()
-{
-    return m_budgetSetupWithoutSummaries;
 }
 
 void Option::BudgetReportWithSummaries(bool value)

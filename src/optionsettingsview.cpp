@@ -108,12 +108,6 @@ void OptionSettingsView::Create()
     m_budget_include_transfers->SetValue(Option::instance().BudgetIncludeTransfers());
     viewsPanelSizer->Add(m_budget_include_transfers, g_flagsV);
 
-    m_budget_setup_without_summary = new wxCheckBox(this, wxID_STATIC
-        , _("View Budgets Setup Without Budget Summaries")
-        , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
-    m_budget_setup_without_summary->SetValue(Option::instance().BudgetSetupWithoutSummaries());
-    viewsPanelSizer->Add(m_budget_setup_without_summary, g_flagsV);
-
     m_budget_summary_without_category = new wxCheckBox(this, wxID_STATIC
         , _("View Budget Category Report with Summaries")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
@@ -202,7 +196,6 @@ bool OptionSettingsView::SaveSettings()
 
     Option::instance().BudgetFinancialYears(m_budget_financial_years->GetValue());
     Option::instance().BudgetIncludeTransfers(m_budget_include_transfers->GetValue());
-    Option::instance().BudgetSetupWithoutSummaries(m_budget_setup_without_summary->GetValue());
     Option::instance().BudgetReportWithSummaries(m_budget_summary_without_category->GetValue());
     Option::instance().IgnoreFutureTransactions(m_ignore_future_transactions->GetValue());
 

@@ -104,4 +104,4 @@ inline void mmCalcValidator::OnChar(wxKeyEvent& event)
         event.Skip();
 }
 
-inline wxObject* mmCalcValidator::Clone() const { return new mmCalcValidator(*this); }
+inline wxObject* mmCalcValidator::Clone() const { return new mmCalcValidator(); }

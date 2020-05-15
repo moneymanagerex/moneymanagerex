@@ -61,7 +61,6 @@ private:
 
     wxCheckBox* m_budget_financial_years;
     wxCheckBox* m_budget_include_transfers;
-    wxCheckBox* m_budget_setup_without_summary;
     wxCheckBox* m_budget_summary_without_category;
     wxCheckBox* m_ignore_future_transactions;
 
