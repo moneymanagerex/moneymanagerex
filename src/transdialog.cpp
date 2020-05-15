@@ -308,16 +308,12 @@ void mmTransDialog::dataToControls()
             }
 
             if (m_new_trx && (Option::instance().TransPayeeSelection() == Option::UNUSED)) {
-                cbPayee_->Enable(false);
                 cbPayee_->ChangeValue(_("Unknown"));
             }
 
             Model_Payee::Data* payee = Model_Payee::instance().get(m_trx_data.PAYEEID);
             if (payee) {
                 cbPayee_->ChangeValue(payee->PAYEENAME);
-                if (m_new_trx && (Option::instance().TransPayeeSelection() == Option::NONE)) {
-                    cbPayee_->ChangeValue("");
-                }
             }
         }
         else //transfer

@@ -80,25 +80,22 @@ void OptionSettingsView::Create()
     view_sizer1->Add(new wxStaticText(this, wxID_STATIC, _("HTML scale factor")), g_flagsH);
 
     int max = 300; int min = 25;
-    m_scale_factor = new wxSpinCtrl(this, wxID_ANY
-        , wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, min, max);
+    m_scale_factor = new wxSpinCtrl(this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, min, max);
 
     int vFontSize = Option::instance().getHtmlFontSize();
     m_scale_factor->SetValue(vFontSize);
     m_scale_factor->SetToolTip(_("Specify which scale factor is used for the report pages"));
     view_sizer1->Add(m_scale_factor, g_flagsH);
-    
+
     // Icon size
     int vIconSize = Option::instance().getIconSize();
     view_sizer1->Add(new wxStaticText(this, wxID_STATIC, _("Icons size")), g_flagsH);
-    m_icon_size = new wxSpinCtrl(this, wxID_RESIZE_FRAME
-        , wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 16, 48);
+    m_icon_size = new wxSpinCtrl(this, wxID_RESIZE_FRAME, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 16, 48);
     view_sizer1->Add(m_icon_size, g_flagsH);
     m_icon_size->SetValue(vIconSize);
 
     // Budget options
-    m_budget_financial_years = new wxCheckBox(this, wxID_STATIC, _("View Budgets as Financial Years")
-        , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
+    m_budget_financial_years = new wxCheckBox(this, wxID_STATIC, _("View Budgets as Financial Years"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     m_budget_financial_years->SetValue(Option::instance().BudgetFinancialYears());
     viewsPanelSizer->Add(m_budget_financial_years, g_flagsV);
 
@@ -121,7 +118,7 @@ void OptionSettingsView::Create()
     viewsPanelSizer->Add(m_budget_summary_without_category, g_flagsV);
 
     m_ignore_future_transactions = new wxCheckBox(this, wxID_STATIC
-        , _("View Reports without Future Transactions")
+        , _("Ignore Future Transactions")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     m_ignore_future_transactions->SetValue(Option::instance().getIgnoreFutureTransactions());
     viewsPanelSizer->Add(m_ignore_future_transactions, g_flagsV);
@@ -161,8 +158,7 @@ void OptionSettingsView::Create()
     m_UDFCB7->SetBackgroundColour(mmColors::userDefColor7);
     userColourSettingStBoxSizer->Add(m_UDFCB7, g_flagsH);
 
-    this->Connect(wxID_ANY, wxEVT_COMMAND_BUTTON_CLICKED
-        , wxCommandEventHandler(OptionSettingsView::OnNavTreeColorChanged), nullptr, this);
+    this->Connect(wxID_ANY, wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(OptionSettingsView::OnNavTreeColorChanged), nullptr, this);
 }
 
 void OptionSettingsView::OnNavTreeColorChanged(wxCommandEvent& event)

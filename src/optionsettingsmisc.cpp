@@ -100,13 +100,13 @@ void OptionSettingsMisc::Create()
         , wxDefaultPosition, wxSize(140, -1), default_values);
     defaultDateChoice->SetSelection(Option::instance().TransDateDefault());
 
+    default_values.Add(_("Unused"));
     wxChoice* defaultPayeeChoice = new wxChoice(this
         , ID_DIALOG_OPTIONS_DEFAULT_TRANSACTION_PAYEE
         , wxDefaultPosition, wxSize(140, -1), default_values);
     defaultPayeeChoice->SetSelection(Option::instance().TransPayeeSelection());
 
     default_values[1] = (_("Last used for payee"));
-    default_values.Add(_("Unused"));
     wxChoice* defaultCategoryChoice = new wxChoice(this
         , ID_DIALOG_OPTIONS_DEFAULT_TRANSACTION_CATEGORY
         , wxDefaultPosition, defaultPayeeChoice->GetSize(), default_values);
