@@ -188,7 +188,6 @@ private:
     void OnViewLinks(wxCommandEvent &event);
     void OnViewBudgetFinancialYears(wxCommandEvent& WXUNUSED(event));
     void OnViewBudgetTransferTotal(wxCommandEvent& WXUNUSED(event));
-    void OnViewBudgetSetupSummary(wxCommandEvent& WXUNUSED(event));
     void OnViewBudgetCategorySummary(wxCommandEvent& WXUNUSED(event));
     void OnViewIgnoreFutureTransactions(wxCommandEvent& WXUNUSED(event));
     void OnViewToolbarUpdateUI(wxUpdateUIEvent &event);

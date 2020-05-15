@@ -71,9 +71,6 @@ public:
 
     void BudgetIncludeTransfers(bool value);
     bool BudgetIncludeTransfers();
-    
-    void BudgetSetupWithoutSummaries(bool value);
-    bool BudgetSetupWithoutSummaries();
 
     void BudgetReportWithSummaries(bool value);
     bool BudgetReportWithSummaries();
@@ -130,7 +127,6 @@ private:
     bool m_databaseUpdated;
     bool m_budgetFinancialYears;            //INIDB_BUDGET_FINANCIAL_YEARS
     bool m_budgetIncludeTransfers;          //INIDB_BUDGET_INCLUDE_TRANSFERS
-    bool m_budgetSetupWithoutSummaries;     //INIDB_BUDGET_SETUP_WITHOUT_SUMMARY
     bool m_budgetReportWithSummaries;       //INIDB_BUDGET_SUMMARY_WITHOUT_CATEG
     bool m_ignoreFutureTransactions;        //INIDB_IGNORE_FUTURE_TRANSACTIONS
 

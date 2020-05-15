@@ -415,8 +415,10 @@ void Model_Checking::getFrequentUsedNotes(std::vector<wxString> &frequentNotes, 
 void Model_Checking::getEmptyTransaction(Data &data, int accountID)
 {
     data.TRANSID = -1;
-    wxDateTime trx_date = wxDateTime::Today();
-    if (Option::instance().TransDateDefault() != 0)
+    data.PAYEEID = -1;
+    wxDateTime todayDate = wxDate::Today();
+    wxDateTime trx_date = todayDate;
+    if (Option::instance().TransDateDefault() != Option::NONE)
     {
         auto trans = instance().find(ACCOUNTID(accountID), TRANSDATE(trx_date, LESS_OR_EQUAL));
         std::stable_sort(trans.begin(), trans.end(), SorterByTRANSDATE());
@@ -424,7 +426,7 @@ void Model_Checking::getEmptyTransaction(Data &data, int accountID)
         if (!trans.empty())
             trx_date = to_date(trans.begin()->TRANSDATE);
 
-        wxDateTime trx_date_b = wxDateTime::Today();
+        wxDateTime trx_date_b = todayDate;
         auto trans_b = instance().find(TOACCOUNTID(accountID), TRANSDATE(trx_date_b, LESS_OR_EQUAL));
         std::stable_sort(trans_b.begin(), trans_b.end(), SorterByTRANSDATE());
         std::reverse(trans_b.begin(), trans_b.end());
@@ -446,7 +448,20 @@ void Model_Checking::getEmptyTransaction(Data &data, int accountID)
     data.TRANSAMOUNT = 0;
     data.TOTRANSAMOUNT = 0;
     data.TRANSACTIONNUMBER = "";
-    if (Option::instance().TransCategorySelection() != Option::NONE)
+
+    if (Option::instance().TransPayeeSelection() == Option::LASTUSED) {
+        Model_Checking::Data_Set transactions = Model_Checking::instance().find(
+            TRANSCODE(TRANSFER, NOT_EQUAL)
+            , ACCOUNTID(accountID, EQUAL)
+            , TRANSDATE(todayDate, LESS_OR_EQUAL));
+
+        if (!transactions.empty()) {
+            data.PAYEEID = transactions.back().PAYEEID;
+        }
+    }
+
+    int categorySelection = Option::instance().TransCategorySelection();
+    if (categorySelection == Option::LASTUSED)
     {
         auto trx = instance().find(TRANSCODE(TRANSFER, NOT_EQUAL)
             , ACCOUNTID(accountID, EQUAL), TRANSDATE(trx_date, LESS_OR_EQUAL));

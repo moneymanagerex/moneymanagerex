@@ -358,17 +358,18 @@ const wxString htmlWidgetBillsAndDeposits::getHTMLText()
 //* Income vs Expenses *//
 const wxString htmlWidgetIncomeVsExpenses::getHTMLText()
 {
+    bool ignoreFuture = Option::instance().getIgnoreFutureTransactions();
     wxSharedPtr<mmDateRange> date_range;
-    if (Option::instance().getIgnoreFutureTransactions())
+    if (ignoreFuture)
         date_range = new mmCurrentMonthToDate;
     else
         date_range = new mmCurrentMonth;
 
+    wxLogDebug("%s - %s", date_range->start_date().FormatISODate(), date_range->end_date().FormatISODate());
+
     double tIncome = 0.0, tExpenses = 0.0;
     std::map<int, std::pair<double, double> > incomeExpensesStats;
 
-    //Initialization
-    bool ignoreFuture = Option::instance().getIgnoreFutureTransactions();
 
     //Calculations
     const auto &transactions = Model_Checking::instance().find(
@@ -380,11 +381,6 @@ const wxString htmlWidgetIncomeVsExpenses::getHTMLText()
 
     for (const auto& pBankTransaction : transactions)
     {
-        if (ignoreFuture)
-        {
-            if (Model_Checking::TRANSDATE(pBankTransaction).IsLaterThan(date_range->today()))
-                continue; //skip future dated transactions
-        }
 
         // Do not include asset or stock transfers in income expense calculations.
         if (Model_Checking::foreignTransactionAsTransfer(pBankTransaction))

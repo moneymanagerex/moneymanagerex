@@ -55,7 +55,7 @@ mmAttachmentDialog::mmAttachmentDialog (wxWindow* parent, const wxString& RefTyp
     ColName_[ATTACHMENT_DESCRIPTION] = _("Description");
     ColName_[ATTACHMENT_FILENAME] = _("File");
 
-    Create(parent);
+    Create(parent, name);
 
     const wxString AttachmentsFolder = mmex::getPathAttachment(mmAttachmentManage::InfotablePathSetting());
 

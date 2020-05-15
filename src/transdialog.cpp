@@ -165,18 +165,19 @@ bool mmTransDialog::Create(wxWindow* parent, wxWindowID id, const wxString& capt
 
     SetEvtHandlerEnabled(false);
     CreateControls();
-    SetEventHandlers();
-    SetEvtHandlerEnabled(true);
-
-    GetSizer()->Fit(this);
-    GetSizer()->SetSizeHints(this);
 
     SetIcon(mmex::getProgramIcon());
     m_duplicate ? SetDialogTitle(_("Duplicate Transaction"))
                 : SetDialogTitle(m_new_trx ? _("New Transaction") : _("Edit Transaction"));
 
+    GetSizer()->Fit(this);
+    GetSizer()->SetSizeHints(this);
     Centre();
     Fit();
+
+    SetEventHandlers();
+    SetEvtHandlerEnabled(true);
+
     return TRUE;
 }
 
@@ -369,7 +370,9 @@ void mmTransDialog::dataToControls()
             Model_Category::Data *category = Model_Category::instance().get(m_trx_data.CATEGID);
             Model_Subcategory::Data *subcategory = (Model_Subcategory::instance().get(m_trx_data.SUBCATEGID));
             fullCategoryName = Model_Category::full_name(category, subcategory);
-            if (fullCategoryName.IsEmpty()) fullCategoryName = _("Select Category");
+            if (fullCategoryName.IsEmpty()) {
+                fullCategoryName = _("Select Category");
+            }
         }
 
         bCategory_->SetLabelText(fullCategoryName);
@@ -429,7 +432,7 @@ void mmTransDialog::CreateControls()
     wxBoxSizer* date_sizer = new wxBoxSizer(wxHORIZONTAL);
     flex_sizer->Add(date_sizer);
     date_sizer->Add(dpc_, g_flagsH);
-#ifndef __WXMAC__
+#ifdef __WXMSW__
     wxSpinButton* spinCtrl = new wxSpinButton(this, ID_DIALOG_TRANS_DATE_SPINNER
         , wxDefaultPosition, wxSize(-1, dpc_->GetSize().GetHeight())
         , wxSP_VERTICAL | wxSP_ARROW_KEYS | wxSP_WRAP);
@@ -968,7 +971,7 @@ void mmTransDialog::SetCategoryForPayee(const Model_Payee::Data *payee)
 {
     // Only for new transactions: if user want to autofill last category used for payee.
     // If this is a Split Transaction, ignore displaying last category for payee
-    if (Option::instance().TransCategorySelection() != Option::NONE
+    if (Option::instance().TransCategorySelection() == Option::LASTUSED
         && !categUpdated_ && m_local_splits.empty() && m_new_trx && !m_duplicate)
     {
         // if payee has memory of last category used then display last category for payee

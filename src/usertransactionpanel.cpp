@@ -98,7 +98,7 @@ void UserTransactionPanel::Create()
     wxBoxSizer* date_sizer = new wxBoxSizer(wxHORIZONTAL);
     date_sizer->Add(m_date_selector, g_flagsH);
 
-#ifndef __WXMAC__
+#ifdef __WXMSW__
     wxSpinButton* date_controller = new wxSpinButton(this, ID_TRANS_DATE_CONTROLLER
         , wxDefaultPosition, spinCtrlSize, spinCtrlDirection | wxSP_ARROW_KEYS | wxSP_WRAP);
     date_controller->SetToolTip(_("Retard or advance the date of the transaction"));

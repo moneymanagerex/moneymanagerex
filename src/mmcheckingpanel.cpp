@@ -188,6 +188,9 @@ void mmCheckingPanel::filterTable()
     m_reconciled_balance = m_account_balance;
     m_filteredBalance = 0.0;
 
+    bool ignore_future = Option::instance().getIgnoreFutureTransactions();
+    const wxString today_date_string = wxDate::Today().FormatISODate();
+
     const auto splits = Model_Splittransaction::instance().get_all();
     const auto attachments = Model_Attachment::instance().get_all(Model_Attachment::TRANSACTION);
     for (const auto& tran : Model_Account::transaction(this->m_account))
@@ -198,6 +201,10 @@ void mmCheckingPanel::filterTable()
 
         if (Model_Checking::status(tran.STATUS) == Model_Checking::RECONCILED)
             m_reconciled_balance += transaction_amount;
+
+        if (ignore_future) {
+            if (tran.TRANSDATE > today_date_string) continue;
+        }
 
         if (m_transFilterActive)
         {
@@ -620,8 +627,7 @@ void mmCheckingPanel::initFilterSettings()
     wxString label = "";
     m_bitmapTransFilter->UnsetToolTip();
     mmDateRange* date_range = NULL;
-    bool show_future = !Option::instance().getIgnoreFutureTransactions();
-    const wxString& future_date_string = wxDateTime(31, wxDateTime::Dec, 9999).FormatISODate();
+
     m_begin_date = "";
     m_end_date = "";
 
@@ -631,15 +637,12 @@ void mmCheckingPanel::initFilterSettings()
         break;
     case MENU_VIEW_CURRENTMONTH:
         date_range = new mmCurrentMonth;
-        if (show_future) m_end_date = future_date_string;
         break;
     case MENU_VIEW_LAST30:
         date_range = new mmLast30Days;
-        if (show_future) m_end_date = future_date_string;
         break;
     case MENU_VIEW_LAST90:
         date_range = new mmLast90Days;
-        if (show_future) m_end_date = future_date_string;
         break;
     case MENU_VIEW_LASTMONTH:
         date_range = new mmLastMonth;
@@ -652,12 +655,10 @@ void mmCheckingPanel::initFilterSettings()
         break;
     case  MENU_VIEW_CURRENTYEAR:
         date_range = new mmCurrentYear;
-        if (show_future) m_end_date = future_date_string;
         break;
     case  MENU_VIEW_CURRENTFINANCIALYEAR:
         date_range = new mmCurrentFinancialYear(wxAtoi(Option::instance().FinancialYearStartDay())
             , wxAtoi(Option::instance().FinancialYearStartMonth()));
-        if (show_future) m_end_date = future_date_string;
         break;
     case  MENU_VIEW_LASTYEAR:
         date_range = new mmLastYear;
@@ -679,9 +680,7 @@ void mmCheckingPanel::initFilterSettings()
         m_bitmapTransFilter->SetToolTip(m_trans_filter_dlg->getDescriptionToolTip());
         m_transFilterActive = true;
         break;
-
     }
-
 
     if (date_range == NULL) {
         date_range = new mmAllTime;
