@@ -115,6 +115,7 @@ Greg Chapman
 2020
 Digital IT Consultant
 Adam Gallagher
+Dave Wetzler
 Neil Vincent
 Richard Watts
 Ruedi Kehl
@@ -123,6 +124,7 @@ Michael Ellis
 Thomas Smith
 Claude VINCENT
 Ehab Fanous
+Gregory Majewski
 Hubert Behmer
 LeRoy Strohl
 MARCO CANEPA
@@ -131,10 +133,12 @@ Kurt Tremp
 Michael Mileo
 Roger Gimbrere
 Jan Salomons
+John Taylor
 Christian BELAIR
 Betsy & Chuck
 Dennis Smith
 Eliezer Gomez Gomez
+EMMANOUIL MASTROPETROS
 James Pearsall
 John Weaving
 Kieron McGeever
@@ -143,9 +147,10 @@ Officer Young
 Sergio Zanatta
 Andreas Mueller
 Glenn Fowler
-Joan Warren
 Brian Crow
+Joan Warren
 Eric Laval
+Kostas Fatolas
 Roberto Pasqui
 Gerald Mead
 
