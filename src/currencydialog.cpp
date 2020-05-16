@@ -189,6 +189,8 @@ void mmCurrencyDialog::CreateControls()
     decTx_->SetMaxLength(1);
     itemFlexGridSizer3->Add(decTx_, g_flagsExpand);
 
+    chars.Add(" ");
+    valid.SetIncludes(chars);
     itemFlexGridSizer3->Add(new wxStaticText(this, wxID_STATIC, _("Grouping Char")), g_flagsH);
     grpTx_ = new wxTextCtrl(this, ID_DIALOG_CURRENCY, "", wxDefaultPosition, wxDefaultSize, 0L, valid);
     grpTx_->SetMaxLength(1);
