@@ -84,6 +84,7 @@ ShareTransactionDialog::ShareTransactionDialog(wxWindow* parent, Model_Translink
 {
     if (translink_entry)
     {
+        m_translink_entry = translink_entry;
         m_dialog_heading = _("Edit Share Transaction");
         m_stock = Model_Stock::instance().get(translink_entry->LINKRECORDID);
         if (translink_entry->LINKTYPE == Model_Attachment::reftype_desc(Model_Attachment::STOCK))
@@ -145,7 +146,7 @@ void ShareTransactionDialog::DataToControls()
     }
     else
     {
-        if (m_translink_entry && m_share_entry)
+        if (m_share_entry)
         {
             int precision = m_share_entry->SHARENUMBER == floor(m_share_entry->SHARENUMBER) ? 0 : Option::instance().SharePrecision();
             m_share_num_ctrl->SetValue(std::abs(m_share_entry->SHARENUMBER), precision);
@@ -153,10 +154,13 @@ void ShareTransactionDialog::DataToControls()
             m_share_commission_ctrl->SetValue(m_share_entry->SHARECOMMISSION, Option::instance().SharePrecision());
             m_share_lot_ctrl->SetValue(m_share_entry->SHARELOT);
 
-            Model_Checking::Data* checking_entry = Model_Checking::instance().get(m_translink_entry->CHECKINGACCOUNTID);
-            m_transaction_panel->TransactionDate(Model_Checking::TRANSDATE(checking_entry));
-            m_transaction_panel->SetTransactionValue(
-                (std::abs(m_share_entry->SHARENUMBER) * m_share_entry->SHAREPRICE) + m_share_entry->SHARECOMMISSION, true);
+            if (m_translink_entry)
+            {
+                Model_Checking::Data* checking_entry = Model_Checking::instance().get(m_translink_entry->CHECKINGACCOUNTID);
+                m_transaction_panel->TransactionDate(Model_Checking::TRANSDATE(checking_entry));
+                m_transaction_panel->SetTransactionValue(
+                    (std::abs(m_share_entry->SHARENUMBER) * m_share_entry->SHAREPRICE) + m_share_entry->SHARECOMMISSION, true);
+            }
         }
         else
         {
