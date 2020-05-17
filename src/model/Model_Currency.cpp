@@ -153,8 +153,7 @@ wxString Model_Currency::toCurrency(double value, const Data* currency, int prec
 {
     precision = precision >= 0 ? precision : (currency ? log10(currency->SCALE) : 2);
     wxString d2s = toString(value, currency, precision);
-    if (currency)
-    {
+    if (currency) {
         d2s.Prepend(currency->PFX_SYMBOL);
         d2s.Append(currency->SFX_SYMBOL);
     }
@@ -165,8 +164,9 @@ wxString Model_Currency::os_group_separator()
 {
     wxString sys_thousand_separator = " ";
     wxChar sep = ' ';
-    if (wxNumberFormatter::GetThousandsSeparatorIfUsed(&sep))
+    if (wxNumberFormatter::GetThousandsSeparatorIfUsed(&sep)) {
         sys_thousand_separator = wxString::Format("%c", sep);
+    }
     return sys_thousand_separator;
 }
 
@@ -175,8 +175,11 @@ wxString Model_Currency::toStringNoFormatting(double value, const Data* currency
     precision = (precision >= 0 ? precision : (currency ? log10(currency->SCALE) : 2));
     int style = wxNumberFormatter::Style_None;
     wxString s = wxNumberFormatter::ToString(value, precision, style);
-    if (s == "-0.00") s = "0.00";
-    else if (s == "-0.0") s = "0.0";
+
+    if (value >= 0.0 && s.SubString(1, 1) == "-") {
+        s.Remove(1);
+    }
+
     return s;
 }
 wxString Model_Currency::toString(double value, const Data* currency, int precision)
@@ -193,8 +196,11 @@ wxString Model_Currency::toString(double value, const Data* currency, int precis
         s.Replace("\x05", currency->DECIMAL_POINT);
     }
     
-    if (value >= 0.0 && s.SubString(1, 1) == "-")
+    if (value >= 0.0 && s.SubString(1, 1) == "-") {
         s.Remove(1);
+    }
+
+    wxLogDebug("%.2f -> %s", value, s);
 
     return s;
 }
