@@ -202,25 +202,26 @@ void OptionSettingsAttachment::OnAttachmentsSubfolderChanged(wxCommandEvent& eve
 
 bool OptionSettingsAttachment::SaveSettings()
 {
-    wxString attachmentFolder = mmex::getPathAttachment(m_attachments_path->GetValue().Trim());
+    wxString attachmentsFolder = mmex::getPathAttachment(m_attachments_path->GetValue().Trim());
 
-    if (attachmentFolder != wxEmptyString)
+    if (attachmentsFolder != wxEmptyString)
     {
-        if (!wxDirExists(attachmentFolder))
+        if (!wxDirExists(attachmentsFolder))
         {
-            if (!wxMkdir(attachmentFolder))
+            if (!wxMkdir(attachmentsFolder))
             {
                 return false;
             }
         }
 
-        if (!mmAttachmentManage::CreateReadmeFile(attachmentFolder))
+        if (!mmAttachmentManage::CreateReadmeFile(attachmentsFolder))
         {
             mmErrorDialogs::MessageError(this, _("Attachments folder it's not writable!"), _("Attachments folder"));
             return false;
         }
 
-        if (attachmentFolder != m_old_path)
+        wxString attachmentsFolderOld = mmex::getPathAttachment(m_old_path);
+        if (attachmentsFolder != m_old_path && wxDirExists(attachmentsFolderOld))
         {
             int MoveResponse = wxMessageBox(
                 wxString::Format("%s\n", _("Attachments path has been changed!"))
@@ -229,19 +230,19 @@ bool OptionSettingsAttachment::SaveSettings()
                 , wxYES_NO | wxYES_DEFAULT | wxICON_WARNING);
             if (MoveResponse == wxYES)
             {
-                if (!wxRenameFile(mmex::getPathAttachment(m_old_path), attachmentFolder))
+                if (!wxRenameFile(attachmentsFolderOld, attachmentsFolder))
                     wxMessageBox(
                     wxString::Format("%s\n\n", _("Error moving attachments folder: please move it manually!")) +
                     wxString::Format("%s: %s\n", _("Origin"), mmex::getPathAttachment(m_old_path)) +
-                    wxString::Format("%s: %s", _("Destination"), attachmentFolder)
+                    wxString::Format("%s: %s", _("Destination"), attachmentsFolder)
                     , _("Attachments folder migration")
                     , wxICON_ERROR);
             }
-            m_old_path = attachmentFolder;
+            m_old_path = attachmentsFolder;
         }
     }
 
-    Model_Infotable::instance().Set("ATTACHMENTSFOLDER:" + mmPlatformType(), attachmentFolder);
+    Model_Infotable::instance().Set("ATTACHMENTSFOLDER:" + mmPlatformType(), m_attachments_path->GetValue().Trim());
     Model_Infotable::instance().Set("ATTACHMENTSDELETE", m_delete_attachments->GetValue());
     Model_Infotable::instance().Set("ATTACHMENTSTRASH", m_trash_attachments->GetValue());
 
