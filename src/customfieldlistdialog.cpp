@@ -246,7 +246,7 @@ void mmCustomFieldListDialog::OnMenuSelected(wxCommandEvent& event)
     }
 }
 
-void mmCustomFieldListDialog::OnMagicButton(wxCommandEvent& event)
+void mmCustomFieldListDialog::OnMagicButton(wxCommandEvent& WXUNUSED(event))
 {
     wxDataViewEvent evt;
     OnItemRightClick(evt);
@@ -255,7 +255,7 @@ void mmCustomFieldListDialog::OnMagicButton(wxCommandEvent& event)
 void mmCustomFieldListDialog::OnItemRightClick(wxDataViewEvent& event)
 {
     wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, wxID_ANY) ;
-    evt.SetEventObject( this );
+    evt.SetEventObject(this);
 
     Model_CustomField::Data *field = Model_CustomField::instance().get(m_field_id);
 
@@ -278,17 +278,17 @@ void mmCustomFieldListDialog::OnItemRightClick(wxDataViewEvent& event)
     event.Skip();
 }
 
-void mmCustomFieldListDialog::OnListItemActivated(wxDataViewEvent& event)
+void mmCustomFieldListDialog::OnListItemActivated(wxDataViewEvent& WXUNUSED(event))
 {
     mmCustomFieldListDialog::EditField();
 }
 
-void mmCustomFieldListDialog::OnCancel(wxCommandEvent& /*event*/)
+void mmCustomFieldListDialog::OnCancel(wxCommandEvent& WXUNUSED(event))
 {
     EndModal(wxID_CANCEL);
 }
 
-void mmCustomFieldListDialog::OnOk(wxCommandEvent& /*event*/)
+void mmCustomFieldListDialog::OnOk(wxCommandEvent& WXUNUSED(event))
 {
     EndModal(wxID_OK);
 }

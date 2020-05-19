@@ -273,7 +273,7 @@ void mmAttachmentDialog::OnListItemSelected(wxDataViewEvent& event)
         m_attachment_id = static_cast<int>(attachmentListBox_->GetItemData(item));
 }
 
-void mmAttachmentDialog::OnListItemActivated(wxDataViewEvent& event)
+void mmAttachmentDialog::OnListItemActivated(wxDataViewEvent& WXUNUSED(event))
 {
     Model_Attachment::Data *attachment = Model_Attachment::instance().get(m_attachment_id);
     wxString attachmentFilePath = mmex::getPathAttachment(mmAttachmentManage::InfotablePathSetting())
