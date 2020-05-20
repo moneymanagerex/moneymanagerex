@@ -48,13 +48,13 @@
                 </dev>
                 <!--Assets-->
                 <div class = "container">
-                <table class='table'>
+                <table class="table">
                     <tfoot>
-                        <tr class='total'>
+                        <tr class="total">
                             <td>
-                                <a href='Assets:' id='assets_name' oncontextmenu='return false;'></a>
+                                <a href="Assets:" id="assets_name" oncontextmenu="return false;" target="_blank"></a>
                             </td>
-                            <td class='money' id='assets_value'></td>
+                            <td class="money" id="assets_value"></td>
                         </tr>
                     </tfoot>
                 </table>

@@ -331,7 +331,7 @@ const wxString htmlWidgetBillsAndDeposits::getHTMLText()
         static const wxString idStr = "BILLS_AND_DEPOSITS";
 
         output = "<table class='table'>\n<thead>\n<tr class='active'><th>";
-        output += wxString::Format("<a href=\"billsdeposits:\" oncontextmenu='return false;'>%s</a></th>\n<th></th>\n", title_);
+        output += wxString::Format("<a href=\"billsdeposits:\" oncontextmenu=\"return false;\" target=\"_blank\">%s</a></th>\n<th></th>\n", title_);
         output += wxString::Format("<th nowrap class='text-right sorttable_nosort'>%i <a id='%s_label' onclick=\"toggleTable('%s'); \" href='#%s' oncontextmenu='return false;'>[-]</a></th></tr>\n"
             , int(bd_days.size()), idStr, idStr, idStr);
         output += "</thead>\n";
@@ -660,7 +660,7 @@ const wxString htmlWidgetAccounts::displayAccounts(double& tBalance, int type = 
             (vAccts == VIEW_ACCOUNTS_ALL_STR)))
         {
             body += "<tr>";
-            body += wxString::Format("<td sorttable_customkey='*%s*' nowrap><a href='acct:%i' oncontextmenu='return false;'>%s</a></td>\n"
+            body += wxString::Format("<td sorttable_customkey=\"*%s*\" nowrap><a href=\"acct:%i\" oncontextmenu=\"return false;\" target=\"_blank\">%s</a></td>\n"
                 , account.ACCOUNTNAME, account.ACCOUNTID, account.ACCOUNTNAME);
             body += wxString::Format("<td class='money' sorttable_customkey='%f' nowrap>%s</td>\n", reconciledBal, Model_Currency::toCurrency(reconciledBal, currency));
             body += wxString::Format("<td class='money' sorttable_customkey='%f' colspan='2' nowrap>%s</td>\n", bal, Model_Currency::toCurrency(bal, currency));

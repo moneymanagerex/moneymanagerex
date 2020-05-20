@@ -110,7 +110,6 @@ void mmHomePagePanel::createControls()
 #endif
     browser_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new wxWebViewFSHandler("memory")));
 
-    Bind(wxEVT_WEBVIEW_NAVIGATING, &mmHomePagePanel::OnNavigating, this, browser_->GetId());
     Bind(wxEVT_WEBVIEW_NEWWINDOW, &mmHomePagePanel::OnNewWindow, this, browser_->GetId());
 
     itemBoxSizer2->Add(browser_, 1, wxGROW | wxALL, 0);
@@ -244,15 +243,21 @@ void mmHomePagePanel::OnLinkClicked(wxWebViewEvent& event)
     }
 }
 
-void mmHomePagePanel::OnNavigating(wxWebViewEvent& evt)
+void mmHomePagePanel::OnNewWindow(wxWebViewEvent& evt)
 {
     wxString uri = evt.GetURL();
     wxString sData;
-    if (uri.StartsWith("assets:", &sData))
+
+    wxRegEx pattern(R"(^https?:\/\/)");
+    if (pattern.Matches(uri))
+    {
+        wxLaunchDefaultBrowser(uri);
+    }
+    else if (uri.StartsWith("assets:", &sData))
     {
         m_frame->setNavTreeSection(_("Assets"));
-        wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_ASSETS);
-        m_frame->GetEventHandler()->AddPendingEvent(evt);
+        wxCommandEvent event(wxEVT_COMMAND_MENU_SELECTED, MENU_ASSETS);
+        m_frame->GetEventHandler()->AddPendingEvent(event);
     }
     else if (uri.StartsWith("billsdeposits:", &sData))
     {
@@ -284,14 +289,6 @@ void mmHomePagePanel::OnNavigating(wxWebViewEvent& evt)
             m_frame->GetEventHandler()->AddPendingEvent(event);
         }
     }
-
-    evt.Skip();
-}
-
-void mmHomePagePanel::OnNewWindow(wxWebViewEvent& evt)
-{
-    wxString uri = evt.GetURL();
-    wxLaunchDefaultBrowser(uri);
 
     evt.Skip();
 }

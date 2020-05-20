@@ -59,7 +59,6 @@ private:
     wxWebView* browser_;
     void createControls();
     void sortTable() {}
-    void OnNavigating(wxWebViewEvent& evt);
     void OnNewWindow(wxWebViewEvent& evt);
 
     wxString m_templateText;
