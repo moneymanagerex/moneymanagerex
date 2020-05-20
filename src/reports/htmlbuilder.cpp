@@ -77,7 +77,7 @@ namespace tags
     static const wxString TABLE_CELL = "    <td%s>";
     static const wxString MONEY_CELL = "    <td class='money'>";
     static const wxString TABLE_CELL_END = "</td>\n";
-    static const wxString TABLE_CELL_LINK = "<a href=\"%s\">%s</a>\n";
+    static const wxString TABLE_CELL_LINK = R"(<a href="%s" target="_blank">%s</a>)";
     static const wxString TABLE_HEADER = "<th%s>";
     static const wxString HEADER = "<h%i>%s</h%i>";
     static const wxString TABLE_HEADER_END = "</th>\n";

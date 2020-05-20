@@ -115,7 +115,7 @@ wxString mmReportTransactions::getHTMLText()
         wxString AttachmentsLink = "";
         if (Model_Attachment::instance().NrAttachments(AttRefType, transaction.TRANSID))
         {
-            AttachmentsLink = wxString::Format("<a href = \"attachment:%s|%d\">%s</a>",
+            AttachmentsLink = wxString::Format(R"(<a href = "attachment:%s|%d" target="_blank">%s</a>)",
                 AttRefType, transaction.TRANSID, mmAttachmentManage::GetAttachmentNoteSign());
         }
 
