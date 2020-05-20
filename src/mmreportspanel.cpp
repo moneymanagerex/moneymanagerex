@@ -347,7 +347,7 @@ void mmReportsPanel::CreateControls()
     browser_ = wxWebView::New(this, mmID_BROWSER);
     browser_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new wxWebViewFSHandler("memory")));
 
-    Bind(wxEVT_WEBVIEW_NAVIGATING, &mmReportsPanel::OnNavigating, this, browser_->GetId());
+    Bind(wxEVT_WEBVIEW_NEWWINDOW, &mmReportsPanel::OnNewWindow, this, browser_->GetId());
 
     itemBoxSizer2->Add(browser_, 1, wxGROW | wxALL, 1);
 }
@@ -430,7 +430,7 @@ void mmReportsPanel::OnShiftPressed(wxCommandEvent& event)
     }
 }
 
-void mmReportsPanel::OnNavigating(wxWebViewEvent& evt)
+void mmReportsPanel::OnNewWindow(wxWebViewEvent& evt)
 {
     wxString uri = evt.GetURL();
     wxString sData;
@@ -439,8 +439,6 @@ void mmReportsPanel::OnNavigating(wxWebViewEvent& evt)
     if (pattern.Matches(uri))
     {
         wxLaunchDefaultBrowser(uri);
-        wxCommandEvent event(wxEVT_COMMAND_MENU_SELECTED, MENU_REPORT_BUG);
-        m_frame->GetEventHandler()->AddPendingEvent(event);
     }
     else if (uri.StartsWith("trxid:", &sData))
     {

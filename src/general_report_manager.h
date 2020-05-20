@@ -96,6 +96,8 @@ private:
     void getSqlTableInfo(std::vector<std::pair<wxString, wxArrayString>> &sqlTableInfo);
     bool getSqlQuery(/*in*/ wxString& sql, /*out*/ std::vector <std::vector <wxString> > &sqlQueryData, wxString& SqlError);
     const wxString getTemplate(wxString& sql);
+    void OnNewWindow(wxWebViewEvent& evt);
+
     std::vector <std::vector <wxString> > m_sqlQueryData;
 
     wxSQLite3Database* m_db;

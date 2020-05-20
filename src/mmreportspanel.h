@@ -65,7 +65,7 @@ public:
     };
 
 private:
-    void OnNavigating(wxWebViewEvent& evt);
+    void OnNewWindow(wxWebViewEvent& evt);
     std::vector<mmDateRange*> m_all_date_ranges;
     wxChoice* m_date_ranges;
     wxDatePickerCtrl *m_start_date, *m_end_date;

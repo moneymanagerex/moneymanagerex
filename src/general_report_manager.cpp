@@ -398,6 +398,10 @@ void mmGeneralReportManager::createOutputTab(wxNotebook* editors_notebook, int t
     wxBoxSizer *out_sizer = new wxBoxSizer(wxVERTICAL);
     out_tab->SetSizer(out_sizer);
     browser_ = wxWebView::New(out_tab, ID_WEB);
+
+    browser_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new wxWebViewFSHandler("memory")));
+    Bind(wxEVT_WEBVIEW_NEWWINDOW, &mmGeneralReportManager::OnNewWindow, this, browser_->GetId());
+
     out_sizer->Add(browser_, g_flagsExpand);
     out_tab->SetSizerAndFit(out_sizer);
 }
@@ -1190,3 +1194,17 @@ void mmGeneralReportManager::OnBeginDrag(wxTreeEvent& (event))
     dragSource.DoDragDrop();
 }
 #endif // wxUSE_DRAG_AND_DROP
+
+void mmGeneralReportManager::OnNewWindow(wxWebViewEvent& evt)
+{
+    wxString uri = evt.GetURL();
+    wxString sData;
+
+    wxRegEx pattern(R"(^https?:\/\/)");
+    if (pattern.Matches(uri))
+    {
+        wxLaunchDefaultBrowser(uri);
+    }
+
+    evt.Skip();
+}
