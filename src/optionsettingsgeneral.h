@@ -51,6 +51,8 @@ private:
 
 private:
     mmGUIApp* m_app;
+    wxStaticBoxSizer* m_currencyStaticBoxSizer;
+
     wxChoice* m_date_format_choice;
     wxChoice* m_month_selection;
     wxStaticText* m_sample_date_text;
