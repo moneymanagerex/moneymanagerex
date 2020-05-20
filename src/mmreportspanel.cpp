@@ -31,92 +31,6 @@
 #include "model/allmodel.h"
 #include <wx/wrapsizer.h>
 
-class WebViewHandlerReportsPage : public wxWebViewHandler
-{
-public:
-    WebViewHandlerReportsPage(mmReportsPanel *panel, const wxString& protocol)
-        : wxWebViewHandler(protocol), m_reportPanel(panel)
-    {
-    }
-
-    virtual ~WebViewHandlerReportsPage()
-    {
-    }
-
-    virtual wxFSFile* GetFile(const wxString &uri)
-    {
-        mmGUIFrame* frame = m_reportPanel->m_frame;
-        wxString sData;
-        wxRegEx pattern(R"(^https?:\/\/)");
-        if (pattern.Matches(uri))
-        {
-            wxLaunchDefaultBrowser(uri);
-            wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_REPORT_BUG);
-            frame->GetEventHandler()->AddPendingEvent(evt);
-        }
-        else if (uri.StartsWith("trx:", &sData))
-        {
-            long transId = -1;
-            if (sData.ToLong(&transId))
-            {
-                Model_Checking::Data* transaction = Model_Checking::instance().get(transId);
-                if (transaction && transaction->TRANSID > -1)
-                {
-                    if (Model_Checking::foreignTransaction(*transaction))
-                    {
-                        Model_Translink::Data translink = Model_Translink::TranslinkRecord(transId);
-                        if (translink.LINKTYPE == Model_Attachment::reftype_desc(Model_Attachment::STOCK))
-                        {
-                            ShareTransactionDialog dlg(frame, &translink, transaction);
-                            if (dlg.ShowModal() == wxID_OK)
-                            {
-                                m_reportPanel->rb_->getHTMLText();
-                                m_reportPanel->saveReportText();
-                            }
-                        }
-                        else
-                        {
-                            mmAssetDialog dlg(frame, frame, &translink, transaction);
-                            if (dlg.ShowModal() == wxID_OK)
-                            {
-                                m_reportPanel->rb_->getHTMLText();
-                                m_reportPanel->saveReportText();
-                            }
-                        }
-                    }
-                    else
-                    {
-                        mmTransDialog dlg(frame, -1, transId, 0);
-                        if (dlg.ShowModal() == wxID_OK)
-                        {
-                            m_reportPanel->rb_->getHTMLText();
-                            m_reportPanel->saveReportText();
-                        }
-                    }
-                    const auto name = getVFname4print("rep", m_reportPanel->getPrintableBase()->getHTMLText());
-                    m_reportPanel->browser_->LoadURL(name);
-                }
-            }
-        }
-        else if (uri.StartsWith("attachment:", &sData))
-        {
-            const wxString RefType = sData.BeforeFirst('|');
-            int RefId = wxAtoi(sData.AfterFirst('|'));
-
-            if (Model_Attachment::instance().all_type().Index(RefType) != wxNOT_FOUND && RefId > 0)
-            {
-                mmAttachmentManage::OpenAttachmentFromPanelIcon(frame, RefType, RefId);
-                const auto name = getVFname4print("rep", m_reportPanel->getPrintableBase()->getHTMLText());
-                m_reportPanel->browser_->LoadURL(name);
-            }
-        }
-
-        return nullptr;
-    }
-private:
-    mmReportsPanel *m_reportPanel;
-};
-
 wxBEGIN_EVENT_TABLE(mmReportsPanel, wxPanel)
 EVT_CHOICE(ID_CHOICE_DATE_RANGE, mmReportsPanel::OnDateRangeChanged)
 EVT_CHOICE(ID_CHOICE_ACCOUNTS, mmReportsPanel::OnAccountChanged)
@@ -432,11 +346,8 @@ void mmReportsPanel::CreateControls()
 
     browser_ = wxWebView::New(this, mmID_BROWSER);
     browser_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new wxWebViewFSHandler("memory")));
-    browser_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new WebViewHandlerReportsPage(this, "trx")));
-    browser_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new WebViewHandlerReportsPage(this, "attachment")));
-    browser_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new WebViewHandlerReportsPage(this, "https")));
 
-    Bind(wxEVT_WEBVIEW_ERROR, &mmReportsPanel::OnError, this, browser_->GetId());
+    Bind(wxEVT_WEBVIEW_NAVIGATING, &mmReportsPanel::OnNavigating, this, browser_->GetId());
 
     itemBoxSizer2->Add(browser_, 1, wxGROW | wxALL, 1);
 }
@@ -519,12 +430,19 @@ void mmReportsPanel::OnShiftPressed(wxCommandEvent& event)
     }
 }
 
-void mmReportsPanel::OnError(wxWebViewEvent& evt)
+void mmReportsPanel::OnNavigating(wxWebViewEvent& evt)
 {
     wxString uri = evt.GetURL();
     wxString sData;
 
-    if (uri.StartsWith("trxid:", &sData))
+    wxRegEx pattern(R"(^https?:\/\/)");
+    if (pattern.Matches(uri))
+    {
+        wxLaunchDefaultBrowser(uri);
+        wxCommandEvent event(wxEVT_COMMAND_MENU_SELECTED, MENU_REPORT_BUG);
+        m_frame->GetEventHandler()->AddPendingEvent(event);
+    }
+    else if (uri.StartsWith("trxid:", &sData))
     {
         long transID = -1;
         if (sData.ToLong(&transID)) {
@@ -541,6 +459,62 @@ void mmReportsPanel::OnError(wxWebViewEvent& evt)
             }
         }
     }
+    else if (uri.StartsWith("trx:", &sData))
+    {
+        long transId = -1;
+        if (sData.ToLong(&transId))
+        {
+            Model_Checking::Data* transaction = Model_Checking::instance().get(transId);
+            if (transaction && transaction->TRANSID > -1)
+            {
+                if (Model_Checking::foreignTransaction(*transaction))
+                {
+                    Model_Translink::Data translink = Model_Translink::TranslinkRecord(transId);
+                    if (translink.LINKTYPE == Model_Attachment::reftype_desc(Model_Attachment::STOCK))
+                    {
+                        ShareTransactionDialog dlg(m_frame, &translink, transaction);
+                        if (dlg.ShowModal() == wxID_OK)
+                        {
+                            rb_->getHTMLText();
+                            saveReportText();
+                        }
+                    }
+                    else
+                    {
+                        mmAssetDialog dlg(m_frame, m_frame, &translink, transaction);
+                        if (dlg.ShowModal() == wxID_OK)
+                        {
+                            rb_->getHTMLText();
+                            saveReportText();
+                        }
+                    }
+                }
+                else
+                {
+                    mmTransDialog dlg(m_frame, -1, transId, 0);
+                    if (dlg.ShowModal() == wxID_OK)
+                    {
+                        rb_->getHTMLText();
+                        saveReportText();
+                    }
+                }
+                const auto name = getVFname4print("rep", getPrintableBase()->getHTMLText());
+                browser_->LoadURL(name);
+            }
+        }
+    }
+    else if (uri.StartsWith("attachment:", &sData))
+    {
+        const wxString RefType = sData.BeforeFirst('|');
+        int RefId = wxAtoi(sData.AfterFirst('|'));
 
-    evt.Veto();
+        if (Model_Attachment::instance().all_type().Index(RefType) != wxNOT_FOUND && RefId > 0)
+        {
+            mmAttachmentManage::OpenAttachmentFromPanelIcon(m_frame, RefType, RefId);
+            const auto name = getVFname4print("rep", getPrintableBase()->getHTMLText());
+            browser_->LoadURL(name);
+        }
+    }
+
+    evt.Skip();
 }

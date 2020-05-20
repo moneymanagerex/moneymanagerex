@@ -65,7 +65,7 @@ public:
     };
 
 private:
-    void OnError(wxWebViewEvent& evt);
+    void OnNavigating(wxWebViewEvent& evt);
     std::vector<mmDateRange*> m_all_date_ranges;
     wxChoice* m_date_ranges;
     wxDatePickerCtrl *m_start_date, *m_end_date;
@@ -73,8 +73,6 @@ private:
     mmPrintableBase* rb_;
     wxChoice* m_accounts;
     wxChoice* m_chart;
-
-    friend class WebViewHandlerReportsPage;
 
 private:
     void OnDateRangeChanged(wxCommandEvent& event);
