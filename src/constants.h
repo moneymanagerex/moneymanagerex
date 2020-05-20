@@ -63,13 +63,13 @@ namespace version
     extern bool isStable();
     extern const wxString generateProgramVersion
         (int vMajor, int vMinor, int vPatch, int vAlpha, int vBeta, int vRC);
-	int getDbLatestVersion();
+    int getDbLatestVersion();
 }
 
 namespace weblink
 {
     const wxString addReferralToURL(const wxString& BaseURL, const wxString& CampSource);
-	extern const wxString GA;
+    extern const wxString GA;
     extern const wxString WebSite;
     extern const wxString Update;
     extern const wxString Releases;
