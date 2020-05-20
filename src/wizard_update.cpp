@@ -56,34 +56,6 @@ const char* update_template = R"(
 </html>
 )";
 
-
-class WebViewHandlerUpdatePage : public wxWebViewHandler
-{
-public:
-    WebViewHandlerUpdatePage(mmUpdateWizard* parent, const wxString& protocol)
-        : wxWebViewHandler(protocol)
-        , parent_(parent)
-    {
-    }
-
-    virtual ~WebViewHandlerUpdatePage()
-    {
-    }
-
-    virtual wxFSFile* GetFile(const wxString &uri)
-    {
-        wxLaunchDefaultBrowser(uri);
-        wxWebView* browser = static_cast<wxWebView*>(parent_->FindWindow(wxID_CONTEXT_HELP));
-        if (browser) {
-            wxString name = browser->GetLabelText();
-            browser->LoadURL(name);
-        }
-        return nullptr;
-    }
-private:
-    mmUpdateWizard* parent_;
-};
-
 mmUpdateWizard::~mmUpdateWizard()
 {
     clearVFprintedFiles("rep");
@@ -154,10 +126,12 @@ void mmUpdateWizard::CreateControls(const Document& json_releases, wxArrayInt ne
         const auto body = md2html((r.HasMember("body") && r["body"].IsString())
             ? r["body"].GetString() : "");
 
-        wxString link = wxString::Format(R"(<a href="%s">%s</a>)", html_url, tag);
+        wxString link = wxString::Format(R"(<a href="%s" target="_blank">%s</a>)", html_url, tag);
         const wxString github = "https://github.com/moneymanagerex/moneymanagerex/releases/tag/";
         const wxString sf = "https://sourceforge.net/projects/moneymanagerex/files/";
-        if (link.Contains(github)) link.Replace(github, sf);
+        if (link.Contains(github)) {
+            link.Replace(github, sf);
+        }
         html += wxString::Format("%s<table class='table'><thead><tr><th>%s</th><th>%s</th><th>%s</th><th>%s</th></tr></thead>\n"
             , separator, _("Version"), _("Status"), _("Date"), _("Time"));
         html += wxString::Format("<tbody><tr class='success'><td>%s</td><td>%s</td><td>%s</td><td>%s</td></tr>"
@@ -179,7 +153,7 @@ void mmUpdateWizard::CreateControls(const Document& json_releases, wxArrayInt ne
     browser->EnableContextMenu(false);
 #endif
     browser->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new wxWebViewFSHandler("memory")));
-    browser->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new WebViewHandlerUpdatePage(this, "https")));
+    Bind(wxEVT_WEBVIEW_NEWWINDOW, &mmUpdateWizard::OnNavigating, this, browser->GetId());
 
     wxStaticText *tipsText = new wxStaticText(this, wxID_ANY, wxGetTranslation(TIPS[1]));
 
@@ -188,7 +162,6 @@ void mmUpdateWizard::CreateControls(const Document& json_releases, wxArrayInt ne
 
     const auto name = getVFname4print("rep", html);
     browser->LoadURL(name);
-    browser->SetLabelText(name);
 
     const wxString showAppStartString = wxString::Format(_("Show this window next time %s starts")
         , mmex::getProgramName());
@@ -206,6 +179,13 @@ void mmUpdateWizard::CreateControls(const Document& json_releases, wxArrayInt ne
     GetSizer()->Fit(this);
 }
 
+void mmUpdateWizard::OnNavigating(wxWebViewEvent& evt)
+{
+    wxString uri = evt.GetURL();
+    wxLaunchDefaultBrowser(uri);
+
+    evt.Skip();
+}
 
 struct Version
 {

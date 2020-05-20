@@ -17,10 +17,11 @@
  ********************************************************/
 #pragma once
 
-#include <wx/wizard.h>
-#include <wx/frame.h>
 #include "rapidjson/document.h"
 #include "option.h"
+#include <wx/webview.h>
+#include <wx/wizard.h>
+#include <wx/frame.h>
 
 using namespace rapidjson;
 
@@ -42,6 +43,7 @@ private:
     void CreateControls(const Document& json_releases, wxArrayInt new_releases);
     wxString top_version_;
     wxCheckBox* showUpdateCheckBox_;
+    void OnNavigating(wxWebViewEvent& evt);
 
     wxDECLARE_EVENT_TABLE();
 };

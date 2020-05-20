@@ -1140,9 +1140,9 @@ const wxString md2html(const wxString& md)
     // img with link
     // skip images hosted via unsupported https
     wxRegEx re(R"(\[!\[([^]]+)\]\(([ \t]*https:\/\/[^)]+)\)\]\(([^)]+)\))", wxRE_EXTENDED);
-    re.Replace(&body, R"(<a href="\3">\1</a>)");
+    re.Replace(&body, R"(<a href="\3" target="_blank">\1</a>)");
     re.Compile(R"(\[!\[([^]]+)\]\(([^)]+)\)\]\(([^)]+)\))", wxRE_EXTENDED);
-    re.Replace(&body, R"(<a href="\3"><img src="\2" alt="\1"></a>)");
+    re.Replace(&body, R"(<a href="\3" target="_blank"><img src="\2" alt="\1"></a>)");
 
     // img
     // skip images hosted via unsupported https
@@ -1153,11 +1153,11 @@ const wxString md2html(const wxString& md)
 
     // link
     re.Compile(R"(\[([^]]+)\]\(([^)]+)\))", wxRE_EXTENDED);
-    re.Replace(&body, R"(<a href="\2">\1</a>)");
+    re.Replace(&body, R"(<a href="\2" target="_blank">\1</a>)");
 
     // github issues #XXXX
     re.Compile(R"(#([0-9]{4,5}))", wxRE_EXTENDED);
-    re.Replace(&body, R"(<a href="https://github.com/moneymanagerex/moneymanagerex/issues/\1">#\1</a>)");
+    re.Replace(&body, R"(<a href="https://github.com/moneymanagerex/moneymanagerex/issues/\1" target="_blank">#\1</a>)");
 
     body.Replace("\n", "\n<p>");
 

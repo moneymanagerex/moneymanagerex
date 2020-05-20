@@ -236,7 +236,6 @@ void mmPanelBase::PrintPage()
 {
     //this->Freeze();
     wxWebView * htmlWindow = wxWebView::New(this, wxID_ANY);
-    htmlWindow->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new wxWebViewFSHandler("memory")));
     htmlWindow->SetPage(BuildPage(), "");
     htmlWindow->Print();
     htmlWindow->Destroy();
