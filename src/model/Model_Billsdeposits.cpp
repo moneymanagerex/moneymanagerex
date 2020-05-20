@@ -262,20 +262,20 @@ bool Model_Billsdeposits::allowExecution()
 
 bool Model_Billsdeposits::AllowTransaction(const Data& r, AccountBalance& bal)
 {
-	const int acct_id = r.ACCOUNTID;
+    const int acct_id = r.ACCOUNTID;
     Model_Account::Data* account = Model_Account::instance().get(acct_id);
-	double current_account_balance = 0;
+    double current_account_balance = 0;
 
-	AccountBalance::iterator itr_bal = bal.find(acct_id);
-	if (itr_bal != bal.end())
-	{
-		current_account_balance = itr_bal->second;
-	}
-	else
-	{
-		current_account_balance = Model_Account::balance(account);
-		bal[acct_id] = current_account_balance;
-	}
+    AccountBalance::iterator itr_bal = bal.find(acct_id);
+    if (itr_bal != bal.end())
+    {
+        current_account_balance = itr_bal->second;
+    }
+    else
+    {
+        current_account_balance = Model_Account::balance(account);
+        bal[acct_id] = current_account_balance;
+    }
 
     double new_value = r.TRANSAMOUNT;
 
@@ -304,10 +304,10 @@ bool Model_Billsdeposits::AllowTransaction(const Data& r, AccountBalance& bal)
         abort_transaction = false;
     }
 
-	if (!abort_transaction)
-	{
-		bal[acct_id] = new_value;
-	}
+    if (!abort_transaction)
+    {
+        bal[acct_id] = new_value;
+    }
 
     return !abort_transaction;
 }

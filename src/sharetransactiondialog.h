@@ -63,7 +63,7 @@ private:
     mmTextCtrl* m_share_lot_ctrl;
     mmTextCtrl* m_share_commission_ctrl;
     mmTextCtrl* m_notes_ctrl;
-	wxBitmapButton* m_attachments_btn;
+    wxBitmapButton* m_attachments_btn;
 
     UserTransactionPanel* m_transaction_panel;
     wxString m_dialog_heading;

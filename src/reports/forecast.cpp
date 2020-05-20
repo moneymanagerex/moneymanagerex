@@ -91,7 +91,7 @@ wxString mmReportForecast::getHTMLText()
         return _("Caught exception");
     }
 
-	return out;
+    return out;
 }
 
 const char * mmReportForecast::m_template = R"(
