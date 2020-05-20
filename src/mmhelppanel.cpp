@@ -87,6 +87,9 @@ void mmHelpPanel::CreateControls()
     m_frame->setHelpFileIndex();
     //wxLogDebug("%s", help_file);
     browser_ = wxWebView::New(this, wxID_ANY, help_file);
+
+    Bind(wxEVT_WEBVIEW_NEWWINDOW, &mmHelpPanel::OnNavigating, this, browser_->GetId());
+
     itemBoxSizer2->Add(browser_, 1, wxGROW | wxALL, 1);
 }
 
@@ -115,4 +118,12 @@ void mmHelpPanel::OnHelpPageForward(wxCommandEvent& /*event*/)
 void mmHelpPanel::PrintPage()
 {
     browser_->Print();
+}
+
+void mmHelpPanel::OnNavigating(wxWebViewEvent& evt)
+{
+    wxString uri = evt.GetURL();
+    wxLaunchDefaultBrowser(uri);
+
+    evt.Skip();
 }
