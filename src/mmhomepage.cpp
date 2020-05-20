@@ -86,8 +86,9 @@ const wxString htmlWidgetStocks::getHTMLText()
             if (Model_Account::type(account) != Model_Account::INVESTMENT) continue;
             if (Model_Account::status(account) != Model_Account::OPEN) continue;
             body += "<tr>";
-            body += wxString::Format("<td sorttable_customkey='*%s*'><a href='stock:%i' oncontextmenu='return false;'>%s</a></td>\n"
-                , account.ACCOUNTNAME, account.ACCOUNTID, account.ACCOUNTNAME);
+            body += wxString::Format("<td sorttable_customkey='*%s*'><a href='stock:%i' oncontextmenu='return false;'>%s</a>%s</td>\n"
+                , account.ACCOUNTNAME, account.ACCOUNTID, account.ACCOUNTNAME,
+                account.WEBSITE.empty() ? "" : wxString::Format("&nbsp;&nbsp;&nbsp;&nbsp;(<a href='%s' oncontextmenu='return false;' target='_blank'>WWW</a>)", account.WEBSITE));
             body += wxString::Format("<td class='money' sorttable_customkey='%f'>%s</td>\n"
                 , stockStats[account.ACCOUNTID].first
                 , Model_Account::toCurrency(stockStats[account.ACCOUNTID].first, &account));
@@ -660,8 +661,9 @@ const wxString htmlWidgetAccounts::displayAccounts(double& tBalance, int type = 
             (vAccts == VIEW_ACCOUNTS_ALL_STR)))
         {
             body += "<tr>";
-            body += wxString::Format("<td sorttable_customkey=\"*%s*\" nowrap><a href=\"acct:%i\" oncontextmenu=\"return false;\" target=\"_blank\">%s</a></td>\n"
-                , account.ACCOUNTNAME, account.ACCOUNTID, account.ACCOUNTNAME);
+            body += wxString::Format("<td sorttable_customkey=\"*%s*\" nowrap><a href=\"acct:%i\" oncontextmenu=\"return false;\" target=\"_blank\">%s</a>%s</td>\n"
+                , account.ACCOUNTNAME, account.ACCOUNTID, account.ACCOUNTNAME,
+                account.WEBSITE.empty() ? "" : wxString::Format("&nbsp;&nbsp;&nbsp;&nbsp;(<a href='%s' oncontextmenu='return false;' target='_blank'>WWW</a>)", account.WEBSITE));
             body += wxString::Format("<td class='money' sorttable_customkey='%f' nowrap>%s</td>\n", reconciledBal, Model_Currency::toCurrency(reconciledBal, currency));
             body += wxString::Format("<td class='money' sorttable_customkey='%f' colspan='2' nowrap>%s</td>\n", bal, Model_Currency::toCurrency(bal, currency));
             body += "</tr>\n";
