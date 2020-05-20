@@ -144,8 +144,8 @@ public:
     bool autoExecuteSilent();
     bool requireExecution();
     bool allowExecution();
-	typedef std::map<int, double> AccountBalance;
-	bool AllowTransaction(const Data& r, AccountBalance& bal);
+    typedef std::map<int, double> AccountBalance;
+    bool AllowTransaction(const Data& r, AccountBalance& bal);
 
 private:
     bool m_autoExecuteManual;

@@ -34,8 +34,8 @@ public:
     virtual ~mmPrintableBase();
     virtual wxString getHTMLText() = 0;
     virtual void RefreshData() {}
-	virtual const wxString getReportTitle() const;
-	virtual const wxString getFileName() const;
+    virtual const wxString getReportTitle() const;
+    virtual const wxString getFileName() const;
     virtual int report_parameters() { return RepParams::NONE; }
     void date_range(const mmDateRange* date_range, int selection);
     void initial_report(bool initial) { m_initial = initial; }

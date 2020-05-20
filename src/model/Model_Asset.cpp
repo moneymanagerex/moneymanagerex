@@ -142,8 +142,8 @@ double Model_Asset::value(const Data* r)
     double sum = r->VALUE;
     wxDate start_date = STARTDATE(r);
     const wxDate today = wxDate::Today();
-	wxTimeSpan diff_time = today - start_date;
-	double diff_time_in_days = static_cast<double>(diff_time.GetDays());
+    wxTimeSpan diff_time = today - start_date;
+    double diff_time_in_days = static_cast<double>(diff_time.GetDays());
     switch (rate(r))
     {
     case RATE_NONE:
