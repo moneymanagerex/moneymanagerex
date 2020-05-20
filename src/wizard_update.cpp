@@ -153,7 +153,7 @@ void mmUpdateWizard::CreateControls(const Document& json_releases, wxArrayInt ne
     browser->EnableContextMenu(false);
 #endif
     browser->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new wxWebViewFSHandler("memory")));
-    Bind(wxEVT_WEBVIEW_NEWWINDOW, &mmUpdateWizard::OnNavigating, this, browser->GetId());
+    Bind(wxEVT_WEBVIEW_NEWWINDOW, &mmUpdateWizard::OnNewWindow, this, browser->GetId());
 
     wxStaticText *tipsText = new wxStaticText(this, wxID_ANY, wxGetTranslation(TIPS[1]));
 
@@ -179,7 +179,7 @@ void mmUpdateWizard::CreateControls(const Document& json_releases, wxArrayInt ne
     GetSizer()->Fit(this);
 }
 
-void mmUpdateWizard::OnNavigating(wxWebViewEvent& evt)
+void mmUpdateWizard::OnNewWindow(wxWebViewEvent& evt)
 {
     wxString uri = evt.GetURL();
     wxLaunchDefaultBrowser(uri);

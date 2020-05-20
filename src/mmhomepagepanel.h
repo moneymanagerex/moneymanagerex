@@ -60,6 +60,7 @@ private:
     void createControls();
     void sortTable() {}
     void OnNavigating(wxWebViewEvent& evt);
+    void OnNewWindow(wxWebViewEvent& evt);
 
     wxString m_templateText;
     std::map <wxString, wxString> m_frames;

@@ -111,6 +111,7 @@ void mmHomePagePanel::createControls()
     browser_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new wxWebViewFSHandler("memory")));
 
     Bind(wxEVT_WEBVIEW_NAVIGATING, &mmHomePagePanel::OnNavigating, this, browser_->GetId());
+    Bind(wxEVT_WEBVIEW_NEWWINDOW, &mmHomePagePanel::OnNewWindow, this, browser_->GetId());
 
     itemBoxSizer2->Add(browser_, 1, wxGROW | wxALL, 0);
 }
@@ -283,6 +284,14 @@ void mmHomePagePanel::OnNavigating(wxWebViewEvent& evt)
             m_frame->GetEventHandler()->AddPendingEvent(event);
         }
     }
+
+    evt.Skip();
+}
+
+void mmHomePagePanel::OnNewWindow(wxWebViewEvent& evt)
+{
+    wxString uri = evt.GetURL();
+    wxLaunchDefaultBrowser(uri);
 
     evt.Skip();
 }
