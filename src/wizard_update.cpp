@@ -181,7 +181,7 @@ void mmUpdateWizard::CreateControls(const Document& json_releases, wxArrayInt ne
 
 void mmUpdateWizard::OnNewWindow(wxWebViewEvent& evt)
 {
-    wxString uri = evt.GetURL();
+    const wxString uri = evt.GetURL();
     wxLaunchDefaultBrowser(uri);
 
     evt.Skip();

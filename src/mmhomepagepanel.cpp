@@ -245,7 +245,7 @@ void mmHomePagePanel::OnLinkClicked(wxWebViewEvent& event)
 
 void mmHomePagePanel::OnNewWindow(wxWebViewEvent& evt)
 {
-    wxString uri = evt.GetURL();
+    const wxString uri = evt.GetURL();
     wxString sData;
 
     wxRegEx pattern(R"(^https?:\/\/)");

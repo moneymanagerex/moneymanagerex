@@ -432,7 +432,7 @@ void mmReportsPanel::OnShiftPressed(wxCommandEvent& event)
 
 void mmReportsPanel::OnNewWindow(wxWebViewEvent& evt)
 {
-    wxString uri = evt.GetURL();
+    const wxString uri = evt.GetURL();
     wxString sData;
 
     wxRegEx pattern(R"(^https?:\/\/)");

@@ -122,7 +122,7 @@ void mmHelpPanel::PrintPage()
 
 void mmHelpPanel::OnNewWindow(wxWebViewEvent& evt)
 {
-    wxString uri = evt.GetURL();
+    const wxString uri = evt.GetURL();
     wxLaunchDefaultBrowser(uri);
 
     evt.Skip();

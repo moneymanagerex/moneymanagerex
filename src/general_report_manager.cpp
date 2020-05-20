@@ -1197,8 +1197,7 @@ void mmGeneralReportManager::OnBeginDrag(wxTreeEvent& (event))
 
 void mmGeneralReportManager::OnNewWindow(wxWebViewEvent& evt)
 {
-    wxString uri = evt.GetURL();
-    wxString sData;
+    const wxString uri = evt.GetURL();
 
     wxRegEx pattern(R"(^https?:\/\/)");
     if (pattern.Matches(uri))
