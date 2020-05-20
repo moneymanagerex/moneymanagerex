@@ -57,6 +57,7 @@ private:
 
 private:
     Model_Account::Data* m_account;
+    wxNotebook* m_notebook;
     wxTextCtrl* m_textAccountName;
     wxTextCtrl* m_notesCtrl;
     mmTextCtrl* m_initbalance_ctrl;
