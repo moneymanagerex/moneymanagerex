@@ -54,23 +54,6 @@ public:
             wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_REPORT_BUG);
             frame->GetEventHandler()->AddPendingEvent(evt);
         }
-        else if (uri.StartsWith("trxid:", &sData))
-        {
-            long transID = -1;
-            if (sData.ToLong(&transID)) {
-                const Model_Checking::Data* transaction = Model_Checking::instance().get(transID);
-                if (transaction && transaction->TRANSID > -1)
-                {
-                    const Model_Account::Data* account = Model_Account::instance().get(transaction->ACCOUNTID);
-                    if (account) {
-                        frame->setAccountNavTreeSection(account->ACCOUNTNAME);
-                        frame->setGotoAccountID(transaction->ACCOUNTID, transID);
-                        wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_GOTOACCOUNT);
-                        frame->GetEventHandler()->AddPendingEvent(evt);
-                    }
-                }
-            }
-        }
         else if (uri.StartsWith("trx:", &sData))
         {
             long transId = -1;
@@ -449,10 +432,11 @@ void mmReportsPanel::CreateControls()
 
     browser_ = wxWebView::New(this, mmID_BROWSER);
     browser_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new wxWebViewFSHandler("memory")));
-    browser_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new WebViewHandlerReportsPage(this, "trxid")));
     browser_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new WebViewHandlerReportsPage(this, "trx")));
     browser_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new WebViewHandlerReportsPage(this, "attachment")));
     browser_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new WebViewHandlerReportsPage(this, "https")));
+
+    Bind(wxEVT_WEBVIEW_ERROR, &mmReportsPanel::OnError, this, browser_->GetId());
 
     itemBoxSizer2->Add(browser_, 1, wxGROW | wxALL, 1);
 }
@@ -533,4 +517,30 @@ void mmReportsPanel::OnShiftPressed(wxCommandEvent& event)
         rb_->setSelection(m_shift);
         saveReportText(false);
     }
+}
+
+void mmReportsPanel::OnError(wxWebViewEvent& evt)
+{
+    wxString uri = evt.GetURL();
+    wxString sData;
+
+    if (uri.StartsWith("trxid:", &sData))
+    {
+        long transID = -1;
+        if (sData.ToLong(&transID)) {
+            const Model_Checking::Data* transaction = Model_Checking::instance().get(transID);
+            if (transaction && transaction->TRANSID > -1)
+            {
+                const Model_Account::Data* account = Model_Account::instance().get(transaction->ACCOUNTID);
+                if (account) {
+                    m_frame->setAccountNavTreeSection(account->ACCOUNTNAME);
+                    m_frame->setGotoAccountID(transaction->ACCOUNTID, transID);
+                    wxCommandEvent event(wxEVT_COMMAND_MENU_SELECTED, MENU_GOTOACCOUNT);
+                    m_frame->GetEventHandler()->AddPendingEvent(event);
+                }
+            }
+        }
+    }
+
+    evt.Veto();
 }
