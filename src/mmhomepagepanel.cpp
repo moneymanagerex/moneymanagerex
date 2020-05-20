@@ -34,66 +34,6 @@ Copyright (C) 2014 - 2020 Nikolay Akimov
 
 #include "model/allmodel.h"
 
-class WebViewHandlerHomePage : public wxWebViewHandler
-{
-public:
-    WebViewHandlerHomePage(mmHomePagePanel *panel, const wxString& protocol)
-        : wxWebViewHandler(protocol)
-    {
-        m_reportPanel = panel;
-    }
-
-    virtual ~WebViewHandlerHomePage()
-    {
-    }
-
-    virtual wxFSFile* GetFile(const wxString &uri)
-    {
-        mmGUIFrame* frame = m_reportPanel->m_frame;
-        wxString sData;
-        if (uri.StartsWith("assets:", &sData))
-        {
-            frame->setNavTreeSection(_("Assets"));
-            wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_ASSETS);
-            frame->GetEventHandler()->AddPendingEvent(evt);
-        }
-        else if (uri.StartsWith("billsdeposits:", &sData))
-        {
-            frame->setNavTreeSection(_("Recurring Transactions"));
-            wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_BILLSDEPOSITS);
-            frame->GetEventHandler()->AddPendingEvent(evt);
-        }
-        else if (uri.StartsWith("acct:", &sData))
-        {
-            long id = -1;
-            sData.ToLong(&id);
-            const Model_Account::Data* account = Model_Account::instance().get(id);
-            if (account) {
-                frame->setGotoAccountID(id);
-                frame->setAccountNavTreeSection(account->ACCOUNTNAME);
-                wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_GOTOACCOUNT);
-                frame->GetEventHandler()->AddPendingEvent(evt);
-            }
-        }
-        else if (uri.StartsWith("stock:", &sData))
-        {
-            long id = -1;
-            sData.ToLong(&id);
-            const Model_Account::Data* account = Model_Account::instance().get(id);
-            if (account) {
-                frame->setGotoAccountID(id);
-                frame->setAccountNavTreeSection(account->ACCOUNTNAME);
-                wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_STOCKS);
-                frame->GetEventHandler()->AddPendingEvent(evt);
-            }
-        }
-
-        return nullptr;
-    }
-private:
-    mmHomePagePanel *m_reportPanel;
-};
-
 wxBEGIN_EVENT_TABLE(mmHomePagePanel, wxPanel)
 EVT_WEBVIEW_NAVIGATING(wxID_ANY, mmHomePagePanel::OnLinkClicked)
 wxEND_EVENT_TABLE()
@@ -169,10 +109,9 @@ void mmHomePagePanel::createControls()
     browser_->EnableContextMenu(false);
 #endif
     browser_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new wxWebViewFSHandler("memory")));
-    browser_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new WebViewHandlerHomePage(this, "assets")));
-    browser_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new WebViewHandlerHomePage(this, "billsdeposits")));
-    browser_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new WebViewHandlerHomePage(this, "acct")));
-    browser_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new WebViewHandlerHomePage(this, "stock")));
+
+    Bind(wxEVT_WEBVIEW_NAVIGATING, &mmHomePagePanel::OnNavigating, this, browser_->GetId());
+
     itemBoxSizer2->Add(browser_, 1, wxGROW | wxALL, 0);
 }
 
@@ -302,4 +241,48 @@ void mmHomePagePanel::OnLinkClicked(wxWebViewEvent& event)
 
         Model_Infotable::instance().Set("HOME_PAGE_STATUS", JSON_PrettyFormated(json_doc));
     }
+}
+
+void mmHomePagePanel::OnNavigating(wxWebViewEvent& evt)
+{
+    wxString uri = evt.GetURL();
+    wxString sData;
+    if (uri.StartsWith("assets:", &sData))
+    {
+        m_frame->setNavTreeSection(_("Assets"));
+        wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_ASSETS);
+        m_frame->GetEventHandler()->AddPendingEvent(evt);
+    }
+    else if (uri.StartsWith("billsdeposits:", &sData))
+    {
+        m_frame->setNavTreeSection(_("Recurring Transactions"));
+        wxCommandEvent event(wxEVT_COMMAND_MENU_SELECTED, MENU_BILLSDEPOSITS);
+        m_frame->GetEventHandler()->AddPendingEvent(event);
+    }
+    else if (uri.StartsWith("acct:", &sData))
+    {
+        long id = -1;
+        sData.ToLong(&id);
+        const Model_Account::Data* account = Model_Account::instance().get(id);
+        if (account) {
+            m_frame->setGotoAccountID(id);
+            m_frame->setAccountNavTreeSection(account->ACCOUNTNAME);
+            wxCommandEvent event(wxEVT_COMMAND_MENU_SELECTED, MENU_GOTOACCOUNT);
+            m_frame->GetEventHandler()->AddPendingEvent(event);
+        }
+    }
+    else if (uri.StartsWith("stock:", &sData))
+    {
+        long id = -1;
+        sData.ToLong(&id);
+        const Model_Account::Data* account = Model_Account::instance().get(id);
+        if (account) {
+            m_frame->setGotoAccountID(id);
+            m_frame->setAccountNavTreeSection(account->ACCOUNTNAME);
+            wxCommandEvent event(wxEVT_COMMAND_MENU_SELECTED, MENU_STOCKS);
+            m_frame->GetEventHandler()->AddPendingEvent(event);
+        }
+    }
+
+    evt.Skip();
 }

@@ -59,6 +59,7 @@ private:
     wxWebView* browser_;
     void createControls();
     void sortTable() {}
+    void OnNavigating(wxWebViewEvent& evt);
 
     wxString m_templateText;
     std::map <wxString, wxString> m_frames;
