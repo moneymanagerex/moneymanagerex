@@ -184,20 +184,23 @@ void mmReportsPanel::CreateControls()
     SetSizer(itemBoxSizer2);
 
     wxPanel* itemPanel3 = new wxPanel(this, wxID_ANY);
-    itemBoxSizer2->Add(itemPanel3, 0, wxGROW | wxALL, 5);
+    itemBoxSizer2->Add(itemPanel3, 0, wxGROW | wxALL, 0);
 
     wxWrapSizer* itemBoxSizerHeader = new wxWrapSizer();
     itemPanel3->SetSizer(itemBoxSizerHeader);
 
-    wxStaticText* itemStaticText9 = new wxStaticText(itemPanel3
-        , wxID_ANY, _("REPORTS"));
-    mmSetOwnFont(itemStaticText9, GetFont().Larger().Bold());
-    itemBoxSizerHeader->Add(itemStaticText9, 0, wxALL | wxALIGN_CENTER_VERTICAL, 1);
-    itemBoxSizerHeader->AddSpacer(30);
+    wxStaticText* itemStaticText9 = new wxStaticText(itemPanel3, wxID_ANY, "");
+    itemBoxSizerHeader->Add(itemStaticText9, 0, wxALL | wxALIGN_CENTER_VERTICAL, 2);
 
     if (rb_)
     {
         int rp = rb_->report_parameters();
+
+        if (rp == 0) {
+            itemPanel3->SetMinSize(wxSize(0, 0));
+            itemPanel3->Fit();
+        }
+
         if (rp & rb_->RepParams::DATE_RANGE)
         {
             wxStaticText* itemStaticTextH1 = new wxStaticText(itemPanel3
