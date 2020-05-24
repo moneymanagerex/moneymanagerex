@@ -24,8 +24,10 @@
 #include "option.h"
 #include <wx/numformatter.h>
 
+const double ROUNDING_ERROR_f32 = 0.000001;
+
 Model_Currency::Model_Currency()
-: Model<DB_Table_CURRENCYFORMATS_V1>()
+    : Model<DB_Table_CURRENCYFORMATS_V1>()
 {
 }
 
@@ -176,8 +178,8 @@ wxString Model_Currency::toStringNoFormatting(double value, const Data* currency
     int style = wxNumberFormatter::Style_None;
     wxString s = wxNumberFormatter::ToString(value, precision, style);
 
-    if (value >= 0.0 && s.SubString(1, 1) == "-") {
-        s.Remove(1);
+    if (value >= -ROUNDING_ERROR_f32 && s.Mid(0, 1) == "-") {
+        s = s.Mid(1);
     }
 
     return s;
@@ -195,12 +197,10 @@ wxString Model_Currency::toString(double value, const Data* currency, int precis
         s.Replace("\t", currency->GROUP_SEPARATOR);
         s.Replace("\x05", currency->DECIMAL_POINT);
     }
-    
-    if (value >= 0.0 && s.SubString(1, 1) == "-") {
-        s.Remove(1);
-    }
 
-    wxLogDebug("%.2f -> %s", value, s);
+    if (value >= -ROUNDING_ERROR_f32 && s.Mid(0, 1) == "-") {
+        s = s.Mid(1);
+    }
 
     return s;
 }
