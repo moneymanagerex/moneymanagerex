@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-05-25 14:20+0300\n"
-"PO-Revision-Date: 2020-05-25 12:30\n"
+"PO-Revision-Date: 2020-05-25 14:16\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Italian\n"
 "MIME-Version: 1.0\n"
@@ -326,7 +326,7 @@ msgstr "&Esci "
 #: appstartdialog.cpp:153
 #, c-format
 msgid "Open the previously opened database : %s"
-msgstr ""
+msgstr "Apri il database precedentemente aperto: %s"
 
 #: assetdialog.cpp:61 assetdialog.cpp:410 assetspanel.cpp:466
 msgid "New Asset"
@@ -1605,7 +1605,7 @@ msgstr "Le sottocategorie devono essere eliminate prima."
 #: categdialog.cpp:485
 #, c-format
 msgid "Enter a new name for '%s'"
-msgstr ""
+msgstr "Inserire un nuovo nome per '%s'"
 
 #: categdialog.cpp:486
 msgid "Edit Category"
@@ -1710,7 +1710,7 @@ msgstr "Mostra dalla data dell'estratto conto"
 
 #: constants.cpp:203
 msgid "ALL"
-msgstr ""
+msgstr "TUTTO"
 
 #: constants.cpp:204 mmframe.cpp:1259 mmframe.cpp:1677
 #: model/Model_Account.cpp:26
@@ -1731,7 +1731,7 @@ msgstr "Gestione Valute"
 
 #: currencydialog.cpp:96
 msgid "Currency name"
-msgstr ""
+msgstr "Nome della Valuta"
 
 #: currencydialog.cpp:155
 msgid "Currency Name"
@@ -1743,11 +1743,11 @@ msgstr "Simbolo Valuta"
 
 #: currencydialog.cpp:164
 msgid "Unit Name"
-msgstr ""
+msgstr "Nome Unità"
 
 #: currencydialog.cpp:168
 msgid "Cents Name"
-msgstr ""
+msgstr "Nome Centesimi"
 
 #: currencydialog.cpp:172
 msgid "Prefix Symbol"
@@ -1772,7 +1772,7 @@ msgstr "Scala"
 
 #: currencydialog.cpp:206 currencydialog.cpp:268
 msgid "Conversion to Base Rate"
-msgstr ""
+msgstr "Tasso di conversione"
 
 #: currencydialog.cpp:212
 msgid "Conversion rate will be used in case no currency history has been found for the currency"
@@ -1780,7 +1780,7 @@ msgstr ""
 
 #: currencydialog.cpp:214
 msgid "Fixed conversion rate"
-msgstr ""
+msgstr "Tasso di conversione fisso"
 
 #: currencydialog.cpp:219
 msgid "Value Display Sample:"
@@ -1802,7 +1802,7 @@ msgstr "Inserimento non valido"
 #: currencydialog.cpp:295
 #, c-format
 msgid "%.2f Shown As: %s"
-msgstr ""
+msgstr "%.2f Visualizzato come: %s"
 
 #: customfieldeditdialog.cpp:56
 msgid "New/Edit Custom Field"
@@ -1938,7 +1938,7 @@ msgstr "Vuoi svuotare i campi?\n"
 #: customfieldlistdialog.cpp:233
 #, c-format
 msgid "%i occurrences founded and replaced!"
-msgstr ""
+msgstr "%i occorrenze trovate e sostituite!"
 
 #: customfieldlistdialog.cpp:268
 msgid "&Massive content update "
@@ -2152,7 +2152,7 @@ msgstr "Profitti da investimento"
 #: dbupgrade.cpp:72
 #, c-format
 msgid "MMEX database upgrade to version %i failed!"
-msgstr ""
+msgstr "Aggiornamento database MMEX alla versione %i non riuscito!"
 
 #: dbupgrade.cpp:73
 msgid "Please restore DB from autocreated pre-upgrade backup and retry or contact MMEX support"
@@ -2176,7 +2176,7 @@ msgstr "Il database di MMEX versione %i non funziona con questa versione di MMEX
 #: dbupgrade.cpp:119
 #, c-format
 msgid "MMEX database succesfully upgraded to version %i"
-msgstr ""
+msgstr "Database MMEX aggiornato con successo alla versione %i"
 
 #: dbupgrade.cpp:120
 msgid "We suggest a database optimization under Tools -> Database -> Optimize"
