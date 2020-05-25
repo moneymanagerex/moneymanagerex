@@ -1,5 +1,0 @@
-files:
-  - source: /po/mmex.pot
-    translation: /po/%locale_with_underscore%.po
-    translation_replace: {"_SP" : ""}
-
