@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-05-25 14:20+0300\n"
-"PO-Revision-Date: 2020-05-25 12:30\n"
+"PO-Revision-Date: 2020-05-25 18:44\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Greek\n"
 "MIME-Version: 1.0\n"
@@ -29,7 +29,7 @@ msgstr "Άδεια χρήσης"
 #: mmframe.cpp:1891 mmframe.cpp:1893 stockdialog.cpp:798
 #, c-format
 msgid "%1$s - %2$s"
-msgstr ""
+msgstr "%1$s - %2$s"
 
 #: aboutdialog.cpp:149
 msgid "About"
@@ -271,11 +271,11 @@ msgstr "Νόμισμα"
 
 #: accountdialog.cpp:498
 msgid "Please insert a valid URL"
-msgstr ""
+msgstr "Παρακαλώ εισάγετε ένα έγκυρο URL"
 
 #: accountdialog.cpp:498
 msgid "Invalid URL"
-msgstr ""
+msgstr "Λανθασμένο URL"
 
 #: appstartdialog.cpp:99
 msgid "Open Last Opened Database"
@@ -429,7 +429,7 @@ msgstr ""
 
 #: assetdialog.cpp:402 sharetransactiondialog.cpp:429
 msgid "Invalid Transaction"
-msgstr ""
+msgstr "Μη έγκυρη συναλλαγή"
 
 #: assetdialog.cpp:409
 msgid "Asset Account not found.\n\n"
@@ -1509,7 +1509,7 @@ msgstr "Επεξεργασθείτε το όνομα μιας υπάρχουσα
 
 #: categdialog.cpp:236
 msgid "Delete an existing category. The category cannot be used by existing transactions."
-msgstr ""
+msgstr "Διαγραφής μιας υπάρχουσας κατηγορίας. Η κατηγορία δεν μπορεί να χρησιμοποιηθεί από υπάρχουσες συναλλαγές."
 
 #: categdialog.cpp:241 maincurrencydialog.cpp:211
 msgid "&Select"
@@ -1598,7 +1598,7 @@ msgstr ""
 #: categdialog.cpp:485
 #, c-format
 msgid "Enter a new name for '%s'"
-msgstr ""
+msgstr "Εισάγετε ένα νέο όνομα για %s'"
 
 #: categdialog.cpp:486
 msgid "Edit Category"
@@ -1703,7 +1703,7 @@ msgstr ""
 
 #: constants.cpp:203
 msgid "ALL"
-msgstr ""
+msgstr "ΟΛΑ"
 
 #: constants.cpp:204 mmframe.cpp:1259 mmframe.cpp:1677
 #: model/Model_Account.cpp:26
@@ -1724,7 +1724,7 @@ msgstr "Διαχειριστής νομίσματος"
 
 #: currencydialog.cpp:96
 msgid "Currency name"
-msgstr ""
+msgstr "Ονομασία συναλλάγματος"
 
 #: currencydialog.cpp:155
 msgid "Currency Name"
@@ -1736,7 +1736,7 @@ msgstr "Σύμβολο νομίσματος"
 
 #: currencydialog.cpp:164
 msgid "Unit Name"
-msgstr ""
+msgstr "Όνομα μονάδας"
 
 #: currencydialog.cpp:168
 msgid "Cents Name"
@@ -1765,7 +1765,7 @@ msgstr "Κλίμακα"
 
 #: currencydialog.cpp:206 currencydialog.cpp:268
 msgid "Conversion to Base Rate"
-msgstr ""
+msgstr "Μετατροπή σε Τιμή Βάσης"
 
 #: currencydialog.cpp:212
 msgid "Conversion rate will be used in case no currency history has been found for the currency"
@@ -1773,7 +1773,7 @@ msgstr ""
 
 #: currencydialog.cpp:214
 msgid "Fixed conversion rate"
-msgstr ""
+msgstr "Σταθερό ποσοστό μετατροπής"
 
 #: currencydialog.cpp:219
 msgid "Value Display Sample:"
@@ -1795,7 +1795,7 @@ msgstr "Μη έγκυρη εισαγωγή"
 #: currencydialog.cpp:295
 #, c-format
 msgid "%.2f Shown As: %s"
-msgstr ""
+msgstr "Το %.2f εμφανίζεται ως: %s"
 
 #: customfieldeditdialog.cpp:56
 msgid "New/Edit Custom Field"
@@ -2169,7 +2169,7 @@ msgstr ""
 
 #: dbupgrade.cpp:120
 msgid "We suggest a database optimization under Tools -> Database -> Optimize"
-msgstr ""
+msgstr "Προτείνουμε να γίνει βελτιστοποίηση της βάσης δεδομένων από Εργαλεία -> Βάση Δεδομένων -> Βελτιστοποίηση"
 
 #: dbupgrade.cpp:197
 msgid "Load debug file"
@@ -2177,7 +2177,7 @@ msgstr ""
 
 #: dbupgrade.cpp:204
 msgid "Wrong file type!"
-msgstr ""
+msgstr "Λανθασμένος τύπος αρχείου!"
 
 #: dbupgrade.cpp:204 dbupgrade.cpp:241 dbupgrade.cpp:248 dbupgrade.cpp:292
 #: dbupgrade.cpp:303
@@ -2190,7 +2190,7 @@ msgstr ""
 
 #: dbupgrade.cpp:248 dbupgrade.cpp:303
 msgid "Invalid file content, please contact MMEX support!"
-msgstr ""
+msgstr "Λανθασμένο περιεχόμενο αρχείου, παρακαλώ επικοινωνήστε με την υποστήριξη χρηστών του MMEX!"
 
 #: dbupgrade.cpp:255
 msgid "Send this log to MMEX support team:\n"
@@ -2211,7 +2211,7 @@ msgstr ""
 
 #: dbwrapper.cpp:70
 msgid "When database file opening:"
-msgstr ""
+msgstr "Όταν το αρχείο βάσης δεδομένων ανοίγει:"
 
 #: dbwrapper.cpp:74
 msgid "Can't open file"
@@ -2225,7 +2225,9 @@ msgstr "Πρέπει να καθορίσετε τη διαδρομή για μι
 msgid "An incorrect password given for an encrypted file \n\n"
 "or \n\n"
 " Attempt to open a File that is not a database file \n"
-msgstr ""
+msgstr "Ο κωδικός για το κρυπτογραφημένο αρχείο είναι λανθασμένος \n\n"
+"ή \n\n"
+" Προσπάθεια να ανοιχτεί ένα αρχείο που δεν είναι αρχείο βάσης δεδομένων \n"
 
 #: dbwrapper.cpp:82 import_export/qif_import_gui.cpp:855 webapp.cpp:120
 #, c-format
@@ -2306,7 +2308,7 @@ msgstr ""
 
 #: filtertransdialog.cpp:347
 msgid "&Clear "
-msgstr ""
+msgstr "&Απαλοιφή "
 
 #: filtertransdialog.cpp:822 filtertransdialog.cpp:837 reports/myusage.cpp:95
 #: webappdialog.cpp:194 webappdialog.cpp:199
@@ -2505,7 +2507,7 @@ msgstr ""
 
 #: general_report_manager.cpp:1171
 msgid "Parameters:"
-msgstr ""
+msgstr "Παράμετροι:"
 
 #: import_export/parsers.cpp:46 import_export/univcsvdialog.cpp:1529
 #: mmSimpleDialogs.cpp:253
@@ -2561,7 +2563,7 @@ msgstr "Εξαγωγή QIF"
 
 #: import_export/qif_export.cpp:47
 msgid "JSON Export"
-msgstr ""
+msgstr "Εξαγωγή JSON"
 
 #: import_export/qif_export.cpp:106
 msgid "Parameters"
@@ -2573,11 +2575,11 @@ msgstr ""
 
 #: import_export/qif_export.cpp:123
 msgid "QIF"
-msgstr ""
+msgstr "QIF"
 
 #: import_export/qif_export.cpp:124
 msgid "JSON"
-msgstr ""
+msgstr "JSON"
 
 #: import_export/qif_export.cpp:138 mmframe.cpp:2948 mmframe.cpp:2952
 #: mmframe.cpp:2971 mmframe.cpp:2975
@@ -2624,11 +2626,11 @@ msgstr ""
 
 #: import_export/qif_export.cpp:299
 msgid "Choose JSON data file to Export"
-msgstr ""
+msgstr "Επιλέξτε ένα αρχείο JSON για εξαγωγή"
 
 #: import_export/qif_export.cpp:301
 msgid "JSON Files (*.json)"
-msgstr ""
+msgstr "Αρχεία JSON (*.json)"
 
 #: import_export/qif_export.cpp:321
 msgid "No Account available for export"
@@ -2884,7 +2886,7 @@ msgstr "Επιλέξτε ένα αρχείο CSV για εξαγωγή"
 
 #: import_export/univcsvdialog.cpp:203
 msgid "Template name"
-msgstr ""
+msgstr "Όνομα προτύπου"
 
 #: import_export/univcsvdialog.cpp:208
 msgid "Save Template"
@@ -2984,7 +2986,7 @@ msgstr ""
 #: import_export/univcsvdialog.cpp:1784
 #, c-format
 msgid "Positive if type has '%s'"
-msgstr ""
+msgstr "Θετικό αν ο τύπος έχει %s"
 
 #: import_export/univcsvdialog.cpp:917
 msgid "Incorrect fields specified for import!"
@@ -3136,7 +3138,7 @@ msgstr ""
 
 #: import_export/univcsvdialog.cpp:1780
 msgid "Enter a value"
-msgstr ""
+msgstr "Εισάγετε μια τιμή"
 
 #: maincurrencydialog.cpp:78 reports/summarystocks.cpp:180 stockdialog.cpp:427
 #: stockspanel.cpp:94
@@ -3149,7 +3151,7 @@ msgstr ""
 
 #: maincurrencydialog.cpp:80
 msgid "Fixed Rate"
-msgstr ""
+msgstr "Σταθερή τιμή"
 
 #: maincurrencydialog.cpp:84 maincurrencydialog.cpp:357
 #: maincurrencydialog.cpp:428 maincurrencydialog.cpp:642
@@ -3175,7 +3177,7 @@ msgstr ""
 
 #: maincurrencydialog.cpp:251
 msgid "Diff."
-msgstr ""
+msgstr "Διαφορά."
 
 #: maincurrencydialog.cpp:267
 msgid "Specify the date of currency value"
@@ -3203,7 +3205,7 @@ msgstr ""
 
 #: maincurrencydialog.cpp:297
 msgid "Delete Currency Values history for unused currencies and days"
-msgstr ""
+msgstr "Διαγραφή ιστορικού Τιμών Ισοτιμίας για μη χρησιμοποιούμενα νομίσματα και ημέρες"
 
 #: maincurrencydialog.cpp:356
 msgid "Do you really want to delete the selected Currency?"
@@ -3217,7 +3219,8 @@ msgstr ""
 #, c-format
 msgid "Historic rates for %s found, but \"Use currency history\" in options is disabled:\n"
 "click no and enable it or click yes to remove all historic rates for %s"
-msgstr ""
+msgstr "Βρέθηκαν ιστορικές τιμές για το %s, αλλά το \"Χρησιμοποίησε το ιστορικό ισοτιμίας\" στις επιλογές έχει απενεργοποιηθεί:\n"
+"Πατήστε το όχι και ενεργοποιήστε το ή πατήστε το ναι για να αφαιρεθούν όλες οι ιστορικές τιμές για το %s"
 
 #: maincurrencydialog.cpp:438
 #, c-format
@@ -3279,19 +3282,19 @@ msgstr ""
 
 #: mmSimpleDialogs.cpp:177
 msgid "Subtract one year"
-msgstr ""
+msgstr "Αφαιρέστε ένα χρόνο"
 
 #: mmSimpleDialogs.cpp:178
 msgid "Subtract one month"
-msgstr ""
+msgstr "Αφαιρέστε ένα μήνα"
 
 #: mmSimpleDialogs.cpp:179
 msgid "Add one month"
-msgstr ""
+msgstr "Προσθέστε ένα μήνα"
 
 #: mmSimpleDialogs.cpp:180
 msgid "Add one year"
-msgstr ""
+msgstr "Προσθέστε ένα χρόνο"
 
 #: mmSimpleDialogs.cpp:237
 #, c-format
@@ -3366,7 +3369,7 @@ msgstr ""
 
 #: mmTextCtrl.cpp:69
 msgid "Invalid Value"
-msgstr ""
+msgstr "Μη έγκυρη τιμή"
 
 #: mmTextCtrl.cpp:96
 msgid "Please enter a positive or calculated value."
@@ -3813,7 +3816,7 @@ msgstr "&QIF αρχεία..."
 
 #: mmframe.cpp:1246 mmframe.cpp:1318
 msgid "&JSON Files..."
-msgstr ""
+msgstr "Αρχεία &JSON..."
 
 #: mmframe.cpp:1250 mmframe.cpp:1324
 msgid "Import from XML (Excel format)"
@@ -3865,7 +3868,7 @@ msgstr ""
 
 #: mmframe.cpp:1318
 msgid "Export to JSON"
-msgstr ""
+msgstr "Εξαγωγή σε JSON"
 
 #: mmframe.cpp:1319
 msgid "&Report to HTML"
@@ -3905,7 +3908,7 @@ msgstr ""
 
 #: mmframe.cpp:1339
 msgid "Quit this program"
-msgstr ""
+msgstr "Έξοδος από το πρόγραμμα"
 
 #: mmframe.cpp:1346
 msgid "&Toolbar"
@@ -3965,7 +3968,7 @@ msgstr "Να αγνοηθούν μελλοντικές συναλλαγές"
 
 #: mmframe.cpp:1375
 msgid "Toggle Fullscreen\tShift+F11"
-msgstr ""
+msgstr "Εναλλαγή σε πλήρη οθόνη\tShift+F11"
 
 #: mmframe.cpp:1376 mmframe.cpp:1710
 msgid "Toggle Fullscreen"
@@ -4001,7 +4004,7 @@ msgstr "Διαγραφή λογαριασμού από τη βάση δεδομ�
 
 #: mmframe.cpp:1440
 msgid "Download Rates..."
-msgstr ""
+msgstr "Κατεβάστε τις Ισοτιμίες..."
 
 #: mmframe.cpp:1440 mmframe.cpp:1707
 msgid "Download Currency and Stock rates"
@@ -4093,7 +4096,7 @@ msgstr "Εμφάνιση παραθύρου επιλογών"
 
 #: mmframe.cpp:1526
 msgid "Convert Encrypted &DB"
-msgstr ""
+msgstr "Μετατροπή Κρυπτογραφημένης &DB"
 
 #: mmframe.cpp:1527
 msgid "Convert Encrypted DB to Non-Encrypted DB"
@@ -4101,7 +4104,7 @@ msgstr ""
 
 #: mmframe.cpp:1530
 msgid "Change Encrypted &Password"
-msgstr ""
+msgstr "Αλλαγή κωδικού πρόσβασης κρυπτογράφησης"
 
 #: mmframe.cpp:1531
 msgid "Change the password of an encrypted database"
@@ -4273,7 +4276,7 @@ msgstr "Έλεγχος για &ενημερώσεις"
 
 #: mmframe.cpp:1637
 msgid "Check For Updates"
-msgstr ""
+msgstr "Ελέγχος Για Ενημερώσεις"
 
 #: mmframe.cpp:1642 mmframe.cpp:1716
 msgid "&About..."
@@ -4309,7 +4312,7 @@ msgstr "Νέος"
 
 #: mmframe.cpp:1680
 msgid "Account List"
-msgstr ""
+msgstr "Λίστα λογαριασμών"
 
 #: mmframe.cpp:1682
 msgid "Show Organize Categories Dialog"
@@ -4337,7 +4340,7 @@ msgstr ""
 
 #: mmframe.cpp:1707
 msgid "Download rates"
-msgstr ""
+msgstr "Κατεβάστε τις Ισοτιμίες"
 
 #: mmframe.cpp:1710
 msgid "Toggle Fullscreen\tF11"
@@ -4351,7 +4354,7 @@ msgstr ""
 
 #: mmframe.cpp:1772 mmframe.cpp:2002 mmframe.cpp:2135
 msgid "MMEX: Encrypted Database"
-msgstr ""
+msgstr "MMEX: Κρυπτογραφημένη Βάση Δεδομένων"
 
 #: mmframe.cpp:1806
 msgid "Have MMEX support provided you a debug/patch file?"
@@ -4363,7 +4366,7 @@ msgstr ""
 
 #: mmframe.cpp:1828 mmframe.cpp:1870
 msgid "No File opened"
-msgstr ""
+msgstr "Κανένα αρχείο δεν έχει ανοίξει"
 
 #: mmframe.cpp:1830
 msgid "Sorry. The Database version is too old or Database password is incorrect"
@@ -4383,7 +4386,7 @@ msgstr ""
 
 #: mmframe.cpp:1893
 msgid "portable mode"
-msgstr ""
+msgstr "φορητή έκδοση"
 
 #: mmframe.cpp:1929
 msgid "Database that you trying to open has been markrd as opened by another MMEX instance...\n"
@@ -5082,7 +5085,7 @@ msgstr ""
 
 #: optionsettingsgeneral.cpp:97
 msgid "Use currency history"
-msgstr ""
+msgstr "Χρησιμοποιήστε το ιστορικό ισοτιμίας"
 
 #: optionsettingsgeneral.cpp:99
 msgid "Select to use currency history (one rate for each day), deselect to use a fixed rate"

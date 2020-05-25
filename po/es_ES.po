@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-05-25 14:20+0300\n"
-"PO-Revision-Date: 2020-05-25 12:30\n"
+"PO-Revision-Date: 2020-05-25 18:18\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -326,7 +326,7 @@ msgstr "&Salir "
 #: appstartdialog.cpp:153
 #, c-format
 msgid "Open the previously opened database : %s"
-msgstr ""
+msgstr "Abrir base de datos abierta previamente: %s"
 
 #: assetdialog.cpp:61 assetdialog.cpp:410 assetspanel.cpp:466
 msgid "New Asset"
@@ -429,12 +429,12 @@ msgstr "&Cancelar "
 
 #: assetdialog.cpp:402 sharetransactiondialog.cpp:429
 msgid "Invalid Transaction"
-msgstr ""
-
+msgstr "Transacción no válida"
 #: assetdialog.cpp:409
 msgid "Asset Account not found.\n\n"
 "Would you want to create one?"
-msgstr ""
+msgstr "Cuenta de activo no encontrada.\n\n"
+"¿Quiere crear una?"
 
 #: assetspanel.cpp:58 billsdepositspanel.cpp:96 mmcheckingpanel.cpp:949
 #: reports/transactions.cpp:68 stockspanel.cpp:91
@@ -578,7 +578,8 @@ msgstr "Cambio en el valor: %s %s"
 #: assetspanel.cpp:768
 msgid "This asset does not have its own account\n\n"
 "Multiple transactions for this asset are not recommended."
-msgstr ""
+msgstr "Este activo no tiene su propia cuenta\n\n"
+"No se recomiendan múltiples transacciones para este activo."
 
 #: assetspanel.cpp:770
 msgid "Asset Management"
@@ -1514,7 +1515,7 @@ msgstr "Editar el nombre de una categoría existente"
 
 #: categdialog.cpp:236
 msgid "Delete an existing category. The category cannot be used by existing transactions."
-msgstr ""
+msgstr "Borrar una categoría existente. La categoría no puede estar en uso por ninguna transacción."
 
 #: categdialog.cpp:241 maincurrencydialog.cpp:211
 msgid "&Select"
@@ -1603,7 +1604,7 @@ msgstr "Las subcategorías deben ser eliminadas antes."
 #: categdialog.cpp:485
 #, c-format
 msgid "Enter a new name for '%s'"
-msgstr ""
+msgstr "Introducir un nuevo nombre para %s'"
 
 #: categdialog.cpp:486
 msgid "Edit Category"
@@ -1708,7 +1709,7 @@ msgstr "Ver desde la fecha establecida"
 
 #: constants.cpp:203
 msgid "ALL"
-msgstr ""
+msgstr "TODO"
 
 #: constants.cpp:204 mmframe.cpp:1259 mmframe.cpp:1677
 #: model/Model_Account.cpp:26
@@ -1729,7 +1730,7 @@ msgstr "Gestor de monedas"
 
 #: currencydialog.cpp:96
 msgid "Currency name"
-msgstr ""
+msgstr "Nombre de moneda"
 
 #: currencydialog.cpp:155
 msgid "Currency Name"
@@ -1741,11 +1742,11 @@ msgstr "Símbolo de la moneda"
 
 #: currencydialog.cpp:164
 msgid "Unit Name"
-msgstr ""
+msgstr "Nombre de Unidad"
 
 #: currencydialog.cpp:168
 msgid "Cents Name"
-msgstr ""
+msgstr "Nombre de céntimos"
 
 #: currencydialog.cpp:172
 msgid "Prefix Symbol"
@@ -1770,15 +1771,15 @@ msgstr "Escala"
 
 #: currencydialog.cpp:206 currencydialog.cpp:268
 msgid "Conversion to Base Rate"
-msgstr ""
+msgstr "Conversión a Tasa Base"
 
 #: currencydialog.cpp:212
 msgid "Conversion rate will be used in case no currency history has been found for the currency"
-msgstr ""
+msgstr "La tasa de conversión se utilizará en caso de que no se haya encontrado ningún historial de divisas para la moneda"
 
 #: currencydialog.cpp:214
 msgid "Fixed conversion rate"
-msgstr ""
+msgstr "Tasa de conversión fija"
 
 #: currencydialog.cpp:219
 msgid "Value Display Sample:"
@@ -1800,7 +1801,7 @@ msgstr "Entrada no válida"
 #: currencydialog.cpp:295
 #, c-format
 msgid "%.2f Shown As: %s"
-msgstr ""
+msgstr "%.2f se muestra como: %s"
 
 #: customfieldeditdialog.cpp:56
 msgid "New/Edit Custom Field"
@@ -1901,7 +1902,8 @@ msgstr "Confirmar eliminación de campo personalizado"
 #: customfieldlistdialog.cpp:194
 msgid "This function will massive update (search & replace for entire value, not inside value), please remind that there isn't any validation!\n"
 "Do you want to proceed?"
-msgstr ""
+msgstr "Esta función actualizará todo (buscar y reemplazar el valor completo, no una parte), ¡Por favor recuerde que no hay validación!\n"
+"¿Quiere continuar?"
 
 #: customfieldlistdialog.cpp:196
 msgid "Confirm Custom Field Content Update"
@@ -1935,7 +1937,7 @@ msgstr "¿Quiere actualizar los blancos?\n"
 #: customfieldlistdialog.cpp:233
 #, c-format
 msgid "%i occurrences founded and replaced!"
-msgstr ""
+msgstr "¡%i casos encontrados y reemplazados!"
 
 #: customfieldlistdialog.cpp:268
 msgid "&Massive content update "
@@ -2149,7 +2151,7 @@ msgstr "Ingresos de inversiones"
 #: dbupgrade.cpp:72
 #, c-format
 msgid "MMEX database upgrade to version %i failed!"
-msgstr ""
+msgstr "Error al actualizar la base de datos MMEX a la versión %i!"
 
 #: dbupgrade.cpp:73
 msgid "Please restore DB from autocreated pre-upgrade backup and retry or contact MMEX support"
@@ -2173,11 +2175,11 @@ msgstr "La versión %i de la base de datos de MMEX no funciona con esta versión
 #: dbupgrade.cpp:119
 #, c-format
 msgid "MMEX database succesfully upgraded to version %i"
-msgstr ""
+msgstr "Base de datos MMEX actualizada correctamente a la versión %i"
 
 #: dbupgrade.cpp:120
 msgid "We suggest a database optimization under Tools -> Database -> Optimize"
-msgstr ""
+msgstr "Sugerimos una optimización de la base de datos en Herramientas -> Base de datos -> Optimizar"
 
 #: dbupgrade.cpp:197
 msgid "Load debug file"
@@ -2185,7 +2187,7 @@ msgstr "Cargar archivo de depuración"
 
 #: dbupgrade.cpp:204
 msgid "Wrong file type!"
-msgstr ""
+msgstr "¡Tipo de archivo incorrecto!"
 
 #: dbupgrade.cpp:204 dbupgrade.cpp:241 dbupgrade.cpp:248 dbupgrade.cpp:292
 #: dbupgrade.cpp:303
@@ -2198,7 +2200,7 @@ msgstr "¡Error de consulta, por favor contacte con el soporte de MMEX!"
 
 #: dbupgrade.cpp:248 dbupgrade.cpp:303
 msgid "Invalid file content, please contact MMEX support!"
-msgstr ""
+msgstr "Contenido de archivo no válido, ¡Por favor, contacta con el soporte de MMEX!"
 
 #: dbupgrade.cpp:255
 msgid "Send this log to MMEX support team:\n"
@@ -2220,7 +2222,7 @@ msgstr "¡Mantenimiento de la BD completado, por favor cierre y vuelva a abrir M
 
 #: dbwrapper.cpp:70
 msgid "When database file opening:"
-msgstr ""
+msgstr "Cuando se abre el archivo de base de datos:"
 
 #: dbwrapper.cpp:74
 msgid "Can't open file"
@@ -2234,7 +2236,9 @@ msgstr "Debe especifar la ruta a otra base de datos"
 msgid "An incorrect password given for an encrypted file \n\n"
 "or \n\n"
 " Attempt to open a File that is not a database file \n"
-msgstr ""
+msgstr "Contraseña incorrecta para un archivo cifrado \n\n"
+"o \n\n"
+" Intento de abrir un archivo que no es una base de datos \n"
 
 #: dbwrapper.cpp:82 import_export/qif_import_gui.cpp:855 webapp.cpp:120
 #, c-format
@@ -2315,7 +2319,7 @@ msgstr "Rango de cantidad"
 
 #: filtertransdialog.cpp:347
 msgid "&Clear "
-msgstr ""
+msgstr "&Limpiar "
 
 #: filtertransdialog.cpp:822 filtertransdialog.cpp:837 reports/myusage.cpp:95
 #: webappdialog.cpp:194 webappdialog.cpp:199
@@ -2515,7 +2519,7 @@ msgstr "Elija el archivo para guardar como informe"
 
 #: general_report_manager.cpp:1171
 msgid "Parameters:"
-msgstr ""
+msgstr "Parámetros:"
 
 #: import_export/parsers.cpp:46 import_export/univcsvdialog.cpp:1529
 #: mmSimpleDialogs.cpp:253
@@ -2571,7 +2575,7 @@ msgstr "Exportar QIF"
 
 #: import_export/qif_export.cpp:47
 msgid "JSON Export"
-msgstr ""
+msgstr "Exportar JSON"
 
 #: import_export/qif_export.cpp:106
 msgid "Parameters"
@@ -2583,11 +2587,11 @@ msgstr "Informe"
 
 #: import_export/qif_export.cpp:123
 msgid "QIF"
-msgstr ""
+msgstr "QIF"
 
 #: import_export/qif_export.cpp:124
 msgid "JSON"
-msgstr ""
+msgstr "JSON"
 
 #: import_export/qif_export.cpp:138 mmframe.cpp:2948 mmframe.cpp:2952
 #: mmframe.cpp:2971 mmframe.cpp:2975
@@ -2634,11 +2638,11 @@ msgstr "Archivos QIF (*.qif)"
 
 #: import_export/qif_export.cpp:299
 msgid "Choose JSON data file to Export"
-msgstr ""
+msgstr "Seleccione archivo JSON a exportar"
 
 #: import_export/qif_export.cpp:301
 msgid "JSON Files (*.json)"
-msgstr ""
+msgstr "Archivos JSON (*.json)"
 
 #: import_export/qif_export.cpp:321
 msgid "No Account available for export"
@@ -2894,7 +2898,7 @@ msgstr "Seleccionar el fichero CSV a exportar"
 
 #: import_export/univcsvdialog.cpp:203
 msgid "Template name"
-msgstr ""
+msgstr "Nombre de plantilla"
 
 #: import_export/univcsvdialog.cpp:208
 msgid "Save Template"
@@ -2995,7 +2999,7 @@ msgstr "La cuenta no existe"
 #: import_export/univcsvdialog.cpp:1784
 #, c-format
 msgid "Positive if type has '%s'"
-msgstr ""
+msgstr "Positivo si el tipo tiene '%s'"
 
 #: import_export/univcsvdialog.cpp:917
 msgid "Incorrect fields specified for import!"
@@ -3143,11 +3147,12 @@ msgstr "Archivos CSV (*.csv)"
 
 #: import_export/univcsvdialog.cpp:1780
 msgid "Please, type the word indicating positive values in your CSV file, e.g. 'debit'"
-msgstr ""
+
+msgstr "Por favor, escriba la palabra que indica valores positivos en su archivo CSV, por ejemplo 'debit'"
 
 #: import_export/univcsvdialog.cpp:1780
 msgid "Enter a value"
-msgstr ""
+msgstr "Introduzca un valor"
 
 #: maincurrencydialog.cpp:78 reports/summarystocks.cpp:180 stockdialog.cpp:427
 #: stockspanel.cpp:94
@@ -3160,7 +3165,7 @@ msgstr "Último tipo"
 
 #: maincurrencydialog.cpp:80
 msgid "Fixed Rate"
-msgstr ""
+msgstr "Tarifa fija"
 
 #: maincurrencydialog.cpp:84 maincurrencydialog.cpp:357
 #: maincurrencydialog.cpp:428 maincurrencydialog.cpp:642
