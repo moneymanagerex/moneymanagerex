@@ -403,8 +403,10 @@ void mmMainCurrencyDialog::OnListItemSelected(wxDataViewEvent& event)
                 }
                 else if (Model_CurrencyHistory::instance().find(Model_CurrencyHistory::CURRENCYID(m_currency_id)).size() > 0)
                 {
-                    if (wxMessageBox(wxString::Format(_("Historic rates for %s found, but \"Use currency history\" in options is disabled, click no and enable it or click yes to remove all historic rates for %s"),
-                        currency->CURRENCY_SYMBOL), _("Currency Dialog")
+                    if (wxMessageBox(wxString::Format(_(
+                        "Historic rates for %s found, but \"Use currency history\" in options is disabled:\n"
+                        "click no and enable it or click yes to remove all historic rates for %s"),
+                        currency->CURRENCY_SYMBOL, currency->CURRENCY_SYMBOL), _("Currency Dialog")
                         , wxYES_NO | wxNO_DEFAULT | wxICON_WARNING) == wxYES)
                     {
                         Model_CurrencyHistory::instance().Savepoint();
