@@ -1,22 +1,25 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Money Manager Ex\n"
+"Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-05-25 14:20+0300\n"
-"PO-Revision-Date: 2020-05-25 14:20+0300\n"
-"Last-Translator: Nikolay Akimov <vomikan@mail.ru>\n"
-"Language-Team: mmex <developers@moneymanagerex.org>\n"
-"Language: sv\n"
+"PO-Revision-Date: 2020-05-25 12:31\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-Basepath: ..\n"
-"X-Launchpad-Export-Date: 2011-10-25 16:24+0000\n"
 "X-Generator: Poedit 2.3.1\n"
-"X-Poedit-KeywordsList: wxTRANSLATE;_\n"
+"X-Poedit-Basepath: ../src\n"
+"X-Poedit-KeywordsList: _;wxTRANSLATE;wxPLURAL:1,2;wxGETTEXT_IN_CONTEXT:1c,2;wxGETTEXT_IN_CONTEXT_PLURAL:1c,2,3\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: db/DB_Upgrade.h\n"
+"X-Poedit-SearchPathExcluded-1: db/DB_Table_Currencyformats_V1.h\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Poedit-SearchPath-0: src\n"
+"X-Crowdin-Project: moneymanagerex\n"
+"X-Crowdin-Language: sv-SE\n"
+"X-Crowdin-File: /master/po/mmex.pot\n"
+"Language: sv_SE\n"
 
 #: aboutdialog.cpp:45
 msgid "License agreement"
@@ -29,17 +32,16 @@ msgid "%1$s - %2$s"
 msgstr ""
 
 #: aboutdialog.cpp:149
-#, fuzzy
 msgid "About"
 msgstr "Om"
 
 #: aboutdialog.cpp:154
 msgid "Authors"
-msgstr ""
+msgstr "Författare"
 
 #: aboutdialog.cpp:159
 msgid "Sponsors"
-msgstr ""
+msgstr "Sponsorer"
 
 #: aboutdialog.cpp:164
 msgid "License"
@@ -93,12 +95,8 @@ msgid "Account Status:"
 msgstr "Kontostatus:"
 
 #: accountdialog.cpp:160
-msgid ""
-"Specify if this account has been closed. Closed accounts are inactive in "
-"most calculations, reporting etc."
-msgstr ""
-"Ange om kontot har stängts. Stängda konton är inaktiverade i de flesta "
-"beräkningar, rapporter etc."
+msgid "Specify if this account has been closed. Closed accounts are inactive in most calculations, reporting etc."
+msgstr "Ange om kontot har stängts. Stängda konton är inaktiverade i de flesta beräkningar, rapporter etc."
 
 #: accountdialog.cpp:164
 #, c-format
@@ -126,9 +124,7 @@ msgid "Favorite Account"
 msgstr "Favoritkonto"
 
 #: accountdialog.cpp:183
-msgid ""
-"Select whether this is an account that is used often. This is used to filter "
-"accounts display view."
+msgid "Select whether this is an account that is used often. This is used to filter accounts display view."
 msgstr "Välj ifall om .bak-filer skall skapas vid öppnandet av databasfiler"
 
 #: accountdialog.cpp:191 assetdialog.cpp:253 assetspanel.cpp:64
@@ -152,9 +148,8 @@ msgid "Others"
 msgstr "Övrigt"
 
 #: accountdialog.cpp:208
-#, fuzzy
 msgid "Card Number:"
-msgstr "Nummer"
+msgstr "Kortnummer:"
 
 #: accountdialog.cpp:208
 msgid "Account Number:"
@@ -169,8 +164,7 @@ msgid "Held At:"
 msgstr ""
 
 #: accountdialog.cpp:215
-msgid ""
-"Enter the name of the financial institution in which the account is held."
+msgid "Enter the name of the financial institution in which the account is held."
 msgstr "Ange namnet på den finansiella institutionen där kontot finns."
 
 #: accountdialog.cpp:218
@@ -194,39 +188,32 @@ msgid "Access Info:"
 msgstr "Åtkomstinfo:"
 
 #: accountdialog.cpp:230
-msgid ""
-"Enter any login/access information for the financial institution. This is "
-"not secure as anyone with access to the mmb file can access it."
+msgid "Enter any login/access information for the financial institution. This is not secure as anyone with access to the mmb file can access it."
 msgstr ""
 
 #: accountdialog.cpp:235
-#, fuzzy
 msgid "Statement"
-msgstr "Öppna databas"
+msgstr ""
 
 #: accountdialog.cpp:243
-#, fuzzy
 msgid "Statement:"
-msgstr "Öppna databas"
+msgstr ""
 
 #: accountdialog.cpp:244
 msgid "Locked"
 msgstr ""
 
 #: accountdialog.cpp:245
-#, fuzzy
 msgid "Enable or disable the transaction Lock"
-msgstr "Ta bort transaktion"
+msgstr ""
 
 #: accountdialog.cpp:248
-#, fuzzy
 msgid "Reconciled Date:"
-msgstr "Fullbordad"
+msgstr ""
 
 #: accountdialog.cpp:250
-#, fuzzy
 msgid "The date of the transaction lock"
-msgstr "Ange transaktionsdatumet"
+msgstr ""
 
 #: accountdialog.cpp:253
 msgid "Minimum Bal:"
@@ -249,28 +236,24 @@ msgid "Credit limit for the Account. Zero to disable"
 msgstr ""
 
 #: accountdialog.cpp:273
-#, fuzzy
 msgid "Interest Rate:"
-msgstr "Investeringar"
+msgstr ""
 
 #: accountdialog.cpp:277
-#, fuzzy
 msgid "Payment Due Date:"
-msgstr "Nästa förfallodatum"
+msgstr ""
 
 #: accountdialog.cpp:281
 msgid "Minimum Payment:"
 msgstr ""
 
 #: accountdialog.cpp:300
-#, fuzzy
 msgid "Organize attachments of this account"
-msgstr "Ange beloppet för transaktionen"
+msgstr ""
 
 #: accountdialog.cpp:407
-#, fuzzy
 msgid "Default Image"
-msgstr "Välj betalningsmottagare"
+msgstr ""
 
 #: accountdialog.cpp:414
 #, c-format
@@ -287,14 +270,12 @@ msgid "Currency"
 msgstr "Valuta"
 
 #: accountdialog.cpp:498
-#, fuzzy
 msgid "Please insert a valid URL"
-msgstr "Var god vänta"
+msgstr ""
 
 #: accountdialog.cpp:498
-#, fuzzy
 msgid "Invalid URL"
-msgstr "Ogiltigt värde "
+msgstr ""
 
 #: appstartdialog.cpp:99
 msgid "Open Last Opened Database"
@@ -329,23 +310,23 @@ msgid "Visit Website for more information"
 msgstr "Besök hemsidan för mer information"
 
 #: appstartdialog.cpp:115
-#, fuzzy, c-format
+#, c-format
 msgid "Open the %s website for latest news, updates etc"
-msgstr "Öppna Money Manager Exs-hemsida för senaste nyheter, uppdateringar etc"
+msgstr ""
 
 #: appstartdialog.cpp:123 wizard_update.cpp:166
-#, fuzzy, c-format
+#, c-format
 msgid "Show this window next time %s starts"
-msgstr "Visa detta fönster nästa gång "
+msgstr ""
 
 #: appstartdialog.cpp:137
 msgid "&Exit "
 msgstr ""
 
 #: appstartdialog.cpp:153
-#, fuzzy, c-format
+#, c-format
 msgid "Open the previously opened database : %s"
-msgstr "Öppna tidigare använd databas : "
+msgstr ""
 
 #: assetdialog.cpp:61 assetdialog.cpp:410 assetspanel.cpp:466
 msgid "New Asset"
@@ -356,14 +337,12 @@ msgid "Edit Asset"
 msgstr "Ändra tillgäng"
 
 #: assetdialog.cpp:71 assetdialog.cpp:93 assetspanel.cpp:470
-#, fuzzy
 msgid "Add Asset Transaction"
-msgstr "Ändra transaktion"
+msgstr ""
 
 #: assetdialog.cpp:97
-#, fuzzy
 msgid "Edit Asset Transaction"
-msgstr "Ändra transaktion"
+msgstr ""
 
 #: assetdialog.cpp:183
 msgid "Asset Details"
@@ -421,49 +400,39 @@ msgid "Specify if the value of the asset changes over time"
 msgstr "Ange om värdet på tillgången förändras över tiden"
 
 #: assetdialog.cpp:241
-#, fuzzy
 msgid "% Rate"
-msgstr " datum "
+msgstr ""
 
 #: assetdialog.cpp:247
-#, fuzzy
-msgid ""
-"Enter the rate at which the asset changes its value in percentage per year"
-msgstr "Ange förändringstakten i procent för tillgången"
+msgid "Enter the rate at which the asset changes its value in percentage per year"
+msgstr ""
 
 #: assetdialog.cpp:259
-#, fuzzy
 msgid "Organize attachments of this asset"
-msgstr "Ange beloppet för transaktionen"
+msgstr ""
 
 #: assetdialog.cpp:262
 msgid "Enter notes associated with this asset"
 msgstr "Skriv in ev. noteringar för den här tillgången"
 
 #: assetdialog.cpp:268
-#, fuzzy
 msgid "New Transaction Details"
-msgstr "Transaktionsdetaljer"
+msgstr ""
 
 #: assetdialog.cpp:271 sharetransactiondialog.cpp:290
-#, fuzzy
 msgid "Edit Transaction Details"
-msgstr "Transaktionsdetaljer"
+msgstr ""
 
 #: assetdialog.cpp:306 constants.cpp:86 sharetransactiondialog.cpp:321
-#, fuzzy
 msgid "&Cancel "
-msgstr "Avbryt"
+msgstr ""
 
 #: assetdialog.cpp:402 sharetransactiondialog.cpp:429
-#, fuzzy
 msgid "Invalid Transaction"
-msgstr "Ändra transaktion"
+msgstr ""
 
 #: assetdialog.cpp:409
-msgid ""
-"Asset Account not found.\n"
-"\n"
+msgid "Asset Account not found.\n\n"
 "Would you want to create one?"
 msgstr ""
 
@@ -484,39 +453,33 @@ msgid "Type"
 msgstr "Typ"
 
 #: assetspanel.cpp:62 reports/summarystocks.cpp:183
-#, fuzzy
 msgid "Initial Value"
-msgstr "Ogiltigt värde "
+msgstr ""
 
 #: assetspanel.cpp:63 reports/summarystocks.cpp:153
 #: reports/summarystocks.cpp:187 stockdialog.cpp:259
-#, fuzzy
 msgid "Current Value"
-msgstr "Aktuell vy"
+msgstr ""
 
 #: assetspanel.cpp:96
 msgid "&New Asset"
 msgstr "&Ny tillgång"
 
 #: assetspanel.cpp:98
-#, fuzzy
 msgid "D&uplicate Asset"
-msgstr "Dubblett"
+msgstr ""
 
 #: assetspanel.cpp:100
-#, fuzzy
 msgid "&Add Asset Transaction"
-msgstr "&Ändra transaktion"
+msgstr ""
 
 #: assetspanel.cpp:101
-#, fuzzy
 msgid "&View Asset Transactions"
-msgstr "Visa alla transaktioner"
+msgstr ""
 
 #: assetspanel.cpp:102
-#, fuzzy
 msgid "&Open Asset Account"
-msgstr "&Ta bort konto"
+msgstr ""
 
 #: assetspanel.cpp:104
 msgid "&Edit Asset"
@@ -528,9 +491,8 @@ msgstr "&Ta bort tillgång"
 
 #: assetspanel.cpp:107 billsdepositspanel.cpp:404 mmcheckingpanel.cpp:1082
 #: mmframe.cpp:1202 payeedialog.cpp:372 stockspanel.cpp:148
-#, fuzzy
 msgid "&Organize Attachments"
-msgstr "Oraganisera betalningsmottagare"
+msgstr ""
 
 #: assetspanel.cpp:199
 msgid "Do you really want to delete the Asset?"
@@ -541,11 +503,7 @@ msgid "Confirm Asset Deletion"
 msgstr "Borttagning av tillgång"
 
 #: assetspanel.cpp:384
-msgid ""
-"MMEX allows you to track fixed assets like cars, houses, land and others. "
-"Each asset can have its value appreciate by a certain rate per year, "
-"depreciate by a certain rate per year, or not change in value. The total "
-"assets are added to your total financial worth."
+msgid "MMEX allows you to track fixed assets like cars, houses, land and others. Each asset can have its value appreciate by a certain rate per year, depreciate by a certain rate per year, or not change in value. The total assets are added to your total financial worth."
 msgstr ""
 
 #: assetspanel.cpp:414 assetspanel.h:95 general_report_manager.cpp:691
@@ -562,39 +520,33 @@ msgstr "Alla"
 
 #: assetspanel.cpp:465 billsdepositspanel.cpp:264 mmcheckingpanel.cpp:438
 #: stockspanel.cpp:569
-#, fuzzy
 msgid "&New "
-msgstr "Ny"
+msgstr ""
 
 #: assetspanel.cpp:469 stockspanel.cpp:573
-#, fuzzy
 msgid "&Add Trans "
-msgstr "Lägg till budgetår"
+msgstr ""
 
 #: assetspanel.cpp:474 stockspanel.cpp:578
-#, fuzzy
 msgid "&View Trans "
-msgstr "Överföring"
+msgstr ""
 
 #: assetspanel.cpp:475
-#, fuzzy
 msgid "View Asset Transactions"
-msgstr "Visa alla transaktioner"
+msgstr ""
 
 #: assetspanel.cpp:479 attachmentdialog.cpp:315 billsdepositspanel.cpp:268
 #: categdialog.cpp:230 customfieldlistdialog.cpp:266 maincurrencydialog.cpp:200
 #: maincurrencydialog.cpp:519 mmcheckingpanel.cpp:442 payeedialog.cpp:366
 #: splittransactionsdialog.cpp:166 stockspanel.cpp:583
-#, fuzzy
 msgid "&Edit "
-msgstr "Ändra"
+msgstr ""
 
 #: assetspanel.cpp:484 billsdepositspanel.cpp:273 budgetyeardialog.cpp:103
 #: categdialog.cpp:234 maincurrencydialog.cpp:292 mmcheckingpanel.cpp:447
 #: mmcheckingpanel.cpp:1098 stockdialog.cpp:339 stockspanel.cpp:588
-#, fuzzy
 msgid "&Delete "
-msgstr "Ta bort"
+msgstr ""
 
 #: assetspanel.cpp:485
 msgid "Delete Asset"
@@ -602,19 +554,16 @@ msgstr "Ta bort tillgång"
 
 #: assetspanel.cpp:492 billsdepositspanel.cpp:291 mmcheckingpanel.cpp:460
 #: stockspanel.cpp:601
-#, fuzzy
 msgid "Open attachments"
-msgstr "Öppna databas"
+msgstr ""
 
 #: assetspanel.cpp:499 assetspanel.cpp:500 mmcheckingpanel.cpp:468
-#, fuzzy
 msgid "Search"
-msgstr "Mars"
+msgstr ""
 
 #: assetspanel.cpp:502
-#, fuzzy
 msgid "Enter any string to find related assets"
-msgstr "Ange namnet på tillgången"
+msgstr ""
 
 #: assetspanel.cpp:572 stockspanel.cpp:764 stockspanel.cpp:951
 #, c-format
@@ -622,14 +571,12 @@ msgid "Total: %s"
 msgstr "Totalt: %s"
 
 #: assetspanel.cpp:654
-#, fuzzy, c-format
+#, c-format
 msgid "Change in Value: %s %s"
-msgstr "Värdeförändring"
+msgstr ""
 
 #: assetspanel.cpp:768
-msgid ""
-"This asset does not have its own account\n"
-"\n"
+msgid "This asset does not have its own account\n\n"
 "Multiple transactions for this asset are not recommended."
 msgstr ""
 
@@ -638,9 +585,7 @@ msgid "Asset Management"
 msgstr ""
 
 #: assetspanel.cpp:789
-msgid ""
-"Account \t Date\t   Value\n"
-"\n"
+msgid "Account \t Date\t   Value\n\n"
 msgstr ""
 
 #: attachmentdialog.cpp:54 customfieldlistdialog.cpp:53
@@ -651,15 +596,13 @@ msgstr ""
 
 #: attachmentdialog.cpp:55 customfieldeditdialog.cpp:125
 #: customfieldlistdialog.cpp:54 general_report_manager.cpp:416
-#, fuzzy
 msgid "Description"
-msgstr "Transaktioner"
+msgstr ""
 
 #: attachmentdialog.cpp:56 import_export/qif_export.cpp:189
 #: import_export/univcsvdialog.cpp:179
-#, fuzzy
 msgid "File"
-msgstr "&Arkiv"
+msgstr ""
 
 #: attachmentdialog.cpp:64
 msgid "Attachment folder not defined."
@@ -674,9 +617,8 @@ msgid "Attachment folder not defined"
 msgstr ""
 
 #: attachmentdialog.cpp:70
-#, fuzzy
 msgid "Unable to find attachments folder:"
-msgstr "Kunde inte spara till fil."
+msgstr ""
 
 #: attachmentdialog.cpp:73
 msgid "Please verify that above path is correct"
@@ -687,82 +629,69 @@ msgid "Attachments folder not found"
 msgstr ""
 
 #: attachmentdialog.cpp:85
-#, fuzzy, c-format
+#, c-format
 msgid "Organize Attachments | %s %i"
-msgstr "Oraganisera betalningsmottagare"
+msgstr ""
 
 #: attachmentdialog.cpp:87
-#, fuzzy, c-format
+#, c-format
 msgid "Organize Attachments | New %s"
-msgstr "Oraganisera betalningsmottagare"
+msgstr ""
 
 #: attachmentdialog.cpp:127 customfieldlistdialog.cpp:103 payeedialog.cpp:116
-#, fuzzy
 msgid "Other tools"
-msgstr "Övrigt"
+msgstr ""
 
 #: attachmentdialog.cpp:159
-#, fuzzy
 msgid "Import attachment:"
-msgstr "Importera fil"
+msgstr ""
 
 #: attachmentdialog.cpp:170
-#, fuzzy
 msgid "Enter a description for the new attachment:"
-msgstr "Ange namnet på tillgången"
+msgstr ""
 
 #: attachmentdialog.cpp:171
-#, fuzzy
 msgid "Organize Attachments: Add Attachment"
-msgstr "Oraganisera betalningsmottagare"
+msgstr ""
 
 #: attachmentdialog.cpp:212
-#, fuzzy
 msgid "Enter a new description for the attachment:"
-msgstr "Ange namnet på tillgången"
+msgstr ""
 
 #: attachmentdialog.cpp:213
-#, fuzzy
 msgid "Organize Attachments: Edit Attachment"
-msgstr "Oraganisera betalningsmottagare"
+msgstr ""
 
 #: attachmentdialog.cpp:237
-#, fuzzy
 msgid "Do you really want to delete this attachment?"
-msgstr "Vill du verkligen ta bort kontot?"
+msgstr ""
 
 #: attachmentdialog.cpp:238
-#, fuzzy
 msgid "Confirm Attachment Deletion"
-msgstr "Borttagning av konto"
+msgstr ""
 
 #: attachmentdialog.cpp:312 categdialog.cpp:226 customfieldlistdialog.cpp:264
 #: import_export/univcsvdialog.cpp:240 maincurrencydialog.cpp:197
 #: payeedialog.cpp:365 splittransactionsdialog.cpp:165 stockdialog.cpp:341
-#, fuzzy
 msgid "&Add "
-msgstr "Lägg till budgetår"
+msgstr ""
 
 #: attachmentdialog.cpp:314
-#, fuzzy
 msgid "&Open "
-msgstr "Öppet"
+msgstr ""
 
 #: attachmentdialog.cpp:317 customfieldlistdialog.cpp:267
 #: import_export/univcsvdialog.cpp:244 maincurrencydialog.cpp:204
 #: payeedialog.cpp:368 splittransactionsdialog.cpp:167
-#, fuzzy
 msgid "&Remove "
-msgstr "Ta bort"
+msgstr ""
 
 #: attachmentdialog.cpp:359
 msgid "Att."
 msgstr ""
 
 #: attachmentdialog.cpp:366
-msgid ""
-"This directory and its files are automatically managed by Money Manager EX "
-"software."
+msgid "This directory and its files are automatically managed by Money Manager EX software."
 msgstr ""
 
 #: attachmentdialog.cpp:368
@@ -770,18 +699,16 @@ msgid "Please do not remove, rename or modify manually directories and files."
 msgstr ""
 
 #: attachmentdialog.cpp:413 attachmentdialog.cpp:421
-#, fuzzy
 msgid "Destination file already exist:"
-msgstr "Budgetår finns redan"
+msgstr ""
 
 #: attachmentdialog.cpp:416
 msgid "File not found in attachments. Please delete or rename it."
 msgstr ""
 
 #: attachmentdialog.cpp:417 attachmentdialog.cpp:425
-#, fuzzy
 msgid "Destination file already exist"
-msgstr "Budgetår finns redan"
+msgstr ""
 
 #: attachmentdialog.cpp:424
 msgid "File already found in attachments"
@@ -792,18 +719,16 @@ msgid "Attachment not found:"
 msgstr ""
 
 #: attachmentdialog.cpp:470
-#, fuzzy
 msgid "Do you want to continue and delete attachment on database?"
-msgstr "Vill du verkligen ta bort serien?"
+msgstr ""
 
 #: attachmentdialog.cpp:471
 msgid "Delete attachment failed"
 msgstr ""
 
 #: attachmentdialog.cpp:484
-#, fuzzy
 msgid "Unable to open file:"
-msgstr "Kunde inte öppna fil."
+msgstr ""
 
 #: attachmentdialog.cpp:487
 msgid "Please verify that file exists and user has rights to read it."
@@ -866,27 +791,24 @@ msgstr "Fyra veckor"
 
 #: billsdepositsdialog.cpp:60 billsdepositspanel.cpp:49 mmframereport.cpp:119
 #: model/Model_Budget.cpp:63
-#, fuzzy
 msgid "Daily"
-msgstr "Vy"
+msgstr ""
 
 #: billsdepositsdialog.cpp:61 billsdepositsdialog.cpp:1342
 msgid "In (x) Days"
 msgstr ""
 
 #: billsdepositsdialog.cpp:62 billsdepositsdialog.cpp:1342
-#, fuzzy
 msgid "In (x) Months"
-msgstr "Månad"
+msgstr ""
 
 #: billsdepositsdialog.cpp:63
 msgid "Every (x) Days"
 msgstr ""
 
 #: billsdepositsdialog.cpp:64
-#, fuzzy
 msgid "Every (x) Months"
-msgstr "Månad"
+msgstr ""
 
 #: billsdepositsdialog.cpp:65 billsdepositspanel.cpp:54
 msgid "Monthly (last day)"
@@ -897,39 +819,32 @@ msgid "Monthly (last business day)"
 msgstr ""
 
 #: billsdepositsdialog.cpp:164
-#, fuzzy
 msgid "New Recurring Transaction"
-msgstr "Återkommande transaktion ny/ändra"
+msgstr ""
 
 #: billsdepositsdialog.cpp:304
-#, fuzzy
 msgid "Edit Recurring Transaction"
-msgstr "Återkommande transaktion ny/ändra"
+msgstr ""
 
 #: billsdepositsdialog.cpp:308
-#, fuzzy
 msgid "Enter Recurring Transaction"
-msgstr "Återkommande transaktioner"
+msgstr ""
 
 #: billsdepositsdialog.cpp:401
-#, fuzzy
 msgid "Recurring Transaction Details"
-msgstr "Borttagning av transaktion"
+msgstr ""
 
 #: billsdepositsdialog.cpp:413
-#, fuzzy
 msgid "Specify the date the user is requested to enter this transaction"
-msgstr "Ange kategori för den här transaktionen"
+msgstr ""
 
 #: billsdepositsdialog.cpp:423
-#, fuzzy
 msgid "Advance or retard the user request date of this transaction"
-msgstr "Ange transaktionsdatumet"
+msgstr ""
 
 #: billsdepositsdialog.cpp:428 billsdepositspanel.cpp:98
-#, fuzzy
 msgid "Date Due"
-msgstr "Datum  "
+msgstr ""
 
 #: billsdepositsdialog.cpp:432 billsdepositsdialog.cpp:1255
 msgid "Repeats"
@@ -964,18 +879,16 @@ msgid "Transaction Details"
 msgstr "Transaktionsdetaljer"
 
 #: billsdepositsdialog.cpp:499
-#, fuzzy
 msgid "Specify the date when this bill or deposit is due"
-msgstr "Ange datumet för nästa räkning/insättning"
+msgstr ""
 
 #: billsdepositsdialog.cpp:509
 msgid "Retard or advance the date of the 'next occurrence'"
 msgstr ""
 
 #: billsdepositsdialog.cpp:514 billsdepositspanel.cpp:97
-#, fuzzy
 msgid "Date Paid"
-msgstr "Datum  "
+msgstr ""
 
 #: billsdepositsdialog.cpp:525 filtertransdialog.cpp:249 transdialog.cpp:1272
 msgid "Specify the status for the transaction"
@@ -995,14 +908,12 @@ msgid "Specify the type of transactions to be created."
 msgstr "Ange vilken typ av transaktion som ska skapas."
 
 #: billsdepositsdialog.cpp:533 transdialog.cpp:484
-#, fuzzy
 msgid "&Advanced"
-msgstr "Avancerad"
+msgstr ""
 
 #: billsdepositsdialog.cpp:536 transdialog.cpp:1277
-#, fuzzy
 msgid "Allows the setting of different amounts in the FROM and TO accounts."
-msgstr "Ange överföringskontot"
+msgstr ""
 
 #: billsdepositsdialog.cpp:546 billsdepositspanel.cpp:104
 #: budgetingpanel.cpp:295 filtertransdialog.cpp:437 filtertransdialog.cpp:447
@@ -1016,9 +927,8 @@ msgid "Amount"
 msgstr "Summa"
 
 #: billsdepositsdialog.cpp:559 transdialog.cpp:1258
-#, fuzzy
 msgid "Specify the transfer amount in the To Account"
-msgstr "Ange överföringskontot"
+msgstr ""
 
 #: billsdepositsdialog.cpp:571 billsdepositsdialog.cpp:826
 #: billsdepositsdialog.cpp:840 billsdepositspanel.cpp:99
@@ -1037,9 +947,8 @@ msgid "Select Account"
 msgstr "Välj konto"
 
 #: billsdepositsdialog.cpp:575
-#, fuzzy
 msgid "Specify the Account that will own the recurring transaction"
-msgstr "Ange beloppet för transaktionen"
+msgstr ""
 
 #: billsdepositsdialog.cpp:578 billsdepositsdialog.cpp:827
 #: billsdepositspanel.cpp:100 filtertransdialog.cpp:206
@@ -1062,9 +971,8 @@ msgid "Split"
 msgstr ""
 
 #: billsdepositsdialog.cpp:591 transdialog.cpp:1274
-#, fuzzy
 msgid "Use split Categories"
-msgstr "Dela kategori"
+msgstr ""
 
 #: billsdepositsdialog.cpp:597 billsdepositspanel.cpp:102
 #: budgetingpanel.cpp:292 filtertransdialog.cpp:217 filtertransdialog.cpp:887
@@ -1096,9 +1004,8 @@ msgid "Number"
 msgstr "Nummer"
 
 #: billsdepositsdialog.cpp:619
-#, fuzzy
 msgid "Organize attachments of this recurring transaction"
-msgstr "Ange beloppet för transaktionen"
+msgstr ""
 
 #: billsdepositsdialog.cpp:623 transdialog.cpp:569 usertransactionpanel.cpp:217
 msgid "Select one of the frequently used notes"
@@ -1110,14 +1017,12 @@ msgid "Specify any text notes you want to add to this transaction."
 msgstr "Ange ev. noteringar du vill lägga till för transaktionen."
 
 #: billsdepositsdialog.cpp:663
-#, fuzzy
 msgid "Choose Bank Account or Term Account"
-msgstr "Välj konton"
+msgstr ""
 
 #: billsdepositsdialog.cpp:696 billsdepositsdialog.cpp:745
-#, fuzzy
 msgid "Account name"
-msgstr "Kontonamn"
+msgstr ""
 
 #: billsdepositsdialog.cpp:801 billsdepositsdialog.cpp:841 transdialog.cpp:296
 #: transdialog.cpp:368
@@ -1133,54 +1038,43 @@ msgid "Select To Account"
 msgstr "Välj till konto"
 
 #: billsdepositsdialog.cpp:1213
-#, fuzzy
 msgid "Specify the transfer amount in the From Account"
-msgstr "Ange överföringskontot"
+msgstr ""
 
 #: billsdepositsdialog.cpp:1256
-#, fuzzy
 msgid "Activates"
-msgstr "Stigande"
+msgstr ""
 
 #: billsdepositsdialog.cpp:1258
 msgid "Period: Days"
 msgstr ""
 
 #: billsdepositsdialog.cpp:1259
-#, fuzzy
 msgid "Period: Months"
-msgstr "Fyra månader"
+msgstr ""
 
 #: billsdepositsdialog.cpp:1266
-msgid ""
-"Specify period in Days to activate.\n"
+msgid "Specify period in Days to activate.\n"
 "Becomes blank when not active."
 msgstr ""
 
 #: billsdepositsdialog.cpp:1275
-#, fuzzy
-msgid ""
-"Specify period in Months to activate.\n"
+msgid "Specify period in Months to activate.\n"
 "Becomes blank when not active."
-msgstr "Ange vilket typ av konto som skall skapas."
+msgstr ""
 
 #: billsdepositsdialog.cpp:1284
-#, fuzzy
-msgid ""
-"Specify period in Days to activate.\n"
+msgid "Specify period in Days to activate.\n"
 "Leave blank when not active."
-msgstr "Ange vilket typ av konto som skall skapas."
+msgstr ""
 
 #: billsdepositsdialog.cpp:1292
-#, fuzzy
-msgid ""
-"Specify period in Months to activate.\n"
+msgid "Specify period in Months to activate.\n"
 "Leave blank when not active."
-msgstr "Ange vilket typ av konto som skall skapas."
+msgstr ""
 
 #: billsdepositsdialog.cpp:1300
-msgid ""
-"Specify the number of payments to be made.\n"
+msgid "Specify the number of payments to be made.\n"
 "Leave blank if the payments continue forever."
 msgstr ""
 
@@ -1188,9 +1082,8 @@ msgstr ""
 #: filtertransdialog.cpp:419 filtertransdialog.cpp:437
 #: filtertransdialog.cpp:447 filtertransdialog.cpp:463
 #: filtertransdialog.cpp:472 util.cpp:514
-#, fuzzy
 msgid "Invalid value"
-msgstr "Ogiltigt värde "
+msgstr ""
 
 #: billsdepositsdialog.cpp:1326 billsdepositsdialog.cpp:1335
 #: billsdepositsdialog.cpp:1343 maincurrencydialog.cpp:473 mmframe.cpp:3175
@@ -1200,9 +1093,8 @@ msgid "Error"
 msgstr "Fel"
 
 #: billsdepositsdialog.cpp:1341
-#, fuzzy
 msgid "Invalid Choice"
-msgstr "Felaktigt radindex"
+msgstr ""
 
 #: billsdepositsdialog.cpp:1341
 msgid "Choose one of the following:"
@@ -1219,28 +1111,24 @@ msgid "Categories"
 msgstr "Kategorier"
 
 #: billsdepositsdialog.h:120
-#, fuzzy
 msgid "Specify where the transaction is going to"
-msgstr "Ange vart transaktionen ska eller kommer ifrån "
+msgstr ""
 
 #: billsdepositsdialog.h:121 transdialog.cpp:1267
-#, fuzzy
 msgid "Specify where the transaction is coming from"
-msgstr "Ange vart transaktionen ska eller kommer ifrån "
+msgstr ""
 
 #: billsdepositsdialog.h:122
-#, fuzzy
 msgid "Specify which account the transfer is going to"
-msgstr "Välj det konto från där överföringen ska ske "
+msgstr ""
 
 #: billsdepositsdialog.h:123 transdialog.cpp:1262 usertransactionpanel.cpp:146
 msgid "Specify the amount for this transaction"
 msgstr "Ange beloppet för transaktionen"
 
 #: billsdepositsdialog.h:124
-#, fuzzy
 msgid "Specify the amount to be transferred"
-msgstr "Ange beloppet för transaktionen"
+msgstr ""
 
 #: billsdepositspanel.cpp:50
 #, c-format
@@ -1248,9 +1136,9 @@ msgid "In %s Days"
 msgstr ""
 
 #: billsdepositspanel.cpp:51
-#, fuzzy, c-format
+#, c-format
 msgid "In %s Months"
-msgstr "Månad"
+msgstr ""
 
 #: billsdepositspanel.cpp:52
 #, c-format
@@ -1258,9 +1146,9 @@ msgid "Every %s Days"
 msgstr ""
 
 #: billsdepositspanel.cpp:53
-#, fuzzy, c-format
+#, c-format
 msgid "Every %s Months"
-msgstr "Månad"
+msgstr ""
 
 #: billsdepositspanel.cpp:105 budgetingpanel.cpp:294
 #: reports/budgetcategorysummary.cpp:186 reports/myusage.cpp:117
@@ -1268,9 +1156,8 @@ msgid "Frequency"
 msgstr "Frekvens"
 
 #: billsdepositspanel.cpp:106
-#, fuzzy
 msgid "Repetitions"
-msgstr "Återkommande transaktioner"
+msgstr ""
 
 #: billsdepositspanel.cpp:107
 msgid "Autorepeat"
@@ -1281,108 +1168,88 @@ msgid "Payment"
 msgstr ""
 
 #: billsdepositspanel.cpp:167
-msgid ""
-"MMEX allows regular payments to be set up as transactions. These "
-"transactions can also be regular deposits, or transfers that will occur at "
-"some future time. These transactions act as a reminder that an event is "
-"about to occur, and appears on the Home Page 14 days before the transaction "
-"is due. "
+msgid "MMEX allows regular payments to be set up as transactions. These transactions can also be regular deposits, or transfers that will occur at some future time. These transactions act as a reminder that an event is about to occur, and appears on the Home Page 14 days before the transaction is due. "
 msgstr ""
 
 #: billsdepositspanel.cpp:168
-msgid ""
-"Tip: These transactions can be set up to activate - allowing the user to "
-"adjust any values on the due date."
+msgid "Tip: These transactions can be set up to activate - allowing the user to adjust any values on the due date."
 msgstr ""
 
 #: billsdepositspanel.cpp:221 billsdepositspanel.cpp:867 mmframe.cpp:712
 #: mmhomepagepanel.cpp:264
-#, fuzzy
 msgid "Recurring Transactions"
-msgstr "Återkommande transaktioner"
+msgstr ""
 
 #: billsdepositspanel.cpp:230 filtertransdialog.cpp:94
 msgid "Transaction Filter"
 msgstr "Transaktionsfilter"
 
 #: billsdepositspanel.cpp:265
-#, fuzzy
 msgid "New Bills & Deposit Series"
-msgstr "Nya räkningar && insättningserier"
+msgstr ""
 
 #: billsdepositspanel.cpp:269
-#, fuzzy
 msgid "Edit Bills & Deposit Series"
-msgstr "Ändra räkningar && insättningsserier"
+msgstr ""
 
 #: billsdepositspanel.cpp:274
-#, fuzzy
 msgid "Delete Bills & Deposit Series"
-msgstr "Ta bort räkningar && insättningsserier"
+msgstr ""
 
 #: billsdepositspanel.cpp:278
 msgid "En&ter"
 msgstr ""
 
 #: billsdepositspanel.cpp:279
-#, fuzzy
 msgid "Enter Next Bills & Deposit Occurrence"
-msgstr "Visa nästa förekomst av räkningar && insättningar "
+msgstr ""
 
 #: billsdepositspanel.cpp:283
 msgid "&Skip"
 msgstr ""
 
 #: billsdepositspanel.cpp:284
-#, fuzzy
 msgid "Skip Next Bills & Deposit Occurrence"
-msgstr "Visa nästa förekomst av räkningar && insättningar "
+msgstr ""
 
 #: billsdepositspanel.cpp:396
-#, fuzzy
 msgid "Enter next Occurrence..."
-msgstr "Visa nästa förekomst"
+msgstr ""
 
 #: billsdepositspanel.cpp:398
-#, fuzzy
 msgid "Skip next Occurrence"
-msgstr "Nästa förekomst"
+msgstr ""
 
 #: billsdepositspanel.cpp:400
-#, fuzzy
 msgid "&New Bills && Deposit Series..."
-msgstr "&Nya räkningar && insättningserier"
+msgstr ""
 
 #: billsdepositspanel.cpp:401
-#, fuzzy
 msgid "&Edit Bills && Deposit Series..."
-msgstr "&Redigera räkningar && insättningserier"
+msgstr ""
 
 #: billsdepositspanel.cpp:402
-#, fuzzy
 msgid "&Delete Bills && Deposit Series..."
-msgstr "&Ta bort räkningar && insättningserier"
+msgstr ""
 
 #: billsdepositspanel.cpp:449
-#, fuzzy
 msgid "Manual"
-msgstr "Januari"
+msgstr ""
 
 #: billsdepositspanel.cpp:453
 msgid "Suggested"
 msgstr ""
 
 #: billsdepositspanel.cpp:457
-#, fuzzy
 msgid "Automated"
-msgstr "Beräknad"
+msgstr ""
 
 #: billsdepositspanel.cpp:501 billsdepositspanel.cpp:568 mmhomepage.cpp:305
-#, fuzzy, c-format
+#, c-format
 msgid "%d day remaining"
 msgid_plural "%d days remaining"
-msgstr[0] " dagar kvar"
-msgstr[1] " dagar kvar"
+msgstr[0] ""
+msgstr[1] ""
 
 #: billsdepositspanel.cpp:506 billsdepositspanel.cpp:513
 #: billsdepositspanel.cpp:520 billsdepositspanel.cpp:573
@@ -1391,18 +1258,18 @@ msgid "Inactive"
 msgstr ""
 
 #: billsdepositspanel.cpp:511 mmhomepage.cpp:306
-#, fuzzy, c-format
+#, c-format
 msgid "%d day delay!"
 msgid_plural "%d days delay!"
-msgstr[0] " dagar försenad!"
-msgstr[1] " dagar försenad!"
+msgstr[0] ""
+msgstr[1] ""
 
 #: billsdepositspanel.cpp:518 billsdepositspanel.cpp:578 mmhomepage.cpp:308
-#, fuzzy, c-format
+#, c-format
 msgid "%d day overdue!"
 msgid_plural "%d days overdue!"
-msgstr[0] " dagar försenad!"
-msgstr[1] " dagar försenad!"
+msgstr[0] ""
+msgstr[1] ""
 
 #: billsdepositspanel.cpp:630
 msgid "Do you really want to delete the series?"
@@ -1417,24 +1284,20 @@ msgid "Budget Year Entry"
 msgstr "Nytt budgetår"
 
 #: budgetentrydialog.cpp:107
-#, fuzzy
 msgid "Category: "
-msgstr "Kategori "
+msgstr ""
 
 #: budgetentrydialog.cpp:112
-#, fuzzy
 msgid "Sub Category: "
-msgstr "Underkategori: \n"
+msgstr ""
 
 #: budgetentrydialog.cpp:119
-#, fuzzy
 msgid "Estimated:"
-msgstr "Beräknad"
+msgstr ""
 
 #: budgetentrydialog.cpp:121
-#, fuzzy
 msgid "Actual:"
-msgstr "Verklig"
+msgstr ""
 
 #: budgetentrydialog.cpp:124
 msgid "Type:"
@@ -1479,9 +1342,8 @@ msgid "View Non-Zero Budget Categories"
 msgstr ""
 
 #: budgetingpanel.cpp:52
-#, fuzzy
 msgid "View Planned Budget Categories"
-msgstr "Visa alla budgetkategorier"
+msgstr ""
 
 #: budgetingpanel.cpp:53
 msgid "View Income Budget Categories"
@@ -1492,54 +1354,48 @@ msgid "View Expense Budget Categories"
 msgstr ""
 
 #: budgetingpanel.cpp:55
-#, fuzzy
 msgid "View Budget Category Summary"
-msgstr "Visa alla budgetkategorier"
+msgstr ""
 
 #: budgetingpanel.cpp:172 reports/budget.cpp:84
-#, fuzzy, c-format
+#, c-format
 msgid "Financial Year: %s - %i"
-msgstr "Föregående år"
+msgstr ""
 
 #: budgetingpanel.cpp:176 reports/budget.cpp:88
-#, fuzzy, c-format
+#, c-format
 msgid "Year: %s"
-msgstr "Årsvis"
+msgstr ""
 
 #: budgetingpanel.cpp:181
-#, fuzzy, c-format
+#, c-format
 msgid "Month: %s"
-msgstr "Månad"
+msgstr ""
 
 #: budgetingpanel.cpp:183
-#, fuzzy, c-format
+#, c-format
 msgid "Budget Setup for %s"
-msgstr "Budgetinställningar för "
+msgstr ""
 
 #: budgetingpanel.cpp:240
-#, fuzzy
 msgid "Income: "
-msgstr "Inkomst:"
+msgstr ""
 
 #: budgetingpanel.cpp:241 budgetingpanel.cpp:249
-#, fuzzy
 msgid "Estimated: "
-msgstr "Beräknad"
+msgstr ""
 
 #: budgetingpanel.cpp:243 budgetingpanel.cpp:251
-#, fuzzy
 msgid "Actual: "
-msgstr "Verklig"
+msgstr ""
 
 #: budgetingpanel.cpp:245 budgetingpanel.cpp:253
-#, fuzzy
 msgid "Difference: "
-msgstr "Skillnad:"
+msgstr ""
 
 #: budgetingpanel.cpp:248
-#, fuzzy
 msgid "Expenses: "
-msgstr "Utgifter:"
+msgstr ""
 
 #: budgetingpanel.cpp:291
 msgid "Icon"
@@ -1560,62 +1416,52 @@ msgid "Actual"
 msgstr "Verklig"
 
 #: budgetyeardialog.cpp:46
-#, fuzzy
 msgid "Budget Editor"
-msgstr "Budgetår-redigerare"
+msgstr ""
 
 #: budgetyeardialog.cpp:93
-#, fuzzy
 msgid "&Add Year"
-msgstr "Lägg till budgetår"
+msgstr ""
 
 #: budgetyeardialog.cpp:95
 msgid "Add a new budget year"
 msgstr "Lägg till ett nytt budgetår"
 
 #: budgetyeardialog.cpp:98
-#, fuzzy
 msgid "&Add Month"
-msgstr "Månad"
+msgstr ""
 
 #: budgetyeardialog.cpp:100
-#, fuzzy
 msgid "Add a new budget month"
-msgstr "Lägg till ett nytt budgetår"
+msgstr ""
 
 #: budgetyeardialog.cpp:105
-#, fuzzy
 msgid "Delete existing budget"
-msgstr "Ta bort befintligt budgetår"
+msgstr ""
 
 #: budgetyearentrydialog.cpp:42 budgetyearentrydialog.cpp:151
-#, fuzzy
 msgid "Budget Entry Details"
-msgstr "Nytt budgetår"
+msgstr ""
 
 #: budgetyearentrydialog.cpp:44
-#, fuzzy
 msgid "Budget Month Entry"
-msgstr "Nytt budgetår"
+msgstr ""
 
 #: budgetyearentrydialog.cpp:71
 msgid "Budget Year:"
 msgstr "Budgetår:"
 
 #: budgetyearentrydialog.cpp:78
-msgid ""
-"Specify the required year.\n"
+msgid "Specify the required year.\n"
 "Use Spin buttons to increase or decrease the year."
 msgstr ""
 
 #: budgetyearentrydialog.cpp:85
-#, fuzzy
 msgid "Budget Month:"
-msgstr "Nuvarande månad"
+msgstr ""
 
 #: budgetyearentrydialog.cpp:94
-msgid ""
-"Specify the required month.\n"
+msgid "Specify the required month.\n"
 "Use Spin buttons to increase or decrease the month."
 msgstr ""
 
@@ -1640,18 +1486,16 @@ msgid "Reassign all categories to another category"
 msgstr ""
 
 #: categdialog.cpp:191
-#, fuzzy
 msgid "Expand"
-msgstr "Utgift"
+msgstr ""
 
 #: categdialog.cpp:196 maincurrencydialog.cpp:169
 msgid "Show All"
 msgstr ""
 
 #: categdialog.cpp:198
-#, fuzzy
 msgid "Show all hidden categories"
-msgstr "Visa alla budgetkategorier"
+msgstr ""
 
 #: categdialog.cpp:228
 msgid "Add a new category"
@@ -1662,52 +1506,41 @@ msgid "Edit the name of an existing category"
 msgstr "Ändra namnet på en befintlig kategori"
 
 #: categdialog.cpp:236
-msgid ""
-"Delete an existing category. The category cannot be used by existing "
-"transactions."
-msgstr ""
-"Ta bort en befintlig kategori. Kategorin kan inte användas av befintliga "
-"transaktioner."
+msgid "Delete an existing category. The category cannot be used by existing transactions."
+msgstr "Ta bort en befintlig kategori. Kategorin kan inte användas av befintliga transaktioner."
 
 #: categdialog.cpp:241 maincurrencydialog.cpp:211
-#, fuzzy
 msgid "&Select"
-msgstr "Välj"
+msgstr ""
 
 #: categdialog.cpp:243
-msgid ""
-"Select the currently selected category as the selected category for the "
-"transaction"
+msgid "Select the currently selected category as the selected category for the transaction"
 msgstr ""
 
 #: categdialog.cpp:252
-#, fuzzy
 msgid "Enter the name for the new category:"
-msgstr "Ange namnet på tillgången"
+msgstr ""
 
 #: categdialog.cpp:255
 msgid "Tip: If category added now, check bottom of list."
 msgstr ""
 
 #: categdialog.cpp:258
-#, fuzzy
 msgid "Add Category"
-msgstr "Kategori"
+msgstr ""
 
 #: categdialog.cpp:267 categdialog.cpp:503
 msgid "Category with same name exists"
 msgstr "Kategori med samma namn finns redan"
 
 #: categdialog.cpp:268
-msgid ""
-"Tip: If category added now, check bottom of list.\n"
+msgid "Tip: If category added now, check bottom of list.\n"
 "Category will be in sorted order next time dialog appears"
 msgstr ""
 
 #: categdialog.cpp:270 categdialog.cpp:294 categdialog.cpp:312
-#, fuzzy
 msgid "Organise Categories: Adding Error"
-msgstr "Organisera kategorier"
+msgstr ""
 
 #: categdialog.cpp:293 categdialog.cpp:520
 msgid "Sub Category with same name exists"
@@ -1718,24 +1551,20 @@ msgid "Invalid Parent Category. Choose Root or Main Category node."
 msgstr ""
 
 #: categdialog.cpp:318
-#, fuzzy
 msgid "Category in use."
-msgstr "Kategorin används"
+msgstr ""
 
 #: categdialog.cpp:318
-#, fuzzy
 msgid "Sub-Category in use."
-msgstr "Underkategori används"
+msgstr ""
 
 #: categdialog.cpp:320
-msgid ""
-"Tip: Change all transactions using this Category to\n"
+msgid "Tip: Change all transactions using this Category to\n"
 "another Category using the relocate command:"
 msgstr ""
 
 #: categdialog.cpp:323
-msgid ""
-"Tip: Change all transactions using this Sub-Category to\n"
+msgid "Tip: Change all transactions using this Sub-Category to\n"
 "another Sub-Category using the relocate command:"
 msgstr ""
 
@@ -1744,9 +1573,8 @@ msgid "Tools -> Relocation of -> Categories"
 msgstr ""
 
 #: categdialog.cpp:328
-#, fuzzy
 msgid "Organise Categories: Delete Error"
-msgstr "Organisera kategorier"
+msgstr ""
 
 #: categdialog.cpp:432
 msgid "Select an unused category to delete."
@@ -1757,34 +1585,29 @@ msgid "This category cannot be deleted because it's used by transactions."
 msgstr ""
 
 #: categdialog.cpp:464
-#, fuzzy
-#| msgid "Edit the name of an existing category"
 msgid "Delete an existing category."
-msgstr "Ändra namnet på en befintlig kategori"
+msgstr ""
 
 #: categdialog.cpp:469
 msgid "Subcategories must be deleted before."
 msgstr ""
 
 #: categdialog.cpp:485
-#, fuzzy, c-format
+#, c-format
 msgid "Enter a new name for '%s'"
-msgstr "Ange namnet på tillgången"
+msgstr ""
 
 #: categdialog.cpp:486
-#, fuzzy
 msgid "Edit Category"
-msgstr "Dela kategori"
+msgstr ""
 
 #: categdialog.cpp:504 categdialog.cpp:521
-#, fuzzy
 msgid "Organise Categories: Editing Error"
-msgstr "Organisera kategorier"
+msgstr ""
 
 #: categdialog.cpp:597 mmframe.cpp:3101
-#, fuzzy
 msgid "Category Relocation Completed."
-msgstr "Kategori kan inte vara tom"
+msgstr ""
 
 #: categdialog.cpp:598 mmframe.cpp:3102 mmframe.cpp:3117 payeedialog.cpp:317
 #, c-format
@@ -1792,100 +1615,84 @@ msgid "Records have been updated in the database: %i"
 msgstr ""
 
 #: categdialog.cpp:600 mmframe.cpp:3104
-#, fuzzy
 msgid "Category Relocation Result"
-msgstr "Kategori kan inte vara tom"
+msgstr ""
 
 #: categdialog.cpp:665
-#, fuzzy
 msgid "Hide Selected Category"
-msgstr "Välj kategori"
+msgstr ""
 
 #: categdialog.cpp:666
-#, fuzzy
 msgid "Unhide Selected Category"
-msgstr "Välj kategori"
+msgstr ""
 
 #: categdialog.cpp:668 import_export/univcsvdialog.cpp:213
-#, fuzzy
 msgid "Clear Settings"
-msgstr "Inställningar"
+msgstr ""
 
 #: constants.cpp:84
 msgid "Cancel"
 msgstr "Avbryt"
 
 #: constants.cpp:90
-#, fuzzy
 msgid "Close"
-msgstr "Stäng"
+msgstr ""
 
 #: constants.cpp:92
-#, fuzzy
 msgid "&Close "
-msgstr "Stäng"
+msgstr ""
 
 #: constants.cpp:188
-#, fuzzy
 msgid "Advanced Filter"
-msgstr "Avancerad"
+msgstr ""
 
 #: constants.cpp:189
 msgid "View All Transactions"
 msgstr "Visa alla transaktioner"
 
 #: constants.cpp:190
-#, fuzzy
 msgid "View Today"
-msgstr "Visa 30 dagar"
+msgstr ""
 
 #: constants.cpp:191
 msgid "View Current Month"
 msgstr "Visa nuvarande månad"
 
 #: constants.cpp:192
-#, fuzzy
 msgid "View Last 30 days"
-msgstr "Visa 30 dagar"
+msgstr ""
 
 #: constants.cpp:193
-#, fuzzy
 msgid "View Last 90 days"
-msgstr "Visa 90 dagar"
+msgstr ""
 
 #: constants.cpp:194
 msgid "View Last Month"
 msgstr "Visa föregående månad"
 
 #: constants.cpp:195
-#, fuzzy
 msgid "View Last 3 Months"
-msgstr "Visa föregående månad"
+msgstr ""
 
 #: constants.cpp:196
-#, fuzzy
 msgid "View Last 12 Months"
-msgstr "Visa föregående månad"
+msgstr ""
 
 #: constants.cpp:197
-#, fuzzy
 msgid "View Current Year"
-msgstr "Nuvarande år"
+msgstr ""
 
 #: constants.cpp:198
-#, fuzzy
 msgid "View Current Financial Year"
-msgstr "Nuvarande år"
+msgstr ""
 
 #: constants.cpp:199
-#, fuzzy
 msgid "View Last Year"
-msgstr "Föregående år"
+msgstr ""
 
 #: constants.cpp:200
-#, fuzzy
 msgid "View Last Financial Year"
-msgstr "Föregående år"
+msgstr ""
 
 #: constants.cpp:201
 msgid "View Since Statement Date"
@@ -1913,40 +1720,32 @@ msgid "Currency Manager"
 msgstr "Valutahanterare"
 
 #: currencydialog.cpp:96
-#, fuzzy
 msgid "Currency name"
-msgstr "Valutanamn"
+msgstr ""
 
 #: currencydialog.cpp:155
 msgid "Currency Name"
 msgstr "Valutanamn"
 
 #: currencydialog.cpp:159
-#, fuzzy
 msgid "Currency Symbol"
-msgstr "Valutanamn"
+msgstr ""
 
 #: currencydialog.cpp:164
-#, fuzzy
-#| msgid "Account Name"
 msgid "Unit Name"
-msgstr "Kontonamn"
+msgstr ""
 
 #: currencydialog.cpp:168
-#, fuzzy
-#| msgid "Currency Name"
 msgid "Cents Name"
-msgstr "Valutanamn"
+msgstr ""
 
 #: currencydialog.cpp:172
-#, fuzzy
 msgid "Prefix Symbol"
-msgstr "Prefixsymbol"
+msgstr ""
 
 #: currencydialog.cpp:176
-#, fuzzy
 msgid "Suffix Symbol"
-msgstr "Suffixsymbol"
+msgstr ""
 
 #: currencydialog.cpp:187 currencydialog.cpp:257
 #: import_export/qif_import_gui.cpp:298 import_export/univcsvdialog.cpp:364
@@ -1966,9 +1765,7 @@ msgid "Conversion to Base Rate"
 msgstr "Konvertering till basvaluta"
 
 #: currencydialog.cpp:212
-msgid ""
-"Conversion rate will be used in case no currency history has been found for "
-"the currency"
+msgid "Conversion rate will be used in case no currency history has been found for the currency"
 msgstr ""
 
 #: currencydialog.cpp:214
@@ -1998,34 +1795,28 @@ msgid "%.2f Shown As: %s"
 msgstr ""
 
 #: customfieldeditdialog.cpp:56
-#, fuzzy
 msgid "New/Edit Custom Field"
-msgstr "Anpassad SQL-rapport"
+msgstr ""
 
 #: customfieldeditdialog.cpp:115
-#, fuzzy
 msgid "Custom Field Details"
-msgstr "Detaljer över tillgång"
+msgstr ""
 
 #: customfieldeditdialog.cpp:127
-#, fuzzy
 msgid "Enter the name of the custom field"
-msgstr "Ange namnet på tillgången"
+msgstr ""
 
 #: customfieldeditdialog.cpp:130
-#, fuzzy
 msgid "Field Type"
-msgstr "Typ av tillgång"
+msgstr ""
 
 #: customfieldeditdialog.cpp:134
-#, fuzzy
 msgid "Select type of custom field"
-msgstr "Ange typ av tillgång"
+msgstr ""
 
 #: customfieldeditdialog.cpp:137
-#, fuzzy
 msgid "ToolTip"
-msgstr "&Verktyg"
+msgstr ""
 
 #: customfieldeditdialog.cpp:139
 msgid "Enter the tooltip that will be shown"
@@ -2036,27 +1827,23 @@ msgid "RegEx"
 msgstr ""
 
 #: customfieldeditdialog.cpp:144
-#, fuzzy
 msgid "Enter the RegEx to validate field"
-msgstr "Ange namnet på tillgången"
+msgstr ""
 
 #: customfieldeditdialog.cpp:147
-#, fuzzy
 msgid "Autocomplete"
-msgstr "Kategori kan inte vara tom"
+msgstr ""
 
 #: customfieldeditdialog.cpp:150
 msgid "Enables autocomplete on custom field"
 msgstr ""
 
 #: customfieldeditdialog.cpp:153 util.cpp:408
-#, fuzzy
 msgid "Default"
-msgstr "Välj betalningsmottagare"
+msgstr ""
 
 #: customfieldeditdialog.cpp:155
-msgid ""
-"Enter the default for this field\n"
+msgid "Enter the default for this field\n"
 "For date/time insert 'Now' to make current date/time as default"
 msgstr ""
 
@@ -2074,25 +1861,20 @@ msgstr ""
 
 #: customfieldeditdialog.cpp:203 customfieldeditdialog.cpp:225 mmframe.cpp:2062
 #: mmframe.cpp:2081
-#, fuzzy
 msgid "Do you want to proceed?"
 msgstr ""
-"Kunde inte hitta tidigare öppnad .mmb database.\n"
-"Do you want to browse to locate the file?"
 
 #: customfieldeditdialog.cpp:204 customfieldeditdialog.cpp:226
-#, fuzzy
 msgid "Custom Field Change"
-msgstr "Anpassad SQL-fråga"
+msgstr ""
 
 #: customfieldeditdialog.cpp:224
 msgid "You have modified choices: ones removed will be cleaned!"
 msgstr ""
 
 #: customfieldlistdialog.cpp:56
-#, fuzzy
 msgid "Properties"
-msgstr "Egendom"
+msgstr ""
 
 #: customfieldlistdialog.cpp:66
 #, c-format
@@ -2100,19 +1882,15 @@ msgid "Personalize custom fields | %s"
 msgstr ""
 
 #: customfieldlistdialog.cpp:175
-#, fuzzy
 msgid "Do you really want to delete this custom field and all its data?"
-msgstr "Vill du verkligen ta bort kontot?"
+msgstr ""
 
 #: customfieldlistdialog.cpp:176
-#, fuzzy
 msgid "Confirm Custom Field Deletion"
-msgstr "Borttagning av tillgång"
+msgstr ""
 
 #: customfieldlistdialog.cpp:194
-msgid ""
-"This function will massive update (search & replace for entire value, not "
-"inside value), please remind that there isn't any validation!\n"
+msgid "This function will massive update (search & replace for entire value, not inside value), please remind that there isn't any validation!\n"
 "Do you want to proceed?"
 msgstr ""
 
@@ -2131,8 +1909,7 @@ msgid "Update Custom Field Content"
 msgstr ""
 
 #: customfieldlistdialog.cpp:205
-msgid ""
-"Do you want to update blank content?\n"
+msgid "Do you want to update blank content?\n"
 "Press no if you want to abort replace procedure!"
 msgstr ""
 
@@ -2141,8 +1918,7 @@ msgid "Replace with"
 msgstr ""
 
 #: customfieldlistdialog.cpp:217
-msgid ""
-"Do you want to update to blank?\n"
+msgid "Do you want to update to blank?\n"
 "Press no if you want to abort replace procedure!"
 msgstr ""
 
@@ -2188,9 +1964,8 @@ msgid "Insurance"
 msgstr ""
 
 #: db/DB_Table_Category_V1.h:119
-#, fuzzy
 msgid "Vacation"
-msgstr "Navigation"
+msgstr ""
 
 #: db/DB_Table_Category_V1.h:120
 msgid "Taxes"
@@ -2205,14 +1980,12 @@ msgid "Gifts"
 msgstr ""
 
 #: db/DB_Table_Category_V1.h:124
-#, fuzzy
 msgid "Other Income"
-msgstr "Inkomst"
+msgstr ""
 
 #: db/DB_Table_Category_V1.h:125
-#, fuzzy
 msgid "Other Expenses"
-msgstr "Utgifter"
+msgstr ""
 
 #: db/DB_Table_Category_V1.h:126 model/Model_Billsdeposits.cpp:33
 #: model/Model_Checking.cpp:31 transdialog.cpp:349
@@ -2232,23 +2005,20 @@ msgid "Gas"
 msgstr ""
 
 #: db/DB_Table_Subcategory_V1.h:114
-#, fuzzy
 msgid "Internet"
-msgstr "Investeringar"
+msgstr ""
 
 #: db/DB_Table_Subcategory_V1.h:115
-#, fuzzy
 msgid "Rent"
-msgstr "Rapport"
+msgstr ""
 
 #: db/DB_Table_Subcategory_V1.h:116
 msgid "Cable TV"
 msgstr ""
 
 #: db/DB_Table_Subcategory_V1.h:117
-#, fuzzy
 msgid "Water"
-msgstr "Datum"
+msgstr ""
 
 #: db/DB_Table_Subcategory_V1.h:118
 msgid "Groceries"
@@ -2259,9 +2029,8 @@ msgid "Dining out"
 msgstr ""
 
 #: db/DB_Table_Subcategory_V1.h:120
-#, fuzzy
 msgid "Movies"
-msgstr "Flytta upp"
+msgstr ""
 
 #: db/DB_Table_Subcategory_V1.h:121
 msgid "Video Rental"
@@ -2276,9 +2045,8 @@ msgid "Maintenance"
 msgstr ""
 
 #: db/DB_Table_Subcategory_V1.h:125
-#, fuzzy
 msgid "Parking"
-msgstr "Varning"
+msgstr ""
 
 #: db/DB_Table_Subcategory_V1.h:126
 msgid "Registration"
@@ -2301,14 +2069,12 @@ msgid "Furnishing"
 msgstr ""
 
 #: db/DB_Table_Subcategory_V1.h:133 db/DB_Table_Subcategory_V1.h:141
-#, fuzzy
 msgid "Health"
-msgstr "Hjälp"
+msgstr ""
 
 #: db/DB_Table_Subcategory_V1.h:134
-#, fuzzy
 msgid "Dental"
-msgstr "Allmänt"
+msgstr ""
 
 #: db/DB_Table_Subcategory_V1.h:135
 msgid "Eyecare"
@@ -2319,41 +2085,36 @@ msgid "Physician"
 msgstr ""
 
 #: db/DB_Table_Subcategory_V1.h:137
-#, fuzzy
 msgid "Prescriptions"
-msgstr "Transaktioner"
+msgstr ""
 
 #: db/DB_Table_Subcategory_V1.h:138
-#, fuzzy
 msgid "Auto"
-msgstr "till"
+msgstr ""
 
 #: db/DB_Table_Subcategory_V1.h:139
 msgid "Life"
 msgstr ""
 
 #: db/DB_Table_Subcategory_V1.h:140
-#, fuzzy
 msgid "Home"
-msgstr "Övergripande"
+msgstr ""
 
 #: db/DB_Table_Subcategory_V1.h:142
 msgid "Travel"
 msgstr ""
 
 #: db/DB_Table_Subcategory_V1.h:143
-#, fuzzy
 msgid "Lodging"
-msgstr "Budgetering"
+msgstr ""
 
 #: db/DB_Table_Subcategory_V1.h:144
 msgid "Sightseeing"
 msgstr ""
 
 #: db/DB_Table_Subcategory_V1.h:145
-#, fuzzy
 msgid "Income Tax"
-msgstr "Inkomst"
+msgstr ""
 
 #: db/DB_Table_Subcategory_V1.h:146
 msgid "House Tax"
@@ -2364,28 +2125,24 @@ msgid "Water Tax"
 msgstr ""
 
 #: db/DB_Table_Subcategory_V1.h:149
-#, fuzzy
 msgid "Salary"
-msgstr "Sammanfattning"
+msgstr ""
 
 #: db/DB_Table_Subcategory_V1.h:150
 msgid "Reimbursement/Refunds"
 msgstr ""
 
 #: db/DB_Table_Subcategory_V1.h:151
-#, fuzzy
 msgid "Investment Income"
-msgstr "Investeringar"
+msgstr ""
 
 #: dbupgrade.cpp:72
-#, fuzzy, c-format
+#, c-format
 msgid "MMEX database upgrade to version %i failed!"
-msgstr "Öppna befintlig databas"
+msgstr ""
 
 #: dbupgrade.cpp:73
-msgid ""
-"Please restore DB from autocreated pre-upgrade backup and retry or contact "
-"MMEX support"
+msgid "Please restore DB from autocreated pre-upgrade backup and retry or contact MMEX support"
 msgstr ""
 
 #: dbupgrade.cpp:74 dbupgrade.cpp:108 dbupgrade.cpp:120
@@ -2393,30 +2150,27 @@ msgid "MMEX database upgrade"
 msgstr ""
 
 #: dbupgrade.cpp:106
-#, fuzzy
 msgid "MMEX database error!"
-msgstr "Öppna befintlig databas"
+msgstr ""
 
 #: dbupgrade.cpp:107
 #, c-format
-msgid ""
-"MMEX database version %i doesn't work with this MMEX version.\n"
+msgid "MMEX database version %i doesn't work with this MMEX version.\n"
 "Please upgrade MMEX to newer version."
 msgstr ""
 
 #: dbupgrade.cpp:119
-#, fuzzy, c-format
+#, c-format
 msgid "MMEX database succesfully upgraded to version %i"
-msgstr "Öppna befintlig databas"
+msgstr ""
 
 #: dbupgrade.cpp:120
 msgid "We suggest a database optimization under Tools -> Database -> Optimize"
 msgstr ""
 
 #: dbupgrade.cpp:197
-#, fuzzy
 msgid "Load debug file"
-msgstr "Importera fil"
+msgstr ""
 
 #: dbupgrade.cpp:204
 msgid "Wrong file type!"
@@ -2436,8 +2190,7 @@ msgid "Invalid file content, please contact MMEX support!"
 msgstr ""
 
 #: dbupgrade.cpp:255
-msgid ""
-"Send this log to MMEX support team:\n"
+msgid "Send this log to MMEX support team:\n"
 "press OK to save to file or Cancel to exit"
 msgstr ""
 
@@ -2446,37 +2199,30 @@ msgid "MMEX debug"
 msgstr ""
 
 #: dbupgrade.cpp:259
-#, fuzzy
 msgid "Save debug file"
-msgstr "Spara databas som"
+msgstr ""
 
 #: dbupgrade.cpp:299
 msgid "DB maintenance completed, please close and re-open MMEX!"
 msgstr ""
 
 #: dbwrapper.cpp:70
-#, fuzzy
 msgid "When database file opening:"
-msgstr "Välj QIF-datafil att importera"
+msgstr ""
 
 #: dbwrapper.cpp:74
-#, fuzzy
 msgid "Can't open file"
-msgstr "Kunde inte öppna fil."
+msgstr ""
 
 #: dbwrapper.cpp:74
 msgid "You must specify path to another database file"
 msgstr ""
 
 #: dbwrapper.cpp:78
-#, fuzzy
-msgid ""
-"An incorrect password given for an encrypted file \n"
-"\n"
-"or \n"
-"\n"
+msgid "An incorrect password given for an encrypted file \n\n"
+"or \n\n"
 " Attempt to open a File that is not a database file \n"
-msgstr "Fel vid öppnande av databas"
+msgstr ""
 
 #: dbwrapper.cpp:82 import_export/qif_import_gui.cpp:855 webapp.cpp:120
 #, c-format
@@ -2484,9 +2230,8 @@ msgid "Error: %s"
 msgstr "Fel: %s"
 
 #: dbwrapper.cpp:85 mmframe.cpp:1777
-#, fuzzy
 msgid "Opening MMEX Database - Error"
-msgstr "Öppna befintlig databas"
+msgstr ""
 
 #: filtertransdialog.cpp:44 mmhomepage.cpp:635 model/Model_Billsdeposits.cpp:39
 #: model/Model_Checking.cpp:37
@@ -2509,24 +2254,20 @@ msgid "Duplicate"
 msgstr "Dubblett"
 
 #: filtertransdialog.cpp:48 filtertransdialog.cpp:894
-#, fuzzy
 msgid "Un-Reconciled"
-msgstr "Fullbordad"
+msgstr ""
 
 #: filtertransdialog.cpp:49 filtertransdialog.cpp:895
-#, fuzzy
 msgid "All Except Reconciled"
-msgstr "Visa allt förutom fullbordade transaktioner"
+msgstr ""
 
 #: filtertransdialog.cpp:158
-#, fuzzy
 msgid "Specify"
-msgstr "Ange typ"
+msgstr ""
 
 #: filtertransdialog.cpp:188 reports/mmDateRange.cpp:27
-#, fuzzy
 msgid "Date Range"
-msgstr "Ange datumintervall"
+msgstr ""
 
 #: filtertransdialog.cpp:230 filtertransdialog.cpp:885
 msgid "Include Similar"
@@ -2549,19 +2290,16 @@ msgid "Deposit"
 msgstr "Insättning"
 
 #: filtertransdialog.cpp:262
-#, fuzzy
 msgid "Transfer To"
-msgstr "Överföring"
+msgstr ""
 
 #: filtertransdialog.cpp:264
-#, fuzzy
 msgid "Transfer From"
-msgstr "Överföring"
+msgstr ""
 
 #: filtertransdialog.cpp:277
-#, fuzzy
 msgid "Amount Range"
-msgstr "Summa:"
+msgstr ""
 
 #: filtertransdialog.cpp:347
 msgid "&Clear "
@@ -2573,9 +2311,8 @@ msgid "Empty value"
 msgstr ""
 
 #: filtertransdialog.cpp:833
-#, fuzzy
 msgid "Filtering Details: "
-msgstr "Betalningsmottagare"
+msgstr ""
 
 #: filtertransdialog.cpp:871
 msgid "Since"
@@ -2586,19 +2323,16 @@ msgid "Before"
 msgstr ""
 
 #: filtertransdialog.cpp:927
-#, fuzzy
 msgid "Amount Min."
-msgstr "Summa"
+msgstr ""
 
 #: filtertransdialog.cpp:935
-#, fuzzy
 msgid "Amount Max."
-msgstr "Summa"
+msgstr ""
 
 #: general_report_manager.cpp:238 general_report_manager.cpp:631
-#, fuzzy
 msgid "General Reports Manager"
-msgstr "Anpassad SQL-rapport"
+msgstr ""
 
 #: general_report_manager.cpp:281 mmframe.cpp:765 mmframe.cpp:2416
 #: mmframe.cpp:2512 reports/myusage.cpp:118
@@ -2607,9 +2341,8 @@ msgstr "Rapporter"
 
 #: general_report_manager.cpp:370 import_export/univcsvdialog.cpp:417
 #: mmframe.cpp:1252 mmframe.cpp:1327
-#, fuzzy
 msgid "&Import"
-msgstr "Importera"
+msgstr ""
 
 #: general_report_manager.cpp:372
 msgid "Locate and load a report file."
@@ -2625,23 +2358,20 @@ msgid "Export the report to a new file."
 msgstr ""
 
 #: general_report_manager.cpp:379 stockdialog.cpp:354
-#, fuzzy
 msgid "&Save "
-msgstr "Spara SQL-fråga"
+msgstr ""
 
 #: general_report_manager.cpp:381
-#, fuzzy
 msgid "Save changes."
-msgstr "Betalningsmottagare"
+msgstr ""
 
 #: general_report_manager.cpp:383
 msgid "&Run"
 msgstr ""
 
 #: general_report_manager.cpp:385
-#, fuzzy
 msgid "Run selected report."
-msgstr "Inga konton tillgängliga! Kan ej exportera!"
+msgstr ""
 
 #: general_report_manager.cpp:397
 msgid "Output"
@@ -2656,18 +2386,16 @@ msgid "Lua"
 msgstr ""
 
 #: general_report_manager.cpp:415
-#, fuzzy
 msgid "Template"
-msgstr "Ladda mall"
+msgstr ""
 
 #: general_report_manager.cpp:456
 msgid "&Test"
 msgstr ""
 
 #: general_report_manager.cpp:457
-#, fuzzy
 msgid "Create Template"
-msgstr "Spara som mall"
+msgstr ""
 
 #: general_report_manager.cpp:507
 #, c-format
@@ -2681,118 +2409,100 @@ msgid "SQL Syntax Error"
 msgstr ""
 
 #: general_report_manager.cpp:565
-#, fuzzy
 msgid "Load report file:"
-msgstr "Importera fil"
+msgstr ""
 
 #: general_report_manager.cpp:567 general_report_manager.cpp:996
-#, fuzzy
 msgid "General Report Manager files (*.grm)"
-msgstr "Anpassad SQL-rapport"
+msgstr ""
 
 #: general_report_manager.cpp:567 general_report_manager.cpp:996
 msgid "ZIP files (*.zip)"
 msgstr ""
 
 #: general_report_manager.cpp:630
-#, fuzzy, c-format
-msgid ""
-"Unable to open file:\n"
-"%s\n"
-"\n"
-msgstr "Kunde inte öppna fil."
+#, c-format
+msgid "Unable to open file:\n"
+"%s\n\n"
+msgstr ""
 
 #: general_report_manager.cpp:694
-#, fuzzy
 msgid "New Empty Report"
-msgstr "Anpassad SQL-rapport"
+msgstr ""
 
 #: general_report_manager.cpp:695
-#, fuzzy
 msgid "New Sample Report"
-msgstr "Anpassad SQL-rapport"
+msgstr ""
 
 #: general_report_manager.cpp:698
 msgid "Change Group"
 msgstr ""
 
 #: general_report_manager.cpp:700 general_report_manager.cpp:865
-#, fuzzy
 msgid "Rename Group"
-msgstr "Betalningsmottagare"
+msgstr ""
 
 #: general_report_manager.cpp:701
 msgid "UnGroup"
 msgstr ""
 
 #: general_report_manager.cpp:702
-#, fuzzy
 msgid "Rename Report"
-msgstr "Betalningsmottagare"
+msgstr ""
 
 #: general_report_manager.cpp:704
-#, fuzzy
 msgid "Delete Report"
-msgstr "Anpassad SQL-rapport"
+msgstr ""
 
 #: general_report_manager.cpp:799 general_report_manager.cpp:947
-#, fuzzy
 msgid "Enter the name for the report"
-msgstr "Ange namnet på tillgången"
+msgstr ""
 
 #: general_report_manager.cpp:800 general_report_manager.cpp:948
 #: mmframe.cpp:1221 mmframe.cpp:1506 mmframe.cpp:1688
-#, fuzzy
 msgid "General Report Manager"
-msgstr "Anpassad SQL-rapport"
+msgstr ""
 
 #: general_report_manager.cpp:818
-#, fuzzy
 msgid "Delete the Report Title:"
-msgstr "Importera fil"
+msgstr ""
 
 #: general_report_manager.cpp:847 general_report_manager.cpp:928
-#, fuzzy
 msgid "Enter or choose name for the new report group"
-msgstr "Ange namnet på tillgången"
+msgstr ""
 
 #: general_report_manager.cpp:848
 msgid "Change report group"
 msgstr ""
 
 #: general_report_manager.cpp:864
-#, fuzzy
 msgid "Enter or choose name for the new group"
-msgstr "Ange namnet på tillgången"
+msgstr ""
 
 #: general_report_manager.cpp:929
 msgid "Add Report Group"
 msgstr ""
 
 #: general_report_manager.cpp:942
-#, fuzzy, c-format
+#, c-format
 msgid "New Report %s"
-msgstr "Betalningsmottagare"
+msgstr ""
 
 #: general_report_manager.cpp:955
-#, fuzzy
 msgid "Report Name already exists"
-msgstr "Kontonamnet finns redan"
+msgstr ""
 
 #: general_report_manager.cpp:955 general_report_manager.cpp:962
-#, fuzzy
 msgid "New Report"
-msgstr "Rapport"
+msgstr ""
 
 #: general_report_manager.cpp:993
-#, fuzzy
 msgid "Choose file to Save As Report"
-msgstr "Välj QIF-datafil att importera"
+msgstr ""
 
 #: general_report_manager.cpp:1171
-#, fuzzy
 msgid "Parameters:"
-msgstr "Betalningsmottagare"
+msgstr ""
 
 #: import_export/parsers.cpp:46 import_export/univcsvdialog.cpp:1529
 #: mmSimpleDialogs.cpp:253
@@ -2801,23 +2511,20 @@ msgstr "Kunde inte öppna fil."
 
 #: import_export/parsers.cpp:46 import_export/parsers.cpp:89
 #: import_export/univcsvdialog.cpp:961 mmframe.cpp:2219 mmframe.cpp:2238
-#, fuzzy
 msgid "Universal CSV Import"
-msgstr "&Universella CSV-filer"
+msgstr ""
 
 #: import_export/parsers.cpp:89
-#, fuzzy
 msgid "Unable to create file."
-msgstr "Kunde inte spara till fil."
+msgstr ""
 
 #: import_export/parsers.cpp:109 import_export/parsers.cpp:248
 msgid "Could not save file."
 msgstr ""
 
 #: import_export/parsers.cpp:109 import_export/parsers.cpp:248
-#, fuzzy
 msgid "Export error"
-msgstr "Importera fil"
+msgstr ""
 
 #: import_export/parsers.cpp:135 import_export/parsers.cpp:144
 msgid "File is not in Excel XML Spreadsheet 2003 format."
@@ -2846,25 +2553,20 @@ msgstr ""
 
 #: import_export/qif_export.cpp:47 import_export/qif_export.cpp:246
 #: import_export/qif_export.cpp:332
-#, fuzzy
 msgid "QIF Export"
-msgstr "QIF-import"
+msgstr ""
 
 #: import_export/qif_export.cpp:47
-#, fuzzy
-#| msgid "CSV Export"
 msgid "JSON Export"
-msgstr "CSV-export"
+msgstr ""
 
 #: import_export/qif_export.cpp:106
-#, fuzzy
 msgid "Parameters"
-msgstr "Betalningsmottagare"
+msgstr ""
 
 #: import_export/qif_export.cpp:111 import_export/qif_import_gui.cpp:197
-#, fuzzy
 msgid "Log"
-msgstr "Budgetering"
+msgstr ""
 
 #: import_export/qif_export.cpp:123
 msgid "QIF"
@@ -2880,14 +2582,12 @@ msgid "Accounts"
 msgstr "Konton"
 
 #: import_export/qif_export.cpp:149 import_export/qif_import_gui.cpp:175
-#, fuzzy
 msgid "From Date"
-msgstr "Från: "
+msgstr ""
 
 #: import_export/qif_export.cpp:159 import_export/qif_import_gui.cpp:184
-#, fuzzy
 msgid "To Date"
-msgstr "Datum"
+msgstr ""
 
 #: import_export/qif_export.cpp:173 import_export/qif_import_gui.cpp:278
 #: optionsettingsgeneral.cpp:103
@@ -2900,9 +2600,8 @@ msgstr ""
 
 #: import_export/qif_export.cpp:188 import_export/qif_import_gui.cpp:129
 #: import_export/univcsvdialog.cpp:166
-#, fuzzy
 msgid "File Name:"
-msgstr "Valutasymbol"
+msgstr ""
 
 #: import_export/qif_export.cpp:211 import_export/univcsvdialog.cpp:444
 msgid "Clear"
@@ -2913,80 +2612,69 @@ msgid "Choose Account to Export from:"
 msgstr "Välj konto att exportera från:"
 
 #: import_export/qif_export.cpp:292
-#, fuzzy
 msgid "Choose QIF data file to Export"
-msgstr "Välj QIF-datafil att importera"
+msgstr ""
 
 #: import_export/qif_export.cpp:294 import_export/qif_import_gui.cpp:720
-#, fuzzy
 msgid "QIF Files (*.qif)"
-msgstr "&QIF-filer"
+msgstr ""
 
 #: import_export/qif_export.cpp:299
-#, fuzzy
-#| msgid "Choose CSV data file to Export"
 msgid "Choose JSON data file to Export"
-msgstr "Välj CSV-datafil att exportera"
+msgstr ""
 
 #: import_export/qif_export.cpp:301
-#, fuzzy
 msgid "JSON Files (*.json)"
-msgstr "&CSV-filer"
+msgstr ""
 
 #: import_export/qif_export.cpp:321
-#, fuzzy
 msgid "No Account available for export"
-msgstr "Inga konton tillgängliga! Kan ej exportera!"
+msgstr ""
 
 #: import_export/qif_export.cpp:323
-#, fuzzy
 msgid "No Accounts selected for export"
-msgstr "Inga konton tillgängliga! Kan ej exportera!"
+msgstr ""
 
 #: import_export/qif_export.cpp:325
 msgid "To Date less than From Date"
 msgstr ""
 
 #: import_export/qif_export.cpp:424
-#, fuzzy
 msgid "Categories exported"
-msgstr "Kategori "
+msgstr ""
 
 #: import_export/qif_export.cpp:445 import_export/qif_import_gui.cpp:358
 #: import_export/qif_import_gui.cpp:804
-#, fuzzy
 msgid "Please wait"
-msgstr "Var god vänta"
+msgstr ""
 
 #: import_export/qif_export.cpp:445
-#, fuzzy
 msgid "Exporting"
-msgstr "&Exportera"
+msgstr ""
 
 #: import_export/qif_export.cpp:470
-#, fuzzy, c-format
+#, c-format
 msgid "Exporting transaction %zu"
-msgstr "Kommande transaktioner"
+msgstr ""
 
 #: import_export/qif_export.cpp:571
-#, fuzzy, c-format
+#, c-format
 msgid "Number of categories exported: %zu"
-msgstr "Transaktionsrapport"
+msgstr ""
 
 #: import_export/qif_export.cpp:573
-#, fuzzy, c-format
+#, c-format
 msgid "Number of transactions exported: %zu"
-msgstr "Transaktionsrapport"
+msgstr ""
 
 #: import_export/qif_export.cpp:575
-#, fuzzy, c-format
+#, c-format
 msgid "Number of accounts exported: %zu"
-msgstr "Transaktionsrapport"
+msgstr ""
 
 #: import_export/qif_export.cpp:576 mmframe.cpp:1317
-#, fuzzy
 msgid "Export to QIF"
-msgstr "Exportera till CSV"
+msgstr ""
 
 #: import_export/qif_import_gui.cpp:79 import_export/qif_import_gui.cpp:905
 msgid "QIF Import"
@@ -3001,18 +2689,16 @@ msgid "Encoding:"
 msgstr ""
 
 #: import_export/qif_import_gui.cpp:169
-#, fuzzy
 msgid "Filtering Details:"
-msgstr "Betalningsmottagare"
+msgstr ""
 
 #: import_export/qif_import_gui.cpp:206
 msgid "Data"
 msgstr ""
 
 #: import_export/qif_import_gui.cpp:266
-#, fuzzy
 msgid "Use account number instead of account name"
-msgstr "Välj konto att ta bort"
+msgstr ""
 
 #: import_export/qif_import_gui.cpp:270
 msgid "Include payee field in notes"
@@ -3028,9 +2714,8 @@ msgid "Unknown"
 msgstr "Okänd"
 
 #: import_export/qif_import_gui.cpp:358
-#, fuzzy
 msgid "Scanning"
-msgstr "Varning"
+msgstr ""
 
 #: import_export/qif_import_gui.cpp:386
 #, c-format
@@ -3038,14 +2723,14 @@ msgid "Reading line %zu, %lld ms"
 msgstr ""
 
 #: import_export/qif_import_gui.cpp:392
-#, fuzzy, c-format
+#, c-format
 msgid "Line %zu \t %s\n"
-msgstr "Linje : "
+msgstr ""
 
 #: import_export/qif_import_gui.cpp:465
-#, fuzzy, c-format
+#, c-format
 msgid "Number of lines read from QIF file: %zu in %lld ms"
-msgstr "Transaktionsrapport"
+msgstr ""
 
 #: import_export/qif_import_gui.cpp:468
 msgid "Press OK Button to continue"
@@ -3057,78 +2742,67 @@ msgid "OK"
 msgstr "OK"
 
 #: import_export/qif_import_gui.cpp:664 import_export/qif_import_gui.cpp:667
-#, fuzzy
 msgid "Warning"
-msgstr "Varning"
+msgstr ""
 
 #: import_export/qif_import_gui.cpp:672 import_export/qif_import_gui.cpp:691
 #: stockspanel.cpp:880
-#, fuzzy
 msgid "Missing"
-msgstr "Bankkonton"
+msgstr ""
 
 #: import_export/qif_import_gui.cpp:718
-#, fuzzy
 msgid "Choose QIF data file to Import"
-msgstr "Välj QIF-datafil att importera"
+msgstr ""
 
 #: import_export/qif_import_gui.cpp:797
-#, fuzzy
 msgid "Do you want to import all transaction ?"
-msgstr "Vill du verkligen ta bort alla listade transaktioner?"
+msgstr ""
 
 #: import_export/qif_import_gui.cpp:798
 msgid "All missing account, payees and categories will be created."
 msgstr ""
 
 #: import_export/qif_import_gui.cpp:799
-#, fuzzy
 msgid "Confirm Import"
-msgstr "Bekräfta QIF-importering"
+msgstr ""
 
 #: import_export/qif_import_gui.cpp:804
-#, fuzzy
 msgid "Importing"
-msgstr "Importera från CSV"
+msgstr ""
 
 #: import_export/qif_import_gui.cpp:806
-#, fuzzy
 msgid "Importing Accounts"
-msgstr "Importera fil"
+msgstr ""
 
 #: import_export/qif_import_gui.cpp:813
-#, fuzzy
 msgid "Importing Payees"
-msgstr "Importera från CSV"
+msgstr ""
 
 #: import_export/qif_import_gui.cpp:816
-#, fuzzy
 msgid "Importing Categories"
-msgstr "Organisera kategorier"
+msgstr ""
 
 #: import_export/qif_import_gui.cpp:833
-#, fuzzy, c-format
+#, c-format
 msgid "Importing transaction %i of %i"
-msgstr "Visa transaktioner för de senaste 30 dagarna"
+msgstr ""
 
 #: import_export/qif_import_gui.cpp:866
-#, fuzzy
 msgid "Importing Transfers"
-msgstr "Importera från CSV"
+msgstr ""
 
 #: import_export/qif_import_gui.cpp:891
-#, fuzzy
 msgid "Importing Split transactions"
-msgstr "Kommande transaktioner"
+msgstr ""
 
 #: import_export/qif_import_gui.cpp:895
 msgid "Import finished successfully"
 msgstr ""
 
 #: import_export/qif_import_gui.cpp:895
-#, fuzzy, c-format
+#, c-format
 msgid "Total Imported: %zu"
-msgstr "Sammanlagda tillgångar: "
+msgstr ""
 
 #: import_export/qif_import_gui.cpp:903 import_export/univcsvdialog.cpp:1078
 msgid "Imported transactions discarded by user!"
@@ -3163,14 +2837,14 @@ msgid "Transaction Category is incorrect"
 msgstr ""
 
 #: import_export/qif_import_gui.cpp:1167
-#, fuzzy, c-format
+#, c-format
 msgid "Added account: %s"
-msgstr " summa "
+msgstr ""
 
 #: import_export/qif_import_gui.cpp:1196 import_export/univcsvdialog.cpp:876
-#, fuzzy, c-format
+#, c-format
 msgid "Added payee: %s"
-msgstr "Kategori"
+msgstr ""
 
 #: import_export/univcsvdialog.cpp:108
 msgid "SubCategory"
@@ -3186,42 +2860,36 @@ msgid "Balance"
 msgstr "Balans"
 
 #: import_export/univcsvdialog.cpp:117
-#, fuzzy
 msgid "Import dialog"
-msgstr "Importera fil"
+msgstr ""
 
 #: import_export/univcsvdialog.cpp:117
-#, fuzzy
 msgid "Export dialog"
-msgstr "Importera fil"
+msgstr ""
 
 #: import_export/univcsvdialog.cpp:179
 msgid "&Browse"
 msgstr ""
 
 #: import_export/univcsvdialog.cpp:182
-#, fuzzy
 msgid "Choose CSV data file to Import"
-msgstr "Välj CSV-datafil att exportera"
+msgstr ""
 
 #: import_export/univcsvdialog.cpp:182
 msgid "Choose CSV data file to Export"
 msgstr "Välj CSV-datafil att exportera"
 
 #: import_export/univcsvdialog.cpp:203
-#, fuzzy
 msgid "Template name"
-msgstr "Ladda mall"
+msgstr ""
 
 #: import_export/univcsvdialog.cpp:208
-#, fuzzy
 msgid "Save Template"
-msgstr "Spara som mall"
+msgstr ""
 
 #: import_export/univcsvdialog.cpp:217
-#, fuzzy
 msgid "Specify the order of fields in the file"
-msgstr "Ange datumet för nästa räkning/insättning"
+msgstr ""
 
 #: import_export/univcsvdialog.cpp:248
 msgid "&MMEX format"
@@ -3232,48 +2900,40 @@ msgid "MMEX standard format"
 msgstr ""
 
 #: import_export/univcsvdialog.cpp:266
-#, fuzzy
 msgid "&Up"
-msgstr "Uppdatera"
+msgstr ""
 
 #: import_export/univcsvdialog.cpp:268
-#, fuzzy
 msgid "Move Up"
-msgstr "Flytta upp"
+msgstr ""
 
 #: import_export/univcsvdialog.cpp:271
-#, fuzzy
 msgid "&Down"
-msgstr "Flytta ner"
+msgstr ""
 
 #: import_export/univcsvdialog.cpp:273
-#, fuzzy
 msgid "Move &Down"
-msgstr "Flytta ner"
+msgstr ""
 
 #: import_export/univcsvdialog.cpp:290
-#, fuzzy
 msgid "Account: "
-msgstr "Konton"
+msgstr ""
 
 #: import_export/univcsvdialog.cpp:303
-#, fuzzy
 msgid "Date Format: "
-msgstr "Datumformat"
+msgstr ""
 
 #: import_export/univcsvdialog.cpp:315
-#, fuzzy
 msgid "CSV Delimiter:"
-msgstr "CSV-avgränsare"
+msgstr ""
 
 #: import_export/univcsvdialog.cpp:321 optionsettingsmisc.cpp:188
 msgid "Specify the delimiter to use when importing/exporting CSV files"
 msgstr "Ange avgränsare att använda för importering/exportering av CSV-filer"
 
 #: import_export/univcsvdialog.cpp:344
-#, fuzzy
 msgid "Export column titles"
-msgstr "Importera fil"
+msgstr ""
 
 #: import_export/univcsvdialog.cpp:359
 msgid "Positive values are deposits"
@@ -3288,40 +2948,34 @@ msgid "Rows to ignore"
 msgstr ""
 
 #: import_export/univcsvdialog.cpp:380
-#, fuzzy
 msgid "From start: "
-msgstr "Från: "
+msgstr ""
 
 #: import_export/univcsvdialog.cpp:390
-#, fuzzy
 msgid "From end: "
-msgstr "Från: "
+msgstr ""
 
 #: import_export/univcsvdialog.cpp:401
 msgid "Preview"
 msgstr ""
 
 #: import_export/univcsvdialog.cpp:420
-#, fuzzy
 msgid "Import File"
-msgstr "Importera fil"
+msgstr ""
 
 #: import_export/univcsvdialog.cpp:428
-#, fuzzy
 msgid "Export File"
-msgstr "Importera fil"
+msgstr ""
 
 #: import_export/univcsvdialog.cpp:533
 #, c-format
-msgid ""
-"Default account '%s' for this template does not exist.\n"
+msgid "Default account '%s' for this template does not exist.\n"
 "Please select a new account."
 msgstr ""
 
 #: import_export/univcsvdialog.cpp:535
-#, fuzzy
 msgid "Account does not exist"
-msgstr "Kontonamnet finns redan"
+msgstr ""
 
 #: import_export/univcsvdialog.cpp:677 import_export/univcsvdialog.cpp:747
 #: import_export/univcsvdialog.cpp:1784
@@ -3343,68 +2997,65 @@ msgstr ""
 
 #: import_export/univcsvdialog.cpp:920 import_export/univcsvdialog.cpp:1048
 #: webappdialog.cpp:406
-#, fuzzy
 msgid "Import"
-msgstr "Importera"
+msgstr ""
 
 #: import_export/univcsvdialog.cpp:970
-#, fuzzy, c-format
+#, c-format
 msgid "Transactions imported to account %s: %ld"
-msgstr "Transaktionsrapport"
+msgstr ""
 
 #: import_export/univcsvdialog.cpp:981
-#, fuzzy, c-format
+#, c-format
 msgid "Line %ld: Empty"
-msgstr "Linje : "
+msgstr ""
 
 #: import_export/univcsvdialog.cpp:995
-#, fuzzy, c-format
+#, c-format
 msgid "Line %ld: Error:"
-msgstr "Linje : "
+msgstr ""
 
 #: import_export/univcsvdialog.cpp:997
-#, fuzzy
 msgid "Invalid Date."
-msgstr "Ogiltigt värde "
+msgstr ""
 
 #: import_export/univcsvdialog.cpp:998 mmTextCtrl.cpp:99
-#, fuzzy
 msgid "Invalid Amount."
-msgstr "Ogiltigt belopp angivet "
+msgstr ""
 
 #: import_export/univcsvdialog.cpp:1000
 msgid "Type (withdrawal/deposit) unknown."
 msgstr ""
 
 #: import_export/univcsvdialog.cpp:1025
-#, fuzzy, c-format
+#, c-format
 msgid "Line %ld: OK, imported."
-msgstr " importerat OK."
+msgstr ""
 
 #: import_export/univcsvdialog.cpp:1033
-#, fuzzy, c-format
+#, c-format
 msgid "Total Lines: %ld"
-msgstr "Sammanlagda tillgångar: "
+msgstr ""
 
 #: import_export/univcsvdialog.cpp:1035
-#, fuzzy, c-format
+#, c-format
 msgid "Lines Selected to Import: %ld"
-msgstr "Anpassad SQL-rapport"
+msgstr ""
 
 #: import_export/univcsvdialog.cpp:1037
-#, fuzzy, c-format
+#, c-format
 msgid "Empty Lines: %ld"
-msgstr "Sammanlagda tillgångar: "
+msgstr ""
 
 #: import_export/univcsvdialog.cpp:1039
-#, fuzzy, c-format
+#, c-format
 msgid "Imported: %ld"
-msgstr "Sammanlagda tillgångar: "
+msgstr ""
 
 #: import_export/univcsvdialog.cpp:1041
-#, fuzzy, c-format
+#, c-format
 msgid "Errored: %ld"
-msgstr "Fel: %s"
+msgstr ""
 
 #: import_export/univcsvdialog.cpp:1044
 #, c-format
@@ -3412,94 +3063,77 @@ msgid "Log file written to: %s"
 msgstr ""
 
 #: import_export/univcsvdialog.cpp:1047 stockdialog.cpp:679
-#, fuzzy
 msgid "Please confirm saving..."
-msgstr "Var god vänta"
+msgstr ""
 
 #: import_export/univcsvdialog.cpp:1079
-#, fuzzy
 msgid "No imported transactions!"
-msgstr "Kommande transaktioner"
+msgstr ""
 
 #: import_export/univcsvdialog.cpp:1097
-msgid ""
-"Incorrect fields specified for export! Requires at least Date and Amount."
+msgid "Incorrect fields specified for export! Requires at least Date and Amount."
 msgstr ""
 
 #: import_export/univcsvdialog.cpp:1098 import_export/univcsvdialog.cpp:1222
-#, fuzzy
 msgid "Export"
-msgstr "&Exportera"
+msgstr ""
 
 #: import_export/univcsvdialog.cpp:1108
-#, fuzzy
 msgid "Overwrite existing file?"
-msgstr "Ta bort befintligt budgetår"
+msgstr ""
 
 #: import_export/univcsvdialog.cpp:1108
-#, fuzzy
 msgid "File exists"
-msgstr "Datum är tomt, "
+msgstr ""
 
 #: import_export/univcsvdialog.cpp:1114
 msgid "Failed to delete existing file. File may be locked by another program."
 msgstr ""
 
 #: import_export/univcsvdialog.cpp:1115
-#, fuzzy
 msgid "Destination file error"
-msgstr "Dela kategori"
+msgstr ""
 
 #: import_export/univcsvdialog.cpp:1221
-#, fuzzy, c-format
+#, c-format
 msgid "Transactions exported: %ld"
-msgstr "Transaktionsrapport"
+msgstr ""
 
 #: import_export/univcsvdialog.cpp:1496 stockdialog.cpp:587
-#, fuzzy
 msgid "Choose CSV data file to import"
-msgstr "Välj CSV-datafil att exportera"
+msgstr ""
 
 #: import_export/univcsvdialog.cpp:1499
-#, fuzzy
 msgid "Choose CSV data file to export"
-msgstr "Välj CSV-datafil att exportera"
+msgstr ""
 
 #: import_export/univcsvdialog.cpp:1502
-#, fuzzy
 msgid "Choose XML data file to import"
-msgstr "Välj CSV-datafil att exportera"
+msgstr ""
 
 #: import_export/univcsvdialog.cpp:1505
-#, fuzzy
 msgid "Choose XML data file to export"
-msgstr "Välj QIF-datafil att importera"
+msgstr ""
 
 #: import_export/univcsvdialog.cpp:1512
-#, fuzzy
 msgid "XML Files (*.xml)"
-msgstr "&CSV-filer"
+msgstr ""
 
 #: import_export/univcsvdialog.cpp:1512
-#, fuzzy
 msgid "All Files"
-msgstr "&CSV-filer"
+msgstr ""
 
 #: import_export/univcsvdialog.cpp:1513
-#, fuzzy
 msgid "CSV Files (*.csv)"
-msgstr "&CSV-filer"
-
-#: import_export/univcsvdialog.cpp:1780
-msgid ""
-"Please, type the word indicating positive values in your CSV file, e.g. "
-"'debit'"
 msgstr ""
 
 #: import_export/univcsvdialog.cpp:1780
-#, fuzzy
+msgid "Please, type the word indicating positive values in your CSV file, e.g. 'debit'"
+msgstr ""
+
+#: import_export/univcsvdialog.cpp:1780
 msgid "Enter a value"
-msgstr "Ange det nuvarande värdet på tillgången"
+msgstr ""
 
 #: maincurrencydialog.cpp:78 reports/summarystocks.cpp:180 stockdialog.cpp:427
 #: stockspanel.cpp:94
@@ -3507,14 +3141,12 @@ msgid "Symbol"
 msgstr "Symbol"
 
 #: maincurrencydialog.cpp:80
-#, fuzzy
 msgid "Last Rate"
-msgstr " datum "
+msgstr ""
 
 #: maincurrencydialog.cpp:80
-#, fuzzy
 msgid "Fixed Rate"
-msgstr " datum "
+msgstr ""
 
 #: maincurrencydialog.cpp:84 maincurrencydialog.cpp:357
 #: maincurrencydialog.cpp:428 maincurrencydialog.cpp:642
@@ -3527,60 +3159,52 @@ msgid "Online update currency rate"
 msgstr ""
 
 #: maincurrencydialog.cpp:166
-#, fuzzy
 msgid "Online Update"
-msgstr "Kontrollera uppdateringar"
+msgstr ""
 
 #: maincurrencydialog.cpp:170
 msgid "Show all even the unused currencies"
 msgstr ""
 
 #: maincurrencydialog.cpp:227
-#, fuzzy
 msgid "Currency History Options"
-msgstr "Valutalista"
+msgstr ""
 
 #: maincurrencydialog.cpp:251
-#, fuzzy
 msgid "Diff."
-msgstr "Skillnad:"
+msgstr ""
 
 #: maincurrencydialog.cpp:267
-#, fuzzy
 msgid "Specify the date of currency value"
-msgstr "Ange inköpsdatumet för tillgången"
+msgstr ""
 
 #: maincurrencydialog.cpp:275
-#, fuzzy
 msgid "Enter the currency value"
-msgstr "Ange det nuvarande värdet på tillgången"
+msgstr ""
 
 #: maincurrencydialog.cpp:285
 msgid "Download Currency Values history"
 msgstr ""
 
 #: maincurrencydialog.cpp:288
-#, fuzzy
 msgid "&Add / Update "
-msgstr "Uppdatera"
+msgstr ""
 
 #: maincurrencydialog.cpp:289
 msgid "Add Currency Values to history"
 msgstr ""
 
 #: maincurrencydialog.cpp:293
-#, fuzzy
 msgid "Delete selected Currency Values"
-msgstr "Ta bort alla flaggade transaktioner"
+msgstr ""
 
 #: maincurrencydialog.cpp:297
 msgid "Delete Currency Values history for unused currencies and days"
 msgstr ""
 
 #: maincurrencydialog.cpp:356
-#, fuzzy
 msgid "Do you really want to delete the selected Currency?"
-msgstr "Vill du verkligen ta bort transaktionen?"
+msgstr ""
 
 #: maincurrencydialog.cpp:385
 msgid "Base Currency Selection"
@@ -3588,9 +3212,7 @@ msgstr ""
 
 #: maincurrencydialog.cpp:426
 #, c-format
-msgid ""
-"Historic rates for %s found, but \"Use currency history\" in options is "
-"disabled:\n"
+msgid "Historic rates for %s found, but \"Use currency history\" in options is disabled:\n"
 "click no and enable it or click yes to remove all historic rates for %s"
 msgstr ""
 
@@ -3610,28 +3232,25 @@ msgid "Currency history error"
 msgstr ""
 
 #: maincurrencydialog.cpp:517
-#, fuzzy
 msgid "Set as Base Currency"
-msgstr "Basvaluta"
+msgstr ""
 
 #: maincurrencydialog.cpp:518
-#, fuzzy
 msgid "Online Update Currency Rate"
-msgstr "Valutanamn"
+msgstr ""
 
 #: maincurrencydialog.cpp:624
 msgid "No currency selected!"
 msgstr ""
 
 #: maincurrencydialog.cpp:637
-#, fuzzy, c-format
+#, c-format
 msgid "Unable to download %s currency rates"
-msgstr "Kunde inte spara till fil."
+msgstr ""
 
 #: maincurrencydialog.cpp:642
-#, fuzzy
 msgid "Do you want to add also dates without any transaction?"
-msgstr "Vill du verkligen ta bort alla listade transaktioner?"
+msgstr ""
 
 #: maincurrencydialog.cpp:684
 #, c-format
@@ -3643,9 +3262,8 @@ msgid "Changing base currency will delete all history rates, proceed?"
 msgstr ""
 
 #: maincurrencydialog.cpp:770
-#, fuzzy
 msgid "Do you want to update today currency rates?"
-msgstr "Valutanamn"
+msgstr ""
 
 #: maincurrencydialog.cpp:785 stockspanel.cpp:825 util.cpp:468
 msgid "Could not find base currency symbol!"
@@ -3653,8 +3271,7 @@ msgstr ""
 
 #: maincurrencydialog.cpp:902
 #, c-format
-msgid ""
-"Unable to download history for base symbol %s. History rates not available!"
+msgid "Unable to download history for base symbol %s. History rates not available!"
 msgstr ""
 
 #: mmSimpleDialogs.cpp:177
@@ -3662,97 +3279,79 @@ msgid "Subtract one year"
 msgstr ""
 
 #: mmSimpleDialogs.cpp:178
-#, fuzzy
 msgid "Subtract one month"
-msgstr "Nuvarande månad"
+msgstr ""
 
 #: mmSimpleDialogs.cpp:179
-#, fuzzy
 msgid "Add one month"
-msgstr "Månad"
+msgstr ""
 
 #: mmSimpleDialogs.cpp:180
-#, fuzzy
-#| msgid "Add a new budget year"
 msgid "Add one year"
-msgstr "Lägg till ett nytt budgetår"
+msgstr ""
 
 #: mmSimpleDialogs.cpp:237
-#, fuzzy, c-format
+#, c-format
 msgid "Entry %s is invalid"
-msgstr "  är ogiltig."
+msgstr ""
 
 #: mmSimpleDialogs.cpp:244
-#, fuzzy
 msgid "Please use this button for category selection."
-msgstr "Ange beloppet för transaktionen"
+msgstr ""
 
 #: mmSimpleDialogs.cpp:245
-msgid ""
-"Please use this button for category selection\n"
+msgid "Please use this button for category selection\n"
 "or use the 'Split' checkbox for multiple categories."
 msgstr ""
 
 #: mmSimpleDialogs.cpp:248
-#, fuzzy
 msgid "Invalid Category"
-msgstr "Ogiltig kategori angiven "
+msgstr ""
 
 #: mmSimpleDialogs.cpp:253
-#, fuzzy
 msgid "File name is empty."
-msgstr "Datum är tomt, "
+msgstr ""
 
 #: mmSimpleDialogs.cpp:254
-#, fuzzy
 msgid "Please select the file for this operation."
-msgstr "Ange beloppet för transaktionen"
+msgstr ""
 
 #: mmSimpleDialogs.cpp:261
-#, fuzzy
 msgid "Invalid Account"
-msgstr "Ogiltigt belopp angivet "
+msgstr ""
 
 #: mmSimpleDialogs.cpp:264
-#, fuzzy
 msgid "Please select the account for this transaction."
-msgstr "Ange beloppet för transaktionen"
+msgstr ""
 
 #: mmSimpleDialogs.cpp:266
-#, fuzzy
 msgid "Please specify which account the transfer is going to."
-msgstr "Välj det konto från där överföringen ska ske "
+msgstr ""
 
 #: mmSimpleDialogs.cpp:268
 msgid "Selection can be made by using the dropdown button."
 msgstr ""
 
 #: mmSimpleDialogs.cpp:271
-msgid ""
-"Activating the button will provide a selection box where the account can be "
-"selected."
+msgid "Activating the button will provide a selection box where the account can be selected."
 msgstr ""
 
 #: mmSimpleDialogs.cpp:280 mmcombobox.h:78
-#, fuzzy
 msgid "Invalid Payee"
-msgstr "Ogiltigt värde "
+msgstr ""
 
 #: mmSimpleDialogs.cpp:281
-msgid ""
-"Please type in a new payee,\n"
+msgid "Please type in a new payee,\n"
 "or make a selection using the dropdown button."
 msgstr ""
 
 #: mmSimpleDialogs.cpp:289 mmSimpleDialogs.cpp:301
-#, fuzzy
 msgid "Invalid Name"
-msgstr "Ogiltigt värde "
+msgstr ""
 
 #: mmSimpleDialogs.cpp:292 mmSimpleDialogs.cpp:304
-#, fuzzy
 msgid "Already exist!"
-msgstr "Kontonamnet finns redan"
+msgstr ""
 
 #: mmSimpleDialogs.cpp:294
 msgid "Please type in a non empty name."
@@ -3763,10 +3362,8 @@ msgid "Please type in a non empty symbol."
 msgstr ""
 
 #: mmTextCtrl.cpp:69
-#, fuzzy
-#| msgid "Invalid Value "
 msgid "Invalid Value"
-msgstr "Ogiltigt värde "
+msgstr ""
 
 #: mmTextCtrl.cpp:96
 msgid "Please enter a positive or calculated value."
@@ -3777,8 +3374,7 @@ msgid "Please enter a calculated value."
 msgstr ""
 
 #: mmTextCtrl.cpp:98
-msgid ""
-"Tip: For calculations, enter expressions like (2+2)*(2+2)\n"
+msgid "Tip: For calculations, enter expressions like (2+2)*(2+2)\n"
 "Calculations will be evaluated and the result used as the entry."
 msgstr ""
 
@@ -3787,15 +3383,11 @@ msgid "Recommendation: Always backup your .mmb database file regularly."
 msgstr ""
 
 #: mmTips.h:23
-msgid ""
-"Recommendation: If upgrading to a new version of MMEX, make sure you backup "
-"your .mmb database file before doing so."
+msgid "Recommendation: If upgrading to a new version of MMEX, make sure you backup your .mmb database file before doing so."
 msgstr ""
 
 #: mmTips.h:24
-msgid ""
-"Recommendation: Use copy (Ctrl+C) and paste (Ctrl+V) for frequently used "
-"transactions."
+msgid "Recommendation: Use copy (Ctrl+C) and paste (Ctrl+V) for frequently used transactions."
 msgstr ""
 
 #: mmTips.h:25
@@ -3803,70 +3395,43 @@ msgid "Tip: Remember to make backups of your .mmb."
 msgstr ""
 
 #: mmTips.h:26
-msgid ""
-"Tip: The .mmb file is not encrypted. That means anyone else having the "
-"proper know how can actually open the file and read the contents. So make "
-"sure that if you are storing any sensitive financial information it is "
-"properly guarded."
+msgid "Tip: The .mmb file is not encrypted. That means anyone else having the proper know how can actually open the file and read the contents. So make sure that if you are storing any sensitive financial information it is properly guarded."
 msgstr ""
 
 #: mmTips.h:27
-msgid ""
-"Tip: To mark a transaction as reconciled, just select the transaction and "
-"hit the 'r' or 'R' key. To mark a transaction as unreconciled, just select "
-"the transaction and hit the 'u' or 'U' key."
+msgid "Tip: To mark a transaction as reconciled, just select the transaction and hit the 'r' or 'R' key. To mark a transaction as unreconciled, just select the transaction and hit the 'u' or 'U' key."
 msgstr ""
 
 #: mmTips.h:28
-msgid ""
-"Tip: To mark a transaction as requiring followup, just select the "
-"transaction and hit the 'f' or 'F' key."
+msgid "Tip: To mark a transaction as requiring followup, just select the transaction and hit the 'f' or 'F' key."
 msgstr ""
 
 #: mmTips.h:29
-msgid ""
-"Tip: MMEX supports printing of all reports that can be viewed. The print "
-"options are available under the menu, File->Print."
+msgid "Tip: MMEX supports printing of all reports that can be viewed. The print options are available under the menu, File->Print."
 msgstr ""
 
 #: mmTips.h:30
-msgid ""
-"Tip: You can modify some runtime behavior of MMEX by changing the options in "
-"the Options Dialog. "
+msgid "Tip: You can modify some runtime behavior of MMEX by changing the options in the Options Dialog. "
 msgstr ""
 
 #: mmTips.h:31
-msgid ""
-"Tip: To print a statement with transactions from any arbitrary set of "
-"criteria, use the transaction filter to select the transactions you want and "
-"then do a print from the menu."
+msgid "Tip: To print a statement with transactions from any arbitrary set of criteria, use the transaction filter to select the transactions you want and then do a print from the menu."
 msgstr ""
 
 #: mmTips.h:32
-msgid ""
-"Tip: Set exchange rate for currencies in case if you have accounts with "
-"different currencies."
+msgid "Tip: Set exchange rate for currencies in case if you have accounts with different currencies."
 msgstr ""
 
 #: mmTips.h:34
-msgid ""
-"Organize Categories Dialog Tip: Pressing the h key will cycle through all "
-"categories starting with the letter h"
+msgid "Organize Categories Dialog Tip: Pressing the h key will cycle through all categories starting with the letter h"
 msgstr ""
 
 #: mmTips.h:35
-msgid ""
-"Organize Categories Dialog Tip: Pressing 2 key combination will cycle "
-"through all categories starting with that key combination. Example: Pressing "
-"ho will select Homeneeds, Home, House Tax, etc..."
+msgid "Organize Categories Dialog Tip: Pressing 2 key combination will cycle through all categories starting with that key combination. Example: Pressing ho will select Homeneeds, Home, House Tax, etc..."
 msgstr ""
 
 #: mmTips.h:37
-msgid ""
-"Tip to get out of debt: Pay yourself 10 percentage first. Put this into an "
-"account that is hard to touch. Make sure it is a chore to get the money out "
-"(you have to drive to the bank), so you will only tap it consciously and for "
-"major expenses."
+msgid "Tip to get out of debt: Pay yourself 10 percentage first. Put this into an account that is hard to touch. Make sure it is a chore to get the money out (you have to drive to the bank), so you will only tap it consciously and for major expenses."
 msgstr ""
 
 #: mmTips.h:38
@@ -3890,83 +3455,69 @@ msgid "Tip to get out of debt: Pay more than the minimum."
 msgstr ""
 
 #: mmTips.h:43
-msgid ""
-"Before going to a shop and buy something: take the time making a list of "
-"what you really need. In the shop buy what is in your list."
+msgid "Before going to a shop and buy something: take the time making a list of what you really need. In the shop buy what is in your list."
 msgstr ""
 
 #: mmcheckingpanel.cpp:368 mmcheckingpanel.cpp:512
-#, fuzzy
 msgid "Displayed Bal: "
-msgstr "Vy"
+msgstr ""
 
 #: mmcheckingpanel.cpp:374
-#, fuzzy
 msgid "Account Bal: "
-msgstr "Konton"
+msgstr ""
 
 #: mmcheckingpanel.cpp:376
-#, fuzzy
 msgid "Reconciled Bal: "
-msgstr "Fullbordad"
+msgstr ""
 
 #: mmcheckingpanel.cpp:378
-#, fuzzy
 msgid "Diff: "
-msgstr "Skillnad:"
+msgstr ""
 
 #: mmcheckingpanel.cpp:439 mmframe.cpp:1692 transdialog.cpp:170
 msgid "New Transaction"
 msgstr "Ny transaktion"
 
 #: mmcheckingpanel.cpp:443
-#, fuzzy
 msgid "Edit selected transaction"
-msgstr "Ta bort transaktion"
+msgstr ""
 
 #: mmcheckingpanel.cpp:448
-#, fuzzy
 msgid "Delete selected transaction"
-msgstr "Ta bort alla flaggade transaktioner"
+msgstr ""
 
 #: mmcheckingpanel.cpp:452
-#, fuzzy
 msgid "D&uplicate "
-msgstr "Dubblett"
+msgstr ""
 
 #: mmcheckingpanel.cpp:453
-#, fuzzy
 msgid "Duplicate selected transaction"
-msgstr "Ta bort alla flaggade transaktioner"
+msgstr ""
 
 #: mmcheckingpanel.cpp:470
 msgid "Enter any string to find it in the nearest transaction notes"
 msgstr ""
 
 #: mmcheckingpanel.cpp:487
-#, fuzzy, c-format
+#, c-format
 msgid "Account View : %s"
-msgstr "Konton : "
+msgstr ""
 
 #: mmcheckingpanel.cpp:713
-#, fuzzy
 msgid "Select account used in transfer transactions"
-msgstr "Ange beloppet för transaktionen"
+msgstr ""
 
 #: mmcheckingpanel.cpp:1053
-#, fuzzy
 msgid "&New Withdrawal"
-msgstr "Uttag"
+msgstr ""
 
 #: mmcheckingpanel.cpp:1054
-#, fuzzy
 msgid "&New Deposit"
-msgstr "Insättning"
+msgstr ""
 
 #: mmcheckingpanel.cpp:1056
-#, fuzzy
 msgid "&New Transfer"
-msgstr "Överföring"
+msgstr ""
 
 #: mmcheckingpanel.cpp:1060
 msgid "&Edit Transaction"
@@ -3981,24 +3532,20 @@ msgid "&Paste Transaction"
 msgstr "&Klistra in transaktion"
 
 #: mmcheckingpanel.cpp:1069
-#, fuzzy
 msgid "D&uplicate Transaction"
-msgstr "Visa dubblettransaktioner"
+msgstr ""
 
 #: mmcheckingpanel.cpp:1072
-#, fuzzy
 msgid "&Move Transaction"
-msgstr "&Ny transaktion"
+msgstr ""
 
 #: mmcheckingpanel.cpp:1078
-#, fuzzy
 msgid "&View Split Categories"
-msgstr "Visa alla budgetkategorier"
+msgstr ""
 
 #: mmcheckingpanel.cpp:1086
-#, fuzzy
 msgid "Create Reoccuring T&ransaction"
-msgstr "Återkommande transaktioner"
+msgstr ""
 
 #: mmcheckingpanel.cpp:1092
 msgid "&Delete Transaction"
@@ -4009,14 +3556,12 @@ msgid "Delete all transactions in current view"
 msgstr "Ta bort alla transaktioner i aktuell vy"
 
 #: mmcheckingpanel.cpp:1096
-#, fuzzy
 msgid "Delete Viewed \"Follow Up\" Trans."
-msgstr "Visa alla transaktioner"
+msgstr ""
 
 #: mmcheckingpanel.cpp:1097
-#, fuzzy
 msgid "Delete Viewed \"Unreconciled\" Trans."
-msgstr "Visa alla transaktioner"
+msgstr ""
 
 #: mmcheckingpanel.cpp:1103
 msgid "Mark As &Reconciled"
@@ -4063,9 +3608,8 @@ msgid "as Duplicate"
 msgstr "som dubbletter"
 
 #: mmcheckingpanel.cpp:1121
-#, fuzzy
 msgid "Mark all being viewed"
-msgstr "Markera alla "
+msgstr ""
 
 #: mmcheckingpanel.cpp:1191
 msgid "Do you really want to delete all the transactions shown?"
@@ -4076,60 +3620,51 @@ msgid "Confirm Transaction Deletion"
 msgstr "Borttagning av transaktion"
 
 #: mmcheckingpanel.cpp:1201
-#, fuzzy
 msgid "Follow Up"
-msgstr "Uppföljning"
+msgstr ""
 
 #: mmcheckingpanel.cpp:1201
-#, fuzzy
 msgid "Unreconciled"
-msgstr "som ofullbordade"
+msgstr ""
 
 #: mmcheckingpanel.cpp:1204
-#, fuzzy, c-format
+#, c-format
 msgid "Do you really want to delete all the \"%s\" transactions shown?"
-msgstr "Vill du verkligen ta bort alla listade transaktioner?"
+msgstr ""
 
 #: mmcheckingpanel.cpp:1556
-#, fuzzy
 msgid "Do you really want to delete the selected transaction?"
-msgstr "Vill du verkligen ta bort transaktionen?"
+msgstr ""
 
 #: mmcheckingpanel.cpp:1603 transdialog.cpp:713 transdialog.cpp:746
-#, fuzzy
 msgid "MMEX Transaction Check"
-msgstr "Ändra transaktion"
+msgstr ""
 
 #: mmcheckingpanel.cpp:1744 stockspanel.cpp:287
-#, fuzzy, c-format
+#, c-format
 msgid "Moving Transaction from %s to..."
-msgstr "Visa transaktioner för de senaste 30 dagarna"
+msgstr ""
 
 #: mmcheckingpanel.cpp:1747 stockspanel.cpp:288
-#, fuzzy
 msgid "Select the destination Account "
-msgstr "Välj till konto"
+msgstr ""
 
 #: mmcheckingpanel.cpp:1801
-#, fuzzy
 msgid "Reoccuring Transaction saved."
-msgstr "Återkommande transaktioner"
+msgstr ""
 
 #: mmcombobox.h:79
-msgid ""
-"Please type in an exiting payee name,\n"
+msgid "Please type in an exiting payee name,\n"
 "or make a selection using the dropdown button."
 msgstr ""
 
 #: mmcustomdata.cpp:63
-#, fuzzy
 msgid "Custom fields"
-msgstr "CSV-fält"
+msgstr ""
 
 #: mmcustomdata.cpp:333
-#, fuzzy
 msgid "Please select"
-msgstr "Var god vänta"
+msgstr ""
 
 #: mmcustomdata.cpp:333
 msgid "Multi Choice"
@@ -4137,15 +3672,13 @@ msgstr ""
 
 #: mmcustomdata.cpp:448
 #, c-format
-msgid ""
-"Unable to save custom field \"%s\":\n"
+msgid "Unable to save custom field \"%s\":\n"
 "value \"%s\" does not match RegEx validation \"%s\""
 msgstr ""
 
 #: mmcustomdata.cpp:449
-#, fuzzy
 msgid "CustomField validation error"
-msgstr "Anpassad SQL-fråga"
+msgstr ""
 
 #: mmex.cpp:127
 #, c-format
@@ -4154,21 +3687,16 @@ msgstr ""
 
 #: mmex.cpp:134
 #, c-format
-msgid ""
-"Please use the Switch Application Language option in View menu to select one "
-"of the following available languages:\n"
-"\n"
+msgid "Please use the Switch Application Language option in View menu to select one of the following available languages:\n\n"
 "%s"
 msgstr ""
 
 #: mmex.cpp:139 mmframe.cpp:3212
-#, fuzzy
 msgid "Language change"
-msgstr "Språk"
+msgstr ""
 
 #: mmex.cpp:179
-msgid ""
-"Fatal error occured.\n"
+msgid "Fatal error occured.\n"
 "Application will be terminated."
 msgstr ""
 
@@ -4177,52 +3705,44 @@ msgid "Navigation"
 msgstr "Navigation"
 
 #: mmframe.cpp:260
-#, fuzzy
 msgid "Toolbar"
-msgstr "&Verktygsfält"
+msgstr ""
 
 #: mmframe.cpp:456 mmframe.cpp:680 mmhomepage.cpp:623 reports/summary.cpp:149
 msgid "Bank Accounts"
 msgstr "Bankkonton"
 
 #: mmframe.cpp:457 mmframe.cpp:684 mmhomepage.cpp:624 reports/summary.cpp:150
-#, fuzzy
 msgid "Credit Card Accounts"
-msgstr "Ändra konto"
+msgstr ""
 
 #: mmframe.cpp:458 mmframe.cpp:696 mmhomepage.cpp:626 reports/summary.cpp:152
-#, fuzzy
 msgid "Term Accounts"
-msgstr "Från konto "
+msgstr ""
 
 #: mmframe.cpp:459 mmframe.cpp:700
-#, fuzzy
 msgid "Stock Portfolios"
-msgstr "Totalt:"
+msgstr ""
 
 #: mmframe.cpp:460 mmframe.cpp:688 mmhomepage.cpp:622
-#, fuzzy
 msgid "Cash Accounts"
-msgstr "Välj konton"
+msgstr ""
 
 #: mmframe.cpp:461 mmframe.cpp:692 mmhomepage.cpp:625 reports/summary.cpp:151
-#, fuzzy
 msgid "Loan Accounts"
-msgstr "Bankkonton"
+msgstr ""
 
 #: mmframe.cpp:493
-#, fuzzy
 msgid "Auto Repeat Transactions"
-msgstr "Återkommande transaktioner"
+msgstr ""
 
 #: mmframe.cpp:675
 msgid "Home Page"
 msgstr "Övergripande"
 
 #: mmframe.cpp:704
-#, fuzzy
 msgid "Share Accounts"
-msgstr "Välj konton"
+msgstr ""
 
 #: mmframe.cpp:716 mmframe.cpp:1482
 msgid "Budget Setup"
@@ -4257,9 +3777,8 @@ msgid "&Edit Account"
 msgstr "&Ändra konto"
 
 #: mmframe.cpp:1198 mmframe.cpp:1422
-#, fuzzy
 msgid "&Reallocate Account"
-msgstr "&Ta bort konto"
+msgstr ""
 
 #: mmframe.cpp:1199 mmframe.cpp:1234 mmframe.cpp:1426
 msgid "&Delete Account"
@@ -4274,34 +3793,28 @@ msgid "New &Account"
 msgstr "Nytt &konto"
 
 #: mmframe.cpp:1236
-#, fuzzy
 msgid "Account &List (Home)"
-msgstr "Konto&lista"
+msgstr ""
 
 #: mmframe.cpp:1243 mmframe.cpp:1249 mmframe.cpp:1315 mmframe.cpp:1323
-#, fuzzy
 msgid "&CSV Files..."
-msgstr "&CSV-filer"
+msgstr ""
 
 #: mmframe.cpp:1244 mmframe.cpp:1250 mmframe.cpp:1316 mmframe.cpp:1324
-#, fuzzy
 msgid "&XML Files..."
-msgstr "&CSV-filer"
+msgstr ""
 
 #: mmframe.cpp:1245 mmframe.cpp:1251 mmframe.cpp:1317 mmframe.cpp:1325
-#, fuzzy
 msgid "&QIF Files..."
-msgstr "&QIF-filer"
+msgstr ""
 
 #: mmframe.cpp:1246 mmframe.cpp:1318
-#, fuzzy
 msgid "&JSON Files..."
-msgstr "&CSV-filer"
+msgstr ""
 
 #: mmframe.cpp:1250 mmframe.cpp:1324
-#, fuzzy
 msgid "Import from XML (Excel format)"
-msgstr "Importera från MMEX-CSV"
+msgstr ""
 
 #: mmframe.cpp:1261 optionsettingsview.cpp:61
 msgid "Accounts Visible"
@@ -4344,15 +3857,12 @@ msgid "Export to CSV"
 msgstr "Exportera till CSV"
 
 #: mmframe.cpp:1316
-#, fuzzy
 msgid "Export to XML"
-msgstr "Exportera till HTML"
+msgstr ""
 
 #: mmframe.cpp:1318
-#, fuzzy
-#| msgid "Export to CSV"
 msgid "Export to JSON"
-msgstr "Exportera till CSV"
+msgstr ""
 
 #: mmframe.cpp:1319
 msgid "&Report to HTML"
@@ -4375,19 +3885,16 @@ msgid "&WebApp..."
 msgstr ""
 
 #: mmframe.cpp:1326
-#, fuzzy
 msgid "Import from WebApp"
-msgstr "Importera från QIF"
+msgstr ""
 
 #: mmframe.cpp:1332 mmframe.cpp:1713
-#, fuzzy
 msgid "&Print..."
-msgstr "Skriv ut..."
+msgstr ""
 
 #: mmframe.cpp:1332 mmframe.cpp:1713
-#, fuzzy
 msgid "Print current view"
-msgstr "Skriv ut aktuell rapport"
+msgstr ""
 
 #: mmframe.cpp:1339
 msgid "E&xit\tAlt-X"
@@ -4406,28 +3913,24 @@ msgid "Show/Hide the toolbar"
 msgstr "Visa/dölj verktygsfältet"
 
 #: mmframe.cpp:1348
-#, fuzzy
 msgid "&Navigation"
-msgstr "Navigation"
+msgstr ""
 
 #: mmframe.cpp:1348
 msgid "Show/Hide the Navigation tree control"
 msgstr "Visa/dölj navigationsträd"
 
 #: mmframe.cpp:1350
-#, fuzzy
 msgid "&Display Share Accounts"
-msgstr "&Ta bort konto"
+msgstr ""
 
 #: mmframe.cpp:1350
-#, fuzzy
 msgid "Show/Hide Share Accounts in the navigation tree"
-msgstr "Bankkonton"
+msgstr ""
 
 #: mmframe.cpp:1353
-#, fuzzy
 msgid "Budgets: As &Financial Years"
-msgstr "Nuvarande år"
+msgstr ""
 
 #: mmframe.cpp:1353
 msgid "Display Budgets in Financial Year Format"
@@ -4442,23 +3945,20 @@ msgid "Include the transfer transactions in the Budget Totals"
 msgstr ""
 
 #: mmframe.cpp:1357
-#, fuzzy
 msgid "Budget Category Report: with &Summaries"
-msgstr "Nytt budgetår"
+msgstr ""
 
 #: mmframe.cpp:1357
 msgid "Include the category summaries in the Budget Category Summary"
 msgstr ""
 
 #: mmframe.cpp:1359
-#, fuzzy
 msgid "Ignore F&uture Transactions"
-msgstr "Kommande transaktioner"
+msgstr ""
 
 #: mmframe.cpp:1359
-#, fuzzy
 msgid "Ignore Future transactions"
-msgstr "Kommande transaktioner"
+msgstr ""
 
 #: mmframe.cpp:1375
 msgid "Toggle Fullscreen\tShift+F11"
@@ -4477,9 +3977,8 @@ msgid "Change language used for MMEX GUI"
 msgstr ""
 
 #: mmframe.cpp:1390
-#, fuzzy
 msgid "system default"
-msgstr "Återställ till standardinställningar"
+msgstr ""
 
 #: mmframe.cpp:1410
 msgid "Account &List"
@@ -4490,9 +3989,8 @@ msgid "Show Account List"
 msgstr "Visa kontolista"
 
 #: mmframe.cpp:1422
-#, fuzzy
 msgid "Change the account type of an account."
-msgstr "Ange transaktionstyp"
+msgstr ""
 
 #: mmframe.cpp:1426
 msgid "Delete Account from database"
@@ -4503,42 +4001,36 @@ msgid "Download Rates..."
 msgstr ""
 
 #: mmframe.cpp:1440 mmframe.cpp:1707
-#, fuzzy
 msgid "Download Currency and Stock rates"
-msgstr "Kunde inte spara till fil."
+msgstr ""
 
 #: mmframe.cpp:1447
-#, fuzzy
 msgid "Organize &Categories..."
-msgstr "Organisera &kategorier"
+msgstr ""
 
 #: mmframe.cpp:1452
-#, fuzzy
 msgid "Organize &Payees..."
-msgstr "Organisera &betalningsmottagare"
+msgstr ""
 
 #: mmframe.cpp:1452 mmframe.cpp:1683 payeedialog.cpp:75
 msgid "Organize Payees"
 msgstr "Oraganisera betalningsmottagare"
 
 #: mmframe.cpp:1457
-#, fuzzy
 msgid "Organize Currency..."
-msgstr "Organisera valutor"
+msgstr ""
 
 #: mmframe.cpp:1457 mmframe.cpp:1684
 msgid "Organize Currency"
 msgstr "Organisera valutor"
 
 #: mmframe.cpp:1462
-#, fuzzy
 msgid "&Categories..."
-msgstr "Kategorier"
+msgstr ""
 
 #: mmframe.cpp:1466
-#, fuzzy
 msgid "&Payees..."
-msgstr "Betalningsmottagare"
+msgstr ""
 
 #: mmframe.cpp:1467
 msgid "Reassign all payees to another payee"
@@ -4553,53 +4045,44 @@ msgid "Relocate Categories && Payees"
 msgstr ""
 
 #: mmframe.cpp:1482
-#, fuzzy
 msgid "&Budget Setup"
-msgstr "Budgetinstälningar"
+msgstr ""
 
 #: mmframe.cpp:1487
-#, fuzzy
 msgid "&Recurring Transactions"
-msgstr "Återkommande transaktioner"
+msgstr ""
 
 #: mmframe.cpp:1487
 msgid "Bills && Deposits"
 msgstr "Räkningar && insättningar"
 
 #: mmframe.cpp:1492
-#, fuzzy
 msgid "&Assets"
-msgstr "Tillgångar"
+msgstr ""
 
 #: mmframe.cpp:1499
-#, fuzzy
 msgid "&Transaction Report Filter..."
-msgstr "Transaktionsfilter"
+msgstr ""
 
 #: mmframe.cpp:1499 mmframe.cpp:1686
-#, fuzzy
 msgid "Transaction Report Filter"
-msgstr "Transaktionsrapport"
+msgstr ""
 
 #: mmframe.cpp:1506
-#, fuzzy
 msgid "&General Report Manager..."
-msgstr "Anpassad SQL-rapport"
+msgstr ""
 
 #: mmframe.cpp:1511
-#, fuzzy
 msgid "&Custom Fields Manager..."
-msgstr "Anpassad SQL-fråga"
+msgstr ""
 
 #: mmframe.cpp:1511
-#, fuzzy
 msgid "Custom Fields Manager"
-msgstr "Anpassad SQL-fråga"
+msgstr ""
 
 #: mmframe.cpp:1518
-#, fuzzy
 msgid "&Options...\tCtrl-,"
-msgstr "&Inställningar"
+msgstr ""
 
 #: mmframe.cpp:1518 mmframe.cpp:1690
 msgid "Show the Options Dialog"
@@ -4614,60 +4097,52 @@ msgid "Convert Encrypted DB to Non-Encrypted DB"
 msgstr ""
 
 #: mmframe.cpp:1530
-#, fuzzy
 msgid "Change Encrypted &Password"
-msgstr "Välj QIF-datafil att importera"
+msgstr ""
 
 #: mmframe.cpp:1531
-#, fuzzy
 msgid "Change the password of an encrypted database"
-msgstr "Fel vid öppnande av databas"
+msgstr ""
 
 #: mmframe.cpp:1534
-#, fuzzy
 msgid "Optimize &Database"
-msgstr "Öppna databas"
+msgstr ""
 
 #: mmframe.cpp:1535
 msgid "Optimize database space and performance"
 msgstr ""
 
 #: mmframe.cpp:1538
-#, fuzzy
 msgid "Database Debug"
-msgstr "Ny databas"
+msgstr ""
 
 #: mmframe.cpp:1539
 msgid "Generate database report or fix errors"
 msgstr ""
 
 #: mmframe.cpp:1545
-#, fuzzy
 msgid "Database"
-msgstr "Ny databas"
+msgstr ""
 
 #: mmframe.cpp:1546
 msgid "Database management"
 msgstr ""
 
 #: mmframe.cpp:1553 mmframe.cpp:1717
-#, fuzzy
 msgid "&Help\tF1"
-msgstr "&Hjälp"
+msgstr ""
 
 #: mmframe.cpp:1553 mmframe.cpp:1717
 msgid "Show the Help file"
 msgstr "Visa hjälpfilen"
 
 #: mmframe.cpp:1559
-#, fuzzy
 msgid "Website"
-msgstr "Hemsida:"
+msgstr ""
 
 #: mmframe.cpp:1560
-#, fuzzy
 msgid "Open the Money Manager EX website for latest news, updates etc"
-msgstr "Öppna Money Manager Exs-hemsida för senaste nyheter, uppdateringar etc"
+msgstr ""
 
 #: mmframe.cpp:1563
 msgid "Facebook"
@@ -4682,9 +4157,8 @@ msgid "Twitter"
 msgstr ""
 
 #: mmframe.cpp:1566
-#, fuzzy
 msgid "Follow us on Twitter"
-msgstr "Uppföljning av "
+msgstr ""
 
 #: mmframe.cpp:1569
 msgid "YouTube"
@@ -4711,9 +4185,8 @@ msgid "Access open source code repository and track reported bug statuses"
 msgstr ""
 
 #: mmframe.cpp:1578
-#, fuzzy
 msgid "Wiki pages"
-msgstr "Övergripande"
+msgstr ""
 
 #: mmframe.cpp:1578
 msgid "Read and update wiki pages"
@@ -4724,12 +4197,8 @@ msgid "Forum"
 msgstr "﻿Forum"
 
 #: mmframe.cpp:1582
-#, fuzzy
-msgid ""
-"Visit the MMEX forum to see existing user comments or report new issues with "
-"the software"
+msgid "Visit the MMEX forum to see existing user comments or report new issues with the software"
 msgstr ""
-"Skicka e-post via mailinglistan för att rapportera buggar i programvaran."
 
 #: mmframe.cpp:1585
 msgid "Google Play"
@@ -4740,9 +4209,8 @@ msgid "Get free Android version and run MMEX on your smart phone or tablet"
 msgstr ""
 
 #: mmframe.cpp:1589
-#, fuzzy
 msgid "&Newsletter"
-msgstr "&Ny tillgång"
+msgstr ""
 
 #: mmframe.cpp:1590
 msgid "Subscribe to e-mail newsletter or view existing announcements"
@@ -4781,9 +4249,8 @@ msgid "Stay in touch with MMEX community"
 msgstr ""
 
 #: mmframe.cpp:1626
-#, fuzzy
 msgid "Report a Bug"
-msgstr "Rapporter"
+msgstr ""
 
 #: mmframe.cpp:1627
 msgid "Report an error in application to the developers"
@@ -4794,10 +4261,8 @@ msgid "&Show App Start Dialog"
 msgstr ""
 
 #: mmframe.cpp:1632
-#, fuzzy
-#| msgid " Start Page"
 msgid "App Start Dialog"
-msgstr " Övergripande"
+msgstr ""
 
 #: mmframe.cpp:1637
 msgid "Check for &Updates"
@@ -4856,9 +4321,8 @@ msgid "Show Organize Currency Dialog"
 msgstr "Visa organisera valutor"
 
 #: mmframe.cpp:1690
-#, fuzzy
 msgid "&Options..."
-msgstr "&Inställningar"
+msgstr ""
 
 #: mmframe.cpp:1700
 msgid "Register/View Release &Notifications"
@@ -4877,17 +4341,14 @@ msgid "Toggle Fullscreen\tF11"
 msgstr ""
 
 #: mmframe.cpp:1771
-#, fuzzy, c-format
-msgid ""
-"Please enter password for Database\n"
-"\n"
+#, c-format
+msgid "Please enter password for Database\n\n"
 "%s"
-msgstr "Fel vid öppnande av databas"
+msgstr ""
 
 #: mmframe.cpp:1772 mmframe.cpp:2002 mmframe.cpp:2135
-#, fuzzy
 msgid "MMEX: Encrypted Database"
-msgstr "Välj QIF-datafil att importera"
+msgstr ""
 
 #: mmframe.cpp:1806
 msgid "Have MMEX support provided you a debug/patch file?"
@@ -4898,26 +4359,20 @@ msgid "MMEX upgrade"
 msgstr ""
 
 #: mmframe.cpp:1828 mmframe.cpp:1870
-#, fuzzy
 msgid "No File opened"
-msgstr " - Ingen fil öppnad"
+msgstr ""
 
 #: mmframe.cpp:1830
-#, fuzzy
-msgid ""
-"Sorry. The Database version is too old or Database password is incorrect"
+msgid "Sorry. The Database version is too old or Database password is incorrect"
 msgstr ""
-"Tyvärr. Databasversionen är för gammal eller så är databaslösenordet "
-"inkorrekt"
 
 #: mmframe.cpp:1860
 msgid "&Next ->"
 msgstr ""
 
 #: mmframe.cpp:1873
-#, fuzzy
 msgid "Cannot locate previously opened database.\n"
-msgstr "Öppna tidigare använd databas : "
+msgstr ""
 
 #: mmframe.cpp:1875
 msgid "Password not entered for encrypted Database.\n"
@@ -4928,14 +4383,9 @@ msgid "portable mode"
 msgstr ""
 
 #: mmframe.cpp:1929
-msgid ""
-"Database that you trying to open has been markrd as opened by another MMEX "
-"instance...\n"
-"To avoid data loss or conflict, it's strongly recommended to close all other "
-"applications that can use the DB.\n"
-"\n"
-"Possible it may be as result of a programm crash in previous usage.\n"
-"\n"
+msgid "Database that you trying to open has been markrd as opened by another MMEX instance...\n"
+"To avoid data loss or conflict, it's strongly recommended to close all other applications that can use the DB.\n\n"
+"Possible it may be as result of a programm crash in previous usage.\n\n"
 "Would you like to continue?"
 msgstr ""
 
@@ -4944,29 +4394,24 @@ msgid "MMEX Instance Check"
 msgstr ""
 
 #: mmframe.cpp:1952
-#, fuzzy
 msgid "Choose database file to create"
-msgstr "Välj QIF-datafil att importera"
+msgstr ""
 
 #: mmframe.cpp:1975
-#, fuzzy
 msgid "Choose database file to open"
-msgstr "Välj QIF-datafil att importera"
+msgstr ""
 
 #: mmframe.cpp:1992
-#, fuzzy
 msgid "Choose Encrypted database file to open"
-msgstr "Välj QIF-datafil att importera"
+msgstr ""
 
 #: mmframe.cpp:2002
-#, fuzzy
 msgid "Enter password for database"
-msgstr "Fel vid öppnande av databas"
+msgstr ""
 
 #: mmframe.cpp:2007
-#, fuzzy
 msgid "Choose database file to Save As"
-msgstr "Välj QIF-datafil att importera"
+msgstr ""
 
 #: mmframe.cpp:2029
 msgid "Converted DB!"
@@ -4981,27 +4426,22 @@ msgid "MMEX: Encryption Password Change"
 msgstr ""
 
 #: mmframe.cpp:2036
-#, fuzzy, c-format
-msgid ""
-"New password for database\n"
-"\n"
+#, c-format
+msgid "New password for database\n\n"
 "%s"
-msgstr "Fel vid öppnande av databas"
+msgstr ""
 
 #: mmframe.cpp:2041
-#, fuzzy
 msgid "New password must not be empty."
-msgstr "Kategori kan inte vara tom"
+msgstr ""
 
 #: mmframe.cpp:2045
-#, fuzzy
 msgid "Please confirm new password"
-msgstr "Var god vänta"
+msgstr ""
 
 #: mmframe.cpp:2049
-#, fuzzy
 msgid "Password change completed."
-msgstr "Kategori kan inte vara tom"
+msgstr ""
 
 #: mmframe.cpp:2053
 msgid "Confirm password failed."
@@ -5016,13 +4456,11 @@ msgid "DB Optimization"
 msgstr ""
 
 #: mmframe.cpp:2070
-#, fuzzy, c-format
-msgid ""
-"Database Optimization Completed!\n"
-"\n"
+#, c-format
+msgid "Database Optimization Completed!\n\n"
 "Size before: %s\n"
 "Size after: %s\n"
-msgstr "Kategori kan inte vara tom"
+msgstr ""
 
 #: mmframe.cpp:2081
 msgid "Please use this function only if explicitly requested by MMEX support"
@@ -5033,81 +4471,64 @@ msgid "DB Debug"
 msgstr ""
 
 #: mmframe.cpp:2101 mmframe.cpp:2122
-#, fuzzy
 msgid "Save database file as"
-msgstr "Spara databas som"
+msgstr ""
 
 #: mmframe.cpp:2122
 msgid "Can't copy file to itself"
 msgstr ""
 
 #: mmframe.cpp:2135
-#, fuzzy
 msgid "Enter password for new database"
-msgstr "Fel vid öppnande av databas"
+msgstr ""
 
 #: mmframe.cpp:2219 mmframe.cpp:2238
-#, fuzzy
 msgid "No account available to import"
-msgstr "Inga konton tillgängliga! Kan ej exportera!"
+msgstr ""
 
 #: mmframe.cpp:2287
-msgid ""
-"Asset Accounts hold Asset transactions\n"
-"\n"
+msgid "Asset Accounts hold Asset transactions\n\n"
 "Asset transactions are created within the Assets View\n"
-"after the selection of the Asset within that view.\n"
-"\n"
+"after the selection of the Asset within that view.\n\n"
 "Asset Accounts can also hold normal transactions to regular accounts."
 msgstr ""
 
 #: mmframe.cpp:2291
-#, fuzzy
 msgid "Asset Account Creation"
-msgstr "Borttagning av konto"
+msgstr ""
 
 #: mmframe.cpp:2297
-msgid ""
-"Share Accounts hold Share transactions\n"
-"\n"
+msgid "Share Accounts hold Share transactions\n\n"
 "Share transactions are created within the Stock Portfolio View\n"
-"after the selection of the Company Stock within the associated view.\n"
-"\n"
-"These accounts only become visible after associating a Stock to the Share "
-"Account\n"
+"after the selection of the Company Stock within the associated view.\n\n"
+"These accounts only become visible after associating a Stock to the Share Account\n"
 "Or by using the Menu View --> 'Display Share Accounts'\n"
 "Share Accounts can also hold normal transactions to regular account."
 msgstr ""
 
 #: mmframe.cpp:2303
-#, fuzzy
 msgid "Share Account Creation"
-msgstr "Borttagning av konto"
+msgstr ""
 
 #: mmframe.cpp:2460
 msgid "MMEX Options have been updated."
 msgstr ""
 
 #: mmframe.cpp:2461 optiondialog.cpp:55 optiondialog.cpp:194
-#, fuzzy
 msgid "MMEX Options"
-msgstr "Visningsalternativ"
+msgstr ""
 
 #: mmframe.cpp:2569
-#, fuzzy
 msgid "Choose HTML file to Export"
-msgstr "Välj QIF-datafil att importera"
+msgstr ""
 
 #: mmframe.cpp:2881 mmframe.cpp:2888
-#, fuzzy
-#| msgid "Refresh Stock Prices from Yahoo"
 msgid "Downloading stock prices from Yahoo"
-msgstr "Uppdatera aktiepriser från Yahoo"
+msgstr ""
 
 #: mmframe.cpp:2882
-#, fuzzy
 msgid "Please wait..."
-msgstr "Var god vänta"
+msgstr ""
 
 #: mmframe.cpp:2931 stockspanel.cpp:893
 #, c-format
@@ -5115,39 +4536,34 @@ msgid "%s on %s"
 msgstr ""
 
 #: mmframe.cpp:2948
-#, fuzzy
 msgid "No account available to edit!"
-msgstr "Inga konton tillgängliga!"
+msgstr ""
 
 #: mmframe.cpp:2952
 msgid "Choose Account to Edit"
 msgstr "Välj konto att ändra"
 
 #: mmframe.cpp:2971
-#, fuzzy
 msgid "No account available to delete!"
-msgstr "Inga konton tillgängliga!"
+msgstr ""
 
 #: mmframe.cpp:2975
 msgid "Choose Account to Delete"
 msgstr "Välj konto att ta bort"
 
 #: mmframe.cpp:2980
-#, fuzzy, c-format
-msgid ""
-"Are you sure you want to delete\n"
+#, c-format
+msgid "Are you sure you want to delete\n"
 " %s account: %s ?"
-msgstr "Vill du verkligen ta ta bort tillgången?"
+msgstr ""
 
 #: mmframe.cpp:2999
-#, fuzzy
 msgid "Select the account to reallocate"
-msgstr "Ange vilket typ av konto som skall skapas."
+msgstr ""
 
 #: mmframe.cpp:2999 mmframe.cpp:3022
-#, fuzzy
 msgid "Account Reallocation"
-msgstr "Borttagning av konto"
+msgstr ""
 
 #: mmframe.cpp:3021
 #, c-format
@@ -5155,9 +4571,8 @@ msgid "Account: %s - Select new type."
 msgstr ""
 
 #: mmframe.cpp:3116 payeedialog.cpp:316
-#, fuzzy
 msgid "Payee Relocation Completed."
-msgstr "Kategori kan inte vara tom"
+msgstr ""
 
 #: mmframe.cpp:3120 payeedialog.cpp:320
 msgid "Payee Relocation Result"
@@ -5169,15 +4584,12 @@ msgid "File %s not found"
 msgstr ""
 
 #: mmframe.cpp:3210
-msgid ""
-"The language for this application has been changed. The change will take "
-"effect the next time the application is started."
+msgid "The language for this application has been changed. The change will take effect the next time the application is started."
 msgstr ""
 
 #: mmframereport.cpp:72
-#, fuzzy
 msgid "General Group Report"
-msgstr "Anpassad SQL-rapport"
+msgstr ""
 
 #: mmframereport.cpp:99 mmhomepage.cpp:765 model/Model_Report.cpp:405
 #: reports/bugreport.h:114 reports/forecast.cpp:91 reports/myusage.cpp:139
@@ -5218,28 +4630,24 @@ msgid "My Usage"
 msgstr ""
 
 #: mmframereport.cpp:161
-#, fuzzy
 msgid "Payees"
-msgstr "Betalningsmottagare"
+msgstr ""
 
 #: mmframereport.cpp:166
 msgid "Summary of Accounts"
 msgstr "Kontosammanfattning"
 
 #: mmframereport.cpp:180
-#, fuzzy
 msgid "Budget Performance"
-msgstr "Budgetinställningar för "
+msgstr ""
 
 #: mmframereport.cpp:183
-#, fuzzy
 msgid "Budget Category Summary"
-msgstr "Nytt budgetår"
+msgstr ""
 
 #: mmframereport.cpp:192
-#, fuzzy
 msgid "Stocks Report"
-msgstr "Totalt:"
+msgstr ""
 
 #: mmhelppanel.cpp:65
 msgid "&Back"
@@ -5270,14 +4678,14 @@ msgid "Total:"
 msgstr "Totalt:"
 
 #: mmhomepage.cpp:155
-#, fuzzy, c-format
+#, c-format
 msgid "Top Withdrawals: %s"
-msgstr "Uttag"
+msgstr ""
 
 #: mmhomepage.cpp:419
-#, fuzzy, c-format
+#, c-format
 msgid "Income vs Expenses: %s"
-msgstr "Inkomster vs utgifter"
+msgstr ""
 
 #: mmhomepage.cpp:429 reports/categexp.cpp:138 reports/categexp.cpp:358
 #: reports/categexp.cpp:415 reports/incexpenses.cpp:91
@@ -5291,34 +4699,29 @@ msgid "Difference:"
 msgstr "Skillnad:"
 
 #: mmhomepage.cpp:437
-#, fuzzy
 msgid "Income/Expenses"
-msgstr "Inkomster vs utgifter"
+msgstr ""
 
 #: mmhomepage.cpp:465
 msgid "Transaction Statistics"
 msgstr "Transaktionsstatistik"
 
 #: mmhomepage.cpp:508
-#, fuzzy
 msgid "Follow Up On Transactions: "
-msgstr "Kommande transaktioner"
+msgstr ""
 
 #: mmhomepage.cpp:512
-#, fuzzy
 msgid "Total Transactions: "
-msgstr "Totalt antal transaktioner"
+msgstr ""
 
 #: mmhomepage.cpp:534 reports/categexp.cpp:209 reports/summarystocks.cpp:147
 #: reports/transactions.cpp:164
-#, fuzzy
 msgid "Grand Total:"
-msgstr "Totalt:"
+msgstr ""
 
 #: mmhomepage.cpp:751
-#, fuzzy
 msgid "Currency Exchange Rates"
-msgstr "Valutahanterare"
+msgstr ""
 
 #: mmhomepagepanel.cpp:159
 msgid "Upcoming Transactions"
@@ -5349,14 +4752,12 @@ msgid "Custom"
 msgstr ""
 
 #: mmreportspanel.cpp:315
-#, fuzzy
 msgid "Accounts:"
-msgstr "Konton"
+msgstr ""
 
 #: mmreportspanel.cpp:320 reports/reportbase.cpp:121
-#, fuzzy
 msgid "All Accounts"
-msgstr "Konton"
+msgstr ""
 
 #: mmreportspanel.cpp:321
 msgid "Specific Accounts"
@@ -5399,19 +4800,16 @@ msgid "Investment"
 msgstr "Investeringar"
 
 #: model/Model_Account.cpp:38
-#, fuzzy
 msgid "Asset"
-msgstr "Tillgångar"
+msgstr ""
 
 #: model/Model_Account.cpp:39
-#, fuzzy
 msgid "Shares"
-msgstr "Antal aktier"
+msgstr ""
 
 #: model/Model_Account.cpp:130
-#, fuzzy
 msgid "Account Error"
-msgstr "Konton"
+msgstr ""
 
 #: model/Model_Asset.cpp:24
 msgid "Appreciates"
@@ -5442,16 +4840,13 @@ msgid "Other"
 msgstr "Annat"
 
 #: model/Model_Billsdeposits.cpp:300
-msgid ""
-"A recurring transaction will exceed your account limit.\n"
-"\n"
+msgid "A recurring transaction will exceed your account limit.\n\n"
 "Do you wish to continue?"
 msgstr ""
 
 #: model/Model_Billsdeposits.cpp:302
-#, fuzzy
 msgid "MMEX Recurring Transaction Check"
-msgstr "Återkommande transaktion ny/ändra"
+msgstr ""
 
 #: model/Model_Budget.cpp:57
 msgid "Bi-Weekly"
@@ -5462,23 +4857,20 @@ msgid "String"
 msgstr ""
 
 #: model/Model_CustomField.cpp:26
-#, fuzzy
 msgid "Integer"
-msgstr "Investeringar"
+msgstr ""
 
 #: model/Model_CustomField.cpp:27
-#, fuzzy
 msgid "Decimal"
-msgstr "Decimalavgränsare"
+msgstr ""
 
 #: model/Model_CustomField.cpp:28
 msgid "Boolean"
 msgstr ""
 
 #: model/Model_CustomField.cpp:30 wizard_update.cpp:136
-#, fuzzy
 msgid "Time"
-msgstr "&CSV-filer"
+msgstr ""
 
 #: model/Model_CustomField.cpp:31
 msgid "SingleChoice"
@@ -5489,37 +4881,28 @@ msgid "MultiChoice"
 msgstr ""
 
 #: model/Model_Payee.cpp:80
-#, fuzzy
 msgid "Payee Error"
-msgstr "Lägger till betalningsmottagare"
+msgstr ""
 
 #: model/Model_Report.cpp:88
-#, fuzzy
-#| msgid " date "
 msgid "Begin date: "
-msgstr " datum "
+msgstr ""
 
 #: model/Model_Report.cpp:89
-#, fuzzy
-#| msgid "Date"
 msgid "Date: "
-msgstr "Datum"
+msgstr ""
 
 #: model/Model_Report.cpp:90
-#, fuzzy
-#| msgid " date "
 msgid "End date: "
-msgstr " datum "
+msgstr ""
 
 #: model/Model_Report.cpp:235
-#, fuzzy
 msgid "Template is empty"
-msgstr "Datum är tomt, "
+msgstr ""
 
 #: model/Model_Report.cpp:249
 #, c-format
-msgid ""
-"The SQL script:\n"
+msgid "The SQL script:\n"
 "%s \n"
 "will modify database! aborted!"
 msgstr ""
@@ -5550,9 +4933,8 @@ msgid "%s page has been saved."
 msgstr ""
 
 #: optionsettingsattachment.cpp:57
-#, fuzzy
 msgid "Attachments Settings"
-msgstr "Allmäna inställningar"
+msgstr ""
 
 #: optionsettingsattachment.cpp:64
 #, c-format
@@ -5581,14 +4963,14 @@ msgid "%s -> User document directory"
 msgstr ""
 
 #: optionsettingsattachment.cpp:103
-#, fuzzy, c-format
+#, c-format
 msgid "%s -> User profile folder"
-msgstr "Färger"
+msgstr ""
 
 #: optionsettingsattachment.cpp:104
-#, fuzzy, c-format
+#, c-format
 msgid "%s -> Folder of .MMB database file"
-msgstr "Spara databas som"
+msgstr ""
 
 #: optionsettingsattachment.cpp:105
 #, c-format
@@ -5616,9 +4998,8 @@ msgid "Unix folder -> "
 msgstr ""
 
 #: optionsettingsattachment.cpp:150
-#, fuzzy
 msgid "Create and use Attachments subfolder"
-msgstr "Kunde inte spara till fil."
+msgstr ""
 
 #: optionsettingsattachment.cpp:162
 msgid "Delete file after import"
@@ -5633,9 +5014,7 @@ msgid "When remove attachment, move file instead of delete"
 msgstr ""
 
 #: optionsettingsattachment.cpp:170
-msgid ""
-"Select to don't delete file when attachment is removed, but instead move it "
-"to 'Deleted' subfolder"
+msgid "Select to don't delete file when attachment is removed, but instead move it to 'Deleted' subfolder"
 msgstr ""
 
 #: optionsettingsattachment.cpp:179
@@ -5643,23 +5022,20 @@ msgid "Choose folder to set as attachments archive"
 msgstr ""
 
 #: optionsettingsattachment.cpp:219
-#, fuzzy
 msgid "Attachments folder it's not writable!"
-msgstr "Allmäna inställningar"
+msgstr ""
 
 #: optionsettingsattachment.cpp:219
-#, fuzzy
 msgid "Attachments folder"
-msgstr "Allmäna inställningar"
+msgstr ""
 
 #: optionsettingsattachment.cpp:227
 msgid "Attachments path has been changed!"
 msgstr ""
 
 #: optionsettingsattachment.cpp:229 optionsettingsattachment.cpp:238
-#, fuzzy
 msgid "Attachments folder migration"
-msgstr "Allmäna inställningar"
+msgstr ""
 
 #: optionsettingsattachment.cpp:235
 msgid "Error moving attachments folder: please move it manually!"
@@ -5670,14 +5046,12 @@ msgid "Origin"
 msgstr ""
 
 #: optionsettingsattachment.cpp:237
-#, fuzzy
 msgid "Destination"
-msgstr "Transaktioner"
+msgstr ""
 
 #: optionsettingsgeneral.cpp:62
-#, fuzzy
 msgid "Display Heading"
-msgstr "Vy"
+msgstr ""
 
 #: optionsettingsgeneral.cpp:67 wizard_newdb.cpp:106
 msgid "User Name"
@@ -5704,14 +5078,11 @@ msgid "Right click and select 'Set as Base Currency' in 'Currency Dialog'"
 msgstr ""
 
 #: optionsettingsgeneral.cpp:97
-#, fuzzy
 msgid "Use currency history"
-msgstr "Valutalista"
+msgstr ""
 
 #: optionsettingsgeneral.cpp:99
-msgid ""
-"Select to use currency history (one rate for each day), deselect to use a "
-"fixed rate"
+msgid "Select to use currency history (one rate for each day), deselect to use a fixed rate"
 msgstr ""
 
 #: optionsettingsgeneral.cpp:115
@@ -5723,37 +5094,31 @@ msgid "New date format sample:"
 msgstr ""
 
 #: optionsettingsgeneral.cpp:123
-#, fuzzy
 msgid "Financial Year"
-msgstr "Föregående år"
+msgstr ""
 
 #: optionsettingsgeneral.cpp:130
-#, fuzzy
 msgid "Start Day"
-msgstr " Övergripande"
+msgstr ""
 
 #: optionsettingsgeneral.cpp:136
 msgid "Specify Day for start of financial year"
 msgstr ""
 
 #: optionsettingsgeneral.cpp:140
-#, fuzzy
 msgid "Start Month"
-msgstr "Nuvarande månad"
+msgstr ""
 
 #: optionsettingsgeneral.cpp:152
-#, fuzzy
 msgid "Specify month for start of financial year"
-msgstr "Ange beloppet för transaktionen"
+msgstr ""
 
 #: optionsettingsgeneral.cpp:157
 msgid "Use Original Date when Pasting Transactions"
 msgstr "Använd ursprungsdatum vid inklistring av transaktioner"
 
 #: optionsettingsgeneral.cpp:159
-msgid ""
-"Select whether to use the original transaction date or current date when "
-"copying/pasting transactions"
+msgid "Select whether to use the original transaction date or current date when copying/pasting transactions"
 msgstr ""
 
 #: optionsettingsgeneral.cpp:162
@@ -5773,23 +5138,20 @@ msgid "Clear the field to Reset the value to system default."
 msgstr ""
 
 #: optionsettingsmisc.cpp:77
-#, fuzzy
 msgid "Share Precision"
-msgstr "Inköpspris"
+msgstr ""
 
 #: optionsettingsmisc.cpp:82
 msgid "Set the precision for Share prices"
 msgstr ""
 
 #: optionsettingsmisc.cpp:88
-#, fuzzy
 msgid "New Transaction Dialog Settings"
-msgstr "Transaktionsdetaljer"
+msgstr ""
 
 #: optionsettingsmisc.cpp:96
-#, fuzzy
 msgid "Last Used"
-msgstr "Föregående år"
+msgstr ""
 
 #: optionsettingsmisc.cpp:103
 msgid "Unused"
@@ -5800,38 +5162,31 @@ msgid "Last used for payee"
 msgstr ""
 
 #: optionsettingsmisc.cpp:126
-#, fuzzy
 msgid "Default Date:"
-msgstr "Välj betalningsmottagare"
+msgstr ""
 
 #: optionsettingsmisc.cpp:128
-#, fuzzy
 msgid "Default Payee:"
-msgstr "Välj betalningsmottagare"
+msgstr ""
 
 #: optionsettingsmisc.cpp:130
-#, fuzzy
 msgid "Default Category:"
-msgstr "Välj kategori"
+msgstr ""
 
 #: optionsettingsmisc.cpp:132
-#, fuzzy
 msgid "Default Status:"
-msgstr "Kontostatus:"
+msgstr ""
 
 #: optionsettingsmisc.cpp:143
-#, fuzzy
 msgid "Database Backup"
-msgstr "Ingen databas öppnad"
+msgstr ""
 
 #: optionsettingsmisc.cpp:150
-#, fuzzy
 msgid "Create a new backup when MMEX Start"
-msgstr "Skapa en ny databas för att komma igång"
+msgstr ""
 
 #: optionsettingsmisc.cpp:152
-msgid ""
-"When MMEX Starts,\n"
+msgid "When MMEX Starts,\n"
 "creates the backup database: dbFile_start_YYYY-MM-DD.ext."
 msgstr ""
 
@@ -5840,8 +5195,7 @@ msgid "Backup database on exit."
 msgstr ""
 
 #: optionsettingsmisc.cpp:159
-msgid ""
-"When MMEX shuts down and changes made to database,\n"
+msgid "When MMEX shuts down and changes made to database,\n"
 "creates or updates the backup database: dbFile_update_YYYY-MM-DD.ext."
 msgstr ""
 
@@ -5850,24 +5204,20 @@ msgid "Specify max number of backup files"
 msgstr ""
 
 #: optionsettingsmisc.cpp:170
-#, fuzzy
 msgid "Max Files"
-msgstr "&CSV-filer"
+msgstr ""
 
 #: optionsettingsmisc.cpp:177
-#, fuzzy
 msgid "CSV Settings"
-msgstr "Inställningar"
+msgstr ""
 
 #: optionsettingsmisc.cpp:185
-#, fuzzy
 msgid "Delimiter"
-msgstr "CSV-avgränsare"
+msgstr ""
 
 #: optionsettingsnet.cpp:57
-#, fuzzy
 msgid "WebApp Settings"
-msgstr "Inställningar"
+msgstr ""
 
 #: optionsettingsnet.cpp:64 webappdialog.cpp:103
 msgid "Url"
@@ -5890,19 +5240,16 @@ msgid "More information about WebApp"
 msgstr ""
 
 #: optionsettingsnet.cpp:82
-#, fuzzy
 msgid "Proxy Settings"
-msgstr "Inställningar"
+msgstr ""
 
 #: optionsettingsnet.cpp:90
-#, fuzzy
 msgid "Specify the proxy IP address"
-msgstr "Ange användarnamn"
+msgstr ""
 
 #: optionsettingsnet.cpp:96
-#, fuzzy
 msgid "Specify proxy port number"
-msgstr "Ange nummer"
+msgstr ""
 
 #: optionsettingsnet.cpp:99
 msgid "Proxy"
@@ -5913,9 +5260,8 @@ msgid "Port"
 msgstr ""
 
 #: optionsettingsnet.cpp:107
-#, fuzzy
 msgid "Usage statistics"
-msgstr "Transaktionsstatistik"
+msgstr ""
 
 #: optionsettingsnet.cpp:113
 msgid "Send anonymous statistics usage data"
@@ -5938,18 +5284,15 @@ msgid "Seconds"
 msgstr ""
 
 #: optionsettingsnet.cpp:138
-#, fuzzy
 msgid "Updates"
-msgstr "Uppdatera"
+msgstr ""
 
 #: optionsettingsnet.cpp:144
-#, fuzzy
 msgid "Check for updates at StartUp"
-msgstr "Leta efter &uppdateringar"
+msgstr ""
 
 #: optionsettingsnet.cpp:146
-msgid ""
-"Enable to automatically check if new MMEX version is available at StartUp"
+msgid "Enable to automatically check if new MMEX version is available at StartUp"
 msgstr ""
 
 #: optionsettingsnet.cpp:149 wizard_update.cpp:110
@@ -5961,9 +5304,8 @@ msgid "Unstable"
 msgstr ""
 
 #: optionsettingsnet.cpp:154
-#, fuzzy
 msgid "Updates source"
-msgstr "Uppdatera"
+msgstr ""
 
 #: optionsettingsview.cpp:78
 msgid "Specify which accounts are visible"
@@ -5982,29 +5324,24 @@ msgid "Icons size"
 msgstr ""
 
 #: optionsettingsview.cpp:98
-#, fuzzy
 msgid "View Budgets as Financial Years"
-msgstr "Föregående år"
+msgstr ""
 
 #: optionsettingsview.cpp:103
-#, fuzzy
 msgid "View Budgets with 'transfer' transactions"
-msgstr "Visar dubletttransaktioner"
+msgstr ""
 
 #: optionsettingsview.cpp:109
-#, fuzzy
 msgid "View Budget Category Report with Summaries"
-msgstr "Nytt budgetår"
+msgstr ""
 
 #: optionsettingsview.cpp:115
-#, fuzzy
 msgid "Ignore Future Transactions"
-msgstr "Kommande transaktioner"
+msgstr ""
 
 #: optionsettingsview.cpp:121 transdialog.cpp:563
-#, fuzzy
 msgid "User Colors"
-msgstr "Färger"
+msgstr ""
 
 #: optionsettingsview.cpp:127
 msgid "1"
@@ -6035,126 +5372,108 @@ msgid "7"
 msgstr ""
 
 #: payeedialog.cpp:65
-#, fuzzy
 msgid "Default Category"
-msgstr "Välj kategori"
+msgstr ""
 
 #: payeedialog.cpp:122
-#, fuzzy
 msgid "Search:"
-msgstr "Mars"
+msgstr ""
 
 #: payeedialog.cpp:183 payeedialog.cpp:222 payeedialog.cpp:250
 msgid "Payee with same name exists"
 msgstr "Avs/mot med samma namn finns redan"
 
 #: payeedialog.cpp:184 payeedialog.cpp:207 payeedialog.cpp:222
-#, fuzzy
 msgid "Organize Payees: Add Payee"
-msgstr "Oraganisera betalningsmottagare"
+msgstr ""
 
 #: payeedialog.cpp:206
-#, fuzzy
 msgid "Enter the name for the new payee:"
-msgstr "Ange namnet på tillgången"
+msgstr ""
 
 #: payeedialog.cpp:233
-#, fuzzy
 msgid "Modify the name for the payee:"
-msgstr "Ange namnet på tillgången"
+msgstr ""
 
 #: payeedialog.cpp:234 payeedialog.cpp:250
-#, fuzzy
 msgid "Organize Payees: Edit Payee"
-msgstr "Oraganisera betalningsmottagare"
+msgstr ""
 
 #: payeedialog.cpp:264
-#, fuzzy
 msgid "Payee in use."
-msgstr "Avs/mot används"
+msgstr ""
 
 #: payeedialog.cpp:267
-#, fuzzy
-msgid ""
-"Tip: Change all transactions using this Payee to another Payee using the "
-"relocate command:"
-msgstr "Visar alla transaktioner"
+msgid "Tip: Change all transactions using this Payee to another Payee using the relocate command:"
+msgstr ""
 
 #: payeedialog.cpp:269
 msgid "Tools -> Relocation of -> Payees"
 msgstr ""
 
 #: payeedialog.cpp:270
-#, fuzzy
 msgid "Organize Payees: Delete Error"
-msgstr "Oraganisera betalningsmottagare"
+msgstr ""
 
 #: payeedialog.cpp:361
-#, fuzzy
 msgid "Define Default Category"
-msgstr "Välj kategori"
+msgstr ""
 
 #: payeedialog.cpp:376
-#, fuzzy
 msgid "Relocate Payee"
-msgstr "Välj betalningsmottagare"
+msgstr ""
 
 #: relocatecategorydialog.cpp:53
-#, fuzzy
 msgid "Relocate Category Dialog"
-msgstr "Välj kategori"
+msgstr ""
 
 #: relocatecategorydialog.cpp:86
 msgid "Relocate source category to the destination category"
 msgstr ""
 
 #: relocatecategorydialog.cpp:89
-#, fuzzy
 msgid "Select Source Category"
-msgstr "Underkategori"
+msgstr ""
 
 #: relocatecategorydialog.cpp:95
-#, fuzzy
 msgid "Select Destination Category"
-msgstr "Dela kategori"
+msgstr ""
 
 #: relocatecategorydialog.cpp:109 relocatepayeedialog.cpp:112
 msgid "Relocate:"
 msgstr ""
 
 #: relocatecategorydialog.cpp:110 relocatepayeedialog.cpp:113
-#, fuzzy
 msgid "to:"
-msgstr "Till: "
+msgstr ""
 
 #: relocatecategorydialog.cpp:171 relocatepayeedialog.cpp:156
-#, fuzzy
 msgid "Please Confirm:"
-msgstr "Var god vänta"
+msgstr ""
 
 #: relocatecategorydialog.cpp:171
 msgid "Category Relocation Confirmation"
 msgstr ""
 
 #: relocatecategorydialog.cpp:269 relocatepayeedialog.cpp:232
-#, fuzzy, c-format
+#, c-format
 msgid "Records found in transactions: %i"
-msgstr "Kommande transaktioner"
+msgstr ""
 
 #: relocatecategorydialog.cpp:270
-#, fuzzy, c-format
+#, c-format
 msgid "Records found in split transactions: %i"
-msgstr "Visar dubletttransaktioner"
+msgstr ""
 
 #: relocatecategorydialog.cpp:271 relocatepayeedialog.cpp:233
-#, fuzzy, c-format
+#, c-format
 msgid "Records found in recurring transactions: %i"
-msgstr "Återkommande transaktioner"
+msgstr ""
 
 #: relocatecategorydialog.cpp:272
-#, fuzzy, c-format
+#, c-format
 msgid "Records found in recurring split transactions: %i"
-msgstr "Visar dubletttransaktioner"
+msgstr ""
 
 #: relocatecategorydialog.cpp:273
 #, c-format
@@ -6167,82 +5486,73 @@ msgid "Records found in budget: %i"
 msgstr ""
 
 #: relocatepayeedialog.cpp:53
-#, fuzzy
 msgid "Relocate Payee Dialog"
-msgstr "Välj betalningsmottagare"
+msgstr ""
 
 #: relocatepayeedialog.cpp:84
 msgid "Relocate all source payee to the destination payee"
 msgstr ""
 
 #: relocatepayeedialog.cpp:96
-#, fuzzy
 msgid "Delete source payee after relocation"
-msgstr "Ta bort alla flaggade transaktioner"
+msgstr ""
 
 #: relocatepayeedialog.cpp:152
-#, fuzzy, c-format
+#, c-format
 msgid "From %s to %s"
-msgstr "Från: "
+msgstr ""
 
 #: relocatepayeedialog.cpp:157
 msgid "Payee Relocation Confirmation"
 msgstr ""
 
 #: reports/budget.cpp:94
-#, fuzzy, c-format
+#, c-format
 msgid "Year: %i Month: %s"
-msgstr "Månad"
+msgstr ""
 
 #: reports/budgetcategorysummary.cpp:131
-#, fuzzy, c-format
+#, c-format
 msgid "Budget Categories for %s"
-msgstr "Visa alla budgetkategorier"
+msgstr ""
 
 #: reports/budgetcategorysummary.cpp:131
-#, fuzzy, c-format
+#, c-format
 msgid "Budget Category Summary for %s"
-msgstr "Budgetinställningar för "
+msgstr ""
 
 #: reports/budgetcategorysummary.cpp:134
-#, fuzzy
 msgid "( Estimated Vs Actual )"
-msgstr "Beräknad inkomst: Verklig inkomst: "
+msgstr ""
 
 #: reports/budgetcategorysummary.cpp:263
-#, fuzzy
 msgid "Estimated Income:"
-msgstr "Beräknad inkomst: Verklig inkomst: "
+msgstr ""
 
 #: reports/budgetcategorysummary.cpp:265
-#, fuzzy
 msgid "Actual Income:"
-msgstr "Inkomst:"
+msgstr ""
 
 #: reports/budgetcategorysummary.cpp:267
-#, fuzzy
 msgid "Difference Income:"
-msgstr "Skillnad:"
+msgstr ""
 
 #: reports/budgetcategorysummary.cpp:272
-#, fuzzy
 msgid "Estimated Expenses:"
-msgstr "Beräknade utgifter: Verkliga utgifter: "
+msgstr ""
 
 #: reports/budgetcategorysummary.cpp:274
-#, fuzzy
 msgid "Actual Expenses:"
-msgstr "Utgifter:"
+msgstr ""
 
 #: reports/budgetcategorysummary.cpp:276
-#, fuzzy
 msgid "Difference Expenses:"
-msgstr "Utgifter"
+msgstr ""
 
 #: reports/budgetingperf.cpp:172
-#, fuzzy, c-format
+#, c-format
 msgid "Budget Performance for %s"
-msgstr "Budgetinställningar för "
+msgstr ""
 
 #: reports/budgetingperf.cpp:195 reports/budgetingperf.cpp:198
 msgid "Est."
@@ -6261,13 +5571,11 @@ msgid "Monthly Total"
 msgstr ""
 
 #: reports/bugreport.h:55
-#, fuzzy
 msgid "Bug Report"
-msgstr "Rapporter"
+msgstr ""
 
 #: reports/bugreport.h:72
-msgid ""
-"Replace this text (marked with >) with detailed description of your problem."
+msgid "Replace this text (marked with >) with detailed description of your problem."
 msgstr ""
 
 #: reports/bugreport.h:73
@@ -6275,30 +5583,22 @@ msgid "Please do not remove information attached below this text."
 msgstr ""
 
 #: reports/bugreport.h:78
-msgid ""
-"Use Help->Check for Updates in MMEX to get latest version, where your "
-"problem might be already fixed."
+msgid "Use Help->Check for Updates in MMEX to get latest version, where your problem might be already fixed."
 msgstr ""
 
 #: reports/bugreport.h:79
 #, c-format
-msgid ""
-"Search <a href='%s'>a list of known issues</a> for similar problem. If so, "
-"update existing issue instead of creating a new one."
+msgid "Search <a href='%s'>a list of known issues</a> for similar problem. If so, update existing issue instead of creating a new one."
 msgstr ""
 
 #: reports/bugreport.h:81
 #, c-format
-msgid ""
-"As you know, <a href='%s'>a forum</a> for users is available where you can "
-"discuss problems and find solutions."
+msgid "As you know, <a href='%s'>a forum</a> for users is available where you can discuss problems and find solutions."
 msgstr ""
 
 #: reports/bugreport.h:82
 #, c-format
-msgid ""
-"Please, join our community in <a href='%s'>Slack</a>. Here you can also pose "
-"your question and learn a latest news."
+msgid "Please, join our community in <a href='%s'>Slack</a>. Here you can also pose your question and learn a latest news."
 msgstr ""
 
 #: reports/bugreport.h:83
@@ -6307,28 +5607,21 @@ msgid "Read <a href='%s'>How to Report Bugs Effectively</a> for useful tips."
 msgstr ""
 
 #: reports/bugreport.h:84
-#, fuzzy
 msgid "Come up with a descriptive name for your problem."
-msgstr "Ange status för transaktionen"
+msgstr ""
 
 #: reports/bugreport.h:85
-msgid ""
-"Include steps to reproduce your problem, attach screenshots where "
-"appropriate."
+msgid "Include steps to reproduce your problem, attach screenshots where appropriate."
 msgstr ""
 
 #: reports/bugreport.h:86
 #, c-format
-msgid ""
-"Before click the following link, be sure that you have already signed in to "
-"the <a href='%s'>GitHub</a>."
+msgid "Before click the following link, be sure that you have already signed in to the <a href='%s'>GitHub</a>."
 msgstr ""
 
 #: reports/bugreport.h:88
 #, c-format
-msgid ""
-"Finally, report a bug using GitHub <a href='%s'>online form</a> opened in "
-"your web browser."
+msgid "Finally, report a bug using GitHub <a href='%s'>online form</a> opened in your web browser."
 msgstr ""
 
 #: reports/bugreport.h:99
@@ -6336,44 +5629,39 @@ msgid "Please, follow these instructions before submitting a new bug report:"
 msgstr ""
 
 #: reports/cashflow.cpp:217
-#, fuzzy, c-format
+#, c-format
 msgid "Cash Flow Forecast for %i Year Ahead"
 msgid_plural "Cash Flow Forecast for %i Years Ahead"
-msgstr[0] "Kassaflödeförutspåelse för alla konton  - Ett år framåt"
-msgstr[1] "Kassaflödeförutspåelse för alla konton  - Ett år framåt"
+msgstr[0] ""
+msgstr[1] ""
 
 #: reports/cashflow.cpp:270 reports/incexpenses.cpp:280 reports/payee.cpp:125
 msgid "Difference"
 msgstr "Skillnad"
 
 #: reports/categexp.cpp:191
-#, fuzzy
 msgid "Category Total: "
-msgstr "Kategori  "
+msgstr ""
 
 #: reports/categexp.cpp:206
-#, fuzzy
 msgid "Total Expenses:"
-msgstr "Utgifter:"
+msgstr ""
 
 #: reports/categexp.cpp:207
-#, fuzzy
 msgid "Total Income:"
-msgstr "Inkomst:"
+msgstr ""
 
 #: reports/categexp.cpp:246
-#, fuzzy
 msgid "Category Income/Expenses"
-msgstr "Kategori inkomst/utgifter för de senaste 12 månaderna "
+msgstr ""
 
 #: reports/categexp.cpp:392
 msgid "Overall"
 msgstr ""
 
 #: reports/categexp.cpp:414 reports/payee.cpp:123
-#, fuzzy
 msgid "Incomes"
-msgstr "Inkomst"
+msgstr ""
 
 #: reports/forecast.cpp:25
 msgid "Forecast"
@@ -6402,9 +5690,8 @@ msgid "Expenses:"
 msgstr "Utgifter:"
 
 #: reports/incexpenses.cpp:276
-#, fuzzy
 msgid "Year"
-msgstr "Årsvis"
+msgstr ""
 
 #: reports/incexpenses.cpp:277
 msgid "Month"
@@ -6415,114 +5702,97 @@ msgid "Current Month"
 msgstr "Nuvarande månad"
 
 #: reports/mmDateRange.cpp:83
-#, fuzzy
 msgid "Today"
-msgstr "Visa 30 dagar"
+msgstr ""
 
 #: reports/mmDateRange.cpp:92
-#, fuzzy
 msgid "Current Month to Date"
-msgstr "Nuvarande månad"
+msgstr ""
 
 #: reports/mmDateRange.cpp:100
-#, fuzzy
 msgid "Last Month"
-msgstr "Visa föregående månad"
+msgstr ""
 
 #: reports/mmDateRange.cpp:110
 msgid "Last 30 Days"
 msgstr "Senaste 30 dagarna"
 
 #: reports/mmDateRange.cpp:120
-#, fuzzy
 msgid "Last 90 Days"
-msgstr "Senaste 30 dagarna"
+msgstr ""
 
 #: reports/mmDateRange.cpp:132
-#, fuzzy
 msgid "Last 3 Months"
-msgstr "Visa föregående månad"
+msgstr ""
 
 #: reports/mmDateRange.cpp:144
-#, fuzzy
 msgid "Last 12 Months"
-msgstr "Visa föregående månad"
+msgstr ""
 
 #: reports/mmDateRange.cpp:153
 msgid "Current Year"
 msgstr "Nuvarande år"
 
 #: reports/mmDateRange.cpp:161 stockdialog.cpp:720
-#, fuzzy
 msgid "Current Year to Date"
-msgstr "Nuvarande månad"
+msgstr ""
 
 #: reports/mmDateRange.cpp:170
 msgid "Last Year"
 msgstr "Föregående år"
 
 #: reports/mmDateRange.cpp:192
-#, fuzzy
 msgid "Current Financial Year"
-msgstr "Nuvarande år"
+msgstr ""
 
 #: reports/mmDateRange.cpp:202
-#, fuzzy
 msgid "Current Financial Year to Date"
-msgstr "Nuvarande år"
+msgstr ""
 
 #: reports/mmDateRange.cpp:213
-#, fuzzy
 msgid "Last Financial Year"
-msgstr "Föregående år"
+msgstr ""
 
 #: reports/mmDateRange.cpp:242
-#, fuzzy
 msgid "Last 365 Days"
-msgstr "Senaste 30 dagarna"
+msgstr ""
 
 #: reports/myusage.cpp:27
-#, fuzzy
 msgid "MMEX Usage Frequency"
-msgstr "Frekvens"
+msgstr ""
 
 #: reports/payee.cpp:32
-#, fuzzy
 msgid "Payee Report"
-msgstr "Betalningsmottagare"
+msgstr ""
 
 #: reports/reportbase.cpp:127
-#, fuzzy
 msgid "Accounts: "
-msgstr "Konton"
+msgstr ""
 
 #: reports/reportbase.cpp:155 reports/reportbase.cpp:267
 msgid "Choose Accounts"
 msgstr "Välj konton"
 
 #: reports/summary.cpp:139
-#, fuzzy, c-format
+#, c-format
 msgid "Accounts Balance - %s"
-msgstr "Konton"
+msgstr ""
 
 #: reports/summary.cpp:140
-#, fuzzy
 msgid "Monthly Report"
-msgstr "Månatlig"
+msgstr ""
 
 #: reports/summary.cpp:140
-#, fuzzy
 msgid "Yearly Report"
-msgstr "Betalningsmottagare"
+msgstr ""
 
 #: reports/summarystocks.cpp:45
 msgid "Summary of Stocks"
 msgstr "Aktiesammanfattning"
 
 #: reports/summarystocks.cpp:181
-#, fuzzy
 msgid "*Purchase Date"
-msgstr "Inköpsdatum"
+msgstr ""
 
 #: reports/summarystocks.cpp:182
 msgid "Quantity"
@@ -6538,89 +5808,77 @@ msgid "Commission"
 msgstr ""
 
 #: reports/summarystocks.cpp:193
-#, fuzzy
 msgid "Stocks Performance Charts"
-msgstr "Budgetinställningar för "
+msgstr ""
 
 #: reports/transactions.cpp:55
-#, fuzzy, c-format
+#, c-format
 msgid "Transaction List for Account: %s"
-msgstr "Lista över transaktioner"
+msgstr ""
 
 #: reports/transactions.cpp:56
-#, fuzzy
 msgid "Transaction List "
-msgstr "Lista över transaktioner"
+msgstr ""
 
 #: sharetransactiondialog.cpp:64 sharetransactiondialog.cpp:83
-#, fuzzy
 msgid "Add Share Transaction"
-msgstr "Ny transaktion"
+msgstr ""
 
 #: sharetransactiondialog.cpp:88
-#, fuzzy
 msgid "Edit Share Transaction"
-msgstr "Ändra transaktion"
+msgstr ""
 
 #: sharetransactiondialog.cpp:190 stockdialog.cpp:181
-#, fuzzy
 msgid "Stock Investment Details"
-msgstr "Detaljer över aktieinvestering"
+msgstr ""
 
 #: sharetransactiondialog.cpp:200 stockdialog.cpp:192 stockspanel.cpp:93
-#, fuzzy
 msgid "Company Name"
-msgstr "Företag"
+msgstr ""
 
 #: sharetransactiondialog.cpp:204 stockdialog.cpp:195
 msgid "Enter the stock company name"
 msgstr ""
 
 #: sharetransactiondialog.cpp:207 stockdialog.cpp:198
-#, fuzzy
 msgid "Stock Symbol"
-msgstr "Prefixsymbol"
+msgstr ""
 
 #: sharetransactiondialog.cpp:214 stockdialog.cpp:205
 msgid "Enter the stock symbol. (Optional) Include exchange. eg: IBM.BE"
 msgstr ""
 
 #: sharetransactiondialog.cpp:217
-#, fuzzy
 msgid "Share Number"
-msgstr "Nummer"
+msgstr ""
 
 #: sharetransactiondialog.cpp:223
 msgid "Enter number of shares held"
 msgstr ""
 
 #: sharetransactiondialog.cpp:229
-#, fuzzy
 msgid "Share Price"
-msgstr "Inköpspris"
+msgstr ""
 
 #: sharetransactiondialog.cpp:236
-#, fuzzy
 msgid "Enter the current value for a single share unit"
-msgstr "Ange det nuvarande värdet på tillgången"
+msgstr ""
 
 #: sharetransactiondialog.cpp:247
 msgid "Enter any commission paid"
 msgstr ""
 
 #: sharetransactiondialog.cpp:253
-#, fuzzy
 msgid "Share Lot"
-msgstr "Prefixsymbol"
+msgstr ""
 
 #: sharetransactiondialog.cpp:260
 msgid "Enter the LOT that this parcel os shares belong to"
 msgstr ""
 
 #: sharetransactiondialog.cpp:267 stockdialog.cpp:268
-#, fuzzy
 msgid "Organize attachments of this stock"
-msgstr "Ange beloppet för transaktionen"
+msgstr ""
 
 #: sharetransactiondialog.cpp:272 stockdialog.cpp:270
 msgid "Display the web page for the specified Stock symbol"
@@ -6631,32 +5889,28 @@ msgid "Enter notes associated with this investment"
 msgstr ""
 
 #: sharetransactiondialog.cpp:287
-#, fuzzy
 msgid "Add Transaction Details"
-msgstr "Transaktionsdetaljer"
+msgstr ""
 
 #: splitdetailsdialog.cpp:71
 msgid "Split Detail Dialog"
 msgstr ""
 
 #: splitdetailsdialog.cpp:108
-#, fuzzy
 msgid "Split Transaction Details"
-msgstr "Transaktionsdetaljer"
+msgstr ""
 
 #: splittransactionsdialog.cpp:75
 msgid "Split Transaction Dialog"
 msgstr ""
 
 #: splittransactionsdialog.cpp:129
-#, fuzzy
 msgid "Split Category Details"
-msgstr "Dela kategori"
+msgstr ""
 
 #: splittransactionsdialog.cpp:209
-#, fuzzy
 msgid "Invalid Total Amount"
-msgstr "Ogiltigt belopp angivet "
+msgstr ""
 
 #: stockdialog.cpp:137 stockdialog.cpp:508 stockspanel.cpp:584
 msgid "Edit Stock Investment"
@@ -6667,61 +5921,48 @@ msgid "New Stock Investment"
 msgstr "Ny aktieinvestering"
 
 #: stockdialog.cpp:208 stockspanel.cpp:92
-#, fuzzy
 msgid "*Date"
-msgstr "Datum"
+msgstr ""
 
 #: stockdialog.cpp:214
-#, fuzzy
-msgid ""
-"Specify the initial date of the stock investment\n"
+msgid "Specify the initial date of the stock investment\n"
 "Used when creating the initial Share transaction."
-msgstr "Ange kategori för den här transaktionen"
+msgstr ""
 
 #: stockdialog.cpp:218
-#, fuzzy
 msgid "*Share Number"
-msgstr "Nummer"
+msgstr ""
 
 #: stockdialog.cpp:224
-#, fuzzy
-msgid ""
-"Enter number of shares.\n"
+msgid "Enter number of shares.\n"
 "Used when creating the initial Share transaction."
-msgstr "Ange kategori för den här transaktionen"
+msgstr ""
 
 #: stockdialog.cpp:230 stockspanel.cpp:96
-#, fuzzy
 msgid "*Share Price"
-msgstr "Inköpspris"
+msgstr ""
 
 #: stockdialog.cpp:236
-#, fuzzy
-msgid ""
-"Enter the initial price per share.\n"
+msgid "Enter the initial price per share.\n"
 "Used when creating the initial Share transaction."
-msgstr "Ange kategori för den här transaktionen"
+msgstr ""
 
 #: stockdialog.cpp:241
 msgid "*Commission"
 msgstr ""
 
 #: stockdialog.cpp:245
-#, fuzzy
-msgid ""
-"Enter any commission paid.\n"
+msgid "Enter any commission paid.\n"
 "Used when creating the initial Share transaction."
-msgstr "Ange kategori för den här transaktionen"
+msgstr ""
 
 #: stockdialog.cpp:250 stockspanel.cpp:99
-#, fuzzy
 msgid "Curr. Share Price"
-msgstr "Akt. pris:"
+msgstr ""
 
 #: stockdialog.cpp:253
-#, fuzzy
 msgid "Enter current stock/share price."
-msgstr "Ange det nuvarande aktiepriset"
+msgstr ""
 
 #: stockdialog.cpp:285
 msgid "Stock History Options"
@@ -6736,14 +5977,12 @@ msgid "Price"
 msgstr ""
 
 #: stockdialog.cpp:316 stockspanel.cpp:101
-#, fuzzy
 msgid "Price Date"
-msgstr "Inköpsdatum"
+msgstr ""
 
 #: stockdialog.cpp:320
-#, fuzzy
 msgid "Specify the stock/share price date."
-msgstr "Ange inköpsdatumet för tillgången"
+msgstr ""
 
 #: stockdialog.cpp:336
 msgid "Download Stock Price history"
@@ -6754,9 +5993,8 @@ msgid "Import Stock Price history (CSV Format)"
 msgstr ""
 
 #: stockdialog.cpp:340
-#, fuzzy
 msgid "Delete selected Stock Price"
-msgstr "Ta bort alla flaggade transaktioner"
+msgstr ""
 
 #: stockdialog.cpp:342
 msgid "Add Stock Price to history"
@@ -6767,21 +6005,13 @@ msgid "Held At"
 msgstr ""
 
 #: stockdialog.cpp:494
-#, fuzzy
-msgid ""
-"Share Account not found.\n"
-"\n"
+msgid "Share Account not found.\n\n"
 "Do you want to create one?"
-msgstr "Ange vilket typ av konto som skall skapas."
+msgstr ""
 
 #: stockdialog.cpp:504
-msgid ""
-"The Company name does not have an associated Share Account.\n"
-"\n"
-"You may want to readjust the Company Name to an existing Share Account with "
-"the same name. If this is an existing Stock without a Share Account, it is "
-"recommended that a Share Account is created.\n"
-"\n"
+msgid "The Company name does not have an associated Share Account.\n\n"
+"You may want to readjust the Company Name to an existing Share Account with the same name. If this is an existing Stock without a Share Account, it is recommended that a Share Account is created.\n\n"
 "Do you want to create a new Share Acccount?\n"
 msgstr ""
 
@@ -6790,93 +6020,78 @@ msgid "Stock History CSV Import"
 msgstr ""
 
 #: stockdialog.cpp:601 stockdialog.cpp:615
-#, fuzzy
 msgid "Quotes imported from CSV: "
-msgstr "Transaktionsrapport"
+msgstr ""
 
 #: stockdialog.cpp:671
-#, fuzzy, c-format
+#, c-format
 msgid "Total Lines : %ld"
-msgstr "Sammanlagda tillgångar: "
+msgstr ""
 
 #: stockdialog.cpp:673
-#, fuzzy, c-format
+#, c-format
 msgid "Total Imported : %ld"
-msgstr "Sammanlagda tillgångar: "
+msgstr ""
 
 #: stockdialog.cpp:681
-#, fuzzy
 msgid "Importing CSV"
-msgstr "Importera från CSV"
+msgstr ""
 
 #: stockdialog.cpp:712 stockdialog.cpp:742
-#, fuzzy
 msgid "5 Days"
-msgstr "Senaste 30 dagarna"
+msgstr ""
 
 #: stockdialog.cpp:713 stockdialog.cpp:744
-#, fuzzy
 msgid "1 Month"
-msgstr "Månad"
+msgstr ""
 
 #: stockdialog.cpp:714 stockdialog.cpp:745
-#, fuzzy
 msgid "3 Months"
-msgstr "Månad"
+msgstr ""
 
 #: stockdialog.cpp:715
-#, fuzzy
 msgid "6 Months"
-msgstr "Månad"
+msgstr ""
 
 #: stockdialog.cpp:716
-#, fuzzy
 msgid "1 Year"
-msgstr "Årsvis"
+msgstr ""
 
 #: stockdialog.cpp:717
-#, fuzzy
 msgid "2 Years"
-msgstr "Årsvis"
+msgstr ""
 
 #: stockdialog.cpp:718
-#, fuzzy
 msgid "5 Years"
-msgstr "Årsvis"
+msgstr ""
 
 #: stockdialog.cpp:719
-#, fuzzy
 msgid "10 Years"
-msgstr "Årsvis"
+msgstr ""
 
 #: stockdialog.cpp:721
-#, fuzzy
 msgid "Max"
-msgstr "Maj"
+msgstr ""
 
 #: stockdialog.cpp:727
-#, fuzzy
 msgid "Specify type frequency of stock history"
-msgstr "Visa frekvensen av utgiften eller insättningen"
+msgstr ""
 
 #: stockdialog.cpp:728 stockdialog.cpp:752
-#, fuzzy
 msgid "Stock History Update"
-msgstr "Leta efter uppdateringar"
+msgstr ""
 
 #: stockdialog.cpp:741
 msgid "1 Day"
 msgstr ""
 
 #: stockdialog.cpp:743
-#, fuzzy
 msgid "1 Week"
-msgstr "Veckovis"
+msgstr ""
 
 #: stockdialog.cpp:751
-#, fuzzy
 msgid "Specify interval of stock history"
-msgstr "Visa frekvensen av utgiften eller insättningen"
+msgstr ""
 
 #: stockdialog.cpp:766 stockdialog.cpp:770
 msgid "Stock history not found!"
@@ -6891,9 +6106,7 @@ msgid "Using MMEX it is possible to track stocks/mutual funds investments."
 msgstr ""
 
 #: stockspanel.cpp:33
-msgid ""
-"To create new stocks entry the Symbol, Number of shares and Purchase prise "
-"should be entered."
+msgid "To create new stocks entry the Symbol, Number of shares and Purchase prise should be entered."
 msgstr ""
 
 #: stockspanel.cpp:34
@@ -6905,33 +6118,28 @@ msgid "If the Stock Name field is empty it will be filed when prices updated"
 msgstr ""
 
 #: stockspanel.cpp:95
-#, fuzzy
 msgid "Share Total"
-msgstr "Prefixsymbol"
+msgstr ""
 
 #: stockspanel.cpp:97
-#, fuzzy
 msgid "Init Value"
-msgstr "Ogiltigt värde "
+msgstr ""
 
 #: stockspanel.cpp:100
-#, fuzzy
 msgid "Curr. Total Value"
-msgstr "Aktuell vy"
+msgstr ""
 
 #: stockspanel.cpp:140
 msgid "&New Stock Investment"
 msgstr "&Ny aktieinvestering"
 
 #: stockspanel.cpp:142
-#, fuzzy
 msgid "&Add Stock Transactions"
-msgstr "&Ändra transaktion"
+msgstr ""
 
 #: stockspanel.cpp:143
-#, fuzzy
 msgid "&View Stock Transactions"
-msgstr "Visa alla ogiltiga transaktioner"
+msgstr ""
 
 #: stockspanel.cpp:145
 msgid "&Edit Stock Investment"
@@ -6942,9 +6150,8 @@ msgid "&Delete Stock Investment"
 msgstr "&Ta bort aktieinvestering"
 
 #: stockspanel.cpp:149
-#, fuzzy
 msgid "Stock &Web Page"
-msgstr "Hemsida"
+msgstr ""
 
 #: stockspanel.cpp:265
 msgid "Do you really want to delete the stock investment?"
@@ -6956,65 +6163,57 @@ msgstr ""
 
 #: stockspanel.cpp:400
 #, c-format
-msgid ""
-"Temporary Stock list: %s\n"
-"\n"
-"Date          Lot          Shares          Price        Commission\n"
-"\n"
+msgid "Temporary Stock list: %s\n\n"
+"Date          Lot          Shares          Price        Commission\n\n"
 msgstr ""
 
 #: stockspanel.cpp:574
-#, fuzzy
 msgid "Add Stock Transactions"
-msgstr "Ändra transaktion"
+msgstr ""
 
 #: stockspanel.cpp:579
-#, fuzzy
 msgid "View Stock Transactions"
-msgstr "Visa alla ogiltiga transaktioner"
+msgstr ""
 
 #: stockspanel.cpp:589
 msgid "Delete Stock Investment"
 msgstr "Ta bort aktieinvestering"
 
 #: stockspanel.cpp:593
-#, fuzzy
 msgid "&Move"
-msgstr "Flytta upp"
+msgstr ""
 
 #: stockspanel.cpp:594
-#, fuzzy
 msgid "Move selected transaction to another account"
-msgstr "Ta bort alla flaggade transaktioner"
+msgstr ""
 
 #: stockspanel.cpp:607
-#, fuzzy
 msgid "Refresh"
-msgstr "Uppdatera"
+msgstr ""
 
 #: stockspanel.cpp:608
 msgid "Refresh Stock Prices from Yahoo"
 msgstr "Uppdatera aktiepriser från Yahoo"
 
 #: stockspanel.cpp:721
-#, fuzzy, c-format
+#, c-format
 msgid "Stock Portfolio: %s"
-msgstr "Totalt:"
+msgstr ""
 
 #: stockspanel.cpp:763
-#, fuzzy, c-format
+#, c-format
 msgid "Total Shares: %s"
-msgstr "Sammanlagda tillgångar: "
+msgstr ""
 
 #: stockspanel.cpp:765
-#, fuzzy, c-format
+#, c-format
 msgid "Invested: %s"
-msgstr "Investeringar"
+msgstr ""
 
 #: stockspanel.cpp:766
-#, fuzzy, c-format
+#, c-format
 msgid "Gain: %s"
-msgstr "Årsvis"
+msgstr ""
 
 #: stockspanel.cpp:766
 #, c-format
@@ -7039,79 +6238,68 @@ msgid "Connecting..."
 msgstr ""
 
 #: stockspanel.cpp:950
-#, fuzzy, c-format
+#, c-format
 msgid "Symbol: %s"
-msgstr "Symbol"
+msgstr ""
 
 #: transdialog.cpp:170
-#, fuzzy
 msgid "Duplicate Transaction"
-msgstr "Visa dubblettransaktioner"
+msgstr ""
 
 #: transdialog.cpp:170
 msgid "Edit Transaction"
 msgstr "Ändra transaktion"
 
 #: transdialog.cpp:457 usertransactionpanel.cpp:104
-#, fuzzy
 msgid "Retard or advance the date of the transaction"
-msgstr "Ange transaktionsdatumet"
+msgstr ""
 
 #: transdialog.cpp:548
 msgid "Populate Transaction #"
 msgstr ""
 
 #: transdialog.cpp:558 usertransactionpanel.cpp:210
-#, fuzzy
 msgid "Organize attachments of this transaction"
-msgstr "Ange beloppet för transaktionen"
+msgstr ""
 
 #: transdialog.cpp:597
 msgid "Show/Hide custom fields window"
 msgstr ""
 
 #: transdialog.cpp:653
-#, fuzzy, c-format
-msgid ""
-"Do you want to add new payee: \n"
+#, c-format
+msgid "Do you want to add new payee: \n"
 "%s?"
-msgstr "Vill du verkligen ta bort serien?"
+msgstr ""
 
 #: transdialog.cpp:654
 msgid "Confirm to add new payee"
 msgstr ""
 
 #: transdialog.cpp:744
-msgid ""
-"This transaction will exceed your account limit.\n"
-"\n"
+msgid "This transaction will exceed your account limit.\n\n"
 "Do you wish to continue?"
 msgstr ""
 
 #: transdialog.cpp:1253
-#, fuzzy
 msgid "Specify account the money is taken from"
-msgstr "Välj det konto från där överföringen ska ske "
+msgstr ""
 
 #: transdialog.cpp:1254
-#, fuzzy
 msgid "Specify account the money is moved to"
-msgstr "Välj det konto från där överföringen ska ske "
+msgstr ""
 
 #: transdialog.cpp:1255
-#, fuzzy
 msgid "Specify the transfer amount in the From Account."
-msgstr "Ange överföringskontot"
+msgstr ""
 
 #: transdialog.cpp:1263
-#, fuzzy
 msgid "Specify account for the transaction"
-msgstr "Ange beloppet för transaktionen"
+msgstr ""
 
 #: transdialog.cpp:1265
-#, fuzzy
 msgid "Specify to whom the transaction is going to"
-msgstr "Ange vart transaktionen ska eller kommer ifrån "
+msgstr ""
 
 #: transdialog.cpp:1271 usertransactionpanel.cpp:96
 msgid "Specify the date of the transaction"
@@ -7122,58 +6310,49 @@ msgid "Clear colour"
 msgstr ""
 
 #: transdialog.cpp:1314
-#, fuzzy, c-format
-#| msgid "Colors"
+#, c-format
 msgid "Colour #%i"
-msgstr "Färger"
+msgstr ""
 
 #: usertransactionpanel.cpp:115
-#, fuzzy
 msgid "Specify the associated Account that will contain this transaction"
-msgstr "Ange beloppet för transaktionen"
+msgstr ""
 
 #: usertransactionpanel.cpp:127
 msgid "Withdraw funds from or deposit funds to this Account."
 msgstr ""
 
 #: usertransactionpanel.cpp:129
-#, fuzzy
 msgid "&Transfer"
-msgstr "Överföring"
+msgstr ""
 
 #: usertransactionpanel.cpp:132
 msgid "Funds transfer from/to this account. Uncheck to set as Expense/Income."
 msgstr ""
 
 #: usertransactionpanel.cpp:157
-#, fuzzy
 msgid "Currency used for this transaction."
-msgstr "Ange vilken valuta som ska användas för detta kontot."
+msgstr ""
 
 #: usertransactionpanel.cpp:176
-#, fuzzy
 msgid "Specify the status for this transaction"
-msgstr "Ange status för transaktionen"
+msgstr ""
 
 #: usertransactionpanel.cpp:184
-#, fuzzy
 msgid "Specify a person, Company or Organisation for this transaction."
-msgstr "Ange beloppet för transaktionen"
+msgstr ""
 
 #: usertransactionpanel.cpp:200
-#, fuzzy
 msgid "Specify a transaction code or associated check details"
-msgstr "Ange vilka transaktioner som skall visas som standard"
+msgstr ""
 
 #: usertransactionpanel.cpp:291
-#, fuzzy
 msgid "Select the required account"
-msgstr "Välj till konto"
+msgstr ""
 
 #: usertransactionpanel.cpp:292
-#, fuzzy
 msgid "Account Selection"
-msgstr "Borttagning av konto"
+msgstr ""
 
 #: util.cpp:409
 msgid "UTF-8"
@@ -7213,19 +6392,19 @@ msgstr ""
 
 #: util.cpp:422
 msgid "Jan"
-msgstr "Jan"
+msgstr ""
 
 #: util.cpp:422
 msgid "Feb"
-msgstr "Feb"
+msgstr ""
 
 #: util.cpp:422
 msgid "Mar"
-msgstr "Mar"
+msgstr ""
 
 #: util.cpp:423
 msgid "Apr"
-msgstr "Apr"
+msgstr ""
 
 #: util.cpp:423 util.h:201
 msgid "May"
@@ -7233,19 +6412,19 @@ msgstr "Maj"
 
 #: util.cpp:423
 msgid "Jun"
-msgstr "Jun"
+msgstr ""
 
 #: util.cpp:424
 msgid "Jul"
-msgstr "Jul"
+msgstr ""
 
 #: util.cpp:424
 msgid "Aug"
-msgstr "Aug"
+msgstr ""
 
 #: util.cpp:424
 msgid "Sep"
-msgstr "Sep"
+msgstr ""
 
 #: util.cpp:425
 msgid "Oct"
@@ -7253,11 +6432,11 @@ msgstr "Okt"
 
 #: util.cpp:425
 msgid "Nov"
-msgstr "Nov"
+msgstr ""
 
 #: util.cpp:425
 msgid "Dec"
-msgstr "Dec"
+msgstr ""
 
 #: util.cpp:430
 msgid "Sunday"
@@ -7292,23 +6471,21 @@ msgid "Currency rates have been updated"
 msgstr ""
 
 #: util.cpp:868
-#, fuzzy, c-format
+#, c-format
 msgid "Version: %s"
-msgstr "Versionshistoria"
+msgstr ""
 
 #: util.cpp:869
-#, fuzzy
 msgid "Database version: "
-msgstr "Ingen databas öppnad"
+msgstr ""
 
 #: util.cpp:876
 msgid "Git commit: "
 msgstr ""
 
 #: util.cpp:880
-#, fuzzy
 msgid "Git branch: "
-msgstr "Årsvis"
+msgstr ""
 
 #: util.cpp:884
 msgid "MMEX is using the following support products:"
@@ -7383,9 +6560,8 @@ msgid "Wrong WebApp settings"
 msgstr ""
 
 #: webapp.cpp:118
-#, fuzzy
 msgid "Unable to connect to WebApp:"
-msgstr "Kunde inte ansluta!"
+msgstr ""
 
 #: webapp.cpp:119
 msgid "please check settings and / or internet connection."
@@ -7420,29 +6596,25 @@ msgstr ""
 
 #: webapp.cpp:468
 #, c-format
-msgid ""
-"Transaction will be inserted with the first bank account:\n"
+msgid "Transaction will be inserted with the first bank account:\n"
 "'%s' and marked as  'Follow Up'"
 msgstr ""
 
 #: webapp.cpp:471
-#, fuzzy
 msgid "Wrong WebApp account"
-msgstr "Från konto "
+msgstr ""
 
 #: webapp.cpp:553 webapp.cpp:586
-#, fuzzy
 msgid "Unable to download attachments from webapp."
-msgstr "Kunde inte spara till fil."
+msgstr ""
 
 #: webapp.cpp:554
 msgid "Attachments folder not set or unavailable"
 msgstr ""
 
 #: webapp.cpp:555
-#, fuzzy
 msgid "Transaction not downloaded:"
-msgstr "Transaktionsrapport"
+msgstr ""
 
 #: webapp.cpp:556
 msgid "please fix attachments folder or delete attachments from WebApp"
@@ -7453,18 +6625,15 @@ msgid "Attachment folder error"
 msgstr ""
 
 #: webapp.cpp:577
-#, fuzzy
 msgid "Attachment"
-msgstr "Öppna databas"
+msgstr ""
 
 #: webapp.cpp:587
 msgid "Communication error"
 msgstr ""
 
 #: webapp.cpp:588
-msgid ""
-"Transaction not downloaded: please close and open MMEX to try re-download "
-"transaction"
+msgid "Transaction not downloaded: please close and open MMEX to try re-download transaction"
 msgstr ""
 
 #: webapp.cpp:589
@@ -7472,29 +6641,24 @@ msgid "Attachment download error"
 msgstr ""
 
 #: webappdialog.cpp:77
-#, fuzzy
 msgid "Import WebApp transactions"
-msgstr "Kommande transaktioner"
+msgstr ""
 
 #: webappdialog.cpp:100
 msgid "Network status (click to refresh)"
 msgstr ""
 
 #: webappdialog.cpp:132
-#, fuzzy
-#| msgid "Viewing Reconciled transactions"
 msgid "Checking for new transactions..."
-msgstr "Visar fullbordade transaktioner"
+msgstr ""
 
 #: webappdialog.cpp:165
-#, fuzzy
 msgid "&Import all "
-msgstr "Importera"
+msgstr ""
 
 #: webappdialog.cpp:167
-#, fuzzy
 msgid "Import and open all "
-msgstr "Importera fil"
+msgstr ""
 
 #: webappdialog.cpp:313
 msgid "Unable to insert transaction in MMEX database"
@@ -7505,19 +6669,16 @@ msgid "WebApp communication error"
 msgstr ""
 
 #: webappdialog.cpp:405
-#, fuzzy
 msgid "Open Attachment"
-msgstr "Öppna databas"
+msgstr ""
 
 #: webappdialog.cpp:407
-#, fuzzy
 msgid "Import and open"
-msgstr "Importera fil"
+msgstr ""
 
 #: webappdialog.cpp:408
-#, fuzzy
 msgid "Delete"
-msgstr "Ta bort"
+msgstr ""
 
 #: wizard_newaccount.cpp:25
 msgid "Add Account Wizard"
@@ -7529,8 +6690,7 @@ msgid "%s models all transactions as belonging to accounts."
 msgstr ""
 
 #: wizard_newaccount.cpp:35
-msgid ""
-"The next pages will help you create a new account.\n"
+msgid "The next pages will help you create a new account.\n"
 "To help you get started, begin by making a list of all\n"
 "financial institutions where you hold an account."
 msgstr ""
@@ -7548,54 +6708,42 @@ msgid "Name of the Account"
 msgstr "Namnet på kontot"
 
 #: wizard_newaccount.cpp:104
-#, fuzzy
 msgid "Specify a descriptive name for the account."
-msgstr "Ange status för transaktionen"
+msgstr ""
 
 #: wizard_newaccount.cpp:105
-#, fuzzy
-msgid ""
-"This is generally the name of a financial institution\n"
+msgid "This is generally the name of a financial institution\n"
 "where the account is held. For example: 'ABC Bank'."
 msgstr ""
-"\n"
-"Specify a descriptive name of the account. This most commonly \n"
-"is the name of the financial institution where the account is held. \n"
-"For example 'ABC Bank'."
 
 #: wizard_newaccount.cpp:125
 msgid "Type of Account"
 msgstr "Typ av konto"
 
 #: wizard_newaccount.cpp:129
-#, fuzzy
 msgid "Select the type of account you want to create:"
-msgstr "Ange vilket typ av konto som skall skapas."
+msgstr ""
 
 #: wizard_newaccount.cpp:130
-msgid ""
-"General bank accounts cover a wide variety of account\n"
+msgid "General bank accounts cover a wide variety of account\n"
 "types like Checking, Savings and Credit card type accounts."
 msgstr ""
 
 #: wizard_newaccount.cpp:135
-msgid ""
-"Investment accounts are specialized accounts that only\n"
+msgid "Investment accounts are specialized accounts that only\n"
 "have stock/mutual fund investments associated with them."
 msgstr ""
 
 #: wizard_newaccount.cpp:140
-msgid ""
-"Term accounts are specialized bank accounts. Intended for asset\n"
+msgid "Term accounts are specialized bank accounts. Intended for asset\n"
 "type accounts such as Term Deposits and Bonds. These accounts\n"
 "can have regular money coming in and out, being outside the\n"
 "general income stream."
 msgstr ""
 
 #: wizard_newaccount.cpp:156
-#, fuzzy
 msgid "Base Account Currency Not set."
-msgstr "Basvaluta för konto"
+msgstr ""
 
 #: wizard_newaccount.cpp:157
 msgid "Set that first using Tools->Options menu and then add a new account."
@@ -7606,15 +6754,12 @@ msgid "New Database Wizard"
 msgstr "Guiden ny Databas"
 
 #: wizard_newdb.cpp:30
-msgid ""
-"The next pages will help you create a new database.\n"
-"\n"
+msgid "The next pages will help you create a new database.\n\n"
 "Your database file is stored with an extension of .mmb.\n"
 "As this file contains important financial information,\n"
 "we recommended creating daily backups with the Options\n"
 "setting: 'Backup before opening', and store your backups\n"
-"in a separate location.\n"
-"\n"
+"in a separate location.\n\n"
 "The database can later be encrypted if required, by\n"
 "using the option: 'Save database as' and changing the\n"
 "file type before saving."
@@ -7625,8 +6770,7 @@ msgid "Base Currency for account"
 msgstr "Basvaluta för konto"
 
 #: wizard_newdb.cpp:95
-msgid ""
-"Specify the base (or default) currency to be used for the\n"
+msgid "Specify the base (or default) currency to be used for the\n"
 "database. The base currency can later be changed by using\n"
 "the options dialog. New accounts, will use this currency by\n"
 "default, and can be changed when editing account details."
@@ -7653,14 +6797,12 @@ msgid "Historical releases:"
 msgstr ""
 
 #: wizard_update.cpp:136
-#, fuzzy
 msgid "Version"
-msgstr "Versionshistoria"
+msgstr ""
 
 #: wizard_update.cpp:144
-#, fuzzy
 msgid "You already have the latest version"
-msgstr "Du har den senaste versionen installerad!"
+msgstr ""
 
 #: wizard_update.cpp:144
 msgid "A new version of MMEX is available!"
@@ -7672,1873 +6814,14 @@ msgid "Your version is %s"
 msgstr ""
 
 #: wizard_update.cpp:283 wizard_update.cpp:298
-#, fuzzy
 msgid "Unable to check for updates!"
-msgstr "Leta efter &uppdateringar"
+msgstr ""
 
 #: wizard_update.cpp:284 wizard_update.cpp:299
-#, fuzzy
 msgid "Error: "
-msgstr "Fel: %s"
+msgstr ""
 
 #: wizard_update.cpp:285 wizard_update.cpp:302
 msgid "MMEX Update Check"
 msgstr ""
 
-#~ msgid "REPORTS"
-#~ msgstr "RAPPORTER"
-
-#, fuzzy, c-format
-#~ msgid "About %s"
-#~ msgstr "Om"
-
-#, fuzzy
-#~ msgid "Transaction Dates"
-#~ msgstr "Transaktionsdetaljer"
-
-#~ msgid "Specify to whom the transaction is going to or coming from "
-#~ msgstr "Ange vem transaktionen ska gå till/kommer från "
-
-#, fuzzy
-#~ msgid "Currency Type"
-#~ msgstr "Valutanamn"
-
-#, fuzzy
-#~ msgid "Historic currency"
-#~ msgstr "Välj valuta"
-
-#, fuzzy
-#~ msgid "Enter the decimal digits scale allowed"
-#~ msgstr "Ange namnet på tillgången"
-
-#, fuzzy
-#~ msgid "Sol"
-#~ msgstr "Symbol"
-
-#, fuzzy
-#~ msgid "MMEX database vacuum failed!"
-#~ msgstr "Öppna befintlig databas"
-
-#, fuzzy
-#~ msgid "Debug script description:"
-#~ msgstr "Transaktioner"
-
-#, fuzzy
-#~ msgid "Please confirm running this SQL script."
-#~ msgstr "Var god vänta"
-
-#, fuzzy
-#~ msgid "Error opening database file:"
-#~ msgstr "Fel vid öppnande av databas"
-
-#, fuzzy
-#~ msgid "Corrupted database file"
-#~ msgstr "Spara databas som"
-
-#, fuzzy
-#~ msgid "Settings"
-#~ msgstr "Inställningar"
-
-#, fuzzy, c-format
-#~ msgid "%i: Empty"
-#~ msgstr "Linje : "
-
-#, fuzzy
-#~ msgid "&Activate "
-#~ msgstr "Stigande"
-
-#, fuzzy
-#~ msgid "&Deactivate "
-#~ msgstr "Stigande"
-
-#, fuzzy
-#~ msgid "Please Enter"
-#~ msgstr "Var god vänta"
-
-#, fuzzy
-#~ msgid "Setting Name"
-#~ msgstr "Inställningar"
-
-#, fuzzy
-#~ msgid "Could not save settings"
-#~ msgstr "Inställningar"
-
-#, fuzzy
-#~ msgid "Amount +/-"
-#~ msgstr "Belopp(+/-)"
-
-#, fuzzy
-#~ msgid "Amount +/-:"
-#~ msgstr "Belopp(+/-)"
-
-#, fuzzy
-#~ msgid "Select the currently selected currency as base currency"
-#~ msgstr "Ta bort alla flaggade transaktioner"
-
-#, fuzzy
-#~ msgid "Do you want to continue?"
-#~ msgstr ""
-#~ "Kunde inte hitta tidigare öppnad .mmb database.\n"
-#~ "Do you want to browse to locate the file?"
-
-#, fuzzy
-#~ msgid "Invalid Amount"
-#~ msgstr "Ogiltigt belopp angivet "
-
-#, fuzzy
-#~ msgid "Budget Setup: &Without Summaries"
-#~ msgstr "Budgetinställningar för "
-
-#, fuzzy
-#~ msgid "Encrypt database or change password for database file"
-#~ msgstr "Fel vid öppnande av databas"
-
-#, fuzzy
-#~ msgid "Remove Password"
-#~ msgstr "Ta bort"
-
-#, fuzzy
-#~ msgid "Read the User Manual"
-#~ msgstr "Läs användarmanualen"
-
-#, fuzzy
-#~ msgid "Show Home Page"
-#~ msgstr "Övergripande"
-
-#, fuzzy
-#~ msgid "Cannot locate database file to open."
-#~ msgstr "Välj QIF-datafil att importera"
-
-#, fuzzy
-#~ msgid "MMEX database files (*.mmb)"
-#~ msgstr "Spara databas som"
-
-#, fuzzy
-#~ msgid "Encrypted MMEX database files (*.mmb)"
-#~ msgstr "Välj QIF-datafil att importera"
-
-#, fuzzy
-#~ msgid "Please confirm database decryption and password removal."
-#~ msgstr "Var god vänta"
-
-#, fuzzy
-#~ msgid "Can't overwrite selected file"
-#~ msgstr "Ta bort befintligt budgetår"
-
-#, fuzzy
-#~ msgid "WebApp export"
-#~ msgstr "Inställningar"
-
-#, fuzzy
-#~ msgid "Transaction"
-#~ msgstr "Ny transaktion"
-
-#, fuzzy
-#~ msgid "Stock"
-#~ msgstr "Aktier"
-
-#, fuzzy
-#~ msgid "Bank Account"
-#~ msgstr "Bankkonton"
-
-#, fuzzy
-#~ msgid "Recurring Transaction"
-#~ msgstr "Återkommande transaktioner"
-
-#, fuzzy
-#~ msgid "Database file directory"
-#~ msgstr "Spara databas som"
-
-#, fuzzy
-#~ msgid "Test connection"
-#~ msgstr "Transaktioner"
-
-#, fuzzy
-#~ msgid "Web Server"
-#~ msgstr "Yahoo-server"
-
-#, fuzzy
-#~ msgid "Specify web server port number"
-#~ msgstr "Ange nummer"
-
-#, fuzzy
-#~ msgid "Check for Updates"
-#~ msgstr "Leta efter &uppdateringar"
-
-#, fuzzy
-#~ msgid "Select updates source channel"
-#~ msgstr "Valutanamn"
-
-#, fuzzy
-#~ msgid "WebApp connection test"
-#~ msgstr "Inställningar"
-
-#~ msgid "Specify which transactions are visible by default"
-#~ msgstr "Ange vilka transaktioner som skall visas som standard"
-
-#, fuzzy
-#~ msgid "Budget Options"
-#~ msgstr "Budgetering"
-
-#, fuzzy
-#~ msgid "View as Financial Years"
-#~ msgstr "Föregående år"
-
-#, fuzzy
-#~ msgid "View Setup Without Budget Summaries"
-#~ msgstr "Budgetinställningar för "
-
-#, fuzzy
-#~ msgid "View Category Report with Summaries"
-#~ msgstr "Visa alla budgetkategorier"
-
-#, fuzzy
-#~ msgid "Budget Offset (days):"
-#~ msgstr "Budgetår:"
-
-#, fuzzy
-#~ msgid "Report Options"
-#~ msgstr "Återkommande transaktioner"
-
-#, fuzzy
-#~ msgid "View without Future Transactions"
-#~ msgstr "Visa fullbordade transaktioner"
-
-#, fuzzy
-#~ msgid "Name of the company issuing Shares"
-#~ msgstr "Namnet på kontot"
-
-#, fuzzy
-#~ msgid ""
-#~ "Enter the associated Share Account name\n"
-#~ "An account can be created on Save"
-#~ msgstr "Ange namnet på kontot, detta namn kan ändras när som helst."
-
-#, fuzzy
-#~ msgid "Specify the date of this initial share purchase"
-#~ msgstr "Ange transaktionsdatumet"
-
-#, fuzzy
-#~ msgid "Enter the initial number of shares."
-#~ msgstr "Ange namnet på tillgången"
-
-#, fuzzy
-#~ msgid "Enter the initial price per share."
-#~ msgstr "Ange namnet på tillgången"
-
-#, fuzzy
-#~ msgid "View selected stock's share transactions"
-#~ msgstr "Ta bort transaktion"
-
-#, fuzzy
-#~ msgid "Delete selected stock investment"
-#~ msgstr "Ta bort alla flaggade transaktioner"
-
-#, fuzzy
-#~ msgid ""
-#~ "Please select the Account that will be associated with this transaction"
-#~ msgstr "Ange beloppet för transaktionen"
-
-#, fuzzy
-#~ msgid "Enter password for database file"
-#~ msgstr "Fel vid öppnande av databas"
-
-#, fuzzy
-#~ msgid "Re-enter password for database file"
-#~ msgstr "Fel vid öppnande av databas"
-
-#, fuzzy, c-format
-#~ msgid "New version is %s (published at %s)"
-#~ msgstr "Versionshistoria"
-
-#, fuzzy
-#~ msgid "to payee: "
-#~ msgstr "avs/mot"
-
-#, fuzzy
-#~ msgid "Specify the number of times this series repeats."
-#~ msgstr ""
-#~ "Ange hur många gånger den här serien ska upprepas. Lämna fältet tomt om "
-#~ "serien fortlöper kontinuerligt."
-
-#, fuzzy
-#~ msgid "to: "
-#~ msgstr "Till: "
-
-#, fuzzy
-#~ msgid "View Not-Reconciled"
-#~ msgstr "Visa fullbordade"
-
-#, fuzzy
-#~ msgid "QIF Files"
-#~ msgstr "&QIF-filer"
-
-#, fuzzy
-#~ msgid "Import &QIF File"
-#~ msgstr "Importera fil"
-
-#~ msgid "Import from CSV"
-#~ msgstr "Importera från CSV"
-
-#, fuzzy
-#~ msgid "Import/Export"
-#~ msgstr "Import/export-inställningar"
-
-#~ msgid "Import/Export Settings"
-#~ msgstr "Import/export-inställningar"
-
-#, fuzzy
-#~ msgid "Clear the settings for the allocated position"
-#~ msgstr "Ange status för transaktionen"
-
-#~ msgid "View Reconciled"
-#~ msgstr "Visa fullbordade"
-
-#, fuzzy
-#~ msgid "Importing CSV MM.NET"
-#~ msgstr "Importera från MM.NET-CSV"
-
-#, fuzzy
-#~ msgid "BankAccount"
-#~ msgstr "Bankkonton"
-
-#~ msgid "Income vs Expenses - All Time"
-#~ msgstr "Inkomster vs utgifter - hela tiden"
-
-#, fuzzy
-#~ msgid "Income vs Expenses - Current Financial Year"
-#~ msgstr "Inkomster vs utgifter för år: "
-
-#~ msgid "View Reconciled Transactions"
-#~ msgstr "Visa fullbordade transaktioner"
-
-#, fuzzy
-#~ msgid "Income vs Expenses - Current Year"
-#~ msgstr "Inkomster vs utgifter: Nuvarande månad"
-
-#, fuzzy
-#~ msgid "Income vs Expenses - Last 12 months"
-#~ msgstr "Inkomster vs utgifter: Nuvarande månad"
-
-#, fuzzy
-#~ msgid "Income vs Expenses - Last Calendar Month"
-#~ msgstr "Inkomster vs utgifter: Nuvarande månad"
-
-#, fuzzy
-#~ msgid "View Transactions for current month"
-#~ msgstr "Visa transaktioner från aktuell månad"
-
-#, fuzzy
-#~ msgid "Income vs Expenses - Last Year"
-#~ msgstr "Inkomster vs utgifter - hela tiden"
-
-#, fuzzy
-#~ msgid "Income vs Expenses for Financial Year: "
-#~ msgstr "Inkomster vs utgifter för år: "
-
-#, fuzzy
-#~ msgid "View Transactions for last 3 months"
-#~ msgstr "Visa transaktioner från de senaste 3 månaderna"
-
-#, fuzzy
-#~ msgid "Income vs Expenses for Year: %d"
-#~ msgstr "Inkomster vs utgifter för år: "
-
-#, fuzzy
-#~ msgid "Income......."
-#~ msgstr "Inkomst"
-
-#, fuzzy
-#~ msgid "Initial Term Account Activation"
-#~ msgstr "Borttagning av konto"
-
-#, fuzzy
-#~ msgid "View Transactions for last 30 days"
-#~ msgstr "Visa transaktioner för de senaste 30 dagarna"
-
-#~ msgid "Invalid current price entered "
-#~ msgstr "Ogiltigt aktuellt pris angivet"
-
-#~ msgid "Developers"
-#~ msgstr "Utvecklare"
-
-#~ msgid "Invalid field index"
-#~ msgstr "Ogiltigt fältindex"
-
-#~ msgid "Invalid field name"
-#~ msgstr "Ogiltigt fältnamn"
-
-#, fuzzy
-#~ msgid "Transactions saved to database in account: %s"
-#~ msgstr "Lista över transaktioner"
-
-#~ msgid "Invalid number of shares entered "
-#~ msgstr "Ogiltigt antal aktier angivet "
-
-#, fuzzy
-#~ msgid "View Transactions for last 90 days"
-#~ msgstr "Visa transaktioner för de senaste 30 dagarna"
-
-#~ msgid "Invalid purchase price entered "
-#~ msgstr "Ogiltigt köpepris angivet "
-
-#~ msgid "Specify the language to use"
-#~ msgstr "Ange det språk som skall användas"
-
-#, fuzzy
-#~ msgid "Investment Accounts"
-#~ msgstr "Välj investeringskonto"
-
-#~ msgid "Last Calendar Month"
-#~ msgstr "Senaste kalendermånad"
-
-#, fuzzy
-#~ msgid "Line %i"
-#~ msgstr "Linje : "
-
-#, fuzzy
-#~ msgid "View Transactions for last month"
-#~ msgstr "Visa transaktioner från föregående månad"
-
-#~ msgid "Line : "
-#~ msgstr "Linje : "
-
-#, fuzzy
-#~ msgid "Line: "
-#~ msgstr "Linje : "
-
-#, fuzzy
-#~ msgid "Line: %i"
-#~ msgstr "Linje : "
-
-#~ msgid "Invalid Amount Entered "
-#~ msgstr "Ogiltig summa angiven "
-
-#, fuzzy
-#~ msgid "Line: %i invalid amount, skipping."
-#~ msgstr " felaktigt belopp, hoppar över."
-
-#, fuzzy
-#~ msgid "View Transactions for today"
-#~ msgstr "Visa transaktioner för de senaste 30 dagarna"
-
-#, fuzzy
-#~ msgid "Load Custom Lua file:"
-#~ msgstr "Anpassad SQL-fråga"
-
-#, fuzzy
-#~ msgid "Cash Flow - With Bank Accounts"
-#~ msgstr "Kassaflöde - specifika konton"
-
-#, fuzzy
-#~ msgid "Load Custom SQL file:"
-#~ msgstr "Anpassad SQL-fråga"
-
-#, fuzzy
-#~ msgid "Cash Flow - With Term Accounts"
-#~ msgstr "Kassaflöde - specifika konton"
-
-#, fuzzy
-#~ msgid "Load Template"
-#~ msgstr "Ladda mall"
-
-#, fuzzy
-#~ msgid "All Bank Accounts"
-#~ msgstr "Bankkonton"
-
-#, fuzzy
-#~ msgid "MM.&NET CSV Files"
-#~ msgstr "&MM.NET CSV-Filer"
-
-#, fuzzy
-#~ msgid "View Un-Reconciled"
-#~ msgstr "Visa ofullbordade"
-
-#, fuzzy
-#~ msgid "MMEX Account View: Transaction Filter"
-#~ msgstr "Transaktionsfilter"
-
-#, fuzzy
-#~ msgid "Term Accounts Total:"
-#~ msgstr "Från konto "
-
-#~ msgid "Market open from"
-#~ msgstr "Marknaden öppen från"
-
-#, fuzzy
-#~ msgid "Stocks Total:"
-#~ msgstr "Totalt:"
-
-#~ msgid "May "
-#~ msgstr "Maj"
-
-#, fuzzy
-#~ msgid "pul"
-#~ msgstr "Jul"
-
-#, fuzzy
-#~ msgid "Modify the description for the attachment:"
-#~ msgstr "Ange namnet på tillgången"
-
-#~ msgid "View Un-Reconciled Transactions"
-#~ msgstr "Visa ofullbordade transaktioner"
-
-#, fuzzy
-#~ msgid "Month: "
-#~ msgstr "Månad"
-
-#~ msgid "Name of Currency to Add"
-#~ msgstr "Namn på valuta som ska läggas till"
-
-#, fuzzy
-#~ msgid "Currency History Options: "
-#~ msgstr "Valutalista"
-
-#~ msgid "Nav Tree"
-#~ msgstr "Navigationsträd"
-
-#~ msgid "Enter the name of the category to add or edit here"
-#~ msgstr "Ange namnet på kategorin som skall lägg till eller ändras här"
-
-#, fuzzy
-#~ msgid "New Lua Custom Report"
-#~ msgstr "Anpassad SQL-rapport"
-
-#~ msgid "View UnReconciled"
-#~ msgstr "Visa ofullbordade"
-
-#, fuzzy
-#~ msgid "New MMEX Options"
-#~ msgstr "Visningsalternativ"
-
-#, fuzzy
-#~ msgid " - "
-#~ msgstr "C  "
-
-#, fuzzy
-#~ msgid "New transactions found on web app"
-#~ msgstr "Visa transaktioner från de senaste 30 dagarna"
-
-#, fuzzy
-#~ msgid " Filter Settings "
-#~ msgstr "Vy-inställningar"
-
-#, fuzzy
-#~ msgid "New update available: "
-#~ msgstr "Ny uppdatering tillgänglig!"
-
-#~ msgid " To: "
-#~ msgstr "Till: "
-
-#~ msgid "New/Edit Asset"
-#~ msgstr "Tillgång ny/ändra"
-
-#, fuzzy
-#~ msgid "View Void"
-#~ msgstr "Visa 30 dagar"
-
-#~ msgid "New/Edit Stock Investment"
-#~ msgstr "Ny/redigera aktieinvestering"
-
-#~ msgid " amount "
-#~ msgstr " summa "
-
-#~ msgid "New/Edit Transaction"
-#~ msgstr "Transaktioner ny/ändra"
-
-#, fuzzy
-#~ msgid " check delimiters. Possible amount error, skipping."
-#~ msgstr "  belopp saknas, hoppar över."
-
-#, fuzzy
-#~ msgid "Next Occurrence"
-#~ msgstr "Nästa förekomst"
-
-#~ msgid " invalid date, skipping."
-#~ msgstr " felaktigt datum, hoppar över."
-
-#~ msgid "No Account available! Cannot Import! Create a new account first!"
-#~ msgstr ""
-#~ "Inga konton tillgängliga! Kan inte importera! Skapa ett nytt konto först!"
-
-#~ msgid "Viewing All Budget Categories"
-#~ msgstr "Visar alla budgetkategorier"
-
-#, fuzzy
-#~ msgid "No account available for export!"
-#~ msgstr "Inga konton tillgängliga! Kan ej exportera!"
-
-#~ msgid " missing payee, skipping."
-#~ msgstr " saknar betalningsmottagare, hoppar över."
-
-#, fuzzy
-#~ msgid "No account available for import."
-#~ msgstr "Inga konton tillgängliga! Kan ej exportera!"
-
-#~ msgid " missing transaction type, skipping."
-#~ msgstr " saknar transaktionstyp, hoppar över."
-
-#, fuzzy
-#~ msgid "No account available to reallocate!"
-#~ msgstr "Inga konton tillgängliga!"
-
-#~ msgid " type "
-#~ msgstr " typ "
-
-#, fuzzy
-#~ msgid "No database!"
-#~ msgstr "Ny databas"
-
-#~ msgid "Viewing All Except Reconciled Transactions"
-#~ msgstr "Visar allt förutom fullbordade transaktioner"
-
-#, fuzzy
-#~ msgid "Note: Split transactions not set"
-#~ msgstr "Kommande transaktioner"
-
-#, fuzzy
-#~ msgid "&Delete Series"
-#~ msgstr "Ta bort serie"
-
-#~ msgid "Notes               : "
-#~ msgstr "Noteringar   : "
-
-#, fuzzy
-#~ msgid "&Duplicate Transaction"
-#~ msgstr "Visa dubblettransaktioner"
-
-#~ msgid "Notes:"
-#~ msgstr "Noteringar:"
-
-#~ msgid "&Help\tCtrl-F1"
-#~ msgstr "&Hjälp\tCtrl-F1"
-
-#, fuzzy
-#~ msgid "Notes: "
-#~ msgstr "Noteringar: \n"
-
-#~ msgid "Viewing All Transactions"
-#~ msgstr "Visa alla transaktioner"
-
-#~ msgid "Number Shares"
-#~ msgstr "Antal aktier"
-
-#, fuzzy
-#~ msgid "&OK"
-#~ msgstr "OK"
-
-#~ msgid "Number of Shares"
-#~ msgstr "Antal aktier"
-
-#, fuzzy
-#~ msgid "&Open"
-#~ msgstr "Öppet"
-
-#~ msgid "Options"
-#~ msgstr "Inställningar"
-
-#, fuzzy
-#~ msgid "&Run Query"
-#~ msgstr "Kör fråga"
-
-#~ msgid "Options Dialog"
-#~ msgstr "Inställningar"
-
-#~ msgid "Viewing All except Reconciled Transactions"
-#~ msgstr "Visar allt förutom fullbordade transaktioner"
-
-#, fuzzy
-#~ msgid "Organise Categories"
-#~ msgstr "Organisera kategorier"
-
-#, fuzzy
-#~ msgid "&Stock Investments"
-#~ msgstr "Aktieinvesteringar"
-
-#, fuzzy
-#~ msgid "Organize Currency: Add Currency"
-#~ msgstr "Organisera valutor"
-
-#~ msgid "&Universal CSV Files"
-#~ msgstr "&Universella CSV-filer"
-
-#~ msgid "Out of memory"
-#~ msgstr "Slut på minne"
-
-#~ msgid "Accessing Database"
-#~ msgstr "Ansluter till databas"
-
-#, fuzzy
-#~ msgid "Page Set&up..."
-#~ msgstr "Utskriftsinställningar..."
-
-#~ msgid "Viewing Flagged transactions"
-#~ msgstr "Visar flaggade transaktioner"
-
-#, fuzzy
-#~ msgid "Payee Added: %s"
-#~ msgstr "Betalningsmottagare"
-
-#, fuzzy
-#~ msgid "Account name: %s"
-#~ msgstr "Kontonamn"
-
-#, fuzzy
-#~ msgid "Payee Report - %s"
-#~ msgstr "Betalningsmottagare"
-
-#, fuzzy
-#~ msgid "Account:"
-#~ msgstr "Konton"
-
-#, fuzzy
-#~ msgid "Payee missing"
-#~ msgstr "Betalningsmottagare"
-
-#~ msgid "Add Currency"
-#~ msgstr "Lägg till valuta"
-
-#, fuzzy
-#~ msgid "Payee:"
-#~ msgstr "Betalningsmottagare"
-
-#, fuzzy
-#~ msgid "Viewing Follow-Up transactions"
-#~ msgstr "Visar alla transaktioner"
-
-#, fuzzy
-#~ msgid "Payees - Current Financial Year"
-#~ msgstr "Nuvarande år"
-
-#~ msgid "Adding payee "
-#~ msgstr "Lägger till betalningsmottagare"
-
-#, fuzzy
-#~ msgid "Payees - Current Month"
-#~ msgstr "Visa nuvarande månad"
-
-#, fuzzy
-#~ msgid "Payees - Current Month to Date"
-#~ msgstr "Visa nuvarande månad"
-
-#, fuzzy
-#~ msgid "Amount is missing"
-#~ msgstr "Summa är inte angivet"
-
-#, fuzzy
-#~ msgid "Payees - Current Year"
-#~ msgstr "Nuvarande år"
-
-#, fuzzy
-#~ msgid "Payees - Last 30 Days"
-#~ msgstr "Senaste 30 dagarna"
-
-#, fuzzy
-#~ msgid "Backup before opening"
-#~ msgstr "Säkerhetskopiera databas före öppning"
-
-#, fuzzy
-#~ msgid "Payees - Last Calendar Month"
-#~ msgstr "Senaste kalendermånad"
-
-#, fuzzy
-#~ msgid "Be &notified of new releases"
-#~ msgstr "Bli informerad om nya versioner"
-
-#, fuzzy
-#~ msgid "Payees - Last Financial Year"
-#~ msgstr "Föregående år"
-
-#~ msgid "CSV Import"
-#~ msgstr "CSV-import"
-
-#, fuzzy
-#~ msgid "Payees - Last Year"
-#~ msgstr "Kategorin används"
-
-#~ msgid "Viewing Un-Reconciled transactions"
-#~ msgstr "Visar ofullbordade transaktioner"
-
-#, fuzzy
-#~ msgid "Payees Total: "
-#~ msgstr "Kategori  "
-
-#, fuzzy
-#~ msgid "Categories - Current Month"
-#~ msgstr "Visa nuvarande månad"
-
-#, fuzzy
-#~ msgid "Percent/Year: "
-#~ msgstr "Nuvarande år"
-
-#, fuzzy
-#~ msgid "Categories - Current Month to Date"
-#~ msgstr "Visa nuvarande månad"
-
-#, fuzzy
-#~ msgid "Please deactivate Transaction Filter"
-#~ msgstr "Transaktionsfilter"
-
-#, fuzzy
-#~ msgid "Categories - Last Year"
-#~ msgstr "Kategorin används"
-
-#, fuzzy
-#~ msgid "Please deactivate: "
-#~ msgstr "Var god vänta"
-
-#~ msgid "Viewing Void transactions"
-#~ msgstr "Visar ogiltiga transaktioner"
-
-#~ msgid ""
-#~ "Please verify that the CSV file from MMEX.NET contains only one account!"
-#~ msgstr ""
-#~ "Vänligen kontrollera att CSV-filen från MMEX.NET bara innehåller ett "
-#~ "konto!"
-
-#~ msgid "Category is empty, marking transaction as Unknown category"
-#~ msgstr "Kategorin är tom, markerar transaktion som okänd kategori"
-
-#~ msgid "Preview current report"
-#~ msgstr "Förhandsgranska aktuell rapport"
-
-#, fuzzy
-#~ msgid "Category is missing"
-#~ msgstr "Kategori  "
-
-#, fuzzy
-#~ msgid "Print Pre&view..."
-#~ msgstr "Förhandsgranskning..."
-
-#, fuzzy
-#~ msgid "Choose Account to Import to"
-#~ msgstr "Välj konto att importera till:"
-
-#~ msgid "QFX Import"
-#~ msgstr "QFX-import"
-
-#~ msgid "Viewing all transactions"
-#~ msgstr "Visar alla transaktioner"
-
-#~ msgid "Rate of Change"
-#~ msgstr "Förändringstakt"
-
-#, fuzzy
-#~ msgid "Choose Universal CSV format file to save"
-#~ msgstr "Välj CSV-datafil att exportera"
-
-#, fuzzy
-#~ msgid "Rate of Change in Value"
-#~ msgstr "Värdeförändringstakt"
-
-#, fuzzy
-#~ msgid "Choose account to import to:"
-#~ msgstr "Välj konto att importera till:"
-
-#~ msgid "Released under the GNU GPL License"
-#~ msgstr "Utgiven under GNU GPL License"
-
-#, fuzzy
-#~ msgid "Contributors"
-#~ msgstr "Medarbetare"
-
-#~ msgid "Remaining Days"
-#~ msgstr "Återstående dagar"
-
-#, fuzzy
-#~ msgid "Viewing transactions for current month"
-#~ msgstr "Visa transaktioner från nuvarande månad"
-
-#~ msgid "Repeating Transactions"
-#~ msgstr "Återkommande transaktioner"
-
-#, fuzzy
-#~ msgid "Curr. unit value"
-#~ msgstr "Aktuell vy"
-
-#~ msgid "Report Font Size"
-#~ msgstr "Typstorlek på rapporter"
-
-#, fuzzy
-#~ msgid "Currency with same name exists"
-#~ msgstr "Kategori med samma namn finns redan"
-
-#, fuzzy
-#~ msgid "Report with same name exists"
-#~ msgstr "Kategori med samma namn finns redan"
-
-#, fuzzy
-#~ msgid "Custom Report: "
-#~ msgstr "Anpassad SQL-rapport"
-
-#~ msgid "Restore Default Colors"
-#~ msgstr "Återställ till standardfärger"
-
-#, fuzzy
-#~ msgid "Viewing transactions for last 3 months"
-#~ msgstr "Visa transaktioner från de senaste 3 månaderna"
-
-#~ msgid "SQL Query will modify your Data. Proceed??"
-#~ msgstr "SQL-frågan kommer att förändra dina data. Fortsätt??"
-
-#, fuzzy
-#~ msgid "Daily Update, before opening"
-#~ msgstr "Säkerhetskopiera databas före öppning"
-
-#, fuzzy
-#~ msgid "Save As..."
-#~ msgstr "Betalningsmottagare"
-
-#, fuzzy
-#~ msgid "Date Range:"
-#~ msgstr "Ange datumintervall"
-
-#, fuzzy
-#~ msgid "Save Custom SQL file:"
-#~ msgstr "Anpassad SQL-fråga"
-
-#~ msgid "Delete Transaction"
-#~ msgstr "Ta bort transaktion"
-
-#~ msgid "Select From"
-#~ msgstr "Välj från"
-
-#, fuzzy
-#~ msgid "Viewing transactions for last 30 days"
-#~ msgstr "Visa transaktioner från de senaste 30 dagarna"
-
-#~ msgid "Select From Account"
-#~ msgstr "Välj från konto"
-
-#, fuzzy
-#~ msgid "Diference: "
-#~ msgstr "Skillnad:"
-
-#~ msgid "Select To"
-#~ msgstr "Välj till"
-
-#, fuzzy
-#~ msgid ""
-#~ "Do you really want to delete all the \"Follow Up\" transactions shown?"
-#~ msgstr "Vill du verkligen ta bort alla flaggade transaktioner?"
-
-#, fuzzy
-#~ msgid "Select To Account-"
-#~ msgstr "Välj till konto"
-
-#, fuzzy
-#~ msgid "Download WebApp new transaction"
-#~ msgstr "Kommande transaktioner"
-
-#~ msgid "Select To Acct"
-#~ msgstr "Välj till konto"
-
-#, fuzzy
-#~ msgid "Viewing transactions for last 90 days"
-#~ msgstr "Visa transaktioner från de senaste 30 dagarna"
-
-#, fuzzy
-#~ msgid "Select accounts"
-#~ msgstr "Välj konto"
-
-#, fuzzy
-#~ msgid "Enter &Transaction"
-#~ msgstr "Ändra transaktion"
-
-#~ msgid "Set"
-#~ msgstr "Sätt"
-
-#~ msgid "Enter purchase price for each stock"
-#~ msgstr "Ange inköpspris för varje aktie"
-
-#, fuzzy
-#~ msgid "Sets the default currency for the database."
-#~ msgstr "Ange vilken valuta som ska användas för detta kontot."
-
-#~ msgid "Error adding Category"
-#~ msgstr "Fel vid tilläggning av kategori"
-
-#, fuzzy
-#~ msgid "Setting new Database file"
-#~ msgstr "Spara databas som"
-
-#, fuzzy
-#~ msgid "Viewing transactions for last month"
-#~ msgstr "Visa transaktioner från föregående månad"
-
-#, fuzzy
-#~ msgid "Show Deleted (Void)"
-#~ msgstr "Ta bort"
-
-#~ msgid "Error binding double param"
-#~ msgstr "Fel vid bindning av double-parameter"
-
-#, fuzzy
-#~ msgid "Source Payee"
-#~ msgstr "Välj betalningsmottagare"
-
-#~ msgid "Error binding int param"
-#~ msgstr "Fel vid bindning av int-parameter"
-
-#~ msgid "Specify Account"
-#~ msgstr "Ange konto"
-
-#~ msgid "Error clearing bindings"
-#~ msgstr "Fel vid rensning av bindningar"
-
-#~ msgid "Specify Category"
-#~ msgstr "Ange kategori"
-
-#, fuzzy
-#~ msgid "Week#%d"
-#~ msgstr "Veckovis"
-
-#~ msgid "Specify Notes"
-#~ msgstr "Noteringar"
-
-#~ msgid "Estimated Income: %s Actual Income:  %s"
-#~ msgstr "Beräknad inkomst: %s Verklig inkomst:  %s"
-
-#~ msgid "Specify Payee"
-#~ msgstr "Ange betalningsmottagare"
-
-#, fuzzy
-#~ msgid "Expand Term Accounts on navigation tree"
-#~ msgstr "Bankkonton"
-
-#~ msgid "Specify Status"
-#~ msgstr "Ange status"
-
-#, fuzzy
-#~ msgid "Filter"
-#~ msgstr "&Arkiv"
-
-#, fuzzy
-#~ msgid "Specify advanced settings for transaction"
-#~ msgstr "Ange avancerade inställningar för transaktion"
-
-#, fuzzy
-#~ msgid "Where the Money Comes From - %s"
-#~ msgstr "Vart pengar kommer ifrån"
-
-#, fuzzy
-#~ msgid "Specify categories for this transaction"
-#~ msgstr "Ange kategori för den här transaktionen"
-
-#, fuzzy
-#~ msgid "Financial Year: "
-#~ msgstr "Föregående år"
-
-#~ msgid "Specify the color for future transactions"
-#~ msgstr "Ange färg för kommande transaktioner"
-
-#, fuzzy
-#~ msgid "Find Payee: "
-#~ msgstr "Betalningsmottagare"
-
-#, fuzzy
-#~ msgid "Specify the folder to use when archive attachments"
-#~ msgstr ""
-#~ "Ange avgränsare att använda för importering/exportering av CSV-filer"
-
-#, fuzzy
-#~ msgid "From Account"
-#~ msgstr "Från konto "
-
-#, fuzzy
-#~ msgid "Specify the number of payments to be made."
-#~ msgstr "Ange vilket typ av konto som skall skapas."
-
-#, fuzzy
-#~ msgid "Where the Money Comes From - 30 Days"
-#~ msgstr "Vart pengar kommer ifrån"
-
-#~ msgid "Specify the purchase date of the stock investment"
-#~ msgstr "Ange inköpsdatumet för aktieinvesteringen"
-
-#, fuzzy
-#~ msgid "Hide Deleted (Void)"
-#~ msgstr "Välj kategori"
-
-#, fuzzy
-#~ msgid "Specify which account the transfer is coming from"
-#~ msgstr "Välj det konto från där överföringen ska ske "
-
-#, fuzzy
-#~ msgid "Home Page Expansion Options"
-#~ msgstr "Övergripande"
-
-#, fuzzy
-#~ msgid "RecurringTransaction"
-#~ msgstr "Återkommande transaktioner"
-
-#, fuzzy
-#~ msgid "Important note"
-#~ msgstr "Importera fil"
-
-#, fuzzy
-#~ msgid "Status:"
-#~ msgstr "Status"
-
-#, fuzzy
-#~ msgid "Where the Money Comes From - Current Financial Year"
-#~ msgstr "Vart pengar kommer ifrån"
-
-#, fuzzy
-#~ msgid "Unknown error"
-#~ msgstr "Okänd"
-
-#, fuzzy
-#~ msgid "Income vs Expenses - Current Month to Date"
-#~ msgstr "Inkomster vs utgifter: Nuvarande månad"
-
-#, fuzzy
-#~ msgid "All files"
-#~ msgstr "&CSV-filer"
-
-#, fuzzy
-#~ msgid "Where the Money Comes From - Current Month"
-#~ msgstr "Vart pengar kommer ifrån"
-
-#, fuzzy
-#~| msgid "Amount:"
-#~ msgid "Amount ±: "
-#~ msgstr "Summa:"
-
-#, fuzzy
-#~| msgid "Amount"
-#~ msgid "Amount ±"
-#~ msgstr "Summa"
-
-#, fuzzy
-#~ msgid "Accounts: %s"
-#~ msgstr "Konton"
-
-#, fuzzy
-#~ msgid "One of the following fields: Date, Amount, Type is missing, skipping"
-#~ msgstr ""
-#~ " Ett av följande fält saknas: Datum, Avs/Mot, Belopp, Typ saknas, hoppar "
-#~ "av"
-
-#, fuzzy
-#~ msgid "Where the Money Comes From - Current Month to Date"
-#~ msgstr "Vart pengar kommer ifrån"
-
-#, fuzzy
-#~ msgid ""
-#~ "Specify the number of payments to be made.Leave blank if the payments "
-#~ "continue forever."
-#~ msgstr ""
-#~ "Ange hur många gånger den här serien ska upprepas. Lämna fältet tomt om "
-#~ "serien fortlöper kontinuerligt."
-
-#, fuzzy
-#~ msgid "Where the Money Comes From - Current Year"
-#~ msgstr "Vart pengar kommer ifrån"
-
-#, fuzzy
-#~ msgid "Income vs Expenses - Specific Accounts"
-#~ msgstr "Inkomster vs utgifter: Nuvarande månad"
-
-#, fuzzy
-#~ msgid "Daily Cash Flow - Specific Accounts"
-#~ msgstr "Kassaflöde - specifika konton"
-
-#, fuzzy
-#~ msgid "Monthly Summary of Accounts"
-#~ msgstr "Kontosammanfattning"
-
-#, fuzzy
-#~ msgid "Bank Accounts Total:"
-#~ msgstr "Bankkonton"
-
-#, fuzzy
-#~ msgid "Pence"
-#~ msgstr "Utgifter"
-
-#, fuzzy
-#~ msgid "Where the Money Comes From - Last Calendar Month"
-#~ msgstr "Vart pengar kommer ifrån"
-
-#, fuzzy
-#~ msgid "Invalid value "
-#~ msgstr "Ogiltigt värde "
-
-#, fuzzy
-#~ msgid "centavo"
-#~ msgstr "Allmänt"
-
-#, fuzzy
-#~ msgid "  and contributors from around the world"
-#~ msgstr " och medarbetare från hela världen."
-
-#, fuzzy
-#~ msgid "Default account \""
-#~ msgstr " summa "
-
-#, fuzzy
-#~ msgid "Where the Money Comes From - Last Financial Year"
-#~ msgstr "Vart pengar kommer ifrån"
-
-#, fuzzy
-#~ msgid " account: "
-#~ msgstr " summa "
-
-#~ msgid " account name "
-#~ msgstr " kontonamn "
-
-#, fuzzy
-#~ msgid " has excessive items. Check delimiters in numbers, skipping."
-#~ msgstr "  belopp saknas, hoppar över."
-
-#, fuzzy
-#~ msgid " Total:"
-#~ msgstr "Totalt:"
-
-#~ msgid " missing date, skipping."
-#~ msgstr " saknar datum, hoppar över."
-
-#~ msgid " missing category, skipping."
-#~ msgstr " saknar kategori, hoppar över."
-
-#~ msgid " starts"
-#~ msgstr " startar"
-
-#, fuzzy
-#~ msgid "Where the Money Comes From - Last Year"
-#~ msgstr "Vart pengar kommer ifrån"
-
-#, fuzzy
-#~ msgid "&Delete Budget Year"
-#~ msgstr "Ta bort budgetår"
-
-#, fuzzy
-#~ msgid "&Bank Accounts"
-#~ msgstr "Bankkonton"
-
-#~ msgid "&Go To.."
-#~ msgstr "&Gå till.."
-
-#~ msgid " unrecognized transaction type, skipping."
-#~ msgstr " okänd transaktionstyp, hoppar över."
-
-#, fuzzy
-#~ msgid "&New Series"
-#~ msgstr "Ny serie"
-
-#~ msgid "&MMEX CSV Files"
-#~ msgstr "&MMEX CSV-filer"
-
-#, fuzzy
-#~ msgid "&Report Issues or Feedback"
-#~ msgstr "Rapportera problem eller feedback"
-
-#, fuzzy
-#~ msgid "Where the Money Goes - %s"
-#~ msgstr "Vart pengarna tar vägen"
-
-#, fuzzy
-#~ msgid "&Stock Accounts"
-#~ msgstr "Bankkonton"
-
-#, fuzzy
-#~ msgid "&Select Category"
-#~ msgstr "Välj kategori"
-
-#, fuzzy
-#~ msgid "&Search"
-#~ msgstr "Mars"
-
-#, fuzzy
-#~ msgid "Account missing"
-#~ msgstr "Kontolista"
-
-#, fuzzy
-#~ msgid ""
-#~ "Account Bal: %s      Reconciled Bal: %s      Diff: %s      Displayed Bal: "
-#~ "%s"
-#~ msgstr "Kontobalans : %s      Fullbordad balans : %s"
-
-#~ msgid "Add CSV field"
-#~ msgstr "Lägg till CSV-fält"
-
-#, fuzzy
-#~ msgid "Where the Money Goes - 30 Days"
-#~ msgstr "Vart pengarna tar vägen"
-
-#, fuzzy
-#~ msgid "Added subcategory: %s"
-#~ msgstr "Lägg till ny kategori"
-
-#, fuzzy
-#~ msgid "Added category: %s"
-#~ msgstr "Kategori"
-
-#, fuzzy
-#~ msgid "Amount Range:"
-#~ msgstr "Summa:"
-
-#~ msgid "Add a new payee name"
-#~ msgstr "Lägg till en ny betalningsmottagare"
-
-#, fuzzy
-#~ msgid "Attempt to Add a currency which already exists!"
-#~ msgstr "Valutanamn finns redan!"
-
-#, fuzzy
-#~ msgid "Are you are sure you want to proceed with the import?"
-#~ msgstr "Vill du verkligen ta ta bort tillgången?"
-
-#, fuzzy
-#~ msgid "Where the Money Goes - Current Financial Year"
-#~ msgstr "Nuvarande år"
-
-#, fuzzy
-#~ msgid "Categories - %s"
-#~ msgstr "Senaste 30 dagarna"
-
-#~ msgid "Cash Flow Forecast For All Accounts - A Year Ahead"
-#~ msgstr "Kassaflödeförutspåelse för alla konton  - Ett år framåt"
-
-#, fuzzy
-#~ msgid "Categories - Last Calendar Month"
-#~ msgstr "Senaste kalendermånad"
-
-#, fuzzy
-#~ msgid "Cannot decode binary"
-#~ msgstr "Kan inte avkoda binärfil"
-
-#, fuzzy
-#~ msgid "Category Report"
-#~ msgstr "Kategori "
-
-#~ msgid "Category         : "
-#~ msgstr "Kategori            : "
-
-#~ msgid "Change the name of an existing payee"
-#~ msgstr "Ändra namnet på en befintlig avs/mot"
-
-#, fuzzy
-#~ msgid "Where the Money Goes - Current Month"
-#~ msgstr "Vart pengarna tar vägen"
-
-#, fuzzy
-#~ msgid "Choose Universal CSV format file to load"
-#~ msgstr "Välj CSV-datafil att exportera"
-
-#~ msgid "Choose MM.NET CSV data file to import"
-#~ msgstr "Välj MM.NET CSV-datafil att importera"
-
-#~ msgid "Choose Investment Account"
-#~ msgstr "Välj investeringskonto"
-
-#, fuzzy
-#~ msgid "Curr. unit price"
-#~ msgstr "Akt. pris:"
-
-#, fuzzy
-#~ msgid "Create new Custom Reports"
-#~ msgstr "Anpassad SQL-rapport"
-
-#, fuzzy
-#~ msgid "Current &View"
-#~ msgstr "Aktuell vy"
-
-#, fuzzy
-#~ msgid "Where the Money Goes - Current Month to Date"
-#~ msgstr "Vart pengarna tar vägen"
-
-#, fuzzy
-#~ msgid "Custom script:"
-#~ msgstr "Anpassad SQL-rapport"
-
-#, fuzzy
-#~ msgid "Custom Reports..."
-#~ msgstr "Anpassad SQL-rapport"
-
-#~ msgid "Delete Account"
-#~ msgstr "Ta bort konto"
-
-#, fuzzy
-#~ msgid "Custom Reports"
-#~ msgstr "Anpassad SQL-rapport"
-
-#, fuzzy
-#~ msgid "Delete..."
-#~ msgstr "Ta bort"
-
-#~ msgid ""
-#~ "Delete the selected payee. The payee cannot be used by an existing "
-#~ "transaction."
-#~ msgstr ""
-#~ "Ta bort markerad betalningsmottagare. Betalningsmottagaren får inte "
-#~ "användas av befintliga transaktioner."
-
-#, fuzzy
-#~ msgid "Do you want to scan all transaction ?"
-#~ msgstr "Vill du verkligen ta bort alla listade transaktioner?"
-
-#, fuzzy
-#~ msgid "Where the Money Goes - Current Year"
-#~ msgstr "Vart pengarna tar vägen"
-
-#, fuzzy
-#~ msgid "Edit..."
-#~ msgstr "Ändra"
-
-#, fuzzy
-#~ msgid "Edit an existing SQL report"
-#~ msgstr "Ändra namnet på en befintlig kategori"
-
-#, fuzzy
-#~ msgid "Edit Payee Name"
-#~ msgstr "Lägger till betalningsmottagare"
-
-#~ msgid "Error binding date/time param"
-#~ msgstr "Fel vid bindning av date/time-parameter"
-
-#~ msgid "Error binding blob param"
-#~ msgstr "Fel vid bindning av blob-parameter"
-
-#~ msgid "Error binding string param"
-#~ msgstr "Fel vid bindning av string-parameter"
-
-#, fuzzy
-#~ msgid "Where the Money Goes - Last Calendar Month"
-#~ msgstr "Senaste kalendermånad"
-
-#~ msgid "Estimated Expenses: %s Actual Expenses:  %s"
-#~ msgstr "Beräknade utgifter: %s Verkligea utgifter:  %s"
-
-#, fuzzy
-#~ msgid "Error: %s\n"
-#~ msgstr "Fel: %s"
-
-#, fuzzy
-#~ msgid "Error code:"
-#~ msgstr "Fel"
-
-#, fuzzy
-#~ msgid "Financial Year Settings"
-#~ msgstr "Allmäna inställningar"
-
-#~ msgid "Filter Transactions"
-#~ msgstr "Filtrera transaktioner"
-
-#, fuzzy
-#~ msgid "From "
-#~ msgstr "Från: "
-
-#, fuzzy
-#~ msgid "Where the Money Goes - Last Financial Year"
-#~ msgstr "Vart pengar kommer ifrån"
-
-#, fuzzy
-#~ msgid "Grand Total: "
-#~ msgstr "Totalt: %s"
-
-#~ msgid "Future Transactions"
-#~ msgstr "Kommande transaktioner"
-
-#, fuzzy
-#~ msgid "Specify which account the transfer is comming from"
-#~ msgstr "Välj det konto från där överföringen ska ske "
-
-#~ msgid "From and To Account cannot be the same."
-#~ msgstr "Från och till-konto kan inte vara samma."
-
-#, fuzzy
-#~ msgid "Stock Accounts"
-#~ msgstr "Bankkonton"
-
-#, fuzzy
-#~ msgid "Income vs Expenses - 30 Days"
-#~ msgstr "Inkomster vs utgifter - hela tiden"
-
-#~ msgid "Stock Investments"
-#~ msgstr "Aktieinvesteringar"
-
-#, fuzzy
-#~ msgid "Where the Money Goes - Last Year"
-#~ msgstr "Vart pengarna tar vägen"
-
-#~ msgid "Stock Name"
-#~ msgstr "Aktienamn"
-
-#, fuzzy
-#~ msgid "Sub-Category"
-#~ msgstr "Underkategori"
-
-#, fuzzy
-#~ msgid "Would you like to download it now ?"
-#~ msgstr ""
-#~ "Kunde inte hitta tidigare öppnad .mmb database.\n"
-#~ "Do you want to browse to locate the file?"
-
-#, fuzzy
-#~ msgid "Subcategory:"
-#~ msgstr "Underkategori: \n"
-
-#, fuzzy
-#~ msgid "Today's Date: %s"
-#~ msgstr "Dagens datum: "
-
-#, fuzzy
-#~ msgid "Term &Accounts"
-#~ msgstr "&Konton"
-
-#, fuzzy
-#~ msgid "Number of %s:"
-#~ msgstr "Antal aktier"
-
-#, fuzzy
-#~ msgid "Term account"
-#~ msgstr "Från konto "
-
-#~ msgid "Cash Flow - Specific Accounts"
-#~ msgstr "Kassaflöde - specifika konton"
-
-#, fuzzy
-#~ msgid "This is generally the name of a financial institution"
-#~ msgstr "Ange ev. kontaktinfo för den finansiella institutionen."
-
-#~ msgid "Yahoo Suffix"
-#~ msgstr "Yahoo-suffix"
-
-#, fuzzy
-#~ msgid "To Account"
-#~ msgstr "Till konto "
-
-#, fuzzy
-#~ msgid "Today's Date: <b>"
-#~ msgstr "Dagens datum: "
-
-#, fuzzy
-#~ msgid "Rename group"
-#~ msgstr "Betalningsmottagare"
-
-#, fuzzy
-#~ msgid "Top Transactions Last 30 Days"
-#~ msgstr "Visa transaktioner för de senaste 30 dagarna"
-
-#, fuzzy
-#~ msgid "Total Value"
-#~ msgstr "Ogiltigt värde "
-
-#~ msgid "Year is not valid"
-#~ msgstr "Ogiltigt år"
-
-#, fuzzy
-#~ msgid "Total: "
-#~ msgstr "Totalt:"
-
-#, fuzzy
-#~ msgid "&Edit Series"
-#~ msgstr "Ändra serie"
-
-#, fuzzy
-#~ msgid "Total: %s Invested: %s Loss: %s "
-#~ msgstr "Totalt: %s Investerat: %s "
-
-#, fuzzy
-#~ msgid "&Load"
-#~ msgstr "Ladda SQL-fråga"
-
-#, fuzzy
-#~ msgid "Transaction Statistics for %i - %i"
-#~ msgstr "Transaktionsstatistik för "
-
-#, fuzzy
-#~ msgid "123456.78"
-#~ msgstr "1234567.89"
-
-#~ msgid "Transaction Type is empty"
-#~ msgstr "Transaktiontionstyp är inte angivet"
-
-#, fuzzy
-#~ msgid "Year: "
-#~ msgstr "Årsvis"
-
-#, fuzzy
-#~ msgid "Transactions imported from QIF"
-#~ msgstr "Transaktionsrapport"
-
-#, fuzzy
-#~ msgid "All Others"
-#~ msgstr "Övrigt"
-
-#, fuzzy
-#~ msgid "Translators"
-#~ msgstr "Transaktioner"
-
-#, fuzzy
-#~ msgid "App"
-#~ msgstr "Apr"
-
-#~ msgid "Type a Payee Name in the Text Box and then press Add."
-#~ msgstr ""
-#~ "Ange en betalningsmottagare i textrutan och tryck därefter på Lägg till."
-
-#, fuzzy
-#~ msgid "Categories - Current Year"
-#~ msgstr "Nuvarande år"
-
-#, fuzzy
-#~ msgid "Unit Price"
-#~ msgstr "Akt. pris:"
-
-#, fuzzy
-#~ msgid "Your current version is: %s"
-#~ msgstr "Versionshistoria"
-
-#, fuzzy
-#~ msgid "Universal CSV Export"
-#~ msgstr "&Universella CSV-filer"
-
-#, fuzzy
-#~ msgid "Choose the new type for account: %s"
-#~ msgstr "Basvaluta för konto"
-
-#~ msgid "Using Language : "
-#~ msgstr "Använd språk : "
-
-#, fuzzy
-#~ msgid "Create a new SQL report"
-#~ msgstr "Anpassad SQL-rapport"
-
-#~ msgid "Value of 123456.78 will be"
-#~ msgstr "Värde av 123456.78 kommer att bli"
-
-#, fuzzy
-#~ msgid "Date is missing"
-#~ msgstr "Datum är tomt, "
-
-#, fuzzy
-#~ msgid "View \"Follow Up\" Transactions"
-#~ msgstr "Visa alla transaktioner"
-
-#, fuzzy
-#~ msgid "Your database file is stored with an extension of .mmb."
-#~ msgstr "Öppna en tidigare skapad databasfil med filändelsen (*.mmb)"
-
-#, fuzzy
-#~ msgid "View All transactions"
-#~ msgstr "Visa alla transaktioner"
-
-#~ msgid "Enter the year in YYYY format to specify year"
-#~ msgstr "Ange året i YYYY-format (t.ex 2008)"
-
-#~ msgid "View Duplicate Transactions"
-#~ msgstr "Visa dubblettransaktioner"
-
-#~ msgid "Error binding NULL param"
-#~ msgstr "Fel vid bindning av NULL-parameter"
-
-#~ msgid "View File Contents"
-#~ msgstr "Visa filinnehåll"
-
-#, fuzzy
-#~ msgid "Expenses..."
-#~ msgstr "Utgifter"
-
-#, fuzzy
-#~ msgid "View Last 365 days"
-#~ msgstr "Visa 30 dagar"
-
-#~ msgid "Split Category"
-#~ msgstr "Dela kategori"
-
-#~ msgid "Import from MM.NET CSV"
-#~ msgstr "Importera från MM.NET-CSV"
-
-#, fuzzy
-#~ msgid "Stock Investments: %s"
-#~ msgstr "Aktieinvesteringar: "
-
-#, fuzzy
-#~ msgid "for Account: "
-#~ msgstr "Till konto "
-
-#, fuzzy
-#~ msgid "Subcategories"
-#~ msgstr "Underkategori: \n"
-
-#, fuzzy
-#~ msgid "Transactions imported from file: "
-#~ msgstr "Transaktionsrapport"
-
-#, fuzzy
-#~ msgid "Term Account"
-#~ msgstr "Från konto "
-
-#, fuzzy
-#~ msgid "All Term Accounts"
-#~ msgstr "Från konto "
-
-#~ msgid "Times Repeated"
-#~ msgstr "Upprepningar"
-
-#~ msgid "Total Balance on all Accounts"
-#~ msgstr "Sammanlagda balansen för alla konton"
-
-#, fuzzy
-#~ msgid "Tools -> Options"
-#~ msgstr "Inställningar"
-
-#~ msgid "minutes while market is open"
-#~ msgstr "minuter medans marknaden är öppen"
-
-#, fuzzy
-#~ msgid "Total number of lines: %i"
-#~ msgstr "Sammanlagda tillgångar: "
-
-#~ msgid " payee "
-#~ msgstr "avs/mot"
-
-#~ msgid "Transaction Number"
-#~ msgstr "Transaktionsnummer"
-
-#, fuzzy
-#~ msgid "Account  :"
-#~ msgstr "Konto"
-
-#, fuzzy
-#~ msgid "Transactions imported from CSV"
-#~ msgstr "Transaktionsrapport"
-
-#, fuzzy
-#~ msgid "Add"
-#~ msgstr "Lägg till"
-
-#, fuzzy
-#~ msgid "Tree View Options: Expand Section"
-#~ msgstr "Visningsalternativ"
-
-#~ msgid "to"
-#~ msgstr "till"
-
-#, fuzzy
-#~ msgid "Universal CSV Dialog"
-#~ msgstr "&Universella CSV-filer"
-
-#, fuzzy
-#~ msgid "Category:"
-#~ msgstr "Kategori "
-
-#, fuzzy
-#~ msgid "Value Date"
-#~ msgstr "Värde"
-
-#, fuzzy
-#~ msgid "Delete all \"Follow Up\" transactions"
-#~ msgstr "Ta bort alla flaggade transaktioner"
-
-#~ msgid "View All Except Reconciled Transactions"
-#~ msgstr "Visa allt förutom fullbordade transaktioner"
-
-#, fuzzy
-#~ msgid "Do you want to delete the Lua file as well?"
-#~ msgstr "Vill du verkligen ta bort serien?"
-
-#, fuzzy
-#~ msgid "View Duplicates"
-#~ msgstr "Dubblett"
-
-#, fuzzy
-#~ msgid "to "
-#~ msgstr "Till: "
-
-#~ msgid "Specify where the transaction is going to or coming from "
-#~ msgstr "Ange vart transaktionen ska eller kommer ifrån "
-
-#~ msgid "Font Size Options"
-#~ msgstr "Typsnitt"
-
-#~ msgid "Sub Category  : "
-#~ msgstr "Underkategori   : "
-
-#, fuzzy
-#~ msgid "There are no accounts available for import to"
-#~ msgstr "Inga konton tillgängliga! Kan ej exportera!"
-
-#, fuzzy
-#~ msgid "Specify period in Days to activate.Becomes blank when not active."
-#~ msgstr "Ange vilket typ av konto som skall skapas."
-
-#, fuzzy
-#~ msgid "Total Price"
-#~ msgstr "Akt. pris:"
-
-#~ msgid "Category "
-#~ msgstr "Kategori "
-
-#~ msgid "Transaction Type"
-#~ msgstr "Transaktionstyp"
-
-#, fuzzy
-#~ msgid "&Refresh prices every"
-#~ msgstr "Uppdatera priser varje"
-
-#, fuzzy
-#~ msgid "Type: "
-#~ msgstr "Typ:"
-
-#, fuzzy
-#~ msgid "Filter Payees: "
-#~ msgstr "Betalningsmottagare"
-
-#~ msgid "Version History"
-#~ msgstr "Versionshistoria"
-
-#~ msgid "Current"
-#~ msgstr "Akt. pris"
-
-#, fuzzy
-#~ msgid "View Flagged"
-#~ msgstr "Visa flaggade transaktioner"
-
-#, fuzzy
-#~ msgid "Income vs Expenses - Last Financial Year"
-#~ msgstr "Inkomster vs utgifter för år: "
-
-#~ msgid "Summary of Assets"
-#~ msgstr "Sammanfattning över tillgångar"
-
-#~ msgid " Help"
-#~ msgstr "Hjälp"
-
-#, fuzzy
-#~ msgid "Total: %s Invested: %s Gain: %s "
-#~ msgstr "Totalt: %s Investerat: %s "
-
-#, fuzzy
-#~ msgid "Budget setup for Year : "
-#~ msgstr "Budgetinställningar för "
-
-#~ msgid "Update Failed"
-#~ msgstr "Uppdatering misslyckades"
-
-#, fuzzy
-#~ msgid "Stock Investment Page Selection"
-#~ msgstr "Detaljer över aktieinvestering"
-
-#~ msgid "To Whom the Money Goes"
-#~ msgstr "Till vem pengarna går till"
-
-#, fuzzy
-#~ msgid "Transactions imported from QIF: %ld"
-#~ msgstr "Transaktionsrapport"
-
-#, fuzzy
-#~ msgid "View Budget Summary Report without Categories"
-#~ msgstr "Visa alla budgetkategorier"
-
-#~ msgid "Error binding int64 param"
-#~ msgstr "Fel vid bindning av int64-parameter"
-
-#~ msgid " missing amount, skipping."
-#~ msgstr "  belopp saknas, hoppar över."
-
-#, fuzzy
-#~ msgid "to category: "
-#~ msgstr "Kategori: \n"
