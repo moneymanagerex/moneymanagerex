@@ -95,7 +95,7 @@ bool mmQIFImportDialog::Create(wxWindow* parent, wxWindowID id, const wxString& 
     SetExtraStyle(GetExtraStyle() | wxWS_EX_BLOCK_EVENTS);
     wxDialog::Create(parent, id, caption, pos, size, style);
 
-    ColName_[COL_ID] = _("#");
+    ColName_[COL_ID] = "#";
     ColName_[COL_ACCOUNT] = _("Account");
     ColName_[COL_DATE] = _("Date");
     ColName_[COL_NUMBER] = _("Number");
