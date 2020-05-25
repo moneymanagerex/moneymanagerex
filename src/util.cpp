@@ -405,7 +405,7 @@ const std::map<wxString, wxString> g_date_formats_map()
 }
 
 const std::map<int, std::pair<wxConvAuto, wxString> > g_encoding = {
-    { 0, { wxConvAuto(wxFONTENCODING_SYSTEM), "Default" } }
+    { 0, { wxConvAuto(wxFONTENCODING_SYSTEM), wxTRANSLATE("Default") } }
     , { 1, { wxConvAuto(wxFONTENCODING_UTF8), "UTF-8" } }
     , { 2, { wxConvAuto(wxFONTENCODING_CP1250), "1250" } }
     , { 3, { wxConvAuto(wxFONTENCODING_CP1251), "1251" } }

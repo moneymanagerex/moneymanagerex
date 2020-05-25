@@ -795,7 +795,7 @@ void mmStockDialog::OnHistoryDownloadButton(wxCommandEvent& /*event*/)
 
                 const wxString code = wxString::FromUTF8(e["code"].GetString());
                 const wxString description = wxString::FromUTF8(e["description"].GetString());
-                sOutput = wxString::Format("%1$s - %2$s", code, description);
+                sOutput = wxString::Format("%s - %s", code, description);
                 break;
             }
         }

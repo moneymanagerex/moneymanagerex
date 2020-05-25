@@ -43,7 +43,7 @@ mmAboutDialog::mmAboutDialog(wxWindow* parent, int tabToOpenNo, const wxString &
 {
     const wxString caption = (tabToOpenNo == 4)
         ? _("License agreement")
-        : wxString::Format("%1$s - %2$s", ::mmex::getProgramName(), ::mmex::getTitleProgramVersion());
+        : wxString::Format("%s - %s", ::mmex::getProgramName(), ::mmex::getTitleProgramVersion());
     createWindow(parent, wxID_ANY, caption, wxDefaultPosition
         , wxDefaultSize, wxCAPTION | wxRESIZE_BORDER | wxCLOSE_BOX, tabToOpenNo, name);
     SetMinClientSize(wxSize(300, 400));
