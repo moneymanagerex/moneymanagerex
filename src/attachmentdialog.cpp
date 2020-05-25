@@ -51,7 +51,7 @@ mmAttachmentDialog::mmAttachmentDialog (wxWindow* parent, const wxString& RefTyp
         , debug_(false)
     #endif
 {
-    if (debug_) ColName_[ATTACHMENT_ID] = _("#");
+    if (debug_) ColName_[ATTACHMENT_ID] = "#";
     ColName_[ATTACHMENT_DESCRIPTION] = _("Description");
     ColName_[ATTACHMENT_FILENAME] = _("File");
 
