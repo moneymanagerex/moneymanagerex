@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-05-25 14:20+0300\n"
-"PO-Revision-Date: 2020-05-25 12:30\n"
+"PO-Revision-Date: 2020-05-25 18:18\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Greek\n"
 "MIME-Version: 1.0\n"
@@ -271,11 +271,11 @@ msgstr "Νόμισμα"
 
 #: accountdialog.cpp:498
 msgid "Please insert a valid URL"
-msgstr ""
+msgstr "Παρακαλώ εισάγετε ένα έγκυρο URL"
 
 #: accountdialog.cpp:498
 msgid "Invalid URL"
-msgstr ""
+msgstr "Λανθασμένο URL"
 
 #: appstartdialog.cpp:99
 msgid "Open Last Opened Database"
@@ -1509,7 +1509,7 @@ msgstr "Επεξεργασθείτε το όνομα μιας υπάρχουσα
 
 #: categdialog.cpp:236
 msgid "Delete an existing category. The category cannot be used by existing transactions."
-msgstr ""
+msgstr "Διαγραφής μιας υπάρχουσας κατηγορίας. Η κατηγορία δεν μπορεί να χρησιμοποιηθεί από υπάρχουσες συναλλαγές."
 
 #: categdialog.cpp:241 maincurrencydialog.cpp:211
 msgid "&Select"
@@ -1703,7 +1703,7 @@ msgstr ""
 
 #: constants.cpp:203
 msgid "ALL"
-msgstr ""
+msgstr "ΟΛΑ"
 
 #: constants.cpp:204 mmframe.cpp:1259 mmframe.cpp:1677
 #: model/Model_Account.cpp:26
@@ -1724,7 +1724,7 @@ msgstr "Διαχειριστής νομίσματος"
 
 #: currencydialog.cpp:96
 msgid "Currency name"
-msgstr ""
+msgstr "Ονομασία συναλλάγματος"
 
 #: currencydialog.cpp:155
 msgid "Currency Name"
@@ -1736,7 +1736,7 @@ msgstr "Σύμβολο νομίσματος"
 
 #: currencydialog.cpp:164
 msgid "Unit Name"
-msgstr ""
+msgstr "Όνομα μονάδας"
 
 #: currencydialog.cpp:168
 msgid "Cents Name"
@@ -1765,7 +1765,7 @@ msgstr "Κλίμακα"
 
 #: currencydialog.cpp:206 currencydialog.cpp:268
 msgid "Conversion to Base Rate"
-msgstr ""
+msgstr "Μετατροπή σε Τιμή Βάσης"
 
 #: currencydialog.cpp:212
 msgid "Conversion rate will be used in case no currency history has been found for the currency"
@@ -1773,7 +1773,7 @@ msgstr ""
 
 #: currencydialog.cpp:214
 msgid "Fixed conversion rate"
-msgstr ""
+msgstr "Σταθερό ποσοστό μετατροπής"
 
 #: currencydialog.cpp:219
 msgid "Value Display Sample:"
@@ -2211,7 +2211,7 @@ msgstr ""
 
 #: dbwrapper.cpp:70
 msgid "When database file opening:"
-msgstr ""
+msgstr "Όταν το αρχείο βάσης δεδομένων ανοίγει:"
 
 #: dbwrapper.cpp:74
 msgid "Can't open file"
@@ -2306,7 +2306,7 @@ msgstr ""
 
 #: filtertransdialog.cpp:347
 msgid "&Clear "
-msgstr ""
+msgstr "&Απαλοιφή "
 
 #: filtertransdialog.cpp:822 filtertransdialog.cpp:837 reports/myusage.cpp:95
 #: webappdialog.cpp:194 webappdialog.cpp:199
@@ -2505,7 +2505,7 @@ msgstr ""
 
 #: general_report_manager.cpp:1171
 msgid "Parameters:"
-msgstr ""
+msgstr "Παράμετροι:"
 
 #: import_export/parsers.cpp:46 import_export/univcsvdialog.cpp:1529
 #: mmSimpleDialogs.cpp:253
@@ -2561,7 +2561,7 @@ msgstr "Εξαγωγή QIF"
 
 #: import_export/qif_export.cpp:47
 msgid "JSON Export"
-msgstr ""
+msgstr "Εξαγωγή JSON"
 
 #: import_export/qif_export.cpp:106
 msgid "Parameters"
@@ -2573,11 +2573,11 @@ msgstr ""
 
 #: import_export/qif_export.cpp:123
 msgid "QIF"
-msgstr ""
+msgstr "QIF"
 
 #: import_export/qif_export.cpp:124
 msgid "JSON"
-msgstr ""
+msgstr "JSON"
 
 #: import_export/qif_export.cpp:138 mmframe.cpp:2948 mmframe.cpp:2952
 #: mmframe.cpp:2971 mmframe.cpp:2975
@@ -2624,11 +2624,11 @@ msgstr ""
 
 #: import_export/qif_export.cpp:299
 msgid "Choose JSON data file to Export"
-msgstr ""
+msgstr "Επιλέξτε ένα αρχείο JSON για εξαγωγή"
 
 #: import_export/qif_export.cpp:301
 msgid "JSON Files (*.json)"
-msgstr ""
+msgstr "Αρχεία JSON (*.json)"
 
 #: import_export/qif_export.cpp:321
 msgid "No Account available for export"
@@ -2884,7 +2884,7 @@ msgstr "Επιλέξτε ένα αρχείο CSV για εξαγωγή"
 
 #: import_export/univcsvdialog.cpp:203
 msgid "Template name"
-msgstr ""
+msgstr "Όνομα προτύπου"
 
 #: import_export/univcsvdialog.cpp:208
 msgid "Save Template"
@@ -2984,7 +2984,7 @@ msgstr ""
 #: import_export/univcsvdialog.cpp:1784
 #, c-format
 msgid "Positive if type has '%s'"
-msgstr ""
+msgstr "Θετικό αν ο τύπος έχει %s"
 
 #: import_export/univcsvdialog.cpp:917
 msgid "Incorrect fields specified for import!"
@@ -3136,7 +3136,7 @@ msgstr ""
 
 #: import_export/univcsvdialog.cpp:1780
 msgid "Enter a value"
-msgstr ""
+msgstr "Εισάγετε μια τιμή"
 
 #: maincurrencydialog.cpp:78 reports/summarystocks.cpp:180 stockdialog.cpp:427
 #: stockspanel.cpp:94
@@ -3149,7 +3149,7 @@ msgstr ""
 
 #: maincurrencydialog.cpp:80
 msgid "Fixed Rate"
-msgstr ""
+msgstr "Σταθερή τιμή"
 
 #: maincurrencydialog.cpp:84 maincurrencydialog.cpp:357
 #: maincurrencydialog.cpp:428 maincurrencydialog.cpp:642
@@ -3175,7 +3175,7 @@ msgstr ""
 
 #: maincurrencydialog.cpp:251
 msgid "Diff."
-msgstr ""
+msgstr "Διαφορά."
 
 #: maincurrencydialog.cpp:267
 msgid "Specify the date of currency value"
@@ -3203,7 +3203,7 @@ msgstr ""
 
 #: maincurrencydialog.cpp:297
 msgid "Delete Currency Values history for unused currencies and days"
-msgstr ""
+msgstr "Διαγραφή ιστορικού Τιμών Ισοτιμίας για μη χρησιμοποιούμενα νομίσματα και ημέρες"
 
 #: maincurrencydialog.cpp:356
 msgid "Do you really want to delete the selected Currency?"
@@ -3217,7 +3217,8 @@ msgstr ""
 #, c-format
 msgid "Historic rates for %s found, but \"Use currency history\" in options is disabled:\n"
 "click no and enable it or click yes to remove all historic rates for %s"
-msgstr ""
+msgstr "Βρέθηκαν ιστορικές τιμές για το %s, αλλά το \"Χρησιμοποίησε το ιστορικό ισοτιμίας\" στις επιλογές έχει απενεργοποιηθεί:\n"
+"Πατήστε το όχι και ενεργοποιήστε το ή πατήστε το ναι για να αφαιρεθούν όλες οι ιστορικές τιμές για το %s"
 
 #: maincurrencydialog.cpp:438
 #, c-format
@@ -3279,19 +3280,19 @@ msgstr ""
 
 #: mmSimpleDialogs.cpp:177
 msgid "Subtract one year"
-msgstr ""
+msgstr "Αφαιρέστε ένα χρόνο"
 
 #: mmSimpleDialogs.cpp:178
 msgid "Subtract one month"
-msgstr ""
+msgstr "Αφαιρέστε ένα μήνα"
 
 #: mmSimpleDialogs.cpp:179
 msgid "Add one month"
-msgstr ""
+msgstr "Προσθέστε ένα μήνα"
 
 #: mmSimpleDialogs.cpp:180
 msgid "Add one year"
-msgstr ""
+msgstr "Προσθέστε ένα χρόνο"
 
 #: mmSimpleDialogs.cpp:237
 #, c-format
@@ -3366,7 +3367,7 @@ msgstr ""
 
 #: mmTextCtrl.cpp:69
 msgid "Invalid Value"
-msgstr ""
+msgstr "Μη έγκυρη τιμή"
 
 #: mmTextCtrl.cpp:96
 msgid "Please enter a positive or calculated value."
@@ -5082,7 +5083,7 @@ msgstr ""
 
 #: optionsettingsgeneral.cpp:97
 msgid "Use currency history"
-msgstr ""
+msgstr "Χρησιμοποιήστε το ιστορικό ισοτιμίας"
 
 #: optionsettingsgeneral.cpp:99
 msgid "Select to use currency history (one rate for each day), deselect to use a fixed rate"
