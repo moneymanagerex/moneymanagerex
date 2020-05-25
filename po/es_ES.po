@@ -430,7 +430,6 @@ msgstr "&Cancelar "
 #: assetdialog.cpp:402 sharetransactiondialog.cpp:429
 msgid "Invalid Transaction"
 msgstr "Transacción no válida"
-
 #: assetdialog.cpp:409
 msgid "Asset Account not found.\n\n"
 "Would you want to create one?"
@@ -3148,6 +3147,7 @@ msgstr "Archivos CSV (*.csv)"
 
 #: import_export/univcsvdialog.cpp:1780
 msgid "Please, type the word indicating positive values in your CSV file, e.g. 'debit'"
+
 msgstr "Por favor, escriba la palabra que indica valores positivos en su archivo CSV, por ejemplo 'debit'"
 
 #: import_export/univcsvdialog.cpp:1780

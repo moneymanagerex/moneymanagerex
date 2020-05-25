@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-05-25 14:20+0300\n"
-"PO-Revision-Date: 2020-05-25 15:16\n"
+"PO-Revision-Date: 2020-05-25 15:16\n
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Italian\n"
 "MIME-Version: 1.0\n"
@@ -326,7 +326,7 @@ msgstr "&Esci "
 #: appstartdialog.cpp:153
 #, c-format
 msgid "Open the previously opened database : %s"
-msgstr "Apri il database precedentemente aperto: %s"
+msgstr ""
 
 #: assetdialog.cpp:61 assetdialog.cpp:410 assetspanel.cpp:466
 msgid "New Asset"
@@ -1803,6 +1803,7 @@ msgstr "Inserimento non valido"
 #, c-format
 msgid "%.2f Shown As: %s"
 msgstr "%.2f Visualizzato come: %s"
+
 
 #: customfieldeditdialog.cpp:56
 msgid "New/Edit Custom Field"
@@ -3521,7 +3522,7 @@ msgstr "Inserire una stringa da trovare nelle note operazioni"
 #: mmcheckingpanel.cpp:487
 #, c-format
 msgid "Account View : %s"
-msgstr "Vista del conto: %s"
+msgstr ""
 
 #: mmcheckingpanel.cpp:713
 msgid "Select account used in transfer transactions"
@@ -3886,7 +3887,7 @@ msgstr "Esporta in file XML"
 
 #: mmframe.cpp:1318
 msgid "Export to JSON"
-msgstr "Esporta in file JSON"
+msgstr "Esporta in file JSON
 
 #: mmframe.cpp:1319
 msgid "&Report to HTML"
@@ -6069,12 +6070,12 @@ msgstr "Valori importati da file CSV: "
 #: stockdialog.cpp:671
 #, c-format
 msgid "Total Lines : %ld"
-msgstr "Linee totali: %ld"
+msgstr ""
 
 #: stockdialog.cpp:673
 #, c-format
 msgid "Total Imported : %ld"
-msgstr "Totale importato: %ld"
+msgstr ""
 
 #: stockdialog.cpp:681
 msgid "Importing CSV"

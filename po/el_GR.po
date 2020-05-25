@@ -1738,6 +1738,7 @@ msgstr "Σύμβολο νομίσματος"
 msgid "Unit Name"
 msgstr "Όνομα μονάδας"
 
+
 #: currencydialog.cpp:168
 msgid "Cents Name"
 msgstr ""
