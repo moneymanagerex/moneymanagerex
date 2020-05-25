@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-05-25 14:20+0300\n"
-"PO-Revision-Date: 2020-05-25 18:18\n"
+"PO-Revision-Date: 2020-05-25 18:44\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Greek\n"
 "MIME-Version: 1.0\n"
@@ -29,7 +29,7 @@ msgstr "Άδεια χρήσης"
 #: mmframe.cpp:1891 mmframe.cpp:1893 stockdialog.cpp:798
 #, c-format
 msgid "%1$s - %2$s"
-msgstr ""
+msgstr "%1$s - %2$s"
 
 #: aboutdialog.cpp:149
 msgid "About"
@@ -429,7 +429,7 @@ msgstr ""
 
 #: assetdialog.cpp:402 sharetransactiondialog.cpp:429
 msgid "Invalid Transaction"
-msgstr ""
+msgstr "Μη έγκυρη συναλλαγή"
 
 #: assetdialog.cpp:409
 msgid "Asset Account not found.\n\n"
@@ -1598,7 +1598,7 @@ msgstr ""
 #: categdialog.cpp:485
 #, c-format
 msgid "Enter a new name for '%s'"
-msgstr ""
+msgstr "Εισάγετε ένα νέο όνομα για %s'"
 
 #: categdialog.cpp:486
 msgid "Edit Category"
@@ -1738,7 +1738,6 @@ msgstr "Σύμβολο νομίσματος"
 msgid "Unit Name"
 msgstr "Όνομα μονάδας"
 
-
 #: currencydialog.cpp:168
 msgid "Cents Name"
 msgstr ""
@@ -1796,7 +1795,7 @@ msgstr "Μη έγκυρη εισαγωγή"
 #: currencydialog.cpp:295
 #, c-format
 msgid "%.2f Shown As: %s"
-msgstr ""
+msgstr "Το %.2f εμφανίζεται ως: %s"
 
 #: customfieldeditdialog.cpp:56
 msgid "New/Edit Custom Field"
@@ -2170,7 +2169,7 @@ msgstr ""
 
 #: dbupgrade.cpp:120
 msgid "We suggest a database optimization under Tools -> Database -> Optimize"
-msgstr ""
+msgstr "Προτείνουμε να γίνει βελτιστοποίηση της βάσης δεδομένων από Εργαλεία -> Βάση Δεδομένων -> Βελτιστοποίηση"
 
 #: dbupgrade.cpp:197
 msgid "Load debug file"
@@ -2178,7 +2177,7 @@ msgstr ""
 
 #: dbupgrade.cpp:204
 msgid "Wrong file type!"
-msgstr ""
+msgstr "Λανθασμένος τύπος αρχείου!"
 
 #: dbupgrade.cpp:204 dbupgrade.cpp:241 dbupgrade.cpp:248 dbupgrade.cpp:292
 #: dbupgrade.cpp:303
@@ -2191,7 +2190,7 @@ msgstr ""
 
 #: dbupgrade.cpp:248 dbupgrade.cpp:303
 msgid "Invalid file content, please contact MMEX support!"
-msgstr ""
+msgstr "Λανθασμένο περιεχόμενο αρχείου, παρακαλώ επικοινωνήστε με την υποστήριξη χρηστών του MMEX!"
 
 #: dbupgrade.cpp:255
 msgid "Send this log to MMEX support team:\n"
@@ -2226,7 +2225,9 @@ msgstr "Πρέπει να καθορίσετε τη διαδρομή για μι
 msgid "An incorrect password given for an encrypted file \n\n"
 "or \n\n"
 " Attempt to open a File that is not a database file \n"
-msgstr ""
+msgstr "Ο κωδικός για το κρυπτογραφημένο αρχείο είναι λανθασμένος \n\n"
+"ή \n\n"
+" Προσπάθεια να ανοιχτεί ένα αρχείο που δεν είναι αρχείο βάσης δεδομένων \n"
 
 #: dbwrapper.cpp:82 import_export/qif_import_gui.cpp:855 webapp.cpp:120
 #, c-format
@@ -3815,7 +3816,7 @@ msgstr "&QIF αρχεία..."
 
 #: mmframe.cpp:1246 mmframe.cpp:1318
 msgid "&JSON Files..."
-msgstr ""
+msgstr "Αρχεία &JSON..."
 
 #: mmframe.cpp:1250 mmframe.cpp:1324
 msgid "Import from XML (Excel format)"
@@ -3867,7 +3868,7 @@ msgstr ""
 
 #: mmframe.cpp:1318
 msgid "Export to JSON"
-msgstr ""
+msgstr "Εξαγωγή σε JSON"
 
 #: mmframe.cpp:1319
 msgid "&Report to HTML"
@@ -3907,7 +3908,7 @@ msgstr ""
 
 #: mmframe.cpp:1339
 msgid "Quit this program"
-msgstr ""
+msgstr "Έξοδος από το πρόγραμμα"
 
 #: mmframe.cpp:1346
 msgid "&Toolbar"
@@ -3967,7 +3968,7 @@ msgstr "Να αγνοηθούν μελλοντικές συναλλαγές"
 
 #: mmframe.cpp:1375
 msgid "Toggle Fullscreen\tShift+F11"
-msgstr ""
+msgstr "Εναλλαγή σε πλήρη οθόνη\tShift+F11"
 
 #: mmframe.cpp:1376 mmframe.cpp:1710
 msgid "Toggle Fullscreen"
@@ -4003,7 +4004,7 @@ msgstr "Διαγραφή λογαριασμού από τη βάση δεδομ�
 
 #: mmframe.cpp:1440
 msgid "Download Rates..."
-msgstr ""
+msgstr "Κατεβάστε τις Ισοτιμίες..."
 
 #: mmframe.cpp:1440 mmframe.cpp:1707
 msgid "Download Currency and Stock rates"
@@ -4095,7 +4096,7 @@ msgstr "Εμφάνιση παραθύρου επιλογών"
 
 #: mmframe.cpp:1526
 msgid "Convert Encrypted &DB"
-msgstr ""
+msgstr "Μετατροπή Κρυπτογραφημένης &DB"
 
 #: mmframe.cpp:1527
 msgid "Convert Encrypted DB to Non-Encrypted DB"
@@ -4103,7 +4104,7 @@ msgstr ""
 
 #: mmframe.cpp:1530
 msgid "Change Encrypted &Password"
-msgstr ""
+msgstr "Αλλαγή κωδικού πρόσβασης κρυπτογράφησης"
 
 #: mmframe.cpp:1531
 msgid "Change the password of an encrypted database"
@@ -4275,7 +4276,7 @@ msgstr "Έλεγχος για &ενημερώσεις"
 
 #: mmframe.cpp:1637
 msgid "Check For Updates"
-msgstr ""
+msgstr "Ελέγχος Για Ενημερώσεις"
 
 #: mmframe.cpp:1642 mmframe.cpp:1716
 msgid "&About..."
@@ -4311,7 +4312,7 @@ msgstr "Νέος"
 
 #: mmframe.cpp:1680
 msgid "Account List"
-msgstr ""
+msgstr "Λίστα λογαριασμών"
 
 #: mmframe.cpp:1682
 msgid "Show Organize Categories Dialog"
@@ -4339,7 +4340,7 @@ msgstr ""
 
 #: mmframe.cpp:1707
 msgid "Download rates"
-msgstr ""
+msgstr "Κατεβάστε τις Ισοτιμίες"
 
 #: mmframe.cpp:1710
 msgid "Toggle Fullscreen\tF11"
@@ -4353,7 +4354,7 @@ msgstr ""
 
 #: mmframe.cpp:1772 mmframe.cpp:2002 mmframe.cpp:2135
 msgid "MMEX: Encrypted Database"
-msgstr ""
+msgstr "MMEX: Κρυπτογραφημένη Βάση Δεδομένων"
 
 #: mmframe.cpp:1806
 msgid "Have MMEX support provided you a debug/patch file?"
@@ -4365,7 +4366,7 @@ msgstr ""
 
 #: mmframe.cpp:1828 mmframe.cpp:1870
 msgid "No File opened"
-msgstr ""
+msgstr "Κανένα αρχείο δεν έχει ανοίξει"
 
 #: mmframe.cpp:1830
 msgid "Sorry. The Database version is too old or Database password is incorrect"
@@ -4385,7 +4386,7 @@ msgstr ""
 
 #: mmframe.cpp:1893
 msgid "portable mode"
-msgstr ""
+msgstr "φορητή έκδοση"
 
 #: mmframe.cpp:1929
 msgid "Database that you trying to open has been markrd as opened by another MMEX instance...\n"
