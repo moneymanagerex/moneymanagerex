@@ -1228,7 +1228,7 @@ void mmUnivCSVDialog::update_preview()
 {
     this->m_list_ctrl_->ClearAll();
     unsigned long colCount = 0;
-    this->m_list_ctrl_->InsertColumn(colCount, _("#"));
+    this->m_list_ctrl_->InsertColumn(colCount, "#");
     this->m_list_ctrl_->SetColumnWidth(colCount, 30);
     ++colCount;
 
