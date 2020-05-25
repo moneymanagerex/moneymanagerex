@@ -107,8 +107,6 @@ double Model_CurrencyHistory::getDayRate(const int& currencyID, const wxDate& Da
         return Model_Currency::instance().get(currencyID)->BASECONVRATE;
 
     Model_CurrencyHistory::Data_Set Data = Model_CurrencyHistory::instance().find(Model_CurrencyHistory::CURRENCYID(currencyID), Model_CurrencyHistory::CURRDATE(Date));
-
-    bool bFound = false;
     if (!Data.empty())
     {
         //Rate found for specified day
@@ -116,46 +114,24 @@ double Model_CurrencyHistory::getDayRate(const int& currencyID, const wxDate& Da
     }
     else if (Model_CurrencyHistory::instance().find(Model_CurrencyHistory::CURRENCYID(currencyID)).size() > 0)
     {
-        //Rate not found for specified day
-        //Custom query requested to speed-up performances, no way to obtain it in a fast way with our ORM
-        wxDateTime dFuture, dPast, dNearest;
-        wxString DateISO = Date.FormatISODate();
+        //Rate not found for specified day, look at previous and next
+        Model_CurrencyHistory::Data_Set DataPrevious = Model_CurrencyHistory::instance().find(Model_CurrencyHistory::CURRENCYID(currencyID), Model_CurrencyHistory::CURRDATE(Date, LESS_OR_EQUAL));
+        Model_CurrencyHistory::Data_Set DataNext = Model_CurrencyHistory::instance().find(Model_CurrencyHistory::CURRENCYID(currencyID), Model_CurrencyHistory::CURRDATE(Date, GREATER_OR_EQUAL));
 
-        const wxString sqlPast = wxString::Format("SELECT MAX(currdate) FROM CURRENCYHISTORY WHERE currencyid = '%i' AND currdate <= '%s';", currencyID, DateISO);
-        wxSQLite3ResultSet rsPast = Model_CurrencyHistory::instance().db_->ExecuteQuery(sqlPast);
-        while (rsPast.NextRow())
+        if (!DataPrevious.empty() && !DataNext.empty())
         {
-            dPast.ParseDate(rsPast.GetAsString(0));
-        }
+            const wxTimeSpan spanPast = Date.Subtract(Model::to_date(DataPrevious.back().CURRDATE));
+            const wxTimeSpan spanFuture = Model::to_date(DataNext[0].CURRDATE).Subtract(Date);
 
-        const wxString sqlFuture = wxString::Format("SELECT MIN(currdate) FROM CURRENCYHISTORY WHERE currencyid = '%i' AND currdate >= '%s';", currencyID, DateISO);
-        wxSQLite3ResultSet rsFuture = Model_CurrencyHistory::instance().db_->ExecuteQuery(sqlFuture);
-        while (rsFuture.NextRow())
-        {
-            dFuture.ParseDate(rsFuture.GetAsString(0));
+            return spanPast <= spanFuture ? DataPrevious.back().CURRVALUE : DataNext[0].CURRVALUE;
         }
-
-        if (dPast.IsValid() && dFuture.IsValid())
+        else if (!DataPrevious.empty())
         {
-            const wxTimeSpan spanPast = Date.Subtract(dPast);
-            const wxTimeSpan spanFuture = dFuture.Subtract(Date);
-
-            dNearest = spanPast <= spanFuture ? dPast : dFuture;
+            return DataPrevious.back().CURRVALUE;
         }
-        else if (dPast.IsValid())
+        else if (!DataNext.empty())
         {
-            dNearest = dPast;
-            bFound = true;
-        }
-        else if (dFuture.IsValid())
-        {
-            dNearest = dFuture;
-            bFound = true;
-        }
-
-        if (bFound)
-        {
-            return Model_CurrencyHistory::instance().find(Model_CurrencyHistory::CURRENCYID(currencyID), Model_CurrencyHistory::CURRDATE(dNearest))[0].CURRVALUE;
+            return DataNext[0].CURRVALUE;
         }
     }
 

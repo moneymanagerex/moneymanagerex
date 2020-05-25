@@ -157,23 +157,18 @@ void mmMainCurrencyDialog::CreateControls()
     wxBoxSizer* itemBoxSizer22 = new wxBoxSizer(wxHORIZONTAL);
     itemBoxSizer2->Add(itemBoxSizer22, wxSizerFlags(g_flagsExpand).Proportion(0));
 
-    wxBitmapButton* update_button = new wxBitmapButton(this
-        , wxID_STATIC, mmBitmap(png::CURRATES));
+    wxBitmapButton* update_button = new wxBitmapButton(this, wxID_STATIC, mmBitmap(png::CURRATES));
     itemBoxSizer22->Add(update_button, g_flagsH);
-    update_button->Connect(wxID_STATIC, wxEVT_COMMAND_BUTTON_CLICKED
-        , wxCommandEventHandler(mmMainCurrencyDialog::OnOnlineUpdateCurRate), nullptr, this);
+    update_button->Connect(wxID_STATIC, wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(mmMainCurrencyDialog::OnOnlineUpdateCurRate), nullptr, this);
     update_button->SetToolTip(_("Online update currency rate"));
     itemBoxSizer22->AddSpacer(4);
 
-    itemBoxSizer22->Add(new wxStaticText(this, wxID_STATIC
-        , _("Online Update")), g_flagsH);
+    itemBoxSizer22->Add(new wxStaticText(this, wxID_STATIC, _("Online Update")), g_flagsH);
 
     itemBoxSizer22->AddSpacer(15);
-    cbShowAll_ = new wxCheckBox(this, wxID_SELECTALL, _("Show All"), wxDefaultPosition
-        , wxDefaultSize, wxCHK_2STATE);
+    cbShowAll_ = new wxCheckBox(this, wxID_SELECTALL, _("Show All"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     cbShowAll_->SetToolTip(_("Show all even the unused currencies"));
-    cbShowAll_->Connect(wxID_SELECTALL, wxEVT_COMMAND_CHECKBOX_CLICKED,
-        wxCommandEventHandler(mmMainCurrencyDialog::OnShowHiddenChbClick), nullptr, this);
+    cbShowAll_->Connect(wxID_SELECTALL, wxEVT_COMMAND_CHECKBOX_CLICKED, wxCommandEventHandler(mmMainCurrencyDialog::OnShowHiddenChbClick), nullptr, this);
 
     itemBoxSizer22->Add(cbShowAll_, g_flagsH);
 
@@ -181,15 +176,12 @@ void mmMainCurrencyDialog::CreateControls()
     itemBoxSizer2->Add(itemBoxSizer3, g_flagsExpand);
 
     //TODO:provide proper style and fix validator (does not working)
-    currencyListBox_ = new wxDataViewListCtrl( this
-        , wxID_ANY, wxDefaultPosition, wxDefaultSize /*, wxDV_HORIZ_RULES, mmDoubleValidator(4)*/);
+    currencyListBox_ = new wxDataViewListCtrl(this, wxID_ANY, wxDefaultPosition, wxDefaultSize /*, wxDV_HORIZ_RULES, mmDoubleValidator(4)*/);
     currencyListBox_->SetMinSize(wxSize(-1, 200));
 
     currencyListBox_->AppendTextColumn(ColName_[CURR_BASE], wxDATAVIEW_CELL_INERT, 30);
-    currencyListBox_->AppendTextColumn(ColName_[CURR_SYMBOL], wxDATAVIEW_CELL_INERT, 60
-        , wxALIGN_LEFT, wxDATAVIEW_COL_SORTABLE);
-    currencyListBox_->AppendTextColumn(ColName_[CURR_NAME], wxDATAVIEW_CELL_INERT, 170
-        , wxALIGN_LEFT, wxDATAVIEW_COL_SORTABLE);
+    currencyListBox_->AppendTextColumn(ColName_[CURR_SYMBOL], wxDATAVIEW_CELL_INERT, 60, wxALIGN_LEFT, wxDATAVIEW_COL_SORTABLE);
+    currencyListBox_->AppendTextColumn(ColName_[CURR_NAME], wxDATAVIEW_CELL_INERT, 170, wxALIGN_LEFT, wxDATAVIEW_COL_SORTABLE);
     currencyListBox_->AppendTextColumn(ColName_[BASE_RATE], wxDATAVIEW_CELL_EDITABLE, 80);
 
     itemBoxSizer3->Add(currencyListBox_, g_flagsExpand);
@@ -237,8 +229,7 @@ void mmMainCurrencyDialog::CreateControls()
     wxStaticBoxSizer* historyStaticBox_Sizer = new wxStaticBoxSizer(historyStaticBox_, wxVERTICAL);
     rightBoxSizer->Add(historyStaticBox_Sizer, g_flagsExpand);
 
-    valueListBox_ = new wxListCtrl(this, wxID_ANY, wxDefaultPosition, wxSize(250, 150)
-        , wxLC_REPORT);
+    valueListBox_ = new wxListCtrl(this, wxID_ANY, wxDefaultPosition, wxSize(250, 150), wxLC_REPORT);
     historyStaticBox_Sizer->Add(valueListBox_, g_flagsExpand);
 
     wxListItem col0, col1, col2;
@@ -269,17 +260,14 @@ void mmMainCurrencyDialog::CreateControls()
 
     values_sizer->Add(new wxStaticText(values_panel, wxID_STATIC, _("Date")), g_flagsH);
 
-    valueDatePicker_ = new wxDatePickerCtrl(values_panel, wxID_ANY, wxDefaultDateTime,
-        wxDefaultPosition, wxSize(120, -1), wxDP_DROPDOWN | wxDP_SHOWCENTURY);
+    valueDatePicker_ = new wxDatePickerCtrl(values_panel, wxID_ANY, wxDefaultDateTime, wxDefaultPosition, wxSize(120, -1), wxDP_DROPDOWN | wxDP_SHOWCENTURY);
     values_sizer->Add(valueDatePicker_, g_flagsH);
     valueDatePicker_->SetToolTip(_("Specify the date of currency value"));
     valueDatePicker_->Disable();
 
     values_sizer->Add(new wxStaticText(values_panel, wxID_STATIC, _("Value")), g_flagsH);
 
-    valueTextBox_ = new mmTextCtrl(values_panel, wxID_ANY, wxGetEmptyString()
-        , wxDefaultPosition, wxSize(120, -1), wxALIGN_RIGHT | wxTE_PROCESS_ENTER
-        , mmCalcValidator());
+    valueTextBox_ = new mmTextCtrl(values_panel, wxID_ANY, wxGetEmptyString(), wxDefaultPosition, wxSize(120, -1), wxALIGN_RIGHT | wxTE_PROCESS_ENTER, mmCalcValidator());
     valueTextBox_->SetToolTip(_("Enter the currency value"));
     values_sizer->Add(valueTextBox_, g_flagsH);
     valueTextBox_->Disable();
@@ -293,19 +281,16 @@ void mmMainCurrencyDialog::CreateControls()
     buttonDownloadHistory_->SetToolTip(_("Download Currency Values history"));
     buttonDownloadHistory_->Disable();
 
-    historyButtonAdd_ = new wxButton(buttons_panel, HISTORY_ADD, _("&Add / Update ")
-        , wxDefaultPosition, wxSize(-1, buttonDownloadHistory_->GetSize().GetY()));
+    historyButtonAdd_ = new wxButton(buttons_panel, HISTORY_ADD, _("&Add / Update "), wxDefaultPosition, wxSize(-1, buttonDownloadHistory_->GetSize().GetY()));
     historyButtonAdd_->SetToolTip(_("Add Currency Values to history"));
     historyButtonAdd_->Disable();
 
-    historyButtonDelete_ = new wxButton(buttons_panel, HISTORY_DELETE, _("&Delete ")
-        , wxDefaultPosition, wxSize(-1, buttonDownloadHistory_->GetSize().GetY()));
+    historyButtonDelete_ = new wxButton(buttons_panel, HISTORY_DELETE, _("&Delete "), wxDefaultPosition, wxSize(-1, buttonDownloadHistory_->GetSize().GetY()));
     historyButtonDelete_->SetToolTip(_("Delete selected Currency Values"));
     historyButtonDelete_->Disable();
 
-    buttonDelUnusedHistory_ = new wxBitmapButton(buttons_panel
-        , HISTORY_DELUNUSED, mmBitmap(png::VOID_STAT));
-    buttonDelUnusedHistory_->SetToolTip(_("Delete Currency Values history for unused currencies"));
+    buttonDelUnusedHistory_ = new wxBitmapButton(buttons_panel, HISTORY_DELUNUSED, mmBitmap(png::VOID_STAT));
+    buttonDelUnusedHistory_->SetToolTip(_("Delete Currency Values history for unused currencies and days"));
     buttonDelUnusedHistory_->Disable();
 
     buttons_sizer->Add(buttonDownloadHistory_, g_flagsH);
@@ -415,6 +400,18 @@ void mmMainCurrencyDialog::OnListItemSelected(wxDataViewEvent& event)
                     buttonDelUnusedHistory_->Enable(m_currency_id != baseCurrencyID);
                     valueDatePicker_->Enable(m_currency_id != baseCurrencyID);
                     valueTextBox_->Enable(m_currency_id != baseCurrencyID);
+                }
+                else if (Model_CurrencyHistory::instance().find(Model_CurrencyHistory::CURRENCYID(m_currency_id)).size() > 0)
+                {
+                    if (wxMessageBox(wxString::Format(_("Historic rates for %s found, but \"Use currency history\" in options is disabled, click no and enable it or click yes to remove all historic rates for %s"),
+                        currency->CURRENCY_SYMBOL), _("Currency Dialog")
+                        , wxYES_NO | wxNO_DEFAULT | wxICON_WARNING) == wxYES)
+                    {
+                        Model_CurrencyHistory::instance().Savepoint();
+                        for (const auto& r : Model_CurrencyHistory::instance().find(Model_CurrencyHistory::CURRENCYID(m_currency_id)))
+                            Model_CurrencyHistory::instance().remove(r.id());
+                        Model_CurrencyHistory::instance().ReleaseSavepoint();
+                    }
                 }
             }
             historyStaticBox_->SetLabel(wxString::Format(_("Currency History Options: %s "), currency->CURRENCYNAME));
@@ -621,8 +618,7 @@ void mmMainCurrencyDialog::OnHistoryUpdate(wxCommandEvent& WXUNUSED(event))
             , _("Currency history error"));
     }
 
-    int msgResult = wxMessageBox(_("Do you want to add also dates without any transaction?")
-        , _("Currency Dialog"), wxYES_NO | wxNO_DEFAULT | wxICON_WARNING);
+    int msgResult = wxMessageBox(_("Do you want to add also dates without any transaction?"), _("Currency Dialog"), wxYES_NO | wxNO_DEFAULT | wxICON_WARNING);
     bool CheckDate;
     if (msgResult == wxYES || msgResult == wxNO)
         CheckDate = msgResult == wxNO;
@@ -724,7 +720,7 @@ bool mmMainCurrencyDialog::SetBaseCurrency(int& baseCurrencyID)
     if (baseCurrencyID == baseCurrencyOLD)
         return true;
 
-    if (Option::instance().getCurrencyHistoryEnabled())
+    if (bHistoryEnabled_)
     {
         if (wxMessageBox(_("Changing base currency will delete all history rates, proceed?")
             , _("Currency Dialog")
