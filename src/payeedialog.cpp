@@ -60,7 +60,7 @@ mmPayeeDialog::mmPayeeDialog(wxWindow *parent, bool payee_choose, const wxString
     , debug_(false)
 #endif
 {
-    if (debug_) ColName_[PAYEE_ID] = _("#");
+    if (debug_) ColName_[PAYEE_ID] = "#";
     ColName_[PAYEE_NAME] = _("Name");
     ColName_[PAYEE_CATEGORY]   = _("Default Category");
 
