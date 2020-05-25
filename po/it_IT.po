@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-05-25 14:20+0300\n"
-"PO-Revision-Date: 2020-05-25 14:44\n"
+"PO-Revision-Date: 2020-05-25 15:16\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Italian\n"
 "MIME-Version: 1.0\n"
@@ -253,7 +253,7 @@ msgstr "Organizza gli allegati di questo conto"
 
 #: accountdialog.cpp:407
 msgid "Default Image"
-msgstr "Immagine predefinita:"
+msgstr "Immagine predefinita"
 
 #: accountdialog.cpp:414
 #, c-format
