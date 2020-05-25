@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-05-25 14:20+0300\n"
-"PO-Revision-Date: 2020-05-25 12:30\n"
+"PO-Revision-Date: 2020-05-25 17:49\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -326,7 +326,7 @@ msgstr "&Salir "
 #: appstartdialog.cpp:153
 #, c-format
 msgid "Open the previously opened database : %s"
-msgstr ""
+msgstr "Abrir base de datos abierta previamente: %s"
 
 #: assetdialog.cpp:61 assetdialog.cpp:410 assetspanel.cpp:466
 msgid "New Asset"
@@ -429,12 +429,13 @@ msgstr "&Cancelar "
 
 #: assetdialog.cpp:402 sharetransactiondialog.cpp:429
 msgid "Invalid Transaction"
-msgstr ""
+msgstr "Transacción no válida"
 
 #: assetdialog.cpp:409
 msgid "Asset Account not found.\n\n"
 "Would you want to create one?"
-msgstr ""
+msgstr "Cuenta de activo no encontrada.\n\n"
+"¿Quiere crear una?"
 
 #: assetspanel.cpp:58 billsdepositspanel.cpp:96 mmcheckingpanel.cpp:949
 #: reports/transactions.cpp:68 stockspanel.cpp:91
@@ -578,7 +579,8 @@ msgstr "Cambio en el valor: %s %s"
 #: assetspanel.cpp:768
 msgid "This asset does not have its own account\n\n"
 "Multiple transactions for this asset are not recommended."
-msgstr ""
+msgstr "Este activo no tiene su propia cuenta\n\n"
+"No se recomiendan múltiples transacciones para este activo."
 
 #: assetspanel.cpp:770
 msgid "Asset Management"
@@ -1514,7 +1516,7 @@ msgstr "Editar el nombre de una categoría existente"
 
 #: categdialog.cpp:236
 msgid "Delete an existing category. The category cannot be used by existing transactions."
-msgstr ""
+msgstr "Borrar una categoría existente. La categoría no puede estar en uso por ninguna transacción."
 
 #: categdialog.cpp:241 maincurrencydialog.cpp:211
 msgid "&Select"
@@ -1603,7 +1605,7 @@ msgstr "Las subcategorías deben ser eliminadas antes."
 #: categdialog.cpp:485
 #, c-format
 msgid "Enter a new name for '%s'"
-msgstr ""
+msgstr "Introducir un nuevo nombre para %s'"
 
 #: categdialog.cpp:486
 msgid "Edit Category"
@@ -1708,7 +1710,7 @@ msgstr "Ver desde la fecha establecida"
 
 #: constants.cpp:203
 msgid "ALL"
-msgstr ""
+msgstr "TODO"
 
 #: constants.cpp:204 mmframe.cpp:1259 mmframe.cpp:1677
 #: model/Model_Account.cpp:26
@@ -1729,7 +1731,7 @@ msgstr "Gestor de monedas"
 
 #: currencydialog.cpp:96
 msgid "Currency name"
-msgstr ""
+msgstr "Nombre de moneda"
 
 #: currencydialog.cpp:155
 msgid "Currency Name"
@@ -1741,11 +1743,11 @@ msgstr "Símbolo de la moneda"
 
 #: currencydialog.cpp:164
 msgid "Unit Name"
-msgstr ""
+msgstr "Nombre de Unidad"
 
 #: currencydialog.cpp:168
 msgid "Cents Name"
-msgstr ""
+msgstr "Nombre de céntimos"
 
 #: currencydialog.cpp:172
 msgid "Prefix Symbol"
@@ -1770,15 +1772,15 @@ msgstr "Escala"
 
 #: currencydialog.cpp:206 currencydialog.cpp:268
 msgid "Conversion to Base Rate"
-msgstr ""
+msgstr "Conversión a Tasa Base"
 
 #: currencydialog.cpp:212
 msgid "Conversion rate will be used in case no currency history has been found for the currency"
-msgstr ""
+msgstr "La tasa de conversión se utilizará en caso de que no se haya encontrado ningún historial de divisas para la moneda"
 
 #: currencydialog.cpp:214
 msgid "Fixed conversion rate"
-msgstr ""
+msgstr "Tasa de conversión fija"
 
 #: currencydialog.cpp:219
 msgid "Value Display Sample:"
