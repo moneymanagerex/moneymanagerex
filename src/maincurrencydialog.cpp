@@ -180,9 +180,9 @@ void mmMainCurrencyDialog::CreateControls()
     currencyListBox_->SetMinSize(wxSize(-1, 200));
 
     currencyListBox_->AppendTextColumn(ColName_[CURR_BASE], wxDATAVIEW_CELL_INERT, 30);
-    currencyListBox_->AppendTextColumn(ColName_[CURR_SYMBOL], wxDATAVIEW_CELL_INERT, 60, wxALIGN_LEFT, wxDATAVIEW_COL_SORTABLE);
+    currencyListBox_->AppendTextColumn(ColName_[CURR_SYMBOL], wxDATAVIEW_CELL_INERT, wxLIST_AUTOSIZE_USEHEADER, wxALIGN_LEFT, wxDATAVIEW_COL_SORTABLE);
     currencyListBox_->AppendTextColumn(ColName_[CURR_NAME], wxDATAVIEW_CELL_INERT, 170, wxALIGN_LEFT, wxDATAVIEW_COL_SORTABLE);
-    currencyListBox_->AppendTextColumn(ColName_[BASE_RATE], wxDATAVIEW_CELL_EDITABLE, 80);
+    currencyListBox_->AppendTextColumn(ColName_[BASE_RATE], wxDATAVIEW_CELL_EDITABLE, wxLIST_AUTOSIZE_USEHEADER);
 
     itemBoxSizer3->Add(currencyListBox_, g_flagsExpand);
 
@@ -220,7 +220,7 @@ void mmMainCurrencyDialog::CreateControls()
     itemBoxSizer9->Add(itemCancelButton, g_flagsH);
     itemCancelButton->SetFocus();
 
-    //History Panel
+    //History Panel -----------------------------------------------------
     wxBoxSizer* rightBoxSizer = new wxBoxSizer(wxVERTICAL);
     mainBoxSizer->Add(rightBoxSizer, g_flagsExpand);
 
@@ -229,7 +229,8 @@ void mmMainCurrencyDialog::CreateControls()
     wxStaticBoxSizer* historyStaticBox_Sizer = new wxStaticBoxSizer(historyStaticBox_, wxVERTICAL);
     rightBoxSizer->Add(historyStaticBox_Sizer, g_flagsExpand);
 
-    valueListBox_ = new wxListCtrl(this, wxID_ANY, wxDefaultPosition, wxSize(250, 150), wxLC_REPORT);
+    valueListBox_ = new wxListCtrl(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxLC_REPORT);
+    valueListBox_->SetMinSize(wxSize(250, 150));
     historyStaticBox_Sizer->Add(valueListBox_, g_flagsExpand);
 
     wxListItem col0, col1, col2;
@@ -257,17 +258,20 @@ void mmMainCurrencyDialog::CreateControls()
     wxStdDialogButtonSizer*  values_sizer = new wxStdDialogButtonSizer;
     values_panel->SetSizer(values_sizer);
 
+    wxStaticText* datePickerLabel = new wxStaticText(values_panel, wxID_STATIC, _("Date"));
+    values_sizer->Add(datePickerLabel, g_flagsH);
 
-    values_sizer->Add(new wxStaticText(values_panel, wxID_STATIC, _("Date")), g_flagsH);
-
-    valueDatePicker_ = new wxDatePickerCtrl(values_panel, wxID_ANY, wxDefaultDateTime, wxDefaultPosition, wxSize(120, -1), wxDP_DROPDOWN | wxDP_SHOWCENTURY);
+    valueDatePicker_ = new wxDatePickerCtrl(values_panel, wxID_ANY, wxDefaultDateTime, wxDefaultPosition, wxDefaultSize, wxDP_DROPDOWN | wxDP_SHOWCENTURY);
+    valueDatePicker_->SetMinSize(wxSize(120, -1));
     values_sizer->Add(valueDatePicker_, g_flagsH);
     valueDatePicker_->SetToolTip(_("Specify the date of currency value"));
     valueDatePicker_->Disable();
 
-    values_sizer->Add(new wxStaticText(values_panel, wxID_STATIC, _("Value")), g_flagsH);
+    wxStaticText* textBoxLabel = new wxStaticText(values_panel, wxID_STATIC, _("Value"));
+    values_sizer->Add(textBoxLabel, g_flagsH);
 
-    valueTextBox_ = new mmTextCtrl(values_panel, wxID_ANY, wxGetEmptyString(), wxDefaultPosition, wxSize(120, -1), wxALIGN_RIGHT | wxTE_PROCESS_ENTER, mmCalcValidator());
+    valueTextBox_ = new mmTextCtrl(values_panel, wxID_ANY, wxGetEmptyString(), wxDefaultPosition, wxDefaultSize, wxALIGN_RIGHT | wxTE_PROCESS_ENTER, mmCalcValidator());
+    valueTextBox_->SetMinSize(wxSize(120, -1));
     valueTextBox_->SetToolTip(_("Enter the currency value"));
     values_sizer->Add(valueTextBox_, g_flagsH);
     valueTextBox_->Disable();
@@ -298,7 +302,22 @@ void mmMainCurrencyDialog::CreateControls()
     buttons_sizer->Add(historyButtonDelete_, g_flagsH);
     buttons_sizer->Add(buttonDelUnusedHistory_, g_flagsH);
 
-    this->SetMinSize(wxSize(800,550));
+    if (!bHistoryEnabled_) {
+        historyStaticBox_->Hide();
+        valueListBox_->Hide();
+        buttons_panel->Hide();
+        valueDatePicker_->Hide();
+        valueDatePicker_->Hide();
+        valueTextBox_->Hide();
+        buttonDownloadHistory_->Hide();
+        historyButtonAdd_->Hide();
+        historyButtonDelete_->Hide();
+        buttonDelUnusedHistory_->Hide();
+        datePickerLabel->Hide();
+        textBoxLabel->Hide();
+    }
+
+    this->SetMinSize(wxSize(400, 550));
     this->Fit();
 }
 
