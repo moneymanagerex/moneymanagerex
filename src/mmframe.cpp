@@ -1926,7 +1926,7 @@ bool mmGUIFrame::openFile(const wxString& fileName, bool openingNew, const wxStr
             bool isUsed = Model_Infotable::instance().GetBoolInfo("ISUSED", false);
             if (isUsed) {
                 int response = wxMessageBox(_(
-                    "Database that you trying to open has been markrd as opened by another MMEX instance...\n"
+                    "Database that you trying to open has been marked as opened by another MMEX instance...\n"
                     "To avoid data loss or conflict, it's strongly recommended to close all other applications that can use the DB.\n\n"
                     "Possible it may be as result of a programm crash in previous usage.\n\n"
                     "Would you like to continue?")

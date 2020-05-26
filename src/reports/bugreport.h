@@ -79,7 +79,7 @@ wxString mmBugReport::getHTMLText()
         wxString::Format(_("Search <a href='%s'>a list of known issues</a> for similar problem. If so, update existing issue instead of creating a new one.")
             ,  mmex::weblink::BugReport),
         wxString::Format(_("As you know, <a href='%s'>a forum</a> for users is available where you can discuss problems and find solutions."), mmex::weblink::Forum),
-        wxString::Format(_("Please, join our community in <a href='%s'>Slack</a>. Here you can also pose your question and learn a latest news."), mmex::weblink::Slack),
+        wxString::Format(_("Please, join our community in <a href='%s'>Slack</a>. Here you can also pose your question and learn latest news."), mmex::weblink::Slack),
         wxString::Format(_("Read <a href='%s'>How to Report Bugs Effectively</a> for useful tips."), mmex::weblink::Chiark),
         _("Come up with a descriptive name for your problem."),
         _("Include steps to reproduce your problem, attach screenshots where appropriate."),
