@@ -126,7 +126,6 @@ wxString mmex::getPathDoc(EDocFile f, bool url)
       "README.TXT",
       "contrib.txt",
       "license.txt",
-      "version.txt",
       "help%sindex.html",
       "help%sindex.html#section11.1",
       "help%sgrm.html",
