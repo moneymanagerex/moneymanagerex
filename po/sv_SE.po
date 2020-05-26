@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-05-26 12:37+0300\n"
-"PO-Revision-Date: 2020-05-26 12:26\n"
+"PO-Revision-Date: 2020-05-26 14:17\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
@@ -3994,11 +3994,11 @@ msgstr ""
 
 #: mmframe.cpp:1447
 msgid "Organize &Categories..."
-msgstr ""
+msgstr "Organisera &kategorier..."
 
 #: mmframe.cpp:1452
 msgid "Organize &Payees..."
-msgstr ""
+msgstr "Organisera &betalningsmottagare..."
 
 #: mmframe.cpp:1452 mmframe.cpp:1683 payeedialog.cpp:75
 msgid "Organize Payees"
@@ -4006,7 +4006,7 @@ msgstr "Oraganisera betalningsmottagare"
 
 #: mmframe.cpp:1457
 msgid "Organize Currency..."
-msgstr ""
+msgstr "Organisera valutor..."
 
 #: mmframe.cpp:1457 mmframe.cpp:1684
 msgid "Organize Currency"
@@ -5358,7 +5358,7 @@ msgstr ""
 
 #: payeedialog.cpp:234 payeedialog.cpp:250
 msgid "Organize Payees: Edit Payee"
-msgstr ""
+msgstr "Organisera betalningsmottagare: Redigera betalningsmottagare"
 
 #: payeedialog.cpp:264
 msgid "Payee in use."
