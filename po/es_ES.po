@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-05-26 12:37+0300\n"
-"PO-Revision-Date: 2020-05-26 09:51\n"
+"PO-Revision-Date: 2020-05-26 18:13\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -2225,7 +2225,9 @@ msgstr "Debe especifar la ruta a otra base de datos"
 msgid "An incorrect password given for an encrypted file\n"
 "or\n"
 "attempt to open a File that is not a database file \n"
-msgstr ""
+msgstr "Contraseña incorrecta para un archivo cifrado \n"
+"o \n"
+" Intento de abrir un archivo que no es una base de datos \n"
 
 #: dbwrapper.cpp:82 import_export/qif_import_gui.cpp:855 webapp.cpp:120
 #, c-format
@@ -4400,7 +4402,10 @@ msgid "Database that you trying to open has been marked as opened by another MME
 "To avoid data loss or conflict, it's strongly recommended to close all other applications that can use the DB.\n\n"
 "Possible it may be as result of a programm crash in previous usage.\n\n"
 "Would you like to continue?"
-msgstr ""
+msgstr "La base de datos que intenta abrir ha sido marcada como abierta por otra instancia de MMEX...\n"
+"Para evitar pérdidas de datos o conflictos, se recomienda encarecidamente cerrar todas las demás aplicaciones que puedan usar la DB.\n\n"
+"Es posible que sea resultado de un cierre inesperado del programa en el uso anterior.\n\n"
+"¿Quiere continuar?"
 
 #: mmframe.cpp:1933
 msgid "MMEX Instance Check"
@@ -4916,11 +4921,11 @@ msgstr "Fecha de inicio: "
 
 #: model/Model_Report.cpp:89
 msgid "Date: "
-msgstr ""
+msgstr "Fecha: "
 
 #: model/Model_Report.cpp:90
 msgid "End date: "
-msgstr ""
+msgstr "Fecha final: "
 
 #: model/Model_Report.cpp:235
 msgid "Template is empty"
@@ -5602,7 +5607,7 @@ msgstr ""
 #: reports/bugreport.h:82
 #, c-format
 msgid "Please, join our community in <a href='%s'>Slack</a>. Here you can also pose your question and learn latest news."
-msgstr ""
+msgstr "Por favor, únete a nuestra comunidad en <a href='%s'>Slack</a>. Aquí también puedes plantear tu pregunta y conocer las últimas noticias."
 
 #: reports/bugreport.h:83
 #, c-format
