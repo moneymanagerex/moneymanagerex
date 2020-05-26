@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-05-26 12:37+0300\n"
-"PO-Revision-Date: 2020-05-26 18:13\n"
+"PO-Revision-Date: 2020-05-26 18:19\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -4929,7 +4929,7 @@ msgstr "Fecha final: "
 
 #: model/Model_Report.cpp:235
 msgid "Template is empty"
-msgstr ""
+msgstr "La plantilla está vacía"
 
 #: model/Model_Report.cpp:249
 #, c-format
@@ -4976,7 +4976,7 @@ msgstr "Carpeta de archivos de adjuntos para %s solo:"
 
 #: optionsettingsattachment.cpp:68
 msgid "Every OS type (Win,Mac,Unix) has its attachment folder"
-msgstr ""
+msgstr "Cada tipo de sistema operativo (Win, Mac, Unix) tiene su carpeta de adjuntos"
 
 #: optionsettingsattachment.cpp:87
 msgid "Browse for folder"
@@ -4988,7 +4988,7 @@ msgstr "Ruta real:"
 
 #: optionsettingsattachment.cpp:97
 msgid "Legend (can be used as variables at the beginning of above path)"
-msgstr ""
+msgstr "Leyenda (puede usarse como variables al principio de la ruta anterior)"
 
 #: optionsettingsattachment.cpp:102
 #, c-format
