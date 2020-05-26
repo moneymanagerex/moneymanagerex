@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2020-05-25 14:20+0300\n"
-"PO-Revision-Date: 2020-05-25 12:30\n"
+"POT-Creation-Date: 2020-05-26 11:58+0300\n"
+"PO-Revision-Date: 2020-05-26 09:36\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Bulgarian\n"
 "MIME-Version: 1.0\n"
@@ -24,12 +24,6 @@ msgstr ""
 #: aboutdialog.cpp:45
 msgid "License agreement"
 msgstr "Лицензно споразумение"
-
-#: aboutdialog.cpp:46 appstartdialog.cpp:46 mmframe.cpp:1828 mmframe.cpp:1870
-#: mmframe.cpp:1891 mmframe.cpp:1893 stockdialog.cpp:798
-#, c-format
-msgid "%1$s - %2$s"
-msgstr ""
 
 #: aboutdialog.cpp:149
 msgid "About"
@@ -587,12 +581,6 @@ msgstr "Управление на активи"
 #: assetspanel.cpp:789
 msgid "Account \t Date\t   Value\n\n"
 msgstr "Сметка           Дата        Стойност\n\n"
-
-#: attachmentdialog.cpp:54 customfieldlistdialog.cpp:53
-#: import_export/qif_import_gui.cpp:98 import_export/univcsvdialog.cpp:1231
-#: payeedialog.cpp:63
-msgid "#"
-msgstr "#"
 
 #: attachmentdialog.cpp:55 customfieldeditdialog.cpp:125
 #: customfieldlistdialog.cpp:54 general_report_manager.cpp:416
@@ -5361,34 +5349,6 @@ msgstr ""
 msgid "User Colors"
 msgstr "Цветове на потребителя"
 
-#: optionsettingsview.cpp:127
-msgid "1"
-msgstr ""
-
-#: optionsettingsview.cpp:131
-msgid "2"
-msgstr ""
-
-#: optionsettingsview.cpp:135
-msgid "3"
-msgstr ""
-
-#: optionsettingsview.cpp:139
-msgid "4"
-msgstr ""
-
-#: optionsettingsview.cpp:143
-msgid "5"
-msgstr ""
-
-#: optionsettingsview.cpp:147
-msgid "6"
-msgstr ""
-
-#: optionsettingsview.cpp:151
-msgid "7"
-msgstr ""
-
 #: payeedialog.cpp:65
 msgid "Default Category"
 msgstr "Категория по подразбиране"
@@ -6371,42 +6331,6 @@ msgstr ""
 
 #: usertransactionpanel.cpp:292
 msgid "Account Selection"
-msgstr ""
-
-#: util.cpp:409
-msgid "UTF-8"
-msgstr ""
-
-#: util.cpp:410
-msgid "1250"
-msgstr ""
-
-#: util.cpp:411
-msgid "1251"
-msgstr ""
-
-#: util.cpp:412
-msgid "1252"
-msgstr ""
-
-#: util.cpp:413
-msgid "1253"
-msgstr ""
-
-#: util.cpp:414
-msgid "1254"
-msgstr ""
-
-#: util.cpp:415
-msgid "1255"
-msgstr ""
-
-#: util.cpp:416
-msgid "1256"
-msgstr ""
-
-#: util.cpp:417
-msgid "1257"
 msgstr ""
 
 #: util.cpp:422
