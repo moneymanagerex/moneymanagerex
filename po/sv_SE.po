@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-05-26 12:37+0300\n"
-"PO-Revision-Date: 2020-05-26 14:17\n"
+"PO-Revision-Date: 2020-05-26 14:29\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
@@ -5374,7 +5374,7 @@ msgstr ""
 
 #: payeedialog.cpp:270
 msgid "Organize Payees: Delete Error"
-msgstr ""
+msgstr "Organisera betalningsmottagare: Raderingsfel"
 
 #: payeedialog.cpp:361
 msgid "Define Default Category"
@@ -6221,7 +6221,7 @@ msgstr ""
 
 #: transdialog.cpp:558 usertransactionpanel.cpp:210
 msgid "Organize attachments of this transaction"
-msgstr ""
+msgstr "Organisera bilagor till denna transaktion"
 
 #: transdialog.cpp:597
 msgid "Show/Hide custom fields window"
