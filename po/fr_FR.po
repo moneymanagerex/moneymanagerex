@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-05-26 12:37+0300\n"
-"PO-Revision-Date: 2020-05-26 10:59\n"
+"PO-Revision-Date: 2020-05-26 19:56\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -2226,9 +2226,9 @@ msgstr "Vous devez préciser un chemin vers un autre fichier de ba&se de donnée
 msgid "An incorrect password given for an encrypted file\n"
 "or\n"
 "attempt to open a File that is not a database file \n"
-msgstr "Un mot de passe incorrect donné pour un fichier chiffré\n"
+msgstr "Saisie d'un mot de passe incorrect pour un fichier chiffré\n"
 "ou\n"
-"tentative d'ouvrir un fichier qui n'est pas un fichier de base de données \n"
+"tentative d'ouverture d'un fichier qui n'est pas un fichier de base de données \n"
 
 #: dbwrapper.cpp:82 import_export/qif_import_gui.cpp:855 webapp.cpp:120
 #, c-format
