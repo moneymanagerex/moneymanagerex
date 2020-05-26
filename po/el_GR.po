@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-05-26 12:37+0300\n"
-"PO-Revision-Date: 2020-05-26 09:51\n"
+"PO-Revision-Date: 2020-05-26 11:25\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Greek\n"
 "MIME-Version: 1.0\n"
@@ -2213,7 +2213,9 @@ msgstr "Πρέπει να καθορίσετε τη διαδρομή για μι
 msgid "An incorrect password given for an encrypted file\n"
 "or\n"
 "attempt to open a File that is not a database file \n"
-msgstr ""
+msgstr "Ο κωδικός πρόσβασης που δόθηκε για ένα κρυπτογραφημένο αρχείο είναι λανθασμένος\n"
+"ή\n"
+"προσπάθεια για άνοιγμα Αρχείου το οποίο δεν είναι αρχείο βάσης δεδομένων\n"
 
 #: dbwrapper.cpp:82 import_export/qif_import_gui.cpp:855 webapp.cpp:120
 #, c-format
