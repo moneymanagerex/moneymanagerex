@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-05-26 12:37+0300\n"
-"PO-Revision-Date: 2020-05-26 09:50\n"
+"PO-Revision-Date: 2020-05-26 11:25\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
@@ -195,7 +195,7 @@ msgstr ""
 
 #: accountdialog.cpp:244
 msgid "Locked"
-msgstr ""
+msgstr "Låst"
 
 #: accountdialog.cpp:245
 msgid "Enable or disable the transaction Lock"
@@ -585,7 +585,7 @@ msgstr ""
 #: attachmentdialog.cpp:55 customfieldeditdialog.cpp:125
 #: customfieldlistdialog.cpp:54 general_report_manager.cpp:416
 msgid "Description"
-msgstr ""
+msgstr "Beskrivning"
 
 #: attachmentdialog.cpp:56 import_export/qif_export.cpp:189
 #: import_export/univcsvdialog.cpp:179
@@ -619,12 +619,12 @@ msgstr ""
 #: attachmentdialog.cpp:85
 #, c-format
 msgid "Organize Attachments | %s %i"
-msgstr ""
+msgstr "Organisera bilagor | %s %i"
 
 #: attachmentdialog.cpp:87
 #, c-format
 msgid "Organize Attachments | New %s"
-msgstr ""
+msgstr "Organisera bilagor | Nyast %s"
 
 #: attachmentdialog.cpp:127 customfieldlistdialog.cpp:103 payeedialog.cpp:116
 msgid "Other tools"
