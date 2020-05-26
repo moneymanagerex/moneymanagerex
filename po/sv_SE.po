@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-05-26 12:37+0300\n"
-"PO-Revision-Date: 2020-05-26 11:25\n"
+"PO-Revision-Date: 2020-05-26 12:13\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
@@ -515,7 +515,7 @@ msgstr "Alla"
 #: assetspanel.cpp:465 billsdepositspanel.cpp:264 mmcheckingpanel.cpp:438
 #: stockspanel.cpp:569
 msgid "&New "
-msgstr ""
+msgstr "&Ny "
 
 #: assetspanel.cpp:469 stockspanel.cpp:573
 msgid "&Add Trans "
@@ -808,19 +808,19 @@ msgstr ""
 
 #: billsdepositsdialog.cpp:164
 msgid "New Recurring Transaction"
-msgstr ""
+msgstr "Ny återkommande transaktion"
 
 #: billsdepositsdialog.cpp:304
 msgid "Edit Recurring Transaction"
-msgstr ""
+msgstr "Ändra återkommande transaktion"
 
 #: billsdepositsdialog.cpp:308
 msgid "Enter Recurring Transaction"
-msgstr ""
+msgstr "Ange återkommande transaktion"
 
 #: billsdepositsdialog.cpp:401
 msgid "Recurring Transaction Details"
-msgstr ""
+msgstr "Detaljer för återkommande transaktion"
 
 #: billsdepositsdialog.cpp:413
 msgid "Specify the date the user is requested to enter this transaction"
@@ -1166,7 +1166,7 @@ msgstr ""
 #: billsdepositspanel.cpp:221 billsdepositspanel.cpp:867 mmframe.cpp:712
 #: mmhomepagepanel.cpp:264
 msgid "Recurring Transactions"
-msgstr ""
+msgstr "Återkommande transaktioner"
 
 #: billsdepositspanel.cpp:230 filtertransdialog.cpp:94
 msgid "Transaction Filter"
@@ -4038,7 +4038,7 @@ msgstr ""
 
 #: mmframe.cpp:1487
 msgid "&Recurring Transactions"
-msgstr ""
+msgstr "&Återkommande transaktioner"
 
 #: mmframe.cpp:1487
 msgid "Bills && Deposits"
@@ -4830,7 +4830,8 @@ msgstr "Annat"
 #: model/Model_Billsdeposits.cpp:300
 msgid "A recurring transaction will exceed your account limit.\n\n"
 "Do you wish to continue?"
-msgstr ""
+msgstr "En återkommande transaktion kommer att överskrida kontots gräns.\n\n"
+"Vill du fortsätta?"
 
 #: model/Model_Billsdeposits.cpp:302
 msgid "MMEX Recurring Transaction Check"
