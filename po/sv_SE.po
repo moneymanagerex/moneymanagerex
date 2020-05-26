@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-05-26 12:37+0300\n"
-"PO-Revision-Date: 2020-05-26 12:13\n"
+"PO-Revision-Date: 2020-05-26 12:26\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
@@ -269,7 +269,7 @@ msgstr ""
 
 #: accountdialog.cpp:498
 msgid "Invalid URL"
-msgstr ""
+msgstr "Ogiltig URL"
 
 #: appstartdialog.cpp:99
 msgid "Open Last Opened Database"
@@ -315,7 +315,7 @@ msgstr ""
 
 #: appstartdialog.cpp:137
 msgid "&Exit "
-msgstr ""
+msgstr "&Avsluta "
 
 #: appstartdialog.cpp:153
 #, c-format
