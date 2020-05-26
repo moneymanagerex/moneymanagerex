@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-05-26 12:37+0300\n"
-"PO-Revision-Date: 2020-05-26 14:17\n"
+"PO-Revision-Date: 2020-05-26 15:16\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
@@ -419,11 +419,11 @@ msgstr ""
 
 #: assetdialog.cpp:306 constants.cpp:86 sharetransactiondialog.cpp:321
 msgid "&Cancel "
-msgstr ""
+msgstr "&Avbryt "
 
 #: assetdialog.cpp:402 sharetransactiondialog.cpp:429
 msgid "Invalid Transaction"
-msgstr ""
+msgstr "Ogiltig transaktion"
 
 #: assetdialog.cpp:409
 msgid "Asset Account not found.\n\n"
@@ -433,7 +433,7 @@ msgstr ""
 #: assetspanel.cpp:58 billsdepositspanel.cpp:96 mmcheckingpanel.cpp:949
 #: reports/transactions.cpp:68 stockspanel.cpp:91
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #: assetspanel.cpp:61 billsdepositsdialog.cpp:542 billsdepositspanel.cpp:103
 #: customfieldlistdialog.cpp:55 filtertransdialog.cpp:252
@@ -448,12 +448,12 @@ msgstr "Typ"
 
 #: assetspanel.cpp:62 reports/summarystocks.cpp:183
 msgid "Initial Value"
-msgstr ""
+msgstr "Ursprungsvärde"
 
 #: assetspanel.cpp:63 reports/summarystocks.cpp:153
 #: reports/summarystocks.cpp:187 stockdialog.cpp:259
 msgid "Current Value"
-msgstr ""
+msgstr "Aktuellt värde"
 
 #: assetspanel.cpp:96
 msgid "&New Asset"
@@ -590,11 +590,11 @@ msgstr "Beskrivning"
 #: attachmentdialog.cpp:56 import_export/qif_export.cpp:189
 #: import_export/univcsvdialog.cpp:179
 msgid "File"
-msgstr ""
+msgstr "Fil"
 
 #: attachmentdialog.cpp:64
 msgid "Attachment folder not defined."
-msgstr ""
+msgstr "Mapp för bilagor är inte definierad."
 
 #: attachmentdialog.cpp:65
 msgid "Please set it in Tools -> Options -> Attachments"
@@ -1591,7 +1591,7 @@ msgstr ""
 
 #: categdialog.cpp:504 categdialog.cpp:521
 msgid "Organise Categories: Editing Error"
-msgstr ""
+msgstr "Organisera kategorier: Redigeringsfel"
 
 #: categdialog.cpp:597 mmframe.cpp:3101
 msgid "Category Relocation Completed."
@@ -4302,7 +4302,7 @@ msgstr "Visa organisera katagorier"
 
 #: mmframe.cpp:1683
 msgid "Show Organize Payees Dialog"
-msgstr ""
+msgstr "Visa Organisera betalningsmottagare"
 
 #: mmframe.cpp:1684
 msgid "Show Organize Currency Dialog"
@@ -5374,7 +5374,7 @@ msgstr ""
 
 #: payeedialog.cpp:270
 msgid "Organize Payees: Delete Error"
-msgstr ""
+msgstr "Organisera betalningsmottagare: Raderingsfel"
 
 #: payeedialog.cpp:361
 msgid "Define Default Category"
@@ -6221,7 +6221,7 @@ msgstr ""
 
 #: transdialog.cpp:558 usertransactionpanel.cpp:210
 msgid "Organize attachments of this transaction"
-msgstr ""
+msgstr "Organisera bilagor till denna transaktion"
 
 #: transdialog.cpp:597
 msgid "Show/Hide custom fields window"
@@ -6301,7 +6301,7 @@ msgstr ""
 
 #: usertransactionpanel.cpp:184
 msgid "Specify a person, Company or Organisation for this transaction."
-msgstr ""
+msgstr "Ange en person, företag eller organisation för denna transaktion."
 
 #: usertransactionpanel.cpp:200
 msgid "Specify a transaction code or associated check details"
