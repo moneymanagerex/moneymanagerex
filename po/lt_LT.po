@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-05-26 12:37+0300\n"
-"PO-Revision-Date: 2020-05-26 11:16\n"
+"PO-Revision-Date: 2020-05-26 11:25\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Lithuanian\n"
 "MIME-Version: 1.0\n"
@@ -31,7 +31,7 @@ msgstr "Apie"
 
 #: aboutdialog.cpp:154
 msgid "Authors"
-msgstr ""
+msgstr "Autoriai"
 
 #: aboutdialog.cpp:159
 msgid "Sponsors"
@@ -43,7 +43,7 @@ msgstr "Licencija"
 
 #: aboutdialog.cpp:169
 msgid "Privacy"
-msgstr ""
+msgstr "Privatumas"
 
 #: aboutdialog.cpp:200 accountdialog.cpp:305 appstartdialog.cpp:136
 #: assetdialog.cpp:305 attachmentdialog.cpp:120 billsdepositsdialog.cpp:478
@@ -195,7 +195,7 @@ msgstr ""
 
 #: accountdialog.cpp:244
 msgid "Locked"
-msgstr ""
+msgstr "Užrakinta"
 
 #: accountdialog.cpp:245
 msgid "Enable or disable the transaction Lock"
@@ -211,7 +211,7 @@ msgstr ""
 
 #: accountdialog.cpp:253
 msgid "Minimum Bal:"
-msgstr ""
+msgstr "Minimalus balansas:"
 
 #: accountdialog.cpp:255
 msgid "Account balance lower limit. Zero to disable"
@@ -219,23 +219,23 @@ msgstr ""
 
 #: accountdialog.cpp:260
 msgid "Credit"
-msgstr ""
+msgstr "Kreditas"
 
 #: accountdialog.cpp:268
 msgid "Credit Limit:"
-msgstr ""
+msgstr "Kredito limitas:"
 
 #: accountdialog.cpp:270
 msgid "Credit limit for the Account. Zero to disable"
-msgstr ""
+msgstr "Sąskaitos kredito limitas. Įveskite 0 panaikinimui"
 
 #: accountdialog.cpp:273
 msgid "Interest Rate:"
-msgstr ""
+msgstr "Palūkanų norma:"
 
 #: accountdialog.cpp:277
 msgid "Payment Due Date:"
-msgstr ""
+msgstr "Mokėjimo data:"
 
 #: accountdialog.cpp:281
 msgid "Minimum Payment:"
@@ -4776,11 +4776,11 @@ msgstr ""
 
 #: mmreportspanel.cpp:341
 msgid "Show"
-msgstr ""
+msgstr "Rodyti"
 
 #: mmreportspanel.cpp:342
 msgid "Hide"
-msgstr ""
+msgstr "Slėpti"
 
 #: model/Model_Account.cpp:32 model/Model_Asset.cpp:35 reports/summary.cpp:148
 msgid "Cash"
@@ -4796,7 +4796,7 @@ msgstr "Kreditinė kortelė"
 
 #: model/Model_Account.cpp:35
 msgid "Loan"
-msgstr ""
+msgstr "Paskolos"
 
 #: model/Model_Account.cpp:36
 msgid "Term"
@@ -4808,7 +4808,7 @@ msgstr "Investicija"
 
 #: model/Model_Account.cpp:38
 msgid "Asset"
-msgstr ""
+msgstr "Turtas"
 
 #: model/Model_Account.cpp:39
 msgid "Shares"
