@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-05-26 12:37+0300\n"
-"PO-Revision-Date: 2020-05-26 11:25\n"
+"PO-Revision-Date: 2020-05-26 11:48\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Greek\n"
 "MIME-Version: 1.0\n"
@@ -4381,7 +4381,10 @@ msgid "Database that you trying to open has been marked as opened by another MME
 "To avoid data loss or conflict, it's strongly recommended to close all other applications that can use the DB.\n\n"
 "Possible it may be as result of a programm crash in previous usage.\n\n"
 "Would you like to continue?"
-msgstr ""
+msgstr "Η Βάση Δεδομένων που προσπαθείτα να ανοίξετε έχει ήδη ανοιχθεί από μια άλλη εφαρμογή MMEX...\n"
+"Για να αποφύγετε απώλεια δεδομένων ή διένεξη, προτείνουμε να κλείσετε όλες τις υπόλοιπες εφαρμογές που μπορεί να χρησιμοποιούν τη ΒΔ.\n\n"
+"Είναι πιθανό να έχει συμβεί ως αποτέλεσμα σφάλματος κάποιου προγράμματος από προηγούμενη χρήση.\n\n"
+"Θα θέλατε να συνεχίσετε;"
 
 #: mmframe.cpp:1933
 msgid "MMEX Instance Check"
@@ -4401,37 +4404,38 @@ msgstr ""
 
 #: mmframe.cpp:2002
 msgid "Enter password for database"
-msgstr ""
+msgstr "Εισάγετε το κωδικό πρόσβασης για τη βάση δεδομένων"
 
 #: mmframe.cpp:2007
 msgid "Choose database file to Save As"
-msgstr ""
+msgstr "Επιλέξτε αρχείο βάσης δεδομένων για Αποθήκευση Ως"
 
 #: mmframe.cpp:2029
 msgid "Converted DB!"
-msgstr ""
+msgstr "Μετατραπείσα ΒΔ!"
 
 #: mmframe.cpp:2029
 msgid "MMEX message"
-msgstr ""
+msgstr "Μήνυμα MMEX"
 
 #: mmframe.cpp:2035
 msgid "MMEX: Encryption Password Change"
-msgstr ""
+msgstr "MMEX: Έγινε αλλαγή του κωδικού πρόσβασης κρυπτογράφησης"
 
 #: mmframe.cpp:2036
 #, c-format
 msgid "New password for database\n\n"
 "%s"
-msgstr ""
+msgstr "Νέος κωδικός πρόσβασης για τη βάση δεδομένων\n\n"
+"%s"
 
 #: mmframe.cpp:2041
 msgid "New password must not be empty."
-msgstr ""
+msgstr "Ο νέος κωδικός πρόσβασης δεν μπορεί να είναι κενός."
 
 #: mmframe.cpp:2045
 msgid "Please confirm new password"
-msgstr ""
+msgstr "Παρακαλώ επιβεβαιώστε το νέο κωδικό πρόσβασης"
 
 #: mmframe.cpp:2049
 msgid "Password change completed."
@@ -4474,11 +4478,11 @@ msgstr "Αδυναμια αντιγραφής αρχείου στον εαυτό
 
 #: mmframe.cpp:2135
 msgid "Enter password for new database"
-msgstr ""
+msgstr "Εισάγετε το κωδικό πρόσβασης για τη νέα βάση δεδομένων"
 
 #: mmframe.cpp:2219 mmframe.cpp:2238
 msgid "No account available to import"
-msgstr ""
+msgstr "Κανένας λογαριασμός διαθέσιμος για εισαγωγή"
 
 #: mmframe.cpp:2287
 msgid "Asset Accounts hold Asset transactions\n\n"
@@ -4522,7 +4526,7 @@ msgstr ""
 
 #: mmframe.cpp:2882
 msgid "Please wait..."
-msgstr ""
+msgstr "Παρακαλώ περιμένετε..."
 
 #: mmframe.cpp:2931 stockspanel.cpp:893
 #, c-format
@@ -4621,7 +4625,7 @@ msgstr "Έσοδα προς έξοδα"
 
 #: mmframereport.cpp:156
 msgid "My Usage"
-msgstr ""
+msgstr "Η χρήση μου"
 
 #: mmframereport.cpp:161
 msgid "Payees"
@@ -4637,7 +4641,7 @@ msgstr ""
 
 #: mmframereport.cpp:183
 msgid "Budget Category Summary"
-msgstr ""
+msgstr "Εμφάνιση της περίληψης των κατηγοριών του προϋπολογισμού"
 
 #: mmframereport.cpp:192
 msgid "Stocks Report"
@@ -4880,19 +4884,19 @@ msgstr ""
 
 #: model/Model_Report.cpp:88
 msgid "Begin date: "
-msgstr ""
+msgstr "Ημερομηνία έναρξης: "
 
 #: model/Model_Report.cpp:89
 msgid "Date: "
-msgstr ""
+msgstr "Ημερομηνία: "
 
 #: model/Model_Report.cpp:90
 msgid "End date: "
-msgstr ""
+msgstr "Ημερομηνία λήξης: "
 
 #: model/Model_Report.cpp:235
 msgid "Template is empty"
-msgstr ""
+msgstr "Το πρότυπο είναι άδειο"
 
 #: model/Model_Report.cpp:249
 #, c-format
@@ -4937,7 +4941,7 @@ msgstr ""
 
 #: optionsettingsattachment.cpp:68
 msgid "Every OS type (Win,Mac,Unix) has its attachment folder"
-msgstr ""
+msgstr "Κάθε τύπος λειτουργικού συστήματος (Win, Mac, Unix) έχει το δικό του φάκελο συνημμένων"
 
 #: optionsettingsattachment.cpp:87
 msgid "Browse for folder"
@@ -4977,19 +4981,19 @@ msgstr ""
 
 #: optionsettingsattachment.cpp:116
 msgid "Not set yet"
-msgstr ""
+msgstr "Δεν έχει οριστεί ακόμα"
 
 #: optionsettingsattachment.cpp:124
 msgid "Windows folder -> "
-msgstr ""
+msgstr "Φάκελος των Windows -> "
 
 #: optionsettingsattachment.cpp:132
 msgid "Mac folder -> "
-msgstr ""
+msgstr "Φάκελος του Mac -> "
 
 #: optionsettingsattachment.cpp:140
 msgid "Unix folder -> "
-msgstr ""
+msgstr "Φάκελος του Unix -> "
 
 #: optionsettingsattachment.cpp:150
 msgid "Create and use Attachments subfolder"
@@ -5281,11 +5285,11 @@ msgstr ""
 
 #: optionsettingsnet.cpp:138
 msgid "Updates"
-msgstr ""
+msgstr "Ενημερώσεις"
 
 #: optionsettingsnet.cpp:144
 msgid "Check for updates at StartUp"
-msgstr ""
+msgstr "Έλεγχος για ενημερώσεις κατά την εκκίνηση"
 
 #: optionsettingsnet.cpp:146
 msgid "Enable to automatically check if new MMEX version is available at StartUp"
@@ -5301,7 +5305,7 @@ msgstr ""
 
 #: optionsettingsnet.cpp:154
 msgid "Updates source"
-msgstr ""
+msgstr "Πηγή ενημερώσεων"
 
 #: optionsettingsview.cpp:78
 msgid "Specify which accounts are visible"
@@ -5317,7 +5321,7 @@ msgstr ""
 
 #: optionsettingsview.cpp:92
 msgid "Icons size"
-msgstr ""
+msgstr "Μέγεθος εικονιδίων"
 
 #: optionsettingsview.cpp:98
 msgid "View Budgets as Financial Years"
@@ -5333,7 +5337,7 @@ msgstr ""
 
 #: optionsettingsview.cpp:115
 msgid "Ignore Future Transactions"
-msgstr ""
+msgstr "Αγνόηση Μελλοντικών Συναλλαγών"
 
 #: optionsettingsview.cpp:121 transdialog.cpp:563
 msgid "User Colors"
@@ -5567,7 +5571,7 @@ msgstr ""
 #: reports/bugreport.h:82
 #, c-format
 msgid "Please, join our community in <a href='%s'>Slack</a>. Here you can also pose your question and learn latest news."
-msgstr ""
+msgstr "Παρακαλούμε να συνδεθείτε στη κοινότητά μας στο <a href='%s'>Slack</a>. Εδώ επίσης μπορείτε να θέσετε την ερώτησή σας και να μάθετε τα τελευταία νέα."
 
 #: reports/bugreport.h:83
 #, c-format
@@ -5994,7 +5998,7 @@ msgstr ""
 #: stockdialog.cpp:671
 #, c-format
 msgid "Total Lines : %ld"
-msgstr ""
+msgstr "Σύνολο Γραμμών: %ld"
 
 #: stockdialog.cpp:673
 #, c-format
@@ -6324,51 +6328,51 @@ msgstr ""
 
 #: util.cpp:422
 msgid "Jan"
-msgstr ""
+msgstr "Ιαν"
 
 #: util.cpp:422
 msgid "Feb"
-msgstr ""
+msgstr "Φεβ"
 
 #: util.cpp:422
 msgid "Mar"
-msgstr ""
+msgstr "Μαρ"
 
 #: util.cpp:423
 msgid "Apr"
-msgstr ""
+msgstr "Απρ"
 
 #: util.cpp:423 util.h:201
 msgid "May"
-msgstr ""
+msgstr "Μάι"
 
 #: util.cpp:423
 msgid "Jun"
-msgstr ""
+msgstr "Ιουν"
 
 #: util.cpp:424
 msgid "Jul"
-msgstr ""
+msgstr "Ιουλ"
 
 #: util.cpp:424
 msgid "Aug"
-msgstr ""
+msgstr "Αυγ"
 
 #: util.cpp:424
 msgid "Sep"
-msgstr ""
+msgstr "Σεπ"
 
 #: util.cpp:425
 msgid "Oct"
-msgstr ""
+msgstr "Οκτ"
 
 #: util.cpp:425
 msgid "Nov"
-msgstr ""
+msgstr "Νοε"
 
 #: util.cpp:425
 msgid "Dec"
-msgstr ""
+msgstr "Δεκ"
 
 #: util.cpp:430
 msgid "Sunday"
@@ -6606,7 +6610,7 @@ msgstr ""
 
 #: webappdialog.cpp:407
 msgid "Import and open"
-msgstr ""
+msgstr "Εισαγωγή και άνοιγμα"
 
 #: webappdialog.cpp:408
 msgid "Delete"
@@ -6739,7 +6743,7 @@ msgstr ""
 
 #: wizard_update.cpp:136
 msgid "Version"
-msgstr ""
+msgstr "Έκδοση"
 
 #: wizard_update.cpp:144
 msgid "You already have the latest version"
