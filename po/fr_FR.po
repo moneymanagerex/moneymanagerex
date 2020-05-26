@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-05-26 12:37+0300\n"
-"PO-Revision-Date: 2020-05-26 09:50\n"
+"PO-Revision-Date: 2020-05-26 10:59\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -2226,7 +2226,9 @@ msgstr "Vous devez préciser un chemin vers un autre fichier de ba&se de donnée
 msgid "An incorrect password given for an encrypted file\n"
 "or\n"
 "attempt to open a File that is not a database file \n"
-msgstr ""
+msgstr "Un mot de passe incorrect donné pour un fichier chiffré\n"
+"ou\n"
+"tentative d'ouvrir un fichier qui n'est pas un fichier de base de données \n"
 
 #: dbwrapper.cpp:82 import_export/qif_import_gui.cpp:855 webapp.cpp:120
 #, c-format
@@ -4398,7 +4400,10 @@ msgid "Database that you trying to open has been marked as opened by another MME
 "To avoid data loss or conflict, it's strongly recommended to close all other applications that can use the DB.\n\n"
 "Possible it may be as result of a programm crash in previous usage.\n\n"
 "Would you like to continue?"
-msgstr ""
+msgstr "La base de données que vous essayez d'ouvrir a été marquée comme ouverte par une autre instance MMEX...\n"
+"Pour éviter une perte de données ou un conflit, il est fortement recommandé de fermer toutes les autres applications qui peuvent utiliser la base de données.\n\n"
+"Il est possible que ce soit le résultat d'un plantage du programme dans l'utilisation précédente.\n\n"
+"Voulez-vous continuer ?"
 
 #: mmframe.cpp:1933
 msgid "MMEX Instance Check"
@@ -5599,7 +5604,7 @@ msgstr ""
 #: reports/bugreport.h:82
 #, c-format
 msgid "Please, join our community in <a href='%s'>Slack</a>. Here you can also pose your question and learn latest news."
-msgstr ""
+msgstr "Rejoignez notre communauté dans <a href='%s'>Slack</a>. Ici vous pouvez également poser votre question et connaître les dernières nouveautés."
 
 #: reports/bugreport.h:83
 #, c-format
