@@ -520,7 +520,6 @@ endif()
 install(FILES
     contrib.txt
     license.txt
-    version.txt
     README.TXT
     DESTINATION "${MMEX_DOC_DIR}")
 install(DIRECTORY
