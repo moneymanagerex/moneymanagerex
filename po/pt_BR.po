@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2020-05-26 11:58+0300\n"
-"PO-Revision-Date: 2020-05-26 09:36\n"
+"POT-Creation-Date: 2020-05-26 12:37+0300\n"
+"PO-Revision-Date: 2020-05-26 09:50\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Portuguese, Brazilian\n"
 "MIME-Version: 1.0\n"
@@ -2222,9 +2222,9 @@ msgid "You must specify path to another database file"
 msgstr "Você precisa especificar o caminho para outro arquivo de dados"
 
 #: dbwrapper.cpp:78
-msgid "An incorrect password given for an encrypted file \n\n"
-"or \n\n"
-" Attempt to open a File that is not a database file \n"
+msgid "An incorrect password given for an encrypted file\n"
+"or\n"
+"attempt to open a File that is not a database file \n"
 msgstr ""
 
 #: dbwrapper.cpp:82 import_export/qif_import_gui.cpp:855 webapp.cpp:120
@@ -4392,7 +4392,7 @@ msgid "portable mode"
 msgstr ""
 
 #: mmframe.cpp:1929
-msgid "Database that you trying to open has been markrd as opened by another MMEX instance...\n"
+msgid "Database that you trying to open has been marked as opened by another MMEX instance...\n"
 "To avoid data loss or conflict, it's strongly recommended to close all other applications that can use the DB.\n\n"
 "Possible it may be as result of a programm crash in previous usage.\n\n"
 "Would you like to continue?"
@@ -5595,7 +5595,7 @@ msgstr ""
 
 #: reports/bugreport.h:82
 #, c-format
-msgid "Please, join our community in <a href='%s'>Slack</a>. Here you can also pose your question and learn a latest news."
+msgid "Please, join our community in <a href='%s'>Slack</a>. Here you can also pose your question and learn latest news."
 msgstr ""
 
 #: reports/bugreport.h:83
