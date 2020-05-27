@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-05-26 12:37+0300\n"
-"PO-Revision-Date: 2020-05-27 06:45\n"
+"PO-Revision-Date: 2020-05-27 08:44\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
@@ -648,31 +648,31 @@ msgstr "Ange en ny beskrivning för bilagan:"
 
 #: attachmentdialog.cpp:213
 msgid "Organize Attachments: Edit Attachment"
-msgstr ""
+msgstr "Organisera bilagor: Redigera bilaga"
 
 #: attachmentdialog.cpp:237
 msgid "Do you really want to delete this attachment?"
-msgstr ""
+msgstr "Vill du verkligen ta bort den här bilagan?"
 
 #: attachmentdialog.cpp:238
 msgid "Confirm Attachment Deletion"
-msgstr ""
+msgstr "Bekräfta borttagning av bilaga"
 
 #: attachmentdialog.cpp:312 categdialog.cpp:226 customfieldlistdialog.cpp:264
 #: import_export/univcsvdialog.cpp:240 maincurrencydialog.cpp:197
 #: payeedialog.cpp:365 splittransactionsdialog.cpp:165 stockdialog.cpp:341
 msgid "&Add "
-msgstr ""
+msgstr "&Lägg till "
 
 #: attachmentdialog.cpp:314
 msgid "&Open "
-msgstr ""
+msgstr "&Öppna "
 
 #: attachmentdialog.cpp:317 customfieldlistdialog.cpp:267
 #: import_export/univcsvdialog.cpp:244 maincurrencydialog.cpp:204
 #: payeedialog.cpp:368 splittransactionsdialog.cpp:167
 msgid "&Remove "
-msgstr ""
+msgstr "&Ta bort "
 
 #: attachmentdialog.cpp:359
 msgid "Att."
@@ -741,7 +741,7 @@ msgstr "Veckovis"
 
 #: billsdepositsdialog.cpp:52 billsdepositspanel.cpp:41
 msgid "Fortnightly"
-msgstr ""
+msgstr "Var fjortonde dag"
 
 #: billsdepositsdialog.cpp:53 billsdepositspanel.cpp:42 mmframereport.cpp:122
 #: mmframereport.cpp:129 mmframereport.cpp:151 mmframereport.cpp:168
@@ -780,27 +780,27 @@ msgstr "Fyra veckor"
 #: billsdepositsdialog.cpp:60 billsdepositspanel.cpp:49 mmframereport.cpp:119
 #: model/Model_Budget.cpp:63
 msgid "Daily"
-msgstr ""
+msgstr "Dagligen"
 
 #: billsdepositsdialog.cpp:61 billsdepositsdialog.cpp:1342
 msgid "In (x) Days"
-msgstr ""
+msgstr "Om (x) dagar"
 
 #: billsdepositsdialog.cpp:62 billsdepositsdialog.cpp:1342
 msgid "In (x) Months"
-msgstr ""
+msgstr "Om (x) månader"
 
 #: billsdepositsdialog.cpp:63
 msgid "Every (x) Days"
-msgstr ""
+msgstr "Var (x) dag"
 
 #: billsdepositsdialog.cpp:64
 msgid "Every (x) Months"
-msgstr ""
+msgstr "Var (x) månad"
 
 #: billsdepositsdialog.cpp:65 billsdepositspanel.cpp:54
 msgid "Monthly (last day)"
-msgstr ""
+msgstr "Månatligen (sista dagen)"
 
 #: billsdepositsdialog.cpp:66 billsdepositspanel.cpp:55
 msgid "Monthly (last business day)"
@@ -844,7 +844,7 @@ msgstr ""
 
 #: billsdepositsdialog.cpp:446 billsdepositsdialog.cpp:1299
 msgid "Payments Left"
-msgstr ""
+msgstr "Återstående betalningar"
 
 #: billsdepositsdialog.cpp:460
 msgid "Request user to enter payment"
@@ -1035,21 +1035,23 @@ msgstr ""
 
 #: billsdepositsdialog.cpp:1258
 msgid "Period: Days"
-msgstr ""
+msgstr "Periodicitet: Dagar"
 
 #: billsdepositsdialog.cpp:1259
 msgid "Period: Months"
-msgstr ""
+msgstr "Periodicitet: månader"
 
 #: billsdepositsdialog.cpp:1266
 msgid "Specify period in Days to activate.\n"
 "Becomes blank when not active."
-msgstr ""
+msgstr "Ange periodicitet i dagar för att aktivera.\n"
+"Blir tomt när den inte är aktiv."
 
 #: billsdepositsdialog.cpp:1275
 msgid "Specify period in Months to activate.\n"
 "Becomes blank when not active."
-msgstr ""
+msgstr "Ange periodicitet i månader för att aktivera.\n"
+"Blir tomt när den inte är aktiv."
 
 #: billsdepositsdialog.cpp:1284
 msgid "Specify period in Days to activate.\n"
@@ -1222,34 +1224,34 @@ msgstr ""
 
 #: billsdepositspanel.cpp:449
 msgid "Manual"
-msgstr ""
+msgstr "Manuell"
 
 #: billsdepositspanel.cpp:453
 msgid "Suggested"
-msgstr ""
+msgstr "Föreslagen"
 
 #: billsdepositspanel.cpp:457
 msgid "Automated"
-msgstr ""
+msgstr "Automatiserad"
 
 #: billsdepositspanel.cpp:501 billsdepositspanel.cpp:568 mmhomepage.cpp:305
 #, c-format
 msgid "%d day remaining"
 msgid_plural "%d days remaining"
 msgstr[0] ""
-msgstr[1] ""
+msgstr[1] "%d dagar återstår"
 
 #: billsdepositspanel.cpp:506 billsdepositspanel.cpp:513
 #: billsdepositspanel.cpp:520 billsdepositspanel.cpp:573
 #: billsdepositspanel.cpp:580 billsdepositspanel.cpp:584
 msgid "Inactive"
-msgstr ""
+msgstr "Inaktiv"
 
 #: billsdepositspanel.cpp:511 mmhomepage.cpp:306
 #, c-format
 msgid "%d day delay!"
 msgid_plural "%d days delay!"
-msgstr[0] ""
+msgstr[0] "%d dag försenad!"
 msgstr[1] ""
 
 #: billsdepositspanel.cpp:518 billsdepositspanel.cpp:578 mmhomepage.cpp:308
@@ -1273,19 +1275,19 @@ msgstr "Nytt budgetår"
 
 #: budgetentrydialog.cpp:107
 msgid "Category: "
-msgstr ""
+msgstr "Kategori: "
 
 #: budgetentrydialog.cpp:112
 msgid "Sub Category: "
-msgstr ""
+msgstr "Underkategori: "
 
 #: budgetentrydialog.cpp:119
 msgid "Estimated:"
-msgstr ""
+msgstr "Beräknad:"
 
 #: budgetentrydialog.cpp:121
 msgid "Actual:"
-msgstr ""
+msgstr "Verklig:"
 
 #: budgetentrydialog.cpp:124
 msgid "Type:"
@@ -1353,12 +1355,12 @@ msgstr ""
 #: budgetingpanel.cpp:176 reports/budget.cpp:88
 #, c-format
 msgid "Year: %s"
-msgstr ""
+msgstr "År: %s"
 
 #: budgetingpanel.cpp:181
 #, c-format
 msgid "Month: %s"
-msgstr ""
+msgstr "Månad: %s"
 
 #: budgetingpanel.cpp:183
 #, c-format
@@ -1367,27 +1369,27 @@ msgstr ""
 
 #: budgetingpanel.cpp:240
 msgid "Income: "
-msgstr ""
+msgstr "Inkomst: "
 
 #: budgetingpanel.cpp:241 budgetingpanel.cpp:249
 msgid "Estimated: "
-msgstr ""
+msgstr "Beräknad: "
 
 #: budgetingpanel.cpp:243 budgetingpanel.cpp:251
 msgid "Actual: "
-msgstr ""
+msgstr "Verklig: "
 
 #: budgetingpanel.cpp:245 budgetingpanel.cpp:253
 msgid "Difference: "
-msgstr ""
+msgstr "Skillnad: "
 
 #: budgetingpanel.cpp:248
 msgid "Expenses: "
-msgstr ""
+msgstr "Utgifter: "
 
 #: budgetingpanel.cpp:291
 msgid "Icon"
-msgstr ""
+msgstr "Ikon"
 
 #: budgetingpanel.cpp:293
 msgid "Sub Category"
@@ -1409,7 +1411,7 @@ msgstr ""
 
 #: budgetyeardialog.cpp:93
 msgid "&Add Year"
-msgstr ""
+msgstr "&Lägg till år"
 
 #: budgetyeardialog.cpp:95
 msgid "Add a new budget year"
@@ -1417,7 +1419,7 @@ msgstr "Lägg till ett nytt budgetår"
 
 #: budgetyeardialog.cpp:98
 msgid "&Add Month"
-msgstr ""
+msgstr "&Lägg till månad"
 
 #: budgetyeardialog.cpp:100
 msgid "Add a new budget month"
@@ -1624,15 +1626,15 @@ msgstr "Avbryt"
 
 #: constants.cpp:90
 msgid "Close"
-msgstr ""
+msgstr "Stäng"
 
 #: constants.cpp:92
 msgid "&Close "
-msgstr ""
+msgstr "&Stäng "
 
 #: constants.cpp:188
 msgid "Advanced Filter"
-msgstr ""
+msgstr "Avancerat filter"
 
 #: constants.cpp:189
 msgid "View All Transactions"
@@ -1640,7 +1642,7 @@ msgstr "Visa alla transaktioner"
 
 #: constants.cpp:190
 msgid "View Today"
-msgstr ""
+msgstr "Visa idag"
 
 #: constants.cpp:191
 msgid "View Current Month"
@@ -1648,11 +1650,11 @@ msgstr "Visa nuvarande månad"
 
 #: constants.cpp:192
 msgid "View Last 30 days"
-msgstr ""
+msgstr "Visa senaste 30 dagarna"
 
 #: constants.cpp:193
 msgid "View Last 90 days"
-msgstr ""
+msgstr "Visa senaste 90 dagarna"
 
 #: constants.cpp:194
 msgid "View Last Month"
@@ -1660,27 +1662,27 @@ msgstr "Visa föregående månad"
 
 #: constants.cpp:195
 msgid "View Last 3 Months"
-msgstr ""
+msgstr "Visa de senaste 3 månaderna"
 
 #: constants.cpp:196
 msgid "View Last 12 Months"
-msgstr ""
+msgstr "Visa de senaste 12 månaderna"
 
 #: constants.cpp:197
 msgid "View Current Year"
-msgstr ""
+msgstr "Visa nuvarande månad"
 
 #: constants.cpp:198
 msgid "View Current Financial Year"
-msgstr ""
+msgstr "Visa nuvarande räkenskapsår"
 
 #: constants.cpp:199
 msgid "View Last Year"
-msgstr ""
+msgstr "Visa förra året"
 
 #: constants.cpp:200
 msgid "View Last Financial Year"
-msgstr ""
+msgstr "Visa förra räkenskapsåret"
 
 #: constants.cpp:201
 msgid "View Since Statement Date"
@@ -1688,7 +1690,7 @@ msgstr ""
 
 #: constants.cpp:203
 msgid "ALL"
-msgstr ""
+msgstr "ALLA"
 
 #: constants.cpp:204 mmframe.cpp:1259 mmframe.cpp:1677
 #: model/Model_Account.cpp:26
@@ -1709,7 +1711,7 @@ msgstr "Valutahanterare"
 
 #: currencydialog.cpp:96
 msgid "Currency name"
-msgstr ""
+msgstr "Valutans namn"
 
 #: currencydialog.cpp:155
 msgid "Currency Name"
@@ -1717,11 +1719,11 @@ msgstr "Valutanamn"
 
 #: currencydialog.cpp:159
 msgid "Currency Symbol"
-msgstr ""
+msgstr "Valutasymbol"
 
 #: currencydialog.cpp:164
 msgid "Unit Name"
-msgstr ""
+msgstr "Enhetsnamn"
 
 #: currencydialog.cpp:168
 msgid "Cents Name"
@@ -1729,11 +1731,11 @@ msgstr ""
 
 #: currencydialog.cpp:172
 msgid "Prefix Symbol"
-msgstr ""
+msgstr "Prefixsymbol"
 
 #: currencydialog.cpp:176
 msgid "Suffix Symbol"
-msgstr ""
+msgstr "Suffixsymbol"
 
 #: currencydialog.cpp:187 currencydialog.cpp:257
 #: import_export/qif_import_gui.cpp:298 import_export/univcsvdialog.cpp:364
@@ -1921,15 +1923,15 @@ msgstr ""
 
 #: db/DB_Table_Category_V1.h:111
 msgid "Bills"
-msgstr ""
+msgstr "Räkningar"
 
 #: db/DB_Table_Category_V1.h:112
 msgid "Food"
-msgstr ""
+msgstr "Mat"
 
 #: db/DB_Table_Category_V1.h:113
 msgid "Leisure"
-msgstr ""
+msgstr "Fritid"
 
 #: db/DB_Table_Category_V1.h:114 model/Model_Asset.cpp:31
 msgid "Automobile"
@@ -1937,43 +1939,43 @@ msgstr "Bil"
 
 #: db/DB_Table_Category_V1.h:115
 msgid "Education"
-msgstr ""
+msgstr "Utbildning"
 
 #: db/DB_Table_Category_V1.h:116
 msgid "Homeneeds"
-msgstr ""
+msgstr "Hem & Hushåll"
 
 #: db/DB_Table_Category_V1.h:117
 msgid "Healthcare"
-msgstr ""
+msgstr "Hälso- och sjukvård"
 
 #: db/DB_Table_Category_V1.h:118
 msgid "Insurance"
-msgstr ""
+msgstr "Försäkringar"
 
 #: db/DB_Table_Category_V1.h:119
 msgid "Vacation"
-msgstr ""
+msgstr "Semester"
 
 #: db/DB_Table_Category_V1.h:120
 msgid "Taxes"
-msgstr ""
+msgstr "Skatter"
 
 #: db/DB_Table_Category_V1.h:121
 msgid "Miscellaneous"
-msgstr ""
+msgstr "Blandat"
 
 #: db/DB_Table_Category_V1.h:122
 msgid "Gifts"
-msgstr ""
+msgstr "Gåvor"
 
 #: db/DB_Table_Category_V1.h:124
 msgid "Other Income"
-msgstr ""
+msgstr "Annan inkomst"
 
 #: db/DB_Table_Category_V1.h:125
 msgid "Other Expenses"
-msgstr ""
+msgstr "Andra utgifter"
 
 #: db/DB_Table_Category_V1.h:126 model/Model_Billsdeposits.cpp:33
 #: model/Model_Checking.cpp:31 transdialog.cpp:349
@@ -1982,99 +1984,99 @@ msgstr "Överföring"
 
 #: db/DB_Table_Subcategory_V1.h:111
 msgid "Telephone"
-msgstr ""
+msgstr "Telefoni"
 
 #: db/DB_Table_Subcategory_V1.h:112
 msgid "Electricity"
-msgstr ""
+msgstr "Elektricitet"
 
 #: db/DB_Table_Subcategory_V1.h:113 db/DB_Table_Subcategory_V1.h:124
 msgid "Gas"
-msgstr ""
+msgstr "Gas"
 
 #: db/DB_Table_Subcategory_V1.h:114
 msgid "Internet"
-msgstr ""
+msgstr "Internet"
 
 #: db/DB_Table_Subcategory_V1.h:115
 msgid "Rent"
-msgstr ""
+msgstr "Hyra"
 
 #: db/DB_Table_Subcategory_V1.h:116
 msgid "Cable TV"
-msgstr ""
+msgstr "Kabel-TV"
 
 #: db/DB_Table_Subcategory_V1.h:117
 msgid "Water"
-msgstr ""
+msgstr "Vatten"
 
 #: db/DB_Table_Subcategory_V1.h:118
 msgid "Groceries"
-msgstr ""
+msgstr "Livsmedel"
 
 #: db/DB_Table_Subcategory_V1.h:119
 msgid "Dining out"
-msgstr ""
+msgstr "Äta ute"
 
 #: db/DB_Table_Subcategory_V1.h:120
 msgid "Movies"
-msgstr ""
+msgstr "Bio & Film"
 
 #: db/DB_Table_Subcategory_V1.h:121
 msgid "Video Rental"
-msgstr ""
+msgstr "Hyrvideo"
 
 #: db/DB_Table_Subcategory_V1.h:122
 msgid "Magazines"
-msgstr ""
+msgstr "Tidskrifter"
 
 #: db/DB_Table_Subcategory_V1.h:123
 msgid "Maintenance"
-msgstr ""
+msgstr "Underhåll"
 
 #: db/DB_Table_Subcategory_V1.h:125
 msgid "Parking"
-msgstr ""
+msgstr "Parkering"
 
 #: db/DB_Table_Subcategory_V1.h:126
 msgid "Registration"
-msgstr ""
+msgstr "Registrering"
 
 #: db/DB_Table_Subcategory_V1.h:127
 msgid "Books"
-msgstr ""
+msgstr "Böcker"
 
 #: db/DB_Table_Subcategory_V1.h:128
 msgid "Tuition"
-msgstr ""
+msgstr "Undervisning"
 
 #: db/DB_Table_Subcategory_V1.h:130
 msgid "Clothing"
-msgstr ""
+msgstr "Kläder"
 
 #: db/DB_Table_Subcategory_V1.h:131
 msgid "Furnishing"
-msgstr ""
+msgstr "Möbler & Inredning"
 
 #: db/DB_Table_Subcategory_V1.h:133 db/DB_Table_Subcategory_V1.h:141
 msgid "Health"
-msgstr ""
+msgstr "Hälsa"
 
 #: db/DB_Table_Subcategory_V1.h:134
 msgid "Dental"
-msgstr ""
+msgstr "Tandvård"
 
 #: db/DB_Table_Subcategory_V1.h:135
 msgid "Eyecare"
-msgstr ""
+msgstr "Glasögon, linser etc."
 
 #: db/DB_Table_Subcategory_V1.h:136
 msgid "Physician"
-msgstr ""
+msgstr "Läkare"
 
 #: db/DB_Table_Subcategory_V1.h:137
 msgid "Prescriptions"
-msgstr ""
+msgstr "Recept"
 
 #: db/DB_Table_Subcategory_V1.h:138
 msgid "Auto"
