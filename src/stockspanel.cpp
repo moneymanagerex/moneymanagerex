@@ -470,14 +470,14 @@ void StocksListCtrl::doRefreshItems(int trx_id)
 
 /*******************************************************/
 BEGIN_EVENT_TABLE(mmStocksPanel, wxPanel)
-    EVT_BUTTON(wxID_NEW,         mmStocksPanel::OnNewStocks)
-    EVT_BUTTON(wxID_EDIT,        mmStocksPanel::OnEditStocks)
-    EVT_BUTTON(wxID_ADD,         mmStocksPanel::OnEditStocks)
+    EVT_BUTTON(wxID_NEW,          mmStocksPanel::OnNewStocks)
+    EVT_BUTTON(wxID_EDIT,         mmStocksPanel::OnEditStocks)
+    EVT_BUTTON(wxID_ADD,          mmStocksPanel::OnEditStocks)
     EVT_BUTTON(wxID_VIEW_DETAILS, mmStocksPanel::OnEditStocks)
-    EVT_BUTTON(wxID_DELETE,      mmStocksPanel::OnDeleteStocks)
-    EVT_BUTTON(wxID_MOVE_FRAME,  mmStocksPanel::OnMoveStocks)
-    EVT_BUTTON(wxID_FILE,        mmStocksPanel::OnOpenAttachment)
-    EVT_BUTTON(wxID_REFRESH,     mmStocksPanel::OnRefreshQuotes)
+    EVT_BUTTON(wxID_DELETE,       mmStocksPanel::OnDeleteStocks)
+    EVT_BUTTON(wxID_MOVE_FRAME,   mmStocksPanel::OnMoveStocks)
+    EVT_BUTTON(wxID_FILE,         mmStocksPanel::OnOpenAttachment)
+    EVT_BUTTON(wxID_REFRESH,      mmStocksPanel::OnRefreshQuotes)
 END_EVENT_TABLE()
 /*******************************************************/
 mmStocksPanel::mmStocksPanel(int accountID
@@ -867,7 +867,6 @@ bool mmStocksPanel::onlineQuoteRefresh(wxString& msg)
         {
             msg += wxString::Format("%s\t: %0.6f -> %0.6f\n", s.SYMBOL, s.CURRENTPRICE, dPrice);
             s.CURRENTPRICE = dPrice;
-            if (s.STOCKNAME.empty()) s.STOCKNAME = s.SYMBOL;
             Model_Stock::instance().save(&s);
             Model_StockHistory::instance().addUpdate(s.SYMBOL
                 , wxDate::Now(), dPrice, Model_StockHistory::ONLINE);
