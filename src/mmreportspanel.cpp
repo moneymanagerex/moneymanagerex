@@ -74,14 +74,16 @@ mmReportsPanel::mmReportsPanel(
     m_all_date_ranges.push_back(new mmLastFinancialYear(day, month));
     m_all_date_ranges.push_back(new mmAllTime());
     m_all_date_ranges.push_back(new mmLast365Days());
+    m_all_date_ranges.push_back(new mmSpecifiedRange(wxDate::Today().SetDay(1), wxDate::Today()));
 
     Create(parent, winid, pos, size, style, name);
 }
 
 mmReportsPanel::~mmReportsPanel()
 {
-    if (cleanup_ && rb_)
+    if (cleanup_ && rb_) {
         delete rb_;
+    }
     std::for_each(m_all_date_ranges.begin(), m_all_date_ranges.end(), std::mem_fun(&mmDateRange::destroy));
     m_all_date_ranges.clear();
     clearVFprintedFiles("rep");
@@ -119,13 +121,14 @@ bool mmReportsPanel::saveReportText(bool initial)
         int rp = rb_->report_parameters();
         if (rp & rb_->RepParams::DATE_RANGE)
         {
-            mmDateRange* date_range = static_cast<mmDateRange*>
-                (m_date_ranges->GetClientData(selectedItem));
-            if (!date_range)
+            mmDateRange* date_range = static_cast<mmDateRange*>(m_date_ranges->GetClientData(selectedItem));
+
+            if (date_range->title() == "Custom")
             {
                 wxDateTime begin_date = m_start_date->GetValue();
                 wxDateTime end_date = m_end_date->GetValue();
-                date_range = new mmSpecifiedRange(begin_date, end_date);
+                date_range->start_date(begin_date);
+                date_range->end_date(end_date);
             }
             rb_->date_range(date_range, selectedItem);
         }
@@ -211,11 +214,9 @@ void mmReportsPanel::CreateControls()
             m_date_ranges = new wxChoice(itemPanel3, ID_CHOICE_DATE_RANGE);
             m_date_ranges->SetName("DateRanges");
 
-            for (const auto & date_range : m_all_date_ranges)
-            {
+            for (const auto & date_range : m_all_date_ranges) {
                 m_date_ranges->Append(date_range->local_title(), date_range);
             }
-            m_date_ranges->Append(_("Custom"), static_cast<mmDateRange*>(nullptr));
 
             int sel_id = rb_->getDateSelection();
             if (sel_id < 0 || static_cast<size_t>(sel_id) >= m_all_date_ranges.size()) {
@@ -321,8 +322,9 @@ void mmReportsPanel::CreateControls()
             m_accounts->Append(_("Specific Accounts"));
             for (const auto& e : Model_Account::instance().TYPE_CHOICES)
             {
-                if (e.first != Model_Account::INVESTMENT)
+                if (e.first != Model_Account::INVESTMENT) {
                     m_accounts->Append(wxGetTranslation(e.second), new wxStringClientData(e.second));
+                }
             }
             m_accounts->SetSelection(rb_->getAccountSelection());
 
@@ -373,15 +375,15 @@ void mmReportsPanel::OnDateRangeChanged(wxCommandEvent& WXUNUSED(event))
             this->m_start_date->SetValue(date_range->start_date());
             m_end_date->Enable(false);
             this->m_end_date->SetValue(date_range->end_date());
-        }
-        else
-        {
-            m_start_date->Enable();
-            m_end_date->Enable();
+
+            if (date_range->title() == "Custom") {
+                m_start_date->Enable();
+                m_end_date->Enable();
+            }
+
         }
     }
 
-    wxString error;
     saveReportText(false);
 }
 
@@ -394,7 +396,9 @@ void mmReportsPanel::OnAccountChanged(wxCommandEvent& WXUNUSED(event))
         {
             wxString accountSelection;
             wxStringClientData* type_obj = static_cast<wxStringClientData *>(m_accounts->GetClientObject(m_accounts->GetSelection()));
-            if (type_obj) accountSelection = type_obj->GetData();
+            if (type_obj) {
+                accountSelection = type_obj->GetData();
+            }
             rb_->setAccounts(sel, accountSelection);
 
             saveReportText(false);

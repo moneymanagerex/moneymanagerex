@@ -92,7 +92,7 @@ wxString mmReportIncomeExpenses::getHTMLText()
     valueList.push_back(vt);
 
     wxArrayString labels;
-    const auto label = wxGetTranslation(m_date_range->title());
+    const auto label = m_date_range->local_title();
     labels.Add(label);
 
     hb.addDivRow();

@@ -36,6 +36,16 @@ void mmDateRange::destroy()
     delete this;
 }
 
+void mmDateRange::start_date(wxDateTime& start_date)
+{
+    this->start_date_ = start_date;
+}
+
+void mmDateRange::end_date(wxDateTime& end_date)
+{
+    this->end_date_ = end_date;
+}
+
 const wxDateTime mmDateRange::start_date() const
 {
     return this->start_date_;
@@ -229,7 +239,7 @@ bool mmAllTime::is_with_date() const
 mmSpecifiedRange::mmSpecifiedRange(const wxDateTime& start, const wxDateTime& end)
 : mmDateRange()
 {
-    this->title_ = "";
+    this->title_ = wxTRANSLATE("Custom");
     this->start_date_ = start;
     this->end_date_ = end;
 }

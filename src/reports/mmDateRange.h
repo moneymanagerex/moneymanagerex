@@ -38,6 +38,8 @@ public:
     virtual bool is_with_date() const;
     const virtual wxString title() const;
     const virtual wxString local_title() const;
+    void virtual start_date(wxDateTime& start_date);
+    void virtual end_date(wxDateTime& end_date);
 };
 
 class mmCurrentMonth: public mmDateRange
