@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-05-26 12:37+0300\n"
-"PO-Revision-Date: 2020-05-27 16:08\n"
+"PO-Revision-Date: 2020-05-27 16:17\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -3689,11 +3689,12 @@ msgstr "Choix multiple"
 #, c-format
 msgid "Unable to save custom field \"%s\":\n"
 "value \"%s\" does not match RegEx validation \"%s\""
-msgstr ""
+msgstr "Impossible d'enregistrer le champ personnalisé \"%s\" :\n"
+"la valeur \"%s\" ne correspond pas à la validation RegEx \"%s\""
 
 #: mmcustomdata.cpp:449
 msgid "CustomField validation error"
-msgstr ""
+msgstr "Erreur de validation du champ personnalisé"
 
 #: mmex.cpp:127
 #, c-format
@@ -3704,7 +3705,8 @@ msgstr "Impossible de charger une traduction pour la langue par défaut de votre
 #, c-format
 msgid "Please use the Switch Application Language option in View menu to select one of the following available languages:\n\n"
 "%s"
-msgstr ""
+msgstr "Veuillez utiliser l'option Changer la langue de l'application dans le menu Affichage pour sélectionner une des langues disponibles : \n\n"
+"%s"
 
 #: mmex.cpp:139 mmframe.cpp:3212
 msgid "Language change"
@@ -3713,7 +3715,8 @@ msgstr "Changement de langue"
 #: mmex.cpp:179
 msgid "Fatal error occured.\n"
 "Application will be terminated."
-msgstr ""
+msgstr "Une erreur fatale est survenue.\n"
+"L'application sera fermée."
 
 #: mmframe.cpp:259
 msgid "Navigation"
@@ -3877,7 +3880,7 @@ msgstr "Exporter en XML"
 
 #: mmframe.cpp:1318
 msgid "Export to JSON"
-msgstr ""
+msgstr "Exporter au format JSON"
 
 #: mmframe.cpp:1319
 msgid "&Report to HTML"
@@ -3917,7 +3920,7 @@ msgstr ""
 
 #: mmframe.cpp:1339
 msgid "Quit this program"
-msgstr ""
+msgstr "Quitter ce programme"
 
 #: mmframe.cpp:1346
 msgid "&Toolbar"
@@ -3977,7 +3980,7 @@ msgstr "Ignorer les prochains mouvements"
 
 #: mmframe.cpp:1375
 msgid "Toggle Fullscreen\tShift+F11"
-msgstr ""
+msgstr "Basculer en plein écran\tMaj+F11"
 
 #: mmframe.cpp:1376 mmframe.cpp:1710
 msgid "Toggle Fullscreen"
@@ -4105,15 +4108,15 @@ msgstr "Afficher le menu d'options"
 
 #: mmframe.cpp:1526
 msgid "Convert Encrypted &DB"
-msgstr ""
+msgstr "Convertir en base de données chiffrée"
 
 #: mmframe.cpp:1527
 msgid "Convert Encrypted DB to Non-Encrypted DB"
-msgstr ""
+msgstr "Convertir la base de données chiffrée en une base de données non chiffrée"
 
 #: mmframe.cpp:1530
 msgid "Change Encrypted &Password"
-msgstr ""
+msgstr "Modifier le mot de passe de chiffrement"
 
 #: mmframe.cpp:1531
 msgid "Change the password of an encrypted database"
