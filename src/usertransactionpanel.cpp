@@ -72,7 +72,6 @@ UserTransactionPanel::~UserTransactionPanel()
 void UserTransactionPanel::Create()
 {
     // Control properties according to system
-    int spinCtrlDirection = wxSP_VERTICAL;
     int interval = 0;
 #ifdef __WXMSW__
     wxSize spinCtrlSize = wxSize(18, 22);
@@ -100,7 +99,7 @@ void UserTransactionPanel::Create()
 
 #ifdef __WXMSW__
     wxSpinButton* date_controller = new wxSpinButton(this, ID_TRANS_DATE_CONTROLLER
-        , wxDefaultPosition, spinCtrlSize, spinCtrlDirection | wxSP_ARROW_KEYS | wxSP_WRAP);
+        , wxDefaultPosition, spinCtrlSize, wxSP_VERTICAL | wxSP_ARROW_KEYS | wxSP_WRAP);
     date_controller->SetToolTip(_("Retard or advance the date of the transaction"));
     date_sizer->Add(date_controller, 0, wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL | wxLEFT, interval);
 #endif

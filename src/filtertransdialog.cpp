@@ -428,7 +428,6 @@ bool mmFilterTransactionsDialog::isValuesCorrect()
         if (account) currency = Model_Account::currency(account);
         int currency_precision = Model_Currency::precision(currency);
         double min_amount = 0;
-        double max_amount = 0;
 
         if (!amountMinEdit_->Calculate(currency_precision))
         {
@@ -440,6 +439,7 @@ bool mmFilterTransactionsDialog::isValuesCorrect()
 
         if (!amountMaxEdit_->Calculate(currency_precision))
         {
+            double max_amount = 0;
             amountMaxEdit_->GetDouble(max_amount);
             if (max_amount < min_amount)
             {

@@ -160,8 +160,8 @@ wxString mmReportIncomeExpensesMonthly::getHTMLText()
 
     wxString headerMsg = getAccountNames();
 
-    struct data_holder { wxString name; double period[2]; double overall; } line;
-    std::vector<data_holder> data;
+    struct html_data_holder { wxString name; double period[2]; } line;
+    std::vector<html_data_holder> data;
 
     std::map<int, std::pair<double, double> > incomeExpensesStats;
     //TODO: init all the map values with 0.0

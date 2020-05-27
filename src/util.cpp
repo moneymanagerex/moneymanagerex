@@ -1094,7 +1094,7 @@ const wxString getVFname4print(const wxString& name, const wxString& data)
     wxCharBuffer char_buffer;
     char_buffer = data.ToUTF8();
 
-    wxMemoryFSHandler::AddFile(wxString::Format("%s%i.htm", name, fid), char_buffer, strlen(char_buffer));
+    wxMemoryFSHandler::AddFile(wxString::Format("%s%i.htm", name, fid), char_buffer, char_buffer.length());
     return wxString::Format("memory:%s%i.htm", name, fid);
 
 #else

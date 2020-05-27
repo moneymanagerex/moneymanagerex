@@ -100,7 +100,7 @@ private:
     wxBitmapButton* m_buttonRelocate;
     wxCheckBox* m_cbExpand;
     wxCheckBox* m_cbShowAll;
-    wxTreeItemId selectedItemId_;
+    wxTreeItemId m_selectedItemId;
     wxTreeItemId root_;
     wxTreeItemId getTreeItemFor(const wxTreeItemId& itemID, const wxString& itemText);
     bool m_IsSelection;

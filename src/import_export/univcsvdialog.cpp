@@ -98,9 +98,9 @@ mmUnivCSVDialog::mmUnivCSVDialog(
     importSuccessful_(false),
     m_userDefinedDateMask(false),
     m_reverce_sign(false),
-    depositType_(Model_Checking::all_type()[Model_Checking::DEPOSIT])
+    depositType_(Model_Checking::all_type()[Model_Checking::DEPOSIT]),
+    decimal_(Model_Currency::GetBaseCurrency()->DECIMAL_POINT)
 {
-    decimal_ = Model_Currency::GetBaseCurrency()->DECIMAL_POINT;
     CSVFieldName_[UNIV_CSV_DATE] = wxTRANSLATE("Date");
     CSVFieldName_[UNIV_CSV_PAYEE] = wxTRANSLATE("Payee");
     CSVFieldName_[UNIV_CSV_AMOUNT] = wxTRANSLATE("Amount");
