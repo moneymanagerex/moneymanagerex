@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-05-26 12:37+0300\n"
-"PO-Revision-Date: 2020-05-26 09:50\n"
+"PO-Revision-Date: 2020-05-27 08:37\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Turkish\n"
 "MIME-Version: 1.0\n"
@@ -320,7 +320,7 @@ msgstr "Çı&kış"
 #: appstartdialog.cpp:153
 #, c-format
 msgid "Open the previously opened database : %s"
-msgstr ""
+msgstr "Son açılan veritabanını aç: %s"
 
 #: assetdialog.cpp:61 assetdialog.cpp:410 assetspanel.cpp:466
 msgid "New Asset"
@@ -423,12 +423,13 @@ msgstr "İ&ptal"
 
 #: assetdialog.cpp:402 sharetransactiondialog.cpp:429
 msgid "Invalid Transaction"
-msgstr ""
+msgstr "Geçersiz İşlem"
 
 #: assetdialog.cpp:409
 msgid "Asset Account not found.\n\n"
 "Would you want to create one?"
-msgstr ""
+msgstr "Duran Varlık Hesabı bulunamadı.\n\n"
+"Bir tane oluşturmak ister misiniz?"
 
 #: assetspanel.cpp:58 billsdepositspanel.cpp:96 mmcheckingpanel.cpp:949
 #: reports/transactions.cpp:68 stockspanel.cpp:91
@@ -572,7 +573,8 @@ msgstr "Değerdeki Değişim: %s %s"
 #: assetspanel.cpp:768
 msgid "This asset does not have its own account\n\n"
 "Multiple transactions for this asset are not recommended."
-msgstr ""
+msgstr "Bu varlığın kendi hesabı yok\n\n"
+"Bu varlık için birden fazla işlem yapılması önerilmez."
 
 #: assetspanel.cpp:770
 msgid "Asset Management"
@@ -1501,7 +1503,7 @@ msgstr "Varolan bir kategorinin adını düzenle"
 
 #: categdialog.cpp:236
 msgid "Delete an existing category. The category cannot be used by existing transactions."
-msgstr ""
+msgstr "Mevcut bir kategoriyi silin. Kategori mevcut işlemler tarafından kullanılamaz."
 
 #: categdialog.cpp:241 maincurrencydialog.cpp:211
 msgid "&Select"
@@ -1592,7 +1594,7 @@ msgstr ""
 #: categdialog.cpp:485
 #, c-format
 msgid "Enter a new name for '%s'"
-msgstr ""
+msgstr "'%s' için yeni bir isim girin"
 
 #: categdialog.cpp:486
 msgid "Edit Category"
@@ -1697,7 +1699,7 @@ msgstr "Hesap Kesim Tarihinden Sonrasını Göster"
 
 #: constants.cpp:203
 msgid "ALL"
-msgstr ""
+msgstr "TÜMÜ"
 
 #: constants.cpp:204 mmframe.cpp:1259 mmframe.cpp:1677
 #: model/Model_Account.cpp:26
@@ -1718,7 +1720,7 @@ msgstr "Para Birimi Düzenleyici"
 
 #: currencydialog.cpp:96
 msgid "Currency name"
-msgstr ""
+msgstr "Para birimi adı"
 
 #: currencydialog.cpp:155
 msgid "Currency Name"
@@ -1730,7 +1732,7 @@ msgstr "Para Birimi Sembolu"
 
 #: currencydialog.cpp:164
 msgid "Unit Name"
-msgstr ""
+msgstr "Birim adı"
 
 #: currencydialog.cpp:168
 msgid "Cents Name"
@@ -1759,15 +1761,15 @@ msgstr "Ölçek"
 
 #: currencydialog.cpp:206 currencydialog.cpp:268
 msgid "Conversion to Base Rate"
-msgstr ""
+msgstr "Baz Oranına Dönüşüm"
 
 #: currencydialog.cpp:212
 msgid "Conversion rate will be used in case no currency history has been found for the currency"
-msgstr ""
+msgstr "Para birimi için para birimi geçmişi bulunamaması durumunda dönüşüm oranı kullanılır"
 
 #: currencydialog.cpp:214
 msgid "Fixed conversion rate"
-msgstr ""
+msgstr "Sabit dönüşüm oranı"
 
 #: currencydialog.cpp:219
 msgid "Value Display Sample:"
@@ -1889,7 +1891,8 @@ msgstr "Özel Alan Silme Onayı"
 #: customfieldlistdialog.cpp:194
 msgid "This function will massive update (search & replace for entire value, not inside value), please remind that there isn't any validation!\n"
 "Do you want to proceed?"
-msgstr ""
+msgstr "Bu işlev büyük bir güncellemedir (değerin içinde değil, tüm değer için arama ve değiştirme), lütfen herhangi bir doğrulama olmadığını göz önünde bulundurun!\n"
+"Devam etmek istiyor musunuz?"
 
 #: customfieldlistdialog.cpp:196
 msgid "Confirm Custom Field Content Update"
@@ -1924,7 +1927,7 @@ msgstr "Boş olarak güncellemek istiyor musnuz?\n"
 #: customfieldlistdialog.cpp:233
 #, c-format
 msgid "%i occurrences founded and replaced!"
-msgstr ""
+msgstr "%i gerçekleşme bulundu ve değiştirildi!"
 
 #: customfieldlistdialog.cpp:268
 msgid "&Massive content update "
@@ -2138,7 +2141,7 @@ msgstr "Yatırım Geliri"
 #: dbupgrade.cpp:72
 #, c-format
 msgid "MMEX database upgrade to version %i failed!"
-msgstr ""
+msgstr "MMEX veritabanı %i sürümüne yükseltme başarısız!"
 
 #: dbupgrade.cpp:73
 msgid "Please restore DB from autocreated pre-upgrade backup and retry or contact MMEX support"
@@ -2161,7 +2164,7 @@ msgstr "MMEX veritabanı %i sürümü bu MMEX sürümüyle çalışmaz.Lütfen M
 #: dbupgrade.cpp:119
 #, c-format
 msgid "MMEX database succesfully upgraded to version %i"
-msgstr ""
+msgstr "MMEX veritabanı %i sürümüne başarıyla yükseltildi"
 
 #: dbupgrade.cpp:120
 msgid "We suggest a database optimization under Tools -> Database -> Optimize"
@@ -2173,7 +2176,7 @@ msgstr "Hata yakalama dosyasını yükleyin"
 
 #: dbupgrade.cpp:204
 msgid "Wrong file type!"
-msgstr ""
+msgstr "Yanlış dosya tipi!"
 
 #: dbupgrade.cpp:204 dbupgrade.cpp:241 dbupgrade.cpp:248 dbupgrade.cpp:292
 #: dbupgrade.cpp:303
@@ -2186,7 +2189,7 @@ msgstr "Sorgu hatası, lütfen MMEX destekle bağlantı kurun!"
 
 #: dbupgrade.cpp:248 dbupgrade.cpp:303
 msgid "Invalid file content, please contact MMEX support!"
-msgstr ""
+msgstr "Geçersiz dosya içeriği, lütfen MMEX desteğine başvurun!"
 
 #: dbupgrade.cpp:255
 msgid "Send this log to MMEX support team:\n"
@@ -2208,7 +2211,7 @@ msgstr "VT yönetimi tamamlandı, lütfen MMEX'i kapatıp yeniden açın!"
 
 #: dbwrapper.cpp:70
 msgid "When database file opening:"
-msgstr ""
+msgstr "Veritabanı dosyası açıldığında:"
 
 #: dbwrapper.cpp:74
 msgid "Can't open file"
@@ -2882,7 +2885,7 @@ msgstr "Verilecek CSV veri dosyasını seçin"
 
 #: import_export/univcsvdialog.cpp:203
 msgid "Template name"
-msgstr ""
+msgstr "Şablon adı"
 
 #: import_export/univcsvdialog.cpp:208
 msgid "Save Template"
@@ -3131,11 +3134,11 @@ msgstr "CSV Dosyaları (*.csv)"
 
 #: import_export/univcsvdialog.cpp:1780
 msgid "Please, type the word indicating positive values in your CSV file, e.g. 'debit'"
-msgstr ""
+msgstr "Lütfen CSV dosyanıza pozitif değerleri gösteren kelimeyi yazın, ör. 'Bankamatik'"
 
 #: import_export/univcsvdialog.cpp:1780
 msgid "Enter a value"
-msgstr ""
+msgstr "Bir değer girin"
 
 #: maincurrencydialog.cpp:78 reports/summarystocks.cpp:180 stockdialog.cpp:427
 #: stockspanel.cpp:94
@@ -3148,7 +3151,7 @@ msgstr "Son Oran"
 
 #: maincurrencydialog.cpp:80
 msgid "Fixed Rate"
-msgstr ""
+msgstr "Sabit oran"
 
 #: maincurrencydialog.cpp:84 maincurrencydialog.cpp:357
 #: maincurrencydialog.cpp:428 maincurrencydialog.cpp:642
@@ -3225,7 +3228,7 @@ msgstr "Para Birimi Geçmişi Seçenekleri: %s"
 
 #: maincurrencydialog.cpp:494
 msgid "Unable to update history currency rates. Please update them manually!"
-msgstr ""
+msgstr "Geçmiş para birimi oranları güncellenemiyor. Lütfen bunları manuel olarak güncelleyin!"
 
 #: maincurrencydialog.cpp:494 maincurrencydialog.cpp:624
 #: maincurrencydialog.cpp:639 maincurrencydialog.cpp:686
@@ -3261,11 +3264,11 @@ msgstr "%s sembolü için geçmiş indirmek olanaksız. Geçmiş kurlar alınabi
 
 #: maincurrencydialog.cpp:746
 msgid "Changing base currency will delete all history rates, proceed?"
-msgstr ""
+msgstr "Temel para birimini değiştirmek tüm geçmiş oranlarını silecek, devam edilsin mi?"
 
 #: maincurrencydialog.cpp:770
 msgid "Do you want to update today currency rates?"
-msgstr ""
+msgstr "Bugünkü döviz kurlarını güncellemek ister misiniz?"
 
 #: maincurrencydialog.cpp:785 stockspanel.cpp:825 util.cpp:468
 msgid "Could not find base currency symbol!"
@@ -3695,7 +3698,8 @@ msgstr ""
 #, c-format
 msgid "Please use the Switch Application Language option in View menu to select one of the following available languages:\n\n"
 "%s"
-msgstr ""
+msgstr "Aşağıdaki kullanılabilir dillerden birini seçmek için lütfen Görünüm menüsündeki Uygulama Dilini Değiştir seçeneğini kullanın:\n\n"
+"%s"
 
 #: mmex.cpp:139 mmframe.cpp:3212
 msgid "Language change"
