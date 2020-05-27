@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-05-26 12:37+0300\n"
-"PO-Revision-Date: 2020-05-26 15:16\n"
+"PO-Revision-Date: 2020-05-27 06:45\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
@@ -320,7 +320,7 @@ msgstr "&Avsluta "
 #: appstartdialog.cpp:153
 #, c-format
 msgid "Open the previously opened database : %s"
-msgstr ""
+msgstr "Öppna den tidigare öppnade databasen : %s"
 
 #: assetdialog.cpp:61 assetdialog.cpp:410 assetspanel.cpp:466
 msgid "New Asset"
@@ -598,23 +598,23 @@ msgstr "Mapp för bilagor är inte definierad."
 
 #: attachmentdialog.cpp:65
 msgid "Please set it in Tools -> Options -> Attachments"
-msgstr ""
+msgstr "Ange det i Verktyg -> Alternativ -> Bilagor"
 
 #: attachmentdialog.cpp:66
 msgid "Attachment folder not defined"
-msgstr ""
+msgstr "Mapp för bilagor är inte definierad"
 
 #: attachmentdialog.cpp:70
 msgid "Unable to find attachments folder:"
-msgstr ""
+msgstr "Kunde inte hitta mapp för bilagorna:"
 
 #: attachmentdialog.cpp:73
 msgid "Please verify that above path is correct"
-msgstr ""
+msgstr "Kontrollera att sökvägen ovan är korrekt"
 
 #: attachmentdialog.cpp:74
 msgid "Attachments folder not found"
-msgstr ""
+msgstr "Mapp för bilagor kunde inte hittas"
 
 #: attachmentdialog.cpp:85
 #, c-format
@@ -628,23 +628,23 @@ msgstr "Organisera bilagor | Nyast %s"
 
 #: attachmentdialog.cpp:127 customfieldlistdialog.cpp:103 payeedialog.cpp:116
 msgid "Other tools"
-msgstr ""
+msgstr "Andra verktyg"
 
 #: attachmentdialog.cpp:159
 msgid "Import attachment:"
-msgstr ""
+msgstr "Importera bilagor:"
 
 #: attachmentdialog.cpp:170
 msgid "Enter a description for the new attachment:"
-msgstr ""
+msgstr "Ange en beskrivning för den nya bilagan:"
 
 #: attachmentdialog.cpp:171
 msgid "Organize Attachments: Add Attachment"
-msgstr ""
+msgstr "Organisera bilagor: Lägg till bilaga"
 
 #: attachmentdialog.cpp:212
 msgid "Enter a new description for the attachment:"
-msgstr ""
+msgstr "Ange en ny beskrivning för bilagan:"
 
 #: attachmentdialog.cpp:213
 msgid "Organize Attachments: Edit Attachment"
