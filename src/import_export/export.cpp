@@ -133,20 +133,20 @@ const wxString mmExportTransaction::getCategoriesQIF()
     wxString buffer_qif = "";
 
     buffer_qif << "!Type:Cat" << "\n";
-    for (const auto& category: Model_Category::instance().all())
+    for (const auto& category : Model_Category::instance().all())
     {
         const wxString& categ_name = category.CATEGNAME;
         bool bIncome = Model_Category::has_income(category.CATEGID);
-        buffer_qif << "N" << categ_name <<  "\n"
+        buffer_qif << "N" << categ_name << "\n"
             << (bIncome ? "I" : "E") << "\n"
             << "^" << "\n";
 
-        for (const auto& sub_category: Model_Category::sub_category(category))
+        for (const auto& sub_category : Model_Category::sub_category(category))
         {
             bIncome = Model_Category::has_income(category.CATEGID, sub_category.SUBCATEGID);
             bool bSubcateg = sub_category.CATEGID != -1;
             wxString full_categ_name = wxString()
-                << categ_name << (bSubcateg ? wxString()<<":" : wxString()<<"")
+                << categ_name << (bSubcateg ? wxString() << ":" : wxString() << "")
                 << sub_category.SUBCATEGNAME;
             buffer_qif << "N" << full_categ_name << "\n"
                 << (bIncome ? "I" : "E") << "\n"
@@ -294,10 +294,9 @@ void mmExportTransaction::getTransactionJSON(PrettyWriter<StringBuffer>& json_wr
         for (const auto &split_entry : full_tran.m_splits)
         {
             double valueSplit = split_entry.SPLITTRANSAMOUNT;
-            if (Model_Checking::type(full_tran) == Model_Checking::WITHDRAWAL)
+            if (Model_Checking::type(full_tran) == Model_Checking::WITHDRAWAL) {
                 valueSplit = -valueSplit;
-            const wxString split_amount = wxString::FromCDouble(valueSplit, 2);
-            const wxString split_categ = Model_Category::full_name(split_entry.CATEGID, split_entry.SUBCATEGID);
+            }
 
             json_writer.StartObject();
             json_writer.Key("CATEGORY_ID");
@@ -318,15 +317,12 @@ void mmExportTransaction::getTransactionJSON(PrettyWriter<StringBuffer>& json_wr
     if (!attachments.empty())
     {
         const wxString folder = Model_Infotable::instance().GetStringInfo("ATTACHMENTSFOLDER:" + mmPlatformType(), "");
-        const wxString AttachmentsFolder = mmex::getPathAttachment(folder);
         json_writer.Key("ATTACHMENTS");
         json_writer.StartArray();
-        for (const auto &entry : attachments)
-        {
+        for (const auto &entry : attachments) {
             json_writer.Int(entry.ATTACHMENTID);
         }
         json_writer.EndArray();
-
     }
 
     auto data = Model_CustomFieldData::instance().find(Model_CustomFieldData::REFID(full_tran.id()));
@@ -338,12 +334,11 @@ void mmExportTransaction::getTransactionJSON(PrettyWriter<StringBuffer>& json_wr
         for (const auto &entry : data)
         {
 
-            auto field = Model_CustomField::instance().find(
+            auto customFields = Model_CustomField::instance().find(
                 Model_CustomField::REFTYPE(RefType)
                 , Model_CustomField::FIELDID(entry.FIELDID));
 
-            for (const auto& i : field)
-            {
+            for (const auto& i : customFields) {
                 json_writer.Int(i.FIELDID);
             }
         }
@@ -399,7 +394,7 @@ void mmExportTransaction::getCustomFieldsJSON(PrettyWriter<StringBuffer>& json_w
 
         json_writer.Key("CUSTOM_FIELDS");
         json_writer.StartObject();
-        
+
         // Data
         json_writer.Key("CUSTOM_FIELDS_DATA");
         json_writer.StartArray();
@@ -409,7 +404,7 @@ void mmExportTransaction::getCustomFieldsJSON(PrettyWriter<StringBuffer>& json_w
         for (const auto & entry : cds)
         {
             if (allCustomFields4Export.Index(entry.FIELDATADID) != wxNOT_FOUND)
-                if (cd.Index(entry.FIELDID) == wxNOT_FOUND) 
+                if (cd.Index(entry.FIELDID) == wxNOT_FOUND)
                     cd.Add(entry.FIELDID);
 
 
