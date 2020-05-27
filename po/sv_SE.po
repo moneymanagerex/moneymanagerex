@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-05-26 12:37+0300\n"
-"PO-Revision-Date: 2020-05-27 08:37\n"
+"PO-Revision-Date: 2020-05-27 08:44\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
@@ -2068,15 +2068,15 @@ msgstr "Tandvård"
 
 #: db/DB_Table_Subcategory_V1.h:135
 msgid "Eyecare"
-msgstr ""
+msgstr "Glasögon, linser etc."
 
 #: db/DB_Table_Subcategory_V1.h:136
 msgid "Physician"
-msgstr ""
+msgstr "Läkare"
 
 #: db/DB_Table_Subcategory_V1.h:137
 msgid "Prescriptions"
-msgstr ""
+msgstr "Recept"
 
 #: db/DB_Table_Subcategory_V1.h:138
 msgid "Auto"
