@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-05-26 12:37+0300\n"
-"PO-Revision-Date: 2020-05-27 23:37\n"
+"PO-Revision-Date: 2020-05-27 23:44\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Croatian\n"
 "MIME-Version: 1.0\n"
@@ -3911,11 +3911,11 @@ msgstr "Ispiši trenutačni prikaz"
 
 #: mmframe.cpp:1339
 msgid "E&xit\tAlt-X"
-msgstr ""
+msgstr "&Zatvori\tAlt-X"
 
 #: mmframe.cpp:1339
 msgid "Quit this program"
-msgstr ""
+msgstr "Zatvori ovaj program"
 
 #: mmframe.cpp:1346
 msgid "&Toolbar"
@@ -3975,7 +3975,7 @@ msgstr "Zanemari buduće transakcije"
 
 #: mmframe.cpp:1375
 msgid "Toggle Fullscreen\tShift+F11"
-msgstr ""
+msgstr "Uklji/Isklj cjeloekranski prikaz\tF11"
 
 #: mmframe.cpp:1376 mmframe.cpp:1710
 msgid "Toggle Fullscreen"
@@ -4319,7 +4319,7 @@ msgstr "Nova"
 
 #: mmframe.cpp:1680
 msgid "Account List"
-msgstr ""
+msgstr "Popis računa"
 
 #: mmframe.cpp:1682
 msgid "Show Organize Categories Dialog"
@@ -4373,7 +4373,7 @@ msgstr "MMEX nadogradnja"
 
 #: mmframe.cpp:1828 mmframe.cpp:1870
 msgid "No File opened"
-msgstr ""
+msgstr "Nijedna datoteka nije otvorena"
 
 #: mmframe.cpp:1830
 msgid "Sorry. The Database version is too old or Database password is incorrect"
@@ -4385,11 +4385,11 @@ msgstr "&Dalje →"
 
 #: mmframe.cpp:1873
 msgid "Cannot locate previously opened database.\n"
-msgstr ""
+msgstr "Nije moguće locirati prethodno otvorenu bazu podataka.\n"
 
 #: mmframe.cpp:1875
 msgid "Password not entered for encrypted Database.\n"
-msgstr ""
+msgstr "Za šifriranu bazu podataka nije upisana lozinka.\n"
 
 #: mmframe.cpp:1893
 msgid "portable mode"
