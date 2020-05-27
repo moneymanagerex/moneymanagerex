@@ -190,7 +190,7 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
     hb.endThead();
 
     categID = -1;
-    double catTotalsAmt = 0.0, catTotalsEstimated = 0.0, catTotalsActual = 0.0;
+    double catTotalsEstimated = 0.0, catTotalsActual = 0.0;
 
     for (const auto& category : categs)
     {
@@ -228,10 +228,9 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
             hb.addMoneyCell(catTotalsActual);
             hb.endTableRow();
 
-            catTotalsAmt = catTotalsEstimated = catTotalsActual = 0.0;
+            catTotalsEstimated = catTotalsActual = 0.0;
         }
 
-        catTotalsAmt += actual;
         catTotalsActual += actual;
         catTotalsEstimated += estimated;
 

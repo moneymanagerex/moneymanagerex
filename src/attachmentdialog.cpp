@@ -294,7 +294,7 @@ void mmAttachmentDialog::OnMenuSelected(wxCommandEvent& event)
     }
 }
 
-void mmAttachmentDialog::OnMagicButton(wxCommandEvent& event)
+void mmAttachmentDialog::OnMagicButton(wxCommandEvent& WXUNUSED(event))
 {
     wxDataViewEvent evt;
     OnItemRightClick(evt);
