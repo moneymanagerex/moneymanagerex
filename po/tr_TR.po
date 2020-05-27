@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-05-26 12:37+0300\n"
-"PO-Revision-Date: 2020-05-27 08:44\n"
+"PO-Revision-Date: 2020-05-27 08:57\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Turkish\n"
 "MIME-Version: 1.0\n"
@@ -3207,7 +3207,7 @@ msgstr "Seçili kurları sil"
 
 #: maincurrencydialog.cpp:297
 msgid "Delete Currency Values history for unused currencies and days"
-msgstr ""
+msgstr "Kullanılmayan para birimleri ve günler için Para Birimi Değerleri geçmişini sil"
 
 #: maincurrencydialog.cpp:356
 msgid "Do you really want to delete the selected Currency?"
