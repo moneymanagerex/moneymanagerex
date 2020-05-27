@@ -218,8 +218,14 @@ wxString mmReportChartStocks::getHTMLText()
 
     wxTimeSpan dist;
     wxDate precDateDt = wxInvalidDateTime;
-    for (const auto& stock : Model_Stock::instance().all())
+    wxArrayString symbols;
+    for (const auto& stock : Model_Stock::instance().all(Model_Stock::COL_SYMBOL))
     {
+        if (symbols.Index(stock.SYMBOL) != wxNOT_FOUND) {
+            continue;
+        }
+
+        symbols.Add(stock.SYMBOL);
         int dataCount = 0, freq = 1;
         auto histData = Model_StockHistory::instance().find(Model_StockHistory::SYMBOL(stock.SYMBOL),
             Model_StockHistory::DATE(m_date_range->start_date(), GREATER_OR_EQUAL),
