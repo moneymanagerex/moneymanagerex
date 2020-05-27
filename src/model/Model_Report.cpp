@@ -80,9 +80,6 @@ Model_Report& Model_Report::instance(wxSQLite3Database* db)
 const std::vector<Model_Report::Values> Model_Report::SqlPlaceHolders()
 {
     const wxString def_date = wxDateTime::Today().FormatISODate();
-    const wxString def_year = wxString::Format("%d", wxDateTime::Today().GetYear());
-    const wxString def_day = Model_Infotable::instance().GetStringInfo("FINANCIAL_YEAR_START_DAY", "1");
-    const wxString def_mon = Model_Infotable::instance().GetStringInfo("FINANCIAL_YEAR_START_MONTH", "1");
 
     const std::vector<Model_Report::Values> v = {
     {"&begin_date", "wxDatePickerCtrl", def_date, mmReportsPanel::RepPanel::ID_CHOICE_START_DATE, _("Begin date: ")},
