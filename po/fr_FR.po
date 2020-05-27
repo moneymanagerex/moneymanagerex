@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-05-26 12:37+0300\n"
-"PO-Revision-Date: 2020-05-26 19:56\n"
+"PO-Revision-Date: 2020-05-27 07:45\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -320,7 +320,7 @@ msgstr "Quitter"
 #: appstartdialog.cpp:153
 #, c-format
 msgid "Open the previously opened database : %s"
-msgstr ""
+msgstr "Ouvrir la dernière base de données : %s"
 
 #: assetdialog.cpp:61 assetdialog.cpp:410 assetspanel.cpp:466
 msgid "New Asset"
@@ -423,7 +423,7 @@ msgstr "Annuler"
 
 #: assetdialog.cpp:402 sharetransactiondialog.cpp:429
 msgid "Invalid Transaction"
-msgstr ""
+msgstr "Transaction invalide"
 
 #: assetdialog.cpp:409
 msgid "Asset Account not found.\n\n"
