@@ -1421,7 +1421,7 @@ void TransactionListCtrl::OnCopy(wxCommandEvent& WXUNUSED(event))
     }
 }
 
-void TransactionListCtrl::OnDuplicateTransaction(wxCommandEvent& event)
+void TransactionListCtrl::OnDuplicateTransaction(wxCommandEvent& WXUNUSED(event))
 {
     if ((m_selectedIndex < 0) || (GetSelectedItemCount() > 1)) return;
 
@@ -1476,7 +1476,7 @@ int TransactionListCtrl::OnPaste(Model_Checking::Data* tran)
     return transactionID;
 }
 
-void TransactionListCtrl::OnOpenAttachment(wxCommandEvent& event)
+void TransactionListCtrl::OnOpenAttachment(wxCommandEvent& WXUNUSED(event))
 {
     if ((m_selectedIndex < 0) || (GetSelectedItemCount() > 1)) return;
     int transaction_id = m_cp->m_trans[m_selectedIndex].TRANSID;
