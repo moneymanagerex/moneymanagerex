@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-05-26 12:37+0300\n"
-"PO-Revision-Date: 2020-05-27 14:35\n"
+"PO-Revision-Date: 2020-05-27 16:25\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -6371,51 +6371,51 @@ msgstr "Selección de cuenta"
 
 #: util.cpp:422
 msgid "Jan"
-msgstr ""
+msgstr "Ene"
 
 #: util.cpp:422
 msgid "Feb"
-msgstr ""
+msgstr "Feb"
 
 #: util.cpp:422
 msgid "Mar"
-msgstr ""
+msgstr "Mar"
 
 #: util.cpp:423
 msgid "Apr"
-msgstr ""
+msgstr "Abr"
 
 #: util.cpp:423 util.h:201
 msgid "May"
-msgstr ""
+msgstr "May"
 
 #: util.cpp:423
 msgid "Jun"
-msgstr ""
+msgstr "Jun"
 
 #: util.cpp:424
 msgid "Jul"
-msgstr ""
+msgstr "Jul"
 
 #: util.cpp:424
 msgid "Aug"
-msgstr ""
+msgstr "Ago"
 
 #: util.cpp:424
 msgid "Sep"
-msgstr ""
+msgstr "Sep"
 
 #: util.cpp:425
 msgid "Oct"
-msgstr ""
+msgstr "Oct"
 
 #: util.cpp:425
 msgid "Nov"
-msgstr ""
+msgstr "Nov"
 
 #: util.cpp:425
 msgid "Dec"
-msgstr ""
+msgstr "Dic"
 
 #: util.cpp:430
 msgid "Sunday"
@@ -6626,7 +6626,7 @@ msgstr "Importar transacciones de WebApp"
 
 #: webappdialog.cpp:100
 msgid "Network status (click to refresh)"
-msgstr ""
+msgstr "Estado de la red (clic para actualizar)"
 
 #: webappdialog.cpp:132
 msgid "Checking for new transactions..."
