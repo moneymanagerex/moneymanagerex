@@ -83,7 +83,6 @@ bool mmTextCtrl::Calculate(int alt_precision)
 bool mmTextCtrl::GetDouble(double &amount) const
 {
     wxString amountStr = this->GetValue().Trim();
-    const auto in = amountStr;
     bool r = Model_Currency::fromString(amountStr, amount, m_currency);
     return r;
 }

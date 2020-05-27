@@ -120,41 +120,35 @@ void OptionSettingsAttachment::Create()
 
     if (mmPlatformType() != "Win")
     {
-        wxStaticText* attachmentFolderWinText = new wxStaticText(this
-            , wxID_STATIC, _("Windows folder -> ") + attachmentFolderWin.Left(50));
+        wxStaticText* attachmentFolderWinText = new wxStaticText(this, wxID_STATIC, _("Windows folder -> ") + attachmentFolderWin.Left(50));
         attachmentFolderWinText->SetToolTip(attachmentFolderWin);
         attachmentStaticBoxSizerInfo->Add(attachmentFolderWinText);
     }
 
     if (mmPlatformType() != "Mac")
     {
-        wxStaticText* attachmentFolderMacText = new wxStaticText(this
-            , wxID_STATIC, _("Mac folder -> ") + attachmentFolderMac.Left(50));
+        wxStaticText* attachmentFolderMacText = new wxStaticText(this, wxID_STATIC, _("Mac folder -> ") + attachmentFolderMac.Left(50));
         attachmentFolderMacText->SetToolTip(attachmentFolderMac);
         attachmentStaticBoxSizerInfo->Add(attachmentFolderMacText);
     }
 
     if (mmPlatformType() != "Uni")
     {
-        wxStaticText* attachmentFolderUnixText = new wxStaticText(this
-            , wxID_STATIC, _("Unix folder -> ") + attachmentFolderUnix.Left(50));
+        wxStaticText* attachmentFolderUnixText = new wxStaticText(this, wxID_STATIC, _("Unix folder -> ") + attachmentFolderUnix.Left(50));
         attachmentFolderUnixText->SetToolTip(attachmentFolderUnix);
         attachmentStaticBoxSizerInfo->Add(attachmentFolderUnixText);
     }
     //End other OS folders
 
     const wxString LastDBPath = Model_Setting::instance().getLastDbPath();
-    const wxFileName fn(LastDBPath);
-    const wxString LastDBFileName = fn.FileName(LastDBPath).GetName();
-    const wxString subFolder = wxString::Format("MMEX_%s_Attachments", fn.FileName(LastDBPath).GetName());
+    const wxString subFolder = wxString::Format("MMEX_%s_Attachments", wxFileName::FileName(LastDBPath).GetName());
     const wxString cbAttachmentsSubfolder_desc = _("Create and use Attachments subfolder");
 
     m_attachments_subfolder = new wxCheckBox(this, ID_DIALOG_OPTIONS_CHECKBOX_ATTACHMENTSSUBFOLDER
         , cbAttachmentsSubfolder_desc, wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     m_attachments_subfolder->SetValue(Model_Infotable::instance().GetBoolInfo("ATTACHMENTSSUBFOLDER", true));
     attachmentStaticBoxSizer->Add(m_attachments_subfolder, g_flagsV);
-    attachmentStaticBoxSizer->Add(new wxStaticText(this
-        , wxID_STATIC, subFolder), g_flagsV);
+    attachmentStaticBoxSizer->Add(new wxStaticText(this, wxID_STATIC, subFolder), g_flagsV);
 
     attachmentStaticBoxSizer->AddSpacer(20);
 

@@ -583,7 +583,6 @@ void mmStockDialog::OnHistoryImportButton(wxCommandEvent& /*event*/)
     if (m_stock->SYMBOL.IsEmpty())
         return;
 
-    bool canceledbyuser = false;
     const wxString fileName = wxFileSelector(_("Choose CSV data file to import")
         , wxEmptyString, wxEmptyString, wxEmptyString, "*.csv", wxFD_FILE_MUST_EXIST);
     Model_Account::Data *account = Model_Account::instance().get(m_stock->HELDAT);
@@ -600,6 +599,8 @@ void mmStockDialog::OnHistoryImportButton(wxCommandEvent& /*event*/)
         wxProgressDialog* progressDlg = new wxProgressDialog(_("Stock History CSV Import")
             , _("Quotes imported from CSV: "), tFile.GetLineCount()
             , NULL, wxPD_AUTO_HIDE | wxPD_APP_MODAL | wxPD_SMOOTH | wxPD_CAN_ABORT);
+
+        bool canceledbyuser = false;
         long countNumTotal = 0;
         long countImported = 0;
         double price;

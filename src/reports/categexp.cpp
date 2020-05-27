@@ -281,8 +281,8 @@ wxString mmReportCategoryOverTimePerformance::getHTMLText()
     std::map<int, std::map<int, double> > totals;
 
     // structure for sorting of data
-    struct data_holder { wxString name; double period[MONTHS_IN_PERIOD]; double overall; } line;
-    std::vector<data_holder> data;
+    struct html_data_holder { wxString name; double period[MONTHS_IN_PERIOD]; double overall; } line;
+    std::vector<html_data_holder> data;
     for (const auto& category : Model_Category::instance().all(Model_Category::COL_CATEGNAME))
     {
         int categID = category.CATEGID;
