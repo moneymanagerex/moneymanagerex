@@ -175,6 +175,8 @@ void mmCheckingPanel::sortTable()
     case TransactionListCtrl::COL_DATE:
         std::stable_sort(this->m_trans.begin(), this->m_trans.end(), SorterByTRANSDATE());
         break;
+    default:
+        break;
     }
 
     if (!m_listCtrlAccount->g_asc)
