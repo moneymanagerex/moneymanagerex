@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-05-26 12:37+0300\n"
-"PO-Revision-Date: 2020-05-27 08:44\n"
+"PO-Revision-Date: 2020-05-27 09:59\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
@@ -2302,23 +2302,23 @@ msgstr ""
 
 #: filtertransdialog.cpp:833
 msgid "Filtering Details: "
-msgstr ""
+msgstr "Filtrering, detaljer: "
 
 #: filtertransdialog.cpp:871
 msgid "Since"
-msgstr ""
+msgstr "Sedan"
 
 #: filtertransdialog.cpp:873
 msgid "Before"
-msgstr ""
+msgstr "Före"
 
 #: filtertransdialog.cpp:927
 msgid "Amount Min."
-msgstr ""
+msgstr "Belopp min."
 
 #: filtertransdialog.cpp:935
 msgid "Amount Max."
-msgstr ""
+msgstr "Belopp max."
 
 #: general_report_manager.cpp:238 general_report_manager.cpp:631
 msgid "General Reports Manager"
@@ -2332,7 +2332,7 @@ msgstr "Rapporter"
 #: general_report_manager.cpp:370 import_export/univcsvdialog.cpp:417
 #: mmframe.cpp:1252 mmframe.cpp:1327
 msgid "&Import"
-msgstr ""
+msgstr "&Importera"
 
 #: general_report_manager.cpp:372
 msgid "Locate and load a report file."
@@ -2349,19 +2349,19 @@ msgstr ""
 
 #: general_report_manager.cpp:379 stockdialog.cpp:354
 msgid "&Save "
-msgstr ""
+msgstr "&Spara "
 
 #: general_report_manager.cpp:381
 msgid "Save changes."
-msgstr ""
+msgstr "Spara ändringar."
 
 #: general_report_manager.cpp:383
 msgid "&Run"
-msgstr ""
+msgstr "&Kör"
 
 #: general_report_manager.cpp:385
 msgid "Run selected report."
-msgstr ""
+msgstr "Kör vald rapport."
 
 #: general_report_manager.cpp:397
 msgid "Output"
@@ -2369,23 +2369,23 @@ msgstr ""
 
 #: general_report_manager.cpp:413
 msgid "SQL"
-msgstr ""
+msgstr "SQL"
 
 #: general_report_manager.cpp:414
 msgid "Lua"
-msgstr ""
+msgstr "Lua"
 
 #: general_report_manager.cpp:415
 msgid "Template"
-msgstr ""
+msgstr "Mall"
 
 #: general_report_manager.cpp:456
 msgid "&Test"
-msgstr ""
+msgstr "&Testa"
 
 #: general_report_manager.cpp:457
 msgid "Create Template"
-msgstr ""
+msgstr "Skapa mall"
 
 #: general_report_manager.cpp:507
 #, c-format
@@ -2414,85 +2414,86 @@ msgstr ""
 #, c-format
 msgid "Unable to open file:\n"
 "%s\n\n"
-msgstr ""
+msgstr "Kunde inte öppna fil:\n"
+"%s\n\n"
 
 #: general_report_manager.cpp:694
 msgid "New Empty Report"
-msgstr ""
+msgstr "Ny tom rapport"
 
 #: general_report_manager.cpp:695
 msgid "New Sample Report"
-msgstr ""
+msgstr "Ny exempelrapport"
 
 #: general_report_manager.cpp:698
 msgid "Change Group"
-msgstr ""
+msgstr "Ändra grupp"
 
 #: general_report_manager.cpp:700 general_report_manager.cpp:865
 msgid "Rename Group"
-msgstr ""
+msgstr "Byt namn på grupp"
 
 #: general_report_manager.cpp:701
 msgid "UnGroup"
-msgstr ""
+msgstr "Dela upp"
 
 #: general_report_manager.cpp:702
 msgid "Rename Report"
-msgstr ""
+msgstr "Byt namn på rapport"
 
 #: general_report_manager.cpp:704
 msgid "Delete Report"
-msgstr ""
+msgstr "Ta bort rapport"
 
 #: general_report_manager.cpp:799 general_report_manager.cpp:947
 msgid "Enter the name for the report"
-msgstr ""
+msgstr "Ange namn på rapporten"
 
 #: general_report_manager.cpp:800 general_report_manager.cpp:948
 #: mmframe.cpp:1221 mmframe.cpp:1506 mmframe.cpp:1688
 msgid "General Report Manager"
-msgstr ""
+msgstr "Allmän rapporthanterare"
 
 #: general_report_manager.cpp:818
 msgid "Delete the Report Title:"
-msgstr ""
+msgstr "Ta bort rapportens titel:"
 
 #: general_report_manager.cpp:847 general_report_manager.cpp:928
 msgid "Enter or choose name for the new report group"
-msgstr ""
+msgstr "Ange eller välj namn för den nya rapportgruppen"
 
 #: general_report_manager.cpp:848
 msgid "Change report group"
-msgstr ""
+msgstr "Ändra rapportgrupp"
 
 #: general_report_manager.cpp:864
 msgid "Enter or choose name for the new group"
-msgstr ""
+msgstr "Ange eller välj namn för den nya gruppen"
 
 #: general_report_manager.cpp:929
 msgid "Add Report Group"
-msgstr ""
+msgstr "Lägg till rapportgrupp"
 
 #: general_report_manager.cpp:942
 #, c-format
 msgid "New Report %s"
-msgstr ""
+msgstr "Ny rapport %s"
 
 #: general_report_manager.cpp:955
 msgid "Report Name already exists"
-msgstr ""
+msgstr "Rapportnamnet finns redan"
 
 #: general_report_manager.cpp:955 general_report_manager.cpp:962
 msgid "New Report"
-msgstr ""
+msgstr "Ny rapport"
 
 #: general_report_manager.cpp:993
 msgid "Choose file to Save As Report"
-msgstr ""
+msgstr "Välj fil att spara som rapport"
 
 #: general_report_manager.cpp:1171
 msgid "Parameters:"
-msgstr ""
+msgstr "Parametrar:"
 
 #: import_export/parsers.cpp:46 import_export/univcsvdialog.cpp:1529
 #: mmSimpleDialogs.cpp:253
