@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-05-26 12:37+0300\n"
-"PO-Revision-Date: 2020-05-27 07:45\n"
+"PO-Revision-Date: 2020-05-27 07:57\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -1698,7 +1698,7 @@ msgstr "Voir depuis la date du relevé"
 
 #: constants.cpp:203
 msgid "ALL"
-msgstr ""
+msgstr "Tout"
 
 #: constants.cpp:204 mmframe.cpp:1259 mmframe.cpp:1677
 #: model/Model_Account.cpp:26
@@ -2581,7 +2581,7 @@ msgstr ""
 
 #: import_export/qif_export.cpp:124
 msgid "JSON"
-msgstr ""
+msgstr "JSON"
 
 #: import_export/qif_export.cpp:138 mmframe.cpp:2948 mmframe.cpp:2952
 #: mmframe.cpp:2971 mmframe.cpp:2975
@@ -3374,7 +3374,7 @@ msgstr "Entrer un symbole non vide"
 
 #: mmTextCtrl.cpp:69
 msgid "Invalid Value"
-msgstr ""
+msgstr "Valeur invalide"
 
 #: mmTextCtrl.cpp:96
 msgid "Please enter a positive or calculated value."
@@ -3513,7 +3513,7 @@ msgstr "Entrer une chaine à trouver dans les dernies notes de mouvements"
 #: mmcheckingpanel.cpp:487
 #, c-format
 msgid "Account View : %s"
-msgstr ""
+msgstr "Vue du compte: %s"
 
 #: mmcheckingpanel.cpp:713
 msgid "Select account used in transfer transactions"
@@ -5353,7 +5353,7 @@ msgstr "Indiquez quel est le facteur d'échelle est utilisé pour ce rapport"
 
 #: optionsettingsview.cpp:92
 msgid "Icons size"
-msgstr ""
+msgstr "Taille des icônes"
 
 #: optionsettingsview.cpp:98
 msgid "View Budgets as Financial Years"
@@ -6317,7 +6317,7 @@ msgstr "Préciser la date de l'opération"
 
 #: transdialog.cpp:1309
 msgid "Clear colour"
-msgstr ""
+msgstr "Effacer la couleur"
 
 #: transdialog.cpp:1314
 #, c-format
@@ -6410,7 +6410,7 @@ msgstr ""
 
 #: util.cpp:425
 msgid "Dec"
-msgstr ""
+msgstr "Déc"
 
 #: util.cpp:430
 msgid "Sunday"
@@ -6621,7 +6621,7 @@ msgstr "Importer les transactions de l'application web"
 
 #: webappdialog.cpp:100
 msgid "Network status (click to refresh)"
-msgstr ""
+msgstr "Statut du réseau (cliquez pour actualiser)"
 
 #: webappdialog.cpp:132
 msgid "Checking for new transactions..."
@@ -6785,7 +6785,7 @@ msgstr ""
 
 #: wizard_update.cpp:136
 msgid "Version"
-msgstr ""
+msgstr "Version"
 
 #: wizard_update.cpp:144
 msgid "You already have the latest version"
