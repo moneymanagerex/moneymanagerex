@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-05-26 12:37+0300\n"
-"PO-Revision-Date: 2020-05-27 07:46\n"
+"PO-Revision-Date: 2020-05-27 14:26\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -3207,7 +3207,7 @@ msgstr "Borrar los valores de moneda seleccionados"
 
 #: maincurrencydialog.cpp:297
 msgid "Delete Currency Values history for unused currencies and days"
-msgstr ""
+msgstr "Eliminar historial de Valores de Moneda para monedas y días no utilizados"
 
 #: maincurrencydialog.cpp:356
 msgid "Do you really want to delete the selected Currency?"
@@ -3221,7 +3221,8 @@ msgstr "Selección de la moneda base"
 #, c-format
 msgid "Historic rates for %s found, but \"Use currency history\" in options is disabled:\n"
 "click no and enable it or click yes to remove all historic rates for %s"
-msgstr ""
+msgstr "Tasas históricas para %s encontradas, pero \"Usar histórico de monedas\" en las opciones está deshabilitado:\n"
+"haga clic en no y habilítelo o haga clic en sí para eliminar todas las tasas históricas de %s"
 
 #: maincurrencydialog.cpp:438
 #, c-format
@@ -5008,7 +5009,7 @@ msgstr "%s -> Carpeta de archivo de base de datos .mmb"
 #: optionsettingsattachment.cpp:105
 #, c-format
 msgid "%s -> MMEX Application data folder"
-msgstr ""
+msgstr "%s -> Carpeta de datos de la aplicación MMEX"
 
 #: optionsettingsattachment.cpp:111
 msgid "Other OS folders "
@@ -5016,19 +5017,19 @@ msgstr "Otras carpetas del SO"
 
 #: optionsettingsattachment.cpp:116
 msgid "Not set yet"
-msgstr ""
+msgstr "Aún no establecido"
 
 #: optionsettingsattachment.cpp:124
 msgid "Windows folder -> "
-msgstr ""
+msgstr "Carpeta de Windows -> "
 
 #: optionsettingsattachment.cpp:132
 msgid "Mac folder -> "
-msgstr ""
+msgstr "Carpeta de Mac -> "
 
 #: optionsettingsattachment.cpp:140
 msgid "Unix folder -> "
-msgstr ""
+msgstr "Carpeta de Unix -> "
 
 #: optionsettingsattachment.cpp:150
 msgid "Create and use Attachments subfolder"
@@ -5056,11 +5057,11 @@ msgstr "Elegir carpeta como para los archivos adjuntos"
 
 #: optionsettingsattachment.cpp:219
 msgid "Attachments folder it's not writable!"
-msgstr ""
+msgstr "¡No se puede escribir en la carpeta de adjuntos!"
 
 #: optionsettingsattachment.cpp:219
 msgid "Attachments folder"
-msgstr ""
+msgstr "Carpeta de adjuntos"
 
 #: optionsettingsattachment.cpp:227
 msgid "Attachments path has been changed!"
@@ -5113,11 +5114,11 @@ msgstr "Botón derecho del ratón y seleccione 'Configurar como moneda base' en 
 
 #: optionsettingsgeneral.cpp:97
 msgid "Use currency history"
-msgstr ""
+msgstr "Usar histórico de divisas"
 
 #: optionsettingsgeneral.cpp:99
 msgid "Select to use currency history (one rate for each day), deselect to use a fixed rate"
-msgstr ""
+msgstr "Seleccione para utilizar el histórico de divisas (una tarifa por cada día), deseleccione para utilizar una tarifa fija"
 
 #: optionsettingsgeneral.cpp:115
 msgid "Specify the date format for display"
@@ -5321,11 +5322,11 @@ msgstr "Segundos"
 
 #: optionsettingsnet.cpp:138
 msgid "Updates"
-msgstr ""
+msgstr "Actualizaciones"
 
 #: optionsettingsnet.cpp:144
 msgid "Check for updates at StartUp"
-msgstr ""
+msgstr "Buscar actualizaciones en el inicio"
 
 #: optionsettingsnet.cpp:146
 msgid "Enable to automatically check if new MMEX version is available at StartUp"
@@ -5341,7 +5342,7 @@ msgstr "Inestable"
 
 #: optionsettingsnet.cpp:154
 msgid "Updates source"
-msgstr ""
+msgstr "Fuente de actualizaciones"
 
 #: optionsettingsview.cpp:78
 msgid "Specify which accounts are visible"
