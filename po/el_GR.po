@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-05-26 12:37+0300\n"
-"PO-Revision-Date: 2020-05-26 11:48\n"
+"PO-Revision-Date: 2020-05-27 13:18\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Greek\n"
 "MIME-Version: 1.0\n"
@@ -320,7 +320,7 @@ msgstr ""
 #: appstartdialog.cpp:153
 #, c-format
 msgid "Open the previously opened database : %s"
-msgstr ""
+msgstr "Ανοίξτε την τελευταία ανοιγμένη βάση δεδομένων: %s"
 
 #: assetdialog.cpp:61 assetdialog.cpp:410 assetspanel.cpp:466
 msgid "New Asset"
@@ -428,7 +428,8 @@ msgstr "Μη έγκυρη συναλλαγή"
 #: assetdialog.cpp:409
 msgid "Asset Account not found.\n\n"
 "Would you want to create one?"
-msgstr ""
+msgstr "Το περιουσιακό στοιχείο δεν βρέθηκε.\n\n"
+"Θέλετε να το δημιουργήσετε;"
 
 #: assetspanel.cpp:58 billsdepositspanel.cpp:96 mmcheckingpanel.cpp:949
 #: reports/transactions.cpp:68 stockspanel.cpp:91
@@ -572,7 +573,8 @@ msgstr ""
 #: assetspanel.cpp:768
 msgid "This asset does not have its own account\n\n"
 "Multiple transactions for this asset are not recommended."
-msgstr ""
+msgstr "Το περιουσιακό στοιχείο δεν έχει δικό του λογαριασμό\n\n"
+"Δεν προτείνεται να εκτελεστούν πολλαπλές συναλλαγές για αυτό το περιουσιακό στοιχείο."
 
 #: assetspanel.cpp:770
 msgid "Asset Management"
@@ -5025,7 +5027,7 @@ msgstr ""
 
 #: optionsettingsattachment.cpp:219
 msgid "Attachments folder"
-msgstr ""
+msgstr "Φάκελος συνημμένων"
 
 #: optionsettingsattachment.cpp:227
 msgid "Attachments path has been changed!"
@@ -5481,7 +5483,7 @@ msgstr "Επιβεβαίωση μετατόπισης δικαιούχου"
 #: reports/budget.cpp:94
 #, c-format
 msgid "Year: %i Month: %s"
-msgstr ""
+msgstr "Έτος: %i Μήνας: %s"
 
 #: reports/budgetcategorysummary.cpp:131
 #, c-format

@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-05-26 12:37+0300\n"
-"PO-Revision-Date: 2020-05-27 08:06\n"
+"PO-Revision-Date: 2020-05-27 15:57\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -1504,7 +1504,7 @@ msgstr "Editer le nom d'une catégorie existante"
 
 #: categdialog.cpp:236
 msgid "Delete an existing category. The category cannot be used by existing transactions."
-msgstr ""
+msgstr "Supprimer une catégorie existante. La catégorie ne doit pas être utilisée par des transactions existantes."
 
 #: categdialog.cpp:241 maincurrencydialog.cpp:211
 msgid "&Select"
@@ -1595,7 +1595,7 @@ msgstr "Les sous-catégories doivent être supprimées avant."
 #: categdialog.cpp:485
 #, c-format
 msgid "Enter a new name for '%s'"
-msgstr ""
+msgstr "Entrez un nouveau nom pour '%s'"
 
 #: categdialog.cpp:486
 msgid "Edit Category"
@@ -1721,7 +1721,7 @@ msgstr "Gestion des devises"
 
 #: currencydialog.cpp:96
 msgid "Currency name"
-msgstr ""
+msgstr "Nom de la devise"
 
 #: currencydialog.cpp:155
 msgid "Currency Name"
