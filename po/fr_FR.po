@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-05-26 12:37+0300\n"
-"PO-Revision-Date: 2020-05-27 07:57\n"
+"PO-Revision-Date: 2020-05-27 08:06\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -82,7 +82,7 @@ msgstr "Type de compte :"
 
 #: accountdialog.cpp:151 wizard_newaccount.cpp:120
 msgid "Specify the type of account to be created."
-msgstr "Précisez le type de compte à créer"
+msgstr "Précisez le type de compte à créer."
 
 #: accountdialog.cpp:155
 msgid "Account Status:"
@@ -428,7 +428,8 @@ msgstr "Transaction invalide"
 #: assetdialog.cpp:409
 msgid "Asset Account not found.\n\n"
 "Would you want to create one?"
-msgstr ""
+msgstr "Compte d'actif introuvable.\n\n"
+"Voulez-vous en créer un ?"
 
 #: assetspanel.cpp:58 billsdepositspanel.cpp:96 mmcheckingpanel.cpp:949
 #: reports/transactions.cpp:68 stockspanel.cpp:91
@@ -572,7 +573,8 @@ msgstr "Évolution de la valeur : %s %s"
 #: assetspanel.cpp:768
 msgid "This asset does not have its own account\n\n"
 "Multiple transactions for this asset are not recommended."
-msgstr ""
+msgstr "Cet actif n'a pas son propre compte\n\n"
+"Les transactions multiples pour cet actif ne sont pas recommandées."
 
 #: assetspanel.cpp:770
 msgid "Asset Management"
@@ -2577,7 +2579,7 @@ msgstr "Historique"
 
 #: import_export/qif_export.cpp:123
 msgid "QIF"
-msgstr ""
+msgstr "QIF"
 
 #: import_export/qif_export.cpp:124
 msgid "JSON"
@@ -2888,7 +2890,7 @@ msgstr "Sélectionner un fichier CSV à exporter"
 
 #: import_export/univcsvdialog.cpp:203
 msgid "Template name"
-msgstr ""
+msgstr "Nom du modèle"
 
 #: import_export/univcsvdialog.cpp:208
 msgid "Save Template"
@@ -3141,7 +3143,7 @@ msgstr ""
 
 #: import_export/univcsvdialog.cpp:1780
 msgid "Enter a value"
-msgstr ""
+msgstr "Saisir une valeur"
 
 #: maincurrencydialog.cpp:78 reports/summarystocks.cpp:180 stockdialog.cpp:427
 #: stockspanel.cpp:94
@@ -3154,7 +3156,7 @@ msgstr "Dernier taux"
 
 #: maincurrencydialog.cpp:80
 msgid "Fixed Rate"
-msgstr ""
+msgstr "Taux fixe"
 
 #: maincurrencydialog.cpp:84 maincurrencydialog.cpp:357
 #: maincurrencydialog.cpp:428 maincurrencydialog.cpp:642
