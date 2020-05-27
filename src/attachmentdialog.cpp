@@ -168,7 +168,7 @@ void mmAttachmentDialog::AddAttachment(wxString FilePath)
     const wxString attachmentFileExtension = wxFileName(FilePath).GetExt().MakeLower();
     
     mmDialogComboBoxAutocomplete dlg(this, _("Enter a description for the new attachment:") + wxString::Format("\n(%s)", FilePath),
-        _("Organize Attachments: Add Attachment"), attachmentFileName, Model_Attachment::instance().allDescriptions(true));
+        _("Organize Attachments: Add Attachment"), attachmentFileName, Model_Attachment::instance().allDescriptions());
 
     if (dlg.ShowModal() != wxID_OK)
         return;
@@ -211,7 +211,7 @@ void mmAttachmentDialog::EditAttachment()
     {
         mmDialogComboBoxAutocomplete dlg(this, _("Enter a new description for the attachment:"),
             _("Organize Attachments: Edit Attachment"), attachment->DESCRIPTION,
-            Model_Attachment::instance().allDescriptions(true));
+            Model_Attachment::instance().allDescriptions());
 
         if (dlg.ShowModal() != wxID_OK)
             return;

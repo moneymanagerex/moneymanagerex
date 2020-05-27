@@ -766,7 +766,7 @@ void mmGUIFrame::updateNavTreeControl()
     m_nav_tree_ctrl->SetItemBold(reports, true);
     m_nav_tree_ctrl->SetItemData(reports, new mmTreeItemData("Reports", true));
 
-    this->updateReportNavigation(reports, budgeting);
+    this->updateReportNavigation(reports);
 
     ///////////////////////////////////////////////////////////////////
 
@@ -3055,7 +3055,7 @@ void mmGUIFrame::OnViewLinksUpdateUI(wxUpdateUIEvent &event)
     event.Check(m_mgr.GetPane("Navigation").IsShown());
 }
 
-void mmGUIFrame::OnHideShareAccounts(wxCommandEvent &event)
+void mmGUIFrame::OnHideShareAccounts(wxCommandEvent &WXUNUSED(event))
 {
     m_hide_share_accounts = !m_hide_share_accounts;
     updateNavTreeControl();

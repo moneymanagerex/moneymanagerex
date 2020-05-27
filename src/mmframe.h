@@ -150,7 +150,7 @@ private:
     void saveSettings();
     void menuEnableItems(bool enable);
     void updateNavTreeControl();
-    void updateReportNavigation(wxTreeItemId& reports, wxTreeItemId& budgeting);
+    void updateReportNavigation(wxTreeItemId& reports);
     void showTreePopupMenu(const wxTreeItemId& id, const wxPoint& pt);
     void showBeginAppDialog(bool fromScratch = false);
     void SetDataBaseParameters(const wxString& fileName);

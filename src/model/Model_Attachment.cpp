@@ -124,7 +124,7 @@ std::map<int, Model_Attachment::Data_Set> Model_Attachment::get_all(REFTYPE reft
 }
 
 /** Return all attachments descriptions*/
-wxArrayString Model_Attachment::allDescriptions(bool RemoveDuplicated)
+wxArrayString Model_Attachment::allDescriptions()
 {
     wxArrayString descriptions;
     wxString PreviousDescription;

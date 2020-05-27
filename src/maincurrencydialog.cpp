@@ -529,7 +529,7 @@ void mmMainCurrencyDialog::OnItemRightClick(wxDataViewEvent& event)
     event.Skip();
 }
 
-void mmMainCurrencyDialog::OnShowHiddenChbClick(wxCommandEvent& event)
+void mmMainCurrencyDialog::OnShowHiddenChbClick(wxCommandEvent& WXUNUSED(event))
 {
     Model_Infotable::instance().Set("SHOW_HIDDEN_CURRENCIES", cbShowAll_->IsChecked());
     fillControls();

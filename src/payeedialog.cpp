@@ -152,7 +152,7 @@ void mmPayeeDialog::fillControls()
     }
 }
 
-void mmPayeeDialog::OnDataEditStart(wxDataViewEvent& event)
+void mmPayeeDialog::OnDataEditStart(wxDataViewEvent& WXUNUSED(event))
 {
     m_payee_rename = m_payee_id;
 }
@@ -195,7 +195,7 @@ void mmPayeeDialog::OnListItemSelected(wxDataViewEvent& event)
         m_payee_id = static_cast<int>(payeeListBox_->GetItemData(item));
 }
 
-void mmPayeeDialog::OnListItemActivated(wxDataViewEvent& event)
+void mmPayeeDialog::OnListItemActivated(wxDataViewEvent& WXUNUSED(event))
 {
     if (m_payee_id > 0 && m_payee_choose)
         EndModal(wxID_OK);
@@ -342,7 +342,7 @@ void mmPayeeDialog::OnMenuSelected(wxCommandEvent& event)
     }
 }
 
-void mmPayeeDialog::OnMagicButton(wxCommandEvent& event)
+void mmPayeeDialog::OnMagicButton(wxCommandEvent& WXUNUSED(event))
 {
     wxDataViewEvent evt;
     OnItemRightClick(evt);

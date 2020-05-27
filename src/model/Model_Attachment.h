@@ -69,7 +69,7 @@ public:
     std::map<int, Data_Set> get_all(REFTYPE reftype);
 
     /** Return all attachments descriptions*/
-    wxArrayString allDescriptions(bool RemoveDuplicated);
+    wxArrayString allDescriptions();
 };
 
 #endif // 
