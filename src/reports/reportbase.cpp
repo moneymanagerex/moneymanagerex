@@ -304,12 +304,8 @@ void mm_html_template::load_context()
 const wxString mmPrintableBase::getReportTitle() const
 {
     wxString title = m_title;
-    if (m_date_range)
-    {
-        if (m_date_range->title().IsEmpty())
-            title += " - " + _("Custom");
-        else
-            title += " - " + wxGetTranslation(m_date_range->title());
+    if (m_date_range) {
+        title += " - " + m_date_range->local_title();
     }
     return title;
 }
