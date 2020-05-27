@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-05-26 12:37+0300\n"
-"PO-Revision-Date: 2020-05-27 23:05\n"
+"PO-Revision-Date: 2020-05-27 23:15\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Croatian\n"
 "MIME-Version: 1.0\n"
@@ -2629,11 +2629,11 @@ msgstr "QIF datoteke (*.qif)"
 
 #: import_export/qif_export.cpp:299
 msgid "Choose JSON data file to Export"
-msgstr ""
+msgstr "Odaberi JSON datoteku, koju želiš izvesti"
 
 #: import_export/qif_export.cpp:301
 msgid "JSON Files (*.json)"
-msgstr ""
+msgstr "JSON datoteke (*.json)"
 
 #: import_export/qif_export.cpp:321
 msgid "No Account available for export"
@@ -2889,7 +2889,7 @@ msgstr "Odaberi CSV datoteku, koju želiš izvesti"
 
 #: import_export/univcsvdialog.cpp:203
 msgid "Template name"
-msgstr ""
+msgstr "Ime predloška"
 
 #: import_export/univcsvdialog.cpp:208
 msgid "Save Template"
@@ -3142,7 +3142,7 @@ msgstr ""
 
 #: import_export/univcsvdialog.cpp:1780
 msgid "Enter a value"
-msgstr ""
+msgstr "Upiši vrijednost"
 
 #: maincurrencydialog.cpp:78 reports/summarystocks.cpp:180 stockdialog.cpp:427
 #: stockspanel.cpp:94
@@ -3155,7 +3155,7 @@ msgstr "Zadnji tečaj"
 
 #: maincurrencydialog.cpp:80
 msgid "Fixed Rate"
-msgstr ""
+msgstr "Fiksan tečaj"
 
 #: maincurrencydialog.cpp:84 maincurrencydialog.cpp:357
 #: maincurrencydialog.cpp:428 maincurrencydialog.cpp:642
@@ -3181,7 +3181,7 @@ msgstr "Opcije za povijest valuta"
 
 #: maincurrencydialog.cpp:251
 msgid "Diff."
-msgstr ""
+msgstr "Razlika"
 
 #: maincurrencydialog.cpp:267
 msgid "Specify the date of currency value"
@@ -3285,19 +3285,19 @@ msgstr ""
 
 #: mmSimpleDialogs.cpp:177
 msgid "Subtract one year"
-msgstr ""
+msgstr "Oduzmi jednu godinu"
 
 #: mmSimpleDialogs.cpp:178
 msgid "Subtract one month"
-msgstr ""
+msgstr "Oduzmi jedan mjesec"
 
 #: mmSimpleDialogs.cpp:179
 msgid "Add one month"
-msgstr ""
+msgstr "Dodaj jedan mjesec"
 
 #: mmSimpleDialogs.cpp:180
 msgid "Add one year"
-msgstr ""
+msgstr "Dodaj jednu godinu"
 
 #: mmSimpleDialogs.cpp:237
 #, c-format
@@ -3374,7 +3374,7 @@ msgstr "Unesi simbol (ne smije ostati prazno)."
 
 #: mmTextCtrl.cpp:69
 msgid "Invalid Value"
-msgstr ""
+msgstr "Neispravna vrijednost"
 
 #: mmTextCtrl.cpp:96
 msgid "Please enter a positive or calculated value."
@@ -4915,7 +4915,7 @@ msgstr ""
 
 #: model/Model_Report.cpp:89
 msgid "Date: "
-msgstr ""
+msgstr "Datum: "
 
 #: model/Model_Report.cpp:90
 msgid "End date: "
@@ -4923,7 +4923,7 @@ msgstr ""
 
 #: model/Model_Report.cpp:235
 msgid "Template is empty"
-msgstr ""
+msgstr "Predložak je prazan"
 
 #: model/Model_Report.cpp:249
 #, c-format
@@ -4987,22 +4987,22 @@ msgstr ""
 #: optionsettingsattachment.cpp:102
 #, c-format
 msgid "%s -> User document directory"
-msgstr ""
+msgstr "%s -> Mapa dokumenata korisnika"
 
 #: optionsettingsattachment.cpp:103
 #, c-format
 msgid "%s -> User profile folder"
-msgstr ""
+msgstr "%s -> Mapa profila korisnika"
 
 #: optionsettingsattachment.cpp:104
 #, c-format
 msgid "%s -> Folder of .MMB database file"
-msgstr ""
+msgstr "%s -> Mapa za .MMB datoteku baze podataka"
 
 #: optionsettingsattachment.cpp:105
 #, c-format
 msgid "%s -> MMEX Application data folder"
-msgstr ""
+msgstr "%s -> Mapa podataka MMEX aplikacije"
 
 #: optionsettingsattachment.cpp:111
 msgid "Other OS folders "
@@ -5010,19 +5010,19 @@ msgstr "Ostale mape operativnog sustava "
 
 #: optionsettingsattachment.cpp:116
 msgid "Not set yet"
-msgstr ""
+msgstr "Još nije poslano"
 
 #: optionsettingsattachment.cpp:124
 msgid "Windows folder -> "
-msgstr ""
+msgstr "Mapa na Windowsu -> "
 
 #: optionsettingsattachment.cpp:132
 msgid "Mac folder -> "
-msgstr ""
+msgstr "Mapa na Macu -> "
 
 #: optionsettingsattachment.cpp:140
 msgid "Unix folder -> "
-msgstr ""
+msgstr "Mapa na Unixu -> "
 
 #: optionsettingsattachment.cpp:150
 msgid "Create and use Attachments subfolder"
@@ -5106,7 +5106,7 @@ msgstr "Desni klik i odaberi „Postavi kao osnovnu valutu” u „Dijalog za va
 
 #: optionsettingsgeneral.cpp:97
 msgid "Use currency history"
-msgstr ""
+msgstr "Koristi povijest valuta"
 
 #: optionsettingsgeneral.cpp:99
 msgid "Select to use currency history (one rate for each day), deselect to use a fixed rate"
@@ -5350,11 +5350,11 @@ msgstr "Odredi faktor skaliranja stranica izvještaja"
 
 #: optionsettingsview.cpp:92
 msgid "Icons size"
-msgstr ""
+msgstr "Veličina ikona"
 
 #: optionsettingsview.cpp:98
 msgid "View Budgets as Financial Years"
-msgstr ""
+msgstr "Prikaži budžete kao fiskalne godine"
 
 #: optionsettingsview.cpp:103
 msgid "View Budgets with 'transfer' transactions"
@@ -5510,7 +5510,7 @@ msgstr "Odobrenje premještanja primatelja"
 #: reports/budget.cpp:94
 #, c-format
 msgid "Year: %i Month: %s"
-msgstr ""
+msgstr "Godina: %i Mjesec: %s"
 
 #: reports/budgetcategorysummary.cpp:131
 #, c-format
