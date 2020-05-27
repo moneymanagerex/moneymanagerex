@@ -45,15 +45,15 @@
 //----------------------------------------------------------------------------
 
 wxBEGIN_EVENT_TABLE(mmCheckingPanel, wxPanel)
-    EVT_BUTTON(wxID_NEW,         mmCheckingPanel::OnNewTransaction)
-    EVT_BUTTON(wxID_EDIT,        mmCheckingPanel::OnEditTransaction)
-    EVT_BUTTON(wxID_REMOVE,      mmCheckingPanel::OnDeleteTransaction)
-    EVT_BUTTON(wxID_DUPLICATE,    mmCheckingPanel::OnDuplicateTransaction)
-    EVT_BUTTON(wxID_FILE, mmCheckingPanel::OnOpenAttachment)
-    EVT_BUTTON(ID_TRX_FILTER, mmCheckingPanel::OnMouseLeftDown)
+    EVT_BUTTON(wxID_NEW,       mmCheckingPanel::OnNewTransaction)
+    EVT_BUTTON(wxID_EDIT,      mmCheckingPanel::OnEditTransaction)
+    EVT_BUTTON(wxID_REMOVE,    mmCheckingPanel::OnDeleteTransaction)
+    EVT_BUTTON(wxID_DUPLICATE, mmCheckingPanel::OnDuplicateTransaction)
+    EVT_BUTTON(wxID_FILE,      mmCheckingPanel::OnOpenAttachment)
+    EVT_BUTTON(ID_TRX_FILTER,  mmCheckingPanel::OnMouseLeftDown)
+    EVT_SEARCHCTRL_SEARCH_BTN(wxID_FIND, mmCheckingPanel::OnSearchTxtEntered)
     EVT_MENU_RANGE(wxID_HIGHEST + MENU_VIEW_ALLTRANSACTIONS, wxID_HIGHEST + MENU_VIEW_ALLTRANSACTIONS + menu_labels().size()
         , mmCheckingPanel::OnViewPopupSelected)
-    EVT_SEARCHCTRL_SEARCH_BTN(wxID_FIND, mmCheckingPanel::OnSearchTxtEntered)
 wxEND_EVENT_TABLE()
 //----------------------------------------------------------------------------
 

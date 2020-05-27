@@ -31,16 +31,6 @@
 
 #include <algorithm>
 
-#define STOCK_SORT_BY_NAME          1
-#define STOCK_SORT_BY_SYMBOL        2
-#define STOCK_SORT_BY_DATE          3
-#define STOCK_SORT_BY_QTY           4
-#define STOCK_SORT_BY_PUR_PRICE     5
-#define STOCK_SORT_BY_CUR_PRICE     6
-#define STOCK_SORT_BY_COMMISSION    7
-#define STOCK_SORT_BY_GAIN_LOSS     8
-#define STOCK_SORT_BY_VALUE         9
-
 mmReportSummaryStocks::mmReportSummaryStocks()
     : mmPrintableBase(_("Summary of Stocks"))
     , m_gain_loss_sum_total(0.0)
