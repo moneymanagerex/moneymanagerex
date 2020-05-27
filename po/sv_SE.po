@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-05-26 12:37+0300\n"
-"PO-Revision-Date: 2020-05-27 08:44\n"
+"PO-Revision-Date: 2020-05-27 10:08\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
@@ -2302,23 +2302,23 @@ msgstr ""
 
 #: filtertransdialog.cpp:833
 msgid "Filtering Details: "
-msgstr ""
+msgstr "Filtrering, detaljer: "
 
 #: filtertransdialog.cpp:871
 msgid "Since"
-msgstr ""
+msgstr "Sedan"
 
 #: filtertransdialog.cpp:873
 msgid "Before"
-msgstr ""
+msgstr "Före"
 
 #: filtertransdialog.cpp:927
 msgid "Amount Min."
-msgstr ""
+msgstr "Belopp min."
 
 #: filtertransdialog.cpp:935
 msgid "Amount Max."
-msgstr ""
+msgstr "Belopp max."
 
 #: general_report_manager.cpp:238 general_report_manager.cpp:631
 msgid "General Reports Manager"
@@ -2332,7 +2332,7 @@ msgstr "Rapporter"
 #: general_report_manager.cpp:370 import_export/univcsvdialog.cpp:417
 #: mmframe.cpp:1252 mmframe.cpp:1327
 msgid "&Import"
-msgstr ""
+msgstr "&Importera"
 
 #: general_report_manager.cpp:372
 msgid "Locate and load a report file."
@@ -2349,19 +2349,19 @@ msgstr ""
 
 #: general_report_manager.cpp:379 stockdialog.cpp:354
 msgid "&Save "
-msgstr ""
+msgstr "&Spara "
 
 #: general_report_manager.cpp:381
 msgid "Save changes."
-msgstr ""
+msgstr "Spara ändringar."
 
 #: general_report_manager.cpp:383
 msgid "&Run"
-msgstr ""
+msgstr "&Kör"
 
 #: general_report_manager.cpp:385
 msgid "Run selected report."
-msgstr ""
+msgstr "Kör vald rapport."
 
 #: general_report_manager.cpp:397
 msgid "Output"
@@ -2369,23 +2369,23 @@ msgstr ""
 
 #: general_report_manager.cpp:413
 msgid "SQL"
-msgstr ""
+msgstr "SQL"
 
 #: general_report_manager.cpp:414
 msgid "Lua"
-msgstr ""
+msgstr "Lua"
 
 #: general_report_manager.cpp:415
 msgid "Template"
-msgstr ""
+msgstr "Mall"
 
 #: general_report_manager.cpp:456
 msgid "&Test"
-msgstr ""
+msgstr "&Testa"
 
 #: general_report_manager.cpp:457
 msgid "Create Template"
-msgstr ""
+msgstr "Skapa mall"
 
 #: general_report_manager.cpp:507
 #, c-format
@@ -2414,85 +2414,86 @@ msgstr ""
 #, c-format
 msgid "Unable to open file:\n"
 "%s\n\n"
-msgstr ""
+msgstr "Kunde inte öppna fil:\n"
+"%s\n\n"
 
 #: general_report_manager.cpp:694
 msgid "New Empty Report"
-msgstr ""
+msgstr "Ny tom rapport"
 
 #: general_report_manager.cpp:695
 msgid "New Sample Report"
-msgstr ""
+msgstr "Ny exempelrapport"
 
 #: general_report_manager.cpp:698
 msgid "Change Group"
-msgstr ""
+msgstr "Ändra grupp"
 
 #: general_report_manager.cpp:700 general_report_manager.cpp:865
 msgid "Rename Group"
-msgstr ""
+msgstr "Byt namn på grupp"
 
 #: general_report_manager.cpp:701
 msgid "UnGroup"
-msgstr ""
+msgstr "Dela upp"
 
 #: general_report_manager.cpp:702
 msgid "Rename Report"
-msgstr ""
+msgstr "Byt namn på rapport"
 
 #: general_report_manager.cpp:704
 msgid "Delete Report"
-msgstr ""
+msgstr "Ta bort rapport"
 
 #: general_report_manager.cpp:799 general_report_manager.cpp:947
 msgid "Enter the name for the report"
-msgstr ""
+msgstr "Ange namn på rapporten"
 
 #: general_report_manager.cpp:800 general_report_manager.cpp:948
 #: mmframe.cpp:1221 mmframe.cpp:1506 mmframe.cpp:1688
 msgid "General Report Manager"
-msgstr ""
+msgstr "Allmän rapporthanterare"
 
 #: general_report_manager.cpp:818
 msgid "Delete the Report Title:"
-msgstr ""
+msgstr "Ta bort rapportens titel:"
 
 #: general_report_manager.cpp:847 general_report_manager.cpp:928
 msgid "Enter or choose name for the new report group"
-msgstr ""
+msgstr "Ange eller välj namn för den nya rapportgruppen"
 
 #: general_report_manager.cpp:848
 msgid "Change report group"
-msgstr ""
+msgstr "Ändra rapportgrupp"
 
 #: general_report_manager.cpp:864
 msgid "Enter or choose name for the new group"
-msgstr ""
+msgstr "Ange eller välj namn för den nya gruppen"
 
 #: general_report_manager.cpp:929
 msgid "Add Report Group"
-msgstr ""
+msgstr "Lägg till rapportgrupp"
 
 #: general_report_manager.cpp:942
 #, c-format
 msgid "New Report %s"
-msgstr ""
+msgstr "Ny rapport %s"
 
 #: general_report_manager.cpp:955
 msgid "Report Name already exists"
-msgstr ""
+msgstr "Rapportnamnet finns redan"
 
 #: general_report_manager.cpp:955 general_report_manager.cpp:962
 msgid "New Report"
-msgstr ""
+msgstr "Ny rapport"
 
 #: general_report_manager.cpp:993
 msgid "Choose file to Save As Report"
-msgstr ""
+msgstr "Välj fil att spara som rapport"
 
 #: general_report_manager.cpp:1171
 msgid "Parameters:"
-msgstr ""
+msgstr "Parametrar:"
 
 #: import_export/parsers.cpp:46 import_export/univcsvdialog.cpp:1529
 #: mmSimpleDialogs.cpp:253
@@ -2502,28 +2503,28 @@ msgstr "Kunde inte öppna fil."
 #: import_export/parsers.cpp:46 import_export/parsers.cpp:89
 #: import_export/univcsvdialog.cpp:961 mmframe.cpp:2219 mmframe.cpp:2238
 msgid "Universal CSV Import"
-msgstr ""
+msgstr "Universell CSV-import"
 
 #: import_export/parsers.cpp:89
 msgid "Unable to create file."
-msgstr ""
+msgstr "Kunde inte skapa fil."
 
 #: import_export/parsers.cpp:109 import_export/parsers.cpp:248
 msgid "Could not save file."
-msgstr ""
+msgstr "Kunde inte spara fil."
 
 #: import_export/parsers.cpp:109 import_export/parsers.cpp:248
 msgid "Export error"
-msgstr ""
+msgstr "Exporteringsfel"
 
 #: import_export/parsers.cpp:135 import_export/parsers.cpp:144
 msgid "File is not in Excel XML Spreadsheet 2003 format."
-msgstr ""
+msgstr "Filen är inte i formatet Excel XML kalkylblad 2003."
 
 #: import_export/parsers.cpp:135 import_export/parsers.cpp:144
 #: import_export/parsers.cpp:157 import_export/parsers.cpp:165
 msgid "Parsing error"
-msgstr ""
+msgstr "Tolkningsfel"
 
 #: import_export/parsers.cpp:157
 msgid "Could not find Worksheet."
@@ -2733,66 +2734,66 @@ msgstr "OK"
 
 #: import_export/qif_import_gui.cpp:664 import_export/qif_import_gui.cpp:667
 msgid "Warning"
-msgstr ""
+msgstr "Varning"
 
 #: import_export/qif_import_gui.cpp:672 import_export/qif_import_gui.cpp:691
 #: stockspanel.cpp:880
 msgid "Missing"
-msgstr ""
+msgstr "Saknas"
 
 #: import_export/qif_import_gui.cpp:718
 msgid "Choose QIF data file to Import"
-msgstr ""
+msgstr "Välj QIF-datafil att importera"
 
 #: import_export/qif_import_gui.cpp:797
 msgid "Do you want to import all transaction ?"
-msgstr ""
+msgstr "Vill du importera alla transaktioner?"
 
 #: import_export/qif_import_gui.cpp:798
 msgid "All missing account, payees and categories will be created."
-msgstr ""
+msgstr "Alla saknade konton, betalningsmottagare och kategorier kommer att skapas."
 
 #: import_export/qif_import_gui.cpp:799
 msgid "Confirm Import"
-msgstr ""
+msgstr "Bekräfta import"
 
 #: import_export/qif_import_gui.cpp:804
 msgid "Importing"
-msgstr ""
+msgstr "Importerar"
 
 #: import_export/qif_import_gui.cpp:806
 msgid "Importing Accounts"
-msgstr ""
+msgstr "Importerar konton"
 
 #: import_export/qif_import_gui.cpp:813
 msgid "Importing Payees"
-msgstr ""
+msgstr "Importerar betalningsmottagare"
 
 #: import_export/qif_import_gui.cpp:816
 msgid "Importing Categories"
-msgstr ""
+msgstr "Importerar kategorier"
 
 #: import_export/qif_import_gui.cpp:833
 #, c-format
 msgid "Importing transaction %i of %i"
-msgstr ""
+msgstr "Importerar transaktion %i av %i"
 
 #: import_export/qif_import_gui.cpp:866
 msgid "Importing Transfers"
-msgstr ""
+msgstr "Importerar överföringar"
 
 #: import_export/qif_import_gui.cpp:891
 msgid "Importing Split transactions"
-msgstr ""
+msgstr "Importerar delade transaktioner"
 
 #: import_export/qif_import_gui.cpp:895
 msgid "Import finished successfully"
-msgstr ""
+msgstr "Importen slutförd framgångsrikt"
 
 #: import_export/qif_import_gui.cpp:895
 #, c-format
 msgid "Total Imported: %zu"
-msgstr ""
+msgstr "Totalt importerade: %zu"
 
 #: import_export/qif_import_gui.cpp:903 import_export/univcsvdialog.cpp:1078
 msgid "Imported transactions discarded by user!"
