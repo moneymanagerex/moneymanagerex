@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-05-26 12:37+0300\n"
-"PO-Revision-Date: 2020-05-27 08:37\n"
+"PO-Revision-Date: 2020-05-27 08:44\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Turkish\n"
 "MIME-Version: 1.0\n"
@@ -265,11 +265,11 @@ msgstr "Para Birimi"
 
 #: accountdialog.cpp:498
 msgid "Please insert a valid URL"
-msgstr ""
+msgstr "Lütfen geçerli bir URL girin"
 
 #: accountdialog.cpp:498
 msgid "Invalid URL"
-msgstr ""
+msgstr "Geçersiz URL"
 
 #: appstartdialog.cpp:99
 msgid "Open Last Opened Database"
@@ -2168,7 +2168,7 @@ msgstr "MMEX veritabanı %i sürümüne başarıyla yükseltildi"
 
 #: dbupgrade.cpp:120
 msgid "We suggest a database optimization under Tools -> Database -> Optimize"
-msgstr ""
+msgstr "Araçlar -> Veritabanı -> Optimize et altında bir veritabanı optimizasyonu öneriyoruz"
 
 #: dbupgrade.cpp:197
 msgid "Load debug file"
@@ -2225,7 +2225,9 @@ msgstr "Diğer bir veritabanı dosyası için yol belirtmelisiniz."
 msgid "An incorrect password given for an encrypted file\n"
 "or\n"
 "attempt to open a File that is not a database file \n"
-msgstr ""
+msgstr "Şifrelenmiş bir dosya için yanlış şifre\n"
+"veya\n"
+"veritabanı dosyası olmayan bir dosya açmaya çalışıldı\n"
 
 #: dbwrapper.cpp:82 import_export/qif_import_gui.cpp:855 webapp.cpp:120
 #, c-format
@@ -2506,7 +2508,7 @@ msgstr "Rapor olarak kaydedilecek dosyayı seçin"
 
 #: general_report_manager.cpp:1171
 msgid "Parameters:"
-msgstr ""
+msgstr "Parametreler:"
 
 #: import_export/parsers.cpp:46 import_export/univcsvdialog.cpp:1529
 #: mmSimpleDialogs.cpp:253
@@ -4397,7 +4399,10 @@ msgid "Database that you trying to open has been marked as opened by another MME
 "To avoid data loss or conflict, it's strongly recommended to close all other applications that can use the DB.\n\n"
 "Possible it may be as result of a programm crash in previous usage.\n\n"
 "Would you like to continue?"
-msgstr ""
+msgstr "Açmaya çalıştığınız veritabanı başka bir MMEX uygulaması tarafından açılmış olarak işaretlendi...\n"
+"Veri kaybını veya çakışmayı önlemek için, DB'yi kullanabilen diğer tüm uygulamaları kapatmanız önemle tavsiye edilir.\n\n"
+"Önceki kullanımdaki bir program çökmesinin sonucu olabilir.\n\n"
+"Devam etmek ister misin?"
 
 #: mmframe.cpp:1933
 msgid "MMEX Instance Check"
@@ -4421,7 +4426,7 @@ msgstr ""
 
 #: mmframe.cpp:2007
 msgid "Choose database file to Save As"
-msgstr ""
+msgstr "Farklı Kaydetmek için veritabanı dosyasını seçin"
 
 #: mmframe.cpp:2029
 msgid "Converted DB!"
@@ -4443,11 +4448,11 @@ msgstr ""
 
 #: mmframe.cpp:2041
 msgid "New password must not be empty."
-msgstr ""
+msgstr "Yeni şifre boş olmamalıdır."
 
 #: mmframe.cpp:2045
 msgid "Please confirm new password"
-msgstr ""
+msgstr "Lütfen yeni şifreyi onaylayın"
 
 #: mmframe.cpp:2049
 msgid "Password change completed."
