@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-05-26 12:37+0300\n"
-"PO-Revision-Date: 2020-05-27 15:57\n"
+"PO-Revision-Date: 2020-05-27 16:08\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -1766,11 +1766,11 @@ msgstr ""
 
 #: currencydialog.cpp:212
 msgid "Conversion rate will be used in case no currency history has been found for the currency"
-msgstr ""
+msgstr "Le taux de conversion sera utilisé dans le cas où aucun historique n'aura été trouvé pour la devise"
 
 #: currencydialog.cpp:214
 msgid "Fixed conversion rate"
-msgstr ""
+msgstr "Taux de conversion fixe"
 
 #: currencydialog.cpp:219
 msgid "Value Display Sample:"
@@ -1792,7 +1792,7 @@ msgstr "Entrée non valable"
 #: currencydialog.cpp:295
 #, c-format
 msgid "%.2f Shown As: %s"
-msgstr ""
+msgstr "%.2f affiché comme : %s"
 
 #: customfieldeditdialog.cpp:56
 msgid "New/Edit Custom Field"
@@ -1928,7 +1928,7 @@ msgstr "Voulez-vous remettre à zero ?\n"
 #: customfieldlistdialog.cpp:233
 #, c-format
 msgid "%i occurrences founded and replaced!"
-msgstr ""
+msgstr "%i occurrences trouvées et remplacées!"
 
 #: customfieldlistdialog.cpp:268
 msgid "&Massive content update "
@@ -2142,7 +2142,7 @@ msgstr "Revenus de placements"
 #: dbupgrade.cpp:72
 #, c-format
 msgid "MMEX database upgrade to version %i failed!"
-msgstr ""
+msgstr "La mise à jour de la base de données MMEX vers la version %i a échoué !"
 
 #: dbupgrade.cpp:73
 msgid "Please restore DB from autocreated pre-upgrade backup and retry or contact MMEX support"
@@ -2167,11 +2167,11 @@ msgstr "La version %i de la BdD ne fonctionne pas avec cette version \n"
 #: dbupgrade.cpp:119
 #, c-format
 msgid "MMEX database succesfully upgraded to version %i"
-msgstr ""
+msgstr "La base de données MMEX a été mise à jour avec succès vers la version %i"
 
 #: dbupgrade.cpp:120
 msgid "We suggest a database optimization under Tools -> Database -> Optimize"
-msgstr ""
+msgstr "Nous suggérons une optimisation de la base de données via Outils -> Base de données -> Optimiser"
 
 #: dbupgrade.cpp:197
 msgid "Load debug file"
@@ -2179,7 +2179,7 @@ msgstr "Charger le fichier de débogage "
 
 #: dbupgrade.cpp:204
 msgid "Wrong file type!"
-msgstr ""
+msgstr "Mauvais type de fichier !"
 
 #: dbupgrade.cpp:204 dbupgrade.cpp:241 dbupgrade.cpp:248 dbupgrade.cpp:292
 #: dbupgrade.cpp:303
@@ -2192,7 +2192,7 @@ msgstr "Erreur de requête, contactez le support MMEX SVP !"
 
 #: dbupgrade.cpp:248 dbupgrade.cpp:303
 msgid "Invalid file content, please contact MMEX support!"
-msgstr ""
+msgstr "Contenu de fichier invalide, veuillez contacter le support MMEX !"
 
 #: dbupgrade.cpp:255
 msgid "Send this log to MMEX support team:\n"
@@ -2214,7 +2214,7 @@ msgstr "Maintenance de la BdD terminée, merci de fermer et rouvrir MMEX !"
 
 #: dbwrapper.cpp:70
 msgid "When database file opening:"
-msgstr ""
+msgstr "Lors de l'ouverture du fichier de la base de données :"
 
 #: dbwrapper.cpp:74
 msgid "Can't open file"
@@ -2511,7 +2511,7 @@ msgstr "Choisir le fichier de sauvegarde pour le rapport."
 
 #: general_report_manager.cpp:1171
 msgid "Parameters:"
-msgstr ""
+msgstr "Paramètres :"
 
 #: import_export/parsers.cpp:46 import_export/univcsvdialog.cpp:1529
 #: mmSimpleDialogs.cpp:253
@@ -2567,7 +2567,7 @@ msgstr "Exporter un fichier QIF"
 
 #: import_export/qif_export.cpp:47
 msgid "JSON Export"
-msgstr ""
+msgstr "Export JSON"
 
 #: import_export/qif_export.cpp:106
 msgid "Parameters"
@@ -2630,7 +2630,7 @@ msgstr "Fichiers QIF (*.qif)"
 
 #: import_export/qif_export.cpp:299
 msgid "Choose JSON data file to Export"
-msgstr ""
+msgstr "Sélectionner un fichier JSON à exporter"
 
 #: import_export/qif_export.cpp:301
 msgid "JSON Files (*.json)"
@@ -3174,7 +3174,7 @@ msgstr "Mise à jour en ligne "
 
 #: maincurrencydialog.cpp:170
 msgid "Show all even the unused currencies"
-msgstr ""
+msgstr "Afficher toutes les devises, même celles qui ne sont pas utilisées"
 
 #: maincurrencydialog.cpp:227
 msgid "Currency History Options"
@@ -3182,7 +3182,7 @@ msgstr "Options de l'historique des devises"
 
 #: maincurrencydialog.cpp:251
 msgid "Diff."
-msgstr ""
+msgstr "Diff."
 
 #: maincurrencydialog.cpp:267
 msgid "Specify the date of currency value"
@@ -3234,7 +3234,7 @@ msgstr "Options historique de la devise %s"
 
 #: maincurrencydialog.cpp:494
 msgid "Unable to update history currency rates. Please update them manually!"
-msgstr ""
+msgstr "Impossible de mettre à jour l'historique des taux de change. Veuillez les mettre à jour manuellement !"
 
 #: maincurrencydialog.cpp:494 maincurrencydialog.cpp:624
 #: maincurrencydialog.cpp:639 maincurrencydialog.cpp:686
@@ -3274,7 +3274,7 @@ msgstr ""
 
 #: maincurrencydialog.cpp:770
 msgid "Do you want to update today currency rates?"
-msgstr ""
+msgstr "Voulez-vous mettre à jour les taux de change aujourd'hui ?"
 
 #: maincurrencydialog.cpp:785 stockspanel.cpp:825 util.cpp:468
 msgid "Could not find base currency symbol!"
@@ -3287,19 +3287,19 @@ msgstr ""
 
 #: mmSimpleDialogs.cpp:177
 msgid "Subtract one year"
-msgstr ""
+msgstr "Soustraire un an"
 
 #: mmSimpleDialogs.cpp:178
 msgid "Subtract one month"
-msgstr ""
+msgstr "Soustraire un mois"
 
 #: mmSimpleDialogs.cpp:179
 msgid "Add one month"
-msgstr ""
+msgstr "Ajouter un mois"
 
 #: mmSimpleDialogs.cpp:180
 msgid "Add one year"
-msgstr ""
+msgstr "Ajouter un an"
 
 #: mmSimpleDialogs.cpp:237
 #, c-format
@@ -3410,7 +3410,7 @@ msgstr "Astuce: Rappelez-vous faites souvent des copes de votre fichier .MMB"
 
 #: mmTips.h:26
 msgid "Tip: The .mmb file is not encrypted. That means anyone else having the proper know how can actually open the file and read the contents. So make sure that if you are storing any sensitive financial information it is properly guarded."
-msgstr ""
+msgstr "Astuce : Le fichier .mmb n’est pas chiffré. Cela signifie que le fichier peut être ouvert et lu par n'importe qui ayant la connaissance pour le faire. Assurez-vous que si vous stockez des informations financières sensibles, ce fichier est correctement protégée."
 
 #: mmTips.h:27
 msgid "Tip: To mark a transaction as reconciled, just select the transaction and hit the 'r' or 'R' key. To mark a transaction as unreconciled, just select the transaction and hit the 'u' or 'U' key."
