@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-05-26 12:37+0300\n"
-"PO-Revision-Date: 2020-05-27 10:08\n"
+"PO-Revision-Date: 2020-05-28 13:01\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
@@ -2293,12 +2293,12 @@ msgstr ""
 
 #: filtertransdialog.cpp:347
 msgid "&Clear "
-msgstr ""
+msgstr "&Rensa "
 
 #: filtertransdialog.cpp:822 filtertransdialog.cpp:837 reports/myusage.cpp:95
 #: webappdialog.cpp:194 webappdialog.cpp:199
 msgid "Empty value"
-msgstr ""
+msgstr "Tomt värde"
 
 #: filtertransdialog.cpp:833
 msgid "Filtering Details: "
@@ -2396,7 +2396,7 @@ msgstr[1] ""
 
 #: general_report_manager.cpp:534
 msgid "SQL Syntax Error"
-msgstr ""
+msgstr "SQL Syntaxfel"
 
 #: general_report_manager.cpp:565
 msgid "Load report file:"
@@ -2532,28 +2532,28 @@ msgstr ""
 
 #: import_export/parsers.cpp:163
 msgid "Table"
-msgstr ""
+msgstr "Tabell"
 
 #: import_export/parsers.cpp:165
 msgid "Could not find Table."
-msgstr ""
+msgstr "Kunde inte hitta tabell."
 
 #: import_export/parsers.cpp:216
 msgid "Transactions"
-msgstr ""
+msgstr "Transaktioner"
 
 #: import_export/qif_export.cpp:47 import_export/qif_export.cpp:246
 #: import_export/qif_export.cpp:332
 msgid "QIF Export"
-msgstr ""
+msgstr "QIF-export"
 
 #: import_export/qif_export.cpp:47
 msgid "JSON Export"
-msgstr ""
+msgstr "JSON-export"
 
 #: import_export/qif_export.cpp:106
 msgid "Parameters"
-msgstr ""
+msgstr "Parametrar"
 
 #: import_export/qif_export.cpp:111 import_export/qif_import_gui.cpp:197
 msgid "Log"
@@ -2561,7 +2561,7 @@ msgstr ""
 
 #: import_export/qif_export.cpp:123
 msgid "QIF"
-msgstr ""
+msgstr "QIF"
 
 #: import_export/qif_export.cpp:124
 msgid "JSON"
@@ -2574,11 +2574,11 @@ msgstr "Konton"
 
 #: import_export/qif_export.cpp:149 import_export/qif_import_gui.cpp:175
 msgid "From Date"
-msgstr ""
+msgstr "Från datum"
 
 #: import_export/qif_export.cpp:159 import_export/qif_import_gui.cpp:184
 msgid "To Date"
-msgstr ""
+msgstr "Till datum"
 
 #: import_export/qif_export.cpp:173 import_export/qif_import_gui.cpp:278
 #: optionsettingsgeneral.cpp:103
@@ -2587,16 +2587,16 @@ msgstr "Datumformat"
 
 #: import_export/qif_export.cpp:185
 msgid "Write to File"
-msgstr ""
+msgstr "Skriv till fil"
 
 #: import_export/qif_export.cpp:188 import_export/qif_import_gui.cpp:129
 #: import_export/univcsvdialog.cpp:166
 msgid "File Name:"
-msgstr ""
+msgstr "Filnamn:"
 
 #: import_export/qif_export.cpp:211 import_export/univcsvdialog.cpp:444
 msgid "Clear"
-msgstr ""
+msgstr "Rensa"
 
 #: import_export/qif_export.cpp:245
 msgid "Choose Account to Export from:"
