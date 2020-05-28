@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-05-26 12:37+0300\n"
-"PO-Revision-Date: 2020-05-28 13:01\n"
+"PO-Revision-Date: 2020-05-28 23:34\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
@@ -43,7 +43,7 @@ msgstr "Licensavtal"
 
 #: aboutdialog.cpp:169
 msgid "Privacy"
-msgstr ""
+msgstr "Sekretess"
 
 #: aboutdialog.cpp:200 accountdialog.cpp:305 appstartdialog.cpp:136
 #: assetdialog.cpp:305 attachmentdialog.cpp:120 billsdepositsdialog.cpp:478
@@ -95,11 +95,11 @@ msgstr "Ange om kontot har stängts. Stängda konton är inaktiverade i de flest
 #: accountdialog.cpp:164
 #, c-format
 msgid "Initial Balance: %s"
-msgstr ""
+msgstr "Ursprungligt saldo: %s"
 
 #: accountdialog.cpp:168
 msgid "Enter the initial balance in this account."
-msgstr ""
+msgstr "Ange det ursprungliga saldot för detta konto."
 
 #: accountdialog.cpp:170 import_export/univcsvdialog.cpp:1768
 msgid "Currency:"
@@ -219,11 +219,11 @@ msgstr ""
 
 #: accountdialog.cpp:260
 msgid "Credit"
-msgstr ""
+msgstr "Kredit"
 
 #: accountdialog.cpp:268
 msgid "Credit Limit:"
-msgstr ""
+msgstr "Kreditgräns:"
 
 #: accountdialog.cpp:270
 msgid "Credit limit for the Account. Zero to disable"
@@ -239,7 +239,7 @@ msgstr ""
 
 #: accountdialog.cpp:281
 msgid "Minimum Payment:"
-msgstr ""
+msgstr "Minsta betalning:"
 
 #: accountdialog.cpp:300
 msgid "Organize attachments of this account"
@@ -247,7 +247,7 @@ msgstr ""
 
 #: accountdialog.cpp:407
 msgid "Default Image"
-msgstr ""
+msgstr "Förvald bild"
 
 #: accountdialog.cpp:414
 #, c-format
@@ -265,7 +265,7 @@ msgstr "Valuta"
 
 #: accountdialog.cpp:498
 msgid "Please insert a valid URL"
-msgstr ""
+msgstr "Ange in en giltig URL"
 
 #: accountdialog.cpp:498
 msgid "Invalid URL"
@@ -534,13 +534,13 @@ msgstr ""
 #: maincurrencydialog.cpp:519 mmcheckingpanel.cpp:442 payeedialog.cpp:366
 #: splittransactionsdialog.cpp:166 stockspanel.cpp:583
 msgid "&Edit "
-msgstr ""
+msgstr "&Redigera "
 
 #: assetspanel.cpp:484 billsdepositspanel.cpp:273 budgetyeardialog.cpp:103
 #: categdialog.cpp:234 maincurrencydialog.cpp:292 mmcheckingpanel.cpp:447
 #: mmcheckingpanel.cpp:1098 stockdialog.cpp:339 stockspanel.cpp:588
 msgid "&Delete "
-msgstr ""
+msgstr "&Radera "
 
 #: assetspanel.cpp:485
 msgid "Delete Asset"
@@ -549,11 +549,11 @@ msgstr "Ta bort tillgång"
 #: assetspanel.cpp:492 billsdepositspanel.cpp:291 mmcheckingpanel.cpp:460
 #: stockspanel.cpp:601
 msgid "Open attachments"
-msgstr ""
+msgstr "Öppna bilagor"
 
 #: assetspanel.cpp:499 assetspanel.cpp:500 mmcheckingpanel.cpp:468
 msgid "Search"
-msgstr ""
+msgstr "Sök"
 
 #: assetspanel.cpp:502
 msgid "Enter any string to find related assets"
@@ -804,7 +804,7 @@ msgstr "Månatligen (sista dagen)"
 
 #: billsdepositsdialog.cpp:66 billsdepositspanel.cpp:55
 msgid "Monthly (last business day)"
-msgstr ""
+msgstr "Månatligen (sista arbetsdagen)"
 
 #: billsdepositsdialog.cpp:164
 msgid "New Recurring Transaction"
@@ -1128,7 +1128,7 @@ msgstr ""
 #: billsdepositspanel.cpp:51
 #, c-format
 msgid "In %s Months"
-msgstr ""
+msgstr "Om %s månader"
 
 #: billsdepositspanel.cpp:52
 #, c-format
@@ -1138,7 +1138,7 @@ msgstr ""
 #: billsdepositspanel.cpp:53
 #, c-format
 msgid "Every %s Months"
-msgstr ""
+msgstr "Var %s:e månad"
 
 #: billsdepositspanel.cpp:105 budgetingpanel.cpp:294
 #: reports/budgetcategorysummary.cpp:186 reports/myusage.cpp:117
@@ -1350,7 +1350,7 @@ msgstr ""
 #: budgetingpanel.cpp:172 reports/budget.cpp:84
 #, c-format
 msgid "Financial Year: %s - %i"
-msgstr ""
+msgstr "Räkenskapsår: %s - %i"
 
 #: budgetingpanel.cpp:176 reports/budget.cpp:88
 #, c-format
@@ -1423,7 +1423,7 @@ msgstr "&Lägg till månad"
 
 #: budgetyeardialog.cpp:100
 msgid "Add a new budget month"
-msgstr ""
+msgstr "Lägg till en ny budgetmånad"
 
 #: budgetyeardialog.cpp:105
 msgid "Delete existing budget"
@@ -2637,7 +2637,7 @@ msgstr ""
 #: import_export/qif_export.cpp:445 import_export/qif_import_gui.cpp:358
 #: import_export/qif_import_gui.cpp:804
 msgid "Please wait"
-msgstr ""
+msgstr "Vänligen vänta"
 
 #: import_export/qif_export.cpp:445
 msgid "Exporting"
@@ -3267,19 +3267,19 @@ msgstr ""
 
 #: mmSimpleDialogs.cpp:177
 msgid "Subtract one year"
-msgstr ""
+msgstr "Subtrahera ett år"
 
 #: mmSimpleDialogs.cpp:178
 msgid "Subtract one month"
-msgstr ""
+msgstr "Subtrahera en månad"
 
 #: mmSimpleDialogs.cpp:179
 msgid "Add one month"
-msgstr ""
+msgstr "Lägg till en månad"
 
 #: mmSimpleDialogs.cpp:180
 msgid "Add one year"
-msgstr ""
+msgstr "Lägg till ett år"
 
 #: mmSimpleDialogs.cpp:237
 #, c-format
@@ -5087,7 +5087,7 @@ msgstr ""
 
 #: optionsettingsgeneral.cpp:123
 msgid "Financial Year"
-msgstr ""
+msgstr "Räkenskapsår"
 
 #: optionsettingsgeneral.cpp:130
 msgid "Start Day"
@@ -5099,7 +5099,7 @@ msgstr ""
 
 #: optionsettingsgeneral.cpp:140
 msgid "Start Month"
-msgstr ""
+msgstr "Startmånad"
 
 #: optionsettingsgeneral.cpp:152
 msgid "Specify month for start of financial year"
@@ -5643,7 +5643,7 @@ msgstr ""
 
 #: reports/htmlbuilder.cpp:317 reports/mmDateRange.cpp:219
 msgid "Over Time"
-msgstr ""
+msgstr "Över tid"
 
 #: reports/incexpenses.cpp:122
 msgid "Income:"
@@ -5655,7 +5655,7 @@ msgstr "Utgifter:"
 
 #: reports/incexpenses.cpp:276
 msgid "Year"
-msgstr ""
+msgstr "År"
 
 #: reports/incexpenses.cpp:277
 msgid "Month"
@@ -5667,15 +5667,15 @@ msgstr "Nuvarande månad"
 
 #: reports/mmDateRange.cpp:83
 msgid "Today"
-msgstr ""
+msgstr "Idag"
 
 #: reports/mmDateRange.cpp:92
 msgid "Current Month to Date"
-msgstr ""
+msgstr "Nuvarande månad till idag"
 
 #: reports/mmDateRange.cpp:100
 msgid "Last Month"
-msgstr ""
+msgstr "Förra månaden"
 
 #: reports/mmDateRange.cpp:110
 msgid "Last 30 Days"
@@ -5683,15 +5683,15 @@ msgstr "Senaste 30 dagarna"
 
 #: reports/mmDateRange.cpp:120
 msgid "Last 90 Days"
-msgstr ""
+msgstr "Senaste 90 dagarna"
 
 #: reports/mmDateRange.cpp:132
 msgid "Last 3 Months"
-msgstr ""
+msgstr "Senaste 3 månaderna"
 
 #: reports/mmDateRange.cpp:144
 msgid "Last 12 Months"
-msgstr ""
+msgstr "Senaste 12 månaderna"
 
 #: reports/mmDateRange.cpp:153
 msgid "Current Year"
@@ -5699,7 +5699,7 @@ msgstr "Nuvarande år"
 
 #: reports/mmDateRange.cpp:161 stockdialog.cpp:720
 msgid "Current Year to Date"
-msgstr ""
+msgstr "Nuvarande år till idag"
 
 #: reports/mmDateRange.cpp:170
 msgid "Last Year"
@@ -5707,19 +5707,19 @@ msgstr "Föregående år"
 
 #: reports/mmDateRange.cpp:192
 msgid "Current Financial Year"
-msgstr ""
+msgstr "Nuvarande räkenskapsår"
 
 #: reports/mmDateRange.cpp:202
 msgid "Current Financial Year to Date"
-msgstr ""
+msgstr "Nuvarande räkenskapsår till idag"
 
 #: reports/mmDateRange.cpp:213
 msgid "Last Financial Year"
-msgstr ""
+msgstr "Förra räkenskapsåret"
 
 #: reports/mmDateRange.cpp:242
 msgid "Last 365 Days"
-msgstr ""
+msgstr "Senaste 365 dagarna"
 
 #: reports/myusage.cpp:27
 msgid "MMEX Usage Frequency"
@@ -5727,11 +5727,11 @@ msgstr ""
 
 #: reports/payee.cpp:32
 msgid "Payee Report"
-msgstr ""
+msgstr "Rapport för betalningsmottagare"
 
 #: reports/reportbase.cpp:127
 msgid "Accounts: "
-msgstr ""
+msgstr "Konton: "
 
 #: reports/reportbase.cpp:155 reports/reportbase.cpp:267
 msgid "Choose Accounts"
@@ -5744,11 +5744,11 @@ msgstr ""
 
 #: reports/summary.cpp:140
 msgid "Monthly Report"
-msgstr ""
+msgstr "Månatlig rapport"
 
 #: reports/summary.cpp:140
 msgid "Yearly Report"
-msgstr ""
+msgstr "Årlig rapport"
 
 #: reports/summarystocks.cpp:45
 msgid "Summary of Stocks"
@@ -5756,11 +5756,11 @@ msgstr "Aktiesammanfattning"
 
 #: reports/summarystocks.cpp:181
 msgid "*Purchase Date"
-msgstr ""
+msgstr "*Inköpsdatum"
 
 #: reports/summarystocks.cpp:182
 msgid "Quantity"
-msgstr ""
+msgstr "Kvantitet"
 
 #: reports/summarystocks.cpp:184
 msgid "Current Price"
@@ -5769,7 +5769,7 @@ msgstr "Akt. pris:"
 #: reports/summarystocks.cpp:185 sharetransactiondialog.cpp:242
 #: stockspanel.cpp:102
 msgid "Commission"
-msgstr ""
+msgstr "Provision"
 
 #: reports/summarystocks.cpp:193
 msgid "Stocks Performance Charts"
@@ -5798,7 +5798,7 @@ msgstr ""
 
 #: sharetransactiondialog.cpp:200 stockdialog.cpp:192 stockspanel.cpp:93
 msgid "Company Name"
-msgstr ""
+msgstr "Företagsnamn"
 
 #: sharetransactiondialog.cpp:204 stockdialog.cpp:195
 msgid "Enter the stock company name"
@@ -5886,7 +5886,7 @@ msgstr "Ny aktieinvestering"
 
 #: stockdialog.cpp:208 stockspanel.cpp:92
 msgid "*Date"
-msgstr ""
+msgstr "*Datum"
 
 #: stockdialog.cpp:214
 msgid "Specify the initial date of the stock investment\n"
@@ -6003,35 +6003,35 @@ msgstr ""
 
 #: stockdialog.cpp:712 stockdialog.cpp:742
 msgid "5 Days"
-msgstr ""
+msgstr "5 dagar"
 
 #: stockdialog.cpp:713 stockdialog.cpp:744
 msgid "1 Month"
-msgstr ""
+msgstr "1 månad"
 
 #: stockdialog.cpp:714 stockdialog.cpp:745
 msgid "3 Months"
-msgstr ""
+msgstr "3 månader"
 
 #: stockdialog.cpp:715
 msgid "6 Months"
-msgstr ""
+msgstr "6 månader"
 
 #: stockdialog.cpp:716
 msgid "1 Year"
-msgstr ""
+msgstr "1 år"
 
 #: stockdialog.cpp:717
 msgid "2 Years"
-msgstr ""
+msgstr "2 år"
 
 #: stockdialog.cpp:718
 msgid "5 Years"
-msgstr ""
+msgstr "5 år"
 
 #: stockdialog.cpp:719
 msgid "10 Years"
-msgstr ""
+msgstr "10 år"
 
 #: stockdialog.cpp:721
 msgid "Max"
@@ -6047,11 +6047,11 @@ msgstr ""
 
 #: stockdialog.cpp:741
 msgid "1 Day"
-msgstr ""
+msgstr "1 dag"
 
 #: stockdialog.cpp:743
 msgid "1 Week"
-msgstr ""
+msgstr "1 vecka"
 
 #: stockdialog.cpp:751
 msgid "Specify interval of stock history"
