@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-05-26 12:37+0300\n"
-"PO-Revision-Date: 2020-05-27 23:44\n"
+"PO-Revision-Date: 2020-05-28 00:11\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Croatian\n"
 "MIME-Version: 1.0\n"
@@ -383,7 +383,7 @@ msgstr "Vrijednost"
 
 #: assetdialog.cpp:226
 msgid "Enter the current value of the asset"
-msgstr "Unesi aktualnu vrijednost imovine"
+msgstr "Upiši aktualnu vrijednost imovine"
 
 #: assetdialog.cpp:231
 msgid "Change in Value"
@@ -1846,7 +1846,7 @@ msgstr "Standardno"
 #: customfieldeditdialog.cpp:155
 msgid "Enter the default for this field\n"
 "For date/time insert 'Now' to make current date/time as default"
-msgstr "Unesi standardnu vrijednost za ovo polje\n"
+msgstr "Upiši standardnu vrijednost za ovo polje\n"
 "Za datum/vrijeme umetni „Sad”, kako bi se koristio aktualni datum/vrijeme kao standardna vrijednost"
 
 #: customfieldeditdialog.cpp:159
@@ -4420,7 +4420,7 @@ msgstr ""
 
 #: mmframe.cpp:2002
 msgid "Enter password for database"
-msgstr ""
+msgstr "Upiši lozinku za bazu podataka"
 
 #: mmframe.cpp:2007
 msgid "Choose database file to Save As"
@@ -4432,7 +4432,7 @@ msgstr ""
 
 #: mmframe.cpp:2029
 msgid "MMEX message"
-msgstr ""
+msgstr "MMEX poruka"
 
 #: mmframe.cpp:2035
 msgid "MMEX: Encryption Password Change"
@@ -4442,11 +4442,12 @@ msgstr ""
 #, c-format
 msgid "New password for database\n\n"
 "%s"
-msgstr ""
+msgstr "Nova lozinka za bazu podataka\n\n"
+"%s"
 
 #: mmframe.cpp:2041
 msgid "New password must not be empty."
-msgstr ""
+msgstr "Nova lozinka ne smije biti prazna."
 
 #: mmframe.cpp:2045
 msgid "Please confirm new password"
@@ -4551,7 +4552,7 @@ msgstr ""
 
 #: mmframe.cpp:2882
 msgid "Please wait..."
-msgstr ""
+msgstr "Pričekaj …"
 
 #: mmframe.cpp:2931 stockspanel.cpp:893
 #, c-format
@@ -5864,7 +5865,7 @@ msgstr "Cijena dionice"
 
 #: sharetransactiondialog.cpp:236
 msgid "Enter the current value for a single share unit"
-msgstr "Unesi aktualnu jediničnu vrijednost dionice"
+msgstr "Upiši aktualnu jediničnu vrijednost dionice"
 
 #: sharetransactiondialog.cpp:247
 msgid "Enter any commission paid"
@@ -5965,7 +5966,7 @@ msgstr "Trenutačna cijena dionice"
 
 #: stockdialog.cpp:253
 msgid "Enter current stock/share price."
-msgstr ""
+msgstr "Upiši aktualnu cijenu dionice."
 
 #: stockdialog.cpp:285
 msgid "Stock History Options"
@@ -6001,7 +6002,7 @@ msgstr ""
 
 #: stockdialog.cpp:342
 msgid "Add Stock Price to history"
-msgstr ""
+msgstr "Dodaj cijene vlasničkog udjela u povijest"
 
 #: stockdialog.cpp:420
 msgid "Held At"
@@ -6031,12 +6032,12 @@ msgstr "Tečajevi uvezeni iz CSV datoteke: "
 #: stockdialog.cpp:671
 #, c-format
 msgid "Total Lines : %ld"
-msgstr ""
+msgstr "Ukupno redaka: %ld"
 
 #: stockdialog.cpp:673
 #, c-format
 msgid "Total Imported : %ld"
-msgstr ""
+msgstr "Ukupno uvezeno: %ld"
 
 #: stockdialog.cpp:681
 msgid "Importing CSV"
@@ -6209,7 +6210,7 @@ msgstr "Portfelj vlasničkih udjela: %s"
 #: stockspanel.cpp:763
 #, c-format
 msgid "Total Shares: %s"
-msgstr ""
+msgstr "Ukupno dionica: %s"
 
 #: stockspanel.cpp:765
 #, c-format
@@ -6315,12 +6316,12 @@ msgstr "Odredi datum transakcije"
 
 #: transdialog.cpp:1309
 msgid "Clear colour"
-msgstr ""
+msgstr "Ukloni boju"
 
 #: transdialog.cpp:1314
 #, c-format
 msgid "Colour #%i"
-msgstr ""
+msgstr "Boja broj %i"
 
 #: usertransactionpanel.cpp:115
 msgid "Specify the associated Account that will contain this transaction"
@@ -6623,7 +6624,7 @@ msgstr "Stanje mreže (klikni za aktualiziranje)"
 
 #: webappdialog.cpp:132
 msgid "Checking for new transactions..."
-msgstr ""
+msgstr "Traženje novih transakcija …"
 
 #: webappdialog.cpp:165
 msgid "&Import all "
