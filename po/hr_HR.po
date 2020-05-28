@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-05-26 12:37+0300\n"
-"PO-Revision-Date: 2020-05-28 11:16\n"
+"PO-Revision-Date: 2020-05-28 11:57\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Croatian\n"
 "MIME-Version: 1.0\n"
@@ -2214,7 +2214,7 @@ msgstr "Održavanje baze podataka je završeno. Zatvori i ponovo otvori MMEX!"
 
 #: dbwrapper.cpp:70
 msgid "When database file opening:"
-msgstr ""
+msgstr "Prilikom otvaranja datoteke baze podataka:"
 
 #: dbwrapper.cpp:74
 msgid "Can't open file"
@@ -2990,7 +2990,7 @@ msgstr "Račun ne postoji"
 #: import_export/univcsvdialog.cpp:1784
 #, c-format
 msgid "Positive if type has '%s'"
-msgstr ""
+msgstr "Pozitivno, ako vrsta sadrži „%s”"
 
 #: import_export/univcsvdialog.cpp:917
 msgid "Incorrect fields specified for import!"
@@ -3173,7 +3173,7 @@ msgstr "Internetsko aktualiziranje"
 
 #: maincurrencydialog.cpp:170
 msgid "Show all even the unused currencies"
-msgstr ""
+msgstr "Prikaži sve, čak i nekorištene valute"
 
 #: maincurrencydialog.cpp:227
 msgid "Currency History Options"
@@ -3433,7 +3433,7 @@ msgstr "Savjet: Za ispis stanja transakcija bilo kojih uvjeta, koristi filtar tr
 
 #: mmTips.h:32
 msgid "Tip: Set exchange rate for currencies in case if you have accounts with different currencies."
-msgstr "Savjet: Postavi valutni tečaj u slučaju da posjeduješ račune s različitim valutama."
+msgstr "Savjet: Postavi tečajnu listu u slučaju da posjeduješ račune s različitim valutama."
 
 #: mmTips.h:34
 msgid "Organize Categories Dialog Tip: Pressing the h key will cycle through all categories starting with the letter h"
@@ -3688,11 +3688,12 @@ msgstr "Višestruki izbor"
 #, c-format
 msgid "Unable to save custom field \"%s\":\n"
 "value \"%s\" does not match RegEx validation \"%s\""
-msgstr ""
+msgstr "Nije moguće spremiti prilagođeno polje „%s”:\n"
+"vrijednost „%s” se ne poklapa s provjerom regularnog izraza „%s”"
 
 #: mmcustomdata.cpp:449
 msgid "CustomField validation error"
-msgstr ""
+msgstr "Greška provjere prilagođenog polja"
 
 #: mmex.cpp:127
 #, c-format
@@ -3712,7 +3713,8 @@ msgstr "Promjena jezika"
 #: mmex.cpp:179
 msgid "Fatal error occured.\n"
 "Application will be terminated."
-msgstr ""
+msgstr "Dogodila se fatalna greška.\n"
+"Program će prekinuti rad."
 
 #: mmframe.cpp:259
 msgid "Navigation"
@@ -4362,7 +4364,7 @@ msgstr ""
 
 #: mmframe.cpp:1772 mmframe.cpp:2002 mmframe.cpp:2135
 msgid "MMEX: Encrypted Database"
-msgstr ""
+msgstr "MMEX: šifrirana baza podataka"
 
 #: mmframe.cpp:1806
 msgid "Have MMEX support provided you a debug/patch file?"
@@ -4394,7 +4396,7 @@ msgstr "Za šifriranu bazu podataka nije upisana lozinka.\n"
 
 #: mmframe.cpp:1893
 msgid "portable mode"
-msgstr ""
+msgstr "prenosiv modus"
 
 #: mmframe.cpp:1929
 msgid "Database that you trying to open has been marked as opened by another MMEX instance...\n"
@@ -4417,7 +4419,7 @@ msgstr "Odaberi datoteku baze podataka, koju želiš otvoriti"
 
 #: mmframe.cpp:1992
 msgid "Choose Encrypted database file to open"
-msgstr ""
+msgstr "Odaberi datoteku šifrirane baze podataka, koju želiš otvoriti"
 
 #: mmframe.cpp:2002
 msgid "Enter password for database"
@@ -4425,11 +4427,11 @@ msgstr "Upiši lozinku za bazu podataka"
 
 #: mmframe.cpp:2007
 msgid "Choose database file to Save As"
-msgstr ""
+msgstr "Odaberi datoteku baze podataka za spremanje kao"
 
 #: mmframe.cpp:2029
 msgid "Converted DB!"
-msgstr ""
+msgstr "Baza podataka je konvertirana!"
 
 #: mmframe.cpp:2029
 msgid "MMEX message"
@@ -4437,7 +4439,7 @@ msgstr "MMEX poruka"
 
 #: mmframe.cpp:2035
 msgid "MMEX: Encryption Password Change"
-msgstr ""
+msgstr "MMEX: promjena lozinke šifriranja"
 
 #: mmframe.cpp:2036
 #, c-format
@@ -4452,7 +4454,7 @@ msgstr "Nova lozinka ne smije biti prazna."
 
 #: mmframe.cpp:2045
 msgid "Please confirm new password"
-msgstr ""
+msgstr "Potvrdi novu lozinku"
 
 #: mmframe.cpp:2049
 msgid "Password change completed."
@@ -4497,11 +4499,11 @@ msgstr "Nije moguće kopirati bazu podataka u samu sebe"
 
 #: mmframe.cpp:2135
 msgid "Enter password for new database"
-msgstr ""
+msgstr "Upiši lozinku za novu bazu podataka"
 
 #: mmframe.cpp:2219 mmframe.cpp:2238
 msgid "No account available to import"
-msgstr ""
+msgstr "Nema računa za uvoz"
 
 #: mmframe.cpp:2287
 msgid "Asset Accounts hold Asset transactions\n\n"
@@ -4549,7 +4551,7 @@ msgstr "Odaberi HTML datoteku koju želiš izvesti"
 
 #: mmframe.cpp:2881 mmframe.cpp:2888
 msgid "Downloading stock prices from Yahoo"
-msgstr ""
+msgstr "Preuzimanje cijena dionica s Yahoo stranice"
 
 #: mmframe.cpp:2882
 msgid "Please wait..."
@@ -4747,7 +4749,7 @@ msgstr "Sveukupno:"
 
 #: mmhomepage.cpp:751
 msgid "Currency Exchange Rates"
-msgstr ""
+msgstr "Tečajna lista"
 
 #: mmhomepagepanel.cpp:159
 msgid "Upcoming Transactions"
