@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-05-26 12:37+0300\n"
-"PO-Revision-Date: 2020-05-28 12:13\n"
+"PO-Revision-Date: 2020-05-28 12:38\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Croatian\n"
 "MIME-Version: 1.0\n"
@@ -428,7 +428,8 @@ msgstr "Neispravna transakcija"
 #: assetdialog.cpp:409
 msgid "Asset Account not found.\n\n"
 "Would you want to create one?"
-msgstr ""
+msgstr "Račun imovine nije pronađen.\n\n"
+"Želiš li stvoriti jedan račun?"
 
 #: assetspanel.cpp:58 billsdepositspanel.cpp:96 mmcheckingpanel.cpp:949
 #: reports/transactions.cpp:68 stockspanel.cpp:91
@@ -572,7 +573,8 @@ msgstr "Promjena vrijednosti: %s %s"
 #: assetspanel.cpp:768
 msgid "This asset does not have its own account\n\n"
 "Multiple transactions for this asset are not recommended."
-msgstr ""
+msgstr "Ova imovina nema vlastiti račun\n\n"
+"Ne preporučuje se upotreba višestrukih transakcija za ovu imovinu."
 
 #: assetspanel.cpp:770
 msgid "Asset Management"
@@ -1505,7 +1507,7 @@ msgstr "Uredi ime postojeće kategorije"
 
 #: categdialog.cpp:236
 msgid "Delete an existing category. The category cannot be used by existing transactions."
-msgstr ""
+msgstr "Izbriši postojeću kategoriju. Kategorija se ne može koristiti za postojeće transakcije."
 
 #: categdialog.cpp:241 maincurrencydialog.cpp:211
 msgid "&Select"
@@ -1894,7 +1896,8 @@ msgstr "Potvrdi brisanje prilagođenog polja"
 #: customfieldlistdialog.cpp:194
 msgid "This function will massive update (search & replace for entire value, not inside value), please remind that there isn't any validation!\n"
 "Do you want to proceed?"
-msgstr ""
+msgstr "Ova funkcija masovno aktualizira (pretraga i zamjena cijele vrijednosti, ne unutarnje vrijednosti). Napominjemo da nema provjere valjanosti!\n"
+"Želiš li nastaviti?"
 
 #: customfieldlistdialog.cpp:196
 msgid "Confirm Custom Field Content Update"
@@ -2143,7 +2146,7 @@ msgstr "Prihod od investicija"
 #: dbupgrade.cpp:72
 #, c-format
 msgid "MMEX database upgrade to version %i failed!"
-msgstr ""
+msgstr "Neuspjela nadogradnja MMEX baze podataka na verziju %i!"
 
 #: dbupgrade.cpp:73
 msgid "Please restore DB from autocreated pre-upgrade backup and retry or contact MMEX support"
@@ -2167,11 +2170,11 @@ msgstr "MMEX baza podataka verzije %i ne radi s ovom MMEX verzijom.\n"
 #: dbupgrade.cpp:119
 #, c-format
 msgid "MMEX database succesfully upgraded to version %i"
-msgstr ""
+msgstr "Uspjela nadogradnja MMEX baze podataka na verziju %i"
 
 #: dbupgrade.cpp:120
 msgid "We suggest a database optimization under Tools -> Database -> Optimize"
-msgstr ""
+msgstr "Predlažemo optimiranje baze podataka pod Alati -> Baza podataka -> Optimiraj"
 
 #: dbupgrade.cpp:197
 msgid "Load debug file"
@@ -3140,7 +3143,7 @@ msgstr "CSV datoteke (*.csv)"
 
 #: import_export/univcsvdialog.cpp:1780
 msgid "Please, type the word indicating positive values in your CSV file, e.g. 'debit'"
-msgstr ""
+msgstr "Upiši riječ koja ukazuje na pozitivne vrijednosti u tvojoj CSV datoteci, npr. „dugovanje”"
 
 #: import_export/univcsvdialog.cpp:1780
 msgid "Enter a value"
@@ -3411,7 +3414,7 @@ msgstr "Savjet: Stvaraj redovito sigurnosne kopije tvoje .mmb datoteke baze poda
 
 #: mmTips.h:26
 msgid "Tip: The .mmb file is not encrypted. That means anyone else having the proper know how can actually open the file and read the contents. So make sure that if you are storing any sensitive financial information it is properly guarded."
-msgstr ""
+msgstr "Savjet: .mmb datoteka nije šifrirana. To znači, da bilo tko s dovoljno tehničkog znanja može otvoriti bazu podataka i pročitati sadržaj. Zato zaštiti podatke na ispravan način, ako imaš osjetljive financije podatke."
 
 #: mmTips.h:27
 msgid "Tip: To mark a transaction as reconciled, just select the transaction and hit the 'r' or 'R' key. To mark a transaction as unreconciled, just select the transaction and hit the 'u' or 'U' key."
@@ -3706,7 +3709,8 @@ msgstr "Nije moguće učitati prijevod za zadani jezik tvojeg sustava (%s)."
 #, c-format
 msgid "Please use the Switch Application Language option in View menu to select one of the following available languages:\n\n"
 "%s"
-msgstr ""
+msgstr "Koristi opciju „Zamijeni jezik programa” u izborniku Prikaz za biranje jednog od sljedećih dostupnih jezika:\n\n"
+"%s"
 
 #: mmex.cpp:139 mmframe.cpp:3212
 msgid "Language change"
