@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-05-26 12:37+0300\n"
-"PO-Revision-Date: 2020-05-28 00:11\n"
+"PO-Revision-Date: 2020-05-28 10:30\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Croatian\n"
 "MIME-Version: 1.0\n"
@@ -1767,7 +1767,7 @@ msgstr "Konverzija u osnovni tečaj"
 
 #: currencydialog.cpp:212
 msgid "Conversion rate will be used in case no currency history has been found for the currency"
-msgstr ""
+msgstr "U slučaju da se za valutu ne nađe povijest valute, koristit će se tečaj konverzije"
 
 #: currencydialog.cpp:214
 msgid "Fixed conversion rate"
@@ -3165,7 +3165,7 @@ msgstr "Dijalog za valute"
 
 #: maincurrencydialog.cpp:163 maincurrencydialog.cpp:465
 msgid "Online update currency rate"
-msgstr "Online osvježavanje valutnih tečaja"
+msgstr "Internetsko aktualiziranje valutnih tečajeva"
 
 #: maincurrencydialog.cpp:166
 msgid "Online Update"
@@ -3232,7 +3232,7 @@ msgstr "Opcije za povijest valuta: %s "
 
 #: maincurrencydialog.cpp:494
 msgid "Unable to update history currency rates. Please update them manually!"
-msgstr ""
+msgstr "Nije moguće aktualizirati povijest tečajeva valute. Aktualiziraj ih ručno!"
 
 #: maincurrencydialog.cpp:494 maincurrencydialog.cpp:624
 #: maincurrencydialog.cpp:639 maincurrencydialog.cpp:686
@@ -4283,7 +4283,7 @@ msgstr "Provjeri &nadogradnje"
 
 #: mmframe.cpp:1637
 msgid "Check For Updates"
-msgstr ""
+msgstr "Provjeri nadogradnje"
 
 #: mmframe.cpp:1642 mmframe.cpp:1716
 msgid "&About..."
@@ -4971,7 +4971,7 @@ msgstr "Mapa arhiva priloga samo za %s:"
 
 #: optionsettingsattachment.cpp:68
 msgid "Every OS type (Win,Mac,Unix) has its attachment folder"
-msgstr ""
+msgstr "Svaki operacijski sustav (Win, Mac, Unix) ima svoju mapu priloga"
 
 #: optionsettingsattachment.cpp:87
 msgid "Browse for folder"
@@ -5051,11 +5051,11 @@ msgstr "Odaberi mapu, koja će se koristiti kao arhiv za priloge"
 
 #: optionsettingsattachment.cpp:219
 msgid "Attachments folder it's not writable!"
-msgstr ""
+msgstr "U mapu priloga se ne može pisati!"
 
 #: optionsettingsattachment.cpp:219
 msgid "Attachments folder"
-msgstr ""
+msgstr "Mapa priloga"
 
 #: optionsettingsattachment.cpp:227
 msgid "Attachments path has been changed!"
@@ -5315,11 +5315,11 @@ msgstr "Sekunde"
 
 #: optionsettingsnet.cpp:138
 msgid "Updates"
-msgstr ""
+msgstr "Nadogradnje"
 
 #: optionsettingsnet.cpp:144
 msgid "Check for updates at StartUp"
-msgstr ""
+msgstr "Provjeri nadogradnje prilikom pokretanja programa"
 
 #: optionsettingsnet.cpp:146
 msgid "Enable to automatically check if new MMEX version is available at StartUp"
@@ -5335,7 +5335,7 @@ msgstr "Nestabilna"
 
 #: optionsettingsnet.cpp:154
 msgid "Updates source"
-msgstr ""
+msgstr "Izvor nadogradnji"
 
 #: optionsettingsview.cpp:78
 msgid "Specify which accounts are visible"
