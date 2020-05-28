@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-05-26 12:37+0300\n"
-"PO-Revision-Date: 2020-05-28 11:04\n"
+"PO-Revision-Date: 2020-05-28 11:16\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Croatian\n"
 "MIME-Version: 1.0\n"
@@ -5597,7 +5597,7 @@ msgstr "Pretraži <a href='%s'>popis poznatih problema</a> za sličnim problemim
 #: reports/bugreport.h:81
 #, c-format
 msgid "As you know, <a href='%s'>a forum</a> for users is available where you can discuss problems and find solutions."
-msgstr ""
+msgstr "Za raspravu o problemima i za pronalaženje rješenja, koristi korisnički <a href='%s'>forum</a>."
 
 #: reports/bugreport.h:82
 #, c-format
@@ -6002,7 +6002,7 @@ msgstr "Uvezi povijest cijena vlasničkog udjela (CSV format)"
 
 #: stockdialog.cpp:340
 msgid "Delete selected Stock Price"
-msgstr ""
+msgstr "Izbriši odabranu cijenu dionica"
 
 #: stockdialog.cpp:342
 msgid "Add Stock Price to history"
@@ -6181,7 +6181,7 @@ msgstr "Privremeni popis vlasničkih udjela: %s\n\n"
 
 #: stockspanel.cpp:574
 msgid "Add Stock Transactions"
-msgstr ""
+msgstr "Dodaj transakcije vlasničkog udjela"
 
 #: stockspanel.cpp:579
 msgid "View Stock Transactions"
@@ -6330,7 +6330,7 @@ msgstr "Boja broj %i"
 
 #: usertransactionpanel.cpp:115
 msgid "Specify the associated Account that will contain this transaction"
-msgstr ""
+msgstr "Odredi račun koji će sadržati ovu transakciju"
 
 #: usertransactionpanel.cpp:127
 msgid "Withdraw funds from or deposit funds to this Account."
@@ -6709,7 +6709,8 @@ msgstr "Odaberi vrstu računa kojeg želiš stvoriti:"
 #: wizard_newaccount.cpp:130
 msgid "General bank accounts cover a wide variety of account\n"
 "types like Checking, Savings and Credit card type accounts."
-msgstr ""
+msgstr "Opći bankovni računi obuhvaćaju razne vrste računa,\n"
+"npr. tekući/žiro račun, štednju i kreditne kartice."
 
 #: wizard_newaccount.cpp:135
 msgid "Investment accounts are specialized accounts that only\n"
