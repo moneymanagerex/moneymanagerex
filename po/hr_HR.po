@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-05-26 12:37+0300\n"
-"PO-Revision-Date: 2020-05-28 10:30\n"
+"PO-Revision-Date: 2020-05-28 10:38\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Croatian\n"
 "MIME-Version: 1.0\n"
@@ -3268,11 +3268,11 @@ msgstr "Nije moguće preuzeti povijest za oznaku %s. Povijesni tečajevi nisu do
 
 #: maincurrencydialog.cpp:746
 msgid "Changing base currency will delete all history rates, proceed?"
-msgstr ""
+msgstr "Mijenjanjem osnovne valute, briše se sva povijest tečajeva. Nastaviti?"
 
 #: maincurrencydialog.cpp:770
 msgid "Do you want to update today currency rates?"
-msgstr ""
+msgstr "Želiš li aktualizirati današnje tečajeve valuta?"
 
 #: maincurrencydialog.cpp:785 stockspanel.cpp:825 util.cpp:468
 msgid "Could not find base currency symbol!"
@@ -3281,7 +3281,7 @@ msgstr "Nije moguće naći simbol osnovne valute!"
 #: maincurrencydialog.cpp:902
 #, c-format
 msgid "Unable to download history for base symbol %s. History rates not available!"
-msgstr ""
+msgstr "Nije moguće preuzeti povijest za osnovni simbol %s. Povijesni tečajevi nisu dostupni!"
 
 #: mmSimpleDialogs.cpp:177
 msgid "Subtract one year"
@@ -5111,7 +5111,7 @@ msgstr "Koristi povijest valuta"
 
 #: optionsettingsgeneral.cpp:99
 msgid "Select to use currency history (one rate for each day), deselect to use a fixed rate"
-msgstr ""
+msgstr "Označi za korištenje povijest valute (za svaki dan pojedinačan tečaj), odznači za korištenje fiksnog tečaja"
 
 #: optionsettingsgeneral.cpp:115
 msgid "Specify the date format for display"
