@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-05-26 12:37+0300\n"
-"PO-Revision-Date: 2020-05-28 10:38\n"
+"PO-Revision-Date: 2020-05-28 11:04\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Croatian\n"
 "MIME-Version: 1.0\n"
@@ -3209,7 +3209,7 @@ msgstr "Izbriši odabrane valutne vrijednosti"
 
 #: maincurrencydialog.cpp:297
 msgid "Delete Currency Values history for unused currencies and days"
-msgstr ""
+msgstr "Izbriši povijest valutnih vrijednosti za neupotrijebljene valute i dane"
 
 #: maincurrencydialog.cpp:356
 msgid "Do you really want to delete the selected Currency?"
@@ -3223,7 +3223,8 @@ msgstr "Odabir osnovne valute"
 #, c-format
 msgid "Historic rates for %s found, but \"Use currency history\" in options is disabled:\n"
 "click no and enable it or click yes to remove all historic rates for %s"
-msgstr ""
+msgstr "Pronađeni su povijesni tečajevi za %s, ali je opcija „Koristi povijest valuta” deaktivirana:\n"
+"za aktiviranje klikni ne ili klikni da za uklanjanje svih povijesnih cijena za %s"
 
 #: maincurrencydialog.cpp:438
 #, c-format
@@ -4011,7 +4012,7 @@ msgstr "Izbriši račun iz baze podataka"
 
 #: mmframe.cpp:1440
 msgid "Download Rates..."
-msgstr ""
+msgstr "Preuzmi tečajeve …"
 
 #: mmframe.cpp:1440 mmframe.cpp:1707
 msgid "Download Currency and Stock rates"
@@ -4347,7 +4348,7 @@ msgstr "Novosti"
 
 #: mmframe.cpp:1707
 msgid "Download rates"
-msgstr ""
+msgstr "Preuzmi tečajeve"
 
 #: mmframe.cpp:1710
 msgid "Toggle Fullscreen\tF11"
@@ -5849,7 +5850,7 @@ msgstr "Burzovna oznaka"
 
 #: sharetransactiondialog.cpp:214 stockdialog.cpp:205
 msgid "Enter the stock symbol. (Optional) Include exchange. eg: IBM.BE"
-msgstr "Unesi burzovnu oznaku. (Opcionalno) Uključi burzu, npr. IBM.BE"
+msgstr "Upiši burzovnu oznaku. (Opcionalno) Uključi burzu, npr. IBM.BE"
 
 #: sharetransactiondialog.cpp:217
 msgid "Share Number"
@@ -5869,7 +5870,7 @@ msgstr "Upiši aktualnu jediničnu vrijednost dionice"
 
 #: sharetransactiondialog.cpp:247
 msgid "Enter any commission paid"
-msgstr "Unesi plaćene provizije"
+msgstr "Upiši plaćene provizije"
 
 #: sharetransactiondialog.cpp:253
 msgid "Share Lot"
@@ -5940,7 +5941,8 @@ msgstr "*Broj dionica"
 #: stockdialog.cpp:224
 msgid "Enter number of shares.\n"
 "Used when creating the initial Share transaction."
-msgstr ""
+msgstr "Upiši broj dionica.\n"
+"Koristi se prilikom stvaranja početne dioničke transakcije."
 
 #: stockdialog.cpp:230 stockspanel.cpp:96
 msgid "*Share Price"
@@ -5949,7 +5951,8 @@ msgstr "*Cijena dionice"
 #: stockdialog.cpp:236
 msgid "Enter the initial price per share.\n"
 "Used when creating the initial Share transaction."
-msgstr ""
+msgstr "Upiši izvorne cijene dionica.\n"
+"Koristi se prilikom stvaranja početne dioničke transakcije."
 
 #: stockdialog.cpp:241
 msgid "*Commission"
@@ -5958,7 +5961,8 @@ msgstr "*Provizija"
 #: stockdialog.cpp:245
 msgid "Enter any commission paid.\n"
 "Used when creating the initial Share transaction."
-msgstr ""
+msgstr "Upiši plaćene provizije.\n"
+"Koristi se prilikom stvaranja početne dioničke transakcije."
 
 #: stockdialog.cpp:250 stockspanel.cpp:99
 msgid "Curr. Share Price"
@@ -5986,7 +5990,7 @@ msgstr "Datum cijene"
 
 #: stockdialog.cpp:320
 msgid "Specify the stock/share price date."
-msgstr ""
+msgstr "Odredi datum cijene dionice."
 
 #: stockdialog.cpp:336
 msgid "Download Stock Price history"
@@ -6011,7 +6015,8 @@ msgstr "Pri banci"
 #: stockdialog.cpp:494
 msgid "Share Account not found.\n\n"
 "Do you want to create one?"
-msgstr ""
+msgstr "Račun dionica nije pronađen.\n\n"
+"Želiš li stvoriti jedan račun?"
 
 #: stockdialog.cpp:504
 msgid "The Company name does not have an associated Share Account.\n\n"
@@ -6192,7 +6197,7 @@ msgstr "&Premjesti"
 
 #: stockspanel.cpp:594
 msgid "Move selected transaction to another account"
-msgstr ""
+msgstr "Premjesti odabranu transakciju u jedan drugi račun"
 
 #: stockspanel.cpp:607
 msgid "Refresh"
