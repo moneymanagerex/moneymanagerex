@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-05-26 12:37+0300\n"
-"PO-Revision-Date: 2020-05-28 11:57\n"
+"PO-Revision-Date: 2020-05-28 12:13\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Croatian\n"
 "MIME-Version: 1.0\n"
@@ -1929,7 +1929,7 @@ msgstr "Želiš li aktualizirati na prazno?\n"
 #: customfieldlistdialog.cpp:233
 #, c-format
 msgid "%i occurrences founded and replaced!"
-msgstr ""
+msgstr "%i događaja je nađeno i zamijenjeno!"
 
 #: customfieldlistdialog.cpp:268
 msgid "&Massive content update "
@@ -2192,7 +2192,7 @@ msgstr "Greška u upitu, kontaktiraj MMEX podršku!"
 
 #: dbupgrade.cpp:248 dbupgrade.cpp:303
 msgid "Invalid file content, please contact MMEX support!"
-msgstr ""
+msgstr "Nevaljan sadržaj datoteke. Kontaktiraj MMEX podršku!"
 
 #: dbupgrade.cpp:255
 msgid "Send this log to MMEX support team:\n"
@@ -2228,7 +2228,9 @@ msgstr "Moraš odrediti stazu prema jednoj drugoj datoteci baze podataka"
 msgid "An incorrect password given for an encrypted file\n"
 "or\n"
 "attempt to open a File that is not a database file \n"
-msgstr ""
+msgstr "Zadana je kriva lozinka za šifriranu datoteku\n"
+"ili\n"
+"se pokušava otvoriti datoteka koja nije datoteka baze podataka \n"
 
 #: dbwrapper.cpp:82 import_export/qif_import_gui.cpp:855 webapp.cpp:120
 #, c-format
@@ -4018,7 +4020,7 @@ msgstr "Preuzmi tečajeve …"
 
 #: mmframe.cpp:1440 mmframe.cpp:1707
 msgid "Download Currency and Stock rates"
-msgstr ""
+msgstr "Preuzmi tečajne liste valuta i dionica"
 
 #: mmframe.cpp:1447
 msgid "Organize &Categories..."
@@ -4098,7 +4100,7 @@ msgstr "Upravljač prilagođenih polja"
 
 #: mmframe.cpp:1518
 msgid "&Options...\tCtrl-,"
-msgstr ""
+msgstr "&Opcije …\tCtrl-,"
 
 #: mmframe.cpp:1518 mmframe.cpp:1690
 msgid "Show the Options Dialog"
@@ -4106,19 +4108,19 @@ msgstr "Prikaži dijalog za opcije"
 
 #: mmframe.cpp:1526
 msgid "Convert Encrypted &DB"
-msgstr ""
+msgstr "&Konvertiraj šifriranu bazu podataka"
 
 #: mmframe.cpp:1527
 msgid "Convert Encrypted DB to Non-Encrypted DB"
-msgstr ""
+msgstr "Konvertiraj šifriranu bazu podataka u nešifriranu bazu podataka"
 
 #: mmframe.cpp:1530
 msgid "Change Encrypted &Password"
-msgstr ""
+msgstr "&Promijeni lozinku šifriranja"
 
 #: mmframe.cpp:1531
 msgid "Change the password of an encrypted database"
-msgstr ""
+msgstr "Promijeni lozinku šifrirane baze podataka"
 
 #: mmframe.cpp:1534
 msgid "Optimize &Database"
@@ -4274,11 +4276,11 @@ msgstr "Razvijateljima prijavi grešku u programu"
 
 #: mmframe.cpp:1632
 msgid "&Show App Start Dialog"
-msgstr ""
+msgstr "P&rikaži početni dijalog pri pokretanju programa"
 
 #: mmframe.cpp:1632
 msgid "App Start Dialog"
-msgstr ""
+msgstr "Početni dijalog pri pokretanju programa"
 
 #: mmframe.cpp:1637
 msgid "Check for &Updates"
@@ -4360,7 +4362,8 @@ msgstr "Uključi/Isključi cijeli zaslon\tF11"
 #, c-format
 msgid "Please enter password for Database\n\n"
 "%s"
-msgstr ""
+msgstr "Upiši lozinku za bazu podataka\n\n"
+"%s"
 
 #: mmframe.cpp:1772 mmframe.cpp:2002 mmframe.cpp:2135
 msgid "MMEX: Encrypted Database"
@@ -4380,7 +4383,7 @@ msgstr "Nijedna datoteka nije otvorena"
 
 #: mmframe.cpp:1830
 msgid "Sorry. The Database version is too old or Database password is incorrect"
-msgstr ""
+msgstr "Žao nam je. Verzija baze podataka je prestara ili je lozinka baze podataka kriva"
 
 #: mmframe.cpp:1860
 msgid "&Next ->"
@@ -4403,7 +4406,10 @@ msgid "Database that you trying to open has been marked as opened by another MME
 "To avoid data loss or conflict, it's strongly recommended to close all other applications that can use the DB.\n\n"
 "Possible it may be as result of a programm crash in previous usage.\n\n"
 "Would you like to continue?"
-msgstr ""
+msgstr "Baza podataka koju pokušavaš otvoriti označena je kao otvorena od jedne druge MMEX instance …\n"
+"Kako bi se izbjegli gubitci podataka ili problemi, preporučujemo da zatvoriš sve druge aplikacije koje mogu koristiti bazu podataka.\n\n"
+"Mogući uzrok je pad programa prilikom prethodne upotrebe.\n\n"
+"Želiš li nastaviti?"
 
 #: mmframe.cpp:1933
 msgid "MMEX Instance Check"
@@ -4655,7 +4661,7 @@ msgstr "Prihod u odnosu na troškove"
 
 #: mmframereport.cpp:156
 msgid "My Usage"
-msgstr ""
+msgstr "Moja statistika"
 
 #: mmframereport.cpp:161
 msgid "Payees"
@@ -4667,11 +4673,11 @@ msgstr "Ukupni iznosi računa"
 
 #: mmframereport.cpp:180
 msgid "Budget Performance"
-msgstr ""
+msgstr "Rezultat budžeta"
 
 #: mmframereport.cpp:183
 msgid "Budget Category Summary"
-msgstr ""
+msgstr "Ukupni iznosi budžetskih kategorija"
 
 #: mmframereport.cpp:192
 msgid "Stocks Report"
@@ -4915,7 +4921,7 @@ msgstr "Greška u primatelju"
 
 #: model/Model_Report.cpp:88
 msgid "Begin date: "
-msgstr ""
+msgstr "Početni datum: "
 
 #: model/Model_Report.cpp:89
 msgid "Date: "
@@ -4923,7 +4929,7 @@ msgstr "Datum: "
 
 #: model/Model_Report.cpp:90
 msgid "End date: "
-msgstr ""
+msgstr "Krajnji datum: "
 
 #: model/Model_Report.cpp:235
 msgid "Template is empty"
@@ -4986,7 +4992,7 @@ msgstr "Stvarna staza:"
 
 #: optionsettingsattachment.cpp:97
 msgid "Legend (can be used as variables at the beginning of above path)"
-msgstr ""
+msgstr "Legenda (može se koristiti kao varijabla na početku gornjeg puta)"
 
 #: optionsettingsattachment.cpp:102
 #, c-format
@@ -5362,15 +5368,15 @@ msgstr "Prikaži budžete kao fiskalne godine"
 
 #: optionsettingsview.cpp:103
 msgid "View Budgets with 'transfer' transactions"
-msgstr ""
+msgstr "Prikaži budžete s prijenosnim transakcijama"
 
 #: optionsettingsview.cpp:109
 msgid "View Budget Category Report with Summaries"
-msgstr ""
+msgstr "Prikaži izvještaj o budžetskim kategorijama s ukupnim iznosima"
 
 #: optionsettingsview.cpp:115
 msgid "Ignore Future Transactions"
-msgstr ""
+msgstr "Zanemari buduće transakcije"
 
 #: optionsettingsview.cpp:121 transdialog.cpp:563
 msgid "User Colors"
