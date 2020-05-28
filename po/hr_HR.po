@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-05-26 12:37+0300\n"
-"PO-Revision-Date: 2020-05-28 00:11\n"
+"PO-Revision-Date: 2020-05-28 12:38\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Croatian\n"
 "MIME-Version: 1.0\n"
@@ -428,7 +428,8 @@ msgstr "Neispravna transakcija"
 #: assetdialog.cpp:409
 msgid "Asset Account not found.\n\n"
 "Would you want to create one?"
-msgstr ""
+msgstr "Račun imovine nije pronađen.\n\n"
+"Želiš li stvoriti jedan račun?"
 
 #: assetspanel.cpp:58 billsdepositspanel.cpp:96 mmcheckingpanel.cpp:949
 #: reports/transactions.cpp:68 stockspanel.cpp:91
@@ -572,7 +573,8 @@ msgstr "Promjena vrijednosti: %s %s"
 #: assetspanel.cpp:768
 msgid "This asset does not have its own account\n\n"
 "Multiple transactions for this asset are not recommended."
-msgstr ""
+msgstr "Ova imovina nema vlastiti račun\n\n"
+"Ne preporučuje se upotreba višestrukih transakcija za ovu imovinu."
 
 #: assetspanel.cpp:770
 msgid "Asset Management"
@@ -1505,7 +1507,7 @@ msgstr "Uredi ime postojeće kategorije"
 
 #: categdialog.cpp:236
 msgid "Delete an existing category. The category cannot be used by existing transactions."
-msgstr ""
+msgstr "Izbriši postojeću kategoriju. Kategorija se ne može koristiti za postojeće transakcije."
 
 #: categdialog.cpp:241 maincurrencydialog.cpp:211
 msgid "&Select"
@@ -1767,7 +1769,7 @@ msgstr "Konverzija u osnovni tečaj"
 
 #: currencydialog.cpp:212
 msgid "Conversion rate will be used in case no currency history has been found for the currency"
-msgstr ""
+msgstr "U slučaju da se za valutu ne nađe povijest valute, koristit će se tečaj konverzije"
 
 #: currencydialog.cpp:214
 msgid "Fixed conversion rate"
@@ -1894,7 +1896,8 @@ msgstr "Potvrdi brisanje prilagođenog polja"
 #: customfieldlistdialog.cpp:194
 msgid "This function will massive update (search & replace for entire value, not inside value), please remind that there isn't any validation!\n"
 "Do you want to proceed?"
-msgstr ""
+msgstr "Ova funkcija masovno aktualizira (pretraga i zamjena cijele vrijednosti, ne unutarnje vrijednosti). Napominjemo da nema provjere valjanosti!\n"
+"Želiš li nastaviti?"
 
 #: customfieldlistdialog.cpp:196
 msgid "Confirm Custom Field Content Update"
@@ -1929,7 +1932,7 @@ msgstr "Želiš li aktualizirati na prazno?\n"
 #: customfieldlistdialog.cpp:233
 #, c-format
 msgid "%i occurrences founded and replaced!"
-msgstr ""
+msgstr "%i događaja je nađeno i zamijenjeno!"
 
 #: customfieldlistdialog.cpp:268
 msgid "&Massive content update "
@@ -2143,7 +2146,7 @@ msgstr "Prihod od investicija"
 #: dbupgrade.cpp:72
 #, c-format
 msgid "MMEX database upgrade to version %i failed!"
-msgstr ""
+msgstr "Neuspjela nadogradnja MMEX baze podataka na verziju %i!"
 
 #: dbupgrade.cpp:73
 msgid "Please restore DB from autocreated pre-upgrade backup and retry or contact MMEX support"
@@ -2167,11 +2170,11 @@ msgstr "MMEX baza podataka verzije %i ne radi s ovom MMEX verzijom.\n"
 #: dbupgrade.cpp:119
 #, c-format
 msgid "MMEX database succesfully upgraded to version %i"
-msgstr ""
+msgstr "Uspjela nadogradnja MMEX baze podataka na verziju %i"
 
 #: dbupgrade.cpp:120
 msgid "We suggest a database optimization under Tools -> Database -> Optimize"
-msgstr ""
+msgstr "Predlažemo optimiranje baze podataka pod Alati -> Baza podataka -> Optimiraj"
 
 #: dbupgrade.cpp:197
 msgid "Load debug file"
@@ -2192,7 +2195,7 @@ msgstr "Greška u upitu, kontaktiraj MMEX podršku!"
 
 #: dbupgrade.cpp:248 dbupgrade.cpp:303
 msgid "Invalid file content, please contact MMEX support!"
-msgstr ""
+msgstr "Nevaljan sadržaj datoteke. Kontaktiraj MMEX podršku!"
 
 #: dbupgrade.cpp:255
 msgid "Send this log to MMEX support team:\n"
@@ -2214,7 +2217,7 @@ msgstr "Održavanje baze podataka je završeno. Zatvori i ponovo otvori MMEX!"
 
 #: dbwrapper.cpp:70
 msgid "When database file opening:"
-msgstr ""
+msgstr "Prilikom otvaranja datoteke baze podataka:"
 
 #: dbwrapper.cpp:74
 msgid "Can't open file"
@@ -2228,7 +2231,9 @@ msgstr "Moraš odrediti stazu prema jednoj drugoj datoteci baze podataka"
 msgid "An incorrect password given for an encrypted file\n"
 "or\n"
 "attempt to open a File that is not a database file \n"
-msgstr ""
+msgstr "Zadana je kriva lozinka za šifriranu datoteku\n"
+"ili\n"
+"se pokušava otvoriti datoteka koja nije datoteka baze podataka \n"
 
 #: dbwrapper.cpp:82 import_export/qif_import_gui.cpp:855 webapp.cpp:120
 #, c-format
@@ -2990,7 +2995,7 @@ msgstr "Račun ne postoji"
 #: import_export/univcsvdialog.cpp:1784
 #, c-format
 msgid "Positive if type has '%s'"
-msgstr ""
+msgstr "Pozitivno, ako vrsta sadrži „%s”"
 
 #: import_export/univcsvdialog.cpp:917
 msgid "Incorrect fields specified for import!"
@@ -3138,7 +3143,7 @@ msgstr "CSV datoteke (*.csv)"
 
 #: import_export/univcsvdialog.cpp:1780
 msgid "Please, type the word indicating positive values in your CSV file, e.g. 'debit'"
-msgstr ""
+msgstr "Upiši riječ koja ukazuje na pozitivne vrijednosti u tvojoj CSV datoteci, npr. „dugovanje”"
 
 #: import_export/univcsvdialog.cpp:1780
 msgid "Enter a value"
@@ -3165,7 +3170,7 @@ msgstr "Dijalog za valute"
 
 #: maincurrencydialog.cpp:163 maincurrencydialog.cpp:465
 msgid "Online update currency rate"
-msgstr "Online osvježavanje valutnih tečaja"
+msgstr "Internetsko aktualiziranje valutnih tečajeva"
 
 #: maincurrencydialog.cpp:166
 msgid "Online Update"
@@ -3173,7 +3178,7 @@ msgstr "Internetsko aktualiziranje"
 
 #: maincurrencydialog.cpp:170
 msgid "Show all even the unused currencies"
-msgstr ""
+msgstr "Prikaži sve, čak i nekorištene valute"
 
 #: maincurrencydialog.cpp:227
 msgid "Currency History Options"
@@ -3209,7 +3214,7 @@ msgstr "Izbriši odabrane valutne vrijednosti"
 
 #: maincurrencydialog.cpp:297
 msgid "Delete Currency Values history for unused currencies and days"
-msgstr ""
+msgstr "Izbriši povijest valutnih vrijednosti za neupotrijebljene valute i dane"
 
 #: maincurrencydialog.cpp:356
 msgid "Do you really want to delete the selected Currency?"
@@ -3223,7 +3228,8 @@ msgstr "Odabir osnovne valute"
 #, c-format
 msgid "Historic rates for %s found, but \"Use currency history\" in options is disabled:\n"
 "click no and enable it or click yes to remove all historic rates for %s"
-msgstr ""
+msgstr "Pronađeni su povijesni tečajevi za %s, ali je opcija „Koristi povijest valuta” deaktivirana:\n"
+"za aktiviranje klikni ne ili klikni da za uklanjanje svih povijesnih cijena za %s"
 
 #: maincurrencydialog.cpp:438
 #, c-format
@@ -3232,7 +3238,7 @@ msgstr "Opcije za povijest valuta: %s "
 
 #: maincurrencydialog.cpp:494
 msgid "Unable to update history currency rates. Please update them manually!"
-msgstr ""
+msgstr "Nije moguće aktualizirati povijest tečajeva valute. Aktualiziraj ih ručno!"
 
 #: maincurrencydialog.cpp:494 maincurrencydialog.cpp:624
 #: maincurrencydialog.cpp:639 maincurrencydialog.cpp:686
@@ -3268,11 +3274,11 @@ msgstr "Nije moguće preuzeti povijest za oznaku %s. Povijesni tečajevi nisu do
 
 #: maincurrencydialog.cpp:746
 msgid "Changing base currency will delete all history rates, proceed?"
-msgstr ""
+msgstr "Mijenjanjem osnovne valute, briše se sva povijest tečajeva. Nastaviti?"
 
 #: maincurrencydialog.cpp:770
 msgid "Do you want to update today currency rates?"
-msgstr ""
+msgstr "Želiš li aktualizirati današnje tečajeve valuta?"
 
 #: maincurrencydialog.cpp:785 stockspanel.cpp:825 util.cpp:468
 msgid "Could not find base currency symbol!"
@@ -3281,7 +3287,7 @@ msgstr "Nije moguće naći simbol osnovne valute!"
 #: maincurrencydialog.cpp:902
 #, c-format
 msgid "Unable to download history for base symbol %s. History rates not available!"
-msgstr ""
+msgstr "Nije moguće preuzeti povijest za osnovni simbol %s. Povijesni tečajevi nisu dostupni!"
 
 #: mmSimpleDialogs.cpp:177
 msgid "Subtract one year"
@@ -3408,7 +3414,7 @@ msgstr "Savjet: Stvaraj redovito sigurnosne kopije tvoje .mmb datoteke baze poda
 
 #: mmTips.h:26
 msgid "Tip: The .mmb file is not encrypted. That means anyone else having the proper know how can actually open the file and read the contents. So make sure that if you are storing any sensitive financial information it is properly guarded."
-msgstr ""
+msgstr "Savjet: .mmb datoteka nije šifrirana. To znači, da bilo tko s dovoljno tehničkog znanja može otvoriti bazu podataka i pročitati sadržaj. Zato zaštiti podatke na ispravan način, ako imaš osjetljive financije podatke."
 
 #: mmTips.h:27
 msgid "Tip: To mark a transaction as reconciled, just select the transaction and hit the 'r' or 'R' key. To mark a transaction as unreconciled, just select the transaction and hit the 'u' or 'U' key."
@@ -3432,7 +3438,7 @@ msgstr "Savjet: Za ispis stanja transakcija bilo kojih uvjeta, koristi filtar tr
 
 #: mmTips.h:32
 msgid "Tip: Set exchange rate for currencies in case if you have accounts with different currencies."
-msgstr "Savjet: Postavi valutni tečaj u slučaju da posjeduješ račune s različitim valutama."
+msgstr "Savjet: Postavi tečajnu listu u slučaju da posjeduješ račune s različitim valutama."
 
 #: mmTips.h:34
 msgid "Organize Categories Dialog Tip: Pressing the h key will cycle through all categories starting with the letter h"
@@ -3687,11 +3693,12 @@ msgstr "Višestruki izbor"
 #, c-format
 msgid "Unable to save custom field \"%s\":\n"
 "value \"%s\" does not match RegEx validation \"%s\""
-msgstr ""
+msgstr "Nije moguće spremiti prilagođeno polje „%s”:\n"
+"vrijednost „%s” se ne poklapa s provjerom regularnog izraza „%s”"
 
 #: mmcustomdata.cpp:449
 msgid "CustomField validation error"
-msgstr ""
+msgstr "Greška provjere prilagođenog polja"
 
 #: mmex.cpp:127
 #, c-format
@@ -3702,7 +3709,8 @@ msgstr "Nije moguće učitati prijevod za zadani jezik tvojeg sustava (%s)."
 #, c-format
 msgid "Please use the Switch Application Language option in View menu to select one of the following available languages:\n\n"
 "%s"
-msgstr ""
+msgstr "Koristi opciju „Zamijeni jezik programa” u izborniku Prikaz za biranje jednog od sljedećih dostupnih jezika:\n\n"
+"%s"
 
 #: mmex.cpp:139 mmframe.cpp:3212
 msgid "Language change"
@@ -3711,7 +3719,8 @@ msgstr "Promjena jezika"
 #: mmex.cpp:179
 msgid "Fatal error occured.\n"
 "Application will be terminated."
-msgstr ""
+msgstr "Dogodila se fatalna greška.\n"
+"Program će prekinuti rad."
 
 #: mmframe.cpp:259
 msgid "Navigation"
@@ -4011,11 +4020,11 @@ msgstr "Izbriši račun iz baze podataka"
 
 #: mmframe.cpp:1440
 msgid "Download Rates..."
-msgstr ""
+msgstr "Preuzmi tečajeve …"
 
 #: mmframe.cpp:1440 mmframe.cpp:1707
 msgid "Download Currency and Stock rates"
-msgstr ""
+msgstr "Preuzmi tečajne liste valuta i dionica"
 
 #: mmframe.cpp:1447
 msgid "Organize &Categories..."
@@ -4095,7 +4104,7 @@ msgstr "Upravljač prilagođenih polja"
 
 #: mmframe.cpp:1518
 msgid "&Options...\tCtrl-,"
-msgstr ""
+msgstr "&Opcije …\tCtrl-,"
 
 #: mmframe.cpp:1518 mmframe.cpp:1690
 msgid "Show the Options Dialog"
@@ -4103,19 +4112,19 @@ msgstr "Prikaži dijalog za opcije"
 
 #: mmframe.cpp:1526
 msgid "Convert Encrypted &DB"
-msgstr ""
+msgstr "&Konvertiraj šifriranu bazu podataka"
 
 #: mmframe.cpp:1527
 msgid "Convert Encrypted DB to Non-Encrypted DB"
-msgstr ""
+msgstr "Konvertiraj šifriranu bazu podataka u nešifriranu bazu podataka"
 
 #: mmframe.cpp:1530
 msgid "Change Encrypted &Password"
-msgstr ""
+msgstr "&Promijeni lozinku šifriranja"
 
 #: mmframe.cpp:1531
 msgid "Change the password of an encrypted database"
-msgstr ""
+msgstr "Promijeni lozinku šifrirane baze podataka"
 
 #: mmframe.cpp:1534
 msgid "Optimize &Database"
@@ -4271,11 +4280,11 @@ msgstr "Razvijateljima prijavi grešku u programu"
 
 #: mmframe.cpp:1632
 msgid "&Show App Start Dialog"
-msgstr ""
+msgstr "P&rikaži početni dijalog pri pokretanju programa"
 
 #: mmframe.cpp:1632
 msgid "App Start Dialog"
-msgstr ""
+msgstr "Početni dijalog pri pokretanju programa"
 
 #: mmframe.cpp:1637
 msgid "Check for &Updates"
@@ -4283,7 +4292,7 @@ msgstr "Provjeri &nadogradnje"
 
 #: mmframe.cpp:1637
 msgid "Check For Updates"
-msgstr ""
+msgstr "Provjeri nadogradnje"
 
 #: mmframe.cpp:1642 mmframe.cpp:1716
 msgid "&About..."
@@ -4347,7 +4356,7 @@ msgstr "Novosti"
 
 #: mmframe.cpp:1707
 msgid "Download rates"
-msgstr ""
+msgstr "Preuzmi tečajeve"
 
 #: mmframe.cpp:1710
 msgid "Toggle Fullscreen\tF11"
@@ -4357,11 +4366,12 @@ msgstr "Uključi/Isključi cijeli zaslon\tF11"
 #, c-format
 msgid "Please enter password for Database\n\n"
 "%s"
-msgstr ""
+msgstr "Upiši lozinku za bazu podataka\n\n"
+"%s"
 
 #: mmframe.cpp:1772 mmframe.cpp:2002 mmframe.cpp:2135
 msgid "MMEX: Encrypted Database"
-msgstr ""
+msgstr "MMEX: šifrirana baza podataka"
 
 #: mmframe.cpp:1806
 msgid "Have MMEX support provided you a debug/patch file?"
@@ -4377,7 +4387,7 @@ msgstr "Nijedna datoteka nije otvorena"
 
 #: mmframe.cpp:1830
 msgid "Sorry. The Database version is too old or Database password is incorrect"
-msgstr ""
+msgstr "Žao nam je. Verzija baze podataka je prestara ili je lozinka baze podataka kriva"
 
 #: mmframe.cpp:1860
 msgid "&Next ->"
@@ -4393,14 +4403,17 @@ msgstr "Za šifriranu bazu podataka nije upisana lozinka.\n"
 
 #: mmframe.cpp:1893
 msgid "portable mode"
-msgstr ""
+msgstr "prenosiv modus"
 
 #: mmframe.cpp:1929
 msgid "Database that you trying to open has been marked as opened by another MMEX instance...\n"
 "To avoid data loss or conflict, it's strongly recommended to close all other applications that can use the DB.\n\n"
 "Possible it may be as result of a programm crash in previous usage.\n\n"
 "Would you like to continue?"
-msgstr ""
+msgstr "Baza podataka koju pokušavaš otvoriti označena je kao otvorena od jedne druge MMEX instance …\n"
+"Kako bi se izbjegli gubitci podataka ili problemi, preporučujemo da zatvoriš sve druge aplikacije koje mogu koristiti bazu podataka.\n\n"
+"Mogući uzrok je pad programa prilikom prethodne upotrebe.\n\n"
+"Želiš li nastaviti?"
 
 #: mmframe.cpp:1933
 msgid "MMEX Instance Check"
@@ -4416,7 +4429,7 @@ msgstr "Odaberi datoteku baze podataka, koju želiš otvoriti"
 
 #: mmframe.cpp:1992
 msgid "Choose Encrypted database file to open"
-msgstr ""
+msgstr "Odaberi datoteku šifrirane baze podataka, koju želiš otvoriti"
 
 #: mmframe.cpp:2002
 msgid "Enter password for database"
@@ -4424,11 +4437,11 @@ msgstr "Upiši lozinku za bazu podataka"
 
 #: mmframe.cpp:2007
 msgid "Choose database file to Save As"
-msgstr ""
+msgstr "Odaberi datoteku baze podataka za spremanje kao"
 
 #: mmframe.cpp:2029
 msgid "Converted DB!"
-msgstr ""
+msgstr "Baza podataka je konvertirana!"
 
 #: mmframe.cpp:2029
 msgid "MMEX message"
@@ -4436,7 +4449,7 @@ msgstr "MMEX poruka"
 
 #: mmframe.cpp:2035
 msgid "MMEX: Encryption Password Change"
-msgstr ""
+msgstr "MMEX: promjena lozinke šifriranja"
 
 #: mmframe.cpp:2036
 #, c-format
@@ -4451,7 +4464,7 @@ msgstr "Nova lozinka ne smije biti prazna."
 
 #: mmframe.cpp:2045
 msgid "Please confirm new password"
-msgstr ""
+msgstr "Potvrdi novu lozinku"
 
 #: mmframe.cpp:2049
 msgid "Password change completed."
@@ -4496,11 +4509,11 @@ msgstr "Nije moguće kopirati bazu podataka u samu sebe"
 
 #: mmframe.cpp:2135
 msgid "Enter password for new database"
-msgstr ""
+msgstr "Upiši lozinku za novu bazu podataka"
 
 #: mmframe.cpp:2219 mmframe.cpp:2238
 msgid "No account available to import"
-msgstr ""
+msgstr "Nema računa za uvoz"
 
 #: mmframe.cpp:2287
 msgid "Asset Accounts hold Asset transactions\n\n"
@@ -4548,7 +4561,7 @@ msgstr "Odaberi HTML datoteku koju želiš izvesti"
 
 #: mmframe.cpp:2881 mmframe.cpp:2888
 msgid "Downloading stock prices from Yahoo"
-msgstr ""
+msgstr "Preuzimanje cijena dionica s Yahoo stranice"
 
 #: mmframe.cpp:2882
 msgid "Please wait..."
@@ -4652,7 +4665,7 @@ msgstr "Prihod u odnosu na troškove"
 
 #: mmframereport.cpp:156
 msgid "My Usage"
-msgstr ""
+msgstr "Moja statistika"
 
 #: mmframereport.cpp:161
 msgid "Payees"
@@ -4664,11 +4677,11 @@ msgstr "Ukupni iznosi računa"
 
 #: mmframereport.cpp:180
 msgid "Budget Performance"
-msgstr ""
+msgstr "Rezultat budžeta"
 
 #: mmframereport.cpp:183
 msgid "Budget Category Summary"
-msgstr ""
+msgstr "Ukupni iznosi budžetskih kategorija"
 
 #: mmframereport.cpp:192
 msgid "Stocks Report"
@@ -4746,7 +4759,7 @@ msgstr "Sveukupno:"
 
 #: mmhomepage.cpp:751
 msgid "Currency Exchange Rates"
-msgstr ""
+msgstr "Tečajna lista"
 
 #: mmhomepagepanel.cpp:159
 msgid "Upcoming Transactions"
@@ -4912,7 +4925,7 @@ msgstr "Greška u primatelju"
 
 #: model/Model_Report.cpp:88
 msgid "Begin date: "
-msgstr ""
+msgstr "Početni datum: "
 
 #: model/Model_Report.cpp:89
 msgid "Date: "
@@ -4920,7 +4933,7 @@ msgstr "Datum: "
 
 #: model/Model_Report.cpp:90
 msgid "End date: "
-msgstr ""
+msgstr "Krajnji datum: "
 
 #: model/Model_Report.cpp:235
 msgid "Template is empty"
@@ -4971,7 +4984,7 @@ msgstr "Mapa arhiva priloga samo za %s:"
 
 #: optionsettingsattachment.cpp:68
 msgid "Every OS type (Win,Mac,Unix) has its attachment folder"
-msgstr ""
+msgstr "Svaki operacijski sustav (Win, Mac, Unix) ima svoju mapu priloga"
 
 #: optionsettingsattachment.cpp:87
 msgid "Browse for folder"
@@ -4983,7 +4996,7 @@ msgstr "Stvarna staza:"
 
 #: optionsettingsattachment.cpp:97
 msgid "Legend (can be used as variables at the beginning of above path)"
-msgstr ""
+msgstr "Legenda (može se koristiti kao varijabla na početku gornjeg puta)"
 
 #: optionsettingsattachment.cpp:102
 #, c-format
@@ -5051,11 +5064,11 @@ msgstr "Odaberi mapu, koja će se koristiti kao arhiv za priloge"
 
 #: optionsettingsattachment.cpp:219
 msgid "Attachments folder it's not writable!"
-msgstr ""
+msgstr "U mapu priloga se ne može pisati!"
 
 #: optionsettingsattachment.cpp:219
 msgid "Attachments folder"
-msgstr ""
+msgstr "Mapa priloga"
 
 #: optionsettingsattachment.cpp:227
 msgid "Attachments path has been changed!"
@@ -5111,7 +5124,7 @@ msgstr "Koristi povijest valuta"
 
 #: optionsettingsgeneral.cpp:99
 msgid "Select to use currency history (one rate for each day), deselect to use a fixed rate"
-msgstr ""
+msgstr "Označi za korištenje povijest valute (za svaki dan pojedinačan tečaj), odznači za korištenje fiksnog tečaja"
 
 #: optionsettingsgeneral.cpp:115
 msgid "Specify the date format for display"
@@ -5315,11 +5328,11 @@ msgstr "Sekunde"
 
 #: optionsettingsnet.cpp:138
 msgid "Updates"
-msgstr ""
+msgstr "Nadogradnje"
 
 #: optionsettingsnet.cpp:144
 msgid "Check for updates at StartUp"
-msgstr ""
+msgstr "Provjeri nadogradnje prilikom pokretanja programa"
 
 #: optionsettingsnet.cpp:146
 msgid "Enable to automatically check if new MMEX version is available at StartUp"
@@ -5335,7 +5348,7 @@ msgstr "Nestabilna"
 
 #: optionsettingsnet.cpp:154
 msgid "Updates source"
-msgstr ""
+msgstr "Izvor nadogradnji"
 
 #: optionsettingsview.cpp:78
 msgid "Specify which accounts are visible"
@@ -5359,15 +5372,15 @@ msgstr "Prikaži budžete kao fiskalne godine"
 
 #: optionsettingsview.cpp:103
 msgid "View Budgets with 'transfer' transactions"
-msgstr ""
+msgstr "Prikaži budžete s prijenosnim transakcijama"
 
 #: optionsettingsview.cpp:109
 msgid "View Budget Category Report with Summaries"
-msgstr ""
+msgstr "Prikaži izvještaj o budžetskim kategorijama s ukupnim iznosima"
 
 #: optionsettingsview.cpp:115
 msgid "Ignore Future Transactions"
-msgstr ""
+msgstr "Zanemari buduće transakcije"
 
 #: optionsettingsview.cpp:121 transdialog.cpp:563
 msgid "User Colors"
@@ -5596,7 +5609,7 @@ msgstr "Pretraži <a href='%s'>popis poznatih problema</a> za sličnim problemim
 #: reports/bugreport.h:81
 #, c-format
 msgid "As you know, <a href='%s'>a forum</a> for users is available where you can discuss problems and find solutions."
-msgstr ""
+msgstr "Za raspravu o problemima i za pronalaženje rješenja, koristi korisnički <a href='%s'>forum</a>."
 
 #: reports/bugreport.h:82
 #, c-format
@@ -5849,7 +5862,7 @@ msgstr "Burzovna oznaka"
 
 #: sharetransactiondialog.cpp:214 stockdialog.cpp:205
 msgid "Enter the stock symbol. (Optional) Include exchange. eg: IBM.BE"
-msgstr "Unesi burzovnu oznaku. (Opcionalno) Uključi burzu, npr. IBM.BE"
+msgstr "Upiši burzovnu oznaku. (Opcionalno) Uključi burzu, npr. IBM.BE"
 
 #: sharetransactiondialog.cpp:217
 msgid "Share Number"
@@ -5869,7 +5882,7 @@ msgstr "Upiši aktualnu jediničnu vrijednost dionice"
 
 #: sharetransactiondialog.cpp:247
 msgid "Enter any commission paid"
-msgstr "Unesi plaćene provizije"
+msgstr "Upiši plaćene provizije"
 
 #: sharetransactiondialog.cpp:253
 msgid "Share Lot"
@@ -5940,7 +5953,8 @@ msgstr "*Broj dionica"
 #: stockdialog.cpp:224
 msgid "Enter number of shares.\n"
 "Used when creating the initial Share transaction."
-msgstr ""
+msgstr "Upiši broj dionica.\n"
+"Koristi se prilikom stvaranja početne dioničke transakcije."
 
 #: stockdialog.cpp:230 stockspanel.cpp:96
 msgid "*Share Price"
@@ -5949,7 +5963,8 @@ msgstr "*Cijena dionice"
 #: stockdialog.cpp:236
 msgid "Enter the initial price per share.\n"
 "Used when creating the initial Share transaction."
-msgstr ""
+msgstr "Upiši izvorne cijene dionica.\n"
+"Koristi se prilikom stvaranja početne dioničke transakcije."
 
 #: stockdialog.cpp:241
 msgid "*Commission"
@@ -5958,7 +5973,8 @@ msgstr "*Provizija"
 #: stockdialog.cpp:245
 msgid "Enter any commission paid.\n"
 "Used when creating the initial Share transaction."
-msgstr ""
+msgstr "Upiši plaćene provizije.\n"
+"Koristi se prilikom stvaranja početne dioničke transakcije."
 
 #: stockdialog.cpp:250 stockspanel.cpp:99
 msgid "Curr. Share Price"
@@ -5986,7 +6002,7 @@ msgstr "Datum cijene"
 
 #: stockdialog.cpp:320
 msgid "Specify the stock/share price date."
-msgstr ""
+msgstr "Odredi datum cijene dionice."
 
 #: stockdialog.cpp:336
 msgid "Download Stock Price history"
@@ -5998,7 +6014,7 @@ msgstr "Uvezi povijest cijena vlasničkog udjela (CSV format)"
 
 #: stockdialog.cpp:340
 msgid "Delete selected Stock Price"
-msgstr ""
+msgstr "Izbriši odabranu cijenu dionica"
 
 #: stockdialog.cpp:342
 msgid "Add Stock Price to history"
@@ -6011,7 +6027,8 @@ msgstr "Pri banci"
 #: stockdialog.cpp:494
 msgid "Share Account not found.\n\n"
 "Do you want to create one?"
-msgstr ""
+msgstr "Račun dionica nije pronađen.\n\n"
+"Želiš li stvoriti jedan račun?"
 
 #: stockdialog.cpp:504
 msgid "The Company name does not have an associated Share Account.\n\n"
@@ -6176,7 +6193,7 @@ msgstr "Privremeni popis vlasničkih udjela: %s\n\n"
 
 #: stockspanel.cpp:574
 msgid "Add Stock Transactions"
-msgstr ""
+msgstr "Dodaj transakcije vlasničkog udjela"
 
 #: stockspanel.cpp:579
 msgid "View Stock Transactions"
@@ -6192,7 +6209,7 @@ msgstr "&Premjesti"
 
 #: stockspanel.cpp:594
 msgid "Move selected transaction to another account"
-msgstr ""
+msgstr "Premjesti odabranu transakciju u jedan drugi račun"
 
 #: stockspanel.cpp:607
 msgid "Refresh"
@@ -6325,7 +6342,7 @@ msgstr "Boja broj %i"
 
 #: usertransactionpanel.cpp:115
 msgid "Specify the associated Account that will contain this transaction"
-msgstr ""
+msgstr "Odredi račun koji će sadržati ovu transakciju"
 
 #: usertransactionpanel.cpp:127
 msgid "Withdraw funds from or deposit funds to this Account."
@@ -6704,7 +6721,8 @@ msgstr "Odaberi vrstu računa kojeg želiš stvoriti:"
 #: wizard_newaccount.cpp:130
 msgid "General bank accounts cover a wide variety of account\n"
 "types like Checking, Savings and Credit card type accounts."
-msgstr ""
+msgstr "Opći bankovni računi obuhvaćaju razne vrste računa,\n"
+"npr. tekući/žiro račun, štednju i kreditne kartice."
 
 #: wizard_newaccount.cpp:135
 msgid "Investment accounts are specialized accounts that only\n"
