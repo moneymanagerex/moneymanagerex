@@ -23,7 +23,9 @@
 #include "reports/htmlbuilder.h"
 
 mmReportBudget::mmReportBudget(): mmPrintableBase("mmReportBudget")
-{}
+{
+    setReportId(Reports::UNUSED);
+}
 
 mmReportBudget::~mmReportBudget()
 {}
