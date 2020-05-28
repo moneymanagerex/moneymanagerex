@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-05-26 12:37+0300\n"
-"PO-Revision-Date: 2020-05-26 09:51\n"
+"PO-Revision-Date: 2020-05-28 00:11\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Croatian\n"
 "MIME-Version: 1.0\n"
@@ -265,11 +265,11 @@ msgstr "Valuta"
 
 #: accountdialog.cpp:498
 msgid "Please insert a valid URL"
-msgstr ""
+msgstr "Upiši ispravan URL"
 
 #: accountdialog.cpp:498
 msgid "Invalid URL"
-msgstr ""
+msgstr "Neispravan URL"
 
 #: appstartdialog.cpp:99
 msgid "Open Last Opened Database"
@@ -320,7 +320,7 @@ msgstr "&Izlaz "
 #: appstartdialog.cpp:153
 #, c-format
 msgid "Open the previously opened database : %s"
-msgstr ""
+msgstr "Otvori prethodno otvorenu bazu podataka: %s"
 
 #: assetdialog.cpp:61 assetdialog.cpp:410 assetspanel.cpp:466
 msgid "New Asset"
@@ -383,7 +383,7 @@ msgstr "Vrijednost"
 
 #: assetdialog.cpp:226
 msgid "Enter the current value of the asset"
-msgstr "Unesi aktualnu vrijednost imovine"
+msgstr "Upiši aktualnu vrijednost imovine"
 
 #: assetdialog.cpp:231
 msgid "Change in Value"
@@ -423,7 +423,7 @@ msgstr "&Odustani "
 
 #: assetdialog.cpp:402 sharetransactiondialog.cpp:429
 msgid "Invalid Transaction"
-msgstr ""
+msgstr "Neispravna transakcija"
 
 #: assetdialog.cpp:409
 msgid "Asset Account not found.\n\n"
@@ -1596,7 +1596,7 @@ msgstr "Prije toga moraš izbrisati podkategorije."
 #: categdialog.cpp:485
 #, c-format
 msgid "Enter a new name for '%s'"
-msgstr ""
+msgstr "Upiši novo ime za „%s”"
 
 #: categdialog.cpp:486
 msgid "Edit Category"
@@ -1701,7 +1701,7 @@ msgstr "Prikaz od datuma izvatka"
 
 #: constants.cpp:203
 msgid "ALL"
-msgstr ""
+msgstr "SVE"
 
 #: constants.cpp:204 mmframe.cpp:1259 mmframe.cpp:1677
 #: model/Model_Account.cpp:26
@@ -1722,7 +1722,7 @@ msgstr "Upravljač valuta"
 
 #: currencydialog.cpp:96
 msgid "Currency name"
-msgstr ""
+msgstr "Ime valute"
 
 #: currencydialog.cpp:155
 msgid "Currency Name"
@@ -1734,11 +1734,11 @@ msgstr "Oznaka valute"
 
 #: currencydialog.cpp:164
 msgid "Unit Name"
-msgstr ""
+msgstr "Ime jedinice"
 
 #: currencydialog.cpp:168
 msgid "Cents Name"
-msgstr ""
+msgstr "Ime stotinki"
 
 #: currencydialog.cpp:172
 msgid "Prefix Symbol"
@@ -1763,7 +1763,7 @@ msgstr "Decimale"
 
 #: currencydialog.cpp:206 currencydialog.cpp:268
 msgid "Conversion to Base Rate"
-msgstr ""
+msgstr "Konverzija u osnovni tečaj"
 
 #: currencydialog.cpp:212
 msgid "Conversion rate will be used in case no currency history has been found for the currency"
@@ -1771,7 +1771,7 @@ msgstr ""
 
 #: currencydialog.cpp:214
 msgid "Fixed conversion rate"
-msgstr ""
+msgstr "Fiksan tečaj konverzije"
 
 #: currencydialog.cpp:219
 msgid "Value Display Sample:"
@@ -1793,7 +1793,7 @@ msgstr "Nevaljan unos"
 #: currencydialog.cpp:295
 #, c-format
 msgid "%.2f Shown As: %s"
-msgstr ""
+msgstr "%.2f Prikazuje se kao: %s"
 
 #: customfieldeditdialog.cpp:56
 msgid "New/Edit Custom Field"
@@ -1846,7 +1846,7 @@ msgstr "Standardno"
 #: customfieldeditdialog.cpp:155
 msgid "Enter the default for this field\n"
 "For date/time insert 'Now' to make current date/time as default"
-msgstr "Unesi standardnu vrijednost za ovo polje\n"
+msgstr "Upiši standardnu vrijednost za ovo polje\n"
 "Za datum/vrijeme umetni „Sad”, kako bi se koristio aktualni datum/vrijeme kao standardna vrijednost"
 
 #: customfieldeditdialog.cpp:159
@@ -2179,7 +2179,7 @@ msgstr "Učitaj datoteku za ispravljanje grešaka"
 
 #: dbupgrade.cpp:204
 msgid "Wrong file type!"
-msgstr ""
+msgstr "Kriva vrsta datoteke!"
 
 #: dbupgrade.cpp:204 dbupgrade.cpp:241 dbupgrade.cpp:248 dbupgrade.cpp:292
 #: dbupgrade.cpp:303
@@ -2309,7 +2309,7 @@ msgstr "Raspon iznosa"
 
 #: filtertransdialog.cpp:347
 msgid "&Clear "
-msgstr ""
+msgstr "&Izbriši "
 
 #: filtertransdialog.cpp:822 filtertransdialog.cpp:837 reports/myusage.cpp:95
 #: webappdialog.cpp:194 webappdialog.cpp:199
@@ -2510,7 +2510,7 @@ msgstr "Odaberi datoteku koju želiš spremi kao izvještaj pod"
 
 #: general_report_manager.cpp:1171
 msgid "Parameters:"
-msgstr ""
+msgstr "Parametri:"
 
 #: import_export/parsers.cpp:46 import_export/univcsvdialog.cpp:1529
 #: mmSimpleDialogs.cpp:253
@@ -2566,7 +2566,7 @@ msgstr "QIF izvoz"
 
 #: import_export/qif_export.cpp:47
 msgid "JSON Export"
-msgstr ""
+msgstr "JSON izvoz"
 
 #: import_export/qif_export.cpp:106
 msgid "Parameters"
@@ -2578,11 +2578,11 @@ msgstr "Dnevnik"
 
 #: import_export/qif_export.cpp:123
 msgid "QIF"
-msgstr ""
+msgstr "QIF"
 
 #: import_export/qif_export.cpp:124
 msgid "JSON"
-msgstr ""
+msgstr "JSON"
 
 #: import_export/qif_export.cpp:138 mmframe.cpp:2948 mmframe.cpp:2952
 #: mmframe.cpp:2971 mmframe.cpp:2975
@@ -2629,11 +2629,11 @@ msgstr "QIF datoteke (*.qif)"
 
 #: import_export/qif_export.cpp:299
 msgid "Choose JSON data file to Export"
-msgstr ""
+msgstr "Odaberi JSON datoteku, koju želiš izvesti"
 
 #: import_export/qif_export.cpp:301
 msgid "JSON Files (*.json)"
-msgstr ""
+msgstr "JSON datoteke (*.json)"
 
 #: import_export/qif_export.cpp:321
 msgid "No Account available for export"
@@ -2889,7 +2889,7 @@ msgstr "Odaberi CSV datoteku, koju želiš izvesti"
 
 #: import_export/univcsvdialog.cpp:203
 msgid "Template name"
-msgstr ""
+msgstr "Ime predloška"
 
 #: import_export/univcsvdialog.cpp:208
 msgid "Save Template"
@@ -3142,7 +3142,7 @@ msgstr ""
 
 #: import_export/univcsvdialog.cpp:1780
 msgid "Enter a value"
-msgstr ""
+msgstr "Upiši vrijednost"
 
 #: maincurrencydialog.cpp:78 reports/summarystocks.cpp:180 stockdialog.cpp:427
 #: stockspanel.cpp:94
@@ -3155,7 +3155,7 @@ msgstr "Zadnji tečaj"
 
 #: maincurrencydialog.cpp:80
 msgid "Fixed Rate"
-msgstr ""
+msgstr "Fiksan tečaj"
 
 #: maincurrencydialog.cpp:84 maincurrencydialog.cpp:357
 #: maincurrencydialog.cpp:428 maincurrencydialog.cpp:642
@@ -3181,7 +3181,7 @@ msgstr "Opcije za povijest valuta"
 
 #: maincurrencydialog.cpp:251
 msgid "Diff."
-msgstr ""
+msgstr "Razlika"
 
 #: maincurrencydialog.cpp:267
 msgid "Specify the date of currency value"
@@ -3285,19 +3285,19 @@ msgstr ""
 
 #: mmSimpleDialogs.cpp:177
 msgid "Subtract one year"
-msgstr ""
+msgstr "Oduzmi jednu godinu"
 
 #: mmSimpleDialogs.cpp:178
 msgid "Subtract one month"
-msgstr ""
+msgstr "Oduzmi jedan mjesec"
 
 #: mmSimpleDialogs.cpp:179
 msgid "Add one month"
-msgstr ""
+msgstr "Dodaj jedan mjesec"
 
 #: mmSimpleDialogs.cpp:180
 msgid "Add one year"
-msgstr ""
+msgstr "Dodaj jednu godinu"
 
 #: mmSimpleDialogs.cpp:237
 #, c-format
@@ -3374,7 +3374,7 @@ msgstr "Unesi simbol (ne smije ostati prazno)."
 
 #: mmTextCtrl.cpp:69
 msgid "Invalid Value"
-msgstr ""
+msgstr "Neispravna vrijednost"
 
 #: mmTextCtrl.cpp:96
 msgid "Please enter a positive or calculated value."
@@ -3513,7 +3513,7 @@ msgstr "Za pronalaženje najsličnije transakcijske napomene, unesi bilo što"
 #: mmcheckingpanel.cpp:487
 #, c-format
 msgid "Account View : %s"
-msgstr ""
+msgstr "Prikaz računa: %s"
 
 #: mmcheckingpanel.cpp:713
 msgid "Select account used in transfer transactions"
@@ -3823,7 +3823,7 @@ msgstr "&QIF datoteke …"
 
 #: mmframe.cpp:1246 mmframe.cpp:1318
 msgid "&JSON Files..."
-msgstr ""
+msgstr "&JSON datoteke …"
 
 #: mmframe.cpp:1250 mmframe.cpp:1324
 msgid "Import from XML (Excel format)"
@@ -3875,7 +3875,7 @@ msgstr "Izvoz u XML"
 
 #: mmframe.cpp:1318
 msgid "Export to JSON"
-msgstr ""
+msgstr "Izvezi u JSON"
 
 #: mmframe.cpp:1319
 msgid "&Report to HTML"
@@ -3911,11 +3911,11 @@ msgstr "Ispiši trenutačni prikaz"
 
 #: mmframe.cpp:1339
 msgid "E&xit\tAlt-X"
-msgstr ""
+msgstr "&Zatvori\tAlt-X"
 
 #: mmframe.cpp:1339
 msgid "Quit this program"
-msgstr ""
+msgstr "Zatvori ovaj program"
 
 #: mmframe.cpp:1346
 msgid "&Toolbar"
@@ -3975,7 +3975,7 @@ msgstr "Zanemari buduće transakcije"
 
 #: mmframe.cpp:1375
 msgid "Toggle Fullscreen\tShift+F11"
-msgstr ""
+msgstr "Uklji/Isklj cjeloekranski prikaz\tF11"
 
 #: mmframe.cpp:1376 mmframe.cpp:1710
 msgid "Toggle Fullscreen"
@@ -4319,7 +4319,7 @@ msgstr "Nova"
 
 #: mmframe.cpp:1680
 msgid "Account List"
-msgstr ""
+msgstr "Popis računa"
 
 #: mmframe.cpp:1682
 msgid "Show Organize Categories Dialog"
@@ -4373,7 +4373,7 @@ msgstr "MMEX nadogradnja"
 
 #: mmframe.cpp:1828 mmframe.cpp:1870
 msgid "No File opened"
-msgstr ""
+msgstr "Nijedna datoteka nije otvorena"
 
 #: mmframe.cpp:1830
 msgid "Sorry. The Database version is too old or Database password is incorrect"
@@ -4385,11 +4385,11 @@ msgstr "&Dalje →"
 
 #: mmframe.cpp:1873
 msgid "Cannot locate previously opened database.\n"
-msgstr ""
+msgstr "Nije moguće locirati prethodno otvorenu bazu podataka.\n"
 
 #: mmframe.cpp:1875
 msgid "Password not entered for encrypted Database.\n"
-msgstr ""
+msgstr "Za šifriranu bazu podataka nije upisana lozinka.\n"
 
 #: mmframe.cpp:1893
 msgid "portable mode"
@@ -4420,7 +4420,7 @@ msgstr ""
 
 #: mmframe.cpp:2002
 msgid "Enter password for database"
-msgstr ""
+msgstr "Upiši lozinku za bazu podataka"
 
 #: mmframe.cpp:2007
 msgid "Choose database file to Save As"
@@ -4432,7 +4432,7 @@ msgstr ""
 
 #: mmframe.cpp:2029
 msgid "MMEX message"
-msgstr ""
+msgstr "MMEX poruka"
 
 #: mmframe.cpp:2035
 msgid "MMEX: Encryption Password Change"
@@ -4442,11 +4442,12 @@ msgstr ""
 #, c-format
 msgid "New password for database\n\n"
 "%s"
-msgstr ""
+msgstr "Nova lozinka za bazu podataka\n\n"
+"%s"
 
 #: mmframe.cpp:2041
 msgid "New password must not be empty."
-msgstr ""
+msgstr "Nova lozinka ne smije biti prazna."
 
 #: mmframe.cpp:2045
 msgid "Please confirm new password"
@@ -4551,7 +4552,7 @@ msgstr ""
 
 #: mmframe.cpp:2882
 msgid "Please wait..."
-msgstr ""
+msgstr "Pričekaj …"
 
 #: mmframe.cpp:2931 stockspanel.cpp:893
 #, c-format
@@ -4915,7 +4916,7 @@ msgstr ""
 
 #: model/Model_Report.cpp:89
 msgid "Date: "
-msgstr ""
+msgstr "Datum: "
 
 #: model/Model_Report.cpp:90
 msgid "End date: "
@@ -4923,7 +4924,7 @@ msgstr ""
 
 #: model/Model_Report.cpp:235
 msgid "Template is empty"
-msgstr ""
+msgstr "Predložak je prazan"
 
 #: model/Model_Report.cpp:249
 #, c-format
@@ -4987,22 +4988,22 @@ msgstr ""
 #: optionsettingsattachment.cpp:102
 #, c-format
 msgid "%s -> User document directory"
-msgstr ""
+msgstr "%s -> Mapa dokumenata korisnika"
 
 #: optionsettingsattachment.cpp:103
 #, c-format
 msgid "%s -> User profile folder"
-msgstr ""
+msgstr "%s -> Mapa profila korisnika"
 
 #: optionsettingsattachment.cpp:104
 #, c-format
 msgid "%s -> Folder of .MMB database file"
-msgstr ""
+msgstr "%s -> Mapa za .MMB datoteku baze podataka"
 
 #: optionsettingsattachment.cpp:105
 #, c-format
 msgid "%s -> MMEX Application data folder"
-msgstr ""
+msgstr "%s -> Mapa podataka MMEX aplikacije"
 
 #: optionsettingsattachment.cpp:111
 msgid "Other OS folders "
@@ -5010,19 +5011,19 @@ msgstr "Ostale mape operativnog sustava "
 
 #: optionsettingsattachment.cpp:116
 msgid "Not set yet"
-msgstr ""
+msgstr "Još nije poslano"
 
 #: optionsettingsattachment.cpp:124
 msgid "Windows folder -> "
-msgstr ""
+msgstr "Mapa na Windowsu -> "
 
 #: optionsettingsattachment.cpp:132
 msgid "Mac folder -> "
-msgstr ""
+msgstr "Mapa na Macu -> "
 
 #: optionsettingsattachment.cpp:140
 msgid "Unix folder -> "
-msgstr ""
+msgstr "Mapa na Unixu -> "
 
 #: optionsettingsattachment.cpp:150
 msgid "Create and use Attachments subfolder"
@@ -5106,7 +5107,7 @@ msgstr "Desni klik i odaberi „Postavi kao osnovnu valutu” u „Dijalog za va
 
 #: optionsettingsgeneral.cpp:97
 msgid "Use currency history"
-msgstr ""
+msgstr "Koristi povijest valuta"
 
 #: optionsettingsgeneral.cpp:99
 msgid "Select to use currency history (one rate for each day), deselect to use a fixed rate"
@@ -5350,11 +5351,11 @@ msgstr "Odredi faktor skaliranja stranica izvještaja"
 
 #: optionsettingsview.cpp:92
 msgid "Icons size"
-msgstr ""
+msgstr "Veličina ikona"
 
 #: optionsettingsview.cpp:98
 msgid "View Budgets as Financial Years"
-msgstr ""
+msgstr "Prikaži budžete kao fiskalne godine"
 
 #: optionsettingsview.cpp:103
 msgid "View Budgets with 'transfer' transactions"
@@ -5510,7 +5511,7 @@ msgstr "Odobrenje premještanja primatelja"
 #: reports/budget.cpp:94
 #, c-format
 msgid "Year: %i Month: %s"
-msgstr ""
+msgstr "Godina: %i Mjesec: %s"
 
 #: reports/budgetcategorysummary.cpp:131
 #, c-format
@@ -5600,7 +5601,7 @@ msgstr ""
 #: reports/bugreport.h:82
 #, c-format
 msgid "Please, join our community in <a href='%s'>Slack</a>. Here you can also pose your question and learn latest news."
-msgstr ""
+msgstr "Pridruži se našoj zajednici na <a href='%s'>Slacku</a>. Ovdje možeš postavljati pitanja te saznati najnovije vijesti."
 
 #: reports/bugreport.h:83
 #, c-format
@@ -5864,7 +5865,7 @@ msgstr "Cijena dionice"
 
 #: sharetransactiondialog.cpp:236
 msgid "Enter the current value for a single share unit"
-msgstr "Unesi aktualnu jediničnu vrijednost dionice"
+msgstr "Upiši aktualnu jediničnu vrijednost dionice"
 
 #: sharetransactiondialog.cpp:247
 msgid "Enter any commission paid"
@@ -5929,7 +5930,8 @@ msgstr "*Datum"
 #: stockdialog.cpp:214
 msgid "Specify the initial date of the stock investment\n"
 "Used when creating the initial Share transaction."
-msgstr ""
+msgstr "Odredi početni datum ulaganja u dionice\n"
+"Koristi se prilikom stvaranja početne transakcije Share."
 
 #: stockdialog.cpp:218
 msgid "*Share Number"
@@ -5964,7 +5966,7 @@ msgstr "Trenutačna cijena dionice"
 
 #: stockdialog.cpp:253
 msgid "Enter current stock/share price."
-msgstr ""
+msgstr "Upiši aktualnu cijenu dionice."
 
 #: stockdialog.cpp:285
 msgid "Stock History Options"
@@ -6000,7 +6002,7 @@ msgstr ""
 
 #: stockdialog.cpp:342
 msgid "Add Stock Price to history"
-msgstr ""
+msgstr "Dodaj cijene vlasničkog udjela u povijest"
 
 #: stockdialog.cpp:420
 msgid "Held At"
@@ -6030,12 +6032,12 @@ msgstr "Tečajevi uvezeni iz CSV datoteke: "
 #: stockdialog.cpp:671
 #, c-format
 msgid "Total Lines : %ld"
-msgstr ""
+msgstr "Ukupno redaka: %ld"
 
 #: stockdialog.cpp:673
 #, c-format
 msgid "Total Imported : %ld"
-msgstr ""
+msgstr "Ukupno uvezeno: %ld"
 
 #: stockdialog.cpp:681
 msgid "Importing CSV"
@@ -6182,7 +6184,7 @@ msgstr "Prikaz transakcija vlasničkih udjela"
 
 #: stockspanel.cpp:589
 msgid "Delete Stock Investment"
-msgstr ""
+msgstr "Ukloni vlasnički udio"
 
 #: stockspanel.cpp:593
 msgid "&Move"
@@ -6208,7 +6210,7 @@ msgstr "Portfelj vlasničkih udjela: %s"
 #: stockspanel.cpp:763
 #, c-format
 msgid "Total Shares: %s"
-msgstr ""
+msgstr "Ukupno dionica: %s"
 
 #: stockspanel.cpp:765
 #, c-format
@@ -6314,12 +6316,12 @@ msgstr "Odredi datum transakcije"
 
 #: transdialog.cpp:1309
 msgid "Clear colour"
-msgstr ""
+msgstr "Ukloni boju"
 
 #: transdialog.cpp:1314
 #, c-format
 msgid "Colour #%i"
-msgstr ""
+msgstr "Boja broj %i"
 
 #: usertransactionpanel.cpp:115
 msgid "Specify the associated Account that will contain this transaction"
@@ -6363,51 +6365,51 @@ msgstr "Odabir računa"
 
 #: util.cpp:422
 msgid "Jan"
-msgstr ""
+msgstr "Sij"
 
 #: util.cpp:422
 msgid "Feb"
-msgstr ""
+msgstr "Velj"
 
 #: util.cpp:422
 msgid "Mar"
-msgstr ""
+msgstr "Ožu"
 
 #: util.cpp:423
 msgid "Apr"
-msgstr ""
+msgstr "Tra"
 
 #: util.cpp:423 util.h:201
 msgid "May"
-msgstr ""
+msgstr "Svi"
 
 #: util.cpp:423
 msgid "Jun"
-msgstr ""
+msgstr "Lip"
 
 #: util.cpp:424
 msgid "Jul"
-msgstr ""
+msgstr "Srp"
 
 #: util.cpp:424
 msgid "Aug"
-msgstr ""
+msgstr "Kol"
 
 #: util.cpp:424
 msgid "Sep"
-msgstr ""
+msgstr "Ruj"
 
 #: util.cpp:425
 msgid "Oct"
-msgstr ""
+msgstr "Lis"
 
 #: util.cpp:425
 msgid "Nov"
-msgstr ""
+msgstr "Stu"
 
 #: util.cpp:425
 msgid "Dec"
-msgstr ""
+msgstr "Pro"
 
 #: util.cpp:430
 msgid "Sunday"
@@ -6618,11 +6620,11 @@ msgstr "Uvezi WebApp transakcije"
 
 #: webappdialog.cpp:100
 msgid "Network status (click to refresh)"
-msgstr ""
+msgstr "Stanje mreže (klikni za aktualiziranje)"
 
 #: webappdialog.cpp:132
 msgid "Checking for new transactions..."
-msgstr ""
+msgstr "Traženje novih transakcija …"
 
 #: webappdialog.cpp:165
 msgid "&Import all "
@@ -6646,7 +6648,7 @@ msgstr "Otvori prilog"
 
 #: webappdialog.cpp:407
 msgid "Import and open"
-msgstr ""
+msgstr "Uvezi i otvori"
 
 #: webappdialog.cpp:408
 msgid "Delete"
@@ -6784,11 +6786,11 @@ msgstr "Nadogradi čarobnjaka"
 
 #: wizard_update.cpp:106
 msgid "Historical releases:"
-msgstr ""
+msgstr "Povijesna izdanja:"
 
 #: wizard_update.cpp:136
 msgid "Version"
-msgstr ""
+msgstr "Verzija"
 
 #: wizard_update.cpp:144
 msgid "You already have the latest version"
