@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-05-26 12:37+0300\n"
-"PO-Revision-Date: 2020-05-29 07:14\n"
+"PO-Revision-Date: 2020-05-29 23:33\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
@@ -1073,7 +1073,7 @@ msgstr ""
 #: filtertransdialog.cpp:447 filtertransdialog.cpp:463
 #: filtertransdialog.cpp:472 util.cpp:514
 msgid "Invalid value"
-msgstr ""
+msgstr "Ogiltigt värde"
 
 #: billsdepositsdialog.cpp:1326 billsdepositsdialog.cpp:1335
 #: billsdepositsdialog.cpp:1343 maincurrencydialog.cpp:473 mmframe.cpp:3175
@@ -1084,7 +1084,7 @@ msgstr "Fel"
 
 #: billsdepositsdialog.cpp:1341
 msgid "Invalid Choice"
-msgstr ""
+msgstr "Ogiltigt val"
 
 #: billsdepositsdialog.cpp:1341
 msgid "Choose one of the following:"
@@ -1102,11 +1102,11 @@ msgstr "Kategorier"
 
 #: billsdepositsdialog.h:120
 msgid "Specify where the transaction is going to"
-msgstr ""
+msgstr "Ange var transaktionen ska"
 
 #: billsdepositsdialog.h:121 transdialog.cpp:1267
 msgid "Specify where the transaction is coming from"
-msgstr ""
+msgstr "Ange var transaktionen kommer från"
 
 #: billsdepositsdialog.h:122
 msgid "Specify which account the transfer is going to"
@@ -1118,12 +1118,12 @@ msgstr "Ange beloppet för transaktionen"
 
 #: billsdepositsdialog.h:124
 msgid "Specify the amount to be transferred"
-msgstr ""
+msgstr "Ange det belopp som ska överföras"
 
 #: billsdepositspanel.cpp:50
 #, c-format
 msgid "In %s Days"
-msgstr ""
+msgstr "Om %s dagar"
 
 #: billsdepositspanel.cpp:51
 #, c-format
@@ -1147,15 +1147,15 @@ msgstr "Frekvens"
 
 #: billsdepositspanel.cpp:106
 msgid "Repetitions"
-msgstr ""
+msgstr "Upprepningar"
 
 #: billsdepositspanel.cpp:107
 msgid "Autorepeat"
-msgstr ""
+msgstr "Upprepa automatiskt"
 
 #: billsdepositspanel.cpp:108 mmhomepage.cpp:342
 msgid "Payment"
-msgstr ""
+msgstr "Betalning"
 
 #: billsdepositspanel.cpp:167
 msgid "MMEX allows regular payments to be set up as transactions. These transactions can also be regular deposits, or transfers that will occur at some future time. These transactions act as a reminder that an event is about to occur, and appears on the Home Page 14 days before the transaction is due. "
@@ -1239,7 +1239,7 @@ msgstr "Automatiserad"
 msgid "%d day remaining"
 msgid_plural "%d days remaining"
 msgstr[0] ""
-msgstr[1] "%d dagar återstår"
+msgstr[1] "%d dagar kvar"
 
 #: billsdepositspanel.cpp:506 billsdepositspanel.cpp:513
 #: billsdepositspanel.cpp:520 billsdepositspanel.cpp:573
@@ -1252,7 +1252,7 @@ msgstr "Inaktiv"
 msgid "%d day delay!"
 msgid_plural "%d days delay!"
 msgstr[0] "%d dag försenad!"
-msgstr[1] ""
+msgstr[1] "%d dagar försenad!"
 
 #: billsdepositspanel.cpp:518 billsdepositspanel.cpp:578 mmhomepage.cpp:308
 #, c-format
@@ -6320,19 +6320,19 @@ msgstr ""
 
 #: util.cpp:422
 msgid "Jan"
-msgstr ""
+msgstr "jan"
 
 #: util.cpp:422
 msgid "Feb"
-msgstr ""
+msgstr "feb"
 
 #: util.cpp:422
 msgid "Mar"
-msgstr ""
+msgstr "mar"
 
 #: util.cpp:423
 msgid "Apr"
-msgstr ""
+msgstr "apr"
 
 #: util.cpp:423 util.h:201
 msgid "May"
@@ -6340,19 +6340,19 @@ msgstr "Maj"
 
 #: util.cpp:423
 msgid "Jun"
-msgstr ""
+msgstr "jun"
 
 #: util.cpp:424
 msgid "Jul"
-msgstr ""
+msgstr "jul"
 
 #: util.cpp:424
 msgid "Aug"
-msgstr ""
+msgstr "aug"
 
 #: util.cpp:424
 msgid "Sep"
-msgstr ""
+msgstr "sep"
 
 #: util.cpp:425
 msgid "Oct"
@@ -6360,11 +6360,11 @@ msgstr "Okt"
 
 #: util.cpp:425
 msgid "Nov"
-msgstr ""
+msgstr "nov"
 
 #: util.cpp:425
 msgid "Dec"
-msgstr ""
+msgstr "dec"
 
 #: util.cpp:430
 msgid "Sunday"
@@ -6554,11 +6554,11 @@ msgstr ""
 
 #: webapp.cpp:577
 msgid "Attachment"
-msgstr ""
+msgstr "Bilaga"
 
 #: webapp.cpp:587
 msgid "Communication error"
-msgstr ""
+msgstr "Kommunikationsfel"
 
 #: webapp.cpp:588
 msgid "Transaction not downloaded: please close and open MMEX to try re-download transaction"
@@ -6578,11 +6578,11 @@ msgstr ""
 
 #: webappdialog.cpp:132
 msgid "Checking for new transactions..."
-msgstr ""
+msgstr "Söker efter nya transaktioner..."
 
 #: webappdialog.cpp:165
 msgid "&Import all "
-msgstr ""
+msgstr "&Importera alla "
 
 #: webappdialog.cpp:167
 msgid "Import and open all "
@@ -6718,38 +6718,38 @@ msgstr ""
 
 #: wizard_update.cpp:78
 msgid "Update Wizard"
-msgstr ""
+msgstr "Uppdateringsguide"
 
 #: wizard_update.cpp:106
 msgid "Historical releases:"
-msgstr ""
+msgstr "Historiska utgåvor:"
 
 #: wizard_update.cpp:136
 msgid "Version"
-msgstr ""
+msgstr "Version"
 
 #: wizard_update.cpp:144
 msgid "You already have the latest version"
-msgstr ""
+msgstr "Du har redan den senaste versionen"
 
 #: wizard_update.cpp:144
 msgid "A new version of MMEX is available!"
-msgstr ""
+msgstr "En ny version av MMEX finns tillgänglig!"
 
 #: wizard_update.cpp:145
 #, c-format
 msgid "Your version is %s"
-msgstr ""
+msgstr "Din version är %s"
 
 #: wizard_update.cpp:283 wizard_update.cpp:298
 msgid "Unable to check for updates!"
-msgstr ""
+msgstr "Det gick inte att söka efter uppdateringar!"
 
 #: wizard_update.cpp:284 wizard_update.cpp:299
 msgid "Error: "
-msgstr ""
+msgstr "Fel: "
 
 #: wizard_update.cpp:285 wizard_update.cpp:302
 msgid "MMEX Update Check"
-msgstr ""
+msgstr "MMEX uppdateringskontroll"
 
