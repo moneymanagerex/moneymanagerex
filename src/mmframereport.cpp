@@ -110,11 +110,11 @@ void mmGUIFrame::updateReportNavigation(wxTreeItemId& reports)
 {
 
     wxTreeItemId transactionList = m_nav_tree_ctrl->AppendItem(reports, _("Transaction Report"), img::FILTER_PNG, img::FILTER_PNG);
-    m_nav_tree_ctrl->SetItemData(transactionList, new mmTreeItemData("Transaction Report", false));
 
     //////////////////////////////////////////////////////////////////
 
     wxTreeItemId cashFlow = m_nav_tree_ctrl->AppendItem(reports, _("Cash Flow"), img::PIECHART_PNG, img::PIECHART_PNG);
+    m_nav_tree_ctrl->SetItemData(cashFlow, new mmTreeItemData("Cash Flow", true));
 
     wxTreeItemId cashflowWithBankAccounts = m_nav_tree_ctrl->AppendItem(cashFlow, _("Daily"), img::PIECHART_PNG, img::PIECHART_PNG);
     m_nav_tree_ctrl->SetItemData(cashflowWithBankAccounts, new mmTreeItemData("Cash Flow - Daily", new mmReportCashFlowDaily()));
@@ -125,6 +125,7 @@ void mmGUIFrame::updateReportNavigation(wxTreeItemId& reports)
     ///////////////////////////////////////////////////////////////////
 
     wxTreeItemId categs = m_nav_tree_ctrl->AppendItem(reports, _("Categories"), img::PIECHART_PNG, img::PIECHART_PNG);
+    m_nav_tree_ctrl->SetItemData(categs, new mmTreeItemData("Categories", true));
 
     wxTreeItemId categsMonthly = m_nav_tree_ctrl->AppendItem(categs, _("Monthly"), img::PIECHART_PNG, img::PIECHART_PNG);
     m_nav_tree_ctrl->SetItemData(categsMonthly, new mmTreeItemData("Categories Monthly", new mmReportCategoryOverTimePerformance()));
@@ -164,6 +165,7 @@ void mmGUIFrame::updateReportNavigation(wxTreeItemId& reports)
     //////////////////////////////////////////////////////////////////
 
     wxTreeItemId reportsSummary = m_nav_tree_ctrl->AppendItem(reports, _("Summary of Accounts"), img::PIECHART_PNG, img::PIECHART_PNG);
+    m_nav_tree_ctrl->SetItemData(reportsSummary, new mmTreeItemData("Summary of Accounts", true));
 
     wxTreeItemId accMonthly = m_nav_tree_ctrl->AppendItem(reportsSummary, _("Monthly"), img::PIECHART_PNG, img::PIECHART_PNG);
     m_nav_tree_ctrl->SetItemData(accMonthly, new mmTreeItemData("Monthly Summary of Accounts", new mmReportSummaryByDateMontly()));

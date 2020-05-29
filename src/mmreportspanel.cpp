@@ -157,9 +157,6 @@ bool mmReportsPanel::saveReportText(bool initial)
     json_writer.Key("name");
     json_writer.String(rb_->getReportTitle().utf8_str());
 
-    const auto file_name = rb_->getFileName();
-    wxLogDebug("Report File Name: %s", file_name);
-
     const auto time = wxDateTime::UNow();
 
     const auto& name = getVFname4print("rep", rb_->getHTMLText());

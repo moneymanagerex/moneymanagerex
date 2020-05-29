@@ -376,12 +376,3 @@ const wxString mmPrintableBase::getReportTitle() const
     }
     return title;
 }
-
-const wxString mmPrintableBase::getFileName() const
-{
-    wxString file_name = getReportTitle();
-    file_name.Replace(" - ", "-");
-    file_name.Replace(" ", "_");
-    file_name.Replace("/", "-");
-    return file_name;
-}
