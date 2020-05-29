@@ -36,9 +36,10 @@ public:
     virtual void RefreshData() {}
     virtual const wxString getReportTitle() const;
     virtual const wxString getFileName() const;
-    virtual int report_parameters() { return RepParams::NONE; }
+    virtual int report_parameters();
+    int getReportId() { return m_id; }
     void date_range(const mmDateRange* date_range, int selection);
-    void initial_report(bool initial) { m_initial = initial; }
+    void initial_report(bool initial);
 
     int getDateSelection() const;
     int getAccountSelection() const;
@@ -47,19 +48,8 @@ public:
     void chart(int selection);
     void setAccounts(int selection, const wxString& name);
     void setSelection(int sel);
-
-protected:
-    wxString m_title;
-    const mmDateRange* m_date_range;
-    bool m_initial;
-    int m_date_selection;
-    int m_chart_selection;
-    const wxArrayString* accountArray_;
-    bool m_only_active;
-    wxString m_settings;
-    wxDateTime m_begin_date;
-    wxDateTime m_end_date;
-    int m_account_selection;
+    void setSettings(const wxString& settings);
+    void setReportId(int id);
 
 public:
     static const char * m_template;
@@ -74,6 +64,45 @@ public:
         , ACCOUNTS_LIST = 32
         , CHART = 64
     };
+
+    enum Reports {
+        UNUSED = 0, 
+        MonthlySummaryofAccounts,
+        YearlySummaryofAccounts,
+        WheretheMoneyGoes,
+        WheretheMoneyComesFrom,
+        CategoriesSummary,
+        CategoriesMonthly,
+        Payees,
+        IncomevsExpensesSummary,
+        IncomevsExpensesMonthly,
+        BudgetPerformance,
+        BudgetCategorySummary,
+        MonthlyCashFlow,
+        DailyCashFlow,
+        StocksReportPerformance,
+        StocksReportSummary,
+        ForecastReport,
+        BugReport,
+        CategoryOverTimePerformance,
+        MyUsage
+    };
+
+protected:
+    int m_chart_selection;
+    int m_date_selection;
+    wxString m_title;
+    const mmDateRange* m_date_range;
+    const wxArrayString* accountArray_;
+    bool m_only_active;
+
+private:
+    bool m_initial;
+    wxString m_settings;
+    wxDateTime m_begin_date;
+    wxDateTime m_end_date;
+    int m_account_selection;
+    int m_id;
 };
 
 inline void mmPrintableBase::setSelection(int sel) { m_date_selection = sel; }
@@ -81,6 +110,9 @@ inline int mmPrintableBase::getDateSelection() const { return this->m_date_selec
 inline int mmPrintableBase::getAccountSelection() const { return this->m_account_selection; }
 inline int mmPrintableBase::getChartSelection() const { return this->m_chart_selection; }
 inline void mmPrintableBase::chart(int selection) { m_chart_selection = selection; }
+inline void mmPrintableBase::initial_report(bool initial) { m_initial = initial; }
+inline void mmPrintableBase::setReportId(int id) { m_id = id; }
+inline  int mmPrintableBase::report_parameters() { return RepParams::NONE; }
 
 class mmGeneralReport : public mmPrintableBase
 {
@@ -103,7 +135,6 @@ public:
 
 protected:
     const wxArrayString* accountArray_;
-
     void getSpecificAccounts();
 };
 
@@ -116,8 +147,6 @@ public:
 private:
     void load_context();
 };
-
-
 
 //----------------------------------------------------------------------------
 #endif // MM_EX_REPORTBASE_H_

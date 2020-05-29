@@ -23,7 +23,9 @@
 #include "reports/htmlbuilder.h"
 
 mmReportBudget::mmReportBudget(): mmPrintableBase("mmReportBudget")
-{}
+{
+    setReportId(Reports::UNUSED);
+}
 
 mmReportBudget::~mmReportBudget()
 {}
@@ -46,13 +48,16 @@ void mmReportBudget::SetDateToEndOfYear(const int day, const wxDateTime::Month m
     }
 }
 
-void mmReportBudget::SetBudgetMonth(wxString budgetYearStr, wxDateTime& startDate, wxDateTime& endDate) const
+void mmReportBudget::SetBudgetMonth(wxString budgetYear, wxDateTime& startDate, wxDateTime& endDate) const
 {
-    wxStringTokenizer tz(budgetYearStr,"-");
-    wxString monthStr = tz.GetNextToken();
-    wxDateTime::Month month = static_cast<wxDateTime::Month>(wxAtoi(monthStr) - 1);
-    startDate.SetMonth(month);
-    SetDateToEndOfMonth(month,endDate);
+    wxRegEx pattern_month(R"(^([0-9]{4})-([0-9]{2})$)");
+    if (pattern_month.Matches(budgetYear))
+    {
+        wxString monthStr = pattern_month.GetMatch(budgetYear, 2);
+        wxDateTime::Month month = static_cast<wxDateTime::Month>(wxAtoi(monthStr) - 1);
+        startDate.SetMonth(month);
+        SetDateToEndOfMonth(month, endDate);
+    }
 }
 
 void mmReportBudget::GetFinancialYearValues(int& day, wxDateTime::Month& month) const

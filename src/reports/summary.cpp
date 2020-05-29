@@ -117,7 +117,8 @@ double mmHistoryData::getDailyBalanceAt(const Model_Account::Data *account, cons
 mmReportSummaryByDate::mmReportSummaryByDate(int mode)
 : mmPrintableBase("mmReportSummaryByDate")
 , mode_(mode)
-{}
+{
+}
 
 wxString mmReportSummaryByDate::getHTMLText()
 {
@@ -317,8 +318,12 @@ wxString mmReportSummaryByDate::getHTMLText()
 
 mmReportSummaryByDateMontly::mmReportSummaryByDateMontly()
     : mmReportSummaryByDate(MONTHLY)
-{}
+{
+    setReportId(Reports::MonthlySummaryofAccounts);
+}
 
 mmReportSummaryByDateYearly::mmReportSummaryByDateYearly()
     : mmReportSummaryByDate(YEARLY)
-{}
+{
+    setReportId(Reports::YearlySummaryofAccounts);
+}

@@ -1174,7 +1174,7 @@ void mmGUIFrame::OnItemRightClick(wxTreeEvent& event)
 void mmGUIFrame::showTreePopupMenu(const wxTreeItemId& id, const wxPoint& pt)
 {
     mmTreeItemData* iData = dynamic_cast<mmTreeItemData*>(m_nav_tree_ctrl->GetItemData(id));
-    if (iData && !iData->isReadOnly())
+    if (iData)
         selectedItemData_ = iData;
     else
         return;
@@ -1239,13 +1239,13 @@ void mmGUIFrame::showTreePopupMenu(const wxTreeItemId& id, const wxPoint& pt)
             // Create only for Account types: Bank, Cash, Loan & Credit Card
             if ((iData->getString() != "item@Term Accounts") && (iData->getString() != "item@Stocks"))
             {
-                wxMenu *exportTo = new wxMenu;
+                wxMenu* exportTo = new wxMenu;
                 exportTo->Append(MENU_TREEPOPUP_ACCOUNT_EXPORT2CSV, _("&CSV Files..."));
                 exportTo->Append(MENU_TREEPOPUP_ACCOUNT_EXPORT2XML, _("&XML Files..."));
                 exportTo->Append(MENU_TREEPOPUP_ACCOUNT_EXPORT2QIF, _("&QIF Files..."));
                 exportTo->Append(MENU_TREEPOPUP_ACCOUNT_EXPORT2JSON, _("&JSON Files..."));
                 menu.AppendSubMenu(exportTo, _("&Export"));
-                wxMenu *importFrom = new wxMenu;
+                wxMenu* importFrom = new wxMenu;
                 importFrom->Append(MENU_TREEPOPUP_ACCOUNT_IMPORTUNIVCSV, _("&CSV Files..."));
                 importFrom->Append(MENU_TREEPOPUP_ACCOUNT_IMPORTXML, _("&XML Files..."), _("Import from XML (Excel format)"));
                 importFrom->Append(MENU_TREEPOPUP_ACCOUNT_IMPORTQIF, _("&QIF Files..."));
@@ -1253,7 +1253,7 @@ void mmGUIFrame::showTreePopupMenu(const wxTreeItemId& id, const wxPoint& pt)
                 menu.AppendSeparator();
             }
 
-            wxMenu *viewAccounts = new wxMenu;
+            wxMenu* viewAccounts = new wxMenu;
             viewAccounts->Append(MENU_TREEPOPUP_ACCOUNT_VIEWALL, _("All"));
             viewAccounts->Append(MENU_TREEPOPUP_ACCOUNT_VIEWFAVORITE, _("Favorites"));
             viewAccounts->Append(MENU_TREEPOPUP_ACCOUNT_VIEWOPEN, _("Open"));
@@ -1291,7 +1291,7 @@ void mmGUIFrame::OnViewAccountsTemporaryChange(wxCommandEvent& e)
 
 void mmGUIFrame::createMenu()
 {
-    wxMenu *menu_file = new wxMenu;
+    wxMenu* menu_file = new wxMenu;
 
     wxMenuItem* menuItemNew = new wxMenuItem(menu_file, MENU_NEW, _("&New Database\tCtrl-N"), _("New Database"));
     menuItemNew->SetBitmap(mmBitmap(png::NEW_DB));
@@ -1341,7 +1341,7 @@ void mmGUIFrame::createMenu()
     menu_file->Append(menuItemQuit);
 
     // Create the required menu items
-    wxMenu *menuView = new wxMenu;
+    wxMenu* menuView = new wxMenu;
     wxMenuItem* menuItemToolbar = new wxMenuItem(menuView, MENU_VIEW_TOOLBAR,
         _("&Toolbar"), _("Show/Hide the toolbar"), wxITEM_CHECK);
     wxMenuItem* menuItemLinks = new wxMenuItem(menuView, MENU_VIEW_LINKS,
@@ -1383,7 +1383,7 @@ void mmGUIFrame::createMenu()
         , _("Switch Application Language")
         , _("Change language used for MMEX GUI"));
     menuItemLanguage->SetBitmap(mmBitmap(png::LANG));
-    wxMenu *menuLang = new wxMenu;
+    wxMenu* menuLang = new wxMenu;
 
     wxArrayString lang_files = wxTranslations::Get()->GetAvailableTranslations("mmex");
     std::map<wxString, std::pair<int, wxString>> langs;
@@ -1404,7 +1404,7 @@ void mmGUIFrame::createMenu()
     menuItemLanguage->SetSubMenu(menuLang);
     menuView->Append(menuItemLanguage);
 
-    wxMenu *menuAccounts = new wxMenu;
+    wxMenu* menuAccounts = new wxMenu;
 
     wxMenuItem* menuItemAcctList = new wxMenuItem(menuAccounts, MENU_ACCTLIST
         , _("Account &List"), _("Show Account List"));
@@ -1434,7 +1434,7 @@ void mmGUIFrame::createMenu()
     menuAccounts->Append(menuItemAcctDelete);
 
     // Tools Menu
-    wxMenu *menuTools = new wxMenu;
+    wxMenu* menuTools = new wxMenu;
 
     wxMenuItem* menuItemRates = new wxMenuItem(menuTools
         , MENU_RATES, _("Download Rates..."), _("Download Currency and Stock rates"));
@@ -1470,7 +1470,7 @@ void mmGUIFrame::createMenu()
         , MENU_RELOCATION, _("Relocation of...")
         , _("Relocate Categories && Payees"));
     menuItemRelocation->SetBitmap(mmBitmap(png::RELOCATION));
-    wxMenu *menuRelocation = new wxMenu;
+    wxMenu* menuRelocation = new wxMenu;
     menuRelocation->Append(menuItemCategoryRelocation);
     menuRelocation->Append(menuItemPayeeRelocation);
     menuItemRelocation->SetSubMenu(menuRelocation);
@@ -1521,7 +1521,7 @@ void mmGUIFrame::createMenu()
 
     menuTools->AppendSeparator();
 
-    wxMenu *menuDatabase = new wxMenu;
+    wxMenu* menuDatabase = new wxMenu;
     wxMenuItem* menuItemConvertDB = new wxMenuItem(menuTools, MENU_CONVERT_ENC_DB
         , _("Convert Encrypted &DB")
         , _("Convert Encrypted DB to Non-Encrypted DB"));
@@ -1547,7 +1547,7 @@ void mmGUIFrame::createMenu()
     menuItemChangeEncryptPassword->Enable(false);
 
     // Help Menu
-    wxMenu *menuHelp = new wxMenu;
+    wxMenu* menuHelp = new wxMenu;
 
     wxMenuItem* menuItemHelp = new wxMenuItem(menuTools, wxID_HELP,
         _("&Help\tF1"), _("Show the Help file"));
@@ -1605,7 +1605,7 @@ void mmGUIFrame::createMenu()
         , _("Community")
         , _("Stay in touch with MMEX community"));
     menuItemCommunity->SetBitmap(mmBitmap(png::COMMUNITY));
-    wxMenu *menuCommunity = new wxMenu;
+    wxMenu* menuCommunity = new wxMenu;
     menuCommunity->Append(menuItemWebsite);
     menuCommunity->Append(menuItemReportIssues);
     menuCommunity->Append(menuItemWiki);

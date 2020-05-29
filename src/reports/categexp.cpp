@@ -221,23 +221,27 @@ wxString mmReportCategoryExpenses::getHTMLText()
 mmReportCategoryExpensesGoes::mmReportCategoryExpensesGoes()
     : mmReportCategoryExpenses(_("Where the Money Goes"), TYPE::GOES)
 {
+    setReportId(Reports::WheretheMoneyGoes);
 }
 
 mmReportCategoryExpensesComes::mmReportCategoryExpensesComes()
     : mmReportCategoryExpenses(_("Where the Money Comes From"), TYPE::COME)
 {
+    setReportId(Reports::WheretheMoneyComesFrom);
 }
 
 mmReportCategorySummary::mmReportCategorySummary()
     : mmReportCategoryExpenses(_("Summary"), TYPE::SUMMARY)
 {
     m_chart_selection = 1;
+    setReportId(Reports::CategoriesSummary);
 }
 
 mmReportCategoryExpensesCategories::mmReportCategoryExpensesCategories()
     : mmReportCategoryExpenses(_("Monthly"), TYPE::MONTHLY)
 {
     m_chart_selection = 1;
+    setReportId(Reports::CategoriesMonthly);
 }
 
 //----------------------------------------------------------------------------
@@ -246,6 +250,7 @@ mmReportCategoryOverTimePerformance::mmReportCategoryOverTimePerformance()
     : mmPrintableBase(_("Category Income/Expenses"))
 {
     m_date_range = new mmLast12Months();
+    setReportId(Reports::CategoryOverTimePerformance);
 }
 //----------------------------------------------------------------------------
 mmReportCategoryOverTimePerformance::~mmReportCategoryOverTimePerformance()

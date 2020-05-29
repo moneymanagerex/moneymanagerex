@@ -33,6 +33,7 @@ mmReportPayeeExpenses::mmReportPayeeExpenses()
     , positiveTotal_(0.0)
     , negativeTotal_(0.0)
 {
+    setReportId(Reports::Payees);
 }
 
 mmReportPayeeExpenses::~mmReportPayeeExpenses()

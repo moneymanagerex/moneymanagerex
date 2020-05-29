@@ -24,6 +24,7 @@ class mm_html_template;
 
 mmReportForecast::mmReportForecast(): mmPrintableBase(_("Forecast"))
 {
+    setReportId(Reports::ForecastReport);
 }
 
 mmReportForecast::~mmReportForecast()

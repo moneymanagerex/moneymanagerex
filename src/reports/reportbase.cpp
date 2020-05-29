@@ -22,6 +22,7 @@
 #include "mmSimpleDialogs.h"
 #include "mmDateRange.h"
 #include "model/Model_Account.h"
+#include "util.h"
 
 mmPrintableBase::mmPrintableBase(const wxString& title)
     : m_title(title)
@@ -40,65 +41,103 @@ mmPrintableBase::mmPrintableBase(const wxString& title)
 
 mmPrintableBase::~mmPrintableBase()
 {
+    int ID = getReportId();
+    wxLogDebug("%d - %s", ID, m_title);
+
     Document j_doc;
-    if (!j_doc.Parse(m_settings.utf8_str()).HasParseError()) {
+    if (ID > 0)
+    {
+        StringBuffer json_buffer;
+        PrettyWriter<StringBuffer> json_writer(json_buffer);
 
-        if (j_doc.HasMember("ID") && j_doc["ID"].IsInt()) {
-            int id = j_doc["ID"].GetInt();
+        json_writer.StartObject();
 
-            StringBuffer json_buffer;
-            PrettyWriter<StringBuffer> json_writer(json_buffer);
-
-            json_writer.StartObject();
-            json_writer.Key("ID");
-            json_writer.Int(id);
-
-            if (m_date_selection)
-            {
-                json_writer.Key("REPORTPERIOD");
-                json_writer.Int(m_date_selection);
-            }
-
+        if (m_date_selection)
+        {
+            json_writer.Key("REPORTPERIOD");
+            json_writer.Int(m_date_selection);
             json_writer.Key("DATE1");
             json_writer.String(m_begin_date.FormatISODate().utf8_str());
-
             json_writer.Key("DATE2");
             json_writer.String(m_end_date.FormatISODate().utf8_str());
-
-            if (m_account_selection)
-            {
-                json_writer.Key("ACCOUNTSELECTION");
-                json_writer.Int(m_account_selection);
-
-                if (accountArray_ && !accountArray_->empty())
-                {
-                    json_writer.Key("ACCOUNTS");
-
-                    json_writer.StartArray();
-                    for (const auto& entry : *accountArray_)
-                    {
-                        json_writer.String(entry.utf8_str());
-                    }
-                    json_writer.EndArray();
-                }
-            }
-
-            if (m_chart_selection)
-            {
-                json_writer.Key("CHART");
-                json_writer.Int(m_chart_selection);
-            }
-
-            json_writer.EndObject();
-
-            const wxString& rj_key = wxString::Format("REPORT_%d", id);
-            const wxString& rj_value = wxString::FromUTF8(json_buffer.GetString());
-            Model_Infotable::instance().Set(rj_key, rj_value);
         }
+
+        if (accountArray_ && !accountArray_->empty())
+        {
+            json_writer.Key("ACCOUNTSELECTION");
+            json_writer.Int(m_account_selection);
+
+            if (accountArray_ && !accountArray_->empty())
+            {
+                json_writer.Key("ACCOUNTS");
+
+                json_writer.StartArray();
+                for (const auto& entry : *accountArray_)
+                {
+                    json_writer.String(entry.utf8_str());
+                }
+                json_writer.EndArray();
+            }
+        }
+
+        if (m_chart_selection)
+        {
+            json_writer.Key("CHART");
+            json_writer.Int(m_chart_selection);
+        }
+
+        json_writer.EndObject();
+
+        const wxString& rj_key = wxString::Format("REPORT_%d", ID);
+        const wxString& rj_value = wxString::FromUTF8(json_buffer.GetString());
+        Model_Infotable::instance().Set(rj_key, rj_value);
     }
 
     if (accountArray_)
         delete accountArray_;
+}
+
+void mmPrintableBase::setSettings(const wxString& settings)
+{
+    m_settings = settings;
+
+    Document j_doc;
+    if (j_doc.Parse(settings.c_str()).HasParseError())
+        return;
+
+    if (j_doc.HasMember("REPORTPERIOD") && j_doc["REPORTPERIOD"].IsInt()) {
+        m_date_selection = j_doc["REPORTPERIOD"].GetInt();
+    }
+
+    if (j_doc.HasMember("DATE1") && j_doc["DATE1"].IsString()) {
+        m_begin_date = ::mmParseISODate(j_doc["DATE1"].GetString());
+    }
+
+    if (j_doc.HasMember("DATE2") && j_doc["DATE2"].IsString()) {
+        m_end_date = ::mmParseISODate(j_doc["DATE2"].GetString());
+    }
+
+    if (j_doc.HasMember("ACCOUNTSELECTION") && j_doc["ACCOUNTSELECTION"].IsInt()) {
+        m_account_selection = j_doc["ACCOUNTSELECTION"].GetInt();
+    }
+
+    if (accountArray_)
+    {
+        delete accountArray_;
+    }
+
+    if (j_doc.HasMember("ACCOUNTS") && j_doc["ACCOUNTS"].IsArray()) {
+        wxArrayString* accountSelections = new wxArrayString();
+        const Value& a = j_doc["ACCOUNTS"].GetArray();
+        for (const auto& v : a.GetArray()) {
+            accountSelections->Add(v.GetString());
+        }
+        accountArray_ = accountSelections;
+    }
+
+    if (j_doc.HasMember("CHART") && j_doc["CHART"].IsInt()) {
+        m_chart_selection = j_doc["CHART"].GetInt();
+    }
 }
 
 void mmPrintableBase::date_range(const mmDateRange* date_range, int selection)
