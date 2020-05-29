@@ -33,16 +33,11 @@ mmReportPayeeExpenses::mmReportPayeeExpenses()
     , positiveTotal_(0.0)
     , negativeTotal_(0.0)
 {
-    setReportId(Reports::Payees);
+    setReportSettings(Reports::Payees);
 }
 
 mmReportPayeeExpenses::~mmReportPayeeExpenses()
 {
-}
-
-int mmReportPayeeExpenses::report_parameters()
-{
-    return RepParams::DATE_RANGE | RepParams::CHART;
 }
 
 void  mmReportPayeeExpenses::RefreshData()

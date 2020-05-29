@@ -42,11 +42,6 @@ mmReportCashFlow::~mmReportCashFlow()
 {
 }
 
-int mmReportCashFlow::report_parameters()
-{
-    return RepParams::ACCOUNTS_LIST | RepParams::CHART;
-}
-
 wxString mmReportCashFlow::getHTMLText()
 {
     return this->getHTMLText_i();
@@ -311,13 +306,13 @@ mmReportCashFlowDaily::mmReportCashFlowDaily()
     : mmReportCashFlow()
 {
     cashFlowReportType_ = TYPE::DAILY;
-    setReportId(Reports::DailyCashFlow);
+    setReportSettings(Reports::DailyCashFlow);
 }
 
 mmReportCashFlowMonthly::mmReportCashFlowMonthly()
     : mmReportCashFlow()
 {
     cashFlowReportType_ = TYPE::MONTHLY;
-    setReportId(Reports::MonthlyCashFlow);
+    setReportSettings(Reports::MonthlyCashFlow);
 }
 

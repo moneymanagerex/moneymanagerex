@@ -39,11 +39,6 @@ mmReportCategoryExpenses::~mmReportCategoryExpenses()
 {
 }
 
-int mmReportCategoryExpenses::report_parameters()
-{
-    return RepParams::DATE_RANGE | RepParams::CHART | RepParams::ACCOUNTS_LIST;
-}
-
 void  mmReportCategoryExpenses::RefreshData()
 {
     data_.clear();
@@ -221,27 +216,27 @@ wxString mmReportCategoryExpenses::getHTMLText()
 mmReportCategoryExpensesGoes::mmReportCategoryExpensesGoes()
     : mmReportCategoryExpenses(_("Where the Money Goes"), TYPE::GOES)
 {
-    setReportId(Reports::WheretheMoneyGoes);
+    setReportSettings(Reports::WheretheMoneyGoes);
 }
 
 mmReportCategoryExpensesComes::mmReportCategoryExpensesComes()
     : mmReportCategoryExpenses(_("Where the Money Comes From"), TYPE::COME)
 {
-    setReportId(Reports::WheretheMoneyComesFrom);
+    setReportSettings(Reports::WheretheMoneyComesFrom);
 }
 
 mmReportCategorySummary::mmReportCategorySummary()
     : mmReportCategoryExpenses(_("Summary"), TYPE::SUMMARY)
 {
     m_chart_selection = 1;
-    setReportId(Reports::CategoriesSummary);
+    setReportSettings(Reports::CategoriesSummary);
 }
 
 mmReportCategoryExpensesCategories::mmReportCategoryExpensesCategories()
     : mmReportCategoryExpenses(_("Monthly"), TYPE::MONTHLY)
 {
     m_chart_selection = 1;
-    setReportId(Reports::CategoriesMonthly);
+    setReportSettings(Reports::CategoriesMonthly);
 }
 
 //----------------------------------------------------------------------------
@@ -250,17 +245,12 @@ mmReportCategoryOverTimePerformance::mmReportCategoryOverTimePerformance()
     : mmPrintableBase(_("Category Income/Expenses"))
 {
     m_date_range = new mmLast12Months();
-    setReportId(Reports::CategoryOverTimePerformance);
+    setReportSettings(Reports::CategoryOverTimePerformance);
 }
 //----------------------------------------------------------------------------
 mmReportCategoryOverTimePerformance::~mmReportCategoryOverTimePerformance()
 {
     delete m_date_range;
-}
-
-int mmReportCategoryOverTimePerformance::report_parameters()
-{
-    return RepParams::MONTHES | RepParams::CHART | RepParams::ACCOUNTS_LIST;
 }
 
 wxString mmReportCategoryOverTimePerformance::getHTMLText()

@@ -46,7 +46,6 @@ class mmReportChartStocks : public mmPrintableBase
 public:
     mmReportChartStocks();
     ~mmReportChartStocks();
-    virtual int report_parameters();
     wxString getHTMLText();
 };
 

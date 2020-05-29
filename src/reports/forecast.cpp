@@ -24,16 +24,11 @@ class mm_html_template;
 
 mmReportForecast::mmReportForecast(): mmPrintableBase(_("Forecast"))
 {
-    setReportId(Reports::ForecastReport);
+    setReportSettings(Reports::ForecastReport);
 }
 
 mmReportForecast::~mmReportForecast()
 {
-}
-
-int mmReportForecast::report_parameters()
-{
-    return RepParams::SINGLE_DATE;
 }
 
 wxString mmReportForecast::getHTMLText()

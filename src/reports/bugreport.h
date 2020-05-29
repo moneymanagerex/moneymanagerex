@@ -47,7 +47,6 @@ public:
     mmBugReport();
     virtual ~mmBugReport();
 
-    virtual int report_parameters();
     virtual wxString getHTMLText();
 };
 
@@ -58,11 +57,6 @@ mmBugReport::mmBugReport()
 
 mmBugReport::~mmBugReport()
 {
-}
-
-int mmBugReport::report_parameters()
-{
-    return RepParams::NONE;
 }
 
 wxString mmBugReport::getHTMLText()

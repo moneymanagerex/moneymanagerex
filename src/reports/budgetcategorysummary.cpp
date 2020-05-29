@@ -33,16 +33,11 @@
 mmReportBudgetCategorySummary::mmReportBudgetCategorySummary()
 {
     m_chart_selection = 1;
-    setReportId(Reports::BudgetCategorySummary);
+    setReportSettings(Reports::BudgetCategorySummary);
 }
 
 mmReportBudgetCategorySummary::~mmReportBudgetCategorySummary()
 {}
-
-int mmReportBudgetCategorySummary::report_parameters()
-{
-    return RepParams::BUDGET_DATES | RepParams::CHART;
-}
 
 const wxString mmReportBudgetCategorySummary::actualAmountColour(double amount, double actual, double estimated, bool total) const
 {

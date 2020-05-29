@@ -33,7 +33,6 @@ public:
     virtual ~mmReportBudgetCategorySummary();
 
     virtual wxString getHTMLText();
-    virtual int report_parameters();
 
 private:
     const wxString actualAmountColour(double amount, double actual, double estimated, bool total = false) const;

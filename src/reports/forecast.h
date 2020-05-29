@@ -24,8 +24,6 @@ class mmReportForecast: public mmPrintableBase
 public:
     mmReportForecast();
     virtual ~mmReportForecast();
-
-    virtual int report_parameters();
     virtual wxString getHTMLText();
 
 protected:

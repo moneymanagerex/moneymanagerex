@@ -26,16 +26,11 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 mmReportMyUsage::mmReportMyUsage()
 : mmPrintableBase(_("MMEX Usage Frequency"))
 {
-    setReportId(Reports::MyUsage);
+    setReportSettings(Reports::MyUsage);
 }
 
 mmReportMyUsage::~mmReportMyUsage()
 {
-}
-
-int mmReportMyUsage::report_parameters()
-{
-    return RepParams::DATE_RANGE | RepParams::CHART;
 }
 
 wxString mmReportMyUsage::getHTMLText()
