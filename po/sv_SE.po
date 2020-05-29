@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-05-26 12:37+0300\n"
-"PO-Revision-Date: 2020-05-28 23:44\n"
+"PO-Revision-Date: 2020-05-29 07:14\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
@@ -2608,7 +2608,7 @@ msgstr ""
 
 #: import_export/qif_export.cpp:294 import_export/qif_import_gui.cpp:720
 msgid "QIF Files (*.qif)"
-msgstr ""
+msgstr "QIF-filer (*.qif)"
 
 #: import_export/qif_export.cpp:299
 msgid "Choose JSON data file to Export"
@@ -2616,23 +2616,23 @@ msgstr ""
 
 #: import_export/qif_export.cpp:301
 msgid "JSON Files (*.json)"
-msgstr ""
+msgstr "JSON-filer (*.json)"
 
 #: import_export/qif_export.cpp:321
 msgid "No Account available for export"
-msgstr ""
+msgstr "Inget konto tillgängligt för export"
 
 #: import_export/qif_export.cpp:323
 msgid "No Accounts selected for export"
-msgstr ""
+msgstr "Inga konton valda för export"
 
 #: import_export/qif_export.cpp:325
 msgid "To Date less than From Date"
-msgstr ""
+msgstr "Till-datum mindre än från-datum"
 
 #: import_export/qif_export.cpp:424
 msgid "Categories exported"
-msgstr ""
+msgstr "Kategorier exporterade"
 
 #: import_export/qif_export.cpp:445 import_export/qif_import_gui.cpp:358
 #: import_export/qif_import_gui.cpp:804
