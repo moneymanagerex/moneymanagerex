@@ -32,7 +32,6 @@ public:
     virtual ~mmReportCashFlow();
 
     virtual wxString getHTMLText();
-    virtual int report_parameters();
 
 protected:
     wxString getHTMLText_i();

@@ -1,5 +1,6 @@
 /*******************************************************
  Copyright (C) 2013 James Higley
+ Copyright (C) 2020 Nikolay Akimov
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -33,7 +34,8 @@ mmPrintableBase::mmPrintableBase(const wxString& title)
     , m_chart_selection(0)
     , accountArray_(nullptr)
     , m_only_active(false)
-    , m_settings("")
+    , m_id(-1)
+    , m_parameters(0)
 {
 }
 
@@ -45,27 +47,59 @@ mmPrintableBase::~mmPrintableBase()
         delete accountArray_;
 }
 
+void mmPrintableBase::setReportSettings(int id)
+{
+    m_id = id;
+
+    switch (id) {
+    case MyUsage:                     m_parameters = DATE_RANGE | CHART; break;
+    case MonthlySummaryofAccounts:    m_parameters = NONE; break;
+    case YearlySummaryofAccounts:     m_parameters = NONE; break;
+    case WheretheMoneyGoes:           m_parameters = DATE_RANGE | CHART | ACCOUNTS_LIST; break;
+    case WheretheMoneyComesFrom:      m_parameters = DATE_RANGE | CHART | ACCOUNTS_LIST; break;
+    case CategoriesSummary:           m_parameters = DATE_RANGE | CHART | ACCOUNTS_LIST; break;
+    case CategoriesMonthly:           m_parameters = DATE_RANGE | CHART | ACCOUNTS_LIST; break;
+    case Payees:                      m_parameters = DATE_RANGE | CHART; break;
+    case IncomevsExpensesSummary:     m_parameters = DATE_RANGE | ACCOUNTS_LIST; break;
+    case IncomevsExpensesMonthly:     m_parameters = DATE_RANGE | ACCOUNTS_LIST | CHART; break;
+    case BudgetPerformance:           m_parameters = ONLY_YEARS; break;
+    case BudgetCategorySummary:       m_parameters = BUDGET_DATES | CHART; break;
+    case MonthlyCashFlow:             m_parameters = ACCOUNTS_LIST | CHART; break;
+    case DailyCashFlow:               m_parameters = ACCOUNTS_LIST | CHART; break;
+    case StocksReportPerformance:     m_parameters = DATE_RANGE; break;
+    case StocksReportSummary:         m_parameters = NONE; break;
+    case ForecastReport:              m_parameters = SINGLE_DATE; break;
+    case BugReport:                   m_parameters = NONE; break;
+    case CategoryOverTimePerformance: m_parameters = MONTHES | CHART | ACCOUNTS_LIST; break;
+    default:                          m_parameters = NONE; break;
+    }
+}
+
 void mmPrintableBase::storeSettings()
 {
     int ID = getReportId();
     wxLogDebug("%d - %s", ID, m_title);
 
     Document j_doc;
-    if (ID > 0)
+    if (ID >= 0)
     {
         StringBuffer json_buffer;
         PrettyWriter<StringBuffer> json_writer(json_buffer);
 
+        bool isActive = false;
+
         json_writer.StartObject();
 
-        if (m_date_selection)
+        if (m_parameters & DATE_RANGE)
         {
             json_writer.Key("REPORTPERIOD");
             json_writer.Int(m_date_selection);
+            isActive = true;
         }
 
-        if (accountArray_ && !accountArray_->empty())
+        if (m_parameters & ACCOUNTS_LIST)
         {
+            isActive = true;
             json_writer.Key("ACCOUNTSELECTION");
             json_writer.Int(m_account_selection);
 
@@ -82,17 +116,20 @@ void mmPrintableBase::storeSettings()
             }
         }
 
-        if (m_chart_selection)
+        if (m_parameters & CHART)
         {
+            isActive = true;
             json_writer.Key("CHART");
             json_writer.Int(m_chart_selection);
         }
 
         json_writer.EndObject();
-
-        const wxString& rj_key = wxString::Format("REPORT_%d", ID);
-        const wxString& rj_value = wxString::FromUTF8(json_buffer.GetString());
-        Model_Infotable::instance().Set(rj_key, rj_value);
+        if (isActive)
+        {
+            const wxString& rj_key = wxString::Format("REPORT_%d", ID);
+            const wxString& rj_value = wxString::FromUTF8(json_buffer.GetString());
+            Model_Infotable::instance().Set(rj_key, rj_value);
+        }
     }
 }
 
@@ -113,8 +150,7 @@ void mmPrintableBase::restoreSettings()
         m_account_selection = j_doc["ACCOUNTSELECTION"].GetInt();
     }
 
-    if (accountArray_)
-    {
+    if (accountArray_) {
         delete accountArray_;
     }
 
@@ -257,16 +293,16 @@ wxString mmGeneralReport::getHTMLText()
 
     return out;
 }
-
+ 
 int mmGeneralReport::report_parameters()
 {
     int params = 0;
     const auto content = m_report->SQLCONTENT.Lower();
     if (content.Contains("&begin_date")
         || content.Contains("&end_date"))
-        params |= RepParams::DATE_RANGE;
+        params |= DATE_RANGE;
     else if (content.Contains("&single_date"))
-        params |= RepParams::SINGLE_DATE;
+        params |= SINGLE_DATE;
 
     return params;
 }

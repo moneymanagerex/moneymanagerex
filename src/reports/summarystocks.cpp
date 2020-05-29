@@ -36,7 +36,7 @@ mmReportSummaryStocks::mmReportSummaryStocks()
     , m_gain_loss_sum_total(0.0)
     , m_stock_balance(0.0)
 {
-    setReportId(Reports::StocksReportSummary);
+    setReportSettings(Reports::StocksReportSummary);
 }
 
 void  mmReportSummaryStocks::RefreshData()
@@ -183,16 +183,11 @@ void mmReportSummaryStocks::display_header(mmHTMLBuilder& hb)
 mmReportChartStocks::mmReportChartStocks()
     : mmPrintableBase(_("Stocks Performance Charts"))
 {
-    setReportId(Reports::StocksReportPerformance);
+    setReportSettings(Reports::StocksReportPerformance);
 }
 
 mmReportChartStocks::~mmReportChartStocks()
 {
-}
-
-int mmReportChartStocks::report_parameters()
-{
-    return RepParams::DATE_RANGE;
 }
 
 wxString mmReportChartStocks::getHTMLText()

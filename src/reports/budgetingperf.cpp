@@ -29,7 +29,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 mmReportBudgetingPerformance::mmReportBudgetingPerformance()
 {
-    setReportId(Reports::BudgetPerformance);
+    setReportSettings(Reports::BudgetPerformance);
 }
 
 mmReportBudgetingPerformance::~mmReportBudgetingPerformance()
@@ -86,11 +86,6 @@ void mmReportBudgetingPerformance::DisplayRow(mmHTMLBuilder &hb
         }
         hb.endTableRow();
     }
-}
-
-int mmReportBudgetingPerformance::report_parameters()
-{
-    return RepParams::ONLY_YEARS;
 }
 
 wxString mmReportBudgetingPerformance::getHTMLText()

@@ -50,7 +50,7 @@ public:
     void setSelection(int sel);
     void restoreSettings();
     void storeSettings();
-    void setReportId(int id);
+    void setReportSettings(int id);
 
 public:
     static const char * m_template;
@@ -67,7 +67,7 @@ public:
     };
 
     enum Reports {
-        UNUSED = 0, 
+        MyUsage = 0,
         MonthlySummaryofAccounts,
         YearlySummaryofAccounts,
         WheretheMoneyGoes,
@@ -86,7 +86,7 @@ public:
         ForecastReport,
         BugReport,
         CategoryOverTimePerformance,
-        MyUsage
+        UNUSED = -1
     };
 
 protected:
@@ -99,9 +99,9 @@ protected:
 
 private:
     bool m_initial;
-    wxString m_settings;
     int m_account_selection;
     int m_id;
+    int m_parameters;
 };
 
 inline void mmPrintableBase::setSelection(int sel) { m_date_selection = sel; }
@@ -110,8 +110,7 @@ inline int mmPrintableBase::getAccountSelection() const { return this->m_account
 inline int mmPrintableBase::getChartSelection() const { return this->m_chart_selection; }
 inline void mmPrintableBase::chart(int selection) { m_chart_selection = selection; }
 inline void mmPrintableBase::initial_report(bool initial) { m_initial = initial; }
-inline void mmPrintableBase::setReportId(int id) { m_id = id; }
-inline  int mmPrintableBase::report_parameters() { return RepParams::NONE; }
+inline  int mmPrintableBase::report_parameters() { return m_parameters; }
 
 class mmGeneralReport : public mmPrintableBase
 {

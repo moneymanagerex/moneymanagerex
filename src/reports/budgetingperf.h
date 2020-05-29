@@ -29,7 +29,6 @@ public:
     mmReportBudgetingPerformance();
     virtual ~mmReportBudgetingPerformance();
 
-    virtual int report_parameters();
     virtual wxString getHTMLText();
 
 private:

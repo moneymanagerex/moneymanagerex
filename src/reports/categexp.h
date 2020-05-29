@@ -32,7 +32,6 @@ public:
     virtual ~mmReportCategoryExpenses();
 
     virtual void RefreshData();
-    virtual int report_parameters();
     virtual wxString getHTMLText();
 
 protected:
@@ -75,7 +74,6 @@ class mmReportCategoryOverTimePerformance : public mmPrintableBase
 public:
     mmReportCategoryOverTimePerformance();
     ~mmReportCategoryOverTimePerformance();
-    virtual int report_parameters();
 
     wxString getHTMLText();
 

@@ -31,7 +31,6 @@ public:
     virtual ~mmReportPayeeExpenses();
 
     virtual void RefreshData();
-    virtual int report_parameters();
     virtual wxString getHTMLText();
 
 protected:

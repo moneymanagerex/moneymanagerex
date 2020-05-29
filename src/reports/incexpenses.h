@@ -27,7 +27,6 @@ class mmReportIncomeExpenses : public mmPrintableBase
 public:
     mmReportIncomeExpenses();
     virtual ~mmReportIncomeExpenses();
-    virtual int report_parameters();
     virtual wxString getHTMLText();
 };
 
@@ -37,7 +36,6 @@ class mmReportIncomeExpensesMonthly : public mmPrintableBase
 public:
     mmReportIncomeExpensesMonthly();
     virtual ~mmReportIncomeExpensesMonthly();
-    virtual int report_parameters();
     virtual wxString getHTMLText();
 };
 
