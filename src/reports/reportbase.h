@@ -48,7 +48,8 @@ public:
     void chart(int selection);
     void setAccounts(int selection, const wxString& name);
     void setSelection(int sel);
-    void setSettings(const wxString& settings);
+    void restoreSettings();
+    void storeSettings();
     void setReportId(int id);
 
 public:
@@ -99,8 +100,6 @@ protected:
 private:
     bool m_initial;
     wxString m_settings;
-    wxDateTime m_begin_date;
-    wxDateTime m_end_date;
     int m_account_selection;
     int m_id;
 };
