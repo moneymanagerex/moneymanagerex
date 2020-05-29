@@ -96,6 +96,8 @@ bool mmReportsPanel::Create(wxWindow *parent, wxWindowID winid
     SetExtraStyle(GetExtraStyle() | wxWS_EX_BLOCK_EVENTS);
     wxPanel::Create(parent, winid, pos, size, style, name);
 
+    rb_->restoreSettings();
+
     CreateControls();
     GetSizer()->Fit(this);
     GetSizer()->SetSizeHints(this);
@@ -129,6 +131,8 @@ bool mmReportsPanel::saveReportText(bool initial)
                 wxDateTime end_date = m_end_date->GetValue();
                 date_range->start_date(begin_date);
                 date_range->end_date(end_date);
+                m_start_date->Enable();
+                m_end_date->Enable();
             }
             rb_->date_range(date_range, selectedItem);
         }
@@ -364,24 +368,14 @@ void mmReportsPanel::PrintPage()
 
 void mmReportsPanel::OnDateRangeChanged(wxCommandEvent& WXUNUSED(event))
 {
-    const wxString i = m_date_ranges->GetName();
 
-    if (i == "DateRanges")
+    const mmDateRange* date_range = static_cast<mmDateRange*>(this->m_date_ranges->GetClientData(this->m_date_ranges->GetSelection()));
+    if (date_range)
     {
-        const mmDateRange* date_range = static_cast<mmDateRange*>(this->m_date_ranges->GetClientData(this->m_date_ranges->GetSelection()));
-        if (date_range)
-        {
-            m_start_date->Enable(false);
-            this->m_start_date->SetValue(date_range->start_date());
-            m_end_date->Enable(false);
-            this->m_end_date->SetValue(date_range->end_date());
-
-            if (date_range->title() == "Custom") {
-                m_start_date->Enable();
-                m_end_date->Enable();
-            }
-
-        }
+        m_start_date->Enable(false);
+        this->m_start_date->SetValue(date_range->start_date());
+        m_end_date->Enable(false);
+        this->m_end_date->SetValue(date_range->end_date());
     }
 
     saveReportText(false);

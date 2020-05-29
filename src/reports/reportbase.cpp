@@ -34,12 +34,18 @@ mmPrintableBase::mmPrintableBase(const wxString& title)
     , accountArray_(nullptr)
     , m_only_active(false)
     , m_settings("")
-    , m_begin_date(wxDateTime::Today())
-    , m_end_date(wxDateTime::Today())
 {
 }
 
 mmPrintableBase::~mmPrintableBase()
+{
+    storeSettings();
+
+    if (accountArray_)
+        delete accountArray_;
+}
+
+void mmPrintableBase::storeSettings()
 {
     int ID = getReportId();
     wxLogDebug("%d - %s", ID, m_title);
@@ -56,10 +62,6 @@ mmPrintableBase::~mmPrintableBase()
         {
             json_writer.Key("REPORTPERIOD");
             json_writer.Int(m_date_selection);
-            json_writer.Key("DATE1");
-            json_writer.String(m_begin_date.FormatISODate().utf8_str());
-            json_writer.Key("DATE2");
-            json_writer.String(m_end_date.FormatISODate().utf8_str());
         }
 
         if (accountArray_ && !accountArray_->empty())
@@ -92,14 +94,12 @@ mmPrintableBase::~mmPrintableBase()
         const wxString& rj_value = wxString::FromUTF8(json_buffer.GetString());
         Model_Infotable::instance().Set(rj_key, rj_value);
     }
-
-    if (accountArray_)
-        delete accountArray_;
 }
 
-void mmPrintableBase::setSettings(const wxString& settings)
+void mmPrintableBase::restoreSettings()
 {
-    m_settings = settings;
+    const wxString& name = wxString::Format("REPORT_%d", m_id);
+    const wxString& settings = Model_Infotable::instance().GetStringInfo(name, "");
 
     Document j_doc;
     if (j_doc.Parse(settings.c_str()).HasParseError())
@@ -107,14 +107,6 @@ void mmPrintableBase::setSettings(const wxString& settings)
 
     if (j_doc.HasMember("REPORTPERIOD") && j_doc["REPORTPERIOD"].IsInt()) {
         m_date_selection = j_doc["REPORTPERIOD"].GetInt();
-    }
-
-    if (j_doc.HasMember("DATE1") && j_doc["DATE1"].IsString()) {
-        m_begin_date = ::mmParseISODate(j_doc["DATE1"].GetString());
-    }
-
-    if (j_doc.HasMember("DATE2") && j_doc["DATE2"].IsString()) {
-        m_end_date = ::mmParseISODate(j_doc["DATE2"].GetString());
     }
 
     if (j_doc.HasMember("ACCOUNTSELECTION") && j_doc["ACCOUNTSELECTION"].IsInt()) {
