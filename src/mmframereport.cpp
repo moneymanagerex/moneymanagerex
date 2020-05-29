@@ -110,46 +110,48 @@ void mmGUIFrame::updateReportNavigation(wxTreeItemId& reports)
 {
 
     wxTreeItemId transactionList = m_nav_tree_ctrl->AppendItem(reports, _("Transaction Report"), img::FILTER_PNG, img::FILTER_PNG);
-    m_nav_tree_ctrl->SetItemData(transactionList, new mmTreeItemData("Transaction Report", false));
+    //m_nav_tree_ctrl->SetItemData(transactionList, new mmTreeItemData("Transaction Report", false));
 
     //////////////////////////////////////////////////////////////////
 
     wxTreeItemId cashFlow = m_nav_tree_ctrl->AppendItem(reports, _("Cash Flow"), img::PIECHART_PNG, img::PIECHART_PNG);
+    m_nav_tree_ctrl->SetItemData(cashFlow, new mmTreeItemData("Cash Flow", true));
 
     wxTreeItemId cashflowWithBankAccounts = m_nav_tree_ctrl->AppendItem(cashFlow, _("Daily"), img::PIECHART_PNG, img::PIECHART_PNG);
-    m_nav_tree_ctrl->SetItemData(cashflowWithBankAccounts, new mmTreeItemData("Cash Flow - Daily", new mmReportCashFlowDaily()));
+    m_nav_tree_ctrl->SetItemData(cashflowWithBankAccounts, new mmTreeItemData(new mmReportCashFlowDaily()));
 
     wxTreeItemId cashflowWithTermAccounts = m_nav_tree_ctrl->AppendItem(cashFlow, _("Monthly"), img::PIECHART_PNG, img::PIECHART_PNG);
-    m_nav_tree_ctrl->SetItemData(cashflowWithTermAccounts, new mmTreeItemData("Cash Flow - Monthly", new mmReportCashFlowMonthly()));
+    m_nav_tree_ctrl->SetItemData(cashflowWithTermAccounts, new mmTreeItemData(new mmReportCashFlowMonthly()));
 
     ///////////////////////////////////////////////////////////////////
 
     wxTreeItemId categs = m_nav_tree_ctrl->AppendItem(reports, _("Categories"), img::PIECHART_PNG, img::PIECHART_PNG);
+    m_nav_tree_ctrl->SetItemData(categs, new mmTreeItemData("Categories", true));
 
     wxTreeItemId categsMonthly = m_nav_tree_ctrl->AppendItem(categs, _("Monthly"), img::PIECHART_PNG, img::PIECHART_PNG);
-    m_nav_tree_ctrl->SetItemData(categsMonthly, new mmTreeItemData("Categories Monthly", new mmReportCategoryOverTimePerformance()));
+    m_nav_tree_ctrl->SetItemData(categsMonthly, new mmTreeItemData(new mmReportCategoryOverTimePerformance()));
 
     wxTreeItemId categsSummary = m_nav_tree_ctrl->AppendItem(categs, _("Summary"), img::PIECHART_PNG, img::PIECHART_PNG);
-    m_nav_tree_ctrl->SetItemData(categsSummary, new mmTreeItemData("Categories Summary", new  mmReportCategoryExpensesCategories()));
+    m_nav_tree_ctrl->SetItemData(categsSummary, new mmTreeItemData(new  mmReportCategoryExpensesCategories()));
 
     wxTreeItemId categsGoes = m_nav_tree_ctrl->AppendItem(categs, _("Where the Money Goes"), img::PIECHART_PNG, img::PIECHART_PNG);
-    m_nav_tree_ctrl->SetItemData(categsGoes, new mmTreeItemData("Where the Money Goes", new mmReportCategoryExpensesGoes()));
+    m_nav_tree_ctrl->SetItemData(categsGoes, new mmTreeItemData(new mmReportCategoryExpensesGoes()));
 
     wxTreeItemId categsComes = m_nav_tree_ctrl->AppendItem(categs, _("Where the Money Comes From"), img::PIECHART_PNG, img::PIECHART_PNG);
-    m_nav_tree_ctrl->SetItemData(categsComes, new mmTreeItemData("Where the Money Comes From", new mmReportCategoryExpensesComes()));
+    m_nav_tree_ctrl->SetItemData(categsComes, new mmTreeItemData(new mmReportCategoryExpensesComes()));
 
     //////////////////////////////////////////////////////////////////
 
     wxTreeItemId forecastReport = m_nav_tree_ctrl->AppendItem(reports, _("Forecast Report"), img::PIECHART_PNG, img::PIECHART_PNG);
-    m_nav_tree_ctrl->SetItemData(forecastReport, new mmTreeItemData("Forecast Report", new mmReportForecast()));
+    m_nav_tree_ctrl->SetItemData(forecastReport, new mmTreeItemData(new mmReportForecast()));
 
     ///////////////////////////////////////////////////////////////////
 
     wxTreeItemId incexpOverTime = m_nav_tree_ctrl->AppendItem(reports, _("Income vs Expenses"), img::PIECHART_PNG, img::PIECHART_PNG);
-    m_nav_tree_ctrl->SetItemData(incexpOverTime, new mmTreeItemData("Income vs Expenses", new mmReportIncomeExpenses()));
+    m_nav_tree_ctrl->SetItemData(incexpOverTime, new mmTreeItemData(new mmReportIncomeExpenses()));
 
     wxTreeItemId incexpMonthly = m_nav_tree_ctrl->AppendItem(incexpOverTime, _("Monthly"), img::PIECHART_PNG, img::PIECHART_PNG);
-    m_nav_tree_ctrl->SetItemData(incexpMonthly, new mmTreeItemData("Income vs Expenses - Monthly", new mmReportIncomeExpensesMonthly()));
+    m_nav_tree_ctrl->SetItemData(incexpMonthly, new mmTreeItemData(new mmReportIncomeExpensesMonthly()));
 
     ///////////////////////////////////////////////////////////////////
 
@@ -159,17 +161,18 @@ void mmGUIFrame::updateReportNavigation(wxTreeItemId& reports)
     //////////////////////////////////////////////////////////////////////
 
     wxTreeItemId payeesOverTime = m_nav_tree_ctrl->AppendItem(reports, _("Payees"), img::PIECHART_PNG, img::PIECHART_PNG);
-    m_nav_tree_ctrl->SetItemData(payeesOverTime, new mmTreeItemData("Payee Report", new mmReportPayeeExpenses()));
+    m_nav_tree_ctrl->SetItemData(payeesOverTime, new mmTreeItemData(new mmReportPayeeExpenses()));
 
     //////////////////////////////////////////////////////////////////
 
     wxTreeItemId reportsSummary = m_nav_tree_ctrl->AppendItem(reports, _("Summary of Accounts"), img::PIECHART_PNG, img::PIECHART_PNG);
+    m_nav_tree_ctrl->SetItemData(reportsSummary, new mmTreeItemData("Summary of Accounts", true));
 
     wxTreeItemId accMonthly = m_nav_tree_ctrl->AppendItem(reportsSummary, _("Monthly"), img::PIECHART_PNG, img::PIECHART_PNG);
-    m_nav_tree_ctrl->SetItemData(accMonthly, new mmTreeItemData("Monthly Summary of Accounts", new mmReportSummaryByDateMontly()));
+    m_nav_tree_ctrl->SetItemData(accMonthly, new mmTreeItemData(new mmReportSummaryByDateMontly()));
 
     wxTreeItemId accYearly = m_nav_tree_ctrl->AppendItem(reportsSummary, _("Yearly"), img::PIECHART_PNG, img::PIECHART_PNG);
-    m_nav_tree_ctrl->SetItemData(accYearly, new mmTreeItemData("Yearly Summary of Accounts", new mmReportSummaryByDateYearly()));
+    m_nav_tree_ctrl->SetItemData(accYearly, new mmTreeItemData(new mmReportSummaryByDateYearly()));
 
 
     //////////////////////////////////////////////////////////////////
@@ -178,10 +181,10 @@ void mmGUIFrame::updateReportNavigation(wxTreeItemId& reports)
     if (i > 0)
     {
         wxTreeItemId budgetPerformance = m_nav_tree_ctrl->AppendItem(reports, _("Budget Performance"), img::PIECHART_PNG, img::PIECHART_PNG);
-        m_nav_tree_ctrl->SetItemData(budgetPerformance, new mmTreeItemData("Budget Performance", new mmReportBudgetingPerformance()));
+        m_nav_tree_ctrl->SetItemData(budgetPerformance, new mmTreeItemData(new mmReportBudgetingPerformance()));
 
         wxTreeItemId budgetSetupPerformance = m_nav_tree_ctrl->AppendItem(reports, _("Budget Category Summary"), img::PIECHART_PNG, img::PIECHART_PNG);
-        m_nav_tree_ctrl->SetItemData(budgetSetupPerformance, new mmTreeItemData("Budget Setup Performance", new mmReportBudgetCategorySummary()));
+        m_nav_tree_ctrl->SetItemData(budgetSetupPerformance, new mmTreeItemData(new mmReportBudgetCategorySummary()));
     }
 
     ///////////////////////////////////////////////////////////////////
@@ -190,10 +193,10 @@ void mmGUIFrame::updateReportNavigation(wxTreeItemId& reports)
     if (!investments_account.empty())
     {
         wxTreeItemId stocksReport = m_nav_tree_ctrl->AppendItem(reports, _("Stocks Report"), img::PIECHART_PNG, img::PIECHART_PNG);
-        m_nav_tree_ctrl->SetItemData(stocksReport, new mmTreeItemData("Stocks Report",new mmReportChartStocks()));
+        m_nav_tree_ctrl->SetItemData(stocksReport, new mmTreeItemData(new mmReportChartStocks()));
 
         wxTreeItemId stocksReportSummary = m_nav_tree_ctrl->AppendItem(stocksReport, _("Summary"), img::PIECHART_PNG, img::PIECHART_PNG);
-        m_nav_tree_ctrl->SetItemData(stocksReportSummary, new mmTreeItemData("Summary of Stocks", new mmReportSummaryStocks()));
+        m_nav_tree_ctrl->SetItemData(stocksReportSummary, new mmTreeItemData(new mmReportSummaryStocks()));
     }
 
     //////////////////////////////////////////////////////////////////

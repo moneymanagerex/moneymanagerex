@@ -98,14 +98,6 @@ public:
         , stringData_(wxString::Format("%i", id))
         , report_(nullptr)
     {}
-    mmTreeItemData(const wxString& string, mmPrintableBase* report)
-        : id_(0)
-        , isString_(true)
-        , isBudgetingNode_(false)
-        , isReadOnly_(false)
-        , stringData_("report@" + string)
-        , report_(report)
-    {}
     mmTreeItemData(mmPrintableBase* report)
         : id_(0)
         , isString_(true)
