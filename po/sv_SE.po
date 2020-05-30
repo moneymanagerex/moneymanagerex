@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-05-26 12:37+0300\n"
-"PO-Revision-Date: 2020-05-29 23:55\n"
+"PO-Revision-Date: 2020-05-30 09:24\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
@@ -133,7 +133,7 @@ msgstr "Noteringar"
 
 #: accountdialog.cpp:196
 msgid "Enter user notes and details about this account."
-msgstr ""
+msgstr "Ange användaranteckningar och detaljer om detta konto."
 
 #: accountdialog.cpp:200 db/DB_Table_Subcategory_V1.h:129
 #: db/DB_Table_Subcategory_V1.h:132 db/DB_Table_Subcategory_V1.h:148
@@ -231,11 +231,11 @@ msgstr ""
 
 #: accountdialog.cpp:273
 msgid "Interest Rate:"
-msgstr ""
+msgstr "Räntesats:"
 
 #: accountdialog.cpp:277
 msgid "Payment Due Date:"
-msgstr ""
+msgstr "Betalning förfallodatum:"
 
 #: accountdialog.cpp:281
 msgid "Minimum Payment:"
@@ -252,7 +252,7 @@ msgstr "Förvald bild"
 #: accountdialog.cpp:414
 #, c-format
 msgid "Image #%i"
-msgstr ""
+msgstr "Bild #%i"
 
 #: accountdialog.cpp:486
 msgid "Account Name "
@@ -832,7 +832,7 @@ msgstr ""
 
 #: billsdepositsdialog.cpp:428 billsdepositspanel.cpp:98
 msgid "Date Due"
-msgstr ""
+msgstr "Förfallodatum"
 
 #: billsdepositsdialog.cpp:432 billsdepositsdialog.cpp:1255
 msgid "Repeats"
@@ -1769,7 +1769,7 @@ msgstr ""
 
 #: currencydialog.cpp:232
 msgid "Save any changes made"
-msgstr ""
+msgstr "Spara eventuella ändringar"
 
 #: currencydialog.cpp:236
 msgid "Any changes will be lost without update"
@@ -1891,7 +1891,7 @@ msgstr ""
 
 #: customfieldlistdialog.cpp:201
 msgid "Find what"
-msgstr ""
+msgstr "Hitta vad"
 
 #: customfieldlistdialog.cpp:201 customfieldlistdialog.cpp:207
 #: customfieldlistdialog.cpp:213 customfieldlistdialog.cpp:219
@@ -1906,7 +1906,7 @@ msgstr ""
 
 #: customfieldlistdialog.cpp:213
 msgid "Replace with"
-msgstr ""
+msgstr "Ersätt med"
 
 #: customfieldlistdialog.cpp:217
 msgid "Do you want to update to blank?\n"
@@ -2081,51 +2081,51 @@ msgstr "Recept"
 
 #: db/DB_Table_Subcategory_V1.h:138
 msgid "Auto"
-msgstr ""
+msgstr "Bil"
 
 #: db/DB_Table_Subcategory_V1.h:139
 msgid "Life"
-msgstr ""
+msgstr "Liv"
 
 #: db/DB_Table_Subcategory_V1.h:140
 msgid "Home"
-msgstr ""
+msgstr "Hem"
 
 #: db/DB_Table_Subcategory_V1.h:142
 msgid "Travel"
-msgstr ""
+msgstr "Rese"
 
 #: db/DB_Table_Subcategory_V1.h:143
 msgid "Lodging"
-msgstr ""
+msgstr "Logi"
 
 #: db/DB_Table_Subcategory_V1.h:144
 msgid "Sightseeing"
-msgstr ""
+msgstr "Sightseeing"
 
 #: db/DB_Table_Subcategory_V1.h:145
 msgid "Income Tax"
-msgstr ""
+msgstr "Inkomstskatt"
 
 #: db/DB_Table_Subcategory_V1.h:146
 msgid "House Tax"
-msgstr ""
+msgstr "Fastighetsskatt"
 
 #: db/DB_Table_Subcategory_V1.h:147
 msgid "Water Tax"
-msgstr ""
+msgstr "Vattenskatt"
 
 #: db/DB_Table_Subcategory_V1.h:149
 msgid "Salary"
-msgstr ""
+msgstr "Lön"
 
 #: db/DB_Table_Subcategory_V1.h:150
 msgid "Reimbursement/Refunds"
-msgstr ""
+msgstr "Ersättningar/återbetalningar"
 
 #: db/DB_Table_Subcategory_V1.h:151
 msgid "Investment Income"
-msgstr ""
+msgstr "Investeringsinkomst"
 
 #: dbupgrade.cpp:72
 #, c-format
@@ -2161,16 +2161,16 @@ msgstr ""
 
 #: dbupgrade.cpp:197
 msgid "Load debug file"
-msgstr ""
+msgstr "Ladda felsökningsfil"
 
 #: dbupgrade.cpp:204
 msgid "Wrong file type!"
-msgstr ""
+msgstr "Fel filtyp!"
 
 #: dbupgrade.cpp:204 dbupgrade.cpp:241 dbupgrade.cpp:248 dbupgrade.cpp:292
 #: dbupgrade.cpp:303
 msgid "MMEX debug error"
-msgstr ""
+msgstr "MMEX debug fel"
 
 #: dbupgrade.cpp:241 dbupgrade.cpp:292
 msgid "Query error, please contact MMEX support!"
@@ -2187,11 +2187,11 @@ msgstr ""
 
 #: dbupgrade.cpp:256 dbupgrade.cpp:299
 msgid "MMEX debug"
-msgstr ""
+msgstr "MMEX debug"
 
 #: dbupgrade.cpp:259
 msgid "Save debug file"
-msgstr ""
+msgstr "Spara felsökningsfil"
 
 #: dbupgrade.cpp:299
 msgid "DB maintenance completed, please close and re-open MMEX!"
@@ -2199,11 +2199,11 @@ msgstr ""
 
 #: dbwrapper.cpp:70
 msgid "When database file opening:"
-msgstr ""
+msgstr "När databasfilen öppnas:"
 
 #: dbwrapper.cpp:74
 msgid "Can't open file"
-msgstr ""
+msgstr "Kan inte öppna fil"
 
 #: dbwrapper.cpp:74
 msgid "You must specify path to another database file"
@@ -2877,7 +2877,7 @@ msgstr ""
 
 #: import_export/univcsvdialog.cpp:208
 msgid "Save Template"
-msgstr ""
+msgstr "Spara mall"
 
 #: import_export/univcsvdialog.cpp:217
 msgid "Specify the order of fields in the file"
@@ -3388,7 +3388,7 @@ msgstr ""
 
 #: mmTips.h:26
 msgid "Tip: The .mmb file is not encrypted. That means anyone else having the proper know how can actually open the file and read the contents. So make sure that if you are storing any sensitive financial information it is properly guarded."
-msgstr ""
+msgstr "Tips: .mmb-filen är inte krypterad. Det innebär att alla andra som har kunskap kan faktiskt öppna filen och läsa innehållet. Så se till att filen sparas säkert om du lagrar någon känslig ekonomisk information i den."
 
 #: mmTips.h:27
 msgid "Tip: To mark a transaction as reconciled, just select the transaction and hit the 'r' or 'R' key. To mark a transaction as unreconciled, just select the transaction and hit the 'u' or 'U' key."
@@ -3643,7 +3643,7 @@ msgstr ""
 
 #: mmcheckingpanel.cpp:1801
 msgid "Reoccuring Transaction saved."
-msgstr ""
+msgstr "Återkommande transaktion sparad."
 
 #: mmcombobox.h:79
 msgid "Please type in an exiting payee name,\n"
@@ -4352,7 +4352,7 @@ msgstr ""
 
 #: mmframe.cpp:1828 mmframe.cpp:1870
 msgid "No File opened"
-msgstr ""
+msgstr "Ingen fil öppnad"
 
 #: mmframe.cpp:1830
 msgid "Sorry. The Database version is too old or Database password is incorrect"
@@ -4391,11 +4391,11 @@ msgstr ""
 
 #: mmframe.cpp:1975
 msgid "Choose database file to open"
-msgstr ""
+msgstr "Välj databasfil att öppna"
 
 #: mmframe.cpp:1992
 msgid "Choose Encrypted database file to open"
-msgstr ""
+msgstr "Välj krypterad databasfil att öppna"
 
 #: mmframe.cpp:2002
 msgid "Enter password for database"
@@ -4403,7 +4403,7 @@ msgstr ""
 
 #: mmframe.cpp:2007
 msgid "Choose database file to Save As"
-msgstr ""
+msgstr "Välj databasfil att spara som"
 
 #: mmframe.cpp:2029
 msgid "Converted DB!"
@@ -4464,7 +4464,7 @@ msgstr ""
 
 #: mmframe.cpp:2101 mmframe.cpp:2122
 msgid "Save database file as"
-msgstr ""
+msgstr "Spara databasfil som"
 
 #: mmframe.cpp:2122
 msgid "Can't copy file to itself"
@@ -4923,7 +4923,7 @@ msgstr ""
 #: optiondialog.cpp:193
 #, c-format
 msgid "%s page has been saved."
-msgstr ""
+msgstr "%s sidan har sparats."
 
 #: optionsettingsattachment.cpp:57
 msgid "Attachments Settings"
