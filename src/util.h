@@ -90,38 +90,10 @@ inline wxString mmListBoxItem::getName() const { return name_; }
 class mmTreeItemData : public wxTreeItemData
 {
 public:
-    mmTreeItemData(int id, bool isBudget, bool isReadOnly)
-        : id_(id)
-        , isString_(false)
-        , isBudgetingNode_(isBudget)
-        , isReadOnly_(isReadOnly)
-        , stringData_(wxString::Format("%i", id))
-        , report_(nullptr)
-    {}
-    mmTreeItemData(const wxString& string, mmPrintableBase* report)
-        : id_(0)
-        , isString_(true)
-        , isBudgetingNode_(false)
-        , isReadOnly_(false)
-        , stringData_("report@" + string)
-        , report_(report)
-    {}
-    mmTreeItemData(mmPrintableBase* report)
-        : id_(0)
-        , isString_(true)
-        , isBudgetingNode_(false)
-        , isReadOnly_(false)
-        , stringData_("report@" + report->getReportTitle())
-        , report_(report)
-    {}
-    mmTreeItemData(const wxString& string, bool isReadOnly)
-        : id_(0)
-        , isString_(true)
-        , isBudgetingNode_(false)
-        , isReadOnly_(isReadOnly)
-        , stringData_("item@" + string)
-        , report_(nullptr)
-    {}
+    mmTreeItemData(int id, bool isBudget, bool isReadOnly);
+    mmTreeItemData(const wxString& string, mmPrintableBase* report);
+    mmTreeItemData(mmPrintableBase* report);
+    mmTreeItemData(const wxString& string, bool isReadOnly);
     
     ~mmTreeItemData() {}
 
