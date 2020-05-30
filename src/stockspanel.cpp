@@ -22,17 +22,12 @@
 #include "constants.h"
 #include "images_list.h"
 #include "mmSimpleDialogs.h"
+#include "mmTips.h"
 #include "stockdialog.h"
 #include "sharetransactiondialog.h"
 #include "util.h"
 
 #include "model/allmodel.h"
-
-static const wxString STOCKTIPS[] = { 
-    wxTRANSLATE("Using MMEX it is possible to track stocks/mutual funds investments."),
-    wxTRANSLATE("To create new stocks entry the Symbol, Number of shares and Purchase prise should be entered."),
-    wxTRANSLATE("Sample of UK (HSBC HLDG) share: HSBA.L"),
-    wxTRANSLATE("If the Stock Name field is empty it will be filed when prices updated") };
 
 enum {
     IDC_PANEL_STOCKS_LISTCTRL = wxID_HIGHEST + 1900,
