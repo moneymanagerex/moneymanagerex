@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-05-26 12:37+0300\n"
-"PO-Revision-Date: 2020-05-30 09:03\n"
+"PO-Revision-Date: 2020-05-30 09:24\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
@@ -1769,7 +1769,7 @@ msgstr ""
 
 #: currencydialog.cpp:232
 msgid "Save any changes made"
-msgstr ""
+msgstr "Spara eventuella ändringar"
 
 #: currencydialog.cpp:236
 msgid "Any changes will be lost without update"
@@ -2199,7 +2199,7 @@ msgstr ""
 
 #: dbwrapper.cpp:70
 msgid "When database file opening:"
-msgstr ""
+msgstr "När databasfilen öppnas:"
 
 #: dbwrapper.cpp:74
 msgid "Can't open file"
@@ -2877,7 +2877,7 @@ msgstr ""
 
 #: import_export/univcsvdialog.cpp:208
 msgid "Save Template"
-msgstr ""
+msgstr "Spara mall"
 
 #: import_export/univcsvdialog.cpp:217
 msgid "Specify the order of fields in the file"
@@ -3388,7 +3388,7 @@ msgstr ""
 
 #: mmTips.h:26
 msgid "Tip: The .mmb file is not encrypted. That means anyone else having the proper know how can actually open the file and read the contents. So make sure that if you are storing any sensitive financial information it is properly guarded."
-msgstr ""
+msgstr "Tips: .mmb-filen är inte krypterad. Det innebär att alla andra som har kunskap kan faktiskt öppna filen och läsa innehållet. Så se till att filen sparas säkert om du lagrar någon känslig ekonomisk information i den."
 
 #: mmTips.h:27
 msgid "Tip: To mark a transaction as reconciled, just select the transaction and hit the 'r' or 'R' key. To mark a transaction as unreconciled, just select the transaction and hit the 'u' or 'U' key."
@@ -3643,7 +3643,7 @@ msgstr ""
 
 #: mmcheckingpanel.cpp:1801
 msgid "Reoccuring Transaction saved."
-msgstr ""
+msgstr "Återkommande transaktion sparad."
 
 #: mmcombobox.h:79
 msgid "Please type in an exiting payee name,\n"
@@ -4352,7 +4352,7 @@ msgstr ""
 
 #: mmframe.cpp:1828 mmframe.cpp:1870
 msgid "No File opened"
-msgstr ""
+msgstr "Ingen fil öppnad"
 
 #: mmframe.cpp:1830
 msgid "Sorry. The Database version is too old or Database password is incorrect"
@@ -4391,11 +4391,11 @@ msgstr ""
 
 #: mmframe.cpp:1975
 msgid "Choose database file to open"
-msgstr ""
+msgstr "Välj databasfil att öppna"
 
 #: mmframe.cpp:1992
 msgid "Choose Encrypted database file to open"
-msgstr ""
+msgstr "Välj krypterad databasfil att öppna"
 
 #: mmframe.cpp:2002
 msgid "Enter password for database"
@@ -4403,7 +4403,7 @@ msgstr ""
 
 #: mmframe.cpp:2007
 msgid "Choose database file to Save As"
-msgstr ""
+msgstr "Välj databasfil att spara som"
 
 #: mmframe.cpp:2029
 msgid "Converted DB!"
@@ -4464,7 +4464,7 @@ msgstr ""
 
 #: mmframe.cpp:2101 mmframe.cpp:2122
 msgid "Save database file as"
-msgstr ""
+msgstr "Spara databasfil som"
 
 #: mmframe.cpp:2122
 msgid "Can't copy file to itself"
@@ -4923,7 +4923,7 @@ msgstr ""
 #: optiondialog.cpp:193
 #, c-format
 msgid "%s page has been saved."
-msgstr ""
+msgstr "%s sidan har sparats."
 
 #: optionsettingsattachment.cpp:57
 msgid "Attachments Settings"
