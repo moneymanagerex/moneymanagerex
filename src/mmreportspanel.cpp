@@ -96,7 +96,7 @@ bool mmReportsPanel::Create(wxWindow *parent, wxWindowID winid
     SetExtraStyle(GetExtraStyle() | wxWS_EX_BLOCK_EVENTS);
     wxPanel::Create(parent, winid, pos, size, style, name);
 
-    rb_->restoreSettings();
+    rb_->restoreReportSettings();
 
     CreateControls();
     GetSizer()->Fit(this);
@@ -373,6 +373,8 @@ void mmReportsPanel::OnDateRangeChanged(wxCommandEvent& WXUNUSED(event))
         this->m_start_date->SetValue(date_range->start_date());
         m_end_date->Enable(false);
         this->m_end_date->SetValue(date_range->end_date());
+
+        rb_->setReportSettings();
     }
 
     saveReportText(false);
@@ -393,6 +395,7 @@ void mmReportsPanel::OnAccountChanged(wxCommandEvent& WXUNUSED(event))
             rb_->setAccounts(sel, accountSelection);
 
             saveReportText(false);
+            rb_->setReportSettings();
         }
     }
 }
@@ -402,6 +405,7 @@ void mmReportsPanel::OnStartEndDateChanged(wxDateEvent& WXUNUSED(event))
     if (rb_)
     {
         saveReportText(false);
+        rb_->setReportSettings();
     }
 }
 
@@ -414,6 +418,7 @@ void mmReportsPanel::OnChartChanged(wxCommandEvent& WXUNUSED(event))
         {
             rb_->chart(sel);
             saveReportText(false);
+            rb_->setReportSettings();
         }
     }
 }

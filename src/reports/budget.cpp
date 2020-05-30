@@ -24,7 +24,7 @@
 
 mmReportBudget::mmReportBudget(): mmPrintableBase("mmReportBudget")
 {
-    setReportSettings(Reports::UNUSED);
+    setReportParameters(Reports::UNUSED);
 }
 
 mmReportBudget::~mmReportBudget()

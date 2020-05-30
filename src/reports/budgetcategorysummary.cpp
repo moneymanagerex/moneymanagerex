@@ -33,7 +33,7 @@
 mmReportBudgetCategorySummary::mmReportBudgetCategorySummary()
 {
     m_chart_selection = 1;
-    setReportSettings(Reports::BudgetCategorySummary);
+    setReportParameters(Reports::BudgetCategorySummary);
 }
 
 mmReportBudgetCategorySummary::~mmReportBudgetCategorySummary()

@@ -47,9 +47,11 @@ public:
     void chart(int selection);
     void setAccounts(int selection, const wxString& name);
     void setSelection(int sel);
-    void restoreSettings();
-    void storeSettings();
-    void setReportSettings(int id);
+    void setReportSettings();
+    void setReportParameters(int id);
+    const wxString getReportSettings() const;
+    void restoreReportSettings();
+    void initReportSettings(const wxString& settings);
 
 public:
     static const char * m_template;
@@ -101,6 +103,7 @@ private:
     int m_account_selection;
     int m_id;
     int m_parameters;
+    wxString m_settings;
 };
 
 inline void mmPrintableBase::setSelection(int sel) { m_date_selection = sel; }
@@ -110,6 +113,8 @@ inline int mmPrintableBase::getChartSelection() const { return this->m_chart_sel
 inline void mmPrintableBase::chart(int selection) { m_chart_selection = selection; }
 inline void mmPrintableBase::initial_report(bool initial) { m_initial = initial; }
 inline  int mmPrintableBase::report_parameters() { return m_parameters; }
+inline  const wxString mmPrintableBase::getReportSettings() const { return m_settings; }
+inline void mmPrintableBase::initReportSettings(const wxString & settings) { m_settings = settings; }
 
 class mmGeneralReport : public mmPrintableBase
 {

@@ -319,11 +319,11 @@ wxString mmReportSummaryByDate::getHTMLText()
 mmReportSummaryByDateMontly::mmReportSummaryByDateMontly()
     : mmReportSummaryByDate(MONTHLY)
 {
-    setReportSettings(Reports::MonthlySummaryofAccounts);
+    setReportParameters(Reports::MonthlySummaryofAccounts);
 }
 
 mmReportSummaryByDateYearly::mmReportSummaryByDateYearly()
     : mmReportSummaryByDate(YEARLY)
 {
-    setReportSettings(Reports::YearlySummaryofAccounts);
+    setReportParameters(Reports::YearlySummaryofAccounts);
 }
