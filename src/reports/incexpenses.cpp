@@ -32,7 +32,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 mmReportIncomeExpenses::mmReportIncomeExpenses()
     : mmPrintableBase(_("Income vs Expenses"))
 {
-    setReportSettings(Reports::IncomevsExpensesSummary);
+    setReportParameters(Reports::IncomevsExpensesSummary);
 }
 
 mmReportIncomeExpenses::~mmReportIncomeExpenses()
@@ -140,7 +140,7 @@ wxString mmReportIncomeExpenses::getHTMLText()
 mmReportIncomeExpensesMonthly::mmReportIncomeExpensesMonthly()
     : mmPrintableBase(_("Income vs Expenses"))
 {
-    setReportSettings(Reports::IncomevsExpensesMonthly);
+    setReportParameters(Reports::IncomevsExpensesMonthly);
 }
 
 mmReportIncomeExpensesMonthly::~mmReportIncomeExpensesMonthly()

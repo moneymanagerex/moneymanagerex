@@ -80,7 +80,12 @@ mmTreeItemData::mmTreeItemData(const wxString& string, mmPrintableBase* report)
     , isReadOnly_(false)
     , stringData_("report@" + string)
     , report_(report)
-{}
+{
+    const wxString& n = wxString::Format("REPORT_%d", report_->getReportId());
+    const wxString& settings = Model_Infotable::instance().GetStringInfo(n, "");
+    report_->initReportSettings(settings);
+}
+
 mmTreeItemData::mmTreeItemData(mmPrintableBase* report)
     : id_(0)
     , isString_(true)

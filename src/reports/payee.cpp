@@ -33,7 +33,7 @@ mmReportPayeeExpenses::mmReportPayeeExpenses()
     , positiveTotal_(0.0)
     , negativeTotal_(0.0)
 {
-    setReportSettings(Reports::Payees);
+    setReportParameters(Reports::Payees);
 }
 
 mmReportPayeeExpenses::~mmReportPayeeExpenses()

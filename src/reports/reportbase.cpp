@@ -36,18 +36,19 @@ mmPrintableBase::mmPrintableBase(const wxString& title)
     , m_only_active(false)
     , m_id(-1)
     , m_parameters(0)
+    , m_settings("")
 {
 }
 
 mmPrintableBase::~mmPrintableBase()
 {
-    storeSettings();
+    setReportSettings();
 
     if (accountArray_)
         delete accountArray_;
 }
 
-void mmPrintableBase::setReportSettings(int id)
+void mmPrintableBase::setReportParameters(int id)
 {
     m_id = id;
 
@@ -75,7 +76,7 @@ void mmPrintableBase::setReportSettings(int id)
     }
 }
 
-void mmPrintableBase::storeSettings()
+void mmPrintableBase::setReportSettings()
 {
     int ID = getReportId();
     wxLogDebug("%d - %s", ID, m_title);
@@ -129,17 +130,15 @@ void mmPrintableBase::storeSettings()
             const wxString& rj_key = wxString::Format("REPORT_%d", ID);
             const wxString& rj_value = wxString::FromUTF8(json_buffer.GetString());
             Model_Infotable::instance().Set(rj_key, rj_value);
+            m_settings = rj_value;
         }
     }
 }
 
-void mmPrintableBase::restoreSettings()
+void mmPrintableBase::restoreReportSettings()
 {
-    const wxString& name = wxString::Format("REPORT_%d", m_id);
-    const wxString& settings = Model_Infotable::instance().GetStringInfo(name, "");
-
     Document j_doc;
-    if (j_doc.Parse(settings.c_str()).HasParseError())
+    if (j_doc.Parse(m_settings.c_str()).HasParseError())
         return;
 
     if (j_doc.HasMember("REPORTPERIOD") && j_doc["REPORTPERIOD"].IsInt()) {

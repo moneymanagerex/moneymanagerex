@@ -216,27 +216,27 @@ wxString mmReportCategoryExpenses::getHTMLText()
 mmReportCategoryExpensesGoes::mmReportCategoryExpensesGoes()
     : mmReportCategoryExpenses(_("Where the Money Goes"), TYPE::GOES)
 {
-    setReportSettings(Reports::WheretheMoneyGoes);
+    setReportParameters(Reports::WheretheMoneyGoes);
 }
 
 mmReportCategoryExpensesComes::mmReportCategoryExpensesComes()
     : mmReportCategoryExpenses(_("Where the Money Comes From"), TYPE::COME)
 {
-    setReportSettings(Reports::WheretheMoneyComesFrom);
+    setReportParameters(Reports::WheretheMoneyComesFrom);
 }
 
 mmReportCategorySummary::mmReportCategorySummary()
     : mmReportCategoryExpenses(_("Summary"), TYPE::SUMMARY)
 {
     m_chart_selection = 1;
-    setReportSettings(Reports::CategoriesSummary);
+    setReportParameters(Reports::CategoriesSummary);
 }
 
 mmReportCategoryExpensesCategories::mmReportCategoryExpensesCategories()
     : mmReportCategoryExpenses(_("Monthly"), TYPE::MONTHLY)
 {
     m_chart_selection = 1;
-    setReportSettings(Reports::CategoriesMonthly);
+    setReportParameters(Reports::CategoriesMonthly);
 }
 
 //----------------------------------------------------------------------------
@@ -245,7 +245,7 @@ mmReportCategoryOverTimePerformance::mmReportCategoryOverTimePerformance()
     : mmPrintableBase(_("Category Income/Expenses"))
 {
     m_date_range = new mmLast12Months();
-    setReportSettings(Reports::CategoryOverTimePerformance);
+    setReportParameters(Reports::CategoryOverTimePerformance);
 }
 //----------------------------------------------------------------------------
 mmReportCategoryOverTimePerformance::~mmReportCategoryOverTimePerformance()

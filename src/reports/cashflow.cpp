@@ -306,13 +306,13 @@ mmReportCashFlowDaily::mmReportCashFlowDaily()
     : mmReportCashFlow()
 {
     cashFlowReportType_ = TYPE::DAILY;
-    setReportSettings(Reports::DailyCashFlow);
+    setReportParameters(Reports::DailyCashFlow);
 }
 
 mmReportCashFlowMonthly::mmReportCashFlowMonthly()
     : mmReportCashFlow()
 {
     cashFlowReportType_ = TYPE::MONTHLY;
-    setReportSettings(Reports::MonthlyCashFlow);
+    setReportParameters(Reports::MonthlyCashFlow);
 }
 
