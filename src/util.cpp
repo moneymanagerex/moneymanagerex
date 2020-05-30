@@ -61,6 +61,45 @@ wxString JSON_Formated(rapidjson::Document& j_doc)
 
 //----------------------------------------------------------------------------
 
+mmTreeItemData::mmTreeItemData(int id, bool isBudget, bool isReadOnly)
+    : id_(id)
+    , isString_(false)
+    , isBudgetingNode_(isBudget)
+    , isReadOnly_(isReadOnly)
+    , report_(nullptr)
+{
+    if (isBudget)
+        stringData_ = (wxString::Format("item@Budget_%i", id));
+    else
+        stringData_ = (wxString::Format("%i", id));
+}
+mmTreeItemData::mmTreeItemData(const wxString& string, mmPrintableBase* report)
+    : id_(0)
+    , isString_(true)
+    , isBudgetingNode_(false)
+    , isReadOnly_(false)
+    , stringData_("report@" + string)
+    , report_(report)
+{}
+mmTreeItemData::mmTreeItemData(mmPrintableBase* report)
+    : id_(0)
+    , isString_(true)
+    , isBudgetingNode_(false)
+    , isReadOnly_(false)
+    , stringData_("report@" + report->getReportTitle())
+    , report_(report)
+{}
+mmTreeItemData::mmTreeItemData(const wxString& string, bool isReadOnly)
+    : id_(0)
+    , isString_(true)
+    , isBudgetingNode_(false)
+    , isReadOnly_(isReadOnly)
+    , stringData_("item@" + string)
+    , report_(nullptr)
+{}
+
+//----------------------------------------------------------------------------
+
 int CaseInsensitiveCmp(const wxString &s1, const wxString &s2)
 {
     return s1.CmpNoCase(s2);
