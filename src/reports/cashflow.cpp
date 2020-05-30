@@ -229,18 +229,19 @@ wxString mmReportCashFlow::getHTMLText_i()
             LineGraphData val;
             val.amount = entry.amount + tInitialBalance;
             val.xPos = mmGetDateForDisplay(entry.label);
-            wxDate dateDt;
-            dateDt.ParseISODate(entry.label);
+            wxDate d;
+            d.ParseISODate(entry.label);
 
-            if (!monthly_report && (dateDt.GetMonth() != precDateDt.GetMonth()))
-                val.label = wxGetTranslation(dateDt.GetEnglishMonthName(dateDt.GetMonth()));
-            else if (monthly_report && (dateDt.GetYear() != precDateDt.GetYear()))
-                val.label = wxString::Format("%i", dateDt.GetYear());
+            if (!monthly_report && (d.GetMonth() != precDateDt.GetMonth()))
+                val.label = wxString::Format("%s %i", wxGetTranslation(wxDateTime::GetEnglishMonthName(d.GetMonth())), d.GetYear());
+                //wxGetTranslation(dateDt.GetEnglishMonthName(dateDt.GetMonth()));
+            else if (monthly_report && (d.GetYear() != precDateDt.GetYear()))
+                val.label = wxString::Format("%i", d.GetYear());
             else
                 val.label = "";
 
             aData.push_back(val);
-            precDateDt = dateDt;
+            precDateDt = d;
         }
 
         if (!aData.empty())
