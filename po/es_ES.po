@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-05-26 12:37+0300\n"
-"PO-Revision-Date: 2020-05-27 16:25\n"
+"PO-Revision-Date: 2020-05-29 23:55\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -5370,11 +5370,11 @@ msgstr "Ver presupuestos con transacciones de 'transferir'"
 
 #: optionsettingsview.cpp:109
 msgid "View Budget Category Report with Summaries"
-msgstr ""
+msgstr "Ver informe de categoría de presupuesto con totales"
 
 #: optionsettingsview.cpp:115
 msgid "Ignore Future Transactions"
-msgstr ""
+msgstr "Ignorar transacciones futuras"
 
 #: optionsettingsview.cpp:121 transdialog.cpp:563
 msgid "User Colors"
@@ -5518,7 +5518,7 @@ msgstr "Confirmación de reorganización de beneficiario"
 #: reports/budget.cpp:94
 #, c-format
 msgid "Year: %i Month: %s"
-msgstr ""
+msgstr "Año: %i Mes: %s"
 
 #: reports/budgetcategorysummary.cpp:131
 #, c-format
@@ -5603,7 +5603,7 @@ msgstr "Busca en <a href='%s'>lista de problemas conocidos</a> para encontrar un
 #: reports/bugreport.h:81
 #, c-format
 msgid "As you know, <a href='%s'>a forum</a> for users is available where you can discuss problems and find solutions."
-msgstr ""
+msgstr "Como usted sabe, <a href='%s'>un foro</a> para usuarios está disponible donde puede comentar problemas y encontrar soluciones."
 
 #: reports/bugreport.h:82
 #, c-format
@@ -5936,7 +5936,8 @@ msgstr "*Fecha"
 #: stockdialog.cpp:214
 msgid "Specify the initial date of the stock investment\n"
 "Used when creating the initial Share transaction."
-msgstr ""
+msgstr "Especifique la fecha inicial de la inversión en acciones\n"
+"Utilizado al crear la transacción inicial de acciones."
 
 #: stockdialog.cpp:218
 msgid "*Share Number"
@@ -5945,7 +5946,8 @@ msgstr "*Número de acciones"
 #: stockdialog.cpp:224
 msgid "Enter number of shares.\n"
 "Used when creating the initial Share transaction."
-msgstr ""
+msgstr "Introduzca el número de acciones.\n"
+"Utilizado al crear la transacción inicial de acciones."
 
 #: stockdialog.cpp:230 stockspanel.cpp:96
 msgid "*Share Price"
@@ -5954,7 +5956,8 @@ msgstr "*Precio de la acción"
 #: stockdialog.cpp:236
 msgid "Enter the initial price per share.\n"
 "Used when creating the initial Share transaction."
-msgstr ""
+msgstr "Introduzca el precio inicial por acción.\n"
+"Utilizado al crear la transacción inicial de acciones."
 
 #: stockdialog.cpp:241
 msgid "*Commission"
@@ -5963,7 +5966,8 @@ msgstr "*Comisión"
 #: stockdialog.cpp:245
 msgid "Enter any commission paid.\n"
 "Used when creating the initial Share transaction."
-msgstr ""
+msgstr "Introduzca cualquier comisión pagada.\n"
+"Utilizado al crear la transacción inicial de acciones."
 
 #: stockdialog.cpp:250 stockspanel.cpp:99
 msgid "Curr. Share Price"
@@ -5971,7 +5975,7 @@ msgstr "Precio actual"
 
 #: stockdialog.cpp:253
 msgid "Enter current stock/share price."
-msgstr ""
+msgstr "Introduzca el precio actual de acción."
 
 #: stockdialog.cpp:285
 msgid "Stock History Options"
@@ -5991,7 +5995,7 @@ msgstr "Fecha del precio"
 
 #: stockdialog.cpp:320
 msgid "Specify the stock/share price date."
-msgstr ""
+msgstr "Especifique la fecha de precio de acción."
 
 #: stockdialog.cpp:336
 msgid "Download Stock Price history"
@@ -6003,11 +6007,11 @@ msgstr "Importe el histórico del precio de la acción (Formato CSV)"
 
 #: stockdialog.cpp:340
 msgid "Delete selected Stock Price"
-msgstr ""
+msgstr "Eliminar el precio de acción seleccionada"
 
 #: stockdialog.cpp:342
 msgid "Add Stock Price to history"
-msgstr ""
+msgstr "Añadir precio de acción al historial"
 
 #: stockdialog.cpp:420
 msgid "Held At"
@@ -6016,7 +6020,8 @@ msgstr "Guardado en"
 #: stockdialog.cpp:494
 msgid "Share Account not found.\n\n"
 "Do you want to create one?"
-msgstr ""
+msgstr "Cuenta de activo no encontrada.\n\n"
+"¿Quiere crear una?"
 
 #: stockdialog.cpp:504
 msgid "The Company name does not have an associated Share Account.\n\n"
@@ -6037,12 +6042,12 @@ msgstr "Cotizaciones importadas desde CSV: "
 #: stockdialog.cpp:671
 #, c-format
 msgid "Total Lines : %ld"
-msgstr ""
+msgstr "Líneas totales: %ld"
 
 #: stockdialog.cpp:673
 #, c-format
 msgid "Total Imported : %ld"
-msgstr ""
+msgstr "Total importado: %ld"
 
 #: stockdialog.cpp:681
 msgid "Importing CSV"
@@ -6181,7 +6186,7 @@ msgstr "Lista temporal de acciones: %s\n\n"
 
 #: stockspanel.cpp:574
 msgid "Add Stock Transactions"
-msgstr ""
+msgstr "Añadir transacciones de acción"
 
 #: stockspanel.cpp:579
 msgid "View Stock Transactions"
@@ -6189,7 +6194,7 @@ msgstr "Ver transacciones de acciones"
 
 #: stockspanel.cpp:589
 msgid "Delete Stock Investment"
-msgstr ""
+msgstr "Eliminar Inversión en Acciones"
 
 #: stockspanel.cpp:593
 msgid "&Move"
@@ -6197,7 +6202,7 @@ msgstr "&Mover"
 
 #: stockspanel.cpp:594
 msgid "Move selected transaction to another account"
-msgstr ""
+msgstr "Mover la transacción seleccionada a otra cuenta"
 
 #: stockspanel.cpp:607
 msgid "Refresh"
@@ -6215,7 +6220,7 @@ msgstr "Cartera de acciones: %s"
 #: stockspanel.cpp:763
 #, c-format
 msgid "Total Shares: %s"
-msgstr ""
+msgstr "Total de Acciones: %s"
 
 #: stockspanel.cpp:765
 #, c-format
@@ -6321,16 +6326,16 @@ msgstr "Especifique la fecha de la transacción"
 
 #: transdialog.cpp:1309
 msgid "Clear colour"
-msgstr ""
+msgstr "Limpiar color"
 
 #: transdialog.cpp:1314
 #, c-format
 msgid "Colour #%i"
-msgstr ""
+msgstr "Color #%i"
 
 #: usertransactionpanel.cpp:115
 msgid "Specify the associated Account that will contain this transaction"
-msgstr ""
+msgstr "Especifique la cuenta asociada que contendrá esta transacción"
 
 #: usertransactionpanel.cpp:127
 msgid "Withdraw funds from or deposit funds to this Account."
@@ -6630,7 +6635,7 @@ msgstr "Estado de la red (clic para actualizar)"
 
 #: webappdialog.cpp:132
 msgid "Checking for new transactions..."
-msgstr ""
+msgstr "Buscando nuevas transacciones..."
 
 #: webappdialog.cpp:165
 msgid "&Import all "
@@ -6654,7 +6659,7 @@ msgstr "Abrir adjunto"
 
 #: webappdialog.cpp:407
 msgid "Import and open"
-msgstr ""
+msgstr "Importar y abrir"
 
 #: webappdialog.cpp:408
 msgid "Delete"
@@ -6711,7 +6716,8 @@ msgstr "Seleccione el tipo de cuenta que desea crear:"
 #: wizard_newaccount.cpp:130
 msgid "General bank accounts cover a wide variety of account\n"
 "types like Checking, Savings and Credit card type accounts."
-msgstr ""
+msgstr "Las cuentas bancarias generales cubren una amplia variedad de tipos de cuentas\n"
+"como las cuentas de Cheque, ahorros y de tarjetas de crédito."
 
 #: wizard_newaccount.cpp:135
 msgid "Investment accounts are specialized accounts that only\n"
@@ -6793,11 +6799,11 @@ msgstr "Asistente de actualización"
 
 #: wizard_update.cpp:106
 msgid "Historical releases:"
-msgstr ""
+msgstr "Versiones históricas:"
 
 #: wizard_update.cpp:136
 msgid "Version"
-msgstr ""
+msgstr "Versión"
 
 #: wizard_update.cpp:144
 msgid "You already have the latest version"

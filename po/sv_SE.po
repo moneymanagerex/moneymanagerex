@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-05-26 12:37+0300\n"
-"PO-Revision-Date: 2020-05-29 23:33\n"
+"PO-Revision-Date: 2020-05-29 23:55\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
@@ -716,15 +716,15 @@ msgstr ""
 
 #: attachmentdialog.cpp:484
 msgid "Unable to open file:"
-msgstr ""
+msgstr "Det går inte att öppna filen:"
 
 #: attachmentdialog.cpp:487
 msgid "Please verify that file exists and user has rights to read it."
-msgstr ""
+msgstr "Kontrollera att filen finns och att användaren har rättigheter att läsa den."
 
 #: attachmentdialog.cpp:488
 msgid "Open attachment failed"
-msgstr ""
+msgstr "Öppning av bilaga misslyckades"
 
 #: billsdepositsdialog.cpp:50 billsdepositspanel.cpp:39
 #: filtertransdialog.cpp:43 mmSimpleDialogs.cpp:36 model/Model_Asset.cpp:23
@@ -824,7 +824,7 @@ msgstr "Detaljer för återkommande transaktion"
 
 #: billsdepositsdialog.cpp:413
 msgid "Specify the date the user is requested to enter this transaction"
-msgstr ""
+msgstr "Ange det datum som användaren är uppmanad att ange denna transaktion"
 
 #: billsdepositsdialog.cpp:423
 msgid "Advance or retard the user request date of this transaction"
@@ -876,7 +876,7 @@ msgstr ""
 
 #: billsdepositsdialog.cpp:514 billsdepositspanel.cpp:97
 msgid "Date Paid"
-msgstr ""
+msgstr "Betald datum"
 
 #: billsdepositsdialog.cpp:525 filtertransdialog.cpp:249 transdialog.cpp:1272
 msgid "Specify the status for the transaction"
@@ -897,7 +897,7 @@ msgstr "Ange vilken typ av transaktion som ska skapas."
 
 #: billsdepositsdialog.cpp:533 transdialog.cpp:484
 msgid "&Advanced"
-msgstr ""
+msgstr "&Avancerat"
 
 #: billsdepositsdialog.cpp:536 transdialog.cpp:1277
 msgid "Allows the setting of different amounts in the FROM and TO accounts."
@@ -1010,7 +1010,7 @@ msgstr ""
 
 #: billsdepositsdialog.cpp:696 billsdepositsdialog.cpp:745
 msgid "Account name"
-msgstr ""
+msgstr "Kontonamn"
 
 #: billsdepositsdialog.cpp:801 billsdepositsdialog.cpp:841 transdialog.cpp:296
 #: transdialog.cpp:368
@@ -1031,7 +1031,7 @@ msgstr ""
 
 #: billsdepositsdialog.cpp:1256
 msgid "Activates"
-msgstr ""
+msgstr "Aktiverar"
 
 #: billsdepositsdialog.cpp:1258
 msgid "Period: Days"
@@ -1066,7 +1066,8 @@ msgstr ""
 #: billsdepositsdialog.cpp:1300
 msgid "Specify the number of payments to be made.\n"
 "Leave blank if the payments continue forever."
-msgstr ""
+msgstr "Ange antalet betalningar som ska göras.\n"
+"Lämna tomt om betalningarna ska fortsätta för evigt."
 
 #: billsdepositsdialog.cpp:1326 billsdepositsdialog.cpp:1335
 #: filtertransdialog.cpp:419 filtertransdialog.cpp:437
@@ -1088,7 +1089,7 @@ msgstr "Ogiltigt val"
 
 #: billsdepositsdialog.cpp:1341
 msgid "Choose one of the following:"
-msgstr ""
+msgstr "Välj en av följande:"
 
 #: billsdepositsdialog.cpp:1400 transdialog.cpp:1235
 #: usertransactionpanel.cpp:192
@@ -1133,7 +1134,7 @@ msgstr "Om %s månader"
 #: billsdepositspanel.cpp:52
 #, c-format
 msgid "Every %s Days"
-msgstr ""
+msgstr "Var %s:e dag"
 
 #: billsdepositspanel.cpp:53
 #, c-format
