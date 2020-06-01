@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-05-26 12:37+0300\n"
-"PO-Revision-Date: 2020-06-01 11:25\n"
+"PO-Revision-Date: 2020-06-01 11:44\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
@@ -3972,7 +3972,7 @@ msgstr ""
 
 #: mmframe.cpp:1390
 msgid "system default"
-msgstr ""
+msgstr "systemstandardvärde"
 
 #: mmframe.cpp:1410
 msgid "Account &List"
@@ -3984,7 +3984,7 @@ msgstr "Visa kontolista"
 
 #: mmframe.cpp:1422
 msgid "Change the account type of an account."
-msgstr ""
+msgstr "Ändra kontotypen på ett konto."
 
 #: mmframe.cpp:1426
 msgid "Delete Account from database"
@@ -4220,19 +4220,19 @@ msgstr ""
 
 #: mmframe.cpp:1596
 msgid "Donate via PayPal"
-msgstr ""
+msgstr "Donera via PayPal"
 
 #: mmframe.cpp:1597
 msgid "Donate the team to support infrastructure etc"
-msgstr ""
+msgstr "Donera teamet för att stödja infrastruktur etc"
 
 #: mmframe.cpp:1600
 msgid "Buy us a Coffee"
-msgstr ""
+msgstr "Köp oss en kopp kaffe"
 
 #: mmframe.cpp:1601
 msgid "Buy key developer a coffee"
-msgstr ""
+msgstr "Köp en kopp kaffe åt utvecklaren"
 
 #: mmframe.cpp:1605
 msgid "Community"
@@ -4244,7 +4244,7 @@ msgstr ""
 
 #: mmframe.cpp:1626
 msgid "Report a Bug"
-msgstr ""
+msgstr "Rapportera ett fel"
 
 #: mmframe.cpp:1627
 msgid "Report an error in application to the developers"
@@ -4324,7 +4324,7 @@ msgstr ""
 
 #: mmframe.cpp:1705
 msgid "News"
-msgstr ""
+msgstr "Nyheter"
 
 #: mmframe.cpp:1707
 msgid "Download rates"
@@ -4362,7 +4362,7 @@ msgstr ""
 
 #: mmframe.cpp:1860
 msgid "&Next ->"
-msgstr ""
+msgstr "&Nästa ->"
 
 #: mmframe.cpp:1873
 msgid "Cannot locate previously opened database.\n"
