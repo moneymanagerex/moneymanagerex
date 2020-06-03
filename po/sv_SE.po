@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-05-26 12:37+0300\n"
-"PO-Revision-Date: 2020-06-03 20:48\n"
+"PO-Revision-Date: 2020-06-03 20:54\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
@@ -6551,11 +6551,11 @@ msgstr "Transaktionen laddades inte ner:"
 
 #: webapp.cpp:556
 msgid "please fix attachments folder or delete attachments from WebApp"
-msgstr ""
+msgstr "åtgärda mapp för bilagor eller ta bort bilagor från WebApp"
 
 #: webapp.cpp:557
 msgid "Attachment folder error"
-msgstr ""
+msgstr "Fel i mapp för bilagor"
 
 #: webapp.cpp:577
 msgid "Attachment"
@@ -6567,19 +6567,19 @@ msgstr "Kommunikationsfel"
 
 #: webapp.cpp:588
 msgid "Transaction not downloaded: please close and open MMEX to try re-download transaction"
-msgstr ""
+msgstr "Transaktionen laddades inte ner: stäng och öppna MMEX för att försöka ladda ner transaktionen på nytt"
 
 #: webapp.cpp:589
 msgid "Attachment download error"
-msgstr ""
+msgstr "Fel vid hämtning av bilaga"
 
 #: webappdialog.cpp:77
 msgid "Import WebApp transactions"
-msgstr ""
+msgstr "Importera transaktioner från WebApp"
 
 #: webappdialog.cpp:100
 msgid "Network status (click to refresh)"
-msgstr ""
+msgstr "Nätverksstatus (klicka för att uppdatera)"
 
 #: webappdialog.cpp:132
 msgid "Checking for new transactions..."
@@ -6591,36 +6591,36 @@ msgstr "&Importera alla "
 
 #: webappdialog.cpp:167
 msgid "Import and open all "
-msgstr ""
+msgstr "Importera och öppna alla "
 
 #: webappdialog.cpp:313
 msgid "Unable to insert transaction in MMEX database"
-msgstr ""
+msgstr "Det går inte att infoga transaktion i MMEX-databasen"
 
 #: webappdialog.cpp:314
 msgid "WebApp communication error"
-msgstr ""
+msgstr "Webbapp kommunikationsfel"
 
 #: webappdialog.cpp:405
 msgid "Open Attachment"
-msgstr ""
+msgstr "Öppna bilaga"
 
 #: webappdialog.cpp:407
 msgid "Import and open"
-msgstr ""
+msgstr "Importera och öppna"
 
 #: webappdialog.cpp:408
 msgid "Delete"
-msgstr ""
+msgstr "Radera"
 
 #: wizard_newaccount.cpp:25
 msgid "Add Account Wizard"
-msgstr ""
+msgstr "Guide för att lägga till konto"
 
 #: wizard_newaccount.cpp:34
 #, c-format
 msgid "%s models all transactions as belonging to accounts."
-msgstr ""
+msgstr "%s modellerar alla transaktioner som tillhörande konton."
 
 #: wizard_newaccount.cpp:35
 msgid "The next pages will help you create a new account.\n"
