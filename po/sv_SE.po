@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-05-26 12:37+0300\n"
-"PO-Revision-Date: 2020-06-02 22:26\n"
+"PO-Revision-Date: 2020-06-03 19:45\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
@@ -6152,11 +6152,11 @@ msgstr ""
 
 #: stockspanel.cpp:594
 msgid "Move selected transaction to another account"
-msgstr ""
+msgstr "Flytta vald transaktion till ett annat konto"
 
 #: stockspanel.cpp:607
 msgid "Refresh"
-msgstr ""
+msgstr "Uppdatera"
 
 #: stockspanel.cpp:608
 msgid "Refresh Stock Prices from Yahoo"
@@ -6433,7 +6433,7 @@ msgstr ""
 
 #: util.cpp:925
 msgid "Running on:"
-msgstr ""
+msgstr "Körs på:"
 
 #: util.h:200
 msgid "January"
@@ -6505,26 +6505,26 @@ msgstr ""
 
 #: webapp.cpp:131
 msgid "Wrong WebApp API version:"
-msgstr ""
+msgstr "Fel API-version av WebApp:"
 
 #: webapp.cpp:132
 #, c-format
 msgid "WebApp   API version -> %s"
-msgstr ""
+msgstr "WebApp API-version -> %s"
 
 #: webapp.cpp:133
 #, c-format
 msgid "Expected API version -> %s"
-msgstr ""
+msgstr "Förväntad API-version -> %s"
 
 #: webapp.cpp:134
 msgid "Wrong WebApp API version"
-msgstr ""
+msgstr "Fel API-version av WebApp"
 
 #: webapp.cpp:466
 #, c-format
 msgid "Account '%s' not found!"
-msgstr ""
+msgstr "Kontot '%s' hittades inte!"
 
 #: webapp.cpp:468
 #, c-format
@@ -6534,7 +6534,7 @@ msgstr ""
 
 #: webapp.cpp:471
 msgid "Wrong WebApp account"
-msgstr ""
+msgstr "Fel webbapp-konto"
 
 #: webapp.cpp:553 webapp.cpp:586
 msgid "Unable to download attachments from webapp."
@@ -6718,7 +6718,7 @@ msgstr ""
 
 #: wizard_newdb.cpp:124
 msgid "Base Currency Not Set"
-msgstr ""
+msgstr "Basvaluta inte angiven"
 
 #: wizard_update.cpp:78
 msgid "Update Wizard"
