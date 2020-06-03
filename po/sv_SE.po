@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-05-26 12:37+0300\n"
-"PO-Revision-Date: 2020-06-01 11:44\n"
+"PO-Revision-Date: 2020-06-02 22:26\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
@@ -5916,7 +5916,7 @@ msgstr ""
 
 #: stockdialog.cpp:241
 msgid "*Commission"
-msgstr ""
+msgstr "*Provision"
 
 #: stockdialog.cpp:245
 msgid "Enter any commission paid.\n"
@@ -6194,24 +6194,24 @@ msgstr ""
 #: stockspanel.cpp:806 stockspanel.cpp:991
 #, c-format
 msgid "Last updated %s"
-msgstr ""
+msgstr "Senast uppdaterad %s"
 
 #: stockspanel.cpp:831 util.cpp:492 util.cpp:596
 msgid "Nothing to update"
-msgstr ""
+msgstr "Inget att uppdatera"
 
 #: stockspanel.cpp:845
 msgid "Connecting..."
-msgstr ""
+msgstr "Ansluter..."
 
 #: stockspanel.cpp:950
 #, c-format
 msgid "Symbol: %s"
-msgstr ""
+msgstr "Symbol: %s"
 
 #: transdialog.cpp:170
 msgid "Duplicate Transaction"
-msgstr ""
+msgstr "Duplicera transaktion"
 
 #: transdialog.cpp:170
 msgid "Edit Transaction"
@@ -6237,36 +6237,37 @@ msgstr ""
 #, c-format
 msgid "Do you want to add new payee: \n"
 "%s?"
-msgstr ""
+msgstr "Vill du lägga till ny betalningsmottagare: %s?"
 
 #: transdialog.cpp:654
 msgid "Confirm to add new payee"
-msgstr ""
+msgstr "Bekräfta för att lägga till ny betalningsmottagare"
 
 #: transdialog.cpp:744
 msgid "This transaction will exceed your account limit.\n\n"
 "Do you wish to continue?"
-msgstr ""
+msgstr "Denna transaktion kommer att överskrida din kontogräns.\n\n"
+"Vill du fortsätta?"
 
 #: transdialog.cpp:1253
 msgid "Specify account the money is taken from"
-msgstr ""
+msgstr "Ange konto pengarna tas från"
 
 #: transdialog.cpp:1254
 msgid "Specify account the money is moved to"
-msgstr ""
+msgstr "Ange konto pengarna flyttas till"
 
 #: transdialog.cpp:1255
 msgid "Specify the transfer amount in the From Account."
-msgstr ""
+msgstr "Ange överföringsbeloppet i från-kontot."
 
 #: transdialog.cpp:1263
 msgid "Specify account for the transaction"
-msgstr ""
+msgstr "Ange konto för transaktionen"
 
 #: transdialog.cpp:1265
 msgid "Specify to whom the transaction is going to"
-msgstr ""
+msgstr "Ange till vem transaktionen ska"
 
 #: transdialog.cpp:1271 usertransactionpanel.cpp:96
 msgid "Specify the date of the transaction"
@@ -6274,12 +6275,12 @@ msgstr "Ange transaktionsdatumet"
 
 #: transdialog.cpp:1309
 msgid "Clear colour"
-msgstr ""
+msgstr "Rensa färg"
 
 #: transdialog.cpp:1314
 #, c-format
 msgid "Colour #%i"
-msgstr ""
+msgstr "Färg #%i"
 
 #: usertransactionpanel.cpp:115
 msgid "Specify the associated Account that will contain this transaction"
