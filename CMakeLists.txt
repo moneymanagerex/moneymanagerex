@@ -458,7 +458,7 @@ if(WIN32)
         if(NOT CMAKE_INSTALL_DEBUG_LIBRARIES_ONLY)
             list(APPEND MMEX_WXDLLS
                 wxbase${WXDLLPREF}
-				wxbase${WXDLLPREF}_net
+                wxbase${WXDLLPREF}_net
                 wxbase${WXDLLPREF}_xml
                 wxmsw${WXDLLPREF}_adv
                 wxmsw${WXDLLPREF}_aui
@@ -472,7 +472,7 @@ if(WIN32)
             set(WXDLLPREF ${WXDLLPREF}d)
             list(APPEND MMEX_WXDLLS
                 wxbase${WXDLLPREF}
-				wxbase${WXDLLPREF}_net
+                wxbase${WXDLLPREF}_net
                 wxbase${WXDLLPREF}_xml
                 wxmsw${WXDLLPREF}_adv
                 wxmsw${WXDLLPREF}_aui
