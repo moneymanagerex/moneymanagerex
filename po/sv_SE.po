@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-05-26 12:37+0300\n"
-"PO-Revision-Date: 2020-06-02 22:26\n"
+"PO-Revision-Date: 2020-06-03 20:54\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
@@ -6152,11 +6152,11 @@ msgstr ""
 
 #: stockspanel.cpp:594
 msgid "Move selected transaction to another account"
-msgstr ""
+msgstr "Flytta vald transaktion till ett annat konto"
 
 #: stockspanel.cpp:607
 msgid "Refresh"
-msgstr ""
+msgstr "Uppdatera"
 
 #: stockspanel.cpp:608
 msgid "Refresh Stock Prices from Yahoo"
@@ -6292,7 +6292,7 @@ msgstr ""
 
 #: usertransactionpanel.cpp:129
 msgid "&Transfer"
-msgstr ""
+msgstr "&Överföring"
 
 #: usertransactionpanel.cpp:132
 msgid "Funds transfer from/to this account. Uncheck to set as Expense/Income."
@@ -6405,11 +6405,11 @@ msgstr ""
 #: util.cpp:868
 #, c-format
 msgid "Version: %s"
-msgstr ""
+msgstr "Version: %s"
 
 #: util.cpp:869
 msgid "Database version: "
-msgstr ""
+msgstr "Databasversion: "
 
 #: util.cpp:876
 msgid "Git commit: "
@@ -6425,15 +6425,15 @@ msgstr ""
 
 #: util.cpp:902
 msgid "Build on"
-msgstr ""
+msgstr "Byggd den"
 
 #: util.cpp:903
 msgid "with:"
-msgstr ""
+msgstr "med:"
 
 #: util.cpp:925
 msgid "Running on:"
-msgstr ""
+msgstr "Körs på:"
 
 #: util.h:200
 msgid "January"
@@ -6481,80 +6481,81 @@ msgstr "December"
 
 #: webapp.cpp:111
 msgid "Wrong WebApp GUID:"
-msgstr ""
+msgstr "Fel webbapp-GUID:"
 
 #: webapp.cpp:112
 msgid "please check it in network options."
-msgstr ""
+msgstr "kontrollera det i nätverksalternativ."
 
 #: webapp.cpp:113
 msgid "Wrong WebApp settings"
-msgstr ""
+msgstr "Fel WebApp-inställningar"
 
 #: webapp.cpp:118
 msgid "Unable to connect to WebApp:"
-msgstr ""
+msgstr "Kunde inte ansluta till WebApp:"
 
 #: webapp.cpp:119
 msgid "please check settings and / or internet connection."
-msgstr ""
+msgstr "kontrollera inställningar och / eller internetanslutning."
 
 #: webapp.cpp:121
 msgid "WebApp connection error"
-msgstr ""
+msgstr "Anslutningsfel för webbapp"
 
 #: webapp.cpp:131
 msgid "Wrong WebApp API version:"
-msgstr ""
+msgstr "Fel API-version av WebApp:"
 
 #: webapp.cpp:132
 #, c-format
 msgid "WebApp   API version -> %s"
-msgstr ""
+msgstr "WebApp API-version -> %s"
 
 #: webapp.cpp:133
 #, c-format
 msgid "Expected API version -> %s"
-msgstr ""
+msgstr "Förväntad API-version -> %s"
 
 #: webapp.cpp:134
 msgid "Wrong WebApp API version"
-msgstr ""
+msgstr "Fel API-version av WebApp"
 
 #: webapp.cpp:466
 #, c-format
 msgid "Account '%s' not found!"
-msgstr ""
+msgstr "Kontot '%s' hittades inte!"
 
 #: webapp.cpp:468
 #, c-format
 msgid "Transaction will be inserted with the first bank account:\n"
 "'%s' and marked as  'Follow Up'"
-msgstr ""
+msgstr "Transaktionen kommer att infogas med det första bankkontot:\n"
+"'%s' och markeras som 'Följ upp'"
 
 #: webapp.cpp:471
 msgid "Wrong WebApp account"
-msgstr ""
+msgstr "Fel webbapp-konto"
 
 #: webapp.cpp:553 webapp.cpp:586
 msgid "Unable to download attachments from webapp."
-msgstr ""
+msgstr "Kunde inte ladda ner bilagor från webbappen."
 
 #: webapp.cpp:554
 msgid "Attachments folder not set or unavailable"
-msgstr ""
+msgstr "Mapp för bilagor är inte angiven eller otillgänglig"
 
 #: webapp.cpp:555
 msgid "Transaction not downloaded:"
-msgstr ""
+msgstr "Transaktionen laddades inte ner:"
 
 #: webapp.cpp:556
 msgid "please fix attachments folder or delete attachments from WebApp"
-msgstr ""
+msgstr "åtgärda mapp för bilagor eller ta bort bilagor från WebApp"
 
 #: webapp.cpp:557
 msgid "Attachment folder error"
-msgstr ""
+msgstr "Fel i mapp för bilagor"
 
 #: webapp.cpp:577
 msgid "Attachment"
@@ -6566,19 +6567,19 @@ msgstr "Kommunikationsfel"
 
 #: webapp.cpp:588
 msgid "Transaction not downloaded: please close and open MMEX to try re-download transaction"
-msgstr ""
+msgstr "Transaktionen laddades inte ner: stäng och öppna MMEX för att försöka ladda ner transaktionen på nytt"
 
 #: webapp.cpp:589
 msgid "Attachment download error"
-msgstr ""
+msgstr "Fel vid hämtning av bilaga"
 
 #: webappdialog.cpp:77
 msgid "Import WebApp transactions"
-msgstr ""
+msgstr "Importera transaktioner från WebApp"
 
 #: webappdialog.cpp:100
 msgid "Network status (click to refresh)"
-msgstr ""
+msgstr "Nätverksstatus (klicka för att uppdatera)"
 
 #: webappdialog.cpp:132
 msgid "Checking for new transactions..."
@@ -6590,42 +6591,44 @@ msgstr "&Importera alla "
 
 #: webappdialog.cpp:167
 msgid "Import and open all "
-msgstr ""
+msgstr "Importera och öppna alla "
 
 #: webappdialog.cpp:313
 msgid "Unable to insert transaction in MMEX database"
-msgstr ""
+msgstr "Det går inte att infoga transaktion i MMEX-databasen"
 
 #: webappdialog.cpp:314
 msgid "WebApp communication error"
-msgstr ""
+msgstr "Webbapp kommunikationsfel"
 
 #: webappdialog.cpp:405
 msgid "Open Attachment"
-msgstr ""
+msgstr "Öppna bilaga"
 
 #: webappdialog.cpp:407
 msgid "Import and open"
-msgstr ""
+msgstr "Importera och öppna"
 
 #: webappdialog.cpp:408
 msgid "Delete"
-msgstr ""
+msgstr "Radera"
 
 #: wizard_newaccount.cpp:25
 msgid "Add Account Wizard"
-msgstr ""
+msgstr "Guide för att lägga till konto"
 
 #: wizard_newaccount.cpp:34
 #, c-format
 msgid "%s models all transactions as belonging to accounts."
-msgstr ""
+msgstr "%s modellerar alla transaktioner som tillhörande konton."
 
 #: wizard_newaccount.cpp:35
 msgid "The next pages will help you create a new account.\n"
 "To help you get started, begin by making a list of all\n"
 "financial institutions where you hold an account."
-msgstr ""
+msgstr "Nästa sida hjälper dig att skapa ett nytt konto.\n"
+"För att hjälpa dig komma igång, börja med att göra en lista över alla\n"
+"finansiella institutioner där du har ett konto."
 
 #: wizard_newaccount.cpp:79
 msgid "Account Name Invalid"
@@ -6641,12 +6644,13 @@ msgstr "Namnet på kontot"
 
 #: wizard_newaccount.cpp:104
 msgid "Specify a descriptive name for the account."
-msgstr ""
+msgstr "Ange ett beskrivande namn för kontot."
 
 #: wizard_newaccount.cpp:105
 msgid "This is generally the name of a financial institution\n"
 "where the account is held. For example: 'ABC Bank'."
-msgstr ""
+msgstr "Detta är i allmänhet namnet på ett finansinstitut\n"
+"där kontot hålls. Till exempel: \"ABC Bank\"."
 
 #: wizard_newaccount.cpp:125
 msgid "Type of Account"
@@ -6654,12 +6658,13 @@ msgstr "Typ av konto"
 
 #: wizard_newaccount.cpp:129
 msgid "Select the type of account you want to create:"
-msgstr ""
+msgstr "Välj vilken typ av konto du vill skapa:"
 
 #: wizard_newaccount.cpp:130
 msgid "General bank accounts cover a wide variety of account\n"
 "types like Checking, Savings and Credit card type accounts."
-msgstr ""
+msgstr "Allmänna bankkonton täcker en mängd olika konton\n"
+"typer som checkkonton, sparkonton och kreditkorts konton."
 
 #: wizard_newaccount.cpp:135
 msgid "Investment accounts are specialized accounts that only\n"
@@ -6710,7 +6715,7 @@ msgstr ""
 
 #: wizard_newdb.cpp:112
 msgid "(Optional) Specify a title or your name."
-msgstr ""
+msgstr "(Valfritt) Ange en titel eller ditt namn."
 
 #: wizard_newdb.cpp:113
 msgid "Used as a database title for displayed and printed reports."
@@ -6718,7 +6723,7 @@ msgstr ""
 
 #: wizard_newdb.cpp:124
 msgid "Base Currency Not Set"
-msgstr ""
+msgstr "Basvaluta inte angiven"
 
 #: wizard_update.cpp:78
 msgid "Update Wizard"
