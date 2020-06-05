@@ -61,7 +61,7 @@ ENDIF()
 set(MMEX_VERSION_FULL ${MMEX_VERSION_WITH_UNSTABLE})
 
 project(MMEX VERSION ${MMEX_VERSION})
-option(MMEX_PORTABLE_INSTALL "Include an empty mmexini.db3 file in the Windows installation" ON)
+option(MMEX_PORTABLE_INSTALL "Include an empty mmexini.db3 file in the Windows installation" OFF)
 option(MMEX_ENCRYPTION_OPTIONAL "Build even if encryption is not supported by wxsqlite library" OFF)
 
 # Name of the resulted executable binary
