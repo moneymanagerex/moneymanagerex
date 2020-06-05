@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-05-26 12:37+0300\n"
-"PO-Revision-Date: 2020-05-30 09:24\n"
+"PO-Revision-Date: 2020-06-02 22:26\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
@@ -411,11 +411,11 @@ msgstr "Skriv in ev. noteringar för den här tillgången"
 
 #: assetdialog.cpp:268
 msgid "New Transaction Details"
-msgstr ""
+msgstr "Detaljer för ny transaktion"
 
 #: assetdialog.cpp:271 sharetransactiondialog.cpp:290
 msgid "Edit Transaction Details"
-msgstr ""
+msgstr "Redigera detaljer för transaktion"
 
 #: assetdialog.cpp:306 constants.cpp:86 sharetransactiondialog.cpp:321
 msgid "&Cancel "
@@ -461,7 +461,7 @@ msgstr "&Ny tillgång"
 
 #: assetspanel.cpp:98
 msgid "D&uplicate Asset"
-msgstr ""
+msgstr "D&uplicera tillgångar"
 
 #: assetspanel.cpp:100
 msgid "&Add Asset Transaction"
@@ -704,15 +704,15 @@ msgstr "Filen finns redan i bilagor"
 
 #: attachmentdialog.cpp:467
 msgid "Attachment not found:"
-msgstr ""
+msgstr "Bilaga hittades inte:"
 
 #: attachmentdialog.cpp:470
 msgid "Do you want to continue and delete attachment on database?"
-msgstr ""
+msgstr "Vill du fortsätta och ta bort bilaga i databasen?"
 
 #: attachmentdialog.cpp:471
 msgid "Delete attachment failed"
-msgstr ""
+msgstr "Det gick inte att radera bilaga"
 
 #: attachmentdialog.cpp:484
 msgid "Unable to open file:"
@@ -3242,7 +3242,7 @@ msgstr ""
 
 #: maincurrencydialog.cpp:642
 msgid "Do you want to add also dates without any transaction?"
-msgstr ""
+msgstr "Vill du lägga till även datum utan transaktion?"
 
 #: maincurrencydialog.cpp:684
 #, c-format
@@ -3285,85 +3285,87 @@ msgstr "Lägg till ett år"
 #: mmSimpleDialogs.cpp:237
 #, c-format
 msgid "Entry %s is invalid"
-msgstr ""
+msgstr "Posten %s är ogiltig"
 
 #: mmSimpleDialogs.cpp:244
 msgid "Please use this button for category selection."
-msgstr ""
+msgstr "Använd denna knapp för kategorival."
 
 #: mmSimpleDialogs.cpp:245
 msgid "Please use this button for category selection\n"
 "or use the 'Split' checkbox for multiple categories."
-msgstr ""
+msgstr "Använd denna knapp för kategorival\n"
+"eller använd kryssrutan 'Dela' för flera kategorier."
 
 #: mmSimpleDialogs.cpp:248
 msgid "Invalid Category"
-msgstr ""
+msgstr "Ogiltig kategori"
 
 #: mmSimpleDialogs.cpp:253
 msgid "File name is empty."
-msgstr ""
+msgstr "Filnamnet är tomt."
 
 #: mmSimpleDialogs.cpp:254
 msgid "Please select the file for this operation."
-msgstr ""
+msgstr "Välj filen för den här åtgärden."
 
 #: mmSimpleDialogs.cpp:261
 msgid "Invalid Account"
-msgstr ""
+msgstr "Ogiltigt konto"
 
 #: mmSimpleDialogs.cpp:264
 msgid "Please select the account for this transaction."
-msgstr ""
+msgstr "Ange ett konto för denna transaktion."
 
 #: mmSimpleDialogs.cpp:266
 msgid "Please specify which account the transfer is going to."
-msgstr ""
+msgstr "Ange vilket konto överföringen ska gå till."
 
 #: mmSimpleDialogs.cpp:268
 msgid "Selection can be made by using the dropdown button."
-msgstr ""
+msgstr "Val kan göras med hjälp av rullgardinsknappen."
 
 #: mmSimpleDialogs.cpp:271
 msgid "Activating the button will provide a selection box where the account can be selected."
-msgstr ""
+msgstr "Aktivering av knappen kommer att ge en markeringsruta där kontot kan väljas."
 
 #: mmSimpleDialogs.cpp:280 mmcombobox.h:78
 msgid "Invalid Payee"
-msgstr ""
+msgstr "Ogiltig betalningsmottagare"
 
 #: mmSimpleDialogs.cpp:281
 msgid "Please type in a new payee,\n"
 "or make a selection using the dropdown button."
-msgstr ""
+msgstr "Skriv in en ny betalningsmottagare,\n"
+"eller gör ett urval med hjälp av rullgardinsmenyn."
 
 #: mmSimpleDialogs.cpp:289 mmSimpleDialogs.cpp:301
 msgid "Invalid Name"
-msgstr ""
+msgstr "Ogiltigt namn"
 
 #: mmSimpleDialogs.cpp:292 mmSimpleDialogs.cpp:304
 msgid "Already exist!"
-msgstr ""
+msgstr "Finns redan!"
 
 #: mmSimpleDialogs.cpp:294
 msgid "Please type in a non empty name."
-msgstr ""
+msgstr "Ange in ett icke-tomt namn."
 
 #: mmSimpleDialogs.cpp:306
 msgid "Please type in a non empty symbol."
-msgstr ""
+msgstr "Ange en icke-tom symbol."
 
 #: mmTextCtrl.cpp:69
 msgid "Invalid Value"
-msgstr ""
+msgstr "Ogiltigt värde"
 
 #: mmTextCtrl.cpp:96
 msgid "Please enter a positive or calculated value."
-msgstr ""
+msgstr "Ange ett positivt eller beräknat värde."
 
 #: mmTextCtrl.cpp:96
 msgid "Please enter a calculated value."
-msgstr ""
+msgstr "Ange ett beräknat värde."
 
 #: mmTextCtrl.cpp:98
 msgid "Tip: For calculations, enter expressions like (2+2)*(2+2)\n"
@@ -3428,23 +3430,23 @@ msgstr ""
 
 #: mmTips.h:38
 msgid "Tip to get out of debt: Establish an emergency fund."
-msgstr ""
+msgstr "Tips för att bli av med skulder: Etablera en nödfond."
 
 #: mmTips.h:39
 msgid "Tip to get out of debt: Stop acquiring new debt."
-msgstr ""
+msgstr "Tips för att bli av med skulder: Sluta skaffa nya skulder."
 
 #: mmTips.h:40
 msgid "Tip to get out of debt: Create a realistic budget for your expenses."
-msgstr ""
+msgstr "Tips för att bli av med skulder: Skapa en realistisk budget för dina utgifter."
 
 #: mmTips.h:41
 msgid "Tip to get out of debt: Spend less than you earn."
-msgstr ""
+msgstr "Tips för att bli av med skulder: Spendera mindre än du tjänar."
 
 #: mmTips.h:42
 msgid "Tip to get out of debt: Pay more than the minimum."
-msgstr ""
+msgstr "Tips för att bli av med skulder: Betala mer än minimum."
 
 #: mmTips.h:43
 msgid "Before going to a shop and buy something: take the time making a list of what you really need. In the shop buy what is in your list."
@@ -3452,11 +3454,11 @@ msgstr ""
 
 #: mmcheckingpanel.cpp:368 mmcheckingpanel.cpp:512
 msgid "Displayed Bal: "
-msgstr ""
+msgstr "Visad balans: "
 
 #: mmcheckingpanel.cpp:374
 msgid "Account Bal: "
-msgstr ""
+msgstr "Kontobalans: "
 
 #: mmcheckingpanel.cpp:376
 msgid "Reconciled Bal: "
@@ -3464,7 +3466,7 @@ msgstr ""
 
 #: mmcheckingpanel.cpp:378
 msgid "Diff: "
-msgstr ""
+msgstr "Skillnad: "
 
 #: mmcheckingpanel.cpp:439 mmframe.cpp:1692 transdialog.cpp:170
 msgid "New Transaction"
@@ -3698,7 +3700,7 @@ msgstr "Navigation"
 
 #: mmframe.cpp:260
 msgid "Toolbar"
-msgstr ""
+msgstr "Verktygsfält"
 
 #: mmframe.cpp:456 mmframe.cpp:680 mmhomepage.cpp:623 reports/summary.cpp:149
 msgid "Bank Accounts"
@@ -3706,7 +3708,7 @@ msgstr "Bankkonton"
 
 #: mmframe.cpp:457 mmframe.cpp:684 mmhomepage.cpp:624 reports/summary.cpp:150
 msgid "Credit Card Accounts"
-msgstr ""
+msgstr "Kreditkortskonton"
 
 #: mmframe.cpp:458 mmframe.cpp:696 mmhomepage.cpp:626 reports/summary.cpp:152
 msgid "Term Accounts"
@@ -3718,11 +3720,11 @@ msgstr ""
 
 #: mmframe.cpp:460 mmframe.cpp:688 mmhomepage.cpp:622
 msgid "Cash Accounts"
-msgstr ""
+msgstr "Kontantkonton"
 
 #: mmframe.cpp:461 mmframe.cpp:692 mmhomepage.cpp:625 reports/summary.cpp:151
 msgid "Loan Accounts"
-msgstr ""
+msgstr "Lånekonton"
 
 #: mmframe.cpp:493
 msgid "Auto Repeat Transactions"
@@ -3790,27 +3792,27 @@ msgstr ""
 
 #: mmframe.cpp:1243 mmframe.cpp:1249 mmframe.cpp:1315 mmframe.cpp:1323
 msgid "&CSV Files..."
-msgstr ""
+msgstr "&CSV-filer..."
 
 #: mmframe.cpp:1244 mmframe.cpp:1250 mmframe.cpp:1316 mmframe.cpp:1324
 msgid "&XML Files..."
-msgstr ""
+msgstr "&XML-filer..."
 
 #: mmframe.cpp:1245 mmframe.cpp:1251 mmframe.cpp:1317 mmframe.cpp:1325
 msgid "&QIF Files..."
-msgstr ""
+msgstr "&QIF-filer..."
 
 #: mmframe.cpp:1246 mmframe.cpp:1318
 msgid "&JSON Files..."
-msgstr ""
+msgstr "&JSON-filer..."
 
 #: mmframe.cpp:1250 mmframe.cpp:1324
 msgid "Import from XML (Excel format)"
-msgstr ""
+msgstr "Importera från XML (Excel-format)"
 
 #: mmframe.cpp:1261 optionsettingsview.cpp:61
 msgid "Accounts Visible"
-msgstr ""
+msgstr "Synliga konton"
 
 #: mmframe.cpp:1296
 msgid "&New Database\tCtrl-N"
@@ -3838,11 +3840,11 @@ msgstr "Spara databas som"
 
 #: mmframe.cpp:1308
 msgid "&Recent Files..."
-msgstr ""
+msgstr "&Senaste filer..."
 
 #: mmframe.cpp:1309
 msgid "&Clear Recent Files"
-msgstr ""
+msgstr "&Rensa senaste filer"
 
 #: mmframe.cpp:1315
 msgid "Export to CSV"
@@ -3850,11 +3852,11 @@ msgstr "Exportera till CSV"
 
 #: mmframe.cpp:1316
 msgid "Export to XML"
-msgstr ""
+msgstr "Exportera till XML"
 
 #: mmframe.cpp:1318
 msgid "Export to JSON"
-msgstr ""
+msgstr "Exportera till JSON"
 
 #: mmframe.cpp:1319
 msgid "&Report to HTML"
@@ -3866,7 +3868,7 @@ msgstr "Exportera till HTML"
 
 #: mmframe.cpp:1323
 msgid "Import from any CSV file"
-msgstr ""
+msgstr "Importera från valfri CSV-fil"
 
 #: mmframe.cpp:1325
 msgid "Import from QIF"
@@ -3946,11 +3948,11 @@ msgstr ""
 
 #: mmframe.cpp:1359
 msgid "Ignore F&uture Transactions"
-msgstr ""
+msgstr "Ignorera F&ramtida transaktioner"
 
 #: mmframe.cpp:1359
 msgid "Ignore Future transactions"
-msgstr ""
+msgstr "Ignorera framtida transaktioner"
 
 #: mmframe.cpp:1375
 msgid "Toggle Fullscreen\tShift+F11"
@@ -3958,7 +3960,7 @@ msgstr ""
 
 #: mmframe.cpp:1376 mmframe.cpp:1710
 msgid "Toggle Fullscreen"
-msgstr ""
+msgstr "Växla helskärm"
 
 #: mmframe.cpp:1383
 msgid "Switch Application Language"
@@ -3970,7 +3972,7 @@ msgstr ""
 
 #: mmframe.cpp:1390
 msgid "system default"
-msgstr ""
+msgstr "systemstandardvärde"
 
 #: mmframe.cpp:1410
 msgid "Account &List"
@@ -3982,7 +3984,7 @@ msgstr "Visa kontolista"
 
 #: mmframe.cpp:1422
 msgid "Change the account type of an account."
-msgstr ""
+msgstr "Ändra kontotypen på ett konto."
 
 #: mmframe.cpp:1426
 msgid "Delete Account from database"
@@ -4218,19 +4220,19 @@ msgstr ""
 
 #: mmframe.cpp:1596
 msgid "Donate via PayPal"
-msgstr ""
+msgstr "Donera via PayPal"
 
 #: mmframe.cpp:1597
 msgid "Donate the team to support infrastructure etc"
-msgstr ""
+msgstr "Donera teamet för att stödja infrastruktur etc"
 
 #: mmframe.cpp:1600
 msgid "Buy us a Coffee"
-msgstr ""
+msgstr "Köp oss en kopp kaffe"
 
 #: mmframe.cpp:1601
 msgid "Buy key developer a coffee"
-msgstr ""
+msgstr "Köp en kopp kaffe åt utvecklaren"
 
 #: mmframe.cpp:1605
 msgid "Community"
@@ -4242,7 +4244,7 @@ msgstr ""
 
 #: mmframe.cpp:1626
 msgid "Report a Bug"
-msgstr ""
+msgstr "Rapportera ett fel"
 
 #: mmframe.cpp:1627
 msgid "Report an error in application to the developers"
@@ -4322,7 +4324,7 @@ msgstr ""
 
 #: mmframe.cpp:1705
 msgid "News"
-msgstr ""
+msgstr "Nyheter"
 
 #: mmframe.cpp:1707
 msgid "Download rates"
@@ -4360,7 +4362,7 @@ msgstr ""
 
 #: mmframe.cpp:1860
 msgid "&Next ->"
-msgstr ""
+msgstr "&Nästa ->"
 
 #: mmframe.cpp:1873
 msgid "Cannot locate previously opened database.\n"
@@ -5914,7 +5916,7 @@ msgstr ""
 
 #: stockdialog.cpp:241
 msgid "*Commission"
-msgstr ""
+msgstr "*Provision"
 
 #: stockdialog.cpp:245
 msgid "Enter any commission paid.\n"
@@ -6192,24 +6194,24 @@ msgstr ""
 #: stockspanel.cpp:806 stockspanel.cpp:991
 #, c-format
 msgid "Last updated %s"
-msgstr ""
+msgstr "Senast uppdaterad %s"
 
 #: stockspanel.cpp:831 util.cpp:492 util.cpp:596
 msgid "Nothing to update"
-msgstr ""
+msgstr "Inget att uppdatera"
 
 #: stockspanel.cpp:845
 msgid "Connecting..."
-msgstr ""
+msgstr "Ansluter..."
 
 #: stockspanel.cpp:950
 #, c-format
 msgid "Symbol: %s"
-msgstr ""
+msgstr "Symbol: %s"
 
 #: transdialog.cpp:170
 msgid "Duplicate Transaction"
-msgstr ""
+msgstr "Duplicera transaktion"
 
 #: transdialog.cpp:170
 msgid "Edit Transaction"
@@ -6235,36 +6237,37 @@ msgstr ""
 #, c-format
 msgid "Do you want to add new payee: \n"
 "%s?"
-msgstr ""
+msgstr "Vill du lägga till ny betalningsmottagare: %s?"
 
 #: transdialog.cpp:654
 msgid "Confirm to add new payee"
-msgstr ""
+msgstr "Bekräfta för att lägga till ny betalningsmottagare"
 
 #: transdialog.cpp:744
 msgid "This transaction will exceed your account limit.\n\n"
 "Do you wish to continue?"
-msgstr ""
+msgstr "Denna transaktion kommer att överskrida din kontogräns.\n\n"
+"Vill du fortsätta?"
 
 #: transdialog.cpp:1253
 msgid "Specify account the money is taken from"
-msgstr ""
+msgstr "Ange konto pengarna tas från"
 
 #: transdialog.cpp:1254
 msgid "Specify account the money is moved to"
-msgstr ""
+msgstr "Ange konto pengarna flyttas till"
 
 #: transdialog.cpp:1255
 msgid "Specify the transfer amount in the From Account."
-msgstr ""
+msgstr "Ange överföringsbeloppet i från-kontot."
 
 #: transdialog.cpp:1263
 msgid "Specify account for the transaction"
-msgstr ""
+msgstr "Ange konto för transaktionen"
 
 #: transdialog.cpp:1265
 msgid "Specify to whom the transaction is going to"
-msgstr ""
+msgstr "Ange till vem transaktionen ska"
 
 #: transdialog.cpp:1271 usertransactionpanel.cpp:96
 msgid "Specify the date of the transaction"
@@ -6272,12 +6275,12 @@ msgstr "Ange transaktionsdatumet"
 
 #: transdialog.cpp:1309
 msgid "Clear colour"
-msgstr ""
+msgstr "Rensa färg"
 
 #: transdialog.cpp:1314
 #, c-format
 msgid "Colour #%i"
-msgstr ""
+msgstr "Färg #%i"
 
 #: usertransactionpanel.cpp:115
 msgid "Specify the associated Account that will contain this transaction"
