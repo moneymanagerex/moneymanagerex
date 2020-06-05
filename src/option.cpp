@@ -66,7 +66,7 @@ void Option::LoadOptions(bool include_infotable)
         m_financialYearStartMonthString = Model_Infotable::instance().GetStringInfo("FINANCIAL_YEAR_START_MONTH", "7");
         m_sharePrecision = Model_Infotable::instance().GetIntInfo("SHARE_PRECISION", 4);
         m_baseCurrency = Model_Infotable::instance().GetIntInfo("BASECURRENCYID", -1);
-        m_currencyHistoryEnabled = Model_Infotable::instance().GetBoolInfo(INIDB_USE_CURRENCY_HISTORY, false);
+        m_currencyHistoryEnabled = Model_Infotable::instance().GetBoolInfo(INIDB_USE_CURRENCY_HISTORY, true);
         m_budget_days_offset = Model_Infotable::instance().GetIntInfo("BUDGET_DAYS_OFFSET", 0);
         // Ensure that base currency is set for the database.
         while (m_baseCurrency < 1)

@@ -40,7 +40,7 @@ function collapseNode(n, bool) {
         if (n.nodeName === "OL")
             n.style.display = bool ? "none" : "";
     });
-    n.firstChild.textContent = bool ? "⯈" : "⯆";
+    n.firstChild.textContent = bool ? "+" : "-";
     n.firstChild.style.cursor = bool ? "zoom-in" : "zoom-out";
     // n.firstChild.title = bool ? "expand" : "collapse";
     n.firstChild.onclick = function(){collapseNode(n, !bool);};

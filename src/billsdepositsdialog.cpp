@@ -425,7 +425,7 @@ void mmBDDialog::CreateControls()
     dueDateDateBoxSizer->Add(spinTransDate, g_flagsH);
 #endif
 
-    itemFlexGridSizer5->Add(new wxStaticText(this, wxID_STATIC, _("Date Due")), g_flagsH);
+    itemFlexGridSizer5->Add(new wxStaticText(this, wxID_STATIC, _("Date Paid")), g_flagsH);
     itemFlexGridSizer5->Add(dueDateDateBoxSizer);
 
     // Repeats --------------------------------------------
@@ -511,7 +511,7 @@ void mmBDDialog::CreateControls()
     transDateBoxSizer->Add(spinNextOccDate, 0, wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL | wxLEFT, interval);
 #endif
 
-    transPanelSizer->Add(new wxStaticText(this, wxID_STATIC, _("Date Paid")), g_flagsH);
+    transPanelSizer->Add(new wxStaticText(this, wxID_STATIC, _("Date Due")), g_flagsH);
     transPanelSizer->Add(transDateBoxSizer);
 
     // Status --------------------------------------------
