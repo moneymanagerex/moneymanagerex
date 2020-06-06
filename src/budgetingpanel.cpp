@@ -451,8 +451,7 @@ void mmBudgetingPanel::initVirtualListControl()
         budgetTotals_[category.CATEGID].first = catTotalsEstimated;
         budgetTotals_[category.CATEGID].second = catTotalsActual;
 
-        if ( currentView_ == VIEW_SUMM
-            && DisplayEntryAllowed(-1, category.CATEGID))
+        if (DisplayEntryAllowed(-1, category.CATEGID))
         {
             budget_.push_back(std::make_pair(-1, category.CATEGID));
             size_t transCatTotalIndex = budget_.size() - 1;

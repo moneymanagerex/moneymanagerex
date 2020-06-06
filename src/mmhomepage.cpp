@@ -31,6 +31,7 @@ Copyright (C) 2014 - 2020 Nikolay Akimov
 #include "model/Model_Payee.h"
 #include "model/Model_Asset.h"
 #include "model/Model_Setting.h"
+#include "model/Model_Translink.h"
 
 static const wxString TOP_CATEGS = R"(
 <table class = 'table'>
@@ -199,7 +200,7 @@ void htmlWidgetTop7Categories::getTopCategoryStats(
     //Temporary map
     std::map<std::pair<int /*category*/, int /*sub category*/>, double> stat;
 
-    const auto splits = Model_Splittransaction::instance().get_all();
+    const auto split = Model_Splittransaction::instance().get_all();
     const auto &transactions = Model_Checking::instance().find(
         Model_Checking::TRANSDATE(date_range->start_date(), GREATER_OR_EQUAL)
         , Model_Checking::TRANSDATE(date_range->end_date(), LESS_OR_EQUAL)
@@ -208,10 +209,17 @@ void htmlWidgetTop7Categories::getTopCategoryStats(
 
     for (const auto &trx : transactions)
     {
-        bool withdrawal = Model_Checking::type(trx) == Model_Checking::WITHDRAWAL;
-        const auto it = splits.find(trx.TRANSID);
+        Model_Translink::Data_Set translink_list = Model_Translink::instance().find(
+            Model_Translink::CHECKINGACCOUNTID(trx.TRANSID));
 
-        if (it == splits.end())
+        if (!translink_list.empty() && (trx.TOACCOUNTID == Model_Translink::CHECKING_TYPE::AS_TRANSFER)) {
+            continue;
+        }
+
+        bool withdrawal = Model_Checking::type(trx) == Model_Checking::WITHDRAWAL;
+        const auto it = split.find(trx.TRANSID);
+
+        if (it == split.end())
         {
             std::pair<int, int> category = std::make_pair(trx.CATEGID, trx.SUBCATEGID);
             if (withdrawal)
