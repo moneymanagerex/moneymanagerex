@@ -110,6 +110,7 @@ void mmGUIFrame::updateReportNavigation(wxTreeItemId& reports)
 {
 
     wxTreeItemId transactionList = m_nav_tree_ctrl->AppendItem(reports, _("Transaction Report"), img::FILTER_PNG, img::FILTER_PNG);
+    m_nav_tree_ctrl->SetItemData(transactionList, new mmTreeItemData("Transaction Report", false));
 
     //////////////////////////////////////////////////////////////////
 
