@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-05-26 12:37+0300\n"
-"PO-Revision-Date: 2020-06-08 16:37\n"
+"PO-Revision-Date: 2020-06-08 21:24\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
@@ -4764,11 +4764,11 @@ msgstr ""
 
 #: mmreportspanel.cpp:341
 msgid "Show"
-msgstr ""
+msgstr "Visa"
 
 #: mmreportspanel.cpp:342
 msgid "Hide"
-msgstr ""
+msgstr "Dölj"
 
 #: model/Model_Account.cpp:32 model/Model_Asset.cpp:35 reports/summary.cpp:148
 msgid "Cash"
@@ -4780,11 +4780,11 @@ msgstr ""
 
 #: model/Model_Account.cpp:34
 msgid "Credit Card"
-msgstr ""
+msgstr "Kreditkort"
 
 #: model/Model_Account.cpp:35
 msgid "Loan"
-msgstr ""
+msgstr "Lån"
 
 #: model/Model_Account.cpp:36
 msgid "Term"
@@ -4850,15 +4850,15 @@ msgstr "Varannan vecka"
 
 #: model/Model_CustomField.cpp:25
 msgid "String"
-msgstr ""
+msgstr "Sträng"
 
 #: model/Model_CustomField.cpp:26
 msgid "Integer"
-msgstr ""
+msgstr "Heltal"
 
 #: model/Model_CustomField.cpp:27
 msgid "Decimal"
-msgstr ""
+msgstr "Decimaltal"
 
 #: model/Model_CustomField.cpp:28
 msgid "Boolean"
