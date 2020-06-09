@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-05-26 12:37+0300\n"
-"PO-Revision-Date: 2020-06-09 18:34\n"
+"PO-Revision-Date: 2020-06-09 18:45\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
@@ -1532,7 +1532,7 @@ msgstr "Tips: Om kategorin har lagts till nu, kontrollera längst ned i listan.\
 
 #: categdialog.cpp:270 categdialog.cpp:294 categdialog.cpp:312
 msgid "Organise Categories: Adding Error"
-msgstr "Organisera kategorier: tilläggningsfel"
+msgstr "Organisera kategorier: Tilläggningsfel"
 
 #: categdialog.cpp:293 categdialog.cpp:520
 msgid "Sub Category with same name exists"
@@ -1544,11 +1544,11 @@ msgstr "Ogiltig överordnad kategori. Välj rot- eller huvudkategori."
 
 #: categdialog.cpp:318
 msgid "Category in use."
-msgstr ""
+msgstr "Kategori som används."
 
 #: categdialog.cpp:318
 msgid "Sub-Category in use."
-msgstr ""
+msgstr "Underkategori som används."
 
 #: categdialog.cpp:320
 msgid "Tip: Change all transactions using this Category to\n"
@@ -1566,28 +1566,28 @@ msgstr ""
 
 #: categdialog.cpp:328
 msgid "Organise Categories: Delete Error"
-msgstr ""
+msgstr "Organisera kategorier: Raderingsfel"
 
 #: categdialog.cpp:432
 msgid "Select an unused category to delete."
-msgstr ""
+msgstr "Välj en oanvänd kategori att ta bort."
 
 #: categdialog.cpp:457
 msgid "This category cannot be deleted because it's used by transactions."
-msgstr ""
+msgstr "Denna kategori kan inte tas bort eftersom den används av transaktioner."
 
 #: categdialog.cpp:464
 msgid "Delete an existing category."
-msgstr ""
+msgstr "Ta bort en befintlig kategori."
 
 #: categdialog.cpp:469
 msgid "Subcategories must be deleted before."
-msgstr ""
+msgstr "Underkategorier måste tas bort först."
 
 #: categdialog.cpp:485
 #, c-format
 msgid "Enter a new name for '%s'"
-msgstr ""
+msgstr "Ange ett nytt namn för '%s'"
 
 #: categdialog.cpp:486
 msgid "Edit Category"
@@ -1808,7 +1808,7 @@ msgstr ""
 
 #: customfieldeditdialog.cpp:137
 msgid "ToolTip"
-msgstr ""
+msgstr "Verktygstips"
 
 #: customfieldeditdialog.cpp:139
 msgid "Enter the tooltip that will be shown"
