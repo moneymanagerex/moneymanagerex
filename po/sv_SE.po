@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-05-26 12:37+0300\n"
-"PO-Revision-Date: 2020-06-08 21:24\n"
+"PO-Revision-Date: 2020-06-09 18:34\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
@@ -243,7 +243,7 @@ msgstr "Minsta betalning:"
 
 #: accountdialog.cpp:300
 msgid "Organize attachments of this account"
-msgstr ""
+msgstr "Organisera bilagor till detta konto"
 
 #: accountdialog.cpp:407
 msgid "Default Image"
@@ -306,7 +306,7 @@ msgstr "Besök hemsidan för mer information"
 #: appstartdialog.cpp:115
 #, c-format
 msgid "Open the %s website for latest news, updates etc"
-msgstr ""
+msgstr "Öppna webbplatsen %s för senaste nyheter, uppdateringar etc"
 
 #: appstartdialog.cpp:123 wizard_update.cpp:166
 #, c-format
@@ -848,7 +848,7 @@ msgstr "Återstående betalningar"
 
 #: billsdepositsdialog.cpp:460
 msgid "Request user to enter payment"
-msgstr ""
+msgstr "Begär att användaren ska ange betalning"
 
 #: billsdepositsdialog.cpp:461
 msgid "User requested to enter this transaction on the 'Date Paid'"
@@ -856,7 +856,7 @@ msgstr ""
 
 #: billsdepositsdialog.cpp:464
 msgid "Grant automatic execute"
-msgstr ""
+msgstr "Bevilja automatisk körning"
 
 #: billsdepositsdialog.cpp:465
 msgid "The requested payment will occur without user interaction"
@@ -956,7 +956,7 @@ msgstr "Välj betalningsmottagare"
 
 #: billsdepositsdialog.cpp:588 transdialog.cpp:529
 msgid "Split"
-msgstr ""
+msgstr "Dela"
 
 #: billsdepositsdialog.cpp:591 transdialog.cpp:1274
 msgid "Use split Categories"
@@ -1260,7 +1260,7 @@ msgstr[1] "%d dagar försenad!"
 msgid "%d day overdue!"
 msgid_plural "%d days overdue!"
 msgstr[0] ""
-msgstr[1] ""
+msgstr[1] "%d dagar försenad!"
 
 #: billsdepositspanel.cpp:630
 msgid "Do you really want to delete the series?"
@@ -1478,15 +1478,15 @@ msgstr ""
 
 #: categdialog.cpp:191
 msgid "Expand"
-msgstr ""
+msgstr "Expandera"
 
 #: categdialog.cpp:196 maincurrencydialog.cpp:169
 msgid "Show All"
-msgstr ""
+msgstr "Visa alla"
 
 #: categdialog.cpp:198
 msgid "Show all hidden categories"
-msgstr ""
+msgstr "Visa alla dolda kategorier"
 
 #: categdialog.cpp:228
 msgid "Add a new category"
@@ -1502,7 +1502,7 @@ msgstr "Ta bort en befintlig kategori. Kategorin kan inte användas av befintlig
 
 #: categdialog.cpp:241 maincurrencydialog.cpp:211
 msgid "&Select"
-msgstr ""
+msgstr "&Välj"
 
 #: categdialog.cpp:243
 msgid "Select the currently selected category as the selected category for the transaction"
@@ -1510,15 +1510,15 @@ msgstr ""
 
 #: categdialog.cpp:252
 msgid "Enter the name for the new category:"
-msgstr ""
+msgstr "Ange namnet för den nya kategorin:"
 
 #: categdialog.cpp:255
 msgid "Tip: If category added now, check bottom of list."
-msgstr ""
+msgstr "Tips: Om kategorin har lagts till nu, kontrollera längst ner i listan."
 
 #: categdialog.cpp:258
 msgid "Add Category"
-msgstr ""
+msgstr "Lägg till kategori"
 
 #: categdialog.cpp:267 categdialog.cpp:503
 msgid "Category with same name exists"
@@ -1527,11 +1527,12 @@ msgstr "Kategori med samma namn finns redan"
 #: categdialog.cpp:268
 msgid "Tip: If category added now, check bottom of list.\n"
 "Category will be in sorted order next time dialog appears"
-msgstr ""
+msgstr "Tips: Om kategorin har lagts till nu, kontrollera längst ned i listan.\n"
+"Kategorin kommer att sorteras nästa gång dialogrutan visas"
 
 #: categdialog.cpp:270 categdialog.cpp:294 categdialog.cpp:312
 msgid "Organise Categories: Adding Error"
-msgstr ""
+msgstr "Organisera kategorier: tilläggningsfel"
 
 #: categdialog.cpp:293 categdialog.cpp:520
 msgid "Sub Category with same name exists"
@@ -1539,7 +1540,7 @@ msgstr "Underkategori med samma namn finns redan"
 
 #: categdialog.cpp:311
 msgid "Invalid Parent Category. Choose Root or Main Category node."
-msgstr ""
+msgstr "Ogiltig överordnad kategori. Välj rot- eller huvudkategori."
 
 #: categdialog.cpp:318
 msgid "Category in use."
