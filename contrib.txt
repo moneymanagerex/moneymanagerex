@@ -70,7 +70,7 @@ Spanish
 -- jorgeb
 -- Javier, Roberto
 Swedish
--- Tomplast
+-- tomastomas
 Tr. Chinese
 -- Kysouke
 Tamil
@@ -122,6 +122,7 @@ Ruedi Kehl
 Frederick Hansen
 Michael Ellis
 Thomas Smith
+Carlo Cini
 Claude VINCENT
 Ehab Fanous
 Gregory Majewski
@@ -132,13 +133,14 @@ Michael Sloan
 Kurt Tremp
 Michael Mileo
 Roger Gimbrere
+Francesco Orabona
 Jan Salomons
 John Taylor
 Christian BELAIR
 Betsy & Chuck
 Dennis Smith
-Eliezer Gomez Gomez
 EMMANOUIL MASTROPETROS
+Eliezer Gomez Gomez
 James Pearsall
 John Weaving
 Kieron McGeever
@@ -146,8 +148,8 @@ Michael Wraight
 Officer Young
 Sergio Zanatta
 Andreas Mueller
-Glenn Fowler
 Brian Crow
+Glenn Fowler
 Joan Warren
 Eric Laval
 Kostas Fatolas
