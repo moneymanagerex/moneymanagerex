@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-05-26 12:37+0300\n"
-"PO-Revision-Date: 2020-06-03 20:54\n"
+"PO-Revision-Date: 2020-06-09 18:45\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
@@ -243,7 +243,7 @@ msgstr "Minsta betalning:"
 
 #: accountdialog.cpp:300
 msgid "Organize attachments of this account"
-msgstr ""
+msgstr "Organisera bilagor till detta konto"
 
 #: accountdialog.cpp:407
 msgid "Default Image"
@@ -306,7 +306,7 @@ msgstr "Besök hemsidan för mer information"
 #: appstartdialog.cpp:115
 #, c-format
 msgid "Open the %s website for latest news, updates etc"
-msgstr ""
+msgstr "Öppna webbplatsen %s för senaste nyheter, uppdateringar etc"
 
 #: appstartdialog.cpp:123 wizard_update.cpp:166
 #, c-format
@@ -848,7 +848,7 @@ msgstr "Återstående betalningar"
 
 #: billsdepositsdialog.cpp:460
 msgid "Request user to enter payment"
-msgstr ""
+msgstr "Begär att användaren ska ange betalning"
 
 #: billsdepositsdialog.cpp:461
 msgid "User requested to enter this transaction on the 'Date Paid'"
@@ -856,7 +856,7 @@ msgstr ""
 
 #: billsdepositsdialog.cpp:464
 msgid "Grant automatic execute"
-msgstr ""
+msgstr "Bevilja automatisk körning"
 
 #: billsdepositsdialog.cpp:465
 msgid "The requested payment will occur without user interaction"
@@ -956,7 +956,7 @@ msgstr "Välj betalningsmottagare"
 
 #: billsdepositsdialog.cpp:588 transdialog.cpp:529
 msgid "Split"
-msgstr ""
+msgstr "Dela"
 
 #: billsdepositsdialog.cpp:591 transdialog.cpp:1274
 msgid "Use split Categories"
@@ -1260,7 +1260,7 @@ msgstr[1] "%d dagar försenad!"
 msgid "%d day overdue!"
 msgid_plural "%d days overdue!"
 msgstr[0] ""
-msgstr[1] ""
+msgstr[1] "%d dagar försenad!"
 
 #: billsdepositspanel.cpp:630
 msgid "Do you really want to delete the series?"
@@ -1478,15 +1478,15 @@ msgstr ""
 
 #: categdialog.cpp:191
 msgid "Expand"
-msgstr ""
+msgstr "Expandera"
 
 #: categdialog.cpp:196 maincurrencydialog.cpp:169
 msgid "Show All"
-msgstr ""
+msgstr "Visa alla"
 
 #: categdialog.cpp:198
 msgid "Show all hidden categories"
-msgstr ""
+msgstr "Visa alla dolda kategorier"
 
 #: categdialog.cpp:228
 msgid "Add a new category"
@@ -1502,7 +1502,7 @@ msgstr "Ta bort en befintlig kategori. Kategorin kan inte användas av befintlig
 
 #: categdialog.cpp:241 maincurrencydialog.cpp:211
 msgid "&Select"
-msgstr ""
+msgstr "&Välj"
 
 #: categdialog.cpp:243
 msgid "Select the currently selected category as the selected category for the transaction"
@@ -1510,15 +1510,15 @@ msgstr ""
 
 #: categdialog.cpp:252
 msgid "Enter the name for the new category:"
-msgstr ""
+msgstr "Ange namnet för den nya kategorin:"
 
 #: categdialog.cpp:255
 msgid "Tip: If category added now, check bottom of list."
-msgstr ""
+msgstr "Tips: Om kategorin har lagts till nu, kontrollera längst ner i listan."
 
 #: categdialog.cpp:258
 msgid "Add Category"
-msgstr ""
+msgstr "Lägg till kategori"
 
 #: categdialog.cpp:267 categdialog.cpp:503
 msgid "Category with same name exists"
@@ -1527,11 +1527,12 @@ msgstr "Kategori med samma namn finns redan"
 #: categdialog.cpp:268
 msgid "Tip: If category added now, check bottom of list.\n"
 "Category will be in sorted order next time dialog appears"
-msgstr ""
+msgstr "Tips: Om kategorin har lagts till nu, kontrollera längst ned i listan.\n"
+"Kategorin kommer att sorteras nästa gång dialogrutan visas"
 
 #: categdialog.cpp:270 categdialog.cpp:294 categdialog.cpp:312
 msgid "Organise Categories: Adding Error"
-msgstr ""
+msgstr "Organisera kategorier: Tilläggningsfel"
 
 #: categdialog.cpp:293 categdialog.cpp:520
 msgid "Sub Category with same name exists"
@@ -1539,15 +1540,15 @@ msgstr "Underkategori med samma namn finns redan"
 
 #: categdialog.cpp:311
 msgid "Invalid Parent Category. Choose Root or Main Category node."
-msgstr ""
+msgstr "Ogiltig överordnad kategori. Välj rot- eller huvudkategori."
 
 #: categdialog.cpp:318
 msgid "Category in use."
-msgstr ""
+msgstr "Kategori som används."
 
 #: categdialog.cpp:318
 msgid "Sub-Category in use."
-msgstr ""
+msgstr "Underkategori som används."
 
 #: categdialog.cpp:320
 msgid "Tip: Change all transactions using this Category to\n"
@@ -1565,28 +1566,28 @@ msgstr ""
 
 #: categdialog.cpp:328
 msgid "Organise Categories: Delete Error"
-msgstr ""
+msgstr "Organisera kategorier: Raderingsfel"
 
 #: categdialog.cpp:432
 msgid "Select an unused category to delete."
-msgstr ""
+msgstr "Välj en oanvänd kategori att ta bort."
 
 #: categdialog.cpp:457
 msgid "This category cannot be deleted because it's used by transactions."
-msgstr ""
+msgstr "Denna kategori kan inte tas bort eftersom den används av transaktioner."
 
 #: categdialog.cpp:464
 msgid "Delete an existing category."
-msgstr ""
+msgstr "Ta bort en befintlig kategori."
 
 #: categdialog.cpp:469
 msgid "Subcategories must be deleted before."
-msgstr ""
+msgstr "Underkategorier måste tas bort först."
 
 #: categdialog.cpp:485
 #, c-format
 msgid "Enter a new name for '%s'"
-msgstr ""
+msgstr "Ange ett nytt namn för '%s'"
 
 #: categdialog.cpp:486
 msgid "Edit Category"
@@ -1807,7 +1808,7 @@ msgstr ""
 
 #: customfieldeditdialog.cpp:137
 msgid "ToolTip"
-msgstr ""
+msgstr "Verktygstips"
 
 #: customfieldeditdialog.cpp:139
 msgid "Enter the tooltip that will be shown"
@@ -4316,7 +4317,7 @@ msgstr "Visa organisera valutor"
 
 #: mmframe.cpp:1690
 msgid "&Options..."
-msgstr ""
+msgstr "&Alternativ..."
 
 #: mmframe.cpp:1700
 msgid "Register/View Release &Notifications"
@@ -4470,15 +4471,15 @@ msgstr "Spara databasfil som"
 
 #: mmframe.cpp:2122
 msgid "Can't copy file to itself"
-msgstr ""
+msgstr "Kan inte kopiera filen till sig själv"
 
 #: mmframe.cpp:2135
 msgid "Enter password for new database"
-msgstr ""
+msgstr "Ange lösenord för ny databas"
 
 #: mmframe.cpp:2219 mmframe.cpp:2238
 msgid "No account available to import"
-msgstr ""
+msgstr "Inget konto tillgängligt att importera"
 
 #: mmframe.cpp:2287
 msgid "Asset Accounts hold Asset transactions\n\n"
@@ -4510,7 +4511,7 @@ msgstr ""
 
 #: mmframe.cpp:2461 optiondialog.cpp:55 optiondialog.cpp:194
 msgid "MMEX Options"
-msgstr ""
+msgstr "MMEX Alternativ"
 
 #: mmframe.cpp:2569
 msgid "Choose HTML file to Export"
@@ -4539,7 +4540,7 @@ msgstr "Välj konto att ändra"
 
 #: mmframe.cpp:2971
 msgid "No account available to delete!"
-msgstr ""
+msgstr "Inget konto tillgängligt att ta bort!"
 
 #: mmframe.cpp:2975
 msgid "Choose Account to Delete"
@@ -4549,15 +4550,16 @@ msgstr "Välj konto att ta bort"
 #, c-format
 msgid "Are you sure you want to delete\n"
 " %s account: %s ?"
-msgstr ""
+msgstr "Är du säker på att du vill ta bort\n"
+" %s konto: %s?"
 
 #: mmframe.cpp:2999
 msgid "Select the account to reallocate"
-msgstr ""
+msgstr "Välj ett konto för att omfördela"
 
 #: mmframe.cpp:2999 mmframe.cpp:3022
 msgid "Account Reallocation"
-msgstr ""
+msgstr "Omallokering av konto"
 
 #: mmframe.cpp:3021
 #, c-format
@@ -4575,11 +4577,11 @@ msgstr ""
 #: mmframe.cpp:3175
 #, c-format
 msgid "File %s not found"
-msgstr ""
+msgstr "Filen %s hittades inte"
 
 #: mmframe.cpp:3210
 msgid "The language for this application has been changed. The change will take effect the next time the application is started."
-msgstr ""
+msgstr "Språket för denna applikation har ändrats. Ändringen kommer att träda i kraft nästa gång applikationen startas."
 
 #: mmframereport.cpp:72
 msgid "General Group Report"
@@ -4621,11 +4623,11 @@ msgstr "Inkomster vs utgifter"
 
 #: mmframereport.cpp:156
 msgid "My Usage"
-msgstr ""
+msgstr "Min användning"
 
 #: mmframereport.cpp:161
 msgid "Payees"
-msgstr ""
+msgstr "Betalningsmottagare"
 
 #: mmframereport.cpp:166
 msgid "Summary of Accounts"
@@ -4645,11 +4647,11 @@ msgstr ""
 
 #: mmhelppanel.cpp:65
 msgid "&Back"
-msgstr ""
+msgstr "&Bakåt"
 
 #: mmhelppanel.cpp:66
 msgid "&Forward"
-msgstr ""
+msgstr "&Framåt"
 
 #: mmhomepage.cpp:59 mmhomepage.cpp:77 reports/summary.cpp:154
 msgid "Stocks"
@@ -4679,7 +4681,7 @@ msgstr ""
 #: mmhomepage.cpp:419
 #, c-format
 msgid "Income vs Expenses: %s"
-msgstr ""
+msgstr "Inkomst vs Utgifter: %s"
 
 #: mmhomepage.cpp:429 reports/categexp.cpp:138 reports/categexp.cpp:358
 #: reports/categexp.cpp:415 reports/incexpenses.cpp:91
@@ -4763,11 +4765,11 @@ msgstr ""
 
 #: mmreportspanel.cpp:341
 msgid "Show"
-msgstr ""
+msgstr "Visa"
 
 #: mmreportspanel.cpp:342
 msgid "Hide"
-msgstr ""
+msgstr "Dölj"
 
 #: model/Model_Account.cpp:32 model/Model_Asset.cpp:35 reports/summary.cpp:148
 msgid "Cash"
@@ -4779,11 +4781,11 @@ msgstr ""
 
 #: model/Model_Account.cpp:34
 msgid "Credit Card"
-msgstr ""
+msgstr "Kreditkort"
 
 #: model/Model_Account.cpp:35
 msgid "Loan"
-msgstr ""
+msgstr "Lån"
 
 #: model/Model_Account.cpp:36
 msgid "Term"
@@ -4849,15 +4851,15 @@ msgstr "Varannan vecka"
 
 #: model/Model_CustomField.cpp:25
 msgid "String"
-msgstr ""
+msgstr "Sträng"
 
 #: model/Model_CustomField.cpp:26
 msgid "Integer"
-msgstr ""
+msgstr "Heltal"
 
 #: model/Model_CustomField.cpp:27
 msgid "Decimal"
-msgstr ""
+msgstr "Decimaltal"
 
 #: model/Model_CustomField.cpp:28
 msgid "Boolean"
