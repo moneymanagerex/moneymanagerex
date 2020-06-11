@@ -31,7 +31,6 @@ Copyright (C) 2014 - 2020 Nikolay Akimov
 #include "model/Model_Payee.h"
 #include "model/Model_Asset.h"
 #include "model/Model_Setting.h"
-#include "model/Model_Translink.h"
 
 static const wxString TOP_CATEGS = R"(
 <table class = 'table'>
@@ -209,12 +208,9 @@ void htmlWidgetTop7Categories::getTopCategoryStats(
 
     for (const auto &trx : transactions)
     {
-        Model_Translink::Data_Set translink_list = Model_Translink::instance().find(
-            Model_Translink::CHECKINGACCOUNTID(trx.TRANSID));
-
-        if (!translink_list.empty() && (trx.TOACCOUNTID == Model_Translink::CHECKING_TYPE::AS_TRANSFER)) {
+        // Do not include asset or stock transfers in income expense calculations.
+        if (Model_Checking::foreignTransactionAsTransfer(trx))
             continue;
-        }
 
         bool withdrawal = Model_Checking::type(trx) == Model_Checking::WITHDRAWAL;
         const auto it = split.find(trx.TRANSID);

@@ -36,15 +36,17 @@ wxString mmReportForecast::getHTMLText()
     std::map<wxString, std::pair<double, double> > amount_by_day;
     Model_Checking::Data_Set all_trans;
     
-    if (m_date_range && m_date_range->is_with_date())
+    if (m_date_range && m_date_range->is_with_date()) {
         all_trans = Model_Checking::instance().find(DB_Table_CHECKINGACCOUNT_V1::TRANSDATE(m_date_range->start_date().FormatISODate(), GREATER_OR_EQUAL)
-                    , DB_Table_CHECKINGACCOUNT_V1::TRANSDATE(m_date_range->end_date().FormatISODate(), LESS_OR_EQUAL));
-    else
+            , DB_Table_CHECKINGACCOUNT_V1::TRANSDATE(m_date_range->end_date().FormatISODate(), LESS_OR_EQUAL));
+    }
+    else {
         all_trans = Model_Checking::instance().all();
+    }
 
     for (const auto & trx : all_trans)
     {
-        if (Model_Checking::type(trx) == Model_Checking::TRANSFER) 
+        if (Model_Checking::type(trx) == Model_Checking::TRANSFER || Model_Checking::foreignTransactionAsTransfer(trx))
             continue;
 
         amount_by_day[trx.TRANSDATE].first += Model_Checking::withdrawal(trx, -1);
