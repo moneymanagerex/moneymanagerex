@@ -317,7 +317,7 @@ bool OnInitImpl(mmGUIApp* app)
     // https://msdn.microsoft.com/en-us/library/ee330730(v=vs.85).aspx
     // https://kevinragsdale.net/windows-10-and-the-web-browser-control/
     wxRegKey Key(wxRegKey::HKCU, R"(Software\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_BROWSER_EMULATION)");
-    if (!Key.Create(true) && Key.SetValue(wxFileName(wxStandardPaths::Get().GetExecutablePath()).GetFullName(), 11001))
+    if (!(Key.Create(true) && Key.SetValue(wxFileName(wxStandardPaths::Get().GetExecutablePath()).GetFullName(), 11001)))
         wxASSERT(false);
 #endif
 
