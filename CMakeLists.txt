@@ -414,7 +414,7 @@ endif()
 # --------- Install ---------
 # Before moving to INSTALL commands for macOS bundle this needs to be set
 if(APPLE)
-    string(REGEX REPLACE "^(.).*\\.([0-9]+)$" "\\1\\2" MMEX_VERSION_UNSTABLE_SHORT ${MMEX_VERSION_UNSTABLE})
+    string(REGEX REPLACE "^(.).*\\.([0-9]+)$" "\\1\\2" MMEX_VERSION_UNSTABLE_SHORT ${MMEX_VERSION_WITH_UNSTABLE})
 
     # Configure variables that are substituted into the plist
     # https://cmake.org/cmake/help/latest/prop_tgt/MACOSX_BUNDLE_INFO_PLIST.html
