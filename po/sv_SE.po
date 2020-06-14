@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-05-26 12:37+0300\n"
-"PO-Revision-Date: 2020-06-14 21:33\n"
+"PO-Revision-Date: 2020-06-14 21:43\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
@@ -2829,7 +2829,7 @@ msgstr "Transaktionens belopp är felaktigt"
 
 #: import_export/qif_import_gui.cpp:1075
 msgid "Transaction Category is incorrect"
-msgstr ""
+msgstr "Transaktionens kategori är felaktig"
 
 #: import_export/qif_import_gui.cpp:1167
 #, c-format
@@ -2896,31 +2896,31 @@ msgstr ""
 
 #: import_export/univcsvdialog.cpp:266
 msgid "&Up"
-msgstr ""
+msgstr "&Upp"
 
 #: import_export/univcsvdialog.cpp:268
 msgid "Move Up"
-msgstr ""
+msgstr "Flytta upp"
 
 #: import_export/univcsvdialog.cpp:271
 msgid "&Down"
-msgstr ""
+msgstr "&Ner"
 
 #: import_export/univcsvdialog.cpp:273
 msgid "Move &Down"
-msgstr ""
+msgstr "Flytta &ner"
 
 #: import_export/univcsvdialog.cpp:290
 msgid "Account: "
-msgstr ""
+msgstr "Konto: "
 
 #: import_export/univcsvdialog.cpp:303
 msgid "Date Format: "
-msgstr ""
+msgstr "Datumformat: "
 
 #: import_export/univcsvdialog.cpp:315
 msgid "CSV Delimiter:"
-msgstr ""
+msgstr "CSV-avgränsare:"
 
 #: import_export/univcsvdialog.cpp:321 optionsettingsmisc.cpp:188
 msgid "Specify the delimiter to use when importing/exporting CSV files"
@@ -2944,23 +2944,23 @@ msgstr ""
 
 #: import_export/univcsvdialog.cpp:380
 msgid "From start: "
-msgstr ""
+msgstr "Från början: "
 
 #: import_export/univcsvdialog.cpp:390
 msgid "From end: "
-msgstr ""
+msgstr "Från slutet: "
 
 #: import_export/univcsvdialog.cpp:401
 msgid "Preview"
-msgstr ""
+msgstr "Förhandsgranska"
 
 #: import_export/univcsvdialog.cpp:420
 msgid "Import File"
-msgstr ""
+msgstr "Importera fil"
 
 #: import_export/univcsvdialog.cpp:428
 msgid "Export File"
-msgstr ""
+msgstr "Exportera fil"
 
 #: import_export/univcsvdialog.cpp:533
 #, c-format
@@ -2970,13 +2970,13 @@ msgstr ""
 
 #: import_export/univcsvdialog.cpp:535
 msgid "Account does not exist"
-msgstr ""
+msgstr "Kontot finns inte"
 
 #: import_export/univcsvdialog.cpp:677 import_export/univcsvdialog.cpp:747
 #: import_export/univcsvdialog.cpp:1784
 #, c-format
 msgid "Positive if type has '%s'"
-msgstr ""
+msgstr "Positiv om typen har '%s'"
 
 #: import_export/univcsvdialog.cpp:917
 msgid "Incorrect fields specified for import!"
@@ -2984,7 +2984,7 @@ msgstr ""
 
 #: import_export/univcsvdialog.cpp:918
 msgid "Date field is required."
-msgstr ""
+msgstr "Datumfältet är obligatoriskt."
 
 #: import_export/univcsvdialog.cpp:919
 msgid "Amount field or both Withdrawal and Deposit fields are required."
@@ -3012,11 +3012,11 @@ msgstr ""
 
 #: import_export/univcsvdialog.cpp:997
 msgid "Invalid Date."
-msgstr ""
+msgstr "Ogiltigt datum."
 
 #: import_export/univcsvdialog.cpp:998 mmTextCtrl.cpp:99
 msgid "Invalid Amount."
-msgstr ""
+msgstr "Ogiltigt belopp."
 
 #: import_export/univcsvdialog.cpp:1000
 msgid "Type (withdrawal/deposit) unknown."
@@ -3128,7 +3128,7 @@ msgstr ""
 
 #: import_export/univcsvdialog.cpp:1780
 msgid "Enter a value"
-msgstr ""
+msgstr "Ange ett värde"
 
 #: maincurrencydialog.cpp:78 reports/summarystocks.cpp:180 stockdialog.cpp:427
 #: stockspanel.cpp:94
@@ -3167,7 +3167,7 @@ msgstr ""
 
 #: maincurrencydialog.cpp:251
 msgid "Diff."
-msgstr ""
+msgstr "Skillnad."
 
 #: maincurrencydialog.cpp:267
 msgid "Specify the date of currency value"
@@ -3199,11 +3199,11 @@ msgstr ""
 
 #: maincurrencydialog.cpp:356
 msgid "Do you really want to delete the selected Currency?"
-msgstr ""
+msgstr "Vill du verkligen ta bort den valda valutan?"
 
 #: maincurrencydialog.cpp:385
 msgid "Base Currency Selection"
-msgstr ""
+msgstr "Val av basvaluta"
 
 #: maincurrencydialog.cpp:426
 #, c-format
@@ -3228,20 +3228,20 @@ msgstr ""
 
 #: maincurrencydialog.cpp:517
 msgid "Set as Base Currency"
-msgstr ""
+msgstr "Ange som basvaluta"
 
 #: maincurrencydialog.cpp:518
 msgid "Online Update Currency Rate"
-msgstr ""
+msgstr "Uppdatera valutakurs online"
 
 #: maincurrencydialog.cpp:624
 msgid "No currency selected!"
-msgstr ""
+msgstr "Ingen valuta vald!"
 
 #: maincurrencydialog.cpp:637
 #, c-format
 msgid "Unable to download %s currency rates"
-msgstr ""
+msgstr "Det gick inte att ladda ner %s valutakurser"
 
 #: maincurrencydialog.cpp:642
 msgid "Do you want to add also dates without any transaction?"
@@ -3477,15 +3477,15 @@ msgstr "Ny transaktion"
 
 #: mmcheckingpanel.cpp:443
 msgid "Edit selected transaction"
-msgstr ""
+msgstr "Redigera vald transaktion"
 
 #: mmcheckingpanel.cpp:448
 msgid "Delete selected transaction"
-msgstr ""
+msgstr "Ta bort vald transaktion"
 
 #: mmcheckingpanel.cpp:452
 msgid "D&uplicate "
-msgstr ""
+msgstr "D&uplicera "
 
 #: mmcheckingpanel.cpp:453
 msgid "Duplicate selected transaction"
@@ -3582,7 +3582,7 @@ msgstr "Markera som &dubblett"
 
 #: mmcheckingpanel.cpp:1113
 msgid "Mark"
-msgstr ""
+msgstr "Markera"
 
 #: mmcheckingpanel.cpp:1116
 msgid "as Reconciled"
@@ -3606,7 +3606,7 @@ msgstr "som dubbletter"
 
 #: mmcheckingpanel.cpp:1121
 msgid "Mark all being viewed"
-msgstr ""
+msgstr "Markera alla som visade"
 
 #: mmcheckingpanel.cpp:1191
 msgid "Do you really want to delete all the transactions shown?"
@@ -3618,7 +3618,7 @@ msgstr "Borttagning av transaktion"
 
 #: mmcheckingpanel.cpp:1201
 msgid "Follow Up"
-msgstr ""
+msgstr "Följ upp"
 
 #: mmcheckingpanel.cpp:1201
 msgid "Unreconciled"
@@ -3661,11 +3661,11 @@ msgstr ""
 
 #: mmcustomdata.cpp:333
 msgid "Please select"
-msgstr ""
+msgstr "Välj"
 
 #: mmcustomdata.cpp:333
 msgid "Multi Choice"
-msgstr ""
+msgstr "Flera val"
 
 #: mmcustomdata.cpp:448
 #, c-format
@@ -3887,11 +3887,11 @@ msgstr ""
 
 #: mmframe.cpp:1332 mmframe.cpp:1713
 msgid "&Print..."
-msgstr ""
+msgstr "&Skriv ut..."
 
 #: mmframe.cpp:1332 mmframe.cpp:1713
 msgid "Print current view"
-msgstr ""
+msgstr "Skriv ut aktuell vy"
 
 #: mmframe.cpp:1339
 msgid "E&xit\tAlt-X"
@@ -3911,7 +3911,7 @@ msgstr "Visa/dölj verktygsfältet"
 
 #: mmframe.cpp:1348
 msgid "&Navigation"
-msgstr ""
+msgstr "&Navigation"
 
 #: mmframe.cpp:1348
 msgid "Show/Hide the Navigation tree control"
@@ -4163,7 +4163,7 @@ msgstr "YouTube"
 
 #: mmframe.cpp:1569
 msgid "Watch free video materials about MMEX"
-msgstr ""
+msgstr "Titta på gratis videomaterial om MMEX"
 
 #: mmframe.cpp:1572
 msgid "Slack"
@@ -4426,19 +4426,20 @@ msgstr ""
 #, c-format
 msgid "New password for database\n\n"
 "%s"
-msgstr ""
+msgstr "Nytt lösenord för databasen\n\n"
+"%s"
 
 #: mmframe.cpp:2041
 msgid "New password must not be empty."
-msgstr ""
+msgstr "Det nya lösenordet får inte vara tomt."
 
 #: mmframe.cpp:2045
 msgid "Please confirm new password"
-msgstr ""
+msgstr "Bekräfta nytt lösenord"
 
 #: mmframe.cpp:2049
 msgid "Password change completed."
-msgstr ""
+msgstr "Lösenordsändring slutförd."
 
 #: mmframe.cpp:2053
 msgid "Confirm password failed."
