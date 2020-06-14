@@ -42,8 +42,6 @@ mmPrintableBase::mmPrintableBase(const wxString& title)
 
 mmPrintableBase::~mmPrintableBase()
 {
-    setReportSettings();
-
     if (accountArray_)
         delete accountArray_;
 }
