@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-05-26 12:37+0300\n"
-"PO-Revision-Date: 2020-06-14 21:43\n"
+"PO-Revision-Date: 2020-06-16 18:25\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
@@ -4866,19 +4866,19 @@ msgstr "Decimaltal"
 
 #: model/Model_CustomField.cpp:28
 msgid "Boolean"
-msgstr ""
+msgstr "Boolean"
 
 #: model/Model_CustomField.cpp:30 wizard_update.cpp:136
 msgid "Time"
-msgstr ""
+msgstr "Tid"
 
 #: model/Model_CustomField.cpp:31
 msgid "SingleChoice"
-msgstr ""
+msgstr "Enkelval"
 
 #: model/Model_CustomField.cpp:32
 msgid "MultiChoice"
-msgstr ""
+msgstr "Multival"
 
 #: model/Model_Payee.cpp:80
 msgid "Payee Error"
@@ -4886,19 +4886,19 @@ msgstr ""
 
 #: model/Model_Report.cpp:88
 msgid "Begin date: "
-msgstr ""
+msgstr "Startdatum: "
 
 #: model/Model_Report.cpp:89
 msgid "Date: "
-msgstr ""
+msgstr "Datum: "
 
 #: model/Model_Report.cpp:90
 msgid "End date: "
-msgstr ""
+msgstr "Slutdatum: "
 
 #: model/Model_Report.cpp:235
 msgid "Template is empty"
-msgstr ""
+msgstr "Mall är tom"
 
 #: model/Model_Report.cpp:249
 #, c-format
@@ -4917,11 +4917,11 @@ msgstr "Visningsalternativ"
 
 #: optiondialog.cpp:132 webappdialog.cpp:155
 msgid "Attachments"
-msgstr ""
+msgstr "Bilagor"
 
 #: optiondialog.cpp:133
 msgid "Network"
-msgstr ""
+msgstr "Nätverk"
 
 #: optiondialog.cpp:151
 msgid "&Apply"
@@ -4934,7 +4934,7 @@ msgstr "%s sidan har sparats."
 
 #: optionsettingsattachment.cpp:57
 msgid "Attachments Settings"
-msgstr ""
+msgstr "Inställningar för bilagor"
 
 #: optionsettingsattachment.cpp:64
 #, c-format
@@ -5003,7 +5003,7 @@ msgstr ""
 
 #: optionsettingsattachment.cpp:162
 msgid "Delete file after import"
-msgstr ""
+msgstr "Ta bort fil efter import"
 
 #: optionsettingsattachment.cpp:164
 msgid "Select to delete file after import in attachments archive"
@@ -5027,15 +5027,15 @@ msgstr ""
 
 #: optionsettingsattachment.cpp:219
 msgid "Attachments folder"
-msgstr ""
+msgstr "Mapp för bilagor"
 
 #: optionsettingsattachment.cpp:227
 msgid "Attachments path has been changed!"
-msgstr ""
+msgstr "Sökväg för bilagor har ändrats!"
 
 #: optionsettingsattachment.cpp:229 optionsettingsattachment.cpp:238
 msgid "Attachments folder migration"
-msgstr ""
+msgstr "Migrering av bilagor"
 
 #: optionsettingsattachment.cpp:235
 msgid "Error moving attachments folder: please move it manually!"
@@ -5043,11 +5043,11 @@ msgstr ""
 
 #: optionsettingsattachment.cpp:236
 msgid "Origin"
-msgstr ""
+msgstr "Ursprung"
 
 #: optionsettingsattachment.cpp:237
 msgid "Destination"
-msgstr ""
+msgstr "Destination"
 
 #: optionsettingsgeneral.cpp:62
 msgid "Display Heading"
@@ -5099,11 +5099,11 @@ msgstr "Räkenskapsår"
 
 #: optionsettingsgeneral.cpp:130
 msgid "Start Day"
-msgstr ""
+msgstr "Startdag"
 
 #: optionsettingsgeneral.cpp:136
 msgid "Specify Day for start of financial year"
-msgstr ""
+msgstr "Ange dag för början av räkenskapsåret"
 
 #: optionsettingsgeneral.cpp:140
 msgid "Start Month"
@@ -5111,7 +5111,7 @@ msgstr "Startmånad"
 
 #: optionsettingsgeneral.cpp:152
 msgid "Specify month for start of financial year"
-msgstr ""
+msgstr "Ange månad för början av räkenskapsåret"
 
 #: optionsettingsgeneral.cpp:157
 msgid "Use Original Date when Pasting Transactions"
@@ -5151,35 +5151,35 @@ msgstr ""
 
 #: optionsettingsmisc.cpp:96
 msgid "Last Used"
-msgstr ""
+msgstr "Senast använd"
 
 #: optionsettingsmisc.cpp:103
 msgid "Unused"
-msgstr ""
+msgstr "Oanvänd"
 
 #: optionsettingsmisc.cpp:109
 msgid "Last used for payee"
-msgstr ""
+msgstr "Senast använd för betalningsmottagare"
 
 #: optionsettingsmisc.cpp:126
 msgid "Default Date:"
-msgstr ""
+msgstr "Förvalt datum:"
 
 #: optionsettingsmisc.cpp:128
 msgid "Default Payee:"
-msgstr ""
+msgstr "Förvald betalningsmottagare:"
 
 #: optionsettingsmisc.cpp:130
 msgid "Default Category:"
-msgstr ""
+msgstr "Förvald kategori:"
 
 #: optionsettingsmisc.cpp:132
 msgid "Default Status:"
-msgstr ""
+msgstr "Förvald status:"
 
 #: optionsettingsmisc.cpp:143
 msgid "Database Backup"
-msgstr ""
+msgstr "Säkerhetskopia av databas"
 
 #: optionsettingsmisc.cpp:150
 msgid "Create a new backup when MMEX Start"
@@ -5192,7 +5192,7 @@ msgstr ""
 
 #: optionsettingsmisc.cpp:157
 msgid "Backup database on exit."
-msgstr ""
+msgstr "Säkerhetskopiera databasen vid avslut."
 
 #: optionsettingsmisc.cpp:159
 msgid "When MMEX shuts down and changes made to database,\n"
@@ -5301,11 +5301,11 @@ msgstr ""
 
 #: optionsettingsnet.cpp:150 wizard_update.cpp:110
 msgid "Unstable"
-msgstr ""
+msgstr "Instabil"
 
 #: optionsettingsnet.cpp:154
 msgid "Updates source"
-msgstr ""
+msgstr "Uppdaterar källa"
 
 #: optionsettingsview.cpp:78
 msgid "Specify which accounts are visible"
