@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-05-26 12:37+0300\n"
-"PO-Revision-Date: 2020-06-16 18:25\n"
+"PO-Revision-Date: 2020-06-16 18:35\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
@@ -5341,15 +5341,15 @@ msgstr ""
 
 #: optionsettingsview.cpp:121 transdialog.cpp:563
 msgid "User Colors"
-msgstr ""
+msgstr "Användarens färger"
 
 #: payeedialog.cpp:65
 msgid "Default Category"
-msgstr ""
+msgstr "Förvald kategori"
 
 #: payeedialog.cpp:122
 msgid "Search:"
-msgstr ""
+msgstr "Sök:"
 
 #: payeedialog.cpp:183 payeedialog.cpp:222 payeedialog.cpp:250
 msgid "Payee with same name exists"
@@ -5357,15 +5357,15 @@ msgstr "Avs/mot med samma namn finns redan"
 
 #: payeedialog.cpp:184 payeedialog.cpp:207 payeedialog.cpp:222
 msgid "Organize Payees: Add Payee"
-msgstr ""
+msgstr "Organisera betalningsmottagare: Lägg till betalningsmottagare"
 
 #: payeedialog.cpp:206
 msgid "Enter the name for the new payee:"
-msgstr ""
+msgstr "Ange namnet på den nya betalningsmottagaren:"
 
 #: payeedialog.cpp:233
 msgid "Modify the name for the payee:"
-msgstr ""
+msgstr "Ändra namnet på betalningsmottagaren:"
 
 #: payeedialog.cpp:234 payeedialog.cpp:250
 msgid "Organize Payees: Edit Payee"
@@ -5373,7 +5373,7 @@ msgstr "Organisera betalningsmottagare: Redigera betalningsmottagare"
 
 #: payeedialog.cpp:264
 msgid "Payee in use."
-msgstr ""
+msgstr "Betalningsmottagare som används."
 
 #: payeedialog.cpp:267
 msgid "Tip: Change all transactions using this Payee to another Payee using the relocate command:"
@@ -5389,15 +5389,15 @@ msgstr "Organisera betalningsmottagare: Raderingsfel"
 
 #: payeedialog.cpp:361
 msgid "Define Default Category"
-msgstr ""
+msgstr "Definiera förvald kategori"
 
 #: payeedialog.cpp:376
 msgid "Relocate Payee"
-msgstr ""
+msgstr "Omlokalisera betalningsmottagare"
 
 #: relocatecategorydialog.cpp:53
 msgid "Relocate Category Dialog"
-msgstr ""
+msgstr "Dialog för omlokalisering av betalningsmottagare"
 
 #: relocatecategorydialog.cpp:86
 msgid "Relocate source category to the destination category"
@@ -5405,23 +5405,23 @@ msgstr ""
 
 #: relocatecategorydialog.cpp:89
 msgid "Select Source Category"
-msgstr ""
+msgstr "Välj källkategori"
 
 #: relocatecategorydialog.cpp:95
 msgid "Select Destination Category"
-msgstr ""
+msgstr "Välj målkategori"
 
 #: relocatecategorydialog.cpp:109 relocatepayeedialog.cpp:112
 msgid "Relocate:"
-msgstr ""
+msgstr "Flytta:"
 
 #: relocatecategorydialog.cpp:110 relocatepayeedialog.cpp:113
 msgid "to:"
-msgstr ""
+msgstr "till:"
 
 #: relocatecategorydialog.cpp:171 relocatepayeedialog.cpp:156
 msgid "Please Confirm:"
-msgstr ""
+msgstr "Vänligen bekräfta:"
 
 #: relocatecategorydialog.cpp:171
 msgid "Category Relocation Confirmation"
