@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-05-26 12:37+0300\n"
-"PO-Revision-Date: 2020-06-17 18:35\n"
+"PO-Revision-Date: 2020-06-17 19:35\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
@@ -962,7 +962,7 @@ msgstr "Dela"
 
 #: billsdepositsdialog.cpp:591 transdialog.cpp:1274
 msgid "Use split Categories"
-msgstr ""
+msgstr "Använd delade kategorier"
 
 #: billsdepositsdialog.cpp:597 billsdepositspanel.cpp:102
 #: budgetingpanel.cpp:292 filtertransdialog.cpp:217 filtertransdialog.cpp:887
@@ -995,11 +995,11 @@ msgstr "Nummer"
 
 #: billsdepositsdialog.cpp:619
 msgid "Organize attachments of this recurring transaction"
-msgstr ""
+msgstr "Organisera bilagor till denna återkommande transaktion"
 
 #: billsdepositsdialog.cpp:623 transdialog.cpp:569 usertransactionpanel.cpp:217
 msgid "Select one of the frequently used notes"
-msgstr ""
+msgstr "Välj en av de ofta använda anteckningarna"
 
 #: billsdepositsdialog.cpp:634 transdialog.cpp:1276
 #: usertransactionpanel.cpp:226
@@ -1029,7 +1029,7 @@ msgstr "Välj till konto"
 
 #: billsdepositsdialog.cpp:1213
 msgid "Specify the transfer amount in the From Account"
-msgstr ""
+msgstr "Ange överföringsbeloppet i Från-kontot"
 
 #: billsdepositsdialog.cpp:1256
 msgid "Activates"
@@ -1058,12 +1058,14 @@ msgstr "Ange periodicitet i månader för att aktivera.\n"
 #: billsdepositsdialog.cpp:1284
 msgid "Specify period in Days to activate.\n"
 "Leave blank when not active."
-msgstr ""
+msgstr "Ange period i dagar för att aktivera.\n"
+"Lämna tomt för att inaktivera."
 
 #: billsdepositsdialog.cpp:1292
 msgid "Specify period in Months to activate.\n"
 "Leave blank when not active."
-msgstr ""
+msgstr "Ange period i månader för att aktivera.\n"
+"Lämna tomt för att inaktivera."
 
 #: billsdepositsdialog.cpp:1300
 msgid "Specify the number of payments to be made.\n"
@@ -1113,7 +1115,7 @@ msgstr "Ange var transaktionen kommer från"
 
 #: billsdepositsdialog.h:122
 msgid "Specify which account the transfer is going to"
-msgstr ""
+msgstr "Ange vilket konto överföringen ska gå till"
 
 #: billsdepositsdialog.h:123 transdialog.cpp:1262 usertransactionpanel.cpp:146
 msgid "Specify the amount for this transaction"
@@ -1410,7 +1412,7 @@ msgstr "Verklig"
 
 #: budgetyeardialog.cpp:46
 msgid "Budget Editor"
-msgstr ""
+msgstr "Budgeteditor"
 
 #: budgetyeardialog.cpp:93
 msgid "&Add Year"
