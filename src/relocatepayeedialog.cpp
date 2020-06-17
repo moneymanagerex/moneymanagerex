@@ -32,7 +32,6 @@ wxIMPLEMENT_DYNAMIC_CLASS(relocatePayeeDialog, wxDialog);
 wxBEGIN_EVENT_TABLE(relocatePayeeDialog, wxDialog)
     EVT_BUTTON(wxID_OK, relocatePayeeDialog::OnOk)
     EVT_BUTTON(wxID_CANCEL, relocatePayeeDialog::OnCancel)
-    EVT_TEXT(wxID_ANY, relocatePayeeDialog::OnPayeeChanged)
 wxEND_EVENT_TABLE()
 
 relocatePayeeDialog::relocatePayeeDialog( )
@@ -91,6 +90,7 @@ void relocatePayeeDialog::CreateControls()
         , Model_Payee::instance().used_payee_names());
     cbSourcePayee_->AutoComplete(cbSourcePayee_->GetStrings());
     cbSourcePayee_->Enable();
+    cbSourcePayee_->Connect(wxID_ANY, wxEVT_TEXT, wxCommandEventHandler(relocatePayeeDialog::OnPayeeChanged), nullptr, this);
 
     cbDelete_ = new wxCheckBox(this, wxID_ANY
         , _("Delete source payee after relocation"));
@@ -99,6 +99,7 @@ void relocatePayeeDialog::CreateControls()
         , wxDefaultPosition, btnSize
         , Model_Payee::instance().all_payee_names());
     cbDestPayee_->AutoComplete(cbDestPayee_->GetStrings());
+    cbDestPayee_->Connect(wxID_ANY, wxEVT_TEXT, wxCommandEventHandler(relocatePayeeDialog::OnPayeeChanged), nullptr, this);
 
     wxBoxSizer* topSizer = new wxBoxSizer(wxVERTICAL);
     this->SetSizer(topSizer);
