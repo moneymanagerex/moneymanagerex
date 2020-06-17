@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-05-26 12:37+0300\n"
-"PO-Revision-Date: 2020-06-16 18:35\n"
+"PO-Revision-Date: 2020-06-17 18:35\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
@@ -185,7 +185,7 @@ msgstr "Åtkomstinfo:"
 
 #: accountdialog.cpp:230
 msgid "Enter any login/access information for the financial institution. This is not secure as anyone with access to the mmb file can access it."
-msgstr ""
+msgstr "Ange all inloggning/åtkomstinformation för finansinstitutet. Detta är inte säkert eftersom vem som helst med åtkomst till mmb-filen kan komma åt informationen."
 
 #: accountdialog.cpp:235
 msgid "Statement"
@@ -686,7 +686,7 @@ msgstr ""
 
 #: attachmentdialog.cpp:368
 msgid "Please do not remove, rename or modify manually directories and files."
-msgstr ""
+msgstr "Ta inte bort, byt namn eller ändra kataloger och filer manuellt."
 
 #: attachmentdialog.cpp:413 attachmentdialog.cpp:421
 msgid "Destination file already exist:"
@@ -5472,16 +5472,16 @@ msgstr ""
 #: relocatepayeedialog.cpp:152
 #, c-format
 msgid "From %s to %s"
-msgstr ""
+msgstr "Från %s till %s"
 
 #: relocatepayeedialog.cpp:157
 msgid "Payee Relocation Confirmation"
-msgstr ""
+msgstr "Bekräftelse på omlokalisering av betalningsmottagare"
 
 #: reports/budget.cpp:94
 #, c-format
 msgid "Year: %i Month: %s"
-msgstr ""
+msgstr "År: %i Månad: %s"
 
 #: reports/budgetcategorysummary.cpp:131
 #, c-format
@@ -5499,27 +5499,27 @@ msgstr ""
 
 #: reports/budgetcategorysummary.cpp:263
 msgid "Estimated Income:"
-msgstr ""
+msgstr "Beräknad inkomst:"
 
 #: reports/budgetcategorysummary.cpp:265
 msgid "Actual Income:"
-msgstr ""
+msgstr "Faktisk inkomst:"
 
 #: reports/budgetcategorysummary.cpp:267
 msgid "Difference Income:"
-msgstr ""
+msgstr "Skillnad på inkomst:"
 
 #: reports/budgetcategorysummary.cpp:272
 msgid "Estimated Expenses:"
-msgstr ""
+msgstr "Beräknade utgifter:"
 
 #: reports/budgetcategorysummary.cpp:274
 msgid "Actual Expenses:"
-msgstr ""
+msgstr "Faktiska utgifter:"
 
 #: reports/budgetcategorysummary.cpp:276
 msgid "Difference Expenses:"
-msgstr ""
+msgstr "Skillnad på utgifter:"
 
 #: reports/budgetingperf.cpp:172
 #, c-format
@@ -5647,7 +5647,7 @@ msgstr ""
 #: reports/htmlbuilder.cpp:311
 #, c-format
 msgid "From %s till %s"
-msgstr ""
+msgstr "Från %s till %s"
 
 #: reports/htmlbuilder.cpp:317 reports/mmDateRange.cpp:219
 msgid "Over Time"
@@ -5790,7 +5790,7 @@ msgstr ""
 
 #: reports/transactions.cpp:56
 msgid "Transaction List "
-msgstr ""
+msgstr "Transaktionslista "
 
 #: sharetransactiondialog.cpp:64 sharetransactiondialog.cpp:83
 msgid "Add Share Transaction"
@@ -5862,7 +5862,7 @@ msgstr ""
 
 #: sharetransactiondialog.cpp:287
 msgid "Add Transaction Details"
-msgstr ""
+msgstr "Lägg till transaktionsdetaljer"
 
 #: splitdetailsdialog.cpp:71
 msgid "Split Detail Dialog"
@@ -5882,7 +5882,7 @@ msgstr ""
 
 #: splittransactionsdialog.cpp:209
 msgid "Invalid Total Amount"
-msgstr ""
+msgstr "Ogiltigt totalbelopp"
 
 #: stockdialog.cpp:137 stockdialog.cpp:508 stockspanel.cpp:584
 msgid "Edit Stock Investment"
@@ -5946,7 +5946,7 @@ msgstr ""
 
 #: stockdialog.cpp:304 stockdialog.cpp:323 stockdialog.cpp:675
 msgid "Price"
-msgstr ""
+msgstr "Pris"
 
 #: stockdialog.cpp:316 stockspanel.cpp:101
 msgid "Price Date"
@@ -6099,7 +6099,7 @@ msgstr ""
 
 #: stockspanel.cpp:100
 msgid "Curr. Total Value"
-msgstr ""
+msgstr "Nuvarande totalt värde"
 
 #: stockspanel.cpp:140
 msgid "&New Stock Investment"
@@ -6180,17 +6180,17 @@ msgstr ""
 #: stockspanel.cpp:765
 #, c-format
 msgid "Invested: %s"
-msgstr ""
+msgstr "Investerade: %s"
 
 #: stockspanel.cpp:766
 #, c-format
 msgid "Gain: %s"
-msgstr ""
+msgstr "Vinst: %s"
 
 #: stockspanel.cpp:766
 #, c-format
 msgid "Loss: %s"
-msgstr ""
+msgstr "Förlust: %s"
 
 #: stockspanel.cpp:804
 msgid "Stock prices successfully updated"
@@ -6305,11 +6305,11 @@ msgstr ""
 
 #: usertransactionpanel.cpp:157
 msgid "Currency used for this transaction."
-msgstr ""
+msgstr "Valuta som används för denna transaktion."
 
 #: usertransactionpanel.cpp:176
 msgid "Specify the status for this transaction"
-msgstr ""
+msgstr "Ange status för denna transaktion"
 
 #: usertransactionpanel.cpp:184
 msgid "Specify a person, Company or Organisation for this transaction."
@@ -6325,7 +6325,7 @@ msgstr ""
 
 #: usertransactionpanel.cpp:292
 msgid "Account Selection"
-msgstr ""
+msgstr "Val av konto"
 
 #: util.cpp:422
 msgid "Jan"
@@ -6405,7 +6405,7 @@ msgstr "Lördag"
 
 #: util.cpp:502
 msgid "Currency rates have been updated"
-msgstr ""
+msgstr "Valutakurser har uppdaterats"
 
 #: util.cpp:868
 #, c-format
@@ -6674,7 +6674,8 @@ msgstr "Allmänna bankkonton täcker en mängd olika konton\n"
 #: wizard_newaccount.cpp:135
 msgid "Investment accounts are specialized accounts that only\n"
 "have stock/mutual fund investments associated with them."
-msgstr ""
+msgstr "Investeringskonton är specialiserade konton som bara\n"
+"har aktie/fondinvesteringar associerade till sig."
 
 #: wizard_newaccount.cpp:140
 msgid "Term accounts are specialized bank accounts. Intended for asset\n"
