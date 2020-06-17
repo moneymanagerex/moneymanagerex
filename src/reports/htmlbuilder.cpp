@@ -501,10 +501,10 @@ void mmHTMLBuilder::addPieChart(std::vector<ValueTrio>& valueList, const wxStrin
         objValue.SetObject();
 
         Value title, color;
-        title.SetString(label.utf8_str(), allocator);
+        title.SetString(label.c_str(), allocator);
         objValue.AddMember("title", title, allocator);
 
-        color.SetString(entry.color.utf8_str(), allocator);
+        color.SetString(entry.color.c_str(), allocator);
         objValue.AddMember("color", color, allocator);
 
         double v = (floor(fabs(entry.amount) * round) / round);
@@ -558,7 +558,7 @@ void mmHTMLBuilder::addBarChart(const wxArrayString& labels
     for (const auto& entry : labels)
     {
         Value label_str;
-        label_str.SetString(entry.utf8_str(), allocator);
+        label_str.SetString(entry.c_str(), allocator);
         labelsArray.PushBack(label_str, allocator);
     }
     dataObjValue.AddMember("labels", labelsArray, allocator);
@@ -572,13 +572,13 @@ void mmHTMLBuilder::addBarChart(const wxArrayString& labels
         objValue.SetObject();
 
         Value title, color;
-        title.SetString(entry.title.utf8_str(), allocator);
+        title.SetString(entry.title.c_str(), allocator);
         objValue.AddMember("title", title, allocator);
 
-        color.SetString(entry.fillColor.utf8_str(), allocator);
+        color.SetString(entry.fillColor.c_str(), allocator);
         objValue.AddMember("fillColor", color, allocator);
 
-        color.SetString(entry.strokeColor.utf8_str(), allocator);
+        color.SetString(entry.strokeColor.c_str(), allocator);
         objValue.AddMember("strokeColor", color, allocator);
 
         Value data_array(kArrayType);
@@ -661,10 +661,10 @@ var reportChart = new Chart(ctx).Line(d.data, d.options);
     for (const auto& entry : data)
     {
         Value label_str, xPos;
-        label_str.SetString(entry.label.utf8_str(), allocator);
+        label_str.SetString(entry.label.c_str(), allocator);
         labelsArray.PushBack(label_str, allocator);
 
-        xPos.SetString(entry.xPos.utf8_str(), allocator);
+        xPos.SetString(entry.xPos.c_str(), allocator);
         xPosArray.PushBack(xPos, allocator);
 
         double v = (floor((entry.amount) * round) / round);
@@ -678,10 +678,10 @@ var reportChart = new Chart(ctx).Line(d.data, d.options);
 
     const auto c = getColor(colorNum);
     Value fillColor, strokeColor, pointColor, pointStrokeColor;
-    fillColor.SetString(c.utf8_str(), allocator);
-    strokeColor.SetString(c.utf8_str(), allocator);
-    pointColor.SetString(c.utf8_str(), allocator);
-    fillColor.SetString(c.utf8_str(), allocator);
+    fillColor.SetString(c.c_str(), allocator);
+    strokeColor.SetString(c.c_str(), allocator);
+    pointColor.SetString(c.c_str(), allocator);
+    fillColor.SetString(c.c_str(), allocator);
     datasetsValue.AddMember("fillColor", fillColor, allocator);
     datasetsValue.AddMember("strokeColor", strokeColor, allocator);
     datasetsValue.AddMember("pointColor", pointColor, allocator);
