@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-05-26 12:37+0300\n"
-"PO-Revision-Date: 2020-06-18 20:23\n"
+"PO-Revision-Date: 2020-06-18 20:34\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
@@ -2725,16 +2725,16 @@ msgstr "Läser rad %zu, %lld ms"
 #: import_export/qif_import_gui.cpp:392
 #, c-format
 msgid "Line %zu \t %s\n"
-msgstr ""
+msgstr "Rad %zu \t %s\n"
 
 #: import_export/qif_import_gui.cpp:465
 #, c-format
 msgid "Number of lines read from QIF file: %zu in %lld ms"
-msgstr ""
+msgstr "Antal rader som läses från QIF-filen: %zu på %lld ms"
 
 #: import_export/qif_import_gui.cpp:468
 msgid "Press OK Button to continue"
-msgstr ""
+msgstr "Tryck på OK för att fortsätta"
 
 #: import_export/qif_import_gui.cpp:662 import_export/qif_import_gui.cpp:691
 #: import_export/qif_import_gui.cpp:708
@@ -2933,19 +2933,19 @@ msgstr "Ange avgränsare att använda för importering/exportering av CSV-filer"
 
 #: import_export/univcsvdialog.cpp:344
 msgid "Export column titles"
-msgstr ""
+msgstr "Exportera kolumnrubriker"
 
 #: import_export/univcsvdialog.cpp:359
 msgid "Positive values are deposits"
-msgstr ""
+msgstr "Positiva värden är insättningar"
 
 #: import_export/univcsvdialog.cpp:360
 msgid "Positive values are withdrawals"
-msgstr ""
+msgstr "Positiva värden är uttag"
 
 #: import_export/univcsvdialog.cpp:373
 msgid "Rows to ignore"
-msgstr ""
+msgstr "Rader att ignorera"
 
 #: import_export/univcsvdialog.cpp:380
 msgid "From start: "
@@ -2998,22 +2998,22 @@ msgstr ""
 #: import_export/univcsvdialog.cpp:920 import_export/univcsvdialog.cpp:1048
 #: webappdialog.cpp:406
 msgid "Import"
-msgstr ""
+msgstr "Importera"
 
 #: import_export/univcsvdialog.cpp:970
 #, c-format
 msgid "Transactions imported to account %s: %ld"
-msgstr ""
+msgstr "Transaktioner importerade till konto %s: %ld"
 
 #: import_export/univcsvdialog.cpp:981
 #, c-format
 msgid "Line %ld: Empty"
-msgstr ""
+msgstr "Rad %ld: Tom"
 
 #: import_export/univcsvdialog.cpp:995
 #, c-format
 msgid "Line %ld: Error:"
-msgstr ""
+msgstr "Rad %ld: Fel:"
 
 #: import_export/univcsvdialog.cpp:997
 msgid "Invalid Date."
@@ -3025,54 +3025,54 @@ msgstr "Ogiltigt belopp."
 
 #: import_export/univcsvdialog.cpp:1000
 msgid "Type (withdrawal/deposit) unknown."
-msgstr ""
+msgstr "Typ (uttag/insättning) okänd."
 
 #: import_export/univcsvdialog.cpp:1025
 #, c-format
 msgid "Line %ld: OK, imported."
-msgstr ""
+msgstr "Rad %ld: OK, importerad."
 
 #: import_export/univcsvdialog.cpp:1033
 #, c-format
 msgid "Total Lines: %ld"
-msgstr ""
+msgstr "Totalt antal rader: %ld"
 
 #: import_export/univcsvdialog.cpp:1035
 #, c-format
 msgid "Lines Selected to Import: %ld"
-msgstr ""
+msgstr "Rader valda för import: %ld"
 
 #: import_export/univcsvdialog.cpp:1037
 #, c-format
 msgid "Empty Lines: %ld"
-msgstr ""
+msgstr "Tomma rader: %ld"
 
 #: import_export/univcsvdialog.cpp:1039
 #, c-format
 msgid "Imported: %ld"
-msgstr ""
+msgstr "Importerad: %ld"
 
 #: import_export/univcsvdialog.cpp:1041
 #, c-format
 msgid "Errored: %ld"
-msgstr ""
+msgstr "Fel: %ld"
 
 #: import_export/univcsvdialog.cpp:1044
 #, c-format
 msgid "Log file written to: %s"
-msgstr ""
+msgstr "Loggfil skriven till: %s"
 
 #: import_export/univcsvdialog.cpp:1047 stockdialog.cpp:679
 msgid "Please confirm saving..."
-msgstr ""
+msgstr "Bekräfta sparande..."
 
 #: import_export/univcsvdialog.cpp:1079
 msgid "No imported transactions!"
-msgstr ""
+msgstr "Inga importerade transaktioner!"
 
 #: import_export/univcsvdialog.cpp:1097
 msgid "Incorrect fields specified for export! Requires at least Date and Amount."
-msgstr ""
+msgstr "Felaktiga fält angivna för export! Kräver åtminstone datum och belopp."
 
 #: import_export/univcsvdialog.cpp:1098 import_export/univcsvdialog.cpp:1222
 msgid "Export"
@@ -3080,7 +3080,7 @@ msgstr ""
 
 #: import_export/univcsvdialog.cpp:1108
 msgid "Overwrite existing file?"
-msgstr ""
+msgstr "Skriva över befintlig fil?"
 
 #: import_export/univcsvdialog.cpp:1108
 msgid "File exists"
@@ -3511,15 +3511,15 @@ msgstr ""
 
 #: mmcheckingpanel.cpp:1053
 msgid "&New Withdrawal"
-msgstr ""
+msgstr "&Nytt uttag"
 
 #: mmcheckingpanel.cpp:1054
 msgid "&New Deposit"
-msgstr ""
+msgstr "&Ny insättning"
 
 #: mmcheckingpanel.cpp:1056
 msgid "&New Transfer"
-msgstr ""
+msgstr "&Ny överföring"
 
 #: mmcheckingpanel.cpp:1060
 msgid "&Edit Transaction"
@@ -3535,19 +3535,19 @@ msgstr "&Klistra in transaktion"
 
 #: mmcheckingpanel.cpp:1069
 msgid "D&uplicate Transaction"
-msgstr ""
+msgstr "D&uplicera transaktion"
 
 #: mmcheckingpanel.cpp:1072
 msgid "&Move Transaction"
-msgstr ""
+msgstr "&Flytta transaktion"
 
 #: mmcheckingpanel.cpp:1078
 msgid "&View Split Categories"
-msgstr ""
+msgstr "&Visa delade kategorier"
 
 #: mmcheckingpanel.cpp:1086
 msgid "Create Reoccuring T&ransaction"
-msgstr ""
+msgstr "Skapa återkommande T&ransaktion"
 
 #: mmcheckingpanel.cpp:1092
 msgid "&Delete Transaction"
@@ -3559,7 +3559,7 @@ msgstr "Ta bort alla transaktioner i aktuell vy"
 
 #: mmcheckingpanel.cpp:1096
 msgid "Delete Viewed \"Follow Up\" Trans."
-msgstr ""
+msgstr "Ta bort visade transaktioner för \"uppföljning\""
 
 #: mmcheckingpanel.cpp:1097
 msgid "Delete Viewed \"Unreconciled\" Trans."
@@ -3662,7 +3662,7 @@ msgstr ""
 
 #: mmcustomdata.cpp:63
 msgid "Custom fields"
-msgstr ""
+msgstr "Anpassade fält"
 
 #: mmcustomdata.cpp:333
 msgid "Please select"
@@ -3676,7 +3676,8 @@ msgstr "Flera val"
 #, c-format
 msgid "Unable to save custom field \"%s\":\n"
 "value \"%s\" does not match RegEx validation \"%s\""
-msgstr ""
+msgstr "Kunde inte spara anpassat fält \"%s\":\n"
+"värde \"%s\" matchar inte RegEx validering \"%s\""
 
 #: mmcustomdata.cpp:449
 msgid "CustomField validation error"
