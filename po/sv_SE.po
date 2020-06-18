@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-05-26 12:37+0300\n"
-"PO-Revision-Date: 2020-06-17 19:43\n"
+"PO-Revision-Date: 2020-06-18 20:23\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
@@ -1796,19 +1796,19 @@ msgstr "Ny/Ändra anpassat fält"
 
 #: customfieldeditdialog.cpp:115
 msgid "Custom Field Details"
-msgstr ""
+msgstr "Detaljer för anpassat fält"
 
 #: customfieldeditdialog.cpp:127
 msgid "Enter the name of the custom field"
-msgstr ""
+msgstr "Ange namn på det anpassade fältet"
 
 #: customfieldeditdialog.cpp:130
 msgid "Field Type"
-msgstr ""
+msgstr "Fälttyp"
 
 #: customfieldeditdialog.cpp:134
 msgid "Select type of custom field"
-msgstr ""
+msgstr "Välj typ av anpassat fält"
 
 #: customfieldeditdialog.cpp:137
 msgid "ToolTip"
@@ -1816,57 +1816,58 @@ msgstr "Verktygstips"
 
 #: customfieldeditdialog.cpp:139
 msgid "Enter the tooltip that will be shown"
-msgstr ""
+msgstr "Ange verktygstips som kommer att visas"
 
 #: customfieldeditdialog.cpp:142
 msgid "RegEx"
-msgstr ""
+msgstr "RegEx"
 
 #: customfieldeditdialog.cpp:144
 msgid "Enter the RegEx to validate field"
-msgstr ""
+msgstr "Ange RegEx för att validera fältet"
 
 #: customfieldeditdialog.cpp:147
 msgid "Autocomplete"
-msgstr ""
+msgstr "Komplettera automatiskt"
 
 #: customfieldeditdialog.cpp:150
 msgid "Enables autocomplete on custom field"
-msgstr ""
+msgstr "Aktiverar automatisk komplettering på anpassat fält"
 
 #: customfieldeditdialog.cpp:153 util.cpp:408
 msgid "Default"
-msgstr ""
+msgstr "Förval"
 
 #: customfieldeditdialog.cpp:155
 msgid "Enter the default for this field\n"
 "For date/time insert 'Now' to make current date/time as default"
-msgstr ""
+msgstr "Ange förvalt värde för det här fältet\n"
+"För datum/tid infoga 'Nu' för att sätta aktuell datum/tid som förval"
 
 #: customfieldeditdialog.cpp:159
 msgid "Choices"
-msgstr ""
+msgstr "Val"
 
 #: customfieldeditdialog.cpp:161
 msgid "Enter the choices for this field separated with a semicolon"
-msgstr ""
+msgstr "Ange val för det här fältet separerat med semikolon"
 
 #: customfieldeditdialog.cpp:202
 msgid "Changing field type will delete all content!"
-msgstr ""
+msgstr "Att ändra fälttyp kommer att ta bort allt innehåll!"
 
 #: customfieldeditdialog.cpp:203 customfieldeditdialog.cpp:225 mmframe.cpp:2062
 #: mmframe.cpp:2081
 msgid "Do you want to proceed?"
-msgstr ""
+msgstr "Vill du fortsätta?"
 
 #: customfieldeditdialog.cpp:204 customfieldeditdialog.cpp:226
 msgid "Custom Field Change"
-msgstr ""
+msgstr "Ändring av anpassat fält"
 
 #: customfieldeditdialog.cpp:224
 msgid "You have modified choices: ones removed will be cleaned!"
-msgstr ""
+msgstr "Du har ändrat val: de borttagna kommer att rensas!"
 
 #: customfieldlistdialog.cpp:56
 msgid "Properties"
@@ -1879,11 +1880,11 @@ msgstr ""
 
 #: customfieldlistdialog.cpp:175
 msgid "Do you really want to delete this custom field and all its data?"
-msgstr ""
+msgstr "Vill du verkligen ta bort detta anpassade fält och alla dess data?"
 
 #: customfieldlistdialog.cpp:176
 msgid "Confirm Custom Field Deletion"
-msgstr ""
+msgstr "Bekräfta borttagning av anpassat fält"
 
 #: customfieldlistdialog.cpp:194
 msgid "This function will massive update (search & replace for entire value, not inside value), please remind that there isn't any validation!\n"
@@ -1892,7 +1893,7 @@ msgstr ""
 
 #: customfieldlistdialog.cpp:196
 msgid "Confirm Custom Field Content Update"
-msgstr ""
+msgstr "Bekräfta uppdatering av innehåll för anpassat fält"
 
 #: customfieldlistdialog.cpp:201
 msgid "Find what"
@@ -1902,12 +1903,13 @@ msgstr "Hitta vad"
 #: customfieldlistdialog.cpp:213 customfieldlistdialog.cpp:219
 #: customfieldlistdialog.cpp:234
 msgid "Update Custom Field Content"
-msgstr ""
+msgstr "Uppdatera innehållet i anpassat fält"
 
 #: customfieldlistdialog.cpp:205
 msgid "Do you want to update blank content?\n"
 "Press no if you want to abort replace procedure!"
-msgstr ""
+msgstr "Vill du uppdatera tomt innehåll?\n"
+"Tryck på nej om du vill avbryta proceduren!"
 
 #: customfieldlistdialog.cpp:213
 msgid "Replace with"
@@ -1916,12 +1918,13 @@ msgstr "Ersätt med"
 #: customfieldlistdialog.cpp:217
 msgid "Do you want to update to blank?\n"
 "Press no if you want to abort replace procedure!"
-msgstr ""
+msgstr "Vill du uppdatera till tomt?\n"
+"Tryck på nej om du vill avbryta proceduren!"
 
 #: customfieldlistdialog.cpp:233
 #, c-format
 msgid "%i occurrences founded and replaced!"
-msgstr ""
+msgstr "%i förekomster hittade och ersatta!"
 
 #: customfieldlistdialog.cpp:268
 msgid "&Massive content update "
@@ -2667,11 +2670,11 @@ msgstr ""
 #: import_export/qif_export.cpp:575
 #, c-format
 msgid "Number of accounts exported: %zu"
-msgstr ""
+msgstr "Antal exporterade konton: %zu"
 
 #: import_export/qif_export.cpp:576 mmframe.cpp:1317
 msgid "Export to QIF"
-msgstr ""
+msgstr "Exportera till QIF"
 
 #: import_export/qif_import_gui.cpp:79 import_export/qif_import_gui.cpp:905
 msgid "QIF Import"
@@ -2679,27 +2682,27 @@ msgstr "QIF-import"
 
 #: import_export/qif_import_gui.cpp:130
 msgid "Choose &file"
-msgstr ""
+msgstr "Välj &fil"
 
 #: import_export/qif_import_gui.cpp:143 import_export/univcsvdialog.cpp:330
 msgid "Encoding:"
-msgstr ""
+msgstr "Kodning:"
 
 #: import_export/qif_import_gui.cpp:169
 msgid "Filtering Details:"
-msgstr ""
+msgstr "Detaljer för filtrering:"
 
 #: import_export/qif_import_gui.cpp:206
 msgid "Data"
-msgstr ""
+msgstr "Data"
 
 #: import_export/qif_import_gui.cpp:266
 msgid "Use account number instead of account name"
-msgstr ""
+msgstr "Använd kontonummer istället för kontonamn"
 
 #: import_export/qif_import_gui.cpp:270
 msgid "Include payee field in notes"
-msgstr ""
+msgstr "Inkludera fält för betalningsmottagare i anteckningar"
 
 #: import_export/qif_import_gui.cpp:349 import_export/qif_import_gui.cpp:352
 #: import_export/qif_import_gui.cpp:550 import_export/qif_import_gui.cpp:1108
@@ -2712,12 +2715,12 @@ msgstr "Okänd"
 
 #: import_export/qif_import_gui.cpp:358
 msgid "Scanning"
-msgstr ""
+msgstr "Skannar"
 
 #: import_export/qif_import_gui.cpp:386
 #, c-format
 msgid "Reading line %zu, %lld ms"
-msgstr ""
+msgstr "Läser rad %zu, %lld ms"
 
 #: import_export/qif_import_gui.cpp:392
 #, c-format
