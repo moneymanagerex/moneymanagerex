@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-05-26 12:37+0300\n"
-"PO-Revision-Date: 2020-06-19 10:54\n"
+"PO-Revision-Date: 2020-06-19 11:06\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -4022,7 +4022,7 @@ msgstr ""
 
 #: mmframe.cpp:1440 mmframe.cpp:1707
 msgid "Download Currency and Stock rates"
-msgstr "Télécharger la devise et les taux de stock"
+msgstr "Télécharger le cours de la devise et de l'action"
 
 #: mmframe.cpp:1447
 msgid "Organize &Categories..."
@@ -4354,7 +4354,7 @@ msgstr "Infos"
 
 #: mmframe.cpp:1707
 msgid "Download rates"
-msgstr ""
+msgstr "Taux de téléchargement"
 
 #: mmframe.cpp:1710
 msgid "Toggle Fullscreen\tF11"
