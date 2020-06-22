@@ -644,7 +644,7 @@ void mmStockDialog::OnHistoryImportButton(wxCommandEvent& /*event*/)
             // date
             wxDateTime dt;
             dateStr = tokens[0];
-            mmParseDisplayStringToDate(dt, dateStr, Option::instance().DateFormat());
+            mmParseDisplayStringToDate(dt, dateStr, Option::instance().getDateFormat());
             dateStr = dt.FormatISODate();
             // price
             priceStr = tokens[1];
@@ -906,7 +906,7 @@ void mmStockDialog::OnHistoryAddButton(wxCommandEvent& /*event*/)
     for (i = 0; i < m_price_listbox->GetItemCount(); i++)
     {
         listStr = m_price_listbox->GetItemText(i, 0);
-        mmParseDisplayStringToDate(dt, listStr, Option::instance().DateFormat());
+        mmParseDisplayStringToDate(dt, listStr, Option::instance().getDateFormat());
         if (dt.IsSameDate(m_history_date_ctrl->GetValue()))
             break;
     }
@@ -916,7 +916,7 @@ void mmStockDialog::OnHistoryAddButton(wxCommandEvent& /*event*/)
         for (i = 0; i < m_price_listbox->GetItemCount(); i++)
         {
             listStr = m_price_listbox->GetItemText(i, 0);
-            mmParseDisplayStringToDate(dt, listStr, Option::instance().DateFormat());
+            mmParseDisplayStringToDate(dt, listStr, Option::instance().getDateFormat());
             if (dt.GetDateOnly() < m_history_date_ctrl->GetValue().GetDateOnly())
                 break;
         }
