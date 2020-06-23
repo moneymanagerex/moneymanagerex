@@ -297,12 +297,12 @@ const wxString mmGetDateForDisplay(const wxString &iso_date)
     //ISO Date to formatted string lookup table.
     static std::unordered_map<wxString, wxString> dateLookup;
 
-    static wxString dateFormat = Option::instance().DateFormat();
+    static wxString dateFormat = Option::instance().getDateFormat();
 
     // If format has been changed, delete all stored strings.
-    if (dateFormat != Option::instance().DateFormat())
+    if (dateFormat != Option::instance().getDateFormat())
     {
-        dateFormat = Option::instance().DateFormat();
+        dateFormat = Option::instance().getDateFormat();
         dateLookup.clear();
     }
 

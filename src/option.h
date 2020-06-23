@@ -36,8 +36,8 @@ public:
     void LoadOptions(bool include_infotable = true);
 
     // set and save the option: m_dateFormat
-    void DateFormat(const wxString& datefornat);
-    const wxString DateFormat() const;
+    void setDateFormat(const wxString& date_format);
+    const wxString getDateFormat() const;
 
     // set and save the option: m_language
     wxLanguage getLanguageID(bool get_db = false);
@@ -143,7 +143,7 @@ private:
     int m_budget_days_offset;
 };
 
-inline const wxString Option::DateFormat() const
+inline const wxString Option::getDateFormat() const
 {
     return m_dateFormat;
 }

@@ -44,7 +44,7 @@ OptionSettingsGeneral::OptionSettingsGeneral(wxWindow *parent, mmGUIApp* app
 {
     wxPanel::Create(parent, id, pos, size, style, name);
     m_app = app;
-    m_date_format = Option::instance().DateFormat();
+    m_date_format = Option::instance().getDateFormat();
 
     Create();
 }
@@ -117,7 +117,7 @@ void OptionSettingsGeneral::Create()
     m_sample_date_text = new wxStaticText(this, wxID_STATIC, "redefined elsewhere");
     dateFormatStaticBoxSizer->Add(new wxStaticText(this, wxID_STATIC, _("New date format sample:")), wxSizerFlags(g_flagsH).Border(wxLEFT, 15));
     dateFormatStaticBoxSizer->Add(m_sample_date_text, wxSizerFlags(g_flagsH).Border(wxLEFT, 5));
-    m_sample_date_text->SetLabelText(wxDateTime::Now().Format(Option::instance().DateFormat()));
+    m_sample_date_text->SetLabelText(wxDateTime::Now().Format(Option::instance().getDateFormat()));
 
     // Financial Year Settings
     wxStaticBox* financialYearStaticBox = new wxStaticBox(this, wxID_ANY, _("Financial Year"));
@@ -181,7 +181,8 @@ void OptionSettingsGeneral::OnDateFormatChanged(wxCommandEvent& /*event*/)
     wxStringClientData* data = static_cast<wxStringClientData*>(m_date_format_choice->GetClientObject(m_date_format_choice->GetSelection()));
     if (data)
     {
-        m_sample_date_text->SetLabelText(wxDateTime::Now().Format(data->GetData()));
+        m_date_format = data->GetData();
+        m_sample_date_text->SetLabelText(wxDateTime::Now().Format(m_date_format));
     }
     else
     {
@@ -214,7 +215,7 @@ bool OptionSettingsGeneral::SaveSettings()
 
     Option::instance().CurrencyHistoryEnabled(m_currency_history->GetValue());
 
-    Option::instance().DateFormat(m_date_format);
+    Option::instance().setDateFormat(m_date_format);
     SaveFinancialYearStart();
 
     Model_Setting::instance().Set(INIDB_USE_ORG_DATE_COPYPASTE, m_use_org_date_copy_paste->GetValue());

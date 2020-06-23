@@ -101,10 +101,10 @@ void Option::LoadOptions(bool include_infotable)
     m_ico_size = Model_Setting::instance().GetIntSetting("ICONSIZE", 16);
 }
 
-void Option::DateFormat(const wxString& dateformat)
+void Option::setDateFormat(const wxString& date_format)
 {
-    m_dateFormat = dateformat;
-    Model_Infotable::instance().Set("DATEFORMAT", dateformat);
+    m_dateFormat = date_format;
+    Model_Infotable::instance().Set("DATEFORMAT", date_format);
 }
 
 wxLanguage Option::getLanguageID(bool get_db)
