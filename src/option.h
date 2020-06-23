@@ -36,7 +36,7 @@ public:
     void LoadOptions(bool include_infotable = true);
 
     // set and save the option: m_dateFormat
-    void setDateFormat(const wxString& datefornat);
+    void setDateFormat(const wxString& date_format);
     const wxString getDateFormat() const;
 
     // set and save the option: m_language
