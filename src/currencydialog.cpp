@@ -252,14 +252,13 @@ void mmCurrencyDialog::OnOk(wxCommandEvent& WXUNUSED(event))
 
     if (m_currency->SCALE > 1)
     {
-        if (!wxString(".,").Contains(m_currency->DECIMAL_POINT)
-            || m_currency->DECIMAL_POINT.empty()) {
+        if (m_currency->DECIMAL_POINT.empty()) {
             return mmErrorDialogs::ToolTip4Object(decTx_, _("Invalid Entry"), _("Decimal Char"));
         }
 
-        if ((m_currency->GROUP_SEPARATOR == m_currency->DECIMAL_POINT)
-            || (!wxString(" .,").Contains(m_currency->GROUP_SEPARATOR)))
+        if (m_currency->GROUP_SEPARATOR == m_currency->DECIMAL_POINT) {
             return mmErrorDialogs::ToolTip4Object(grpTx_, _("Invalid Entry"), _("Grouping Char"));
+        }
     }
 
     if (baseConvRate_->Calculate(SCALE))
@@ -278,6 +277,17 @@ void mmCurrencyDialog::OnCancel(wxCommandEvent& /*event*/)
 
 void mmCurrencyDialog::OnTextChanged(wxCommandEvent& WXUNUSED(event))
 {
+    if (m_currency->SCALE > 1)
+    {
+        if (decTx_->GetValue().empty()) {
+            return mmErrorDialogs::ToolTip4Object(decTx_, _("Invalid Entry"), _("Decimal Char"));
+        }
+
+        if (grpTx_->GetValue() == m_currency->DECIMAL_POINT) {
+            return mmErrorDialogs::ToolTip4Object(grpTx_, _("Invalid Entry"), _("Grouping Char"));
+        }
+    }
+
     int scale = wxAtoi(scaleTx_->GetValue());
     m_currency->PFX_SYMBOL = pfxTx_->GetValue();
     m_currency->SFX_SYMBOL = sfxTx_->GetValue();
