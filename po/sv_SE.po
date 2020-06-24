@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-05-26 12:37+0300\n"
-"PO-Revision-Date: 2020-06-18 20:34\n"
+"PO-Revision-Date: 2020-06-24 21:13\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
@@ -682,7 +682,7 @@ msgstr ""
 
 #: attachmentdialog.cpp:366
 msgid "This directory and its files are automatically managed by Money Manager EX software."
-msgstr ""
+msgstr "Denna katalog och dess filer hanteras automatiskt av Money Manager EX programvara."
 
 #: attachmentdialog.cpp:368
 msgid "Please do not remove, rename or modify manually directories and files."
@@ -842,7 +842,7 @@ msgstr "Upprepas"
 
 #: billsdepositsdialog.cpp:439
 msgid "Advance the next occurring date with the specified values"
-msgstr ""
+msgstr "Flytta fram nästa datum med de angivna värdena"
 
 #: billsdepositsdialog.cpp:446 billsdepositsdialog.cpp:1299
 msgid "Payments Left"
