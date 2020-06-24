@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-05-26 12:37+0300\n"
-"PO-Revision-Date: 2020-06-24 21:23\n"
+"PO-Revision-Date: 2020-06-24 21:33\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
@@ -1788,7 +1788,7 @@ msgstr "Ogiltig inmatning"
 #: currencydialog.cpp:295
 #, c-format
 msgid "%.2f Shown As: %s"
-msgstr ""
+msgstr "%.2f Visas som: %s"
 
 #: customfieldeditdialog.cpp:56
 msgid "New/Edit Custom Field"
@@ -1876,7 +1876,7 @@ msgstr "Egenskaper"
 #: customfieldlistdialog.cpp:66
 #, c-format
 msgid "Personalize custom fields | %s"
-msgstr ""
+msgstr "Anpassa anpassade fält | %s"
 
 #: customfieldlistdialog.cpp:175
 msgid "Do you really want to delete this custom field and all its data?"
@@ -2138,7 +2138,7 @@ msgstr "Investeringsinkomst"
 #: dbupgrade.cpp:72
 #, c-format
 msgid "MMEX database upgrade to version %i failed!"
-msgstr ""
+msgstr "Uppgradering av MMEX-databasen till version %i misslyckades!"
 
 #: dbupgrade.cpp:73
 msgid "Please restore DB from autocreated pre-upgrade backup and retry or contact MMEX support"
@@ -2146,17 +2146,18 @@ msgstr ""
 
 #: dbupgrade.cpp:74 dbupgrade.cpp:108 dbupgrade.cpp:120
 msgid "MMEX database upgrade"
-msgstr ""
+msgstr "Uppgradering av MMEX databas"
 
 #: dbupgrade.cpp:106
 msgid "MMEX database error!"
-msgstr ""
+msgstr "Fel i MMEX-databasen!"
 
 #: dbupgrade.cpp:107
 #, c-format
 msgid "MMEX database version %i doesn't work with this MMEX version.\n"
 "Please upgrade MMEX to newer version."
-msgstr ""
+msgstr "MMEX databasversion %i fungerar inte med denna MMEX-version.\n"
+"Vänligen uppgradera MMEX till nyare version."
 
 #: dbupgrade.cpp:119
 #, c-format
