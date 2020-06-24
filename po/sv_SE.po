@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-05-26 12:37+0300\n"
-"PO-Revision-Date: 2020-06-24 21:13\n"
+"PO-Revision-Date: 2020-06-24 21:23\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
@@ -870,7 +870,7 @@ msgstr "Transaktionsdetaljer"
 
 #: billsdepositsdialog.cpp:499
 msgid "Specify the date when this bill or deposit is due"
-msgstr ""
+msgstr "Ange datum när denna faktura eller insättning ska betalas"
 
 #: billsdepositsdialog.cpp:509
 msgid "Retard or advance the date of the 'next occurrence'"
@@ -918,7 +918,7 @@ msgstr "Summa"
 
 #: billsdepositsdialog.cpp:559 transdialog.cpp:1258
 msgid "Specify the transfer amount in the To Account"
-msgstr ""
+msgstr "Ange överföringsbeloppet i till-kontot"
 
 #: billsdepositsdialog.cpp:571 billsdepositsdialog.cpp:826
 #: billsdepositsdialog.cpp:840 billsdepositspanel.cpp:99
@@ -938,7 +938,7 @@ msgstr "Välj konto"
 
 #: billsdepositsdialog.cpp:575
 msgid "Specify the Account that will own the recurring transaction"
-msgstr ""
+msgstr "Ange kontot som kommer att äga den återkommande transaktionen"
 
 #: billsdepositsdialog.cpp:578 billsdepositsdialog.cpp:827
 #: billsdepositspanel.cpp:100 filtertransdialog.cpp:206
@@ -1201,7 +1201,7 @@ msgstr ""
 
 #: billsdepositspanel.cpp:283
 msgid "&Skip"
-msgstr ""
+msgstr "&Hoppa över"
 
 #: billsdepositspanel.cpp:284
 msgid "Skip Next Bills & Deposit Occurrence"
@@ -1778,7 +1778,7 @@ msgstr "Spara eventuella ändringar"
 
 #: currencydialog.cpp:236
 msgid "Any changes will be lost without update"
-msgstr ""
+msgstr "Eventuella ändringar kommer att gå förlorade utan uppdatering"
 
 #: currencydialog.cpp:257 currencydialog.cpp:262 currencydialog.cpp:268
 #: maincurrencydialog.cpp:594 mmSimpleDialogs.cpp:238
