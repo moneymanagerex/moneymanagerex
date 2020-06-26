@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-05-26 12:37+0300\n"
-"PO-Revision-Date: 2020-06-26 08:34\n"
+"PO-Revision-Date: 2020-06-26 08:44\n"
 "Last-Translator: \n"
 "Language-Team: Hebrew\n"
 "MIME-Version: 1.0\n"
@@ -322,7 +322,7 @@ msgstr "&יציאה "
 #: appstartdialog.cpp:153
 #, c-format
 msgid "Open the previously opened database : %s"
-msgstr ""
+msgstr "פתיחת מסד הנתונים שהיה בשימוש לאחרונה: %s"
 
 #: assetdialog.cpp:61 assetdialog.cpp:410 assetspanel.cpp:466
 msgid "New Asset"
@@ -430,7 +430,8 @@ msgstr "תנועה לא תקינה"
 #: assetdialog.cpp:409
 msgid "Asset Account not found.\n\n"
 "Would you want to create one?"
-msgstr ""
+msgstr "לא נמצא חשבון נכס.\n"
+"האם ליצור חשבון?"
 
 #: assetspanel.cpp:58 billsdepositspanel.cpp:96 mmcheckingpanel.cpp:949
 #: reports/transactions.cpp:68 stockspanel.cpp:91
@@ -1797,7 +1798,7 @@ msgstr "תנועה לא תקינה"
 #: currencydialog.cpp:295
 #, c-format
 msgid "%.2f Shown As: %s"
-msgstr ""
+msgstr "%.2f מוצג כ: %s"
 
 #: customfieldeditdialog.cpp:56
 msgid "New/Edit Custom Field"
@@ -2217,7 +2218,7 @@ msgstr "תחזוקת בסיס הנתונים הושלמה , נא להפעיל מ
 
 #: dbwrapper.cpp:70
 msgid "When database file opening:"
-msgstr ""
+msgstr "בעת פתיחת קובץ מסד נתונים:"
 
 #: dbwrapper.cpp:74
 msgid "Can't open file"
@@ -2633,7 +2634,7 @@ msgstr "‮קובצי QIF ‭(*.qif)"
 
 #: import_export/qif_export.cpp:299
 msgid "Choose JSON data file to Export"
-msgstr ""
+msgstr "בחירת קובץ נתונים JSON ליצוא"
 
 #: import_export/qif_export.cpp:301
 msgid "JSON Files (*.json)"
@@ -4996,7 +4997,7 @@ msgstr ""
 #: optionsettingsattachment.cpp:103
 #, c-format
 msgid "%s -> User profile folder"
-msgstr ""
+msgstr "%s -> ספרית פרופיל משתמש"
 
 #: optionsettingsattachment.cpp:104
 #, c-format
@@ -5054,11 +5055,11 @@ msgstr "בחירת סיפריה שתשמש כארכיב צרופות"
 
 #: optionsettingsattachment.cpp:219
 msgid "Attachments folder it's not writable!"
-msgstr ""
+msgstr "לא ניתן לכתוב לספרית הצרופות!"
 
 #: optionsettingsattachment.cpp:219
 msgid "Attachments folder"
-msgstr ""
+msgstr "ספרית צרופות"
 
 #: optionsettingsattachment.cpp:227
 msgid "Attachments path has been changed!"
@@ -6624,11 +6625,11 @@ msgstr "יבוא תנועות מיישומון מרשתת"
 
 #: webappdialog.cpp:100
 msgid "Network status (click to refresh)"
-msgstr ""
+msgstr "מצב רשת (נא להקליק לרענון)"
 
 #: webappdialog.cpp:132
 msgid "Checking for new transactions..."
-msgstr ""
+msgstr "בדיקה לתנועות חדשות..."
 
 #: webappdialog.cpp:165
 msgid "&Import all "
@@ -6708,7 +6709,8 @@ msgstr "בחירת סוג החשבון שברצונך ליצור:"
 #: wizard_newaccount.cpp:130
 msgid "General bank accounts cover a wide variety of account\n"
 "types like Checking, Savings and Credit card type accounts."
-msgstr ""
+msgstr "חשבונות בנק כלליים מכסים מגוון רחב של סוגי חשבון\n"
+"כגון חשבונות עובר ושב, חיסכון וכרטיסי אשראי."
 
 #: wizard_newaccount.cpp:135
 msgid "Investment accounts are specialized accounts that only\n"
