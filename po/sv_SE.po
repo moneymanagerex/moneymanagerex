@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-05-26 12:37+0300\n"
-"PO-Revision-Date: 2020-06-17 19:43\n"
+"PO-Revision-Date: 2020-06-24 21:33\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
@@ -682,7 +682,7 @@ msgstr ""
 
 #: attachmentdialog.cpp:366
 msgid "This directory and its files are automatically managed by Money Manager EX software."
-msgstr ""
+msgstr "Denna katalog och dess filer hanteras automatiskt av Money Manager EX programvara."
 
 #: attachmentdialog.cpp:368
 msgid "Please do not remove, rename or modify manually directories and files."
@@ -842,7 +842,7 @@ msgstr "Upprepas"
 
 #: billsdepositsdialog.cpp:439
 msgid "Advance the next occurring date with the specified values"
-msgstr ""
+msgstr "Flytta fram nästa datum med de angivna värdena"
 
 #: billsdepositsdialog.cpp:446 billsdepositsdialog.cpp:1299
 msgid "Payments Left"
@@ -870,7 +870,7 @@ msgstr "Transaktionsdetaljer"
 
 #: billsdepositsdialog.cpp:499
 msgid "Specify the date when this bill or deposit is due"
-msgstr ""
+msgstr "Ange datum när denna faktura eller insättning ska betalas"
 
 #: billsdepositsdialog.cpp:509
 msgid "Retard or advance the date of the 'next occurrence'"
@@ -918,7 +918,7 @@ msgstr "Summa"
 
 #: billsdepositsdialog.cpp:559 transdialog.cpp:1258
 msgid "Specify the transfer amount in the To Account"
-msgstr ""
+msgstr "Ange överföringsbeloppet i till-kontot"
 
 #: billsdepositsdialog.cpp:571 billsdepositsdialog.cpp:826
 #: billsdepositsdialog.cpp:840 billsdepositspanel.cpp:99
@@ -938,7 +938,7 @@ msgstr "Välj konto"
 
 #: billsdepositsdialog.cpp:575
 msgid "Specify the Account that will own the recurring transaction"
-msgstr ""
+msgstr "Ange kontot som kommer att äga den återkommande transaktionen"
 
 #: billsdepositsdialog.cpp:578 billsdepositsdialog.cpp:827
 #: billsdepositspanel.cpp:100 filtertransdialog.cpp:206
@@ -1201,7 +1201,7 @@ msgstr ""
 
 #: billsdepositspanel.cpp:283
 msgid "&Skip"
-msgstr ""
+msgstr "&Hoppa över"
 
 #: billsdepositspanel.cpp:284
 msgid "Skip Next Bills & Deposit Occurrence"
@@ -1778,7 +1778,7 @@ msgstr "Spara eventuella ändringar"
 
 #: currencydialog.cpp:236
 msgid "Any changes will be lost without update"
-msgstr ""
+msgstr "Eventuella ändringar kommer att gå förlorade utan uppdatering"
 
 #: currencydialog.cpp:257 currencydialog.cpp:262 currencydialog.cpp:268
 #: maincurrencydialog.cpp:594 mmSimpleDialogs.cpp:238
@@ -1788,7 +1788,7 @@ msgstr "Ogiltig inmatning"
 #: currencydialog.cpp:295
 #, c-format
 msgid "%.2f Shown As: %s"
-msgstr ""
+msgstr "%.2f Visas som: %s"
 
 #: customfieldeditdialog.cpp:56
 msgid "New/Edit Custom Field"
@@ -1796,19 +1796,19 @@ msgstr "Ny/Ändra anpassat fält"
 
 #: customfieldeditdialog.cpp:115
 msgid "Custom Field Details"
-msgstr ""
+msgstr "Detaljer för anpassat fält"
 
 #: customfieldeditdialog.cpp:127
 msgid "Enter the name of the custom field"
-msgstr ""
+msgstr "Ange namn på det anpassade fältet"
 
 #: customfieldeditdialog.cpp:130
 msgid "Field Type"
-msgstr ""
+msgstr "Fälttyp"
 
 #: customfieldeditdialog.cpp:134
 msgid "Select type of custom field"
-msgstr ""
+msgstr "Välj typ av anpassat fält"
 
 #: customfieldeditdialog.cpp:137
 msgid "ToolTip"
@@ -1816,57 +1816,58 @@ msgstr "Verktygstips"
 
 #: customfieldeditdialog.cpp:139
 msgid "Enter the tooltip that will be shown"
-msgstr ""
+msgstr "Ange verktygstips som kommer att visas"
 
 #: customfieldeditdialog.cpp:142
 msgid "RegEx"
-msgstr ""
+msgstr "RegEx"
 
 #: customfieldeditdialog.cpp:144
 msgid "Enter the RegEx to validate field"
-msgstr ""
+msgstr "Ange RegEx för att validera fältet"
 
 #: customfieldeditdialog.cpp:147
 msgid "Autocomplete"
-msgstr ""
+msgstr "Komplettera automatiskt"
 
 #: customfieldeditdialog.cpp:150
 msgid "Enables autocomplete on custom field"
-msgstr ""
+msgstr "Aktiverar automatisk komplettering på anpassat fält"
 
 #: customfieldeditdialog.cpp:153 util.cpp:408
 msgid "Default"
-msgstr ""
+msgstr "Förval"
 
 #: customfieldeditdialog.cpp:155
 msgid "Enter the default for this field\n"
 "For date/time insert 'Now' to make current date/time as default"
-msgstr ""
+msgstr "Ange förvalt värde för det här fältet\n"
+"För datum/tid infoga 'Nu' för att sätta aktuell datum/tid som förval"
 
 #: customfieldeditdialog.cpp:159
 msgid "Choices"
-msgstr ""
+msgstr "Val"
 
 #: customfieldeditdialog.cpp:161
 msgid "Enter the choices for this field separated with a semicolon"
-msgstr ""
+msgstr "Ange val för det här fältet separerat med semikolon"
 
 #: customfieldeditdialog.cpp:202
 msgid "Changing field type will delete all content!"
-msgstr ""
+msgstr "Att ändra fälttyp kommer att ta bort allt innehåll!"
 
 #: customfieldeditdialog.cpp:203 customfieldeditdialog.cpp:225 mmframe.cpp:2062
 #: mmframe.cpp:2081
 msgid "Do you want to proceed?"
-msgstr ""
+msgstr "Vill du fortsätta?"
 
 #: customfieldeditdialog.cpp:204 customfieldeditdialog.cpp:226
 msgid "Custom Field Change"
-msgstr ""
+msgstr "Ändring av anpassat fält"
 
 #: customfieldeditdialog.cpp:224
 msgid "You have modified choices: ones removed will be cleaned!"
-msgstr ""
+msgstr "Du har ändrat val: de borttagna kommer att rensas!"
 
 #: customfieldlistdialog.cpp:56
 msgid "Properties"
@@ -1875,15 +1876,15 @@ msgstr "Egenskaper"
 #: customfieldlistdialog.cpp:66
 #, c-format
 msgid "Personalize custom fields | %s"
-msgstr ""
+msgstr "Anpassa anpassade fält | %s"
 
 #: customfieldlistdialog.cpp:175
 msgid "Do you really want to delete this custom field and all its data?"
-msgstr ""
+msgstr "Vill du verkligen ta bort detta anpassade fält och alla dess data?"
 
 #: customfieldlistdialog.cpp:176
 msgid "Confirm Custom Field Deletion"
-msgstr ""
+msgstr "Bekräfta borttagning av anpassat fält"
 
 #: customfieldlistdialog.cpp:194
 msgid "This function will massive update (search & replace for entire value, not inside value), please remind that there isn't any validation!\n"
@@ -1892,7 +1893,7 @@ msgstr ""
 
 #: customfieldlistdialog.cpp:196
 msgid "Confirm Custom Field Content Update"
-msgstr ""
+msgstr "Bekräfta uppdatering av innehåll för anpassat fält"
 
 #: customfieldlistdialog.cpp:201
 msgid "Find what"
@@ -1902,12 +1903,13 @@ msgstr "Hitta vad"
 #: customfieldlistdialog.cpp:213 customfieldlistdialog.cpp:219
 #: customfieldlistdialog.cpp:234
 msgid "Update Custom Field Content"
-msgstr ""
+msgstr "Uppdatera innehållet i anpassat fält"
 
 #: customfieldlistdialog.cpp:205
 msgid "Do you want to update blank content?\n"
 "Press no if you want to abort replace procedure!"
-msgstr ""
+msgstr "Vill du uppdatera tomt innehåll?\n"
+"Tryck på nej om du vill avbryta proceduren!"
 
 #: customfieldlistdialog.cpp:213
 msgid "Replace with"
@@ -1916,12 +1918,13 @@ msgstr "Ersätt med"
 #: customfieldlistdialog.cpp:217
 msgid "Do you want to update to blank?\n"
 "Press no if you want to abort replace procedure!"
-msgstr ""
+msgstr "Vill du uppdatera till tomt?\n"
+"Tryck på nej om du vill avbryta proceduren!"
 
 #: customfieldlistdialog.cpp:233
 #, c-format
 msgid "%i occurrences founded and replaced!"
-msgstr ""
+msgstr "%i förekomster hittade och ersatta!"
 
 #: customfieldlistdialog.cpp:268
 msgid "&Massive content update "
@@ -2135,7 +2138,7 @@ msgstr "Investeringsinkomst"
 #: dbupgrade.cpp:72
 #, c-format
 msgid "MMEX database upgrade to version %i failed!"
-msgstr ""
+msgstr "Uppgradering av MMEX-databasen till version %i misslyckades!"
 
 #: dbupgrade.cpp:73
 msgid "Please restore DB from autocreated pre-upgrade backup and retry or contact MMEX support"
@@ -2143,17 +2146,18 @@ msgstr ""
 
 #: dbupgrade.cpp:74 dbupgrade.cpp:108 dbupgrade.cpp:120
 msgid "MMEX database upgrade"
-msgstr ""
+msgstr "Uppgradering av MMEX databas"
 
 #: dbupgrade.cpp:106
 msgid "MMEX database error!"
-msgstr ""
+msgstr "Fel i MMEX-databasen!"
 
 #: dbupgrade.cpp:107
 #, c-format
 msgid "MMEX database version %i doesn't work with this MMEX version.\n"
 "Please upgrade MMEX to newer version."
-msgstr ""
+msgstr "MMEX databasversion %i fungerar inte med denna MMEX-version.\n"
+"Vänligen uppgradera MMEX till nyare version."
 
 #: dbupgrade.cpp:119
 #, c-format
@@ -2667,11 +2671,11 @@ msgstr ""
 #: import_export/qif_export.cpp:575
 #, c-format
 msgid "Number of accounts exported: %zu"
-msgstr ""
+msgstr "Antal exporterade konton: %zu"
 
 #: import_export/qif_export.cpp:576 mmframe.cpp:1317
 msgid "Export to QIF"
-msgstr ""
+msgstr "Exportera till QIF"
 
 #: import_export/qif_import_gui.cpp:79 import_export/qif_import_gui.cpp:905
 msgid "QIF Import"
@@ -2679,27 +2683,27 @@ msgstr "QIF-import"
 
 #: import_export/qif_import_gui.cpp:130
 msgid "Choose &file"
-msgstr ""
+msgstr "Välj &fil"
 
 #: import_export/qif_import_gui.cpp:143 import_export/univcsvdialog.cpp:330
 msgid "Encoding:"
-msgstr ""
+msgstr "Kodning:"
 
 #: import_export/qif_import_gui.cpp:169
 msgid "Filtering Details:"
-msgstr ""
+msgstr "Detaljer för filtrering:"
 
 #: import_export/qif_import_gui.cpp:206
 msgid "Data"
-msgstr ""
+msgstr "Data"
 
 #: import_export/qif_import_gui.cpp:266
 msgid "Use account number instead of account name"
-msgstr ""
+msgstr "Använd kontonummer istället för kontonamn"
 
 #: import_export/qif_import_gui.cpp:270
 msgid "Include payee field in notes"
-msgstr ""
+msgstr "Inkludera fält för betalningsmottagare i anteckningar"
 
 #: import_export/qif_import_gui.cpp:349 import_export/qif_import_gui.cpp:352
 #: import_export/qif_import_gui.cpp:550 import_export/qif_import_gui.cpp:1108
@@ -2712,26 +2716,26 @@ msgstr "Okänd"
 
 #: import_export/qif_import_gui.cpp:358
 msgid "Scanning"
-msgstr ""
+msgstr "Skannar"
 
 #: import_export/qif_import_gui.cpp:386
 #, c-format
 msgid "Reading line %zu, %lld ms"
-msgstr ""
+msgstr "Läser rad %zu, %lld ms"
 
 #: import_export/qif_import_gui.cpp:392
 #, c-format
 msgid "Line %zu \t %s\n"
-msgstr ""
+msgstr "Rad %zu \t %s\n"
 
 #: import_export/qif_import_gui.cpp:465
 #, c-format
 msgid "Number of lines read from QIF file: %zu in %lld ms"
-msgstr ""
+msgstr "Antal rader som läses från QIF-filen: %zu på %lld ms"
 
 #: import_export/qif_import_gui.cpp:468
 msgid "Press OK Button to continue"
-msgstr ""
+msgstr "Tryck på OK för att fortsätta"
 
 #: import_export/qif_import_gui.cpp:662 import_export/qif_import_gui.cpp:691
 #: import_export/qif_import_gui.cpp:708
@@ -2930,19 +2934,19 @@ msgstr "Ange avgränsare att använda för importering/exportering av CSV-filer"
 
 #: import_export/univcsvdialog.cpp:344
 msgid "Export column titles"
-msgstr ""
+msgstr "Exportera kolumnrubriker"
 
 #: import_export/univcsvdialog.cpp:359
 msgid "Positive values are deposits"
-msgstr ""
+msgstr "Positiva värden är insättningar"
 
 #: import_export/univcsvdialog.cpp:360
 msgid "Positive values are withdrawals"
-msgstr ""
+msgstr "Positiva värden är uttag"
 
 #: import_export/univcsvdialog.cpp:373
 msgid "Rows to ignore"
-msgstr ""
+msgstr "Rader att ignorera"
 
 #: import_export/univcsvdialog.cpp:380
 msgid "From start: "
@@ -2995,22 +2999,22 @@ msgstr ""
 #: import_export/univcsvdialog.cpp:920 import_export/univcsvdialog.cpp:1048
 #: webappdialog.cpp:406
 msgid "Import"
-msgstr ""
+msgstr "Importera"
 
 #: import_export/univcsvdialog.cpp:970
 #, c-format
 msgid "Transactions imported to account %s: %ld"
-msgstr ""
+msgstr "Transaktioner importerade till konto %s: %ld"
 
 #: import_export/univcsvdialog.cpp:981
 #, c-format
 msgid "Line %ld: Empty"
-msgstr ""
+msgstr "Rad %ld: Tom"
 
 #: import_export/univcsvdialog.cpp:995
 #, c-format
 msgid "Line %ld: Error:"
-msgstr ""
+msgstr "Rad %ld: Fel:"
 
 #: import_export/univcsvdialog.cpp:997
 msgid "Invalid Date."
@@ -3022,54 +3026,54 @@ msgstr "Ogiltigt belopp."
 
 #: import_export/univcsvdialog.cpp:1000
 msgid "Type (withdrawal/deposit) unknown."
-msgstr ""
+msgstr "Typ (uttag/insättning) okänd."
 
 #: import_export/univcsvdialog.cpp:1025
 #, c-format
 msgid "Line %ld: OK, imported."
-msgstr ""
+msgstr "Rad %ld: OK, importerad."
 
 #: import_export/univcsvdialog.cpp:1033
 #, c-format
 msgid "Total Lines: %ld"
-msgstr ""
+msgstr "Totalt antal rader: %ld"
 
 #: import_export/univcsvdialog.cpp:1035
 #, c-format
 msgid "Lines Selected to Import: %ld"
-msgstr ""
+msgstr "Rader valda för import: %ld"
 
 #: import_export/univcsvdialog.cpp:1037
 #, c-format
 msgid "Empty Lines: %ld"
-msgstr ""
+msgstr "Tomma rader: %ld"
 
 #: import_export/univcsvdialog.cpp:1039
 #, c-format
 msgid "Imported: %ld"
-msgstr ""
+msgstr "Importerad: %ld"
 
 #: import_export/univcsvdialog.cpp:1041
 #, c-format
 msgid "Errored: %ld"
-msgstr ""
+msgstr "Fel: %ld"
 
 #: import_export/univcsvdialog.cpp:1044
 #, c-format
 msgid "Log file written to: %s"
-msgstr ""
+msgstr "Loggfil skriven till: %s"
 
 #: import_export/univcsvdialog.cpp:1047 stockdialog.cpp:679
 msgid "Please confirm saving..."
-msgstr ""
+msgstr "Bekräfta sparande..."
 
 #: import_export/univcsvdialog.cpp:1079
 msgid "No imported transactions!"
-msgstr ""
+msgstr "Inga importerade transaktioner!"
 
 #: import_export/univcsvdialog.cpp:1097
 msgid "Incorrect fields specified for export! Requires at least Date and Amount."
-msgstr ""
+msgstr "Felaktiga fält angivna för export! Kräver åtminstone datum och belopp."
 
 #: import_export/univcsvdialog.cpp:1098 import_export/univcsvdialog.cpp:1222
 msgid "Export"
@@ -3077,7 +3081,7 @@ msgstr ""
 
 #: import_export/univcsvdialog.cpp:1108
 msgid "Overwrite existing file?"
-msgstr ""
+msgstr "Skriva över befintlig fil?"
 
 #: import_export/univcsvdialog.cpp:1108
 msgid "File exists"
@@ -3508,15 +3512,15 @@ msgstr ""
 
 #: mmcheckingpanel.cpp:1053
 msgid "&New Withdrawal"
-msgstr ""
+msgstr "&Nytt uttag"
 
 #: mmcheckingpanel.cpp:1054
 msgid "&New Deposit"
-msgstr ""
+msgstr "&Ny insättning"
 
 #: mmcheckingpanel.cpp:1056
 msgid "&New Transfer"
-msgstr ""
+msgstr "&Ny överföring"
 
 #: mmcheckingpanel.cpp:1060
 msgid "&Edit Transaction"
@@ -3532,19 +3536,19 @@ msgstr "&Klistra in transaktion"
 
 #: mmcheckingpanel.cpp:1069
 msgid "D&uplicate Transaction"
-msgstr ""
+msgstr "D&uplicera transaktion"
 
 #: mmcheckingpanel.cpp:1072
 msgid "&Move Transaction"
-msgstr ""
+msgstr "&Flytta transaktion"
 
 #: mmcheckingpanel.cpp:1078
 msgid "&View Split Categories"
-msgstr ""
+msgstr "&Visa delade kategorier"
 
 #: mmcheckingpanel.cpp:1086
 msgid "Create Reoccuring T&ransaction"
-msgstr ""
+msgstr "Skapa återkommande T&ransaktion"
 
 #: mmcheckingpanel.cpp:1092
 msgid "&Delete Transaction"
@@ -3556,7 +3560,7 @@ msgstr "Ta bort alla transaktioner i aktuell vy"
 
 #: mmcheckingpanel.cpp:1096
 msgid "Delete Viewed \"Follow Up\" Trans."
-msgstr ""
+msgstr "Ta bort visade transaktioner för \"uppföljning\""
 
 #: mmcheckingpanel.cpp:1097
 msgid "Delete Viewed \"Unreconciled\" Trans."
@@ -3659,7 +3663,7 @@ msgstr ""
 
 #: mmcustomdata.cpp:63
 msgid "Custom fields"
-msgstr ""
+msgstr "Anpassade fält"
 
 #: mmcustomdata.cpp:333
 msgid "Please select"
@@ -3673,7 +3677,8 @@ msgstr "Flera val"
 #, c-format
 msgid "Unable to save custom field \"%s\":\n"
 "value \"%s\" does not match RegEx validation \"%s\""
-msgstr ""
+msgstr "Kunde inte spara anpassat fält \"%s\":\n"
+"värde \"%s\" matchar inte RegEx validering \"%s\""
 
 #: mmcustomdata.cpp:449
 msgid "CustomField validation error"
