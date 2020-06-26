@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-05-26 12:37+0300\n"
-"PO-Revision-Date: 2020-06-26 07:55\n"
+"PO-Revision-Date: 2020-06-26 08:02\n"
 "Last-Translator: \n"
 "Language-Team: Hebrew\n"
 "MIME-Version: 1.0\n"
@@ -4116,7 +4116,7 @@ msgstr ""
 
 #: mmframe.cpp:1530
 msgid "Change Encrypted &Password"
-msgstr ""
+msgstr "שנוי ססמה &מוצפנת"
 
 #: mmframe.cpp:1531
 msgid "Change the password of an encrypted database"
@@ -4288,7 +4288,7 @@ msgstr "בדיקת זמינות &עדכונים"
 
 #: mmframe.cpp:1637
 msgid "Check For Updates"
-msgstr ""
+msgstr "בדיקת זמינות עדכונים"
 
 #: mmframe.cpp:1642 mmframe.cpp:1716
 msgid "&About..."
@@ -4324,7 +4324,7 @@ msgstr "חדש"
 
 #: mmframe.cpp:1680
 msgid "Account List"
-msgstr ""
+msgstr "רשימת חשבונות"
 
 #: mmframe.cpp:1682
 msgid "Show Organize Categories Dialog"
@@ -4352,7 +4352,7 @@ msgstr "חדשות"
 
 #: mmframe.cpp:1707
 msgid "Download rates"
-msgstr ""
+msgstr "הורדת שערים"
 
 #: mmframe.cpp:1710
 msgid "Toggle Fullscreen\tF11"
@@ -4398,7 +4398,7 @@ msgstr ""
 
 #: mmframe.cpp:1893
 msgid "portable mode"
-msgstr ""
+msgstr "מצב נייד"
 
 #: mmframe.cpp:1929
 msgid "Database that you trying to open has been marked as opened by another MMEX instance...\n"
@@ -4433,11 +4433,11 @@ msgstr ""
 
 #: mmframe.cpp:2029
 msgid "Converted DB!"
-msgstr ""
+msgstr "מסד הנתונים הומר!"
 
 #: mmframe.cpp:2029
 msgid "MMEX message"
-msgstr ""
+msgstr "הודעת MMEX"
 
 #: mmframe.cpp:2035
 msgid "MMEX: Encryption Password Change"
@@ -4555,7 +4555,7 @@ msgstr ""
 
 #: mmframe.cpp:2882
 msgid "Please wait..."
-msgstr ""
+msgstr "נא להמתין..."
 
 #: mmframe.cpp:2931 stockspanel.cpp:893
 #, c-format
@@ -4655,7 +4655,7 @@ msgstr "הכנסות מול הוצאות"
 
 #: mmframereport.cpp:156
 msgid "My Usage"
-msgstr ""
+msgstr "השימוש שלי"
 
 #: mmframereport.cpp:161
 msgid "Payees"
@@ -4667,7 +4667,7 @@ msgstr "יתרת חשבונות"
 
 #: mmframereport.cpp:180
 msgid "Budget Performance"
-msgstr ""
+msgstr "העדפות תקציב"
 
 #: mmframereport.cpp:183
 msgid "Budget Category Summary"
@@ -4915,19 +4915,19 @@ msgstr "שגיאת  מוטב"
 
 #: model/Model_Report.cpp:88
 msgid "Begin date: "
-msgstr ""
+msgstr "תאריך התחלה: "
 
 #: model/Model_Report.cpp:89
 msgid "Date: "
-msgstr ""
+msgstr "תאריך: "
 
 #: model/Model_Report.cpp:90
 msgid "End date: "
-msgstr ""
+msgstr "תאריך סיום: "
 
 #: model/Model_Report.cpp:235
 msgid "Template is empty"
-msgstr ""
+msgstr "התבנית ריקה"
 
 #: model/Model_Report.cpp:249
 #, c-format
@@ -5014,7 +5014,7 @@ msgstr "ספרית מערכת הפעלה אחרת "
 
 #: optionsettingsattachment.cpp:116
 msgid "Not set yet"
-msgstr ""
+msgstr "טרם הוגדר"
 
 #: optionsettingsattachment.cpp:124
 msgid "Windows folder -> "
@@ -5022,7 +5022,7 @@ msgstr ""
 
 #: optionsettingsattachment.cpp:132
 msgid "Mac folder -> "
-msgstr ""
+msgstr "ספרית Mac -> "
 
 #: optionsettingsattachment.cpp:140
 msgid "Unix folder -> "
