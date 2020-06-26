@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-05-26 12:37+0300\n"
-"PO-Revision-Date: 2020-06-26 08:02\n"
+"PO-Revision-Date: 2020-06-26 08:15\n"
 "Last-Translator: \n"
 "Language-Team: Hebrew\n"
 "MIME-Version: 1.0\n"
@@ -1767,7 +1767,7 @@ msgstr "מקומות עשרוניים"
 
 #: currencydialog.cpp:206 currencydialog.cpp:268
 msgid "Conversion to Base Rate"
-msgstr ""
+msgstr "המרה לשער הבסיס"
 
 #: currencydialog.cpp:212
 msgid "Conversion rate will be used in case no currency history has been found for the currency"
@@ -1775,7 +1775,7 @@ msgstr ""
 
 #: currencydialog.cpp:214
 msgid "Fixed conversion rate"
-msgstr ""
+msgstr "שער המרה קבוע"
 
 #: currencydialog.cpp:219
 msgid "Value Display Sample:"
@@ -3147,7 +3147,7 @@ msgstr ""
 
 #: import_export/univcsvdialog.cpp:1780
 msgid "Enter a value"
-msgstr ""
+msgstr "נא להזין ערך"
 
 #: maincurrencydialog.cpp:78 reports/summarystocks.cpp:180 stockdialog.cpp:427
 #: stockspanel.cpp:94
@@ -3160,7 +3160,7 @@ msgstr "שער אחרון"
 
 #: maincurrencydialog.cpp:80
 msgid "Fixed Rate"
-msgstr ""
+msgstr "שיעור קבוע"
 
 #: maincurrencydialog.cpp:84 maincurrencydialog.cpp:357
 #: maincurrencydialog.cpp:428 maincurrencydialog.cpp:642
@@ -3186,7 +3186,7 @@ msgstr "אפשרויות היסטורית מטבעות"
 
 #: maincurrencydialog.cpp:251
 msgid "Diff."
-msgstr ""
+msgstr "הפרש."
 
 #: maincurrencydialog.cpp:267
 msgid "Specify the date of currency value"
@@ -3290,19 +3290,19 @@ msgstr ""
 
 #: mmSimpleDialogs.cpp:177
 msgid "Subtract one year"
-msgstr ""
+msgstr "הפחתת שנה אחת"
 
 #: mmSimpleDialogs.cpp:178
 msgid "Subtract one month"
-msgstr ""
+msgstr "הפחתת שנה אחת"
 
 #: mmSimpleDialogs.cpp:179
 msgid "Add one month"
-msgstr ""
+msgstr "הוספת חודש אחד"
 
 #: mmSimpleDialogs.cpp:180
 msgid "Add one year"
-msgstr ""
+msgstr "הוספת שנה אחת"
 
 #: mmSimpleDialogs.cpp:237
 #, c-format
@@ -3828,7 +3828,7 @@ msgstr "&קובצי QIF..."
 
 #: mmframe.cpp:1246 mmframe.cpp:1318
 msgid "&JSON Files..."
-msgstr ""
+msgstr "קובצי JSON&..."
 
 #: mmframe.cpp:1250 mmframe.cpp:1324
 msgid "Import from XML (Excel format)"
@@ -3880,7 +3880,7 @@ msgstr "יצוא ל XML"
 
 #: mmframe.cpp:1318
 msgid "Export to JSON"
-msgstr ""
+msgstr "יצוא ל JSON"
 
 #: mmframe.cpp:1319
 msgid "&Report to HTML"
@@ -3916,11 +3916,11 @@ msgstr "הדפס תצוגה נוכחית"
 
 #: mmframe.cpp:1339
 msgid "E&xit\tAlt-X"
-msgstr ""
+msgstr "י&ציאה Alt-X"
 
 #: mmframe.cpp:1339
 msgid "Quit this program"
-msgstr ""
+msgstr "יציאה תוכנית זו"
 
 #: mmframe.cpp:1346
 msgid "&Toolbar"
@@ -4016,7 +4016,7 @@ msgstr "מחיקת חשבון ממסד הנתונים"
 
 #: mmframe.cpp:1440
 msgid "Download Rates..."
-msgstr ""
+msgstr "הורדת שערים..."
 
 #: mmframe.cpp:1440 mmframe.cpp:1707
 msgid "Download Currency and Stock rates"
@@ -4378,7 +4378,7 @@ msgstr "שדרוג MMEX"
 
 #: mmframe.cpp:1828 mmframe.cpp:1870
 msgid "No File opened"
-msgstr ""
+msgstr "קובץ לא נפתח"
 
 #: mmframe.cpp:1830
 msgid "Sorry. The Database version is too old or Database password is incorrect"
@@ -4425,11 +4425,11 @@ msgstr ""
 
 #: mmframe.cpp:2002
 msgid "Enter password for database"
-msgstr ""
+msgstr "נא להזין ססמה למסד הנתונים"
 
 #: mmframe.cpp:2007
 msgid "Choose database file to Save As"
-msgstr ""
+msgstr "בחירת קובץ מסד נתונים לשמירה"
 
 #: mmframe.cpp:2029
 msgid "Converted DB!"
@@ -4441,7 +4441,7 @@ msgstr "הודעת MMEX"
 
 #: mmframe.cpp:2035
 msgid "MMEX: Encryption Password Change"
-msgstr ""
+msgstr "MMEX: שינוי ססמת הצפנה"
 
 #: mmframe.cpp:2036
 #, c-format
@@ -5018,7 +5018,7 @@ msgstr "טרם הוגדר"
 
 #: optionsettingsattachment.cpp:124
 msgid "Windows folder -> "
-msgstr ""
+msgstr "ספרית Windows -> "
 
 #: optionsettingsattachment.cpp:132
 msgid "Mac folder -> "
@@ -5026,7 +5026,7 @@ msgstr "ספרית Mac -> "
 
 #: optionsettingsattachment.cpp:140
 msgid "Unix folder -> "
-msgstr ""
+msgstr "ספרית Unix -> "
 
 #: optionsettingsattachment.cpp:150
 msgid "Create and use Attachments subfolder"
@@ -5110,7 +5110,7 @@ msgstr "לחץ לחיצה ימנית על מטבע ובחר 'הגדרה כמטב
 
 #: optionsettingsgeneral.cpp:97
 msgid "Use currency history"
-msgstr ""
+msgstr "שימוש בהיסטורית מטבעות"
 
 #: optionsettingsgeneral.cpp:99
 msgid "Select to use currency history (one rate for each day), deselect to use a fixed rate"
@@ -5318,7 +5318,7 @@ msgstr "שניות"
 
 #: optionsettingsnet.cpp:138
 msgid "Updates"
-msgstr ""
+msgstr "עדכונים"
 
 #: optionsettingsnet.cpp:144
 msgid "Check for updates at StartUp"
@@ -5354,7 +5354,7 @@ msgstr "הגדרת גודל הגופן לתצוגה בדוחות"
 
 #: optionsettingsview.cpp:92
 msgid "Icons size"
-msgstr ""
+msgstr "גודל צלמית"
 
 #: optionsettingsview.cpp:98
 msgid "View Budgets as Financial Years"
