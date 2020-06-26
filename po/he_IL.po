@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-05-26 12:37+0300\n"
-"PO-Revision-Date: 2020-06-26 08:27\n"
+"PO-Revision-Date: 2020-06-26 08:34\n"
 "Last-Translator: \n"
 "Language-Team: Hebrew\n"
 "MIME-Version: 1.0\n"
@@ -6652,7 +6652,7 @@ msgstr "פתיחת צרופה"
 
 #: webappdialog.cpp:407
 msgid "Import and open"
-msgstr ""
+msgstr "יבוא ופתחה"
 
 #: webappdialog.cpp:408
 msgid "Delete"
@@ -6787,7 +6787,7 @@ msgstr "אשף עדכון"
 
 #: wizard_update.cpp:106
 msgid "Historical releases:"
-msgstr ""
+msgstr "שערים היסטוריים:"
 
 #: wizard_update.cpp:136
 msgid "Version"
