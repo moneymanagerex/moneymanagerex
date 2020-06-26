@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-05-26 12:37+0300\n"
-"PO-Revision-Date: 2020-06-26 08:15\n"
+"PO-Revision-Date: 2020-06-26 08:27\n"
 "Last-Translator: \n"
 "Language-Team: Hebrew\n"
 "MIME-Version: 1.0\n"
@@ -4503,7 +4503,7 @@ msgstr ""
 
 #: mmframe.cpp:2219 mmframe.cpp:2238
 msgid "No account available to import"
-msgstr ""
+msgstr "אין חשבון זמין ליבוא"
 
 #: mmframe.cpp:2287
 msgid "Asset Accounts hold Asset transactions\n\n"
@@ -4551,7 +4551,7 @@ msgstr "בחירת קובץ HTML ליצוא"
 
 #: mmframe.cpp:2881 mmframe.cpp:2888
 msgid "Downloading stock prices from Yahoo"
-msgstr ""
+msgstr "הורדת שערי נירות ערך מ Yahoo"
 
 #: mmframe.cpp:2882
 msgid "Please wait..."
@@ -4671,7 +4671,7 @@ msgstr "העדפות תקציב"
 
 #: mmframereport.cpp:183
 msgid "Budget Category Summary"
-msgstr ""
+msgstr "תמצית קטגוריות תקציב"
 
 #: mmframereport.cpp:192
 msgid "Stocks Report"
@@ -4749,7 +4749,7 @@ msgstr "סך הכל כללי:"
 
 #: mmhomepage.cpp:751
 msgid "Currency Exchange Rates"
-msgstr ""
+msgstr "שערי חליפין למטבעות"
 
 #: mmhomepagepanel.cpp:159
 msgid "Upcoming Transactions"
@@ -5322,7 +5322,7 @@ msgstr "עדכונים"
 
 #: optionsettingsnet.cpp:144
 msgid "Check for updates at StartUp"
-msgstr ""
+msgstr "בדיקת עדכונים באתחול"
 
 #: optionsettingsnet.cpp:146
 msgid "Enable to automatically check if new MMEX version is available at StartUp"
@@ -5338,7 +5338,7 @@ msgstr "לא יציב"
 
 #: optionsettingsnet.cpp:154
 msgid "Updates source"
-msgstr ""
+msgstr "עדכון מקור"
 
 #: optionsettingsview.cpp:78
 msgid "Specify which accounts are visible"
@@ -6005,7 +6005,7 @@ msgstr ""
 
 #: stockdialog.cpp:342
 msgid "Add Stock Price to history"
-msgstr ""
+msgstr "הוספת שער ניר ערך להיסטוריה"
 
 #: stockdialog.cpp:420
 msgid "Held At"
@@ -6035,12 +6035,12 @@ msgstr "שערי נירות ערך יובאו מקובץ CSV: "
 #: stockdialog.cpp:671
 #, c-format
 msgid "Total Lines : %ld"
-msgstr ""
+msgstr "סך כל שורות: %ld"
 
 #: stockdialog.cpp:673
 #, c-format
 msgid "Total Imported : %ld"
-msgstr ""
+msgstr "סך כל יובאו: %ld"
 
 #: stockdialog.cpp:681
 msgid "Importing CSV"
@@ -6180,7 +6180,7 @@ msgstr "רשימת ניירות ערך זמנית:  %s\n\n"
 
 #: stockspanel.cpp:574
 msgid "Add Stock Transactions"
-msgstr ""
+msgstr "הוספת תנועות נירות ערך"
 
 #: stockspanel.cpp:579
 msgid "View Stock Transactions"
@@ -6369,51 +6369,51 @@ msgstr "בחירת חשבון"
 
 #: util.cpp:422
 msgid "Jan"
-msgstr ""
+msgstr "ינו"
 
 #: util.cpp:422
 msgid "Feb"
-msgstr ""
+msgstr "פבר"
 
 #: util.cpp:422
 msgid "Mar"
-msgstr ""
+msgstr "מרץ"
 
 #: util.cpp:423
 msgid "Apr"
-msgstr ""
+msgstr "אפר"
 
 #: util.cpp:423 util.h:201
 msgid "May"
-msgstr ""
+msgstr "מאי"
 
 #: util.cpp:423
 msgid "Jun"
-msgstr ""
+msgstr "יוני"
 
 #: util.cpp:424
 msgid "Jul"
-msgstr ""
+msgstr "יולי"
 
 #: util.cpp:424
 msgid "Aug"
-msgstr ""
+msgstr "אוג"
 
 #: util.cpp:424
 msgid "Sep"
-msgstr ""
+msgstr "ספט"
 
 #: util.cpp:425
 msgid "Oct"
-msgstr ""
+msgstr "אוק"
 
 #: util.cpp:425
 msgid "Nov"
-msgstr ""
+msgstr "נוב"
 
 #: util.cpp:425
 msgid "Dec"
-msgstr ""
+msgstr "דצמ"
 
 #: util.cpp:430
 msgid "Sunday"
@@ -6791,7 +6791,7 @@ msgstr ""
 
 #: wizard_update.cpp:136
 msgid "Version"
-msgstr ""
+msgstr "גרסה"
 
 #: wizard_update.cpp:144
 msgid "You already have the latest version"
