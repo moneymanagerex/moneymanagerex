@@ -205,9 +205,16 @@ void mmWebAppDialog::fillControls()
         return;
     }
 
-    if (mmWebApp::WebApp_DownloadNewTransaction(WebAppTransactions_, false) != CURLE_OK)
+    wxString CurlError = "";
+    if (!mmWebApp::WebApp_DownloadNewTransaction(WebAppTransactions_, false, CurlError))
     {
         mainBoxSizer_->Hide(loadingSizer_, true);
+        if (!isStartup_)
+        {
+            wxString msgStr = wxString() << _("Unable to download transactions from webapp.") << "\n" << CurlError;
+            wxMessageBox(msgStr, _("Transactions download error"), wxICON_ERROR);
+        }
+
         return net_button_->SetBitmap(mmBitmap(png::LED_RED));
     }
 
@@ -329,12 +336,17 @@ void mmWebAppDialog::OpenAttachment()
         {
             wxString AttachmentName = webtranListBox_->GetTextValue(selectedIndex_, WEBTRAN_ATTACHMENTS);
             AttachmentName = AttachmentName.BeforeFirst(';');
-            if (mmWebApp::WebApp_DownloadAttachment(AttachmentName))
+            wxString CurlError = "";
+            if (mmWebApp::WebApp_DownloadAttachment(AttachmentName, CurlError))
             {
                 wxLaunchDefaultApplication(AttachmentName);
                 tempFiles_.Add(AttachmentName);
             }
-
+            else
+            {
+                wxString msgStr = wxString() << _("Unable to download attachments from webapp.") << "\n" << CurlError;
+                wxMessageBox(msgStr, _("Attachment download error"), wxICON_ERROR);
+            }
         }
     }
 }

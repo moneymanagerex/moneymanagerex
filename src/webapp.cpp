@@ -331,20 +331,26 @@ bool mmWebApp::WebApp_UpdateCategory()
 }
 
 //Download new transactions
-int mmWebApp::WebApp_DownloadNewTransaction(WebTranVector& WebAppTransactions_, const bool CheckOnly)
+bool mmWebApp::WebApp_DownloadNewTransaction(WebTranVector& WebAppTransactions_, const bool CheckOnly, wxString& Error)
 {
     wxString NewTransactionJSON;
     CURLcode ErrorCode = http_get_data(mmWebApp::getServicesPageURL() + "&" + WebAppParam::DownloadNewTransaction, NewTransactionJSON);
 
     if (NewTransactionJSON == "null" || NewTransactionJSON.IsEmpty() || ErrorCode != CURLE_OK)
-        return ErrorCode;
+    {
+        Error = curl_easy_strerror(ErrorCode);
+        return ErrorCode == CURLE_OK;
+    }
     else if (CheckOnly)
-        return ErrorCode;
+        return true;
     else
     {
         Document j_doc;
         if (j_doc.Parse(NewTransactionJSON.utf8_str()).HasParseError())
-            return true;
+        {
+            Error = curl_easy_strerror(CURLE_BAD_CONTENT_ENCODING);
+            return false;
+        }
 
         //Define variables
         webtran_holder WebTran;
@@ -423,7 +429,7 @@ int mmWebApp::WebApp_DownloadNewTransaction(WebTranVector& WebAppTransactions_, 
 
             WebAppTransactions_.push_back(WebTran);
         }
-        return CURLE_OK;
+        return true;
     }
 }
 
@@ -568,7 +574,8 @@ int mmWebApp::MMEX_InsertNewTransaction(webtran_holder& WebAppTrans)
                 {
                     AttachmentNr++;
                     WebAppAttachmentName = AttachmentsArray.Item(i);
-                    DesktopAttachmentName = WebApp_DownloadOneAttachment(WebAppAttachmentName, DeskNewTrID, AttachmentNr);
+                    wxString CurlError = "";
+                    DesktopAttachmentName = WebApp_DownloadOneAttachment(WebAppAttachmentName, DeskNewTrID, AttachmentNr, CurlError);
                     if (DesktopAttachmentName != wxEmptyString)
                     {
                         Model_Attachment::Data* NewAttachment = Model_Attachment::instance().create();
@@ -584,8 +591,8 @@ int mmWebApp::MMEX_InsertNewTransaction(webtran_holder& WebAppTrans)
                         DeskNewTrID = -1;
 
                         wxString msgStr = wxString() << _("Unable to download attachments from webapp.") << "\n"
-                            << _("Communication error") << "\n" << "\n"
-                            << _("Transaction not downloaded: please close and open MMEX to try re-download transaction") << "\n";
+                            << CurlError << "\n" << "\n"
+                            << _("Transaction not downloaded: please retry to download transactions") << "\n";
                         wxMessageBox(msgStr, _("Attachment download error"), wxICON_ERROR);
                         break;
                     }
@@ -619,7 +626,7 @@ bool mmWebApp::WebApp_DeleteOneTransaction(int WebAppTransactionId)
 }
 
 //Download one attachment from WebApp
-wxString mmWebApp::WebApp_DownloadOneAttachment(const wxString& AttachmentName, int DesktopTransactionID, int AttachmentNr)
+wxString mmWebApp::WebApp_DownloadOneAttachment(const wxString& AttachmentName, int DesktopTransactionID, int AttachmentNr, wxString& Error)
 {
     wxString FileExtension = wxFileName(AttachmentName).GetExt().MakeLower();
     wxString FileName = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION) + "_" + wxString::Format("%i", DesktopTransactionID)
@@ -627,26 +634,35 @@ wxString mmWebApp::WebApp_DownloadOneAttachment(const wxString& AttachmentName, 
     wxString FilePath = mmex::getPathAttachment(mmAttachmentManage::InfotablePathSetting()) + wxFileName::GetPathSeparator()
         + Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION) + wxFileName::GetPathSeparator() + FileName;
     wxString URL = mmWebApp::getServicesPageURL() + "&" + WebAppParam::DownloadAttachments + "=" + AttachmentName;
-    if (http_download_file(URL, FilePath) == CURLE_OK)
+    CURLcode CurlStatus = http_download_file(URL, FilePath);
+    if (CurlStatus == CURLE_OK)
         return FileName;
     else
+    {
+        Error = curl_easy_strerror(CurlStatus);
         return wxEmptyString;
+    }
 }
 
 //Get one attachment from WebApp
-bool mmWebApp::WebApp_DownloadAttachment(wxString& AttachmentFileName)
+bool mmWebApp::WebApp_DownloadAttachment(wxString& AttachmentFileName, wxString& Error)
 {
     const wxString FileExtension = wxFileName(AttachmentFileName).GetExt().MakeLower();
     wxString orig_file_name = AttachmentFileName;
     AttachmentFileName = wxFileName::CreateTempFileName(AttachmentFileName);
 
     wxString URL = mmWebApp::getServicesPageURL() + "&" + WebAppParam::DownloadAttachments + "=" + orig_file_name;
-    if (http_download_file(URL, AttachmentFileName) == CURLE_OK) {
+    CURLcode CurlStatus = http_download_file(URL, AttachmentFileName);
+    if (CurlStatus == CURLE_OK) {
         wxString temp_file = AttachmentFileName + "." + FileExtension;
         if (wxRenameFile(AttachmentFileName, temp_file)) {
             AttachmentFileName = temp_file;
             return true;
         }
+    }
+    else
+    {
+        Error = curl_easy_strerror(CurlStatus);
     }
     return false;
 }

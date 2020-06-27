@@ -56,7 +56,7 @@ static int WebApp_SendJson(wxString& Website, const wxString& JsonData, wxString
 static bool WebApp_DeleteAllAccount();
 static bool WebApp_DeleteAllPayee();
 static bool WebApp_DeleteAllCategory();
-static wxString WebApp_DownloadOneAttachment(const wxString& AttachmentName, int DesktopTransactionID, int AttachmentNr);
+static wxString WebApp_DownloadOneAttachment(const wxString& AttachmentName, int DesktopTransactionID, int AttachmentNr, wxString& Error);
 
 public:
     const static wxString getUrl();
@@ -100,7 +100,7 @@ public:
     static bool WebApp_UpdateCategory();
 
     /** Download new transaction */
-    static int WebApp_DownloadNewTransaction(WebTranVector& WebAppTransactions_, const bool CheckOnly);
+    static bool WebApp_DownloadNewTransaction(WebTranVector& WebAppTransactions_, const bool CheckOnly, wxString& Error);
 
     /** Insert transaction in MMEX desktop, returns transaction ID */
     static int MMEX_InsertNewTransaction(webtran_holder& WebAppTrans);
@@ -109,7 +109,7 @@ public:
     static bool WebApp_DeleteOneTransaction(int WebAppTransactionId);
 
     /* Return attachment URL */
-    static bool WebApp_DownloadAttachment(wxString& AttachmentFileName);
+    static bool WebApp_DownloadAttachment(wxString& AttachmentFileName, wxString& Error);
 
     //FUNCTIONS CALLED IN MMEX TO UPDATE ON CHANGE
     /** Update all payees on WebApp if enabled */
