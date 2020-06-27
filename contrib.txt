@@ -113,6 +113,7 @@ Greg Chapman
 ---------------------------------------
 ##Sponsors
 2020
+Brueckner Rene
 Digital IT Consultant
 Adam Gallagher
 Dave Wetzler
@@ -149,6 +150,7 @@ Officer Young
 Sergio Zanatta
 Andreas Mueller
 Brian Crow
+Sasinidu Fonseka
 Glenn Fowler
 Joan Warren
 Eric Laval
