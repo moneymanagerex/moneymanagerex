@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-05-26 12:37+0300\n"
-"PO-Revision-Date: 2020-06-30 12:28\n"
+"PO-Revision-Date: 2020-06-30 12:37\n"
 "Last-Translator: \n"
 "Language-Team: Hebrew\n"
 "MIME-Version: 1.0\n"
@@ -3709,7 +3709,8 @@ msgstr "לא ניתן לטעון תרגום לשפת ברירת המחדל של 
 #, c-format
 msgid "Please use the Switch Application Language option in View menu to select one of the following available languages:\n\n"
 "%s"
-msgstr ""
+msgstr "נא להשתמש בבורר השפה בתפריט תצוגה כדי לבחור באחת השפות הזמינות:\n\n"
+"%s"
 
 #: mmex.cpp:139 mmframe.cpp:3212
 msgid "Language change"
@@ -6326,7 +6327,7 @@ msgstr "הזנת את תאריך התנועה"
 
 #: transdialog.cpp:1309
 msgid "Clear colour"
-msgstr ""
+msgstr "ניקוי צבע"
 
 #: transdialog.cpp:1314
 #, c-format
