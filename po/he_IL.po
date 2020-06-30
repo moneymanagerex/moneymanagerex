@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-05-26 12:37+0300\n"
-"PO-Revision-Date: 2020-06-26 08:44\n"
+"PO-Revision-Date: 2020-06-30 12:07\n"
 "Last-Translator: \n"
 "Language-Team: Hebrew\n"
 "MIME-Version: 1.0\n"
@@ -4281,7 +4281,7 @@ msgstr ""
 
 #: mmframe.cpp:1632
 msgid "App Start Dialog"
-msgstr ""
+msgstr "דו שיח אתחול ישומון"
 
 #: mmframe.cpp:1637
 msgid "Check for &Updates"
@@ -4395,7 +4395,7 @@ msgstr ""
 
 #: mmframe.cpp:1875
 msgid "Password not entered for encrypted Database.\n"
-msgstr ""
+msgstr "לא הוזנה ססמה למסד נתונים מוצפן.\n"
 
 #: mmframe.cpp:1893
 msgid "portable mode"
@@ -4422,7 +4422,7 @@ msgstr "בחירת קובץ מסד נתונים לפתיחה"
 
 #: mmframe.cpp:1992
 msgid "Choose Encrypted database file to open"
-msgstr ""
+msgstr "בחירת קובץ מסד נתונים מוצפן לפתיחה"
 
 #: mmframe.cpp:2002
 msgid "Enter password for database"
@@ -4448,15 +4448,16 @@ msgstr "MMEX: שינוי ססמת הצפנה"
 #, c-format
 msgid "New password for database\n\n"
 "%s"
-msgstr ""
+msgstr "נא להזין ססמה למסד נתונים חדש\n"
+"%s"
 
 #: mmframe.cpp:2041
 msgid "New password must not be empty."
-msgstr ""
+msgstr "שדה ססמה חדשה לא יכול להישאר ריק."
 
 #: mmframe.cpp:2045
 msgid "Please confirm new password"
-msgstr ""
+msgstr "נא לאשר ססמה חדשה"
 
 #: mmframe.cpp:2049
 msgid "Password change completed."
@@ -4500,7 +4501,7 @@ msgstr "לא ניתן להעתיק קובץ לתוך עצמו"
 
 #: mmframe.cpp:2135
 msgid "Enter password for new database"
-msgstr ""
+msgstr "נא להזין ססמה למסד נתונים חדש"
 
 #: mmframe.cpp:2219 mmframe.cpp:2238
 msgid "No account available to import"
