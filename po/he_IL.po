@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-05-26 12:37+0300\n"
-"PO-Revision-Date: 2020-06-30 14:04\n"
+"PO-Revision-Date: 2020-06-30 14:18\n"
 "Last-Translator: \n"
 "Language-Team: Hebrew\n"
 "MIME-Version: 1.0\n"
@@ -1773,7 +1773,7 @@ msgstr "המרה לשער הבסיס"
 
 #: currencydialog.cpp:212
 msgid "Conversion rate will be used in case no currency history has been found for the currency"
-msgstr ""
+msgstr "במידה ולא ואין שערים היסטוריים למטבע, יעשה שימוש בשער המרה"
 
 #: currencydialog.cpp:214
 msgid "Fixed conversion rate"
@@ -1900,7 +1900,8 @@ msgstr "אישור מחיקת שדה מותאם אישית"
 #: customfieldlistdialog.cpp:194
 msgid "This function will massive update (search & replace for entire value, not inside value), please remind that there isn't any validation!\n"
 "Do you want to proceed?"
-msgstr ""
+msgstr "תכונה זו תבצע עדכון מסיבי (חיפוש והחלפת כלל הערך, לא בתוך הערך), ללא כל כללי אימות!\n"
+"האם להמשיך?"
 
 #: customfieldlistdialog.cpp:196
 msgid "Confirm Custom Field Content Update"
