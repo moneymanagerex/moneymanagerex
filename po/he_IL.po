@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-05-26 12:37+0300\n"
-"PO-Revision-Date: 2020-06-30 12:07\n"
+"PO-Revision-Date: 2020-06-30 12:28\n"
 "Last-Translator: \n"
 "Language-Team: Hebrew\n"
 "MIME-Version: 1.0\n"
@@ -121,7 +121,7 @@ msgstr "חשבון מועדף"
 
 #: accountdialog.cpp:183
 msgid "Select whether this is an account that is used often. This is used to filter accounts display view."
-msgstr "סימון החשבון כ'שימוש תכוף'. משמש לסינון תצוגת חשבונות."
+msgstr "סימון החשבון כ'שימוש תכוף'. משמש לסינון מצג חשבונות."
 
 #: accountdialog.cpp:191 assetdialog.cpp:253 assetspanel.cpp:64
 #: billsdepositsdialog.cpp:614 billsdepositspanel.cpp:110
@@ -472,7 +472,7 @@ msgstr "&הוספת תנועת נכס"
 
 #: assetspanel.cpp:101
 msgid "&View Asset Transactions"
-msgstr "&הצגת תנועת נכס"
+msgstr "&מצג תנועת נכס"
 
 #: assetspanel.cpp:102
 msgid "&Open Asset Account"
@@ -575,7 +575,8 @@ msgstr "שינוי ערך: %s %s"
 #: assetspanel.cpp:768
 msgid "This asset does not have its own account\n\n"
 "Multiple transactions for this asset are not recommended."
-msgstr ""
+msgstr "לנכס זה אין חשבון משלו\n\n"
+"לא מומלץ לרשום תנועות מרובות לנכס זה."
 
 #: assetspanel.cpp:770
 msgid "Asset Management"
@@ -1336,7 +1337,7 @@ msgstr "הזנת הסכום שתוקצב עבור קטגוריה זו."
 
 #: budgetingpanel.cpp:50
 msgid "View All Budget Categories"
-msgstr "הצגת כל קטגוריות התקציב"
+msgstr "מצג כלל קטגוריות התקציב"
 
 #: budgetingpanel.cpp:51
 msgid "View Non-Zero Budget Categories"
@@ -1510,7 +1511,7 @@ msgstr "עריכת שם של קטגוריה קיימת"
 
 #: categdialog.cpp:236
 msgid "Delete an existing category. The category cannot be used by existing transactions."
-msgstr ""
+msgstr "מחיקת קטגוריה קימת. לא ניתן להשתמש בקטגוריה בתנועות הקימות."
 
 #: categdialog.cpp:241 maincurrencydialog.cpp:211
 msgid "&Select"
@@ -3179,7 +3180,7 @@ msgstr "עדכון מקוון"
 
 #: maincurrencydialog.cpp:170
 msgid "Show all even the unused currencies"
-msgstr ""
+msgstr "הצגת הכול לרבות מטבעות שאינם בשיוש"
 
 #: maincurrencydialog.cpp:227
 msgid "Currency History Options"
@@ -3215,7 +3216,7 @@ msgstr "מחיקת ערכי מטבע שנבחרו"
 
 #: maincurrencydialog.cpp:297
 msgid "Delete Currency Values history for unused currencies and days"
-msgstr ""
+msgstr "מחיקת היסטוריית ערכי מטבעות ותאריכים למטבעות שאינם בשימוש"
 
 #: maincurrencydialog.cpp:356
 msgid "Do you really want to delete the selected Currency?"
@@ -3519,7 +3520,7 @@ msgstr "הזנת מחרוזת לחיפוש בשדה הערות שברשומת ה
 #: mmcheckingpanel.cpp:487
 #, c-format
 msgid "Account View : %s"
-msgstr ""
+msgstr "מצג חשבון: %s"
 
 #: mmcheckingpanel.cpp:713
 msgid "Select account used in transfer transactions"
@@ -4101,7 +4102,7 @@ msgstr "מנהל שדות מותאם אישית"
 
 #: mmframe.cpp:1518
 msgid "&Options...\tCtrl-,"
-msgstr ""
+msgstr "&אפשרויות... Ctrl-,"
 
 #: mmframe.cpp:1518 mmframe.cpp:1690
 msgid "Show the Options Dialog"
@@ -4406,7 +4407,10 @@ msgid "Database that you trying to open has been marked as opened by another MME
 "To avoid data loss or conflict, it's strongly recommended to close all other applications that can use the DB.\n\n"
 "Possible it may be as result of a programm crash in previous usage.\n\n"
 "Would you like to continue?"
-msgstr ""
+msgstr "מסד נתונים שנבחר לפתיחה, מסומן כפתוח במופע MMEX אחר...\n"
+"כדי להמנע מאבדן נתונים או התנגשויות, מומלץ בחום לסגור את כל היישומים האחרים שעשויים להשתמש במסד הנתונים.\n\n"
+"יתכן וזאת תוצאה מכשל תכנה משימוש קודם.\n\n"
+"האם להמשיך?"
 
 #: mmframe.cpp:1933
 msgid "MMEX Instance Check"
@@ -5008,7 +5012,7 @@ msgstr ""
 #: optionsettingsattachment.cpp:105
 #, c-format
 msgid "%s -> MMEX Application data folder"
-msgstr ""
+msgstr "%s -> ספרית נתוני אפליקציית MMEX"
 
 #: optionsettingsattachment.cpp:111
 msgid "Other OS folders "
@@ -5360,19 +5364,19 @@ msgstr "גודל צלמית"
 
 #: optionsettingsview.cpp:98
 msgid "View Budgets as Financial Years"
-msgstr ""
+msgstr "הצגת תקציב כשנה פיסקלית"
 
 #: optionsettingsview.cpp:103
 msgid "View Budgets with 'transfer' transactions"
-msgstr ""
+msgstr "מצג תקציב כולל תנועות מסוג 'העברה'"
 
 #: optionsettingsview.cpp:109
 msgid "View Budget Category Report with Summaries"
-msgstr ""
+msgstr "הצגת דוח תקציב לפי קטגוריה עם תמצית"
 
 #: optionsettingsview.cpp:115
 msgid "Ignore Future Transactions"
-msgstr ""
+msgstr "להתעלם מתנועות עתידיות"
 
 #: optionsettingsview.cpp:121 transdialog.cpp:563
 msgid "User Colors"
