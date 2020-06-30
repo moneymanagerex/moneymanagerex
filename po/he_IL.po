@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-05-26 12:37+0300\n"
-"PO-Revision-Date: 2020-06-30 12:37\n"
+"PO-Revision-Date: 2020-06-30 12:48\n"
 "Last-Translator: \n"
 "Language-Team: Hebrew\n"
 "MIME-Version: 1.0\n"
@@ -2997,7 +2997,7 @@ msgstr "חשבון לא קיים"
 #: import_export/univcsvdialog.cpp:1784
 #, c-format
 msgid "Positive if type has '%s'"
-msgstr ""
+msgstr "חיובי אם מסוג '%s'"
 
 #: import_export/univcsvdialog.cpp:917
 msgid "Incorrect fields specified for import!"
@@ -4023,7 +4023,7 @@ msgstr "הורדת שערים..."
 
 #: mmframe.cpp:1440 mmframe.cpp:1707
 msgid "Download Currency and Stock rates"
-msgstr ""
+msgstr "הורדת שערי מטבע ונירות ערך"
 
 #: mmframe.cpp:1447
 msgid "Organize &Categories..."
@@ -4111,11 +4111,11 @@ msgstr "הצגת תיבת דו-שיח אפשרויות"
 
 #: mmframe.cpp:1526
 msgid "Convert Encrypted &DB"
-msgstr ""
+msgstr "המרת &מסד נתונים מוצפן"
 
 #: mmframe.cpp:1527
 msgid "Convert Encrypted DB to Non-Encrypted DB"
-msgstr ""
+msgstr "הסרת הצפנה ממסד נתונים מוצפן"
 
 #: mmframe.cpp:1530
 msgid "Change Encrypted &Password"
@@ -4123,7 +4123,7 @@ msgstr "שנוי ססמה &מוצפנת"
 
 #: mmframe.cpp:1531
 msgid "Change the password of an encrypted database"
-msgstr ""
+msgstr "שינוי ססמה למסד נתונים מוצפן"
 
 #: mmframe.cpp:1534
 msgid "Optimize &Database"
@@ -4279,7 +4279,7 @@ msgstr "דווח למתכנתים על שגיאה בישום"
 
 #: mmframe.cpp:1632
 msgid "&Show App Start Dialog"
-msgstr ""
+msgstr "&הצגת דו שיח אתחול ישומון"
 
 #: mmframe.cpp:1632
 msgid "App Start Dialog"
