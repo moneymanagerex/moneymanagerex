@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-05-26 12:37+0300\n"
-"PO-Revision-Date: 2020-06-30 14:18\n"
+"PO-Revision-Date: 2020-07-01 06:56\n"
 "Last-Translator: \n"
 "Language-Team: Hebrew\n"
 "MIME-Version: 1.0\n"
@@ -2275,7 +2275,7 @@ msgstr "הכל למעט מותאמים"
 
 #: filtertransdialog.cpp:158
 msgid "Specify"
-msgstr "הגדרה"
+msgstr "נא להגדיר"
 
 #: filtertransdialog.cpp:188 reports/mmDateRange.cpp:27
 msgid "Date Range"
@@ -2905,7 +2905,7 @@ msgstr "שמור תבנית"
 
 #: import_export/univcsvdialog.cpp:217
 msgid "Specify the order of fields in the file"
-msgstr "הגדרת סדר השדות בקובץ"
+msgstr "נא להגדיר את סדר השדות בקובץ"
 
 #: import_export/univcsvdialog.cpp:248
 msgid "&MMEX format"
@@ -3193,7 +3193,7 @@ msgstr "הפרש."
 
 #: maincurrencydialog.cpp:267
 msgid "Specify the date of currency value"
-msgstr "הזנת תאריך שער המטבע"
+msgstr "נא להגדיר את תאריך שער המטבע"
 
 #: maincurrencydialog.cpp:275
 msgid "Enter the currency value"
@@ -5126,7 +5126,7 @@ msgstr ""
 
 #: optionsettingsgeneral.cpp:115
 msgid "Specify the date format for display"
-msgstr "הגדרת תבנית תאריך לתצוגה"
+msgstr "נא להגדיר את תבנית תאריך לתצוגה"
 
 #: optionsettingsgeneral.cpp:118
 msgid "New date format sample:"
@@ -5142,7 +5142,7 @@ msgstr "יום התחלה"
 
 #: optionsettingsgeneral.cpp:136
 msgid "Specify Day for start of financial year"
-msgstr "הגדרת היום הראשון בשנה הפיננסית"
+msgstr "נא להגדיר את היום הראשון בשנה הפיננסית"
 
 #: optionsettingsgeneral.cpp:140
 msgid "Start Month"
@@ -5150,7 +5150,7 @@ msgstr "חודש התחלה"
 
 #: optionsettingsgeneral.cpp:152
 msgid "Specify month for start of financial year"
-msgstr "הזנת החודש הראשון בשנה הפיננסית"
+msgstr "נא להגדיר את החודש הראשון בשנה הפיננסית"
 
 #: optionsettingsgeneral.cpp:157
 msgid "Use Original Date when Pasting Transactions"
@@ -5242,7 +5242,7 @@ msgstr "לאחר יציא מ MMEX ונעשו שינויים במסד הנתונ�
 
 #: optionsettingsmisc.cpp:167
 msgid "Specify max number of backup files"
-msgstr "הגדרת מספר מקסימלי של קובצי גיבוי"
+msgstr "נא להגדיר את מספר מקסימלי של קובצי גיבוי"
 
 #: optionsettingsmisc.cpp:170
 msgid "Max Files"
@@ -5266,7 +5266,7 @@ msgstr "Url"
 
 #: optionsettingsnet.cpp:68
 msgid "Specify the Web App URL without final slash"
-msgstr "הזנת כתובת URL של אפליקציית השרת ללא הלוכסן בסוף"
+msgstr "נא להגדיר את כתובת ה URL של יישומון השרת ללא הלוכסן בסוף"
 
 #: optionsettingsnet.cpp:71 webappdialog.cpp:110
 msgid "GUID"
@@ -5274,7 +5274,7 @@ msgstr "GUID"
 
 #: optionsettingsnet.cpp:75
 msgid "Specify the Web App GUID"
-msgstr "הגדרת ה GUID של יישומון הרשת"
+msgstr "נא להגדיר את ה GUID של יישומון הרשת"
 
 #: optionsettingsnet.cpp:78
 msgid "More information about WebApp"
@@ -5286,11 +5286,11 @@ msgstr "הגדרות פרוקסי"
 
 #: optionsettingsnet.cpp:90
 msgid "Specify the proxy IP address"
-msgstr "הגדרת כתובת IP לפרוקסי"
+msgstr "נא להגדיר את כתובת ה IP של המתווך"
 
 #: optionsettingsnet.cpp:96
 msgid "Specify proxy port number"
-msgstr "הגדרת מספר הפורט של הפרוקסי"
+msgstr "נא להגדיר את הפורט של המתווך"
 
 #: optionsettingsnet.cpp:99
 msgid "Proxy"
