@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-05-26 12:37+0300\n"
-"PO-Revision-Date: 2020-07-01 07:06\n"
+"PO-Revision-Date: 2020-07-01 07:18\n"
 "Last-Translator: \n"
 "Language-Team: Hebrew\n"
 "MIME-Version: 1.0\n"
@@ -76,7 +76,7 @@ msgstr "שם חשבון:"
 
 #: accountdialog.cpp:141
 msgid "Enter the Name of the Account. This name can be renamed at any time."
-msgstr "הזנת שם חשבון. ניתן לשנות שם חשבון בכל עת."
+msgstr "נא להזין שם חשבון. ניתן לשנות שם חשבון בכל עת."
 
 #: accountdialog.cpp:144
 msgid "Account Type:"
@@ -101,7 +101,7 @@ msgstr "יתרת פתיחה: %s"
 
 #: accountdialog.cpp:168
 msgid "Enter the initial balance in this account."
-msgstr "הזנת יתרת פתיחה לחשבון."
+msgstr "נא להזין יתרת פתיחה לחשבון."
 
 #: accountdialog.cpp:170 import_export/univcsvdialog.cpp:1768
 msgid "Currency:"
@@ -135,7 +135,7 @@ msgstr "הערות"
 
 #: accountdialog.cpp:196
 msgid "Enter user notes and details about this account."
-msgstr "הזנת הערות משתמש ופרטים אודות חשבון זה."
+msgstr "נא להזין הערות משתמש ופרטים אודות חשבון זה."
 
 #: accountdialog.cpp:200 db/DB_Table_Subcategory_V1.h:129
 #: db/DB_Table_Subcategory_V1.h:132 db/DB_Table_Subcategory_V1.h:148
@@ -165,11 +165,11 @@ msgstr "הזנת שם המוסד הכספי בו מנוהל החשבון."
 
 #: accountdialog.cpp:218
 msgid "Website:"
-msgstr "אתר:"
+msgstr "אתר מרשתת:"
 
 #: accountdialog.cpp:220
 msgid "Enter the URL of the website for the financial institution."
-msgstr "הזנת כתובת ה URL של המוסד הכספי."
+msgstr "נא להזין כתובת ה URL של המוסד הכספי."
 
 #: accountdialog.cpp:223
 msgid "Contact:"
@@ -401,7 +401,7 @@ msgstr "% שער"
 
 #: assetdialog.cpp:247
 msgid "Enter the rate at which the asset changes its value in percentage per year"
-msgstr "הזנת שעור השינוי בערך הנכס באחוזים לשנה"
+msgstr "נא להזין שעור השינוי בערך הנכס באחוזים לשנה"
 
 #: assetdialog.cpp:259
 msgid "Organize attachments of this asset"
@@ -1602,7 +1602,7 @@ msgstr "יש למחוק קטגוריות משנה תחילה."
 #: categdialog.cpp:485
 #, c-format
 msgid "Enter a new name for '%s'"
-msgstr "הזנת שם חדש עבור '%s'"
+msgstr "נא להזין שם חדש עבור '%s'"
 
 #: categdialog.cpp:486
 msgid "Edit Category"
@@ -2017,7 +2017,7 @@ msgstr "דלק"
 
 #: db/DB_Table_Subcategory_V1.h:114
 msgid "Internet"
-msgstr "אינטרנט"
+msgstr "מרשתת"
 
 #: db/DB_Table_Subcategory_V1.h:115
 msgid "Rent"
@@ -5258,7 +5258,7 @@ msgstr "תו הפרדה"
 
 #: optionsettingsnet.cpp:57
 msgid "WebApp Settings"
-msgstr "הגדרות רשת"
+msgstr "הגדרות יישומון מרשתת"
 
 #: optionsettingsnet.cpp:64 webappdialog.cpp:103
 msgid "Url"
@@ -5278,7 +5278,7 @@ msgstr "נא להגדיר את ה GUID של יישומון הרשת"
 
 #: optionsettingsnet.cpp:78
 msgid "More information about WebApp"
-msgstr "מידע נוסף על יישומון הרשת"
+msgstr "מידע נוסף על יישומון המרשתת"
 
 #: optionsettingsnet.cpp:82
 msgid "Proxy Settings"
@@ -5621,7 +5621,7 @@ msgstr "נא לקרוא <a href='%s'>כיצד לדווח על תקלה באופ�
 
 #: reports/bugreport.h:84
 msgid "Come up with a descriptive name for your problem."
-msgstr "הזנת שם תאורי לבעיה."
+msgstr "נא להזין שם תאורי לבעיה."
 
 #: reports/bugreport.h:85
 msgid "Include steps to reproduce your problem, attach screenshots where appropriate."
@@ -6535,7 +6535,7 @@ msgstr "דצמבר"
 
 #: webapp.cpp:111
 msgid "Wrong WebApp GUID:"
-msgstr "יישום שגוי GUID:"
+msgstr "יישומון מרשתת שגוי GUID:"
 
 #: webapp.cpp:112
 msgid "please check it in network options."
@@ -6543,28 +6543,28 @@ msgstr "נא בדוק זאת באפשרויות רשת."
 
 #: webapp.cpp:113
 msgid "Wrong WebApp settings"
-msgstr "הגדרות יישומון רשת שגויות"
+msgstr "הגדרות יישומון מרשתת שגויות"
 
 #: webapp.cpp:118
 msgid "Unable to connect to WebApp:"
-msgstr "לא ניתן להתחבר ליישומון רשת:"
+msgstr "לא ניתן להתחבר ליישומון מרשתת:"
 
 #: webapp.cpp:119
 msgid "please check settings and / or internet connection."
-msgstr "נא לבדוק את הגדרות ו / או חיבור לאינטרנט ."
+msgstr "נא לבדוק את הגדרות ו / או חיבור למרשתת."
 
 #: webapp.cpp:121
 msgid "WebApp connection error"
-msgstr "שגיאת התחברות ליישומון רשת"
+msgstr "שגיאת התחברות ליישומון מרשתת"
 
 #: webapp.cpp:131
 msgid "Wrong WebApp API version:"
-msgstr "גרסת API אפליקציית רשת שגויה:"
+msgstr "גרסת API ליישומון מרשתת שגויה:"
 
 #: webapp.cpp:132
 #, c-format
 msgid "WebApp   API version -> %s"
-msgstr "גרסת API ליישומון רשת -> %s"
+msgstr "גרסת API ליישומון מרשתת -> %s"
 
 #: webapp.cpp:133
 #, c-format
@@ -6573,7 +6573,7 @@ msgstr "גרסת API צפויה - > %s"
 
 #: webapp.cpp:134
 msgid "Wrong WebApp API version"
-msgstr "גרסת API יישומון רשת שגויה"
+msgstr "גרסת API יישומון מרשתת שגויה"
 
 #: webapp.cpp:466
 #, c-format
@@ -6589,11 +6589,11 @@ msgstr "התנועה התווספה עם מספר החשבון הראשון :\n"
 
 #: webapp.cpp:471
 msgid "Wrong WebApp account"
-msgstr "חשבון יישומון רשת שגוי"
+msgstr "חשבון יישומון מרשתת שגוי"
 
 #: webapp.cpp:553 webapp.cpp:586
 msgid "Unable to download attachments from webapp."
-msgstr "לא ניתן להוריד צרופה מיישומון הרשת."
+msgstr "לא ניתן להוריד צרופה מיישומון המרשתת."
 
 #: webapp.cpp:554
 msgid "Attachments folder not set or unavailable"
@@ -6605,7 +6605,7 @@ msgstr "תנועות לא הורדו:"
 
 #: webapp.cpp:556
 msgid "please fix attachments folder or delete attachments from WebApp"
-msgstr "נא לתקן את ספרית הצרופות או למחוק צרופות  מאפליקציית הרשת"
+msgstr "נא לתקן את ספרית הצרופות או למחוק צרופות מיישומון המרשתת"
 
 #: webapp.cpp:557
 msgid "Attachment folder error"
@@ -6653,7 +6653,7 @@ msgstr "לא מצליח להוסיף תנועות למסד נתוני MMEX"
 
 #: webappdialog.cpp:314
 msgid "WebApp communication error"
-msgstr "שגיאת תקשורת עם יישומון הרשת"
+msgstr "שגיאת תקשורת עם יישומון המרשתת"
 
 #: webappdialog.cpp:405
 msgid "Open Attachment"
