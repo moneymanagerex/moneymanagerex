@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-05-26 12:37+0300\n"
-"PO-Revision-Date: 2020-07-01 07:37\n"
+"PO-Revision-Date: 2020-07-01 07:57\n"
 "Last-Translator: \n"
 "Language-Team: Hebrew\n"
 "MIME-Version: 1.0\n"
@@ -684,7 +684,7 @@ msgstr "צרופה."
 
 #: attachmentdialog.cpp:366
 msgid "This directory and its files are automatically managed by Money Manager EX software."
-msgstr "ספריה זו והקבצים שבה מנוהלים באופן אוטומטי על ידי תוכנת Money Manager EX."
+msgstr "מחיצה זו והקבצים שבה מנוהלים באופן אוטומטי על ידי תוכנת Money Manager EX."
 
 #: attachmentdialog.cpp:368
 msgid "Please do not remove, rename or modify manually directories and files."
@@ -2199,7 +2199,7 @@ msgstr "שגיאת שאילתה , יש ליצור קשר עם תמיכת MMEX!"
 
 #: dbupgrade.cpp:248 dbupgrade.cpp:303
 msgid "Invalid file content, please contact MMEX support!"
-msgstr ""
+msgstr "תוכן קובץ שגוי, נא ליצור קשר עם תמיכת MMEX!"
 
 #: dbupgrade.cpp:255
 msgid "Send this log to MMEX support team:\n"
@@ -2234,7 +2234,9 @@ msgstr "הזנת נתיב לקובץ מסד נתונים אחר"
 msgid "An incorrect password given for an encrypted file\n"
 "or\n"
 "attempt to open a File that is not a database file \n"
-msgstr ""
+msgstr "הוזנה ססמה שגויה לקובץ מוצפן\n"
+"או\n"
+"נעשה נסיון לפתיחת קובץ שאינו מסד נתונים\n"
 
 #: dbwrapper.cpp:82 import_export/qif_import_gui.cpp:855 webapp.cpp:120
 #, c-format
@@ -2315,7 +2317,7 @@ msgstr "טווח סכומים"
 
 #: filtertransdialog.cpp:347
 msgid "&Clear "
-msgstr ""
+msgstr "&ניקוי "
 
 #: filtertransdialog.cpp:822 filtertransdialog.cpp:837 reports/myusage.cpp:95
 #: webappdialog.cpp:194 webappdialog.cpp:199
@@ -3699,7 +3701,7 @@ msgstr ""
 
 #: mmcustomdata.cpp:449
 msgid "CustomField validation error"
-msgstr ""
+msgstr "שגיאת אימות בשדה מותאם אישית"
 
 #: mmex.cpp:127
 #, c-format
@@ -4371,7 +4373,7 @@ msgstr "נא להזין ססמה למסד הנתונים\n\n"
 
 #: mmframe.cpp:1772 mmframe.cpp:2002 mmframe.cpp:2135
 msgid "MMEX: Encrypted Database"
-msgstr ""
+msgstr "MMEX: מסד נתונים מוצפן"
 
 #: mmframe.cpp:1806
 msgid "Have MMEX support provided you a debug/patch file?"
@@ -4983,11 +4985,11 @@ msgstr "ספרית ארכיב לצרופות %s בלבד:"
 
 #: optionsettingsattachment.cpp:68
 msgid "Every OS type (Win,Mac,Unix) has its attachment folder"
-msgstr ""
+msgstr "לכל סוג מערכת הפעלה (Win, Mac, Unix) קיימת ספרית צרופות משלה"
 
 #: optionsettingsattachment.cpp:87
 msgid "Browse for folder"
-msgstr "דפדף לבחור ספריה"
+msgstr "נא לדפדף לבחירת ספריה"
 
 #: optionsettingsattachment.cpp:92 optionsettingsattachment.cpp:194
 msgid "Real path:"
@@ -5000,7 +5002,7 @@ msgstr ""
 #: optionsettingsattachment.cpp:102
 #, c-format
 msgid "%s -> User document directory"
-msgstr ""
+msgstr "%s -> מחיצת מסמכי משתמש"
 
 #: optionsettingsattachment.cpp:103
 #, c-format
@@ -5010,7 +5012,7 @@ msgstr "%s -> ספרית פרופיל משתמש"
 #: optionsettingsattachment.cpp:104
 #, c-format
 msgid "%s -> Folder of .MMB database file"
-msgstr ""
+msgstr "%s -> ספרית קובצי מסד נתונים .MMB"
 
 #: optionsettingsattachment.cpp:105
 #, c-format
@@ -5523,7 +5525,7 @@ msgstr "אישור העברת מוטב"
 #: reports/budget.cpp:94
 #, c-format
 msgid "Year: %i Month: %s"
-msgstr ""
+msgstr "שנה: %i חודש: %s"
 
 #: reports/budgetcategorysummary.cpp:131
 #, c-format
@@ -5953,7 +5955,8 @@ msgstr "*כמות מניות"
 #: stockdialog.cpp:224
 msgid "Enter number of shares.\n"
 "Used when creating the initial Share transaction."
-msgstr ""
+msgstr "נא להזין את כמות ניירות הערך.\n"
+"משמש ברישום תנועת נייר ערך ראשונית."
 
 #: stockdialog.cpp:230 stockspanel.cpp:96
 msgid "*Share Price"
@@ -5962,7 +5965,8 @@ msgstr "*מחיר עלות מניה"
 #: stockdialog.cpp:236
 msgid "Enter the initial price per share.\n"
 "Used when creating the initial Share transaction."
-msgstr ""
+msgstr "נא להזין עלות לנייר ערך.\n"
+"משמש ברישום תנועת נייר ערך ראשונית."
 
 #: stockdialog.cpp:241
 msgid "*Commission"
@@ -5971,7 +5975,8 @@ msgstr "*עמלה"
 #: stockdialog.cpp:245
 msgid "Enter any commission paid.\n"
 "Used when creating the initial Share transaction."
-msgstr ""
+msgstr "נא להזין עמלות ששולמו.\n"
+"משמש ברישום תנועת נייר ערך ראשונית."
 
 #: stockdialog.cpp:250 stockspanel.cpp:99
 msgid "Curr. Share Price"
@@ -5979,7 +5984,7 @@ msgstr "מחיר מניה נוכחי"
 
 #: stockdialog.cpp:253
 msgid "Enter current stock/share price."
-msgstr ""
+msgstr "נא להזין מחיר מניה/נייר ערך נוכחי."
 
 #: stockdialog.cpp:285
 msgid "Stock History Options"
@@ -6011,7 +6016,7 @@ msgstr "יבוא היסטורית מחירי ניירות ערך (בתבנית C
 
 #: stockdialog.cpp:340
 msgid "Delete selected Stock Price"
-msgstr ""
+msgstr "מחיקת מחירי ניר ערך נבחרים"
 
 #: stockdialog.cpp:342
 msgid "Add Stock Price to history"
@@ -6024,7 +6029,8 @@ msgstr "מוחזק ב"
 #: stockdialog.cpp:494
 msgid "Share Account not found.\n\n"
 "Do you want to create one?"
-msgstr ""
+msgstr "לא נמצא חשבון נכס.\n"
+"האם ליצור חשבון?"
 
 #: stockdialog.cpp:504
 msgid "The Company name does not have an associated Share Account.\n\n"
@@ -6198,7 +6204,7 @@ msgstr "הצגת תנועות בניירות ערך"
 
 #: stockspanel.cpp:589
 msgid "Delete Stock Investment"
-msgstr ""
+msgstr "מחיקת השקעת ניירות ערך"
 
 #: stockspanel.cpp:593
 msgid "&Move"
@@ -6206,7 +6212,7 @@ msgstr "&הזזה"
 
 #: stockspanel.cpp:594
 msgid "Move selected transaction to another account"
-msgstr ""
+msgstr "העברת התנועות שנבחרו לחשבון אחר"
 
 #: stockspanel.cpp:607
 msgid "Refresh"
@@ -6224,7 +6230,7 @@ msgstr "תיק השקעות: %s"
 #: stockspanel.cpp:763
 #, c-format
 msgid "Total Shares: %s"
-msgstr ""
+msgstr "סה\"כ מניות: %s"
 
 #: stockspanel.cpp:765
 #, c-format
