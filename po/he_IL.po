@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-05-26 12:37+0300\n"
-"PO-Revision-Date: 2020-07-01 08:04\n"
+"PO-Revision-Date: 2020-07-01 08:15\n"
 "Last-Translator: \n"
 "Language-Team: Hebrew\n"
 "MIME-Version: 1.0\n"
@@ -3148,7 +3148,7 @@ msgstr "קובצי CSV (*.csv)"
 
 #: import_export/univcsvdialog.cpp:1780
 msgid "Please, type the word indicating positive values in your CSV file, e.g. 'debit'"
-msgstr ""
+msgstr "נא להזין את המילה המציינת סימן חיובי בקובץ ה CSV, כלומר, 'debit'"
 
 #: import_export/univcsvdialog.cpp:1780
 msgid "Enter a value"
@@ -3233,7 +3233,8 @@ msgstr "בחירת מטבע הבסיס"
 #, c-format
 msgid "Historic rates for %s found, but \"Use currency history\" in options is disabled:\n"
 "click no and enable it or click yes to remove all historic rates for %s"
-msgstr ""
+msgstr "נמצאו שערים היסטוריים עבור %s אבל, האפשרות 'שימוש בשערים היסטוריים' נוטרלה בהגדרות:\n"
+"נא להקיש על שפעול האפשרות או, הקשה על 'כן' להסרת כל השערים ההיסטוריים עבור %s"
 
 #: maincurrencydialog.cpp:438
 #, c-format
@@ -3242,7 +3243,7 @@ msgstr "אפשרויות היסטורית מטבעות: %s "
 
 #: maincurrencydialog.cpp:494
 msgid "Unable to update history currency rates. Please update them manually!"
-msgstr ""
+msgstr "לא ניתן היה לעדכן שערי מטבע היסטוריים. נא לעדכנם באופן ידני!"
 
 #: maincurrencydialog.cpp:494 maincurrencydialog.cpp:624
 #: maincurrencydialog.cpp:639 maincurrencydialog.cpp:686
@@ -3278,11 +3279,11 @@ msgstr "אין אפשרות להוריד היסטוריה עבור סמל ניר
 
 #: maincurrencydialog.cpp:746
 msgid "Changing base currency will delete all history rates, proceed?"
-msgstr ""
+msgstr "שינוי מטבע הבסיס ימחק את כל השערים ההיסטוריים, האם להמשיך?"
 
 #: maincurrencydialog.cpp:770
 msgid "Do you want to update today currency rates?"
-msgstr ""
+msgstr "האם לעדכן שערי מטבע להיום?"
 
 #: maincurrencydialog.cpp:785 stockspanel.cpp:825 util.cpp:468
 msgid "Could not find base currency symbol!"
@@ -3291,7 +3292,7 @@ msgstr "סמל מטבע בסיס לא נמצא!"
 #: maincurrencydialog.cpp:902
 #, c-format
 msgid "Unable to download history for base symbol %s. History rates not available!"
-msgstr ""
+msgstr "לא ניתן להוריד היסטוריה עבור סמל בסיס %s. היסטורית מחירים לא זמינה!"
 
 #: mmSimpleDialogs.cpp:177
 msgid "Subtract one year"
@@ -3418,7 +3419,7 @@ msgstr "עצה: זכרו לבצע גיבויים לקובץ ה .mmb שלכם."
 
 #: mmTips.h:26
 msgid "Tip: The .mmb file is not encrypted. That means anyone else having the proper know how can actually open the file and read the contents. So make sure that if you are storing any sensitive financial information it is properly guarded."
-msgstr ""
+msgstr "עצה: קובץ .mmb אינו מוצפן. כלומר, כל אחד בעל ידע רלוונטי יוכל לפתוח את הקובץ ולקרוא את התוכנו. לכן, וודא כי אם מאוחסן בקובץ מידע פיננסי רגיש, הוא מאובטח כראוי."
 
 #: mmTips.h:27
 msgid "Tip: To mark a transaction as reconciled, just select the transaction and hit the 'r' or 'R' key. To mark a transaction as unreconciled, just select the transaction and hit the 'u' or 'U' key."
@@ -3987,7 +3988,7 @@ msgstr "התעלם מתנועות עתידיות"
 
 #: mmframe.cpp:1375
 msgid "Toggle Fullscreen\tShift+F11"
-msgstr ""
+msgstr "מעבר/חזרה למסך מלא\tShift+F11"
 
 #: mmframe.cpp:1376 mmframe.cpp:1710
 msgid "Toggle Fullscreen"
