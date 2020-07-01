@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-05-26 12:37+0300\n"
-"PO-Revision-Date: 2020-07-01 07:18\n"
+"PO-Revision-Date: 2020-07-01 07:37\n"
 "Last-Translator: \n"
 "Language-Team: Hebrew\n"
 "MIME-Version: 1.0\n"
@@ -1936,7 +1936,7 @@ msgstr "האם לעדכן תוכן לריק?\n"
 #: customfieldlistdialog.cpp:233
 #, c-format
 msgid "%i occurrences founded and replaced!"
-msgstr ""
+msgstr "נמצאו והוחלפו %i מופעים!"
 
 #: customfieldlistdialog.cpp:268
 msgid "&Massive content update "
@@ -2150,7 +2150,7 @@ msgstr "רוח הון"
 #: dbupgrade.cpp:72
 #, c-format
 msgid "MMEX database upgrade to version %i failed!"
-msgstr ""
+msgstr "שדרוג מסד נתונים MMEX לגרסה %i כשל!"
 
 #: dbupgrade.cpp:73
 msgid "Please restore DB from autocreated pre-upgrade backup and retry or contact MMEX support"
@@ -2174,11 +2174,11 @@ msgstr "גירסת מסד נתונים %i לא נתמכת על ידי  גרסת 
 #: dbupgrade.cpp:119
 #, c-format
 msgid "MMEX database succesfully upgraded to version %i"
-msgstr ""
+msgstr "שדרוג מסד נתונים MMEX לגרסה %i צלחה"
 
 #: dbupgrade.cpp:120
 msgid "We suggest a database optimization under Tools -> Database -> Optimize"
-msgstr ""
+msgstr "אנו ממליצים על מיטוב מסד הנתונים מתפריו כלים -> מסד נתונים -> מיטוב"
 
 #: dbupgrade.cpp:197
 msgid "Load debug file"
@@ -4366,7 +4366,8 @@ msgstr "עבור/חזור מסך מלא\tF11"
 #, c-format
 msgid "Please enter password for Database\n\n"
 "%s"
-msgstr ""
+msgstr "נא להזין ססמה למסד הנתונים\n\n"
+"%s"
 
 #: mmframe.cpp:1772 mmframe.cpp:2002 mmframe.cpp:2135
 msgid "MMEX: Encrypted Database"
