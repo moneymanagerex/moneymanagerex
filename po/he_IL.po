@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-05-26 12:37+0300\n"
-"PO-Revision-Date: 2020-07-01 07:57\n"
+"PO-Revision-Date: 2020-07-01 08:04\n"
 "Last-Translator: \n"
 "Language-Team: Hebrew\n"
 "MIME-Version: 1.0\n"
@@ -3722,7 +3722,8 @@ msgstr "שינוי שפה"
 #: mmex.cpp:179
 msgid "Fatal error occured.\n"
 "Application will be terminated."
-msgstr ""
+msgstr "אירעה שגיאה חמורה. \n"
+"היישום יסגרסגר."
 
 #: mmframe.cpp:259
 msgid "Navigation"
@@ -4389,7 +4390,7 @@ msgstr "קובץ לא נפתח"
 
 #: mmframe.cpp:1830
 msgid "Sorry. The Database version is too old or Database password is incorrect"
-msgstr ""
+msgstr "למצער, גרסת מסד הנתונים ישנה מדי, או, ססמת מסד הנתונים שגויה"
 
 #: mmframe.cpp:1860
 msgid "&Next ->"
@@ -4397,7 +4398,7 @@ msgstr "&הבא ->"
 
 #: mmframe.cpp:1873
 msgid "Cannot locate previously opened database.\n"
-msgstr ""
+msgstr "מסד הנתונים שנפתח לאחרונה לא אותר.\n"
 
 #: mmframe.cpp:1875
 msgid "Password not entered for encrypted Database.\n"
@@ -5610,12 +5611,12 @@ msgstr "חיפוש ב<a href='%s'>רשימת בעיות ידועות</a>למצי
 #: reports/bugreport.h:81
 #, c-format
 msgid "As you know, <a href='%s'>a forum</a> for users is available where you can discuss problems and find solutions."
-msgstr ""
+msgstr "כידוע, <a href='%s'>פורום</a> משתמשים זמין לדיון בבעיות ומציאת פתרונות."
 
 #: reports/bugreport.h:82
 #, c-format
 msgid "Please, join our community in <a href='%s'>Slack</a>. Here you can also pose your question and learn latest news."
-msgstr ""
+msgstr "נא הצטרפו לקהילה שלנו ב <a href='%s'>Slack</a>. שם ניתן לשאול שאלות ולהתעדכן בחדשות האחרונות."
 
 #: reports/bugreport.h:83
 #, c-format
