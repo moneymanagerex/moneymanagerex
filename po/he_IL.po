@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-05-26 12:37+0300\n"
-"PO-Revision-Date: 2020-07-01 08:15\n"
+"PO-Revision-Date: 2020-07-01 08:28\n"
 "Last-Translator: \n"
 "Language-Team: Hebrew\n"
 "MIME-Version: 1.0\n"
@@ -3419,7 +3419,7 @@ msgstr "עצה: זכרו לבצע גיבויים לקובץ ה .mmb שלכם."
 
 #: mmTips.h:26
 msgid "Tip: The .mmb file is not encrypted. That means anyone else having the proper know how can actually open the file and read the contents. So make sure that if you are storing any sensitive financial information it is properly guarded."
-msgstr "עצה: קובץ .mmb אינו מוצפן. כלומר, כל אחד בעל ידע רלוונטי יוכל לפתוח את הקובץ ולקרוא את התוכנו. לכן, וודא כי אם מאוחסן בקובץ מידע פיננסי רגיש, הוא מאובטח כראוי."
+msgstr "עצה: קובץ .mmb לא מוצפן, הוא לא מוצפן. כלומר, כל אחד בעל ידע רלוונטי יוכל לפתוח את הקובץ ולקרוא את התוכנו. לכן, וודא כי אם מאוחסן בקובץ מידע פיננסי רגיש, הוא מאובטח כראוי."
 
 #: mmTips.h:27
 msgid "Tip: To mark a transaction as reconciled, just select the transaction and hit the 'r' or 'R' key. To mark a transaction as unreconciled, just select the transaction and hit the 'u' or 'U' key."
@@ -3698,7 +3698,8 @@ msgstr "בחירה מרובה"
 #, c-format
 msgid "Unable to save custom field \"%s\":\n"
 "value \"%s\" does not match RegEx validation \"%s\""
-msgstr ""
+msgstr "לא ניתן לשמור שדה מותאם אישית \"%s\":\n"
+"ערך של \"%s\" אינו תואם לכללי האימות RegEx של \"%s\""
 
 #: mmcustomdata.cpp:449
 msgid "CustomField validation error"
@@ -4999,7 +5000,7 @@ msgstr "נתיב ממשי:"
 
 #: optionsettingsattachment.cpp:97
 msgid "Legend (can be used as variables at the beginning of above path)"
-msgstr ""
+msgstr "מקרה (ניתן לשימוש כמשתנה בתחילת הנתיב שלעיל)"
 
 #: optionsettingsattachment.cpp:102
 #, c-format
@@ -5127,7 +5128,7 @@ msgstr "שימוש בהיסטורית מטבעות"
 
 #: optionsettingsgeneral.cpp:99
 msgid "Select to use currency history (one rate for each day), deselect to use a fixed rate"
-msgstr ""
+msgstr "נא לבחור לשימוש בהיסטוריית שערים (שער לכל יום), בטול בחירה לשימוש בשער קבוע"
 
 #: optionsettingsgeneral.cpp:115
 msgid "Specify the date format for display"
