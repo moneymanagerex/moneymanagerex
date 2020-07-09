@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-05-26 12:37+0300\n"
-"PO-Revision-Date: 2020-06-26 08:44\n"
+"PO-Revision-Date: 2020-07-01 08:28\n"
 "Last-Translator: \n"
 "Language-Team: Hebrew\n"
 "MIME-Version: 1.0\n"
@@ -76,7 +76,7 @@ msgstr "שם חשבון:"
 
 #: accountdialog.cpp:141
 msgid "Enter the Name of the Account. This name can be renamed at any time."
-msgstr "הזנת שם חשבון. ניתן לשנות שם חשבון בכל עת."
+msgstr "נא להזין שם חשבון. ניתן לשנות שם חשבון בכל עת."
 
 #: accountdialog.cpp:144
 msgid "Account Type:"
@@ -101,7 +101,7 @@ msgstr "יתרת פתיחה: %s"
 
 #: accountdialog.cpp:168
 msgid "Enter the initial balance in this account."
-msgstr "הזנת יתרת פתיחה לחשבון."
+msgstr "נא להזין יתרת פתיחה לחשבון."
 
 #: accountdialog.cpp:170 import_export/univcsvdialog.cpp:1768
 msgid "Currency:"
@@ -121,7 +121,7 @@ msgstr "חשבון מועדף"
 
 #: accountdialog.cpp:183
 msgid "Select whether this is an account that is used often. This is used to filter accounts display view."
-msgstr "סימון החשבון כ'שימוש תכוף'. משמש לסינון תצוגת חשבונות."
+msgstr "סימון החשבון כ'שימוש תכוף'. משמש לסינון מצג חשבונות."
 
 #: accountdialog.cpp:191 assetdialog.cpp:253 assetspanel.cpp:64
 #: billsdepositsdialog.cpp:614 billsdepositspanel.cpp:110
@@ -135,7 +135,7 @@ msgstr "הערות"
 
 #: accountdialog.cpp:196
 msgid "Enter user notes and details about this account."
-msgstr "הזנת הערות משתמש ופרטים אודות חשבון זה."
+msgstr "נא להזין הערות משתמש ופרטים אודות חשבון זה."
 
 #: accountdialog.cpp:200 db/DB_Table_Subcategory_V1.h:129
 #: db/DB_Table_Subcategory_V1.h:132 db/DB_Table_Subcategory_V1.h:148
@@ -165,11 +165,11 @@ msgstr "הזנת שם המוסד הכספי בו מנוהל החשבון."
 
 #: accountdialog.cpp:218
 msgid "Website:"
-msgstr "אתר:"
+msgstr "אתר מרשתת:"
 
 #: accountdialog.cpp:220
 msgid "Enter the URL of the website for the financial institution."
-msgstr "הזנת כתובת ה URL של המוסד הכספי."
+msgstr "נא להזין כתובת ה URL של המוסד הכספי."
 
 #: accountdialog.cpp:223
 msgid "Contact:"
@@ -401,7 +401,7 @@ msgstr "% שער"
 
 #: assetdialog.cpp:247
 msgid "Enter the rate at which the asset changes its value in percentage per year"
-msgstr "הזנת שעור השינוי בערך הנכס באחוזים לשנה"
+msgstr "נא להזין שעור השינוי בערך הנכס באחוזים לשנה"
 
 #: assetdialog.cpp:259
 msgid "Organize attachments of this asset"
@@ -472,7 +472,7 @@ msgstr "&הוספת תנועת נכס"
 
 #: assetspanel.cpp:101
 msgid "&View Asset Transactions"
-msgstr "&הצגת תנועת נכס"
+msgstr "&מצג תנועת נכס"
 
 #: assetspanel.cpp:102
 msgid "&Open Asset Account"
@@ -575,7 +575,8 @@ msgstr "שינוי ערך: %s %s"
 #: assetspanel.cpp:768
 msgid "This asset does not have its own account\n\n"
 "Multiple transactions for this asset are not recommended."
-msgstr ""
+msgstr "לנכס זה אין חשבון משלו\n\n"
+"לא מומלץ לרשום תנועות מרובות לנכס זה."
 
 #: assetspanel.cpp:770
 msgid "Asset Management"
@@ -683,7 +684,7 @@ msgstr "צרופה."
 
 #: attachmentdialog.cpp:366
 msgid "This directory and its files are automatically managed by Money Manager EX software."
-msgstr "ספריה זו והקבצים שבה מנוהלים באופן אוטומטי על ידי תוכנת Money Manager EX."
+msgstr "מחיצה זו והקבצים שבה מנוהלים באופן אוטומטי על ידי תוכנת Money Manager EX."
 
 #: attachmentdialog.cpp:368
 msgid "Please do not remove, rename or modify manually directories and files."
@@ -1336,7 +1337,7 @@ msgstr "הזנת הסכום שתוקצב עבור קטגוריה זו."
 
 #: budgetingpanel.cpp:50
 msgid "View All Budget Categories"
-msgstr "הצגת כל קטגוריות התקציב"
+msgstr "מצג כלל קטגוריות התקציב"
 
 #: budgetingpanel.cpp:51
 msgid "View Non-Zero Budget Categories"
@@ -1510,7 +1511,7 @@ msgstr "עריכת שם של קטגוריה קיימת"
 
 #: categdialog.cpp:236
 msgid "Delete an existing category. The category cannot be used by existing transactions."
-msgstr ""
+msgstr "מחיקת קטגוריה קימת. לא ניתן להשתמש בקטגוריה בתנועות הקימות."
 
 #: categdialog.cpp:241 maincurrencydialog.cpp:211
 msgid "&Select"
@@ -1601,7 +1602,7 @@ msgstr "יש למחוק קטגוריות משנה תחילה."
 #: categdialog.cpp:485
 #, c-format
 msgid "Enter a new name for '%s'"
-msgstr "הזנת שם חדש עבור '%s'"
+msgstr "נא להזין שם חדש עבור '%s'"
 
 #: categdialog.cpp:486
 msgid "Edit Category"
@@ -1772,7 +1773,7 @@ msgstr "המרה לשער הבסיס"
 
 #: currencydialog.cpp:212
 msgid "Conversion rate will be used in case no currency history has been found for the currency"
-msgstr ""
+msgstr "במידה ולא ואין שערים היסטוריים למטבע, יעשה שימוש בשער המרה"
 
 #: currencydialog.cpp:214
 msgid "Fixed conversion rate"
@@ -1899,7 +1900,8 @@ msgstr "אישור מחיקת שדה מותאם אישית"
 #: customfieldlistdialog.cpp:194
 msgid "This function will massive update (search & replace for entire value, not inside value), please remind that there isn't any validation!\n"
 "Do you want to proceed?"
-msgstr ""
+msgstr "תכונה זו תבצע עדכון מסיבי (חיפוש והחלפת כלל הערך, לא בתוך הערך), ללא כל כללי אימות!\n"
+"האם להמשיך?"
 
 #: customfieldlistdialog.cpp:196
 msgid "Confirm Custom Field Content Update"
@@ -1934,7 +1936,7 @@ msgstr "האם לעדכן תוכן לריק?\n"
 #: customfieldlistdialog.cpp:233
 #, c-format
 msgid "%i occurrences founded and replaced!"
-msgstr ""
+msgstr "נמצאו והוחלפו %i מופעים!"
 
 #: customfieldlistdialog.cpp:268
 msgid "&Massive content update "
@@ -2015,7 +2017,7 @@ msgstr "דלק"
 
 #: db/DB_Table_Subcategory_V1.h:114
 msgid "Internet"
-msgstr "אינטרנט"
+msgstr "מרשתת"
 
 #: db/DB_Table_Subcategory_V1.h:115
 msgid "Rent"
@@ -2148,7 +2150,7 @@ msgstr "רוח הון"
 #: dbupgrade.cpp:72
 #, c-format
 msgid "MMEX database upgrade to version %i failed!"
-msgstr ""
+msgstr "שדרוג מסד נתונים MMEX לגרסה %i כשל!"
 
 #: dbupgrade.cpp:73
 msgid "Please restore DB from autocreated pre-upgrade backup and retry or contact MMEX support"
@@ -2172,11 +2174,11 @@ msgstr "גירסת מסד נתונים %i לא נתמכת על ידי  גרסת 
 #: dbupgrade.cpp:119
 #, c-format
 msgid "MMEX database succesfully upgraded to version %i"
-msgstr ""
+msgstr "שדרוג מסד נתונים MMEX לגרסה %i צלחה"
 
 #: dbupgrade.cpp:120
 msgid "We suggest a database optimization under Tools -> Database -> Optimize"
-msgstr ""
+msgstr "אנו ממליצים על מיטוב מסד הנתונים מתפריו כלים -> מסד נתונים -> מיטוב"
 
 #: dbupgrade.cpp:197
 msgid "Load debug file"
@@ -2197,7 +2199,7 @@ msgstr "שגיאת שאילתה , יש ליצור קשר עם תמיכת MMEX!"
 
 #: dbupgrade.cpp:248 dbupgrade.cpp:303
 msgid "Invalid file content, please contact MMEX support!"
-msgstr ""
+msgstr "תוכן קובץ שגוי, נא ליצור קשר עם תמיכת MMEX!"
 
 #: dbupgrade.cpp:255
 msgid "Send this log to MMEX support team:\n"
@@ -2232,7 +2234,9 @@ msgstr "הזנת נתיב לקובץ מסד נתונים אחר"
 msgid "An incorrect password given for an encrypted file\n"
 "or\n"
 "attempt to open a File that is not a database file \n"
-msgstr ""
+msgstr "הוזנה ססמה שגויה לקובץ מוצפן\n"
+"או\n"
+"נעשה נסיון לפתיחת קובץ שאינו מסד נתונים\n"
 
 #: dbwrapper.cpp:82 import_export/qif_import_gui.cpp:855 webapp.cpp:120
 #, c-format
@@ -2273,7 +2277,7 @@ msgstr "הכל למעט מותאמים"
 
 #: filtertransdialog.cpp:158
 msgid "Specify"
-msgstr "הגדרה"
+msgstr "נא להגדיר"
 
 #: filtertransdialog.cpp:188 reports/mmDateRange.cpp:27
 msgid "Date Range"
@@ -2313,7 +2317,7 @@ msgstr "טווח סכומים"
 
 #: filtertransdialog.cpp:347
 msgid "&Clear "
-msgstr ""
+msgstr "&ניקוי "
 
 #: filtertransdialog.cpp:822 filtertransdialog.cpp:837 reports/myusage.cpp:95
 #: webappdialog.cpp:194 webappdialog.cpp:199
@@ -2903,7 +2907,7 @@ msgstr "שמור תבנית"
 
 #: import_export/univcsvdialog.cpp:217
 msgid "Specify the order of fields in the file"
-msgstr "הגדרת סדר השדות בקובץ"
+msgstr "נא להגדיר את סדר השדות בקובץ"
 
 #: import_export/univcsvdialog.cpp:248
 msgid "&MMEX format"
@@ -2996,7 +3000,7 @@ msgstr "חשבון לא קיים"
 #: import_export/univcsvdialog.cpp:1784
 #, c-format
 msgid "Positive if type has '%s'"
-msgstr ""
+msgstr "חיובי אם מסוג '%s'"
 
 #: import_export/univcsvdialog.cpp:917
 msgid "Incorrect fields specified for import!"
@@ -3144,7 +3148,7 @@ msgstr "קובצי CSV (*.csv)"
 
 #: import_export/univcsvdialog.cpp:1780
 msgid "Please, type the word indicating positive values in your CSV file, e.g. 'debit'"
-msgstr ""
+msgstr "נא להזין את המילה המציינת סימן חיובי בקובץ ה CSV, כלומר, 'debit'"
 
 #: import_export/univcsvdialog.cpp:1780
 msgid "Enter a value"
@@ -3179,7 +3183,7 @@ msgstr "עדכון מקוון"
 
 #: maincurrencydialog.cpp:170
 msgid "Show all even the unused currencies"
-msgstr ""
+msgstr "הצגת הכול לרבות מטבעות שאינם בשיוש"
 
 #: maincurrencydialog.cpp:227
 msgid "Currency History Options"
@@ -3191,7 +3195,7 @@ msgstr "הפרש."
 
 #: maincurrencydialog.cpp:267
 msgid "Specify the date of currency value"
-msgstr "הזנת תאריך שער המטבע"
+msgstr "נא להגדיר את תאריך שער המטבע"
 
 #: maincurrencydialog.cpp:275
 msgid "Enter the currency value"
@@ -3215,7 +3219,7 @@ msgstr "מחיקת ערכי מטבע שנבחרו"
 
 #: maincurrencydialog.cpp:297
 msgid "Delete Currency Values history for unused currencies and days"
-msgstr ""
+msgstr "מחיקת היסטוריית ערכי מטבעות ותאריכים למטבעות שאינם בשימוש"
 
 #: maincurrencydialog.cpp:356
 msgid "Do you really want to delete the selected Currency?"
@@ -3229,7 +3233,8 @@ msgstr "בחירת מטבע הבסיס"
 #, c-format
 msgid "Historic rates for %s found, but \"Use currency history\" in options is disabled:\n"
 "click no and enable it or click yes to remove all historic rates for %s"
-msgstr ""
+msgstr "נמצאו שערים היסטוריים עבור %s אבל, האפשרות 'שימוש בשערים היסטוריים' נוטרלה בהגדרות:\n"
+"נא להקיש על שפעול האפשרות או, הקשה על 'כן' להסרת כל השערים ההיסטוריים עבור %s"
 
 #: maincurrencydialog.cpp:438
 #, c-format
@@ -3238,7 +3243,7 @@ msgstr "אפשרויות היסטורית מטבעות: %s "
 
 #: maincurrencydialog.cpp:494
 msgid "Unable to update history currency rates. Please update them manually!"
-msgstr ""
+msgstr "לא ניתן היה לעדכן שערי מטבע היסטוריים. נא לעדכנם באופן ידני!"
 
 #: maincurrencydialog.cpp:494 maincurrencydialog.cpp:624
 #: maincurrencydialog.cpp:639 maincurrencydialog.cpp:686
@@ -3274,11 +3279,11 @@ msgstr "אין אפשרות להוריד היסטוריה עבור סמל ניר
 
 #: maincurrencydialog.cpp:746
 msgid "Changing base currency will delete all history rates, proceed?"
-msgstr ""
+msgstr "שינוי מטבע הבסיס ימחק את כל השערים ההיסטוריים, האם להמשיך?"
 
 #: maincurrencydialog.cpp:770
 msgid "Do you want to update today currency rates?"
-msgstr ""
+msgstr "האם לעדכן שערי מטבע להיום?"
 
 #: maincurrencydialog.cpp:785 stockspanel.cpp:825 util.cpp:468
 msgid "Could not find base currency symbol!"
@@ -3287,7 +3292,7 @@ msgstr "סמל מטבע בסיס לא נמצא!"
 #: maincurrencydialog.cpp:902
 #, c-format
 msgid "Unable to download history for base symbol %s. History rates not available!"
-msgstr ""
+msgstr "לא ניתן להוריד היסטוריה עבור סמל בסיס %s. היסטורית מחירים לא זמינה!"
 
 #: mmSimpleDialogs.cpp:177
 msgid "Subtract one year"
@@ -3414,7 +3419,7 @@ msgstr "עצה: זכרו לבצע גיבויים לקובץ ה .mmb שלכם."
 
 #: mmTips.h:26
 msgid "Tip: The .mmb file is not encrypted. That means anyone else having the proper know how can actually open the file and read the contents. So make sure that if you are storing any sensitive financial information it is properly guarded."
-msgstr ""
+msgstr "עצה: קובץ .mmb לא מוצפן, הוא לא מוצפן. כלומר, כל אחד בעל ידע רלוונטי יוכל לפתוח את הקובץ ולקרוא את התוכנו. לכן, וודא כי אם מאוחסן בקובץ מידע פיננסי רגיש, הוא מאובטח כראוי."
 
 #: mmTips.h:27
 msgid "Tip: To mark a transaction as reconciled, just select the transaction and hit the 'r' or 'R' key. To mark a transaction as unreconciled, just select the transaction and hit the 'u' or 'U' key."
@@ -3519,7 +3524,7 @@ msgstr "הזנת מחרוזת לחיפוש בשדה הערות שברשומת ה
 #: mmcheckingpanel.cpp:487
 #, c-format
 msgid "Account View : %s"
-msgstr ""
+msgstr "מצג חשבון: %s"
 
 #: mmcheckingpanel.cpp:713
 msgid "Select account used in transfer transactions"
@@ -3693,11 +3698,12 @@ msgstr "בחירה מרובה"
 #, c-format
 msgid "Unable to save custom field \"%s\":\n"
 "value \"%s\" does not match RegEx validation \"%s\""
-msgstr ""
+msgstr "לא ניתן לשמור שדה מותאם אישית \"%s\":\n"
+"ערך של \"%s\" אינו תואם לכללי האימות RegEx של \"%s\""
 
 #: mmcustomdata.cpp:449
 msgid "CustomField validation error"
-msgstr ""
+msgstr "שגיאת אימות בשדה מותאם אישית"
 
 #: mmex.cpp:127
 #, c-format
@@ -3708,7 +3714,8 @@ msgstr "לא ניתן לטעון תרגום לשפת ברירת המחדל של 
 #, c-format
 msgid "Please use the Switch Application Language option in View menu to select one of the following available languages:\n\n"
 "%s"
-msgstr ""
+msgstr "נא להשתמש בבורר השפה בתפריט תצוגה כדי לבחור באחת השפות הזמינות:\n\n"
+"%s"
 
 #: mmex.cpp:139 mmframe.cpp:3212
 msgid "Language change"
@@ -3717,7 +3724,8 @@ msgstr "שינוי שפה"
 #: mmex.cpp:179
 msgid "Fatal error occured.\n"
 "Application will be terminated."
-msgstr ""
+msgstr "אירעה שגיאה חמורה. \n"
+"היישום יסגרסגר."
 
 #: mmframe.cpp:259
 msgid "Navigation"
@@ -3981,7 +3989,7 @@ msgstr "התעלם מתנועות עתידיות"
 
 #: mmframe.cpp:1375
 msgid "Toggle Fullscreen\tShift+F11"
-msgstr ""
+msgstr "מעבר/חזרה למסך מלא\tShift+F11"
 
 #: mmframe.cpp:1376 mmframe.cpp:1710
 msgid "Toggle Fullscreen"
@@ -4021,7 +4029,7 @@ msgstr "הורדת שערים..."
 
 #: mmframe.cpp:1440 mmframe.cpp:1707
 msgid "Download Currency and Stock rates"
-msgstr ""
+msgstr "הורדת שערי מטבע ונירות ערך"
 
 #: mmframe.cpp:1447
 msgid "Organize &Categories..."
@@ -4101,7 +4109,7 @@ msgstr "מנהל שדות מותאם אישית"
 
 #: mmframe.cpp:1518
 msgid "&Options...\tCtrl-,"
-msgstr ""
+msgstr "&אפשרויות... Ctrl-,"
 
 #: mmframe.cpp:1518 mmframe.cpp:1690
 msgid "Show the Options Dialog"
@@ -4109,11 +4117,11 @@ msgstr "הצגת תיבת דו-שיח אפשרויות"
 
 #: mmframe.cpp:1526
 msgid "Convert Encrypted &DB"
-msgstr ""
+msgstr "המרת &מסד נתונים מוצפן"
 
 #: mmframe.cpp:1527
 msgid "Convert Encrypted DB to Non-Encrypted DB"
-msgstr ""
+msgstr "הסרת הצפנה ממסד נתונים מוצפן"
 
 #: mmframe.cpp:1530
 msgid "Change Encrypted &Password"
@@ -4121,7 +4129,7 @@ msgstr "שנוי ססמה &מוצפנת"
 
 #: mmframe.cpp:1531
 msgid "Change the password of an encrypted database"
-msgstr ""
+msgstr "שינוי ססמה למסד נתונים מוצפן"
 
 #: mmframe.cpp:1534
 msgid "Optimize &Database"
@@ -4277,11 +4285,11 @@ msgstr "דווח למתכנתים על שגיאה בישום"
 
 #: mmframe.cpp:1632
 msgid "&Show App Start Dialog"
-msgstr ""
+msgstr "&הצגת דו שיח אתחול ישומון"
 
 #: mmframe.cpp:1632
 msgid "App Start Dialog"
-msgstr ""
+msgstr "דו שיח אתחול ישומון"
 
 #: mmframe.cpp:1637
 msgid "Check for &Updates"
@@ -4363,11 +4371,12 @@ msgstr "עבור/חזור מסך מלא\tF11"
 #, c-format
 msgid "Please enter password for Database\n\n"
 "%s"
-msgstr ""
+msgstr "נא להזין ססמה למסד הנתונים\n\n"
+"%s"
 
 #: mmframe.cpp:1772 mmframe.cpp:2002 mmframe.cpp:2135
 msgid "MMEX: Encrypted Database"
-msgstr ""
+msgstr "MMEX: מסד נתונים מוצפן"
 
 #: mmframe.cpp:1806
 msgid "Have MMEX support provided you a debug/patch file?"
@@ -4383,7 +4392,7 @@ msgstr "קובץ לא נפתח"
 
 #: mmframe.cpp:1830
 msgid "Sorry. The Database version is too old or Database password is incorrect"
-msgstr ""
+msgstr "למצער, גרסת מסד הנתונים ישנה מדי, או, ססמת מסד הנתונים שגויה"
 
 #: mmframe.cpp:1860
 msgid "&Next ->"
@@ -4391,11 +4400,11 @@ msgstr "&הבא ->"
 
 #: mmframe.cpp:1873
 msgid "Cannot locate previously opened database.\n"
-msgstr ""
+msgstr "מסד הנתונים שנפתח לאחרונה לא אותר.\n"
 
 #: mmframe.cpp:1875
 msgid "Password not entered for encrypted Database.\n"
-msgstr ""
+msgstr "לא הוזנה ססמה למסד נתונים מוצפן.\n"
 
 #: mmframe.cpp:1893
 msgid "portable mode"
@@ -4406,7 +4415,10 @@ msgid "Database that you trying to open has been marked as opened by another MME
 "To avoid data loss or conflict, it's strongly recommended to close all other applications that can use the DB.\n\n"
 "Possible it may be as result of a programm crash in previous usage.\n\n"
 "Would you like to continue?"
-msgstr ""
+msgstr "מסד נתונים שנבחר לפתיחה, מסומן כפתוח במופע MMEX אחר...\n"
+"כדי להמנע מאבדן נתונים או התנגשויות, מומלץ בחום לסגור את כל היישומים האחרים שעשויים להשתמש במסד הנתונים.\n\n"
+"יתכן וזאת תוצאה מכשל תכנה משימוש קודם.\n\n"
+"האם להמשיך?"
 
 #: mmframe.cpp:1933
 msgid "MMEX Instance Check"
@@ -4422,7 +4434,7 @@ msgstr "בחירת קובץ מסד נתונים לפתיחה"
 
 #: mmframe.cpp:1992
 msgid "Choose Encrypted database file to open"
-msgstr ""
+msgstr "בחירת קובץ מסד נתונים מוצפן לפתיחה"
 
 #: mmframe.cpp:2002
 msgid "Enter password for database"
@@ -4448,15 +4460,16 @@ msgstr "MMEX: שינוי ססמת הצפנה"
 #, c-format
 msgid "New password for database\n\n"
 "%s"
-msgstr ""
+msgstr "נא להזין ססמה למסד נתונים חדש\n"
+"%s"
 
 #: mmframe.cpp:2041
 msgid "New password must not be empty."
-msgstr ""
+msgstr "שדה ססמה חדשה לא יכול להישאר ריק."
 
 #: mmframe.cpp:2045
 msgid "Please confirm new password"
-msgstr ""
+msgstr "נא לאשר ססמה חדשה"
 
 #: mmframe.cpp:2049
 msgid "Password change completed."
@@ -4500,7 +4513,7 @@ msgstr "לא ניתן להעתיק קובץ לתוך עצמו"
 
 #: mmframe.cpp:2135
 msgid "Enter password for new database"
-msgstr ""
+msgstr "נא להזין ססמה למסד נתונים חדש"
 
 #: mmframe.cpp:2219 mmframe.cpp:2238
 msgid "No account available to import"
@@ -4975,11 +4988,11 @@ msgstr "ספרית ארכיב לצרופות %s בלבד:"
 
 #: optionsettingsattachment.cpp:68
 msgid "Every OS type (Win,Mac,Unix) has its attachment folder"
-msgstr ""
+msgstr "לכל סוג מערכת הפעלה (Win, Mac, Unix) קיימת ספרית צרופות משלה"
 
 #: optionsettingsattachment.cpp:87
 msgid "Browse for folder"
-msgstr "דפדף לבחור ספריה"
+msgstr "נא לדפדף לבחירת ספריה"
 
 #: optionsettingsattachment.cpp:92 optionsettingsattachment.cpp:194
 msgid "Real path:"
@@ -4987,12 +5000,12 @@ msgstr "נתיב ממשי:"
 
 #: optionsettingsattachment.cpp:97
 msgid "Legend (can be used as variables at the beginning of above path)"
-msgstr ""
+msgstr "מקרה (ניתן לשימוש כמשתנה בתחילת הנתיב שלעיל)"
 
 #: optionsettingsattachment.cpp:102
 #, c-format
 msgid "%s -> User document directory"
-msgstr ""
+msgstr "%s -> מחיצת מסמכי משתמש"
 
 #: optionsettingsattachment.cpp:103
 #, c-format
@@ -5002,12 +5015,12 @@ msgstr "%s -> ספרית פרופיל משתמש"
 #: optionsettingsattachment.cpp:104
 #, c-format
 msgid "%s -> Folder of .MMB database file"
-msgstr ""
+msgstr "%s -> ספרית קובצי מסד נתונים .MMB"
 
 #: optionsettingsattachment.cpp:105
 #, c-format
 msgid "%s -> MMEX Application data folder"
-msgstr ""
+msgstr "%s -> ספרית נתוני ישומון MMEX"
 
 #: optionsettingsattachment.cpp:111
 msgid "Other OS folders "
@@ -5115,11 +5128,11 @@ msgstr "שימוש בהיסטורית מטבעות"
 
 #: optionsettingsgeneral.cpp:99
 msgid "Select to use currency history (one rate for each day), deselect to use a fixed rate"
-msgstr ""
+msgstr "נא לבחור לשימוש בהיסטוריית שערים (שער לכל יום), בטול בחירה לשימוש בשער קבוע"
 
 #: optionsettingsgeneral.cpp:115
 msgid "Specify the date format for display"
-msgstr "הגדרת תבנית תאריך לתצוגה"
+msgstr "נא להגדיר את תבנית תאריך לתצוגה"
 
 #: optionsettingsgeneral.cpp:118
 msgid "New date format sample:"
@@ -5135,7 +5148,7 @@ msgstr "יום התחלה"
 
 #: optionsettingsgeneral.cpp:136
 msgid "Specify Day for start of financial year"
-msgstr "הגדרת היום הראשון בשנה הפיננסית"
+msgstr "נא להגדיר את היום הראשון בשנה הפיננסית"
 
 #: optionsettingsgeneral.cpp:140
 msgid "Start Month"
@@ -5143,7 +5156,7 @@ msgstr "חודש התחלה"
 
 #: optionsettingsgeneral.cpp:152
 msgid "Specify month for start of financial year"
-msgstr "הזנת החודש הראשון בשנה הפיננסית"
+msgstr "נא להגדיר את החודש הראשון בשנה הפיננסית"
 
 #: optionsettingsgeneral.cpp:157
 msgid "Use Original Date when Pasting Transactions"
@@ -5235,7 +5248,7 @@ msgstr "לאחר יציא מ MMEX ונעשו שינויים במסד הנתונ�
 
 #: optionsettingsmisc.cpp:167
 msgid "Specify max number of backup files"
-msgstr "הגדרת מספר מקסימלי של קובצי גיבוי"
+msgstr "נא להגדיר את מספר מקסימלי של קובצי גיבוי"
 
 #: optionsettingsmisc.cpp:170
 msgid "Max Files"
@@ -5251,7 +5264,7 @@ msgstr "תו הפרדה"
 
 #: optionsettingsnet.cpp:57
 msgid "WebApp Settings"
-msgstr "הגדרות רשת"
+msgstr "הגדרות יישומון מרשתת"
 
 #: optionsettingsnet.cpp:64 webappdialog.cpp:103
 msgid "Url"
@@ -5259,7 +5272,7 @@ msgstr "Url"
 
 #: optionsettingsnet.cpp:68
 msgid "Specify the Web App URL without final slash"
-msgstr "הזנת כתובת URL של אפליקציית השרת ללא הלוכסן בסוף"
+msgstr "נא להגדיר את כתובת ה URL של יישומון השרת ללא הלוכסן בסוף"
 
 #: optionsettingsnet.cpp:71 webappdialog.cpp:110
 msgid "GUID"
@@ -5267,11 +5280,11 @@ msgstr "GUID"
 
 #: optionsettingsnet.cpp:75
 msgid "Specify the Web App GUID"
-msgstr "הגדרת ה GUID של יישומון הרשת"
+msgstr "נא להגדיר את ה GUID של יישומון הרשת"
 
 #: optionsettingsnet.cpp:78
 msgid "More information about WebApp"
-msgstr "מידע נוסף על אפליקציות Web"
+msgstr "מידע נוסף על יישומון המרשתת"
 
 #: optionsettingsnet.cpp:82
 msgid "Proxy Settings"
@@ -5279,11 +5292,11 @@ msgstr "הגדרות פרוקסי"
 
 #: optionsettingsnet.cpp:90
 msgid "Specify the proxy IP address"
-msgstr "הגדרת כתובת IP לפרוקסי"
+msgstr "נא להגדיר את כתובת ה IP של המתווך"
 
 #: optionsettingsnet.cpp:96
 msgid "Specify proxy port number"
-msgstr "הגדרת מספר הפורט של הפרוקסי"
+msgstr "נא להגדיר את הפורט של המתווך"
 
 #: optionsettingsnet.cpp:99
 msgid "Proxy"
@@ -5311,7 +5324,7 @@ msgstr "פסק זמן"
 
 #: optionsettingsnet.cpp:129
 msgid "Specify a network communication timeout value to use."
-msgstr "הגדרת  ערך לזמן מרבי לשימוש תקשורת ברשת ."
+msgstr "נא להגדיר את ערך הזמן המרבי לתקשורת רשת."
 
 #: optionsettingsnet.cpp:132
 msgid "Seconds"
@@ -5343,7 +5356,7 @@ msgstr "עדכון מקור"
 
 #: optionsettingsview.cpp:78
 msgid "Specify which accounts are visible"
-msgstr "הגדרה אילו חשבונות יהיו גלויים"
+msgstr "נא להגדיר את החשבונות הגלויים"
 
 #: optionsettingsview.cpp:80
 msgid "HTML scale factor"
@@ -5359,19 +5372,19 @@ msgstr "גודל צלמית"
 
 #: optionsettingsview.cpp:98
 msgid "View Budgets as Financial Years"
-msgstr ""
+msgstr "הצגת תקציב כשנה פיסקלית"
 
 #: optionsettingsview.cpp:103
 msgid "View Budgets with 'transfer' transactions"
-msgstr ""
+msgstr "מצג תקציב כולל תנועות מסוג 'העברה'"
 
 #: optionsettingsview.cpp:109
 msgid "View Budget Category Report with Summaries"
-msgstr ""
+msgstr "הצגת דוח תקציב לפי קטגוריה עם תמצית"
 
 #: optionsettingsview.cpp:115
 msgid "Ignore Future Transactions"
-msgstr ""
+msgstr "להתעלם מתנועות עתידיות"
 
 #: optionsettingsview.cpp:121 transdialog.cpp:563
 msgid "User Colors"
@@ -5515,7 +5528,7 @@ msgstr "אישור העברת מוטב"
 #: reports/budget.cpp:94
 #, c-format
 msgid "Year: %i Month: %s"
-msgstr ""
+msgstr "שנה: %i חודש: %s"
 
 #: reports/budgetcategorysummary.cpp:131
 #, c-format
@@ -5600,12 +5613,12 @@ msgstr "חיפוש ב<a href='%s'>רשימת בעיות ידועות</a>למצי
 #: reports/bugreport.h:81
 #, c-format
 msgid "As you know, <a href='%s'>a forum</a> for users is available where you can discuss problems and find solutions."
-msgstr ""
+msgstr "כידוע, <a href='%s'>פורום</a> משתמשים זמין לדיון בבעיות ומציאת פתרונות."
 
 #: reports/bugreport.h:82
 #, c-format
 msgid "Please, join our community in <a href='%s'>Slack</a>. Here you can also pose your question and learn latest news."
-msgstr ""
+msgstr "נא הצטרפו לקהילה שלנו ב <a href='%s'>Slack</a>. שם ניתן לשאול שאלות ולהתעדכן בחדשות האחרונות."
 
 #: reports/bugreport.h:83
 #, c-format
@@ -5614,7 +5627,7 @@ msgstr "נא לקרוא <a href='%s'>כיצד לדווח על תקלה באופ�
 
 #: reports/bugreport.h:84
 msgid "Come up with a descriptive name for your problem."
-msgstr "הזנת שם תאורי לבעיה."
+msgstr "נא להזין שם תאורי לבעיה."
 
 #: reports/bugreport.h:85
 msgid "Include steps to reproduce your problem, attach screenshots where appropriate."
@@ -5935,7 +5948,8 @@ msgstr "*תאריך"
 #: stockdialog.cpp:214
 msgid "Specify the initial date of the stock investment\n"
 "Used when creating the initial Share transaction."
-msgstr ""
+msgstr "נא להגדיר את תאריך רכישת נירות הערך\n"
+"משמש ברישום תנועת המינה הראשונית."
 
 #: stockdialog.cpp:218
 msgid "*Share Number"
@@ -5944,7 +5958,8 @@ msgstr "*כמות מניות"
 #: stockdialog.cpp:224
 msgid "Enter number of shares.\n"
 "Used when creating the initial Share transaction."
-msgstr ""
+msgstr "נא להזין את כמות ניירות הערך.\n"
+"משמש ברישום תנועת נייר ערך ראשונית."
 
 #: stockdialog.cpp:230 stockspanel.cpp:96
 msgid "*Share Price"
@@ -5953,7 +5968,8 @@ msgstr "*מחיר עלות מניה"
 #: stockdialog.cpp:236
 msgid "Enter the initial price per share.\n"
 "Used when creating the initial Share transaction."
-msgstr ""
+msgstr "נא להזין עלות לנייר ערך.\n"
+"משמש ברישום תנועת נייר ערך ראשונית."
 
 #: stockdialog.cpp:241
 msgid "*Commission"
@@ -5962,7 +5978,8 @@ msgstr "*עמלה"
 #: stockdialog.cpp:245
 msgid "Enter any commission paid.\n"
 "Used when creating the initial Share transaction."
-msgstr ""
+msgstr "נא להזין עמלות ששולמו.\n"
+"משמש ברישום תנועת נייר ערך ראשונית."
 
 #: stockdialog.cpp:250 stockspanel.cpp:99
 msgid "Curr. Share Price"
@@ -5970,7 +5987,7 @@ msgstr "מחיר מניה נוכחי"
 
 #: stockdialog.cpp:253
 msgid "Enter current stock/share price."
-msgstr ""
+msgstr "נא להזין מחיר מניה/נייר ערך נוכחי."
 
 #: stockdialog.cpp:285
 msgid "Stock History Options"
@@ -5990,7 +6007,7 @@ msgstr "תאריך מחיר"
 
 #: stockdialog.cpp:320
 msgid "Specify the stock/share price date."
-msgstr ""
+msgstr "נא להגדיר את תאריך רכישת המניה/ניר ערך."
 
 #: stockdialog.cpp:336
 msgid "Download Stock Price history"
@@ -6002,7 +6019,7 @@ msgstr "יבוא היסטורית מחירי ניירות ערך (בתבנית C
 
 #: stockdialog.cpp:340
 msgid "Delete selected Stock Price"
-msgstr ""
+msgstr "מחיקת מחירי ניר ערך נבחרים"
 
 #: stockdialog.cpp:342
 msgid "Add Stock Price to history"
@@ -6015,7 +6032,8 @@ msgstr "מוחזק ב"
 #: stockdialog.cpp:494
 msgid "Share Account not found.\n\n"
 "Do you want to create one?"
-msgstr ""
+msgstr "לא נמצא חשבון נכס.\n"
+"האם ליצור חשבון?"
 
 #: stockdialog.cpp:504
 msgid "The Company name does not have an associated Share Account.\n\n"
@@ -6085,7 +6103,7 @@ msgstr "מקסימום"
 
 #: stockdialog.cpp:727
 msgid "Specify type frequency of stock history"
-msgstr "הגדרת סוג תדירות היסטורית נירות ערך"
+msgstr "נא להגדיר את סוג תדירות היסטורית נירות הערך"
 
 #: stockdialog.cpp:728 stockdialog.cpp:752
 msgid "Stock History Update"
@@ -6189,7 +6207,7 @@ msgstr "הצגת תנועות בניירות ערך"
 
 #: stockspanel.cpp:589
 msgid "Delete Stock Investment"
-msgstr ""
+msgstr "מחיקת השקעת ניירות ערך"
 
 #: stockspanel.cpp:593
 msgid "&Move"
@@ -6197,7 +6215,7 @@ msgstr "&הזזה"
 
 #: stockspanel.cpp:594
 msgid "Move selected transaction to another account"
-msgstr ""
+msgstr "העברת התנועות שנבחרו לחשבון אחר"
 
 #: stockspanel.cpp:607
 msgid "Refresh"
@@ -6215,7 +6233,7 @@ msgstr "תיק השקעות: %s"
 #: stockspanel.cpp:763
 #, c-format
 msgid "Total Shares: %s"
-msgstr ""
+msgstr "סה\"כ מניות: %s"
 
 #: stockspanel.cpp:765
 #, c-format
@@ -6321,16 +6339,16 @@ msgstr "הזנת את תאריך התנועה"
 
 #: transdialog.cpp:1309
 msgid "Clear colour"
-msgstr ""
+msgstr "ניקוי צבע"
 
 #: transdialog.cpp:1314
 #, c-format
 msgid "Colour #%i"
-msgstr ""
+msgstr "צבע #%i"
 
 #: usertransactionpanel.cpp:115
 msgid "Specify the associated Account that will contain this transaction"
-msgstr ""
+msgstr "נא להגדיר את החשבון המשוייך שיכיל את התנועה"
 
 #: usertransactionpanel.cpp:127
 msgid "Withdraw funds from or deposit funds to this Account."
@@ -6527,7 +6545,7 @@ msgstr "דצמבר"
 
 #: webapp.cpp:111
 msgid "Wrong WebApp GUID:"
-msgstr "יישום שגוי GUID:"
+msgstr "יישומון מרשתת שגוי GUID:"
 
 #: webapp.cpp:112
 msgid "please check it in network options."
@@ -6535,28 +6553,28 @@ msgstr "נא בדוק זאת באפשרויות רשת."
 
 #: webapp.cpp:113
 msgid "Wrong WebApp settings"
-msgstr "הגדרות אפליקציית רשת שגויות"
+msgstr "הגדרות יישומון מרשתת שגויות"
 
 #: webapp.cpp:118
 msgid "Unable to connect to WebApp:"
-msgstr "לא ניתן להתחבר לאפליקציית רשת:"
+msgstr "לא ניתן להתחבר ליישומון מרשתת:"
 
 #: webapp.cpp:119
 msgid "please check settings and / or internet connection."
-msgstr "נא לבדוק את הגדרות ו / או חיבור לאינטרנט ."
+msgstr "נא לבדוק את הגדרות ו / או חיבור למרשתת."
 
 #: webapp.cpp:121
 msgid "WebApp connection error"
-msgstr "שגיאת התחברות אפליקציית רשת"
+msgstr "שגיאת התחברות ליישומון מרשתת"
 
 #: webapp.cpp:131
 msgid "Wrong WebApp API version:"
-msgstr "גרסת API אפליקציית רשת שגויה:"
+msgstr "גרסת API ליישומון מרשתת שגויה:"
 
 #: webapp.cpp:132
 #, c-format
 msgid "WebApp   API version -> %s"
-msgstr "גרסת API אפליקציית רשת -> %s"
+msgstr "גרסת API ליישומון מרשתת -> %s"
 
 #: webapp.cpp:133
 #, c-format
@@ -6565,7 +6583,7 @@ msgstr "גרסת API צפויה - > %s"
 
 #: webapp.cpp:134
 msgid "Wrong WebApp API version"
-msgstr "גרסת API אפליקציית רשת שגויה"
+msgstr "גרסת API יישומון מרשתת שגויה"
 
 #: webapp.cpp:466
 #, c-format
@@ -6581,11 +6599,11 @@ msgstr "התנועה התווספה עם מספר החשבון הראשון :\n"
 
 #: webapp.cpp:471
 msgid "Wrong WebApp account"
-msgstr "חשבון אפליקציית רשת שגוי"
+msgstr "חשבון יישומון מרשתת שגוי"
 
 #: webapp.cpp:553 webapp.cpp:586
 msgid "Unable to download attachments from webapp."
-msgstr "לא ניתן להוריד צרופה מאפליקציית ה WEB.."
+msgstr "לא ניתן להוריד צרופה מיישומון המרשתת."
 
 #: webapp.cpp:554
 msgid "Attachments folder not set or unavailable"
@@ -6597,7 +6615,7 @@ msgstr "תנועות לא הורדו:"
 
 #: webapp.cpp:556
 msgid "please fix attachments folder or delete attachments from WebApp"
-msgstr "נא לתקן את ספרית הצרופות או למחוק צרופות  מאפליקציית הרשת"
+msgstr "נא לתקן את ספרית הצרופות או למחוק צרופות מיישומון המרשתת"
 
 #: webapp.cpp:557
 msgid "Attachment folder error"
@@ -6645,7 +6663,7 @@ msgstr "לא מצליח להוסיף תנועות למסד נתוני MMEX"
 
 #: webappdialog.cpp:314
 msgid "WebApp communication error"
-msgstr "שגיאת תקשורת אפליקציית רשת"
+msgstr "שגיאת תקשורת עם יישומון המרשתת"
 
 #: webappdialog.cpp:405
 msgid "Open Attachment"
