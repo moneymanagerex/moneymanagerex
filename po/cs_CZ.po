@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-05-26 12:37+0300\n"
-"PO-Revision-Date: 2020-07-19 11:04\n"
+"PO-Revision-Date: 2020-07-19 11:23\n"
 "Last-Translator: \n"
 "Language-Team: Czech\n"
 "MIME-Version: 1.0\n"
@@ -401,7 +401,7 @@ msgstr "% sazba"
 
 #: assetdialog.cpp:247
 msgid "Enter the rate at which the asset changes its value in percentage per year"
-msgstr ""
+msgstr "Zadejte sazbu v % pro roční zhodnocení ceny majetku"
 
 #: assetdialog.cpp:259
 msgid "Organize attachments of this asset"
@@ -788,19 +788,19 @@ msgstr "Denně"
 
 #: billsdepositsdialog.cpp:61 billsdepositsdialog.cpp:1342
 msgid "In (x) Days"
-msgstr ""
+msgstr "Na (x) dnů"
 
 #: billsdepositsdialog.cpp:62 billsdepositsdialog.cpp:1342
 msgid "In (x) Months"
-msgstr ""
+msgstr "Na (x) měsíců"
 
 #: billsdepositsdialog.cpp:63
 msgid "Every (x) Days"
-msgstr ""
+msgstr "Každý (x) den"
 
 #: billsdepositsdialog.cpp:64
 msgid "Every (x) Months"
-msgstr ""
+msgstr "Každý (x) měsíc"
 
 #: billsdepositsdialog.cpp:65 billsdepositspanel.cpp:54
 msgid "Monthly (last day)"
@@ -844,7 +844,7 @@ msgstr "Opakování"
 
 #: billsdepositsdialog.cpp:439
 msgid "Advance the next occurring date with the specified values"
-msgstr ""
+msgstr "Zadá další datum provedení podle nastavení"
 
 #: billsdepositsdialog.cpp:446 billsdepositsdialog.cpp:1299
 msgid "Payments Left"
@@ -852,7 +852,7 @@ msgstr "Počet plateb"
 
 #: billsdepositsdialog.cpp:460
 msgid "Request user to enter payment"
-msgstr ""
+msgstr "Požadovat od uživatele zadání platby"
 
 #: billsdepositsdialog.cpp:461
 msgid "User requested to enter this transaction on the 'Date Paid'"
@@ -860,7 +860,7 @@ msgstr "Uživatel byl požádán o zadání 'data platby' pro tuto transakci"
 
 #: billsdepositsdialog.cpp:464
 msgid "Grant automatic execute"
-msgstr ""
+msgstr "Povolit automatické zadání"
 
 #: billsdepositsdialog.cpp:465
 msgid "The requested payment will occur without user interaction"
@@ -1091,11 +1091,11 @@ msgstr "Chyba"
 
 #: billsdepositsdialog.cpp:1341
 msgid "Invalid Choice"
-msgstr ""
+msgstr "Neplatná volba"
 
 #: billsdepositsdialog.cpp:1341
 msgid "Choose one of the following:"
-msgstr ""
+msgstr "Zvolte jednu z následujících:"
 
 #: billsdepositsdialog.cpp:1400 transdialog.cpp:1235
 #: usertransactionpanel.cpp:192
@@ -1245,7 +1245,7 @@ msgstr "Automaticky"
 #, c-format
 msgid "%d day remaining"
 msgid_plural "%d days remaining"
-msgstr[0] ""
+msgstr[0] "%d dnů zbývá"
 msgstr[1] ""
 msgstr[2] ""
 msgstr[3] ""
@@ -1260,8 +1260,8 @@ msgstr "Neaktivní"
 #, c-format
 msgid "%d day delay!"
 msgid_plural "%d days delay!"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d dnů prodlení!"
+msgstr[1] "%d dnů zpožděno!"
 msgstr[2] ""
 msgstr[3] ""
 
@@ -1269,7 +1269,7 @@ msgstr[3] ""
 #, c-format
 msgid "%d day overdue!"
 msgid_plural "%d days overdue!"
-msgstr[0] ""
+msgstr[0] "%d dnů zpožděno!"
 msgstr[1] ""
 msgstr[2] ""
 msgstr[3] ""
@@ -1586,24 +1586,24 @@ msgstr "Správce kategorií: Chyba odstranění"
 
 #: categdialog.cpp:432
 msgid "Select an unused category to delete."
-msgstr ""
+msgstr "Zvolte nepoužívané kategorie pro odstranění."
 
 #: categdialog.cpp:457
 msgid "This category cannot be deleted because it's used by transactions."
-msgstr ""
+msgstr "Tuto kategorii nelze odstranit neboť je použita pro transakce."
 
 #: categdialog.cpp:464
 msgid "Delete an existing category."
-msgstr ""
+msgstr "Odstranit existující kategorii."
 
 #: categdialog.cpp:469
 msgid "Subcategories must be deleted before."
-msgstr ""
+msgstr "Nejprve je nutné odstranit podkategorie."
 
 #: categdialog.cpp:485
 #, c-format
 msgid "Enter a new name for '%s'"
-msgstr ""
+msgstr "Zadejte nový název pro '%s'"
 
 #: categdialog.cpp:486
 msgid "Edit Category"
@@ -1652,7 +1652,7 @@ msgstr "&Zavřít "
 
 #: constants.cpp:188
 msgid "Advanced Filter"
-msgstr ""
+msgstr "Pokročilé filtrování"
 
 #: constants.cpp:189
 msgid "View All Transactions"
@@ -1774,11 +1774,11 @@ msgstr "Kurz pro převod"
 
 #: currencydialog.cpp:212
 msgid "Conversion rate will be used in case no currency history has been found for the currency"
-msgstr ""
+msgstr "Konverzní kurz bude použit v případě, že pro měnu nebude nalezena žádná historie kurzů"
 
 #: currencydialog.cpp:214
 msgid "Fixed conversion rate"
-msgstr ""
+msgstr "Pevný převodní kurz"
 
 #: currencydialog.cpp:219
 msgid "Value Display Sample:"
@@ -1901,7 +1901,8 @@ msgstr "Potvrzení odstranění vlastního pole"
 #: customfieldlistdialog.cpp:194
 msgid "This function will massive update (search & replace for entire value, not inside value), please remind that there isn't any validation!\n"
 "Do you want to proceed?"
-msgstr ""
+msgstr "Tato funkce provede hromadnou aktualizaci (najde a nahradí celou hodnotu, nikoliv část), mějte na paměti, že po její aplikaci nelze provést ověření!\n"
+"Přejete si pokračovat?"
 
 #: customfieldlistdialog.cpp:196
 msgid "Confirm Custom Field Content Update"
@@ -2174,7 +2175,7 @@ msgstr "S databází MMEX verze %i není možné pracovat v této verzi MMEX.\n"
 #: dbupgrade.cpp:119
 #, c-format
 msgid "MMEX database succesfully upgraded to version %i"
-msgstr ""
+msgstr "Databáze MMEX byla úspěšně upgradována na verzi %i"
 
 #: dbupgrade.cpp:120
 msgid "We suggest a database optimization under Tools -> Database -> Optimize"
@@ -2235,7 +2236,9 @@ msgstr "Je nutné zadat cestu k jinému databázovému souboru"
 msgid "An incorrect password given for an encrypted file\n"
 "or\n"
 "attempt to open a File that is not a database file \n"
-msgstr ""
+msgstr "Zadáno neplatné heslo pro šifrovaný soubor\n"
+"nebo\n"
+"zadána výzva pro otevření souboru, který není databází \n"
 
 #: dbwrapper.cpp:82 import_export/qif_import_gui.cpp:855 webapp.cpp:120
 #, c-format
@@ -2321,7 +2324,7 @@ msgstr "&Vyčistit "
 #: filtertransdialog.cpp:822 filtertransdialog.cpp:837 reports/myusage.cpp:95
 #: webappdialog.cpp:194 webappdialog.cpp:199
 msgid "Empty value"
-msgstr ""
+msgstr "Prázdná hodnota"
 
 #: filtertransdialog.cpp:833
 msgid "Filtering Details: "
@@ -2329,15 +2332,15 @@ msgstr "Kritéria filtru: "
 
 #: filtertransdialog.cpp:871
 msgid "Since"
-msgstr ""
+msgstr "Od"
 
 #: filtertransdialog.cpp:873
 msgid "Before"
-msgstr ""
+msgstr "Před"
 
 #: filtertransdialog.cpp:927
 msgid "Amount Min."
-msgstr ""
+msgstr "Min. částka"
 
 #: filtertransdialog.cpp:935
 msgid "Amount Max."
@@ -6484,15 +6487,15 @@ msgstr "MMEX používá tyto podpůrné produkty:"
 
 #: util.cpp:902
 msgid "Build on"
-msgstr ""
+msgstr "Kompilováno"
 
 #: util.cpp:903
 msgid "with:"
-msgstr ""
+msgstr "na:"
 
 #: util.cpp:925
 msgid "Running on:"
-msgstr ""
+msgstr "Spuštěno na:"
 
 #: util.h:200
 msgid "January"
@@ -6638,11 +6641,11 @@ msgstr "Importovat transakce WebApp"
 
 #: webappdialog.cpp:100
 msgid "Network status (click to refresh)"
-msgstr ""
+msgstr "Stav sítě (klepněte pro obnovení)"
 
 #: webappdialog.cpp:132
 msgid "Checking for new transactions..."
-msgstr ""
+msgstr "Kontrola nových transakcí..."
 
 #: webappdialog.cpp:165
 msgid "&Import all "
@@ -6666,7 +6669,7 @@ msgstr "Otevřít přílohu"
 
 #: webappdialog.cpp:407
 msgid "Import and open"
-msgstr ""
+msgstr "Importovat a otevřít"
 
 #: webappdialog.cpp:408
 msgid "Delete"
@@ -6805,7 +6808,7 @@ msgstr "Průvodce aktualizací"
 
 #: wizard_update.cpp:106
 msgid "Historical releases:"
-msgstr ""
+msgstr "Historické vydání:"
 
 #: wizard_update.cpp:136
 msgid "Version"
