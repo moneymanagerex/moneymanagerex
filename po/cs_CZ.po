@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-05-26 12:37+0300\n"
-"PO-Revision-Date: 2020-07-19 12:53\n"
+"PO-Revision-Date: 2020-07-19 13:34\n"
 "Last-Translator: \n"
 "Language-Team: Czech\n"
 "MIME-Version: 1.0\n"
@@ -4202,19 +4202,19 @@ msgstr "Slack"
 
 #: mmframe.cpp:1572
 msgid "Communicate online with MMEX team from your desktop or mobile device"
-msgstr ""
+msgstr "Komunikujte online s týmem MMEX z počítače nebo telefonu"
 
 #: mmframe.cpp:1575
 msgid "GitHub"
-msgstr ""
+msgstr "GitHub"
 
 #: mmframe.cpp:1575
 msgid "Access open source code repository and track reported bug statuses"
-msgstr ""
+msgstr "Podívejte se do repozitáře open source kódu, kde uvidíte i stav reportovaných chyb"
 
 #: mmframe.cpp:1578
 msgid "Wiki pages"
-msgstr ""
+msgstr "Wiki stránky"
 
 #: mmframe.cpp:1578
 msgid "Read and update wiki pages"
