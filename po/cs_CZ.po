@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-05-26 12:37+0300\n"
-"PO-Revision-Date: 2020-07-19 10:53\n"
+"PO-Revision-Date: 2020-07-19 11:04\n"
 "Last-Translator: \n"
 "Language-Team: Czech\n"
 "MIME-Version: 1.0\n"
@@ -6028,13 +6028,16 @@ msgstr "Vedeno v"
 #: stockdialog.cpp:494
 msgid "Share Account not found.\n\n"
 "Do you want to create one?"
-msgstr ""
+msgstr "Akciový účet nebyl nalezen.\n\n"
+"Přejete si jej vytvořit?"
 
 #: stockdialog.cpp:504
 msgid "The Company name does not have an associated Share Account.\n\n"
 "You may want to readjust the Company Name to an existing Share Account with the same name. If this is an existing Stock without a Share Account, it is recommended that a Share Account is created.\n\n"
 "Do you want to create a new Share Acccount?\n"
-msgstr ""
+msgstr "K názvu společnosti není přidružen akciový účet.\n\n"
+"Pravděpodobně bude nutné upravit název společnosti na stejný název jako název akciového účtu. Pokud se jedná o existující akcie bez akciového účtu, je doporučeno akciový účet vytvořit.\n\n"
+"Přejete si vytvořit akciový účet?\n"
 
 #: stockdialog.cpp:600
 msgid "Stock History CSV Import"
@@ -6060,39 +6063,39 @@ msgstr "Importuji z CSV"
 
 #: stockdialog.cpp:712 stockdialog.cpp:742
 msgid "5 Days"
-msgstr ""
+msgstr "5 dnů"
 
 #: stockdialog.cpp:713 stockdialog.cpp:744
 msgid "1 Month"
-msgstr ""
+msgstr "1 měsíc"
 
 #: stockdialog.cpp:714 stockdialog.cpp:745
 msgid "3 Months"
-msgstr ""
+msgstr "3 měsíce"
 
 #: stockdialog.cpp:715
 msgid "6 Months"
-msgstr ""
+msgstr "6 měsíců"
 
 #: stockdialog.cpp:716
 msgid "1 Year"
-msgstr ""
+msgstr "1 rok"
 
 #: stockdialog.cpp:717
 msgid "2 Years"
-msgstr ""
+msgstr "2 roky"
 
 #: stockdialog.cpp:718
 msgid "5 Years"
-msgstr ""
+msgstr "5 let"
 
 #: stockdialog.cpp:719
 msgid "10 Years"
-msgstr ""
+msgstr "10 let"
 
 #: stockdialog.cpp:721
 msgid "Max"
-msgstr ""
+msgstr "Max"
 
 #: stockdialog.cpp:727
 msgid "Specify type frequency of stock history"
@@ -6104,15 +6107,15 @@ msgstr "Aktualizace historie akcií"
 
 #: stockdialog.cpp:741
 msgid "1 Day"
-msgstr ""
+msgstr "1 den"
 
 #: stockdialog.cpp:743
 msgid "1 Week"
-msgstr ""
+msgstr "1 týden"
 
 #: stockdialog.cpp:751
 msgid "Specify interval of stock history"
-msgstr ""
+msgstr "Zadejte interval historie akcií"
 
 #: stockdialog.cpp:766 stockdialog.cpp:770
 msgid "Stock history not found!"
@@ -6286,7 +6289,7 @@ msgstr "Správce příloh transakce"
 
 #: transdialog.cpp:597
 msgid "Show/Hide custom fields window"
-msgstr ""
+msgstr "Zobrazit/skrýt okno vlastních polí"
 
 #: transdialog.cpp:653
 #, c-format
@@ -6331,12 +6334,12 @@ msgstr "Zadejte datum transakce"
 
 #: transdialog.cpp:1309
 msgid "Clear colour"
-msgstr ""
+msgstr "Odebrat barvu"
 
 #: transdialog.cpp:1314
 #, c-format
 msgid "Colour #%i"
-msgstr ""
+msgstr "Barva #%i"
 
 #: usertransactionpanel.cpp:115
 msgid "Specify the associated Account that will contain this transaction"
@@ -6465,19 +6468,19 @@ msgstr "Verze: %s"
 
 #: util.cpp:869
 msgid "Database version: "
-msgstr ""
+msgstr "Verze databáze: "
 
 #: util.cpp:876
 msgid "Git commit: "
-msgstr ""
+msgstr "Git commit: "
 
 #: util.cpp:880
 msgid "Git branch: "
-msgstr ""
+msgstr "Git branch: "
 
 #: util.cpp:884
 msgid "MMEX is using the following support products:"
-msgstr ""
+msgstr "MMEX používá tyto podpůrné produkty:"
 
 #: util.cpp:902
 msgid "Build on"
