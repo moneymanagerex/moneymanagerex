@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-05-26 12:37+0300\n"
-"PO-Revision-Date: 2020-06-27 08:19\n"
+"PO-Revision-Date: 2020-07-19 10:03\n"
 "Last-Translator: \n"
 "Language-Team: Czech\n"
 "MIME-Version: 1.0\n"
@@ -33,7 +33,7 @@ msgstr "O programu"
 
 #: aboutdialog.cpp:154
 msgid "Authors"
-msgstr ""
+msgstr "Autoři"
 
 #: aboutdialog.cpp:159
 msgid "Sponsors"
@@ -267,11 +267,11 @@ msgstr "Měna"
 
 #: accountdialog.cpp:498
 msgid "Please insert a valid URL"
-msgstr ""
+msgstr "Zadejte platnou adresu URL"
 
 #: accountdialog.cpp:498
 msgid "Invalid URL"
-msgstr ""
+msgstr "Neplatná URL"
 
 #: appstartdialog.cpp:99
 msgid "Open Last Opened Database"
@@ -2818,7 +2818,7 @@ msgstr "Import byl úspěšně dokončen"
 #: import_export/qif_import_gui.cpp:895
 #, c-format
 msgid "Total Imported: %zu"
-msgstr ""
+msgstr "Celkem importováno : %zu"
 
 #: import_export/qif_import_gui.cpp:903 import_export/univcsvdialog.cpp:1078
 msgid "Imported transactions discarded by user!"
@@ -2897,7 +2897,7 @@ msgstr "Vyberte datový soubor CSV pro export"
 
 #: import_export/univcsvdialog.cpp:203
 msgid "Template name"
-msgstr ""
+msgstr "Název šablony"
 
 #: import_export/univcsvdialog.cpp:208
 msgid "Save Template"
