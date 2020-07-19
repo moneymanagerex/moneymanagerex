@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-05-26 12:37+0300\n"
-"PO-Revision-Date: 2020-07-19 19:33\n"
+"PO-Revision-Date: 2020-07-19 19:39\n"
 "Last-Translator: \n"
 "Language-Team: Czech\n"
 "MIME-Version: 1.0\n"
@@ -4416,7 +4416,10 @@ msgid "Database that you trying to open has been marked as opened by another MME
 "To avoid data loss or conflict, it's strongly recommended to close all other applications that can use the DB.\n\n"
 "Possible it may be as result of a programm crash in previous usage.\n\n"
 "Would you like to continue?"
-msgstr ""
+msgstr "Databáze, kterou se snažíte otevřít, je otevřena již jinou instancí MMEX...\n"
+"Doporučujeme zavřít všechny aplikace, které využívají databázi, aby nedošlo ke ztrátě dat nebo konfliktu.\n\n"
+"Tato situace může být důsledkem pádu programu, který databázi předtím používal.\n\n"
+"Přejete si pokračovat?"
 
 #: mmframe.cpp:1933
 msgid "MMEX Instance Check"
@@ -4564,11 +4567,11 @@ msgstr "Zvolte HTML soubor pro export"
 
 #: mmframe.cpp:2881 mmframe.cpp:2888
 msgid "Downloading stock prices from Yahoo"
-msgstr ""
+msgstr "Stahuji kurzy akcií z Yahoo"
 
 #: mmframe.cpp:2882
 msgid "Please wait..."
-msgstr ""
+msgstr "Prosím čekejte..."
 
 #: mmframe.cpp:2931 stockspanel.cpp:893
 #, c-format
