@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-05-26 12:37+0300\n"
-"PO-Revision-Date: 2020-07-19 19:39\n"
+"PO-Revision-Date: 2020-07-19 19:54\n"
 "Last-Translator: \n"
 "Language-Team: Czech\n"
 "MIME-Version: 1.0\n"
@@ -4629,7 +4629,7 @@ msgstr "Soubor %s nebyl nalezen"
 
 #: mmframe.cpp:3210
 msgid "The language for this application has been changed. The change will take effect the next time the application is started."
-msgstr ""
+msgstr "Jazyk aplikace byl změněn. Změny se projeví při příštím spuštění aplikace."
 
 #: mmframereport.cpp:72
 msgid "General Group Report"
@@ -4683,11 +4683,11 @@ msgstr "Přehled účtů"
 
 #: mmframereport.cpp:180
 msgid "Budget Performance"
-msgstr ""
+msgstr "Roční rozpočet"
 
 #: mmframereport.cpp:183
 msgid "Budget Category Summary"
-msgstr ""
+msgstr "Přehled kategorií rozpočtu"
 
 #: mmframereport.cpp:192
 msgid "Stocks Report"
@@ -4765,7 +4765,7 @@ msgstr "Celkový součet:"
 
 #: mmhomepage.cpp:751
 msgid "Currency Exchange Rates"
-msgstr ""
+msgstr "Směnné kurzy měn"
 
 #: mmhomepagepanel.cpp:159
 msgid "Upcoming Transactions"
@@ -4797,7 +4797,7 @@ msgstr "Vlastní"
 
 #: mmreportspanel.cpp:315
 msgid "Accounts:"
-msgstr ""
+msgstr "Účty:"
 
 #: mmreportspanel.cpp:320 reports/reportbase.cpp:121
 msgid "All Accounts"
@@ -4809,11 +4809,11 @@ msgstr "Vybrané účty"
 
 #: mmreportspanel.cpp:336
 msgid "Chart:"
-msgstr ""
+msgstr "Graf:"
 
 #: mmreportspanel.cpp:341
 msgid "Show"
-msgstr ""
+msgstr "Zobrazit"
 
 #: mmreportspanel.cpp:342
 msgid "Hide"
@@ -4931,19 +4931,19 @@ msgstr "Chyba příjemce"
 
 #: model/Model_Report.cpp:88
 msgid "Begin date: "
-msgstr ""
+msgstr "Počátek: "
 
 #: model/Model_Report.cpp:89
 msgid "Date: "
-msgstr ""
+msgstr "Datum: "
 
 #: model/Model_Report.cpp:90
 msgid "End date: "
-msgstr ""
+msgstr "Konec: "
 
 #: model/Model_Report.cpp:235
 msgid "Template is empty"
-msgstr ""
+msgstr "Šablona je prázdná"
 
 #: model/Model_Report.cpp:249
 #, c-format
@@ -5002,7 +5002,7 @@ msgstr "Skutečná cesta:"
 
 #: optionsettingsattachment.cpp:97
 msgid "Legend (can be used as variables at the beginning of above path)"
-msgstr ""
+msgstr "Legenda (lze ji použít jako proměnnou na začátku cesty nahoře)"
 
 #: optionsettingsattachment.cpp:102
 #, c-format
@@ -5017,7 +5017,7 @@ msgstr "%s -> Složka uživatelského profilu"
 #: optionsettingsattachment.cpp:104
 #, c-format
 msgid "%s -> Folder of .MMB database file"
-msgstr ""
+msgstr "%s -> Složka databázového souboru .MMB"
 
 #: optionsettingsattachment.cpp:105
 #, c-format
@@ -5030,7 +5030,7 @@ msgstr "Ostatní složky OS "
 
 #: optionsettingsattachment.cpp:116
 msgid "Not set yet"
-msgstr ""
+msgstr "Není ještě nastavena"
 
 #: optionsettingsattachment.cpp:124
 msgid "Windows folder -> "
@@ -5070,11 +5070,11 @@ msgstr "Zvolte složku, která bude sloužit jako archiv příloh"
 
 #: optionsettingsattachment.cpp:219
 msgid "Attachments folder it's not writable!"
-msgstr ""
+msgstr "Nelze zapisovat do složky příloh!"
 
 #: optionsettingsattachment.cpp:219
 msgid "Attachments folder"
-msgstr ""
+msgstr "Složka příloh"
 
 #: optionsettingsattachment.cpp:227
 msgid "Attachments path has been changed!"
@@ -5126,11 +5126,11 @@ msgstr "Klepněte pravým tlačítkem a vyberte 'Nastavit jako základní měnu'
 
 #: optionsettingsgeneral.cpp:97
 msgid "Use currency history"
-msgstr ""
+msgstr "Použít historii měn"
 
 #: optionsettingsgeneral.cpp:99
 msgid "Select to use currency history (one rate for each day), deselect to use a fixed rate"
-msgstr ""
+msgstr "Zvolte pro historii měny (jeden kurz pro každý den), deaktivací použijete pevnou sazbu"
 
 #: optionsettingsgeneral.cpp:115
 msgid "Specify the date format for display"
@@ -5370,7 +5370,7 @@ msgstr "Zadejte faktor měřítka pro stránky sestavy"
 
 #: optionsettingsview.cpp:92
 msgid "Icons size"
-msgstr ""
+msgstr "Velikost ikon"
 
 #: optionsettingsview.cpp:98
 msgid "View Budgets as Financial Years"
@@ -5386,7 +5386,7 @@ msgstr "Zobrazit sestavu kategorií rozpočtu v souhrnu"
 
 #: optionsettingsview.cpp:115
 msgid "Ignore Future Transactions"
-msgstr ""
+msgstr "Ignorovat budoucí transakce"
 
 #: optionsettingsview.cpp:121 transdialog.cpp:563
 msgid "User Colors"
