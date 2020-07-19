@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-05-26 12:37+0300\n"
-"PO-Revision-Date: 2020-07-19 10:24\n"
+"PO-Revision-Date: 2020-07-19 10:34\n"
 "Last-Translator: \n"
 "Language-Team: Czech\n"
 "MIME-Version: 1.0\n"
@@ -3231,7 +3231,8 @@ msgstr "Volba základní měny"
 #, c-format
 msgid "Historic rates for %s found, but \"Use currency history\" in options is disabled:\n"
 "click no and enable it or click yes to remove all historic rates for %s"
-msgstr ""
+msgstr "Historie kurzů pro %s byla nalezena, ale možnost \"Použít historii měn\" je v nastavení vypnuta:\n"
+"klepněte na Ne a aktivujte ji nebo klepněte na Ano a odeberte veškerou historii kurzů pro %s"
 
 #: maincurrencydialog.cpp:438
 #, c-format
@@ -3258,12 +3259,12 @@ msgstr "Online aktualizace kurzu měny"
 
 #: maincurrencydialog.cpp:624
 msgid "No currency selected!"
-msgstr ""
+msgstr "Nebyla vybrána žádná měna!"
 
 #: maincurrencydialog.cpp:637
 #, c-format
 msgid "Unable to download %s currency rates"
-msgstr ""
+msgstr "Nelze stáhnout kurzy měny %s"
 
 #: maincurrencydialog.cpp:642
 msgid "Do you want to add also dates without any transaction?"
@@ -3276,7 +3277,7 @@ msgstr "Nelze stáhnout historii pro symbol %s. Historie kurzů není dostupná!
 
 #: maincurrencydialog.cpp:746
 msgid "Changing base currency will delete all history rates, proceed?"
-msgstr ""
+msgstr "Změna základní měny odstraní veškerou historii kurzů, přejete si pokračovat?"
 
 #: maincurrencydialog.cpp:770
 msgid "Do you want to update today currency rates?"
@@ -3293,19 +3294,19 @@ msgstr "Nelze stáhnout historii pro základní symbol %s. Historie kurzů není
 
 #: mmSimpleDialogs.cpp:177
 msgid "Subtract one year"
-msgstr ""
+msgstr "Odečíst jeden rok"
 
 #: mmSimpleDialogs.cpp:178
 msgid "Subtract one month"
-msgstr ""
+msgstr "Odečíst jeden měsíc"
 
 #: mmSimpleDialogs.cpp:179
 msgid "Add one month"
-msgstr ""
+msgstr "Přidat jeden měsíc"
 
 #: mmSimpleDialogs.cpp:180
 msgid "Add one year"
-msgstr ""
+msgstr "Přidat jeden rok"
 
 #: mmSimpleDialogs.cpp:237
 #, c-format
@@ -3352,7 +3353,7 @@ msgstr "Výběr lze provést pomocí tlačítka místní nabídky."
 
 #: mmSimpleDialogs.cpp:271
 msgid "Activating the button will provide a selection box where the account can be selected."
-msgstr ""
+msgstr "Aktivací tlačítka se nabídne výběrové pole, kde můžete vybrat účet."
 
 #: mmSimpleDialogs.cpp:280 mmcombobox.h:78
 msgid "Invalid Payee"
@@ -3382,7 +3383,7 @@ msgstr "Zadejte prosím symbol (pole nemůže být prázdné)."
 
 #: mmTextCtrl.cpp:69
 msgid "Invalid Value"
-msgstr ""
+msgstr "Neplatná hodnota"
 
 #: mmTextCtrl.cpp:96
 msgid "Please enter a positive or calculated value."
@@ -3452,7 +3453,7 @@ msgstr "Tip pro práci se Správcem kategorií: Stiskem kombinace 2 kláves bude
 
 #: mmTips.h:37
 msgid "Tip to get out of debt: Pay yourself 10 percentage first. Put this into an account that is hard to touch. Make sure it is a chore to get the money out (you have to drive to the bank), so you will only tap it consciously and for major expenses."
-msgstr ""
+msgstr "Tip pro oddlužení: Odložte nejdříve 10 % pro sebe. Vložte je na účet ze kterého je těžké částku vybrat. Ověřte si, že je obtížné tyto peníze vybrat (pro výběr je nutné jí osobně do banky), tzn. použijete je pouze pro nezbytné výdaje."
 
 #: mmTips.h:38
 msgid "Tip to get out of debt: Establish an emergency fund."
@@ -3681,30 +3682,31 @@ msgstr "Zadejte prosím název konečného příjemce,\n"
 
 #: mmcustomdata.cpp:63
 msgid "Custom fields"
-msgstr ""
+msgstr "Vlastní pole"
 
 #: mmcustomdata.cpp:333
 msgid "Please select"
-msgstr ""
+msgstr "Vyberte prosím"
 
 #: mmcustomdata.cpp:333
 msgid "Multi Choice"
-msgstr ""
+msgstr "Vícenásobná volba"
 
 #: mmcustomdata.cpp:448
 #, c-format
 msgid "Unable to save custom field \"%s\":\n"
 "value \"%s\" does not match RegEx validation \"%s\""
-msgstr ""
+msgstr "Nelze uložit vlastní pole \"%s\":\n"
+"hodnota \"%s\" neodpovídá ověření RegEx \"%s\""
 
 #: mmcustomdata.cpp:449
 msgid "CustomField validation error"
-msgstr ""
+msgstr "Chyba ověření vlastního pole"
 
 #: mmex.cpp:127
 #, c-format
 msgid "Cannot load a translation for the default language of your system (%s)."
-msgstr ""
+msgstr "Nelze načíst překlad pro výchozí jazyk vašeho systému (%s)."
 
 #: mmex.cpp:134
 #, c-format
