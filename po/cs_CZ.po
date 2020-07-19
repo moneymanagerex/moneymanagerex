@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-05-26 12:37+0300\n"
-"PO-Revision-Date: 2020-07-19 11:34\n"
+"PO-Revision-Date: 2020-07-19 11:39\n"
 "Last-Translator: \n"
 "Language-Team: Czech\n"
 "MIME-Version: 1.0\n"
@@ -4174,7 +4174,7 @@ msgstr "Otevřete web Money Manager EX pro novinky, aktualizace atd"
 
 #: mmframe.cpp:1563
 msgid "Facebook"
-msgstr ""
+msgstr "Facebook"
 
 #: mmframe.cpp:1563
 msgid "Visit us on Facebook"
@@ -4182,19 +4182,19 @@ msgstr "Facebook MMEX"
 
 #: mmframe.cpp:1566
 msgid "Twitter"
-msgstr ""
+msgstr "Twitter"
 
 #: mmframe.cpp:1566
 msgid "Follow us on Twitter"
-msgstr ""
+msgstr "Sledujte nás na Twitteru"
 
 #: mmframe.cpp:1569
 msgid "YouTube"
-msgstr ""
+msgstr "YouTube"
 
 #: mmframe.cpp:1569
 msgid "Watch free video materials about MMEX"
-msgstr ""
+msgstr "Podívejte se na videa o MMEX"
 
 #: mmframe.cpp:1572
 msgid "Slack"
@@ -6833,7 +6833,7 @@ msgstr "Nelze ověřit aktualizace!"
 
 #: wizard_update.cpp:284 wizard_update.cpp:299
 msgid "Error: "
-msgstr ""
+msgstr "Chyba: "
 
 #: wizard_update.cpp:285 wizard_update.cpp:302
 msgid "MMEX Update Check"
