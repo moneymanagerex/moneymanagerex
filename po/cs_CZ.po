@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-05-26 12:37+0300\n"
-"PO-Revision-Date: 2020-07-19 10:34\n"
+"PO-Revision-Date: 2020-07-19 10:39\n"
 "Last-Translator: \n"
 "Language-Team: Czech\n"
 "MIME-Version: 1.0\n"
@@ -3712,11 +3712,12 @@ msgstr "Nelze načíst překlad pro výchozí jazyk vašeho systému (%s)."
 #, c-format
 msgid "Please use the Switch Application Language option in View menu to select one of the following available languages:\n\n"
 "%s"
-msgstr ""
+msgstr "Použijte prosím možnost Přepnout jazyk aplikace v nabídce Zobrazení pro výběr jednoho z následujících dostupných jazyků:\n\n"
+"%s"
 
 #: mmex.cpp:139 mmframe.cpp:3212
 msgid "Language change"
-msgstr ""
+msgstr "Změna jazyka"
 
 #: mmex.cpp:179
 msgid "Fatal error occured.\n"
@@ -3834,7 +3835,7 @@ msgstr "Soubory &QIF..."
 
 #: mmframe.cpp:1246 mmframe.cpp:1318
 msgid "&JSON Files..."
-msgstr ""
+msgstr "&JSON soubory..."
 
 #: mmframe.cpp:1250 mmframe.cpp:1324
 msgid "Import from XML (Excel format)"
@@ -3886,7 +3887,7 @@ msgstr "Export do XML"
 
 #: mmframe.cpp:1318
 msgid "Export to JSON"
-msgstr ""
+msgstr "Export do JSON"
 
 #: mmframe.cpp:1319
 msgid "&Report to HTML"
@@ -3986,7 +3987,7 @@ msgstr "Ignorovat budoucí transakce"
 
 #: mmframe.cpp:1375
 msgid "Toggle Fullscreen\tShift+F11"
-msgstr ""
+msgstr "Celá obrazovka\tShift+F11"
 
 #: mmframe.cpp:1376 mmframe.cpp:1710
 msgid "Toggle Fullscreen"
@@ -3994,15 +3995,15 @@ msgstr "Celá obrazovka"
 
 #: mmframe.cpp:1383
 msgid "Switch Application Language"
-msgstr ""
+msgstr "Přepnout jazyk aplikace"
 
 #: mmframe.cpp:1384
 msgid "Change language used for MMEX GUI"
-msgstr ""
+msgstr "Změnit jazyk použitý pro MMEX GUI"
 
 #: mmframe.cpp:1390
 msgid "system default"
-msgstr ""
+msgstr "výchozí nastavení systému"
 
 #: mmframe.cpp:1410
 msgid "Account &List"
@@ -4022,11 +4023,11 @@ msgstr "Odstranit účet z databáze"
 
 #: mmframe.cpp:1440
 msgid "Download Rates..."
-msgstr ""
+msgstr "Stáhnout kurzy..."
 
 #: mmframe.cpp:1440 mmframe.cpp:1707
 msgid "Download Currency and Stock rates"
-msgstr ""
+msgstr "Stáhnout kurzy měn a akcií"
 
 #: mmframe.cpp:1447
 msgid "Organize &Categories..."
@@ -4098,15 +4099,15 @@ msgstr "Správce vlastních &zpráv..."
 
 #: mmframe.cpp:1511
 msgid "&Custom Fields Manager..."
-msgstr ""
+msgstr "&Správce vlastních polí..."
 
 #: mmframe.cpp:1511
 msgid "Custom Fields Manager"
-msgstr ""
+msgstr "Správce vlastních polí"
 
 #: mmframe.cpp:1518
 msgid "&Options...\tCtrl-,"
-msgstr ""
+msgstr "Na&stavení...\tCtrl-,"
 
 #: mmframe.cpp:1518 mmframe.cpp:1690
 msgid "Show the Options Dialog"
@@ -4166,7 +4167,7 @@ msgstr "Internetové stránky"
 
 #: mmframe.cpp:1560
 msgid "Open the Money Manager EX website for latest news, updates etc"
-msgstr ""
+msgstr "Otevřete web Money Manager EX pro novinky, aktualizace atd"
 
 #: mmframe.cpp:1563
 msgid "Facebook"
@@ -5443,15 +5444,15 @@ msgstr "Záměna kategorií"
 
 #: relocatecategorydialog.cpp:86
 msgid "Relocate source category to the destination category"
-msgstr ""
+msgstr "Přemístit zdrojovou kategorii do cílové kategorie"
 
 #: relocatecategorydialog.cpp:89
 msgid "Select Source Category"
-msgstr ""
+msgstr "Vyberte zdrojovou kategorii"
 
 #: relocatecategorydialog.cpp:95
 msgid "Select Destination Category"
-msgstr ""
+msgstr "Vyberte cílovou kategorii"
 
 #: relocatecategorydialog.cpp:109 relocatepayeedialog.cpp:112
 msgid "Relocate:"
@@ -5505,11 +5506,11 @@ msgstr "Záměna příjemců"
 
 #: relocatepayeedialog.cpp:84
 msgid "Relocate all source payee to the destination payee"
-msgstr ""
+msgstr "Zaměřit všechny zdrojové příjemce na cílového příjemce"
 
 #: relocatepayeedialog.cpp:96
 msgid "Delete source payee after relocation"
-msgstr ""
+msgstr "Odstranit zdrojového příjemce po přemístění"
 
 #: relocatepayeedialog.cpp:152
 #, c-format
@@ -5523,7 +5524,7 @@ msgstr "Potvrzení pro záměnu příjemců"
 #: reports/budget.cpp:94
 #, c-format
 msgid "Year: %i Month: %s"
-msgstr ""
+msgstr "Rok: %i měsíc: %s"
 
 #: reports/budgetcategorysummary.cpp:131
 #, c-format
@@ -5586,19 +5587,19 @@ msgstr "Měsíční souhrn"
 
 #: reports/bugreport.h:55
 msgid "Bug Report"
-msgstr ""
+msgstr "Hlášení chyb"
 
 #: reports/bugreport.h:72
 msgid "Replace this text (marked with >) with detailed description of your problem."
-msgstr ""
+msgstr "Nahraďte tento text (označený >) podrobným popisem problému."
 
 #: reports/bugreport.h:73
 msgid "Please do not remove information attached below this text."
-msgstr ""
+msgstr "Prosím neodstraňujte informace uvedené pod tímto textem."
 
 #: reports/bugreport.h:78
 msgid "Use Help->Check for Updates in MMEX to get latest version, where your problem might be already fixed."
-msgstr ""
+msgstr "Použijte Help->Zkontroluj aktualizace v MMEX a získej nejnovější verzi, kde může být váš problém již odstraněn."
 
 #: reports/bugreport.h:79
 #, c-format
