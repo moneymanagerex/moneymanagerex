@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-05-26 12:37+0300\n"
-"PO-Revision-Date: 2020-07-19 11:23\n"
+"PO-Revision-Date: 2020-07-19 11:34\n"
 "Last-Translator: \n"
 "Language-Team: Czech\n"
 "MIME-Version: 1.0\n"
@@ -2344,7 +2344,7 @@ msgstr "Min. částka"
 
 #: filtertransdialog.cpp:935
 msgid "Amount Max."
-msgstr ""
+msgstr "Max. částka"
 
 #: general_report_manager.cpp:238 general_report_manager.cpp:631
 msgid "General Reports Manager"
@@ -2417,7 +2417,7 @@ msgstr "Vytvořit šablonu"
 #, c-format
 msgid "%zu row returned, duration: %lld ms"
 msgid_plural "%zu rows returned, duration: %lld ms"
-msgstr[0] ""
+msgstr[0] "%zu řádků vypsáno, doba trvání: %lld ms"
 msgstr[1] ""
 msgstr[2] ""
 msgstr[3] ""
@@ -2432,11 +2432,11 @@ msgstr "Načíst soubor zprávy:"
 
 #: general_report_manager.cpp:567 general_report_manager.cpp:996
 msgid "General Report Manager files (*.grm)"
-msgstr ""
+msgstr "Soubory správce vlastních zpráv (*.grm)"
 
 #: general_report_manager.cpp:567 general_report_manager.cpp:996
 msgid "ZIP files (*.zip)"
-msgstr ""
+msgstr "ZIP soubory (*.zip)"
 
 #: general_report_manager.cpp:630
 #, c-format
@@ -2521,7 +2521,7 @@ msgstr "Vyberte soubor a uložte jej jako sestavu"
 
 #: general_report_manager.cpp:1171
 msgid "Parameters:"
-msgstr ""
+msgstr "Parametry:"
 
 #: import_export/parsers.cpp:46 import_export/univcsvdialog.cpp:1529
 #: mmSimpleDialogs.cpp:253
@@ -2577,7 +2577,7 @@ msgstr "QIF export"
 
 #: import_export/qif_export.cpp:47
 msgid "JSON Export"
-msgstr ""
+msgstr "JSON export"
 
 #: import_export/qif_export.cpp:106
 msgid "Parameters"
@@ -2593,7 +2593,7 @@ msgstr "QIF"
 
 #: import_export/qif_export.cpp:124
 msgid "JSON"
-msgstr ""
+msgstr "JSON"
 
 #: import_export/qif_export.cpp:138 mmframe.cpp:2948 mmframe.cpp:2952
 #: mmframe.cpp:2971 mmframe.cpp:2975
@@ -2636,15 +2636,15 @@ msgstr "Vyberte QIF datový soubor pro export"
 
 #: import_export/qif_export.cpp:294 import_export/qif_import_gui.cpp:720
 msgid "QIF Files (*.qif)"
-msgstr ""
+msgstr "QIF soubory (*.qif)"
 
 #: import_export/qif_export.cpp:299
 msgid "Choose JSON data file to Export"
-msgstr ""
+msgstr "Zvolte datový soubor JSON pro export"
 
 #: import_export/qif_export.cpp:301
 msgid "JSON Files (*.json)"
-msgstr ""
+msgstr "JSON soubory (*.json)"
 
 #: import_export/qif_export.cpp:321
 msgid "No Account available for export"
@@ -2674,22 +2674,22 @@ msgstr "Exportuji"
 #: import_export/qif_export.cpp:470
 #, c-format
 msgid "Exporting transaction %zu"
-msgstr ""
+msgstr "Exportuji transakce %zu"
 
 #: import_export/qif_export.cpp:571
 #, c-format
 msgid "Number of categories exported: %zu"
-msgstr ""
+msgstr "Počet exportovaných kategorií: %zu"
 
 #: import_export/qif_export.cpp:573
 #, c-format
 msgid "Number of transactions exported: %zu"
-msgstr ""
+msgstr "Počet exportovaných transakcí: %zu"
 
 #: import_export/qif_export.cpp:575
 #, c-format
 msgid "Number of accounts exported: %zu"
-msgstr ""
+msgstr "Počet exportovaných účtů: %zu"
 
 #: import_export/qif_export.cpp:576 mmframe.cpp:1317
 msgid "Export to QIF"
@@ -2739,17 +2739,17 @@ msgstr "Prohledávám"
 #: import_export/qif_import_gui.cpp:386
 #, c-format
 msgid "Reading line %zu, %lld ms"
-msgstr ""
+msgstr "Načítání řádku %zu, %lld ms"
 
 #: import_export/qif_import_gui.cpp:392
 #, c-format
 msgid "Line %zu \t %s\n"
-msgstr ""
+msgstr "Řádek %zu \t %s\n"
 
 #: import_export/qif_import_gui.cpp:465
 #, c-format
 msgid "Number of lines read from QIF file: %zu in %lld ms"
-msgstr ""
+msgstr "Počet řádků načtených ze souboru QIF: %zu in %lld ms"
 
 #: import_export/qif_import_gui.cpp:468
 msgid "Press OK Button to continue"
@@ -3001,19 +3001,19 @@ msgstr "Účet neexistuje"
 #: import_export/univcsvdialog.cpp:1784
 #, c-format
 msgid "Positive if type has '%s'"
-msgstr ""
+msgstr "Kladné pokud zadáno '%s'"
 
 #: import_export/univcsvdialog.cpp:917
 msgid "Incorrect fields specified for import!"
-msgstr ""
+msgstr "Zadána neplatná pole pro import!"
 
 #: import_export/univcsvdialog.cpp:918
 msgid "Date field is required."
-msgstr ""
+msgstr "Pole Datum je povinné."
 
 #: import_export/univcsvdialog.cpp:919
 msgid "Amount field or both Withdrawal and Deposit fields are required."
-msgstr ""
+msgstr "Pole částky nebo obě pole výběru a vkladu jsou povinné."
 
 #: import_export/univcsvdialog.cpp:920 import_export/univcsvdialog.cpp:1048
 #: webappdialog.cpp:406
@@ -3023,7 +3023,7 @@ msgstr "Import"
 #: import_export/univcsvdialog.cpp:970
 #, c-format
 msgid "Transactions imported to account %s: %ld"
-msgstr ""
+msgstr "Počet transakcí importovaných do účtu %s: %ld"
 
 #: import_export/univcsvdialog.cpp:981
 #, c-format
@@ -5650,7 +5650,7 @@ msgstr "Postupujte podle následujících pokynů před nahlášením nové chyb
 #, c-format
 msgid "Cash Flow Forecast for %i Year Ahead"
 msgid_plural "Cash Flow Forecast for %i Years Ahead"
-msgstr[0] ""
+msgstr[0] "Odhad cash flow na %i rok(ů) dopředu"
 msgstr[1] ""
 msgstr[2] ""
 msgstr[3] ""
@@ -6812,11 +6812,11 @@ msgstr "Historické vydání:"
 
 #: wizard_update.cpp:136
 msgid "Version"
-msgstr ""
+msgstr "Verze"
 
 #: wizard_update.cpp:144
 msgid "You already have the latest version"
-msgstr ""
+msgstr "Používáte aktuální verzi"
 
 #: wizard_update.cpp:144
 msgid "A new version of MMEX is available!"
