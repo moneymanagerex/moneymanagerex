@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-05-26 12:37+0300\n"
-"PO-Revision-Date: 2020-07-19 13:43\n"
+"PO-Revision-Date: 2020-07-19 19:33\n"
 "Last-Translator: \n"
 "Language-Team: Czech\n"
 "MIME-Version: 1.0\n"
@@ -4254,35 +4254,35 @@ msgstr "Přidejte si RSS kanál do RSS čtečky"
 
 #: mmframe.cpp:1596
 msgid "Donate via PayPal"
-msgstr ""
+msgstr "Přispět přes PayPal"
 
 #: mmframe.cpp:1597
 msgid "Donate the team to support infrastructure etc"
-msgstr ""
+msgstr "Přispějte týmu a podpořte infrastrukturu atd."
 
 #: mmframe.cpp:1600
 msgid "Buy us a Coffee"
-msgstr ""
+msgstr "Kupte nám kávu"
 
 #: mmframe.cpp:1601
 msgid "Buy key developer a coffee"
-msgstr ""
+msgstr "Kupte klíčovým vývojářům kafe"
 
 #: mmframe.cpp:1605
 msgid "Community"
-msgstr ""
+msgstr "Komunita"
 
 #: mmframe.cpp:1606
 msgid "Stay in touch with MMEX community"
-msgstr ""
+msgstr "Zůstaňte v kontaktu s komunitou MMEX"
 
 #: mmframe.cpp:1626
 msgid "Report a Bug"
-msgstr ""
+msgstr "Nahlásit chybu"
 
 #: mmframe.cpp:1627
 msgid "Report an error in application to the developers"
-msgstr ""
+msgstr "Upozorněte vývojáře na chybu aplikace"
 
 #: mmframe.cpp:1632
 msgid "&Show App Start Dialog"
@@ -4362,7 +4362,7 @@ msgstr "Novinky"
 
 #: mmframe.cpp:1707
 msgid "Download rates"
-msgstr ""
+msgstr "Stáhnout kurzy"
 
 #: mmframe.cpp:1710
 msgid "Toggle Fullscreen\tF11"
