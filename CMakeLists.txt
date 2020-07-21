@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.0 FATAL_ERROR)
+﻿cmake_minimum_required(VERSION 3.0 FATAL_ERROR)
 
 # ---------------------------------------------------------------------------
 # MMEX uses semantic versioning Ref: http://semver.org
@@ -169,6 +169,8 @@ endif()
 if(MSVC)
     # using Visual Studio C++
     add_definitions(-D_CRT_SECURE_NO_WARNINGS)
+    # use multicore
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /MP")
 elseif(CMAKE_CXX_COMPILER_ID STREQUAL AppleClang)
     # force libc++, not libstdc++ for Xcode 10
     # https://developer.apple.com/documentation/xcode_release_notes/xcode_10_release_notes#3035631
