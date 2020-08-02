@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-08-02 13:12+0300\n"
-"PO-Revision-Date: 2020-08-02 10:23\n"
+"PO-Revision-Date: 2020-08-02 11:44\n"
 "Last-Translator: \n"
 "Language-Team: Czech\n"
 "MIME-Version: 1.0\n"
@@ -3911,7 +3911,7 @@ msgstr "Export do JSON"
 
 #: mmframe.cpp:1319
 msgid "&HTML Files..."
-msgstr ""
+msgstr "Soubory &HTML..."
 
 #: mmframe.cpp:1319
 msgid "Export to HTML"
@@ -6661,7 +6661,7 @@ msgstr ""
 
 #: webappdialog.cpp:215
 msgid "Transactions download error"
-msgstr ""
+msgstr "Chyba stažení transakcí"
 
 #: webappdialog.cpp:320
 msgid "Unable to insert transaction in MMEX database"
