@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-08-02 13:12+0300\n"
-"PO-Revision-Date: 2020-08-02 12:13\n"
+"PO-Revision-Date: 2020-08-02 12:24\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Traditional\n"
 "MIME-Version: 1.0\n"
@@ -271,7 +271,7 @@ msgstr "請輸入一個正確的網址。"
 
 #: accountdialog.cpp:498
 msgid "Invalid URL"
-msgstr ""
+msgstr "無效的連結"
 
 #: appstartdialog.cpp:99
 msgid "Open Last Opened Database"
@@ -308,7 +308,7 @@ msgstr "訪問網站以獲得更多資訊"
 #: appstartdialog.cpp:115
 #, c-format
 msgid "Open the %s website for latest news, updates etc"
-msgstr ""
+msgstr "打開%s網站以獲取最新新聞，更新等"
 
 #: appstartdialog.cpp:123 wizard_update.cpp:166
 #, c-format
@@ -317,7 +317,7 @@ msgstr ""
 
 #: appstartdialog.cpp:137
 msgid "&Exit "
-msgstr ""
+msgstr "離開 "
 
 #: appstartdialog.cpp:153
 #, c-format
@@ -435,7 +435,7 @@ msgstr ""
 #: assetspanel.cpp:58 billsdepositspanel.cpp:96 mmcheckingpanel.cpp:951
 #: reports/transactions.cpp:68 stockspanel.cpp:89
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #: assetspanel.cpp:61 billsdepositsdialog.cpp:542 billsdepositspanel.cpp:103
 #: customfieldlistdialog.cpp:55 filtertransdialog.cpp:252
@@ -450,7 +450,7 @@ msgstr "分類"
 
 #: assetspanel.cpp:62 reports/summarystocks.cpp:174
 msgid "Initial Value"
-msgstr ""
+msgstr "初始值"
 
 #: assetspanel.cpp:63 reports/summarystocks.cpp:144
 #: reports/summarystocks.cpp:178 stockdialog.cpp:259
@@ -542,7 +542,7 @@ msgstr ""
 #: categdialog.cpp:234 maincurrencydialog.cpp:292 mmcheckingpanel.cpp:449
 #: mmcheckingpanel.cpp:1100 stockdialog.cpp:339 stockspanel.cpp:588
 msgid "&Delete "
-msgstr ""
+msgstr "刪除 "
 
 #: assetspanel.cpp:485
 msgid "Delete Asset"
@@ -555,7 +555,7 @@ msgstr ""
 
 #: assetspanel.cpp:499 assetspanel.cpp:500 mmcheckingpanel.cpp:470
 msgid "Search"
-msgstr ""
+msgstr "搜索"
 
 #: assetspanel.cpp:502
 msgid "Enter any string to find related assets"
@@ -587,12 +587,12 @@ msgstr ""
 #: attachmentdialog.cpp:55 customfieldeditdialog.cpp:125
 #: customfieldlistdialog.cpp:54 general_report_manager.cpp:416
 msgid "Description"
-msgstr ""
+msgstr "描述信息"
 
 #: attachmentdialog.cpp:56 import_export/qif_export.cpp:189
 #: import_export/univcsvdialog.cpp:179
 msgid "File"
-msgstr ""
+msgstr "檔案"
 
 #: attachmentdialog.cpp:64
 msgid "Attachment folder not defined."
@@ -630,11 +630,11 @@ msgstr ""
 
 #: attachmentdialog.cpp:127 customfieldlistdialog.cpp:103 payeedialog.cpp:116
 msgid "Other tools"
-msgstr ""
+msgstr "其他工具"
 
 #: attachmentdialog.cpp:159
 msgid "Import attachment:"
-msgstr ""
+msgstr "匯入附件"
 
 #: attachmentdialog.cpp:170
 msgid "Enter a description for the new attachment:"
@@ -664,11 +664,11 @@ msgstr ""
 #: import_export/univcsvdialog.cpp:240 maincurrencydialog.cpp:197
 #: payeedialog.cpp:365 splittransactionsdialog.cpp:165 stockdialog.cpp:341
 msgid "&Add "
-msgstr ""
+msgstr "添加 "
 
 #: attachmentdialog.cpp:314
 msgid "&Open "
-msgstr ""
+msgstr "開啟 "
 
 #: attachmentdialog.cpp:317 customfieldlistdialog.cpp:267
 #: import_export/univcsvdialog.cpp:244 maincurrencydialog.cpp:204
@@ -794,19 +794,19 @@ msgstr ""
 
 #: billsdepositsdialog.cpp:63
 msgid "Every (x) Days"
-msgstr ""
+msgstr "每 (x) 日"
 
 #: billsdepositsdialog.cpp:64
 msgid "Every (x) Months"
-msgstr ""
+msgstr "每 (x) 月"
 
 #: billsdepositsdialog.cpp:65 billsdepositspanel.cpp:54
 msgid "Monthly (last day)"
-msgstr ""
+msgstr "每月 (最後一天)"
 
 #: billsdepositsdialog.cpp:66 billsdepositspanel.cpp:55
 msgid "Monthly (last business day)"
-msgstr ""
+msgstr "每月 (最後一個工作日)"
 
 #: billsdepositsdialog.cpp:164
 msgid "New Recurring Transaction"
@@ -1012,7 +1012,7 @@ msgstr ""
 
 #: billsdepositsdialog.cpp:696 billsdepositsdialog.cpp:745
 msgid "Account name"
-msgstr ""
+msgstr "帳戶名稱"
 
 #: billsdepositsdialog.cpp:801 billsdepositsdialog.cpp:841 transdialog.cpp:296
 #: transdialog.cpp:368
@@ -1037,11 +1037,11 @@ msgstr ""
 
 #: billsdepositsdialog.cpp:1258
 msgid "Period: Days"
-msgstr ""
+msgstr "期間: 日"
 
 #: billsdepositsdialog.cpp:1259
 msgid "Period: Months"
-msgstr ""
+msgstr "期間: 月"
 
 #: billsdepositsdialog.cpp:1266
 msgid "Specify period in Days to activate.\n"
@@ -1151,7 +1151,7 @@ msgstr ""
 
 #: billsdepositspanel.cpp:107
 msgid "Autorepeat"
-msgstr ""
+msgstr "自動重複"
 
 #: billsdepositspanel.cpp:108 mmhomepage.cpp:346
 msgid "Payment"
@@ -1272,11 +1272,11 @@ msgstr "輸入預算年度"
 
 #: budgetentrydialog.cpp:107
 msgid "Category: "
-msgstr ""
+msgstr "類別 "
 
 #: budgetentrydialog.cpp:112
 msgid "Sub Category: "
-msgstr ""
+msgstr "子類別 "
 
 #: budgetentrydialog.cpp:119
 msgid "Estimated:"
@@ -2255,7 +2255,7 @@ msgstr ""
 
 #: filtertransdialog.cpp:188 reports/mmDateRange.cpp:27
 msgid "Date Range"
-msgstr ""
+msgstr "日期範圍"
 
 #: filtertransdialog.cpp:230 filtertransdialog.cpp:885
 msgid "Include Similar"
@@ -2367,7 +2367,7 @@ msgstr ""
 
 #: general_report_manager.cpp:413
 msgid "SQL"
-msgstr ""
+msgstr "SQL"
 
 #: general_report_manager.cpp:414
 msgid "Lua"
@@ -2473,15 +2473,15 @@ msgstr ""
 #: general_report_manager.cpp:942
 #, c-format
 msgid "New Report %s"
-msgstr ""
+msgstr "新報告"
 
 #: general_report_manager.cpp:955
 msgid "Report Name already exists"
-msgstr ""
+msgstr "報表名稱已存在"
 
 #: general_report_manager.cpp:955 general_report_manager.cpp:962
 msgid "New Report"
-msgstr ""
+msgstr "新報告"
 
 #: general_report_manager.cpp:993
 msgid "Choose file to Save As Report"
@@ -2681,7 +2681,7 @@ msgstr ""
 
 #: import_export/qif_import_gui.cpp:206
 msgid "Data"
-msgstr ""
+msgstr "資料"
 
 #: import_export/qif_import_gui.cpp:266
 msgid "Use account number instead of account name"
@@ -3004,7 +3004,7 @@ msgstr ""
 
 #: import_export/univcsvdialog.cpp:997
 msgid "Invalid Date."
-msgstr ""
+msgstr "無效日期。"
 
 #: import_export/univcsvdialog.cpp:998 mmTextCtrl.cpp:98
 msgid "Invalid Amount."
@@ -3063,7 +3063,7 @@ msgstr ""
 
 #: import_export/univcsvdialog.cpp:1098 import_export/univcsvdialog.cpp:1222
 msgid "Export"
-msgstr ""
+msgstr "匯出"
 
 #: import_export/univcsvdialog.cpp:1108
 msgid "Overwrite existing file?"
@@ -3108,7 +3108,7 @@ msgstr ""
 
 #: import_export/univcsvdialog.cpp:1512
 msgid "All Files"
-msgstr ""
+msgstr "所有檔案"
 
 #: import_export/univcsvdialog.cpp:1513
 msgid "CSV Files (*.csv)"
@@ -6189,7 +6189,7 @@ msgstr ""
 
 #: stockspanel.cpp:831 util.cpp:536 util.cpp:640
 msgid "Nothing to update"
-msgstr ""
+msgstr "没有更新的内容"
 
 #: stockspanel.cpp:845
 msgid "Connecting..."
@@ -6487,7 +6487,7 @@ msgstr ""
 
 #: webapp.cpp:119
 msgid "please check settings and / or internet connection."
-msgstr ""
+msgstr "請檢查設定或網路連接"
 
 #: webapp.cpp:121
 msgid "WebApp connection error"
