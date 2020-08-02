@@ -42,6 +42,8 @@ enum {
     MENU_HEADER_RESET,
 };
 
+enum class ico { GAIN, LOSS, ZERO, ARROW_UP, ARROW_DOWN };
+
 /*******************************************************/
 
 wxBEGIN_EVENT_TABLE(StocksListCtrl, mmListCtrl)
@@ -73,6 +75,7 @@ StocksListCtrl::StocksListCtrl(mmStocksPanel* cp, wxWindow *parent, wxWindowID w
     m_imageList = new wxImageList(x, x);
     m_imageList->Add(mmBitmap(png::PROFIT));
     m_imageList->Add(mmBitmap(png::LOSS));
+    m_imageList->Add(mmBitmap(png::EMPTY));
     m_imageList->Add(mmBitmap(png::UPARROW));
     m_imageList->Add(mmBitmap(png::DOWNARROW));
 
@@ -222,8 +225,10 @@ void StocksListCtrl::OnListLeftClick(wxMouseEvent& event)
 int StocksListCtrl::OnGetItemImage(long item) const
 {
     /* Returns the icon to be shown for each entry */
-    if (GetGainLoss(item) > 0) return 0;
-    return 1;
+    double val = GetGainLoss(item);
+    if (val > 0.0) return static_cast<int>(ico::GAIN);
+    else if (val < 0.0) return static_cast<int>(ico::LOSS);
+    else return static_cast<int>(ico::ZERO);
 }
 
 void StocksListCtrl::OnListKeyDown(wxListEvent& event)
@@ -690,7 +695,7 @@ int StocksListCtrl::initVirtualListControl(int id, int col, bool asc)
 
     wxListItem item;
     item.SetMask(wxLIST_MASK_IMAGE);
-    item.SetImage(asc ? 3 : 2);
+    item.SetImage(asc ? static_cast<int>(ico::ARROW_DOWN) : static_cast<int>(ico::ARROW_UP));
     SetColumn(col, item);
 
     m_stocks = Model_Stock::instance().find(Model_Stock::HELDAT(m_stock_panel->m_account_id));
