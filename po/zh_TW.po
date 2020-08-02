@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-08-02 13:12+0300\n"
-"PO-Revision-Date: 2020-08-02 12:24\n"
+"PO-Revision-Date: 2020-08-02 12:33\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Traditional\n"
 "MIME-Version: 1.0\n"
@@ -1196,7 +1196,7 @@ msgstr ""
 
 #: billsdepositspanel.cpp:283
 msgid "&Skip"
-msgstr ""
+msgstr "略過"
 
 #: billsdepositspanel.cpp:284
 msgid "Skip Next Bills & Deposit Occurrence"
@@ -1539,11 +1539,11 @@ msgstr "無效的主類型。選擇主類型節點。"
 
 #: categdialog.cpp:318
 msgid "Category in use."
-msgstr ""
+msgstr "分類已存在"
 
 #: categdialog.cpp:318
 msgid "Sub-Category in use."
-msgstr ""
+msgstr "子分類已存在"
 
 #: categdialog.cpp:320
 msgid "Tip: Change all transactions using this Category to\n"
@@ -1586,7 +1586,7 @@ msgstr ""
 
 #: categdialog.cpp:486
 msgid "Edit Category"
-msgstr ""
+msgstr "修改類別"
 
 #: categdialog.cpp:504 categdialog.cpp:521
 msgid "Organise Categories: Editing Error"
@@ -1623,11 +1623,11 @@ msgstr "取消"
 
 #: constants.cpp:90
 msgid "Close"
-msgstr ""
+msgstr "關閉"
 
 #: constants.cpp:92
 msgid "&Close "
-msgstr ""
+msgstr "&關閉 "
 
 #: constants.cpp:188
 msgid "Advanced Filter"
@@ -1687,7 +1687,7 @@ msgstr ""
 
 #: constants.cpp:203
 msgid "ALL"
-msgstr ""
+msgstr "全選"
 
 #: constants.cpp:204 mmframe.cpp:1259 mmframe.cpp:1677
 #: model/Model_Account.cpp:26
@@ -1828,7 +1828,7 @@ msgstr ""
 
 #: customfieldeditdialog.cpp:153 util.cpp:452
 msgid "Default"
-msgstr ""
+msgstr "預設"
 
 #: customfieldeditdialog.cpp:155
 msgid "Enter the default for this field\n"
@@ -1921,15 +1921,15 @@ msgstr ""
 
 #: db/DB_Table_Category_V1.h:111
 msgid "Bills"
-msgstr ""
+msgstr "帳單"
 
 #: db/DB_Table_Category_V1.h:112
 msgid "Food"
-msgstr ""
+msgstr "食物"
 
 #: db/DB_Table_Category_V1.h:113
 msgid "Leisure"
-msgstr ""
+msgstr "休閒娛樂"
 
 #: db/DB_Table_Category_V1.h:114 model/Model_Asset.cpp:31
 msgid "Automobile"
@@ -1937,15 +1937,15 @@ msgstr "汽車"
 
 #: db/DB_Table_Category_V1.h:115
 msgid "Education"
-msgstr ""
+msgstr "教育"
 
 #: db/DB_Table_Category_V1.h:116
 msgid "Homeneeds"
-msgstr ""
+msgstr "家用"
 
 #: db/DB_Table_Category_V1.h:117
 msgid "Healthcare"
-msgstr ""
+msgstr "醫療服務"
 
 #: db/DB_Table_Category_V1.h:118
 msgid "Insurance"
@@ -2078,11 +2078,11 @@ msgstr "處方藥"
 
 #: db/DB_Table_Subcategory_V1.h:138
 msgid "Auto"
-msgstr ""
+msgstr "汽車"
 
 #: db/DB_Table_Subcategory_V1.h:139
 msgid "Life"
-msgstr ""
+msgstr "生活"
 
 #: db/DB_Table_Subcategory_V1.h:140
 msgid "Home"
@@ -2090,39 +2090,39 @@ msgstr ""
 
 #: db/DB_Table_Subcategory_V1.h:142
 msgid "Travel"
-msgstr ""
+msgstr "旅遊"
 
 #: db/DB_Table_Subcategory_V1.h:143
 msgid "Lodging"
-msgstr ""
+msgstr "住宿"
 
 #: db/DB_Table_Subcategory_V1.h:144
 msgid "Sightseeing"
-msgstr ""
+msgstr "觀光"
 
 #: db/DB_Table_Subcategory_V1.h:145
 msgid "Income Tax"
-msgstr ""
+msgstr "所得稅"
 
 #: db/DB_Table_Subcategory_V1.h:146
 msgid "House Tax"
-msgstr ""
+msgstr "房屋稅"
 
 #: db/DB_Table_Subcategory_V1.h:147
 msgid "Water Tax"
-msgstr ""
+msgstr "水資源稅"
 
 #: db/DB_Table_Subcategory_V1.h:149
 msgid "Salary"
-msgstr ""
+msgstr "薪資"
 
 #: db/DB_Table_Subcategory_V1.h:150
 msgid "Reimbursement/Refunds"
-msgstr ""
+msgstr "償還/退款"
 
 #: db/DB_Table_Subcategory_V1.h:151
 msgid "Investment Income"
-msgstr ""
+msgstr "投資收入"
 
 #: dbupgrade.cpp:72
 #, c-format
@@ -2200,7 +2200,7 @@ msgstr ""
 
 #: dbwrapper.cpp:74
 msgid "Can't open file"
-msgstr ""
+msgstr "無法開啟檔案"
 
 #: dbwrapper.cpp:74
 msgid "You must specify path to another database file"
@@ -2347,7 +2347,7 @@ msgstr ""
 
 #: general_report_manager.cpp:379 stockdialog.cpp:354
 msgid "&Save "
-msgstr ""
+msgstr "儲存 "
 
 #: general_report_manager.cpp:381
 msgid "Save changes."
@@ -2355,7 +2355,7 @@ msgstr "儲存修改"
 
 #: general_report_manager.cpp:383
 msgid "&Run"
-msgstr ""
+msgstr "&執行"
 
 #: general_report_manager.cpp:385
 msgid "Run selected report."
@@ -2363,7 +2363,7 @@ msgstr ""
 
 #: general_report_manager.cpp:397
 msgid "Output"
-msgstr ""
+msgstr "輸出"
 
 #: general_report_manager.cpp:413
 msgid "SQL"
@@ -2379,7 +2379,7 @@ msgstr "範本"
 
 #: general_report_manager.cpp:456
 msgid "&Test"
-msgstr ""
+msgstr "&測試"
 
 #: general_report_manager.cpp:457
 msgid "Create Template"
@@ -2557,11 +2557,11 @@ msgstr ""
 
 #: import_export/qif_export.cpp:123
 msgid "QIF"
-msgstr ""
+msgstr "QIF"
 
 #: import_export/qif_export.cpp:124
 msgid "JSON"
-msgstr ""
+msgstr "JSON"
 
 #: import_export/qif_export.cpp:138 mmframe.cpp:2948 mmframe.cpp:2952
 #: mmframe.cpp:2971 mmframe.cpp:2975
@@ -2570,11 +2570,11 @@ msgstr "帳目"
 
 #: import_export/qif_export.cpp:149 import_export/qif_import_gui.cpp:175
 msgid "From Date"
-msgstr ""
+msgstr "日期從"
 
 #: import_export/qif_export.cpp:159 import_export/qif_import_gui.cpp:184
 msgid "To Date"
-msgstr ""
+msgstr "至"
 
 #: import_export/qif_export.cpp:173 import_export/qif_import_gui.cpp:278
 #: optionsettingsgeneral.cpp:103
@@ -3071,7 +3071,7 @@ msgstr ""
 
 #: import_export/univcsvdialog.cpp:1108
 msgid "File exists"
-msgstr ""
+msgstr "檔案已存在"
 
 #: import_export/univcsvdialog.cpp:1114
 msgid "Failed to delete existing file. File may be locked by another program."
@@ -3147,7 +3147,7 @@ msgstr ""
 
 #: maincurrencydialog.cpp:166
 msgid "Online Update"
-msgstr ""
+msgstr "線上更新"
 
 #: maincurrencydialog.cpp:170
 msgid "Show all even the unused currencies"
