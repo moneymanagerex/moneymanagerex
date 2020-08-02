@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-05-26 12:37+0300\n"
-"PO-Revision-Date: 2020-08-01 20:14\n"
+"PO-Revision-Date: 2020-08-02 04:34\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Traditional\n"
 "MIME-Version: 1.0\n"
@@ -2374,7 +2374,7 @@ msgstr ""
 
 #: general_report_manager.cpp:415
 msgid "Template"
-msgstr ""
+msgstr "範本"
 
 #: general_report_manager.cpp:456
 msgid "&Test"
