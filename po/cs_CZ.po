@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-08-02 13:12+0300\n"
-"PO-Revision-Date: 2020-08-02 11:44\n"
+"PO-Revision-Date: 2020-08-02 11:53\n"
 "Last-Translator: \n"
 "Language-Team: Czech\n"
 "MIME-Version: 1.0\n"
@@ -3855,7 +3855,7 @@ msgstr "Soubory &QIF..."
 
 #: mmframe.cpp:1246 mmframe.cpp:1318
 msgid "&JSON Files..."
-msgstr "&JSON soubory..."
+msgstr "Soubory &JSON..."
 
 #: mmframe.cpp:1250 mmframe.cpp:1324
 msgid "Import from XML (Excel format)"
@@ -3911,7 +3911,7 @@ msgstr "Export do JSON"
 
 #: mmframe.cpp:1319
 msgid "&HTML Files..."
-msgstr "Soubory &HTML..."
+msgstr "&HTML soubory..."
 
 #: mmframe.cpp:1319
 msgid "Export to HTML"
@@ -6629,7 +6629,7 @@ msgstr "Příloha"
 
 #: webapp.cpp:595
 msgid "Transaction not downloaded: please retry to download transactions"
-msgstr ""
+msgstr "Transakce nebyly staženy: opakujte prosím stažení transakcí"
 
 #: webapp.cpp:596 webappdialog.cpp:348
 msgid "Attachment download error"
@@ -6657,7 +6657,7 @@ msgstr "Importovat a otevřít vše "
 
 #: webappdialog.cpp:214
 msgid "Unable to download transactions from webapp."
-msgstr ""
+msgstr "Nelze stáhnout transakce z webové aplikace."
 
 #: webappdialog.cpp:215
 msgid "Transactions download error"
