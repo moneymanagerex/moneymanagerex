@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-08-02 13:12+0300\n"
-"PO-Revision-Date: 2020-08-02 10:23\n"
+"PO-Revision-Date: 2020-08-02 12:04\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Traditional\n"
 "MIME-Version: 1.0\n"
@@ -25,27 +25,27 @@ msgstr ""
 
 #: aboutdialog.cpp:45
 msgid "License agreement"
-msgstr ""
+msgstr "授權合約"
 
 #: aboutdialog.cpp:149
 msgid "About"
-msgstr ""
+msgstr "關於"
 
 #: aboutdialog.cpp:154
 msgid "Authors"
-msgstr ""
+msgstr "開發者"
 
 #: aboutdialog.cpp:159
 msgid "Sponsors"
-msgstr ""
+msgstr "贊助者"
 
 #: aboutdialog.cpp:164
 msgid "License"
-msgstr ""
+msgstr "授權"
 
 #: aboutdialog.cpp:169
 msgid "Privacy"
-msgstr ""
+msgstr "隱私"
 
 #: aboutdialog.cpp:200 accountdialog.cpp:305 appstartdialog.cpp:136
 #: assetdialog.cpp:305 attachmentdialog.cpp:120 billsdepositsdialog.cpp:478
@@ -59,7 +59,7 @@ msgstr ""
 #: sharetransactiondialog.cpp:320 splitdetailsdialog.cpp:160
 #: splittransactionsdialog.cpp:172 transdialog.cpp:593 wizard_update.cpp:173
 msgid "&OK "
-msgstr ""
+msgstr "&確定 "
 
 #: accountdialog.cpp:91 mmframe.cpp:1414 mmframe.cpp:1679
 #: wizard_newaccount.cpp:79 wizard_newaccount.cpp:86 wizard_newaccount.cpp:158
@@ -97,7 +97,7 @@ msgstr "指定是否關閉此帳目。關閉帳目會使帳目無法計算、製
 #: accountdialog.cpp:164
 #, c-format
 msgid "Initial Balance: %s"
-msgstr ""
+msgstr "初始餘額"
 
 #: accountdialog.cpp:168
 msgid "Enter the initial balance in this account."
@@ -145,7 +145,7 @@ msgstr "其他"
 
 #: accountdialog.cpp:208
 msgid "Card Number:"
-msgstr ""
+msgstr "卡號"
 
 #: accountdialog.cpp:208
 msgid "Account Number:"
@@ -189,72 +189,72 @@ msgstr "輸入商戶登入資訊。任何可存取mmb檔案的人都可以存取
 
 #: accountdialog.cpp:235
 msgid "Statement"
-msgstr ""
+msgstr "明細"
 
 #: accountdialog.cpp:243
 msgid "Statement:"
-msgstr ""
+msgstr "明細:"
 
 #: accountdialog.cpp:244
 msgid "Locked"
-msgstr ""
+msgstr "已鎖定"
 
 #: accountdialog.cpp:245
 msgid "Enable or disable the transaction Lock"
-msgstr ""
+msgstr "啟用或停用交易鎖"
 
 #: accountdialog.cpp:248
 msgid "Reconciled Date:"
-msgstr ""
+msgstr "對帳日期:"
 
 #: accountdialog.cpp:250
 msgid "The date of the transaction lock"
-msgstr ""
+msgstr "交易鎖定日期"
 
 #: accountdialog.cpp:253
 msgid "Minimum Bal:"
-msgstr ""
+msgstr "最小結餘"
 
 #: accountdialog.cpp:255
 msgid "Account balance lower limit. Zero to disable"
-msgstr ""
+msgstr "帳戶餘額少於限制, 不能為0"
 
 #: accountdialog.cpp:260
 msgid "Credit"
-msgstr ""
+msgstr "鳴謝"
 
 #: accountdialog.cpp:268
 msgid "Credit Limit:"
-msgstr ""
+msgstr "信用額度"
 
 #: accountdialog.cpp:270
 msgid "Credit limit for the Account. Zero to disable"
-msgstr ""
+msgstr "帳戶的信用額度, 不能為0"
 
 #: accountdialog.cpp:273
 msgid "Interest Rate:"
-msgstr ""
+msgstr "利率"
 
 #: accountdialog.cpp:277
 msgid "Payment Due Date:"
-msgstr ""
+msgstr "付款到期日"
 
 #: accountdialog.cpp:281
 msgid "Minimum Payment:"
-msgstr ""
+msgstr "最低還款額"
 
 #: accountdialog.cpp:300
 msgid "Organize attachments of this account"
-msgstr ""
+msgstr "整理此帳戶的附件"
 
 #: accountdialog.cpp:407
 msgid "Default Image"
-msgstr ""
+msgstr "預設圖片"
 
 #: accountdialog.cpp:414
 #, c-format
 msgid "Image #%i"
-msgstr ""
+msgstr "圖片"
 
 #: accountdialog.cpp:486
 msgid "Account Name "
@@ -267,7 +267,7 @@ msgstr "貨幣"
 
 #: accountdialog.cpp:498
 msgid "Please insert a valid URL"
-msgstr ""
+msgstr "請輸入一個正確的網址。"
 
 #: accountdialog.cpp:498
 msgid "Invalid URL"
