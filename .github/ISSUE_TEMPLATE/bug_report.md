@@ -1,38 +1,39 @@
----
-name: Bug report
-about: Create a report to help us improve
-title: ''
-labels: ''
-assignees: ''
+MMEX version:
+  - [ ] 1.4.X
+  - [ ] 1.3.5
+  - [ ] 1.3.4
+  - [ ] 1.3.3 or older
 
----
+Note: bug reporters are expected to have verified the bug still exists
+either in the last stable version of MMEX or on updated development code
+(master branch).
 
-**Describe the bug**
-A clear and concise description of what the bug is.
+Operating System:
+  - [ ] Windows
+  - [ ] Mac OSX
+  - [ ] Linux 
 
-**To Reproduce**
-Steps to reproduce the behavior:
-1. Go to '...'
-2. Click on '....'
-3. Scroll down to '....'
-4. See error
+# Description of the bug
 
-**Expected behavior**
-A clear and concise description of what you expected to happen.
+Please describe your issue with details.
+Add screenshot or other files if needed.
 
-**Screenshots**
-If applicable, add screenshots to help explain your problem.
+# Reproduction
 
-**Desktop (please complete the following information):**
- - OS: [e.g. iOS]
- - Browser [e.g. chrome, safari]
- - Version [e.g. 22]
+Is the bug reproducible? [Always / Randomly / Happened only once ]
 
-**Smartphone (please complete the following information):**
- - Device: [e.g. iPhone6]
- - OS: [e.g. iOS8.1]
- - Browser [e.g. stock browser, safari]
- - Version [e.g. 22]
+Reproduction steps:
 
-**Additional context**
-Add any other context about the problem here.
+1. 
+2. 
+3. 
+
+…
+
+Expected result:
+
+Actual result:
+
+# Additional information
+
+If you have a backtrace for a crash or a warning, paste it here.
