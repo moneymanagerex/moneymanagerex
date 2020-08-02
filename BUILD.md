@@ -72,8 +72,6 @@ __All following commands must be run from this command prompt!__
 
        git clone --recursive https://github.com/moneymanagerex/moneymanagerex c:\projects\mmex
 
-   You can select MMEX version by adding `--branch v1.4.0` parameter.
-
    If git command is not recognized and you want to use git installed with VS
    you should find `git.exe` file and add its directory to the `PATH` variable
 
@@ -225,8 +223,6 @@ macOS with Homebrew
 #### 2. Download Sources
 
     git clone --recursive https://github.com/moneymanagerex/moneymanagerex
-
-You can select MMEX version by adding `--branch v1.4.0` parameter.
 
 #### 3. Compile and Create Package
 
