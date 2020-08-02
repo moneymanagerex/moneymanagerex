@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-08-02 13:12+0300\n"
-"PO-Revision-Date: 2020-08-02 12:33\n"
+"PO-Revision-Date: 2020-08-02 12:44\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Traditional\n"
 "MIME-Version: 1.0\n"
@@ -674,7 +674,7 @@ msgstr "開啟 "
 #: import_export/univcsvdialog.cpp:244 maincurrencydialog.cpp:204
 #: payeedialog.cpp:368 splittransactionsdialog.cpp:167
 msgid "&Remove "
-msgstr ""
+msgstr "移除 "
 
 #: attachmentdialog.cpp:359
 msgid "Att."
@@ -1088,7 +1088,7 @@ msgstr ""
 
 #: billsdepositsdialog.cpp:1341
 msgid "Choose one of the following:"
-msgstr ""
+msgstr "選擇下列其中一項："
 
 #: billsdepositsdialog.cpp:1400 transdialog.cpp:1235
 #: usertransactionpanel.cpp:191
