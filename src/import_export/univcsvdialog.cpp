@@ -1201,7 +1201,7 @@ void mmUnivCSVDialog::OnExport(wxCommandEvent& WXUNUSED(event))
                 itemType = ITransactionsFile::TYPE_NUMBER;
                 break;
             case UNIV_CSV_BALANCE:
-                entry = Model_Currency::toString(account_balance, currency);
+                entry = Model_Currency::toStringNoFormatting(account_balance, currency);
                 itemType = ITransactionsFile::TYPE_NUMBER;
                 break;
             case UNIV_CSV_TYPE:
