@@ -55,12 +55,6 @@ public:
     mmReportCategoryExpensesComes();
 };
 
-class mmReportCategorySummary : public mmReportCategoryExpenses
-{
-public:
-    mmReportCategorySummary();
-};
-
 class mmReportCategoryExpensesCategories : public mmReportCategoryExpenses
 {
 public:

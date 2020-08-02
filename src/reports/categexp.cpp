@@ -225,13 +225,6 @@ mmReportCategoryExpensesComes::mmReportCategoryExpensesComes()
     setReportParameters(Reports::WheretheMoneyComesFrom);
 }
 
-mmReportCategorySummary::mmReportCategorySummary()
-    : mmReportCategoryExpenses(_("Summary"), TYPE::SUMMARY)
-{
-    m_chart_selection = 1;
-    setReportParameters(Reports::CategoriesSummary);
-}
-
 mmReportCategoryExpensesCategories::mmReportCategoryExpensesCategories()
     : mmReportCategoryExpenses(_("Monthly"), TYPE::MONTHLY)
 {
