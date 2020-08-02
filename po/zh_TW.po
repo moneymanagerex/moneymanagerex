@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-08-02 13:12+0300\n"
-"PO-Revision-Date: 2020-08-02 12:04\n"
+"PO-Revision-Date: 2020-08-02 12:13\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Traditional\n"
 "MIME-Version: 1.0\n"
@@ -455,7 +455,7 @@ msgstr ""
 #: assetspanel.cpp:63 reports/summarystocks.cpp:144
 #: reports/summarystocks.cpp:178 stockdialog.cpp:259
 msgid "Current Value"
-msgstr ""
+msgstr "當前值"
 
 #: assetspanel.cpp:96
 msgid "&New Asset"
@@ -1382,11 +1382,11 @@ msgstr ""
 
 #: budgetingpanel.cpp:248
 msgid "Expenses: "
-msgstr ""
+msgstr "支出: "
 
 #: budgetingpanel.cpp:291
 msgid "Icon"
-msgstr ""
+msgstr "圖示"
 
 #: budgetingpanel.cpp:293
 msgid "Sub Category"
@@ -1404,7 +1404,7 @@ msgstr "實際"
 
 #: budgetyeardialog.cpp:46
 msgid "Budget Editor"
-msgstr ""
+msgstr "預算修改器"
 
 #: budgetyeardialog.cpp:93
 msgid "&Add Year"
@@ -1639,7 +1639,7 @@ msgstr "檢視所有交易"
 
 #: constants.cpp:190
 msgid "View Today"
-msgstr ""
+msgstr "檢視今天"
 
 #: constants.cpp:191
 msgid "View Current Month"
@@ -1647,11 +1647,11 @@ msgstr "檢視本月"
 
 #: constants.cpp:192
 msgid "View Last 30 days"
-msgstr ""
+msgstr "檢視最近30日"
 
 #: constants.cpp:193
 msgid "View Last 90 days"
-msgstr ""
+msgstr "檢視最近90日"
 
 #: constants.cpp:194
 msgid "View Last Month"
@@ -1659,27 +1659,27 @@ msgstr "檢視上月"
 
 #: constants.cpp:195
 msgid "View Last 3 Months"
-msgstr ""
+msgstr "檢視最近3個月"
 
 #: constants.cpp:196
 msgid "View Last 12 Months"
-msgstr ""
+msgstr "檢視最近12個月"
 
 #: constants.cpp:197
 msgid "View Current Year"
-msgstr ""
+msgstr "檢視本年度"
 
 #: constants.cpp:198
 msgid "View Current Financial Year"
-msgstr ""
+msgstr "檢視本財政年度"
 
 #: constants.cpp:199
 msgid "View Last Year"
-msgstr ""
+msgstr "檢視上一年"
 
 #: constants.cpp:200
 msgid "View Last Financial Year"
-msgstr ""
+msgstr "檢視上一財政年度"
 
 #: constants.cpp:201
 msgid "View Since Statement Date"
@@ -1708,7 +1708,7 @@ msgstr "貨幣管理員"
 
 #: currencydialog.cpp:96
 msgid "Currency name"
-msgstr ""
+msgstr "貨幣名稱"
 
 #: currencydialog.cpp:155
 msgid "Currency Name"
@@ -1716,7 +1716,7 @@ msgstr "貨幣名稱"
 
 #: currencydialog.cpp:159
 msgid "Currency Symbol"
-msgstr ""
+msgstr "貨幣符號"
 
 #: currencydialog.cpp:164
 msgid "Unit Name"
@@ -1949,31 +1949,31 @@ msgstr ""
 
 #: db/DB_Table_Category_V1.h:118
 msgid "Insurance"
-msgstr ""
+msgstr "保險"
 
 #: db/DB_Table_Category_V1.h:119
 msgid "Vacation"
-msgstr ""
+msgstr "渡假"
 
 #: db/DB_Table_Category_V1.h:120
 msgid "Taxes"
-msgstr ""
+msgstr "税"
 
 #: db/DB_Table_Category_V1.h:121
 msgid "Miscellaneous"
-msgstr ""
+msgstr "雜項"
 
 #: db/DB_Table_Category_V1.h:122
 msgid "Gifts"
-msgstr ""
+msgstr "禮物"
 
 #: db/DB_Table_Category_V1.h:124
 msgid "Other Income"
-msgstr ""
+msgstr "其他收入"
 
 #: db/DB_Table_Category_V1.h:125
 msgid "Other Expenses"
-msgstr ""
+msgstr "其他支出"
 
 #: db/DB_Table_Category_V1.h:126 model/Model_Billsdeposits.cpp:33
 #: model/Model_Checking.cpp:31 transdialog.cpp:349
@@ -1982,99 +1982,99 @@ msgstr "轉帳"
 
 #: db/DB_Table_Subcategory_V1.h:111
 msgid "Telephone"
-msgstr ""
+msgstr "電話費"
 
 #: db/DB_Table_Subcategory_V1.h:112
 msgid "Electricity"
-msgstr ""
+msgstr "電費"
 
 #: db/DB_Table_Subcategory_V1.h:113 db/DB_Table_Subcategory_V1.h:124
 msgid "Gas"
-msgstr ""
+msgstr "瓦斯費"
 
 #: db/DB_Table_Subcategory_V1.h:114
 msgid "Internet"
-msgstr ""
+msgstr "網路費"
 
 #: db/DB_Table_Subcategory_V1.h:115
 msgid "Rent"
-msgstr ""
+msgstr "房租"
 
 #: db/DB_Table_Subcategory_V1.h:116
 msgid "Cable TV"
-msgstr ""
+msgstr "有線電視"
 
 #: db/DB_Table_Subcategory_V1.h:117
 msgid "Water"
-msgstr ""
+msgstr "水費"
 
 #: db/DB_Table_Subcategory_V1.h:118
 msgid "Groceries"
-msgstr ""
+msgstr "日用雜貨"
 
 #: db/DB_Table_Subcategory_V1.h:119
 msgid "Dining out"
-msgstr ""
+msgstr "外食"
 
 #: db/DB_Table_Subcategory_V1.h:120
 msgid "Movies"
-msgstr ""
+msgstr "電影"
 
 #: db/DB_Table_Subcategory_V1.h:121
 msgid "Video Rental"
-msgstr ""
+msgstr "影片租借"
 
 #: db/DB_Table_Subcategory_V1.h:122
 msgid "Magazines"
-msgstr ""
+msgstr "雜誌"
 
 #: db/DB_Table_Subcategory_V1.h:123
 msgid "Maintenance"
-msgstr ""
+msgstr "維護"
 
 #: db/DB_Table_Subcategory_V1.h:125
 msgid "Parking"
-msgstr ""
+msgstr "停車費"
 
 #: db/DB_Table_Subcategory_V1.h:126
 msgid "Registration"
-msgstr ""
+msgstr "註冊"
 
 #: db/DB_Table_Subcategory_V1.h:127
 msgid "Books"
-msgstr ""
+msgstr "書籍"
 
 #: db/DB_Table_Subcategory_V1.h:128
 msgid "Tuition"
-msgstr ""
+msgstr "學費"
 
 #: db/DB_Table_Subcategory_V1.h:130
 msgid "Clothing"
-msgstr ""
+msgstr "服裝"
 
 #: db/DB_Table_Subcategory_V1.h:131
 msgid "Furnishing"
-msgstr ""
+msgstr "家具"
 
 #: db/DB_Table_Subcategory_V1.h:133 db/DB_Table_Subcategory_V1.h:141
 msgid "Health"
-msgstr ""
+msgstr "健康"
 
 #: db/DB_Table_Subcategory_V1.h:134
 msgid "Dental"
-msgstr ""
+msgstr "牙科"
 
 #: db/DB_Table_Subcategory_V1.h:135
 msgid "Eyecare"
-msgstr ""
+msgstr "眼科"
 
 #: db/DB_Table_Subcategory_V1.h:136
 msgid "Physician"
-msgstr ""
+msgstr "醫療費"
 
 #: db/DB_Table_Subcategory_V1.h:137
 msgid "Prescriptions"
-msgstr ""
+msgstr "處方藥"
 
 #: db/DB_Table_Subcategory_V1.h:138
 msgid "Auto"
@@ -2330,7 +2330,7 @@ msgstr "報表"
 #: general_report_manager.cpp:370 import_export/univcsvdialog.cpp:417
 #: mmframe.cpp:1252 mmframe.cpp:1327
 msgid "&Import"
-msgstr ""
+msgstr "匯入"
 
 #: general_report_manager.cpp:372
 msgid "Locate and load a report file."
@@ -2351,7 +2351,7 @@ msgstr ""
 
 #: general_report_manager.cpp:381
 msgid "Save changes."
-msgstr ""
+msgstr "儲存修改"
 
 #: general_report_manager.cpp:383
 msgid "&Run"
@@ -2528,7 +2528,7 @@ msgstr ""
 
 #: import_export/parsers.cpp:163
 msgid "Table"
-msgstr ""
+msgstr "表格"
 
 #: import_export/parsers.cpp:165
 msgid "Could not find Table."
@@ -6491,7 +6491,7 @@ msgstr ""
 
 #: webapp.cpp:121
 msgid "WebApp connection error"
-msgstr ""
+msgstr "WebApp 連接錯誤"
 
 #: webapp.cpp:131
 msgid "Wrong WebApp API version:"
@@ -6704,11 +6704,11 @@ msgstr ""
 
 #: wizard_newdb.cpp:112
 msgid "(Optional) Specify a title or your name."
-msgstr ""
+msgstr "（可選）指定標題或名稱"
 
 #: wizard_newdb.cpp:113
 msgid "Used as a database title for displayed and printed reports."
-msgstr ""
+msgstr "用作顯示和打印報告的數據庫標題"
 
 #: wizard_newdb.cpp:124
 msgid "Base Currency Not Set"
@@ -6716,38 +6716,38 @@ msgstr "未設定基本貨幣"
 
 #: wizard_update.cpp:78
 msgid "Update Wizard"
-msgstr ""
+msgstr "更新精靈"
 
 #: wizard_update.cpp:106
 msgid "Historical releases:"
-msgstr ""
+msgstr "歷史版本："
 
 #: wizard_update.cpp:136
 msgid "Version"
-msgstr ""
+msgstr "版本"
 
 #: wizard_update.cpp:144
 msgid "You already have the latest version"
-msgstr ""
+msgstr "您目前擁有的是最新版本。"
 
 #: wizard_update.cpp:144
 msgid "A new version of MMEX is available!"
-msgstr ""
+msgstr "已有新版本的 %s 可供下載！"
 
 #: wizard_update.cpp:145
 #, c-format
 msgid "Your version is %s"
-msgstr ""
+msgstr "您的版本是："
 
 #: wizard_update.cpp:283 wizard_update.cpp:298
 msgid "Unable to check for updates!"
-msgstr ""
+msgstr "無法檢查更新"
 
 #: wizard_update.cpp:284 wizard_update.cpp:299
 msgid "Error: "
-msgstr ""
+msgstr "錯誤: "
 
 #: wizard_update.cpp:285 wizard_update.cpp:302
 msgid "MMEX Update Check"
-msgstr ""
+msgstr "檢查最新版本"
 
