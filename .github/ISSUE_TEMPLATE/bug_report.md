@@ -1,3 +1,12 @@
+---
+name: Bug report
+about: Create a report to help us improve
+title: ''
+labels: ''
+assignees: ''
+
+---
+
 MMEX version:
   - [ ] 1.4.X
   - [ ] 1.3.5
@@ -28,7 +37,7 @@ Reproduction steps:
 2. 
 3. 
 
-…
+â€¦
 
 Expected result:
 
