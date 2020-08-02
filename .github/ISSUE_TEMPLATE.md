@@ -1,9 +1,0 @@
-- Check OS
-  - [ ] Windows
-  - [ ] Mac OSX
-  - [ ] Linux 
--  Check MMEX version
-  - [ ] 1.4.X
-  - [ ] 1.3.5
-  - [ ] 1.3.4
-  - [ ] 1.3.3 or older
