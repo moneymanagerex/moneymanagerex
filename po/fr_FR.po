@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-08-02 13:12+0300\n"
-"PO-Revision-Date: 2020-08-02 10:33\n"
+"PO-Revision-Date: 2020-08-02 13:33\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -6463,7 +6463,7 @@ msgstr "Version base de données: "
 
 #: util.cpp:920
 msgid "Git commit: "
-msgstr "Gîte commit: "
+msgstr "Validation Git : "
 
 #: util.cpp:924
 msgid "Git branch: "
