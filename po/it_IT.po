@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-08-02 13:12+0300\n"
-"PO-Revision-Date: 2020-08-02 13:43\n"
+"PO-Revision-Date: 2020-08-03 10:15\n"
 "Last-Translator: \n"
 "Language-Team: Italian\n"
 "MIME-Version: 1.0\n"
@@ -3903,7 +3903,7 @@ msgstr "Esporta in file JSON"
 
 #: mmframe.cpp:1319
 msgid "&HTML Files..."
-msgstr "FIle HTML..."
+msgstr "File HTML..."
 
 #: mmframe.cpp:1319
 msgid "Export to HTML"
@@ -6619,7 +6619,7 @@ msgstr "Allegato"
 
 #: webapp.cpp:595
 msgid "Transaction not downloaded: please retry to download transactions"
-msgstr "Transazione non scaricata: riprova a scaricare le transazioni"
+msgstr "Transazione non scaricata: prova a riscaricare le transazioni"
 
 #: webapp.cpp:596 webappdialog.cpp:348
 msgid "Attachment download error"
