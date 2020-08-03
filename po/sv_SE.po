@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-08-02 13:12+0300\n"
-"PO-Revision-Date: 2020-08-02 10:23\n"
+"PO-Revision-Date: 2020-08-03 07:15\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
@@ -3887,7 +3887,7 @@ msgstr "Exportera till JSON"
 
 #: mmframe.cpp:1319
 msgid "&HTML Files..."
-msgstr ""
+msgstr "&HTML-filer..."
 
 #: mmframe.cpp:1319
 msgid "Export to HTML"
@@ -6576,7 +6576,7 @@ msgstr "Bilaga"
 
 #: webapp.cpp:595
 msgid "Transaction not downloaded: please retry to download transactions"
-msgstr ""
+msgstr "Transaktionen laddades inte ner: försök igen för att ladda ner transaktioner"
 
 #: webapp.cpp:596 webappdialog.cpp:348
 msgid "Attachment download error"
@@ -6604,11 +6604,11 @@ msgstr "Importera och öppna alla "
 
 #: webappdialog.cpp:214
 msgid "Unable to download transactions from webapp."
-msgstr ""
+msgstr "Det gick inte att hämta transaktioner från webbappen."
 
 #: webappdialog.cpp:215
 msgid "Transactions download error"
-msgstr ""
+msgstr "Fel vid hämtning av transaktioner"
 
 #: webappdialog.cpp:320
 msgid "Unable to insert transaction in MMEX database"
