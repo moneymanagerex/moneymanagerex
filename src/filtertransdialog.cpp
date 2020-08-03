@@ -539,13 +539,13 @@ bool mmFilterTransactionsDialog::compareStatus(const wxString& itemStatus) const
     {
         return true;
     }
-    else if ("U" == filterStatus) // Un-Reconciled
-    {
-        return "" == itemStatus || "F" == itemStatus;
-    }
     else if ("A" == filterStatus) // All Except Reconciled
     {
         return "R" != itemStatus;
+    }
+    else if ("U" == filterStatus) // Un-Reconciled
+    {
+        return itemStatus.empty() || "N" == itemStatus;
     }
     return false;
 }
