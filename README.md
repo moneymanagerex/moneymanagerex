@@ -133,7 +133,7 @@ Tips
 [Buy us a Cofee]: https://cash.me/$guanlisheng/1
 [Instagram]: https://www.instagram.com/moneymanagerex/
 [Donate via PayPal]: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=moneymanagerex%40gmail%2ecom&lc=US&item_name=MoneyManagerEx&no_note=0&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHostedGuest
-[crowdin.com]: (https://crowdin.com/project/moneymanagerex) 
+[crowdin.com]: https://crowdin.com/project/moneymanagerex
 
 Support
 ================
