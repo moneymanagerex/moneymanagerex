@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-08-02 13:12+0300\n"
-"PO-Revision-Date: 2020-08-02 10:23\n"
+"PO-Revision-Date: 2020-08-04 11:42\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "MIME-Version: 1.0\n"
@@ -1738,7 +1738,7 @@ msgstr "Nome da unidade"
 
 #: currencydialog.cpp:168
 msgid "Cents Name"
-msgstr ""
+msgstr "Nome dos Centésimos"
 
 #: currencydialog.cpp:172
 msgid "Prefix Symbol"
@@ -1763,11 +1763,11 @@ msgstr "Escala"
 
 #: currencydialog.cpp:206 currencydialog.cpp:267
 msgid "Conversion to Base Rate"
-msgstr ""
+msgstr "Conversão para a Taxa Base"
 
 #: currencydialog.cpp:212
 msgid "Conversion rate will be used in case no currency history has been found for the currency"
-msgstr ""
+msgstr "A taxa de conversão será utilizada caso nenhum histórico de moeda tenha sido encontrado para a moeda"
 
 #: currencydialog.cpp:214
 msgid "Fixed conversion rate"
