@@ -15,6 +15,15 @@ MMEX includes all the basic features that 90% of users would want to see in a
 personal finance application. The design goals are to concentrate on
 simplicity and user-friendliness - something one can use everyday.
 
+<table border="0">
+    <tr>
+        <td><img src="https://raw.githubusercontent.com/moneymanagerex/Art/master/PC/mmex1.png" ></td>
+        <td><img src="https://raw.githubusercontent.com/moneymanagerex/Art/master/PC/mmex2.png" ></td>
+        <td><img src="https://raw.githubusercontent.com/moneymanagerex/Art/master/PC/mmex3.png" ></td>
+        <td><img src="https://raw.githubusercontent.com/moneymanagerex/Art/master/PC/mmex4.png" ></td>
+    </tr>
+</table>
+
 Main features
 ================
 
