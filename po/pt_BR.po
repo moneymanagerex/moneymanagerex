@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-08-02 13:12+0300\n"
-"PO-Revision-Date: 2020-08-04 11:42\n"
+"PO-Revision-Date: 2020-08-04 11:54\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "MIME-Version: 1.0\n"
@@ -575,7 +575,8 @@ msgstr "Variação de Valor: %s %s"
 #: assetspanel.cpp:768
 msgid "This asset does not have its own account\n\n"
 "Multiple transactions for this asset are not recommended."
-msgstr ""
+msgstr "Este ativo não tem sua própria conta\n\n"
+"Várias transações para este ativo não são recomendadas."
 
 #: assetspanel.cpp:770
 msgid "Asset Management"
@@ -1505,7 +1506,7 @@ msgstr "Editar o nome de uma categoria existente"
 
 #: categdialog.cpp:236
 msgid "Delete an existing category. The category cannot be used by existing transactions."
-msgstr ""
+msgstr "Excluir uma categoria existente. A categoria não pode ser usada em transações existentes."
 
 #: categdialog.cpp:241 maincurrencydialog.cpp:211
 msgid "&Select"
@@ -2180,7 +2181,7 @@ msgstr "Carregar arquivo de depuração"
 
 #: dbupgrade.cpp:204
 msgid "Wrong file type!"
-msgstr ""
+msgstr "Tipo de arquivo errado!"
 
 #: dbupgrade.cpp:204 dbupgrade.cpp:241 dbupgrade.cpp:248 dbupgrade.cpp:292
 #: dbupgrade.cpp:303
@@ -2193,7 +2194,7 @@ msgstr "Erro de consulta, entre em contato com o suporte MMEX!"
 
 #: dbupgrade.cpp:248 dbupgrade.cpp:303
 msgid "Invalid file content, please contact MMEX support!"
-msgstr ""
+msgstr "Conteúdo do arquivo inválido, entre em contato com o suporte MMEX!"
 
 #: dbupgrade.cpp:255
 msgid "Send this log to MMEX support team:\n"
