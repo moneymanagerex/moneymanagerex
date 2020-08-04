@@ -137,7 +137,7 @@ Tips
 Support
 ================
 
-<!-- PayPal Logo --><a href="https://www.paypal.com/ru/webapps/mpp/paypal-popup" title="PayPal Как это работает" onclick="javascript:window.open('https://www.paypal.com/ru/webapps/mpp/paypal-popup','WIPaypal','toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=yes, resizable=yes, width=1060, height=700'); return false;"><img src="https://www.paypalobjects.com/webstatic/mktg/Logo/pp-logo-100px.png" border="0" alt="PayPal Logo" /></a><!-- PayPal Logo -->
+[![Donate via PayPal](https://www.paypalobjects.com/webstatic/mktg/Logo/pp-logo-100px.png)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=moneymanagerex%40gmail%2ecom&lc=US&item_name=MoneyManagerEx&no_note=0&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHostedGuest";)
 
 or
 
