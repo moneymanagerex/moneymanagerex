@@ -33,10 +33,10 @@ Main features
 - Budgeting and cash flow forecasting
 - Simple one click reporting with graphs and piecharts
 - Import data from any CSV format, QIF
-- Custom Reports
+- [Custom Reports](https://github.com/moneymanagerex/general-reports#general-reports)
 - Does not require an install: can run from a USB key
 - Non-Proprietary SQLite Database with AES Encryption
-- International language support (available in 24 languages)
+- [International language support](https://crowdin.com/project/moneymanagerex) 
 
 
 Download
@@ -72,7 +72,7 @@ This software uses the following open source packages:
 External public resources
 ================
 
-[Slack] | [Forum] | [Wiki] | [Facebook] | [YouTube] | [Instagram] | [SourceForge] | [GitHub]
+[Slack] | [Forum] | [Wiki] | [Facebook] | [YouTube] | [Instagram] | [crowdin.com] | [SourceForge] | [GitHub]
 | [Docker images] | [Twitter] [![tw]][Twitter]
 
 Tips
@@ -133,6 +133,7 @@ Tips
 [Buy us a Cofee]: https://cash.me/$guanlisheng/1
 [Instagram]: https://www.instagram.com/moneymanagerex/
 [Donate via PayPal]: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=moneymanagerex%40gmail%2ecom&lc=US&item_name=MoneyManagerEx&no_note=0&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHostedGuest
+[crowdin.com]: (https://crowdin.com/project/moneymanagerex) 
 
 Support
 ================
