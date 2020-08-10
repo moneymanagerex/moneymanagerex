@@ -111,6 +111,11 @@ if(CMAKE_SYSTEM_NAME STREQUAL "Linux")
                 set(LINUX_DISTRO "${CMAKE_MATCH_1}")
                 set(LINUX_DISTRO_REL ${CMAKE_MATCH_2})
             endif()
+        elseif(EXISTS /etc/arch-release)            
+            execute_process(COMMAND  uname -r
+                OUTPUT_VARIABLE LINUX_DISTRO_REL
+                OUTPUT_STRIP_TRAILING_WHITESPACE ERROR_QUIET)
+            set(LINUX_DISTRO "Arch") 	             
         else()
             message(SEND_ERROR "lsb_release tool not found.")
         endif()
