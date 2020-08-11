@@ -226,9 +226,9 @@ mmLastFinancialYear::mmLastFinancialYear(int day, int month)
 mmAllTime::mmAllTime()
 : mmDateRange()
 {
+    this->start_date_.SetDay(1).SetMonth(wxDateTime::Jan).SetYear(1900);
+    this->end_date_ = wxDateTime(31, wxDateTime::Dec, 2900);
     this->title_ = wxTRANSLATE("Over Time");
-    this->start_date_.SetDay(1).SetMonth(wxDateTime::Jan).SetYear(1);
-    this->end_date_ = wxDateTime(31, wxDateTime::Dec, 9999);
 }
 
 bool mmAllTime::is_with_date() const
