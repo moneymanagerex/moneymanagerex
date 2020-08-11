@@ -188,13 +188,18 @@ wxString StocksListCtrl::OnGetItemText(long item, long column) const
 
 double StocksListCtrl::GetGainLoss(long item) const
 {
-    if (m_stocks[item].PURCHASEPRICE == 0)
+    return GetGainLoss(m_stocks[item]);
+}
+
+double StocksListCtrl::GetGainLoss(const Model_Stock::Data& stock)
+{
+    if (stock.PURCHASEPRICE == 0)
     {
-        return m_stocks[item].NUMSHARES * m_stocks[item].CURRENTPRICE - (m_stocks[item].VALUE + m_stocks[item].COMMISSION);
+        return stock.NUMSHARES * stock.CURRENTPRICE - (stock.VALUE + stock.COMMISSION);
     }
     else
     {
-        return m_stocks[item].NUMSHARES * m_stocks[item].CURRENTPRICE - ((m_stocks[item].NUMSHARES * m_stocks[item].PURCHASEPRICE) + m_stocks[item].COMMISSION);
+        return stock.NUMSHARES * stock.CURRENTPRICE - ((stock.NUMSHARES * stock.PURCHASEPRICE) + stock.COMMISSION);
     }
 }
 
@@ -655,8 +660,8 @@ void StocksListCtrl::sortTable()
         std::stable_sort(m_stocks.begin(), m_stocks.end()
             , [](const Model_Stock::Data& x, const Model_Stock::Data& y)
         {
-            double valueX = x.VALUE - (x.VALUE + x.COMMISSION);
-            double valueY = y.VALUE - (y.VALUE + y.COMMISSION);
+            double valueX = GetGainLoss(x);
+            double valueY = GetGainLoss(y);
             return valueX < valueY;
         });
         break;

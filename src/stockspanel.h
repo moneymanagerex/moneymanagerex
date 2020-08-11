@@ -91,6 +91,7 @@ private:
     };
     wxImageList* m_imageList;
     double GetGainLoss(long item) const;
+    static double GetGainLoss(const Model_Stock::Data& stock);
     void sortTable();
 };
 
