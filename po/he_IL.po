@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-08-02 13:12+0300\n"
-"PO-Revision-Date: 2020-08-04 09:14\n"
+"PO-Revision-Date: 2020-08-11 10:07\n"
 "Last-Translator: \n"
 "Language-Team: Hebrew\n"
 "MIME-Version: 1.0\n"
@@ -848,7 +848,7 @@ msgstr "קידום תאריך המופע הבא בערכים שצוינו"
 
 #: billsdepositsdialog.cpp:446 billsdepositsdialog.cpp:1299
 msgid "Payments Left"
-msgstr "תשלומים נותרים"
+msgstr "תשלומים שנותרו"
 
 #: billsdepositsdialog.cpp:460
 msgid "Request user to enter payment"
@@ -1291,7 +1291,7 @@ msgstr "קטגוריה: "
 
 #: budgetentrydialog.cpp:112
 msgid "Sub Category: "
-msgstr "תת קטגוריה: "
+msgstr "קטגורית משנה: "
 
 #: budgetentrydialog.cpp:119
 msgid "Estimated:"
@@ -1549,7 +1549,7 @@ msgstr "ניהול קטגוריות: הוספת שגיאה"
 
 #: categdialog.cpp:293 categdialog.cpp:520
 msgid "Sub Category with same name exists"
-msgstr "קיימת כבר תת קטגוריה עם שם זהה"
+msgstr "קיימת כבר קטגורית משנה בשם זהה"
 
 #: categdialog.cpp:311
 msgid "Invalid Parent Category. Choose Root or Main Category node."
@@ -1572,8 +1572,8 @@ msgstr "עצה: שנה את הקטגוריה בכל התנועות לקטגור�
 #: categdialog.cpp:323
 msgid "Tip: Change all transactions using this Sub-Category to\n"
 "another Sub-Category using the relocate command:"
-msgstr "עצה: שנה את תת-הקטגורה בכל התנועות לתת קטגוריה\n"
-"אחרת תוך שימוש בפקודת העברה :"
+msgstr "עצה: שנוי קטגוריות המשנה בכל התנועות לקטגורית משנה\n"
+"אחרת תוך שימוש בפקודת העברה:"
 
 #: categdialog.cpp:326
 msgid "Tools -> Relocation of -> Categories"
@@ -2290,7 +2290,7 @@ msgstr "כולל דומה"
 
 #: filtertransdialog.cpp:232
 msgid "Include all subcategories for the selected category."
-msgstr "כלול את כל קטגוריות המשנה לקטגוריה שבחרה."
+msgstr "לכלול את כל קטגוריות המשנה לקטגוריה שבחרה."
 
 #: filtertransdialog.cpp:258 import_export/univcsvdialog.cpp:112
 #: mmcheckingpanel.cpp:957 model/Model_Billsdeposits.cpp:31
@@ -2867,7 +2867,7 @@ msgstr "התווסף מוטב:  %s"
 
 #: import_export/univcsvdialog.cpp:108
 msgid "SubCategory"
-msgstr "תת קטגוריה"
+msgstr "קטגורית משנה"
 
 #: import_export/univcsvdialog.cpp:111
 msgid "Don't Care"
@@ -4963,7 +4963,7 @@ msgid "The SQL script:\n"
 "will modify database! aborted!"
 msgstr "תסריט ה SQL:\n"
 "% s\n"
-"ישנה את מסד הנתונים! מבטל!"
+"ישנה את מסד הנתונים! נטישה!"
 
 #: optiondialog.cpp:130
 msgid "General"
@@ -5664,10 +5664,10 @@ msgstr "השלמת השלבים הבאים לפני יצירת תקלה חדשה
 #, c-format
 msgid "Cash Flow Forecast for %i Year Ahead"
 msgid_plural "Cash Flow Forecast for %i Years Ahead"
-msgstr[0] "תחזית תזרים מזומנים ל i% שנה קדימה"
-msgstr[1] "תחזית תזרים מזומנים ל %i שנים קדימה"
-msgstr[2] "תחזית תזרים מזומנים ל %i שנים קדימה"
-msgstr[3] "תחזית תזרים מזומנים ל %i שנים קדימה"
+msgstr[0] "תחזית תזרים מזומנים ל i% שנה"
+msgstr[1] "תחזית תזרים מזומנים ל %i שנים"
+msgstr[2] "תחזית תזרים מזומנים ל %i שנים"
+msgstr[3] "תחזית תזרים מזומנים ל %i שנים"
 
 #: reports/cashflow.cpp:265 reports/incexpenses.cpp:276 reports/payee.cpp:121
 msgid "Difference"
