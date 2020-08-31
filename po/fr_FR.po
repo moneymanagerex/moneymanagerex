@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-08-02 13:12+0300\n"
-"PO-Revision-Date: 2020-08-31 07:25\n"
+"PO-Revision-Date: 2020-08-31 07:40\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -6193,7 +6193,7 @@ msgstr "Liste temporaire des actions: %s\n\n"
 
 #: stockspanel.cpp:574
 msgid "Add Stock Transactions"
-msgstr ""
+msgstr "Ajouter une opération boursière"
 
 #: stockspanel.cpp:579
 msgid "View Stock Transactions"
@@ -6201,7 +6201,7 @@ msgstr "Voir les transactions boursières"
 
 #: stockspanel.cpp:589
 msgid "Delete Stock Investment"
-msgstr ""
+msgstr "Supprimer investissement"
 
 #: stockspanel.cpp:593
 msgid "&Move"
@@ -6209,7 +6209,7 @@ msgstr "Déplace&Ment"
 
 #: stockspanel.cpp:594
 msgid "Move selected transaction to another account"
-msgstr ""
+msgstr "Déplacer la transaction sélectionnée vers un autre compte"
 
 #: stockspanel.cpp:607
 msgid "Refresh"
@@ -6227,7 +6227,7 @@ msgstr "Portefeuille de titre : %s"
 #: stockspanel.cpp:763
 #, c-format
 msgid "Total Shares: %s"
-msgstr ""
+msgstr "Nbre de titres : %s"
 
 #: stockspanel.cpp:765
 #, c-format
@@ -6338,11 +6338,11 @@ msgstr "Effacer la couleur"
 #: transdialog.cpp:1314
 #, c-format
 msgid "Colour #%i"
-msgstr ""
+msgstr "Couleur #%i"
 
 #: usertransactionpanel.cpp:114
 msgid "Specify the associated Account that will contain this transaction"
-msgstr ""
+msgstr "Spécifiez le compte qui contiendra cette transaction"
 
 #: usertransactionpanel.cpp:126
 msgid "Withdraw funds from or deposit funds to this Account."
@@ -6382,47 +6382,47 @@ msgstr "Sélection de compte"
 
 #: util.cpp:466
 msgid "Jan"
-msgstr ""
+msgstr "Janv."
 
 #: util.cpp:466
 msgid "Feb"
-msgstr ""
+msgstr "Févr."
 
 #: util.cpp:466
 msgid "Mar"
-msgstr ""
+msgstr "Mars"
 
 #: util.cpp:467
 msgid "Apr"
-msgstr ""
+msgstr "Avril"
 
 #: util.cpp:467 util.h:173
 msgid "May"
-msgstr ""
+msgstr "Mai"
 
 #: util.cpp:467
 msgid "Jun"
-msgstr ""
+msgstr "Juin"
 
 #: util.cpp:468
 msgid "Jul"
-msgstr ""
+msgstr "Juil."
 
 #: util.cpp:468
 msgid "Aug"
-msgstr ""
+msgstr "Août"
 
 #: util.cpp:468
 msgid "Sep"
-msgstr ""
+msgstr "Sept."
 
 #: util.cpp:469
 msgid "Oct"
-msgstr ""
+msgstr "Oct."
 
 #: util.cpp:469
 msgid "Nov"
-msgstr ""
+msgstr "Nov."
 
 #: util.cpp:469
 msgid "Dec"
@@ -6637,7 +6637,7 @@ msgstr "Statut du réseau (cliquez pour actualiser)"
 
 #: webappdialog.cpp:132
 msgid "Checking for new transactions..."
-msgstr ""
+msgstr "Vérification des nouvelles transactions..."
 
 #: webappdialog.cpp:165
 msgid "&Import all "
@@ -6669,7 +6669,7 @@ msgstr "Ouvrir les pièces jointes"
 
 #: webappdialog.cpp:419
 msgid "Import and open"
-msgstr ""
+msgstr "Importez et ouvrez"
 
 #: webappdialog.cpp:420
 msgid "Delete"
@@ -6724,7 +6724,7 @@ msgstr "Préciser le type de compte à créer:"
 #: wizard_newaccount.cpp:130
 msgid "General bank accounts cover a wide variety of account\n"
 "types like Checking, Savings and Credit card type accounts."
-msgstr ""
+msgstr "Les comptes de banque couvre une grande variété de types de compte comme les comptes courants, les comptes d'épargne etc."
 
 #: wizard_newaccount.cpp:135
 msgid "Investment accounts are specialized accounts that only\n"
@@ -6801,7 +6801,7 @@ msgstr "Assistant de MàJ"
 
 #: wizard_update.cpp:106
 msgid "Historical releases:"
-msgstr ""
+msgstr "Versions historiques :"
 
 #: wizard_update.cpp:136
 msgid "Version"
