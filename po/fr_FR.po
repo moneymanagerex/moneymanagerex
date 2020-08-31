@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-08-02 13:12+0300\n"
-"PO-Revision-Date: 2020-08-02 15:16\n"
+"PO-Revision-Date: 2020-08-31 07:14\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -1735,11 +1735,11 @@ msgstr "Symbole monétaire"
 
 #: currencydialog.cpp:164
 msgid "Unit Name"
-msgstr ""
+msgstr "Nom de l'unité"
 
 #: currencydialog.cpp:168
 msgid "Cents Name"
-msgstr ""
+msgstr "Nom des centimes"
 
 #: currencydialog.cpp:172
 msgid "Prefix Symbol"
@@ -1896,7 +1896,8 @@ msgstr "Confirmez la suppression du champ personnalisé"
 #: customfieldlistdialog.cpp:194
 msgid "This function will massive update (search & replace for entire value, not inside value), please remind that there isn't any validation!\n"
 "Do you want to proceed?"
-msgstr ""
+msgstr "Cette fonction va mettre à jour massivement (recherche et remplace pour toute la valeur, pas à l'intérieur de la valeur), s'il vous plaît rappeler-vous qu'il n'y a pas de validation !\n"
+"Voulez-vous continuer ?"
 
 #: customfieldlistdialog.cpp:196
 msgid "Confirm Custom Field Content Update"
@@ -2314,7 +2315,7 @@ msgstr "Fourchette de montant"
 
 #: filtertransdialog.cpp:347
 msgid "&Clear "
-msgstr ""
+msgstr "&Effacer "
 
 #: filtertransdialog.cpp:822 filtertransdialog.cpp:837 reports/myusage.cpp:91
 #: webappdialog.cpp:194 webappdialog.cpp:199
@@ -2637,7 +2638,7 @@ msgstr "Sélectionner un fichier JSON à exporter"
 
 #: import_export/qif_export.cpp:301
 msgid "JSON Files (*.json)"
-msgstr ""
+msgstr "Fichiers JSON (*.json)"
 
 #: import_export/qif_export.cpp:321
 msgid "No Account available for export"
@@ -2994,7 +2995,7 @@ msgstr "Ce compte n'existe pas"
 #: import_export/univcsvdialog.cpp:1784
 #, c-format
 msgid "Positive if type has '%s'"
-msgstr ""
+msgstr "Positif si le type a '%s'"
 
 #: import_export/univcsvdialog.cpp:917
 msgid "Incorrect fields specified for import!"
@@ -3142,7 +3143,7 @@ msgstr "Fichiers CSV (*.csv)"
 
 #: import_export/univcsvdialog.cpp:1780
 msgid "Please, type the word indicating positive values in your CSV file, e.g. 'debit'"
-msgstr ""
+msgstr "Veuillez saisir le mot indiquant des valeurs positives dans votre fichier CSV, par ex 'débit'"
 
 #: import_export/univcsvdialog.cpp:1780
 msgid "Enter a value"
@@ -3286,7 +3287,7 @@ msgstr "Impossible de trouver le symbole monétaire!"
 #: maincurrencydialog.cpp:902
 #, c-format
 msgid "Unable to download history for base symbol %s. History rates not available!"
-msgstr ""
+msgstr "Impossible de télécharger l'historique pour le symbole %s. Historique des taux non disponible !"
 
 #: mmSimpleDialogs.cpp:177
 msgid "Subtract one year"
@@ -3847,7 +3848,7 @@ msgstr "Fichiers  &QIF"
 
 #: mmframe.cpp:1246 mmframe.cpp:1318
 msgid "&JSON Files..."
-msgstr ""
+msgstr "Fichiers &JSON..."
 
 #: mmframe.cpp:1250 mmframe.cpp:1324
 msgid "Import from XML (Excel format)"
@@ -3935,7 +3936,7 @@ msgstr "Imprimer la vue en cours"
 
 #: mmframe.cpp:1339
 msgid "E&xit\tAlt-X"
-msgstr ""
+msgstr "&Quitter\tAlt-X"
 
 #: mmframe.cpp:1339
 msgid "Quit this program"
@@ -4035,7 +4036,7 @@ msgstr "Supprimer le compte de la base de donnée"
 
 #: mmframe.cpp:1440
 msgid "Download Rates..."
-msgstr ""
+msgstr "Téléchargement Taux..."
 
 #: mmframe.cpp:1440 mmframe.cpp:1707
 msgid "Download Currency and Stock rates"
@@ -4119,7 +4120,7 @@ msgstr "Gestionnaire de champs personnalisé"
 
 #: mmframe.cpp:1518
 msgid "&Options...\tCtrl-,"
-msgstr ""
+msgstr "&Options...\tCtrl-,"
 
 #: mmframe.cpp:1518 mmframe.cpp:1690
 msgid "Show the Options Dialog"
@@ -4139,7 +4140,7 @@ msgstr "Modifier le mot de passe de chiffrement"
 
 #: mmframe.cpp:1531
 msgid "Change the password of an encrypted database"
-msgstr ""
+msgstr "Changer le mot de passe d'une base de données chiffrée"
 
 #: mmframe.cpp:1534
 msgid "Optimize &Database"
@@ -4295,11 +4296,11 @@ msgstr "Signaler une erreur dans l’application aux développeurs"
 
 #: mmframe.cpp:1632
 msgid "&Show App Start Dialog"
-msgstr ""
+msgstr "&Afficher la boîte de démarrage"
 
 #: mmframe.cpp:1632
 msgid "App Start Dialog"
-msgstr ""
+msgstr "Boîte de démarrage"
 
 #: mmframe.cpp:1637
 msgid "Check for &Updates"
@@ -4307,7 +4308,7 @@ msgstr "Vérifier les &Mises à jour"
 
 #: mmframe.cpp:1637
 msgid "Check For Updates"
-msgstr ""
+msgstr "Rechercher des mises à jour"
 
 #: mmframe.cpp:1642 mmframe.cpp:1716
 msgid "&About..."
@@ -4343,7 +4344,7 @@ msgstr "Nouveau"
 
 #: mmframe.cpp:1680
 msgid "Account List"
-msgstr ""
+msgstr "Liste des comptes"
 
 #: mmframe.cpp:1682
 msgid "Show Organize Categories Dialog"
@@ -4381,11 +4382,12 @@ msgstr "Basculer en plein écran F11"
 #, c-format
 msgid "Please enter password for Database\n\n"
 "%s"
-msgstr ""
+msgstr "Saisir le mot de passe pour la base de données\n\n"
+"%s"
 
 #: mmframe.cpp:1772 mmframe.cpp:2002 mmframe.cpp:2135
 msgid "MMEX: Encrypted Database"
-msgstr ""
+msgstr "MMEX : Base de données chiffrée"
 
 #: mmframe.cpp:1806
 msgid "Have MMEX support provided you a debug/patch file?"
@@ -4397,11 +4399,11 @@ msgstr "Mise à jour de MMEX"
 
 #: mmframe.cpp:1828 mmframe.cpp:1870
 msgid "No File opened"
-msgstr ""
+msgstr "Aucun fichier ouvert"
 
 #: mmframe.cpp:1830
 msgid "Sorry. The Database version is too old or Database password is incorrect"
-msgstr ""
+msgstr "Désolé. La version de la base de données est trop ancienne ou le mot de passe est incorrect"
 
 #: mmframe.cpp:1860
 msgid "&Next ->"
@@ -4409,15 +4411,15 @@ msgstr "Suiva&Nt ->"
 
 #: mmframe.cpp:1873
 msgid "Cannot locate previously opened database.\n"
-msgstr ""
+msgstr "Impossible de trouver la base de donnée précédente.\n"
 
 #: mmframe.cpp:1875
 msgid "Password not entered for encrypted Database.\n"
-msgstr ""
+msgstr "Mot de passe non entré pour la base de données chiffrée.\n"
 
 #: mmframe.cpp:1893
 msgid "portable mode"
-msgstr ""
+msgstr "mode portable"
 
 #: mmframe.cpp:1929
 msgid "Database that you trying to open has been marked as opened by another MMEX instance...\n"
@@ -4443,41 +4445,42 @@ msgstr "Sélectionner la base de données à ouvrir"
 
 #: mmframe.cpp:1992
 msgid "Choose Encrypted database file to open"
-msgstr ""
+msgstr "Sélectionner la base de données chiffrée à ouvrir"
 
 #: mmframe.cpp:2002
 msgid "Enter password for database"
-msgstr ""
+msgstr "Saisir le mot de passe pour la base de données"
 
 #: mmframe.cpp:2007
 msgid "Choose database file to Save As"
-msgstr ""
+msgstr "Sélectionner la base de données à Sauvegarder"
 
 #: mmframe.cpp:2029
 msgid "Converted DB!"
-msgstr ""
+msgstr "BdD convertie !"
 
 #: mmframe.cpp:2029
 msgid "MMEX message"
-msgstr ""
+msgstr "Message MMEX"
 
 #: mmframe.cpp:2035
 msgid "MMEX: Encryption Password Change"
-msgstr ""
+msgstr "MMEX : Mot de passe de cryptage changé"
 
 #: mmframe.cpp:2036
 #, c-format
 msgid "New password for database\n\n"
 "%s"
-msgstr ""
+msgstr "Nouveau mot de passe pour la BdD\n\n"
+"%s"
 
 #: mmframe.cpp:2041
 msgid "New password must not be empty."
-msgstr ""
+msgstr "Le mot de passe ne doit pas être vide."
 
 #: mmframe.cpp:2045
 msgid "Please confirm new password"
-msgstr ""
+msgstr "Confirmer le nouveau mot de passe"
 
 #: mmframe.cpp:2049
 msgid "Password change completed."
