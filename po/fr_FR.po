@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-08-02 13:12+0300\n"
-"PO-Revision-Date: 2020-08-31 07:14\n"
+"PO-Revision-Date: 2020-08-31 07:25\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -4525,11 +4525,11 @@ msgstr "Impossible de copier le fichier sur lui même."
 
 #: mmframe.cpp:2135
 msgid "Enter password for new database"
-msgstr ""
+msgstr "Saisir le mot de passe pour la nouvelle BdD"
 
 #: mmframe.cpp:2219 mmframe.cpp:2238
 msgid "No account available to import"
-msgstr ""
+msgstr "Aucun compte disponible pour l'importation"
 
 #: mmframe.cpp:2287
 msgid "Asset Accounts hold Asset transactions\n\n"
@@ -4577,11 +4577,11 @@ msgstr "Sélectionner le fichier HTML à exporter"
 
 #: mmframe.cpp:2881 mmframe.cpp:2888
 msgid "Downloading stock prices from Yahoo"
-msgstr ""
+msgstr "Téléchargement du cours des actions depuis Yahoo"
 
 #: mmframe.cpp:2882
 msgid "Please wait..."
-msgstr ""
+msgstr "Veuillez patienter..."
 
 #: mmframe.cpp:2931 stockspanel.cpp:892
 #, c-format
@@ -4681,7 +4681,7 @@ msgstr "Balance des revenus et dépenses"
 
 #: mmframereport.cpp:158
 msgid "My Usage"
-msgstr ""
+msgstr "Mon utilisation"
 
 #: mmframereport.cpp:163
 msgid "Payees"
@@ -4693,11 +4693,11 @@ msgstr "Relevé des comptes"
 
 #: mmframereport.cpp:183
 msgid "Budget Performance"
-msgstr ""
+msgstr "Performance budgétaire"
 
 #: mmframereport.cpp:186
 msgid "Budget Category Summary"
-msgstr ""
+msgstr "Résumé des catégories du budget"
 
 #: mmframereport.cpp:195
 msgid "Stocks Report"
@@ -4775,7 +4775,7 @@ msgstr "Grand Total :"
 
 #: mmhomepage.cpp:755
 msgid "Currency Exchange Rates"
-msgstr ""
+msgstr "Taux de change de devise"
 
 #: mmhomepagepanel.cpp:159
 msgid "Upcoming Transactions"
@@ -4937,19 +4937,19 @@ msgstr "Erreur sur le bénéficiaire"
 
 #: model/Model_Report.cpp:85
 msgid "Begin date: "
-msgstr ""
+msgstr "Date début : "
 
 #: model/Model_Report.cpp:86
 msgid "Date: "
-msgstr ""
+msgstr "Date : "
 
 #: model/Model_Report.cpp:87
 msgid "End date: "
-msgstr ""
+msgstr "Date de fin : "
 
 #: model/Model_Report.cpp:232
 msgid "Template is empty"
-msgstr ""
+msgstr "Le modèle est vide"
 
 #: model/Model_Report.cpp:246
 #, c-format
@@ -4996,7 +4996,7 @@ msgstr "Répertoire d'archives de pièces jointes seulement pour %s :  "
 
 #: optionsettingsattachment.cpp:68
 msgid "Every OS type (Win,Mac,Unix) has its attachment folder"
-msgstr ""
+msgstr "Chaque type d’OS (Win, Mac, Unix) possède son dossier de pièces jointes"
 
 #: optionsettingsattachment.cpp:87
 msgid "Browse for folder"
@@ -5008,27 +5008,27 @@ msgstr "Chemin réel: "
 
 #: optionsettingsattachment.cpp:97
 msgid "Legend (can be used as variables at the beginning of above path)"
-msgstr ""
+msgstr "Légende (peut être utilisée comme variable au début du chemin)"
 
 #: optionsettingsattachment.cpp:102
 #, c-format
 msgid "%s -> User document directory"
-msgstr ""
+msgstr "%s -> Documents de l’utilisateur"
 
 #: optionsettingsattachment.cpp:103
 #, c-format
 msgid "%s -> User profile folder"
-msgstr ""
+msgstr "%s -> Profil de l'utilisateur"
 
 #: optionsettingsattachment.cpp:104
 #, c-format
 msgid "%s -> Folder of .MMB database file"
-msgstr ""
+msgstr "%s -> Dossir du fichier BdD .MMB"
 
 #: optionsettingsattachment.cpp:105
 #, c-format
 msgid "%s -> MMEX Application data folder"
-msgstr ""
+msgstr "%s -> Dossier des données de l'application MMEX"
 
 #: optionsettingsattachment.cpp:111
 msgid "Other OS folders "
@@ -5036,19 +5036,19 @@ msgstr "Répertoires d'autres OS"
 
 #: optionsettingsattachment.cpp:116
 msgid "Not set yet"
-msgstr ""
+msgstr "Pas encore défini"
 
 #: optionsettingsattachment.cpp:123
 msgid "Windows folder -> "
-msgstr ""
+msgstr "Dossier Windows -> "
 
 #: optionsettingsattachment.cpp:130
 msgid "Mac folder -> "
-msgstr ""
+msgstr "Dossier Mac -> "
 
 #: optionsettingsattachment.cpp:137
 msgid "Unix folder -> "
-msgstr ""
+msgstr "Dossier Unix -> "
 
 #: optionsettingsattachment.cpp:145
 msgid "Create and use Attachments subfolder"
@@ -5076,11 +5076,11 @@ msgstr "Choisir un répertoire pour les archives de pièces jointes"
 
 #: optionsettingsattachment.cpp:213
 msgid "Attachments folder it's not writable!"
-msgstr ""
+msgstr "Le dossier des pièces jointes n'est pas accessible en écriture !"
 
 #: optionsettingsattachment.cpp:213
 msgid "Attachments folder"
-msgstr ""
+msgstr "Dossier des pièces jointes"
 
 #: optionsettingsattachment.cpp:221
 msgid "Attachments path has been changed!"
@@ -5136,7 +5136,7 @@ msgstr "Utiliser l'historique des devises"
 
 #: optionsettingsgeneral.cpp:99
 msgid "Select to use currency history (one rate for each day), deselect to use a fixed rate"
-msgstr ""
+msgstr "Sélectionnez pour utiliser l'historique des devises (un taux pour chaque jour), désélectionnez pour utiliser un taux fixe"
 
 #: optionsettingsgeneral.cpp:115
 msgid "Specify the date format for display"
@@ -5340,11 +5340,11 @@ msgstr "Secondes"
 
 #: optionsettingsnet.cpp:138
 msgid "Updates"
-msgstr ""
+msgstr "Mises à jour"
 
 #: optionsettingsnet.cpp:144
 msgid "Check for updates at StartUp"
-msgstr ""
+msgstr "Rechercher les Mises à jour au Démarrage"
 
 #: optionsettingsnet.cpp:146
 msgid "Enable to automatically check if new MMEX version is available at StartUp"
@@ -5360,7 +5360,7 @@ msgstr "Instable"
 
 #: optionsettingsnet.cpp:154
 msgid "Updates source"
-msgstr ""
+msgstr "Mises à jour de la source"
 
 #: optionsettingsview.cpp:78
 msgid "Specify which accounts are visible"
@@ -5380,19 +5380,19 @@ msgstr "Taille des icônes"
 
 #: optionsettingsview.cpp:98
 msgid "View Budgets as Financial Years"
-msgstr ""
+msgstr "Voir les Budgets en années fiscales"
 
 #: optionsettingsview.cpp:103
 msgid "View Budgets with 'transfer' transactions"
-msgstr ""
+msgstr "Voir les Budgets avec les opérations de « transfert »"
 
 #: optionsettingsview.cpp:109
 msgid "View Budget Category Report with Summaries"
-msgstr ""
+msgstr "Voir les Catégories du Budget avec les Résumés"
 
 #: optionsettingsview.cpp:115
 msgid "Ignore Future Transactions"
-msgstr ""
+msgstr "Ignorer les prochaines transactions"
 
 #: optionsettingsview.cpp:121 transdialog.cpp:563
 msgid "User Colors"
@@ -5537,7 +5537,7 @@ msgstr "confirmation de la réaffectation"
 #: reports/budget.cpp:98
 #, c-format
 msgid "Year: %i Month: %s"
-msgstr ""
+msgstr "Année : %i Mois : %s"
 
 #: reports/budgetcategorysummary.cpp:127
 #, c-format
@@ -5622,7 +5622,7 @@ msgstr "Vérifiez qu'il n'y a pas déjà un problème similaire dans la <a href=
 #: reports/bugreport.h:75
 #, c-format
 msgid "As you know, <a href='%s'>a forum</a> for users is available where you can discuss problems and find solutions."
-msgstr ""
+msgstr "Comme vous le savez, <a href='%s'>un forum</a> pour les utilisateurs est disponible où vous pouvez discuter de problèmes et trouver des solutions."
 
 #: reports/bugreport.h:76
 #, c-format
@@ -5959,7 +5959,8 @@ msgstr "*Date"
 #: stockdialog.cpp:214
 msgid "Specify the initial date of the stock investment\n"
 "Used when creating the initial Share transaction."
-msgstr ""
+msgstr "Spécifiez la date initiale de l'investissement boursier\n"
+"Utilisée lors de la création de la transaction initiale."
 
 #: stockdialog.cpp:218
 msgid "*Share Number"
@@ -5968,7 +5969,8 @@ msgstr "*Nombre d'actions"
 #: stockdialog.cpp:224
 msgid "Enter number of shares.\n"
 "Used when creating the initial Share transaction."
-msgstr ""
+msgstr "Entrez le nombre de parts.\n"
+"Utilisé lors de la création de la transaction initiale."
 
 #: stockdialog.cpp:230 stockspanel.cpp:94
 msgid "*Share Price"
@@ -5977,7 +5979,8 @@ msgstr "*Prix de l'action"
 #: stockdialog.cpp:236
 msgid "Enter the initial price per share.\n"
 "Used when creating the initial Share transaction."
-msgstr ""
+msgstr "Entrez le prix par parts.\n"
+"Utilisé lors de la création de la transaction initiale."
 
 #: stockdialog.cpp:241
 msgid "*Commission"
@@ -5986,7 +5989,8 @@ msgstr "Commission"
 #: stockdialog.cpp:245
 msgid "Enter any commission paid.\n"
 "Used when creating the initial Share transaction."
-msgstr ""
+msgstr "Entrez la commission payées.\n"
+"Utilisé lors de la création de la transaction initiale."
 
 #: stockdialog.cpp:250 stockspanel.cpp:97
 msgid "Curr. Share Price"
@@ -5994,7 +5998,7 @@ msgstr "Valeur actuelle"
 
 #: stockdialog.cpp:253
 msgid "Enter current stock/share price."
-msgstr ""
+msgstr "Entrer le prix actuel de l’action/stock."
 
 #: stockdialog.cpp:285
 msgid "Stock History Options"
@@ -6014,7 +6018,7 @@ msgstr "Date du cours"
 
 #: stockdialog.cpp:320
 msgid "Specify the stock/share price date."
-msgstr ""
+msgstr "Spécifiez la date du cours action/stock."
 
 #: stockdialog.cpp:336
 msgid "Download Stock Price history"
@@ -6026,11 +6030,11 @@ msgstr "Importer l'historique des prix (format CSV)"
 
 #: stockdialog.cpp:340
 msgid "Delete selected Stock Price"
-msgstr ""
+msgstr "Supprimer le prix de l'action sélectionnée"
 
 #: stockdialog.cpp:342
 msgid "Add Stock Price to history"
-msgstr ""
+msgstr "Ajouter le prix de l'action à l’historique"
 
 #: stockdialog.cpp:420
 msgid "Held At"
@@ -6039,7 +6043,8 @@ msgstr "Gestionnaire"
 #: stockdialog.cpp:494
 msgid "Share Account not found.\n\n"
 "Do you want to create one?"
-msgstr ""
+msgstr "Compte d'actif introuvable.\n\n"
+"Voulez-vous en créer un ?"
 
 #: stockdialog.cpp:504
 msgid "The Company name does not have an associated Share Account.\n\n"
@@ -6060,12 +6065,12 @@ msgstr "Cotations importées depuis le CSV :"
 #: stockdialog.cpp:672
 #, c-format
 msgid "Total Lines : %ld"
-msgstr ""
+msgstr "Total des lignes : %ld"
 
 #: stockdialog.cpp:674
 #, c-format
 msgid "Total Imported : %ld"
-msgstr ""
+msgstr "Total importé: %ld"
 
 #: stockdialog.cpp:682
 msgid "Importing CSV"
