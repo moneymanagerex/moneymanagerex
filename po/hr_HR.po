@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-08-02 13:12+0300\n"
-"PO-Revision-Date: 2020-09-25 19:45\n"
+"PO-Revision-Date: 2020-09-25 19:55\n"
 "Last-Translator: \n"
 "Language-Team: Croatian\n"
 "MIME-Version: 1.0\n"
@@ -3923,11 +3923,11 @@ msgstr "Uvoz iz QIF-a"
 
 #: mmframe.cpp:1326
 msgid "&WebApp..."
-msgstr "&WebApp …"
+msgstr "&Web aplikacija …"
 
 #: mmframe.cpp:1326
 msgid "Import from WebApp"
-msgstr "Uvezi iz WebApp aplikacije"
+msgstr "Uvezi iz web aplikacije"
 
 #: mmframe.cpp:1332 mmframe.cpp:1713
 msgid "&Print..."
@@ -6562,16 +6562,16 @@ msgstr "provjeri postavke ili internetsku vezu."
 
 #: webapp.cpp:121
 msgid "WebApp connection error"
-msgstr "Greška prilikom povezivanja s WebApp aplikacijom"
+msgstr "Greška u vezi s web aplikacijom"
 
 #: webapp.cpp:131
 msgid "Wrong WebApp API version:"
-msgstr "Pogrešna API verzija WebApp aplikacije:"
+msgstr "Pogrešna API verzija web aplikacije:"
 
 #: webapp.cpp:132
 #, c-format
 msgid "WebApp   API version -> %s"
-msgstr "WebApp   API verzija -> %s"
+msgstr "Web aplikacija   API verzija -> %s"
 
 #: webapp.cpp:133
 #, c-format
@@ -6580,7 +6580,7 @@ msgstr "Očekivana API verzija -> %s"
 
 #: webapp.cpp:134
 msgid "Wrong WebApp API version"
-msgstr "Pogrešna API verzija WebApp aplikacije"
+msgstr "Pogrešna API verzija web aplikacije"
 
 #: webapp.cpp:472
 #, c-format
@@ -6596,11 +6596,11 @@ msgstr "Transakcija će biti umetnuta s prvim bankovnim računom:\n"
 
 #: webapp.cpp:477
 msgid "Wrong WebApp account"
-msgstr "Pogrešan WebApp račun"
+msgstr "Pogrešan račun web aplikacije"
 
 #: webapp.cpp:559 webapp.cpp:593 webappdialog.cpp:347
 msgid "Unable to download attachments from webapp."
-msgstr "Neuspješno preuzimanje priloga s WebApp aplikacije."
+msgstr "Neuspješno preuzimanje priloga s web aplikacije."
 
 #: webapp.cpp:560
 msgid "Attachments folder not set or unavailable"
@@ -6612,7 +6612,7 @@ msgstr "Transakcija nije preuzeta:"
 
 #: webapp.cpp:562
 msgid "please fix attachments folder or delete attachments from WebApp"
-msgstr "popravi mapu priloga ili izbriši priloge iz WebApp aplikacije"
+msgstr "popravi mapu priloga ili izbriši priloge iz web aplikacije"
 
 #: webapp.cpp:563
 msgid "Attachment folder error"
@@ -6632,7 +6632,7 @@ msgstr "Greška u preuzimanju priloga"
 
 #: webappdialog.cpp:77
 msgid "Import WebApp transactions"
-msgstr "Uvezi WebApp transakcije"
+msgstr "Uvezi transakcije web aplikacije"
 
 #: webappdialog.cpp:100
 msgid "Network status (click to refresh)"
@@ -6652,7 +6652,7 @@ msgstr "Uvezi i otvori sve "
 
 #: webappdialog.cpp:214
 msgid "Unable to download transactions from webapp."
-msgstr "Neuspjelo preuzimanje transakcija s WebApp aplikacije."
+msgstr "Neuspjelo preuzimanje transakcija s web aplikacije."
 
 #: webappdialog.cpp:215
 msgid "Transactions download error"
@@ -6664,7 +6664,7 @@ msgstr "Nije moguće unijeti transakcije u MMEX bazu podataka"
 
 #: webappdialog.cpp:321
 msgid "WebApp communication error"
-msgstr "Greška u komunikaciji s WebApp aplikacijom"
+msgstr "Greška u komunikaciji s web aplikacijom"
 
 #: webappdialog.cpp:417
 msgid "Open Attachment"
