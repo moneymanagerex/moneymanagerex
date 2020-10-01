@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-08-02 13:12+0300\n"
-"PO-Revision-Date: 2020-10-01 10:19\n"
+"PO-Revision-Date: 2020-10-01 10:36\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
@@ -1714,7 +1714,7 @@ msgstr "货币管理者"
 
 #: currencydialog.cpp:96
 msgid "Currency name"
-msgstr ""
+msgstr "货币名称"
 
 #: currencydialog.cpp:155
 msgid "Currency Name"
@@ -1726,11 +1726,11 @@ msgstr "货币符号"
 
 #: currencydialog.cpp:164
 msgid "Unit Name"
-msgstr ""
+msgstr "货币单位名称"
 
 #: currencydialog.cpp:168
 msgid "Cents Name"
-msgstr ""
+msgstr "分位名称"
 
 #: currencydialog.cpp:172
 msgid "Prefix Symbol"
@@ -1755,7 +1755,7 @@ msgstr "精度"
 
 #: currencydialog.cpp:206 currencydialog.cpp:267
 msgid "Conversion to Base Rate"
-msgstr ""
+msgstr "转换为基率"
 
 #: currencydialog.cpp:212
 msgid "Conversion rate will be used in case no currency history has been found for the currency"
