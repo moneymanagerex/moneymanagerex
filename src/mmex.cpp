@@ -346,8 +346,15 @@ bool OnInitImpl(mmGUIApp* app)
     int valh = Model_Setting::instance().GetIntSetting("SIZEH", sys_screen_y / 4 * 3);
 
     //BUGFIX: #214 MMEX Window is "off screen"
-    if (valx >= sys_screen_x) valx = sys_screen_x - valw;
-    if (valy >= sys_screen_y) valy = sys_screen_y - valh;
+    if (valx < 0)
+        valx = 0;
+    else if (valx >= sys_screen_x)
+        valx = sys_screen_x - valw;
+
+    if (valy < 0)
+        valy = 0;
+    else if (valy >= sys_screen_y)
+        valy = sys_screen_y - valh;
 
     app->m_frame = new mmGUIFrame(app, mmex::getProgramName(), wxPoint(valx, valy), wxSize(valw, valh));
 
