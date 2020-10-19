@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-08-02 13:12+0300\n"
-"PO-Revision-Date: 2020-08-02 10:23\n"
+"PO-Revision-Date: 2020-10-01 10:36\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
@@ -267,11 +267,11 @@ msgstr "货币"
 
 #: accountdialog.cpp:498
 msgid "Please insert a valid URL"
-msgstr ""
+msgstr "请输入一个有效的 URL"
 
 #: accountdialog.cpp:498
 msgid "Invalid URL"
-msgstr ""
+msgstr "无效的 URL"
 
 #: appstartdialog.cpp:99
 msgid "Open Last Opened Database"
@@ -322,7 +322,7 @@ msgstr "退出(&E) "
 #: appstartdialog.cpp:153
 #, c-format
 msgid "Open the previously opened database : %s"
-msgstr ""
+msgstr "打开先前打开的数据库： %s"
 
 #: assetdialog.cpp:61 assetdialog.cpp:410 assetspanel.cpp:466
 msgid "New Asset"
@@ -425,12 +425,13 @@ msgstr "取消(&C) "
 
 #: assetdialog.cpp:402 sharetransactiondialog.cpp:429
 msgid "Invalid Transaction"
-msgstr ""
+msgstr "无效的交易"
 
 #: assetdialog.cpp:409
 msgid "Asset Account not found.\n\n"
 "Would you want to create one?"
-msgstr ""
+msgstr "资产账户未找到。\n\n"
+"你想要创建一个吗？"
 
 #: assetspanel.cpp:58 billsdepositspanel.cpp:96 mmcheckingpanel.cpp:951
 #: reports/transactions.cpp:68 stockspanel.cpp:89
@@ -1243,7 +1244,7 @@ msgstr "自动"
 #, c-format
 msgid "%d day remaining"
 msgid_plural "%d days remaining"
-msgstr[0] ""
+msgstr[0] "剩余 %d 天"
 
 #: billsdepositspanel.cpp:506 billsdepositspanel.cpp:513
 #: billsdepositspanel.cpp:520 billsdepositspanel.cpp:573
@@ -1255,13 +1256,13 @@ msgstr "非活跃"
 #, c-format
 msgid "%d day delay!"
 msgid_plural "%d days delay!"
-msgstr[0] ""
+msgstr[0] "延迟 %d 天"
 
 #: billsdepositspanel.cpp:518 billsdepositspanel.cpp:578 mmhomepage.cpp:312
 #, c-format
 msgid "%d day overdue!"
 msgid_plural "%d days overdue!"
-msgstr[0] ""
+msgstr[0] "逾期 %d 天！"
 
 #: billsdepositspanel.cpp:630
 msgid "Do you really want to delete the series?"
@@ -1713,7 +1714,7 @@ msgstr "货币管理者"
 
 #: currencydialog.cpp:96
 msgid "Currency name"
-msgstr ""
+msgstr "货币名称"
 
 #: currencydialog.cpp:155
 msgid "Currency Name"
@@ -1725,11 +1726,11 @@ msgstr "货币符号"
 
 #: currencydialog.cpp:164
 msgid "Unit Name"
-msgstr ""
+msgstr "货币单位名称"
 
 #: currencydialog.cpp:168
 msgid "Cents Name"
-msgstr ""
+msgstr "分位名称"
 
 #: currencydialog.cpp:172
 msgid "Prefix Symbol"
@@ -1754,7 +1755,7 @@ msgstr "精度"
 
 #: currencydialog.cpp:206 currencydialog.cpp:267
 msgid "Conversion to Base Rate"
-msgstr ""
+msgstr "转换为基率"
 
 #: currencydialog.cpp:212
 msgid "Conversion rate will be used in case no currency history has been found for the currency"
