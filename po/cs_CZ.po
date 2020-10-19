@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-08-02 13:12+0300\n"
-"PO-Revision-Date: 2020-08-02 11:53\n"
+"PO-Revision-Date: 2020-10-07 03:33\n"
 "Last-Translator: \n"
 "Language-Team: Czech\n"
 "MIME-Version: 1.0\n"
@@ -796,7 +796,7 @@ msgstr "Na (x) měsíců"
 
 #: billsdepositsdialog.cpp:63
 msgid "Every (x) Days"
-msgstr "Každý (x) den"
+msgstr "Každých %@ dní"
 
 #: billsdepositsdialog.cpp:64
 msgid "Every (x) Months"
