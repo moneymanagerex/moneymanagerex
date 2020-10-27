@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-08-02 13:12+0300\n"
-"PO-Revision-Date: 2020-10-27 03:44\n"
+"PO-Revision-Date: 2020-10-27 03:54\n"
 "Last-Translator: \n"
 "Language-Team: Slovak\n"
 "MIME-Version: 1.0\n"
@@ -4811,7 +4811,7 @@ msgstr "Kreditná karta"
 
 #: model/Model_Account.cpp:35
 msgid "Loan"
-msgstr ""
+msgstr "Úver"
 
 #: model/Model_Account.cpp:36
 msgid "Term"
@@ -4827,7 +4827,7 @@ msgstr "Majetok"
 
 #: model/Model_Account.cpp:39
 msgid "Shares"
-msgstr ""
+msgstr "Podiely"
 
 #: model/Model_Account.cpp:130
 msgid "Account Error"
@@ -4876,11 +4876,11 @@ msgstr "2-týždenne"
 
 #: model/Model_CustomField.cpp:25
 msgid "String"
-msgstr ""
+msgstr "Reťazec"
 
 #: model/Model_CustomField.cpp:26
 msgid "Integer"
-msgstr ""
+msgstr "Celé číslo"
 
 #: model/Model_CustomField.cpp:27
 msgid "Decimal"
@@ -4892,7 +4892,7 @@ msgstr ""
 
 #: model/Model_CustomField.cpp:30 wizard_update.cpp:136
 msgid "Time"
-msgstr ""
+msgstr "Čas"
 
 #: model/Model_CustomField.cpp:31
 msgid "SingleChoice"
@@ -5007,7 +5007,7 @@ msgstr "Ostatné priečinky OS "
 
 #: optionsettingsattachment.cpp:116
 msgid "Not set yet"
-msgstr ""
+msgstr "Ešte nenastavené"
 
 #: optionsettingsattachment.cpp:123
 msgid "Windows folder -> "
@@ -5071,7 +5071,7 @@ msgstr ""
 
 #: optionsettingsattachment.cpp:231
 msgid "Destination"
-msgstr ""
+msgstr "Cieľ"
 
 #: optionsettingsgeneral.cpp:62
 msgid "Display Heading"
@@ -5246,7 +5246,7 @@ msgstr "Nastavenia webovej aplikácie"
 
 #: optionsettingsnet.cpp:64 webappdialog.cpp:103
 msgid "Url"
-msgstr ""
+msgstr "Adresa Url"
 
 #: optionsettingsnet.cpp:68
 msgid "Specify the Web App URL without final slash"
@@ -5254,7 +5254,7 @@ msgstr "Upresnite URL webovej aplikácie bez lomky na konci"
 
 #: optionsettingsnet.cpp:71 webappdialog.cpp:110
 msgid "GUID"
-msgstr ""
+msgstr "GUID"
 
 #: optionsettingsnet.cpp:75
 msgid "Specify the Web App GUID"
@@ -5282,7 +5282,7 @@ msgstr "Proxy server"
 
 #: optionsettingsnet.cpp:101
 msgid "Port"
-msgstr ""
+msgstr "Port"
 
 #: optionsettingsnet.cpp:107
 msgid "Usage statistics"
@@ -5322,7 +5322,7 @@ msgstr ""
 
 #: optionsettingsnet.cpp:149 wizard_update.cpp:110
 msgid "Stable"
-msgstr ""
+msgstr "Stabilná"
 
 #: optionsettingsnet.cpp:150 wizard_update.cpp:110
 msgid "Unstable"
@@ -5664,7 +5664,7 @@ msgstr "Príjmy"
 
 #: reports/forecast.cpp:25
 msgid "Forecast"
-msgstr ""
+msgstr "Predpoveď"
 
 #: reports/forecast.cpp:71 reports/htmlbuilder.cpp:115 reports/myusage.cpp:119
 #, c-format
@@ -5837,7 +5837,7 @@ msgstr "Podrobnosti akcií"
 
 #: sharetransactiondialog.cpp:200 stockdialog.cpp:192 stockspanel.cpp:91
 msgid "Company Name"
-msgstr ""
+msgstr "Názov spoločnosti"
 
 #: sharetransactiondialog.cpp:204 stockdialog.cpp:195
 msgid "Enter the stock company name"
