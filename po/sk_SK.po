@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-08-02 13:12+0300\n"
-"PO-Revision-Date: 2020-10-27 20:17\n"
+"PO-Revision-Date: 2020-10-27 20:26\n"
 "Last-Translator: \n"
 "Language-Team: Slovak\n"
 "MIME-Version: 1.0\n"
@@ -3995,7 +3995,7 @@ msgstr "Prepnúť na celú obrazovku"
 
 #: mmframe.cpp:1383
 msgid "Switch Application Language"
-msgstr ""
+msgstr "Zmeniť jazyk aplikácie"
 
 #: mmframe.cpp:1384
 msgid "Change language used for MMEX GUI"
