@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-08-02 13:12+0300\n"
-"PO-Revision-Date: 2020-10-27 01:54\n"
+"PO-Revision-Date: 2020-10-27 02:04\n"
 "Last-Translator: \n"
 "Language-Team: Slovak\n"
 "MIME-Version: 1.0\n"
@@ -59,7 +59,7 @@ msgstr ""
 #: sharetransactiondialog.cpp:320 splitdetailsdialog.cpp:160
 #: splittransactionsdialog.cpp:172 transdialog.cpp:593 wizard_update.cpp:173
 msgid "&OK "
-msgstr ""
+msgstr "&OK "
 
 #: accountdialog.cpp:91 mmframe.cpp:1414 mmframe.cpp:1679
 #: wizard_newaccount.cpp:79 wizard_newaccount.cpp:86 wizard_newaccount.cpp:158
@@ -145,7 +145,7 @@ msgstr "Ostatné"
 
 #: accountdialog.cpp:208
 msgid "Card Number:"
-msgstr ""
+msgstr "Číslo karty:"
 
 #: accountdialog.cpp:208
 msgid "Account Number:"
@@ -189,15 +189,15 @@ msgstr "Zadajte prihlasovacie meno/prihlasovacie informácie pre finančnú inš
 
 #: accountdialog.cpp:235
 msgid "Statement"
-msgstr ""
+msgstr "Výpis"
 
 #: accountdialog.cpp:243
 msgid "Statement:"
-msgstr ""
+msgstr "Výpis:"
 
 #: accountdialog.cpp:244
 msgid "Locked"
-msgstr ""
+msgstr "Zamknuté"
 
 #: accountdialog.cpp:245
 msgid "Enable or disable the transaction Lock"
@@ -271,7 +271,7 @@ msgstr ""
 
 #: accountdialog.cpp:498
 msgid "Invalid URL"
-msgstr ""
+msgstr "Neplatná URL adresa"
 
 #: appstartdialog.cpp:99
 msgid "Open Last Opened Database"
@@ -810,15 +810,15 @@ msgstr "Mesačne (posledný pracovný deň)"
 
 #: billsdepositsdialog.cpp:164
 msgid "New Recurring Transaction"
-msgstr ""
+msgstr "Nová opakujúca sa transakcia"
 
 #: billsdepositsdialog.cpp:304
 msgid "Edit Recurring Transaction"
-msgstr ""
+msgstr "Upraviť opakujúcu sa transakciu"
 
 #: billsdepositsdialog.cpp:308
 msgid "Enter Recurring Transaction"
-msgstr ""
+msgstr "Vložiť opakujúcu sa transakciu"
 
 #: billsdepositsdialog.cpp:401
 msgid "Recurring Transaction Details"
@@ -1722,7 +1722,7 @@ msgstr "Správca mien"
 
 #: currencydialog.cpp:96
 msgid "Currency name"
-msgstr ""
+msgstr "Názov meny"
 
 #: currencydialog.cpp:155
 msgid "Currency Name"
@@ -1734,7 +1734,7 @@ msgstr "Symbol meny"
 
 #: currencydialog.cpp:164
 msgid "Unit Name"
-msgstr ""
+msgstr "Názov jednotky"
 
 #: currencydialog.cpp:168
 msgid "Cents Name"
@@ -2008,7 +2008,7 @@ msgstr "Plyn"
 
 #: db/DB_Table_Subcategory_V1.h:114
 msgid "Internet"
-msgstr ""
+msgstr "Internet"
 
 #: db/DB_Table_Subcategory_V1.h:115
 msgid "Rent"
@@ -2318,11 +2318,11 @@ msgstr "Kritériá filtrovania: "
 
 #: filtertransdialog.cpp:871
 msgid "Since"
-msgstr ""
+msgstr "Od"
 
 #: filtertransdialog.cpp:873
 msgid "Before"
-msgstr ""
+msgstr "Pred"
 
 #: filtertransdialog.cpp:927
 msgid "Amount Min."
@@ -2344,7 +2344,7 @@ msgstr "Reporty"
 #: general_report_manager.cpp:370 import_export/univcsvdialog.cpp:417
 #: mmframe.cpp:1252 mmframe.cpp:1327
 msgid "&Import"
-msgstr ""
+msgstr "&Importovať"
 
 #: general_report_manager.cpp:372
 msgid "Locate and load a report file."
@@ -2353,7 +2353,7 @@ msgstr "Nájsť a načítať súbor s reportom."
 #: general_report_manager.cpp:374 import_export/univcsvdialog.cpp:425
 #: mmframe.cpp:1247 mmframe.cpp:1320
 msgid "&Export"
-msgstr ""
+msgstr "&Exportovať"
 
 #: general_report_manager.cpp:376
 msgid "Export the report to a new file."
@@ -2381,7 +2381,7 @@ msgstr "Výstup"
 
 #: general_report_manager.cpp:413
 msgid "SQL"
-msgstr ""
+msgstr "SQL"
 
 #: general_report_manager.cpp:414
 msgid "Lua"
@@ -2507,7 +2507,7 @@ msgstr "Vyberte súbor pre Uložiť ako report"
 
 #: general_report_manager.cpp:1171
 msgid "Parameters:"
-msgstr ""
+msgstr "Parametre:"
 
 #: import_export/parsers.cpp:46 import_export/univcsvdialog.cpp:1529
 #: mmSimpleDialogs.cpp:253
@@ -2575,11 +2575,11 @@ msgstr ""
 
 #: import_export/qif_export.cpp:123
 msgid "QIF"
-msgstr ""
+msgstr "QIF"
 
 #: import_export/qif_export.cpp:124
 msgid "JSON"
-msgstr ""
+msgstr "JSON"
 
 #: import_export/qif_export.cpp:138 mmframe.cpp:2948 mmframe.cpp:2952
 #: mmframe.cpp:2971 mmframe.cpp:2975
@@ -2622,7 +2622,7 @@ msgstr "Vybrať QIF dátový súbor, do ktorého sa bude exportovať"
 
 #: import_export/qif_export.cpp:294 import_export/qif_import_gui.cpp:720
 msgid "QIF Files (*.qif)"
-msgstr ""
+msgstr "QIF súbory (*.qif)"
 
 #: import_export/qif_export.cpp:299
 msgid "Choose JSON data file to Export"
@@ -2683,7 +2683,7 @@ msgstr "Export do QIF"
 
 #: import_export/qif_import_gui.cpp:79 import_export/qif_import_gui.cpp:905
 msgid "QIF Import"
-msgstr ""
+msgstr "QIF import"
 
 #: import_export/qif_import_gui.cpp:130
 msgid "Choose &file"
@@ -2691,7 +2691,7 @@ msgstr "Vyberte &súbor"
 
 #: import_export/qif_import_gui.cpp:143 import_export/univcsvdialog.cpp:330
 msgid "Encoding:"
-msgstr ""
+msgstr "Kódovanie:"
 
 #: import_export/qif_import_gui.cpp:169
 msgid "Filtering Details:"
@@ -2744,7 +2744,7 @@ msgstr "Pre pokračovanie stlačte tlačidlo OK"
 #: import_export/qif_import_gui.cpp:662 import_export/qif_import_gui.cpp:691
 #: import_export/qif_import_gui.cpp:708
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: import_export/qif_import_gui.cpp:664 import_export/qif_import_gui.cpp:667
 msgid "Warning"
@@ -3143,7 +3143,7 @@ msgstr ""
 #: maincurrencydialog.cpp:78 reports/summarystocks.cpp:171 stockdialog.cpp:427
 #: stockspanel.cpp:92
 msgid "Symbol"
-msgstr ""
+msgstr "Symbol"
 
 #: maincurrencydialog.cpp:80
 msgid "Last Rate"
