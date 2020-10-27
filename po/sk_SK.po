@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-08-02 13:12+0300\n"
-"PO-Revision-Date: 2020-10-27 04:14\n"
+"PO-Revision-Date: 2020-10-27 04:24\n"
 "Last-Translator: \n"
 "Language-Team: Slovak\n"
 "MIME-Version: 1.0\n"
@@ -2393,7 +2393,7 @@ msgstr "Šablóna"
 
 #: general_report_manager.cpp:456
 msgid "&Test"
-msgstr ""
+msgstr "&Test"
 
 #: general_report_manager.cpp:457
 msgid "Create Template"
@@ -2546,7 +2546,7 @@ msgstr ""
 
 #: import_export/parsers.cpp:163
 msgid "Table"
-msgstr ""
+msgstr "Tabuľka"
 
 #: import_export/parsers.cpp:165
 msgid "Could not find Table."
@@ -2554,7 +2554,7 @@ msgstr ""
 
 #: import_export/parsers.cpp:216
 msgid "Transactions"
-msgstr ""
+msgstr "Transakcie"
 
 #: import_export/qif_export.cpp:47 import_export/qif_export.cpp:246
 #: import_export/qif_export.cpp:332
