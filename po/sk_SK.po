@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-08-02 13:12+0300\n"
-"PO-Revision-Date: 2020-10-27 04:24\n"
+"PO-Revision-Date: 2020-10-27 20:17\n"
 "Last-Translator: \n"
 "Language-Team: Slovak\n"
 "MIME-Version: 1.0\n"
@@ -794,11 +794,11 @@ msgstr ""
 
 #: billsdepositsdialog.cpp:63
 msgid "Every (x) Days"
-msgstr ""
+msgstr "Každých (x) dní"
 
 #: billsdepositsdialog.cpp:64
 msgid "Every (x) Months"
-msgstr ""
+msgstr "Každých (x) mesiacov"
 
 #: billsdepositsdialog.cpp:65 billsdepositspanel.cpp:54
 msgid "Monthly (last day)"
@@ -1864,7 +1864,7 @@ msgstr ""
 #: customfieldeditdialog.cpp:203 customfieldeditdialog.cpp:225 mmframe.cpp:2062
 #: mmframe.cpp:2081
 msgid "Do you want to proceed?"
-msgstr ""
+msgstr "Chcete pokračovať?"
 
 #: customfieldeditdialog.cpp:204 customfieldeditdialog.cpp:226
 msgid "Custom Field Change"
@@ -1917,7 +1917,7 @@ msgstr ""
 
 #: customfieldlistdialog.cpp:213
 msgid "Replace with"
-msgstr ""
+msgstr "Nahradiť za"
 
 #: customfieldlistdialog.cpp:217
 msgid "Do you want to update to blank?\n"
@@ -2980,7 +2980,7 @@ msgstr ""
 
 #: import_export/univcsvdialog.cpp:535
 msgid "Account does not exist"
-msgstr ""
+msgstr "Účet neexistuje"
 
 #: import_export/univcsvdialog.cpp:677 import_export/univcsvdialog.cpp:747
 #: import_export/univcsvdialog.cpp:1784
@@ -3246,7 +3246,7 @@ msgstr "Online aktualizovať kurz meny"
 
 #: maincurrencydialog.cpp:624
 msgid "No currency selected!"
-msgstr ""
+msgstr "Nie je vybraná žiadna mena!"
 
 #: maincurrencydialog.cpp:637
 #, c-format
@@ -3289,11 +3289,11 @@ msgstr ""
 
 #: mmSimpleDialogs.cpp:179
 msgid "Add one month"
-msgstr ""
+msgstr "Pridať jeden mesiac"
 
 #: mmSimpleDialogs.cpp:180
 msgid "Add one year"
-msgstr ""
+msgstr "Pridať jeden rok"
 
 #: mmSimpleDialogs.cpp:237
 #, c-format
@@ -3991,7 +3991,7 @@ msgstr ""
 
 #: mmframe.cpp:1376 mmframe.cpp:1710
 msgid "Toggle Fullscreen"
-msgstr ""
+msgstr "Prepnúť na celú obrazovku"
 
 #: mmframe.cpp:1383
 msgid "Switch Application Language"
