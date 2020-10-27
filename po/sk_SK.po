@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-08-02 13:12+0300\n"
-"PO-Revision-Date: 2020-10-27 03:54\n"
+"PO-Revision-Date: 2020-10-27 04:04\n"
 "Last-Translator: \n"
 "Language-Team: Slovak\n"
 "MIME-Version: 1.0\n"
@@ -6042,35 +6042,35 @@ msgstr "Importuje sa CSV"
 
 #: stockdialog.cpp:713 stockdialog.cpp:743
 msgid "5 Days"
-msgstr ""
+msgstr "5 dní"
 
 #: stockdialog.cpp:714 stockdialog.cpp:745
 msgid "1 Month"
-msgstr ""
+msgstr "1 mesiac"
 
 #: stockdialog.cpp:715 stockdialog.cpp:746
 msgid "3 Months"
-msgstr ""
+msgstr "3 mesiace"
 
 #: stockdialog.cpp:716
 msgid "6 Months"
-msgstr ""
+msgstr "6 mesiacov"
 
 #: stockdialog.cpp:717
 msgid "1 Year"
-msgstr ""
+msgstr "1 rok"
 
 #: stockdialog.cpp:718
 msgid "2 Years"
-msgstr ""
+msgstr "2 roky"
 
 #: stockdialog.cpp:719
 msgid "5 Years"
-msgstr ""
+msgstr "5 rokov"
 
 #: stockdialog.cpp:720
 msgid "10 Years"
-msgstr ""
+msgstr "10 rokov"
 
 #: stockdialog.cpp:722
 msgid "Max"
@@ -6086,11 +6086,11 @@ msgstr ""
 
 #: stockdialog.cpp:742
 msgid "1 Day"
-msgstr ""
+msgstr "1 deň"
 
 #: stockdialog.cpp:744
 msgid "1 Week"
-msgstr ""
+msgstr "1 týždeň"
 
 #: stockdialog.cpp:752
 msgid "Specify interval of stock history"
@@ -6200,12 +6200,12 @@ msgstr ""
 #: stockspanel.cpp:766
 #, c-format
 msgid "Gain: %s"
-msgstr ""
+msgstr "Zisk: %s"
 
 #: stockspanel.cpp:766
 #, c-format
 msgid "Loss: %s"
-msgstr ""
+msgstr "Strata: %s"
 
 #: stockspanel.cpp:804
 msgid "Stock prices successfully updated"
@@ -6344,51 +6344,51 @@ msgstr ""
 
 #: util.cpp:466
 msgid "Jan"
-msgstr ""
+msgstr "Jan"
 
 #: util.cpp:466
 msgid "Feb"
-msgstr ""
+msgstr "Feb"
 
 #: util.cpp:466
 msgid "Mar"
-msgstr ""
+msgstr "Mar"
 
 #: util.cpp:467
 msgid "Apr"
-msgstr ""
+msgstr "Apr"
 
 #: util.cpp:467 util.h:173
 msgid "May"
-msgstr ""
+msgstr "Máj"
 
 #: util.cpp:467
 msgid "Jun"
-msgstr ""
+msgstr "Jún"
 
 #: util.cpp:468
 msgid "Jul"
-msgstr ""
+msgstr "Júl"
 
 #: util.cpp:468
 msgid "Aug"
-msgstr ""
+msgstr "Aug"
 
 #: util.cpp:468
 msgid "Sep"
-msgstr ""
+msgstr "Sep"
 
 #: util.cpp:469
 msgid "Oct"
-msgstr ""
+msgstr "Okt"
 
 #: util.cpp:469
 msgid "Nov"
-msgstr ""
+msgstr "Nov"
 
 #: util.cpp:469
 msgid "Dec"
-msgstr ""
+msgstr "Dec"
 
 #: util.cpp:474
 msgid "Sunday"
@@ -6425,11 +6425,11 @@ msgstr ""
 #: util.cpp:912
 #, c-format
 msgid "Version: %s"
-msgstr ""
+msgstr "Verzia: %s"
 
 #: util.cpp:913
 msgid "Database version: "
-msgstr ""
+msgstr "Verzia databázy: "
 
 #: util.cpp:920
 msgid "Git commit: "
@@ -6453,7 +6453,7 @@ msgstr ""
 
 #: util.cpp:969
 msgid "Running on:"
-msgstr ""
+msgstr "Beží na:"
 
 #: util.h:172
 msgid "January"
@@ -6481,11 +6481,11 @@ msgstr "Júl"
 
 #: util.h:174
 msgid "August"
-msgstr ""
+msgstr "August"
 
 #: util.h:174
 msgid "September"
-msgstr ""
+msgstr "September"
 
 #: util.h:175
 msgid "October"
@@ -6493,11 +6493,11 @@ msgstr "Október"
 
 #: util.h:175
 msgid "November"
-msgstr ""
+msgstr "November"
 
 #: util.h:175
 msgid "December"
-msgstr ""
+msgstr "December"
 
 #: webapp.cpp:111
 msgid "Wrong WebApp GUID:"
@@ -6579,7 +6579,7 @@ msgstr ""
 
 #: webapp.cpp:584
 msgid "Attachment"
-msgstr ""
+msgstr "Príloha"
 
 #: webapp.cpp:595
 msgid "Transaction not downloaded: please retry to download transactions"
@@ -6627,15 +6627,15 @@ msgstr "Chyba komunikácie s webovou aplikáciou"
 
 #: webappdialog.cpp:417
 msgid "Open Attachment"
-msgstr ""
+msgstr "Otvoriť prílohu"
 
 #: webappdialog.cpp:419
 msgid "Import and open"
-msgstr ""
+msgstr "Importovať a otvoriť"
 
 #: webappdialog.cpp:420
 msgid "Delete"
-msgstr ""
+msgstr "Vymazať"
 
 #: wizard_newaccount.cpp:25
 msgid "Add Account Wizard"
@@ -6763,11 +6763,11 @@ msgstr ""
 
 #: wizard_update.cpp:136
 msgid "Version"
-msgstr ""
+msgstr "Verzia"
 
 #: wizard_update.cpp:144
 msgid "You already have the latest version"
-msgstr ""
+msgstr "Máte nainštalovanú najnovšiu verziu"
 
 #: wizard_update.cpp:144
 msgid "A new version of MMEX is available!"
@@ -6776,7 +6776,7 @@ msgstr ""
 #: wizard_update.cpp:145
 #, c-format
 msgid "Your version is %s"
-msgstr ""
+msgstr "Vaša verzia je %s"
 
 #: wizard_update.cpp:283 wizard_update.cpp:298
 msgid "Unable to check for updates!"
@@ -6784,7 +6784,7 @@ msgstr "Nepodarilo sa skontrolovať aktualizácie!"
 
 #: wizard_update.cpp:284 wizard_update.cpp:299
 msgid "Error: "
-msgstr ""
+msgstr "Chyba: "
 
 #: wizard_update.cpp:285 wizard_update.cpp:302
 msgid "MMEX Update Check"
