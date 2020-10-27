@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-08-02 13:12+0300\n"
-"PO-Revision-Date: 2020-10-27 02:14\n"
+"PO-Revision-Date: 2020-10-27 03:44\n"
 "Last-Translator: \n"
 "Language-Team: Slovak\n"
 "MIME-Version: 1.0\n"
@@ -4147,7 +4147,7 @@ msgstr ""
 
 #: mmframe.cpp:1545
 msgid "Database"
-msgstr ""
+msgstr "Databáza"
 
 #: mmframe.cpp:1546
 msgid "Database management"
@@ -4171,7 +4171,7 @@ msgstr ""
 
 #: mmframe.cpp:1563
 msgid "Facebook"
-msgstr ""
+msgstr "Facebook"
 
 #: mmframe.cpp:1563
 msgid "Visit us on Facebook"
@@ -4179,15 +4179,15 @@ msgstr "Navštívte nás na Facebooku"
 
 #: mmframe.cpp:1566
 msgid "Twitter"
-msgstr ""
+msgstr "Twitter"
 
 #: mmframe.cpp:1566
 msgid "Follow us on Twitter"
-msgstr ""
+msgstr "Sledujte nás na Twitteri"
 
 #: mmframe.cpp:1569
 msgid "YouTube"
-msgstr ""
+msgstr "YouTube"
 
 #: mmframe.cpp:1569
 msgid "Watch free video materials about MMEX"
@@ -4195,7 +4195,7 @@ msgstr ""
 
 #: mmframe.cpp:1572
 msgid "Slack"
-msgstr ""
+msgstr "Slack"
 
 #: mmframe.cpp:1572
 msgid "Communicate online with MMEX team from your desktop or mobile device"
@@ -4203,7 +4203,7 @@ msgstr ""
 
 #: mmframe.cpp:1575
 msgid "GitHub"
-msgstr ""
+msgstr "GitHub"
 
 #: mmframe.cpp:1575
 msgid "Access open source code repository and track reported bug statuses"
@@ -4227,7 +4227,7 @@ msgstr ""
 
 #: mmframe.cpp:1585
 msgid "Google Play"
-msgstr ""
+msgstr "Google Play"
 
 #: mmframe.cpp:1586
 msgid "Get free Android version and run MMEX on your smart phone or tablet"
@@ -4243,7 +4243,7 @@ msgstr ""
 
 #: mmframe.cpp:1593
 msgid "RSS Feed"
-msgstr ""
+msgstr "RSS kanál"
 
 #: mmframe.cpp:1593
 msgid "Connect RSS web feed to news aggregator"
@@ -4251,7 +4251,7 @@ msgstr ""
 
 #: mmframe.cpp:1596
 msgid "Donate via PayPal"
-msgstr ""
+msgstr "Prispieť cez PayPal"
 
 #: mmframe.cpp:1597
 msgid "Donate the team to support infrastructure etc"
@@ -4267,7 +4267,7 @@ msgstr ""
 
 #: mmframe.cpp:1605
 msgid "Community"
-msgstr ""
+msgstr "Komunita"
 
 #: mmframe.cpp:1606
 msgid "Stay in touch with MMEX community"
@@ -4275,7 +4275,7 @@ msgstr ""
 
 #: mmframe.cpp:1626
 msgid "Report a Bug"
-msgstr ""
+msgstr "Nahlásiť chybu"
 
 #: mmframe.cpp:1627
 msgid "Report an error in application to the developers"
@@ -4331,7 +4331,7 @@ msgstr "Nový"
 
 #: mmframe.cpp:1680
 msgid "Account List"
-msgstr ""
+msgstr "Zoznam účtov"
 
 #: mmframe.cpp:1682
 msgid "Show Organize Categories Dialog"
@@ -4355,7 +4355,7 @@ msgstr "Za&registrovať sa alebo si prezrieť oznámenia o vydaní"
 
 #: mmframe.cpp:1705
 msgid "News"
-msgstr ""
+msgstr "Novinky"
 
 #: mmframe.cpp:1707
 msgid "Download rates"
@@ -4553,7 +4553,7 @@ msgstr ""
 
 #: mmframe.cpp:2882
 msgid "Please wait..."
-msgstr ""
+msgstr "Prosím čakajte..."
 
 #: mmframe.cpp:2931 stockspanel.cpp:892
 #, c-format
@@ -4771,11 +4771,11 @@ msgstr ""
 
 #: mmreportspanel.cpp:211 mmreportspanel.cpp:285
 msgid "Period:"
-msgstr ""
+msgstr "Obdobie:"
 
 #: mmreportspanel.cpp:317
 msgid "Accounts:"
-msgstr ""
+msgstr "Účty:"
 
 #: mmreportspanel.cpp:322 reports/reportbase.cpp:185
 msgid "All Accounts"
@@ -4787,11 +4787,11 @@ msgstr ""
 
 #: mmreportspanel.cpp:339
 msgid "Chart:"
-msgstr ""
+msgstr "Graf:"
 
 #: mmreportspanel.cpp:344
 msgid "Show"
-msgstr ""
+msgstr "Zobraziť"
 
 #: mmreportspanel.cpp:345
 msgid "Hide"
@@ -4807,7 +4807,7 @@ msgstr "Bežný"
 
 #: model/Model_Account.cpp:34
 msgid "Credit Card"
-msgstr ""
+msgstr "Kreditná karta"
 
 #: model/Model_Account.cpp:35
 msgid "Loan"
@@ -4823,7 +4823,7 @@ msgstr "Investičný"
 
 #: model/Model_Account.cpp:38
 msgid "Asset"
-msgstr ""
+msgstr "Majetok"
 
 #: model/Model_Account.cpp:39
 msgid "Shares"
