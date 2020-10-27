@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-08-02 13:12+0300\n"
-"PO-Revision-Date: 2020-10-27 04:04\n"
+"PO-Revision-Date: 2020-10-27 04:14\n"
 "Last-Translator: \n"
 "Language-Team: Slovak\n"
 "MIME-Version: 1.0\n"
@@ -2326,11 +2326,11 @@ msgstr "Pred"
 
 #: filtertransdialog.cpp:927
 msgid "Amount Min."
-msgstr ""
+msgstr "Min. suma"
 
 #: filtertransdialog.cpp:935
 msgid "Amount Max."
-msgstr ""
+msgstr "Max. suma"
 
 #: general_report_manager.cpp:238 general_report_manager.cpp:631
 msgid "General Reports Manager"
@@ -2827,7 +2827,7 @@ msgstr ""
 
 #: import_export/qif_import_gui.cpp:1018
 msgid "Transaction Account is incorrect"
-msgstr ""
+msgstr "Účet transakcie nie je správny"
 
 #: import_export/qif_import_gui.cpp:1027
 msgid "Transaction Account for transfer is incorrect"
@@ -2835,11 +2835,11 @@ msgstr ""
 
 #: import_export/qif_import_gui.cpp:1053
 msgid "Transaction Amount is incorrect"
-msgstr ""
+msgstr "Suma transakcie nie je správna"
 
 #: import_export/qif_import_gui.cpp:1075
 msgid "Transaction Category is incorrect"
-msgstr ""
+msgstr "Kategória transakcie nie je správna"
 
 #: import_export/qif_import_gui.cpp:1167
 #, c-format
@@ -2874,7 +2874,7 @@ msgstr ""
 
 #: import_export/univcsvdialog.cpp:179
 msgid "&Browse"
-msgstr ""
+msgstr "&Prehliadať"
 
 #: import_export/univcsvdialog.cpp:182
 msgid "Choose CSV data file to Import"
@@ -2886,7 +2886,7 @@ msgstr "Vybrať CSV dátový súbor, do ktorého sa bude exportovať"
 
 #: import_export/univcsvdialog.cpp:203
 msgid "Template name"
-msgstr ""
+msgstr "Názov šablóny"
 
 #: import_export/univcsvdialog.cpp:208
 msgid "Save Template"
@@ -3022,7 +3022,7 @@ msgstr ""
 
 #: import_export/univcsvdialog.cpp:997
 msgid "Invalid Date."
-msgstr ""
+msgstr "Neplatný dátum."
 
 #: import_export/univcsvdialog.cpp:998 mmTextCtrl.cpp:98
 msgid "Invalid Amount."
@@ -3081,15 +3081,15 @@ msgstr ""
 
 #: import_export/univcsvdialog.cpp:1098 import_export/univcsvdialog.cpp:1222
 msgid "Export"
-msgstr ""
+msgstr "Exportovať"
 
 #: import_export/univcsvdialog.cpp:1108
 msgid "Overwrite existing file?"
-msgstr ""
+msgstr "Prepísať existujúci súbor?"
 
 #: import_export/univcsvdialog.cpp:1108
 msgid "File exists"
-msgstr ""
+msgstr "Súbor existuje"
 
 #: import_export/univcsvdialog.cpp:1114
 msgid "Failed to delete existing file. File may be locked by another program."
@@ -3138,7 +3138,7 @@ msgstr ""
 
 #: import_export/univcsvdialog.cpp:1780
 msgid "Enter a value"
-msgstr ""
+msgstr "Zadajte hodnotu"
 
 #: maincurrencydialog.cpp:78 reports/summarystocks.cpp:171 stockdialog.cpp:427
 #: stockspanel.cpp:92
@@ -3358,7 +3358,7 @@ msgstr "Neplatný názov"
 
 #: mmSimpleDialogs.cpp:292 mmSimpleDialogs.cpp:304
 msgid "Already exist!"
-msgstr ""
+msgstr "Už existuje!"
 
 #: mmSimpleDialogs.cpp:294
 msgid "Please type in a non empty name."
@@ -3739,7 +3739,7 @@ msgstr "Bankové účty"
 
 #: mmframe.cpp:457 mmframe.cpp:684 mmhomepage.cpp:628 reports/summary.cpp:150
 msgid "Credit Card Accounts"
-msgstr ""
+msgstr "Účty kreditných kariet"
 
 #: mmframe.cpp:458 mmframe.cpp:696 mmhomepage.cpp:630 reports/summary.cpp:152
 msgid "Term Accounts"
@@ -3751,7 +3751,7 @@ msgstr ""
 
 #: mmframe.cpp:460 mmframe.cpp:688 mmhomepage.cpp:626
 msgid "Cash Accounts"
-msgstr ""
+msgstr "Hotovostné účty"
 
 #: mmframe.cpp:461 mmframe.cpp:692 mmhomepage.cpp:629 reports/summary.cpp:151
 msgid "Loan Accounts"
@@ -3883,11 +3883,11 @@ msgstr "Export do CSV"
 
 #: mmframe.cpp:1316
 msgid "Export to XML"
-msgstr ""
+msgstr "Exportovať do XML"
 
 #: mmframe.cpp:1318
 msgid "Export to JSON"
-msgstr ""
+msgstr "Exportovať do JSON"
 
 #: mmframe.cpp:1319
 msgid "&HTML Files..."
@@ -4759,11 +4759,11 @@ msgstr ""
 
 #: mmpanelbase.cpp:130
 msgid "Hide this column"
-msgstr ""
+msgstr "Skryť tento stĺpec"
 
 #: mmpanelbase.cpp:132
 msgid "Order by this column"
-msgstr ""
+msgstr "Zoradiť podľa tohto stĺpca"
 
 #: mmpanelbase.cpp:133
 msgid "Reset columns"
@@ -4831,7 +4831,7 @@ msgstr "Podiely"
 
 #: model/Model_Account.cpp:130
 msgid "Account Error"
-msgstr ""
+msgstr "Chyba účtu"
 
 #: model/Model_Asset.cpp:24
 msgid "Appreciates"
@@ -4908,15 +4908,15 @@ msgstr ""
 
 #: model/Model_Report.cpp:85
 msgid "Begin date: "
-msgstr ""
+msgstr "Dátum začiatku: "
 
 #: model/Model_Report.cpp:86
 msgid "Date: "
-msgstr ""
+msgstr "Dátum: "
 
 #: model/Model_Report.cpp:87
 msgid "End date: "
-msgstr ""
+msgstr "Dátum konca: "
 
 #: model/Model_Report.cpp:232
 msgid "Template is empty"
@@ -5067,7 +5067,7 @@ msgstr ""
 
 #: optionsettingsattachment.cpp:230
 msgid "Origin"
-msgstr ""
+msgstr "Pôvod"
 
 #: optionsettingsattachment.cpp:231
 msgid "Destination"
@@ -5561,7 +5561,7 @@ msgstr ""
 
 #: reports/budgetingperf.cpp:196
 msgid "%"
-msgstr ""
+msgstr "%"
 
 #: reports/budgetingperf.cpp:238
 msgid "Monthly Total"
@@ -5569,7 +5569,7 @@ msgstr ""
 
 #: reports/bugreport.h:54
 msgid "Bug Report"
-msgstr ""
+msgstr "Správa o chybe"
 
 #: reports/bugreport.h:66
 msgid "Replace this text (marked with >) with detailed description of your problem."
@@ -5644,11 +5644,11 @@ msgstr "Kategória spolu: "
 
 #: reports/categexp.cpp:201
 msgid "Total Expenses:"
-msgstr ""
+msgstr "Celkové výdavky:"
 
 #: reports/categexp.cpp:202
 msgid "Total Income:"
-msgstr ""
+msgstr "Celkový príjem:"
 
 #: reports/categexp.cpp:245
 msgid "Category Income/Expenses"
@@ -5758,7 +5758,7 @@ msgstr ""
 
 #: reports/mmDateRange.cpp:252
 msgid "Last 365 Days"
-msgstr ""
+msgstr "Posledných 365 dní"
 
 #: reports/myusage.cpp:27
 msgid "MMEX Usage Frequency"
@@ -5977,7 +5977,7 @@ msgstr ""
 
 #: stockdialog.cpp:304 stockdialog.cpp:323 stockdialog.cpp:676
 msgid "Price"
-msgstr ""
+msgstr "Cena"
 
 #: stockdialog.cpp:316 stockspanel.cpp:99
 msgid "Price Date"
