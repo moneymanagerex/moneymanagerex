@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-08-02 13:12+0300\n"
-"PO-Revision-Date: 2020-10-27 02:04\n"
+"PO-Revision-Date: 2020-10-27 02:14\n"
 "Last-Translator: \n"
 "Language-Team: Slovak\n"
 "MIME-Version: 1.0\n"
@@ -233,11 +233,11 @@ msgstr ""
 
 #: accountdialog.cpp:273
 msgid "Interest Rate:"
-msgstr ""
+msgstr "Úroková sadzba:"
 
 #: accountdialog.cpp:277
 msgid "Payment Due Date:"
-msgstr ""
+msgstr "Dátum splatnosti:"
 
 #: accountdialog.cpp:281
 msgid "Minimum Payment:"
@@ -267,7 +267,7 @@ msgstr "Mena"
 
 #: accountdialog.cpp:498
 msgid "Please insert a valid URL"
-msgstr ""
+msgstr "Prosím, zadajte platnú adresu URL"
 
 #: accountdialog.cpp:498
 msgid "Invalid URL"
@@ -413,11 +413,11 @@ msgstr "Zadajte poznámky týkajúce sa tohto hmotného majetku"
 
 #: assetdialog.cpp:268
 msgid "New Transaction Details"
-msgstr ""
+msgstr "Nové podrobnosti transakcie"
 
 #: assetdialog.cpp:271 sharetransactiondialog.cpp:290
 msgid "Edit Transaction Details"
-msgstr ""
+msgstr "Upraviť podrobnosti transakcie"
 
 #: assetdialog.cpp:306 constants.cpp:86 sharetransactiondialog.cpp:321
 msgid "&Cancel "
@@ -425,7 +425,7 @@ msgstr "&Storno "
 
 #: assetdialog.cpp:402 sharetransactiondialog.cpp:429
 msgid "Invalid Transaction"
-msgstr ""
+msgstr "Neplatná transakcia"
 
 #: assetdialog.cpp:409
 msgid "Asset Account not found.\n\n"
@@ -834,7 +834,7 @@ msgstr ""
 
 #: billsdepositsdialog.cpp:428 billsdepositspanel.cpp:97
 msgid "Date Paid"
-msgstr ""
+msgstr "Dátum platby"
 
 #: billsdepositsdialog.cpp:432 billsdepositsdialog.cpp:1255
 msgid "Repeats"
@@ -846,7 +846,7 @@ msgstr ""
 
 #: billsdepositsdialog.cpp:446 billsdepositsdialog.cpp:1299
 msgid "Payments Left"
-msgstr ""
+msgstr "Zostávajúce platby"
 
 #: billsdepositsdialog.cpp:460
 msgid "Request user to enter payment"
@@ -1147,15 +1147,15 @@ msgstr "Frekvencia"
 
 #: billsdepositspanel.cpp:106
 msgid "Repetitions"
-msgstr ""
+msgstr "Opakovania"
 
 #: billsdepositspanel.cpp:107
 msgid "Autorepeat"
-msgstr ""
+msgstr "Automatické opakovanie"
 
 #: billsdepositspanel.cpp:108 mmhomepage.cpp:346
 msgid "Payment"
-msgstr ""
+msgstr "Platba"
 
 #: billsdepositspanel.cpp:167
 msgid "MMEX allows regular payments to be set up as transactions. These transactions can also be regular deposits, or transfers that will occur at some future time. These transactions act as a reminder that an event is about to occur, and appears on the Home Page 14 days before the transaction is due. "
@@ -1168,7 +1168,7 @@ msgstr ""
 #: billsdepositspanel.cpp:221 billsdepositspanel.cpp:867 mmframe.cpp:712
 #: mmhomepagepanel.cpp:264
 msgid "Recurring Transactions"
-msgstr ""
+msgstr "Opakujúce sa transakcie"
 
 #: billsdepositspanel.cpp:230 filtertransdialog.cpp:94
 msgid "Transaction Filter"
@@ -1228,7 +1228,7 @@ msgstr ""
 
 #: billsdepositspanel.cpp:453
 msgid "Suggested"
-msgstr ""
+msgstr "Navrhované"
 
 #: billsdepositspanel.cpp:457
 msgid "Automated"
@@ -1241,7 +1241,7 @@ msgid_plural "%d days remaining"
 msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
-msgstr[3] ""
+msgstr[3] "%d dní zostáva"
 
 #: billsdepositspanel.cpp:506 billsdepositspanel.cpp:513
 #: billsdepositspanel.cpp:520 billsdepositspanel.cpp:573
@@ -1395,7 +1395,7 @@ msgstr "Výdavky: "
 
 #: budgetingpanel.cpp:291
 msgid "Icon"
-msgstr ""
+msgstr "Ikona"
 
 #: budgetingpanel.cpp:293
 msgid "Sub Category"
@@ -1505,7 +1505,7 @@ msgstr "Upraviť názov existujúcej kategórie"
 
 #: categdialog.cpp:236
 msgid "Delete an existing category. The category cannot be used by existing transactions."
-msgstr ""
+msgstr "Odstrániť existujúcu kategóriu. Táto kategória nesmie byť použitá v žiadnej existujúcej transakcii."
 
 #: categdialog.cpp:241 maincurrencydialog.cpp:211
 msgid "&Select"
@@ -1583,11 +1583,11 @@ msgstr ""
 
 #: categdialog.cpp:457
 msgid "This category cannot be deleted because it's used by transactions."
-msgstr ""
+msgstr "Túto kategóriu nemožno vymazať, lebo je používaná pri transakciách."
 
 #: categdialog.cpp:464
 msgid "Delete an existing category."
-msgstr ""
+msgstr "Vymazať existujúcu kategóriu."
 
 #: categdialog.cpp:469
 msgid "Subcategories must be deleted before."
@@ -1633,11 +1633,11 @@ msgstr "Vymazať nastavenia"
 
 #: constants.cpp:84
 msgid "Cancel"
-msgstr ""
+msgstr "Zrušiť"
 
 #: constants.cpp:90
 msgid "Close"
-msgstr ""
+msgstr "Zatvoriť"
 
 #: constants.cpp:92
 msgid "&Close "
@@ -1701,7 +1701,7 @@ msgstr ""
 
 #: constants.cpp:203
 msgid "ALL"
-msgstr ""
+msgstr "Všetko"
 
 #: constants.cpp:204 mmframe.cpp:1259 mmframe.cpp:1677
 #: model/Model_Account.cpp:26
@@ -1842,7 +1842,7 @@ msgstr ""
 
 #: customfieldeditdialog.cpp:153 util.cpp:452
 msgid "Default"
-msgstr ""
+msgstr "Predvolené"
 
 #: customfieldeditdialog.cpp:155
 msgid "Enter the default for this field\n"
@@ -1851,7 +1851,7 @@ msgstr ""
 
 #: customfieldeditdialog.cpp:159
 msgid "Choices"
-msgstr ""
+msgstr "Voľby"
 
 #: customfieldeditdialog.cpp:161
 msgid "Enter the choices for this field separated with a semicolon"
@@ -3003,7 +3003,7 @@ msgstr ""
 #: import_export/univcsvdialog.cpp:920 import_export/univcsvdialog.cpp:1048
 #: webappdialog.cpp:418
 msgid "Import"
-msgstr ""
+msgstr "Importovať"
 
 #: import_export/univcsvdialog.cpp:970
 #, c-format
@@ -3122,11 +3122,11 @@ msgstr ""
 
 #: import_export/univcsvdialog.cpp:1512
 msgid "XML Files (*.xml)"
-msgstr ""
+msgstr "Súbory XML (*.xml)"
 
 #: import_export/univcsvdialog.cpp:1512
 msgid "All Files"
-msgstr ""
+msgstr "Všetky súbory"
 
 #: import_export/univcsvdialog.cpp:1513
 msgid "CSV Files (*.csv)"
@@ -3370,7 +3370,7 @@ msgstr ""
 
 #: mmTextCtrl.cpp:69
 msgid "Invalid Value"
-msgstr ""
+msgstr "Neplatná hodnota"
 
 #: mmTextCtrl.cpp:95
 msgid "Please enter a positive or calculated value."
