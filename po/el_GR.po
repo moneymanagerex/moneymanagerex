@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-08-02 13:12+0300\n"
-"PO-Revision-Date: 2020-11-09 17:53\n"
+"PO-Revision-Date: 2020-11-09 18:01\n"
 "Last-Translator: \n"
 "Language-Team: Greek\n"
 "MIME-Version: 1.0\n"
@@ -317,7 +317,7 @@ msgstr "Άνοιγμα αυτού του παραθύρου την επόμεν�
 
 #: appstartdialog.cpp:137
 msgid "&Exit "
-msgstr ""
+msgstr "&Έξοδος "
 
 #: appstartdialog.cpp:153
 #, c-format
@@ -421,7 +421,7 @@ msgstr ""
 
 #: assetdialog.cpp:306 constants.cpp:86 sharetransactiondialog.cpp:321
 msgid "&Cancel "
-msgstr ""
+msgstr "&Ακύρωση "
 
 #: assetdialog.cpp:402 sharetransactiondialog.cpp:429
 msgid "Invalid Transaction"
