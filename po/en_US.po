@@ -4875,7 +4875,7 @@ msgid "Art"
 msgstr ""
 
 #: model/Model_Asset.cpp:34
-msgid "Jewellery"
+msgid "Jewelery"
 msgstr ""
 
 #: model/Model_Asset.cpp:36
