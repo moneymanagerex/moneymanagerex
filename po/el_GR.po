@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-08-02 13:12+0300\n"
-"PO-Revision-Date: 2020-08-03 05:55\n"
+"PO-Revision-Date: 2020-11-09 18:01\n"
 "Last-Translator: \n"
 "Language-Team: Greek\n"
 "MIME-Version: 1.0\n"
@@ -33,7 +33,7 @@ msgstr "Σχετικά"
 
 #: aboutdialog.cpp:154
 msgid "Authors"
-msgstr ""
+msgstr "Συντάκτες"
 
 #: aboutdialog.cpp:159
 msgid "Sponsors"
@@ -189,55 +189,55 @@ msgstr "Εισάγετε τυχόν πληροφορίες σύνδεσης/πρ
 
 #: accountdialog.cpp:235
 msgid "Statement"
-msgstr ""
+msgstr "Κατάσταση"
 
 #: accountdialog.cpp:243
 msgid "Statement:"
-msgstr ""
+msgstr "Κατάσταση:"
 
 #: accountdialog.cpp:244
 msgid "Locked"
-msgstr ""
+msgstr "Κλειδωμένος"
 
 #: accountdialog.cpp:245
 msgid "Enable or disable the transaction Lock"
-msgstr ""
+msgstr "Ενεργοποίηση ή απενεργοποίηση του κλειδώματος συναλλαγών"
 
 #: accountdialog.cpp:248
 msgid "Reconciled Date:"
-msgstr ""
+msgstr "Τακτοποιημένο υπόλοιπο:"
 
 #: accountdialog.cpp:250
 msgid "The date of the transaction lock"
-msgstr ""
+msgstr "Ημερομηνία κλειδώματος συναλλαγών"
 
 #: accountdialog.cpp:253
 msgid "Minimum Bal:"
-msgstr ""
+msgstr "Ελάχιστο υπόλοιπο:"
 
 #: accountdialog.cpp:255
 msgid "Account balance lower limit. Zero to disable"
-msgstr ""
+msgstr "Κατώτατο όριο υπόλοιπου λογαριασμού. Μηδέν για απενεργοποίηση"
 
 #: accountdialog.cpp:260
 msgid "Credit"
-msgstr ""
+msgstr "Πίστωση"
 
 #: accountdialog.cpp:268
 msgid "Credit Limit:"
-msgstr ""
+msgstr "Πιστωτικό Όριο:"
 
 #: accountdialog.cpp:270
 msgid "Credit limit for the Account. Zero to disable"
-msgstr ""
+msgstr "Πιστωτικό όριο λογαριασμού. Μηδέν για απενεργοποίηση"
 
 #: accountdialog.cpp:273
 msgid "Interest Rate:"
-msgstr ""
+msgstr "Επιτόκιο:"
 
 #: accountdialog.cpp:277
 msgid "Payment Due Date:"
-msgstr ""
+msgstr "Ημ/νία εξόφλησης:"
 
 #: accountdialog.cpp:281
 msgid "Minimum Payment:"
@@ -249,12 +249,12 @@ msgstr ""
 
 #: accountdialog.cpp:407
 msgid "Default Image"
-msgstr ""
+msgstr "Προεπιλεγμένη εικόνα"
 
 #: accountdialog.cpp:414
 #, c-format
 msgid "Image #%i"
-msgstr ""
+msgstr "Εικόνα #%i"
 
 #: accountdialog.cpp:486
 msgid "Account Name "
@@ -308,16 +308,16 @@ msgstr "Επισκεφθείτε την ιστοσελίδα για περισσ
 #: appstartdialog.cpp:115
 #, c-format
 msgid "Open the %s website for latest news, updates etc"
-msgstr ""
+msgstr "Ανοίξτε την τοποθεσία Web %s για τις τελευταίες ειδήσεις, ενημερώσεις κλπ"
 
 #: appstartdialog.cpp:123 wizard_update.cpp:166
 #, c-format
 msgid "Show this window next time %s starts"
-msgstr ""
+msgstr "Άνοιγμα αυτού του παραθύρου την επόμενη φορά που θα εκκινήσει το %s"
 
 #: appstartdialog.cpp:137
 msgid "&Exit "
-msgstr ""
+msgstr "&Έξοδος "
 
 #: appstartdialog.cpp:153
 #, c-format
@@ -421,7 +421,7 @@ msgstr ""
 
 #: assetdialog.cpp:306 constants.cpp:86 sharetransactiondialog.cpp:321
 msgid "&Cancel "
-msgstr ""
+msgstr "&Ακύρωση "
 
 #: assetdialog.cpp:402 sharetransactiondialog.cpp:429
 msgid "Invalid Transaction"
