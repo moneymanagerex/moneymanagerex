@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-08-02 13:12+0300\n"
-"PO-Revision-Date: 2020-08-03 10:15\n"
+"PO-Revision-Date: 2020-11-11 13:37\n"
 "Last-Translator: \n"
 "Language-Team: Italian\n"
 "MIME-Version: 1.0\n"
@@ -3626,7 +3626,7 @@ msgstr "come Riconciliata"
 
 #: mmcheckingpanel.cpp:1119
 msgid "as Unreconciled"
-msgstr "come Riconciliata"
+msgstr "come Non Riconciliata"
 
 #: mmcheckingpanel.cpp:1120
 msgid "as Void"
