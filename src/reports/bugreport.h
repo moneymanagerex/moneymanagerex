@@ -48,6 +48,8 @@ public:
     virtual ~mmBugReport();
 
     virtual wxString getHTMLText();
+private:
+    const wxString do_href_wrap(const wxString& www) const;
 };
 
 mmBugReport::mmBugReport()
@@ -71,15 +73,15 @@ wxString mmBugReport::getHTMLText()
     const wxString texts[] = {
         _("Use Help->Check for Updates in MMEX to get latest version, where your problem might be already fixed."),
         wxString::Format(_("Search <a href='%s'>a list of known issues</a> for similar problem. If so, update existing issue instead of creating a new one.")
-            ,  mmex::weblink::BugReport),
-        wxString::Format(_("As you know, <a href='%s'>a forum</a> for users is available where you can discuss problems and find solutions."), mmex::weblink::Forum),
-        wxString::Format(_("Please, join our community in <a href='%s'>Slack</a>. Here you can also pose your question and learn latest news."), mmex::weblink::Slack),
-        wxString::Format(_("Read <a href='%s'>How to Report Bugs Effectively</a> for useful tips."), mmex::weblink::Chiark),
+            ,  do_href_wrap(mmex::weblink::BugReport)),
+        wxString::Format(_("As you know, <a href='%s'>a forum</a> for users is available where you can discuss problems and find solutions.") , do_href_wrap(mmex::weblink::Forum)),
+        wxString::Format(_("Please, join our community in <a href='%s'>Slack</a>. Here you can also pose your question and learn latest news."), do_href_wrap(mmex::weblink::Slack)),
+        wxString::Format(_("Read <a href='%s'>How to Report Bugs Effectively</a> for useful tips."), do_href_wrap(mmex::weblink::Chiark)),
         _("Come up with a descriptive name for your problem."),
         _("Include steps to reproduce your problem, attach screenshots where appropriate."),
         wxString::Format(_("Before click the following link, be sure that you have already signed in to the <a href='%s'>GitHub</a>.")
-            ,  mmex::weblink::GitHubLogin),
-        wxString::Format(_("Finally, report a bug using GitHub <a href='%s'>online form</a> opened in your web browser."), req.BuildURI())
+            ,  do_href_wrap(mmex::weblink::GitHubLogin)),
+        wxString::Format(_("Finally, report a bug using GitHub <a href='%s'>online form</a> opened in your web browser."), do_href_wrap(req.BuildURI()))
     };
 
     wxString msg = "<ol>";
@@ -109,4 +111,9 @@ wxString mmBugReport::getHTMLText()
     }
 
     return out;
+}
+
+inline const wxString mmBugReport::do_href_wrap(const wxString & www) const
+{
+    return wxString::Format("%s' target='_blank>", www);
 }

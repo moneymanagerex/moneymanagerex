@@ -40,6 +40,10 @@ const std::vector<std::pair<Model_Checking::STATUS_ENUM, wxString> > Model_Check
     , {Model_Checking::DUPLICATE_, wxString(wxTRANSLATE("Duplicate"))}
 };
 
+const wxString Model_Checking::TRANSFER_STR = all_type()[TRANSFER];
+const wxString Model_Checking::DEPOSIT_STR = all_type()[DEPOSIT];
+const wxString Model_Checking::WITHDRAWAL_STR = all_type()[WITHDRAWAL];
+
 Model_Checking::Model_Checking() : Model<DB_Table_CHECKINGACCOUNT_V1>()
 {
 }

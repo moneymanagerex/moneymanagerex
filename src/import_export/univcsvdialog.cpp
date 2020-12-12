@@ -49,10 +49,10 @@
 wxIMPLEMENT_DYNAMIC_CLASS(mmUnivCSVDialog, wxDialog);
 
 wxBEGIN_EVENT_TABLE(mmUnivCSVDialog, wxDialog)
-EVT_BUTTON(wxID_ADD, mmUnivCSVDialog::OnAdd)
 EVT_BUTTON(ID_UNIVCSVBUTTON_IMPORT, mmUnivCSVDialog::OnImport)
 EVT_BUTTON(ID_UNIVCSVBUTTON_EXPORT, mmUnivCSVDialog::OnExport)
 EVT_BUTTON(wxID_REMOVE, mmUnivCSVDialog::OnRemove)
+EVT_BUTTON(wxID_ADD, mmUnivCSVDialog::OnAdd)
 EVT_BUTTON(wxID_SAVEAS, mmUnivCSVDialog::OnSettingsSave)
 EVT_BUTTON(wxID_UP, mmUnivCSVDialog::OnMoveUp)
 EVT_BUTTON(wxID_DOWN, mmUnivCSVDialog::OnMoveDown)
@@ -662,7 +662,8 @@ void mmUnivCSVDialog::OnAdd(wxCommandEvent& WXUNUSED(event))
         auto itPos = csvFieldOrder_.begin() + target_position;
         csvFieldOrder_.insert(itPos, item->getIndex());
 
-        if (item->getIndex() != UNIV_CSV_DONTCARE && item->getIndex() != UNIV_CSV_NOTES)
+        if (item->getIndex() != UNIV_CSV_DONTCARE
+            && (item->getIndex() != UNIV_CSV_NOTES || !IsImporter()))
         {
             csvFieldCandicate_->Delete(index);
             if (static_cast<size_t>(index) < csvFieldCandicate_->GetCount()) {
@@ -692,7 +693,8 @@ void mmUnivCSVDialog::OnRemove(wxCommandEvent& WXUNUSED(event))
         int item_index = item->getIndex();
         wxString item_name = item->getName();
 
-        if (item_index != UNIV_CSV_DONTCARE)
+        if (item_index != UNIV_CSV_DONTCARE
+            && (item->getIndex() != UNIV_CSV_NOTES || !IsImporter()))
         {
             unsigned int pos;
             for (pos = 0; pos < csvFieldCandicate_->GetCount() - 1; pos++)
