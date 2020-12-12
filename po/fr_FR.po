@@ -2,14 +2,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2020-08-02 13:12+0300\n"
-"PO-Revision-Date: 2020-08-31 07:40\n"
+"POT-Creation-Date: 2020-12-12 17:49+0300\n"
+"PO-Revision-Date: 2020-12-12 14:55\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.4\n"
+"X-Generator: Poedit 2.4.2\n"
 "X-Poedit-Basepath: ../src\n"
 "X-Poedit-KeywordsList: _;wxTRANSLATE;wxPLURAL:1,2;wxGETTEXT_IN_CONTEXT:1c,2;wxGETTEXT_IN_CONTEXT_PLURAL:1c,2,3\n"
 "X-Poedit-SearchPath-0: .\n"
@@ -50,7 +50,7 @@ msgstr "Confidentialité"
 #: aboutdialog.cpp:200 accountdialog.cpp:305 appstartdialog.cpp:136
 #: assetdialog.cpp:305 attachmentdialog.cpp:120 billsdepositsdialog.cpp:478
 #: budgetentrydialog.cpp:156 budgetyeardialog.cpp:116
-#: budgetyearentrydialog.cpp:126 currencydialog.cpp:230
+#: budgetyearentrydialog.cpp:126 currencydialog.cpp:222
 #: customfieldeditdialog.cpp:170 customfieldlistdialog.cpp:97
 #: filtertransdialog.cpp:342 import_export/qif_export.cpp:225
 #: import_export/qif_export.cpp:248 import_export/qif_import_gui.cpp:325
@@ -107,7 +107,7 @@ msgstr "Saisissez le solde initial de ce compte."
 msgid "Currency:"
 msgstr "Devise :"
 
-#: accountdialog.cpp:172 currencydialog.cpp:96
+#: accountdialog.cpp:172 currencydialog.cpp:95
 msgid "Select Currency"
 msgstr "Choisissez la devise"
 
@@ -346,7 +346,7 @@ msgstr "Détails du bien"
 
 #: assetdialog.cpp:193 assetspanel.cpp:59 filtertransdialog.cpp:855
 #: import_export/qif_import_gui.cpp:231 import_export/qif_import_gui.cpp:245
-#: import_export/qif_import_gui.cpp:256 maincurrencydialog.cpp:79
+#: import_export/qif_import_gui.cpp:256 maincurrencydialog.cpp:75
 #: payeedialog.cpp:64 reports/summarystocks.cpp:170
 msgid "Name"
 msgstr "Nom du bien"
@@ -357,8 +357,8 @@ msgstr "Saisissez le nom du bien"
 
 #: assetdialog.cpp:201 assetspanel.cpp:60 filtertransdialog.cpp:463
 #: import_export/qif_import_gui.cpp:100 import_export/univcsvdialog.cpp:104
-#: maincurrencydialog.cpp:239 maincurrencydialog.cpp:261
-#: mmcheckingpanel.cpp:952 mmreportspanel.cpp:250 mmreportspanel.cpp:268
+#: maincurrencydialog.cpp:236 maincurrencydialog.cpp:258
+#: mmcheckingpanel.cpp:952 mmreportspanel.cpp:253 mmreportspanel.cpp:271
 #: model/Model_CustomField.cpp:29 reports/cashflow.cpp:263
 #: reports/summary.cpp:147 reports/transactions.cpp:69 stockdialog.cpp:297
 #: stockdialog.cpp:676 transdialog.cpp:446 usertransactionpanel.cpp:107
@@ -379,7 +379,7 @@ msgid "Select type of asset"
 msgstr "Sélectionnez le type de bien"
 
 #: assetdialog.cpp:219 import_export/qif_import_gui.cpp:105
-#: maincurrencydialog.cpp:245 maincurrencydialog.cpp:270
+#: maincurrencydialog.cpp:267
 msgid "Value"
 msgstr "Valeur"
 
@@ -442,8 +442,8 @@ msgstr "N° opé."
 #: customfieldlistdialog.cpp:55 filtertransdialog.cpp:252
 #: filtertransdialog.cpp:916 import_export/qif_export.cpp:121
 #: import_export/qif_import_gui.cpp:103 import_export/qif_import_gui.cpp:232
-#: import_export/univcsvdialog.cpp:115 mmhomepage.cpp:425
-#: reports/incexpenses.cpp:113 reports/transactions.cpp:74
+#: import_export/univcsvdialog.cpp:115 maincurrencydialog.cpp:248
+#: mmhomepage.cpp:425 reports/incexpenses.cpp:113 reports/transactions.cpp:74
 #: splitdetailsdialog.cpp:119 transdialog.cpp:489 usertransactionpanel.cpp:137
 #: webappdialog.cpp:150
 msgid "Type"
@@ -516,15 +516,15 @@ msgid "All"
 msgstr "Tous"
 
 #: assetspanel.cpp:465 billsdepositspanel.cpp:264 mmcheckingpanel.cpp:440
-#: stockspanel.cpp:569
+#: stockspanel.cpp:574
 msgid "&New "
 msgstr "&Nouveau"
 
-#: assetspanel.cpp:469 stockspanel.cpp:573
+#: assetspanel.cpp:469 stockspanel.cpp:578
 msgid "&Add Trans "
 msgstr "Ajouter opé."
 
-#: assetspanel.cpp:474 stockspanel.cpp:578
+#: assetspanel.cpp:474 stockspanel.cpp:583
 msgid "&View Trans "
 msgstr "&Afficher opé."
 
@@ -533,15 +533,15 @@ msgid "View Asset Transactions"
 msgstr "Afficher toutes les opérations"
 
 #: assetspanel.cpp:479 attachmentdialog.cpp:315 billsdepositspanel.cpp:268
-#: categdialog.cpp:230 customfieldlistdialog.cpp:266 maincurrencydialog.cpp:200
-#: maincurrencydialog.cpp:519 mmcheckingpanel.cpp:444 payeedialog.cpp:366
-#: splittransactionsdialog.cpp:166 stockspanel.cpp:583
+#: categdialog.cpp:230 customfieldlistdialog.cpp:266 maincurrencydialog.cpp:525
+#: mmcheckingpanel.cpp:444 payeedialog.cpp:366 splittransactionsdialog.cpp:166
+#: stockspanel.cpp:588
 msgid "&Edit "
 msgstr "Éditer"
 
 #: assetspanel.cpp:484 billsdepositspanel.cpp:273 budgetyeardialog.cpp:103
-#: categdialog.cpp:234 maincurrencydialog.cpp:292 mmcheckingpanel.cpp:449
-#: mmcheckingpanel.cpp:1100 stockdialog.cpp:339 stockspanel.cpp:588
+#: categdialog.cpp:234 maincurrencydialog.cpp:289 mmcheckingpanel.cpp:449
+#: mmcheckingpanel.cpp:1100 stockdialog.cpp:339 stockspanel.cpp:593
 msgid "&Delete "
 msgstr "Supprimer"
 
@@ -550,7 +550,7 @@ msgid "Delete Asset"
 msgstr "Supprimer le bien"
 
 #: assetspanel.cpp:492 billsdepositspanel.cpp:291 mmcheckingpanel.cpp:462
-#: stockspanel.cpp:601
+#: stockspanel.cpp:606
 msgid "Open attachments"
 msgstr "Ouvrir les pièces jointes"
 
@@ -562,7 +562,7 @@ msgstr "Recherche"
 msgid "Enter any string to find related assets"
 msgstr "Saisissez la chaine à trouver :"
 
-#: assetspanel.cpp:572 stockspanel.cpp:764 stockspanel.cpp:950
+#: assetspanel.cpp:572 stockspanel.cpp:769 stockspanel.cpp:955
 #, c-format
 msgid "Total: %s"
 msgstr "Total : %s"
@@ -663,7 +663,7 @@ msgid "Confirm Attachment Deletion"
 msgstr "Confirmez la suppression de la pièce jointe"
 
 #: attachmentdialog.cpp:312 categdialog.cpp:226 customfieldlistdialog.cpp:264
-#: import_export/univcsvdialog.cpp:240 maincurrencydialog.cpp:197
+#: import_export/univcsvdialog.cpp:240 maincurrencydialog.cpp:524
 #: payeedialog.cpp:365 splittransactionsdialog.cpp:165 stockdialog.cpp:341
 msgid "&Add "
 msgstr "&Ajouter "
@@ -673,7 +673,7 @@ msgid "&Open "
 msgstr "&Ouvrir "
 
 #: attachmentdialog.cpp:317 customfieldlistdialog.cpp:267
-#: import_export/univcsvdialog.cpp:244 maincurrencydialog.cpp:204
+#: import_export/univcsvdialog.cpp:244 maincurrencydialog.cpp:526
 #: payeedialog.cpp:368 splittransactionsdialog.cpp:167
 msgid "&Remove "
 msgstr "Effacer"
@@ -749,7 +749,7 @@ msgstr "Quinzaine"
 
 #: billsdepositsdialog.cpp:53 billsdepositspanel.cpp:42 mmframereport.cpp:123
 #: mmframereport.cpp:131 mmframereport.cpp:153 mmframereport.cpp:171
-#: model/Model_Budget.cpp:58 reports/categexp.cpp:236
+#: model/Model_Budget.cpp:58
 msgid "Monthly"
 msgstr "Mensuelle"
 
@@ -909,7 +909,7 @@ msgstr "Permet de définir des montants différents pour les comptes \"De\" et \
 
 #: billsdepositsdialog.cpp:546 billsdepositspanel.cpp:104
 #: budgetingpanel.cpp:295 filtertransdialog.cpp:436 filtertransdialog.cpp:447
-#: import_export/univcsvdialog.cpp:106 maincurrencydialog.cpp:594
+#: import_export/univcsvdialog.cpp:106 maincurrencydialog.cpp:610
 #: mmhomepage.cpp:346 mmhomepage.cpp:427 reports/budgetcategorysummary.cpp:181
 #: reports/categexp.cpp:161 reports/incexpenses.cpp:114
 #: reports/transactions.cpp:77 splitdetailsdialog.cpp:135
@@ -972,7 +972,7 @@ msgstr "Répartir dans plusieurs catégories"
 #: import_export/univcsvdialog.cpp:107 mmcheckingpanel.cpp:956
 #: mmhomepage.cpp:182 reports/budgetcategorysummary.cpp:180
 #: reports/budgetingperf.cpp:175 reports/categexp.cpp:160
-#: reports/categexp.cpp:379 reports/transactions.cpp:73
+#: reports/categexp.cpp:372 reports/transactions.cpp:73
 #: splitdetailsdialog.cpp:144 splittransactionsdialog.cpp:137
 #: transdialog.cpp:538 usertransactionpanel.cpp:188 webappdialog.cpp:152
 msgid "Category"
@@ -1083,8 +1083,8 @@ msgid "Invalid value"
 msgstr "Valeur invalide "
 
 #: billsdepositsdialog.cpp:1326 billsdepositsdialog.cpp:1335
-#: billsdepositsdialog.cpp:1343 maincurrencydialog.cpp:473 mmframe.cpp:3175
-#: splittransactionsdialog.cpp:209 stockspanel.cpp:814 stockspanel.cpp:815
+#: billsdepositsdialog.cpp:1343 maincurrencydialog.cpp:467 mmframe.cpp:3175
+#: splittransactionsdialog.cpp:209 stockspanel.cpp:819 stockspanel.cpp:820
 #: webappdialog.cpp:194 webappdialog.cpp:199
 msgid "Error"
 msgstr "Erreur"
@@ -1305,7 +1305,7 @@ msgid "Expense"
 msgstr "Dépenses"
 
 #: budgetentrydialog.cpp:128 db/DB_Table_Category_V1.h:123 mmhomepage.cpp:429
-#: reports/categexp.cpp:135 reports/categexp.cpp:354 reports/incexpenses.cpp:83
+#: reports/categexp.cpp:135 reports/categexp.cpp:347 reports/incexpenses.cpp:83
 #: reports/incexpenses.cpp:241 reports/incexpenses.cpp:274
 msgid "Income"
 msgstr "Revenu"
@@ -1508,7 +1508,7 @@ msgstr "Editer le nom d'une catégorie existante"
 msgid "Delete an existing category. The category cannot be used by existing transactions."
 msgstr "Supprimer une catégorie existante. La catégorie ne doit pas être utilisée par des transactions existantes."
 
-#: categdialog.cpp:241 maincurrencydialog.cpp:211
+#: categdialog.cpp:241 maincurrencydialog.cpp:207
 msgid "&Select"
 msgstr "&Sélectionner"
 
@@ -1717,82 +1717,70 @@ msgstr "Fermé"
 msgid "Favorites"
 msgstr "Comptes favoris"
 
-#: currencydialog.cpp:81
-msgid "Currency Manager"
-msgstr "Gestion des devises"
-
-#: currencydialog.cpp:96
+#: currencydialog.cpp:95
 msgid "Currency name"
 msgstr "Nom de la devise"
 
-#: currencydialog.cpp:155
+#: currencydialog.cpp:153
 msgid "Currency Name"
 msgstr "Nom de la devise"
 
-#: currencydialog.cpp:159
+#: currencydialog.cpp:158
 msgid "Currency Symbol"
 msgstr "Symbole monétaire"
 
-#: currencydialog.cpp:164
-msgid "Unit Name"
-msgstr "Nom de l'unité"
-
-#: currencydialog.cpp:168
-msgid "Cents Name"
-msgstr "Nom des centimes"
-
-#: currencydialog.cpp:172
+#: currencydialog.cpp:163
 msgid "Prefix Symbol"
 msgstr "Symbole (PREFIXE)"
 
-#: currencydialog.cpp:176
+#: currencydialog.cpp:167
 msgid "Suffix Symbol"
 msgstr "Symbole (SUFFIXE)"
 
-#: currencydialog.cpp:187 currencydialog.cpp:256 currencydialog.cpp:283
+#: currencydialog.cpp:178 currencydialog.cpp:248 currencydialog.cpp:275
 #: import_export/qif_import_gui.cpp:298 import_export/univcsvdialog.cpp:364
 msgid "Decimal Char"
 msgstr "Caractère des décimales"
 
-#: currencydialog.cpp:194 currencydialog.cpp:260 currencydialog.cpp:287
+#: currencydialog.cpp:185 currencydialog.cpp:252 currencydialog.cpp:279
 msgid "Grouping Char"
 msgstr "Caractère de groupement"
 
-#: currencydialog.cpp:202
+#: currencydialog.cpp:193
 msgid "Scale"
 msgstr "Echelle"
 
-#: currencydialog.cpp:206 currencydialog.cpp:267
+#: currencydialog.cpp:197 currencydialog.cpp:259
 msgid "Conversion to Base Rate"
 msgstr "Conversion en taux de base"
 
-#: currencydialog.cpp:212
+#: currencydialog.cpp:203
 msgid "Conversion rate will be used in case no currency history has been found for the currency"
 msgstr "Le taux de conversion sera utilisé dans le cas où aucun historique n'aura été trouvé pour la devise"
 
-#: currencydialog.cpp:214
+#: currencydialog.cpp:205
 msgid "Fixed conversion rate"
 msgstr "Taux de conversion fixe"
 
-#: currencydialog.cpp:219
+#: currencydialog.cpp:210
 msgid "Value Display Sample:"
 msgstr "Exemple d'affichage de valeur:"
 
-#: currencydialog.cpp:232
+#: currencydialog.cpp:224
 msgid "Save any changes made"
 msgstr "Sauvegarde de tous les changements."
 
-#: currencydialog.cpp:236
+#: currencydialog.cpp:228
 msgid "Any changes will be lost without update"
 msgstr "Les modifications seront perdues sans une mise à jour"
 
-#: currencydialog.cpp:256 currencydialog.cpp:260 currencydialog.cpp:267
-#: currencydialog.cpp:283 currencydialog.cpp:287 maincurrencydialog.cpp:594
+#: currencydialog.cpp:248 currencydialog.cpp:252 currencydialog.cpp:259
+#: currencydialog.cpp:275 currencydialog.cpp:279 maincurrencydialog.cpp:610
 #: mmSimpleDialogs.cpp:238
 msgid "Invalid Entry"
 msgstr "Entrée non valable"
 
-#: currencydialog.cpp:305
+#: currencydialog.cpp:295
 #, c-format
 msgid "%.2f Shown As: %s"
 msgstr "%.2f affiché comme : %s"
@@ -2759,7 +2747,7 @@ msgid "Warning"
 msgstr "Attention"
 
 #: import_export/qif_import_gui.cpp:672 import_export/qif_import_gui.cpp:691
-#: stockspanel.cpp:879
+#: stockspanel.cpp:884
 msgid "Missing"
 msgstr "Manquant"
 
@@ -3149,26 +3137,20 @@ msgstr "Veuillez saisir le mot indiquant des valeurs positives dans votre fichie
 msgid "Enter a value"
 msgstr "Saisir une valeur"
 
-#: maincurrencydialog.cpp:78 reports/summarystocks.cpp:171 stockdialog.cpp:427
+#: maincurrencydialog.cpp:74 reports/summarystocks.cpp:171 stockdialog.cpp:427
 #: stockspanel.cpp:92
 msgid "Symbol"
 msgstr "Symbole"
 
-#: maincurrencydialog.cpp:80
+#: maincurrencydialog.cpp:76
 msgid "Last Rate"
 msgstr "Dernier taux"
 
-#: maincurrencydialog.cpp:80
+#: maincurrencydialog.cpp:76
 msgid "Fixed Rate"
 msgstr "Taux fixe"
 
-#: maincurrencydialog.cpp:84 maincurrencydialog.cpp:357
-#: maincurrencydialog.cpp:428 maincurrencydialog.cpp:642
-#: maincurrencydialog.cpp:747 maincurrencydialog.cpp:771
-msgid "Currency Dialog"
-msgstr "Nom de la devise"
-
-#: maincurrencydialog.cpp:163 maincurrencydialog.cpp:465
+#: maincurrencydialog.cpp:163 maincurrencydialog.cpp:459
 msgid "Online update currency rate"
 msgstr "Mise à jour en ligne des taux de change"
 
@@ -3180,114 +3162,125 @@ msgstr "Mise à jour en ligne "
 msgid "Show all even the unused currencies"
 msgstr "Afficher toutes les devises, même celles qui ne sont pas utilisées"
 
-#: maincurrencydialog.cpp:227
+#: maincurrencydialog.cpp:205 payeedialog.cpp:122
+msgid "Search:"
+msgstr "Recherche:"
+
+#: maincurrencydialog.cpp:223
 msgid "Currency History Options"
 msgstr "Options de l'historique des devises"
 
-#: maincurrencydialog.cpp:251
-msgid "Diff."
-msgstr "Diff."
+#: maincurrencydialog.cpp:242 stockdialog.cpp:304 stockdialog.cpp:323
+#: stockdialog.cpp:676
+msgid "Price"
+msgstr "Prix"
 
-#: maincurrencydialog.cpp:267
+#: maincurrencydialog.cpp:264
 msgid "Specify the date of currency value"
 msgstr "Indiquez la date de la valeur"
 
-#: maincurrencydialog.cpp:275
+#: maincurrencydialog.cpp:272
 msgid "Enter the currency value"
 msgstr "Saisir la valeur de la devise"
 
-#: maincurrencydialog.cpp:285
+#: maincurrencydialog.cpp:282
 msgid "Download Currency Values history"
 msgstr "Télécharger l'historique des valeurs des devises"
 
-#: maincurrencydialog.cpp:288
+#: maincurrencydialog.cpp:285
 msgid "&Add / Update "
 msgstr "&Ajout / MàJ"
 
-#: maincurrencydialog.cpp:289
+#: maincurrencydialog.cpp:286
 msgid "Add Currency Values to history"
 msgstr "Ajouter la valeur de la devise à l'historique"
 
-#: maincurrencydialog.cpp:293
+#: maincurrencydialog.cpp:290
 msgid "Delete selected Currency Values"
 msgstr "Supprimer les valeurs des devises sélectionnées"
 
-#: maincurrencydialog.cpp:297
+#: maincurrencydialog.cpp:294
 msgid "Delete Currency Values history for unused currencies and days"
 msgstr "Supprimer l'historique des valeurs de la devise pour les devises inutilisées et les jours"
 
-#: maincurrencydialog.cpp:356
+#: maincurrencydialog.cpp:351
 msgid "Do you really want to delete the selected Currency?"
 msgstr "Voulez-vous vraiment supprimer la devise choisie ?"
 
-#: maincurrencydialog.cpp:385
+#: maincurrencydialog.cpp:352 maincurrencydialog.cpp:422
+#: maincurrencydialog.cpp:659 maincurrencydialog.cpp:764
+#: maincurrencydialog.cpp:788
+msgid "Currency Dialog"
+msgstr "Nom de la devise"
+
+#: maincurrencydialog.cpp:380
 msgid "Base Currency Selection"
 msgstr "Sélection de la devise de base."
 
-#: maincurrencydialog.cpp:426
+#: maincurrencydialog.cpp:420
 #, c-format
 msgid "Historic rates for %s found, but \"Use currency history\" in options is disabled:\n"
 "click no and enable it or click yes to remove all historic rates for %s"
 msgstr "Historiques des taux trouvés pour %s, mais dans les options \"Utiliser l'historique des devises\" est désactivé :\n"
 "cliquez sur non et activez cette option ou cliquez sur oui pour supprimer tous les historiques de taux pour %s"
 
-#: maincurrencydialog.cpp:438
+#: maincurrencydialog.cpp:432
 #, c-format
 msgid "Currency History Options: %s "
 msgstr "Options historique de la devise %s"
 
-#: maincurrencydialog.cpp:494
+#: maincurrencydialog.cpp:488
 msgid "Unable to update history currency rates. Please update them manually!"
 msgstr "Impossible de mettre à jour l'historique des taux de change. Veuillez les mettre à jour manuellement !"
 
-#: maincurrencydialog.cpp:494 maincurrencydialog.cpp:624
-#: maincurrencydialog.cpp:639 maincurrencydialog.cpp:686
-#: maincurrencydialog.cpp:903
+#: maincurrencydialog.cpp:489 maincurrencydialog.cpp:641
+#: maincurrencydialog.cpp:656 maincurrencydialog.cpp:703
+#: maincurrencydialog.cpp:809
 msgid "Currency history error"
 msgstr "Erreur d'historique des devises"
 
-#: maincurrencydialog.cpp:517
+#: maincurrencydialog.cpp:521
 msgid "Set as Base Currency"
 msgstr "Coànfigurer une monnaie de base"
 
-#: maincurrencydialog.cpp:518
+#: maincurrencydialog.cpp:522
 msgid "Online Update Currency Rate"
 msgstr "Mise à jour en ligne des taux de change"
 
-#: maincurrencydialog.cpp:624
+#: maincurrencydialog.cpp:641
 msgid "No currency selected!"
 msgstr "Aucune monnaie choisie !"
 
-#: maincurrencydialog.cpp:637
+#: maincurrencydialog.cpp:654
 #, c-format
 msgid "Unable to download %s currency rates"
 msgstr "Impossible de télécharger les taux de change de %s"
 
-#: maincurrencydialog.cpp:642
+#: maincurrencydialog.cpp:659
 msgid "Do you want to add also dates without any transaction?"
 msgstr "Souhaitez-vous réellement ajouter également des dates sans transaction ?"
 
-#: maincurrencydialog.cpp:684
+#: maincurrencydialog.cpp:701
 #, c-format
 msgid "Unable to download history for symbol %s. History rates not available!"
 msgstr "Impossible de télécharger l'historique pour le symbole %s. Historique non disponible !"
 
-#: maincurrencydialog.cpp:746
+#: maincurrencydialog.cpp:763
 msgid "Changing base currency will delete all history rates, proceed?"
 msgstr "La modification de la devise de base supprimera tous les taux historiques, continuer ?"
 
-#: maincurrencydialog.cpp:770
+#: maincurrencydialog.cpp:787
 msgid "Do you want to update today currency rates?"
 msgstr "Voulez-vous mettre à jour les taux de change aujourd'hui ?"
 
-#: maincurrencydialog.cpp:785 stockspanel.cpp:825 util.cpp:512
-msgid "Could not find base currency symbol!"
-msgstr "Impossible de trouver le symbole monétaire!"
-
-#: maincurrencydialog.cpp:902
+#: maincurrencydialog.cpp:808
 #, c-format
 msgid "Unable to download history for base symbol %s. History rates not available!"
 msgstr "Impossible de télécharger l'historique pour le symbole %s. Historique des taux non disponible !"
+
+#: maincurrencydialog.cpp:853 stockspanel.cpp:830 util.cpp:512
+msgid "Could not find base currency symbol!"
+msgstr "Impossible de trouver le symbole monétaire!"
 
 #: mmSimpleDialogs.cpp:177
 msgid "Subtract one year"
@@ -3674,12 +3667,12 @@ msgstr "Souhaitez-vous réellement supprimer l'opération?"
 msgid "MMEX Transaction Check"
 msgstr "&Editer l'opération"
 
-#: mmcheckingpanel.cpp:1746 stockspanel.cpp:287
+#: mmcheckingpanel.cpp:1746 stockspanel.cpp:292
 #, c-format
 msgid "Moving Transaction from %s to..."
 msgstr "Déplacer les opérations de %s à..."
 
-#: mmcheckingpanel.cpp:1749 stockspanel.cpp:288
+#: mmcheckingpanel.cpp:1749 stockspanel.cpp:293
 msgid "Select the destination Account "
 msgstr "Sélectionner un compte de destination "
 
@@ -4583,7 +4576,7 @@ msgstr "Téléchargement du cours des actions depuis Yahoo"
 msgid "Please wait..."
 msgstr "Veuillez patienter..."
 
-#: mmframe.cpp:2931 stockspanel.cpp:892
+#: mmframe.cpp:2931 stockspanel.cpp:897
 #, c-format
 msgid "%s on %s"
 msgstr "%s sur %s"
@@ -4654,12 +4647,11 @@ msgstr "Une exception a été reçue"
 msgid "Transaction Report"
 msgstr "Liste des opérations"
 
-#: mmframereport.cpp:117 reports/cashflow.cpp:35
+#: mmframereport.cpp:117
 msgid "Cash Flow"
 msgstr "Trésorerie"
 
 #: mmframereport.cpp:134 mmframereport.cpp:198 mmhomepage.cpp:182
-#: reports/categexp.cpp:229
 msgid "Summary"
 msgstr "Relevé"
 
@@ -4675,7 +4667,7 @@ msgstr "Détail des Revenus"
 msgid "Forecast Report"
 msgstr "Rapport des prévisions"
 
-#: mmframereport.cpp:150 reports/incexpenses.cpp:33 reports/incexpenses.cpp:141
+#: mmframereport.cpp:150
 msgid "Income vs Expenses"
 msgstr "Balance des revenus et dépenses"
 
@@ -4721,7 +4713,7 @@ msgid "Gain/Loss"
 msgstr "Gains / Pertes"
 
 #: mmhomepage.cpp:78 reports/budgetingperf.cpp:184 reports/cashflow.cpp:264
-#: reports/categexp.cpp:162 reports/categexp.cpp:411 reports/summary.cpp:153
+#: reports/categexp.cpp:162 reports/categexp.cpp:404 reports/summary.cpp:153
 msgid "Total"
 msgstr "Total"
 
@@ -4741,8 +4733,8 @@ msgstr "les plus grands retraits: %s"
 msgid "Income vs Expenses: %s"
 msgstr "Revenus / Dépenses: %s"
 
-#: mmhomepage.cpp:433 reports/categexp.cpp:133 reports/categexp.cpp:353
-#: reports/categexp.cpp:410 reports/incexpenses.cpp:87
+#: mmhomepage.cpp:433 reports/categexp.cpp:133 reports/categexp.cpp:346
+#: reports/categexp.cpp:403 reports/incexpenses.cpp:87
 #: reports/incexpenses.cpp:242 reports/incexpenses.cpp:275
 #: reports/payee.cpp:120
 msgid "Expenses"
@@ -4797,31 +4789,31 @@ msgstr "Trier sur cette colonne"
 msgid "Reset columns"
 msgstr "Réinitialiser les colonnes"
 
-#: mmreportspanel.cpp:211 mmreportspanel.cpp:285
+#: mmreportspanel.cpp:214 mmreportspanel.cpp:288
 msgid "Period:"
 msgstr "Période:"
 
-#: mmreportspanel.cpp:317
+#: mmreportspanel.cpp:320
 msgid "Accounts:"
 msgstr "Comptes:"
 
-#: mmreportspanel.cpp:322 reports/reportbase.cpp:185
+#: mmreportspanel.cpp:325 reports/reportbase.cpp:185
 msgid "All Accounts"
 msgstr "Tous les Comptes"
 
-#: mmreportspanel.cpp:323
+#: mmreportspanel.cpp:326
 msgid "Specific Accounts"
 msgstr "Comptes spécifiques"
 
-#: mmreportspanel.cpp:339
+#: mmreportspanel.cpp:342
 msgid "Chart:"
 msgstr "Graphique:"
 
-#: mmreportspanel.cpp:344
+#: mmreportspanel.cpp:347
 msgid "Show"
 msgstr "Affiche"
 
-#: mmreportspanel.cpp:345
+#: mmreportspanel.cpp:348
 msgid "Hide"
 msgstr "Cacher"
 
@@ -5402,10 +5394,6 @@ msgstr "Couleurs utilisateur"
 msgid "Default Category"
 msgstr "Catégorie par défaut"
 
-#: payeedialog.cpp:122
-msgid "Search:"
-msgstr "Recherche:"
-
 #: payeedialog.cpp:183 payeedialog.cpp:222 payeedialog.cpp:250
 msgid "Payee with same name exists"
 msgstr "Un tiers avec le même nom existe déjà"
@@ -5679,15 +5667,19 @@ msgstr "Total des dépenses :"
 msgid "Total Income:"
 msgstr "Total des revenus :"
 
-#: reports/categexp.cpp:245
+#: reports/categexp.cpp:229
+msgid "Categories Summary"
+msgstr ""
+
+#: reports/categexp.cpp:238
 msgid "Category Income/Expenses"
 msgstr "Catégorie revenus / dépenses"
 
-#: reports/categexp.cpp:387
+#: reports/categexp.cpp:380
 msgid "Overall"
 msgstr "Globalement"
 
-#: reports/categexp.cpp:409 reports/payee.cpp:119
+#: reports/categexp.cpp:402 reports/payee.cpp:119
 msgid "Incomes"
 msgstr "Revenus "
 
@@ -5705,9 +5697,13 @@ msgstr "Rapport généré %s %s"
 msgid "From %s till %s"
 msgstr "De %s à %s"
 
-#: reports/htmlbuilder.cpp:317 reports/mmDateRange.cpp:229
+#: reports/htmlbuilder.cpp:317 reports/mmDateRange.cpp:231
 msgid "Over Time"
 msgstr "Over Time"
+
+#: reports/incexpenses.cpp:33
+msgid "Income vs Expenses Summary"
+msgstr ""
 
 #: reports/incexpenses.cpp:118
 msgid "Income:"
@@ -5716,6 +5712,10 @@ msgstr "Revenu :"
 #: reports/incexpenses.cpp:119
 msgid "Expenses:"
 msgstr "Dépenses :"
+
+#: reports/incexpenses.cpp:141
+msgid "Income vs Expenses Monthly"
+msgstr ""
 
 #: reports/incexpenses.cpp:272
 msgid "Year"
@@ -5944,11 +5944,11 @@ msgstr "Détail de la répartition par Catégorie"
 msgid "Invalid Total Amount"
 msgstr "Montant total non valable "
 
-#: stockdialog.cpp:137 stockdialog.cpp:508 stockspanel.cpp:584
+#: stockdialog.cpp:137 stockdialog.cpp:508 stockspanel.cpp:589
 msgid "Edit Stock Investment"
 msgstr "Editer investissement"
 
-#: stockdialog.cpp:137 stockdialog.cpp:496 stockspanel.cpp:570
+#: stockdialog.cpp:137 stockdialog.cpp:496 stockspanel.cpp:575
 msgid "New Stock Investment"
 msgstr "Nouvel investissement"
 
@@ -6007,10 +6007,6 @@ msgstr "Historique de la valorisation de l'investissement"
 #: stockdialog.cpp:292
 msgid "Stock Price History"
 msgstr "Histoire du prix de l'action"
-
-#: stockdialog.cpp:304 stockdialog.cpp:323 stockdialog.cpp:676
-msgid "Price"
-msgstr "Prix"
 
 #: stockdialog.cpp:316 stockspanel.cpp:99
 msgid "Price Date"
@@ -6176,92 +6172,92 @@ msgstr "&Supprimer investissement"
 msgid "Stock &Web Page"
 msgstr "Page &Web du cours des titres"
 
-#: stockspanel.cpp:265
+#: stockspanel.cpp:270
 msgid "Do you really want to delete the stock investment?"
 msgstr "Souhaitez-vous réellement supprimer l'investissement?"
 
-#: stockspanel.cpp:266
+#: stockspanel.cpp:271
 msgid "Confirm Stock Investment Deletion"
 msgstr "Confirmez la suppression de l'investissement"
 
-#: stockspanel.cpp:400
+#: stockspanel.cpp:405
 #, c-format
 msgid "Temporary Stock list: %s\n\n"
 "Date          Lot          Shares          Price        Commission\n\n"
 msgstr "Liste temporaire des actions: %s\n\n"
 "Date          Lot           Actions           Prix        Commission\n\n"
 
-#: stockspanel.cpp:574
+#: stockspanel.cpp:579
 msgid "Add Stock Transactions"
 msgstr "Ajouter une opération boursière"
 
-#: stockspanel.cpp:579
+#: stockspanel.cpp:584
 msgid "View Stock Transactions"
 msgstr "Voir les transactions boursières"
 
-#: stockspanel.cpp:589
+#: stockspanel.cpp:594
 msgid "Delete Stock Investment"
 msgstr "Supprimer investissement"
 
-#: stockspanel.cpp:593
+#: stockspanel.cpp:598
 msgid "&Move"
 msgstr "Déplace&Ment"
 
-#: stockspanel.cpp:594
+#: stockspanel.cpp:599
 msgid "Move selected transaction to another account"
 msgstr "Déplacer la transaction sélectionnée vers un autre compte"
 
-#: stockspanel.cpp:607
+#: stockspanel.cpp:612
 msgid "Refresh"
 msgstr "rafraichir"
 
-#: stockspanel.cpp:608
+#: stockspanel.cpp:613
 msgid "Refresh Stock Prices from Yahoo"
 msgstr "Actualiser le Cours des Actions depuis Yahoo"
 
-#: stockspanel.cpp:721
+#: stockspanel.cpp:726
 #, c-format
 msgid "Stock Portfolio: %s"
 msgstr "Portefeuille de titre : %s"
 
-#: stockspanel.cpp:763
+#: stockspanel.cpp:768
 #, c-format
 msgid "Total Shares: %s"
 msgstr "Nbre de titres : %s"
 
-#: stockspanel.cpp:765
+#: stockspanel.cpp:770
 #, c-format
 msgid "Invested: %s"
 msgstr "Investi : %s"
 
-#: stockspanel.cpp:766
+#: stockspanel.cpp:771
 #, c-format
 msgid "Gain: %s"
 msgstr "Gain : %s"
 
-#: stockspanel.cpp:766
+#: stockspanel.cpp:771
 #, c-format
 msgid "Loss: %s"
 msgstr "Perte : %s"
 
-#: stockspanel.cpp:804
+#: stockspanel.cpp:809
 msgid "Stock prices successfully updated"
 msgstr "Le cours des actions a été mis à jour."
 
-#: stockspanel.cpp:806 stockspanel.cpp:990
+#: stockspanel.cpp:811 stockspanel.cpp:995
 #, c-format
 msgid "Last updated %s"
 msgstr "Dernière mise à jour %s"
 
-#: stockspanel.cpp:831 util.cpp:536 util.cpp:640
+#: stockspanel.cpp:836 util.cpp:536 util.cpp:640
 msgid "Nothing to update"
 msgstr "Rien à mettre à jour"
 
-#: stockspanel.cpp:845
+#: stockspanel.cpp:850
 msgid "Connecting..."
 msgstr "Connexion en cours ..."
 
-#: stockspanel.cpp:949
+#: stockspanel.cpp:954
 #, c-format
 msgid "Symbol: %s"
 msgstr "Symbole : %s"
