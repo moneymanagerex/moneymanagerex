@@ -92,7 +92,7 @@ const wxString Model_Category::full_name(const Data* category, const Model_Subca
 {
     if (!category) return "";
     if (!sub_category)
-        return category->CATEGNAME;
+        return wxGetTranslation(category->CATEGNAME);
     else
         return wxGetTranslation(category->CATEGNAME) + ":" + wxGetTranslation(sub_category->SUBCATEGNAME);
 }
