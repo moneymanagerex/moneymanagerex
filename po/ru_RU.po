@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-12-12 17:49+0300\n"
-"PO-Revision-Date: 2020-12-12 14:55\n"
+"PO-Revision-Date: 2020-12-12 15:17\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -3903,7 +3903,7 @@ msgstr "Экспорт в JSON файл"
 
 #: mmframe.cpp:1319
 msgid "&HTML Files..."
-msgstr ""
+msgstr "&HTML файлы..."
 
 #: mmframe.cpp:1319
 msgid "Export to HTML"
@@ -5676,7 +5676,7 @@ msgstr "Суммарный доход:"
 
 #: reports/categexp.cpp:229
 msgid "Categories Summary"
-msgstr ""
+msgstr "Сводка по категориям"
 
 #: reports/categexp.cpp:238
 msgid "Category Income/Expenses"
@@ -5710,7 +5710,7 @@ msgstr "Всё время"
 
 #: reports/incexpenses.cpp:33
 msgid "Income vs Expenses Summary"
-msgstr ""
+msgstr "Доходы/Расходы суммарно"
 
 #: reports/incexpenses.cpp:118
 msgid "Income:"
@@ -5722,7 +5722,7 @@ msgstr "Расход:"
 
 #: reports/incexpenses.cpp:141
 msgid "Income vs Expenses Monthly"
-msgstr ""
+msgstr "Доходы/Расходы по месяцам"
 
 #: reports/incexpenses.cpp:272
 msgid "Year"
@@ -6624,7 +6624,7 @@ msgstr "Вложение"
 
 #: webapp.cpp:595
 msgid "Transaction not downloaded: please retry to download transactions"
-msgstr ""
+msgstr "Транзакция не загружена: повторите загрузку транзакций"
 
 #: webapp.cpp:596 webappdialog.cpp:348
 msgid "Attachment download error"
@@ -6652,11 +6652,11 @@ msgstr "Импортировать и открыть все "
 
 #: webappdialog.cpp:214
 msgid "Unable to download transactions from webapp."
-msgstr ""
+msgstr "Не могу загрузить транзакции с WebApp."
 
 #: webappdialog.cpp:215
 msgid "Transactions download error"
-msgstr ""
+msgstr "Ошибка при формировании выгрузки"
 
 #: webappdialog.cpp:320
 msgid "Unable to insert transaction in MMEX database"
