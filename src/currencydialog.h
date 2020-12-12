@@ -43,11 +43,11 @@ public:
     int getCurrencyID() { return m_currency->CURRENCYID; };
 
 private:
-    bool Create(wxWindow* parent, wxWindowID id,
-        const wxString& caption,
-        const wxPoint& pos,
-        const wxSize& size,
-        long style);
+    bool Create(wxWindow* parent, wxWindowID id = wxID_ANY,
+        const wxString& caption = "Currency Manager",
+        const wxPoint& pos = wxDefaultPosition,
+        const wxSize& size = wxDefaultSize,
+        long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX | wxRESIZE_BORDER);
 
     void CreateControls();
     void fillControls();
@@ -68,8 +68,6 @@ private:
     wxTextCtrl* sfxTx_;
     wxTextCtrl* decTx_;
     wxTextCtrl* grpTx_;
-    wxTextCtrl* unitTx_;
-    wxTextCtrl* centTx_;
     wxTextCtrl* scaleTx_;
 
 };
