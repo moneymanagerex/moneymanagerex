@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-12-12 17:49+0300\n"
-"PO-Revision-Date: 2020-12-12 14:55\n"
+"PO-Revision-Date: 2020-12-12 15:34\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -5669,7 +5669,7 @@ msgstr "Total des revenus :"
 
 #: reports/categexp.cpp:229
 msgid "Categories Summary"
-msgstr ""
+msgstr "Résumé des catégories"
 
 #: reports/categexp.cpp:238
 msgid "Category Income/Expenses"
@@ -5703,7 +5703,7 @@ msgstr "Over Time"
 
 #: reports/incexpenses.cpp:33
 msgid "Income vs Expenses Summary"
-msgstr ""
+msgstr "Résumé des revenus vs dépenses"
 
 #: reports/incexpenses.cpp:118
 msgid "Income:"
