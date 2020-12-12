@@ -103,6 +103,9 @@ public:
 public:
     static wxArrayString all_type();
     static wxArrayString all_status();
+    static const wxString TRANSFER_STR;
+    static const wxString WITHDRAWAL_STR;
+    static const wxString DEPOSIT_STR;
 
 public:
     /**

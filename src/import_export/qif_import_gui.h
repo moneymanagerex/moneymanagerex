@@ -40,11 +40,11 @@ public:
     mmQIFImportDialog() {}
     mmQIFImportDialog(wxWindow* parent, int account_id);
 
-    bool Create(wxWindow* parent, wxWindowID id
-        , const wxString& caption
-        , const wxPoint& pos
-        , const wxSize& size
-        , long style);
+    bool Create(wxWindow* parent, wxWindowID id = wxID_ANY
+        , const wxString& caption = _("QIF Import")
+        , const wxPoint& pos = wxDefaultPosition
+        , const wxSize& size = wxDefaultSize
+        , long style = wxCAPTION | wxRESIZE_BORDER | wxSYSTEM_MENU | wxCLOSE_BOX);
 
     wxString OnGetItemText(long item, long column) const;
     int get_last_imported_acc();
