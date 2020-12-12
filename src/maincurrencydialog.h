@@ -23,6 +23,7 @@
 #include <map>
 #include <vector>
 #include <wx/dataview.h>
+#include <wx/srchctrl.h>
 
 class wxDatePickerCtrl;
 class mmTextCtrl;
@@ -65,27 +66,30 @@ private:
         HISTORY_DELUNUSED,
         MENU_ITEM1,
         MENU_ITEM2,
-        MENU_ITEM3
+        MENU_ITEM3,
+        MENU_ITEM4,
+        MENU_ITEM5,
     };
 
     bool Create(wxWindow* parent
-        , wxWindowID id
-        , const wxString& caption
-        , const wxPoint& pos
-        , const wxSize& size
-        , long style);
+        , wxWindowID id = wxID_ANY
+        , const wxString& caption = "Currency Dialog"
+        , const wxPoint& pos = wxDefaultPosition
+        , const wxSize& size = wxDefaultSize
+        , long style = wxCAPTION | wxRESIZE_BORDER | wxSYSTEM_MENU | wxCLOSE_BOX);
 
     /// Creates the controls and sizers
 
     void CreateControls();
-    void OnBtnAdd(wxCommandEvent& event);
-    void OnBtnEdit(wxCommandEvent& event);
+    void OnBtnAdd();
+    void OnBtnEdit();
+    void OnBtnDelete();
+    void fillControls();
     void OnBtnSelect(wxCommandEvent& event);
-    void OnBtnDelete(wxCommandEvent& event);
     void OnCancel(wxCommandEvent& event);
     void OnListItemActivated(wxDataViewEvent& event);
     void OnListItemSelected(wxDataViewEvent& event);
-    void fillControls();
+    void OnTextChanged(wxCommandEvent& event);
     void OnShowHiddenChbClick(wxCommandEvent& event);
 
     void ShowCurrencyHistory();
@@ -106,10 +110,9 @@ private:
     std::map<int, wxString> ColName_;
     bool bHistoryEnabled_;
     bool bEnableSelect_;
-    wxButton* itemButtonEdit_;
-    wxButton* itemButtonDelete_;
     wxBitmapButton* buttonDownloadHistory_;
     wxBitmapButton* buttonDelUnusedHistory_;
+    wxSearchCtrl* m_maskTextCtrl;
     wxCheckBox* cbShowAll_;
     wxListCtrl* valueListBox_;
     wxDatePickerCtrl* valueDatePicker_;
@@ -117,11 +120,12 @@ private:
     wxStaticBox* historyStaticBox_;
     wxButton* historyButtonAdd_;
     wxButton* historyButtonDelete_;
+    wxButton* m_select_btn;
 
+    wxString m_maskStr;
     int m_currency_id;
     bool m_static_dialog;
 
-    std::vector<CurrencyHistoryRate> _BceCurrencyHistoryRatesList;
     bool ConvertHistoryRates(const std::vector<CurrencyHistoryRate>& Bce, std::vector<CurrencyHistoryRate>& ConvertedRate, const wxString& BaseCurrencySymbol);
     bool GetOnlineHistory(std::map<wxDateTime, double> &historical_rates, const wxString &symbol, wxString &msg);
 };

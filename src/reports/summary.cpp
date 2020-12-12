@@ -115,7 +115,7 @@ double mmHistoryData::getDailyBalanceAt(const Model_Account::Data *account, cons
 }
 
 mmReportSummaryByDate::mmReportSummaryByDate(int mode)
-: mmPrintableBase("mmReportSummaryByDate")
+: mmPrintableBase(wxString::Format("Accounts Balance - %s", (mode == MONTHLY ? "Monthly" : "Yearly")))
 , mode_(mode)
 {
 }

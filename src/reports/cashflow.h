@@ -28,7 +28,7 @@ class mmReportCashFlow : public mmPrintableBase
 {
 public:
     enum TYPE { MONTHLY = 0, DAILY };
-    explicit mmReportCashFlow();
+    explicit mmReportCashFlow(const wxString& name);
     virtual ~mmReportCashFlow();
 
     virtual wxString getHTMLText();

@@ -31,8 +31,8 @@ static const wxString COLORS [] = {
     , "rgba(240, 248, 255, 0.5)"
 };
 
-mmReportCashFlow::mmReportCashFlow()
-    : mmPrintableBase(_("Cash Flow"))
+mmReportCashFlow::mmReportCashFlow(const wxString& name)
+    : mmPrintableBase(name)
     , today_(wxDateTime::Today())
 {
     m_only_active = true;
@@ -304,14 +304,14 @@ wxString mmReportCashFlow::getHTMLText_i()
 }
 
 mmReportCashFlowDaily::mmReportCashFlowDaily()
-    : mmReportCashFlow()
+    : mmReportCashFlow("Cash Flow - Daily")
 {
     cashFlowReportType_ = TYPE::DAILY;
     setReportParameters(Reports::DailyCashFlow);
 }
 
 mmReportCashFlowMonthly::mmReportCashFlowMonthly()
-    : mmReportCashFlow()
+    : mmReportCashFlow("Cash Flow - Monthly")
 {
     cashFlowReportType_ = TYPE::MONTHLY;
     setReportParameters(Reports::MonthlyCashFlow);

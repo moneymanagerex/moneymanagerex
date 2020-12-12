@@ -32,7 +32,7 @@
 #include <algorithm>
 
 mmReportSummaryStocks::mmReportSummaryStocks()
-    : mmPrintableBase(_("Summary of Stocks"))
+    : mmPrintableBase(wxTRANSLATE("Summary of Stocks"))
     , m_gain_loss_sum_total(0.0)
     , m_stock_balance(0.0)
 {
@@ -181,7 +181,7 @@ void mmReportSummaryStocks::display_header(mmHTMLBuilder& hb)
 }
 
 mmReportChartStocks::mmReportChartStocks()
-    : mmPrintableBase(_("Stocks Performance Charts"))
+    : mmPrintableBase(wxTRANSLATE("Stocks Performance Charts"))
 {
     setReportParameters(Reports::StocksReportPerformance);
 }
