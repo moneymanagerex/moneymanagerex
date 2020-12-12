@@ -70,16 +70,16 @@ wxString mmBugReport::getHTMLText()
 
     const wxString texts[] = {
         _("Use Help->Check for Updates in MMEX to get latest version, where your problem might be already fixed."),
-        wxString::Format(_("Search <a href='%s'>a list of known issues</a> for similar problem. If so, update existing issue instead of creating a new one.")
+        wxString::Format(_("Search <a href='%s' target='_blank'>a list of known issues</a> for similar problem. If so, update existing issue instead of creating a new one.")
             ,  mmex::weblink::BugReport),
-        wxString::Format(_("As you know, <a href='%s'>a forum</a> for users is available where you can discuss problems and find solutions."), mmex::weblink::Forum),
-        wxString::Format(_("Please, join our community in <a href='%s'>Slack</a>. Here you can also pose your question and learn latest news."), mmex::weblink::Slack),
-        wxString::Format(_("Read <a href='%s'>How to Report Bugs Effectively</a> for useful tips."), mmex::weblink::Chiark),
+        wxString::Format(_("As you know, <a href='%s' target='_blank'>a forum</a> for users is available where you can discuss problems and find solutions."), mmex::weblink::Forum),
+        wxString::Format(_("Please, join our community in <a href='%s' target='_blank'>Slack</a>. Here you can also pose your question and learn latest news."), mmex::weblink::Slack),
+        wxString::Format(_("Read <a href='%s' target='_blank'>How to Report Bugs Effectively</a> for useful tips."), mmex::weblink::Chiark),
         _("Come up with a descriptive name for your problem."),
         _("Include steps to reproduce your problem, attach screenshots where appropriate."),
-        wxString::Format(_("Before click the following link, be sure that you have already signed in to the <a href='%s'>GitHub</a>.")
+        wxString::Format(_("Before click the following link, be sure that you have already signed in to the <a href='%s' target='_blank'>GitHub</a>.")
             ,  mmex::weblink::GitHubLogin),
-        wxString::Format(_("Finally, report a bug using GitHub <a href='%s'>online form</a> opened in your web browser."), req.BuildURI())
+        wxString::Format(_("Finally, report a bug using GitHub <a href='%s' target='_blank'>online form</a> opened in your web browser."), req.BuildURI())
     };
 
     wxString msg = "<ol>";
