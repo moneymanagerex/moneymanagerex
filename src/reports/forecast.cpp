@@ -22,7 +22,7 @@
 
 class mm_html_template;
 
-mmReportForecast::mmReportForecast(): mmPrintableBase(_("Forecast"))
+mmReportForecast::mmReportForecast(): mmPrintableBase(wxTRANSLATE("Forecast"))
 {
     setReportParameters(Reports::ForecastReport);
 }

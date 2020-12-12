@@ -24,7 +24,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "model/Model_Report.h"
 
 mmReportMyUsage::mmReportMyUsage()
-: mmPrintableBase(_("MMEX Usage Frequency"))
+: mmPrintableBase(wxTRANSLATE("MMEX Usage Frequency"))
 {
     setReportParameters(Reports::MyUsage);
 }

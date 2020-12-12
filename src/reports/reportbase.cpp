@@ -365,11 +365,12 @@ void mm_html_template::load_context()
     if (currency) currency->to_template(*this);
 }
 
-const wxString mmPrintableBase::getReportTitle() const
+const wxString mmPrintableBase::getReportTitle(bool translate) const
 {
-    wxString title = m_title;
-    if (m_date_range) {
-        title += " - " + m_date_range->local_title();
+    wxString title = translate ? wxGetTranslation(m_title) : m_title;
+    if (m_date_range)
+    {
+        title += " - " + (translate ? m_date_range->local_title() : m_date_range->title());
     }
     return title;
 }
