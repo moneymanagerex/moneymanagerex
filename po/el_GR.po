@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-12-12 19:45+0300\n"
-"PO-Revision-Date: 2020-12-12 16:56\n"
+"PO-Revision-Date: 2020-12-13 10:54\n"
 "Last-Translator: \n"
 "Language-Team: Greek\n"
 "MIME-Version: 1.0\n"
@@ -5630,7 +5630,7 @@ msgstr ""
 
 #: reports/categexp.cpp:229
 msgid "Categories Summary"
-msgstr ""
+msgstr "Σύνοψη Κατηγοριών"
 
 #: reports/categexp.cpp:238
 msgid "Category Income/Expenses"
@@ -5664,7 +5664,7 @@ msgstr ""
 
 #: reports/incexpenses.cpp:33
 msgid "Income vs Expenses Summary"
-msgstr ""
+msgstr "Αναφορά Εισόδων - Εξόδων"
 
 #: reports/incexpenses.cpp:118
 msgid "Income:"
@@ -5676,7 +5676,7 @@ msgstr "Έξοδα:"
 
 #: reports/incexpenses.cpp:141
 msgid "Income vs Expenses Monthly"
-msgstr ""
+msgstr "Μηνιαία Έσοδα - Έξοδα"
 
 #: reports/incexpenses.cpp:272
 msgid "Year"
