@@ -56,7 +56,7 @@ void  mmReportCategoryExpenses::RefreshData()
     int groupID = 1;
     for (const auto& category : Model_Category::instance().all(Model_Category::COL_CATEGNAME))
     {
-        const wxString& sCategName = category.CATEGNAME;
+        const wxString& sCategName = wxGetTranslation(category.CATEGNAME);
         double amt = categoryStats[category.CATEGID][-1][0];
         if (type_ == COME && amt < 0.0) amt = 0;
         if (type_ == GOES && amt > 0.0) amt = 0;
@@ -274,7 +274,7 @@ wxString mmReportCategoryOverTimePerformance::getHTMLText()
     for (const auto& category : Model_Category::instance().all(Model_Category::COL_CATEGNAME))
     {
         int categID = category.CATEGID;
-        line.name = category.CATEGNAME;
+        line.name = wxGetTranslation(category.CATEGNAME);
         line.overall = 0;
         unsigned month = 0;
         for (const auto &i : categoryStats[categID][-1])
@@ -291,7 +291,7 @@ wxString mmReportCategoryOverTimePerformance::getHTMLText()
         for (const auto& sub_category : Model_Category::sub_category(category))
         {
             int subcategID = sub_category.SUBCATEGID;
-            line.name = category.CATEGNAME + " : " + sub_category.SUBCATEGNAME;
+            line.name = Model_Category::full_name(category.CATEGID, sub_category.SUBCATEGID);
             line.overall = 0;
             month = 0;
             for (const auto &i : categoryStats[categID][subcategID])

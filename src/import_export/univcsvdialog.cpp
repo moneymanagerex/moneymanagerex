@@ -1152,71 +1152,85 @@ void mmUnivCSVDialog::OnExport(wxCommandEvent& WXUNUSED(event))
         if (Model_Checking::status(pBankTransaction) == Model_Checking::VOID_)
             continue;
 
-        pTxFile->AddNewLine();
-
         Model_Checking::Full_Data tran(pBankTransaction, split);
+
+        if (!tran.has_split())
+        {
+            Model_Splittransaction::Data *splt = Model_Splittransaction::instance().create();
+            splt->TRANSID = tran.TRANSID;
+            splt->CATEGID = tran.CATEGID;
+            splt->SUBCATEGID = tran.SUBCATEGID;
+            splt->SPLITTRANSAMOUNT = tran.TRANSAMOUNT;
+            tran.m_splits.push_back(*splt);
+        }
 
         double value = Model_Checking::balance(pBankTransaction, fromAccountID);
         account_balance += value;
 
-        const wxString& amount = Model_Currency::toStringNoFormatting(value, currency);
-        const wxString& amount_abs = Model_Currency::toStringNoFormatting(fabs(value), currency);
-
-        Model_Category::Data* category = Model_Category::instance().get(pBankTransaction.CATEGID);
-        Model_Subcategory::Data* sub_category = Model_Subcategory::instance().get(pBankTransaction.SUBCATEGID);
-        for (std::vector<int>::const_iterator sit = csvFieldOrder_.begin(); sit != csvFieldOrder_.end(); ++sit)
+        for (const auto& splt : tran.m_splits)
         {
-            wxString entry = "";
-            ITransactionsFile::ItemType itemType = ITransactionsFile::TYPE_STRING;
-            switch (*sit)
-            {
-            case UNIV_CSV_DATE:
-                trx_date = Model_Checking::TRANSDATE(pBankTransaction);
-                entry = trx_date.Format(date_format_);
-                break;
-            case UNIV_CSV_PAYEE:
-                entry = tran.real_payee_name(fromAccountID);
-                break;
-            case UNIV_CSV_AMOUNT:
-                entry = amount;
-                itemType = ITransactionsFile::TYPE_NUMBER;
-                break;
-            case UNIV_CSV_CATEGORY:
-                entry = category ? category->CATEGNAME : "";
-                break;
-            case UNIV_CSV_SUBCATEGORY:
-                entry = sub_category ? sub_category->SUBCATEGNAME : "";
-                break;
-            case UNIV_CSV_TRANSNUM:
-                entry = pBankTransaction.TRANSACTIONNUMBER;
-                break;
-            case UNIV_CSV_NOTES:
-                entry = wxString(pBankTransaction.NOTES).Trim();
-                entry.Replace("\n", "\\n");
-                break;
-            case UNIV_CSV_DEPOSIT:
-                entry = (value > 0.0) ? amount : "";
-                itemType = ITransactionsFile::TYPE_NUMBER;
-                break;
-            case UNIV_CSV_WITHDRAWAL:
-                entry = value >= 0.0 ? "" : amount_abs;
-                itemType = ITransactionsFile::TYPE_NUMBER;
-                break;
-            case UNIV_CSV_BALANCE:
-                entry = Model_Currency::toStringNoFormatting(account_balance, currency);
-                itemType = ITransactionsFile::TYPE_NUMBER;
-                break;
-            case UNIV_CSV_TYPE:
-                entry = depositType_;
-                break;
-            case UNIV_CSV_DONTCARE:
-            default:
-                break;
-            }
-            pTxFile->AddNewItem(entry, itemType);
-        }
+            pTxFile->AddNewLine();
 
-        ++numRecords;
+            Model_Category::Data* category = Model_Category::instance().get(splt.CATEGID);
+            Model_Subcategory::Data* sub_category = Model_Subcategory::instance().get(splt.SUBCATEGID);
+
+            const wxString amount = Model_Currency::toString(splt.SPLITTRANSAMOUNT, currency);
+            const wxString amount_abs = Model_Currency::toString(fabs(splt.SPLITTRANSAMOUNT), currency);
+
+            for (std::vector<int>::const_iterator sit = csvFieldOrder_.begin(); sit != csvFieldOrder_.end(); ++sit)
+            {
+                wxString entry = "";
+                ITransactionsFile::ItemType itemType = ITransactionsFile::TYPE_STRING;
+                switch (*sit)
+                {
+                case UNIV_CSV_DATE:
+                    trx_date = Model_Checking::TRANSDATE(pBankTransaction);
+                    entry = trx_date.Format(date_format_);
+                    break;
+                case UNIV_CSV_PAYEE:
+                    entry = tran.real_payee_name(fromAccountID);
+                    break;
+                case UNIV_CSV_AMOUNT:
+                    entry = amount;
+                    itemType = ITransactionsFile::TYPE_NUMBER;
+                    break;
+                case UNIV_CSV_CATEGORY:
+                    entry = category ? wxGetTranslation(category->CATEGNAME) : "";
+                    break;
+                case UNIV_CSV_SUBCATEGORY:
+                    entry = sub_category ? wxGetTranslation(sub_category->SUBCATEGNAME) : "";
+                    break;
+                case UNIV_CSV_TRANSNUM:
+                    entry = pBankTransaction.TRANSACTIONNUMBER;
+                    break;
+                case UNIV_CSV_NOTES:
+                    entry = wxString(pBankTransaction.NOTES).Trim();
+                    entry.Replace("\n", "\\n");
+                    break;
+                case UNIV_CSV_DEPOSIT:
+                    entry = (value > 0.0) ? amount : "";
+                    itemType = ITransactionsFile::TYPE_NUMBER;
+                    break;
+                case UNIV_CSV_WITHDRAWAL:
+                    entry = value >= 0.0 ? "" : amount_abs;
+                    itemType = ITransactionsFile::TYPE_NUMBER;
+                    break;
+                case UNIV_CSV_BALANCE:
+                    entry = Model_Currency::toStringNoFormatting(account_balance, currency);
+                    itemType = ITransactionsFile::TYPE_NUMBER;
+                    break;
+                case UNIV_CSV_TYPE:
+                    entry = depositType_;
+                    break;
+                case UNIV_CSV_DONTCARE:
+                default:
+                    break;
+                }
+                pTxFile->AddNewItem(entry, itemType);
+            }
+
+            ++numRecords;
+        }
     }
 
     pTxFile->Save(fileName);
@@ -1243,7 +1257,8 @@ void mmUnivCSVDialog::update_preview()
     {
         const wxString& item_name = this->getCSVFieldName(*it);
         this->m_list_ctrl_->InsertColumn(colCount, wxGetTranslation(item_name));
-        if (it[0] == UNIV_CSV_DATE) {
+        if (it[0] == UNIV_CSV_DATE)
+        {
             date_col = colCount - 1;
         }
         ++colCount;
@@ -1254,7 +1269,8 @@ void mmUnivCSVDialog::update_preview()
         const wxString fileName = m_text_ctrl_->GetValue();
         wxFileName csv_file(fileName);
 
-        if (fileName.IsEmpty() || !csv_file.FileExists()) {
+        if (fileName.IsEmpty() || !csv_file.FileExists())
+        {
             itemButton_Import_->Disable();
             return;
         }
@@ -1311,7 +1327,8 @@ void mmUnivCSVDialog::update_preview()
         if (!m_userDefinedDateMask)
         {
             dParser->doFinalizeStatistics();
-            if (dParser->isDateFormatFound()) {
+            if (dParser->isDateFormatFound())
+            {
                 const wxString date_mask = dParser->getDateMask();
                 date_format_ = dParser->getDateFormat();
                 choiceDateFormat_->SetStringSelection(date_mask);
@@ -1341,83 +1358,102 @@ void mmUnivCSVDialog::update_preview()
 
                 Model_Checking::Full_Data tran(pBankTransaction, split);
 
+
+                if (!tran.has_split())
+                {
+                    Model_Splittransaction::Data *splt = Model_Splittransaction::instance().create();
+                    splt->TRANSID = tran.TRANSID;
+                    splt->CATEGID = tran.CATEGID;
+                    splt->SUBCATEGID = tran.SUBCATEGID;
+                    splt->SPLITTRANSAMOUNT = tran.TRANSAMOUNT;
+                    tran.m_splits.push_back(*splt);
+                }
+
                 double value = Model_Checking::balance(pBankTransaction, fromAccountID);
                 account_balance += value;
 
-                Model_Currency::Data* currency = Model_Account::currency(from_account);
-                const wxString amount = Model_Currency::toString(value, currency);
-                const wxString amount_abs = Model_Currency::toString(fabs(value), currency);
-
-                int col = 0;
-                wxString buf;
-                buf.Printf("%d", col);
-                long itemIndex = m_list_ctrl_->InsertItem(row, buf, 0);
-                buf.Printf("%d", row + 1);
-                m_list_ctrl_->SetItem(itemIndex, col, buf);
-
-                Model_Category::Data* category = Model_Category::instance().get(pBankTransaction.CATEGID);
-                Model_Subcategory::Data* sub_category = Model_Subcategory::instance().get(pBankTransaction.SUBCATEGID);
-                for (std::vector<int>::const_iterator sit = csvFieldOrder_.begin(); sit != csvFieldOrder_.end(); ++sit)
+                for (const auto& splt : tran.m_splits)
                 {
-                    ++col;
-                    wxString text;
-                    switch (*sit)
-                    {
-                    case UNIV_CSV_DATE:
-                    {
-                        text << inQuotes(Model_Checking::TRANSDATE(pBankTransaction).Format(date_format_), delimit);
-                        break;
-                    }
-                    case UNIV_CSV_PAYEE:
-                        text << inQuotes(tran.real_payee_name(fromAccountID), delimit);
-                        break;
-                    case UNIV_CSV_AMOUNT:
-                        text << inQuotes(amount, delimit);
-                        break;
-                    case UNIV_CSV_CATEGORY:
-                        text << inQuotes(category ? category->CATEGNAME : "", delimit);
-                        break;
-                    case UNIV_CSV_SUBCATEGORY:
-                        text << inQuotes(sub_category ? sub_category->SUBCATEGNAME : "", delimit);
-                        break;
-                    case UNIV_CSV_TRANSNUM:
-                        text << inQuotes(pBankTransaction.TRANSACTIONNUMBER, delimit);
-                        break;
-                    case UNIV_CSV_NOTES:
-                        text << inQuotes(wxString(pBankTransaction.NOTES).Trim(), delimit);
-                        break;
-                    case UNIV_CSV_DEPOSIT:
-                        text << inQuotes(value > 0.0 ? amount : "", delimit);
-                        break;
-                    case UNIV_CSV_WITHDRAWAL:
-                        text << inQuotes(value >= 0.0 ? "" : amount_abs, delimit);
-                        break;
-                    case UNIV_CSV_BALANCE:
-                        text << inQuotes(Model_Currency::toString(account_balance, currency), delimit);
-                        break;
-                    case UNIV_CSV_TYPE:
-                        text << pBankTransaction.TRANSCODE;
-                        break;
-                    case UNIV_CSV_DONTCARE:
-                    default:
-                        break;
-                    }
-                    if (col >= m_list_ctrl_->GetColumnCount())
-                        break;
-                    else
-                    {
-                        if (col == date_col)
-                        {
-                            wxDateTime dtdt;
-                            mmParseDisplayStringToDate(dtdt, text, date_format_);
-                            text = dtdt.Format(date_format_);
-                        }
-                        m_list_ctrl_->SetItem(itemIndex, col, text);
-                    }
 
+                    int col = 0;
+                    wxString buf;
+                    buf.Printf("%d", col);
+                    long itemIndex = m_list_ctrl_->InsertItem(row, buf, 0);
+                    buf.Printf("%d", row + 1);
+                    m_list_ctrl_->SetItem(itemIndex, col, buf);
+
+                    Model_Category::Data* category = Model_Category::instance().get(splt.CATEGID);
+                    Model_Subcategory::Data* sub_category = Model_Subcategory::instance().get(splt.SUBCATEGID);
+
+
+                    Model_Currency::Data* currency = Model_Account::currency(from_account);
+                    const wxString amount = Model_Currency::toString(splt.SPLITTRANSAMOUNT, currency);
+                    const wxString amount_abs = Model_Currency::toString(fabs(splt.SPLITTRANSAMOUNT), currency);
+
+
+                    for (std::vector<int>::const_iterator sit = csvFieldOrder_.begin(); sit != csvFieldOrder_.end(); ++sit)
+                    {
+                        ++col;
+                        wxString text;
+                        switch (*sit)
+                        {
+                        case UNIV_CSV_DATE:
+                        {
+                            text << inQuotes(Model_Checking::TRANSDATE(pBankTransaction).Format(date_format_), delimit);
+                            break;
+                        }
+                        case UNIV_CSV_PAYEE:
+                            text << inQuotes(tran.real_payee_name(fromAccountID), delimit);
+                            break;
+                        case UNIV_CSV_AMOUNT:
+                            text << inQuotes(amount, delimit);
+                            break;
+                        case UNIV_CSV_CATEGORY:
+                            text << inQuotes(category ? category->CATEGNAME : "", delimit);
+                            break;
+                        case UNIV_CSV_SUBCATEGORY:
+                            text << inQuotes(sub_category ? sub_category->SUBCATEGNAME : "", delimit);
+                            break;
+                        case UNIV_CSV_TRANSNUM:
+                            text << inQuotes(pBankTransaction.TRANSACTIONNUMBER, delimit);
+                            break;
+                        case UNIV_CSV_NOTES:
+                            text << inQuotes(wxString(pBankTransaction.NOTES).Trim(), delimit);
+                            break;
+                        case UNIV_CSV_DEPOSIT:
+                            text << inQuotes(value > 0.0 ? amount : "", delimit);
+                            break;
+                        case UNIV_CSV_WITHDRAWAL:
+                            text << inQuotes(value >= 0.0 ? "" : amount_abs, delimit);
+                            break;
+                        case UNIV_CSV_BALANCE:
+                            text << inQuotes(Model_Currency::toString(account_balance, currency), delimit);
+                            break;
+                        case UNIV_CSV_TYPE:
+                            text << pBankTransaction.TRANSCODE;
+                            break;
+                        case UNIV_CSV_DONTCARE:
+                        default:
+                            break;
+                        }
+                        if (col >= m_list_ctrl_->GetColumnCount())
+                            break;
+                        else
+                        {
+                            if (col == date_col)
+                            {
+                                wxDateTime dtdt;
+                                mmParseDisplayStringToDate(dtdt, text, date_format_);
+                                text = dtdt.Format(date_format_);
+                            }
+                            m_list_ctrl_->SetItem(itemIndex, col, text);
+                        }
+
+                    }
+                    if (++count >= MAX_ROWS_IN_PREVIEW) break;
+                    ++row;
                 }
-                if (++count >= MAX_ROWS_IN_PREVIEW) break;
-                ++row;
+
             }
         }
     }
