@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-12-12 19:45+0300\n"
-"PO-Revision-Date: 2020-12-14 18:17\n"
+"PO-Revision-Date: 2020-12-14 18:26\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -5699,7 +5699,7 @@ msgstr "Todo el tiempo"
 
 #: reports/incexpenses.cpp:33
 msgid "Income vs Expenses Summary"
-msgstr ""
+msgstr "Resumen de ingresos vs gastos"
 
 #: reports/incexpenses.cpp:118
 msgid "Income:"
@@ -5711,7 +5711,7 @@ msgstr "Gastos:"
 
 #: reports/incexpenses.cpp:141
 msgid "Income vs Expenses Monthly"
-msgstr ""
+msgstr "Ingresos vs Gastos mensuales"
 
 #: reports/incexpenses.cpp:272
 msgid "Year"
