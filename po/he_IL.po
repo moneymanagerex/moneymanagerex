@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-12-12 19:45+0300\n"
-"PO-Revision-Date: 2020-12-12 16:56\n"
+"PO-Revision-Date: 2020-12-14 10:22\n"
 "Last-Translator: \n"
 "Language-Team: Hebrew\n"
 "MIME-Version: 1.0\n"
@@ -169,7 +169,7 @@ msgstr "אתר מרשתת:"
 
 #: accountdialog.cpp:220
 msgid "Enter the URL of the website for the financial institution."
-msgstr "נא להזין כתובת ה URL של המוסד הכספי."
+msgstr "נא להזין את הפּוֹרְטָן של המוסד הכספי."
 
 #: accountdialog.cpp:223
 msgid "Contact:"
@@ -267,7 +267,7 @@ msgstr "מטבע"
 
 #: accountdialog.cpp:498
 msgid "Please insert a valid URL"
-msgstr "נא להזין כתובת URL תקינה"
+msgstr "נא להזין פּוֹרְטָן תקין"
 
 #: accountdialog.cpp:498
 msgid "Invalid URL"
@@ -5675,7 +5675,7 @@ msgstr "סך כל הכנסות:"
 
 #: reports/categexp.cpp:229
 msgid "Categories Summary"
-msgstr ""
+msgstr "תמצית קטגוריות"
 
 #: reports/categexp.cpp:238
 msgid "Category Income/Expenses"
@@ -5709,7 +5709,7 @@ msgstr "לאורך זמן"
 
 #: reports/incexpenses.cpp:33
 msgid "Income vs Expenses Summary"
-msgstr ""
+msgstr "תמצית הכנסות מול הוצאות"
 
 #: reports/incexpenses.cpp:118
 msgid "Income:"
@@ -5721,7 +5721,7 @@ msgstr "הוצאות:"
 
 #: reports/incexpenses.cpp:141
 msgid "Income vs Expenses Monthly"
-msgstr ""
+msgstr "הכנסות מול הוצאות - חודשי"
 
 #: reports/incexpenses.cpp:272
 msgid "Year"
