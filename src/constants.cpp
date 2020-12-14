@@ -103,7 +103,14 @@ const wxString mmex::getProgramName()
 }
 const wxString mmex::getTitleProgramVersion()
 {
-    return wxString::Format("%s", mmex::version::string);
+    const wxString architecture = 
+#if defined(_WIN64) || defined(__x86_64__)
+    "64-bit";
+#else
+    ""
+#endif
+
+    return wxString::Format("%s %s", mmex::version::string, architecture);
 }
 
 const wxString mmex::getProgramCopyright()
