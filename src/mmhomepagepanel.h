@@ -65,7 +65,6 @@ private:
     std::map <wxString, wxString> m_frames;
     void insertDataIntoTemplate();
     void fillData();
-    void OnLinkClicked(wxWebViewEvent& event);
     const wxString getToggles();
 };
 
