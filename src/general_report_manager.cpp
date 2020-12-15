@@ -397,8 +397,8 @@ void mmGeneralReportManager::createOutputTab(wxNotebook* editors_notebook, int t
     editors_notebook->InsertPage(type, out_tab, _("Output"));
     wxBoxSizer *out_sizer = new wxBoxSizer(wxVERTICAL);
     out_tab->SetSizer(out_sizer);
-    browser_ = wxWebView::New(out_tab, ID_WEB);
 
+    browser_ = wxWebView::New(out_tab, ID_WEB);
     browser_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new wxWebViewFSHandler("memory")));
     Bind(wxEVT_WEBVIEW_NEWWINDOW, &mmGeneralReportManager::OnNewWindow, this, browser_->GetId());
 
@@ -1199,7 +1199,7 @@ void mmGeneralReportManager::OnNewWindow(wxWebViewEvent& evt)
 {
     const wxString uri = evt.GetURL();
 
-    wxRegEx pattern(R"(^https?:\/\/)");
+    wxRegEx pattern(R"(^(https?:)|(file:)\/\/)");
     if (pattern.Matches(uri))
     {
         wxLaunchDefaultBrowser(uri);

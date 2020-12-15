@@ -35,7 +35,7 @@ Copyright (C) 2014 - 2020 Nikolay Akimov
 #include "model/allmodel.h"
 
 wxBEGIN_EVENT_TABLE(mmHomePagePanel, wxPanel)
-EVT_WEBVIEW_NAVIGATING(wxID_ANY, mmHomePagePanel::OnLinkClicked)
+//EVT_WEBVIEW_NAVIGATING(wxID_ANY, mmHomePagePanel::OnLinkClicked)
 wxEND_EVENT_TABLE()
 
 mmHomePagePanel::mmHomePagePanel(wxWindow *parent, mmGUIFrame *frame
@@ -108,8 +108,8 @@ void mmHomePagePanel::createControls()
 #ifndef _DEBUG
     browser_->EnableContextMenu(false);
 #endif
-    browser_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new wxWebViewFSHandler("memory")));
 
+    browser_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new wxWebViewFSHandler("memory")));
     Bind(wxEVT_WEBVIEW_NEWWINDOW, &mmHomePagePanel::OnNewWindow, this, browser_->GetId());
 
     itemBoxSizer2->Add(browser_, 1, wxGROW | wxALL, 0);
@@ -186,61 +186,6 @@ void mmHomePagePanel::fillData()
     const auto name = getVFname4print("hp", m_templateText);
     browser_->LoadURL(name);
 
-}
-
-
-void mmHomePagePanel::OnLinkClicked(wxWebViewEvent& event)
-{
-    const wxString& url = event.GetURL();
-
-    if (url.Contains("#"))
-    {
-        wxString name = url.AfterLast('#');
-
-        //Convert the JSON string from database to a json object
-        wxString str = Model_Infotable::instance().GetStringInfo("HOME_PAGE_STATUS", "{}");
-
-        wxLogDebug("======= mmHomePagePanel::OnLinkClicked =======");
-        wxLogDebug("Name = %s", name);
-
-        Document json_doc;
-        if (json_doc.Parse(str.utf8_str()).HasParseError())
-            return;
-
-        Document::AllocatorType& json_allocator = json_doc.GetAllocator();
-        wxLogDebug("RapidJson Input\n%s", JSON_PrettyFormated(json_doc));
-
-        const wxString type[] = {
-            "TOP_CATEGORIES"
-            , "INVEST"
-            , "ACCOUNTS_INFO"
-            , "CARD_ACCOUNTS_INFO"
-            , "CASH_ACCOUNTS_INFO"
-            , "LOAN_ACCOUNTS_INFO"
-            , "TERM_ACCOUNTS_INFO"
-            , "CURRENCY_RATES"
-        };
-
-        for (const auto& entry : type)
-        {
-            if (name != entry) continue;
-
-            Value v_type(entry.utf8_str(), json_allocator);
-            if (json_doc.HasMember(v_type) && json_doc[v_type].IsBool())
-            {
-                json_doc[v_type] = !json_doc[v_type].GetBool();
-            }
-            else
-            {
-                json_doc.AddMember(v_type, true, json_allocator);
-            }
-        }
-
-        wxLogDebug("Saving updated RapidJson\n%s", JSON_PrettyFormated(json_doc));
-        wxLogDebug("======= mmHomePagePanel::OnLinkClicked =======");
-
-        Model_Infotable::instance().Set("HOME_PAGE_STATUS", JSON_PrettyFormated(json_doc));
-    }
 }
 
 void mmHomePagePanel::OnNewWindow(wxWebViewEvent& evt)
