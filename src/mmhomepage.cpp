@@ -665,9 +665,9 @@ const wxString htmlWidgetAccounts::displayAccounts(double& tBalance, int type = 
             (vAccts == VIEW_ACCOUNTS_ALL_STR)))
         {
             body += "<tr>";
-            body += wxString::Format("<td sorttable_customkey=\"*%s*\" nowrap><a href=\"acct:%i\" oncontextmenu=\"return false;\" target=\"_blank\">%s</a>%s</td>\n"
+            body += wxString::Format(R"(<td sorttable_customkey="*%s*" nowrap><a href="acct:%i" oncontextmenu="return false;" target="_blank">%s</a>%s</td>\n)"
                 , account.ACCOUNTNAME, account.ACCOUNTID, account.ACCOUNTNAME,
-                account.WEBSITE.empty() ? "" : wxString::Format("&nbsp;&nbsp;&nbsp;&nbsp;(<a href='%s' oncontextmenu='return false;' target='_blank'>WWW</a>)", account.WEBSITE));
+                account.WEBSITE.empty() ? "" : wxString::Format(R"(&nbsp;&nbsp;&nbsp;&nbsp;(<a href="%s" oncontextmenu="return false;" target="_blank">WWW</a>))", account.WEBSITE));
             body += wxString::Format("<td class='money' sorttable_customkey='%f' nowrap>%s</td>\n", reconciledBal, Model_Currency::toCurrency(reconciledBal, currency));
             body += wxString::Format("<td class='money' sorttable_customkey='%f' colspan='2' nowrap>%s</td>\n", bal, Model_Currency::toCurrency(bal, currency));
             body += "</tr>\n";

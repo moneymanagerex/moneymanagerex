@@ -193,10 +193,14 @@ void mmHomePagePanel::OnNewWindow(wxWebViewEvent& evt)
     const wxString uri = evt.GetURL();
     wxString sData;
 
-    wxRegEx pattern(R"(^https?:\/\/)");
+    wxRegEx pattern(R"(^(https?:)|(file:)\/\/)");
     if (pattern.Matches(uri))
     {
         wxLaunchDefaultBrowser(uri);
+    }
+    else if (uri.StartsWith("memory:", &sData))
+    {
+        wxLaunchDefaultBrowser(sData);
     }
     else if (uri.StartsWith("assets:", &sData))
     {
