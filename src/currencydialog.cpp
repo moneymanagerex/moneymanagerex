@@ -157,7 +157,7 @@ void mmCurrencyDialog::CreateControls()
 
     itemFlexGridSizer3->Add(new wxStaticText(this, wxID_STATIC, _("Currency Symbol")), g_flagsH);
     m_currencySymbol = new mmTextCtrl(this, ID_DIALOG_CURRENCY);
-    m_currencySymbol->SetMaxLength(3);
+    m_currencySymbol->SetMaxLength(12);
     itemFlexGridSizer3->Add(m_currencySymbol, g_flagsExpand);
 
     itemFlexGridSizer3->Add(new wxStaticText(this, wxID_STATIC, _("Prefix Symbol")), g_flagsH);

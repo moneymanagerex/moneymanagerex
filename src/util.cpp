@@ -626,14 +626,28 @@ bool get_yahoo_prices(std::map<wxString, double>& symbols
     }
 
     Document json_doc;
-    if (json_doc.Parse(json_data.utf8_str()).HasParseError())
+    if (json_doc.Parse(json_data.utf8_str()).HasParseError()) {
+        output = _("JSON Parse Error");
         return false;
+    }
+
+    /*
+    {"finance":{"result":null,"error":{"code":"Bad Request","description":"Missing required query parameter=symbols"}}}
+    */
+
+    if (json_doc.HasMember("finance") && json_doc["finance"].IsObject()) {
+        Value e = json_doc["finance"].GetObject();
+        if (e.HasMember("error") && e["error"].IsObject()) {
+            Value err = e["error"].GetObject();
+            if (err.HasMember("description") && err["description"].IsString()) {
+                output = wxString::FromUTF8(err["description"].GetString());
+                return false;
+            }
+        }
+    }
 
 
     Value r = json_doc["quoteResponse"].GetObject();
-    //if (!r.HasMember("error") || !r["error"].IsNull())
-    //    return false;
-
     Value e = r["result"].GetArray();
 
     if (e.Empty()) {
