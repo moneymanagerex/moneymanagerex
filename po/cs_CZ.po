@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-12-12 19:45+0300\n"
-"PO-Revision-Date: 2020-12-12 16:56\n"
+"PO-Revision-Date: 2020-12-23 03:44\n"
 "Last-Translator: \n"
 "Language-Team: Czech\n"
 "MIME-Version: 1.0\n"
@@ -5677,7 +5677,7 @@ msgstr "Celkové příjmy:"
 
 #: reports/categexp.cpp:229
 msgid "Categories Summary"
-msgstr ""
+msgstr "Přehled kategorií"
 
 #: reports/categexp.cpp:238
 msgid "Category Income/Expenses"
@@ -5711,7 +5711,7 @@ msgstr "Průběžně"
 
 #: reports/incexpenses.cpp:33
 msgid "Income vs Expenses Summary"
-msgstr ""
+msgstr "Přehled příjmů a výdajů"
 
 #: reports/incexpenses.cpp:118
 msgid "Income:"
@@ -5723,7 +5723,7 @@ msgstr "Výdaje:"
 
 #: reports/incexpenses.cpp:141
 msgid "Income vs Expenses Monthly"
-msgstr ""
+msgstr "Měsíční příjmy a výdaje"
 
 #: reports/incexpenses.cpp:272
 msgid "Year"
