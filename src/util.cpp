@@ -397,7 +397,7 @@ const std::map<wxString, wxString> &date_formats_regex()
     // First time this function is called, fill the map.
     const wxString dd = "((([0 ][1-9])|([1-2][0-9])|(3[0-1]))|([1-9]))";
     const wxString mm = "((([0 ][1-9])|(1[0-2]))|([1-9]))";
-    const wxString yy = "([0-9]{1,2})";
+    const wxString yy = "(([ ][0-9])|([0-9]{1,2}))";
     const wxString yyyy = "(((19)|([2]([0]{1})))([0-9]{2}))";
     const wxString tail = "($|[^0-9])+";
 
@@ -626,14 +626,28 @@ bool get_yahoo_prices(std::map<wxString, double>& symbols
     }
 
     Document json_doc;
-    if (json_doc.Parse(json_data.utf8_str()).HasParseError())
+    if (json_doc.Parse(json_data.utf8_str()).HasParseError()) {
+        output = _("JSON Parse Error");
         return false;
+    }
+
+    /*
+    {"finance":{"result":null,"error":{"code":"Bad Request","description":"Missing required query parameter=symbols"}}}
+    */
+
+    if (json_doc.HasMember("finance") && json_doc["finance"].IsObject()) {
+        Value e = json_doc["finance"].GetObject();
+        if (e.HasMember("error") && e["error"].IsObject()) {
+            Value err = e["error"].GetObject();
+            if (err.HasMember("description") && err["description"].IsString()) {
+                output = wxString::FromUTF8(err["description"].GetString());
+                return false;
+            }
+        }
+    }
 
 
     Value r = json_doc["quoteResponse"].GetObject();
-    //if (!r.HasMember("error") || !r["error"].IsNull())
-    //    return false;
-
     Value e = r["result"].GetArray();
 
     if (e.Empty()) {
