@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-12-24 17:26+0300\n"
-"PO-Revision-Date: 2020-12-27 17:25\n"
+"PO-Revision-Date: 2020-12-27 17:35\n"
 "Last-Translator: \n"
 "Language-Team: Turkish\n"
 "MIME-Version: 1.0\n"
@@ -2398,8 +2398,8 @@ msgstr "Şablon Oluştur"
 #, c-format
 msgid "%zu row returned, duration: %lld ms"
 msgid_plural "%zu rows returned, duration: %lld ms"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%zu satır geri döndü, süre: %lld ms"
+msgstr[1] "%zu satır geri döndü, süre: %lld ms"
 
 #: general_report_manager.cpp:534
 msgid "SQL Syntax Error"
@@ -2411,7 +2411,7 @@ msgstr "Rapor dosyasını yükle:"
 
 #: general_report_manager.cpp:567 general_report_manager.cpp:996
 msgid "General Report Manager files (*.grm)"
-msgstr ""
+msgstr "Genel Rapor Yöneticisi dosyaları (*.grm)"
 
 #: general_report_manager.cpp:567 general_report_manager.cpp:996
 msgid "ZIP files (*.zip)"
