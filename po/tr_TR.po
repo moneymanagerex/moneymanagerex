@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-12-24 17:26+0300\n"
-"PO-Revision-Date: 2020-12-27 18:25\n"
+"PO-Revision-Date: 2020-12-27 18:36\n"
 "Last-Translator: \n"
 "Language-Team: Turkish\n"
 "MIME-Version: 1.0\n"
@@ -3404,7 +3404,7 @@ msgstr "İpucu: .mmb dosyanızın yedeğini almayı unutmayın."
 
 #: mmTips.h:26
 msgid "Tip: The .mmb file is not encrypted. That means anyone else having the proper know how can actually open the file and read the contents. So make sure that if you are storing any sensitive financial information it is properly guarded."
-msgstr ""
+msgstr "İpucu: .mmb dosyası şifreli değil. Bilen birisi dosyayı açıp içeriğini okuyabilir. Bu nedenle önemli finansal bilgilerinizi uygun bir şekilde koruyup korumadığınızdan emin olun."
 
 #: mmTips.h:27
 msgid "Tip: To mark a transaction as reconciled, just select the transaction and hit the 'r' or 'R' key. To mark a transaction as unreconciled, just select the transaction and hit the 'u' or 'U' key."
@@ -3525,7 +3525,7 @@ msgstr "En yakın işlem notlarında bulmak için herhangi bir dize girin"
 #: mmcheckingpanel.cpp:489
 #, c-format
 msgid "Account View : %s"
-msgstr ""
+msgstr "Hesap Görünümü: %s"
 
 #: mmcheckingpanel.cpp:715
 msgid "Select account used in transfer transactions"
