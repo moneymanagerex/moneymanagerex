@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-12-24 17:26+0300\n"
-"PO-Revision-Date: 2020-12-27 18:16\n"
+"PO-Revision-Date: 2020-12-27 18:25\n"
 "Last-Translator: \n"
 "Language-Team: Turkish\n"
 "MIME-Version: 1.0\n"
@@ -3218,7 +3218,8 @@ msgstr "Temel Para Birimi Seçimi"
 #, c-format
 msgid "Historic rates for %s found, but \"Use currency history\" in options is disabled:\n"
 "click no and enable it or click yes to remove all historic rates for %s"
-msgstr ""
+msgstr "%s için geçmiş kurlar bulundu, fakat \"Kur geçmişini kullan\" seçeneği kapalı:\n"
+"hayır'ı tıklayın ve ayarı açın veya %s için tüm geçmiş tarihli kurları kaldırmak için evet'i tıklayın"
 
 #: maincurrencydialog.cpp:432
 #, c-format
@@ -3272,7 +3273,7 @@ msgstr "Bugünkü döviz kurlarını güncellemek ister misiniz?"
 #: maincurrencydialog.cpp:808
 #, c-format
 msgid "Unable to download history for base symbol %s. History rates not available!"
-msgstr ""
+msgstr "%s sembolü için geçmişi indirmek olanaksız. Geçmiş kurlar alınabilir değil!"
 
 #: maincurrencydialog.cpp:853 stockspanel.cpp:830 util.cpp:512
 msgid "Could not find base currency symbol!"
@@ -3280,19 +3281,19 @@ msgstr "Temel para birimi simgesi  bulunamadı!"
 
 #: mmSimpleDialogs.cpp:177
 msgid "Subtract one year"
-msgstr ""
+msgstr "Bir yıl çıkar"
 
 #: mmSimpleDialogs.cpp:178
 msgid "Subtract one month"
-msgstr ""
+msgstr "Bir ay çıkar"
 
 #: mmSimpleDialogs.cpp:179
 msgid "Add one month"
-msgstr ""
+msgstr "Bir ay ekle"
 
 #: mmSimpleDialogs.cpp:180
 msgid "Add one year"
-msgstr ""
+msgstr "Bir yıl ekle"
 
 #: mmSimpleDialogs.cpp:237
 #, c-format
@@ -3369,7 +3370,7 @@ msgstr "Lütfen boş olmayan bir sembol yazın."
 
 #: mmTextCtrl.cpp:69
 msgid "Invalid Value"
-msgstr ""
+msgstr "Geçersiz Değer"
 
 #: mmTextCtrl.cpp:95
 msgid "Please enter a positive or calculated value."
