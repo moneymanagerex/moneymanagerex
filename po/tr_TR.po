@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-12-24 17:26+0300\n"
-"PO-Revision-Date: 2020-12-27 17:15\n"
+"PO-Revision-Date: 2020-12-27 17:25\n"
 "Last-Translator: \n"
 "Language-Team: Turkish\n"
 "MIME-Version: 1.0\n"
@@ -1266,7 +1266,7 @@ msgstr[1] ""
 msgid "%d day overdue!"
 msgid_plural "%d days overdue!"
 msgstr[0] "%d gün gecikti!"
-msgstr[1] ""
+msgstr[1] "%d gün gecikti!"
 
 #: billsdepositspanel.cpp:630
 msgid "Do you really want to delete the series?"
@@ -1580,19 +1580,19 @@ msgstr "Kategorileri Düzenle: Silme Hatası"
 
 #: categdialog.cpp:432
 msgid "Select an unused category to delete."
-msgstr ""
+msgstr "Silmek için kullanılmamış bir kategori seçin."
 
 #: categdialog.cpp:457
 msgid "This category cannot be deleted because it's used by transactions."
-msgstr ""
+msgstr "İşlemler tarafından kullanıldığından bu kategori silinemez."
 
 #: categdialog.cpp:464
 msgid "Delete an existing category."
-msgstr ""
+msgstr "Var olan bir kategori silin."
 
 #: categdialog.cpp:469
 msgid "Subcategories must be deleted before."
-msgstr ""
+msgstr "Önce alt kategoriler silinmelidir."
 
 #: categdialog.cpp:485
 #, c-format
@@ -1646,7 +1646,7 @@ msgstr "&Kapat"
 
 #: constants.cpp:195
 msgid "Advanced Filter"
-msgstr ""
+msgstr "Gelişmiş Süzgeç"
 
 #: constants.cpp:196
 msgid "View All Transactions"
@@ -1783,7 +1783,7 @@ msgstr "Geçersiz Giriş"
 #: currencydialog.cpp:295
 #, c-format
 msgid "%.2f Shown As: %s"
-msgstr ""
+msgstr "%.2f Göründüğü gibi: %s"
 
 #: customfieldeditdialog.cpp:56
 msgid "New/Edit Custom Field"
@@ -1815,7 +1815,7 @@ msgstr "Gösterilecek ipucunu girin"
 
 #: customfieldeditdialog.cpp:142
 msgid "RegEx"
-msgstr ""
+msgstr "RegEx"
 
 #: customfieldeditdialog.cpp:144
 msgid "Enter the RegEx to validate field"
@@ -2300,7 +2300,7 @@ msgstr "Tutar Aralığı"
 
 #: filtertransdialog.cpp:347
 msgid "&Clear "
-msgstr ""
+msgstr "&Temizle "
 
 #: filtertransdialog.cpp:822 filtertransdialog.cpp:837 reports/myusage.cpp:91
 #: webappdialog.cpp:194 webappdialog.cpp:199
@@ -2376,11 +2376,11 @@ msgstr "Dışarı"
 
 #: general_report_manager.cpp:413
 msgid "SQL"
-msgstr ""
+msgstr "SQL"
 
 #: general_report_manager.cpp:414
 msgid "Lua"
-msgstr ""
+msgstr "Lua"
 
 #: general_report_manager.cpp:415
 msgid "Template"
@@ -2388,7 +2388,7 @@ msgstr "Şablon"
 
 #: general_report_manager.cpp:456
 msgid "&Test"
-msgstr ""
+msgstr "Test"
 
 #: general_report_manager.cpp:457
 msgid "Create Template"
