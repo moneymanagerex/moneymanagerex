@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-12-24 17:26+0300\n"
-"PO-Revision-Date: 2020-12-27 17:05\n"
+"PO-Revision-Date: 2020-12-27 17:15\n"
 "Last-Translator: \n"
 "Language-Team: Turkish\n"
 "MIME-Version: 1.0\n"
@@ -840,7 +840,7 @@ msgstr "Yinelemeler"
 
 #: billsdepositsdialog.cpp:434
 msgid "Advance the next occurring date with the specified values"
-msgstr ""
+msgstr "Belirli değerli izleyen gerçekleşme tarihine geçin"
 
 #: billsdepositsdialog.cpp:441 billsdepositsdialog.cpp:1294
 msgid "Payments Left"
@@ -872,7 +872,7 @@ msgstr "Bu ödeme veya alındının vade tarihini belirtin."
 
 #: billsdepositsdialog.cpp:504
 msgid "Retard or advance the date of the 'next occurrence'"
-msgstr ""
+msgstr "Gelecek gerçekleşme tarihini erteleyin veya öne alın"
 
 #: billsdepositsdialog.cpp:509 billsdepositspanel.cpp:98
 msgid "Date Due"
@@ -1044,7 +1044,8 @@ msgstr "Dönem: Aylar"
 #: billsdepositsdialog.cpp:1261
 msgid "Specify period in Days to activate.\n"
 "Becomes blank when not active."
-msgstr ""
+msgstr "Etkinleştirmek için dönemi gün olarak belirtin.\n"
+"Etkinleştirilmediğinde boş olur."
 
 #: billsdepositsdialog.cpp:1270
 msgid "Specify period in Months to activate.\n"
@@ -1264,7 +1265,7 @@ msgstr[1] ""
 #, c-format
 msgid "%d day overdue!"
 msgid_plural "%d days overdue!"
-msgstr[0] ""
+msgstr[0] "%d gün gecikti!"
 msgstr[1] ""
 
 #: billsdepositspanel.cpp:630
@@ -1356,7 +1357,7 @@ msgstr "Bütçe Kategori Özetini Göster"
 #: budgetingpanel.cpp:172 reports/budget.cpp:88
 #, c-format
 msgid "Financial Year: %s - %i"
-msgstr ""
+msgstr "Finansal Yıl: %s - %i"
 
 #: budgetingpanel.cpp:176 reports/budget.cpp:92
 #, c-format
