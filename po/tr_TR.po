@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-12-24 17:26+0300\n"
-"PO-Revision-Date: 2020-12-27 17:35\n"
+"PO-Revision-Date: 2020-12-27 18:16\n"
 "Last-Translator: \n"
 "Language-Team: Turkish\n"
 "MIME-Version: 1.0\n"
@@ -2556,7 +2556,7 @@ msgstr "QIF Verme"
 
 #: import_export/qif_export.cpp:47
 msgid "JSON Export"
-msgstr ""
+msgstr "JSON Verme"
 
 #: import_export/qif_export.cpp:106
 msgid "Parameters"
@@ -2568,11 +2568,11 @@ msgstr "Kayıt"
 
 #: import_export/qif_export.cpp:123
 msgid "QIF"
-msgstr ""
+msgstr "QIF"
 
 #: import_export/qif_export.cpp:124
 msgid "JSON"
-msgstr ""
+msgstr "JSON"
 
 #: import_export/qif_export.cpp:138 mmframe.cpp:2948 mmframe.cpp:2952
 #: mmframe.cpp:2971 mmframe.cpp:2975
@@ -2615,15 +2615,15 @@ msgstr "Verilecek QIF veri dosyasını seçin"
 
 #: import_export/qif_export.cpp:294 import_export/qif_import_gui.cpp:723
 msgid "QIF Files (*.qif)"
-msgstr ""
+msgstr "QIF Dosyaları (*.qif)"
 
 #: import_export/qif_export.cpp:299
 msgid "Choose JSON data file to Export"
-msgstr ""
+msgstr "Verilecek JSON veri dosyası seçin"
 
 #: import_export/qif_export.cpp:301
 msgid "JSON Files (*.json)"
-msgstr ""
+msgstr "JSON Dosyaları (*.json)"
 
 #: import_export/qif_export.cpp:321
 msgid "No Account available for export"
@@ -2653,22 +2653,22 @@ msgstr "Veriliyor"
 #: import_export/qif_export.cpp:470
 #, c-format
 msgid "Exporting transaction %zu"
-msgstr ""
+msgstr "Verilen işlemler %zu"
 
 #: import_export/qif_export.cpp:571
 #, c-format
 msgid "Number of categories exported: %zu"
-msgstr ""
+msgstr "Verilen kategori sayısı: %zu"
 
 #: import_export/qif_export.cpp:573
 #, c-format
 msgid "Number of transactions exported: %zu"
-msgstr ""
+msgstr "Verilen işlem sayısı: %zu"
 
 #: import_export/qif_export.cpp:575
 #, c-format
 msgid "Number of accounts exported: %zu"
-msgstr ""
+msgstr "Verilen hesap sayısı: %zu"
 
 #: import_export/qif_export.cpp:576 mmframe.cpp:1317
 msgid "Export to QIF"
@@ -2714,17 +2714,17 @@ msgstr "Taranıyor"
 #: import_export/qif_import_gui.cpp:384
 #, c-format
 msgid "Reading line %zu, %lld ms"
-msgstr ""
+msgstr "Satır okunuyor %zu, %lld ms"
 
 #: import_export/qif_import_gui.cpp:390
 #, c-format
 msgid "Line %zu \t %s\n"
-msgstr ""
+msgstr "Satır %zu \t %s\n"
 
 #: import_export/qif_import_gui.cpp:463
 #, c-format
 msgid "Number of lines read from QIF file: %zu in %lld ms"
-msgstr ""
+msgstr "QIF dosyasından okunan satır sayısı: %zu, %lld ms'de"
 
 #: import_export/qif_import_gui.cpp:466
 msgid "Press OK Button to continue"
@@ -2796,7 +2796,7 @@ msgstr "Alma başarılı bir şekilde sonuçlandı."
 #: import_export/qif_import_gui.cpp:898
 #, c-format
 msgid "Total Imported: %zu"
-msgstr ""
+msgstr "Toplam Alınan: %zu"
 
 #: import_export/qif_import_gui.cpp:906 import_export/univcsvdialog.cpp:1080
 msgid "Imported transactions discarded by user!"
@@ -3120,7 +3120,7 @@ msgstr "XML Dosyaları (*.xml)"
 
 #: import_export/univcsvdialog.cpp:1550
 msgid "All Files"
-msgstr ""
+msgstr "Tüm Dosyalar"
 
 #: import_export/univcsvdialog.cpp:1551
 msgid "CSV Files (*.csv)"
