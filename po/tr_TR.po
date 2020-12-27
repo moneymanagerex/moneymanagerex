@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-12-24 17:26+0300\n"
-"PO-Revision-Date: 2020-12-24 14:35\n"
+"PO-Revision-Date: 2020-12-27 17:05\n"
 "Last-Translator: \n"
 "Language-Team: Turkish\n"
 "MIME-Version: 1.0\n"
@@ -401,7 +401,7 @@ msgstr "% Oran"
 
 #: assetdialog.cpp:247
 msgid "Enter the rate at which the asset changes its value in percentage per year"
-msgstr ""
+msgstr "Her yıl varlığın hangi oranda değişeceğini girin"
 
 #: assetdialog.cpp:259
 msgid "Organize attachments of this asset"
@@ -436,7 +436,7 @@ msgstr "Duran Varlık Hesabı bulunamadı.\n\n"
 #: assetspanel.cpp:58 billsdepositspanel.cpp:96 mmcheckingpanel.cpp:951
 #: reports/transactions.cpp:68 stockspanel.cpp:89
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #: assetspanel.cpp:61 billsdepositsdialog.cpp:537 billsdepositspanel.cpp:103
 #: customfieldlistdialog.cpp:55 filtertransdialog.cpp:252
@@ -788,19 +788,19 @@ msgstr "Günlük"
 
 #: billsdepositsdialog.cpp:61 billsdepositsdialog.cpp:1337
 msgid "In (x) Days"
-msgstr ""
+msgstr "(x) Günde bir"
 
 #: billsdepositsdialog.cpp:62 billsdepositsdialog.cpp:1337
 msgid "In (x) Months"
-msgstr ""
+msgstr "(x) Ayda bir"
 
 #: billsdepositsdialog.cpp:63
 msgid "Every (x) Days"
-msgstr ""
+msgstr "Her (x) Gün"
 
 #: billsdepositsdialog.cpp:64
 msgid "Every (x) Months"
-msgstr ""
+msgstr "Her (x) Ay"
 
 #: billsdepositsdialog.cpp:65 billsdepositspanel.cpp:54
 msgid "Monthly (last day)"
