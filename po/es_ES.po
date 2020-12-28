@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-12-24 17:26+0300\n"
-"PO-Revision-Date: 2020-12-24 14:35\n"
+"PO-Revision-Date: 2020-12-28 10:58\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -6455,7 +6455,7 @@ msgstr "Se han actualizado los tipos de cambio"
 
 #: util.cpp:630
 msgid "JSON Parse Error"
-msgstr ""
+msgstr "Error de sintáxis JSON"
 
 #: util.cpp:926
 #, c-format
