@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-12-24 17:26+0300\n"
-"PO-Revision-Date: 2020-12-29 13:46\n"
+"PO-Revision-Date: 2020-12-29 13:56\n"
 "Last-Translator: \n"
 "Language-Team: Hebrew\n"
 "MIME-Version: 1.0\n"
@@ -1527,7 +1527,7 @@ msgstr "הזנת שם קטגוריה חדשה:"
 
 #: categdialog.cpp:255
 msgid "Tip: If category added now, check bottom of list."
-msgstr "עצה: אם קטגוריה נוספה כעת, בדוק המצאותה בתחתית הרשימה."
+msgstr "עצה: אם קטגוריה נוספה כעת, היא תמצא בתחתית הרשימה."
 
 #: categdialog.cpp:258
 msgid "Add Category"
@@ -1566,13 +1566,13 @@ msgstr "תת קטגוריה בשימוש."
 #: categdialog.cpp:320
 msgid "Tip: Change all transactions using this Category to\n"
 "another Category using the relocate command:"
-msgstr "עצה: שנה את הקטגוריה בכל התנועות לקטגוריה\n"
+msgstr "עצה: ניתן לשנות קטגוריה בכל התנועות לקטגוריה\n"
 "אחרת תוך שימוש בפקודת העברה:"
 
 #: categdialog.cpp:323
 msgid "Tip: Change all transactions using this Sub-Category to\n"
 "another Sub-Category using the relocate command:"
-msgstr "עצה: שנוי קטגוריות המשנה בכל התנועות לקטגורית משנה\n"
+msgstr "עצה: ניתן לשנות את קטגוריות המשנה בכל התנועות לקטגורית משנה\n"
 "אחרת תוך שימוש בפקודת העברה:"
 
 #: categdialog.cpp:326
@@ -3392,8 +3392,8 @@ msgstr "נא הזנת ערך מחושב."
 #: mmTextCtrl.cpp:97
 msgid "Tip: For calculations, enter expressions like (2+2)*(2+2)\n"
 "Calculations will be evaluated and the result used as the entry."
-msgstr "עצה : לחישובים הזנת ביטויים כמו ( 2 + 2 ) * ( 2 + 2 )\n"
-"חישובים יתבצעו והתוצאה תשמש כהזנה."
+msgstr "עצה: לביצוע חישוב נא להזין ביטויים כגון ( 2 + 2) * ( 2 + 2)\n"
+"החישובים יתבצעו והתוצאה תשמש כהזנה."
 
 #: mmTips.h:22
 msgid "Recommendation: Always backup your .mmb database file regularly."
@@ -3413,15 +3413,15 @@ msgstr "עצה: זכרו לבצע גיבויים לקובץ ה .mmb שלכם."
 
 #: mmTips.h:26
 msgid "Tip: The .mmb file is not encrypted. That means anyone else having the proper know how can actually open the file and read the contents. So make sure that if you are storing any sensitive financial information it is properly guarded."
-msgstr "עצה: קובץ .mmb לא מוצפן, הוא לא מוצפן. כלומר, כל אחד בעל ידע רלוונטי יוכל לפתוח את הקובץ ולקרוא את התוכנו. לכן, וודא כי אם מאוחסן בקובץ מידע פיננסי רגיש, הוא מאובטח כראוי."
+msgstr "עצה: קובץ .mmb לא מוצפן, הוא 'לא מוצפן'. כלומר, כל אחד, בעל ידע מסויים, יוכל לפתוח את הקובץ ולקרוא את תוכנו. לכן, יש וודא כי במידה ומאוחסן בקובץ מידע פיננסי רגיש, שיאובטח כראוי."
 
 #: mmTips.h:27
 msgid "Tip: To mark a transaction as reconciled, just select the transaction and hit the 'r' or 'R' key. To mark a transaction as unreconciled, just select the transaction and hit the 'u' or 'U' key."
-msgstr "עצה: כדי לסמן טרנזקציה כמותאמת, פשוט בחירת את בתנועה והקש על מקש 'r' או 'R'. כדי לסמן טרנזקציה כלא-מותאמת, בחור את התנועה והקש על מקש 'u' או 'U'."
+msgstr "עצה: כדי לסמן תנועה כמותאמת, פשוט יש לבחור את בתנועה ולהקש על מקש 'r' או 'R'. כדי לסמן תנואה כלא-מותאמת, יש לבחור את התנועה ולהקש על מקש 'u' או 'U'."
 
 #: mmTips.h:28
 msgid "Tip: To mark a transaction as requiring followup, just select the transaction and hit the 'f' or 'F' key."
-msgstr "עצה: על מנת לסמן תנועה 'למעקב', רק לבחור את התנועה והקש על מקש ה 'f' או 'F' במקלדת."
+msgstr "עצה: על מנת לסמן תנועה 'למעקב', יש לבחור את התנועה ולהקש על מקש ה 'f' או 'F' במקלדת."
 
 #: mmTips.h:29
 msgid "Tip: MMEX supports printing of all reports that can be viewed. The print options are available under the menu, File->Print."
