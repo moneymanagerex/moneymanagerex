@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-12-24 17:26+0300\n"
-"PO-Revision-Date: 2020-12-29 13:56\n"
+"PO-Revision-Date: 2020-12-29 14:07\n"
 "Last-Translator: \n"
 "Language-Team: Hebrew\n"
 "MIME-Version: 1.0\n"
@@ -3425,11 +3425,11 @@ msgstr "עצה: על מנת לסמן תנועה 'למעקב', יש לבחור א
 
 #: mmTips.h:29
 msgid "Tip: MMEX supports printing of all reports that can be viewed. The print options are available under the menu, File->Print."
-msgstr "עצה: MMEX תומכת בהדפסת כל הדוחות הניתנים להצגה. אפשרויות ההדפסה זמינות מתפריט, קובץ -> הדפסה."
+msgstr "עצה: MMEX מאפשרת להדפיס את כל הדוחות הניתנים להצגה. אפשרויות ההדפסה זמינות מתפריט, קובץ -> הדפסה."
 
 #: mmTips.h:30
 msgid "Tip: You can modify some runtime behavior of MMEX by changing the options in the Options Dialog. "
-msgstr "עצה: ניתן לשנות  את התנהגות  של MMEX על-ידי שינוי האפשרויות בתיבת הדו-שיח 'אפשרויות'. "
+msgstr "עצה: ניתן לשנות את התנהגות MMEX על-ידי שינוי האפשרויות בתיבת הדו-שיח 'אפשרויות'. "
 
 #: mmTips.h:31
 msgid "Tip: To print a statement with transactions from any arbitrary set of criteria, use the transaction filter to select the transactions you want and then do a print from the menu."
@@ -3437,27 +3437,27 @@ msgstr "עצה: כדי להדפיס 'דוח מצב תנועות' לפי קריט
 
 #: mmTips.h:32
 msgid "Tip: Set exchange rate for currencies in case if you have accounts with different currencies."
-msgstr "עצה: הגדרת שערי מטח למטבעות למקרה שתרצה להשתמש בחשבונות עם מטבעות שונים."
+msgstr "עצה: נא להגדיר שערי מט\"ח למטבעות במידה ויעשה שימוש בחשבונות בעלי מטבעות שונים."
 
 #: mmTips.h:34
 msgid "Organize Categories Dialog Tip: Pressing the h key will cycle through all categories starting with the letter h"
-msgstr "עצה תיבת דו-שיח ניהול קטגוריות: לחיצה על המקש 'י', תקפיץ את הסמן לקטגוריה הראשונה שמתחילה באות 'י'"
+msgstr "עצה לתיבת דו-שיח ניהול קטגוריות: לחיצה על המקש 'י', תעביר את הסמן לקטגוריה הראשונה שמתחילה באות 'י'"
 
 #: mmTips.h:35
 msgid "Organize Categories Dialog Tip: Pressing 2 key combination will cycle through all categories starting with that key combination. Example: Pressing ho will select Homeneeds, Home, House Tax, etc..."
-msgstr "עצה עבור תיבת דו-שיח ניהול קטגוריות: הקשה על צרוף של שתי אותיות בו זמנית תציב את הסמן על הקטגוריה שמתחילה באותיות אלו. לדוגמה: הקשה על 'ד' ו- 'י' בו זמנית יציבו את הסמן על קטגוריה 'דיור', וכו'..."
+msgstr "עצה לתיבת דו-שיח ניהול קטגוריות: הקשה על צרוף של שתי אותיות בו זמנית תציב את הסמן על הקטגוריה שמתחילה באותיות אלו. לדוגמה: הקשה על 'ד' ו- 'י' בו זמנית יציבו את הסמן על קטגוריה 'דיור', וכו'..."
 
 #: mmTips.h:37
 msgid "Tip to get out of debt: Pay yourself 10 percentage first. Put this into an account that is hard to touch. Make sure it is a chore to get the money out (you have to drive to the bank), so you will only tap it consciously and for major expenses."
-msgstr "עצה על מנת לצאת מהחובות: לשלם 10 אחוז לעצמך תחילה. הפקד את הסכום בחשבון שקשה למשוך ממנו. ודא שמשיכת הכסף תהיה מטלה מורכבת (חייב להגיע לבנק אישית), כך שהשימוש בכסף יעשה במודע, עבור הוצאות משמעותיות."
+msgstr "עצה ליציאה מחובות: כדאי תחילה לשלם 10 אחוז 'לעצמנו'. פשוט להפקיד את הסכום בחשבון 'שקשה' למשוך ממנו. לוודא שמשיכת הכסף תהיה מטלה מורכבת (מצריך להגיע לבנק אישית), כך להבטיח שהשימוש בכסף יעשה במודע ועבור הוצאות משמעותיות."
 
 #: mmTips.h:38
 msgid "Tip to get out of debt: Establish an emergency fund."
-msgstr "עצה לצאת מחוב: הקם קרן לשעת חרום."
+msgstr "עצה ליציאה מחוב: כדאי להקים 'קרן' לשעת חרום."
 
 #: mmTips.h:39
 msgid "Tip to get out of debt: Stop acquiring new debt."
-msgstr "עצה לצאת מחובות: הפסק לצבור חוב חדש."
+msgstr "עצה ליציאה מחובות: חשוב להימנע מצבירת חובות חדשים."
 
 #: mmTips.h:40
 msgid "Tip to get out of debt: Create a realistic budget for your expenses."
