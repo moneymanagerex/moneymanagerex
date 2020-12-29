@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-12-24 17:26+0300\n"
-"PO-Revision-Date: 2020-12-29 14:07\n"
+"PO-Revision-Date: 2020-12-29 14:17\n"
 "Last-Translator: \n"
 "Language-Team: Hebrew\n"
 "MIME-Version: 1.0\n"
@@ -3409,19 +3409,19 @@ msgstr "המלצה: ניתן להשתמש בעותק (Ctrl + C) ולהדביק (
 
 #: mmTips.h:25
 msgid "Tip: Remember to make backups of your .mmb."
-msgstr "עצה: זכרו לבצע גיבויים לקובץ ה .mmb שלכם."
+msgstr "עצה: זכרו לבצע גיבויים לקובץ ה- .mmb."
 
 #: mmTips.h:26
 msgid "Tip: The .mmb file is not encrypted. That means anyone else having the proper know how can actually open the file and read the contents. So make sure that if you are storing any sensitive financial information it is properly guarded."
-msgstr "עצה: קובץ .mmb לא מוצפן, הוא 'לא מוצפן'. כלומר, כל אחד, בעל ידע מסויים, יוכל לפתוח את הקובץ ולקרוא את תוכנו. לכן, יש וודא כי במידה ומאוחסן בקובץ מידע פיננסי רגיש, שיאובטח כראוי."
+msgstr "עצה: קובץ .mmb לא מוצפן, הוא 'לא מוצפן'. כלומר, כל אחד, בעל ידע מסוים, יוכל לפתוח את הקובץ ולקרוא את תוכנו. לכן, יש וודא כי במידה ומאוחסן בקובץ מידע פיננסי רגיש, שיאובטח כראוי."
 
 #: mmTips.h:27
 msgid "Tip: To mark a transaction as reconciled, just select the transaction and hit the 'r' or 'R' key. To mark a transaction as unreconciled, just select the transaction and hit the 'u' or 'U' key."
-msgstr "עצה: כדי לסמן תנועה כמותאמת, פשוט יש לבחור את בתנועה ולהקש על מקש 'r' או 'R'. כדי לסמן תנואה כלא-מותאמת, יש לבחור את התנועה ולהקש על מקש 'u' או 'U'."
+msgstr "עצה: כדי לסמן תנועה כמותאמת, פשוט יש לבחור את בתנועה ולהקhש על מקש 'r' או 'R'. כדי לסמן תנוgה כלא-מותאמת, יש לבחור את התנועה ולהקhש על מקש 'u' או 'U'."
 
 #: mmTips.h:28
 msgid "Tip: To mark a transaction as requiring followup, just select the transaction and hit the 'f' or 'F' key."
-msgstr "עצה: על מנת לסמן תנועה 'למעקב', יש לבחור את התנועה ולהקש על מקש ה 'f' או 'F' במקלדת."
+msgstr "עצה: על מנת לסמן תנועה 'למעקב', יש לבחור את התנועה ולהקhש על מקש ה 'f' או 'F' במקלדת."
 
 #: mmTips.h:29
 msgid "Tip: MMEX supports printing of all reports that can be viewed. The print options are available under the menu, File->Print."
@@ -3437,11 +3437,11 @@ msgstr "עצה: כדי להדפיס 'דוח מצב תנועות' לפי קריט
 
 #: mmTips.h:32
 msgid "Tip: Set exchange rate for currencies in case if you have accounts with different currencies."
-msgstr "עצה: נא להגדיר שערי מט\"ח למטבעות במידה ויעשה שימוש בחשבונות בעלי מטבעות שונים."
+msgstr "עצה: נא להגדיר שערי מט\"ח למטבעות, במידה ויעשה שימוש בחשבונות בעלי מטבעות שונים."
 
 #: mmTips.h:34
 msgid "Organize Categories Dialog Tip: Pressing the h key will cycle through all categories starting with the letter h"
-msgstr "עצה לתיבת דו-שיח ניהול קטגוריות: לחיצה על המקש 'י', תעביר את הסמן לקטגוריה הראשונה שמתחילה באות 'י'"
+msgstr "עצה לתיבת דו-שיח ניהול קטגוריות: הקשה על המקש 'י', תעביר את הסמן לקטגוריה הראשונה שמתחילה באות 'י'"
 
 #: mmTips.h:35
 msgid "Organize Categories Dialog Tip: Pressing 2 key combination will cycle through all categories starting with that key combination. Example: Pressing ho will select Homeneeds, Home, House Tax, etc..."
@@ -3453,7 +3453,7 @@ msgstr "עצה ליציאה מחובות: כדאי תחילה לשלם 10 אחו
 
 #: mmTips.h:38
 msgid "Tip to get out of debt: Establish an emergency fund."
-msgstr "עצה ליציאה מחוב: כדאי להקים 'קרן' לשעת חרום."
+msgstr "עצה ליציאה מחובות: כדאי להקים 'קרן' לשעת חירום."
 
 #: mmTips.h:39
 msgid "Tip to get out of debt: Stop acquiring new debt."
@@ -3465,11 +3465,11 @@ msgstr "עצה ליציאה מחובות: חשוב ליצור תקציב הוצ�
 
 #: mmTips.h:41
 msgid "Tip to get out of debt: Spend less than you earn."
-msgstr "עצה לצאת מחוב: הוצא פחות ממה שאתה מרוויח."
+msgstr "עצה ליציאה מחובות: חשוב להוציא פחות ממה שמרוויחים."
 
 #: mmTips.h:42
 msgid "Tip to get out of debt: Pay more than the minimum."
-msgstr "עצה לצאת מחוב: פרע יותר מהמינימום הנדרש."
+msgstr "עצה ליציאה מחובות: כדאי לפרוע יותר מהמינימום הנדרש."
 
 #: mmTips.h:43
 msgid "Before going to a shop and buy something: take the time making a list of what you really need. In the shop buy what is in your list."
@@ -4759,7 +4759,7 @@ msgstr "סטטיסטיקת תנועות"
 
 #: mmhomepage.cpp:512
 msgid "Follow Up On Transactions: "
-msgstr "המשך עצהול בתנועות: "
+msgstr "מעקב תנועות: "
 
 #: mmhomepage.cpp:516
 msgid "Total Transactions: "
