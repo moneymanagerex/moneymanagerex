@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-12-24 17:26+0300\n"
-"PO-Revision-Date: 2020-12-29 14:28\n"
+"PO-Revision-Date: 2020-12-29 14:38\n"
 "Last-Translator: \n"
 "Language-Team: Hebrew\n"
 "MIME-Version: 1.0\n"
@@ -501,7 +501,7 @@ msgstr "אישור מחיקת נכס"
 
 #: assetspanel.cpp:384
 msgid "MMEX allows you to track fixed assets like cars, houses, land and others. Each asset can have its value appreciate by a certain rate per year, depreciate by a certain rate per year, or not change in value. The total assets are added to your total financial worth."
-msgstr "MMEX מאפשר מעקוב אחר נכסים קבועים כגון מכוניות, בתים, קרקע ועוד. ערכו של כל נכס יכול לגדול או לקטון בשיעור מסויים בשנה, או, לא לשנות ערך כלל. סך כל ערכם של הנכסים מתווסף  לשווי הפיננסיי הכולל."
+msgstr "MMEX מאפשרת מעקוב אחר נכסים קבועים כגון מכוניות, בתים, קרקע ועוד. ערכו של כל נכס יכול לגדול או לקטון כל שנה בשיעור מסוים, או, לא לשנות ערך כלל. סך כל ערכם של הנכסים מתווסף לשווי הפיננסי הכולל."
 
 #: assetspanel.cpp:414 assetspanel.h:95 general_report_manager.cpp:691
 #: general_report_manager.cpp:968 mmframe.cpp:462 mmframe.cpp:708
@@ -1165,7 +1165,7 @@ msgstr "תשלום"
 
 #: billsdepositspanel.cpp:167
 msgid "MMEX allows regular payments to be set up as transactions. These transactions can also be regular deposits, or transfers that will occur at some future time. These transactions act as a reminder that an event is about to occur, and appears on the Home Page 14 days before the transaction is due. "
-msgstr "MMEX מאפשר להגדיר תשלומים קבועים כתנועות חשבון. התנועות יכולות להיות גם הפקדות או העברות שיתרחשו בזמן כלשהו בעתיד. התנועות משמשות כתזכורות לאירוע העומד להתרחש, ויוצגו בדף הבית 14 ימים לפני מועד פרעונן "
+msgstr "MMEX מאפשרת הגדרת תשלומים קבועים כתנועות חשבון. התנועות יכולות להיות גם הפקדות או העברות שיתרחשו בזמן כלשהו בעתיד. התנועות משמשות כתזכורות לאירוע העומד להתרחש, ויוצגו בעמוד הבית 14 ימים לפני מועד פירעונן. "
 
 #: billsdepositspanel.cpp:168
 msgid "Tip: These transactions can be set up to activate - allowing the user to adjust any values on the due date."
@@ -2139,31 +2139,31 @@ msgstr "רוח הון"
 #: dbupgrade.cpp:72
 #, c-format
 msgid "MMEX database upgrade to version %i failed!"
-msgstr "שדרוג מסד נתונים MMEX לגרסה %i כשל!"
+msgstr "שדרוג מסד נתוני MMEX לגרסה %i כשל!"
 
 #: dbupgrade.cpp:73
 msgid "Please restore DB from autocreated pre-upgrade backup and retry or contact MMEX support"
-msgstr "נא שחזר את מסד הנתונים מגיבוי של קדם-שדרוג שנוצר אוטומטית ונסה שנית, או פנה לתמיכת MMEX"
+msgstr "נא לשחזר את מסד הנתונים מגיבוי קדם-שדרוג שנוצר אוטומטית ולנסות שנית, או, לפנות לתמיכת MMEX"
 
 #: dbupgrade.cpp:74 dbupgrade.cpp:108 dbupgrade.cpp:120
 msgid "MMEX database upgrade"
-msgstr "שדרוג מסד נתונים MMEX"
+msgstr "שדרוג מסד נתוני MMEX"
 
 #: dbupgrade.cpp:106
 msgid "MMEX database error!"
-msgstr "שגיאה בפתיחת מסד נתונים - MMEX!"
+msgstr "שגיאה מסד נתוני MMEX!"
 
 #: dbupgrade.cpp:107
 #, c-format
 msgid "MMEX database version %i doesn't work with this MMEX version.\n"
 "Please upgrade MMEX to newer version."
-msgstr "גירסת מסד נתונים %i לא נתמכת על ידי  גרסת MMEX זו \n"
-"נא שדרג MMEX לגרסה חדשה יותר."
+msgstr "גרסת מסד נתונים %i לא נתמכת על ידי גרסת MMEX זו \n"
+"נא לשדרג את MMEX לגרסה חדשה יותר."
 
 #: dbupgrade.cpp:119
 #, c-format
 msgid "MMEX database succesfully upgraded to version %i"
-msgstr "שדרוג מסד נתונים MMEX לגרסה %i צלחה"
+msgstr "שדרוג מסד נתוני MMEX לגרסה %i צלחה"
 
 #: dbupgrade.cpp:120
 msgid "We suggest a database optimization under Tools -> Database -> Optimize"
@@ -2180,7 +2180,7 @@ msgstr "סוג קובץ שגוי!"
 #: dbupgrade.cpp:204 dbupgrade.cpp:241 dbupgrade.cpp:248 dbupgrade.cpp:292
 #: dbupgrade.cpp:303
 msgid "MMEX debug error"
-msgstr "MMEX: שגיאת ניפוי"
+msgstr "שגיאת ניפוי תקלי MMEX"
 
 #: dbupgrade.cpp:241 dbupgrade.cpp:292
 msgid "Query error, please contact MMEX support!"
@@ -2193,11 +2193,11 @@ msgstr "תוכן קובץ שגוי, נא ליצור קשר עם תמיכת MMEX!
 #: dbupgrade.cpp:255
 msgid "Send this log to MMEX support team:\n"
 "press OK to save to file or Cancel to exit"
-msgstr "נא לשלוח קובץ לוג זה לצוות התמיכה של MMEX: לחץ על 'אישור' כדי לשמור את הקובץ או על 'ביטול' כדי לצאת"
+msgstr "נא לשלוח קובץ יומן זה לצוות התמיכת MMEX: נא להקיש על 'אישור' כדי לשמור את הקובץ או על 'ביטול' כדי לצאת"
 
 #: dbupgrade.cpp:256 dbupgrade.cpp:299
 msgid "MMEX debug"
-msgstr "ניפוי MMEX"
+msgstr "ניפוי תקלי MMEX"
 
 #: dbupgrade.cpp:259
 msgid "Save debug file"
@@ -2234,7 +2234,7 @@ msgstr "שגיאה: %s"
 
 #: dbwrapper.cpp:85 mmframe.cpp:1777
 msgid "Opening MMEX Database - Error"
-msgstr "שגיאה בפתיחת מסד נתונים - MMEX"
+msgstr "שגיאה - בפתיחת מסד נתוני MMEX"
 
 #: filtertransdialog.cpp:44 mmhomepage.cpp:639 model/Model_Billsdeposits.cpp:39
 #: model/Model_Checking.cpp:37
@@ -2904,7 +2904,7 @@ msgstr "&מבנה MMEX"
 
 #: import_export/univcsvdialog.cpp:250
 msgid "MMEX standard format"
-msgstr "תבנית MMEX סטנדרטי"
+msgstr "תבנית MMEX סטנדרטית"
 
 #: import_export/univcsvdialog.cpp:266
 msgid "&Up"
@@ -3477,7 +3477,7 @@ msgstr "לפני שהולכים לחנות לקנות משהו: קחו את הז
 
 #: mmTips.h:47
 msgid "Using MMEX it is possible to track stocks/mutual funds investments."
-msgstr "שימוש ב MMEX מאפשר מעקוב אחר השקעות במניות/קרנות נאמנות."
+msgstr "השימוש ב- MMEX מאפשר מעקוב אחר השקעות במניות/קרנות נאמנות."
 
 #: mmTips.h:48
 msgid "To create new stocks entry the Symbol, Number of shares and Purchase prise should be entered."
@@ -3803,7 +3803,7 @@ msgstr "MMEX נפתחה ללא מסד נתונים פעיל."
 
 #: mmframe.cpp:1163
 msgid "MMEX: Menu Popup Error"
-msgstr "MMEX: שגיאת תפריט מוקפץ"
+msgstr "MMEX: שגיאת תפריט צץ"
 
 #: mmframe.cpp:1194
 msgid "&New Transaction"
