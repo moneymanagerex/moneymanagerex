@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-12-24 17:26+0300\n"
-"PO-Revision-Date: 2020-12-24 14:35\n"
+"PO-Revision-Date: 2020-12-29 12:37\n"
 "Last-Translator: \n"
 "Language-Team: Hebrew\n"
 "MIME-Version: 1.0\n"
@@ -4035,11 +4035,11 @@ msgstr "מחיקת חשבון ממסד הנתונים"
 
 #: mmframe.cpp:1440
 msgid "Download Rates..."
-msgstr "הורדת שערים..."
+msgstr "עדכון שערים..."
 
 #: mmframe.cpp:1440 mmframe.cpp:1707
 msgid "Download Currency and Stock rates"
-msgstr "הורדת שערי מטבע ונירות ערך"
+msgstr "עדכון שערי מטבע ונירות ערך"
 
 #: mmframe.cpp:1447
 msgid "Organize &Categories..."
@@ -4371,7 +4371,7 @@ msgstr "חדשות"
 
 #: mmframe.cpp:1707
 msgid "Download rates"
-msgstr "הורדת שערים"
+msgstr "עדכון שערים"
 
 #: mmframe.cpp:1710
 msgid "Toggle Fullscreen\tF11"
@@ -4575,7 +4575,7 @@ msgstr "בחירת קובץ HTML ליצוא"
 
 #: mmframe.cpp:2881 mmframe.cpp:2888
 msgid "Downloading stock prices from Yahoo"
-msgstr "הורדת שערי נירות ערך מ Yahoo"
+msgstr "עדכון שערי נירות ערך מ Yahoo"
 
 #: mmframe.cpp:2882
 msgid "Please wait..."
@@ -6465,7 +6465,7 @@ msgstr "שערי מטבע עודכנו"
 
 #: util.cpp:630
 msgid "JSON Parse Error"
-msgstr ""
+msgstr "שגיאת ניתוח JSON"
 
 #: util.cpp:926
 #, c-format
@@ -6660,7 +6660,7 @@ msgstr "לא ניתן להוריד תנועות מיישומון המרשתת."
 
 #: webappdialog.cpp:215
 msgid "Transactions download error"
-msgstr "שגיאה בהורדת תנועות"
+msgstr "שגיאת הורדת תנועות"
 
 #: webappdialog.cpp:320
 msgid "Unable to insert transaction in MMEX database"
