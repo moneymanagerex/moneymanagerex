@@ -678,7 +678,6 @@ void mmCheckingPanel::initFilterSettings()
         }
         break;
     case MENU_VIEW_FILTER_DIALOG:
-        m_trans_filter_dlg->SetStoredSettings(-1);
         m_bitmapTransFilter->SetToolTip(m_trans_filter_dlg->getDescriptionToolTip());
         m_transFilterActive = true;
         break;
