@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-12-24 17:26+0300\n"
-"PO-Revision-Date: 2020-12-29 14:47\n"
+"PO-Revision-Date: 2020-12-29 14:57\n"
 "Last-Translator: \n"
 "Language-Team: Hebrew\n"
 "MIME-Version: 1.0\n"
@@ -5797,7 +5797,7 @@ msgstr "365  ימים אחרונים"
 
 #: reports/myusage.cpp:27
 msgid "MMEX Usage Frequency"
-msgstr "תדירות שימוש ב MMEX"
+msgstr "תדירות שימוש ב- MMEX"
 
 #: reports/payee.cpp:32
 msgid "Payee Report"
@@ -6486,7 +6486,7 @@ msgstr "ענף Git: "
 
 #: util.cpp:942
 msgid "MMEX is using the following support products:"
-msgstr "MMEX משתמש במוצרי התמיכה הבאים:"
+msgstr "MMEX משתמשת במוצרי התמיכה הבאים:"
 
 #: util.cpp:960
 msgid "Build on"
@@ -6664,7 +6664,7 @@ msgstr "שגיאת הורדת תנועות"
 
 #: webappdialog.cpp:320
 msgid "Unable to insert transaction in MMEX database"
-msgstr "לא מצליח להוסיף תנועות למסד נתוני MMEX"
+msgstr "לא ניתן להוסיף תנועות למסד נתוני MMEX"
 
 #: webappdialog.cpp:321
 msgid "WebApp communication error"
