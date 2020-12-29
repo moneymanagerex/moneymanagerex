@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-12-24 17:26+0300\n"
-"PO-Revision-Date: 2020-12-29 12:37\n"
+"PO-Revision-Date: 2020-12-29 12:48\n"
 "Last-Translator: \n"
 "Language-Team: Hebrew\n"
 "MIME-Version: 1.0\n"
@@ -3425,7 +3425,7 @@ msgstr "עצה: על מנת לסמן תנועה 'למעקב', רק לבחור א
 
 #: mmTips.h:29
 msgid "Tip: MMEX supports printing of all reports that can be viewed. The print options are available under the menu, File->Print."
-msgstr "עצה: MMEX תומכת בהדפסה של כל הדוחות הניתנים להצגתה. אפשרויות ההדפסה זמינים מתפריט, קובץ -> הדפסה."
+msgstr "עצה: MMEX תומכת בהדפסת כל הדוחות הניתנים להצגה. אפשרויות ההדפסה זמינות מתפריט, קובץ -> הדפסה."
 
 #: mmTips.h:30
 msgid "Tip: You can modify some runtime behavior of MMEX by changing the options in the Options Dialog. "
@@ -3433,7 +3433,7 @@ msgstr "עצה: ניתן לשנות  את התנהגות  של MMEX על-ידי 
 
 #: mmTips.h:31
 msgid "Tip: To print a statement with transactions from any arbitrary set of criteria, use the transaction filter to select the transactions you want and then do a print from the menu."
-msgstr "עצה: כדי להדפיס דוח מצב לתנועות לפי קריטריונים שונים , ניתן להשתמש במסנן תנועות כדי לבחור את התנועות הרצויות ולאחר מכן בחירת בהדפסה מהתפריט."
+msgstr "עצה: כדי להדפיס 'דוח מצב תנועות' לפי קריטריונים שונים, ניתן להשתמש במסנן התנועות, לבחירת התנועות הרצויות ולאחר מכן בחירת הדפסה מהתפריט."
 
 #: mmTips.h:32
 msgid "Tip: Set exchange rate for currencies in case if you have accounts with different currencies."
