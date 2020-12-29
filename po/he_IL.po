@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-12-24 17:26+0300\n"
-"PO-Revision-Date: 2020-12-29 14:38\n"
+"PO-Revision-Date: 2020-12-29 14:47\n"
 "Last-Translator: \n"
 "Language-Team: Hebrew\n"
 "MIME-Version: 1.0\n"
@@ -4203,7 +4203,7 @@ msgstr "יוטיוב"
 
 #: mmframe.cpp:1569
 msgid "Watch free video materials about MMEX"
-msgstr "צפה בתכני וידאו חינמיים אודות MMEX"
+msgstr "צפיה בתכני וידאו חינמיים על אודות MMEX"
 
 #: mmframe.cpp:1572
 msgid "Slack"
@@ -4211,7 +4211,7 @@ msgstr "Slack"
 
 #: mmframe.cpp:1572
 msgid "Communicate online with MMEX team from your desktop or mobile device"
-msgstr "תקשר באופן מקוון עם צוות MMEX משולחן העבודה או הנייד"
+msgstr "תקשור מקוון עם צוות MMEX משולחן העבודה או מהנייד"
 
 #: mmframe.cpp:1575
 msgid "GitHub"
@@ -4235,7 +4235,7 @@ msgstr "פורום"
 
 #: mmframe.cpp:1582
 msgid "Visit the MMEX forum to see existing user comments or report new issues with the software"
-msgstr "בקר בפורום MMEX, צפה בתגובות משתמשים אחרים או דווח על בעיות חדשות בנוגע לתוכנה"
+msgstr "בקרו בפורום MMEX, צפו בתגובות משתמשים אחרים או דווחו על בעיות תכנה חדשות"
 
 #: mmframe.cpp:1585
 msgid "Google Play"
@@ -4390,7 +4390,7 @@ msgstr "MMEX: מסד נתונים מוצפן"
 
 #: mmframe.cpp:1806
 msgid "Have MMEX support provided you a debug/patch file?"
-msgstr "האם תמיכת MMEX סיפקה קובץ איתור באגים/תיקון?"
+msgstr "האם תמיכת MMEX סיפקה קובץ ניפוי תקלים/תיקון?"
 
 #: mmframe.cpp:1806
 msgid "MMEX upgrade"
@@ -4425,8 +4425,8 @@ msgid "Database that you trying to open has been marked as opened by another MME
 "To avoid data loss or conflict, it's strongly recommended to close all other applications that can use the DB.\n\n"
 "Possible it may be as result of a programm crash in previous usage.\n\n"
 "Would you like to continue?"
-msgstr "מסד נתונים שנבחר לפתיחה, מסומן כפתוח במופע MMEX אחר...\n"
-"כדי להמנע מאבדן נתונים או התנגשויות, מומלץ בחום לסגור את כל היישומים האחרים שעשויים להשתמש במסד הנתונים.\n\n"
+msgstr "מסד הנתונים שנבחר לפתיחה, מסומן כפתוח במופע MMEX אחר...\n"
+"כדי להימנע מאבדן נתונים או התנגשויות, מומלץ בחום לסגור את כל היישומים האחרים שעשויים להשתמש במסד הנתונים.\n\n"
 "יתכן וזאת תוצאה מכשל תכנה משימוש קודם.\n\n"
 "האם להמשיך?"
 
@@ -4507,7 +4507,7 @@ msgstr "אופטימיזצית מסד הנתונים הושלמה!\n\n"
 
 #: mmframe.cpp:2081
 msgid "Please use this function only if explicitly requested by MMEX support"
-msgstr "ניתן להשתמש בפונקציה זו רק אם נתבקשת במפורש על ידי תמיכת MMEX"
+msgstr "ניתן להשתמש בפונקציה זו רק אם נתבקשתם במפורש על ידי צוות תמיכת MMEX"
 
 #: mmframe.cpp:2082
 msgid "DB Debug"
@@ -5233,13 +5233,13 @@ msgstr "גבה מסד נתונים"
 
 #: optionsettingsmisc.cpp:150
 msgid "Create a new backup when MMEX Start"
-msgstr "יצירת גיבוי חדש עם הפעלת MMEX"
+msgstr "יצירת גיבוי חדש בעת אתחול MMEX"
 
 #: optionsettingsmisc.cpp:152
 msgid "When MMEX Starts,\n"
 "creates the backup database: dbFile_start_YYYY-MM-DD.ext."
-msgstr "בעת הפעלת MMEX,\n"
-"נוצר גיבוי של מסד הנתונים: dbFile_start_YYYY-מ מ- DD.ext."
+msgstr "בעת אתחול MMEX,\n"
+"יצירת גיבוי מסד נתונים: dbFile_start_YYYY-מ מ- DD.ext."
 
 #: optionsettingsmisc.cpp:157
 msgid "Backup database on exit."
@@ -5248,8 +5248,8 @@ msgstr "גבוי מסד הנתונים ביציאה."
 #: optionsettingsmisc.cpp:159
 msgid "When MMEX shuts down and changes made to database,\n"
 "creates or updates the backup database: dbFile_update_YYYY-MM-DD.ext."
-msgstr "לאחר יציא מ MMEX ונעשו שינויים במסד הנתונים,\n"
-"יווצר או יעודכן גיבוי גיבוי של מסד הנתונים: dbFile_update_YYYY-מ מ- DD.ext."
+msgstr "ביציאה מ- MMEX ובמידה ונעשו שינויים במסד הנתונים,\n"
+"יצירת או עדכון גיבוי מסד הנתונים: dbFile_update_YYYY-מ מ- DD.ext."
 
 #: optionsettingsmisc.cpp:167
 msgid "Specify max number of backup files"
