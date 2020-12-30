@@ -95,11 +95,11 @@ private:
 
     /// Creation
     bool Create(wxWindow* parent
-        , wxWindowID id
-        , const wxString& caption
-        , const wxPoint& pos
-        , const wxSize& size
-        , long style);
+        , wxWindowID id = wxID_ANY
+        , const wxString& caption = _("Transaction Filter")
+        , const wxPoint& pos = wxDefaultPosition
+        , const wxSize& size = wxDefaultSize
+        , long style = wxCAPTION | wxRESIZE_BORDER | wxSYSTEM_MENU | wxCLOSE_BOX);
 
     /// Creates the controls and sizers
     void CreateControls();
@@ -158,7 +158,6 @@ private:
     int subcategID_;
     int payeeID_;
     int refAccountID_;
-    wxString refAccountStr_;
     bool bSimilarCategoryStatus_;
     wxTextCtrl* m_settingLabel;
     wxString payeeStr_;

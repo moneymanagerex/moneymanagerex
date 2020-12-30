@@ -86,12 +86,11 @@ mmFilterTransactionsDialog::mmFilterTransactionsDialog(wxWindow* parent)
     , subcategID_(-1)
     , payeeID_(-1)
     , refAccountID_(-1)
-    , refAccountStr_("")
     , bSimilarCategoryStatus_(false)
     , m_settingLabel(nullptr)
 {
-    long style = wxCAPTION | wxRESIZE_BORDER | wxSYSTEM_MENU | wxCLOSE_BOX;
-    Create(parent, wxID_ANY, _("Transaction Filter"), wxDefaultPosition, wxDefaultSize, style);
+    Create(parent);
+
 }
 
 bool mmFilterTransactionsDialog::Create(wxWindow* parent
@@ -395,8 +394,8 @@ bool mmFilterTransactionsDialog::isValuesCorrect()
 {
     if (accountCheckBox_->IsChecked())
     {
-        refAccountStr_ = accountDropDown_->GetStringSelection();
-        Model_Account::Data* account = Model_Account::instance().get(refAccountStr_);
+        const wxString refAccountStr = accountDropDown_->GetStringSelection();
+        Model_Account::Data* account = Model_Account::instance().get(refAccountStr);
         if (account)
             refAccountID_ = account->ACCOUNTID;
     }
