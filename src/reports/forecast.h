@@ -27,6 +27,5 @@ public:
     virtual wxString getHTMLText();
 
 protected:
-    static const char * m_template;
 };
 

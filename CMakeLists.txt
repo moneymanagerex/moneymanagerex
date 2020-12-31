@@ -539,7 +539,8 @@ install(FILES
 # Resources
 install(FILES
     3rd/ChartNew.js/ChartNew.js
-    3rd/ChartNew.js/Add-ins/format.js
+    3rd/ChartNew.js/Add-ins/format.js 
+    3rd/apexcharts.js/dist/apexcharts.js  
     3rd/sorttable.js/sorttable.js
     resources/home_page.htt
     resources/kaching.wav

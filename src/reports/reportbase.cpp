@@ -67,7 +67,7 @@ void mmPrintableBase::setReportParameters(int id)
     case DailyCashFlow:               m_parameters = ACCOUNTS_LIST | CHART; break;
     case StocksReportPerformance:     m_parameters = DATE_RANGE; break;
     case StocksReportSummary:         m_parameters = NONE; break;
-    case ForecastReport:              m_parameters = SINGLE_DATE; break;
+    case ForecastReport:              m_parameters = DATE_RANGE; break;
     case BugReport:                   m_parameters = NONE; break;
     case CategoryOverTimePerformance: m_parameters = MONTHES | CHART | ACCOUNTS_LIST; break;
     default:                          m_parameters = NONE; break;

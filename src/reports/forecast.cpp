@@ -17,7 +17,10 @@
  ********************************************************/
 
 #include "forecast.h"
+#include "mmex.h"
+#include "mmframe.h"
 #include "util.h"
+#include "reports/htmlbuilder.h"
 #include "model/Model_Checking.h"
 
 class mm_html_template;
@@ -33,6 +36,7 @@ mmReportForecast::~mmReportForecast()
 
 wxString mmReportForecast::getHTMLText()
 {
+    // Grab the data
     std::map<wxString, std::pair<double, double> > amount_by_day;
     Model_Checking::Data_Set all_trans;
     
@@ -53,20 +57,58 @@ wxString mmReportForecast::getHTMLText()
         amount_by_day[trx.TRANSDATE].second += Model_Checking::deposit(trx, -1);
     }
 
-    loop_t contents;
-    for (const auto & kv : amount_by_day)
+    
+
+    // Build the report
+    mmHTMLBuilder hb;
+    hb.init();
+    hb.addDivContainer();
     {
-        row_t r;
-        r(L"DATE") = kv.first;
-        r(L"WITHDRAWAL") = wxString::Format("%f", kv.second.first);
-        r(L"DEPOSIT") = wxString::Format("%f", kv.second.second);
+        hb.addHeader(2, getReportTitle());
+        hb.DisplayDateHeading(m_date_range->start_date(), m_date_range->end_date(), m_date_range->is_with_date());
+        hb.addDateNow();
+        hb.addLineBreak();
+        hb.addDivRow();
+        {
+            GraphData gd;
+            GraphSeries gsWithdrawl, gsDeposit;
+            for (const auto & kv : amount_by_day)
+            {
+                wxDate d;
+                wxLogDebug("kv.first  = %s", kv.first); 
+                d.ParseISODate(kv.first);
+                wxString label = wxString::Format("%i %s %i", d.GetDay(), wxGetTranslation(wxDateTime::GetEnglishMonthName(d.GetMonth())), d.GetYear());
+                wxLogDebug("label  = %s", label); 
+                gd.labels.push_back(label);
+                //wxLogDebug(" Values = %d, %d", kv.second.first, kv.second.second);
+                gsWithdrawl.values.push_back(kv.second.first);
+                gsDeposit.values.push_back(kv.second.second);
+            }
+            gsWithdrawl.name = _("Withdrawl");
+            gd.series.push_back(gsWithdrawl);           
+            gsDeposit.name = _("Deposit");
+            gd.series.push_back(gsDeposit);
 
-        contents += r;
+            hb.addDivContainer();
+            { 
+                gd.type = GraphData::LINE_DATETIME;
+                hb.addChart(gd);
+            }
+            hb.endDiv();
+        }
+        hb.endDiv();
     }
+    hb.endDiv();
+    hb.end();
 
-    mm_html_template report(this->m_template);
-    report(L"REPORTNAME") = this->getReportTitle();
-    report(L"CONTENTS") = contents;
+    return hb.getHTMLText();
+}
+  /*  // Add the chart
+
+
+    //mm_html_template report(this->m_template);
+    //report(L"REPORTNAME") = this->getReportTitle();
+    //report(L"CONTENTS") = contents;
     wxDateTime today = wxDateTime::Now();
     const wxString current_day_time = wxString::Format(_("Report Generated %s %s")
         , mmGetDateForDisplay(today.FormatISODate())
@@ -99,7 +141,7 @@ const char * mmReportForecast::m_template = R"(
     <meta charset="UTF-8" />
     <meta http - equiv = "Content-Type" content = "text/html" />
     <title><TMPL_VAR REPORTNAME></title>
-    <script src = "memory:ChartNew.js"></script>
+    <script src = "memory:apexcharts.js"></script>
     <script src = "memory:sorttable.js"></script>
     <link href = "memory:master.css" rel = "stylesheet" />
     <style>
@@ -191,4 +233,4 @@ const char * mmReportForecast::m_template = R"(
 </html>
 )";
 
-
+*/

@@ -25,6 +25,25 @@
 #include "html_template.h"
 #include "util.h"
 
+struct ApexGraphData
+{
+    wxString name;
+    std::vector<double> series;    
+};
+
+struct GraphSeries
+{
+    wxString name;
+    std::vector<double> values;
+};
+
+struct GraphData
+{
+    enum { BAR = 0, LINE, LINE_DATETIME, PIE, DONUT, RADAR } type;
+    std::vector<wxString> labels;
+    std::vector<GraphSeries> series;   
+};
+
 class mmHTMLBuilder
 {
 public:
@@ -91,6 +110,7 @@ public:
     void endDiv();
     void startTableRow();
     void startTableRow(const wxString& color);
+    void startAltTableRow();
     void startTotalTableRow();
     //void startTableRow(const wxString& custom_color);
     void endTableRow();
@@ -112,10 +132,7 @@ public:
     void addTableRow(const wxString& label, double data);
     void addTableRowBold(const wxString& label, double data);
 
-    void addRadarChart(std::vector<ValueTrio>& actData, std::vector<ValueTrio>& estData, const wxString& id, int x = 300, int y = 300);
-    void addPieChart(std::vector<ValueTrio>& valueList, const wxString& id, const int x = 300, const int y = 300);
-    void addLineChart(const std::vector<LineGraphData>& data, const wxString& id, const int index, const int x = 640, const int y = 256, bool pointDot = false, bool showGridLines = true, bool datasetFill = false);
-    void addBarChart(const wxArrayString& labels, const std::vector<BarGraphData>& data, const wxString& id, int x = 192, int y = 256);
+    void addChart(const GraphData& data);
 
 private:
     wxString html_;
@@ -126,5 +143,6 @@ private:
         wxString todays_date;
     } today_;
 };
+
 
 #endif

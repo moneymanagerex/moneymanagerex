@@ -41,15 +41,7 @@ mmReportIncomeExpenses::~mmReportIncomeExpenses()
 
 wxString mmReportIncomeExpenses::getHTMLText()
 {
-
-    mmHTMLBuilder hb;
-    hb.init();
-    hb.addDivContainer();
-    hb.addHeader(2, this->getReportTitle());
-    hb.DisplayDateHeading(m_date_range->start_date(), m_date_range->end_date(), m_date_range->is_with_date());
-    hb.addHeader(3, getAccountNames());
-    hb.addDateNow();
-
+    // Grab the data
     std::pair<double, double> income_expenses_pair;
     for (const auto& transaction : Model_Checking::instance().find(
         Model_Checking::TRANSDATE(m_date_range->start_date(), GREATER_OR_EQUAL)
@@ -76,63 +68,69 @@ wxString mmReportIncomeExpenses::getHTMLText()
             income_expenses_pair.second += transaction.TRANSAMOUNT * convRate;
     }
 
-    BarGraphData vt;
-    std::vector<BarGraphData> valueList;
-    vt.data = { income_expenses_pair.first };
-    vt.fillColor = "rgba(151,187,205,0.5)";
-    vt.title = _("Income");
-    valueList.push_back(vt);
-    vt.data = { income_expenses_pair.second };
-    vt.fillColor = "rgba(220,66,66,0.5)";
-    vt.title = _("Expenses");
-    valueList.push_back(vt);
+    // Build the report
+    mmHTMLBuilder hb;
+    hb.init();
+    hb.addDivContainer(); // Main container
+    hb.addHeader(2, this->getReportTitle());
+    hb.DisplayDateHeading(m_date_range->start_date(), m_date_range->end_date(), m_date_range->is_with_date());
+    hb.addHeader(3, getAccountNames());
+    hb.addDateNow();
+    hb.addLineBreak();
+    hb.addDivRow(); // Report Container
+    
+    // Chart
+    GraphData gd;
+    GraphSeries gs;
 
-    wxArrayString labels;
-    const auto label = m_date_range->local_title();
-    labels.Add(label);
+    gs.values = { income_expenses_pair.first };
+    gs.name = _("Income");
+    gd.series.push_back(gs);
+    gs.values = { income_expenses_pair.second };
+    gs.name = _("Expenses");
+    gd.series.push_back(gs);
 
-    hb.addDivRow();
-    hb.addDivCol17_67();
+    gd.labels.push_back(m_date_range->local_title());
+
+    if (!gd.series.empty())
+    {
+        hb.addDivContainer();
+        {
+            gd.type = GraphData::BAR;
+            hb.addChart(gd);
+        }
+        hb.endDiv();
+    }
+
+    hb.addDivContainer(); // Table Container
     hb.startTable();
     {
-        hb.startTableRow();
+        hb.startThead();
         {
-            hb.startTableCell(" style='vertical-align:middle' width='70%'");
-            hb.addDivCol17_67();
-            if (!valueList.empty())
-                hb.addBarChart(labels, valueList, "BarChart", 640, 480);
-            hb.endDiv();
-            hb.endTableCell();
-
-            hb.startTableCell(" style='vertical-align:middle' width='30%'");
-            hb.addDivCol17_67();
-            hb.startTable();
-            {
-                hb.startThead();
-                hb.startTableRow();
-                hb.addTableHeaderCell(_("Type"));
-                hb.addTableHeaderCell(_("Amount"), true);
-                hb.endTableRow();
-                hb.endThead();
-
-                hb.addTableRow(_("Income:"), income_expenses_pair.first);
-                hb.addTableRow(_("Expenses:"), income_expenses_pair.second);
-
-                hb.addTotalRow(_("Difference:"), 2, income_expenses_pair.first - income_expenses_pair.second);
-            }
-            hb.endTable();
-            hb.addDivCol6();
-            hb.endDiv();
-            hb.endTableCell();
+            hb.startTableRow();
+            hb.addTableHeaderCell(_("Type"));
+            hb.addTableHeaderCell(_("Amount"), true);
+            hb.endTableRow();
+            hb.endThead();
         }
-        hb.endTableRow();
+        hb.endThead();
+        hb.startTbody();
+        {
+            hb.addTableRow(_("Income:"), income_expenses_pair.first);
+            hb.addTableRow(_("Expenses:"), income_expenses_pair.second);
+            hb.addTotalRow(_("Difference:"), 2, income_expenses_pair.first - income_expenses_pair.second);
+        }
+        hb.endTbody();
     }
     hb.endTable();
-
-    hb.endDiv();
-    hb.endDiv();
-    hb.endDiv();
+    
+    hb.endDiv();// Table container
+    hb.endDiv(); // Report Container
+    hb.endDiv(); // Main container
     hb.end();
+
+    wxLogDebug("======= mmReportIncomeExpenses:getHTMLText =======");
+    wxLogDebug("%s", hb.getHTMLText());
 
     return hb.getHTMLText();
 }
@@ -149,12 +147,7 @@ mmReportIncomeExpensesMonthly::~mmReportIncomeExpensesMonthly()
 
 wxString mmReportIncomeExpensesMonthly::getHTMLText()
 {
-
-    wxString headerMsg = getAccountNames();
-
-    struct html_data_holder { wxString name; double period[2]; } line;
-    std::vector<html_data_holder> data;
-
+    // Grab the data
     std::map<int, std::pair<double, double> > incomeExpensesStats;
     //TODO: init all the map values with 0.0
     for (const auto& transaction : Model_Checking::instance().find(
@@ -187,25 +180,18 @@ wxString mmReportIncomeExpensesMonthly::getHTMLText()
         }
     }
 
-    for (const auto entry : incomeExpensesStats)
-    {
-        line.name = wxString::Format("%i", entry.first);
-        line.period[0] = entry.second.first;
-        line.period[1] = entry.second.second;
-        data.push_back(line);
-    }
-
+    // Build the report
     mmHTMLBuilder hb;
     hb.init();
-    hb.addDivContainer();
+    hb.addDivContainer(); // Main container
     hb.addHeader(2, this->getReportTitle());
     hb.DisplayDateHeading(m_date_range->start_date(), m_date_range->end_date(), m_date_range->is_with_date());
-    hb.addHeader(3, headerMsg);
+    hb.addHeader(3, getAccountNames());
     hb.addDateNow();
     hb.addLineBreak();
+    hb.addDivRow(); // Report Container
 
-
-    //Chart
+    // Chart
     const wxDateTime start_date = m_date_range->start_date();
     wxDateSpan s = m_date_range->end_date().GetLastMonthDay().DiffAsDateSpan(start_date);
     int m = s.GetYears() * 12 + s.GetMonths() + 1;
@@ -213,67 +199,47 @@ wxString mmReportIncomeExpensesMonthly::getHTMLText()
 
     wxLogDebug("%s %s %i", start_date.FormatISODate(), m_date_range->end_date().FormatISODate(), m);
 
-    wxArrayString labels;
     if (getChartSelection() == 0)
     {
-        std::vector<BarGraphData> aData;
-        BarGraphData data_positive;
-        BarGraphData data_negative;
+        GraphData gd;
+        GraphSeries data_negative, data_positive;
 
-        for (int i = 0; i < m; i++)
+        for (const auto &stats : incomeExpensesStats)
         {
-            double val_negative = 0;
-            double val_positive = 0;
-            wxDateTime d = start_date.Add(wxDateSpan::Months(i));
-            int idx = (d.GetYear() * 100 + d.GetMonth());
+            data_positive.values.push_back(stats.second.first);
+            data_negative.values.push_back(stats.second.second);
 
-            for (const auto& item : data) {
-                if (item.name == wxString::Format("%i", idx)) {
-                    val_positive = item.period[0];
-                    val_negative = item.period[1];
-                    break;
-                }
-            }
-
-            data_positive.data.push_back(val_positive);
-            data_negative.data.push_back(val_negative);
-
-            data_positive.title = _("Income");
-            data_negative.title = _("Expenses");
-
-            data_negative.fillColor = "rgba(220,66,66,0.5)";
-            data_positive.fillColor = "rgba(151,187,205,0.5)";
-            const auto label = wxString::Format("%s %i", wxGetTranslation(
-                wxDateTime::GetEnglishMonthName(d.GetMonth())), d.GetYear());
-            labels.Add(label);
+            wxString label = wxString::Format("%02i/%i", (stats.first % 100)+1, stats.first / 100);
+            gd.labels.push_back(label);
         }
-        aData.push_back(data_positive);
-        aData.push_back(data_negative);
 
-        if (!aData.empty())
+        data_positive.name = _("Income");
+        data_negative.name = _("Expenses");
+        gd.series.push_back(data_positive);
+        gd.series.push_back(data_negative);
+
+        if (!gd.series.empty())
         {
-            hb.addDivRow();
-            hb.addDivCol17_67();
-            hb.addBarChart(labels, aData, "BarChart", 640, 480);
-            hb.endDiv();
+            hb.addDivContainer();
+            {
+                gd.type = GraphData::BAR;   
+                hb.addChart(gd);
+            }
             hb.endDiv();
         }
     }
 
-
-    hb.addDivRow();
-    hb.addDivCol17_67();
-
+    hb.addDivContainer(); // Table Container
     hb.startSortTable();
     {
         hb.startThead();
         {
             hb.startTableRow();
-              hb.addTableHeaderCell(_("Year"));
-              hb.addTableHeaderCell(_("Month"));
-              hb.addTableHeaderCell(_("Income"), true);
-              hb.addTableHeaderCell(_("Expenses"), true);
-              hb.addTableHeaderCell(_("Difference"), true);
+            hb.addTableHeaderCell(_("Year"));
+            hb.addTableHeaderCell(_("Month"));
+            hb.addTableHeaderCell(_("Income"), true);
+            hb.addTableHeaderCell(_("Expenses"), true);
+            hb.addTableHeaderCell(_("Difference"), true);
             hb.endTableRow();
         }
         hb.endThead();
@@ -303,13 +269,16 @@ wxString mmReportIncomeExpensesMonthly::getHTMLText()
         totals.push_back(total_income - total_expenses);
 
         hb.addTotalRow(_("Total:"), 5, totals);
-
     }
     hb.endTable();
-    hb.endDiv();
-    hb.endDiv();
-    hb.endDiv();
+
+    hb.endDiv(); // Table container
+    hb.endDiv(); // Report Container
+    hb.endDiv(); // Main container
     hb.end();
+
+    wxLogDebug("======= mmReportIncomeExpensesMonthly::getHTMLText =======");
+    wxLogDebug("%s", hb.getHTMLText());
 
     return hb.getHTMLText();
 }

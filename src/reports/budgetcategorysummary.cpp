@@ -39,26 +39,9 @@ mmReportBudgetCategorySummary::mmReportBudgetCategorySummary()
 mmReportBudgetCategorySummary::~mmReportBudgetCategorySummary()
 {}
 
-const wxString mmReportBudgetCategorySummary::actualAmountColour(double amount, double actual, double estimated, bool total) const
-{
-    wxString actAmtColStr = "black";
-    if (total) {
-        actAmtColStr = "blue";
-    }
-
-    if (amount == 0) {
-        actAmtColStr = "blue";
-    } else {
-        if (actual < estimated) {
-            actAmtColStr = "red";
-        }
-    }
-
-    return actAmtColStr;
-}
-
 wxString mmReportBudgetCategorySummary::getHTMLText()
 {
+    // Grab the data 
     wxDateTime::wxDateTime_t startDay = 1;
     long tmp;
     wxDateTime::Month startMonth = wxDateTime::Jan;
@@ -114,170 +97,201 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
         , false, (evaluateTransfer ? &budgetAmt : nullptr));
 
     auto categs = Model_Category::all_categories();
-    categs[L"\uF8FF"] = std::make_pair(-1, -1); //last alphabetical charicter
+    categs[L"\uF8FF"] = std::make_pair(-1, -1); //last alphabetical character
     int categID = -1;
+
+    // Build the report
     mmHTMLBuilder hb;
-    //---------------------------------
-    const wxString& headingStr = AdjustYearValues(startDay
-        , startMonth, startYear, budget_year);
     hb.init();
     hb.addDivContainer();
-    bool amply = Option::instance().BudgetReportWithSummaries();
-    const wxString& headerStartupMsg = amply
-        ? _("Budget Categories for %s") : _("Budget Category Summary for %s");
-
-    hb.addHeader(2, wxString::Format(headerStartupMsg
-        ,  headingStr + "<br>" + _("( Estimated Vs Actual )")));
-    hb.DisplayDateHeading(yearBegin, yearEnd);
-    hb.addDateNow();
-
-    double estIncome = 0.0, estExpenses = 0.0, actIncome = 0.0, actExpenses = 0.0;
-
-    hb.addDivRow();
-    hb.addDivCol17_67();
-    // Add the graph
-    if (getChartSelection() == 0)
     {
-        hb.addDivCol25_50();
-        std::vector<ValueTrio> actValueList, estValueList;
-        for (const auto& category : categs)
+        const wxString& headingStr = AdjustYearValues(startDay, startMonth, startYear, budget_year);
+        bool amply = Option::instance().BudgetReportWithSummaries();
+        const wxString& headerStartupMsg = amply
+            ? _("Budget Categories for %s") : _("Budget Category Summary for %s");
+
+        hb.addHeader(2, wxString::Format(headerStartupMsg
+            ,  headingStr + "<br>" + _("( Estimated Vs Actual )")));
+        hb.DisplayDateHeading(yearBegin, yearEnd);
+        hb.addDateNow();
+        hb.addLineBreak();
+        hb.addDivRow(); 
         {
-            if (categID != category.second.first && categID != -1)
+            double estIncome = 0.0, estExpenses = 0.0, actIncome = 0.0, actExpenses = 0.0;
+            // Chart
+            if (getChartSelection() == 0)
             {
-                Model_Category::Data *c = Model_Category::instance().get(categID);
-                wxString categName = "Categories";
-                if (c) categName = c->CATEGNAME;
-                if ((actValueList.size() > 2) && (estValueList.size() > 2) && (getChartSelection() == 0))
-                    hb.addRadarChart(actValueList, estValueList, categName);
+                //std::vector<ValueTrio> actValueList, estValueList;
+                GraphData gd;
+                GraphSeries gsActual, gsEstimated;
 
-                actValueList.clear();
-                estValueList.clear();
+                for (const auto& category : categs)
+                {
+                    if (categID != category.second.first && categID != -1)
+                    {
+                        Model_Category::Data *c = Model_Category::instance().get(categID);
+                        wxString categName = "Categories";
+                        if (c) categName = c->CATEGNAME;
+                        gsActual.name = _("Actual");
+                        gsEstimated.name = _("Estimated");
+                        gd.series.push_back(gsEstimated);
+                        gd.series.push_back(gsActual);
+                        hb.addDivContainer();   
+                            hb.addHeader(3, categName);
+                            if (gd.labels.size() > 2) // Radar charts need at least 3 items 
+                                gd.type = GraphData::RADAR;        
+                            else
+                                gd.type = GraphData::BAR; 
+                            hb.addChart(gd);
+                        hb.endDiv();
+
+                        // Now clear for next chart
+                        gsActual.values.clear();
+                        gsEstimated.values.clear();
+                        gd.labels.clear();
+                        gd.series.clear();
+                    }
+                    if (category.second.first != -1)
+                    {
+                        double estimated = (monthlyBudget
+                            ? Model_Budget::getMonthlyEstimate(budgetPeriod[category.second.first][category.second.second]
+                                , budgetAmt[category.second.first][category.second.second])
+                            : Model_Budget::getYearlyEstimate(budgetPeriod[category.second.first][category.second.second]
+                                , budgetAmt[category.second.first][category.second.second]));
+                        double actual = categoryStats[category.second.first][category.second.second][0];
+
+                        gd.labels.push_back(category.first);
+                        gsActual.values.push_back(actual);
+                        gsEstimated.values.push_back(estimated);
+                    }
+                    categID = category.second.first;
+                }
             }
-            if (category.second.first != -1)
+            hb.startTable();
             {
-                double estimated = (monthlyBudget
-                    ? Model_Budget::getMonthlyEstimate(budgetPeriod[category.second.first][category.second.second]
-                        , budgetAmt[category.second.first][category.second.second])
-                    : Model_Budget::getYearlyEstimate(budgetPeriod[category.second.first][category.second.second]
-                        , budgetAmt[category.second.first][category.second.second]));
-                double actual = categoryStats[category.second.first][category.second.second][0];
+                hb.startThead();
+                {
+                    hb.startTableRow();
+                    {
+                        hb.addTableHeaderCell(_("Category"));
+                        hb.addTableHeaderCell(_("Amount"), true);
+                        hb.addTableHeaderCell(_("Frequency"));
+                        hb.addTableHeaderCell(_("Estimated"), true);
+                        hb.addTableHeaderCell(_("Actual"), true);
+                    }
+                    hb.endTableRow();
+                }
+                hb.endThead();
+                hb.startTbody();
+                {
+                    categID = -1;
+                    double catTotalsEstimated = 0.0, catTotalsActual = 0.0;
 
-                ValueTrio vt;
-                vt.label = category.first;
-                vt.amount = actual;
-                vt.color = hb.getColor(0);
-                actValueList.push_back(vt);
-                vt.amount = estimated;
-                estValueList.push_back(vt);
-            }
-            categID = category.second.first;
+                    for (const auto& category : categs)
+                    {
+                        double estimated = (monthlyBudget
+                            ? Model_Budget::getMonthlyEstimate(budgetPeriod[category.second.first][category.second.second]
+                                , budgetAmt[category.second.first][category.second.second])
+                            : Model_Budget::getYearlyEstimate(budgetPeriod[category.second.first][category.second.second]
+                                , budgetAmt[category.second.first][category.second.second]));
+
+                        if (estimated < 0)
+                            estExpenses += estimated;
+                        else
+                            estIncome += estimated;
+
+                        double actual = categoryStats[category.second.first][category.second.second][0];
+                        if (actual < 0)
+                            actExpenses += actual;
+                        else
+                            actIncome += actual;
+
+                        /***************************************************************************
+                        Display a TOTALS entry for the category.
+                        ****************************************************************************/
+                        if (categID != category.second.first && categID != -1)
+                        {
+                            // Category, Period, Amount, Estimated, Actual
+                            Model_Category::Data *c = Model_Category::instance().get(categID);
+                            amply ? hb.startAltTableRow() : hb.startTableRow();
+                            {
+                                wxString categName = "";
+                                if (c) categName = c->CATEGNAME;
+                                hb.addTableCell(categName);
+                                hb.addTableCell(wxEmptyString);
+                                hb.addTableCell(wxEmptyString);
+                                hb.addMoneyCell(catTotalsEstimated);
+                                hb.addMoneyCell(catTotalsActual);
+                            }
+                            hb.endTableRow();
+
+                            catTotalsEstimated = catTotalsActual = 0.0;
+                        }
+
+                        catTotalsActual += actual;
+                        catTotalsEstimated += estimated;
+
+                        /***************************************************************************/
+                        if (amply && category.second.first != -1)
+                        {
+                            double amt = budgetAmt[category.second.first][category.second.second];
+                            hb.startTableRow();
+                            {
+                                hb.addTableCell(category.first);
+                                hb.addMoneyCell(amt);
+                                hb.addTableCell(wxGetTranslation(Model_Budget::all_period()[budgetPeriod[category.second.first][category.second.second]]));
+                                hb.addMoneyCell(estimated);
+                                hb.addMoneyCell(actual);
+                            }
+                            hb.endTableRow();
+                        }
+                        categID = category.second.first;
+                    }
+                }
+                hb.endTbody();  
+            }     
+            hb.endTable();
+            hb.startTable();
+            {
+                double difIncome = actIncome - estIncome;
+                double difExpense = actExpenses - estExpenses;
+
+                //Summary of Estimated Vs Actual totals
+                hb.startTbody();
+                {
+                    hb.startTotalTableRow();
+                    {
+                        hb.addTableCell(_("Estimated Income:"));
+                        hb.addMoneyCell(estIncome);
+                        hb.addTableCell(_("Actual Income:"));
+                        hb.addMoneyCell(actIncome);
+                        hb.addTableCell(_("Difference Income:"));
+                        hb.addMoneyCell(difIncome);
+                    }
+                    hb.endTableRow();
+
+                    hb.startTotalTableRow();
+                    {
+                        hb.addTableCell(_("Estimated Expenses:"));
+                        hb.addMoneyCell(estExpenses);
+                        hb.addTableCell(_("Actual Expenses:"));
+                        hb.addMoneyCell(actExpenses);
+                        hb.addTableCell(_("Difference Expenses:"));
+                        hb.addMoneyCell(difExpense);
+                    }
+                    hb.endTableRow();
+                }
+                hb.endTfoot();
+            }       
+            hb.endTable();
         }
         hb.endDiv();
     }
-    hb.startTable();
-    hb.startThead();
-    hb.startTableRow();
-    hb.addTableHeaderCell(_("Category"));
-    hb.addTableHeaderCell(_("Amount"), true);
-    hb.addTableHeaderCell(_("Frequency"));
-    hb.addTableHeaderCell(_("Estimated"), true);
-    hb.addTableHeaderCell(_("Actual"), true);
-    hb.endTableRow();
-    hb.endThead();
-
-    categID = -1;
-    double catTotalsEstimated = 0.0, catTotalsActual = 0.0;
-
-    for (const auto& category : categs)
-    {
-        double estimated = (monthlyBudget
-            ? Model_Budget::getMonthlyEstimate(budgetPeriod[category.second.first][category.second.second]
-                , budgetAmt[category.second.first][category.second.second])
-            : Model_Budget::getYearlyEstimate(budgetPeriod[category.second.first][category.second.second]
-                , budgetAmt[category.second.first][category.second.second]));
-
-        if (estimated < 0)
-            estExpenses += estimated;
-        else
-            estIncome += estimated;
-
-        double actual = categoryStats[category.second.first][category.second.second][0];
-        if (actual < 0)
-            actExpenses += actual;
-        else
-            actIncome += actual;
-
-        /***************************************************************************
-        Display a TOTALS entry for the category.
-        ****************************************************************************/
-        if (categID != category.second.first && categID != -1)
-        {
-            // Category, Period, Amount, Estimated, Actual
-            amply ? hb.startTableRow(mmColors::listFutureDateColor.GetAsString()) : hb.startTableRow();
-            Model_Category::Data *c = Model_Category::instance().get(categID);
-            wxString categName = "";
-            if (c) categName = c->CATEGNAME;
-            hb.addTableCell(categName);
-            hb.addTableCell(wxEmptyString);
-            hb.addTableCell(wxEmptyString);
-            hb.addMoneyCell(catTotalsEstimated);
-            hb.addMoneyCell(catTotalsActual);
-            hb.endTableRow();
-
-            catTotalsEstimated = catTotalsActual = 0.0;
-        }
-
-        catTotalsActual += actual;
-        catTotalsEstimated += estimated;
-
-        /***************************************************************************/
-        if (amply && category.second.first != -1)
-        {
-            double amt = budgetAmt[category.second.first][category.second.second];
-            hb.startTableRow();
-            hb.addTableCell(category.first);
-            hb.addMoneyCell(amt);
-            hb.addTableCell(wxGetTranslation(Model_Budget::all_period()[budgetPeriod[category.second.first][category.second.second]]));
-            hb.addMoneyCell(estimated);
-            hb.addMoneyCell(actual);
-            hb.endTableRow();
-        }
-
-        categID = category.second.first;
-    }
-
-    hb.endTable();
-
-    double difIncome = actIncome - estIncome;
-    double difExpense = actExpenses - estExpenses;
-
-    //Summary of Estimated Vs Actual totals
-    hb.startTfoot();
-    hb.startTable();
-    hb.startTotalTableRow();
-    hb.addTableCell(_("Estimated Income:"));
-    hb.addMoneyCell(estIncome);
-    hb.addTableCell(_("Actual Income:"));
-    hb.addMoneyCell(actIncome);
-    hb.addTableCell(_("Difference Income:"));
-    hb.addMoneyCell(difIncome);
-    hb.endTableRow();
-
-    hb.startTotalTableRow();
-    hb.addTableCell(_("Estimated Expenses:"));
-    hb.addMoneyCell(estExpenses);
-    hb.addTableCell(_("Actual Expenses:"));
-    hb.addMoneyCell(actExpenses);
-    hb.addTableCell(_("Difference Expenses:"));
-    hb.addMoneyCell(difExpense);
-    hb.endTableRow();
-    hb.endTfoot();
-
-    hb.endTable();
-    hb.endDiv();
-    hb.endDiv();
     hb.endDiv();
     hb.end();
+
+    wxLogDebug("======= mmReportBudgetCategorySummary:getHTMLText =======");
+    wxLogDebug("%s", hb.getHTMLText());    
 
     return hb.getHTMLText();
 }

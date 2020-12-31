@@ -132,6 +132,7 @@ R"(<!DOCTYPE html>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <title><TMPL_VAR REPORTNAME></title>
     <script src = "memory:ChartNew.js"></script>
+    <script src = "memory:apexcharts.js"></script>
     <script src = "memory:sorttable.js"></script>
     <link href = "memory:master.css" rel = "stylesheet">
 </head>

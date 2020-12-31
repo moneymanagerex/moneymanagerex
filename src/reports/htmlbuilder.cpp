@@ -44,7 +44,7 @@ namespace tags
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>%s - Report</title>
 <link href = 'memory:master.css' rel = 'stylesheet' />
-<script src = 'memory:ChartNew.js'></script>
+<script src = 'memory:apexcharts.js'></script>
 <script src = 'memory:sorttable.js'></script>
 <style>
     /* Sortable tables */
@@ -381,6 +381,11 @@ void mmHTMLBuilder::startTableRow(const wxString& color)
     html_ += wxString::Format(tags::TABLE_ROW_BG, wxString::Format("style='background-color:%s'", color));
 }
 
+void mmHTMLBuilder::startAltTableRow()
+{
+    startTableRow("whitesmoke");
+}
+
 void mmHTMLBuilder::startTotalTableRow()
 {
     html_ += tags::TOTAL_TABLE_ROW;
@@ -415,308 +420,164 @@ void mmHTMLBuilder::endTableCell()
     html_ += tags::TABLE_CELL_END;
 }
 
-void mmHTMLBuilder::addRadarChart(std::vector<ValueTrio>& actData, std::vector<ValueTrio>& estData, const wxString& id, int x, int y)
+// Chart method (uses ApexChart.js)
+
+void mmHTMLBuilder::addChart(const GraphData& gd)
 {
     static const wxString html_parts = R"(
-<canvas id='%s' width ='%i' height='%i'></canvas>
-<script type='text/javascript'>
-  var data = {
-    labels : [%s],
-    datasets : [%s]
-  };
-  var ctx = document.getElementById('%s').getContext('2d');
-  var options = %s;
-  var reportChart = new Chart(ctx).Radar(data, options);
-</script>
-)";
-
-    static const wxString data_item = R"(
-{
-  'label' : '%s',
-  'fillColor' : '%s',
-  'strokeColor' : '%s',
-  'pointColor' : '%s',
-  'pointStrokeColor' : '#fff',
-  'data' : [%s],
-},)";
-
-    static const wxString opt = R"(
-{
-  datasetFill: false,
-  inGraphDataShow : false,
-  annotateDisplay : true,
-  responsive: true,
-  pointDot : false,
-  showGridLines: true
-}
-)";
-
-    wxString labels = "";
-    wxString actValues = "";
-    wxString estValues = "";
-
-    for (const auto& entry : actData)
-    {
-        labels += wxString::Format("'%s',", entry.label);
-        actValues += wxString::FromCDouble(fabs(entry.amount), 2) + ",";
-    }
-    for (const auto& entry : estData)
-    {
-        estValues += wxString::FromCDouble(fabs(entry.amount), 2) + ",";
-    }
-
-    const auto ac = getColor(8);
-    const auto ec = getColor(6);
-    wxString datasets = wxString::Format(data_item, _("Actual"), ac, ac, ac, actValues);
-    datasets += wxString::Format(data_item, _("Estimated"), ec, ec, ec, estValues);
-    addText(wxString::Format(html_parts, id, x, y, labels, datasets, id, opt));
-}
-
-void mmHTMLBuilder::addPieChart(std::vector<ValueTrio>& valueList, const wxString& id, const int x, const int y)
-{
-    static const wxString html_parts = R"(
-<canvas id='%s' width ='%i' height='%i' style='min-width: %dpx; min-height: %dpx'></canvas>
+<div id='%s'></div>
 <script>
-  var d = %s;
-  var ctx = document.getElementById('%s').getContext('2d');
-  var reportChart = new Chart(ctx).Pie(d.data, d.options);
+    var options = %s;
+    var chart = new ApexCharts(document.querySelector("#%s"), options);
+    chart.render();
 </script>
 )";
 
     int precision = Model_Currency::precision(Model_Currency::GetBaseCurrency());
     int round = pow(10, precision);
+    wxString divid = wxString::Format("apex-%i", rand()); // Generate unique identifier for each graph
 
     Document jsonDoc;
     jsonDoc.SetObject();
-    Value data_array(kArrayType);
     Document::AllocatorType& allocator = jsonDoc.GetAllocator();
 
-    for (const auto& entry : valueList)
+    // Chart Type and Series type
+    wxString gtype;
+    wxString gSeriesType = "category";
+    switch (gd.type)
     {
-        // Replace problem causing character
-        auto label = entry.label;
-        label.Replace("'", "`");
+        case GraphData::BAR:
+            gtype = "bar";
+            break;
+        case GraphData::LINE:
+            gtype = "line";
+            break;
+        case GraphData::LINE_DATETIME:
+            gtype = "line";
+            gSeriesType = "datetime";
+            break;
+        case GraphData::PIE:
+            gtype = "pie";
+            break;
+        case GraphData::DONUT:
+            gtype = "donut";
+            break;
+        case GraphData::RADAR:
+            gtype = "radar";
+    };
 
-        Value objValue;
-        objValue.SetObject();
+    Value chartValue; chartValue.SetObject();
+        Value chartType; chartType.SetString(gtype.c_str(), allocator);
+        chartValue.AddMember("type", chartType, allocator);
+    jsonDoc.AddMember("chart", chartValue, allocator);
 
-        Value title, color;
-        title.SetString(label.c_str(), allocator);
-        objValue.AddMember("title", title, allocator);
-
-        color.SetString(entry.color.c_str(), allocator);
-        objValue.AddMember("color", color, allocator);
-
-        double v = (floor(fabs(entry.amount) * round) / round);
-        objValue.AddMember("value", v, allocator);
-
-        data_array.PushBack(objValue, allocator);
+    // Tooltip settings
+    Value tooltipValue; tooltipValue.SetObject();
+        tooltipValue.AddMember("theme", "dark", allocator);
+    jsonDoc.AddMember("tooltip", tooltipValue, allocator);
+   
+    // Plot options
+    if (gd.type == GraphData::PIE || gd.type == GraphData::DONUT) 
+    {
+        Value plotOptionsValue; plotOptionsValue.SetObject(); 
+            Value pieValue; pieValue.SetObject();
+                Value donutValue; donutValue.SetObject();
+                    Value labelsValue; labelsValue.SetObject();
+                        Value nameValue; nameValue.SetObject();
+                        nameValue.AddMember("show", true, allocator);
+                        nameValue.AddMember("color", "black", allocator);
+                        Value valueValue; valueValue.SetObject();
+                        valueValue.AddMember("show", true, allocator);
+                        valueValue.AddMember("color", "black", allocator);
+                    labelsValue.AddMember("name", nameValue, allocator);
+                    labelsValue.AddMember("value", valueValue, allocator);
+                    labelsValue.AddMember("show", true, allocator);
+                donutValue.AddMember("labels", labelsValue, allocator);
+                donutValue.AddMember("size", "60%", allocator);
+                donutValue.AddMember("show", true, allocator);
+            pieValue.AddMember("donut",donutValue, allocator);
+            pieValue.AddMember("customScale","0.7", allocator);
+        plotOptionsValue.AddMember("pie",pieValue, allocator);
+        jsonDoc.AddMember("plotOptions", plotOptionsValue, allocator);
     }
-
-    jsonDoc.AddMember("data", data_array, allocator);
-
-    Value optionsValue;
-    optionsValue.SetObject();
-    optionsValue.AddMember("annotateDisplay", true, allocator);
-    optionsValue.AddMember("segmentShowStroke", false, allocator);
-    optionsValue.AddMember("responsive", true, allocator);
-    jsonDoc.AddMember("options", optionsValue, allocator);
-
-
-    StringBuffer strbuf;
-    Writer<StringBuffer> writer(strbuf);
-    jsonDoc.Accept(writer);
-
-    const wxString data = strbuf.GetString();
-
-    addText(wxString::Format(html_parts, id, x, y, x / 2, y / 2, data, id));
-}
-
-void mmHTMLBuilder::addBarChart(const wxArrayString& labels
-    , const std::vector<BarGraphData>& data, const wxString& id
-    , int x, int y)
-{
-    static const wxString html_parts = R"(
-<canvas id='%s' width ='%i' height='%i' style='min-width: %dpx; min-height: %dpx'></canvas>
-<script>
-  var d = %s;
-  var ctx = document.getElementById('%s').getContext('2d');
-  var reportChart = new Chart(ctx).Bar(d.data, d.options);
-</script>
-)";
-
-    int precision = Model_Currency::precision(Model_Currency::GetBaseCurrency());
-
-    Document jsonDoc;
-    jsonDoc.SetObject();
-    Document::AllocatorType& allocator = jsonDoc.GetAllocator();
-
-    Value dataObjValue;
-    dataObjValue.SetObject();
-
-    Value labelsArray(kArrayType);
-    for (const auto& entry : labels)
+    
+    // Turn off data labels for bar charts as it gets too cluttered
+    if (gd.type == GraphData::BAR) 
+    {
+        Value dataLabelsValue; dataLabelsValue.SetObject();
+        dataLabelsValue.AddMember("enabled", false, allocator);
+        jsonDoc.AddMember("dataLabels", dataLabelsValue, allocator);
+    }
+ 
+    // X-Axis
+    Value categoriesArray(kArrayType);
+    for (const auto& entry : gd.labels)
     {
         Value label_str;
         label_str.SetString(entry.c_str(), allocator);
-        labelsArray.PushBack(label_str, allocator);
+        categoriesArray.PushBack(label_str, allocator);
     }
-    dataObjValue.AddMember("labels", labelsArray, allocator);
-
-    double max_value = 0;
-    int round = pow(10, precision);
-    Value datasets_array(kArrayType);
-    for (const auto& entry : data)
+    
+    // Pie/donut charts just have a single series / data
+    if (gd.type == GraphData::PIE || gd.type == GraphData::DONUT) 
     {
-        Value objValue;
-        objValue.SetObject();
-
-        Value title, color;
-        title.SetString(entry.title.c_str(), allocator);
-        objValue.AddMember("title", title, allocator);
-
-        color.SetString(entry.fillColor.c_str(), allocator);
-        objValue.AddMember("fillColor", color, allocator);
-
-        color.SetString(entry.strokeColor.c_str(), allocator);
-        objValue.AddMember("strokeColor", color, allocator);
-
-        Value data_array(kArrayType);
-        for (const auto& item : entry.data)
+       jsonDoc.AddMember("labels", categoriesArray, allocator);      
+    } else
+    {
+        Value xaxisValue; xaxisValue.SetObject();
+            Value type_str;
+            type_str.SetString(gSeriesType.c_str(), allocator);
+            xaxisValue.AddMember("type", type_str, allocator);       
+            xaxisValue.AddMember("categories", categoriesArray, allocator);
+            Value labelsValue; labelsValue.SetObject();
+                labelsValue.AddMember("hideOverlappingLabels", true, allocator);
+            xaxisValue.AddMember("labels", labelsValue, allocator);
+        jsonDoc.AddMember("xaxis", xaxisValue, allocator);
+    }
+  
+    // Series - Pie/donut charts just have a single series / data
+    if (gd.type == GraphData::PIE || gd.type == GraphData::DONUT) 
+    {
+        Value seriesArray(kArrayType);
+        for (const auto& entry : gd.series)
         {
-            double v = (floor(fabs(item) * round) / round);
-            data_array.PushBack(v, allocator);
-            max_value = std::max(v, max_value);
+            for (const auto& item : entry.values)
+            {
+                double v = (floor(fabs(item) * round) / round);
+                seriesArray.PushBack(v, allocator);
+            }
         }
-        objValue.AddMember("data", data_array, allocator);
-
-        datasets_array.PushBack(objValue, allocator);
-    }
-    dataObjValue.AddMember("datasets", datasets_array, allocator);
-
-    jsonDoc.AddMember("data", dataObjValue, allocator);
-
-    double vertical_steps = 10.0;
-    // Compute chart spacing and interval (chart forced to start at zero)
-    double scaleStepWidth = ceil(max_value / vertical_steps);
-    // Compute chart spacing and interval (chart forced to start at zero)
-    if (scaleStepWidth < 1.0)
-        scaleStepWidth = 1.0;
-    else {
-        double s = (pow(10, ceil(log10(scaleStepWidth)) - 1.0));
-        if (s > 0) {
-            scaleStepWidth = ceil(scaleStepWidth / s) * s;
-        }
-    }
-
-    Value optionsValue;
-    optionsValue.SetObject();
-
-    optionsValue.AddMember("responsive", true, allocator);
-    optionsValue.AddMember("scaleOverride", true, allocator);
-    optionsValue.AddMember("annotateDisplay", true, allocator);
-    optionsValue.AddMember("scaleStartValue", 0, allocator);
-    optionsValue.AddMember("scaleSteps", 0, allocator);
-    Value scale(kArrayType);
-    scale.PushBack(static_cast<int>(scaleStepWidth), allocator);
-    optionsValue.AddMember("scaleStepWidth", scale, allocator);
-    Value steps(kArrayType);
-    steps.PushBack(vertical_steps, allocator);
-    optionsValue.AddMember("scaleSteps", steps, allocator);
-    jsonDoc.AddMember("options", optionsValue, allocator);
-
-    StringBuffer strbuf;
-    Writer<StringBuffer> writer(strbuf);
-    jsonDoc.Accept(writer);
-
-    const wxString d = strbuf.GetString();
-    addText(wxString::Format(html_parts, id, x, y, x, y, d, id));
-}
-
-void mmHTMLBuilder::addLineChart(const std::vector<LineGraphData>& data, const wxString& id, int colorNum, int x, int y, bool pointDot, bool showGridLines, bool datasetFill)
-{
-    static const wxString html_parts = R"(
-<canvas id='%s' width ='%i' height='%i'></canvas>
-<script type='text/javascript'>
-var d = %s
-var ctx = document.getElementById('%s').getContext('2d');
-var reportChart = new Chart(ctx).Line(d.data, d.options);
-</script>
-)";
-
-    int precision = Model_Currency::precision(Model_Currency::GetBaseCurrency());
-    int round = pow(10, precision);
-
-    Document jsonDoc;
-    jsonDoc.SetObject();
-    Document::AllocatorType& allocator = jsonDoc.GetAllocator();
-
-    Value dObjValue;
-    dObjValue.SetObject();
-
-    Value labelsArray(kArrayType);
-    Value valuesArray(kArrayType);
-    Value xPosArray(kArrayType);
-
-    for (const auto& entry : data)
+        jsonDoc.AddMember("series", seriesArray, allocator);
+    } else 
     {
-        Value label_str, xPos;
-        label_str.SetString(entry.label.c_str(), allocator);
-        labelsArray.PushBack(label_str, allocator);
+        Value seriesArray(kArrayType);
+        for (const auto& entry : gd.series)
+        {
+            Value name;
+            Value seriesValue; seriesValue.SetObject();
 
-        xPos.SetString(entry.xPos.c_str(), allocator);
-        xPosArray.PushBack(xPos, allocator);
+            name.SetString(entry.name.c_str(), allocator);
+            seriesValue.AddMember("name", name, allocator);
 
-        double v = (floor((entry.amount) * round) / round);
-        valuesArray.PushBack(v, allocator);
+            Value dataArray(kArrayType);
+            for (const auto& item : entry.values)
+            {
+                double v = (floor(fabs(item) * round) / round);
+                dataArray.PushBack(v, allocator);
+            }
+
+            seriesValue.AddMember("data", dataArray, allocator);
+            seriesArray.PushBack(seriesValue, allocator);
+        }
+        jsonDoc.AddMember("series", seriesArray, allocator);
     }
-
-    Value datasetsValue;
-    datasetsValue.SetObject();
-    datasetsValue.AddMember("data", valuesArray, allocator);
-    datasetsValue.AddMember("xPos", xPosArray, allocator);
-
-    const auto c = getColor(colorNum);
-    Value fillColor, strokeColor, pointColor, pointStrokeColor;
-    fillColor.SetString(c.c_str(), allocator);
-    strokeColor.SetString(c.c_str(), allocator);
-    pointColor.SetString(c.c_str(), allocator);
-    fillColor.SetString(c.c_str(), allocator);
-    datasetsValue.AddMember("fillColor", fillColor, allocator);
-    datasetsValue.AddMember("strokeColor", strokeColor, allocator);
-    datasetsValue.AddMember("pointColor", pointColor, allocator);
-    pointStrokeColor.SetString("#fff", allocator);
-    datasetsValue.AddMember("pointStrokeColor", pointStrokeColor, allocator);
-
-    Value datasetsArray(kArrayType);
-    datasetsArray.PushBack(datasetsValue, allocator);
-
-    dObjValue.AddMember("labels", labelsArray, allocator);
-    dObjValue.AddMember("datasets", datasetsArray, allocator);
-
-    //Options
-    Value optionsValue;
-    optionsValue.SetObject();
-    optionsValue.AddMember("responsive", true, allocator);
-    optionsValue.AddMember("datasetFill", datasetFill, allocator);
-    optionsValue.AddMember("inGraphDataShow", false, allocator);
-    optionsValue.AddMember("annotateDisplay", true, allocator);
-    optionsValue.AddMember("responsive", true, allocator);
-    optionsValue.AddMember("pointDot", pointDot, allocator);
-    optionsValue.AddMember("showGridLines", showGridLines, allocator);
-
-    //
-    jsonDoc.AddMember("options", optionsValue, allocator);
-    jsonDoc.AddMember("data", dObjValue, allocator);
 
     StringBuffer strbuf;
     Writer<StringBuffer> writer(strbuf);
     jsonDoc.Accept(writer);
 
     const wxString d = strbuf.GetString();
-
-    const auto text = (wxString::Format(html_parts, id, x, y, d, id));
-    addText(text);
+    addText(wxString::Format(html_parts, divid, d, divid));
 }
 
 const wxString mmHTMLBuilder::getHTMLText() const

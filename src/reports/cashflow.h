@@ -35,7 +35,7 @@ public:
 
 protected:
     wxString getHTMLText_i();
-    void getStats(double& tInitialBalance, std::vector<ValueTrio>& forecastVector);
+    void getStats(double& tInitialBalance, std::vector<ValuePair>& forecastVector);
 
 protected:
     struct mmRepeatForecast

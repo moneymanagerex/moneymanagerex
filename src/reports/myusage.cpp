@@ -35,6 +35,7 @@ mmReportMyUsage::~mmReportMyUsage()
 
 wxString mmReportMyUsage::getHTMLText()
 {
+    // Grab the data
     Model_Usage::Data_Set all_usage;
     wxDateTime _start_date, _end_date;
 
@@ -55,9 +56,8 @@ wxString mmReportMyUsage::getHTMLText()
     for (const auto & usage : all_usage)
     {
          Document json_doc;
-         if (json_doc.Parse(usage.JSONCONTENT.utf8_str()).HasParseError()) {
+         if (json_doc.Parse(usage.JSONCONTENT.utf8_str()).HasParseError())
              continue;
-         }
 
          //wxLogDebug("======= mmReportMyUsage::getHTMLText =======");
          //wxLogDebug("RapidJson\n%s", JSON_PrettyFormated(json_doc));
@@ -107,113 +107,75 @@ wxString mmReportMyUsage::getHTMLText()
         contents += r;
     }
 
-    mm_html_template report(usage_template);
-    report(L"CANVAS") = getChartSelection() == 0 ? R"(<canvas id="MY_CANVAS"></canvas>)" : "";
-    report(L"REPORTNAME") = getReportTitle();
-    report(L"HEADER_FREQUENCY") = _("Frequency");
-    report(L"HEADER_NAME") = _("Reports");
-    report(L"CONTENTS") = contents;
-    report(L"HTMLSCALE") = wxString::Format("%d", Option::instance().getHtmlFontSize());
+   // Build the report
+    mmHTMLBuilder hb;
+    hb.init();
+    hb.addDivContainer(); // Main container
+    hb.addHeader(2, this->getReportTitle());
+    hb.DisplayDateHeading(m_date_range->start_date(), m_date_range->end_date(), m_date_range->is_with_date());
+    hb.addDateNow();
+    hb.addLineBreak();
+    hb.addDivRow(); // Report Container
+
+    if (getChartSelection() == 0)
+    {
+        GraphData gd;
+        GraphSeries data_usage;
+
+        wxArrayString labels;
+        for (const auto &stats : usage_by_module)
+        {
+            data_usage.values.push_back(stats.second);
+            gd.labels.push_back(stats.first);
+        }
+
+        data_usage.name = _("Reports");
+        gd.series.push_back(data_usage);
+
+        if (!gd.series.empty())
+        {
+            hb.addDivContainer();
+            {
+                gd.type = GraphData::DONUT;
+                hb.addChart(gd);
+            }
+            hb.endDiv();
+        }
+    }
+    hb.addDivContainer(); // Table Container    
+    hb.startTable();
+    {
+        hb.startThead();
+        {
+            hb.startTableRow();
+            hb.addTableHeaderCell(_("Reports"));
+            hb.addTableHeaderCell(_("Frequency"), true);
+            hb.endTableRow();
+            hb.endThead();
+        }
+        hb.endThead();
+        hb.startTbody();
+        {
+            for (const auto &stats : usage_by_module)
+            {
+                wxString frequency = wxString::Format(wxT("%d"), stats.second);
+                hb.startTableRow();
+                hb.addTableCell(stats.first);    
+                hb.addTableCell(frequency,true);
+                hb.endTableRow();
+            }
+        }
+        hb.endTbody();
+    }
+    hb.endTable();
     
-    wxDateTime today = wxDateTime::Now();
-    const wxString current_day_time = wxString::Format(_("Report Generated %s %s")
-        , mmGetDateForDisplay(today.FormatISODate())
-        , today.FormatISOTime());
-    report(L"TODAY") = current_day_time;
+    hb.endDiv();// Table container
+    hb.endDiv(); // Report Container
+    hb.endDiv(); // Main container
+    hb.end();
 
-    wxString out = wxEmptyString;
-    try
-    {
-        out = report.Process();
-    }
-    catch (const syntax_ex& e)
-    {
-        return e.what();
-    }
-    catch (...)
-    {
-        return _("Caught exception");
-    }
+    wxLogDebug("======= mmReportUsage:getHTMLText =======");
+    wxLogDebug("%s", hb.getHTMLText());
 
-    return out;
+    return hb.getHTMLText();
 }
-
-const char* mmReportMyUsage::usage_template = R"(
-<!DOCTYPE html>
-<html>
-<head>
-  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-  <title><TMPL_VAR REPORTNAME></title>
-  <script src = "memory:ChartNew.js"></script>
-  <script src = "memory:format.js"></script>
-  <script src = "memory:sorttable.js"></script>
-  <link href = "memory:master.css" rel = "stylesheet" />
-  <style>
-    canvas {min-height: 100px}
-    body {font-size: <TMPL_VAR HTMLSCALE>%}
-  </style>
-</head>
-<body>
-
-<div class = "container">
-<h3><TMPL_VAR REPORTNAME>
-
-</h3>
-<TMPL_VAR TODAY><hr>
-
-<div class = "row">
-<TMPL_VAR CANVAS">
-<script>
-function getRandomColor() {
-    var letters = '0123456789ABCDEF'.split('');
-    var color = '#';
-    for (var i = 0; i < 6; i++ ) {
-        color += letters[Math.floor(Math.random() * 16)];
-    }
-    return color;
-};
-  var d = {
-  data:
-    [
-<TMPL_LOOP NAME=CONTENTS>
-      {
-        title : '<TMPL_VAR MODULE_NAME>',
-        color : getRandomColor(),
-        value : <TMPL_VAR FREQUENCY>
-      },
-</TMPL_LOOP>
-    ]
-  };
-  var opts= {
-    annotateDisplay: true,
-    responsive: true,
-    segmentShowStroke: false
-  };
-
-  var ctx = document.getElementById("MY_CANVAS").getContext("2d");
-
-  window.onload = function() {
-      var myBar = new Chart(ctx).Pie(d.data,opts);
-  }
-
-</script>
-</div>
-<table class='table sortable'>
-<thead>
-  <tr>
-<th><TMPL_VAR HEADER_NAME></th>
-<th><TMPL_VAR HEADER_FREQUENCY></th>
-  </tr>
-</thead>
-<tbody>
-<TMPL_LOOP NAME=CONTENTS>
-  <tr class='success'>
-    <td class="sorttable_customkey="<TMPL_VAR MODULE_NAME>"><TMPL_VAR MODULE_NAME></td>
-    <td class="sorttable_customkey="<TMPL_VAR FREQUENCY>"><TMPL_VAR FREQUENCY></td>
-  </tr>
-</TMPL_LOOP>
-</tbody>
-</table>
-</div></body>
-</html>
-)";
