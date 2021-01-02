@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-12-24 17:26+0300\n"
-"PO-Revision-Date: 2021-01-02 20:35\n"
+"PO-Revision-Date: 2021-01-02 20:45\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -2183,7 +2183,7 @@ msgstr "Abfragefehler, bitte kontaktieren Sie den MMEX-Support!"
 
 #: dbupgrade.cpp:248 dbupgrade.cpp:303
 msgid "Invalid file content, please contact MMEX support!"
-msgstr ""
+msgstr "Ungültiger Dateiinhalt, bitte kontaktieren Sie den MMEX-Support!"
 
 #: dbupgrade.cpp:255
 msgid "Send this log to MMEX support team:\n"
@@ -2205,7 +2205,7 @@ msgstr "DB-Wartung abgeschlossen, starten Sie MMEX bitte neu!"
 
 #: dbwrapper.cpp:70
 msgid "When database file opening:"
-msgstr ""
+msgstr "Beim Öffnen der Datenbankdatei:"
 
 #: dbwrapper.cpp:74
 msgid "Can't open file"
@@ -2219,7 +2219,9 @@ msgstr "Sie müssen Pfad zu einem anderen Datenbank-Datei angeben"
 msgid "An incorrect password given for an encrypted file\n"
 "or\n"
 "attempt to open a File that is not a database file \n"
-msgstr ""
+msgstr "Ein falsches Passwort für eine verschlüsselte Datei\n"
+"oder\n"
+"versucht eine Datei zu öffnen, die keine Datenbankdatei ist \n"
 
 #: dbwrapper.cpp:82 import_export/qif_import_gui.cpp:858 webapp.cpp:120
 #, c-format
@@ -2300,7 +2302,7 @@ msgstr "Betragsspanne:"
 
 #: filtertransdialog.cpp:347
 msgid "&Clear "
-msgstr ""
+msgstr "&Leeren "
 
 #: filtertransdialog.cpp:822 filtertransdialog.cpp:837 reports/myusage.cpp:91
 #: webappdialog.cpp:194 webappdialog.cpp:199
@@ -2500,7 +2502,7 @@ msgstr "Wähle Dateinamen um den Bericht zu speichern"
 
 #: general_report_manager.cpp:1171
 msgid "Parameters:"
-msgstr ""
+msgstr "Parameter:"
 
 #: import_export/parsers.cpp:46 import_export/univcsvdialog.cpp:1567
 #: mmSimpleDialogs.cpp:253
@@ -2556,7 +2558,7 @@ msgstr "QIF-Export"
 
 #: import_export/qif_export.cpp:47
 msgid "JSON Export"
-msgstr ""
+msgstr "JSON-Export"
 
 #: import_export/qif_export.cpp:106
 msgid "Parameters"
@@ -2568,11 +2570,11 @@ msgstr "Log"
 
 #: import_export/qif_export.cpp:123
 msgid "QIF"
-msgstr ""
+msgstr "QIF"
 
 #: import_export/qif_export.cpp:124
 msgid "JSON"
-msgstr ""
+msgstr "JSON"
 
 #: import_export/qif_export.cpp:138 mmframe.cpp:2948 mmframe.cpp:2952
 #: mmframe.cpp:2971 mmframe.cpp:2975
@@ -2619,11 +2621,11 @@ msgstr "QIF Dateien (*.qif)"
 
 #: import_export/qif_export.cpp:299
 msgid "Choose JSON data file to Export"
-msgstr ""
+msgstr "JSON-Datendatei zum Exportieren auswählen"
 
 #: import_export/qif_export.cpp:301
 msgid "JSON Files (*.json)"
-msgstr ""
+msgstr "JSON-Dateien (*.json)"
 
 #: import_export/qif_export.cpp:321
 msgid "No Account available for export"
@@ -2879,7 +2881,7 @@ msgstr "CSV-Datei zum Exportieren auswählen"
 
 #: import_export/univcsvdialog.cpp:203
 msgid "Template name"
-msgstr ""
+msgstr "Vorlagenname"
 
 #: import_export/univcsvdialog.cpp:208
 msgid "Save Template"
@@ -2980,7 +2982,7 @@ msgstr "Konto existiert nicht"
 #: import_export/univcsvdialog.cpp:1822
 #, c-format
 msgid "Positive if type has '%s'"
-msgstr ""
+msgstr "Positiv, wenn Typ '%s ' hat '"
 
 #: import_export/univcsvdialog.cpp:919
 msgid "Incorrect fields specified for import!"
@@ -3128,11 +3130,11 @@ msgstr "CSV-Dateien (*.csv)"
 
 #: import_export/univcsvdialog.cpp:1818
 msgid "Please, type the word indicating positive values in your CSV file, e.g. 'debit'"
-msgstr ""
+msgstr "Bitte geben Sie das Wort ein, das positive Werte in Ihrer CSV-Datei angibt, z.B. 'debit'"
 
 #: import_export/univcsvdialog.cpp:1818
 msgid "Enter a value"
-msgstr ""
+msgstr "Geben Sie einen Wert ein"
 
 #: maincurrencydialog.cpp:74 reports/summarystocks.cpp:171 stockdialog.cpp:427
 #: stockspanel.cpp:92
@@ -3145,7 +3147,7 @@ msgstr "Letzter Kurs"
 
 #: maincurrencydialog.cpp:76
 msgid "Fixed Rate"
-msgstr ""
+msgstr "feste Rate"
 
 #: maincurrencydialog.cpp:163 maincurrencydialog.cpp:459
 msgid "Online update currency rate"
@@ -3157,7 +3159,7 @@ msgstr "Online-Aktualisierung"
 
 #: maincurrencydialog.cpp:170
 msgid "Show all even the unused currencies"
-msgstr ""
+msgstr "Zeige auch alle ungenutzten Währungen"
 
 #: maincurrencydialog.cpp:205 payeedialog.cpp:122
 msgid "Search:"
@@ -3198,7 +3200,7 @@ msgstr "Ausgewählte Währung löschen"
 
 #: maincurrencydialog.cpp:294
 msgid "Delete Currency Values history for unused currencies and days"
-msgstr ""
+msgstr "Verlauf von Währungswerten für ungenutzte Währungen und Tage löschen"
 
 #: maincurrencydialog.cpp:351
 msgid "Do you really want to delete the selected Currency?"
@@ -3218,7 +3220,8 @@ msgstr "Auswahl der Basiswährung"
 #, c-format
 msgid "Historic rates for %s found, but \"Use currency history\" in options is disabled:\n"
 "click no and enable it or click yes to remove all historic rates for %s"
-msgstr ""
+msgstr "Historische Kurse für %s gefunden, aber \"Währungsverlauf verwenden\" in den Optionen ist deaktiviert:\n"
+"Klicken Sie Nein und aktivieren Sie es oder klicken Sie auf \"Ja\" um alle historischen Kurse für %s zu entfernen"
 
 #: maincurrencydialog.cpp:432
 #, c-format
@@ -3227,7 +3230,7 @@ msgstr "Währungsverlauf Optionen: %s "
 
 #: maincurrencydialog.cpp:488
 msgid "Unable to update history currency rates. Please update them manually!"
-msgstr ""
+msgstr "Währungskurse im Verlauf konnten nicht aktualisiert werden. Bitte manuell aktualisieren!"
 
 #: maincurrencydialog.cpp:489 maincurrencydialog.cpp:641
 #: maincurrencydialog.cpp:656 maincurrencydialog.cpp:703
@@ -3263,16 +3266,16 @@ msgstr "Der Verlauf für das Symbol %s kann nicht heruntergeladen werden. Vorher
 
 #: maincurrencydialog.cpp:763
 msgid "Changing base currency will delete all history rates, proceed?"
-msgstr ""
+msgstr "Ändern der Basiswährung löscht alle Verlaufsraten. Fortfahren?"
 
 #: maincurrencydialog.cpp:787
 msgid "Do you want to update today currency rates?"
-msgstr ""
+msgstr "Möchten Sie heute die Wechselkurse aktualisieren?"
 
 #: maincurrencydialog.cpp:808
 #, c-format
 msgid "Unable to download history for base symbol %s. History rates not available!"
-msgstr ""
+msgstr "Downloadverlauf für das Basissymbol %s nicht möglich. Verlaufsraten nicht verfügbar!"
 
 #: maincurrencydialog.cpp:853 stockspanel.cpp:830 util.cpp:512
 msgid "Could not find base currency symbol!"
@@ -3280,19 +3283,19 @@ msgstr "Konnte Währungssymbol nicht finden!"
 
 #: mmSimpleDialogs.cpp:177
 msgid "Subtract one year"
-msgstr ""
+msgstr "Ein Jahr abziehen"
 
 #: mmSimpleDialogs.cpp:178
 msgid "Subtract one month"
-msgstr ""
+msgstr "Einen Monat abziehen"
 
 #: mmSimpleDialogs.cpp:179
 msgid "Add one month"
-msgstr ""
+msgstr "Einen Monat hinzufügen"
 
 #: mmSimpleDialogs.cpp:180
 msgid "Add one year"
-msgstr ""
+msgstr "Jahr hinzufügen"
 
 #: mmSimpleDialogs.cpp:237
 #, c-format
@@ -3369,7 +3372,7 @@ msgstr "Bitte geben Sie ein nicht leeres Symbol ein."
 
 #: mmTextCtrl.cpp:69
 msgid "Invalid Value"
-msgstr ""
+msgstr "Ungültiger Wert"
 
 #: mmTextCtrl.cpp:95
 msgid "Please enter a positive or calculated value."
