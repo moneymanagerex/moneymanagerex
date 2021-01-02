@@ -101,7 +101,7 @@ public:
     void addDivRow();
     void addDivCol17_67();
     void addDivCol25_50();
-    void addDivCol6();
+    void addDivCol8_84();
     void endDiv();
     void startTableRow();
     void startTableRow(const wxString& color);
