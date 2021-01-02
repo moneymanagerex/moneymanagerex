@@ -44,7 +44,13 @@ namespace tags
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>%s - Report</title>
 <link href = 'memory:master.css' rel = 'stylesheet' />
-<script src = 'memory:apexcharts.js'></script>
+<script>
+    window.Promise || document.write('<script src="memory:polyfill.min.js"><\/script>');
+    window.Promise || document.write('<script src="memory:classlist.min.js"><\/script>');
+    window.Promise || document.write('<script src="memory:findindex.min.js"><\/script>');
+    window.Promise || document.write('<script src="memory:umd.min.js"><\/script>');
+</script>
+<script src = 'memory:apexcharts.min.js'></script>
 <script src = 'memory:sorttable.js'></script>
 <style>
     /* Sortable tables */
@@ -509,6 +515,19 @@ void mmHTMLBuilder::addChart(const GraphData& gd)
         jsonDoc.AddMember("dataLabels", dataLabelsValue, allocator);
     }
  
+    // If colors are specified then use these in prefernce to standard pallete
+    if (!gd.colors.empty())
+    {
+        Value colorsArray(kArrayType);
+        for (const auto& entry : gd.colors)
+        {
+            Value color_str;
+            color_str.SetString(entry.GetAsString(wxC2S_HTML_SYNTAX).c_str(), allocator);
+            colorsArray.PushBack(color_str, allocator);
+        }
+        jsonDoc.AddMember("colors", colorsArray, allocator);    
+    }
+
     // X-Axis
     Value categoriesArray(kArrayType);
     for (const auto& entry : gd.labels)

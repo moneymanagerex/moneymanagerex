@@ -4,7 +4,13 @@
     <meta charset="UTF-8" />
     <meta http - equiv="Content-Type" content="text/html" />
     <title>Home Page</title>
-    <script src="memory:apexcharts.js"></script>
+    <script>
+        window.Promise || document.write('<script src="memory:polyfill.min.js"><\/script>');
+        window.Promise || document.write('<script src="memory:classlist.min.js"><\/script>');
+        window.Promise || document.write('<script src="memory:findindex.min.js"><\/script>');
+        window.Promise || document.write('<script src="memory:umd.min.js"><\/script>');
+    </script>
+    <script src="memory:apexcharts.min.js"></script>
     <script src="memory:sorttable.js"></script>
     <link href="memory:master.css" rel="stylesheet" />
     <style>
@@ -133,6 +139,7 @@
                     var data = {
                         chart: { type : 'bar', toolbar : { show : false } },
                         dataLabels : { enabled : false },
+                        colors: [ '#00E396', '#FF4560' ],
                         tooltip : { theme : "dark" },
                         xaxis : { labels : { show : false }, categories : [ive_json[9]]},                      
                         series : [

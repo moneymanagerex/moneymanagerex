@@ -389,6 +389,7 @@ wxString mmReportCategoryOverTimePerformance::getHTMLText()
                     hb.addDivContainer(); 
                     {                 
                         gd.type = GraphData::BAR;
+                        gd.colors = { wxColour(0, 227, 150), wxColour(255, 69, 96) };  // Green, Red
                         hb.addChart(gd);
                     }
                     hb.endDiv();

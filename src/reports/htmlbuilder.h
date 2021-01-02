@@ -25,12 +25,6 @@
 #include "html_template.h"
 #include "util.h"
 
-struct ApexGraphData
-{
-    wxString name;
-    std::vector<double> series;    
-};
-
 struct GraphSeries
 {
     wxString name;
@@ -41,7 +35,8 @@ struct GraphData
 {
     enum { BAR = 0, LINE, LINE_DATETIME, PIE, DONUT, RADAR } type;
     std::vector<wxString> labels;
-    std::vector<GraphSeries> series;   
+    std::vector<GraphSeries> series; 
+    std::vector<wxColour> colors;     
 };
 
 class mmHTMLBuilder
