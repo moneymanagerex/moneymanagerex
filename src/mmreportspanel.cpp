@@ -228,7 +228,7 @@ void mmReportsPanel::CreateControls()
             }
             m_date_ranges->SetSelection(sel_id);
 
-            itemBoxSizerHeader->Add(m_date_ranges, 0, wxALL, 1);
+            itemBoxSizerHeader->Add(m_date_ranges, 0, wxALL | wxALIGN_CENTER_VERTICAL, 1);
             itemBoxSizerHeader->AddSpacer(5);
             const mmDateRange* date_range = m_all_date_ranges.at(sel_id);
             long date_style = wxDP_DROPDOWN | wxDP_SHOWCENTURY;
@@ -242,9 +242,9 @@ void mmReportsPanel::CreateControls()
             m_end_date->SetValue(date_range->end_date());
             m_end_date->Enable(false);
 
-            itemBoxSizerHeader->Add(m_start_date, 0, wxALL, 1);
+            itemBoxSizerHeader->Add(m_start_date, 0, wxALL| wxALIGN_CENTER_VERTICAL, 1);
             itemBoxSizerHeader->AddSpacer(5);
-            itemBoxSizerHeader->Add(m_end_date, 0, wxALL, 1);
+            itemBoxSizerHeader->Add(m_end_date, 0, wxALL| wxALIGN_CENTER_VERTICAL, 1);
             itemBoxSizerHeader->AddSpacer(30);
         }
         else if (rp & rb_->RepParams::SINGLE_DATE)
@@ -262,7 +262,7 @@ void mmReportsPanel::CreateControls()
 
             m_end_date = nullptr;
 
-            itemBoxSizerHeader->Add(m_start_date, 0, wxALL, 1);
+            itemBoxSizerHeader->Add(m_start_date, 0, wxALL | wxALIGN_CENTER_VERTICAL, 1);
             itemBoxSizerHeader->AddSpacer(30);
         }
         else if (rp & rb_->RepParams::MONTHES)
@@ -277,7 +277,7 @@ void mmReportsPanel::CreateControls()
             up_down_month->Connect(wxEVT_BUTTON, wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(mmDateYearMonth::OnButtonPress), nullptr, this);
             rb_->setSelection(m_shift);
 
-            itemBoxSizerHeader->Add(up_down_month, 0, wxALL, 1);
+            itemBoxSizerHeader->Add(up_down_month, 0, wxALL | wxALIGN_CENTER_VERTICAL, 1);
             itemBoxSizerHeader->AddSpacer(30);
         }
 
@@ -311,7 +311,7 @@ void mmReportsPanel::CreateControls()
             }
             m_date_ranges->SetSelection(sel_id);
 
-            itemBoxSizerHeader->Add(m_date_ranges, 0, wxALL, 1);
+            itemBoxSizerHeader->Add(m_date_ranges, 0, wxALL | wxALIGN_CENTER_VERTICAL, 1);
             itemBoxSizerHeader->AddSpacer(30);
         }
 
@@ -332,7 +332,7 @@ void mmReportsPanel::CreateControls()
             }
             m_accounts->SetSelection(rb_->getAccountSelection());
 
-            itemBoxSizerHeader->Add(m_accounts, 0, wxALL, 1);
+            itemBoxSizerHeader->Add(m_accounts, 0, wxALL | wxALIGN_CENTER_VERTICAL, 1);
             itemBoxSizerHeader->AddSpacer(30);
         }
 
@@ -348,7 +348,7 @@ void mmReportsPanel::CreateControls()
             m_chart->Append(_("Hide"));
             m_chart->SetSelection(rb_->getChartSelection());
 
-            itemBoxSizerHeader->Add(m_chart, 0, wxALL, 1);
+            itemBoxSizerHeader->Add(m_chart, 0, wxALL | wxALIGN_CENTER_VERTICAL, 1);
             itemBoxSizerHeader->AddSpacer(30);
         }
     }
