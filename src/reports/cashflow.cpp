@@ -219,7 +219,7 @@ wxString mmReportCashFlow::getHTMLText_i()
         hb.addDateNow();
         hb.addLineBreak();
 
-        hb.addDivRow();
+        hb.addDivCol8_84();
         {
             if (getChartSelection() == 0)
             {
@@ -248,7 +248,6 @@ wxString mmReportCashFlow::getHTMLText_i()
                 }
             }
 
-            hb.addDivContainer();  
             {
                 hb.startTable();
                 {
@@ -300,7 +299,6 @@ wxString mmReportCashFlow::getHTMLText_i()
                 }
                 hb.endTable();
             }
-            hb.endDiv();
         }
         hb.endDiv(); 
     }

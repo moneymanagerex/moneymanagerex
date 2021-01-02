@@ -65,7 +65,7 @@ namespace tags
     static const wxString DIV_COL8 = "<div class='col-xs-2'></div>\n<div class='col-xs-8'>\n"; //17_67%
     static const wxString DIV_COL4 = "<div class='col-xs-4'></div>\n<div class='col-xs-4'>\n"; //33_33%
     static const wxString DIV_COL3 = "<div class='col-xs-3'></div>\n<div class='col-xs-6'>\n"; //25_50%
-    static const wxString DIV_COL1 = "<div class='col-xs-1'></div>\n"; //8%
+    static const wxString DIV_COL1 = "<div class='col-xs-1'></div>\n<div class='col-xs-10'>\n"; //8%
     static const wxString DIV_END = "</div>\n";
     static const wxString TABLE_START = "<table class='table'>\n";
     static const wxString SORTTABLE_START = "<table class='sortable table'>\n";
@@ -353,7 +353,7 @@ void mmHTMLBuilder::addDivCol25_50()
 {
     html_ += tags::DIV_COL3;
 }
-void mmHTMLBuilder::addDivCol6()
+void mmHTMLBuilder::addDivCol8_84()
 {
     html_ += tags::DIV_COL1;
 }
