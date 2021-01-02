@@ -4,7 +4,13 @@
     <meta charset="UTF-8" />
     <meta http - equiv="Content-Type" content="text/html" />
     <title>Home Page</title>
-    <script src="memory:ChartNew.js"></script>
+    <script>
+        window.Promise || document.write('<script src="memory:polyfill.min.js"><\/script>');
+        window.Promise || document.write('<script src="memory:classlist.min.js"><\/script>');
+        window.Promise || document.write('<script src="memory:findindex.min.js"><\/script>');
+        window.Promise || document.write('<script src="memory:umd.min.js"><\/script>');
+    </script>
+    <script src="memory:apexcharts.min.js"></script>
     <script src="memory:sorttable.js"></script>
     <link href="memory:master.css" rel="stylesheet" />
     <style>
@@ -80,7 +86,7 @@
                         <tr>
                             <td style='vertical-align:middle' width="70%">
                             <div class='col-xs-11' style='min-width: 256px'>
-                                <canvas id="reportChart" width="312" height="256"></canvas>
+                                <div id="reportChart" width="312" height="256"></div>
                             </div>
                             </td>
                             <td style='vertical-align:middle' width="30%">
@@ -131,36 +137,24 @@
                     <!-- Chart -->
                     var font_size = 10 + 4*(<TMPL_VAR HTMLSCALE>/100 -1);
                     var data = {
-                        labels : [""],
-                        datasets : [
+                        chart: { type : 'bar', toolbar : { show : false } },
+                        dataLabels : { enabled : false },
+                        colors: [ '#00E396', '#FF4560' ],
+                        tooltip : { theme : "dark" },
+                        xaxis : { labels : { show : false }, categories : [ive_json[9]]},                      
+                        series : [
                             {
-                                fillColor : "rgba(151,187,205,0.5)",
-                                strokeColor : "rgba(151,187,205,1)",
                                 data : [ive_json[10]],
-                                title : ive_json[3]
+                                name : ive_json[3]
                             },
                             {
-                                fillColor : "rgba(220,66,66,0.5)",
-                                strokeColor : "rgba(220,220,220,1)",
                                 data : [ive_json[11]],
-                                title : ive_json[5]
-                            },
+                                name : ive_json[5]
+                            }
                         ]
                     };
-                    var options = {
-                        animationEasing: "easeOutQuint",
-                        annotateDisplay : true,
-                        responsive : true,
-                        scaleOverride: true,
-                        scaleStartValue: 0,
-                        scaleSteps: [ive_json[12]],
-                        scaleStepWidth: [ive_json[13]],
-                        annotateFontSize: font_size,
-                        scaleFontSize: font_size,
-                    };
-                    var ctx = document.getElementById("reportChart").getContext("2d");
-                    var reportChart = new Chart(ctx).Bar(data, options);
-
+                    var chart = new ApexCharts(document.getElementById('reportChart'), data);
+                    chart.render();
                 </script>
                 <div class = "container">
                 <!--Upcoming Transactions-->

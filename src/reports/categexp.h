@@ -39,7 +39,7 @@ protected:
 
 private:
     // structure for sorting of data
-    struct data_holder { wxString color;  wxString name; double amount; int categs; };
+    struct data_holder { wxString name; double amount; int categs; };
     std::vector<data_holder> data_;
 };
 

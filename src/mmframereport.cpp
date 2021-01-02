@@ -33,7 +33,13 @@ const char *group_report_template = R"(
     <meta charset="UTF-8" />
     <meta http - equiv = "Content-Type" content = "text/html" />
     <title><TMPL_VAR REPORTNAME></title>
-    <script src = "memory:ChartNew.js"></script>
+    <script>
+        window.Promise || document.write('<script src="memory:polyfill.min.js"><\/script>');
+        window.Promise || document.write('<script src="memory:classlist.min.js"><\/script>');
+        window.Promise || document.write('<script src="memory:findindex.min.js"><\/script>');
+        window.Promise || document.write('<script src="memory:umd.min.js"><\/script>');
+    </script>
+    <script src = "memory:apexcharts.min.js"></script>
     <script src = "memory:sorttable.js"></script>
     <link href = "memory:master.css" rel = "stylesheet" />
 </head>
