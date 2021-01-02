@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-12-24 17:26+0300\n"
-"PO-Revision-Date: 2021-01-02 20:25\n"
+"PO-Revision-Date: 2021-01-02 20:35\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -574,7 +574,8 @@ msgstr "Wertveränderung: %s %s"
 #: assetspanel.cpp:768
 msgid "This asset does not have its own account\n\n"
 "Multiple transactions for this asset are not recommended."
-msgstr ""
+msgstr "Diese Anlage hat kein eigenes Konto\n\n"
+"Mehrere Transaktionen für diese Anlage werden nicht empfohlen."
 
 #: assetspanel.cpp:770
 msgid "Asset Management"
@@ -1504,7 +1505,7 @@ msgstr "Namen einer bestehenden Kategorie bearbeiten"
 
 #: categdialog.cpp:236
 msgid "Delete an existing category. The category cannot be used by existing transactions."
-msgstr ""
+msgstr "Löschen einer existierenden Kategorie. Die Kategorie kann nicht von bestehenden Transaktionen verwendet werden."
 
 #: categdialog.cpp:241 maincurrencydialog.cpp:207
 msgid "&Select"
@@ -1594,7 +1595,7 @@ msgstr "Unterkategorien müssen vorher gelöscht werden."
 #: categdialog.cpp:485
 #, c-format
 msgid "Enter a new name for '%s'"
-msgstr ""
+msgstr "Geben Sie einen neuen Namen für %s ein'"
 
 #: categdialog.cpp:486
 msgid "Edit Category"
@@ -1699,7 +1700,7 @@ msgstr "Ansicht seit dem Buchungsdatum"
 
 #: constants.cpp:210
 msgid "ALL"
-msgstr ""
+msgstr "ALLE"
 
 #: constants.cpp:211 mmframe.cpp:1259 mmframe.cpp:1677
 #: model/Model_Account.cpp:26
@@ -1716,7 +1717,7 @@ msgstr "Favoriten"
 
 #: currencydialog.cpp:95
 msgid "Currency name"
-msgstr ""
+msgstr "Name der Währung"
 
 #: currencydialog.cpp:153
 msgid "Currency Name"
@@ -1749,15 +1750,15 @@ msgstr "Maßstab"
 
 #: currencydialog.cpp:197 currencydialog.cpp:259
 msgid "Conversion to Base Rate"
-msgstr ""
+msgstr "Umwandlung in Basiskurs"
 
 #: currencydialog.cpp:203
 msgid "Conversion rate will be used in case no currency history has been found for the currency"
-msgstr ""
+msgstr "Umrechnungskurs wird für den Fall verwendet, dass keine Währungsgeschichte für die Währung gefunden wurde"
 
 #: currencydialog.cpp:205
 msgid "Fixed conversion rate"
-msgstr ""
+msgstr "fester Umrechnungskurs"
 
 #: currencydialog.cpp:210
 msgid "Value Display Sample:"
@@ -1780,7 +1781,7 @@ msgstr "Ungültiger Eintrag"
 #: currencydialog.cpp:295
 #, c-format
 msgid "%.2f Shown As: %s"
-msgstr ""
+msgstr "%.2f angezeigt als: %s"
 
 #: customfieldeditdialog.cpp:56
 msgid "New/Edit Custom Field"
@@ -1881,7 +1882,8 @@ msgstr "Benutzerdefiniertes Feld löschen bestätigen"
 #: customfieldlistdialog.cpp:194
 msgid "This function will massive update (search & replace for entire value, not inside value), please remind that there isn't any validation!\n"
 "Do you want to proceed?"
-msgstr ""
+msgstr "Diese Funktion wird massiv aktualisieren (Suche & Ersetzen für den gesamten Wert, nicht innerhalb des Wertes), bitte erinnern Sie daran, dass es keine Validierung gibt!\n"
+"Möchten Sie fortfahren?"
 
 #: customfieldlistdialog.cpp:196
 msgid "Confirm Custom Field Content Update"
@@ -1916,7 +1918,7 @@ msgstr "Möchtest Sie den Inhalt auf 'leer' aktualisieren?\n"
 #: customfieldlistdialog.cpp:233
 #, c-format
 msgid "%i occurrences founded and replaced!"
-msgstr ""
+msgstr "%i Vorkommnisse gefunden und ersetzt!"
 
 #: customfieldlistdialog.cpp:268
 msgid "&Massive content update "
@@ -2130,7 +2132,7 @@ msgstr "Vermögenseinkommen"
 #: dbupgrade.cpp:72
 #, c-format
 msgid "MMEX database upgrade to version %i failed!"
-msgstr ""
+msgstr "Aktualisierung der MMEX-Datenbank auf Version %i fehlgeschlagen!"
 
 #: dbupgrade.cpp:73
 msgid "Please restore DB from autocreated pre-upgrade backup and retry or contact MMEX support"
@@ -2156,11 +2158,11 @@ msgstr "Die MMEX-Datenbankversion %i funktioniert nicht mit dieser MMEX-Version.
 #: dbupgrade.cpp:119
 #, c-format
 msgid "MMEX database succesfully upgraded to version %i"
-msgstr ""
+msgstr "MMEX-Datenbank erfolgreich aktualisiert auf Version %i"
 
 #: dbupgrade.cpp:120
 msgid "We suggest a database optimization under Tools -> Database -> Optimize"
-msgstr ""
+msgstr "Wir empfehlen eine Datenbankoptimierung unter Tools -> Datenbank -> Optimieren"
 
 #: dbupgrade.cpp:197
 msgid "Load debug file"
@@ -2168,7 +2170,7 @@ msgstr "Debug-Datei laden"
 
 #: dbupgrade.cpp:204
 msgid "Wrong file type!"
-msgstr ""
+msgstr "Falscher Dateityp!"
 
 #: dbupgrade.cpp:204 dbupgrade.cpp:241 dbupgrade.cpp:248 dbupgrade.cpp:292
 #: dbupgrade.cpp:303
