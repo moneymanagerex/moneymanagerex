@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-12-24 17:26+0300\n"
-"PO-Revision-Date: 2020-12-24 14:35\n"
+"PO-Revision-Date: 2021-01-02 20:25\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -267,11 +267,11 @@ msgstr "Währung"
 
 #: accountdialog.cpp:499
 msgid "Please insert a valid URL"
-msgstr ""
+msgstr "Bitte geben Sie eine gültige URL ein"
 
 #: accountdialog.cpp:499
 msgid "Invalid URL"
-msgstr ""
+msgstr "Ungültige URL"
 
 #: appstartdialog.cpp:99
 msgid "Open Last Opened Database"
@@ -322,7 +322,7 @@ msgstr "&Verlassen "
 #: appstartdialog.cpp:153
 #, c-format
 msgid "Open the previously opened database : %s"
-msgstr ""
+msgstr "Öffne die zuvor geöffnete Datenbank: %s"
 
 #: assetdialog.cpp:61 assetdialog.cpp:410 assetspanel.cpp:466
 msgid "New Asset"
@@ -425,12 +425,12 @@ msgstr "&Abbrechen "
 
 #: assetdialog.cpp:402 sharetransactiondialog.cpp:429
 msgid "Invalid Transaction"
-msgstr ""
+msgstr "Ungültige Buchung"
 
 #: assetdialog.cpp:409
 msgid "Asset Account not found.\n\n"
 "Would you want to create one?"
-msgstr ""
+msgstr "Anlagenkonto nicht gefunden. möchten Sie eines erstellen?"
 
 #: assetspanel.cpp:58 billsdepositspanel.cpp:96 mmcheckingpanel.cpp:951
 #: reports/transactions.cpp:68 stockspanel.cpp:89
