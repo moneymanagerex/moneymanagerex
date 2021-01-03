@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-12-24 17:26+0300\n"
-"PO-Revision-Date: 2021-01-03 16:16\n"
+"PO-Revision-Date: 2021-01-03 16:25\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -4041,7 +4041,7 @@ msgstr "Organiser les &Catégories"
 
 #: mmframe.cpp:1452
 msgid "Organize &Payees..."
-msgstr "organiser les Tiers ( &Payees )"
+msgstr "Organiser les bénéficiaires ( &Payees )..."
 
 #: mmframe.cpp:1452 mmframe.cpp:1683 payeedialog.cpp:75
 msgid "Organize Payees"
@@ -5056,7 +5056,7 @@ msgstr "Selectionner à effacer après transfert dans l'archive des pièces join
 
 #: optionsettingsattachment.cpp:162
 msgid "When remove attachment, move file instead of delete"
-msgstr "Pour effacer une pièce jointe, bouger le fichier plutôt que de l'effacer"
+msgstr "Lors de la suppression de la pièce jointe, déplacer le fichier au lieu de le supprimer"
 
 #: optionsettingsattachment.cpp:164
 msgid "Select to don't delete file when attachment is removed, but instead move it to 'Deleted' subfolder"
@@ -5208,11 +5208,11 @@ msgstr "Dernier bénéficiaires utilisé"
 
 #: optionsettingsmisc.cpp:126
 msgid "Default Date:"
-msgstr "Date par défaut"
+msgstr "Date par défaut :"
 
 #: optionsettingsmisc.cpp:128
 msgid "Default Payee:"
-msgstr "iers par défaut"
+msgstr "Bénéficiaire par défaut :"
 
 #: optionsettingsmisc.cpp:130
 msgid "Default Category:"
@@ -5260,7 +5260,7 @@ msgstr "Configuration pour CSV"
 
 #: optionsettingsmisc.cpp:185
 msgid "Delimiter"
-msgstr "marqueur CSV"
+msgstr "Séparateur"
 
 #: optionsettingsnet.cpp:57
 msgid "WebApp Settings"
@@ -5596,7 +5596,7 @@ msgstr "Remplacez ce texte (marqué par >) avec une description détaillée de v
 
 #: reports/bugreport.h:69
 msgid "Please do not remove information attached below this text."
-msgstr "Veuillez ne pas effacer les informations jointes dessous ce texte."
+msgstr "Veuillez ne pas effacer les informations jointes sous ce texte."
 
 #: reports/bugreport.h:74
 msgid "Use Help->Check for Updates in MMEX to get latest version, where your problem might be already fixed."
