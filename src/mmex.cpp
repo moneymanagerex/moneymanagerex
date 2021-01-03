@@ -425,3 +425,13 @@ int mmGUIApp::OnExit()
 
     return 0;
 }
+
+#if defined (__WXMAC__)
+// Handle a closure for OSX dock correctly - just close the window.
+
+bool mmGUIApp::OSXOnShouldTerminate()
+{
+    wxLogDebug("Called: OSXOnShouldTerminate");
+    this->GetTopWindow()->Close();
+}
+#endif
