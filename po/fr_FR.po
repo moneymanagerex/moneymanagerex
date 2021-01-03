@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-12-24 17:26+0300\n"
-"PO-Revision-Date: 2020-12-24 17:14\n"
+"PO-Revision-Date: 2021-01-03 16:16\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -4305,11 +4305,11 @@ msgstr "Rechercher des mises à jour"
 
 #: mmframe.cpp:1642 mmframe.cpp:1716
 msgid "&About..."
-msgstr "&A propos..."
+msgstr "&À propos..."
 
 #: mmframe.cpp:1642 mmframe.cpp:1716
 msgid "Show about dialog"
-msgstr "Afficher le menu \"A propos\""
+msgstr "Afficher la fenêtre \"À propos\""
 
 #: mmframe.cpp:1647
 msgid "&File"
@@ -4823,7 +4823,7 @@ msgstr "Liquidités"
 
 #: model/Model_Account.cpp:33
 msgid "Checking"
-msgstr "Vérification"
+msgstr "Chèque/Épargne"
 
 #: model/Model_Account.cpp:34
 msgid "Credit Card"
