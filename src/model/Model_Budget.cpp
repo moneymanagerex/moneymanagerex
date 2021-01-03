@@ -118,65 +118,10 @@ void Model_Budget::copyBudgetYear(int newYearID, int baseYearID)
     }
 }
 
-double Model_Budget::getMonthlyEstimate(const PERIOD_ENUM period, const double amount)
+double Model_Budget::getEstimate(bool is_monthly, const PERIOD_ENUM period, const double amount)
 {
-    double estimated = 0;
-    int ndays = 365;
-    if (period == MONTHLY) {
-        estimated = amount;
-    }
-    else if (period == YEARLY) {
-        estimated = amount / 12;
-    }
-    else if (period == WEEKLY) {
-        estimated = ((amount / 7) * ndays) / 12;
-    }
-    else if (period == BIWEEKLY) {
-        estimated = ((amount / 14) * ndays) / 12;
-    }
-    else if (period == BIMONTHLY) {
-        estimated = amount / 2;
-    }
-    else if (period == QUARTERLY) {
-        estimated = amount / 3;
-    }
-    else if (period == HALFYEARLY) {
-        estimated = (amount / 6);
-    }
-    else if (period == DAILY) {
-        estimated = (amount * ndays) / 12;
-    }
-
-    return estimated;
-}
-
-double Model_Budget::getYearlyEstimate(const PERIOD_ENUM period, const double amount)
-{
-    double estimated = 0;
-    if (period == MONTHLY) {
-        estimated = amount * 12;
-    }
-    else if (period == YEARLY) {
-        estimated = amount;
-    }
-    else if (period == WEEKLY) {
-        estimated = amount * 52;
-    }
-    else if (period == BIWEEKLY) {
-        estimated = amount * 26;
-    }
-    else if (period == BIMONTHLY) {
-        estimated = amount * 6;
-    }
-    else if (period == QUARTERLY) {
-        estimated = amount * 4;
-    }
-    else if (period == HALFYEARLY) {
-        estimated = amount * 2;
-    }
-    else if (period== DAILY) {
-        estimated = amount * 365;
-    }
-
+    int p[MAX] = { 0, 52, 26, 12, 6, 4, 2, 1, 365 };
+    double estimated = amount * p[period];
+    if (is_monthly) estimated = estimated / 12;
     return estimated;
 }

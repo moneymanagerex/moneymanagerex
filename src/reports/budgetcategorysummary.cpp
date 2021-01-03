@@ -153,11 +153,9 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
                     }
                     if (category.second.first != -1)
                     {
-                        double estimated = (monthlyBudget
-                            ? Model_Budget::getMonthlyEstimate(budgetPeriod[category.second.first][category.second.second]
-                                , budgetAmt[category.second.first][category.second.second])
-                            : Model_Budget::getYearlyEstimate(budgetPeriod[category.second.first][category.second.second]
-                                , budgetAmt[category.second.first][category.second.second]));
+                        double estimated = Model_Budget::getEstimate(monthlyBudget
+                            , budgetPeriod[category.second.first][category.second.second]
+                            , budgetAmt[category.second.first][category.second.second]);
                         double actual = categoryStats[category.second.first][category.second.second][0];
 
                         gd.labels.push_back(category.first);
@@ -189,11 +187,9 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
 
                     for (const auto& category : categs)
                     {
-                        double estimated = (monthlyBudget
-                            ? Model_Budget::getMonthlyEstimate(budgetPeriod[category.second.first][category.second.second]
-                                , budgetAmt[category.second.first][category.second.second])
-                            : Model_Budget::getYearlyEstimate(budgetPeriod[category.second.first][category.second.second]
-                                , budgetAmt[category.second.first][category.second.second]));
+                        double estimated = Model_Budget::getEstimate(monthlyBudget
+                            , budgetPeriod[category.second.first][category.second.second]
+                            , budgetAmt[category.second.first][category.second.second]);
 
                         if (estimated < 0)
                             estExpenses += estimated;
