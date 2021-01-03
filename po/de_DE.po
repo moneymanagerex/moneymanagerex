@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-12-24 17:26+0300\n"
-"PO-Revision-Date: 2021-01-03 09:35\n"
+"PO-Revision-Date: 2021-01-03 09:45\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -3932,7 +3932,7 @@ msgstr "E&xit\tAlt-X"
 
 #: mmframe.cpp:1339
 msgid "Quit this program"
-msgstr ""
+msgstr "Dieses Programm beenden"
 
 #: mmframe.cpp:1346
 msgid "&Toolbar"
@@ -3992,7 +3992,7 @@ msgstr "Zukünftige Buchungen ignorieren"
 
 #: mmframe.cpp:1375
 msgid "Toggle Fullscreen\tShift+F11"
-msgstr ""
+msgstr "Vollbild umschalten Umschalt+F11"
 
 #: mmframe.cpp:1376 mmframe.cpp:1710
 msgid "Toggle Fullscreen"
@@ -4028,11 +4028,11 @@ msgstr "Konto aus Datenbank löschen"
 
 #: mmframe.cpp:1440
 msgid "Download Rates..."
-msgstr ""
+msgstr "Download Raten..."
 
 #: mmframe.cpp:1440 mmframe.cpp:1707
 msgid "Download Currency and Stock rates"
-msgstr ""
+msgstr "Währungs- und Börsenkurse herunterladen"
 
 #: mmframe.cpp:1447
 msgid "Organize &Categories..."
@@ -4112,7 +4112,7 @@ msgstr "Benutzerdefinierte Felder verwalten"
 
 #: mmframe.cpp:1518
 msgid "&Options...\tCtrl-,"
-msgstr ""
+msgstr "&Optionen...\tCtrl-,"
 
 #: mmframe.cpp:1518 mmframe.cpp:1690
 msgid "Show the Options Dialog"
@@ -4120,19 +4120,19 @@ msgstr "Zeige Optionen"
 
 #: mmframe.cpp:1526
 msgid "Convert Encrypted &DB"
-msgstr ""
+msgstr "Verschlüsselte &DB konvertieren"
 
 #: mmframe.cpp:1527
 msgid "Convert Encrypted DB to Non-Encrypted DB"
-msgstr ""
+msgstr "Verschlüsselte DB in nicht-verschlüsselte DB umwandeln"
 
 #: mmframe.cpp:1530
 msgid "Change Encrypted &Password"
-msgstr ""
+msgstr "Verschlüsseltes &Passwort ändern"
 
 #: mmframe.cpp:1531
 msgid "Change the password of an encrypted database"
-msgstr ""
+msgstr "Passwort einer verschlüsselten Datenbank ändern"
 
 #: mmframe.cpp:1534
 msgid "Optimize &Database"
@@ -4288,11 +4288,11 @@ msgstr "Melde den Entwicklern einen Fehler in der Anwendung"
 
 #: mmframe.cpp:1632
 msgid "&Show App Start Dialog"
-msgstr ""
+msgstr "&App-Startdialog anzeigen"
 
 #: mmframe.cpp:1632
 msgid "App Start Dialog"
-msgstr ""
+msgstr "App-Startdialog"
 
 #: mmframe.cpp:1637
 msgid "Check for &Updates"
@@ -4300,7 +4300,7 @@ msgstr "Prüfe auf neue &Version"
 
 #: mmframe.cpp:1637
 msgid "Check For Updates"
-msgstr ""
+msgstr "Nach Updates suchen"
 
 #: mmframe.cpp:1642 mmframe.cpp:1716
 msgid "&About..."
@@ -4336,7 +4336,7 @@ msgstr "Neu"
 
 #: mmframe.cpp:1680
 msgid "Account List"
-msgstr ""
+msgstr "Kontenliste"
 
 #: mmframe.cpp:1682
 msgid "Show Organize Categories Dialog"
@@ -4364,7 +4364,7 @@ msgstr "Nachrichten"
 
 #: mmframe.cpp:1707
 msgid "Download rates"
-msgstr ""
+msgstr "Download Raten"
 
 #: mmframe.cpp:1710
 msgid "Toggle Fullscreen\tF11"
@@ -4374,11 +4374,12 @@ msgstr "Vollbild umschalten\tF11"
 #, c-format
 msgid "Please enter password for Database\n\n"
 "%s"
-msgstr ""
+msgstr "Bitte geben Sie das Passwort für Datenbank\n\n"
+"%s ein"
 
 #: mmframe.cpp:1772 mmframe.cpp:2002 mmframe.cpp:2135
 msgid "MMEX: Encrypted Database"
-msgstr ""
+msgstr "MMEX: Verschlüsselte Datenbank"
 
 #: mmframe.cpp:1806
 msgid "Have MMEX support provided you a debug/patch file?"
@@ -4390,11 +4391,11 @@ msgstr "MMEX-Upgrade"
 
 #: mmframe.cpp:1828 mmframe.cpp:1870
 msgid "No File opened"
-msgstr ""
+msgstr "Keine Datei geöffnet"
 
 #: mmframe.cpp:1830
 msgid "Sorry. The Database version is too old or Database password is incorrect"
-msgstr ""
+msgstr "Die Datenbankversion ist zu alt oder das Datenbankpasswort ist falsch"
 
 #: mmframe.cpp:1860
 msgid "&Next ->"
@@ -4402,22 +4403,25 @@ msgstr "&weiter ->"
 
 #: mmframe.cpp:1873
 msgid "Cannot locate previously opened database.\n"
-msgstr ""
+msgstr "Kann die zuvor geöffnete Datenbank nicht finden.\n"
 
 #: mmframe.cpp:1875
 msgid "Password not entered for encrypted Database.\n"
-msgstr ""
+msgstr "Passwort für verschlüsselte Datenbank nicht eingegeben.\n"
 
 #: mmframe.cpp:1893
 msgid "portable mode"
-msgstr ""
+msgstr "Portabler Modus"
 
 #: mmframe.cpp:1929
 msgid "Database that you trying to open has been marked as opened by another MMEX instance...\n"
 "To avoid data loss or conflict, it's strongly recommended to close all other applications that can use the DB.\n\n"
 "Possible it may be as result of a programm crash in previous usage.\n\n"
 "Would you like to continue?"
-msgstr ""
+msgstr "Datenbank, die Sie öffnen möchten, wurde als von einer anderen MMEX-Instanz als geöffnet markiert...\n"
+"Um Datenverlust oder Konflikte zu vermeiden, empfiehlt es sich dringend, alle anderen Anwendungen zu schließen, die die Datenbank verwenden können.\n\n"
+"Möglicherweise ist es aufgrund eines Programmabsturzes bei der vorherigen Nutzung möglich.\n\n"
+"Möchten Sie fortfahren?"
 
 #: mmframe.cpp:1933
 msgid "MMEX Instance Check"
@@ -4433,37 +4437,38 @@ msgstr "Wählen Sie die zu öffnende Datenbank-Datei"
 
 #: mmframe.cpp:1992
 msgid "Choose Encrypted database file to open"
-msgstr ""
+msgstr "Verschlüsselte Datenbankdatei zum Öffnen auswählen"
 
 #: mmframe.cpp:2002
 msgid "Enter password for database"
-msgstr ""
+msgstr "Passwort für Datenbankdatei eingeben"
 
 #: mmframe.cpp:2007
 msgid "Choose database file to Save As"
-msgstr ""
+msgstr "Datenbankdatei zum Speichern auswählen"
 
 #: mmframe.cpp:2029
 msgid "Converted DB!"
-msgstr ""
+msgstr "Konvertierte DB!"
 
 #: mmframe.cpp:2029
 msgid "MMEX message"
-msgstr ""
+msgstr "MMEX-Nachricht"
 
 #: mmframe.cpp:2035
 msgid "MMEX: Encryption Password Change"
-msgstr ""
+msgstr "MMEX: Passwortänderung der Verschlüsselung"
 
 #: mmframe.cpp:2036
 #, c-format
 msgid "New password for database\n\n"
 "%s"
-msgstr ""
+msgstr "Neues Passwort für Datenbank\n\n"
+"%s"
 
 #: mmframe.cpp:2041
 msgid "New password must not be empty."
-msgstr ""
+msgstr "Neues Passwort darf nicht leer sein."
 
 #: mmframe.cpp:2045
 msgid "Please confirm new password"
