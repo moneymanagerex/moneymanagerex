@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-12-24 17:26+0300\n"
-"PO-Revision-Date: 2021-01-03 10:16\n"
+"PO-Revision-Date: 2021-01-03 10:26\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -6374,19 +6374,19 @@ msgstr "Kontoauswahl"
 
 #: util.cpp:466
 msgid "Jan"
-msgstr ""
+msgstr "Jan"
 
 #: util.cpp:466
 msgid "Feb"
-msgstr ""
+msgstr "Feb"
 
 #: util.cpp:466
 msgid "Mar"
-msgstr ""
+msgstr "Mär"
 
 #: util.cpp:467
 msgid "Apr"
-msgstr ""
+msgstr "Apr"
 
 #: util.cpp:467 util.h:173
 msgid "May"
