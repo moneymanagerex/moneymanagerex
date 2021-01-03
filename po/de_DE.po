@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-12-24 17:26+0300\n"
-"PO-Revision-Date: 2021-01-03 10:07\n"
+"PO-Revision-Date: 2021-01-03 10:16\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -5965,7 +5965,8 @@ msgstr "Aktiennummer"
 #: stockdialog.cpp:224
 msgid "Enter number of shares.\n"
 "Used when creating the initial Share transaction."
-msgstr ""
+msgstr "Geben Sie die Anzahl der Aktien ein.\n"
+"Wird beim Erstellen der ersten Aktien-Transaktion verwendet."
 
 #: stockdialog.cpp:230 stockspanel.cpp:94
 msgid "*Share Price"
@@ -5974,7 +5975,8 @@ msgstr "*Aktienpreis"
 #: stockdialog.cpp:236
 msgid "Enter the initial price per share.\n"
 "Used when creating the initial Share transaction."
-msgstr ""
+msgstr "Geben Sie den ersten Kurs pro Aktie ein.\n"
+"Wird beim Erstellen der ersten Aktien-Transaktion verwendet."
 
 #: stockdialog.cpp:241
 msgid "*Commission"
@@ -5983,7 +5985,8 @@ msgstr "*Gebühren"
 #: stockdialog.cpp:245
 msgid "Enter any commission paid.\n"
 "Used when creating the initial Share transaction."
-msgstr ""
+msgstr "Geben Sie eine bezahlte Provision ein.\n"
+"Wird beim Erstellen der ersten Aktien-Transaktion verwendet."
 
 #: stockdialog.cpp:250 stockspanel.cpp:97
 msgid "Curr. Share Price"
@@ -5991,7 +5994,7 @@ msgstr "Akt. Aktienpreis"
 
 #: stockdialog.cpp:253
 msgid "Enter current stock/share price."
-msgstr ""
+msgstr "Aktuellen Aktienpreis eingeben."
 
 #: stockdialog.cpp:285
 msgid "Stock History Options"
@@ -6007,7 +6010,7 @@ msgstr "Preisdatum"
 
 #: stockdialog.cpp:320
 msgid "Specify the stock/share price date."
-msgstr ""
+msgstr "Geben Sie das Börsen-/Aktienkursdatum an."
 
 #: stockdialog.cpp:336
 msgid "Download Stock Price history"
@@ -6019,11 +6022,11 @@ msgstr "Import der Aktienpreisentwicklung (CSV Format)"
 
 #: stockdialog.cpp:340
 msgid "Delete selected Stock Price"
-msgstr ""
+msgstr "Ausgewählten Aktienkurs löschen"
 
 #: stockdialog.cpp:342
 msgid "Add Stock Price to history"
-msgstr ""
+msgstr "Aktienkurs zum Verlauf hinzufügen"
 
 #: stockdialog.cpp:420
 msgid "Held At"
@@ -6032,7 +6035,8 @@ msgstr "Geführt bei"
 #: stockdialog.cpp:494
 msgid "Share Account not found.\n\n"
 "Do you want to create one?"
-msgstr ""
+msgstr "Anlagenkonto nicht gefunden. \n\n"
+"möchten Sie eines erstellen?"
 
 #: stockdialog.cpp:504
 msgid "The Company name does not have an associated Share Account.\n\n"
@@ -6053,12 +6057,12 @@ msgstr "Kurse importiert aus CSV: "
 #: stockdialog.cpp:672
 #, c-format
 msgid "Total Lines : %ld"
-msgstr ""
+msgstr "Total Zeilen: %ld"
 
 #: stockdialog.cpp:674
 #, c-format
 msgid "Total Imported : %ld"
-msgstr ""
+msgstr "Total importiert: %ld"
 
 #: stockdialog.cpp:682
 msgid "Importing CSV"
@@ -6181,7 +6185,7 @@ msgstr "Temporäre Aktienliste: %s\n\n"
 
 #: stockspanel.cpp:579
 msgid "Add Stock Transactions"
-msgstr ""
+msgstr "Aktienbuchung hinzufügen"
 
 #: stockspanel.cpp:584
 msgid "View Stock Transactions"
@@ -6189,7 +6193,7 @@ msgstr "Aktienbuchung &anzeigen"
 
 #: stockspanel.cpp:594
 msgid "Delete Stock Investment"
-msgstr ""
+msgstr "Aktienanlage löschen"
 
 #: stockspanel.cpp:598
 msgid "&Move"
@@ -6197,7 +6201,7 @@ msgstr "&Verschieben"
 
 #: stockspanel.cpp:599
 msgid "Move selected transaction to another account"
-msgstr ""
+msgstr "Ausgewählte Transaktion auf ein anderes Konto verschieben"
 
 #: stockspanel.cpp:612
 msgid "Refresh"
@@ -6215,7 +6219,7 @@ msgstr "Aktien Portfolio: %s"
 #: stockspanel.cpp:768
 #, c-format
 msgid "Total Shares: %s"
-msgstr ""
+msgstr "Total Aktien: %s"
 
 #: stockspanel.cpp:770
 #, c-format
@@ -6321,16 +6325,16 @@ msgstr "Datum der Buchung"
 
 #: transdialog.cpp:1309
 msgid "Clear colour"
-msgstr ""
+msgstr "Farbe löschen"
 
 #: transdialog.cpp:1314
 #, c-format
 msgid "Colour #%i"
-msgstr ""
+msgstr "Farbe #%i"
 
 #: usertransactionpanel.cpp:114
 msgid "Specify the associated Account that will contain this transaction"
-msgstr ""
+msgstr "Geben Sie das zugehörige Konto an, das diese Transaktion enthalten wird"
 
 #: usertransactionpanel.cpp:126
 msgid "Withdraw funds from or deposit funds to this Account."
