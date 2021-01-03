@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-12-24 17:26+0300\n"
-"PO-Revision-Date: 2021-01-03 09:45\n"
+"PO-Revision-Date: 2021-01-03 09:56\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -4472,7 +4472,7 @@ msgstr "Neues Passwort darf nicht leer sein."
 
 #: mmframe.cpp:2045
 msgid "Please confirm new password"
-msgstr ""
+msgstr "Bitte bestätigen Sie das neue Passwort"
 
 #: mmframe.cpp:2049
 msgid "Password change completed."
@@ -4517,11 +4517,11 @@ msgstr "Datei kann nicht auf sich selbst kopiert werden"
 
 #: mmframe.cpp:2135
 msgid "Enter password for new database"
-msgstr ""
+msgstr "Passwort für neue Datenbank eingeben"
 
 #: mmframe.cpp:2219 mmframe.cpp:2238
 msgid "No account available to import"
-msgstr ""
+msgstr "Kein Konto zum Importieren verfügbar"
 
 #: mmframe.cpp:2287
 msgid "Asset Accounts hold Asset transactions\n\n"
@@ -4566,11 +4566,11 @@ msgstr "HTML-Datei für Export auswählen"
 
 #: mmframe.cpp:2881 mmframe.cpp:2888
 msgid "Downloading stock prices from Yahoo"
-msgstr ""
+msgstr "Aktienkurse von Yahoo herunterladen"
 
 #: mmframe.cpp:2882
 msgid "Please wait..."
-msgstr ""
+msgstr "Bitte warten..."
 
 #: mmframe.cpp:2931 stockspanel.cpp:897
 #, c-format
@@ -4669,7 +4669,7 @@ msgstr "Einnahmen vs Ausgaben"
 
 #: mmframereport.cpp:158
 msgid "My Usage"
-msgstr ""
+msgstr "Meine Nutzung"
 
 #: mmframereport.cpp:163
 msgid "Payees"
@@ -4681,11 +4681,11 @@ msgstr "Kontenübersicht"
 
 #: mmframereport.cpp:183
 msgid "Budget Performance"
-msgstr ""
+msgstr "Budget Performance"
 
 #: mmframereport.cpp:186
 msgid "Budget Category Summary"
-msgstr ""
+msgstr "Budgetkategorie Zusammenfassung"
 
 #: mmframereport.cpp:195
 msgid "Stocks Report"
@@ -4763,7 +4763,7 @@ msgstr "Gesamtsumme:"
 
 #: mmhomepage.cpp:755
 msgid "Currency Exchange Rates"
-msgstr ""
+msgstr "Wechselkurse"
 
 #: mmhomepagepanel.cpp:159
 msgid "Upcoming Transactions"
@@ -4925,19 +4925,19 @@ msgstr "Zahlungsempfänger Fehler"
 
 #: model/Model_Report.cpp:85
 msgid "Begin date: "
-msgstr ""
+msgstr "Anfangsdatum: "
 
 #: model/Model_Report.cpp:86
 msgid "Date: "
-msgstr ""
+msgstr "Datum: "
 
 #: model/Model_Report.cpp:87
 msgid "End date: "
-msgstr ""
+msgstr "Enddatum: "
 
 #: model/Model_Report.cpp:232
 msgid "Template is empty"
-msgstr ""
+msgstr "Vorlage ist leer"
 
 #: model/Model_Report.cpp:246
 #, c-format
@@ -4984,7 +4984,7 @@ msgstr "Beilagenarchiveordner nur für %s"
 
 #: optionsettingsattachment.cpp:68
 msgid "Every OS type (Win,Mac,Unix) has its attachment folder"
-msgstr ""
+msgstr "Jedes Betriebssystem (Win, Mac, Unix) hat seinen Anhangs-Ordner"
 
 #: optionsettingsattachment.cpp:87
 msgid "Browse for folder"
@@ -6385,35 +6385,35 @@ msgstr ""
 
 #: util.cpp:467 util.h:173
 msgid "May"
-msgstr ""
+msgstr "Mai"
 
 #: util.cpp:467
 msgid "Jun"
-msgstr ""
+msgstr "Juni"
 
 #: util.cpp:468
 msgid "Jul"
-msgstr ""
+msgstr "Juli"
 
 #: util.cpp:468
 msgid "Aug"
-msgstr ""
+msgstr "Aug"
 
 #: util.cpp:468
 msgid "Sep"
-msgstr ""
+msgstr "Sep"
 
 #: util.cpp:469
 msgid "Oct"
-msgstr ""
+msgstr "Okt"
 
 #: util.cpp:469
 msgid "Nov"
-msgstr ""
+msgstr "Nov"
 
 #: util.cpp:469
 msgid "Dec"
-msgstr ""
+msgstr "Dez"
 
 #: util.cpp:474
 msgid "Sunday"
@@ -6449,7 +6449,7 @@ msgstr "Währungskurse wurden aktualisiert"
 
 #: util.cpp:630
 msgid "JSON Parse Error"
-msgstr ""
+msgstr "JSON-Parse-Fehler"
 
 #: util.cpp:926
 #, c-format
@@ -6612,7 +6612,7 @@ msgstr "Anhang"
 
 #: webapp.cpp:595
 msgid "Transaction not downloaded: please retry to download transactions"
-msgstr ""
+msgstr "Transaktion nicht heruntergeladen: Bitte versuchen Sie erneut, Transaktionen herunterzuladen"
 
 #: webapp.cpp:596 webappdialog.cpp:348
 msgid "Attachment download error"
@@ -6624,11 +6624,11 @@ msgstr "WebApp Buchungen importieren"
 
 #: webappdialog.cpp:100
 msgid "Network status (click to refresh)"
-msgstr ""
+msgstr "Netzwerkstatus (zum Aktualisieren klicken)"
 
 #: webappdialog.cpp:132
 msgid "Checking for new transactions..."
-msgstr ""
+msgstr "Suche nach neuen Transaktionen..."
 
 #: webappdialog.cpp:165
 msgid "&Import all "
@@ -6640,11 +6640,11 @@ msgstr "Alle importieren und öffnen "
 
 #: webappdialog.cpp:214
 msgid "Unable to download transactions from webapp."
-msgstr ""
+msgstr "Transaktionen von der WebApp konnten nicht heruntergeladen werden."
 
 #: webappdialog.cpp:215
 msgid "Transactions download error"
-msgstr ""
+msgstr "Fehler beim Herunterladen von Transaktionen"
 
 #: webappdialog.cpp:320
 msgid "Unable to insert transaction in MMEX database"
@@ -6660,7 +6660,7 @@ msgstr "Anhang öffnen"
 
 #: webappdialog.cpp:419
 msgid "Import and open"
-msgstr ""
+msgstr "Importieren und öffnen"
 
 #: webappdialog.cpp:420
 msgid "Delete"
@@ -6716,7 +6716,8 @@ msgstr "Geben Sie den Typ des zu erstellenden Kontos an:"
 #: wizard_newaccount.cpp:130
 msgid "General bank accounts cover a wide variety of account\n"
 "types like Checking, Savings and Credit card type accounts."
-msgstr ""
+msgstr "Allgemeine Bankkonten decken eine Vielzahl von Konten\n"
+"Typen wie Checking, Sparguthaben und Kreditkartenkonten ab."
 
 #: wizard_newaccount.cpp:135
 msgid "Investment accounts are specialized accounts that only\n"
@@ -6797,11 +6798,11 @@ msgstr "Update Assistent"
 
 #: wizard_update.cpp:106
 msgid "Historical releases:"
-msgstr ""
+msgstr "Historische Versionen:"
 
 #: wizard_update.cpp:136
 msgid "Version"
-msgstr ""
+msgstr "Version"
 
 #: wizard_update.cpp:144
 msgid "You already have the latest version"
