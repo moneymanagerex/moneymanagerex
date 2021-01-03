@@ -57,6 +57,9 @@ private:
     int OnExit();
     void OnFatalException(); // called when a crash occurs in this application
     void HandleEvent(wxEvtHandler *handler, wxEventFunction func, wxEvent& event) const;
+#if defined (__WXMAC__)
+    bool OSXOnShouldTerminate(); // called when OSX app is closed from dock
+#endif
     wxLanguage m_lang; // GUI translation language displayed
     wxLocale m_locale;
 
