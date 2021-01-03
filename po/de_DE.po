@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-12-24 17:26+0300\n"
-"PO-Revision-Date: 2021-01-02 20:55\n"
+"PO-Revision-Date: 2021-01-03 09:35\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -3706,7 +3706,7 @@ msgstr "Konnte benutzerdefiniertes Feld \"%snicht speichern\":\n"
 
 #: mmcustomdata.cpp:449
 msgid "CustomField validation error"
-msgstr ""
+msgstr "Fehler bei der Validierung von benutzerdefinierten Feldern"
 
 #: mmex.cpp:127
 #, c-format
@@ -3717,7 +3717,8 @@ msgstr "Eine Übersetzung für die Standardsprache Ihres Systems kann nicht gela
 #, c-format
 msgid "Please use the Switch Application Language option in View menu to select one of the following available languages:\n\n"
 "%s"
-msgstr ""
+msgstr "Bitte verwenden Sie die Option Anwendungssprache wechseln im Menü Ansicht um eine der folgenden verfügbaren Sprachen auszuwählen:\n\n"
+"%s"
 
 #: mmex.cpp:139 mmframe.cpp:3212
 msgid "Language change"
@@ -3726,7 +3727,8 @@ msgstr "Sprache geändert"
 #: mmex.cpp:179
 msgid "Fatal error occured.\n"
 "Application will be terminated."
-msgstr ""
+msgstr "Ein schwerer Fehler ist aufgetreten.\n"
+"Die Anwendung wird beendet."
 
 #: mmframe.cpp:259
 msgid "Navigation"
@@ -3838,7 +3840,7 @@ msgstr "&QIF-Dateien..."
 
 #: mmframe.cpp:1246 mmframe.cpp:1318
 msgid "&JSON Files..."
-msgstr ""
+msgstr "&JSON-Dateien..."
 
 #: mmframe.cpp:1250 mmframe.cpp:1324
 msgid "Import from XML (Excel format)"
@@ -3890,11 +3892,11 @@ msgstr "Export als XML"
 
 #: mmframe.cpp:1318
 msgid "Export to JSON"
-msgstr ""
+msgstr "Nach JSON exportieren"
 
 #: mmframe.cpp:1319
 msgid "&HTML Files..."
-msgstr ""
+msgstr "&HTML-Dateien..."
 
 #: mmframe.cpp:1319
 msgid "Export to HTML"
@@ -3926,7 +3928,7 @@ msgstr "Aktuelle Ansicht drucken"
 
 #: mmframe.cpp:1339
 msgid "E&xit\tAlt-X"
-msgstr ""
+msgstr "E&xit\tAlt-X"
 
 #: mmframe.cpp:1339
 msgid "Quit this program"
