@@ -66,7 +66,7 @@ void OptionSettingsView::Create()
     view_accounts.Add(VIEW_ACCOUNTS_OPEN_STR);
     view_accounts.Add(VIEW_ACCOUNTS_FAVORITES_STR);
 
-    m_choice_visible = new wxChoice(this, ID_DIALOG_OPTIONS_VIEW_ACCOUNTS);
+    m_choice_visible = new wxChoice(this, wxID_ANY);
     for (const auto& entry : view_accounts)
     {
         m_choice_visible->Append(wxGetTranslation(entry), new wxStringClientData(entry));
@@ -80,7 +80,8 @@ void OptionSettingsView::Create()
     view_sizer1->Add(new wxStaticText(this, wxID_STATIC, _("HTML scale factor")), g_flagsH);
 
     int max = 300; int min = 25;
-    m_scale_factor = new wxSpinCtrl(this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, min, max);
+    m_scale_factor = new wxSpinCtrl(this, wxID_ANY
+        , wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, min, max);
 
     int vFontSize = Option::instance().getHtmlFontSize();
     m_scale_factor->SetValue(vFontSize);
@@ -93,6 +94,21 @@ void OptionSettingsView::Create()
     m_icon_size = new wxSpinCtrl(this, wxID_RESIZE_FRAME, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 16, 48);
     view_sizer1->Add(m_icon_size, g_flagsH);
     m_icon_size->SetValue(vIconSize);
+
+    //Category delimiter
+    view_sizer1->Add(new wxStaticText(this, wxID_STATIC, _("Category delimiter")), g_flagsH);
+
+    wxArrayString list;
+    list.Add(":");
+    list.Add(": ");
+    list.Add(" : ");
+
+    wxString delimiter = Model_Infotable::instance().GetStringInfo("CATEG_DELIMITER",":");
+    m_categ_delimiter_list = new wxComboBox(this, wxID_ANY, ""
+        , wxDefaultPosition, wxDefaultSize, list);
+    m_categ_delimiter_list->SetValue(delimiter);
+
+    view_sizer1->Add(m_categ_delimiter_list, g_flagsH);
 
     // Budget options
     m_budget_financial_years = new wxCheckBox(this, wxID_STATIC, _("View Budgets as Financial Years"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
@@ -176,6 +192,10 @@ void OptionSettingsView::OnNavTreeColorChanged(wxCommandEvent& event)
 
 bool OptionSettingsView::SaveSettings()
 {
+    auto delimiter = m_categ_delimiter_list->GetValue();
+    if (delimiter.empty()) delimiter = ":";
+    Model_Infotable::instance().Set("CATEG_DELIMITER", delimiter);
+
     wxString accVisible = VIEW_ACCOUNTS_ALL_STR;
     wxStringClientData* visible_acc_obj = static_cast<wxStringClientData*>(m_choice_visible->GetClientObject(m_choice_visible->GetSelection()));
     if (visible_acc_obj)
