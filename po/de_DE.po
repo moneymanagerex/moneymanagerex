@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-12-24 17:26+0300\n"
-"PO-Revision-Date: 2021-01-03 09:56\n"
+"PO-Revision-Date: 2021-01-03 10:07\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -4996,27 +4996,27 @@ msgstr "Pfad: "
 
 #: optionsettingsattachment.cpp:97
 msgid "Legend (can be used as variables at the beginning of above path)"
-msgstr ""
+msgstr "Legende (kann als Variablen am Anfang des obigen Pfades verwendet werden)"
 
 #: optionsettingsattachment.cpp:102
 #, c-format
 msgid "%s -> User document directory"
-msgstr ""
+msgstr "%s -> Benutzerdokument-Verzeichnis"
 
 #: optionsettingsattachment.cpp:103
 #, c-format
 msgid "%s -> User profile folder"
-msgstr ""
+msgstr "%s -> Benutzerprofilordner"
 
 #: optionsettingsattachment.cpp:104
 #, c-format
 msgid "%s -> Folder of .MMB database file"
-msgstr ""
+msgstr "%s -> Ordner der .MMB Datenbankdatei"
 
 #: optionsettingsattachment.cpp:105
 #, c-format
 msgid "%s -> MMEX Application data folder"
-msgstr ""
+msgstr "%s -> MMEX-Anwendungsdatenordner"
 
 #: optionsettingsattachment.cpp:111
 msgid "Other OS folders "
@@ -5024,19 +5024,19 @@ msgstr "andere Verzeichnisse"
 
 #: optionsettingsattachment.cpp:116
 msgid "Not set yet"
-msgstr ""
+msgstr "Noch nicht festgelegt"
 
 #: optionsettingsattachment.cpp:123
 msgid "Windows folder -> "
-msgstr ""
+msgstr "Windows-Ordner -> "
 
 #: optionsettingsattachment.cpp:130
 msgid "Mac folder -> "
-msgstr ""
+msgstr "Mac-Ordner -> "
 
 #: optionsettingsattachment.cpp:137
 msgid "Unix folder -> "
-msgstr ""
+msgstr "Unix-Ordner -> "
 
 #: optionsettingsattachment.cpp:145
 msgid "Create and use Attachments subfolder"
@@ -5064,11 +5064,11 @@ msgstr "Wählen Sie den Ordner um die Anhänge zu archivieren"
 
 #: optionsettingsattachment.cpp:213
 msgid "Attachments folder it's not writable!"
-msgstr ""
+msgstr "Ordner Dateianhänge ist nicht beschreibbar!"
 
 #: optionsettingsattachment.cpp:213
 msgid "Attachments folder"
-msgstr ""
+msgstr "Ordner für Dateianhänge"
 
 #: optionsettingsattachment.cpp:221
 msgid "Attachments path has been changed!"
@@ -5120,11 +5120,11 @@ msgstr "Klicken Sie mit der rechten Maustaste und wählen Sie 'Als Basiswährung
 
 #: optionsettingsgeneral.cpp:97
 msgid "Use currency history"
-msgstr ""
+msgstr "Währungshistorie verwenden"
 
 #: optionsettingsgeneral.cpp:99
 msgid "Select to use currency history (one rate for each day), deselect to use a fixed rate"
-msgstr ""
+msgstr "Auswählen, um den Währungsverlauf zu verwenden (ein Kurs pro Tag), abwählen, um einen festen Kurs zu verwenden"
 
 #: optionsettingsgeneral.cpp:115
 msgid "Specify the date format for display"
@@ -5328,11 +5328,11 @@ msgstr "Sekunden"
 
 #: optionsettingsnet.cpp:138
 msgid "Updates"
-msgstr ""
+msgstr "Aktualisierungen"
 
 #: optionsettingsnet.cpp:144
 msgid "Check for updates at StartUp"
-msgstr ""
+msgstr "Beim Start auf Aktualisierungen überprüfen"
 
 #: optionsettingsnet.cpp:146
 msgid "Enable to automatically check if new MMEX version is available at StartUp"
@@ -5348,7 +5348,7 @@ msgstr "Instabil"
 
 #: optionsettingsnet.cpp:154
 msgid "Updates source"
-msgstr ""
+msgstr "Quelle der Updates"
 
 #: optionsettingsview.cpp:78
 msgid "Specify which accounts are visible"
@@ -5364,23 +5364,23 @@ msgstr "Geben Sie an, welcher Skalierungsfaktor für die Berichtseiten verwendet
 
 #: optionsettingsview.cpp:92
 msgid "Icons size"
-msgstr ""
+msgstr "Symbolgröße"
 
 #: optionsettingsview.cpp:98
 msgid "View Budgets as Financial Years"
-msgstr ""
+msgstr "Haushalte als Geschäftsjahr ansehen"
 
 #: optionsettingsview.cpp:103
 msgid "View Budgets with 'transfer' transactions"
-msgstr ""
+msgstr "Budgets mit 'Transfer' Transaktionen anzeigen"
 
 #: optionsettingsview.cpp:109
 msgid "View Budget Category Report with Summaries"
-msgstr ""
+msgstr "Budget-Kategorie-Bericht mit Zusammenfassungen anzeigen"
 
 #: optionsettingsview.cpp:115
 msgid "Ignore Future Transactions"
-msgstr ""
+msgstr "Zukünftige Transaktionen ignorieren"
 
 #: optionsettingsview.cpp:121 transdialog.cpp:563
 msgid "User Colors"
@@ -5521,7 +5521,7 @@ msgstr "Zahlungsempfänger/Zahler verschieben Bestätigung"
 #: reports/budget.cpp:98
 #, c-format
 msgid "Year: %i Month: %s"
-msgstr ""
+msgstr "Jahr: %i Monat: %s"
 
 #: reports/budgetcategorysummary.cpp:127
 #, c-format
@@ -5606,12 +5606,12 @@ msgstr "Suche <a href='%s'>eine Liste bekannter Probleme</a> nach ähnlichen Pro
 #: reports/bugreport.h:77
 #, c-format
 msgid "As you know, <a href='%s'>a forum</a> for users is available where you can discuss problems and find solutions."
-msgstr ""
+msgstr "Wie Sie wissen, steht <a href='%s'>ein Forum</a> für Benutzer zur Verfügung, in dem Sie Probleme diskutieren und Lösungen finden können."
 
 #: reports/bugreport.h:78
 #, c-format
 msgid "Please, join our community in <a href='%s'>Slack</a>. Here you can also pose your question and learn latest news."
-msgstr ""
+msgstr "Bitte treten Sie unserer Community in <a href='%s'>Slack</a>bei. Hier können Sie auch Ihre Frage stellen und neueste Nachrichten erfahren."
 
 #: reports/bugreport.h:79
 #, c-format
@@ -5665,7 +5665,7 @@ msgstr "Gesamteinkommen:"
 
 #: reports/categexp.cpp:229
 msgid "Categories Summary"
-msgstr ""
+msgstr "Zusammenfassung Kategorien"
 
 #: reports/categexp.cpp:238
 msgid "Category Income/Expenses"
@@ -5699,7 +5699,7 @@ msgstr "über die ganze Zeit"
 
 #: reports/incexpenses.cpp:33
 msgid "Income vs Expenses Summary"
-msgstr ""
+msgstr "Einkommen vs Ausgaben Zusammenfassung"
 
 #: reports/incexpenses.cpp:118
 msgid "Income:"
@@ -5711,7 +5711,7 @@ msgstr "Ausgaben:"
 
 #: reports/incexpenses.cpp:141
 msgid "Income vs Expenses Monthly"
-msgstr ""
+msgstr "Monatliche Einnahmen vs Ausgaben"
 
 #: reports/incexpenses.cpp:272
 msgid "Year"
@@ -5955,7 +5955,8 @@ msgstr "*Datum"
 #: stockdialog.cpp:214
 msgid "Specify the initial date of the stock investment\n"
 "Used when creating the initial Share transaction."
-msgstr ""
+msgstr "Geben Sie das Anfangsdatum der Anlageinvestition\n"
+"an, die beim Erstellen der ersten Aktien-Transaktion verwendet wird."
 
 #: stockdialog.cpp:218
 msgid "*Share Number"
