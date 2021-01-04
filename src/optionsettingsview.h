@@ -58,14 +58,10 @@ private:
     wxChoice* m_choice_visible;
     wxSpinCtrl* m_scale_factor;
     wxSpinCtrl* m_icon_size;
+    wxComboBox* m_categ_delimiter_list;
 
     wxCheckBox* m_budget_financial_years;
     wxCheckBox* m_budget_include_transfers;
     wxCheckBox* m_budget_summary_without_category;
     wxCheckBox* m_ignore_future_transactions;
-
-    enum
-    {
-        ID_DIALOG_OPTIONS_VIEW_ACCOUNTS = wxID_HIGHEST + 10
-    };
 };

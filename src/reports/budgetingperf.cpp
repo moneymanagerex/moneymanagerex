@@ -197,10 +197,12 @@ wxString mmReportBudgetingPerformance::getHTMLText()
     hb.endTableRow();
 
     hb.startTbody();
+    wxString delimiter = Model_Infotable::instance().GetStringInfo("CATEG_DELIMITER", ":");
     for (const Model_Category::Data& category : allCategories)
     {
         // Set the estimated amount for the year
-        double estimated = Model_Budget::getYearlyEstimate(budgetPeriod[category.CATEGID][-1]
+        double estimated = Model_Budget::getEstimate(false
+            , budgetPeriod[category.CATEGID][-1]
             , budgetAmt[category.CATEGID][-1]);
 
         // set the actual amount for the year
@@ -218,7 +220,8 @@ wxString mmReportBudgetingPerformance::getHTMLText()
             if (subcategory.CATEGID != category.CATEGID) continue;
 
             // Set the estimated amount for the year
-            estimated = Model_Budget::getYearlyEstimate(budgetPeriod[category.CATEGID][subcategory.SUBCATEGID]
+            estimated = Model_Budget::getEstimate(false
+                , budgetPeriod[category.CATEGID][subcategory.SUBCATEGID]
                 , budgetAmt[category.CATEGID][subcategory.SUBCATEGID]);
 
             // set the actual abount for the year
@@ -229,7 +232,7 @@ wxString mmReportBudgetingPerformance::getHTMLText()
             for (const auto &i : categoryStats[category.CATEGID][subcategory.SUBCATEGID])
                 monthlyActual[i.first] += i.second;
 
-            DisplayRow(hb, estimated, actual, category.CATEGNAME + ": "
+            DisplayRow(hb, estimated, actual, category.CATEGNAME + delimiter
                 + subcategory.SUBCATEGNAME, categoryStats[category.CATEGID][subcategory.SUBCATEGID]);
         }
     }

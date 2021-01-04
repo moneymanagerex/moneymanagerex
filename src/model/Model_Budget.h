@@ -44,7 +44,7 @@ public:
     static Model_Budget& instance();
 
 public:
-    enum PERIOD_ENUM { NONE = 0, WEEKLY, BIWEEKLY, MONTHLY, BIMONTHLY, QUARTERLY, HALFYEARLY, YEARLY, DAILY };
+    enum PERIOD_ENUM { NONE = 0, WEEKLY, BIWEEKLY, MONTHLY, BIMONTHLY, QUARTERLY, HALFYEARLY, YEARLY, DAILY, MAX };
     static const std::vector<std::pair<PERIOD_ENUM, wxString> > PERIOD_ENUM_CHOICES;
 
     static wxArrayString all_period();
@@ -56,8 +56,7 @@ public:
         std::map<int, PERIOD_ENUM> > &budgetPeriod,
         std::map<int, std::map<int, double> > &budgetAmt);
     static void copyBudgetYear(int newYearID, int baseYearID);
-    static double getMonthlyEstimate(const PERIOD_ENUM period, const double amount);
-    static double getYearlyEstimate(const PERIOD_ENUM period, const double amount);
+    static double getEstimate(bool is_monthly, const PERIOD_ENUM period, const double amount);
 };
 
 #endif // 

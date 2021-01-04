@@ -90,11 +90,15 @@ Model_Subcategory::Data_Set Model_Category::sub_category(const Data& r)
 
 const wxString Model_Category::full_name(const Data* category, const Model_Subcategory::Data* sub_category)
 {
+    static wxString delimiter;
+    if (delimiter.empty()) {
+        delimiter = Model_Infotable::instance().GetStringInfo("CATEG_DELIMITER", ":");
+    }
     if (!category) return "";
     if (!sub_category)
         return wxGetTranslation(category->CATEGNAME);
     else
-        return wxGetTranslation(category->CATEGNAME) + ":" + wxGetTranslation(sub_category->SUBCATEGNAME);
+        return wxGetTranslation(category->CATEGNAME) + delimiter + wxGetTranslation(sub_category->SUBCATEGNAME);
 }
 
 const wxString Model_Category::full_name(const int category_id, const int subcategory_id)

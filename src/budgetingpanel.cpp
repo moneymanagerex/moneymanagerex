@@ -484,9 +484,18 @@ void mmBudgetingPanel::initVirtualListControl()
 
 double mmBudgetingPanel::getEstimate(int category, int subcategory) const
 {
-    Model_Budget::PERIOD_ENUM period = budgetPeriod_.at(category).at(subcategory);
-    double amt = budgetAmt_.at(category).at(subcategory);
-    return (monthlyBudget_ ? Model_Budget::getMonthlyEstimate(period, amt) : Model_Budget::getYearlyEstimate(period, amt));
+    try
+    {
+        Model_Budget::PERIOD_ENUM period = budgetPeriod_.at(category).at(subcategory);
+        double amt = budgetAmt_.at(category).at(subcategory);
+        return Model_Budget::getEstimate(monthlyBudget_, period, amt);
+    }
+    catch (std::out_of_range const& exc)
+    {
+        wxASSERT(false);
+        wxLogDebug(wxString::FromUTF8(exc.what()));
+        return 0.0;
+    }
 }
 
 void mmBudgetingPanel::DisplayBudgetingDetails(int budgetYearID)
@@ -581,26 +590,37 @@ int budgetingListCtrl::OnGetItemImage(long item) const
 {
     return cp_->GetItemImage(item);
 }
+
 int mmBudgetingPanel::GetItemImage(long item) const
 {
-    double estimated = 0;
-    double actual = 0;
-    if (budget_[item].first < 0)
+    try
     {
-        estimated = budgetTotals_.at(budget_[item].second).first;
-        actual = budgetTotals_.at(budget_[item].second).second;
-    }
-    else
-    {
-        estimated = getEstimate(budget_[item].first, budget_[item].second);
-        actual = categoryStats_.at(budget_[item].first).at(budget_[item].second).at(0);
-    }
 
-    if ((estimated == 0.0) && (actual == 0.0)) return 3;
-    if ((estimated == 0.0) && (actual != 0.0)) return 2;
-    if (estimated < actual) return 0;
-    if (std::fabs(estimated - actual)  < 0.001) return 0;
-    return 1;
+        double estimated = 0;
+        double actual = 0;
+        if (budget_[item].first < 0)
+        {
+            estimated = budgetTotals_.at(budget_[item].second).first;
+            actual = budgetTotals_.at(budget_[item].second).second;
+        }
+        else
+        {
+            estimated = getEstimate(budget_[item].first, budget_[item].second);
+            actual = categoryStats_.at(budget_[item].first).at(budget_[item].second).at(0);
+        }
+
+        if ((estimated == 0.0) && (actual == 0.0)) return 3;
+        if ((estimated == 0.0) && (actual != 0.0)) return 2;
+        if (estimated < actual) return 0;
+        if (std::fabs(estimated - actual) < 0.001) return 0;
+        return 1;
+    }
+    catch (std::out_of_range const& exc)
+    {
+        wxASSERT(false);
+        wxLogDebug(wxString::FromUTF8(exc.what()));
+        return 1;
+    }
 }
 
 wxString budgetingListCtrl::OnGetItemText(long item, long column) const
