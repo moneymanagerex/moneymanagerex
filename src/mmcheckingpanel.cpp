@@ -100,8 +100,7 @@ mmCheckingPanel::mmCheckingPanel(wxWindow *parent, mmGUIFrame *frame, int accoun
     , m_trans_filter_dlg(nullptr)
     , m_frame(frame)
 {
-    long style = wxTAB_TRAVERSAL | wxNO_BORDER;
-    Create(parent, mmID_CHECKING, wxDefaultPosition, wxDefaultSize, style);
+    Create(parent);
 }
 //----------------------------------------------------------------------------
 
@@ -124,11 +123,10 @@ bool mmCheckingPanel::Create(
 
     this->windowsFreezeThaw();
     CreateControls();
+    initViewTransactionsHeader();
 
     m_transFilterActive = false;
     m_trans_filter_dlg = new mmFilterTransactionsDialog(this);
-
-    initViewTransactionsHeader();
     initFilterSettings();
 
     RefreshList();
