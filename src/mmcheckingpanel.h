@@ -37,9 +37,10 @@ class TransactionListCtrl : public mmListCtrl
 {
 public:
 
-    TransactionListCtrl(mmCheckingPanel* cp, wxWindow* parent
+    TransactionListCtrl(mmCheckingPanel* cp
+        , wxWindow* parent
         , const wxWindowID id = wxID_ANY);
-    
+
     ~TransactionListCtrl();
 
     void createColumns(mmListCtrl &lst);
@@ -322,7 +323,7 @@ private:
 
     bool Create(
         wxWindow* parent,
-        wxWindowID winid,
+        wxWindowID winid = mmID_CHECKING,
         const wxPoint& pos = wxDefaultPosition,
         const wxSize& size = wxDefaultSize,
         long style = wxTAB_TRAVERSAL | wxNO_BORDER,

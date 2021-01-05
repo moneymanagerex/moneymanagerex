@@ -194,7 +194,7 @@ void dbUpgrade::BackupDB(const wxString& FileName, int BackupType, int FilesToKe
 
 void dbUpgrade::SqlFileDebug(wxSQLite3Database * db)
 {
-    wxFileDialog fileDlgLoad(nullptr,_("Load debug file"),"","","MMDBG Files(*.mmdbg) | *.mmdbg", wxFD_OPEN | wxFD_FILE_MUST_EXIST);
+    wxFileDialog fileDlgLoad(nullptr,_("Load debug file"),"","","MMDBG Files(*.mmdbg)|*.mmdbg", wxFD_OPEN | wxFD_FILE_MUST_EXIST);
     if (fileDlgLoad.ShowModal() != wxID_OK)
         return;
 
