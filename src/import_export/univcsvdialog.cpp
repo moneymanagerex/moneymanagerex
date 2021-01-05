@@ -1174,8 +1174,8 @@ void mmUnivCSVDialog::OnExport(wxCommandEvent& WXUNUSED(event))
             Model_Category::Data* category = Model_Category::instance().get(splt.CATEGID);
             Model_Subcategory::Data* sub_category = Model_Subcategory::instance().get(splt.SUBCATEGID);
 
-            const wxString amount = Model_Currency::toString(splt.SPLITTRANSAMOUNT, currency);
-            const wxString amount_abs = Model_Currency::toString(fabs(splt.SPLITTRANSAMOUNT), currency);
+            const wxString amount = Model_Currency::toStringNoFormatting(splt.SPLITTRANSAMOUNT, currency);
+            const wxString amount_abs = Model_Currency::toStringNoFormatting(fabs(splt.SPLITTRANSAMOUNT), currency);
 
             for (std::vector<int>::const_iterator sit = csvFieldOrder_.begin(); sit != csvFieldOrder_.end(); ++sit)
             {
