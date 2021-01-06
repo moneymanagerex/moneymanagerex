@@ -20,12 +20,11 @@
     </style>
 </head>
 <body>
-<div class='container'>
-    <table class="table-bordered" width="100%">
+    <table  width="100%">
         <tr valign="top">
             <td width="50%">
+                <div class='shadow'>                
                 <!--Grand total-->
-                <div class = "container">
                 <table class='table'>
                     <tfoot>
                         <tr class='success' style='font-weight:bold'>
@@ -34,26 +33,24 @@
                         </tr>
                     </tfoot>
                 </table>
-                </div>
                 <script>
                     var grand_json = <TMPL_VAR GRAND_TOTAL>;
                     document.getElementById('grand_name').innerHTML=grand_json['NAME'];
                     document.getElementById('grand_value').innerHTML=grand_json['VALUE'];
                 </script>
                 <!--Accounts-->
-                <div class = "container">
+                
                 <TMPL_VAR ACCOUNTS_INFO>
                 <TMPL_VAR CARD_ACCOUNTS_INFO>
                 <TMPL_VAR CASH_ACCOUNTS_INFO>
                 <TMPL_VAR LOAN_ACCOUNTS_INFO>
                 <TMPL_VAR TERM_ACCOUNTS_INFO>
                 </div>
+                
                 <!--Stocks-->
-                <div class = "container">
                 <TMPL_VAR STOCKS_INFO>
-                </dev>
                 <!--Assets-->
-                <div class = "container">
+                <div class = "shadow">
                 <table class="table">
                     <tfoot>
                         <tr class="total">
@@ -74,7 +71,7 @@
             </td>
             <td>
                 <!--Income vs Expenses: Current Month-->
-                <div class = "container">
+                <div class = "shadow">
                 <table class='table'>
                     <thead>
                         <tr class='active'>
@@ -141,7 +138,7 @@
                         dataLabels : { enabled : false },
                         colors: [ '#00E396', '#FF4560' ],
                         tooltip : { theme : "dark" },
-                        xaxis : { labels : { show : false }, categories : [ive_json[9]]},                      
+                        xaxis : { labels : { show : false }, categories : [ive_json[9]]},
                         series : [
                             {
                                 data : [ive_json[10]],
@@ -156,16 +153,13 @@
                     var chart = new ApexCharts(document.getElementById('reportChart'), data);
                     chart.render();
                 </script>
-                <div class = "container">
-                <!--Upcoming Transactions-->
                 <TMPL_VAR BILLS_AND_DEPOSITS>
-                </div>
                 <!--Top Withdrawals: Last 30 Days-->
-                <div class = "container">
+                <div class = "shadow">
                 <TMPL_VAR TOP_CATEGORIES>
                 </div>
                 <!--Transaction Statistics -->
-                <div class = "container">
+                <div class = "shadow">
                 <table class='table'>
                 <thead>
                     <tr class='active'>
@@ -181,7 +175,6 @@
             </td>
         </tr>
     </table>
-</div>
 </body>
 <script>
     function toggleTable(id) {
@@ -233,7 +226,7 @@
         if (obj != 'NAME') {
             var row = document.createElement('tr');
             createTableData(row, obj);
-            var cell = document.createElement("td");    
+            var cell = document.createElement("td");
             var cellText = document.createTextNode(stats_json[obj]);
             cell.style.textAlign='right';
             cell.appendChild(cellText);

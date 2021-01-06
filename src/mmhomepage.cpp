@@ -98,13 +98,17 @@ const wxString htmlWidgetStocks::getHTMLText()
             body += "</tr>";
         }
 
-        output += body;
-        output += "</tbody><tfoot><tr class = 'total'><td>" + _("Total:") + "</td>";
-        output += wxString::Format("<td class='money'>%s</td>"
-            , Model_Currency::toCurrency(grand_gain_lost_));
-        output += wxString::Format("<td colspan='2' class='money'>%s</td></tr></tfoot></table>"
-            , Model_Currency::toCurrency(grand_total_));
-        if (body.empty()) output.clear();
+        if (!body.empty())
+        {
+            output = R"(<div class="shadow">)";
+            output += body;
+            output += "</tbody><tfoot><tr class = 'total'><td>" + _("Total:") + "</td>";
+            output += wxString::Format("<td class='money'>%s</td>"
+                , Model_Currency::toCurrency(grand_gain_lost_));
+            output += wxString::Format("<td colspan='2' class='money'>%s</td></tr></tfoot></table>\n"
+                , Model_Currency::toCurrency(grand_total_));
+            output += "</div>";
+        }
     }
     return output;
 }
@@ -335,7 +339,8 @@ const wxString htmlWidgetBillsAndDeposits::getHTMLText()
     {
         static const wxString idStr = "BILLS_AND_DEPOSITS";
 
-        output = "<table class='table'>\n<thead>\n<tr class='active'><th>";
+        output = R"(<div class="shadow">)";
+        output += "<table class='table'>\n<thead>\n<tr class='active'><th>";
         output += wxString::Format("<a href=\"billsdeposits:\" oncontextmenu=\"return false;\" target=\"_blank\">%s</a></th>\n<th></th>\n", title_);
         output += wxString::Format("<th nowrap class='text-right sorttable_nosort'>%i <a id='%s_label' onclick=\"toggleTable('%s'); \" href='#%s' oncontextmenu='return false;'>[-]</a></th></tr>\n"
             , int(bd_days.size()), idStr, idStr, idStr);
@@ -354,6 +359,7 @@ const wxString htmlWidgetBillsAndDeposits::getHTMLText()
             output += "<td  class='money'>" + std::get<2>(item) + "</td></tr>\n";
         }
         output += "</tbody></table>\n";
+        output += "</div>";
     }
     return output;
 }
@@ -691,17 +697,30 @@ const wxString htmlWidgetCurrency::getHtmlText()
 {
 
     const char* currencyRatesTemplate = R"(
-<div class = "container">
-<b><TMPL_VAR FRAME_NAME></b>
-<a id='CURRENCY_RATES_label' onclick='toggleTable("CURRENCY_RATES");' href='#CURRENCY_RATES' oncontextmenu='return false;'>[-]</a>
-<table class="table" id='CURRENCY_RATES'>
+<div class = "shadow">
+<table class="table">
 <thead>
-<tr><th></th> <TMPL_VAR HEADER></tr>
+<tr class='active'><th><TMPL_VAR FRAME_NAME></th>
+<th nowrap class='text-right sorttable_nosort'>
+<a id='CURRENCY_RATES_label' onclick='toggleTable("CURRENCY_RATES");' href='#CURRENCY_RATES' oncontextmenu='return false;'>[-]</a>
+</th></tr>
+<tbody id='CURRENCY_RATES'>
+<tr>
+<td style='padding: 0px; padding-left: 0px; padding-right: 0px; width: 100%;' colspan='2'>
+
+<table class="table">
+<thead>
+<tr><th nowrap class="text-right sorttable_nosort"></th><TMPL_VAR HEADER></tr>
 </thead>
 <tbody>
 <TMPL_LOOP NAME=CONTENTS>
 <tr><td class ='success'><TMPL_VAR CURRENCY_SYMBOL></td><TMPL_VAR CONVERSION_RATE></tr>
 </TMPL_LOOP>
+</tbody>
+</table>
+
+</td>
+</tr>
 </tbody>
 </table>
 </div>
@@ -740,12 +759,12 @@ const wxString htmlWidgetCurrency::getHtmlText()
         for (const auto j : usedRates)
         {
             row += wxString::Format("<td%s>%s</td>" //<td class ='active'>
-                , j.first == i.first ? " class ='active'" : ""
+                , j.first == i.first ? " class ='active'" : " class='money'"
                 , j.first == i.first ? "" : Model_Currency::toString(
                     j.second / i.second, nullptr, 4)
             );
         }
-        header += wxString::Format("<th>%s</th>", i.first);
+        header += wxString::Format("<th class='text-center'>%s</th>", i.first);
         r(L"CONVERSION_RATE") = row;
 
         contents += r;
