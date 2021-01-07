@@ -111,7 +111,7 @@ Tips
 [Mongoose]: https://github.com/cesanta/mongoose
 [RapidJSON]: http://rapidjson.org/
 [ChartNew.JS]: https://github.com/FVANCOP/ChartNew.js
-[ApexCharts.js] https://apexcharts.com/
+[ApexCharts.js]: https://apexcharts.com/
 [html-template]: https://github.com/moneymanagerex/html-template
 [libcurl]: https://curl.haxx.se/libcurl/
 [wxsqliteplus]: https://github.com/guanlisheng/wxsqliteplus
