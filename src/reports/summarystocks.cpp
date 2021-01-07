@@ -92,94 +92,95 @@ wxString mmReportSummaryStocks::getHTMLText()
     // Build the report
     mmHTMLBuilder hb;
     hb.init();
-    hb.addDivContainer();
+    hb.addDivContainer("shadowTitle");
     {
         hb.addHeader(2, getReportTitle());
         hb.addDateNow();
-        hb.addLineBreak();
-        hb.addDivRow();
+    }
+    hb.endDiv();
+    
+    hb.addDivContainer("shadow");
+    {
+        for (const auto& acct : m_stocks)
         {
-            for (const auto& acct : m_stocks)
+            const Model_Account::Data* account = Model_Account::instance().get(acct.id);
+            const Model_Currency::Data* currency = Model_Account::currency(account);
+            hb.addHeader(3, acct.name);
+
+            hb.startTable();
             {
-                const Model_Account::Data* account = Model_Account::instance().get(acct.id);
-                const Model_Currency::Data* currency = Model_Account::currency(account);
-                hb.addHeader(3, acct.name);
-
-                hb.startTable();
+                display_header(hb);
+                hb.startTbody();
                 {
-                    display_header(hb);
-                    hb.startTbody();
-                    {
-                        for (const auto& entry : acct.data)
-                        {
-                            hb.startTableRow();
-                            {
-                                hb.addTableCell(entry.name);
-                                hb.addTableCell(entry.symbol);
-                                hb.addTableCellDate(entry.date);
-                                hb.addTableCell(Model_Account::toString(entry.qty, account, floor(entry.qty) ? 0 : 4), true);
-                                hb.addCurrencyCell(entry.purchase, currency, 4);
-                                hb.addCurrencyCell(entry.current, currency, 4);
-                                hb.addCurrencyCell(entry.commission, currency, 4);
-                                hb.addCurrencyCell(entry.gainloss, currency);
-                                hb.addCurrencyCell(entry.value, currency);
-                                }
-                            hb.endTableRow();
-                        }
-                    }
-                    hb.endTbody();
-
-                    hb.startTfoot();
-                    {
-                        hb.startTotalTableRow();
-                        {
-                            hb.addTableCell(_("Total:"));
-                            hb.addEmptyTableCell(6);
-                            hb.addCurrencyCell(acct.gainloss, currency);
-                            hb.addCurrencyCell(acct.total, currency);
-                        }
-                        hb.endTableRow();
-                    }
-                    hb.endTfoot();
-                }
-                hb.endTable();
-            }
-
-            hb.addDivContainer();
-            {
-                hb.addHeader(3, _("Grand Total:"));
-
-                hb.startTable();
-                {
-                    hb.startThead();
+                    for (const auto& entry : acct.data)
                     {
                         hb.startTableRow();
                         {
-                            hb.addTableHeaderCell(_("Gain/Loss"), true);
-                            hb.addTableHeaderCell(_("Current Value"), true);
-                        } hb.endTableRow();
-                    }
-                    hb.endThead();
-
-                    hb.startTfoot();
-                    {
-                        hb.startTotalTableRow();
-                        {
-                            hb.addCurrencyCell(m_gain_loss_sum_total);
-                            hb.addCurrencyCell(m_stock_balance);
-                        }
+                            hb.addTableCell(entry.name);
+                            hb.addTableCell(entry.symbol);
+                            hb.addTableCellDate(entry.date);
+                            hb.addTableCell(Model_Account::toString(entry.qty, account, floor(entry.qty) ? 0 : 4), true);
+                            hb.addCurrencyCell(entry.purchase, currency, 4);
+                            hb.addCurrencyCell(entry.current, currency, 4);
+                            hb.addCurrencyCell(entry.commission, currency, 4);
+                            hb.addCurrencyCell(entry.gainloss, currency);
+                            hb.addCurrencyCell(entry.value, currency);
+                            }
                         hb.endTableRow();
-                    hb.endTfoot();
                     }
-                hb.endTable();
                 }
-                hb.endDiv();
+                hb.endTbody();
+
+                hb.startTfoot();
+                {
+                    hb.startTotalTableRow();
+                    {
+                        hb.addTableCell(_("Total:"));
+                        hb.addEmptyTableCell(6);
+                        hb.addCurrencyCell(acct.gainloss, currency);
+                        hb.addCurrencyCell(acct.total, currency);
+                    }
+                    hb.endTableRow();
+                }
+                hb.endTfoot();
             }
-            hb.endDiv();
+            hb.endTable();
+        }
+    }
+    hb.endDiv();
+
+    hb.addDivContainer("shadow");
+    {
+        hb.addHeader(3, _("Grand Total:"));
+
+        hb.startTable();
+        {
+            hb.startThead();
+            {
+                hb.startTableRow();
+                {
+                    hb.addTableHeaderCell(_("Gain/Loss"), true);
+                    hb.addTableHeaderCell(_("Current Value"), true);
+                } hb.endTableRow();
+            }
+            hb.endThead();
+
+            hb.startTfoot();
+            {
+                hb.startTotalTableRow();
+                {
+                    hb.addCurrencyCell(m_gain_loss_sum_total);
+                    hb.addCurrencyCell(m_stock_balance);
+                }
+                hb.endTableRow();
+            hb.endTfoot();
+            }
+        hb.endTable();
         }
         hb.endDiv();
     }
     hb.endDiv();
+   
     hb.end();
 
     return hb.getHTMLText();
@@ -221,70 +222,68 @@ wxString mmReportChartStocks::getHTMLText()
     // Build the report
     mmHTMLBuilder hb;
     hb.init();
-    hb.addDivContainer();
+    hb.addDivContainer("shadowTitle");
     {
         hb.addHeader(2, getReportTitle());
         wxTimeSpan dtDiff = m_date_range->end_date() - m_date_range->start_date();
         if (m_date_range->is_with_date() && dtDiff.GetDays() <= 366)
             hb.DisplayDateHeading(m_date_range->start_date(), m_date_range->end_date(), true);
         hb.addDateNow();
-        hb.addLineBreak();
-        hb.addDivRow(); 
-        {
-            wxTimeSpan dist;
-            wxDate precDateDt = wxInvalidDateTime;
-            wxArrayString symbols;
-            for (const auto& stock : Model_Stock::instance().all(Model_Stock::COL_SYMBOL))
-            {
-                if (symbols.Index(stock.SYMBOL) != wxNOT_FOUND) {
-                    continue;
-                }
-
-                symbols.Add(stock.SYMBOL);
-                int dataCount = 0, freq = 1;
-                auto histData = Model_StockHistory::instance().find(Model_StockHistory::SYMBOL(stock.SYMBOL),
-                    Model_StockHistory::DATE(m_date_range->start_date(), GREATER_OR_EQUAL),
-                    Model_StockHistory::DATE(m_date_range->end_date(), LESS_OR_EQUAL));
-                std::stable_sort(histData.begin(), histData.end(), SorterByDATE());
-
-                bool showGridLines = (histData.size() <= 366);
-                bool pointDot = (histData.size() <= 30);
-                if (histData.size() > 366) {
-                    freq = histData.size() / 366;
-                }
-
-                GraphData gd;
-                GraphSeries data;
-
-                for (const auto& hist : histData)
-                {
-                    if (dataCount % freq == 0)
-                    {
-                        const wxDate d = Model_StockHistory::DATE(hist);
-                        gd.labels.push_back(wxString::Format("%i %s %i", d.GetDay(), wxGetTranslation(wxDateTime::GetEnglishMonthName(d.GetMonth())), d.GetYear()));
-                        data.values.push_back(hist.VALUE);
-                    }
-                    dataCount++;
-                }
-                gd.series.push_back(data);
-
-                if (!gd.series.empty())
-                {
-
-                    Model_Account::Data* account = Model_Account::instance().get(stock.HELDAT);
-                    hb.addDivContainer();
-                    {
-                        hb.addHeader(1, wxString::Format("%s - (%s)", stock.SYMBOL, account->ACCOUNTNAME));
-                        gd.type = GraphData::LINE_DATETIME;
-                        hb.addChart(gd);
-                    }
-                    hb.endDiv();
-                }
-            }
-        }
-        hb.endDiv();
     }
     hb.endDiv();
+
+    wxTimeSpan dist;
+    wxDate precDateDt = wxInvalidDateTime;
+    wxArrayString symbols;
+    for (const auto& stock : Model_Stock::instance().all(Model_Stock::COL_SYMBOL))
+    {
+        if (symbols.Index(stock.SYMBOL) != wxNOT_FOUND) {
+            continue;
+        }
+
+        symbols.Add(stock.SYMBOL);
+        int dataCount = 0, freq = 1;
+        auto histData = Model_StockHistory::instance().find(Model_StockHistory::SYMBOL(stock.SYMBOL),
+            Model_StockHistory::DATE(m_date_range->start_date(), GREATER_OR_EQUAL),
+            Model_StockHistory::DATE(m_date_range->end_date(), LESS_OR_EQUAL));
+        std::stable_sort(histData.begin(), histData.end(), SorterByDATE());
+
+        bool showGridLines = (histData.size() <= 366);
+        bool pointDot = (histData.size() <= 30);
+        if (histData.size() > 366) {
+            freq = histData.size() / 366;
+        }
+
+        GraphData gd;
+        GraphSeries data;
+
+        for (const auto& hist : histData)
+        {
+            if (dataCount % freq == 0)
+            {
+                const wxDate d = Model_StockHistory::DATE(hist);
+                gd.labels.push_back(wxString::Format("%i %s %i", d.GetDay(), wxGetTranslation(wxDateTime::GetEnglishMonthName(d.GetMonth())), d.GetYear()));
+                data.values.push_back(hist.VALUE);
+            }
+            dataCount++;
+        }
+        gd.series.push_back(data);
+
+        if (!gd.series.empty())
+        {
+
+            Model_Account::Data* account = Model_Account::instance().get(stock.HELDAT);
+            hb.addDivContainer("shadow");
+            {
+                hb.addHeader(1, wxString::Format("%s - (%s)", stock.SYMBOL, account->ACCOUNTNAME));
+                gd.type = GraphData::LINE_DATETIME;
+                hb.addChart(gd);
+            }
+            hb.endDiv();
+        }
+    }
+    hb.endDiv();
+    
     hb.end();
 
     wxLogDebug("======= mmReportChartStocks:getHTMLText =======");

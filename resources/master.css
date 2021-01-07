@@ -982,3 +982,10 @@ a.badge:focus {
     padding: 5px;
     margin: 10px;
 }
+
+.shadowTitle {
+  box-shadow: 0 0 20px rgba(0,0,0,0.5); /* shadow parameters */
+  padding: 10px;
+  margin: 10px;
+  background-color: #d8ebf0;;
+}

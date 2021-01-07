@@ -110,12 +110,13 @@ wxString mmReportMyUsage::getHTMLText()
    // Build the report
     mmHTMLBuilder hb;
     hb.init();
-    hb.addDivContainer(); // Main container
-    hb.addHeader(2, this->getReportTitle());
-    hb.DisplayDateHeading(m_date_range->start_date(), m_date_range->end_date(), m_date_range->is_with_date());
-    hb.addDateNow();
-    hb.addLineBreak();
-    hb.addDivRow(); // Report Container
+    hb.addDivContainer("shadowTitle"); 
+    {
+        hb.addHeader(2, this->getReportTitle());
+        hb.DisplayDateHeading(m_date_range->start_date(), m_date_range->end_date(), m_date_range->is_with_date());
+        hb.addDateNow();
+    }
+    hb.endDiv();
 
     if (getChartSelection() == 0)
     {
@@ -134,7 +135,7 @@ wxString mmReportMyUsage::getHTMLText()
 
         if (!gd.series.empty())
         {
-            hb.addDivContainer();
+            hb.addDivContainer("shadow");
             {
                 gd.type = GraphData::DONUT;
                 hb.addChart(gd);
@@ -142,36 +143,37 @@ wxString mmReportMyUsage::getHTMLText()
             hb.endDiv();
         }
     }
-    hb.addDivContainer(); // Table Container    
-    hb.startTable();
-    {
-        hb.startThead();
-        {
-            hb.startTableRow();
-            hb.addTableHeaderCell(_("Reports"));
-            hb.addTableHeaderCell(_("Frequency"), true);
-            hb.endTableRow();
-            hb.endThead();
-        }
-        hb.endThead();
-        hb.startTbody();
-        {
-            for (const auto &stats : usage_by_module)
-            {
-                wxString frequency = wxString::Format(wxT("%d"), stats.second);
-                hb.startTableRow();
-                hb.addTableCell(stats.first);    
-                hb.addTableCell(frequency,true);
-                hb.endTableRow();
-            }
-        }
-        hb.endTbody();
-    }
-    hb.endTable();
     
-    hb.endDiv();// Table container
-    hb.endDiv(); // Report Container
-    hb.endDiv(); // Main container
+    hb.addDivContainer("shadow"); 
+    { 
+        hb.startTable();
+        {
+            hb.startThead();
+            {
+                hb.startTableRow();
+                hb.addTableHeaderCell(_("Reports"));
+                hb.addTableHeaderCell(_("Frequency"), true);
+                hb.endTableRow();
+                hb.endThead();
+            }
+            hb.endThead();
+            hb.startTbody();
+            {
+                for (const auto &stats : usage_by_module)
+                {
+                    wxString frequency = wxString::Format(wxT("%d"), stats.second);
+                    hb.startTableRow();
+                    hb.addTableCell(stats.first);    
+                    hb.addTableCell(frequency,true);
+                    hb.endTableRow();
+                }
+            }
+            hb.endTbody();
+        }
+        hb.endTable();
+    }
+    hb.endDiv(); 
+
     hb.end();
 
     wxLogDebug("======= mmReportUsage:getHTMLText =======");

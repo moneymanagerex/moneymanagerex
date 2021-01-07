@@ -136,179 +136,193 @@ wxString mmReportSummaryByDate::getHTMLText()
     std::vector<wxDate> arDates;
 
     hb.init();
-    hb.addDivContainer();
-    hb.addHeader(2, wxString::Format(_("Accounts Balance - %s"), mode_ == MONTHLY ? _("Monthly Report") : _("Yearly Report")));
-    hb.addDateNow();
-    hb.addLineBreak();
-
-    hb.startTable();
-    hb.startThead();
-    hb.startTableRow();
-    hb.addTableHeaderCell(_("Date"));
-    hb.addTableHeaderCell(_("Cash"), true);
-    hb.addTableHeaderCell(_("Bank Accounts"), true);
-    hb.addTableHeaderCell(_("Credit Card Accounts"), true);
-    hb.addTableHeaderCell(_("Loan Accounts"), true);
-    hb.addTableHeaderCell(_("Term Accounts"), true);
-    hb.addTableHeaderCell(_("Total"), true);
-    hb.addTableHeaderCell(_("Stocks"), true);
-    hb.addTableHeaderCell(_("Balance"), true);
-    hb.endTableRow();
+    hb.addDivContainer("shadowTitle");
+    {
+        hb.addHeader(2, wxString::Format(_("Accounts Balance - %s"), mode_ == MONTHLY ? _("Monthly Report") : _("Yearly Report")));
+        hb.addDateNow();
+    }
     hb.endDiv();
-    hb.endThead();
-
-    int i = 0;
-    for (const auto& account: Model_Account::instance().all())
+  
+    hb.addDivContainer("shadow");
     {
-        if (Model_Account::type(account) != Model_Account::INVESTMENT)
+        hb.startTable();
         {
-            // balanceMapVec contains transactions totals day by day
-            const Model_Currency::Data* currency = Model_Account::currency(account);
-            for (const auto& tran : Model_Account::transaction(account))
+            hb.startThead();
             {
-                balanceMapVec[i][Model_Checking::TRANSDATE(tran)]
-                    += Model_Checking::balance(tran, account.ACCOUNTID)
-                    * Model_CurrencyHistory::getDayRate(currency->id(), tran.TRANSDATE);
-            }
-            if (Model_Account::type(account) != Model_Account::TERM && balanceMapVec[i].size())
-            {
-                date = balanceMapVec[i].begin()->first;
-                if (date.IsEarlierThan(dateStart))
-                    dateStart = date;
-            }
-            arBalance[i] = account.INITIALBAL * Model_CurrencyHistory::getDayRate(currency->id(), dateStart);
-        }
-        else
-        {
-            Model_Stock::Data_Set stocks = Model_Stock::instance().find(Model_Stock::HELDAT(account.id()));
-            for (const auto & stock : stocks)
-            {
-                arHistory.resize(arHistory.size() + 1);
-                pHistItem = arHistory.data() + arHistory.size() - 1;
-                pHistItem->acctId = account.id();
-                pHistItem->stockId = stock.STOCKID;
-                pHistItem->purchasePrice = stock.PURCHASEPRICE;
-                pHistItem->purchaseDate = Model_Stock::PURCHASEDATE(stock);
-                pHistItem->purchaseDateStr = stock.PURCHASEDATE;
-                pHistItem->numShares = stock.NUMSHARES;
-                pHistItem->stockHist = Model_StockHistory::instance().find(Model_StockHistory::SYMBOL(stock.SYMBOL));
-                std::stable_sort(pHistItem->stockHist.begin(), pHistItem->stockHist.end(), SorterByDATE());
-                std::reverse(pHistItem->stockHist.begin(), pHistItem->stockHist.end());
-            }
-        }
-        i++;
-    }
-
-    if (mode_ == MONTHLY)
-    {
-        dateEnd -= wxDateSpan::Months(1);
-        dateEnd.SetToLastMonthDay(dateEnd.GetMonth(), dateEnd.GetYear());
-        span = wxDateSpan::Months(1);
-    }
-    else if (mode_ == YEARLY)
-    {
-        dateEnd.Set(31, wxDateTime::Dec, wxDateTime::Now().GetYear());
-        span = wxDateSpan::Years(1);
-    }
-    else
-    {
-        wxFAIL_MSG("unknown report mode");
-    }
-
-    date = dateEnd;
-    while (date.IsLaterThan(dateStart))
-        date -= span;
-    dateStart = date;
-
-    int c = 0;
-    for (const auto& acctMap: balanceMapVec)
-        arIt[c++] = acctMap.begin();
-
-    //  prepare the dates array
-    while (dateStart <= dateEnd)
-    {
-        if (mode_ == 0)
-            dateStart.SetToLastMonthDay(dateStart.GetMonth(), dateStart.GetYear());
-        arDates.push_back(dateStart);
-        dateStart += span;
-    }
-    date = wxDate::Today();
-    if (date.GetDay() != dateEnd.GetDay()
-        || date.GetMonth() != dateEnd.GetMonth()
-        || date.GetYear() != dateEnd.GetYear())
-        arDates.push_back(date);
-
-    for (const auto & dd : arDates)
-    {
-        int k = 0;
-        for (auto& account: Model_Account::instance().all())
-        {
-            if (Model_Account::type(account) != Model_Account::INVESTMENT)
-            {
-                for (; arIt[k] != balanceMapVec[k].end(); ++arIt[k])
+                hb.startTableRow();
                 {
-                    if (arIt[k]->first.IsLaterThan(dd))
-                        break;
-                    arBalance[k] += arIt[k]->second;
+                    hb.addTableHeaderCell(_("Date"));
+                    hb.addTableHeaderCell(_("Cash"), true);
+                    hb.addTableHeaderCell(_("Bank Accounts"), true);
+                    hb.addTableHeaderCell(_("Credit Card Accounts"), true);
+                    hb.addTableHeaderCell(_("Loan Accounts"), true);
+                    hb.addTableHeaderCell(_("Term Accounts"), true);
+                    hb.addTableHeaderCell(_("Total"), true);
+                    hb.addTableHeaderCell(_("Stocks"), true);
+                    hb.addTableHeaderCell(_("Balance"), true);
                 }
+                hb.endTableRow();
+            }
+            hb.endThead();
+
+            int i = 0;
+            for (const auto& account: Model_Account::instance().all())
+            {
+                if (Model_Account::type(account) != Model_Account::INVESTMENT)
+                {
+                    // balanceMapVec contains transactions totals day by day
+                    const Model_Currency::Data* currency = Model_Account::currency(account);
+                    for (const auto& tran : Model_Account::transaction(account))
+                    {
+                        balanceMapVec[i][Model_Checking::TRANSDATE(tran)]
+                            += Model_Checking::balance(tran, account.ACCOUNTID)
+                            * Model_CurrencyHistory::getDayRate(currency->id(), tran.TRANSDATE);
+                    }
+                    if (Model_Account::type(account) != Model_Account::TERM && balanceMapVec[i].size())
+                    {
+                        date = balanceMapVec[i].begin()->first;
+                        if (date.IsEarlierThan(dateStart))
+                            dateStart = date;
+                    }
+                    arBalance[i] = account.INITIALBAL * Model_CurrencyHistory::getDayRate(currency->id(), dateStart);
+                }
+                else
+                {
+                    Model_Stock::Data_Set stocks = Model_Stock::instance().find(Model_Stock::HELDAT(account.id()));
+                    for (const auto & stock : stocks)
+                    {
+                        arHistory.resize(arHistory.size() + 1);
+                        pHistItem = arHistory.data() + arHistory.size() - 1;
+                        pHistItem->acctId = account.id();
+                        pHistItem->stockId = stock.STOCKID;
+                        pHistItem->purchasePrice = stock.PURCHASEPRICE;
+                        pHistItem->purchaseDate = Model_Stock::PURCHASEDATE(stock);
+                        pHistItem->purchaseDateStr = stock.PURCHASEDATE;
+                        pHistItem->numShares = stock.NUMSHARES;
+                        pHistItem->stockHist = Model_StockHistory::instance().find(Model_StockHistory::SYMBOL(stock.SYMBOL));
+                        std::stable_sort(pHistItem->stockHist.begin(), pHistItem->stockHist.end(), SorterByDATE());
+                        std::reverse(pHistItem->stockHist.begin(), pHistItem->stockHist.end());
+                    }
+                }
+                i++;
+            }
+
+            if (mode_ == MONTHLY)
+            {
+                dateEnd -= wxDateSpan::Months(1);
+                dateEnd.SetToLastMonthDay(dateEnd.GetMonth(), dateEnd.GetYear());
+                span = wxDateSpan::Months(1);
+            }
+            else if (mode_ == YEARLY)
+            {
+                dateEnd.Set(31, wxDateTime::Dec, wxDateTime::Now().GetYear());
+                span = wxDateSpan::Years(1);
             }
             else
             {
-                double convRate = 1.0;
-                Model_Currency::Data* currency = Model_Account::currency(account);
-                if (currency)
-                    convRate = Model_CurrencyHistory::getDayRate(currency->id(), dd);
-                arBalance[k] = arHistory.getDailyBalanceAt(&account, dd) * convRate;
+                wxFAIL_MSG("unknown report mode");
             }
-            k++;
-        }
 
-        // prepare columns for report: date, cash, checking, credit card, term, partial total, investment, grand total
-        totBalanceData.push_back(dd.FormatISODate());
-        for (int j = 0; j < 6; j++)
-            balancePerDay[j] = 0.0;
-        int a = 0;
-        for (const auto& account: Model_Account::instance().all())
-        {
-            balancePerDay[Model_Account::type(account)] += arBalance[a++];
+            date = dateEnd;
+            while (date.IsLaterThan(dateStart))
+                date -= span;
+            dateStart = date;
+
+            int c = 0;
+            for (const auto& acctMap: balanceMapVec)
+                arIt[c++] = acctMap.begin();
+
+            //  prepare the dates array
+            while (dateStart <= dateEnd)
+            {
+                if (mode_ == 0)
+                    dateStart.SetToLastMonthDay(dateStart.GetMonth(), dateStart.GetYear());
+                arDates.push_back(dateStart);
+                dateStart += span;
+            }
+            date = wxDate::Today();
+            if (date.GetDay() != dateEnd.GetDay()
+                || date.GetMonth() != dateEnd.GetMonth()
+                || date.GetYear() != dateEnd.GetYear())
+                arDates.push_back(date);
+
+            for (const auto & dd : arDates)
+            {
+                int k = 0;
+                for (auto& account: Model_Account::instance().all())
+                {
+                    if (Model_Account::type(account) != Model_Account::INVESTMENT)
+                    {
+                        for (; arIt[k] != balanceMapVec[k].end(); ++arIt[k])
+                        {
+                            if (arIt[k]->first.IsLaterThan(dd))
+                                break;
+                            arBalance[k] += arIt[k]->second;
+                        }
+                    }
+                    else
+                    {
+                        double convRate = 1.0;
+                        Model_Currency::Data* currency = Model_Account::currency(account);
+                        if (currency)
+                            convRate = Model_CurrencyHistory::getDayRate(currency->id(), dd);
+                        arBalance[k] = arHistory.getDailyBalanceAt(&account, dd) * convRate;
+                    }
+                    k++;
+                }
+
+                // prepare columns for report: date, cash, checking, credit card, term, partial total, investment, grand total
+                totBalanceData.push_back(dd.FormatISODate());
+                for (int j = 0; j < 6; j++)
+                    balancePerDay[j] = 0.0;
+                int a = 0;
+                for (const auto& account: Model_Account::instance().all())
+                {
+                    balancePerDay[Model_Account::type(account)] += arBalance[a++];
+                }
+                totBalanceData.push_back(Model_Currency::toCurrency(balancePerDay[Model_Account::CASH]));
+                totBalanceData.push_back(Model_Currency::toCurrency(balancePerDay[Model_Account::CHECKING]));
+                totBalanceData.push_back(Model_Currency::toCurrency(balancePerDay[Model_Account::CREDIT_CARD]));
+                totBalanceData.push_back(Model_Currency::toCurrency(balancePerDay[Model_Account::LOAN]));
+                totBalanceData.push_back(Model_Currency::toCurrency(balancePerDay[Model_Account::TERM]));
+                total = balancePerDay[Model_Account::CASH] + balancePerDay[Model_Account::CHECKING] 
+                    + balancePerDay[Model_Account::CREDIT_CARD] + balancePerDay[Model_Account::LOAN]
+                    + balancePerDay[Model_Account::TERM];
+                totBalanceData.push_back(Model_Currency::toCurrency(total));
+                totBalanceData.push_back(Model_Currency::toCurrency(balancePerDay[Model_Account::INVESTMENT]));
+                total += balancePerDay[Model_Account::INVESTMENT];
+                totBalanceData.push_back(Model_Currency::toCurrency(total));
+            }
+            
+            arIt.clear();
+            arDates.clear();
+
+            hb.startTbody();
+            {
+                for (int k = totBalanceData.size() - 9; k >= 0; k -= 9)
+                {
+                    if (datePrec.Left(4) != totBalanceData[k].Left(4))
+                    {
+                        hb.startTotalTableRow();
+                        hb.addTableCell(totBalanceData[k].Left(4));
+                        for (int j = 0; j < 8; j++)
+                            hb.addTableCell("");
+                        hb.endTableRow();
+                    }
+                    hb.startTableRow();
+                    hb.addTableCellDate(totBalanceData[k]);
+                    for (int j = 0; j < 8; j++)
+                        hb.addTableCell(totBalanceData[k + j + 1], true);
+                    hb.endTableRow();
+                    datePrec = totBalanceData[k];
+                }
+            }
+            hb.endTbody();
         }
-        totBalanceData.push_back(Model_Currency::toCurrency(balancePerDay[Model_Account::CASH]));
-        totBalanceData.push_back(Model_Currency::toCurrency(balancePerDay[Model_Account::CHECKING]));
-        totBalanceData.push_back(Model_Currency::toCurrency(balancePerDay[Model_Account::CREDIT_CARD]));
-        totBalanceData.push_back(Model_Currency::toCurrency(balancePerDay[Model_Account::LOAN]));
-        totBalanceData.push_back(Model_Currency::toCurrency(balancePerDay[Model_Account::TERM]));
-        total = balancePerDay[Model_Account::CASH] + balancePerDay[Model_Account::CHECKING] 
-            + balancePerDay[Model_Account::CREDIT_CARD] + balancePerDay[Model_Account::LOAN]
-            + balancePerDay[Model_Account::TERM];
-        totBalanceData.push_back(Model_Currency::toCurrency(total));
-        totBalanceData.push_back(Model_Currency::toCurrency(balancePerDay[Model_Account::INVESTMENT]));
-        total += balancePerDay[Model_Account::INVESTMENT];
-        totBalanceData.push_back(Model_Currency::toCurrency(total));
+        hb.endTable();
     }
+    hb.endDiv();
     
-    arIt.clear();
-    arDates.clear();
-
-    hb.startTbody();
-    for (int k = totBalanceData.size() - 9; k >= 0; k -= 9)
-    {
-        if (datePrec.Left(4) != totBalanceData[k].Left(4))
-        {
-            hb.startTotalTableRow();
-            hb.addTableCell(totBalanceData[k].Left(4));
-            for (int j = 0; j < 8; j++)
-                hb.addTableCell("");
-            hb.endTableRow();
-        }
-        hb.startTableRow();
-        hb.addTableCellDate(totBalanceData[k]);
-        for (int j = 0; j < 8; j++)
-            hb.addTableCell(totBalanceData[k + j + 1], true);
-        hb.endTableRow();
-        datePrec = totBalanceData[k];
-    }
-    hb.endTbody();
-    hb.endTable();
     hb.end();
 
     totBalanceData.clear();
