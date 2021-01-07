@@ -33,6 +33,7 @@ struct GraphSeries
 
 struct GraphData
 {
+    wxString title;
     enum { BAR = 0, LINE, LINE_DATETIME, PIE, DONUT, RADAR } type;
     std::vector<wxString> labels;
     std::vector<GraphSeries> series; 
@@ -97,7 +98,7 @@ public:
     void endThead();
     void endTbody();
     void endTfoot();
-    void addDivContainer();
+    void addDivContainer(const wxString& style = "container");
     void addDivRow();
     void addDivCol17_67();
     void addDivCol25_50();

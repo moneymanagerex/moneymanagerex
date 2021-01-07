@@ -62,44 +62,41 @@ wxString mmReportForecast::getHTMLText()
     // Build the report
     mmHTMLBuilder hb;
     hb.init();
-    hb.addDivContainer();
+    hb.addDivContainer("shadowTitle");
     {
         hb.addHeader(2, getReportTitle());
         hb.DisplayDateHeading(m_date_range->start_date(), m_date_range->end_date(), m_date_range->is_with_date());
         hb.addDateNow();
-        hb.addLineBreak();
-        hb.addDivRow();
-        {
-            GraphData gd;
-            GraphSeries gsWithdrawl, gsDeposit;
-            for (const auto & kv : amount_by_day)
-            {
-                wxDate d;
-                wxLogDebug("kv.first  = %s", kv.first); 
-                d.ParseISODate(kv.first);
-                wxString label = wxString::Format("%i %s %i", d.GetDay(), wxGetTranslation(wxDateTime::GetEnglishMonthName(d.GetMonth())), d.GetYear());
-                wxLogDebug("label  = %s", label); 
-                gd.labels.push_back(label);
-                //wxLogDebug(" Values = %d, %d", kv.second.first, kv.second.second);
-                gsWithdrawl.values.push_back(kv.second.first);
-                gsDeposit.values.push_back(kv.second.second);
-            }
-            gsDeposit.name = _("Deposit");
-            gd.series.push_back(gsDeposit);
-            gsWithdrawl.name = _("Withdrawl");
-            gd.series.push_back(gsWithdrawl);     
-
-            hb.addDivContainer();
-            { 
-                gd.type = GraphData::LINE_DATETIME;
-                gd.colors = { wxColour(0, 227, 150), wxColour(255, 69, 96) };  // Green, Red
-                hb.addChart(gd);
-            }
-            hb.endDiv();
-        }
-        hb.endDiv();
     }
     hb.endDiv();
+       
+    GraphData gd;
+    GraphSeries gsWithdrawl, gsDeposit;
+    for (const auto & kv : amount_by_day)
+    {
+        wxDate d;
+        wxLogDebug("kv.first  = %s", kv.first); 
+        d.ParseISODate(kv.first);
+        wxString label = wxString::Format("%i %s %i", d.GetDay(), wxGetTranslation(wxDateTime::GetEnglishMonthName(d.GetMonth())), d.GetYear());
+        wxLogDebug("label  = %s", label); 
+        gd.labels.push_back(label);
+        //wxLogDebug(" Values = %d, %d", kv.second.first, kv.second.second);
+        gsWithdrawl.values.push_back(kv.second.first);
+        gsDeposit.values.push_back(kv.second.second);
+    }
+    gsDeposit.name = _("Deposit");
+    gd.series.push_back(gsDeposit);
+    gsWithdrawl.name = _("Withdrawl");
+    gd.series.push_back(gsWithdrawl);     
+
+    hb.addDivContainer("shadow");
+    { 
+        gd.type = GraphData::LINE_DATETIME;
+        gd.colors = { wxColour(0, 227, 150), wxColour(255, 69, 96) };  // Green, Red
+        hb.addChart(gd);
+    }
+    hb.endDiv();
+
     hb.end();
 
     return hb.getHTMLText();

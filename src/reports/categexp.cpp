@@ -103,7 +103,7 @@ wxString mmReportCategoryExpenses::getHTMLText()
         group_total[entry.categs] += entry.amount;
         group_total[-1] += entry.amount < 0 ? entry.amount : 0;
         group_total[-2] += entry.amount > 0 ? entry.amount : 0;
-    if (getChartSelection() == 0)
+        if (getChartSelection() == 0)
         {
             if (entry.amount < 0)
             {
@@ -130,109 +130,109 @@ wxString mmReportCategoryExpenses::getHTMLText()
     // Build the report
     mmHTMLBuilder hb;
     hb.init();
-    hb.addDivContainer();
+    hb.addDivContainer("shadowTitle");
     {
         hb.addHeader(2, getReportTitle());
         hb.DisplayDateHeading(m_date_range->start_date(), m_date_range->end_date(), m_date_range->is_with_date());
         hb.addHeader(3, getAccountNames());
         hb.addDateNow();
         hb.addLineBreak();
-        hb.addDivRow(); 
-        {
-            // Chart
-            if (getChartSelection() == 0)
-            {
-                if (!gdExpenses.series.empty())
-                {
-                    hb.addDivContainer(); 
-                    {
-                        hb.addHeader(3, _("Expenses"));
-                        gdExpenses.type = GraphData::DONUT;
-                        hb.addChart(gdExpenses);
-                    }
-                    hb.endDiv();
-                }
-                if (!gdIncome.series.empty())
-                {
-                    hb.addDivContainer();  
-                    {
-                        hb.addHeader(3, _("Income")); 
-                        gdIncome.type = GraphData::DONUT;
-                        hb.addChart(gdIncome);
-                    }
-                    hb.endDiv();
-                }
-            }
-
-            hb.startTable();
-            {
-                hb.startThead();
-                {
-                    hb.startTableRow();
-                    {
-                        hb.addTableHeaderCell(_("Category"));
-                        hb.addTableHeaderCell(_("Amount"), true);
-                        hb.addTableHeaderCell(_("Total"), true);
-                    }
-                    hb.endTableRow();
-                }
-                hb.endThead();
-
-                hb.startTbody();
-                {
-                    int group = 0;
-                    for (const auto& entry : sortedData)
-                    {
-                        group++;
-                        hb.startTableRow();
-                        {
-                            hb.addTableCell(entry.name);
-                            hb.addMoneyCell(entry.amount);
-                            if (group_counter[entry.categs] > 1)
-                                hb.addEmptyTableCell();
-                            else
-                                hb.addMoneyCell(entry.amount);
-                        }
-                        hb.endTableRow();
-
-                        if (group_counter[entry.categs] == group && group_counter[entry.categs] > 1)
-                        {
-                            group = 0;
-                            hb.startAltTableRow();
-                            {
-                                hb.addTableCell(_("Category Total: "));
-                                hb.addEmptyTableCell();
-                                hb.addMoneyCell(group_total[entry.categs]);
-                            }
-                            hb.endTableRow();
-                        }
-                        if (group_counter[entry.categs] == 1 || group == 0) 
-                        {
-                            group = 0;
-                        }
-                    }
-                }
-                hb.endTbody();
-
-                int span = 3;
-                hb.startTfoot();
-                {
-                    if (type_ == SUMMARY)
-                    {
-                        hb.addTotalRow(_("Total Expenses:"), span, group_total[-1]);
-                        hb.addTotalRow(_("Total Income:"), span, group_total[-2]);
-                    }
-                    hb.addTotalRow(_("Grand Total:"), span, group_total[-1] + group_total[-2]);
-                }
-                hb.endTfoot();
-            }
-            hb.endTable();
-
-            hb.endDiv();
-        }
-        hb.endDiv();
     }
     hb.endDiv();
+
+    // Chart
+    if (getChartSelection() == 0)
+    {
+        if (!gdExpenses.series.empty())
+        {
+            hb.addDivContainer("shadow"); 
+            {
+                gdExpenses.title = _("Expenses");
+                gdExpenses.type = GraphData::DONUT;
+                hb.addChart(gdExpenses);
+            }
+            hb.endDiv();
+        }
+        if (!gdIncome.series.empty())
+        {
+            hb.addDivContainer("shadow");  
+            {
+                gdIncome.title = _("Income"); 
+                gdIncome.type = GraphData::DONUT;
+                hb.addChart(gdIncome);
+            }
+            hb.endDiv();
+        }
+    }
+
+    hb.addDivContainer("shadow"); // Table Container
+    {
+        hb.startTable();
+        {
+            hb.startThead();
+            {
+                hb.startTableRow();
+                {
+                    hb.addTableHeaderCell(_("Category"));
+                    hb.addTableHeaderCell(_("Amount"), true);
+                    hb.addTableHeaderCell(_("Total"), true);
+                }
+                hb.endTableRow();
+            }
+            hb.endThead();
+
+            hb.startTbody();
+            {
+                int group = 0;
+                for (const auto& entry : sortedData)
+                {
+                    group++;
+                    hb.startTableRow();
+                    {
+                        hb.addTableCell(entry.name);
+                        hb.addMoneyCell(entry.amount);
+                        if (group_counter[entry.categs] > 1)
+                            hb.addEmptyTableCell();
+                        else
+                            hb.addMoneyCell(entry.amount);
+                    }
+                    hb.endTableRow();
+
+                    if (group_counter[entry.categs] == group && group_counter[entry.categs] > 1)
+                    {
+                        group = 0;
+                        hb.startAltTableRow();
+                        {
+                            hb.addTableCell(_("Category Total: "));
+                            hb.addEmptyTableCell();
+                            hb.addMoneyCell(group_total[entry.categs]);
+                        }
+                        hb.endTableRow();
+                    }
+                    if (group_counter[entry.categs] == 1 || group == 0) 
+                    {
+                        group = 0;
+                    }
+                }
+            }
+            hb.endTbody();
+
+            int span = 3;
+            hb.startTfoot();
+            {
+                if (type_ == SUMMARY)
+                {
+                    hb.addTotalRow(_("Total Expenses:"), span, group_total[-1]);
+                    hb.addTotalRow(_("Total Income:"), span, group_total[-2]);
+                }
+                hb.addTotalRow(_("Grand Total:"), span, group_total[-1] + group_total[-2]);
+            }
+            hb.endTfoot();
+        }
+        hb.endTable();
+    }
+    hb.endDiv();
+    
     hb.end();
 
     wxLogDebug("======= mmReportCategoryExpenses:getHTMLText =======");
@@ -339,135 +339,138 @@ wxString mmReportCategoryOverTimePerformance::getHTMLText()
     // Build the report
     mmHTMLBuilder hb;
     hb.init();
-    hb.addDivContainer();
+    hb.addDivContainer("shadowTitle");
     {
         hb.addHeader(2, getReportTitle());
         hb.addHeader(3, getAccountNames());
         hb.DisplayDateHeading(date_range->start_date(), date_range->end_date(), date_range->is_with_date());
         hb.addDateNow();
         hb.addLineBreak();
-        hb.addDivRow(); 
+    }
+    hb.endDiv();
 
-            const wxDateTime start_date = date_range->start_date();
-            delete date_range;
+    const wxDateTime start_date = date_range->start_date();
+    delete date_range;
 
-            //Chart
-            wxArrayString labels;
-            if (getChartSelection() == 0)
+    //Chart
+    wxArrayString labels;
+    if (getChartSelection() == 0)
+    {
+        GraphData gd;
+        GraphSeries data_negative, data_positive;
+
+        for (int i = 0; i < MONTHS_IN_PERIOD; i++)
+        {
+            wxDateTime d = start_date.Add(wxDateSpan::Months(i));
+
+            double val_negative = 0;
+            double val_positive = 0;
+            for (const auto& entry : data)
             {
-                GraphData gd;
-                GraphSeries data_negative, data_positive;
-
-                for (int i = 0; i < MONTHS_IN_PERIOD; i++)
-                {
-                    wxDateTime d = start_date.Add(wxDateSpan::Months(i));
-
-                    double val_negative = 0;
-                    double val_positive = 0;
-                    for (const auto& entry : data)
-                    {
-                        if (entry.period[i] < 0)
-                            val_negative += -entry.period[i];
-                        else
-                            val_positive += entry.period[i];
-                    }
-
-                    data_negative.values.push_back(val_negative);
-                    data_positive.values.push_back(val_positive);
-
-                    const auto label = wxString::Format("%s %i", wxGetTranslation(wxDateTime::GetEnglishMonthName(d.GetMonth())), d.GetYear());
-                    gd.labels.push_back(label);
-                }
-
-                data_negative.name = _("Expenses");
-                data_positive.name = _("Income");
-                gd.series.push_back(data_positive);
-                gd.series.push_back(data_negative);
-
-                if (!gd.series.empty())
-                {
-                    hb.addDivContainer(); 
-                    {                 
-                        gd.type = GraphData::BAR;
-                        gd.colors = { wxColour(0, 227, 150), wxColour(255, 69, 96) };  // Green, Red
-                        hb.addChart(gd);
-                    }
-                    hb.endDiv();
-                }
+                if (entry.period[i] < 0)
+                    val_negative += -entry.period[i];
+                else
+                    val_positive += entry.period[i];
             }
 
-            hb.startSortTable();
+            data_negative.values.push_back(val_negative);
+            data_positive.values.push_back(val_positive);
+
+            const auto label = wxString::Format("%s %i", wxGetTranslation(wxDateTime::GetEnglishMonthName(d.GetMonth())), d.GetYear());
+            gd.labels.push_back(label);
+        }
+
+        data_negative.name = _("Expenses");
+        data_positive.name = _("Income");
+        gd.series.push_back(data_positive);
+        gd.series.push_back(data_negative);
+
+        if (!gd.series.empty())
+        {
+            hb.addDivContainer("shadow"); 
+            {                 
+                gd.type = GraphData::BAR;
+                gd.colors = { wxColour(0, 227, 150), wxColour(255, 69, 96) };  // Green, Red
+                hb.addChart(gd);
+            }
+            hb.endDiv();
+        }
+    }
+
+    hb.addDivContainer("shadow"); 
+    {
+        hb.startSortTable();
+        {
+
+            //Add header
+            hb.startThead();
             {
-
-                //Add header
-                hb.startThead();
+                hb.startTableRow();
                 {
-                    hb.startTableRow();
-                    {
-                        hb.addTableHeaderCell(_("Category"));
+                    hb.addTableHeaderCell(_("Category"));
 
-                        for (int i = 0; i < MONTHS_IN_PERIOD; i++)
-                        {
-                            wxDateTime d = start_date.Add(wxDateSpan::Months(i));
-                            hb.addTableHeaderCell(wxGetTranslation(wxDateTime::GetEnglishMonthName(d.GetMonth()
-                                , wxDateTime::Name_Abbr)) + wxString::Format("<br>%i", d.GetYear()), true);
-                        }
-                        hb.addTableHeaderCell(_("Overall"), true);
-                    }
-                    hb.endTableRow();
-                hb.endThead();
-
-                hb.startTbody();
-                {
-                    //Begin of table
-                    for (const auto& entry : data)
+                    for (int i = 0; i < MONTHS_IN_PERIOD; i++)
                     {
-                        if (entry.overall != 0.0) 
-                        {
-                            hb.startTableRow();
-                            {
-                                hb.addTableCell(entry.name);
-                                for (int i = 0; i < MONTHS_IN_PERIOD; i++)
-                                    hb.addMoneyCell(entry.period[i]);
-                                hb.addMoneyCell(entry.overall);
-                            }
-                            hb.endTableRow();
-                        }
+                        wxDateTime d = start_date.Add(wxDateSpan::Months(i));
+                        hb.addTableHeaderCell(wxGetTranslation(wxDateTime::GetEnglishMonthName(d.GetMonth()
+                            , wxDateTime::Name_Abbr)) + wxString::Format("<br>%i", d.GetYear()), true);
                     }
+                    hb.addTableHeaderCell(_("Overall"), true);
                 }
-                hb.endTbody();
+                hb.endTableRow();
+            }
+            hb.endThead();
 
-                //Totals
-                hb.startTfoot();
+            hb.startTbody();
+            {
+                //Begin of table
+                for (const auto& entry : data)
                 {
-                    std::map<int, wxString> totalLabels;
-                    totalLabels[INCOME] = _("Incomes");
-                    totalLabels[EXPENSES] = _("Expenses");
-                    totalLabels[TOTAL] = _("Total");
-                    for (const auto& print_totals : totals)
+                    if (entry.overall != 0.0) 
                     {
-                        hb.startTotalTableRow();
+                        hb.startTableRow();
                         {
-                            hb.addTableCell(totalLabels[print_totals.first]);
-                            double overall = 0;
-                            for (const auto& range : totals[print_totals.first])
-                            {
-                                double amount = range.second;
-                                overall += amount;
-                                hb.addMoneyCell(amount);
-                            }
-                            hb.addMoneyCell(overall);
+                            hb.addTableCell(entry.name);
+                            for (int i = 0; i < MONTHS_IN_PERIOD; i++)
+                                hb.addMoneyCell(entry.period[i]);
+                            hb.addMoneyCell(entry.overall);
                         }
                         hb.endTableRow();
                     }
                 }
-                hb.endTfoot();
             }
-            hb.endTable();
+            hb.endTbody();
+
+            //Totals
+            hb.startTfoot();
+            {
+                std::map<int, wxString> totalLabels;
+                totalLabels[INCOME] = _("Incomes");
+                totalLabels[EXPENSES] = _("Expenses");
+                totalLabels[TOTAL] = _("Total");
+                for (const auto& print_totals : totals)
+                {
+                    hb.startTotalTableRow();
+                    {
+                        hb.addTableCell(totalLabels[print_totals.first]);
+                        double overall = 0;
+                        for (const auto& range : totals[print_totals.first])
+                        {
+                            double amount = range.second;
+                            overall += amount;
+                            hb.addMoneyCell(amount);
+                        }
+                        hb.addMoneyCell(overall);
+                    }
+                    hb.endTableRow();
+                }
+            }
+            hb.endTfoot();
         }
-        hb.endDiv();
+        hb.endTable();
     }
     hb.endDiv();
+  
     hb.end();
 
     wxLogDebug("======= mmReportCategoryOverTimePerformance:getHTMLText =======");

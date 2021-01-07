@@ -96,88 +96,85 @@ wxString mmReportPayeeExpenses::getHTMLText()
     // Build the report
     mmHTMLBuilder hb;
     hb.init();
-    hb.addDivContainer();
+    hb.addDivContainer("shadowTitle");
     {
         hb.addHeader(2, getReportTitle());
         hb.DisplayDateHeading(m_date_range->start_date(), m_date_range->end_date(), m_date_range->is_with_date());
         hb.addDateNow();
-        hb.addLineBreak();
-        hb.addDivRow(); // Report Container
+    }
+    hb.endDiv();
+
+    // Add the chart
+    if (!valueList_.empty() && (getChartSelection() == 0))
+    {
+        GraphData gd;
+        GraphSeries data_usage;
+
+        for (const auto &stats : valueList_)
         {
-            // Add the chart
-            if (!valueList_.empty() && (getChartSelection() == 0))
+            data_usage.values.push_back(stats.amount);
+            gd.labels.push_back(stats.label);
+        }
+
+        data_usage.name = _("Payees");
+        gd.series.push_back(data_usage);
+        
+        if (!gd.series.empty())
+        {
+            hb.addDivContainer("shadow");
             {
-                GraphData gd;
-                GraphSeries data_usage;
-
-                for (const auto &stats : valueList_)
-                {
-                    data_usage.values.push_back(stats.amount);
-                    gd.labels.push_back(stats.label);
-                }
-
-                data_usage.name = _("Payees");
-                gd.series.push_back(data_usage);
-                
-                if (!gd.series.empty())
-                {
-                    hb.addDivContainer();
-                    {
-                        gd.type = GraphData::DONUT;
-                        hb.addChart(gd);
-                    }
-                    hb.endDiv();
-                }
-            }
-
-            hb.addDivContainer(); 
-            {    
-                hb.startSortTable();
-                {
-                    hb.startThead();
-                    {
-                        hb.startTableRow();
-                        hb.addTableHeaderCell(_("Payee"));
-                        hb.addTableHeaderCell(_("Incomes"), true);
-                        hb.addTableHeaderCell(_("Expenses"), true);
-                        hb.addTableHeaderCell(_("Difference"), true);
-                        hb.endTableRow();
-                    }
-                    hb.endThead();
-
-                    hb.startTbody();
-                    {
-                        for (const auto& entry : data_)
-                        {
-                            hb.startTableRow();
-                            {
-                                hb.addTableCell(entry.name);
-                                hb.addMoneyCell(entry.incomes);
-                                hb.addMoneyCell(entry.expenses);
-                                hb.addMoneyCell(entry.incomes + entry.expenses);
-                            }
-                            hb.endTableRow();
-                        }
-                    }
-                    hb.endTbody();
-                
-                    hb.startTfoot();
-                    {
-                        std::vector <double> totals;
-                        totals.push_back(positiveTotal_);
-                        totals.push_back(negativeTotal_);
-                        totals.push_back(positiveTotal_ + negativeTotal_);
-                        hb.addTotalRow(_("Total:"), 4, totals);
-                    }
-                    hb.endTfoot();
-                }
-                hb.endTable();
+                gd.type = GraphData::DONUT;
+                hb.addChart(gd);
             }
             hb.endDiv();
         }
-        hb.endDiv(); 
     }
-    hb.endDiv(); 
+
+    hb.addDivContainer("shadow"); 
+    {    
+        hb.startSortTable();
+        {
+            hb.startThead();
+            {
+                hb.startTableRow();
+                hb.addTableHeaderCell(_("Payee"));
+                hb.addTableHeaderCell(_("Incomes"), true);
+                hb.addTableHeaderCell(_("Expenses"), true);
+                hb.addTableHeaderCell(_("Difference"), true);
+                hb.endTableRow();
+            }
+            hb.endThead();
+
+            hb.startTbody();
+            {
+                for (const auto& entry : data_)
+                {
+                    hb.startTableRow();
+                    {
+                        hb.addTableCell(entry.name);
+                        hb.addMoneyCell(entry.incomes);
+                        hb.addMoneyCell(entry.expenses);
+                        hb.addMoneyCell(entry.incomes + entry.expenses);
+                    }
+                    hb.endTableRow();
+                }
+            }
+            hb.endTbody();
+        
+            hb.startTfoot();
+            {
+                std::vector <double> totals;
+                totals.push_back(positiveTotal_);
+                totals.push_back(negativeTotal_);
+                totals.push_back(positiveTotal_ + negativeTotal_);
+                hb.addTotalRow(_("Total:"), 4, totals);
+            }
+            hb.endTfoot();
+        }
+        hb.endTable();
+    }
+    hb.endDiv();
+
     hb.end();
 
     wxLogDebug("======= mmReportPayess:getHTMLText =======");

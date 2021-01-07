@@ -208,7 +208,7 @@ wxString mmReportCashFlow::getHTMLText_i()
     // Build the report
     mmHTMLBuilder hb;
     hb.init();
-    hb.addDivContainer();
+    hb.addDivContainer("shadowTitle");
     {
         const wxString& headerMsg = wxString::Format (wxPLURAL( "Cash Flow Forecast for %i Year Ahead",
                                                                 "Cash Flow Forecast for %i Years Ahead",
@@ -217,92 +217,89 @@ wxString mmReportCashFlow::getHTMLText_i()
         hb.addHeader(2, headerMsg );
         hb.addHeader(3, getAccountNames());
         hb.addDateNow();
-        hb.addLineBreak();
+    }
+    hb.endDiv();
 
-        hb.addDivCol8_84();
+    if (getChartSelection() == 0)
+    {
+        GraphData gd;
+        GraphSeries gs;
+
+        for (const auto& entry : forecastVector)
         {
-            if (getChartSelection() == 0)
-            {
-                GraphData gd;
-                GraphSeries gs;
-
-                for (const auto& entry : forecastVector)
-                {
-                    wxDate d;
-                    double amount = entry.amount + tInitialBalance;
-                    d.ParseISODate(entry.label);
-                    wxString label = wxString::Format("%i %s %i", d.GetDay(), wxGetTranslation(wxDateTime::GetEnglishMonthName(d.GetMonth())), d.GetYear());
-                    gs.values.push_back(amount);
-                    gd.labels.push_back(label);
-                }
-                gd.series.push_back(gs);
-
-                if (!gd.series.empty())
-                {
-                    hb.addDivContainer(); 
-                    {
-                        gd.type = GraphData::LINE_DATETIME;
-                        hb.addChart(gd);
-                    }
-                    hb.endDiv();
-                }
-            }
-
-            {
-                hb.startTable();
-                {
-                    
-                    hb.startThead();
-                    {
-                        hb.startTableRow();
-                        hb.addTableHeaderCell(_("Date"));
-                        hb.addTableHeaderCell(_("Total"), true);
-                        hb.addTableHeaderCell(_("Difference"), true);
-                        hb.endTableRow();
-                    }
-                    hb.endThead();
-
-                    hb.startTbody();
-                    {
-                        int rowType = 0;
-                        for (size_t idx = 0; idx < forecastVector.size(); idx++)
-                        {
-                            double balance = forecastVector[idx].amount + tInitialBalance;
-                            double diff = (idx == 0 ? 0 : forecastVector[idx].amount - forecastVector[idx-1].amount) ;
-                            const wxDateTime dtEnd = cashFlowReportType_ == MONTHLY
-                                ? today_.Add(wxDateSpan::Months(idx)) : today_.Add(wxDateSpan::Days(idx));
-
-                            // Add a separator for each year/month in daily cash flow report
-                            if (cashFlowReportType_ == MONTHLY)
-                            {
-                                rowType = dtEnd.GetYear() % 2;
-                            }
-                            else
-                            {
-                                const wxDateTime& firstDayOfTheMonth = wxDateTime(dtEnd).SetDay(1);
-                                if (dtEnd == firstDayOfTheMonth) rowType = (rowType + 1) % 2;
-                            }
-
-                            if (rowType == 0)
-                                hb.startTableRow();
-                            else
-                                hb.startAltTableRow();
-                            {
-                                hb.addTableCell(forecastVector[idx].label);
-                                hb.addMoneyCell(balance);
-                                hb.addMoneyCell(diff);
-                            }
-                            hb.endTableRow();
-                        }
-                    }
-                    hb.endTbody();
-                }
-                hb.endTable();
-            }
+            wxDate d;
+            double amount = entry.amount + tInitialBalance;
+            d.ParseISODate(entry.label);
+            wxString label = wxString::Format("%i %s %i", d.GetDay(), wxGetTranslation(wxDateTime::GetEnglishMonthName(d.GetMonth())), d.GetYear());
+            gs.values.push_back(amount);
+            gd.labels.push_back(label);
         }
-        hb.endDiv(); 
+        gd.series.push_back(gs);
+
+        if (!gd.series.empty())
+        {
+            hb.addDivContainer("shadow"); 
+            {
+                gd.type = GraphData::LINE_DATETIME;
+                hb.addChart(gd);
+            }
+            hb.endDiv();
+        }
+    }
+
+    hb.addDivContainer("shadow");
+    { 
+        hb.startTable();
+        {  
+            hb.startThead();
+            {
+                hb.startTableRow();
+                hb.addTableHeaderCell(_("Date"));
+                hb.addTableHeaderCell(_("Total"), true);
+                hb.addTableHeaderCell(_("Difference"), true);
+                hb.endTableRow();
+            }
+            hb.endThead();
+
+            hb.startTbody();
+            {
+                int rowType = 0;
+                for (size_t idx = 0; idx < forecastVector.size(); idx++)
+                {
+                    double balance = forecastVector[idx].amount + tInitialBalance;
+                    double diff = (idx == 0 ? 0 : forecastVector[idx].amount - forecastVector[idx-1].amount) ;
+                    const wxDateTime dtEnd = cashFlowReportType_ == MONTHLY
+                        ? today_.Add(wxDateSpan::Months(idx)) : today_.Add(wxDateSpan::Days(idx));
+
+                    // Add a separator for each year/month in daily cash flow report
+                    if (cashFlowReportType_ == MONTHLY)
+                    {
+                        rowType = dtEnd.GetYear() % 2;
+                    }
+                    else
+                    {
+                        const wxDateTime& firstDayOfTheMonth = wxDateTime(dtEnd).SetDay(1);
+                        if (dtEnd == firstDayOfTheMonth) rowType = (rowType + 1) % 2;
+                    }
+
+                    if (rowType == 0)
+                        hb.startTableRow();
+                    else
+                        hb.startAltTableRow();
+                    {
+                        hb.addTableCell(forecastVector[idx].label);
+                        hb.addMoneyCell(balance);
+                        hb.addMoneyCell(diff);
+                    }
+                    hb.endTableRow();
+                }
+            }
+            hb.endTbody();
+        }
+        hb.endTable();
     }
     hb.endDiv(); 
+
     hb.end();
 
     wxLogDebug("======= mmReportCashFlow:getHTMLText =======");

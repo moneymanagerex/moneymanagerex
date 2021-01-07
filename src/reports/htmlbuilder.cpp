@@ -60,7 +60,7 @@ namespace tags
 </head>
 <body>
 )";
-    static const wxString DIV_CONTAINER = "<div class='container'>\n";
+    static const wxString DIV_CONTAINER = "<div class='%s'>\n";
     static const wxString DIV_ROW = "<div class='row'>\n";
     static const wxString DIV_COL8 = "<div class='col-xs-2'></div>\n<div class='col-xs-8'>\n"; //17_67%
     static const wxString DIV_COL4 = "<div class='col-xs-4'></div>\n<div class='col-xs-4'>\n"; //33_33%
@@ -133,14 +133,9 @@ void mmHTMLBuilder::init()
     //Show user name if provided
     if (Option::instance().UserName() != "")
     {
-        startTable();
-        startTableRow();
-        startTableCell();
-        addHeader(2, Option::instance().UserName());
-        endTableCell();
-        endTableRow();
-        endTable();
-        addHorizontalLine(2);
+        addDivContainer("shadowTitle");
+            addHeader(2, Option::instance().UserName());
+        endDiv();
     }
 }
 
@@ -337,9 +332,9 @@ void mmHTMLBuilder::end()
 {
     html_ += tags::END;
 }
-void mmHTMLBuilder::addDivContainer()
+void mmHTMLBuilder::addDivContainer(const wxString& style)
 {
-    html_ += tags::DIV_CONTAINER;
+    html_ += wxString::Format(tags::DIV_CONTAINER, style);
 }
 void mmHTMLBuilder::addDivRow()
 {
@@ -475,7 +470,19 @@ void mmHTMLBuilder::addChart(const GraphData& gd)
     Value chartValue; chartValue.SetObject();
         Value chartType; chartType.SetString(gtype.c_str(), allocator);
         chartValue.AddMember("type", chartType, allocator);
+        Value toolbarValue; toolbarValue.SetObject();
+                Value toolbarToolsValue; toolbarToolsValue.SetObject();
+                toolbarToolsValue.AddMember("download", false, allocator);
+                toolbarValue.AddMember("tools", toolbarToolsValue, allocator);
+        chartValue.AddMember("toolbar", toolbarValue, allocator);  
+        chartValue.AddMember("width", "95%", allocator);  
     jsonDoc.AddMember("chart", chartValue, allocator);
+
+    // Title
+    Value titleValue; titleValue.SetObject();
+        Value nameType; nameType.SetString(gd.title.c_str(), allocator);
+        titleValue.AddMember("text", nameType, allocator);
+    jsonDoc.AddMember("title", titleValue, allocator);
 
     // Tooltip settings
     Value tooltipValue; tooltipValue.SetObject();

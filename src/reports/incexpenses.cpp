@@ -71,13 +71,14 @@ wxString mmReportIncomeExpenses::getHTMLText()
     // Build the report
     mmHTMLBuilder hb;
     hb.init();
-    hb.addDivContainer(); // Main container
-    hb.addHeader(2, this->getReportTitle());
-    hb.DisplayDateHeading(m_date_range->start_date(), m_date_range->end_date(), m_date_range->is_with_date());
-    hb.addHeader(3, getAccountNames());
-    hb.addDateNow();
-    hb.addLineBreak();
-    hb.addDivRow(); // Report Container
+    hb.addDivContainer("shadowTitle");
+    {
+        hb.addHeader(2, this->getReportTitle());
+        hb.DisplayDateHeading(m_date_range->start_date(), m_date_range->end_date(), m_date_range->is_with_date());
+        hb.addHeader(3, getAccountNames());
+        hb.addDateNow();
+    }
+    hb.endDiv();
     
     // Chart
     GraphData gd;
@@ -94,7 +95,7 @@ wxString mmReportIncomeExpenses::getHTMLText()
 
     if (!gd.series.empty())
     {
-        hb.addDivContainer();
+        hb.addDivContainer("shadow");
         {
             gd.type = GraphData::BAR;
             gd.colors = { wxColour(0, 227, 150), wxColour(255, 69, 96) };  // Green, Red
@@ -103,7 +104,7 @@ wxString mmReportIncomeExpenses::getHTMLText()
         hb.endDiv();
     }
 
-    hb.addDivContainer(); // Table Container
+    hb.addDivContainer("shadow"); // Table Container
     hb.startTable();
     {
         hb.startThead();
@@ -184,13 +185,14 @@ wxString mmReportIncomeExpensesMonthly::getHTMLText()
     // Build the report
     mmHTMLBuilder hb;
     hb.init();
-    hb.addDivContainer(); // Main container
-    hb.addHeader(2, this->getReportTitle());
-    hb.DisplayDateHeading(m_date_range->start_date(), m_date_range->end_date(), m_date_range->is_with_date());
-    hb.addHeader(3, getAccountNames());
-    hb.addDateNow();
-    hb.addLineBreak();
-    hb.addDivRow(); // Report Container
+    hb.addDivContainer("shadowTitle"); 
+    {
+        hb.addHeader(2, this->getReportTitle());
+        hb.DisplayDateHeading(m_date_range->start_date(), m_date_range->end_date(), m_date_range->is_with_date());
+        hb.addHeader(3, getAccountNames());
+        hb.addDateNow();
+    }
+    hb.endDiv();
 
     // Chart
     const wxDateTime start_date = m_date_range->start_date();
@@ -221,7 +223,7 @@ wxString mmReportIncomeExpensesMonthly::getHTMLText()
 
         if (!gd.series.empty())
         {
-            hb.addDivContainer();
+            hb.addDivContainer("shadow");
             {
                 gd.type = GraphData::BAR; 
                 gd.colors = { wxColour(0, 227, 150), wxColour(255, 69, 96) };  // Green, Red
@@ -231,7 +233,7 @@ wxString mmReportIncomeExpensesMonthly::getHTMLText()
         }
     }
 
-    hb.addDivContainer(); // Table Container
+    hb.addDivContainer("shadow"); // Table Container
     hb.startSortTable();
     {
         hb.startThead();
