@@ -73,7 +73,8 @@ const wxString htmlWidgetStocks::getHTMLText()
     calculate_stats(stockStats);
     if (!stockStats.empty())
     {
-        output = "<table class ='sortable table'><col style='width: 50%'><col style='width: 25%'><col style='width: 25%'><thead><tr class='active'><th>\n";
+        output = R"(<div class="shadow">)";
+        output += "<table class ='sortable table'><col style='width: 50%'><col style='width: 25%'><col style='width: 25%'><thead><tr class='active'><th>\n";
         output += _("Stocks") + "</th><th class = 'text-right'>" + _("Gain/Loss");
         output += "</th>\n<th class='text-right'>" + _("Total") + "</th>\n";
         output += wxString::Format("<th nowrap class='text-right sorttable_nosort'><a id='%s_label' onclick='toggleTable(\"%s\");' href='#%s' oncontextmenu='return false;'>[-]</a></th>\n"
@@ -100,7 +101,6 @@ const wxString htmlWidgetStocks::getHTMLText()
 
         if (!body.empty())
         {
-            output = R"(<div class="shadow">)";
             output += body;
             output += "</tbody><tfoot><tr class = 'total'><td>" + _("Total:") + "</td>";
             output += wxString::Format("<td class='money'>%s</td>"
