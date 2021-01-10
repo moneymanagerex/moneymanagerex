@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-12-24 17:26+0300\n"
-"PO-Revision-Date: 2021-01-03 10:26\n"
+"PO-Revision-Date: 2021-01-10 15:56\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -2083,7 +2083,7 @@ msgstr "Vorschriften"
 
 #: db/DB_Table_Subcategory_V1.h:138
 msgid "Auto"
-msgstr "Automatisch"
+msgstr "Auto"
 
 #: db/DB_Table_Subcategory_V1.h:139
 msgid "Life"
