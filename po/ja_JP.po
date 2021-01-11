@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-12-24 17:26+0300\n"
-"PO-Revision-Date: 2020-12-24 14:35\n"
+"PO-Revision-Date: 2021-01-10 17:18\n"
 "Last-Translator: \n"
 "Language-Team: Japanese\n"
 "MIME-Version: 1.0\n"
@@ -267,11 +267,11 @@ msgstr "通貨"
 
 #: accountdialog.cpp:499
 msgid "Please insert a valid URL"
-msgstr ""
+msgstr "有効な URL を入力してください。"
 
 #: accountdialog.cpp:499
 msgid "Invalid URL"
-msgstr ""
+msgstr "無効な URL"
 
 #: appstartdialog.cpp:99
 msgid "Open Last Opened Database"
@@ -322,7 +322,7 @@ msgstr "終了(&E) "
 #: appstartdialog.cpp:153
 #, c-format
 msgid "Open the previously opened database : %s"
-msgstr ""
+msgstr "以前に開いたデータベースを開く : %s"
 
 #: assetdialog.cpp:61 assetdialog.cpp:410 assetspanel.cpp:466
 msgid "New Asset"
@@ -334,7 +334,7 @@ msgstr "資産を編集"
 
 #: assetdialog.cpp:71 assetdialog.cpp:93 assetspanel.cpp:470
 msgid "Add Asset Transaction"
-msgstr ""
+msgstr "資産取引を追加"
 
 #: assetdialog.cpp:97
 msgid "Edit Asset Transaction"
@@ -646,7 +646,7 @@ msgstr "添付ファイルを整理: 添付ファイルを追加"
 
 #: attachmentdialog.cpp:212
 msgid "Enter a new description for the attachment:"
-msgstr ""
+msgstr "添付ファイルの新しい説明を入力してください:"
 
 #: attachmentdialog.cpp:213
 msgid "Organize Attachments: Edit Attachment"
@@ -786,19 +786,19 @@ msgstr "毎日"
 
 #: billsdepositsdialog.cpp:61 billsdepositsdialog.cpp:1337
 msgid "In (x) Days"
-msgstr ""
+msgstr "(x) 日"
 
 #: billsdepositsdialog.cpp:62 billsdepositsdialog.cpp:1337
 msgid "In (x) Months"
-msgstr ""
+msgstr "(x) ヶ月"
 
 #: billsdepositsdialog.cpp:63
 msgid "Every (x) Days"
-msgstr ""
+msgstr "(x) 日ごと"
 
 #: billsdepositsdialog.cpp:64
 msgid "Every (x) Months"
-msgstr ""
+msgstr "(x) ヶ月ごと"
 
 #: billsdepositsdialog.cpp:65 billsdepositspanel.cpp:54
 msgid "Monthly (last day)"
