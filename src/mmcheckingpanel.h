@@ -306,7 +306,7 @@ private:
     double m_account_balance;
     double m_reconciled_balance;
 
-    TransactionListCtrl* m_listCtrlAccount;
+    class TransactionListCtrl* m_listCtrlAccount;
     Model_Account::Data* m_account;
     Model_Currency::Data* m_currency;
     wxScopedPtr<wxImageList> m_imageList;

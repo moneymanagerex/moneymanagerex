@@ -943,21 +943,21 @@ void mmTransDialog::OnAccountOrPayeeUpdated(wxCommandEvent& event)
 {
     // Filtering the combobox as the user types because on Mac autocomplete function doesn't work
     // PLEASE DO NOT REMOVE!!!
-    if (!m_transfer)
+    if (!m_is_transfer)
     {
         wxString payeeName = event.GetString();
-        if (cbPayee_->GetSelection() == -1) // make sure nothing is selected (ex. user presses down arrow)
+        if (m_trx_payee_box->GetSelection() == -1) // make sure nothing is selected (ex. user presses down arrow)
         {
-            cbPayee_->SetEvtHandlerEnabled(false); // things will crash if events are handled during Clear
-            cbPayee_->Clear();
+            m_trx_payee_box->SetEvtHandlerEnabled(false); // things will crash if events are handled during Clear
+            m_trx_payee_box->Clear();
             Model_Payee::Data_Set filtd = Model_Payee::instance().FilterPayees(payeeName);
             std::sort(filtd.rbegin(), filtd.rend(), SorterByPAYEENAME());
             for (const auto &payee : filtd) {
-                cbPayee_->Insert(payee.PAYEENAME, 0);
+                m_trx_payee_box->Insert(payee.PAYEENAME, 0);
             }
-            cbPayee_->ChangeValue(payeeName);
-            cbPayee_->SetInsertionPointEnd();
-            cbPayee_->SetEvtHandlerEnabled(true);
+            m_trx_payee_box->ChangeValue(payeeName);
+            m_trx_payee_box->SetInsertionPointEnd();
+            m_trx_payee_box->SetEvtHandlerEnabled(true);
         }
     }
 #else
