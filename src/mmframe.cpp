@@ -1662,16 +1662,14 @@ void mmGUIFrame::createMenu()
 void mmGUIFrame::CreateToolBar()
 {
     int all_icons_size = Option::instance().getIconSize();
-
-#ifndef __WXMAC__
     int main_menu_icon_size = all_icons_size + 8;
     if (main_menu_icon_size >= 40) main_menu_icon_size = 48;
     Option::instance().setIconSize(main_menu_icon_size);
-#endif
 
     long style = wxTB_FLAT | wxTB_NODIVIDER;
 
     toolBar_ = new wxToolBar(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, style, "ToolBar");
+    toolBar_->SetToolBitmapSize(wxSize(main_menu_icon_size ,main_menu_icon_size));  // adjust tool size to match the icon size being used
 
     toolBar_->AddTool(MENU_NEW, _("New"), mmBitmap(png::NEW_DB), _("New Database"));
     toolBar_->AddTool(MENU_OPEN, _("Open"), mmBitmap(png::OPEN), _("Open Database"));
