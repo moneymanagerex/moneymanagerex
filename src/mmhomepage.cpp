@@ -173,7 +173,7 @@ const wxString htmlWidgetTop7Categories::getHTMLText()
 
     if (!topCategoryStats.empty())
     {
-        output += R"(<div class="shadow">)";
+        output = R"(<div class="shadow">)";
         for (const auto& i : topCategoryStats)
         {
             data += "<tr>";
@@ -758,12 +758,19 @@ const wxString htmlWidgetCurrency::getHtmlText()
         row_t r;
         r(L"CURRENCY_SYMBOL") = i.first;
         wxString row;
+        bool before_delim = true;
         for (const auto j : usedRates)
         {
-            row += wxString::Format("<td%s>%s</td>" //<td class ='active'>
+            if (j.first == i.first) before_delim = false;
+            double value = j.second / i.second;
+            if (!before_delim && value < 1.0)
+                value = 1 / value;
+            if (before_delim && value > 1.0)
+                value = 1 / value;
+            row += wxString::Format("<td%s>%s</td>"
                 , j.first == i.first ? " class ='active'" : " class='money'"
                 , j.first == i.first ? "" : Model_Currency::toString(
-                    j.second / i.second, nullptr, 4)
+                    value, nullptr, 4)
             );
         }
         header += wxString::Format("<th class='text-center'>%s</th>", i.first);
