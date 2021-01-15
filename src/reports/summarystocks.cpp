@@ -248,8 +248,8 @@ wxString mmReportChartStocks::getHTMLText()
             Model_StockHistory::DATE(m_date_range->end_date(), LESS_OR_EQUAL));
         std::stable_sort(histData.begin(), histData.end(), SorterByDATE());
 
-        bool showGridLines = (histData.size() <= 366);
-        bool pointDot = (histData.size() <= 30);
+        //bool showGridLines = (histData.size() <= 366);
+        //bool pointDot = (histData.size() <= 30);
         if (histData.size() > 366) {
             freq = histData.size() / 366;
         }
