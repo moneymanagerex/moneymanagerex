@@ -1358,7 +1358,6 @@ void mmUnivCSVDialog::update_preview()
 
                 Model_Checking::Full_Data tran(pBankTransaction, split);
 
-
                 if (!tran.has_split())
                 {
                     Model_Splittransaction::Data *splt = Model_Splittransaction::instance().create();
@@ -1385,11 +1384,11 @@ void mmUnivCSVDialog::update_preview()
                     Model_Category::Data* category = Model_Category::instance().get(splt.CATEGID);
                     Model_Subcategory::Data* sub_category = Model_Subcategory::instance().get(splt.SUBCATEGID);
 
-
                     Model_Currency::Data* currency = Model_Account::currency(from_account);
-                    const wxString amount = Model_Currency::toString(splt.SPLITTRANSAMOUNT, currency);
-                    const wxString amount_abs = Model_Currency::toString(fabs(splt.SPLITTRANSAMOUNT), currency);
-
+                    double amt = pBankTransaction.TRANSCODE == Model_Checking::all_type()[Model_Checking::DEPOSIT]
+                        ?  splt.SPLITTRANSAMOUNT : -splt.SPLITTRANSAMOUNT;
+                    const wxString amount = Model_Currency::toStringNoFormatting(amt, currency);
+                    const wxString amount_abs = Model_Currency::toStringNoFormatting(fabs(amt), currency);
 
                     for (std::vector<int>::const_iterator sit = csvFieldOrder_.begin(); sit != csvFieldOrder_.end(); ++sit)
                     {
