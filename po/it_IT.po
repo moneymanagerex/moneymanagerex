@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-12-24 17:26+0300\n"
-"PO-Revision-Date: 2020-12-24 15:26\n"
+"PO-Revision-Date: 2021-01-15 20:53\n"
 "Last-Translator: \n"
 "Language-Team: Italian\n"
 "MIME-Version: 1.0\n"
@@ -3868,7 +3868,7 @@ msgstr "Apri Database"
 
 #: mmframe.cpp:1300
 msgid "Save Database &As"
-msgstr "&Salva Database con nome\tS"
+msgstr "&Salva Database con nome"
 
 #: mmframe.cpp:1300
 msgid "Save Database As"
