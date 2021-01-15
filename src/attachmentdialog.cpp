@@ -179,7 +179,9 @@ void mmAttachmentDialog::AddAttachment(wxString FilePath)
     int attachmentLastNumber = Model_Attachment::LastAttachmentNumber(m_RefType, m_RefId);
 
     wxString importedFileName = m_RefType + "_" + wxString::Format("%i", m_RefId) + "_Attach"
-        + wxString::Format("%i", attachmentLastNumber + 1) + "." + attachmentFileExtension;
+        + wxString::Format("%i", attachmentLastNumber + 1);
+    if (!attachmentFileExtension.empty())
+        importedFileName += "." + attachmentFileExtension;
 
     if (mmAttachmentManage::CopyAttachment(FilePath, AttachmentsFolder + m_PathSep + m_RefType + m_PathSep + importedFileName))
     {
