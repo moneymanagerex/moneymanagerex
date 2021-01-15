@@ -155,9 +155,7 @@
                 </script>
                 <TMPL_VAR BILLS_AND_DEPOSITS>
                 <!--Top Withdrawals: Last 30 Days-->
-                <div class = "shadow">
                 <TMPL_VAR TOP_CATEGORIES>
-                </div>
                 <!--Transaction Statistics -->
                 <div class = "shadow">
                 <table class='table'>

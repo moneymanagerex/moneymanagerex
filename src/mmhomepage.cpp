@@ -169,10 +169,11 @@ const wxString htmlWidgetTop7Categories::getHTMLText()
 
     std::vector<std::pair<wxString, double> > topCategoryStats;
     getTopCategoryStats(topCategoryStats, date_range_);
-    wxString output = "", data;
+    wxString output, data;
 
     if (!topCategoryStats.empty())
     {
+        output += R"(<div class="shadow">)";
         for (const auto& i : topCategoryStats)
         {
             data += "<tr>";
@@ -184,6 +185,7 @@ const wxString htmlWidgetTop7Categories::getHTMLText()
         }
         const wxString idStr = "TOP_CATEGORIES";
         output += wxString::Format(TOP_CATEGS, title_, idStr, idStr, idStr, idStr, _("Category"), _("Summary"), data);
+        output += "</div>";
     }
 
     return output;
