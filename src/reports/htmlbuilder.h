@@ -59,6 +59,8 @@ public:
 
     /** Create an HTML header and returns as a wxString */
     void addHeader(int level, const wxString& header);
+    void showUserName();
+    void addReportCurrency();
     void addDateNow();
 
     /** Start a table element */
@@ -71,9 +73,10 @@ public:
     /** Add a special row that will format total values */
     void addTotalRow(const wxString& caption, int cols, double value);
 
-    /** Add a special row that will format total values */
+    /** Add a special rows that will format total values */
     void addTotalRow(const wxString& caption, int cols, const std::vector<wxString>& data);
-    void addTotalRow(const wxString& caption, int cols, const std::vector<double>& data);
+    void addCurrencyTotalRow(const wxString& caption, int cols, const std::vector<double>& data);
+    void addMoneyTotalRow(const wxString& caption, int cols, const std::vector<double>& data);
 
     /** Add a Table header cell */
     void addTableHeaderCell(const wxString& value, const bool numeric = false, const bool sortable = true, const int cols = 1, const bool center = false);

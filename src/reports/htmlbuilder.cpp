@@ -129,19 +129,26 @@ void mmHTMLBuilder::init()
         , mmex::getProgramName()
         , wxString::Format("%d", Option::instance().getHtmlFontSize())
     );
+}
 
+void mmHTMLBuilder::showUserName()
+{
     //Show user name if provided
     if (Option::instance().UserName() != "")
-    {
-        addDivContainer("shadowTitle");
-            addHeader(2, Option::instance().UserName());
-        endDiv();
-    }
+        addHeader(2, Option::instance().UserName());
 }
 
 void mmHTMLBuilder::addHeader(int level, const wxString& header)
 {
     html_ += wxString::Format(tags::HEADER, level, header, level);
+}
+
+void mmHTMLBuilder::addReportCurrency()
+{
+    wxString base_currency_symbol;
+    wxASSERT_MSG(Model_Currency::GetBaseCurrencySymbol(base_currency_symbol), "Could not find base currency symbol");
+
+    addHeader(4, wxString::Format("%s: %s", _("Currency"), base_currency_symbol));  
 }
 
 void mmHTMLBuilder::addDateNow()
@@ -199,11 +206,21 @@ void mmHTMLBuilder::addTotalRow(const wxString& caption, int cols
     this->endTableRow();
 }
 
-void mmHTMLBuilder::addTotalRow(const wxString& caption, int cols, const std::vector<double>& data)
+void mmHTMLBuilder::addCurrencyTotalRow(const wxString& caption, int cols, const std::vector<double>& data)
 {
     std::vector<wxString> data_str;
     for (const auto& value : data)
         data_str.push_back(Model_Currency::toCurrency(value));
+    this->addTotalRow(caption, cols, data_str);
+}
+
+void mmHTMLBuilder::addMoneyTotalRow(const wxString& caption, int cols, const std::vector<double>& data)
+{
+    std::vector<wxString> data_str;
+    int precision = Model_Currency::precision(Model_Currency::GetBaseCurrency());
+
+    for (const auto& value : data)
+        data_str.push_back(Model_Currency::toString(value, Model_Currency::GetBaseCurrency(), precision));
     this->addTotalRow(caption, cols, data_str);
 }
 

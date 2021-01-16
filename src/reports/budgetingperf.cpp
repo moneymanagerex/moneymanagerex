@@ -166,8 +166,10 @@ wxString mmReportBudgetingPerformance::getHTMLText()
     hb.init();
     hb.addDivContainer("shadowTitle");
     {
+        hb.showUserName();
         hb.addHeader(2, wxString::Format(_("Budget Performance for %s"), headingStr));
         hb.DisplayDateHeading(yearBegin, yearEnd);
+        hb.addReportCurrency();
         hb.addDateNow();
     }
     hb.endDiv();

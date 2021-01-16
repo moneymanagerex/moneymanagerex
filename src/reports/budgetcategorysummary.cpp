@@ -110,9 +110,11 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
 
     hb.addDivContainer("shadowTitle");
     {
+        hb.showUserName();
         hb.addHeader(2, wxString::Format(headerStartupMsg
             ,  headingStr + "<br>" + _("( Estimated Vs Actual )")));
         hb.DisplayDateHeading(yearBegin, yearEnd);
+        hb.addReportCurrency();
         hb.addDateNow();
     }
     hb.endDiv();

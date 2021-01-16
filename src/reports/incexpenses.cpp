@@ -73,9 +73,11 @@ wxString mmReportIncomeExpenses::getHTMLText()
     hb.init();
     hb.addDivContainer("shadowTitle");
     {
+        hb.showUserName();
         hb.addHeader(2, this->getReportTitle());
         hb.DisplayDateHeading(m_date_range->start_date(), m_date_range->end_date(), m_date_range->is_with_date());
         hb.addHeader(3, getAccountNames());
+        hb.addReportCurrency();
         hb.addDateNow();
     }
     hb.endDiv();
@@ -187,9 +189,11 @@ wxString mmReportIncomeExpensesMonthly::getHTMLText()
     hb.init();
     hb.addDivContainer("shadowTitle"); 
     {
+        hb.showUserName();
         hb.addHeader(2, this->getReportTitle());
         hb.DisplayDateHeading(m_date_range->start_date(), m_date_range->end_date(), m_date_range->is_with_date());
         hb.addHeader(3, getAccountNames());
+        hb.addReportCurrency();
         hb.addDateNow();
     }
     hb.endDiv();
@@ -239,8 +243,7 @@ wxString mmReportIncomeExpensesMonthly::getHTMLText()
         hb.startThead();
         {
             hb.startTableRow();
-            hb.addTableHeaderCell(_("Year"));
-            hb.addTableHeaderCell(_("Month"));
+            hb.addTableHeaderCell(_("Date"));
             hb.addTableHeaderCell(_("Income"), true);
             hb.addTableHeaderCell(_("Expenses"), true);
             hb.addTableHeaderCell(_("Difference"), true);
@@ -251,19 +254,30 @@ wxString mmReportIncomeExpensesMonthly::getHTMLText()
 
         double total_expenses = 0.0;
         double total_income = 0.0;
+        wxString yearPrec;
         hb.startTbody();
         for (const auto &stats : incomeExpensesStats)
         {
             total_expenses += stats.second.second;
             total_income += stats.second.first;
 
+            wxString year = wxString() << stats.first / 100;
+            if (yearPrec != year)
+            {
+                hb.startAltTableRow();
+                    hb.addTableCell(year);
+                    hb.addEmptyTableCell(3);
+                hb.endTableRow();
+            }
             hb.startTableRow();
-            hb.addTableCell(wxString() << stats.first / 100);
-            hb.addTableCellMonth(static_cast<wxDateTime::Month>(stats.first % 100));
-            hb.addMoneyCell(stats.second.first);
-            hb.addMoneyCell(stats.second.second);
-            hb.addMoneyCell(stats.second.first - stats.second.second);
+            {
+                hb.addTableCellMonth(static_cast<wxDateTime::Month>(stats.first % 100));
+                hb.addMoneyCell(stats.second.first);
+                hb.addMoneyCell(stats.second.second);
+                hb.addMoneyCell(stats.second.first - stats.second.second);
+            }
             hb.endTableRow();
+            yearPrec = year;
         }
         hb.endTbody();
 
@@ -272,7 +286,7 @@ wxString mmReportIncomeExpensesMonthly::getHTMLText()
         totals.push_back(total_expenses);
         totals.push_back(total_income - total_expenses);
 
-        hb.addTotalRow(_("Total:"), 5, totals);
+        hb.addMoneyTotalRow(_("Total:"), 4, totals);
     }
     hb.endTable();
 
