@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-01-16 16:18+0300\n"
-"PO-Revision-Date: 2021-01-16 13:37\n"
+"PO-Revision-Date: 2021-01-16 14:02\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -3669,7 +3669,8 @@ msgstr "Souhaitez-vous réellement supprimer l'opération?"
 #, c-format
 msgid "Locked transaction to date: %s\n\n"
 "Reconciled transactions."
-msgstr ""
+msgstr "Transaction verrouillée à ce jour : %s\n\n"
+"Opérations rapprochées."
 
 #: mmcheckingpanel.cpp:1602 transdialog.cpp:713 transdialog.cpp:746
 msgid "MMEX Transaction Check"
@@ -5380,7 +5381,7 @@ msgstr "Taille des icônes"
 
 #: optionsettingsview.cpp:99
 msgid "Category delimiter"
-msgstr ""
+msgstr "Délimiteur de catégories"
 
 #: optionsettingsview.cpp:114
 msgid "View Budgets as Financial Years"
