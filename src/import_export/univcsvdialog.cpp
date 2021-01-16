@@ -1153,19 +1153,19 @@ void mmUnivCSVDialog::OnExport(wxCommandEvent& WXUNUSED(event))
             continue;
 
         Model_Checking::Full_Data tran(pBankTransaction, split);
+        bool has_split = tran.has_split();
+        double value = Model_Checking::balance(pBankTransaction, fromAccountID);
+        account_balance += value;
 
-        if (!tran.has_split())
+        if (!has_split)
         {
             Model_Splittransaction::Data *splt = Model_Splittransaction::instance().create();
             splt->TRANSID = tran.TRANSID;
             splt->CATEGID = tran.CATEGID;
             splt->SUBCATEGID = tran.SUBCATEGID;
-            splt->SPLITTRANSAMOUNT = tran.TRANSAMOUNT;
+            splt->SPLITTRANSAMOUNT = value;
             tran.m_splits.push_back(*splt);
         }
-
-        double value = Model_Checking::balance(pBankTransaction, fromAccountID);
-        account_balance += value;
 
         for (const auto& splt : tran.m_splits)
         {
@@ -1174,8 +1174,13 @@ void mmUnivCSVDialog::OnExport(wxCommandEvent& WXUNUSED(event))
             Model_Category::Data* category = Model_Category::instance().get(splt.CATEGID);
             Model_Subcategory::Data* sub_category = Model_Subcategory::instance().get(splt.SUBCATEGID);
 
-            const wxString amount = Model_Currency::toStringNoFormatting(splt.SPLITTRANSAMOUNT, currency);
-            const wxString amount_abs = Model_Currency::toStringNoFormatting(fabs(splt.SPLITTRANSAMOUNT), currency);
+            double amt = splt.SPLITTRANSAMOUNT;
+            if (Model_Checking::type(pBankTransaction) == Model_Checking::WITHDRAWAL
+                && has_split) {
+                amt = -amt;
+            }
+            const wxString amount = Model_Currency::toStringNoFormatting(amt, currency);
+            const wxString amount_abs = Model_Currency::toStringNoFormatting(fabs(amt), currency);
 
             for (std::vector<int>::const_iterator sit = csvFieldOrder_.begin(); sit != csvFieldOrder_.end(); ++sit)
             {
@@ -1357,19 +1362,19 @@ void mmUnivCSVDialog::update_preview()
                     continue;
 
                 Model_Checking::Full_Data tran(pBankTransaction, split);
+                bool has_split = tran.has_split();
+                double value = Model_Checking::balance(pBankTransaction, fromAccountID);
+                account_balance += value;
 
-                if (!tran.has_split())
+                if (!has_split)
                 {
                     Model_Splittransaction::Data *splt = Model_Splittransaction::instance().create();
                     splt->TRANSID = tran.TRANSID;
                     splt->CATEGID = tran.CATEGID;
                     splt->SUBCATEGID = tran.SUBCATEGID;
-                    splt->SPLITTRANSAMOUNT = tran.TRANSAMOUNT;
+                    splt->SPLITTRANSAMOUNT = value;
                     tran.m_splits.push_back(*splt);
                 }
-
-                double value = Model_Checking::balance(pBankTransaction, fromAccountID);
-                account_balance += value;
 
                 for (const auto& splt : tran.m_splits)
                 {
@@ -1385,8 +1390,12 @@ void mmUnivCSVDialog::update_preview()
                     Model_Subcategory::Data* sub_category = Model_Subcategory::instance().get(splt.SUBCATEGID);
 
                     Model_Currency::Data* currency = Model_Account::currency(from_account);
-                    double amt = pBankTransaction.TRANSCODE == Model_Checking::all_type()[Model_Checking::DEPOSIT]
-                        ?  splt.SPLITTRANSAMOUNT : -splt.SPLITTRANSAMOUNT;
+
+                    double amt = splt.SPLITTRANSAMOUNT;
+                    if (Model_Checking::type(pBankTransaction) == Model_Checking::WITHDRAWAL
+                        && has_split) {
+                        amt = -amt;
+                    }
                     const wxString amount = Model_Currency::toStringNoFormatting(amt, currency);
                     const wxString amount_abs = Model_Currency::toStringNoFormatting(fabs(amt), currency);
 
