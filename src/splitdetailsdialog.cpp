@@ -89,8 +89,6 @@ void SplitDetailDialog::DataToControls()
         , split_.SUBCATEGID);
     m_bcategory->SetLabelText(category_name);
 
-    m_choice_type->SetSelection(split_.SPLITTRANSAMOUNT < 0 ? !transType_ : transType_);
-
     if (split_.SPLITTRANSAMOUNT)
         m_text_mount->SetValue(fabs(split_.SPLITTRANSAMOUNT), Model_Currency::precision(m_currency));
 
@@ -131,6 +129,7 @@ void SplitDetailDialog::CreateControls()
         , 2, itemChoiceStrings);
     m_choice_type->SetToolTip(_("Specify the type of transactions to be created."));
     controlSizer->Add(m_choice_type, g_flagsExpand);
+    m_choice_type->SetSelection(split_.SPLITTRANSAMOUNT < 0 ? !transType_ : transType_);
 
     wxStaticText* staticTextAmount = new wxStaticText(itemPanel7
         , wxID_STATIC, _("Amount"));
