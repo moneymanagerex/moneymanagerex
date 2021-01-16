@@ -1149,6 +1149,11 @@ void TransactionListCtrl::OnMarkTransaction(wxCommandEvent& event)
     Model_Checking::Data *trx = Model_Checking::instance().get(m_cp->m_trans[m_selectedIndex].TRANSID);
     if (trx)
     {
+
+        if (TransactionLocked(trx->TRANSDATE)) {
+            return;
+        }
+
         org_status = trx->STATUS;
         m_cp->m_trans[m_selectedIndex].STATUS = status;
         trx->STATUS = status;
@@ -1545,8 +1550,7 @@ void TransactionListCtrl::OnDeleteTransaction(wxCommandEvent& /*event*/)
     m_topItemIndex = GetTopItem() + GetCountPerPage() - 1;
 
     Model_Checking::Data checking_entry = m_cp->m_trans[m_selectedIndex];
-    if (TransactionLocked(checking_entry.TRANSDATE))
-    {
+    if (TransactionLocked(checking_entry.TRANSDATE)) {
         return;
     }
 
@@ -1596,8 +1600,8 @@ bool TransactionListCtrl::TransactionLocked(const wxString& transdate)
             if (transaction_date <= Model_Account::DateOf(m_cp->m_account->STATEMENTDATE))
             {
                 wxMessageBox(_(wxString::Format(
-                    "Locked transaction to date: %s\n\n"
-                    "Reconciled transactions."
+                    _("Locked transaction to date: %s\n\n"
+                    "Reconciled transactions.")
                     , mmGetDateForDisplay(m_cp->m_account->STATEMENTDATE)))
                     , _("MMEX Transaction Check"), wxOK | wxICON_WARNING);
                 return true;
@@ -1613,8 +1617,7 @@ void TransactionListCtrl::OnEditTransaction(wxCommandEvent& /*event*/)
     Model_Checking::Data checking_entry = m_cp->m_trans[m_selectedIndex];
     int transaction_id = checking_entry.TRANSID;
 
-    if (TransactionLocked(checking_entry.TRANSDATE))
-    {
+    if (TransactionLocked(checking_entry.TRANSDATE)) {
         return;
     }
 
@@ -1733,8 +1736,7 @@ void TransactionListCtrl::OnMoveTransaction(wxCommandEvent& /*event*/)
     if ((m_selectedIndex < 0) || (GetSelectedItemCount() > 1)) return;
 
     Model_Checking::Data checking_entry = m_cp->m_trans[m_selectedIndex];
-    if (TransactionLocked(checking_entry.TRANSDATE))
-    {
+    if (TransactionLocked(checking_entry.TRANSDATE)) {
         return;
     }
 
