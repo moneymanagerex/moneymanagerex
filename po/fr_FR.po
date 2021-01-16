@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-01-16 16:18+0300\n"
-"PO-Revision-Date: 2021-01-16 14:02\n"
+"PO-Revision-Date: 2021-01-16 15:50\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -5702,7 +5702,7 @@ msgstr "Prévision"
 
 #: reports/forecast.cpp:89
 msgid "Withdrawl"
-msgstr ""
+msgstr "Retrait"
 
 #: reports/htmlbuilder.cpp:121
 #, c-format
