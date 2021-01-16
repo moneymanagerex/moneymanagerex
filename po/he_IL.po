@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-12-24 17:26+0300\n"
-"PO-Revision-Date: 2020-12-29 14:57\n"
+"PO-Revision-Date: 2021-01-16 11:46\n"
 "Last-Translator: \n"
 "Language-Team: Hebrew\n"
 "MIME-Version: 1.0\n"
@@ -271,7 +271,7 @@ msgstr "נא להזין פּוֹרְטָן תקין"
 
 #: accountdialog.cpp:499
 msgid "Invalid URL"
-msgstr "כתובת URL לא תקינה"
+msgstr "פורטן לא תקין"
 
 #: appstartdialog.cpp:99
 msgid "Open Last Opened Database"
@@ -5273,11 +5273,11 @@ msgstr "הגדרות יישומון מרשתת"
 
 #: optionsettingsnet.cpp:64 webappdialog.cpp:103
 msgid "Url"
-msgstr "Url"
+msgstr "פורטן"
 
 #: optionsettingsnet.cpp:68
 msgid "Specify the Web App URL without final slash"
-msgstr "נא להגדיר את כתובת ה URL של יישומון השרת ללא הלוכסן בסוף"
+msgstr "נא להגדיר את פורטן יישומון השרת ללא הלוכסן בסוף"
 
 #: optionsettingsnet.cpp:71 webappdialog.cpp:110
 msgid "GUID"
