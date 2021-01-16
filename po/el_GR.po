@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-01-16 16:18+0300\n"
-"PO-Revision-Date: 2021-01-16 13:38\n"
+"PO-Revision-Date: 2021-01-16 16:37\n"
 "Last-Translator: \n"
 "Language-Team: Greek\n"
 "MIME-Version: 1.0\n"
@@ -3650,7 +3650,7 @@ msgstr "Θέλετε πραγματικά να διαγράψετε την επ�
 #, c-format
 msgid "Locked transaction to date: %s\n\n"
 "Reconciled transactions."
-msgstr ""
+msgstr "Κλειδωμένη συναλλαγή μέχρι την ημερομηνία: %s."
 
 #: mmcheckingpanel.cpp:1602 transdialog.cpp:713 transdialog.cpp:746
 msgid "MMEX Transaction Check"
@@ -5342,7 +5342,7 @@ msgstr "Μέγεθος εικονιδίων"
 
 #: optionsettingsview.cpp:99
 msgid "Category delimiter"
-msgstr ""
+msgstr "Διαχωριστής κατηγορίας"
 
 #: optionsettingsview.cpp:114
 msgid "View Budgets as Financial Years"
@@ -5662,7 +5662,7 @@ msgstr ""
 
 #: reports/forecast.cpp:89
 msgid "Withdrawl"
-msgstr ""
+msgstr "Ανάληψη"
 
 #: reports/htmlbuilder.cpp:121
 #, c-format
