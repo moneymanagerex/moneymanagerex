@@ -112,6 +112,7 @@ wxString mmReportMyUsage::getHTMLText()
     hb.init();
     hb.addDivContainer("shadowTitle"); 
     {
+        hb.showUserName();
         hb.addHeader(2, this->getReportTitle());
         hb.DisplayDateHeading(m_date_range->start_date(), m_date_range->end_date(), m_date_range->is_with_date());
         hb.addDateNow();
