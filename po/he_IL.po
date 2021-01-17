@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-01-16 16:18+0300\n"
-"PO-Revision-Date: 2021-01-17 12:15\n"
+"PO-Revision-Date: 2021-01-17 12:32\n"
 "Last-Translator: \n"
 "Language-Team: Hebrew\n"
 "MIME-Version: 1.0\n"
@@ -1287,11 +1287,11 @@ msgstr "הזנת שנת תקציב"
 
 #: budgetentrydialog.cpp:107
 msgid "Category: "
-msgstr "קטגוריה: "
+msgstr "סוג-אב: "
 
 #: budgetentrydialog.cpp:112
 msgid "Sub Category: "
-msgstr "קטגורית משנה: "
+msgstr "תת סוג-אב: "
 
 #: budgetentrydialog.cpp:119
 msgid "Estimated:"
@@ -1318,7 +1318,7 @@ msgstr "הכנסה"
 
 #: budgetentrydialog.cpp:133
 msgid "Specify whether this category is an income or an expense category"
-msgstr "בחירה האם קטגוריה זו היא מסוג הכנסה או הוצאה"
+msgstr "הגדרת סוג-אב זה כסוג-אב הכנסה או הוצאה"
 
 #: budgetentrydialog.cpp:135
 msgid "Frequency:"
@@ -1334,7 +1334,7 @@ msgstr "סכום:"
 
 #: budgetentrydialog.cpp:148
 msgid "Enter the amount budgeted for this category."
-msgstr "הזנת הסכום שתוקצב עבור קטגוריה זו."
+msgstr "הזנת הסכום שתוקצב לסוג-אב זה."
 
 #: budgetingpanel.cpp:50
 msgid "View All Budget Categories"
@@ -1358,7 +1358,7 @@ msgstr "הצגת קטגוריות תקציב הוצאות"
 
 #: budgetingpanel.cpp:55
 msgid "View Budget Category Summary"
-msgstr "הצגת סיכום קטגוריות תקציב"
+msgstr "הצגת תמצית סוג-אב תקציב"
 
 #: budgetingpanel.cpp:172 reports/budget.cpp:88
 #, c-format
@@ -1406,7 +1406,7 @@ msgstr "צלמית"
 
 #: budgetingpanel.cpp:293
 msgid "Sub Category"
-msgstr "קטגורית משנה"
+msgstr "תת סוג-אב"
 
 #: budgetingpanel.cpp:296 reports/budgetcategorysummary.cpp:136
 #: reports/budgetcategorysummary.cpp:181
@@ -1488,7 +1488,7 @@ msgstr "ניהול קטגוריות"
 
 #: categdialog.cpp:189 mmframe.cpp:1463
 msgid "Reassign all categories to another category"
-msgstr "הקצא מחדש של כל הקטגוריות לקטגוריה אחרת"
+msgstr "הקצאה מחודשת של כל סוגי-האב לסוג-אב אחר"
 
 #: categdialog.cpp:191
 msgid "Expand"
@@ -1504,7 +1504,7 @@ msgstr "הצגת כל הקטגוריות המוסתרות"
 
 #: categdialog.cpp:228
 msgid "Add a new category"
-msgstr "הוספת קטגוריה חדשה"
+msgstr "הוספת סוג-אב חדש"
 
 #: categdialog.cpp:232
 msgid "Edit the name of an existing category"
@@ -1586,7 +1586,7 @@ msgstr "ניהול קטגוריות: מחיקת שגיאה"
 
 #: categdialog.cpp:432
 msgid "Select an unused category to delete."
-msgstr "למחיקה יש לבחור בקטגוריה ללא תנועות משויכות."
+msgstr "למחיקה יש לבחור בסוג-אב ללא תנועות משויכות."
 
 #: categdialog.cpp:457
 msgid "This category cannot be deleted because it's used by transactions."
@@ -5398,7 +5398,7 @@ msgstr "מצג תקציב כולל תנועות מסוג 'העברה'"
 
 #: optionsettingsview.cpp:125
 msgid "View Budget Category Report with Summaries"
-msgstr "הצגת דוח תקציב לפי קטגוריה עם תמצית"
+msgstr "הצגת דוח תקציב לפי סוג-אב עם תמצית"
 
 #: optionsettingsview.cpp:131
 msgid "Ignore Future Transactions"
@@ -5458,19 +5458,19 @@ msgstr "העברת תנועות מוטב"
 
 #: relocatecategorydialog.cpp:53
 msgid "Relocate Category Dialog"
-msgstr "תיבת דו-שיח העברת קטגוריה"
+msgstr "תיבת דו-שיח העברת סוג-אב"
 
 #: relocatecategorydialog.cpp:86
 msgid "Relocate source category to the destination category"
-msgstr "העברת כל קטגוריות המקור לקטגוריות היעד"
+msgstr "העברת כל סוגי-אב המקור לסוגי-אב היעד"
 
 #: relocatecategorydialog.cpp:89
 msgid "Select Source Category"
-msgstr "בחירת קטגורית מקור"
+msgstr "בחירת סוג-אב מקור"
 
 #: relocatecategorydialog.cpp:95
 msgid "Select Destination Category"
-msgstr "בחירת קטגורית יעד"
+msgstr "בחירת סוג-אב יעד"
 
 #: relocatecategorydialog.cpp:109 relocatepayeedialog.cpp:113
 msgid "Relocate:"
@@ -5486,7 +5486,7 @@ msgstr "לאישור:"
 
 #: relocatecategorydialog.cpp:171
 msgid "Category Relocation Confirmation"
-msgstr "העברת קטגוריה הושלמה"
+msgstr "העברת סוג-אב הושלמה"
 
 #: relocatecategorydialog.cpp:269 relocatepayeedialog.cpp:233
 #, c-format
