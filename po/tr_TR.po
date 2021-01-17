@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-01-16 16:18+0300\n"
-"PO-Revision-Date: 2021-01-17 13:07\n"
+"PO-Revision-Date: 2021-01-17 13:25\n"
 "Last-Translator: \n"
 "Language-Team: Turkish\n"
 "MIME-Version: 1.0\n"
@@ -2982,7 +2982,7 @@ msgstr "Hesap yok"
 #: import_export/univcsvdialog.cpp:1830
 #, c-format
 msgid "Positive if type has '%s'"
-msgstr ""
+msgstr "Eğer tür '%s' e sahipse pozitif"
 
 #: import_export/univcsvdialog.cpp:919
 msgid "Incorrect fields specified for import!"
@@ -3159,7 +3159,7 @@ msgstr "Çevrimiçi Güncelleme"
 
 #: maincurrencydialog.cpp:170
 msgid "Show all even the unused currencies"
-msgstr ""
+msgstr "Kullanılmayan tüm para birimlerini bile göster"
 
 #: maincurrencydialog.cpp:205 payeedialog.cpp:122
 msgid "Search:"
@@ -3708,16 +3708,17 @@ msgstr "Çoklu Seçim"
 #, c-format
 msgid "Unable to save custom field \"%s\":\n"
 "value \"%s\" does not match RegEx validation \"%s\""
-msgstr ""
+msgstr "\"%s\": özel alanı kaydedilemez \"%s\" \n"
+"değeri \"%s\" RegEx geçerliliğine uymuyor"
 
 #: mmcustomdata.cpp:449
 msgid "CustomField validation error"
-msgstr ""
+msgstr "Özel Alan geçerlilik hatası"
 
 #: mmex.cpp:127
 #, c-format
 msgid "Cannot load a translation for the default language of your system (%s)."
-msgstr ""
+msgstr "Sisteminizin varsayılan dili (%s) için bir çeviri yüklenemez."
 
 #: mmex.cpp:134
 #, c-format
@@ -3733,7 +3734,8 @@ msgstr "Dil değiştirme"
 #: mmex.cpp:179
 msgid "Fatal error occured.\n"
 "Application will be terminated."
-msgstr ""
+msgstr "Kritik hata oluştu.\n"
+"Uygulama sonlandırılacak."
 
 #: mmframe.cpp:259
 msgid "Navigation"
@@ -3845,7 +3847,7 @@ msgstr "&QIF Dosyaları..."
 
 #: mmframe.cpp:1246 mmframe.cpp:1318
 msgid "&JSON Files..."
-msgstr ""
+msgstr "&JSON Dosyaları..."
 
 #: mmframe.cpp:1250 mmframe.cpp:1324
 msgid "Import from XML (Excel format)"
@@ -3897,11 +3899,11 @@ msgstr "XML'e ver"
 
 #: mmframe.cpp:1318
 msgid "Export to JSON"
-msgstr ""
+msgstr "JSON olarak Dışa Aktar"
 
 #: mmframe.cpp:1319
 msgid "&HTML Files..."
-msgstr ""
+msgstr "&HTML Dosyaları..."
 
 #: mmframe.cpp:1319
 msgid "Export to HTML"
@@ -3917,7 +3919,7 @@ msgstr "QIF'den al"
 
 #: mmframe.cpp:1326
 msgid "&WebApp..."
-msgstr ""
+msgstr "&WebApp..."
 
 #: mmframe.cpp:1326
 msgid "Import from WebApp"
