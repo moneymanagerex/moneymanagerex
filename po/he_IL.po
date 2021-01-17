@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-01-16 16:18+0300\n"
-"PO-Revision-Date: 2021-01-17 12:57\n"
+"PO-Revision-Date: 2021-01-17 13:07\n"
 "Last-Translator: \n"
 "Language-Team: Hebrew\n"
 "MIME-Version: 1.0\n"
@@ -1500,7 +1500,7 @@ msgstr "הצגת הכל"
 
 #: categdialog.cpp:198
 msgid "Show all hidden categories"
-msgstr "הצגת כל הקטגוריות המוסתרות"
+msgstr "הצגת כל סוגי-האב המוסתרים"
 
 #: categdialog.cpp:228
 msgid "Add a new category"
@@ -1546,7 +1546,7 @@ msgstr "עצה: סוג-אב שנוסף כעת, הוא ימצא בתחתית הר
 
 #: categdialog.cpp:270 categdialog.cpp:294 categdialog.cpp:312
 msgid "Organise Categories: Adding Error"
-msgstr "ניהול קטגוריות: הוספת שגיאה"
+msgstr "ניהול סוגי-אב: הוספת שגיאה"
 
 #: categdialog.cpp:293 categdialog.cpp:520
 msgid "Sub Category with same name exists"
@@ -1578,11 +1578,11 @@ msgstr "עצה: ניתן לשנות את תת סוג-אב בכל התנועות 
 
 #: categdialog.cpp:326
 msgid "Tools -> Relocation of -> Categories"
-msgstr "כלים -> מיקום מחדש -> קטגוריות"
+msgstr "כלים -> מיקום מחדש -> סוגי-אב"
 
 #: categdialog.cpp:328
 msgid "Organise Categories: Delete Error"
-msgstr "ניהול קטגוריות: מחיקת שגיאה"
+msgstr "ניהול סוגי-אב: מחיקת שגיאה"
 
 #: categdialog.cpp:432
 msgid "Select an unused category to delete."
@@ -1598,7 +1598,7 @@ msgstr "מחיקת סוג-אב קיים."
 
 #: categdialog.cpp:469
 msgid "Subcategories must be deleted before."
-msgstr "יש למחוק קטגוריות משנה תחילה."
+msgstr "יש למחוק תת סוגי-אב תחילה."
 
 #: categdialog.cpp:485
 #, c-format
@@ -1611,7 +1611,7 @@ msgstr "עריכת סוג-אב"
 
 #: categdialog.cpp:504 categdialog.cpp:521
 msgid "Organise Categories: Editing Error"
-msgstr "ניהול קטגוריות: שגיאת עריכה"
+msgstr "ניהול סוגי-אב: שגיאת עריכה"
 
 #: categdialog.cpp:597 mmframe.cpp:3099
 msgid "Category Relocation Completed."
@@ -2649,7 +2649,7 @@ msgstr "ערך שדה 'עד תאריך 'קטן מערך שדה 'מתאריך'"
 
 #: import_export/qif_export.cpp:424
 msgid "Categories exported"
-msgstr "קטגוריות יוצאו"
+msgstr "סוגי-אב יוצאו"
 
 #: import_export/qif_export.cpp:445 import_export/qif_import_gui.cpp:356
 #: import_export/qif_import_gui.cpp:807
@@ -2668,7 +2668,7 @@ msgstr "יצוא תנועות %zu"
 #: import_export/qif_export.cpp:571
 #, c-format
 msgid "Number of categories exported: %zu"
-msgstr "מספר הקטגוריות שיצואו: %zu"
+msgstr "מספר סוגי-האב שיצואו: %zu"
 
 #: import_export/qif_export.cpp:573
 #, c-format
@@ -2765,7 +2765,7 @@ msgstr "האם לייבא את כל התנועות?"
 
 #: import_export/qif_import_gui.cpp:801
 msgid "All missing account, payees and categories will be created."
-msgstr "כל החשבונות, המוטבים והקטגוריות החסרות ייווצרו."
+msgstr "כל החשבונות, המוטבים וסוגי-האב החסרים ייווצרו."
 
 #: import_export/qif_import_gui.cpp:802
 msgid "Confirm Import"
@@ -2785,7 +2785,7 @@ msgstr "מייבא מוטבים"
 
 #: import_export/qif_import_gui.cpp:819
 msgid "Importing Categories"
-msgstr "מייבא קטגוריות"
+msgstr "ייבוא סוגי-אב"
 
 #: import_export/qif_import_gui.cpp:836
 #, c-format
