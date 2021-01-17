@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-01-16 16:18+0300\n"
-"PO-Revision-Date: 2021-01-16 13:37\n"
+"PO-Revision-Date: 2021-01-17 13:07\n"
 "Last-Translator: \n"
 "Language-Team: Turkish\n"
 "MIME-Version: 1.0\n"
@@ -3666,7 +3666,8 @@ msgstr "Seçili işlemi silmeyi gerçekten istiyor musunuz?"
 #, c-format
 msgid "Locked transaction to date: %s\n\n"
 "Reconciled transactions."
-msgstr ""
+msgstr "İşlem tarihe sabitlendi: %s\n\n"
+"Onaylanmış işlemler."
 
 #: mmcheckingpanel.cpp:1602 transdialog.cpp:713 transdialog.cpp:746
 msgid "MMEX Transaction Check"
@@ -5370,7 +5371,7 @@ msgstr ""
 
 #: optionsettingsview.cpp:99
 msgid "Category delimiter"
-msgstr ""
+msgstr "Kategori ayracı"
 
 #: optionsettingsview.cpp:114
 msgid "View Budgets as Financial Years"
@@ -5690,7 +5691,7 @@ msgstr "Tahmin"
 
 #: reports/forecast.cpp:89
 msgid "Withdrawl"
-msgstr ""
+msgstr "Çekme"
 
 #: reports/htmlbuilder.cpp:121
 #, c-format
