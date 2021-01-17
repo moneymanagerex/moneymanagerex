@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-01-16 16:18+0300\n"
-"PO-Revision-Date: 2021-01-17 12:47\n"
+"PO-Revision-Date: 2021-01-17 12:57\n"
 "Last-Translator: \n"
 "Language-Team: Hebrew\n"
 "MIME-Version: 1.0\n"
@@ -960,7 +960,7 @@ msgstr "פיצול"
 
 #: billsdepositsdialog.cpp:586 transdialog.cpp:1274
 msgid "Use split Categories"
-msgstr "ניתן להשתמש בפיצול קטגוריות"
+msgstr "נא להשתמש בפיצול סוגי-אב"
 
 #: billsdepositsdialog.cpp:592 billsdepositspanel.cpp:102
 #: budgetingpanel.cpp:292 filtertransdialog.cpp:216 filtertransdialog.cpp:891
@@ -1100,7 +1100,7 @@ msgstr "בחירת קטגוריה עבור תנועה זו"
 #: billsdepositsdialog.cpp:1417 categdialog.cpp:118
 #: import_export/qif_export.cpp:132 mmframereport.cpp:134 transdialog.cpp:381
 msgid "Categories"
-msgstr "קטגוריות"
+msgstr "סוגי-אב"
 
 #: billsdepositsdialog.h:56
 msgid "New Recurring Transaction"
@@ -1338,23 +1338,23 @@ msgstr "הזנת הסכום שתוקצב לסוג-אב זה."
 
 #: budgetingpanel.cpp:50
 msgid "View All Budget Categories"
-msgstr "מצג כלל קטגוריות התקציב"
+msgstr "מצג כלל סוגי-אב התקציב"
 
 #: budgetingpanel.cpp:51
 msgid "View Non-Zero Budget Categories"
-msgstr "הסתרת קטגוריות תקציב בסכום אפס"
+msgstr "הסתרת סוגי-אב תקציב בסכום אפס"
 
 #: budgetingpanel.cpp:52
 msgid "View Planned Budget Categories"
-msgstr "הצגת קטגוריות תכנון תקציב"
+msgstr "הצגת סוגי-אב תכנון תקציב"
 
 #: budgetingpanel.cpp:53
 msgid "View Income Budget Categories"
-msgstr "הצגת קטגוריות תקציב הכנסות"
+msgstr "הצגת סוגי-אב תקציב הכנסות"
 
 #: budgetingpanel.cpp:54
 msgid "View Expense Budget Categories"
-msgstr "הצגת קטגוריות תקציב הוצאות"
+msgstr "הצגת סוגי-אב תקציב הוצאות"
 
 #: budgetingpanel.cpp:55
 msgid "View Budget Category Summary"
@@ -1484,7 +1484,7 @@ msgstr "שנת תקציב קיימת"
 
 #: categdialog.cpp:90 mmframe.cpp:1447 mmframe.cpp:1680
 msgid "Organize Categories"
-msgstr "ניהול קטגוריות"
+msgstr "ניהול סוגי-אב"
 
 #: categdialog.cpp:189 mmframe.cpp:1463
 msgid "Reassign all categories to another category"
@@ -3213,7 +3213,7 @@ msgstr "מחיקת היסטוריית ערכי מטבעות ותאריכים ל�
 
 #: maincurrencydialog.cpp:351
 msgid "Do you really want to delete the selected Currency?"
-msgstr "האם למחוק את המטבע הנבחר?"
+msgstr "האם למחוק את המטבע שנבחר?"
 
 #: maincurrencydialog.cpp:352 maincurrencydialog.cpp:422
 #: maincurrencydialog.cpp:659 maincurrencydialog.cpp:764
@@ -3669,7 +3669,7 @@ msgstr "האם למחוק את כל  \"%s\" התנועות המוצגות?"
 
 #: mmcheckingpanel.cpp:1555
 msgid "Do you really want to delete the selected transaction?"
-msgstr "האם למחוק את התנועות הנבחרות?"
+msgstr "האם למחוק את התנועות שנבחרו?"
 
 #: mmcheckingpanel.cpp:1599
 #, c-format
@@ -3992,11 +3992,11 @@ msgstr "כל תנועות מסוג העברה ביתרות התקציב"
 
 #: mmframe.cpp:1357
 msgid "Budget Category Report: with &Summaries"
-msgstr "דוח תקציב לפי קטגוריה: עם &סיכומים"
+msgstr "דוח תקציב לפי סוג-אב: עם &סיכומים"
 
 #: mmframe.cpp:1357
 msgid "Include the category summaries in the Budget Category Summary"
-msgstr "כלול סיכומי קטגוריות בדוח תקציב על פי קטגוריות"
+msgstr "הכללת תמצית סוג-אב בדוח תקציב על פי סוג-אב"
 
 #: mmframe.cpp:1359
 msgid "Ignore F&uture Transactions"
@@ -4703,7 +4703,7 @@ msgstr "העדפות תקציב"
 
 #: mmframereport.cpp:192
 msgid "Budget Category Summary"
-msgstr "תמצית קטגוריות תקציב"
+msgstr "תמצית סוג-אב תקציב"
 
 #: mmframereport.cpp:201
 msgid "Stocks Report"
@@ -5230,7 +5230,7 @@ msgstr "מוטב ברירת מחד:"
 
 #: optionsettingsmisc.cpp:130
 msgid "Default Category:"
-msgstr "קטגורית ברירת מחדל:"
+msgstr "סוג-אב ברירת מחדל:"
 
 #: optionsettingsmisc.cpp:132
 msgid "Default Status:"
