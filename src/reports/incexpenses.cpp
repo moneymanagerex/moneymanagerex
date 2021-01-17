@@ -238,7 +238,7 @@ wxString mmReportIncomeExpensesMonthly::getHTMLText()
     }
 
     hb.addDivContainer("shadow"); // Table Container
-    hb.startSortTable();
+    hb.startTable();
     {
         hb.startThead();
         {
