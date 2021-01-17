@@ -19,6 +19,11 @@
 #include "wizard_newaccount.h"
 #include "mmhomepagepanel.h"
 #include "../resources/addacctwiz.xpm"
+
+wxBEGIN_EVENT_TABLE(mmAddAccountNamePage, wxWizardPageSimple)
+    EVT_WIZARD_PAGE_CHANGING(wxID_ANY, mmAddAccountNamePage::processPage)
+wxEND_EVENT_TABLE()
+
 //----------------------------------------------------------------------------
 
 mmAddAccountWizard::mmAddAccountWizard(wxFrame *frame)
@@ -70,25 +75,26 @@ void mmAddAccountWizard::RunIt()
     Destroy();
 }
 
-bool mmAddAccountNamePage::TransferDataFromWindow()
+void mmAddAccountNamePage::processPage(wxWizardEvent& event)
 {
-    bool result = true;
     const wxString account_name = textAccountName_->GetValue().Trim();
-    if ( account_name.IsEmpty())
+    parent_->accountName_ = account_name;
+    if (event.GetDirection())
     {
-        wxMessageBox(_("Account Name Invalid"), _("New Account"), wxOK|wxICON_ERROR, this);
-        result = false;
-    }
-    else
-    {
-        if (Model_Account::instance().get(account_name))
+        if ( account_name.IsEmpty())
         {
-            wxMessageBox(_("Account Name already exists"), _("New Account"), wxOK|wxICON_ERROR, this);
-            result = false;
+            wxMessageBox(_("Account Name Invalid"), _("New Account"), wxOK|wxICON_ERROR, this);
+            event.Veto();
+        }
+        else
+        {
+            if (Model_Account::instance().get(account_name))
+            {
+                wxMessageBox(_("Account Name already exists"), _("New Account"), wxOK|wxICON_ERROR, this);
+                event.Veto();
+            }
         }
     }
-    parent_->accountName_ = account_name;
-    return result;
 }
 
 mmAddAccountNamePage::mmAddAccountNamePage(mmAddAccountWizard* parent)
