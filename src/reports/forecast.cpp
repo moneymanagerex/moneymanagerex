@@ -73,7 +73,7 @@ wxString mmReportForecast::getHTMLText()
     hb.endDiv();
        
     GraphData gd;
-    GraphSeries gsWithdrawl, gsDeposit;
+    GraphSeries gsWithdrawal, gsDeposit;
     for (const auto & kv : amount_by_day)
     {
         wxDate d;
@@ -83,13 +83,13 @@ wxString mmReportForecast::getHTMLText()
         wxLogDebug("label  = %s", label); 
         gd.labels.push_back(label);
         //wxLogDebug(" Values = %d, %d", kv.second.first, kv.second.second);
-        gsWithdrawl.values.push_back(kv.second.first);
+        gsWithdrawal.values.push_back(kv.second.first);
         gsDeposit.values.push_back(kv.second.second);
     }
     gsDeposit.name = _("Deposit");
     gd.series.push_back(gsDeposit);
-    gsWithdrawl.name = _("Withdrawal");
-    gd.series.push_back(gsWithdrawl);     
+    gsWithdrawal.name = _("Withdrawal");
+    gd.series.push_back(gsWithdrawal);     
 
     hb.addDivContainer("shadow");
     { 
