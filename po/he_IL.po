@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-01-16 16:18+0300\n"
-"PO-Revision-Date: 2021-01-17 12:32\n"
+"PO-Revision-Date: 2021-01-17 12:47\n"
 "Last-Translator: \n"
 "Language-Team: Hebrew\n"
 "MIME-Version: 1.0\n"
@@ -1508,11 +1508,11 @@ msgstr "הוספת סוג-אב חדש"
 
 #: categdialog.cpp:232
 msgid "Edit the name of an existing category"
-msgstr "עריכת שם של קטגוריה קיימת"
+msgstr "עריכת שם סוג-אב קיים"
 
 #: categdialog.cpp:236
 msgid "Delete an existing category. The category cannot be used by existing transactions."
-msgstr "מחיקת קטגוריה קימת. לא ניתן להשתמש בקטגוריה בתנועות הקימות."
+msgstr "מחיקת סוג-אב קיים. לא ניתן להשתמש בסוג-אב עם תנועות הקימות."
 
 #: categdialog.cpp:241 maincurrencydialog.cpp:207
 msgid "&Select"
@@ -1520,29 +1520,29 @@ msgstr "&בחירה"
 
 #: categdialog.cpp:243
 msgid "Select the currently selected category as the selected category for the transaction"
-msgstr "בחירה בקטגוריה הנוכחית כקטגוריה הנבחרת עבור התנועה"
+msgstr "בחירה בסוג-אב הנוכחי כסוג-אב התנועה"
 
 #: categdialog.cpp:252
 msgid "Enter the name for the new category:"
-msgstr "הזנת שם קטגוריה חדשה:"
+msgstr "הזנת שם סוג-אב חדש:"
 
 #: categdialog.cpp:255
 msgid "Tip: If category added now, check bottom of list."
-msgstr "עצה: אם קטגוריה נוספה כעת, היא תמצא בתחתית הרשימה."
+msgstr "עצה: סוג-אב שנוסף כעת, הוא ימצא בתחתית הרשימה."
 
 #: categdialog.cpp:258
 msgid "Add Category"
-msgstr "הוספת קטגוריה"
+msgstr "הוספת סוג-אב"
 
 #: categdialog.cpp:267 categdialog.cpp:503
 msgid "Category with same name exists"
-msgstr "קטגוריה בשם זהה כבר קימת"
+msgstr "סוג-אב בשם זהה קיים כבר"
 
 #: categdialog.cpp:268
 msgid "Tip: If category added now, check bottom of list.\n"
 "Category will be in sorted order next time dialog appears"
-msgstr "עצה: אם קטגוריה נוספה כעת, נא לבדוק את המצאותה בתחתית הרשימה.\n"
-"קטגוריות ימוינו מחדש בפעם הבאה שתופיע תיבת דו-שיח"
+msgstr "עצה: סוג-אב שנוסף כעת, הוא ימצא בתחתית הרשימה.\n"
+"סוגי-אב ימוינו מחדש בפעם הבאה שתופיע תיבת דו-שיח"
 
 #: categdialog.cpp:270 categdialog.cpp:294 categdialog.cpp:312
 msgid "Organise Categories: Adding Error"
@@ -1550,31 +1550,31 @@ msgstr "ניהול קטגוריות: הוספת שגיאה"
 
 #: categdialog.cpp:293 categdialog.cpp:520
 msgid "Sub Category with same name exists"
-msgstr "קיימת כבר קטגורית משנה בשם זהה"
+msgstr "תת סוג-אב בשם זהה כבר קיים"
 
 #: categdialog.cpp:311
 msgid "Invalid Parent Category. Choose Root or Main Category node."
-msgstr "קטגורית אב לא תקינה. בחירת רמה ראשית או קטגוריה ראשית."
+msgstr "סוג-אב הורה לא תקין. נא לבחור רמת שורש או סוג-אב ראשי."
 
 #: categdialog.cpp:318
 msgid "Category in use."
-msgstr "הקטגוריה בשימוש."
+msgstr "סוג-אב בשימוש."
 
 #: categdialog.cpp:318
 msgid "Sub-Category in use."
-msgstr "תת קטגוריה בשימוש."
+msgstr "תת סוג-אב בשימוש."
 
 #: categdialog.cpp:320
 msgid "Tip: Change all transactions using this Category to\n"
 "another Category using the relocate command:"
-msgstr "עצה: ניתן לשנות קטגוריה בכל התנועות לקטגוריה\n"
-"אחרת תוך שימוש בפקודת העברה:"
+msgstr "עצה: ניתן לשנות סוג-אב בכל התנועות לסוג-אב\n"
+"אחר תוך שימוש בפקודת העברה:"
 
 #: categdialog.cpp:323
 msgid "Tip: Change all transactions using this Sub-Category to\n"
 "another Sub-Category using the relocate command:"
-msgstr "עצה: ניתן לשנות את קטגוריות המשנה בכל התנועות לקטגורית משנה\n"
-"אחרת תוך שימוש בפקודת העברה:"
+msgstr "עצה: ניתן לשנות את תת סוג-אב בכל התנועות לתת סוג-אב משנה\n"
+"אחר תוך שימוש בפקודת העברה:"
 
 #: categdialog.cpp:326
 msgid "Tools -> Relocation of -> Categories"
@@ -1590,11 +1590,11 @@ msgstr "למחיקה יש לבחור בסוג-אב ללא תנועות משוי�
 
 #: categdialog.cpp:457
 msgid "This category cannot be deleted because it's used by transactions."
-msgstr "אין אפשרות למחוק קטגוריה זו מאחר שקיימות תנועות שמשויכות אליה."
+msgstr "אין אפשרות למחוק סוג-אב זה מאחר שקיימות תנועות שמשויכות אליו."
 
 #: categdialog.cpp:464
 msgid "Delete an existing category."
-msgstr "מחיקת קטגורייה קיימת."
+msgstr "מחיקת סוג-אב קיים."
 
 #: categdialog.cpp:469
 msgid "Subcategories must be deleted before."
@@ -1607,7 +1607,7 @@ msgstr "נא להזין שם חדש עבור '%s'"
 
 #: categdialog.cpp:486
 msgid "Edit Category"
-msgstr "עריכת קטגוריה"
+msgstr "עריכת סוג-אב"
 
 #: categdialog.cpp:504 categdialog.cpp:521
 msgid "Organise Categories: Editing Error"
@@ -1615,7 +1615,7 @@ msgstr "ניהול קטגוריות: שגיאת עריכה"
 
 #: categdialog.cpp:597 mmframe.cpp:3099
 msgid "Category Relocation Completed."
-msgstr "העברת קטגוריה הושלמה."
+msgstr "העברת סוג-אב הושלמה."
 
 #: categdialog.cpp:598 mmframe.cpp:3100 mmframe.cpp:3115 payeedialog.cpp:317
 #, c-format
@@ -1624,15 +1624,15 @@ msgstr "רשומות עודכנו במסד הנתונים:  %i"
 
 #: categdialog.cpp:600 mmframe.cpp:3102
 msgid "Category Relocation Result"
-msgstr "התוצאה העברת קטגוריה"
+msgstr "תוצאת העברת סוג-אב"
 
 #: categdialog.cpp:665
 msgid "Hide Selected Category"
-msgstr "הסתרת הקטגוריה שנבחרו"
+msgstr "הסתרת סוג-אב שנבחר"
 
 #: categdialog.cpp:666
 msgid "Unhide Selected Category"
-msgstr "הצגת הקטגוריה הנבחרת"
+msgstr "הצגת סוג-אב שנבחר"
 
 #: categdialog.cpp:668 import_export/univcsvdialog.cpp:213
 msgid "Clear Settings"
@@ -2279,7 +2279,7 @@ msgstr "כולל דומה"
 
 #: filtertransdialog.cpp:231
 msgid "Include all subcategories for the selected category."
-msgstr "לכלול את כל קטגוריות המשנה לקטגוריה שבחרה."
+msgstr "הכללת כל תת סוגי-אב לסוג-אב שבחר."
 
 #: filtertransdialog.cpp:257 import_export/univcsvdialog.cpp:112
 #: mmcheckingpanel.cpp:954 model/Model_Billsdeposits.cpp:31
@@ -2843,7 +2843,7 @@ msgstr "חשבון תנועה שגוי"
 
 #: import_export/qif_import_gui.cpp:1089
 msgid "Transaction Category is incorrect"
-msgstr "קטגורית התנועה שגויה"
+msgstr "סוג-אב התנועה שגוי"
 
 #: import_export/qif_import_gui.cpp:1181
 #, c-format
@@ -2857,7 +2857,7 @@ msgstr "התווסף מוטב:  %s"
 
 #: import_export/univcsvdialog.cpp:108
 msgid "SubCategory"
-msgstr "קטגורית משנה"
+msgstr "תת סוג-אב"
 
 #: import_export/univcsvdialog.cpp:111
 msgid "Don't Care"
@@ -3313,17 +3313,17 @@ msgstr "ערך %s לא תקין"
 
 #: mmSimpleDialogs.cpp:244
 msgid "Please use this button for category selection."
-msgstr "ניתן להשתמש בלחצן זה לבחירת קטגוריה."
+msgstr "ניתן להשתמש בלחצן זה לבחירת סוג-אב."
 
 #: mmSimpleDialogs.cpp:245
 msgid "Please use this button for category selection\n"
 "or use the 'Split' checkbox for multiple categories."
-msgstr "ניתן להשתמש בלחצן זה לבחירת קטגוריה\n"
-"או בתיבת הסימון 'פיצול' לבחירת מספר קטגוריות."
+msgstr "ניתן להשתמש בלחצן זה לבחירת סוג-אב\n"
+"או בתיבת הסימון 'פיצול' לבחירת מספר סוגי-אב."
 
 #: mmSimpleDialogs.cpp:248
 msgid "Invalid Category"
-msgstr "קטגוריה לא תקינה"
+msgstr "סוג-אב לא תקין"
 
 #: mmSimpleDialogs.cpp:253
 msgid "File name is empty."
