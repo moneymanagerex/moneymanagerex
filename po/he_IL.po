@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-01-16 16:18+0300\n"
-"PO-Revision-Date: 2021-01-17 11:57\n"
+"PO-Revision-Date: 2021-01-17 12:15\n"
 "Last-Translator: \n"
 "Language-Team: Hebrew\n"
 "MIME-Version: 1.0\n"
@@ -972,7 +972,7 @@ msgstr "ניתן להשתמש בפיצול קטגוריות"
 #: splitdetailsdialog.cpp:144 splittransactionsdialog.cpp:137
 #: transdialog.cpp:538 usertransactionpanel.cpp:188 webappdialog.cpp:152
 msgid "Category"
-msgstr "קטגוריה"
+msgstr "סוג-אב"
 
 #: billsdepositsdialog.cpp:594 billsdepositsdialog.cpp:1427 transdialog.cpp:393
 #: transdialog.cpp:1017 usertransactionpanel.cpp:189
@@ -2934,11 +2934,11 @@ msgstr "תבנית תאריך: "
 
 #: import_export/univcsvdialog.cpp:315
 msgid "CSV Delimiter:"
-msgstr "מפריד CSV:"
+msgstr "תוחם CSV:"
 
 #: import_export/univcsvdialog.cpp:321 optionsettingsmisc.cpp:188
 msgid "Specify the delimiter to use when importing/exporting CSV files"
-msgstr "הגדרת המפריד שבו יעשה שימוש ביבוא/יצוא של קבצים"
+msgstr "הגדרת תוחם שבו יעשה שימוש ביבוא/יצוא של קבצים"
 
 #: import_export/univcsvdialog.cpp:344
 msgid "Export column titles"
@@ -5274,7 +5274,7 @@ msgstr "הגדרות CSV"
 
 #: optionsettingsmisc.cpp:185
 msgid "Delimiter"
-msgstr "תו הפרדה"
+msgstr "תוחם"
 
 #: optionsettingsnet.cpp:57
 msgid "WebApp Settings"
@@ -5386,7 +5386,7 @@ msgstr "גודל צלמית"
 
 #: optionsettingsview.cpp:99
 msgid "Category delimiter"
-msgstr ""
+msgstr "תוחם סוג-אב"
 
 #: optionsettingsview.cpp:114
 msgid "View Budgets as Financial Years"
