@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-01-16 16:18+0300\n"
-"PO-Revision-Date: 2021-01-16 13:38\n"
+"PO-Revision-Date: 2021-01-17 11:57\n"
 "Last-Translator: \n"
 "Language-Team: Hebrew\n"
 "MIME-Version: 1.0\n"
@@ -3675,7 +3675,8 @@ msgstr "האם למחוק את התנועות הנבחרות?"
 #, c-format
 msgid "Locked transaction to date: %s\n\n"
 "Reconciled transactions."
-msgstr ""
+msgstr "תנועות נעולות ליום: %s\n\n"
+"תנועות מותאמות."
 
 #: mmcheckingpanel.cpp:1602 transdialog.cpp:713 transdialog.cpp:746
 msgid "MMEX Transaction Check"
@@ -5707,7 +5708,7 @@ msgstr "תחזית"
 
 #: reports/forecast.cpp:89
 msgid "Withdrawl"
-msgstr ""
+msgstr "משיכה"
 
 #: reports/htmlbuilder.cpp:121
 #, c-format
