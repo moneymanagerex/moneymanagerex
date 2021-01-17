@@ -86,7 +86,7 @@ wxString mmReportForecast::getHTMLText()
     }
     gsDeposit.name = _("Deposit");
     gd.series.push_back(gsDeposit);
-    gsWithdrawl.name = _("Withdrawl");
+    gsWithdrawl.name = _("Withdrawal");
     gd.series.push_back(gsWithdrawl);     
 
     hb.addDivContainer("shadow");
