@@ -45,11 +45,13 @@ class mmAddAccountNamePage : public wxWizardPageSimple
 {
 public:
     mmAddAccountNamePage(mmAddAccountWizard* parent);
-    virtual bool TransferDataFromWindow();
+    void processPage(wxWizardEvent& event);
 
 private:
     mmAddAccountWizard* parent_;
     wxTextCtrl* textAccountName_;
+
+    wxDECLARE_EVENT_TABLE();
 };
 //----------------------------------------------------------------------------
 

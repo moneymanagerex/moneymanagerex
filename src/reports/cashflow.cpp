@@ -214,8 +214,10 @@ wxString mmReportCashFlow::getHTMLText_i()
                                                                 "Cash Flow Forecast for %i Years Ahead",
                                                                 years ),
                                                                 years);
+        hb.showUserName();
         hb.addHeader(2, headerMsg );
         hb.addHeader(3, getAccountNames());
+        hb.addReportCurrency();
         hb.addDateNow();
     }
     hb.endDiv();

@@ -98,8 +98,10 @@ wxString mmReportPayeeExpenses::getHTMLText()
     hb.init();
     hb.addDivContainer("shadowTitle");
     {
+        hb.showUserName();
         hb.addHeader(2, getReportTitle());
         hb.DisplayDateHeading(m_date_range->start_date(), m_date_range->end_date(), m_date_range->is_with_date());
+        hb.addReportCurrency();
         hb.addDateNow();
     }
     hb.endDiv();
@@ -167,7 +169,7 @@ wxString mmReportPayeeExpenses::getHTMLText()
                 totals.push_back(positiveTotal_);
                 totals.push_back(negativeTotal_);
                 totals.push_back(positiveTotal_ + negativeTotal_);
-                hb.addTotalRow(_("Total:"), 4, totals);
+                hb.addMoneyTotalRow(_("Total:"), 4, totals);
             }
             hb.endTfoot();
         }
