@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2021-01-16 16:18+0300\n"
-"PO-Revision-Date: 2021-01-17 13:34\n"
+"POT-Creation-Date: 2021-01-18 01:33+0300\n"
+"PO-Revision-Date: 2021-01-17 22:49\n"
 "Last-Translator: \n"
 "Language-Team: Turkish\n"
 "MIME-Version: 1.0\n"
@@ -62,7 +62,7 @@ msgid "&OK "
 msgstr "&Tamam"
 
 #: accountdialog.cpp:91 mmframe.cpp:1414 mmframe.cpp:1677
-#: wizard_newaccount.cpp:79 wizard_newaccount.cpp:86 wizard_newaccount.cpp:158
+#: wizard_newaccount.cpp:86 wizard_newaccount.cpp:93 wizard_newaccount.cpp:164
 msgid "New Account"
 msgstr "Yeni Hesap"
 
@@ -82,7 +82,7 @@ msgstr "Hesap adını giriniz. Herhangibir anda değiştirebilirsiniz."
 msgid "Account Type:"
 msgstr "Hesap Tipi:"
 
-#: accountdialog.cpp:151 wizard_newaccount.cpp:120
+#: accountdialog.cpp:151 wizard_newaccount.cpp:126
 msgid "Specify the type of account to be created."
 msgstr "Oluşturulacak hesabın türünü belirtiniz."
 
@@ -261,7 +261,7 @@ msgid "Account Name "
 msgstr "Hesap Adı"
 
 #: accountdialog.cpp:491 import_export/qif_import_gui.cpp:233
-#: optionsettingsgeneral.cpp:76
+#: optionsettingsgeneral.cpp:76 reports/htmlbuilder.cpp:151
 msgid "Currency"
 msgstr "Para Birimi"
 
@@ -359,10 +359,11 @@ msgstr "Varlık adını giriniz"
 #: import_export/qif_import_gui.cpp:99 import_export/univcsvdialog.cpp:104
 #: maincurrencydialog.cpp:236 maincurrencydialog.cpp:258
 #: mmcheckingpanel.cpp:949 mmreportspanel.cpp:253 mmreportspanel.cpp:271
-#: model/Model_CustomField.cpp:29 reports/cashflow.cpp:257
-#: reports/summary.cpp:154 reports/transactions.cpp:69 stockdialog.cpp:297
-#: stockdialog.cpp:676 transdialog.cpp:446 usertransactionpanel.cpp:107
-#: webappdialog.cpp:147 wizard_update.cpp:136
+#: model/Model_CustomField.cpp:29 reports/cashflow.cpp:259
+#: reports/incexpenses.cpp:246 reports/summary.cpp:161
+#: reports/transactions.cpp:69 stockdialog.cpp:297 stockdialog.cpp:676
+#: transdialog.cpp:446 usertransactionpanel.cpp:107 webappdialog.cpp:147
+#: wizard_update.cpp:136
 msgid "Date"
 msgstr "Tarih"
 
@@ -443,7 +444,7 @@ msgstr "ID"
 #: filtertransdialog.cpp:920 import_export/qif_export.cpp:121
 #: import_export/qif_import_gui.cpp:102 import_export/qif_import_gui.cpp:232
 #: import_export/univcsvdialog.cpp:115 maincurrencydialog.cpp:248
-#: mmhomepage.cpp:433 reports/incexpenses.cpp:113 reports/transactions.cpp:74
+#: mmhomepage.cpp:433 reports/incexpenses.cpp:115 reports/transactions.cpp:74
 #: splitdetailsdialog.cpp:119 transdialog.cpp:489 usertransactionpanel.cpp:137
 #: webappdialog.cpp:150
 msgid "Type"
@@ -906,8 +907,8 @@ msgstr "Gönderen ve alan hesaplarda farklı tutarlara izin ver."
 #: billsdepositsdialog.cpp:541 billsdepositspanel.cpp:104
 #: budgetingpanel.cpp:295 filtertransdialog.cpp:435 filtertransdialog.cpp:446
 #: import_export/univcsvdialog.cpp:106 maincurrencydialog.cpp:610
-#: mmhomepage.cpp:353 mmhomepage.cpp:435 reports/budgetcategorysummary.cpp:179
-#: reports/categexp.cpp:177 reports/incexpenses.cpp:114
+#: mmhomepage.cpp:353 mmhomepage.cpp:435 reports/budgetcategorysummary.cpp:181
+#: reports/categexp.cpp:178 reports/incexpenses.cpp:116
 #: reports/transactions.cpp:77 splitdetailsdialog.cpp:135
 #: splittransactionsdialog.cpp:138 transdialog.cpp:503
 #: usertransactionpanel.cpp:141 webappdialog.cpp:153
@@ -943,7 +944,7 @@ msgstr "Yinelenen işlemin gerçekleşeceği hesabı belirtin."
 #: filtertransdialog.cpp:418 filtertransdialog.cpp:883
 #: import_export/qif_import_gui.cpp:101 import_export/qif_import_gui.cpp:239
 #: import_export/univcsvdialog.cpp:105 mmcheckingpanel.cpp:951
-#: mmhomepage.cpp:353 reports/payee.cpp:140 reports/transactions.cpp:71
+#: mmhomepage.cpp:353 reports/payee.cpp:142 reports/transactions.cpp:71
 #: transdialog.cpp:293 transdialog.cpp:517 usertransactionpanel.cpp:181
 #: webappdialog.cpp:151
 msgid "Payee"
@@ -966,9 +967,9 @@ msgstr "Parçalı Kategorileri kullan"
 #: budgetingpanel.cpp:292 filtertransdialog.cpp:216 filtertransdialog.cpp:891
 #: import_export/qif_import_gui.cpp:103 import_export/qif_import_gui.cpp:250
 #: import_export/univcsvdialog.cpp:107 mmcheckingpanel.cpp:953
-#: mmhomepage.cpp:187 reports/budgetcategorysummary.cpp:178
-#: reports/budgetingperf.cpp:183 reports/categexp.cpp:176
-#: reports/categexp.cpp:410 reports/transactions.cpp:73
+#: mmhomepage.cpp:187 reports/budgetcategorysummary.cpp:180
+#: reports/budgetingperf.cpp:185 reports/categexp.cpp:177
+#: reports/categexp.cpp:412 reports/transactions.cpp:73
 #: splitdetailsdialog.cpp:144 splittransactionsdialog.cpp:137
 #: transdialog.cpp:538 usertransactionpanel.cpp:188 webappdialog.cpp:152
 msgid "Category"
@@ -1148,7 +1149,7 @@ msgid "Every %s Months"
 msgstr "Her %s Ay"
 
 #: billsdepositspanel.cpp:105 budgetingpanel.cpp:294
-#: reports/budgetcategorysummary.cpp:180 reports/myusage.cpp:155
+#: reports/budgetcategorysummary.cpp:182 reports/myusage.cpp:156
 msgid "Frequency"
 msgstr "Sıklık"
 
@@ -1305,9 +1306,9 @@ msgid "Expense"
 msgstr "Gider"
 
 #: budgetentrydialog.cpp:128 db/DB_Table_Category_V1.h:123 mmhomepage.cpp:437
-#: reports/categexp.cpp:126 reports/categexp.cpp:160 reports/categexp.cpp:384
-#: reports/incexpenses.cpp:88 reports/incexpenses.cpp:219
-#: reports/incexpenses.cpp:244
+#: reports/categexp.cpp:126 reports/categexp.cpp:161 reports/categexp.cpp:386
+#: reports/incexpenses.cpp:90 reports/incexpenses.cpp:223
+#: reports/incexpenses.cpp:247
 msgid "Income"
 msgstr "Gelir"
 
@@ -1403,13 +1404,13 @@ msgstr "İkon"
 msgid "Sub Category"
 msgstr "Alt Kategori"
 
-#: budgetingpanel.cpp:296 reports/budgetcategorysummary.cpp:136
-#: reports/budgetcategorysummary.cpp:181
+#: budgetingpanel.cpp:296 reports/budgetcategorysummary.cpp:138
+#: reports/budgetcategorysummary.cpp:183
 msgid "Estimated"
 msgstr "Tahmini"
 
-#: budgetingpanel.cpp:297 reports/budgetcategorysummary.cpp:135
-#: reports/budgetcategorysummary.cpp:182
+#: budgetingpanel.cpp:297 reports/budgetcategorysummary.cpp:137
+#: reports/budgetcategorysummary.cpp:184
 msgid "Actual"
 msgstr "Gerçekleşen"
 
@@ -2277,13 +2278,14 @@ msgstr "Seçilen kategorideki tüm alt kategorileri içer."
 
 #: filtertransdialog.cpp:257 import_export/univcsvdialog.cpp:112
 #: mmcheckingpanel.cpp:954 model/Model_Billsdeposits.cpp:31
-#: model/Model_Checking.cpp:29 splitdetailsdialog.cpp:124
+#: model/Model_Checking.cpp:29 reports/forecast.cpp:91
+#: splitdetailsdialog.cpp:124
 msgid "Withdrawal"
 msgstr "Çekilen"
 
 #: filtertransdialog.cpp:259 import_export/univcsvdialog.cpp:113
 #: mmcheckingpanel.cpp:955 model/Model_Billsdeposits.cpp:32
-#: model/Model_Checking.cpp:30 reports/forecast.cpp:87
+#: model/Model_Checking.cpp:30 reports/forecast.cpp:89
 #: splitdetailsdialog.cpp:125
 msgid "Deposit"
 msgstr "Yatan"
@@ -2334,7 +2336,7 @@ msgid "General Reports Manager"
 msgstr "Genel Rapor Yöneticisi"
 
 #: general_report_manager.cpp:288 mmframe.cpp:765 mmframe.cpp:2414
-#: mmframe.cpp:2510 reports/myusage.cpp:133 reports/myusage.cpp:154
+#: mmframe.cpp:2510 reports/myusage.cpp:134 reports/myusage.cpp:155
 msgid "Reports"
 msgstr "Raporlar"
 
@@ -2855,7 +2857,7 @@ msgid "Don't Care"
 msgstr "Dikkate Alma"
 
 #: import_export/univcsvdialog.cpp:114 mmcheckingpanel.cpp:956
-#: mmhomepage.cpp:648 reports/summary.cpp:162
+#: mmhomepage.cpp:648 reports/summary.cpp:169
 msgid "Balance"
 msgstr "Kalıntı"
 
@@ -3637,52 +3639,52 @@ msgstr "Eşkopya olarak"
 msgid "Mark all being viewed"
 msgstr "Tüm görünenleri imle"
 
-#: mmcheckingpanel.cpp:1190
+#: mmcheckingpanel.cpp:1195
 msgid "Do you really want to delete all the transactions shown?"
 msgstr "Gösterilen tüm işlemleri silmek istediğinizden gerçekten emin misiniz?"
 
-#: mmcheckingpanel.cpp:1191 mmcheckingpanel.cpp:1204 mmcheckingpanel.cpp:1556
+#: mmcheckingpanel.cpp:1196 mmcheckingpanel.cpp:1209 mmcheckingpanel.cpp:1560
 msgid "Confirm Transaction Deletion"
 msgstr "İşlem Silme Onayı"
 
-#: mmcheckingpanel.cpp:1200
+#: mmcheckingpanel.cpp:1205
 msgid "Follow Up"
 msgstr "İzle"
 
-#: mmcheckingpanel.cpp:1200
+#: mmcheckingpanel.cpp:1205
 msgid "Unreconciled"
 msgstr "Onaylanmamış"
 
-#: mmcheckingpanel.cpp:1203
+#: mmcheckingpanel.cpp:1208
 #, c-format
 msgid "Do you really want to delete all the \"%s\" transactions shown?"
 msgstr "Gösterilen tüm \"%s\" işlemlerini silmeyi gerçekten istiyor musunuz?"
 
-#: mmcheckingpanel.cpp:1555
+#: mmcheckingpanel.cpp:1559
 msgid "Do you really want to delete the selected transaction?"
 msgstr "Seçili işlemi silmeyi gerçekten istiyor musunuz?"
 
-#: mmcheckingpanel.cpp:1599
+#: mmcheckingpanel.cpp:1603
 #, c-format
 msgid "Locked transaction to date: %s\n\n"
 "Reconciled transactions."
 msgstr "İşlem tarihe sabitlendi: %s\n\n"
 "Onaylanmış işlemler."
 
-#: mmcheckingpanel.cpp:1602 transdialog.cpp:713 transdialog.cpp:746
+#: mmcheckingpanel.cpp:1606 transdialog.cpp:713 transdialog.cpp:746
 msgid "MMEX Transaction Check"
 msgstr "MMEX İşlem Kontrolü"
 
-#: mmcheckingpanel.cpp:1743 stockspanel.cpp:292
+#: mmcheckingpanel.cpp:1745 stockspanel.cpp:292
 #, c-format
 msgid "Moving Transaction from %s to..."
 msgstr "İşlemler %s 'den taşınıyor..."
 
-#: mmcheckingpanel.cpp:1746 stockspanel.cpp:293
+#: mmcheckingpanel.cpp:1748 stockspanel.cpp:293
 msgid "Select the destination Account "
 msgstr "Alıcı Hesabı seçin"
 
-#: mmcheckingpanel.cpp:1800
+#: mmcheckingpanel.cpp:1802
 msgid "Reoccuring Transaction saved."
 msgstr "Yinelenen işlemler kaydedildi."
 
@@ -3745,15 +3747,15 @@ msgstr "Gezinim"
 msgid "Toolbar"
 msgstr "Araç Çubuğu"
 
-#: mmframe.cpp:456 mmframe.cpp:680 mmhomepage.cpp:635 reports/summary.cpp:156
+#: mmframe.cpp:456 mmframe.cpp:680 mmhomepage.cpp:635 reports/summary.cpp:163
 msgid "Bank Accounts"
 msgstr "Banka Hesapları"
 
-#: mmframe.cpp:457 mmframe.cpp:684 mmhomepage.cpp:636 reports/summary.cpp:157
+#: mmframe.cpp:457 mmframe.cpp:684 mmhomepage.cpp:636 reports/summary.cpp:164
 msgid "Credit Card Accounts"
 msgstr "Kredi Kartı Hesapları"
 
-#: mmframe.cpp:458 mmframe.cpp:696 mmhomepage.cpp:638 reports/summary.cpp:159
+#: mmframe.cpp:458 mmframe.cpp:696 mmhomepage.cpp:638 reports/summary.cpp:166
 msgid "Term Accounts"
 msgstr "Vadeli Hesaplar"
 
@@ -3765,7 +3767,7 @@ msgstr "Hisse Senedi Portföyü"
 msgid "Cash Accounts"
 msgstr "Nakit Hesaplar"
 
-#: mmframe.cpp:461 mmframe.cpp:692 mmhomepage.cpp:637 reports/summary.cpp:158
+#: mmframe.cpp:461 mmframe.cpp:692 mmhomepage.cpp:637 reports/summary.cpp:165
 msgid "Loan Accounts"
 msgstr "Borç Hesapları"
 
@@ -4656,11 +4658,11 @@ msgstr "Nakit Akışı"
 msgid "Summary"
 msgstr "Özet"
 
-#: mmframereport.cpp:143 reports/categexp.cpp:245
+#: mmframereport.cpp:143 reports/categexp.cpp:246
 msgid "Where the Money Goes"
 msgstr "Para Nereye Gidiyor"
 
-#: mmframereport.cpp:146 reports/categexp.cpp:251
+#: mmframereport.cpp:146 reports/categexp.cpp:252
 msgid "Where the Money Comes From"
 msgstr "Para Nereden Geliyor"
 
@@ -4676,7 +4678,7 @@ msgstr "Gelir & Gider"
 msgid "My Usage"
 msgstr ""
 
-#: mmframereport.cpp:169 reports/payee.cpp:119
+#: mmframereport.cpp:169 reports/payee.cpp:121
 msgid "Payees"
 msgstr "Alacaklılar"
 
@@ -4704,7 +4706,7 @@ msgstr "&Geri"
 msgid "&Forward"
 msgstr "İle&ri"
 
-#: mmhomepage.cpp:59 mmhomepage.cpp:78 reports/summary.cpp:161
+#: mmhomepage.cpp:59 mmhomepage.cpp:78 reports/summary.cpp:168
 msgid "Stocks"
 msgstr "Menkul Kıymetler"
 
@@ -4713,13 +4715,13 @@ msgstr "Menkul Kıymetler"
 msgid "Gain/Loss"
 msgstr "Kar/Zarar"
 
-#: mmhomepage.cpp:79 reports/budgetingperf.cpp:191 reports/cashflow.cpp:258
-#: reports/categexp.cpp:178 reports/categexp.cpp:450 reports/summary.cpp:160
+#: mmhomepage.cpp:79 reports/budgetingperf.cpp:193 reports/cashflow.cpp:260
+#: reports/categexp.cpp:179 reports/categexp.cpp:452 reports/summary.cpp:167
 msgid "Total"
 msgstr "Toplam"
 
-#: mmhomepage.cpp:105 mmhomepage.cpp:685 reports/incexpenses.cpp:275
-#: reports/payee.cpp:170 reports/summarystocks.cpp:138
+#: mmhomepage.cpp:105 mmhomepage.cpp:685 reports/incexpenses.cpp:289
+#: reports/payee.cpp:172 reports/summarystocks.cpp:138
 #: splittransactionsdialog.cpp:143
 msgid "Total:"
 msgstr "Toplam:"
@@ -4734,14 +4736,14 @@ msgstr "Yüksek Ödemeler: %s"
 msgid "Income vs Expenses: %s"
 msgstr "Gelir - Gider: %s"
 
-#: mmhomepage.cpp:441 reports/categexp.cpp:121 reports/categexp.cpp:150
-#: reports/categexp.cpp:383 reports/categexp.cpp:449 reports/incexpenses.cpp:91
-#: reports/incexpenses.cpp:220 reports/incexpenses.cpp:245
-#: reports/payee.cpp:142
+#: mmhomepage.cpp:441 reports/categexp.cpp:121 reports/categexp.cpp:151
+#: reports/categexp.cpp:385 reports/categexp.cpp:451 reports/incexpenses.cpp:93
+#: reports/incexpenses.cpp:224 reports/incexpenses.cpp:248
+#: reports/payee.cpp:144
 msgid "Expenses"
 msgstr "Gider"
 
-#: mmhomepage.cpp:445 reports/incexpenses.cpp:123
+#: mmhomepage.cpp:445 reports/incexpenses.cpp:125
 msgid "Difference:"
 msgstr "Fark:"
 
@@ -4761,7 +4763,7 @@ msgstr "İşlemlerde İzle:"
 msgid "Total Transactions: "
 msgstr "Toplam İşlemler:"
 
-#: mmhomepage.cpp:546 reports/categexp.cpp:228 reports/summarystocks.cpp:154
+#: mmhomepage.cpp:546 reports/categexp.cpp:229 reports/summarystocks.cpp:154
 #: reports/transactions.cpp:164
 msgid "Grand Total:"
 msgstr "Genel Toplam:"
@@ -4818,7 +4820,7 @@ msgstr "Göster"
 msgid "Hide"
 msgstr "Gizle"
 
-#: model/Model_Account.cpp:32 model/Model_Asset.cpp:35 reports/summary.cpp:155
+#: model/Model_Account.cpp:32 model/Model_Asset.cpp:35 reports/summary.cpp:162
 msgid "Cash"
 msgstr "Nakit"
 
@@ -5541,52 +5543,52 @@ msgstr "%s için Bütçe Kategorileri"
 msgid "Budget Category Summary for %s"
 msgstr "%s için Bütçe Kategori Özeti"
 
-#: reports/budgetcategorysummary.cpp:114
+#: reports/budgetcategorysummary.cpp:115
 msgid "( Estimated Vs Actual )"
 msgstr "(Tahmin Edilen / Gerçekleşen)"
 
-#: reports/budgetcategorysummary.cpp:264
+#: reports/budgetcategorysummary.cpp:266
 msgid "Estimated Income:"
 msgstr "Tahmini Gelir:"
 
-#: reports/budgetcategorysummary.cpp:266
+#: reports/budgetcategorysummary.cpp:268
 msgid "Actual Income:"
 msgstr "Gerçekleşen Gelir:"
 
-#: reports/budgetcategorysummary.cpp:268
+#: reports/budgetcategorysummary.cpp:270
 msgid "Difference Income:"
 msgstr "Gelir Farkı:"
 
-#: reports/budgetcategorysummary.cpp:275
+#: reports/budgetcategorysummary.cpp:277
 msgid "Estimated Expenses:"
 msgstr "Tahmini Gider:"
 
-#: reports/budgetcategorysummary.cpp:277
+#: reports/budgetcategorysummary.cpp:279
 msgid "Actual Expenses:"
 msgstr "Gerçekleşen Gider:"
 
-#: reports/budgetcategorysummary.cpp:279
+#: reports/budgetcategorysummary.cpp:281
 msgid "Difference Expenses:"
 msgstr "Gider Farkı:"
 
-#: reports/budgetingperf.cpp:169
+#: reports/budgetingperf.cpp:170
 #, c-format
 msgid "Budget Performance for %s"
 msgstr "%s için Bütçe Performansı"
 
-#: reports/budgetingperf.cpp:199 reports/budgetingperf.cpp:202
+#: reports/budgetingperf.cpp:201 reports/budgetingperf.cpp:204
 msgid "Est."
 msgstr "Thm."
 
-#: reports/budgetingperf.cpp:200 reports/budgetingperf.cpp:203
+#: reports/budgetingperf.cpp:202 reports/budgetingperf.cpp:205
 msgid "Act."
 msgstr "Ger."
 
-#: reports/budgetingperf.cpp:204
+#: reports/budgetingperf.cpp:206
 msgid "%"
 msgstr "%"
 
-#: reports/budgetingperf.cpp:254
+#: reports/budgetingperf.cpp:256
 msgid "Monthly Total"
 msgstr "Aylık Toplam"
 
@@ -5655,35 +5657,35 @@ msgid_plural "Cash Flow Forecast for %i Years Ahead"
 msgstr[0] ""
 msgstr[1] ""
 
-#: reports/cashflow.cpp:259 reports/incexpenses.cpp:246 reports/payee.cpp:143
+#: reports/cashflow.cpp:261 reports/incexpenses.cpp:249 reports/payee.cpp:145
 msgid "Difference"
 msgstr "Fark"
 
-#: reports/categexp.cpp:206
+#: reports/categexp.cpp:207
 msgid "Category Total: "
 msgstr "Kategori Toplamı:"
 
-#: reports/categexp.cpp:225
+#: reports/categexp.cpp:226
 msgid "Total Expenses:"
 msgstr "Toplam Gider:"
 
-#: reports/categexp.cpp:226
+#: reports/categexp.cpp:227
 msgid "Total Income:"
 msgstr "Toplam Gelir:"
 
-#: reports/categexp.cpp:257
+#: reports/categexp.cpp:258
 msgid "Categories Summary"
 msgstr ""
 
-#: reports/categexp.cpp:266
+#: reports/categexp.cpp:267
 msgid "Category Income/Expenses"
 msgstr "Kategori Gelir/Gider"
 
-#: reports/categexp.cpp:418
+#: reports/categexp.cpp:420
 msgid "Overall"
 msgstr "Tümü"
 
-#: reports/categexp.cpp:448 reports/payee.cpp:141
+#: reports/categexp.cpp:450 reports/payee.cpp:143
 msgid "Incomes"
 msgstr "Gelirler"
 
@@ -5691,21 +5693,17 @@ msgstr "Gelirler"
 msgid "Forecast"
 msgstr "Tahmin"
 
-#: reports/forecast.cpp:89
-msgid "Withdrawl"
-msgstr "Çekme"
-
 #: reports/htmlbuilder.cpp:121
 #, c-format
 msgid "Report Generated %s %s"
 msgstr "Yaratılan Rapor %s %s"
 
-#: reports/htmlbuilder.cpp:312
+#: reports/htmlbuilder.cpp:329
 #, c-format
 msgid "From %s till %s"
 msgstr "%s'den %s'e"
 
-#: reports/htmlbuilder.cpp:318 reports/mmDateRange.cpp:231
+#: reports/htmlbuilder.cpp:335 reports/mmDateRange.cpp:231
 msgid "Over Time"
 msgstr "Tüm Zamanlar"
 
@@ -5713,25 +5711,17 @@ msgstr "Tüm Zamanlar"
 msgid "Income vs Expenses Summary"
 msgstr ""
 
-#: reports/incexpenses.cpp:121
+#: reports/incexpenses.cpp:123
 msgid "Income:"
 msgstr "Gelir:"
 
-#: reports/incexpenses.cpp:122
+#: reports/incexpenses.cpp:124
 msgid "Expenses:"
 msgstr "Gider: "
 
-#: reports/incexpenses.cpp:141
+#: reports/incexpenses.cpp:143
 msgid "Income vs Expenses Monthly"
 msgstr ""
-
-#: reports/incexpenses.cpp:242
-msgid "Year"
-msgstr "Yıl"
-
-#: reports/incexpenses.cpp:243
-msgid "Month"
-msgstr "Ay"
 
 #: reports/mmDateRange.cpp:85
 msgid "Current Month"
@@ -5813,16 +5803,16 @@ msgstr "Hesaplar:"
 msgid "Choose Accounts"
 msgstr "Hesapları Seç"
 
-#: reports/summary.cpp:141
+#: reports/summary.cpp:147
 #, c-format
 msgid "Accounts Balance - %s"
 msgstr "Hesap Kalıntısı - %s"
 
-#: reports/summary.cpp:141
+#: reports/summary.cpp:147
 msgid "Monthly Report"
 msgstr "Aylık Rapor"
 
-#: reports/summary.cpp:141
+#: reports/summary.cpp:147
 msgid "Yearly Report"
 msgstr "Yıllık Rapor"
 
@@ -6678,63 +6668,63 @@ msgstr ""
 msgid "Delete"
 msgstr "Sil"
 
-#: wizard_newaccount.cpp:25
+#: wizard_newaccount.cpp:30
 msgid "Add Account Wizard"
 msgstr "Hesap Ekleme Sihirbazı"
 
-#: wizard_newaccount.cpp:34
+#: wizard_newaccount.cpp:39
 #, c-format
 msgid "%s models all transactions as belonging to accounts."
 msgstr "Hesaplara bağlı olarak tüm işlemleri %s modeller"
 
-#: wizard_newaccount.cpp:35
+#: wizard_newaccount.cpp:40
 msgid "The next pages will help you create a new account.\n"
 "To help you get started, begin by making a list of all\n"
 "financial institutions where you hold an account."
 msgstr "İzleyen sayfa yeni bir hesap oluşturmanıza yardım edecek. Başlangıçta size yardımcı olmasıiçin hesapları tutacağınız finans kuruluşlarının bir listesini yaparak işe başlayın."
 
-#: wizard_newaccount.cpp:79
+#: wizard_newaccount.cpp:86
 msgid "Account Name Invalid"
 msgstr "Hesap Adı Geçersiz"
 
-#: wizard_newaccount.cpp:86
+#: wizard_newaccount.cpp:93
 msgid "Account Name already exists"
 msgstr "Hesap Adı zaten var."
 
-#: wizard_newaccount.cpp:100
+#: wizard_newaccount.cpp:106
 msgid "Name of the Account"
 msgstr "Hesap Adı"
 
-#: wizard_newaccount.cpp:104
+#: wizard_newaccount.cpp:110
 msgid "Specify a descriptive name for the account."
 msgstr "Hesap için tanımlayıcı bir isim belirtin."
 
-#: wizard_newaccount.cpp:105
+#: wizard_newaccount.cpp:111
 msgid "This is generally the name of a financial institution\n"
 "where the account is held. For example: 'ABC Bank'."
 msgstr "Bu genellikle hesabın bulunduğu bir finans\n"
 "kuruluşu adıdır. Örneğin 'Finansbank'."
 
-#: wizard_newaccount.cpp:125
+#: wizard_newaccount.cpp:131
 msgid "Type of Account"
 msgstr "Hesap Türü"
 
-#: wizard_newaccount.cpp:129
+#: wizard_newaccount.cpp:135
 msgid "Select the type of account you want to create:"
 msgstr "Oluşturmak istediğiniz hesabın türünü belirtin:"
 
-#: wizard_newaccount.cpp:130
+#: wizard_newaccount.cpp:136
 msgid "General bank accounts cover a wide variety of account\n"
 "types like Checking, Savings and Credit card type accounts."
 msgstr ""
 
-#: wizard_newaccount.cpp:135
+#: wizard_newaccount.cpp:141
 msgid "Investment accounts are specialized accounts that only\n"
 "have stock/mutual fund investments associated with them."
 msgstr "Yatırım hesapları kendileriyle ilişkilendirilmiş hisse senedi,\n"
 "yatırım fonları bulunan özelleştirilmiş hesaplardır."
 
-#: wizard_newaccount.cpp:140
+#: wizard_newaccount.cpp:146
 msgid "Term accounts are specialized bank accounts. Intended for asset\n"
 "type accounts such as Term Deposits and Bonds. These accounts\n"
 "can have regular money coming in and out, being outside the\n"
@@ -6744,11 +6734,11 @@ msgstr "Vadeli hesaplar özel banka hesaplarıdır. Sözedilen örneğin vadeli\
 "genel gelir akışı dışındayken düzenli para giriş ve çıkışları\n"
 "olabilir."
 
-#: wizard_newaccount.cpp:156
+#: wizard_newaccount.cpp:162
 msgid "Base Account Currency Not set."
 msgstr "Temel Hesap Para Birimi ayarlanmamış."
 
-#: wizard_newaccount.cpp:157
+#: wizard_newaccount.cpp:163
 msgid "Set that first using Tools->Options menu and then add a new account."
 msgstr "Araçlar -> Seçenekler menüsünü kullanarak önce onu ayarlayın ve sonra yeni bir hesap ekleyin."
 
