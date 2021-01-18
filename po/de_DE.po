@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-01-18 01:33+0300\n"
-"PO-Revision-Date: 2021-01-17 22:49\n"
+"PO-Revision-Date: 2021-01-18 15:00\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -3670,7 +3670,8 @@ msgstr "Soll die ausgewählte Buchung wirklich gelöscht werden?"
 #, c-format
 msgid "Locked transaction to date: %s\n\n"
 "Reconciled transactions."
-msgstr ""
+msgstr "Transaktion bis zum Datum gesperrt: %s\n\n"
+"Transaktionen ausgeglichen."
 
 #: mmcheckingpanel.cpp:1606 transdialog.cpp:713 transdialog.cpp:746
 msgid "MMEX Transaction Check"
@@ -5378,7 +5379,7 @@ msgstr "Symbolgröße"
 
 #: optionsettingsview.cpp:99
 msgid "Category delimiter"
-msgstr ""
+msgstr "Kategorie-Trennzeichen"
 
 #: optionsettingsview.cpp:114
 msgid "View Budgets as Financial Years"
