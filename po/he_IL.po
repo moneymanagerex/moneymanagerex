@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-01-18 01:33+0300\n"
-"PO-Revision-Date: 2021-01-17 22:49\n"
+"PO-Revision-Date: 2021-01-18 13:35\n"
 "Last-Translator: \n"
 "Language-Team: Hebrew\n"
 "MIME-Version: 1.0\n"
@@ -229,7 +229,7 @@ msgstr "מסגרת אשראי:"
 
 #: accountdialog.cpp:270
 msgid "Credit limit for the Account. Zero to disable"
-msgstr "יתרת אשראי מזערית. אָפֵס כדי להשבית"
+msgstr "יתרת אשראי מזערית לחשבון. אָפֵס כדי להשבית"
 
 #: accountdialog.cpp:273
 msgid "Interest Rate:"
@@ -978,7 +978,7 @@ msgstr "סוג-אב"
 #: billsdepositsdialog.cpp:594 billsdepositsdialog.cpp:1427 transdialog.cpp:393
 #: transdialog.cpp:1017 usertransactionpanel.cpp:189
 msgid "Select Category"
-msgstr "בחירת קטגוריה"
+msgstr "בחירת סוג-אב"
 
 #: billsdepositsdialog.cpp:603 transdialog.cpp:1275
 msgid "Specify any associated check number or transaction number"
@@ -1096,7 +1096,7 @@ msgstr "בחירה באחד מהבאים:"
 #: billsdepositsdialog.cpp:1395 transdialog.cpp:1235
 #: usertransactionpanel.cpp:191
 msgid "Specify the category for this transaction"
-msgstr "בחירת קטגוריה עבור תנועה זו"
+msgstr "בחירת סוג-אב עבור תנועה זו"
 
 #: billsdepositsdialog.cpp:1417 categdialog.cpp:118
 #: import_export/qif_export.cpp:132 mmframereport.cpp:134 transdialog.cpp:381
@@ -1458,7 +1458,7 @@ msgstr "שנת תקציב:"
 #: budgetyearentrydialog.cpp:78
 msgid "Specify the required year.\n"
 "Use Spin buttons to increase or decrease the year."
-msgstr "הזנת השנה הנדרשת.\n"
+msgstr "הגדרת השנה הנדרשת.\n"
 "ניתן להשתמש בלחצני גלילה כדי לשנות את השנה."
 
 #: budgetyearentrydialog.cpp:85
@@ -1468,7 +1468,7 @@ msgstr "חודש תקציב:"
 #: budgetyearentrydialog.cpp:94
 msgid "Specify the required month.\n"
 "Use Spin buttons to increase or decrease the month."
-msgstr "הזנת החודש הנדרש.\n"
+msgstr "הגדרת החודש הנדרש.\n"
 "ניתן להשתמש בלחצני החצים כדי לשנות חודש."
 
 #: budgetyearentrydialog.cpp:101
@@ -2195,7 +2195,7 @@ msgstr "תוכן קובץ שגוי, נא ליצור קשר עם תמיכת MMEX!
 #: dbupgrade.cpp:255
 msgid "Send this log to MMEX support team:\n"
 "press OK to save to file or Cancel to exit"
-msgstr "נא לשלוח קובץ יומן זה לצוות התמיכת MMEX: נא להקיש על 'אישור' כדי לשמור את הקובץ או על 'ביטול' כדי לצאת"
+msgstr "נא לשלוח קובץ יומן זה לצוות תמיכת MMEX: נא להקיש על 'אישור' כדי לשמור את הקובץ או על 'ביטול' כדי לצאת"
 
 #: dbupgrade.cpp:256 dbupgrade.cpp:299
 msgid "MMEX debug"
@@ -2741,7 +2741,7 @@ msgstr "מספר תנועות שנקראו מקובץ QIF: %zu ב %lld מילי 
 
 #: import_export/qif_import_gui.cpp:466
 msgid "Press OK Button to continue"
-msgstr "לחץ על לחצן 'אישור' כדי להמשיך"
+msgstr "לחיצה על לחצן 'אישור' כדי להמשיך"
 
 #: import_export/qif_import_gui.cpp:665 import_export/qif_import_gui.cpp:694
 #: import_export/qif_import_gui.cpp:711
@@ -3353,7 +3353,7 @@ msgstr "בחירה יכולה להתבצע על ידי שימוש בלחצן ת�
 
 #: mmSimpleDialogs.cpp:271
 msgid "Activating the button will provide a selection box where the account can be selected."
-msgstr "לחיצה על הלחצן תפתח תיבת בחירה ממנה ניתן לבחור את החשבון."
+msgstr "אפשור הלחצן יפתח תיבת בחירה ממנה ניתן לבחור את החשבון."
 
 #: mmSimpleDialogs.cpp:280 mmcombobox.h:78
 msgid "Invalid Payee"
@@ -3445,11 +3445,11 @@ msgstr "עצה: נא להגדיר שערי מט\"ח למטבעות, במידה �
 
 #: mmTips.h:34
 msgid "Organize Categories Dialog Tip: Pressing the h key will cycle through all categories starting with the letter h"
-msgstr "עצה לתיבת דו-שיח ניהול קטגוריות: הקשה על המקש 'י', תעביר את הסמן לקטגוריה הראשונה שמתחילה באות 'י'"
+msgstr "עצה לתיבת דו-שיח ניהול סוגי-אב: לחיצה על המקש 'י', תגלול את כל סוגי-האב החל מהאות 'י'"
 
 #: mmTips.h:35
 msgid "Organize Categories Dialog Tip: Pressing 2 key combination will cycle through all categories starting with that key combination. Example: Pressing ho will select Homeneeds, Home, House Tax, etc..."
-msgstr "עצה לתיבת דו-שיח ניהול קטגוריות: הקשה על צרוף של שתי אותיות בו זמנית תציב את הסמן על הקטגוריה שמתחילה באותיות אלו. לדוגמה: הקשה על 'ד' ו- 'י' בו זמנית יציבו את הסמן על קטגוריה 'דיור', וכו'..."
+msgstr "עצה לתיבת דו-שיח ניהול סוגי-אב: הקשה על צרוף של שתי אותיות בו זמנית תציב את הסמן על סוב-האב שמתחיל באותיות אלו. לדוגמה: הקשה על 'ד' ו- 'י' בו זמנית יציבו את הסמן על סוג-אב 'דיור', וכו'..."
 
 #: mmTips.h:37
 msgid "Tip to get out of debt: Pay yourself 10 percentage first. Put this into an account that is hard to touch. Make sure it is a chore to get the money out (you have to drive to the bank), so you will only tap it consciously and for major expenses."
@@ -3700,8 +3700,8 @@ msgstr "תנועות מחזוריות נשמרו."
 #: mmcombobox.h:79
 msgid "Please type in an exiting payee name,\n"
 "or make a selection using the dropdown button."
-msgstr "נא הזנת שם מוטב קיים ,\n"
-"או בחירת באמצעות לחצן תיבת בחירה."
+msgstr "נא להזין שם מוטב קיים,\n"
+"או בחירה באמצעות לחצן תיבת בחירה."
 
 #: mmcustomdata.cpp:63
 msgid "Custom fields"
@@ -4306,11 +4306,11 @@ msgstr "דווח למתכנתים על שגיאה בישום"
 
 #: mmframe.cpp:1632
 msgid "&Show App Start Dialog"
-msgstr "&הצגת דו שיח אתחול ישומון"
+msgstr "&הצגת דו-שיח אתחול ישומון"
 
 #: mmframe.cpp:1632
 msgid "App Start Dialog"
-msgstr "דו שיח אתחול ישומון"
+msgstr "דו-שיח אתחול ישומון"
 
 #: mmframe.cpp:1637
 msgid "Check for &Updates"
@@ -5136,7 +5136,7 @@ msgstr "הגדרת מטבע ברירת המחדל למסד הנתונים תיב
 
 #: optionsettingsgeneral.cpp:92
 msgid "Right click and select 'Set as Base Currency' in 'Currency Dialog'"
-msgstr "לחץ לחיצה ימנית על מטבע ובחר 'הגדרה כמטבע הבסיס'"
+msgstr "הקשה ימנית ובחירת 'הגדרה כמטבע הבסיס' בדו-שיח 'מטבע'"
 
 #: optionsettingsgeneral.cpp:97
 msgid "Use currency history"
@@ -6647,7 +6647,7 @@ msgstr "יבוא תנועות מיישומון מרשתת"
 
 #: webappdialog.cpp:100
 msgid "Network status (click to refresh)"
-msgstr "מצב רשת (נא להקליק לרענון)"
+msgstr "מצב רשת (נא להקיש לרענון)"
 
 #: webappdialog.cpp:132
 msgid "Checking for new transactions..."
