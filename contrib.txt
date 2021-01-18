@@ -1,10 +1,11 @@
 ﻿##Active Developers
 Nikolay          [Nikolay]
+Whalley          [whall3y]
+Gabriele         [gabriele-v]
 Lisheng          [guanlisheng]
 James            [siena123]
 Stefano          [stef145g]
 Pat              [omalleypat]
-Gabriele         [gabriele-v]
 
 =======================================
 ##Translations
@@ -29,9 +30,9 @@ French
 -- drambeau, Ben, Ghislain Baudichaud
 -- phira
 German
+-- Renato
 -- Schrempfi, goe, STiGMaTa_ch,
 -- Kai Kajus Noack
--- Renato
 Greek
 -- Panagiotis Pentzeridis
 -- Panagiotis Sapikas
@@ -112,30 +113,48 @@ Greg Chapman
 
 ---------------------------------------
 ##Sponsors
+2021
+Michael Ellis
+Michel SERIN
+Luisa Guglielmetti
+Brian Crow
+
 2020
-Brueckner Rene
+BRUECKNER RENE
 Digital IT Consultant
 Adam Gallagher
 Dave Wetzler
+Dorothy Dean
+Gary Roush
 Neil Vincent
 Richard Watts
+Vincent Sinha
 Ruedi Kehl
+Michael Sloan
 Frederick Hansen
+Michel GRANDCOLAS
 Michael Ellis
+Martin Mannarella
+Gisele Turcotte
+Raymond D Mangrum
 Thomas Smith
 Carlo Cini
 Claude VINCENT
 Ehab Fanous
 Gregory Majewski
 Hubert Behmer
+John van Someren
 LeRoy Strohl
 MARCO CANEPA
-Michael Sloan
+Tim Davies
 Kurt Tremp
 Michael Mileo
 Roger Gimbrere
-Francesco Orabona
+Brian Crow
+Eric PINCHON
+Francesco orabona
 Jan Salomons
+SERIN MICHEL
 John Taylor
 Christian BELAIR
 Betsy & Chuck
@@ -143,19 +162,28 @@ Dennis Smith
 EMMANOUIL MASTROPETROS
 Eliezer Gomez Gomez
 James Pearsall
+Jean-Benoît cerino
+John Bax
+John David Bowman
 John Weaving
 Kieron McGeever
+Marcella Day
+Maros Chromcik
 Michael Wraight
 Officer Young
+Renaud Cadet
 Sergio Zanatta
 Andreas Mueller
-Brian Crow
-Sasinidu Fonseka
+Peter Pfister
+Michael Lee
+Ricardo Talarico
 Glenn Fowler
 Joan Warren
+Alan Millar
 Eric Laval
 Kostas Fatolas
-Roberto Pasqui
+Roberto pasqui
+Sasinidu Fonseka
 Gerald Mead
 
 2019
