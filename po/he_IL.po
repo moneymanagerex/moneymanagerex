@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-01-18 01:33+0300\n"
-"PO-Revision-Date: 2021-01-17 22:49\n"
+"PO-Revision-Date: 2021-01-18 12:48\n"
 "Last-Translator: \n"
 "Language-Team: Hebrew\n"
 "MIME-Version: 1.0\n"
@@ -2195,7 +2195,7 @@ msgstr "תוכן קובץ שגוי, נא ליצור קשר עם תמיכת MMEX!
 #: dbupgrade.cpp:255
 msgid "Send this log to MMEX support team:\n"
 "press OK to save to file or Cancel to exit"
-msgstr "נא לשלוח קובץ יומן זה לצוות התמיכת MMEX: נא להקיש על 'אישור' כדי לשמור את הקובץ או על 'ביטול' כדי לצאת"
+msgstr "נא לשלוח קובץ יומן זה לצוות תמיכת MMEX: נא להקיש על 'אישור' כדי לשמור את הקובץ או על 'ביטול' כדי לצאת"
 
 #: dbupgrade.cpp:256 dbupgrade.cpp:299
 msgid "MMEX debug"
@@ -3353,7 +3353,7 @@ msgstr "בחירה יכולה להתבצע על ידי שימוש בלחצן ת�
 
 #: mmSimpleDialogs.cpp:271
 msgid "Activating the button will provide a selection box where the account can be selected."
-msgstr "לחיצה על הלחצן תפתח תיבת בחירה ממנה ניתן לבחור את החשבון."
+msgstr "אפשור הלחצן יפתח תיבת בחירה ממנה ניתן לבחור את החשבון."
 
 #: mmSimpleDialogs.cpp:280 mmcombobox.h:78
 msgid "Invalid Payee"
@@ -3445,7 +3445,7 @@ msgstr "עצה: נא להגדיר שערי מט\"ח למטבעות, במידה �
 
 #: mmTips.h:34
 msgid "Organize Categories Dialog Tip: Pressing the h key will cycle through all categories starting with the letter h"
-msgstr "עצה לתיבת דו-שיח ניהול קטגוריות: הקשה על המקש 'י', תעביר את הסמן לקטגוריה הראשונה שמתחילה באות 'י'"
+msgstr "עצה לתיבת דו-שיח ניהול סוגי-אב: לחיצה על המקש 'י', תגלול את כל סוגי-האב החל מהאות 'י'"
 
 #: mmTips.h:35
 msgid "Organize Categories Dialog Tip: Pressing 2 key combination will cycle through all categories starting with that key combination. Example: Pressing ho will select Homeneeds, Home, House Tax, etc..."
@@ -5136,7 +5136,7 @@ msgstr "הגדרת מטבע ברירת המחדל למסד הנתונים תיב
 
 #: optionsettingsgeneral.cpp:92
 msgid "Right click and select 'Set as Base Currency' in 'Currency Dialog'"
-msgstr "לחץ לחיצה ימנית על מטבע ובחר 'הגדרה כמטבע הבסיס'"
+msgstr "הקשה ימנית ובחירת 'הגדרה כמטבע הבסיס' בדו שיח 'מטבע'"
 
 #: optionsettingsgeneral.cpp:97
 msgid "Use currency history"
@@ -6647,7 +6647,7 @@ msgstr "יבוא תנועות מיישומון מרשתת"
 
 #: webappdialog.cpp:100
 msgid "Network status (click to refresh)"
-msgstr "מצב רשת (נא להקליק לרענון)"
+msgstr "מצב רשת (נא להקיש לרענון)"
 
 #: webappdialog.cpp:132
 msgid "Checking for new transactions..."
