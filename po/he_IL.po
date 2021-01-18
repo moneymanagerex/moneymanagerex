@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-01-18 01:33+0300\n"
-"PO-Revision-Date: 2021-01-18 13:00\n"
+"PO-Revision-Date: 2021-01-18 13:35\n"
 "Last-Translator: \n"
 "Language-Team: Hebrew\n"
 "MIME-Version: 1.0\n"
@@ -4306,11 +4306,11 @@ msgstr "דווח למתכנתים על שגיאה בישום"
 
 #: mmframe.cpp:1632
 msgid "&Show App Start Dialog"
-msgstr "&הצגת דו שיח אתחול ישומון"
+msgstr "&הצגת דו-שיח אתחול ישומון"
 
 #: mmframe.cpp:1632
 msgid "App Start Dialog"
-msgstr "דו שיח אתחול ישומון"
+msgstr "דו-שיח אתחול ישומון"
 
 #: mmframe.cpp:1637
 msgid "Check for &Updates"
@@ -5136,7 +5136,7 @@ msgstr "הגדרת מטבע ברירת המחדל למסד הנתונים תיב
 
 #: optionsettingsgeneral.cpp:92
 msgid "Right click and select 'Set as Base Currency' in 'Currency Dialog'"
-msgstr "הקשה ימנית ובחירת' הגדרה כמטבע הבסיס' בדו שיח 'מטבע'"
+msgstr "הקשה ימנית ובחירת 'הגדרה כמטבע הבסיס' בדו-שיח 'מטבע'"
 
 #: optionsettingsgeneral.cpp:97
 msgid "Use currency history"
