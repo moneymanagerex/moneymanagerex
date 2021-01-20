@@ -34,8 +34,16 @@ mmAboutDialog::mmAboutDialog()
 {
 }
 
-mmAboutDialog::mmAboutDialog(wxWindow* parent, int tabToOpenNo, const wxString &name)
-    : aboutText_(nullptr)
+mmAboutDialog::~mmAboutDialog()
+{
+    bool v = m_send_data->GetValue();
+    Option::instance().SendUsageStatistics(v);
+}
+
+
+mmAboutDialog::mmAboutDialog(wxWindow* parent, int tabToOpenNo)
+    : m_send_data(nullptr)
+    , aboutText_(nullptr)
     , authorsText_(nullptr)
     , sponsorsText_(nullptr)
     , licenseText_(nullptr)
@@ -44,18 +52,17 @@ mmAboutDialog::mmAboutDialog(wxWindow* parent, int tabToOpenNo, const wxString &
     const wxString caption = (tabToOpenNo == 4)
         ? _("License agreement")
         : wxString::Format("%s - %s", ::mmex::getProgramName(), ::mmex::getTitleProgramVersion());
-    createWindow(parent, wxID_ANY, caption, wxDefaultPosition
-        , wxDefaultSize, wxCAPTION | wxRESIZE_BORDER | wxCLOSE_BOX, tabToOpenNo, name);
+    createWindow(parent, caption, tabToOpenNo);
     SetMinClientSize(wxSize(300, 400));
 }
 
 bool mmAboutDialog::createWindow(wxWindow* parent
-    , wxWindowID id
     , const wxString& caption
+    , int tabToOpenNo
+    , wxWindowID id
     , const wxPoint& pos
     , const wxSize& size
     , long style
-    , int tabToOpenNo
     , const wxString &name
 )
 {
@@ -197,10 +204,28 @@ void mmAboutDialog::createControls(int tabToOpenNo)
 
     itemBoxSizer->Add(aboutNotebook, g_flagsExpand);
 
-    wxButton* buttonOk = new wxButton(this, wxID_OK, _("&OK "));
+    //
+    wxPanel* buttonPanel = new wxPanel(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
+    itemBoxSizer->Add(buttonPanel, wxSizerFlags(g_flagsV).Center());
+    wxBoxSizer* buttonPanelSizer = new wxBoxSizer(wxVERTICAL);
+    buttonPanel->SetSizer(buttonPanelSizer);
+
+    m_send_data = new wxCheckBox(buttonPanel, wxID_ANY
+        , _("Send anonymous statistics usage data"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
+    m_send_data->SetValue(Option::instance().SendUsageStatistics());
+    m_send_data->SetToolTip(_("Enable to help us sending anonymous data about MMEX usage."));
+
+    buttonPanelSizer->Add(m_send_data, g_flagsV);
+
+    if (tabToOpenNo == 4)
+    {
+        m_send_data->Hide();
+    }
+
+    wxButton* buttonOk = new wxButton(buttonPanel, wxID_OK, _("&OK "));
     buttonOk->SetDefault();
     buttonOk->SetFocus();
-    itemBoxSizer->Add(buttonOk, g_flagsCenter);
+    buttonPanelSizer->Add(buttonOk, g_flagsCenter);
 
     aboutNotebook->ChangeSelection(tabToOpenNo);
 
@@ -210,6 +235,6 @@ void mmAboutDialog::createControls(int tabToOpenNo)
 void mmAboutDialog::handleLink(wxHtmlLinkEvent& event)
 {
     wxHtmlLinkInfo linkInfo = event.GetLinkInfo();
-    wxString url = linkInfo.GetHref();
+    const wxString url = linkInfo.GetHref();
     wxLaunchDefaultBrowser(url);
 }
