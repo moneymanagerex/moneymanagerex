@@ -32,22 +32,24 @@ class mmAboutDialog : public wxDialog
 
 public:
     mmAboutDialog();
-    mmAboutDialog(wxWindow* parent, int tabToOpenNo, const wxString &name = "mmAboutDialog");
+    ~mmAboutDialog();
+    mmAboutDialog(wxWindow* parent, int tabToOpenNo);
 
 private:
     bool createWindow(wxWindow* parent
-        , wxWindowID id
         , const wxString& caption
-        , const wxPoint& pos
-        , const wxSize& size
-        , long style
         , int tabToOpenNo
-        , const wxString &name
+        , wxWindowID id = wxID_ANY
+        , const wxPoint& pos = wxDefaultPosition
+        , const wxSize& size = wxDefaultSize
+        , long style = wxCAPTION | wxRESIZE_BORDER | wxCLOSE_BOX
+        , const wxString &name = "mmAboutDialog"
         );
     void createControls(int tabToOpenNo);
     void initControls();
     void handleLink(wxHtmlLinkEvent& event);
 
+    wxCheckBox* m_send_data;
     wxHtmlWindow* aboutText_;
     wxHtmlWindow* authorsText_;
     wxHtmlWindow* sponsorsText_;
