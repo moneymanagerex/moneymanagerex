@@ -149,7 +149,7 @@ wxString mmReportCategoryExpenses::getHTMLText()
             hb.addDivContainer("shadow"); 
             {
                 gdExpenses.title = _("Expenses");
-                gdExpenses.type = GraphData::DONUT;
+                gdExpenses.type = GraphData::PIE;
                 hb.addChart(gdExpenses);
             }
             hb.endDiv();
@@ -159,7 +159,7 @@ wxString mmReportCategoryExpenses::getHTMLText()
             hb.addDivContainer("shadow");  
             {
                 gdIncome.title = _("Income"); 
-                gdIncome.type = GraphData::DONUT;
+                gdIncome.type = GraphData::PIE;
                 hb.addChart(gdIncome);
             }
             hb.endDiv();

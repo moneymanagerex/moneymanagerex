@@ -106,31 +106,29 @@ wxString mmReportIncomeExpenses::getHTMLText()
         hb.endDiv();
     }
 
-    hb.addDivContainer("shadow"); // Table Container
-    hb.startTable();
+    hb.addDivContainer("shadow");
     {
-        hb.startThead();
+        hb.startTable();
         {
-            hb.startTableRow();
-            hb.addTableHeaderCell(_("Type"));
-            hb.addTableHeaderCell(_("Amount"), true);
-            hb.endTableRow();
+            hb.startThead();
+            {
+                hb.startTableRow();
+                    hb.addTableHeaderCell(_("Type"));
+                    hb.addTableHeaderCell(_("Amount"), true);
+                hb.endTableRow();
+            }
             hb.endThead();
+            hb.startTbody();
+            {
+                hb.addTableRow(_("Income:"), income_expenses_pair.first);
+                hb.addTableRow(_("Expenses:"), income_expenses_pair.second);
+                hb.addTotalRow(_("Difference:"), 2, income_expenses_pair.first - income_expenses_pair.second);
+            }
+            hb.endTbody();
         }
-        hb.endThead();
-        hb.startTbody();
-        {
-            hb.addTableRow(_("Income:"), income_expenses_pair.first);
-            hb.addTableRow(_("Expenses:"), income_expenses_pair.second);
-            hb.addTotalRow(_("Difference:"), 2, income_expenses_pair.first - income_expenses_pair.second);
-        }
-        hb.endTbody();
+        hb.endTable();
     }
-    hb.endTable();
-    
-    hb.endDiv();// Table container
-    hb.endDiv(); // Report Container
-    hb.endDiv(); // Main container
+    hb.endDiv(); 
     hb.end();
 
     wxLogDebug("======= mmReportIncomeExpenses:getHTMLText =======");

@@ -138,7 +138,7 @@ wxString mmReportMyUsage::getHTMLText()
         {
             hb.addDivContainer("shadow");
             {
-                gd.type = GraphData::DONUT;
+                gd.type = GraphData::PIE;
                 hb.addChart(gd);
             }
             hb.endDiv();
