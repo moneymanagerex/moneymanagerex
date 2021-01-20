@@ -217,7 +217,7 @@ void mmAboutDialog::createControls(int tabToOpenNo)
 
     buttonPanelSizer->Add(m_send_data, g_flagsV);
 
-    if (tabToOpenNo == 4)
+    if (tabToOpenNo != 4)
     {
         m_send_data->Hide();
     }
