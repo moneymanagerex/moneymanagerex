@@ -20,6 +20,7 @@
 #include "constants.h"
 #include "paths.h"
 #include "reports/htmlbuilder.h"
+#include "model/allmodel.h"
 #include <wx/statline.h>
 #include <wx/version.h>
 #include <wx/regex.h>
@@ -212,15 +213,12 @@ void mmAboutDialog::createControls(int tabToOpenNo)
 
     m_send_data = new wxCheckBox(buttonPanel, wxID_ANY
         , _("Send anonymous statistics usage data"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
-    m_send_data->SetValue(Option::instance().SendUsageStatistics());
     m_send_data->SetToolTip(_("Enable to help us sending anonymous data about MMEX usage."));
 
     buttonPanelSizer->Add(m_send_data, g_flagsV);
 
-    if (tabToOpenNo != 4)
-    {
-        m_send_data->Hide();
-    }
+    m_send_data->Show(tabToOpenNo == 4);
+    m_send_data->SetValue(Option::instance().SendUsageStatistics());
 
     wxButton* buttonOk = new wxButton(buttonPanel, wxID_OK, _("&OK "));
     buttonOk->SetDefault();
