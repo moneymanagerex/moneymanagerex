@@ -82,7 +82,7 @@ void  mmReportPayeeExpenses::RefreshData()
     for (const auto& entry : data_) {
         ValuePair vt;
         vt.label = entry.name;
-        vt.amount = fabs(entry.incomes + entry.expenses);
+        vt.amount = entry.incomes + entry.expenses;
         valueList_.push_back(vt);
     }
 
@@ -125,7 +125,7 @@ wxString mmReportPayeeExpenses::getHTMLText()
         {
             hb.addDivContainer("shadow");
             {
-                gd.type = GraphData::DONUT;
+                gd.type = GraphData::PIE;
                 hb.addChart(gd);
             }
             hb.endDiv();

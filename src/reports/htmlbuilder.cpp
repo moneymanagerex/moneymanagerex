@@ -442,23 +442,11 @@ void mmHTMLBuilder::endTableCell()
 
 void mmHTMLBuilder::addChart(const GraphData& gd)
 {
-    static const wxString html_parts = R"(
-<div id='%s'></div>
-<script>
-    var options = %s;
-    var chart = new ApexCharts(document.querySelector("#%s"), options);
-    chart.render();
-</script>
-)";
-
     int precision = Model_Currency::precision(Model_Currency::GetBaseCurrency());
     int round = pow(10, precision);
-    wxString divid = wxString::Format("apex-%i", rand()); // Generate unique identifier for each graph
-
-    Document jsonDoc;
-    jsonDoc.SetObject();
-    Document::AllocatorType& allocator = jsonDoc.GetAllocator();
-
+    wxString htmlChart, htmlPieData;
+    wxString divid = wxString::Format("apex%i", rand()); // Generate unique identifier for each graph
+ 
     // Chart Type and Series type
     wxString gtype;
     wxString gSeriesType = "category";
@@ -484,144 +472,79 @@ void mmHTMLBuilder::addChart(const GraphData& gd)
             gtype = "radar";
     };
 
-    Value chartValue; chartValue.SetObject();
-        Value chartType; chartType.SetString(gtype.c_str(), allocator);
-        chartValue.AddMember("type", chartType, allocator);
-        Value toolbarValue; toolbarValue.SetObject();
-                Value toolbarToolsValue; toolbarToolsValue.SetObject();
-                toolbarToolsValue.AddMember("download", false, allocator);
-                toolbarValue.AddMember("tools", toolbarToolsValue, allocator);
-        chartValue.AddMember("toolbar", toolbarValue, allocator);  
-        chartValue.AddMember("width", "95%", allocator);  
-    jsonDoc.AddMember("chart", chartValue, allocator);
+    htmlChart += wxString::Format("chart: { type: '%s', toolbar: { tools: { download: false } }, width: '95%%' }", gtype);
+    htmlChart += wxString::Format(", title: { text: '%s'}", gd.title);
 
-    // Title
-    Value titleValue; titleValue.SetObject();
-        Value nameType; nameType.SetString(gd.title.c_str(), allocator);
-        titleValue.AddMember("text", nameType, allocator);
-    jsonDoc.AddMember("title", titleValue, allocator);
-
-    // Tooltip settings
-    Value tooltipValue; tooltipValue.SetObject();
-        tooltipValue.AddMember("theme", "dark", allocator);
-    jsonDoc.AddMember("tooltip", tooltipValue, allocator);
-   
-    // Plot options
+    wxString toolTipFormatter;
     if (gd.type == GraphData::PIE || gd.type == GraphData::DONUT) 
     {
-        Value plotOptionsValue; plotOptionsValue.SetObject(); 
-            Value pieValue; pieValue.SetObject();
-                Value donutValue; donutValue.SetObject();
-                    Value labelsValue; labelsValue.SetObject();
-                        Value nameValue; nameValue.SetObject();
-                        nameValue.AddMember("show", true, allocator);
-                        nameValue.AddMember("color", "black", allocator);
-                        Value valueValue; valueValue.SetObject();
-                        valueValue.AddMember("show", true, allocator);
-                        valueValue.AddMember("color", "black", allocator);
-                    labelsValue.AddMember("name", nameValue, allocator);
-                    labelsValue.AddMember("value", valueValue, allocator);
-                    labelsValue.AddMember("show", true, allocator);
-                donutValue.AddMember("labels", labelsValue, allocator);
-                donutValue.AddMember("size", "60%", allocator);
-                donutValue.AddMember("show", true, allocator);
-            pieValue.AddMember("donut",donutValue, allocator);
-            pieValue.AddMember("customScale","0.7", allocator);
-        plotOptionsValue.AddMember("pie",pieValue, allocator);
-        jsonDoc.AddMember("plotOptions", plotOptionsValue, allocator);
+        htmlChart += ", plotOptions: { pie: { customScale: 0.8 } }";
+
+        const wxString pieFunctionToolTip = wxString::Format("function(value, opts) { return pie%s[opts.dataPointIndex] }", divid);   
+        toolTipFormatter = wxString::Format(", y: { formatter: %s }", pieFunctionToolTip); 
     }
-    
+
+    htmlChart += wxString::Format(", tooltip: { theme: 'dark' %s }", toolTipFormatter);
+
     // Turn off data labels for bar charts as it gets too cluttered
-    if (gd.type == GraphData::BAR) 
-    {
-        Value dataLabelsValue; dataLabelsValue.SetObject();
-        dataLabelsValue.AddMember("enabled", false, allocator);
-        jsonDoc.AddMember("dataLabels", dataLabelsValue, allocator);
-    }
- 
+    if (gd.type == GraphData::BAR)
+        htmlChart += ", dataLabels: { enabled: false }";
+    
     // If colors are specified then use these in prefernce to standard pallete
     if (!gd.colors.empty())
     {
-        Value colorsArray(kArrayType);
+        htmlChart += ", colors: ";
+        bool first = true;
         for (const auto& entry : gd.colors)
         {
-            Value color_str;
-            color_str.SetString(entry.GetAsString(wxC2S_HTML_SYNTAX).c_str(), allocator);
-            colorsArray.PushBack(color_str, allocator);
+            htmlChart += wxString::Format("%s'%s'", first ? "[":",", entry.GetAsString(wxC2S_HTML_SYNTAX));
+            first = false;
         }
-        jsonDoc.AddMember("colors", colorsArray, allocator);    
+        htmlChart += "]";
+    } 
+
+    wxString categories;
+    bool first = true;
+    for (const auto& entry : gd.labels) 
+    {
+        wxString label = entry;
+        label.Replace("'","\\'"); // Need to escape the quotes!
+        categories += wxString::Format("%s'%s'", first ? "":",", label);
+        first = false; 
     }
 
-    // X-Axis
-    Value categoriesArray(kArrayType);
-    for (const auto& entry : gd.labels)
-    {
-        Value label_str;
-        label_str.SetString(entry.c_str(), allocator);
-        categoriesArray.PushBack(label_str, allocator);
-    }
-    
     // Pie/donut charts just have a single series / data
     if (gd.type == GraphData::PIE || gd.type == GraphData::DONUT) 
+       htmlChart += wxString::Format(",labels: [%s]", categories);      
+    else
+        htmlChart += wxString::Format(", xaxis: { type: '%s', categories: [%s], labels: { hideOverlappingLabels: true } }", gSeriesType, categories);
+    
+    wxString seriesList, pieEntries;
+    bool firstList = true;
+    for (const auto& entry : gd.series)
     {
-       jsonDoc.AddMember("labels", categoriesArray, allocator);      
-    } else
-    {
-        Value xaxisValue; xaxisValue.SetObject();
-            Value type_str;
-            type_str.SetString(gSeriesType.c_str(), allocator);
-            xaxisValue.AddMember("type", type_str, allocator);       
-            xaxisValue.AddMember("categories", categoriesArray, allocator);
-            Value labelsValue; labelsValue.SetObject();
-                labelsValue.AddMember("hideOverlappingLabels", true, allocator);
-            xaxisValue.AddMember("labels", labelsValue, allocator);
-        jsonDoc.AddMember("xaxis", xaxisValue, allocator);
-    }
-  
-    // Series - Pie/donut charts just have a single series / data
-    if (gd.type == GraphData::PIE || gd.type == GraphData::DONUT) 
-    {
-        Value seriesArray(kArrayType);
-        for (const auto& entry : gd.series)
+        wxString seriesEntries;
+        bool first = true;
+        for (const auto& item : entry.values)
         {
-            for (const auto& item : entry.values)
-            {
-                double v = (floor(fabs(item) * round) / round);
-                seriesArray.PushBack(v, allocator);
-            }
+            double v = (floor(item * round) / round);
+            seriesEntries += wxString::Format("%s%f", first ? "":",", fabs(v));
+            if (gd.type == GraphData::PIE || gd.type == GraphData::DONUT)
+                pieEntries += wxString::Format("%s%f", first ? "":",", v);
+            first = false;
         }
-        jsonDoc.AddMember("series", seriesArray, allocator);
-    } else 
-    {
-        Value seriesArray(kArrayType);
-        for (const auto& entry : gd.series)
-        {
-            Value name;
-            Value seriesValue; seriesValue.SetObject();
-
-            name.SetString(entry.name.c_str(), allocator);
-            seriesValue.AddMember("name", name, allocator);
-
-            Value dataArray(kArrayType);
-            for (const auto& item : entry.values)
-            {
-                double v = (floor(fabs(item) * round) / round);
-                dataArray.PushBack(v, allocator);
-            }
-
-            seriesValue.AddMember("data", dataArray, allocator);
-            seriesArray.PushBack(seriesValue, allocator);
-        }
-        jsonDoc.AddMember("series", seriesArray, allocator);
+        if (gd.type == GraphData::PIE || gd.type == GraphData::DONUT) 
+            seriesList = seriesEntries;
+        else
+            seriesList += wxString::Format("%s{ name: '%s', data: [%s] }", firstList ? "":",", entry.name, seriesEntries);
+        firstList = false;
     }
+    htmlChart += wxString::Format(", series: [%s]", seriesList);
+    htmlPieData += wxString::Format("var pie%s = [ %s ]", divid, pieEntries);
 
-    StringBuffer strbuf;
-    Writer<StringBuffer> writer(strbuf);
-    jsonDoc.Accept(writer);
-
-    const wxString d = strbuf.GetString();
-    addText(wxString::Format(html_parts, divid, d, divid));
-}
+    addText(wxString::Format("<div id='%s'></div><script>%s; var options = { %s }; var chart = new ApexCharts(document.querySelector('#%s'), options); chart.render();</script>", 
+        divid, htmlPieData, htmlChart, divid));
+};
 
 const wxString mmHTMLBuilder::getHTMLText() const
 {
