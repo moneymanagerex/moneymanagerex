@@ -57,7 +57,7 @@ When starting and using  Money Manager EX application, we might collect ANONYMOU
 Any of the information we collect from you may be used in one of the following ways: make statistics about software usage and distribution; personalize your experience (your information helps us to better respond to your individual needs); improve our application (we continually improve our offerings based on the information and feedback we receive from you)
  
 3. Do we disclose any information to outside parties?
-We do not sell, trade, or otherwise transfer to outside parties collected information.
+Other than for the above mentioned usage statistics collection, we do not sell, trade, or otherwise transfer to outside parties.
  
 4. Disable statistics sending
 You can turn of at any moment sending of stats simply removing corresponding flag under Options->Network.
