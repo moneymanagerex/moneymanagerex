@@ -107,7 +107,7 @@ void mmAboutDialog::InitControls()
             else
                 line << "<br>\n";
 
-            if (line.StartsWith("-------------"))
+            if (line.StartsWith("------------"))
             {
                 hb.addText(data[part]);
                 hb.end();
