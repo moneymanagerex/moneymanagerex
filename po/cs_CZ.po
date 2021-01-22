@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-01-18 01:33+0300\n"
-"PO-Revision-Date: 2021-01-17 22:49\n"
+"PO-Revision-Date: 2021-01-22 15:10\n"
 "Last-Translator: \n"
 "Language-Team: Czech\n"
 "MIME-Version: 1.0\n"
@@ -3678,7 +3678,8 @@ msgstr "Opravdu si přejete odstranit vybrané  transakce?"
 #, c-format
 msgid "Locked transaction to date: %s\n\n"
 "Reconciled transactions."
-msgstr ""
+msgstr "Uzamknout transakci k datu: %s\n\n"
+"Ověřené transakce."
 
 #: mmcheckingpanel.cpp:1606 transdialog.cpp:713 transdialog.cpp:746
 msgid "MMEX Transaction Check"
@@ -5389,7 +5390,8 @@ msgstr "Velikost ikon"
 
 #: optionsettingsview.cpp:99
 msgid "Category delimiter"
-msgstr ""
+msgstr "Uzamknout transakci k datu: %s\n\n"
+"Ověřené transakce."
 
 #: optionsettingsview.cpp:114
 msgid "View Budgets as Financial Years"
