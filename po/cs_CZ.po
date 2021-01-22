@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-01-18 01:33+0300\n"
-"PO-Revision-Date: 2021-01-22 15:10\n"
+"PO-Revision-Date: 2021-01-22 15:22\n"
 "Last-Translator: \n"
 "Language-Team: Czech\n"
 "MIME-Version: 1.0\n"
@@ -5390,8 +5390,7 @@ msgstr "Velikost ikon"
 
 #: optionsettingsview.cpp:99
 msgid "Category delimiter"
-msgstr "Uzamknout transakci k datu: %s\n\n"
-"Ověřené transakce."
+msgstr "Oddělovač kategorie"
 
 #: optionsettingsview.cpp:114
 msgid "View Budgets as Financial Years"
