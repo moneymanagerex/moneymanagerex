@@ -56,6 +56,7 @@ private:
     wxTextCtrl* m_proxy_address;
     wxSpinCtrl* m_proxy_port;
     wxCheckBox* m_check_update;
+    wxCheckBox* m_check_news;
     wxChoice*   m_update_source;
 
     enum

@@ -116,6 +116,19 @@ void OptionSettingsNet::Create()
 
     usageStaticBoxSizer->Add(m_send_data, g_flagsV);
 
+     //  News updates
+    wxStaticBox* newsStaticBox = new wxStaticBox(this, wxID_STATIC, _("News"));
+    SetBoldFont(newsStaticBox);
+    wxStaticBoxSizer* newsStaticBoxSizer = new wxStaticBoxSizer(newsStaticBox, wxVERTICAL);
+    networkPanelSizer->Add(newsStaticBoxSizer, wxSizerFlags(g_flagsExpand).Proportion(0));
+
+    m_check_news = new wxCheckBox(this, wxID_ANY
+        , _("Check for latest news on startup"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
+    m_check_news->SetValue(Option::instance().CheckNewsOnStartup());
+    m_check_news->SetToolTip(_("Enable to allow news to be checked on applicaion start"));
+    
+    newsStaticBoxSizer->Add(m_check_news, g_flagsV);
+
     // Communication timeout
     wxStaticBox* timeoutStaticBox = new wxStaticBox(this, wxID_STATIC, _("Timeout"));
     SetBoldFont(timeoutStaticBox);
@@ -186,6 +199,7 @@ bool OptionSettingsNet::SaveSettings()
     Model_Infotable::instance().Set("WEBAPPGUID", WebAppGUID->GetValue());
 
     Option::instance().SendUsageStatistics(m_send_data->GetValue());
+    Option::instance().CheckNewsOnStartup(m_check_news->GetValue());
 
     Model_Setting::instance().Set("NETWORKTIMEOUT", m_network_timeout->GetValue());
 
