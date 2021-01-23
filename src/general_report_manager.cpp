@@ -405,9 +405,16 @@ void mmGeneralReportManager::createOutputTab(wxNotebook* editors_notebook, int t
     wxBoxSizer *out_sizer = new wxBoxSizer(wxVERTICAL);
     out_tab->SetSizer(out_sizer);
 
-    browser_ = wxWebView::New(out_tab, ID_WEB);
+   browser_ = wxWebView::New();
+#ifdef __WXMAC__
+    // With WKWebView handlers need to be registered before creation
     browser_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new wxWebViewFSHandler("memory")));
-    Bind(wxEVT_WEBVIEW_NEWWINDOW, &mmGeneralReportManager::OnNewWindow, this, browser_->GetId());
+    browser_->Create(out_tab, ID_WEB);
+#else
+    browser_->Create(out_tab, ID_WEB);
+   browser_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new wxWebViewFSHandler("memory")));
+#endif
+     Bind(wxEVT_WEBVIEW_NEWWINDOW, &mmGeneralReportManager::OnNewWindow, this, browser_->GetId());
 
     out_sizer->Add(browser_, g_flagsExpand);
     out_tab->SetSizerAndFit(out_sizer);
