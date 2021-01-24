@@ -96,6 +96,8 @@ void Option::LoadOptions(bool include_infotable)
     m_transStatusReconciled = Model_Setting::instance().GetIntSetting("TRANSACTION_STATUS_RECONCILED", Option::NONE);
     m_transDateDefault = Model_Setting::instance().GetIntSetting("TRANSACTION_DATE_DEFAULT", 0);
     m_usageStatistics = Model_Setting::instance().GetBoolSetting(INIDB_SEND_USAGE_STATS, true);
+    m_newsChecking = Model_Setting::instance().GetBoolSetting(INIDB_CHECK_NEWS, true);
+    
 
     m_html_font_size = Model_Setting::instance().GetIntSetting("HTMLSCALE", 100);
     m_ico_size = Model_Setting::instance().GetIntSetting("ICONSIZE", 16);
@@ -282,6 +284,17 @@ void Option::SendUsageStatistics(bool value)
 bool Option::SendUsageStatistics()
 {
     return m_usageStatistics;
+}
+
+void Option::CheckNewsOnStartup(bool value)
+{
+    m_newsChecking = value;
+    Model_Setting::instance().Set(INIDB_CHECK_NEWS, value);
+}
+
+bool Option::CheckNewsOnStartup()
+{
+    return m_newsChecking;
 }
 
 void Option::setHTMLFontSizes(int value)

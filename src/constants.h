@@ -124,6 +124,7 @@ extern const wxString INIDB_USE_CURRENCY_HISTORY;
 extern const wxString INIDB_USE_TRANSACTION_SOUND;
 extern const wxString INIDB_USE_ORG_DATE_COPYPASTE;
 extern const wxString INIDB_SEND_USAGE_STATS;
+extern const wxString INIDB_CHECK_NEWS;
 
 extern const wxString INIDB_BUDGET_FINANCIAL_YEARS;
 extern const wxString INIDB_BUDGET_INCLUDE_TRANSFERS;

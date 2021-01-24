@@ -225,8 +225,9 @@ mmGUIFrame::mmGUIFrame(mmGUIApp* app, const wxString& title
             dbpath = Model_Setting::instance().getLastDbPath();
     }
 
-    //Read news
-    getNewsRSS(websiteNewsArray_);
+    //Read news, if checking enabled
+    if (Option::instance().CheckNewsOnStartup())
+        getNewsRSS(websiteNewsArray_);
 
     /* Create the Controls for the frame */
     createMenu();

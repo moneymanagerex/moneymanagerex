@@ -90,6 +90,9 @@ public:
     void SendUsageStatistics(bool value);
     bool SendUsageStatistics();
 
+    void CheckNewsOnStartup(bool value);
+    bool CheckNewsOnStartup();
+
     void SharePrecision(int value);
     int SharePrecision();
 
@@ -135,6 +138,7 @@ private:
     int m_transStatusReconciled;
     int m_transDateDefault;
     bool m_usageStatistics;
+    bool m_newsChecking;                    //INIDB_CHECK_NEWS
     int m_sharePrecision;
 
     int m_html_font_size;
