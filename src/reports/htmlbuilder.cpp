@@ -487,9 +487,14 @@ void mmHTMLBuilder::addChart(const GraphData& gd)
     htmlChart += wxString::Format(", tooltip: { theme: 'dark' %s }", toolTipFormatter);
 
     // Turn off data labels for bar charts as it gets too cluttered
-    if (gd.type == GraphData::BAR)
+    if (gd.type == GraphData::BAR) 
+    {
         htmlChart += ", dataLabels: { enabled: false }";
-    
+    } else if (gd.type == GraphData::PIE || gd.type == GraphData::DONUT) 
+    {
+        htmlChart += ", dataLabels: { enabled: true, style: { fontSize: '16px' }, dropShadow: { enabled: false } }";   
+    }
+
     // If colors are specified then use these in prefernce to standard pallete
     if (!gd.colors.empty())
     {
