@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-01-18 01:33+0300\n"
-"PO-Revision-Date: 2021-01-18 13:35\n"
+"PO-Revision-Date: 2021-01-25 16:12\n"
 "Last-Translator: \n"
 "Language-Team: Hebrew\n"
 "MIME-Version: 1.0\n"
@@ -2378,7 +2378,7 @@ msgstr "&הרצה"
 
 #: general_report_manager.cpp:392
 msgid "Run selected report."
-msgstr "הרץ דוח נבחר."
+msgstr "הרצת הדוח שנבחר."
 
 #: general_report_manager.cpp:404
 msgid "Output"
@@ -3521,7 +3521,7 @@ msgstr "עריכת תנועה"
 
 #: mmcheckingpanel.cpp:448
 msgid "Delete selected transaction"
-msgstr "מחיקת תנועות נבחרות"
+msgstr "מחיקת תנועות שנבחרו"
 
 #: mmcheckingpanel.cpp:452
 msgid "D&uplicate "
@@ -6039,7 +6039,7 @@ msgstr "יבוא היסטורית מחירי ניירות ערך (בתבנית C
 
 #: stockdialog.cpp:340
 msgid "Delete selected Stock Price"
-msgstr "מחיקת מחירי ניר ערך נבחרים"
+msgstr "מחיקת מחירי ניר ערך שנבחרו"
 
 #: stockdialog.cpp:342
 msgid "Add Stock Price to history"
