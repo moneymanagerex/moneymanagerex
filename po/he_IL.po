@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-01-18 01:33+0300\n"
-"PO-Revision-Date: 2021-01-25 16:20\n"
+"PO-Revision-Date: 2021-01-25 16:28\n"
 "Last-Translator: \n"
 "Language-Team: Hebrew\n"
 "MIME-Version: 1.0\n"
@@ -2512,7 +2512,7 @@ msgstr "בחירת קובץ לשמירה כדוח"
 
 #: general_report_manager.cpp:1178
 msgid "Parameters:"
-msgstr "פרמטרים:"
+msgstr "משתנים:"
 
 #: import_export/parsers.cpp:46 import_export/univcsvdialog.cpp:1575
 #: mmSimpleDialogs.cpp:253
@@ -2572,7 +2572,7 @@ msgstr "יצוא JSON"
 
 #: import_export/qif_export.cpp:106
 msgid "Parameters"
-msgstr "פרמטרים"
+msgstr "משתנים"
 
 #: import_export/qif_export.cpp:111 import_export/qif_import_gui.cpp:197
 msgid "Log"
