@@ -103,13 +103,19 @@ void mmHomePagePanel::createControls()
 {
     wxBoxSizer* itemBoxSizer2 = new wxBoxSizer(wxVERTICAL);
     this->SetSizer(itemBoxSizer2);
-
-    browser_ = wxWebView::New(this, mmID_BROWSER);
+    browser_ = wxWebView::New();
+#ifdef __WXMAC__
+    // With WKWebView handlers need to be registered before creation
+    browser_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new wxWebViewFSHandler("memory")));
+    browser_->Create(this, mmID_BROWSER);
+#else
+    browser_->Create(this, mmID_BROWSER);
+    browser_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new wxWebViewFSHandler("memory")));
+#endif
 #ifndef _DEBUG
     browser_->EnableContextMenu(false);
 #endif
 
-    browser_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new wxWebViewFSHandler("memory")));
     Bind(wxEVT_WEBVIEW_NEWWINDOW, &mmHomePagePanel::OnNewWindow, this, browser_->GetId());
 
     itemBoxSizer2->Add(browser_, 1, wxGROW | wxALL, 0);

@@ -148,11 +148,18 @@ void mmUpdateWizard::CreateControls(const Document& json_releases, wxArrayInt ne
     wxBoxSizer *page1_sizer = new wxBoxSizer(wxVERTICAL);
     this->SetSizer(page1_sizer);
 
-    wxWebView* browser = wxWebView::New(this, wxID_CONTEXT_HELP, wxWebViewDefaultURLStr);
+    wxWebView* browser = wxWebView::New();
+#ifdef __WXMAC__
+    // With WKWebView handlers need to be registered before creation
+    browser->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new wxWebViewFSHandler("memory")));
+    browser->Create(this, wxID_CONTEXT_HELP, wxWebViewDefaultURLStr);
+#else
+    browser->Create(this, wxID_CONTEXT_HELP, wxWebViewDefaultURLStr);
+    browser->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new wxWebViewFSHandler("memory")));
+#endif
 #ifndef _DEBUG
     browser->EnableContextMenu(false);
 #endif
-    browser->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new wxWebViewFSHandler("memory")));
     Bind(wxEVT_WEBVIEW_NEWWINDOW, &mmUpdateWizard::OnNewWindow, this, browser->GetId());
 
     wxStaticText *tipsText = new wxStaticText(this, wxID_ANY, wxGetTranslation(TIPS[1]));
