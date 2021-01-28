@@ -533,9 +533,20 @@ void mmHTMLBuilder::addChart(const GraphData& gd)
         for (const auto& item : entry.values)
         {
             double v = (floor(item * round) / round);
-            seriesEntries += wxString::Format("%s%f", first ? "":",", fabs(v));
+
+            // avoid locale usage with standard printf functionality. Always want 00000.00 format
+            std::ostringstream oss;
+            oss.imbue(std::locale::classic());
+            
+            oss << fabs(v);
+            wxString valueAbs = oss.str();
+            oss.str(std::string());
+            oss << v;
+            wxString value = oss.str();
+
+            seriesEntries += wxString::Format("%s%s", first ? "":",", valueAbs);
             if (gd.type == GraphData::PIE || gd.type == GraphData::DONUT)
-                pieEntries += wxString::Format("%s%f", first ? "":",", v);
+                pieEntries += wxString::Format("%s%s", first ? "":",", value);
             first = false;
         }
         if (gd.type == GraphData::PIE || gd.type == GraphData::DONUT) 
