@@ -67,7 +67,7 @@ namespace tags
     static const wxString DIV_COL3 = "<div class='col-xs-3'></div>\n<div class='col-xs-6'>\n"; //25_50%
     static const wxString DIV_COL1 = "<div class='col-xs-1'></div>\n<div class='col-xs-10'>\n"; //8%
     static const wxString DIV_END = "</div>\n";
-    static const wxString TABLE_START = "<table class='table'>\n";
+    static const wxString TABLE_START = "<table class='table table-bordered'>\n";
     static const wxString SORTTABLE_START = "<table class='sortable table'>\n";
     static const wxString TABLE_END = "</table>\n";
     static const wxString THEAD_START = "<thead>\n";
@@ -76,12 +76,12 @@ namespace tags
     static const wxString TBODY_END = "</tbody>\n";
     static const wxString TFOOT_START = "<tfoot>\n";
     static const wxString TFOOT_END = "</tfoot>\n";
-    static const wxString TABLE_ROW = "  <tr>\n";
-    static const wxString TABLE_ROW_BG = "  <tr %s>\n";
-    static const wxString TOTAL_TABLE_ROW = "  <tr class='success'>\n";
-    static const wxString TABLE_ROW_END = "  </tr>\n";
-    static const wxString TABLE_CELL = "    <td%s>";
-    static const wxString MONEY_CELL = "    <td class='money'>";
+    static const wxString TABLE_ROW = "<tr>\n";
+    static const wxString TABLE_ROW_BG = "<tr %s>\n";
+    static const wxString TOTAL_TABLE_ROW = "<tr class='success'>\n";
+    static const wxString TABLE_ROW_END = "</tr>\n";
+    static const wxString TABLE_CELL = "<td%s>";
+    static const wxString MONEY_CELL = "<td class='money'>";
     static const wxString TABLE_CELL_END = "</td>\n";
     static const wxString TABLE_CELL_LINK = R"(<a href="%s" target="_blank">%s</a>)";
     static const wxString TABLE_HEADER = "<th%s>";
@@ -94,8 +94,10 @@ namespace tags
     static const wxString NBSP = "&nbsp;";
     static const wxString CENTER = "<center>\n";
     static const wxString CENTER_END = "</center>\n";
-    static const wxString TABLE_CELL_SPAN = "    <td colspan=\"%i\" >";
-    static const wxString TABLE_CELL_RIGHT = "    <td style='text-align: right'>";
+    static const wxString TABLE_CELL_SPAN = "<td colspan=\"%i\" >";
+    static const wxString TABLE_CELL_RIGHT = "<td style='text-align: right'>";
+    static const wxString SPAN = "<span %s>%s";
+    static const wxString SPAN_END = "</span>\n";
     static const wxString COLORS[] = {
         "rgba(0, 121, 234, 0.7)"
         , "rgba(238, 42, 0, 0.7)"
@@ -148,13 +150,12 @@ void mmHTMLBuilder::addReportCurrency()
     wxString base_currency_symbol;
     wxASSERT_MSG(Model_Currency::GetBaseCurrencySymbol(base_currency_symbol), "Could not find base currency symbol");
 
-    addHeader(4, wxString::Format("%s: %s", _("Currency"), base_currency_symbol));  
+    addHeader(5, wxString::Format("%s: %s", _("Currency"), base_currency_symbol));  
 }
 
 void mmHTMLBuilder::addDateNow()
 {
-    addHeader(4, today_.todays_date);
-    addLineBreak();
+    addHeader(5, today_.todays_date);
 }
 
 void mmHTMLBuilder::startTable()
@@ -226,11 +227,12 @@ void mmHTMLBuilder::addMoneyTotalRow(const wxString& caption, int cols, const st
 
 void mmHTMLBuilder::addTableHeaderCell(const wxString& value, const bool numeric, const bool sortable, const int cols, const bool center)
 {
-    const wxString sort = (sortable ? "" : " class='sorttable_nosort'");
-    const wxString align = (center ? " class='text-center'" : (numeric ? " class='text-right'" : " class='text-left'"));
+    const wxString sort = (sortable ? "" : "sorttable_nosort");
+    const wxString align = (center ? "text-center" : (numeric ? "text-right" : "text-left"));
     const wxString cspan = (cols > 1 ? wxString::Format(" colspan='%i'", cols) : "");
 
-    html_ += wxString::Format(tags::TABLE_HEADER, sort + align + cspan);
+    html_ += wxString::Format(tags::TABLE_HEADER
+        , wxString::Format(" class='%s %s'", sort, align) + cspan);
     html_ += value;
     html_ += tags::TABLE_HEADER_END;
 }
@@ -334,7 +336,7 @@ void mmHTMLBuilder::DisplayDateHeading(const wxDateTime& startDate, const wxDate
     {
         sDate << _("Over Time");
     }
-    this->addHeader(3, sDate);
+    this->addHeader(4, sDate);
 }
 
 void mmHTMLBuilder::addTableRow(const wxString& label, double data)
@@ -412,6 +414,16 @@ void mmHTMLBuilder::startTotalTableRow()
 void mmHTMLBuilder::endTableRow()
 {
     html_ += tags::TABLE_ROW_END;
+}
+
+void mmHTMLBuilder::startSpan(const wxString& val, const wxString& style)
+{
+    html_ += wxString::Format(tags::SPAN, style, val);
+}
+
+void mmHTMLBuilder::endSpan()
+{
+    html_ += tags::SPAN_END;
 }
 
 void mmHTMLBuilder::addText(const wxString& text)
@@ -529,7 +541,7 @@ void mmHTMLBuilder::addChart(const GraphData& gd)
     for (const auto& entry : gd.series)
     {
         wxString seriesEntries;
-        bool first = true;
+        first = true;
         for (const auto& item : entry.values)
         {
             double v = (floor(item * round) / round);

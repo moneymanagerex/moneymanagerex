@@ -33,6 +33,8 @@
 
 wxBEGIN_EVENT_TABLE(mmReportsPanel, wxPanel)
 EVT_CHOICE(ID_CHOICE_DATE_RANGE, mmReportsPanel::OnDateRangeChanged)
+EVT_CHOICE(ID_CHOICE_YEAR, mmReportsPanel::OnYearChanged)
+EVT_CHOICE(ID_CHOICE_BUDGET, mmReportsPanel::OnBudgetChanged)
 EVT_CHOICE(ID_CHOICE_ACCOUNTS, mmReportsPanel::OnAccountChanged)
 EVT_DATE_CHANGED(wxID_ANY, mmReportsPanel::OnStartEndDateChanged)
 EVT_CHOICE(ID_CHOICE_CHART, mmReportsPanel::OnChartChanged)
@@ -281,28 +283,46 @@ void mmReportsPanel::CreateControls()
             itemBoxSizerHeader->AddSpacer(30);
         }
 
-        if (rp & (rb_->RepParams::BUDGET_DATES | rb_->RepParams::ONLY_YEARS))
+        if (rp & rb_->RepParams::ONLY_YEARS)
         {
             cleanupmem_ = true;
             wxStaticText* itemStaticTextH1 = new wxStaticText(itemPanel3
-                , wxID_ANY, _("Period:"));
+                , wxID_ANY, _("Year:"));
             mmSetOwnFont(itemStaticTextH1, GetFont().Larger());
             itemBoxSizerHeader->Add(itemStaticTextH1, 0, wxALL | wxALIGN_CENTER_VERTICAL, 1);
             itemBoxSizerHeader->AddSpacer(5);
 
-            m_date_ranges = new wxChoice(itemPanel3, ID_CHOICE_DATE_RANGE
+            m_date_ranges = new wxChoice(itemPanel3, ID_CHOICE_YEAR
+                , wxDefaultPosition, wxDefaultSize, 0, NULL, wxCB_SORT);
+
+            int y = wxDateTime::Today().GetYear();
+            for (int i = y - 100; i <= y + 100; i++)
+            {
+                const wxString& name = wxString::Format("%i", i);
+                m_date_ranges->Append(name, new wxStringClientData(name));
+            }
+
+            m_date_ranges->SetStringSelection(wxString::Format("%i", y));
+
+            itemBoxSizerHeader->Add(m_date_ranges, 0, wxALL | wxALIGN_CENTER_VERTICAL, 1);
+            itemBoxSizerHeader->AddSpacer(30);
+        }
+        else if (rp & rb_->RepParams::BUDGET_DATES)
+        {
+            cleanupmem_ = true;
+            wxStaticText* itemStaticTextH1 = new wxStaticText(itemPanel3
+                , wxID_ANY, _("Budget:"));
+            mmSetOwnFont(itemStaticTextH1, GetFont().Larger());
+            itemBoxSizerHeader->Add(itemStaticTextH1, 0, wxALL | wxALIGN_CENTER_VERTICAL, 1);
+            itemBoxSizerHeader->AddSpacer(5);
+
+            m_date_ranges = new wxChoice(itemPanel3, ID_CHOICE_BUDGET
                 , wxDefaultPosition, wxDefaultSize, 0, NULL, wxCB_SORT);
 
             for (const auto& e : Model_Budgetyear::instance().all(Model_Budgetyear::COL_BUDGETYEARNAME))
             {
                 const wxString& name = e.BUDGETYEARNAME;
-
-                if ((rp & rb_->RepParams::ONLY_YEARS)
-                    && name.length() >= 5) // Only add YEARS
-                    continue;
-
                 m_date_ranges->Append(name, new wxStringClientData(wxString::Format("%i", e.BUDGETYEARID)));
-
             }
 
             int sel_id = rb_->getDateSelection();
@@ -372,6 +392,21 @@ void mmReportsPanel::PrintPage()
     browser_->Print();
 }
 
+void mmReportsPanel::OnYearChanged(wxCommandEvent& event)
+{
+    const auto i = event.GetString();
+    wxLogDebug("-------- %s", i);
+    saveReportText(false);
+}
+
+void mmReportsPanel::OnBudgetChanged(wxCommandEvent& event)
+{
+    const auto i = event.GetString();
+    wxLogDebug("-------- %s", i);
+    saveReportText(false);
+}
+
+
 void mmReportsPanel::OnDateRangeChanged(wxCommandEvent& WXUNUSED(event))
 {
     auto i = this->m_date_ranges->GetSelection();
@@ -385,6 +420,7 @@ void mmReportsPanel::OnDateRangeChanged(wxCommandEvent& WXUNUSED(event))
         rb_->setSelection(i);
         rb_->setReportSettings();
     }
+
 
     saveReportText(false);
 }

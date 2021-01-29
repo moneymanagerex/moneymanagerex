@@ -984,8 +984,26 @@ a.badge:focus {
 }
 
 .shadowTitle {
-  box-shadow: 0 0 20px rgba(0,0,0,0.5); /* shadow parameters */
-  padding: 10px;
-  margin: 10px;
-  background-color: #d8ebf0;;
+    box-shadow: 0 0 20px rgba(0,0,0,0.5); /* shadow parameters */
+    padding: 10px;
+    margin: 10px;
+    background: linear-gradient(to right, #d8ebf0 60%, #d9ecc7 80% );
+}
+
+.shadowTitle:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.left75 {
+    width: 65%;
+    float: left;
+    vertical-align: top;
+}
+
+.right25 {
+    width: 35%;
+    float: right;
+    vertical-align: top;
 }

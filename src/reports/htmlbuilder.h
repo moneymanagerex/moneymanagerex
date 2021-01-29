@@ -113,6 +113,8 @@ public:
     void startTotalTableRow();
     //void startTableRow(const wxString& custom_color);
     void endTableRow();
+    void startSpan(const wxString& val, const wxString& style);
+    void endSpan();
 
     /** append an HTML text */
     void addText(const wxString& text);
