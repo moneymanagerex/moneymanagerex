@@ -116,7 +116,7 @@ std::map<wxDateTime, int> Model_Currency::DateUsed(int CurrencyID)
 {
     wxDateTime dt;
     std::map<wxDateTime, int> DatesList;
-    const auto &accounts = Model_Account::instance().find(CURRENCYID(CurrencyID));
+    const auto &accounts = Model_Account::instance().find(CURRENCYID(CurrencyID, NOT_EQUAL));
     for (const auto &account : accounts)
     {
         if (Model_Account::type(account) == Model_Account::TYPE::INVESTMENT)

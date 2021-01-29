@@ -644,9 +644,21 @@ void mmMainCurrencyDialog::OnHistoryUpdate(wxCommandEvent& WXUNUSED(event))
     wxString base_currency_symbol;
     wxASSERT_MSG(Model_Currency::GetBaseCurrencySymbol(base_currency_symbol), "Could not find base currency symbol");
 
+    int msgResult = wxMessageBox(_("Do you want to add also dates without any transaction?")
+        , _("Currency Dialog")
+        , wxYES_NO | wxNO_DEFAULT | wxICON_WARNING);
+    bool CheckDate = msgResult == wxNO;
+
     wxString msg;
+    const std::map<wxDateTime, int> DatesList = Model_Currency::DateUsed(m_currency_id);
+    wxDateTime begin_date = wxDateTime::Now().Subtract(wxDateSpan::Years(1));
+    if (CheckDate && !DatesList.empty()) {
+        begin_date = DatesList.begin()->first;
+    }
+    wxLogDebug("Begin Date: %s", begin_date.FormatISODate());
+
     std::map<wxDateTime, double> historical_rates;
-    bool UpdStatus = GetOnlineHistory(historical_rates, CurrentCurrency->CURRENCY_SYMBOL, msg);
+    bool UpdStatus = GetOnlineHistory(CurrentCurrency->CURRENCY_SYMBOL, begin_date, historical_rates, msg);
 
     if (!UpdStatus)
     {
@@ -656,22 +668,12 @@ void mmMainCurrencyDialog::OnHistoryUpdate(wxCommandEvent& WXUNUSED(event))
             , _("Currency history error"));
     }
 
-    int msgResult = wxMessageBox(_("Do you want to add also dates without any transaction?"), _("Currency Dialog"), wxYES_NO | wxNO_DEFAULT | wxICON_WARNING);
-    bool CheckDate;
-    if (msgResult == wxYES || msgResult == wxNO)
-        CheckDate = msgResult == wxNO;
-    else
-        return;
-
-
     bool Found = !historical_rates.empty();
-
     if (Found)
     {
         Model_CurrencyHistory::instance().Savepoint();
         if (CheckDate)
         {
-            const std::map<wxDateTime, int> DatesList = Model_Currency::DateUsed(m_currency_id);
             for (const auto entry : DatesList)
             {
                 wxLogDebug("%s %s", entry.first.FormatISODate(), entry.first.FormatISOTime());
@@ -681,7 +683,6 @@ void mmMainCurrencyDialog::OnHistoryUpdate(wxCommandEvent& WXUNUSED(event))
                     wxLogDebug("%s", date.FormatISODate());
                     Model_CurrencyHistory::instance().addUpdate(m_currency_id, date, historical_rates[date], Model_CurrencyHistory::ONLINE);
                 }
-
             }
         }
         else
@@ -844,36 +845,36 @@ void mmMainCurrencyDialog::OnTextChanged(wxCommandEvent& event)
     }
 }
 
-bool mmMainCurrencyDialog::GetOnlineHistory(std::map<wxDateTime, double> &historical_rates, const wxString &symbol, wxString &msg)
+bool mmMainCurrencyDialog::GetOnlineHistory(const wxString &symbol, wxDateTime begin_date, std::map<wxDateTime, double> &historical_rates, wxString &msg)
 {
     wxString base_currency_symbol;
 
-    if (!Model_Currency::GetBaseCurrencySymbol(base_currency_symbol))
-    {
+    if (!Model_Currency::GetBaseCurrencySymbol(base_currency_symbol)) {
         msg = _("Could not find base currency symbol!");
         return false;
     }
 
+    wxString period1 = wxString::Format("%lld", begin_date.GetTicks()); //"1577836800";
     const wxString URL = wxString::Format(mmex::weblink::YahooQuotesHistory
         , wxString::Format("%s%s=X", symbol, base_currency_symbol)
-        , "1y", "1d"); //TODO: ask range and interval
+        , wxString::Format("period1=%s&period2=9999999999&interval=1d", period1)
+    );
 
     wxString json_data;
     auto err_code = http_get_data(URL, json_data);
-    if (err_code != CURLE_OK)
-    {
+    if (err_code != CURLE_OK) {
         msg = json_data;
         return false;
     }
 
     Document json_doc;
-    if (json_doc.Parse(json_data.utf8_str()).HasParseError())
-    {
+    if (json_doc.Parse(json_data.utf8_str()).HasParseError()) {
         return false;
     }
 
     if (!json_doc.HasMember("chart") || !json_doc["chart"].IsObject())
         return false;
+
     Value chart = json_doc["chart"].GetObject();
 
     wxASSERT(chart.HasMember("error"));
