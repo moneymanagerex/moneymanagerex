@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-01-30 19:48+0300\n"
-"PO-Revision-Date: 2021-01-30 18:54\n"
+"PO-Revision-Date: 2021-01-30 19:05\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -3623,7 +3623,7 @@ msgstr "como nula"
 
 #: mmcheckingpanel.cpp:1110
 msgid "as Followup"
-msgstr ""
+msgstr "de Seguimiento"
 
 #: mmcheckingpanel.cpp:1112 mmcheckingpanel.cpp:1121
 msgid "as Duplicate"
@@ -3631,7 +3631,7 @@ msgstr "como duplicada"
 
 #: mmcheckingpanel.cpp:1114
 msgid "Mark all being selected"
-msgstr ""
+msgstr "Marcar todos los seleccionados"
 
 #: mmcheckingpanel.cpp:1120
 msgid "as needing Followup"
@@ -4805,11 +4805,11 @@ msgstr "Período:"
 
 #: mmreportspanel.cpp:290
 msgid "Year:"
-msgstr ""
+msgstr "Año:"
 
 #: mmreportspanel.cpp:314
 msgid "Budget:"
-msgstr ""
+msgstr "Presupuesto:"
 
 #: mmreportspanel.cpp:340
 msgid "Accounts:"
@@ -4959,7 +4959,7 @@ msgstr "Fecha final: "
 
 #: model/Model_Report.cpp:88
 msgid "Year: "
-msgstr ""
+msgstr "Año: "
 
 #: model/Model_Report.cpp:233
 msgid "Template is empty"
@@ -5335,11 +5335,11 @@ msgstr "Estadísticas de uso"
 
 #: optionsettingsnet.cpp:126
 msgid "Check for latest news on startup"
-msgstr ""
+msgstr "Buscar las últimas novedades al inicio"
 
 #: optionsettingsnet.cpp:128
 msgid "Enable to allow news to be checked on application start"
-msgstr ""
+msgstr "Activar para permitir la verificación de novedades al iniciar la aplicación"
 
 #: optionsettingsnet.cpp:133
 msgid "Timeout"
@@ -6282,15 +6282,15 @@ msgstr "Símbolo: %s"
 
 #: transactionsupdatedialog.cpp:72
 msgid "Multi Transactions Update"
-msgstr ""
+msgstr "Actualización de Transacciones Múltiples"
 
 #: transactionsupdatedialog.cpp:186
 msgid "Append"
-msgstr ""
+msgstr "Adjuntar"
 
 #: transactionsupdatedialog.cpp:249
 msgid "Invalid type"
-msgstr ""
+msgstr "Tipo inválido"
 
 #: transdialog.cpp:170
 msgid "Duplicate Transaction"
