@@ -1406,8 +1406,10 @@ void TransactionListCtrl::OnCopy(wxCommandEvent& WXUNUSED(event))
                 {
                     for (int column = 0; column < static_cast<int>(m_columns.size()); column++)
                     {
-                        if (GetColumnWidth(column) > 0)
-                            data += OnGetItemText(row, column) + seperator;
+                        if (GetColumnWidth(column) > 0) {
+                            data += inQuotes(OnGetItemText(row, column), "\n");
+                            data += seperator;
+                        }
                     }
                     data += "\n";
                 }
