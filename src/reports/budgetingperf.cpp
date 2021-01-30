@@ -53,12 +53,12 @@ void mmReportBudgetingPerformance::DisplayRow(mmHTMLBuilder &hb
             const auto estVal = Model_Currency::toString(est, Model_Currency::GetBaseCurrency());
             hb.startTableCell(" style='text-align:right;' nowrap");
             hb.addText(estVal);
-            hb.endTableCell();
+            hb.addLineBreak();
 
             const auto val = Model_Currency::toString(i.second, Model_Currency::GetBaseCurrency());
-            hb.startTableCell(wxString::Format(" style='text-align:right;%s' nowrap"
+            hb.startSpan(val, wxString::Format(" style='text-align:right;%s' nowrap"
                 , (i.second - est < 0) ? "color:red;" : ""));
-            hb.addText(val);
+            hb.endSpan();
             hb.endTableCell();
         }
 
@@ -66,11 +66,11 @@ void mmReportBudgetingPerformance::DisplayRow(mmHTMLBuilder &hb
         const auto estVal = Model_Currency::toString(estimated, Model_Currency::GetBaseCurrency());
         hb.startTableCell(" style='text-align:right;' nowrap");
         hb.addText(estVal);
-        hb.endTableCell();
+        hb.addLineBreak();
 
         const auto val = Model_Currency::toString(actual, Model_Currency::GetBaseCurrency());
-        hb.startTableCell(wxString::Format(" style='text-align:right;%s' nowrap"
-            , (actual - estimated < 0) ? "color:red;" : "color:#009900;"));
+        //hb.startTableCell(wxString::Format(" style='text-align:right;%s' nowrap"
+        //    , (actual - estimated < 0) ? "color:red;" : "color:#009900;"));
         hb.addText(val);
         hb.endTableCell();
 
@@ -160,19 +160,15 @@ wxString mmReportBudgetingPerformance::getHTMLText()
         }
     }
 
-    const wxString& headingStr = AdjustYearValues(static_cast<int>(startDay)
-        , startMonth, startYear, budget_year);
+    const wxString& headingStr = wxString::Format(_("Budget Performance for %s"),
+        AdjustYearValues(static_cast<int>(startDay)
+            , startMonth, startYear, budget_year)
+    );
     mmHTMLBuilder hb;
     hb.init();
-    hb.addDivContainer("shadowTitle");
-    {
-        hb.showUserName();
-        hb.addHeader(2, wxString::Format(_("Budget Performance for %s"), headingStr));
-        hb.DisplayDateHeading(yearBegin, yearEnd);
-        hb.addReportCurrency();
-        hb.addDateNow();
-    }
-    hb.endDiv();
+
+    hb.addReportHeader(headingStr);
+    hb.DisplayDateHeading(yearBegin, yearEnd);
 
     hb.addDivContainer("shadow");
     {
@@ -187,10 +183,11 @@ wxString mmReportBudgetingPerformance::getHTMLText()
                     {
                         int m = startMonth + yidx;
                         if (m >= 12) m -= 12;
-                        hb.addTableHeaderCell(wxGetTranslation(wxDateTime::GetEnglishMonthName(wxDateTime::Month(m)
-                            , wxDateTime::Name_Abbr)), false, true, 2, true);
+                        hb.addTableHeaderCell(wxGetTranslation(
+                            wxDateTime::GetEnglishMonthName(wxDateTime::Month(m)
+                            , wxDateTime::Name_Abbr)), false, false, 1, true);
                     }
-                    hb.addTableHeaderCell(_("Total"), false, true, 3, true);
+                    hb.addTableHeaderCell(_("Total"), false, false, 2, true);
                 }
                 hb.endTableRow();
                 hb.startTableRow();
@@ -198,11 +195,9 @@ wxString mmReportBudgetingPerformance::getHTMLText()
                     hb.addEmptyTableCell();
                     for (int yidx = 0; yidx < 12; yidx++)
                     {
-                        hb.addTableCell(_("Est."), false, true);
-                        hb.addTableCell(_("Act."), false, true);
+                        hb.addTableCell(_("Est.") + "<BR>" + _("Act."), false, true);
                     }
-                    hb.addTableCell(_("Est."), false, true);
-                    hb.addTableCell(_("Act."), false, true);
+                    hb.addTableCell(_("Est.") + "<BR>" + _("Act."), false, true);
                     hb.addTableCell(_("%"), false, true);
                 }
                 hb.endTableRow();
@@ -226,7 +221,8 @@ wxString mmReportBudgetingPerformance::getHTMLText()
                     for (const auto &i : categoryStats[category.CATEGID][-1])
                         monthlyActual[i.first] += i.second;
 
-                    DisplayRow(hb, estimated, actual, category.CATEGNAME, categoryStats[category.CATEGID][-1]);
+                    DisplayRow(hb, estimated, actual, category.CATEGNAME
+                        , categoryStats[category.CATEGID][-1]);
 
                     for (const Model_Subcategory::Data& subcategory : allSubcategories)
                     {
@@ -245,8 +241,9 @@ wxString mmReportBudgetingPerformance::getHTMLText()
                         for (const auto &i : categoryStats[category.CATEGID][subcategory.SUBCATEGID])
                             monthlyActual[i.first] += i.second;
 
-                        DisplayRow(hb, estimated, actual, category.CATEGNAME + delimiter
-                            + subcategory.SUBCATEGNAME, categoryStats[category.CATEGID][subcategory.SUBCATEGID]);
+                        DisplayRow(hb, estimated, actual
+                            , category.CATEGNAME + delimiter + subcategory.SUBCATEGNAME
+                            , categoryStats[category.CATEGID][subcategory.SUBCATEGID]);
                     }
                 }
             }

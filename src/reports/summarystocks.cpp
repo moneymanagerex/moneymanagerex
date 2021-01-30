@@ -92,13 +92,8 @@ wxString mmReportSummaryStocks::getHTMLText()
     // Build the report
     mmHTMLBuilder hb;
     hb.init();
-    hb.addDivContainer("shadowTitle");
-    {
-        hb.addHeader(2, getReportTitle());
-        hb.addDateNow();
-    }
-    hb.endDiv();
-    
+    hb.addReportHeader(getReportTitle());
+
     hb.addDivContainer("shadow");
     {
         for (const auto& acct : m_stocks)
@@ -222,15 +217,10 @@ wxString mmReportChartStocks::getHTMLText()
     // Build the report
     mmHTMLBuilder hb;
     hb.init();
-    hb.addDivContainer("shadowTitle");
-    {
-        hb.addHeader(2, getReportTitle());
-        wxTimeSpan dtDiff = m_date_range->end_date() - m_date_range->start_date();
-        if (m_date_range->is_with_date() && dtDiff.GetDays() <= 366)
-            hb.DisplayDateHeading(m_date_range->start_date(), m_date_range->end_date(), true);
-        hb.addDateNow();
-    }
-    hb.endDiv();
+    hb.addReportHeader(getReportTitle());
+    wxTimeSpan dtDiff = m_date_range->end_date() - m_date_range->start_date();
+    if (m_date_range->is_with_date() && dtDiff.GetDays() <= 366)
+        hb.DisplayDateHeading(m_date_range->start_date(), m_date_range->end_date(), true);
 
     wxTimeSpan dist;
     wxDate precDateDt = wxInvalidDateTime;

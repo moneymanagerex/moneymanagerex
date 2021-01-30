@@ -208,19 +208,12 @@ wxString mmReportCashFlow::getHTMLText_i()
     // Build the report
     mmHTMLBuilder hb;
     hb.init();
-    hb.addDivContainer("shadowTitle");
-    {
-        const wxString& headerMsg = wxString::Format (wxPLURAL( "Cash Flow Forecast for %i Year Ahead",
-                                                                "Cash Flow Forecast for %i Years Ahead",
-                                                                years ),
-                                                                years);
-        hb.showUserName();
-        hb.addHeader(2, headerMsg );
-        hb.addHeader(3, getAccountNames());
-        hb.addReportCurrency();
-        hb.addDateNow();
-    }
-    hb.endDiv();
+    const wxString& headingStr = wxString::Format(wxPLURAL("Cash Flow Forecast for %i Year Ahead",
+        "Cash Flow Forecast for %i Years Ahead",
+        years),
+        years);
+    hb.addReportHeader(headingStr);
+    hb.DisplayFooter(getAccountNames());
 
     if (getChartSelection() == 0)
     {

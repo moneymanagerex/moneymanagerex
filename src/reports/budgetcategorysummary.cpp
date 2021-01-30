@@ -103,22 +103,16 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
     // Build the report
     mmHTMLBuilder hb;
     hb.init();
-    const wxString& headingStr = AdjustYearValues(startDay, startMonth, startYear, budget_year);
+    wxString headingStr = AdjustYearValues(startDay, startMonth, startYear, budget_year);
     bool amply = Option::instance().BudgetReportWithSummaries();
     const wxString& headerStartupMsg = amply
             ? _("Budget Categories for %s") : _("Budget Category Summary for %s");
 
-    hb.addDivContainer("shadowTitle");
-    {
-        hb.showUserName();
-        hb.addHeader(2, wxString::Format(headerStartupMsg
-            ,  headingStr + "<br>" + _("( Estimated Vs Actual )")));
-        hb.DisplayDateHeading(yearBegin, yearEnd);
-        hb.addReportCurrency();
-        hb.addDateNow();
-    }
-    hb.endDiv();
-  
+    headingStr = wxString::Format(headerStartupMsg
+        , headingStr + "<br>" + _("( Estimated Vs Actual )"));
+    hb.addReportHeader(headingStr);
+    hb.DisplayDateHeading(yearBegin, yearEnd);
+
     double estIncome = 0.0, estExpenses = 0.0, actIncome = 0.0, actExpenses = 0.0;
     // Chart
     if (getChartSelection() == 0)

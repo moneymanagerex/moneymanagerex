@@ -61,6 +61,8 @@ public:
         ID_CHOICE_ACCOUNTS,
         ID_CHOICE_START_DATE,
         ID_CHOICE_END_DATE,
+        ID_CHOICE_YEAR,
+        ID_CHOICE_BUDGET,
         ID_CHOICE_CHART,
     };
 
@@ -76,6 +78,8 @@ private:
 
 private:
     void OnDateRangeChanged(wxCommandEvent& event);
+    void OnYearChanged(wxCommandEvent& event);
+    void OnBudgetChanged(wxCommandEvent & event);
     void OnStartEndDateChanged(wxDateEvent& event);
     void OnAccountChanged(wxCommandEvent& event);
     void OnChartChanged(wxCommandEvent& event);

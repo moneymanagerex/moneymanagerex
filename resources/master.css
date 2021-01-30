@@ -984,8 +984,25 @@ a.badge:focus {
 }
 
 .shadowTitle {
-  box-shadow: 0 0 20px rgba(0,0,0,0.5); /* shadow parameters */
-  padding: 10px;
-  margin: 10px;
-  background-color: #d8ebf0;;
+    box-shadow: 0 0 20px rgba(0,0,0,0.5); /* shadow parameters */
+    padding: 10px;
+    margin: 10px;
+    background: linear-gradient(to right, #d8ebf0 60%, #d9ecc7 80% );
+    display: flex;
+    align-items: stretch;
+    flex-wrap: wrap;
 }
+
+header {
+    width: 70%;
+}
+
+footer {
+    width: 100%;
+}
+
+aside {
+    width: 30%;
+}
+
+
