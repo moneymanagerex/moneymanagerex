@@ -107,11 +107,6 @@ const Model_Splittransaction::Data_Set Model_Checking::splittransaction(const Da
     return Model_Splittransaction::instance().find(Model_Splittransaction::TRANSID(r.TRANSID));
 }
 
-DB_Table_CHECKINGACCOUNT_V1::TRANSDATE Model_Checking::TRANSDATE(const wxDate& date, OP op)
-{
-    return DB_Table_CHECKINGACCOUNT_V1::TRANSDATE(date.FormatISODate(), op);
-}
-
 DB_Table_CHECKINGACCOUNT_V1::STATUS Model_Checking::STATUS(STATUS_ENUM status, OP op)
 {
     return DB_Table_CHECKINGACCOUNT_V1::STATUS(toShortStatus(all_status()[status]), op);
@@ -120,6 +115,16 @@ DB_Table_CHECKINGACCOUNT_V1::STATUS Model_Checking::STATUS(STATUS_ENUM status, O
 DB_Table_CHECKINGACCOUNT_V1::TRANSCODE Model_Checking::TRANSCODE(TYPE type, OP op)
 {
     return DB_Table_CHECKINGACCOUNT_V1::TRANSCODE(all_type()[type], op);
+}
+
+DB_Table_CHECKINGACCOUNT_V1::TRANSDATE Model_Checking::TRANSDATE(const wxDate& date, OP op)
+{
+    return DB_Table_CHECKINGACCOUNT_V1::TRANSDATE(date.FormatISODate(), op);
+}
+
+DB_Table_CHECKINGACCOUNT_V1::TRANSDATE Model_Checking::TRANSDATE(const wxString& date_iso_str, OP op)
+{
+    return DB_Table_CHECKINGACCOUNT_V1::TRANSDATE(date_iso_str, op);
 }
 
 wxDate Model_Checking::TRANSDATE(const Data* r)

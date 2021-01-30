@@ -125,7 +125,7 @@ void OptionSettingsNet::Create()
     m_check_news = new wxCheckBox(this, wxID_ANY
         , _("Check for latest news on startup"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     m_check_news->SetValue(Option::instance().CheckNewsOnStartup());
-    m_check_news->SetToolTip(_("Enable to allow news to be checked on applicaion start"));
+    m_check_news->SetToolTip(_("Enable to allow news to be checked on application start"));
     
     newsStaticBoxSizer->Add(m_check_news, g_flagsV);
 
