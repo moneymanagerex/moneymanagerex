@@ -32,8 +32,12 @@ public:
     virtual wxString getHTMLText();
 
 private:
-    void DisplayRow(mmHTMLBuilder &hb, double estimated, double actual
-        , const wxString& catName, const std::map<int, double>& stats
+    void DisplayRow(const wxString& catName
+        , double estimated
+        , double actual
+        , int month
+        , mmHTMLBuilder &hb
+        , const std::map<int, double>& stats
         , bool bTotalRow = false);
 };
 
