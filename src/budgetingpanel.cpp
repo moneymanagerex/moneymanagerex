@@ -169,7 +169,7 @@ wxString mmBudgetingPanel::GetPanelTitle() const
             long year;
             yearStr.ToLong(&year);
             year++;
-            yearStr = wxString::Format(_("Financial Year: %s - %i"), yearStr, year);
+            yearStr = wxString::Format(_("Financial Year: %s - %ld"), yearStr, year);
         }
         else
         {
