@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-01-30 19:48+0300\n"
-"PO-Revision-Date: 2021-01-30 17:37\n"
+"PO-Revision-Date: 2021-01-30 17:58\n"
 "Last-Translator: \n"
 "Language-Team: Italian\n"
 "MIME-Version: 1.0\n"
@@ -3566,13 +3566,13 @@ msgstr "&Nuovo trasferimento"
 msgid "&Edit Transaction"
 msgid_plural "&Edit Transactions"
 msgstr[0] "&Modifica Operazione"
-msgstr[1] ""
+msgstr[1] "&Modifica Operazione"
 
 #: mmcheckingpanel.cpp:1064
 msgid "&Copy Transaction"
 msgid_plural "&Copy Transactions"
 msgstr[0] "&Copia Operazione"
-msgstr[1] ""
+msgstr[1] "&Copia Operazione"
 
 #: mmcheckingpanel.cpp:1067
 msgid "&Paste Transaction"
@@ -3598,7 +3598,7 @@ msgstr "Crea operazione ricorrente"
 msgid "&Delete selected transaction"
 msgid_plural "&Delete selected transactions"
 msgstr[0] "&Elimina operazione selezionata"
-msgstr[1] ""
+msgstr[1] "&Elimina operazione selezionata"
 
 #: mmcheckingpanel.cpp:1096
 msgid "Delete all transactions in current view"
@@ -3606,11 +3606,11 @@ msgstr "Elimina tutte le operazioni nella vista attuale"
 
 #: mmcheckingpanel.cpp:1097
 msgid "Delete Viewed \"Follow Up\" Transactions"
-msgstr ""
+msgstr "Elimina operazioni \"Da Monitorare\" visualizzate"
 
 #: mmcheckingpanel.cpp:1098
 msgid "Delete Viewed \"Unreconciled\" Transactions"
-msgstr ""
+msgstr "Elimina operazioni \"Non riconciliate\" visualizzate"
 
 #: mmcheckingpanel.cpp:1104 mmcheckingpanel.cpp:1117
 msgid "as Reconciled"
@@ -3626,7 +3626,7 @@ msgstr "come Nulla"
 
 #: mmcheckingpanel.cpp:1110
 msgid "as Followup"
-msgstr ""
+msgstr "segna come da monitorare"
 
 #: mmcheckingpanel.cpp:1112 mmcheckingpanel.cpp:1121
 msgid "as Duplicate"
