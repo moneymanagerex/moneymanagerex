@@ -47,7 +47,7 @@ public:
     ~mmHTMLBuilder() {}
 
     void DisplayDateHeading(const wxDateTime& startDate, const wxDateTime& endDate, bool withDateRange = true);
-
+    void DisplayFooter(const wxString& footer);
     /** Starts a new HMTL report */
     void init();
 
@@ -57,7 +57,8 @@ public:
         html_.clear();
     }
 
-    /** Create an HTML header and returns as a wxString */
+    /** Add an HTML header */
+    void addReportHeader(const wxString& name);
     void addHeader(int level, const wxString& header);
     void showUserName();
     void addReportCurrency();

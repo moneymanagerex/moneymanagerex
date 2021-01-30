@@ -130,16 +130,10 @@ wxString mmReportCategoryExpenses::getHTMLText()
     // Build the report
     mmHTMLBuilder hb;
     hb.init();
-    hb.addDivContainer("shadowTitle");
-    {
-        hb.showUserName();
-        hb.addHeader(2, getReportTitle());
-        hb.DisplayDateHeading(m_date_range->start_date(), m_date_range->end_date(), m_date_range->is_with_date());
-        hb.addHeader(3, getAccountNames());
-        hb.addReportCurrency();
-        hb.addDateNow();
-    }
-    hb.endDiv();
+
+    hb.addReportHeader(getReportTitle());
+    hb.DisplayDateHeading(m_date_range->start_date(), m_date_range->end_date(), m_date_range->is_with_date());
+    hb.DisplayFooter(getAccountNames());
 
     // Chart
     if (getChartSelection() == 0)
@@ -340,16 +334,9 @@ wxString mmReportCategoryOverTimePerformance::getHTMLText()
     // Build the report
     mmHTMLBuilder hb;
     hb.init();
-    hb.addDivContainer("shadowTitle");
-    {
-        hb.showUserName();
-        hb.addHeader(2, getReportTitle());
-        hb.addHeader(3, getAccountNames());
-        hb.DisplayDateHeading(date_range->start_date(), date_range->end_date(), date_range->is_with_date());
-        hb.addReportCurrency();
-        hb.addDateNow();
-    }
-    hb.endDiv();
+    hb.addReportHeader(getReportTitle());
+    hb.DisplayDateHeading(m_date_range->start_date(), m_date_range->end_date(), m_date_range->is_with_date());
+    hb.DisplayFooter(getAccountNames());
 
     const wxDateTime start_date = date_range->start_date();
     delete date_range;

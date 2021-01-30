@@ -141,15 +141,9 @@ wxString mmReportSummaryByDate::getHTMLText()
     std::vector<wxDate> arDates;
 
     hb.init();
-    hb.addDivContainer("shadowTitle");
-    {
-        hb.showUserName();
-        hb.addHeader(2, wxString::Format(_("Accounts Balance - %s"), mode_ == MONTHLY ? _("Monthly Report") : _("Yearly Report")));
-        hb.addReportCurrency();
-        hb.addDateNow();
-    }
-    hb.endDiv();
-  
+    const auto name = wxString::Format(_("Accounts Balance - %s"), mode_ == MONTHLY ? _("Monthly Report") : _("Yearly Report"));
+    hb.addReportHeader(name);
+
     hb.addDivContainer("shadow");
     {
         hb.startTable();

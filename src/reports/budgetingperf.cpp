@@ -160,26 +160,15 @@ wxString mmReportBudgetingPerformance::getHTMLText()
         }
     }
 
-    const wxString& headingStr = AdjustYearValues(static_cast<int>(startDay)
-        , startMonth, startYear, budget_year);
+    const wxString& headingStr = wxString::Format(_("Budget Performance for %s"),
+        AdjustYearValues(static_cast<int>(startDay)
+            , startMonth, startYear, budget_year)
+    );
     mmHTMLBuilder hb;
     hb.init();
-    hb.addDivContainer("shadowTitle");
-    {
-        hb.addDivContainer("left75");
-        {
-            hb.addHeader(2, wxString::Format(_("Budget Performance for %s"), headingStr));
-        }
-        hb.endDiv();
-        hb.addDivContainer("right25");
-        {
-            hb.DisplayDateHeading(yearBegin, yearEnd);
-            hb.addReportCurrency();
-            hb.addDateNow();
-        }
-        hb.endDiv();
-    }
-    hb.endDiv();
+
+    hb.addReportHeader(headingStr);
+    hb.DisplayDateHeading(yearBegin, yearEnd);
 
     hb.addDivContainer("shadow");
     {

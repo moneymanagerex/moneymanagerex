@@ -140,6 +140,52 @@ void mmHTMLBuilder::showUserName()
         addHeader(2, Option::instance().UserName());
 }
 
+void mmHTMLBuilder::addReportHeader(const wxString& name)
+{
+    addDivContainer("shadowTitle");
+    {
+        addText("<header>");
+        addHeader(2, name);
+        addText("</header>");
+
+        addText("<aside>");
+        {
+            showUserName();
+            addText("<TMPL_VAR DATE_HEADING>");
+            addReportCurrency();
+            addDateNow();
+        }
+        addText("</aside>");
+
+        addText("<footer>");
+        addText("<TMPL_VAR FOOTER>");
+        addText("</footer>");
+    }
+    endDiv();
+}
+
+void mmHTMLBuilder::DisplayDateHeading(const wxDateTime& startDate, const wxDateTime& endDate, bool withDateRange)
+{
+    wxString sDate;
+    if (withDateRange)
+    {
+        sDate << wxString::Format(_("From %s till %s")
+            , mmGetDateForDisplay(startDate.FormatISODate())
+            , mmGetDateForDisplay(endDate.FormatISODate()));
+    }
+    else
+    {
+        sDate << _("Over Time");
+    }
+    wxString t = wxString::Format(tags::HEADER, 4, sDate, 4);
+    this->html_.Replace("<TMPL_VAR DATE_HEADING>", t);
+}
+
+void mmHTMLBuilder::DisplayFooter(const wxString& footer)
+{
+    this->html_.Replace("<TMPL_VAR FOOTER>", footer);
+}
+
 void mmHTMLBuilder::addHeader(int level, const wxString& header)
 {
     html_ += wxString::Format(tags::HEADER, level, header, level);
@@ -321,22 +367,6 @@ void mmHTMLBuilder::addTableCellLink(const wxString& href
     , const wxString& value)
 {
     addTableCell(wxString::Format(tags::TABLE_CELL_LINK, href, value));
-}
-
-void mmHTMLBuilder::DisplayDateHeading(const wxDateTime& startDate, const wxDateTime& endDate, bool withDateRange)
-{
-    wxString sDate;
-    if (withDateRange)
-    {
-        sDate << wxString::Format(_("From %s till %s")
-            , mmGetDateForDisplay(startDate.FormatISODate())
-            , mmGetDateForDisplay(endDate.FormatISODate()));
-    }
-    else
-    {
-        sDate << _("Over Time");
-    }
-    this->addHeader(4, sDate);
 }
 
 void mmHTMLBuilder::addTableRow(const wxString& label, double data)

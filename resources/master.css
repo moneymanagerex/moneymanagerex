@@ -988,22 +988,21 @@ a.badge:focus {
     padding: 10px;
     margin: 10px;
     background: linear-gradient(to right, #d8ebf0 60%, #d9ecc7 80% );
+    display: flex;
+    align-items: stretch;
+    flex-wrap: wrap;
 }
 
-.shadowTitle:after {
-    content: "";
-    display: table;
-    clear: both;
+header {
+    width: 70%;
 }
 
-.left75 {
-    width: 65%;
-    float: left;
-    vertical-align: top;
+footer {
+    width: 100%;
 }
 
-.right25 {
-    width: 35%;
-    float: right;
-    vertical-align: top;
+aside {
+    width: 30%;
 }
+
+

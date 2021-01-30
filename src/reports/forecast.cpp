@@ -62,16 +62,9 @@ wxString mmReportForecast::getHTMLText()
     // Build the report
     mmHTMLBuilder hb;
     hb.init();
-    hb.addDivContainer("shadowTitle");
-    {
-        hb.showUserName();
-        hb.addHeader(2, getReportTitle());
-        hb.DisplayDateHeading(m_date_range->start_date(), m_date_range->end_date(), m_date_range->is_with_date());
-        hb.addReportCurrency();
-        hb.addDateNow();
-    }
-    hb.endDiv();
-       
+    hb.addReportHeader(getReportTitle());
+    hb.DisplayDateHeading(m_date_range->start_date(), m_date_range->end_date(), m_date_range->is_with_date());
+
     GraphData gd;
     GraphSeries gsWithdrawal, gsDeposit;
     for (const auto & kv : amount_by_day)
