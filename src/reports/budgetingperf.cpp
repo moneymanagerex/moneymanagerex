@@ -55,17 +55,19 @@ void mmReportBudgetingPerformance::DisplayRow(const wxString& catName
         for (const auto &i : stats)
         {
             hb.startTableCell(" style='text-align:right;' nowrap");
+
+            wxString estVal;
             if (month < 0 || (i.first % 100 == month))
             {
-                const auto estVal = Model_Currency::toString(est, Model_Currency::GetBaseCurrency());
-                hb.addText(estVal);
-                hb.addLineBreak();
-
-                const auto val = Model_Currency::toString(i.second, Model_Currency::GetBaseCurrency());
-                hb.startSpan(val, wxString::Format(" style='text-align:right;%s' nowrap"
-                    , (i.second - est < 0) ? "color:red;" : ""));
-                hb.endSpan();
+                estVal = Model_Currency::toString(est, Model_Currency::GetBaseCurrency());
             }
+            hb.addText(estVal);
+            hb.addLineBreak();
+
+            const auto val = Model_Currency::toString(i.second, Model_Currency::GetBaseCurrency());
+            hb.startSpan(val, wxString::Format(" style='text-align:right;%s' nowrap"
+                , (i.second - est < 0) ? "color:red;" : ""));
+            hb.endSpan();
 
             hb.endTableCell();
         }
