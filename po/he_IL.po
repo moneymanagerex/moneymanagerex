@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-01-30 19:48+0300\n"
-"PO-Revision-Date: 2021-01-31 06:34\n"
+"PO-Revision-Date: 2021-01-31 06:43\n"
 "Last-Translator: \n"
 "Language-Team: Hebrew\n"
 "MIME-Version: 1.0\n"
@@ -1100,7 +1100,7 @@ msgstr "שגיאה"
 
 #: billsdepositsdialog.cpp:1336
 msgid "Invalid Choice"
-msgstr "בחירה שגויה"
+msgstr "בחירה לא תקינה"
 
 #: billsdepositsdialog.cpp:1336
 msgid "Choose one of the following:"
@@ -2203,7 +2203,7 @@ msgstr "שגיאת שאילתה , יש ליצור קשר עם תמיכת MMEX!"
 
 #: dbupgrade.cpp:248 dbupgrade.cpp:303
 msgid "Invalid file content, please contact MMEX support!"
-msgstr "תוכן קובץ שגוי, נא ליצור קשר עם תמיכת MMEX!"
+msgstr "תוכן קובץ לא תקין, נא ליצור קשר עם תמיכת MMEX!"
 
 #: dbupgrade.cpp:255
 msgid "Send this log to MMEX support team:\n"
@@ -3608,7 +3608,7 @@ msgstr "יצירת &תנועות מחזורית"
 #: mmcheckingpanel.cpp:1093
 msgid "&Delete selected transaction"
 msgid_plural "&Delete selected transactions"
-msgstr[0] ""
+msgstr[0] "&מחיקת תנועה שנבחרה"
 msgstr[1] ""
 msgstr[2] ""
 msgstr[3] ""
@@ -3619,11 +3619,11 @@ msgstr "מחיקת כל התנועות שבתצוגה הנוכחית"
 
 #: mmcheckingpanel.cpp:1097
 msgid "Delete Viewed \"Follow Up\" Transactions"
-msgstr ""
+msgstr "מחיקת תנועות מוצגות ל\"מעקב\""
 
 #: mmcheckingpanel.cpp:1098
 msgid "Delete Viewed \"Unreconciled\" Transactions"
-msgstr ""
+msgstr "מחיקת תנועות מוצגות \"לא מותאם\""
 
 #: mmcheckingpanel.cpp:1104 mmcheckingpanel.cpp:1117
 msgid "as Reconciled"
@@ -3639,7 +3639,7 @@ msgstr "כמבוטל"
 
 #: mmcheckingpanel.cpp:1110
 msgid "as Followup"
-msgstr ""
+msgstr "למעקב"
 
 #: mmcheckingpanel.cpp:1112 mmcheckingpanel.cpp:1121
 msgid "as Duplicate"
@@ -3647,7 +3647,7 @@ msgstr "ככפילות"
 
 #: mmcheckingpanel.cpp:1114
 msgid "Mark all being selected"
-msgstr ""
+msgstr "סימון כל התנועות שנבחרו"
 
 #: mmcheckingpanel.cpp:1120
 msgid "as needing Followup"
@@ -4820,11 +4820,11 @@ msgstr "תקופה:"
 
 #: mmreportspanel.cpp:290
 msgid "Year:"
-msgstr ""
+msgstr "שנה:"
 
 #: mmreportspanel.cpp:314
 msgid "Budget:"
-msgstr ""
+msgstr "תקציב:"
 
 #: mmreportspanel.cpp:340
 msgid "Accounts:"
@@ -4974,7 +4974,7 @@ msgstr "תאריך סיום: "
 
 #: model/Model_Report.cpp:88
 msgid "Year: "
-msgstr ""
+msgstr "שנה: "
 
 #: model/Model_Report.cpp:233
 msgid "Template is empty"
@@ -5349,11 +5349,11 @@ msgstr "סטטיסטיקת שימוש"
 
 #: optionsettingsnet.cpp:126
 msgid "Check for latest news on startup"
-msgstr ""
+msgstr "בדיקת חדשות אחרונות באתחול"
 
 #: optionsettingsnet.cpp:128
 msgid "Enable to allow news to be checked on application start"
-msgstr ""
+msgstr "אפשור בדיקת חדשות באתחול הישום"
 
 #: optionsettingsnet.cpp:133
 msgid "Timeout"
@@ -6299,15 +6299,15 @@ msgstr "סמל: %s"
 
 #: transactionsupdatedialog.cpp:72
 msgid "Multi Transactions Update"
-msgstr ""
+msgstr "עדכון תנועות מרובות"
 
 #: transactionsupdatedialog.cpp:186
 msgid "Append"
-msgstr ""
+msgstr "צרוף"
 
 #: transactionsupdatedialog.cpp:249
 msgid "Invalid type"
-msgstr ""
+msgstr "סוג לא תקין"
 
 #: transdialog.cpp:170
 msgid "Duplicate Transaction"
