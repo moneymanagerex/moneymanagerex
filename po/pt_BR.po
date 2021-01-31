@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-01-30 19:48+0300\n"
-"PO-Revision-Date: 2021-01-31 13:35\n"
+"PO-Revision-Date: 2021-01-31 13:46\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "MIME-Version: 1.0\n"
@@ -3561,14 +3561,14 @@ msgstr "&Nova Transferência"
 #: mmcheckingpanel.cpp:1061
 msgid "&Edit Transaction"
 msgid_plural "&Edit Transactions"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "&Editar Transação"
+msgstr[1] "&Editar Transações"
 
 #: mmcheckingpanel.cpp:1064
 msgid "&Copy Transaction"
 msgid_plural "&Copy Transactions"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "&Copiar Transação"
+msgstr[1] "&Copiar Transações"
 
 #: mmcheckingpanel.cpp:1067
 msgid "&Paste Transaction"
@@ -3593,8 +3593,8 @@ msgstr "Criar T&ransação Recorrente"
 #: mmcheckingpanel.cpp:1093
 msgid "&Delete selected transaction"
 msgid_plural "&Delete selected transactions"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "&Excluir transação selecionada"
+msgstr[1] "&Excluir transações selecionadas"
 
 #: mmcheckingpanel.cpp:1096
 msgid "Delete all transactions in current view"
@@ -3602,11 +3602,11 @@ msgstr "Excluir todas as transações mostradas neste momento"
 
 #: mmcheckingpanel.cpp:1097
 msgid "Delete Viewed \"Follow Up\" Transactions"
-msgstr ""
+msgstr "Excluir transações visualizadas como 'Acompanhar'"
 
 #: mmcheckingpanel.cpp:1098
 msgid "Delete Viewed \"Unreconciled\" Transactions"
-msgstr ""
+msgstr "Excluir transações visualizadas como \"Não-reconciliadas\""
 
 #: mmcheckingpanel.cpp:1104 mmcheckingpanel.cpp:1117
 msgid "as Reconciled"
@@ -3622,7 +3622,7 @@ msgstr "como Nula"
 
 #: mmcheckingpanel.cpp:1110
 msgid "as Followup"
-msgstr ""
+msgstr "como Acompanhar"
 
 #: mmcheckingpanel.cpp:1112 mmcheckingpanel.cpp:1121
 msgid "as Duplicate"
@@ -3630,7 +3630,7 @@ msgstr "como Duplicada"
 
 #: mmcheckingpanel.cpp:1114
 msgid "Mark all being selected"
-msgstr ""
+msgstr "Marcar todos como selecionados"
 
 #: mmcheckingpanel.cpp:1120
 msgid "as needing Followup"
@@ -4799,7 +4799,7 @@ msgstr "Ano:"
 
 #: mmreportspanel.cpp:314
 msgid "Budget:"
-msgstr ""
+msgstr "Orçamento:"
 
 #: mmreportspanel.cpp:340
 msgid "Accounts:"
@@ -5324,7 +5324,7 @@ msgstr "Estatísticas de uso"
 
 #: optionsettingsnet.cpp:126
 msgid "Check for latest news on startup"
-msgstr ""
+msgstr "Verificar as últimas novidades na inicialização"
 
 #: optionsettingsnet.cpp:128
 msgid "Enable to allow news to be checked on application start"
