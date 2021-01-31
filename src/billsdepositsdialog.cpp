@@ -51,7 +51,7 @@ const std::vector<std::pair<int, wxString> > mmBDDialog::BILLSDEPOSITS_REPEATS =
     { WEEKLY, wxTRANSLATE("Weekly")},
     { FORTNIGHTLY, wxTRANSLATE("Fortnightly")},
     { MONTHLY, wxTRANSLATE("Monthly")},
-    { BIMONTHLY, wxTRANSLATE("Bi-Monthly")},
+    { BIMONTHLY, wxTRANSLATE("Every 2 Months")},
     { QUARTERLY, wxTRANSLATE("Quarterly")},
     { HALFYEARLY, wxTRANSLATE("Half-Yearly")},
     { YEARLY, wxTRANSLATE("Yearly")},

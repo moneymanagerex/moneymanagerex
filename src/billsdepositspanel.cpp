@@ -40,7 +40,7 @@ const wxString BILLSDEPOSITS_REPEATS[] =
     wxTRANSLATE("Weekly"),
     wxTRANSLATE("Fortnightly"),
     wxTRANSLATE("Monthly"),
-    wxTRANSLATE("Bi-Monthly"),
+    wxTRANSLATE("Every 2 Months"),
     wxTRANSLATE("Quarterly"),
     wxTRANSLATE("Half-Yearly"),
     wxTRANSLATE("Yearly"),

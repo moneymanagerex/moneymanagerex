@@ -54,9 +54,9 @@ const std::vector<std::pair<Model_Budget::PERIOD_ENUM, wxString> > Model_Budget:
 {
     {Model_Budget::NONE, wxString(wxTRANSLATE("None"))}
     , {Model_Budget::WEEKLY, wxString(wxTRANSLATE("Weekly"))}
-    , {Model_Budget::BIWEEKLY, wxString(wxTRANSLATE("Bi-Weekly"))}
+    , {Model_Budget::BIWEEKLY, wxString(wxTRANSLATE("Fortnightly"))}
     , {Model_Budget::MONTHLY, wxString(wxTRANSLATE("Monthly"))}
-    , {Model_Budget::BIMONTHLY, wxString(wxTRANSLATE("Bi-Monthly"))}
+    , {Model_Budget::BIMONTHLY, wxString(wxTRANSLATE("Every 2 Months"))}
     , {Model_Budget::QUARTERLY, wxString(wxTRANSLATE("Quarterly"))}
     , {Model_Budget::HALFYEARLY, wxString(wxTRANSLATE("Half-Yearly"))}
     , {Model_Budget::YEARLY, wxString(wxTRANSLATE("Yearly"))}
