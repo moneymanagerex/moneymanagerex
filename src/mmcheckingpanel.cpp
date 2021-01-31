@@ -520,10 +520,8 @@ void mmCheckingPanel::setAccountSummary()
 //----------------------------------------------------------------------------
 void mmCheckingPanel::enableEditDeleteButtons(bool en)
 {
-    if (m_listCtrlAccount->GetSelectedItemCount()>1)
+    if (m_listCtrlAccount->GetSelectedItemCount() > 1)
     {
-        m_btnEdit->Enable(false);
-        m_btnDelete->Enable(true);
         m_btnDuplicate->Enable(false);
         m_btnAttachment->Enable(false);
     }
@@ -1008,8 +1006,6 @@ void TransactionListCtrl::OnListLeftClick(wxMouseEvent& event)
     {
         // Note: GetSelectedItemCount() does not return correct count at this time
         // so we can't call enableEditDeleteButtons() or updateExtraTransactionData()
-        m_cp->m_btnEdit->Enable(false);
-        m_cp->m_btnDelete->Enable(true);
         m_cp->m_btnDuplicate->Enable(false);
         m_cp->m_btnAttachment->Enable(false);
     }
@@ -1529,11 +1525,6 @@ void TransactionListCtrl::OnListKeyDown(wxListEvent& event)
         wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_TREEPOPUP_MARKVOID);
         OnMarkTransaction(evt);
     }
-    else if ((wxGetKeyState(WXK_DELETE) || wxGetKeyState(WXK_NUMPAD_DELETE)) && status != "V")
-    {
-        wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_TREEPOPUP_MARKVOID);
-        OnMarkTransaction(evt);
-    }
     else if (wxGetKeyState(WXK_DELETE) || wxGetKeyState(WXK_NUMPAD_DELETE))
     {
         wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_TREEPOPUP_DELETE2);
@@ -1549,7 +1540,8 @@ void TransactionListCtrl::OnListKeyDown(wxListEvent& event)
 void TransactionListCtrl::OnDeleteTransaction(wxCommandEvent& /*event*/)
 {
     //check if a transaction is selected
-    if (GetSelectedItemCount() < 1) return;
+    int sel = GetSelectedItemCount();
+    if (sel < 1) return;
 
     m_topItemIndex = GetTopItem() + GetCountPerPage() - 1;
 
@@ -1559,8 +1551,12 @@ void TransactionListCtrl::OnDeleteTransaction(wxCommandEvent& /*event*/)
     }
 
     //ask if they really want to delete
+    const wxString text = wxString::Format(
+            wxPLURAL("Do you really want to delete the selected transaction?"
+            , "Do you really want to delete %i selected transactions?", sel)
+        , sel);
     wxMessageDialog msgDlg(this
-        , _("Do you really want to delete the selected transaction?")
+        , text
         , _("Confirm Transaction Deletion")
         , wxYES_NO | wxYES_DEFAULT | wxICON_ERROR);
 
