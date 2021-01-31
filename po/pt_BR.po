@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-01-30 19:48+0300\n"
-"PO-Revision-Date: 2021-01-30 17:04\n"
+"PO-Revision-Date: 2021-01-31 13:35\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "MIME-Version: 1.0\n"
@@ -4795,7 +4795,7 @@ msgstr "Período:"
 
 #: mmreportspanel.cpp:290
 msgid "Year:"
-msgstr ""
+msgstr "Ano:"
 
 #: mmreportspanel.cpp:314
 msgid "Budget:"
@@ -4949,7 +4949,7 @@ msgstr "Data de término: "
 
 #: model/Model_Report.cpp:88
 msgid "Year: "
-msgstr ""
+msgstr "Ano: "
 
 #: model/Model_Report.cpp:233
 msgid "Template is empty"
@@ -6270,11 +6270,11 @@ msgstr ""
 
 #: transactionsupdatedialog.cpp:186
 msgid "Append"
-msgstr ""
+msgstr "Anexar"
 
 #: transactionsupdatedialog.cpp:249
 msgid "Invalid type"
-msgstr ""
+msgstr "Tipo inválido"
 
 #: transdialog.cpp:170
 msgid "Duplicate Transaction"
