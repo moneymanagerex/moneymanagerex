@@ -28,6 +28,7 @@
 #include "model/Model_Usage.h"
 
 #include <wx/cmdline.h>
+#include <wx/display.h>
 #include <wx/fs_arc.h>
 #include <wx/fs_filter.h>
 #include <wx/fs_mem.h>
@@ -330,33 +331,37 @@ bool OnInitImpl(mmGUIApp* app)
     /* set preffered GUI language */
     app->setGUILanguage(Option::instance().getLanguageID());
 
-    //Get System screen size
-#ifdef _MSC_VER
-    int sys_screen_x = GetSystemMetrics(SM_CXVIRTUALSCREEN);
-    int sys_screen_y = GetSystemMetrics(SM_CYVIRTUALSCREEN);
-#else
-    int sys_screen_x = wxSystemSettings::GetMetric(wxSYS_SCREEN_X);
-    int sys_screen_y = wxSystemSettings::GetMetric(wxSYS_SCREEN_Y);
-#endif
+    // Get a 'sensible' location on the primary display in case we can't fit it into the window
+    wxDisplay* display = new wxDisplay((int)0);
+    wxRect rect = display->GetClientArea();
+    int defValX = rect.GetX() + 50;
+    int defValY = rect.GetY() + 50;
+    int defValW = rect.GetWidth() / 4 * 3;
+    int defValH = rect.GetHeight() / 4 * 3;
 
-    /* Load Dimensions of Window */
-    int valx = Model_Setting::instance().GetIntSetting("ORIGINX", 50);
-    int valy = Model_Setting::instance().GetIntSetting("ORIGINY", 50);
-    int valw = Model_Setting::instance().GetIntSetting("SIZEW", sys_screen_x / 4 * 3);
-    int valh = Model_Setting::instance().GetIntSetting("SIZEH", sys_screen_y / 4 * 3);
+    // Load Dimensions of Window, if not found use the 'sensible' values
+    int valX = Model_Setting::instance().GetIntSetting("ORIGINX", defValX);
+    int valY = Model_Setting::instance().GetIntSetting("ORIGINY", defValY);
+    int valW = Model_Setting::instance().GetIntSetting("SIZEW", defValW);
+    int valH = Model_Setting::instance().GetIntSetting("SIZEH", defValH);
 
-    //BUGFIX: #214 MMEX Window is "off screen"
-    if (valx < 0)
-        valx = 0;
-    else if (valx >= sys_screen_x)
-        valx = sys_screen_x - valw;
+    // Check if it fits into any of the windows
+    bool itFits = false;
+	for (int i=0; i<wxDisplay::GetCount(); i++) {
+		display = new wxDisplay(i);
+		if (display->GetGeometry().Contains(wxRect(valX, valY, valW, valH))) itFits = true;
+	}
 
-    if (valy < 0)
-        valy = 0;
-    else if (valy >= sys_screen_y)
-        valy = sys_screen_y - valh;
+    // If it doesn't fit then give it the 'sensible' default
+    if (!itFits)
+    {
+        valX = defValX;
+        valY = defValY;
+        valW = defValW;
+        valH = defValH;
+    }
 
-    app->m_frame = new mmGUIFrame(app, mmex::getProgramName(), wxPoint(valx, valy), wxSize(valw, valh));
+    app->m_frame = new mmGUIFrame(app, mmex::getProgramName(), wxPoint(valX, valY), wxSize(valW, valH));
 
     bool ok = app->m_frame->Show();
 
