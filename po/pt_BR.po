@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-01-30 19:48+0300\n"
-"PO-Revision-Date: 2021-01-31 13:46\n"
+"PO-Revision-Date: 2021-01-31 13:55\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "MIME-Version: 1.0\n"
@@ -1798,7 +1798,7 @@ msgstr "Informação Inválida"
 #: currencydialog.cpp:295
 #, c-format
 msgid "%.2f Shown As: %s"
-msgstr ""
+msgstr "%.2f Exibido Como: %s"
 
 #: customfieldeditdialog.cpp:56
 msgid "New/Edit Custom Field"
@@ -5328,7 +5328,7 @@ msgstr "Verificar as últimas novidades na inicialização"
 
 #: optionsettingsnet.cpp:128
 msgid "Enable to allow news to be checked on application start"
-msgstr ""
+msgstr "Habilite para permitir a verificação de novidades ao iniciar o aplicativo"
 
 #: optionsettingsnet.cpp:133
 msgid "Timeout"
@@ -6266,7 +6266,7 @@ msgstr "Símbolo: %s"
 
 #: transactionsupdatedialog.cpp:72
 msgid "Multi Transactions Update"
-msgstr ""
+msgstr "Atualização de Múltiplas Transações"
 
 #: transactionsupdatedialog.cpp:186
 msgid "Append"
