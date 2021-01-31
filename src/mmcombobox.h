@@ -25,7 +25,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "model/Model_Account.h"
 #include "model/Model_Payee.h"
 #include <wx/richtooltip.h>
-#include "webapp.h"
+
 
 class mmComboBox : public wxTextCtrl
 {
@@ -73,14 +73,15 @@ public:
         int id = -1;
         if (m_payee) {
             Model_Payee::Data * p = Model_Payee::instance().get(this->GetValue());
-            if (p) {
-                id = p->PAYEEID;
-            }
+            if (p) id = p->PAYEEID;
             else {
-                p = Model_Payee::instance().create();
-                p->PAYEENAME = this->GetValue();
-                Model_Payee::instance().save(p);
-                mmWebApp::MMEX_WebApp_UpdatePayee();
+                const wxString errorHeader = _("Invalid Payee");
+                const wxString errorMessage = (_("Please type in an exiting payee name,\n"
+                    "or make a selection using the dropdown button.")
+                    + "\n");
+                mmErrorDialogs::ToolTip4Object(this
+                    , errorMessage, errorHeader, wxICON_WARNING);
+                //this->SetFocus();
             }
         }
         else {
