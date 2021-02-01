@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-02-01 13:21+0300\n"
-"PO-Revision-Date: 2021-02-01 10:31\n"
+"PO-Revision-Date: 2021-02-01 16:21\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -3562,14 +3562,14 @@ msgstr "&Nueva transferencia"
 #: mmcheckingpanel.cpp:1057
 msgid "&Edit Transaction"
 msgid_plural "&Edit Transactions"
-msgstr[0] "Editar Transacción"
-msgstr[1] "Editar Transacciones"
+msgstr[0] "&Editar Transacción"
+msgstr[1] "&Editar Transacciones"
 
 #: mmcheckingpanel.cpp:1060
 msgid "&Copy Transaction"
 msgid_plural "&Copy Transactions"
-msgstr[0] "Copiar Transacción"
-msgstr[1] "Copiar Transacciones"
+msgstr[0] "&Copiar transacción"
+msgstr[1] "&Copiar Transacciones"
 
 #: mmcheckingpanel.cpp:1063
 msgid "&Paste Transaction"
