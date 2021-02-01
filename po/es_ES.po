@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-02-01 13:21+0300\n"
-"PO-Revision-Date: 2021-02-01 19:33\n"
+"PO-Revision-Date: 2021-02-01 19:39\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -3666,8 +3666,8 @@ msgstr "¿Realmente quiere borrar todas las transaciones mostradas \"%s\"?"
 #, c-format
 msgid "Do you really want to delete the selected transaction?"
 msgid_plural "Do you really want to delete %i selected transactions?"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "¿Realmente quieres borrar la transacción seleccionada?"
+msgstr[1] "¿Realmente quieres borrar las %i transacciones seleccionadas?"
 
 #: mmcheckingpanel.cpp:1603
 #, c-format
