@@ -332,7 +332,8 @@ bool OnInitImpl(mmGUIApp* app)
     app->setGUILanguage(Option::instance().getLanguageID());
 
     // Get a 'sensible' location on the primary display in case we can't fit it into the window
-    wxDisplay* display = new wxDisplay((unsigned int)0);
+    wxSharedPtr<wxDisplay> display;
+    display = new wxDisplay(static_cast<unsigned int>(0));
     wxRect rect = display->GetClientArea();
     int defValX = rect.GetX() + 50;
     int defValY = rect.GetY() + 50;
@@ -347,10 +348,10 @@ bool OnInitImpl(mmGUIApp* app)
 
     // Check if it fits into any of the windows
     bool itFits = false;
-	for (unsigned int i=0; i<wxDisplay::GetCount(); i++) {
-		display = new wxDisplay(i);
-		if (display->GetGeometry().Contains(wxRect(valX, valY, valW, valH))) itFits = true;
-	}
+    for (unsigned int i = 0; i < wxDisplay::GetCount(); i++) {
+        display = new wxDisplay(i);
+        if (display->GetGeometry().Contains(wxRect(valX, valY, valW, valH))) itFits = true;
+    }
 
     // If it doesn't fit then give it the 'sensible' default
     if (!itFits)
