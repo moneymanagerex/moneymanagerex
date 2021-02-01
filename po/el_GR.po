@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-02-01 13:21+0300\n"
-"PO-Revision-Date: 2021-02-01 10:31\n"
+"PO-Revision-Date: 2021-02-01 14:02\n"
 "Last-Translator: \n"
 "Language-Team: Greek\n"
 "MIME-Version: 1.0\n"
@@ -1367,7 +1367,7 @@ msgstr "Εμφάνιση της περίληψης των κατηγοριών �
 #: budgetingpanel.cpp:172
 #, c-format
 msgid "Financial Year: %s - %ld"
-msgstr ""
+msgstr "Οικονομικό Έτος: %s - %ld"
 
 #: budgetingpanel.cpp:176 reports/budget.cpp:92
 #, c-format
@@ -3654,7 +3654,8 @@ msgstr ""
 #, c-format
 msgid "Do you really want to delete the selected transaction?"
 msgid_plural "Do you really want to delete %i selected transactions?"
-msgstr[0] ""
+msgstr[0] "Θέλετε πραγματικά να διαγράψετε την επιλεγμένη συναλλαγή;\n\n"
+"Θέλετε πραγματικά να διαγράψετε %i επιλεγμένες συναλλαγές;"
 msgstr[1] ""
 
 #: mmcheckingpanel.cpp:1603
