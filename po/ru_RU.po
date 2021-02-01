@@ -3572,18 +3572,18 @@ msgstr "Новый перевод"
 #: mmcheckingpanel.cpp:1061
 msgid "&Edit Transaction"
 msgid_plural "&Edit Transactions"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "&Редактировать транзакцию"
+msgstr[1] "&Редактировать транзакции"
+msgstr[2] "&Редактировать транзакции"
+msgstr[3] "&Редактировать"
 
 #: mmcheckingpanel.cpp:1064
 msgid "&Copy Transaction"
 msgid_plural "&Copy Transactions"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "&Копировать транзакцию"
+msgstr[1] "&Копировать транзакции"
+msgstr[2] "&Копировать  транзакции"
+msgstr[3] "&Копировать"
 
 #: mmcheckingpanel.cpp:1067
 msgid "&Paste Transaction"

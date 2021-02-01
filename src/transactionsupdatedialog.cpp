@@ -286,11 +286,13 @@ void transactionsUpdateDialog::OnOk(wxCommandEvent& WXUNUSED(event))
             if (!Model_Checking::is_transfer(trx))
                 trx->PAYEEID = payee_id;
         }
-        if (m_notes_checkbox->IsChecked() && !m_notes_ctrl->GetValue().IsEmpty())
+        if (m_notes_checkbox->IsChecked())
         {
-            if (m_append_checkbox->IsChecked())
-                trx->NOTES += (trx->NOTES.Right(1) == "\n" ? "" : "\n")
+            if (m_append_checkbox->IsChecked()) {
+                trx->NOTES += (trx->NOTES.Right(1) == "\n" || trx->NOTES.empty()
+                    ? "" : "\n")
                     + m_notes_ctrl->GetValue();
+            }
             else
                 trx->NOTES = m_notes_ctrl->GetValue();
         }
