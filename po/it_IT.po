@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-02-01 13:21+0300\n"
-"PO-Revision-Date: 2021-02-01 10:31\n"
+"PO-Revision-Date: 2021-02-01 12:47\n"
 "Last-Translator: \n"
 "Language-Team: Italian\n"
 "MIME-Version: 1.0\n"
@@ -1372,7 +1372,7 @@ msgstr "Mostra riepilogo Categorie di Budget"
 #: budgetingpanel.cpp:172
 #, c-format
 msgid "Financial Year: %s - %ld"
-msgstr ""
+msgstr "Anno finanziario: %s - %ld"
 
 #: budgetingpanel.cpp:176 reports/budget.cpp:92
 #, c-format
@@ -3669,8 +3669,8 @@ msgstr "Vuoi davvero eliminare tutte le \"%s\" operazioni visualizzate?"
 #, c-format
 msgid "Do you really want to delete the selected transaction?"
 msgid_plural "Do you really want to delete %i selected transactions?"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Vuoi davvero eliminare l'operazione selezionata?"
+msgstr[1] "Vuoi davvero eliminare le %i operazioni selezionate?"
 
 #: mmcheckingpanel.cpp:1603
 #, c-format
