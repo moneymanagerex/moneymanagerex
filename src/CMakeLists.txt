@@ -114,6 +114,8 @@ add_executable(${MMEX_EXE} WIN32 MACOSX_BUNDLE
     minimal_editor.h
     mmcheckingpanel.cpp
     mmcheckingpanel.h
+    mmchecking_list.cpp
+    mmchecking_list.h
     mmcombobox.h
     mmcustomdata.h
     mmcustomdata.cpp
