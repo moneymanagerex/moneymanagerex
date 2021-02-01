@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-01-30 19:48+0300\n"
-"PO-Revision-Date: 2021-01-30 17:04\n"
+"PO-Revision-Date: 2021-02-01 08:03\n"
 "Last-Translator: \n"
 "Language-Team: Greek\n"
 "MIME-Version: 1.0\n"
@@ -3547,13 +3547,15 @@ msgstr ""
 #: mmcheckingpanel.cpp:1061
 msgid "&Edit Transaction"
 msgid_plural "&Edit Transactions"
-msgstr[0] ""
+msgstr[0] "&Επεξεργασία Συναλλαγής\n\n"
+"&Επεξεργασία Συναλλαγών"
 msgstr[1] ""
 
 #: mmcheckingpanel.cpp:1064
 msgid "&Copy Transaction"
 msgid_plural "&Copy Transactions"
-msgstr[0] ""
+msgstr[0] "&Αντιγραφή συναλλαγής\n\n"
+"&Αντιγραφή συναλλαγών"
 msgstr[1] ""
 
 #: mmcheckingpanel.cpp:1067
@@ -3579,7 +3581,8 @@ msgstr ""
 #: mmcheckingpanel.cpp:1093
 msgid "&Delete selected transaction"
 msgid_plural "&Delete selected transactions"
-msgstr[0] ""
+msgstr[0] "&Διαγραφή της επιλεγμένης συναλλαγής\n\n"
+"&Διαγραφή των επιλεγμένων συναλλαγών"
 msgstr[1] ""
 
 #: mmcheckingpanel.cpp:1096
@@ -3588,11 +3591,11 @@ msgstr "Διαγράψτε όλες τις συναλλαγές στην τρέ�
 
 #: mmcheckingpanel.cpp:1097
 msgid "Delete Viewed \"Follow Up\" Transactions"
-msgstr ""
+msgstr "Διαγραφή των εμφανιζόμενων συναλλαγών προς \"Επανέλεγχο\""
 
 #: mmcheckingpanel.cpp:1098
 msgid "Delete Viewed \"Unreconciled\" Transactions"
-msgstr ""
+msgstr "Διαγραφή των εμφανιζόμενων συναλλαγών προς \"Επανέλεγχο\""
 
 #: mmcheckingpanel.cpp:1104 mmcheckingpanel.cpp:1117
 msgid "as Reconciled"
@@ -3608,7 +3611,7 @@ msgstr "ως άκυρη"
 
 #: mmcheckingpanel.cpp:1110
 msgid "as Followup"
-msgstr ""
+msgstr "ως Παρακολούθηση"
 
 #: mmcheckingpanel.cpp:1112 mmcheckingpanel.cpp:1121
 msgid "as Duplicate"
@@ -3616,7 +3619,7 @@ msgstr "ως διπλότυπη"
 
 #: mmcheckingpanel.cpp:1114
 msgid "Mark all being selected"
-msgstr ""
+msgstr "Μαρκάρισμά όλων των επιλεγμένων"
 
 #: mmcheckingpanel.cpp:1120
 msgid "as needing Followup"
@@ -4773,11 +4776,11 @@ msgstr ""
 
 #: mmreportspanel.cpp:290
 msgid "Year:"
-msgstr ""
+msgstr "Έτος:"
 
 #: mmreportspanel.cpp:314
 msgid "Budget:"
-msgstr ""
+msgstr "Προϋπολογισμός:"
 
 #: mmreportspanel.cpp:340
 msgid "Accounts:"
@@ -4926,7 +4929,7 @@ msgstr "Ημερομηνία λήξης: "
 
 #: model/Model_Report.cpp:88
 msgid "Year: "
-msgstr ""
+msgstr "Έτος: "
 
 #: model/Model_Report.cpp:233
 msgid "Template is empty"
@@ -5299,11 +5302,11 @@ msgstr ""
 
 #: optionsettingsnet.cpp:126
 msgid "Check for latest news on startup"
-msgstr ""
+msgstr "Έλεγχος για τα τελευταία νέα κατά την εκκίνηση"
 
 #: optionsettingsnet.cpp:128
 msgid "Enable to allow news to be checked on application start"
-msgstr ""
+msgstr "Ενεργοποιήστε για να επιτρέψετε τον έλεγχο των ειδήσεων κατά την έναρξη της εφαρμογής"
 
 #: optionsettingsnet.cpp:133
 msgid "Timeout"
@@ -6238,15 +6241,15 @@ msgstr ""
 
 #: transactionsupdatedialog.cpp:72
 msgid "Multi Transactions Update"
-msgstr ""
+msgstr "Ενημέρωση Πολλαπλών Συναλλαγών"
 
 #: transactionsupdatedialog.cpp:186
 msgid "Append"
-msgstr ""
+msgstr "Προσθήκη"
 
 #: transactionsupdatedialog.cpp:249
 msgid "Invalid type"
-msgstr ""
+msgstr "Μη έγκυρος τύπος"
 
 #: transdialog.cpp:170
 msgid "Duplicate Transaction"
