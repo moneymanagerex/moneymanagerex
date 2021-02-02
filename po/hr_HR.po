@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2021-02-02 01:42+0300\n"
-"PO-Revision-Date: 2021-02-01 22:51\n"
+"POT-Creation-Date: 2021-02-02 13:58+0300\n"
+"PO-Revision-Date: 2021-02-02 11:04\n"
 "Last-Translator: \n"
 "Language-Team: Croatian\n"
 "MIME-Version: 1.0\n"
@@ -136,7 +136,7 @@ msgstr "Odaberi, da li se ovaj račun često koristi. Koristi za filtriranje pri
 #: billsdepositsdialog.cpp:609 billsdepositspanel.cpp:110
 #: filtertransdialog.cpp:306 filtertransdialog.cpp:954
 #: import_export/qif_import_gui.cpp:105 import_export/univcsvdialog.cpp:110
-#: mmchecking_list.cpp:182 reports/transactions.cpp:76
+#: mmchecking_list.cpp:183 reports/transactions.cpp:76
 #: sharetransactiondialog.cpp:263 stockdialog.cpp:264 stockspanel.cpp:101
 #: transactionsupdatedialog.cpp:184 transdialog.cpp:567
 #: usertransactionpanel.cpp:205 webappdialog.cpp:154
@@ -368,7 +368,7 @@ msgstr "Unesi ime imovine"
 #: assetdialog.cpp:201 assetspanel.cpp:60 filtertransdialog.cpp:462
 #: import_export/qif_import_gui.cpp:99 import_export/univcsvdialog.cpp:104
 #: maincurrencydialog.cpp:236 maincurrencydialog.cpp:258
-#: mmchecking_list.cpp:174 mmreportspanel.cpp:255 mmreportspanel.cpp:273
+#: mmchecking_list.cpp:175 mmreportspanel.cpp:255 mmreportspanel.cpp:273
 #: model/Model_CustomField.cpp:29 reports/cashflow.cpp:252
 #: reports/incexpenses.cpp:230 reports/summary.cpp:155
 #: reports/transactions.cpp:69 stockdialog.cpp:297 stockdialog.cpp:676
@@ -444,7 +444,7 @@ msgid "Asset Account not found.\n\n"
 msgstr "Račun imovine nije pronađen.\n\n"
 "Želiš li stvoriti jedan račun?"
 
-#: assetspanel.cpp:58 billsdepositspanel.cpp:96 mmchecking_list.cpp:173
+#: assetspanel.cpp:58 billsdepositspanel.cpp:96 mmchecking_list.cpp:174
 #: reports/transactions.cpp:68 stockspanel.cpp:89
 msgid "ID"
 msgstr "ID"
@@ -497,7 +497,7 @@ msgstr "&Uredi imovinu"
 msgid "&Delete Asset"
 msgstr "&Izbriši imovinu"
 
-#: assetspanel.cpp:107 billsdepositspanel.cpp:404 mmchecking_list.cpp:305
+#: assetspanel.cpp:107 billsdepositspanel.cpp:404 mmchecking_list.cpp:306
 #: mmframe.cpp:1202 payeedialog.cpp:372 stockspanel.cpp:146
 msgid "&Organize Attachments"
 msgstr "&Organiziraj priloge"
@@ -551,7 +551,7 @@ msgid "&Edit "
 msgstr "&Uredi "
 
 #: assetspanel.cpp:484 billsdepositspanel.cpp:273 budgetyeardialog.cpp:103
-#: categdialog.cpp:234 maincurrencydialog.cpp:289 mmchecking_list.cpp:321
+#: categdialog.cpp:234 maincurrencydialog.cpp:289 mmchecking_list.cpp:322
 #: mmcheckingpanel.cpp:336 stockdialog.cpp:339 stockspanel.cpp:593
 msgid "&Delete "
 msgstr "&Izbriši "
@@ -898,7 +898,7 @@ msgstr "Odredi status transakcije"
 #: filtertransdialog.cpp:238 filtertransdialog.cpp:471
 #: filtertransdialog.cpp:906 import_export/qif_import_gui.cpp:234
 #: import_export/qif_import_gui.cpp:245 import_export/qif_import_gui.cpp:255
-#: mmchecking_list.cpp:177 reports/transactions.cpp:72
+#: mmchecking_list.cpp:178 reports/transactions.cpp:72
 #: transactionsupdatedialog.cpp:119 transdialog.cpp:469
 #: usertransactionpanel.cpp:177 webappdialog.cpp:149 wizard_update.cpp:136
 msgid "Status"
@@ -955,7 +955,7 @@ msgstr "Odaberi račun, koji će sadržavati ponavljajuću transakciju"
 #: billsdepositspanel.cpp:100 filtertransdialog.cpp:205
 #: filtertransdialog.cpp:418 filtertransdialog.cpp:883
 #: import_export/qif_import_gui.cpp:101 import_export/qif_import_gui.cpp:239
-#: import_export/univcsvdialog.cpp:105 mmchecking_list.cpp:176
+#: import_export/univcsvdialog.cpp:105 mmchecking_list.cpp:177
 #: mmhomepage.cpp:353 reports/payee.cpp:135 reports/transactions.cpp:71
 #: transactionsupdatedialog.cpp:160 transdialog.cpp:293 transdialog.cpp:517
 #: usertransactionpanel.cpp:181 webappdialog.cpp:151
@@ -978,7 +978,7 @@ msgstr "Koristi podijeljene kategorije"
 #: billsdepositsdialog.cpp:592 billsdepositspanel.cpp:102
 #: budgetingpanel.cpp:292 filtertransdialog.cpp:216 filtertransdialog.cpp:891
 #: import_export/qif_import_gui.cpp:103 import_export/qif_import_gui.cpp:250
-#: import_export/univcsvdialog.cpp:107 mmchecking_list.cpp:178
+#: import_export/univcsvdialog.cpp:107 mmchecking_list.cpp:179
 #: mmhomepage.cpp:187 reports/budgetcategorysummary.cpp:174
 #: reports/budgetingperf.cpp:199 reports/categexp.cpp:171
 #: reports/categexp.cpp:399 reports/transactions.cpp:73
@@ -1001,7 +1001,7 @@ msgstr "Odredi povezani broj čeka ili broj transakcije"
 #: billsdepositsdialog.cpp:605 billsdepositspanel.cpp:109
 #: filtertransdialog.cpp:298 filtertransdialog.cpp:947
 #: import_export/qif_import_gui.cpp:100 import_export/univcsvdialog.cpp:109
-#: mmchecking_list.cpp:175 reports/transactions.cpp:75 transdialog.cpp:550
+#: mmchecking_list.cpp:176 reports/transactions.cpp:75 transdialog.cpp:550
 #: usertransactionpanel.cpp:201
 msgid "Number"
 msgstr "Broj"
@@ -2296,14 +2296,14 @@ msgid "Include all subcategories for the selected category."
 msgstr "Uključi sve podkategotije za odabranu kategoriju."
 
 #: filtertransdialog.cpp:257 import_export/univcsvdialog.cpp:112
-#: mmchecking_list.cpp:179 model/Model_Billsdeposits.cpp:31
+#: mmchecking_list.cpp:180 model/Model_Billsdeposits.cpp:31
 #: model/Model_Checking.cpp:29 reports/forecast.cpp:84
 #: splitdetailsdialog.cpp:124
 msgid "Withdrawal"
 msgstr "Isplata"
 
 #: filtertransdialog.cpp:259 import_export/univcsvdialog.cpp:113
-#: mmchecking_list.cpp:180 model/Model_Billsdeposits.cpp:32
+#: mmchecking_list.cpp:181 model/Model_Billsdeposits.cpp:32
 #: model/Model_Checking.cpp:30 reports/forecast.cpp:82
 #: splitdetailsdialog.cpp:125
 msgid "Deposit"
@@ -2876,7 +2876,7 @@ msgstr "Podkategorija"
 msgid "Don't Care"
 msgstr "Zanemari"
 
-#: import_export/univcsvdialog.cpp:114 mmchecking_list.cpp:181
+#: import_export/univcsvdialog.cpp:114 mmchecking_list.cpp:182
 #: mmhomepage.cpp:648 reports/summary.cpp:163
 msgid "Balance"
 msgstr "Saldo"
@@ -3506,125 +3506,125 @@ msgstr "Primjer UK (HSBC HLDG) dionice: HSBA.L"
 msgid "If the Stock Name field is empty it will be filed when prices updated"
 msgstr "Ako je polje za ime vlasničkog udjela prazno, bit će popunjeno, kad se cijene aktualiziraju"
 
-#: mmchecking_list.cpp:275
+#: mmchecking_list.cpp:276
 msgid "&New Withdrawal"
 msgstr "&Nova isplata"
 
-#: mmchecking_list.cpp:276
+#: mmchecking_list.cpp:277
 msgid "&New Deposit"
 msgstr "&Nova uplata"
 
-#: mmchecking_list.cpp:278
+#: mmchecking_list.cpp:279
 msgid "&New Transfer"
 msgstr "&Novi prijenos"
 
-#: mmchecking_list.cpp:283
+#: mmchecking_list.cpp:284
 msgid "&Edit Transaction"
 msgid_plural "&Edit Transactions"
 msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
 
-#: mmchecking_list.cpp:286
+#: mmchecking_list.cpp:287
 msgid "&Copy Transaction"
 msgid_plural "&Copy Transactions"
 msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
 
-#: mmchecking_list.cpp:289
+#: mmchecking_list.cpp:290
 msgid "&Paste Transaction"
 msgstr "&Zalijepi transakciju"
 
-#: mmchecking_list.cpp:292
+#: mmchecking_list.cpp:293
 msgid "D&uplicate Transaction"
 msgstr "&Kopiraj transakciju"
 
-#: mmchecking_list.cpp:295
+#: mmchecking_list.cpp:296
 msgid "&Move Transaction"
 msgstr "&Premjesti transakciju"
 
-#: mmchecking_list.cpp:301
+#: mmchecking_list.cpp:302
 msgid "&View Split Categories"
 msgstr "&Prikaz podijeljenih kategorija"
 
-#: mmchecking_list.cpp:309
+#: mmchecking_list.cpp:310
 msgid "Create Reoccuring T&ransaction"
 msgstr "Stvori ponavljajuću t&ransakciju"
 
-#: mmchecking_list.cpp:315
+#: mmchecking_list.cpp:316
 msgid "&Delete selected transaction"
 msgid_plural "&Delete selected transactions"
 msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
 
-#: mmchecking_list.cpp:318
+#: mmchecking_list.cpp:319
 msgid "Delete all transactions in current view"
 msgstr "Izbriši sve transakcije u trenutačnom prikazu"
 
-#: mmchecking_list.cpp:319
+#: mmchecking_list.cpp:320
 msgid "Delete Viewed \"Follow Up\" Transactions"
 msgstr ""
 
-#: mmchecking_list.cpp:320
+#: mmchecking_list.cpp:321
 msgid "Delete Viewed \"Unreconciled\" Transactions"
 msgstr ""
 
-#: mmchecking_list.cpp:326 mmchecking_list.cpp:339
+#: mmchecking_list.cpp:327 mmchecking_list.cpp:340
 msgid "as Reconciled"
 msgstr "kao Usklađeno"
 
-#: mmchecking_list.cpp:328 mmchecking_list.cpp:340
+#: mmchecking_list.cpp:329 mmchecking_list.cpp:341
 msgid "as Unreconciled"
 msgstr "kao Neusklađeno"
 
-#: mmchecking_list.cpp:330 mmchecking_list.cpp:341
+#: mmchecking_list.cpp:331 mmchecking_list.cpp:342
 msgid "as Void"
 msgstr "kao Storno"
 
-#: mmchecking_list.cpp:332
+#: mmchecking_list.cpp:333
 msgid "as Followup"
 msgstr ""
 
-#: mmchecking_list.cpp:334 mmchecking_list.cpp:343
+#: mmchecking_list.cpp:335 mmchecking_list.cpp:344
 msgid "as Duplicate"
 msgstr "kao duplikat"
 
-#: mmchecking_list.cpp:336
+#: mmchecking_list.cpp:337
 msgid "Mark all being selected"
 msgstr ""
 
-#: mmchecking_list.cpp:342
+#: mmchecking_list.cpp:343
 msgid "as needing Followup"
 msgstr "kao traži Praćenje"
 
-#: mmchecking_list.cpp:344
+#: mmchecking_list.cpp:345
 msgid "Mark all being viewed"
 msgstr "Označi sve prikazane"
 
-#: mmchecking_list.cpp:419
+#: mmchecking_list.cpp:420
 msgid "Do you really want to delete all the transactions shown?"
 msgstr "Želiš li zaista izbrisati sve prikazane transakcije?"
 
-#: mmchecking_list.cpp:420 mmchecking_list.cpp:433 mmchecking_list.cpp:786
+#: mmchecking_list.cpp:421 mmchecking_list.cpp:434 mmchecking_list.cpp:787
 msgid "Confirm Transaction Deletion"
 msgstr "Potvrdi brisanje transakcije"
 
-#: mmchecking_list.cpp:429
+#: mmchecking_list.cpp:430
 msgid "Follow Up"
 msgstr "Prati dalje"
 
-#: mmchecking_list.cpp:429
+#: mmchecking_list.cpp:430
 msgid "Unreconciled"
 msgstr "Neusklađeno"
 
-#: mmchecking_list.cpp:432
+#: mmchecking_list.cpp:433
 #, c-format
 msgid "Do you really want to delete all the \"%s\" transactions shown?"
 msgstr "Želiš li zaista izbrisati sve prikazane \"%s\" transakcije?"
 
-#: mmchecking_list.cpp:781
+#: mmchecking_list.cpp:782
 #, c-format
 msgid "Do you really want to delete the selected transaction?"
 msgid_plural "Do you really want to delete %i selected transactions?"
@@ -3632,28 +3632,43 @@ msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
 
-#: mmchecking_list.cpp:829
+#: mmchecking_list.cpp:830
 #, c-format
 msgid "Locked transaction to date: %s\n\n"
 "Reconciled transactions."
 msgstr ""
 
-#: mmchecking_list.cpp:832 transdialog.cpp:713 transdialog.cpp:746
+#: mmchecking_list.cpp:833 transdialog.cpp:713 transdialog.cpp:746
 msgid "MMEX Transaction Check"
 msgstr "MMEX provjera transakcije"
 
-#: mmchecking_list.cpp:973 stockspanel.cpp:292
+#: mmchecking_list.cpp:974 stockspanel.cpp:292
 #, c-format
 msgid "Moving Transaction from %s to..."
 msgstr "Premještanje transakcije iz %s u …"
 
-#: mmchecking_list.cpp:976 stockspanel.cpp:293
+#: mmchecking_list.cpp:977 stockspanel.cpp:293
 msgid "Select the destination Account "
 msgstr "Odaberi odredišni račun "
 
-#: mmchecking_list.cpp:1030
+#: mmchecking_list.cpp:1031
 msgid "Reoccuring Transaction saved."
 msgstr "Ponavljajuća transakcija je spremljena."
+
+#: mmchecking_list.cpp:1147
+#, c-format
+msgid "Transactions selected: %ld"
+msgstr ""
+
+#: mmchecking_list.cpp:1149
+#, c-format
+msgid "Selected transactions balance: %s"
+msgstr ""
+
+#: mmchecking_list.cpp:1152
+#, c-format
+msgid "Days between selected transactions: %d"
+msgstr ""
 
 #: mmcheckingpanel.cpp:257 mmcheckingpanel.cpp:401
 msgid "Displayed Bal: "
