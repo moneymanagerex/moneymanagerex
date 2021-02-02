@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-02-02 01:42+0300\n"
-"PO-Revision-Date: 2021-02-01 22:50\n"
+"PO-Revision-Date: 2021-02-02 06:17\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -768,7 +768,7 @@ msgstr "Mensuelle"
 #: billsdepositsdialog.cpp:54 billsdepositspanel.cpp:43
 #: model/Model_Budget.cpp:59
 msgid "Every 2 Months"
-msgstr ""
+msgstr "Tous les deux mois"
 
 #: billsdepositsdialog.cpp:55 billsdepositspanel.cpp:44
 #: model/Model_Budget.cpp:60
