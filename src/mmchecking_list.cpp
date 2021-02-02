@@ -1152,6 +1152,9 @@ void TransactionListCtrl::OnListItemFocused(wxListEvent& WXUNUSED(event))
     msg += wxString::Format(_("Days between selected transactions: %d"), days);
 
     m_cp->m_info_panel->SetLabelText(msg);
+
+    m_cp->m_btnDuplicate->Enable(false);
+    m_cp->m_btnAttachment->Enable(false);
 }
 
 //----------------------------------------------------------------------------
