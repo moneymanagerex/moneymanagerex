@@ -80,6 +80,8 @@ EVT_MENU_RANGE(MENU_TREEPOPUP_MARKRECONCILED
 
 void TransactionListCtrl::sortTable()
 {
+    if (m_trans.empty()) return;
+
     switch (g_sortcol)
     {
     case TransactionListCtrl::COL_ID:
