@@ -996,6 +996,7 @@ a.badge:focus {
 .shadow:hover,
 .shadowTitle:hover {
     box-shadow : 0 0 20px rgba(0,0,0,0.7);
+    transform: translateY(-1px);
 }
  
 header {
