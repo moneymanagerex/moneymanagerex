@@ -31,6 +31,7 @@ Copyright (C) 2013, 2014 Nikolay
 class mmCheckingPanel;
 class mmFilterTransactionsDialog;
 class mmGUIFrame;
+class TransactionListCtrl;
 //----------------------------------------------------------------------------
 
 class mmCheckingPanel : public mmPanelBase
