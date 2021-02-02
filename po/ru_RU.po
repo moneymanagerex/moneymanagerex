@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-02-02 13:58+0300\n"
-"PO-Revision-Date: 2021-02-02 13:19\n"
+"PO-Revision-Date: 2021-02-02 13:34\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -3525,17 +3525,17 @@ msgstr "Новый перевод"
 msgid "&Edit Transaction"
 msgid_plural "&Edit Transactions"
 msgstr[0] "&Редактировать"
-msgstr[1] ""
+msgstr[1] "&Редактировать транзакции"
 msgstr[2] "&Редактировать транзакции"
 msgstr[3] "&Редактировать транзакции"
 
 #: mmchecking_list.cpp:287
 msgid "&Copy Transaction"
 msgid_plural "&Copy Transactions"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "&Копировать транзакцию"
+msgstr[1] "&Копировать транзакции"
 msgstr[2] "&Копировать транзакции"
-msgstr[3] ""
+msgstr[3] "&Копировать транзакции"
 
 #: mmchecking_list.cpp:290
 msgid "&Paste Transaction"
@@ -3560,10 +3560,10 @@ msgstr "Планирование"
 #: mmchecking_list.cpp:316
 msgid "&Delete selected transaction"
 msgid_plural "&Delete selected transactions"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "&Удалить отмеченную транзакцию"
+msgstr[1] "&Удалить отмеченные транзакции"
 msgstr[2] "&Удалить отмеченные транзакции"
-msgstr[3] ""
+msgstr[3] "&Удалить отмеченные транзакции"
 
 #: mmchecking_list.cpp:319
 msgid "Delete all transactions in current view"
@@ -3634,10 +3634,10 @@ msgstr "Вы действительно хотите удалить все по�
 #, c-format
 msgid "Do you really want to delete the selected transaction?"
 msgid_plural "Do you really want to delete %i selected transactions?"
-msgstr[0] ""
+msgstr[0] "Вы действительно хотите удалить выбранные транзакции?"
 msgstr[1] "Вы действительно хотите удалить %i выбранные транзакции?"
-msgstr[2] ""
-msgstr[3] ""
+msgstr[2] "Вы действительно хотите удалить %i выбранных транзакций?"
+msgstr[3] "Вы действительно хотите удалить %i выбранных транзакций?"
 
 #: mmchecking_list.cpp:830
 #, c-format
@@ -3666,17 +3666,17 @@ msgstr "Периодическая транзакция соханена."
 #: mmchecking_list.cpp:1147
 #, c-format
 msgid "Transactions selected: %ld"
-msgstr ""
+msgstr "Транзакций выделено: %ld"
 
 #: mmchecking_list.cpp:1149
 #, c-format
 msgid "Selected transactions balance: %s"
-msgstr ""
+msgstr "Баланс выделенных транзакций: %s"
 
 #: mmchecking_list.cpp:1152
 #, c-format
 msgid "Days between selected transactions: %d"
-msgstr ""
+msgstr "Дней между выбранными транзакциями: %d"
 
 #: mmcheckingpanel.cpp:257 mmcheckingpanel.cpp:401
 msgid "Displayed Bal: "
@@ -4836,11 +4836,11 @@ msgstr "Период:"
 
 #: mmreportspanel.cpp:290
 msgid "Year:"
-msgstr ""
+msgstr "Год:"
 
 #: mmreportspanel.cpp:314
 msgid "Budget:"
-msgstr ""
+msgstr "Бюджет:"
 
 #: mmreportspanel.cpp:340
 msgid "Accounts:"
@@ -4986,7 +4986,7 @@ msgstr "Дата окончания:"
 
 #: model/Model_Report.cpp:88
 msgid "Year: "
-msgstr ""
+msgstr "Год: "
 
 #: model/Model_Report.cpp:233
 msgid "Template is empty"
@@ -5361,11 +5361,11 @@ msgstr "Статистика использования"
 
 #: optionsettingsnet.cpp:126
 msgid "Check for latest news on startup"
-msgstr ""
+msgstr "Проверять последние новости при запуске"
 
 #: optionsettingsnet.cpp:128
 msgid "Enable to allow news to be checked on application start"
-msgstr ""
+msgstr "Включите, чтобы разрешить проверять новости при запуске приложения"
 
 #: optionsettingsnet.cpp:133
 msgid "Timeout"
@@ -6315,15 +6315,15 @@ msgstr "Тикер: %s"
 
 #: transactionsupdatedialog.cpp:72
 msgid "Multi Transactions Update"
-msgstr ""
+msgstr "Обновление нескольких транзакций"
 
 #: transactionsupdatedialog.cpp:186
 msgid "Append"
-msgstr ""
+msgstr "Присоединять"
 
 #: transactionsupdatedialog.cpp:249
 msgid "Invalid type"
-msgstr ""
+msgstr "Недопустимый тип"
 
 #: transdialog.cpp:170
 msgid "Duplicate Transaction"
