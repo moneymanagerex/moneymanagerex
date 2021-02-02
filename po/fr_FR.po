@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-02-02 13:58+0300\n"
-"PO-Revision-Date: 2021-02-02 11:03\n"
+"PO-Revision-Date: 2021-02-02 11:22\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -3652,12 +3652,12 @@ msgstr "Opérations planifiées sauvegardée."
 #: mmchecking_list.cpp:1147
 #, c-format
 msgid "Transactions selected: %ld"
-msgstr ""
+msgstr "Transactions sélectionnées : %ld"
 
 #: mmchecking_list.cpp:1149
 #, c-format
 msgid "Selected transactions balance: %s"
-msgstr ""
+msgstr "Balance des transactions sélectionnées: %s"
 
 #: mmchecking_list.cpp:1152
 #, c-format
