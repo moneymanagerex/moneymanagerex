@@ -993,6 +993,11 @@ a.badge:focus {
     flex-wrap: wrap;
 }
 
+.shadow:hover,
+.shadowTitle:hover {
+    box-shadow : 0 0 20px rgba(0,0,0,0.7);
+}
+ 
 header {
     width: 70%;
 }
