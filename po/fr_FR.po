@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-02-02 13:58+0300\n"
-"PO-Revision-Date: 2021-02-02 11:22\n"
+"PO-Revision-Date: 2021-02-02 12:12\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -3662,7 +3662,7 @@ msgstr "Balance des transactions sélectionnées: %s"
 #: mmchecking_list.cpp:1152
 #, c-format
 msgid "Days between selected transactions: %d"
-msgstr ""
+msgstr "Nombre de jours entre les transactions sélectionnées: %d"
 
 #: mmcheckingpanel.cpp:257 mmcheckingpanel.cpp:401
 msgid "Displayed Bal: "
