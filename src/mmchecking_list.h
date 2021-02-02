@@ -200,6 +200,7 @@ private:
     void OnCopy(wxCommandEvent& WXUNUSED(event));
     void OnPaste(wxCommandEvent& WXUNUSED(event));
     int OnPaste(Model_Checking::Data* tran);
+    void OnListItemFocused(wxListEvent & WXUNUSED);
 
     bool TransactionLocked(const wxString& transdate);
 private:
