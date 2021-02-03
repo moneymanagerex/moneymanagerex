@@ -26,12 +26,12 @@
                 <div class='shadow'>                
                 <!--Grand total-->
                 <table class='table'>
-                    <tfoot>
-                        <tr class='success' style='font-weight:bold'>
-                            <td id='grand_name'>Grand Total:</td>
-                            <td class='money' id='grand_value'></td>
+                    <thead>
+                        <tr class='active'>
+                            <th id='grand_name'>Grand Total:</th>
+                            <th class='money' id='grand_value'></th>
                         </tr>
-                    </tfoot>
+                    </thead>
                 </table>
                 <script>
                     var grand_json = <TMPL_VAR GRAND_TOTAL>;
@@ -39,7 +39,7 @@
                     document.getElementById('grand_value').innerHTML=grand_json['VALUE'];
                 </script>
                 <!--Accounts-->
-                
+
                 <TMPL_VAR ACCOUNTS_INFO>
                 <TMPL_VAR CARD_ACCOUNTS_INFO>
                 <TMPL_VAR CASH_ACCOUNTS_INFO>
@@ -52,14 +52,14 @@
                 <!--Assets-->
                 <div class = "shadow">
                 <table class="table">
-                    <tfoot>
-                        <tr class="total">
-                            <td>
+                    <thead>
+                        <tr class="active">
+                            <th>
                                 <a href="Assets:" id="assets_name" oncontextmenu="return false;" target="_blank"></a>
-                            </td>
-                            <td class="money" id="assets_value"></td>
+                            </th>
+                            <th class="money" id="assets_value"></th>
                         </tr>
-                    </tfoot>
+                    </thead>
                 </table>
                 </div>
                 <script>
