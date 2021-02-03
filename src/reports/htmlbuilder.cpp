@@ -99,22 +99,33 @@ namespace tags
     static const wxString SPAN = "<span %s>%s";
     static const wxString SPAN_END = "</span>\n";
     static const wxString COLORS[] = {
-        "rgba(0, 121, 234, 0.7)"
-        , "rgba(238, 42, 0, 0.7)"
-        , "rgba(247, 151, 49, 0.7)"
-        , "rgba(189, 127, 174, 0.7)"
-        , "rgba(255, 243, 171, 0.7)"
-        , "rgba(102, 204, 204, 0.7)"
-        , "rgba(0, 204, 204, 0.7)"
-        , "rgba(100, 145, 170, 0.7)"
-        , "rgba(232, 193, 69, 0.7)"
-        , "rgba(51, 153, 153, 0.7)"
-        , "rgba(210, 154, 247, 0.7)"
-        , "rgba(143, 234, 123, 0.7)"
-        , "rgba(255, 255, 59, 0.7)"
-        , "rgba(122, 179, 62, 0.7)"
-        , "rgba(66, 68, 63, 0.7)"
-        , "rgba(0, 102, 102, 0.7)" };
+        "#008FFB"
+        , "#00E396"
+        , "#FEB019"
+        , "#FF4560"
+        , "#775DD0"
+        , "#3F51B5"
+        , "#03A9F4"
+        , "#4cAF50"
+        , "#F9CE1D"
+        , "#FF9800"
+        , "#33B2DF"
+        , "#546E7A"
+        , "#D4526E"
+        , "#13D8AA"
+        , "#A5978B"
+        , "#4ECDC4" 
+        , "#81D4FA"
+        , "#546E7A"
+        , "#FD6A6A"
+        , "#2B908F"
+        , "#F9A3A4"
+        , "#90EE7E"
+        , "#FA4443"
+        , "#69D2E7"
+        , "#449DD1"
+        , "#F86624"        
+        };
 }
 
 mmHTMLBuilder::mmHTMLBuilder()
@@ -537,21 +548,31 @@ void mmHTMLBuilder::addChart(const GraphData& gd)
         htmlChart += ", dataLabels: { enabled: true, style: { fontSize: '16px' }, dropShadow: { enabled: false } }";   
     }
 
-    // If colors are specified then use these in prefernce to standard pallete
+    // If colors are specified then use these in prefernce to loading our standard pallete
+    std::vector<wxColour> colors;
     if (!gd.colors.empty())
+        colors = gd.colors;
     {
-        htmlChart += ", colors: ";
-        bool first = true;
-        for (const auto& entry : gd.colors)
+        wxColour col;
+        for(const auto& color : tags::COLORS)
         {
-            htmlChart += wxString::Format("%s'%s'", first ? "[":",", entry.GetAsString(wxC2S_HTML_SYNTAX));
-            first = false;
+            col.Set(color);
+            colors.push_back(col);
         }
-        htmlChart += "]";
-    } 
+    }
+
+    htmlChart += ", colors: ";
+    bool first = true;
+    for (const auto& entry : colors)
+    {
+        htmlChart += wxString::Format("%s'%s'", first ? "[":",", entry.GetAsString(wxC2S_HTML_SYNTAX));
+        first = false;
+    }
+    htmlChart += "]";
+
 
     wxString categories;
-    bool first = true;
+    first = true;
     for (const auto& entry : gd.labels) 
     {
         wxString label = entry;
