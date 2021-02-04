@@ -508,7 +508,7 @@ void mmHTMLBuilder::addChart(const GraphData& gd)
     {
         case GraphData::BAR:
             gtype = "bar";
-           break;
+            break;
         case GraphData::LINE:
             gtype = "line";
             break;
