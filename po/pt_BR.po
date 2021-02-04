@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-02-02 13:58+0300\n"
-"PO-Revision-Date: 2021-02-02 11:03\n"
+"PO-Revision-Date: 2021-02-04 17:42\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "MIME-Version: 1.0\n"
@@ -3646,17 +3646,17 @@ msgstr "Transação Recorrente salva."
 #: mmchecking_list.cpp:1147
 #, c-format
 msgid "Transactions selected: %ld"
-msgstr ""
+msgstr "Transações selecionadas: %ld"
 
 #: mmchecking_list.cpp:1149
 #, c-format
 msgid "Selected transactions balance: %s"
-msgstr ""
+msgstr "Saldo de transações selecionadas: %s"
 
 #: mmchecking_list.cpp:1152
 #, c-format
 msgid "Days between selected transactions: %d"
-msgstr ""
+msgstr "Dias entre transações selecionadas: %d"
 
 #: mmcheckingpanel.cpp:257 mmcheckingpanel.cpp:401
 msgid "Displayed Bal: "
