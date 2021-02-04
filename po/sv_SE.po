@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-02-02 13:58+0300\n"
-"PO-Revision-Date: 2021-02-02 11:03\n"
+"PO-Revision-Date: 2021-02-04 08:44\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
@@ -766,7 +766,7 @@ msgstr "Månatlig"
 #: billsdepositsdialog.cpp:54 billsdepositspanel.cpp:43
 #: model/Model_Budget.cpp:59
 msgid "Every 2 Months"
-msgstr ""
+msgstr "Varannan månad"
 
 #: billsdepositsdialog.cpp:55 billsdepositspanel.cpp:44
 #: model/Model_Budget.cpp:60
@@ -3638,7 +3638,7 @@ msgstr "Återkommande transaktion sparad."
 #: mmchecking_list.cpp:1147
 #, c-format
 msgid "Transactions selected: %ld"
-msgstr ""
+msgstr "Valda transaktioner: %ld"
 
 #: mmchecking_list.cpp:1149
 #, c-format
