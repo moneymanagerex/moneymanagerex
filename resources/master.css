@@ -1011,4 +1011,12 @@ aside {
     width: 30%;
 }
 
-
+div.pie 
+div.radar {
+  padding: 20px; 
+  min-width: 512px;
+  width: 67%;
+  resize: inherit;
+  overflow: auto;
+  display: inline-block;
+}

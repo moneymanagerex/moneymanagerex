@@ -621,8 +621,8 @@ void mmHTMLBuilder::addChart(const GraphData& gd)
     htmlChart += wxString::Format(", series: [%s]", seriesList);
     htmlPieData += wxString::Format("var pie%s = [ %s ]", divid, pieEntries);
 
-    addText(wxString::Format("<div id='%s'></div><script>%s; var options = { %s }; var chart = new ApexCharts(document.querySelector('#%s'), options); chart.render();</script>", 
-        divid, htmlPieData, htmlChart, divid));
+    addText(wxString::Format("<div id='%s' class='%s center'></div><script>%s; var options = { %s }; var chart = new ApexCharts(document.querySelector('#%s'), options); chart.render();</script>", 
+        divid, gtype, htmlPieData, htmlChart, divid));
 };
 
 const wxString mmHTMLBuilder::getHTMLText() const

@@ -132,11 +132,11 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
                 gsEstimated.name = _("Estimated");
                 gd.series.push_back(gsEstimated);
                 gd.series.push_back(gsActual);
-                hb.addDivContainer("shadow");  
+                hb.addDivContainer("shadow");
                 { 
                     gd.title = categName;
                     if (gd.labels.size() > 2) // Radar charts need at least 3 items 
-                        gd.type = GraphData::RADAR;        
+                        gd.type = GraphData::RADAR;
                     else
                         gd.type = GraphData::BAR; 
                     hb.addChart(gd);
