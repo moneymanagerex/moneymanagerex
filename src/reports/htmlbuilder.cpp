@@ -502,12 +502,13 @@ void mmHTMLBuilder::addChart(const GraphData& gd)
  
     // Chart Type and Series type
     wxString gtype;
+    int chartWidth = 95;
     wxString gSeriesType = "category";
     switch (gd.type)
     {
         case GraphData::BAR:
             gtype = "bar";
-            break;
+           break;
         case GraphData::LINE:
             gtype = "line";
             break;
@@ -517,15 +518,18 @@ void mmHTMLBuilder::addChart(const GraphData& gd)
             break;
         case GraphData::PIE:
             gtype = "pie";
+            chartWidth = 70;
             break;
         case GraphData::DONUT:
             gtype = "donut";
+            chartWidth = 70;
             break;
         case GraphData::RADAR:
             gtype = "radar";
+            chartWidth = 70;
     };
 
-    htmlChart += wxString::Format("chart: { type: '%s', toolbar: { tools: { download: false } }, width: '95%%' }", gtype);
+    htmlChart += wxString::Format("chart: { type: '%s', toolbar: { tools: { download: false } }, width: '%i%%' }", gtype, chartWidth);
     htmlChart += wxString::Format(", title: { text: '%s'}", gd.title);
 
     wxString toolTipFormatter;
@@ -621,8 +625,8 @@ void mmHTMLBuilder::addChart(const GraphData& gd)
     htmlChart += wxString::Format(", series: [%s]", seriesList);
     htmlPieData += wxString::Format("var pie%s = [ %s ]", divid, pieEntries);
 
-    addText(wxString::Format("<div id='%s' class='%s center'></div><script>%s; var options = { %s }; var chart = new ApexCharts(document.querySelector('#%s'), options); chart.render();</script>", 
-        divid, gtype, htmlPieData, htmlChart, divid));
+    addText(wxString::Format("<div id='%s' class='chart'></div><script>%s; var options = { %s }; var chart = new ApexCharts(document.querySelector('#%s'), options); chart.render();</script>", 
+        divid, htmlPieData, htmlChart, divid));
 };
 
 const wxString mmHTMLBuilder::getHTMLText() const
