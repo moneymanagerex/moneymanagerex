@@ -49,7 +49,7 @@ public:
     }
 
     void SetDialogHeader(const wxString& header);
-    void SetDialogParameters(const Model_Checking::Full_Data& transaction);
+    void SetDialogParameters(int trx_id);
 
 private:
     bool Create(wxWindow* parent, wxWindowID id = wxID_ANY,

@@ -53,7 +53,7 @@ public:
 
     void SetSelectedTransaction(int transID);
 
-    void RefreshList(int transID = -1);
+    void RefreshList();
 
     wxString BuildPage() const;
     /* Getter for Virtual List Control */
@@ -172,7 +172,7 @@ private:
 
     /* updates the checking panel data */
     void showTips();
-    void updateExtraTransactionData(int selIndex);
+    void updateExtraTransactionData();
     wxString GetPanelTitle(const Model_Account::Data& account) const;
 
     static void mmPlayTransactionSound();

@@ -38,7 +38,7 @@ public:
 
     void createColumns(mmListCtrl &lst);
     Model_Checking::Full_Data_Set m_trans;
-    void markSelectedTransaction(int trans_id);
+    void markSelectedTransaction();
     void DeleteFlaggedTransactions(const wxString& status);
     void DeleteViewedTransactions();
 public:
@@ -101,23 +101,21 @@ public:
     void OnViewSplitTransaction(wxCommandEvent& event);
     void OnOrganizeAttachments(wxCommandEvent& event);
     void OnCreateReoccurance(wxCommandEvent& event);
-    void refreshVisualList(int trans_id = -1, bool filter = true);
+    void refreshVisualList(bool filter = true);
     void sortTable();
 public:
-    long getSelectedID() const;
-    long getSelectedForCopy() const;
-    void setSelectedForCopy(long v);
-    long getSelectedIndex() const;
-    void setSelectedIndex(long v);
+    std::vector<int> getSelectedForCopy() const;
+
+    std::vector<int> getSelectedId() const;
+    void setSelectedID(int v);
 
 protected:
     /* Sort Columns */
     virtual void OnColClick(wxListEvent& event);
 
 private:
-    long m_selectedID; //Selected transaction ID
-    long m_selectedForCopy; //The transaction ID if selected for copy
-    long m_selectedIndex;
+    std::vector<int> m_selectedForCopy; //The transactions ID if selected for copy
+    std::vector<int> m_selected_id;
     enum
     {
         MENU_TREEPOPUP_MARKRECONCILED = wxID_HIGHEST + 150,
@@ -191,7 +189,7 @@ private:
 
     void OnMouseRightClick(wxMouseEvent& event);
     void OnListLeftClick(wxMouseEvent& event);
-    void OnListItemSelected(wxListEvent& event);
+    //void OnListItemSelected(wxListEvent& event);
     void OnListItemActivated(wxListEvent& event);
     void OnMarkTransaction(wxCommandEvent& event);
     void OnMarkAllTransactions(wxCommandEvent& event);
@@ -214,10 +212,9 @@ private:
 //----------------------------------------------------------------------------
 
 inline bool TransactionListCtrl::getSortOrder() const { return m_asc; }
-inline long TransactionListCtrl::getSelectedID() const { return m_selectedID; }
-inline long TransactionListCtrl::getSelectedForCopy() const { return m_selectedForCopy; }
-inline void TransactionListCtrl::setSelectedForCopy(long v) { m_selectedForCopy = v; }
-inline long TransactionListCtrl::getSelectedIndex() const { return m_selectedIndex; }
-inline void TransactionListCtrl::setSelectedIndex(long v) { m_selectedIndex = v; }
+inline std::vector<int> TransactionListCtrl::getSelectedForCopy() const { return m_selectedForCopy; }
+
+inline std::vector<int> TransactionListCtrl::getSelectedId() const { return m_selected_id; }
+inline void TransactionListCtrl::setSelectedID(int v) { m_selected_id.clear(); m_selected_id.push_back(v); }
 
 #endif // MM_EX_CHECKING_LIST_H_

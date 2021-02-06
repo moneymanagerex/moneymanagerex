@@ -423,14 +423,15 @@ void mmCheckingPanel::enableEditDeleteButtons(bool en)
 }
 //----------------------------------------------------------------------------
 
-void mmCheckingPanel::updateExtraTransactionData(int selIndex)
+void mmCheckingPanel::updateExtraTransactionData()
 {
-    if (selIndex > -1)
+    if (m_listCtrlAccount->getSelectedId().size() == 1)
     {
         enableEditDeleteButtons(true);
-        const Model_Checking::Data& tran = m_listCtrlAccount->m_trans.at(selIndex);
-        Model_Checking::Full_Data full_tran(tran);
-        m_info_panel->SetLabelText(tran.NOTES);
+        int trx_id = m_listCtrlAccount->getSelectedId()[0];
+        const Model_Checking::Data* trx = Model_Checking::instance().get(trx_id);
+        Model_Checking::Full_Data full_tran(*trx);
+        m_info_panel->SetLabelText(full_tran.NOTES);
         wxString miniStr = full_tran.info();
 
         //Show only first line but full string set as tooltip
@@ -604,7 +605,7 @@ void mmCheckingPanel::OnViewPopupSelected(wxCommandEvent& event)
     }
 
     initFilterSettings();
-    RefreshList(m_listCtrlAccount->getSelectedID());
+    RefreshList();
 }
 
 void mmCheckingPanel::OnSearchTxtEntered(wxCommandEvent& event)
@@ -657,6 +658,8 @@ void mmCheckingPanel::DisplaySplitCategories(int transID)
     Model_Checking::Data *transaction = Model_Checking::instance().get(transID);
     auto splits = Model_Checking::splittransaction(transaction);
 
+    if (splits.empty()) return;
+
     std::vector<Split> splt;
     for (const auto& entry : splits) {
         Split s;
@@ -674,14 +677,15 @@ void mmCheckingPanel::DisplaySplitCategories(int transID)
     splitTransDialog.ShowModal();
 }
 
-void mmCheckingPanel::RefreshList(int transID)
+void mmCheckingPanel::RefreshList()
 {
-    m_listCtrlAccount->refreshVisualList(transID);
+    m_listCtrlAccount->refreshVisualList();
 }
 
 void mmCheckingPanel::SetSelectedTransaction(int transID)
 {
-    RefreshList(transID);
+    m_listCtrlAccount->setSelectedID(transID);
+    RefreshList();
     m_listCtrlAccount->SetFocus();
 }
 
@@ -695,9 +699,6 @@ void mmCheckingPanel::DisplayAccountDetails(int accountID)
 
     initViewTransactionsHeader();
     initFilterSettings();
-    if (m_listCtrlAccount->getSelectedIndex() > -1)
-        m_listCtrlAccount->SetItemState(m_listCtrlAccount->getSelectedIndex(), 0, wxLIST_STATE_SELECTED | wxLIST_STATE_FOCUSED);
-    m_listCtrlAccount->setSelectedIndex(-1);
     RefreshList();
     showTips();
 }
