@@ -45,6 +45,7 @@
 
 wxBEGIN_EVENT_TABLE(TransactionListCtrl, mmListCtrl)
 EVT_LIST_ITEM_ACTIVATED(wxID_ANY, TransactionListCtrl::OnListItemActivated)
+EVT_LIST_ITEM_SELECTED(wxID_ANY, TransactionListCtrl::OnListItemSelected)
 EVT_LIST_ITEM_FOCUSED(wxID_ANY, TransactionListCtrl::OnListItemFocused)
 EVT_RIGHT_DOWN(TransactionListCtrl::OnMouseRightClick)
 EVT_LEFT_DOWN(TransactionListCtrl::OnListLeftClick)
@@ -206,18 +207,18 @@ void TransactionListCtrl::createColumns(mmListCtrl &lst)
     }
 }
 
-#if 0
 void TransactionListCtrl::OnListItemSelected(wxListEvent& event)
 {
-    m_selectedIndex = event.GetIndex();
-    m_cp->updateExtraTransactionData(m_selectedIndex);
-    m_topItemIndex = GetTopItem() + GetCountPerPage() - 1;
+    int selected_index = event.GetIndex();
 
-    if (GetSelectedItemCount() > 1)
-        m_cp->enableEditDeleteButtons(true);
+    int trx_id = m_trans[selected_index].TRANSID;
+    m_selected_id.clear();
+    m_selected_id.push_back(trx_id);
+
+    m_cp->updateExtraTransactionData();
 }
 //----------------------------------------------------------------------------
-#endif
+
 void TransactionListCtrl::OnListLeftClick(wxMouseEvent& event)
 {
     m_selected_id.clear();
