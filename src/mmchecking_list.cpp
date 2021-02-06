@@ -1150,11 +1150,24 @@ void TransactionListCtrl::OnListItemFocused(wxListEvent& WXUNUSED(event))
 void TransactionListCtrl::doSearchText(const wxString& value)
 {
     long last = static_cast<long>(GetItemCount() - 1);
+    if (m_selected_id.size() > 1) {
+
+        for (long i = 0; i < last; i++)
+        {
+            long cursel = GetNextItem(-1
+                , wxLIST_NEXT_ALL, wxLIST_STATE_SELECTED);
+            if (cursel != wxNOT_FOUND)
+                SetItemState(cursel, 0
+                    , wxLIST_STATE_SELECTED | wxLIST_STATE_FOCUSED);
+        }
+    }
+
     long selectedItem = GetNextItem(-1, wxLIST_NEXT_ALL, wxLIST_STATE_SELECTED);
-    if (selectedItem <= 0 || selectedItem >= last) //nothing selected
+
+    if (selectedItem < 0 || selectedItem > last) //nothing selected
         selectedItem = g_asc ? last : 0;
 
-    while (selectedItem >= 0 && selectedItem <= last)
+    while (selectedItem >= -1 && selectedItem <= last + 1)
     {
         g_asc ? selectedItem-- : selectedItem++;
 
@@ -1184,6 +1197,14 @@ void TransactionListCtrl::doSearchText(const wxString& value)
             }
         }
     }
+
+    wxLogDebug("Searching finished");
+    selectedItem = g_asc ? last : 0;
+    long cursel = GetNextItem(-1
+        , wxLIST_NEXT_ALL, wxLIST_STATE_SELECTED);
+    SetItemState(cursel, 0
+        , wxLIST_STATE_SELECTED | wxLIST_STATE_FOCUSED);
+    EnsureVisible(selectedItem);
 }
 
 const wxString TransactionListCtrl::getItem(long item, long column) const
