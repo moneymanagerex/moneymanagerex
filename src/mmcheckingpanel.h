@@ -56,8 +56,6 @@ public:
     void RefreshList();
 
     wxString BuildPage() const;
-    /* Getter for Virtual List Control */
-    const wxString getItem(long item, long column);
 
 private:
     enum

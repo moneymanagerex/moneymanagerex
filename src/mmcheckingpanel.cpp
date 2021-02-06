@@ -613,41 +613,8 @@ void mmCheckingPanel::OnSearchTxtEntered(wxCommandEvent& event)
     const wxString search_string = event.GetString().Lower();
     if (search_string.IsEmpty()) return;
 
-    long last = static_cast<long>(m_listCtrlAccount->GetItemCount() - 1);
-    long selectedItem = m_listCtrlAccount->GetNextItem(-1, wxLIST_NEXT_ALL, wxLIST_STATE_SELECTED);
-    if (selectedItem <= 0 || selectedItem >= last) //nothing selected
-        selectedItem = m_listCtrlAccount->g_asc ? last : 0;
+    m_listCtrlAccount->doSearchText(search_string);
 
-    while (selectedItem >= 0 && selectedItem <= last)
-    {
-        m_listCtrlAccount->g_asc ? selectedItem-- : selectedItem++;
-
-        for (const auto& t : {
-            getItem(selectedItem, m_listCtrlAccount->COL_NOTES)
-            , getItem(selectedItem, m_listCtrlAccount->COL_NUMBER)
-            , getItem(selectedItem, m_listCtrlAccount->COL_PAYEE_STR)
-            , getItem(selectedItem, m_listCtrlAccount->COL_CATEGORY)
-            , getItem(selectedItem, m_listCtrlAccount->COL_DATE)
-            , getItem(selectedItem, m_listCtrlAccount->COL_WITHDRAWAL)
-            , getItem(selectedItem, m_listCtrlAccount->COL_DEPOSIT)})
-        {
-            if (t.Lower().Matches(search_string + "*"))
-            {
-                //First of all any items should be unselected
-                long cursel = m_listCtrlAccount->GetNextItem(-1
-                    , wxLIST_NEXT_ALL, wxLIST_STATE_SELECTED);
-                if (cursel != wxNOT_FOUND)
-                    m_listCtrlAccount->SetItemState(cursel, 0
-                        , wxLIST_STATE_SELECTED | wxLIST_STATE_FOCUSED);
-
-                //Then finded item will be selected
-                m_listCtrlAccount->SetItemState(selectedItem
-                    , wxLIST_STATE_SELECTED, wxLIST_STATE_SELECTED);
-                m_listCtrlAccount->EnsureVisible(selectedItem);
-                return;
-            }
-        }
-    }
 }
 
 void mmCheckingPanel::DisplaySplitCategories(int transID)
@@ -716,41 +683,4 @@ void mmCheckingPanel::mmPlayTransactionSound()
             registerSound.Play(wxSOUND_ASYNC);
     }
 }
-
-const wxString mmCheckingPanel::getItem(long item, long column)
-{
-    if (item < 0 || item >= static_cast<int>(m_listCtrlAccount->m_trans.size())) return "";
-
-    wxString value = wxEmptyString;
-    const Model_Checking::Full_Data& tran = m_listCtrlAccount->m_trans.at(item);
-    switch (column)
-    {
-    case TransactionListCtrl::COL_ID:
-        return wxString::Format("%i", tran.TRANSID).Trim();
-    case TransactionListCtrl::COL_DATE:
-        return mmGetDateForDisplay(tran.TRANSDATE);
-    case TransactionListCtrl::COL_NUMBER:
-        return tran.TRANSACTIONNUMBER;
-    case TransactionListCtrl::COL_CATEGORY:
-        return tran.CATEGNAME;
-    case TransactionListCtrl::COL_PAYEE_STR:
-        return tran.is_foreign_transfer() ? "< " + tran.PAYEENAME : tran.PAYEENAME;
-    case TransactionListCtrl::COL_STATUS:
-        return tran.is_foreign() ? "< " + tran.STATUS : tran.STATUS;
-    case TransactionListCtrl::COL_WITHDRAWAL:
-        return tran.AMOUNT <= 0 ? Model_Currency::toString(std::fabs(tran.AMOUNT), this->m_currency) : "";
-    case TransactionListCtrl::COL_DEPOSIT:
-        return tran.AMOUNT > 0 ? Model_Currency::toString(tran.AMOUNT, this->m_currency) : "";
-    case TransactionListCtrl::COL_BALANCE:
-        return Model_Currency::toString(tran.BALANCE, this->m_currency);
-    case TransactionListCtrl::COL_NOTES:
-        value = tran.NOTES;
-        value.Replace("\n", " ");
-        return value;
-    default:
-        return value;
-    }
-}
-//----------------------------------------------------------------------------
-
 

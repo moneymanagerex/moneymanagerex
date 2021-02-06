@@ -486,7 +486,7 @@ void TransactionListCtrl::setColumnImage(EColumn col, int image)
 
 wxString TransactionListCtrl::OnGetItemText(long item, long column) const
 {
-    return m_cp->getItem(item, column);
+    return getItem(item, column);
 }
 //----------------------------------------------------------------------------
 
@@ -501,7 +501,7 @@ int TransactionListCtrl::OnGetItemColumnImage(long item, long column) const
     if (column == COL_IMGSTATUS)
     {
         res = ICON_NONE;
-        wxString status = m_cp->getItem(item, COL_STATUS);
+        wxString status = getItem(item, COL_STATUS);
         if (status.length() > 1)
             status = status.Mid(2, 1);
         if (status == "F")
@@ -1145,6 +1145,81 @@ void TransactionListCtrl::OnListItemFocused(wxListEvent& WXUNUSED(event))
     m_cp->m_btnDuplicate->Enable(false);
     m_cp->m_btnAttachment->Enable(false);
 
+}
+
+void TransactionListCtrl::doSearchText(const wxString& value)
+{
+    long last = static_cast<long>(GetItemCount() - 1);
+    long selectedItem = GetNextItem(-1, wxLIST_NEXT_ALL, wxLIST_STATE_SELECTED);
+    if (selectedItem <= 0 || selectedItem >= last) //nothing selected
+        selectedItem = g_asc ? last : 0;
+
+    while (selectedItem >= 0 && selectedItem <= last)
+    {
+        g_asc ? selectedItem-- : selectedItem++;
+
+        for (const auto& t : {
+            getItem(selectedItem, COL_NOTES)
+            , getItem(selectedItem, COL_NUMBER)
+            , getItem(selectedItem, COL_PAYEE_STR)
+            , getItem(selectedItem, COL_CATEGORY)
+            , getItem(selectedItem, COL_DATE)
+            , getItem(selectedItem, COL_WITHDRAWAL)
+            , getItem(selectedItem, COL_DEPOSIT)})
+        {
+            if (t.Lower().Matches(value + "*"))
+            {
+                //First of all any items should be unselected
+                long cursel = GetNextItem(-1
+                    , wxLIST_NEXT_ALL, wxLIST_STATE_SELECTED);
+                if (cursel != wxNOT_FOUND)
+                    SetItemState(cursel, 0
+                        , wxLIST_STATE_SELECTED | wxLIST_STATE_FOCUSED);
+
+                //Then finded item will be selected
+                SetItemState(selectedItem
+                    , wxLIST_STATE_SELECTED, wxLIST_STATE_SELECTED);
+                EnsureVisible(selectedItem);
+                return;
+            }
+        }
+    }
+}
+
+const wxString TransactionListCtrl::getItem(long item, long column) const
+{
+    Model_Currency::Data* m_currency = Model_Currency::GetBaseCurrency();
+    if (item < 0 || item >= static_cast<int>(m_trans.size())) return "";
+
+    wxString value = wxEmptyString;
+    const Model_Checking::Full_Data& tran = m_trans.at(item);
+    switch (column)
+    {
+    case TransactionListCtrl::COL_ID:
+        return wxString::Format("%i", tran.TRANSID).Trim();
+    case TransactionListCtrl::COL_DATE:
+        return mmGetDateForDisplay(tran.TRANSDATE);
+    case TransactionListCtrl::COL_NUMBER:
+        return tran.TRANSACTIONNUMBER;
+    case TransactionListCtrl::COL_CATEGORY:
+        return tran.CATEGNAME;
+    case TransactionListCtrl::COL_PAYEE_STR:
+        return tran.is_foreign_transfer() ? "< " + tran.PAYEENAME : tran.PAYEENAME;
+    case TransactionListCtrl::COL_STATUS:
+        return tran.is_foreign() ? "< " + tran.STATUS : tran.STATUS;
+    case TransactionListCtrl::COL_WITHDRAWAL:
+        return tran.AMOUNT <= 0 ? Model_Currency::toString(std::fabs(tran.AMOUNT), m_currency) : "";
+    case TransactionListCtrl::COL_DEPOSIT:
+        return tran.AMOUNT > 0 ? Model_Currency::toString(tran.AMOUNT, m_currency) : "";
+    case TransactionListCtrl::COL_BALANCE:
+        return Model_Currency::toString(tran.BALANCE, m_currency);
+    case TransactionListCtrl::COL_NOTES:
+        value = tran.NOTES;
+        value.Replace("\n", " ");
+        return value;
+    default:
+        return value;
+    }
 }
 
 //----------------------------------------------------------------------------

@@ -108,6 +108,9 @@ public:
 
     std::vector<int> getSelectedId() const;
     void setSelectedID(int v);
+    void doSearchText(const wxString& value);
+    /* Getter for Virtual List Control */
+    const wxString getItem(long item, long column) const;
 
 protected:
     /* Sort Columns */
