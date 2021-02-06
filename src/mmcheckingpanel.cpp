@@ -423,14 +423,15 @@ void mmCheckingPanel::enableEditDeleteButtons(bool en)
 }
 //----------------------------------------------------------------------------
 
-void mmCheckingPanel::updateExtraTransactionData(int selIndex)
+void mmCheckingPanel::updateExtraTransactionData()
 {
-    if (selIndex > -1)
+    if (m_listCtrlAccount->getSelectedId().size() == 1)
     {
         enableEditDeleteButtons(true);
-        const Model_Checking::Data& tran = m_listCtrlAccount->m_trans.at(selIndex);
-        Model_Checking::Full_Data full_tran(tran);
-        m_info_panel->SetLabelText(tran.NOTES);
+        int trx_id = m_listCtrlAccount->getSelectedId()[0];
+        const Model_Checking::Data* trx = Model_Checking::instance().get(trx_id);
+        Model_Checking::Full_Data full_tran(*trx);
+        m_info_panel->SetLabelText(full_tran.NOTES);
         wxString miniStr = full_tran.info();
 
         //Show only first line but full string set as tooltip
@@ -604,7 +605,7 @@ void mmCheckingPanel::OnViewPopupSelected(wxCommandEvent& event)
     }
 
     initFilterSettings();
-    RefreshList(m_listCtrlAccount->getSelectedID());
+    RefreshList();
 }
 
 void mmCheckingPanel::OnSearchTxtEntered(wxCommandEvent& event)
@@ -612,41 +613,8 @@ void mmCheckingPanel::OnSearchTxtEntered(wxCommandEvent& event)
     const wxString search_string = event.GetString().Lower();
     if (search_string.IsEmpty()) return;
 
-    long last = static_cast<long>(m_listCtrlAccount->GetItemCount() - 1);
-    long selectedItem = m_listCtrlAccount->GetNextItem(-1, wxLIST_NEXT_ALL, wxLIST_STATE_SELECTED);
-    if (selectedItem <= 0 || selectedItem >= last) //nothing selected
-        selectedItem = m_listCtrlAccount->g_asc ? last : 0;
+    m_listCtrlAccount->doSearchText(search_string);
 
-    while (selectedItem >= 0 && selectedItem <= last)
-    {
-        m_listCtrlAccount->g_asc ? selectedItem-- : selectedItem++;
-
-        for (const auto& t : {
-            getItem(selectedItem, m_listCtrlAccount->COL_NOTES)
-            , getItem(selectedItem, m_listCtrlAccount->COL_NUMBER)
-            , getItem(selectedItem, m_listCtrlAccount->COL_PAYEE_STR)
-            , getItem(selectedItem, m_listCtrlAccount->COL_CATEGORY)
-            , getItem(selectedItem, m_listCtrlAccount->COL_DATE)
-            , getItem(selectedItem, m_listCtrlAccount->COL_WITHDRAWAL)
-            , getItem(selectedItem, m_listCtrlAccount->COL_DEPOSIT)})
-        {
-            if (t.Lower().Matches(search_string + "*"))
-            {
-                //First of all any items should be unselected
-                long cursel = m_listCtrlAccount->GetNextItem(-1
-                    , wxLIST_NEXT_ALL, wxLIST_STATE_SELECTED);
-                if (cursel != wxNOT_FOUND)
-                    m_listCtrlAccount->SetItemState(cursel, 0
-                        , wxLIST_STATE_SELECTED | wxLIST_STATE_FOCUSED);
-
-                //Then finded item will be selected
-                m_listCtrlAccount->SetItemState(selectedItem
-                    , wxLIST_STATE_SELECTED, wxLIST_STATE_SELECTED);
-                m_listCtrlAccount->EnsureVisible(selectedItem);
-                return;
-            }
-        }
-    }
 }
 
 void mmCheckingPanel::DisplaySplitCategories(int transID)
@@ -656,6 +624,8 @@ void mmCheckingPanel::DisplaySplitCategories(int transID)
 
     Model_Checking::Data *transaction = Model_Checking::instance().get(transID);
     auto splits = Model_Checking::splittransaction(transaction);
+
+    if (splits.empty()) return;
 
     std::vector<Split> splt;
     for (const auto& entry : splits) {
@@ -674,14 +644,15 @@ void mmCheckingPanel::DisplaySplitCategories(int transID)
     splitTransDialog.ShowModal();
 }
 
-void mmCheckingPanel::RefreshList(int transID)
+void mmCheckingPanel::RefreshList()
 {
-    m_listCtrlAccount->refreshVisualList(transID);
+    m_listCtrlAccount->refreshVisualList();
 }
 
 void mmCheckingPanel::SetSelectedTransaction(int transID)
 {
-    RefreshList(transID);
+    m_listCtrlAccount->setSelectedID(transID);
+    RefreshList();
     m_listCtrlAccount->SetFocus();
 }
 
@@ -695,9 +666,6 @@ void mmCheckingPanel::DisplayAccountDetails(int accountID)
 
     initViewTransactionsHeader();
     initFilterSettings();
-    if (m_listCtrlAccount->getSelectedIndex() > -1)
-        m_listCtrlAccount->SetItemState(m_listCtrlAccount->getSelectedIndex(), 0, wxLIST_STATE_SELECTED | wxLIST_STATE_FOCUSED);
-    m_listCtrlAccount->setSelectedIndex(-1);
     RefreshList();
     showTips();
 }
@@ -715,38 +683,4 @@ void mmCheckingPanel::mmPlayTransactionSound()
             registerSound.Play(wxSOUND_ASYNC);
     }
 }
-
-const wxString mmCheckingPanel::getItem(long item, long column)
-{
-    if (item < 0 || item >= static_cast<int>(m_listCtrlAccount->m_trans.size())) return "";
-
-    const Model_Checking::Full_Data& tran = m_listCtrlAccount->m_trans.at(item);
-    switch (column)
-    {
-    case TransactionListCtrl::COL_ID:
-        return wxString::Format("%i", tran.TRANSID).Trim();
-    case TransactionListCtrl::COL_DATE:
-        return mmGetDateForDisplay(tran.TRANSDATE);
-    case TransactionListCtrl::COL_NUMBER:
-        return tran.TRANSACTIONNUMBER;
-    case TransactionListCtrl::COL_CATEGORY:
-        return tran.CATEGNAME;
-    case TransactionListCtrl::COL_PAYEE_STR:
-        return tran.is_foreign_transfer() ? "< " + tran.PAYEENAME : tran.PAYEENAME;
-    case TransactionListCtrl::COL_STATUS:
-        return tran.is_foreign() ? "< " + tran.STATUS : tran.STATUS;
-    case TransactionListCtrl::COL_WITHDRAWAL:
-        return tran.AMOUNT <= 0 ? Model_Currency::toString(std::fabs(tran.AMOUNT), this->m_currency) : "";
-    case TransactionListCtrl::COL_DEPOSIT:
-        return tran.AMOUNT > 0 ? Model_Currency::toString(tran.AMOUNT, this->m_currency) : "";
-    case TransactionListCtrl::COL_BALANCE:
-        return Model_Currency::toString(tran.BALANCE, this->m_currency);
-    case TransactionListCtrl::COL_NOTES:
-        return tran.NOTES;
-    default:
-        return wxEmptyString;
-    }
-}
-//----------------------------------------------------------------------------
-
 

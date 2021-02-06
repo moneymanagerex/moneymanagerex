@@ -321,25 +321,30 @@ void mmBDDialog::SetDialogHeader(const wxString& header)
     this->SetTitle(header);
 }
 
-void mmBDDialog::SetDialogParameters(const Model_Checking::Full_Data& transaction)
+void mmBDDialog::SetDialogParameters(int trx_id)
 {
-    m_bill_data.ACCOUNTID = transaction.ACCOUNTID;
-    bAccount_->SetLabelText(transaction.ACCOUNTNAME);
+    const auto split = Model_Splittransaction::instance().get_all();
 
-    m_bill_data.TRANSCODE = transaction.TRANSCODE;
-    m_choice_transaction_type->SetSelection(Model_Billsdeposits::type(transaction.TRANSCODE));
+    //const auto trx = Model_Checking::instance().find(Model_Checking::TRANSID(trx_id)).at(0);
+    const auto trx = Model_Checking::instance().get(trx_id);
+    Model_Checking::Full_Data t(*trx, split);
+    m_bill_data.ACCOUNTID = t.ACCOUNTID;
+    bAccount_->SetLabelText(t.ACCOUNTNAME);
+
+    m_bill_data.TRANSCODE = t.TRANSCODE;
+    m_choice_transaction_type->SetSelection(Model_Billsdeposits::type(t.TRANSCODE));
     m_transfer = (m_bill_data.TRANSCODE == Model_Billsdeposits::all_type()[Model_Billsdeposits::TRANSFER]);
     updateControlsForTransType();
 
-    m_bill_data.TRANSAMOUNT = transaction.TRANSAMOUNT;
+    m_bill_data.TRANSAMOUNT = t.TRANSAMOUNT;
     textAmount_->SetValue(m_bill_data.TRANSAMOUNT);
 
     if (m_transfer)
     {
-        m_bill_data.TOACCOUNTID = transaction.TOACCOUNTID;
-        bPayee_->SetLabelText(transaction.TOACCOUNTNAME);
+        m_bill_data.TOACCOUNTID = t.TOACCOUNTID;
+        bPayee_->SetLabelText(t.TOACCOUNTNAME);
 
-        m_bill_data.TOTRANSAMOUNT = transaction.TOTRANSAMOUNT;
+        m_bill_data.TOTRANSAMOUNT = t.TOTRANSAMOUNT;
         toTextAmount_->SetValue(m_bill_data.TOTRANSAMOUNT);
         if (m_bill_data.TOTRANSAMOUNT != m_bill_data.TRANSAMOUNT)
         {
@@ -349,14 +354,13 @@ void mmBDDialog::SetDialogParameters(const Model_Checking::Full_Data& transactio
     }
     else
     {
-        m_bill_data.PAYEEID = transaction.PAYEEID;
-        bPayee_->SetLabelText(transaction.PAYEENAME);
+        m_bill_data.PAYEEID = t.PAYEEID;
+        bPayee_->SetLabelText(t.PAYEENAME);
     }
 
-    if (transaction.has_split())
+    if (t.has_split())
     {
-        Model_Splittransaction::Data_Set bill_splits;
-        for (auto &split_trans : transaction.m_splits)
+        for (auto &split_trans : t.m_splits)
         {
             Split s;
             s.CATEGID = split_trans.CATEGID;
@@ -368,12 +372,12 @@ void mmBDDialog::SetDialogParameters(const Model_Checking::Full_Data& transactio
     }
     else
     {
-        m_bill_data.CATEGID = transaction.CATEGID;
-        m_bill_data.SUBCATEGID = transaction.SUBCATEGID;
+        m_bill_data.CATEGID = t.CATEGID;
+        m_bill_data.SUBCATEGID = t.SUBCATEGID;
     }
 
-    m_bill_data.TRANSACTIONNUMBER = transaction.TRANSACTIONNUMBER;
-    m_bill_data.NOTES = transaction.NOTES;
+    m_bill_data.TRANSACTIONNUMBER = t.TRANSACTIONNUMBER;
+    m_bill_data.NOTES = t.NOTES;
     setCategoryLabel();
 }
 
