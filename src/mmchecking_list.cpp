@@ -881,21 +881,24 @@ void TransactionListCtrl::OnNewTransferTransaction(wxCommandEvent& /*event*/)
 
 void TransactionListCtrl::OnSetUserColour(wxCommandEvent& event)
 {
-    if (m_selected_id.size() != 1) return;
 
     int user_colour_id = event.GetId();
     user_colour_id -= MENU_ON_SET_UDC0;
     wxLogDebug("id: %i", user_colour_id);
 
-    int selectedID = m_selected_id[0];
-    Model_Checking::Data* transaction = Model_Checking::instance().get(selectedID);
-    if (transaction)
+    Model_Checking::instance().Savepoint();
+    for (const auto i : m_selected_id)
     {
-        transaction->FOLLOWUPID = user_colour_id;
-        Model_Checking::instance().save(transaction);
-        transaction->FOLLOWUPID = user_colour_id;
-        //RefreshItems(m_selectedIndex, m_selectedIndex);
+        Model_Checking::Data* transaction = Model_Checking::instance().get(i);
+        if (transaction)
+        {
+            transaction->FOLLOWUPID = user_colour_id;
+            Model_Checking::instance().save(transaction);
+        }
     }
+    Model_Checking::instance().ReleaseSavepoint();
+
+    refreshVisualList();
 }
 //----------------------------------------------------------------------------
 
@@ -978,8 +981,7 @@ void TransactionListCtrl::OnMoveTransaction(wxCommandEvent& /*event*/)
 //----------------------------------------------------------------------------
 void TransactionListCtrl::OnViewSplitTransaction(wxCommandEvent& /*event*/)
 {
-    if (m_selected_id.size() == 1)
-    {
+    if (m_selected_id.size() == 1) {
         m_cp->DisplaySplitCategories(m_selected_id[0]);
     }
 }
@@ -1050,7 +1052,6 @@ void TransactionListCtrl::markSelectedTransaction()
         if (!g_asc)
             i = 0;
         EnsureVisible(i);
-        //m_selectedIndex = i;
     }
     else
     {
@@ -1062,6 +1063,8 @@ void TransactionListCtrl::markSelectedTransaction()
 void TransactionListCtrl::DeleteViewedTransactions()
 {
     Model_Checking::instance().Savepoint();
+    Model_Attachment::instance().Savepoint();
+    Model_Splittransaction::instance().Savepoint();
     for (const auto& tran : this->m_trans)
     {
         if (Model_Checking::foreignTransaction(tran))
@@ -1076,12 +1079,16 @@ void TransactionListCtrl::DeleteViewedTransactions()
         m_selectedForCopy.erase(std::remove(m_selectedForCopy.begin(), m_selectedForCopy.end(), tran.TRANSID)
             , m_selectedForCopy.end());
     }
+    Model_Splittransaction::instance().ReleaseSavepoint();
+    Model_Attachment::instance().ReleaseSavepoint();
     Model_Checking::instance().ReleaseSavepoint();
 }
 
 void TransactionListCtrl::DeleteFlaggedTransactions(const wxString& status)
 {
     Model_Checking::instance().Savepoint();
+    Model_Attachment::instance().Savepoint();
+    Model_Splittransaction::instance().Savepoint();
     for (const auto& tran : this->m_trans)
     {
         if (tran.STATUS == status)
@@ -1092,6 +1099,8 @@ void TransactionListCtrl::DeleteFlaggedTransactions(const wxString& status)
 
         }
     }
+    Model_Splittransaction::instance().ReleaseSavepoint();
+    Model_Attachment::instance().ReleaseSavepoint();
     Model_Checking::instance().ReleaseSavepoint();
 }
 
@@ -1122,10 +1131,10 @@ void TransactionListCtrl::OnListItemFocused(wxListEvent& WXUNUSED(event))
     }
     wxLogDebug("%s", test);
 
-    m_cp->enableEditDeleteButtons(count < 2);
-
-    if (count < 2)
+    if (count < 2) {
+        m_cp->updateExtraTransactionData();
         return;
+    }
 
     wxDateTime min_date, max_date;
     min_date.ParseISODate(minDate);
