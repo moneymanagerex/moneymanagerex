@@ -721,6 +721,7 @@ const wxString mmCheckingPanel::getItem(long item, long column)
 {
     if (item < 0 || item >= static_cast<int>(m_listCtrlAccount->m_trans.size())) return "";
 
+    wxString value = wxEmptyString;
     const Model_Checking::Full_Data& tran = m_listCtrlAccount->m_trans.at(item);
     switch (column)
     {
@@ -743,9 +744,11 @@ const wxString mmCheckingPanel::getItem(long item, long column)
     case TransactionListCtrl::COL_BALANCE:
         return Model_Currency::toString(tran.BALANCE, this->m_currency);
     case TransactionListCtrl::COL_NOTES:
-        return tran.NOTES;
+        value = tran.NOTES;
+        value.Replace("\n", " ");
+        return value;
     default:
-        return wxEmptyString;
+        return value;
     }
 }
 //----------------------------------------------------------------------------
