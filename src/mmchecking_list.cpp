@@ -252,15 +252,6 @@ void TransactionListCtrl::OnMouseRightClick(wxMouseEvent& event)
     int Flags = wxLIST_HITTEST_ONITEM;
     long selectedIndex = HitTest(wxPoint(event.m_x, event.m_y), Flags);
 
-    if (selectedIndex >= 0)
-    {
-        SetItemState(selectedIndex, wxLIST_STATE_SELECTED, wxLIST_STATE_SELECTED);
-        SetItemState(selectedIndex, wxLIST_STATE_FOCUSED, wxLIST_STATE_FOCUSED);
-        m_selected_id.clear();
-        m_selected_id.push_back(selectedIndex);
-    }
-    m_cp->updateExtraTransactionData();
-
     bool hide_menu_item = (m_selected_id.size() < 1);
     bool multiselect = (GetSelectedItemCount() > 1);
     bool type_transfer = false;
@@ -269,16 +260,13 @@ void TransactionListCtrl::OnMouseRightClick(wxMouseEvent& event)
     if (selectedIndex > -1)
     {
         const Model_Checking::Full_Data& tran = m_trans.at(selectedIndex);
-        if (Model_Checking::type(tran.TRANSCODE) == Model_Checking::TRANSFER)
-        {
+        if (Model_Checking::type(tran.TRANSCODE) == Model_Checking::TRANSFER) {
             type_transfer = true;
         }
-        if (!tran.has_split())
-        {
+        if (!tran.has_split()) {
             have_category = true;
         }
-        if (Model_Checking::foreignTransaction(tran))
-        {
+        if (Model_Checking::foreignTransaction(tran)) {
             is_foreign = true;
         }
     }
