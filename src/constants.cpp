@@ -17,6 +17,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
 #include "constants.h"
+#include "build.h"
 #include <wx/string.h>
 #include <wx/filefn.h>
 #include <curl/curl.h>
@@ -38,35 +39,21 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
  For Internet Format for update checking read in util.cpp
  *************************************************************************/
-const int mmex::version::Major = 1;
-const int mmex::version::Minor = 3;
-const int mmex::version::Patch = 7;
-const int mmex::version::Alpha = -1;
-const int mmex::version::Beta  = 2;
-const int mmex::version::RC    = -1;
 
-const wxString mmex::version::string = mmex::version::generateProgramVersion(mmex::version::Major, mmex::version::Minor, mmex::version::Patch
-    ,mmex::version::Alpha, mmex::version::Beta, mmex::version::RC);
+const wxString mmex::version::string = mmex::version::getProgramVersion();
 
 bool mmex::version::isStable()
 {
-    bool i = (Alpha == -1 && Beta == -1 && RC == -1);
-    return i;
+    const wxString ver = wxString() << MMEX_VERSION_WITH_UNSTABLE;
+    wxRegEx pattern = "(beta|alpha|RC)";
+    bool is_stable = !pattern.Matches(ver);
+    return is_stable;
 }
 
-const wxString mmex::version::generateProgramVersion(int vMajor, int vMinor, int vPatch, int vAlpha, int vBeta, int vRC)
+const wxString mmex::version::getProgramVersion()
 {
-    wxString suffix = "";
-    if (vAlpha >= 0 || vBeta >= 0 || vRC >= 0)
-    {
-        if (vAlpha >= 0)
-            suffix = vAlpha < 1 ? "-Alpha" : wxString::Format("-Alpha.%i", vAlpha);
-        if (Beta >= 0)
-            suffix = vBeta < 1 ? "-Beta" : wxString::Format("-Beta.%i", vBeta);
-        if (vRC >= 0)
-            suffix = vRC < 1 ? "-RC" : wxString::Format("-RC.%i", vRC);
-    }
-    return wxString::Format("%i.%i.%i%s", vMajor, vMinor, vPatch, suffix);
+    const wxString ver = wxString() << MMEX_VERSION_WITH_UNSTABLE;
+    return ver;
 }
 
 /* End version namespace*/
@@ -140,10 +127,7 @@ const wxString mmex::weblink::addReferralToURL(const wxString& BaseURL, const wx
 
 const wxString mmex::weblink::GA = "http://www.google-analytics.com/collect?";
 const wxString mmex::weblink::WebSite = mmex::weblink::addReferralToURL("http://www.moneymanagerex.org", "Website");
-const wxString mmex::weblink::Update = wxString::Format("http://www.moneymanagerex.org/version.php?Version=%s", mmex::version::string);
 const wxString mmex::weblink::Releases = "https://api.github.com/repos/moneymanagerex/moneymanagerex/releases";
-const wxString mmex::weblink::UpdateLinks = wxString::Format("http://www.moneymanagerex.org/version.php?Version=%s&Links=true", mmex::version::string);
-const wxString mmex::weblink::Changelog = wxString::Format("http://www.moneymanagerex.org/version.php?Version=%s&ChangeLog=", mmex::version::string);
 const wxString mmex::weblink::Download = mmex::weblink::addReferralToURL("http://www.moneymanagerex.org/download", "Download");
 const wxString mmex::weblink::News = mmex::weblink::addReferralToURL("http://www.moneymanagerex.org/news", "News");
 const wxString mmex::weblink::NewsRSS = "http://www.moneymanagerex.org/news?format=feed";

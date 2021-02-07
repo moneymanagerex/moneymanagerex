@@ -52,16 +52,9 @@ const wxString getCaption(const wxString& caption);
 
 namespace version
 {
-    extern const int Major;
-    extern const int Minor;
-    extern const int Patch;
-    extern const int Alpha;
-    extern const int Beta;
-    extern const int RC;
     extern const wxString string;
     extern bool isStable();
-    extern const wxString generateProgramVersion
-        (int vMajor, int vMinor, int vPatch, int vAlpha, int vBeta, int vRC);
+    extern const wxString getProgramVersion();
     int getDbLatestVersion();
 }
 
@@ -70,10 +63,7 @@ namespace weblink
     const wxString addReferralToURL(const wxString& BaseURL, const wxString& CampSource);
     extern const wxString GA;
     extern const wxString WebSite;
-    extern const wxString Update;
     extern const wxString Releases;
-    extern const wxString UpdateLinks;
-    extern const wxString Changelog;
     extern const wxString Download;
     extern const wxString News;
     extern const wxString NewsRSS;

@@ -13,13 +13,13 @@
 
 # By setting the application version here, CMake will transfer the variable
 # values to the corresponding variable names in the following files:
-# ./src/versions.h
+# ./src/build.h
 # ./resources/mmex.rc
 # ---------------------------------------------------------------------------
 
 set(MMEX_VERSION 1.3.7)
 SET(MMEX_VERSION_ALPHA -1)
-SET(MMEX_VERSION_BETA 2)
+SET(MMEX_VERSION_BETA 3
 SET(MMEX_VERSION_RC -1)
 
 # ---------------------------------------------------------------------------
@@ -41,21 +41,21 @@ endif()
 
 # Adjusting semantic versioning for alpha/beta/rc version
 IF(MMEX_VERSION_ALPHA EQUAL 0)
-    SET(MMEX_VERSION_UNSTABLE alpha)
+    SET(MMEX_VERSION_UNSTABLE Alpha)
 ELSEIF(MMEX_VERSION_ALPHA GREATER 0)
-    SET(MMEX_VERSION_UNSTABLE alpha${MMEX_VERSION_ALPHA})
+    SET(MMEX_VERSION_UNSTABLE Alpha.${MMEX_VERSION_ALPHA})
 ELSEIF(MMEX_VERSION_BETA EQUAL 0)
-    SET(MMEX_VERSION_UNSTABLE beta)
+    SET(MMEX_VERSION_UNSTABLE Beta)
 ELSEIF(MMEX_VERSION_BETA GREATER 0)
-    SET(MMEX_VERSION_UNSTABLE beta${MMEX_VERSION_BETA})
+    SET(MMEX_VERSION_UNSTABLE Beta.${MMEX_VERSION_BETA})
 ELSEIF(MMEX_VERSION_RC EQUAL 0)
-    SET(MMEX_VERSION_UNSTABLE rc)
+    SET(MMEX_VERSION_UNSTABLE RC)
 ELSEIF(MMEX_VERSION_RC GREATER 0)
-    SET(MMEX_VERSION_UNSTABLE rc${MMEX_VERSION_RC})
+    SET(MMEX_VERSION_UNSTABLE RC.${MMEX_VERSION_RC})
 ENDIF()
 SET(MMEX_VERSION_WITH_UNSTABLE ${MMEX_VERSION})
 IF(MMEX_VERSION_UNSTABLE)
-    SET(MMEX_VERSION_WITH_UNSTABLE "${MMEX_VERSION}~${MMEX_VERSION_UNSTABLE}")
+    SET(MMEX_VERSION_WITH_UNSTABLE "${MMEX_VERSION}-${MMEX_VERSION_UNSTABLE}")
 ENDIF()
 
 set(MMEX_VERSION_FULL ${MMEX_VERSION_WITH_UNSTABLE})
@@ -70,7 +70,7 @@ set(MMEX_EXE mmex)
 # build date/time and version save to file
 FILE (WRITE ${PROJECT_SOURCE_DIR}/src/build.h "#define BUILD_DATE __DATE__\n"
 "#define BUILD_TIME __TIME__\n"
-"#define MMEX_VERSION_WITH_UNSTABLE ${MMEX_VERSION_WITH_UNSTABLE}\n"
+"#define MMEX_VERSION_WITH_UNSTABLE \"${MMEX_VERSION_WITH_UNSTABLE}\"\n"
 )
 
 # Find Git commit details to put into versions.h later
