@@ -154,6 +154,7 @@ public:
     static double deposit(const Data& r, int account_id);
     static double reconciled(const Data* r, int account_id);
     static double reconciled(const Data& r, int account_id);
+    static bool is_locked(const Data* r);
     static bool is_transfer(const wxString& r);
     static bool is_transfer(const Data* r);
     static bool is_deposit(const wxString& r);

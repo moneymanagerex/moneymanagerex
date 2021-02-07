@@ -269,6 +269,26 @@ double Model_Checking::reconciled(const Data& r, int account_id)
     return reconciled(&r, account_id);
 }
 
+bool Model_Checking::is_locked(const Data* r)
+{
+    bool val = false;
+    Model_Account::Data* acc = Model_Account::instance().get(r->ACCOUNTID);
+
+    if (Model_Account::BoolOf(acc->STATEMENTLOCKED))
+    {
+        wxDateTime transaction_date;
+        if (transaction_date.ParseDate(r->TRANSDATE))
+        {
+            if (transaction_date <= Model_Account::DateOf(acc->STATEMENTDATE))
+            {
+                val = true;
+            }
+        }
+    }
+    return val;
+}
+
+
 bool Model_Checking::is_transfer(const wxString& r)
 {
     return type(r) == Model_Checking::TRANSFER;
