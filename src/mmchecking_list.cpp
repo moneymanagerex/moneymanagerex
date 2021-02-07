@@ -906,7 +906,7 @@ void TransactionListCtrl::refreshVisualList(bool filter)
     markSelectedTransaction();
 
     long i = static_cast<long>(m_trans.size());
-    if (m_topItemIndex >= i)
+    if (m_topItemIndex > i || m_topItemIndex < 0)
         m_topItemIndex = g_asc ? i - 1 : 0;
 
     i = 0;
@@ -923,7 +923,8 @@ void TransactionListCtrl::refreshVisualList(bool filter)
         i++;
     }
 
-    EnsureVisible(m_topItemIndex);
+    if (m_topItemIndex >= 0 && m_topItemIndex < i)
+        EnsureVisible(m_topItemIndex);
 
     m_cp->setAccountSummary();
     m_cp->updateExtraTransactionData();
