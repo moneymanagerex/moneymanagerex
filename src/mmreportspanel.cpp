@@ -160,7 +160,7 @@ bool mmReportsPanel::saveReportText(bool initial)
     json_writer.Key("module");
     json_writer.String("Report");
     json_writer.Key("name");
-    json_writer.String(rb_->getReportTitle().utf8_str());
+    json_writer.String(rb_->getReportTitle(false).utf8_str());
 
     const auto time = wxDateTime::UNow();
 
@@ -171,7 +171,9 @@ bool mmReportsPanel::saveReportText(bool initial)
     json_writer.Double((wxDateTime::UNow() - time).GetMilliseconds().ToDouble() / 1000);
     json_writer.EndObject();
 
-    Model_Usage::instance().AppendToUsage(wxString::FromUTF8(json_buffer.GetString()));
+    const auto t = json_buffer.GetString();
+    wxLogDebug("%s", wxString::FromUTF8(t));
+    Model_Usage::instance().AppendToUsage(wxString::FromUTF8(t));
 
     return true;
 }
