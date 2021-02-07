@@ -45,7 +45,7 @@ const wxString mmex::version::string = mmex::version::getProgramVersion();
 bool mmex::version::isStable()
 {
     const wxString ver = wxString() << MMEX_VERSION_WITH_UNSTABLE;
-    wxRegEx pattern = "(beta|alpha|RC)";
+    wxRegEx pattern = "(Beta|Alpha|RC)";
     bool is_stable = !pattern.Matches(ver);
     return is_stable;
 }
