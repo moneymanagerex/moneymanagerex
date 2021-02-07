@@ -67,6 +67,12 @@ option(MMEX_ENCRYPTION_OPTIONAL "Build even if encryption is not supported by wx
 # Name of the resulted executable binary
 set(MMEX_EXE mmex)
 
+# build date/time and version save to file
+FILE (WRITE ${PROJECT_SOURCE_DIR}/src/build.h "#define BUILD_DATE __DATE__\n"
+"#define BUILD_TIME __TIME__\n"
+"#define MMEX_VERSION_WITH_UNSTABLE ${MMEX_VERSION_WITH_UNSTABLE}\n"
+)
+
 # Find Git commit details to put into versions.h later
 # Get the current working branch
 execute_process(COMMAND ${GIT_EXECUTABLE} symbolic-ref --short -q HEAD
@@ -111,11 +117,11 @@ if(CMAKE_SYSTEM_NAME STREQUAL "Linux")
                 set(LINUX_DISTRO "${CMAKE_MATCH_1}")
                 set(LINUX_DISTRO_REL ${CMAKE_MATCH_2})
             endif()
-        elseif(EXISTS /etc/arch-release)            
+        elseif(EXISTS /etc/arch-release)
             execute_process(COMMAND  uname -r
                 OUTPUT_VARIABLE LINUX_DISTRO_REL
                 OUTPUT_STRIP_TRAILING_WHITESPACE ERROR_QUIET)
-            set(LINUX_DISTRO "Arch") 	             
+            set(LINUX_DISTRO "Arch")
         else()
             message(SEND_ERROR "lsb_release tool not found.")
         endif()
