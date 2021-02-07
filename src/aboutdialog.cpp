@@ -1,6 +1,6 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
- Copyright (C) 2012 - 2020 Nikolay Akimov
+ Copyright (C) 2012 - 2021 Nikolay Akimov
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -82,6 +82,60 @@ bool mmAboutDialog::createWindow(wxWindow* parent
     return ok;
 }
 
+void do_read_file(std::vector<wxString>& data, const wxString& file_path)
+{
+    if (!wxFileName::FileExists(file_path)) return;
+
+    mmHTMLBuilder hb;
+    wxFileInputStream input(file_path);
+    wxTextInputStream text(input);
+    wxRegEx link(R"(\[([^][]+)\]\(([^\(\)]+)\))", wxRE_EXTENDED);
+
+    wxString txt, prev, line;
+    while (input.IsOk() && !input.Eof())
+    {
+        prev = line;
+        line = text.ReadLine();
+        if (line.StartsWith("=============")) {
+            line = "<!-- header -->";
+        }
+        else if (line.StartsWith("###"))
+        {
+            if (!line.empty()) {
+                line.Prepend("<H3>");
+                line.Replace("###", "");
+                line.Append("</H3>\n");
+            }
+        }
+        else if (line.StartsWith("##") || prev.Contains("<!-- header -->"))
+        {
+            if (!line.empty()) {
+                line.Prepend("<H2>");
+                line.Replace("##", "");
+                line.Append("</H2>\n");
+            }
+        }
+        else
+            line << "<br>\n";
+
+        prev = line;
+        if (line.StartsWith("-------------") || input.Eof())
+        {
+            hb.addText(txt);
+            hb.end();
+            data.push_back(hb.getHTMLText());
+            hb.clear();
+            txt.clear();
+        }
+        else
+        {
+            link.Replace(&line, R"(<a href='\2'>\1</a>)");
+            txt << line;
+        }
+    }
+
+}
+
 void mmAboutDialog::initControls()
 {
     mmHTMLBuilder hb;
@@ -93,54 +147,26 @@ void mmAboutDialog::initControls()
     html = hb.getHTMLText();
     aboutText_->SetPage(html);
 
-    wxArrayString data;
-    data.Add("");
-
     hb.clear();
 
-    //Read data from file
-    wxString filePath = ::mmex::getPathDoc(mmex::F_CONTRIB, false);
-    if (wxFileName::FileExists(filePath))
+    //Read data from files
+    wxString filePath[] = {
+        ::mmex::getPathDoc(mmex::F_CONTRIB, false),
+        ::mmex::getPathDoc(mmex::F_LICENSE, false)
+    };
+
+    std::vector<wxString> data;
+    for (const auto& file_path : filePath)
     {
-        wxFileInputStream input(filePath);
-        wxTextInputStream text(input);
-        wxRegEx link(R"(\[([^][]+)\]\(([^\(\)]+)\))", wxRE_EXTENDED);
-        int part = 0;
-
-        while (input.IsOk() && !input.Eof())
-        {
-            wxString line = text.ReadLine();
-            if (line.StartsWith("============="))
-                line = "";
-            else if (line.StartsWith("##"))
-            {
-                line.Replace("##", "<H3>");
-                line.Append("</H3>\n");
-            }
-            else
-                line << "<br>\n";
-
-            if (line.StartsWith("-------------"))
-            {
-                hb.addText(data[part]);
-                hb.end();
-                data[part] = hb.getHTMLText();
-                ++part;
-                hb.clear();
-                data.Add("");
-            }
-            else
-            {
-                link.Replace(&line, R"(<a href='\2'>\1</a>)");
-                data[part] << line;
-            }
-        }
+        wxLogDebug("%s", file_path);
+        do_read_file(data, file_path);
     }
 
-    authorsText_->SetPage(data[0]);
-    if (data.GetCount() > 1) sponsorsText_->SetPage(data[1]);
-    if (data.GetCount() > 2) licenseText_->SetPage(data[2]);
-    if (data.GetCount() > 3) privacyText_->SetPage(data[3]);
+    if (!data.empty()) authorsText_->SetPage(data[0]);
+    if (data.size() > 1) sponsorsText_->SetPage(data[1]);
+
+    if (data.size() > 2) licenseText_->SetPage(data[2]);
+    if (data.size() > 3) privacyText_->SetPage(data[3]);
 }
 
 void mmAboutDialog::createControls(int tabToOpenNo)
