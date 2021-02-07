@@ -143,7 +143,7 @@ wxString mmReportBudgetingPerformance::getHTMLText()
     Model_Budget::instance().getBudgetEntry(m_date_selection, budgetPeriod, budgetAmt);
     std::map<int, std::map<int, std::map<int, double> > > categoryStats;
     Model_Category::instance().getCategoryStats(categoryStats
-        , nullptr
+        , accountArray_
         , &date_range
         , Option::instance().getIgnoreFutureTransactions()
         , true
