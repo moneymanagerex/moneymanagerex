@@ -77,6 +77,7 @@ add_executable(${MMEX_EXE} WIN32 MACOSX_BUNDLE
     billsdepositsdialog.h
     billsdepositspanel.cpp
     billsdepositspanel.h
+    build.h
     budgetentrydialog.cpp
     budgetentrydialog.h
     budgetingpanel.cpp

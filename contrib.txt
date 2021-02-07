@@ -560,7 +560,8 @@ willmetz
 ---------------------------------------
 
 ##GNU general public license
-Copyright (C) 2009-2020 Nikolay
+Copyright (C) 2009-2021 Nikolay [Nikolay]
+Copyright (C) 2020-2021 Mark [whall3y]
 Copyright (C) 2011-2020 LiSheng [guanlisheng]
 Copyright (C) 2013-2017 James [siena123]
 Copyright (C) 2013-2017 Gabriele[gabriele-v]

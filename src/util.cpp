@@ -23,6 +23,7 @@
 #pragma comment(lib,"wldap32.lib")
 #endif
 
+#include "build.h"
 #include "util.h"
 #include "constants.h"
 #include "platfdep.h"
@@ -922,8 +923,10 @@ const wxString getProgramDescription(int type)
     case 2: eol = "\n"; simple = false;  break;
     }
 
-    wxString description;
+    wxString build_date = wxString() << BUILD_DATE;
+    build_date = wxGetTranslation(build_date.SubString(0, 2)) + build_date.Mid(3);
 
+    wxString description;
     description << wxString::Format(simple ? "Version: %s" : _("Version: %s"), mmex::getTitleProgramVersion()) << eol
         << bull << (simple ? "db " : _("Database version: ")) << mmex::version::getDbLatestVersion()
 #if WXSQLITE3_HAVE_CODEC
@@ -958,7 +961,7 @@ const wxString getProgramDescription(int type)
 
         << bull + curl_version() << eol << eol
 
-        << (simple ? "Build:" : _("Build on")) << " " << __DATE__ << " " << __TIME__ << " "
+        << (simple ? "Build:" : _("Build on")) << " " << build_date << " " BUILD_TIME << " "
         << (simple ? "" : _("with:")) << eol
 
         << bull + CMAKE_VERSION << eol

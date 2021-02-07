@@ -113,15 +113,6 @@ const wxString mmex::getTitleProgramVersion()
     return wxString::Format("%s %s", mmex::version::string, architecture);
 }
 
-const wxString mmex::getProgramCopyright()
-{
-#define COMPILE_YEAR ( (__DATE__[ 7] - '0') * 1000 + \
-                       (__DATE__[ 8] - '0') *  100 + \
-                       (__DATE__[ 9] - '0') *   10 + \
-                       (__DATE__[10] - '0') )
-    return wxString::Format("(c) 2005-%d Madhan Kanagavel", COMPILE_YEAR);
-}
-
 int mmex::version::getDbLatestVersion()
 {
     return dbLatestVersion;
