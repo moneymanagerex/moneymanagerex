@@ -219,35 +219,6 @@ void TransactionListCtrl::OnListItemSelected(wxListEvent& event)
 }
 //----------------------------------------------------------------------------
 
-void TransactionListCtrl::OnListLeftClick(wxMouseEvent& event)
-{
-    m_selected_id.clear();
-    int Flags = wxLIST_HITTEST_ONITEM;
-    long index = HitTest(wxPoint(event.m_x, event.m_y), Flags);
-    if (index == -1)
-    {
-        m_cp->updateExtraTransactionData();
-    }
-    else
-    {
-        m_selected_id.push_back(m_trans[index].TRANSID);
-    }
-
-#if 0
-    // Workaround for wxWidgets bug #4541 which affects MSW build
-    if ((m_selectedIndex >= 0) && (index != m_selectedIndex) && event.ShiftDown())
-    {
-        // Note: GetSelectedItemCount() does not return correct count at this time
-        // so we can't call enableEditDeleteButtons() or updateExtraTransactionData()
-        m_cp->m_btnDuplicate->Enable(false);
-        m_cp->m_btnAttachment->Enable(false);
-    }
-#endif
-    m_cp->enableEditDeleteButtons(m_selected_id.size() > 0);
-
-    event.Skip();
-}
-
 void TransactionListCtrl::OnMouseRightClick(wxMouseEvent& event)
 {
     int Flags = wxLIST_HITTEST_ONITEM;
@@ -1093,6 +1064,22 @@ void TransactionListCtrl::DeleteFlaggedTransactions(const wxString& status)
     Model_Attachment::instance().ReleaseSavepoint();
     Model_Checking::instance().ReleaseSavepoint();
 }
+
+void TransactionListCtrl::OnListLeftClick(wxMouseEvent& event)
+{
+    int Flags = wxLIST_HITTEST_ONITEM;
+    long index = HitTest(wxPoint(event.m_x, event.m_y), Flags);
+    if (index == -1)
+    {
+        m_selected_id.clear();
+        m_cp->updateExtraTransactionData();
+    }
+
+    m_cp->enableEditDeleteButtons(m_selected_id.size() > 0);
+
+    event.Skip();
+}
+
 
 void TransactionListCtrl::OnListItemFocused(wxListEvent& WXUNUSED(event))
 {
