@@ -61,7 +61,7 @@ void mmPrintableBase::setReportParameters(int id)
     case Payees:                      m_parameters = DATE_RANGE | CHART; break;
     case IncomevsExpensesSummary:     m_parameters = DATE_RANGE | ACCOUNTS_LIST; break;
     case IncomevsExpensesMonthly:     m_parameters = DATE_RANGE | ACCOUNTS_LIST | CHART; break;
-    case BudgetPerformance:           m_parameters = BUDGET_DATES; break;
+    case BudgetPerformance:           m_parameters = BUDGET_DATES | ACCOUNTS_LIST; break;
     case BudgetCategorySummary:       m_parameters = BUDGET_DATES | CHART; break;
     case MonthlyCashFlow:             m_parameters = ACCOUNTS_LIST | CHART; break;
     case DailyCashFlow:               m_parameters = ACCOUNTS_LIST | CHART; break;
