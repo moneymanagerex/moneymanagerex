@@ -267,25 +267,39 @@ void transactionsUpdateDialog::OnOk(wxCommandEvent& WXUNUSED(event))
 
     const auto split = Model_Splittransaction::instance().get_all();
 
+    std::vector<int> skip_trx;
     Model_Checking::instance().Savepoint();
-
     for (const auto& id : m_transaction_id)
     {
         Model_Checking::Data *trx = Model_Checking::instance().get(id);
+        bool is_locked = Model_Checking::is_locked(trx);
 
         if (m_date_checkbox->IsChecked())
         {
-            trx->TRANSDATE = m_dpc->GetValue().FormatISODate();
+            if (!is_locked) {
+                trx->TRANSDATE = m_dpc->GetValue().FormatISODate();
+            }
+            else {
+                skip_trx.push_back(trx->TRANSID);
+            }
         }
+
         if (m_status_checkbox->IsChecked())
         {
-            trx->STATUS = status;
+            if (!is_locked) {
+                trx->STATUS = status;
+            }
+            else {
+                skip_trx.push_back(trx->TRANSID);
+            }
         }
+
         if (m_payee_checkbox->IsChecked())
         {
             if (!Model_Checking::is_transfer(trx))
                 trx->PAYEEID = payee_id;
         }
+
         if (m_notes_checkbox->IsChecked())
         {
             if (m_append_checkbox->IsChecked()) {
@@ -293,54 +307,60 @@ void transactionsUpdateDialog::OnOk(wxCommandEvent& WXUNUSED(event))
                     ? "" : "\n")
                     + m_notes_ctrl->GetValue();
             }
-            else
+            else {
                 trx->NOTES = m_notes_ctrl->GetValue();
+            }
         }
 
-        if (m_amount_checkbox->IsChecked() && (split.find(trx->TRANSID) == split.end()))
+        if (m_amount_checkbox->IsChecked())
         {
-            trx->TRANSAMOUNT = amount;
+            if (!is_locked)
+            {
+
+                if (Model_Checking::is_transfer(trx))
+                {
+                    const auto acc = Model_Account::instance().get(trx->ACCOUNTID);
+                    const auto curr = Model_Currency::instance().get(acc->CURRENCYID);
+                    const auto acc2 = Model_Account::instance().get(trx->TOACCOUNTID);
+                    const auto curr2 = Model_Currency::instance().get(acc2->CURRENCYID);
+                    if (curr == curr2) {
+                        trx->TRANSAMOUNT = amount;
+                        trx->TOTRANSAMOUNT = amount;
+                    }
+                }
+                else
+                {
+                    if (split.find(trx->TRANSID) == split.end()) {
+                        trx->TRANSAMOUNT = amount;
+                    }
+                }
+            }
+            else {
+                skip_trx.push_back(trx->TRANSID);
+            }
         }
+
         if (m_categ_checkbox->IsChecked() && (split.find(trx->TRANSID) == split.end()))
         {
             trx->CATEGID = m_categ_id;
             trx->SUBCATEGID = m_subcateg_id;
         }
 
-        if (m_type_checkbox->IsChecked() && !Model_Checking::is_transfer(trx))
+        if (m_type_checkbox->IsChecked() && !is_locked)
         {
-            if (type == Model_Checking::TRANSFER_STR)
-            {
-                const Model_Checking::Data_Set data = Model_Checking::instance().find(
-                    Model_Checking::TRANSDATE(trx->TRANSDATE)
-                    , Model_Checking::ACCOUNTID(trx->ACCOUNTID, NOT_EQUAL)
-                    , Model_Checking::NOTES(trx->NOTES)
-                    , Model_Checking::TRANSACTIONNUMBER(trx->TRANSACTIONNUMBER)
-                    , Model_Checking::TRANSCODE(Model_Checking::DEPOSIT)
-                    , Model_Checking::STATUS(Model_Checking::VOID_, NOT_EQUAL)
-                    , Model_Checking::TRANSAMOUNT(trx->TRANSAMOUNT)
-                );
-                if (!data.empty())
-                {
-                    Model_Checking::Data *trx2 = Model_Checking::instance().get(data.begin()->TRANSID);
-                    trx2->STATUS = Model_Checking::toShortStatus(Model_Checking::all_status()[Model_Checking::VOID_]);
-                    Model_Checking::instance().save(trx2);
-
-                    trx->TRANSCODE = type;
-                    trx->PAYEEID = -1;
-                    trx->TOACCOUNTID = trx2->ACCOUNTID;
-                }
-            }
-            else
-            {
+            if (type != Model_Checking::TRANSFER_STR) {
                 trx->TRANSCODE = type;
+            } else {
+                skip_trx.push_back(trx->TRANSID);
             }
         }
 
         Model_Checking::instance().save(trx);
     }
-
     Model_Checking::instance().ReleaseSavepoint();
+
+    skip_trx; //TODO: resume
+
     EndModal(wxID_OK);
 }
 
