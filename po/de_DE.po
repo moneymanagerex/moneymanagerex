@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-02-06 16:44+0300\n"
-"PO-Revision-Date: 2021-02-07 21:46\n"
+"PO-Revision-Date: 2021-02-07 21:59\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -3622,7 +3622,7 @@ msgstr "Sollen wirklich alle sichtbaren \"%s\" Buchungen gelöscht werden?"
 msgid "Do you really want to delete the selected transaction?"
 msgid_plural "Do you really want to delete %i selected transactions?"
 msgstr[0] "Möchten Sie die ausgewählte Buchung wirklich löschen?"
-msgstr[1] ""
+msgstr[1] "Möchten Sie die ausgewählte %i wirklich löschen?"
 
 #: mmchecking_list.cpp:806
 #, c-format
@@ -3651,17 +3651,17 @@ msgstr "Wiederkehrende Buchung gespeichert."
 #: mmchecking_list.cpp:1135
 #, c-format
 msgid "Transactions selected: %ld"
-msgstr ""
+msgstr "Ausgewählte Buchungen: %ld"
 
 #: mmchecking_list.cpp:1137
 #, c-format
 msgid "Selected transactions balance: %s"
-msgstr ""
+msgstr "Ausgewählter Kontostand: %s"
 
 #: mmchecking_list.cpp:1140
 #, c-format
 msgid "Days between selected transactions: %d"
-msgstr ""
+msgstr "Tage zwischen ausgewählten Buchungen: %d"
 
 #: mmcheckingpanel.cpp:257 mmcheckingpanel.cpp:401
 msgid "Displayed Bal: "
@@ -4818,11 +4818,11 @@ msgstr "Zeitraum:"
 
 #: mmreportspanel.cpp:290
 msgid "Year:"
-msgstr ""
+msgstr "Jahr:"
 
 #: mmreportspanel.cpp:314
 msgid "Budget:"
-msgstr ""
+msgstr "Budget:"
 
 #: mmreportspanel.cpp:340
 msgid "Accounts:"
@@ -4968,7 +4968,7 @@ msgstr "Enddatum: "
 
 #: model/Model_Report.cpp:88
 msgid "Year: "
-msgstr ""
+msgstr "Jahr: "
 
 #: model/Model_Report.cpp:233
 msgid "Template is empty"
@@ -5343,11 +5343,11 @@ msgstr "Benützungsstatistik"
 
 #: optionsettingsnet.cpp:126
 msgid "Check for latest news on startup"
-msgstr ""
+msgstr "Nach neuesten Nachrichten beim Start suchen"
 
 #: optionsettingsnet.cpp:128
 msgid "Enable to allow news to be checked on application start"
-msgstr ""
+msgstr "Aktivieren, damit Nachrichten beim Anwendungsstart überprüft werden können"
 
 #: optionsettingsnet.cpp:133
 msgid "Timeout"
@@ -6296,15 +6296,15 @@ msgstr "Symbol: %s"
 
 #: transactionsupdatedialog.cpp:72
 msgid "Multi Transactions Update"
-msgstr ""
+msgstr "Aktualisierung mehrerer Buchungen"
 
 #: transactionsupdatedialog.cpp:186
 msgid "Append"
-msgstr ""
+msgstr "anfügen"
 
 #: transactionsupdatedialog.cpp:249
 msgid "Invalid type"
-msgstr ""
+msgstr "Ungültiger Typ"
 
 #: transdialog.cpp:170
 msgid "Duplicate Transaction"
