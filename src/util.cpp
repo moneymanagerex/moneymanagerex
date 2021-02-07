@@ -1225,3 +1225,4 @@ const wxString md2html(const wxString& md)
 
     return body;
 }
+
