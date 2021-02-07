@@ -145,6 +145,8 @@ bool get_yahoo_prices(std::map<wxString, double>& symbols
     , int type);
 
 const wxString mmPlatformType();
+
+//All components version in TXT, HTML, ABOUT
 const wxString getProgramDescription(int type = 0);
 void windowsFreezeThaw(wxWindow* w);
 const wxString md2html(const wxString& md);

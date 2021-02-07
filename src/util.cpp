@@ -911,7 +911,6 @@ CURLcode http_download_file(const wxString& sSite, const wxString& sPath)
     return err_code;
 }
 
-//All components version in TXT, HTML, ABOUT
 const wxString getProgramDescription(int type)
 {
     const wxString bull = L" \u2022 ";

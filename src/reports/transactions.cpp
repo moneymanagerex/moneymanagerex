@@ -28,7 +28,7 @@
 #include <vector>
 
 mmReportTransactions::mmReportTransactions(int refAccountID, mmFilterTransactionsDialog* transDialog)
-    : mmPrintableBase("mmReportTransactions")
+    : mmPrintableBase("Transaction Report")
     , m_refAccountID(refAccountID)
     , m_transDialog(transDialog)
     , trans_()

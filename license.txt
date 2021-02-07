@@ -1,6 +1,7 @@
 ================================================
-                      Money Manager Ex License
+             Money Manager Ex License
 ================================================
+
 WARNING:  This software is under development.
 If upgrading from a previous version, backup your old data file first! 
 
@@ -9,14 +10,13 @@ CodeLathe, LLC
 Tonido allows you to run your personal web applications from your
 desktop. Learn more at http://www.tonido.com]
 
-================================================
 If you find bugs/issues, please use the support forum to let us know.
 The support forum links are located in the MMEX Help menu.
-================================================
 
 ================================================
-                      GNU GENERAL PUBLIC LICENSE
+           GNU GENERAL PUBLIC LICENSE
 ================================================
+
 Copyright (C) 2009-2021 Nikolay [Nikolay]
 Copyright (C) 2020-2021 Whalley [whall3y]
 Copyright (C) 2011-2020 LiSheng [guanlisheng]
@@ -42,11 +42,12 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor,
 Boston, MA  02110-1301, USA
+------------------------------------------------
+
+================================================
+               Privacy Policy
 ================================================
 
-
-Privacy Policy
-================================================
 We can collect information from you when you install or use Money Manager EX application.
 People have different privacy concerns: our goal is to be clear about what information we collect, so that you can make meaningful choices about how it is used.
  
@@ -68,6 +69,5 @@ By installing or using Money Manager EX, you consent to our Privacy policy.
 6. Changes to our Privacy policy
 If we decide to change our Privacy policy, we will update the Privacy policy modification date below.
  
-This policy was last modified on 2014-04-30.
+This policy was last modified on 2021-01-20.
 - Money Manager EX team
----------------------------------------

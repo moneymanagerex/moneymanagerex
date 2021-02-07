@@ -53,7 +53,7 @@ private:
 };
 
 mmBugReport::mmBugReport()
-    : mmPrintableBase(_("Bug Report"))
+    : mmPrintableBase(wxTRANSLATE("Bug Report"))
 {
 }
 
