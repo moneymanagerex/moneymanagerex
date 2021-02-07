@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-02-06 16:44+0300\n"
-"PO-Revision-Date: 2021-02-06 13:46\n"
+"PO-Revision-Date: 2021-02-07 21:46\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -767,7 +767,7 @@ msgstr "Monatlich"
 #: billsdepositsdialog.cpp:54 billsdepositspanel.cpp:43
 #: model/Model_Budget.cpp:59
 msgid "Every 2 Months"
-msgstr ""
+msgstr "Alle 2 Monate"
 
 #: billsdepositsdialog.cpp:55 billsdepositspanel.cpp:44
 #: model/Model_Budget.cpp:60
@@ -1372,7 +1372,7 @@ msgstr "Alle Budget-Kategorien anzeigen"
 #: budgetingpanel.cpp:172
 #, c-format
 msgid "Financial Year: %s - %ld"
-msgstr ""
+msgstr "Geschäftsjahr: %s - %ld"
 
 #: budgetingpanel.cpp:176 reports/budget.cpp:92
 #, c-format
@@ -3517,14 +3517,14 @@ msgstr "&Neue Überweisung"
 #: mmchecking_list.cpp:282
 msgid "&Edit Transaction"
 msgid_plural "&Edit Transactions"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "&Buchung bearbeiten"
+msgstr[1] "&Buchung bearbeiten"
 
 #: mmchecking_list.cpp:285
 msgid "&Copy Transaction"
 msgid_plural "&Copy Transactions"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "&Buchung kopieren"
+msgstr[1] "&Buchung kopieren"
 
 #: mmchecking_list.cpp:288
 msgid "&Paste Transaction"
@@ -3549,8 +3549,8 @@ msgstr "Wiederkehrende Buchung erstellen"
 #: mmchecking_list.cpp:314
 msgid "&Delete selected transaction"
 msgid_plural "&Delete selected transactions"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "&Markierte Buchungen löschen"
+msgstr[1] "&Markierte Buchungen löschen"
 
 #: mmchecking_list.cpp:317
 msgid "Delete all transactions in current view"
@@ -3558,11 +3558,11 @@ msgstr "Alle sichtbaren Buchungen löschen"
 
 #: mmchecking_list.cpp:318
 msgid "Delete Viewed \"Follow Up\" Transactions"
-msgstr ""
+msgstr "Lösche angezeigte \"nachfolgende\" Buchungen"
 
 #: mmchecking_list.cpp:319
 msgid "Delete Viewed \"Unreconciled\" Transactions"
-msgstr ""
+msgstr "Lösche angezeigte \"nicht abgestimmte\" Buchungen"
 
 #: mmchecking_list.cpp:325 mmchecking_list.cpp:338
 msgid "as Reconciled"
@@ -3578,7 +3578,7 @@ msgstr "als Ungültig"
 
 #: mmchecking_list.cpp:331
 msgid "as Followup"
-msgstr ""
+msgstr "als Nachverfolgung"
 
 #: mmchecking_list.cpp:333 mmchecking_list.cpp:342
 msgid "as Duplicate"
@@ -3586,7 +3586,7 @@ msgstr "als Duplikat"
 
 #: mmchecking_list.cpp:335
 msgid "Mark all being selected"
-msgstr ""
+msgstr "Alle als ausgewählt markieren"
 
 #: mmchecking_list.cpp:341
 msgid "as needing Followup"
@@ -3621,7 +3621,7 @@ msgstr "Sollen wirklich alle sichtbaren \"%s\" Buchungen gelöscht werden?"
 #, c-format
 msgid "Do you really want to delete the selected transaction?"
 msgid_plural "Do you really want to delete %i selected transactions?"
-msgstr[0] ""
+msgstr[0] "Möchten Sie die ausgewählte Buchung wirklich löschen?"
 msgstr[1] ""
 
 #: mmchecking_list.cpp:806
