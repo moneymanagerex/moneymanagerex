@@ -193,6 +193,7 @@ private:
     void OnMouseRightClick(wxMouseEvent& event);
     void OnListLeftClick(wxMouseEvent& event);
     void OnListItemSelected(wxListEvent& event);
+    void OnListItemDeSelected(wxListEvent& event);
     void OnListItemActivated(wxListEvent& event);
     void OnMarkTransaction(wxCommandEvent& event);
     void OnMarkAllTransactions(wxCommandEvent& event);
@@ -204,6 +205,7 @@ private:
     void OnListItemFocused(wxListEvent & WXUNUSED);
 
     bool TransactionLocked(const wxString& transdate);
+    void FindSelectedTransactions();
 private:
     /* The topmost visible item - this will be used to set
     where to display the list again after refresh */
