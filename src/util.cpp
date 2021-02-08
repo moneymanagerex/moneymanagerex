@@ -237,7 +237,7 @@ bool getNewsRSS(std::vector<WebsiteNews>& WebsiteNewsList)
         RssRoot = RssRoot->GetNext();
     }
 
-    wxLogDebug("getNewsRSS: New articles = %u", (int)WebsiteNewsList.size());
+    wxLogDebug("getNewsRSS: New articles = %i", static_cast<int>(WebsiteNewsList.size()));
     if (WebsiteNewsList.size() == 0)
         return false;
 

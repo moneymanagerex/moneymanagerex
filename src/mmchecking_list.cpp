@@ -46,6 +46,7 @@
 wxBEGIN_EVENT_TABLE(TransactionListCtrl, mmListCtrl)
 EVT_LIST_ITEM_ACTIVATED(wxID_ANY, TransactionListCtrl::OnListItemActivated)
 EVT_LIST_ITEM_SELECTED(wxID_ANY, TransactionListCtrl::OnListItemSelected)
+EVT_LIST_ITEM_DESELECTED(wxID_ANY, TransactionListCtrl::OnListItemDeSelected)
 EVT_LIST_ITEM_FOCUSED(wxID_ANY, TransactionListCtrl::OnListItemFocused)
 EVT_RIGHT_DOWN(TransactionListCtrl::OnMouseRightClick)
 EVT_LEFT_DOWN(TransactionListCtrl::OnListLeftClick)
@@ -207,29 +208,57 @@ void TransactionListCtrl::createColumns(mmListCtrl &lst)
     }
 }
 
+//----------------------------------------------------------------------------
+
 void TransactionListCtrl::OnListItemSelected(wxListEvent& event)
 {
-    int selected_index = event.GetIndex();
-
-    int trx_id = m_trans[selected_index].TRANSID;
-    m_selected_id.clear();
-    m_selected_id.push_back(trx_id);
-
+    wxLogDebug("OnListItemSelected: %i selected", GetSelectedItemCount());
+    FindSelectedTransactions();
     m_cp->updateExtraTransactionData();
 }
-//----------------------------------------------------------------------------
+
+void TransactionListCtrl::OnListItemDeSelected(wxListEvent& event)
+{
+    wxLogDebug("OnListItemDeSelected: %i selected", GetSelectedItemCount());
+    FindSelectedTransactions();
+    m_cp->updateExtraTransactionData();
+}
+
+void TransactionListCtrl::OnListItemFocused(wxListEvent& WXUNUSED(event))
+{
+    wxLogDebug("OnListItemFocused: %i selected", GetSelectedItemCount());
+    FindSelectedTransactions();
+    m_cp->updateExtraTransactionData();
+}
+
+void TransactionListCtrl::OnListLeftClick(wxMouseEvent& event)
+{
+    wxLogDebug("OnListLeftClick: %i selected", GetSelectedItemCount());
+    event.Skip();
+}
+
+void TransactionListCtrl::OnListItemActivated(wxListEvent& /*event*/)
+{
+    wxLogDebug("OnListItemActivated: %i selected", GetSelectedItemCount());
+    wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_TREEPOPUP_EDIT2);
+    AddPendingEvent(evt);
+}
 
 void TransactionListCtrl::OnMouseRightClick(wxMouseEvent& event)
 {
+    wxLogDebug("OnListLeftClick: %i selected", GetSelectedItemCount());
+    m_cp->updateExtraTransactionData();
+    int selected = GetSelectedItemCount();
+
     int Flags = wxLIST_HITTEST_ONITEM;
     long selectedIndex = HitTest(wxPoint(event.m_x, event.m_y), Flags);
 
-    bool hide_menu_item = (m_selected_id.size() < 1);
-    bool multiselect = (GetSelectedItemCount() > 1);
+    bool hide_menu_item = (selected < 1);
+    bool multiselect = (selected > 1);
     bool type_transfer = false;
     bool have_category = false;
     bool is_foreign = false;
-    if (selectedIndex > -1)
+    if (selected == 1)
     {
         const Model_Checking::Full_Data& tran = m_trans.at(selectedIndex);
         if (Model_Checking::type(tran.TRANSCODE) == Model_Checking::TRANSFER) {
@@ -250,7 +279,7 @@ void TransactionListCtrl::OnMouseRightClick(wxMouseEvent& event)
 
     menu.AppendSeparator();
 
-    int i = GetSelectedItemCount();
+    int i = selected;
     menu.Append(MENU_TREEPOPUP_EDIT2, wxPLURAL("&Edit Transaction", "&Edit Transactions", i));
     if (hide_menu_item) menu.Enable(MENU_TREEPOPUP_EDIT2, false);
 
@@ -571,8 +600,11 @@ void TransactionListCtrl::OnChar(wxKeyEvent& event)
 
 void TransactionListCtrl::OnCopy(wxCommandEvent& WXUNUSED(event))
 {
-    if (m_selected_id.size() < 1) return;
+    // check if anything to copy
+    if (GetSelectedItemCount() < 1) return;
 
+    // collect the selected transactions for copy
+    FindSelectedTransactions();
     m_selectedForCopy = m_selected_id;
 
     if (wxTheClipboard->Open())
@@ -601,7 +633,7 @@ void TransactionListCtrl::OnCopy(wxCommandEvent& WXUNUSED(event))
             for (int column = 0; column < static_cast<int>(m_columns.size()); column++)
             {
                 if (GetColumnWidth(column) > 0)
-                    data += OnGetItemText(m_selected_id[0], column) + seperator;
+                    data += OnGetItemText(m_selectedForCopy[0], column) + seperator;
             }
             data += "\n";
         }
@@ -612,7 +644,10 @@ void TransactionListCtrl::OnCopy(wxCommandEvent& WXUNUSED(event))
 
 void TransactionListCtrl::OnDuplicateTransaction(wxCommandEvent& WXUNUSED(event))
 {
+    // we can only duplicate a single transaction
     if (GetSelectedItemCount() != 1) return;
+
+    FindSelectedTransactions();
 
     int transaction_id = m_selected_id[0];
     mmTransDialog dlg(this, m_cp->m_AccountID, transaction_id, m_cp->m_account_balance, true);
@@ -626,18 +661,19 @@ void TransactionListCtrl::OnDuplicateTransaction(wxCommandEvent& WXUNUSED(event)
 
 void TransactionListCtrl::OnPaste(wxCommandEvent& WXUNUSED(event))
 {
+    // check if anything to paste
     if (m_selectedForCopy.size() < 1) return;
 
-    m_selected_id.clear();
+    //m_selected_id.clear();
     Model_Checking::instance().Savepoint();
     for (const auto& i : m_selectedForCopy)
     {
         Model_Checking::Data* tran = Model_Checking::instance().get(i);
         int transactionID = OnPaste(tran);
-        m_selected_id.push_back(transactionID);
+        //m_selected_id.push_back(transactionID);
     }
     Model_Checking::instance().ReleaseSavepoint();
-    m_selectedForCopy = m_selected_id;
+    //m_selectedForCopy = m_selected_id;
     refreshVisualList();
 }
 int TransactionListCtrl::OnPaste(Model_Checking::Data* tran)
@@ -663,7 +699,11 @@ int TransactionListCtrl::OnPaste(Model_Checking::Data* tran)
 
 void TransactionListCtrl::OnOpenAttachment(wxCommandEvent& WXUNUSED(event))
 {
-    if (m_selected_id.size() != 1) return;
+    // we can only open a single transaction
+    if (GetSelectedItemCount() != 1) return;
+
+    FindSelectedTransactions();
+
     int transaction_id = m_selected_id[0];
     wxString RefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
 
@@ -716,9 +756,11 @@ void TransactionListCtrl::OnListKeyDown(wxListEvent& event)
 
 void TransactionListCtrl::OnDeleteTransaction(wxCommandEvent& /*event*/)
 {
-    //check if any transactions selected
+    // check if any transactions selected
     int sel = GetSelectedItemCount();
     if (sel < 1) return;
+
+    FindSelectedTransactions();
 
     //ask if they really want to delete
     const wxString text = wxString::Format(
@@ -788,8 +830,12 @@ bool TransactionListCtrl::TransactionLocked(const wxString& transdate)
 
 void TransactionListCtrl::OnEditTransaction(wxCommandEvent& /*event*/)
 {
-    if (m_selected_id.size() < 1) return;
+    // check if anything to edit
+    if (GetSelectedItemCount() < 1) return;
 
+    FindSelectedTransactions();
+     
+    // edit multiple transactions
     if (m_selected_id.size() > 1)
     {
         transactionsUpdateDialog dlg(this, m_cp->m_AccountID, m_selected_id);
@@ -800,7 +846,7 @@ void TransactionListCtrl::OnEditTransaction(wxCommandEvent& /*event*/)
         return;
     }
 
-    // Edit singl transaction
+    // edit single transaction
     int transaction_id = m_selected_id[0];
     Model_Checking::Data* transaction = Model_Checking::instance().get(transaction_id);
 
@@ -845,6 +891,8 @@ void TransactionListCtrl::OnSetUserColour(wxCommandEvent& event)
     int user_colour_id = event.GetId();
     user_colour_id -= MENU_ON_SET_UDC0;
     wxLogDebug("id: %i", user_colour_id);
+
+    FindSelectedTransactions();
 
     Model_Checking::instance().Savepoint();
     for (const auto i : m_selected_id)
@@ -907,7 +955,10 @@ void TransactionListCtrl::refreshVisualList(bool filter)
 
 void TransactionListCtrl::OnMoveTransaction(wxCommandEvent& /*event*/)
 {
-    if (m_selected_id.size() != 1) return;
+    // we can only move a single transaction
+    if (GetSelectedItemCount() != 1) return;
+
+    FindSelectedTransactions();
 
     Model_Checking::Data* trx = Model_Checking::instance().get(m_selected_id[0]);
     if (TransactionLocked(trx->TRANSDATE)) {
@@ -942,15 +993,20 @@ void TransactionListCtrl::OnMoveTransaction(wxCommandEvent& /*event*/)
 //----------------------------------------------------------------------------
 void TransactionListCtrl::OnViewSplitTransaction(wxCommandEvent& /*event*/)
 {
-    if (m_selected_id.size() == 1) {
-        m_cp->DisplaySplitCategories(m_selected_id[0]);
-    }
+    // we can only view a single transaction
+    if (GetSelectedItemCount() != 1) return;
+
+    FindSelectedTransactions();
+    m_cp->DisplaySplitCategories(m_selected_id[0]);
 }
 
 //----------------------------------------------------------------------------
 void TransactionListCtrl::OnOrganizeAttachments(wxCommandEvent& /*event*/)
 {
-    if (m_selected_id.size() != 1) return;
+    // we only support a single transaction
+    if (GetSelectedItemCount() != 1) return;
+
+    FindSelectedTransactions();
 
     wxString RefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
     int RefId = m_selected_id[0];
@@ -964,7 +1020,10 @@ void TransactionListCtrl::OnOrganizeAttachments(wxCommandEvent& /*event*/)
 //----------------------------------------------------------------------------
 void TransactionListCtrl::OnCreateReoccurance(wxCommandEvent& /*event*/)
 {
-    if (m_selected_id.size() != 1) return;
+     // we only support a single transaction
+    if (GetSelectedItemCount() != 1) return;
+
+    FindSelectedTransactions();
 
     mmBDDialog dlg(this, 0, false, false);
     dlg.SetDialogParameters(m_selected_id[0]);
@@ -975,15 +1034,12 @@ void TransactionListCtrl::OnCreateReoccurance(wxCommandEvent& /*event*/)
 }
 
 //----------------------------------------------------------------------------
-void TransactionListCtrl::OnListItemActivated(wxListEvent& /*event*/)
-{
-    wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_TREEPOPUP_EDIT2);
-    AddPendingEvent(evt);
-}
 
 void TransactionListCtrl::markSelectedTransaction()
 {
-    if (m_selected_id.empty()) return;
+    if (GetSelectedItemCount() == 0) return;
+
+    FindSelectedTransactions();
 
     long i = 0;
     for (const auto & tran : m_trans)
@@ -1065,75 +1121,6 @@ void TransactionListCtrl::DeleteFlaggedTransactions(const wxString& status)
     Model_Checking::instance().ReleaseSavepoint();
 }
 
-void TransactionListCtrl::OnListLeftClick(wxMouseEvent& event)
-{
-    int Flags = wxLIST_HITTEST_ONITEM;
-    long index = HitTest(wxPoint(event.m_x, event.m_y), Flags);
-    if (index == -1)
-    {
-        m_selected_id.clear();
-        m_cp->updateExtraTransactionData();
-    }
-
-    m_cp->enableEditDeleteButtons(m_selected_id.size() > 0);
-
-    event.Skip();
-}
-
-
-void TransactionListCtrl::OnListItemFocused(wxListEvent& WXUNUSED(event))
-{
-    long count = this->GetSelectedItemCount();
-
-    long x = 0;
-    wxString maxDate, minDate;
-    double balance = 0;
-    m_selected_id.clear();
-    for (const auto& i : m_trans)
-    {
-        if (GetItemState(x, wxLIST_STATE_SELECTED) == wxLIST_STATE_SELECTED)
-        {
-            balance += Model_Checking::balance(i);
-            if (minDate > i.TRANSDATE || maxDate.empty()) minDate = i.TRANSDATE;
-            if (maxDate < i.TRANSDATE || maxDate.empty()) maxDate = i.TRANSDATE;
-            m_selected_id.push_back(i.TRANSID);
-        }
-        x++;
-    }
-
-    wxString test;
-    for (const auto& i : m_selected_id)
-    {
-        test += wxString::Format("%i,", i);
-    }
-    wxLogDebug("%s", test);
-
-    if (count < 2) {
-        m_cp->updateExtraTransactionData();
-        return;
-    }
-
-    wxDateTime min_date, max_date;
-    min_date.ParseISODate(minDate);
-    max_date.ParseISODate(maxDate);
-
-    int days = max_date.Subtract(min_date).GetDays();
-
-    wxString msg;
-    Model_Account::Data *account = Model_Account::instance().get(m_cp->m_AccountID);
-    msg = wxString::Format(_("Transactions selected: %ld"), count);
-    msg += "\n";
-    msg += wxString::Format(_("Selected transactions balance: %s")
-        , Model_Account::toCurrency(balance, account));
-    msg += "\n";
-    msg += wxString::Format(_("Days between selected transactions: %d"), days);
-
-    m_cp->m_info_panel->SetLabelText(msg);
-
-    m_cp->m_btnDuplicate->Enable(false);
-    m_cp->m_btnAttachment->Enable(false);
-
-}
 
 void TransactionListCtrl::doSearchText(const wxString& value)
 {
@@ -1229,6 +1216,16 @@ const wxString TransactionListCtrl::getItem(long item, long column) const
     default:
         return value;
     }
+}
+
+void TransactionListCtrl::FindSelectedTransactions()
+{
+    // find the selected transactions
+    long x = 0;
+    m_selected_id.clear();
+    for (const auto& i : m_trans)
+        if (GetItemState(x++, wxLIST_STATE_SELECTED) == wxLIST_STATE_SELECTED)
+            m_selected_id.push_back(i.TRANSID);
 }
 
 //----------------------------------------------------------------------------
