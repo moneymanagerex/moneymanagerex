@@ -278,15 +278,15 @@ void TransactionListCtrl::OnMouseRightClick(wxMouseEvent& event)
 
     menu.AppendSeparator();
 
-    int i = selected;
-    menu.Append(MENU_TREEPOPUP_EDIT2, wxPLURAL("&Edit Transaction", "&Edit Transactions", i));
+    menu.Append(MENU_TREEPOPUP_EDIT2, wxPLURAL("&Edit Transaction", "&Edit Transactions", selected));
     if (hide_menu_item) menu.Enable(MENU_TREEPOPUP_EDIT2, false);
 
-    menu.Append(MENU_ON_COPY_TRANSACTION, wxPLURAL("&Copy Transaction", "&Copy Transactions", i));
+    menu.Append(MENU_ON_COPY_TRANSACTION, wxPLURAL("&Copy Transaction", "&Copy Transactions", selected));
     if (hide_menu_item) menu.Enable(MENU_ON_COPY_TRANSACTION, false);
 
-    menu.Append(MENU_ON_PASTE_TRANSACTION, _("&Paste Transaction"));
-    if (m_selectedForCopy.size() < 1) menu.Enable(MENU_ON_PASTE_TRANSACTION, false);
+    int toPaste = m_selectedForCopy.size();
+    menu.Append(MENU_ON_PASTE_TRANSACTION, wxPLURAL("&Paste Transaction", "&Paste Transactions", (toPaste < 1) ? 1 : toPaste));
+    if (toPaste < 1) menu.Enable(MENU_ON_PASTE_TRANSACTION, false);
 
     menu.Append(MENU_ON_DUPLICATE_TRANSACTION, _("D&uplicate Transaction"));
     if (hide_menu_item || multiselect) menu.Enable(MENU_ON_DUPLICATE_TRANSACTION, false);
@@ -305,13 +305,13 @@ void TransactionListCtrl::OnMouseRightClick(wxMouseEvent& event)
     if (hide_menu_item || multiselect)
         menu.Enable(MENU_TREEPOPUP_ORGANIZE_ATTACHMENTS, false);
 
-    menu.Append(MENU_TREEPOPUP_CREATE_REOCCURANCE, _("Create Reoccuring T&ransaction"));
+    menu.Append(MENU_TREEPOPUP_CREATE_REOCCURANCE, _("Create Recurring T&ransaction"));
     if (hide_menu_item || multiselect) menu.Enable(MENU_TREEPOPUP_CREATE_REOCCURANCE, false);
 
     menu.AppendSeparator();
 
     wxMenu* subGlobalOpMenuDelete = new wxMenu();
-    subGlobalOpMenuDelete->Append(MENU_TREEPOPUP_DELETE2, wxPLURAL("&Delete selected transaction", "&Delete selected transactions", i));
+    subGlobalOpMenuDelete->Append(MENU_TREEPOPUP_DELETE2, wxPLURAL("&Delete selected transaction", "&Delete selected transactions", selected));
     if (hide_menu_item) subGlobalOpMenuDelete->Enable(MENU_TREEPOPUP_DELETE2, false);
     subGlobalOpMenuDelete->AppendSeparator();
     subGlobalOpMenuDelete->Append(MENU_TREEPOPUP_DELETE_VIEWED, _("Delete all transactions in current view"));
@@ -613,31 +613,19 @@ void TransactionListCtrl::OnCopy(wxCommandEvent& WXUNUSED(event))
     {
         const wxString seperator = "\t";
         wxString data = "";
-        if (GetSelectedItemCount() > 1)
+        for (int row = 0; row < GetItemCount(); row++)
         {
-            for (int row = 0; row < GetItemCount(); row++)
+            if (GetItemState(row, wxLIST_STATE_SELECTED) == wxLIST_STATE_SELECTED)
             {
-                if (GetItemState(row, wxLIST_STATE_SELECTED) == wxLIST_STATE_SELECTED)
+                for (int column = 0; column < static_cast<int>(m_columns.size()); column++)
                 {
-                    for (int column = 0; column < static_cast<int>(m_columns.size()); column++)
-                    {
-                        if (GetColumnWidth(column) > 0) {
-                            data += inQuotes(OnGetItemText(row, column), seperator);
-                            data += seperator;
-                        }
+                    if (GetColumnWidth(column) > 0) {
+                        data += inQuotes(OnGetItemText(row, column), seperator);
+                        data += seperator;
                     }
-                    data += "\n";
                 }
+                data += "\n";
             }
-        }
-        else
-        {
-            for (int column = 0; column < static_cast<int>(m_columns.size()); column++)
-            {
-                if (GetColumnWidth(column) > 0)
-                    data += OnGetItemText(m_selectedForCopy[0], column) + seperator;
-            }
-            data += "\n";
         }
         wxTheClipboard->SetData(new wxTextDataObject(data));
         wxTheClipboard->Close();
@@ -667,16 +655,13 @@ void TransactionListCtrl::OnPaste(wxCommandEvent& WXUNUSED(event))
     // check if anything to paste
     if (m_selectedForCopy.size() < 1) return;
 
-    //m_selected_id.clear();
     Model_Checking::instance().Savepoint();
     for (const auto& i : m_selectedForCopy)
     {
         Model_Checking::Data* tran = Model_Checking::instance().get(i);
         int transactionID = OnPaste(tran);
-        //m_selected_id.push_back(transactionID);
     }
     Model_Checking::instance().ReleaseSavepoint();
-    //m_selectedForCopy = m_selected_id;
     refreshVisualList();
 }
 int TransactionListCtrl::OnPaste(Model_Checking::Data* tran)
@@ -915,6 +900,9 @@ void TransactionListCtrl::OnSetUserColour(wxCommandEvent& event)
 
 void TransactionListCtrl::refreshVisualList(bool filter)
 {
+    wxLogDebug("refreshVisualList: %i selected, filter: %d", GetSelectedItemCount(), filter);
+    FindSelectedTransactions();
+
     m_today = wxDateTime::Today().FormatISODate();
     this->SetEvtHandlerEnabled(false);
     Hide();
@@ -944,11 +932,13 @@ void TransactionListCtrl::refreshVisualList(bool filter)
         }
         i++;
     }
+    FindSelectedTransactions();
 
     if (m_topItemIndex >= 0 && m_topItemIndex < i)
         EnsureVisible(m_topItemIndex);
 
     m_cp->setAccountSummary();
+    m_cp->updateExtraTransactionData(GetSelectedItemCount() == 1);
     this->SetEvtHandlerEnabled(true);
     Refresh();
     Update();
@@ -1031,7 +1021,7 @@ void TransactionListCtrl::OnCreateReoccurance(wxCommandEvent& /*event*/)
     dlg.SetDialogParameters(m_selected_id[0]);
     if (dlg.ShowModal() == wxID_OK)
     {
-        wxMessageBox(_("Reoccuring Transaction saved."));
+        wxMessageBox(_("Recurring Transaction saved."));
     }
 }
 
@@ -1072,7 +1062,7 @@ void TransactionListCtrl::markSelectedTransaction()
     }
     else
     {
-        m_cp->enableEditDeleteButtons(false);
+        m_cp->enableTransactionButtons(false, false);
         m_cp->showTips();
     }
 }
