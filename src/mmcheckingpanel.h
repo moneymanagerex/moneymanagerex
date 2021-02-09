@@ -156,7 +156,7 @@ private:
     );
 
 private:
-    void enableEditDeleteButtons(bool en);
+    void enableTransactionButtons(bool editDelete, bool dupAttach);
 
     void OnNewTransaction(wxCommandEvent& event);
     void OnDeleteTransaction(wxCommandEvent& event);
