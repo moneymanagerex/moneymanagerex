@@ -423,9 +423,9 @@ void mmCheckingPanel::enableEditDeleteButtons(bool en)
 }
 //----------------------------------------------------------------------------
 
-void mmCheckingPanel::updateExtraTransactionData()
+void mmCheckingPanel::updateExtraTransactionData(bool single)
 {
-    if (m_listCtrlAccount->getSelectedId().size() == 1)
+    if (single)
     {
         enableEditDeleteButtons(true);
         int trx_id = m_listCtrlAccount->getSelectedId()[0];
