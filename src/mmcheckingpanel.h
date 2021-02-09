@@ -170,7 +170,7 @@ private:
 
     /* updates the checking panel data */
     void showTips();
-    void updateExtraTransactionData();
+    void updateExtraTransactionData(bool single);
     wxString GetPanelTitle(const Model_Account::Data& account) const;
 
     static void mmPlayTransactionSound();

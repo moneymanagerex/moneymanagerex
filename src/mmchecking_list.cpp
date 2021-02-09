@@ -214,21 +214,21 @@ void TransactionListCtrl::OnListItemSelected(wxListEvent& event)
 {
     wxLogDebug("OnListItemSelected: %i selected", GetSelectedItemCount());
     FindSelectedTransactions();
-    m_cp->updateExtraTransactionData();
+    m_cp->updateExtraTransactionData(GetSelectedItemCount() == 1);
 }
 
 void TransactionListCtrl::OnListItemDeSelected(wxListEvent& event)
 {
     wxLogDebug("OnListItemDeSelected: %i selected", GetSelectedItemCount());
     FindSelectedTransactions();
-    m_cp->updateExtraTransactionData();
+    m_cp->updateExtraTransactionData(GetSelectedItemCount() == 1);
 }
 
 void TransactionListCtrl::OnListItemFocused(wxListEvent& WXUNUSED(event))
 {
     wxLogDebug("OnListItemFocused: %i selected", GetSelectedItemCount());
     FindSelectedTransactions();
-    m_cp->updateExtraTransactionData();
+    m_cp->updateExtraTransactionData(false);
 }
 
 void TransactionListCtrl::OnListLeftClick(wxMouseEvent& event)
@@ -949,7 +949,6 @@ void TransactionListCtrl::refreshVisualList(bool filter)
         EnsureVisible(m_topItemIndex);
 
     m_cp->setAccountSummary();
-    m_cp->updateExtraTransactionData();
     this->SetEvtHandlerEnabled(true);
     Refresh();
     Update();
