@@ -246,8 +246,7 @@ void TransactionListCtrl::OnListItemActivated(wxListEvent& /*event*/)
 
 void TransactionListCtrl::OnMouseRightClick(wxMouseEvent& event)
 {
-    wxLogDebug("OnListLeftClick: %i selected", GetSelectedItemCount());
-    m_cp->updateExtraTransactionData();
+    wxLogDebug("OnMouseRightClick: %i selected", GetSelectedItemCount());
     int selected = GetSelectedItemCount();
 
     int Flags = wxLIST_HITTEST_ONITEM;
@@ -358,6 +357,7 @@ void TransactionListCtrl::OnMouseRightClick(wxMouseEvent& event)
 
 void TransactionListCtrl::OnMarkTransaction(wxCommandEvent& event)
 {
+    FindSelectedTransactions();
     int evt = event.GetId();
     bool bRefreshRequired = false;
     wxString org_status = "";
@@ -392,6 +392,7 @@ void TransactionListCtrl::OnMarkTransaction(wxCommandEvent& event)
 
 void TransactionListCtrl::OnMarkAllTransactions(wxCommandEvent& event)
 {
+    FindSelectedTransactions();
     int evt = event.GetId();
     wxString status = "";
     if (evt == MENU_TREEPOPUP_MARKRECONCILED_ALL)             status = "R";
@@ -444,6 +445,7 @@ void TransactionListCtrl::OnMarkAllTransactions(wxCommandEvent& event)
 
 void TransactionListCtrl::OnColClick(wxListEvent& event)
 {
+    FindSelectedTransactions();
     int ColumnNr;
     if (event.GetId() != MENU_HEADER_SORT)
         ColumnNr = event.GetColumn();
@@ -661,6 +663,7 @@ void TransactionListCtrl::OnDuplicateTransaction(wxCommandEvent& WXUNUSED(event)
 
 void TransactionListCtrl::OnPaste(wxCommandEvent& WXUNUSED(event))
 {
+    FindSelectedTransactions();
     // check if anything to paste
     if (m_selectedForCopy.size() < 1) return;
 
@@ -865,6 +868,7 @@ void TransactionListCtrl::OnEditTransaction(wxCommandEvent& /*event*/)
 
 void TransactionListCtrl::OnNewTransaction(wxCommandEvent& event)
 {
+    FindSelectedTransactions();
     int type = event.GetId() == MENU_TREEPOPUP_NEW_DEPOSIT ? Model_Checking::DEPOSIT : Model_Checking::WITHDRAWAL;
     mmTransDialog dlg(this, m_cp->m_AccountID, 0, m_cp->m_account_balance, false, type);
     if (dlg.ShowModal() == wxID_OK)
@@ -876,6 +880,7 @@ void TransactionListCtrl::OnNewTransaction(wxCommandEvent& event)
 
 void TransactionListCtrl::OnNewTransferTransaction(wxCommandEvent& /*event*/)
 {
+    FindSelectedTransactions();
     mmTransDialog dlg(this, m_cp->m_AccountID, 0, m_cp->m_account_balance, false, Model_Checking::TRANSFER);
     if (dlg.ShowModal() == wxID_OK)
     {
@@ -887,12 +892,10 @@ void TransactionListCtrl::OnNewTransferTransaction(wxCommandEvent& /*event*/)
 
 void TransactionListCtrl::OnSetUserColour(wxCommandEvent& event)
 {
-
+    FindSelectedTransactions();
     int user_colour_id = event.GetId();
     user_colour_id -= MENU_ON_SET_UDC0;
     wxLogDebug("id: %i", user_colour_id);
-
-    FindSelectedTransactions();
 
     Model_Checking::instance().Savepoint();
     for (const auto i : m_selected_id)
@@ -1038,8 +1041,6 @@ void TransactionListCtrl::OnCreateReoccurance(wxCommandEvent& /*event*/)
 void TransactionListCtrl::markSelectedTransaction()
 {
     if (GetSelectedItemCount() == 0) return;
-
-    FindSelectedTransactions();
 
     long i = 0;
     for (const auto & tran : m_trans)
