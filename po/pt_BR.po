@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-02-09 23:37+0300\n"
-"PO-Revision-Date: 2021-02-09 20:49\n"
+"PO-Revision-Date: 2021-02-10 16:50\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "MIME-Version: 1.0\n"
@@ -3525,8 +3525,8 @@ msgstr[1] "&Copiar Transações"
 #: mmchecking_list.cpp:288
 msgid "&Paste Transaction"
 msgid_plural "&Paste Transactions"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "&Colar Transação"
+msgstr[1] "&Colar Transações"
 
 #: mmchecking_list.cpp:291
 msgid "D&uplicate Transaction"
@@ -3542,7 +3542,7 @@ msgstr "&Visualizar Transações com múltiplas categorias"
 
 #: mmchecking_list.cpp:308
 msgid "Create Recurring T&ransaction"
-msgstr ""
+msgstr "Criar T&ransação Recorrente"
 
 #: mmchecking_list.cpp:314
 msgid "&Delete selected transaction"
@@ -3643,7 +3643,7 @@ msgstr "Selecione a Conta Destino "
 
 #: mmchecking_list.cpp:1024
 msgid "Recurring Transaction saved."
-msgstr ""
+msgstr "Transação Recorrente salva."
 
 #: mmcheckingpanel.cpp:257 mmcheckingpanel.cpp:401
 msgid "Displayed Bal: "
