@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-02-09 23:37+0300\n"
-"PO-Revision-Date: 2021-02-09 20:49\n"
+"PO-Revision-Date: 2021-02-10 12:39\n"
 "Last-Translator: \n"
 "Language-Team: Greek\n"
 "MIME-Version: 1.0\n"
@@ -3513,8 +3513,8 @@ msgstr[1] ""
 #: mmchecking_list.cpp:288
 msgid "&Paste Transaction"
 msgid_plural "&Paste Transactions"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "&Επικόλληση συναλλαγής"
+msgstr[1] "&Επικόλληση Συναλλαγών"
 
 #: mmchecking_list.cpp:291
 msgid "D&uplicate Transaction"
@@ -3530,7 +3530,7 @@ msgstr "&Εμφάνιση διαιρεμένων κατηγοριών"
 
 #: mmchecking_list.cpp:308
 msgid "Create Recurring T&ransaction"
-msgstr ""
+msgstr "Δημιουργία Επαναλαμβανόμενης Σ&υναλλαγής"
 
 #: mmchecking_list.cpp:314
 msgid "&Delete selected transaction"
@@ -3633,7 +3633,7 @@ msgstr "Επιλέξτε λογαριασμό προορισμού "
 
 #: mmchecking_list.cpp:1024
 msgid "Recurring Transaction saved."
-msgstr ""
+msgstr "Η επαναλαμβανόμενη συναλλαγή αποθηκεύτηκε."
 
 #: mmcheckingpanel.cpp:257 mmcheckingpanel.cpp:401
 msgid "Displayed Bal: "
