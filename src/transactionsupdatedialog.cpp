@@ -35,7 +35,14 @@ wxBEGIN_EVENT_TABLE(transactionsUpdateDialog, wxDialog)
     EVT_BUTTON(wxID_VIEW_DETAILS, transactionsUpdateDialog::OnCategChange)
     EVT_CHECKBOX(wxID_ANY, transactionsUpdateDialog::OnCheckboxClick)
     EVT_CHILD_FOCUS(transactionsUpdateDialog::onFocusChange)
+    EVT_COMBOBOX(wxID_ANY, transactionsUpdateDialog::OnPayeeUpdated)
 wxEND_EVENT_TABLE()
+
+void transactionsUpdateDialog::SetEventHandlers()
+{
+    m_payee->Connect(ID_PAYEE, wxEVT_COMMAND_TEXT_UPDATED
+        , wxCommandEventHandler(transactionsUpdateDialog::OnPayeeUpdated), nullptr, this);
+}
 
 transactionsUpdateDialog::transactionsUpdateDialog()
 {
@@ -87,8 +94,10 @@ bool transactionsUpdateDialog::Create(wxWindow* parent, wxWindowID id
     this->SetInitialSize();
     SetMinSize(wxSize(300, 400));
     SetIcon(mmex::getProgramIcon());
-
     Centre();
+
+    SetEventHandlers();
+    SetEvtHandlerEnabled(true);
     return TRUE;
 }
 
@@ -157,12 +166,17 @@ void transactionsUpdateDialog::CreateControls()
 
     // Account --------------------------------------------
     // Payee --------------------------------------------
+    
+
     m_payee_checkbox = new wxCheckBox(this, wxID_ANY, _("Payee")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
 
-    m_payee = new mmComboBox(this, wxID_FILE2
-        , "", true //payee mode
-        , wxDefaultPosition);
+    m_payee = new wxComboBox(this, ID_PAYEE);
+    wxArrayString all_payees = Model_Payee::instance().all_payee_names();
+    if (!all_payees.empty()) {
+        m_payee->Insert(all_payees, 0);
+        m_payee->AutoComplete(all_payees);
+    }
     m_payee->Enable(false);
 
     grid_sizer->Add(m_payee_checkbox, g_flagsH);
@@ -249,15 +263,6 @@ void transactionsUpdateDialog::OnOk(wxCommandEvent& WXUNUSED(event))
                 , _("Invalid type"), wxICON_WARNING);
     }
 
-    int payee_id = -1;
-    if (m_payee_checkbox->IsChecked())
-    {
-        payee_id = m_payee->getID();
-        const auto p = Model_Payee::instance().get(payee_id);
-        if (!p)
-            return;
-    }
-
     if (m_categ_checkbox->IsChecked())
     {
         const auto c = Model_Category::instance().full_name(m_categ_id, m_subcateg_id);
@@ -296,8 +301,35 @@ void transactionsUpdateDialog::OnOk(wxCommandEvent& WXUNUSED(event))
 
         if (m_payee_checkbox->IsChecked())
         {
+            wxString payee_name = m_payee->GetValue();
+            if (payee_name.IsEmpty())
+                return mmErrorDialogs::InvalidPayee(m_payee);
+            
+            // Get payee string from populated list to address issues with case compare differences between autocomplete and payee list
+            int payee_loc = m_payee->FindString(payee_name);
+            if (payee_loc != wxNOT_FOUND)
+                payee_name = m_payee->GetString(payee_loc);
+            
+            Model_Payee::Data* payee = Model_Payee::instance().get(payee_name);
+            if (!payee)
+            {
+                wxMessageDialog msgDlg( this
+                    , wxString::Format(_("Do you want to add new payee: \n%s?"), payee_name)
+                    , _("Confirm to add new payee")
+                    , wxYES_NO | wxYES_DEFAULT | wxICON_WARNING);
+                if (Option::instance().TransCategorySelection() == Option::UNUSED || msgDlg.ShowModal() == wxID_YES)
+                {
+                    payee = Model_Payee::instance().create();
+                    payee->PAYEENAME = payee_name;
+                    Model_Payee::instance().save(payee);
+                    mmWebApp::MMEX_WebApp_UpdatePayee();
+                }
+                else
+                    return;
+            }
+
             if (!Model_Checking::is_transfer(trx))
-                trx->PAYEEID = payee_id;
+                trx->PAYEEID = payee->PAYEEID;;
         }
 
         if (m_notes_checkbox->IsChecked())
@@ -404,11 +436,39 @@ void transactionsUpdateDialog::onFocusChange(wxChildFocusEvent& event)
 void transactionsUpdateDialog::OnCategChange(wxCommandEvent& WXUNUSED(event))
 {
     mmCategDialog dlg(this, true, -1, -1);
-    if (dlg.ShowModal() == wxID_APPLY)
+    if (dlg.ShowModal() == wxID_OK)
     {
         m_categ_id = dlg.getCategId();
         m_subcateg_id = dlg.getSubCategId();
-        m_categ_btn->SetLabelText(dlg.getFullCategName());
+        m_categ_btn->SetLabelText(Model_Category::full_name(m_categ_id, m_subcateg_id));
     }
 
+}
+
+#if defined (__WXMAC__)
+void transactionsUpdateDialog::OnPayeeUpdated(wxCommandEvent& event)
+{
+    // Filtering the combobox as the user types because on Mac autocomplete function doesn't work
+    // PLEASE DO NOT REMOVE!!!
+
+    wxString payeeName = event.GetString();
+    if (m_payee->GetSelection() == -1) // make sure nothing is selected (ex. user presses down arrow)
+    {
+        m_payee->SetEvtHandlerEnabled(false); // things will crash if events are handled during Clear
+        m_payee->Clear();
+        Model_Payee::Data_Set filtd = Model_Payee::instance().FilterPayees(payeeName);
+        std::sort(filtd.rbegin(), filtd.rend(), SorterByPAYEENAME());
+        for (const auto &payee : filtd) {
+            m_payee->Insert(payee.PAYEENAME, 0);
+        }
+        m_payee->ChangeValue(payeeName);
+        m_payee->SetInsertionPointEnd();
+        m_payee->SetEvtHandlerEnabled(true);
+    }
+#else
+void transactionsUpdateDialog::OnPayeeUpdated(wxCommandEvent& WXUNUSED(event))
+{
+#endif
+    wxChildFocusEvent evt;
+    onFocusChange(evt);
 }

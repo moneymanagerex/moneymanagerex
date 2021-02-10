@@ -42,14 +42,16 @@ private:
         , long style);
 
     void CreateControls();
+    void SetEventHandlers();
     void OnOk(wxCommandEvent& event);
     void OnCheckboxClick(wxCommandEvent& event);
     void onFocusChange(wxChildFocusEvent& event);
     void OnCategChange(wxCommandEvent& event);
+    void OnPayeeUpdated(wxCommandEvent& event);
 
 private:
     wxCheckBox* m_payee_checkbox;
-    mmComboBox* m_payee;
+    wxComboBox* m_payee;
     wxCheckBox* m_date_checkbox;
     wxDatePickerCtrl* m_dpc;
     wxCheckBox* m_status_checkbox;
@@ -67,6 +69,12 @@ private:
     Model_Currency::Data* m_currency;
     int m_categ_id;
     int m_subcateg_id;
+
+    enum
+    {
+        /* Transaction Dialog */
+        ID_PAYEE = wxID_HIGHEST + 900,
+    };
 };
 
 #endif
