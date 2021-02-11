@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-02-09 23:37+0300\n"
-"PO-Revision-Date: 2021-02-09 23:41\n"
+"PO-Revision-Date: 2021-02-11 10:37\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -768,7 +768,7 @@ msgstr "Mensualmente"
 #: billsdepositsdialog.cpp:54 billsdepositspanel.cpp:43
 #: model/Model_Budget.cpp:59
 msgid "Every 2 Months"
-msgstr "Cada 2 Meses"
+msgstr "Cada 2 meses"
 
 #: billsdepositsdialog.cpp:55 billsdepositspanel.cpp:44
 #: model/Model_Budget.cpp:60
@@ -1373,7 +1373,7 @@ msgstr "Ver resumen de categorías del presupuesto"
 #: budgetingpanel.cpp:172
 #, c-format
 msgid "Financial Year: %s - %ld"
-msgstr "Año Fiscal: %s - %ld"
+msgstr "Año fiscal: %s - %ld"
 
 #: budgetingpanel.cpp:176 reports/budget.cpp:92
 #, c-format
@@ -3514,7 +3514,7 @@ msgstr "&Nueva transferencia"
 #: mmchecking_list.cpp:281
 msgid "&Edit Transaction"
 msgid_plural "&Edit Transactions"
-msgstr[0] "&Editar Transacción"
+msgstr[0] "&Editar transacción"
 msgstr[1] "&Editar Transacciones"
 
 #: mmchecking_list.cpp:284
@@ -3543,7 +3543,7 @@ msgstr "&Ver categorías divididas"
 
 #: mmchecking_list.cpp:308
 msgid "Create Recurring T&ransaction"
-msgstr "Crear Transacción Recurrente"
+msgstr "Crear T&ransacción periódica"
 
 #: mmchecking_list.cpp:314
 msgid "&Delete selected transaction"
@@ -3621,7 +3621,7 @@ msgstr "¿Realmente quiere borrar todas las transaciones mostradas \"%s\"?"
 msgid "Do you really want to delete the selected transaction?"
 msgid_plural "Do you really want to delete %i selected transactions?"
 msgstr[0] "¿Realmente quieres borrar la transacción seleccionada?"
-msgstr[1] "¿Realmente quieres borrar las %i transacciones seleccionadas?"
+msgstr[1] "¿Realmente quiere borrar las %i transacciones seleccionadas?"
 
 #: mmchecking_list.cpp:808
 #, c-format
@@ -3645,7 +3645,7 @@ msgstr "Seleccionar la cuenta de destino"
 
 #: mmchecking_list.cpp:1024
 msgid "Recurring Transaction saved."
-msgstr "Transacción Recurrente guardada."
+msgstr "Transacciones periódicas guardadas."
 
 #: mmcheckingpanel.cpp:257 mmcheckingpanel.cpp:401
 msgid "Displayed Bal: "
