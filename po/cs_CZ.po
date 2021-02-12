@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-02-09 23:37+0300\n"
-"PO-Revision-Date: 2021-02-09 20:49\n"
+"PO-Revision-Date: 2021-02-12 21:14\n"
 "Last-Translator: \n"
 "Language-Team: Czech\n"
 "MIME-Version: 1.0\n"
@@ -768,7 +768,7 @@ msgstr "Měsíc"
 #: billsdepositsdialog.cpp:54 billsdepositspanel.cpp:43
 #: model/Model_Budget.cpp:59
 msgid "Every 2 Months"
-msgstr ""
+msgstr "Každé 2 měsíce"
 
 #: billsdepositsdialog.cpp:55 billsdepositspanel.cpp:44
 #: model/Model_Budget.cpp:60
@@ -1379,7 +1379,7 @@ msgstr "Zobrazit přehled kategorií rozpočtu"
 #: budgetingpanel.cpp:172
 #, c-format
 msgid "Financial Year: %s - %ld"
-msgstr ""
+msgstr "Fiskální rok: %s - %ld"
 
 #: budgetingpanel.cpp:176 reports/budget.cpp:92
 #, c-format
@@ -3525,26 +3525,26 @@ msgstr "&Nový převod"
 #: mmchecking_list.cpp:281
 msgid "&Edit Transaction"
 msgid_plural "&Edit Transactions"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Upr&avit transakci"
+msgstr[1] "Upr&avit transakci"
+msgstr[2] "Upr&avit transakce"
+msgstr[3] "Upr&avit transakce"
 
 #: mmchecking_list.cpp:284
 msgid "&Copy Transaction"
 msgid_plural "&Copy Transactions"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "&Kopírovat transakci"
+msgstr[1] "&Kopírovat transakce"
+msgstr[2] "&Kopírovat transakce"
+msgstr[3] "&Kopírovat transakce"
 
 #: mmchecking_list.cpp:288
 msgid "&Paste Transaction"
 msgid_plural "&Paste Transactions"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "V&ložit transakci"
+msgstr[1] "V&ložit transakce"
+msgstr[2] "V&ložit transakce"
+msgstr[3] "V&ložit transakce"
 
 #: mmchecking_list.cpp:291
 msgid "D&uplicate Transaction"
@@ -3560,15 +3560,15 @@ msgstr "&Zobrazit rozdělené kategorie "
 
 #: mmchecking_list.cpp:308
 msgid "Create Recurring T&ransaction"
-msgstr ""
+msgstr "Vytvořit t&rvalý příkaz"
 
 #: mmchecking_list.cpp:314
 msgid "&Delete selected transaction"
 msgid_plural "&Delete selected transactions"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "O&dstranit vybranou transakci"
+msgstr[1] "O&dstranit vybrané transakce"
+msgstr[2] "O&dstranit vybrané transakce"
+msgstr[3] "O&dstranit vybrané transakce"
 
 #: mmchecking_list.cpp:317
 msgid "Delete all transactions in current view"
@@ -3576,11 +3576,11 @@ msgstr "Odstranit všechny transakce v aktuálním zobrazení"
 
 #: mmchecking_list.cpp:318
 msgid "Delete Viewed \"Follow Up\" Transactions"
-msgstr ""
+msgstr "Odstranit zobrazené transakce s příznakem \"Sledovat\""
 
 #: mmchecking_list.cpp:319
 msgid "Delete Viewed \"Unreconciled\" Transactions"
-msgstr ""
+msgstr "Odstranit zobrazené transakce s příznakem \"Neplatné\""
 
 #: mmchecking_list.cpp:325 mmchecking_list.cpp:338
 msgid "as Reconciled"
@@ -3596,7 +3596,7 @@ msgstr "jako neplatné"
 
 #: mmchecking_list.cpp:331
 msgid "as Followup"
-msgstr ""
+msgstr "jako Sledované"
 
 #: mmchecking_list.cpp:333 mmchecking_list.cpp:342
 msgid "as Duplicate"
@@ -3604,7 +3604,7 @@ msgstr "jako duplikát"
 
 #: mmchecking_list.cpp:335
 msgid "Mark all being selected"
-msgstr ""
+msgstr "Označit vše vybrané"
 
 #: mmchecking_list.cpp:341
 msgid "as needing Followup"
@@ -3639,10 +3639,10 @@ msgstr "Opravdu si přejete odstranit všechny \"%s\" zobrazené transakce?"
 #, c-format
 msgid "Do you really want to delete the selected transaction?"
 msgid_plural "Do you really want to delete %i selected transactions?"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Opravdu si přejete odstranit vybranou transakci?"
+msgstr[1] "Opravdu si přejete odstranit %i vybraných transakcí?"
+msgstr[2] "Opravdu si přejete odstranit %i vybraných transakcí?"
+msgstr[3] "Opravdu si přejete odstranit %i vybraných transakcí?"
 
 #: mmchecking_list.cpp:808
 #, c-format
@@ -3666,7 +3666,7 @@ msgstr "Vyberte cílový účet "
 
 #: mmchecking_list.cpp:1024
 msgid "Recurring Transaction saved."
-msgstr ""
+msgstr "Trvalý příkaz byl zadán."
 
 #: mmcheckingpanel.cpp:257 mmcheckingpanel.cpp:401
 msgid "Displayed Bal: "
@@ -4826,11 +4826,11 @@ msgstr "Období:"
 
 #: mmreportspanel.cpp:292
 msgid "Year:"
-msgstr ""
+msgstr "Rok:"
 
 #: mmreportspanel.cpp:316
 msgid "Budget:"
-msgstr ""
+msgstr "Rozpočet:"
 
 #: mmreportspanel.cpp:342
 msgid "Accounts:"
@@ -4976,7 +4976,7 @@ msgstr "Konec: "
 
 #: model/Model_Report.cpp:88
 msgid "Year: "
-msgstr ""
+msgstr "Rok: "
 
 #: model/Model_Report.cpp:233
 msgid "Template is empty"
@@ -5351,11 +5351,11 @@ msgstr "Statistika využití"
 
 #: optionsettingsnet.cpp:126
 msgid "Check for latest news on startup"
-msgstr ""
+msgstr "Ověřit novinky při spuštění"
 
 #: optionsettingsnet.cpp:128
 msgid "Enable to allow news to be checked on application start"
-msgstr ""
+msgstr "Povolit zobrazení a ověření novinek při spuštění aplikace"
 
 #: optionsettingsnet.cpp:133
 msgid "Timeout"
@@ -6305,15 +6305,15 @@ msgstr "Symbol: %s"
 
 #: transactionsupdatedialog.cpp:72
 msgid "Multi Transactions Update"
-msgstr ""
+msgstr "Násobná aktualizace transakcí"
 
 #: transactionsupdatedialog.cpp:186
 msgid "Append"
-msgstr ""
+msgstr "Připojit"
 
 #: transactionsupdatedialog.cpp:249
 msgid "Invalid type"
-msgstr ""
+msgstr "Neplatný typ"
 
 #: transdialog.cpp:170
 msgid "Duplicate Transaction"
