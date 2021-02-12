@@ -1,5 +1,6 @@
 /*******************************************************
  Copyright (C) 2017 - 2021 Nikolay Akimov
+ Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -31,7 +32,7 @@ class transactionsUpdateDialog : public wxDialog
 public:
     transactionsUpdateDialog();
     ~transactionsUpdateDialog();
-    transactionsUpdateDialog(wxWindow* parent, int account_id, std::vector<int>& transaction_id);
+    transactionsUpdateDialog(wxWindow* parent, std::vector<int>& transaction_id);
 
 private:
     bool Create(wxWindow* parent

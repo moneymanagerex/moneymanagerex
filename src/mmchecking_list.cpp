@@ -1,6 +1,7 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
  Copyright (C) 2013, 2014, 2020, 2021 Nikolay Akimov
+ Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -91,6 +92,9 @@ void TransactionListCtrl::sortTable()
     case TransactionListCtrl::COL_NUMBER:
         std::stable_sort(this->m_trans.begin(), this->m_trans.end(), Model_Checking::SorterByNUMBER());
         break;
+    case TransactionListCtrl::COL_ACCOUNT:
+        std::stable_sort(this->m_trans.begin(), this->m_trans.end(), SorterByACCOUNTNAME());
+        break;
     case TransactionListCtrl::COL_PAYEE_STR:
         std::stable_sort(this->m_trans.begin(), this->m_trans.end(), SorterByPAYEENAME());
         break;
@@ -176,6 +180,7 @@ TransactionListCtrl::TransactionListCtrl(
     m_columns.push_back(PANEL_COLUMN(_("ID"), wxLIST_AUTOSIZE, wxLIST_FORMAT_LEFT));
     m_columns.push_back(PANEL_COLUMN(_("Date"), 112, wxLIST_FORMAT_LEFT));
     m_columns.push_back(PANEL_COLUMN(_("Number"), 70, wxLIST_FORMAT_LEFT));
+    m_columns.push_back(PANEL_COLUMN(_("Account"), 100, wxLIST_FORMAT_LEFT));
     m_columns.push_back(PANEL_COLUMN(_("Payee"), 150, wxLIST_FORMAT_LEFT));
     m_columns.push_back(PANEL_COLUMN(_("Status"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT));
     m_columns.push_back(PANEL_COLUMN(_("Category"), 150, wxLIST_FORMAT_LEFT));
@@ -826,7 +831,7 @@ void TransactionListCtrl::OnEditTransaction(wxCommandEvent& /*event*/)
     // edit multiple transactions
     if (m_selected_id.size() > 1)
     {
-        transactionsUpdateDialog dlg(this, m_cp->m_AccountID, m_selected_id);
+        transactionsUpdateDialog dlg(this, m_selected_id);
         if (dlg.ShowModal() == wxID_OK)
         {
             refreshVisualList();
@@ -842,7 +847,7 @@ void TransactionListCtrl::OnEditTransaction(wxCommandEvent& /*event*/)
         return;
     }
 
-    mmTransDialog dlg(this, m_cp->m_AccountID, transaction_id, m_cp->m_account_balance);
+    mmTransDialog dlg(this, transaction->ACCOUNTID, transaction_id, m_cp->m_account_balance);
     if (dlg.ShowModal() == wxID_OK)
     {
         refreshVisualList();
@@ -909,7 +914,8 @@ void TransactionListCtrl::refreshVisualList(bool filter)
 
     // decide whether top or down icon needs to be shown
     setColumnImage(g_sortcol, g_asc ? ICON_ASC : ICON_DESC);
-    if (filter) m_cp->filterTable();
+    if (filter) 
+        (-1 != m_cp->m_AccountID) ? m_cp->filterTable(): m_cp->filterTableAll();
     SetItemCount(m_trans.size());
     Show();
     sortTable();
@@ -957,7 +963,7 @@ void TransactionListCtrl::OnMoveTransaction(wxCommandEvent& /*event*/)
         return;
     }
 
-    const Model_Account::Data* source_account = Model_Account::instance().get(m_cp->m_AccountID);
+    const Model_Account::Data* source_account = Model_Account::instance().get(trx->ACCOUNTID);
     wxString source_name = source_account->ACCOUNTNAME;
     wxString headerMsg = wxString::Format(_("Moving Transaction from %s to..."), source_name);
 
@@ -1183,6 +1189,9 @@ const wxString TransactionListCtrl::getItem(long item, long column) const
     {
     case TransactionListCtrl::COL_ID:
         return wxString::Format("%i", tran.TRANSID).Trim();
+    case TransactionListCtrl::COL_ACCOUNT:
+        return (Model_Checking::TRANSFER == Model_Checking::type(tran.TRANSCODE)) ? 
+                    tran.ACCOUNTNAME + " > " + tran.TOACCOUNTNAME : tran.ACCOUNTNAME;
     case TransactionListCtrl::COL_DATE:
         return mmGetDateForDisplay(tran.TRANSDATE);
     case TransactionListCtrl::COL_NUMBER:

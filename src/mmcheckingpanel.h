@@ -2,6 +2,7 @@
 Copyright (C) 2006 Madhan Kanagavel
 Copyright (C) 2011, 2012 Stefano Giorgio
 Copyright (C) 2013, 2014 Nikolay
+Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -135,13 +136,14 @@ private:
 
     TransactionListCtrl* m_listCtrlAccount;
     Model_Account::Data* m_account;
-    Model_Currency::Data* m_currency;
+    Model_Currency::Data* m_currency;   // the account currency if single account otherwise the base currency
     wxScopedPtr<wxImageList> m_imageList;
 
     void initViewTransactionsHeader();
     void initFilterSettings();
     void setAccountSummary();
     void sortTable();
+    void filterTableAll();
     void filterTable();
     void updateTable();
     void CreateControls();
