@@ -1,7 +1,8 @@
 /*******************************************************
 Copyright (C) 2006 Madhan Kanagavel
 Copyright (C) 2011, 2012 Stefano Giorgio
- Copyright (C) 2013, 2014, 2020, 2021 Nikolay Akimov
+Copyright (C) 2013, 2014, 2020, 2021 Nikolay Akimov
+Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -59,6 +60,7 @@ public:
         COL_ID,
         COL_DATE,
         COL_NUMBER,
+        COL_ACCOUNT,
         COL_PAYEE_STR,
         COL_STATUS,
         COL_CATEGORY,

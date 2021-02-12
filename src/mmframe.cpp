@@ -4,6 +4,7 @@
  Copyright (C) 2013 Nikolay
  Copyright (C) 2014 James Higley
  Copyright (C) 2014 Guan Lisheng (guanlisheng@gmail.com)
+ Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -2405,6 +2406,9 @@ void mmGUIFrame::OnTransactionReport(wxCommandEvent& /*event*/)
     if (!m_db) return;
     if (Model_Account::instance().all().empty()) return;
 
+    createCheckingAccountPage(-1);
+    /*
+
     mmFilterTransactionsDialog* dlg = new mmFilterTransactionsDialog(this);
     if (dlg->ShowModal() == wxID_OK)
     {
@@ -2412,6 +2416,7 @@ void mmGUIFrame::OnTransactionReport(wxCommandEvent& /*event*/)
         createReportsPage(rs, true);
     }
     setNavTreeSection(_("Reports"));
+    */
     m_nav_tree_ctrl->Refresh();
 }
 

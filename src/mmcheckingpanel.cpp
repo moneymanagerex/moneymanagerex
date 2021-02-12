@@ -1,6 +1,7 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
  Copyright (C) 2014-2020 Nikolay Akimov
+ Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -63,8 +64,6 @@ mmCheckingPanel::mmCheckingPanel(wxWindow *parent, mmGUIFrame *frame, int accoun
     : m_filteredBalance(0.0)
     , m_listCtrlAccount()
     , m_AccountID(accountID)
-    , m_account(Model_Account::instance().get(accountID))
-    , m_currency(Model_Account::currency(m_account))
     , m_trans_filter_dlg(nullptr)
     , m_frame(frame)
 {
@@ -86,6 +85,10 @@ bool mmCheckingPanel::Create(
     const wxSize& size,long style, const wxString& name
 )
 {
+    if (-1 != m_AccountID)
+        m_account = Model_Account::instance().get(m_AccountID);
+    m_currency = (-1 != m_AccountID) ? Model_Account::currency(m_account) : Model_Currency::GetBaseCurrency();
+
     SetExtraStyle(GetExtraStyle()|wxWS_EX_BLOCK_EVENTS);
     if (! wxPanel::Create(parent, winid, pos, size, style, name)) return false;
 
@@ -110,6 +113,51 @@ bool mmCheckingPanel::Create(
 void mmCheckingPanel::sortTable()
 {
     m_listCtrlAccount->sortTable();
+}
+
+void mmCheckingPanel::filterTableAll()
+{
+    m_listCtrlAccount->m_trans.clear();
+    m_account_balance = 0.0;
+ 
+    bool ignore_future = Option::instance().getIgnoreFutureTransactions();
+    const wxString today_date_string = wxDate::Today().FormatISODate();
+
+    const auto splits = Model_Splittransaction::instance().get_all();
+    const auto attachments = Model_Attachment::instance().get_all(Model_Attachment::TRANSACTION);
+    for (const auto& tran : Model_Checking::instance().all())
+    {
+        double transaction_amount = Model_Checking::amount(tran);
+        if (Model_Checking::status(tran.STATUS) != Model_Checking::VOID_)
+            m_account_balance += transaction_amount;
+
+        if (ignore_future) {
+            if (tran.TRANSDATE > today_date_string) continue;
+        }
+
+        if (m_transFilterActive)
+        {
+            if (!m_trans_filter_dlg->checkAll(tran, -1, splits))
+                continue;
+        }
+        else
+        {
+            if (m_currentView != MENU_VIEW_ALLTRANSACTIONS)
+            {
+                if (tran.TRANSDATE < m_begin_date) continue;
+                if (tran.TRANSDATE > m_end_date) continue;
+            }
+        }
+
+        Model_Checking::Full_Data full_tran(tran, splits);
+        full_tran.BALANCE = m_account_balance;
+        full_tran.AMOUNT = transaction_amount;
+
+        if (attachments.count(full_tran.TRANSID))
+            full_tran.NOTES.Prepend(mmAttachmentManage::GetAttachmentNoteSign());
+
+        m_listCtrlAccount->m_trans.push_back(full_tran);
+    }
 }
 
 void mmCheckingPanel::filterTable()
@@ -152,7 +200,7 @@ void mmCheckingPanel::filterTable()
         }
 
         Model_Checking::Full_Data full_tran(tran, splits);
-        full_tran.PAYEENAME = full_tran.real_payee_name(m_AccountID);
+        //full_tran.PAYEENAME = full_tran.real_payee_name(m_AccountID);
         full_tran.BALANCE = m_account_balance;
         full_tran.AMOUNT = transaction_amount;
         m_filteredBalance += transaction_amount;
@@ -164,7 +212,7 @@ void mmCheckingPanel::filterTable()
     }
 }
 
-void mmCheckingPanel::updateTable()
+void mmCheckingPanel::updateTable()     // Is not used...
 {
     m_account_balance = 0.0;
     m_reconciled_balance = 0.0;
@@ -373,7 +421,10 @@ void mmCheckingPanel::CreateControls()
 //----------------------------------------------------------------------------
 wxString mmCheckingPanel::GetPanelTitle(const Model_Account::Data& account) const
 {
-    return wxString::Format(_("Account View : %s"), account.ACCOUNTNAME);
+    if (-1 != m_AccountID)
+        return wxString::Format(_("Account View : %s"), account.ACCOUNTNAME);
+    else    
+        return wxString::Format(_("Full Transactions Report"));
 }
 
 wxString mmCheckingPanel::BuildPage() const
@@ -386,22 +437,24 @@ void mmCheckingPanel::setAccountSummary()
 {
     Model_Account::Data *account = Model_Account::instance().get(m_AccountID);
 
-    if (account)
-        m_header_text->SetLabelText(GetPanelTitle(*account));
+    m_header_text->SetLabelText(GetPanelTitle(*account));
 
-    bool show_displayed_balance_ = (m_transFilterActive || m_currentView != MENU_VIEW_ALLTRANSACTIONS);
-    wxStaticText* header = static_cast<wxStaticText*>(FindWindow(ID_PANEL_CHECKING_STATIC_BALHEADER1));
-    header->SetLabelText(Model_Account::toCurrency(m_account_balance, account));
-    header = static_cast<wxStaticText*>(FindWindow(ID_PANEL_CHECKING_STATIC_BALHEADER2));
-    header->SetLabelText(Model_Account::toCurrency(m_reconciled_balance, account));
-    header = static_cast<wxStaticText*>(FindWindow(ID_PANEL_CHECKING_STATIC_BALHEADER3));
-    header->SetLabelText(Model_Account::toCurrency(m_account_balance - m_reconciled_balance, account));
-    header = static_cast<wxStaticText*>(FindWindow(ID_PANEL_CHECKING_STATIC_BALHEADER4));
-    header->SetLabelText(show_displayed_balance_
-        ? _("Displayed Bal: ") : "");
-    header = static_cast<wxStaticText*>(FindWindow(ID_PANEL_CHECKING_STATIC_BALHEADER5));
-    header->SetLabelText(show_displayed_balance_
-        ? Model_Account::toCurrency(m_filteredBalance, account) : "");
+    if (account)
+    {
+        bool show_displayed_balance_ = (m_transFilterActive || m_currentView != MENU_VIEW_ALLTRANSACTIONS);
+        wxStaticText* header = static_cast<wxStaticText*>(FindWindow(ID_PANEL_CHECKING_STATIC_BALHEADER1));
+        header->SetLabelText(Model_Account::toCurrency(m_account_balance, account));
+        header = static_cast<wxStaticText*>(FindWindow(ID_PANEL_CHECKING_STATIC_BALHEADER2));
+        header->SetLabelText(Model_Account::toCurrency(m_reconciled_balance, account));
+        header = static_cast<wxStaticText*>(FindWindow(ID_PANEL_CHECKING_STATIC_BALHEADER3));
+        header->SetLabelText(Model_Account::toCurrency(m_account_balance - m_reconciled_balance, account));
+        header = static_cast<wxStaticText*>(FindWindow(ID_PANEL_CHECKING_STATIC_BALHEADER4));
+        header->SetLabelText(show_displayed_balance_
+            ? _("Displayed Bal: ") : "");
+        header = static_cast<wxStaticText*>(FindWindow(ID_PANEL_CHECKING_STATIC_BALHEADER5));
+        header->SetLabelText(show_displayed_balance_
+            ? Model_Account::toCurrency(m_filteredBalance, account) : "");
+    }
     this->Layout();
 }
 
@@ -584,7 +637,8 @@ void mmCheckingPanel::initFilterSettings()
     delete date_range;
 
     const auto item = menu_labels()[m_currentView];
-    Model_Infotable::instance().Set(wxString::Format("CHECK_FILTER_ID_%d", m_AccountID), item);
+    if (-1 != m_AccountID) // Always default to ALL for full transaction view
+        Model_Infotable::instance().Set(wxString::Format("CHECK_FILTER_ID_%d", m_AccountID), item);
     m_bitmapTransFilter->SetLabel(wxGetTranslation(item));
     m_bitmapTransFilter->SetBitmap(m_transFilterActive ? mmBitmap(png::RIGHTARROW_ACTIVE) : mmBitmap(png::RIGHTARROW));
     m_statTextTransFilter->SetLabelText(label);
@@ -661,9 +715,10 @@ void mmCheckingPanel::SetSelectedTransaction(int transID)
 void mmCheckingPanel::DisplayAccountDetails(int accountID)
 {
     m_AccountID = accountID;
-    m_account = Model_Account::instance().get(accountID);
-    if (m_account)
-        m_currency = Model_Account::currency(m_account);
+    if (-1 != m_AccountID)
+        m_account = Model_Account::instance().get(m_AccountID);
+    m_currency = (-1 != m_AccountID) ? Model_Account::currency(m_account) : Model_Currency::GetBaseCurrency();
+
 
     initViewTransactionsHeader();
     initFilterSettings();
