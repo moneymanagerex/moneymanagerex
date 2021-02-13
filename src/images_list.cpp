@@ -1,5 +1,6 @@
 /*******************************************************
 Copyright (C) 2014, 2015 Nikolay
+Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -24,6 +25,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 //#include <wx/artprov.h>
 
 #include "../resources/about_png.h"
+#include "../resources/alltransactions_png.h"
 #include "../resources/appstart_png.h"
 #include "../resources/art_png.h"
 #include "../resources/asset_png.h"
@@ -122,6 +124,7 @@ static const std::map<int, wxBitmap> navtree_images()
 {
     return{
         { HOUSE_PNG, mmBitmap(png::HOME) }
+        , { ALLTRANSACTIONS_PNG, mmBitmap(png::ALLTRANSACTIONS) }
         , { SCHEDULE_PNG, mmBitmap(png::RECURRING) }
         , { CALENDAR_PNG, mmBitmap(png::BUDGET) }
         , { PIECHART_PNG, mmBitmap(png::PIE_CHART) }
@@ -199,6 +202,7 @@ const wxBitmap mmBitmap(int ref)
     switch (ref)
     {
     case ABOUT: return x == 16 ? wxBITMAP_PNG_FROM_DATA(about) : x == 24 ? wxBITMAP_PNG_FROM_DATA(about24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(about32) : wxBITMAP_PNG_FROM_DATA(about48);
+    case ALLTRANSACTIONS: return x == 16 ? wxBITMAP_PNG_FROM_DATA(alltransactions) : x == 24 ? wxBITMAP_PNG_FROM_DATA(alltransactions24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(alltransactions32) : wxBITMAP_PNG_FROM_DATA(alltransactions48);
     case APPSTART: return x == 16 ? wxBITMAP_PNG_FROM_DATA(appstart) : x == 24 ? wxBITMAP_PNG_FROM_DATA(appstart24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(appstart32) : wxBITMAP_PNG_FROM_DATA(appstart48);
     case ART: return x == 16 ? wxBITMAP_PNG_FROM_DATA(art) : x == 24 ? wxBITMAP_PNG_FROM_DATA(art24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(art32) : wxBITMAP_PNG_FROM_DATA(art48);
     case ASSET: return x == 16 ? wxBITMAP_PNG_FROM_DATA(asset) : x == 24 ? wxBITMAP_PNG_FROM_DATA(asset24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(asset32) : wxBITMAP_PNG_FROM_DATA(asset48);

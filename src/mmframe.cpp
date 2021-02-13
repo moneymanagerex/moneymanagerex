@@ -678,6 +678,10 @@ void mmGUIFrame::updateNavTreeControl()
     m_nav_tree_ctrl->SetItemBold(root, true);
     m_nav_tree_ctrl->SetFocus();
 
+    wxTreeItemId alltransactions = m_nav_tree_ctrl->AppendItem(root, _("All Transactions"), img::ALLTRANSACTIONS_PNG, img::ALLTRANSACTIONS_PNG);
+    m_nav_tree_ctrl->SetItemData(alltransactions, new mmTreeItemData("All Transactions", false));
+    m_nav_tree_ctrl->SetItemBold(alltransactions, true);
+
     wxTreeItemId accounts = m_nav_tree_ctrl->AppendItem(root, _("Bank Accounts"), img::SAVINGS_ACC_NORMAL_PNG, img::SAVINGS_ACC_NORMAL_PNG);
     m_nav_tree_ctrl->SetItemData(accounts, new mmTreeItemData("Bank Accounts", false));
     m_nav_tree_ctrl->SetItemBold(accounts, true);
@@ -1055,6 +1059,8 @@ void mmGUIFrame::OnSelChanged(wxTreeEvent& event)
             evt = new wxCommandEvent(wxEVT_COMMAND_MENU_SELECTED, MENU_BILLSDEPOSITS);
         else if (data == "item@Transaction Report")
             evt = new wxCommandEvent(wxEVT_COMMAND_MENU_SELECTED, MENU_TRANSACTIONREPORT);
+        else if (data == "item@All Transactions")
+            createAllTransactionsPage();
         if (evt)
         {
             AddPendingEvent(*evt.get());
@@ -1753,7 +1759,7 @@ bool mmGUIFrame::createDataStore(const wxString& fileName, const wxString& pwd, 
     if (m_db)
     {
         ShutdownDatabase();
-        /// Backup the database according to user requirements
+        // Backup the database according to user requirements
         if (Option::instance().DatabaseUpdated() &&
             Model_Setting::instance().GetBoolSetting("BACKUPDB_UPDATE", false))
         {
@@ -2406,9 +2412,6 @@ void mmGUIFrame::OnTransactionReport(wxCommandEvent& /*event*/)
     if (!m_db) return;
     if (Model_Account::instance().all().empty()) return;
 
-    createCheckingAccountPage(-1);
-    /*
-
     mmFilterTransactionsDialog* dlg = new mmFilterTransactionsDialog(this);
     if (dlg->ShowModal() == wxID_OK)
     {
@@ -2416,7 +2419,7 @@ void mmGUIFrame::OnTransactionReport(wxCommandEvent& /*event*/)
         createReportsPage(rs, true);
     }
     setNavTreeSection(_("Reports"));
-    */
+
     m_nav_tree_ctrl->Refresh();
 }
 
@@ -2745,6 +2748,37 @@ void mmGUIFrame::createBudgetingPage(int budgetYearID)
     m_nav_tree_ctrl->SetEvtHandlerEnabled(true);
 }
 //----------------------------------------------------------------------------
+
+void mmGUIFrame::createAllTransactionsPage()
+{
+    StringBuffer json_buffer;
+    Writer<StringBuffer> json_writer(json_buffer);
+
+    json_writer.StartObject();
+    json_writer.Key("module");
+    json_writer.String("All Transactions");
+
+    const auto time = wxDateTime::UNow();
+
+    m_nav_tree_ctrl->SetEvtHandlerEnabled(false);
+ 
+    windowsFreezeThaw(homePanel_);
+    wxSizer *sizer = cleanupHomePanel();
+    allTransactionsPage_ = new mmCheckingPanel(homePanel_, this, -1, mmID_ALLTRANSACTIONS);
+    panelCurrent_ = allTransactionsPage_;
+    sizer->Add(panelCurrent_, 1, wxGROW | wxALL, 1);
+    homePanel_->Layout();
+    windowsFreezeThaw(homePanel_);
+
+    json_writer.Key("seconds");
+    json_writer.Double((wxDateTime::UNow() - time).GetMilliseconds().ToDouble() / 1000);
+    json_writer.EndObject();
+
+    Model_Usage::instance().AppendToUsage(wxString::FromUTF8(json_buffer.GetString()));
+
+    menuPrintingEnable(true);
+    m_nav_tree_ctrl->SetEvtHandlerEnabled(true);
+}
 
 void mmGUIFrame::createCheckingAccountPage(int accountID)
 {

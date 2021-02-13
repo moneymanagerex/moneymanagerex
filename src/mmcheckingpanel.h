@@ -47,16 +47,14 @@ public:
 
     ~mmCheckingPanel();
 
-    /// Display the split categories for the selected transaction.
+    // Display the split categories for the selected transaction.
     void DisplaySplitCategories(int transID);
-    /// Refresh account screen with new details
-    void DisplayAccountDetails(int accountID);
+    // Refresh account screen with new details
+    void DisplayAccountDetails(int accountID = -1);
 
     void SetSelectedTransaction(int transID);
 
     void RefreshList();
-
-    wxString BuildPage() const;
 
 private:
     enum
@@ -127,6 +125,7 @@ private:
 private:
     int m_currentView;
     int m_AccountID;
+    bool m_allAccounts; // TRUE = All accounts are displayed
     bool m_transFilterActive;
     wxString m_begin_date;
     wxString m_end_date;
@@ -145,7 +144,6 @@ private:
     void sortTable();
     void filterTableAll();
     void filterTable();
-    void updateTable();
     void CreateControls();
 
     bool Create(
@@ -173,7 +171,7 @@ private:
     /* updates the checking panel data */
     void showTips();
     void updateExtraTransactionData(bool single);
-    wxString GetPanelTitle(const Model_Account::Data& account) const;
+    ///wxString GetPanelTitle(const Model_Account::Data& account) const;
 
     static void mmPlayTransactionSound();
     mmGUIFrame* m_frame;

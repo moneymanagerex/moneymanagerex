@@ -84,7 +84,7 @@ void TransactionListCtrl::sortTable()
 {
     if (m_trans.empty()) return;
 
-    switch (g_sortcol)
+    switch (m_real_columns[g_sortcol])
     {
     case TransactionListCtrl::COL_ID:
         std::stable_sort(this->m_trans.begin(), this->m_trans.end(), SorterByTRANSID());
@@ -175,21 +175,39 @@ TransactionListCtrl::TransactionListCtrl(
 
     wxAcceleratorTable tab(sizeof(entries) / sizeof(*entries), entries);
     SetAcceleratorTable(tab);
-
+    int i=0;
     m_columns.push_back(PANEL_COLUMN(" ", 25, wxLIST_FORMAT_LEFT));
+    m_real_columns[i++] = COL_IMGSTATUS;
     m_columns.push_back(PANEL_COLUMN(_("ID"), wxLIST_AUTOSIZE, wxLIST_FORMAT_LEFT));
+    m_real_columns[i++] = COL_ID;
     m_columns.push_back(PANEL_COLUMN(_("Date"), 112, wxLIST_FORMAT_LEFT));
+    m_real_columns[i++] = COL_DATE;
     m_columns.push_back(PANEL_COLUMN(_("Number"), 70, wxLIST_FORMAT_LEFT));
-    m_columns.push_back(PANEL_COLUMN(_("Account"), 100, wxLIST_FORMAT_LEFT));
+    m_real_columns[i++] = COL_NUMBER;
+    if (m_cp->m_allAccounts)
+    {
+        m_columns.push_back(PANEL_COLUMN(_("Account"), 100, wxLIST_FORMAT_LEFT));
+        m_real_columns[i++] = COL_ACCOUNT;
+    }
     m_columns.push_back(PANEL_COLUMN(_("Payee"), 150, wxLIST_FORMAT_LEFT));
+    m_real_columns[i++] = COL_PAYEE_STR;
     m_columns.push_back(PANEL_COLUMN(_("Status"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT));
+    m_real_columns[i++] = COL_STATUS;
     m_columns.push_back(PANEL_COLUMN(_("Category"), 150, wxLIST_FORMAT_LEFT));
+    m_real_columns[i++] = COL_CATEGORY;
     m_columns.push_back(PANEL_COLUMN(_("Withdrawal"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT));
+    m_real_columns[i++] = COL_WITHDRAWAL;
     m_columns.push_back(PANEL_COLUMN(_("Deposit"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT));
-    m_columns.push_back(PANEL_COLUMN(_("Balance"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT));
+    m_real_columns[i++] = COL_DEPOSIT;
+    if (!m_cp->m_allAccounts)
+    {
+        m_columns.push_back(PANEL_COLUMN(_("Balance"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT));
+        m_real_columns[i++] = COL_BALANCE;
+    }
     m_columns.push_back(PANEL_COLUMN(_("Notes"), 250, wxLIST_FORMAT_LEFT));
+    m_real_columns[i++] = COL_NOTES;
 
-    m_col_width = "CHECK_COL%d_WIDTH";
+    m_col_width = m_cp->m_allAccounts ? "ALLTRANS_COL%d_WIDTH" : "CHECK_COL%d_WIDTH";
 
     m_default_sort_column = COL_DEF_SORT;
     m_today = wxDateTime::Today().FormatISODate();
@@ -203,6 +221,7 @@ TransactionListCtrl::~TransactionListCtrl()
 //----------------------------------------------------------------------------
 void TransactionListCtrl::createColumns(mmListCtrl &lst)
 {
+
     for (const auto& entry : m_columns)
     {
         int count = lst.GetColumnCount();
@@ -286,12 +305,16 @@ void TransactionListCtrl::OnMouseRightClick(wxMouseEvent& event)
     menu.Append(MENU_TREEPOPUP_EDIT2, wxPLURAL("&Edit Transaction", "&Edit Transactions", selected));
     if (hide_menu_item) menu.Enable(MENU_TREEPOPUP_EDIT2, false);
 
-    menu.Append(MENU_ON_COPY_TRANSACTION, wxPLURAL("&Copy Transaction", "&Copy Transactions", selected));
-    if (hide_menu_item) menu.Enable(MENU_ON_COPY_TRANSACTION, false);
-
-    int toPaste = m_selectedForCopy.size();
-    menu.Append(MENU_ON_PASTE_TRANSACTION, wxPLURAL("&Paste Transaction", "&Paste Transactions", (toPaste < 1) ? 1 : toPaste));
-    if (toPaste < 1) menu.Enable(MENU_ON_PASTE_TRANSACTION, false);
+    if (!m_cp->m_allAccounts)     // Copy/Paste not suitable if all accounts visible
+    {
+        menu.Append(MENU_ON_COPY_TRANSACTION, wxPLURAL("&Copy Transaction", "&Copy Transactions", selected));
+        if (hide_menu_item) menu.Enable(MENU_ON_COPY_TRANSACTION, false);
+  
+        int toPaste = m_selectedForCopy.size();
+        wxString pasteStr = (toPaste) ?  _("&Paste Transactions \(%d\)") : _("&Paste Transaction");
+        menu.Append(MENU_ON_PASTE_TRANSACTION, wxString::Format(pasteStr, toPaste));
+        if (toPaste < 1) menu.Enable(MENU_ON_PASTE_TRANSACTION, false);
+    }
 
     menu.Append(MENU_ON_DUPLICATE_TRANSACTION, _("D&uplicate Transaction"));
     if (hide_menu_item || multiselect) menu.Enable(MENU_ON_DUPLICATE_TRANSACTION, false);
@@ -505,10 +528,10 @@ int TransactionListCtrl::OnGetItemColumnImage(long item, long column) const
     if (m_trans.empty()) return ICON_NONE;
 
     int res = -1;
-    if (column == COL_IMGSTATUS)
+    if (m_real_columns[static_cast<int>(column)] == COL_IMGSTATUS)
     {
         res = ICON_NONE;
-        wxString status = getItem(item, COL_STATUS);
+        wxString status = getItem(item, COL_STATUS, true);
         if (status.length() > 1)
             status = status.Mid(2, 1);
         if (status == "F")
@@ -607,8 +630,8 @@ void TransactionListCtrl::OnChar(wxKeyEvent& event)
 
 void TransactionListCtrl::OnCopy(wxCommandEvent& WXUNUSED(event))
 {
-    // check if anything to copy
-    if (GetSelectedItemCount() < 1) return;
+    // we can't copy with multiple accounts open or there is nothing to copy
+    if (m_cp->m_allAccounts || GetSelectedItemCount() < 1) return;
 
     // collect the selected transactions for copy
     FindSelectedTransactions();
@@ -656,10 +679,10 @@ void TransactionListCtrl::OnDuplicateTransaction(wxCommandEvent& WXUNUSED(event)
 
 void TransactionListCtrl::OnPaste(wxCommandEvent& WXUNUSED(event))
 {
+    // we can't paste with multiple accounts open or there is nothing to paste
+    if (m_cp->m_allAccounts || m_selectedForCopy.size() < 1) return;
+    
     FindSelectedTransactions();
-    // check if anything to paste
-    if (m_selectedForCopy.size() < 1) return;
-
     Model_Checking::instance().Savepoint();
     for (const auto& i : m_selectedForCopy)
     {
@@ -669,8 +692,11 @@ void TransactionListCtrl::OnPaste(wxCommandEvent& WXUNUSED(event))
     Model_Checking::instance().ReleaseSavepoint();
     refreshVisualList();
 }
+
 int TransactionListCtrl::OnPaste(Model_Checking::Data* tran)
 {
+    wxASSERT(!m_cp->m_allAccounts);
+
     bool useOriginalDate = Model_Setting::instance().GetBoolSetting(INIDB_USE_ORG_DATE_COPYPASTE, false);
 
     Model_Checking::Data* copy = Model_Checking::instance().clone(tran); //TODO: this function can't clone split transactions
@@ -774,7 +800,7 @@ void TransactionListCtrl::OnDeleteTransaction(wxCommandEvent& /*event*/)
         {
             Model_Checking::Data* trx = Model_Checking::instance().get(i);
 
-            if (TransactionLocked(trx->TRANSDATE)) {
+            if (TransactionLocked(trx->ACCOUNTID, trx->TRANSDATE)) {
                 continue;
             }
 
@@ -800,19 +826,20 @@ void TransactionListCtrl::OnDeleteTransaction(wxCommandEvent& /*event*/)
 }
 
 //----------------------------------------------------------------------------
-bool TransactionListCtrl::TransactionLocked(const wxString& transdate)
+bool TransactionListCtrl::TransactionLocked(int accountID, const wxString& transdate)
 {
-    if (Model_Account::BoolOf(m_cp->m_account->STATEMENTLOCKED))
+    Model_Account::Data* account = Model_Account::instance().get(accountID);
+    if (Model_Account::BoolOf(account->STATEMENTLOCKED))
     {
         wxDateTime transaction_date;
         if (transaction_date.ParseDate(transdate))
         {
-            if (transaction_date <= Model_Account::DateOf(m_cp->m_account->STATEMENTDATE))
+            if (transaction_date <= Model_Account::DateOf(account->STATEMENTDATE))
             {
                 wxMessageBox(_(wxString::Format(
                     _("Locked transaction to date: %s\n\n"
                         "Reconciled transactions.")
-                    , mmGetDateForDisplay(m_cp->m_account->STATEMENTDATE)))
+                    , mmGetDateForDisplay(account->STATEMENTDATE)))
                     , _("MMEX Transaction Check"), wxOK | wxICON_WARNING);
                 return true;
             }
@@ -843,7 +870,7 @@ void TransactionListCtrl::OnEditTransaction(wxCommandEvent& /*event*/)
     int transaction_id = m_selected_id[0];
     Model_Checking::Data* transaction = Model_Checking::instance().get(transaction_id);
 
-    if (TransactionLocked(transaction->TRANSDATE)) {
+    if (TransactionLocked(transaction->ACCOUNTID, transaction->TRANSDATE)) {
         return;
     }
 
@@ -915,7 +942,7 @@ void TransactionListCtrl::refreshVisualList(bool filter)
     // decide whether top or down icon needs to be shown
     setColumnImage(g_sortcol, g_asc ? ICON_ASC : ICON_DESC);
     if (filter) 
-        (-1 != m_cp->m_AccountID) ? m_cp->filterTable(): m_cp->filterTableAll();
+        (!m_cp->m_allAccounts) ? m_cp->filterTable(): m_cp->filterTableAll();
     SetItemCount(m_trans.size());
     Show();
     sortTable();
@@ -959,7 +986,7 @@ void TransactionListCtrl::OnMoveTransaction(wxCommandEvent& /*event*/)
     FindSelectedTransactions();
 
     Model_Checking::Data* trx = Model_Checking::instance().get(m_selected_id[0]);
-    if (TransactionLocked(trx->TRANSDATE)) {
+    if (TransactionLocked(trx->ACCOUNTID, trx->TRANSDATE)) {
         return;
     }
 
@@ -1143,13 +1170,13 @@ void TransactionListCtrl::doSearchText(const wxString& value)
         g_asc ? selectedItem-- : selectedItem++;
 
         for (const auto& t : {
-            getItem(selectedItem, COL_NOTES)
-            , getItem(selectedItem, COL_NUMBER)
-            , getItem(selectedItem, COL_PAYEE_STR)
-            , getItem(selectedItem, COL_CATEGORY)
-            , getItem(selectedItem, COL_DATE)
-            , getItem(selectedItem, COL_WITHDRAWAL)
-            , getItem(selectedItem, COL_DEPOSIT)})
+            getItem(selectedItem, COL_NOTES, true)
+            , getItem(selectedItem, COL_NUMBER, true)
+            , getItem(selectedItem, COL_PAYEE_STR, true)
+            , getItem(selectedItem, COL_CATEGORY, true)
+            , getItem(selectedItem, COL_DATE, true)
+            , getItem(selectedItem, COL_WITHDRAWAL, true)
+            , getItem(selectedItem, COL_DEPOSIT, true)})
         {
             if (t.Lower().Matches(value + "*"))
             {
@@ -1178,20 +1205,19 @@ void TransactionListCtrl::doSearchText(const wxString& value)
     EnsureVisible(selectedItem);
 }
 
-const wxString TransactionListCtrl::getItem(long item, long column) const
+const wxString TransactionListCtrl::getItem(long item, long column, bool realenum) const
 {
     Model_Currency::Data* m_currency = Model_Currency::GetBaseCurrency();
     if (item < 0 || item >= static_cast<int>(m_trans.size())) return "";
 
     wxString value = wxEmptyString;
     const Model_Checking::Full_Data& tran = m_trans.at(item);
-    switch (column)
+    switch (realenum ? column : m_real_columns[column])
     {
     case TransactionListCtrl::COL_ID:
         return wxString::Format("%i", tran.TRANSID).Trim();
     case TransactionListCtrl::COL_ACCOUNT:
-        return (Model_Checking::TRANSFER == Model_Checking::type(tran.TRANSCODE)) ? 
-                    tran.ACCOUNTNAME + " > " + tran.TOACCOUNTNAME : tran.ACCOUNTNAME;
+        return tran.ACCOUNTNAME;
     case TransactionListCtrl::COL_DATE:
         return mmGetDateForDisplay(tran.TRANSDATE);
     case TransactionListCtrl::COL_NUMBER:

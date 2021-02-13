@@ -67,7 +67,7 @@ mmCheckingPanel::mmCheckingPanel(wxWindow *parent, mmGUIFrame *frame, int accoun
     , m_trans_filter_dlg(nullptr)
     , m_frame(frame)
 {
-    Create(parent);
+    Create(parent, id);
 }
 //----------------------------------------------------------------------------
 
@@ -85,9 +85,15 @@ bool mmCheckingPanel::Create(
     const wxSize& size,long style, const wxString& name
 )
 {
-    if (-1 != m_AccountID)
+    m_allAccounts = (-1 == m_AccountID) ? true : false;
+    if (m_allAccounts)
+    {
+        m_currency = Model_Currency::GetBaseCurrency();
+    } else 
+    {
         m_account = Model_Account::instance().get(m_AccountID);
-    m_currency = (-1 != m_AccountID) ? Model_Account::currency(m_account) : Model_Currency::GetBaseCurrency();
+        m_currency = Model_Account::currency(m_account);
+    }
 
     SetExtraStyle(GetExtraStyle()|wxWS_EX_BLOCK_EVENTS);
     if (! wxPanel::Create(parent, winid, pos, size, style, name)) return false;
@@ -118,7 +124,6 @@ void mmCheckingPanel::sortTable()
 void mmCheckingPanel::filterTableAll()
 {
     m_listCtrlAccount->m_trans.clear();
-    m_account_balance = 0.0;
  
     bool ignore_future = Option::instance().getIgnoreFutureTransactions();
     const wxString today_date_string = wxDate::Today().FormatISODate();
@@ -127,10 +132,6 @@ void mmCheckingPanel::filterTableAll()
     const auto attachments = Model_Attachment::instance().get_all(Model_Attachment::TRANSACTION);
     for (const auto& tran : Model_Checking::instance().all())
     {
-        double transaction_amount = Model_Checking::amount(tran);
-        if (Model_Checking::status(tran.STATUS) != Model_Checking::VOID_)
-            m_account_balance += transaction_amount;
-
         if (ignore_future) {
             if (tran.TRANSDATE > today_date_string) continue;
         }
@@ -150,8 +151,8 @@ void mmCheckingPanel::filterTableAll()
         }
 
         Model_Checking::Full_Data full_tran(tran, splits);
-        full_tran.BALANCE = m_account_balance;
-        full_tran.AMOUNT = transaction_amount;
+        full_tran.PAYEENAME = full_tran.real_payee_name(m_AccountID);
+        full_tran.AMOUNT = Model_Checking::amount(tran);
 
         if (attachments.count(full_tran.TRANSID))
             full_tran.NOTES.Prepend(mmAttachmentManage::GetAttachmentNoteSign());
@@ -163,6 +164,7 @@ void mmCheckingPanel::filterTableAll()
 void mmCheckingPanel::filterTable()
 {
     m_listCtrlAccount->m_trans.clear();
+
     m_account_balance = m_account ? m_account->INITIALBAL : 0.0;
     m_reconciled_balance = m_account_balance;
     m_filteredBalance = 0.0;
@@ -200,7 +202,7 @@ void mmCheckingPanel::filterTable()
         }
 
         Model_Checking::Full_Data full_tran(tran, splits);
-        //full_tran.PAYEENAME = full_tran.real_payee_name(m_AccountID);
+        full_tran.PAYEENAME = full_tran.real_payee_name(m_AccountID);
         full_tran.BALANCE = m_account_balance;
         full_tran.AMOUNT = transaction_amount;
         m_filteredBalance += transaction_amount;
@@ -212,40 +214,8 @@ void mmCheckingPanel::filterTable()
     }
 }
 
-void mmCheckingPanel::updateTable()     // Is not used...
-{
-    m_account_balance = 0.0;
-    m_reconciled_balance = 0.0;
-    if (m_account)
-    {
-        m_account_balance = m_account->INITIALBAL;
-        m_reconciled_balance = m_account_balance;
-    }
-    for (const auto& tran : Model_Account::transaction(m_account))
-    {
-        double transaction_amount = Model_Checking::amount(tran, m_AccountID);
-        if (Model_Checking::status(tran.STATUS) != Model_Checking::VOID_)
-            m_account_balance += transaction_amount;
-        m_reconciled_balance += Model_Checking::reconciled(tran, m_AccountID);
-    }
-    m_filteredBalance = 0.0;
-    for (const auto & tran : m_listCtrlAccount->m_trans)
-    {
-        m_filteredBalance += Model_Checking::amount(tran, m_AccountID);
-    }
-
-    setAccountSummary();
-
-    if (m_listCtrlAccount->g_sortcol == TransactionListCtrl::COL_STATUS)
-    {
-        sortTable();
-        m_listCtrlAccount->RefreshItems(0, m_listCtrlAccount->m_trans.size() - 1);
-    }
-}
-
 void mmCheckingPanel::OnMouseLeftDown(wxCommandEvent& event)
 {
-
     wxMenu menu;
     int id = wxID_HIGHEST + MENU_VIEW_ALLTRANSACTIONS;
     for (const auto& i : menu_labels())
@@ -295,27 +265,30 @@ void mmCheckingPanel::CreateControls()
     m_statTextTransFilter = new wxStaticText(headerPanel, wxID_ANY, "");
     itemFlexGridSizerHHeader2->Add(m_statTextTransFilter, g_flagsBorder1H);
 
-    wxStaticText* itemStaticText12 = new wxStaticText(headerPanel
-        , ID_PANEL_CHECKING_STATIC_BALHEADER1, "$", wxDefaultPosition, wxSize(120, -1));
-    wxStaticText* itemStaticText14 = new wxStaticText(headerPanel
-        , ID_PANEL_CHECKING_STATIC_BALHEADER2, "$", wxDefaultPosition, wxSize(120, -1));
-    wxStaticText* itemStaticText16 = new wxStaticText(headerPanel
-        , ID_PANEL_CHECKING_STATIC_BALHEADER3, "$", wxDefaultPosition, wxSize(120, -1));
-    wxStaticText* itemStaticText17 = new wxStaticText(headerPanel
-        , ID_PANEL_CHECKING_STATIC_BALHEADER4, _("Displayed Bal: "));
-    wxStaticText* itemStaticText18 = new wxStaticText(headerPanel
-        , ID_PANEL_CHECKING_STATIC_BALHEADER5, "$", wxDefaultPosition, wxSize(120, -1));
+    if (!m_allAccounts)  // not relevant to full transaction view
+    {
+        wxStaticText* itemStaticText12 = new wxStaticText(headerPanel
+            , ID_PANEL_CHECKING_STATIC_BALHEADER1, "$", wxDefaultPosition, wxSize(120, -1));
+        wxStaticText* itemStaticText14 = new wxStaticText(headerPanel
+            , ID_PANEL_CHECKING_STATIC_BALHEADER2, "$", wxDefaultPosition, wxSize(120, -1));
+        wxStaticText* itemStaticText16 = new wxStaticText(headerPanel
+            , ID_PANEL_CHECKING_STATIC_BALHEADER3, "$", wxDefaultPosition, wxSize(120, -1));
+        wxStaticText* itemStaticText17 = new wxStaticText(headerPanel
+            , ID_PANEL_CHECKING_STATIC_BALHEADER4, _("Displayed Bal: "));
+        wxStaticText* itemStaticText18 = new wxStaticText(headerPanel
+            , ID_PANEL_CHECKING_STATIC_BALHEADER5, "$", wxDefaultPosition, wxSize(120, -1));
 
-    wxFlexGridSizer* balances_header = new wxFlexGridSizer(0,8,5,10);
-    itemBoxSizerVHeader->Add(balances_header, g_flagsExpandBorder1);
-    balances_header->Add(new wxStaticText(headerPanel, wxID_STATIC, _("Account Bal: ")));
-    balances_header->Add(itemStaticText12);
-    balances_header->Add(new wxStaticText(headerPanel,  wxID_STATIC, _("Reconciled Bal: ")));
-    balances_header->Add(itemStaticText14);
-    balances_header->Add(new wxStaticText(headerPanel, wxID_STATIC, _("Diff: ")));
-    balances_header->Add(itemStaticText16);
-    balances_header->Add(itemStaticText17);
-    balances_header->Add(itemStaticText18);
+        wxFlexGridSizer* balances_header = new wxFlexGridSizer(0,8,5,10);
+        itemBoxSizerVHeader->Add(balances_header, g_flagsExpandBorder1);
+        balances_header->Add(new wxStaticText(headerPanel, wxID_STATIC, _("Account Bal: ")));
+        balances_header->Add(itemStaticText12);
+        balances_header->Add(new wxStaticText(headerPanel,  wxID_STATIC, _("Reconciled Bal: ")));
+        balances_header->Add(itemStaticText14);
+        balances_header->Add(new wxStaticText(headerPanel, wxID_STATIC, _("Diff: ")));
+        balances_header->Add(itemStaticText16);
+        balances_header->Add(itemStaticText17);
+        balances_header->Add(itemStaticText18);
+    }
 
     /* ---------------------- */
 
@@ -418,29 +391,16 @@ void mmCheckingPanel::CreateControls()
     showTips();
 }
 
-//----------------------------------------------------------------------------
-wxString mmCheckingPanel::GetPanelTitle(const Model_Account::Data& account) const
-{
-    if (-1 != m_AccountID)
-        return wxString::Format(_("Account View : %s"), account.ACCOUNTNAME);
-    else    
-        return wxString::Format(_("Full Transactions Report"));
-}
-
-wxString mmCheckingPanel::BuildPage() const
-{
-    Model_Account::Data *account = Model_Account::instance().get(m_AccountID);
-    return m_listCtrlAccount->BuildPage((account ? GetPanelTitle(*account) : ""));
-}
-
 void mmCheckingPanel::setAccountSummary()
 {
-    Model_Account::Data *account = Model_Account::instance().get(m_AccountID);
-
-    m_header_text->SetLabelText(GetPanelTitle(*account));
-
-    if (account)
+    if (m_allAccounts)
     {
+        m_header_text->SetLabelText(_("Full Transactions Report"));
+    } else
+    {   
+        Model_Account::Data *account = Model_Account::instance().get(m_AccountID);
+        m_header_text->SetLabelText(wxString::Format(_("Account View : %s"), account->ACCOUNTNAME));
+
         bool show_displayed_balance_ = (m_transFilterActive || m_currentView != MENU_VIEW_ALLTRANSACTIONS);
         wxStaticText* header = static_cast<wxStaticText*>(FindWindow(ID_PANEL_CHECKING_STATIC_BALHEADER1));
         header->SetLabelText(Model_Account::toCurrency(m_account_balance, account));
@@ -637,8 +597,7 @@ void mmCheckingPanel::initFilterSettings()
     delete date_range;
 
     const auto item = menu_labels()[m_currentView];
-    if (-1 != m_AccountID) // Always default to ALL for full transaction view
-        Model_Infotable::instance().Set(wxString::Format("CHECK_FILTER_ID_%d", m_AccountID), item);
+    Model_Infotable::instance().Set(wxString::Format("CHECK_FILTER_ID_%d", m_AccountID), item);
     m_bitmapTransFilter->SetLabel(wxGetTranslation(item));
     m_bitmapTransFilter->SetBitmap(m_transFilterActive ? mmBitmap(png::RIGHTARROW_ACTIVE) : mmBitmap(png::RIGHTARROW));
     m_statTextTransFilter->SetLabelText(label);
@@ -714,11 +673,18 @@ void mmCheckingPanel::SetSelectedTransaction(int transID)
 // Refresh account screen with new details
 void mmCheckingPanel::DisplayAccountDetails(int accountID)
 {
-    m_AccountID = accountID;
-    if (-1 != m_AccountID)
-        m_account = Model_Account::instance().get(m_AccountID);
-    m_currency = (-1 != m_AccountID) ? Model_Account::currency(m_account) : Model_Currency::GetBaseCurrency();
+    wxASSERT (-1 != accountID); // should not be called for all transaction view even though it should work
 
+    m_AccountID = accountID;
+    m_allAccounts = (-1 == m_AccountID) ? true : false;
+    if (m_allAccounts)
+    {
+        m_currency = Model_Currency::GetBaseCurrency();
+    } else 
+    {
+        m_account = Model_Account::instance().get(m_AccountID);
+        m_currency = Model_Account::currency(m_account);
+    }
 
     initViewTransactionsHeader();
     initFilterSettings();
