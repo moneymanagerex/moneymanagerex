@@ -136,9 +136,9 @@ TransactionListCtrl::TransactionListCtrl(
 ) :
     mmListCtrl(parent, id),
     m_cp(cp),
-    m_attr1(new wxListItemAttr(*wxBLACK, mmColors::listAlternativeColor0, wxNullFont)),
+    m_attr1(new wxListItemAttr(*wxBLACK, m_cp->m_allAccounts ? mmColors::listAlternativeColor0A : mmColors::listAlternativeColor0, wxNullFont)),
     m_attr2(new wxListItemAttr(*wxBLACK, mmColors::listAlternativeColor1, wxNullFont)),
-    m_attr3(new wxListItemAttr(mmColors::listFutureDateColor, mmColors::listAlternativeColor0, wxNullFont)),
+    m_attr3(new wxListItemAttr(mmColors::listFutureDateColor, m_cp->m_allAccounts ? mmColors::listAlternativeColor0A : mmColors::listAlternativeColor0, wxNullFont)),
     m_attr4(new wxListItemAttr(mmColors::listFutureDateColor, mmColors::listAlternativeColor1, wxNullFont)),
     m_attr11(new wxListItemAttr(*wxBLACK, mmColors::userDefColor1, wxNullFont)),
     m_attr12(new wxListItemAttr(*wxBLACK, mmColors::userDefColor2, wxNullFont)),
@@ -848,6 +848,45 @@ bool TransactionListCtrl::TransactionLocked(int accountID, const wxString& trans
     return false;
 }
 
+bool TransactionListCtrl::CheckForClosedAccounts()
+{
+    int closedTrx = 0;
+    for (const auto& i : m_selected_id)
+    {
+        Model_Checking::Data* transaction = Model_Checking::instance().get(i);
+        Model_Account::Data* account = Model_Account::instance().get(transaction->ACCOUNTID);
+        if (account)
+            if (Model_Account::CLOSED == Model_Account::status(account))
+            {
+                closedTrx++;
+                continue;
+            }
+        account = Model_Account::instance().get(transaction->TOACCOUNTID);
+        if (account)
+            if (Model_Account::CLOSED == Model_Account::status(account))
+            {
+                closedTrx++;
+            }
+    }
+    wxLogDebug("Transactions with closed accounts: %d", closedTrx);
+    if (!closedTrx)
+        return true;
+    else
+    {
+        const wxString text = wxString::Format(
+            wxPLURAL("You are about to edit a transaction involving an account that is closed."
+            , "The edit will affect %i transactions involving an account that is closed.", GetSelectedItemCount())
+            , closedTrx);
+        wxMessageDialog msgDlg(this
+                , text
+                , _("Do you still want to perform the edit?")
+                , wxYES_NO | wxNO_DEFAULT | wxICON_QUESTION);
+        if (msgDlg.ShowModal() == wxID_YES)
+            return true;
+    }
+    return false;
+}
+
 void TransactionListCtrl::OnEditTransaction(wxCommandEvent& /*event*/)
 {
     // check if anything to edit
@@ -858,6 +897,7 @@ void TransactionListCtrl::OnEditTransaction(wxCommandEvent& /*event*/)
     // edit multiple transactions
     if (m_selected_id.size() > 1)
     {
+        if (!CheckForClosedAccounts()) return;
         transactionsUpdateDialog dlg(this, m_selected_id);
         if (dlg.ShowModal() == wxID_OK)
         {
@@ -873,7 +913,8 @@ void TransactionListCtrl::OnEditTransaction(wxCommandEvent& /*event*/)
     if (TransactionLocked(transaction->ACCOUNTID, transaction->TRANSDATE)) {
         return;
     }
-
+    
+    if (!CheckForClosedAccounts()) return;
     mmTransDialog dlg(this, transaction->ACCOUNTID, transaction_id, m_cp->m_account_balance);
     if (dlg.ShowModal() == wxID_OK)
     {

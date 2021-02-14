@@ -99,7 +99,7 @@ public:
     void OnSetUserColour(wxCommandEvent& event);
     void OnMoveTransaction(wxCommandEvent& event);
     void OnOpenAttachment(wxCommandEvent& event);
-    /// Displays the split categories for the selected transaction
+    // Displays the split categories for the selected transaction
     void OnViewSplitTransaction(wxCommandEvent& event);
     void OnOrganizeAttachments(wxCommandEvent& event);
     void OnCreateReoccurance(wxCommandEvent& event);
@@ -210,6 +210,7 @@ private:
 
     bool TransactionLocked(int AccountID, const wxString& transdate);
     void FindSelectedTransactions();
+    bool CheckForClosedAccounts();
 private:
     /* The topmost visible item - this will be used to set
     where to display the list again after refresh */

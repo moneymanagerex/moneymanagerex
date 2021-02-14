@@ -64,6 +64,7 @@ mmCheckingPanel::mmCheckingPanel(wxWindow *parent, mmGUIFrame *frame, int accoun
     : m_filteredBalance(0.0)
     , m_listCtrlAccount()
     , m_AccountID(accountID)
+    , m_allAccounts((-1 == accountID) ? true : false)
     , m_trans_filter_dlg(nullptr)
     , m_frame(frame)
 {
@@ -85,7 +86,6 @@ bool mmCheckingPanel::Create(
     const wxSize& size,long style, const wxString& name
 )
 {
-    m_allAccounts = (-1 == m_AccountID) ? true : false;
     if (m_allAccounts)
     {
         m_currency = Model_Currency::GetBaseCurrency();
@@ -217,10 +217,12 @@ void mmCheckingPanel::filterTable()
 void mmCheckingPanel::OnMouseLeftDown(wxCommandEvent& event)
 {
     wxMenu menu;
-    int id = wxID_HIGHEST + MENU_VIEW_ALLTRANSACTIONS;
+    int id = MENU_VIEW_ALLTRANSACTIONS;
     for (const auto& i : menu_labels())
     {
-        menu.Append(id++, wxGetTranslation(i));
+        if (!m_allAccounts || (MENU_VIEW_STATEMENTDATE != id))
+            menu.Append(wxID_HIGHEST + id, wxGetTranslation(i));
+        id++;
     }
     PopupMenu(&menu);
 

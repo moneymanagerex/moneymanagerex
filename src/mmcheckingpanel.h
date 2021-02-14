@@ -86,7 +86,7 @@ private:
         MENU_VIEW_FILTER_DIALOG,
     };
 private:
-    static wxArrayString menu_labels()
+   static wxArrayString menu_labels()
     {
         wxArrayString items;
         items.Add(VIEW_TRANS_ALL_STR); //0
@@ -104,7 +104,7 @@ private:
         items.Add(VIEW_TRANS_SINCE_STATEMENT_STR);
         items.Add(VIEW_TRANS_FILTER_DIALOG_STR);
         return items;
-    }
+    } 
 
     wxDECLARE_EVENT_TABLE();
     friend class TransactionListCtrl; // needs access to m_core, initdb_, ...
@@ -171,8 +171,6 @@ private:
     /* updates the checking panel data */
     void showTips();
     void updateExtraTransactionData(bool single);
-    ///wxString GetPanelTitle(const Model_Account::Data& account) const;
-
     static void mmPlayTransactionSound();
     mmGUIFrame* m_frame;
 };

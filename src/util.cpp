@@ -1,6 +1,7 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
  Copyright (C) 2013-2020 Nikolay
+Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -145,6 +146,7 @@ void mmLoadColorsFromDatabase()
 
 /* Set the default colors */
 wxColour mmColors::listAlternativeColor0 = wxColour(240, 245, 235);
+wxColour mmColors::listAlternativeColor0A = wxColour(224, 231, 240);
 wxColour mmColors::listAlternativeColor1 = wxColour(255, 255, 255);
 wxColour mmColors::listBackColor = wxColour(255, 255, 255);
 wxColour mmColors::navTreeBkColor = wxColour(255, 255, 255);
