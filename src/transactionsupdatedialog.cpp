@@ -163,10 +163,7 @@ void transactionsUpdateDialog::CreateControls()
     grid_sizer->Add(m_amount_checkbox, g_flagsH);
     grid_sizer->Add(m_amount_ctrl, g_flagsH);
 
-    // Account --------------------------------------------
     // Payee --------------------------------------------
-    
-
     m_payee_checkbox = new wxCheckBox(this, wxID_ANY, _("Payee")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
 
@@ -192,7 +189,6 @@ void transactionsUpdateDialog::CreateControls()
     grid_sizer->Add(m_categ_checkbox, g_flagsH);
     grid_sizer->Add(m_categ_btn, g_flagsExpand);
 
-    // Number --------------------------------------------
     // Notes --------------------------------------------
     m_notes_checkbox = new wxCheckBox(this, wxID_ANY, _("Notes")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);

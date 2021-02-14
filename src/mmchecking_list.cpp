@@ -868,7 +868,7 @@ bool TransactionListCtrl::CheckForClosedAccounts()
                 closedTrx++;
             }
     }
-    wxLogDebug("Transactions with closed accounts: %d", closedTrx);
+
     if (!closedTrx)
         return true;
     else
@@ -876,12 +876,8 @@ bool TransactionListCtrl::CheckForClosedAccounts()
         const wxString text = wxString::Format(
             wxPLURAL("You are about to edit a transaction involving an account that is closed."
             , "The edit will affect %i transactions involving an account that is closed.", GetSelectedItemCount())
-            , closedTrx);
-        wxMessageDialog msgDlg(this
-                , text
-                , _("Do you still want to perform the edit?")
-                , wxYES_NO | wxNO_DEFAULT | wxICON_QUESTION);
-        if (msgDlg.ShowModal() == wxID_YES)
+            , closedTrx) + _("\n\nDo you still want to perform the edit?");
+        if (wxMessageBox(text, _("Closed Account Check"), wxYES_NO | wxICON_WARNING) == wxYES)
             return true;
     }
     return false;
