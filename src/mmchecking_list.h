@@ -69,15 +69,9 @@ public:
         COL_BALANCE,
         COL_NOTES,
         COL_MAX, // number of columns
-        COL_DEF_SORT = COL_DATE
+        COL_DEF_SORT = COL_DATE // don't omit any columns before this
     };
-    EColumn toEColumn(long col)
-    {
-        EColumn res = COL_DEF_SORT;
-        if (col >= 0 && col < COL_MAX) res = static_cast<EColumn>(col);
-
-        return res;
-    }
+    EColumn toEColumn(long col);
 public:
     EColumn g_sortcol; // index of column to sort
     EColumn m_prevSortCol;
@@ -119,7 +113,7 @@ protected:
     virtual void OnColClick(wxListEvent& event);
 
 private:
-    int m_real_columns[COL_MAX];    // map from actual column to EColumn
+    std::vector<EColumn> m_real_columns; // map from actual column to EColumn
 
     std::vector<int> m_selectedForCopy; //The transactions ID if selected for copy
     std::vector<int> m_selected_id;
