@@ -99,7 +99,7 @@ public:
     void OnSetUserColour(wxCommandEvent& event);
     void OnMoveTransaction(wxCommandEvent& event);
     void OnOpenAttachment(wxCommandEvent& event);
-    /// Displays the split categories for the selected transaction
+    // Displays the split categories for the selected transaction
     void OnViewSplitTransaction(wxCommandEvent& event);
     void OnOrganizeAttachments(wxCommandEvent& event);
     void OnCreateReoccurance(wxCommandEvent& event);
@@ -112,13 +112,15 @@ public:
     void setSelectedID(int v);
     void doSearchText(const wxString& value);
     /* Getter for Virtual List Control */
-    const wxString getItem(long item, long column) const;
+    const wxString getItem(long item, long column, bool realenum = false) const;
 
 protected:
     /* Sort Columns */
     virtual void OnColClick(wxListEvent& event);
 
 private:
+    int m_real_columns[COL_MAX];    // map from actual column to EColumn
+
     std::vector<int> m_selectedForCopy; //The transactions ID if selected for copy
     std::vector<int> m_selected_id;
     enum
@@ -206,8 +208,9 @@ private:
     int OnPaste(Model_Checking::Data* tran);
     void OnListItemFocused(wxListEvent & WXUNUSED);
 
-    bool TransactionLocked(const wxString& transdate);
+    bool TransactionLocked(int AccountID, const wxString& transdate);
     void FindSelectedTransactions();
+    bool CheckForClosedAccounts();
 private:
     /* The topmost visible item - this will be used to set
     where to display the list again after refresh */

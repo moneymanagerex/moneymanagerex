@@ -4,7 +4,7 @@ Copyright (C) 2012 Stefano Giorgio
 Copyright (C) 2013 Nikolay
 Copyright (C) 2014 James Higley
 Copyright (C) 2014 Guan Lisheng (guanlisheng@gmail.com)
-
+Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
  the Free Software Foundation; either version 2 of the License, or
@@ -135,6 +135,8 @@ private:
     void createHomePage();
     mmCheckingPanel* checkingAccountPage_;
     void createCheckingAccountPage(int accountID);
+    mmCheckingPanel* allTransactionsPage_;
+    void createAllTransactionsPage();
     void createStocksAccountPage(int accountID);
 private:
     mmBillsDepositsPanel* billsDepositsPanel_;

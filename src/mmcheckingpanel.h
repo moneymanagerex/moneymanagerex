@@ -47,16 +47,14 @@ public:
 
     ~mmCheckingPanel();
 
-    /// Display the split categories for the selected transaction.
+    // Display the split categories for the selected transaction.
     void DisplaySplitCategories(int transID);
-    /// Refresh account screen with new details
-    void DisplayAccountDetails(int accountID);
+    // Refresh account screen with new details
+    void DisplayAccountDetails(int accountID = -1);
 
     void SetSelectedTransaction(int transID);
 
     void RefreshList();
-
-    wxString BuildPage() const;
 
 private:
     enum
@@ -88,7 +86,7 @@ private:
         MENU_VIEW_FILTER_DIALOG,
     };
 private:
-    static wxArrayString menu_labels()
+   static wxArrayString menu_labels()
     {
         wxArrayString items;
         items.Add(VIEW_TRANS_ALL_STR); //0
@@ -106,7 +104,7 @@ private:
         items.Add(VIEW_TRANS_SINCE_STATEMENT_STR);
         items.Add(VIEW_TRANS_FILTER_DIALOG_STR);
         return items;
-    }
+    } 
 
     wxDECLARE_EVENT_TABLE();
     friend class TransactionListCtrl; // needs access to m_core, initdb_, ...
@@ -127,6 +125,7 @@ private:
 private:
     int m_currentView;
     int m_AccountID;
+    bool m_allAccounts; // TRUE = All accounts are displayed
     bool m_transFilterActive;
     wxString m_begin_date;
     wxString m_end_date;
@@ -145,7 +144,6 @@ private:
     void sortTable();
     void filterTableAll();
     void filterTable();
-    void updateTable();
     void CreateControls();
 
     bool Create(
@@ -173,8 +171,6 @@ private:
     /* updates the checking panel data */
     void showTips();
     void updateExtraTransactionData(bool single);
-    wxString GetPanelTitle(const Model_Account::Data& account) const;
-
     static void mmPlayTransactionSound();
     mmGUIFrame* m_frame;
 };

@@ -2,6 +2,7 @@
  Copyright (C) 2006 Madhan Kanagavel
  Copyright (C) 2011-2018 Nikolay Akimov
  Copyright (C) 2011-2017 Stefano Giorgio [stef145g]
+Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -272,7 +273,7 @@ void mmTransDialog::dataToControls()
         if (account_list.size() == 1 && !acc_closed)
             cbAccount_->ChangeValue(account_list[0]);
 
-        cbAccount_->Enable(!acc_closed && (account_list.size() > 1));
+        cbAccount_->Enable(account_list.size() > 1); 
 
         cbAccount_->SetEvtHandlerEnabled(true);
         skip_account_init_ = true;

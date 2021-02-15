@@ -1,5 +1,6 @@
 /*******************************************************
 Copyright (C) 2014, 2015 Nikolay
+Copyright (C) 22021 Mark Whalley (mark@ipx.co.uk)
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -20,6 +21,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 enum img {
     HOUSE_PNG,
+    ALLTRANSACTIONS_PNG,
     SCHEDULE_PNG,
     CALENDAR_PNG,
     PIECHART_PNG,
@@ -70,6 +72,7 @@ enum acc_img {
 
 enum png {
     ABOUT,
+    ALLTRANSACTIONS,
     APPSTART,
     ART,
     ASSET,

@@ -1,5 +1,6 @@
 /*******************************************************
 Copyright (C) 2009 VaDiM
+Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -136,6 +137,7 @@ enum id
     mmID_BUDGET,
     mmID_REPORTS,
     mmID_CHECKING,
+    mmID_ALLTRANSACTIONS,
     mmID_BROWSER,
     MENU_REPORT_BUG,
     MENU_BILLSDEPOSITS,
