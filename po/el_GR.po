@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-02-09 23:37+0300\n"
-"PO-Revision-Date: 2021-02-15 17:49\n"
+"PO-Revision-Date: 2021-02-15 18:04\n"
 "Last-Translator: \n"
 "Language-Team: Greek\n"
 "MIME-Version: 1.0\n"
@@ -609,85 +609,85 @@ msgstr "Αρχείο"
 
 #: attachmentdialog.cpp:64
 msgid "Attachment folder not defined."
-msgstr ""
+msgstr "Ο φάκελος συνημμένων δεν έχει οριστεί."
 
 #: attachmentdialog.cpp:65
 msgid "Please set it in Tools -> Options -> Attachments"
-msgstr ""
+msgstr "Παρακαλώ ορίστε το στα Εργαλεία -> Επιλογές -> Συνημμένα"
 
 #: attachmentdialog.cpp:66
 msgid "Attachment folder not defined"
-msgstr ""
+msgstr "Ο φάκελος συνημμένων δεν έχει οριστεί"
 
 #: attachmentdialog.cpp:70
 msgid "Unable to find attachments folder:"
-msgstr ""
+msgstr "Αδυναμία εύρεσης φακέλου συνημμένων:"
 
 #: attachmentdialog.cpp:73
 msgid "Please verify that above path is correct"
-msgstr ""
+msgstr "Παρακαλώ επιβεβαιώστε ότι η παραπάνω διαδρομή είναι σωστή"
 
 #: attachmentdialog.cpp:74
 msgid "Attachments folder not found"
-msgstr ""
+msgstr "Ο φάκελος συνημμένων δεν βρέθηκε"
 
 #: attachmentdialog.cpp:85
 #, c-format
 msgid "Organize Attachments | %s %i"
-msgstr ""
+msgstr "Οργάνωση Συνημμένων | %s %i"
 
 #: attachmentdialog.cpp:87
 #, c-format
 msgid "Organize Attachments | New %s"
-msgstr ""
+msgstr "Οργάνωση Συνημμένων | Νέο %s"
 
 #: attachmentdialog.cpp:127 customfieldlistdialog.cpp:103 payeedialog.cpp:116
 msgid "Other tools"
-msgstr ""
+msgstr "Άλλα εργαλεία"
 
 #: attachmentdialog.cpp:159
 msgid "Import attachment:"
-msgstr ""
+msgstr "Εισαγωγή συνημμένου:"
 
 #: attachmentdialog.cpp:170
 msgid "Enter a description for the new attachment:"
-msgstr ""
+msgstr "Εισάγετε μια περιγραφή για το νέο συνημμένο:"
 
 #: attachmentdialog.cpp:171
 msgid "Organize Attachments: Add Attachment"
-msgstr ""
+msgstr "Οργάνωση Συνημμένων: Προσθήκη Συνημμένου"
 
 #: attachmentdialog.cpp:214
 msgid "Enter a new description for the attachment:"
-msgstr ""
+msgstr "Εισάγετε μια νέα περιγραφή για το συνημμένο:"
 
 #: attachmentdialog.cpp:215
 msgid "Organize Attachments: Edit Attachment"
-msgstr ""
+msgstr "Οργάνωση Συνημμένων: Επεξεργασία Συνημμένου"
 
 #: attachmentdialog.cpp:239
 msgid "Do you really want to delete this attachment?"
-msgstr ""
+msgstr "Θέλετε πραγματικά να διαγράψετε αυτό το συνημμένο;"
 
 #: attachmentdialog.cpp:240
 msgid "Confirm Attachment Deletion"
-msgstr ""
+msgstr "Επιβεβαίωση Διαγραφής Συνημμένου"
 
 #: attachmentdialog.cpp:314 categdialog.cpp:226 customfieldlistdialog.cpp:264
 #: import_export/univcsvdialog.cpp:240 maincurrencydialog.cpp:524
 #: payeedialog.cpp:365 splittransactionsdialog.cpp:165 stockdialog.cpp:341
 msgid "&Add "
-msgstr ""
+msgstr "&Προσθήκη "
 
 #: attachmentdialog.cpp:316
 msgid "&Open "
-msgstr ""
+msgstr "&Άνοιγμα "
 
 #: attachmentdialog.cpp:319 customfieldlistdialog.cpp:267
 #: import_export/univcsvdialog.cpp:244 maincurrencydialog.cpp:526
 #: payeedialog.cpp:368 splittransactionsdialog.cpp:167
 msgid "&Remove "
-msgstr ""
+msgstr "&Διαγραφή "
 
 #: attachmentdialog.cpp:361
 msgid "Att."
@@ -1135,27 +1135,27 @@ msgstr "Δηλώστε το ποσό της συναλλαγής"
 
 #: billsdepositsdialog.h:124
 msgid "Specify the amount to be transferred"
-msgstr ""
+msgstr "Προσδιορίστε το ποσό που πρόκειται να μεταφερθεί"
 
 #: billsdepositspanel.cpp:50
 #, c-format
 msgid "In %s Days"
-msgstr ""
+msgstr "Σε %s Ημέρες"
 
 #: billsdepositspanel.cpp:51
 #, c-format
 msgid "In %s Months"
-msgstr ""
+msgstr "Σε %s Μήνες"
 
 #: billsdepositspanel.cpp:52
 #, c-format
 msgid "Every %s Days"
-msgstr ""
+msgstr "Κάθε %s Ημέρες"
 
 #: billsdepositspanel.cpp:53
 #, c-format
 msgid "Every %s Months"
-msgstr ""
+msgstr "Κάθε %s Μήνες"
 
 #: billsdepositspanel.cpp:105 budgetingpanel.cpp:294
 #: reports/budgetcategorysummary.cpp:176 reports/myusage.cpp:150
@@ -1164,28 +1164,28 @@ msgstr "Συχνότητα"
 
 #: billsdepositspanel.cpp:106
 msgid "Repetitions"
-msgstr ""
+msgstr "Επαναλήψεις"
 
 #: billsdepositspanel.cpp:107
 msgid "Autorepeat"
-msgstr ""
+msgstr "Αυτόματη επανάληψη"
 
 #: billsdepositspanel.cpp:108 mmhomepage.cpp:353
 msgid "Payment"
-msgstr ""
+msgstr "Πληρωμή"
 
 #: billsdepositspanel.cpp:167
 msgid "MMEX allows regular payments to be set up as transactions. These transactions can also be regular deposits, or transfers that will occur at some future time. These transactions act as a reminder that an event is about to occur, and appears on the Home Page 14 days before the transaction is due. "
-msgstr ""
+msgstr "Το MMEX επιτρέπει τη δημιουργία τακτικών πληρωμών ως συναλλαγών. Αυτές οι συναλλαγές μπορούν επίσης να είναι τακτικές καταθέσεις ή μεταφορές που θα συμβούν σε κάποια μελλοντική στιγμή. Αυτές οι συναλλαγές λειτουργούν ως υπενθύμιση ότι ένα γεγονός πρόκειται να συμβεί, και εμφανίζεται στην Αρχική Σελίδα 14 ημέρες πριν από την πληρωμή της συναλλαγής. "
 
 #: billsdepositspanel.cpp:168
 msgid "Tip: These transactions can be set up to activate - allowing the user to adjust any values on the due date."
-msgstr ""
+msgstr "Συμβουλή: Αυτές οι συναλλαγές μπορούν να ρυθμιστούν για να ενεργοποιηθούν - επιτρέποντας στο χρήστη να προσαρμόσει τυχόν τιμές κατά την ημερομηνία λήξης."
 
 #: billsdepositspanel.cpp:221 billsdepositspanel.cpp:867 mmframe.cpp:712
 #: mmhomepagepanel.cpp:219
 msgid "Recurring Transactions"
-msgstr ""
+msgstr "Επαναλαμβανόμενες Συναλλαγές"
 
 #: billsdepositspanel.cpp:230 filtertransdialog.h:99
 msgid "Transaction Filter"
@@ -1241,22 +1241,22 @@ msgstr "&Διαγραφή σειράς πληρωμών && καταθέσεων.
 
 #: billsdepositspanel.cpp:449
 msgid "Manual"
-msgstr ""
+msgstr "Χειροκίνητα"
 
 #: billsdepositspanel.cpp:453
 msgid "Suggested"
-msgstr ""
+msgstr "Προτεινόμενη"
 
 #: billsdepositspanel.cpp:457
 msgid "Automated"
-msgstr ""
+msgstr "Αυτοματοποιημένο"
 
 #: billsdepositspanel.cpp:501 billsdepositspanel.cpp:568 mmhomepage.cpp:315
 #, c-format
 msgid "%d day remaining"
 msgid_plural "%d days remaining"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d ημέρες απέμειναν"
+msgstr[1] "%d ημέρες απομένουν"
 
 #: billsdepositspanel.cpp:506 billsdepositspanel.cpp:513
 #: billsdepositspanel.cpp:520 billsdepositspanel.cpp:573
@@ -1268,8 +1268,8 @@ msgstr "Μη ενεργό"
 #, c-format
 msgid "%d day delay!"
 msgid_plural "%d days delay!"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d ημέρα καθυστέρηση!"
+msgstr[1] "%d ημέρες καθυστέρηση!"
 
 #: billsdepositspanel.cpp:518 billsdepositspanel.cpp:578 mmhomepage.cpp:318
 #, c-format
