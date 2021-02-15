@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-02-09 23:37+0300\n"
-"PO-Revision-Date: 2021-02-10 12:39\n"
+"PO-Revision-Date: 2021-02-15 17:02\n"
 "Last-Translator: \n"
 "Language-Team: Greek\n"
 "MIME-Version: 1.0\n"
@@ -49,11 +49,11 @@ msgstr "Ιδιωτικό απόρρητο"
 
 #: aboutdialog.cpp:241 optionsettingsnet.cpp:113
 msgid "Send anonymous statistics usage data"
-msgstr ""
+msgstr "Αποστολή ανώνυμων δεδομένων χρήσης στατιστικών"
 
 #: aboutdialog.cpp:242 optionsettingsnet.cpp:115
 msgid "Enable to help us sending anonymous data about MMEX usage."
-msgstr ""
+msgstr "Ενεργοποιήστε για να μας βοηθήσετε να στέλνουμε ανώνυμα δεδομένα σχετικά με τη χρήση MMEX."
 
 #: aboutdialog.cpp:249 accountdialog.cpp:305 appstartdialog.cpp:136
 #: assetdialog.cpp:305 attachmentdialog.cpp:120 billsdepositsdialog.cpp:477
@@ -251,11 +251,11 @@ msgstr "Ημ/νία εξόφλησης:"
 
 #: accountdialog.cpp:281
 msgid "Minimum Payment:"
-msgstr ""
+msgstr "Ελάχιστη Πληρωμή:"
 
 #: accountdialog.cpp:300
 msgid "Organize attachments of this account"
-msgstr ""
+msgstr "Οργάνωση συνημμένων αυτού του λογαριασμού"
 
 #: accountdialog.cpp:407
 msgid "Default Image"
