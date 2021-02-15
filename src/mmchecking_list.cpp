@@ -311,8 +311,9 @@ void TransactionListCtrl::OnMouseRightClick(wxMouseEvent& event)
         if (hide_menu_item) menu.Enable(MENU_ON_COPY_TRANSACTION, false);
   
         int toPaste = m_selectedForCopy.size();
-        wxString pasteStr = (toPaste) ?  _("&Paste Transactions \(%d\)") : _("&Paste Transaction");
-        menu.Append(MENU_ON_PASTE_TRANSACTION, wxString::Format(pasteStr, toPaste));
+        menu.Append(MENU_ON_PASTE_TRANSACTION, 
+            wxString::Format( wxPLURAL(_("&Paste Transaction"), _("&Paste Transactions (%d)"), (toPaste < 2) ? 1 : toPaste), toPaste)
+        );
         if (toPaste < 1) menu.Enable(MENU_ON_PASTE_TRANSACTION, false);
     }
 
