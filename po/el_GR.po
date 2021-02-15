@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-02-09 23:37+0300\n"
-"PO-Revision-Date: 2021-02-15 17:41\n"
+"PO-Revision-Date: 2021-02-15 17:49\n"
 "Last-Translator: \n"
 "Language-Team: Greek\n"
 "MIME-Version: 1.0\n"
@@ -533,11 +533,11 @@ msgstr "&Νέο "
 
 #: assetspanel.cpp:469 stockspanel.cpp:578
 msgid "&Add Trans "
-msgstr ""
+msgstr "&Προσθήκη Συναλλαγής "
 
 #: assetspanel.cpp:474 stockspanel.cpp:583
 msgid "&View Trans "
-msgstr ""
+msgstr "&Προβολή Συναλλαγής "
 
 #: assetspanel.cpp:475
 msgid "View Asset Transactions"
@@ -571,7 +571,7 @@ msgstr "Αναζήτηση"
 
 #: assetspanel.cpp:502
 msgid "Enter any string to find related assets"
-msgstr ""
+msgstr "Εισάγετε οποιαδήποτε συμβολοσειρά για να βρείτε σχετιζόμενα περιουσιακά στοιχεία"
 
 #: assetspanel.cpp:572 stockspanel.cpp:769 stockspanel.cpp:955
 #, c-format
@@ -581,7 +581,7 @@ msgstr "Σύνολο: %s"
 #: assetspanel.cpp:654
 #, c-format
 msgid "Change in Value: %s %s"
-msgstr ""
+msgstr "Αλλαγή στην τιμή: %s %s"
 
 #: assetspanel.cpp:768
 msgid "This asset does not have its own account\n\n"
