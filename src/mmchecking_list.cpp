@@ -80,6 +80,13 @@ EVT_MENU_RANGE(MENU_TREEPOPUP_MARKRECONCILED
 
 //----------------------------------------------------------------------------
 
+TransactionListCtrl::EColumn TransactionListCtrl::toEColumn(long col)
+{
+    EColumn res = COL_DEF_SORT;
+    if (col >= 0 && col < m_real_columns.size()) res = static_cast<EColumn>(col);
+        return res;
+}
+
 void TransactionListCtrl::sortTable()
 {
     if (m_trans.empty()) return;
@@ -175,37 +182,37 @@ TransactionListCtrl::TransactionListCtrl(
 
     wxAcceleratorTable tab(sizeof(entries) / sizeof(*entries), entries);
     SetAcceleratorTable(tab);
-    int i=0;
+
     m_columns.push_back(PANEL_COLUMN(" ", 25, wxLIST_FORMAT_LEFT));
-    m_real_columns[i++] = COL_IMGSTATUS;
+    m_real_columns.push_back(COL_IMGSTATUS);
     m_columns.push_back(PANEL_COLUMN(_("ID"), wxLIST_AUTOSIZE, wxLIST_FORMAT_LEFT));
-    m_real_columns[i++] = COL_ID;
+    m_real_columns.push_back(COL_ID);
     m_columns.push_back(PANEL_COLUMN(_("Date"), 112, wxLIST_FORMAT_LEFT));
-    m_real_columns[i++] = COL_DATE;
+    m_real_columns.push_back(COL_DATE);
     m_columns.push_back(PANEL_COLUMN(_("Number"), 70, wxLIST_FORMAT_LEFT));
-    m_real_columns[i++] = COL_NUMBER;
+    m_real_columns.push_back(COL_NUMBER);
     if (m_cp->m_allAccounts)
     {
         m_columns.push_back(PANEL_COLUMN(_("Account"), 100, wxLIST_FORMAT_LEFT));
-        m_real_columns[i++] = COL_ACCOUNT;
+        m_real_columns.push_back(COL_ACCOUNT);
     }
     m_columns.push_back(PANEL_COLUMN(_("Payee"), 150, wxLIST_FORMAT_LEFT));
-    m_real_columns[i++] = COL_PAYEE_STR;
+    m_real_columns.push_back(COL_PAYEE_STR);
     m_columns.push_back(PANEL_COLUMN(_("Status"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT));
-    m_real_columns[i++] = COL_STATUS;
+    m_real_columns.push_back(COL_STATUS);
     m_columns.push_back(PANEL_COLUMN(_("Category"), 150, wxLIST_FORMAT_LEFT));
-    m_real_columns[i++] = COL_CATEGORY;
+    m_real_columns.push_back(COL_CATEGORY);
     m_columns.push_back(PANEL_COLUMN(_("Withdrawal"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT));
-    m_real_columns[i++] = COL_WITHDRAWAL;
+    m_real_columns.push_back(COL_WITHDRAWAL);
     m_columns.push_back(PANEL_COLUMN(_("Deposit"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT));
-    m_real_columns[i++] = COL_DEPOSIT;
+    m_real_columns.push_back(COL_DEPOSIT);
     if (!m_cp->m_allAccounts)
     {
         m_columns.push_back(PANEL_COLUMN(_("Balance"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT));
-        m_real_columns[i++] = COL_BALANCE;
+        m_real_columns.push_back(COL_BALANCE);
     }
     m_columns.push_back(PANEL_COLUMN(_("Notes"), 250, wxLIST_FORMAT_LEFT));
-    m_real_columns[i++] = COL_NOTES;
+    m_real_columns.push_back(COL_NOTES);
 
     m_col_width = m_cp->m_allAccounts ? "ALLTRANS_COL%d_WIDTH" : "CHECK_COL%d_WIDTH";
 
