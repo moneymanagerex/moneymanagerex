@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-02-09 23:37+0300\n"
-"PO-Revision-Date: 2021-02-15 17:02\n"
+"PO-Revision-Date: 2021-02-15 17:12\n"
 "Last-Translator: \n"
 "Language-Team: Greek\n"
 "MIME-Version: 1.0\n"
@@ -344,7 +344,7 @@ msgstr "Επεξεργασία περιουσιακού στοιχείου"
 
 #: assetdialog.cpp:71 assetdialog.cpp:93 assetspanel.cpp:470
 msgid "Add Asset Transaction"
-msgstr ""
+msgstr "Προσθήκη συναλλαγής περιουσιακού στοιχείου"
 
 #: assetdialog.cpp:97
 msgid "Edit Asset Transaction"
