@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-02-09 23:37+0300\n"
-"PO-Revision-Date: 2021-02-15 17:12\n"
+"PO-Revision-Date: 2021-02-15 17:18\n"
 "Last-Translator: \n"
 "Language-Team: Greek\n"
 "MIME-Version: 1.0\n"
@@ -348,7 +348,7 @@ msgstr "Προσθήκη συναλλαγής περιουσιακού στοι�
 
 #: assetdialog.cpp:97
 msgid "Edit Asset Transaction"
-msgstr ""
+msgstr "Επεξεργασία συναλλαγής περιουσιακού στοιχείου"
 
 #: assetdialog.cpp:183
 msgid "Asset Details"
@@ -412,7 +412,7 @@ msgstr "% ποσοστό"
 
 #: assetdialog.cpp:247
 msgid "Enter the rate at which the asset changes its value in percentage per year"
-msgstr ""
+msgstr "Εισάγετε το επιτόκιο με το οποίο το περιουσιακό στοιχείο μεταβάλλει την αξία του σε ποσοστό ανά έτος"
 
 #: assetdialog.cpp:259
 msgid "Organize attachments of this asset"
