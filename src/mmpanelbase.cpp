@@ -234,9 +234,10 @@ wxString mmPanelBase::BuildPage() const
 
 void mmPanelBase::PrintPage()
 {
-    //this->Freeze();
+   //this->Freeze();
     wxWebView * htmlWindow = wxWebView::New(this, wxID_ANY);
     htmlWindow->SetPage(BuildPage(), "");
+    htmlWindow->GetPageSource();    // Needed to generate the page - at least on Mac anyway!
     htmlWindow->Print();
     htmlWindow->Destroy();
     //this->Thaw();

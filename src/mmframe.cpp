@@ -2700,8 +2700,8 @@ void mmGUIFrame::createBillsDeposits()
         sizer->Add(panelCurrent_, 1, wxGROW | wxALL, 1);
 
         homePanel_->Layout();
-        ///menuPrintingEnable(true);
     }
+    menuPrintingEnable(true);
 
     json_writer.Key("seconds");
     json_writer.Double((wxDateTime::UNow() - time).GetMilliseconds().ToDouble() / 1000);
@@ -2745,7 +2745,7 @@ void mmGUIFrame::createBudgetingPage(int budgetYearID)
 
     Model_Usage::instance().AppendToUsage(wxString::FromUTF8(json_buffer.GetString()));
 
-    ///menuPrintingEnable(true);
+    menuPrintingEnable(true);
     m_nav_tree_ctrl->SetEvtHandlerEnabled(true);
 }
 //----------------------------------------------------------------------------
@@ -2777,7 +2777,7 @@ void mmGUIFrame::createAllTransactionsPage()
 
     Model_Usage::instance().AppendToUsage(wxString::FromUTF8(json_buffer.GetString()));
 
-    ///menuPrintingEnable(true);
+    menuPrintingEnable(true);
     m_nav_tree_ctrl->SetEvtHandlerEnabled(true);
 }
 
@@ -2814,7 +2814,7 @@ void mmGUIFrame::createCheckingAccountPage(int accountID)
 
     Model_Usage::instance().AppendToUsage(wxString::FromUTF8(json_buffer.GetString()));
 
-    ///menuPrintingEnable(true);
+    menuPrintingEnable(true);
     if (gotoTransID_ > 0)
     {
         checkingAccountPage_->SetSelectedTransaction(gotoTransID_);
@@ -2849,6 +2849,7 @@ void mmGUIFrame::createStocksAccountPage(int accountID)
     json_writer.EndObject();
 
     Model_Usage::instance().AppendToUsage(wxString::FromUTF8(json_buffer.GetString()));
+    menuPrintingEnable(true);
 }
 
 //----------------------------------------------------------------------------
@@ -2892,7 +2893,7 @@ void mmGUIFrame::OnAssets(wxCommandEvent& /*event*/)
     sizer->Add(panelCurrent_, 1, wxGROW | wxALL, 1);
     homePanel_->Layout();
     windowsFreezeThaw(homePanel_);
-    ///menuPrintingEnable(true);
+    menuPrintingEnable(true);
 
     json_writer.Key("seconds");
     json_writer.Double((wxDateTime::UNow() - time).GetMilliseconds().ToDouble() / 1000);

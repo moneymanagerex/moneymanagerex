@@ -393,16 +393,27 @@ void mmCheckingPanel::CreateControls()
     showTips();
 }
 
-void mmCheckingPanel::setAccountSummary()
+wxString mmCheckingPanel::GetPanelTitle(const Model_Account::Data& account) const
 {
     if (m_allAccounts)
-    {
-        m_header_text->SetLabelText(_("Full Transactions Report"));
-    } else
-    {   
-        Model_Account::Data *account = Model_Account::instance().get(m_AccountID);
-        m_header_text->SetLabelText(wxString::Format(_("Account View : %s"), account->ACCOUNTNAME));
+        return wxString::Format(_("Full Transactions Report"));
+    else
+        return wxString::Format(_("Account View : %s"), account.ACCOUNTNAME);
+}
 
+wxString mmCheckingPanel::BuildPage() const
+{
+    Model_Account::Data *account = Model_Account::instance().get(m_AccountID);
+    return m_listCtrlAccount->BuildPage((account ? GetPanelTitle(*account) : ""));
+}
+
+void mmCheckingPanel::setAccountSummary()
+{
+    Model_Account::Data *account = Model_Account::instance().get(m_AccountID);
+    m_header_text->SetLabelText(GetPanelTitle(*account));
+
+    if (!m_allAccounts)
+    {
         bool show_displayed_balance_ = (m_transFilterActive || m_currentView != MENU_VIEW_ALLTRANSACTIONS);
         wxStaticText* header = static_cast<wxStaticText*>(FindWindow(ID_PANEL_CHECKING_STATIC_BALHEADER1));
         header->SetLabelText(Model_Account::toCurrency(m_account_balance, account));
