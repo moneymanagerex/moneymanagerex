@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-02-09 23:37+0300\n"
-"PO-Revision-Date: 2021-02-16 09:37\n"
+"PO-Revision-Date: 2021-02-16 09:43\n"
 "Last-Translator: \n"
 "Language-Team: Greek\n"
 "MIME-Version: 1.0\n"
@@ -447,7 +447,7 @@ msgstr "Το περιουσιακό στοιχείο δεν βρέθηκε.\n\n"
 #: assetspanel.cpp:58 billsdepositspanel.cpp:96 mmchecking_list.cpp:176
 #: reports/transactions.cpp:68 stockspanel.cpp:89
 msgid "ID"
-msgstr ""
+msgstr "Ταυτότητα"
 
 #: assetspanel.cpp:61 billsdepositsdialog.cpp:541 billsdepositspanel.cpp:103
 #: customfieldlistdialog.cpp:55 filtertransdialog.cpp:251
@@ -475,7 +475,7 @@ msgstr "&Νέο περιουσιακό στοιχείο"
 
 #: assetspanel.cpp:98
 msgid "D&uplicate Asset"
-msgstr ""
+msgstr "Διπλότυπο στοιχείο"
 
 #: assetspanel.cpp:100
 msgid "&Add Asset Transaction"
