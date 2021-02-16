@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-02-09 23:37+0300\n"
-"PO-Revision-Date: 2021-02-16 17:03\n"
+"PO-Revision-Date: 2021-02-16 17:12\n"
 "Last-Translator: \n"
 "Language-Team: Greek\n"
 "MIME-Version: 1.0\n"
@@ -2988,11 +2988,11 @@ msgstr "Εξαγωγή αρχείου"
 #, c-format
 msgid "Default account '%s' for this template does not exist.\n"
 "Please select a new account."
-msgstr ""
+msgstr "Ο προεπιλεγμένος λογαριασμός '%s' για αυτό το πρότυπο δεν υπάρχει. Παρακαλώ επιλέξτε ένα νέο λογαριασμό."
 
 #: import_export/univcsvdialog.cpp:535
 msgid "Account does not exist"
-msgstr ""
+msgstr "Ο λογαριασμός δεν υπάρχει"
 
 #: import_export/univcsvdialog.cpp:678 import_export/univcsvdialog.cpp:749
 #: import_export/univcsvdialog.cpp:1830
@@ -3002,119 +3002,119 @@ msgstr "Θετικό αν ο τύπος έχει %s"
 
 #: import_export/univcsvdialog.cpp:919
 msgid "Incorrect fields specified for import!"
-msgstr ""
+msgstr "Λάθος πεδία που καθορίστηκαν για εισαγωγή!"
 
 #: import_export/univcsvdialog.cpp:920
 msgid "Date field is required."
-msgstr ""
+msgstr "Το πεδίο ημερομηνίας απαιτείται."
 
 #: import_export/univcsvdialog.cpp:921
 msgid "Amount field or both Withdrawal and Deposit fields are required."
-msgstr ""
+msgstr "Απαιτείται το πεδίο Ποσό ή και τα δύο πεδία Ανάληψη και Κατάθεση."
 
 #: import_export/univcsvdialog.cpp:922 import_export/univcsvdialog.cpp:1050
 #: webappdialog.cpp:418
 msgid "Import"
-msgstr ""
+msgstr "Εισαγωγή"
 
 #: import_export/univcsvdialog.cpp:972
 #, c-format
 msgid "Transactions imported to account %s: %ld"
-msgstr ""
+msgstr "Οι συναλλαγές εισήχθησαν στο λογαριασμό %s: %ld"
 
 #: import_export/univcsvdialog.cpp:983
 #, c-format
 msgid "Line %ld: Empty"
-msgstr ""
+msgstr "Γραμμή %ld: Κενή"
 
 #: import_export/univcsvdialog.cpp:997
 #, c-format
 msgid "Line %ld: Error:"
-msgstr ""
+msgstr "Γραμμή %ld: Σφάλμα:"
 
 #: import_export/univcsvdialog.cpp:999
 msgid "Invalid Date."
-msgstr ""
+msgstr "Άκυρη Ημερομηνία."
 
 #: import_export/univcsvdialog.cpp:1000 mmTextCtrl.cpp:98
 msgid "Invalid Amount."
-msgstr ""
+msgstr "Μη Έγκυρο Ποσό."
 
 #: import_export/univcsvdialog.cpp:1002
 msgid "Type (withdrawal/deposit) unknown."
-msgstr ""
+msgstr "Τύπος (ανάληψη/κατάθεση) άγνωστος."
 
 #: import_export/univcsvdialog.cpp:1027
 #, c-format
 msgid "Line %ld: OK, imported."
-msgstr ""
+msgstr "Γραμμή %ld: Εντάξει, εισάγεται."
 
 #: import_export/univcsvdialog.cpp:1035
 #, c-format
 msgid "Total Lines: %ld"
-msgstr ""
+msgstr "Σύνολο γραμμών: %ld"
 
 #: import_export/univcsvdialog.cpp:1037
 #, c-format
 msgid "Lines Selected to Import: %ld"
-msgstr ""
+msgstr "Επιλεγμένες γραμμές για εισαγωγή: %ld"
 
 #: import_export/univcsvdialog.cpp:1039
 #, c-format
 msgid "Empty Lines: %ld"
-msgstr ""
+msgstr "Κενές Γραμμές: %ld"
 
 #: import_export/univcsvdialog.cpp:1041
 #, c-format
 msgid "Imported: %ld"
-msgstr ""
+msgstr "Εισήχθη: %ld"
 
 #: import_export/univcsvdialog.cpp:1043
 #, c-format
 msgid "Errored: %ld"
-msgstr ""
+msgstr "Σφάλμα: %ld"
 
 #: import_export/univcsvdialog.cpp:1046
 #, c-format
 msgid "Log file written to: %s"
-msgstr ""
+msgstr "Το αρχείο καταγραφής γράφτηκε στο: %s"
 
 #: import_export/univcsvdialog.cpp:1049 stockdialog.cpp:680
 msgid "Please confirm saving..."
-msgstr "Παρακαλούμε επιβεβαιώστε την αποθήκευση..."
+msgstr "Παρακαλώ επιβεβαιώστε την αποθήκευση..."
 
 #: import_export/univcsvdialog.cpp:1081
 msgid "No imported transactions!"
-msgstr ""
+msgstr "Δεν έχουν εισαχθεί συναλλαγές!"
 
 #: import_export/univcsvdialog.cpp:1099
 msgid "Incorrect fields specified for export! Requires at least Date and Amount."
-msgstr ""
+msgstr "Λανθασμένα πεδία που έχουν καθοριστεί για εξαγωγή! Απαιτεί τουλάχιστον Ημερομηνία και Ποσό."
 
 #: import_export/univcsvdialog.cpp:1100 import_export/univcsvdialog.cpp:1243
 msgid "Export"
-msgstr ""
+msgstr "Εξαγωγή"
 
 #: import_export/univcsvdialog.cpp:1110
 msgid "Overwrite existing file?"
-msgstr ""
+msgstr "Αντικατάσταση υπάρχοντος αρχείου;"
 
 #: import_export/univcsvdialog.cpp:1110
 msgid "File exists"
-msgstr ""
+msgstr "Το αρχείο υπάρχει"
 
 #: import_export/univcsvdialog.cpp:1116
 msgid "Failed to delete existing file. File may be locked by another program."
-msgstr ""
+msgstr "Αποτυχία διαγραφής υπάρχοντος αρχείου. Το αρχείο μπορεί να κλειδωθεί από άλλο πρόγραμμα."
 
 #: import_export/univcsvdialog.cpp:1117
 msgid "Destination file error"
-msgstr ""
+msgstr "Σφάλμα αρχείου προορισμού"
 
 #: import_export/univcsvdialog.cpp:1242
 #, c-format
 msgid "Transactions exported: %ld"
-msgstr ""
+msgstr "Συναλλαγές που εξήχθησαν: %ld"
 
 #: import_export/univcsvdialog.cpp:1542 stockdialog.cpp:586
 msgid "Choose CSV data file to import"
@@ -3122,31 +3122,31 @@ msgstr "Επιλέξτε ένα αρχείο δεδομένων CSV για ει�
 
 #: import_export/univcsvdialog.cpp:1545
 msgid "Choose CSV data file to export"
-msgstr ""
+msgstr "Επιλέξτε αρχείο δεδομένων CSV για εξαγωγή"
 
 #: import_export/univcsvdialog.cpp:1548
 msgid "Choose XML data file to import"
-msgstr ""
+msgstr "Επιλογή αρχείου δεδομένων XML για εισαγωγή"
 
 #: import_export/univcsvdialog.cpp:1551
 msgid "Choose XML data file to export"
-msgstr ""
+msgstr "Επιλογή αρχείου δεδομένων XML για εξαγωγή"
 
 #: import_export/univcsvdialog.cpp:1558
 msgid "XML Files (*.xml)"
-msgstr ""
+msgstr "Αρχεία XML (*.xml)"
 
 #: import_export/univcsvdialog.cpp:1558
 msgid "All Files"
-msgstr ""
+msgstr "Όλα Τα Αρχεία"
 
 #: import_export/univcsvdialog.cpp:1559
 msgid "CSV Files (*.csv)"
-msgstr ""
+msgstr "Αρχεία CSV (*.csv)"
 
 #: import_export/univcsvdialog.cpp:1826
 msgid "Please, type the word indicating positive values in your CSV file, e.g. 'debit'"
-msgstr ""
+msgstr "Παρακαλώ, πληκτρολογήστε τη λέξη που δείχνει θετικές τιμές στο αρχείο CSV, π.χ. 'χρέωση'"
 
 #: import_export/univcsvdialog.cpp:1826
 msgid "Enter a value"
@@ -3159,11 +3159,11 @@ msgstr "Σύμβολο"
 
 #: maincurrencydialog.cpp:76
 msgid "Last Rate"
-msgstr ""
+msgstr "Τελευταία Τιμή"
 
 #: maincurrencydialog.cpp:76
 msgid "Fixed Rate"
-msgstr "Σταθερή τιμή"
+msgstr "Σταθερός Συντελεστής"
 
 #: maincurrencydialog.cpp:163 maincurrencydialog.cpp:459
 msgid "Online update currency rate"
@@ -3171,19 +3171,19 @@ msgstr "Διαδικτυακή ενημέρωση ισοτιμίας νομισ�
 
 #: maincurrencydialog.cpp:166
 msgid "Online Update"
-msgstr ""
+msgstr "Ενημέρωση μέσω διαδικτύου"
 
 #: maincurrencydialog.cpp:170
 msgid "Show all even the unused currencies"
-msgstr ""
+msgstr "Εμφάνιση όλων ακόμη και των αχρησιμοποίητων νομισμάτων"
 
 #: maincurrencydialog.cpp:205 payeedialog.cpp:122
 msgid "Search:"
-msgstr ""
+msgstr "Αναζήτηση:"
 
 #: maincurrencydialog.cpp:223
 msgid "Currency History Options"
-msgstr ""
+msgstr "Επιλογές Ιστορικού Νομίσματος"
 
 #: maincurrencydialog.cpp:242 stockdialog.cpp:304 stockdialog.cpp:323
 #: stockdialog.cpp:676
