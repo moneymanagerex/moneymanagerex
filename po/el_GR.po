@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-02-09 23:37+0300\n"
-"PO-Revision-Date: 2021-02-16 17:23\n"
+"PO-Revision-Date: 2021-02-16 17:33\n"
 "Last-Translator: \n"
 "Language-Team: Greek\n"
 "MIME-Version: 1.0\n"
@@ -3362,28 +3362,29 @@ msgstr "Η ενεργοποίηση του κουμπιού θα παρέχει 
 
 #: mmSimpleDialogs.cpp:280
 msgid "Invalid Payee"
-msgstr ""
+msgstr "Μη έγκυρος δικαιούχος"
 
 #: mmSimpleDialogs.cpp:281
 msgid "Please type in a new payee,\n"
 "or make a selection using the dropdown button."
-msgstr ""
+msgstr "Παρακαλώ πληκτρολογήστε ένα νέο δικαιούχο πληρωμής,\n"
+"ή κάντε μια επιλογή χρησιμοποιώντας το αναδιπλούμενο κουμπί."
 
 #: mmSimpleDialogs.cpp:289 mmSimpleDialogs.cpp:301
 msgid "Invalid Name"
-msgstr ""
+msgstr "Μη Έγκυρο Όνομα"
 
 #: mmSimpleDialogs.cpp:292 mmSimpleDialogs.cpp:304
 msgid "Already exist!"
-msgstr ""
+msgstr "Υπάρχουν ήδη!"
 
 #: mmSimpleDialogs.cpp:294
 msgid "Please type in a non empty name."
-msgstr ""
+msgstr "Παρακαλώ πληκτρολογήστε ένα μη κενό όνομα."
 
 #: mmSimpleDialogs.cpp:306
 msgid "Please type in a non empty symbol."
-msgstr ""
+msgstr "Παρακαλώ πληκτρολογήστε ένα μη κενό σύμβολο."
 
 #: mmTextCtrl.cpp:69
 msgid "Invalid Value"
@@ -3391,16 +3392,17 @@ msgstr "Μη έγκυρη τιμή"
 
 #: mmTextCtrl.cpp:95
 msgid "Please enter a positive or calculated value."
-msgstr ""
+msgstr "Παρακαλούμε εισάγετε μια θετική ή υπολογισμένη τιμή."
 
 #: mmTextCtrl.cpp:95
 msgid "Please enter a calculated value."
-msgstr ""
+msgstr "Παρακαλώ εισάγετε μια υπολογισμένη τιμή."
 
 #: mmTextCtrl.cpp:97
 msgid "Tip: For calculations, enter expressions like (2+2)*(2+2)\n"
 "Calculations will be evaluated and the result used as the entry."
-msgstr ""
+msgstr "Συμβουλή: Για υπολογισμούς, εισάγετε εκφράσεις όπως (2+2)*(2+2)\n"
+"Οι υπολογισμοί θα αξιολογηθούν και το αποτέλεσμα θα χρησιμοποιηθεί ως καταχώρηση."
 
 #: mmTips.h:22
 msgid "Recommendation: Always backup your .mmb database file regularly."
@@ -3412,7 +3414,7 @@ msgstr "Πρόταση: Αν αναβαθμίζεστε σε μια νέα έκ�
 
 #: mmTips.h:24
 msgid "Recommendation: Use copy (Ctrl+C) and paste (Ctrl+V) for frequently used transactions."
-msgstr ""
+msgstr "Σύσταση: Χρησιμοποιήστε αντιγραφή (Ctrl+C) και επικόλληση (Ctrl+V) για συναλλαγές που χρησιμοποιούνται συχνά."
 
 #: mmTips.h:25
 msgid "Tip: Remember to make backups of your .mmb."
@@ -3420,7 +3422,7 @@ msgstr "Συμβουλή: Να θυμάστε να κάνετε αντίγραφ
 
 #: mmTips.h:26
 msgid "Tip: The .mmb file is not encrypted. That means anyone else having the proper know how can actually open the file and read the contents. So make sure that if you are storing any sensitive financial information it is properly guarded."
-msgstr ""
+msgstr "Συμβουλή: Το αρχείο .mmb δεν είναι κρυπτογραφημένο. Αυτό σημαίνει ότι οποιοσδήποτε άλλος γνωρίζει καλά πώς μπορεί πραγματικά να ανοίξει το αρχείο και να διαβάσει το περιεχόμενο. Έτσι σιγουρευτείτε ότι αν αποθηκεύετε ευαίσθητες οικονομικές πληροφορίες είναι κατάλληλα προστατευμένες."
 
 #: mmTips.h:27
 msgid "Tip: To mark a transaction as reconciled, just select the transaction and hit the 'r' or 'R' key. To mark a transaction as unreconciled, just select the transaction and hit the 'u' or 'U' key."
@@ -3440,7 +3442,7 @@ msgstr "Συμβουλή: Μπορείτε να τροποποιήσετε κά�
 
 #: mmTips.h:31
 msgid "Tip: To print a statement with transactions from any arbitrary set of criteria, use the transaction filter to select the transactions you want and then do a print from the menu."
-msgstr ""
+msgstr "Συμβουλή: Να εκτυπώσετε μια δήλωση με συναλλαγές από οποιοδήποτε αυθαίρετο σύνολο κριτηρίων, χρησιμοποιήστε το φίλτρο συναλλαγής για να επιλέξετε τις συναλλαγές που θέλετε και στη συνέχεια κάντε μια εκτύπωση από το μενού."
 
 #: mmTips.h:32
 msgid "Tip: Set exchange rate for currencies in case if you have accounts with different currencies."
@@ -3456,7 +3458,7 @@ msgstr "Συμβουλή Παραθύρου οργάνωσης κατηγορι�
 
 #: mmTips.h:37
 msgid "Tip to get out of debt: Pay yourself 10 percentage first. Put this into an account that is hard to touch. Make sure it is a chore to get the money out (you have to drive to the bank), so you will only tap it consciously and for major expenses."
-msgstr ""
+msgstr "Συμβουλή για να βγούμε από το χρέος: Πληρώστε τον εαυτό σας 10 ποσοστό πρώτα. Βάλτε αυτό σε ένα λογαριασμό που είναι δύσκολο να αγγίξει. Βεβαιωθείτε ότι είναι μια κόρα για να πάρει τα χρήματα έξω (θα πρέπει να οδηγήσετε στην τράπεζα), έτσι θα το αξιοποιήσετε συνειδητά και για μεγάλες δαπάνες."
 
 #: mmTips.h:38
 msgid "Tip to get out of debt: Establish an emergency fund."
@@ -3488,40 +3490,38 @@ msgstr "Με τη χρήση του MMEX είναι δυνατή η παρακο
 
 #: mmTips.h:48
 msgid "To create new stocks entry the Symbol, Number of shares and Purchase prise should be entered."
-msgstr ""
+msgstr "Για να δημιουργήσετε νέα εγγραφή αποθεμάτων το Σύμβολο, ο αριθμός των μετοχών και η έκπληξη αγοράς θα πρέπει να εισαχθεί."
 
 #: mmTips.h:49
 msgid "Sample of UK (HSBC HLDG) share: HSBA.L"
-msgstr ""
+msgstr "Δείγμα του Ηνωμένου Βασιλείου (HSBC HLDG) μετοχή: HSBA.L"
 
 #: mmTips.h:50
 msgid "If the Stock Name field is empty it will be filed when prices updated"
-msgstr ""
+msgstr "Εάν το πεδίο Όνομα αποθέματος είναι κενό, θα αρχειοθετηθεί όταν ενημερωθούν οι τιμές"
 
 #: mmchecking_list.cpp:274
 msgid "&New Withdrawal"
-msgstr ""
+msgstr "&Νέα Ανάληψη"
 
 #: mmchecking_list.cpp:275
 msgid "&New Deposit"
-msgstr ""
+msgstr "&Νέα Κατάθεση"
 
 #: mmchecking_list.cpp:277
 msgid "&New Transfer"
-msgstr ""
+msgstr "&Νέα Μεταφορά"
 
 #: mmchecking_list.cpp:281
 msgid "&Edit Transaction"
 msgid_plural "&Edit Transactions"
-msgstr[0] "&Επεξεργασία Συναλλαγής\n\n"
-"&Επεξεργασία Συναλλαγών"
+msgstr[0] "&Επεξεργασία Συναλλαγής"
 msgstr[1] ""
 
 #: mmchecking_list.cpp:284
 msgid "&Copy Transaction"
 msgid_plural "&Copy Transactions"
-msgstr[0] "&Αντιγραφή συναλλαγής\n\n"
-"&Αντιγραφή συναλλαγών"
+msgstr[0] "&Αντιγραφή συναλλαγής"
 msgstr[1] ""
 
 #: mmchecking_list.cpp:288
@@ -3532,7 +3532,7 @@ msgstr[1] "&Επικόλληση Συναλλαγών"
 
 #: mmchecking_list.cpp:291
 msgid "D&uplicate Transaction"
-msgstr ""
+msgstr "Διπλότυπη συναλλαγή"
 
 #: mmchecking_list.cpp:294
 msgid "&Move Transaction"
@@ -3607,7 +3607,7 @@ msgstr "Επιβεβαιώστε τη διαγραφή της συναλλαγή
 
 #: mmchecking_list.cpp:421
 msgid "Follow Up"
-msgstr ""
+msgstr "Παρακολούθηση"
 
 #: mmchecking_list.cpp:421
 msgid "Unreconciled"
