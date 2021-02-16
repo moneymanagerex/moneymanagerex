@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-02-09 23:37+0300\n"
-"PO-Revision-Date: 2021-02-16 18:13\n"
+"PO-Revision-Date: 2021-02-16 18:27\n"
 "Last-Translator: \n"
 "Language-Team: Greek\n"
 "MIME-Version: 1.0\n"
@@ -4903,39 +4903,39 @@ msgstr "Μια επαναλαμβανόμενη συναλλαγή θα υπερ
 
 #: model/Model_Billsdeposits.cpp:302
 msgid "MMEX Recurring Transaction Check"
-msgstr ""
+msgstr "Έλεγχος Επαναλαμβανόμενης Συναλλαγής MMEX"
 
 #: model/Model_CustomField.cpp:25
 msgid "String"
-msgstr ""
+msgstr "Συμβολοσειρά"
 
 #: model/Model_CustomField.cpp:26
 msgid "Integer"
-msgstr ""
+msgstr "Ακέραιος"
 
 #: model/Model_CustomField.cpp:27
 msgid "Decimal"
-msgstr ""
+msgstr "Δεκαδικός"
 
 #: model/Model_CustomField.cpp:28
 msgid "Boolean"
-msgstr ""
+msgstr "Λογική τιμή"
 
 #: model/Model_CustomField.cpp:30 wizard_update.cpp:136
 msgid "Time"
-msgstr ""
+msgstr "Ώρα"
 
 #: model/Model_CustomField.cpp:31
 msgid "SingleChoice"
-msgstr ""
+msgstr "Ενιαία επιλογή"
 
 #: model/Model_CustomField.cpp:32
 msgid "MultiChoice"
-msgstr ""
+msgstr "Πολλαπλή επιλογή"
 
 #: model/Model_Payee.cpp:80
 msgid "Payee Error"
-msgstr ""
+msgstr "Σφάλμα δικαιούχου"
 
 #: model/Model_Report.cpp:85
 msgid "Begin date: "
@@ -4962,7 +4962,7 @@ msgstr "Το πρότυπο είναι άδειο"
 msgid "The SQL script:\n"
 "%s \n"
 "will modify database! aborted!"
-msgstr ""
+msgstr "Η δέσμη ενεργειών SQL: %s θα τροποποιήσει τη βάση δεδομένων!"
 
 #: optiondialog.cpp:130
 msgid "General"
@@ -4974,69 +4974,69 @@ msgstr "Επιλογές προβολής"
 
 #: optiondialog.cpp:132 webappdialog.cpp:155
 msgid "Attachments"
-msgstr ""
+msgstr "Συνημμένα"
 
 #: optiondialog.cpp:133
 msgid "Network"
-msgstr ""
+msgstr "Δίκτυο"
 
 #: optiondialog.cpp:151
 msgid "&Apply"
-msgstr ""
+msgstr "&Εφαρμογή"
 
 #: optiondialog.cpp:193
 #, c-format
 msgid "%s page has been saved."
-msgstr ""
+msgstr "%s σελίδα έχει αποθηκευτεί."
 
 #: optionsettingsattachment.cpp:57
 msgid "Attachments Settings"
-msgstr ""
+msgstr "Ρυθμίσεις Συνημμένων"
 
 #: optionsettingsattachment.cpp:64
 #, c-format
 msgid "Attachment archive folder for %s only:"
-msgstr ""
+msgstr "Φάκελος συμπιεσμένων αρχείων για %s μόνο:"
 
 #: optionsettingsattachment.cpp:68
 msgid "Every OS type (Win,Mac,Unix) has its attachment folder"
-msgstr "Κάθε τύπος λειτουργικού συστήματος (Win, Mac, Unix) έχει το δικό του φάκελο συνημμένων"
+msgstr "Κάθε τύπος OS (Win, Mac, Unix) έχει το φάκελο συνημμένων"
 
 #: optionsettingsattachment.cpp:87
 msgid "Browse for folder"
-msgstr ""
+msgstr "Αναζήτηση φακέλου"
 
 #: optionsettingsattachment.cpp:92 optionsettingsattachment.cpp:188
 msgid "Real path:"
-msgstr ""
+msgstr "Πραγματική διαδρομή:"
 
 #: optionsettingsattachment.cpp:97
 msgid "Legend (can be used as variables at the beginning of above path)"
-msgstr ""
+msgstr "Υπόμνημα (μπορεί να χρησιμοποιηθεί ως μεταβλητές στην αρχή της παραπάνω διαδρομής)"
 
 #: optionsettingsattachment.cpp:102
 #, c-format
 msgid "%s -> User document directory"
-msgstr ""
+msgstr "%s -> Κατάλογος εγγράφου χρήστη"
 
 #: optionsettingsattachment.cpp:103
 #, c-format
 msgid "%s -> User profile folder"
-msgstr ""
+msgstr "%s -> Φάκελος προφίλ χρήστη"
 
 #: optionsettingsattachment.cpp:104
 #, c-format
 msgid "%s -> Folder of .MMB database file"
-msgstr ""
+msgstr "%s -> Φάκελος του αρχείου βάσης δεδομένων .MMB"
 
 #: optionsettingsattachment.cpp:105
 #, c-format
 msgid "%s -> MMEX Application data folder"
-msgstr ""
+msgstr "%s -> Φάκελος δεδομένων εφαρμογής MMEX"
 
 #: optionsettingsattachment.cpp:111
 msgid "Other OS folders "
-msgstr ""
+msgstr "Άλλοι φάκελοι OS "
 
 #: optionsettingsattachment.cpp:116
 msgid "Not set yet"
@@ -5056,31 +5056,31 @@ msgstr "Φάκελος του Unix -> "
 
 #: optionsettingsattachment.cpp:145
 msgid "Create and use Attachments subfolder"
-msgstr ""
+msgstr "Δημιουργία και χρήση υποφακέλου Συνημμένων"
 
 #: optionsettingsattachment.cpp:156
 msgid "Delete file after import"
-msgstr ""
+msgstr "Διαγραφή αρχείου μετά την εισαγωγή"
 
 #: optionsettingsattachment.cpp:158
 msgid "Select to delete file after import in attachments archive"
-msgstr ""
+msgstr "Επιλέξτε για διαγραφή αρχείου μετά την εισαγωγή στην αρχειοθήκη συνημμένων"
 
 #: optionsettingsattachment.cpp:162
 msgid "When remove attachment, move file instead of delete"
-msgstr ""
+msgstr "Όταν καταργήσετε το συνημμένο, μετακινήστε το αρχείο αντί για διαγραφή"
 
 #: optionsettingsattachment.cpp:164
 msgid "Select to don't delete file when attachment is removed, but instead move it to 'Deleted' subfolder"
-msgstr ""
+msgstr "Επιλέξτε για να μην διαγράψετε το αρχείο όταν καταργηθεί το συνημμένο, αλλά αντ' αυτού μετακινήστε το στον υποφάκελο 'Διαγραφή'"
 
 #: optionsettingsattachment.cpp:173
 msgid "Choose folder to set as attachments archive"
-msgstr ""
+msgstr "Επιλογή φακέλου για ορισμό αρχείου συνημμένων"
 
 #: optionsettingsattachment.cpp:213
 msgid "Attachments folder it's not writable!"
-msgstr ""
+msgstr "Ο φάκελος συνημμένων δεν είναι εγγράψιμος!"
 
 #: optionsettingsattachment.cpp:213
 msgid "Attachments folder"
@@ -5088,23 +5088,23 @@ msgstr "Φάκελος συνημμένων"
 
 #: optionsettingsattachment.cpp:221
 msgid "Attachments path has been changed!"
-msgstr ""
+msgstr "Η διαδρομή συνημμένων έχει αλλάξει!"
 
 #: optionsettingsattachment.cpp:223 optionsettingsattachment.cpp:232
 msgid "Attachments folder migration"
-msgstr ""
+msgstr "Μεταφορά φακέλου συνημμένων"
 
 #: optionsettingsattachment.cpp:229
 msgid "Error moving attachments folder: please move it manually!"
-msgstr ""
+msgstr "Σφάλμα κατά τη μετακίνηση του φακέλου συνημμένων: παρακαλώ μετακινήστε τον χειροκίνητα!"
 
 #: optionsettingsattachment.cpp:230
 msgid "Origin"
-msgstr ""
+msgstr "Καταγωγή"
 
 #: optionsettingsattachment.cpp:231
 msgid "Destination"
-msgstr ""
+msgstr "Προορισμός"
 
 #: optionsettingsgeneral.cpp:62
 msgid "Display Heading"
@@ -5128,11 +5128,11 @@ msgstr "Ορίστε νόμισμα"
 
 #: optionsettingsgeneral.cpp:90
 msgid "Sets the database default Currency using the 'Currency Dialog'"
-msgstr ""
+msgstr "Ορίζει το προεπιλεγμένο νόμισμα της βάσης δεδομένων χρησιμοποιώντας το 'διάλογο νομίσματος'"
 
 #: optionsettingsgeneral.cpp:92
 msgid "Right click and select 'Set as Base Currency' in 'Currency Dialog'"
-msgstr ""
+msgstr "Κάντε δεξί κλικ και επιλέξτε «Ορισμός ως βασικό νόμισμα» στο «Διάλογος νομίσματος»"
 
 #: optionsettingsgeneral.cpp:97
 msgid "Use currency history"
@@ -5140,7 +5140,7 @@ msgstr "Χρησιμοποιήστε το ιστορικό ισοτιμίας"
 
 #: optionsettingsgeneral.cpp:99
 msgid "Select to use currency history (one rate for each day), deselect to use a fixed rate"
-msgstr ""
+msgstr "Επιλέξτε για να χρησιμοποιήσετε το ιστορικό νομισμάτων (μία ισοτιμία για κάθε ημέρα), αποεπιλέξτε για να χρησιμοποιήσετε μια σταθερή ισοτιμία"
 
 #: optionsettingsgeneral.cpp:115
 msgid "Specify the date format for display"
@@ -5196,11 +5196,11 @@ msgstr "Σβήστε το πεδίο για επαναφορά της τιμής
 
 #: optionsettingsmisc.cpp:77
 msgid "Share Precision"
-msgstr ""
+msgstr "Κοινή Χρήση Ακρίβειας"
 
 #: optionsettingsmisc.cpp:82
 msgid "Set the precision for Share prices"
-msgstr ""
+msgstr "Ορίστε την ακρίβεια για τις τιμές Share"
 
 #: optionsettingsmisc.cpp:88
 msgid "New Transaction Dialog Settings"
@@ -5212,7 +5212,7 @@ msgstr "Χρησιμοποιήθηκε τελευταία"
 
 #: optionsettingsmisc.cpp:103
 msgid "Unused"
-msgstr ""
+msgstr "Αχρησιμοποίητο"
 
 #: optionsettingsmisc.cpp:109
 msgid "Last used for payee"
@@ -5250,77 +5250,77 @@ msgstr "Όταν ξεκινάει το MMEX,\n"
 
 #: optionsettingsmisc.cpp:157
 msgid "Backup database on exit."
-msgstr ""
+msgstr "Αντίγραφο ασφαλείας βάσης δεδομένων κατά την έξοδο."
 
 #: optionsettingsmisc.cpp:159
 msgid "When MMEX shuts down and changes made to database,\n"
 "creates or updates the backup database: dbFile_update_YYYY-MM-DD.ext."
-msgstr "Όταν το MMEX κλείνει και έχουν γίνει αλλαγές στη βάση δεδομένων,\n"
-"δημιουργεί ή ενημερώνει το αντίγραφο ασφαλείας της βάσης δεδομένων: ΑρχείοΒΔ_update_YYYY-MM-DD.ext."
+msgstr "Όταν το MMEX τερματίζει και οι αλλαγές που έγιναν στη βάση δεδομένων,\n"
+"δημιουργεί ή ενημερώνει την εφεδρική βάση δεδομένων: dbFile_update_YYYY-MM-DD.ext."
 
 #: optionsettingsmisc.cpp:167
 msgid "Specify max number of backup files"
-msgstr ""
+msgstr "Καθορίστε μέγιστο αριθμό αρχείων αντιγράφων ασφαλείας"
 
 #: optionsettingsmisc.cpp:170
 msgid "Max Files"
-msgstr ""
+msgstr "Μέγιστος Αριθμός Αρχείων"
 
 #: optionsettingsmisc.cpp:177
 msgid "CSV Settings"
-msgstr ""
+msgstr "Ρυθμίσεις CSV"
 
 #: optionsettingsmisc.cpp:185
 msgid "Delimiter"
-msgstr ""
+msgstr "Οριοθέτης"
 
 #: optionsettingsnet.cpp:57
 msgid "WebApp Settings"
-msgstr ""
+msgstr "Ρυθμίσεις WebApp"
 
 #: optionsettingsnet.cpp:64 webappdialog.cpp:103
 msgid "Url"
-msgstr ""
+msgstr "Url"
 
 #: optionsettingsnet.cpp:68
 msgid "Specify the Web App URL without final slash"
-msgstr ""
+msgstr "Καθορίστε το URL της εφαρμογής Web χωρίς τελική κάθετο"
 
 #: optionsettingsnet.cpp:71 webappdialog.cpp:110
 msgid "GUID"
-msgstr ""
+msgstr "GUID"
 
 #: optionsettingsnet.cpp:75
 msgid "Specify the Web App GUID"
-msgstr ""
+msgstr "Καθορίστε το GUID της εφαρμογής Web"
 
 #: optionsettingsnet.cpp:78
 msgid "More information about WebApp"
-msgstr ""
+msgstr "Περισσότερες πληροφορίες σχετικά με το WebApp"
 
 #: optionsettingsnet.cpp:82
 msgid "Proxy Settings"
-msgstr ""
+msgstr "Ρυθμίσεις Διαμεσολαβητή"
 
 #: optionsettingsnet.cpp:90
 msgid "Specify the proxy IP address"
-msgstr ""
+msgstr "Καθορίστε τη διεύθυνση IP του διαμεσολαβητή"
 
 #: optionsettingsnet.cpp:96
 msgid "Specify proxy port number"
-msgstr ""
+msgstr "Καθορισμός αριθμού θύρας διαμεσολαβητή"
 
 #: optionsettingsnet.cpp:99
 msgid "Proxy"
-msgstr ""
+msgstr "Διαμεσολαβητής"
 
 #: optionsettingsnet.cpp:101
 msgid "Port"
-msgstr ""
+msgstr "Θύρα"
 
 #: optionsettingsnet.cpp:107
 msgid "Usage statistics"
-msgstr ""
+msgstr "Στατιστικά χρήσης"
 
 #: optionsettingsnet.cpp:126
 msgid "Check for latest news on startup"
@@ -5332,15 +5332,15 @@ msgstr "Ενεργοποιήστε για να επιτρέψετε τον έλ�
 
 #: optionsettingsnet.cpp:133
 msgid "Timeout"
-msgstr ""
+msgstr "Χρονικό όριο"
 
 #: optionsettingsnet.cpp:142
 msgid "Specify a network communication timeout value to use."
-msgstr ""
+msgstr "Καθορίστε μια τιμή χρονικού ορίου επικοινωνίας δικτύου που θα χρησιμοποιηθεί."
 
 #: optionsettingsnet.cpp:145
 msgid "Seconds"
-msgstr ""
+msgstr "Δευτερόλεπτα"
 
 #: optionsettingsnet.cpp:151
 msgid "Updates"
@@ -5352,15 +5352,15 @@ msgstr "Έλεγχος για ενημερώσεις κατά την εκκίν�
 
 #: optionsettingsnet.cpp:159
 msgid "Enable to automatically check if new MMEX version is available at StartUp"
-msgstr ""
+msgstr "Ενεργοποιήστε για να ελέγξετε αυτόματα αν η νέα έκδοση MMEX είναι διαθέσιμη στο StartUp"
 
 #: optionsettingsnet.cpp:162 wizard_update.cpp:110
 msgid "Stable"
-msgstr ""
+msgstr "Σταθερό"
 
 #: optionsettingsnet.cpp:163 wizard_update.cpp:110
 msgid "Unstable"
-msgstr ""
+msgstr "Ασταθής"
 
 #: optionsettingsnet.cpp:167
 msgid "Updates source"
@@ -5372,11 +5372,11 @@ msgstr "Καθορίστε ποιοι λογαριασμοί θα εμφανίζ
 
 #: optionsettingsview.cpp:80
 msgid "HTML scale factor"
-msgstr ""
+msgstr "Συντελεστής κλίμακας HTML"
 
 #: optionsettingsview.cpp:88
 msgid "Specify which scale factor is used for the report pages"
-msgstr ""
+msgstr "Καθορίστε τον συντελεστή κλίμακας που χρησιμοποιείται για τις σελίδες αναφοράς"
 
 #: optionsettingsview.cpp:93
 msgid "Icons size"
@@ -5388,15 +5388,15 @@ msgstr "Διαχωριστής κατηγορίας"
 
 #: optionsettingsview.cpp:114
 msgid "View Budgets as Financial Years"
-msgstr ""
+msgstr "Δείτε τους προϋπολογισμούς ως οικονομικά έτη"
 
 #: optionsettingsview.cpp:119
 msgid "View Budgets with 'transfer' transactions"
-msgstr ""
+msgstr "Προβολή προϋπολογισμών με συναλλαγές 'μεταφοράς'"
 
 #: optionsettingsview.cpp:125
 msgid "View Budget Category Report with Summaries"
-msgstr ""
+msgstr "Προβολή έκθεσης κατηγορίας προϋπολογισμού με περιλήψεις"
 
 #: optionsettingsview.cpp:131
 msgid "Ignore Future Transactions"
@@ -5404,11 +5404,11 @@ msgstr "Αγνόηση Μελλοντικών Συναλλαγών"
 
 #: optionsettingsview.cpp:137 transdialog.cpp:563
 msgid "User Colors"
-msgstr ""
+msgstr "Χρώματα Χρήστη"
 
 #: payeedialog.cpp:65
 msgid "Default Category"
-msgstr ""
+msgstr "Προεπιλεγμένη Κατηγορία"
 
 #: payeedialog.cpp:183 payeedialog.cpp:222 payeedialog.cpp:250
 msgid "Payee with same name exists"
@@ -5424,11 +5424,11 @@ msgstr "Εισάγετε το όνομα του νέου δικαιούχου:"
 
 #: payeedialog.cpp:233
 msgid "Modify the name for the payee:"
-msgstr ""
+msgstr "Τροποποίηση του ονόματος του δικαιούχου:"
 
 #: payeedialog.cpp:234 payeedialog.cpp:250
 msgid "Organize Payees: Edit Payee"
-msgstr ""
+msgstr "Οργάνωση Δικαιούχων: Επεξεργασία Δικαιούχου"
 
 #: payeedialog.cpp:264
 msgid "Payee in use."
@@ -5436,7 +5436,7 @@ msgstr "Δικαιούχος σε χρήση"
 
 #: payeedialog.cpp:267
 msgid "Tip: Change all transactions using this Payee to another Payee using the relocate command:"
-msgstr ""
+msgstr "Συμβουλή: Αλλάξτε όλες τις συναλλαγές χρησιμοποιώντας αυτό το δικαιούχο σε άλλο δικαιούχο χρησιμοποιώντας την εντολή μετεγκατάστασης:"
 
 #: payeedialog.cpp:269
 msgid "Tools -> Relocation of -> Payees"
@@ -5448,11 +5448,11 @@ msgstr "Οργάνωση δικαιούχων: Σφάλμα διαγραφής"
 
 #: payeedialog.cpp:361
 msgid "Define Default Category"
-msgstr ""
+msgstr "Ορισμός Προκαθορισμένης Κατηγορίας"
 
 #: payeedialog.cpp:376
 msgid "Relocate Payee"
-msgstr ""
+msgstr "Μετακίνηση Δικαιούχου"
 
 #: relocatecategorydialog.cpp:53
 msgid "Relocate Category Dialog"
@@ -5460,15 +5460,15 @@ msgstr "Παράθυρο μετατόπισης κατηγορίας"
 
 #: relocatecategorydialog.cpp:86
 msgid "Relocate source category to the destination category"
-msgstr ""
+msgstr "Μετακίνηση κατηγορίας πηγής στην κατηγορία προορισμού"
 
 #: relocatecategorydialog.cpp:89
 msgid "Select Source Category"
-msgstr ""
+msgstr "Επιλογή Πηγής Κατηγορίας"
 
 #: relocatecategorydialog.cpp:95
 msgid "Select Destination Category"
-msgstr ""
+msgstr "Επιλέξτε Κατηγορία Προορισμού"
 
 #: relocatecategorydialog.cpp:109 relocatepayeedialog.cpp:113
 msgid "Relocate:"
@@ -5489,32 +5489,32 @@ msgstr "Επιβεβαίωση μετατόπισης κατηγορίας"
 #: relocatecategorydialog.cpp:269 relocatepayeedialog.cpp:233
 #, c-format
 msgid "Records found in transactions: %i"
-msgstr ""
+msgstr "Εγγραφές που βρέθηκαν στις συναλλαγές: %i"
 
 #: relocatecategorydialog.cpp:270
 #, c-format
 msgid "Records found in split transactions: %i"
-msgstr ""
+msgstr "Εγγραφές που βρέθηκαν σε διαχωρισμένες συναλλαγές: %i"
 
 #: relocatecategorydialog.cpp:271 relocatepayeedialog.cpp:234
 #, c-format
 msgid "Records found in recurring transactions: %i"
-msgstr ""
+msgstr "Εγγραφές που βρέθηκαν σε επαναλαμβανόμενες συναλλαγές: %i"
 
 #: relocatecategorydialog.cpp:272
 #, c-format
 msgid "Records found in recurring split transactions: %i"
-msgstr ""
+msgstr "Εγγραφές που βρέθηκαν σε επαναλαμβανόμενες διαχωρισμένες συναλλαγές: %i"
 
 #: relocatecategorydialog.cpp:273
 #, c-format
 msgid "Records found as Default Payee Category: %i"
-msgstr ""
+msgstr "Βρέθηκαν εγγραφές ως προεπιλεγμένος δικαιούχος Κατηγορία: %i"
 
 #: relocatecategorydialog.cpp:274
 #, c-format
 msgid "Records found in budget: %i"
-msgstr ""
+msgstr "Αρχεία που βρέθηκαν στον προϋπολογισμό: %i"
 
 #: relocatepayeedialog.cpp:52
 msgid "Relocate Payee Dialog"
@@ -5522,16 +5522,16 @@ msgstr "Παράθυρο μετατόπισης δικαιούχου"
 
 #: relocatepayeedialog.cpp:83
 msgid "Relocate all source payee to the destination payee"
-msgstr ""
+msgstr "Μεταφορά όλων των δικαιούχων πηγής στον δικαιούχο προορισμού"
 
 #: relocatepayeedialog.cpp:96
 msgid "Delete source payee after relocation"
-msgstr ""
+msgstr "Διαγραφή δικαιούχου πηγής μετά την μετεγκατάσταση"
 
 #: relocatepayeedialog.cpp:153
 #, c-format
 msgid "From %s to %s"
-msgstr ""
+msgstr "Από %s έως %s"
 
 #: relocatepayeedialog.cpp:158
 msgid "Payee Relocation Confirmation"
@@ -5540,7 +5540,7 @@ msgstr "Επιβεβαίωση μετατόπισης δικαιούχου"
 #: reports/budget.cpp:88
 #, c-format
 msgid "Financial Year: %s - %i"
-msgstr ""
+msgstr "Οικονομικό Έτος: %s - %i"
 
 #: reports/budget.cpp:98
 #, c-format
@@ -5550,12 +5550,12 @@ msgstr "Έτος: %i Μήνας: %s"
 #: reports/budgetcategorysummary.cpp:109
 #, c-format
 msgid "Budget Categories for %s"
-msgstr ""
+msgstr "Κατηγορίες προϋπολογισμού για %s"
 
 #: reports/budgetcategorysummary.cpp:109
 #, c-format
 msgid "Budget Category Summary for %s"
-msgstr ""
+msgstr "Περίληψη κατηγορίας προϋπολογισμού για %s"
 
 #: reports/budgetcategorysummary.cpp:112
 msgid "( Estimated Vs Actual )"
@@ -5563,48 +5563,48 @@ msgstr "(Εκτιμώμενα προς πραγματικά)"
 
 #: reports/budgetcategorysummary.cpp:260
 msgid "Estimated Income:"
-msgstr ""
+msgstr "Εκτιμώμενο Εισόδημα:"
 
 #: reports/budgetcategorysummary.cpp:262
 msgid "Actual Income:"
-msgstr ""
+msgstr "Πραγματικό Εισόδημα:"
 
 #: reports/budgetcategorysummary.cpp:264
 msgid "Difference Income:"
-msgstr ""
+msgstr "Έσοδα Διαφοράς:"
 
 #: reports/budgetcategorysummary.cpp:271
 msgid "Estimated Expenses:"
-msgstr ""
+msgstr "Εκτιμώμενα Έξοδα:"
 
 #: reports/budgetcategorysummary.cpp:273
 msgid "Actual Expenses:"
-msgstr ""
+msgstr "Πραγματικά Έξοδα:"
 
 #: reports/budgetcategorysummary.cpp:275
 msgid "Difference Expenses:"
-msgstr ""
+msgstr "Έξοδα Διαφορών:"
 
 #: reports/budgetingperf.cpp:181
 #, c-format
 msgid "Budget Performance for %s"
-msgstr ""
+msgstr "Απόδοση του προϋπολογισμού για %s"
 
 #: reports/budgetingperf.cpp:216 reports/budgetingperf.cpp:218
 msgid "Est."
-msgstr ""
+msgstr "Est."
 
 #: reports/budgetingperf.cpp:216 reports/budgetingperf.cpp:218
 msgid "Act."
-msgstr ""
+msgstr "Πράξη."
 
 #: reports/budgetingperf.cpp:219
 msgid "%"
-msgstr ""
+msgstr "%"
 
 #: reports/budgetingperf.cpp:272
 msgid "Monthly Total"
-msgstr ""
+msgstr "Μηνιαίο Σύνολο"
 
 #: reports/bugreport.h:56
 msgid "Bug Report"
@@ -5630,7 +5630,7 @@ msgstr "Αναζητήστε στο <a href='%s'> μια λίστα από ήδ�
 #: reports/bugreport.h:77
 #, c-format
 msgid "As you know, <a href='%s'>a forum</a> for users is available where you can discuss problems and find solutions."
-msgstr ""
+msgstr "Όπως γνωρίζετε, <a href='%s'>ένα φόρουμ</a> για τους χρήστες είναι διαθέσιμο όπου μπορείτε να συζητήσετε προβλήματα και να βρείτε λύσεις."
 
 #: reports/bugreport.h:78
 #, c-format
@@ -5668,7 +5668,7 @@ msgstr "Παρακαλούμε ακολουθήστε τις παρακάτω ο
 #, c-format
 msgid "Cash Flow Forecast for %i Year Ahead"
 msgid_plural "Cash Flow Forecast for %i Years Ahead"
-msgstr[0] ""
+msgstr[0] "Πρόγνωση Ροής Μετρητών για %i Χρόνο Μπροστά"
 msgstr[1] ""
 
 #: reports/cashflow.cpp:254 reports/incexpenses.cpp:233 reports/payee.cpp:138
@@ -5681,11 +5681,11 @@ msgstr "Σύνολο κατηγορίας: "
 
 #: reports/categexp.cpp:220
 msgid "Total Expenses:"
-msgstr ""
+msgstr "Σύνολο Εξόδων:"
 
 #: reports/categexp.cpp:221
 msgid "Total Income:"
-msgstr ""
+msgstr "Συνολικό Εισόδημα:"
 
 #: reports/categexp.cpp:252
 msgid "Categories Summary"
@@ -5693,7 +5693,7 @@ msgstr "Σύνοψη Κατηγοριών"
 
 #: reports/categexp.cpp:261
 msgid "Category Income/Expenses"
-msgstr ""
+msgstr "Έσοδα/Έξοδα Κατηγορίας"
 
 #: reports/categexp.cpp:407
 msgid "Overall"
@@ -5701,25 +5701,25 @@ msgstr "Συνολικά"
 
 #: reports/categexp.cpp:437 reports/payee.cpp:136
 msgid "Incomes"
-msgstr ""
+msgstr "Έσοδα"
 
 #: reports/forecast.cpp:28
 msgid "Forecast"
-msgstr ""
+msgstr "Πρόβλεψη"
 
 #: reports/htmlbuilder.cpp:134
 #, c-format
 msgid "Report Generated %s %s"
-msgstr ""
+msgstr "Η αναφορά δημιουργήθηκε %s %s"
 
 #: reports/htmlbuilder.cpp:183
 #, c-format
 msgid "From %s till %s"
-msgstr ""
+msgstr "Από %s έως %s"
 
 #: reports/htmlbuilder.cpp:189 reports/mmDateRange.cpp:231
 msgid "Over Time"
-msgstr ""
+msgstr "Με Το Χρόνο"
 
 #: reports/incexpenses.cpp:33
 msgid "Income vs Expenses Summary"
@@ -5743,7 +5743,7 @@ msgstr "Τρέχων μήνας"
 
 #: reports/mmDateRange.cpp:93
 msgid "Today"
-msgstr ""
+msgstr "Σήμερα"
 
 #: reports/mmDateRange.cpp:102
 msgid "Current Month to Date"
@@ -5751,7 +5751,7 @@ msgstr "Τρέχων μήνας μέχρι σήμερα"
 
 #: reports/mmDateRange.cpp:110
 msgid "Last Month"
-msgstr ""
+msgstr "Προηγούμενος Μήνας"
 
 #: reports/mmDateRange.cpp:120
 msgid "Last 30 Days"
@@ -5759,15 +5759,15 @@ msgstr "Τελευταίες 30 ημέρες"
 
 #: reports/mmDateRange.cpp:130
 msgid "Last 90 Days"
-msgstr ""
+msgstr "Τελευταίες 90 Ημέρες"
 
 #: reports/mmDateRange.cpp:142
 msgid "Last 3 Months"
-msgstr ""
+msgstr "Τελευταίοι 3 Μήνες"
 
 #: reports/mmDateRange.cpp:154
 msgid "Last 12 Months"
-msgstr ""
+msgstr "Τελευταίοι 12 Μήνες"
 
 #: reports/mmDateRange.cpp:163
 msgid "Current Year"
@@ -5775,7 +5775,7 @@ msgstr "Τρέχον έτος"
 
 #: reports/mmDateRange.cpp:171 stockdialog.cpp:721
 msgid "Current Year to Date"
-msgstr ""
+msgstr "Τρέχον έτος έως σήμερα"
 
 #: reports/mmDateRange.cpp:180
 msgid "Last Year"
@@ -5787,7 +5787,7 @@ msgstr "Τρέχον οικονομικό έτος"
 
 #: reports/mmDateRange.cpp:212
 msgid "Current Financial Year to Date"
-msgstr ""
+msgstr "Τρέχον οικονομικό έτος έως σήμερα"
 
 #: reports/mmDateRange.cpp:223
 msgid "Last Financial Year"
@@ -5795,15 +5795,15 @@ msgstr "Τελευταίο οικονομικό έτος"
 
 #: reports/mmDateRange.cpp:242
 msgid "Custom"
-msgstr ""
+msgstr "Προσαρμοσμένο"
 
 #: reports/mmDateRange.cpp:252
 msgid "Last 365 Days"
-msgstr ""
+msgstr "Τελευταίες 365 Ημέρες"
 
 #: reports/myusage.cpp:27
 msgid "MMEX Usage Frequency"
-msgstr ""
+msgstr "Συχνότητα Χρήσης Mmex"
 
 #: reports/payee.cpp:32
 msgid "Payee Report"
@@ -5820,15 +5820,15 @@ msgstr "Επιλέξτε λογαριασμούς"
 #: reports/summary.cpp:144
 #, c-format
 msgid "Accounts Balance - %s"
-msgstr ""
+msgstr "Υπόλοιπο Λογαριασμών - %s"
 
 #: reports/summary.cpp:144
 msgid "Monthly Report"
-msgstr ""
+msgstr "Μηνιαία Αναφορά"
 
 #: reports/summary.cpp:144
 msgid "Yearly Report"
-msgstr ""
+msgstr "Ετήσια Έκθεση"
 
 #: reports/summarystocks.cpp:35
 msgid "Summary of Stocks"
@@ -5836,7 +5836,7 @@ msgstr "Περίληψη μετοχών"
 
 #: reports/summarystocks.cpp:192
 msgid "*Purchase Date"
-msgstr ""
+msgstr "*Ημερομηνία Αγοράς"
 
 #: reports/summarystocks.cpp:193
 msgid "Quantity"
