@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-02-09 23:37+0300\n"
-"PO-Revision-Date: 2021-02-16 10:31\n"
+"PO-Revision-Date: 2021-02-16 10:36\n"
 "Last-Translator: \n"
 "Language-Team: Greek\n"
 "MIME-Version: 1.0\n"
@@ -1930,16 +1930,17 @@ msgstr "Αντικατάσταση με"
 #: customfieldlistdialog.cpp:217
 msgid "Do you want to update to blank?\n"
 "Press no if you want to abort replace procedure!"
-msgstr ""
+msgstr "Θέλετε να ενημερώσετε κενό?\n"
+"Πατήστε όχι αν θέλετε να καταργήσετε τη διαδικασία αντικατάστασης!"
 
 #: customfieldlistdialog.cpp:233
 #, c-format
 msgid "%i occurrences founded and replaced!"
-msgstr ""
+msgstr "%i εμφανίσεις βρέθηκαν και αντικαταστάθηκαν!"
 
 #: customfieldlistdialog.cpp:268
 msgid "&Massive content update "
-msgstr ""
+msgstr "&Μαζική ενημέρωση περιεχομένου "
 
 #: db/DB_Table_Category_V1.h:111
 msgid "Bills"
@@ -2149,30 +2150,31 @@ msgstr "Εισόδημα από επενδύσεις"
 #: dbupgrade.cpp:72
 #, c-format
 msgid "MMEX database upgrade to version %i failed!"
-msgstr ""
+msgstr "Η αναβάθμιση της βάσης δεδομένων MMEX στην έκδοση %i απέτυχε!"
 
 #: dbupgrade.cpp:73
 msgid "Please restore DB from autocreated pre-upgrade backup and retry or contact MMEX support"
-msgstr ""
+msgstr "Παρακαλώ επαναφέρετε την DB από αυτόματη δημιουργία προ-αναβάθμιση αντίγραφο ασφαλείας και προσπαθήστε ξανά ή επικοινωνήστε με την υποστήριξη MMEX"
 
 #: dbupgrade.cpp:74 dbupgrade.cpp:108 dbupgrade.cpp:120
 msgid "MMEX database upgrade"
-msgstr ""
+msgstr "Αναβάθμιση βάσης δεδομένων MMEX"
 
 #: dbupgrade.cpp:106
 msgid "MMEX database error!"
-msgstr ""
+msgstr "Σφάλμα βάσης δεδομένων MMEX!"
 
 #: dbupgrade.cpp:107
 #, c-format
 msgid "MMEX database version %i doesn't work with this MMEX version.\n"
 "Please upgrade MMEX to newer version."
-msgstr ""
+msgstr "Η έκδοση %i της βάσης δεδομένων MMEX δεν λειτουργεί με αυτήν την έκδοση MMEX.\n"
+"Παρακαλώ αναβαθμίστε το MMEX σε νεότερη έκδοση."
 
 #: dbupgrade.cpp:119
 #, c-format
 msgid "MMEX database succesfully upgraded to version %i"
-msgstr ""
+msgstr "Η βάση δεδομένων MMEX αναβαθμίστηκε επιτυχώς στην έκδοση %i"
 
 #: dbupgrade.cpp:120
 msgid "We suggest a database optimization under Tools -> Database -> Optimize"
@@ -2180,7 +2182,7 @@ msgstr "Προτείνουμε να γίνει βελτιστοποίηση τη
 
 #: dbupgrade.cpp:197
 msgid "Load debug file"
-msgstr ""
+msgstr "Φόρτωση αρχείου αποσφαλμάτωσης"
 
 #: dbupgrade.cpp:204
 msgid "Wrong file type!"
@@ -2189,24 +2191,25 @@ msgstr "Λανθασμένος τύπος αρχείου!"
 #: dbupgrade.cpp:204 dbupgrade.cpp:241 dbupgrade.cpp:248 dbupgrade.cpp:292
 #: dbupgrade.cpp:303
 msgid "MMEX debug error"
-msgstr ""
+msgstr "Σφάλμα εντοπισμού σφαλμάτων MMEX"
 
 #: dbupgrade.cpp:241 dbupgrade.cpp:292
 msgid "Query error, please contact MMEX support!"
-msgstr ""
+msgstr "Σφάλμα ερωτήματος, παρακαλώ επικοινωνήστε με την υποστήριξη MMEX!"
 
 #: dbupgrade.cpp:248 dbupgrade.cpp:303
 msgid "Invalid file content, please contact MMEX support!"
-msgstr "Λανθασμένο περιεχόμενο αρχείου, παρακαλώ επικοινωνήστε με την υποστήριξη χρηστών του MMEX!"
+msgstr "Μη έγκυρο περιεχόμενο αρχείου, παρακαλώ επικοινωνήστε με την υποστήριξη MMEX!"
 
 #: dbupgrade.cpp:255
 msgid "Send this log to MMEX support team:\n"
 "press OK to save to file or Cancel to exit"
-msgstr ""
+msgstr "Στείλτε αυτό το αρχείο καταγραφής στην ομάδα υποστήριξης MMEX:\n"
+"πατήστε OK για να αποθηκεύσετε στο αρχείο ή Ακύρωση για έξοδο"
 
 #: dbupgrade.cpp:256 dbupgrade.cpp:299
 msgid "MMEX debug"
-msgstr ""
+msgstr "MMEX αποσφαλμάτωση"
 
 #: dbupgrade.cpp:259
 msgid "Save debug file"
