@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-02-09 23:37+0300\n"
-"PO-Revision-Date: 2021-02-16 17:12\n"
+"PO-Revision-Date: 2021-02-16 17:23\n"
 "Last-Translator: \n"
 "Language-Team: Greek\n"
 "MIME-Version: 1.0\n"
@@ -3188,31 +3188,31 @@ msgstr "Επιλογές Ιστορικού Νομίσματος"
 #: maincurrencydialog.cpp:242 stockdialog.cpp:304 stockdialog.cpp:323
 #: stockdialog.cpp:676
 msgid "Price"
-msgstr ""
+msgstr "Τιμή"
 
 #: maincurrencydialog.cpp:264
 msgid "Specify the date of currency value"
-msgstr ""
+msgstr "Καθορίστε την ημερομηνία της αξίας νομίσματος"
 
 #: maincurrencydialog.cpp:272
 msgid "Enter the currency value"
-msgstr ""
+msgstr "Εισάγετε την αξία του νομίσματος"
 
 #: maincurrencydialog.cpp:282
 msgid "Download Currency Values history"
-msgstr ""
+msgstr "Λήψη ιστορικού τιμών νομισμάτων"
 
 #: maincurrencydialog.cpp:285
 msgid "&Add / Update "
-msgstr ""
+msgstr "&Προσθήκη / Ενημέρωση "
 
 #: maincurrencydialog.cpp:286
 msgid "Add Currency Values to history"
-msgstr ""
+msgstr "Προσθήκη τιμών συναλλάγματος στο ιστορικό"
 
 #: maincurrencydialog.cpp:290
 msgid "Delete selected Currency Values"
-msgstr ""
+msgstr "Διαγραφή επιλεγμένων τιμών νομίσματος"
 
 #: maincurrencydialog.cpp:294
 msgid "Delete Currency Values history for unused currencies and days"
@@ -3220,7 +3220,7 @@ msgstr "Διαγραφή ιστορικού Τιμών Ισοτιμίας για
 
 #: maincurrencydialog.cpp:351
 msgid "Do you really want to delete the selected Currency?"
-msgstr ""
+msgstr "Θέλετε πραγματικά να διαγράψετε το επιλεγμένο Νόμισμα;"
 
 #: maincurrencydialog.cpp:352 maincurrencydialog.cpp:422
 #: maincurrencydialog.cpp:648 maincurrencydialog.cpp:765
@@ -3230,7 +3230,7 @@ msgstr "Παράθυρο νομισμάτων"
 
 #: maincurrencydialog.cpp:380
 msgid "Base Currency Selection"
-msgstr ""
+msgstr "Επιλογή Βασικού Νομίσματος"
 
 #: maincurrencydialog.cpp:420
 #, c-format
@@ -3242,56 +3242,56 @@ msgstr "Βρέθηκαν ιστορικές τιμές για το %s, αλλά 
 #: maincurrencydialog.cpp:432
 #, c-format
 msgid "Currency History Options: %s "
-msgstr ""
+msgstr "Επιλογές ιστορικού νομίσματος: %s "
 
 #: maincurrencydialog.cpp:488
 msgid "Unable to update history currency rates. Please update them manually!"
-msgstr ""
+msgstr "Δεν είναι δυνατή η ενημέρωση του ιστορικού των συναλλαγματικών ισοτιμιών. Παρακαλούμε ενημερώστε τα χειροκίνητα!"
 
 #: maincurrencydialog.cpp:489 maincurrencydialog.cpp:641
 #: maincurrencydialog.cpp:668 maincurrencydialog.cpp:704
 #: maincurrencydialog.cpp:810
 msgid "Currency history error"
-msgstr ""
+msgstr "Σφάλμα νομισματικού ιστορικού"
 
 #: maincurrencydialog.cpp:521
 msgid "Set as Base Currency"
-msgstr ""
+msgstr "Ορισμός ως βασικό νόμισμα"
 
 #: maincurrencydialog.cpp:522
 msgid "Online Update Currency Rate"
-msgstr ""
+msgstr "Διαδικτυακή ενημέρωση ισοτιμίας Συναλλάγματος"
 
 #: maincurrencydialog.cpp:641
 msgid "No currency selected!"
-msgstr ""
+msgstr "Δεν επιλέχθηκε νόμισμα!"
 
 #: maincurrencydialog.cpp:647
 msgid "Do you want to add also dates without any transaction?"
-msgstr ""
+msgstr "Θέλετε να προσθέσετε επίσης ημερομηνίες χωρίς καμία συναλλαγή;"
 
 #: maincurrencydialog.cpp:666
 #, c-format
 msgid "Unable to download %s currency rates"
-msgstr ""
+msgstr "Δεν είναι δυνατή η λήψη %s ισοτιμίας συναλλάγματος"
 
 #: maincurrencydialog.cpp:702
 #, c-format
 msgid "Unable to download history for symbol %s. History rates not available!"
-msgstr ""
+msgstr "Δεν είναι δυνατή η λήψη του ιστορικού για το σύμβολο %s. Οι τιμές ιστορικού δεν είναι διαθέσιμες!"
 
 #: maincurrencydialog.cpp:764
 msgid "Changing base currency will delete all history rates, proceed?"
-msgstr ""
+msgstr "Η αλλαγή του βασικού νομίσματος θα διαγράψει όλες τις τιμές ιστορικού, θα προχωρήσει;"
 
 #: maincurrencydialog.cpp:788
 msgid "Do you want to update today currency rates?"
-msgstr ""
+msgstr "Θέλετε να ενημερώσετε σήμερα τις συναλλαγματικές ισοτιμίες;"
 
 #: maincurrencydialog.cpp:809
 #, c-format
 msgid "Unable to download history for base symbol %s. History rates not available!"
-msgstr ""
+msgstr "Δεν είναι δυνατή η λήψη του ιστορικού για το σύμβολο βάσης %s. Οι τιμές ιστορικού δεν είναι διαθέσιμες!"
 
 #: maincurrencydialog.cpp:853 stockspanel.cpp:830 util.cpp:514
 msgid "Could not find base currency symbol!"
@@ -3316,48 +3316,49 @@ msgstr "Προσθέστε ένα χρόνο"
 #: mmSimpleDialogs.cpp:237
 #, c-format
 msgid "Entry %s is invalid"
-msgstr ""
+msgstr "Η καταχώρηση %s δεν είναι έγκυρη"
 
 #: mmSimpleDialogs.cpp:244
 msgid "Please use this button for category selection."
-msgstr ""
+msgstr "Παρακαλώ χρησιμοποιήστε αυτό το κουμπί για την επιλογή κατηγορίας."
 
 #: mmSimpleDialogs.cpp:245
 msgid "Please use this button for category selection\n"
 "or use the 'Split' checkbox for multiple categories."
-msgstr ""
+msgstr "Παρακαλούμε χρησιμοποιήστε αυτό το κουμπί για την επιλογή κατηγορίας\n"
+"ή χρησιμοποιήστε το πλαίσιο ελέγχου 'Διαχωρισμός' για πολλαπλές κατηγορίες."
 
 #: mmSimpleDialogs.cpp:248
 msgid "Invalid Category"
-msgstr ""
+msgstr "Μη Έγκυρη Κατηγορία"
 
 #: mmSimpleDialogs.cpp:253
 msgid "File name is empty."
-msgstr ""
+msgstr "Το όνομα αρχείου είναι κενό."
 
 #: mmSimpleDialogs.cpp:254
 msgid "Please select the file for this operation."
-msgstr ""
+msgstr "Παρακαλώ επιλέξτε το αρχείο για αυτήν τη λειτουργία."
 
 #: mmSimpleDialogs.cpp:261
 msgid "Invalid Account"
-msgstr ""
+msgstr "Μη Έγκυρος Λογαριασμός"
 
 #: mmSimpleDialogs.cpp:264
 msgid "Please select the account for this transaction."
-msgstr ""
+msgstr "Παρακαλώ επιλέξτε το λογαριασμό για αυτή τη συναλλαγή."
 
 #: mmSimpleDialogs.cpp:266
 msgid "Please specify which account the transfer is going to."
-msgstr ""
+msgstr "Παρακαλείστε να προσδιορίσετε σε ποιο λογαριασμό θα γίνει η μεταφορά."
 
 #: mmSimpleDialogs.cpp:268 transactionsupdatedialog.cpp:248
 msgid "Selection can be made by using the dropdown button."
-msgstr ""
+msgstr "Η επιλογή μπορεί να γίνει με τη χρήση του αναδιπλούμενου κουμπιού."
 
 #: mmSimpleDialogs.cpp:271
 msgid "Activating the button will provide a selection box where the account can be selected."
-msgstr ""
+msgstr "Η ενεργοποίηση του κουμπιού θα παρέχει ένα πλαίσιο επιλογής όπου μπορεί να επιλεγεί ο λογαριασμός."
 
 #: mmSimpleDialogs.cpp:280
 msgid "Invalid Payee"
