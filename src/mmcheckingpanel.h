@@ -56,6 +56,9 @@ public:
 
     void RefreshList();
 
+    wxString BuildPage() const;
+
+
 private:
     enum
     {
@@ -171,6 +174,7 @@ private:
     /* updates the checking panel data */
     void showTips();
     void updateExtraTransactionData(bool single);
+    wxString GetPanelTitle(const Model_Account::Data& account) const;
     static void mmPlayTransactionSound();
     mmGUIFrame* m_frame;
 };
