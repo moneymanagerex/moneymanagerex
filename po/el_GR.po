@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-02-09 23:37+0300\n"
-"PO-Revision-Date: 2021-02-16 10:36\n"
+"PO-Revision-Date: 2021-02-16 10:42\n"
 "Last-Translator: \n"
 "Language-Team: Greek\n"
 "MIME-Version: 1.0\n"
@@ -2213,11 +2213,11 @@ msgstr "MMEX αποσφαλμάτωση"
 
 #: dbupgrade.cpp:259
 msgid "Save debug file"
-msgstr ""
+msgstr "Αποθήκευση αρχείου αποσφαλμάτωσης"
 
 #: dbupgrade.cpp:299
 msgid "DB maintenance completed, please close and re-open MMEX!"
-msgstr ""
+msgstr "Η συντήρηση της DB ολοκληρώθηκε, κλείστε και ανοίξτε ξανά το MMEX!"
 
 #: dbwrapper.cpp:70
 msgid "When database file opening:"
@@ -2270,15 +2270,15 @@ msgstr "Διπλότυπο"
 
 #: filtertransdialog.cpp:48 filtertransdialog.cpp:898
 msgid "Un-Reconciled"
-msgstr ""
+msgstr "Μη Τακτοποιημένο"
 
 #: filtertransdialog.cpp:49 filtertransdialog.cpp:899
 msgid "All Except Reconciled"
-msgstr ""
+msgstr "Όλα Εκτός Επανασύνδεσης"
 
 #: filtertransdialog.cpp:157 transactionsupdatedialog.cpp:100
 msgid "Specify"
-msgstr ""
+msgstr "Καθορισμός"
 
 #: filtertransdialog.cpp:187 reports/mmDateRange.cpp:27
 msgid "Date Range"
@@ -2286,11 +2286,11 @@ msgstr "Εύρος ημερομηνιών"
 
 #: filtertransdialog.cpp:229 filtertransdialog.cpp:889
 msgid "Include Similar"
-msgstr ""
+msgstr "Συμπερίληψη Παρόμοιων"
 
 #: filtertransdialog.cpp:231
 msgid "Include all subcategories for the selected category."
-msgstr ""
+msgstr "Συμπερίληψη όλων των υποκατηγοριών για την επιλεγμένη κατηγορία."
 
 #: filtertransdialog.cpp:257 import_export/univcsvdialog.cpp:112
 #: mmchecking_list.cpp:182 model/Model_Billsdeposits.cpp:31
