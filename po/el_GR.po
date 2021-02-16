@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-02-09 23:37+0300\n"
-"PO-Revision-Date: 2021-02-16 17:33\n"
+"PO-Revision-Date: 2021-02-16 17:49\n"
 "Last-Translator: \n"
 "Language-Team: Greek\n"
 "MIME-Version: 1.0\n"
@@ -3611,19 +3611,18 @@ msgstr "Παρακολούθηση"
 
 #: mmchecking_list.cpp:421
 msgid "Unreconciled"
-msgstr ""
+msgstr "Ανεπιβεβαίωτη"
 
 #: mmchecking_list.cpp:424
 #, c-format
 msgid "Do you really want to delete all the \"%s\" transactions shown?"
-msgstr ""
+msgstr "Θέλετε πραγματικά να διαγράψετε όλες τις \"%s\" συναλλαγές που εμφανίζονται;"
 
 #: mmchecking_list.cpp:755
 #, c-format
 msgid "Do you really want to delete the selected transaction?"
 msgid_plural "Do you really want to delete %i selected transactions?"
-msgstr[0] "Θέλετε πραγματικά να διαγράψετε την επιλεγμένη συναλλαγή;\n\n"
-"Θέλετε πραγματικά να διαγράψετε %i επιλεγμένες συναλλαγές;"
+msgstr[0] "Θέλετε πραγματικά να διαγράψετε την επιλεγμένη συναλλαγή;"
 msgstr[1] ""
 
 #: mmchecking_list.cpp:808
@@ -3634,12 +3633,12 @@ msgstr "Κλειδωμένη συναλλαγή μέχρι την ημερομη
 
 #: mmchecking_list.cpp:811 transdialog.cpp:713 transdialog.cpp:746
 msgid "MMEX Transaction Check"
-msgstr ""
+msgstr "Έλεγχος Συναλλαγής MMEX"
 
 #: mmchecking_list.cpp:962 stockspanel.cpp:292
 #, c-format
 msgid "Moving Transaction from %s to..."
-msgstr ""
+msgstr "Μετακίνηση συναλλαγής από %s σε..."
 
 #: mmchecking_list.cpp:965 stockspanel.cpp:293
 msgid "Select the destination Account "
@@ -3679,11 +3678,12 @@ msgstr "Διαγραφή της επιλεγμένης συναλλαγής"
 
 #: mmcheckingpanel.cpp:341
 msgid "D&uplicate "
-msgstr ""
+msgstr "Δ\n"
+"Διπλότυπη "
 
 #: mmcheckingpanel.cpp:342
 msgid "Duplicate selected transaction"
-msgstr ""
+msgstr "Αντιγραφή επιλεγμένης συναλλαγής"
 
 #: mmcheckingpanel.cpp:359
 msgid "Enter any string to find it in the nearest transaction notes"
@@ -3692,53 +3692,54 @@ msgstr "Εισάγετε κάποια φράση για να τη βρείτε �
 #: mmcheckingpanel.cpp:376
 #, c-format
 msgid "Account View : %s"
-msgstr ""
+msgstr "Προβολή λογαριασμού: %s"
 
 #: mmcheckingpanel.cpp:601
 msgid "Select account used in transfer transactions"
-msgstr ""
+msgstr "Επιλέξτε λογαριασμό που χρησιμοποιείται στις συναλλαγές μεταφοράς"
 
 #: mmcustomdata.cpp:63
 msgid "Custom fields"
-msgstr ""
+msgstr "Προσαρμοσμένα πεδία"
 
 #: mmcustomdata.cpp:333
 msgid "Please select"
-msgstr ""
+msgstr "Παρακαλώ επιλέξτε"
 
 #: mmcustomdata.cpp:333
 msgid "Multi Choice"
-msgstr ""
+msgstr "Πολλαπλή Επιλογή"
 
 #: mmcustomdata.cpp:448
 #, c-format
 msgid "Unable to save custom field \"%s\":\n"
 "value \"%s\" does not match RegEx validation \"%s\""
-msgstr ""
+msgstr "Αδυναμία αποθήκευσης προσαρμοσμένου πεδίου \"%s\": η τιμή \"%s\" δεν ταιριάζει με την επικύρωση RegEx \"%s\""
 
 #: mmcustomdata.cpp:449
 msgid "CustomField validation error"
-msgstr ""
+msgstr "Σφάλμα επικύρωσης CustomField"
 
 #: mmex.cpp:128
 #, c-format
 msgid "Cannot load a translation for the default language of your system (%s)."
-msgstr ""
+msgstr "Δεν είναι δυνατή η φόρτωση μετάφρασης για την προεπιλεγμένη γλώσσα του συστήματός σας (%s)."
 
 #: mmex.cpp:135
 #, c-format
 msgid "Please use the Switch Application Language option in View menu to select one of the following available languages:\n\n"
 "%s"
-msgstr ""
+msgstr "Παρακαλούμε χρησιμοποιήστε την επιλογή Switch Application Language στο μενού προβολής για να επιλέξετε μία από τις ακόλουθες διαθέσιμες γλώσσες: %s"
 
 #: mmex.cpp:140 mmframe.cpp:3210
 msgid "Language change"
-msgstr ""
+msgstr "Αλλαγή γλώσσας"
 
 #: mmex.cpp:180
 msgid "Fatal error occured.\n"
 "Application will be terminated."
-msgstr ""
+msgstr "Παρουσιάστηκε μοιραίο σφάλμα.\n"
+"Η εφαρμογή θα τερματιστεί."
 
 #: mmframe.cpp:260
 msgid "Navigation"
@@ -3746,15 +3747,15 @@ msgstr "Πλοήγηση"
 
 #: mmframe.cpp:261
 msgid "Toolbar"
-msgstr ""
+msgstr "Γραμμή Εργαλείων"
 
 #: mmframe.cpp:456 mmframe.cpp:680 mmhomepage.cpp:635 reports/summary.cpp:157
 msgid "Bank Accounts"
-msgstr "Τραπεζικοί λογαριασμοί"
+msgstr "Τραπεζικοί Λογαριασμοί"
 
 #: mmframe.cpp:457 mmframe.cpp:684 mmhomepage.cpp:636 reports/summary.cpp:158
 msgid "Credit Card Accounts"
-msgstr ""
+msgstr "Λογαριασμοί Πιστωτικής Κάρτας"
 
 #: mmframe.cpp:458 mmframe.cpp:696 mmhomepage.cpp:638 reports/summary.cpp:160
 msgid "Term Accounts"
@@ -3762,19 +3763,19 @@ msgstr "Προθεσμιακοί λογαριασμοί"
 
 #: mmframe.cpp:459 mmframe.cpp:700
 msgid "Stock Portfolios"
-msgstr ""
+msgstr "Χαρτοφυλάκια Αποθεμάτων"
 
 #: mmframe.cpp:460 mmframe.cpp:688 mmhomepage.cpp:634
 msgid "Cash Accounts"
-msgstr ""
+msgstr "Λογαριασμοί Μετρητών"
 
 #: mmframe.cpp:461 mmframe.cpp:692 mmhomepage.cpp:637 reports/summary.cpp:159
 msgid "Loan Accounts"
-msgstr ""
+msgstr "Δανειακοί Λογαριασμοί"
 
 #: mmframe.cpp:493
 msgid "Auto Repeat Transactions"
-msgstr ""
+msgstr "Συναλλαγές Αυτόματης Επανάληψης"
 
 #: mmframe.cpp:675
 msgid "Home Page"
@@ -3782,7 +3783,7 @@ msgstr "Αρχική σελίδα"
 
 #: mmframe.cpp:704
 msgid "Share Accounts"
-msgstr ""
+msgstr "Κοινόχρηστοι λογαριασμοί"
 
 #: mmframe.cpp:716 mmframe.cpp:1482
 msgid "Budget Setup"
@@ -3818,7 +3819,7 @@ msgstr "&Επεξεργασία λογαριασμού"
 
 #: mmframe.cpp:1198 mmframe.cpp:1422
 msgid "&Reallocate Account"
-msgstr ""
+msgstr "&Ανακατανομή Λογαριασμού"
 
 #: mmframe.cpp:1199 mmframe.cpp:1234 mmframe.cpp:1426
 msgid "&Delete Account"
@@ -3842,7 +3843,7 @@ msgstr "&CSV αρχεία..."
 
 #: mmframe.cpp:1244 mmframe.cpp:1250 mmframe.cpp:1316 mmframe.cpp:1324
 msgid "&XML Files..."
-msgstr ""
+msgstr "&XML Αρχεία..."
 
 #: mmframe.cpp:1245 mmframe.cpp:1251 mmframe.cpp:1317 mmframe.cpp:1325
 msgid "&QIF Files..."
@@ -3854,7 +3855,7 @@ msgstr "Αρχεία &JSON..."
 
 #: mmframe.cpp:1250 mmframe.cpp:1324
 msgid "Import from XML (Excel format)"
-msgstr ""
+msgstr "Εισαγωγή από XML (μορφή Excel)"
 
 #: mmframe.cpp:1261 optionsettingsview.cpp:61
 msgid "Accounts Visible"
@@ -3898,7 +3899,7 @@ msgstr "Εξαγωγή σε CSV"
 
 #: mmframe.cpp:1316
 msgid "Export to XML"
-msgstr ""
+msgstr "Εξαγωγή σε XML"
 
 #: mmframe.cpp:1318
 msgid "Export to JSON"
@@ -3922,11 +3923,11 @@ msgstr "Εισαγωγή από QIF"
 
 #: mmframe.cpp:1326
 msgid "&WebApp..."
-msgstr ""
+msgstr "&WebApp..."
 
 #: mmframe.cpp:1326
 msgid "Import from WebApp"
-msgstr ""
+msgstr "Εισαγωγή από WebApp"
 
 #: mmframe.cpp:1332 mmframe.cpp:1711
 msgid "&Print..."
@@ -3934,15 +3935,15 @@ msgstr "&Εκτύπωση..."
 
 #: mmframe.cpp:1332 mmframe.cpp:1711
 msgid "Print current view"
-msgstr ""
+msgstr "Εκτύπωση τρέχουσας προβολής"
 
 #: mmframe.cpp:1339
 msgid "E&xit\tAlt-X"
-msgstr ""
+msgstr "Έξοδος Alt-X"
 
 #: mmframe.cpp:1339
 msgid "Quit this program"
-msgstr "Έξοδος από το πρόγραμμα"
+msgstr "Κλείστε αυτό το πρόγραμμα"
 
 #: mmframe.cpp:1346
 msgid "&Toolbar"
@@ -3962,11 +3963,11 @@ msgstr "Εμφάνιση/Απόκρυψη του δέντρου πλοήγηση
 
 #: mmframe.cpp:1350
 msgid "&Display Share Accounts"
-msgstr ""
+msgstr "&Εμφάνιση Κοινόχρηστων Λογαριασμών"
 
 #: mmframe.cpp:1350
 msgid "Show/Hide Share Accounts in the navigation tree"
-msgstr ""
+msgstr "Εμφάνιση/Απόκρυψη κοινόχρηστων λογαριασμών στο δέντρο πλοήγησης"
 
 #: mmframe.cpp:1353
 msgid "Budgets: As &Financial Years"
@@ -3986,11 +3987,11 @@ msgstr "Συμπεριλάβετε τις συναλλαγές μεταφορά�
 
 #: mmframe.cpp:1357
 msgid "Budget Category Report: with &Summaries"
-msgstr ""
+msgstr "Έκθεση κατηγορίας προϋπολογισμού: με &περιλήψεις"
 
 #: mmframe.cpp:1357
 msgid "Include the category summaries in the Budget Category Summary"
-msgstr ""
+msgstr "Συμπεριλάβετε τις περιλήψεις κατηγοριών στη Περίληψη της Κατηγορίας Προϋπολογισμού"
 
 #: mmframe.cpp:1359
 msgid "Ignore F&uture Transactions"
@@ -4006,19 +4007,19 @@ msgstr "Εναλλαγή σε πλήρη οθόνη\tShift+F11"
 
 #: mmframe.cpp:1376 mmframe.cpp:1708
 msgid "Toggle Fullscreen"
-msgstr ""
+msgstr "Εναλλαγή Πλήρους Οθόνης"
 
 #: mmframe.cpp:1383
 msgid "Switch Application Language"
-msgstr ""
+msgstr "Εναλλαγή Γλώσσας Εφαρμογής"
 
 #: mmframe.cpp:1384
 msgid "Change language used for MMEX GUI"
-msgstr ""
+msgstr "Αλλαγή γλώσσας που χρησιμοποιείται για το γραφικό περιβάλλον MMEX"
 
 #: mmframe.cpp:1390
 msgid "system default"
-msgstr ""
+msgstr "προεπιλογή συστήματος"
 
 #: mmframe.cpp:1410
 msgid "Account &List"
