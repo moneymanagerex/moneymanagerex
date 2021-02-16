@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-02-09 23:37+0300\n"
-"PO-Revision-Date: 2021-02-16 09:43\n"
+"PO-Revision-Date: 2021-02-16 10:31\n"
 "Last-Translator: \n"
 "Language-Team: Greek\n"
 "MIME-Version: 1.0\n"
@@ -699,47 +699,47 @@ msgstr "Αυτός ο κατάλογος και τα αρχεία του δια�
 
 #: attachmentdialog.cpp:370
 msgid "Please do not remove, rename or modify manually directories and files."
-msgstr ""
+msgstr "Παρακαλώ μην καταργείτε, μετονομάσετε ή τροποποιήσετε χειροκίνητα καταλόγους και αρχεία."
 
 #: attachmentdialog.cpp:415 attachmentdialog.cpp:423
 msgid "Destination file already exist:"
-msgstr ""
+msgstr "Το αρχείο προορισμού υπάρχει ήδη:"
 
 #: attachmentdialog.cpp:418
 msgid "File not found in attachments. Please delete or rename it."
-msgstr ""
+msgstr "Το αρχείο δεν βρέθηκε στα συνημμένα. Παρακαλούμε διαγράψτε το ή μετονομάστε το."
 
 #: attachmentdialog.cpp:419 attachmentdialog.cpp:427
 msgid "Destination file already exist"
-msgstr ""
+msgstr "Το αρχείο προορισμού υπάρχει ήδη"
 
 #: attachmentdialog.cpp:426
 msgid "File already found in attachments"
-msgstr ""
+msgstr "Το αρχείο βρέθηκε ήδη στα συνημμένα"
 
 #: attachmentdialog.cpp:469
 msgid "Attachment not found:"
-msgstr ""
+msgstr "Το συνημμένο δεν βρέθηκε:"
 
 #: attachmentdialog.cpp:472
 msgid "Do you want to continue and delete attachment on database?"
-msgstr ""
+msgstr "Θέλετε να συνεχίσετε και να διαγράψετε το συνημμένο στη βάση δεδομένων;"
 
 #: attachmentdialog.cpp:473
 msgid "Delete attachment failed"
-msgstr ""
+msgstr "Αποτυχία διαγραφής συνημμένου"
 
 #: attachmentdialog.cpp:486
 msgid "Unable to open file:"
-msgstr ""
+msgstr "Αδυναμία ανοίγματος αρχείου:"
 
 #: attachmentdialog.cpp:489
 msgid "Please verify that file exists and user has rights to read it."
-msgstr ""
+msgstr "Παρακαλώ επιβεβαιώστε ότι το αρχείο υπάρχει και ο χρήστης έχει δικαιώματα να το διαβάσει."
 
 #: attachmentdialog.cpp:490
 msgid "Open attachment failed"
-msgstr ""
+msgstr "Αποτυχία ανοίγματος συνημμένου"
 
 #: billsdepositsdialog.cpp:50 billsdepositspanel.cpp:39
 #: filtertransdialog.cpp:43 mmSimpleDialogs.cpp:36 model/Model_Asset.cpp:23
@@ -747,7 +747,7 @@ msgstr ""
 #: model/Model_Checking.cpp:36 optionsettingsmisc.cpp:95
 #: reports/reportbase.cpp:189
 msgid "None"
-msgstr "Τίποτα"
+msgstr "Κανένα"
 
 #: billsdepositsdialog.cpp:51 billsdepositspanel.cpp:40
 #: model/Model_Budget.cpp:56
@@ -757,7 +757,7 @@ msgstr "Ανά εβδομάδα"
 #: billsdepositsdialog.cpp:52 billsdepositspanel.cpp:41
 #: model/Model_Budget.cpp:57
 msgid "Fortnightly"
-msgstr ""
+msgstr "Δεκαπενθήμερα"
 
 #: billsdepositsdialog.cpp:53 billsdepositspanel.cpp:42 mmframereport.cpp:129
 #: mmframereport.cpp:137 mmframereport.cpp:159 mmframereport.cpp:177
@@ -800,51 +800,51 @@ msgstr "Ανά ημέρα"
 
 #: billsdepositsdialog.cpp:61 billsdepositsdialog.cpp:1341
 msgid "In (x) Days"
-msgstr ""
+msgstr "Σε (X) Ημέρες"
 
 #: billsdepositsdialog.cpp:62 billsdepositsdialog.cpp:1341
 msgid "In (x) Months"
-msgstr ""
+msgstr "Σε (X) Μήνες"
 
 #: billsdepositsdialog.cpp:63
 msgid "Every (x) Days"
-msgstr ""
+msgstr "Κάθε (X) Ημέρες"
 
 #: billsdepositsdialog.cpp:64
 msgid "Every (x) Months"
-msgstr ""
+msgstr "Κάθε (X) Μήνες"
 
 #: billsdepositsdialog.cpp:65 billsdepositspanel.cpp:54
 msgid "Monthly (last day)"
-msgstr ""
+msgstr "Μηνιαία (τελευταία ημέρα)"
 
 #: billsdepositsdialog.cpp:66 billsdepositspanel.cpp:55
 msgid "Monthly (last business day)"
-msgstr ""
+msgstr "Μηνιαία (τελευταία εργάσιμη ημέρα)"
 
 #: billsdepositsdialog.cpp:299
 msgid "Edit Recurring Transaction"
-msgstr ""
+msgstr "Επεξεργασία Επαναλαμβανόμενης Συναλλαγής"
 
 #: billsdepositsdialog.cpp:303
 msgid "Enter Recurring Transaction"
-msgstr ""
+msgstr "Εισάγετε Επαναλαμβανόμενη Συναλλαγή"
 
 #: billsdepositsdialog.cpp:400
 msgid "Recurring Transaction Details"
-msgstr ""
+msgstr "Λεπτομέρειες Επαναλαμβανόμενης Συναλλαγής"
 
 #: billsdepositsdialog.cpp:412
 msgid "Specify the date the user is requested to enter this transaction"
-msgstr ""
+msgstr "Καθορίστε την ημερομηνία που ο χρήστης καλείται να εισαγάγει αυτή τη συναλλαγή"
 
 #: billsdepositsdialog.cpp:422
 msgid "Advance or retard the user request date of this transaction"
-msgstr ""
+msgstr "Προετοιμασία ή καθυστέρηση της ημερομηνίας αίτησης του χρήστη αυτής της συναλλαγής"
 
 #: billsdepositsdialog.cpp:427 billsdepositspanel.cpp:97
 msgid "Date Paid"
-msgstr ""
+msgstr "Ημερομηνία Πληρωμής"
 
 #: billsdepositsdialog.cpp:431 billsdepositsdialog.cpp:1254
 msgid "Repeats"
@@ -852,43 +852,43 @@ msgstr "Επαναλήψεις"
 
 #: billsdepositsdialog.cpp:438
 msgid "Advance the next occurring date with the specified values"
-msgstr ""
+msgstr "Προκαταβολή της επόμενης ημερομηνίας που λαμβάνει χώρα με τις καθορισμένες τιμές"
 
 #: billsdepositsdialog.cpp:445 billsdepositsdialog.cpp:1298
 msgid "Payments Left"
-msgstr ""
+msgstr "Πληρωμές Που Απομένουν"
 
 #: billsdepositsdialog.cpp:459
 msgid "Request user to enter payment"
-msgstr ""
+msgstr "Αίτηση χρήστη για εισαγωγή πληρωμής"
 
 #: billsdepositsdialog.cpp:460
 msgid "User requested to enter this transaction on the 'Date Paid'"
-msgstr ""
+msgstr "Ο χρήστης ζήτησε να εισαγάγει αυτή τη συναλλαγή στο 'Ημερομηνία πληρωμής'"
 
 #: billsdepositsdialog.cpp:463
 msgid "Grant automatic execute"
-msgstr ""
+msgstr "Παραχώρηση αυτόματης εκτέλεσης"
 
 #: billsdepositsdialog.cpp:464
 msgid "The requested payment will occur without user interaction"
-msgstr ""
+msgstr "Η ζητούμενη πληρωμή θα συμβεί χωρίς αλληλεπίδραση του χρήστη"
 
 #: billsdepositsdialog.cpp:488 transdialog.cpp:425
 msgid "Transaction Details"
-msgstr "Λεπτομέρειες συναλλαγής"
+msgstr "Λεπτομέρειες Συναλλαγής"
 
 #: billsdepositsdialog.cpp:498
 msgid "Specify the date when this bill or deposit is due"
-msgstr ""
+msgstr "Καθορίστε την ημερομηνία λήξης αυτού του λογαριασμού ή της κατάθεσης"
 
 #: billsdepositsdialog.cpp:508
 msgid "Retard or advance the date of the 'next occurrence'"
-msgstr ""
+msgstr "Καθυστέρηση ή προώθηση της ημερομηνίας της «επόμενης συναλλαγής»"
 
 #: billsdepositsdialog.cpp:513 billsdepositspanel.cpp:98
 msgid "Date Due"
-msgstr ""
+msgstr "Ημερομηνία Λήξης"
 
 #: billsdepositsdialog.cpp:524 filtertransdialog.cpp:248 transdialog.cpp:1272
 msgid "Specify the status for the transaction"
@@ -910,7 +910,7 @@ msgstr "Καθορίστε τον τύπο της συναλλαγής που θ
 
 #: billsdepositsdialog.cpp:532 transdialog.cpp:484
 msgid "&Advanced"
-msgstr ""
+msgstr "&Προχωρημένα"
 
 #: billsdepositsdialog.cpp:535 transdialog.cpp:1277
 msgid "Allows the setting of different amounts in the FROM and TO accounts."
@@ -1008,7 +1008,7 @@ msgstr "Αριθμός"
 
 #: billsdepositsdialog.cpp:618
 msgid "Organize attachments of this recurring transaction"
-msgstr ""
+msgstr "Οργάνωση συνημμένων αυτής της επαναλαμβανόμενης συναλλαγής"
 
 #: billsdepositsdialog.cpp:622 transdialog.cpp:569 usertransactionpanel.cpp:216
 msgid "Select one of the frequently used notes"
@@ -1059,49 +1059,54 @@ msgstr "Περίοδος: Μήνες"
 #: billsdepositsdialog.cpp:1265
 msgid "Specify period in Days to activate.\n"
 "Becomes blank when not active."
-msgstr ""
+msgstr "Καθορίστε το χρονικό διάστημα σε ημέρες για την ενεργοποίηση.\n"
+"Να παραμείνει κενό όταν δεν είναι ενεργό."
 
 #: billsdepositsdialog.cpp:1274
 msgid "Specify period in Months to activate.\n"
 "Becomes blank when not active."
-msgstr ""
+msgstr "Καθορίστε το χρονικό διάστημα σε μήνες για την ενεργοποίηση.\n"
+"Να παραμείνει κενό όταν δεν είναι ενεργό."
 
 #: billsdepositsdialog.cpp:1283
 msgid "Specify period in Days to activate.\n"
 "Leave blank when not active."
-msgstr ""
+msgstr "Καθορίστε την περίοδο σε ημέρες για την ενεργοποίηση.\n"
+"Αφήστε κενό όταν δεν είναι ενεργό."
 
 #: billsdepositsdialog.cpp:1291
 msgid "Specify period in Months to activate.\n"
 "Leave blank when not active."
-msgstr ""
+msgstr "Καθορίστε την περίοδο σε μήνες για την ενεργοποίηση.\n"
+"Αφήστε κενό όταν δεν είναι ενεργό."
 
 #: billsdepositsdialog.cpp:1299
 msgid "Specify the number of payments to be made.\n"
 "Leave blank if the payments continue forever."
-msgstr ""
+msgstr "Καθορίστε τον αριθμό των πληρωμών που πρέπει να γίνουν.\n"
+"Αφήστε το κενό αν οι πληρωμές συνεχιστούν για πάντα."
 
 #: billsdepositsdialog.cpp:1325 billsdepositsdialog.cpp:1334
 #: filtertransdialog.cpp:418 filtertransdialog.cpp:435
 #: filtertransdialog.cpp:446 filtertransdialog.cpp:462
 #: filtertransdialog.cpp:471 util.cpp:560
 msgid "Invalid value"
-msgstr ""
+msgstr "Μη έγκυρη τιμή"
 
 #: billsdepositsdialog.cpp:1325 billsdepositsdialog.cpp:1334
 #: billsdepositsdialog.cpp:1342 maincurrencydialog.cpp:467 mmframe.cpp:3173
 #: splittransactionsdialog.cpp:209 stockspanel.cpp:819 stockspanel.cpp:820
 #: webappdialog.cpp:194 webappdialog.cpp:199
 msgid "Error"
-msgstr "Λάθος"
+msgstr "Σφάλμα"
 
 #: billsdepositsdialog.cpp:1340
 msgid "Invalid Choice"
-msgstr ""
+msgstr "Μη Έγκυρη Επιλογή"
 
 #: billsdepositsdialog.cpp:1340
 msgid "Choose one of the following:"
-msgstr ""
+msgstr "Επιλέξτε ένα από τα ακόλουθα:"
 
 #: billsdepositsdialog.cpp:1399 transdialog.cpp:1235
 #: usertransactionpanel.cpp:191
@@ -1603,7 +1608,7 @@ msgstr "Διαγραφή υπάρχουσας κατηγορίας."
 
 #: categdialog.cpp:469
 msgid "Subcategories must be deleted before."
-msgstr ""
+msgstr "Οι υποκατηγορίες πρέπει να διαγραφούν πριν."
 
 #: categdialog.cpp:485
 #, c-format
@@ -1612,20 +1617,20 @@ msgstr "Εισάγετε ένα νέο όνομα για %s'"
 
 #: categdialog.cpp:486
 msgid "Edit Category"
-msgstr ""
+msgstr "Επεξεργασία Κατηγορίας"
 
 #: categdialog.cpp:504 categdialog.cpp:521
 msgid "Organise Categories: Editing Error"
-msgstr ""
+msgstr "Οργάνωση Κατηγοριών: Σφάλμα Επεξεργασίας"
 
 #: categdialog.cpp:597 mmframe.cpp:3099
 msgid "Category Relocation Completed."
-msgstr "Η μετατόπιση κατηγορίεας ολοκληρώθηκε."
+msgstr "Η Μετατόπιση Κατηγορίας Ολοκληρώθηκε."
 
 #: categdialog.cpp:598 mmframe.cpp:3100 mmframe.cpp:3115 payeedialog.cpp:317
 #, c-format
 msgid "Records have been updated in the database: %i"
-msgstr ""
+msgstr "Οι εγγραφές έχουν ενημερωθεί στη βάση δεδομένων: %i"
 
 #: categdialog.cpp:600 mmframe.cpp:3102
 msgid "Category Relocation Result"
@@ -1633,15 +1638,15 @@ msgstr "Αποτέλεσμα μετατόπισης κατηγορίας"
 
 #: categdialog.cpp:665
 msgid "Hide Selected Category"
-msgstr ""
+msgstr "Απόκρυψη Επιλεγμένης Κατηγορίας"
 
 #: categdialog.cpp:666
 msgid "Unhide Selected Category"
-msgstr ""
+msgstr "Επανεμφάνιση Επιλεγμένης Κατηγορίας"
 
 #: categdialog.cpp:668 import_export/univcsvdialog.cpp:213
 msgid "Clear Settings"
-msgstr ""
+msgstr "Καθαρισμός Ρυθμίσεων"
 
 #: constants.cpp:71
 msgid "Cancel"
@@ -1653,11 +1658,11 @@ msgstr "Κλείσιμο"
 
 #: constants.cpp:79
 msgid "&Close "
-msgstr ""
+msgstr "&Κλείσιμο "
 
 #: constants.cpp:171
 msgid "Advanced Filter"
-msgstr ""
+msgstr "Προηγμένο Φίλτρο"
 
 #: constants.cpp:172
 msgid "View All Transactions"
@@ -1689,27 +1694,27 @@ msgstr "Εμφάνιση προηγούμενων 3 μηνών"
 
 #: constants.cpp:179
 msgid "View Last 12 Months"
-msgstr ""
+msgstr "Προβολή Τελευταίων 12 Μηνών"
 
 #: constants.cpp:180
 msgid "View Current Year"
-msgstr ""
+msgstr "Προβολή Τρέχοντος Έτους"
 
 #: constants.cpp:181
 msgid "View Current Financial Year"
-msgstr ""
+msgstr "Προβολή Τρέχοντος Οικονομικού Έτους"
 
 #: constants.cpp:182
 msgid "View Last Year"
-msgstr ""
+msgstr "Δείτε Το Τελευταίο Έτος"
 
 #: constants.cpp:183
 msgid "View Last Financial Year"
-msgstr ""
+msgstr "Δείτε Το Τελευταίο Οικονομικό Έτος"
 
 #: constants.cpp:184
 msgid "View Since Statement Date"
-msgstr ""
+msgstr "Προβολή Από Ημερομηνία Δήλωσης"
 
 #: constants.cpp:186
 msgid "ALL"
@@ -1767,7 +1772,7 @@ msgstr "Μετατροπή σε Τιμή Βάσης"
 
 #: currencydialog.cpp:203
 msgid "Conversion rate will be used in case no currency history has been found for the currency"
-msgstr ""
+msgstr "Η τιμή μετατροπής θα χρησιμοποιηθεί σε περίπτωση που δεν βρέθηκε ιστορικό νομίσματος για το νόμισμα"
 
 #: currencydialog.cpp:205
 msgid "Fixed conversion rate"
@@ -1798,126 +1803,129 @@ msgstr "Το %.2f εμφανίζεται ως: %s"
 
 #: customfieldeditdialog.cpp:56
 msgid "New/Edit Custom Field"
-msgstr ""
+msgstr "Νέο/Επεξεργασία Προσαρμοσμένου Πεδίου"
 
 #: customfieldeditdialog.cpp:115
 msgid "Custom Field Details"
-msgstr ""
+msgstr "Λεπτομέρειες Προσαρμοσμένου Πεδίου"
 
 #: customfieldeditdialog.cpp:127
 msgid "Enter the name of the custom field"
-msgstr ""
+msgstr "Εισάγετε το όνομα του προσαρμοσμένου πεδίου"
 
 #: customfieldeditdialog.cpp:130
 msgid "Field Type"
-msgstr ""
+msgstr "Τύπος Πεδίου"
 
 #: customfieldeditdialog.cpp:134
 msgid "Select type of custom field"
-msgstr ""
+msgstr "Επιλέξτε τύπο προσαρμοσμένου πεδίου"
 
 #: customfieldeditdialog.cpp:137
 msgid "ToolTip"
-msgstr ""
+msgstr "Συμβουλή"
 
 #: customfieldeditdialog.cpp:139
 msgid "Enter the tooltip that will be shown"
-msgstr ""
+msgstr "Εισάγετε την υπόδειξη που θα εμφανιστεί"
 
 #: customfieldeditdialog.cpp:142
 msgid "RegEx"
-msgstr ""
+msgstr "RegEx"
 
 #: customfieldeditdialog.cpp:144
 msgid "Enter the RegEx to validate field"
-msgstr ""
+msgstr "Εισάγετε το RegEx για την επικύρωση του πεδίου"
 
 #: customfieldeditdialog.cpp:147
 msgid "Autocomplete"
-msgstr ""
+msgstr "Αυτόματη Συμπλήρωση"
 
 #: customfieldeditdialog.cpp:150
 msgid "Enables autocomplete on custom field"
-msgstr ""
+msgstr "Ενεργοποιεί την αυτόματη συμπλήρωση σε προσαρμοσμένο πεδίο"
 
 #: customfieldeditdialog.cpp:153 util.cpp:454
 msgid "Default"
-msgstr ""
+msgstr "Προεπιλογή"
 
 #: customfieldeditdialog.cpp:155
 msgid "Enter the default for this field\n"
 "For date/time insert 'Now' to make current date/time as default"
-msgstr ""
+msgstr "Εισάγετε το προκαθορισμένο για αυτό το πεδίο\n"
+"Για την ημερομηνία/ώρα εισάγετε το 'Τώρα' για να κάνετε την τρέχουσα ημερομηνία/ώρα ως προεπιλογή"
 
 #: customfieldeditdialog.cpp:159
 msgid "Choices"
-msgstr ""
+msgstr "Επιλογές"
 
 #: customfieldeditdialog.cpp:161
 msgid "Enter the choices for this field separated with a semicolon"
-msgstr ""
+msgstr "Εισάγετε τις επιλογές για αυτό το πεδίο διαχωρισμένο με ερωτηματικό"
 
 #: customfieldeditdialog.cpp:202
 msgid "Changing field type will delete all content!"
-msgstr ""
+msgstr "Η αλλαγή τύπου πεδίου θα διαγράψει όλο το περιεχόμενο!"
 
 #: customfieldeditdialog.cpp:203 customfieldeditdialog.cpp:225 mmframe.cpp:2060
 #: mmframe.cpp:2079
 msgid "Do you want to proceed?"
-msgstr ""
+msgstr "Θέλετε να προχωρήσετε;"
 
 #: customfieldeditdialog.cpp:204 customfieldeditdialog.cpp:226
 msgid "Custom Field Change"
-msgstr ""
+msgstr "Αλλαγή Προσαρμοσμένου Πεδίου"
 
 #: customfieldeditdialog.cpp:224
 msgid "You have modified choices: ones removed will be cleaned!"
-msgstr ""
+msgstr "Έχετε τροποποιήσει τις επιλογές: αυτές που έχουν αφαιρεθεί θα καθαριστούν!"
 
 #: customfieldlistdialog.cpp:56
 msgid "Properties"
-msgstr ""
+msgstr "Ιδιότητες"
 
 #: customfieldlistdialog.cpp:66
 #, c-format
 msgid "Personalize custom fields | %s"
-msgstr ""
+msgstr "Εξατομίκευση προσαρμοσμένων πεδίων | %s"
 
 #: customfieldlistdialog.cpp:175
 msgid "Do you really want to delete this custom field and all its data?"
-msgstr ""
+msgstr "Θέλετε πραγματικά να διαγράψετε αυτό το προσαρμοσμένο πεδίο και όλα τα δεδομένα του;"
 
 #: customfieldlistdialog.cpp:176
 msgid "Confirm Custom Field Deletion"
-msgstr ""
+msgstr "Επιβεβαίωση Διαγραφής Προσαρμοσμένου Πεδίου"
 
 #: customfieldlistdialog.cpp:194
 msgid "This function will massive update (search & replace for entire value, not inside value), please remind that there isn't any validation!\n"
 "Do you want to proceed?"
-msgstr ""
+msgstr "Αυτή η λειτουργία θα ενημερώσει μαζικά (αναζήτηση & αντικατάσταση για ολόκληρη την τιμή, όχι μέσα στην τιμή), παρακαλούμε να υπενθυμίσετε ότι δεν υπάρχει καμία επικύρωση!\n"
+"Θέλετε να προχωρήσετε;"
 
 #: customfieldlistdialog.cpp:196
 msgid "Confirm Custom Field Content Update"
-msgstr ""
+msgstr "Επιβεβαίωση Ενημέρωσης Περιεχομένου Προσαρμοσμένου Πεδίου"
 
 #: customfieldlistdialog.cpp:201
 msgid "Find what"
-msgstr ""
+msgstr "Βρείτε τι"
 
 #: customfieldlistdialog.cpp:201 customfieldlistdialog.cpp:207
 #: customfieldlistdialog.cpp:213 customfieldlistdialog.cpp:219
 #: customfieldlistdialog.cpp:234
 msgid "Update Custom Field Content"
-msgstr ""
+msgstr "Ενημέρωση Περιεχομένου Προσαρμοσμένου Πεδίου"
 
 #: customfieldlistdialog.cpp:205
 msgid "Do you want to update blank content?\n"
 "Press no if you want to abort replace procedure!"
-msgstr ""
+msgstr "Θέλετε να ενημερώσετε το κενό περιεχόμενο?\n"
+"Πατήστε όχι αν θέλετε να καταργήσετε τη διαδικασία αντικατάστασης!"
 
 #: customfieldlistdialog.cpp:213
 msgid "Replace with"
-msgstr ""
+msgstr "Αντικατάσταση με"
 
 #: customfieldlistdialog.cpp:217
 msgid "Do you want to update to blank?\n"
