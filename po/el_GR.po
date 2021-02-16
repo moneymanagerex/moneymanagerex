@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-02-09 23:37+0300\n"
-"PO-Revision-Date: 2021-02-16 16:37\n"
+"PO-Revision-Date: 2021-02-16 16:57\n"
 "Last-Translator: \n"
 "Language-Team: Greek\n"
 "MIME-Version: 1.0\n"
@@ -2579,11 +2579,11 @@ msgstr "Εξαγωγή JSON"
 
 #: import_export/qif_export.cpp:106
 msgid "Parameters"
-msgstr ""
+msgstr "Παράμετροι"
 
 #: import_export/qif_export.cpp:111 import_export/qif_import_gui.cpp:197
 msgid "Log"
-msgstr ""
+msgstr "Αρχείο καταγραφής"
 
 #: import_export/qif_export.cpp:123
 msgid "QIF"
@@ -2600,11 +2600,11 @@ msgstr "Λογαριασμοί"
 
 #: import_export/qif_export.cpp:149 import_export/qif_import_gui.cpp:174
 msgid "From Date"
-msgstr ""
+msgstr "Από\tΗμερομηνία"
 
 #: import_export/qif_export.cpp:159 import_export/qif_import_gui.cpp:184
 msgid "To Date"
-msgstr ""
+msgstr "Έως ημερομηνία"
 
 #: import_export/qif_export.cpp:173 import_export/qif_import_gui.cpp:276
 #: optionsettingsgeneral.cpp:103
@@ -2613,7 +2613,7 @@ msgstr "Μορφή ημερομηνίας"
 
 #: import_export/qif_export.cpp:185
 msgid "Write to File"
-msgstr ""
+msgstr "Εγγραφή σε αρχείο"
 
 #: import_export/qif_export.cpp:188 import_export/qif_import_gui.cpp:128
 #: import_export/univcsvdialog.cpp:166
@@ -2622,7 +2622,7 @@ msgstr "Όνομα αρχείου:"
 
 #: import_export/qif_export.cpp:211 import_export/univcsvdialog.cpp:444
 msgid "Clear"
-msgstr ""
+msgstr "Εκκαθάριση"
 
 #: import_export/qif_export.cpp:245
 msgid "Choose Account to Export from:"
@@ -2634,7 +2634,7 @@ msgstr "Επιλέξτε ένα αρχείο δεδομένων QIF προς ε�
 
 #: import_export/qif_export.cpp:294 import_export/qif_import_gui.cpp:723
 msgid "QIF Files (*.qif)"
-msgstr ""
+msgstr "Αρχεία QIF (*.qif)"
 
 #: import_export/qif_export.cpp:299
 msgid "Choose JSON data file to Export"
@@ -2650,44 +2650,44 @@ msgstr "Κανείς λογαριασμός διαθέσιμος για εξαγ
 
 #: import_export/qif_export.cpp:323
 msgid "No Accounts selected for export"
-msgstr ""
+msgstr "Δεν επιλέχθηκαν λογαριασμοί για εξαγωγή"
 
 #: import_export/qif_export.cpp:325
 msgid "To Date less than From Date"
-msgstr ""
+msgstr "Mικρότερη ημερομηνία από την ημερομηνία"
 
 #: import_export/qif_export.cpp:424
 msgid "Categories exported"
-msgstr ""
+msgstr "Οι κατηγορίες εξήχθησαν"
 
 #: import_export/qif_export.cpp:445 import_export/qif_import_gui.cpp:356
 #: import_export/qif_import_gui.cpp:807
 msgid "Please wait"
-msgstr ""
+msgstr "Παρακαλώ περιμένετε"
 
 #: import_export/qif_export.cpp:445
 msgid "Exporting"
-msgstr ""
+msgstr "Εξαγωγή"
 
 #: import_export/qif_export.cpp:470
 #, c-format
 msgid "Exporting transaction %zu"
-msgstr ""
+msgstr "Εξαγωγή συναλλαγής %zu"
 
 #: import_export/qif_export.cpp:571
 #, c-format
 msgid "Number of categories exported: %zu"
-msgstr ""
+msgstr "Αριθμός κατηγοριών που εξήχθησαν: %zu"
 
 #: import_export/qif_export.cpp:573
 #, c-format
 msgid "Number of transactions exported: %zu"
-msgstr ""
+msgstr "Αριθμός συναλλαγών που εξήχθησαν: %zu"
 
 #: import_export/qif_export.cpp:575
 #, c-format
 msgid "Number of accounts exported: %zu"
-msgstr ""
+msgstr "Αριθμός λογαριασμών που εξήχθησαν: %zu"
 
 #: import_export/qif_export.cpp:576 mmframe.cpp:1317
 msgid "Export to QIF"
@@ -2695,27 +2695,27 @@ msgstr "Εξαγωγή σε QIF"
 
 #: import_export/qif_import_gui.cpp:129
 msgid "Choose &file"
-msgstr ""
+msgstr "Επιλογή &αρχείου"
 
 #: import_export/qif_import_gui.cpp:142 import_export/univcsvdialog.cpp:330
 msgid "Encoding:"
-msgstr ""
+msgstr "Κωδικοποίηση:"
 
 #: import_export/qif_import_gui.cpp:168
 msgid "Filtering Details:"
-msgstr ""
+msgstr "Λεπτομέρειες Φιλτραρίσματος:"
 
 #: import_export/qif_import_gui.cpp:207
 msgid "Data"
-msgstr ""
+msgstr "Δεδομένα"
 
 #: import_export/qif_import_gui.cpp:264
 msgid "Use account number instead of account name"
-msgstr ""
+msgstr "Χρήση αριθμού λογαριασμού αντί ονόματος λογαριασμού"
 
 #: import_export/qif_import_gui.cpp:268
 msgid "Include payee field in notes"
-msgstr ""
+msgstr "Συμπερίληψη πεδίου δικαιούχου στις σημειώσεις"
 
 #: import_export/qif_import_gui.cpp:347 import_export/qif_import_gui.cpp:350
 #: import_export/qif_import_gui.cpp:549 import_export/qif_import_gui.cpp:1122
@@ -2728,98 +2728,98 @@ msgstr "Άγνωστο"
 
 #: import_export/qif_import_gui.cpp:356
 msgid "Scanning"
-msgstr ""
+msgstr "Σάρωση"
 
 #: import_export/qif_import_gui.cpp:384
 #, c-format
 msgid "Reading line %zu, %lld ms"
-msgstr ""
+msgstr "Ανάγνωση γραμμής %zu, %lld ms"
 
 #: import_export/qif_import_gui.cpp:390
 #, c-format
 msgid "Line %zu \t %s\n"
-msgstr ""
+msgstr "Γραμμή %zu \t %s\n"
 
 #: import_export/qif_import_gui.cpp:463
 #, c-format
 msgid "Number of lines read from QIF file: %zu in %lld ms"
-msgstr ""
+msgstr "Αριθμός γραμμών που διαβάζονται από το αρχείο QIF: %zu σε %lld ms"
 
 #: import_export/qif_import_gui.cpp:466
 msgid "Press OK Button to continue"
-msgstr ""
+msgstr "Πατήστε το κουμπί OK για να συνεχίσετε"
 
 #: import_export/qif_import_gui.cpp:665 import_export/qif_import_gui.cpp:694
 #: import_export/qif_import_gui.cpp:711
 msgid "OK"
-msgstr ""
+msgstr "Εντάξει"
 
 #: import_export/qif_import_gui.cpp:667 import_export/qif_import_gui.cpp:670
 msgid "Warning"
-msgstr ""
+msgstr "Προειδοποίηση"
 
 #: import_export/qif_import_gui.cpp:675 import_export/qif_import_gui.cpp:694
 #: stockspanel.cpp:884
 msgid "Missing"
-msgstr ""
+msgstr "Λείπει"
 
 #: import_export/qif_import_gui.cpp:721
 msgid "Choose QIF data file to Import"
-msgstr ""
+msgstr "Επιλέξτε αρχείο δεδομένων QIF για εισαγωγή"
 
 #: import_export/qif_import_gui.cpp:800
 msgid "Do you want to import all transaction ?"
-msgstr ""
+msgstr "Θέλετε να εισαγάγετε όλες τις συναλλαγές ;"
 
 #: import_export/qif_import_gui.cpp:801
 msgid "All missing account, payees and categories will be created."
-msgstr ""
+msgstr "Όλοι οι λογαριασμοί, δικαιούχοι και κατηγορίες που λείπουν, θα δημιουργηθούν."
 
 #: import_export/qif_import_gui.cpp:802
 msgid "Confirm Import"
-msgstr ""
+msgstr "Επιβεβαίωση Εισαγωγής"
 
 #: import_export/qif_import_gui.cpp:807
 msgid "Importing"
-msgstr ""
+msgstr "Εισαγωγή"
 
 #: import_export/qif_import_gui.cpp:809
 msgid "Importing Accounts"
-msgstr ""
+msgstr "Εισαγωγή Λογαριασμών"
 
 #: import_export/qif_import_gui.cpp:816
 msgid "Importing Payees"
-msgstr ""
+msgstr "Εισαγωγή Δικαιούχων"
 
 #: import_export/qif_import_gui.cpp:819
 msgid "Importing Categories"
-msgstr ""
+msgstr "Εισαγωγή Κατηγοριών"
 
 #: import_export/qif_import_gui.cpp:836
 #, c-format
 msgid "Importing transaction %i of %i"
-msgstr ""
+msgstr "Εισαγωγή συναλλαγής %i από %i"
 
 #: import_export/qif_import_gui.cpp:869
 msgid "Importing Transfers"
-msgstr ""
+msgstr "Εισαγωγή Μεταφορών"
 
 #: import_export/qif_import_gui.cpp:894
 msgid "Importing Split transactions"
-msgstr ""
+msgstr "Εισαγωγή συναλλαγών Διαχωρισμού"
 
 #: import_export/qif_import_gui.cpp:898
 msgid "Import finished successfully"
-msgstr ""
+msgstr "Η εισαγωγή ολοκληρώθηκε με επιτυχία"
 
 #: import_export/qif_import_gui.cpp:898
 #, c-format
 msgid "Total Imported: %zu"
-msgstr ""
+msgstr "Σύνολο εισαγόμενων: %zu"
 
 #: import_export/qif_import_gui.cpp:906 import_export/univcsvdialog.cpp:1080
 msgid "Imported transactions discarded by user!"
-msgstr "Οι εισηγμένες συναλλαγές απορρίφθηκαν από το χρήστη!"
+msgstr "Οι εισαγόμενες συναλλαγές απορρίφθηκαν από το χρήστη!"
 
 #: import_export/qif_import_gui.cpp:908 import_export/qif_import_gui.h:44
 msgid "QIF Import"
@@ -2827,23 +2827,23 @@ msgstr "Εισαγωγή QIF"
 
 #: import_export/qif_import_gui.cpp:988
 msgid "Transaction code is missing"
-msgstr ""
+msgstr "Ο κωδικός συναλλαγής λείπει"
 
 #: import_export/qif_import_gui.cpp:1008
 msgid "Transaction Payee is missing or incorrect"
-msgstr ""
+msgstr "Ο δικαιούχος συναλλαγής λείπει ή είναι λανθασμένος"
 
 #: import_export/qif_import_gui.cpp:1020
 msgid "Date format or date mask is incorrect"
-msgstr ""
+msgstr "Μορφή ημερομηνίας ή μάσκα ημερομηνίας είναι λανθασμένη"
 
 #: import_export/qif_import_gui.cpp:1032
 msgid "Transaction Account is incorrect"
-msgstr ""
+msgstr "Ο Λογαριασμός συναλλαγής είναι εσφαλμένος"
 
 #: import_export/qif_import_gui.cpp:1041
 msgid "Transaction Account for transfer is incorrect"
-msgstr ""
+msgstr "Ο Λογαριασμός συναλλαγής για μεταφορά είναι εσφαλμένος"
 
 #: import_export/qif_import_gui.cpp:1067
 msgid "Transaction Amount is incorrect"
