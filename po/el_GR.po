@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-02-09 23:37+0300\n"
-"PO-Revision-Date: 2021-02-16 09:21\n"
+"PO-Revision-Date: 2021-02-16 09:37\n"
 "Last-Translator: \n"
 "Language-Team: Greek\n"
 "MIME-Version: 1.0\n"
@@ -41,7 +41,7 @@ msgstr "Χορηγοί"
 
 #: aboutdialog.cpp:198
 msgid "License"
-msgstr "Άδεια Χρήσης"
+msgstr "Άδεια"
 
 #: aboutdialog.cpp:203
 msgid "Privacy"
@@ -49,7 +49,7 @@ msgstr "Ιδιωτικό απόρρητο"
 
 #: aboutdialog.cpp:241 optionsettingsnet.cpp:113
 msgid "Send anonymous statistics usage data"
-msgstr "Αποστολή ανώνυμων δεδομένων χρήσης στατιστικών"
+msgstr "Αποστολή ανώνυμα στατιστικών δεδομένων χρήσης"
 
 #: aboutdialog.cpp:242 optionsettingsnet.cpp:115
 msgid "Enable to help us sending anonymous data about MMEX usage."
@@ -949,7 +949,7 @@ msgstr "Επιλέξτε λογαριασμό"
 
 #: billsdepositsdialog.cpp:574
 msgid "Specify the Account that will own the recurring transaction"
-msgstr ""
+msgstr "Καθορίστε τον λογαριασμό που θα κατέχει την επαναλαμβανόμενη συναλλαγή"
 
 #: billsdepositsdialog.cpp:577 billsdepositsdialog.cpp:826
 #: billsdepositspanel.cpp:100 filtertransdialog.cpp:205
@@ -1115,7 +1115,7 @@ msgstr "Κατηγορίες"
 
 #: billsdepositsdialog.h:56
 msgid "New Recurring Transaction"
-msgstr ""
+msgstr "Νέα Επαναλαμβανόμενη Συναλλαγή"
 
 #: billsdepositsdialog.h:120
 msgid "Specify where the transaction is going to"
