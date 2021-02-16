@@ -631,6 +631,7 @@ void mmGUIFrame::menuEnableItems(bool enable)
 void mmGUIFrame::menuPrintingEnable(bool enable)
 {
     menuBar_->FindItem(wxID_PRINT)->Enable(enable);
+    toolBar_->EnableTool(wxID_PRINT, enable);
     menuBar_->FindItem(MENU_EXPORT_HTML)->Enable(enable);
 }
 //----------------------------------------------------------------------------
@@ -1024,7 +1025,7 @@ void mmGUIFrame::OnSelChanged(wxTreeEvent& event)
             }
         }
         m_nav_tree_ctrl->SetFocus();
-        menuPrintingEnable(true);
+        ///menuPrintingEnable(true);
     }
     else
     {
@@ -2699,7 +2700,7 @@ void mmGUIFrame::createBillsDeposits()
         sizer->Add(panelCurrent_, 1, wxGROW | wxALL, 1);
 
         homePanel_->Layout();
-        menuPrintingEnable(true);
+        ///menuPrintingEnable(true);
     }
 
     json_writer.Key("seconds");
@@ -2744,7 +2745,7 @@ void mmGUIFrame::createBudgetingPage(int budgetYearID)
 
     Model_Usage::instance().AppendToUsage(wxString::FromUTF8(json_buffer.GetString()));
 
-    menuPrintingEnable(true);
+    ///menuPrintingEnable(true);
     m_nav_tree_ctrl->SetEvtHandlerEnabled(true);
 }
 //----------------------------------------------------------------------------
@@ -2776,7 +2777,7 @@ void mmGUIFrame::createAllTransactionsPage()
 
     Model_Usage::instance().AppendToUsage(wxString::FromUTF8(json_buffer.GetString()));
 
-    menuPrintingEnable(true);
+    ///menuPrintingEnable(true);
     m_nav_tree_ctrl->SetEvtHandlerEnabled(true);
 }
 
@@ -2813,7 +2814,7 @@ void mmGUIFrame::createCheckingAccountPage(int accountID)
 
     Model_Usage::instance().AppendToUsage(wxString::FromUTF8(json_buffer.GetString()));
 
-    menuPrintingEnable(true);
+    ///menuPrintingEnable(true);
     if (gotoTransID_ > 0)
     {
         checkingAccountPage_->SetSelectedTransaction(gotoTransID_);
@@ -2891,7 +2892,7 @@ void mmGUIFrame::OnAssets(wxCommandEvent& /*event*/)
     sizer->Add(panelCurrent_, 1, wxGROW | wxALL, 1);
     homePanel_->Layout();
     windowsFreezeThaw(homePanel_);
-    menuPrintingEnable(true);
+    ///menuPrintingEnable(true);
 
     json_writer.Key("seconds");
     json_writer.Double((wxDateTime::UNow() - time).GetMilliseconds().ToDouble() / 1000);
