@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-02-09 23:37+0300\n"
-"PO-Revision-Date: 2021-02-16 16:57\n"
+"PO-Revision-Date: 2021-02-16 17:03\n"
 "Last-Translator: \n"
 "Language-Team: Greek\n"
 "MIME-Version: 1.0\n"
@@ -2847,21 +2847,21 @@ msgstr "Ο Λογαριασμός συναλλαγής για μεταφορά �
 
 #: import_export/qif_import_gui.cpp:1067
 msgid "Transaction Amount is incorrect"
-msgstr ""
+msgstr "Το ποσό της συναλλαγής είναι λανθασμένο"
 
 #: import_export/qif_import_gui.cpp:1089
 msgid "Transaction Category is incorrect"
-msgstr ""
+msgstr "Η Κατηγορία συναλλαγής είναι λανθασμένη"
 
 #: import_export/qif_import_gui.cpp:1181
 #, c-format
 msgid "Added account: %s"
-msgstr ""
+msgstr "Προστέθηκε λογαριασμός: %s"
 
 #: import_export/qif_import_gui.cpp:1222 import_export/univcsvdialog.cpp:878
 #, c-format
 msgid "Added payee: %s"
-msgstr ""
+msgstr "Προστιθέμενος δικαιούχος: %s"
 
 #: import_export/univcsvdialog.cpp:108
 msgid "SubCategory"
@@ -2878,19 +2878,19 @@ msgstr "Υπόλοιπο"
 
 #: import_export/univcsvdialog.cpp:117
 msgid "Import dialog"
-msgstr ""
+msgstr "Εισαγωγής διαλόγου"
 
 #: import_export/univcsvdialog.cpp:117
 msgid "Export dialog"
-msgstr ""
+msgstr "Εξαγωγή διαλόγου"
 
 #: import_export/univcsvdialog.cpp:179
 msgid "&Browse"
-msgstr ""
+msgstr "&Περιήγηση"
 
 #: import_export/univcsvdialog.cpp:182
 msgid "Choose CSV data file to Import"
-msgstr ""
+msgstr "Επιλέξτε αρχείο δεδομένων CSV για εισαγωγή"
 
 #: import_export/univcsvdialog.cpp:182
 msgid "Choose CSV data file to Export"
@@ -2906,11 +2906,11 @@ msgstr "Αποθήκευση προτύπου"
 
 #: import_export/univcsvdialog.cpp:217
 msgid "Specify the order of fields in the file"
-msgstr ""
+msgstr "Καθορίστε τη σειρά των πεδίων στο αρχείο"
 
 #: import_export/univcsvdialog.cpp:248
 msgid "&MMEX format"
-msgstr "Μορφή &MMEX"
+msgstr "&Μορφή MMEX"
 
 #: import_export/univcsvdialog.cpp:250
 msgid "MMEX standard format"
@@ -2938,11 +2938,11 @@ msgstr "Λογαριασμός: "
 
 #: import_export/univcsvdialog.cpp:303
 msgid "Date Format: "
-msgstr ""
+msgstr "Μορφή Ημερομηνίας: "
 
 #: import_export/univcsvdialog.cpp:315
 msgid "CSV Delimiter:"
-msgstr ""
+msgstr "CSV Οριοθέτης:"
 
 #: import_export/univcsvdialog.cpp:321 optionsettingsmisc.cpp:188
 msgid "Specify the delimiter to use when importing/exporting CSV files"
@@ -2950,35 +2950,35 @@ msgstr "Καθορίστε το διαχωριστικό προς χρήση κ�
 
 #: import_export/univcsvdialog.cpp:344
 msgid "Export column titles"
-msgstr ""
+msgstr "Εξαγωγή τίτλων στηλών"
 
 #: import_export/univcsvdialog.cpp:359
 msgid "Positive values are deposits"
-msgstr ""
+msgstr "Θετικές αξίες είναι οι καταθέσεις"
 
 #: import_export/univcsvdialog.cpp:360
 msgid "Positive values are withdrawals"
-msgstr ""
+msgstr "Θετικές τιμές είναι οι αποσύρσεις"
 
 #: import_export/univcsvdialog.cpp:373
 msgid "Rows to ignore"
-msgstr ""
+msgstr "Γραμμές προς αγνόηση"
 
 #: import_export/univcsvdialog.cpp:380
 msgid "From start: "
-msgstr ""
+msgstr "Από την αρχή: "
 
 #: import_export/univcsvdialog.cpp:390
 msgid "From end: "
-msgstr ""
+msgstr "Από το τέλος: "
 
 #: import_export/univcsvdialog.cpp:401
 msgid "Preview"
-msgstr ""
+msgstr "Προεπισκόπηση"
 
 #: import_export/univcsvdialog.cpp:420
 msgid "Import File"
-msgstr "Εισαγωγή αρχείου"
+msgstr "Εισαγωγή Αρχείου"
 
 #: import_export/univcsvdialog.cpp:428
 msgid "Export File"
