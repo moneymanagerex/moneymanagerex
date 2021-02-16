@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-02-09 23:37+0300\n"
-"PO-Revision-Date: 2021-02-16 10:42\n"
+"PO-Revision-Date: 2021-02-16 16:37\n"
 "Last-Translator: \n"
 "Language-Team: Greek\n"
 "MIME-Version: 1.0\n"
@@ -2308,24 +2308,24 @@ msgstr "Κατάθεση"
 
 #: filtertransdialog.cpp:261
 msgid "Transfer To"
-msgstr ""
+msgstr "Μεταφορά Σε"
 
 #: filtertransdialog.cpp:263
 msgid "Transfer From"
-msgstr ""
+msgstr "Μεταφορά Από"
 
 #: filtertransdialog.cpp:276
 msgid "Amount Range"
-msgstr ""
+msgstr "Εύρος Ποσότητας"
 
 #: filtertransdialog.cpp:346
 msgid "&Clear "
-msgstr "&Απαλοιφή "
+msgstr "&Καθαρισμός "
 
 #: filtertransdialog.cpp:826 filtertransdialog.cpp:841 reports/myusage.cpp:91
 #: webappdialog.cpp:194 webappdialog.cpp:199
 msgid "Empty value"
-msgstr ""
+msgstr "Κενή τιμή"
 
 #: filtertransdialog.cpp:837
 msgid "Filtering Details: "
@@ -2333,28 +2333,28 @@ msgstr "Λεπτομέρειες φιλτραρίσματος: "
 
 #: filtertransdialog.cpp:875
 msgid "Since"
-msgstr ""
+msgstr "Από"
 
 #: filtertransdialog.cpp:877
 msgid "Before"
-msgstr ""
+msgstr "Πριν"
 
 #: filtertransdialog.cpp:931
 msgid "Amount Min."
-msgstr ""
+msgstr "Ελάχιστο Ποσό"
 
 #: filtertransdialog.cpp:939
 msgid "Amount Max."
-msgstr ""
+msgstr "Μέγιστο Ποσό"
 
 #: general_report_manager.cpp:245 general_report_manager.cpp:645
 msgid "General Reports Manager"
-msgstr ""
+msgstr "Διαχείριση Γενικών Αναφορών"
 
 #: general_report_manager.cpp:288 mmframe.cpp:765 mmframe.cpp:2414
 #: mmframe.cpp:2510 reports/myusage.cpp:128 reports/myusage.cpp:149
 msgid "Reports"
-msgstr "Εκθέσεις"
+msgstr "Αναφορές"
 
 #: general_report_manager.cpp:377 import_export/univcsvdialog.cpp:417
 #: mmframe.cpp:1252 mmframe.cpp:1327
@@ -2363,7 +2363,7 @@ msgstr "&Εισαγωγή"
 
 #: general_report_manager.cpp:379
 msgid "Locate and load a report file."
-msgstr ""
+msgstr "Εντοπίστε και φορτώστε ένα αρχείο αναφοράς."
 
 #: general_report_manager.cpp:381 import_export/univcsvdialog.cpp:425
 #: mmframe.cpp:1247 mmframe.cpp:1320
@@ -2372,15 +2372,15 @@ msgstr "&Εξαγωγή"
 
 #: general_report_manager.cpp:383
 msgid "Export the report to a new file."
-msgstr ""
+msgstr "Εξαγωγή αναφοράς σε ένα νέο αρχείο."
 
 #: general_report_manager.cpp:386 stockdialog.cpp:354
 msgid "&Save "
-msgstr ""
+msgstr "&Αποθήκευση "
 
 #: general_report_manager.cpp:388
 msgid "Save changes."
-msgstr ""
+msgstr "Αποθήκευση αλλαγών."
 
 #: general_report_manager.cpp:390
 msgid "&Run"
@@ -2388,134 +2388,134 @@ msgstr "&Εκτέλεση"
 
 #: general_report_manager.cpp:392
 msgid "Run selected report."
-msgstr ""
+msgstr "Εκτέλεση επιλεγμένης αναφοράς."
 
 #: general_report_manager.cpp:404
 msgid "Output"
-msgstr ""
+msgstr "Εκροές"
 
 #: general_report_manager.cpp:427
 msgid "SQL"
-msgstr ""
+msgstr "SQL"
 
 #: general_report_manager.cpp:428
 msgid "Lua"
-msgstr ""
+msgstr "Lua"
 
 #: general_report_manager.cpp:429
 msgid "Template"
-msgstr ""
+msgstr "Πρότυπο"
 
 #: general_report_manager.cpp:470
 msgid "&Test"
-msgstr ""
+msgstr "&Δοκιμή"
 
 #: general_report_manager.cpp:471
 msgid "Create Template"
-msgstr ""
+msgstr "Δημιουργία Προτύπου"
 
 #: general_report_manager.cpp:521
 #, c-format
 msgid "%zu row returned, duration: %lld ms"
 msgid_plural "%zu rows returned, duration: %lld ms"
-msgstr[0] ""
+msgstr[0] "%zu γραμμή επέστρεψε, διάρκεια: %lld ms"
 msgstr[1] ""
 
 #: general_report_manager.cpp:548
 msgid "SQL Syntax Error"
-msgstr ""
+msgstr "Σφάλμα Σύνταξης SQL"
 
 #: general_report_manager.cpp:579
 msgid "Load report file:"
-msgstr ""
+msgstr "Φόρτωση αρχείου αναφοράς:"
 
 #: general_report_manager.cpp:581 general_report_manager.cpp:1010
 msgid "General Report Manager files (*.grm)"
-msgstr ""
+msgstr "Αρχεία Διαχείρισης Γενικών Αναφορών (*.grm)"
 
 #: general_report_manager.cpp:581 general_report_manager.cpp:1010
 msgid "ZIP files (*.zip)"
-msgstr ""
+msgstr "Αρχεία ZIP (*.zip)"
 
 #: general_report_manager.cpp:644
 #, c-format
 msgid "Unable to open file:\n"
 "%s\n\n"
-msgstr ""
+msgstr "Αδυναμία ανοίγματος αρχείου: %s\n\n"
 
 #: general_report_manager.cpp:708
 msgid "New Empty Report"
-msgstr ""
+msgstr "Νέα Κενή Αναφορά"
 
 #: general_report_manager.cpp:709
 msgid "New Sample Report"
-msgstr ""
+msgstr "Νέα Αναφορά Παραδείγματος"
 
 #: general_report_manager.cpp:712
 msgid "Change Group"
-msgstr ""
+msgstr "Αλλαγή Ομάδας"
 
 #: general_report_manager.cpp:714 general_report_manager.cpp:879
 msgid "Rename Group"
-msgstr ""
+msgstr "Μετονομασία Ομάδας"
 
 #: general_report_manager.cpp:715
 msgid "UnGroup"
-msgstr ""
+msgstr "Αποομαδοποίηση"
 
 #: general_report_manager.cpp:716
 msgid "Rename Report"
-msgstr ""
+msgstr "Μετονομασία Αναφοράς"
 
 #: general_report_manager.cpp:718
 msgid "Delete Report"
-msgstr ""
+msgstr "Διαγραφή Αναφοράς"
 
 #: general_report_manager.cpp:813 general_report_manager.cpp:961
 msgid "Enter the name for the report"
-msgstr ""
+msgstr "Εισάγετε το όνομα της αναφοράς"
 
 #: general_report_manager.cpp:814 general_report_manager.cpp:962
 #: mmframe.cpp:1221 mmframe.cpp:1506 mmframe.cpp:1686
 msgid "General Report Manager"
-msgstr ""
+msgstr "Διαχείριση Γενικών Αναφορών"
 
 #: general_report_manager.cpp:832
 msgid "Delete the Report Title:"
-msgstr ""
+msgstr "Διαγράψτε τον τίτλο της έκθεσης:"
 
 #: general_report_manager.cpp:861 general_report_manager.cpp:942
 msgid "Enter or choose name for the new report group"
-msgstr ""
+msgstr "Εισάγετε ή επιλέξτε όνομα για τη νέα ομάδα αναφοράς"
 
 #: general_report_manager.cpp:862
 msgid "Change report group"
-msgstr ""
+msgstr "Αλλαγή ομάδας αναφοράς"
 
 #: general_report_manager.cpp:878
 msgid "Enter or choose name for the new group"
-msgstr ""
+msgstr "Εισάγετε ή επιλέξτε όνομα για τη νέα ομάδα"
 
 #: general_report_manager.cpp:943
 msgid "Add Report Group"
-msgstr ""
+msgstr "Προσθήκη Ομάδας Αναφοράς"
 
 #: general_report_manager.cpp:956
 #, c-format
 msgid "New Report %s"
-msgstr ""
+msgstr "Νέα αναφορά %s"
 
 #: general_report_manager.cpp:969
 msgid "Report Name already exists"
-msgstr ""
+msgstr "Το όνομα αναφοράς υπάρχει ήδη"
 
 #: general_report_manager.cpp:969 general_report_manager.cpp:976
 msgid "New Report"
-msgstr ""
+msgstr "Νέα Αναφορά"
 
 #: general_report_manager.cpp:1007
 msgid "Choose file to Save As Report"
-msgstr ""
+msgstr "Επιλέξτε αρχείο για αποθήκευση ως αναφορά"
 
 #: general_report_manager.cpp:1185
 msgid "Parameters:"
@@ -2533,40 +2533,40 @@ msgstr "Εισαγωγή γενικής μορφής CSV"
 
 #: import_export/parsers.cpp:89
 msgid "Unable to create file."
-msgstr ""
+msgstr "Αδυναμία δημιουργίας αρχείου."
 
 #: import_export/parsers.cpp:109 import_export/parsers.cpp:248
 msgid "Could not save file."
-msgstr ""
+msgstr "Αδυναμία αποθήκευσης αρχείου."
 
 #: import_export/parsers.cpp:109 import_export/parsers.cpp:248
 msgid "Export error"
-msgstr ""
+msgstr "Σφάλμα εξαγωγής"
 
 #: import_export/parsers.cpp:135 import_export/parsers.cpp:144
 msgid "File is not in Excel XML Spreadsheet 2003 format."
-msgstr ""
+msgstr "Το αρχείο δεν είναι σε μορφή υπολογιστικού φύλλου Excel XML του 2003."
 
 #: import_export/parsers.cpp:135 import_export/parsers.cpp:144
 #: import_export/parsers.cpp:157 import_export/parsers.cpp:165
 msgid "Parsing error"
-msgstr ""
+msgstr "Σφάλμα ανάλυσης"
 
 #: import_export/parsers.cpp:157
 msgid "Could not find Worksheet."
-msgstr ""
+msgstr "Αδυναμία εύρεσης φύλλου εργασίας."
 
 #: import_export/parsers.cpp:163
 msgid "Table"
-msgstr ""
+msgstr "Πίνακας"
 
 #: import_export/parsers.cpp:165
 msgid "Could not find Table."
-msgstr ""
+msgstr "Αδυναμία εύρεσης του πίνακα."
 
 #: import_export/parsers.cpp:216
 msgid "Transactions"
-msgstr ""
+msgstr "Συναλλαγές"
 
 #: import_export/qif_export.cpp:47 import_export/qif_export.cpp:246
 #: import_export/qif_export.cpp:332
