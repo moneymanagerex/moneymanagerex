@@ -2,6 +2,7 @@
  Copyright (C) 2006 Madhan Kanagavel
  Copyright (C) 2011, 2012 Nikolay & Stefano Giorgio
  Copyright (C) 2015, 2017 Nikolay Akimov
+ Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute transcation and/or modify
  transcation under the terms of the GNU General Public License as published by
@@ -57,12 +58,14 @@ wxString mmReportTransactions::getHTMLText()
     hb.addReportHeader(getReportTitle());
     hb.DisplayFooter(_("Accounts: ") + accounts);
 
+    std::map<int, double> total; //Store transaction amount with original currency
+    std::map<int, double> total_in_base_curr; //Store transactions amount daily converted to base currency
+    std::map<int, double> total_extrans; //Store transaction amount with original currency - excluding TRANSFERS
+    std::map<int, double> total_in_base_curr_extrans; //Store transactions amount daily converted to base currency - excluding TRANSFERS
+
     hb.addDivContainer("shadow");
     {
-        std::map<int, double> total; //Store transaction amount with original currency
-        std::map<int, double> total_in_base_curr; //Store transactions amount daily converted to base currency
-
-        hb.startSortTable();
+         hb.startSortTable();
         {
             hb.startThead();
             {
@@ -85,7 +88,6 @@ wxString mmReportTransactions::getHTMLText()
 
             hb.startTbody();
             {
- 
                 const Model_Currency::Data* currency = account
                     ? Model_Account::currency(account)
                     : Model_Currency::GetBaseCurrency();
@@ -129,6 +131,11 @@ wxString mmReportTransactions::getHTMLText()
                             hb.addCurrencyCell(amount, curr);
                             total[curr->CURRENCYID] += amount;
                             total_in_base_curr[curr->CURRENCYID] += amount * convRate;
+                            if (Model_Checking::type(transaction) != Model_Checking::TRANSFER)
+                            {
+                                total_extrans[curr->CURRENCYID] += amount;
+                                total_in_base_curr_extrans[curr->CURRENCYID] += amount * convRate;
+                            }
                         }
                         else
                         {
@@ -152,10 +159,28 @@ wxString mmReportTransactions::getHTMLText()
                 }
             }
             hb.endTbody();
+        }
+        hb.endTable();
+    }
+    hb.endDiv();
 
-            hb.startTfoot();
+    hb.addDivContainer("shadow");
+    {
+        // display the total balance 
+        hb.startTable();
+        {
+            hb.startThead();
             {
-                // display the total balance.
+                hb.startTableRow();
+                {
+                    hb.addTableHeaderCell(_("All Transactions: Withdrawals, Deposits, and Transfers"));
+                    hb.addTableHeaderCell("");
+                }
+                hb.endTableRow();
+            }
+            hb.endThead();
+            hb.startTbody();
+            {
                 double grand_total = 0;
                 for (const auto& curr_total : total)
                 {
@@ -165,15 +190,54 @@ wxString mmReportTransactions::getHTMLText()
                     const std::vector<wxString> v{ totalStr };
                     if (total.size() > 1
                         || (curr->CURRENCY_SYMBOL != Model_Currency::GetBaseCurrency()->CURRENCY_SYMBOL))
-                        hb.addTotalRow(curr->CURRENCY_SYMBOL, 10, v);
+                        hb.addTotalRow(curr->CURRENCY_SYMBOL, 1, v);
                 }
                 const wxString totalStr = Model_Currency::toCurrency(grand_total, Model_Currency::GetBaseCurrency());
                 const std::vector<wxString> v{ totalStr };
-                hb.addTotalRow(_("Grand Total:"), 10, v);
+                hb.addTotalRow(_("Grand Total:"), 1, v);
             }
-            hb.endTfoot();
+            hb.endTbody();
         }
         hb.endTable();
+
+        // display the total balance (excluding TRANSFERS)
+        hb.startTable();
+        {
+            hb.startThead();
+            {
+                hb.startTableRow();
+                {
+                    hb.addTableHeaderCell(_("All Transactions excluding Transfers"));
+                    hb.addTableHeaderCell("");
+                }
+                hb.endTableRow();
+            }
+            hb.endThead();
+            hb.startTbody();
+            {
+
+                double grand_total = 0;
+                for (const auto& curr_total : total_extrans)
+                {
+                    const auto curr = Model_Currency::instance().get(curr_total.first);
+                    const wxString totalStr = Model_Currency::toCurrency(curr_total.second, curr);
+                    grand_total += total_in_base_curr_extrans[curr_total.first];
+                    const std::vector<wxString> v{ totalStr };
+                    if (total.size() > 1
+                        || (curr->CURRENCY_SYMBOL != Model_Currency::GetBaseCurrency()->CURRENCY_SYMBOL))
+                        hb.addTotalRow(curr->CURRENCY_SYMBOL, 1, v);
+                }
+                const wxString totalStr = Model_Currency::toCurrency(grand_total, Model_Currency::GetBaseCurrency());
+                const std::vector<wxString> v{ totalStr };
+                hb.addTotalRow(_("Grand Total:"), 1, v);
+            }
+            hb.endTbody();
+        }
+        hb.endTable();
+    }
+    hb.endDiv();
+    hb.addDivContainer("shadow");
+    {
         m_transDialog->getDescription(hb);
     }
     hb.endDiv();
@@ -190,7 +254,11 @@ void mmReportTransactions::Run(mmFilterTransactionsDialog* dlg)
     {
         if (!dlg->checkAll(tran, m_refAccountID, splits)) continue;
         Model_Checking::Full_Data full_tran(tran, splits);
-        full_tran.PAYEENAME = full_tran.real_payee_name(m_refAccountID);
+        
+        //f (Model_Checking::type(tran) == Model_Checking::TRANSFER)
+         //   full_tran.ACCOUNTNAME = Model_Account::get_account_name(full_tran.ACCOUNTID);
+
+        full_tran.PAYEENAME = full_tran.real_payee_name(full_tran.ACCOUNTID);
         if (m_transDialog->getCategoryCheckBox() && full_tran.has_split()) 
         {
             full_tran.CATEGNAME.clear();
