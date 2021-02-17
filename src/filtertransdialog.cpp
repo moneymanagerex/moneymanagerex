@@ -1,6 +1,7 @@
 /*******************************************************
 Copyright (C) 2006 Madhan Kanagavel
 Copyright (C) 2016 - 2020 Nikolay Akimov
+Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -374,7 +375,7 @@ void mmFilterTransactionsDialog::OnCheckboxClick(wxCommandEvent& event)
         choiceStatus_->Enable(statusCheckBox_->IsChecked());
         cbTypeWithdrawal_->Enable(typeCheckBox_->IsChecked());
         cbTypeDeposit_->Enable(typeCheckBox_->IsChecked());
-        cbTypeTransferTo_->Enable(typeCheckBox_->IsChecked());
+        cbTypeTransferTo_->Enable(accountCheckBox_->IsChecked() && typeCheckBox_->IsChecked());
         cbTypeTransferFrom_->Enable(typeCheckBox_->IsChecked());
         amountMinEdit_->Enable(amountRangeCheckBox_->IsChecked());
         amountMaxEdit_->Enable(amountRangeCheckBox_->IsChecked());
