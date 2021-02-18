@@ -48,6 +48,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "../resources/donate_png.h"
 #include "../resources/downarrow_png.h"
 #include "../resources/edit_account_png.h"
+#include "../resources/empty_png.h"
 #include "../resources/exit_png.h"
 #include "../resources/facebook_png.h"
 #include "../resources/filter_png.h"
@@ -106,7 +107,6 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 //----------------------------------------------------------------------------
 /* Include XPM Support */
-#include "../resources/empty.xpm"
 
 #include "../resources/coins.xpm"
 #include "../resources/clock.xpm"
@@ -231,7 +231,7 @@ const wxBitmap mmBitmap(int ref)
     case DOWNARROW: return x == 16 ? wxBITMAP_PNG_FROM_DATA(downarrow) : x == 24 ? wxBITMAP_PNG_FROM_DATA(downarrow24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(downarrow32) : wxBITMAP_PNG_FROM_DATA(downarrow48);
     case DUPLICATE_STAT: return x == 16 ? wxBITMAP_PNG_FROM_DATA(status_d) : x == 24 ? wxBITMAP_PNG_FROM_DATA(status_d24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(status_d32) : wxBITMAP_PNG_FROM_DATA(status_d48);
     case EDIT_ACC: return x == 16 ? wxBITMAP_PNG_FROM_DATA(edit_account) : x == 24 ? wxBITMAP_PNG_FROM_DATA(edit_account24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(edit_account32) : wxBITMAP_PNG_FROM_DATA(edit_account48);
-    case EMPTY: return x == 16 ? wxBitmap(wxImage(empty_xpm).Scale(16, 16)) : x == 24 ? wxBitmap(wxImage(empty_xpm).Scale(24, 24)) : x == 32 ? wxBitmap(wxImage(empty_xpm).Scale(32, 32)) : wxBitmap(wxImage(empty_xpm).Scale(48, 48));
+    case EMPTY: return x == 16 ? wxBITMAP_PNG_FROM_DATA(empty) : x == 24 ? wxBITMAP_PNG_FROM_DATA(empty24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(empty32) : wxBITMAP_PNG_FROM_DATA(empty48);
     case ENCRYPT_DB: return x == 16 ? wxBITMAP_PNG_FROM_DATA(padlock) : x == 24 ? wxBITMAP_PNG_FROM_DATA(padlock24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(padlock32) : wxBITMAP_PNG_FROM_DATA(padlock48);
     case ENCRYPT_DB_EDIT: return x == 16 ? wxBITMAP_PNG_FROM_DATA(change_password) : x == 24 ? wxBITMAP_PNG_FROM_DATA(change_password24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(change_password32) : wxBITMAP_PNG_FROM_DATA(change_password48);
     case EXIT: return x == 16 ? wxBITMAP_PNG_FROM_DATA(exit) : x == 24 ? wxBITMAP_PNG_FROM_DATA(exit24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(exit32) : wxBITMAP_PNG_FROM_DATA(exit48);
@@ -298,6 +298,6 @@ const wxBitmap mmBitmap(int ref)
     case UPDATE: return x == 16 ? wxBITMAP_PNG_FROM_DATA(update) : x == 24 ? wxBITMAP_PNG_FROM_DATA(update24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(update32) : wxBITMAP_PNG_FROM_DATA(update48);
     case VOID_STAT: return x == 16 ? wxBITMAP_PNG_FROM_DATA(status_v) : x == 24 ? wxBITMAP_PNG_FROM_DATA(status_v24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(status_v32) : wxBITMAP_PNG_FROM_DATA(status_v48);
     case WEB: return x == 16 ? wxBITMAP_PNG_FROM_DATA(web) : x == 24 ? wxBITMAP_PNG_FROM_DATA(web24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(web32) : wxBITMAP_PNG_FROM_DATA(web48);
-    default: return wxBitmap(wxImage(empty_xpm).Scale(x, x));
+    default: return x == 16 ? wxBITMAP_PNG_FROM_DATA(empty) : x == 24 ? wxBITMAP_PNG_FROM_DATA(empty24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(empty32) : wxBITMAP_PNG_FROM_DATA(empty48);
     }
 }
