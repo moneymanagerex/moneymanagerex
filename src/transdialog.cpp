@@ -958,6 +958,7 @@ void mmTransDialog::OnAccountOrPayeeUpdated(wxCommandEvent& event)
             }
             cbPayee_->ChangeValue(payeeName);
             cbPayee_->SetInsertionPointEnd();
+            cbPayee_->Popup();
             cbPayee_->SetEvtHandlerEnabled(true);
         }
     }

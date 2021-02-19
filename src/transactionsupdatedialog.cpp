@@ -458,6 +458,7 @@ void transactionsUpdateDialog::OnPayeeUpdated(wxCommandEvent& event)
         }
         m_payee->ChangeValue(payeeName);
         m_payee->SetInsertionPointEnd();
+        m_payee->Popup();
         m_payee->SetEvtHandlerEnabled(true);
     }
 #else
