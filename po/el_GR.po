@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-02-09 23:37+0300\n"
-"PO-Revision-Date: 2021-02-16 18:40\n"
+"PO-Revision-Date: 2021-02-18 17:35\n"
 "Last-Translator: \n"
 "Language-Team: Greek\n"
 "MIME-Version: 1.0\n"
@@ -595,7 +595,7 @@ msgstr "Διαχείριση Περιουσιακού Στοιχείου"
 
 #: assetspanel.cpp:789
 msgid "Account \t Date\t   Value\n\n"
-msgstr ""
+msgstr "Λογαριασμός Ημερομηνία Τιμή\n\n"
 
 #: attachmentdialog.cpp:55 customfieldeditdialog.cpp:125
 #: customfieldlistdialog.cpp:54 general_report_manager.cpp:430
@@ -4275,35 +4275,35 @@ msgstr "Δωρεά στην ομάδα για την υποστήριξη της
 
 #: mmframe.cpp:1600
 msgid "Buy us a Coffee"
-msgstr ""
+msgstr "Αγοράστε σαν έναν καφέ"
 
 #: mmframe.cpp:1601
 msgid "Buy key developer a coffee"
-msgstr ""
+msgstr "Αγοράστε το κλειδί προγραμματιστής έναν καφέ"
 
 #: mmframe.cpp:1605
 msgid "Community"
-msgstr ""
+msgstr "Κοινότητα"
 
 #: mmframe.cpp:1606
 msgid "Stay in touch with MMEX community"
-msgstr ""
+msgstr "Μείνετε σε επαφή με την κοινότητα MMEX"
 
 #: mmframe.cpp:1626
 msgid "Report a Bug"
-msgstr ""
+msgstr "Αναφορά σφάλματος"
 
 #: mmframe.cpp:1627
 msgid "Report an error in application to the developers"
-msgstr ""
+msgstr "Αναφέρετε ένα σφάλμα στην εφαρμογή στους προγραμματιστές"
 
 #: mmframe.cpp:1632
 msgid "&Show App Start Dialog"
-msgstr ""
+msgstr "&Εμφάνιση Παραθύρου Εκκίνησης Εφαρμογών"
 
 #: mmframe.cpp:1632
 msgid "App Start Dialog"
-msgstr ""
+msgstr "Εκκίνηση Διαλόγου Εφαρμογής"
 
 #: mmframe.cpp:1637
 msgid "Check for &Updates"
