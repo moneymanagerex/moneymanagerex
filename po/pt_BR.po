@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-02-09 23:37+0300\n"
-"PO-Revision-Date: 2021-02-10 16:50\n"
+"PO-Revision-Date: 2021-02-21 16:38\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "MIME-Version: 1.0\n"
@@ -768,7 +768,7 @@ msgstr "Mensal"
 #: billsdepositsdialog.cpp:54 billsdepositspanel.cpp:43
 #: model/Model_Budget.cpp:59
 msgid "Every 2 Months"
-msgstr ""
+msgstr "A cada 2 meses"
 
 #: billsdepositsdialog.cpp:55 billsdepositspanel.cpp:44
 #: model/Model_Budget.cpp:60
@@ -1373,7 +1373,7 @@ msgstr "Visualizar Orçamento sem subtotal de Categoria"
 #: budgetingpanel.cpp:172
 #, c-format
 msgid "Financial Year: %s - %ld"
-msgstr ""
+msgstr "Ano Fiscal: %s - %ld"
 
 #: budgetingpanel.cpp:176 reports/budget.cpp:92
 #, c-format
@@ -1776,7 +1776,7 @@ msgstr "A taxa de conversão será utilizada caso nenhum histórico de moeda ten
 
 #: currencydialog.cpp:205
 msgid "Fixed conversion rate"
-msgstr ""
+msgstr "Taxa de câmbio fixa"
 
 #: currencydialog.cpp:210
 msgid "Value Display Sample:"
@@ -1935,7 +1935,7 @@ msgstr "Você quer atualizar para branco?\n"
 #: customfieldlistdialog.cpp:233
 #, c-format
 msgid "%i occurrences founded and replaced!"
-msgstr ""
+msgstr "%i ocorrências encontradas e substituídas!"
 
 #: customfieldlistdialog.cpp:268
 msgid "&Massive content update "
@@ -2149,7 +2149,7 @@ msgstr "Retorno de Investimento"
 #: dbupgrade.cpp:72
 #, c-format
 msgid "MMEX database upgrade to version %i failed!"
-msgstr ""
+msgstr "Atualização do banco de dados do MMEX para versão %i falhou!"
 
 #: dbupgrade.cpp:73
 msgid "Please restore DB from autocreated pre-upgrade backup and retry or contact MMEX support"
@@ -2173,11 +2173,11 @@ msgstr "Versão %i do banco de dados MMEX não funciona com esta versão MMEX.\n
 #: dbupgrade.cpp:119
 #, c-format
 msgid "MMEX database succesfully upgraded to version %i"
-msgstr ""
+msgstr "Atualização do banco de dados do MMEX para a versão %i instalada com sucesso"
 
 #: dbupgrade.cpp:120
 msgid "We suggest a database optimization under Tools -> Database -> Optimize"
-msgstr ""
+msgstr "Sugerimos uma otimização da base de dados em Ferramentas -> Banco de dados -> Otimizar"
 
 #: dbupgrade.cpp:197
 msgid "Load debug file"
@@ -4294,7 +4294,7 @@ msgstr "Relatar um erro no aplicativo para os desenvolvedores"
 
 #: mmframe.cpp:1632
 msgid "&Show App Start Dialog"
-msgstr ""
+msgstr "&Mostrar diálogo de início do aplicativo"
 
 #: mmframe.cpp:1632
 msgid "App Start Dialog"
@@ -4465,11 +4465,12 @@ msgstr ""
 #, c-format
 msgid "New password for database\n\n"
 "%s"
-msgstr ""
+msgstr "Nova senha para banco de dados\n\n"
+"%s"
 
 #: mmframe.cpp:2039
 msgid "New password must not be empty."
-msgstr ""
+msgstr "A nova senha não pode estar em branco."
 
 #: mmframe.cpp:2043
 msgid "Please confirm new password"
@@ -4570,7 +4571,7 @@ msgstr "Escolha o arquivo HTML a ser exportado"
 
 #: mmframe.cpp:2879 mmframe.cpp:2886
 msgid "Downloading stock prices from Yahoo"
-msgstr ""
+msgstr "Baixando os preços das ações do Yahoo"
 
 #: mmframe.cpp:2880
 msgid "Please wait..."
@@ -4685,11 +4686,11 @@ msgstr "Resumo das Contas"
 
 #: mmframereport.cpp:189
 msgid "Budget Performance"
-msgstr ""
+msgstr "Desempenho orçamental"
 
 #: mmframereport.cpp:192
 msgid "Budget Category Summary"
-msgstr ""
+msgstr "Resumo da Categoria de Orçamento"
 
 #: mmframereport.cpp:201
 msgid "Stocks Report"
@@ -4767,7 +4768,7 @@ msgstr "Total Geral:"
 
 #: mmhomepage.cpp:783
 msgid "Currency Exchange Rates"
-msgstr ""
+msgstr "Taxas de Câmbio"
 
 #: mmhomepagepanel.cpp:165
 msgid "Upcoming Transactions"
@@ -4949,7 +4950,7 @@ msgstr "Ano: "
 
 #: model/Model_Report.cpp:233
 msgid "Template is empty"
-msgstr ""
+msgstr "Modelo está vazio"
 
 #: model/Model_Report.cpp:247
 #, c-format
@@ -4996,7 +4997,7 @@ msgstr "Pasta de armazenamento de Anexos para %s apenas:"
 
 #: optionsettingsattachment.cpp:68
 msgid "Every OS type (Win,Mac,Unix) has its attachment folder"
-msgstr ""
+msgstr "Todo tipo de SO (Win,Mac,Unix) tem sua pasta de anexos"
 
 #: optionsettingsattachment.cpp:87
 msgid "Browse for folder"
@@ -5008,27 +5009,27 @@ msgstr "Caminho real:"
 
 #: optionsettingsattachment.cpp:97
 msgid "Legend (can be used as variables at the beginning of above path)"
-msgstr ""
+msgstr "Legenda (pode ser usada como variáveis no início do caminho acima)"
 
 #: optionsettingsattachment.cpp:102
 #, c-format
 msgid "%s -> User document directory"
-msgstr ""
+msgstr "%s -> Diretório de documentos do usuário"
 
 #: optionsettingsattachment.cpp:103
 #, c-format
 msgid "%s -> User profile folder"
-msgstr ""
+msgstr "%s -> Pasta do perfil do usuário"
 
 #: optionsettingsattachment.cpp:104
 #, c-format
 msgid "%s -> Folder of .MMB database file"
-msgstr ""
+msgstr "%s -> Pasta do arquivo de banco de dados .MMB"
 
 #: optionsettingsattachment.cpp:105
 #, c-format
 msgid "%s -> MMEX Application data folder"
-msgstr ""
+msgstr "%s -> Pasta de dados do aplicativo MMEX"
 
 #: optionsettingsattachment.cpp:111
 msgid "Other OS folders "
@@ -5040,15 +5041,15 @@ msgstr "Não definido ainda"
 
 #: optionsettingsattachment.cpp:123
 msgid "Windows folder -> "
-msgstr ""
+msgstr "Pasta do Windows -> "
 
 #: optionsettingsattachment.cpp:130
 msgid "Mac folder -> "
-msgstr ""
+msgstr "Pasta Mac -> "
 
 #: optionsettingsattachment.cpp:137
 msgid "Unix folder -> "
-msgstr ""
+msgstr "Pasta Unix -> "
 
 #: optionsettingsattachment.cpp:145
 msgid "Create and use Attachments subfolder"
@@ -5076,7 +5077,7 @@ msgstr "Escolha a pasta que servirá como armazenamento dos anexos"
 
 #: optionsettingsattachment.cpp:213
 msgid "Attachments folder it's not writable!"
-msgstr ""
+msgstr "Pasta de anexos não é gravável!"
 
 #: optionsettingsattachment.cpp:213
 msgid "Attachments folder"
@@ -5132,11 +5133,11 @@ msgstr "Clique com o botão direito e selecione \"Definir como Moeda Base\" na \
 
 #: optionsettingsgeneral.cpp:97
 msgid "Use currency history"
-msgstr ""
+msgstr "Usar histórico de moedas"
 
 #: optionsettingsgeneral.cpp:99
 msgid "Select to use currency history (one rate for each day), deselect to use a fixed rate"
-msgstr ""
+msgstr "Selecione para usar o histórico da moeda (uma taxa para cada dia), desmarque para usar uma taxa fixa"
 
 #: optionsettingsgeneral.cpp:115
 msgid "Specify the date format for display"
@@ -5340,7 +5341,7 @@ msgstr "Segundos"
 
 #: optionsettingsnet.cpp:151
 msgid "Updates"
-msgstr ""
+msgstr "Atualizações"
 
 #: optionsettingsnet.cpp:157
 msgid "Check for updates at StartUp"
