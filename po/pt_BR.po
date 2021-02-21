@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-02-09 23:37+0300\n"
-"PO-Revision-Date: 2021-02-21 16:38\n"
+"PO-Revision-Date: 2021-02-21 16:49\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "MIME-Version: 1.0\n"
@@ -5345,7 +5345,7 @@ msgstr "Atualizações"
 
 #: optionsettingsnet.cpp:157
 msgid "Check for updates at StartUp"
-msgstr ""
+msgstr "Verificar se há atualizações na inicialização"
 
 #: optionsettingsnet.cpp:159
 msgid "Enable to automatically check if new MMEX version is available at StartUp"
@@ -5361,7 +5361,7 @@ msgstr "Instável"
 
 #: optionsettingsnet.cpp:167
 msgid "Updates source"
-msgstr ""
+msgstr "Fonte das atualizações"
 
 #: optionsettingsview.cpp:78
 msgid "Specify which accounts are visible"
@@ -5377,27 +5377,27 @@ msgstr "Especifique qual fator de escala é usado para as páginas do relatório
 
 #: optionsettingsview.cpp:93
 msgid "Icons size"
-msgstr ""
+msgstr "Tamanho dos ícones"
 
 #: optionsettingsview.cpp:99
 msgid "Category delimiter"
-msgstr ""
+msgstr "Delimitador de categoria"
 
 #: optionsettingsview.cpp:114
 msgid "View Budgets as Financial Years"
-msgstr ""
+msgstr "Ver Orçamentos como Anos Fiscais"
 
 #: optionsettingsview.cpp:119
 msgid "View Budgets with 'transfer' transactions"
-msgstr ""
+msgstr "Ver Orçamentos com transações de 'transferência'"
 
 #: optionsettingsview.cpp:125
 msgid "View Budget Category Report with Summaries"
-msgstr ""
+msgstr "Ver Relatório da Categoria de Orçamento com Resumos"
 
 #: optionsettingsview.cpp:131
 msgid "Ignore Future Transactions"
-msgstr ""
+msgstr "Ignorar Transações Futuras"
 
 #: optionsettingsview.cpp:137 transdialog.cpp:563
 msgid "User Colors"
@@ -5542,7 +5542,7 @@ msgstr "Exercício Financeiro: %s - %i"
 #: reports/budget.cpp:98
 #, c-format
 msgid "Year: %i Month: %s"
-msgstr ""
+msgstr "Ano: %i Mês: %s"
 
 #: reports/budgetcategorysummary.cpp:109
 #, c-format
@@ -5627,12 +5627,12 @@ msgstr "Pesquisar <a href='%s'>uma lista de problemas conhecidos</a> para proble
 #: reports/bugreport.h:77
 #, c-format
 msgid "As you know, <a href='%s'>a forum</a> for users is available where you can discuss problems and find solutions."
-msgstr ""
+msgstr "Como você sabe, <a href='%s'>um fórum</a> disponível para usuários discutirem problemas e encontrar soluções."
 
 #: reports/bugreport.h:78
 #, c-format
 msgid "Please, join our community in <a href='%s'>Slack</a>. Here you can also pose your question and learn latest news."
-msgstr ""
+msgstr "Por favor, junte-se a nossa comunidade no <a href='%s'>Slack</a>. Aqui você também tirar suas dúvidas e ver as últimas notícias."
 
 #: reports/bugreport.h:79
 #, c-format
@@ -5686,7 +5686,7 @@ msgstr "Receitas Totais:"
 
 #: reports/categexp.cpp:252
 msgid "Categories Summary"
-msgstr ""
+msgstr "Resumo das Categorias"
 
 #: reports/categexp.cpp:261
 msgid "Category Income/Expenses"
@@ -5720,7 +5720,7 @@ msgstr "Desde o Início"
 
 #: reports/incexpenses.cpp:33
 msgid "Income vs Expenses Summary"
-msgstr ""
+msgstr "Rendimentos vs Despesas Resumo"
 
 #: reports/incexpenses.cpp:116
 msgid "Income:"
@@ -5732,7 +5732,7 @@ msgstr "Despesas:"
 
 #: reports/incexpenses.cpp:134
 msgid "Income vs Expenses Monthly"
-msgstr ""
+msgstr "Receitas vs Despesas Mensais"
 
 #: reports/mmDateRange.cpp:85
 msgid "Current Month"
@@ -5968,7 +5968,8 @@ msgstr "*Data"
 #: stockdialog.cpp:214
 msgid "Specify the initial date of the stock investment\n"
 "Used when creating the initial Share transaction."
-msgstr ""
+msgstr "Especifique a data inicial do investimento em ações\n"
+"Usado ao criar a transação inicial de ações."
 
 #: stockdialog.cpp:218
 msgid "*Share Number"
@@ -5977,7 +5978,8 @@ msgstr "*Número de Ações"
 #: stockdialog.cpp:224
 msgid "Enter number of shares.\n"
 "Used when creating the initial Share transaction."
-msgstr ""
+msgstr "Digite o número de ações.\n"
+"Usado ao criar a transação inicial de ação."
 
 #: stockdialog.cpp:230 stockspanel.cpp:94
 msgid "*Share Price"
@@ -5986,7 +5988,8 @@ msgstr "*Preço da Ação"
 #: stockdialog.cpp:236
 msgid "Enter the initial price per share.\n"
 "Used when creating the initial Share transaction."
-msgstr ""
+msgstr "Digite o preço inicial por ação.\n"
+"Usado ao criar a transação inicial de ações."
 
 #: stockdialog.cpp:241
 msgid "*Commission"
@@ -5995,7 +5998,8 @@ msgstr "*Comissões"
 #: stockdialog.cpp:245
 msgid "Enter any commission paid.\n"
 "Used when creating the initial Share transaction."
-msgstr ""
+msgstr "Entre com a comissão paga.\n"
+"Usada ao criar a transação inicial de ações."
 
 #: stockdialog.cpp:250 stockspanel.cpp:97
 msgid "Curr. Share Price"
@@ -6003,7 +6007,7 @@ msgstr "Cotação Atual"
 
 #: stockdialog.cpp:253
 msgid "Enter current stock/share price."
-msgstr ""
+msgstr "Insira o preço atual da ação."
 
 #: stockdialog.cpp:285
 msgid "Stock History Options"
@@ -6019,7 +6023,7 @@ msgstr "Data do Preço"
 
 #: stockdialog.cpp:320
 msgid "Specify the stock/share price date."
-msgstr ""
+msgstr "Especifique a data do preço da ação."
 
 #: stockdialog.cpp:336
 msgid "Download Stock Price history"
@@ -6031,11 +6035,11 @@ msgstr " Importação do Histórico de Preços de Ações (Formato CSV)"
 
 #: stockdialog.cpp:340
 msgid "Delete selected Stock Price"
-msgstr ""
+msgstr "Excluir o preço selecionado da ação"
 
 #: stockdialog.cpp:342
 msgid "Add Stock Price to history"
-msgstr ""
+msgstr "Adicionar preço da ação ao histórico"
 
 #: stockdialog.cpp:420
 msgid "Held At"
@@ -6065,12 +6069,12 @@ msgstr "Cotações importadas do CSV:"
 #: stockdialog.cpp:672
 #, c-format
 msgid "Total Lines : %ld"
-msgstr ""
+msgstr "Total de Linhas: %ld"
 
 #: stockdialog.cpp:674
 #, c-format
 msgid "Total Imported : %ld"
-msgstr ""
+msgstr "Total importado: %ld"
 
 #: stockdialog.cpp:682
 msgid "Importing CSV"
@@ -6193,7 +6197,7 @@ msgstr "Lista de ações temporária:: %s\n\n"
 
 #: stockspanel.cpp:579
 msgid "Add Stock Transactions"
-msgstr ""
+msgstr "Adicionar transações de ações"
 
 #: stockspanel.cpp:584
 msgid "View Stock Transactions"
