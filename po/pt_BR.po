@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-02-09 23:37+0300\n"
-"PO-Revision-Date: 2021-02-21 16:49\n"
+"PO-Revision-Date: 2021-02-21 17:04\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "MIME-Version: 1.0\n"
@@ -2517,7 +2517,7 @@ msgstr "Escolha o arquivo para Salvar como Relatório"
 
 #: general_report_manager.cpp:1185
 msgid "Parameters:"
-msgstr ""
+msgstr "Parâmetros:"
 
 #: import_export/parsers.cpp:46 import_export/univcsvdialog.cpp:1575
 #: mmSimpleDialogs.cpp:253
@@ -2573,7 +2573,7 @@ msgstr "Exportar para QIF"
 
 #: import_export/qif_export.cpp:47
 msgid "JSON Export"
-msgstr ""
+msgstr "Exportar JSON"
 
 #: import_export/qif_export.cpp:106
 msgid "Parameters"
@@ -2585,11 +2585,11 @@ msgstr "Registro"
 
 #: import_export/qif_export.cpp:123
 msgid "QIF"
-msgstr ""
+msgstr "QIF"
 
 #: import_export/qif_export.cpp:124
 msgid "JSON"
-msgstr ""
+msgstr "JSON"
 
 #: import_export/qif_export.cpp:138 mmframe.cpp:2946 mmframe.cpp:2950
 #: mmframe.cpp:2969 mmframe.cpp:2973
@@ -2640,7 +2640,7 @@ msgstr ""
 
 #: import_export/qif_export.cpp:301
 msgid "JSON Files (*.json)"
-msgstr ""
+msgstr "Arquivos JSON (*.json)"
 
 #: import_export/qif_export.cpp:321
 msgid "No Account available for export"
@@ -2997,7 +2997,7 @@ msgstr "Conta não existe"
 #: import_export/univcsvdialog.cpp:1830
 #, c-format
 msgid "Positive if type has '%s'"
-msgstr ""
+msgstr "Positivo se o tipo tem '%s'"
 
 #: import_export/univcsvdialog.cpp:919
 msgid "Incorrect fields specified for import!"
@@ -3145,7 +3145,7 @@ msgstr "Arquivos CSV (*.csv)"
 
 #: import_export/univcsvdialog.cpp:1826
 msgid "Please, type the word indicating positive values in your CSV file, e.g. 'debit'"
-msgstr ""
+msgstr "Por favor, digite a palavra indicando valores positivos no arquivo CSV, por exemplo: 'debito'"
 
 #: import_export/univcsvdialog.cpp:1826
 msgid "Enter a value"
@@ -3174,7 +3174,7 @@ msgstr "Atualização Online"
 
 #: maincurrencydialog.cpp:170
 msgid "Show all even the unused currencies"
-msgstr ""
+msgstr "Mostrar todas as moedas, incluindo as não utilizadas"
 
 #: maincurrencydialog.cpp:205 payeedialog.cpp:122
 msgid "Search:"
@@ -3215,7 +3215,7 @@ msgstr "Excluir valores de moeda selecionados"
 
 #: maincurrencydialog.cpp:294
 msgid "Delete Currency Values history for unused currencies and days"
-msgstr ""
+msgstr "Excluir histórico de valores de moeda para dias e moedas não utilizadas"
 
 #: maincurrencydialog.cpp:351
 msgid "Do you really want to delete the selected Currency?"
@@ -3235,7 +3235,8 @@ msgstr "Seleção de Moeda Base"
 #, c-format
 msgid "Historic rates for %s found, but \"Use currency history\" in options is disabled:\n"
 "click no and enable it or click yes to remove all historic rates for %s"
-msgstr ""
+msgstr "Taxas históricas para %s encontradas, mas \"Usar histórico de moedas\" nas opções está desativado:\n"
+"clique em não e habilite a opção ou clique em sim para remover todas as taxas históricas de %s"
 
 #: maincurrencydialog.cpp:432
 #, c-format
@@ -3244,7 +3245,7 @@ msgstr "Opções do Histórico da Moeda: %s"
 
 #: maincurrencydialog.cpp:488
 msgid "Unable to update history currency rates. Please update them manually!"
-msgstr ""
+msgstr "Não foi possível atualizar o histórico de taxas de câmbios. Por favor, atualize-os manualmente!"
 
 #: maincurrencydialog.cpp:489 maincurrencydialog.cpp:641
 #: maincurrencydialog.cpp:668 maincurrencydialog.cpp:704
@@ -3280,16 +3281,16 @@ msgstr "Não é possível fazer o download do histórico para o símbolo %s. Tax
 
 #: maincurrencydialog.cpp:764
 msgid "Changing base currency will delete all history rates, proceed?"
-msgstr ""
+msgstr "Alterar a moeda base irá apagar todas as taxas de histórico, continuar?"
 
 #: maincurrencydialog.cpp:788
 msgid "Do you want to update today currency rates?"
-msgstr ""
+msgstr "Você quer atualizar as taxas de câmbio de hoje?"
 
 #: maincurrencydialog.cpp:809
 #, c-format
 msgid "Unable to download history for base symbol %s. History rates not available!"
-msgstr ""
+msgstr "Não foi possível baixar histórico para o símbolo de base %s. Taxas de histórico não estão disponíveis!"
 
 #: maincurrencydialog.cpp:853 stockspanel.cpp:830 util.cpp:514
 msgid "Could not find base currency symbol!"
@@ -3297,11 +3298,11 @@ msgstr "Não foi possível encontrar o símbolo padrão da moeda!"
 
 #: mmSimpleDialogs.cpp:177
 msgid "Subtract one year"
-msgstr ""
+msgstr "Subtraia um ano"
 
 #: mmSimpleDialogs.cpp:178
 msgid "Subtract one month"
-msgstr ""
+msgstr "Subtraia um mês"
 
 #: mmSimpleDialogs.cpp:179
 msgid "Add one month"
@@ -3420,7 +3421,7 @@ msgstr "Dica: Lembre-se de fazer backups do seu arquivo .mmb."
 
 #: mmTips.h:26
 msgid "Tip: The .mmb file is not encrypted. That means anyone else having the proper know how can actually open the file and read the contents. So make sure that if you are storing any sensitive financial information it is properly guarded."
-msgstr ""
+msgstr "Dica: O arquivo .mmb não é criptografado. Isso significa que qualquer outra pessoa que tenha o conhecimento sabe como abrir o arquivo e ler seu conteúdo. Portanto, certifique-se de que se você estiver armazenando qualquer informação financeira sigilosa, ela está devidamente protegida."
 
 #: mmTips.h:27
 msgid "Tip: To mark a transaction as reconciled, just select the transaction and hit the 'r' or 'R' key. To mark a transaction as unreconciled, just select the transaction and hit the 'u' or 'U' key."
@@ -3619,14 +3620,15 @@ msgstr "Tem certeza de que deseja excluir todas as \"%s\" transações apresenta
 #, c-format
 msgid "Do you really want to delete the selected transaction?"
 msgid_plural "Do you really want to delete %i selected transactions?"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Você realmente deseja excluir a transação selecionada?"
+msgstr[1] "Você realmente deseja excluir as %i transações selecionadas?"
 
 #: mmchecking_list.cpp:808
 #, c-format
 msgid "Locked transaction to date: %s\n\n"
 "Reconciled transactions."
-msgstr ""
+msgstr "Transação bloqueada até a data: %s\n\n"
+"Transações reconciliadas."
 
 #: mmchecking_list.cpp:811 transdialog.cpp:713 transdialog.cpp:746
 msgid "MMEX Transaction Check"
@@ -3688,7 +3690,7 @@ msgstr "Insira qualquer sequência de caractere para encontrá-la nas observaç�
 #: mmcheckingpanel.cpp:376
 #, c-format
 msgid "Account View : %s"
-msgstr ""
+msgstr "Visão da conta: %s"
 
 #: mmcheckingpanel.cpp:601
 msgid "Select account used in transfer transactions"
@@ -3710,7 +3712,8 @@ msgstr "Múltipla escolha"
 #, c-format
 msgid "Unable to save custom field \"%s\":\n"
 "value \"%s\" does not match RegEx validation \"%s\""
-msgstr ""
+msgstr "Não foi possível salvar o campo personalizado \"%s\":\n"
+"valor \"%s\" não corresponde à validação RegEx \"%s\""
 
 #: mmcustomdata.cpp:449
 msgid "CustomField validation error"
@@ -3725,7 +3728,8 @@ msgstr "Não é possível carregar uma tradução para o idioma padrão do seu s
 #, c-format
 msgid "Please use the Switch Application Language option in View menu to select one of the following available languages:\n\n"
 "%s"
-msgstr ""
+msgstr "Por favor, use a opção Alternar Idioma do Aplicação no menu Exibir para selecionar um dos seguintes idiomas disponíveis:\n\n"
+"%s"
 
 #: mmex.cpp:140 mmframe.cpp:3210
 msgid "Language change"
@@ -3734,7 +3738,8 @@ msgstr "Mudança de idioma"
 #: mmex.cpp:180
 msgid "Fatal error occured.\n"
 "Application will be terminated."
-msgstr ""
+msgstr "Ocorreu um erro fatal.\n"
+"O aplicativo será encerrado."
 
 #: mmframe.cpp:260
 msgid "Navigation"
@@ -3898,7 +3903,7 @@ msgstr "Exportar para XML"
 
 #: mmframe.cpp:1318
 msgid "Export to JSON"
-msgstr ""
+msgstr "Exportar para JSON"
 
 #: mmframe.cpp:1319
 msgid "&HTML Files..."
