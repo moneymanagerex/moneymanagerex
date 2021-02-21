@@ -19,6 +19,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 #include "images_list.h"
 #include "option.h"
+#include "util.h"
 #include <wx/image.h>
 #include <wx/bitmap.h>
 #include <map>
@@ -176,8 +177,12 @@ static const std::map<int, wxBitmap> acc_images()
 wxImageList* navtree_images_list()
 {
     int x = Option::instance().getIconSize();
-
+/*#ifdef __WXMAC__    // On Mac specification of the size and list creation causes image distortion but it is mandatory on Windows
     wxImageList* imageList = new wxImageList();
+#else
+    wxImageList* imageList = new wxImageList(x, x);
+#endif */
+    wxImageList* imageList = createImageList();
     for (const auto& img : navtree_images())
     {
         wxASSERT(img.second.GetHeight() == x && img.second.GetWidth() == x);
