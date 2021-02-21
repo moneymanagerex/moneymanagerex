@@ -110,6 +110,7 @@ Spanish
 =======================================
 
 ## Art and Icons
+[SVG Repo](https://www.svgrepo.com)
 Greg Chapman
 [Mark James](http://www.famfamfam.com/lab/icons/silk)
 [openclipart.org](http://openclipart.org)
