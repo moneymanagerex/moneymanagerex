@@ -703,7 +703,7 @@ th {
   vertical-align: bottom;
   border-top: 2px solid #dddddd!important;
   border-bottom: 2px solid #dddddd!important;
-  background-color: #d8ebf0;
+  background-color: #d9e8e1;
 }
 
 .table > caption + thead > tr:first-child > th,
@@ -984,10 +984,10 @@ a.badge:focus {
 }
 
 .shadowTitle {
-    box-shadow: 0 0 20px rgba(0,0,0,0.5); /* shadow parameters */
+    box-shadow: 0 0 15px rgba(0,0,0,0.5); /* shadow parameters */
     padding: 10px;
     margin: 10px;
-    background: linear-gradient(to right, #d8ebf0 60%, #d9ecc7 80% );
+    background: linear-gradient(to right, #80b39a 10%, #d9e8e1 90% );
     display: flex;
     align-items: stretch;
     flex-wrap: wrap;
@@ -995,7 +995,7 @@ a.badge:focus {
 
 .shadow:hover,
 .shadowTitle:hover {
-    box-shadow : 0 0 20px rgba(0,0,0,0.7);
+    box-shadow : 0 0 25px rgba(0,0,0,0.4);
     transform: translateY(-1px);
 }
  
