@@ -1227,3 +1227,12 @@ const wxString md2html(const wxString& md)
     return body;
 }
 
+wxImageList* createImageList()
+{
+#ifdef __WXMAC__    // On Mac specification of the size at list creation causes image distortion but it is mandatory on Windows
+    return(new wxImageList());
+#else
+    int x = Option::instance().getIconSize();
+    return (new wxImageList(x, x));
+#endif 
+}

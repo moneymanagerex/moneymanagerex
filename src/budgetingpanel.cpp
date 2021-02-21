@@ -254,8 +254,7 @@ void mmBudgetingPanel::CreateControls()
     itemIncomeSizer->Add(expenses_diff_);
     /* ---------------------- */
 
-    int x = Option::instance().getIconSize();
-    m_imageList = new wxImageList(x, x);
+    m_imageList = createImageList();
     m_imageList->Add(mmBitmap(png::RECONCILED));
     m_imageList->Add(mmBitmap(png::VOID_STAT));
     m_imageList->Add(mmBitmap(png::FOLLOW_UP));

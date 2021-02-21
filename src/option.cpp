@@ -350,7 +350,6 @@ int Option::AccountImageId(int account_id, bool def)
     {
         acctType = Model_Account::type(account);
         acctStatus = account->STATUS;
-        favorite = Model_Account::FAVORITEACCT(account);
     }
     bool closed = acctStatus == "Closed";
 
@@ -358,42 +357,34 @@ int Option::AccountImageId(int account_id, bool def)
     {
     case (Model_Account::CHECKING) :
         if (closed) selectedImage = img::SAVINGS_ACC_CLOSED_PNG;
-        else if (favorite) selectedImage = img::SAVINGS_ACC_FAVORITE_PNG;
         else selectedImage = img::SAVINGS_ACC_NORMAL_PNG;
         break;
     case (Model_Account::TERM) :
         if (closed) selectedImage = img::TERM_ACC_CLOSED_PNG;
-        else if (favorite) selectedImage = img::TERM_ACC_FAVORITE_PNG;
-        else  selectedImage = img::TERMACCOUNT_PNG;
+         else  selectedImage = img::TERMACCOUNT_PNG;
         break;
     case (Model_Account::INVESTMENT) :
         if (closed) selectedImage = img::STOCK_ACC_CLOSED_PNG;
-        else if (favorite) selectedImage = img::STOCK_ACC_FAVORITE_PNG;
         else  selectedImage = img::STOCK_ACC_PNG;
         break;
     case (Model_Account::CREDIT_CARD) :
         if (closed) selectedImage = img::CARD_ACC_CLOSED_PNG;
-        else if (favorite)   selectedImage = img::CARD_ACC_FAVORITE_PNG;
-        else   selectedImage = img::CARD_ACC_PNG;
+         else   selectedImage = img::CARD_ACC_PNG;
         break;
     case (Model_Account::CASH) :
         if (closed) selectedImage = img::CASH_ACC_CLOSED_PNG;
-        else if (favorite) selectedImage = img::CASH_ACC_FAVORITE_PNG;
-        else selectedImage = img::CASH_ACC_NORMAL_PNG;
+         else selectedImage = img::CASH_ACC_NORMAL_PNG;
         break;
     case (Model_Account::LOAN) :
         if (closed) selectedImage = img::LOAN_ACC_CLOSED_PNG;
-        else if (favorite) selectedImage = img::LOAN_ACC_FAVORITE_PNG;
-        else selectedImage = img::LOAN_ACC_NORMAL_PNG;
+         else selectedImage = img::LOAN_ACC_NORMAL_PNG;
         break;
     case (Model_Account::ASSET) :
         if (closed) selectedImage = img::CASH_ACC_CLOSED_PNG;
-        else if (favorite) selectedImage = img::CASH_ACC_FAVORITE_PNG;
-        else selectedImage = img::CASH_ACC_NORMAL_PNG;
+         else selectedImage = img::CASH_ACC_NORMAL_PNG;
         break;
     case (Model_Account::SHARES) :
         if (closed) selectedImage = img::LOAN_ACC_CLOSED_PNG;
-        else if (favorite) selectedImage = img::LOAN_ACC_FAVORITE_PNG;
         else selectedImage = img::LOAN_ACC_NORMAL_PNG;
         break;
     default:

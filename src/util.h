@@ -240,3 +240,6 @@ private:
     std::map<wxString, int> m_separators;
 
 };
+
+// used where differences occure between platforms
+wxImageList* createImageList();

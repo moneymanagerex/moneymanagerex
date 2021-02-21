@@ -454,6 +454,7 @@ bool mmGUIFrame::setNavTreeSection(const wxString &sectionName)
 //----------------------------------------------------------------------------
 void mmGUIFrame::setAccountNavTreeSection(const wxString& accountName)
 {
+    if (setAccountInSection(wxTRANSLATE("Favourites"), accountName)) return;
     if (setAccountInSection(wxTRANSLATE("Bank Accounts"), accountName)) return;
     if (setAccountInSection(wxTRANSLATE("Credit Card Accounts"), accountName)) return;
     if (setAccountInSection(wxTRANSLATE("Term Accounts"), accountName)) return;
@@ -649,7 +650,13 @@ void mmGUIFrame::createControls()
 #endif
     m_nav_tree_ctrl->SetMinSize(wxSize(100, 100));
 
+    int all_icons_size = Option::instance().getIconSize();
+    int main_menu_icon_size = all_icons_size + 8;
+    if (main_menu_icon_size >= 40) main_menu_icon_size = 48;
+    Option::instance().setIconSize(main_menu_icon_size);
     m_nav_tree_ctrl->AssignImageList(navtree_images_list());
+    Option::instance().setIconSize(all_icons_size);
+
     m_nav_tree_ctrl->Connect(ID_NAVTREECTRL, wxEVT_TREE_SEL_CHANGED, wxTreeEventHandler(mmGUIFrame::OnSelChanged), nullptr, this);
 
     homePanel_ = new wxPanel(this, wxID_ANY,
@@ -683,7 +690,11 @@ void mmGUIFrame::updateNavTreeControl()
     m_nav_tree_ctrl->SetItemData(alltransactions, new mmTreeItemData("All Transactions", false));
     m_nav_tree_ctrl->SetItemBold(alltransactions, true);
 
-    wxTreeItemId accounts = m_nav_tree_ctrl->AppendItem(root, _("Bank Accounts"), img::SAVINGS_ACC_NORMAL_PNG, img::SAVINGS_ACC_NORMAL_PNG);
+    wxTreeItemId favourites = m_nav_tree_ctrl->AppendItem(root, _("Favourites"), img::FAVOURITE_PNG, img::FAVOURITE_PNG);
+    m_nav_tree_ctrl->SetItemData(favourites, new mmTreeItemData("Favourites", false));
+    m_nav_tree_ctrl->SetItemBold(favourites, true);
+
+   wxTreeItemId accounts = m_nav_tree_ctrl->AppendItem(root, _("Bank Accounts"), img::SAVINGS_ACC_NORMAL_PNG, img::SAVINGS_ACC_NORMAL_PNG);
     m_nav_tree_ctrl->SetItemData(accounts, new mmTreeItemData("Bank Accounts", false));
     m_nav_tree_ctrl->SetItemBold(accounts, true);
 
@@ -800,6 +811,12 @@ void mmGUIFrame::updateNavTreeControl()
 
             wxTreeItemId tacct;
 
+            if (Model_Account::FAVORITEACCT(account))
+            {
+                tacct = m_nav_tree_ctrl->AppendItem(favourites, account.ACCOUNTNAME, selectedImage, selectedImage);
+                m_nav_tree_ctrl->SetItemData(tacct, new mmTreeItemData(account.ACCOUNTID, false, false));
+            }
+
             switch (Model_Account::type(account))
             {
             case Model_Account::INVESTMENT:
@@ -850,6 +867,9 @@ void mmGUIFrame::updateNavTreeControl()
 
         loadNavigationTreeItemsStatusFromJson();
 
+       if (!m_nav_tree_ctrl->ItemHasChildren(favourites)) {
+            m_nav_tree_ctrl->Delete(favourites);
+        }
         if (!m_nav_tree_ctrl->ItemHasChildren(accounts)) {
             m_nav_tree_ctrl->Delete(accounts);
         }
@@ -1229,7 +1249,8 @@ void mmGUIFrame::showTreePopupMenu(const wxTreeItemId& id, const wxPoint& pt)
             menu.Append(wxID_VIEW_LIST, _("General Report Manager"));
             PopupMenu(&menu, pt);
         }
-        else if (iData->getString() == "item@Bank Accounts" ||
+        else if (iData->getString() == "item@Favorites" ||
+            iData->getString() == "item@Bank Accounts" ||
             iData->getString() == "item@Cash Accounts" ||
             iData->getString() == "item@Loan Accounts" ||
             iData->getString() == "item@Term Accounts" ||
@@ -1302,11 +1323,11 @@ void mmGUIFrame::createMenu()
     wxMenu* menu_file = new wxMenu;
 
     wxMenuItem* menuItemNew = new wxMenuItem(menu_file, MENU_NEW, _("&New Database\tCtrl-N"), _("New Database"));
-    menuItemNew->SetBitmap(mmBitmap(png::NEW_DB));
+    //menuItemNew->SetBitmap(mmBitmap(png::NEW_DB));
     wxMenuItem* menuItemOpen = new wxMenuItem(menu_file, MENU_OPEN, _("&Open Database\tCtrl-O"), _("Open Database"));
-    menuItemOpen->SetBitmap(mmBitmap(png::OPEN));
+    //menuItemOpen->SetBitmap(mmBitmap(png::OPEN));
     wxMenuItem* menuItemSaveAs = new wxMenuItem(menu_file, MENU_SAVE_AS, _("Save Database &As"), _("Save Database As"));
-    menuItemSaveAs->SetBitmap(mmBitmap(png::SAVEAS));
+    //menuItemSaveAs->SetBitmap(mmBitmap(png::SAVEAS));
     menu_file->Append(menuItemNew);
     menu_file->Append(menuItemOpen);
     menu_file->Append(menuItemSaveAs);
@@ -1315,7 +1336,7 @@ void mmGUIFrame::createMenu()
     m_menuRecentFiles = new wxMenu;
     menu_file->Append(MENU_RECENT_FILES, _("&Recent Files..."), m_menuRecentFiles);
     wxMenuItem* menuClearRecentFiles = new wxMenuItem(menu_file, MENU_RECENT_FILES_CLEAR, _("&Clear Recent Files"));
-    menuClearRecentFiles->SetBitmap(mmBitmap(png::CLEARLIST));
+    //menuClearRecentFiles->SetBitmap(mmBitmap(png::CLEARLIST));
     menu_file->Append(menuClearRecentFiles);
     menu_file->AppendSeparator();
 
@@ -1338,14 +1359,14 @@ void mmGUIFrame::createMenu()
 
     wxMenuItem* menuItemPrint = new wxMenuItem(menu_file, wxID_PRINT,
         _("&Print..."), _("Print current view"));
-    menuItemPrint->SetBitmap(mmBitmap(png::PRINT));
+    //menuItemPrint->SetBitmap(mmBitmap(png::PRINT));
     menu_file->Append(menuItemPrint);
 
     menu_file->AppendSeparator();
 
     wxMenuItem* menuItemQuit = new wxMenuItem(menu_file, wxID_EXIT,
         _("E&xit\tAlt-X"), _("Quit this program"));
-    menuItemQuit->SetBitmap(mmBitmap(png::EXIT));
+    //menuItemQuit->SetBitmap(mmBitmap(png::EXIT));
     menu_file->Append(menuItemQuit);
 
     // Create the required menu items
@@ -1382,7 +1403,7 @@ void mmGUIFrame::createMenu()
     wxMenuItem* menuItemToggleFullscreen = new wxMenuItem(menuView, MENU_VIEW_TOGGLE_FULLSCREEN
         , _("Toggle Fullscreen\tShift+F11")
         , _("Toggle Fullscreen"));
-    menuItemToggleFullscreen->SetBitmap(mmBitmap(png::FULLSCREEN));
+    //menuItemToggleFullscreen->SetBitmap(mmBitmap(png::FULLSCREEN));
     menuView->Append(menuItemToggleFullscreen);
 #endif
 
@@ -1390,7 +1411,7 @@ void mmGUIFrame::createMenu()
     wxMenuItem* menuItemLanguage = new wxMenuItem(menuView, MENU_LANG
         , _("Switch Application Language")
         , _("Change language used for MMEX GUI"));
-    menuItemLanguage->SetBitmap(mmBitmap(png::LANG));
+    //menuItemLanguage->SetBitmap(mmBitmap(png::LANG));
     wxMenu* menuLang = new wxMenu;
 
     wxArrayString lang_files = wxTranslations::Get()->GetAvailableTranslations("mmex");
@@ -1416,23 +1437,23 @@ void mmGUIFrame::createMenu()
 
     wxMenuItem* menuItemAcctList = new wxMenuItem(menuAccounts, MENU_ACCTLIST
         , _("Account &List"), _("Show Account List"));
-    menuItemAcctList->SetBitmap(mmBitmap(png::HOME));
+    //menuItemAcctList->SetBitmap(mmBitmap(png::HOME));
 
     wxMenuItem* menuItemNewAcct = new wxMenuItem(menuAccounts, MENU_NEWACCT
         , _("New &Account"), _("New Account"));
-    menuItemNewAcct->SetBitmap(mmBitmap(png::NEW_ACC));
+    //menuItemNewAcct->SetBitmap(mmBitmap(png::NEW_ACC));
 
     wxMenuItem* menuItemAcctEdit = new wxMenuItem(menuAccounts, MENU_ACCTEDIT
         , _("&Edit Account"), _("Edit Account"));
-    menuItemAcctEdit->SetBitmap(mmBitmap(png::EDIT_ACC));
+    //menuItemAcctEdit->SetBitmap(mmBitmap(png::EDIT_ACC));
 
     wxMenuItem* menuItemReallocateAcct = new wxMenuItem(menuAccounts, MENU_ACCOUNT_REALLOCATE
         , _("&Reallocate Account"), _("Change the account type of an account."));
-    menuItemReallocateAcct->SetBitmap(mmBitmap(png::REALLOCATE_ACC));
+    //menuItemReallocateAcct->SetBitmap(mmBitmap(png::REALLOCATE_ACC));
 
     wxMenuItem* menuItemAcctDelete = new wxMenuItem(menuAccounts, MENU_ACCTDELETE
         , _("&Delete Account"), _("Delete Account from database"));
-    menuItemAcctDelete->SetBitmap(mmBitmap(png::DELETE_ACC));
+    //menuItemAcctDelete->SetBitmap(mmBitmap(png::DELETE_ACC));
 
     menuAccounts->Append(menuItemAcctList);
     menuAccounts->AppendSeparator();
@@ -1446,38 +1467,38 @@ void mmGUIFrame::createMenu()
 
     wxMenuItem* menuItemRates = new wxMenuItem(menuTools
         , MENU_RATES, _("Download Rates..."), _("Download Currency and Stock rates"));
-    menuItemRates->SetBitmap(mmBitmap(png::CURRATES));
+    //menuItemRates->SetBitmap(mmBitmap(png::CURRATES));
     menuTools->Append(menuItemRates);
 
     menuTools->AppendSeparator();
 
     wxMenuItem* menuItemCateg = new wxMenuItem(menuTools
         , MENU_ORGCATEGS, _("Organize &Categories..."), _("Organize Categories"));
-    menuItemCateg->SetBitmap(mmBitmap(png::CATEGORY));
+    //menuItemCateg->SetBitmap(mmBitmap(png::CATEGORY));
     menuTools->Append(menuItemCateg);
 
     wxMenuItem* menuItemPayee = new wxMenuItem(menuTools
         , MENU_ORGPAYEE, _("Organize &Payees..."), _("Organize Payees"));
-    menuItemPayee->SetBitmap(mmBitmap(png::PAYEE));
+    //menuItemPayee->SetBitmap(mmBitmap(png::PAYEE));
     menuTools->Append(menuItemPayee);
 
     wxMenuItem* menuItemCurrency = new wxMenuItem(menuTools, MENU_CURRENCY
         , _("Organize Currency..."), _("Organize Currency"));
-    menuItemCurrency->SetBitmap(mmBitmap(png::CURR));
+    //menuItemCurrency->SetBitmap(mmBitmap(png::CURR));
     menuTools->Append(menuItemCurrency);
 
     wxMenuItem* menuItemCategoryRelocation = new wxMenuItem(menuTools
         , MENU_CATEGORY_RELOCATION, _("&Categories...")
         , _("Reassign all categories to another category"));
-    menuItemCategoryRelocation->SetBitmap(mmBitmap(png::CATEGORY_RELOCATION));
+    //menuItemCategoryRelocation->SetBitmap(mmBitmap(png::CATEGORY_RELOCATION));
     wxMenuItem* menuItemPayeeRelocation = new wxMenuItem(menuTools
         , MENU_PAYEE_RELOCATION, _("&Payees...")
         , _("Reassign all payees to another payee"));
-    menuItemPayeeRelocation->SetBitmap(mmBitmap(png::PAYEE_RELOCATION));
+    //menuItemPayeeRelocation->SetBitmap(mmBitmap(png::PAYEE_RELOCATION));
     wxMenuItem* menuItemRelocation = new wxMenuItem(menuTools
         , MENU_RELOCATION, _("Relocation of...")
         , _("Relocate Categories && Payees"));
-    menuItemRelocation->SetBitmap(mmBitmap(png::RELOCATION));
+    //menuItemRelocation->SetBitmap(mmBitmap(png::RELOCATION));
     wxMenu* menuRelocation = new wxMenu;
     menuRelocation->Append(menuItemCategoryRelocation);
     menuRelocation->Append(menuItemPayeeRelocation);
@@ -1488,43 +1509,43 @@ void mmGUIFrame::createMenu()
 
     wxMenuItem* menuItemBudgeting = new wxMenuItem(menuTools, MENU_BUDGETSETUPDIALOG
         , _("&Budget Setup"), _("Budget Setup"));
-    menuItemBudgeting->SetBitmap(mmBitmap(png::BUDGET));
+    //menuItemBudgeting->SetBitmap(mmBitmap(png::BUDGET));
     menuTools->Append(menuItemBudgeting);
 
     wxMenuItem* menuItemBillsDeposits = new wxMenuItem(menuTools, MENU_BILLSDEPOSITS
         , _("&Recurring Transactions"), _("Bills && Deposits"));
-    menuItemBillsDeposits->SetBitmap(mmBitmap(png::RECURRING));
+    //menuItemBillsDeposits->SetBitmap(mmBitmap(png::RECURRING));
     menuTools->Append(menuItemBillsDeposits);
 
     wxMenuItem* menuItemAssets = new wxMenuItem(menuTools, MENU_ASSETS
         , _("&Assets"), _("Assets"));
-    menuItemAssets->SetBitmap(mmBitmap(png::ASSET));
+    //menuItemAssets->SetBitmap(mmBitmap(png::ASSET));
     menuTools->Append(menuItemAssets);
 
     menuTools->AppendSeparator();
 
     wxMenuItem* menuItemTransactions = new wxMenuItem(menuTools, MENU_TRANSACTIONREPORT
         , _("&Transaction Report Filter..."), _("Transaction Report Filter"));
-    menuItemTransactions->SetBitmap(mmBitmap(png::FILTER));
+    //menuItemTransactions->SetBitmap(mmBitmap(png::FILTER));
     menuTools->Append(menuItemTransactions);
 
     menuTools->AppendSeparator();
 
     wxMenuItem* menuItemGRM = new wxMenuItem(menuTools, wxID_VIEW_LIST
         , _("&General Report Manager..."), _("General Report Manager"));
-    menuItemGRM->SetBitmap(mmBitmap(png::GRM));
+    //menuItemGRM->SetBitmap(mmBitmap(png::GRM));
     menuTools->Append(menuItemGRM);
 
     wxMenuItem* menuItemCF = new wxMenuItem(menuTools, wxID_BROWSE
         , _("&Custom Fields Manager..."), _("Custom Fields Manager"));
-    menuItemCF->SetBitmap(mmBitmap(png::CUSTOM));
+    //menuItemCF->SetBitmap(mmBitmap(png::CUSTOM));
     menuTools->Append(menuItemCF);
 
     menuTools->AppendSeparator();
 
     wxMenuItem* menuItemOptions = new wxMenuItem(menuTools, wxID_PREFERENCES
         , _("&Options...\tCtrl-,"), _("Show the Options Dialog"));
-    menuItemOptions->SetBitmap(mmBitmap(png::OPTIONS));
+    //menuItemOptions->SetBitmap(mmBitmap(png::OPTIONS));
     menuTools->Append(menuItemOptions);
 
     menuTools->AppendSeparator();
@@ -1533,19 +1554,19 @@ void mmGUIFrame::createMenu()
     wxMenuItem* menuItemConvertDB = new wxMenuItem(menuTools, MENU_CONVERT_ENC_DB
         , _("Convert Encrypted &DB")
         , _("Convert Encrypted DB to Non-Encrypted DB"));
-    menuItemConvertDB->SetBitmap(mmBitmap(png::ENCRYPT_DB));
+    //menuItemConvertDB->SetBitmap(mmBitmap(png::ENCRYPT_DB));
     wxMenuItem* menuItemChangeEncryptPassword = new wxMenuItem(menuTools, MENU_CHANGE_ENCRYPT_PASSWORD
         , _("Change Encrypted &Password")
         , _("Change the password of an encrypted database"));
-    menuItemChangeEncryptPassword->SetBitmap(mmBitmap(png::ENCRYPT_DB_EDIT));
+    //menuItemChangeEncryptPassword->SetBitmap(mmBitmap(png::ENCRYPT_DB_EDIT));
     wxMenuItem* menuItemVacuumDB = new wxMenuItem(menuTools, MENU_DB_VACUUM
         , _("Optimize &Database")
         , _("Optimize database space and performance"));
-    menuItemVacuumDB->SetBitmap(mmBitmap(png::EMPTY));
+    //menuItemVacuumDB->SetBitmap(mmBitmap(png::EMPTY));
     wxMenuItem* menuItemCheckDB = new wxMenuItem(menuTools, MENU_DB_DEBUG
         , _("Database Debug")
         , _("Generate database report or fix errors"));
-    menuItemCheckDB->SetBitmap(mmBitmap(png::EMPTY));
+    //menuItemCheckDB->SetBitmap(mmBitmap(png::EMPTY));
     menuDatabase->Append(menuItemConvertDB);
     menuDatabase->Append(menuItemChangeEncryptPassword);
     menuDatabase->Append(menuItemVacuumDB);
@@ -1559,7 +1580,7 @@ void mmGUIFrame::createMenu()
 
     wxMenuItem* menuItemHelp = new wxMenuItem(menuTools, wxID_HELP,
         _("&Help\tF1"), _("Show the Help file"));
-    menuItemHelp->SetBitmap(mmBitmap(png::HELP));
+    //menuItemHelp->SetBitmap(mmBitmap(png::HELP));
     menuHelp->Append(menuItemHelp);
 
     //Community Submenu
@@ -1569,7 +1590,7 @@ void mmGUIFrame::createMenu()
     // menuItemFacebook->SetBitmap(mmBitmap(png::WEBSITE));
     wxMenuItem* menuItemFacebook = new wxMenuItem(menuHelp, MENU_FACEBOOK
         , _("Facebook"), _("Visit us on Facebook"));
-    menuItemFacebook->SetBitmap(mmBitmap(png::FACEBOOK));
+    //menuItemFacebook->SetBitmap(mmBitmap(png::FACEBOOK));
     wxMenuItem* menuItemTwitter = new wxMenuItem(menuHelp, MENU_TWITTER
         , _("Twitter"), _("Follow us on Twitter"));
     // menuItemTwitter->SetBitmap(mmBitmap(png::TWITTER));
@@ -1578,32 +1599,32 @@ void mmGUIFrame::createMenu()
     // menuItemYouTube->SetBitmap(mmBitmap(png::YOUTUBE));
     wxMenuItem* menuItemSlack = new wxMenuItem(menuHelp, MENU_SLACK
         , _("Slack"), _("Communicate online with MMEX team from your desktop or mobile device"));
-    menuItemSlack->SetBitmap(mmBitmap(png::SLACK));
+    //menuItemSlack->SetBitmap(mmBitmap(png::SLACK));
     wxMenuItem* menuItemGitHub = new wxMenuItem(menuHelp, MENU_GITHUB
         , _("GitHub"), _("Access open source code repository and track reported bug statuses"));
-    menuItemGitHub->SetBitmap(mmBitmap(png::GITHUB));
+    //menuItemGitHub->SetBitmap(mmBitmap(png::GITHUB));
     wxMenuItem* menuItemWiki = new wxMenuItem(menuHelp, MENU_WIKI
         , _("Wiki pages"), _("Read and update wiki pages"));
     // menuItemWiki->SetBitmap(mmBitmap(png::WIKI));
     wxMenuItem* menuItemReportIssues = new wxMenuItem(menuHelp, MENU_REPORTISSUES
         , _("Forum")
         , _("Visit the MMEX forum to see existing user comments or report new issues with the software"));
-    menuItemReportIssues->SetBitmap(mmBitmap(png::FORUM));
+    //menuItemReportIssues->SetBitmap(mmBitmap(png::FORUM));
     wxMenuItem* menuItemGooglePlay = new wxMenuItem(menuHelp, MENU_GOOGLEPLAY
         , _("Google Play")
         , _("Get free Android version and run MMEX on your smart phone or tablet"));
-    menuItemGooglePlay->SetBitmap(mmBitmap(png::GOOGLE_PLAY));
+    //menuItemGooglePlay->SetBitmap(mmBitmap(png::GOOGLE_PLAY));
     wxMenuItem* menuItemNotify = new wxMenuItem(menuHelp, MENU_ANNOUNCEMENTMAILING
         , _("&Newsletter")
         , _("Subscribe to e-mail newsletter or view existing announcements"));
-    menuItemNotify->SetBitmap(mmBitmap(png::NEWS));
+    //menuItemNotify->SetBitmap(mmBitmap(png::NEWS));
     wxMenuItem* menuItemRSS = new wxMenuItem(menuHelp, MENU_RSS
         , _("RSS Feed"), _("Connect RSS web feed to news aggregator"));
-    menuItemRSS->SetBitmap(mmBitmap(png::NEWS));
+    //menuItemRSS->SetBitmap(mmBitmap(png::NEWS));
     wxMenuItem* menuItemDonate = new wxMenuItem(menuHelp, MENU_DONATE
         , _("Donate via PayPal")
         , _("Donate the team to support infrastructure etc"));
-    menuItemDonate->SetBitmap(mmBitmap(png::DONATE));
+    //menuItemDonate->SetBitmap(mmBitmap(png::DONATE));
     wxMenuItem* menuItemBuyCoffee = new wxMenuItem(menuHelp, MENU_BUY_COFFEE
         , _("Buy us a Coffee")
         , _("Buy key developer a coffee"));
@@ -1612,7 +1633,7 @@ void mmGUIFrame::createMenu()
     wxMenuItem* menuItemCommunity = new wxMenuItem(menuHelp, MENU_COMMUNITY
         , _("Community")
         , _("Stay in touch with MMEX community"));
-    menuItemCommunity->SetBitmap(mmBitmap(png::COMMUNITY));
+    //menuItemCommunity->SetBitmap(mmBitmap(png::COMMUNITY));
     wxMenu* menuCommunity = new wxMenu;
     menuCommunity->Append(menuItemWebsite);
     menuCommunity->Append(menuItemReportIssues);
@@ -1633,22 +1654,22 @@ void mmGUIFrame::createMenu()
     wxMenuItem* menuItemReportBug = new wxMenuItem(menuTools, MENU_REPORT_BUG
         , _("Report a Bug")
         , _("Report an error in application to the developers"));
-    menuItemReportBug->SetBitmap(mmBitmap(png::BUG));
+    //menuItemReportBug->SetBitmap(mmBitmap(png::BUG));
     menuHelp->Append(menuItemReportBug);
 
     wxMenuItem* menuItemAppStart = new wxMenuItem(menuTools, MENU_SHOW_APPSTART
         , _("&Show App Start Dialog"), _("App Start Dialog"));
-    menuItemAppStart->SetBitmap(mmBitmap(png::APPSTART));
+    //menuItemAppStart->SetBitmap(mmBitmap(png::APPSTART));
     menuHelp->Append(menuItemAppStart);
 
     wxMenuItem* menuItemCheck = new wxMenuItem(menuTools, MENU_CHECKUPDATE
         , _("Check for &Updates"), _("Check For Updates"));
-    menuItemCheck->SetBitmap(mmBitmap(png::UPDATE));
+    //menuItemCheck->SetBitmap(mmBitmap(png::UPDATE));
     menuHelp->Append(menuItemCheck);
 
     wxMenuItem* menuItemAbout = new wxMenuItem(menuTools, wxID_ABOUT
         , _("&About..."), _("Show about dialog"));
-    menuItemAbout->SetBitmap(mmBitmap(png::ABOUT));
+    //menuItemAbout->SetBitmap(mmBitmap(png::ABOUT));
     menuHelp->Append(menuItemAbout);
 
     menuBar_ = new wxMenuBar;
@@ -1657,7 +1678,6 @@ void mmGUIFrame::createMenu()
     menuBar_->Append(menuTools, _("&Tools"));
     menuBar_->Append(menuView, _("&View"));
     menuBar_->Append(menuHelp, _("&Help"));
-
     SetMenuBar(menuBar_);
 
     menuBar_->Check(MENU_VIEW_BUDGET_FINANCIAL_YEARS, Option::instance().BudgetFinancialYears());
