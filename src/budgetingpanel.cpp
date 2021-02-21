@@ -255,7 +255,7 @@ void mmBudgetingPanel::CreateControls()
     /* ---------------------- */
 
     int x = Option::instance().getIconSize();
-    m_imageList = new wxImageList(x, x);
+    m_imageList = new wxImageList();
     m_imageList->Add(mmBitmap(png::RECONCILED));
     m_imageList->Add(mmBitmap(png::VOID_STAT));
     m_imageList->Add(mmBitmap(png::FOLLOW_UP));

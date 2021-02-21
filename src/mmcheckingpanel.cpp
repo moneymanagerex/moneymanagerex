@@ -299,7 +299,7 @@ void mmCheckingPanel::CreateControls()
         , wxSP_3DBORDER | wxSP_3DSASH | wxNO_BORDER);
 
     int x = Option::instance().getIconSize();
-    m_imageList.reset(new wxImageList(x, x));
+    m_imageList.reset(new wxImageList());
     m_imageList->Add(mmBitmap(png::RECONCILED));
     m_imageList->Add(mmBitmap(png::VOID_STAT));
     m_imageList->Add(mmBitmap(png::FOLLOW_UP));

@@ -435,7 +435,7 @@ void mmAssetsPanel::CreateControls()
     m_listCtrlAssets = new mmAssetsListCtrl(this, itemSplitterWindow10, wxID_ANY);
 
     int x = Option::instance().getIconSize();
-    m_imageList.reset(new wxImageList(x, x));
+    m_imageList.reset(new wxImageList());
     m_imageList->Add(mmBitmap(png::PROPERTY));
     m_imageList->Add(mmBitmap(png::CAR));
     m_imageList->Add(mmBitmap(png::HOUSEHOLD_OBJ));

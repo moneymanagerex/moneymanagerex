@@ -236,7 +236,7 @@ void mmBillsDepositsPanel::CreateControls()
         , wxSP_3DBORDER | wxSP_3DSASH | wxNO_BORDER);
 
     int x = Option::instance().getIconSize();
-    m_imageList = new wxImageList(x, x);
+    m_imageList = new wxImageList();
     m_imageList->Add(mmBitmap(png::FOLLOW_UP));
     m_imageList->Add(mmBitmap(png::RUN)); //TODO: auto exec ico
     m_imageList->Add(mmBitmap(png::RUN));
