@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-02-09 23:37+0300\n"
-"PO-Revision-Date: 2021-02-21 17:04\n"
+"PO-Revision-Date: 2021-02-21 17:14\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "MIME-Version: 1.0\n"
@@ -2220,7 +2220,7 @@ msgstr "Manutenção de banco de dados concluída, feche e reabra o MMEX!"
 
 #: dbwrapper.cpp:70
 msgid "When database file opening:"
-msgstr ""
+msgstr "Quando o arquivo de banco de dados está sendo aberto:"
 
 #: dbwrapper.cpp:74
 msgid "Can't open file"
@@ -2234,7 +2234,9 @@ msgstr "Você precisa especificar o caminho para outro arquivo de dados"
 msgid "An incorrect password given for an encrypted file\n"
 "or\n"
 "attempt to open a File that is not a database file \n"
-msgstr ""
+msgstr "Uma senha incorreta foi informada para um arquivo criptografado\n"
+"ou\n"
+"tentativa de abrir um arquivo que não é um arquivo de banco de dados \n"
 
 #: dbwrapper.cpp:82 import_export/qif_import_gui.cpp:858 webapp.cpp:120
 #, c-format
@@ -2636,7 +2638,7 @@ msgstr "Arquivos QIF (* .qif)"
 
 #: import_export/qif_export.cpp:299
 msgid "Choose JSON data file to Export"
-msgstr ""
+msgstr "Escolha o arquivo JSON a ser exportado"
 
 #: import_export/qif_export.cpp:301
 msgid "JSON Files (*.json)"
@@ -3943,7 +3945,7 @@ msgstr ""
 
 #: mmframe.cpp:1339
 msgid "Quit this program"
-msgstr ""
+msgstr "Fechar o programa"
 
 #: mmframe.cpp:1346
 msgid "&Toolbar"
@@ -4003,7 +4005,7 @@ msgstr "Ignorar Transações Futuras"
 
 #: mmframe.cpp:1375
 msgid "Toggle Fullscreen\tShift+F11"
-msgstr ""
+msgstr "Ativar/Desativar Tela Cheia              Shift+F11"
 
 #: mmframe.cpp:1376 mmframe.cpp:1708
 msgid "Toggle Fullscreen"
@@ -4039,11 +4041,11 @@ msgstr "Excluir Conta do arquivo de dados"
 
 #: mmframe.cpp:1440
 msgid "Download Rates..."
-msgstr ""
+msgstr "Baixar taxas de conversão..."
 
 #: mmframe.cpp:1440 mmframe.cpp:1705
 msgid "Download Currency and Stock rates"
-msgstr ""
+msgstr "Baixar valores da moeda e de ações"
 
 #: mmframe.cpp:1447
 msgid "Organize &Categories..."
@@ -4135,7 +4137,7 @@ msgstr ""
 
 #: mmframe.cpp:1527
 msgid "Convert Encrypted DB to Non-Encrypted DB"
-msgstr ""
+msgstr "Converter BD criptografado para BD não criptografado"
 
 #: mmframe.cpp:1530
 msgid "Change Encrypted &Password"
@@ -4143,7 +4145,7 @@ msgstr ""
 
 #: mmframe.cpp:1531
 msgid "Change the password of an encrypted database"
-msgstr ""
+msgstr "Alterar a senha de um banco de dados criptografado"
 
 #: mmframe.cpp:1534
 msgid "Optimize &Database"
@@ -4303,7 +4305,7 @@ msgstr "&Mostrar diálogo de início do aplicativo"
 
 #: mmframe.cpp:1632
 msgid "App Start Dialog"
-msgstr ""
+msgstr "Diálogo de início do aplicativo"
 
 #: mmframe.cpp:1637
 msgid "Check for &Updates"
@@ -4375,7 +4377,7 @@ msgstr "Notícias"
 
 #: mmframe.cpp:1705
 msgid "Download rates"
-msgstr ""
+msgstr "Baixar taxas de conversão"
 
 #: mmframe.cpp:1708
 msgid "Toggle Fullscreen\tF11"
@@ -4385,11 +4387,12 @@ msgstr "Alternar Tela Cheia\tF11"
 #, c-format
 msgid "Please enter password for Database\n\n"
 "%s"
-msgstr ""
+msgstr "Por favor, digite a senha para o banco de dados\n\n"
+"%s"
 
 #: mmframe.cpp:1770 mmframe.cpp:2000 mmframe.cpp:2133
 msgid "MMEX: Encrypted Database"
-msgstr ""
+msgstr "MMEX: Banco de dados criptografado"
 
 #: mmframe.cpp:1804
 msgid "Have MMEX support provided you a debug/patch file?"
@@ -4405,7 +4408,7 @@ msgstr "Nenhum arquivo aberto"
 
 #: mmframe.cpp:1828
 msgid "Sorry. The Database version is too old or Database password is incorrect"
-msgstr ""
+msgstr "Desculpe. A versão do banco de dados é muito antiga ou a senha do banco de dados está incorreta"
 
 #: mmframe.cpp:1858
 msgid "&Next ->"
@@ -4413,15 +4416,15 @@ msgstr "&Próximo(a) ->"
 
 #: mmframe.cpp:1871
 msgid "Cannot locate previously opened database.\n"
-msgstr ""
+msgstr "Não foi possível localizar banco de dados aberto anteriormente.\n"
 
 #: mmframe.cpp:1873
 msgid "Password not entered for encrypted Database.\n"
-msgstr ""
+msgstr "Senha não digitada para banco de dados criptografado.\n"
 
 #: mmframe.cpp:1891
 msgid "portable mode"
-msgstr ""
+msgstr "modo portátil"
 
 #: mmframe.cpp:1927
 msgid "Database that you trying to open has been marked as opened by another MMEX instance...\n"
@@ -4444,7 +4447,7 @@ msgstr "Escolha o arquivo de dados a ser aberto"
 
 #: mmframe.cpp:1990
 msgid "Choose Encrypted database file to open"
-msgstr ""
+msgstr "Escolha um arquivo de banco de dados Criptografado para abrir"
 
 #: mmframe.cpp:2000
 msgid "Enter password for database"
@@ -4460,11 +4463,11 @@ msgstr "Banco de dados convertido!"
 
 #: mmframe.cpp:2027
 msgid "MMEX message"
-msgstr ""
+msgstr "Mensagem MMEX"
 
 #: mmframe.cpp:2033
 msgid "MMEX: Encryption Password Change"
-msgstr ""
+msgstr "MMEX: Alterar Senha de Criptografia"
 
 #: mmframe.cpp:2034
 #, c-format
@@ -6053,7 +6056,8 @@ msgstr "Realizado em"
 #: stockdialog.cpp:494
 msgid "Share Account not found.\n\n"
 "Do you want to create one?"
-msgstr ""
+msgstr "Conta de compartilhamento não encontrada.\n\n"
+"Deseja criar uma?"
 
 #: stockdialog.cpp:504
 msgid "The Company name does not have an associated Share Account.\n\n"
@@ -6210,7 +6214,7 @@ msgstr "Transações"
 
 #: stockspanel.cpp:594
 msgid "Delete Stock Investment"
-msgstr ""
+msgstr "Excluir Investimento"
 
 #: stockspanel.cpp:598
 msgid "&Move"
@@ -6218,7 +6222,7 @@ msgstr "&Mover"
 
 #: stockspanel.cpp:599
 msgid "Move selected transaction to another account"
-msgstr ""
+msgstr "Mover a transação selecionada para outra conta"
 
 #: stockspanel.cpp:612
 msgid "Refresh"
@@ -6236,7 +6240,7 @@ msgstr "Carteira de Ações: %s"
 #: stockspanel.cpp:768
 #, c-format
 msgid "Total Shares: %s"
-msgstr ""
+msgstr "Total de Ações: %s"
 
 #: stockspanel.cpp:770
 #, c-format
@@ -6354,16 +6358,16 @@ msgstr "Especifique a data da transação"
 
 #: transdialog.cpp:1309
 msgid "Clear colour"
-msgstr ""
+msgstr "Nenhuma cor"
 
 #: transdialog.cpp:1314
 #, c-format
 msgid "Colour #%i"
-msgstr ""
+msgstr "Cor #%i"
 
 #: usertransactionpanel.cpp:114
 msgid "Specify the associated Account that will contain this transaction"
-msgstr ""
+msgstr "Especifique a Conta associada que conterá esta transação"
 
 #: usertransactionpanel.cpp:126
 msgid "Withdraw funds from or deposit funds to this Account."
@@ -6646,7 +6650,7 @@ msgstr "Anexo"
 
 #: webapp.cpp:595
 msgid "Transaction not downloaded: please retry to download transactions"
-msgstr ""
+msgstr "Transação não baixada: por favor, tente novamente"
 
 #: webapp.cpp:596 webappdialog.cpp:348
 msgid "Attachment download error"
@@ -6674,11 +6678,11 @@ msgstr "Importar e abrir todos"
 
 #: webappdialog.cpp:214
 msgid "Unable to download transactions from webapp."
-msgstr ""
+msgstr "Não foi possível baixar transações do aplicativo web."
 
 #: webappdialog.cpp:215
 msgid "Transactions download error"
-msgstr ""
+msgstr "Erro ao baixar transações"
 
 #: webappdialog.cpp:320
 msgid "Unable to insert transaction in MMEX database"
@@ -6832,7 +6836,7 @@ msgstr "Assistente de atualização"
 
 #: wizard_update.cpp:106
 msgid "Historical releases:"
-msgstr ""
+msgstr "Histórico de versões:"
 
 #: wizard_update.cpp:136
 msgid "Version"
