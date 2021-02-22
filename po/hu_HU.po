@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-02-22 13:06+0300\n"
-"PO-Revision-Date: 2021-02-22 23:08\n"
+"PO-Revision-Date: 2021-02-22 23:16\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -3171,7 +3171,7 @@ msgstr "Online frissítés"
 
 #: maincurrencydialog.cpp:170
 msgid "Show all even the unused currencies"
-msgstr ""
+msgstr "Mutassa a nem használt pénznemeket is"
 
 #: maincurrencydialog.cpp:205 payeedialog.cpp:122
 msgid "Search:"
@@ -3212,7 +3212,7 @@ msgstr "A kijelölt deviza értékek törlése"
 
 #: maincurrencydialog.cpp:294
 msgid "Delete Currency Values history for unused currencies and days"
-msgstr ""
+msgstr "A használaton kívüli pénznemek és napok érték előzményeinek törlése"
 
 #: maincurrencydialog.cpp:351
 msgid "Do you really want to delete the selected Currency?"
@@ -3226,7 +3226,7 @@ msgstr "Pénznem"
 
 #: maincurrencydialog.cpp:380
 msgid "Base Currency Selection"
-msgstr ""
+msgstr "Alap pénznem kiválasztása"
 
 #: maincurrencydialog.cpp:420
 #, c-format
@@ -3998,7 +3998,7 @@ msgstr "Jövőben tranzakciók figyelmen kívül hagyása"
 
 #: mmframe.cpp:1376
 msgid "Toggle Fullscreen\tShift+F11"
-msgstr ""
+msgstr "Teljes képernyő váltás\tShift+F11"
 
 #: mmframe.cpp:1377 mmframe.cpp:1709
 msgid "Toggle Fullscreen"
