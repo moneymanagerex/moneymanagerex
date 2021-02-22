@@ -533,12 +533,11 @@ wxString TransactionListCtrl::OnGetItemText(long item, long column) const
 */
 int TransactionListCtrl::OnGetItemColumnImage(long item, long column) const
 {
-    if (m_trans.empty()) return ICON_NONE;
+    if (m_trans.empty()) return -1;
 
     int res = -1;
     if (m_real_columns[static_cast<int>(column)] == COL_IMGSTATUS)
     {
-        res = ICON_NONE;
         wxString status = getItem(item, COL_STATUS, true);
         if (status.length() > 1)
             status = status.Mid(2, 1);

@@ -302,7 +302,6 @@ void mmCheckingPanel::CreateControls()
     m_imageList->Add(mmBitmap(png::RECONCILED));
     m_imageList->Add(mmBitmap(png::VOID_STAT));
     m_imageList->Add(mmBitmap(png::FOLLOW_UP));
-    m_imageList->Add(mmBitmap(png::EMPTY));
     m_imageList->Add(mmBitmap(png::DUPLICATE_STAT));
     m_imageList->Add(mmBitmap(png::UPARROW));
     m_imageList->Add(mmBitmap(png::DOWNARROW));
