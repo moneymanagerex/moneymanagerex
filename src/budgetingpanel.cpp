@@ -608,10 +608,10 @@ int mmBudgetingPanel::GetItemImage(long item) const
         }
 
         if ((estimated == 0.0) && (actual == 0.0)) return -1;
-        if ((estimated == 0.0) && (actual != 0.0)) return 2;
-        if (estimated < actual) return 0;
-        if (std::fabs(estimated - actual) < 0.001) return 0;
-        return 1;
+        if ((estimated == 0.0) && (actual != 0.0)) return ICON_FOLLOWUP;
+        if (estimated < actual) return ICON_RECONCILLED;
+        if (std::fabs(estimated - actual) < 0.001) return ICON_RECONCILLED;
+        return ICON_VOID;
     }
     catch (std::out_of_range const& exc)
     {

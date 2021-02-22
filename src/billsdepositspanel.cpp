@@ -309,7 +309,7 @@ int mmBillsDepositsPanel::initVirtualListControl(int id)
 
     wxListItem item;
     item.SetMask(wxLIST_MASK_IMAGE);
-    item.SetImage(listCtrlAccount_->m_asc ? 4 : 3);
+    item.SetImage(listCtrlAccount_->m_asc ? ICON_DOWNARROW : ICON_UPARROW);
     listCtrlAccount_->SetColumn(listCtrlAccount_->m_selected_col, item);
 
     bills_.clear();
@@ -581,9 +581,9 @@ int billsDepositsListCtrl::OnGetItemImage(long item) const
 
     /* Returns the icon to be shown for each entry */
     if (daysRemainingStr == _("Inactive")) return -1;
-    if (daysRemaining < 0) return 0;
-    if (bd_repeat_auto) return 1;
-    if (bd_repeat_user) return 2;
+    if (daysRemaining < 0) return mmBillsDepositsPanel::ICON_FOLLOWUP;
+    if (bd_repeat_auto) return mmBillsDepositsPanel::ICON_RUN;
+    if (bd_repeat_user) return mmBillsDepositsPanel::ICON_RUN2;
 
     return -1;
 }

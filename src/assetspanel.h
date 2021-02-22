@@ -80,6 +80,19 @@ class mmAssetsPanel : public mmPanelBase
     wxDECLARE_EVENT_TABLE();
 
 public:
+    enum EIcons //m_imageList
+    {
+        ICON_PROPERTY,
+        ICON_CAR,
+        ICON_HOUSEHOLD_OBJ,
+        ICON_ART,
+        ICON_JEWELLERY,
+        ICON_CASH,
+        ICON_OTHER,
+        ICON_UPARROW,   // the 'ARROW's need to be last in the list
+        ICON_DOWNARROW
+    };
+
     mmAssetsPanel(mmGUIFrame* frame, wxWindow *parent, wxWindowID winid, const wxString& name="mmAssetsPanel");
     mmGUIFrame* m_frame;
 

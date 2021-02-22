@@ -321,7 +321,7 @@ void mmAssetsListCtrl::OnColClick(wxListEvent& event)
 
     m_selected_col = ColumnNr;
 
-    item.SetImage(m_asc ? 8 : 7);
+    item.SetImage(m_asc ? mmAssetsPanel::ICON_DOWNARROW : mmAssetsPanel::ICON_UPARROW);
     SetColumn(m_selected_col, item);
 
     Model_Setting::instance().Set("ASSETS_ASC", m_asc);
@@ -555,7 +555,7 @@ int mmAssetsPanel::initVirtualListControl(int id, int col, bool asc)
 
     wxListItem item;
     item.SetMask(wxLIST_MASK_IMAGE);
-    item.SetImage(asc ? 8 : 7);
+    item.SetImage(asc ? ICON_DOWNARROW : ICON_UPARROW);
     m_listCtrlAssets->SetColumn(col, item);
 
     if (this->m_filter_type == Model_Asset::TYPE(-1)) // ALL

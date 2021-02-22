@@ -43,16 +43,6 @@ public:
     void DeleteFlaggedTransactions(const wxString& status);
     void DeleteViewedTransactions();
 public:
-    enum EIcons //m_imageList
-    {
-        ICON_RECONCILED,
-        ICON_VOID,
-        ICON_FOLLOWUP,
-        ICON_DUPLICATE,
-        ICON_DESC,
-        ICON_ASC,
-    };
-public:
     enum EColumn
     {
         COL_IMGSTATUS = 0,

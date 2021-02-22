@@ -542,13 +542,13 @@ int TransactionListCtrl::OnGetItemColumnImage(long item, long column) const
         if (status.length() > 1)
             status = status.Mid(2, 1);
         if (status == "F")
-            res = ICON_FOLLOWUP;
+            res = mmCheckingPanel::ICON_FOLLOWUP;
         else if (status == "R")
-            res = ICON_RECONCILED;
+            res = mmCheckingPanel::ICON_RECONCILED;
         else if (status == "V")
-            res = ICON_VOID;
+            res = mmCheckingPanel::ICON_VOID;
         else if (status == "D")
-            res = ICON_DUPLICATE;
+            res = mmCheckingPanel::ICON_DUPLICATE;
     }
 
     return res;
@@ -984,7 +984,7 @@ void TransactionListCtrl::refreshVisualList(bool filter)
     Hide();
 
     // decide whether top or down icon needs to be shown
-    setColumnImage(g_sortcol, g_asc ? ICON_ASC : ICON_DESC);
+    setColumnImage(g_sortcol, g_asc ? mmCheckingPanel::ICON_ASC : mmCheckingPanel::ICON_DESC);
     if (filter) 
         (!m_cp->m_allAccounts) ? m_cp->filterTable(): m_cp->filterTableAll();
     SetItemCount(m_trans.size());
