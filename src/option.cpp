@@ -361,15 +361,15 @@ int Option::AccountImageId(int account_id, bool def)
         break;
     case (Model_Account::TERM) :
         if (closed) selectedImage = img::TERM_ACC_CLOSED_PNG;
-         else  selectedImage = img::TERMACCOUNT_PNG;
+         else  selectedImage = img::TERMACCOUNT_NORMAL_PNG;
         break;
     case (Model_Account::INVESTMENT) :
         if (closed) selectedImage = img::STOCK_ACC_CLOSED_PNG;
-        else  selectedImage = img::STOCK_ACC_PNG;
+        else  selectedImage = img::STOCK_ACC_NORMAL_PNG;
         break;
     case (Model_Account::CREDIT_CARD) :
         if (closed) selectedImage = img::CARD_ACC_CLOSED_PNG;
-         else   selectedImage = img::CARD_ACC_PNG;
+         else   selectedImage = img::CARD_ACC_NORMAL_PNG;
         break;
     case (Model_Account::CASH) :
         if (closed) selectedImage = img::CASH_ACC_CLOSED_PNG;
@@ -380,8 +380,8 @@ int Option::AccountImageId(int account_id, bool def)
          else selectedImage = img::LOAN_ACC_NORMAL_PNG;
         break;
     case (Model_Account::ASSET) :
-        if (closed) selectedImage = img::CASH_ACC_CLOSED_PNG;
-         else selectedImage = img::CASH_ACC_NORMAL_PNG;
+        if (closed) selectedImage = img::ASSET_CLOSED_PNG;
+         else selectedImage = img::ASSET_NORMAL_PNG;
         break;
     case (Model_Account::SHARES) :
         if (closed) selectedImage = img::LOAN_ACC_CLOSED_PNG;
