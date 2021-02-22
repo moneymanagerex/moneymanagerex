@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-02-22 13:06+0300\n"
-"PO-Revision-Date: 2021-02-22 22:48\n"
+"PO-Revision-Date: 2021-02-22 22:58\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -1258,8 +1258,8 @@ msgstr "Automatikus"
 #, c-format
 msgid "%d day remaining"
 msgid_plural "%d days remaining"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d nap maradt"
+msgstr[1] "%d nap maradt"
 
 #: billsdepositspanel.cpp:506 billsdepositspanel.cpp:513
 #: billsdepositspanel.cpp:520 billsdepositspanel.cpp:573
@@ -1271,15 +1271,15 @@ msgstr "Inaktív"
 #, c-format
 msgid "%d day delay!"
 msgid_plural "%d days delay!"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d nap késés!"
+msgstr[1] "%d nap késés!"
 
 #: billsdepositspanel.cpp:518 billsdepositspanel.cpp:578 mmhomepage.cpp:318
 #, c-format
 msgid "%d day overdue!"
 msgid_plural "%d days overdue!"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d napja lejárt!"
+msgstr[1] "%d napja lejárt!"
 
 #: billsdepositspanel.cpp:630
 msgid "Do you really want to delete the series?"
@@ -1371,7 +1371,7 @@ msgstr "Költségvetés kategóriák összesítése"
 #: budgetingpanel.cpp:172
 #, c-format
 msgid "Financial Year: %s - %ld"
-msgstr ""
+msgstr "Pénzügyi év: %s - %ld"
 
 #: budgetingpanel.cpp:176 reports/budget.cpp:92
 #, c-format
@@ -1520,7 +1520,7 @@ msgstr "Létező kategória nevének szerkesztése"
 
 #: categdialog.cpp:236
 msgid "Delete an existing category. The category cannot be used by existing transactions."
-msgstr ""
+msgstr "Létező kategória törlése. A kategória nem lehet használatban."
 
 #: categdialog.cpp:241 maincurrencydialog.cpp:207
 msgid "&Select"
@@ -1594,7 +1594,7 @@ msgstr "Kategóriák kezelése: törlési hiba!"
 
 #: categdialog.cpp:432
 msgid "Select an unused category to delete."
-msgstr ""
+msgstr "Válasszon ki egy nem használt kategóriát törlésre."
 
 #: categdialog.cpp:457
 msgid "This category cannot be deleted because it's used by transactions."
