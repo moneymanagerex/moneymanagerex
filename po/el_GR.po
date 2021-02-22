@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-02-22 13:06+0300\n"
-"PO-Revision-Date: 2021-02-22 10:08\n"
+"PO-Revision-Date: 2021-02-22 11:04\n"
 "Last-Translator: \n"
 "Language-Team: Greek\n"
 "MIME-Version: 1.0\n"
@@ -691,7 +691,7 @@ msgstr "&Διαγραφή "
 
 #: attachmentdialog.cpp:361
 msgid "Att."
-msgstr ""
+msgstr "Att."
 
 #: attachmentdialog.cpp:368
 msgid "This directory and its files are automatically managed by Money Manager EX software."
@@ -3696,7 +3696,7 @@ msgstr "Προβολή λογαριασμού: %s"
 
 #: mmcheckingpanel.cpp:427
 msgid "Full Transactions Report"
-msgstr ""
+msgstr "Πλήρης Αναφορά Συναλλαγών"
 
 #: mmcheckingpanel.cpp:655
 msgid "Select account used in transfer transactions"
