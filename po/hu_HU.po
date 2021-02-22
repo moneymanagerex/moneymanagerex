@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-02-22 13:06+0300\n"
-"PO-Revision-Date: 2021-02-22 10:07\n"
+"PO-Revision-Date: 2021-02-22 22:30\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -277,11 +277,11 @@ msgstr "Pénznem"
 
 #: accountdialog.cpp:499
 msgid "Please insert a valid URL"
-msgstr ""
+msgstr "Kérjük, érvényes URL címet adjon meg"
 
 #: accountdialog.cpp:499
 msgid "Invalid URL"
-msgstr ""
+msgstr "Érvénytelen URL cím"
 
 #: appstartdialog.cpp:99
 msgid "Open Last Opened Database"
@@ -332,7 +332,7 @@ msgstr "Kilépés"
 #: appstartdialog.cpp:153
 #, c-format
 msgid "Open the previously opened database : %s"
-msgstr ""
+msgstr "Korábban megnyitott adatbázis megnyitása: %s"
 
 #: assetdialog.cpp:61 assetdialog.cpp:410 assetspanel.cpp:466
 msgid "New Asset"
@@ -436,7 +436,7 @@ msgstr "Elvet"
 
 #: assetdialog.cpp:402 sharetransactiondialog.cpp:429
 msgid "Invalid Transaction"
-msgstr ""
+msgstr "Érvénytelen tranzakció"
 
 #: assetdialog.cpp:409
 msgid "Asset Account not found.\n\n"
@@ -6823,7 +6823,7 @@ msgstr ""
 
 #: wizard_update.cpp:136
 msgid "Version"
-msgstr ""
+msgstr "Verzió"
 
 #: wizard_update.cpp:144
 msgid "You already have the latest version"
