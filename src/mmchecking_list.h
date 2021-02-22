@@ -48,7 +48,6 @@ public:
         ICON_RECONCILED,
         ICON_VOID,
         ICON_FOLLOWUP,
-        ICON_NONE,
         ICON_DUPLICATE,
         ICON_DESC,
         ICON_ASC,

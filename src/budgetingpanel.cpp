@@ -258,7 +258,6 @@ void mmBudgetingPanel::CreateControls()
     m_imageList->Add(mmBitmap(png::RECONCILED));
     m_imageList->Add(mmBitmap(png::VOID_STAT));
     m_imageList->Add(mmBitmap(png::FOLLOW_UP));
-    m_imageList->Add(mmBitmap(png::EMPTY));
 
     listCtrlBudget_ = new budgetingListCtrl(this, this, wxID_ANY);
 
@@ -608,7 +607,7 @@ int mmBudgetingPanel::GetItemImage(long item) const
             actual = categoryStats_.at(budget_[item].first).at(budget_[item].second).at(0);
         }
 
-        if ((estimated == 0.0) && (actual == 0.0)) return 3;
+        if ((estimated == 0.0) && (actual == 0.0)) return -1;
         if ((estimated == 0.0) && (actual != 0.0)) return 2;
         if (estimated < actual) return 0;
         if (std::fabs(estimated - actual) < 0.001) return 0;
