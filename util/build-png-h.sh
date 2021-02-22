@@ -8,7 +8,7 @@
 rm -f icons.h
 for file in "$@"
 do
-    filename="$(basename ${file} .svg)"
+    filename="${file%.*}"
     for size in 16 24 32 48
     do  
         rsvg-convert -h "${size}" -f png "${file}" > "${filename}_${size}".png
