@@ -28,6 +28,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "../resources/toolbar/icons.h"
 #include "../resources/navigation/icons.h"
 #include "../resources/assets/icons.h"
+#include "../resources/controls/icons.h"
 //#include "../resources/about_png.h"
 //#include "../resources/alltransactions_png.h"
 #include "../resources/appstart_png.h"
