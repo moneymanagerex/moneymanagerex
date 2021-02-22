@@ -145,7 +145,7 @@ kbd>kbd {
 }
 
 /* currency formatting */
-.negative { color: red; }
+.negative { color:#CC0033; }
 .right { text-align: right; }
 
 /* sticky notes for tips and notes */
@@ -185,14 +185,14 @@ aside.sticky::before {
     margin-bottom: 0.5ex;
 }
 
-.notes { background:#ffc; }
+.notes { background:#FFDCB1; }
 .notes::before {
     content: 'Note';
-    color: red;
+    color: #A64425;
 }
 
-.tips { background:#bafbc0; }
+.tips { background:#97D9B7; }
 .tips::before {
     content: 'Tip';
-    color: blue;
+    color: #053C5D;
 }
