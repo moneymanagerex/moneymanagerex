@@ -92,6 +92,13 @@ public:
     wxString BuildPage() const { return listCtrlBudget_->BuildPage(GetPanelTitle()); }
 
 private:
+    enum EIcons //m_imageList
+    {
+        ICON_RECONCILLED,
+        ICON_VOID,
+        ICON_FOLLOWUP
+    };
+
     mmGUIFrame* m_frame;
     std::vector<std::pair<int, int> > budget_;
     std::map<int, std::pair<double, double> > budgetTotals_;

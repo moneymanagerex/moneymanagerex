@@ -39,6 +39,16 @@ class mmCheckingPanel : public mmPanelBase
 {
 public:
 
+    enum EIcons //m_imageList
+    {
+        ICON_RECONCILED,
+        ICON_VOID,
+        ICON_FOLLOWUP,
+        ICON_DUPLICATE,
+        ICON_DESC,
+        ICON_ASC,
+    };
+
     mmCheckingPanel(wxWindow* parent
         , mmGUIFrame* frame
         , int accountID

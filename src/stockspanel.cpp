@@ -42,7 +42,7 @@ enum {
     MENU_HEADER_RESET,
 };
 
-enum class ico { GAIN, LOSS, ZERO, ARROW_UP, ARROW_DOWN };
+enum class ico { GAIN, LOSS, ARROW_UP, ARROW_DOWN };
 
 /*******************************************************/
 
@@ -74,7 +74,6 @@ StocksListCtrl::StocksListCtrl(mmStocksPanel* cp, wxWindow *parent, wxWindowID w
     m_imageList = createImageList();
     m_imageList->Add(mmBitmap(png::PROFIT));
     m_imageList->Add(mmBitmap(png::LOSS));
-    m_imageList->Add(mmBitmap(png::EMPTY));
     m_imageList->Add(mmBitmap(png::UPARROW));
     m_imageList->Add(mmBitmap(png::DOWNARROW));
 
@@ -232,7 +231,7 @@ int StocksListCtrl::OnGetItemImage(long item) const
     double val = GetGainLoss(item);
     if (val > 0.0) return static_cast<int>(ico::GAIN);
     else if (val < 0.0) return static_cast<int>(ico::LOSS);
-    else return static_cast<int>(ico::ZERO);
+    else return -1;
 }
 
 void StocksListCtrl::OnListKeyDown(wxListEvent& event)
