@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-02-22 13:06+0300\n"
-"PO-Revision-Date: 2021-02-22 22:30\n"
+"PO-Revision-Date: 2021-02-22 22:48\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -766,7 +766,7 @@ msgstr "Havonta"
 #: billsdepositsdialog.cpp:54 billsdepositspanel.cpp:43
 #: model/Model_Budget.cpp:59
 msgid "Every 2 Months"
-msgstr ""
+msgstr "Kéthavonta"
 
 #: billsdepositsdialog.cpp:55 billsdepositspanel.cpp:44
 #: model/Model_Budget.cpp:60
@@ -850,7 +850,7 @@ msgstr "Ismétlődik"
 
 #: billsdepositsdialog.cpp:438
 msgid "Advance the next occurring date with the specified values"
-msgstr ""
+msgstr "A következő ismétlési dátum eltolása a megadott értékekkel"
 
 #: billsdepositsdialog.cpp:445 billsdepositsdialog.cpp:1298
 msgid "Payments Left"
@@ -866,7 +866,7 @@ msgstr "Kéretik, hogy ezt a tranzakciót a felhasználó a \"Fizetési napon\" 
 
 #: billsdepositsdialog.cpp:463
 msgid "Grant automatic execute"
-msgstr ""
+msgstr "Automatikus végrehajtás engedélyezése"
 
 #: billsdepositsdialog.cpp:464
 msgid "The requested payment will occur without user interaction"
@@ -882,7 +882,7 @@ msgstr "Adja meg a következő számla vagy betét esedékességi dátumát"
 
 #: billsdepositsdialog.cpp:508
 msgid "Retard or advance the date of the 'next occurrence'"
-msgstr ""
+msgstr "Késleltesse, vagy hozza előbbre a 'következő ismétlést'"
 
 #: billsdepositsdialog.cpp:513 billsdepositspanel.cpp:98
 msgid "Date Due"
@@ -1057,7 +1057,8 @@ msgstr "Gyakoriság: havonta"
 #: billsdepositsdialog.cpp:1265
 msgid "Specify period in Days to activate.\n"
 "Becomes blank when not active."
-msgstr ""
+msgstr "Adja meg az időszakot napokban az aktiválásig.\n"
+"Ha nem aktív, üres lesz."
 
 #: billsdepositsdialog.cpp:1274
 msgid "Specify period in Months to activate.\n"
@@ -1080,7 +1081,8 @@ msgstr "Adja meg a periódust hónapokban az aktiváláshoz.\n"
 #: billsdepositsdialog.cpp:1299
 msgid "Specify the number of payments to be made.\n"
 "Leave blank if the payments continue forever."
-msgstr ""
+msgstr "Adja meg a teljesítendő kifizetések számát.\n"
+"Hagyja üresen ha a kifizetések örökké folytatódnak."
 
 #: billsdepositsdialog.cpp:1325 billsdepositsdialog.cpp:1334
 #: filtertransdialog.cpp:418 filtertransdialog.cpp:435
