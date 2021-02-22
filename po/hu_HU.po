@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-02-22 13:06+0300\n"
-"PO-Revision-Date: 2021-02-22 22:58\n"
+"PO-Revision-Date: 2021-02-22 23:08\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -1598,20 +1598,20 @@ msgstr "Válasszon ki egy nem használt kategóriát törlésre."
 
 #: categdialog.cpp:457
 msgid "This category cannot be deleted because it's used by transactions."
-msgstr ""
+msgstr "Ez a kategória nem törölhető, mert tranzakciók használják."
 
 #: categdialog.cpp:464
 msgid "Delete an existing category."
-msgstr ""
+msgstr "Létező kategória törlése."
 
 #: categdialog.cpp:469
 msgid "Subcategories must be deleted before."
-msgstr ""
+msgstr "Először az alkategóriákat kell törölni."
 
 #: categdialog.cpp:485
 #, c-format
 msgid "Enter a new name for '%s'"
-msgstr ""
+msgstr "Írjon be új nevet '%s' helyett"
 
 #: categdialog.cpp:486
 msgid "Edit Category"
@@ -3146,7 +3146,7 @@ msgstr ""
 
 #: import_export/univcsvdialog.cpp:1826
 msgid "Enter a value"
-msgstr ""
+msgstr "Írjon be egy értéket"
 
 #: maincurrencydialog.cpp:74 reports/summarystocks.cpp:191 stockdialog.cpp:427
 #: stockspanel.cpp:92
@@ -3159,7 +3159,7 @@ msgstr "Előző árfolyam"
 
 #: maincurrencydialog.cpp:76
 msgid "Fixed Rate"
-msgstr ""
+msgstr "Rögzített árfolyam"
 
 #: maincurrencydialog.cpp:163 maincurrencydialog.cpp:459
 msgid "Online update currency rate"
