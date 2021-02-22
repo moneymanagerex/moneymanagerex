@@ -27,6 +27,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 #include "../resources/toolbar/icons.h"
 #include "../resources/navigation/icons.h"
+#include "../resources/assets/icons.h"
 //#include "../resources/about_png.h"
 //#include "../resources/alltransactions_png.h"
 #include "../resources/appstart_png.h"
@@ -134,16 +135,17 @@ static const std::map<int, wxBitmap> navtree_images()
         , { HELP_PNG, mmBitmap(png::HELP) }
         , { FAVOURITE_PNG, mmBitmap(png::FAVOURITE) }
         , { FILTER_PNG, mmBitmap(png::FILTER) }
-        , { ASSET_PNG, mmBitmap(png::ASSET) }
+        , { ASSET_NORMAL_PNG, mmBitmap(png::ASSET_NORMAL) }
+        , { ASSET_CLOSED_PNG, mmBitmap(png::ASSET_CLOSED) } 
         , { CUSTOMSQL_PNG, mmBitmap(png::GRM) }
         , { CUSTOMSQL_GRP_PNG, mmBitmap(png::GRM) } //TODO: GRM rep group ico
         , { SAVINGS_ACC_NORMAL_PNG, mmBitmap(png::SAVINGS_NORMAL) }
         , { SAVINGS_ACC_CLOSED_PNG, mmBitmap(png::SAVINGS_CLOSED) }
-        , { CARD_ACC_PNG, mmBitmap(png::CC_NORMAL) }
+        , { CARD_ACC_NORMAL_PNG, mmBitmap(png::CC_NORMAL) }
         , { CARD_ACC_CLOSED_PNG, mmBitmap(png::CC_CLOSED) }
-        , { TERMACCOUNT_PNG, mmBitmap(png::TERM_NORMAL) }
+        , { TERMACCOUNT_NORMAL_PNG, mmBitmap(png::TERM_NORMAL) }
         , { TERM_ACC_CLOSED_PNG, mmBitmap(png::TERM_CLOSED) }
-        , { STOCK_ACC_PNG, mmBitmap(png::STOCKS_NORMAL) }
+        , { STOCK_ACC_NORMAL_PNG, mmBitmap(png::STOCKS_NORMAL) }
         , { STOCK_ACC_CLOSED_PNG, mmBitmap(png::STOCKS_CLOSED) }
         , { CASH_ACC_NORMAL_PNG, mmBitmap(png::CASH_NORMAL) }
         , { CASH_ACC_CLOSED_PNG, mmBitmap(png::CASH_CLOSED) }
@@ -177,11 +179,6 @@ static const std::map<int, wxBitmap> acc_images()
 wxImageList* navtree_images_list()
 {
     int x = Option::instance().getIconSize();
-/*#ifdef __WXMAC__    // On Mac specification of the size and list creation causes image distortion but it is mandatory on Windows
-    wxImageList* imageList = new wxImageList();
-#else
-    wxImageList* imageList = new wxImageList(x, x);
-#endif */
     wxImageList* imageList = createImageList();
     for (const auto& img : navtree_images())
     {
@@ -206,13 +203,14 @@ const wxBitmap mmBitmap(int ref)
     case ABOUT: return x == 16 ? wxBITMAP_PNG_FROM_DATA(ABOUT16) : x == 24 ? wxBITMAP_PNG_FROM_DATA(ABOUT24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(ABOUT32) : wxBITMAP_PNG_FROM_DATA(ABOUT48);
     case ALLTRANSACTIONS: return x == 16 ? wxBITMAP_PNG_FROM_DATA(ALLTRANSACTIONS16) : x == 24 ? wxBITMAP_PNG_FROM_DATA(ALLTRANSACTIONS24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(ALLTRANSACTIONS32) : wxBITMAP_PNG_FROM_DATA(ALLTRANSACTIONS48);
     case APPSTART: return x == 16 ? wxBITMAP_PNG_FROM_DATA(appstart) : x == 24 ? wxBITMAP_PNG_FROM_DATA(appstart24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(appstart32) : wxBITMAP_PNG_FROM_DATA(appstart48);
-    case ART: return x == 16 ? wxBITMAP_PNG_FROM_DATA(art) : x == 24 ? wxBITMAP_PNG_FROM_DATA(art24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(art32) : wxBITMAP_PNG_FROM_DATA(art48);
-    case ASSET: return x == 16 ? wxBITMAP_PNG_FROM_DATA(ASSET16) : x == 24 ? wxBITMAP_PNG_FROM_DATA(ASSET24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(ASSET32) : wxBITMAP_PNG_FROM_DATA(ASSET48);
+    case ART: return x == 16 ? wxBITMAP_PNG_FROM_DATA(ART16) : x == 24 ? wxBITMAP_PNG_FROM_DATA(ART24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(ART32) : wxBITMAP_PNG_FROM_DATA(ART48);
+    case ASSET_NORMAL: return x == 16 ? wxBITMAP_PNG_FROM_DATA(ASSET_NORMAL16) : x == 24 ? wxBITMAP_PNG_FROM_DATA(ASSET_NORMAL24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(ASSET_NORMAL32) : wxBITMAP_PNG_FROM_DATA(ASSET_NORMAL48);
+    case ASSET_CLOSED: return x == 16 ? wxBITMAP_PNG_FROM_DATA(ASSET_CLOSED16) : x == 24 ? wxBITMAP_PNG_FROM_DATA(ASSET_CLOSED24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(ASSET_CLOSED32) : wxBITMAP_PNG_FROM_DATA(ASSET_CLOSED48);
     case AUTO: return x == 16 ? wxBITMAP_PNG_FROM_DATA(run) : x == 24 ? wxBITMAP_PNG_FROM_DATA(run24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(run32) : wxBITMAP_PNG_FROM_DATA(run48);
     case BUDGET: return x == 16 ? wxBITMAP_PNG_FROM_DATA(BUDGET16) : x == 24 ? wxBITMAP_PNG_FROM_DATA(BUDGET24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(BUDGET32) : wxBITMAP_PNG_FROM_DATA(BUDGET48);
     case BUG: return x == 16 ? wxBITMAP_PNG_FROM_DATA(bug) : x == 24 ? wxBITMAP_PNG_FROM_DATA(bug24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(bug32) : wxBITMAP_PNG_FROM_DATA(bug48);
-    case CAR: return x == 16 ? wxBITMAP_PNG_FROM_DATA(car) : x == 24 ? wxBITMAP_PNG_FROM_DATA(car24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(car32) : wxBITMAP_PNG_FROM_DATA(car48);
-    case CASH: return x == 16 ? wxBITMAP_PNG_FROM_DATA(coin) : x == 24 ? wxBITMAP_PNG_FROM_DATA(coin24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(coin32) : wxBITMAP_PNG_FROM_DATA(coin48);
+    case CAR: return x == 16 ? wxBITMAP_PNG_FROM_DATA(CAR16) : x == 24 ? wxBITMAP_PNG_FROM_DATA(CAR24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(CAR32) : wxBITMAP_PNG_FROM_DATA(CAR48);
+    case CASH: return x == 16 ? wxBITMAP_PNG_FROM_DATA(CASH16) : x == 24 ? wxBITMAP_PNG_FROM_DATA(CASH24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(CASH32) : wxBITMAP_PNG_FROM_DATA(CASH48);
     case CASH_CLOSED: return x == 16 ? wxBITMAP_PNG_FROM_DATA(CASH_CLOSED16) : x == 24 ? wxBITMAP_PNG_FROM_DATA(CASH_CLOSED24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(CASH_CLOSED32) : wxBITMAP_PNG_FROM_DATA(CASH_CLOSED48);
     case CASH_NORMAL: return x == 16 ? wxBITMAP_PNG_FROM_DATA(CASH_NORMAL16) : x == 24 ? wxBITMAP_PNG_FROM_DATA(CASH_NORMAL24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(CASH_NORMAL32) : wxBITMAP_PNG_FROM_DATA(CASH_NORMAL48);
     case CATEGORY: return x == 16 ? wxBITMAP_PNG_FROM_DATA(CATEGORY16) : x == 24 ? wxBITMAP_PNG_FROM_DATA(CATEGORY24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(CATEGORY32) : wxBITMAP_PNG_FROM_DATA(CATEGORY48);
@@ -228,7 +226,7 @@ const wxBitmap mmBitmap(int ref)
     case CURRATES: return x == 16 ? wxBITMAP_PNG_FROM_DATA(CURRATES16) : x == 24 ? wxBITMAP_PNG_FROM_DATA(CURRATES24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(CURRATES32) : wxBITMAP_PNG_FROM_DATA(CURRATES48);
     case DELETE_ACC: return x == 16 ? wxBITMAP_PNG_FROM_DATA(delete_account) : x == 24 ? wxBITMAP_PNG_FROM_DATA(delete_account24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(delete_account32) : wxBITMAP_PNG_FROM_DATA(delete_account48);
     case DONATE: return x == 16 ? wxBITMAP_PNG_FROM_DATA(donate) : x == 24 ? wxBITMAP_PNG_FROM_DATA(donate24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(donate32) : wxBITMAP_PNG_FROM_DATA(donate48);
-    case DOWNARROW: return x == 16 ? wxBITMAP_PNG_FROM_DATA(downarrow) : x == 24 ? wxBITMAP_PNG_FROM_DATA(downarrow24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(downarrow32) : wxBITMAP_PNG_FROM_DATA(downarrow48);
+    case DOWNARROW: return x == 16 ? wxBITMAP_PNG_FROM_DATA(DOWNARROW16) : x == 24 ? wxBITMAP_PNG_FROM_DATA(DOWNARROW24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(DOWNARROW32) : wxBITMAP_PNG_FROM_DATA(DOWNARROW48);
     case DUPLICATE_STAT: return x == 16 ? wxBITMAP_PNG_FROM_DATA(status_d) : x == 24 ? wxBITMAP_PNG_FROM_DATA(status_d24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(status_d32) : wxBITMAP_PNG_FROM_DATA(status_d48);
     case EDIT_ACC: return x == 16 ? wxBITMAP_PNG_FROM_DATA(edit_account) : x == 24 ? wxBITMAP_PNG_FROM_DATA(edit_account24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(edit_account32) : wxBITMAP_PNG_FROM_DATA(edit_account48);
     case EMPTY: return x == 16 ? wxBITMAP_PNG_FROM_DATA(empty) : x == 24 ? wxBITMAP_PNG_FROM_DATA(empty24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(empty32) : wxBITMAP_PNG_FROM_DATA(empty48);
@@ -250,9 +248,9 @@ const wxBitmap mmBitmap(int ref)
     case HELP: return x == 16 ? wxBITMAP_PNG_FROM_DATA(HELP16) : x == 24 ? wxBITMAP_PNG_FROM_DATA(HELP24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(HELP32) : wxBITMAP_PNG_FROM_DATA(HELP48);
     case HOME: return x == 16 ? wxBITMAP_PNG_FROM_DATA(HOME16) : x == 24 ? wxBITMAP_PNG_FROM_DATA(HOME24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(HOME32) : wxBITMAP_PNG_FROM_DATA(HOME48);
     case RELOCATION: return x == 16 ? wxBITMAP_PNG_FROM_DATA(reloc) : x == 24 ? wxBITMAP_PNG_FROM_DATA(reloc24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(reloc32) : wxBITMAP_PNG_FROM_DATA(reloc48);
-    case HOUSEHOLD_OBJ: return x == 16 ? wxBITMAP_PNG_FROM_DATA(household_obj) : x == 24 ? wxBITMAP_PNG_FROM_DATA(household_obj24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(household_obj32) : wxBITMAP_PNG_FROM_DATA(household_obj48);
+    case HOUSEHOLD_OBJ: return x == 16 ? wxBITMAP_PNG_FROM_DATA(HOUSEHOLD_OBJ16) : x == 24 ? wxBITMAP_PNG_FROM_DATA(HOUSEHOLD_OBJ24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(HOUSEHOLD_OBJ32) : wxBITMAP_PNG_FROM_DATA(HOUSEHOLD_OBJ48);
     case IMPORT: return x == 16 ? wxBITMAP_PNG_FROM_DATA(import) : x == 24 ? wxBITMAP_PNG_FROM_DATA(import24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(import32) : wxBITMAP_PNG_FROM_DATA(import48);
-    case JEWELLERY: return x == 16 ? wxBITMAP_PNG_FROM_DATA(jewellery) : x == 24 ? wxBITMAP_PNG_FROM_DATA(jewellery24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(jewellery32) : wxBITMAP_PNG_FROM_DATA(jewellery48);
+    case JEWELLERY: return x == 16 ? wxBITMAP_PNG_FROM_DATA(JEWELLERY16) : x == 24 ? wxBITMAP_PNG_FROM_DATA(JEWELLERY24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(JEWELLERY32) : wxBITMAP_PNG_FROM_DATA(JEWELLERY48);
     case LANG: return x == 16 ? wxBITMAP_PNG_FROM_DATA(language) : x == 24 ? wxBITMAP_PNG_FROM_DATA(language24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(language32) : wxBITMAP_PNG_FROM_DATA(language48);
     case LED_GREEN: return x == 16 ? wxBITMAP_PNG_FROM_DATA(led_green) : x == 24 ? wxBITMAP_PNG_FROM_DATA(led_green24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(led_green32) : wxBITMAP_PNG_FROM_DATA(led_green48);
     case LED_OFF: return x == 16 ? wxBITMAP_PNG_FROM_DATA(led_off) : x == 24 ? wxBITMAP_PNG_FROM_DATA(led_off24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(led_off32) : wxBITMAP_PNG_FROM_DATA(led_off48);
@@ -268,13 +266,13 @@ const wxBitmap mmBitmap(int ref)
     case NEWS: return x == 16 ? wxBITMAP_PNG_FROM_DATA(NEWS16) : x == 24 ? wxBITMAP_PNG_FROM_DATA(NEWS24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(NEWS32) : wxBITMAP_PNG_FROM_DATA(NEWS48);
     case OPEN: return x == 16 ? wxBITMAP_PNG_FROM_DATA(OPEN16) : x == 24 ? wxBITMAP_PNG_FROM_DATA(OPEN24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(OPEN32) : wxBITMAP_PNG_FROM_DATA(OPEN48);
     case OPTIONS: return x == 16 ? wxBITMAP_PNG_FROM_DATA(OPTIONS16) : x == 24 ? wxBITMAP_PNG_FROM_DATA(OPTIONS24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(OPTIONS32) : wxBITMAP_PNG_FROM_DATA(OPTIONS48);
-    case OTHER: return x == 16 ? wxBITMAP_PNG_FROM_DATA(puzzle) : x == 24 ? wxBITMAP_PNG_FROM_DATA(puzzle24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(puzzle32) : wxBITMAP_PNG_FROM_DATA(puzzle48);
+    case OTHER: return x == 16 ? wxBITMAP_PNG_FROM_DATA(OTHER16) : x == 24 ? wxBITMAP_PNG_FROM_DATA(OTHER24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(OTHER32) : wxBITMAP_PNG_FROM_DATA(OTHER48);
     case PAYEE: return x == 16 ? wxBITMAP_PNG_FROM_DATA(PAYEE16) : x == 24 ? wxBITMAP_PNG_FROM_DATA(PAYEE24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(PAYEE32) : wxBITMAP_PNG_FROM_DATA(PAYEE48);
     case PAYEE_RELOCATION: return x == 16 ? wxBITMAP_PNG_FROM_DATA(payee_relocation) : x == 24 ? wxBITMAP_PNG_FROM_DATA(payee_relocation24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(payee_relocation32) : wxBITMAP_PNG_FROM_DATA(payee_relocation48);
     case PIE_CHART: return x == 16 ? wxBITMAP_PNG_FROM_DATA(PIE_CHART16) : x == 24 ? wxBITMAP_PNG_FROM_DATA(PIE_CHART24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(PIE_CHART32) : wxBITMAP_PNG_FROM_DATA(PIE_CHART48);
     case PRINT: return x == 16 ? wxBITMAP_PNG_FROM_DATA(PRINT16) : x == 24 ? wxBITMAP_PNG_FROM_DATA(PRINT24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(PRINT32) : wxBITMAP_PNG_FROM_DATA(PRINT48);
     case PROFIT: return x == 16 ? wxBITMAP_PNG_FROM_DATA(profit) : x == 24 ? wxBITMAP_PNG_FROM_DATA(profit24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(profit32) : wxBITMAP_PNG_FROM_DATA(profit48);
-    case PROPERTY: return x == 16 ? wxBITMAP_PNG_FROM_DATA(property) : x == 24 ? wxBITMAP_PNG_FROM_DATA(property24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(property32) : wxBITMAP_PNG_FROM_DATA(property48);
+    case PROPERTY: return x == 16 ? wxBITMAP_PNG_FROM_DATA(PROPERTY16) : x == 24 ? wxBITMAP_PNG_FROM_DATA(PROPERTY24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(PROPERTY32) : wxBITMAP_PNG_FROM_DATA(PROPERTY48);
     case REALLOCATE_ACC: return x == 16 ? wxBITMAP_PNG_FROM_DATA(reallocate_acc) : x == 24 ? wxBITMAP_PNG_FROM_DATA(reallocate_acc24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(reallocate_acc32) : wxBITMAP_PNG_FROM_DATA(reallocate_acc48);
     case RECONCILED: return x == 16 ? wxBITMAP_PNG_FROM_DATA(status_r) : x == 24 ? wxBITMAP_PNG_FROM_DATA(status_r24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(status_r32) : wxBITMAP_PNG_FROM_DATA(status_r48);
     case RECURRING: return x == 16 ? wxBITMAP_PNG_FROM_DATA(RECURRING16) : x == 24 ? wxBITMAP_PNG_FROM_DATA(RECURRING24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(RECURRING32) : wxBITMAP_PNG_FROM_DATA(RECURRING48);
@@ -291,7 +289,7 @@ const wxBitmap mmBitmap(int ref)
     case TERM_CLOSED: return x == 16 ? wxBITMAP_PNG_FROM_DATA(TERM_CLOSED16) : x == 24 ? wxBITMAP_PNG_FROM_DATA(TERM_CLOSED24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(TERM_CLOSED32) : wxBITMAP_PNG_FROM_DATA(TERM_CLOSED48);
     case TERM_NORMAL: return x == 16 ? wxBITMAP_PNG_FROM_DATA(TERM_NORMAL16) : x == 24 ? wxBITMAP_PNG_FROM_DATA(TERM_NORMAL24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(TERM_NORMAL32) : wxBITMAP_PNG_FROM_DATA(TERM_NORMAL48);
     case TRXNUM: return x == 16 ? wxBITMAP_PNG_FROM_DATA(trxnum) : x == 24 ? wxBITMAP_PNG_FROM_DATA(trxnum24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(trxnum32) : wxBITMAP_PNG_FROM_DATA(trxnum48);
-    case UPARROW: return x == 16 ? wxBITMAP_PNG_FROM_DATA(uparrow) : x == 24 ? wxBITMAP_PNG_FROM_DATA(uparrow24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(uparrow32) : wxBITMAP_PNG_FROM_DATA(uparrow48);
+    case UPARROW: return x == 16 ? wxBITMAP_PNG_FROM_DATA(UPARROW16) : x == 24 ? wxBITMAP_PNG_FROM_DATA(UPARROW24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(UPARROW32) : wxBITMAP_PNG_FROM_DATA(UPARROW48);
     case UPDATE: return x == 16 ? wxBITMAP_PNG_FROM_DATA(update) : x == 24 ? wxBITMAP_PNG_FROM_DATA(update24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(update32) : wxBITMAP_PNG_FROM_DATA(update48);
     case VOID_STAT: return x == 16 ? wxBITMAP_PNG_FROM_DATA(status_v) : x == 24 ? wxBITMAP_PNG_FROM_DATA(status_v24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(status_v32) : wxBITMAP_PNG_FROM_DATA(status_v48);
     case WEB: return x == 16 ? wxBITMAP_PNG_FROM_DATA(web) : x == 24 ? wxBITMAP_PNG_FROM_DATA(web24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(web32) : wxBITMAP_PNG_FROM_DATA(web48);

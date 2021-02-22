@@ -651,9 +651,9 @@ void mmGUIFrame::createControls()
     m_nav_tree_ctrl->SetMinSize(wxSize(100, 100));
 
     int all_icons_size = Option::instance().getIconSize();
-    int main_menu_icon_size = all_icons_size + 8;
-    if (main_menu_icon_size >= 40) main_menu_icon_size = 48;
-    Option::instance().setIconSize(main_menu_icon_size);
+    int nav_icon_size = all_icons_size + 8;
+    if (nav_icon_size >= 40) nav_icon_size = 48;
+    Option::instance().setIconSize(nav_icon_size);
     m_nav_tree_ctrl->AssignImageList(navtree_images_list());
     Option::instance().setIconSize(all_icons_size);
 
@@ -698,7 +698,7 @@ void mmGUIFrame::updateNavTreeControl()
     m_nav_tree_ctrl->SetItemData(accounts, new mmTreeItemData("Bank Accounts", false));
     m_nav_tree_ctrl->SetItemBold(accounts, true);
 
-    wxTreeItemId cardAccounts = m_nav_tree_ctrl->AppendItem(root, _("Credit Card Accounts"), img::CARD_ACC_PNG, img::CARD_ACC_PNG);
+    wxTreeItemId cardAccounts = m_nav_tree_ctrl->AppendItem(root, _("Credit Card Accounts"), img::CARD_ACC_NORMAL_PNG, img::CARD_ACC_NORMAL_PNG);
     m_nav_tree_ctrl->SetItemData(cardAccounts, new mmTreeItemData("Credit Card Accounts", false));
     m_nav_tree_ctrl->SetItemBold(cardAccounts, true);
 
@@ -710,19 +710,19 @@ void mmGUIFrame::updateNavTreeControl()
     m_nav_tree_ctrl->SetItemData(loanAccounts, new mmTreeItemData("Loan Accounts", false));
     m_nav_tree_ctrl->SetItemBold(loanAccounts, true);
 
-    wxTreeItemId termAccounts = m_nav_tree_ctrl->AppendItem(root, _("Term Accounts"), img::TERMACCOUNT_PNG, img::TERMACCOUNT_PNG);
+    wxTreeItemId termAccounts = m_nav_tree_ctrl->AppendItem(root, _("Term Accounts"), img::TERMACCOUNT_NORMAL_PNG, img::TERMACCOUNT_NORMAL_PNG);
     m_nav_tree_ctrl->SetItemData(termAccounts, new mmTreeItemData("Term Accounts", false));
     m_nav_tree_ctrl->SetItemBold(termAccounts, true);
 
-    wxTreeItemId stocks = m_nav_tree_ctrl->AppendItem(root, _("Stock Portfolios"), img::STOCK_ACC_PNG, img::STOCK_ACC_PNG);
+    wxTreeItemId stocks = m_nav_tree_ctrl->AppendItem(root, _("Stock Portfolios"), img::STOCK_ACC_NORMAL_PNG, img::STOCK_ACC_NORMAL_PNG);
     m_nav_tree_ctrl->SetItemData(stocks, new mmTreeItemData("Stocks", false));
     m_nav_tree_ctrl->SetItemBold(stocks, true);
 
-    wxTreeItemId shareAccounts = m_nav_tree_ctrl->AppendItem(root, _("Share Accounts"), img::STOCK_ACC_PNG, img::STOCK_ACC_PNG);
+    wxTreeItemId shareAccounts = m_nav_tree_ctrl->AppendItem(root, _("Share Accounts"), img::STOCK_ACC_NORMAL_PNG, img::STOCK_ACC_NORMAL_PNG);
     m_nav_tree_ctrl->SetItemData(shareAccounts, new mmTreeItemData("Share Accounts", false));
     m_nav_tree_ctrl->SetItemBold(shareAccounts, true);
 
-    wxTreeItemId assets = m_nav_tree_ctrl->AppendItem(root, _("Assets"), img::ASSET_PNG, img::ASSET_PNG);
+    wxTreeItemId assets = m_nav_tree_ctrl->AppendItem(root, _("Assets"), img::ASSET_NORMAL_PNG, img::ASSET_NORMAL_PNG);
     m_nav_tree_ctrl->SetItemData(assets, new mmTreeItemData("Assets", false));
     m_nav_tree_ctrl->SetItemBold(assets, true);
 

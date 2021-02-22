@@ -1229,10 +1229,7 @@ const wxString md2html(const wxString& md)
 
 wxImageList* createImageList()
 {
-#ifdef __WXMAC__    // On Mac specification of the size at list creation causes image distortion but it is mandatory on Windows
-    return(new wxImageList());
-#else
     int x = Option::instance().getIconSize();
-    return (new wxImageList(x, x));
-#endif 
+    return(new wxImageList(x, x, false));   // No mask creation, not needed and causes image correuption on Mac
+
 }
