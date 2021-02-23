@@ -2,7 +2,7 @@ FROM debian:buster-slim
 MAINTAINER developers@moneymanagerex.org
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
-      cmake build-essential gettext git pkg-config lsb-release ccache \
+      cmake build-essential file gettext git pkg-config lsb-release ccache \
       libwxgtk-webview3.0-gtk3-dev liblua5.3-dev libcurl4-openssl-dev && \
     apt-get clean
 
