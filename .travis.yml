@@ -42,7 +42,7 @@ env:
 matrix:
   fast_finish: true
   include: # add non-linux targets
-  - { os: osx, osx_image: xcode11.2, env: OS=macos DIST=10.7, compiler: clang }
+  - { os: osx, osx_image: xcode11.2, env: OS=macos DIST=10.14, compiler: clang }
   - stage: nightly # used only to tag and trigger nightly build
     sudo: false
     cache: pip
@@ -58,25 +58,20 @@ matrix:
     - git tag -f nightly && git push -f --tags
     after_success: skip
     deploy: skip
+  
   allow_failures:
   - env: debian DIST=jessie
-  - env: debian DIST=stretch
   - env: debian DIST=buster
-  - env: debian DIST=bullseye
   - env: ubuntu DIST=xenial
-  - env: ubuntu DIST=zesty
   - env: ubuntu DIST=bionic
-  - env: ubuntu DIST=disco
-  - env: ubuntu DIST=eoan
+  - env: ubuntu DIST=groovy
+  - env: ubuntu DIST=focal
   - env: fedora
   - env: fedora DIST=30
   - env: fedora DIST=31
   - env: opensuse
-  - env: opensuse DIST=15.1
   - env: opensuse DIST=42.2
-  - env: opensuse DIST=42.3
   - env: archlinux
-  - env: el DIST=7
   - env: el DIST=8
   - env: linuxmint DIST=sylvia
   - env: linuxmint DIST=tara
