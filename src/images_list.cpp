@@ -30,6 +30,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "../resources/assets/icons.h"
 #include "../resources/controls/icons.h"
 #include "../resources/status/icons.h"
+#include "../resources/settings/icons.h"
 //#include "../resources/about_png.h"
 //#include "../resources/alltransactions_png.h"
 //#include "../resources/appstart_png.h"
@@ -264,7 +265,15 @@ const wxBitmap mmBitmap(int ref)
     case DOWNARROW: return x == 16 ? wxBITMAP_PNG_FROM_DATA(DOWNARROW16) : x == 24 ? wxBITMAP_PNG_FROM_DATA(DOWNARROW24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(DOWNARROW32) : wxBITMAP_PNG_FROM_DATA(DOWNARROW48);
     case UPARROW: return x == 16 ? wxBITMAP_PNG_FROM_DATA(UPARROW16) : x == 24 ? wxBITMAP_PNG_FROM_DATA(UPARROW24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(UPARROW32) : wxBITMAP_PNG_FROM_DATA(UPARROW48);
     case CLIP: return x == 16 ? wxBITMAP_PNG_FROM_DATA(CLIP16) : x == 24 ? wxBITMAP_PNG_FROM_DATA(CLIP24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(CLIP32) : wxBITMAP_PNG_FROM_DATA(CLIP48);
+    case WEB: return x == 16 ? wxBITMAP_PNG_FROM_DATA(WEB16) : x == 24 ? wxBITMAP_PNG_FROM_DATA(WEB24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(WEB32) : wxBITMAP_PNG_FROM_DATA(WEB48);
 
+    // Settings
+    case GENERAL: return x == 16 ? wxBITMAP_PNG_FROM_DATA(GENERAL16) : x == 24 ? wxBITMAP_PNG_FROM_DATA(GENERAL24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(GENERAL32) : wxBITMAP_PNG_FROM_DATA(GENERAL48);
+    case VIEW: return x == 16 ? wxBITMAP_PNG_FROM_DATA(VIEW16) : x == 24 ? wxBITMAP_PNG_FROM_DATA(VIEW24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(VIEW32) : wxBITMAP_PNG_FROM_DATA(VIEW48);
+    case ATTACHMENTS: return x == 16 ? wxBITMAP_PNG_FROM_DATA(ATTACHMENTS16) : x == 24 ? wxBITMAP_PNG_FROM_DATA(ATTACHMENTS24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(ATTACHMENTS32) : wxBITMAP_PNG_FROM_DATA(ATTACHMENTS48);
+    case NETWORK: return x == 16 ? wxBITMAP_PNG_FROM_DATA(NETWORK16) : x == 24 ? wxBITMAP_PNG_FROM_DATA(NETWORK24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(NETWORK32) : wxBITMAP_PNG_FROM_DATA(NETWORK48);
+    case OTHERS: return x == 16 ? wxBITMAP_PNG_FROM_DATA(OTHERS16) : x == 24 ? wxBITMAP_PNG_FROM_DATA(OTHERS24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(OTHERS32) : wxBITMAP_PNG_FROM_DATA(OTHERS48);
+  
     // To Do
     case CATEGORY_RELOCATION: return x == 16 ? wxBITMAP_PNG_FROM_DATA(category_relocation) : x == 24 ? wxBITMAP_PNG_FROM_DATA(category_relocation24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(category_relocation32) : wxBITMAP_PNG_FROM_DATA(category_relocation48);
     case CLEAR: return x == 16 ? wxBITMAP_PNG_FROM_DATA(clear) : x == 24 ? wxBITMAP_PNG_FROM_DATA(clear24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(clear32) : wxBITMAP_PNG_FROM_DATA(clear48);
@@ -283,7 +292,6 @@ const wxBitmap mmBitmap(int ref)
     case SAVEAS: return x == 16 ? wxBITMAP_PNG_FROM_DATA(saveas) : x == 24 ? wxBITMAP_PNG_FROM_DATA(saveas24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(saveas32) : wxBITMAP_PNG_FROM_DATA(saveas48);
     case TRXNUM: return x == 16 ? wxBITMAP_PNG_FROM_DATA(trxnum) : x == 24 ? wxBITMAP_PNG_FROM_DATA(trxnum24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(trxnum32) : wxBITMAP_PNG_FROM_DATA(trxnum48);
     case UPDATE: return x == 16 ? wxBITMAP_PNG_FROM_DATA(update) : x == 24 ? wxBITMAP_PNG_FROM_DATA(update24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(update32) : wxBITMAP_PNG_FROM_DATA(update48);
-    case WEB: return x == 16 ? wxBITMAP_PNG_FROM_DATA(WEB16) : x == 24 ? wxBITMAP_PNG_FROM_DATA(WEB24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(WEB32) : wxBITMAP_PNG_FROM_DATA(WEB48);
-    default: return x == 16 ? wxBITMAP_PNG_FROM_DATA(empty) : x == 24 ? wxBITMAP_PNG_FROM_DATA(empty24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(empty32) : wxBITMAP_PNG_FROM_DATA(empty48);
+     default: return x == 16 ? wxBITMAP_PNG_FROM_DATA(empty) : x == 24 ? wxBITMAP_PNG_FROM_DATA(empty24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(empty32) : wxBITMAP_PNG_FROM_DATA(empty48);
     }
 }

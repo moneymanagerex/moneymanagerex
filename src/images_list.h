@@ -140,6 +140,13 @@ enum png {
     UPDATE,
     VOID_STAT,
     WEB,
+    // Settings
+    GENERAL,
+    VIEW,
+    ATTACHMENTS,
+    NETWORK,
+    OTHERS
+
 };
 
 wxImageList* navtree_images_list();
