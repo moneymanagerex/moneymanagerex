@@ -1,4 +1,4 @@
-FROM debian:stretch-slim
+FROM ubuntu:groovy
 MAINTAINER developers@moneymanagerex.org
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
