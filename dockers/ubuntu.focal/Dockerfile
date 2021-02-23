@@ -1,6 +1,7 @@
 FROM ubuntu:focal
 LABEL maintainer="developers@moneymanagerex.org"
-RUN apt-get update && apt-get install -y --no-install-recommends \
+ENV DEBIAN_FRONTEND noninteractive
+RUN apt-get update && apt-get install -y --no-install-recommends tcl \
       build-essential \
       ccache \
       cmake \
