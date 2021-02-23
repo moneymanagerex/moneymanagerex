@@ -18,14 +18,11 @@
  *************************************************************************/
 
 #include "optiondialog.h"
+#include "option.h"
 #include "constants.h"
 #include "paths.h"
-
-#include "../resources/main-setup.xpm"
-#include "../resources/preferences-attachments.xpm"
-#include "../resources/preferences-network.xpm"
-#include "../resources/preferences-other.xpm"
-#include "../resources/view.xpm"
+#include "images_list.h"
+#include "util.h"
 
 #include "optionsettingsgeneral.h"
 #include "optionsettingsview.h"
@@ -74,13 +71,15 @@ bool mmOptionsDialog::Create(wxWindow* parent
 
 void mmOptionsDialog::CreateControls()
 {
-    wxSize imageSize(48, 48);
-    m_imageList = new wxImageList(imageSize.GetWidth(), imageSize.GetHeight());
-    m_imageList->Add(wxBitmap(view_xpm));
-    m_imageList->Add(wxBitmap(preferences_attachments_xpm));
-    m_imageList->Add(wxBitmap(main_setup_xpm));
-    m_imageList->Add(wxBitmap(preferences_other_xpm));
-    m_imageList->Add(wxBitmap(preferences_network_xpm));
+    int all_icons_size = Option::instance().getIconSize();
+    Option::instance().setIconSize(48);
+    m_imageList = createImageList();
+    m_imageList->Add(mmBitmap(png::VIEW));
+    m_imageList->Add(mmBitmap(png::ATTACHMENTS));
+    m_imageList->Add(mmBitmap(png::GENERAL));
+    m_imageList->Add(mmBitmap(png::OTHERS));
+    m_imageList->Add(mmBitmap(png::NETWORK));
+    Option::instance().setIconSize(all_icons_size);
 
     wxBoxSizer* mainDialogSizer = new wxBoxSizer(wxVERTICAL);
     this->SetSizer(mainDialogSizer);
