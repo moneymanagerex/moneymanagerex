@@ -2,7 +2,8 @@
 
 enum | Icon 
 :-- | :-- 
-CLIP | ![](CLIP.svg) 
-DOWNARROW | ![](DOWNARROW.svg) 
-UPARROW | ![](UPARROW.svg) 
-WEB | ![](WEB.svg) 
+ATTACHMENTS | ![](ATTACHMENTS.svg) 
+GENERAL | ![](GENERAL.svg) 
+NETWORK | ![](NETWORK.svg) 
+OTHERS | ![](OTHERS.svg) 
+VIEW | ![](VIEW.svg)
