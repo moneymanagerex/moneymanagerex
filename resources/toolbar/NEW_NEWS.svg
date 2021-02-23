@@ -1,34 +1,4 @@
 <svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <path
-     fill="#000000"
-     d="m 4,7 v 12 h 15 v 2 H 4 C 2,21 2,19 2,19 V 7 H 4 M 21,5 V 15 H 8 V 5 H 21 M 21.3,3 H 7.7 C 6.76,3 6,3.7 6,4.55 v 10.9 C 6,16.31 6.76,17 7.7,17 H 21.3 C 22.24,17 23,16.31 23,15.45 V 4.55 C 23,3.7 22.24,3 21.3,3"
-     style="fill:#006633;fill-opacity:1" />
-  <rect
-     style="opacity:1;fill:#FF9933;fill-opacity:1;stroke:#006633;stroke-width:0"
-     id="rect855"
-     width="2.7201123"
-     height="4.6032667"
-     x="9.4157724"
-     y="6.3190298" />
-  <rect
-     style="opacity:1;fill:#FF9933;fill-opacity:1;stroke:#006633;stroke-width:0"
-     id="rect857"
-     width="5.9842472"
-     height="1.8831549"
-     x="13.391322"
-     y="6.2771821" />
-  <rect
-     style="opacity:1;fill:#FF9933;fill-opacity:1;stroke:#006633;stroke-width:0"
-     id="rect859"
-     width="6.0679426"
-     height="1.7157632"
-     x="13.391321"
-     y="9.0809898" />
-  <rect
-     style="opacity:1;fill:#FF9933;fill-opacity:1;stroke:#006633;stroke-width:0"
-     id="rect861"
-     width="10.25273"
-     height="1.6739153"
-     x="9.3739252"
-     y="11.926646" />
+<path opacity="0.15" d="M20 4H4V16H7V21L12 16H20V4Z" fill="#006633"/>
+<path d="M8 8H16M8 12H13M4 4H20V16H12L7 21V16H4V4Z" stroke="#006633" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>
