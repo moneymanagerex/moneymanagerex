@@ -1,8 +1,8 @@
 FROM ubuntu:groovy
 MAINTAINER developers@moneymanagerex.org
 ENV DEBIAN_FRONTEND noninteractive
-RUN apt-get update && apt-get install -y --no-install-recommends aptitude && \
-      aptitude install tcl \
+RUN apt-get update && apt-get install -y -f --no-install-recommends \
+      tcl \
       build-essential \
       ccache \
       cmake \
