@@ -1,7 +1,8 @@
 FROM ubuntu:groovy
 MAINTAINER developers@moneymanagerex.org
 ENV DEBIAN_FRONTEND noninteractive
-RUN apt-get update && apt-get install -y --no-install-recommends tcl \
+RUN apt-get update && apt-get install -y --no-install-recommends aptitude && \
+      aptitude install tcl \
       build-essential \
       ccache \
       cmake \
@@ -10,6 +11,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends tcl \
       git \
       libcurl4-openssl-dev \
       liblua5.3-dev \
+      wx3.0-i18n \
       libwxgtk-webview3.0-gtk3-dev \
       lsb-release \
       pkg-config \
