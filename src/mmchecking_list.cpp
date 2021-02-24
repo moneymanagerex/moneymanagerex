@@ -504,8 +504,8 @@ void TransactionListCtrl::OnColClick(wxListEvent& event)
     m_sortCol = toEColumn(ColumnNr);
     g_sortcol = m_sortCol;
 
-    Model_Setting::instance().Set("CHECK_ASC", (g_asc ? 1 : 0));
-    Model_Setting::instance().Set("CHECK_SORT_COL", g_sortcol);
+    Model_Setting::instance().Set(wxString::Format("%s_ASC", m_cp->m_sortSaveTitle), (g_asc ? 1 : 0));
+    Model_Setting::instance().Set(wxString::Format("%s_SORT_COL", m_cp->m_sortSaveTitle), g_sortcol);
 
     refreshVisualList(false);
 
