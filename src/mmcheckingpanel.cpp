@@ -257,7 +257,7 @@ void mmCheckingPanel::CreateControls()
     itemBoxSizerHHeader2->Add(itemFlexGridSizerHHeader2);
 
     m_bitmapTransFilter = new wxButton(headerPanel, ID_TRX_FILTER);
-    m_bitmapTransFilter->SetBitmap(mmBitmap(png::RIGHTARROW));
+    m_bitmapTransFilter->SetBitmap(mmBitmap(png::TRANSFILTER));
     m_bitmapTransFilter->SetMinSize(wxSize(220, -1));
 
     itemFlexGridSizerHHeader2->Add(m_bitmapTransFilter, g_flagsBorder1H);
@@ -610,7 +610,7 @@ void mmCheckingPanel::initFilterSettings()
     const auto item = menu_labels()[m_currentView];
     Model_Infotable::instance().Set(wxString::Format("CHECK_FILTER_ID_%d", m_AccountID), item);
     m_bitmapTransFilter->SetLabel(wxGetTranslation(item));
-    m_bitmapTransFilter->SetBitmap(m_transFilterActive ? mmBitmap(png::RIGHTARROW_ACTIVE) : mmBitmap(png::RIGHTARROW));
+    m_bitmapTransFilter->SetBitmap(m_transFilterActive ? mmBitmap(png::TRANSFILTER_ACTIVE) : mmBitmap(png::TRANSFILTER));
     m_statTextTransFilter->SetLabelText(label);
 }
 

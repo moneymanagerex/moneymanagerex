@@ -76,8 +76,8 @@ public:
     enum EIcons //m_imageList
     {
         ICON_FOLLOWUP,
+        ICON_RUN_AUTO,
         ICON_RUN,
-        ICON_RUN2,
         ICON_UPARROW,
         ICON_DOWNARROW
     };

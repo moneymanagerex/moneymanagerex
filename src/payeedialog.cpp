@@ -112,7 +112,7 @@ void mmPayeeDialog::CreateControls()
     tools_sizer->Add(tools_sizer2, wxSizerFlags(g_flagsExpand).Border(0));
 
     m_magicButton = new wxBitmapButton(buttons_panel
-        , wxID_APPLY, mmBitmap(png::RUN));
+        , wxID_APPLY, mmBitmap(png::MORE_OPTIONS));
     m_magicButton->SetToolTip(_("Other tools"));
     tools_sizer2->Add(m_magicButton, g_flagsH);
 

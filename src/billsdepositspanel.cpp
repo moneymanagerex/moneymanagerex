@@ -226,7 +226,7 @@ void mmBillsDepositsPanel::CreateControls()
     itemBoxSizerVHeader->Add(itemBoxSizerHHeader2);
 
     m_bitmapTransFilter = new wxButton(headerPanel, wxID_FILE2);
-    m_bitmapTransFilter->SetBitmap(mmBitmap(png::RIGHTARROW));
+    m_bitmapTransFilter->SetBitmap(mmBitmap(png::TRANSFILTER));
     m_bitmapTransFilter->SetLabel(_("Transaction Filter"));
     itemBoxSizerHHeader2->Add(m_bitmapTransFilter, g_flagsBorder1H);
 
@@ -237,7 +237,7 @@ void mmBillsDepositsPanel::CreateControls()
 
     m_imageList = createImageList();
     m_imageList->Add(mmBitmap(png::FOLLOW_UP));
-    m_imageList->Add(mmBitmap(png::RUN)); //TODO: auto exec ico
+    m_imageList->Add(mmBitmap(png::RUN_AUTO));
     m_imageList->Add(mmBitmap(png::RUN));
     m_imageList->Add(mmBitmap(png::UPARROW));
     m_imageList->Add(mmBitmap(png::DOWNARROW));
@@ -582,8 +582,8 @@ int billsDepositsListCtrl::OnGetItemImage(long item) const
     /* Returns the icon to be shown for each entry */
     if (daysRemainingStr == _("Inactive")) return -1;
     if (daysRemaining < 0) return mmBillsDepositsPanel::ICON_FOLLOWUP;
-    if (bd_repeat_auto) return mmBillsDepositsPanel::ICON_RUN;
-    if (bd_repeat_user) return mmBillsDepositsPanel::ICON_RUN2;
+    if (bd_repeat_auto) return mmBillsDepositsPanel::ICON_RUN_AUTO;
+    if (bd_repeat_user) return mmBillsDepositsPanel::ICON_RUN;
 
     return -1;
 }
@@ -850,12 +850,12 @@ void mmBillsDepositsPanel::OnFilterTransactions(wxCommandEvent& WXUNUSED(event))
     if (transFilterDlg_->ShowModal() == wxID_OK && transFilterDlg_->isSomethingSelected())
     {
         transFilterActive_ = true;
-        m_bitmapTransFilter->SetBitmap(mmBitmap(png::RIGHTARROW_ACTIVE));
+        m_bitmapTransFilter->SetBitmap(mmBitmap(png::TRANSFILTER_ACTIVE));
     }
     else 
     {
         transFilterActive_ = false;
-        m_bitmapTransFilter->SetBitmap(mmBitmap(png::RIGHTARROW));
+        m_bitmapTransFilter->SetBitmap(mmBitmap(png::TRANSFILTER));
     }
 
     initVirtualListControl();
