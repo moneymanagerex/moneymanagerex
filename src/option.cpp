@@ -333,7 +333,7 @@ void Option::setBudgetDateOffset(wxDateTime& date) const
 
 int Option::AccountImageId(int account_id, bool def)
 {
-    int max = acc_img::MAX_XPM - img::LAST_NAVTREE_PNG;
+    int max = acc_img::MAX_ACC_ICON - img::LAST_NAVTREE_PNG;
     int min = 1;
     int custom_img_id = Model_Infotable::instance().GetIntInfo(wxString::Format("ACC_IMAGE_ID_%i", account_id), 0);
     if (custom_img_id > max) custom_img_id = custom_img_id - 20; //Bug #963 fix 
