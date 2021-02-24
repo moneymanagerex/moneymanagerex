@@ -405,6 +405,9 @@ void mmNewAcctDialog::OnImageButton(wxCommandEvent& /*event*/)
 
     wxMenu* mainMenu = new wxMenu;
     wxMenuItem* menuItem = new wxMenuItem(mainMenu, wxID_HIGHEST + acc_img::ACC_ICON_MONEY - 1, _("Default Image"));
+#ifdef __WXMSW__    // Avoid transparancy black background issue
+    menuItem->SetBackgroundColour(wxColour(* wxWHITE));
+#endif
     menuItem->SetBitmap(m_imageList->GetBitmap(Option::instance().AccountImageId(this->m_account->ACCOUNTID, true)));
     mainMenu->Append(menuItem);
 
