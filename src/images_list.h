@@ -49,21 +49,21 @@ enum img {
 
 /* Images set for accounts to be user assigned */
 enum acc_img {
-    MONEY_DOLLAR_XPM = LAST_NAVTREE_PNG, //First user img
-    MONEY_EURO_XPM,
-    FLAG_XPM,
-    COINS_XPM,
-    ABOUT_XPM,
-    CLOCK_XPM,
-    CAT_XPM,
-    DOG_XPM,
-    TREES_XPM,
-    HOURGLASS_XPM,
-    WORK_XPM,
-    PAYPAL_XPM,
-    WALLET_XPM,
-    RUBIK_CUBE_XPM,
-    MAX_XPM,
+    ACC_ICON_MONEY = LAST_NAVTREE_PNG, //First user img
+    ACC_ICON_EURO,
+    ACC_ICON_FLAG,
+    ACC_ICON_COINS,
+    ACC_ICON_ABOUT,
+    ACC_ICON_CLOCK,
+    ACC_ICON_CAT,
+    ACC_ICON_DOG,
+    ACC_ICON_TREES,
+    ACC_ICON_HOURGLASS,
+    ACC_ICON_WORK,
+    ACC_ICON_PAYPAL,
+    ACC_ICON_WALLET,
+    ACC_ICON_RUBIK,
+    MAX_ACC_ICON,
 };
 
 enum png {
@@ -145,8 +145,22 @@ enum png {
     VIEW,
     ATTACHMENTS,
     NETWORK,
-    OTHERS
-
+    OTHERS,
+    // Extra Account Icons
+    ACC_MONEY,
+    ACC_EURO,
+    ACC_FLAG,
+    ACC_COINS,
+    ACC_ABOUT,
+    ACC_CLOCK,
+    ACC_CAT,
+    ACC_DOG,
+    ACC_TREES,
+    ACC_HOURGLASS,
+    ACC_WORK,
+    ACC_PAYPAL,
+    ACC_WALLET,
+    ACC_RUBIK
 };
 
 wxImageList* navtree_images_list();

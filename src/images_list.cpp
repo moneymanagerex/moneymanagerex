@@ -31,101 +31,22 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "../resources/controls/icons.h"
 #include "../resources/status/icons.h"
 #include "../resources/settings/icons.h"
-//#include "../resources/about_png.h"
-//#include "../resources/alltransactions_png.h"
-//#include "../resources/appstart_png.h"
-//#include "../resources/art_png.h"
-//#include "../resources/asset_png.h"
-//#include "../resources/budget_png.h"
-//#include "../resources/bug_png.h"
-//#include "../resources/car_png.h"
-//#include "../resources/cash_account_png.h"
-//#include "../resources/category_png.h"
+#include "../resources/accounticons/icons.h"
+
 #include "../resources/category_relocation_png.h"
-//#include "../resources/change_password_png.h"
-//#include "../resources/clearlist_png.h"
 #include "../resources/clear_png.h"
-#include "../resources/clip_png.h"
-//#include "../resources/coin_png.h"
-//#include "../resources/community_png.h"
-//#include "../resources/credit_card_png.h"
-//#include "../resources/currates_png.h"
-//#include "../resources/currency_png.h"
-//#include "../resources/delete_account_png.h"
-//#include "../resources/donate_png.h"
-//#include "../resources/downarrow_png.h"
-//#include "../resources/edit_account_png.h"
 #include "../resources/empty_png.h"
-//#include "../resources/exit_png.h"
-//#include "../resources/facebook_png.h"
-//#include "../resources/filter_png.h"
-//#include "../resources/forum_png.h"
-//#include "../resources/fullscreen_png.h"
-//#include "../resources/github_png.h"
-//#include "../resources/globe_png.h"
-//#include "../resources/google_play_png.h"
-//#include "../resources/custom_fields_png.h"
-//#include "../resources/grm_png.h"
-//#include "../resources/help_png.h"
-//#include "../resources/home_png.h"
-//#include "../resources/household_obj_png.h"
 #include "../resources/import_png.h"
-//#include "../resources/jewellery_png.h"
-////#include "../resources/language_png.h"
 #include "../resources/leds_png.h"
-//#include "../resources/loan_account_png.h"
-#include "../resources/loss_png.h"
-//#include "../resources/new_acc_png.h"
-//#include "../resources/new_db_png.h"
-//#include "../resources/new_trx_png.h"
-//#include "../resources/news_png.h"
-//#include "../resources/nnews_png.h"
-//#include "../resources/open_png.h"
-//#include "../resources/options_png.h"
-//#include "../resources/padlock_png.h"
-//#include "../resources/payee_png.h"
 #include "../resources/payee_relocation_png.h"
-//#include "../resources/pie_chart_png.h"
-//#include "../resources/print_png.h"
-//#include "../resources/profit_png.h"
-//#include "../resources/property_png.h"
-//#include "../resources/puzzle_png.h"
-//#include "../resources/reallocate_acc_png.h"
-//#include "../resources/reloc_png.h"
-//#include "../resources/recurring_png.h"
 #include "../resources/rightarrow_png.h"
 #include "../resources/run_png.h"
 #include "../resources/save_png.h"
 #include "../resources/saveas_png.h"
-//#include "../resources/savings_acc_png.h"
 #include "../resources/simplearrow_left_png.h"
 #include "../resources/simplearrow_right_png.h"
-#include "../resources/slack_png.h"
-#include "../resources/status_d_png.h"
-#include "../resources/status_f_png.h"
-#include "../resources/status_r_png.h"
-#include "../resources/status_v_png.h"
-#include "../resources/stocks_png.h"
-//#include "../resources/term_png.h"
 #include "../resources/trxnum_png.h"
-#include "../resources/uparrow_png.h"
 #include "../resources/update_png.h"
-#include "../resources/web_png.h"
-
-//----------------------------------------------------------------------------
-/* Include XPM Support */
-
-#include "../resources/coins.xpm"
-#include "../resources/clock.xpm"
-#include "../resources/cat.xpm"
-#include "../resources/dog.xpm"
-#include "../resources/hourglass.xpm"
-#include "../resources/dollar.xpm"
-#include "../resources/euro.xpm"
-#include "../resources/trees.xpm"
-#include "../resources/wallet.xpm"
-#include "../resources/work.xpm"
-#include "../resources/paypal.xpm"
 
 static const std::map<int, wxBitmap> navtree_images()
 {
@@ -160,23 +81,22 @@ static const std::map<int, wxBitmap> navtree_images()
 // Custom icons for accounts
 static const std::map<int, wxBitmap> acc_images()
 {
-    int x = Option::instance().getIconSize();
     return
     {
-        { MONEY_DOLLAR_XPM, wxBitmap(wxImage(dollar_xpm).Scale(x, x)) }
-        , { MONEY_EURO_XPM, wxBitmap(wxImage(euro_xpm).Scale(x, x)) }
-        , { FLAG_XPM, mmBitmap(png::FOLLOW_UP) }
-        , { COINS_XPM, wxBitmap(wxImage(coins_xpm).Scale(x, x)) }
-        , { ABOUT_XPM, mmBitmap(png::ABOUT) }
-        , { CLOCK_XPM, wxBitmap(wxImage(clock_xpm).Scale(x, x)) }
-        , { CAT_XPM, wxBitmap(wxImage(cat_xpm).Scale(x, x)) }
-        , { DOG_XPM, wxBitmap(wxImage(dog_xpm).Scale(x, x)) }
-        , { TREES_XPM, wxBitmap(wxImage(trees_xpm).Scale(x, x)) }
-        , { HOURGLASS_XPM, wxBitmap(wxImage(hourglass_xpm).Scale(x, x)) }
-        , { WORK_XPM, wxBitmap(wxImage(work_xpm).Scale(x, x)) }
-        , { PAYPAL_XPM, wxBitmap(wxImage(paypal_xpm).Scale(x, x)) }
-        , { WALLET_XPM, wxBitmap(wxImage(wallet_xpm).Scale(x, x)) }
-        , { RUBIK_CUBE_XPM, mmBitmap(png::OTHER) }
+        { ACC_ICON_MONEY, mmBitmap(png::ACC_MONEY) }
+        , { ACC_ICON_EURO, mmBitmap(png::ACC_EURO) }
+        , { ACC_ICON_FLAG, mmBitmap(png::ACC_FLAG) }
+        , { ACC_ICON_COINS, mmBitmap(png::ACC_COINS) }
+        , { ACC_ICON_ABOUT, mmBitmap(png::ACC_ABOUT) }
+        , { ACC_ICON_CLOCK, mmBitmap(png::ACC_CLOCK) }
+        , { ACC_ICON_CAT, mmBitmap(png::ACC_CAT) }
+        , { ACC_ICON_DOG, mmBitmap(png::ACC_DOG) }
+        , { ACC_ICON_TREES, mmBitmap(png::ACC_TREES) }
+        , { ACC_ICON_HOURGLASS, mmBitmap(png::ACC_HOURGLASS) }
+        , { ACC_ICON_WORK, mmBitmap(png::ACC_WORK) }
+        , { ACC_ICON_PAYPAL, mmBitmap(png::ACC_PAYPAL)}
+        , { ACC_ICON_WALLET, mmBitmap(png::ACC_WALLET) }
+        , { ACC_ICON_RUBIK, mmBitmap(png::ACC_RUBIK) }
     };
 }
 wxImageList* navtree_images_list()
@@ -274,6 +194,23 @@ const wxBitmap mmBitmap(int ref)
     case NETWORK: return x == 16 ? wxBITMAP_PNG_FROM_DATA(NETWORK16) : x == 24 ? wxBITMAP_PNG_FROM_DATA(NETWORK24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(NETWORK32) : wxBITMAP_PNG_FROM_DATA(NETWORK48);
     case OTHERS: return x == 16 ? wxBITMAP_PNG_FROM_DATA(OTHERS16) : x == 24 ? wxBITMAP_PNG_FROM_DATA(OTHERS24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(OTHERS32) : wxBITMAP_PNG_FROM_DATA(OTHERS48);
   
+    //Extra Account Icons
+    case ACC_ABOUT: return x == 16 ? wxBITMAP_PNG_FROM_DATA(ACC_ICON_ABOUT16) : x == 24 ? wxBITMAP_PNG_FROM_DATA(ACC_ICON_ABOUT24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(ACC_ICON_ABOUT32) : wxBITMAP_PNG_FROM_DATA(ACC_ICON_ABOUT48);
+    case ACC_CAT: return x == 16 ? wxBITMAP_PNG_FROM_DATA(ACC_ICON_CAT16) : x == 24 ? wxBITMAP_PNG_FROM_DATA(ACC_ICON_CAT24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(ACC_ICON_CAT32) : wxBITMAP_PNG_FROM_DATA(ACC_ICON_CAT48);
+    case ACC_CLOCK: return x == 16 ? wxBITMAP_PNG_FROM_DATA(ACC_ICON_CLOCK16) : x == 24 ? wxBITMAP_PNG_FROM_DATA(ACC_ICON_CLOCK24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(ACC_ICON_CLOCK32) : wxBITMAP_PNG_FROM_DATA(ACC_ICON_CLOCK48);
+    case ACC_COINS: return x == 16 ? wxBITMAP_PNG_FROM_DATA(ACC_ICON_COINS16) : x == 24 ? wxBITMAP_PNG_FROM_DATA(ACC_ICON_COINS24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(ACC_ICON_COINS32) : wxBITMAP_PNG_FROM_DATA(ACC_ICON_COINS48);
+    case ACC_DOG: return x == 16 ? wxBITMAP_PNG_FROM_DATA(ACC_ICON_DOG16) : x == 24 ? wxBITMAP_PNG_FROM_DATA(ACC_ICON_DOG24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(ACC_ICON_DOG32) : wxBITMAP_PNG_FROM_DATA(ACC_ICON_DOG48);
+    case ACC_MONEY: return x == 16 ? wxBITMAP_PNG_FROM_DATA(ACC_ICON_MONEY16) : x == 24 ? wxBITMAP_PNG_FROM_DATA(ACC_ICON_MONEY24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(ACC_ICON_MONEY32) : wxBITMAP_PNG_FROM_DATA(ACC_ICON_MONEY48);
+    case ACC_EURO: return x == 16 ? wxBITMAP_PNG_FROM_DATA(ACC_ICON_EURO16) : x == 24 ? wxBITMAP_PNG_FROM_DATA(ACC_ICON_EURO24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(ACC_ICON_EURO32) : wxBITMAP_PNG_FROM_DATA(ACC_ICON_EURO48);
+    case ACC_FLAG: return x == 16 ? wxBITMAP_PNG_FROM_DATA(ACC_ICON_FLAG16) : x == 24 ? wxBITMAP_PNG_FROM_DATA(ACC_ICON_FLAG24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(ACC_ICON_FLAG32) : wxBITMAP_PNG_FROM_DATA(ACC_ICON_FLAG48);
+    case ACC_HOURGLASS: return x == 16 ? wxBITMAP_PNG_FROM_DATA(ACC_ICON_HOURGLASS16) : x == 24 ? wxBITMAP_PNG_FROM_DATA(ACC_ICON_HOURGLASS24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(ACC_ICON_HOURGLASS32) : wxBITMAP_PNG_FROM_DATA(ACC_ICON_HOURGLASS48);
+    case ACC_PAYPAL: return x == 16 ? wxBITMAP_PNG_FROM_DATA(ACC_ICON_PAYPAL16) : x == 24 ? wxBITMAP_PNG_FROM_DATA(ACC_ICON_PAYPAL24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(ACC_ICON_PAYPAL32) : wxBITMAP_PNG_FROM_DATA(ACC_ICON_PAYPAL48);
+    case ACC_RUBIK: return x == 16 ? wxBITMAP_PNG_FROM_DATA(ACC_ICON_RUBIK16) : x == 24 ? wxBITMAP_PNG_FROM_DATA(ACC_ICON_RUBIK24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(ACC_ICON_RUBIK32) : wxBITMAP_PNG_FROM_DATA(ACC_ICON_RUBIK48);
+    case ACC_TREES: return x == 16 ? wxBITMAP_PNG_FROM_DATA(ACC_ICON_TREES16) : x == 24 ? wxBITMAP_PNG_FROM_DATA(ACC_ICON_TREES24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(ACC_ICON_TREES32) : wxBITMAP_PNG_FROM_DATA(ACC_ICON_TREES48);
+    case ACC_WALLET: return x == 16 ? wxBITMAP_PNG_FROM_DATA(ACC_ICON_WALLET16) : x == 24 ? wxBITMAP_PNG_FROM_DATA(ACC_ICON_WALLET24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(ACC_ICON_WALLET32) : wxBITMAP_PNG_FROM_DATA(ACC_ICON_WALLET48);
+    case ACC_WORK: return x == 16 ? wxBITMAP_PNG_FROM_DATA(ACC_ICON_WORK16) : x == 24 ? wxBITMAP_PNG_FROM_DATA(ACC_ICON_WORK24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(ACC_ICON_WORK32) : wxBITMAP_PNG_FROM_DATA(ACC_ICON_WORK48);
+ 
+
     // To Do
     case CATEGORY_RELOCATION: return x == 16 ? wxBITMAP_PNG_FROM_DATA(category_relocation) : x == 24 ? wxBITMAP_PNG_FROM_DATA(category_relocation24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(category_relocation32) : wxBITMAP_PNG_FROM_DATA(category_relocation48);
     case CLEAR: return x == 16 ? wxBITMAP_PNG_FROM_DATA(clear) : x == 24 ? wxBITMAP_PNG_FROM_DATA(clear24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(clear32) : wxBITMAP_PNG_FROM_DATA(clear48);
