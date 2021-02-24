@@ -203,7 +203,7 @@ void mmUnivCSVDialog::CreateControls()
     m_setting_name_ctrl_->SetToolTip(_("Template name"));
 
     wxBitmapButton* itemButton_Save = new wxBitmapButton(itemPanel67
-        , wxID_SAVEAS, mmBitmap(png::SAVEAS));
+        , wxID_SAVEAS, mmBitmap(png::SAVE));
     itemBoxSizer76->Add(itemButton_Save, wxSizerFlags(g_flagsH).Center().Proportion(0));
     itemButton_Save->SetToolTip(_("Save Template"));
 
