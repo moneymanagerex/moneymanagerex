@@ -316,12 +316,14 @@ void mmCheckingPanel::CreateControls()
     m_listCtrlAccount->createColumns(*m_listCtrlAccount);
 
     // load the global variables
+    m_sortSaveTitle = m_allAccounts ? "ALLTRANS" : "CHECK";
+
     long val = m_listCtrlAccount->COL_DEF_SORT;
-    wxString strVal = Model_Setting::instance().GetStringSetting("CHECK_SORT_COL", wxString() << val);
+    wxString strVal = Model_Setting::instance().GetStringSetting(wxString::Format("%s_SORT_COL", m_sortSaveTitle), wxString() << val);
     if (strVal.ToLong(&val)) m_listCtrlAccount->g_sortcol = m_listCtrlAccount->toEColumn(val);
     // --
     val = 1; // asc sorting default
-    strVal = Model_Setting::instance().GetStringSetting("CHECK_ASC", wxString() << val);
+    strVal = Model_Setting::instance().GetStringSetting(wxString::Format("%s_ASC", m_sortSaveTitle), wxString() << val);
     if (strVal.ToLong(&val)) m_listCtrlAccount->g_asc = val != 0;
 
     // --
