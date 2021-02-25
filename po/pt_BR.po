@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-02-22 13:06+0300\n"
-"PO-Revision-Date: 2021-02-22 10:07\n"
+"PO-Revision-Date: 2021-02-25 21:41\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "MIME-Version: 1.0\n"
@@ -3696,7 +3696,7 @@ msgstr "Visão da conta: %s"
 
 #: mmcheckingpanel.cpp:427
 msgid "Full Transactions Report"
-msgstr ""
+msgstr "Relatório Completo de Transações"
 
 #: mmcheckingpanel.cpp:655
 msgid "Select account used in transfer transactions"
