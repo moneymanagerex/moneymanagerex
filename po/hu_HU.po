@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-02-22 13:06+0300\n"
-"PO-Revision-Date: 2021-02-22 10:07\n"
+"PO-Revision-Date: 2021-02-22 23:16\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -277,11 +277,11 @@ msgstr "Pénznem"
 
 #: accountdialog.cpp:499
 msgid "Please insert a valid URL"
-msgstr ""
+msgstr "Kérjük, érvényes URL címet adjon meg"
 
 #: accountdialog.cpp:499
 msgid "Invalid URL"
-msgstr ""
+msgstr "Érvénytelen URL cím"
 
 #: appstartdialog.cpp:99
 msgid "Open Last Opened Database"
@@ -332,7 +332,7 @@ msgstr "Kilépés"
 #: appstartdialog.cpp:153
 #, c-format
 msgid "Open the previously opened database : %s"
-msgstr ""
+msgstr "Korábban megnyitott adatbázis megnyitása: %s"
 
 #: assetdialog.cpp:61 assetdialog.cpp:410 assetspanel.cpp:466
 msgid "New Asset"
@@ -436,7 +436,7 @@ msgstr "Elvet"
 
 #: assetdialog.cpp:402 sharetransactiondialog.cpp:429
 msgid "Invalid Transaction"
-msgstr ""
+msgstr "Érvénytelen tranzakció"
 
 #: assetdialog.cpp:409
 msgid "Asset Account not found.\n\n"
@@ -766,7 +766,7 @@ msgstr "Havonta"
 #: billsdepositsdialog.cpp:54 billsdepositspanel.cpp:43
 #: model/Model_Budget.cpp:59
 msgid "Every 2 Months"
-msgstr ""
+msgstr "Kéthavonta"
 
 #: billsdepositsdialog.cpp:55 billsdepositspanel.cpp:44
 #: model/Model_Budget.cpp:60
@@ -850,7 +850,7 @@ msgstr "Ismétlődik"
 
 #: billsdepositsdialog.cpp:438
 msgid "Advance the next occurring date with the specified values"
-msgstr ""
+msgstr "A következő ismétlési dátum eltolása a megadott értékekkel"
 
 #: billsdepositsdialog.cpp:445 billsdepositsdialog.cpp:1298
 msgid "Payments Left"
@@ -866,7 +866,7 @@ msgstr "Kéretik, hogy ezt a tranzakciót a felhasználó a \"Fizetési napon\" 
 
 #: billsdepositsdialog.cpp:463
 msgid "Grant automatic execute"
-msgstr ""
+msgstr "Automatikus végrehajtás engedélyezése"
 
 #: billsdepositsdialog.cpp:464
 msgid "The requested payment will occur without user interaction"
@@ -882,7 +882,7 @@ msgstr "Adja meg a következő számla vagy betét esedékességi dátumát"
 
 #: billsdepositsdialog.cpp:508
 msgid "Retard or advance the date of the 'next occurrence'"
-msgstr ""
+msgstr "Késleltesse, vagy hozza előbbre a 'következő ismétlést'"
 
 #: billsdepositsdialog.cpp:513 billsdepositspanel.cpp:98
 msgid "Date Due"
@@ -1057,7 +1057,8 @@ msgstr "Gyakoriság: havonta"
 #: billsdepositsdialog.cpp:1265
 msgid "Specify period in Days to activate.\n"
 "Becomes blank when not active."
-msgstr ""
+msgstr "Adja meg az időszakot napokban az aktiválásig.\n"
+"Ha nem aktív, üres lesz."
 
 #: billsdepositsdialog.cpp:1274
 msgid "Specify period in Months to activate.\n"
@@ -1080,7 +1081,8 @@ msgstr "Adja meg a periódust hónapokban az aktiváláshoz.\n"
 #: billsdepositsdialog.cpp:1299
 msgid "Specify the number of payments to be made.\n"
 "Leave blank if the payments continue forever."
-msgstr ""
+msgstr "Adja meg a teljesítendő kifizetések számát.\n"
+"Hagyja üresen ha a kifizetések örökké folytatódnak."
 
 #: billsdepositsdialog.cpp:1325 billsdepositsdialog.cpp:1334
 #: filtertransdialog.cpp:418 filtertransdialog.cpp:435
@@ -1256,8 +1258,8 @@ msgstr "Automatikus"
 #, c-format
 msgid "%d day remaining"
 msgid_plural "%d days remaining"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d nap maradt"
+msgstr[1] "%d nap maradt"
 
 #: billsdepositspanel.cpp:506 billsdepositspanel.cpp:513
 #: billsdepositspanel.cpp:520 billsdepositspanel.cpp:573
@@ -1269,15 +1271,15 @@ msgstr "Inaktív"
 #, c-format
 msgid "%d day delay!"
 msgid_plural "%d days delay!"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d nap késés!"
+msgstr[1] "%d nap késés!"
 
 #: billsdepositspanel.cpp:518 billsdepositspanel.cpp:578 mmhomepage.cpp:318
 #, c-format
 msgid "%d day overdue!"
 msgid_plural "%d days overdue!"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d napja lejárt!"
+msgstr[1] "%d napja lejárt!"
 
 #: billsdepositspanel.cpp:630
 msgid "Do you really want to delete the series?"
@@ -1369,7 +1371,7 @@ msgstr "Költségvetés kategóriák összesítése"
 #: budgetingpanel.cpp:172
 #, c-format
 msgid "Financial Year: %s - %ld"
-msgstr ""
+msgstr "Pénzügyi év: %s - %ld"
 
 #: budgetingpanel.cpp:176 reports/budget.cpp:92
 #, c-format
@@ -1518,7 +1520,7 @@ msgstr "Létező kategória nevének szerkesztése"
 
 #: categdialog.cpp:236
 msgid "Delete an existing category. The category cannot be used by existing transactions."
-msgstr ""
+msgstr "Létező kategória törlése. A kategória nem lehet használatban."
 
 #: categdialog.cpp:241 maincurrencydialog.cpp:207
 msgid "&Select"
@@ -1592,24 +1594,24 @@ msgstr "Kategóriák kezelése: törlési hiba!"
 
 #: categdialog.cpp:432
 msgid "Select an unused category to delete."
-msgstr ""
+msgstr "Válasszon ki egy nem használt kategóriát törlésre."
 
 #: categdialog.cpp:457
 msgid "This category cannot be deleted because it's used by transactions."
-msgstr ""
+msgstr "Ez a kategória nem törölhető, mert tranzakciók használják."
 
 #: categdialog.cpp:464
 msgid "Delete an existing category."
-msgstr ""
+msgstr "Létező kategória törlése."
 
 #: categdialog.cpp:469
 msgid "Subcategories must be deleted before."
-msgstr ""
+msgstr "Először az alkategóriákat kell törölni."
 
 #: categdialog.cpp:485
 #, c-format
 msgid "Enter a new name for '%s'"
-msgstr ""
+msgstr "Írjon be új nevet '%s' helyett"
 
 #: categdialog.cpp:486
 msgid "Edit Category"
@@ -3144,7 +3146,7 @@ msgstr ""
 
 #: import_export/univcsvdialog.cpp:1826
 msgid "Enter a value"
-msgstr ""
+msgstr "Írjon be egy értéket"
 
 #: maincurrencydialog.cpp:74 reports/summarystocks.cpp:191 stockdialog.cpp:427
 #: stockspanel.cpp:92
@@ -3157,7 +3159,7 @@ msgstr "Előző árfolyam"
 
 #: maincurrencydialog.cpp:76
 msgid "Fixed Rate"
-msgstr ""
+msgstr "Rögzített árfolyam"
 
 #: maincurrencydialog.cpp:163 maincurrencydialog.cpp:459
 msgid "Online update currency rate"
@@ -3169,7 +3171,7 @@ msgstr "Online frissítés"
 
 #: maincurrencydialog.cpp:170
 msgid "Show all even the unused currencies"
-msgstr ""
+msgstr "Mutassa a nem használt pénznemeket is"
 
 #: maincurrencydialog.cpp:205 payeedialog.cpp:122
 msgid "Search:"
@@ -3210,7 +3212,7 @@ msgstr "A kijelölt deviza értékek törlése"
 
 #: maincurrencydialog.cpp:294
 msgid "Delete Currency Values history for unused currencies and days"
-msgstr ""
+msgstr "A használaton kívüli pénznemek és napok érték előzményeinek törlése"
 
 #: maincurrencydialog.cpp:351
 msgid "Do you really want to delete the selected Currency?"
@@ -3224,7 +3226,7 @@ msgstr "Pénznem"
 
 #: maincurrencydialog.cpp:380
 msgid "Base Currency Selection"
-msgstr ""
+msgstr "Alap pénznem kiválasztása"
 
 #: maincurrencydialog.cpp:420
 #, c-format
@@ -3996,7 +3998,7 @@ msgstr "Jövőben tranzakciók figyelmen kívül hagyása"
 
 #: mmframe.cpp:1376
 msgid "Toggle Fullscreen\tShift+F11"
-msgstr ""
+msgstr "Teljes képernyő váltás\tShift+F11"
 
 #: mmframe.cpp:1377 mmframe.cpp:1709
 msgid "Toggle Fullscreen"
@@ -6823,7 +6825,7 @@ msgstr ""
 
 #: wizard_update.cpp:136
 msgid "Version"
-msgstr ""
+msgstr "Verzió"
 
 #: wizard_update.cpp:144
 msgid "You already have the latest version"
