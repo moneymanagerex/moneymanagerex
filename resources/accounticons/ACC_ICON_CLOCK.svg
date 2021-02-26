@@ -1,42 +1,8 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg
-   version="1.1"
-   id="Capa_1"
-   x="0px"
-   y="0px"
-   viewBox="0 0 16 16"
-   style="enable-background:new 0 0 16 16;"
-   xml:space="preserve"
-   sodipodi:docname="ACC_ICON_CLOCK.svg"
-   inkscape:version="1.1-dev (9017afb, 2021-01-01)"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-   xmlns="http://www.w3.org/2000/svg"
-   xmlns:svg="http://www.w3.org/2000/svg"><defs
-   id="defs865" /><sodipodi:namedview
-   id="namedview863"
-   pagecolor="#ffffff"
-   bordercolor="#666666"
-   borderopacity="1.0"
-   objecttolerance="10.0"
-   gridtolerance="10.0"
-   guidetolerance="10.0"
-   inkscape:pageshadow="2"
-   inkscape:pageopacity="0.0"
-   inkscape:pagecheckerboard="0"
-   showgrid="false"
-   inkscape:zoom="45.125"
-   inkscape:cx="7.9889197"
-   inkscape:cy="7.9889197"
-   inkscape:window-width="1386"
-   inkscape:window-height="1003"
-   inkscape:window-x="0"
-   inkscape:window-y="25"
-   inkscape:window-maximized="0"
-   inkscape:current-layer="Capa_1" />
+<svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 <g
    id="g830"
-   style="fill:#006633;fill-opacity:1">
+   style="fill:#006633;fill-opacity:1"
+   transform="matrix(1.25,0,0,1.25,2,2)">
 	<g
    id="g828"
    style="fill:#006633;fill-opacity:1">
@@ -51,48 +17,63 @@
 	</g>
 </g>
 <g
-   id="g832">
+   id="g832"
+   transform="matrix(0.875,0,0,0.875,2,2)">
 </g>
 <g
-   id="g834">
+   id="g834"
+   transform="matrix(0.875,0,0,0.875,2,2)">
 </g>
 <g
-   id="g836">
+   id="g836"
+   transform="matrix(0.875,0,0,0.875,2,2)">
 </g>
 <g
-   id="g838">
+   id="g838"
+   transform="matrix(0.875,0,0,0.875,2,2)">
 </g>
 <g
-   id="g840">
+   id="g840"
+   transform="matrix(0.875,0,0,0.875,2,2)">
 </g>
 <g
-   id="g842">
+   id="g842"
+   transform="matrix(0.875,0,0,0.875,2,2)">
 </g>
 <g
-   id="g844">
+   id="g844"
+   transform="matrix(0.875,0,0,0.875,2,2)">
 </g>
 <g
-   id="g846">
+   id="g846"
+   transform="matrix(0.875,0,0,0.875,2,2)">
 </g>
 <g
-   id="g848">
+   id="g848"
+   transform="matrix(0.875,0,0,0.875,2,2)">
 </g>
 <g
-   id="g850">
+   id="g850"
+   transform="matrix(0.875,0,0,0.875,2,2)">
 </g>
 <g
-   id="g852">
+   id="g852"
+   transform="matrix(0.875,0,0,0.875,2,2)">
 </g>
 <g
-   id="g854">
+   id="g854"
+   transform="matrix(0.875,0,0,0.875,2,2)">
 </g>
 <g
-   id="g856">
+   id="g856"
+   transform="matrix(0.875,0,0,0.875,2,2)">
 </g>
 <g
-   id="g858">
+   id="g858"
+   transform="matrix(0.875,0,0,0.875,2,2)">
 </g>
 <g
-   id="g860">
+   id="g860"
+   transform="matrix(0.875,0,0,0.875,2,2)">
 </g>
 </svg>
