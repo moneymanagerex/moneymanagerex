@@ -1,48 +1,8 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg
-   version="1.1"
-   id="Capa_1"
-   x="0px"
-   y="0px"
-   width="47.001px"
-   height="47.001px"
-   viewBox="0 0 47.001 47.001"
-   style="enable-background:new 0 0 47.001 47.001;"
-   xml:space="preserve"
-   sodipodi:docname="ACC_ICON_HOURGLASS.svg"
-   inkscape:version="1.1-dev (9017afb, 2021-01-01)"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-   xmlns="http://www.w3.org/2000/svg"
-   xmlns:svg="http://www.w3.org/2000/svg"><defs
-   id="defs868" /><sodipodi:namedview
-   id="namedview866"
-   pagecolor="#ffffff"
-   bordercolor="#666666"
-   borderopacity="1.0"
-   objecttolerance="10.0"
-   gridtolerance="10.0"
-   guidetolerance="10.0"
-   inkscape:pageshadow="2"
-   inkscape:pageopacity="0.0"
-   inkscape:pagecheckerboard="0"
-   showgrid="false"
-   inkscape:zoom="15.361375"
-   inkscape:cx="23.467951"
-   inkscape:cy="23.467951"
-   inkscape:window-width="1358"
-   inkscape:window-height="1003"
-   inkscape:window-x="0"
-   inkscape:window-y="25"
-   inkscape:window-maximized="0"
-   inkscape:current-layer="Capa_1" />
+<svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 <g
-   id="g833"
-   transform="matrix(0.7671655,0,0,0.81717841,4.5928994,4.8823753)"
-   style="fill:#006633;fill-opacity:1">
-	<g
    id="Layer_1_64_"
-   style="fill:#006633;fill-opacity:1">
+   style="fill:#006633;fill-opacity:1"
+   transform="matrix(0.39890145,0,0,0.42490654,2.81083,2.0017738)">
 		<g
    id="g830"
    style="fill:#006633;fill-opacity:1">
@@ -60,50 +20,4 @@
    style="fill:#006633;fill-opacity:1" />
 		</g>
 	</g>
-</g>
-<g
-   id="g835">
-</g>
-<g
-   id="g837">
-</g>
-<g
-   id="g839">
-</g>
-<g
-   id="g841">
-</g>
-<g
-   id="g843">
-</g>
-<g
-   id="g845">
-</g>
-<g
-   id="g847">
-</g>
-<g
-   id="g849">
-</g>
-<g
-   id="g851">
-</g>
-<g
-   id="g853">
-</g>
-<g
-   id="g855">
-</g>
-<g
-   id="g857">
-</g>
-<g
-   id="g859">
-</g>
-<g
-   id="g861">
-</g>
-<g
-   id="g863">
-</g>
 </svg>
