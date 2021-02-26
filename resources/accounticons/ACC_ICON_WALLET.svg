@@ -1,42 +1,8 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg
-   version="1.1"
-   id="Layer_1"
-   x="0px"
-   y="0px"
-   viewBox="0 0 512 512"
-   style="enable-background:new 0 0 512 512;"
-   xml:space="preserve"
-   sodipodi:docname="ACC_ICON_WALLET.svg"
-   inkscape:version="1.1-dev (9017afb, 2021-01-01)"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-   xmlns="http://www.w3.org/2000/svg"
-   xmlns:svg="http://www.w3.org/2000/svg"><defs
-   id="defs869" /><sodipodi:namedview
-   id="namedview867"
-   pagecolor="#ffffff"
-   bordercolor="#666666"
-   borderopacity="1.0"
-   objecttolerance="10.0"
-   gridtolerance="10.0"
-   guidetolerance="10.0"
-   inkscape:pageshadow="2"
-   inkscape:pageopacity="0.0"
-   inkscape:pagecheckerboard="0"
-   showgrid="false"
-   inkscape:zoom="1.4101562"
-   inkscape:cx="256"
-   inkscape:cy="255.64543"
-   inkscape:window-width="1425"
-   inkscape:window-height="1003"
-   inkscape:window-x="0"
-   inkscape:window-y="25"
-   inkscape:window-maximized="0"
-   inkscape:current-layer="Layer_1" />
+<svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 <g
    id="g834"
-   style="fill:#006633;fill-opacity:1">
+   style="fill:#006633;fill-opacity:1"
+   transform="matrix(0.03889556,0,0,0.0374717,1.9961779,2.4825692)">
 	<g
    id="g832"
    style="fill:#006633;fill-opacity:1">
@@ -59,50 +25,5 @@
    style="fill:#006633;fill-opacity:1" />
 		</g>
 	</g>
-</g>
-<g
-   id="g836">
-</g>
-<g
-   id="g838">
-</g>
-<g
-   id="g840">
-</g>
-<g
-   id="g842">
-</g>
-<g
-   id="g844">
-</g>
-<g
-   id="g846">
-</g>
-<g
-   id="g848">
-</g>
-<g
-   id="g850">
-</g>
-<g
-   id="g852">
-</g>
-<g
-   id="g854">
-</g>
-<g
-   id="g856">
-</g>
-<g
-   id="g858">
-</g>
-<g
-   id="g860">
-</g>
-<g
-   id="g862">
-</g>
-<g
-   id="g864">
 </g>
 </svg>
