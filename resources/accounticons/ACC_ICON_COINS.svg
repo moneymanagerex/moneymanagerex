@@ -1,42 +1,8 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg
-   version="1.1"
-   id="Capa_1"
-   x="0px"
-   y="0px"
-   viewBox="0 0 612.007 612.007"
-   style="enable-background:new 0 0 612.007 612.007;"
-   xml:space="preserve"
-   sodipodi:docname="ACC_ICON_COINS.svg"
-   inkscape:version="1.1-dev (9017afb, 2021-01-01)"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-   xmlns="http://www.w3.org/2000/svg"
-   xmlns:svg="http://www.w3.org/2000/svg"><defs
-   id="defs873" /><sodipodi:namedview
-   id="namedview871"
-   pagecolor="#ffffff"
-   bordercolor="#666666"
-   borderopacity="1.0"
-   objecttolerance="10.0"
-   gridtolerance="10.0"
-   guidetolerance="10.0"
-   inkscape:pageshadow="2"
-   inkscape:pageopacity="0.0"
-   inkscape:pagecheckerboard="0"
-   showgrid="false"
-   inkscape:zoom="1.1797251"
-   inkscape:cx="306.0035"
-   inkscape:cy="305.57967"
-   inkscape:window-width="1377"
-   inkscape:window-height="1003"
-   inkscape:window-x="0"
-   inkscape:window-y="25"
-   inkscape:window-maximized="0"
-   inkscape:current-layer="Capa_1" />
+<svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 <g
    id="g838"
-   style="fill:#006633;fill-opacity:1">
+   style="fill:#006633;fill-opacity:1"
+   transform="matrix(0.03523608,0,0,0.03256996,1.2176534,2.0145718)">
 	<g
    id="g836"
    style="fill:#006633;fill-opacity:1">
@@ -66,49 +32,5 @@
    style="fill:#006633;fill-opacity:1" />
 	</g>
 </g>
-<g
-   id="g840">
-</g>
-<g
-   id="g842">
-</g>
-<g
-   id="g844">
-</g>
-<g
-   id="g846">
-</g>
-<g
-   id="g848">
-</g>
-<g
-   id="g850">
-</g>
-<g
-   id="g852">
-</g>
-<g
-   id="g854">
-</g>
-<g
-   id="g856">
-</g>
-<g
-   id="g858">
-</g>
-<g
-   id="g860">
-</g>
-<g
-   id="g862">
-</g>
-<g
-   id="g864">
-</g>
-<g
-   id="g866">
-</g>
-<g
-   id="g868">
-</g>
+
 </svg>
