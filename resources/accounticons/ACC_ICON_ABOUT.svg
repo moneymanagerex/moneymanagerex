@@ -1,58 +1,22 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg
-   version="1.1"
-   viewBox="0 0 245.334 245.334"
-   enable-background="new 0 0 245.334 245.334"
-   id="svg832"
-   sodipodi:docname="ACC_ICON_ABOUT.svg"
-   inkscape:version="1.1-dev (9017afb, 2021-01-01)"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-   xmlns="http://www.w3.org/2000/svg"
-   xmlns:svg="http://www.w3.org/2000/svg">
-  <defs
-     id="defs836" />
-  <sodipodi:namedview
-     id="namedview834"
-     pagecolor="#ffffff"
-     bordercolor="#666666"
-     borderopacity="1.0"
-     objecttolerance="10.0"
-     gridtolerance="10.0"
-     guidetolerance="10.0"
-     inkscape:pageshadow="2"
-     inkscape:pageopacity="0.0"
-     inkscape:pagecheckerboard="0"
-     showgrid="false"
-     inkscape:zoom="2.9429268"
-     inkscape:cx="122.667"
-     inkscape:cy="122.667"
-     inkscape:window-width="1579"
-     inkscape:window-height="1094"
-     inkscape:window-x="0"
-     inkscape:window-y="25"
-     inkscape:window-maximized="0"
-     inkscape:current-layer="g830" />
-  <g
-     id="g830"
-     style="fill:#000000;fill-opacity:1">
+<svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+
     <path
-       d="M 122.667,0 C 55.028,0 0,55.028 0,122.667 c 0,67.639 55.027,122.667 122.666,122.667 67.639,0 122.667,-55.028 122.667,-122.667 C 245.333,55.028 190.305,0 122.667,0 Z m 0,215.334 C 71.57,215.334 30,173.764 30,122.667 30,71.57 71.57,30 122.667,30 c 51.097,0 92.667,41.57 92.667,92.667 0,51.097 -41.571,92.667 -92.667,92.667 z"
+       d="m 11.99286,3.1836214 c -4.8574508,0 -8.8092516,3.9518009 -8.8092516,8.8092516 0,4.857453 3.951729,8.809254 8.8091796,8.809254 4.857453,0 8.809254,-3.951801 8.809254,-8.809254 0,-4.8574507 -3.951801,-8.8092516 -8.809182,-8.8092516 z m 0,15.4640736 c -3.6694976,0 -6.6548208,-2.985323 -6.6548208,-6.654822 0,-3.6694976 2.9853232,-6.6548207 6.6548208,-6.6548207 3.669499,0 6.654823,2.9853231 6.654823,6.6548207 0,3.669499 -2.985396,6.654822 -6.654823,6.654822 z"
        id="path824"
-       style="fill:#006633;fill-opacity:1;stroke:none;stroke-opacity:1" />
+       style="fill:#006633;fill-opacity:1;stroke:none;stroke-width:0.0718144;stroke-opacity:1" />
     <rect
-       width="30"
-       x="107.667"
-       y="109.167"
-       height="79"
+       width="2.1544306"
+       x="10.915646"
+       y="11.02338"
+       height="5.6733346"
        id="rect826"
-       style="fill:#006633;fill-opacity:1" />
+       style="fill:#006633;fill-opacity:1;stroke-width:0.0718144" />
     <rect
-       width="30"
-       x="107.667"
-       y="57.167"
-       height="29"
+       width="2.1544306"
+       x="10.915646"
+       y="7.2890334"
+       height="2.0826163"
        id="rect828"
-       style="fill:#006633;fill-opacity:1" />
-  </g>
+       style="fill:#006633;fill-opacity:1;stroke-width:0.0718144" />
+
 </svg>
