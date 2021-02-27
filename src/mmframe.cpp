@@ -1372,7 +1372,7 @@ void mmGUIFrame::createMenu()
         _("&Display Share Accounts"), _("Show/Hide Share Accounts in the navigation tree"), wxITEM_CHECK);
 
     wxMenuItem* menuItemBudgetFinancialYears = new wxMenuItem(menuView, MENU_VIEW_BUDGET_FINANCIAL_YEARS,
-        _("Budgets: As &Financial Years"), _("Display Budgets in Financial Year Format"), wxITEM_CHECK);
+        _("Budgets: As Financial &Years"), _("Display Budgets in Financial Year Format"), wxITEM_CHECK);
     wxMenuItem* menuItemBudgetTransferTotal = new wxMenuItem(menuView, MENU_VIEW_BUDGET_TRANSFER_TOTAL,
         _("Budgets: &Include Transfers in Totals"), _("Include the transfer transactions in the Budget Totals"), wxITEM_CHECK);
     wxMenuItem* menuItemBudgetCategorySummary = new wxMenuItem(menuView, MENU_VIEW_BUDGET_CATEGORY_SUMMARY,
@@ -1394,14 +1394,14 @@ void mmGUIFrame::createMenu()
 
 #if (wxMAJOR_VERSION >= 3 && wxMINOR_VERSION >= 0)
     wxMenuItem* menuItemToggleFullscreen = new wxMenuItem(menuView, MENU_VIEW_TOGGLE_FULLSCREEN
-        , _("Toggle Fullscreen\tShift+F11")
+        , _("Toggle &Fullscreen\tShift+F11")
         , _("Toggle Fullscreen"));
     menuView->Append(menuItemToggleFullscreen);
 #endif
 
     menuView->AppendSeparator();
     wxMenuItem* menuItemLanguage = new wxMenuItem(menuView, MENU_LANG
-        , _("Switch Application Language")
+        , _("Switch Application &Language")
         , _("Change language used for MMEX GUI"));
     wxMenu* menuLang = new wxMenu;
 
@@ -1552,40 +1552,40 @@ void mmGUIFrame::createMenu()
 
     //Community Submenu
     wxMenuItem* menuItemWebsite = new wxMenuItem(menuHelp, MENU_WEBSITE
-        , _("Website")
+        , _("&Website")
         , _("Open the Money Manager EX website for latest news, updates etc"));
     wxMenuItem* menuItemFacebook = new wxMenuItem(menuHelp, MENU_FACEBOOK
-        , _("Facebook"), _("Visit us on Facebook"));
+        , _("&Facebook"), _("Visit us on Facebook"));
     wxMenuItem* menuItemTwitter = new wxMenuItem(menuHelp, MENU_TWITTER
-        , _("Twitter"), _("Follow us on Twitter"));
+        , _("&Twitter"), _("Follow us on Twitter"));
     wxMenuItem* menuItemYouTube = new wxMenuItem(menuHelp, MENU_YOUTUBE
-        , _("YouTube"), _("Watch free video materials about MMEX"));
+        , _("&YouTube"), _("Watch free video materials about MMEX"));
     wxMenuItem* menuItemSlack = new wxMenuItem(menuHelp, MENU_SLACK
-        , _("Slack"), _("Communicate online with MMEX team from your desktop or mobile device"));
+        , _("&Slack"), _("Communicate online with MMEX team from your desktop or mobile device"));
     wxMenuItem* menuItemGitHub = new wxMenuItem(menuHelp, MENU_GITHUB
-        , _("GitHub"), _("Access open source code repository and track reported bug statuses"));
+        , _("&GitHub"), _("Access open source code repository and track reported bug statuses"));
     wxMenuItem* menuItemWiki = new wxMenuItem(menuHelp, MENU_WIKI
-        , _("Wiki pages"), _("Read and update wiki pages"));
+        , _("W&iki pages"), _("Read and update wiki pages"));
     wxMenuItem* menuItemReportIssues = new wxMenuItem(menuHelp, MENU_REPORTISSUES
-        , _("Forum")
+        , _("F&orum")
         , _("Visit the MMEX forum to see existing user comments or report new issues with the software"));
     wxMenuItem* menuItemGooglePlay = new wxMenuItem(menuHelp, MENU_GOOGLEPLAY
-        , _("MoneyManagerEx for Android")
+        , _("Money Manager Ex for &Android")
         , _("Get free Android version and run MMEX on your smart phone or tablet"));
     wxMenuItem* menuItemNotify = new wxMenuItem(menuHelp, MENU_ANNOUNCEMENTMAILING
         , _("&Newsletter")
         , _("Subscribe to e-mail newsletter or view existing announcements"));
     wxMenuItem* menuItemRSS = new wxMenuItem(menuHelp, MENU_RSS
-        , _("RSS Feed"), _("Connect RSS web feed to news aggregator"));
+        , _("&RSS Feed"), _("Connect RSS web feed to news aggregator"));
     wxMenuItem* menuItemDonate = new wxMenuItem(menuHelp, MENU_DONATE
-        , _("Donate via PayPal")
+        , _("&Donate via PayPal")
         , _("Donate the team to support infrastructure etc"));
     wxMenuItem* menuItemBuyCoffee = new wxMenuItem(menuHelp, MENU_BUY_COFFEE
-        , _("Buy us a Coffee")
+        , _("&Buy us a Coffee")
         , _("Buy key developer a coffee"));
 
     wxMenuItem* menuItemCommunity = new wxMenuItem(menuHelp, MENU_COMMUNITY
-        , _("Community")
+        , _("&Community")
         , _("Stay in touch with MMEX community"));
 
     wxMenu* menuCommunity = new wxMenu;
@@ -1606,7 +1606,7 @@ void mmGUIFrame::createMenu()
     menuHelp->Append(menuItemCommunity);
 
     wxMenuItem* menuItemReportBug = new wxMenuItem(menuTools, MENU_REPORT_BUG
-        , _("Report a Bug")
+        , _("Report a &Bug")
         , _("Report an error in application to the developers"));
     menuHelp->Append(menuItemReportBug);
 
