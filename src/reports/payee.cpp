@@ -46,7 +46,6 @@ void  mmReportPayeeExpenses::RefreshData()
     valueList_.clear();
     positiveTotal_ = 0.0;
     negativeTotal_ = 0.0;
-    int color_id = 0;
 
     std::map<int, std::pair<double, double> > payeeStats;
     getPayeeStats(payeeStats, const_cast<mmDateRange*>(m_date_range)

@@ -343,7 +343,6 @@ int Option::AccountImageId(int account_id, bool def)
     int selectedImage = img::SAVINGS_ACC_NORMAL_PNG; //Default value
     wxString acctStatus = VIEW_ACCOUNTS_OPEN_STR;
     Model_Account::TYPE acctType = Model_Account::CHECKING;
-    bool favorite = true;
 
     Model_Account::Data* account = Model_Account::instance().get(account_id);
     if (account)
