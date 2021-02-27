@@ -1,6 +1,6 @@
 # Icons
 enum | x16 | x24 | x32 | x48
-:-- | --- | --- | -- | ---
+:-- | --- | --- | --- | ---
 CLEAR | <img src="CLEAR.svg" width="16">  | <img src="CLEAR.svg" width="24">  | <img src="CLEAR.svg" width="32">  | <img src="CLEAR.svg" width="48"> 
 CLIP | <img src="CLIP.svg" width="16">  | <img src="CLIP.svg" width="24">  | <img src="CLIP.svg" width="32">  | <img src="CLIP.svg" width="48"> 
 DOWNARROW | <img src="DOWNARROW.svg" width="16">  | <img src="DOWNARROW.svg" width="24">  | <img src="DOWNARROW.svg" width="32">  | <img src="DOWNARROW.svg" width="48"> 
