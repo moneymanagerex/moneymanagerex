@@ -1,14 +1,15 @@
 #!/bin/zsh
 #!
-#! Converts all input SVG files to PNG files at various resolutions and then
-#! creates an icons.h C-Header file from the PNGs
+#! Converts all input SVG files to PNG files at various resolutions
+#! Creates an icons.h C-Header file from the PNGs
+#! Generates README.md file so that images can be viewed at various resolutions
 #!
 #! Usage: /path/to/build-png-h *.svg
 
 rm -f icons.h
 echo "# Icons" > README.md
 echo "enum | x16 | x24 | x32 | x48" >> README.md
-echo ":-- | --- | --- | -- | ---" >> README.md
+echo ":-- | --- | --- | --- | ---" >> README.md
 for file in "$@"
 do
     filename="${file%.*}"

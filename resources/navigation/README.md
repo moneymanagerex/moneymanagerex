@@ -1,6 +1,6 @@
 # Icons
 enum | x16 | x24 | x32 | x48
-:-- | --- | --- | -- | ---
+:-- | --- | --- | --- | ---
 ALLTRANSACTIONS | <img src="ALLTRANSACTIONS.svg" width="16">  | <img src="ALLTRANSACTIONS.svg" width="24">  | <img src="ALLTRANSACTIONS.svg" width="32">  | <img src="ALLTRANSACTIONS.svg" width="48"> 
 ASSET_CLOSED | <img src="ASSET_CLOSED.svg" width="16">  | <img src="ASSET_CLOSED.svg" width="24">  | <img src="ASSET_CLOSED.svg" width="32">  | <img src="ASSET_CLOSED.svg" width="48"> 
 ASSET_NORMAL | <img src="ASSET_NORMAL.svg" width="16">  | <img src="ASSET_NORMAL.svg" width="24">  | <img src="ASSET_NORMAL.svg" width="32">  | <img src="ASSET_NORMAL.svg" width="48"> 

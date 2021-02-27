@@ -1,6 +1,6 @@
 # Icons
 enum | x16 | x24 | x32 | x48
-:-- | --- | --- | -- | ---
+:-- | --- | --- | --- | ---
 DUPLICATE_STAT | <img src="DUPLICATE_STAT.svg" width="16">  | <img src="DUPLICATE_STAT.svg" width="24">  | <img src="DUPLICATE_STAT.svg" width="32">  | <img src="DUPLICATE_STAT.svg" width="48"> 
 EMPTY | <img src="EMPTY.svg" width="16">  | <img src="EMPTY.svg" width="24">  | <img src="EMPTY.svg" width="32">  | <img src="EMPTY.svg" width="48"> 
 FOLLOW_UP | <img src="FOLLOW_UP.svg" width="16">  | <img src="FOLLOW_UP.svg" width="24">  | <img src="FOLLOW_UP.svg" width="32">  | <img src="FOLLOW_UP.svg" width="48"> 
