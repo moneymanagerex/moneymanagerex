@@ -868,12 +868,11 @@ bool TransactionListCtrl::CheckForClosedAccounts()
                 closedTrx++;
                 continue;
             }
-        account = Model_Account::instance().get(transaction->TOACCOUNTID);
-        if (account)
+        Model_Account::Data* to_account = Model_Account::instance().get(transaction->TOACCOUNTID);
+        if (to_account) {
             if (Model_Account::CLOSED == Model_Account::status(account))
-            {
                 closedTrx++;
-            }
+        }
     }
 
     if (!closedTrx)
