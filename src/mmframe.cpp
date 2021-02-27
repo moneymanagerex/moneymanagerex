@@ -2472,7 +2472,7 @@ void mmGUIFrame::OnSimpleURLOpen(wxCommandEvent& event)
     case MENU_GITHUB: url = mmex::weblink::GitHub; break;
     case MENU_SLACK: url = mmex::weblink::Slack; break;
     }
-    if (!url.IsEmpty()) wxLaunchDefaultBrowser(url);
+    if (!url.IsEmpty()) wxLaunchDefaultApplication(url);
 }
 //----------------------------------------------------------------------------
 

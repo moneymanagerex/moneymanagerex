@@ -267,7 +267,6 @@ wxString mmReportSummaryByDate::getHTMLText()
                 }
 
                 // prepare columns for report: date, cash, checking, credit card, loan, term, partial total, investment, grand total
-                int precision = Model_Currency::precision(Model_Currency::GetBaseCurrency());
                 BalanceEntry totBalanceEntry;
                 totBalanceEntry.date = dd;
                 for (int j = 0; j < 6; j++)
