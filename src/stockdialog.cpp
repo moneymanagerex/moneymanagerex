@@ -755,7 +755,7 @@ void mmStockDialog::OnHistoryDownloadButton(wxCommandEvent& /*event*/)
         if (interval_menu_item_no < 0) return;
         interval = intervals[interval_menu_item_no];
     }
-    const wxString URL = wxString::Format(mmex::weblink::YahooQuotesHistory
+    const wxString URL = wxString::Format("https://query1.finance.yahoo.com/v8/finance/chart/%s?range=%s&interval=%s&fields=currency"
         , m_stock->SYMBOL, range, interval);
 
     wxString json_data;
