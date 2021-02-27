@@ -1452,7 +1452,7 @@ void mmGUIFrame::createMenu()
     wxMenu* menuTools = new wxMenu;
 
     wxMenuItem* menuItemRates = new wxMenuItem(menuTools
-        , MENU_RATES, _("Download Rates..."), _("Download Currency and Stock rates"));
+        , MENU_RATES, _("Download Ra&tes..."), _("Download Currency and Stock rates"));
     menuTools->Append(menuItemRates);
 
     menuTools->AppendSeparator();
@@ -1466,7 +1466,7 @@ void mmGUIFrame::createMenu()
     menuTools->Append(menuItemPayee);
 
     wxMenuItem* menuItemCurrency = new wxMenuItem(menuTools, MENU_CURRENCY
-        , _("Organize Currency..."), _("Organize Currency"));
+        , _("Organize Curre&ncy..."), _("Organize Currency"));
     menuTools->Append(menuItemCurrency);
 
     wxMenuItem* menuItemCategoryRelocation = new wxMenuItem(menuTools
@@ -1476,7 +1476,7 @@ void mmGUIFrame::createMenu()
         , MENU_PAYEE_RELOCATION, _("&Payees...")
         , _("Reassign all payees to another payee"));
     wxMenuItem* menuItemRelocation = new wxMenuItem(menuTools
-        , MENU_RELOCATION, _("Relocation of...")
+        , MENU_RELOCATION, _("Re&location of...")
         , _("Relocate Categories && Payees"));
     wxMenu* menuRelocation = new wxMenu;
     menuRelocation->Append(menuItemCategoryRelocation);
@@ -1501,17 +1501,17 @@ void mmGUIFrame::createMenu()
     menuTools->AppendSeparator();
 
     wxMenuItem* menuItemTransactions = new wxMenuItem(menuTools, MENU_TRANSACTIONREPORT
-        , _("&Transaction Report Filter..."), _("Transaction Report Filter"));
+        , _("Transaction Report &Filter..."), _("Transaction Report Filter"));
     menuTools->Append(menuItemTransactions);
 
     menuTools->AppendSeparator();
 
     wxMenuItem* menuItemGRM = new wxMenuItem(menuTools, wxID_VIEW_LIST
-        , _("&General Report Manager..."), _("General Report Manager"));
+        , _("General Report &Manager..."), _("General Report Manager"));
     menuTools->Append(menuItemGRM);
 
     wxMenuItem* menuItemCF = new wxMenuItem(menuTools, wxID_BROWSE
-        , _("&Custom Fields Manager..."), _("Custom Fields Manager"));
+        , _("C&ustom Fields Manager..."), _("Custom Fields Manager"));
     menuTools->Append(menuItemCF);
 
     menuTools->AppendSeparator();
@@ -1530,16 +1530,16 @@ void mmGUIFrame::createMenu()
         , _("Change Encrypted &Password")
         , _("Change the password of an encrypted database"));
     wxMenuItem* menuItemVacuumDB = new wxMenuItem(menuTools, MENU_DB_VACUUM
-        , _("Optimize &Database")
+        , _("&Optimize Database")
         , _("Optimize database space and performance"));
     wxMenuItem* menuItemCheckDB = new wxMenuItem(menuTools, MENU_DB_DEBUG
-        , _("Database Debug")
+        , _("Database De&bug")
         , _("Generate database report or fix errors"));
     menuDatabase->Append(menuItemConvertDB);
     menuDatabase->Append(menuItemChangeEncryptPassword);
     menuDatabase->Append(menuItemVacuumDB);
     menuDatabase->Append(menuItemCheckDB);
-    menuTools->AppendSubMenu(menuDatabase, _("Database")
+    menuTools->AppendSubMenu(menuDatabase, _("Databa&se")
         , _("Database management"));
     menuItemChangeEncryptPassword->Enable(false);
 
