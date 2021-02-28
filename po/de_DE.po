@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-02-27 21:16+0300\n"
-"PO-Revision-Date: 2021-02-27 18:29\n"
+"PO-Revision-Date: 2021-02-28 10:49\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -2320,7 +2320,7 @@ msgstr "Betragsspanne:"
 
 #: filtertransdialog.cpp:347
 msgid "Clea&r "
-msgstr ""
+msgstr "Lee&ren "
 
 #: filtertransdialog.cpp:827 filtertransdialog.cpp:842 reports/myusage.cpp:91
 #: webappdialog.cpp:194 webappdialog.cpp:199
@@ -3645,16 +3645,17 @@ msgstr "MMEX Transaktionsprüfung"
 msgid "You are about to edit a transaction involving an account that is closed."
 msgid_plural "The edit will affect %i transactions involving an account that is closed."
 msgstr[0] ""
-msgstr[1] ""
+msgstr[1] "Die Bearbeitung wirkt sich auf %i Transaktionen mit einem geschlossenen Konto aus."
 
 #: mmchecking_list.cpp:885
 msgid "\n\n"
 "Do you still want to perform the edit?"
-msgstr ""
+msgstr "\n\n"
+"Möchtest du die Bearbeitung trotzdem durchführen?"
 
 #: mmchecking_list.cpp:886
 msgid "Closed Account Check"
-msgstr ""
+msgstr "Abgeschlossene Kontoprüfung"
 
 #: mmchecking_list.cpp:1038 stockspanel.cpp:290
 #, c-format
@@ -3777,7 +3778,7 @@ msgstr "Symbolleiste"
 
 #: mmframe.cpp:457 mmframe.cpp:693
 msgid "Favourites"
-msgstr ""
+msgstr "Favoriten"
 
 #: mmframe.cpp:458 mmframe.cpp:697 mmhomepage.cpp:635 reports/summary.cpp:157
 msgid "Bank Accounts"
@@ -3813,7 +3814,7 @@ msgstr "Hauptansicht"
 
 #: mmframe.cpp:689
 msgid "All Transactions"
-msgstr ""
+msgstr "Alle Buchungen"
 
 #: mmframe.cpp:721
 msgid "Share Accounts"
@@ -4005,7 +4006,7 @@ msgstr "Ein-/ausblenden der Aktienkonten im Navigationsbaum"
 
 #: mmframe.cpp:1375
 msgid "Budgets: As Financial &Years"
-msgstr ""
+msgstr "Budgets: Als Geschäftsjahre"
 
 #: mmframe.cpp:1375
 msgid "Display Budgets in Financial Year Format"
@@ -4037,7 +4038,7 @@ msgstr "Zukünftige Buchungen ignorieren"
 
 #: mmframe.cpp:1397
 msgid "Toggle &Fullscreen\tShift+F11"
-msgstr ""
+msgstr "Vollbild umschalten Umschalt+F11"
 
 #: mmframe.cpp:1398 mmframe.cpp:1686
 msgid "Toggle Fullscreen"
@@ -4045,7 +4046,7 @@ msgstr "Vollbild umschalten"
 
 #: mmframe.cpp:1404
 msgid "Switch Application &Language"
-msgstr ""
+msgstr "Anwendungssprache wechseln"
 
 #: mmframe.cpp:1405
 msgid "Change language used for MMEX GUI"
@@ -4073,7 +4074,7 @@ msgstr "Konto aus Datenbank löschen"
 
 #: mmframe.cpp:1455
 msgid "Download Ra&tes..."
-msgstr ""
+msgstr "Kurse herunterladen..."
 
 #: mmframe.cpp:1455 mmframe.cpp:1683
 msgid "Download Currency and Stock rates"
@@ -4093,7 +4094,7 @@ msgstr "Empfänger verwalten"
 
 #: mmframe.cpp:1469
 msgid "Organize Curre&ncy..."
-msgstr ""
+msgstr "Währungen verwalten..."
 
 #: mmframe.cpp:1469 mmframe.cpp:1660
 msgid "Organize Currency"
@@ -4113,7 +4114,7 @@ msgstr "Neu zuordnen aller Zahlungsempfänger/Zahler an einen anderen Zahlungsem
 
 #: mmframe.cpp:1479
 msgid "Re&location of..."
-msgstr ""
+msgstr "Umzug der..."
 
 #: mmframe.cpp:1480
 msgid "Relocate Categories && Payees"
