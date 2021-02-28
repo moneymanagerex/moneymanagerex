@@ -150,7 +150,7 @@ or
 You may also like...
 ================
 
-- [Android MoneyManagerEx](https://github.com/moneymanagerex/android-money-manager-ex)
+- [Money Manager Ex for Android](https://github.com/moneymanagerex/android-money-manager-ex)
 
 
 License
