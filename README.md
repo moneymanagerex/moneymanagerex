@@ -20,7 +20,7 @@ simplicity and user-friendliness - something one can use everyday.
         <td><img src="https://raw.githubusercontent.com/moneymanagerex/Art/master/PC/mmex1.png" ></td>
         <td><img src="https://raw.githubusercontent.com/moneymanagerex/Art/master/PC/mmex2.png" ></td>
         <td><img src="https://raw.githubusercontent.com/moneymanagerex/Art/master/PC/mmex3.png" ></td>
-        <td><img src="https://raw.githubusercontent.com/moneymanagerex/Art/master/PC/mmex4.png" ></td>
+        <td><img src="https://raw.githubusercontent.com/moneymanagerex/Art/master/PC/mmex4a.png" ></td>
     </tr>
 </table>
 
