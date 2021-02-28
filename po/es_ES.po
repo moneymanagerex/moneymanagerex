@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-02-27 21:16+0300\n"
-"PO-Revision-Date: 2021-02-28 00:04\n"
+"PO-Revision-Date: 2021-02-28 00:11\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -4071,7 +4071,7 @@ msgstr "Borrar la cuenta de la base de datos"
 
 #: mmframe.cpp:1455
 msgid "Download Ra&tes..."
-msgstr ""
+msgstr "Descargar ta&sas..."
 
 #: mmframe.cpp:1455 mmframe.cpp:1683
 msgid "Download Currency and Stock rates"
@@ -4091,7 +4091,7 @@ msgstr "Organizar beneficiarios"
 
 #: mmframe.cpp:1469
 msgid "Organize Curre&ncy..."
-msgstr ""
+msgstr "Organizar divi&sas..."
 
 #: mmframe.cpp:1469 mmframe.cpp:1660
 msgid "Organize Currency"
@@ -4111,7 +4111,7 @@ msgstr "Reasignar todos los beneficiarios a otro beneficiario"
 
 #: mmframe.cpp:1479
 msgid "Re&location of..."
-msgstr ""
+msgstr "Re&organización de..."
 
 #: mmframe.cpp:1480
 msgid "Relocate Categories && Payees"
@@ -4135,7 +4135,7 @@ msgstr "&Activos"
 
 #: mmframe.cpp:1504
 msgid "Transaction Report &Filter..."
-msgstr ""
+msgstr "&Filtro para informe de transacción..."
 
 #: mmframe.cpp:1504 mmframe.cpp:1662
 msgid "Transaction Report Filter"
