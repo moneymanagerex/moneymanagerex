@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-02-27 21:16+0300\n"
-"PO-Revision-Date: 2021-02-27 18:29\n"
+"PO-Revision-Date: 2021-02-28 10:04\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -2325,7 +2325,7 @@ msgstr "Диапазон цен"
 
 #: filtertransdialog.cpp:347
 msgid "Clea&r "
-msgstr ""
+msgstr "Очи&стить "
 
 #: filtertransdialog.cpp:827 filtertransdialog.cpp:842 reports/myusage.cpp:91
 #: webappdialog.cpp:194 webappdialog.cpp:199
@@ -3539,12 +3539,12 @@ msgstr[3] "&Копировать транзакции"
 
 #: mmchecking_list.cpp:322
 msgid "&Paste Transaction"
-msgstr ""
+msgstr "Вставить транзакцию"
 
 #: mmchecking_list.cpp:322
 #, c-format
 msgid "&Paste Transactions (%d)"
-msgstr ""
+msgstr "Вставить транзакции (%d)"
 
 #: mmchecking_list.cpp:327
 msgid "D&uplicate Transaction"
@@ -3659,19 +3659,20 @@ msgstr "Проверка транзакций"
 #, c-format
 msgid "You are about to edit a transaction involving an account that is closed."
 msgid_plural "The edit will affect %i transactions involving an account that is closed."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Вы собираетесь изменить транзакцию с закрытой учетной записью."
+msgstr[1] "Вы собираетесь изменить %i транзакции с закрытым счётом."
+msgstr[2] "Вы собираетесь изменить %i транзакций с закрытым счётом."
+msgstr[3] "Вы собираетесь изменить %i транзакции с закрытым счётом."
 
 #: mmchecking_list.cpp:885
 msgid "\n\n"
 "Do you still want to perform the edit?"
-msgstr ""
+msgstr "\n\n"
+"Вы все еще хотите выполнить редактирование?"
 
 #: mmchecking_list.cpp:886
 msgid "Closed Account Check"
-msgstr ""
+msgstr "Проверка закрытого счета"
 
 #: mmchecking_list.cpp:1038 stockspanel.cpp:290
 #, c-format
@@ -3728,7 +3729,7 @@ msgstr "Введите любой текст для поиска по замет
 
 #: mmcheckingpanel.cpp:399
 msgid "Full Transactions Report"
-msgstr ""
+msgstr "Отчёт по транзакциям"
 
 #: mmcheckingpanel.cpp:401
 #, c-format
@@ -3794,7 +3795,7 @@ msgstr "Панель инструментов"
 
 #: mmframe.cpp:457 mmframe.cpp:693
 msgid "Favourites"
-msgstr ""
+msgstr "Избранное"
 
 #: mmframe.cpp:458 mmframe.cpp:697 mmhomepage.cpp:635 reports/summary.cpp:157
 msgid "Bank Accounts"
@@ -3830,7 +3831,7 @@ msgstr "Сводка"
 
 #: mmframe.cpp:689
 msgid "All Transactions"
-msgstr ""
+msgstr "Все транзакции"
 
 #: mmframe.cpp:721
 msgid "Share Accounts"
@@ -4022,7 +4023,7 @@ msgstr "Показать/Скрыть из панели навигации"
 
 #: mmframe.cpp:1375
 msgid "Budgets: As Financial &Years"
-msgstr ""
+msgstr "Бюджеты: как финансовые &годы"
 
 #: mmframe.cpp:1375
 msgid "Display Budgets in Financial Year Format"
@@ -4054,7 +4055,7 @@ msgstr "Игнорировать предстоящий транзакции"
 
 #: mmframe.cpp:1397
 msgid "Toggle &Fullscreen\tShift+F11"
-msgstr ""
+msgstr "На весь &экран\tShift+F11"
 
 #: mmframe.cpp:1398 mmframe.cpp:1686
 msgid "Toggle Fullscreen"
@@ -4062,7 +4063,7 @@ msgstr "На весь экран"
 
 #: mmframe.cpp:1404
 msgid "Switch Application &Language"
-msgstr ""
+msgstr "&Язык приложения"
 
 #: mmframe.cpp:1405
 msgid "Change language used for MMEX GUI"
@@ -4090,7 +4091,7 @@ msgstr "Удалить счёт из базы данных"
 
 #: mmframe.cpp:1455
 msgid "Download Ra&tes..."
-msgstr ""
+msgstr "Загрузить &курсы..."
 
 #: mmframe.cpp:1455 mmframe.cpp:1683
 msgid "Download Currency and Stock rates"
@@ -4110,7 +4111,7 @@ msgstr "Редактор получателей"
 
 #: mmframe.cpp:1469
 msgid "Organize Curre&ncy..."
-msgstr ""
+msgstr "Редактор &валют..."
 
 #: mmframe.cpp:1469 mmframe.cpp:1660
 msgid "Organize Currency"
@@ -4130,7 +4131,7 @@ msgstr "Замена одного получателя на другого"
 
 #: mmframe.cpp:1479
 msgid "Re&location of..."
-msgstr ""
+msgstr "&Замена..."
 
 #: mmframe.cpp:1480
 msgid "Relocate Categories && Payees"
@@ -4154,7 +4155,7 @@ msgstr "&Активы"
 
 #: mmframe.cpp:1504
 msgid "Transaction Report &Filter..."
-msgstr ""
+msgstr "Отчёт по &критериям..."
 
 #: mmframe.cpp:1504 mmframe.cpp:1662
 msgid "Transaction Report Filter"
@@ -4162,11 +4163,11 @@ msgstr "Отчёт по критериям"
 
 #: mmframe.cpp:1510
 msgid "General Report &Manager..."
-msgstr ""
+msgstr "Менеджер &отчётов..."
 
 #: mmframe.cpp:1514
 msgid "C&ustom Fields Manager..."
-msgstr ""
+msgstr "&Управление доп. полями..."
 
 #: mmframe.cpp:1514
 msgid "Custom Fields Manager"
@@ -4198,7 +4199,7 @@ msgstr "Сменить пароль для зашифрованной базы �
 
 #: mmframe.cpp:1533
 msgid "&Optimize Database"
-msgstr ""
+msgstr "&Оптимизировать базу данных"
 
 #: mmframe.cpp:1534
 msgid "Optimize database space and performance"
@@ -4206,7 +4207,7 @@ msgstr "Оптимизация пространства базы данных"
 
 #: mmframe.cpp:1536
 msgid "Database De&bug"
-msgstr ""
+msgstr "Отладка &базы данных"
 
 #: mmframe.cpp:1537
 msgid "Generate database report or fix errors"
@@ -4214,7 +4215,7 @@ msgstr "Создание отчетов базы данных или испра�
 
 #: mmframe.cpp:1542
 msgid "Databa&se"
-msgstr ""
+msgstr "База &данных"
 
 #: mmframe.cpp:1543
 msgid "Database management"
@@ -4230,7 +4231,7 @@ msgstr "Показать файл помощи"
 
 #: mmframe.cpp:1555
 msgid "&Website"
-msgstr ""
+msgstr "&Web-сайт"
 
 #: mmframe.cpp:1556
 msgid "Open the Money Manager EX website for latest news, updates etc"
@@ -4238,7 +4239,7 @@ msgstr "Откройте сайт Money Manager EX для получения п�
 
 #: mmframe.cpp:1558
 msgid "&Facebook"
-msgstr ""
+msgstr "&Facebook"
 
 #: mmframe.cpp:1558
 msgid "Visit us on Facebook"
@@ -4246,7 +4247,7 @@ msgstr "Посетите нас на Facebook"
 
 #: mmframe.cpp:1560
 msgid "&Twitter"
-msgstr ""
+msgstr "&Твиттер"
 
 #: mmframe.cpp:1560
 msgid "Follow us on Twitter"
@@ -4254,7 +4255,7 @@ msgstr "Следите за нами на Twitter"
 
 #: mmframe.cpp:1562
 msgid "&YouTube"
-msgstr ""
+msgstr "&YouTube"
 
 #: mmframe.cpp:1562
 msgid "Watch free video materials about MMEX"
@@ -4262,7 +4263,7 @@ msgstr "Смотрите бесплатные видеоматериалы о MM
 
 #: mmframe.cpp:1564
 msgid "&Slack"
-msgstr ""
+msgstr "&Slack"
 
 #: mmframe.cpp:1564
 msgid "Communicate online with MMEX team from your desktop or mobile device"
@@ -4270,7 +4271,7 @@ msgstr "Общайтесь в сети с MMEX со своего рабочег�
 
 #: mmframe.cpp:1566
 msgid "&GitHub"
-msgstr ""
+msgstr "&GitHub"
 
 #: mmframe.cpp:1566
 msgid "Access open source code repository and track reported bug statuses"
@@ -4278,7 +4279,7 @@ msgstr "Доступ к репозиториям с открытым исход�
 
 #: mmframe.cpp:1568
 msgid "W&iki pages"
-msgstr ""
+msgstr "&Страницы Wiki"
 
 #: mmframe.cpp:1568
 msgid "Read and update wiki pages"
@@ -4286,7 +4287,7 @@ msgstr "Чтение и обновление страниц вики"
 
 #: mmframe.cpp:1570
 msgid "F&orum"
-msgstr ""
+msgstr "&Фрум"
 
 #: mmframe.cpp:1571
 msgid "Visit the MMEX forum to see existing user comments or report new issues with the software"
@@ -4294,7 +4295,7 @@ msgstr "Посетите форум MMEX, чтобы увидеть сущест
 
 #: mmframe.cpp:1573
 msgid "Money Manager Ex for &Android"
-msgstr ""
+msgstr "Money Manager Ex для &Android"
 
 #: mmframe.cpp:1574
 msgid "Get free Android version and run MMEX on your smart phone or tablet"
@@ -4310,7 +4311,7 @@ msgstr "Подпишитесь на рассылку новостей по эл�
 
 #: mmframe.cpp:1579
 msgid "&RSS Feed"
-msgstr ""
+msgstr "&Новостная лента"
 
 #: mmframe.cpp:1579
 msgid "Connect RSS web feed to news aggregator"
@@ -4318,7 +4319,7 @@ msgstr "Подключите RSS-ленту новостей к агрегато
 
 #: mmframe.cpp:1581
 msgid "&Donate via PayPal"
-msgstr ""
+msgstr "&Пожертвовать через PayPal"
 
 #: mmframe.cpp:1582
 msgid "Donate the team to support infrastructure etc"
@@ -4326,7 +4327,7 @@ msgstr "Пожертвовать команде для поддержки инф
 
 #: mmframe.cpp:1584
 msgid "&Buy us a Coffee"
-msgstr ""
+msgstr "&Купите нам кофе"
 
 #: mmframe.cpp:1585
 msgid "Buy key developer a coffee"
@@ -4334,7 +4335,7 @@ msgstr "Купите ключевому разработчику кофе"
 
 #: mmframe.cpp:1588
 msgid "&Community"
-msgstr ""
+msgstr "&Сообщество"
 
 #: mmframe.cpp:1589
 msgid "Stay in touch with MMEX community"
@@ -4342,7 +4343,7 @@ msgstr "Оставайтесь на связи с сообществом MMEX"
 
 #: mmframe.cpp:1609
 msgid "Report a &Bug"
-msgstr ""
+msgstr "Сообщить об &ошибке"
 
 #: mmframe.cpp:1610
 msgid "Report an error in application to the developers"
@@ -5917,11 +5918,11 @@ msgstr "Представление которовок"
 
 #: reports/transactions.cpp:176
 msgid "All Transactions: Withdrawals, Deposits, and Transfers"
-msgstr ""
+msgstr "Все транзакции: снятия, депозиты и переводы"
 
 #: reports/transactions.cpp:210
 msgid "All Transactions excluding Transfers"
-msgstr ""
+msgstr "Все транзакции, за исключением переводов"
 
 #: sharetransactiondialog.cpp:64 sharetransactiondialog.cpp:83
 msgid "Add Share Transaction"
