@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-02-27 21:16+0300\n"
-"PO-Revision-Date: 2021-02-28 11:04\n"
+"PO-Revision-Date: 2021-02-28 13:16\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -3943,7 +3943,7 @@ msgstr "Недавние &файлы..."
 
 #: mmframe.cpp:1334
 msgid "&Clear Recent Files"
-msgstr "Очистить список"
+msgstr "О&чистить список"
 
 #: mmframe.cpp:1339
 msgid "Export to CSV"
