@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-02-27 21:16+0300\n"
-"PO-Revision-Date: 2021-02-28 06:35\n"
+"PO-Revision-Date: 2021-02-28 06:47\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -3645,8 +3645,8 @@ msgstr "&Editer l'opération"
 #, c-format
 msgid "You are about to edit a transaction involving an account that is closed."
 msgid_plural "The edit will affect %i transactions involving an account that is closed."
-msgstr[0] "Vous êtes sur le point de modifier une transaction impliquant un compte fermé."
-msgstr[1] ""
+msgstr[0] "Vous êtes sur le point de modifier une opération impliquant un compte fermé."
+msgstr[1] "La modification affectera %i opérations impliquant le compte fermé."
 
 #: mmchecking_list.cpp:885
 msgid "\n\n"
@@ -5905,7 +5905,7 @@ msgstr "Toutes les transactions : débits, crédits et virements"
 
 #: reports/transactions.cpp:210
 msgid "All Transactions excluding Transfers"
-msgstr ""
+msgstr "Toutes les transactions sauf les virements"
 
 #: sharetransactiondialog.cpp:64 sharetransactiondialog.cpp:83
 msgid "Add Share Transaction"
