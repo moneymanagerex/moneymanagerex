@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-02-27 21:16+0300\n"
-"PO-Revision-Date: 2021-02-28 09:59\n"
+"PO-Revision-Date: 2021-02-28 10:04\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -3659,10 +3659,10 @@ msgstr "Проверка транзакций"
 #, c-format
 msgid "You are about to edit a transaction involving an account that is closed."
 msgid_plural "The edit will affect %i transactions involving an account that is closed."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Вы собираетесь изменить транзакцию с закрытой учетной записью."
+msgstr[1] "Вы собираетесь изменить %i транзакции с закрытым счётом."
+msgstr[2] "Вы собираетесь изменить %i транзакций с закрытым счётом."
+msgstr[3] "Вы собираетесь изменить %i транзакции с закрытым счётом."
 
 #: mmchecking_list.cpp:885
 msgid "\n\n"
@@ -4023,7 +4023,7 @@ msgstr "Показать/Скрыть из панели навигации"
 
 #: mmframe.cpp:1375
 msgid "Budgets: As Financial &Years"
-msgstr ""
+msgstr "Бюджеты: как финансовые &годы"
 
 #: mmframe.cpp:1375
 msgid "Display Budgets in Financial Year Format"
@@ -4055,7 +4055,7 @@ msgstr "Игнорировать предстоящий транзакции"
 
 #: mmframe.cpp:1397
 msgid "Toggle &Fullscreen\tShift+F11"
-msgstr ""
+msgstr "На весь &экран\tShift+F11"
 
 #: mmframe.cpp:1398 mmframe.cpp:1686
 msgid "Toggle Fullscreen"
@@ -4063,7 +4063,7 @@ msgstr "На весь экран"
 
 #: mmframe.cpp:1404
 msgid "Switch Application &Language"
-msgstr ""
+msgstr "&Язык приложения"
 
 #: mmframe.cpp:1405
 msgid "Change language used for MMEX GUI"
@@ -4091,7 +4091,7 @@ msgstr "Удалить счёт из базы данных"
 
 #: mmframe.cpp:1455
 msgid "Download Ra&tes..."
-msgstr ""
+msgstr "Загрузить &курсы..."
 
 #: mmframe.cpp:1455 mmframe.cpp:1683
 msgid "Download Currency and Stock rates"
@@ -4111,7 +4111,7 @@ msgstr "Редактор получателей"
 
 #: mmframe.cpp:1469
 msgid "Organize Curre&ncy..."
-msgstr ""
+msgstr "Редактор &валют..."
 
 #: mmframe.cpp:1469 mmframe.cpp:1660
 msgid "Organize Currency"
