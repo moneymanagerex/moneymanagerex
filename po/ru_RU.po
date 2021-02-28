@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-02-27 21:16+0300\n"
-"PO-Revision-Date: 2021-02-28 10:37\n"
+"PO-Revision-Date: 2021-02-28 10:49\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -4031,7 +4031,7 @@ msgstr "Показать бюджет за финансовый год"
 
 #: mmframe.cpp:1377
 msgid "Budgets: &Include Transfers in Totals"
-msgstr "Бюджет: Включать переводы в итоги"
+msgstr "Бюджет: &Включать переводы в итоги"
 
 #: mmframe.cpp:1377
 msgid "Include the transfer transactions in the Budget Totals"
@@ -4039,7 +4039,7 @@ msgstr "Включить переводы в итоги бюджета"
 
 #: mmframe.cpp:1379
 msgid "Budget Category Report: with &Summaries"
-msgstr "Бюджет по категориям с итогами"
+msgstr "Бюджет по &категориям с итогами"
 
 #: mmframe.cpp:1379
 msgid "Include the category summaries in the Budget Category Summary"
@@ -4047,7 +4047,7 @@ msgstr "Отображать сумму по категориям в бюдже�
 
 #: mmframe.cpp:1381
 msgid "Ignore F&uture Transactions"
-msgstr "Игнорировать предстоящие транзакции"
+msgstr "Игнорировать предстоящие &транзакции"
 
 #: mmframe.cpp:1381
 msgid "Ignore Future transactions"
@@ -4351,7 +4351,7 @@ msgstr "Сообщить  разработчикам об ошибке в при
 
 #: mmframe.cpp:1614
 msgid "&Show App Start Dialog"
-msgstr "Показать диалоговое окно запуска приложения"
+msgstr "Показать стартовый &диалог"
 
 #: mmframe.cpp:1614
 msgid "App Start Dialog"
