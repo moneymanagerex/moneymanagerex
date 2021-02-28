@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-02-27 21:16+0300\n"
-"PO-Revision-Date: 2021-02-27 23:50\n"
+"PO-Revision-Date: 2021-02-28 00:04\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -3642,16 +3642,17 @@ msgstr "Verificar la transacción"
 msgid "You are about to edit a transaction involving an account that is closed."
 msgid_plural "The edit will affect %i transactions involving an account that is closed."
 msgstr[0] ""
-msgstr[1] ""
+msgstr[1] "La edición afectará %i transacciones relacionadas con una cuenta que está cerrada."
 
 #: mmchecking_list.cpp:885
 msgid "\n\n"
 "Do you still want to perform the edit?"
-msgstr ""
+msgstr "\n\n"
+"¿Usted aún quiere llevar a cabo la edición?"
 
 #: mmchecking_list.cpp:886
 msgid "Closed Account Check"
-msgstr ""
+msgstr "Verificar cuenta cerrada"
 
 #: mmchecking_list.cpp:1038 stockspanel.cpp:290
 #, c-format
@@ -3774,7 +3775,7 @@ msgstr "Barra de herramientas"
 
 #: mmframe.cpp:457 mmframe.cpp:693
 msgid "Favourites"
-msgstr ""
+msgstr "Favoritos(as)"
 
 #: mmframe.cpp:458 mmframe.cpp:697 mmhomepage.cpp:635 reports/summary.cpp:157
 msgid "Bank Accounts"
@@ -3810,7 +3811,7 @@ msgstr "Página de inicio"
 
 #: mmframe.cpp:689
 msgid "All Transactions"
-msgstr ""
+msgstr "Todas las transacciones"
 
 #: mmframe.cpp:721
 msgid "Share Accounts"
@@ -4002,7 +4003,7 @@ msgstr "Mostrar/Ocultar cuentas de acciones en el árbol de navegación"
 
 #: mmframe.cpp:1375
 msgid "Budgets: As Financial &Years"
-msgstr ""
+msgstr "Presupuestos: como ejercicios &económicos"
 
 #: mmframe.cpp:1375
 msgid "Display Budgets in Financial Year Format"
@@ -4034,7 +4035,7 @@ msgstr "Ignorar transacciones futuras"
 
 #: mmframe.cpp:1397
 msgid "Toggle &Fullscreen\tShift+F11"
-msgstr ""
+msgstr "Cambiar a modo &pantalla completa\tShift+F11"
 
 #: mmframe.cpp:1398 mmframe.cpp:1686
 msgid "Toggle Fullscreen"
@@ -4042,7 +4043,7 @@ msgstr "Cambiar a pantalla completa"
 
 #: mmframe.cpp:1404
 msgid "Switch Application &Language"
-msgstr ""
+msgstr "Cambiar el &idioma de la aplicación"
 
 #: mmframe.cpp:1405
 msgid "Change language used for MMEX GUI"
