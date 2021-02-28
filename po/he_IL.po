@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-02-27 21:16+0300\n"
-"PO-Revision-Date: 2021-02-27 18:29\n"
+"PO-Revision-Date: 2021-02-28 12:25\n"
 "Last-Translator: \n"
 "Language-Team: Hebrew\n"
 "MIME-Version: 1.0\n"
@@ -2324,7 +2324,7 @@ msgstr "טווח סכומים"
 
 #: filtertransdialog.cpp:347
 msgid "Clea&r "
-msgstr ""
+msgstr "נקו&י "
 
 #: filtertransdialog.cpp:827 filtertransdialog.cpp:842 reports/myusage.cpp:91
 #: webappdialog.cpp:194 webappdialog.cpp:199
@@ -3539,12 +3539,12 @@ msgstr[3] "&העתקת תנועות"
 
 #: mmchecking_list.cpp:322
 msgid "&Paste Transaction"
-msgstr ""
+msgstr "&הדבקת תנועה"
 
 #: mmchecking_list.cpp:322
 #, c-format
 msgid "&Paste Transactions (%d)"
-msgstr ""
+msgstr "&הדבקת תנועות (%d)"
 
 #: mmchecking_list.cpp:327
 msgid "D&uplicate Transaction"
@@ -3659,19 +3659,20 @@ msgstr "בדיקת תנועות MMEX"
 #, c-format
 msgid "You are about to edit a transaction involving an account that is closed."
 msgid_plural "The edit will affect %i transactions involving an account that is closed."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "ניסיון לעריכת תנועה בחשבון שמסומן כסגור."
+msgstr[1] "עריכה זו תשפיע על %i תנועות בחשבון שמסומן כסגור."
+msgstr[2] "עריכה זו תשפיע על %i תנועות בחשבון שמסומן כסגור."
+msgstr[3] "עריכה זו תשפיע על %i תנועות בחשבון שמסומן כסגור."
 
 #: mmchecking_list.cpp:885
 msgid "\n\n"
 "Do you still want to perform the edit?"
-msgstr ""
+msgstr "\n\n"
+"האם להמשיך בעריכה?"
 
 #: mmchecking_list.cpp:886
 msgid "Closed Account Check"
-msgstr ""
+msgstr "סימון חשבון סגור"
 
 #: mmchecking_list.cpp:1038 stockspanel.cpp:290
 #, c-format
@@ -3794,7 +3795,7 @@ msgstr "סרגל כלים"
 
 #: mmframe.cpp:457 mmframe.cpp:693
 msgid "Favourites"
-msgstr ""
+msgstr "מועדפים"
 
 #: mmframe.cpp:458 mmframe.cpp:697 mmhomepage.cpp:635 reports/summary.cpp:157
 msgid "Bank Accounts"
@@ -3830,7 +3831,7 @@ msgstr "דף הבית"
 
 #: mmframe.cpp:689
 msgid "All Transactions"
-msgstr ""
+msgstr "כל התנועות"
 
 #: mmframe.cpp:721
 msgid "Share Accounts"
@@ -4022,7 +4023,7 @@ msgstr "הצגת/הסתרת חשבונות ניירות ערך בסרגל הני
 
 #: mmframe.cpp:1375
 msgid "Budgets: As Financial &Years"
-msgstr ""
+msgstr "תקציב: כשנה &פיננסית"
 
 #: mmframe.cpp:1375
 msgid "Display Budgets in Financial Year Format"
@@ -4054,7 +4055,7 @@ msgstr "התעלם מתנועות עתידיות"
 
 #: mmframe.cpp:1397
 msgid "Toggle &Fullscreen\tShift+F11"
-msgstr ""
+msgstr "מחלף מסך מלא Shift+F11"
 
 #: mmframe.cpp:1398 mmframe.cpp:1686
 msgid "Toggle Fullscreen"
@@ -4062,7 +4063,7 @@ msgstr "עבור/חזור מסך מלא"
 
 #: mmframe.cpp:1404
 msgid "Switch Application &Language"
-msgstr ""
+msgstr "החלפת שפת &ישום"
 
 #: mmframe.cpp:1405
 msgid "Change language used for MMEX GUI"
@@ -4090,7 +4091,7 @@ msgstr "מחיקת חשבון ממסד הנתונים"
 
 #: mmframe.cpp:1455
 msgid "Download Ra&tes..."
-msgstr ""
+msgstr "עדכון &שערים..."
 
 #: mmframe.cpp:1455 mmframe.cpp:1683
 msgid "Download Currency and Stock rates"
@@ -4110,7 +4111,7 @@ msgstr "ניהול מוטבים"
 
 #: mmframe.cpp:1469
 msgid "Organize Curre&ncy..."
-msgstr ""
+msgstr "ארגון מט&בעות..."
 
 #: mmframe.cpp:1469 mmframe.cpp:1660
 msgid "Organize Currency"
@@ -4130,7 +4131,7 @@ msgstr "הקצא מחדש את כל הקטגוריות לקטגוריה אחרת
 
 #: mmframe.cpp:1479
 msgid "Re&location of..."
-msgstr ""
+msgstr "העב&רת..."
 
 #: mmframe.cpp:1480
 msgid "Relocate Categories && Payees"
@@ -4238,7 +4239,7 @@ msgstr "בקר באתר Money Manager EX לחדשות, עדכונים ועוד"
 
 #: mmframe.cpp:1558
 msgid "&Facebook"
-msgstr ""
+msgstr "&פייסבוק"
 
 #: mmframe.cpp:1558
 msgid "Visit us on Facebook"
@@ -4246,7 +4247,7 @@ msgstr "בקרו אותנו בפייסבוק"
 
 #: mmframe.cpp:1560
 msgid "&Twitter"
-msgstr ""
+msgstr "&טוויטר"
 
 #: mmframe.cpp:1560
 msgid "Follow us on Twitter"
@@ -4262,7 +4263,7 @@ msgstr "צפיה בתכני וידאו חינמיים על אודות MMEX"
 
 #: mmframe.cpp:1564
 msgid "&Slack"
-msgstr ""
+msgstr "&Slack"
 
 #: mmframe.cpp:1564
 msgid "Communicate online with MMEX team from your desktop or mobile device"
