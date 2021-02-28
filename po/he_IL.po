@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-02-27 21:16+0300\n"
-"PO-Revision-Date: 2021-02-28 12:25\n"
+"PO-Revision-Date: 2021-02-28 12:36\n"
 "Last-Translator: \n"
 "Language-Team: Hebrew\n"
 "MIME-Version: 1.0\n"
@@ -4155,7 +4155,7 @@ msgstr "&נכסים"
 
 #: mmframe.cpp:1504
 msgid "Transaction Report &Filter..."
-msgstr ""
+msgstr "מסנן דוח &תנועות..."
 
 #: mmframe.cpp:1504 mmframe.cpp:1662
 msgid "Transaction Report Filter"
@@ -4163,11 +4163,11 @@ msgstr "מסנן דוח תנועות"
 
 #: mmframe.cpp:1510
 msgid "General Report &Manager..."
-msgstr ""
+msgstr "מנהל דוחות &כללי..."
 
 #: mmframe.cpp:1514
 msgid "C&ustom Fields Manager..."
-msgstr ""
+msgstr "מ&נהל שדות מותאם אישית..."
 
 #: mmframe.cpp:1514
 msgid "Custom Fields Manager"
@@ -4199,7 +4199,7 @@ msgstr "שינוי ססמה למסד נתונים מוצפן"
 
 #: mmframe.cpp:1533
 msgid "&Optimize Database"
-msgstr ""
+msgstr "&מיטוב מסד נתונים"
 
 #: mmframe.cpp:1534
 msgid "Optimize database space and performance"
@@ -4207,7 +4207,7 @@ msgstr "מטב את שטח וביצועי מסד הנתונים"
 
 #: mmframe.cpp:1536
 msgid "Database De&bug"
-msgstr ""
+msgstr "ניפוי תקלים במסד הנ&תונים"
 
 #: mmframe.cpp:1537
 msgid "Generate database report or fix errors"
@@ -4215,7 +4215,7 @@ msgstr "חולל דוח מסד נתונים או תקן שגויים"
 
 #: mmframe.cpp:1542
 msgid "Databa&se"
-msgstr ""
+msgstr "מסד נ&תונים"
 
 #: mmframe.cpp:1543
 msgid "Database management"
@@ -4231,7 +4231,7 @@ msgstr "הצגת קובץ עזרה"
 
 #: mmframe.cpp:1555
 msgid "&Website"
-msgstr ""
+msgstr "&אתר מרשתת"
 
 #: mmframe.cpp:1556
 msgid "Open the Money Manager EX website for latest news, updates etc"
@@ -4255,7 +4255,7 @@ msgstr "עקוב אחרינו בטוויטר"
 
 #: mmframe.cpp:1562
 msgid "&YouTube"
-msgstr ""
+msgstr "&יוטיוב"
 
 #: mmframe.cpp:1562
 msgid "Watch free video materials about MMEX"
@@ -4271,7 +4271,7 @@ msgstr "תקשור מקוון עם צוות MMEX משולחן העבודה או 
 
 #: mmframe.cpp:1566
 msgid "&GitHub"
-msgstr ""
+msgstr "&גיטהאב"
 
 #: mmframe.cpp:1566
 msgid "Access open source code repository and track reported bug statuses"
@@ -4279,7 +4279,7 @@ msgstr "גש למאגר קוד פתוח למעקב אחר מצב תקלות"
 
 #: mmframe.cpp:1568
 msgid "W&iki pages"
-msgstr ""
+msgstr "דפי &ויקי"
 
 #: mmframe.cpp:1568
 msgid "Read and update wiki pages"
@@ -4287,7 +4287,7 @@ msgstr "קרt ועדכון דפי wiki"
 
 #: mmframe.cpp:1570
 msgid "F&orum"
-msgstr ""
+msgstr "פ&ורום"
 
 #: mmframe.cpp:1571
 msgid "Visit the MMEX forum to see existing user comments or report new issues with the software"
@@ -4295,7 +4295,7 @@ msgstr "בקרו בפורום MMEX, צפו בתגובות משתמשים אחר�
 
 #: mmframe.cpp:1573
 msgid "Money Manager Ex for &Android"
-msgstr ""
+msgstr "MoneyManagerEx עבור אנדרואיד"
 
 #: mmframe.cpp:1574
 msgid "Get free Android version and run MMEX on your smart phone or tablet"
@@ -4311,7 +4311,7 @@ msgstr "הרשם לרשימת תפוצה לקבלת חדשות לדוא\"ל או
 
 #: mmframe.cpp:1579
 msgid "&RSS Feed"
-msgstr ""
+msgstr "&הזנת RSS"
 
 #: mmframe.cpp:1579
 msgid "Connect RSS web feed to news aggregator"
@@ -4319,7 +4319,7 @@ msgstr "התחבר לשרות RSS למצבור חדשות"
 
 #: mmframe.cpp:1581
 msgid "&Donate via PayPal"
-msgstr ""
+msgstr "&תרומה באמצעות PayPal"
 
 #: mmframe.cpp:1582
 msgid "Donate the team to support infrastructure etc"
@@ -4327,7 +4327,7 @@ msgstr "תרומה לצוות, להמשך תמיכה בתשתית וכו'"
 
 #: mmframe.cpp:1584
 msgid "&Buy us a Coffee"
-msgstr ""
+msgstr "&הזמינו אותנו לקפה"
 
 #: mmframe.cpp:1585
 msgid "Buy key developer a coffee"
@@ -4335,7 +4335,7 @@ msgstr "הזמינו את מפתח הראשי לקפה"
 
 #: mmframe.cpp:1588
 msgid "&Community"
-msgstr ""
+msgstr "&קהילה"
 
 #: mmframe.cpp:1589
 msgid "Stay in touch with MMEX community"
@@ -4343,7 +4343,7 @@ msgstr "שמירת קשר עם קהילת MMEX"
 
 #: mmframe.cpp:1609
 msgid "Report a &Bug"
-msgstr ""
+msgstr "&דווח &תקל"
 
 #: mmframe.cpp:1610
 msgid "Report an error in application to the developers"
@@ -5917,11 +5917,11 @@ msgstr "גרף בצועי ניירות ערך"
 
 #: reports/transactions.cpp:176
 msgid "All Transactions: Withdrawals, Deposits, and Transfers"
-msgstr ""
+msgstr "כל התנועות: משיכות, הפקדות והעברות"
 
 #: reports/transactions.cpp:210
 msgid "All Transactions excluding Transfers"
-msgstr ""
+msgstr "כל התנועות למעט העברות"
 
 #: sharetransactiondialog.cpp:64 sharetransactiondialog.cpp:83
 msgid "Add Share Transaction"

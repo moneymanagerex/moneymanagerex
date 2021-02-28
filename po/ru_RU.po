@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-02-27 21:16+0300\n"
-"PO-Revision-Date: 2021-02-28 11:04\n"
+"PO-Revision-Date: 2021-02-28 13:25\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -3943,7 +3943,7 @@ msgstr "Недавние &файлы..."
 
 #: mmframe.cpp:1334
 msgid "&Clear Recent Files"
-msgstr "Очистить список"
+msgstr "О&чистить список"
 
 #: mmframe.cpp:1339
 msgid "Export to CSV"
@@ -4155,7 +4155,7 @@ msgstr "&Активы"
 
 #: mmframe.cpp:1504
 msgid "Transaction Report &Filter..."
-msgstr "Отчёт по &критериям..."
+msgstr "&Отчёт по критериям..."
 
 #: mmframe.cpp:1504 mmframe.cpp:1662
 msgid "Transaction Report Filter"
@@ -4163,7 +4163,7 @@ msgstr "Отчёт по критериям"
 
 #: mmframe.cpp:1510
 msgid "General Report &Manager..."
-msgstr "Менеджер &отчётов..."
+msgstr "&Менеджер отчётов..."
 
 #: mmframe.cpp:1514
 msgid "C&ustom Fields Manager..."
@@ -4183,7 +4183,7 @@ msgstr "Настройки"
 
 #: mmframe.cpp:1527
 msgid "Convert Encrypted &DB"
-msgstr "Конвертировать зашифрованную БД"
+msgstr "&Конвертировать зашифрованную БД"
 
 #: mmframe.cpp:1528
 msgid "Convert Encrypted DB to Non-Encrypted DB"
@@ -4191,7 +4191,7 @@ msgstr "Преобразование зашифрованной БД в неза
 
 #: mmframe.cpp:1530
 msgid "Change Encrypted &Password"
-msgstr "Сменить пароль зашифрованной БД"
+msgstr "&Сменить пароль зашифрованной БД"
 
 #: mmframe.cpp:1531
 msgid "Change the password of an encrypted database"
@@ -4287,7 +4287,7 @@ msgstr "Чтение и обновление страниц вики"
 
 #: mmframe.cpp:1570
 msgid "F&orum"
-msgstr "&Фрум"
+msgstr "&Форум"
 
 #: mmframe.cpp:1571
 msgid "Visit the MMEX forum to see existing user comments or report new issues with the software"
@@ -4303,7 +4303,7 @@ msgstr "Получите бесплатную версию Android и запус
 
 #: mmframe.cpp:1576
 msgid "&Newsletter"
-msgstr "Новостная рассылка"
+msgstr "Новостная &рассылка"
 
 #: mmframe.cpp:1577
 msgid "Subscribe to e-mail newsletter or view existing announcements"
