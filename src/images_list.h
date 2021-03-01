@@ -89,7 +89,11 @@ enum png {
     HELP,
 
     // Navigation
+    NAV_HOME,
     ALLTRANSACTIONS, 
+    NAV_FILTER,
+    NAV_GRM,
+    NAV_HELP,
     FAVOURITE,
     SAVINGS_NORMAL, 
     SAVINGS_CLOSED,

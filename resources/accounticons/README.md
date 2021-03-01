@@ -1,4 +1,7 @@
 # Icons
+
+> Transparency replaced by WHITE for these files
+
 enum | x16 | x24 | x32 | x48
 :-- | --- | --- | --- | ---
 ACC_ICON_ABOUT | <img src="ACC_ICON_ABOUT.svg" width="16">  | <img src="ACC_ICON_ABOUT.svg" width="24">  | <img src="ACC_ICON_ABOUT.svg" width="32">  | <img src="ACC_ICON_ABOUT.svg" width="48"> 

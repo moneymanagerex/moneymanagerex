@@ -36,18 +36,18 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 static const std::map<int, wxBitmap> navtree_images()
 {
     return{
-        { HOUSE_PNG, mmBitmap(png::HOME) }
+        { HOUSE_PNG, mmBitmap(png::NAV_HOME) }
         , { ALLTRANSACTIONS_PNG, mmBitmap(png::ALLTRANSACTIONS) }
         , { SCHEDULE_PNG, mmBitmap(png::RECURRING) }
         , { CALENDAR_PNG, mmBitmap(png::BUDGET) }
         , { PIECHART_PNG, mmBitmap(png::PIE_CHART) }
-        , { HELP_PNG, mmBitmap(png::HELP) }
+        , { HELP_PNG, mmBitmap(png::NAV_HELP) }
         , { FAVOURITE_PNG, mmBitmap(png::FAVOURITE) }
-        , { FILTER_PNG, mmBitmap(png::FILTER) }
+        , { FILTER_PNG, mmBitmap(png::NAV_FILTER) }
         , { ASSET_NORMAL_PNG, mmBitmap(png::ASSET_NORMAL) }
         , { ASSET_CLOSED_PNG, mmBitmap(png::ASSET_CLOSED) } 
-        , { CUSTOMSQL_PNG, mmBitmap(png::GRM) }
-        , { CUSTOMSQL_GRP_PNG, mmBitmap(png::GRM) } //TODO: GRM rep group ico
+        , { CUSTOMSQL_PNG, mmBitmap(png::NAV_GRM) }
+        , { CUSTOMSQL_GRP_PNG, mmBitmap(png::NAV_GRM) } //TODO: GRM rep group ico
         , { SAVINGS_ACC_NORMAL_PNG, mmBitmap(png::SAVINGS_NORMAL) }
         , { SAVINGS_ACC_CLOSED_PNG, mmBitmap(png::SAVINGS_CLOSED) }
         , { CARD_ACC_NORMAL_PNG, mmBitmap(png::CC_NORMAL) }
@@ -130,7 +130,11 @@ const wxBitmap mmBitmap(int ref)
     case HELP: return x == 16 ? wxBITMAP_PNG_FROM_DATA(HELP16) : x == 24 ? wxBITMAP_PNG_FROM_DATA(HELP24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(HELP32) : wxBITMAP_PNG_FROM_DATA(HELP48);
 
     // Navigation
+    case NAV_HOME: return x == 16 ? wxBITMAP_PNG_FROM_DATA(NAV_HOME16) : x == 24 ? wxBITMAP_PNG_FROM_DATA(NAV_HOME24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(NAV_HOME32) : wxBITMAP_PNG_FROM_DATA(NAV_HOME48);
     case ALLTRANSACTIONS: return x == 16 ? wxBITMAP_PNG_FROM_DATA(ALLTRANSACTIONS16) : x == 24 ? wxBITMAP_PNG_FROM_DATA(ALLTRANSACTIONS24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(ALLTRANSACTIONS32) : wxBITMAP_PNG_FROM_DATA(ALLTRANSACTIONS48);
+    case NAV_FILTER: return x == 16 ? wxBITMAP_PNG_FROM_DATA(NAV_FILTER16) : x == 24 ? wxBITMAP_PNG_FROM_DATA(NAV_FILTER24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(NAV_FILTER32) : wxBITMAP_PNG_FROM_DATA(NAV_FILTER48);
+    case NAV_GRM: return x == 16 ? wxBITMAP_PNG_FROM_DATA(NAV_GRM16) : x == 24 ? wxBITMAP_PNG_FROM_DATA(NAV_GRM24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(NAV_GRM32) : wxBITMAP_PNG_FROM_DATA(NAV_GRM48);
+    case NAV_HELP: return x == 16 ? wxBITMAP_PNG_FROM_DATA(NAV_HELP16) : x == 24 ? wxBITMAP_PNG_FROM_DATA(NAV_HELP24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(NAV_HELP32) : wxBITMAP_PNG_FROM_DATA(NAV_HELP48);
     case FAVOURITE: return x == 16 ? wxBITMAP_PNG_FROM_DATA(FAVOURITE16) : x == 24 ? wxBITMAP_PNG_FROM_DATA(FAVOURITE24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(FAVOURITE32) : wxBITMAP_PNG_FROM_DATA(FAVOURITE48);
     case SAVINGS_NORMAL: return x == 16 ? wxBITMAP_PNG_FROM_DATA(SAVINGS_NORMAL16) : x == 24 ? wxBITMAP_PNG_FROM_DATA(SAVINGS_NORMAL24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(SAVINGS_NORMAL32) : wxBITMAP_PNG_FROM_DATA(SAVINGS_NORMAL48);
     case SAVINGS_CLOSED: return x == 16 ? wxBITMAP_PNG_FROM_DATA(SAVINGS_CLOSED16) : x == 24 ? wxBITMAP_PNG_FROM_DATA(SAVINGS_CLOSED24) : x == 32 ? wxBITMAP_PNG_FROM_DATA(SAVINGS_CLOSED32) : wxBITMAP_PNG_FROM_DATA(SAVINGS_CLOSED48);
