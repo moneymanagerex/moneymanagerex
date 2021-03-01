@@ -288,7 +288,7 @@ void TransactionListCtrl::OnMouseRightClick(wxMouseEvent& event)
     bool type_transfer = false;
     bool have_category = false;
     bool is_foreign = false;
-    if (selected == 1)
+    if ( (-1 != selectedIndex) && (1 == selected) )
     {
         const Model_Checking::Full_Data& tran = m_trans.at(selectedIndex);
         if (Model_Checking::type(tran.TRANSCODE) == Model_Checking::TRANSFER) {
