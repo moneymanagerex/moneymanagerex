@@ -293,7 +293,7 @@ void TransactionListCtrl::OnMouseRightClick(wxMouseEvent& event)
         if (Model_Checking::type(tran.TRANSCODE) == Model_Checking::TRANSFER) {
             type_transfer = true;
         }
-          if (!tran.has_split()) {
+        if (!tran.has_split()) {
             have_category = true;
         }
         if (Model_Checking::foreignTransaction(tran)) {
