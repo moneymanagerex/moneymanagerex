@@ -694,6 +694,7 @@ void TransactionListCtrl::OnPaste(wxCommandEvent& WXUNUSED(event))
     for (const auto& i : m_selectedForCopy)
     {
         Model_Checking::Data* tran = Model_Checking::instance().get(i);
+        OnPaste(tran);
     }
     Model_Checking::instance().ReleaseSavepoint();
     refreshVisualList();
