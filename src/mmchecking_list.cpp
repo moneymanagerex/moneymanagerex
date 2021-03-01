@@ -280,21 +280,20 @@ void TransactionListCtrl::OnMouseRightClick(wxMouseEvent& event)
     wxLogDebug("OnMouseRightClick: %i selected", GetSelectedItemCount());
     int selected = GetSelectedItemCount();
 
-    int Flags = wxLIST_HITTEST_ONITEM;
-    long selectedIndex = HitTest(wxPoint(event.m_x, event.m_y), Flags);
-
     bool hide_menu_item = (selected < 1);
     bool multiselect = (selected > 1);
     bool type_transfer = false;
     bool have_category = false;
     bool is_foreign = false;
-    if (selected == 1)
+    if (1 == selected)
     {
-        const Model_Checking::Full_Data& tran = m_trans.at(selectedIndex);
+        const Model_Checking::Data* transel = Model_Checking::instance().get(m_selected_id[0]);
+        Model_Checking::Full_Data tran(*transel);
+
         if (Model_Checking::type(tran.TRANSCODE) == Model_Checking::TRANSFER) {
             type_transfer = true;
         }
-        if (!tran.has_split()) {
+          if (!tran.has_split()) {
             have_category = true;
         }
         if (Model_Checking::foreignTransaction(tran)) {
@@ -694,6 +693,7 @@ void TransactionListCtrl::OnPaste(wxCommandEvent& WXUNUSED(event))
     for (const auto& i : m_selectedForCopy)
     {
         Model_Checking::Data* tran = Model_Checking::instance().get(i);
+        OnPaste(tran);
     }
     Model_Checking::instance().ReleaseSavepoint();
     refreshVisualList();
