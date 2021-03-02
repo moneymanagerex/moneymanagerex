@@ -1,4 +1,5 @@
 # Icons
+
 enum | x16 | x24 | x32 | x48
 :-- | --- | --- | --- | ---
 DUPLICATE_STAT | <img src="DUPLICATE_STAT.svg" width="16">  | <img src="DUPLICATE_STAT.svg" width="24">  | <img src="DUPLICATE_STAT.svg" width="32">  | <img src="DUPLICATE_STAT.svg" width="48"> 

@@ -1,4 +1,7 @@
 # Icons
+
+> Transparency replaced by WHITE for these files
+
 enum | x16 | x24 | x32 | x48
 :-- | --- | --- | --- | ---
 ALLTRANSACTIONS | <img src="ALLTRANSACTIONS.svg" width="16">  | <img src="ALLTRANSACTIONS.svg" width="24">  | <img src="ALLTRANSACTIONS.svg" width="32">  | <img src="ALLTRANSACTIONS.svg" width="48"> 
@@ -12,6 +15,10 @@ CC_NORMAL | <img src="CC_NORMAL.svg" width="16">  | <img src="CC_NORMAL.svg" wid
 FAVOURITE | <img src="FAVOURITE.svg" width="16">  | <img src="FAVOURITE.svg" width="24">  | <img src="FAVOURITE.svg" width="32">  | <img src="FAVOURITE.svg" width="48"> 
 LOAN_CLOSED | <img src="LOAN_CLOSED.svg" width="16">  | <img src="LOAN_CLOSED.svg" width="24">  | <img src="LOAN_CLOSED.svg" width="32">  | <img src="LOAN_CLOSED.svg" width="48"> 
 LOAN_NORMAL | <img src="LOAN_NORMAL.svg" width="16">  | <img src="LOAN_NORMAL.svg" width="24">  | <img src="LOAN_NORMAL.svg" width="32">  | <img src="LOAN_NORMAL.svg" width="48"> 
+NAV_FILTER | <img src="NAV_FILTER.svg" width="16">  | <img src="NAV_FILTER.svg" width="24">  | <img src="NAV_FILTER.svg" width="32">  | <img src="NAV_FILTER.svg" width="48"> 
+NAV_GRM | <img src="NAV_GRM.svg" width="16">  | <img src="NAV_GRM.svg" width="24">  | <img src="NAV_GRM.svg" width="32">  | <img src="NAV_GRM.svg" width="48"> 
+NAV_HELP | <img src="NAV_HELP.svg" width="16">  | <img src="NAV_HELP.svg" width="24">  | <img src="NAV_HELP.svg" width="32">  | <img src="NAV_HELP.svg" width="48"> 
+NAV_HOME | <img src="NAV_HOME.svg" width="16">  | <img src="NAV_HOME.svg" width="24">  | <img src="NAV_HOME.svg" width="32">  | <img src="NAV_HOME.svg" width="48"> 
 PIE_CHART | <img src="PIE_CHART.svg" width="16">  | <img src="PIE_CHART.svg" width="24">  | <img src="PIE_CHART.svg" width="32">  | <img src="PIE_CHART.svg" width="48"> 
 RECURRING | <img src="RECURRING.svg" width="16">  | <img src="RECURRING.svg" width="24">  | <img src="RECURRING.svg" width="32">  | <img src="RECURRING.svg" width="48"> 
 SAVINGS_CLOSED | <img src="SAVINGS_CLOSED.svg" width="16">  | <img src="SAVINGS_CLOSED.svg" width="24">  | <img src="SAVINGS_CLOSED.svg" width="32">  | <img src="SAVINGS_CLOSED.svg" width="48"> 
