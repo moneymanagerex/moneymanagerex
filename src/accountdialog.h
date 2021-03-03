@@ -51,6 +51,8 @@ private:
     void OnCustonImage(wxCommandEvent& event);
     void OnTextEntered(wxCommandEvent& event);
     void OnAttachments(wxCommandEvent& event);
+    void OnAccountStatus(void);
+    void OnAccountStatus(wxCommandEvent& event);
 
     void OnImageButton(wxCommandEvent& event);
     void OnChangeFocus(wxChildFocusEvent& event);
