@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-02-27 21:16+0300\n"
-"PO-Revision-Date: 2021-02-27 18:29\n"
+"PO-Revision-Date: 2021-03-03 20:26\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "MIME-Version: 1.0\n"
@@ -2319,7 +2319,7 @@ msgstr "Intervalo de valor"
 
 #: filtertransdialog.cpp:347
 msgid "Clea&r "
-msgstr ""
+msgstr "Limpa&r "
 
 #: filtertransdialog.cpp:827 filtertransdialog.cpp:842 reports/myusage.cpp:91
 #: webappdialog.cpp:194 webappdialog.cpp:199
@@ -3527,12 +3527,12 @@ msgstr[1] "&Copiar Transações"
 
 #: mmchecking_list.cpp:322
 msgid "&Paste Transaction"
-msgstr ""
+msgstr "&Colar Transação"
 
 #: mmchecking_list.cpp:322
 #, c-format
 msgid "&Paste Transactions (%d)"
-msgstr ""
+msgstr "&Colar Transações (%d)"
 
 #: mmchecking_list.cpp:327
 msgid "D&uplicate Transaction"
@@ -3643,17 +3643,18 @@ msgstr "Verificação de transação MMEX"
 #, c-format
 msgid "You are about to edit a transaction involving an account that is closed."
 msgid_plural "The edit will affect %i transactions involving an account that is closed."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Você está prestes a editar uma transação envolvendo uma conta que está fechada."
+msgstr[1] "A edição afetará %i transações envolvendo uma conta que está fechada."
 
 #: mmchecking_list.cpp:885
 msgid "\n\n"
 "Do you still want to perform the edit?"
-msgstr ""
+msgstr "\n\n"
+"Você ainda deseja executar a edição?"
 
 #: mmchecking_list.cpp:886
 msgid "Closed Account Check"
-msgstr ""
+msgstr "Verificação de conta fechada"
 
 #: mmchecking_list.cpp:1038 stockspanel.cpp:290
 #, c-format
@@ -3776,7 +3777,7 @@ msgstr "Barra de Ferramentas"
 
 #: mmframe.cpp:457 mmframe.cpp:693
 msgid "Favourites"
-msgstr ""
+msgstr "Favoritos"
 
 #: mmframe.cpp:458 mmframe.cpp:697 mmhomepage.cpp:635 reports/summary.cpp:157
 msgid "Bank Accounts"
@@ -3812,7 +3813,7 @@ msgstr "Página Inicial"
 
 #: mmframe.cpp:689
 msgid "All Transactions"
-msgstr ""
+msgstr "Todas as transações"
 
 #: mmframe.cpp:721
 msgid "Share Accounts"
@@ -4004,7 +4005,7 @@ msgstr "Mostrar/ocultar Contas de Ações na árvore de navegação"
 
 #: mmframe.cpp:1375
 msgid "Budgets: As Financial &Years"
-msgstr ""
+msgstr "Orçamentos: Como &Exercícios Financeiros"
 
 #: mmframe.cpp:1375
 msgid "Display Budgets in Financial Year Format"
@@ -4036,7 +4037,7 @@ msgstr "Ignorar Transações Futuras"
 
 #: mmframe.cpp:1397
 msgid "Toggle &Fullscreen\tShift+F11"
-msgstr ""
+msgstr "Alternar &Tela Cheia Shift+F11"
 
 #: mmframe.cpp:1398 mmframe.cpp:1686
 msgid "Toggle Fullscreen"
@@ -4044,7 +4045,7 @@ msgstr "Alternar para Tela Cheia"
 
 #: mmframe.cpp:1404
 msgid "Switch Application &Language"
-msgstr ""
+msgstr "Alternar o &Idioma do aplicativo"
 
 #: mmframe.cpp:1405
 msgid "Change language used for MMEX GUI"
@@ -4072,7 +4073,7 @@ msgstr "Excluir Conta do arquivo de dados"
 
 #: mmframe.cpp:1455
 msgid "Download Ra&tes..."
-msgstr ""
+msgstr "Baixar &taxas de conversão..."
 
 #: mmframe.cpp:1455 mmframe.cpp:1683
 msgid "Download Currency and Stock rates"
@@ -4092,7 +4093,7 @@ msgstr "Organizar Beneficiários"
 
 #: mmframe.cpp:1469
 msgid "Organize Curre&ncy..."
-msgstr ""
+msgstr "Gerenciar Moedas..."
 
 #: mmframe.cpp:1469 mmframe.cpp:1660
 msgid "Organize Currency"
@@ -4112,7 +4113,7 @@ msgstr "Realocar todos os Beneficiários para outro Beneficiário"
 
 #: mmframe.cpp:1479
 msgid "Re&location of..."
-msgstr ""
+msgstr "Realocar de..."
 
 #: mmframe.cpp:1480
 msgid "Relocate Categories && Payees"
