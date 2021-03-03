@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-02-27 21:16+0300\n"
-"PO-Revision-Date: 2021-02-28 06:47\n"
+"PO-Revision-Date: 2021-03-01 10:03\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -3645,7 +3645,7 @@ msgstr "&Editer l'opération"
 #, c-format
 msgid "You are about to edit a transaction involving an account that is closed."
 msgid_plural "The edit will affect %i transactions involving an account that is closed."
-msgstr[0] "Vous êtes sur le point de modifier une opération impliquant un compte fermé."
+msgstr[0] "Vous êtes sur le point de modifier une transaction impliquant un compte fermé."
 msgstr[1] "La modification affectera %i opérations impliquant le compte fermé."
 
 #: mmchecking_list.cpp:885
@@ -4327,7 +4327,7 @@ msgstr "Restez en contact avec la communauté MMEX"
 
 #: mmframe.cpp:1609
 msgid "Report a &Bug"
-msgstr "Signaler une erreur"
+msgstr "Signaler un bug"
 
 #: mmframe.cpp:1610
 msgid "Report an error in application to the developers"

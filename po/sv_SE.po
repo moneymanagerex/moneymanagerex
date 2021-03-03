@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-02-27 21:16+0300\n"
-"PO-Revision-Date: 2021-02-27 18:29\n"
+"PO-Revision-Date: 2021-03-01 20:39\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
@@ -3504,14 +3504,14 @@ msgstr "&Ny överföring"
 #: mmchecking_list.cpp:312
 msgid "&Edit Transaction"
 msgid_plural "&Edit Transactions"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "&Redigera transaktion"
+msgstr[1] "&Redigera transaktioner"
 
 #: mmchecking_list.cpp:317
 msgid "&Copy Transaction"
 msgid_plural "&Copy Transactions"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "&Kopiera transaktion"
+msgstr[1] "&Kopiera transaktioner"
 
 #: mmchecking_list.cpp:322
 msgid "&Paste Transaction"
@@ -3536,13 +3536,13 @@ msgstr "&Visa delade kategorier"
 
 #: mmchecking_list.cpp:344
 msgid "Create Recurring T&ransaction"
-msgstr ""
+msgstr "Skapa återkommande T&ransaktion"
 
 #: mmchecking_list.cpp:350
 msgid "&Delete selected transaction"
 msgid_plural "&Delete selected transactions"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "&Ta bort vald transaktion"
+msgstr[1] "&Ta bort valda transaktioner"
 
 #: mmchecking_list.cpp:353
 msgid "Delete all transactions in current view"
@@ -3550,11 +3550,11 @@ msgstr "Ta bort alla transaktioner i aktuell vy"
 
 #: mmchecking_list.cpp:354
 msgid "Delete Viewed \"Follow Up\" Transactions"
-msgstr ""
+msgstr "Ta bort visade transaktioner \"Följ upp\""
 
 #: mmchecking_list.cpp:355
 msgid "Delete Viewed \"Unreconciled\" Transactions"
-msgstr ""
+msgstr "Ta bort visade transaktioner \"Oförenliga\""
 
 #: mmchecking_list.cpp:361 mmchecking_list.cpp:374
 msgid "as Reconciled"
@@ -3570,7 +3570,7 @@ msgstr "som ogiltiga"
 
 #: mmchecking_list.cpp:367
 msgid "as Followup"
-msgstr ""
+msgstr "som uppföljning"
 
 #: mmchecking_list.cpp:369 mmchecking_list.cpp:378
 msgid "as Duplicate"
@@ -3578,7 +3578,7 @@ msgstr "som dubbletter"
 
 #: mmchecking_list.cpp:371
 msgid "Mark all being selected"
-msgstr ""
+msgstr "Markera alla som valts"
 
 #: mmchecking_list.cpp:377
 msgid "as needing Followup"
@@ -3654,7 +3654,7 @@ msgstr ""
 
 #: mmchecking_list.cpp:1100
 msgid "Recurring Transaction saved."
-msgstr ""
+msgstr "Återkommande transaktion sparad."
 
 #: mmcheckingpanel.cpp:279 mmcheckingpanel.cpp:426
 msgid "Displayed Bal: "
@@ -4810,11 +4810,11 @@ msgstr ""
 
 #: mmreportspanel.cpp:292
 msgid "Year:"
-msgstr ""
+msgstr "År:"
 
 #: mmreportspanel.cpp:316
 msgid "Budget:"
-msgstr ""
+msgstr "Budget:"
 
 #: mmreportspanel.cpp:342
 msgid "Accounts:"
@@ -4961,7 +4961,7 @@ msgstr "Slutdatum: "
 
 #: model/Model_Report.cpp:88
 msgid "Year: "
-msgstr ""
+msgstr "År: "
 
 #: model/Model_Report.cpp:233
 msgid "Template is empty"
@@ -5332,11 +5332,11 @@ msgstr ""
 
 #: optionsettingsnet.cpp:126
 msgid "Check for latest news on startup"
-msgstr ""
+msgstr "Sök efter de senaste nyheterna vid start"
 
 #: optionsettingsnet.cpp:128
 msgid "Enable to allow news to be checked on application start"
-msgstr ""
+msgstr "Aktivera för att tillåta att nyheter kontrolleras vid programstart"
 
 #: optionsettingsnet.cpp:133
 msgid "Timeout"
@@ -6275,15 +6275,15 @@ msgstr "Symbol: %s"
 
 #: transactionsupdatedialog.cpp:78
 msgid "Multi Transactions Update"
-msgstr ""
+msgstr "Uppdatering av flera transaktioner"
 
 #: transactionsupdatedialog.cpp:195
 msgid "Append"
-msgstr ""
+msgstr "Lägg till"
 
 #: transactionsupdatedialog.cpp:258
 msgid "Invalid type"
-msgstr ""
+msgstr "Ogiltig typ"
 
 #: transactionsupdatedialog.cpp:312 transdialog.cpp:654
 #, c-format
