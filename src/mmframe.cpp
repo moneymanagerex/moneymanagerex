@@ -811,7 +811,7 @@ void mmGUIFrame::updateNavTreeControl()
 
             wxTreeItemId tacct;
 
-            if (Model_Account::FAVORITEACCT(account))
+            if (Model_Account::FAVORITEACCT(account) && (Model_Account::status(account) == Model_Account::OPEN))
             {
                 tacct = m_nav_tree_ctrl->AppendItem(favourites, account.ACCOUNTNAME, selectedImage, selectedImage);
                 m_nav_tree_ctrl->SetItemData(tacct, new mmTreeItemData(account.ACCOUNTID, false, false));

@@ -59,6 +59,7 @@ EVT_BUTTON(ID_DIALOG_NEWACCT_BUTTON_CURRENCY, mmNewAcctDialog::OnCurrency)
 EVT_BUTTON(wxID_FILE, mmNewAcctDialog::OnAttachments)
 EVT_MENU_RANGE(wxID_HIGHEST, wxID_HIGHEST + acc_img::MAX_ACC_ICON, mmNewAcctDialog::OnCustonImage)
 EVT_TEXT_ENTER(wxID_ANY, mmNewAcctDialog::OnTextEntered)
+EVT_CHOICE(ID_DIALOG_NEWACCT_COMBO_ACCTSTATUS, mmNewAcctDialog::OnAccountStatus)
 wxEND_EVENT_TABLE()
 
 mmNewAcctDialog::mmNewAcctDialog()
@@ -114,6 +115,8 @@ bool mmNewAcctDialog::Create(wxWindow* parent
 
     CreateControls();
     fillControls();
+    
+    OnAccountStatus();
 
     GetSizer()->Fit(this);
     GetSizer()->SetSizeHints(this);
@@ -367,6 +370,21 @@ void mmNewAcctDialog::fillControls()
         m_statement_date_ctrl->SetValue(Model_Account::DateOf(m_account->STATEMENTDATE));
     }
     m_minimum_balance_ctrl->SetValue(m_account->MINIMUMBALANCE, 2);
+}
+
+void mmNewAcctDialog::OnAccountStatus()
+{
+    wxChoice* choice = static_cast<wxChoice*>(FindWindow(ID_DIALOG_NEWACCT_COMBO_ACCTSTATUS));
+    wxCheckBox* itemCheckBox = static_cast<wxCheckBox*>(FindWindow(ID_DIALOG_NEWACCT_CHKBOX_FAVACCOUNT));
+    if (choice->GetSelection() == Model_Account::CLOSED)    // Can only change if account is open
+        itemCheckBox->Disable();
+    else
+        itemCheckBox->Enable();
+}
+
+void mmNewAcctDialog::OnAccountStatus(wxCommandEvent& /*event*/)
+{
+    OnAccountStatus();
 }
 
 void mmNewAcctDialog::OnCurrency(wxCommandEvent& /*event*/)
