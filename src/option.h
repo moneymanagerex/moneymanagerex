@@ -107,6 +107,9 @@ public:
     int getHtmlFontSize();
 
     void setIconSize(int value);
+    void setToolbarIconSize(int value);
+    void setNavigationIconSize(int value);
+
     int getIconSize();
     int getNavigationIconSize();
     int getToolbarIconSize();

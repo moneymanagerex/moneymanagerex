@@ -313,6 +313,19 @@ void Option::setIconSize(int value)
     m_ico_size = value;
 }
 
+void Option::setToolbarIconSize(int value)
+{
+    Model_Setting::instance().Set("TOOLBARICONSIZE", value);
+    m_ico_size = value;
+}
+
+void Option::setNavigationIconSize(int value)
+{
+    Model_Setting::instance().Set("NAVIGATIONICONSIZE", value);
+    m_ico_size = value;
+}
+
+
 int Option::getHtmlFontSize()
 {
     return m_html_font_size;

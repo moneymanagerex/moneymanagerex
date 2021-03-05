@@ -247,10 +247,18 @@ bool OptionSettingsView::SaveSettings()
     int size = m_scale_factor->GetValue();
     Option::instance().setHTMLFontSizes(size);
 
-    size = m_toolbar_icon_size->GetCount();
-    size = ((4 + size) / 8) * 8;
-    if (size == 40) size = 48;
+    int i[4] = { 16, 24, 32, 48 };
+    size = m_others_icon_size->GetSelection();
+    size = i[size];
     Option::instance().setIconSize(size);
+
+    size = m_navigation_icon_size->GetSelection();
+    size = i[size];
+    Option::instance().setNavigationIconSize(size);
+
+    size = m_toolbar_icon_size->GetSelection();
+    size = i[size];
+    Option::instance().setToolbarIconSize(size);
 
     Option::instance().BudgetFinancialYears(m_budget_financial_years->GetValue());
     Option::instance().BudgetIncludeTransfers(m_budget_include_transfers->GetValue());
