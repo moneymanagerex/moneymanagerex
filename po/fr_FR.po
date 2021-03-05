@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-03-05 19:12+0300\n"
-"PO-Revision-Date: 2021-03-05 16:25\n"
+"PO-Revision-Date: 2021-03-05 16:42\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -4059,11 +4059,11 @@ msgstr "défaut système"
 
 #: mmframe.cpp:1430
 msgid "&Home Page"
-msgstr ""
+msgstr "Page d'accueil"
 
 #: mmframe.cpp:1430 mmframe.cpp:1656
 msgid "Show Home Page"
-msgstr ""
+msgstr "Afficher la page d'accueil"
 
 #: mmframe.cpp:1439
 msgid "Change the account type of an account."
