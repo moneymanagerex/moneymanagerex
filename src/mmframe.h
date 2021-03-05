@@ -269,7 +269,7 @@ private:
         MENU_RECENT_FILES_CLEAR,
         MENU_EXPORT,
         MENU_NEWACCT,
-        MENU_ACCTLIST,
+        MENU_HOMEPAGE,
         MENU_ORGCATEGS,
         MENU_ORGPAYEE,
         MENU_BUDGETSETUPDIALOG,

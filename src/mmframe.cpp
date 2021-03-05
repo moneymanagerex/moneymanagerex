@@ -95,7 +95,7 @@ EVT_MENU(MENU_IMPORT_XML, mmGUIFrame::OnImportXML)
 EVT_MENU(MENU_IMPORT_WEBAPP, mmGUIFrame::OnImportWebApp)
 EVT_MENU(wxID_EXIT, mmGUIFrame::OnQuit)
 EVT_MENU(MENU_NEWACCT, mmGUIFrame::OnNewAccount)
-EVT_MENU(MENU_ACCTLIST, mmGUIFrame::OnAccountList)
+EVT_MENU(MENU_HOMEPAGE, mmGUIFrame::OnAccountList)
 EVT_MENU(MENU_ACCTEDIT, mmGUIFrame::OnEditAccount)
 EVT_MENU(MENU_ACCTDELETE, mmGUIFrame::OnDeleteAccount)
 EVT_MENU(MENU_ACCOUNT_REALLOCATE, mmGUIFrame::OnReallocateAccount)
@@ -584,7 +584,7 @@ void mmGUIFrame::menuEnableItems(bool enable)
     menuBar_->FindItem(MENU_SAVE_AS)->Enable(enable);
     menuBar_->FindItem(MENU_EXPORT)->Enable(enable);
     menuBar_->FindItem(MENU_NEWACCT)->Enable(enable);
-    menuBar_->FindItem(MENU_ACCTLIST)->Enable(enable);
+    menuBar_->FindItem(MENU_HOMEPAGE)->Enable(enable);
     menuBar_->FindItem(MENU_ACCTEDIT)->Enable(enable);
     menuBar_->FindItem(MENU_ACCOUNT_REALLOCATE)->Enable(enable);
     menuBar_->FindItem(MENU_ACCTDELETE)->Enable(enable);
@@ -616,7 +616,7 @@ void mmGUIFrame::menuEnableItems(bool enable)
     menuBar_->FindItem(MENU_DB_DEBUG)->Enable(enable);
 
     toolBar_->EnableTool(MENU_NEWACCT, enable);
-    toolBar_->EnableTool(MENU_ACCTLIST, enable);
+    toolBar_->EnableTool(MENU_HOMEPAGE, enable);
     toolBar_->EnableTool(MENU_ORGPAYEE, enable);
     toolBar_->EnableTool(MENU_ORGCATEGS, enable);
     toolBar_->EnableTool(MENU_CURRENCY, enable);
@@ -1426,8 +1426,8 @@ void mmGUIFrame::createMenu()
 
     wxMenu* menuAccounts = new wxMenu;
 
-    wxMenuItem* menuItemAcctList = new wxMenuItem(menuAccounts, MENU_ACCTLIST
-        , _("Account &List"), _("Show Account List"));
+    wxMenuItem* menuItemAcctList = new wxMenuItem(menuAccounts, MENU_HOMEPAGE
+        , _("&Home Page"), _("Show Home Page"));
 
     wxMenuItem* menuItemNewAcct = new wxMenuItem(menuAccounts, MENU_NEWACCT
         , _("New &Account"), _("New Account"));
@@ -1653,7 +1653,7 @@ void mmGUIFrame::CreateToolBar()
     toolBar_->AddTool(MENU_OPEN, _("Open"), mmBitmap(png::OPEN), _("Open Database"));
     toolBar_->AddSeparator();
     toolBar_->AddTool(MENU_NEWACCT, _("New Account"), mmBitmap(png::NEW_ACC), _("New Account"));
-    toolBar_->AddTool(MENU_ACCTLIST, _("Account List"), mmBitmap(png::HOME), _("Show Account List"));
+    toolBar_->AddTool(MENU_HOMEPAGE, _("Home Page"), mmBitmap(png::HOME), _("Show Home Page"));
     toolBar_->AddSeparator();
     toolBar_->AddTool(MENU_ORGCATEGS, _("Organize Categories"), mmBitmap(png::CATEGORY), _("Show Organize Categories Dialog"));
     toolBar_->AddTool(MENU_ORGPAYEE, _("Organize Payees"), mmBitmap(png::PAYEE), _("Show Organize Payees Dialog"));
