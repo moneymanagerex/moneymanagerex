@@ -651,8 +651,8 @@ void mmGUIFrame::createControls()
     m_nav_tree_ctrl->SetMinSize(wxSize(100, 100));
 
     int all_icons_size = Option::instance().getIconSize();
-    int nav_icon_size = all_icons_size + 8;
-    if (nav_icon_size >= 40) nav_icon_size = 48;
+    int nav_icon_size = Option::instance().getNavigationIconSize();
+
     Option::instance().setIconSize(nav_icon_size);
     m_nav_tree_ctrl->AssignImageList(navtree_images_list());
     Option::instance().setIconSize(all_icons_size);
@@ -1640,8 +1640,7 @@ void mmGUIFrame::createMenu()
 void mmGUIFrame::CreateToolBar()
 {
     int all_icons_size = Option::instance().getIconSize();
-    int main_menu_icon_size = all_icons_size + 8;
-    if (main_menu_icon_size >= 40) main_menu_icon_size = 48;
+    int main_menu_icon_size = Option::instance().getToolbarIconSize();
     Option::instance().setIconSize(main_menu_icon_size);
 
     long style = wxTB_FLAT | wxTB_NODIVIDER;

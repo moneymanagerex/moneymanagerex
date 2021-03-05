@@ -46,6 +46,8 @@ Option::Option()
     , m_sharePrecision(4)
     , m_html_font_size(100)
     , m_ico_size(16)
+    , m_toolbar_ico_size(32)
+    , m_navigation_ico_size(24)
     , m_budget_days_offset(0)
 {}
 
@@ -101,6 +103,8 @@ void Option::LoadOptions(bool include_infotable)
 
     m_html_font_size = Model_Setting::instance().GetIntSetting("HTMLSCALE", 100);
     m_ico_size = Model_Setting::instance().GetIntSetting("ICONSIZE", 16);
+    m_toolbar_ico_size = Model_Setting::instance().GetIntSetting("TOOLBARICONSIZE", 32);
+    m_navigation_ico_size = Model_Setting::instance().GetIntSetting("NAVIGATIONICONSIZE", 24);
 }
 
 void Option::setDateFormat(const wxString& date_format)
@@ -312,11 +316,6 @@ void Option::setIconSize(int value)
 int Option::getHtmlFontSize()
 {
     return m_html_font_size;
-}
-
-int Option::getIconSize()
-{
-    return m_ico_size;
 }
 
 void Option::setBudgetDaysOffset(int value)

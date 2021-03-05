@@ -49,14 +49,14 @@ void OptionSettingsView::Create()
     wxBoxSizer* viewsPanelSizer = new wxBoxSizer(wxVERTICAL);
     SetSizer(viewsPanelSizer);
 
-    // Account View Options
-    wxStaticBox* accountStaticBox = new wxStaticBox(this, wxID_STATIC, _("View Options"));
-    SetBoldFont(accountStaticBox);
+    // View Options
+    wxStaticBox* viewStaticBox = new wxStaticBox(this, wxID_STATIC, _("View Options"));
+    SetBoldFont(viewStaticBox);
 
-    wxStaticBoxSizer* accountStaticBoxSizer = new wxStaticBoxSizer(accountStaticBox, wxVERTICAL);
-    viewsPanelSizer->Add(accountStaticBoxSizer, wxSizerFlags(g_flagsExpand).Proportion(0));
+    wxStaticBoxSizer* viewStaticBoxSizer = new wxStaticBoxSizer(viewStaticBox, wxVERTICAL);
+    viewsPanelSizer->Add(viewStaticBoxSizer, wxSizerFlags(g_flagsExpand).Proportion(0));
     wxFlexGridSizer* view_sizer1 = new wxFlexGridSizer(0, 2, 0, 5);
-    accountStaticBoxSizer->Add(view_sizer1);
+    viewStaticBoxSizer->Add(view_sizer1);
 
     view_sizer1->Add(new wxStaticText(this, wxID_STATIC, _("Accounts Visible")), g_flagsH);
 
@@ -87,13 +87,6 @@ void OptionSettingsView::Create()
     m_scale_factor->SetValue(vFontSize);
     m_scale_factor->SetToolTip(_("Specify which scale factor is used for the report pages"));
     view_sizer1->Add(m_scale_factor, g_flagsH);
-
-    // Icon size
-    int vIconSize = Option::instance().getIconSize();
-    view_sizer1->Add(new wxStaticText(this, wxID_STATIC, _("Icons size")), g_flagsH);
-    m_icon_size = new wxSpinCtrl(this, wxID_RESIZE_FRAME, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 16, 48);
-    view_sizer1->Add(m_icon_size, g_flagsH);
-    m_icon_size->SetValue(vIconSize);
 
     //Category delimiter
     view_sizer1->Add(new wxStaticText(this, wxID_STATIC, _("Category delimiter")), g_flagsH);
@@ -168,6 +161,55 @@ void OptionSettingsView::Create()
     m_UDFCB7->SetBackgroundColour(mmColors::userDefColor7);
     userColourSettingStBoxSizer->Add(m_UDFCB7, g_flagsH);
 
+    // Icon sizes
+
+    wxStaticBox* iconStaticBox = new wxStaticBox(this, wxID_STATIC, _("Icon Sizes"));
+    SetBoldFont(iconStaticBox);
+
+    wxStaticBoxSizer* iconStaticBoxSizer = new wxStaticBoxSizer(iconStaticBox, wxVERTICAL);
+    viewsPanelSizer->Add(iconStaticBoxSizer, wxSizerFlags(g_flagsExpand).Proportion(0));
+
+    wxFlexGridSizer* view_sizer2 = new wxFlexGridSizer(0, 2, 0, 5);
+    iconStaticBoxSizer->Add(view_sizer2);
+
+    const wxString settings_choice[] = { _("16"), _("24") , _("32"), _("48") };
+
+    int vIconSize = Option::instance().getToolbarIconSize();
+    int selection = vIconSize / 8 - 2;
+    if (selection > 3) selection = 3;
+
+    view_sizer2->Add(new wxStaticText(this, wxID_STATIC, _("Toolbar")), g_flagsH);
+    m_toolbar_icon_size = new wxRadioBox(this
+        , wxID_RESIZE_FRAME, "", wxDefaultPosition, wxDefaultSize
+        , sizeof(settings_choice) / sizeof(wxString)
+        , settings_choice, 4, wxRA_SPECIFY_COLS);
+    m_toolbar_icon_size->SetSelection(selection);
+    view_sizer2->Add(m_toolbar_icon_size, g_flagsH);
+
+    vIconSize = Option::instance().getNavigationIconSize();
+    selection = vIconSize / 8 - 2;
+    if (selection > 3) selection = 3;
+
+    view_sizer2->Add(new wxStaticText(this, wxID_STATIC, _("Navigation")), g_flagsH);
+    m_navigation_icon_size = new wxRadioBox(this
+        , wxID_RESIZE_FRAME, "", wxDefaultPosition, wxDefaultSize
+        , sizeof(settings_choice) / sizeof(wxString)
+        , settings_choice, 4, wxRA_SPECIFY_COLS);
+    m_navigation_icon_size->SetSelection(selection);
+    view_sizer2->Add(m_navigation_icon_size, g_flagsH);
+
+    vIconSize = Option::instance().getIconSize();
+    selection = vIconSize / 8 - 2;
+    if (selection > 3) selection = 3;
+
+    view_sizer2->Add(new wxStaticText(this, wxID_STATIC, _("Others")), g_flagsH);
+    m_others_icon_size = new wxRadioBox(this
+        , wxID_RESIZE_FRAME, "", wxDefaultPosition, wxDefaultSize
+        , sizeof(settings_choice) / sizeof(wxString)
+        , settings_choice, 4, wxRA_SPECIFY_COLS);
+    m_others_icon_size->SetSelection(selection);
+    view_sizer2->Add(m_others_icon_size, g_flagsH);
+
     this->Connect(wxID_ANY, wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(OptionSettingsView::OnNavTreeColorChanged), nullptr, this);
 }
 
@@ -205,7 +247,7 @@ bool OptionSettingsView::SaveSettings()
     int size = m_scale_factor->GetValue();
     Option::instance().setHTMLFontSizes(size);
 
-    size = m_icon_size->GetValue();
+    size = m_toolbar_icon_size->GetCount();
     size = ((4 + size) / 8) * 8;
     if (size == 40) size = 48;
     Option::instance().setIconSize(size);

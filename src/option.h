@@ -108,6 +108,8 @@ public:
 
     void setIconSize(int value);
     int getIconSize();
+    int getNavigationIconSize();
+    int getToolbarIconSize();
 
     int AccountImageId(int account_id, bool def = false);
     bool getSendUsageStatistics() const;
@@ -143,9 +145,16 @@ private:
 
     int m_html_font_size;
     int m_ico_size;
+    int m_toolbar_ico_size;
+    int m_navigation_ico_size;
 
     int m_budget_days_offset;
 };
+
+inline int Option::getIconSize() { return m_ico_size; }
+inline int Option::getNavigationIconSize() { return m_navigation_ico_size; }
+inline int Option::getToolbarIconSize() { return m_toolbar_ico_size; }
+
 
 inline const wxString Option::getDateFormat() const
 {
