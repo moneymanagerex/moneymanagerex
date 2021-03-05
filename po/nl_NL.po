@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2021-02-27 21:16+0300\n"
-"PO-Revision-Date: 2021-02-27 18:29\n"
+"POT-Creation-Date: 2021-03-05 19:12+0300\n"
+"PO-Revision-Date: 2021-03-05 16:26\n"
 "Last-Translator: \n"
 "Language-Team: Dutch\n"
 "MIME-Version: 1.0\n"
@@ -55,7 +55,7 @@ msgstr "Verstuur anonieme statistische gebruikersgegevens"
 msgid "Enable to help us sending anonymous data about MMEX usage."
 msgstr "Help ons met het versturen van anonieme gegevens over MMEX gebruik."
 
-#: aboutdialog.cpp:249 accountdialog.cpp:305 appstartdialog.cpp:136
+#: aboutdialog.cpp:249 accountdialog.cpp:308 appstartdialog.cpp:136
 #: assetdialog.cpp:305 attachmentdialog.cpp:120 billsdepositsdialog.cpp:477
 #: budgetentrydialog.cpp:156 budgetyeardialog.cpp:116
 #: budgetyearentrydialog.cpp:126 currencydialog.cpp:222
@@ -66,220 +66,220 @@ msgstr "Help ons met het versturen van anonieme gegevens over MMEX gebruik."
 #: relocatepayeedialog.cpp:132 reports/reportbase.cpp:335
 #: sharetransactiondialog.cpp:320 splitdetailsdialog.cpp:160
 #: splittransactionsdialog.cpp:172 transactionsupdatedialog.cpp:222
-#: transdialog.cpp:594 wizard_update.cpp:180
+#: transdialog.cpp:600 wizard_update.cpp:180
 msgid "&OK "
 msgstr ""
 
-#: accountdialog.cpp:91 mmframe.cpp:1433 mmframe.cpp:1655
+#: accountdialog.cpp:92 mmframe.cpp:1433 mmframe.cpp:1655
 #: wizard_newaccount.cpp:86 wizard_newaccount.cpp:93 wizard_newaccount.cpp:164
 msgid "New Account"
 msgstr "Nieuwe rekening toevoegen"
 
-#: accountdialog.cpp:112 mmframe.cpp:1436
+#: accountdialog.cpp:113 mmframe.cpp:1436
 msgid "Edit Account"
 msgstr "Wijzig rekening"
 
-#: accountdialog.cpp:138
+#: accountdialog.cpp:141
 msgid "Account Name:"
 msgstr "Rekeningnaam:"
 
-#: accountdialog.cpp:141
+#: accountdialog.cpp:144
 msgid "Enter the Name of the Account. This name can be renamed at any time."
 msgstr "Geef de rekening een naam. Deze kan ten alle tijde gewijzigd worden."
 
-#: accountdialog.cpp:144
+#: accountdialog.cpp:147
 msgid "Account Type:"
 msgstr "Type rekening:"
 
-#: accountdialog.cpp:151 wizard_newaccount.cpp:126
+#: accountdialog.cpp:154 wizard_newaccount.cpp:126
 msgid "Specify the type of account to be created."
 msgstr "Geef aan welk type rekening aangemaakt moet worden"
 
-#: accountdialog.cpp:155
+#: accountdialog.cpp:158
 msgid "Account Status:"
 msgstr "Rekeningstatus:"
 
-#: accountdialog.cpp:160
+#: accountdialog.cpp:163
 msgid "Specify if this account has been closed. Closed accounts are inactive in most calculations, reporting etc."
 msgstr "Specificeer of deze rekening is gesloten. Gesloten rekeningen worden niet gebruikt in berekeningen, rapporten etc."
 
-#: accountdialog.cpp:164
+#: accountdialog.cpp:167
 #, c-format
 msgid "Initial Balance: %s"
 msgstr "Beginbalans: %s"
 
-#: accountdialog.cpp:168
+#: accountdialog.cpp:171
 msgid "Enter the initial balance in this account."
 msgstr "Vul de beginbalans in voor deze rekening"
 
-#: accountdialog.cpp:170 import_export/univcsvdialog.cpp:1814
+#: accountdialog.cpp:173 import_export/univcsvdialog.cpp:1814
 msgid "Currency:"
 msgstr "Valuta:"
 
-#: accountdialog.cpp:172 currencydialog.cpp:95
+#: accountdialog.cpp:175 currencydialog.cpp:95
 msgid "Select Currency"
 msgstr "Kies valuta"
 
-#: accountdialog.cpp:178
+#: accountdialog.cpp:181
 msgid "Specify the currency to be used by this account."
 msgstr "Specificeer de valuta die voor deze rekening wordt gebruikt."
 
-#: accountdialog.cpp:181
+#: accountdialog.cpp:184
 msgid "Favorite Account"
 msgstr "Standaardrekening"
 
-#: accountdialog.cpp:183
+#: accountdialog.cpp:186
 msgid "Select whether this is an account that is used often. This is used to filter accounts display view."
 msgstr "Geef aan of deze rekening vaak wordt gebruikt. Dit wordt gebruikt voor rekening overzichten."
 
-#: accountdialog.cpp:191 assetdialog.cpp:253 assetspanel.cpp:64
+#: accountdialog.cpp:194 assetdialog.cpp:253 assetspanel.cpp:64
 #: billsdepositsdialog.cpp:613 billsdepositspanel.cpp:110
 #: filtertransdialog.cpp:307 filtertransdialog.cpp:955
 #: import_export/qif_import_gui.cpp:105 import_export/univcsvdialog.cpp:110
 #: mmchecking_list.cpp:214 reports/transactions.cpp:83
 #: sharetransactiondialog.cpp:263 stockdialog.cpp:264 stockspanel.cpp:99
-#: transactionsupdatedialog.cpp:193 transdialog.cpp:568
+#: transactionsupdatedialog.cpp:193 transdialog.cpp:574
 #: usertransactionpanel.cpp:205 webappdialog.cpp:154
 msgid "Notes"
 msgstr "Notities"
 
-#: accountdialog.cpp:196
+#: accountdialog.cpp:199
 msgid "Enter user notes and details about this account."
 msgstr "Vul de notities en details in voor de gebruiker van deze rekening."
 
-#: accountdialog.cpp:200 db/DB_Table_Subcategory_V1.h:129
+#: accountdialog.cpp:203 db/DB_Table_Subcategory_V1.h:129
 #: db/DB_Table_Subcategory_V1.h:132 db/DB_Table_Subcategory_V1.h:148
 #: optiondialog.cpp:133
 msgid "Others"
 msgstr "Overige"
 
-#: accountdialog.cpp:208
+#: accountdialog.cpp:211
 msgid "Card Number:"
 msgstr "Kaartnummer:"
 
-#: accountdialog.cpp:208
+#: accountdialog.cpp:211
 msgid "Account Number:"
 msgstr "Rekeningnummer:"
 
-#: accountdialog.cpp:210
+#: accountdialog.cpp:213
 msgid "Enter the Account Number associated with this account."
 msgstr "Vul het rekeningnummer in voor deze rekening"
 
-#: accountdialog.cpp:213
+#: accountdialog.cpp:216
 msgid "Held At:"
 msgstr "Instelling:"
 
-#: accountdialog.cpp:215
+#: accountdialog.cpp:218
 msgid "Enter the name of the financial institution in which the account is held."
 msgstr "Vul de naam van de financiële instelling in waar deze rekening is ondergebracht."
 
-#: accountdialog.cpp:218
+#: accountdialog.cpp:221
 msgid "Website:"
 msgstr ""
 
-#: accountdialog.cpp:220
+#: accountdialog.cpp:223
 msgid "Enter the URL of the website for the financial institution."
 msgstr "Vul de URL in van de website van de financiële instelling."
 
-#: accountdialog.cpp:223
+#: accountdialog.cpp:226
 msgid "Contact:"
 msgstr "Contactpersoon:"
 
-#: accountdialog.cpp:225
+#: accountdialog.cpp:228
 msgid "Enter any contact information for the financial institution."
 msgstr "Vul de contactpersoon gegevens in voor de financiële instelling."
 
-#: accountdialog.cpp:228
+#: accountdialog.cpp:231
 msgid "Access Info:"
 msgstr "Toegangsinformatie:"
 
-#: accountdialog.cpp:230
+#: accountdialog.cpp:233
 msgid "Enter any login/access information for the financial institution. This is not secure as anyone with access to the mmb file can access it."
 msgstr "Vul de inloggegevens in voor de financiële instelling. Deze zijn niet beveiligd voor iemand die in een mmb bestand kan kijken."
 
-#: accountdialog.cpp:235
+#: accountdialog.cpp:238
 msgid "Statement"
 msgstr "Afschrift"
 
-#: accountdialog.cpp:243
+#: accountdialog.cpp:246
 msgid "Statement:"
 msgstr "Afschrift:"
 
-#: accountdialog.cpp:244
+#: accountdialog.cpp:247
 msgid "Locked"
 msgstr "Vergrendeld"
 
-#: accountdialog.cpp:245
+#: accountdialog.cpp:248
 msgid "Enable or disable the transaction Lock"
 msgstr "In- of Uitschakelen van transactieblokkering"
 
-#: accountdialog.cpp:248
+#: accountdialog.cpp:251
 msgid "Reconciled Date:"
 msgstr "Startdatum:"
 
-#: accountdialog.cpp:250
+#: accountdialog.cpp:253
 msgid "The date of the transaction lock"
 msgstr "Datum van de transactieblokkering"
 
-#: accountdialog.cpp:253
+#: accountdialog.cpp:256
 msgid "Minimum Bal:"
 msgstr ""
 
-#: accountdialog.cpp:255
+#: accountdialog.cpp:258
 msgid "Account balance lower limit. Zero to disable"
 msgstr "Ondergrens rekeningbalans. Nul om dit uit te schakelen"
 
-#: accountdialog.cpp:260
+#: accountdialog.cpp:263
 msgid "Credit"
 msgstr "Krediet"
 
-#: accountdialog.cpp:268
+#: accountdialog.cpp:271
 msgid "Credit Limit:"
 msgstr "Kredietlimiet:"
 
-#: accountdialog.cpp:270
+#: accountdialog.cpp:273
 msgid "Credit limit for the Account. Zero to disable"
 msgstr "Kredietlimiet voor de rekening. Nul om dit uit te schakelen"
 
-#: accountdialog.cpp:273
+#: accountdialog.cpp:276
 msgid "Interest Rate:"
 msgstr "Rentekoers:"
 
-#: accountdialog.cpp:277
+#: accountdialog.cpp:280
 msgid "Payment Due Date:"
 msgstr "Volgende betaaldatum:"
 
-#: accountdialog.cpp:281
+#: accountdialog.cpp:284
 msgid "Minimum Payment:"
 msgstr "Minimum betaling:"
 
-#: accountdialog.cpp:300
+#: accountdialog.cpp:303
 msgid "Organize attachments of this account"
 msgstr "Beheren bijlagen van deze rekening"
 
-#: accountdialog.cpp:407
+#: accountdialog.cpp:425
 msgid "Default Image"
 msgstr "Standaard afbeelding"
 
-#: accountdialog.cpp:417
+#: accountdialog.cpp:435
 #, c-format
 msgid "Image #%i"
 msgstr "Afbeelding #%i"
 
-#: accountdialog.cpp:489
+#: accountdialog.cpp:507
 msgid "Account Name "
 msgstr "Rekeningnaam"
 
-#: accountdialog.cpp:494 import_export/qif_import_gui.cpp:233
+#: accountdialog.cpp:512 import_export/qif_import_gui.cpp:233
 #: optionsettingsgeneral.cpp:76 reports/htmlbuilder.cpp:210
 msgid "Currency"
 msgstr "Valuta"
 
-#: accountdialog.cpp:502
+#: accountdialog.cpp:520
 msgid "Please insert a valid URL"
 msgstr ""
 
-#: accountdialog.cpp:502
+#: accountdialog.cpp:520
 msgid "Invalid URL"
 msgstr ""
 
@@ -372,7 +372,7 @@ msgstr "Geef de bezitting een naam"
 #: model/Model_CustomField.cpp:29 reports/cashflow.cpp:252
 #: reports/incexpenses.cpp:230 reports/summary.cpp:155
 #: reports/transactions.cpp:75 stockdialog.cpp:297 stockdialog.cpp:676
-#: transactionsupdatedialog.cpp:114 transdialog.cpp:447
+#: transactionsupdatedialog.cpp:114 transdialog.cpp:453
 #: usertransactionpanel.cpp:107 webappdialog.cpp:147 wizard_update.cpp:136
 msgid "Date"
 msgstr "Datum"
@@ -455,7 +455,7 @@ msgstr ""
 #: import_export/univcsvdialog.cpp:115 maincurrencydialog.cpp:248
 #: mmhomepage.cpp:433 reports/incexpenses.cpp:109 reports/transactions.cpp:81
 #: splitdetailsdialog.cpp:119 transactionsupdatedialog.cpp:141
-#: transdialog.cpp:490 usertransactionpanel.cpp:137 webappdialog.cpp:150
+#: transdialog.cpp:496 usertransactionpanel.cpp:137 webappdialog.cpp:150
 msgid "Type"
 msgstr ""
 
@@ -496,7 +496,7 @@ msgstr "&Wijzig bezitting"
 msgid "&Delete Asset"
 msgstr "&Verwijder bezitting"
 
-#: assetspanel.cpp:107 billsdepositspanel.cpp:403 mmchecking_list.cpp:340
+#: assetspanel.cpp:107 billsdepositspanel.cpp:403 mmchecking_list.cpp:339
 #: mmframe.cpp:1229 payeedialog.cpp:372 stockspanel.cpp:144
 msgid "&Organize Attachments"
 msgstr "&Beheren bijlagen"
@@ -550,7 +550,7 @@ msgid "&Edit "
 msgstr "&Wijzigen "
 
 #: assetspanel.cpp:483 billsdepositspanel.cpp:272 budgetyeardialog.cpp:103
-#: categdialog.cpp:234 maincurrencydialog.cpp:289 mmchecking_list.cpp:356
+#: categdialog.cpp:234 maincurrencydialog.cpp:289 mmchecking_list.cpp:355
 #: mmcheckingpanel.cpp:359 stockdialog.cpp:339 stockspanel.cpp:591
 msgid "&Delete "
 msgstr "&Verwijderen "
@@ -872,7 +872,7 @@ msgstr ""
 msgid "The requested payment will occur without user interaction"
 msgstr "De verzochte betaling vind plaats zonder dat de gebruiker iets hoeft te doen"
 
-#: billsdepositsdialog.cpp:488 transdialog.cpp:426
+#: billsdepositsdialog.cpp:488 transdialog.cpp:432
 msgid "Transaction Details"
 msgstr "Transactiedetails"
 
@@ -888,7 +888,7 @@ msgstr "Ga naar de 'volgende gebeurtenis' datum"
 msgid "Date Due"
 msgstr "Vervaldatum"
 
-#: billsdepositsdialog.cpp:524 filtertransdialog.cpp:249 transdialog.cpp:1274
+#: billsdepositsdialog.cpp:524 filtertransdialog.cpp:249 transdialog.cpp:1280
 msgid "Specify the status for the transaction"
 msgstr "Geef de status van de transactie aan"
 
@@ -897,20 +897,20 @@ msgstr "Geef de status van de transactie aan"
 #: filtertransdialog.cpp:907 import_export/qif_import_gui.cpp:234
 #: import_export/qif_import_gui.cpp:245 import_export/qif_import_gui.cpp:255
 #: mmchecking_list.cpp:201 reports/transactions.cpp:79
-#: transactionsupdatedialog.cpp:127 transdialog.cpp:470
+#: transactionsupdatedialog.cpp:127 transdialog.cpp:476
 #: usertransactionpanel.cpp:177 webappdialog.cpp:149 wizard_update.cpp:136
 msgid "Status"
 msgstr ""
 
-#: billsdepositsdialog.cpp:531 splitdetailsdialog.cpp:130 transdialog.cpp:1275
+#: billsdepositsdialog.cpp:531 splitdetailsdialog.cpp:130 transdialog.cpp:1281
 msgid "Specify the type of transactions to be created."
 msgstr "Specificeer type te creëren transacties."
 
-#: billsdepositsdialog.cpp:532 transdialog.cpp:485
+#: billsdepositsdialog.cpp:532 transdialog.cpp:491
 msgid "&Advanced"
 msgstr "&Geavanceerd"
 
-#: billsdepositsdialog.cpp:535 transdialog.cpp:1279
+#: billsdepositsdialog.cpp:535 transdialog.cpp:1285
 msgid "Allows the setting of different amounts in the FROM and TO accounts."
 msgstr "Geeft de mogelijkheid om afwijkende bedragen in de VAN en NAAR rekening in te geven."
 
@@ -921,11 +921,11 @@ msgstr "Geeft de mogelijkheid om afwijkende bedragen in de VAN en NAAR rekening 
 #: reports/categexp.cpp:172 reports/incexpenses.cpp:110
 #: reports/transactions.cpp:82 splitdetailsdialog.cpp:135
 #: splittransactionsdialog.cpp:138 transactionsupdatedialog.cpp:156
-#: transdialog.cpp:504 usertransactionpanel.cpp:141 webappdialog.cpp:153
+#: transdialog.cpp:510 usertransactionpanel.cpp:141 webappdialog.cpp:153
 msgid "Amount"
 msgstr "Bedrag"
 
-#: billsdepositsdialog.cpp:558 transdialog.cpp:1260
+#: billsdepositsdialog.cpp:558 transdialog.cpp:1266
 msgid "Specify the transfer amount in the To Account"
 msgstr "Specificeer het bedrag van de overboeking in de NAAR rekening"
 
@@ -934,8 +934,8 @@ msgstr "Specificeer het bedrag van de overboeking in de NAAR rekening"
 #: filtertransdialog.cpp:177 filtertransdialog.cpp:869
 #: import_export/qif_import_gui.cpp:98 import_export/qif_import_gui.cpp:154
 #: import_export/qif_import_gui.cpp:226 import_export/qif_import_gui.cpp:813
-#: mmchecking_list.cpp:196 reports/transactions.cpp:77 transdialog.cpp:300
-#: transdialog.cpp:512 usertransactionpanel.cpp:111 webappdialog.cpp:148
+#: mmchecking_list.cpp:196 reports/transactions.cpp:77 transdialog.cpp:306
+#: transdialog.cpp:518 usertransactionpanel.cpp:111 webappdialog.cpp:148
 msgid "Account"
 msgstr "Rekening"
 
@@ -954,8 +954,8 @@ msgstr "Specificeer de rekening die hoort bij deze herhalende transactie"
 #: filtertransdialog.cpp:419 filtertransdialog.cpp:884
 #: import_export/qif_import_gui.cpp:101 import_export/qif_import_gui.cpp:239
 #: import_export/univcsvdialog.cpp:105 mmchecking_list.cpp:199
-#: mmhomepage.cpp:353 reports/payee.cpp:135 reports/transactions.cpp:78
-#: transactionsupdatedialog.cpp:167 transdialog.cpp:294 transdialog.cpp:518
+#: mmhomepage.cpp:353 reports/payee.cpp:134 reports/transactions.cpp:78
+#: transactionsupdatedialog.cpp:167 transdialog.cpp:300 transdialog.cpp:524
 #: usertransactionpanel.cpp:181 webappdialog.cpp:151
 msgid "Payee"
 msgstr "Begunstigde"
@@ -965,11 +965,11 @@ msgstr "Begunstigde"
 msgid "Select Payee"
 msgstr "Kies begunstigde"
 
-#: billsdepositsdialog.cpp:587 transdialog.cpp:530
+#: billsdepositsdialog.cpp:587 transdialog.cpp:536
 msgid "Split"
 msgstr "Splits"
 
-#: billsdepositsdialog.cpp:590 transdialog.cpp:1276
+#: billsdepositsdialog.cpp:590 transdialog.cpp:1282
 msgid "Use split Categories"
 msgstr "Gebruik verschillende categorieën"
 
@@ -981,25 +981,25 @@ msgstr "Gebruik verschillende categorieën"
 #: reports/budgetingperf.cpp:199 reports/categexp.cpp:171
 #: reports/categexp.cpp:399 reports/transactions.cpp:80
 #: splitdetailsdialog.cpp:144 splittransactionsdialog.cpp:137
-#: transactionsupdatedialog.cpp:182 transdialog.cpp:539
+#: transactionsupdatedialog.cpp:182 transdialog.cpp:545
 #: usertransactionpanel.cpp:188 webappdialog.cpp:152
 msgid "Category"
 msgstr "Categorie"
 
 #: billsdepositsdialog.cpp:598 billsdepositsdialog.cpp:1431
-#: transactionsupdatedialog.cpp:185 transdialog.cpp:394 transdialog.cpp:1019
+#: transactionsupdatedialog.cpp:185 transdialog.cpp:400 transdialog.cpp:1025
 #: usertransactionpanel.cpp:189
 msgid "Select Category"
 msgstr "Kies categorie"
 
-#: billsdepositsdialog.cpp:607 transdialog.cpp:1277
+#: billsdepositsdialog.cpp:607 transdialog.cpp:1283
 msgid "Specify any associated check number or transaction number"
 msgstr "Specificeer een gerelateerd check- of transactienummer"
 
 #: billsdepositsdialog.cpp:609 billsdepositspanel.cpp:109
 #: filtertransdialog.cpp:299 filtertransdialog.cpp:948
 #: import_export/qif_import_gui.cpp:100 import_export/univcsvdialog.cpp:109
-#: mmchecking_list.cpp:192 reports/transactions.cpp:76 transdialog.cpp:551
+#: mmchecking_list.cpp:192 reports/transactions.cpp:76 transdialog.cpp:557
 #: usertransactionpanel.cpp:201
 msgid "Number"
 msgstr "Nummer"
@@ -1008,11 +1008,11 @@ msgstr "Nummer"
 msgid "Organize attachments of this recurring transaction"
 msgstr "Bijlagen van deze herhalende transactie beheren"
 
-#: billsdepositsdialog.cpp:622 transdialog.cpp:570 usertransactionpanel.cpp:216
+#: billsdepositsdialog.cpp:622 transdialog.cpp:576 usertransactionpanel.cpp:216
 msgid "Select one of the frequently used notes"
 msgstr "Selecteer een van de veel gebruikte notities"
 
-#: billsdepositsdialog.cpp:633 transdialog.cpp:1278
+#: billsdepositsdialog.cpp:633 transdialog.cpp:1284
 #: usertransactionpanel.cpp:225
 msgid "Specify any text notes you want to add to this transaction."
 msgstr "Notities behorende bij deze transactie"
@@ -1025,12 +1025,12 @@ msgstr "Kies een financiële- of termijnrekening"
 msgid "Account name"
 msgstr "Rekeningnaam"
 
-#: billsdepositsdialog.cpp:800 billsdepositsdialog.cpp:840 transdialog.cpp:297
-#: transdialog.cpp:369
+#: billsdepositsdialog.cpp:800 billsdepositsdialog.cpp:840 transdialog.cpp:303
+#: transdialog.cpp:375
 msgid "From"
 msgstr "Van"
 
-#: billsdepositsdialog.cpp:812 transdialog.cpp:367
+#: billsdepositsdialog.cpp:812 transdialog.cpp:373
 msgid "To"
 msgstr "Aan"
 
@@ -1106,13 +1106,13 @@ msgstr ""
 msgid "Choose one of the following:"
 msgstr ""
 
-#: billsdepositsdialog.cpp:1399 transdialog.cpp:1237
+#: billsdepositsdialog.cpp:1399 transdialog.cpp:1243
 #: usertransactionpanel.cpp:191
 msgid "Specify the category for this transaction"
 msgstr "Specificeer categorie voor deze transactie"
 
 #: billsdepositsdialog.cpp:1421 categdialog.cpp:118
-#: import_export/qif_export.cpp:132 mmframereport.cpp:134 transdialog.cpp:382
+#: import_export/qif_export.cpp:132 mmframereport.cpp:134 transdialog.cpp:388
 msgid "Categories"
 msgstr "Categorieën"
 
@@ -1124,7 +1124,7 @@ msgstr "Nieuwe herhalende transactie"
 msgid "Specify where the transaction is going to"
 msgstr "Specificeer waar de transactie naartoe gaat"
 
-#: billsdepositsdialog.h:121 transdialog.cpp:1269
+#: billsdepositsdialog.h:121 transdialog.cpp:1275
 msgid "Specify where the transaction is coming from"
 msgstr "Specificeer waar de transactie vandaan komt"
 
@@ -1132,7 +1132,7 @@ msgstr "Specificeer waar de transactie vandaan komt"
 msgid "Specify which account the transfer is going to"
 msgstr "Specificeer naar welke rekening de overboeking gaat"
 
-#: billsdepositsdialog.h:123 transdialog.cpp:1264 usertransactionpanel.cpp:145
+#: billsdepositsdialog.h:123 transdialog.cpp:1270 usertransactionpanel.cpp:145
 msgid "Specify the amount for this transaction"
 msgstr "Specificeer het bedrag voor deze transactie"
 
@@ -1996,7 +1996,7 @@ msgid "Other Expenses"
 msgstr "Overige uitgaven"
 
 #: db/DB_Table_Category_V1.h:126 model/Model_Billsdeposits.cpp:33
-#: model/Model_Checking.cpp:31 transdialog.cpp:350
+#: model/Model_Checking.cpp:31 transdialog.cpp:356
 msgid "Transfer"
 msgstr "Overboeking"
 
@@ -2717,8 +2717,8 @@ msgstr "Het begunstigde veld in notities opnemen"
 #: import_export/qif_import_gui.cpp:549 import_export/qif_import_gui.cpp:1122
 #: import_export/univcsvdialog.cpp:736 import_export/univcsvdialog.cpp:871
 #: import_export/univcsvdialog.cpp:874 import_export/univcsvdialog.cpp:895
-#: import_export/univcsvdialog.cpp:902 transdialog.cpp:328 transdialog.cpp:980
-#: transdialog.cpp:984 transdialog.cpp:989 webapp.cpp:398 webapp.cpp:407
+#: import_export/univcsvdialog.cpp:902 transdialog.cpp:334 transdialog.cpp:986
+#: transdialog.cpp:990 transdialog.cpp:995 webapp.cpp:398 webapp.cpp:407
 msgid "Unknown"
 msgstr "Onbekend"
 
@@ -3496,169 +3496,169 @@ msgstr "Voorbeeld voor UK (HSBC HLDG) aandeel: HSBA.L"
 msgid "If the Stock Name field is empty it will be filed when prices updated"
 msgstr "Als de naam van het aandeel leeg is, dan wordt het ingevuld tijdens bijwerken van de prijzen"
 
-#: mmchecking_list.cpp:305
+#: mmchecking_list.cpp:304
 msgid "&New Withdrawal"
 msgstr "&Nieuwe opname"
 
-#: mmchecking_list.cpp:306
+#: mmchecking_list.cpp:305
 msgid "&New Deposit"
 msgstr "&Nieuwe storting"
 
-#: mmchecking_list.cpp:308
+#: mmchecking_list.cpp:307
 msgid "&New Transfer"
 msgstr "&Nieuwe overboeking"
 
-#: mmchecking_list.cpp:312
+#: mmchecking_list.cpp:311
 msgid "&Edit Transaction"
 msgid_plural "&Edit Transactions"
 msgstr[0] ""
 msgstr[1] ""
 
-#: mmchecking_list.cpp:317
+#: mmchecking_list.cpp:316
 msgid "&Copy Transaction"
 msgid_plural "&Copy Transactions"
 msgstr[0] ""
 msgstr[1] ""
 
-#: mmchecking_list.cpp:322
+#: mmchecking_list.cpp:321
 msgid "&Paste Transaction"
 msgstr ""
 
-#: mmchecking_list.cpp:322
+#: mmchecking_list.cpp:321
 #, c-format
 msgid "&Paste Transactions (%d)"
 msgstr ""
 
-#: mmchecking_list.cpp:327
+#: mmchecking_list.cpp:326
 msgid "D&uplicate Transaction"
 msgstr "Kopieer transactie"
 
-#: mmchecking_list.cpp:330
+#: mmchecking_list.cpp:329
 msgid "&Move Transaction"
 msgstr "Ver&plaats transactie"
 
-#: mmchecking_list.cpp:336
+#: mmchecking_list.cpp:335
 msgid "&View Split Categories"
 msgstr "Toon &Splitsen categorieën"
 
-#: mmchecking_list.cpp:344
+#: mmchecking_list.cpp:343
 msgid "Create Recurring T&ransaction"
 msgstr ""
 
-#: mmchecking_list.cpp:350
+#: mmchecking_list.cpp:349
 msgid "&Delete selected transaction"
 msgid_plural "&Delete selected transactions"
 msgstr[0] ""
 msgstr[1] ""
 
-#: mmchecking_list.cpp:353
+#: mmchecking_list.cpp:352
 msgid "Delete all transactions in current view"
 msgstr "Verwijder alle transacties in de huidige lijst"
 
-#: mmchecking_list.cpp:354
+#: mmchecking_list.cpp:353
 msgid "Delete Viewed \"Follow Up\" Transactions"
 msgstr ""
 
-#: mmchecking_list.cpp:355
+#: mmchecking_list.cpp:354
 msgid "Delete Viewed \"Unreconciled\" Transactions"
 msgstr ""
 
-#: mmchecking_list.cpp:361 mmchecking_list.cpp:374
+#: mmchecking_list.cpp:360 mmchecking_list.cpp:373
 msgid "as Reconciled"
 msgstr "naar bevestigd"
 
-#: mmchecking_list.cpp:363 mmchecking_list.cpp:375
+#: mmchecking_list.cpp:362 mmchecking_list.cpp:374
 msgid "as Unreconciled"
 msgstr "naar openstaand"
 
-#: mmchecking_list.cpp:365 mmchecking_list.cpp:376
+#: mmchecking_list.cpp:364 mmchecking_list.cpp:375
 msgid "as Void"
 msgstr "naar ongeldig"
 
-#: mmchecking_list.cpp:367
+#: mmchecking_list.cpp:366
 msgid "as Followup"
 msgstr ""
 
-#: mmchecking_list.cpp:369 mmchecking_list.cpp:378
+#: mmchecking_list.cpp:368 mmchecking_list.cpp:377
 msgid "as Duplicate"
 msgstr "naar kopie"
 
-#: mmchecking_list.cpp:371
+#: mmchecking_list.cpp:370
 msgid "Mark all being selected"
 msgstr ""
 
-#: mmchecking_list.cpp:377
+#: mmchecking_list.cpp:376
 msgid "as needing Followup"
 msgstr "naar te controleren"
 
-#: mmchecking_list.cpp:379
+#: mmchecking_list.cpp:378
 msgid "Mark all being viewed"
 msgstr "Wijzig de status van alle getoonde regels"
 
-#: mmchecking_list.cpp:447
+#: mmchecking_list.cpp:446
 msgid "Do you really want to delete all the transactions shown?"
 msgstr "Wilt u werkelijk alle zichtbare transacties verwijderen?"
 
-#: mmchecking_list.cpp:448 mmchecking_list.cpp:461 mmchecking_list.cpp:798
+#: mmchecking_list.cpp:447 mmchecking_list.cpp:460 mmchecking_list.cpp:797
 msgid "Confirm Transaction Deletion"
 msgstr "Bevestig verwijderen transactie"
 
-#: mmchecking_list.cpp:457
+#: mmchecking_list.cpp:456
 msgid "Follow Up"
 msgstr "Te controleren"
 
-#: mmchecking_list.cpp:457
+#: mmchecking_list.cpp:456
 msgid "Unreconciled"
 msgstr "Openstaand"
 
-#: mmchecking_list.cpp:460
+#: mmchecking_list.cpp:459
 #, c-format
 msgid "Do you really want to delete all the \"%s\" transactions shown?"
 msgstr "Wilt u werkelijk alle getoonde \"%s\" transacties verwijderen?"
 
-#: mmchecking_list.cpp:793
+#: mmchecking_list.cpp:792
 #, c-format
 msgid "Do you really want to delete the selected transaction?"
 msgid_plural "Do you really want to delete %i selected transactions?"
 msgstr[0] ""
 msgstr[1] ""
 
-#: mmchecking_list.cpp:847
+#: mmchecking_list.cpp:846
 #, c-format
 msgid "Locked transaction to date: %s\n\n"
 "Reconciled transactions."
 msgstr ""
 
-#: mmchecking_list.cpp:850 transdialog.cpp:714 transdialog.cpp:747
+#: mmchecking_list.cpp:849 transdialog.cpp:720 transdialog.cpp:753
 msgid "MMEX Transaction Check"
 msgstr "MMEX transactie controle"
 
-#: mmchecking_list.cpp:883
+#: mmchecking_list.cpp:882
 #, c-format
 msgid "You are about to edit a transaction involving an account that is closed."
 msgid_plural "The edit will affect %i transactions involving an account that is closed."
 msgstr[0] ""
 msgstr[1] ""
 
-#: mmchecking_list.cpp:885
+#: mmchecking_list.cpp:884
 msgid "\n\n"
 "Do you still want to perform the edit?"
 msgstr ""
 
-#: mmchecking_list.cpp:886
+#: mmchecking_list.cpp:885
 msgid "Closed Account Check"
 msgstr ""
 
-#: mmchecking_list.cpp:1038 stockspanel.cpp:290
+#: mmchecking_list.cpp:1037 stockspanel.cpp:290
 #, c-format
 msgid "Moving Transaction from %s to..."
 msgstr "Verplaats transacties van %s naar..."
 
-#: mmchecking_list.cpp:1041 stockspanel.cpp:291
+#: mmchecking_list.cpp:1040 stockspanel.cpp:291
 msgid "Select the destination Account "
 msgstr "Kies de doel rekening"
 
-#: mmchecking_list.cpp:1100
+#: mmchecking_list.cpp:1099
 msgid "Recurring Transaction saved."
 msgstr ""
 
@@ -3678,7 +3678,7 @@ msgstr "Bevestigde balans: "
 msgid "Diff: "
 msgstr "Verschil: "
 
-#: mmcheckingpanel.cpp:351 mmframe.cpp:1668 transdialog.cpp:171
+#: mmcheckingpanel.cpp:351 mmframe.cpp:1668 transdialog.cpp:177
 msgid "New Transaction"
 msgstr "Nieuwe transactie"
 
@@ -3797,7 +3797,7 @@ msgstr "Lening rekeningen"
 msgid "Auto Repeat Transactions"
 msgstr "Automatisch herhalende transacties"
 
-#: mmframe.cpp:684
+#: mmframe.cpp:684 mmframe.cpp:1656
 msgid "Home Page"
 msgstr "Startpagina"
 
@@ -4046,12 +4046,12 @@ msgid "system default"
 msgstr ""
 
 #: mmframe.cpp:1430
-msgid "Account &List"
-msgstr "Rekeningen&lijst"
+msgid "&Home Page"
+msgstr ""
 
 #: mmframe.cpp:1430 mmframe.cpp:1656
-msgid "Show Account List"
-msgstr "Laat rekeninglijst zien"
+msgid "Show Home Page"
+msgstr ""
 
 #: mmframe.cpp:1439
 msgid "Change the account type of an account."
@@ -4368,10 +4368,6 @@ msgstr ""
 #: mmframe.cpp:1652 mmframe.cpp:1668
 msgid "New"
 msgstr "Nieuw"
-
-#: mmframe.cpp:1656
-msgid "Account List"
-msgstr ""
 
 #: mmframe.cpp:1658
 msgid "Show Organize Categories Dialog"
@@ -4704,7 +4700,7 @@ msgstr "Inkomsten t.o.v uitgaven"
 msgid "My Usage"
 msgstr ""
 
-#: mmframereport.cpp:169 reports/payee.cpp:114
+#: mmframereport.cpp:169 reports/payee.cpp:113
 msgid "Payees"
 msgstr "Begunstigden"
 
@@ -4747,7 +4743,7 @@ msgid "Total"
 msgstr "Totaal"
 
 #: mmhomepage.cpp:105 mmhomepage.cpp:685 reports/incexpenses.cpp:273
-#: reports/payee.cpp:165 reports/summarystocks.cpp:133
+#: reports/payee.cpp:164 reports/summarystocks.cpp:133
 #: splittransactionsdialog.cpp:143
 msgid "Total:"
 msgstr "Totaal:"
@@ -4765,7 +4761,7 @@ msgstr "Inkomsten vs uitgaven: %s"
 #: mmhomepage.cpp:441 reports/categexp.cpp:121 reports/categexp.cpp:145
 #: reports/categexp.cpp:372 reports/categexp.cpp:438 reports/incexpenses.cpp:86
 #: reports/incexpenses.cpp:208 reports/incexpenses.cpp:232
-#: reports/payee.cpp:137
+#: reports/payee.cpp:136
 msgid "Expenses"
 msgstr "Uitgaven"
 
@@ -5428,7 +5424,7 @@ msgstr ""
 msgid "Ignore Future Transactions"
 msgstr ""
 
-#: optionsettingsview.cpp:137 transdialog.cpp:564
+#: optionsettingsview.cpp:137 transdialog.cpp:570
 msgid "User Colors"
 msgstr "Gebruikerskleuren"
 
@@ -5697,7 +5693,7 @@ msgid_plural "Cash Flow Forecast for %i Years Ahead"
 msgstr[0] ""
 msgstr[1] ""
 
-#: reports/cashflow.cpp:254 reports/incexpenses.cpp:233 reports/payee.cpp:138
+#: reports/cashflow.cpp:254 reports/incexpenses.cpp:233 reports/payee.cpp:137
 msgid "Difference"
 msgstr "Verschil"
 
@@ -5725,7 +5721,7 @@ msgstr "Categorie inkomsten/uitgaven"
 msgid "Overall"
 msgstr "Totaal"
 
-#: reports/categexp.cpp:437 reports/payee.cpp:136
+#: reports/categexp.cpp:437 reports/payee.cpp:135
 msgid "Incomes"
 msgstr "Inkomsten"
 
@@ -6304,76 +6300,76 @@ msgstr ""
 msgid "Invalid type"
 msgstr ""
 
-#: transactionsupdatedialog.cpp:312 transdialog.cpp:654
+#: transactionsupdatedialog.cpp:312 transdialog.cpp:660
 #, c-format
 msgid "Do you want to add new payee: \n"
 "%s?"
 msgstr "Wilt u deze begunstigde toevoegen: \n"
 "%s?"
 
-#: transactionsupdatedialog.cpp:313 transdialog.cpp:655
+#: transactionsupdatedialog.cpp:313 transdialog.cpp:661
 msgid "Confirm to add new payee"
 msgstr "Bevestig invoeren van een nieuwe begunstigde"
 
-#: transdialog.cpp:171
+#: transdialog.cpp:177
 msgid "Duplicate Transaction"
 msgstr "Kopie transactie"
 
-#: transdialog.cpp:171
+#: transdialog.cpp:177
 msgid "Edit Transaction"
 msgstr "Wijzig transactie"
 
-#: transdialog.cpp:458 usertransactionpanel.cpp:103
+#: transdialog.cpp:464 usertransactionpanel.cpp:103
 msgid "Retard or advance the date of the transaction"
 msgstr "Ga naar de datum van de transactie"
 
-#: transdialog.cpp:549
+#: transdialog.cpp:555
 msgid "Populate Transaction #"
 msgstr "Vul transactienummer in"
 
-#: transdialog.cpp:559 usertransactionpanel.cpp:209
+#: transdialog.cpp:565 usertransactionpanel.cpp:209
 msgid "Organize attachments of this transaction"
 msgstr "Organiseer de bijlagen van deze transactie"
 
-#: transdialog.cpp:598
+#: transdialog.cpp:604
 msgid "Show/Hide custom fields window"
 msgstr "Toon/Verberg aangepaste velden venster"
 
-#: transdialog.cpp:745
+#: transdialog.cpp:751
 msgid "This transaction will exceed your account limit.\n\n"
 "Do you wish to continue?"
 msgstr "Deze transactie overschrijdt de rekeninglimiet.\n\n"
 "Wilt u verder gaan?"
 
-#: transdialog.cpp:1255
+#: transdialog.cpp:1261
 msgid "Specify account the money is taken from"
 msgstr "Specificeer van welke rekening het geld komt"
 
-#: transdialog.cpp:1256
+#: transdialog.cpp:1262
 msgid "Specify account the money is moved to"
 msgstr "Specificeer naar welke rekening het geld gaat"
 
-#: transdialog.cpp:1257
+#: transdialog.cpp:1263
 msgid "Specify the transfer amount in the From Account."
 msgstr "Het bedrag overboeking bij de VAN rekening invoeren."
 
-#: transdialog.cpp:1265
+#: transdialog.cpp:1271
 msgid "Specify account for the transaction"
 msgstr "Specificeer de rekening voor deze transactie"
 
-#: transdialog.cpp:1267
+#: transdialog.cpp:1273
 msgid "Specify to whom the transaction is going to"
 msgstr "Specificeer waar de transactie naartoe gaat"
 
-#: transdialog.cpp:1273 usertransactionpanel.cpp:95
+#: transdialog.cpp:1279 usertransactionpanel.cpp:95
 msgid "Specify the date of the transaction"
 msgstr "Specificeer transactie datum"
 
-#: transdialog.cpp:1311
+#: transdialog.cpp:1317
 msgid "Clear colour"
 msgstr ""
 
-#: transdialog.cpp:1316
+#: transdialog.cpp:1322
 #, c-format
 msgid "Colour #%i"
 msgstr ""
