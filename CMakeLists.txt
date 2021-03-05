@@ -19,7 +19,7 @@
 
 set(MMEX_VERSION 1.3.7)
 SET(MMEX_VERSION_ALPHA -1)
-SET(MMEX_VERSION_BETA 5)
+SET(MMEX_VERSION_BETA 6)
 SET(MMEX_VERSION_RC -1)
 
 # ---------------------------------------------------------------------------

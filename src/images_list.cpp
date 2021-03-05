@@ -87,6 +87,8 @@ static const std::map<int, wxBitmap> acc_images()
 wxImageList* navtree_images_list()
 {
     int x = Option::instance().getIconSize();
+    if (x < 16) x = 16;
+    if (x > 48) x = 48;
     wxImageList* imageList = createImageList();
     for (const auto& img : navtree_images())
     {
