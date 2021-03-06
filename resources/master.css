@@ -981,6 +981,8 @@ a.badge:focus {
     box-shadow: 0 0 20px rgba(0,0,0,0.5); /* shadow parameters */
     padding: 5px;
     margin: 10px;
+    overflow:auto;
+    height:100%;
 }
 
 .shadowTitle {
