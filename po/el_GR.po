@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-03-05 22:19+0300\n"
-"PO-Revision-Date: 2021-03-05 19:25\n"
+"PO-Revision-Date: 2021-03-06 07:54\n"
 "Last-Translator: \n"
 "Language-Team: Greek\n"
 "MIME-Version: 1.0\n"
@@ -5433,23 +5433,23 @@ msgstr "Χρώματα Χρήστη"
 
 #: optionsettingsview.cpp:166
 msgid "Icon Sizes"
-msgstr ""
+msgstr "Μεγέθη Εικονιδίων"
 
 #: optionsettingsview.cpp:175
 msgid "16"
-msgstr ""
+msgstr "16"
 
 #: optionsettingsview.cpp:175
 msgid "24"
-msgstr ""
+msgstr "24"
 
 #: optionsettingsview.cpp:175
 msgid "32"
-msgstr ""
+msgstr "32"
 
 #: optionsettingsview.cpp:175
 msgid "48"
-msgstr ""
+msgstr "48"
 
 #: payeedialog.cpp:65
 msgid "Default Category"
