@@ -130,7 +130,6 @@ EVT_MENU(MENU_TREEPOPUP_LAUNCHWEBSITE, mmGUIFrame::OnLaunchAccountWebsite)
 EVT_MENU(MENU_TREEPOPUP_ACCOUNTATTACHMENTS, mmGUIFrame::OnAccountAttachments)
 EVT_MENU(MENU_VIEW_TOOLBAR, mmGUIFrame::OnViewToolbar)
 EVT_MENU(MENU_VIEW_LINKS, mmGUIFrame::OnViewLinks)
-EVT_MENU(MENU_VIEW_HIDE_SHARE_ACCOUNTS, mmGUIFrame::OnHideShareAccounts)
 EVT_MENU(MENU_VIEW_BUDGET_FINANCIAL_YEARS, mmGUIFrame::OnViewBudgetFinancialYears)
 EVT_MENU(MENU_VIEW_BUDGET_TRANSFER_TOTAL, mmGUIFrame::OnViewBudgetTransferTotal)
 EVT_MENU(MENU_VIEW_BUDGET_CATEGORY_SUMMARY, mmGUIFrame::OnViewBudgetCategorySummary)
@@ -201,7 +200,6 @@ mmGUIFrame::mmGUIFrame(mmGUIApp* app, const wxString& title
     , toolBar_(nullptr)
     , selectedItemData_(nullptr)
     , helpFileIndex_(-1)
-    , m_hide_share_accounts(true)
     , autoRepeatTransactionsTimer_(this, AUTO_REPEAT_TRANSACTIONS_TIMER_ID)
 {
     // tell wxAuiManager to manage this frame
@@ -606,7 +604,6 @@ void mmGUIFrame::menuEnableItems(bool enable)
     menuBar_->FindItem(MENU_BUDGETSETUPDIALOG)->Enable(enable);
     menuBar_->FindItem(MENU_TRANSACTIONREPORT)->Enable(enable);
 
-    menuBar_->FindItem(MENU_VIEW_HIDE_SHARE_ACCOUNTS)->Enable(enable);
     menuBar_->FindItem(MENU_VIEW_BUDGET_FINANCIAL_YEARS)->Enable(enable);
     menuBar_->FindItem(MENU_VIEW_BUDGET_TRANSFER_TOTAL)->Enable(enable);
     menuBar_->FindItem(MENU_VIEW_BUDGET_CATEGORY_SUMMARY)->Enable(enable);
@@ -837,10 +834,10 @@ void mmGUIFrame::updateNavTreeControl()
                         }
                     }
                 }
+                break;
             }
-            break;
             case Model_Account::SHARES:
-                tacct = m_nav_tree_ctrl->AppendItem(shareAccounts, account.ACCOUNTNAME, selectedImage, selectedImage);
+                // do nothing
                 break;
             case Model_Account::ASSET:
                 tacct = m_nav_tree_ctrl->AppendItem(assets, account.ACCOUNTNAME, selectedImage, selectedImage);
@@ -888,7 +885,7 @@ void mmGUIFrame::updateNavTreeControl()
         if (!m_nav_tree_ctrl->ItemHasChildren(loanAccounts)) {
             m_nav_tree_ctrl->Delete(loanAccounts);
         }
-        if (!m_nav_tree_ctrl->ItemHasChildren(shareAccounts) || m_hide_share_accounts)
+        if (!m_nav_tree_ctrl->ItemHasChildren(shareAccounts))
         {
             m_nav_tree_ctrl->Delete(shareAccounts);
         }
@@ -1368,8 +1365,6 @@ void mmGUIFrame::createMenu()
         _("&Toolbar"), _("Show/Hide the toolbar"), wxITEM_CHECK);
     wxMenuItem* menuItemLinks = new wxMenuItem(menuView, MENU_VIEW_LINKS,
         _("&Navigation"), _("Show/Hide the Navigation tree control"), wxITEM_CHECK);
-    wxMenuItem* menuItemHideShareAccounts = new wxMenuItem(menuView, MENU_VIEW_HIDE_SHARE_ACCOUNTS,
-        _("&Display Share Accounts"), _("Show/Hide Share Accounts in the navigation tree"), wxITEM_CHECK);
 
     wxMenuItem* menuItemBudgetFinancialYears = new wxMenuItem(menuView, MENU_VIEW_BUDGET_FINANCIAL_YEARS,
         _("Budgets: As Financial &Years"), _("Display Budgets in Financial Year Format"), wxITEM_CHECK);
@@ -1382,7 +1377,6 @@ void mmGUIFrame::createMenu()
     //Add the menu items to the menu bar
     menuView->Append(menuItemToolbar);
     menuView->Append(menuItemLinks);
-    menuView->Append(menuItemHideShareAccounts);
     menuView->AppendSeparator();
     menuView->Append(menuItemBudgetFinancialYears);
     menuView->Append(menuItemBudgetTransferTotal);
@@ -3061,12 +3055,6 @@ void mmGUIFrame::OnViewToolbarUpdateUI(wxUpdateUIEvent &event)
 void mmGUIFrame::OnViewLinksUpdateUI(wxUpdateUIEvent &event)
 {
     event.Check(m_mgr.GetPane("Navigation").IsShown());
-}
-
-void mmGUIFrame::OnHideShareAccounts(wxCommandEvent &WXUNUSED(event))
-{
-    m_hide_share_accounts = !m_hide_share_accounts;
-    updateNavTreeControl();
 }
 
 void mmGUIFrame::RefreshNavigationTree()
