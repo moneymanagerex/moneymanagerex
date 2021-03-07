@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2021-03-05 22:19+0300\n"
-"PO-Revision-Date: 2021-03-07 09:33\n"
+"POT-Creation-Date: 2021-03-07 16:19+0300\n"
+"PO-Revision-Date: 2021-03-07 13:51\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -370,7 +370,7 @@ msgstr "Введите название актива"
 #: maincurrencydialog.cpp:236 maincurrencydialog.cpp:258
 #: mmchecking_list.cpp:190 mmreportspanel.cpp:257 mmreportspanel.cpp:275
 #: model/Model_CustomField.cpp:29 reports/cashflow.cpp:252
-#: reports/incexpenses.cpp:230 reports/summary.cpp:155
+#: reports/incexpenses.cpp:231 reports/summary.cpp:155
 #: reports/transactions.cpp:75 stockdialog.cpp:297 stockdialog.cpp:676
 #: transactionsupdatedialog.cpp:114 transdialog.cpp:453
 #: usertransactionpanel.cpp:107 webappdialog.cpp:147 wizard_update.cpp:136
@@ -1326,8 +1326,8 @@ msgstr "Расход"
 
 #: budgetentrydialog.cpp:128 db/DB_Table_Category_V1.h:123 mmhomepage.cpp:437
 #: reports/categexp.cpp:126 reports/categexp.cpp:155 reports/categexp.cpp:373
-#: reports/incexpenses.cpp:83 reports/incexpenses.cpp:207
-#: reports/incexpenses.cpp:231
+#: reports/incexpenses.cpp:83 reports/incexpenses.cpp:208
+#: reports/incexpenses.cpp:232
 msgid "Income"
 msgstr "Доход"
 
@@ -4775,7 +4775,7 @@ msgstr "Прибыль"
 msgid "Total"
 msgstr "Сумма"
 
-#: mmhomepage.cpp:105 mmhomepage.cpp:685 reports/incexpenses.cpp:273
+#: mmhomepage.cpp:105 mmhomepage.cpp:685 reports/incexpenses.cpp:274
 #: reports/payee.cpp:164 reports/summarystocks.cpp:133
 #: splittransactionsdialog.cpp:143
 msgid "Total:"
@@ -4793,7 +4793,7 @@ msgstr "Доходы/Расходы: %s"
 
 #: mmhomepage.cpp:441 reports/categexp.cpp:121 reports/categexp.cpp:145
 #: reports/categexp.cpp:372 reports/categexp.cpp:438 reports/incexpenses.cpp:86
-#: reports/incexpenses.cpp:208 reports/incexpenses.cpp:232
+#: reports/incexpenses.cpp:209 reports/incexpenses.cpp:233
 #: reports/payee.cpp:136
 msgid "Expenses"
 msgstr "Расход"
@@ -4846,6 +4846,10 @@ msgstr "Сортировка по этой колонке"
 #: mmpanelbase.cpp:133
 msgid "Reset columns"
 msgstr "Сбросить размер колонок"
+
+#: mmreportspanel.cpp:161
+msgid "Report"
+msgstr ""
 
 #: mmreportspanel.cpp:218
 msgid "Period:"
@@ -5744,7 +5748,7 @@ msgstr[1] "Прогноз денежного потока на %i года"
 msgstr[2] "Прогноз денежного потока на %i лет"
 msgstr[3] "Прогноз денежного потока на %i лет"
 
-#: reports/cashflow.cpp:254 reports/incexpenses.cpp:233 reports/payee.cpp:137
+#: reports/cashflow.cpp:254 reports/incexpenses.cpp:234 reports/payee.cpp:137
 msgid "Difference"
 msgstr "Разница"
 
