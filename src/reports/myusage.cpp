@@ -73,11 +73,24 @@ wxString mmReportMyUsage::getHTMLText()
 
              if (!pobj.HasMember("module") || !pobj["module"].IsString())
                  continue;
-             auto module = wxString::FromUTF8(pobj["module"].GetString());
+
+             auto module = wxGetTranslation(wxString::FromUTF8(pobj["module"].GetString()));
 
              if (!pobj.HasMember("name") || !pobj["name"].IsString())
                  continue;
-             module += " / " + wxString::FromUTF8(pobj["name"].GetString());
+
+             const wxString rep_name = wxString::FromUTF8(pobj["name"].GetString());
+             wxRegEx pattern(R"(^([a-zA-Z0-9_ \/]+)( - ([a-zA-Z0-9_ ]+))?$)");
+             if (pattern.Matches(rep_name))
+             {
+                 const wxString rep_name_1 = pattern.GetMatch(rep_name, 1);
+                 const wxString rep_name_2 = pattern.GetMatch(rep_name, 3);
+                 module += " / " + _(rep_name_1) + (rep_name_2.empty() ? "" : " - " + _(rep_name_2));
+             }
+             else
+             {
+                 module += " / " + rep_name;
+             }
 
              if (!pobj.HasMember("seconds") || !pobj["seconds"].IsDouble())
                  continue;
@@ -156,10 +169,10 @@ wxString mmReportMyUsage::getHTMLText()
             {
                 for (const auto &stats : usage_by_module)
                 {
-                    wxString frequency = wxString::Format(wxT("%d"), stats.second);
+                    wxString frequency = wxString::Format("%d", stats.second);
                     hb.startTableRow();
-                    hb.addTableCell(stats.first);    
-                    hb.addTableCell(frequency,true);
+                    hb.addTableCell(stats.first);
+                    hb.addTableCell(frequency, true);
                     hb.endTableRow();
                 }
             }
