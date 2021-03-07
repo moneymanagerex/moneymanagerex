@@ -413,9 +413,15 @@ void TransactionListCtrl::OnMarkTransaction(wxCommandEvent& event)
     {
         if (GetItemState(row, wxLIST_STATE_SELECTED) == wxLIST_STATE_SELECTED)
         {
-            bRefreshRequired |= (status == "V") || (m_trans[row].STATUS == "V");
-            m_trans[row].STATUS = status;
-            Model_Checking::instance().save(&m_trans[row]);
+            Model_Account::Data* account = Model_Account::instance().get(m_trans[row].ACCOUNTID);
+            const auto statement_date = Model_Account::DateOf(account->STATEMENTDATE).FormatISODate();
+            if (!Model_Account::BoolOf(account->STATEMENTLOCKED)
+                || m_trans[row].TRANSDATE > statement_date)
+            {
+                bRefreshRequired |= (status == "V") || (m_trans[row].STATUS == "V");
+                m_trans[row].STATUS = status;
+                Model_Checking::instance().save(&m_trans[row]);
+            }
         }
     }
 
@@ -914,7 +920,7 @@ void TransactionListCtrl::OnEditTransaction(wxCommandEvent& /*event*/)
     if (TransactionLocked(transaction->ACCOUNTID, transaction->TRANSDATE)) {
         return;
     }
-    
+
     if (!CheckForClosedAccounts()) return;
     mmTransDialog dlg(this, transaction->ACCOUNTID, transaction_id, m_cp->m_account_balance);
     if (dlg.ShowModal() == wxID_OK)

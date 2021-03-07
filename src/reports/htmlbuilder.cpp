@@ -514,7 +514,7 @@ void mmHTMLBuilder::addChart(const GraphData& gd)
             break;
         case GraphData::LINE_DATETIME:
             gtype = "line";
-            gSeriesType = "datetime";
+            gSeriesType = "label";
             break;
         case GraphData::PIE:
             gtype = "pie";
@@ -586,8 +586,8 @@ void mmHTMLBuilder::addChart(const GraphData& gd)
     }
 
     // Pie/donut charts just have a single series / data
-    if (gd.type == GraphData::PIE || gd.type == GraphData::DONUT) 
-       htmlChart += wxString::Format(",labels: [%s]", categories);      
+    if (gd.type == GraphData::PIE || gd.type == GraphData::DONUT)
+       htmlChart += wxString::Format(",labels: [%s]", categories);
     else
         htmlChart += wxString::Format(", xaxis: { type: '%s', categories: [%s], labels: { hideOverlappingLabels: true } }", gSeriesType, categories);
     

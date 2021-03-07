@@ -158,7 +158,7 @@ bool mmReportsPanel::saveReportText(bool initial)
 
     json_writer.StartObject();
     json_writer.Key("module");
-    json_writer.String("Report");
+    json_writer.String(wxTRANSLATE("Report"));
     json_writer.Key("name");
     json_writer.String(rb_->getReportTitle(false).utf8_str());
 

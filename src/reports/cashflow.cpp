@@ -215,9 +215,9 @@ wxString mmReportCashFlow::getHTMLText_i()
     hb.addReportHeader(headingStr);
     hb.DisplayFooter(getAccountNames());
 
+    GraphData gd;
     if (getChartSelection() == 0)
     {
-        GraphData gd;
         GraphSeries gs;
 
         for (const auto& entry : forecastVector)
@@ -225,7 +225,7 @@ wxString mmReportCashFlow::getHTMLText_i()
             wxDate d;
             double amount = entry.amount + tInitialBalance;
             d.ParseISODate(entry.label);
-            wxString label = wxString::Format("%i %s %i", d.GetDay(), wxGetTranslation(wxDateTime::GetEnglishMonthName(d.GetMonth())), d.GetYear());
+            const wxString label = mmGetDateForDisplay(d.FormatISODate());
             gs.values.push_back(amount);
             gd.labels.push_back(label);
         }
@@ -282,7 +282,7 @@ wxString mmReportCashFlow::getHTMLText_i()
                     else
                         hb.startAltTableRow();
                     {
-                        hb.addTableCell(forecastVector[idx].label);
+                        hb.addTableCell(gd.labels[idx]);
                         hb.addMoneyCell(balance);
                         hb.addMoneyCell(diff);
                     }
