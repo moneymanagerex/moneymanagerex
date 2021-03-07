@@ -415,7 +415,8 @@ void TransactionListCtrl::OnMarkTransaction(wxCommandEvent& event)
         {
             Model_Account::Data* account = Model_Account::instance().get(m_trans[row].ACCOUNTID);
             const auto statement_date = Model_Account::DateOf(account->STATEMENTDATE).FormatISODate();
-            if (m_trans[row].TRANSDATE > statement_date)
+            if (!Model_Account::BoolOf(account->STATEMENTLOCKED)
+                || m_trans[row].TRANSDATE > statement_date)
             {
                 bRefreshRequired |= (status == "V") || (m_trans[row].STATUS == "V");
                 m_trans[row].STATUS = status;
