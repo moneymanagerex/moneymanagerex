@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-03-05 22:19+0300\n"
-"PO-Revision-Date: 2021-03-05 19:25\n"
+"PO-Revision-Date: 2021-03-07 07:48\n"
 "Last-Translator: \n"
 "Language-Team: Hebrew\n"
 "MIME-Version: 1.0\n"
@@ -3827,7 +3827,7 @@ msgstr "תנועות מחזורית אוטומטית"
 
 #: mmframe.cpp:684 mmframe.cpp:1655
 msgid "Home Page"
-msgstr "דף הבית"
+msgstr "עמוד הבית"
 
 #: mmframe.cpp:689
 msgid "All Transactions"
@@ -4075,11 +4075,11 @@ msgstr "ברירת מחדל של המערכת"
 
 #: mmframe.cpp:1430
 msgid "&Home Page"
-msgstr ""
+msgstr "&עמוד הבית"
 
 #: mmframe.cpp:1430 mmframe.cpp:1655
 msgid "Show Home Page"
-msgstr ""
+msgstr "הצגת עמוד הבית"
 
 #: mmframe.cpp:1439
 msgid "Change the account type of an account."
@@ -5458,23 +5458,23 @@ msgstr "צבעים מוגדרים אישית"
 
 #: optionsettingsview.cpp:166
 msgid "Icon Sizes"
-msgstr ""
+msgstr "גודל סמל"
 
 #: optionsettingsview.cpp:175
 msgid "16"
-msgstr ""
+msgstr "16"
 
 #: optionsettingsview.cpp:175
 msgid "24"
-msgstr ""
+msgstr "24"
 
 #: optionsettingsview.cpp:175
 msgid "32"
-msgstr ""
+msgstr "32"
 
 #: optionsettingsview.cpp:175
 msgid "48"
-msgstr ""
+msgstr "48"
 
 #: payeedialog.cpp:65
 msgid "Default Category"
@@ -5997,7 +5997,7 @@ msgstr "ארגון צרופות לניר ערך זה"
 
 #: sharetransactiondialog.cpp:272 stockdialog.cpp:270
 msgid "Display the web page for the specified Stock symbol"
-msgstr "הצגת את דף האתר עבור סמל ניר הערך"
+msgstr "הצגת עמוד האתר של סמל ניר הערך"
 
 #: sharetransactiondialog.cpp:282 stockdialog.cpp:277
 msgid "Enter notes associated with this investment"
