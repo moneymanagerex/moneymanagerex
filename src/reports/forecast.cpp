@@ -72,7 +72,7 @@ wxString mmReportForecast::getHTMLText()
         wxDate d;
         wxLogDebug("kv.first  = %s", kv.first); 
         d.ParseISODate(kv.first);
-        wxString label = wxString::Format("%i %s %i", d.GetDay(), wxGetTranslation(wxDateTime::GetEnglishMonthName(d.GetMonth())), d.GetYear());
+        const wxString label = mmGetDateForDisplay(d.FormatISODate());
         wxLogDebug("label  = %s", label); 
         gd.labels.push_back(label);
         //wxLogDebug(" Values = %d, %d", kv.second.first, kv.second.second);
@@ -87,7 +87,7 @@ wxString mmReportForecast::getHTMLText()
     hb.addDivContainer("shadow");
     { 
         gd.type = GraphData::LINE_DATETIME;
-        gd.colors = { wxColour(0, 227, 150), wxColour(255, 69, 96) };  // Green, Red
+        gd.colors = { wxColour(80, 179, 129), wxColour(247, 94, 94) };  // Green, Red
         hb.addChart(gd);
     }
     hb.endDiv();
