@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-03-05 22:19+0300\n"
-"PO-Revision-Date: 2021-03-05 19:24\n"
+"PO-Revision-Date: 2021-03-07 09:33\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -4075,11 +4075,11 @@ msgstr "системный"
 
 #: mmframe.cpp:1430
 msgid "&Home Page"
-msgstr ""
+msgstr "&Главная страница"
 
 #: mmframe.cpp:1430 mmframe.cpp:1655
 msgid "Show Home Page"
-msgstr ""
+msgstr "Показать главную страницу"
 
 #: mmframe.cpp:1439
 msgid "Change the account type of an account."
@@ -5459,23 +5459,23 @@ msgstr "Цвета пользователя"
 
 #: optionsettingsview.cpp:166
 msgid "Icon Sizes"
-msgstr ""
+msgstr "Размер иконок"
 
 #: optionsettingsview.cpp:175
 msgid "16"
-msgstr ""
+msgstr "16"
 
 #: optionsettingsview.cpp:175
 msgid "24"
-msgstr ""
+msgstr "24"
 
 #: optionsettingsview.cpp:175
 msgid "32"
-msgstr ""
+msgstr "32"
 
 #: optionsettingsview.cpp:175
 msgid "48"
-msgstr ""
+msgstr "48"
 
 #: payeedialog.cpp:65
 msgid "Default Category"
