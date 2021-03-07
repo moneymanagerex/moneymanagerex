@@ -316,13 +316,13 @@ void Option::setIconSize(int value)
 void Option::setToolbarIconSize(int value)
 {
     Model_Setting::instance().Set("TOOLBARICONSIZE", value);
-    m_ico_size = value;
+    m_toolbar_ico_size = value;
 }
 
 void Option::setNavigationIconSize(int value)
 {
     Model_Setting::instance().Set("NAVIGATIONICONSIZE", value);
-    m_ico_size = value;
+    m_navigation_ico_size = value;
 }
 
 
