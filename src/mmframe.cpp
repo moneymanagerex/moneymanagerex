@@ -2889,7 +2889,7 @@ void mmGUIFrame::OnRates(wxCommandEvent& WXUNUSED(event))
         .Title(_("Downloading stock prices from Yahoo"))
         .Text(_("Please wait..."))
         .Foreground(*wxWHITE)
-        .Background(wxColour(104, 179, 51))
+        .Background(wxColour(0, 102, 51))
         .Transparency(4 * wxALPHA_OPAQUE / 5)
     );
 #else

@@ -252,7 +252,8 @@ wxString mmReportChartStocks::getHTMLText()
             if (dataCount % freq == 0)
             {
                 const wxDate d = Model_StockHistory::DATE(hist);
-                gd.labels.push_back(wxString::Format("%i %s %i", d.GetDay(), wxGetTranslation(wxDateTime::GetEnglishMonthName(d.GetMonth())), d.GetYear()));
+                wxString date = mmGetDateForDisplay(d.FormatISODate());
+                gd.labels.push_back(date);
                 data.values.push_back(hist.VALUE);
             }
             dataCount++;

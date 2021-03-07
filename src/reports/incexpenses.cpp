@@ -93,7 +93,7 @@ wxString mmReportIncomeExpenses::getHTMLText()
         hb.addDivContainer("shadow");
         {
             gd.type = GraphData::BAR;
-            gd.colors = { wxColour(0, 227, 150), wxColour(255, 69, 96) };  // Green, Red
+            gd.colors = { wxColour(80, 179, 129), wxColour(247, 94, 94) };  // Green, Red
             hb.addChart(gd);
         }
         hb.endDiv();
@@ -200,7 +200,8 @@ wxString mmReportIncomeExpensesMonthly::getHTMLText()
             data_positive.values.push_back(stats.second.first);
             data_negative.values.push_back(stats.second.second);
 
-            wxString label = wxString::Format("%02i/%i", (stats.first % 100)+1, stats.first / 100);
+            const auto label = wxString::Format("%s %i"
+                , wxGetTranslation(wxDateTime::GetEnglishMonthName(static_cast<wxDateTime::Month>(stats.first % 100))), stats.first / 100);
             gd.labels.push_back(label);
         }
 
@@ -214,7 +215,7 @@ wxString mmReportIncomeExpensesMonthly::getHTMLText()
             hb.addDivContainer("shadow");
             {
                 gd.type = GraphData::BAR; 
-                gd.colors = { wxColour(0, 227, 150), wxColour(255, 69, 96) };  // Green, Red
+                gd.colors = { wxColour(80, 179, 129), wxColour(247, 94, 94) };  // Green, Red
                 hb.addChart(gd);
             }
             hb.endDiv();
