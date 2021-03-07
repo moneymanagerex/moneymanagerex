@@ -182,6 +182,8 @@ private:
     void OnGotoAccount(wxCommandEvent& WXUNUSED(event));
     void OnGotoStocksAccount(wxCommandEvent& WXUNUSED(event));
 private:
+    bool m_hide_share_accounts;
+    void OnHideShareAccounts(wxCommandEvent &event);
     void OnChangeGUILanguage(wxCommandEvent &event);
 
     void OnViewToolbar(wxCommandEvent &event);
@@ -309,6 +311,7 @@ private:
         MENU_TRANSACTIONREPORT,
         MENU_VIEW_TOOLBAR,
         MENU_VIEW_LINKS,
+        MENU_VIEW_HIDE_SHARE_ACCOUNTS,
         MENU_CATEGORY_RELOCATION,
         MENU_PAYEE_RELOCATION,
         MENU_RELOCATION,
