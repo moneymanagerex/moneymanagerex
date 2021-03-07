@@ -556,6 +556,7 @@ install(FILES
     resources/kaching.wav
     resources/master.css
     resources/mmex.png
+    resources/icons.zip
     DESTINATION "${MMEX_RES_DIR}")
 
 if(LINUX)

@@ -171,7 +171,8 @@ wxString mmex::getPathResource(EResFile f)
 {
     static const wxString files[RES_FILES_MAX] = {
       "kaching.wav",
-      "home_page.htt"
+      "home_page.htt",
+      "icons.zip"
     };
 
     wxASSERT(f >= 0 && f < RES_FILES_MAX);
