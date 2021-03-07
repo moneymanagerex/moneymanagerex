@@ -960,6 +960,8 @@ const wxString getProgramDescription(int type)
 
         << bull + LUA_RELEASE << eol
 
+        << bull + "lunasvg " << eol
+
         << bull + curl_version() << eol << eol
 
         << (simple ? "Build:" : _("Build on")) << " " << build_date << " " BUILD_TIME << " "
