@@ -18,6 +18,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 *******************************************************/
 
 #include <wx/imaglist.h>
+#include <wx/sharedptr.h>
 #include <map>
 
 enum img {
@@ -298,10 +299,10 @@ static const std::map<std::string, std::pair<int, std::uint32_t>> iconName2enum 
 };
 
 static bool iconsLoaded = false;
-static wxBitmap* programIcons16[MAX_PNG];
-static wxBitmap* programIcons24[MAX_PNG];
-static wxBitmap* programIcons32[MAX_PNG];
-static wxBitmap* programIcons48[MAX_PNG];
+static wxSharedPtr<wxBitmap> programIcons16[MAX_PNG];
+static wxSharedPtr<wxBitmap> programIcons24[MAX_PNG];
+static wxSharedPtr<wxBitmap> programIcons32[MAX_PNG];
+static wxSharedPtr<wxBitmap> programIcons48[MAX_PNG];
 
 wxImageList* navtree_images_list();
 const wxBitmap mmBitmap(int ref);
