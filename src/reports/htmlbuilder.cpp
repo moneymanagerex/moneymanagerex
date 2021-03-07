@@ -514,7 +514,7 @@ void mmHTMLBuilder::addChart(const GraphData& gd)
             break;
         case GraphData::LINE_DATETIME:
             gtype = "line";
-            gSeriesType = "datetime";
+            gSeriesType = "label";
             break;
         case GraphData::PIE:
             gtype = "pie";
