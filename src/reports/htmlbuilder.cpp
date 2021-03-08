@@ -518,7 +518,7 @@ void mmHTMLBuilder::addChart(const GraphData& gd)
             break;
         case GraphData::PIE:
             gtype = "pie";
-            chartWidth = 70;
+            chartWidth = 100;
             break;
         case GraphData::DONUT:
             gtype = "donut";

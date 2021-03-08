@@ -1017,4 +1017,9 @@ div.chart {
   display: flex;
   justify-content: center;
   align-items: center;
+  min-height: 800px;
+  max-width: 800px;
+  min-width: 600px;
+  height:100%;
+
 }
