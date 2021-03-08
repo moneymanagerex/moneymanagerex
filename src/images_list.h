@@ -307,6 +307,5 @@ static wxSharedPtr<wxBitmap> programIcons48[MAX_PNG];
 wxImageList* navtree_images_list();
 const wxBitmap mmBitmap(int ref);
 
-//bool CopyRGBAintoBitmap(wxBitmap &bitmap, unsigned char *rgba);
-wxBitmap* CreateBitmapsFromRGBA(unsigned char *rgba, int size);
+wxBitmap* CreateBitmapFromRGBA(unsigned char *rgba, int size);
 void buildBitmapsFromSVG(void);

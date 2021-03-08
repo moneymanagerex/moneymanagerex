@@ -143,12 +143,11 @@ void buildBitmapsFromSVG(void)
     {
         wxASSERT(iconZip.CanRead()); // Make sure we can read the Zip Entry
 
-        std::string iconname = std::string(zipEntry->GetName().mb_str());
-
+        wxString fileName = wxFileName(zipEntry->GetName()).GetFullName();
+        std::string iconname = std::string(fileName.mb_str());
+        wxLogDebug("icons file: %s", iconname);
         // Skip anything in the ZIP that we don't recognise as a valid SVG
         if (!iconName2enum.count(iconname)) continue;
-
-        wxLogDebug("icons file: %s", iconname);
 
         wxString svgData;
         while (!iconStream.Eof()) {
