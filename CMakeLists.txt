@@ -419,6 +419,21 @@ add_subdirectory(3rd)
 add_subdirectory(po)
 add_subdirectory(src)
 
+# Build the icons.zip file, only one theme at present
+function(create_zip output_file input_files working_dir)
+    add_custom_command(
+        COMMAND ${CMAKE_COMMAND} -E tar "cf" "${output_file}" --format=zip -- ${input_files}
+        WORKING_DIRECTORY "${working_dir}"
+        OUTPUT  "${output_file}"
+        DEPENDS ${input_files}
+        COMMENT "Zipping to ${output_file}."
+    )
+endfunction()
+
+file(GLOB ZIP_FILES "${PROJECT_SOURCE_DIR}/resources/themes/*")
+create_zip("${CMAKE_CURRENT_BINARY_DIR}/icons.zip" "${ZIP_FILES}" "${PROJECT_SOURCE_DIR}")
+add_custom_target(generate_icons ALL DEPENDS "${CMAKE_CURRENT_BINARY_DIR}/icons.zip")
+
 ## Tuning for VisualStudio IDE ##
 if(NOT CMAKE_VERSION VERSION_LESS 3.6)
     set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT ${MMEX_EXE})
@@ -556,7 +571,7 @@ install(FILES
     resources/kaching.wav
     resources/master.css
     resources/mmex.png
-    resources/icons.zip
+    "${CMAKE_CURRENT_BINARY_DIR}/icons.zip"
     DESTINATION "${MMEX_RES_DIR}")
 
 if(LINUX)
