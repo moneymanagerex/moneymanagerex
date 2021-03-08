@@ -120,15 +120,17 @@ mmTransDialog::mmTransDialog(wxWindow* parent
     else
     {
         Model_Checking::getTransactionData(m_trx_data, transaction);
-
-        // Use the empty transaction logic to generate the new date to be used
-        Model_Checking::Data emptyTrx;
-        Model_Checking::getEmptyTransaction(emptyTrx, account_id);
-        m_trx_data.TRANSDATE = emptyTrx.TRANSDATE;
-
         const auto s = Model_Checking::splittransaction(transaction);
         for (const auto& item : s)
             m_local_splits.push_back({ item.CATEGID, item.SUBCATEGID, item.SPLITTRANSAMOUNT });
+
+        if (m_duplicate)
+        {
+            // Use the empty transaction logic to generate the new date to be used
+            Model_Checking::Data emptyTrx;
+            Model_Checking::getEmptyTransaction(emptyTrx, account_id);
+            m_trx_data.TRANSDATE = emptyTrx.TRANSDATE;
+        }
     }
 
     Model_Account::Data* acc = Model_Account::instance().get(m_trx_data.ACCOUNTID);
