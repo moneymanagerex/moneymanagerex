@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-03-09 16:59+0300\n"
-"PO-Revision-Date: 2021-03-09 14:47\n"
+"PO-Revision-Date: 2021-03-09 15:00\n"
 "Last-Translator: \n"
 "Language-Team: Italian\n"
 "MIME-Version: 1.0\n"
@@ -2320,7 +2320,7 @@ msgstr "Intervallo Importo"
 
 #: filtertransdialog.cpp:347
 msgid "Clea&r "
-msgstr ""
+msgstr "&Pulisci "
 
 #: filtertransdialog.cpp:827 filtertransdialog.cpp:842 reports/myusage.cpp:104
 #: webappdialog.cpp:194 webappdialog.cpp:199
@@ -3643,17 +3643,17 @@ msgstr "Controllo operazione MMEX"
 #, c-format
 msgid "You are about to edit a transaction involving an account that is closed."
 msgid_plural "The edit will affect %i transactions involving an account that is closed."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Stai per modificare una transazione che interessa un conto che è chiuso."
+msgstr[1] "La modifica interesserà %i transazioni che interessano un conto che è chiuso."
 
 #: mmchecking_list.cpp:890
 msgid "\n\n"
 "Do you still want to perform the edit?"
-msgstr ""
+msgstr "Vuoi ancora eseguire la modifica?"
 
 #: mmchecking_list.cpp:891
 msgid "Closed Account Check"
-msgstr ""
+msgstr "Verifica Conto Chiuso"
 
 #: mmchecking_list.cpp:1043 stockspanel.cpp:290
 #, c-format
@@ -3776,7 +3776,7 @@ msgstr "Barra degli Strumenti"
 
 #: mmframe.cpp:457 mmframe.cpp:693
 msgid "Favourites"
-msgstr ""
+msgstr "Preferiti"
 
 #: mmframe.cpp:458 mmframe.cpp:697 mmhomepage.cpp:635 reports/summary.cpp:157
 msgid "Bank Accounts"
@@ -3812,7 +3812,7 @@ msgstr "Pagina Principale"
 
 #: mmframe.cpp:689
 msgid "All Transactions"
-msgstr ""
+msgstr "Tutte le Transazioni"
 
 #: mmframe.cpp:721
 msgid "Share Accounts"
@@ -4220,7 +4220,7 @@ msgstr "Aprire il sito Web Money Manager EX per ultime notizie, aggiornamenti, e
 
 #: mmframe.cpp:1558
 msgid "&Facebook"
-msgstr ""
+msgstr "&Facebook"
 
 #: mmframe.cpp:1558
 msgid "Visit us on Facebook"
@@ -4236,7 +4236,7 @@ msgstr ""
 
 #: mmframe.cpp:1562
 msgid "&Twitter"
-msgstr ""
+msgstr "&Twitter"
 
 #: mmframe.cpp:1562
 msgid "Follow us on Twitter"
@@ -4244,7 +4244,7 @@ msgstr "Seguici su Twitter"
 
 #: mmframe.cpp:1564
 msgid "&YouTube"
-msgstr ""
+msgstr "&YouTube"
 
 #: mmframe.cpp:1564
 msgid "Watch free video materials about MMEX"
@@ -4252,7 +4252,7 @@ msgstr "Guarda video gratis riguardanti MMEX"
 
 #: mmframe.cpp:1566
 msgid "&Slack"
-msgstr ""
+msgstr "&Slack"
 
 #: mmframe.cpp:1566
 msgid "Communicate online with MMEX team from your desktop or mobile device"
@@ -4260,7 +4260,7 @@ msgstr "Comunica online con il Team MMEX dal tuo dispositivo desktop o mobile"
 
 #: mmframe.cpp:1568
 msgid "&GitHub"
-msgstr ""
+msgstr "&GitHub"
 
 #: mmframe.cpp:1568
 msgid "Access open source code repository and track reported bug statuses"
@@ -4268,7 +4268,7 @@ msgstr "Accedi al deposito del codice open source e traccia gli stati dei bug se
 
 #: mmframe.cpp:1570
 msgid "W&iki pages"
-msgstr ""
+msgstr "Pagine Wiki"
 
 #: mmframe.cpp:1570
 msgid "Read and update wiki pages"
@@ -4276,7 +4276,7 @@ msgstr "Leggi e aggiona le pagine wiki"
 
 #: mmframe.cpp:1572
 msgid "F&orum"
-msgstr ""
+msgstr "Forum"
 
 #: mmframe.cpp:1573
 msgid "Visit the MMEX forum to see existing user comments or report new issues with the software"
@@ -4284,7 +4284,7 @@ msgstr "Visita il forum di MMEX per vedere i commenti esistenti degli utenti o s
 
 #: mmframe.cpp:1575
 msgid "Money Manager Ex for &Android"
-msgstr ""
+msgstr "Money Manager Ex per Android"
 
 #: mmframe.cpp:1576
 msgid "Get free Android version and run MMEX on your smart phone or tablet"
@@ -4300,7 +4300,7 @@ msgstr "Iscriviti alla newsletter di posta elettronica o visualizza gli annunci 
 
 #: mmframe.cpp:1581
 msgid "&RSS Feed"
-msgstr ""
+msgstr "&RSS Feed"
 
 #: mmframe.cpp:1581
 msgid "Connect RSS web feed to news aggregator"
@@ -4308,7 +4308,7 @@ msgstr "Collega il feed web RSS al news aggregator"
 
 #: mmframe.cpp:1583
 msgid "&Donate via PayPal"
-msgstr ""
+msgstr "&Dona con PayPal"
 
 #: mmframe.cpp:1584
 msgid "Donate the team to support infrastructure etc"
@@ -4316,7 +4316,7 @@ msgstr "Dona al team per supportare le infrastrutture etc."
 
 #: mmframe.cpp:1586
 msgid "&Buy us a Coffee"
-msgstr ""
+msgstr "&Offrici un caffè"
 
 #: mmframe.cpp:1587
 msgid "Buy key developer a coffee"
@@ -4324,7 +4324,7 @@ msgstr "Offri un caffè allo sviluppatore della chiave"
 
 #: mmframe.cpp:1590
 msgid "&Community"
-msgstr ""
+msgstr "&Community"
 
 #: mmframe.cpp:1591
 msgid "Stay in touch with MMEX community"
@@ -4332,7 +4332,7 @@ msgstr "Resta collegato con la MMEX Community"
 
 #: mmframe.cpp:1613
 msgid "Report a &Bug"
-msgstr ""
+msgstr "Segnala un bug"
 
 #: mmframe.cpp:1614
 msgid "Report an error in application to the developers"
@@ -5929,7 +5929,7 @@ msgstr ""
 
 #: reports/transactions.cpp:210
 msgid "All Transactions excluding Transfers"
-msgstr ""
+msgstr "Tutte le transazioni, esclusi i trasferimenti"
 
 #: sharetransactiondialog.cpp:64 sharetransactiondialog.cpp:83
 msgid "Add Share Transaction"
