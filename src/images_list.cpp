@@ -26,6 +26,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "paths.h"
 #include <wx/zipstrm.h>
 #include <wx/rawbmp.h>
+#include <wx/fs_mem.h>
 #include "../3rd/lunasvg/include/svgdocument.h"
 
 static const std::map<int, wxBitmap> navtree_images()
@@ -130,35 +131,45 @@ wxBitmap* CreateBitmapFromRGBA(unsigned char *rgba, int size)
 
 void buildBitmapsFromSVG(void)
 {
-    const wxString iconsFile = mmex::getPathResource(mmex::ICONS_ZIP);
+    const wxString iconsFile = mmex::getPathResource(mmex::THEMES_ZIP);
     wxFileInputStream iconZip(iconsFile);
     wxASSERT(iconZip.IsOk());   // Make sure we can open find the Zip
 
     wxZipInputStream iconStream(iconZip);
     std::unique_ptr<wxZipEntry> zipEntry;
-    const size_t bufSize = 32768;   // Should really have SVGs smaller than this.
+    const size_t bufSize = 32768;   // Should really have CSS/SVGs smaller than this.
     unsigned char buffer[bufSize];
 
     while (zipEntry.reset(iconStream.GetNextEntry()), zipEntry) // != nullptr
     {
         wxASSERT(iconZip.CanRead()); // Make sure we can read the Zip Entry
 
-        wxString fileName = wxFileName(zipEntry->GetName()).GetFullName();
-        std::string iconname = std::string(fileName.mb_str());
-        wxLogDebug("icons file: %s", iconname);
-        // Skip anything in the ZIP that we don't recognise as a valid SVG
-        if (!iconName2enum.count(iconname)) continue;
+        wxString fileEntry = wxFileName(zipEntry->GetName()).GetFullName();
+        std::string fileName = std::string(fileEntry.mb_str());
+        wxLogDebug("zip file entry: %s", fileEntry);
 
-        wxString svgData;
+        bool isMasterCSS = false;
+        if (!fileName.compare("master.css"))
+            isMasterCSS = true;
+        else
+            // Skip anything in the ZIP that we don't recognise as a valid SVG
+            if (!iconName2enum.count(fileName)) continue;
+        
+        wxString fileData;
         while (!iconStream.Eof()) {
             iconStream.Read(buffer, bufSize);
-            svgData.Append(buffer);
+            fileData.Append(buffer);
             if (iconStream.LastRead() > 0) {
+                if (isMasterCSS)
+                {
+                    wxMemoryFSHandler::AddFile("master.css",fileData);
+                    continue;
+                }
                 lunasvg::SVGDocument document;
-                document.loadFromData(std::string(svgData.mb_str()));
+                document.loadFromData(std::string(fileData.mb_str()));
 
-                int svgEnum = iconName2enum.find(iconname)->second.first;
-                std::uint32_t bgColor = iconName2enum.find(iconname)->second.second;
+                int svgEnum = iconName2enum.find(fileName)->second.first;
+                std::uint32_t bgColor = iconName2enum.find(fileName)->second.second;
                 lunasvg::Bitmap bitmap;
 
                 // Generate bitmaps at the resolutions used by the program - 16, 24, 32, 48

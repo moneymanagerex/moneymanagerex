@@ -419,10 +419,10 @@ add_subdirectory(3rd)
 add_subdirectory(po)
 add_subdirectory(src)
 
-# Build the icons.zip file, only one theme at present
+# Build the themes.zip file, only one theme at present
 function(create_zip output_file input_files working_dir)
     add_custom_command(
-        COMMAND ${CMAKE_COMMAND} -E tar "cf" "${output_file}" --format=zip -- ${input_files}
+        COMMAND ${CMAKE_COMMAND} -E tar "cf" "${output_file}" --format=zip -- ${input_files} 
         WORKING_DIRECTORY "${working_dir}"
         OUTPUT  "${output_file}"
         DEPENDS ${input_files}
@@ -431,8 +431,8 @@ function(create_zip output_file input_files working_dir)
 endfunction()
 
 file(GLOB ZIP_FILES "${PROJECT_SOURCE_DIR}/resources/themes/*")
-create_zip("${CMAKE_CURRENT_BINARY_DIR}/icons.zip" "${ZIP_FILES}" "${PROJECT_SOURCE_DIR}")
-add_custom_target(generate_icons ALL DEPENDS "${CMAKE_CURRENT_BINARY_DIR}/icons.zip")
+create_zip("${CMAKE_CURRENT_BINARY_DIR}/themes.zip" "${ZIP_FILES}" "${PROJECT_SOURCE_DIR}/resources/themes/")
+add_custom_target(generate_icons ALL DEPENDS "${CMAKE_CURRENT_BINARY_DIR}/themes.zip")
 
 ## Tuning for VisualStudio IDE ##
 if(NOT CMAKE_VERSION VERSION_LESS 3.6)
@@ -554,7 +554,6 @@ install(DIRECTORY
     docs/
     DESTINATION "${MMEX_DOC_DIR}/help")
 install(FILES
-    resources/master.css
     DESTINATION "${MMEX_DOC_DIR}/help")
 
 # Resources
@@ -569,9 +568,8 @@ install(FILES
     3rd/sorttable.js/sorttable.js
     resources/home_page.htt
     resources/kaching.wav
-    resources/master.css
     resources/mmex.png
-    "${CMAKE_CURRENT_BINARY_DIR}/icons.zip"
+    "${CMAKE_CURRENT_BINARY_DIR}/themes.zip"
     DESTINATION "${MMEX_RES_DIR}")
 
 if(LINUX)
