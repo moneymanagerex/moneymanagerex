@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-03-07 16:19+0300\n"
-"PO-Revision-Date: 2021-03-07 13:51\n"
+"PO-Revision-Date: 2021-03-08 19:44\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -4058,11 +4058,11 @@ msgstr "Systemstandard"
 
 #: mmframe.cpp:1430
 msgid "&Home Page"
-msgstr ""
+msgstr "&Startseite"
 
 #: mmframe.cpp:1430 mmframe.cpp:1655
 msgid "Show Home Page"
-msgstr ""
+msgstr "Zeige Startseite"
 
 #: mmframe.cpp:1439
 msgid "Change the account type of an account."
@@ -4829,7 +4829,7 @@ msgstr "Spalten zurücksetzen"
 
 #: mmreportspanel.cpp:161
 msgid "Report"
-msgstr ""
+msgstr "Bericht"
 
 #: mmreportspanel.cpp:218
 msgid "Period:"
@@ -5443,23 +5443,23 @@ msgstr "Benutzer-Farben"
 
 #: optionsettingsview.cpp:166
 msgid "Icon Sizes"
-msgstr ""
+msgstr "Symbolgröße"
 
 #: optionsettingsview.cpp:175
 msgid "16"
-msgstr ""
+msgstr "16"
 
 #: optionsettingsview.cpp:175
 msgid "24"
-msgstr ""
+msgstr "24"
 
 #: optionsettingsview.cpp:175
 msgid "32"
-msgstr ""
+msgstr "32"
 
 #: optionsettingsview.cpp:175
 msgid "48"
-msgstr ""
+msgstr "48"
 
 #: payeedialog.cpp:65
 msgid "Default Category"
