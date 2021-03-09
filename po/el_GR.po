@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-03-09 15:20+0300\n"
-"PO-Revision-Date: 2021-03-09 12:31\n"
+"PO-Revision-Date: 2021-03-09 13:04\n"
 "Last-Translator: \n"
 "Language-Team: Greek\n"
 "MIME-Version: 1.0\n"
@@ -4227,11 +4227,11 @@ msgstr "Επισκεφθείτε μας στο Facebook"
 
 #: mmframe.cpp:1560
 msgid "&Crowdin"
-msgstr ""
+msgstr "&Crowdin"
 
 #: mmframe.cpp:1560
 msgid "We use Crowdin to translate MMEX"
-msgstr ""
+msgstr "Χρησιμοποιούμε το Crowdin για να μεταφράσουμε το MMEX"
 
 #: mmframe.cpp:1562
 msgid "&Twitter"
