@@ -1556,6 +1556,8 @@ void mmGUIFrame::createMenu()
         , _("Open the Money Manager EX website for latest news, updates etc"));
     wxMenuItem* menuItemFacebook = new wxMenuItem(menuHelp, MENU_FACEBOOK
         , _("&Facebook"), _("Visit us on Facebook"));
+    wxMenuItem* menuItemCrowdin = new wxMenuItem(menuHelp, MENU_CROWDIN
+        , _("&Crowdin"), _("We use Crowdin to translate MMEX"));
     wxMenuItem* menuItemTwitter = new wxMenuItem(menuHelp, MENU_TWITTER
         , _("&Twitter"), _("Follow us on Twitter"));
     wxMenuItem* menuItemYouTube = new wxMenuItem(menuHelp, MENU_YOUTUBE
@@ -1589,17 +1591,19 @@ void mmGUIFrame::createMenu()
         , _("Stay in touch with MMEX community"));
 
     wxMenu* menuCommunity = new wxMenu;
-    menuCommunity->Append(menuItemWebsite);
-    menuCommunity->Append(menuItemReportIssues);
-    menuCommunity->Append(menuItemWiki);
-    menuCommunity->Append(menuItemGitHub);
-    menuCommunity->Append(menuItemSlack);
     menuCommunity->Append(menuItemFacebook);
-    menuCommunity->Append(menuItemTwitter);
-    menuCommunity->Append(menuItemYouTube);
+    menuCommunity->Append(menuItemCrowdin);
+    menuCommunity->Append(menuItemGitHub);
     menuCommunity->Append(menuItemGooglePlay);
     menuCommunity->Append(menuItemNotify);
+    menuCommunity->Append(menuItemReportIssues);
     menuCommunity->Append(menuItemRSS);
+    menuCommunity->Append(menuItemSlack);
+    menuCommunity->Append(menuItemTwitter);
+    menuCommunity->Append(menuItemWebsite);
+    menuCommunity->Append(menuItemWiki);
+    menuCommunity->Append(menuItemYouTube);
+    menuCommunity->AppendSeparator();
     menuCommunity->Append(menuItemDonate);
     menuCommunity->Append(menuItemBuyCoffee);
     menuItemCommunity->SetSubMenu(menuCommunity);
