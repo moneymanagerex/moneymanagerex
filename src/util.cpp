@@ -929,6 +929,7 @@ const wxString getProgramDescription(int type)
 
     wxString description;
     description << wxString::Format(simple ? "Version: %s" : _("Version: %s"), mmex::getTitleProgramVersion()) << eol
+        << bull << (simple ? "Build:" : _("Build on")) << " " << build_date << " " BUILD_TIME << eol
         << bull << (simple ? "db " : _("Database version: ")) << mmex::version::getDbLatestVersion()
 #if WXSQLITE3_HAVE_CODEC
         << bull << " (" << wxSQLite3Cipher::GetCipherName(wxSQLite3Cipher::GetGlobalCipherDefault()) << ")"
@@ -937,12 +938,12 @@ const wxString getProgramDescription(int type)
 
 #ifdef GIT_COMMIT_HASH
         << bull << (simple ? "git " : _("Git commit: ")) << GIT_COMMIT_HASH
-        << " (" << GIT_COMMIT_DATE << ")"
+        << " (" << GIT_COMMIT_DATE << ")" << eol
 #endif
 #ifdef GIT_BRANCH
-        << bull << (simple ? "" : _("Git branch: ")) << GIT_BRANCH
+        << bull << (simple ? "" : _("Git branch: ")) << GIT_BRANCH << eol
 #endif
-        << eol << eol
+        << eol
 
         << (simple ? "Libs:" : _("MMEX is using the following support products:")) << eol
         << bull + wxVERSION_STRING
@@ -954,22 +955,18 @@ const wxString getProgramDescription(int type)
 
         << bull + wxSQLITE3_VERSION_STRING
         << " (SQLite " << wxSQLite3Database::GetVersion() << ")"
+        << bull + "RapidJSON " << RAPIDJSON_VERSION_STRING << eol
+        << bull + LUA_RELEASE << eol
+        << bull + "lunasvg " << eol
+        << bull + curl_version() << eol
+        << bull + GETTEXT_VERSION << eol
+        << bull + "apexcharts.js" << eol
         << eol
 
-        << bull + "RapidJSON " << RAPIDJSON_VERSION_STRING << eol
-
-        << bull + LUA_RELEASE << eol
-
-        << bull + "lunasvg " << eol
-
-        << bull + curl_version() << eol << eol
-
-        << (simple ? "Build:" : _("Build on")) << " " << build_date << " " BUILD_TIME << " "
-        << (simple ? "" : _("with:")) << eol
-
+        << (simple ? "Build using:" : _("Build using:")) << eol
         << bull + CMAKE_VERSION << eol
         << bull + MAKE_VERSION << eol
-        << bull + GETTEXT_VERSION << eol
+
 #if defined(_MSC_VER)
 #ifdef VS_VERSION
         << bull + (simple ? "MSVS" : "Microsoft Visual Studio ") + VS_VERSION << eol
