@@ -1,39 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg
-   version="1.1"
-   id="Layer_1"
-   x="0px"
-   y="0px"
-   viewBox="0 0 297 297"
-   style="enable-background:new 0 0 297 297;"
-   xml:space="preserve"
-   sodipodi:docname="CLEAR.svg"
-   inkscape:version="1.1-dev (9017afb, 2021-01-01)"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-   xmlns="http://www.w3.org/2000/svg"
-   xmlns:svg="http://www.w3.org/2000/svg"><defs
-   id="defs3013" /><sodipodi:namedview
-   id="namedview3011"
-   pagecolor="#ffffff"
-   bordercolor="#666666"
-   borderopacity="1.0"
-   objecttolerance="10.0"
-   gridtolerance="10.0"
-   guidetolerance="10.0"
-   inkscape:pageshadow="2"
-   inkscape:pageopacity="0.0"
-   inkscape:pagecheckerboard="0"
-   showgrid="false"
-   inkscape:zoom="2.4309764"
-   inkscape:cx="148.29432"
-   inkscape:cy="148.29432"
-   inkscape:window-width="1296"
-   inkscape:window-height="1003"
-   inkscape:window-x="0"
-   inkscape:window-y="25"
-   inkscape:window-maximized="0"
-   inkscape:current-layer="g2976" />
+<svg width="297px" height="297px" viewBox="0 0 297 297" fill="none" xmlns="http://www.w3.org/2000/svg">
 <g
    id="g2978"
    transform="matrix(0.76038782,0,0,0.8267892,36.610803,23.253627)">
@@ -52,50 +17,5 @@
    d="m 151.35396,200.2604 c -3.51025,-3.80735 -15.70464,-17.10354 -27.09863,-29.5471 -11.39399,-12.44356 -21.27198,-23.21767 -21.95107,-23.94247 l -1.23473,-1.31782 5.71737,-6.29229 c 17.94292,-19.74721 55.27625,-60.264252 70.89575,-76.941595 7.04424,-7.521315 7.26308,-7.711589 8.8679,-7.71024 2.13939,0.0018 2.83773,0.525114 8.23003,6.167368 11.29468,11.818216 44.5167,48.342997 45.95441,50.522957 0.78826,1.19522 0.94391,3.16387 0.36954,4.67394 -0.19922,0.52379 -4.67249,5.67266 -9.94059,11.44195 -11.50118,12.59535 -68.8949,75.06529 -71.55306,77.88159 l -1.87463,1.98616 z"
    id="path3266"
    transform="matrix(1.3151184,0,0,1.2094981,-48.14754,-28.125219)" /></g>
-</g>
-<g
-   id="g2980">
-</g>
-<g
-   id="g2982">
-</g>
-<g
-   id="g2984">
-</g>
-<g
-   id="g2986">
-</g>
-<g
-   id="g2988">
-</g>
-<g
-   id="g2990">
-</g>
-<g
-   id="g2992">
-</g>
-<g
-   id="g2994">
-</g>
-<g
-   id="g2996">
-</g>
-<g
-   id="g2998">
-</g>
-<g
-   id="g3000">
-</g>
-<g
-   id="g3002">
-</g>
-<g
-   id="g3004">
-</g>
-<g
-   id="g3006">
-</g>
-<g
-   id="g3008">
 </g>
 </svg>
