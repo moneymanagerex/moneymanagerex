@@ -124,7 +124,7 @@ namespace tags
         , "#FA4443"
         , "#69D2E7"
         , "#449DD1"
-        , "#F86624"        
+        , "#F86624"
         };
 }
 
@@ -537,19 +537,19 @@ void mmHTMLBuilder::addChart(const GraphData& gd)
     {
         htmlChart += ", plotOptions: { pie: { customScale: 0.8 } }";
 
-        const wxString pieFunctionToolTip = wxString::Format("function(value, opts) { return pie%s[opts.dataPointIndex] }", divid);   
+        const wxString pieFunctionToolTip = wxString::Format("function(value, opts) { return pie%s[opts.dataPointIndex] }\n", divid);
         toolTipFormatter = wxString::Format(", y: { formatter: %s }", pieFunctionToolTip); 
     }
 
-    htmlChart += wxString::Format(", tooltip: { theme: 'dark' %s }", toolTipFormatter);
+    htmlChart += wxString::Format(", tooltip: { theme: 'dark' %s }\n", toolTipFormatter);
 
     // Turn off data labels for bar charts as it gets too cluttered
     if (gd.type == GraphData::BAR) 
     {
         htmlChart += ", dataLabels: { enabled: false }";
-    } else if (gd.type == GraphData::PIE || gd.type == GraphData::DONUT) 
+    } else if (gd.type == GraphData::PIE || gd.type == GraphData::DONUT)
     {
-        htmlChart += ", dataLabels: { enabled: true, style: { fontSize: '16px' }, dropShadow: { enabled: false } }";   
+        htmlChart += ", dataLabels: { enabled: true, style: { fontSize: '16px' }, dropShadow: { enabled: false } }\n";
     }
 
     // If colors are specified then use these in prefernce to loading our standard pallete
@@ -589,7 +589,7 @@ void mmHTMLBuilder::addChart(const GraphData& gd)
     if (gd.type == GraphData::PIE || gd.type == GraphData::DONUT)
        htmlChart += wxString::Format(",labels: [%s]", categories);
     else
-        htmlChart += wxString::Format(", xaxis: { type: '%s', categories: [%s], labels: { hideOverlappingLabels: true } }", gSeriesType, categories);
+        htmlChart += wxString::Format(", xaxis: { type: '%s', categories: [%s], labels: { hideOverlappingLabels: true } }\n", gSeriesType, categories);
     
     wxString seriesList, pieEntries;
     bool firstList = true;
@@ -623,10 +623,14 @@ void mmHTMLBuilder::addChart(const GraphData& gd)
         firstList = false;
     }
     htmlChart += wxString::Format(", series: [%s]", seriesList);
-    htmlPieData += wxString::Format("var pie%s = [ %s ]", divid, pieEntries);
+    htmlPieData += wxString::Format("var chart_%s = [ %s ]", divid, pieEntries);
 
-    addText(wxString::Format("<div id='%s' class='chart'></div><script>%s; var options = { %s }; var chart = new ApexCharts(document.querySelector('#%s'), options); chart.render();</script>", 
-        divid, htmlPieData, htmlChart, divid));
+    addText(wxString::Format("<div id='%s' class='%s'></div>\n"
+        "<script>\n"
+        "%s; var options = { %s };\n"
+        "var chart = new ApexCharts(document.querySelector('#%s'), options); chart.render();\n"
+        "</script>\n", 
+        divid, gtype, htmlPieData, htmlChart, divid));
 };
 
 const wxString mmHTMLBuilder::getHTMLText() const
