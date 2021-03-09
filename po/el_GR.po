@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-03-09 16:59+0300\n"
-"PO-Revision-Date: 2021-03-09 14:05\n"
+"PO-Revision-Date: 2021-03-09 15:19\n"
 "Last-Translator: \n"
 "Language-Team: Greek\n"
 "MIME-Version: 1.0\n"
@@ -4605,7 +4605,7 @@ msgstr "Οι επιλογές του MMEX έχουν ενημερωθεί."
 
 #: mmframe.cpp:2441
 msgid "Some settings take effect only after an application restart."
-msgstr ""
+msgstr "Ορισμένες ρυθμίσεις εφαρμόζονται μόνο μετά την επανεκκίνηση της εφαρμογής."
 
 #: mmframe.cpp:2442 optiondialog.cpp:52 optiondialog.cpp:193
 msgid "MMEX Options"
