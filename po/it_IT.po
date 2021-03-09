@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-03-09 16:59+0300\n"
-"PO-Revision-Date: 2021-03-09 14:05\n"
+"PO-Revision-Date: 2021-03-09 14:47\n"
 "Last-Translator: \n"
 "Language-Team: Italian\n"
 "MIME-Version: 1.0\n"
@@ -3528,12 +3528,12 @@ msgstr[1] "&Copia Operazione"
 
 #: mmchecking_list.cpp:321
 msgid "&Paste Transaction"
-msgstr ""
+msgstr "&Incolla Transazione"
 
 #: mmchecking_list.cpp:321
 #, c-format
 msgid "&Paste Transactions (%d)"
-msgstr ""
+msgstr "&Incolla Transazioni (%d)"
 
 #: mmchecking_list.cpp:326
 msgid "D&uplicate Transaction"
@@ -4609,7 +4609,7 @@ msgstr "Le impostazioni di MMEX sono state aggiornate."
 
 #: mmframe.cpp:2441
 msgid "Some settings take effect only after an application restart."
-msgstr ""
+msgstr "Alcune impostazioni avranno effetto solo dopo un riavvio dell'applicazione."
 
 #: mmframe.cpp:2442 optiondialog.cpp:52 optiondialog.cpp:193
 msgid "MMEX Options"
