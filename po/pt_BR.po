@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-03-09 16:59+0300\n"
-"PO-Revision-Date: 2021-03-09 14:05\n"
+"PO-Revision-Date: 2021-03-09 19:37\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "MIME-Version: 1.0\n"
@@ -4057,11 +4057,11 @@ msgstr "padrão do sistema "
 
 #: mmframe.cpp:1430
 msgid "&Home Page"
-msgstr ""
+msgstr "&Página Inicial"
 
 #: mmframe.cpp:1430 mmframe.cpp:1659
 msgid "Show Home Page"
-msgstr ""
+msgstr "Exibir Página Inicial"
 
 #: mmframe.cpp:1439
 msgid "Change the account type of an account."
@@ -4229,11 +4229,11 @@ msgstr "Visite-nos no Facebook"
 
 #: mmframe.cpp:1560
 msgid "&Crowdin"
-msgstr ""
+msgstr "&Crowdin"
 
 #: mmframe.cpp:1560
 msgid "We use Crowdin to translate MMEX"
-msgstr ""
+msgstr "Usamos o Crowdin para traduzir o MMEX"
 
 #: mmframe.cpp:1562
 msgid "&Twitter"
@@ -4610,7 +4610,7 @@ msgstr "As Opções do MMEX foram atualizadas."
 
 #: mmframe.cpp:2441
 msgid "Some settings take effect only after an application restart."
-msgstr ""
+msgstr "Algumas configurações só terão efeito após uma reinicialização do aplicativo."
 
 #: mmframe.cpp:2442 optiondialog.cpp:52 optiondialog.cpp:193
 msgid "MMEX Options"
@@ -4843,7 +4843,7 @@ msgstr "Reiniciar colunas"
 
 #: mmreportspanel.cpp:161
 msgid "Report"
-msgstr ""
+msgstr "Relatório"
 
 #: mmreportspanel.cpp:218
 msgid "Period:"
@@ -5457,23 +5457,23 @@ msgstr "Cores do Usuário"
 
 #: optionsettingsview.cpp:166
 msgid "Icon Sizes"
-msgstr ""
+msgstr "Tamanhos do Ícone"
 
 #: optionsettingsview.cpp:175
 msgid "16"
-msgstr ""
+msgstr "16"
 
 #: optionsettingsview.cpp:175
 msgid "24"
-msgstr ""
+msgstr "24"
 
 #: optionsettingsview.cpp:175
 msgid "32"
-msgstr ""
+msgstr "32"
 
 #: optionsettingsview.cpp:175
 msgid "48"
-msgstr ""
+msgstr "48"
 
 #: payeedialog.cpp:65
 msgid "Default Category"
@@ -6579,7 +6579,7 @@ msgstr "O MMEX está usando os seguintes produtos de suporte:"
 
 #: util.cpp:966
 msgid "Build using:"
-msgstr ""
+msgstr "Construir usando:"
 
 #: util.cpp:987
 msgid "Running on:"
