@@ -1,5 +1,5 @@
 /*******************************************************
-Copyright (C) 2014, 2015 Nikolay
+Copyright (C) 2014, 2015 Nikolay Akimov
 Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
 
 This program is free software; you can redistribute it and/or modify
@@ -154,7 +154,7 @@ void buildBitmapsFromSVG(void)
         else
             // Skip anything in the ZIP that we don't recognise as a valid SVG
             if (!iconName2enum.count(fileName)) continue;
-        
+
         wxString fileData;
         while (!iconStream.Eof()) {
             iconStream.Read(buffer, bufSize);
