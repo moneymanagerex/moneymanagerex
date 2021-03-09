@@ -1013,7 +1013,7 @@ aside {
     width: 30%;
 }
 
-div.chart {
+div.pie {
   display: flex;
   justify-content: center;
   align-items: center;
