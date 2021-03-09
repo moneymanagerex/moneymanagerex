@@ -18,6 +18,7 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
+#include "assetdialog.h"
 #include "attachmentdialog.h"
 #include "billsdepositsdialog.h"
 #include "constants.h"
@@ -30,6 +31,7 @@
 #include "mmSimpleDialogs.h"
 #include "paths.h"
 #include "splittransactionsdialog.h"
+#include "sharetransactiondialog.h"
 #include "transactionsupdatedialog.h"
 #include "transdialog.h"
 #include "util.h"
@@ -900,7 +902,7 @@ void TransactionListCtrl::OnEditTransaction(wxCommandEvent& /*event*/)
     if (GetSelectedItemCount() < 1) return;
 
     FindSelectedTransactions();
-     
+
     // edit multiple transactions
     if (m_selected_id.size() > 1)
     {
@@ -914,20 +916,43 @@ void TransactionListCtrl::OnEditTransaction(wxCommandEvent& /*event*/)
     }
 
     // edit single transaction
-    int transaction_id = m_selected_id[0];
-    Model_Checking::Data* transaction = Model_Checking::instance().get(transaction_id);
 
-    if (TransactionLocked(transaction->ACCOUNTID, transaction->TRANSDATE)) {
+    int transaction_id = m_selected_id[0];
+    Model_Checking::Data* checking_entry = Model_Checking::instance().get(transaction_id);
+
+    if (TransactionLocked(checking_entry->ACCOUNTID, checking_entry->TRANSDATE))
+    {
         return;
     }
 
-    if (!CheckForClosedAccounts()) return;
-    mmTransDialog dlg(this, transaction->ACCOUNTID, transaction_id, m_cp->m_account_balance);
-    if (dlg.ShowModal() == wxID_OK)
+    if (Model_Checking::foreignTransaction(*checking_entry))
     {
-        refreshVisualList();
+        Model_Translink::Data translink = Model_Translink::TranslinkRecord(transaction_id);
+        if (translink.LINKTYPE == Model_Attachment::reftype_desc(Model_Attachment::STOCK))
+        {
+            ShareTransactionDialog dlg(this, &translink, checking_entry);
+            if (dlg.ShowModal() == wxID_OK)
+            {
+                refreshVisualList(transaction_id);
+            }
+        }
+        else
+        {
+            mmAssetDialog dlg(this, m_cp->m_frame, &translink, checking_entry);
+            if (dlg.ShowModal() == wxID_OK)
+            {
+                refreshVisualList(transaction_id);
+            }
+        }
     }
-
+    else
+    {
+        mmTransDialog dlg(this, m_cp->m_AccountID, transaction_id, m_cp->m_account_balance);
+        if (dlg.ShowModal() == wxID_OK)
+        {
+            refreshVisualList(transaction_id);
+        }
+    }
     m_topItemIndex = GetTopItem() + GetCountPerPage() - 1;
 }
 
