@@ -2437,7 +2437,8 @@ void mmGUIFrame::OnOptions(wxCommandEvent& /*event*/)
         updateNavTreeControl();
         createHomePage();
 
-        const wxString& sysMsg = _("MMEX Options have been updated.") + "\n\n";
+        const wxString& sysMsg = _("MMEX Options have been updated.") + "\n\n"
+            + _("Some settings take effect only after an application restart.");
         wxMessageBox(sysMsg, _("MMEX Options"), wxOK | wxICON_INFORMATION);
     }
 }
