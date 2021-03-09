@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2021-03-09 15:20+0300\n"
-"PO-Revision-Date: 2021-03-09 12:31\n"
+"POT-Creation-Date: 2021-03-09 16:59+0300\n"
+"PO-Revision-Date: 2021-03-09 14:05\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -1093,7 +1093,7 @@ msgid "Invalid value"
 msgstr "Ungültiger Wert"
 
 #: billsdepositsdialog.cpp:1325 billsdepositsdialog.cpp:1334
-#: billsdepositsdialog.cpp:1342 maincurrencydialog.cpp:467 mmframe.cpp:3187
+#: billsdepositsdialog.cpp:1342 maincurrencydialog.cpp:467 mmframe.cpp:3188
 #: splittransactionsdialog.cpp:209 stockspanel.cpp:817 stockspanel.cpp:818
 #: webappdialog.cpp:194 webappdialog.cpp:199
 msgid "Error"
@@ -1621,16 +1621,16 @@ msgstr "Kategorie editieren"
 msgid "Organise Categories: Editing Error"
 msgstr "Kategorien verwalten: Änderungsfehler"
 
-#: categdialog.cpp:597 mmframe.cpp:3113
+#: categdialog.cpp:597 mmframe.cpp:3114
 msgid "Category Relocation Completed."
 msgstr "Kategorie Umzug abgeschlossen."
 
-#: categdialog.cpp:598 mmframe.cpp:3114 mmframe.cpp:3129 payeedialog.cpp:317
+#: categdialog.cpp:598 mmframe.cpp:3115 mmframe.cpp:3130 payeedialog.cpp:317
 #, c-format
 msgid "Records have been updated in the database: %i"
 msgstr "Datensätze wurden in der Datenbank aktualisiert %i"
 
-#: categdialog.cpp:600 mmframe.cpp:3116
+#: categdialog.cpp:600 mmframe.cpp:3117
 msgid "Category Relocation Result"
 msgstr "Kategorie Umzug Ergebnis"
 
@@ -2352,7 +2352,7 @@ msgid "General Reports Manager"
 msgstr "Allgemeiner Bericht Manager  "
 
 #: general_report_manager.cpp:288 mmframe.cpp:782 mmframe.cpp:2395
-#: mmframe.cpp:2492 reports/myusage.cpp:141 reports/myusage.cpp:162
+#: mmframe.cpp:2493 reports/myusage.cpp:141 reports/myusage.cpp:162
 msgid "Reports"
 msgstr "Berichte"
 
@@ -2594,8 +2594,8 @@ msgstr "QIF"
 msgid "JSON"
 msgstr "JSON"
 
-#: import_export/qif_export.cpp:138 mmframe.cpp:2960 mmframe.cpp:2964
-#: mmframe.cpp:2983 mmframe.cpp:2987
+#: import_export/qif_export.cpp:138 mmframe.cpp:2961 mmframe.cpp:2965
+#: mmframe.cpp:2984 mmframe.cpp:2988
 msgid "Accounts"
 msgstr "Konten"
 
@@ -3758,7 +3758,7 @@ msgid "Please use the Switch Application Language option in View menu to select 
 msgstr "Bitte verwenden Sie die Option Anwendungssprache wechseln im Menü Ansicht um eine der folgenden verfügbaren Sprachen auszuwählen:\n\n"
 "%s"
 
-#: mmex.cpp:140 mmframe.cpp:3224
+#: mmex.cpp:140 mmframe.cpp:3225
 msgid "Language change"
 msgstr "Sprache geändert"
 
@@ -3824,7 +3824,7 @@ msgstr "Aktienkonten"
 msgid "Budget Setup"
 msgstr "Budget einrichten"
 
-#: mmframe.cpp:790 mmframe.cpp:2449 mmhelppanel.cpp:69
+#: mmframe.cpp:790 mmframe.cpp:2450 mmhelppanel.cpp:69
 msgid "Help"
 msgstr "Hilfe"
 
@@ -3832,7 +3832,7 @@ msgstr "Hilfe"
 msgid "Do you really want to delete the account?"
 msgstr "Soll das Konto wirklich gelöscht werden?"
 
-#: mmframe.cpp:1169 mmframe.cpp:2995
+#: mmframe.cpp:1169 mmframe.cpp:2996
 msgid "Confirm Account Deletion"
 msgstr "Kontolöschung bestätigen"
 
@@ -4606,77 +4606,81 @@ msgstr "Aktionkonto erstellen"
 msgid "MMEX Options have been updated."
 msgstr "MMEX Optionen wurden aktualisiert."
 
-#: mmframe.cpp:2441 optiondialog.cpp:52 optiondialog.cpp:193
+#: mmframe.cpp:2441
+msgid "Some settings take effect only after an application restart."
+msgstr ""
+
+#: mmframe.cpp:2442 optiondialog.cpp:52 optiondialog.cpp:193
 msgid "MMEX Options"
 msgstr "MMEX Optionen"
 
-#: mmframe.cpp:2549
+#: mmframe.cpp:2550
 msgid "Choose HTML file to Export"
 msgstr "HTML-Datei für Export auswählen"
 
-#: mmframe.cpp:2893 mmframe.cpp:2900
+#: mmframe.cpp:2894 mmframe.cpp:2901
 msgid "Downloading stock prices from Yahoo"
 msgstr "Aktienkurse von Yahoo herunterladen"
 
-#: mmframe.cpp:2894
+#: mmframe.cpp:2895
 msgid "Please wait..."
 msgstr "Bitte warten..."
 
-#: mmframe.cpp:2943 stockspanel.cpp:895
+#: mmframe.cpp:2944 stockspanel.cpp:895
 #, c-format
 msgid "%s on %s"
 msgstr "%s am %s"
 
-#: mmframe.cpp:2960
+#: mmframe.cpp:2961
 msgid "No account available to edit!"
 msgstr "Kein Konto zum Bearbeiten vorhanden!"
 
-#: mmframe.cpp:2964
+#: mmframe.cpp:2965
 msgid "Choose Account to Edit"
 msgstr "Zu bearbeitendes Konto wählen"
 
-#: mmframe.cpp:2983
+#: mmframe.cpp:2984
 msgid "No account available to delete!"
 msgstr "Kein Konto zum Löschen vorhanden!"
 
-#: mmframe.cpp:2987
+#: mmframe.cpp:2988
 msgid "Choose Account to Delete"
 msgstr "Zu löschendes Konto wählen"
 
-#: mmframe.cpp:2992
+#: mmframe.cpp:2993
 #, c-format
 msgid "Are you sure you want to delete\n"
 " %s account: %s ?"
 msgstr "Möchtest du wirklich folgendes Konto löschen\n"
 " %s Konto: %s ?"
 
-#: mmframe.cpp:3011
+#: mmframe.cpp:3012
 msgid "Select the account to reallocate"
 msgstr "Wählen Sie das Konto aus, das Sie neu zuordnen möchten"
 
-#: mmframe.cpp:3011 mmframe.cpp:3034
+#: mmframe.cpp:3012 mmframe.cpp:3035
 msgid "Account Reallocation"
 msgstr "Kontowechsel"
 
-#: mmframe.cpp:3033
+#: mmframe.cpp:3034
 #, c-format
 msgid "Account: %s - Select new type."
 msgstr "Konto: %s - Neuen Kontotype auswählen."
 
-#: mmframe.cpp:3128 payeedialog.cpp:316
+#: mmframe.cpp:3129 payeedialog.cpp:316
 msgid "Payee Relocation Completed."
 msgstr "Änderung des Zahlungsempfängers abgeschlossen."
 
-#: mmframe.cpp:3132 payeedialog.cpp:320
+#: mmframe.cpp:3133 payeedialog.cpp:320
 msgid "Payee Relocation Result"
 msgstr "Ergebnis des Zahlungsempfängerwechsels"
 
-#: mmframe.cpp:3187
+#: mmframe.cpp:3188
 #, c-format
 msgid "File %s not found"
 msgstr "Datei %s nicht gefunden"
 
-#: mmframe.cpp:3222
+#: mmframe.cpp:3223
 msgid "The language for this application has been changed. The change will take effect the next time the application is started."
 msgstr "Die Sprache für diese Anwendung wurde geändert. Die Änderung wird beim nächsten Start der Anwendung wirksam."
 
