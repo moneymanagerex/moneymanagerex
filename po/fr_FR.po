@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-03-10 14:33+0300\n"
-"PO-Revision-Date: 2021-03-10 12:15\n"
+"PO-Revision-Date: 2021-03-10 13:41\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -5459,7 +5459,7 @@ msgstr "Apparence de l'interface utilisateur"
 
 #: optionsettingsview.cpp:176
 msgid "Style Template"
-msgstr "Style modèle"
+msgstr "Modèle de style"
 
 #: optionsettingsview.cpp:188
 msgid "HTML Scale Factor"
