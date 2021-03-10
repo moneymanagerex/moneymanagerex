@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-03-10 14:33+0300\n"
-"PO-Revision-Date: 2021-03-10 11:42\n"
+"PO-Revision-Date: 2021-03-10 12:43\n"
 "Last-Translator: \n"
 "Language-Team: Greek\n"
 "MIME-Version: 1.0\n"
@@ -5417,11 +5417,11 @@ msgstr "Καθορίστε ποιοι λογαριασμοί θα εμφανίζ
 
 #: optionsettingsview.cpp:81
 msgid "Category Delimiter"
-msgstr ""
+msgstr "Διαχωριστής κατηγορίας"
 
 #: optionsettingsview.cpp:96
 msgid "Transaction/Budget Options"
-msgstr ""
+msgstr "Επιλογές Συναλλαγών/Προϋπολογισμού"
 
 #: optionsettingsview.cpp:102
 msgid "View Budgets as Financial Years"
@@ -5441,19 +5441,19 @@ msgstr "Αγνόηση Μελλοντικών Συναλλαγών"
 
 #: optionsettingsview.cpp:125
 msgid "Transaction Colors"
-msgstr ""
+msgstr "Χρώματα Συναλλαγής"
 
 #: optionsettingsview.cpp:161
 msgid "UI Appearance"
-msgstr ""
+msgstr "Εμφάνιση UI"
 
 #: optionsettingsview.cpp:176
 msgid "Style Template"
-msgstr ""
+msgstr "Πρότυπο Στυλ"
 
 #: optionsettingsview.cpp:188
 msgid "HTML Scale Factor"
-msgstr ""
+msgstr "Συντελεστής κλίμακας HTML"
 
 #: optionsettingsview.cpp:196
 msgid "Specify which scale factor is used for the report pages"
@@ -5461,31 +5461,31 @@ msgstr "Καθορίστε τον συντελεστή κλίμακας που �
 
 #: optionsettingsview.cpp:201
 msgid "Small (16 px)"
-msgstr ""
+msgstr "Μικρό (16 px)"
 
 #: optionsettingsview.cpp:202
 msgid "Normal (24 px)"
-msgstr ""
+msgstr "Κανονικό (24 px)"
 
 #: optionsettingsview.cpp:203
 msgid "Large (32 px)"
-msgstr ""
+msgstr "Μεγάλο (32 px)"
 
 #: optionsettingsview.cpp:204
 msgid "Huge (48 px)"
-msgstr ""
+msgstr "Τεράστιο (48 px)"
 
 #: optionsettingsview.cpp:218
 msgid "Toolbar Icon Size"
-msgstr ""
+msgstr "Μέγεθος εικόνων εργαλειοθήκης"
 
 #: optionsettingsview.cpp:221
 msgid "Navigation Icon Size"
-msgstr ""
+msgstr "Μέγεθος Εικονιδίου Πλοήγησης"
 
 #: optionsettingsview.cpp:224
 msgid "Others Icon Size"
-msgstr ""
+msgstr "Μέγεθος Εικονιδίου Άλλα"
 
 #: payeedialog.cpp:65
 msgid "Default Category"
