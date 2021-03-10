@@ -77,19 +77,8 @@ void OptionSettingsView::Create()
     view_sizer1->Add(m_choice_visible, g_flagsH);
     m_choice_visible->SetToolTip(_("Specify which accounts are visible"));
 
-    view_sizer1->Add(new wxStaticText(this, wxID_STATIC, _("HTML scale factor")), g_flagsH);
-
-    int max = 300; int min = 25;
-    m_scale_factor = new wxSpinCtrl(this, wxID_ANY
-        , wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, min, max);
-
-    int vFontSize = Option::instance().getHtmlFontSize();
-    m_scale_factor->SetValue(vFontSize);
-    m_scale_factor->SetToolTip(_("Specify which scale factor is used for the report pages"));
-    view_sizer1->Add(m_scale_factor, g_flagsH);
-
     //Category delimiter
-    view_sizer1->Add(new wxStaticText(this, wxID_STATIC, _("Category delimiter")), g_flagsH);
+    view_sizer1->Add(new wxStaticText(this, wxID_STATIC, _("Category Delimiter")), g_flagsH);
 
     wxArrayString list;
     list.Add(":");
@@ -104,27 +93,33 @@ void OptionSettingsView::Create()
     view_sizer1->Add(m_categ_delimiter_list, g_flagsH);
 
     // Budget options
+    wxStaticBox* trxStaticBox = new wxStaticBox(this, wxID_STATIC, _("Transaction/Budget Options"));
+    SetBoldFont(trxStaticBox);
+    wxStaticBoxSizer* trxStaticBoxSizer = new wxStaticBoxSizer(trxStaticBox, wxVERTICAL);
+    viewsPanelSizer->Add(trxStaticBoxSizer, wxSizerFlags(g_flagsExpand).Proportion(0));
+
+
     m_budget_financial_years = new wxCheckBox(this, wxID_STATIC, _("View Budgets as Financial Years"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     m_budget_financial_years->SetValue(Option::instance().BudgetFinancialYears());
-    viewsPanelSizer->Add(m_budget_financial_years, g_flagsV);
+    trxStaticBoxSizer->Add(m_budget_financial_years, g_flagsV);
 
     m_budget_include_transfers = new wxCheckBox(this, wxID_STATIC
         , _("View Budgets with 'transfer' transactions")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     m_budget_include_transfers->SetValue(Option::instance().BudgetIncludeTransfers());
-    viewsPanelSizer->Add(m_budget_include_transfers, g_flagsV);
+    trxStaticBoxSizer->Add(m_budget_include_transfers, g_flagsV);
 
     m_budget_summary_without_category = new wxCheckBox(this, wxID_STATIC
         , _("View Budget Category Report with Summaries")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     m_budget_summary_without_category->SetValue(Option::instance().BudgetReportWithSummaries());
-    viewsPanelSizer->Add(m_budget_summary_without_category, g_flagsV);
+    trxStaticBoxSizer->Add(m_budget_summary_without_category, g_flagsV);
 
     m_ignore_future_transactions = new wxCheckBox(this, wxID_STATIC
         , _("Ignore Future Transactions")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     m_ignore_future_transactions->SetValue(Option::instance().getIgnoreFutureTransactions());
-    viewsPanelSizer->Add(m_ignore_future_transactions, g_flagsV);
+    trxStaticBoxSizer->Add(m_ignore_future_transactions, g_flagsV);
 
     // Colours settings
     wxStaticBox* userColourSettingStBox = new wxStaticBox(this, wxID_ANY, _("Transaction Colors"));
@@ -178,7 +173,7 @@ void OptionSettingsView::Create()
 
     wxChoice* style = new wxChoice(this, wxID_ANY);
 
-    view_sizer2->Add(new wxStaticText(this, wxID_STATIC, _("UI Style")), g_flagsH);
+    view_sizer2->Add(new wxStaticText(this, wxID_STATIC, _("Style Template")), g_flagsH);
     view_sizer2->Add(style, g_flagsH);
 
     const wxString style_choice[] = { wxTRANSLATE("Default") };
@@ -190,8 +185,24 @@ void OptionSettingsView::Create()
 #endif
 
 
-    const wxString settings_choice[] = { wxTRANSLATE("Small"), wxTRANSLATE("Normal")
-        , wxTRANSLATE("Large"), wxTRANSLATE("Huge") };
+    view_sizer2->Add(new wxStaticText(this, wxID_STATIC, _("HTML Scale Factor")), g_flagsH);
+
+    int max = 300; int min = 25;
+    m_scale_factor = new wxSpinCtrl(this, wxID_ANY
+        , wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, min, max);
+
+    int vFontSize = Option::instance().getHtmlFontSize();
+    m_scale_factor->SetValue(vFontSize);
+    m_scale_factor->SetToolTip(_("Specify which scale factor is used for the report pages"));
+    view_sizer2->Add(m_scale_factor, g_flagsH);
+
+    //
+    const wxString settings_choice[] = {
+        wxTRANSLATE("Small (16 px)"),
+        wxTRANSLATE("Normal (24 px)"),
+        wxTRANSLATE("Large (32 px)"),
+        wxTRANSLATE("Huge (48 px)")
+    };
 
     m_toolbar_icon_size = new wxChoice(this, wxID_RESIZE_FRAME);
     m_navigation_icon_size = new wxChoice(this, wxID_RESIZE_FRAME);
@@ -214,18 +225,15 @@ void OptionSettingsView::Create()
     view_sizer2->Add(m_others_icon_size, g_flagsH);
 
     int vIconSize = Option::instance().getToolbarIconSize();
-    int selection = vIconSize / 8 - 2;
-    if (selection > 3) selection = 3;
+    int selection = vIconSize / 8 - (vIconSize > 32 ? 3 : 2);
     m_toolbar_icon_size->SetSelection(selection);
 
     vIconSize = Option::instance().getNavigationIconSize();
-    selection = vIconSize / 8 - 2;
-    if (selection > 3) selection = 3;
+    selection = vIconSize / 8 - (vIconSize > 32 ? 3 : 2);
     m_navigation_icon_size->SetSelection(selection);
 
     vIconSize = Option::instance().getIconSize();
-    selection = vIconSize / 8 - 2;
-    if (selection > 3) selection = 3;
+    selection = vIconSize / 8 - (vIconSize > 32 ? 3 : 2);
     m_others_icon_size->SetSelection(selection);
 
     this->Connect(wxID_ANY, wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(OptionSettingsView::OnNavTreeColorChanged), nullptr, this);
