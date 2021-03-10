@@ -1,5 +1,6 @@
 /*******************************************************
  Copyright (C) 2013,2014 Guan Lisheng (guanlisheng@gmail.com)
+ Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -167,6 +168,17 @@ wxString Model_Setting::ViewAccounts()
 void Model_Setting::SetViewAccounts(const wxString& value)
 {
     Set("VIEWACCOUNTS", value);
+}
+
+//-------------------------------------------------------------------
+wxString Model_Setting::Theme()
+{
+    return GetStringSetting("THEME", "default");
+}
+
+void Model_Setting::SetTheme(const wxString& value)
+{
+    Set("THEME", value);
 }
 
 //-------------------------------------------------------------------

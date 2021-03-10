@@ -1,6 +1,6 @@
 /*******************************************************
 Copyright (C) 2014, 2015 Nikolay
-Copyright (C) 22021 Mark Whalley (mark@ipx.co.uk)
+Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -304,8 +304,11 @@ static wxSharedPtr<wxBitmap> programIcons24[MAX_PNG];
 static wxSharedPtr<wxBitmap> programIcons32[MAX_PNG];
 static wxSharedPtr<wxBitmap> programIcons48[MAX_PNG];
 
+static wxArrayString themes;
+wxArrayString getThemes();
+
 wxImageList* navtree_images_list();
 const wxBitmap mmBitmap(int ref);
 
 wxBitmap* CreateBitmapFromRGBA(unsigned char *rgba, int size);
-void buildBitmapsFromSVG(void);
+bool buildBitmapsFromSVG(void);

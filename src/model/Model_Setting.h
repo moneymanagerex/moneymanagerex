@@ -1,6 +1,7 @@
 /*******************************************************
  Copyright (C) 2013,2014 Guan Lisheng (guanlisheng@gmail.com)
-
+ Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
+ 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
  the Free Software Foundation; either version 2 of the License, or
@@ -79,6 +80,10 @@ public:
 public:
     wxString ViewAccounts();
     void SetViewAccounts(const wxString& value);
+    
+    wxString Theme();
+    void SetTheme(const wxString& value);
+
 
     wxString ViewTransactions();
     void SetViewTransactions(const wxString& value);
