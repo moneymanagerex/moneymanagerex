@@ -40,6 +40,27 @@ env:
   - OS=linuxmint DIST=sylvia
 
 matrix:
+  allow_failures:
+  - os: debian
+    dist: jessie
+  - env: debian DIST=buster
+  - env: ubuntu DIST=xenial
+  - env: ubuntu DIST=bionic
+  - env: ubuntu DIST=groovy
+  - env: ubuntu DIST=focal
+  - env: fedora
+  - env: fedora DIST=30
+  - env: fedora DIST=31
+  - env: opensuse
+  - env: opensuse DIST=42.2
+  - env: archlinux
+  - env: el DIST=8
+  - env: linuxmint DIST=sylvia
+  - env: linuxmint DIST=tara
+  - env: linuxmint DIST=tessa
+  - env: linuxmint DIST=tina
+  - env: linuxmint DIST=tricia
+
   fast_finish: true
   include: # add non-linux targets
   - { os: osx, osx_image: xcode11.2, env: OS=macos DIST=10.14, compiler: clang }
@@ -59,26 +80,6 @@ matrix:
     after_success: skip
     deploy: skip
   
-  allow_failures:
-  - env: debian DIST=jessie
-  - env: debian DIST=buster
-  - env: ubuntu DIST=xenial
-  - env: ubuntu DIST=bionic
-  - env: ubuntu DIST=groovy
-  - env: ubuntu DIST=focal
-  - env: fedora
-  - env: fedora DIST=30
-  - env: fedora DIST=31
-  - env: opensuse
-  - env: opensuse DIST=42.2
-  - env: archlinux
-  - env: el DIST=8
-  - env: linuxmint DIST=sylvia
-  - env: linuxmint DIST=tara
-  - env: linuxmint DIST=tessa
-  - env: linuxmint DIST=tina
-  - env: linuxmint DIST=tricia
-
 stages:
   - name: nightly
     if: type IN (api, cron)
