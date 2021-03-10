@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-03-10 14:33+0300\n"
-"PO-Revision-Date: 2021-03-10 11:42\n"
+"PO-Revision-Date: 2021-03-10 17:45\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -4230,11 +4230,11 @@ msgstr "Besuchen Sie uns auf Facebook"
 
 #: mmframe.cpp:1560
 msgid "&Crowdin"
-msgstr ""
+msgstr "&Crowdin"
 
 #: mmframe.cpp:1560
 msgid "We use Crowdin to translate MMEX"
-msgstr ""
+msgstr "Wir nutzen Crowdin um MMEX zu übersetzen"
 
 #: mmframe.cpp:1562
 msgid "&Twitter"
@@ -4608,7 +4608,7 @@ msgstr "MMEX Optionen wurden aktualisiert."
 
 #: mmframe.cpp:2441
 msgid "Some settings take effect only after an application restart."
-msgstr ""
+msgstr "Einige Einstellungen werden erst nach einem Neustart der Anwendung wirksam."
 
 #: mmframe.cpp:2442 optiondialog.cpp:52 optiondialog.cpp:193
 msgid "MMEX Options"
@@ -5423,11 +5423,11 @@ msgstr "Welche Konten sind sichtbar"
 
 #: optionsettingsview.cpp:81
 msgid "Category Delimiter"
-msgstr ""
+msgstr "Kategorietrenner"
 
 #: optionsettingsview.cpp:96
 msgid "Transaction/Budget Options"
-msgstr ""
+msgstr "Transaktions-/Budgeteinstellungen"
 
 #: optionsettingsview.cpp:102
 msgid "View Budgets as Financial Years"
@@ -5447,19 +5447,19 @@ msgstr "Zukünftige Transaktionen ignorieren"
 
 #: optionsettingsview.cpp:125
 msgid "Transaction Colors"
-msgstr ""
+msgstr "Transaktionsfarben"
 
 #: optionsettingsview.cpp:161
 msgid "UI Appearance"
-msgstr ""
+msgstr "Erscheinungsbild der Benutzeroberfläche"
 
 #: optionsettingsview.cpp:176
 msgid "Style Template"
-msgstr ""
+msgstr "Stilvorlage"
 
 #: optionsettingsview.cpp:188
 msgid "HTML Scale Factor"
-msgstr ""
+msgstr "HTML-Skalierungsfaktor"
 
 #: optionsettingsview.cpp:196
 msgid "Specify which scale factor is used for the report pages"
@@ -5467,31 +5467,31 @@ msgstr "Geben Sie an, welcher Skalierungsfaktor für die Berichtseiten verwendet
 
 #: optionsettingsview.cpp:201
 msgid "Small (16 px)"
-msgstr ""
+msgstr "Klein (16 px)"
 
 #: optionsettingsview.cpp:202
 msgid "Normal (24 px)"
-msgstr ""
+msgstr "Normal (24 px)"
 
 #: optionsettingsview.cpp:203
 msgid "Large (32 px)"
-msgstr ""
+msgstr "Groß (32 px)"
 
 #: optionsettingsview.cpp:204
 msgid "Huge (48 px)"
-msgstr ""
+msgstr "Sehr groß (48 px)"
 
 #: optionsettingsview.cpp:218
 msgid "Toolbar Icon Size"
-msgstr ""
+msgstr "Symbolgröße der Symbolleiste"
 
 #: optionsettingsview.cpp:221
 msgid "Navigation Icon Size"
-msgstr ""
+msgstr "Navigationssymbolgröße"
 
 #: optionsettingsview.cpp:224
 msgid "Others Icon Size"
-msgstr ""
+msgstr "Sonstige Symbolgröße"
 
 #: payeedialog.cpp:65
 msgid "Default Category"
@@ -6602,7 +6602,7 @@ msgstr "MMEX verwendet folgene Unterstützungsprodukte:"
 
 #: util.cpp:966
 msgid "Build using:"
-msgstr ""
+msgstr "Genutztes Build:"
 
 #: util.cpp:987
 msgid "Running on:"
