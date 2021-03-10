@@ -430,7 +430,7 @@ function(create_zip output_file input_files working_dir)
     )
 endfunction()
 
-file(GLOB ZIP_FILES "${PROJECT_SOURCE_DIR}/resources/themes/clean-duo/*")
+file(GLOB ZIP_FILES "${PROJECT_SOURCE_DIR}/resources/themes/*")
 create_zip("${CMAKE_CURRENT_BINARY_DIR}/themes.zip" "${ZIP_FILES}" "${PROJECT_SOURCE_DIR}/resources/themes/")
 add_custom_target(generate_icons ALL DEPENDS "${CMAKE_CURRENT_BINARY_DIR}/themes.zip")
 

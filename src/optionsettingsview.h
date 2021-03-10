@@ -1,5 +1,7 @@
 /*******************************************************
 Copyright (C) 2014 Stefano Giorgio
+Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
+
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -55,6 +57,8 @@ private:
     wxButton* m_UDFCB6;
     wxButton* m_UDFCB7;
 
+    
+    wxChoice* m_choice_theme;
     wxChoice* m_choice_visible;
     wxSpinCtrl* m_scale_factor;
     wxChoice* m_toolbar_icon_size;

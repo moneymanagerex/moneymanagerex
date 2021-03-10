@@ -1,5 +1,6 @@
 /*******************************************************
 Copyright (C) 2014 Stefano Giorgio
+Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -17,6 +18,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ********************************************************/
 
 #include "optionsettingsview.h"
+#include "images_list.h"
 #include "util.h"
 
 #include <wx/colordlg.h>
@@ -167,23 +169,20 @@ void OptionSettingsView::Create()
     wxFlexGridSizer* view_sizer2 = new wxFlexGridSizer(0, 2, 0, 5);
     iconStaticBoxSizer->Add(view_sizer2);
 
+    // Theme
 
-#if 1
-    // Style
-
-    wxChoice* style = new wxChoice(this, wxID_ANY);
+    m_choice_theme = new wxChoice(this, wxID_ANY);
 
     view_sizer2->Add(new wxStaticText(this, wxID_STATIC, _("Style Template")), g_flagsH);
-    view_sizer2->Add(style, g_flagsH);
+    view_sizer2->Add(m_choice_theme, g_flagsH);
 
-    const wxString style_choice[] = { wxTRANSLATE("Default") };
-    for (const auto& entry : style_choice)
+    wxString myTheme = Model_Setting::instance().Theme();
+    for (const auto& entry : getThemes())
     {
-        style->Append(wxGetTranslation(entry), new wxStringClientData(entry));
+        m_choice_theme->Append(wxGetTranslation(entry), new wxStringClientData(entry));
+        if (entry == myTheme)
+            m_choice_theme->SetStringSelection(wxGetTranslation(entry));
     }
-    style->SetSelection(0);
-#endif
-
 
     view_sizer2->Add(new wxStaticText(this, wxID_STATIC, _("HTML Scale Factor")), g_flagsH);
 
@@ -269,6 +268,12 @@ bool OptionSettingsView::SaveSettings()
     if (visible_acc_obj)
         accVisible = visible_acc_obj->GetData();
     Model_Setting::instance().SetViewAccounts(accVisible);
+
+    wxString themeName = "default";
+    wxStringClientData* theme_obj = static_cast<wxStringClientData*>(m_choice_theme->GetClientObject(m_choice_theme->GetSelection()));
+    if (theme_obj)
+        themeName = theme_obj->GetData();
+    Model_Setting::instance().SetTheme(themeName);
 
     int size = m_scale_factor->GetValue();
     Option::instance().setHTMLFontSizes(size);

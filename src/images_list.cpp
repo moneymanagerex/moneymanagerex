@@ -18,6 +18,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 *******************************************************/
 
 #include "images_list.h"
+#include "model/Model_Setting.h"
 #include "option.h"
 #include "util.h"
 #include <wx/image.h>
@@ -129,8 +130,12 @@ wxBitmap* CreateBitmapFromRGBA(unsigned char *rgba, int size)
    return bitmap;
 } 
 
-void buildBitmapsFromSVG(void)
+bool buildBitmapsFromSVG(void)
 {
+    wxString myTheme = Model_Setting::instance().Theme();
+    themes.Clear();
+    bool myThemeFound = false;
+    wxLogDebug ("Loading Theme: %s", myTheme);
     const wxString iconsFile = mmex::getPathResource(mmex::THEMES_ZIP);
     wxFileInputStream iconZip(iconsFile);
     wxASSERT(iconZip.IsOk());   // Make sure we can open find the Zip
@@ -140,13 +145,30 @@ void buildBitmapsFromSVG(void)
     const size_t bufSize = 32768;   // Should really have CSS/SVGs smaller than this.
     unsigned char buffer[bufSize];
 
+    wxString thisTheme;
     while (zipEntry.reset(iconStream.GetNextEntry()), zipEntry) // != nullptr
     {
         wxASSERT(iconZip.CanRead()); // Make sure we can read the Zip Entry
 
-        wxString fileEntry = wxFileName(zipEntry->GetName()).GetFullName();
+        const wxFileName fileEntryName = wxFileName(zipEntry->GetName());
+        const wxString fileEntry = fileEntryName.GetFullName();
+        const wxString pathEntry = fileEntryName.GetFullPath();
+        const int dirLevel = static_cast<int>(fileEntryName.GetDirCount());
+
+        //wxLogDebug("fileEntry: level=%d, fullpath=%s, filename=%s", dirLevel, pathEntry, fileEntry);
+        if (1 == dirLevel && fileEntryName.IsDir())
+        {   
+            thisTheme = fileEntryName.GetDirs()[0];
+            wxLogDebug("Found Theme: %s", thisTheme);
+            themes.Add(thisTheme);
+            if (!thisTheme.Cmp(myTheme))
+                myThemeFound = true;
+        }
+
+        if (thisTheme.Cmp(myTheme) || fileEntryName.IsDir())
+            continue;   // We can skip if it's not our theme
+
         std::string fileName = std::string(fileEntry.mb_str());
-        wxLogDebug("zip file entry: %s", fileEntry);
 
         bool isMasterCSS = false;
         if (!fileName.compare("master.css"))
@@ -184,13 +206,26 @@ void buildBitmapsFromSVG(void)
             }
         }
     }
-    iconsLoaded = true;
+    return (myThemeFound);
 }
 
 const wxBitmap mmBitmap(int ref)
 {
     // Load icons on first use
-    if (!iconsLoaded) buildBitmapsFromSVG();
+    if (!iconsLoaded) 
+    { 
+        if (!buildBitmapsFromSVG())     // safety net in case a theme is removed or name changed
+        {
+            Model_Setting::instance().SetTheme("default");
+            buildBitmapsFromSVG();
+        }
+        iconsLoaded = true;
+    }
     int x = Option::instance().getIconSize();
     return x == 16 ? *programIcons16[ref] : x == 24 ? *programIcons24[ref] : x == 32 ? *programIcons32[ref] : *programIcons48[ref];
 }
+
+wxArrayString getThemes()
+{
+    return themes; }
+;
