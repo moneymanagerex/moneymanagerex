@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-03-10 14:33+0300\n"
-"PO-Revision-Date: 2021-03-10 11:42\n"
+"PO-Revision-Date: 2021-03-10 19:36\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "MIME-Version: 1.0\n"
@@ -5425,11 +5425,11 @@ msgstr "Especifique quais contas são visíveis"
 
 #: optionsettingsview.cpp:81
 msgid "Category Delimiter"
-msgstr ""
+msgstr "Delimitador de categoria"
 
 #: optionsettingsview.cpp:96
 msgid "Transaction/Budget Options"
-msgstr ""
+msgstr "Opções de transação/orçamento"
 
 #: optionsettingsview.cpp:102
 msgid "View Budgets as Financial Years"
@@ -5449,19 +5449,19 @@ msgstr "Ignorar Transações Futuras"
 
 #: optionsettingsview.cpp:125
 msgid "Transaction Colors"
-msgstr ""
+msgstr "Cores da Transação"
 
 #: optionsettingsview.cpp:161
 msgid "UI Appearance"
-msgstr ""
+msgstr "Aparência"
 
 #: optionsettingsview.cpp:176
 msgid "Style Template"
-msgstr ""
+msgstr "Estilo do Modelo"
 
 #: optionsettingsview.cpp:188
 msgid "HTML Scale Factor"
-msgstr ""
+msgstr "Fator de escala HTML"
 
 #: optionsettingsview.cpp:196
 msgid "Specify which scale factor is used for the report pages"
@@ -5469,31 +5469,31 @@ msgstr "Especifique qual fator de escala é usado para as páginas do relatório
 
 #: optionsettingsview.cpp:201
 msgid "Small (16 px)"
-msgstr ""
+msgstr "Pequeno (16 px)"
 
 #: optionsettingsview.cpp:202
 msgid "Normal (24 px)"
-msgstr ""
+msgstr "Normal (24 px)"
 
 #: optionsettingsview.cpp:203
 msgid "Large (32 px)"
-msgstr ""
+msgstr "Grande (32 px)"
 
 #: optionsettingsview.cpp:204
 msgid "Huge (48 px)"
-msgstr ""
+msgstr "Enorme (48 px)"
 
 #: optionsettingsview.cpp:218
 msgid "Toolbar Icon Size"
-msgstr ""
+msgstr "Tamanho do ícone na barra de ferramentas"
 
 #: optionsettingsview.cpp:221
 msgid "Navigation Icon Size"
-msgstr ""
+msgstr "Tamanho do ícone de navegação"
 
 #: optionsettingsview.cpp:224
 msgid "Others Icon Size"
-msgstr ""
+msgstr "Tamanho de outros ícones"
 
 #: payeedialog.cpp:65
 msgid "Default Category"
