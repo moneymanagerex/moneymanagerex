@@ -218,7 +218,7 @@ void OptionSettingsView::Create()
     view_sizer2->Add(new wxStaticText(this, wxID_STATIC, _("Toolbar Icon Size")), g_flagsH);
     view_sizer2->Add(m_toolbar_icon_size, g_flagsH);
 
-    view_sizer2->Add(new wxStaticText(this, wxID_STATIC, _("Navigation Ison Size")), g_flagsH);
+    view_sizer2->Add(new wxStaticText(this, wxID_STATIC, _("Navigation Icon Size")), g_flagsH);
     view_sizer2->Add(m_navigation_icon_size, g_flagsH);
 
     view_sizer2->Add(new wxStaticText(this, wxID_STATIC, _("Others Icon Size")), g_flagsH);
