@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-03-10 14:33+0300\n"
-"PO-Revision-Date: 2021-03-10 11:42\n"
+"PO-Revision-Date: 2021-03-10 12:15\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -5427,11 +5427,11 @@ msgstr "Préciser les comptes à afficher"
 
 #: optionsettingsview.cpp:81
 msgid "Category Delimiter"
-msgstr ""
+msgstr "Délimiteur de catégories"
 
 #: optionsettingsview.cpp:96
 msgid "Transaction/Budget Options"
-msgstr ""
+msgstr "Options de transaction/budget"
 
 #: optionsettingsview.cpp:102
 msgid "View Budgets as Financial Years"
@@ -5451,19 +5451,19 @@ msgstr "Ignorer les prochaines transactions"
 
 #: optionsettingsview.cpp:125
 msgid "Transaction Colors"
-msgstr ""
+msgstr "Couleurs de la transaction"
 
 #: optionsettingsview.cpp:161
 msgid "UI Appearance"
-msgstr ""
+msgstr "Apparence de l'interface utilisateur"
 
 #: optionsettingsview.cpp:176
 msgid "Style Template"
-msgstr ""
+msgstr "Style modèle"
 
 #: optionsettingsview.cpp:188
 msgid "HTML Scale Factor"
-msgstr ""
+msgstr "Facteur d’échelle HTML"
 
 #: optionsettingsview.cpp:196
 msgid "Specify which scale factor is used for the report pages"
@@ -5471,31 +5471,31 @@ msgstr "Indiquez quel est le facteur d'échelle est utilisé pour ce rapport"
 
 #: optionsettingsview.cpp:201
 msgid "Small (16 px)"
-msgstr ""
+msgstr "Petit (16 px)"
 
 #: optionsettingsview.cpp:202
 msgid "Normal (24 px)"
-msgstr ""
+msgstr "Normal (24 px)"
 
 #: optionsettingsview.cpp:203
 msgid "Large (32 px)"
-msgstr ""
+msgstr "Grand (32 px)"
 
 #: optionsettingsview.cpp:204
 msgid "Huge (48 px)"
-msgstr ""
+msgstr "Énorme (48 px)"
 
 #: optionsettingsview.cpp:218
 msgid "Toolbar Icon Size"
-msgstr ""
+msgstr "Taille des icônes de la barre d'outils"
 
 #: optionsettingsview.cpp:221
 msgid "Navigation Icon Size"
-msgstr ""
+msgstr "Taille des icônes de la navigation"
 
 #: optionsettingsview.cpp:224
 msgid "Others Icon Size"
-msgstr ""
+msgstr "Taille des autres icônes"
 
 #: payeedialog.cpp:65
 msgid "Default Category"
