@@ -57,9 +57,9 @@ private:
 
     wxChoice* m_choice_visible;
     wxSpinCtrl* m_scale_factor;
-    wxRadioBox* m_toolbar_icon_size;
-    wxRadioBox* m_navigation_icon_size;
-    wxRadioBox* m_others_icon_size;
+    wxChoice* m_toolbar_icon_size;
+    wxChoice* m_navigation_icon_size;
+    wxChoice* m_others_icon_size;
     wxComboBox* m_categ_delimiter_list;
 
     wxCheckBox* m_budget_financial_years;
