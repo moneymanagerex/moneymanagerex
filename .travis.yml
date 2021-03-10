@@ -43,6 +43,7 @@ matrix:
   allow_failures:
   - os: debian
     dist: jessie
+  - env: debian DIST=jessie
   - env: debian DIST=buster
   - env: ubuntu DIST=xenial
   - env: ubuntu DIST=bionic
