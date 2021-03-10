@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-03-10 14:33+0300\n"
-"PO-Revision-Date: 2021-03-10 11:43\n"
+"PO-Revision-Date: 2021-03-10 15:09\n"
 "Last-Translator: \n"
 "Language-Team: Italian\n"
 "MIME-Version: 1.0\n"
@@ -3649,7 +3649,8 @@ msgstr[1] "La modifica interesserà %i transazioni che interessano un conto che 
 #: mmchecking_list.cpp:892
 msgid "\n\n"
 "Do you still want to perform the edit?"
-msgstr "Vuoi ancora eseguire la modifica?"
+msgstr "\n\n"
+"Vuoi ancora eseguire la modifica?"
 
 #: mmchecking_list.cpp:893
 msgid "Closed Account Check"
