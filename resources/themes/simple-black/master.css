@@ -29,23 +29,7 @@ html {
   font-family: sans-serif;
   -webkit-text-size-adjust: 100%;
       -ms-text-size-adjust: 100%;
-}
-
-body {
-  margin: 5px;
-}
-
-a {
-  background: transparent;
-}
-
-a:focus {
-  outline: thin dotted;
-}
-
-a:active,
-a:hover {
-  outline: 0;
+  background-color: #e5e5e5;
 }
 
 h1 {
@@ -119,11 +103,12 @@ body {
   font-size: 12px;
   line-height: 1.428571429;
   color: #333333;
-  background-color: #ffffff;
+  margin: 5px;
+  background-color: #e5e5e5;
 }
 
-
 a {
+  background: transparent;
   color: #428bca;
   text-decoration: none;
 }
@@ -138,6 +123,15 @@ a:focus {
   outline: thin dotted;
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
+}
+
+a:focus {
+  outline: thin dotted;
+}
+
+a:active,
+a:hover {
+  outline: 0;
 }
 
 img {
@@ -703,7 +697,7 @@ th {
   vertical-align: bottom;
   border-top: 2px solid #dddddd!important;
   border-bottom: 2px solid #dddddd!important;
-  background-color: #d9e8e1;
+  background-color: #d9d9d9;
 }
 
 .table > caption + thead > tr:first-child > th,
@@ -720,7 +714,6 @@ th {
 }
 
 .table .table {
-  background-color: #ffffff;
 }
 
 .table-condensed > thead > tr > th,
@@ -781,7 +774,7 @@ table th[class*="col-"] {
 .table > thead > .active > th,
 .table > tbody > .active > th,
 .table > tfoot > .active > th {
-  background-color: #f5f5f5;
+  background-color: #b4b4b4;
 }
 
 .table-hover > tbody > tr > .active:hover,
@@ -978,27 +971,21 @@ a.badge:focus {
 }
 
 .shadow {
-    box-shadow: 0 0 20px rgba(0,0,0,0.5); /* shadow parameters */
     padding: 5px;
     margin: 10px;
     overflow:auto;
     height:100%;
+    border:1px solid black;
 }
 
 .shadowTitle {
-    box-shadow: 0 0 15px rgba(0,0,0,0.5); /* shadow parameters */
     padding: 10px;
     margin: 10px;
-    background: linear-gradient(to right, #80b39a 10%, #d9e8e1 90% );
+    background: #f0f0f0;
     display: flex;
     align-items: stretch;
     flex-wrap: wrap;
-}
-
-.shadow:hover,
-.shadowTitle:hover {
-    box-shadow : 0 0 25px rgba(0,0,0,0.4);
-    transform: translateY(-1px);
+    border:2px solid #ccc;
 }
  
 header {
