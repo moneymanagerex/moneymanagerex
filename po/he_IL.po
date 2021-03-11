@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-03-10 14:33+0300\n"
-"PO-Revision-Date: 2021-03-10 11:42\n"
+"PO-Revision-Date: 2021-03-11 09:34\n"
 "Last-Translator: \n"
 "Language-Team: Hebrew\n"
 "MIME-Version: 1.0\n"
@@ -4247,11 +4247,11 @@ msgstr "בקרו אותנו בפייסבוק"
 
 #: mmframe.cpp:1560
 msgid "&Crowdin"
-msgstr ""
+msgstr "&כראודין"
 
 #: mmframe.cpp:1560
 msgid "We use Crowdin to translate MMEX"
-msgstr ""
+msgstr "אנו משתמשים בכראודין לתרגום MMEX"
 
 #: mmframe.cpp:1562
 msgid "&Twitter"
@@ -4627,7 +4627,7 @@ msgstr "אפשרויות MMEX עודכנו."
 
 #: mmframe.cpp:2441
 msgid "Some settings take effect only after an application restart."
-msgstr ""
+msgstr "חלק מההגדרות יכנסו לתוקף רק לאחר אתחול היישום."
 
 #: mmframe.cpp:2442 optiondialog.cpp:52 optiondialog.cpp:193
 msgid "MMEX Options"
@@ -5442,11 +5442,11 @@ msgstr "נא להגדיר את החשבונות הגלויים"
 
 #: optionsettingsview.cpp:81
 msgid "Category Delimiter"
-msgstr ""
+msgstr "מפריד סוג-אב"
 
 #: optionsettingsview.cpp:96
 msgid "Transaction/Budget Options"
-msgstr ""
+msgstr "אפשרויות תנועה/תקציב"
 
 #: optionsettingsview.cpp:102
 msgid "View Budgets as Financial Years"
@@ -5466,19 +5466,19 @@ msgstr "החרגת תנועות עתידיות"
 
 #: optionsettingsview.cpp:125
 msgid "Transaction Colors"
-msgstr ""
+msgstr "צבעי תנועה"
 
 #: optionsettingsview.cpp:161
 msgid "UI Appearance"
-msgstr ""
+msgstr "נראות מנשק משתמש"
 
 #: optionsettingsview.cpp:176
 msgid "Style Template"
-msgstr ""
+msgstr "תבנית סגנון"
 
 #: optionsettingsview.cpp:188
 msgid "HTML Scale Factor"
-msgstr ""
+msgstr "מקדם קנה מידה HTML"
 
 #: optionsettingsview.cpp:196
 msgid "Specify which scale factor is used for the report pages"
@@ -5486,31 +5486,31 @@ msgstr "הגדרת גודל הגופן לתצוגה בדוחות"
 
 #: optionsettingsview.cpp:201
 msgid "Small (16 px)"
-msgstr ""
+msgstr "קטן (16 פיקסל)"
 
 #: optionsettingsview.cpp:202
 msgid "Normal (24 px)"
-msgstr ""
+msgstr "תיקני (24 פיקסל)"
 
 #: optionsettingsview.cpp:203
 msgid "Large (32 px)"
-msgstr ""
+msgstr "גדול (32 פיקסל)"
 
 #: optionsettingsview.cpp:204
 msgid "Huge (48 px)"
-msgstr ""
+msgstr "גדול מאוד (48 פיקסל)"
 
 #: optionsettingsview.cpp:218
 msgid "Toolbar Icon Size"
-msgstr ""
+msgstr "גודל סמל סרגל כלים"
 
 #: optionsettingsview.cpp:221
 msgid "Navigation Icon Size"
-msgstr ""
+msgstr "גודל סמל ניווט"
 
 #: optionsettingsview.cpp:224
 msgid "Others Icon Size"
-msgstr ""
+msgstr "גודל סמל אחרים"
 
 #: payeedialog.cpp:65
 msgid "Default Category"
@@ -6623,7 +6623,7 @@ msgstr "MMEX משתמשת במוצרי התמיכה הבאים:"
 
 #: util.cpp:966
 msgid "Build using:"
-msgstr ""
+msgstr "בניה באמצעות:"
 
 #: util.cpp:987
 msgid "Running on:"
