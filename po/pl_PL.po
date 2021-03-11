@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-03-10 14:33+0300\n"
-"PO-Revision-Date: 2021-03-10 11:42\n"
+"PO-Revision-Date: 2021-03-11 12:38\n"
 "Last-Translator: \n"
 "Language-Team: Polish\n"
 "MIME-Version: 1.0\n"
@@ -277,7 +277,7 @@ msgstr "Waluta"
 
 #: accountdialog.cpp:520
 msgid "Please insert a valid URL"
-msgstr ""
+msgstr "Proszę wprowadzić prawidłowy adres URL"
 
 #: accountdialog.cpp:520
 msgid "Invalid URL"
@@ -3949,7 +3949,7 @@ msgstr ""
 
 #: mmframe.cpp:1343
 msgid "&HTML Files..."
-msgstr ""
+msgstr "Pliki &HTML..."
 
 #: mmframe.cpp:1343
 msgid "Export to HTML"
@@ -3981,7 +3981,7 @@ msgstr "Drukuj aktualny widok"
 
 #: mmframe.cpp:1362
 msgid "E&xit\tAlt-X"
-msgstr ""
+msgstr "&Zakończ Alt-X"
 
 #: mmframe.cpp:1362
 msgid "Quit this program"
@@ -4053,7 +4053,7 @@ msgstr "Tryb pełnoekranowy"
 
 #: mmframe.cpp:1404
 msgid "Switch Application &Language"
-msgstr ""
+msgstr "Zmień język programu"
 
 #: mmframe.cpp:1405
 msgid "Change language used for MMEX GUI"
@@ -4069,7 +4069,7 @@ msgstr ""
 
 #: mmframe.cpp:1430 mmframe.cpp:1659
 msgid "Show Home Page"
-msgstr ""
+msgstr "Pokaż stronę główną"
 
 #: mmframe.cpp:1439
 msgid "Change the account type of an account."
@@ -4229,7 +4229,7 @@ msgstr "Otwórz witrynę Money Manager EX aby odnaleźć nowości, uaktualnienia
 
 #: mmframe.cpp:1558
 msgid "&Facebook"
-msgstr ""
+msgstr "&Facebook"
 
 #: mmframe.cpp:1558
 msgid "Visit us on Facebook"
@@ -4245,7 +4245,7 @@ msgstr ""
 
 #: mmframe.cpp:1562
 msgid "&Twitter"
-msgstr ""
+msgstr "&Twitter"
 
 #: mmframe.cpp:1562
 msgid "Follow us on Twitter"
@@ -4253,7 +4253,7 @@ msgstr "Śledź nas na Twitterze"
 
 #: mmframe.cpp:1564
 msgid "&YouTube"
-msgstr ""
+msgstr "&YouTube"
 
 #: mmframe.cpp:1564
 msgid "Watch free video materials about MMEX"
@@ -4285,7 +4285,7 @@ msgstr "Przeczytaj i uzupełnij strony wiki"
 
 #: mmframe.cpp:1572
 msgid "F&orum"
-msgstr ""
+msgstr "F&orum"
 
 #: mmframe.cpp:1573
 msgid "Visit the MMEX forum to see existing user comments or report new issues with the software"
@@ -4293,7 +4293,7 @@ msgstr "Odwiedź forum MMEX aby poznać komentarze użytkowników, zgłosić bł
 
 #: mmframe.cpp:1575
 msgid "Money Manager Ex for &Android"
-msgstr ""
+msgstr "MoneyManagerEx dla systemu Android"
 
 #: mmframe.cpp:1576
 msgid "Get free Android version and run MMEX on your smart phone or tablet"
@@ -4309,7 +4309,7 @@ msgstr "Zapisz się do listy mailingowej z powiadomieniami lub zobacz aktualne"
 
 #: mmframe.cpp:1581
 msgid "&RSS Feed"
-msgstr ""
+msgstr "&Kanał RSS"
 
 #: mmframe.cpp:1581
 msgid "Connect RSS web feed to news aggregator"
@@ -4361,7 +4361,7 @@ msgstr "Sprawdź &uaktualnienia"
 
 #: mmframe.cpp:1622
 msgid "Check For Updates"
-msgstr ""
+msgstr "Sprawdź dostępność aktualizacji"
 
 #: mmframe.cpp:1626 mmframe.cpp:1695
 msgid "&About..."
@@ -4524,7 +4524,7 @@ msgstr ""
 
 #: mmframe.cpp:2024
 msgid "Please confirm new password"
-msgstr ""
+msgstr "Proszę potwierdź swoje hasło"
 
 #: mmframe.cpp:2028
 msgid "Password change completed."
@@ -4569,7 +4569,7 @@ msgstr "Nie można kopiować pliku na siebie samego"
 
 #: mmframe.cpp:2114
 msgid "Enter password for new database"
-msgstr ""
+msgstr "Wprowadź hasło dla pliku bazy danych"
 
 #: mmframe.cpp:2198 mmframe.cpp:2217
 msgid "No account available to import"
@@ -4628,7 +4628,7 @@ msgstr ""
 
 #: mmframe.cpp:2895
 msgid "Please wait..."
-msgstr ""
+msgstr "Proszę czekać..."
 
 #: mmframe.cpp:2944 stockspanel.cpp:895
 #, c-format
@@ -4853,11 +4853,11 @@ msgstr "Okres:"
 
 #: mmreportspanel.cpp:292
 msgid "Year:"
-msgstr ""
+msgstr "Rok:"
 
 #: mmreportspanel.cpp:316
 msgid "Budget:"
-msgstr ""
+msgstr "Budżet:"
 
 #: mmreportspanel.cpp:342
 msgid "Accounts:"
@@ -5004,11 +5004,11 @@ msgstr ""
 
 #: model/Model_Report.cpp:88
 msgid "Year: "
-msgstr ""
+msgstr "Rok: "
 
 #: model/Model_Report.cpp:233
 msgid "Template is empty"
-msgstr ""
+msgstr "Szablon jest pusty"
 
 #: model/Model_Report.cpp:247
 #, c-format
@@ -6501,7 +6501,7 @@ msgstr ""
 
 #: util.cpp:470
 msgid "Mar"
-msgstr ""
+msgstr "Mar"
 
 #: util.cpp:471
 msgid "Apr"
@@ -6509,7 +6509,7 @@ msgstr ""
 
 #: util.cpp:471 util.h:162
 msgid "May"
-msgstr ""
+msgstr "Maj"
 
 #: util.cpp:471
 msgid "Jun"
@@ -6525,19 +6525,19 @@ msgstr ""
 
 #: util.cpp:472
 msgid "Sep"
-msgstr ""
+msgstr "Wrz"
 
 #: util.cpp:473
 msgid "Oct"
-msgstr ""
+msgstr "Paź"
 
 #: util.cpp:473
 msgid "Nov"
-msgstr ""
+msgstr "Lis"
 
 #: util.cpp:473
 msgid "Dec"
-msgstr ""
+msgstr "Gru"
 
 #: util.cpp:478
 msgid "Sunday"
@@ -6573,7 +6573,7 @@ msgstr "Notowania walut zaktualizowane"
 
 #: util.cpp:634
 msgid "JSON Parse Error"
-msgstr ""
+msgstr "Błąd przetwarzania JSON"
 
 #: util.cpp:931
 #, c-format
@@ -6748,7 +6748,7 @@ msgstr "Importowanie transakcji WebApp"
 
 #: webappdialog.cpp:100
 msgid "Network status (click to refresh)"
-msgstr ""
+msgstr "Status sieci (kliknij aby odświeżyć)"
 
 #: webappdialog.cpp:132
 msgid "Checking for new transactions..."
@@ -6768,7 +6768,7 @@ msgstr ""
 
 #: webappdialog.cpp:215
 msgid "Transactions download error"
-msgstr ""
+msgstr "Błąd pobierania transakcji"
 
 #: webappdialog.cpp:320
 msgid "Unable to insert transaction in MMEX database"
@@ -6784,7 +6784,7 @@ msgstr "Otwórz załącznik"
 
 #: webappdialog.cpp:419
 msgid "Import and open"
-msgstr ""
+msgstr "Importuj i Otwórz"
 
 #: webappdialog.cpp:420
 msgid "Delete"
@@ -6925,7 +6925,7 @@ msgstr ""
 
 #: wizard_update.cpp:136
 msgid "Version"
-msgstr ""
+msgstr "Wersja"
 
 #: wizard_update.cpp:144
 msgid "You already have the latest version"
