@@ -42,6 +42,7 @@ env:
 matrix:
   allow_failures:
   - os: debian
+    dist: jessie
   - os: fedora
   - os: opensuse
   - os: archlinux
