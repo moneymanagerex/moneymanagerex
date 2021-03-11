@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-03-10 14:33+0300\n"
-"PO-Revision-Date: 2021-03-10 11:42\n"
+"PO-Revision-Date: 2021-03-11 12:02\n"
 "Last-Translator: \n"
 "Language-Team: Polish\n"
 "MIME-Version: 1.0\n"
@@ -277,7 +277,7 @@ msgstr "Waluta"
 
 #: accountdialog.cpp:520
 msgid "Please insert a valid URL"
-msgstr ""
+msgstr "Proszę wprowadzić prawidłowy adres URL"
 
 #: accountdialog.cpp:520
 msgid "Invalid URL"
@@ -6748,7 +6748,7 @@ msgstr "Importowanie transakcji WebApp"
 
 #: webappdialog.cpp:100
 msgid "Network status (click to refresh)"
-msgstr ""
+msgstr "Status sieci (kliknij aby odświeżyć)"
 
 #: webappdialog.cpp:132
 msgid "Checking for new transactions..."
@@ -6768,7 +6768,7 @@ msgstr ""
 
 #: webappdialog.cpp:215
 msgid "Transactions download error"
-msgstr ""
+msgstr "Błąd pobierania transakcji"
 
 #: webappdialog.cpp:320
 msgid "Unable to insert transaction in MMEX database"
@@ -6784,7 +6784,7 @@ msgstr "Otwórz załącznik"
 
 #: webappdialog.cpp:419
 msgid "Import and open"
-msgstr ""
+msgstr "Importuj i Otwórz"
 
 #: webappdialog.cpp:420
 msgid "Delete"
@@ -6925,7 +6925,7 @@ msgstr ""
 
 #: wizard_update.cpp:136
 msgid "Version"
-msgstr ""
+msgstr "Wersja"
 
 #: wizard_update.cpp:144
 msgid "You already have the latest version"
