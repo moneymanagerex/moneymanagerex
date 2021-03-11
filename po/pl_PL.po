@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-03-10 14:33+0300\n"
-"PO-Revision-Date: 2021-03-11 12:02\n"
+"PO-Revision-Date: 2021-03-11 12:08\n"
 "Last-Translator: \n"
 "Language-Team: Polish\n"
 "MIME-Version: 1.0\n"
@@ -4853,11 +4853,11 @@ msgstr "Okres:"
 
 #: mmreportspanel.cpp:292
 msgid "Year:"
-msgstr ""
+msgstr "Rok:"
 
 #: mmreportspanel.cpp:316
 msgid "Budget:"
-msgstr ""
+msgstr "Budżet:"
 
 #: mmreportspanel.cpp:342
 msgid "Accounts:"
@@ -5004,11 +5004,11 @@ msgstr ""
 
 #: model/Model_Report.cpp:88
 msgid "Year: "
-msgstr ""
+msgstr "Rok: "
 
 #: model/Model_Report.cpp:233
 msgid "Template is empty"
-msgstr ""
+msgstr "Szablon jest pusty"
 
 #: model/Model_Report.cpp:247
 #, c-format
@@ -6501,7 +6501,7 @@ msgstr ""
 
 #: util.cpp:470
 msgid "Mar"
-msgstr ""
+msgstr "Mar"
 
 #: util.cpp:471
 msgid "Apr"
@@ -6509,7 +6509,7 @@ msgstr ""
 
 #: util.cpp:471 util.h:162
 msgid "May"
-msgstr ""
+msgstr "Maj"
 
 #: util.cpp:471
 msgid "Jun"
@@ -6525,19 +6525,19 @@ msgstr ""
 
 #: util.cpp:472
 msgid "Sep"
-msgstr ""
+msgstr "Wrz"
 
 #: util.cpp:473
 msgid "Oct"
-msgstr ""
+msgstr "Paź"
 
 #: util.cpp:473
 msgid "Nov"
-msgstr ""
+msgstr "Lis"
 
 #: util.cpp:473
 msgid "Dec"
-msgstr ""
+msgstr "Gru"
 
 #: util.cpp:478
 msgid "Sunday"
@@ -6573,7 +6573,7 @@ msgstr "Notowania walut zaktualizowane"
 
 #: util.cpp:634
 msgid "JSON Parse Error"
-msgstr ""
+msgstr "Błąd przetwarzania JSON"
 
 #: util.cpp:931
 #, c-format
