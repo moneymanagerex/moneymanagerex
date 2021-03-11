@@ -57,6 +57,8 @@ matrix:
   - env: opensuse DIST=42.2
   - env: archlinux
   - env: el DIST=8
+  - os: el
+    dist: 8
   - env: linuxmint DIST=sylvia
   - env: linuxmint DIST=tara
   - env: linuxmint DIST=tessa
