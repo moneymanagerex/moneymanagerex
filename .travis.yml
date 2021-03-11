@@ -43,12 +43,37 @@ matrix:
   allow_failures:
   - os: debian
     dist: jessie
+  - os: debian
+    dist: buster
+  - os: ubuntu
+    dist: xenial
+  - os: ubuntu
+    dist: bionic
+  - os: ubuntu
+    dist: groovy
+  - os: ubuntu
+    dist: focal
   - os: fedora
+  - os: fedora
+    dist: 30
+  - os: fedora
+    dist: 31
   - os: opensuse
+  - os: opensuse
+    dist: 42.2
   - os: archlinux
   - os: el
+    dist: 8
   - os: linuxmint
+    dist: sylvia
+  - os: linuxmint
+    dist: tara
+  - os: linuxmint 
     dist: tessa
+  - os: linuxmint
+    dist: tina
+  - os: linuxmint
+    dist: tricia
 
   fast_finish: true
   include: # add non-linux targets
