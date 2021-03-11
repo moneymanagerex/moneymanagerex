@@ -43,27 +43,37 @@ matrix:
   allow_failures:
   - os: debian
     dist: jessie
-  - env: OS=debian DIST=jessie
-  - env: debian DIST=jessie
-  - env: debian DIST=buster
-  - env: ubuntu DIST=xenial
-  - env: ubuntu DIST=bionic
-  - env: ubuntu DIST=groovy
-  - env: ubuntu DIST=focal
-  - env: fedora
-  - env: fedora DIST=30
-  - env: fedora DIST=31
-  - env: opensuse
-  - env: opensuse DIST=42.2
-  - env: archlinux
-  - env: el DIST=8
+  - os: debian
+    dist: buster
+  - os: ubuntu
+    dist: xenial
+  - os: ubuntu
+    dist: bionic
+  - os: ubuntu
+    dist: groovy
+  - os: ubuntu
+    dist: focal
+  - os: fedora
+  - os: fedora
+    dist: 30
+  - os: fedora
+    dist: 31
+  - os: opensuse
+  - os: opensuse
+    dist: 42.2
+  - os: archlinux
   - os: el
     dist: 8
-  - env: linuxmint DIST=sylvia
-  - env: linuxmint DIST=tara
-  - env: linuxmint DIST=tessa
-  - env: linuxmint DIST=tina
-  - env: linuxmint DIST=tricia
+  - os: linuxmint
+    dist: sylvia
+  - os: linuxmint
+    dist: tara
+  - os: linuxmint 
+    dist: tessa
+  - os: linuxmint
+    dist: tina
+  - os: linuxmint
+    dist: tricia
 
   fast_finish: true
   include: # add non-linux targets
