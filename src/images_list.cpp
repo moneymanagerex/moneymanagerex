@@ -133,7 +133,7 @@ wxBitmap* CreateBitmapFromRGBA(unsigned char *rgba, int size)
 bool buildBitmapsFromSVG(void)
 {
     wxString myTheme = Model_Setting::instance().Theme();
-    themes.Clear();
+    themes->Clear();
     bool myThemeFound = false;
     wxLogDebug ("Loading Theme: %s", myTheme);
     const wxString iconsFile = mmex::getPathResource(mmex::THEMES_ZIP);
@@ -160,7 +160,7 @@ bool buildBitmapsFromSVG(void)
         {   
             thisTheme = fileEntryName.GetDirs()[0];
             wxLogDebug("Found Theme: %s", thisTheme);
-            themes.Add(thisTheme);
+            themes->Add(thisTheme);
             if (!thisTheme.Cmp(myTheme))
                 myThemeFound = true;
         }
@@ -214,6 +214,7 @@ const wxBitmap mmBitmap(int ref)
     // Load icons on first use
     if (!iconsLoaded) 
     { 
+        themes = new wxArrayString();
         if (!buildBitmapsFromSVG())     // safety net in case a theme is removed or name changed
         {
             Model_Setting::instance().SetTheme("default");
@@ -227,5 +228,5 @@ const wxBitmap mmBitmap(int ref)
 
 wxArrayString getThemes()
 {
-    return themes; }
-;
+    return *themes;
+}
