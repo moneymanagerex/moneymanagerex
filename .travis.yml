@@ -48,6 +48,7 @@ matrix:
   - os: archlinux
   - os: el
   - os: linuxmint
+    dist: tessa
 
   fast_finish: true
   include: # add non-linux targets
