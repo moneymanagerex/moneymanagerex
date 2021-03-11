@@ -298,13 +298,13 @@ static const std::map<std::string, std::pair<int, std::uint32_t>> iconName2enum 
     { "EMPTY.svg", { EMPTY, 0 } }
 };
 
-static bool iconsLoaded = false;
+static bool iconsLoaded;
 static wxSharedPtr<wxBitmap> programIcons16[MAX_PNG];
 static wxSharedPtr<wxBitmap> programIcons24[MAX_PNG];
 static wxSharedPtr<wxBitmap> programIcons32[MAX_PNG];
 static wxSharedPtr<wxBitmap> programIcons48[MAX_PNG];
 
-static wxArrayString themes;
+static wxSharedPtr<wxArrayString> themes;
 wxArrayString getThemes();
 
 wxImageList* navtree_images_list();
