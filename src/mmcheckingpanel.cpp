@@ -432,25 +432,24 @@ void mmCheckingPanel::setAccountSummary()
 }
 
 //----------------------------------------------------------------------------
-void mmCheckingPanel::enableTransactionButtons(bool editDelete, bool dupAttach)
+void mmCheckingPanel::enableTransactionButtons(bool editDelete, bool duplicate, bool attach)
 {
  
     m_btnEdit->Enable(editDelete);
     m_btnDelete->Enable(editDelete);
-    m_btnDuplicate->Enable(editDelete);
-    m_btnAttachment->Enable(editDelete);
 
-    m_btnDuplicate->Enable(dupAttach);
-    m_btnAttachment->Enable(dupAttach);
+    m_btnDuplicate->Enable(duplicate);
+
+    m_btnAttachment->Enable(attach);
 
 }
 //----------------------------------------------------------------------------
 
-void mmCheckingPanel::updateExtraTransactionData(bool single)
+void mmCheckingPanel::updateExtraTransactionData(bool single, bool foreign)
 {
     if (single)
     {
-        enableTransactionButtons(true, true);
+        enableTransactionButtons(true, !foreign, true);
         int trx_id = m_listCtrlAccount->getSelectedId()[0];
         const Model_Checking::Data* trx = Model_Checking::instance().get(trx_id);
         Model_Checking::Full_Data full_tran(*trx);
@@ -473,9 +472,9 @@ void mmCheckingPanel::updateExtraTransactionData(bool single)
     else
     {
         if (m_listCtrlAccount->getSelectedId().size() > 0)
-            enableTransactionButtons(true, false);
+            enableTransactionButtons(true, false, false);
         else
-            enableTransactionButtons(false, false);
+            enableTransactionButtons(false, false, false);
         m_info_panel_mini->SetLabelText("");
 
         showTips();
@@ -704,7 +703,7 @@ void mmCheckingPanel::DisplayAccountDetails(int accountID)
     RefreshList();
     showTips();
     m_listCtrlAccount->getSelectedId().clear();
-    enableTransactionButtons(false, false);
+    enableTransactionButtons(false, false, false);
 }
 
 void mmCheckingPanel::mmPlayTransactionSound()

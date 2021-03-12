@@ -194,6 +194,7 @@ private:
     bool TransactionLocked(int AccountID, const wxString& transdate);
     void FindSelectedTransactions();
     bool CheckForClosedAccounts();
+    void setExtraTransactionData(bool single);
 private:
     /* The topmost visible item - this will be used to set
     where to display the list again after refresh */
