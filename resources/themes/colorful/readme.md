@@ -1,4 +1,6 @@
-# Clean Duo theme
+# Theme = colorful
+
+Image sources https://www.svgrepo.com/
 
 ## Account icons 
 
