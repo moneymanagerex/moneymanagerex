@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="32px"
+   height="32px"
+   viewBox="0 -5 32 32"
+   version="1.1"
+   id="svg1909"
+   sodipodi:docname="SAVINGS_CLOSED.svg"
+   inkscape:version="1.1-dev (9017afb, 2021-01-01)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <sodipodi:namedview
+     id="namedview1911"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     objecttolerance="10.0"
+     gridtolerance="10.0"
+     guidetolerance="10.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     showgrid="false"
+     inkscape:zoom="22.5625"
+     inkscape:cx="15.977839"
+     inkscape:cy="15.977839"
+     inkscape:window-width="1296"
+     inkscape:window-height="1003"
+     inkscape:window-x="574"
+     inkscape:window-y="62"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg1909" />
+  <!-- Uploaded to SVGRepo https://www.svgrepo.com -->
+  <title
+     id="title1894">card</title>
+  <desc
+     id="desc1896">Created with Sketch.</desc>
+  <defs
+     id="defs1898" />
+  <g
+     id="Vivid.JS"
+     stroke="none"
+     stroke-width="1"
+     fill="none"
+     fill-rule="evenodd">
+    <g
+       id="Vivid-Icons"
+       transform="translate(-123,-572)">
+      <g
+         id="Icons"
+         transform="translate(37,169)">
+        <g
+           id="card"
+           transform="translate(78,390)">
+          <g
+             transform="translate(8,13)"
+             id="Rectangle-path">
+            <rect
+               fill="#ff6e6e"
+               fill-rule="nonzero"
+               x="0"
+               y="0"
+               width="32"
+               height="22"
+               rx="3"
+               id="rect1900" />
+            <rect
+               fill="#0c0058"
+               fill-rule="nonzero"
+               x="0"
+               y="6"
+               width="32"
+               height="5"
+               id="rect1902" />
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+  <path
+     style="fill:none;stroke:#fc0000;stroke-width:1.23192;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+     d="M 1.7861524,-3.3292805 29.681989,24.797425"
+     id="path1214-0" />
+  <path
+     style="fill:none;stroke:#fc0000;stroke-width:1.23192;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+     d="M 29.797424,-3.2138461 1.6707179,24.68199"
+     id="path1214-0-7" />
+  <metadata
+     id="metadata2058">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:title>card</dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+</svg>

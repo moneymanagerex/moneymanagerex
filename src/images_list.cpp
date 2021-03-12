@@ -28,6 +28,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include <wx/zipstrm.h>
 #include <wx/rawbmp.h>
 #include <wx/fs_mem.h>
+#include <wx/mstream.h>
 #include "../3rd/lunasvg/include/svgdocument.h"
 
 static const std::map<int, wxBitmap> navtree_images()
@@ -142,8 +143,6 @@ bool buildBitmapsFromSVG(void)
 
     wxZipInputStream iconStream(iconZip);
     std::unique_ptr<wxZipEntry> zipEntry;
-    const size_t bufSize = 32768;   // Should really have CSS/SVGs smaller than this.
-    unsigned char buffer[bufSize];
 
     wxString thisTheme;
     while (zipEntry.reset(iconStream.GetNextEntry()), zipEntry) // != nullptr
@@ -153,6 +152,8 @@ bool buildBitmapsFromSVG(void)
         const wxFileName fileEntryName = wxFileName(zipEntry->GetName());
         const wxString fileEntry = fileEntryName.GetFullName();
         const wxString pathEntry = fileEntryName.GetFullPath();
+        std::string fileName = std::string(fileEntry.mb_str());
+
         const int dirLevel = static_cast<int>(fileEntryName.GetDirCount());
 
         //wxLogDebug("fileEntry: level=%d, fullpath=%s, filename=%s", dirLevel, pathEntry, fileEntry);
@@ -168,43 +169,39 @@ bool buildBitmapsFromSVG(void)
         if (thisTheme.Cmp(myTheme) || fileEntryName.IsDir())
             continue;   // We can skip if it's not our theme
 
-        std::string fileName = std::string(fileEntry.mb_str());
-
-        bool isMasterCSS = false;
-        if (!fileName.compare("master.css"))
-            isMasterCSS = true;
-        else
-            // Skip anything in the ZIP that we don't recognise as a valid SVG
-            if (!iconName2enum.count(fileName)) continue;
-
-        wxString fileData;
-        while (!iconStream.Eof()) {
-            iconStream.Read(buffer, bufSize);
-            fileData.Append(buffer);
-            if (iconStream.LastRead() > 0) {
-                if (isMasterCSS)
-                {
-                    wxMemoryFSHandler::AddFile("master.css",fileData);
-                    continue;
-                }
-                lunasvg::SVGDocument document;
-                document.loadFromData(std::string(fileData.mb_str()));
-
-                int svgEnum = iconName2enum.find(fileName)->second.first;
-                std::uint32_t bgColor = iconName2enum.find(fileName)->second.second;
-                lunasvg::Bitmap bitmap;
-
-                // Generate bitmaps at the resolutions used by the program - 16, 24, 32, 48
-                bitmap = document.renderToBitmap(16, 16, 96.0, bgColor);
-                programIcons16[svgEnum] = CreateBitmapFromRGBA(bitmap.data(), 16);
-                bitmap = document.renderToBitmap(24, 24, 96.0, bgColor);
-                programIcons24[svgEnum] = CreateBitmapFromRGBA(bitmap.data(), 24);
-                bitmap = document.renderToBitmap(32, 32, 96.0, bgColor);
-                programIcons32[svgEnum] = CreateBitmapFromRGBA(bitmap.data(), 32);
-                bitmap = document.renderToBitmap(48, 48, 96.0, bgColor);
-                programIcons48[svgEnum] = CreateBitmapFromRGBA(bitmap.data(), 48);
-            }
+        wxMemoryOutputStream memOut(nullptr);
+        iconStream.Read(memOut);
+        const wxStreamBuffer* buffer = memOut.GetOutputStreamBuffer();
+     
+        // If the file does not match an icon file then just load it into VFS
+        if (!iconName2enum.count(fileName))
+        {
+            wxMemoryFSHandler::AddFile(fileName, buffer->GetBufferStart()
+                , buffer->GetBufferSize());
+            wxLogDebug("File: %s has been copied to VFS", fileName);
+            continue;
         }
+
+        // So we have an icon file now, so need to convert from SVG to PNG at various resolutions and store
+        // it away for use
+        
+        lunasvg::SVGDocument document;
+        std::string svgDoc(static_cast<char *>(buffer->GetBufferStart()), buffer->GetBufferSize());
+        document.loadFromData(svgDoc);
+
+        int svgEnum = iconName2enum.find(fileName)->second.first;
+        std::uint32_t bgColor = iconName2enum.find(fileName)->second.second;
+        lunasvg::Bitmap bitmap;
+
+        // Generate bitmaps at the resolutions used by the program - 16, 24, 32, 48
+        bitmap = document.renderToBitmap(16, 16, 96.0, bgColor);
+        programIcons16[svgEnum] = CreateBitmapFromRGBA(bitmap.data(), 16);
+        bitmap = document.renderToBitmap(24, 24, 96.0, bgColor);
+        programIcons24[svgEnum] = CreateBitmapFromRGBA(bitmap.data(), 24);
+        bitmap = document.renderToBitmap(32, 32, 96.0, bgColor);
+        programIcons32[svgEnum] = CreateBitmapFromRGBA(bitmap.data(), 32);
+        bitmap = document.renderToBitmap(48, 48, 96.0, bgColor);
+        programIcons48[svgEnum] = CreateBitmapFromRGBA(bitmap.data(), 48);
     }
     return (myThemeFound);
 }
