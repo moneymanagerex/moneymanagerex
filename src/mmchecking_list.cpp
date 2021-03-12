@@ -241,27 +241,40 @@ void TransactionListCtrl::createColumns(mmListCtrl &lst)
     }
 }
 
+void TransactionListCtrl::setExtraTransactionData(bool single)
+{
+    bool isForeign = false;
+    if (single)
+    {
+        const Model_Checking::Data* transel = Model_Checking::instance().get(m_selected_id[0]);
+        Model_Checking::Full_Data tran(*transel);
+        if (Model_Checking::foreignTransaction(tran))
+            isForeign = true;
+    }
+    m_cp->updateExtraTransactionData(single, isForeign);
+}
+
 //----------------------------------------------------------------------------
 
 void TransactionListCtrl::OnListItemSelected(wxListEvent& event)
 {
     wxLogDebug("OnListItemSelected: %i selected", GetSelectedItemCount());
     FindSelectedTransactions();
-    m_cp->updateExtraTransactionData(GetSelectedItemCount() == 1);
+    setExtraTransactionData(GetSelectedItemCount() == 1);
 }
 
 void TransactionListCtrl::OnListItemDeSelected(wxListEvent& event)
 {
     wxLogDebug("OnListItemDeSelected: %i selected", GetSelectedItemCount());
     FindSelectedTransactions();
-    m_cp->updateExtraTransactionData(GetSelectedItemCount() == 1);
+    setExtraTransactionData(GetSelectedItemCount() == 1);
 }
 
 void TransactionListCtrl::OnListItemFocused(wxListEvent& WXUNUSED(event))
 {
     wxLogDebug("OnListItemFocused: %i selected", GetSelectedItemCount());
     FindSelectedTransactions();
-    m_cp->updateExtraTransactionData(false);
+    setExtraTransactionData(false);
 }
 
 void TransactionListCtrl::OnListLeftClick(wxMouseEvent& event)
@@ -1044,7 +1057,7 @@ void TransactionListCtrl::refreshVisualList(bool filter)
         EnsureVisible(m_topItemIndex);
 
     m_cp->setAccountSummary();
-    m_cp->updateExtraTransactionData(GetSelectedItemCount() == 1);
+    setExtraTransactionData(GetSelectedItemCount() == 1);
     this->SetEvtHandlerEnabled(true);
     Refresh();
     Update();
@@ -1168,7 +1181,7 @@ void TransactionListCtrl::markSelectedTransaction()
     }
     else
     {
-        m_cp->enableTransactionButtons(false, false);
+        m_cp->enableTransactionButtons(false, false, false);
         m_cp->showTips();
     }
 }

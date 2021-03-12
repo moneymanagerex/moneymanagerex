@@ -170,7 +170,6 @@ private:
     );
 
 private:
-    void enableTransactionButtons(bool editDelete, bool dupAttach);
 
     void OnNewTransaction(wxCommandEvent& event);
     void OnDeleteTransaction(wxCommandEvent& event);
@@ -184,7 +183,8 @@ private:
 
     /* updates the checking panel data */
     void showTips();
-    void updateExtraTransactionData(bool single);
+    void updateExtraTransactionData(bool single, bool foreign);
+    void enableTransactionButtons(bool editDelete, bool duplicate, bool attach);
     wxString GetPanelTitle(const Model_Account::Data& account) const;
     static void mmPlayTransactionSound();
     mmGUIFrame* m_frame;
