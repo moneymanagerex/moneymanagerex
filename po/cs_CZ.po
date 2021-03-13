@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-03-10 14:33+0300\n"
-"PO-Revision-Date: 2021-03-10 11:42\n"
+"PO-Revision-Date: 2021-03-12 21:37\n"
 "Last-Translator: \n"
 "Language-Team: Czech\n"
 "MIME-Version: 1.0\n"
@@ -2326,7 +2326,7 @@ msgstr "Rozsah částky"
 
 #: filtertransdialog.cpp:347
 msgid "Clea&r "
-msgstr ""
+msgstr "&Vyčistit "
 
 #: filtertransdialog.cpp:827 filtertransdialog.cpp:842 reports/myusage.cpp:104
 #: webappdialog.cpp:194 webappdialog.cpp:199
@@ -3540,12 +3540,12 @@ msgstr[3] "&Kopírovat transakce"
 
 #: mmchecking_list.cpp:323
 msgid "&Paste Transaction"
-msgstr ""
+msgstr "V&ložit transakci"
 
 #: mmchecking_list.cpp:323
 #, c-format
 msgid "&Paste Transactions (%d)"
-msgstr ""
+msgstr "V&ložit transakce (%d)"
 
 #: mmchecking_list.cpp:328
 msgid "D&uplicate Transaction"
@@ -3729,7 +3729,7 @@ msgstr "Zadejte jakýkoliv řetězec poznámky pro nalezení nejbližší transk
 
 #: mmcheckingpanel.cpp:399
 msgid "Full Transactions Report"
-msgstr ""
+msgstr "Úplný výpis transakcí"
 
 #: mmcheckingpanel.cpp:401
 #, c-format
