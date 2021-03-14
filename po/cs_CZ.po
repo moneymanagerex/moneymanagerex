@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-03-14 12:54+0300\n"
-"PO-Revision-Date: 2021-03-14 13:58\n"
+"PO-Revision-Date: 2021-03-14 14:07\n"
 "Last-Translator: \n"
 "Language-Team: Czech\n"
 "MIME-Version: 1.0\n"
@@ -2533,7 +2533,7 @@ msgstr "Parametry:"
 #: images_list.cpp:340
 #, c-format
 msgid "Theme %s not found within the application, it may no longer be supported. Reverting to default theme"
-msgstr ""
+msgstr "Motiv %s již není součástí aplikace a nemusí být podporován. Nastavuji výchozí motiv"
 
 #: images_list.cpp:340 import_export/qif_import_gui.cpp:667
 #: import_export/qif_import_gui.cpp:670
@@ -5494,31 +5494,31 @@ msgstr "Zadejte faktor měřítka pro stránky sestavy"
 
 #: optionsettingsview.cpp:200
 msgid "Small (16 px)"
-msgstr ""
+msgstr "Malé (16 px)"
 
 #: optionsettingsview.cpp:201
 msgid "Normal (24 px)"
-msgstr ""
+msgstr "Normální (24 px)"
 
 #: optionsettingsview.cpp:202
 msgid "Large (32 px)"
-msgstr ""
+msgstr "Velké (32 px)"
 
 #: optionsettingsview.cpp:203
 msgid "Huge (48 px)"
-msgstr ""
+msgstr "Největší (48 px)"
 
 #: optionsettingsview.cpp:217
 msgid "Toolbar Icon Size"
-msgstr ""
+msgstr "Velikost ikon v panelu nástrojů"
 
 #: optionsettingsview.cpp:220
 msgid "Navigation Icon Size"
-msgstr ""
+msgstr "Velikost ikon v panelu navigace"
 
 #: optionsettingsview.cpp:223
 msgid "Others Icon Size"
-msgstr ""
+msgstr "Velikost ostatních ikon"
 
 #: payeedialog.cpp:65
 msgid "Default Category"
