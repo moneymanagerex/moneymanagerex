@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-03-14 12:54+0300\n"
-"PO-Revision-Date: 2021-03-14 09:57\n"
+"PO-Revision-Date: 2021-03-14 15:47\n"
 "Last-Translator: \n"
 "Language-Team: Italian\n"
 "MIME-Version: 1.0\n"
@@ -2525,7 +2525,7 @@ msgstr "Parametri:"
 #: images_list.cpp:340
 #, c-format
 msgid "Theme %s not found within the application, it may no longer be supported. Reverting to default theme"
-msgstr ""
+msgstr "Tema %s non trovato all'interno dell'applicazione, potrebbe non essere più supportato. Ripristino del tema predefinito"
 
 #: images_list.cpp:340 import_export/qif_import_gui.cpp:667
 #: import_export/qif_import_gui.cpp:670
