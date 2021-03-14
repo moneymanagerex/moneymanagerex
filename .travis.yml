@@ -77,7 +77,7 @@ matrix:
 
   fast_finish: true
   include: # add non-linux targets
-  - { os: osx, osx_image: xcode12u, env: OS=macos DIST=10.14, compiler: clang }
+  - { os: osx, osx_image: xcode11.2, env: OS=macos DIST=10.14, compiler: clang }
   - stage: nightly # used only to tag and trigger nightly build
     sudo: false
     cache: pip
@@ -125,8 +125,7 @@ install: |-
       cd wxWidgets-3.1.4
       ./configure --disable-shared --enable-cxx11 --with-cxx=11 \
         --with-macosx-version-min=$MACOSX_DEPLOYMENT_TARGET \
-        --without-libtiff \
-        --enable-universal-binary=arm64,x86_64
+        --without-libtiff
       make install      
       ;;
   esac
