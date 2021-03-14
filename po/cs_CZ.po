@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-03-14 12:54+0300\n"
-"PO-Revision-Date: 2021-03-14 09:57\n"
+"PO-Revision-Date: 2021-03-14 13:38\n"
 "Last-Translator: \n"
 "Language-Team: Czech\n"
 "MIME-Version: 1.0\n"
@@ -3666,19 +3666,20 @@ msgstr "MMEX Ověření transakce"
 #, c-format
 msgid "You are about to edit a transaction involving an account that is closed."
 msgid_plural "The edit will affect %i transactions involving an account that is closed."
-msgstr[0] ""
+msgstr[0] "Chystáte se upravit transakci náležící účtu, který je uzavřen."
 msgstr[1] ""
 msgstr[2] ""
-msgstr[3] ""
+msgstr[3] "Úprava bude mít dopad na %i transakcí, které náleží uzavřenému účtu."
 
 #: mmchecking_list.cpp:905
 msgid "\n\n"
 "Do you still want to perform the edit?"
-msgstr ""
+msgstr "\n\n"
+"Opravdu si přejete provést úpravu?"
 
 #: mmchecking_list.cpp:906
 msgid "Closed Account Check"
-msgstr ""
+msgstr "Ověření uzavřeného účtu"
 
 #: mmchecking_list.cpp:1081 stockspanel.cpp:290
 #, c-format
@@ -4029,7 +4030,7 @@ msgstr "Zobrazit/skrýt akciové účty v panelu navigace"
 
 #: mmframe.cpp:1375
 msgid "Budgets: As Financial &Years"
-msgstr ""
+msgstr "Rozpočty: Finanční rok&y"
 
 #: mmframe.cpp:1375
 msgid "Display Budgets in Financial Year Format"
@@ -4061,7 +4062,7 @@ msgstr "Ignorovat budoucí transakce"
 
 #: mmframe.cpp:1397
 msgid "Toggle &Fullscreen\tShift+F11"
-msgstr ""
+msgstr "&Celá obrazovka\tShift+F11"
 
 #: mmframe.cpp:1398 mmframe.cpp:1689
 msgid "Toggle Fullscreen"
@@ -4069,7 +4070,7 @@ msgstr "Celá obrazovka"
 
 #: mmframe.cpp:1404
 msgid "Switch Application &Language"
-msgstr ""
+msgstr "Přepnout &jazyk aplikace"
 
 #: mmframe.cpp:1405
 msgid "Change language used for MMEX GUI"
