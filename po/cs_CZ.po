@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-03-14 12:54+0300\n"
-"PO-Revision-Date: 2021-03-14 13:47\n"
+"PO-Revision-Date: 2021-03-14 13:58\n"
 "Last-Translator: \n"
 "Language-Team: Czech\n"
 "MIME-Version: 1.0\n"
@@ -4254,11 +4254,11 @@ msgstr "Facebook MMEX"
 
 #: mmframe.cpp:1560
 msgid "&Crowdin"
-msgstr ""
+msgstr "&Crowdin"
 
 #: mmframe.cpp:1560
 msgid "We use Crowdin to translate MMEX"
-msgstr ""
+msgstr "Pro lokalizaci MMEX používáme Crowdin"
 
 #: mmframe.cpp:1562
 msgid "&Twitter"
@@ -4635,7 +4635,7 @@ msgstr "Nastavení MMEX bylo aktualizováno."
 
 #: mmframe.cpp:2441
 msgid "Some settings take effect only after an application restart."
-msgstr ""
+msgstr "Některá nastavení se projeví až po restartu aplikace."
 
 #: mmframe.cpp:2442 optiondialog.cpp:52 optiondialog.cpp:193
 msgid "MMEX Options"
@@ -4868,7 +4868,7 @@ msgstr "Výchozí sloupce"
 
 #: mmreportspanel.cpp:161
 msgid "Report"
-msgstr ""
+msgstr "Sestava"
 
 #: mmreportspanel.cpp:218
 msgid "Period:"
@@ -5450,11 +5450,11 @@ msgstr "Zvolte, které účty budou zobrazeny"
 
 #: optionsettingsview.cpp:83
 msgid "Category Delimiter"
-msgstr ""
+msgstr "Oddělovač kategorie"
 
 #: optionsettingsview.cpp:98
 msgid "Transaction/Budget Options"
-msgstr ""
+msgstr "Možnosti transakce/rozpočtu"
 
 #: optionsettingsview.cpp:104
 msgid "View Budgets as Financial Years"
@@ -5474,19 +5474,19 @@ msgstr "Ignorovat budoucí transakce"
 
 #: optionsettingsview.cpp:127
 msgid "Transaction Colors"
-msgstr ""
+msgstr "Barvy transakcí"
 
 #: optionsettingsview.cpp:163
 msgid "UI Appearance"
-msgstr ""
+msgstr "Vzhled rozhraní"
 
 #: optionsettingsview.cpp:176
 msgid "Style Template"
-msgstr ""
+msgstr "Šablona stylu"
 
 #: optionsettingsview.cpp:187
 msgid "HTML Scale Factor"
-msgstr ""
+msgstr "HTML měřítko"
 
 #: optionsettingsview.cpp:195
 msgid "Specify which scale factor is used for the report pages"
@@ -6630,7 +6630,7 @@ msgstr "MMEX používá tyto podpůrné produkty:"
 
 #: util.cpp:966
 msgid "Build using:"
-msgstr ""
+msgstr "Vytvořit pomocí:"
 
 #: util.cpp:987
 msgid "Running on:"
