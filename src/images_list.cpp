@@ -337,6 +337,7 @@ const wxBitmap mmBitmap(int ref)
         themes = new wxArrayString();
         if (!buildBitmapsFromSVG())     // safety net in case a theme is removed or name changed
         {
+            wxMessageBox(wxString::Format(_("Theme %s not found within the application, it may no longer be supported. Reverting to default theme"), Model_Setting::instance().Theme()), _("Warning"), wxOK | wxICON_WARNING);
             Model_Setting::instance().SetTheme("default");
             buildBitmapsFromSVG();
         }
