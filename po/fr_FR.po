@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-03-14 12:54+0300\n"
-"PO-Revision-Date: 2021-03-14 09:56\n"
+"PO-Revision-Date: 2021-03-14 15:34\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -2526,7 +2526,7 @@ msgstr "Paramètres :"
 #: images_list.cpp:340
 #, c-format
 msgid "Theme %s not found within the application, it may no longer be supported. Reverting to default theme"
-msgstr ""
+msgstr "Thème %s introuvable dans l'application, il n'est peut-être plus pris en charge. Retour au thème par défaut"
 
 #: images_list.cpp:340 import_export/qif_import_gui.cpp:667
 #: import_export/qif_import_gui.cpp:670
@@ -3524,13 +3524,13 @@ msgstr "&Nouveau Virement"
 #: mmchecking_list.cpp:326
 msgid "&Edit Transaction"
 msgid_plural "&Edit Transactions"
-msgstr[0] ""
+msgstr[0] "&Éditer l'opération"
 msgstr[1] ""
 
 #: mmchecking_list.cpp:331
 msgid "&Copy Transaction"
 msgid_plural "&Copy Transactions"
-msgstr[0] ""
+msgstr[0] "&Copier l'opération"
 msgstr[1] ""
 
 #: mmchecking_list.cpp:336
@@ -3561,7 +3561,7 @@ msgstr "Créer une opération récurrente"
 #: mmchecking_list.cpp:364
 msgid "&Delete selected transaction"
 msgid_plural "&Delete selected transactions"
-msgstr[0] ""
+msgstr[0] "&Supprimer les opérations sélectionnées"
 msgstr[1] ""
 
 #: mmchecking_list.cpp:367
@@ -4859,7 +4859,7 @@ msgstr "Période:"
 
 #: mmreportspanel.cpp:292
 msgid "Year:"
-msgstr ""
+msgstr "Année:"
 
 #: mmreportspanel.cpp:316
 msgid "Budget:"
