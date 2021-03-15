@@ -17,10 +17,10 @@
 # ./resources/mmex.rc
 # ---------------------------------------------------------------------------
 
-set(MMEX_VERSION 1.3.7)
+set(MMEX_VERSION 1.5.0)
 SET(MMEX_VERSION_ALPHA -1)
-SET(MMEX_VERSION_BETA 7)
-SET(MMEX_VERSION_RC -1)
+SET(MMEX_VERSION_BETA -1)
+SET(MMEX_VERSION_RC 1)
 
 # ---------------------------------------------------------------------------
 
