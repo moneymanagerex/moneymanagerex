@@ -537,7 +537,7 @@ void mmHTMLBuilder::addChart(const GraphData& gd)
     {
         htmlChart += ", plotOptions: { pie: { customScale: 0.8 } }";
 
-        const wxString pieFunctionToolTip = wxString::Format("function(value, opts) { return pie%s[opts.dataPointIndex] }\n", divid);
+        const wxString pieFunctionToolTip = wxString::Format("function(value, opts) { return chart_%s[opts.dataPointIndex] }\n", divid);
         toolTipFormatter = wxString::Format(", y: { formatter: %s }", pieFunctionToolTip); 
     }
 
