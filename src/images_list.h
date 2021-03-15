@@ -115,6 +115,7 @@ enum png {
     PIE_CHART,
     
     // Status
+    UNRECONCILED,
     RECONCILED,
     DUPLICATE_STAT,
     FOLLOW_UP,

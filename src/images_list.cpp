@@ -79,6 +79,7 @@ static const std::map<std::string, std::pair<int, std::uint32_t>> iconName2enum 
     { "PIE_CHART.svg", { PIE_CHART, 0xFFFFFFFF } },
      
     // Status
+    { "UNRECONCILED.svg", { UNRECONCILED, 0 } },
     { "RECONCILED.svg", { RECONCILED, 0 } },
     { "DUPLICATE_STAT.svg", { DUPLICATE_STAT, 0 } },
     { "FOLLOW_UP.svg", { FOLLOW_UP, 0 } },
