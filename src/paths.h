@@ -43,7 +43,7 @@ const wxIcon& getProgramIcon();
 enum ESharedFile { LANG_DIR = 0, SHARED_FILES_MAX };
 const wxString getPathShared(ESharedFile f);
 
-enum EUserFile { SETTINGS = 0, DIRECTORY, USER_FILES_MAX };
+enum EUserFile { SETTINGS = 0, DIRECTORY, USERTHEME, USER_FILES_MAX };
 const wxString getPathUser(EUserFile f);
 
 const wxString getPathAttachment(const wxString &AttachmentsFolder);
