@@ -569,6 +569,8 @@ int TransactionListCtrl::OnGetItemColumnImage(long item, long column) const
             res = mmCheckingPanel::ICON_VOID;
         else if (status == "D")
             res = mmCheckingPanel::ICON_DUPLICATE;
+        else
+            res = mmCheckingPanel::ICON_UNRECONCILED;
     }
 
     return res;

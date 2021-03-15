@@ -299,6 +299,7 @@ void mmCheckingPanel::CreateControls()
         , wxSP_3DBORDER | wxSP_3DSASH | wxNO_BORDER);
 
     m_imageList.reset(createImageList());
+    m_imageList->Add(mmBitmap(png::UNRECONCILED));
     m_imageList->Add(mmBitmap(png::RECONCILED));
     m_imageList->Add(mmBitmap(png::VOID_STAT));
     m_imageList->Add(mmBitmap(png::FOLLOW_UP));

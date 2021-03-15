@@ -41,6 +41,7 @@ public:
 
     enum EIcons //m_imageList
     {
+        ICON_UNRECONCILED,
         ICON_RECONCILED,
         ICON_VOID,
         ICON_FOLLOWUP,

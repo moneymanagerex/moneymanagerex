@@ -1,4 +1,4 @@
-# Theme = simple-black
+# Theme = colorful
 
 Image sources https://www.svgrepo.com/
 
@@ -107,6 +107,7 @@ PROFIT | <img src="status/PROFIT.svg" width="16">  | <img src="status/PROFIT.svg
 RECONCILED | <img src="status/RECONCILED.svg" width="16">  | <img src="status/RECONCILED.svg" width="24">  | <img src="status/RECONCILED.svg" width="32">  | <img src="status/RECONCILED.svg" width="48"> 
 RUN | <img src="status/RUN.svg" width="16">  | <img src="status/RUN.svg" width="24">  | <img src="status/RUN.svg" width="32">  | <img src="status/RUN.svg" width="48"> 
 RUN_AUTO | <img src="status/RUN_AUTO.svg" width="16">  | <img src="status/RUN_AUTO.svg" width="24">  | <img src="status/RUN_AUTO.svg" width="32">  | <img src="status/RUN_AUTO.svg" width="48"> 
+UNRECONCILED | <img src="status/UNRECONCILED.svg" width="16">  | <img src="status/UNRECONCILED.svg" width="24">  | <img src="status/UNRECONCILED.svg" width="32">  | <img src="status/UNRECONCILED.svg" width="48"> 
 VOID_STAT | <img src="status/VOID_STAT.svg" width="16">  | <img src="status/VOID_STAT.svg" width="24">  | <img src="status/VOID_STAT.svg" width="32">  | <img src="status/VOID_STAT.svg" width="48"> 
 
 ## Toolbar icons 
