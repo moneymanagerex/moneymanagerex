@@ -434,7 +434,8 @@ const std::map<wxString, wxString> g_date_formats_map()
         "%d.%m.%Y", "%d,%m,%y", "%d/%m'%Y",
         "%d/%m'%y", "%d/%m %Y", "%m/%d/%y",
         "%m/%d/%Y", "%m-%d-%y", "%m-%d-%Y",
-        "%m/%d'%y", "%m/%d'%Y", "%y/%m/%d",
+        "%m/%d'%y", "%m/%d'%Y", "%m.%d.%y",
+        "%m.%d.%Y", "%y/%m/%d",
         "%y-%m-%d", "%Y/%m/%d", "%Y.%m.%d",
         "%Y %m %d", "%Y%m%d",   "%Y%d%m"
     };
