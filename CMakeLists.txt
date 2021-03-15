@@ -289,6 +289,9 @@ if(CMAKE_VERSION VERSION_LESS 3.16)
     # FindwxWidgets.cmake module will be fixed in CMake 3.16
     list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/util")
 endif()
+set(wxWidgets_ROOT_DIR "C:/wxWidgets")
+set(wxWidgets_LIB_DIR "C:/wxWidgets/lib/vc_x64_lib"
+    CACHE PATH "wxWidgets_LIB_DIR ")
 set(wxWidgets_USE_REL_AND_DBG ON)
 find_package(wxWidgets 2.9.2 REQUIRED
     COMPONENTS core qa html xml aui adv stc webview base
@@ -374,13 +377,13 @@ else()
     if(NOT CURL_FOUND)
         find_package(CURL REQUIRED COMPONENTS libcurl MODULE)
         if(NOT CURL_LIBRARIES MATCHES "_imp.lib$|${CMAKE_SHARED_LIBRARY_SUFFIX}$")
-            add_library(CURL::libcurl STATIC IMPORTED)
+            #add_library(CURL::libcurl STATIC IMPORTED)
             set_target_properties(CURL::libcurl PROPERTIES
                 INTERFACE_COMPILE_DEFINITIONS CURL_STATICLIB
                 IMPORTED_LINK_INTERFACE_LANGUAGES C
                 IMPORTED_LOCATION "${CURL_LIBRARIES}")
         else()
-            add_library(CURL::libcurl SHARED IMPORTED)
+            #add_library(CURL::libcurl SHARED IMPORTED)
             if(WIN32)
                 set_target_properties(CURL::libcurl PROPERTIES
                     IMPORTED_IMPLIB "${CURL_LIBRARIES}")
