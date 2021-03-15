@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2021-03-10 14:33+0300\n"
-"PO-Revision-Date: 2021-03-10 13:41\n"
+"POT-Creation-Date: 2021-03-14 12:54+0300\n"
+"PO-Revision-Date: 2021-03-14 10:06\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -497,7 +497,7 @@ msgstr "Редактировать актив"
 msgid "&Delete Asset"
 msgstr "Удалить актив"
 
-#: assetspanel.cpp:107 billsdepositspanel.cpp:403 mmchecking_list.cpp:341
+#: assetspanel.cpp:107 billsdepositspanel.cpp:403 mmchecking_list.cpp:354
 #: mmframe.cpp:1229 payeedialog.cpp:372 stockspanel.cpp:144
 msgid "&Organize Attachments"
 msgstr "Редактор вложений"
@@ -551,7 +551,7 @@ msgid "&Edit "
 msgstr "&Редактировать "
 
 #: assetspanel.cpp:483 billsdepositspanel.cpp:272 budgetyeardialog.cpp:103
-#: categdialog.cpp:234 maincurrencydialog.cpp:289 mmchecking_list.cpp:357
+#: categdialog.cpp:234 maincurrencydialog.cpp:289 mmchecking_list.cpp:370
 #: mmcheckingpanel.cpp:359 stockdialog.cpp:339 stockspanel.cpp:591
 msgid "&Delete "
 msgstr "&Удалить "
@@ -1850,7 +1850,7 @@ msgstr "Автозаполнение"
 msgid "Enables autocomplete on custom field"
 msgstr "Включить автозаполнение на пользовательском поле"
 
-#: customfieldeditdialog.cpp:153 optionsettingsview.cpp:179 util.cpp:456
+#: customfieldeditdialog.cpp:153 util.cpp:456
 msgid "Default"
 msgstr "По умолчанию"
 
@@ -2529,6 +2529,16 @@ msgstr "Выберите файл чтобы сохранить как отчё�
 msgid "Parameters:"
 msgstr "Параметры:"
 
+#: images_list.cpp:340
+#, c-format
+msgid "Theme %s not found within the application, it may no longer be supported. Reverting to default theme"
+msgstr "Тема %s не найдена в приложении, она может быть не поддерживается. Назначена тема по умолчанию"
+
+#: images_list.cpp:340 import_export/qif_import_gui.cpp:667
+#: import_export/qif_import_gui.cpp:670
+msgid "Warning"
+msgstr "Внимание"
+
 #: import_export/parsers.cpp:46 import_export/univcsvdialog.cpp:1575
 #: mmSimpleDialogs.cpp:253
 msgid "Unable to open file."
@@ -2761,10 +2771,6 @@ msgstr "Нажмите кнопку OK для продолжения"
 #: import_export/qif_import_gui.cpp:711
 msgid "OK"
 msgstr "ОК"
-
-#: import_export/qif_import_gui.cpp:667 import_export/qif_import_gui.cpp:670
-msgid "Warning"
-msgstr "Внимание"
 
 #: import_export/qif_import_gui.cpp:675 import_export/qif_import_gui.cpp:694
 #: stockspanel.cpp:882
@@ -3509,19 +3515,19 @@ msgstr "Пример актива GAZPROM, тикер: GAZP.ME"
 msgid "If the Stock Name field is empty it will be filed when prices updated"
 msgstr "Если название актива не заполнять, то оно заполнится при обновлении"
 
-#: mmchecking_list.cpp:306
+#: mmchecking_list.cpp:319
 msgid "&New Withdrawal"
 msgstr "Новая трата"
 
-#: mmchecking_list.cpp:307
+#: mmchecking_list.cpp:320
 msgid "&New Deposit"
 msgstr "Новое пополнение"
 
-#: mmchecking_list.cpp:309
+#: mmchecking_list.cpp:322
 msgid "&New Transfer"
 msgstr "Новый перевод"
 
-#: mmchecking_list.cpp:313
+#: mmchecking_list.cpp:326
 msgid "&Edit Transaction"
 msgid_plural "&Edit Transactions"
 msgstr[0] "&Редактировать"
@@ -3529,7 +3535,7 @@ msgstr[1] "&Редактировать транзакции"
 msgstr[2] "&Редактировать транзакции"
 msgstr[3] "&Редактировать транзакции"
 
-#: mmchecking_list.cpp:318
+#: mmchecking_list.cpp:331
 msgid "&Copy Transaction"
 msgid_plural "&Copy Transactions"
 msgstr[0] "&Копировать транзакцию"
@@ -3537,32 +3543,32 @@ msgstr[1] "&Копировать транзакции"
 msgstr[2] "&Копировать транзакции"
 msgstr[3] "&Копировать транзакции"
 
-#: mmchecking_list.cpp:323
+#: mmchecking_list.cpp:336
 msgid "&Paste Transaction"
 msgstr "Вставить транзакцию"
 
-#: mmchecking_list.cpp:323
+#: mmchecking_list.cpp:336
 #, c-format
 msgid "&Paste Transactions (%d)"
 msgstr "Вставить транзакции (%d)"
 
-#: mmchecking_list.cpp:328
+#: mmchecking_list.cpp:341
 msgid "D&uplicate Transaction"
 msgstr "Дублировать транзакцию"
 
-#: mmchecking_list.cpp:331
+#: mmchecking_list.cpp:344
 msgid "&Move Transaction"
 msgstr "Пере&местить"
 
-#: mmchecking_list.cpp:337
+#: mmchecking_list.cpp:350
 msgid "&View Split Categories"
 msgstr "Показать разделённые категории"
 
-#: mmchecking_list.cpp:345
+#: mmchecking_list.cpp:358
 msgid "Create Recurring T&ransaction"
 msgstr "Создать повторяющуюся транзакцию"
 
-#: mmchecking_list.cpp:351
+#: mmchecking_list.cpp:364
 msgid "&Delete selected transaction"
 msgid_plural "&Delete selected transactions"
 msgstr[0] "&Удалить отмеченную транзакцию"
@@ -3570,72 +3576,72 @@ msgstr[1] "&Удалить отмеченные транзакции"
 msgstr[2] "&Удалить отмеченные транзакции"
 msgstr[3] "&Удалить отмеченные транзакции"
 
-#: mmchecking_list.cpp:354
+#: mmchecking_list.cpp:367
 msgid "Delete all transactions in current view"
 msgstr "Удалить все показанные транзакции"
 
-#: mmchecking_list.cpp:355
+#: mmchecking_list.cpp:368
 msgid "Delete Viewed \"Follow Up\" Transactions"
 msgstr "Удалить показанные транзакции с лампочкой"
 
-#: mmchecking_list.cpp:356
+#: mmchecking_list.cpp:369
 msgid "Delete Viewed \"Unreconciled\" Transactions"
 msgstr "Удалить показанные не выверенные транзакции"
 
-#: mmchecking_list.cpp:362 mmchecking_list.cpp:375
+#: mmchecking_list.cpp:375 mmchecking_list.cpp:388
 msgid "as Reconciled"
 msgstr "выверено"
 
-#: mmchecking_list.cpp:364 mmchecking_list.cpp:376
+#: mmchecking_list.cpp:377 mmchecking_list.cpp:389
 msgid "as Unreconciled"
 msgstr "не выверено"
 
-#: mmchecking_list.cpp:366 mmchecking_list.cpp:377
+#: mmchecking_list.cpp:379 mmchecking_list.cpp:390
 msgid "as Void"
 msgstr "не учитывать"
 
-#: mmchecking_list.cpp:368
+#: mmchecking_list.cpp:381
 msgid "as Followup"
 msgstr "для отслеживания"
 
-#: mmchecking_list.cpp:370 mmchecking_list.cpp:379
+#: mmchecking_list.cpp:383 mmchecking_list.cpp:392
 msgid "as Duplicate"
 msgstr "повтор"
 
-#: mmchecking_list.cpp:372
+#: mmchecking_list.cpp:385
 msgid "Mark all being selected"
 msgstr "Отметить все выделенные"
 
-#: mmchecking_list.cpp:378
+#: mmchecking_list.cpp:391
 msgid "as needing Followup"
 msgstr "отслеживать"
 
-#: mmchecking_list.cpp:380
+#: mmchecking_list.cpp:393
 msgid "Mark all being viewed"
 msgstr "Статус видимых в"
 
-#: mmchecking_list.cpp:454
+#: mmchecking_list.cpp:467
 msgid "Do you really want to delete all the transactions shown?"
 msgstr "Вы действительно хотите удалить все показанные транзакции?"
 
-#: mmchecking_list.cpp:455 mmchecking_list.cpp:468 mmchecking_list.cpp:805
+#: mmchecking_list.cpp:468 mmchecking_list.cpp:481 mmchecking_list.cpp:818
 msgid "Confirm Transaction Deletion"
 msgstr "Подтверждение удаления транзакции"
 
-#: mmchecking_list.cpp:464
+#: mmchecking_list.cpp:477
 msgid "Follow Up"
 msgstr "Отслеживать"
 
-#: mmchecking_list.cpp:464
+#: mmchecking_list.cpp:477
 msgid "Unreconciled"
 msgstr "Не выверено"
 
-#: mmchecking_list.cpp:467
+#: mmchecking_list.cpp:480
 #, c-format
 msgid "Do you really want to delete all the \"%s\" transactions shown?"
 msgstr "Вы действительно хотите удалить все показанные \"%s\" транзакции?"
 
-#: mmchecking_list.cpp:800
+#: mmchecking_list.cpp:813
 #, c-format
 msgid "Do you really want to delete the selected transaction?"
 msgid_plural "Do you really want to delete %i selected transactions?"
@@ -3644,18 +3650,18 @@ msgstr[1] "Вы действительно хотите удалить %i выб
 msgstr[2] "Вы действительно хотите удалить %i выбранных транзакций?"
 msgstr[3] "Вы действительно хотите удалить %i выбранных транзакций?"
 
-#: mmchecking_list.cpp:854
+#: mmchecking_list.cpp:867
 #, c-format
 msgid "Locked transaction to date: %s\n\n"
 "Reconciled transactions."
 msgstr "Заблокирована транзакция с: %s\n\n"
 "Выверенные транзакции."
 
-#: mmchecking_list.cpp:857 transdialog.cpp:722 transdialog.cpp:755
+#: mmchecking_list.cpp:870 transdialog.cpp:722 transdialog.cpp:755
 msgid "MMEX Transaction Check"
 msgstr "Проверка транзакций"
 
-#: mmchecking_list.cpp:890
+#: mmchecking_list.cpp:903
 #, c-format
 msgid "You are about to edit a transaction involving an account that is closed."
 msgid_plural "The edit will affect %i transactions involving an account that is closed."
@@ -3664,26 +3670,26 @@ msgstr[1] "Вы собираетесь изменить %i транзакции 
 msgstr[2] "Вы собираетесь изменить %i транзакций с закрытым счётом."
 msgstr[3] "Вы собираетесь изменить %i транзакции с закрытым счётом."
 
-#: mmchecking_list.cpp:892
+#: mmchecking_list.cpp:905
 msgid "\n\n"
 "Do you still want to perform the edit?"
 msgstr "\n\n"
 "Вы все еще хотите выполнить редактирование?"
 
-#: mmchecking_list.cpp:893
+#: mmchecking_list.cpp:906
 msgid "Closed Account Check"
 msgstr "Проверка закрытого счета"
 
-#: mmchecking_list.cpp:1068 stockspanel.cpp:290
+#: mmchecking_list.cpp:1081 stockspanel.cpp:290
 #, c-format
 msgid "Moving Transaction from %s to..."
 msgstr "Перенос транзакций из %s в ..."
 
-#: mmchecking_list.cpp:1071 stockspanel.cpp:291
+#: mmchecking_list.cpp:1084 stockspanel.cpp:291
 msgid "Select the destination Account "
 msgstr "Выберите счёт назначения "
 
-#: mmchecking_list.cpp:1130
+#: mmchecking_list.cpp:1143
 msgid "Recurring Transaction saved."
 msgstr "Периодическая транзакция соханена."
 
@@ -3736,7 +3742,7 @@ msgstr "Отчёт по транзакциям"
 msgid "Account View : %s"
 msgstr "Просмотр счёта: %s"
 
-#: mmcheckingpanel.cpp:627
+#: mmcheckingpanel.cpp:626
 msgid "Select account used in transfer transactions"
 msgstr "Выберите счёт транзакции для перевода"
 
@@ -3909,7 +3915,7 @@ msgstr "&JSON Файлы..."
 msgid "Import from XML (Excel format)"
 msgstr "Импорт из XML  (Excel формат)"
 
-#: mmframe.cpp:1289 optionsettingsview.cpp:61
+#: mmframe.cpp:1289 optionsettingsview.cpp:63
 msgid "Accounts Visible"
 msgstr "Показывать счета"
 
@@ -5039,7 +5045,7 @@ msgstr "SQL скрипт:\n"
 msgid "General"
 msgstr "Основные"
 
-#: optiondialog.cpp:130 optionsettingsview.cpp:53
+#: optiondialog.cpp:130 optionsettingsview.cpp:55
 msgid "View Options"
 msgstr "Вид"
 
@@ -5437,39 +5443,39 @@ msgstr "Не стабильный"
 msgid "Updates source"
 msgstr "Источник обновлений"
 
-#: optionsettingsview.cpp:78
+#: optionsettingsview.cpp:80
 msgid "Specify which accounts are visible"
 msgstr "Выберите, какие счета будут видны"
 
-#: optionsettingsview.cpp:81
+#: optionsettingsview.cpp:83
 msgid "Category Delimiter"
 msgstr "Разделитель категорий"
 
-#: optionsettingsview.cpp:96
+#: optionsettingsview.cpp:98
 msgid "Transaction/Budget Options"
 msgstr "Опции Транзакций/Бюджета"
 
-#: optionsettingsview.cpp:102
+#: optionsettingsview.cpp:104
 msgid "View Budgets as Financial Years"
 msgstr "Просмотр согласно финансовым годам"
 
-#: optionsettingsview.cpp:107
+#: optionsettingsview.cpp:109
 msgid "View Budgets with 'transfer' transactions"
 msgstr "Просмотр с транзакциями перевода"
 
-#: optionsettingsview.cpp:113
+#: optionsettingsview.cpp:115
 msgid "View Budget Category Report with Summaries"
 msgstr "Бюджет по категориям с итогами"
 
-#: optionsettingsview.cpp:119
+#: optionsettingsview.cpp:121
 msgid "Ignore Future Transactions"
 msgstr "Игнорировать предстоящие транзакции"
 
-#: optionsettingsview.cpp:125
+#: optionsettingsview.cpp:127
 msgid "Transaction Colors"
 msgstr "Цвет транзакций"
 
-#: optionsettingsview.cpp:161
+#: optionsettingsview.cpp:163
 msgid "UI Appearance"
 msgstr "Внешний вид интерфейса"
 
@@ -5477,39 +5483,39 @@ msgstr "Внешний вид интерфейса"
 msgid "Style Template"
 msgstr "Шаблон стиля"
 
-#: optionsettingsview.cpp:188
+#: optionsettingsview.cpp:187
 msgid "HTML Scale Factor"
 msgstr "HTML масштаб"
 
-#: optionsettingsview.cpp:196
+#: optionsettingsview.cpp:195
 msgid "Specify which scale factor is used for the report pages"
 msgstr "Определите, какой масштаб использовать для отчётов"
 
-#: optionsettingsview.cpp:201
+#: optionsettingsview.cpp:200
 msgid "Small (16 px)"
 msgstr "Маленький (16 px)"
 
-#: optionsettingsview.cpp:202
+#: optionsettingsview.cpp:201
 msgid "Normal (24 px)"
 msgstr "Нормальный (24 px)"
 
-#: optionsettingsview.cpp:203
+#: optionsettingsview.cpp:202
 msgid "Large (32 px)"
 msgstr "Большой (32 px)"
 
-#: optionsettingsview.cpp:204
+#: optionsettingsview.cpp:203
 msgid "Huge (48 px)"
 msgstr "Огромный (48 px)"
 
-#: optionsettingsview.cpp:218
+#: optionsettingsview.cpp:217
 msgid "Toolbar Icon Size"
 msgstr "Размер значков панели инструментов"
 
-#: optionsettingsview.cpp:221
+#: optionsettingsview.cpp:220
 msgid "Navigation Icon Size"
 msgstr "Размер значков панели навигации"
 
-#: optionsettingsview.cpp:224
+#: optionsettingsview.cpp:223
 msgid "Others Icon Size"
 msgstr "Размер прочих значков"
 
