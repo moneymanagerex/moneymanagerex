@@ -190,4 +190,4 @@ wxImageList* navtree_images_list();
 const wxBitmap mmBitmap(int ref);
 
 wxBitmap* CreateBitmapFromRGBA(unsigned char *rgba, int size);
-bool buildBitmapsFromSVG(void);
+bool buildBitmapsFromSVG(wxString iconsFile, wxString myTheme);

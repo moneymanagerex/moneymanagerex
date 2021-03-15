@@ -38,6 +38,12 @@ inline const wxString getSettingsFileName()
 {
     return "mmexini.db3";
 }
+
+inline const wxString getUserTheme()
+{
+    return "usertheme.zip";
+}
+
 //----------------------------------------------------------------------------
 
 inline const wxString getDirectory()
@@ -202,7 +208,8 @@ const wxString mmex::getPathUser(EUserFile f)
 {
     static const wxString files[USER_FILES_MAX] = {
       getSettingsFileName(),
-      getDirectory()
+      getDirectory(),
+      getUserTheme()
     };
 
     wxASSERT(f >= 0 && f < USER_FILES_MAX);

@@ -145,7 +145,7 @@ static const std::map<std::string, std::pair<int, std::uint32_t>> iconName2enum 
     { "EMPTY.svg", { EMPTY, 0 } }
 };
 
-static bool iconsLoaded;
+static bool iconsLoaded = false;
 
 static wxSharedPtr<wxBitmap> programIcons16[MAX_PNG];
 static wxSharedPtr<wxBitmap> programIcons24[MAX_PNG];
@@ -153,6 +153,7 @@ static wxSharedPtr<wxBitmap> programIcons32[MAX_PNG];
 static wxSharedPtr<wxBitmap> programIcons48[MAX_PNG];
 
 static wxSharedPtr<wxArrayString> themes;
+static wxArrayString* filesInVFS;
 
 static const std::map<int, wxBitmap> navtree_images()
 {
@@ -254,13 +255,9 @@ wxBitmap* CreateBitmapFromRGBA(unsigned char *rgba, int size)
    return bitmap;
 } 
 
-bool buildBitmapsFromSVG(void)
+bool buildBitmapsFromSVG(wxString iconsFile, wxString myTheme)
 {
-    wxString myTheme = Model_Setting::instance().Theme();
-    themes->Clear();
-    bool myThemeFound = false;
-    wxLogDebug ("Loading Theme: %s", myTheme);
-    const wxString iconsFile = mmex::getPathResource(mmex::THEMES_ZIP);
+    wxLogDebug ("Scanning [%s] for Theme [%s]", iconsFile, myTheme);
     wxFileInputStream iconZip(iconsFile);
     wxASSERT(iconZip.IsOk());   // Make sure we can open find the Zip
 
@@ -268,6 +265,7 @@ bool buildBitmapsFromSVG(void)
     std::unique_ptr<wxZipEntry> zipEntry;
 
     wxString thisTheme;
+    bool themeMatched = false;
     while (zipEntry.reset(iconStream.GetNextEntry()), zipEntry) // != nullptr
     {
         wxASSERT(iconZip.CanRead()); // Make sure we can read the Zip Entry
@@ -284,9 +282,10 @@ bool buildBitmapsFromSVG(void)
         {   
             thisTheme = fileEntryName.GetDirs()[0];
             wxLogDebug("Found Theme: %s", thisTheme);
-            themes->Add(thisTheme);
+            if (wxNOT_FOUND == themes->Index(thisTheme)) // Add user theme if not in the existing list
+                themes->Add(thisTheme); 
             if (!thisTheme.Cmp(myTheme))
-                myThemeFound = true;
+                themeMatched = true;
         }
 
         if (thisTheme.Cmp(myTheme) || fileEntryName.IsDir())
@@ -299,8 +298,11 @@ bool buildBitmapsFromSVG(void)
         // If the file does not match an icon file then just load it into VFS
         if (!iconName2enum.count(fileName))
         {
+            if (wxNOT_FOUND != filesInVFS->Index(fileName)) // If already loaded then remove and replace
+                wxMemoryFSHandler::RemoveFile(fileName);
             wxMemoryFSHandler::AddFile(fileName, buffer->GetBufferStart()
                 , buffer->GetBufferSize());
+            filesInVFS->Add(fileName);
             wxLogDebug("File: %s has been copied to VFS", fileName);
             continue;
         }
@@ -326,7 +328,7 @@ bool buildBitmapsFromSVG(void)
         bitmap = document.renderToBitmap(48, 48, 96.0, bgColor);
         programIcons48[svgEnum] = CreateBitmapFromRGBA(bitmap.data(), 48);
     }
-    return (myThemeFound);
+    return (themeMatched);
 }
 
 const wxBitmap mmBitmap(int ref)
@@ -335,12 +337,22 @@ const wxBitmap mmBitmap(int ref)
     if (!iconsLoaded) 
     { 
         themes = new wxArrayString();
-        if (!buildBitmapsFromSVG())     // safety net in case a theme is removed or name changed
+        bool myThemeFound;
+        filesInVFS = new wxArrayString();
+        if (!(myThemeFound = buildBitmapsFromSVG(mmex::getPathResource(mmex::THEMES_ZIP), Model_Setting::instance().Theme())))   
+        {   // current theme does not match a system theme so load the default
+            buildBitmapsFromSVG(mmex::getPathResource(mmex::THEMES_ZIP), "default");
+        }
+        // Check if user override exists for the theme, and if does process it
+        if (wxFileExists(mmex::getPathUser(mmex::USERTHEME)))
+            myThemeFound = buildBitmapsFromSVG(mmex::getPathUser(mmex::USERTHEME), Model_Setting::instance().Theme()) || myThemeFound;  
+
+        if (!myThemeFound)  // if we never found the current theme then alert user and reset to default
         {
             wxMessageBox(wxString::Format(_("Theme %s not found within the application, it may no longer be supported. Reverting to default theme"), Model_Setting::instance().Theme()), _("Warning"), wxOK | wxICON_WARNING);
             Model_Setting::instance().SetTheme("default");
-            buildBitmapsFromSVG();
         }
+        delete filesInVFS; 
         iconsLoaded = true;
     }
     int x = Option::instance().getIconSize();
