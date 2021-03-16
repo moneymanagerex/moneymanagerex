@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2021-03-14 12:54+0300\n"
-"PO-Revision-Date: 2021-03-14 14:07\n"
+"POT-Creation-Date: 2021-03-16 21:00+0300\n"
+"PO-Revision-Date: 2021-03-16 18:08\n"
 "Last-Translator: \n"
 "Language-Team: Czech\n"
 "MIME-Version: 1.0\n"
@@ -136,7 +136,7 @@ msgstr "Zvolte zda je tento účet často používán. Toto nastavení je použi
 #: billsdepositsdialog.cpp:613 billsdepositspanel.cpp:110
 #: filtertransdialog.cpp:307 filtertransdialog.cpp:955
 #: import_export/qif_import_gui.cpp:105 import_export/univcsvdialog.cpp:110
-#: mmchecking_list.cpp:216 reports/transactions.cpp:83
+#: mmchecking_list.cpp:213 reports/transactions.cpp:83
 #: sharetransactiondialog.cpp:263 stockdialog.cpp:264 stockspanel.cpp:99
 #: transactionsupdatedialog.cpp:193 transdialog.cpp:576
 #: usertransactionpanel.cpp:205 webappdialog.cpp:154
@@ -368,7 +368,7 @@ msgstr "Zadejte název majetku"
 #: assetdialog.cpp:201 assetspanel.cpp:60 filtertransdialog.cpp:463
 #: import_export/qif_import_gui.cpp:99 import_export/univcsvdialog.cpp:104
 #: maincurrencydialog.cpp:236 maincurrencydialog.cpp:258
-#: mmchecking_list.cpp:192 mmreportspanel.cpp:257 mmreportspanel.cpp:275
+#: mmchecking_list.cpp:189 mmreportspanel.cpp:257 mmreportspanel.cpp:275
 #: model/Model_CustomField.cpp:29 reports/cashflow.cpp:252
 #: reports/incexpenses.cpp:231 reports/summary.cpp:155
 #: reports/transactions.cpp:75 stockdialog.cpp:297 stockdialog.cpp:676
@@ -444,7 +444,7 @@ msgid "Asset Account not found.\n\n"
 msgstr "Účet majetku nebyl nalezen.\n\n"
 "Přejete si jej vytvořit?"
 
-#: assetspanel.cpp:58 billsdepositspanel.cpp:96 mmchecking_list.cpp:190
+#: assetspanel.cpp:58 billsdepositspanel.cpp:96 mmchecking_list.cpp:187
 #: reports/transactions.cpp:74 stockspanel.cpp:87
 msgid "ID"
 msgstr "ID"
@@ -497,7 +497,7 @@ msgstr "Upravit maj&etek"
 msgid "&Delete Asset"
 msgstr "O&dstranit majetek"
 
-#: assetspanel.cpp:107 billsdepositspanel.cpp:403 mmchecking_list.cpp:354
+#: assetspanel.cpp:107 billsdepositspanel.cpp:403 mmchecking_list.cpp:351
 #: mmframe.cpp:1229 payeedialog.cpp:372 stockspanel.cpp:144
 msgid "&Organize Attachments"
 msgstr "&Správce příloh"
@@ -526,7 +526,7 @@ msgstr "Majetek"
 msgid "All"
 msgstr "Všechny"
 
-#: assetspanel.cpp:464 billsdepositspanel.cpp:263 mmcheckingpanel.cpp:350
+#: assetspanel.cpp:464 billsdepositspanel.cpp:263 mmcheckingpanel.cpp:351
 #: stockspanel.cpp:572
 msgid "&New "
 msgstr "&Nová "
@@ -545,14 +545,14 @@ msgstr "Zobrazit transakce majetku"
 
 #: assetspanel.cpp:478 attachmentdialog.cpp:317 billsdepositspanel.cpp:267
 #: categdialog.cpp:230 customfieldlistdialog.cpp:266 maincurrencydialog.cpp:525
-#: mmcheckingpanel.cpp:354 payeedialog.cpp:366 splittransactionsdialog.cpp:166
+#: mmcheckingpanel.cpp:355 payeedialog.cpp:366 splittransactionsdialog.cpp:166
 #: stockspanel.cpp:586
 msgid "&Edit "
 msgstr "Upr&avit "
 
 #: assetspanel.cpp:483 billsdepositspanel.cpp:272 budgetyeardialog.cpp:103
-#: categdialog.cpp:234 maincurrencydialog.cpp:289 mmchecking_list.cpp:370
-#: mmcheckingpanel.cpp:359 stockdialog.cpp:339 stockspanel.cpp:591
+#: categdialog.cpp:234 maincurrencydialog.cpp:289 mmchecking_list.cpp:367
+#: mmcheckingpanel.cpp:360 stockdialog.cpp:339 stockspanel.cpp:591
 msgid "&Delete "
 msgstr "O&dstranit "
 
@@ -560,12 +560,12 @@ msgstr "O&dstranit "
 msgid "Delete Asset"
 msgstr "Odstranit majetek"
 
-#: assetspanel.cpp:491 billsdepositspanel.cpp:290 mmcheckingpanel.cpp:372
+#: assetspanel.cpp:491 billsdepositspanel.cpp:290 mmcheckingpanel.cpp:373
 #: stockspanel.cpp:604
 msgid "Open attachments"
 msgstr "Otevřít přílohy"
 
-#: assetspanel.cpp:498 assetspanel.cpp:499 mmcheckingpanel.cpp:380
+#: assetspanel.cpp:498 assetspanel.cpp:499 mmcheckingpanel.cpp:381
 msgid "Search"
 msgstr "Hledat"
 
@@ -898,7 +898,7 @@ msgstr "Zvolte stav transakce"
 #: filtertransdialog.cpp:239 filtertransdialog.cpp:472
 #: filtertransdialog.cpp:907 import_export/qif_import_gui.cpp:234
 #: import_export/qif_import_gui.cpp:245 import_export/qif_import_gui.cpp:255
-#: mmchecking_list.cpp:203 reports/transactions.cpp:79
+#: mmchecking_list.cpp:200 reports/transactions.cpp:79
 #: transactionsupdatedialog.cpp:127 transdialog.cpp:478
 #: usertransactionpanel.cpp:177 webappdialog.cpp:149 wizard_update.cpp:136
 msgid "Status"
@@ -936,7 +936,7 @@ msgstr "Zadejte částku převodu na účet"
 #: filtertransdialog.cpp:177 filtertransdialog.cpp:869
 #: import_export/qif_import_gui.cpp:98 import_export/qif_import_gui.cpp:154
 #: import_export/qif_import_gui.cpp:226 import_export/qif_import_gui.cpp:813
-#: mmchecking_list.cpp:198 reports/transactions.cpp:77 transdialog.cpp:308
+#: mmchecking_list.cpp:195 reports/transactions.cpp:77 transdialog.cpp:308
 #: transdialog.cpp:520 usertransactionpanel.cpp:111 webappdialog.cpp:148
 msgid "Account"
 msgstr "Účet"
@@ -955,7 +955,7 @@ msgstr "Zadejte účet odkud trvalý příkaz přihází"
 #: billsdepositspanel.cpp:100 filtertransdialog.cpp:206
 #: filtertransdialog.cpp:419 filtertransdialog.cpp:884
 #: import_export/qif_import_gui.cpp:101 import_export/qif_import_gui.cpp:239
-#: import_export/univcsvdialog.cpp:105 mmchecking_list.cpp:201
+#: import_export/univcsvdialog.cpp:105 mmchecking_list.cpp:198
 #: mmhomepage.cpp:353 reports/payee.cpp:134 reports/transactions.cpp:78
 #: transactionsupdatedialog.cpp:167 transdialog.cpp:302 transdialog.cpp:526
 #: usertransactionpanel.cpp:181 webappdialog.cpp:151
@@ -978,7 +978,7 @@ msgstr "Použít kategorii rozdělení"
 #: billsdepositsdialog.cpp:596 billsdepositspanel.cpp:102
 #: budgetingpanel.cpp:290 filtertransdialog.cpp:217 filtertransdialog.cpp:892
 #: import_export/qif_import_gui.cpp:103 import_export/qif_import_gui.cpp:250
-#: import_export/univcsvdialog.cpp:107 mmchecking_list.cpp:205
+#: import_export/univcsvdialog.cpp:107 mmchecking_list.cpp:202
 #: mmhomepage.cpp:187 reports/budgetcategorysummary.cpp:174
 #: reports/budgetingperf.cpp:199 reports/categexp.cpp:171
 #: reports/categexp.cpp:399 reports/transactions.cpp:80
@@ -1001,7 +1001,7 @@ msgstr "Zadejte číslo pro ověření nebo číslo transakce"
 #: billsdepositsdialog.cpp:609 billsdepositspanel.cpp:109
 #: filtertransdialog.cpp:299 filtertransdialog.cpp:948
 #: import_export/qif_import_gui.cpp:100 import_export/univcsvdialog.cpp:109
-#: mmchecking_list.cpp:194 reports/transactions.cpp:76 transdialog.cpp:559
+#: mmchecking_list.cpp:191 reports/transactions.cpp:76 transdialog.cpp:559
 #: usertransactionpanel.cpp:201
 msgid "Number"
 msgstr "Číslo"
@@ -1089,7 +1089,7 @@ msgstr "Zadejte počet plateb, které mají být zadány.\n"
 #: billsdepositsdialog.cpp:1325 billsdepositsdialog.cpp:1334
 #: filtertransdialog.cpp:419 filtertransdialog.cpp:436
 #: filtertransdialog.cpp:447 filtertransdialog.cpp:463
-#: filtertransdialog.cpp:472 util.cpp:562
+#: filtertransdialog.cpp:472 util.cpp:563
 msgid "Invalid value"
 msgstr "Neplatná hodnota"
 
@@ -1851,7 +1851,7 @@ msgstr "Autocomplete"
 msgid "Enables autocomplete on custom field"
 msgstr "Povolí automatické dokončení pro vlastní pole"
 
-#: customfieldeditdialog.cpp:153 util.cpp:456
+#: customfieldeditdialog.cpp:153 util.cpp:457
 msgid "Default"
 msgstr "Výchozí"
 
@@ -2299,14 +2299,14 @@ msgid "Include all subcategories for the selected category."
 msgstr "Zahrnout všechny podkategorie pro vybranou kategorii."
 
 #: filtertransdialog.cpp:258 import_export/univcsvdialog.cpp:112
-#: mmchecking_list.cpp:207 model/Model_Billsdeposits.cpp:31
+#: mmchecking_list.cpp:204 model/Model_Billsdeposits.cpp:31
 #: model/Model_Checking.cpp:29 reports/forecast.cpp:84
 #: splitdetailsdialog.cpp:124
 msgid "Withdrawal"
 msgstr "Výběr"
 
 #: filtertransdialog.cpp:260 import_export/univcsvdialog.cpp:113
-#: mmchecking_list.cpp:209 model/Model_Billsdeposits.cpp:32
+#: mmchecking_list.cpp:206 model/Model_Billsdeposits.cpp:32
 #: model/Model_Checking.cpp:30 reports/forecast.cpp:82
 #: splitdetailsdialog.cpp:125
 msgid "Deposit"
@@ -2530,12 +2530,12 @@ msgstr "Vyberte soubor a uložte jej jako sestavu"
 msgid "Parameters:"
 msgstr "Parametry:"
 
-#: images_list.cpp:340
+#: images_list.cpp:353
 #, c-format
 msgid "Theme %s not found within the application, it may no longer be supported. Reverting to default theme"
 msgstr "Motiv %s již není součástí aplikace a nemusí být podporován. Nastavuji výchozí motiv"
 
-#: images_list.cpp:340 import_export/qif_import_gui.cpp:667
+#: images_list.cpp:353 import_export/qif_import_gui.cpp:667
 #: import_export/qif_import_gui.cpp:670
 msgid "Warning"
 msgstr "Upozornění"
@@ -2886,7 +2886,7 @@ msgstr "Podkategorie"
 msgid "Don't Care"
 msgstr "Ostatní"
 
-#: import_export/univcsvdialog.cpp:114 mmchecking_list.cpp:213
+#: import_export/univcsvdialog.cpp:114 mmchecking_list.cpp:210
 #: mmhomepage.cpp:648 reports/summary.cpp:163
 msgid "Balance"
 msgstr "Zůstatek"
@@ -3309,7 +3309,7 @@ msgstr "Přejete si aktualizovat na dnešní kurzy měn?"
 msgid "Unable to download history for base symbol %s. History rates not available!"
 msgstr "Nelze stáhnout historii pro základní symbol %s. Historie kurzů není dostupná!"
 
-#: maincurrencydialog.cpp:853 stockspanel.cpp:828 util.cpp:516
+#: maincurrencydialog.cpp:853 stockspanel.cpp:828 util.cpp:517
 msgid "Could not find base currency symbol!"
 msgstr "Nelze najít symbol pro základní měnu!"
 
@@ -3516,19 +3516,19 @@ msgstr "Příklad UK (HSBC HLDG) podíl: HSBA.L"
 msgid "If the Stock Name field is empty it will be filed when prices updated"
 msgstr "Pokud je pole pro název akcie prázdné, pak bude vyplněno při aktualizaci ceny"
 
-#: mmchecking_list.cpp:319
+#: mmchecking_list.cpp:316
 msgid "&New Withdrawal"
 msgstr "&Nový výběr"
 
-#: mmchecking_list.cpp:320
+#: mmchecking_list.cpp:317
 msgid "&New Deposit"
 msgstr "&Nový vklad"
 
-#: mmchecking_list.cpp:322
+#: mmchecking_list.cpp:319
 msgid "&New Transfer"
 msgstr "&Nový převod"
 
-#: mmchecking_list.cpp:326
+#: mmchecking_list.cpp:323
 msgid "&Edit Transaction"
 msgid_plural "&Edit Transactions"
 msgstr[0] "Upr&avit transakci"
@@ -3536,7 +3536,7 @@ msgstr[1] "Upr&avit transakci"
 msgstr[2] "Upr&avit transakce"
 msgstr[3] "Upr&avit transakce"
 
-#: mmchecking_list.cpp:331
+#: mmchecking_list.cpp:328
 msgid "&Copy Transaction"
 msgid_plural "&Copy Transactions"
 msgstr[0] "&Kopírovat transakci"
@@ -3544,32 +3544,32 @@ msgstr[1] "&Kopírovat transakce"
 msgstr[2] "&Kopírovat transakce"
 msgstr[3] "&Kopírovat transakce"
 
-#: mmchecking_list.cpp:336
+#: mmchecking_list.cpp:333
 msgid "&Paste Transaction"
 msgstr "V&ložit transakci"
 
-#: mmchecking_list.cpp:336
+#: mmchecking_list.cpp:333
 #, c-format
 msgid "&Paste Transactions (%d)"
 msgstr "V&ložit transakce (%d)"
 
-#: mmchecking_list.cpp:341
+#: mmchecking_list.cpp:338
 msgid "D&uplicate Transaction"
 msgstr "D&uplikovat transakci"
 
-#: mmchecking_list.cpp:344
+#: mmchecking_list.cpp:341
 msgid "&Move Transaction"
 msgstr "&Přesunout transakci"
 
-#: mmchecking_list.cpp:350
+#: mmchecking_list.cpp:347
 msgid "&View Split Categories"
 msgstr "&Zobrazit rozdělené kategorie "
 
-#: mmchecking_list.cpp:358
+#: mmchecking_list.cpp:355
 msgid "Create Recurring T&ransaction"
 msgstr "Vytvořit t&rvalý příkaz"
 
-#: mmchecking_list.cpp:364
+#: mmchecking_list.cpp:361
 msgid "&Delete selected transaction"
 msgid_plural "&Delete selected transactions"
 msgstr[0] "O&dstranit vybranou transakci"
@@ -3577,72 +3577,43 @@ msgstr[1] "O&dstranit vybrané transakce"
 msgstr[2] "O&dstranit vybrané transakce"
 msgstr[3] "O&dstranit vybrané transakce"
 
-#: mmchecking_list.cpp:367
+#: mmchecking_list.cpp:364
 msgid "Delete all transactions in current view"
 msgstr "Odstranit všechny transakce v aktuálním zobrazení"
 
-#: mmchecking_list.cpp:368
+#: mmchecking_list.cpp:365
 msgid "Delete Viewed \"Follow Up\" Transactions"
 msgstr "Odstranit zobrazené transakce s příznakem \"Sledovat\""
 
-#: mmchecking_list.cpp:369
+#: mmchecking_list.cpp:366
 msgid "Delete Viewed \"Unreconciled\" Transactions"
 msgstr "Odstranit zobrazené transakce s příznakem \"Neplatné\""
 
-#: mmchecking_list.cpp:375 mmchecking_list.cpp:388
+#: mmchecking_list.cpp:372
 msgid "as Reconciled"
 msgstr "jako ověřené"
 
-#: mmchecking_list.cpp:377 mmchecking_list.cpp:389
+#: mmchecking_list.cpp:374
 msgid "as Unreconciled"
 msgstr "jako neověřené"
 
-#: mmchecking_list.cpp:379 mmchecking_list.cpp:390
+#: mmchecking_list.cpp:376
 msgid "as Void"
 msgstr "jako neplatné"
 
-#: mmchecking_list.cpp:381
+#: mmchecking_list.cpp:378
 msgid "as Followup"
 msgstr "jako Sledované"
 
-#: mmchecking_list.cpp:383 mmchecking_list.cpp:392
+#: mmchecking_list.cpp:380
 msgid "as Duplicate"
 msgstr "jako duplikát"
 
-#: mmchecking_list.cpp:385
+#: mmchecking_list.cpp:382
 msgid "Mark all being selected"
 msgstr "Označit vše vybrané"
 
-#: mmchecking_list.cpp:391
-msgid "as needing Followup"
-msgstr "pro sledování"
-
-#: mmchecking_list.cpp:393
-msgid "Mark all being viewed"
-msgstr "Označit vše jako přečtené"
-
-#: mmchecking_list.cpp:467
-msgid "Do you really want to delete all the transactions shown?"
-msgstr "Opravdu si přejete odstranit všechny zobrazené transakce?"
-
-#: mmchecking_list.cpp:468 mmchecking_list.cpp:481 mmchecking_list.cpp:818
-msgid "Confirm Transaction Deletion"
-msgstr "Potvrzení odstranění transakce"
-
-#: mmchecking_list.cpp:477
-msgid "Follow Up"
-msgstr "Sledovat"
-
-#: mmchecking_list.cpp:477
-msgid "Unreconciled"
-msgstr "Neověřené"
-
-#: mmchecking_list.cpp:480
-#, c-format
-msgid "Do you really want to delete all the \"%s\" transactions shown?"
-msgstr "Opravdu si přejete odstranit všechny \"%s\" zobrazené transakce?"
-
-#: mmchecking_list.cpp:813
+#: mmchecking_list.cpp:751
 #, c-format
 msgid "Do you really want to delete the selected transaction?"
 msgid_plural "Do you really want to delete %i selected transactions?"
@@ -3651,18 +3622,22 @@ msgstr[1] "Opravdu si přejete odstranit %i vybraných transakcí?"
 msgstr[2] "Opravdu si přejete odstranit %i vybraných transakcí?"
 msgstr[3] "Opravdu si přejete odstranit %i vybraných transakcí?"
 
-#: mmchecking_list.cpp:867
+#: mmchecking_list.cpp:756
+msgid "Confirm Transaction Deletion"
+msgstr "Potvrzení odstranění transakce"
+
+#: mmchecking_list.cpp:805
 #, c-format
 msgid "Locked transaction to date: %s\n\n"
 "Reconciled transactions."
 msgstr "Uzamknout transakci k datu: %s\n\n"
 "Ověřené transakce."
 
-#: mmchecking_list.cpp:870 transdialog.cpp:722 transdialog.cpp:755
+#: mmchecking_list.cpp:808 transdialog.cpp:722 transdialog.cpp:755
 msgid "MMEX Transaction Check"
 msgstr "MMEX Ověření transakce"
 
-#: mmchecking_list.cpp:903
+#: mmchecking_list.cpp:841
 #, c-format
 msgid "You are about to edit a transaction involving an account that is closed."
 msgid_plural "The edit will affect %i transactions involving an account that is closed."
@@ -3671,30 +3646,30 @@ msgstr[1] ""
 msgstr[2] ""
 msgstr[3] "Úprava bude mít dopad na %i transakcí, které náleží uzavřenému účtu."
 
-#: mmchecking_list.cpp:905
+#: mmchecking_list.cpp:843
 msgid "\n\n"
 "Do you still want to perform the edit?"
 msgstr "\n\n"
 "Opravdu si přejete provést úpravu?"
 
-#: mmchecking_list.cpp:906
+#: mmchecking_list.cpp:844
 msgid "Closed Account Check"
 msgstr "Ověření uzavřeného účtu"
 
-#: mmchecking_list.cpp:1081 stockspanel.cpp:290
+#: mmchecking_list.cpp:1019 stockspanel.cpp:290
 #, c-format
 msgid "Moving Transaction from %s to..."
 msgstr "Přesun transakce z %s do..."
 
-#: mmchecking_list.cpp:1084 stockspanel.cpp:291
+#: mmchecking_list.cpp:1022 stockspanel.cpp:291
 msgid "Select the destination Account "
 msgstr "Vyberte cílový účet "
 
-#: mmchecking_list.cpp:1143
+#: mmchecking_list.cpp:1081
 msgid "Recurring Transaction saved."
 msgstr "Trvalý příkaz byl zadán."
 
-#: mmcheckingpanel.cpp:279 mmcheckingpanel.cpp:426
+#: mmcheckingpanel.cpp:279 mmcheckingpanel.cpp:427
 msgid "Displayed Bal: "
 msgstr "Zobrazený zůstatek: "
 
@@ -3710,40 +3685,40 @@ msgstr "Ověřený zůstatek: "
 msgid "Diff: "
 msgstr "Rozdíl: "
 
-#: mmcheckingpanel.cpp:351 mmframe.cpp:1671 transdialog.cpp:179
+#: mmcheckingpanel.cpp:352 mmframe.cpp:1671 transdialog.cpp:179
 msgid "New Transaction"
 msgstr "Nová transakce"
 
-#: mmcheckingpanel.cpp:355
+#: mmcheckingpanel.cpp:356
 msgid "Edit selected transaction"
 msgstr "Upravit vybrané transakce"
 
-#: mmcheckingpanel.cpp:360
+#: mmcheckingpanel.cpp:361
 msgid "Delete selected transaction"
 msgstr "Odstranit vybrané transakce"
 
-#: mmcheckingpanel.cpp:364
+#: mmcheckingpanel.cpp:365
 msgid "D&uplicate "
 msgstr "D&uplikovat "
 
-#: mmcheckingpanel.cpp:365
+#: mmcheckingpanel.cpp:366
 msgid "Duplicate selected transaction"
 msgstr "Duplikovat vybrané transakce"
 
-#: mmcheckingpanel.cpp:382
+#: mmcheckingpanel.cpp:383
 msgid "Enter any string to find it in the nearest transaction notes"
 msgstr "Zadejte jakýkoliv řetězec poznámky pro nalezení nejbližší transkace, která jej obsahuje"
 
-#: mmcheckingpanel.cpp:399
+#: mmcheckingpanel.cpp:400
 msgid "Full Transactions Report"
 msgstr "Úplný výpis transakcí"
 
-#: mmcheckingpanel.cpp:401
+#: mmcheckingpanel.cpp:402
 #, c-format
 msgid "Account View : %s"
 msgstr "Zobrazený účet : %s"
 
-#: mmcheckingpanel.cpp:626
+#: mmcheckingpanel.cpp:627
 msgid "Select account used in transfer transactions"
 msgstr "Zvolte účet pro převod transakcí"
 
@@ -6376,7 +6351,7 @@ msgstr "Ceny akcií byly úspěšně aktualizovány"
 msgid "Last updated %s"
 msgstr "Poslední aktualizace %s"
 
-#: stockspanel.cpp:834 util.cpp:540 util.cpp:658
+#: stockspanel.cpp:834 util.cpp:541 util.cpp:659
 msgid "Nothing to update"
 msgstr "Žádná aktualizace není k dispozici"
 
@@ -6519,120 +6494,120 @@ msgstr "Vyberte požadovaný účet"
 msgid "Account Selection"
 msgstr "Výběr účtu"
 
-#: util.cpp:470
+#: util.cpp:471
 msgid "Jan"
 msgstr "Led"
 
-#: util.cpp:470
+#: util.cpp:471
 msgid "Feb"
 msgstr "Úno"
 
-#: util.cpp:470
+#: util.cpp:471
 msgid "Mar"
 msgstr "Bře"
 
-#: util.cpp:471
+#: util.cpp:472
 msgid "Apr"
 msgstr "Dub"
 
-#: util.cpp:471 util.h:162
+#: util.cpp:472 util.h:162
 msgid "May"
 msgstr "květen"
 
-#: util.cpp:471
+#: util.cpp:472
 msgid "Jun"
 msgstr "Čen"
 
-#: util.cpp:472
+#: util.cpp:473
 msgid "Jul"
 msgstr "Čec"
 
-#: util.cpp:472
+#: util.cpp:473
 msgid "Aug"
 msgstr "Srp"
 
-#: util.cpp:472
+#: util.cpp:473
 msgid "Sep"
 msgstr "Zář"
 
-#: util.cpp:473
+#: util.cpp:474
 msgid "Oct"
 msgstr "Říj"
 
-#: util.cpp:473
+#: util.cpp:474
 msgid "Nov"
 msgstr "Lis"
 
-#: util.cpp:473
+#: util.cpp:474
 msgid "Dec"
 msgstr "Pro"
 
-#: util.cpp:478
+#: util.cpp:479
 msgid "Sunday"
 msgstr "Neděle"
 
-#: util.cpp:478
+#: util.cpp:479
 msgid "Monday"
 msgstr "Pondělí"
 
-#: util.cpp:478
+#: util.cpp:479
 msgid "Tuesday"
 msgstr "Úterý"
 
-#: util.cpp:479
+#: util.cpp:480
 msgid "Wednesday"
 msgstr "Středa"
 
-#: util.cpp:479
+#: util.cpp:480
 msgid "Thursday"
 msgstr "Čtvrtek"
 
-#: util.cpp:479
+#: util.cpp:480
 msgid "Friday"
 msgstr "Pátek"
 
-#: util.cpp:480
+#: util.cpp:481
 msgid "Saturday"
 msgstr "Sobota"
 
-#: util.cpp:550
+#: util.cpp:551
 msgid "Currency rates have been updated"
 msgstr "Kurzy měn byly aktualizovány"
 
-#: util.cpp:634
+#: util.cpp:635
 msgid "JSON Parse Error"
 msgstr "Chyba při parsování JSON"
 
-#: util.cpp:931
+#: util.cpp:932
 #, c-format
 msgid "Version: %s"
 msgstr "Verze: %s"
 
-#: util.cpp:932
+#: util.cpp:933
 msgid "Build on"
 msgstr "Kompilováno"
 
-#: util.cpp:933
+#: util.cpp:934
 msgid "Database version: "
 msgstr "Verze databáze: "
 
-#: util.cpp:940
+#: util.cpp:941
 msgid "Git commit: "
 msgstr "Git commit: "
 
-#: util.cpp:944
+#: util.cpp:945
 msgid "Git branch: "
 msgstr "Git branch: "
 
-#: util.cpp:948
+#: util.cpp:949
 msgid "MMEX is using the following support products:"
 msgstr "MMEX používá tyto podpůrné produkty:"
 
-#: util.cpp:966
+#: util.cpp:967
 msgid "Build using:"
 msgstr "Vytvořit pomocí:"
 
-#: util.cpp:987
+#: util.cpp:988
 msgid "Running on:"
 msgstr "Spuštěno na:"
 
