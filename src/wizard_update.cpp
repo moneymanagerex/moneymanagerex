@@ -318,8 +318,6 @@ void mmUpdate::checkUpdates(wxFrame *frame, bool bSilent)
     const int _stable = is_stable ? update_stable : 0;
     const wxString current_tag = ("v" + mmex::version::string).Lower();
     wxString last_checked = Model_Setting::instance().GetStringSetting("UPDATE_LAST_CHECKED_VERSION", current_tag);
-    if (last_checked > current_tag)
-        last_checked = current_tag;
 
     bool is_update_available = false;
     Version current(current_tag);
