@@ -120,9 +120,9 @@ install: |-
       make
       make install
       cd $HOME
-      curl -fsSL -O https://github.com/wxWidgets/wxWidgets/releases/download/v3.1.4/wxWidgets-3.1.4.tar.bz2
-      tar xzf wxWidgets-*.tar.bz2
-      cd wxWidgets-3.1.4
+      curl -fsSL -o wxWidgets.zip https://github.com/wxWidgets/wxWidgets/archive/914cc63d3214fa438f2e0313164f41c95df28880.zip
+      unzip wxWidgets.zip
+      cd wxWidgets-*
       ./configure --disable-shared --enable-cxx11 --with-cxx=11 \
         --with-macosx-version-min=$MACOSX_DEPLOYMENT_TARGET \
         --without-libtiff
