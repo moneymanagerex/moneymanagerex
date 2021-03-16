@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-03-14 12:54+0300\n"
-"PO-Revision-Date: 2021-03-16 14:23\n"
+"PO-Revision-Date: 2021-03-16 14:34\n"
 "Last-Translator: \n"
 "Language-Team: Indonesian\n"
 "MIME-Version: 1.0\n"
@@ -281,7 +281,7 @@ msgstr "Harap masukkan URL yang valid"
 
 #: accountdialog.cpp:520
 msgid "Invalid URL"
-msgstr ""
+msgstr "URL tidak valid"
 
 #: appstartdialog.cpp:99
 msgid "Open Last Opened Database"
@@ -3586,16 +3586,16 @@ msgstr "Konfirmasi penghapusan transaksi"
 
 #: mmchecking_list.cpp:477
 msgid "Follow Up"
-msgstr ""
+msgstr "Tindak Lanjut"
 
 #: mmchecking_list.cpp:477
 msgid "Unreconciled"
-msgstr ""
+msgstr "Belum di-Rekonsiliasi"
 
 #: mmchecking_list.cpp:480
 #, c-format
 msgid "Do you really want to delete all the \"%s\" transactions shown?"
-msgstr ""
+msgstr "Anda yakin ingin menghapus semua transaksi \"%s\" yang ditampilkan?"
 
 #: mmchecking_list.cpp:813
 #, c-format
@@ -3729,12 +3729,13 @@ msgstr ""
 
 #: mmex.cpp:140 mmframe.cpp:3225
 msgid "Language change"
-msgstr ""
+msgstr "Perubahan bahasa"
 
 #: mmex.cpp:180
 msgid "Fatal error occured.\n"
 "Application will be terminated."
-msgstr ""
+msgstr "Terjadi fatal error.\n"
+"Aplikasi akan dihentikan."
 
 #: mmframe.cpp:261
 msgid "Navigation"
@@ -3742,11 +3743,11 @@ msgstr "Navigasi"
 
 #: mmframe.cpp:262
 msgid "Toolbar"
-msgstr ""
+msgstr "Baris Alat"
 
 #: mmframe.cpp:457 mmframe.cpp:693
 msgid "Favourites"
-msgstr ""
+msgstr "Kesukaan"
 
 #: mmframe.cpp:458 mmframe.cpp:697 mmhomepage.cpp:635 reports/summary.cpp:157
 msgid "Bank Accounts"
@@ -3754,7 +3755,7 @@ msgstr "Rekening"
 
 #: mmframe.cpp:459 mmframe.cpp:701 mmhomepage.cpp:636 reports/summary.cpp:158
 msgid "Credit Card Accounts"
-msgstr ""
+msgstr "Rekening Kartu Kredit"
 
 #: mmframe.cpp:460 mmframe.cpp:713 mmhomepage.cpp:638 reports/summary.cpp:160
 msgid "Term Accounts"
