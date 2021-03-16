@@ -114,11 +114,7 @@ private:
         MENU_TREEPOPUP_MARK_ADD_FLAG_FOLLOWUP,
         MENU_TREEPOPUP_MARKDUPLICATE,
         MENU_TREEPOPUP_MARKDELETE,
-        MENU_TREEPOPUP_MARKRECONCILED_ALL,
-        MENU_TREEPOPUP_MARKUNRECONCILED_ALL,
-        MENU_TREEPOPUP_MARKVOID_ALL,
-        MENU_TREEPOPUP_MARK_ADD_FLAG_FOLLOWUP_ALL,
-        MENU_TREEPOPUP_MARKDUPLICATE_ALL,
+
         MENU_TREEPOPUP_DELETE_VIEWED,
         MENU_TREEPOPUP_DELETE_FLAGGED,
         MENU_TREEPOPUP_DELETE_UNRECONCILED,
@@ -183,7 +179,6 @@ private:
     void OnListItemDeSelected(wxListEvent& event);
     void OnListItemActivated(wxListEvent& event);
     void OnMarkTransaction(wxCommandEvent& event);
-    void OnMarkAllTransactions(wxCommandEvent& event);
     void OnListKeyDown(wxListEvent& event);
     void OnChar(wxKeyEvent& event);
     void OnCopy(wxCommandEvent& WXUNUSED(event));

@@ -47,19 +47,16 @@
 //----------------------------------------------------------------------------
 
 wxBEGIN_EVENT_TABLE(TransactionListCtrl, mmListCtrl)
-EVT_LIST_ITEM_ACTIVATED(wxID_ANY, TransactionListCtrl::OnListItemActivated)
-EVT_LIST_ITEM_SELECTED(wxID_ANY, TransactionListCtrl::OnListItemSelected)
-EVT_LIST_ITEM_DESELECTED(wxID_ANY, TransactionListCtrl::OnListItemDeSelected)
-EVT_LIST_ITEM_FOCUSED(wxID_ANY, TransactionListCtrl::OnListItemFocused)
-EVT_RIGHT_DOWN(TransactionListCtrl::OnMouseRightClick)
-EVT_LEFT_DOWN(TransactionListCtrl::OnListLeftClick)
-EVT_LIST_KEY_DOWN(wxID_ANY, TransactionListCtrl::OnListKeyDown)
-
-EVT_MENU_RANGE(MENU_TREEPOPUP_MARKRECONCILED
-    , MENU_TREEPOPUP_MARKDELETE, TransactionListCtrl::OnMarkTransaction)
-
-    EVT_MENU_RANGE(MENU_TREEPOPUP_MARKRECONCILED_ALL
-        , MENU_TREEPOPUP_DELETE_UNRECONCILED, TransactionListCtrl::OnMarkAllTransactions)
+    EVT_LIST_ITEM_ACTIVATED(wxID_ANY, TransactionListCtrl::OnListItemActivated)
+    EVT_LIST_ITEM_SELECTED(wxID_ANY, TransactionListCtrl::OnListItemSelected)
+    EVT_LIST_ITEM_DESELECTED(wxID_ANY, TransactionListCtrl::OnListItemDeSelected)
+    EVT_LIST_ITEM_FOCUSED(wxID_ANY, TransactionListCtrl::OnListItemFocused)
+    EVT_RIGHT_DOWN(TransactionListCtrl::OnMouseRightClick)
+    EVT_LEFT_DOWN(TransactionListCtrl::OnListLeftClick)
+    EVT_LIST_KEY_DOWN(wxID_ANY, TransactionListCtrl::OnListKeyDown)
+    
+    EVT_MENU_RANGE(MENU_TREEPOPUP_MARKRECONCILED
+        , MENU_TREEPOPUP_MARKDELETE, TransactionListCtrl::OnMarkTransaction)
 
     EVT_MENU_RANGE(MENU_TREEPOPUP_NEW_WITHDRAWAL, MENU_TREEPOPUP_NEW_DEPOSIT, TransactionListCtrl::OnNewTransaction)
     EVT_MENU(MENU_TREEPOPUP_NEW_TRANSFER, TransactionListCtrl::OnNewTransferTransaction)
@@ -78,7 +75,7 @@ EVT_MENU_RANGE(MENU_TREEPOPUP_MARKRECONCILED
     EVT_MENU(MENU_TREEPOPUP_CREATE_REOCCURANCE, TransactionListCtrl::OnCreateReoccurance)
     EVT_CHAR(TransactionListCtrl::OnChar)
 
-    wxEND_EVENT_TABLE();
+wxEND_EVENT_TABLE();
 
 //----------------------------------------------------------------------------
 
@@ -330,7 +327,7 @@ void TransactionListCtrl::OnMouseRightClick(wxMouseEvent& event)
     {
         menu.Append(MENU_ON_COPY_TRANSACTION, wxPLURAL("&Copy Transaction", "&Copy Transactions", selected));
         if (is_nothing_selected) menu.Enable(MENU_ON_COPY_TRANSACTION, false);
-  
+
         int toPaste = m_selectedForCopy.size();
         menu.Append(MENU_ON_PASTE_TRANSACTION, 
             wxString::Format( wxPLURAL(_("&Paste Transaction"), _("&Paste Transactions (%d)"), (toPaste < 2) ? 1 : toPaste), toPaste)
@@ -371,26 +368,18 @@ void TransactionListCtrl::OnMouseRightClick(wxMouseEvent& event)
 
     menu.AppendSeparator();
 
-    if (!is_nothing_selected)
-    {
-        wxMenu* subGlobalOpMenuMark = new wxMenu();
-        subGlobalOpMenuMark->Append(MENU_TREEPOPUP_MARKRECONCILED, _("as Reconciled"));
-        subGlobalOpMenuMark->Append(MENU_TREEPOPUP_MARKUNRECONCILED, _("as Unreconciled"));
-        subGlobalOpMenuMark->Append(MENU_TREEPOPUP_MARKVOID, _("as Void"));
-        subGlobalOpMenuMark->Append(MENU_TREEPOPUP_MARK_ADD_FLAG_FOLLOWUP, _("as Followup"));
-        subGlobalOpMenuMark->Append(MENU_TREEPOPUP_MARKDUPLICATE, _("as Duplicate"));
-        menu.Append(wxID_ABORT, _("Mark all being selected"), subGlobalOpMenuMark);
-    }
-    else
-    {
-        wxMenu* subGlobalOpMenu = new wxMenu();
-        subGlobalOpMenu->Append(MENU_TREEPOPUP_MARKRECONCILED_ALL, _("as Reconciled"));
-        subGlobalOpMenu->Append(MENU_TREEPOPUP_MARKUNRECONCILED_ALL, _("as Unreconciled"));
-        subGlobalOpMenu->Append(MENU_TREEPOPUP_MARKVOID_ALL, _("as Void"));
-        subGlobalOpMenu->Append(MENU_TREEPOPUP_MARK_ADD_FLAG_FOLLOWUP_ALL, _("as Followup"));
-        subGlobalOpMenu->Append(MENU_TREEPOPUP_MARKDUPLICATE_ALL, _("as Duplicate"));
-        menu.Append(MENU_SUBMENU_MARK_ALL, _("Mark all being viewed"), subGlobalOpMenu);
-    }
+    wxMenu* subGlobalOpMenuMark = new wxMenu();
+    subGlobalOpMenuMark->Append(MENU_TREEPOPUP_MARKRECONCILED, _("as Reconciled"));
+    if (is_nothing_selected) subGlobalOpMenuMark->Enable(MENU_TREEPOPUP_MARKRECONCILED, false);
+    subGlobalOpMenuMark->Append(MENU_TREEPOPUP_MARKUNRECONCILED, _("as Unreconciled"));
+    if (is_nothing_selected) subGlobalOpMenuMark->Enable(MENU_TREEPOPUP_MARKUNRECONCILED, false);
+    subGlobalOpMenuMark->Append(MENU_TREEPOPUP_MARKVOID, _("as Void"));
+    if (is_nothing_selected) subGlobalOpMenuMark->Enable(MENU_TREEPOPUP_MARKVOID, false);
+    subGlobalOpMenuMark->Append(MENU_TREEPOPUP_MARK_ADD_FLAG_FOLLOWUP, _("as Followup"));
+    if (is_nothing_selected) subGlobalOpMenuMark->Enable(MENU_TREEPOPUP_MARK_ADD_FLAG_FOLLOWUP, false);
+    subGlobalOpMenuMark->Append(MENU_TREEPOPUP_MARKDUPLICATE, _("as Duplicate"));
+    if (is_nothing_selected) subGlobalOpMenuMark->Enable(MENU_TREEPOPUP_MARKDUPLICATE, false);
+    menu.AppendSubMenu(subGlobalOpMenuMark, _("Mark all being selected"));
 
     // Disable menu items not ment for foreign transactions
     if (is_foreign)
@@ -441,59 +430,6 @@ void TransactionListCtrl::OnMarkTransaction(wxCommandEvent& event)
     }
 
     Model_Checking::instance().ReleaseSavepoint();
-
-    refreshVisualList();
-}
-//----------------------------------------------------------------------------
-
-void TransactionListCtrl::OnMarkAllTransactions(wxCommandEvent& event)
-{
-    FindSelectedTransactions();
-    int evt = event.GetId();
-    wxString status = "";
-    if (evt == MENU_TREEPOPUP_MARKRECONCILED_ALL)             status = "R";
-    else if (evt == MENU_TREEPOPUP_MARKUNRECONCILED_ALL)       status = "";
-    else if (evt == MENU_TREEPOPUP_MARKVOID_ALL)               status = "V";
-    else if (evt == MENU_TREEPOPUP_MARK_ADD_FLAG_FOLLOWUP_ALL) status = "F";
-    else if (evt == MENU_TREEPOPUP_MARKDUPLICATE_ALL)          status = "D";
-    else if (evt == MENU_TREEPOPUP_DELETE_VIEWED)              status = "X";
-    else if (evt == MENU_TREEPOPUP_DELETE_FLAGGED)             status = "M";
-    else if (evt == MENU_TREEPOPUP_DELETE_UNRECONCILED)        status = "0";
-    else  wxASSERT(false);
-
-    if (status == "X")
-    {
-        wxMessageDialog msgDlg(this
-            , _("Do you really want to delete all the transactions shown?")
-            , _("Confirm Transaction Deletion")
-            , wxYES_NO | wxNO_DEFAULT | wxICON_ERROR);
-        if (msgDlg.ShowModal() == wxID_YES)
-        {
-            DeleteViewedTransactions();
-        }
-    }
-    else if (status == "M" || status == "0")
-    {
-        const wxString statusStr = (status == "M" ? _("Follow Up") : _("Unreconciled"));
-        const wxString shotStatusStr = (status == "M" ? "F" : "");
-        wxMessageDialog msgDlg(this
-            , wxString::Format(_("Do you really want to delete all the \"%s\" transactions shown?"), statusStr)
-            , _("Confirm Transaction Deletion")
-            , wxYES_NO | wxNO_DEFAULT | wxICON_QUESTION);
-        if (msgDlg.ShowModal() == wxID_YES)
-        {
-            DeleteFlaggedTransactions(shotStatusStr);
-        }
-    }
-    else
-    {
-        for (auto& tran : m_trans)
-        {
-            tran.NOTES.Replace(mmAttachmentManage::GetAttachmentNoteSign(), wxEmptyString, true);
-            tran.STATUS = status;
-        }
-        Model_Checking::instance().save(m_trans);
-    }
 
     refreshVisualList();
 }
