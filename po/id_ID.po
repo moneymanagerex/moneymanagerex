@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-03-14 12:54+0300\n"
-"PO-Revision-Date: 2021-03-14 09:57\n"
+"PO-Revision-Date: 2021-03-16 14:05\n"
 "Last-Translator: \n"
 "Language-Team: Indonesian\n"
 "MIME-Version: 1.0\n"
@@ -25,15 +25,15 @@ msgstr ""
 
 #: aboutdialog.cpp:54
 msgid "License agreement"
-msgstr ""
+msgstr "Perjanjian Lisensi"
 
 #: aboutdialog.cpp:183
 msgid "About"
-msgstr ""
+msgstr "Tentang Program"
 
 #: aboutdialog.cpp:188
 msgid "Authors"
-msgstr ""
+msgstr "Penulis"
 
 #: aboutdialog.cpp:193
 msgid "Sponsors"
