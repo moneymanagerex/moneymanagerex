@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-03-14 12:54+0300\n"
-"PO-Revision-Date: 2021-03-16 14:05\n"
+"PO-Revision-Date: 2021-03-16 14:23\n"
 "Last-Translator: \n"
 "Language-Team: Indonesian\n"
 "MIME-Version: 1.0\n"
@@ -37,23 +37,23 @@ msgstr "Penulis"
 
 #: aboutdialog.cpp:193
 msgid "Sponsors"
-msgstr ""
+msgstr "Pengiklan"
 
 #: aboutdialog.cpp:198
 msgid "License"
-msgstr ""
+msgstr "Lisensi"
 
 #: aboutdialog.cpp:203
 msgid "Privacy"
-msgstr ""
+msgstr "Pribadi"
 
 #: aboutdialog.cpp:241 optionsettingsnet.cpp:113
 msgid "Send anonymous statistics usage data"
-msgstr ""
+msgstr "Kirim penggunaan data statistik anonim"
 
 #: aboutdialog.cpp:242 optionsettingsnet.cpp:115
 msgid "Enable to help us sending anonymous data about MMEX usage."
-msgstr ""
+msgstr "Aktifkan untuk membantu kami mengirimkan data anonim tentang penggunaan MMEX."
 
 #: aboutdialog.cpp:249 accountdialog.cpp:308 appstartdialog.cpp:136
 #: assetdialog.cpp:305 attachmentdialog.cpp:120 billsdepositsdialog.cpp:477
@@ -68,7 +68,7 @@ msgstr ""
 #: splittransactionsdialog.cpp:172 transactionsupdatedialog.cpp:222
 #: transdialog.cpp:602 wizard_update.cpp:180
 msgid "&OK "
-msgstr ""
+msgstr "&Ya "
 
 #: accountdialog.cpp:92 mmframe.cpp:1433 mmframe.cpp:1658
 #: wizard_newaccount.cpp:86 wizard_newaccount.cpp:93 wizard_newaccount.cpp:164
@@ -106,7 +106,7 @@ msgstr "pilih apakah rekening ini masih aktif atau tidak. Jika tidak aktif,maka 
 #: accountdialog.cpp:167
 #, c-format
 msgid "Initial Balance: %s"
-msgstr ""
+msgstr "Saldo awal: %s"
 
 #: accountdialog.cpp:171
 msgid "Enter the initial balance in this account."
@@ -155,7 +155,7 @@ msgstr "Lainnya"
 
 #: accountdialog.cpp:211
 msgid "Card Number:"
-msgstr ""
+msgstr "Nomer Kartu:"
 
 #: accountdialog.cpp:211
 msgid "Account Number:"
@@ -199,72 +199,72 @@ msgstr "isi login/password untuk mengakses website institusi keuangan yang menge
 
 #: accountdialog.cpp:238
 msgid "Statement"
-msgstr ""
+msgstr "Pernyataan"
 
 #: accountdialog.cpp:246
 msgid "Statement:"
-msgstr ""
+msgstr "Pernyataan:"
 
 #: accountdialog.cpp:247
 msgid "Locked"
-msgstr ""
+msgstr "Terkunci"
 
 #: accountdialog.cpp:248
 msgid "Enable or disable the transaction Lock"
-msgstr ""
+msgstr "Mengaktifkan atau menonaktifkan kunci transaksi"
 
 #: accountdialog.cpp:251
 msgid "Reconciled Date:"
-msgstr ""
+msgstr "Tanggan Rekonsiliasi:"
 
 #: accountdialog.cpp:253
 msgid "The date of the transaction lock"
-msgstr ""
+msgstr "Tanggal kunci transaksi"
 
 #: accountdialog.cpp:256
 msgid "Minimum Bal:"
-msgstr ""
+msgstr "Minimum Bal:"
 
 #: accountdialog.cpp:258
 msgid "Account balance lower limit. Zero to disable"
-msgstr ""
+msgstr "Batas bawah saldo akun. Nol untuk menonaktifkan"
 
 #: accountdialog.cpp:263
 msgid "Credit"
-msgstr ""
+msgstr "Kredit"
 
 #: accountdialog.cpp:271
 msgid "Credit Limit:"
-msgstr ""
+msgstr "Batas Kredit:"
 
 #: accountdialog.cpp:273
 msgid "Credit limit for the Account. Zero to disable"
-msgstr ""
+msgstr "Batas kredit untuk Akun. Nol untuk menonaktifkan"
 
 #: accountdialog.cpp:276
 msgid "Interest Rate:"
-msgstr ""
+msgstr "Suku bunga:"
 
 #: accountdialog.cpp:280
 msgid "Payment Due Date:"
-msgstr ""
+msgstr "Tanggal Jatuh Tempo Pembayaran:"
 
 #: accountdialog.cpp:284
 msgid "Minimum Payment:"
-msgstr ""
+msgstr "Pembayaran minimal:"
 
 #: accountdialog.cpp:303
 msgid "Organize attachments of this account"
-msgstr ""
+msgstr "Atur lampiran akun ini"
 
 #: accountdialog.cpp:425
 msgid "Default Image"
-msgstr ""
+msgstr "Gambar standar"
 
 #: accountdialog.cpp:435
 #, c-format
 msgid "Image #%i"
-msgstr ""
+msgstr "Gambar #%i"
 
 #: accountdialog.cpp:507
 msgid "Account Name "
@@ -277,7 +277,7 @@ msgstr "Mata Uang"
 
 #: accountdialog.cpp:520
 msgid "Please insert a valid URL"
-msgstr ""
+msgstr "Harap masukkan URL yang valid"
 
 #: accountdialog.cpp:520
 msgid "Invalid URL"
