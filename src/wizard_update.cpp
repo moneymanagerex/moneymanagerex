@@ -1,6 +1,6 @@
 /*******************************************************
  Copyright (C) 2014 Gabriele-V
- Copyright (C) 2020 Nikolay Akimov
+ Copyright (C) 2020, 2021 Nikolay Akimov
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -94,7 +94,7 @@ mmUpdateWizard::mmUpdateWizard(wxWindow* parent, const Document& json_releases, 
 
 void mmUpdateWizard::CreateControls(const Document& json_releases, wxArrayInt new_releases)
 {
-    
+
     int i = 0;
     bool isHistory = false;
     wxString html, separator = " ";
@@ -313,12 +313,13 @@ void mmUpdate::checkUpdates(wxFrame *frame, bool bSilent)
 
     wxLogDebug("======= mmUpdate::checkUpdates =======");
 
-    bool s = mmex::version::isStable();
-    const int _stable = s ?
-        Model_Setting::instance().GetIntSetting("UPDATESOURCE", 0) == 0
-        : 0;
+    bool is_stable = mmex::version::isStable();
+    bool update_stable = Model_Setting::instance().GetIntSetting("UPDATESOURCE", 0) == 0;
+    const int _stable = is_stable ? update_stable : 0;
     const wxString current_tag = ("v" + mmex::version::string).Lower();
-    const wxString last_checked = Model_Setting::instance().GetStringSetting("UPDATE_LAST_CHECKED_VERSION", current_tag);
+    wxString last_checked = Model_Setting::instance().GetStringSetting("UPDATE_LAST_CHECKED_VERSION", current_tag);
+    if (last_checked > current_tag)
+        last_checked = current_tag;
 
     bool is_update_available = false;
     Version current(current_tag);
@@ -331,15 +332,16 @@ void mmUpdate::checkUpdates(wxFrame *frame, bool bSilent)
     for (auto& r : json_releases.GetArray())
     {
         const auto tag_name = r["tag_name"].GetString();
-        if (_stable && r["prerelease"].IsTrue()) {
-            wxLogDebug("[S] tag %s", tag_name);
+        bool prerelease = r["prerelease"].GetBool();
+        if (_stable && prerelease) {
+            wxLogDebug("[Skip] tag %s", tag_name);
             continue;
         }
 
         Version check(tag_name);
 
         if (current < check) {
-            wxLogDebug("[V] tag %s", tag_name);
+            wxLogDebug("[New] tag %s", tag_name);
             new_releases.Add(i);
             if (top < check) {
                 top = check;
@@ -349,7 +351,7 @@ void mmUpdate::checkUpdates(wxFrame *frame, bool bSilent)
                 }
             }
         } else {
-            wxLogDebug("[X] tag %s", tag_name);
+            wxLogDebug("[Outdated] tag %s", tag_name);
         }
         i++;
     }
