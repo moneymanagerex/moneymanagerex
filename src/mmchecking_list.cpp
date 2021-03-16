@@ -295,7 +295,7 @@ void TransactionListCtrl::OnMouseRightClick(wxMouseEvent& event)
     wxLogDebug("OnMouseRightClick: %i selected", GetSelectedItemCount());
     int selected = GetSelectedItemCount();
 
-    bool hide_menu_item = (selected < 1);
+    bool is_nothing_selected = (selected < 1);
     bool multiselect = (selected > 1);
     bool type_transfer = false;
     bool have_category = false;
@@ -324,12 +324,12 @@ void TransactionListCtrl::OnMouseRightClick(wxMouseEvent& event)
     menu.AppendSeparator();
 
     menu.Append(MENU_TREEPOPUP_EDIT2, wxPLURAL("&Edit Transaction", "&Edit Transactions", selected));
-    if (hide_menu_item) menu.Enable(MENU_TREEPOPUP_EDIT2, false);
+    if (is_nothing_selected) menu.Enable(MENU_TREEPOPUP_EDIT2, false);
 
     if (!m_cp->m_allAccounts)     // Copy/Paste not suitable if all accounts visible
     {
         menu.Append(MENU_ON_COPY_TRANSACTION, wxPLURAL("&Copy Transaction", "&Copy Transactions", selected));
-        if (hide_menu_item) menu.Enable(MENU_ON_COPY_TRANSACTION, false);
+        if (is_nothing_selected) menu.Enable(MENU_ON_COPY_TRANSACTION, false);
   
         int toPaste = m_selectedForCopy.size();
         menu.Append(MENU_ON_PASTE_TRANSACTION, 
@@ -339,30 +339,30 @@ void TransactionListCtrl::OnMouseRightClick(wxMouseEvent& event)
     }
 
     menu.Append(MENU_ON_DUPLICATE_TRANSACTION, _("D&uplicate Transaction"));
-    if (hide_menu_item || multiselect) menu.Enable(MENU_ON_DUPLICATE_TRANSACTION, false);
+    if (is_nothing_selected || multiselect) menu.Enable(MENU_ON_DUPLICATE_TRANSACTION, false);
 
     menu.Append(MENU_TREEPOPUP_MOVE2, _("&Move Transaction"));
-    if (hide_menu_item || multiselect || type_transfer || (Model_Account::money_accounts_num() < 2) || is_foreign)
+    if (is_nothing_selected || multiselect || type_transfer || (Model_Account::money_accounts_num() < 2) || is_foreign)
         menu.Enable(MENU_TREEPOPUP_MOVE2, false);
 
     menu.AppendSeparator();
 
     menu.Append(MENU_TREEPOPUP_VIEW_SPLIT_CATEGORIES, _("&View Split Categories"));
-    if (hide_menu_item || multiselect || have_category)
+    if (is_nothing_selected || multiselect || have_category)
         menu.Enable(MENU_TREEPOPUP_VIEW_SPLIT_CATEGORIES, false);
 
     menu.Append(MENU_TREEPOPUP_ORGANIZE_ATTACHMENTS, _("&Organize Attachments"));
-    if (hide_menu_item || multiselect)
+    if (is_nothing_selected || multiselect)
         menu.Enable(MENU_TREEPOPUP_ORGANIZE_ATTACHMENTS, false);
 
     menu.Append(MENU_TREEPOPUP_CREATE_REOCCURANCE, _("Create Recurring T&ransaction"));
-    if (hide_menu_item || multiselect) menu.Enable(MENU_TREEPOPUP_CREATE_REOCCURANCE, false);
+    if (is_nothing_selected || multiselect) menu.Enable(MENU_TREEPOPUP_CREATE_REOCCURANCE, false);
 
     menu.AppendSeparator();
 
     wxMenu* subGlobalOpMenuDelete = new wxMenu();
     subGlobalOpMenuDelete->Append(MENU_TREEPOPUP_DELETE2, wxPLURAL("&Delete selected transaction", "&Delete selected transactions", selected));
-    if (hide_menu_item) subGlobalOpMenuDelete->Enable(MENU_TREEPOPUP_DELETE2, false);
+    if (is_nothing_selected) subGlobalOpMenuDelete->Enable(MENU_TREEPOPUP_DELETE2, false);
     subGlobalOpMenuDelete->AppendSeparator();
     subGlobalOpMenuDelete->Append(MENU_TREEPOPUP_DELETE_VIEWED, _("Delete all transactions in current view"));
     subGlobalOpMenuDelete->Append(MENU_TREEPOPUP_DELETE_FLAGGED, _("Delete Viewed \"Follow Up\" Transactions"));
@@ -371,26 +371,26 @@ void TransactionListCtrl::OnMouseRightClick(wxMouseEvent& event)
 
     menu.AppendSeparator();
 
-    wxMenu* subGlobalOpMenuMark = new wxMenu();
-    subGlobalOpMenuMark->Append(MENU_TREEPOPUP_MARKRECONCILED, _("as Reconciled"));
-    if (hide_menu_item) subGlobalOpMenuMark->Enable(MENU_TREEPOPUP_MARKRECONCILED, false);
-    subGlobalOpMenuMark->Append(MENU_TREEPOPUP_MARKUNRECONCILED, _("as Unreconciled"));
-    if (hide_menu_item) subGlobalOpMenuMark->Enable(MENU_TREEPOPUP_MARKUNRECONCILED, false);
-    subGlobalOpMenuMark->Append(MENU_TREEPOPUP_MARKVOID, _("as Void"));
-    if (hide_menu_item) subGlobalOpMenuMark->Enable(MENU_TREEPOPUP_MARKVOID, false);
-    subGlobalOpMenuMark->Append(MENU_TREEPOPUP_MARK_ADD_FLAG_FOLLOWUP, _("as Followup"));
-    if (hide_menu_item) subGlobalOpMenuMark->Enable(MENU_TREEPOPUP_MARK_ADD_FLAG_FOLLOWUP, false);
-    subGlobalOpMenuMark->Append(MENU_TREEPOPUP_MARKDUPLICATE, _("as Duplicate"));
-    if (hide_menu_item) subGlobalOpMenuMark->Enable(MENU_TREEPOPUP_MARKDUPLICATE, false);
-    menu.Append(wxID_ANY, _("Mark all being selected"), subGlobalOpMenuMark);
-
-    wxMenu* subGlobalOpMenu = new wxMenu();
-    subGlobalOpMenu->Append(MENU_TREEPOPUP_MARKRECONCILED_ALL, _("as Reconciled"));
-    subGlobalOpMenu->Append(MENU_TREEPOPUP_MARKUNRECONCILED_ALL, _("as Unreconciled"));
-    subGlobalOpMenu->Append(MENU_TREEPOPUP_MARKVOID_ALL, _("as Void"));
-    subGlobalOpMenu->Append(MENU_TREEPOPUP_MARK_ADD_FLAG_FOLLOWUP_ALL, _("as needing Followup"));
-    subGlobalOpMenu->Append(MENU_TREEPOPUP_MARKDUPLICATE_ALL, _("as Duplicate"));
-    menu.Append(MENU_SUBMENU_MARK_ALL, _("Mark all being viewed"), subGlobalOpMenu);
+    if (!is_nothing_selected)
+    {
+        wxMenu* subGlobalOpMenuMark = new wxMenu();
+        subGlobalOpMenuMark->Append(MENU_TREEPOPUP_MARKRECONCILED, _("as Reconciled"));
+        subGlobalOpMenuMark->Append(MENU_TREEPOPUP_MARKUNRECONCILED, _("as Unreconciled"));
+        subGlobalOpMenuMark->Append(MENU_TREEPOPUP_MARKVOID, _("as Void"));
+        subGlobalOpMenuMark->Append(MENU_TREEPOPUP_MARK_ADD_FLAG_FOLLOWUP, _("as Followup"));
+        subGlobalOpMenuMark->Append(MENU_TREEPOPUP_MARKDUPLICATE, _("as Duplicate"));
+        menu.Append(wxID_ABORT, _("Mark all being selected"), subGlobalOpMenuMark);
+    }
+    else
+    {
+        wxMenu* subGlobalOpMenu = new wxMenu();
+        subGlobalOpMenu->Append(MENU_TREEPOPUP_MARKRECONCILED_ALL, _("as Reconciled"));
+        subGlobalOpMenu->Append(MENU_TREEPOPUP_MARKUNRECONCILED_ALL, _("as Unreconciled"));
+        subGlobalOpMenu->Append(MENU_TREEPOPUP_MARKVOID_ALL, _("as Void"));
+        subGlobalOpMenu->Append(MENU_TREEPOPUP_MARK_ADD_FLAG_FOLLOWUP_ALL, _("as Followup"));
+        subGlobalOpMenu->Append(MENU_TREEPOPUP_MARKDUPLICATE_ALL, _("as Duplicate"));
+        menu.Append(MENU_SUBMENU_MARK_ALL, _("Mark all being viewed"), subGlobalOpMenu);
+    }
 
     // Disable menu items not ment for foreign transactions
     if (is_foreign)
