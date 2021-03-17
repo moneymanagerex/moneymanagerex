@@ -313,7 +313,11 @@ bool buildBitmapsFromSVG(wxString iconsFile, wxString myTheme)
         
         lunasvg::SVGDocument document;
         std::string svgDoc(static_cast<char *>(buffer->GetBufferStart()), buffer->GetBufferSize());
-        document.loadFromData(svgDoc);
+        if (!document.loadFromData(svgDoc))
+        {   // Should only occur in badly constructed user themes
+            wxMessageBox(wxString::Format(_("Image '%s' in Theme '%s' looks badly constructed, please correct. Default image will be used"), fileName, thisTheme), _("Warning"), wxOK | wxICON_WARNING);
+            continue;
+        }
 
         int svgEnum = iconName2enum.find(fileName)->second.first;
         std::uint32_t bgColor = iconName2enum.find(fileName)->second.second;
@@ -321,6 +325,11 @@ bool buildBitmapsFromSVG(wxString iconsFile, wxString myTheme)
 
         // Generate bitmaps at the resolutions used by the program - 16, 24, 32, 48
         bitmap = document.renderToBitmap(16, 16, 96.0, bgColor);
+        if (!bitmap.valid())
+        {   // Should only occur in badly constructed user themes
+            wxMessageBox(wxString::Format(_("Image '%s' in Theme '%s' cannot be converted to bitmap, please correct. Default image will be used"), fileName, thisTheme), _("Warning"), wxOK | wxICON_WARNING);
+            continue;
+        }
         programIcons16[svgEnum] = CreateBitmapFromRGBA(bitmap.data(), 16);
         bitmap = document.renderToBitmap(24, 24, 96.0, bgColor);
         programIcons24[svgEnum] = CreateBitmapFromRGBA(bitmap.data(), 24);
