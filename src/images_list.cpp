@@ -277,11 +277,12 @@ bool buildBitmapsFromSVG(wxString iconsFile, wxString myTheme)
         std::string fileName = std::string(fileEntry.mb_str());
 
         const int dirLevel = static_cast<int>(fileEntryName.GetDirCount());
-
+        
         //wxLogDebug("fileEntry: level=%d, fullpath=%s, filename=%s", dirLevel, pathEntry, fileEntry);
+        thisTheme = fileEntryName.GetDirs()[0];
         if (1 == dirLevel && fileEntryName.IsDir())
         {   
-            thisTheme = fileEntryName.GetDirs()[0];
+
             wxLogDebug("Found Theme: %s", thisTheme);
             if (wxNOT_FOUND == themes->Index(thisTheme)) // Add user theme if not in the existing list
                 themes->Add(thisTheme); 
@@ -304,7 +305,7 @@ bool buildBitmapsFromSVG(wxString iconsFile, wxString myTheme)
             wxMemoryFSHandler::AddFile(fileName, buffer->GetBufferStart()
                 , buffer->GetBufferSize());
             filesInVFS->Add(fileName);
-            wxLogDebug("File: %s has been copied to VFS", fileName);
+            wxLogDebug("Theme: '%s' File: '%s' has been copied to VFS", thisTheme, fileName);
             continue;
         }
 
@@ -318,7 +319,7 @@ bool buildBitmapsFromSVG(wxString iconsFile, wxString myTheme)
             wxMessageBox(wxString::Format(_("Image '%s' in Theme '%s' looks badly constructed, please correct. Default image will be used"), fileName, thisTheme), _("Warning"), wxOK | wxICON_WARNING);
             continue;
         }
-
+ 
         int svgEnum = iconName2enum.find(fileName)->second.first;
         std::uint32_t bgColor = iconName2enum.find(fileName)->second.second;
         lunasvg::Bitmap bitmap;
