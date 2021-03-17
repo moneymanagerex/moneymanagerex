@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2021-03-16 21:00+0300\n"
-"PO-Revision-Date: 2021-03-16 18:08\n"
+"POT-Creation-Date: 2021-03-17 11:20+0300\n"
+"PO-Revision-Date: 2021-03-17 09:22\n"
 "Last-Translator: \n"
 "Language-Team: Greek\n"
 "MIME-Version: 1.0\n"
@@ -2521,15 +2521,25 @@ msgstr "Επιλέξτε αρχείο για αποθήκευση ως αναφ�
 msgid "Parameters:"
 msgstr "Παράμετροι:"
 
-#: images_list.cpp:353
+#: images_list.cpp:318
+#, c-format
+msgid "Image '%s' in Theme '%s' looks badly constructed, please correct. Default image will be used"
+msgstr "Η εικόνα %s στο Θέμα %s δείχνει ότι είναι κακώς κατασκευασμένη, παρακαλώ διορθώστε την. Η προεπιλεγμένη εικόνα θα χρησιμοποιηθεί"
+
+#: images_list.cpp:318 images_list.cpp:330 images_list.cpp:362
+#: import_export/qif_import_gui.cpp:667 import_export/qif_import_gui.cpp:670
+msgid "Warning"
+msgstr "Προειδοποίηση"
+
+#: images_list.cpp:330
+#, c-format
+msgid "Image '%s' in Theme '%s' cannot be converted to bitmap, please correct. Default image will be used"
+msgstr "Η Εικόνα '%s' στο Θέμα '%s' δεν μπορεί να μετατραπεί σε bitmap, παρακαλώ διορθώστε την. Θα χρησιμοποιηθεί η προεπιλεγμένη εικόνα"
+
+#: images_list.cpp:362
 #, c-format
 msgid "Theme %s not found within the application, it may no longer be supported. Reverting to default theme"
 msgstr "Το θέμα %s δεν βρέθηκε μέσα στην εφαρμογή, μπορεί να μην υποστηρίζεται πλέον. Επαναφορά στο προεπιλεγμένο θέμα"
-
-#: images_list.cpp:353 import_export/qif_import_gui.cpp:667
-#: import_export/qif_import_gui.cpp:670
-msgid "Warning"
-msgstr "Προειδοποίηση"
 
 #: import_export/parsers.cpp:46 import_export/univcsvdialog.cpp:1575
 #: mmSimpleDialogs.cpp:253
