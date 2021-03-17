@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-03-17 11:20+0300\n"
-"PO-Revision-Date: 2021-03-17 08:42\n"
+"PO-Revision-Date: 2021-03-17 09:22\n"
 "Last-Translator: \n"
 "Language-Team: Italian\n"
 "MIME-Version: 1.0\n"
@@ -2525,7 +2525,7 @@ msgstr "Parametri:"
 #: images_list.cpp:318
 #, c-format
 msgid "Image '%s' in Theme '%s' looks badly constructed, please correct. Default image will be used"
-msgstr ""
+msgstr "L'immagine '%s' nel tema '%s' sembra realizzata male, per favore correggila. Verrà utilizzata l'immagine predefinita"
 
 #: images_list.cpp:318 images_list.cpp:330 images_list.cpp:362
 #: import_export/qif_import_gui.cpp:667 import_export/qif_import_gui.cpp:670
@@ -2535,7 +2535,7 @@ msgstr "Attenzione"
 #: images_list.cpp:330
 #, c-format
 msgid "Image '%s' in Theme '%s' cannot be converted to bitmap, please correct. Default image will be used"
-msgstr ""
+msgstr "L'immagine '%s' nel tema '%s' non può essere convertita in bitmap, per favore correggila. Verrà utilizzata l'immagine predefinita"
 
 #: images_list.cpp:362
 #, c-format
