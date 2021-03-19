@@ -41,7 +41,7 @@ inline const wxString getSettingsFileName()
 
 inline const wxString getUserTheme()
 {
-    return "usertheme.zip";
+    return "themes";
 }
 
 //----------------------------------------------------------------------------
@@ -177,8 +177,8 @@ wxString mmex::getPathResource(EResFile f)
 {
     static const wxString files[RES_FILES_MAX] = {
       "kaching.wav",
-      "home_page.htt",
-      "themes.zip"
+      "home_page.htt"
+      ""
     };
 
     wxASSERT(f >= 0 && f < RES_FILES_MAX);
@@ -215,7 +215,10 @@ const wxString mmex::getPathUser(EUserFile f)
     wxASSERT(f >= 0 && f < USER_FILES_MAX);
 
     wxFileName fname = GetUserDir(true);
-    fname.SetFullName(files[f]);
+    if (mmex::USERTHEMEDIR == f)
+        fname.AppendDir(files[f]);
+    else
+        fname.SetFullName(files[f]);
 
     return fname.GetFullPath();
 }
