@@ -183,7 +183,7 @@ wxEND_EVENT_TABLE()
 mmGUIFrame::mmGUIFrame(mmGUIApp* app, const wxString& title
     , const wxPoint& pos
     , const wxSize& size)
-    : wxFrame(0, -1, title, pos, size)
+    : wxFrame(nullptr, wxID_ANY, title, pos, size)
     , m_app(app)
     , m_commit_callback_hook(nullptr)
     , m_update_callback_hook(nullptr)
