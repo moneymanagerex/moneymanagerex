@@ -430,10 +430,15 @@ function(create_zip output_file input_files working_dir)
     )
 endfunction()
 
-file(GLOB ZIP_FILES "${PROJECT_SOURCE_DIR}/resources/themes/*")
-create_zip("${CMAKE_CURRENT_BINARY_DIR}/themes.zip" "${ZIP_FILES}" "${PROJECT_SOURCE_DIR}/resources/themes/")
-add_custom_target(generate_icons ALL DEPENDS "${CMAKE_CURRENT_BINARY_DIR}/themes.zip")
-
+file(GLOB THEME_DEFAULT_FILES "${PROJECT_SOURCE_DIR}/resources/themes/default/*")
+create_zip("${CMAKE_CURRENT_BINARY_DIR}/default.mmextheme" "${THEME_DEFAULT_FILES}" "${PROJECT_SOURCE_DIR}/resources/themes/default/")
+file(GLOB THEME_COLORFUL_FILES "${PROJECT_SOURCE_DIR}/resources/themes/colorful/*")
+create_zip("${CMAKE_CURRENT_BINARY_DIR}/colorful.mmextheme" "${THEME_COLORFUL_FILES}" "${PROJECT_SOURCE_DIR}/resources/themes/colorful/")
+file(GLOB THEME_SIMPLEBLACK_FILES "${PROJECT_SOURCE_DIR}/resources/themes/simple-black/*")
+create_zip("${CMAKE_CURRENT_BINARY_DIR}/simple-black.mmextheme" "${THEME_SIMPLEBLACK_FILES}" "${PROJECT_SOURCE_DIR}/resources/themes/simple-black/")
+add_custom_target(generate_theme_default ALL DEPENDS "${CMAKE_CURRENT_BINARY_DIR}/default.mmextheme"
+                                                     "${CMAKE_CURRENT_BINARY_DIR}/colorful.mmextheme"
+                                                     "${CMAKE_CURRENT_BINARY_DIR}/simple-black.mmextheme")
 ## Tuning for VisualStudio IDE ##
 if(NOT CMAKE_VERSION VERSION_LESS 3.6)
     set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT ${MMEX_EXE})
@@ -569,7 +574,9 @@ install(FILES
     resources/home_page.htt
     resources/kaching.wav
     resources/mmex.png
-    "${CMAKE_CURRENT_BINARY_DIR}/themes.zip"
+    "${CMAKE_CURRENT_BINARY_DIR}/default.mmextheme"
+    "${CMAKE_CURRENT_BINARY_DIR}/colorful.mmextheme"
+    "${CMAKE_CURRENT_BINARY_DIR}/simple-black.mmextheme"
     DESTINATION "${MMEX_RES_DIR}")
 
 if(LINUX)

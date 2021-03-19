@@ -26,6 +26,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include <map>
 #include <wx/sharedptr.h>
 #include "paths.h"
+#include <wx/dir.h>
 #include <wx/zipstrm.h>
 #include <wx/rawbmp.h>
 #include <wx/fs_mem.h>
@@ -256,88 +257,93 @@ wxBitmap* CreateBitmapFromRGBA(unsigned char *rgba, int size)
    return bitmap;
 } 
 
-bool buildBitmapsFromSVG(wxString iconsFile, wxString myTheme)
+bool buildBitmapsFromSVG(wxString themeDir, wxString myTheme)
 {
-    wxLogDebug ("Scanning [%s] for Theme [%s]", iconsFile, myTheme);
-    wxFileInputStream iconZip(iconsFile);
-    wxASSERT(iconZip.IsOk());   // Make sure we can open find the Zip
+    wxDir directory(themeDir);
+    wxLogDebug ("Scanning [%s] for Theme [%s]", themeDir, myTheme);
+    if ( !directory.IsOpened() ) return false;  
 
-    wxZipInputStream iconStream(iconZip);
-    std::unique_ptr<wxZipEntry> zipEntry;
-
-    wxString thisTheme;
     bool themeMatched = false;
-    while (zipEntry.reset(iconStream.GetNextEntry()), zipEntry) // != nullptr
+    wxString filename;
+
+    bool cont = directory.GetFirst(&filename, "*.mmextheme", wxDIR_FILES);
+    while (cont)
     {
-        wxASSERT(iconZip.CanRead()); // Make sure we can read the Zip Entry
+        wxFileName themeFile(themeDir, filename);
+        const wxString thisTheme = themeFile.GetName();;
+        wxLogDebug ("Found theme [%s]", thisTheme);
 
-        const wxFileName fileEntryName = wxFileName(zipEntry->GetName());
-        const wxString fileEntry = fileEntryName.GetFullName();
-        const wxString pathEntry = fileEntryName.GetFullPath();
-        std::string fileName = std::string(fileEntry.mb_str());
+        wxFileInputStream themeZip(themeFile.GetFullPath());
+        wxASSERT(themeZip.IsOk());   // Make sure we can open find the Zip
 
-        const int dirLevel = static_cast<int>(fileEntryName.GetDirCount());
-        
-        //wxLogDebug("fileEntry: level=%d, fullpath=%s, filename=%s", dirLevel, pathEntry, fileEntry);
-        thisTheme = fileEntryName.GetDirs()[0];
-        if (1 == dirLevel && fileEntryName.IsDir())
-        {   
+        if (!thisTheme.Cmp(myTheme))
+            themeMatched = true;
 
-            wxLogDebug("Found Theme: %s", thisTheme);
-            if (wxNOT_FOUND == themes->Index(thisTheme)) // Add user theme if not in the existing list
-                themes->Add(thisTheme); 
-            if (!thisTheme.Cmp(myTheme))
-                themeMatched = true;
-        }
+        wxZipInputStream themeStream(themeZip);
+        std::unique_ptr<wxZipEntry> themeEntry;
 
-        if (thisTheme.Cmp(myTheme) || fileEntryName.IsDir())
-            continue;   // We can skip if it's not our theme
-
-        wxMemoryOutputStream memOut(nullptr);
-        iconStream.Read(memOut);
-        const wxStreamBuffer* buffer = memOut.GetOutputStreamBuffer();
-     
-        // If the file does not match an icon file then just load it into VFS
-        if (!iconName2enum.count(fileName))
+        while (themeEntry.reset(themeStream.GetNextEntry()), themeEntry) // != nullptr
         {
-            if (wxNOT_FOUND != filesInVFS->Index(fileName)) // If already loaded then remove and replace
-                wxMemoryFSHandler::RemoveFile(fileName);
-            wxMemoryFSHandler::AddFile(fileName, buffer->GetBufferStart()
-                , buffer->GetBufferSize());
-            filesInVFS->Add(fileName);
-            wxLogDebug("Theme: '%s' File: '%s' has been copied to VFS", thisTheme, fileName);
-            continue;
-        }
+            wxASSERT(themeZip.CanRead()); // Make sure we can read the Zip Entry
 
-        // So we have an icon file now, so need to convert from SVG to PNG at various resolutions and store
-        // it away for use
+            const wxFileName fileEntryName = wxFileName(themeEntry->GetName());
+            const wxString fileEntry = fileEntryName.GetFullName();
+            std::string fileName = std::string(fileEntry.mb_str());
+
+            if (wxNOT_FOUND == themes->Index(thisTheme)) // Add user theme if not in the existing list
+                    themes->Add(thisTheme); 
+
+            if (thisTheme.Cmp(myTheme) || fileEntryName.IsDir())
+                continue;   // We can skip if it's not our theme
+
+            //wxLogDebug("fileEntry: s", fileEntry);
+            wxMemoryOutputStream memOut(nullptr);
+            themeStream.Read(memOut);
+            const wxStreamBuffer* buffer = memOut.GetOutputStreamBuffer();
         
-        lunasvg::SVGDocument document;
-        std::string svgDoc(static_cast<char *>(buffer->GetBufferStart()), buffer->GetBufferSize());
-        if (!document.loadFromData(svgDoc))
-        {   // Should only occur in badly constructed user themes
-            wxMessageBox(wxString::Format(_("Image '%s' in Theme '%s' looks badly constructed, please correct. Default image will be used"), fileName, thisTheme), _("Warning"), wxOK | wxICON_WARNING);
-            continue;
-        }
- 
-        int svgEnum = iconName2enum.find(fileName)->second.first;
-        std::uint32_t bgColor = iconName2enum.find(fileName)->second.second;
-        lunasvg::Bitmap bitmap;
+            // If the file does not match an icon file then just load it into VFS
+            if (!iconName2enum.count(fileName))
+            {
+                if (wxNOT_FOUND != filesInVFS->Index(fileName)) // If already loaded then remove and replace
+                    wxMemoryFSHandler::RemoveFile(fileName);
+                wxMemoryFSHandler::AddFile(fileName, buffer->GetBufferStart()
+                    , buffer->GetBufferSize());
+                filesInVFS->Add(fileName);
+                wxLogDebug("Theme: '%s' File: '%s' has been copied to VFS", thisTheme, fileName);
+                continue;
+            }
 
-        // Generate bitmaps at the resolutions used by the program - 16, 24, 32, 48
-        bitmap = document.renderToBitmap(16, 16, 96.0, bgColor);
-        if (!bitmap.valid())
-        {   // Should only occur in badly constructed user themes
-            wxMessageBox(wxString::Format(_("Image '%s' in Theme '%s' cannot be converted to bitmap, please correct. Default image will be used"), fileName, thisTheme), _("Warning"), wxOK | wxICON_WARNING);
-            continue;
+            // So we have an icon file now, now need to convert from SVG to PNG at various resolutions and store
+            // it away for use
+            
+            lunasvg::SVGDocument document;
+            std::string svgDoc(static_cast<char *>(buffer->GetBufferStart()), buffer->GetBufferSize());
+            if (!document.loadFromData(svgDoc))
+            {   // Should only occur in badly constructed user themes
+                wxMessageBox(wxString::Format(_("Image '%s' in Theme '%s' looks badly constructed, please correct. Default image will be used"), fileName, thisTheme), _("Warning"), wxOK | wxICON_WARNING);
+                continue;
+            }
+    
+            int svgEnum = iconName2enum.find(fileName)->second.first;
+            std::uint32_t bgColor = iconName2enum.find(fileName)->second.second;
+            lunasvg::Bitmap bitmap;
+
+            // Generate bitmaps at the resolutions used by the program - 16, 24, 32, 48
+            bitmap = document.renderToBitmap(16, 16, 96.0, bgColor);
+            if (!bitmap.valid())
+            {   // Should only occur in badly constructed user themes
+                wxMessageBox(wxString::Format(_("Image '%s' in Theme '%s' cannot be converted to bitmap, please correct. Default image will be used"), fileName, thisTheme), _("Warning"), wxOK | wxICON_WARNING);
+                continue;
+            }
+            programIcons16[svgEnum] = CreateBitmapFromRGBA(bitmap.data(), 16);
+            bitmap = document.renderToBitmap(24, 24, 96.0, bgColor);
+            programIcons24[svgEnum] = CreateBitmapFromRGBA(bitmap.data(), 24);
+            bitmap = document.renderToBitmap(32, 32, 96.0, bgColor);
+            programIcons32[svgEnum] = CreateBitmapFromRGBA(bitmap.data(), 32);
+            bitmap = document.renderToBitmap(48, 48, 96.0, bgColor);
+            programIcons48[svgEnum] = CreateBitmapFromRGBA(bitmap.data(), 48);
         }
-        programIcons16[svgEnum] = CreateBitmapFromRGBA(bitmap.data(), 16);
-        bitmap = document.renderToBitmap(24, 24, 96.0, bgColor);
-        programIcons24[svgEnum] = CreateBitmapFromRGBA(bitmap.data(), 24);
-        bitmap = document.renderToBitmap(32, 32, 96.0, bgColor);
-        programIcons32[svgEnum] = CreateBitmapFromRGBA(bitmap.data(), 32);
-        bitmap = document.renderToBitmap(48, 48, 96.0, bgColor);
-        programIcons48[svgEnum] = CreateBitmapFromRGBA(bitmap.data(), 48);
+        cont = directory.GetNext(&filename);
     }
     return (themeMatched);
 }
@@ -350,13 +356,11 @@ const wxBitmap mmBitmap(int ref)
         themes = new wxArrayString();
         bool myThemeFound;
         filesInVFS = new wxArrayString();
-        if (!(myThemeFound = buildBitmapsFromSVG(mmex::getPathResource(mmex::THEMES_ZIP), Model_Setting::instance().Theme())))   
+        if (!(myThemeFound = buildBitmapsFromSVG(mmex::getPathResource(mmex::THEMESDIR), Model_Setting::instance().Theme())))   
         {   // current theme does not match a system theme so load the default
-            buildBitmapsFromSVG(mmex::getPathResource(mmex::THEMES_ZIP), "default");
+            buildBitmapsFromSVG(mmex::getPathResource(mmex::THEMESDIR), "default");
         }
-        // Check if user override exists for the theme, and if does process it
-        if (wxFileExists(mmex::getPathUser(mmex::USERTHEME)))
-            myThemeFound = buildBitmapsFromSVG(mmex::getPathUser(mmex::USERTHEME), Model_Setting::instance().Theme()) || myThemeFound;  
+        myThemeFound = buildBitmapsFromSVG(mmex::getPathUser(mmex::USERTHEMEDIR), Model_Setting::instance().Theme()) || myThemeFound;  
 
         if (!myThemeFound)  // if we never found the current theme then alert user and reset to default
         {
