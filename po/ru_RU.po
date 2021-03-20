@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2021-03-17 11:20+0300\n"
-"PO-Revision-Date: 2021-03-17 08:50\n"
+"POT-Creation-Date: 2021-03-20 20:51+0300\n"
+"PO-Revision-Date: 2021-03-20 18:04\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -2529,25 +2529,45 @@ msgstr "Выберите файл чтобы сохранить как отчё�
 msgid "Parameters:"
 msgstr "Параметры:"
 
-#: images_list.cpp:318
+#: images_list.cpp:321
 #, c-format
 msgid "Image '%s' in Theme '%s' looks badly constructed, please correct. Default image will be used"
 msgstr "Изображение '%s' ' в теме '%s' сломано, пожалуйста исправьте. Будет использовано изображение по умолчанию"
 
-#: images_list.cpp:318 images_list.cpp:330 images_list.cpp:362
+#: images_list.cpp:322 images_list.cpp:338 images_list.cpp:360
+#: images_list.cpp:394 images_list.cpp:413 images_list.cpp:420
 #: import_export/qif_import_gui.cpp:667 import_export/qif_import_gui.cpp:670
 msgid "Warning"
 msgstr "Внимание"
 
-#: images_list.cpp:330
+#: images_list.cpp:337
 #, c-format
 msgid "Image '%s' in Theme '%s' cannot be converted to bitmap, please correct. Default image will be used"
 msgstr "Изображение '%s' ' в теме '%s' не может быть преобразовано, пожалуйста исправьте. Будет использовано изображение по умолчанию"
 
-#: images_list.cpp:362
+#: images_list.cpp:359
 #, c-format
-msgid "Theme %s not found within the application, it may no longer be supported. Reverting to default theme"
-msgstr "Тема %s не найдена в приложении, она может быть не поддерживается. Назначена тема по умолчанию"
+msgid "File '%s' missing from chosen theme '%s'"
+msgstr ""
+
+#: images_list.cpp:391
+msgid "and more..."
+msgstr ""
+
+#: images_list.cpp:393
+#, c-format
+msgid "There are %d missing or invalid icons in chosen theme '%s': %s"
+msgstr ""
+
+#: images_list.cpp:412
+#, c-format
+msgid "Theme %s not found, it may no longer be supported. Reverting to default theme"
+msgstr ""
+
+#: images_list.cpp:420
+#, c-format
+msgid "Theme %s has missing items and is incompatible. Reverting to default theme"
+msgstr ""
 
 #: import_export/parsers.cpp:46 import_export/univcsvdialog.cpp:1575
 #: mmSimpleDialogs.cpp:253
