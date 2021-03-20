@@ -347,6 +347,44 @@ bool buildBitmapsFromSVG(wxString themeDir, wxString myTheme)
     return (themeMatched);
 }
 
+// Check that the loaded theme contains all the minimal files needed
+bool checkThemeContents(wxArrayString *filesinTheme)
+{
+    bool success = true;
+    const wxString neededFiles[] = { "master.css", "" };
+    
+    for (int i=0; !neededFiles[i].IsEmpty(); i++)
+        if (wxNOT_FOUND == filesinTheme->Index(neededFiles[i]))
+        {
+            wxMessageBox(wxString::Format(_("File '%s' missing from chosen theme '%s'"), neededFiles[i], Model_Setting::instance().Theme()), _("Warning"), wxOK | wxICON_WARNING);
+            success = false;
+        }
+    
+    wxString missingIcons;
+    const int maxCutOff = 10;
+    int erroredIcons = 0;
+    for (int i=0; i<MAX_PNG; i++)
+       if (!programIcons[0][i])
+       {
+           for (auto it = iconName2enum.begin(); it != iconName2enum.end(); it++)
+            if (it->second.first == i)
+            {
+                if (erroredIcons <= maxCutOff)
+                    missingIcons << " " <<it->first;
+                erroredIcons++;
+                success = false;
+                continue;
+            }
+       }
+    if (!missingIcons.IsEmpty())
+    {
+        if (erroredIcons > maxCutOff)
+            missingIcons << " (and more...)";   
+        wxMessageBox(wxString::Format(_("There are %d missing or invalid icons in chosen theme '%s' :%s"), erroredIcons, Model_Setting::instance().Theme(), missingIcons), _("Warning"), wxOK | wxICON_WARNING);
+    }
+    return success;
+}
+   
 const wxBitmap mmBitmap(int ref)
 {
     // Load icons on first use
@@ -355,18 +393,24 @@ const wxBitmap mmBitmap(int ref)
         themes = new wxArrayString();
         bool myThemeFound;
         filesInVFS = new wxArrayString();
-        if (!(myThemeFound = buildBitmapsFromSVG(mmex::getPathResource(mmex::THEMESDIR), Model_Setting::instance().Theme())))
-        {   // current theme does not match a system theme so load the default
-            buildBitmapsFromSVG(mmex::getPathResource(mmex::THEMESDIR), "default");
-        }
+        myThemeFound = buildBitmapsFromSVG(mmex::getPathResource(mmex::THEMESDIR), Model_Setting::instance().Theme());
         myThemeFound = buildBitmapsFromSVG(mmex::getPathUser(mmex::USERTHEMEDIR), Model_Setting::instance().Theme()) || myThemeFound;
 
-        if (!myThemeFound)  // if we never found the current theme then alert user and reset to default
+        if (!myThemeFound)
         {
-            wxMessageBox(wxString::Format(_("Theme %s not found within the application, it may no longer be supported. Reverting to default theme")
+            wxMessageBox(wxString::Format(_("Theme %s not found, it may no longer be supported. Reverting to default theme")
                 , Model_Setting::instance().Theme()), _("Warning"), wxOK | wxICON_WARNING);
             Model_Setting::instance().SetTheme("default");
+            buildBitmapsFromSVG(mmex::getPathResource(mmex::THEMESDIR), Model_Setting::instance().Theme());
         }
+        
+        if (!checkThemeContents(filesInVFS))
+        {
+            wxMessageBox(wxString::Format(_("Theme %s has missing items and is incompatible. Reverting to default theme"), Model_Setting::instance().Theme()), _("Warning"), wxOK | wxICON_WARNING);
+            Model_Setting::instance().SetTheme("default");
+            buildBitmapsFromSVG(mmex::getPathResource(mmex::THEMESDIR), Model_Setting::instance().Theme());
+        } 
+        
         delete filesInVFS; 
         iconsLoaded = true;
     }
