@@ -35,7 +35,7 @@ enum EDocFile { F_README = 0, F_CONTRIB, F_LICENSE, HTML_INDEX, HTML_WEBAPP, HTM
 wxString getPathDoc(EDocFile f, bool url = true);
 
 enum EResFile { TRANS_SOUND = 0, HOME_PAGE_TEMPLATE, THEMESDIR, RES_FILES_MAX };
-wxString getPathResource(EResFile f);
+const wxString getPathResource(EResFile f);
 
 // use instead of getPathResource(PROGRAM_ICON)
 const wxIcon& getProgramIcon();
