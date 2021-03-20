@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-03-20 20:51+0300\n"
-"PO-Revision-Date: 2021-03-20 18:05\n"
+"PO-Revision-Date: 2021-03-20 19:23\n"
 "Last-Translator: \n"
 "Language-Team: Greek\n"
 "MIME-Version: 1.0\n"
@@ -2540,26 +2540,26 @@ msgstr "Η Εικόνα '%s' στο Θέμα '%s' δεν μπορεί να με�
 #: images_list.cpp:359
 #, c-format
 msgid "File '%s' missing from chosen theme '%s'"
-msgstr ""
+msgstr "Το αρχείο '%s' λείπει από το επιλεγμένο θέμα '%s'"
 
 #: images_list.cpp:391
 msgid "and more..."
-msgstr ""
+msgstr "και πολλά άλλα..."
 
 #: images_list.cpp:393
 #, c-format
 msgid "There are %d missing or invalid icons in chosen theme '%s': %s"
-msgstr ""
+msgstr "Υπάρχουν %d εικονίδια που λείπουν ή είναι μη έγκυρα στο επιλεγμένο θέμα '%s': %s"
 
 #: images_list.cpp:412
 #, c-format
 msgid "Theme %s not found, it may no longer be supported. Reverting to default theme"
-msgstr ""
+msgstr "Το θέμα %s δεν βρέθηκε, μπορεί να μην υποστηρίζεται πλέον. Επαναφορά στο προεπιλεγμένο θέμα"
 
 #: images_list.cpp:420
 #, c-format
 msgid "Theme %s has missing items and is incompatible. Reverting to default theme"
-msgstr ""
+msgstr "Το θέμα %s έχει στοιχεία που λείπουν και δεν είναι συμβατό. Επαναφορά στο προεπιλεγμένο θέμα"
 
 #: import_export/parsers.cpp:46 import_export/univcsvdialog.cpp:1575
 #: mmSimpleDialogs.cpp:253
