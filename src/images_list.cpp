@@ -353,38 +353,49 @@ bool checkThemeContents(wxArrayString *filesinTheme)
     bool success = true;
     const wxString neededFiles[] = { "master.css", "" };
     
-    for (int i=0; !neededFiles[i].IsEmpty(); i++)
-        if (wxNOT_FOUND == filesinTheme->Index(neededFiles[i]))
-        {
-            wxMessageBox(wxString::Format(_("File '%s' missing from chosen theme '%s'"), neededFiles[i], Model_Setting::instance().Theme()), _("Warning"), wxOK | wxICON_WARNING);
+    for (int i = 0; !neededFiles[i].IsEmpty(); i++)
+    {
+        if (wxNOT_FOUND == filesinTheme->Index(neededFiles[i])) {
+            wxMessageBox(wxString::Format(_("File '%s' missing from chosen theme '%s'")
+                , neededFiles[i], Model_Setting::instance().Theme()), _("Warning"), wxOK | wxICON_WARNING);
             success = false;
         }
-    
+    }
+
     wxString missingIcons;
     const int maxCutOff = 10;
     int erroredIcons = 0;
-    for (int i=0; i<MAX_PNG; i++)
-       if (!programIcons[0][i])
-       {
-           for (auto it = iconName2enum.begin(); it != iconName2enum.end(); it++)
-            if (it->second.first == i)
+    for (int i = 0; i < MAX_PNG; i++)
+    {
+        if (!programIcons[0][i])
+        {
+            for (auto it = iconName2enum.begin(); it != iconName2enum.end(); it++)
             {
-                if (erroredIcons <= maxCutOff)
-                    missingIcons << " " <<it->first;
-                erroredIcons++;
-                success = false;
-                continue;
+                if (it->second.first == i)
+                {
+                    if (erroredIcons <= maxCutOff) {
+                        missingIcons << it->first << ", ";
+                    }
+                    erroredIcons++;
+                    success = false;
+                    continue;
+                }
             }
-       }
+        }
+    }
+
     if (!missingIcons.IsEmpty())
     {
-        if (erroredIcons > maxCutOff)
-            missingIcons << " (and more...)";   
-        wxMessageBox(wxString::Format(_("There are %d missing or invalid icons in chosen theme '%s' :%s"), erroredIcons, Model_Setting::instance().Theme(), missingIcons), _("Warning"), wxOK | wxICON_WARNING);
+        missingIcons.RemoveLast(2);
+        if (erroredIcons > maxCutOff) {
+            missingIcons << " " << _("and more...");
+        }
+        wxMessageBox(wxString::Format(_("There are %d missing or invalid icons in chosen theme '%s': %s")
+            , erroredIcons, Model_Setting::instance().Theme(), missingIcons), _("Warning"), wxOK | wxICON_WARNING);
     }
     return success;
 }
-   
+
 const wxBitmap mmBitmap(int ref)
 {
     // Load icons on first use
