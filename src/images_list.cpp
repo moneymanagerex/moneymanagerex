@@ -149,10 +149,8 @@ static const std::map<std::string, std::pair<int, std::uint32_t>> iconName2enum 
 
 static bool iconsLoaded = false;
 
-static wxSharedPtr<wxBitmap> programIcons16[MAX_PNG];
-static wxSharedPtr<wxBitmap> programIcons24[MAX_PNG];
-static wxSharedPtr<wxBitmap> programIcons32[MAX_PNG];
-static wxSharedPtr<wxBitmap> programIcons48[MAX_PNG];
+const std::vector<std::pair<int, int> > sizes = { {0, 16}, {1, 24}, {2, 32}, {3, 48} };
+static wxSharedPtr<wxBitmap> programIcons[4][MAX_PNG];
 
 static wxSharedPtr<wxArrayString> themes;
 static wxArrayString* filesInVFS;
@@ -320,7 +318,8 @@ bool buildBitmapsFromSVG(wxString themeDir, wxString myTheme)
             std::string svgDoc(static_cast<char *>(buffer->GetBufferStart()), buffer->GetBufferSize());
             if (!document.loadFromData(svgDoc))
             {   // Should only occur in badly constructed user themes
-                wxMessageBox(wxString::Format(_("Image '%s' in Theme '%s' looks badly constructed, please correct. Default image will be used"), fileName, thisTheme), _("Warning"), wxOK | wxICON_WARNING);
+                wxMessageBox(wxString::Format(_("Image '%s' in Theme '%s' looks badly constructed, please correct. Default image will be used")
+                    , fileName, thisTheme), _("Warning"), wxOK | wxICON_WARNING);
                 continue;
             }
     
@@ -329,19 +328,19 @@ bool buildBitmapsFromSVG(wxString themeDir, wxString myTheme)
             lunasvg::Bitmap bitmap;
 
             // Generate bitmaps at the resolutions used by the program - 16, 24, 32, 48
-            bitmap = document.renderToBitmap(16, 16, 96.0, bgColor);
-            if (!bitmap.valid())
-            {   // Should only occur in badly constructed user themes
-                wxMessageBox(wxString::Format(_("Image '%s' in Theme '%s' cannot be converted to bitmap, please correct. Default image will be used"), fileName, thisTheme), _("Warning"), wxOK | wxICON_WARNING);
-                continue;
+
+            for (const auto& i : sizes)
+            {
+                bitmap = document.renderToBitmap(i.second, i.second, 96.0, bgColor);
+                if (!bitmap.valid())
+                {   // Should only occur in badly constructed user themes
+                    wxMessageBox(wxString::Format(_("Image '%s' in Theme '%s' cannot be converted to bitmap, please correct. Default image will be used")
+                        , fileName, thisTheme), _("Warning"), wxOK | wxICON_WARNING);
+                    continue;
+                }
+                programIcons[i.first][svgEnum] = CreateBitmapFromRGBA(bitmap.data(), i.second);
             }
-            programIcons16[svgEnum] = CreateBitmapFromRGBA(bitmap.data(), 16);
-            bitmap = document.renderToBitmap(24, 24, 96.0, bgColor);
-            programIcons24[svgEnum] = CreateBitmapFromRGBA(bitmap.data(), 24);
-            bitmap = document.renderToBitmap(32, 32, 96.0, bgColor);
-            programIcons32[svgEnum] = CreateBitmapFromRGBA(bitmap.data(), 32);
-            bitmap = document.renderToBitmap(48, 48, 96.0, bgColor);
-            programIcons48[svgEnum] = CreateBitmapFromRGBA(bitmap.data(), 48);
+
         }
         cont = directory.GetNext(&filename);
     }
@@ -356,22 +355,26 @@ const wxBitmap mmBitmap(int ref)
         themes = new wxArrayString();
         bool myThemeFound;
         filesInVFS = new wxArrayString();
-        if (!(myThemeFound = buildBitmapsFromSVG(mmex::getPathResource(mmex::THEMESDIR), Model_Setting::instance().Theme())))   
+        if (!(myThemeFound = buildBitmapsFromSVG(mmex::getPathResource(mmex::THEMESDIR), Model_Setting::instance().Theme())))
         {   // current theme does not match a system theme so load the default
             buildBitmapsFromSVG(mmex::getPathResource(mmex::THEMESDIR), "default");
         }
-        myThemeFound = buildBitmapsFromSVG(mmex::getPathUser(mmex::USERTHEMEDIR), Model_Setting::instance().Theme()) || myThemeFound;  
+        myThemeFound = buildBitmapsFromSVG(mmex::getPathUser(mmex::USERTHEMEDIR), Model_Setting::instance().Theme()) || myThemeFound;
 
         if (!myThemeFound)  // if we never found the current theme then alert user and reset to default
         {
-            wxMessageBox(wxString::Format(_("Theme %s not found within the application, it may no longer be supported. Reverting to default theme"), Model_Setting::instance().Theme()), _("Warning"), wxOK | wxICON_WARNING);
+            wxMessageBox(wxString::Format(_("Theme %s not found within the application, it may no longer be supported. Reverting to default theme")
+                , Model_Setting::instance().Theme()), _("Warning"), wxOK | wxICON_WARNING);
             Model_Setting::instance().SetTheme("default");
         }
         delete filesInVFS; 
         iconsLoaded = true;
     }
     int x = Option::instance().getIconSize();
-    return x == 16 ? *programIcons16[ref] : x == 24 ? *programIcons24[ref] : x == 32 ? *programIcons32[ref] : *programIcons48[ref];
+    auto it = find_if(sizes.begin(), sizes.end(), [x](const std::pair<int, int>& p) { return p.second == x; });
+    wxASSERT(it != sizes.end());
+
+    return *programIcons[it->first][ref].get();
 }
 
 wxArrayString getThemes()
