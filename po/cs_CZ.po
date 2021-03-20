@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-03-20 20:51+0300\n"
-"PO-Revision-Date: 2021-03-20 18:05\n"
+"PO-Revision-Date: 2021-03-20 23:03\n"
 "Last-Translator: \n"
 "Language-Team: Czech\n"
 "MIME-Version: 1.0\n"
@@ -2549,11 +2549,11 @@ msgstr "Obrázek '%s' v tématu '%s' nelze převést na bitmapu, opravte jej pro
 #: images_list.cpp:359
 #, c-format
 msgid "File '%s' missing from chosen theme '%s'"
-msgstr ""
+msgstr "Chybí soubor '%s' z vybraného tématu '%s'"
 
 #: images_list.cpp:391
 msgid "and more..."
-msgstr ""
+msgstr "a další..."
 
 #: images_list.cpp:393
 #, c-format
