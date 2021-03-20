@@ -173,20 +173,23 @@ wxString mmex::getPathDoc(EDocFile f, bool url)
 }
 //----------------------------------------------------------------------------
 
-wxString mmex::getPathResource(EResFile f)
+const wxString mmex::getPathResource(EResFile f)
 {
-    static const wxString files[RES_FILES_MAX] = {
-      "kaching.wav",
-      "home_page.htt"
-      ""
-    };
-
-    wxASSERT(f >= 0 && f < RES_FILES_MAX);
+    static std::unordered_map<int, wxString> cache;
+    const auto it = cache.find(f);
+    if (it != cache.end()) {
+        return it->second;
+    }
 
     wxFileName fname = GetResourceDir();
-    fname.SetFullName(files[f]);
+    std::vector<std::pair<int, wxString> > files = { {0, "kaching.wav"}, {1, "home_page.htt"}, {2, ""} };
+    for (const auto& item : files)
+    {
+        fname.SetFullName(item.second);
+        cache[item.first] = fname.GetFullPath();
+    }
 
-    return fname.GetFullPath();
+    return cache[f];
 }
 //----------------------------------------------------------------------------
 
