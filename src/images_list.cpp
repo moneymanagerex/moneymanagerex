@@ -149,10 +149,8 @@ static const std::map<std::string, std::pair<int, std::uint32_t>> iconName2enum 
 
 static bool iconsLoaded = false;
 
-static wxSharedPtr<wxBitmap> programIcons16[MAX_PNG];
-static wxSharedPtr<wxBitmap> programIcons24[MAX_PNG];
-static wxSharedPtr<wxBitmap> programIcons32[MAX_PNG];
-static wxSharedPtr<wxBitmap> programIcons48[MAX_PNG];
+const std::vector<std::pair<int, int> > sizes = { {0, 16}, {1, 24}, {2, 32}, {3, 48} };
+static wxSharedPtr<wxBitmap> programIcons[4][MAX_PNG];
 
 static wxSharedPtr<wxArrayString> themes;
 static wxArrayString* filesInVFS;
@@ -330,32 +328,17 @@ bool buildBitmapsFromSVG(wxString themeDir, wxString myTheme)
             lunasvg::Bitmap bitmap;
 
             // Generate bitmaps at the resolutions used by the program - 16, 24, 32, 48
-            int size[4] = { 16, 24, 32, 48 };
 
-            for (const auto& i : size)
+            for (const auto& i : sizes)
             {
-                bitmap = document.renderToBitmap(i, i, 96.0, bgColor);
+                bitmap = document.renderToBitmap(i.second, i.second, 96.0, bgColor);
                 if (!bitmap.valid())
                 {   // Should only occur in badly constructed user themes
                     wxMessageBox(wxString::Format(_("Image '%s' in Theme '%s' cannot be converted to bitmap, please correct. Default image will be used")
                         , fileName, thisTheme), _("Warning"), wxOK | wxICON_WARNING);
                     continue;
                 }
-                switch (i)
-                {
-                case 16: 
-                    programIcons16[svgEnum] = CreateBitmapFromRGBA(bitmap.data(), i);
-                    break;
-                case 24:
-                    programIcons24[svgEnum] = CreateBitmapFromRGBA(bitmap.data(), i);
-                    break;
-                case 32:
-                    programIcons32[svgEnum] = CreateBitmapFromRGBA(bitmap.data(), i);
-                    break;
-                case 48:
-                    programIcons48[svgEnum] = CreateBitmapFromRGBA(bitmap.data(), i);
-                    break;
-                }
+                programIcons[i.first][svgEnum] = CreateBitmapFromRGBA(bitmap.data(), i.second);
             }
 
         }
@@ -388,7 +371,10 @@ const wxBitmap mmBitmap(int ref)
         iconsLoaded = true;
     }
     int x = Option::instance().getIconSize();
-    return x == 16 ? *programIcons16[ref] : x == 24 ? *programIcons24[ref] : x == 32 ? *programIcons32[ref] : *programIcons48[ref];
+    auto it = find_if(sizes.begin(), sizes.end(), [x](const std::pair<int, int>& p) { return p.second == x; });
+    wxASSERT(it != sizes.end());
+
+    return *programIcons[it->first][ref].get();
 }
 
 wxArrayString getThemes()

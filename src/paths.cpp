@@ -182,7 +182,7 @@ const wxString mmex::getPathResource(EResFile f)
     }
 
     wxFileName fname = GetResourceDir();
-    for (const wxString& item : { "kaching.wav", "home_page.htt", "." })
+    for (const wxString& item : { "kaching.wav", "home_page.htt", "" })
     {
         fname.SetFullName(item);
         cache[static_cast<EResFile>(cache.size())] = fname.GetFullPath();
