@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-03-20 20:51+0300\n"
-"PO-Revision-Date: 2021-03-20 18:05\n"
+"PO-Revision-Date: 2021-03-21 09:11\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
@@ -2515,7 +2515,7 @@ msgstr "Parametrar:"
 #: images_list.cpp:321
 #, c-format
 msgid "Image '%s' in Theme '%s' looks badly constructed, please correct. Default image will be used"
-msgstr ""
+msgstr "Bild '%s' i Tema '%s' ser dåligt konstruerad, vänligen korrigera. Standardbilden kommer att användas"
 
 #: images_list.cpp:322 images_list.cpp:338 images_list.cpp:360
 #: images_list.cpp:394 images_list.cpp:413 images_list.cpp:420
@@ -2526,31 +2526,31 @@ msgstr "Varning"
 #: images_list.cpp:337
 #, c-format
 msgid "Image '%s' in Theme '%s' cannot be converted to bitmap, please correct. Default image will be used"
-msgstr ""
+msgstr "Bild '%s' i Temat '%s' kan inte konverteras till bitmap, vänligen korrigera. Standardbilden kommer att användas"
 
 #: images_list.cpp:359
 #, c-format
 msgid "File '%s' missing from chosen theme '%s'"
-msgstr ""
+msgstr "Filen '%s' saknas från valt tema '%s'"
 
 #: images_list.cpp:391
 msgid "and more..."
-msgstr ""
+msgstr "och mer..."
 
 #: images_list.cpp:393
 #, c-format
 msgid "There are %d missing or invalid icons in chosen theme '%s': %s"
-msgstr ""
+msgstr "%d ikoner saknas eller är ogiltiga i valt tema '%s': %s"
 
 #: images_list.cpp:412
 #, c-format
 msgid "Theme %s not found, it may no longer be supported. Reverting to default theme"
-msgstr ""
+msgstr "Temat %s hittades inte, det kanske inte längre stöds. Återgår till standardtema"
 
 #: images_list.cpp:420
 #, c-format
 msgid "Theme %s has missing items and is incompatible. Reverting to default theme"
-msgstr ""
+msgstr "Temat %s har saknade objekt och är inkompatibelt. Återgår till standardtema"
 
 #: import_export/parsers.cpp:46 import_export/univcsvdialog.cpp:1575
 #: mmSimpleDialogs.cpp:253
