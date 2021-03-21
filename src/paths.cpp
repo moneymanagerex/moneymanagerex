@@ -182,7 +182,12 @@ const wxString mmex::getPathResource(EResFile f)
     }
 
     wxFileName fname = GetResourceDir();
-    std::vector<std::pair<int, wxString> > files = { {0, "kaching.wav"}, {1, "home_page.htt"}, {2, ""} };
+    std::vector<std::pair<int, wxString> > files = {
+        {TRANS_SOUND, "kaching.wav"},
+        {HOME_PAGE_TEMPLATE, "home_page.htt"},
+        {THEMESDIR, ""}
+    };
+
     for (const auto& item : files)
     {
         fname.SetFullName(item.second);
