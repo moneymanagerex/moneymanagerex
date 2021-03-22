@@ -276,7 +276,7 @@ bool buildBitmapsFromSVG(wxString themeDir, wxString myTheme)
 
             const wxFileName fileEntryName = wxFileName(themeEntry->GetName());
             const wxString fileFullPath = fileEntryName.GetFullPath();
-            const wxString fileEntry = fileEntryName.GetFullName();    
+            const wxString fileEntry = fileEntryName.GetFullName();
             std::string fileName = std::string(fileEntry.mb_str());
 
             if (wxNOT_FOUND == themes->Index(thisTheme)) // Add user theme if not in the existing list
@@ -301,12 +301,12 @@ bool buildBitmapsFromSVG(wxString themeDir, wxString myTheme)
                     , buffer->GetBufferSize());
                 wxLogDebug("Theme: '%s' File: '%s' has been copied to VFS", thisTheme, fileName);
 #else
-                const wxString repFile = mmex::getTempFolder() + fileName;
-                wxFileOutputStream fileOut(repFile);
+                const wxString themeFile = mmex::getTempFolder() + fileName;
+                wxFileOutputStream fileOut(themeFile);
                 if (!fileOut.IsOk())
                     wxLogError("Could not copy %s !", fileFullPath);
                 else
-                    wxLogDebug("Copying file:\n %s \nto\n %s", fileFullPath, repFile);
+                    wxLogDebug("Copying file:\n %s \nto\n %s", fileFullPath, themeFile);
                 themeStream.Read(fileOut);
 #endif
                 filesInVFS->Add(fileName);
