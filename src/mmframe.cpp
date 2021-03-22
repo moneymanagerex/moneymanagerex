@@ -1644,13 +1644,13 @@ void mmGUIFrame::createMenu()
 void mmGUIFrame::CreateToolBar()
 {
     int all_icons_size = Option::instance().getIconSize();
-    int main_menu_icon_size = Option::instance().getToolbarIconSize();
-    Option::instance().setIconSize(main_menu_icon_size);
+    int toolbar_icon_size = Option::instance().getToolbarIconSize();
+    Option::instance().setIconSize(toolbar_icon_size);
 
     long style = wxTB_FLAT | wxTB_NODIVIDER;
 
     toolBar_ = new wxToolBar(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, style, "ToolBar");
-    toolBar_->SetToolBitmapSize(wxSize(main_menu_icon_size ,main_menu_icon_size));  // adjust tool size to match the icon size being used
+    toolBar_->SetToolBitmapSize(wxSize(toolbar_icon_size, toolbar_icon_size));  // adjust tool size to match the icon size being used
 
     toolBar_->AddTool(MENU_NEW, _("New"), mmBitmap(png::NEW_DB), _("New Database"));
     toolBar_->AddTool(MENU_OPEN, _("Open"), mmBitmap(png::OPEN), _("Open Database"));
@@ -2484,6 +2484,14 @@ void mmGUIFrame::OnBeNotified(wxCommandEvent& /*event*/)
 {
     Model_Setting::instance().Set(INIDB_NEWS_LAST_READ_DATE, wxDate::Today().FormatISODate());
     wxLaunchDefaultBrowser(mmex::weblink::News);
+
+    int toolbar_icon_size = Option::instance().getToolbarIconSize();
+    Option::instance().setIconSize(toolbar_icon_size);
+    toolBar_->SetToolBitmapSize(wxSize(toolbar_icon_size, toolbar_icon_size));
+    toolBar_->SetToolNormalBitmap(MENU_ANNOUNCEMENTMAILING, mmBitmap(png::NEWS));
+
+    const auto b = toolBar_->FindById(MENU_ANNOUNCEMENTMAILING);
+    if (b) b->SetShortHelp(_("Register/View Release &Notifications"));
 }
 //----------------------------------------------------------------------------
 
