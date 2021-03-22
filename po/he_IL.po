@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-03-20 20:51+0300\n"
-"PO-Revision-Date: 2021-03-20 18:05\n"
+"PO-Revision-Date: 2021-03-22 12:52\n"
 "Last-Translator: \n"
 "Language-Team: Hebrew\n"
 "MIME-Version: 1.0\n"
@@ -2531,7 +2531,7 @@ msgstr "משתנים:"
 #: images_list.cpp:321
 #, c-format
 msgid "Image '%s' in Theme '%s' looks badly constructed, please correct. Default image will be used"
-msgstr ""
+msgstr "תמונה '%s' בערכת נושא '%s' בנויה רע, נא לתקן. יעשה שימוש בתמונת ברירת מחדל"
 
 #: images_list.cpp:322 images_list.cpp:338 images_list.cpp:360
 #: images_list.cpp:394 images_list.cpp:413 images_list.cpp:420
@@ -2542,31 +2542,31 @@ msgstr "התראה"
 #: images_list.cpp:337
 #, c-format
 msgid "Image '%s' in Theme '%s' cannot be converted to bitmap, please correct. Default image will be used"
-msgstr ""
+msgstr "לא ניתן להמיר תמונה '%s' בערכת נושא '%s' לקובץ bitmap, נא לתקן. יעשה שימוש בתמונת ברירת מחדל"
 
 #: images_list.cpp:359
 #, c-format
 msgid "File '%s' missing from chosen theme '%s'"
-msgstr ""
+msgstr "בערכת הנושא '%s' שנבחרה, חסר קובץ '%s'"
 
 #: images_list.cpp:391
 msgid "and more..."
-msgstr ""
+msgstr "ועוד..."
 
 #: images_list.cpp:393
 #, c-format
 msgid "There are %d missing or invalid icons in chosen theme '%s': %s"
-msgstr ""
+msgstr "%d סמלים חסרים או לא תקינים בערכת הנושא '%s' שנבחרה: %s"
 
 #: images_list.cpp:412
 #, c-format
 msgid "Theme %s not found, it may no longer be supported. Reverting to default theme"
-msgstr ""
+msgstr "ערכת הנושא s% לא נמצאה, יתכן שהיא אינה נתמכת עוד. חזרה לערכת נושא ברירת המחדל"
 
 #: images_list.cpp:420
 #, c-format
 msgid "Theme %s has missing items and is incompatible. Reverting to default theme"
-msgstr ""
+msgstr "לערכת נושא %s חסרים פריטים והיא אינה תואמת. חזרה לערכת נושא ברירית מחדל"
 
 #: import_export/parsers.cpp:46 import_export/univcsvdialog.cpp:1575
 #: mmSimpleDialogs.cpp:253
