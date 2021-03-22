@@ -227,33 +227,23 @@ wxImageList* navtree_images_list()
     return imageList;
 }
 
-typedef wxAlphaPixelData PixelData;
 wxBitmap* CreateBitmapFromRGBA(unsigned char *rgba, int size)
 {
-   wxBitmap* bitmap = new wxBitmap(size, size, wxBITMAP_SCREEN_DEPTH);
-   PixelData bmdata( *bitmap );
+    int totalSize = size * size;
+    unsigned char *data = static_cast<unsigned char *> (malloc (totalSize * 3));
+    unsigned char *alpha = static_cast<unsigned char *> (malloc (totalSize));
 
-   PixelData::Iterator dst(bmdata);
+    for (int i = 0; i < totalSize; i++)
+    {
+        data[(3 * i)] = rgba[(4 * i)];
+        data[(3 * i) + 1] = rgba[(4 * i) + 1];
+        data[(3 * i) + 2] = rgba[(4 * i) + 2];
+        alpha[i] = rgba[(4 * i) + 3];
+    }
 
-   for( int y = 0; y < size; y++)
-   {
-      dst.MoveTo(bmdata, 0, y);
-      for(int x = 0; x < size; x++)
-      {
-         // wxBitmap contains rgb values pre-multiplied with alpha
-         unsigned char a = rgba[3];
-         // you could use "/256" here to speed up the code,
-         // but at the price of being not 100% accurate
-         dst.Red() = rgba[0] * a / 255;
-         dst.Green() = rgba[1] * a / 255;
-         dst.Blue() = rgba[2] * a / 255;
-         dst.Alpha() = a;
-         dst++;
-         rgba += 4;
-      }
-   }
-   return bitmap;
-} 
+    wxImage image (size, size, data, alpha);
+    return (new wxBitmap (image));
+}
 
 bool buildBitmapsFromSVG(wxString themeDir, wxString myTheme)
 {
@@ -268,7 +258,7 @@ bool buildBitmapsFromSVG(wxString themeDir, wxString myTheme)
     while (cont)
     {
         wxFileName themeFile(themeDir, filename);
-        const wxString thisTheme = themeFile.GetName();;
+        const wxString thisTheme = themeFile.GetName();
         wxLogDebug ("Found theme [%s]", thisTheme);
 
         wxFileInputStream themeZip(themeFile.GetFullPath());
@@ -285,7 +275,8 @@ bool buildBitmapsFromSVG(wxString themeDir, wxString myTheme)
             wxASSERT(themeZip.CanRead()); // Make sure we can read the Zip Entry
 
             const wxFileName fileEntryName = wxFileName(themeEntry->GetName());
-            const wxString fileEntry = fileEntryName.GetFullName();
+            const wxString fileFullPath = fileEntryName.GetFullPath();
+            const wxString fileEntry = fileEntryName.GetFullName();    
             std::string fileName = std::string(fileEntry.mb_str());
 
             if (wxNOT_FOUND == themes->Index(thisTheme)) // Add user theme if not in the existing list
@@ -294,25 +285,40 @@ bool buildBitmapsFromSVG(wxString themeDir, wxString myTheme)
             if (thisTheme.Cmp(myTheme) || fileEntryName.IsDir())
                 continue;   // We can skip if it's not our theme
 
-            //wxLogDebug("fileEntry: s", fileEntry);
-            wxMemoryOutputStream memOut(nullptr);
-            themeStream.Read(memOut);
-            const wxStreamBuffer* buffer = memOut.GetOutputStreamBuffer();
-        
-            // If the file does not match an icon file then just load it into VFS
+            //wxLogDebug("fileEntry: %s", fileEntry);
+
+            // If the file does not match an icon file then just load it into VFS / tmp
             if (!iconName2enum.count(fileName))
             {
+#ifndef __WXGTK__
+                wxMemoryOutputStream memOut(nullptr);
+                themeStream.Read(memOut);
+                const wxStreamBuffer* buffer = memOut.GetOutputStreamBuffer();
+
                 if (wxNOT_FOUND != filesInVFS->Index(fileName)) // If already loaded then remove and replace
                     wxMemoryFSHandler::RemoveFile(fileName);
                 wxMemoryFSHandler::AddFile(fileName, buffer->GetBufferStart()
                     , buffer->GetBufferSize());
-                filesInVFS->Add(fileName);
                 wxLogDebug("Theme: '%s' File: '%s' has been copied to VFS", thisTheme, fileName);
+#else
+                const wxString repFile = mmex::getTempFolder() + fileName;
+                wxFileOutputStream fileOut(repFile);
+                if (!fileOut.IsOk())
+                    wxLogError("Could not copy %s !", fileFullPath);
+                else
+                    wxLogDebug("Copying file:\n %s \nto\n %s", fileFullPath, repFile);
+                themeStream.Read(fileOut);
+#endif
+                filesInVFS->Add(fileName);
                 continue;
             }
 
             // So we have an icon file now, now need to convert from SVG to PNG at various resolutions and store
             // it away for use
+
+            wxMemoryOutputStream memOut(nullptr);
+            themeStream.Read(memOut);
+            const wxStreamBuffer* buffer = memOut.GetOutputStreamBuffer();
             
             lunasvg::SVGDocument document;
             std::string svgDoc(static_cast<char *>(buffer->GetBufferStart()), buffer->GetBufferSize());
