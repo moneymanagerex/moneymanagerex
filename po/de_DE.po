@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-03-20 20:51+0300\n"
-"PO-Revision-Date: 2021-03-20 18:05\n"
+"PO-Revision-Date: 2021-03-22 19:37\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -2541,26 +2541,26 @@ msgstr "Bild '%s' im Thema '%s' kann nicht in Bitmap konvertiert werden, bitte k
 #: images_list.cpp:359
 #, c-format
 msgid "File '%s' missing from chosen theme '%s'"
-msgstr ""
+msgstr "Datei '%s' fehlt im gewählten Theme '%s'"
 
 #: images_list.cpp:391
 msgid "and more..."
-msgstr ""
+msgstr "und mehr..."
 
 #: images_list.cpp:393
 #, c-format
 msgid "There are %d missing or invalid icons in chosen theme '%s': %s"
-msgstr ""
+msgstr "Es gibt %d fehlende oder ungültige Symbole im gewählten Theme '%s': %s"
 
 #: images_list.cpp:412
 #, c-format
 msgid "Theme %s not found, it may no longer be supported. Reverting to default theme"
-msgstr ""
+msgstr "Theme %s nicht gefunden, es wird möglicherweise nicht mehr unterstützt. Zurück zum Standard-Theme"
 
 #: images_list.cpp:420
 #, c-format
 msgid "Theme %s has missing items and is incompatible. Reverting to default theme"
-msgstr ""
+msgstr "Theme %s hat fehlende Elemente und ist inkompatibel. Zurück zum Standard-Theme"
 
 #: import_export/parsers.cpp:46 import_export/univcsvdialog.cpp:1575
 #: mmSimpleDialogs.cpp:253
