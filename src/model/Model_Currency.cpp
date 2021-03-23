@@ -164,10 +164,16 @@ wxString Model_Currency::toCurrency(double value, const Data* currency, int prec
 
 wxString Model_Currency::os_group_separator()
 {
-    wxString sys_thousand_separator = " ";
+    static wxString sys_thousand_separator;
+    if (!sys_thousand_separator.empty())
+        return sys_thousand_separator;
+
     wxChar sep = ' ';
     if (wxNumberFormatter::GetThousandsSeparatorIfUsed(&sep)) {
         sys_thousand_separator = wxString::Format("%c", sep);
+    }
+    else {
+        sys_thousand_separator = " ";
     }
     return sys_thousand_separator;
 }
