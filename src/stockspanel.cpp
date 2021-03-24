@@ -74,8 +74,8 @@ StocksListCtrl::StocksListCtrl(mmStocksPanel* cp, wxWindow *parent, wxWindowID w
     m_imageList = createImageList();
     m_imageList->Add(mmBitmap(png::PROFIT));
     m_imageList->Add(mmBitmap(png::LOSS));
-    m_imageList->Add(mmBitmap(png::UPARROW));
     m_imageList->Add(mmBitmap(png::DOWNARROW));
+    m_imageList->Add(mmBitmap(png::UPARROW));
 
     SetImageList(m_imageList, wxIMAGE_LIST_SMALL);
 
