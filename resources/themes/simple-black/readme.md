@@ -1,4 +1,4 @@
-# Theme = colorful
+# Theme = Simple Black
 
 Image sources https://www.svgrepo.com/
 
