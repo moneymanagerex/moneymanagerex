@@ -151,7 +151,7 @@ bool Model_Currency::remove(int id)
     return this->remove(id, db_);
 }
 
-wxString Model_Currency::toCurrency(double value, const Data* currency, int precision)
+const wxString Model_Currency::toCurrency(double value, const Data* currency, int precision)
 {
     precision = precision >= 0 ? precision : (currency ? log10(currency->SCALE) : 2);
     wxString d2s = toString(value, currency, precision);
@@ -162,17 +162,23 @@ wxString Model_Currency::toCurrency(double value, const Data* currency, int prec
     return d2s;
 }
 
-wxString Model_Currency::os_group_separator()
+const wxString Model_Currency::os_group_separator()
 {
-    wxString sys_thousand_separator = " ";
+    static wxString sys_thousand_separator;
+    if (!sys_thousand_separator.empty())
+        return sys_thousand_separator;
+
     wxChar sep = ' ';
     if (wxNumberFormatter::GetThousandsSeparatorIfUsed(&sep)) {
         sys_thousand_separator = wxString::Format("%c", sep);
     }
+    else {
+        sys_thousand_separator = " ";
+    }
     return sys_thousand_separator;
 }
 
-wxString Model_Currency::toStringNoFormatting(double value, const Data* currency, int precision)
+const wxString Model_Currency::toStringNoFormatting(double value, const Data* currency, int precision)
 {
     precision = (precision >= 0 ? precision : (currency ? log10(currency->SCALE) : 2));
     int style = wxNumberFormatter::Style_None;
@@ -184,7 +190,8 @@ wxString Model_Currency::toStringNoFormatting(double value, const Data* currency
 
     return s;
 }
-wxString Model_Currency::toString(double value, const Data* currency, int precision)
+
+const wxString Model_Currency::toString(double value, const Data* currency, int precision)
 {
     precision = (precision >= 0 ? precision : (currency ? log10(currency->SCALE) : 2));
     int style = wxNumberFormatter::Style_WithThousandsSep;
