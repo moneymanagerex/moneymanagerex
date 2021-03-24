@@ -570,7 +570,7 @@ install(FILES
     resources/ie-polyfill/classlist.min.js
     resources/ie-polyfill/findindex.min.js
     resources/ie-polyfill/umd.min.js
-    3rd/sorttable.js/sorttable.js
+    resources/sorttable.js
     resources/home_page.htt
     resources/kaching.wav
     resources/mmex.png
