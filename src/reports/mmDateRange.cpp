@@ -51,31 +51,6 @@ void mmDateRange::end_date(wxDateTime& end_date)
     this->end_date_ = end_date;
 }
 
-const wxDateTime mmDateRange::start_date() const
-{
-    return this->start_date_;
-}
-
-const wxDateTime mmDateRange::end_date() const
-{
-    return this->end_date_;
-}
-
-const wxDateTime mmDateRange::today() const
-{
-    return this->today_;
-}
-
-bool mmDateRange::is_with_date() const
-{
-    return true;
-}
-
-const wxString mmDateRange::title() const
-{
-    return title_;
-}
-
 const wxString mmDateRange::local_title() const
 {
     return wxGetTranslation(title_);
