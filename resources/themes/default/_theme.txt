@@ -1,5 +1,0 @@
-{ "name": "MMEX Default Theme",
-    "author": "MMEX Team",
-    "description": "This is the default MMEX theme and uses the MMEX colour scheme. It is a simple 'duo color' themes. This theme will be used if other themes cannot be found or are in error",
-    "url": "https://github.com/moneymanagerex/moneymanagerex/blob/master/resources/themes/default/readme.md"
-  } 
