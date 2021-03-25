@@ -1137,7 +1137,7 @@ bool mmSeparator::isStringHasSeparator(const wxString &string)
 
 const wxString getVFname4print(const wxString& name, const wxString& data)
 {
-#ifndef __WXGTK__
+#ifdef __WXGTK__
 
     int fid = 0;
     wxFileSystem fsys;
