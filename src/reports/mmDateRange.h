@@ -27,6 +27,7 @@ protected:
     const wxDateTime today_;
     wxDateTime start_date_, end_date_;
     wxString title_;
+    bool ignoreFuture_;
 
 public:
     mmDateRange();
