@@ -17,13 +17,18 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ********************************************************/
 
 #include "mmDateRange.h"
+#include "option.h"
 #include <wx/intl.h>
+
+#define DATE_MAX 253402214400   /* Dec 31, 9999 */
 
 mmDateRange::mmDateRange()
 : today_(wxDateTime::Today())
 {
     start_date_ = today_;
-    end_date_ = today_;
+    ignoreFuture_ = Option::instance().getIgnoreFutureTransactions();
+    end_date_ = ignoreFuture_ ? today_ : wxDateTime(DATE_MAX);
+    wxLogDebug("Date Range %s %s", start_date_.FormatISODate(), end_date_.FormatISODate());
     title_ = wxTRANSLATE("Date Range");
 }
 
@@ -81,15 +86,14 @@ mmCurrentMonth::mmCurrentMonth()
 {
     this->start_date_ = today_;
     this->start_date_.SetDay(1);
-    this->end_date_ = today_.GetLastMonthDay();
+    this->end_date_ = ignoreFuture_ ? today_.GetLastMonthDay() : end_date_;
     this->title_ = wxTRANSLATE("Current Month");
+    wxLogDebug("%s %s %s", title_, start_date_.FormatISODate(), end_date_.FormatISODate());
 }
 
 mmToday::mmToday()
 : mmDateRange()
 {
-    this->start_date_ = today_;
-    this->end_date_ = today_;
     this->title_ = wxTRANSLATE("Today");
 }
 
@@ -106,7 +110,7 @@ mmLastMonth::mmLastMonth()
 : mmDateRange()
 {
     this->start_date_.Subtract(wxDateSpan::Months(1)).SetDay(1);
-    this->end_date_ = (this->start_date_).GetLastMonthDay();
+    this->end_date_ = ignoreFuture_ ? (this->start_date_).GetLastMonthDay() : end_date_;
     this->title_ = wxTRANSLATE("Last Month");
 }
 
@@ -133,7 +137,7 @@ mmLast90Days::mmLast90Days()
 mmLast3Months::mmLast3Months()
 : mmDateRange()
 {
-    this->end_date_ = (this->start_date_).GetLastMonthDay();
+    this->end_date_ = ignoreFuture_ ? (this->start_date_).GetLastMonthDay() : end_date_;
     this->start_date_ = end_date_;
     this->start_date_.SetDay(1);
     this->start_date_
@@ -145,13 +149,14 @@ mmLast3Months::mmLast3Months()
 mmLast12Months::mmLast12Months()
 : mmDateRange()
 {
-    this->end_date_ = this->start_date_.GetLastMonthDay();
-    this->start_date_ = end_date_;
+    this->end_date_ = ignoreFuture_ ? (this->start_date_).GetLastMonthDay() : end_date_;
+    this->start_date_ = today_;
     this->start_date_.SetDay(1);
     this->start_date_
         .Add(wxDateSpan::Months(1))
         .Subtract(wxDateSpan::Years(1));
     this->title_ = wxTRANSLATE("Last 12 Months");
+    wxLogDebug("%s %s %s", title_, start_date_.FormatISODate(), end_date_.FormatISODate());
 }
 
 mmCurrentYear::mmCurrentYear()
@@ -161,13 +166,14 @@ mmCurrentYear::mmCurrentYear()
     this->end_date_ = start_date_;
     this->end_date_.SetMonth(wxDateTime::Dec).SetDay(31);
     this->title_ = wxTRANSLATE("Current Year");
+    wxLogDebug("%s %s %s", title_, start_date_.FormatISODate(), end_date_.FormatISODate());
 }
 
 mmCurrentYearToDate::mmCurrentYearToDate()
 : mmDateRange()
 {
     this->start_date_.SetDay(1).SetMonth(wxDateTime::Jan);
-    // no change to end_date_
+    this->end_date_ = today_;
     this->title_ = wxTRANSLATE("Current Year to Date");
 }
 
@@ -227,7 +233,7 @@ mmAllTime::mmAllTime()
 : mmDateRange()
 {
     this->start_date_.SetDay(1).SetMonth(wxDateTime::Jan).SetYear(1900);
-    this->end_date_ = wxDateTime(31, wxDateTime::Dec, 2900);
+    this->end_date_ = wxDateTime(DATE_MAX);
     this->title_ = wxTRANSLATE("Over Time");
 }
 
@@ -241,7 +247,7 @@ mmSpecifiedRange::mmSpecifiedRange(const wxDateTime& start, const wxDateTime& en
 {
     this->title_ = wxTRANSLATE("Custom");
     this->start_date_ = start;
-    this->end_date_ = end;
+    this->end_date_ = ignoreFuture_ ? end : end_date_;
 }
 
 mmLast365Days::mmLast365Days() : mmDateRange()
