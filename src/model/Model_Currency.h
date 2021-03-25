@@ -69,13 +69,13 @@ public:
     static std::map<wxDateTime,int> DateUsed(int CurrencyID);
 
     /** Add prefix and suffix characters to string value */
-    static wxString toCurrency(double value, const Data* currency = GetBaseCurrency(), int precision = -1);
+    static const wxString toCurrency(double value, const Data* currency = GetBaseCurrency(), int precision = -1);
  
-    static wxString os_group_separator();
+    static const wxString os_group_separator();
     /** convert value to a string with required precision. Currency is used only for percision */
-    static wxString toStringNoFormatting(double value, const Data* currency = GetBaseCurrency(), int precision = -1);
+    static const wxString toStringNoFormatting(double value, const Data* currency = GetBaseCurrency(), int precision = -1);
     /** convert value to a currency formatted string with required precision */
-    static wxString toString(double value, const Data* currency = GetBaseCurrency(), int precision = -1);
+    static const wxString toString(double value, const Data* currency = GetBaseCurrency(), int precision = -1);
     /** Reset currency string like 1.234,56 to standard number format like 1234.56 */
     static const wxString fromString2Default(const wxString &s, const Data* currency = Model_Currency::GetBaseCurrency());
     static const wxString fromString2Lua(const wxString &s, const Data* currency);

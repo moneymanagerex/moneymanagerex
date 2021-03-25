@@ -688,6 +688,7 @@ void mmCheckingPanel::DisplayAccountDetails(int accountID)
 {
     wxASSERT (-1 != accountID); // should not be called for all transaction view even though it should work
 
+    m_listCtrlAccount->setVisibleItemIndex(-1);
     m_AccountID = accountID;
     m_allAccounts = (-1 == m_AccountID) ? true : false;
     if (m_allAccounts)
