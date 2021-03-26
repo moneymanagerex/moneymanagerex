@@ -960,14 +960,17 @@ void TransactionListCtrl::refreshVisualList(bool filter)
 {
     wxLogDebug("refreshVisualList: %i selected, filter: %d", GetSelectedItemCount(), filter);
 
-    FindSelectedTransactions();
-    // if we have freshly pasted transactions then add them in and then empty the list
-    if (!m_pasted_id.empty())
+    // Grab the selected transactions unless we have freshly pasted transactions in which case use them
+    if (m_pasted_id.empty())
     {
+        FindSelectedTransactions();
+    } else
+    {
+        m_selected_id.clear();
         m_selected_id.insert(std::end(m_selected_id), std::begin(m_pasted_id), std::end(m_pasted_id));
-        m_pasted_id.clear();
+        m_pasted_id.clear();    // Now clear them
     }
-    
+
     m_today = wxDateTime::Today().FormatISODate();
     this->SetEvtHandlerEnabled(false);
     Hide();
