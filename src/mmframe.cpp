@@ -2303,28 +2303,33 @@ void mmGUIFrame::refreshPanelData()
 {
     int id = panelCurrent_->GetId();
     wxLogDebug("Panel ID: %d", id);
-    if (id == mmID_HOMEPAGE) //6000
-        createHomePage();
-    else if (id == mmID_CHECKING)
-        checkingAccountPage_->RefreshList();
-    else if (id == mmID_ASSETS)
-    { /*Nothing to do;*/
-    }
-    else if (id == mmID_BILLS)
-        billsDepositsPanel_->RefreshList();
-    else if (id == mmID_BUDGET)
-        budgetingPage_->RefreshList();
-    else if (id == mmID_REPORTS)
+
+    switch (id)
     {
-        if (activeReport_) //TODO: budget reports and transaction report
-        {
+    case mmID_HOMEPAGE:
+        createHomePage();
+        break;
+    case mmID_CHECKING:
+        checkingAccountPage_->RefreshList();
+        break;
+    case mmID_ASSETS:
+        break;
+    case mmID_BILLS:
+        billsDepositsPanel_->RefreshList();
+        break;
+    case mmID_BUDGET:
+        budgetingPage_->RefreshList();
+        break;
+    case mmID_REPORTS:
+        if (activeReport_) {
             mmReportsPanel* rp = dynamic_cast<mmReportsPanel*>(panelCurrent_);
             if (rp) createReportsPage(rp->getPrintableBase(), false);
         }
-    }
-    else if (id == wxID_HELP)
+        break;
+    default:
         createHelpPage();
-
+        break;
+    }
 }
 
 void mmGUIFrame::OnOrgCategories(wxCommandEvent& /*event*/)
