@@ -436,9 +436,13 @@ file(GLOB THEME_COLORFUL_FILES "${PROJECT_SOURCE_DIR}/resources/themes/colorful/
 create_zip("${CMAKE_CURRENT_BINARY_DIR}/colorful.mmextheme" "${THEME_COLORFUL_FILES}" "${PROJECT_SOURCE_DIR}/resources/themes/colorful/")
 file(GLOB THEME_SIMPLEBLACK_FILES "${PROJECT_SOURCE_DIR}/resources/themes/simple-black/*")
 create_zip("${CMAKE_CURRENT_BINARY_DIR}/simple-black.mmextheme" "${THEME_SIMPLEBLACK_FILES}" "${PROJECT_SOURCE_DIR}/resources/themes/simple-black/")
+file(GLOB THEME_YELLOWBLUE_FILES "${PROJECT_SOURCE_DIR}/resources/themes/yellow-blue/*")
+create_zip("${CMAKE_CURRENT_BINARY_DIR}/yellow-blue.mmextheme" "${THEME_YELLOWBLUE_FILES}" "${PROJECT_SOURCE_DIR}/resources/themes/yellow-blue/")
+
 add_custom_target(generate_theme_default ALL DEPENDS "${CMAKE_CURRENT_BINARY_DIR}/default.mmextheme"
                                                      "${CMAKE_CURRENT_BINARY_DIR}/colorful.mmextheme"
-                                                     "${CMAKE_CURRENT_BINARY_DIR}/simple-black.mmextheme")
+                                                     "${CMAKE_CURRENT_BINARY_DIR}/simple-black.mmextheme"
+                                                     "${CMAKE_CURRENT_BINARY_DIR}/yellow-blue.mmextheme")
 ## Tuning for VisualStudio IDE ##
 if(NOT CMAKE_VERSION VERSION_LESS 3.6)
     set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT ${MMEX_EXE})
@@ -577,6 +581,7 @@ install(FILES
     "${CMAKE_CURRENT_BINARY_DIR}/default.mmextheme"
     "${CMAKE_CURRENT_BINARY_DIR}/colorful.mmextheme"
     "${CMAKE_CURRENT_BINARY_DIR}/simple-black.mmextheme"
+    "${CMAKE_CURRENT_BINARY_DIR}/yellow-blue.mmextheme"
     DESTINATION "${MMEX_RES_DIR}")
 
 if(LINUX)

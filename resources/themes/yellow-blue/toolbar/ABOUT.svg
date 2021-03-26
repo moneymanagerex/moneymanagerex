@@ -1,0 +1,22 @@
+<svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path
+     style="fill:none;stroke:#194f82;stroke-width:2;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none;stroke-linejoin:round"
+     d="M 17.824645,22.498819 H 5.7375406 c -1.400511,0 -2.5358807,-1.13537 -2.5358807,-2.535881 V 3.8969665 c 0,-1.4005117 1.1353697,-2.5358816 2.5358807,-2.5358816 H 17.824645 c 1.40051,0 2.53588,1.1353699 2.53588,2.5358816 V 19.962938 c 0,1.400511 -1.13537,2.535881 -2.53588,2.535881 z"
+     id="path850" />
+  <path
+     style="fill:#ffc10d;stroke:#ffc10d;stroke-width:0.80494;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+     d="m 6.8159588,18.994791 c -0.2463917,0 -0.4468973,-0.204908 -0.4468973,-0.45671 V 5.1092245 c 0,-0.2518004 0.2005056,-0.4567072 0.4468973,-0.4567072 h 9.8860682 c 0.246431,0 0.446939,0.2049068 0.446939,0.4567072 V 18.538042 c 0,0.25184 -0.200507,0.456707 -0.446901,0.456707 H 6.8159588 Z"
+     id="path852" />
+  <polygon
+     style="fill:#56ace0;stroke:#37495e;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+     points="195,179.5 195,316 157.5,316 157.5,351 267.5,351 267.5,316 230,316 230,179.5 267.5,179.5 267.5,144.5 157.5,144.5 157.5,179.5 "
+     id="polygon854"
+     transform="matrix(0.04119665,0,0,0.04063901,2.9798953,3.1418699)" />
+  <ellipse
+     style="fill:#56ace0;stroke:#37495e;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+     cx="11.734183"
+     cy="6.921298"
+     id="circle856"
+     rx="0.92692459"
+     ry="0.91437781" />
+</svg>
