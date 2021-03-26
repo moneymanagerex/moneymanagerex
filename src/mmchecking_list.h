@@ -105,8 +105,9 @@ protected:
 private:
     std::vector<EColumn> m_real_columns; // map from actual column to EColumn
 
-    std::vector<int> m_selectedForCopy; //The transactions ID if selected for copy
-    std::vector<int> m_selected_id;
+    std::vector<int> m_selectedForCopy; // the copied transactions (held for pasting)
+    std::vector<int> m_pasted_id;       // the last pasted transactions
+    std::vector<int> m_selected_id;     // the selected transactions
     enum
     {
         MENU_TREEPOPUP_MARKRECONCILED = wxID_HIGHEST + 150,
