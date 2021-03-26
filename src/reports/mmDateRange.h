@@ -146,4 +146,10 @@ public:
     mmLast365Days();
 };
 
+inline const wxDateTime mmDateRange::start_date() const { return this->start_date_; }
+inline const wxDateTime mmDateRange::end_date() const { return this->end_date_; }
+inline const wxDateTime mmDateRange::today() const { return this->today_; }
+inline bool mmDateRange::is_with_date() const { return true; }
+inline const wxString mmDateRange::title() const { return title_; }
+
 #endif // MM_EX_DATE_RANGE_H_
