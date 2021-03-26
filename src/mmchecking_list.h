@@ -158,17 +158,17 @@ private:
 
     mmCheckingPanel* m_cp;
 
-    wxSharedPtr<wxListItemAttr> m_attr1;  // style1
-    wxSharedPtr<wxListItemAttr> m_attr2;  // style2
-    wxSharedPtr<wxListItemAttr> m_attr3;  // style, for future dates
-    wxSharedPtr<wxListItemAttr> m_attr4;  // style, for future dates
-    wxSharedPtr<wxListItemAttr> m_attr11; // user defined style 1
-    wxSharedPtr<wxListItemAttr> m_attr12; // user defined style 2
-    wxSharedPtr<wxListItemAttr> m_attr13; // user defined style 3
-    wxSharedPtr<wxListItemAttr> m_attr14; // user defined style 4
-    wxSharedPtr<wxListItemAttr> m_attr15; // user defined style 5
-    wxSharedPtr<wxListItemAttr> m_attr16; // user defined style 6
-    wxSharedPtr<wxListItemAttr> m_attr17; // user defined style 7
+    std::unique_ptr<wxListItemAttr> m_attr1;  // style1
+    std::unique_ptr<wxListItemAttr> m_attr2;  // style2
+    std::unique_ptr<wxListItemAttr> m_attr3;  // style, for future dates
+    std::unique_ptr<wxListItemAttr> m_attr4;  // style, for future dates
+    std::unique_ptr<wxListItemAttr> m_attr11; // user defined style 1
+    std::unique_ptr<wxListItemAttr> m_attr12; // user defined style 2
+    std::unique_ptr<wxListItemAttr> m_attr13; // user defined style 3
+    std::unique_ptr<wxListItemAttr> m_attr14; // user defined style 4
+    std::unique_ptr<wxListItemAttr> m_attr15; // user defined style 5
+    std::unique_ptr<wxListItemAttr> m_attr16; // user defined style 6
+    std::unique_ptr<wxListItemAttr> m_attr17; // user defined style 7
 
     /* required overrides for virtual style list control */
     virtual wxString OnGetItemText(long item, long column) const;
