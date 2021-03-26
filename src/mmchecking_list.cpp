@@ -649,6 +649,7 @@ void TransactionListCtrl::OnPaste(wxCommandEvent& WXUNUSED(event))
     
     FindSelectedTransactions();
     Model_Checking::instance().Savepoint();
+    m_pasted_id.clear();    // make sure the list is empty before we paste
     for (const auto& i : m_selectedForCopy)
     {
         Model_Checking::Data* tran = Model_Checking::instance().get(i);
@@ -668,6 +669,7 @@ int TransactionListCtrl::OnPaste(Model_Checking::Data* tran)
     if (!useOriginalDate) copy->TRANSDATE = wxDateTime::Now().FormatISODate();
     if (Model_Checking::type(copy->TRANSCODE) != Model_Checking::TRANSFER) copy->ACCOUNTID = m_cp->m_AccountID;
     int transactionID = Model_Checking::instance().save(copy);
+    m_pasted_id.push_back(transactionID);   // add the newly pasted transaction
 
     Model_Splittransaction::Cache copy_split;
     for (const auto& split_item : Model_Checking::splittransaction(tran))
@@ -957,8 +959,15 @@ void TransactionListCtrl::OnSetUserColour(wxCommandEvent& event)
 void TransactionListCtrl::refreshVisualList(bool filter)
 {
     wxLogDebug("refreshVisualList: %i selected, filter: %d", GetSelectedItemCount(), filter);
-    FindSelectedTransactions();
 
+    FindSelectedTransactions();
+    // if we have freshly pasted transactions then add them in and then empty the list
+    if (!m_pasted_id.empty())
+    {
+        m_selected_id.insert(std::end(m_selected_id), std::begin(m_pasted_id), std::end(m_pasted_id));
+        m_pasted_id.clear();
+    }
+    
     m_today = wxDateTime::Today().FormatISODate();
     this->SetEvtHandlerEnabled(false);
     Hide();
