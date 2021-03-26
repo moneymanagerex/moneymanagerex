@@ -2322,9 +2322,8 @@ void mmGUIFrame::refreshPanelData()
         break;
     case mmID_REPORTS:
         if (activeReport_) {
-            wxSharedPtr<mmReportsPanel> rp;
-            rp = dynamic_cast<mmReportsPanel*>(panelCurrent_);
-            if (rp) createReportsPage(rp.get()->getPrintableBase(), false);
+            mmReportsPanel* rp = dynamic_cast<mmReportsPanel*>(panelCurrent_);
+            if (rp) createReportsPage(rp->getPrintableBase(), false);
         }
         break;
     default:
