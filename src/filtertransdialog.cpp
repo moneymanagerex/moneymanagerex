@@ -834,7 +834,6 @@ const wxString mmFilterTransactionsDialog::getDescriptionToolTip()
 
 void mmFilterTransactionsDialog::getDescription(mmHTMLBuilder &hb)
 {
-    hb.addHorizontalLine();
     hb.addHeader(3, _("Filtering Details: "));
     // Extract the parameters from the transaction dialog and add them to the report.
     wxString filterDetails = to_json(true);

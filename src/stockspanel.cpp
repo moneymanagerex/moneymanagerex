@@ -809,6 +809,7 @@ void mmStocksPanel::OnRefreshQuotes(wxCommandEvent& WXUNUSED(event))
         stock_details_short_->SetLabelText(wxString::Format(_("Last updated %s"), strLastUpdate_));
         wxMessageDialog msgDlg(this, sError, header);
         msgDlg.ShowModal();
+        refresh_button_->SetBitmapLabel(mmBitmap(png::LED_GREEN));
     }
     else
     {
