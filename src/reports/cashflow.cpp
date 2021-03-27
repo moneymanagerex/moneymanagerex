@@ -216,36 +216,33 @@ wxString mmReportCashFlow::getHTMLText_i()
     hb.DisplayFooter(getAccountNames());
 
     GraphData gd;
-    if (getChartSelection() == 0)
+    GraphSeries gs;
+
+    for (const auto& entry : forecastVector)
     {
-        GraphSeries gs;
+        wxDate d;
+        double amount = entry.amount + tInitialBalance;
+        d.ParseISODate(entry.label);
+        const wxString label = mmGetDateForDisplay(d.FormatISODate());
+        gs.values.push_back(amount);
+        gd.labels.push_back(label);
+    }
+    gd.series.push_back(gs);
 
-        for (const auto& entry : forecastVector)
+    if (getChartSelection() == 0 && !gd.series.empty())
+    {
+        hb.addDivContainer("shadow");
         {
-            wxDate d;
-            double amount = entry.amount + tInitialBalance;
-            d.ParseISODate(entry.label);
-            const wxString label = mmGetDateForDisplay(d.FormatISODate());
-            gs.values.push_back(amount);
-            gd.labels.push_back(label);
+            gd.type = GraphData::LINE_DATETIME;
+            hb.addChart(gd);
         }
-        gd.series.push_back(gs);
-
-        if (!gd.series.empty())
-        {
-            hb.addDivContainer("shadow"); 
-            {
-                gd.type = GraphData::LINE_DATETIME;
-                hb.addChart(gd);
-            }
-            hb.endDiv();
-        }
+        hb.endDiv();
     }
 
     hb.addDivContainer("shadow");
-    { 
+    {
         hb.startTable();
-        {  
+        {
             hb.startThead();
             {
                 hb.startTableRow();
@@ -293,13 +290,13 @@ wxString mmReportCashFlow::getHTMLText_i()
         }
         hb.endTable();
     }
-    hb.endDiv(); 
+    hb.endDiv();
 
     hb.end();
 
     wxLogDebug("======= mmReportCashFlow:getHTMLText =======");
-    wxLogDebug("%s", hb.getHTMLText());    
-    
+    wxLogDebug("%s", hb.getHTMLText());
+
     return hb.getHTMLText();
 }
 
