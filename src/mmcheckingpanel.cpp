@@ -585,8 +585,14 @@ void mmCheckingPanel::initFilterSettings()
     case  MENU_VIEW_STATEMENTDATE:
         if (Model_Account::BoolOf(m_account->STATEMENTLOCKED))
         {
-            date_range = new mmSpecifiedRange(Model_Account::DateOf(m_account->STATEMENTDATE)
-                .Add(wxDateSpan::Day()), wxDateTime::Today());
+            date_range = new mmSpecifiedRange(
+                Model_Account::DateOf(m_account->STATEMENTDATE).Add(wxDateSpan::Day())
+                , wxDateTime::Today()
+            );
+
+            if (!Option::instance().getIgnoreFutureTransactions())
+                date_range->set_end_date(date_range->future_date());
+
             label = mmGetDateForDisplay(date_range->start_date().FormatISODate());
         }
         break;

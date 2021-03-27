@@ -35,12 +35,15 @@ public:
     void destroy();
     const virtual wxDateTime start_date() const;
     const virtual wxDateTime end_date() const;
+    const wxDateTime future_date() const;
     const virtual wxDateTime today() const;
     virtual bool is_with_date() const;
     const virtual wxString title() const;
     const virtual wxString local_title() const;
     void virtual start_date(wxDateTime& start_date);
     void virtual end_date(wxDateTime& end_date);
+    void set_end_date(wxDateTime v);
+
 };
 
 class mmCurrentMonth: public mmDateRange
@@ -148,10 +151,13 @@ public:
 
 inline const wxDateTime mmDateRange::start_date() const { return this->start_date_; }
 inline const wxDateTime mmDateRange::end_date() const { return this->end_date_; }
+inline const wxDateTime mmDateRange::future_date() const { return this->future_; }
 inline const wxDateTime mmDateRange::today() const { return this->today_; }
 inline bool mmDateRange::is_with_date() const { return true; }
 inline const wxString mmDateRange::title() const { return title_; }
 inline void mmDateRange::start_date(wxDateTime& start_date) { this->start_date_ = start_date; }
 inline void mmDateRange::end_date(wxDateTime& end_date) { this->end_date_ = end_date; }
+inline void mmDateRange::set_end_date(wxDateTime v) { end_date_ = v; }
+
 
 #endif // MM_EX_DATE_RANGE_H_
