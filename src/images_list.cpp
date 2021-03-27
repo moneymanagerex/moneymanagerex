@@ -150,9 +150,9 @@ static const std::map<std::string, std::pair<int, std::uint32_t>> iconName2enum 
 static bool iconsLoaded = false;
 
 const std::vector<std::pair<int, int> > sizes = { {0, 16}, {1, 24}, {2, 32}, {3, 48} };
-static std::unique_ptr<wxBitmap> programIcons[4][MAX_PNG];
+static wxSharedPtr<wxBitmap> programIcons[4][MAX_PNG];
 
-static std::unique_ptr<wxArrayString> themes;
+static wxSharedPtr<wxArrayString> themes;
 static wxArrayString* filesInVFS;
 
 static const std::map<int, wxBitmap> navtree_images()
@@ -280,7 +280,7 @@ bool buildBitmapsFromSVG(wxString themeDir, wxString myTheme)
             std::string fileName = std::string(fileEntry.mb_str());
 
             if (wxNOT_FOUND == themes->Index(thisTheme)) // Add user theme if not in the existing list
-                    themes->Add(thisTheme); 
+                themes->Add(thisTheme);
 
             if (thisTheme.Cmp(myTheme) || fileEntryName.IsDir())
                 continue;   // We can skip if it's not our theme
@@ -344,12 +344,13 @@ bool buildBitmapsFromSVG(wxString themeDir, wxString myTheme)
                         , fileName, thisTheme), _("Warning"), wxOK | wxICON_WARNING);
                     continue;
                 }
-                programIcons[i.first][svgEnum].reset(CreateBitmapFromRGBA(bitmap.data(), i.second));
+                programIcons[i.first][svgEnum] = CreateBitmapFromRGBA(bitmap.data(), i.second);
             }
 
         }
         cont = directory.GetNext(&filename);
     }
+    themes.get()->Sort();
     return (themeMatched);
 }
 
@@ -407,7 +408,7 @@ const wxBitmap mmBitmap(int ref)
     // Load icons on first use
     if (!iconsLoaded) 
     { 
-        themes.reset(new wxArrayString());
+        themes = new wxArrayString();
         bool myThemeFound;
         filesInVFS = new wxArrayString();
         myThemeFound = buildBitmapsFromSVG(mmex::getPathResource(mmex::THEMESDIR), Model_Setting::instance().Theme());

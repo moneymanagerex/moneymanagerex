@@ -421,7 +421,7 @@ void mmNewAcctDialog::OnImageButton(wxCommandEvent& /*event*/)
     wxCommandEvent ev(wxEVT_COMMAND_MENU_SELECTED, wxID_ANY);
     ev.SetEventObject(this);
 
-    std::unique_ptr<wxMenu> mainMenu(new wxMenu);
+    wxSharedPtr<wxMenu> mainMenu(new wxMenu);
     wxMenuItem* menuItem = new wxMenuItem(mainMenu.get(), wxID_HIGHEST + acc_img::ACC_ICON_MONEY - 1, _("Default Image"));
 #ifdef __WXMSW__    // Avoid transparancy black background issue
     menuItem->SetBackgroundColour(wxColour(* wxWHITE));

@@ -45,7 +45,7 @@ public:
     void OnListItemActivated(wxListEvent& event);
 
 private:
-    std::unique_ptr<wxListItemAttr> attr3_; // style3
+    wxSharedPtr<wxListItemAttr> attr3_; // style3
     mmBudgetingPanel* cp_;
     long selectedIndex_;
 };
@@ -109,7 +109,7 @@ private:
     wxSharedPtr<budgetingListCtrl> listCtrlBudget_;
     wxString currentView_;
     int budgetYearID_;
-    std::unique_ptr<wxImageList> m_imageList;
+    wxSharedPtr<wxImageList> m_imageList;
     wxStaticText* budgetReportHeading_;
     wxStaticText* income_estimated_;
     wxStaticText* income_actual_;
