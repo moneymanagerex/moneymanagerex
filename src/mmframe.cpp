@@ -185,17 +185,15 @@ mmGUIFrame::mmGUIFrame(mmGUIApp* app, const wxString& title
     , const wxSize& size)
     : wxFrame(nullptr, wxID_ANY, title, pos, size)
     , m_app(app)
+    , panelCurrent_(nullptr)
+    //, checkingAccountPage_(nullptr)
+    //, budgetingPage_(nullptr)
+    //, homePanel_(nullptr)
     , m_commit_callback_hook(nullptr)
     , m_update_callback_hook(nullptr)
     , gotoAccountID_(-1)
     , gotoTransID_(-1)
-    , checkingAccountPage_(nullptr)
-    , budgetingPage_(nullptr)
-    , billsDepositsPanel_(nullptr)
-    , homePage_(nullptr)
-    , homePanel_(nullptr)
     , activeReport_(false)
-    , panelCurrent_(nullptr)
     , m_nav_tree_ctrl(nullptr)
     , menuBar_(nullptr)
     , toolBar_(nullptr)
@@ -2310,20 +2308,20 @@ void mmGUIFrame::refreshPanelData()
         createHomePage();
         break;
     case mmID_CHECKING:
-        checkingAccountPage_->RefreshList();
+        wxDynamicCast(panelCurrent_, mmCheckingPanel)->RefreshList();
         break;
     case mmID_ASSETS:
         break;
     case mmID_BILLS:
-        billsDepositsPanel_->RefreshList();
+        createBillsDeposits();
         break;
     case mmID_BUDGET:
-        budgetingPage_->RefreshList();
+        wxDynamicCast(panelCurrent_, mmBudgetingPanel)->RefreshList();
         break;
     case mmID_REPORTS:
         if (activeReport_) {
-            mmReportsPanel* rp = dynamic_cast<mmReportsPanel*>(panelCurrent_);
-            if (rp) createReportsPage(rp->getPrintableBase(), false);
+            mmReportsPanel* reportsPanel = wxDynamicCast(panelCurrent_, mmReportsPanel);
+            if (reportsPanel) createReportsPage(reportsPanel->getPrintableBase(), false);
         }
         break;
     default:
@@ -2595,21 +2593,22 @@ void mmGUIFrame::createHomePage()
 
     m_nav_tree_ctrl->SetEvtHandlerEnabled(false);
     int id = panelCurrent_ ? panelCurrent_->GetId() : -1;
+
     /* Update home page details only if it is being displayed */
     if (id == mmID_HOMEPAGE)
     {
-        homePage_->createHtml();
+        mmHomePagePanel* homePage = wxDynamicCast(panelCurrent_, mmHomePagePanel);
+        homePage->createHtml();
     }
     else
     {
         windowsFreezeThaw(homePanel_);
         wxSizer *sizer = cleanupHomePanel();
-        homePage_ = new mmHomePagePanel(homePanel_
+        panelCurrent_ = new mmHomePagePanel(homePanel_
             , this, mmID_HOMEPAGE
             , wxDefaultPosition, wxDefaultSize
             , wxNO_BORDER | wxTAB_TRAVERSAL
         );
-        panelCurrent_ = homePage_;
         sizer->Add(panelCurrent_, 1, wxGROW | wxALL, 1);
         homePanel_->Layout();
         windowsFreezeThaw(homePanel_);
@@ -2675,14 +2674,14 @@ void mmGUIFrame::createBillsDeposits()
 
     if (panelCurrent_->GetId() == mmID_BILLS)
     {
+        mmBillsDepositsPanel* billsDepositsPanel_ = wxDynamicCast(panelCurrent_, mmBillsDepositsPanel);
         billsDepositsPanel_->RefreshList();
     }
     else
     {
         wxSizer *sizer = cleanupHomePanel();
-        billsDepositsPanel_ = new mmBillsDepositsPanel(homePanel_, mmID_BILLS
+        panelCurrent_ = new mmBillsDepositsPanel(homePanel_, mmID_BILLS
             , wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
-        panelCurrent_ = billsDepositsPanel_;
 
         sizer->Add(panelCurrent_, 1, wxGROW | wxALL, 1);
 
@@ -2712,15 +2711,15 @@ void mmGUIFrame::createBudgetingPage(int budgetYearID)
     m_nav_tree_ctrl->SetEvtHandlerEnabled(false);
     if (panelCurrent_->GetId() == mmID_BUDGET)
     {
-        budgetingPage_->DisplayBudgetingDetails(budgetYearID);
+        mmBudgetingPanel* budgetingPage = wxDynamicCast(panelCurrent_, mmBudgetingPanel);
+        budgetingPage->DisplayBudgetingDetails(budgetYearID);
     }
     else
     {
         windowsFreezeThaw(homePanel_);
         wxSizer *sizer = cleanupHomePanel();
 
-        budgetingPage_ = new mmBudgetingPanel(budgetYearID, homePanel_, this, mmID_BUDGET);
-        panelCurrent_ = budgetingPage_;
+        panelCurrent_ = new mmBudgetingPanel(budgetYearID, homePanel_, this, mmID_BUDGET);
         sizer->Add(panelCurrent_, 1, wxGROW | wxALL, 1);
         homePanel_->Layout();
         windowsFreezeThaw(homePanel_);
@@ -2752,8 +2751,7 @@ void mmGUIFrame::createAllTransactionsPage()
  
     windowsFreezeThaw(homePanel_);
     wxSizer *sizer = cleanupHomePanel();
-    allTransactionsPage_ = new mmCheckingPanel(homePanel_, this, -1, mmID_ALLTRANSACTIONS);
-    panelCurrent_ = allTransactionsPage_;
+    panelCurrent_ = new mmCheckingPanel(homePanel_, this, -1, mmID_ALLTRANSACTIONS);
     sizer->Add(panelCurrent_, 1, wxGROW | wxALL, 1);
     homePanel_->Layout();
     windowsFreezeThaw(homePanel_);
@@ -2782,14 +2780,14 @@ void mmGUIFrame::createCheckingAccountPage(int accountID)
     m_nav_tree_ctrl->SetEvtHandlerEnabled(false);
     if (panelCurrent_->GetId() == mmID_CHECKING)
     {
-        checkingAccountPage_->DisplayAccountDetails(accountID);
+        mmCheckingPanel* checkingAccountPage = wxDynamicCast(panelCurrent_, mmCheckingPanel);
+        checkingAccountPage->DisplayAccountDetails(accountID);
     }
     else
     {
         windowsFreezeThaw(homePanel_);
         wxSizer *sizer = cleanupHomePanel();
-        checkingAccountPage_ = new mmCheckingPanel(homePanel_, this, accountID, mmID_CHECKING);
-        panelCurrent_ = checkingAccountPage_;
+        panelCurrent_ = new mmCheckingPanel(homePanel_, this, accountID, mmID_CHECKING);
         sizer->Add(panelCurrent_, 1, wxGROW | wxALL, 1);
         homePanel_->Layout();
         windowsFreezeThaw(homePanel_);
@@ -2804,7 +2802,7 @@ void mmGUIFrame::createCheckingAccountPage(int accountID)
     menuPrintingEnable(true);
     if (gotoTransID_ > 0)
     {
-        checkingAccountPage_->SetSelectedTransaction(gotoTransID_);
+        wxDynamicCast(panelCurrent_, mmCheckingPanel)->SetSelectedTransaction(gotoTransID_);
     }
     m_nav_tree_ctrl->SetEvtHandlerEnabled(true);
 }
@@ -3153,11 +3151,6 @@ wxSizer* mmGUIFrame::cleanupHomePanel(bool new_sizer)
 {
     wxASSERT(homePanel_);
 
-    if (panelCurrent_)
-    {
-        delete panelCurrent_;
-        panelCurrent_ = nullptr;
-    }
     homePanel_->DestroyChildren();
     homePanel_->SetSizer(new_sizer ? new wxBoxSizer(wxHORIZONTAL) : nullptr);
 

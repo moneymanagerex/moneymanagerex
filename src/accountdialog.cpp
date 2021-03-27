@@ -421,8 +421,8 @@ void mmNewAcctDialog::OnImageButton(wxCommandEvent& /*event*/)
     wxCommandEvent ev(wxEVT_COMMAND_MENU_SELECTED, wxID_ANY);
     ev.SetEventObject(this);
 
-    wxMenu* mainMenu = new wxMenu;
-    wxMenuItem* menuItem = new wxMenuItem(mainMenu, wxID_HIGHEST + acc_img::ACC_ICON_MONEY - 1, _("Default Image"));
+    std::unique_ptr<wxMenu> mainMenu(new wxMenu);
+    wxMenuItem* menuItem = new wxMenuItem(mainMenu.get(), wxID_HIGHEST + acc_img::ACC_ICON_MONEY - 1, _("Default Image"));
 #ifdef __WXMSW__    // Avoid transparancy black background issue
     menuItem->SetBackgroundColour(wxColour(* wxWHITE));
 #endif
@@ -431,14 +431,13 @@ void mmNewAcctDialog::OnImageButton(wxCommandEvent& /*event*/)
 
     for (int i = img::LAST_NAVTREE_PNG; i < acc_img::MAX_ACC_ICON; ++i)
     {
-        menuItem = new wxMenuItem(mainMenu, wxID_HIGHEST + i
+        menuItem = new wxMenuItem(mainMenu.get(), wxID_HIGHEST + i
             , wxString::Format(_("Image #%i"), i - img::LAST_NAVTREE_PNG + 1));
         menuItem->SetBitmap(m_imageList->GetBitmap(i));
         mainMenu->Append(menuItem);
     }
 
-    PopupMenu(mainMenu);
-    delete mainMenu;
+    PopupMenu(mainMenu.get());
 }
 
 void mmNewAcctDialog::OnCustonImage(wxCommandEvent& event)

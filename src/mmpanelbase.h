@@ -43,7 +43,7 @@ public:
     mmListCtrl(wxWindow *parent, wxWindowID winid);
     virtual ~mmListCtrl();
 
-    wxSharedPtr<wxListItemAttr> attr1_, attr2_; // style1, style2
+    std::unique_ptr<wxListItemAttr> attr1_, attr2_; // style1, style2
     long m_selected_row;
     int m_selected_col;
     bool m_asc;
