@@ -119,12 +119,17 @@ Greg Chapman
 ## Sponsors
 ### 2021
 Michael Ellis
+Renato
+Wiesław Stawiszyński
 Michel SERIN
 Thierry PAPINOT
+Jiří Vyskočil
 Roger Spindler
 Jean-michel LOUISET
+Hermann Fessler
 Luisa Guglielmetti
 Brian Crow
+José Moya Iglesias
 
 ### 2020
 Renato
