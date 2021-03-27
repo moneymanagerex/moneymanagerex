@@ -45,7 +45,7 @@ void  mmReportCategoryExpenses::RefreshData()
     std::map<int, std::map<int, std::map<int, double> > > categoryStats;
     Model_Category::instance().getCategoryStats(categoryStats
         , accountArray_
-        , const_cast<mmDateRange*>(m_date_range.get())
+        , const_cast<mmDateRange*>(m_date_range)
         , Option::instance().getIgnoreFutureTransactions()
         , false);
 
@@ -260,12 +260,13 @@ mmReportCategoryExpensesCategories::mmReportCategoryExpensesCategories()
 mmReportCategoryOverTimePerformance::mmReportCategoryOverTimePerformance()
     : mmPrintableBase(wxTRANSLATE("Category Income/Expenses"))
 {
-    m_date_range.reset(new mmLast12Months());
+    m_date_range = new mmLast12Months();
     setReportParameters(Reports::CategoryOverTimePerformance);
 }
 //----------------------------------------------------------------------------
 mmReportCategoryOverTimePerformance::~mmReportCategoryOverTimePerformance()
 {
+    delete m_date_range;
 }
 
 wxString mmReportCategoryOverTimePerformance::getHTMLText()
@@ -278,14 +279,13 @@ wxString mmReportCategoryOverTimePerformance::getHTMLText()
     sd.Add(wxDateSpan::Months(m_date_selection));
     ed.Add(wxDateSpan::Months(m_date_selection));
     ed = ed.GetLastMonthDay();
-    std::unique_ptr<mmDateRange> date_range(new mmSpecifiedRange(sd, ed));
-    wxLogDebug("%s %s", date_range->start_date().FormatISODate(), date_range->end_date().FormatISODate());
+    mmDateRange* date_range = new mmSpecifiedRange(sd, ed);
 
     //Get statistic
     std::map<int, std::map<int, std::map<int, double> > > categoryStats;
     Model_Category::instance().getCategoryStats(categoryStats
         , accountArray_
-        , date_range.get()
+        , date_range
         , Option::instance().getIgnoreFutureTransactions());
 
     //Init totals
@@ -300,11 +300,10 @@ wxString mmReportCategoryOverTimePerformance::getHTMLText()
         int categID = category.CATEGID;
         line.name = wxGetTranslation(category.CATEGNAME);
         line.overall = 0;
-        unsigned int month = 0;
+        unsigned month = 0;
         for (const auto &i : categoryStats[categID][-1])
         {
             double value = i.second;
-            wxASSERT(month < MONTHS_IN_PERIOD);
             line.period[month++] = value;
             line.overall += value;
             totals[value < 0][i.first] += value;
@@ -322,7 +321,6 @@ wxString mmReportCategoryOverTimePerformance::getHTMLText()
             for (const auto &i : categoryStats[categID][subcategID])
             {
                 double value = i.second;
-                wxASSERT(month < MONTHS_IN_PERIOD);
                 line.period[month++] = value;
                 line.overall += value;
                 totals[value < 0][i.first] += value;
@@ -341,6 +339,7 @@ wxString mmReportCategoryOverTimePerformance::getHTMLText()
     hb.DisplayFooter(getAccountNames());
 
     const wxDateTime start_date = date_range->start_date();
+    delete date_range;
 
     //Chart
     wxArrayString labels;
@@ -352,6 +351,7 @@ wxString mmReportCategoryOverTimePerformance::getHTMLText()
         for (int i = 0; i < MONTHS_IN_PERIOD; i++)
         {
             wxDateTime d = start_date.Add(wxDateSpan::Months(i));
+
             double val_negative = 0;
             double val_positive = 0;
             for (const auto& entry : data)
@@ -377,7 +377,7 @@ wxString mmReportCategoryOverTimePerformance::getHTMLText()
         if (!gd.series.empty())
         {
             hb.addDivContainer("shadow"); 
-            {
+            {                 
                 gd.type = GraphData::BAR;
                 gd.colors = { wxColour(80, 179, 129), wxColour(247, 94, 94) };  // Green, Red
                 hb.addChart(gd);
@@ -420,9 +420,8 @@ wxString mmReportCategoryOverTimePerformance::getHTMLText()
                         hb.startTableRow();
                         {
                             hb.addTableCell(entry.name);
-                            for (int i = 0; i < MONTHS_IN_PERIOD; i++) {
+                            for (int i = 0; i < MONTHS_IN_PERIOD; i++)
                                 hb.addMoneyCell(entry.period[i]);
-                            }
                             hb.addMoneyCell(entry.overall);
                         }
                         hb.endTableRow();
@@ -460,11 +459,11 @@ wxString mmReportCategoryOverTimePerformance::getHTMLText()
         hb.endTable();
     }
     hb.endDiv();
-
+  
     hb.end();
 
     wxLogDebug("======= mmReportCategoryOverTimePerformance:getHTMLText =======");
     wxLogDebug("%s", hb.getHTMLText()); 
-
+    
     return hb.getHTMLText();
 }

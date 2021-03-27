@@ -412,7 +412,7 @@ void mmWebAppDialog::OnItemRightClick(wxDataViewEvent& event)
     wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, wxID_ANY);
     evt.SetEventObject(this);
 
-    std::unique_ptr<wxMenu> mainMenu(new wxMenu);
+    wxSharedPtr<wxMenu> mainMenu(new wxMenu);
     mainMenu->Append(new wxMenuItem(mainMenu.get(), MENU_OPEN_ATTACHMENT, _("Open Attachment")));
     mainMenu->Append(new wxMenuItem(mainMenu.get(), MENU_IMPORT_WEBTRAN, _("Import")));
     mainMenu->Append(new wxMenuItem(mainMenu.get(), MENU_IMPORTOPEN_WEBTRAN, _("Import and open")));

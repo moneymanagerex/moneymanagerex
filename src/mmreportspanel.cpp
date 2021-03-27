@@ -58,6 +58,7 @@ mmReportsPanel::mmReportsPanel(
     , m_shift(0)
 {
     m_all_date_ranges.push_back(new mmCurrentMonth());
+    m_all_date_ranges.push_back(new mmCurrentMonthToDate());
     m_all_date_ranges.push_back(new mmLastMonth());
     m_all_date_ranges.push_back(new mmLast30Days());
     m_all_date_ranges.push_back(new mmLast90Days());

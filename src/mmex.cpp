@@ -332,8 +332,7 @@ bool OnInitImpl(mmGUIApp* app)
     app->setGUILanguage(Option::instance().getLanguageID());
 
     // Get a 'sensible' location on the primary display in case we can't fit it into the window
-    wxSharedPtr<wxDisplay> display;
-    display = new wxDisplay(static_cast<unsigned int>(0));
+    wxSharedPtr<wxDisplay> display(new wxDisplay(static_cast<unsigned int>(0)));
     wxRect rect = display->GetClientArea();
     int defValX = rect.GetX() + 50;
     int defValY = rect.GetY() + 50;

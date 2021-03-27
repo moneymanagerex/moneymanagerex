@@ -372,9 +372,11 @@ const wxString htmlWidgetBillsAndDeposits::getHTMLText()
 const wxString htmlWidgetIncomeVsExpenses::getHTMLText()
 {
     bool ignoreFuture = Option::instance().getIgnoreFutureTransactions();
-    std::unique_ptr<mmDateRange> date_range(new mmCurrentMonth);
+    wxSharedPtr<mmDateRange> date_range;
     if (ignoreFuture)
-        date_range->set_end_date(date_range->today());
+        date_range = new mmCurrentMonthToDate;
+    else
+        date_range = new mmCurrentMonth;
 
     wxLogDebug("%s - %s", date_range->start_date().FormatISODate(), date_range->end_date().FormatISODate());
 
@@ -474,9 +476,11 @@ const wxString htmlWidgetStatistics::getHTMLText()
     json_writer.Key("NAME");
     json_writer.String(_("Transaction Statistics").utf8_str());
 
-    std::unique_ptr<mmDateRange> date_range(new mmCurrentMonth);
+    wxSharedPtr<mmDateRange> date_range;
     if (Option::instance().getIgnoreFutureTransactions())
-        date_range->set_end_date(date_range->today());
+        date_range = new mmCurrentMonthToDate;
+    else
+        date_range = new mmCurrentMonth;
 
     Model_Checking::Data_Set all_trans;
     if (Option::instance().getIgnoreFutureTransactions())
@@ -588,10 +592,11 @@ htmlWidgetAccounts::htmlWidgetAccounts()
 void htmlWidgetAccounts::get_account_stats()
 {
 
-    bool ignoreFuture = Option::instance().getIgnoreFutureTransactions();
-    std::unique_ptr<mmDateRange> date_range(new mmCurrentMonth);
-    if (ignoreFuture)
-        date_range->set_end_date(date_range->today());
+    wxSharedPtr<mmDateRange> date_range;
+    if (Option::instance().getIgnoreFutureTransactions())
+        date_range = new mmCurrentMonthToDate;
+    else
+        date_range = new mmCurrentMonth;
 
     Model_Checking::Data_Set all_trans;
     if (Option::instance().getIgnoreFutureTransactions())
