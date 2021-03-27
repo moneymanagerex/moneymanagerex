@@ -72,15 +72,6 @@ mmToday::mmToday()
     this->title_ = wxTRANSLATE("Today");
 }
 
-mmCurrentMonthToDate::mmCurrentMonthToDate()
-: mmDateRange()
-{
-    this->start_date_ = today_;
-    this->start_date_.SetDay(1);
-    // no change to end_date_
-    this->title_ = wxTRANSLATE("Current Month to Date");
-}
-
 mmLastMonth::mmLastMonth()
 : mmDateRange()
 {

@@ -228,7 +228,7 @@ mmPanelBase::~mmPanelBase()
 
 wxString mmPanelBase::BuildPage() const
 {
-    mmReportsPanel* rp = wxStaticCast(this, mmReportsPanel);
+    mmReportsPanel* rp = wxDynamicCast(this, mmReportsPanel);
     return rp ? rp->getPrintableBase()->getHTMLText() : "TBD";
 }
 

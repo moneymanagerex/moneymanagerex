@@ -39,6 +39,7 @@ class mmPanelBase;
 class mmHomePagePanel;
 class mmTreeItemData;
 class mmCheckingPanel;
+class mmReportsPanel;
 class mmStockPanel;
 class mmBudgetingPanel;
 class mmBillsDepositsPanel;
@@ -100,6 +101,7 @@ private:
 
     /* controls */
     mmPanelBase* panelCurrent_;
+
     wxPanel* homePanel_;
     wxTreeCtrl* m_nav_tree_ctrl;
     wxMenuBar *menuBar_;
@@ -131,18 +133,13 @@ private:
     void createHelpPage();
     void refreshPanelData();
 
-    mmHomePagePanel* homePage_;
     void createHomePage();
-    mmCheckingPanel* checkingAccountPage_;
     void createCheckingAccountPage(int accountID);
-    mmCheckingPanel* allTransactionsPage_;
     void createAllTransactionsPage();
     void createStocksAccountPage(int accountID);
 private:
-    mmBillsDepositsPanel* billsDepositsPanel_;
     void createBillsDeposits();
 
-    mmBudgetingPanel* budgetingPage_;
     void createBudgetingPage(int budgetYearID);
 
     void createControls();
@@ -249,7 +246,7 @@ private:
 
     /** Sets the database to the new database selected by the user */
     void SetDatabaseFile(const wxString& dbFileName, bool newDatabase = false);
-    
+
     // Required to prevent memory leaks.
     CommitCallbackHook* m_commit_callback_hook;
     UpdateCallbackHook* m_update_callback_hook;
