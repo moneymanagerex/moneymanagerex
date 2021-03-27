@@ -35,7 +35,7 @@ public:
     void destroy();
     const virtual wxDateTime start_date() const;
     const virtual wxDateTime end_date() const;
-    void mmDateRange::set_end_date(wxDateTime v);
+    void set_end_date(wxDateTime v);
     const virtual wxDateTime today() const;
     virtual bool is_with_date() const;
     const virtual wxString title() const;
