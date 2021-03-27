@@ -37,7 +37,7 @@ public:
     virtual const wxString getReportTitle(bool translate = true) const;
     virtual int report_parameters();
     int getReportId() { return m_id; }
-    void date_range(const mmDateRange* date_range, int selection);
+    void date_range(mmDateRange* date_range, int selection);
     void initial_report(bool initial);
 
     int getDateSelection() const;
@@ -94,7 +94,7 @@ protected:
     int m_chart_selection;
     int m_date_selection;
     wxString m_title;
-    const mmDateRange* m_date_range;
+    std::unique_ptr<mmDateRange> m_date_range;
     const wxArrayString* accountArray_;
     bool m_only_active;
 

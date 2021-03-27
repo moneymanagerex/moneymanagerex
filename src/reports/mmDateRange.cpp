@@ -115,7 +115,7 @@ mmLast3Months::mmLast3Months()
 mmLast12Months::mmLast12Months()
 : mmDateRange()
 {
-    this->end_date_ = ignoreFuture_ ? (this->start_date_).GetLastMonthDay() : end_date_;
+    this->end_date_ = (this->start_date_).GetLastMonthDay();
     this->start_date_ = today_;
     this->start_date_.SetDay(1);
     this->start_date_
@@ -213,7 +213,7 @@ mmSpecifiedRange::mmSpecifiedRange(const wxDateTime& start, const wxDateTime& en
 {
     this->title_ = wxTRANSLATE("Custom");
     this->start_date_ = start;
-    this->end_date_ = ignoreFuture_ ? end : end_date_;
+    this->end_date_ = end;
 }
 
 mmLast365Days::mmLast365Days() : mmDateRange()

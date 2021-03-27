@@ -165,9 +165,9 @@ void mmPrintableBase::restoreReportSettings()
     }
 }
 
-void mmPrintableBase::date_range(const mmDateRange* date_range, int selection)
+void mmPrintableBase::date_range(mmDateRange* date_range, int selection)
 { 
-    this->m_date_range = date_range; 
+    this->m_date_range.reset(date_range);
     this->m_date_selection = selection;
 }
 
