@@ -951,6 +951,7 @@ void TransactionListCtrl::OnSetUserColour(wxCommandEvent& event)
         }
     }
     Model_Checking::instance().ReleaseSavepoint();
+    m_topItemIndex = GetTopItem() + GetCountPerPage() - 1;
 
     refreshVisualList();
 }
