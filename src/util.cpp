@@ -1141,15 +1141,13 @@ const wxString getVFname4print(const wxString& name, const wxString& data)
 
     int fid = 0;
     wxFileSystem fsys;
-    wxFSFile *f0 = fsys.OpenFile(wxString::Format("memory:%s0.htm", name));
-    if (f0) {
-        delete f0;
-        wxMemoryFSHandler::RemoveFile(wxString::Format("%s0.htm", name));
+    wxSharedPtr<wxFSFile> f (fsys.OpenFile(wxString::Format("memory:%s%i.htm", name, fid)));
+    if (f) {
+        wxMemoryFSHandler::RemoveFile(wxString::Format("%s%i.htm", name, fid));
         fid = 1;
     }
-    wxFSFile *f1 = fsys.OpenFile(wxString::Format("memory:%s1.htm", name));
-    if (f1) {
-        delete f1;
+    f.reset(fsys.OpenFile(wxString::Format("memory:%s1.htm", name)));
+    if (f) {
         wxMemoryFSHandler::RemoveFile(wxString::Format("%s1.htm", name));
         fid = 0;
     }
