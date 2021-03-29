@@ -55,6 +55,7 @@
 #include "relocatepayeedialog.h"
 #include "recentfiles.h"
 #include "stockspanel.h"
+#include "themes.h"
 #include "transdialog.h"
 #include "util.h"
 #include "webapp.h"
@@ -126,6 +127,7 @@ EVT_MENU(MENU_RATES, mmGUIFrame::OnRates)
 EVT_MENU(MENU_TRANSACTIONREPORT, mmGUIFrame::OnTransactionReport)
 EVT_MENU(wxID_BROWSE, mmGUIFrame::OnCustomFieldsManager)
 EVT_MENU(wxID_VIEW_LIST, mmGUIFrame::OnGeneralReportManager)
+EVT_MENU(MENU_THEME_MANAGER, mmGUIFrame::OnThemeManager)
 EVT_MENU(MENU_TREEPOPUP_LAUNCHWEBSITE, mmGUIFrame::OnLaunchAccountWebsite)
 EVT_MENU(MENU_TREEPOPUP_ACCOUNTATTACHMENTS, mmGUIFrame::OnAccountAttachments)
 EVT_MENU(MENU_VIEW_TOOLBAR, mmGUIFrame::OnViewToolbar)
@@ -1498,6 +1500,12 @@ void mmGUIFrame::createMenu()
 
     menuTools->AppendSeparator();
 
+    wxMenuItem* menuItemThemes = new wxMenuItem(menuTools, MENU_THEME_MANAGER
+        , _("T&heme Manager"), _("Theme Manager"));
+    menuTools->Append(menuItemThemes);
+    
+    menuTools->AppendSeparator();
+
     wxMenuItem* menuItemTransactions = new wxMenuItem(menuTools, MENU_TRANSACTIONREPORT
         , _("Transaction Report &Filter..."), _("Transaction Report Filter"));
     menuTools->Append(menuItemTransactions);
@@ -2408,6 +2416,12 @@ void mmGUIFrame::OnCustomFieldsManager(wxCommandEvent& WXUNUSED(event))
     mmCustomFieldListDialog dlg(this, ref_type);
     dlg.ShowModal();
     createHomePage();
+}
+
+void mmGUIFrame::OnThemeManager(wxCommandEvent& /*event*/)
+{
+    mmThemesDialog dlg(this, _("Theme Manager"));
+    dlg.ShowModal();
 }
 
 void mmGUIFrame::OnGeneralReportManager(wxCommandEvent& /*event*/)

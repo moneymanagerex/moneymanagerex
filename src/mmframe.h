@@ -212,6 +212,7 @@ private:
     void OnTransactionReport(wxCommandEvent& event);
     void OnCustomFieldsManager(wxCommandEvent& event);
     void OnGeneralReportManager(wxCommandEvent& event);
+    void OnThemeManager(wxCommandEvent& event);
 
     void OnHelp(wxCommandEvent& event);
     void OnShowAppStartDialog(wxCommandEvent& WXUNUSED(event));
@@ -312,6 +313,7 @@ private:
         MENU_CATEGORY_RELOCATION,
         MENU_PAYEE_RELOCATION,
         MENU_RELOCATION,
+        MENU_THEME_MANAGER,
         MENU_CONVERT_ENC_DB,
         MENU_CHANGE_ENCRYPT_PASSWORD,
         MENU_DB_VACUUM,
