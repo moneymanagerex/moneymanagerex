@@ -21,6 +21,7 @@
 
 #include "defs.h"
 #include <wx/bitmap.h>
+#include <vector>
 
 class mmThemesDialog : public wxDialog
 {
