@@ -73,7 +73,7 @@ mmCurrencyDialog::mmCurrencyDialog(wxWindow* parent, const Model_Currency::Data 
     {
         m_currency = Model_Currency::instance().create();
         m_currency->BASECONVRATE = 1;
-        m_currency->SCALE = 2;
+        m_currency->SCALE = 100;
     }
 
     Create(parent);
