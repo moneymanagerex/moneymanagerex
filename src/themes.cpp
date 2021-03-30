@@ -16,15 +16,16 @@ Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#include "themes.h"
-#include "images_list.h"
 #include "constants.h"
+#include "images_list.h"
 #include "option.h"
 #include "paths.h"
+#include "themes.h"
 #include "util.h"
-#include <wx/zipstrm.h>
-#include <wx/mstream.h>
 #include "model/Model_Setting.h"
+#include <vector>
+#include <wx/mstream.h>
+#include <wx/zipstrm.h>
 
 wxIMPLEMENT_DYNAMIC_CLASS(mmThemesDialog, wxDialog);
 

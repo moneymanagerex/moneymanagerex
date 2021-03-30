@@ -1726,7 +1726,11 @@ void mmUnivCSVDialog::parseToken(int index, const wxString& orig_token, tran_hol
 
         mmTrimAmount(token, decimal_, ".").ToCDouble(&amount);
 
+        if (amount <= 0.0)
+            break;
+
         holder.Amount = fabs(amount);
+        holder.Type = Model_Checking::all_type()[Model_Checking::WITHDRAWAL];
         break;
 
     case UNIV_CSV_DEPOSIT:
@@ -1737,6 +1741,9 @@ void mmUnivCSVDialog::parseToken(int index, const wxString& orig_token, tran_hol
             break;
 
         mmTrimAmount(token, decimal_, ".").ToCDouble(&amount);
+
+        if (amount <= 0.0)
+            break;
 
         holder.Amount = fabs(amount);
         holder.Type = Model_Checking::all_type()[Model_Checking::DEPOSIT];
