@@ -47,10 +47,10 @@ const char HTMLPANEL[] = R"(<!DOCTYPE html>
     <link href="memory:master.css" rel="stylesheet" />
 </head>
 <body>
-<h1>%s <a href="%s"><img src="memory::web.png"></a></h1>
+<h1>%s <a href="%s"><img src="%s"></a></h1>
 <h2>%s</h2>
 <p>%s</p>
-<p><img src="memory:themeimage.png" width="300" height="150"></p>
+<p><img src="%s" width="300" height="150"></p>
 </body>
 </html>)";
 
@@ -95,7 +95,7 @@ void mmThemesDialog::addThemes(wxString themeDir, bool isSystem)
 
         wxZipInputStream themeStream(themeZip);
         std::unique_ptr<wxZipEntry> themeEntry;
-        bool metaDataFound = false;
+        int metaDataFound = 0;
         while (themeEntry.reset(themeStream.GetNextEntry()), themeEntry) // != nullptr
         {
             if(!themeZip.CanRead())
@@ -112,7 +112,7 @@ void mmThemesDialog::addThemes(wxString themeDir, bool isSystem)
                 const wxStreamBuffer* buffer = memOut.GetOutputStreamBuffer();
                 std::string metaData(static_cast<char *>(buffer->GetBufferStart()), buffer->GetBufferSize());
                 thisTheme.metaData = metaData;
-                metaDataFound = true;
+                metaDataFound++;
             } else if (fileEntry == "_theme.png")
             {
                 wxLogDebug(">>> PNG found");
@@ -120,10 +120,10 @@ void mmThemesDialog::addThemes(wxString themeDir, bool isSystem)
                 themeStream.Read(memOut);
                 const wxStreamBuffer* buffer = memOut.GetOutputStreamBuffer();
                 thisTheme.bitMap = wxBitmap::NewFromPNGData(buffer->GetBufferStart(), buffer->GetBufferSize());
-                thisTheme.hasBitMap = true;
+                metaDataFound++;
             }
         }
-        if (metaDataFound)
+        if (2 == metaDataFound)
         {
             wxLogDebug("Theme Manager: Found theme [%s]", thisTheme.name);
             m_themes.push_back(thisTheme);
@@ -234,27 +234,31 @@ void mmThemesDialog::RefreshView()
     // url
     j_grab = GetValueByPointerWithDefault(j_doc, "/url", "");
     const wxString& s_url = j_grab.IsString() ? wxString::FromUTF8(j_grab.GetString()) : "";
-
-    if (thisTheme.hasBitMap)
-    {
-        const wxString webImageName = "web.png"; 
-        const wxString themeImageName = "themeimage.png";
-
+    
+    wxString imgUrl, themeImageUrl;
+    const wxString webImageName = "web.png"; 
+    const wxString themeImageName = "themeimage.png";
+    
 #ifndef __WXGTK__
-        if (vfsThemeImageLoaded)
-        {
-            wxMemoryFSHandler::RemoveFile(webImageName);
-            wxMemoryFSHandler::RemoveFile(themeImageName);
-        }
-        wxMemoryFSHandler::AddFile(webImageName, mmBitmap(png::WEB), wxBITMAP_TYPE_PNG);
-        wxMemoryFSHandler::AddFile(themeImageName, thisTheme.bitMap, wxBITMAP_TYPE_PNG);
-        vfsThemeImageLoaded = true;
-#else
-        mmBitmap(png::WEB).SaveFile(mmex::getTempFolder() + webImageName, wxBITMAP_TYPE_PNG);
-        thisTheme.bitMap.SaveFile(mmex::getTempFolder() + themeImageName, wxBITMAP_TYPE_PNG);
-#endif
+    if (vfsThemeImageLoaded)
+    {
+        wxMemoryFSHandler::RemoveFile(webImageName);
+        wxMemoryFSHandler::RemoveFile(themeImageName);
     }
-    wxString myHtml = wxString::Format(HTMLPANEL, s_name, s_url, s_author, s_description);
+    wxMemoryFSHandler::AddFile(webImageName, mmBitmap(png::WEB), wxBITMAP_TYPE_PNG);
+    imgUrl = "memory:" + webImageName;
+    wxMemoryFSHandler::AddFile(themeImageName, thisTheme.bitMap, wxBITMAP_TYPE_PNG);
+    themeImageUrl = "memory:" + themeImageName;
+    vfsThemeImageLoaded = true;
+#else
+    mmBitmap(png::WEB).SaveFile(mmex::getTempFolder() + webImageName, wxBITMAP_TYPE_PNG);
+    imgUrl = "file://" + mmex::getTempFolder() + webImageName;
+    thisTheme.bitMap.SaveFile(mmex::getTempFolder() + themeImageName, wxBITMAP_TYPE_PNG);
+    themeImageUrl = "file://" + mmex::getTempFolder() + themeImageName;
+#endif
+
+    wxString myHtml = wxString::Format(HTMLPANEL, s_name, s_url, imgUrl, s_author
+                        , s_description, themeImageUrl);
     m_themePanel->SetPage(myHtml);
 
     m_deleteButton->Enable(!thisTheme.isChosen && !thisTheme.isSystem);

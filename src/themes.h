@@ -40,7 +40,6 @@ private:
         wxString fullPath;
         bool isSystem;
         bool isChosen;
-        bool hasBitMap;
         wxString metaData;
         wxBitmap bitMap;
     };
