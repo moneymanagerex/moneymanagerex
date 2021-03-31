@@ -25,6 +25,7 @@ Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
 #include "model/Model_Setting.h"
 #include <memory>
 #include <wx/mstream.h>
+#include <wx/fs_mem.h>
 #include <wx/zipstrm.h>
 
 wxIMPLEMENT_DYNAMIC_CLASS(mmThemesDialog, wxDialog);
@@ -35,7 +36,25 @@ wxBEGIN_EVENT_TABLE(mmThemesDialog, wxDialog)
     EVT_BUTTON(ID_DIALOG_THEME_DELETE, mmThemesDialog::OnDelete)
     EVT_BUTTON(wxID_OK, mmThemesDialog::OnOk)
     EVT_LISTBOX(wxID_ANY, mmThemesDialog::OnThemeView)
+    EVT_HTML_LINK_CLICKED(wxID_ANY, mmThemesDialog::OnHtmlLink)
 wxEND_EVENT_TABLE()
+
+const char HTMLPANEL[] = R"(<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta http - equiv="Content-Type" content="text/html" />
+    <link href="memory:master.css" rel="stylesheet" />
+</head>
+<body>
+<h1>%s <a href="%s"><img src="memory::web.png"></a></h1>
+<h2>%s</h2>
+<p>%s</p>
+<p><img src="memory:themeimage.png" width="300" height="150"></p>
+</body>
+</html>)";
+
+bool mmThemesDialog::vfsThemeImageLoaded = false;
 
 mmThemesDialog::ThemeEntry mmThemesDialog::getThemeEntry(wxString name)
 {
@@ -152,18 +171,8 @@ void mmThemesDialog::CreateControls()
 
 	wxBoxSizer* bSizer12 = new wxBoxSizer(wxVERTICAL);
 
-	m_themeNameText = new wxTextCtrl(this, wxID_ANY, "", wxDefaultPosition, wxSize(300, -1), 0);
-	bSizer12->Add(m_themeNameText, 0, wxALL, 3);
-
-	m_themeDescText = new wxTextCtrl( this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxSize(300,100), wxTE_MULTILINE);
-	bSizer12->Add(m_themeDescText, 0, wxALL, 3);
-
-	m_themeAuthorText = new wxTextCtrl( this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxSize( 300,-1 ), 0);
-	bSizer12->Add( m_themeAuthorText, 0, wxALL, 3);
-
-    m_themeBitmap = new wxStaticBitmap( this, wxID_ANY, wxNullBitmap, wxDefaultPosition, wxSize(300,150), 0);
-	m_themeBitmap->SetMinSize( wxSize(300, 150));
-	bSizer12->Add(m_themeBitmap, 0, wxALL, 5);
+    m_themePanel = new wxHtmlWindow(this, wxID_ANY, wxDefaultPosition, wxSize(400, 300));
+    bSizer12->Add(m_themePanel, 0, wxALL, 5);
 
 	bSizer1->Add(bSizer12);
 
@@ -225,15 +234,29 @@ void mmThemesDialog::RefreshView()
     // url
     j_grab = GetValueByPointerWithDefault(j_doc, "/url", "");
     const wxString& s_url = j_grab.IsString() ? wxString::FromUTF8(j_grab.GetString()) : "";
-        
-    m_themeNameText->SetValue(s_name);
-    m_themeDescText->SetValue(s_description);
-    m_themeAuthorText->SetValue(s_author);
+
     if (thisTheme.hasBitMap)
     {
-        m_themeBitmap->SetBitmap(thisTheme.bitMap);
-        m_themeBitmap->Show();
+        const wxString webImageName = "web.png"; 
+        const wxString themeImageName = "themeimage.png";
+
+#ifndef __WXGTK__
+        if (vfsThemeImageLoaded)
+        {
+            wxMemoryFSHandler::RemoveFile(webImageName);
+            wxMemoryFSHandler::RemoveFile(themeImageName);
+        }
+        wxMemoryFSHandler::AddFile(webImageName, mmBitmap(png::WEB), wxBITMAP_TYPE_PNG);
+        wxMemoryFSHandler::AddFile(themeImageName, thisTheme.bitMap, wxBITMAP_TYPE_PNG);
+        vfsThemeImageLoaded = true;
+#else
+        mmBitmap(png::WEB).SaveFile(mmex::getTempFolder() + webImageName, wxBITMAP_TYPE_PNG);
+        thisTheme.bitMap.SaveFile(mmex::getTempFolder() + themeImageName, wxBITMAP_TYPE_PNG);
+#endif
     }
+    wxString myHtml = wxString::Format(HTMLPANEL, s_name, s_url, s_author, s_description);
+    m_themePanel->SetPage(myHtml);
+
     m_deleteButton->Enable(!thisTheme.isChosen && !thisTheme.isSystem);
     m_useButton->Enable(!thisTheme.isChosen);
 }
@@ -321,4 +344,9 @@ void mmThemesDialog::OnUse(wxCommandEvent& event)
 void mmThemesDialog::OnOk(wxCommandEvent& event)
 {
     EndModal(wxID_OK);
+}
+
+void mmThemesDialog::OnHtmlLink(wxHtmlLinkEvent& event)
+{
+    wxLaunchDefaultBrowser(event.GetLinkInfo().GetHref());
 }
