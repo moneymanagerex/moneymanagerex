@@ -33,6 +33,7 @@ public:
 
 private:
 
+    static bool vfsThemeImageLoaded;
     struct ThemeEntry
     {
         wxString name;
@@ -47,10 +48,7 @@ private:
     std::vector<ThemeEntry> m_themes;
 
     wxListBox* m_themesListBox_;
-    wxTextCtrl* m_themeNameText;
-    wxTextCtrl* m_themeDescText;
-    wxTextCtrl* m_themeAuthorText;   
-    wxStaticBitmap *m_themeBitmap;
+    wxHtmlWindow* m_themePanel;
     wxButton* m_importButton;
     wxButton* m_deleteButton;
     wxButton* m_useButton;
@@ -70,6 +68,7 @@ private:
     void OnImport(wxCommandEvent& event);
     void OnDelete(wxCommandEvent& event);
     void OnUse(wxCommandEvent& event);
+    void OnHtmlLink(wxHtmlLinkEvent& event);
     void OnThemeView(wxCommandEvent& event);
 
     enum
