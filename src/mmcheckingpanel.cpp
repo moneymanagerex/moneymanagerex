@@ -472,13 +472,16 @@ void mmCheckingPanel::updateExtraTransactionData(bool single, bool foreign)
     }
     else
     {
-        if (m_listCtrlAccount->getSelectedId().size() > 0)
-            enableTransactionButtons(true, false, false);
-        else
-            enableTransactionButtons(false, false, false);
         m_info_panel_mini->SetLabelText("");
-
-        showTips();
+        if (m_listCtrlAccount->getSelectedId().size() > 0)
+        {
+            enableTransactionButtons(true, false, false);
+            m_info_panel->SetLabelText("");
+        } else
+        {
+            enableTransactionButtons(false, false, false);
+            showTips();
+        }   
     }
 }
 //----------------------------------------------------------------------------
