@@ -23,6 +23,7 @@ Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
 #include "themes.h"
 #include "util.h"
 #include "model/Model_Setting.h"
+#include <memory>
 #include <wx/mstream.h>
 #include <wx/zipstrm.h>
 
