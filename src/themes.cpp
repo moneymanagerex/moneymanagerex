@@ -140,7 +140,7 @@ mmThemesDialog::mmThemesDialog(wxWindow *parent, const wxString &name)
 
 void mmThemesDialog::Create(wxWindow* parent, const wxString &name)
 {
-    long style = wxCAPTION | wxCLOSE_BOX;
+    long style = wxCAPTION | wxCLOSE_BOX | wxRESIZE_BORDER;
     if (!wxDialog::Create(parent, wxID_ANY, _("Theme Manager")
         , wxDefaultPosition, wxDefaultSize, style, name))
     {
@@ -167,16 +167,19 @@ void mmThemesDialog::CreateControls()
 	wxBoxSizer* bSizer1 = new wxBoxSizer(wxHORIZONTAL);
 
     m_themesListBox_ = new wxListBox(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, 0, NULL, wxLB_SINGLE | wxLB_NEEDED_SB);
-    bSizer1->Add(m_themesListBox_, 1, wxEXPAND);
+    m_themesListBox_->SetMinSize(wxSize(200, 300));
+    bSizer1->Add(m_themesListBox_, g_flagsV);
 
 	wxBoxSizer* bSizer12 = new wxBoxSizer(wxVERTICAL);
 
-    m_themePanel = new wxHtmlWindow(this, wxID_ANY, wxDefaultPosition, wxSize(400, 300));
-    bSizer12->Add(m_themePanel, 0, wxALL, 5);
+    m_themePanel = new wxHtmlWindow(this, wxID_ANY);
+    m_themePanel->SetMinSize(wxSize(400, 300));
 
-	bSizer1->Add(bSizer12);
+    bSizer12->Add(m_themePanel, g_flagsExpand);
 
-    bSizer0->Add(bSizer1, 1, wxEXPAND);
+	bSizer1->Add(bSizer12, g_flagsExpand);
+
+    bSizer0->Add(bSizer1, g_flagsExpand);
     
     wxBoxSizer* bSizer02 = new wxBoxSizer(wxHORIZONTAL);
     m_importButton = new wxButton(this, ID_DIALOG_THEME_IMPORT, _("Import"));
@@ -188,11 +191,11 @@ void mmThemesDialog::CreateControls()
     m_okButton = new wxButton(this, wxID_OK, _("Close"));
     bSizer02->Add(m_okButton, 0, wxALL, 5);
 
-    bSizer0->Add(bSizer02);
+    bSizer0->Add(bSizer02, g_flagsCenter);
 
-	this->SetSizer(bSizer0);
-	this->Layout();
-	bSizer0->Fit(this);
+    this->SetSizer(bSizer0);
+    this->Layout();
+    bSizer0->Fit(this);
 }
 
 void mmThemesDialog::ReadThemes()
