@@ -36,9 +36,10 @@ wxBEGIN_EVENT_TABLE(mmPayeeDialog, wxDialog)
     EVT_BUTTON(wxID_CANCEL, mmPayeeDialog::OnCancel)
     EVT_BUTTON(wxID_OK, mmPayeeDialog::OnOk)
     EVT_BUTTON(wxID_APPLY, mmPayeeDialog::OnMagicButton)
-    EVT_TEXT(wxID_ANY, mmPayeeDialog::OnTextChanged)
+    EVT_TEXT(wxID_FIND, mmPayeeDialog::OnTextChanged)
     EVT_DATAVIEW_ITEM_VALUE_CHANGED(wxID_ANY, mmPayeeDialog::OnDataChanged)
     EVT_DATAVIEW_ITEM_EDITING_STARTED(wxID_ANY, mmPayeeDialog::OnDataEditStart)
+    EVT_DATAVIEW_ITEM_EDITING_DONE(wxID_ANY, mmPayeeDialog::OnDataEditDone)
     EVT_DATAVIEW_SELECTION_CHANGED(wxID_ANY, mmPayeeDialog::OnListItemSelected)
     EVT_DATAVIEW_ITEM_ACTIVATED(wxID_ANY, mmPayeeDialog::OnListItemActivated)
     EVT_DATAVIEW_ITEM_CONTEXT_MENU(wxID_ANY, mmPayeeDialog::OnItemRightClick)
@@ -155,6 +156,17 @@ void mmPayeeDialog::fillControls()
 void mmPayeeDialog::OnDataEditStart(wxDataViewEvent& WXUNUSED(event))
 {
     m_payee_rename = m_payee_id;
+}
+
+void mmPayeeDialog::OnDataEditDone(wxDataViewEvent& event)
+{
+    fillControls();
+}
+
+void mmPayeeDialog::OnTextChanged(wxCommandEvent& event)
+{
+    m_maskStr = event.GetString();
+    fillControls();
 }
 
 void mmPayeeDialog::OnDataChanged(wxDataViewEvent& event)
@@ -320,12 +332,6 @@ void mmPayeeDialog::OnPayeeRelocate()
         wxMessageBox(msgStr, _("Payee Relocation Result"));
         refreshRequested_ = true;
     }
-}
-
-void mmPayeeDialog::OnTextChanged(wxCommandEvent& event)
-{
-    m_maskStr = event.GetString();
-    fillControls();
 }
 
 void mmPayeeDialog::OnMenuSelected(wxCommandEvent& event)
