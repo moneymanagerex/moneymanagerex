@@ -608,6 +608,10 @@ bool get_yahoo_prices(std::map<wxString, double>& symbols
     wxString buffer;
     for (const auto& entry : symbols)
     {
+        wxRegEx pattern(R"(^([a-zA-Z0-9\.-_\/]+)$)");
+        if (!pattern.Matches(entry.first))
+            continue;
+
         if (type == yahoo_price_type::FIAT) {
             buffer += wxString::Format("%s%s=X,", entry.first, base_currency_symbol);
         }
