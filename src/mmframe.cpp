@@ -1099,7 +1099,6 @@ void mmGUIFrame::OnSelChanged(wxTreeEvent& event)
             AddPendingEvent(*evt.get());
 
     }
-    m_nav_tree_ctrl->SetFocus();
 }
 //----------------------------------------------------------------------------
 
@@ -2711,6 +2710,7 @@ void mmGUIFrame::createBillsDeposits()
     json_writer.EndObject();
 
     Model_Usage::instance().AppendToUsage(wxString::FromUTF8(json_buffer.GetString()));
+    m_nav_tree_ctrl->SetFocus();
 }
 //----------------------------------------------------------------------------
 
@@ -2755,7 +2755,6 @@ void mmGUIFrame::createBudgetingPage(int budgetYearID)
 
 void mmGUIFrame::createAllTransactionsPage()
 {
-    auto rest = panelCurrent_->GetId();
     StringBuffer json_buffer;
     Writer<StringBuffer> json_writer(json_buffer);
 
