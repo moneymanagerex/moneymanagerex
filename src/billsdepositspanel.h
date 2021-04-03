@@ -126,13 +126,14 @@ private:
     void OnSkipBDTransaction(wxCommandEvent& event);
     void OnOpenAttachment(wxCommandEvent& event);
 
-    void OnViewPopupSelected(wxCommandEvent& event);
+    //void OnViewPopupSelected(wxCommandEvent& event);
 
     void sortTable();
     wxString tips();
 
 private:
-    wxImageList* m_imageList;
+    wxSharedPtr<wxImageList> m_imageList;
+    wxSharedPtr<mmFilterTransactionsDialog> transFilterDlg_;
     billsDepositsListCtrl* listCtrlAccount_;
     wxStaticText* m_infoText;
     wxStaticText* m_infoTextMini;
@@ -161,7 +162,6 @@ private:
 
     bool transFilterActive_;
     void OnFilterTransactions(wxCommandEvent& WXUNUSED(event));
-    mmFilterTransactionsDialog* transFilterDlg_;
     wxButton* m_bitmapTransFilter;
 
     wxArrayString tips_;

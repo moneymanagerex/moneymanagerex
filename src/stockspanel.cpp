@@ -486,13 +486,12 @@ END_EVENT_TABLE()
 mmStocksPanel::mmStocksPanel(int accountID
     , mmGUIFrame* frame
     , wxWindow *parent
-    , wxWindowID winid, const wxPoint& pos, const wxSize& size, long style
-    , const wxString& name)
+    , wxWindowID winid)
     : m_account_id(accountID)
     , m_frame(frame)
     , m_currency()
 {
-    Create(parent, winid, pos, size, style, name);
+    Create(parent, winid);
 }
 
 bool mmStocksPanel::Create(wxWindow *parent
@@ -1002,3 +1001,18 @@ void mmStocksPanel::call_dialog(int selectedIndex)
     dlg.ShowModal();
     listCtrlAccount_->doRefreshItems(dlg.m_stock_id);
 }
+
+void mmStocksPanel::DisplayAccountDetails(int accountID)
+{
+
+    m_account_id = accountID;
+
+    Model_Account::Data* account = Model_Account::instance().get(m_account_id);
+    m_currency = Model_Account::currency(account);
+
+    updateHeader();
+    enableEditDeleteButtons(false);
+    listCtrlAccount_->initVirtualListControl();
+
+}
+

@@ -156,15 +156,11 @@ void billsDepositsListCtrl::OnColClick(wxListEvent& event)
 
 mmBillsDepositsPanel::mmBillsDepositsPanel(wxWindow *parent, wxWindowID winid
     , const wxPoint& pos, const wxSize& size, long style, const wxString& name)
-    : m_imageList(nullptr)
-    , listCtrlAccount_(nullptr)
-    , transFilterDlg_(nullptr)
-    , m_bitmapTransFilter(nullptr)
-    , m_infoTextMini(nullptr)
-    , m_infoText(nullptr)
 {
     m_today = wxDate::Today();
-    this->tips_.Add(_("MMEX allows regular payments to be set up as transactions. These transactions can also be regular deposits, or transfers that will occur at some future time. These transactions act as a reminder that an event is about to occur, and appears on the Home Page 14 days before the transaction is due. "));
+    this->tips_.Add(_("MMEX allows regular payments to be set up as transactions. These transactions can also be regular deposits,"
+        " or transfers that will occur at some future time. These transactions act as a reminder that an event is about to occur,"
+        " and appears on the Home Page 14 days before the transaction is due. "));
     this->tips_.Add(_("Tip: These transactions can be set up to activate - allowing the user to adjust any values on the due date."));
 
     Create(parent, winid, pos, size, style, name);
@@ -177,8 +173,6 @@ bool mmBillsDepositsPanel::Create(wxWindow *parent
     SetExtraStyle(GetExtraStyle()|wxWS_EX_BLOCK_EVENTS);
     wxPanel::Create(parent, winid, pos, size, style, name);
 
-    this->windowsFreezeThaw();
-
     CreateControls();
     GetSizer()->Fit(this);
     GetSizer()->SetSizeHints(this);
@@ -190,7 +184,6 @@ bool mmBillsDepositsPanel::Create(wxWindow *parent
 
     initVirtualListControl();
 
-    this->windowsFreezeThaw();
     Model_Usage::instance().pageview(this);
 
     return TRUE;
@@ -198,10 +191,6 @@ bool mmBillsDepositsPanel::Create(wxWindow *parent
 
 mmBillsDepositsPanel::~mmBillsDepositsPanel()
 {
-    if (m_imageList)
-        delete m_imageList;
-    if (transFilterDlg_)
-        delete transFilterDlg_;
 }
 
 void mmBillsDepositsPanel::CreateControls()
@@ -244,7 +233,7 @@ void mmBillsDepositsPanel::CreateControls()
 
     listCtrlAccount_ = new billsDepositsListCtrl(this, itemSplitterWindowBillsDeposit);
 
-    listCtrlAccount_->SetImageList(m_imageList, wxIMAGE_LIST_SMALL);
+    listCtrlAccount_->SetImageList(m_imageList.get(), wxIMAGE_LIST_SMALL);
 
     wxPanel* bdPanel = new wxPanel(itemSplitterWindowBillsDeposit, wxID_ANY
         , wxDefaultPosition, wxDefaultSize, wxNO_BORDER | wxTAB_TRAVERSAL);
