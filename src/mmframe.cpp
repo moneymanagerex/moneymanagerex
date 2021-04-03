@@ -446,7 +446,8 @@ bool mmGUIFrame::setNavTreeSection(const wxString &sectionName)
         accountNotFound = false;
     }
     m_nav_tree_ctrl->SetEvtHandlerEnabled(true);
-    return accountNotFound;
+
+    return !accountNotFound;
 }
 
 //----------------------------------------------------------------------------
@@ -1042,7 +1043,6 @@ void mmGUIFrame::OnSelChanged(wxTreeEvent& event)
                 wxASSERT(false);
             }
         }
-        m_nav_tree_ctrl->SetFocus();
     }
     else
     {
@@ -1077,17 +1077,22 @@ void mmGUIFrame::OnSelChanged(wxTreeEvent& event)
             evt = new wxCommandEvent(wxEVT_COMMAND_MENU_SELECTED, MENU_BILLSDEPOSITS);
         else if (data == "item@Transaction Report")
             evt = new wxCommandEvent(wxEVT_COMMAND_MENU_SELECTED, MENU_TRANSACTIONREPORT);
-        else if (data == "item@All Transactions")
+        else if (data == "item@All Transactions") {
             createAllTransactionsPage();
+            return;
+        }
+
         if (evt)
         {
             AddPendingEvent(*evt.get());
+            m_nav_tree_ctrl->SetFocus();
             return;
         }
 
         activeReport_ = true;
         createReportsPage(iData->get_report(), false);
     }
+    m_nav_tree_ctrl->SetFocus();
 }
 //----------------------------------------------------------------------------
 
@@ -2677,8 +2682,8 @@ void mmGUIFrame::createBillsDeposits()
     m_nav_tree_ctrl->SetEvtHandlerEnabled(false);
     if (panelCurrent_->GetId() == mmID_BILLS)
     {
-        mmBillsDepositsPanel* billsDepositsPanel_ = wxDynamicCast(panelCurrent_, mmBillsDepositsPanel);
-        billsDepositsPanel_->RefreshList();
+        mmBillsDepositsPanel* billsDepositsPanel = wxDynamicCast(panelCurrent_, mmBillsDepositsPanel);
+        billsDepositsPanel->RefreshList();
     }
     else
     {
