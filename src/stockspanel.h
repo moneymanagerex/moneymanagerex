@@ -105,11 +105,7 @@ public:
         int accountID,
         mmGUIFrame* frame,
         wxWindow *parent,
-        wxWindowID winid = wxID_ANY,
-        const wxPoint& pos = wxDefaultPosition,
-        const wxSize& size = wxDefaultSize,
-        long style = wxTAB_TRAVERSAL | wxNO_BORDER,
-        const wxString& name = "mmStocksPanel"
+        wxWindowID winid = mmID_STOCKS
     );
     ~mmStocksPanel();
 
@@ -120,7 +116,7 @@ public:
                  const wxString& name = "mmStocksPanel");
 
     void CreateControls();
-
+    void DisplayAccountDetails(int accountID);
     /* Event handlers for Buttons */
     void OnNewStocks(wxCommandEvent& event);
     void OnDeleteStocks(wxCommandEvent& event);
