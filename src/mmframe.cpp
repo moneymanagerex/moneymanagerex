@@ -1072,6 +1072,24 @@ void mmGUIFrame::OnSelChanged(wxTreeEvent& event)
             createHomePage();
             return;
         }
+        else if (data == "item@Favourites")
+            return; //do nothing
+        else if (data == "item@Bank Accounts")
+            return; //do nothing
+        else if (data == "item@All Transactions") {
+            createAllTransactionsPage();
+            return;
+        }
+
+        wxRegEx pattern(R"(^(report@))");
+        if (pattern.Matches(data))
+        {
+
+            activeReport_ = true;
+            createReportsPage(iData->get_report(), false);
+            return;
+        }
+
         wxSharedPtr<wxCommandEvent> evt;
         if (data == "item@Assets")
             evt = new wxCommandEvent(wxEVT_COMMAND_MENU_SELECTED, MENU_ASSETS);
@@ -1079,20 +1097,9 @@ void mmGUIFrame::OnSelChanged(wxTreeEvent& event)
             evt = new wxCommandEvent(wxEVT_COMMAND_MENU_SELECTED, MENU_BILLSDEPOSITS);
         else if (data == "item@Transaction Report")
             evt = new wxCommandEvent(wxEVT_COMMAND_MENU_SELECTED, MENU_TRANSACTIONREPORT);
-        else if (data == "item@All Transactions") {
-            createAllTransactionsPage();
-            return;
-        }
-
         if (evt)
-        {
             AddPendingEvent(*evt.get());
-            m_nav_tree_ctrl->SetFocus();
-            return;
-        }
 
-        activeReport_ = true;
-        createReportsPage(iData->get_report(), false);
     }
     m_nav_tree_ctrl->SetFocus();
 }
@@ -1669,6 +1676,8 @@ void mmGUIFrame::CreateToolBar()
     toolBar_->AddTool(MENU_NEWACCT, _("New Account"), mmBitmap(png::NEW_ACC), _("New Account"));
     toolBar_->AddTool(MENU_HOMEPAGE, _("Home Page"), mmBitmap(png::HOME), _("Show Home Page"));
     toolBar_->AddSeparator();
+    toolBar_->AddTool(wxID_NEW, _("New"), mmBitmap(png::NEW_TRX), _("New Transaction"));
+    toolBar_->AddSeparator();
     toolBar_->AddTool(MENU_ORGCATEGS, _("Organize Categories"), mmBitmap(png::CATEGORY), _("Show Organize Categories Dialog"));
     toolBar_->AddTool(MENU_ORGPAYEE, _("Organize Payees"), mmBitmap(png::PAYEE), _("Show Organize Payees Dialog"));
     toolBar_->AddTool(MENU_CURRENCY, _("Organize Currency"), mmBitmap(png::CURR), _("Show Organize Currency Dialog"));
@@ -1678,8 +1687,6 @@ void mmGUIFrame::CreateToolBar()
     toolBar_->AddTool(wxID_VIEW_LIST, _("General Report Manager"), mmBitmap(png::GRM), _("General Report Manager"));
     toolBar_->AddSeparator();
     toolBar_->AddTool(wxID_PREFERENCES, _("&Options..."), mmBitmap(png::OPTIONS), _("Show the Options Dialog"));
-    toolBar_->AddSeparator();
-    toolBar_->AddTool(wxID_NEW, _("New"), mmBitmap(png::NEW_TRX), _("New Transaction"));
     toolBar_->AddSeparator();
 
     wxString news_array;
