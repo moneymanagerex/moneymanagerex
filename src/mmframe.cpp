@@ -2310,10 +2310,13 @@ void mmGUIFrame::refreshPanelData()
     case mmID_CHECKING:
         wxDynamicCast(panelCurrent_, mmCheckingPanel)->RefreshList();
         break;
+    case mmID_ALLTRANSACTIONS:
+        wxDynamicCast(panelCurrent_, mmCheckingPanel)->RefreshList();
+        break;
     case mmID_ASSETS:
         break;
     case mmID_BILLS:
-        createBillsDeposits();
+        wxDynamicCast(panelCurrent_, mmBillsDepositsPanel)->RefreshList();
         break;
     case mmID_BUDGET:
         wxDynamicCast(panelCurrent_, mmBudgetingPanel)->RefreshList();
@@ -2651,8 +2654,7 @@ void mmGUIFrame::createHelpPage()
     m_nav_tree_ctrl->SetEvtHandlerEnabled(false);
     windowsFreezeThaw(homePanel_);
     wxSizer *sizer = cleanupHomePanel();
-    panelCurrent_ = new mmHelpPanel(homePanel_, this, wxID_HELP
-        , wxDefaultPosition, wxDefaultSize, wxNO_BORDER | wxTAB_TRAVERSAL);
+    panelCurrent_ = new mmHelpPanel(homePanel_, this, wxID_HELP);
     sizer->Add(panelCurrent_, 1, wxGROW | wxALL, 1);
     homePanel_->Layout();
     windowsFreezeThaw(homePanel_);
@@ -2672,6 +2674,7 @@ void mmGUIFrame::createBillsDeposits()
 
     const auto time = wxDateTime::UNow();
 
+    m_nav_tree_ctrl->SetEvtHandlerEnabled(false);
     if (panelCurrent_->GetId() == mmID_BILLS)
     {
         mmBillsDepositsPanel* billsDepositsPanel_ = wxDynamicCast(panelCurrent_, mmBillsDepositsPanel);
@@ -2679,15 +2682,17 @@ void mmGUIFrame::createBillsDeposits()
     }
     else
     {
+        windowsFreezeThaw(homePanel_);
         wxSizer *sizer = cleanupHomePanel();
-        panelCurrent_ = new mmBillsDepositsPanel(homePanel_, mmID_BILLS
-            , wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
+        panelCurrent_ = new mmBillsDepositsPanel(homePanel_, mmID_BILLS);
 
         sizer->Add(panelCurrent_, 1, wxGROW | wxALL, 1);
 
         homePanel_->Layout();
+        windowsFreezeThaw(homePanel_);
     }
     menuPrintingEnable(true);
+    m_nav_tree_ctrl->SetEvtHandlerEnabled(true);
 
     json_writer.Key("seconds");
     json_writer.Double((wxDateTime::UNow() - time).GetMilliseconds().ToDouble() / 1000);
@@ -2738,6 +2743,7 @@ void mmGUIFrame::createBudgetingPage(int budgetYearID)
 
 void mmGUIFrame::createAllTransactionsPage()
 {
+    auto rest = panelCurrent_->GetId();
     StringBuffer json_buffer;
     Writer<StringBuffer> json_writer(json_buffer);
 
@@ -2748,13 +2754,21 @@ void mmGUIFrame::createAllTransactionsPage()
     const auto time = wxDateTime::UNow();
 
     m_nav_tree_ctrl->SetEvtHandlerEnabled(false);
- 
-    windowsFreezeThaw(homePanel_);
-    wxSizer *sizer = cleanupHomePanel();
-    panelCurrent_ = new mmCheckingPanel(homePanel_, this, -1, mmID_ALLTRANSACTIONS);
-    sizer->Add(panelCurrent_, 1, wxGROW | wxALL, 1);
-    homePanel_->Layout();
-    windowsFreezeThaw(homePanel_);
+    if (panelCurrent_->GetId() == mmID_ALLTRANSACTIONS)
+    {
+        mmCheckingPanel* checkingAccountPage = wxDynamicCast(panelCurrent_, mmCheckingPanel);
+        checkingAccountPage->RefreshList();
+    }
+    else
+    {
+
+        windowsFreezeThaw(homePanel_);
+        wxSizer *sizer = cleanupHomePanel();
+        panelCurrent_ = new mmCheckingPanel(homePanel_, this, -1, mmID_ALLTRANSACTIONS);
+        sizer->Add(panelCurrent_, 1, wxGROW | wxALL, 1);
+        homePanel_->Layout();
+        windowsFreezeThaw(homePanel_);
+    }
 
     json_writer.Key("seconds");
     json_writer.Double((wxDateTime::UNow() - time).GetMilliseconds().ToDouble() / 1000);
@@ -2818,12 +2832,17 @@ void mmGUIFrame::createStocksAccountPage(int accountID)
 
     const auto time = wxDateTime::UNow();
 
-    //TODO: Refresh Panel
+    if (panelCurrent_->GetId() == mmID_STOCKS)
+    {
+        mmStocksPanel* stocksPage = wxDynamicCast(panelCurrent_, mmStocksPanel);
+        stocksPage->DisplayAccountDetails(accountID);
+    }
+    else
     {
         //updateNavTreeControl();
         windowsFreezeThaw(homePanel_);
         wxSizer *sizer = cleanupHomePanel();
-        panelCurrent_ = new mmStocksPanel(accountID, this, homePanel_, mmID_STOCKS);
+        panelCurrent_ = new mmStocksPanel(accountID, this, homePanel_);
         sizer->Add(panelCurrent_, 1, wxGROW | wxALL, 1);
         homePanel_->Layout();
         windowsFreezeThaw(homePanel_);
