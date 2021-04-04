@@ -327,7 +327,7 @@ mmGUIFrame::~mmGUIFrame()
 void mmGUIFrame::cleanup()
 {
     autoRepeatTransactionsTimer_.Stop();
-    delete m_recentFiles;
+
     if (!m_filename.IsEmpty()) // Exiting before file is opened
         saveSettings();
 
