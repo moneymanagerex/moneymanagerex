@@ -162,6 +162,7 @@ TransactionListCtrl::TransactionListCtrl(
     wxASSERT(m_cp);
     m_selected_id.clear();
     m_selectedForCopy.clear();
+    this->SetBackgroundColour(mmColors::myList);
 
     const wxAcceleratorEntry entries[] =
     {

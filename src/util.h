@@ -134,6 +134,8 @@ public:
     static wxColour userDefColor5;
     static wxColour userDefColor6;
     static wxColour userDefColor7;
+    static wxColour myList;
+    static wxColour navigationPanel;
 };
 //----------------------------------------------------------------------------
 

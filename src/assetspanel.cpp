@@ -52,6 +52,7 @@ mmAssetsListCtrl::mmAssetsListCtrl(mmAssetsPanel* cp, wxWindow *parent, wxWindow
 : mmListCtrl(parent, winid)
 , m_panel(cp)
 {
+    this->SetBackgroundColour(mmColors::myList);
     ToggleWindowStyle(wxLC_EDIT_LABELS);
 
     m_columns.push_back(PANEL_COLUMN(" ", 25, wxLIST_FORMAT_LEFT));

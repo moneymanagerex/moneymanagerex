@@ -147,12 +147,15 @@ void mmLoadColorsFromDatabase()
 /* Set the default colors */
 wxColour mmColors::listAlternativeColor0 = wxColour(240, 245, 235);
 wxColour mmColors::listAlternativeColor0A = wxColour(224, 231, 240);
-wxColour mmColors::listAlternativeColor1 = wxColour(255, 255, 255);
+wxColour mmColors::listAlternativeColor1 = wxNullColour;
 wxColour mmColors::listBackColor = wxColour(255, 255, 255);
 wxColour mmColors::navTreeBkColor = wxColour(255, 255, 255);
 wxColour mmColors::listBorderColor = wxColour(0, 0, 0);
 wxColour mmColors::listDetailsPanelColor = wxColour(244, 247, 251);
 wxColour mmColors::listFutureDateColor = wxColour(116, 134, 168);
+wxColour mmColors::myList = wxColour(240, 240, 240);
+wxColour mmColors::navigationPanel = wxColour(240, 240, 240);
+
 
 wxColour mmColors::userDefColor1;
 wxColour mmColors::userDefColor2;
