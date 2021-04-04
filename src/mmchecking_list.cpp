@@ -39,7 +39,6 @@
 #include "model/allmodel.h"
 #include <wx/clipbrd.h>
 
-
 #include <wx/srchctrl.h>
 #include <algorithm>
 #include <wx/sound.h>
