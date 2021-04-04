@@ -2394,6 +2394,7 @@ void mmGUIFrame::OnBudgetSetupDialog(wxCommandEvent& /*event*/)
     {
         mmBudgetYearDialog(this).ShowModal();
         updateNavTreeControl();
+        createHomePage();
     }
 }
 //----------------------------------------------------------------------------
@@ -2711,6 +2712,7 @@ void mmGUIFrame::createBillsDeposits()
 
     Model_Usage::instance().AppendToUsage(wxString::FromUTF8(json_buffer.GetString()));
     m_nav_tree_ctrl->SetFocus();
+    setNavTreeSection(_("Recurring Transactions"));
 }
 //----------------------------------------------------------------------------
 
@@ -2909,6 +2911,7 @@ void mmGUIFrame::OnAssets(wxCommandEvent& /*event*/)
     homePanel_->Layout();
     windowsFreezeThaw(homePanel_);
     menuPrintingEnable(true);
+    setNavTreeSection(_("Assets"));
 
     json_writer.Key("seconds");
     json_writer.Double((wxDateTime::UNow() - time).GetMilliseconds().ToDouble() / 1000);
