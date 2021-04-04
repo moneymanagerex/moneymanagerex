@@ -238,7 +238,7 @@ private:
     void ReallocateAccount(int accountID);
 private:
     /* Recent Files */
-    mmFileHistory* m_recentFiles;
+    wxSharedPtr<mmFileHistory> m_recentFiles;
     wxMenu* m_menuRecentFiles;
 
     void OnRecentFiles(wxCommandEvent& event);
