@@ -83,7 +83,6 @@ private:
     void OnListItemSelected(wxDataViewEvent& event);
     void OnListItemActivated(wxDataViewEvent& event);
     void OnDataEditStart(wxDataViewEvent& event);
-    void OnDataEditDone(wxDataViewEvent& event);
     void OnDataChanged(wxDataViewEvent& event);
     void OnMenuSelected(wxCommandEvent& event);
     void OnItemRightClick(wxDataViewEvent& event);
