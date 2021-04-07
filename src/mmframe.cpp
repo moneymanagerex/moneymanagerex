@@ -231,6 +231,7 @@ mmGUIFrame::mmGUIFrame(mmGUIApp* app, const wxString& title
         getNewsRSS(websiteNewsArray_);
 
     /* Create the Controls for the frame */
+    LoadTheme();
     createMenu();
     createControls();
     CreateToolBar();
@@ -650,7 +651,7 @@ void mmGUIFrame::createControls()
 
 #endif
     m_nav_tree_ctrl->SetMinSize(wxSize(100, 100));
-    m_nav_tree_ctrl->SetBackgroundColour(mmColors::navigationPanel);
+    m_nav_tree_ctrl->SetBackgroundColour(mmThemeMetaColour(COLOR_NAVPANEL));
 
     int all_icons_size = Option::instance().getIconSize();
     int nav_icon_size = Option::instance().getNavigationIconSize();

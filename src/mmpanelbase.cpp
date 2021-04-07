@@ -17,6 +17,7 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ********************************************************/
 
+#include "images_list.h"
 #include "mmpanelbase.h"
 #include "model/Model_Setting.h"
 #include "mmreportspanel.h"
@@ -31,8 +32,8 @@ wxEND_EVENT_TABLE()
 mmListCtrl::mmListCtrl(wxWindow *parent, wxWindowID winid)
     : wxListCtrl(parent, winid, wxDefaultPosition, wxDefaultSize
         , wxLC_REPORT | wxLC_HRULES | wxLC_VRULES | wxLC_VIRTUAL | wxLC_SINGLE_SEL | wxLC_AUTOARRANGE)
-    , attr1_(new wxListItemAttr(mmColors::listBorderColor, mmColors::listAlternativeColor0, wxNullFont))
-    , attr2_(new wxListItemAttr(mmColors::listBorderColor, mmColors::listAlternativeColor1, wxNullFont))
+    , attr1_(new wxListItemAttr(mmThemeMetaColour(COLOR_LISTBORDER), mmThemeMetaColour(COLOR_LISTALT0), wxNullFont))
+    , attr2_(new wxListItemAttr(mmThemeMetaColour(COLOR_LISTBORDER), wxNullColour, wxNullFont))
     , m_selected_row(-1)
     , m_selected_col(0)
     , m_asc(true)

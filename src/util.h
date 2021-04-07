@@ -119,14 +119,6 @@ wxColour getUDColour(int c);
 class mmColors
 {
 public:
-    static wxColour listAlternativeColor0;
-    static wxColour listAlternativeColor0A;
-    static wxColour listAlternativeColor1;
-    static wxColour listBorderColor;
-    static wxColour listBackColor;
-    static wxColour navTreeBkColor;
-    static wxColour listDetailsPanelColor;
-    static wxColour listFutureDateColor;
     static wxColour userDefColor1;
     static wxColour userDefColor2;
     static wxColour userDefColor3;
@@ -134,8 +126,6 @@ public:
     static wxColour userDefColor5;
     static wxColour userDefColor6;
     static wxColour userDefColor7;
-    static wxColour myList;
-    static wxColour navigationPanel;
 };
 //----------------------------------------------------------------------------
 

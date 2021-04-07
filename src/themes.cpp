@@ -223,19 +223,19 @@ void mmThemesDialog::RefreshView()
     }
 
     // name
-    Value& j_grab= GetValueByPointerWithDefault(j_doc, "/name", "");
+    Value& j_grab= GetValueByPointerWithDefault(j_doc, "/theme/name", "");
     const wxString& s_name = j_grab.IsString() ? wxString::FromUTF8(j_grab.GetString()) : m_themesListBox_->GetString(m_themesListBox_->GetSelection());
 
     // author
-    j_grab = GetValueByPointerWithDefault(j_doc, "/author", "");
+    j_grab = GetValueByPointerWithDefault(j_doc, "/theme/author", "");
     const wxString& s_author = j_grab.IsString() ? wxString::FromUTF8(j_grab.GetString()) : _("Unknown");
     
     // description
-    j_grab = GetValueByPointerWithDefault(j_doc, "/description", "");
+    j_grab = GetValueByPointerWithDefault(j_doc, "/theme/description", "");
     const wxString& s_description = j_grab.IsString() ? wxString::FromUTF8(j_grab.GetString()) : _("No description available");
 
     // url
-    j_grab = GetValueByPointerWithDefault(j_doc, "/url", "");
+    j_grab = GetValueByPointerWithDefault(j_doc, "/theme/url", "");
     const wxString& s_url = j_grab.IsString() ? wxString::FromUTF8(j_grab.GetString()) : "";
     
     wxString imgUrl, themeImageUrl;
