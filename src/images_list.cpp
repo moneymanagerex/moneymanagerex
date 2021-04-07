@@ -389,7 +389,7 @@ bool checkThemeContents(wxArrayString *filesinTheme)
     bool success = true;
 
     // Check for required files
-    const wxString neededFiles[] = { "master.css", "_theme.json", "_theme.png" };
+    const wxString neededFiles[] = { "master.css", "_theme.json", "_theme.png", "" };
     
     for (int i = 0; !neededFiles[i].IsEmpty(); i++)
     {
