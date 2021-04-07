@@ -33,126 +33,139 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include <wx/mstream.h>
 #include "../3rd/lunasvg/include/svgdocument.h"
 
-// SVG filename in Zip, the PNG enum to which it relates, the background color for the generated bitmap 0 = transparent
-static const std::map<std::string, std::pair<int, std::uint32_t>> iconName2enum = {
-    { "NEW_DB.svg", { NEW_DB, 0 } },
-    { "OPEN.svg", { OPEN, 0 } },
-    { "NEW_ACC.svg", { NEW_ACC, 0 } },
-    { "HOME.svg", { HOME, 0 } },
-    { "CATEGORY.svg", { CATEGORY, 0 } },
-    { "PAYEE.svg", { PAYEE, 0 } },
-    { "CURR.svg", { CURR, 0 } },
-    { "FILTER.svg", { FILTER, 0 } }, 
-    { "GRM.svg", { GRM, 0 } },
-    { "OPTIONS.svg", { OPTIONS, 0 } },
-    { "NEW_TRX.svg", { NEW_TRX, 0 } },
-    { "NEW_NEWS.svg", { NEW_NEWS, 0 } },
-    { "NEWS.svg", { NEWS, 0 } },
-    { "CURRATES.svg", { CURRATES, 0 } },
-    { "FULLSCREEN.svg", { FULLSCREEN, 0 } },
-    { "PRINT.svg", { PRINT, 0 } },
-    { "ABOUT.svg", { ABOUT, 0 } },
-    { "HELP.svg", { HELP, 0 } },
+// SVG filename in Zip, the PNG enum to which it relates, whether to recolor background
+static const std::map<std::string, std::pair<int, bool>> iconName2enum = {
+    { "NEW_DB.svg", { NEW_DB, false } },
+    { "OPEN.svg", { OPEN, false } },
+    { "NEW_ACC.svg", { NEW_ACC, false } },
+    { "HOME.svg", { HOME, false } },
+    { "CATEGORY.svg", { CATEGORY, false } },
+    { "PAYEE.svg", { PAYEE, false } },
+    { "CURR.svg", { CURR, false } },
+    { "FILTER.svg", { FILTER, false } }, 
+    { "GRM.svg", { GRM, false } },
+    { "OPTIONS.svg", { OPTIONS, false } },
+    { "NEW_TRX.svg", { NEW_TRX, false } },
+    { "NEW_NEWS.svg", { NEW_NEWS, false } },
+    { "NEWS.svg", { NEWS, false } },
+    { "CURRATES.svg", { CURRATES, false } },
+    { "FULLSCREEN.svg", { FULLSCREEN, false } },
+    { "PRINT.svg", { PRINT, false } },
+    { "ABOUT.svg", { ABOUT, false } },
+    { "HELP.svg", { HELP, false } },
 
     // Navigation
-    { "NAV_HOME.svg", { NAV_HOME, 0xFFFFFFFF } },
-    { "ALLTRANSACTIONS.svg", { ALLTRANSACTIONS, 0xFFFFFFFF } },
-    { "NAV_FILTER.svg", { NAV_FILTER, 0xFFFFFFFF } },
-    { "NAV_GRM.svg", { NAV_GRM, 0xFFFFFFFF } },
-    { "NAV_HELP.svg", { NAV_HELP, 0xFFFFFFFF } },
-    { "FAVOURITE.svg", { FAVOURITE, 0xFFFFFFFF } },
-    { "SAVINGS_NORMAL.svg", { SAVINGS_NORMAL, 0xFFFFFFFF } },
-    { "SAVINGS_CLOSED.svg", { SAVINGS_CLOSED, 0xFFFFFFFF } },
-    { "CC_NORMAL.svg", { CC_NORMAL, 0xFFFFFFFF } },
-    { "CC_CLOSED.svg", { CC_CLOSED, 0xFFFFFFFF } },
-    { "CASH_NORMAL.svg", { CASH_NORMAL, 0xFFFFFFFF } },
-    { "CASH_CLOSED.svg", { CASH_CLOSED, 0xFFFFFFFF } },
-    { "LOAN_ACC_NORMAL.svg", { LOAN_ACC_NORMAL, 0xFFFFFFFF } },
-    { "LOAN_ACC_CLOSED.svg", { LOAN_ACC_CLOSED, 0xFFFFFFFF } },
-    { "TERM_NORMAL.svg", { TERM_NORMAL, 0xFFFFFFFF } },
-    { "TERM_CLOSED.svg", { TERM_CLOSED, 0xFFFFFFFF } },
-    { "STOCKS_NORMAL.svg", { STOCKS_NORMAL, 0xFFFFFFFF } },
-    { "STOCKS_CLOSED.svg", { STOCKS_CLOSED, 0xFFFFFFFF } },
-    { "ASSET_NORMAL.svg", { ASSET_NORMAL, 0xFFFFFFFF } },
-    { "ASSET_CLOSED.svg", { ASSET_CLOSED, 0xFFFFFFFF } },
-    { "RECURRING.svg", { RECURRING, 0xFFFFFFFF } },
-    { "BUDGET.svg", { BUDGET, 0xFFFFFFFF } },
-    { "PIE_CHART.svg", { PIE_CHART, 0xFFFFFFFF } },
+    { "NAV_HOME.svg", { NAV_HOME, true } },
+    { "ALLTRANSACTIONS.svg", { ALLTRANSACTIONS, true } },
+    { "NAV_FILTER.svg", { NAV_FILTER, true } },
+    { "NAV_GRM.svg", { NAV_GRM, true } },
+    { "NAV_HELP.svg", { NAV_HELP, true } },
+    { "FAVOURITE.svg", { FAVOURITE, true } },
+    { "SAVINGS_NORMAL.svg", { SAVINGS_NORMAL, true } },
+    { "SAVINGS_CLOSED.svg", { SAVINGS_CLOSED, true } },
+    { "CC_NORMAL.svg", { CC_NORMAL, true } },
+    { "CC_CLOSED.svg", { CC_CLOSED, true } },
+    { "CASH_NORMAL.svg", { CASH_NORMAL, true } },
+    { "CASH_CLOSED.svg", { CASH_CLOSED, true } },
+    { "LOAN_ACC_NORMAL.svg", { LOAN_ACC_NORMAL, true } },
+    { "LOAN_ACC_CLOSED.svg", { LOAN_ACC_CLOSED, true } },
+    { "TERM_NORMAL.svg", { TERM_NORMAL, true } },
+    { "TERM_CLOSED.svg", { TERM_CLOSED, true } },
+    { "STOCKS_NORMAL.svg", { STOCKS_NORMAL, true } },
+    { "STOCKS_CLOSED.svg", { STOCKS_CLOSED, true } },
+    { "ASSET_NORMAL.svg", { ASSET_NORMAL, true } },
+    { "ASSET_CLOSED.svg", { ASSET_CLOSED, true } },
+    { "RECURRING.svg", { RECURRING, true } },
+    { "BUDGET.svg", { BUDGET, true } },
+    { "PIE_CHART.svg", { PIE_CHART, true } },
      
     // Status
-    { "UNRECONCILED.svg", { UNRECONCILED, 0 } },
-    { "RECONCILED.svg", { RECONCILED, 0 } },
-    { "DUPLICATE_STAT.svg", { DUPLICATE_STAT, 0 } },
-    { "FOLLOW_UP.svg", { FOLLOW_UP, 0 } },
-    { "VOID_STAT.svg", { VOID_STAT, 0 } },
-    { "PROFIT.svg", { PROFIT, 0 } },
-    { "LOSS.svg", { LOSS, 0 } },
-    { "LED_OFF.svg", { LED_OFF, 0 } },
-    { "LED_GREEN.svg", { LED_GREEN, 0 } },
-    { "LED_YELLOW.svg", { LED_YELLOW, 0 } },
-    { "LED_RED.svg", { LED_RED, 0 } },
-    { "RUN.svg", { RUN, 0 } },
-    { "RUN_AUTO.svg", { RUN_AUTO, 0 } },
+    { "UNRECONCILED.svg", { UNRECONCILED, false } },
+    { "RECONCILED.svg", { RECONCILED, false } },
+    { "DUPLICATE_STAT.svg", { DUPLICATE_STAT, false } },
+    { "FOLLOW_UP.svg", { FOLLOW_UP, false } },
+    { "VOID_STAT.svg", { VOID_STAT, false } },
+    { "PROFIT.svg", { PROFIT, false } },
+    { "LOSS.svg", { LOSS, false } },
+    { "LED_OFF.svg", { LED_OFF, false } },
+    { "LED_GREEN.svg", { LED_GREEN, false } },
+    { "LED_YELLOW.svg", { LED_YELLOW, false } },
+    { "LED_RED.svg", { LED_RED, false } },
+    { "RUN.svg", { RUN, false } },
+    { "RUN_AUTO.svg", { RUN_AUTO, false } },
 
     // Assets
-    { "PROPERTY.svg", { PROPERTY, 0 } },
-    { "CAR.svg", { CAR, 0 } },
-    { "HOUSEHOLD_OBJ.svg", { HOUSEHOLD_OBJ, 0 } },
-    { "ART.svg", { ART, 0 } },
-    { "JEWELLERY.svg", { JEWELLERY, 0 } },
-    { "CASH.svg", { CASH, 0 } },
-    { "OTHER.svg", { OTHER, 0 } },
+    { "PROPERTY.svg", { PROPERTY, false } },
+    { "CAR.svg", { CAR, false } },
+    { "HOUSEHOLD_OBJ.svg", { HOUSEHOLD_OBJ, false } },
+    { "ART.svg", { ART, false } },
+    { "JEWELLERY.svg", { JEWELLERY, false } },
+    { "CASH.svg", { CASH, false } },
+    { "OTHER.svg", { OTHER, false } },
 
     //Controls
-    { "CLEAR.svg", { CLEAR, 0 } },
-    { "CLIP.svg", { CLIP, 0 } },
-    { "DOWNARROW.svg", { DOWNARROW, 0 } },
-    { "UPARROW.svg", { UPARROW, 0 } },
-    { "LEFTARROW.svg", { LEFTARROW, 0 } },
-    { "RIGHTARROW.svg", { RIGHTARROW, 0 } },
-    { "IMPORT.svg", { IMPORT, 0 } },
-    { "MORE_OPTIONS.svg", { MORE_OPTIONS, 0 } },
-    { "RELOCATION.svg", { RELOCATION, 0 } },
-    { "SAVE.svg", { SAVE, 0 } },
-    { "TRANSFILTER.svg", { TRANSFILTER, 0 } },
-    { "TRANSFILTER_ACTIVE.svg", { TRANSFILTER_ACTIVE, 0 } },
-    { "TRXNUM.svg", { TRXNUM, 0 } },
-    { "UPDATE.svg", { UPDATE, 0 } },
-    { "WEB.svg", { WEB, 0 } },
+    { "CLEAR.svg", { CLEAR, false } },
+    { "CLIP.svg", { CLIP, false } },
+    { "DOWNARROW.svg", { DOWNARROW, false } },
+    { "UPARROW.svg", { UPARROW, false } },
+    { "LEFTARROW.svg", { LEFTARROW, false } },
+    { "RIGHTARROW.svg", { RIGHTARROW, false } },
+    { "IMPORT.svg", { IMPORT, false } },
+    { "MORE_OPTIONS.svg", { MORE_OPTIONS, false } },
+    { "RELOCATION.svg", { RELOCATION, false } },
+    { "SAVE.svg", { SAVE, false } },
+    { "TRANSFILTER.svg", { TRANSFILTER, false } },
+    { "TRANSFILTER_ACTIVE.svg", { TRANSFILTER_ACTIVE, false } },
+    { "TRXNUM.svg", { TRXNUM, false } },
+    { "UPDATE.svg", { UPDATE, false } },
+    { "WEB.svg", { WEB, false } },
 
     // Settings
-    { "GENERAL.svg", { GENERAL, 0 } },
-    { "VIEW.svg", { VIEW, 0 } },
-    { "ATTACHMENTS.svg", { ATTACHMENTS, 0 } },
-    { "NETWORK.svg", { NETWORK, 0 } },
-    { "OTHERS.svg", { OTHERS, 0 } },
+    { "GENERAL.svg", { GENERAL, false } },
+    { "VIEW.svg", { VIEW, false } },
+    { "ATTACHMENTS.svg", { ATTACHMENTS, false } },
+    { "NETWORK.svg", { NETWORK, false } },
+    { "OTHERS.svg", { OTHERS, false } },
 
     // Extra Account Icons
-    { "ACC_MONEY.svg", { ACC_MONEY, 0xFFFFFFFF } },
-    { "ACC_EURO.svg", { ACC_EURO, 0xFFFFFFFF } },
-    { "ACC_FLAG.svg", { ACC_FLAG, 0xFFFFFFFF } },
-    { "ACC_ABOUT.svg", { ACC_ABOUT, 0xFFFFFFFF } },
-    { "ACC_COINS.svg", { ACC_COINS, 0xFFFFFFFF } },
-    { "ACC_CLOCK.svg", { ACC_CLOCK, 0xFFFFFFFF } },
-    { "ACC_CAT.svg", { ACC_CAT, 0xFFFFFFFF } },
-    { "ACC_DOG.svg", { ACC_DOG, 0xFFFFFFFF } },
-    { "ACC_TREES.svg", { ACC_TREES, 0xFFFFFFFF } },
-    { "ACC_HOURGLASS.svg", { ACC_HOURGLASS, 0xFFFFFFFF } },
-    { "ACC_WORK.svg", { ACC_WORK, 0xFFFFFFFF } },
-    { "ACC_PAYPAL.svg", { ACC_PAYPAL, 0xFFFFFFFF } },
-    { "ACC_WALLET.svg", { ACC_WALLET, 0xFFFFFFFF } },
-    { "ACC_RUBIK.svg", { ACC_RUBIK, 0xFFFFFFFF } },
+    { "ACC_MONEY.svg", { ACC_MONEY, true } },
+    { "ACC_EURO.svg", { ACC_EURO, true } },
+    { "ACC_FLAG.svg", { ACC_FLAG, true } },
+    { "ACC_ABOUT.svg", { ACC_ABOUT, true } },
+    { "ACC_COINS.svg", { ACC_COINS, true } },
+    { "ACC_CLOCK.svg", { ACC_CLOCK, true } },
+    { "ACC_CAT.svg", { ACC_CAT, true } },
+    { "ACC_DOG.svg", { ACC_DOG, true } },
+    { "ACC_TREES.svg", { ACC_TREES, true } },
+    { "ACC_HOURGLASS.svg", { ACC_HOURGLASS, true } },
+    { "ACC_WORK.svg", { ACC_WORK, true } },
+    { "ACC_PAYPAL.svg", { ACC_PAYPAL, true } },
+    { "ACC_WALLET.svg", { ACC_WALLET, true } },
+    { "ACC_RUBIK.svg", { ACC_RUBIK, true } },
 
     // Other
-    { "EMPTY.svg", { EMPTY, 0 } }
+    { "EMPTY.svg", { EMPTY, false } }
 };
 
-static bool iconsLoaded = false;
+// Metadata item id, where it can be found, default and if mandatory
+static const std::map<int, std::tuple<wxString, wxString, bool> > metaDataTrans = {
+    { THEME_NAME, { "/theme/name", "", true } },
+    { THEME_AUTHOR, { "/theme/author", "", false } },
+    { THEME_DESCRIPTION, { "/theme/description", "", true } },    
+    { THEME_URL, { "/theme/url", "", false } },
+    { COLOR_NAVPANEL, { "/colors/navigationPanel", "#FFFFFF", false } },
+    { COLOR_LISTPANEL, { "/colors/listPanel", "#FFFFFF", false } },
+    { COLOR_LISTALT0, { "/colors/listAlternative1", "#F0F5EB", false } },
+    { COLOR_LISTALT0A, { "/colors/listAlternative2", "#E0E7F0", false } },
+    { COLOR_LISTTOTAL, { "/colors/listTotal", "#7486A8", false } },
+    { COLOR_LISTBORDER, { "/colors/listBorder", "#000000", false } },
+    { COLOR_LISTFUTURE, { "/colors/listFutureDate", "#7486A8", false } },
+};
 
 const std::vector<std::pair<int, int> > sizes = { {0, 16}, {1, 24}, {2, 32}, {3, 48} };
 static wxSharedPtr<wxBitmap> programIcons[4][MAX_PNG];
+Document metaData_doc;
 
-static wxSharedPtr<wxArrayString> themes;
 static wxArrayString* filesInVFS;
 
 static const std::map<int, wxBitmap> navtree_images()
@@ -245,9 +258,10 @@ wxBitmap* CreateBitmapFromRGBA(unsigned char *rgba, int size)
     return (new wxBitmap (image));
 }
 
-bool buildBitmapsFromSVG(wxString themeDir, wxString myTheme)
+bool processThemes(wxString themeDir, wxString myTheme, bool metaPhase)
 {
     wxDir directory(themeDir);
+    wxLogDebug("-- Metadata Phase?: %s", metaPhase ? "YES" : "NO");
     wxLogDebug ("Scanning [%s] for Theme [%s]", themeDir, myTheme);
     if ( !directory.IsOpened() ) return false;  
 
@@ -265,92 +279,107 @@ bool buildBitmapsFromSVG(wxString themeDir, wxString myTheme)
         wxASSERT(themeZip.IsOk());   // Make sure we can open find the Zip
 
         if (!thisTheme.Cmp(myTheme))
-            themeMatched = true;
-
-        wxZipInputStream themeStream(themeZip);
-        std::unique_ptr<wxZipEntry> themeEntry;
-
-        while (themeEntry.reset(themeStream.GetNextEntry()), themeEntry) // != nullptr
         {
-            wxASSERT(themeZip.CanRead()); // Make sure we can read the Zip Entry
+            themeMatched = true;
+            wxZipInputStream themeStream(themeZip);
+            std::unique_ptr<wxZipEntry> themeEntry;
 
-            const wxFileName fileEntryName = wxFileName(themeEntry->GetName());
-            const wxString fileFullPath = fileEntryName.GetFullPath();
-            const wxString fileEntry = fileEntryName.GetFullName();
-            std::string fileName = std::string(fileEntry.mb_str());
+            const wxString bgString = mmThemeMetaString(COLOR_NAVPANEL).AfterFirst('#');
+            long bgStringConv;
+            bgString.ToLong(&bgStringConv, 16);
+            bgStringConv =  bgStringConv * 256 + 255;  // Need to add Alpha
 
-            if (wxNOT_FOUND == themes->Index(thisTheme)) // Add user theme if not in the existing list
-                themes->Add(thisTheme);
-
-            if (thisTheme.Cmp(myTheme) || fileEntryName.IsDir())
-                continue;   // We can skip if it's not our theme
-
-            //wxLogDebug("fileEntry: %s", fileEntry);
-
-            // If the file does not match an icon file then just load it into VFS / tmp
-            if (!iconName2enum.count(fileName))
+            while (themeEntry.reset(themeStream.GetNextEntry()), themeEntry) // != nullptr
             {
+                wxASSERT(themeZip.CanRead()); // Make sure we can read the Zip Entry
+
+                const wxFileName fileEntryName = wxFileName(themeEntry->GetName());
+                const wxString fileFullPath = fileEntryName.GetFullPath();
+                const wxString fileEntry = fileEntryName.GetFullName();
+                std::string fileName = std::string(fileEntry.mb_str());
+
+                if (fileEntryName.IsDir())
+                    continue;   // We can skip directories
+                
+                if (metaPhase)  // For this phase we are only interested in the metadata
+                {
+                    if (fileName == "_theme.json")
+                    {
+                        wxMemoryOutputStream memOut(nullptr);
+                        themeStream.Read(memOut);
+                        const wxStreamBuffer* buffer = memOut.GetOutputStreamBuffer();
+                        wxString metaData(static_cast<char *>(buffer->GetBufferStart()), buffer->GetBufferSize());
+                        if (metaData_doc.Parse(metaData.utf8_str()).HasParseError())
+                        {
+                            wxMessageBox(wxString::Format(_("Metadata JSON in Theme '%s' cannot be parsed and looks badly constructed, please correct.")
+                                , thisTheme), _("Warning"), wxOK | wxICON_WARNING);
+                        }
+                    }
+                    continue;
+                }
+
+                //wxLogDebug("fileEntry: %s", fileEntry);
+
+                // If the file does not match an icon file then just load into VFS / tmp
+                if (!iconName2enum.count(fileName))
+                {
 #ifndef __WXGTK__
+                    wxMemoryOutputStream memOut(nullptr);
+                    themeStream.Read(memOut);
+                    const wxStreamBuffer* buffer = memOut.GetOutputStreamBuffer();
+
+                    if (wxNOT_FOUND != filesInVFS->Index(fileName)) // If already loaded then remove and replace
+                        wxMemoryFSHandler::RemoveFile(fileName);
+                    wxMemoryFSHandler::AddFile(fileName, buffer->GetBufferStart()
+                        , buffer->GetBufferSize());
+                    wxLogDebug("Theme: '%s' File: '%s' has been copied to VFS", thisTheme, fileName);
+#else
+                    const wxString themeFile = mmex::getTempFolder() + fileName;
+                    wxFileOutputStream fileOut(themeFile);
+                    if (!fileOut.IsOk())
+                        wxLogError("Could not copy %s !", fileFullPath);
+                    else
+                        wxLogDebug("Copying file:\n %s \nto\n %s", fileFullPath, themeFile);
+                    themeStream.Read(fileOut);
+#endif
+                    filesInVFS->Add(fileName);
+                    continue;
+                }
+
+                // So we have an icon file now, now need to convert from SVG to PNG at various resolutions and store
+                // it away for use
+
                 wxMemoryOutputStream memOut(nullptr);
                 themeStream.Read(memOut);
                 const wxStreamBuffer* buffer = memOut.GetOutputStreamBuffer();
-
-                if (wxNOT_FOUND != filesInVFS->Index(fileName)) // If already loaded then remove and replace
-                    wxMemoryFSHandler::RemoveFile(fileName);
-                wxMemoryFSHandler::AddFile(fileName, buffer->GetBufferStart()
-                    , buffer->GetBufferSize());
-                wxLogDebug("Theme: '%s' File: '%s' has been copied to VFS", thisTheme, fileName);
-#else
-                const wxString themeFile = mmex::getTempFolder() + fileName;
-                wxFileOutputStream fileOut(themeFile);
-                if (!fileOut.IsOk())
-                    wxLogError("Could not copy %s !", fileFullPath);
-                else
-                    wxLogDebug("Copying file:\n %s \nto\n %s", fileFullPath, themeFile);
-                themeStream.Read(fileOut);
-#endif
-                filesInVFS->Add(fileName);
-                continue;
-            }
-
-            // So we have an icon file now, now need to convert from SVG to PNG at various resolutions and store
-            // it away for use
-
-            wxMemoryOutputStream memOut(nullptr);
-            themeStream.Read(memOut);
-            const wxStreamBuffer* buffer = memOut.GetOutputStreamBuffer();
-            
-            lunasvg::SVGDocument document;
-            std::string svgDoc(static_cast<char *>(buffer->GetBufferStart()), buffer->GetBufferSize());
-            if (!document.loadFromData(svgDoc))
-            {   // Should only occur in badly constructed user themes
-                wxMessageBox(wxString::Format(_("Image '%s' in Theme '%s' looks badly constructed, please correct. Default image will be used")
-                    , fileName, thisTheme), _("Warning"), wxOK | wxICON_WARNING);
-                continue;
-            }
-    
-            int svgEnum = iconName2enum.find(fileName)->second.first;
-            std::uint32_t bgColor = iconName2enum.find(fileName)->second.second;
-            lunasvg::Bitmap bitmap;
-
-            // Generate bitmaps at the resolutions used by the program - 16, 24, 32, 48
-
-            for (const auto& i : sizes)
-            {
-                bitmap = document.renderToBitmap(i.second, i.second, 96.0, bgColor);
-                if (!bitmap.valid())
-                {   // Should only occur in badly constructed user themes
-                    wxMessageBox(wxString::Format(_("Image '%s' in Theme '%s' cannot be converted to bitmap, please correct. Default image will be used")
-                        , fileName, thisTheme), _("Warning"), wxOK | wxICON_WARNING);
+                
+                lunasvg::SVGDocument document;
+                std::string svgDoc(static_cast<char *>(buffer->GetBufferStart()), buffer->GetBufferSize());
+                if (!document.loadFromData(svgDoc))
                     continue;
-                }
-                programIcons[i.first][svgEnum] = CreateBitmapFromRGBA(bitmap.data(), i.second);
-            }
+        
+                int svgEnum = iconName2enum.find(fileName)->second.first;
 
+                std::uint32_t bgColor = 0;
+                if (iconName2enum.find(fileName)->second.second)
+                    bgColor = bgStringConv;
+
+                lunasvg::Bitmap bitmap;
+
+                // Generate bitmaps at the resolutions used by the program - 16, 24, 32, 48
+
+                for (const auto& i : sizes)
+                {
+                    bitmap = document.renderToBitmap(i.second, i.second, 96.0, bgColor);
+                    if (!bitmap.valid())
+                        continue;
+                    programIcons[i.first][svgEnum] = CreateBitmapFromRGBA(bitmap.data(), i.second);
+                }
+
+            }
         }
         cont = directory.GetNext(&filename);
     }
-    themes.get()->Sort();
     return (themeMatched);
 }
 
@@ -358,17 +387,31 @@ bool buildBitmapsFromSVG(wxString themeDir, wxString myTheme)
 bool checkThemeContents(wxArrayString *filesinTheme)
 {
     bool success = true;
-    const wxString neededFiles[] = { "master.css", "" };
+
+    // Check for required files
+    const wxString neededFiles[] = { "master.css", "_theme.json", "_theme.png" };
     
     for (int i = 0; !neededFiles[i].IsEmpty(); i++)
     {
         if (wxNOT_FOUND == filesinTheme->Index(neededFiles[i])) {
-            wxMessageBox(wxString::Format(_("File '%s' missing from chosen theme '%s'")
+            wxMessageBox(wxString::Format(_("File '%s' missing or invalid in chosen theme '%s'")
                 , neededFiles[i], Model_Setting::instance().Theme()), _("Warning"), wxOK | wxICON_WARNING);
             success = false;
         }
     }
 
+    // Check for required metadata
+    for (auto it = metaDataTrans.begin(); it != metaDataTrans.end(); it++)
+    {
+        if (std::get<2>(it->second) && mmThemeMetaString(it->first).IsEmpty())
+        {
+            wxMessageBox(wxString::Format(_("Metadata '%s' missing in chosen theme '%s'")
+                , std::get<0>(it->second), Model_Setting::instance().Theme()), _("Warning"), wxOK | wxICON_WARNING);
+            success = false;
+        }
+    }
+
+    // Check for required icons
     wxString missingIcons;
     const int maxCutOff = 10;
     int erroredIcons = 0;
@@ -403,43 +446,68 @@ bool checkThemeContents(wxArrayString *filesinTheme)
     return success;
 }
 
-const wxBitmap mmBitmap(int ref)
+void reverttoDefaultTheme()
 {
-    // Load icons on first use
-    if (!iconsLoaded) 
-    { 
-        themes = new wxArrayString();
-        bool myThemeFound;
-        filesInVFS = new wxArrayString();
-        myThemeFound = buildBitmapsFromSVG(mmex::getPathResource(mmex::THEMESDIR), Model_Setting::instance().Theme());
-        myThemeFound = buildBitmapsFromSVG(mmex::getPathUser(mmex::USERTHEMEDIR), Model_Setting::instance().Theme()) || myThemeFound;
+    Model_Setting::instance().SetTheme("default");
+    processThemes(mmex::getPathResource(mmex::THEMESDIR), Model_Setting::instance().Theme(), true);
+    processThemes(mmex::getPathResource(mmex::THEMESDIR), Model_Setting::instance().Theme(), false);  
+}
 
-        if (!myThemeFound)
+void LoadTheme()
+{
+    filesInVFS = new wxArrayString();
+
+    // Scan first for metadata then for the icons and other files
+    if (processThemes(mmex::getPathResource(mmex::THEMESDIR), Model_Setting::instance().Theme(), true))
+        processThemes(mmex::getPathResource(mmex::THEMESDIR), Model_Setting::instance().Theme(), false);
+    else
+        if (processThemes(mmex::getPathUser(mmex::USERTHEMEDIR), Model_Setting::instance().Theme(), true))
+            processThemes(mmex::getPathUser(mmex::USERTHEMEDIR), Model_Setting::instance().Theme(), false);
+        else
         {
             wxMessageBox(wxString::Format(_("Theme %s not found, it may no longer be supported. Reverting to default theme")
                 , Model_Setting::instance().Theme()), _("Warning"), wxOK | wxICON_WARNING);
-            Model_Setting::instance().SetTheme("default");
-            buildBitmapsFromSVG(mmex::getPathResource(mmex::THEMESDIR), Model_Setting::instance().Theme());
+            reverttoDefaultTheme();
         }
-        
-        if (!checkThemeContents(filesInVFS))
-        {
-            wxMessageBox(wxString::Format(_("Theme %s has missing items and is incompatible. Reverting to default theme"), Model_Setting::instance().Theme()), _("Warning"), wxOK | wxICON_WARNING);
-            Model_Setting::instance().SetTheme("default");
-            buildBitmapsFromSVG(mmex::getPathResource(mmex::THEMESDIR), Model_Setting::instance().Theme());
-        } 
-        
-        delete filesInVFS; 
-        iconsLoaded = true;
-    }
+    
+    if (!checkThemeContents(filesInVFS))
+    {
+        wxMessageBox(wxString::Format(_("Theme %s has missing items and is incompatible. Reverting to default theme"), Model_Setting::instance().Theme()), _("Warning"), wxOK | wxICON_WARNING);
+        reverttoDefaultTheme();
+    } 
+    
+    delete filesInVFS; 
+}
+
+const wxString mmThemeMetaString(int ref)
+{
+    wxString metaLocation = std::get<0>(metaDataTrans.find(ref)->second);
+    const Pointer ptr(metaLocation.mb_str());
+    wxString metaValue = GetValueByPointerWithDefault(metaData_doc, ptr, "").GetString();
+    if (metaValue.IsEmpty())
+        metaValue = std::get<1>(metaDataTrans.find(ref)->second);
+    return (metaValue);
+}
+
+// helpers
+const long mmThemeMetaLong(int ref)
+{
+    long retValue;
+    if (!mmThemeMetaString(ref).ToLong(&retValue, 0))
+        retValue = 0;
+    return retValue;
+}
+
+const wxColour mmThemeMetaColour(int ref)
+{
+    return wxColour(mmThemeMetaString(ref));
+}
+
+const wxBitmap mmBitmap(int ref)
+{
     int x = Option::instance().getIconSize();
     auto it = find_if(sizes.begin(), sizes.end(), [x](const std::pair<int, int>& p) { return p.second == x; });
     wxASSERT(it != sizes.end());
 
     return *programIcons[it->first][ref].get();
-}
-
-wxArrayString getThemes()
-{
-    return *themes;
 }
