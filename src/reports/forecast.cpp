@@ -16,6 +16,7 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
+#include "images_list.h"
 #include "forecast.h"
 #include "mmex.h"
 #include "mmframe.h"
@@ -87,7 +88,8 @@ wxString mmReportForecast::getHTMLText()
     hb.addDivContainer("shadow");
     { 
         gd.type = GraphData::LINE_DATETIME;
-        gd.colors = { wxColour(80, 179, 129), wxColour(247, 94, 94) };  // Green, Red
+        gd.colors = { mmThemeMetaColour(meta::COLOR_REPORT_CREDIT)
+                        , mmThemeMetaColour(meta::COLOR_REPORT_DEBIT) }; 
         hb.addChart(gd);
     }
     hb.endDiv();
