@@ -282,11 +282,11 @@ void mmBudgetingPanel::CreateControls()
 
 budgetingListCtrl::budgetingListCtrl(mmBudgetingPanel* cp, wxWindow *parent, const wxWindowID id)
     : mmListCtrl(parent, id)
-    , attr3_(new wxListItemAttr(wxNullColour, mmThemeMetaColour(COLOR_LISTTOTAL), wxNullFont))
+    , attr3_(new wxListItemAttr(wxNullColour, mmThemeMetaColour(meta::COLOR_LISTTOTAL), wxNullFont))
     , cp_(cp)
     , selectedIndex_(-1)
 {
-    this->SetBackgroundColour(mmThemeMetaColour(COLOR_LISTPANEL));
+    this->SetBackgroundColour(mmThemeMetaColour(meta::COLOR_LISTPANEL));
     m_columns.push_back(PANEL_COLUMN(_("Icon"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_LEFT));
     m_columns.push_back(PANEL_COLUMN(_("Category"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT));
     m_columns.push_back(PANEL_COLUMN(_("Sub Category"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT));

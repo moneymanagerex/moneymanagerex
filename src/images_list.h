@@ -21,7 +21,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include <wx/arrstr.h>
 
 // Meta data items
-enum metaData {
+enum meta {
     THEME_NAME,
     THEME_AUTHOR,
     THEME_DESCRIPTION,  
@@ -33,6 +33,9 @@ enum metaData {
     COLOR_LISTTOTAL,
     COLOR_LISTBORDER,
     COLOR_LISTFUTURE,
+    COLOR_REPORT_CREDIT,
+    COLOR_REPORT_DEBIT,
+    COLOR_REPORT_PALETTE,
     // The end
     MAX_METADATA
 };
@@ -207,4 +210,5 @@ void LoadTheme();
 const wxString mmThemeMetaString(int ref);
 const long mmThemeMetaLong(int ref);
 const wxColour mmThemeMetaColour(int ref);
+const std::vector<wxColor> mmThemeMetaColourArray(int ref);
 const wxBitmap mmBitmap(int ref);

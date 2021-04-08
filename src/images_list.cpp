@@ -31,6 +31,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include <wx/rawbmp.h>
 #include <wx/fs_mem.h>
 #include <wx/mstream.h>
+#include <wx/tokenzr.h>
 #include "../3rd/lunasvg/include/svgdocument.h"
 
 // SVG filename in Zip, the PNG enum to which it relates, whether to recolor background
@@ -160,6 +161,9 @@ static const std::map<int, std::tuple<wxString, wxString, bool> > metaDataTrans 
     { COLOR_LISTTOTAL, { "/colors/listTotal", "#7486A8", false } },
     { COLOR_LISTBORDER, { "/colors/listBorder", "#000000", false } },
     { COLOR_LISTFUTURE, { "/colors/listFutureDate", "#7486A8", false } },
+    { COLOR_REPORT_CREDIT, { "/colors/reports/credit", "#50B381", false } },
+    { COLOR_REPORT_DEBIT, { "/colors/reports/debit", "#F75E51", false} },
+    { COLOR_REPORT_PALETTE, { "/colors/reports/palette", "#008FFB #00E396 #FEB019 #FF4560 #775DD0 #3F51B5 #03A9F4 #4cAF50 #F9CE1D #FF9800 #33B2DF #546E7A #D4526E #13D8AA #A5978B #4ECDC4 #81D4FA #546E7A #FD6A6A #2B908F #F9A3A4 #90EE7E #FA4443 #69D2E7 #449DD1 #F86624", false } }
 };
 
 const std::vector<std::pair<int, int> > sizes = { {0, 16}, {1, 24}, {2, 32}, {3, 48} };
@@ -284,7 +288,7 @@ bool processThemes(wxString themeDir, wxString myTheme, bool metaPhase)
             wxZipInputStream themeStream(themeZip);
             std::unique_ptr<wxZipEntry> themeEntry;
 
-            const wxString bgString = mmThemeMetaString(COLOR_NAVPANEL).AfterFirst('#');
+            const wxString bgString = mmThemeMetaString(meta::COLOR_NAVPANEL).AfterFirst('#');
             long bgStringConv;
             bgString.ToLong(&bgStringConv, 16);
             bgStringConv =  bgStringConv * 256 + 255;  // Need to add Alpha
@@ -501,6 +505,15 @@ const long mmThemeMetaLong(int ref)
 const wxColour mmThemeMetaColour(int ref)
 {
     return wxColour(mmThemeMetaString(ref));
+}
+
+const std::vector<wxColor> mmThemeMetaColourArray(int ref)
+{
+    std::vector<wxColour> colours;   
+    wxStringTokenizer input(mmThemeMetaString(ref));
+    while (input.HasMoreTokens())
+        colours.push_back(wxColour(input.GetNextToken()));
+    return colours;
 }
 
 const wxBitmap mmBitmap(int ref)

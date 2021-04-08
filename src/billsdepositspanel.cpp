@@ -88,7 +88,7 @@ billsDepositsListCtrl::billsDepositsListCtrl(mmBillsDepositsPanel* bdp, wxWindow
 : mmListCtrl(parent, winid)
 , m_bdp(bdp)
 {
-    this->SetBackgroundColour(mmThemeMetaColour(COLOR_LISTPANEL));
+    this->SetBackgroundColour(mmThemeMetaColour(meta::COLOR_LISTPANEL));
     // load the global variables
     m_selected_col = Model_Setting::instance().GetIntSetting("BD_SORT_COL", m_bdp->col_sort());
     m_asc = Model_Setting::instance().GetBoolSetting("BD_ASC", true);
