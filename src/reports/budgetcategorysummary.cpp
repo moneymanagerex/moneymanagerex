@@ -117,7 +117,6 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
     // Chart
     if (getChartSelection() == 0)
     {
-        //std::vector<ValueTrio> actValueList, estValueList;
         GraphData gd;
         GraphSeries gsActual, gsEstimated;
 
@@ -128,17 +127,23 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
                 Model_Category::Data *c = Model_Category::instance().get(categID);
                 wxString categName = "Categories";
                 if (c) categName = c->CATEGNAME;
-                gsActual.name = _("Actual");
                 gsEstimated.name = _("Estimated");
-                gd.series.push_back(gsEstimated);
-                gd.series.push_back(gsActual);
+                gsActual.name = _("Actual");
+
                 hb.addDivContainer("shadow");
                 { 
                     gd.title = categName;
-                    if (gd.labels.size() > 2) // Radar charts need at least 3 items 
-                        gd.type = GraphData::RADAR;
-                    else
+                    if (gd.labels.size() > 1) // Bar/Line are best with at least 2 items 
+                    {
+                        gd.type = GraphData::BARLINE;
+                        gsEstimated.type = "column";
+                        gsActual.type = "line";
+                    } else
+                    {
                         gd.type = GraphData::BAR; 
+                    }
+                    gd.series.push_back(gsEstimated);
+                    gd.series.push_back(gsActual);
                     hb.addChart(gd);
                 }
                 hb.endDiv();
