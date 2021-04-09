@@ -481,6 +481,8 @@ void mmHTMLBuilder::addChart(const GraphData& gd)
     {
         case GraphData::BAR:
             gtype = "bar";
+            if (gd.labels.size() < 5)
+                chartWidth = 70;
             break;
         case GraphData::LINE:
             gtype = "line";
@@ -503,6 +505,8 @@ void mmHTMLBuilder::addChart(const GraphData& gd)
             break;
         case GraphData::BARLINE:
             gtype = "line";
+            if (gd.labels.size() < 5)
+                chartWidth = 70;
     };
 
     htmlChart += wxString::Format("chart: { type: '%s', toolbar: { tools: { download: false } }, width: '%i%%' }", gtype, chartWidth);
