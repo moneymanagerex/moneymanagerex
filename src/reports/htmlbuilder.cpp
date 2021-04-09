@@ -508,6 +508,8 @@ void mmHTMLBuilder::addChart(const GraphData& gd)
     {
         case GraphData::BAR:
             gtype = "bar";
+            if (gd.labels.size() < 5)
+                chartWidth = 70;
             break;
         case GraphData::LINE:
             gtype = "line";
