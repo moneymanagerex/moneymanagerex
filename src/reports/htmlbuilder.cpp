@@ -500,6 +500,9 @@ void mmHTMLBuilder::addChart(const GraphData& gd)
         case GraphData::RADAR:
             gtype = "radar";
             chartWidth = 70;
+            break;
+        case GraphData::BARLINE:
+            gtype = "line";
     };
 
     htmlChart += wxString::Format("chart: { type: '%s', toolbar: { tools: { download: false } }, width: '%i%%' }", gtype, chartWidth);
@@ -552,8 +555,8 @@ void mmHTMLBuilder::addChart(const GraphData& gd)
         first = false; 
     }
 
-    // Pie/donut charts just have a single series / data
-    if (gd.type == GraphData::PIE || gd.type == GraphData::DONUT)
+    // Pie/donut charts just have a single series / data, and mixed have a single set of labels
+    if (gd.type == GraphData::PIE || gd.type == GraphData::DONUT || gd.type == GraphData::BARLINE)
        htmlChart += wxString::Format(",labels: [%s]", categories);
     else
         htmlChart += wxString::Format(", xaxis: { type: '%s', categories: [%s], labels: { hideOverlappingLabels: true } }\n", gSeriesType, categories);
@@ -586,10 +589,17 @@ void mmHTMLBuilder::addChart(const GraphData& gd)
         if (gd.type == GraphData::PIE || gd.type == GraphData::DONUT) 
             seriesList = seriesEntries;
         else
-            seriesList += wxString::Format("%s{ name: '%s', data: [%s] }", firstList ? "":",", entry.name, seriesEntries);
+        {
+            const wxString typeString = (gd.type == GraphData::BARLINE) ? wxString::Format("type: '%s',", entry.type) : "";
+            seriesList += wxString::Format("%s{ name: '%s', %s data: [%s] }", firstList ? "":",", entry.name, typeString, seriesEntries);
+        }
         firstList = false;
     }
     htmlChart += wxString::Format(", series: [%s]", seriesList);
+
+    if (gd.type == GraphData::BARLINE)
+        htmlChart += ", dataLabels: { enabled: true, enabledOnSeries: [1] }";
+
     htmlPieData += wxString::Format("var chart_%s = [ %s ]", divid, pieEntries);
 
     addText(wxString::Format("<div id='%s' class='%s'></div>\n"
