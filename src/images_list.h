@@ -19,6 +19,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 #include <wx/imaglist.h>
 #include <wx/arrstr.h>
+#include <vector>
 
 // Meta data items
 enum meta {
@@ -210,5 +211,5 @@ void LoadTheme();
 const wxString mmThemeMetaString(int ref);
 const long mmThemeMetaLong(int ref);
 const wxColour mmThemeMetaColour(int ref);
-const std::vector<wxColor> mmThemeMetaColourArray(int ref);
+const std::vector<wxColour> mmThemeMetaColourArray(int ref);
 const wxBitmap mmBitmap(int ref);
