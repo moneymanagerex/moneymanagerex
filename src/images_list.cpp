@@ -507,7 +507,7 @@ const wxColour mmThemeMetaColour(int ref)
     return wxColour(mmThemeMetaString(ref));
 }
 
-const std::vector<wxColor> mmThemeMetaColourArray(int ref)
+const std::vector<wxColour> mmThemeMetaColourArray(int ref)
 {
     std::vector<wxColour> colours;   
     wxStringTokenizer input(mmThemeMetaString(ref));
