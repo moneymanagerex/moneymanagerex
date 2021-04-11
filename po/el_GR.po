@@ -6446,12 +6446,12 @@ msgid "Specify the date of the transaction"
 msgstr "Δηλώστε την ημερομηνία της συναλλαγής"
 
 #: transdialog.cpp:1319
-msgid "Clear colour"
+msgid "Clear color"
 msgstr "Καθαρισμός χρώματος"
 
 #: transdialog.cpp:1324
 #, c-format
-msgid "Colour #%i"
+msgid "Color #%i"
 msgstr "Χρώμα #%i"
 
 #: usertransactionpanel.cpp:114
