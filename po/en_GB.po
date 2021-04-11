@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Money Manager Ex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2020-05-15 20:59+0300\n"
-"PO-Revision-Date: 2020-05-16 12:26+0300\n"
+"PO-Revision-Date: 2021-04-11 13:31+0300\n"
 "Last-Translator: Nikolay Akimov <vomikan@mail.ru>\n"
 "Language-Team: TheZeal Software\n"
 "Language: en_GB\n"
@@ -13,7 +13,7 @@ msgstr ""
 "X-Poedit-SourceCharset: utf-8\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-KeywordsList: wxTRANSLATE;_\n"
-"X-Generator: Poedit 2.3.1\n"
+"X-Generator: Poedit 2.4.2\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SearchPath-0: src\n"
 
@@ -5469,7 +5469,7 @@ msgstr ""
 
 #: optionsettingsview.cpp:121 transdialog.cpp:563
 msgid "User Colors"
-msgstr ""
+msgstr "User Colours"
 
 #: optionsettingsview.cpp:127
 msgid "1"
