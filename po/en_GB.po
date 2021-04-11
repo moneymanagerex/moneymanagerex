@@ -6470,13 +6470,13 @@ msgid "Specify the date of the transaction"
 msgstr ""
 
 #: transdialog.cpp:1309
-msgid "Clear colour"
-msgstr ""
+msgid "Clear color"
+msgstr "Clear colour"
 
 #: transdialog.cpp:1314
 #, c-format
-msgid "Colour #%i"
-msgstr ""
+msgid "Color #%i"
+msgstr "Colour #%i"
 
 #: usertransactionpanel.cpp:115
 msgid "Specify the associated Account that will contain this transaction"

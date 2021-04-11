@@ -1316,12 +1316,12 @@ void mmTransDialog::OnColourButton(wxCommandEvent& /*event*/)
 
     wxMenu* mainMenu = new wxMenu;
 
-    wxMenuItem* menuItem = new wxMenuItem(mainMenu, wxID_HIGHEST, wxString::Format(_("Clear colour"), 0));
+    wxMenuItem* menuItem = new wxMenuItem(mainMenu, wxID_HIGHEST, wxString::Format(_("Clear color"), 0));
     mainMenu->Append(menuItem);
 
     for (int i = 1; i <= 7; ++i)
     {
-        menuItem = new wxMenuItem(mainMenu, wxID_HIGHEST + i, wxString::Format(_("Colour #%i"), i));
+        menuItem = new wxMenuItem(mainMenu, wxID_HIGHEST + i, wxString::Format(_("Color #%i"), i));
 #ifdef __WXMSW__
         menuItem->SetBackgroundColour(getUDColour(i)); //only available for the wxMSW port.
 #endif
