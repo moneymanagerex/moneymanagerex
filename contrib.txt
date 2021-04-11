@@ -111,16 +111,16 @@ Spanish
 
 ## Art and Icons
 [SVG Repo](https://www.svgrepo.com)
-Greg Chapman
-[Mark James](http://www.famfamfam.com/lab/icons/silk)
-[openclipart.org](http://openclipart.org)
 
 ---------------------------------------
 ## Sponsors
+
 ### 2021
-Michael Ellis
 Renato
+Dimitrios Valsamis
+Michael Ellis
 Wiesław Stawiszyński
+Jean-Francois Zahnen
 Michel SERIN
 Thierry PAPINOT
 Jiří Vyskočil
@@ -129,6 +129,8 @@ Jean-michel LOUISET
 Hermann Fessler
 Luisa Guglielmetti
 Brian Crow
+Francisco Fos Ros
+Ian Rowe
 José Moya Iglesias
 
 ### 2020
