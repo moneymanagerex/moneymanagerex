@@ -598,7 +598,7 @@ bool get_yahoo_prices(std::map<wxString, double>& symbols
     wxString buffer;
     for (const auto& entry : symbols)
     {
-        wxRegEx pattern(R"(^([a-zA-Z0-9\.-_\/]+)$)");
+        wxRegEx pattern(R"(^([-a-zA-Z0-9_@\.]+)$)");
         if (!pattern.Matches(entry.first))
             continue;
 
