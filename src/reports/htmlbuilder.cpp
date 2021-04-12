@@ -613,9 +613,14 @@ void mmHTMLBuilder::addChart(const GraphData& gd)
             oss << v;
             wxString value = oss.str();
 
-            seriesEntries += wxString::Format("%s%s", first ? "":",", valueAbs);
             if (gd.type == GraphData::PIE || gd.type == GraphData::DONUT)
+            {
+                seriesEntries += wxString::Format("%s%s", first ? "":",", valueAbs);    // pie data series must be positive
                 pieEntries += wxString::Format("%s%s", first ? "":",", value);
+            } else
+            {
+                seriesEntries += wxString::Format("%s%s", first ? "":",", value);
+            }
             first = false;
         }
         if (gd.type == GraphData::PIE || gd.type == GraphData::DONUT) 
