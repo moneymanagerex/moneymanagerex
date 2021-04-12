@@ -39,7 +39,6 @@
 #include "model/allmodel.h"
 #include <wx/clipbrd.h>
 
-
 #include <wx/srchctrl.h>
 #include <algorithm>
 #include <wx/sound.h>
@@ -142,10 +141,10 @@ TransactionListCtrl::TransactionListCtrl(
 ) :
     mmListCtrl(parent, id),
     m_cp(cp),
-    m_attr1(new wxListItemAttr(*wxBLACK, m_cp->m_allAccounts ? mmColors::listAlternativeColor0A : mmColors::listAlternativeColor0, wxNullFont)),
-    m_attr2(new wxListItemAttr(*wxBLACK, mmColors::listAlternativeColor1, wxNullFont)),
-    m_attr3(new wxListItemAttr(mmColors::listFutureDateColor, m_cp->m_allAccounts ? mmColors::listAlternativeColor0A : mmColors::listAlternativeColor0, wxNullFont)),
-    m_attr4(new wxListItemAttr(mmColors::listFutureDateColor, mmColors::listAlternativeColor1, wxNullFont)),
+    m_attr1(new wxListItemAttr(*wxBLACK, m_cp->m_allAccounts ? mmThemeMetaColour(meta::COLOR_LISTALT0A) : mmThemeMetaColour(meta::COLOR_LISTALT0), wxNullFont)),
+    m_attr2(new wxListItemAttr(*wxBLACK, wxNullColour, wxNullFont)),
+    m_attr3(new wxListItemAttr(mmThemeMetaColour(meta::COLOR_LISTFUTURE), m_cp->m_allAccounts ? mmThemeMetaColour(meta::COLOR_LISTALT0A) : mmThemeMetaColour(meta::COLOR_LISTALT0), wxNullFont)),
+    m_attr4(new wxListItemAttr(mmThemeMetaColour(meta::COLOR_LISTFUTURE), wxNullColour, wxNullFont)),
     m_attr11(new wxListItemAttr(*wxBLACK, mmColors::userDefColor1, wxNullFont)),
     m_attr12(new wxListItemAttr(*wxBLACK, mmColors::userDefColor2, wxNullFont)),
     m_attr13(new wxListItemAttr(*wxBLACK, mmColors::userDefColor3, wxNullFont)),
@@ -162,6 +161,7 @@ TransactionListCtrl::TransactionListCtrl(
     wxASSERT(m_cp);
     m_selected_id.clear();
     m_selectedForCopy.clear();
+    this->SetBackgroundColour(mmThemeMetaColour(meta::COLOR_LISTPANEL));
 
     const wxAcceleratorEntry entries[] =
     {

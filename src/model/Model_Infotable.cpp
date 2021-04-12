@@ -147,7 +147,7 @@ const wxColour Model_Infotable::GetColourSetting(const wxString& key, const wxCo
         }
         else
         {
-            return wxColor(value);
+            return wxColour(value);
         }
     }
 

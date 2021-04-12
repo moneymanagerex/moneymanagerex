@@ -45,6 +45,7 @@ public:
 
 private:
     void Create();
+    void OnThemeManagerSelected(wxCommandEvent& event);
     void OnNavTreeColorChanged(wxCommandEvent& event);
 
 private:
@@ -58,7 +59,7 @@ private:
     wxButton* m_UDFCB7;
 
     
-    wxChoice* m_choice_theme;
+    wxButton* m_theme_manager;
     wxChoice* m_choice_visible;
     wxSpinCtrl* m_scale_factor;
     wxChoice* m_toolbar_icon_size;
@@ -70,4 +71,9 @@ private:
     wxCheckBox* m_budget_include_transfers;
     wxCheckBox* m_budget_summary_without_category;
     wxCheckBox* m_ignore_future_transactions;
+
+    enum
+    {
+        ID_DIALOG_THEMEMANAGER = wxID_HIGHEST + 100
+    };
 };

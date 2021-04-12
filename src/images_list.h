@@ -19,6 +19,27 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 #include <wx/imaglist.h>
 #include <wx/arrstr.h>
+#include <vector>
+
+// Meta data items
+enum meta {
+    THEME_NAME,
+    THEME_AUTHOR,
+    THEME_DESCRIPTION,  
+    THEME_URL,
+    COLOR_NAVPANEL,
+    COLOR_LISTPANEL,
+    COLOR_LISTALT0,
+    COLOR_LISTALT0A,
+    COLOR_LISTTOTAL,
+    COLOR_LISTBORDER,
+    COLOR_LISTFUTURE,
+    COLOR_REPORT_CREDIT,
+    COLOR_REPORT_DEBIT,
+    COLOR_REPORT_PALETTE,
+    // The end
+    MAX_METADATA
+};
 
 enum img {
     HOUSE_PNG,
@@ -185,11 +206,10 @@ enum png {
     MAX_PNG
 };
 
-wxArrayString getThemes();
-
 wxImageList* navtree_images_list();
+void LoadTheme();
+const wxString mmThemeMetaString(int ref);
+const long mmThemeMetaLong(int ref);
+const wxColour mmThemeMetaColour(int ref);
+const std::vector<wxColour> mmThemeMetaColourArray(int ref);
 const wxBitmap mmBitmap(int ref);
-
-wxBitmap* CreateBitmapFromRGBA(unsigned char *rgba, int size);
-bool checkThemeContents(wxArrayString *filesinTheme);
-bool buildBitmapsFromSVG(wxString iconsFile, wxString myTheme);
