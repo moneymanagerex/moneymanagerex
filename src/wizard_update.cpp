@@ -187,7 +187,7 @@ void mmUpdateWizard::CreateControls(const Document& json_releases, wxArrayInt ne
     buttonOk->SetDefault();
     buttonOk->SetFocus();
 
-    GetSizer()->Fit(this);
+    Fit();
 }
 
 void mmUpdateWizard::OnNewWindow(wxWebViewEvent& evt)
