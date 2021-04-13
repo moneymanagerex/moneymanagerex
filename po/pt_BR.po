@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-03-27 21:03+0300\n"
-"PO-Revision-Date: 2021-04-13 17:02\n"
+"PO-Revision-Date: 2021-04-13 17:09\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "MIME-Version: 1.0\n"
@@ -4096,11 +4096,11 @@ msgstr "Organizar &Categorias..."
 
 #: mmframe.cpp:1463
 msgid "Organize &Payees..."
-msgstr "Organizar &Beneficiários..."
+msgstr "Lista de &Favorecidos..."
 
 #: mmframe.cpp:1463 mmframe.cpp:1660 payeedialog.cpp:75
 msgid "Organize Payees"
-msgstr "Organizar Beneficiários"
+msgstr "Organizar Favorecidos"
 
 #: mmframe.cpp:1467
 msgid "Organize Curre&ncy..."
@@ -4116,11 +4116,11 @@ msgstr "&Categorias..."
 
 #: mmframe.cpp:1474
 msgid "&Payees..."
-msgstr "&Beneficiários..."
+msgstr "&Favorecidos..."
 
 #: mmframe.cpp:1475
 msgid "Reassign all payees to another payee"
-msgstr "Realocar todos os Beneficiários para outro Beneficiário"
+msgstr "Realocar todos os Favorecidos para outro Favorecido"
 
 #: mmframe.cpp:1477
 msgid "Re&location of..."
@@ -4128,7 +4128,7 @@ msgstr "Realocar de..."
 
 #: mmframe.cpp:1478
 msgid "Relocate Categories && Payees"
-msgstr "Realocar Categorias && Beneficiários"
+msgstr "Realocar Categorias && Favorecidos"
 
 #: mmframe.cpp:1488
 msgid "&Budget Setup"
@@ -4404,7 +4404,7 @@ msgstr "Mostra Lista de Categorias"
 
 #: mmframe.cpp:1660
 msgid "Show Organize Payees Dialog"
-msgstr "Mostra Lista de Beneficiários"
+msgstr "Mostrar Lista de Favorecidos"
 
 #: mmframe.cpp:1661
 msgid "Show Organize Currency Dialog"
@@ -4708,7 +4708,7 @@ msgstr "Exceção recebida"
 
 #: mmframereport.cpp:118
 msgid "Transaction Report"
-msgstr "Relatório de Transação"
+msgstr "Relatório Personalizado"
 
 #: mmframereport.cpp:123
 msgid "Cash Flow"
@@ -4740,7 +4740,7 @@ msgstr "Minha Utilização"
 
 #: mmframereport.cpp:169 reports/payee.cpp:113
 msgid "Payees"
-msgstr "Beneficiários"
+msgstr "Favorecidos"
 
 #: mmframereport.cpp:174
 msgid "Summary of Accounts"
@@ -5516,7 +5516,7 @@ msgstr "Já existe um Beneficiário com este nome"
 
 #: payeedialog.cpp:184 payeedialog.cpp:207 payeedialog.cpp:222
 msgid "Organize Payees: Add Payee"
-msgstr "Beneficiários: Adicionar Beneficiário"
+msgstr "Favorecidos: Adicionar Favorecido"
 
 #: payeedialog.cpp:206
 msgid "Enter the name for the new payee:"
@@ -5528,7 +5528,7 @@ msgstr "Modifique o nome do beneficiário:"
 
 #: payeedialog.cpp:234 payeedialog.cpp:250
 msgid "Organize Payees: Edit Payee"
-msgstr "Beneficiários: Editar Beneficiário"
+msgstr "Favorecidos: Editar Favorecido"
 
 #: payeedialog.cpp:264
 msgid "Payee in use."
@@ -5540,11 +5540,11 @@ msgstr "Dica: Transfira todas as transações deste beneficiário para outro ben
 
 #: payeedialog.cpp:269
 msgid "Tools -> Relocation of -> Payees"
-msgstr "Ferramentas -> Realocar -> Beneficiários"
+msgstr "Ferramentas -> Realocar -> Favorecidos"
 
 #: payeedialog.cpp:270
 msgid "Organize Payees: Delete Error"
-msgstr "Organizar Beneficiários: Erro ao excluir"
+msgstr "Favorecidos: Erro ao excluir"
 
 #: payeedialog.cpp:361
 msgid "Define Default Category"
@@ -5907,7 +5907,7 @@ msgstr "Frequência de Uso do MMEX"
 
 #: reports/payee.cpp:32
 msgid "Payee Report"
-msgstr "Relatório de Beneficiários"
+msgstr "Relatório de Favorecidos"
 
 #: reports/reportbase.cpp:191 reports/transactions.cpp:59
 msgid "Accounts: "
