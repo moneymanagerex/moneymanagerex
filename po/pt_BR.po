@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-03-27 21:03+0300\n"
-"PO-Revision-Date: 2021-03-27 18:11\n"
+"PO-Revision-Date: 2021-04-13 16:29\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "MIME-Version: 1.0\n"
@@ -2524,7 +2524,7 @@ msgstr "Parâmetros:"
 #: images_list.cpp:327
 #, c-format
 msgid "Image '%s' in Theme '%s' looks badly constructed, please correct. Default image will be used"
-msgstr ""
+msgstr "A imagem '%s' no tema '%s' parece mal construído, por favor corrija. A imagem padrão será usada"
 
 #: images_list.cpp:328 images_list.cpp:344 images_list.cpp:367
 #: images_list.cpp:401 images_list.cpp:420 images_list.cpp:427
@@ -2535,31 +2535,31 @@ msgstr "Alerta"
 #: images_list.cpp:343
 #, c-format
 msgid "Image '%s' in Theme '%s' cannot be converted to bitmap, please correct. Default image will be used"
-msgstr ""
+msgstr "A imagem '%s' no tema '%s' não pode ser convertido para bitmap, por favor corrija. A imagem padrão será usada"
 
 #: images_list.cpp:366
 #, c-format
 msgid "File '%s' missing from chosen theme '%s'"
-msgstr ""
+msgstr "Arquivo '%s' faltando no tema escolhido '%s'"
 
 #: images_list.cpp:398
 msgid "and more..."
-msgstr ""
+msgstr "e mais..."
 
 #: images_list.cpp:400
 #, c-format
 msgid "There are %d missing or invalid icons in chosen theme '%s': %s"
-msgstr ""
+msgstr "Existem %d ícones faltando ou inválidos no tema escolhido '%s': %s"
 
 #: images_list.cpp:419
 #, c-format
 msgid "Theme %s not found, it may no longer be supported. Reverting to default theme"
-msgstr ""
+msgstr "Tema %s não encontrado, ele pode não ser mais suportado. Revertendo para o tema padrão"
 
 #: images_list.cpp:427
 #, c-format
 msgid "Theme %s has missing items and is incompatible. Reverting to default theme"
-msgstr ""
+msgstr "O Tema %s tem itens faltando e é incompatível. Revertendo para o tema padrão"
 
 #: import_export/parsers.cpp:46 import_export/univcsvdialog.cpp:1575
 #: mmSimpleDialogs.cpp:253
