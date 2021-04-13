@@ -938,10 +938,10 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& WXUNUSED(event))
     }
 
     // Open and parse file
-    ITransactionsFile *pParser = CreateFileHandler();
+    wxSharedPtr<ITransactionsFile> pParser(CreateFileHandler());
     if (!pParser) return; // is this possible?
     if (!pParser->Load(fileName, m_list_ctrl_->GetColumnCount())) {
-        return wxDELETE(pParser);
+        return;
     }
 
     wxFileName logFile = mmex::GetLogDir(true);
@@ -965,6 +965,7 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& WXUNUSED(event))
         , nullptr, wxPD_AUTO_HIDE | wxPD_APP_MODAL | wxPD_SMOOTH | wxPD_CAN_ABORT
         | wxPD_ELAPSED_TIME | wxPD_REMAINING_TIME
     );
+    progressDlg.Fit();
 
     m_reverce_sign = m_choiceAmountFieldSign->GetCurrentSelection() == PositiveIsWithdrawal;
     for (long nLines = firstRow; nLines < lastRow; nLines++)
@@ -1029,7 +1030,6 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& WXUNUSED(event))
         *log_field_ << msg << "\n";
     }
 
-    wxDELETE(pParser);
     progressDlg.Update(linesToImport);
 
     wxString msg = wxString::Format(_("Total Lines: %ld"), totalLines);
@@ -1324,6 +1324,7 @@ void mmUnivCSVDialog::update_preview()
                 ++col;
                 m_list_ctrl_->SetItem(itemIndex, col, content);
             }
+            if (row >= MAX_ROWS_IN_PREVIEW) break;
         }
 
         m_spinIgnoreLastRows_->SetRange(m_spinIgnoreLastRows_->GetMin(), m_list_ctrl_->GetItemCount());
@@ -1456,12 +1457,10 @@ void mmUnivCSVDialog::update_preview()
                             }
                             m_list_ctrl_->SetItem(itemIndex, col, text);
                         }
-
                     }
-                    if (++count >= MAX_ROWS_IN_PREVIEW) break;
-                    ++row;
                 }
-
+                if (++count >= MAX_ROWS_IN_PREVIEW) break;
+                ++row;
             }
         }
     }
