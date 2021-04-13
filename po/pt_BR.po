@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-03-27 21:03+0300\n"
-"PO-Revision-Date: 2021-04-13 16:45\n"
+"PO-Revision-Date: 2021-04-13 17:02\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "MIME-Version: 1.0\n"
@@ -1210,11 +1210,11 @@ msgstr "Excluir Série de Pagamentos & Recebimentos"
 
 #: billsdepositspanel.cpp:277
 msgid "En&ter"
-msgstr "Pa&gar"
+msgstr "Re&gistrar"
 
 #: billsdepositspanel.cpp:278
 msgid "Enter Next Bills & Deposit Occurrence"
-msgstr "Insira a Próxima ocorrência de Pagamento & Recebimento"
+msgstr "Registra a Transação selecionada"
 
 #: billsdepositspanel.cpp:282
 msgid "&Skip"
@@ -2303,7 +2303,7 @@ msgstr "Pagamento"
 #: model/Model_Checking.cpp:30 reports/forecast.cpp:82
 #: splitdetailsdialog.cpp:125
 msgid "Deposit"
-msgstr "Depósito"
+msgstr "Recebimento"
 
 #: filtertransdialog.cpp:262
 msgid "Transfer To"
@@ -5034,7 +5034,7 @@ msgstr "Geral"
 
 #: optiondialog.cpp:130 optionsettingsview.cpp:55
 msgid "View Options"
-msgstr "Visualizar Opções"
+msgstr "Opções de Exibição"
 
 #: optiondialog.cpp:131 webappdialog.cpp:155
 msgid "Attachments"
@@ -6300,7 +6300,7 @@ msgstr "Lista de ações temporária:: %s\n\n"
 
 #: stockspanel.cpp:577
 msgid "Add Stock Transactions"
-msgstr "Adicionar transações de ações"
+msgstr "Adicionar nova transação"
 
 #: stockspanel.cpp:582
 msgid "View Stock Transactions"
@@ -6308,7 +6308,7 @@ msgstr "Transações"
 
 #: stockspanel.cpp:592
 msgid "Delete Stock Investment"
-msgstr "Excluir Investimento"
+msgstr "Excluir o investimento selecionado"
 
 #: stockspanel.cpp:596
 msgid "&Move"
