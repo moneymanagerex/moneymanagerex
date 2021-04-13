@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-03-27 21:03+0300\n"
-"PO-Revision-Date: 2021-04-13 17:09\n"
+"PO-Revision-Date: 2021-04-13 17:44\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "MIME-Version: 1.0\n"
@@ -844,7 +844,7 @@ msgstr "Adiantar ou atrasar a data de solicitação do usuário desta transaçã
 
 #: billsdepositsdialog.cpp:427 billsdepositspanel.cpp:97
 msgid "Date Paid"
-msgstr "Data de pagamento"
+msgstr "Data de Vencimento"
 
 #: billsdepositsdialog.cpp:431 billsdepositsdialog.cpp:1254
 msgid "Repeats"
@@ -888,7 +888,7 @@ msgstr "Atrasar ou adiantar a data da 'próxima ocorrência'"
 
 #: billsdepositsdialog.cpp:513 billsdepositspanel.cpp:98
 msgid "Date Due"
-msgstr "Data de Vencimento"
+msgstr "Data do Pagamento"
 
 #: billsdepositsdialog.cpp:524 filtertransdialog.cpp:249 transdialog.cpp:1282
 msgid "Specify the status for the transaction"
@@ -1169,7 +1169,7 @@ msgstr "Periodicidade"
 
 #: billsdepositspanel.cpp:106
 msgid "Repetitions"
-msgstr "Repetições"
+msgstr "Parcelas"
 
 #: billsdepositspanel.cpp:107
 msgid "Autorepeat"
@@ -1900,7 +1900,8 @@ msgstr "Confirma Exclusão do Campo Personalizado"
 #: customfieldlistdialog.cpp:194
 msgid "This function will massive update (search & replace for entire value, not inside value), please remind that there isn't any validation!\n"
 "Do you want to proceed?"
-msgstr ""
+msgstr "Esta função atualizará massivamente (localizar & substituir por valor inteiro, não dentro do valor), por favor, lembre-se que não há qualquer validação!\n"
+"Você deseja prosseguir?"
 
 #: customfieldlistdialog.cpp:196
 msgid "Confirm Custom Field Content Update"
@@ -3754,7 +3755,7 @@ msgstr "Não foi possível salvar o campo personalizado \"%s\":\n"
 
 #: mmcustomdata.cpp:449
 msgid "CustomField validation error"
-msgstr ""
+msgstr "Erro na validação CustomField"
 
 #: mmex.cpp:128
 #, c-format
@@ -6585,7 +6586,7 @@ msgstr "Taxas de câmbio foram atualizadas"
 
 #: util.cpp:635
 msgid "JSON Parse Error"
-msgstr ""
+msgstr "Erro de análise JSON"
 
 #: util.cpp:932
 #, c-format
