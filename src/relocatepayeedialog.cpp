@@ -77,7 +77,6 @@ void relocatePayeeDialog::CreateControls()
     flagsH.Align(wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL).Border(wxALL, 5).Center();
     flagsV.Align(wxALIGN_LEFT).Border(wxALL, 5).Center();
     flagsExpand.Align(wxALIGN_LEFT).Border(wxALL, 5).Expand();
-    wxSize btnSize = wxSize(180,-1);
 
     wxStaticText* headerText = new wxStaticText( this, wxID_STATIC
         , _("Relocate all source payee to the destination payee"));
@@ -85,20 +84,20 @@ void relocatePayeeDialog::CreateControls()
         , wxDefaultPosition, wxDefaultSize, wxLI_HORIZONTAL);
 
     cbSourcePayee_ = new wxComboBox(this, wxID_BOTTOM
-        , sourcePayeeID_ == -1 ? "" : Model_Payee::get_payee_name(sourcePayeeID_)
-        , wxDefaultPosition, btnSize
-        , Model_Payee::instance().used_payee_names());
+        , sourcePayeeID_ == -1 ? "" : Model_Payee::get_payee_name(sourcePayeeID_));
+    cbSourcePayee_->Append(Model_Payee::instance().all_payee_names());
     cbSourcePayee_->AutoComplete(cbSourcePayee_->GetStrings());
     cbSourcePayee_->Enable();
+    cbSourcePayee_->SetMinSize(wxSize(180, -1));
     cbSourcePayee_->Connect(wxID_ANY, wxEVT_TEXT, wxCommandEventHandler(relocatePayeeDialog::OnPayeeChanged), nullptr, this);
 
     cbDelete_ = new wxCheckBox(this, wxID_ANY
         , _("Delete source payee after relocation"));
 
-    cbDestPayee_ = new wxComboBox(this, wxID_NEW, ""
-        , wxDefaultPosition, btnSize
-        , Model_Payee::instance().all_payee_names());
+    cbDestPayee_ = new wxComboBox(this, wxID_NEW, "");
+    cbDestPayee_->Append(Model_Payee::instance().all_payee_names());
     cbDestPayee_->AutoComplete(cbDestPayee_->GetStrings());
+    cbDestPayee_->SetMinSize(wxSize(180, -1));
     cbDestPayee_->Connect(wxID_ANY, wxEVT_TEXT, wxCommandEventHandler(relocatePayeeDialog::OnPayeeChanged), nullptr, this);
 
     wxBoxSizer* topSizer = new wxBoxSizer(wxVERTICAL);
