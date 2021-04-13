@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-03-27 21:03+0300\n"
-"PO-Revision-Date: 2021-04-13 17:44\n"
+"PO-Revision-Date: 2021-04-13 19:13\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "MIME-Version: 1.0\n"
@@ -6254,7 +6254,7 @@ msgstr "Total de Ações"
 
 #: stockspanel.cpp:93
 msgid "Init Value"
-msgstr "Valor de Inicial"
+msgstr "Valor Investido"
 
 #: stockspanel.cpp:96
 msgid "Curr. Total Value"
