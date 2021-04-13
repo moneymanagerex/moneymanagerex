@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-03-27 21:03+0300\n"
-"PO-Revision-Date: 2021-04-13 16:29\n"
+"PO-Revision-Date: 2021-04-13 16:45\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "MIME-Version: 1.0\n"
@@ -3896,7 +3896,7 @@ msgstr "Arquivos *.QIF"
 
 #: mmframe.cpp:1272 mmframe.cpp:1340
 msgid "&JSON Files..."
-msgstr ""
+msgstr "Arquivos &JSON..."
 
 #: mmframe.cpp:1276 mmframe.cpp:1346
 msgid "Import from XML (Excel format)"
@@ -3952,7 +3952,7 @@ msgstr "Exportar para JSON"
 
 #: mmframe.cpp:1341
 msgid "&HTML Files..."
-msgstr ""
+msgstr "Arquivos &HTML..."
 
 #: mmframe.cpp:1341
 msgid "Export to HTML"
@@ -3984,7 +3984,7 @@ msgstr "Imprimir tela atual"
 
 #: mmframe.cpp:1360
 msgid "E&xit\tAlt-X"
-msgstr ""
+msgstr "S&air Alt+X"
 
 #: mmframe.cpp:1360
 msgid "Quit this program"
@@ -4168,7 +4168,7 @@ msgstr "Gerenciador de Campos Personalizados"
 
 #: mmframe.cpp:1518
 msgid "&Options...\tCtrl-,"
-msgstr ""
+msgstr "&Opções... Ctrl-,"
 
 #: mmframe.cpp:1518 mmframe.cpp:1667
 msgid "Show the Options Dialog"
@@ -4176,7 +4176,7 @@ msgstr "Mostrar Tela de Opções"
 
 #: mmframe.cpp:1525
 msgid "Convert Encrypted &DB"
-msgstr ""
+msgstr "Converter &DB criptografado"
 
 #: mmframe.cpp:1526
 msgid "Convert Encrypted DB to Non-Encrypted DB"
@@ -4184,7 +4184,7 @@ msgstr "Converter BD criptografado para BD não criptografado"
 
 #: mmframe.cpp:1528
 msgid "Change Encrypted &Password"
-msgstr ""
+msgstr "Alterar &Senha Criptografada"
 
 #: mmframe.cpp:1529
 msgid "Change the password of an encrypted database"
@@ -4789,7 +4789,7 @@ msgstr "Total:"
 #: mmhomepage.cpp:159
 #, c-format
 msgid "Top Withdrawals: %s"
-msgstr "Maiores Retiradas: %s"
+msgstr "Maiores Gastos: %s"
 
 #: mmhomepage.cpp:431
 #, c-format
@@ -5051,7 +5051,7 @@ msgstr "&Aplicar"
 #: optiondialog.cpp:192
 #, c-format
 msgid "%s page has been saved."
-msgstr "%s página foi salva."
+msgstr "A página %s foi salva."
 
 #: optionsettingsattachment.cpp:57
 msgid "Attachments Settings"
@@ -6852,7 +6852,8 @@ msgstr "Selecione o tipo de conta que você deseja criar:"
 #: wizard_newaccount.cpp:136
 msgid "General bank accounts cover a wide variety of account\n"
 "types like Checking, Savings and Credit card type accounts."
-msgstr ""
+msgstr "Geralmente contas bancárias cobrem vários tipos\n"
+"de contas, como Conta Corrente, Poupança e Cartão de Crédito."
 
 #: wizard_newaccount.cpp:141
 msgid "Investment accounts are specialized accounts that only\n"
