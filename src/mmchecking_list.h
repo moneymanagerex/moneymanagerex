@@ -57,6 +57,11 @@ public:
         COL_DEPOSIT,
         COL_BALANCE,
         COL_NOTES,
+        COL_UDFC01,
+        COL_UDFC02,
+        COL_UDFC03,
+        COL_UDFC04,
+        COL_UDFC05,
         COL_MAX, // number of columns
         COL_DEF_SORT = COL_DATE // don't omit any columns before this
     };
@@ -211,3 +216,9 @@ inline void TransactionListCtrl::setSelectedID(int v) { m_selected_id.clear(); m
 inline void TransactionListCtrl::setVisibleItemIndex(long v) { m_topItemIndex = v; }
 
 #endif // MM_EX_CHECKING_LIST_H_
+
+inline static bool SorterByUDFC01(const Model_Checking::Full_Data& i, const Model_Checking::Full_Data& j) { return (i.UDFC01 < j.UDFC01); }
+inline static bool SorterByUDFC02(const Model_Checking::Full_Data& i, const Model_Checking::Full_Data& j) { return (i.UDFC02 < j.UDFC02); }
+inline static bool SorterByUDFC03(const Model_Checking::Full_Data& i, const Model_Checking::Full_Data& j) { return (i.UDFC03 < j.UDFC03); }
+inline static bool SorterByUDFC04(const Model_Checking::Full_Data& i, const Model_Checking::Full_Data& j) { return (i.UDFC04 < j.UDFC04); }
+inline static bool SorterByUDFC05(const Model_Checking::Full_Data& i, const Model_Checking::Full_Data& j) { return (i.UDFC05 < j.UDFC05); }
