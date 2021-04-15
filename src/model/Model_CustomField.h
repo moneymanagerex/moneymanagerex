@@ -15,19 +15,18 @@
  along with this program; if not, write to the Free Software
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
-
-#ifndef MODEL_CUSTOMFIELD_H
-#define MODEL_CUSTOMFIELD_H
+#pragma once
 
 #include "Model.h"
+#include "Model_Attachment.h"
 #include "db/DB_Table_Customfield_V1.h"
 
 class Model_CustomField : public Model<DB_Table_CUSTOMFIELD_V1>
 {
 public:
     using Model<DB_Table_CUSTOMFIELD_V1>::get;
-    enum FIELDTYPE { STRING = 0, INTEGER, DECIMAL, BOOLEAN, DATE, TIME, SINGLECHOICE, MULTICHOICE};
 
+    enum FIELDTYPE { STRING = 0, INTEGER, DECIMAL, BOOLEAN, DATE, TIME, SINGLECHOICE, MULTICHOICE, UNKNOWN = -1 };
     static const std::vector<std::pair<FIELDTYPE, wxString> > FIELDTYPE_CHOICES;
 
 public:
@@ -36,32 +35,38 @@ public:
 
 public:
     /**
-    Initialize the global Model_Attachment table on initial call.
+    Initialize the global Model_CustomField table on initial call.
     Resets the global table on subsequent calls.
-    * Return the static instance address for Model_Attachment table
+    * Return the static instance address for Model_CustomField table
     * Note: Assigning the address to a local variable can destroy the instance.
     */
     static Model_CustomField& instance(wxSQLite3Database* db);
 
     /**
-    * Return the static instance address for Model_Attachment table
+    * Return the static instance address for Model_CustomField table
     * Note: Assigning the address to a local variable can destroy the instance.
     */
     static Model_CustomField& instance();
 
 public:
     bool Delete(const int& FieldID);
-    static wxString fieldtype_desc(const int FieldTypeEnum);
+    static const wxString fieldtype_desc(const int FieldTypeEnum);
     static FIELDTYPE type(const Data* r);
     static FIELDTYPE type(const Data& r);
-    static wxArrayString all_type();
-    static wxString getRegEx(const wxString& Properties);
-    static wxString getTooltip(const wxString& Properties);
+    static const wxArrayString all_type();
+    static const wxString getRegEx(const wxString& Properties);
+    static const wxString getTooltip(const wxString& Properties);
     static bool getAutocomplete(const wxString& Properties);
-    static wxString getDefault(const wxString& Properties);
-    static wxArrayString getChoices(const wxString& Properties);
-    static wxString formatProperties(const wxString& Tooltip, const wxString& RegEx, bool Autocomplete, const wxString& Default, const wxArrayString& Choices);
+    static const wxString getDefault(const wxString& Properties);
+    static const wxArrayString getChoices(const wxString& Properties);
+    static const wxArrayString getUDFCList(DB_Table_CUSTOMFIELD_V1::Data* r);
+    static const wxString getUDFC(const wxString& Properties);
+    static const wxString getUDFCName(const wxString& ref_type, const wxString& name);
+    static int getUDFCID(const wxString& ref_type, const wxString& name);
+    static const std::map<wxString, int> getMatrix(Model_Attachment::REFTYPE reftype);
     static int getDigitScale(const wxString& Properties);
+    static const wxString formatProperties(const wxString& Tooltip, const wxString& RegEx
+        , bool Autocomplete, const wxString& Default, const wxArrayString& Choices
+        , const int DigitScale, const wxString& udfc_str);
+    static const wxArrayString UDFC_FIELDS();
 };
-
-#endif // 

@@ -20,6 +20,7 @@
 #define MODEL_CUSTOMFIELDDATA_H
 
 #include "Model.h"
+#include "Model_Attachment.h"
 #include "db/DB_Table_Customfielddata_V1.h"
 
 class Model_CustomFieldData : public Model<DB_Table_CUSTOMFIELDDATA_V1>
@@ -47,10 +48,10 @@ public:
     static Model_CustomFieldData& instance();
 
 public:
+    std::map<int, Data_Set> get_all(Model_Attachment::REFTYPE reftype);
     Data* get(int FieldID, int RefID);
     wxArrayString allValue(const int FieldID);
-    bool RelocateAllData(const wxString& RefType, int OldRefId, int NewRefId);
     bool DeleteAllData(const wxString& RefType, int RefID);
 };
 
-#endif // 
+#endif

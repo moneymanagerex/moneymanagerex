@@ -125,6 +125,21 @@ void TransactionListCtrl::sortTable()
     case TransactionListCtrl::COL_DATE:
         std::stable_sort(this->m_trans.begin(), this->m_trans.end(), SorterByTRANSDATE());
         break;
+    case TransactionListCtrl::COL_UDFC01:
+        std::stable_sort(this->m_trans.begin(), this->m_trans.end(), SorterByUDFC01);
+        break;
+    case TransactionListCtrl::COL_UDFC02:
+        std::stable_sort(this->m_trans.begin(), this->m_trans.end(), SorterByUDFC02);
+        break;
+    case TransactionListCtrl::COL_UDFC03:
+        std::stable_sort(this->m_trans.begin(), this->m_trans.end(), SorterByUDFC03);
+        break;
+    case TransactionListCtrl::COL_UDFC04:
+        std::stable_sort(this->m_trans.begin(), this->m_trans.end(), SorterByUDFC04);
+        break;
+    case TransactionListCtrl::COL_UDFC05:
+        std::stable_sort(this->m_trans.begin(), this->m_trans.end(), SorterByUDFC05);
+        break;
     default:
         break;
     }
@@ -212,6 +227,17 @@ TransactionListCtrl::TransactionListCtrl(
     }
     m_columns.push_back(PANEL_COLUMN(_("Notes"), 250, wxLIST_FORMAT_LEFT));
     m_real_columns.push_back(COL_NOTES);
+
+    int i = COL_NOTES;
+    const auto& ref_type = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
+    for (const auto& udfc_entry : Model_CustomField::UDFC_FIELDS())
+    {
+        if (udfc_entry.empty()) continue;
+        const auto& name = Model_CustomField::getUDFCName(ref_type, udfc_entry);
+        int width = name == udfc_entry ? 0 : 100;
+        m_columns.push_back(PANEL_COLUMN(name, width, wxLIST_FORMAT_LEFT));
+        m_real_columns.push_back(static_cast<EColumn>(++i));
+    }
 
     m_col_width = m_cp->m_allAccounts ? "ALLTRANS_COL%d_WIDTH" : "CHECK_COL%d_WIDTH";
 
@@ -1275,6 +1301,16 @@ const wxString TransactionListCtrl::getItem(long item, long column, bool realenu
         value = tran.NOTES;
         value.Replace("\n", " ");
         return value;
+    case TransactionListCtrl::COL_UDFC01:
+        return tran.UDFC01;
+    case TransactionListCtrl::COL_UDFC02:
+        return tran.UDFC02;
+    case TransactionListCtrl::COL_UDFC03:
+        return tran.UDFC03;
+    case TransactionListCtrl::COL_UDFC04:
+        return tran.UDFC04;
+    case TransactionListCtrl::COL_UDFC05:
+        return tran.UDFC05;
     default:
         return value;
     }

@@ -24,13 +24,12 @@ Copyright (C) 2016 Gabriele-V
 #include "mmTextCtrl.h"
 #include "paths.h"
 #include "util.h"
-#include "validators.h"
 
-#include "model/Model_Attachment.h"
-#include "model/Model_CustomField.h"
-#include "model/Model_CustomFieldData.h"
+#include "Model_Attachment.h"
+#include "Model_CustomField.h"
+#include "Model_CustomFieldData.h"
 
-#include <wx/valnum.h>
+#include <wx/spinctrl.h>
 
 wxIMPLEMENT_DYNAMIC_CLASS(mmCustomFieldEditDialog, wxDialog);
 
@@ -46,11 +45,13 @@ mmCustomFieldEditDialog::mmCustomFieldEditDialog(wxWindow* parent, Model_CustomF
     , m_fieldRefType(fieldRefType)
     , m_itemDescription(nullptr)
     , m_itemType(nullptr)
+    , m_itemUDFC(nullptr)
     , m_itemTooltip(nullptr)
     , m_itemRegEx(nullptr)
     , m_itemAutocomplete(nullptr)
     , m_itemDefault(nullptr)
     , m_itemChoices(nullptr)
+    , m_itemDigitScale(nullptr)
 {
     long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX;
     Create(parent, wxID_ANY, _("New/Edit Custom Field"), wxDefaultPosition, wxSize(400, 300), style);
@@ -88,20 +89,24 @@ void mmCustomFieldEditDialog::dataToControls()
         m_itemRegEx->SetValue(Model_CustomField::getRegEx(m_field->PROPERTIES));
         m_itemAutocomplete->SetValue(Model_CustomField::getAutocomplete(m_field->PROPERTIES));
         m_itemDefault->SetValue(Model_CustomField::getDefault(m_field->PROPERTIES));
+        m_itemDigitScale->SetValue(Model_CustomField::getDigitScale(m_field->PROPERTIES));
+        m_itemUDFC->SetStringSelection(Model_CustomField::getUDFC(m_field->PROPERTIES));
 
-        wxString Choices = wxEmptyString;
-        for (const auto ArrChoices : Model_CustomField::getChoices(m_field->PROPERTIES))
+
+        wxString choices = wxEmptyString;
+        for (const auto& arrChoices : Model_CustomField::getChoices(m_field->PROPERTIES))
         {
-            Choices << ArrChoices << ";";
+            choices << arrChoices << ";";
         }
-        m_itemChoices->SetValue(Choices);
+        choices.RemoveLast(1);
+        m_itemChoices->ChangeValue(choices);
     }
     else
     {
         m_itemType->SetSelection(Model_CustomField::STRING);
     }
     wxCommandEvent evt;
-    OnChangeType(evt);
+    OnChangeType(evt, true);
 }
 
 void mmCustomFieldEditDialog::CreateControls()
@@ -122,7 +127,7 @@ void mmCustomFieldEditDialog::CreateControls()
     wxFlexGridSizer* itemFlexGridSizer6 = new wxFlexGridSizer(0, 2, 0, 0);
     itemPanel5->SetSizer(itemFlexGridSizer6);
 
-    itemFlexGridSizer6->Add(new wxStaticText(itemPanel5, wxID_STATIC, _("Description")), g_flagsH);
+    itemFlexGridSizer6->Add(new wxStaticText(itemPanel5, wxID_STATIC, _("Name")), g_flagsH);
     m_itemDescription = new wxTextCtrl(itemPanel5, wxID_ANY, wxGetEmptyString());
     m_itemDescription->SetToolTip(_("Enter the name of the custom field"));
     itemFlexGridSizer6->Add(m_itemDescription, g_flagsExpand);
@@ -161,6 +166,19 @@ void mmCustomFieldEditDialog::CreateControls()
     m_itemChoices->SetToolTip(_("Enter the choices for this field separated with a semicolon"));
     itemFlexGridSizer6->Add(m_itemChoices, g_flagsExpand);
 
+    itemFlexGridSizer6->Add(new wxStaticText(itemPanel5, wxID_STATIC, _("Digits scale")), g_flagsH);
+    m_itemDigitScale = new wxSpinCtrl(itemPanel5, wxID_ANY, "", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 0, 20, 0);
+    m_itemDigitScale->SetToolTip(_("Enter the decimal digits scale allowed"));
+    itemFlexGridSizer6->Add(m_itemDigitScale, g_flagsExpand);
+
+    itemFlexGridSizer6->Add(new wxStaticText(itemPanel5, wxID_STATIC, _("Panel's column")), g_flagsH);
+    m_itemUDFC = new wxChoice(itemPanel5, wxID_APPLY, wxDefaultPosition, wxSize(150, -1));
+    for (const auto& type : Model_CustomField::getUDFCList(m_field)) {
+        m_itemUDFC->Append(wxGetTranslation(type), new wxStringClientData(type));
+    }
+    m_itemUDFC->SetToolTip(_("Select a value to represent the item on a panel"));
+    itemFlexGridSizer6->Add(m_itemUDFC, 0, wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL | wxALL, 5);
+
     wxPanel* itemPanel27 = new wxPanel(this, wxID_STATIC, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
     itemBoxSizer3->Add(itemPanel27, wxSizerFlags(g_flagsV).Center());
 
@@ -178,8 +196,9 @@ void mmCustomFieldEditDialog::CreateControls()
 void mmCustomFieldEditDialog::OnOk(wxCommandEvent& WXUNUSED(event))
 {
     const wxString name = m_itemDescription->GetValue().Trim();
-    if (name.empty())
+    if (name.empty()) {
         return mmErrorDialogs::InvalidName(m_itemDescription);
+    }
 
     wxArrayString ArrChoices;
     wxString Choices = m_itemChoices->GetValue();
@@ -193,7 +212,7 @@ void mmCustomFieldEditDialog::OnOk(wxCommandEvent& WXUNUSED(event))
     {
         this->m_field = Model_CustomField::instance().create();
     }
-    else if (m_field->REFTYPE != m_fieldRefType)
+    else if (m_field->TYPE != Model_CustomField::fieldtype_desc(m_itemType->GetSelection()))
     {
         auto DataSet = Model_CustomFieldData::instance().find(Model_CustomFieldData::FIELDID(m_field->FIELDID));
         if (DataSet.size() > 0)
@@ -209,7 +228,7 @@ void mmCustomFieldEditDialog::OnOk(wxCommandEvent& WXUNUSED(event))
             Model_CustomFieldData::instance().Savepoint();
             for (auto &data : DataSet)
             {
-                data.CONTENT = wxEmptyString;
+                Model_CustomFieldData::instance().remove(data.id());
             }
             Model_CustomFieldData::instance().save(DataSet);
             Model_CustomFieldData::instance().ReleaseSavepoint();
@@ -232,7 +251,7 @@ void mmCustomFieldEditDialog::OnOk(wxCommandEvent& WXUNUSED(event))
             for (auto &data : DataSet)
             {
                 if(ArrChoices.Index(data.CONTENT) == wxNOT_FOUND)
-                data.CONTENT = wxEmptyString;
+                    Model_CustomFieldData::instance().remove(data.id());
             }
             Model_CustomFieldData::instance().save(DataSet);
             Model_CustomFieldData::instance().ReleaseSavepoint();
@@ -248,9 +267,11 @@ void mmCustomFieldEditDialog::OnOk(wxCommandEvent& WXUNUSED(event))
         m_itemRegEx->GetValue(),
         m_itemAutocomplete->GetValue(),
         m_itemDefault->GetValue(),
-        ArrChoices
+        ArrChoices,
+        m_itemDigitScale->GetValue(),
+        m_itemUDFC->GetString(m_itemUDFC->GetSelection())
         );
-    
+
     Model_CustomField::instance().save(m_field);
     EndModal(wxID_OK);
 }
@@ -265,38 +286,68 @@ void mmCustomFieldEditDialog::OnQuit(wxCloseEvent& WXUNUSED(event))
     EndModal(wxID_CANCEL);
 }
 
-void mmCustomFieldEditDialog::OnChangeType(wxCommandEvent& WXUNUSED(event))
+void mmCustomFieldEditDialog::OnChangeType(wxCommandEvent& event)
 {
+    OnChangeType(event, false);
+}
+
+
+void mmCustomFieldEditDialog::OnChangeType(wxCommandEvent& WXUNUSED(event), bool OnDataToControls)
+{
+    //Disable everything
+    m_itemRegEx->Enable(false);
+    m_itemAutocomplete->Enable(false);
+    m_itemDefault->Enable(false);
+    m_itemChoices->Enable(false);
+    m_itemDigitScale->Enable(false);
+
+    //Reset if not OnDataToControls
+    if (!OnDataToControls)
+    {
+        m_itemRegEx->SetValue(wxEmptyString);
+        m_itemAutocomplete->SetValue(false);
+        m_itemDefault->SetValue(wxEmptyString);
+        m_itemChoices->SetValue(wxEmptyString);
+        m_itemDigitScale->SetValue(0);
+    }
+
+    //Enable specific fields
     switch (m_itemType->GetSelection())
     {
     case Model_CustomField::STRING:
-        {
-            m_itemAutocomplete->Enable(true);
-            m_itemChoices->Enable(false);
-            m_itemChoices->SetValue(wxEmptyString);
-        }
+    {
+        m_itemDefault->Enable(true);
+        m_itemRegEx->Enable(true);
+        m_itemAutocomplete->Enable(true);
         break;
+    }
     case Model_CustomField::SINGLECHOICE:
-        {
-            m_itemAutocomplete->Enable(false);
-            m_itemAutocomplete->SetValue(false);
-            m_itemChoices->Enable(true);
-        }
+    {
+        m_itemChoices->Enable(true);
+        m_itemDefault->Enable(true);
         break;
+    }
     case Model_CustomField::MULTICHOICE:
-        {
-            m_itemAutocomplete->Enable(false);
-            m_itemAutocomplete->SetValue(false);
-            m_itemChoices->Enable(true);
-        }
+    {
+        m_itemChoices->Enable(true);
         break;
+    }
+    case Model_CustomField::INTEGER:
+    {
+        m_itemDefault->Enable(true);
+        m_itemRegEx->Enable(true);
+        break;
+    }
+    case Model_CustomField::DECIMAL:
+    {
+        m_itemDefault->Enable(true);
+        m_itemRegEx->Enable(true);
+        m_itemDigitScale->Enable(true);
+        break;
+    }
     default:
-        {
-            m_itemAutocomplete->Enable(false);
-            m_itemAutocomplete->SetValue(false);
-            m_itemChoices->Enable(false);
-            m_itemChoices->SetValue(wxEmptyString);
-        }
+    {
         break;
+    }
     }
 }
