@@ -960,7 +960,7 @@ void TransactionListCtrl::OnSetUserColour(wxCommandEvent& event)
 void TransactionListCtrl::refreshVisualList(bool filter)
 {
     wxLogDebug("refreshVisualList: %i selected, filter: %d", GetSelectedItemCount(), filter);
-
+    
     // Grab the selected transactions unless we have freshly pasted transactions in which case use them
     if (m_pasted_id.empty())
     {
@@ -978,7 +978,7 @@ void TransactionListCtrl::refreshVisualList(bool filter)
 
     // decide whether top or down icon needs to be shown
     setColumnImage(g_sortcol, g_asc ? mmCheckingPanel::ICON_DESC : mmCheckingPanel::ICON_ASC);
-    if (filter) 
+   if (filter) 
         (!m_cp->m_allAccounts) ? m_cp->filterTable(): m_cp->filterTableAll();
     SetItemCount(m_trans.size());
     Show();
@@ -1099,8 +1099,6 @@ void TransactionListCtrl::OnCreateReoccurance(wxCommandEvent& /*event*/)
 
 void TransactionListCtrl::markSelectedTransaction()
 {
-    if (GetSelectedItemCount() == 0) return;
-
     long i = 0;
     for (const auto & tran : m_trans)
     {
@@ -1109,17 +1107,19 @@ void TransactionListCtrl::markSelectedTransaction()
         {
             SetItemState(i, 0, wxLIST_STATE_SELECTED);
         }
-        // discover where the transaction has ended up in the list
-        if (g_asc) {
-            if (m_topItemIndex < i && tran.TRANSID == m_selected_id.back()) {
-                m_topItemIndex = i;
-            }
-        } else {
-            if (m_topItemIndex > i && tran.TRANSID == m_selected_id.back()) {
-                m_topItemIndex = i;
+        if (!m_selected_id.empty())
+        {
+            // discover where the transaction has ended up in the list
+            if (g_asc) {
+                if (m_topItemIndex < i && tran.TRANSID == m_selected_id.back()) {
+                    m_topItemIndex = i;
+                }
+            } else {
+                if (m_topItemIndex > i && tran.TRANSID == m_selected_id.back()) {
+                    m_topItemIndex = i;
+                }
             }
         }
-
         ++i;
     }
 
@@ -1288,6 +1288,23 @@ void TransactionListCtrl::FindSelectedTransactions()
     for (const auto& i : m_trans)
         if (GetItemState(x++, wxLIST_STATE_SELECTED) == wxLIST_STATE_SELECTED)
             m_selected_id.push_back(i.TRANSID);
+}
+
+void TransactionListCtrl::setSelectedID(int v)
+{ 
+    int i = 0;
+    for(const auto& entry : m_trans)
+    {
+        if (v == entry.TRANSID)
+        {
+            SetItemState(i, wxLIST_STATE_SELECTED, wxLIST_STATE_SELECTED);
+            SetItemState(i, wxLIST_STATE_FOCUSED, wxLIST_STATE_FOCUSED);
+            m_topItemIndex = i;
+            break;
+        }
+        i++;
+    }
+  
 }
 
 //----------------------------------------------------------------------------

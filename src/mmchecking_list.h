@@ -206,7 +206,6 @@ inline bool TransactionListCtrl::getSortOrder() const { return m_asc; }
 inline std::vector<int> TransactionListCtrl::getSelectedForCopy() const { return m_selectedForCopy; }
 
 inline std::vector<int> TransactionListCtrl::getSelectedId() const { return m_selected_id; }
-inline void TransactionListCtrl::setSelectedID(int v) { m_selected_id.clear(); m_selected_id.push_back(v); }
 
 inline void TransactionListCtrl::setVisibleItemIndex(long v) { m_topItemIndex = v; }
 

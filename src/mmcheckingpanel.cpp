@@ -688,32 +688,32 @@ void mmCheckingPanel::RefreshList()
 void mmCheckingPanel::SetSelectedTransaction(int transID)
 {
     m_listCtrlAccount->setSelectedID(transID);
-    RefreshList();
+        RefreshList();
     m_listCtrlAccount->SetFocus();
 }
 
 // Refresh account screen with new details
 void mmCheckingPanel::DisplayAccountDetails(int accountID)
 {
-    wxASSERT (-1 != accountID); // should not be called for all transaction view even though it should work
+    wxASSERT (-1 != accountID); // should not be called for all transaction view
 
     m_listCtrlAccount->setVisibleItemIndex(-1);
     m_AccountID = accountID;
-    m_allAccounts = (-1 == m_AccountID) ? true : false;
-    if (m_allAccounts)
-    {
-        m_currency = Model_Currency::GetBaseCurrency();
-    } else 
-    {
-        m_account = Model_Account::instance().get(m_AccountID);
-        m_currency = Model_Account::currency(m_account);
-    }
+    m_account = Model_Account::instance().get(m_AccountID);
+    m_currency = Model_Account::currency(m_account);
 
     initViewTransactionsHeader();
     initFilterSettings();
+    //if (!m_allAccounts)
+    //    filterTable();
+    //else
+    //    filterTableAll();
+    //m_listCtrlAccount->SetItemCount(m_listCtrlAccount->m_trans.size());
+    //m_listCtrlAccount->markSelectedTransaction();
     RefreshList();
     showTips();
-    m_listCtrlAccount->getSelectedId().clear();
+
+
     enableTransactionButtons(false, false, false);
 }
 
