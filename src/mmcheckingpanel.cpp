@@ -688,7 +688,7 @@ void mmCheckingPanel::RefreshList()
 void mmCheckingPanel::SetSelectedTransaction(int transID)
 {
     m_listCtrlAccount->setSelectedID(transID);
-        RefreshList();
+    RefreshList();
     m_listCtrlAccount->SetFocus();
 }
 
