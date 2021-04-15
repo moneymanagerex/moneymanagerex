@@ -90,11 +90,10 @@ void TransactionListCtrl::sortTable()
 {
     if (m_trans.empty()) return;
 
+    std::stable_sort(this->m_trans.begin(), this->m_trans.end(), SorterByTRANSID());
+
     switch (m_real_columns[g_sortcol])
     {
-    case TransactionListCtrl::COL_ID:
-        std::stable_sort(this->m_trans.begin(), this->m_trans.end(), SorterByTRANSID());
-        break;
     case TransactionListCtrl::COL_NUMBER:
         std::stable_sort(this->m_trans.begin(), this->m_trans.end(), Model_Checking::SorterByNUMBER());
         break;
