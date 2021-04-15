@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-04-15 18:53+0300\n"
-"PO-Revision-Date: 2021-04-15 17:59\n"
+"PO-Revision-Date: 2021-04-15 19:10\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -1873,11 +1873,11 @@ msgstr "Saisir le nombre de décimales autorisé"
 
 #: customfieldeditdialog.cpp:174
 msgid "Panel's column"
-msgstr ""
+msgstr "Colonne du tableau"
 
 #: customfieldeditdialog.cpp:179
 msgid "Select a value to represent the item on a panel"
-msgstr ""
+msgstr "Sélectionnez la valeur qui représente l'item dans le panneau"
 
 #: customfieldeditdialog.cpp:221
 msgid "Changing field type will delete all content!"
