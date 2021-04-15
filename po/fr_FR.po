@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-04-15 18:53+0300\n"
-"PO-Revision-Date: 2021-04-15 17:48\n"
+"PO-Revision-Date: 2021-04-15 17:59\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -3643,7 +3643,7 @@ msgstr "Nul"
 
 #: mmchecking_list.cpp:404
 msgid "as Followup"
-msgstr ""
+msgstr "comme suivi"
 
 #: mmchecking_list.cpp:406
 msgid "as Duplicate"
@@ -3651,7 +3651,7 @@ msgstr "Duplicata"
 
 #: mmchecking_list.cpp:408
 msgid "Mark all being selected"
-msgstr ""
+msgstr "Tout marquer comme vu"
 
 #: mmchecking_list.cpp:779
 #, c-format
@@ -6401,7 +6401,7 @@ msgstr "Symbole : %s"
 
 #: transactionsupdatedialog.cpp:78
 msgid "Multi Transactions Update"
-msgstr ""
+msgstr "Mise à jour multi-transactions"
 
 #: transactionsupdatedialog.cpp:195
 msgid "Append"
@@ -6409,7 +6409,7 @@ msgstr "Ajouter"
 
 #: transactionsupdatedialog.cpp:258
 msgid "Invalid type"
-msgstr ""
+msgstr "Type non valide"
 
 #: transactionsupdatedialog.cpp:312 transdialog.cpp:663
 #, c-format
