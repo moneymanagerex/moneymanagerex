@@ -77,6 +77,7 @@ wxBEGIN_EVENT_TABLE(mmBDDialog, wxDialog)
     EVT_BUTTON(ID_DIALOG_TRANS_BUTTONPAYEE, mmBDDialog::OnPayee)
     EVT_BUTTON(ID_DIALOG_TRANS_BUTTONTO, mmBDDialog::OnTo)
     EVT_BUTTON(wxID_FILE, mmBDDialog::OnAttachments)
+    EVT_BUTTON(wxID_INFO, mmBDDialog::OnColourButton)
     EVT_CHOICE(wxID_VIEW_DETAILS, mmBDDialog::OnTypeChanged)
     EVT_DATE_CHANGED(ID_DIALOG_TRANS_BUTTON_PAYDATE, mmBDDialog::OnPaidDateChanged)
     EVT_DATE_CHANGED(ID_DIALOG_BD_DUE_DATE, mmBDDialog::OnDueDateChanged)
@@ -88,7 +89,8 @@ wxBEGIN_EVENT_TABLE(mmBDDialog, wxDialog)
     EVT_CHECKBOX(ID_DIALOG_BD_CHECKBOX_AUTO_EXECUTE_SILENT, mmBDDialog::OnAutoExecutionSilentChecked)
     EVT_CHOICE(ID_DIALOG_BD_COMBOBOX_REPEATS, mmBDDialog::OnRepeatTypeChanged)
     EVT_BUTTON(ID_DIALOG_TRANS_BUTTONTRANSNUM, mmBDDialog::OnsetNextRepeatDate)
-    EVT_MENU(wxID_ANY, mmBDDialog::onNoteSelected)
+    EVT_MENU_RANGE(wxID_LOWEST, wxID_LOWEST + 20, mmBDDialog::OnNoteSelected)
+    EVT_MENU_RANGE(wxID_HIGHEST, wxID_HIGHEST + 8, mmBDDialog::OnColourSelected)
     EVT_CLOSE(mmBDDialog::OnQuit)
 wxEND_EVENT_TABLE()
 
@@ -116,6 +118,7 @@ mmBDDialog::mmBDDialog(wxWindow* parent, int bdID, bool edit, bool enterOccur)
     , bPayee_(nullptr)
     , bAccount_(nullptr)
     , bAttachments_(nullptr)
+    , bColours_(nullptr)
     , cSplit_(nullptr)
     , cAdvanced_(nullptr)
     , m_choice_status(nullptr)
@@ -150,6 +153,7 @@ mmBDDialog::mmBDDialog(wxWindow* parent, int bdID, bool edit, bool enterOccur)
         m_bill_data.STATUS = bill->STATUS;
         m_bill_data.TRANSACTIONNUMBER = bill->TRANSACTIONNUMBER;
         m_bill_data.TRANSCODE = bill->TRANSCODE;
+        m_bill_data.FOLLOWUPID = bill->FOLLOWUPID;
         //
         for (const auto& item : Model_Billsdeposits::splittransaction(bill)) {
             m_bill_data.local_splits.push_back({ item.CATEGID, item.SUBCATEGID, item.SPLITTRANSAMOUNT });
@@ -183,6 +187,8 @@ void mmBDDialog::dataToControls()
     Model_Checking::getFrequentUsedNotes(frequentNotes_);
     wxButton* bFrequentUsedNotes = static_cast<wxButton*>(FindWindow(ID_DIALOG_TRANS_BUTTON_FREQENTNOTES));
     bFrequentUsedNotes->Enable(!frequentNotes_.empty());
+
+    bColours_->SetBackgroundColour(getUDColour(m_bill_data.FOLLOWUPID));
 
     for (const auto& entry : BILLSDEPOSITS_REPEATS)
     {
@@ -617,6 +623,9 @@ void mmBDDialog::CreateControls()
         , wxSize(m_btn_due_date->GetSize().GetY(), m_btn_due_date->GetSize().GetY()));
     bAttachments_->SetToolTip(_("Organize attachments of this recurring transaction"));
 
+    bColours_ = new wxButton(this, wxID_INFO, " ", wxDefaultPosition, bAttachments_->GetSize(), 0);
+    bColours_->SetToolTip(_("User Colors"));
+
     wxButton* bFrequentUsedNotes = new wxButton(this, ID_DIALOG_TRANS_BUTTON_FREQENTNOTES, "..."
         , wxDefaultPosition, wxSize(bAttachments_->GetSize().GetX(), -1));
     bFrequentUsedNotes->SetToolTip(_("Select one of the frequently used notes"));
@@ -626,6 +635,7 @@ void mmBDDialog::CreateControls()
     wxBoxSizer* RightAlign_sizer = new wxBoxSizer(wxHORIZONTAL);
     transPanelSizer->Add(RightAlign_sizer, wxSizerFlags(g_flagsH).Align(wxALIGN_RIGHT).Border(wxALL, 0));
     RightAlign_sizer->Add(bAttachments_, g_flagsH);
+    RightAlign_sizer->Add(bColours_, g_flagsH);
     RightAlign_sizer->Add(bFrequentUsedNotes, g_flagsH);
 
     textNotes_ = new wxTextCtrl(this, ID_DIALOG_TRANS_TEXTNOTES, ""
@@ -890,7 +900,7 @@ void mmBDDialog::resetPayeeString()
 void mmBDDialog::OnFrequentUsedNotes(wxCommandEvent& WXUNUSED(event))
 {
     wxMenu menu;
-    int id = wxID_HIGHEST;
+    int id = wxID_LOWEST;
     for (const auto& entry : frequentNotes_) {
         const wxString& label = entry.Mid(0, 30) + (entry.size() > 30 ? "..." : "");
         menu.Append(++id, label);
@@ -900,9 +910,9 @@ void mmBDDialog::OnFrequentUsedNotes(wxCommandEvent& WXUNUSED(event))
         PopupMenu(&menu);
 }
 
-void mmBDDialog::onNoteSelected(wxCommandEvent& event)
+void mmBDDialog::OnNoteSelected(wxCommandEvent& event)
 {
-    size_t i = event.GetId() - wxID_HIGHEST;
+    size_t i = event.GetId() - wxID_LOWEST;
     if (i > 0 && i <= frequentNotes_.size()) {
         textNotes_->ChangeValue(frequentNotes_[i - 1]);
     }
@@ -942,8 +952,7 @@ void mmBDDialog::OnOk(wxCommandEvent& WXUNUSED(event))
         Model_Payee::Data *payee = Model_Payee::instance().get(m_bill_data.PAYEEID);
         if (!payee)
         {
-            mmErrorDialogs::InvalidPayee(bPayee_);
-            return;
+            return mmErrorDialogs::InvalidPayee(bPayee_);
         }
     }
 
@@ -1046,6 +1055,7 @@ void mmBDDialog::OnOk(wxCommandEvent& WXUNUSED(event))
         bill->REPEATS = m_bill_data.REPEATS;
         bill->NEXTOCCURRENCEDATE = m_bill_data.NEXTOCCURRENCEDATE;
         bill->NUMOCCURRENCES = m_bill_data.NUMOCCURRENCES;
+        bill->FOLLOWUPID = m_bill_data.FOLLOWUPID;
 
         transID_ = Model_Billsdeposits::instance().save(bill);
 
@@ -1083,6 +1093,7 @@ void mmBDDialog::OnOk(wxCommandEvent& WXUNUSED(event))
             tran->SUBCATEGID = m_bill_data.SUBCATEGID;
             tran->TRANSDATE = m_bill_data.TRANSDATE;
             tran->TOTRANSAMOUNT = m_bill_data.TOTRANSAMOUNT;
+            tran->FOLLOWUPID = m_bill_data.FOLLOWUPID;
 
             int transID = Model_Checking::instance().save(tran);
 
@@ -1444,4 +1455,43 @@ void mmBDDialog::OnPaidDateChanged(wxDateEvent& WXUNUSED(event))
 void mmBDDialog::OnDueDateChanged(wxDateEvent& WXUNUSED(event))
 {
 
+}
+
+void mmBDDialog::OnColourButton(wxCommandEvent& /*event*/)
+{
+    wxCommandEvent ev(wxEVT_COMMAND_MENU_SELECTED, wxID_INFO);
+    ev.SetEventObject(this);
+
+    wxSharedPtr<wxMenu> mainMenu(new wxMenu);
+
+    wxMenuItem* menuItem = new wxMenuItem(mainMenu.get(), wxID_HIGHEST, wxString::Format(_("Clear color"), 0));
+    mainMenu->Append(menuItem);
+
+    for (int i = 1; i <= 7; ++i)
+    {
+        menuItem = new wxMenuItem(mainMenu.get(), wxID_HIGHEST + i, wxString::Format(_("Color #%i"), i));
+#ifdef __WXMSW__
+        menuItem->SetBackgroundColour(getUDColour(i)); //only available for the wxMSW port.
+#endif
+        wxBitmap bitmap(mmBitmap(png::EMPTY).GetSize());
+        wxMemoryDC memoryDC(bitmap);
+        wxRect rect(memoryDC.GetSize());
+
+        memoryDC.SetBackground(wxBrush(getUDColour(i)));
+        memoryDC.Clear();
+        memoryDC.DrawBitmap(mmBitmap(png::EMPTY), 0, 0, true);
+        memoryDC.SelectObject(wxNullBitmap);
+        menuItem->SetBitmap(bitmap);
+
+        mainMenu->Append(menuItem);
+    }
+
+    PopupMenu(mainMenu.get());
+}
+
+void mmBDDialog::OnColourSelected(wxCommandEvent& event)
+{
+    int selected_nemu_item = event.GetId() - wxID_HIGHEST;
+    bColours_->SetBackgroundColour(getUDColour(selected_nemu_item));
+    m_bill_data.FOLLOWUPID = selected_nemu_item;
 }
