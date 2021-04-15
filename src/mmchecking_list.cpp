@@ -1125,8 +1125,6 @@ void TransactionListCtrl::OnCreateReoccurance(wxCommandEvent& /*event*/)
 
 void TransactionListCtrl::markSelectedTransaction()
 {
-    if (GetSelectedItemCount() == 0) return;
-
     long i = 0;
     for (const auto & tran : m_trans)
     {
@@ -1135,17 +1133,19 @@ void TransactionListCtrl::markSelectedTransaction()
         {
             SetItemState(i, 0, wxLIST_STATE_SELECTED);
         }
-        // discover where the transaction has ended up in the list
-        if (g_asc) {
-            if (m_topItemIndex < i && tran.TRANSID == m_selected_id.back()) {
-                m_topItemIndex = i;
-            }
-        } else {
-            if (m_topItemIndex > i && tran.TRANSID == m_selected_id.back()) {
-                m_topItemIndex = i;
+        if (!m_selected_id.empty())
+        {
+            // discover where the transaction has ended up in the list
+            if (g_asc) {
+                if (m_topItemIndex < i && tran.TRANSID == m_selected_id.back()) {
+                    m_topItemIndex = i;
+                }
+            } else {
+                if (m_topItemIndex > i && tran.TRANSID == m_selected_id.back()) {
+                    m_topItemIndex = i;
+                }
             }
         }
-
         ++i;
     }
 
@@ -1324,6 +1324,23 @@ void TransactionListCtrl::FindSelectedTransactions()
     for (const auto& i : m_trans)
         if (GetItemState(x++, wxLIST_STATE_SELECTED) == wxLIST_STATE_SELECTED)
             m_selected_id.push_back(i.TRANSID);
+}
+
+void TransactionListCtrl::setSelectedID(int v)
+{ 
+    int i = 0;
+    for(const auto& entry : m_trans)
+    {
+        if (v == entry.TRANSID)
+        {
+            SetItemState(i, wxLIST_STATE_SELECTED, wxLIST_STATE_SELECTED);
+            SetItemState(i, wxLIST_STATE_FOCUSED, wxLIST_STATE_FOCUSED);
+            m_topItemIndex = i;
+            break;
+        }
+        i++;
+    }
+  
 }
 
 //----------------------------------------------------------------------------
