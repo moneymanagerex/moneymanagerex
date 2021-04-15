@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-04-15 18:53+0300\n"
-"PO-Revision-Date: 2021-04-15 17:31\n"
+"PO-Revision-Date: 2021-04-15 17:48\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -768,7 +768,7 @@ msgstr "Mensuelle"
 #: billsdepositsdialog.cpp:54 billsdepositspanel.cpp:43
 #: model/Model_Budget.cpp:59
 msgid "Every 2 Months"
-msgstr "Tous les 2 mois"
+msgstr "Tous les deux mois"
 
 #: billsdepositsdialog.cpp:55 billsdepositspanel.cpp:44
 #: model/Model_Budget.cpp:60
@@ -1865,11 +1865,11 @@ msgstr "Entrez les choix pour ce champ séparés par un point-virgule"
 
 #: customfieldeditdialog.cpp:169
 msgid "Digits scale"
-msgstr ""
+msgstr "Nombre de décimales"
 
 #: customfieldeditdialog.cpp:171
 msgid "Enter the decimal digits scale allowed"
-msgstr ""
+msgstr "Saisir le nombre de décimales autorisé"
 
 #: customfieldeditdialog.cpp:174
 msgid "Panel's column"
@@ -1898,7 +1898,7 @@ msgstr "Vous avez modifié les choix: ceux enlevés seront supprimés!"
 
 #: customfieldlistdialog.cpp:52
 msgid "#"
-msgstr ""
+msgstr "#"
 
 #: customfieldlistdialog.cpp:55
 msgid "Properties"
@@ -4891,7 +4891,7 @@ msgstr "Année:"
 
 #: mmreportspanel.cpp:316
 msgid "Budget:"
-msgstr ""
+msgstr "Budget:"
 
 #: mmreportspanel.cpp:342
 msgid "Accounts:"
@@ -5038,7 +5038,7 @@ msgstr "Date de fin : "
 
 #: model/Model_Report.cpp:88
 msgid "Year: "
-msgstr ""
+msgstr "Année: "
 
 #: model/Model_Report.cpp:233
 msgid "Template is empty"
@@ -5413,7 +5413,7 @@ msgstr "Statistiques de l'utilisation"
 
 #: optionsettingsnet.cpp:126
 msgid "Check for latest news on startup"
-msgstr ""
+msgstr "Vérifier les mises à jour au démarrage"
 
 #: optionsettingsnet.cpp:128
 msgid "Enable to allow news to be checked on application start"
@@ -6405,7 +6405,7 @@ msgstr ""
 
 #: transactionsupdatedialog.cpp:195
 msgid "Append"
-msgstr ""
+msgstr "Ajouter"
 
 #: transactionsupdatedialog.cpp:258
 msgid "Invalid type"
@@ -6482,12 +6482,12 @@ msgstr "Préciser la date de l'opération"
 
 #: transdialog.cpp:1320
 msgid "Clear color"
-msgstr ""
+msgstr "Effacer la couleur"
 
 #: transdialog.cpp:1325
 #, c-format
 msgid "Color #%i"
-msgstr ""
+msgstr "Couleur #%i"
 
 #: usertransactionpanel.cpp:114
 msgid "Specify the associated Account that will contain this transaction"
