@@ -19,15 +19,11 @@
 #ifndef MM_EX_CUSTOMFIELDEDITDIALOG_H_
 #define MM_EX_CUSTOMFIELDEDITDIALOG_H_
 
-#include "defs.h"
-#include <wx/dataview.h>
-#include <map>
-
-#include "model/Model_CustomField.h"
-#include "model/Model_Currency.h"
-
-class wxDatePickerCtrl;
-class mmTextCtrl;
+#include <wx/dialog.h>
+#include "Model_CustomField.h"
+class wxChoice;
+class wxCheckBox;
+class wxSpinCtrl;
 
 class mmCustomFieldEditDialog : public wxDialog
 {
@@ -52,15 +48,18 @@ private:
     void OnCancel(wxCommandEvent& event);
     void OnQuit(wxCloseEvent& event);
     void OnChangeType(wxCommandEvent& event);
+    void OnChangeType(wxCommandEvent& event, bool OnDataToControls);
 
     wxString m_fieldRefType;
     wxTextCtrl* m_itemDescription;
     wxChoice*  m_itemType;
+    wxChoice*  m_itemUDFC;
     wxTextCtrl* m_itemTooltip;
     wxTextCtrl* m_itemRegEx;
     wxCheckBox* m_itemAutocomplete;
     wxTextCtrl* m_itemDefault;
     wxTextCtrl* m_itemChoices;
+    wxSpinCtrl* m_itemDigitScale;
 
     enum
     {

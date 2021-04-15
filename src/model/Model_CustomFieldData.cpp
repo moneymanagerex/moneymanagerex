@@ -57,7 +57,23 @@ Model_CustomFieldData::Data* Model_CustomFieldData::get(int FieldID, int RefID)
     return nullptr;
 }
 
-/** Return all CustomFieldData value*/
+std::map<int, Model_CustomFieldData::Data_Set> Model_CustomFieldData::get_all(Model_Attachment::REFTYPE reftype)
+{
+    const wxString& reftype_desc = Model_Attachment::reftype_desc(reftype);
+    Model_CustomField::Data_Set custom_fields = Model_CustomField::instance()
+        .find(Model_CustomField::DB_Table_CUSTOMFIELD_V1::REFTYPE(reftype_desc));
+    std::map<int, Model_CustomFieldData::Data_Set> data;
+    for (const auto& entry : custom_fields)
+    {
+        for (const auto & custom_field : find(Model_CustomFieldData::FIELDID(entry.FIELDID)))
+        {
+            data[custom_field.REFID].push_back(custom_field);
+        }
+    }
+    return data;
+}
+
+// Return all CustomFieldData value
 wxArrayString Model_CustomFieldData::allValue(const int FieldID)
 {
     wxArrayString values;
@@ -77,30 +93,12 @@ wxArrayString Model_CustomFieldData::allValue(const int FieldID)
     return values;
 }
 
-bool Model_CustomFieldData::RelocateAllData(const wxString& RefType, int OldRefId, int NewRefId)
-{
-    auto fields = Model_CustomField::instance().find(Model_CustomField::REFTYPE(RefType));
-
-    this->Savepoint();
-    for (auto &field : fields)
-    {
-        Data* data = Model_CustomFieldData::instance().get(field.FIELDID, OldRefId);
-        if (data)
-        {
-            data->REFID = NewRefId;
-            Model_CustomFieldData::instance().save(data);
-        }
-    }
-    this->ReleaseSavepoint();
-    return true;
-}
-
 bool Model_CustomFieldData::DeleteAllData(const wxString& RefType, int RefID)
 {
-    auto fields = Model_CustomField::instance().find(Model_CustomField::REFTYPE(RefType));
+    const auto& fields = Model_CustomField::instance().find(Model_CustomField::DB_Table_CUSTOMFIELD_V1::REFTYPE(RefType));
 
     this->Savepoint();
-    for (auto &field : fields)
+    for (const auto& field : fields)
     {
         Data* data = Model_CustomFieldData::instance().get(field.FIELDID, RefID);
         if (data)

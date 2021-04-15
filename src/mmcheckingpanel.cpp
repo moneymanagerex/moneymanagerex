@@ -1,6 +1,6 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
- Copyright (C) 2014-2020 Nikolay Akimov
+ Copyright (C) 2014-2021 Nikolay Akimov
  Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
@@ -169,6 +169,14 @@ void mmCheckingPanel::filterTable()
     m_reconciled_balance = m_account_balance;
     m_filteredBalance = 0.0;
 
+    auto custom_fields = Model_CustomFieldData::instance().get_all(Model_Attachment::TRANSACTION);
+    const auto matrix = Model_CustomField::getMatrix(Model_Attachment::TRANSACTION);
+    int udfc01_ref_id = matrix.at("UDFC01");
+    int udfc02_ref_id = matrix.at("UDFC02");
+    int udfc03_ref_id = matrix.at("UDFC03");
+    int udfc04_ref_id = matrix.at("UDFC04");
+    int udfc05_ref_id = matrix.at("UDFC05");
+
     bool ignore_future = Option::instance().getIgnoreFutureTransactions();
     const wxString today_date_string = wxDate::Today().FormatISODate();
 
@@ -206,6 +214,28 @@ void mmCheckingPanel::filterTable()
         full_tran.BALANCE = m_account_balance;
         full_tran.AMOUNT = transaction_amount;
         m_filteredBalance += transaction_amount;
+
+        if (custom_fields.find(tran.TRANSID) != custom_fields.end()) {
+            const auto& udfcs = custom_fields.at(tran.TRANSID);
+            for (const auto& udfc : udfcs)
+            {
+                if (udfc.FIELDID == udfc01_ref_id) {
+                    full_tran.UDFC01 = udfc.CONTENT;
+                }
+                else if (udfc.FIELDID == udfc02_ref_id) {
+                    full_tran.UDFC02 = udfc.CONTENT;
+                }
+                else if (udfc.FIELDID == udfc03_ref_id) {
+                    full_tran.UDFC03 = udfc.CONTENT;
+                }
+                else if (udfc.FIELDID == udfc04_ref_id) {
+                    full_tran.UDFC04 = udfc.CONTENT;
+                }
+                else if (udfc.FIELDID == udfc05_ref_id) {
+                    full_tran.UDFC05 = udfc.CONTENT;
+                }
+            }
+        }
 
         if (attachments.count(full_tran.TRANSID))
             full_tran.NOTES.Prepend(mmAttachmentManage::GetAttachmentNoteSign());

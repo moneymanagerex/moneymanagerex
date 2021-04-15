@@ -23,16 +23,15 @@ Copyright (C) 2016 Gabriele-V
 #include "mmSimpleDialogs.h"
 #include "paths.h"
 #include "util.h"
+#include "Model_CustomFieldData.h"
 
-#include "model/allmodel.h"
-
+#include <wx/dataview.h>
 #include <wx/mimetype.h>
 
 wxIMPLEMENT_DYNAMIC_CLASS(mmCustomFieldListDialog, wxDialog);
 
 wxBEGIN_EVENT_TABLE( mmCustomFieldListDialog, wxDialog )
-    EVT_BUTTON(wxID_CANCEL, mmCustomFieldListDialog::OnCancel)
-    EVT_BUTTON(wxID_OK, mmCustomFieldListDialog::OnOk)
+    EVT_BUTTON(wxID_OK, mmCustomFieldListDialog::OnClose)
     EVT_BUTTON(wxID_APPLY, mmCustomFieldListDialog::OnMagicButton)
     EVT_DATAVIEW_SELECTION_CHANGED(wxID_ANY, mmCustomFieldListDialog::OnListItemSelected)
     EVT_DATAVIEW_ITEM_CONTEXT_MENU(wxID_ANY, mmCustomFieldListDialog::OnItemRightClick)
@@ -42,16 +41,16 @@ wxEND_EVENT_TABLE()
 
 
 mmCustomFieldListDialog::mmCustomFieldListDialog (wxWindow* parent, const wxString& RefType) :
-    m_field_id(-1)
-    , m_RefType(RefType)
+    m_RefType(RefType)
+    , m_field_id(-1)
     #ifdef _DEBUG
         , debug_(true)
     #else
         , debug_(false)
     #endif
 {
-    if (debug_) ColName_[FIELD_ID] = "#";
-    ColName_[FIELD_DESCRIPTION] = _("Description");
+    if (debug_) ColName_[FIELD_ID] = _("#");
+    ColName_[FIELD_DESCRIPTION] = _("Name");
     ColName_[FIELD_TYPE] = _("Type");
     if (debug_) ColName_[FIELD_PROPERTIES] = _("Properties");
 
@@ -94,12 +93,10 @@ void mmCustomFieldListDialog::CreateControls()
     wxStdDialogButtonSizer* buttons_sizer = new wxStdDialogButtonSizer;
     buttons_panel->SetSizer(buttons_sizer);
 
-    wxButton* buttonOK = new wxButton(buttons_panel, wxID_OK, _("&OK "));
-    wxButton* btnCancel = new wxButton(buttons_panel, wxID_CANCEL, wxGetTranslation(g_CancelLabel));
-    buttons_sizer->Add(buttonOK, g_flagsH);
-    buttons_sizer->Add(btnCancel, g_flagsH);
+    wxButton* btnClose = new wxButton(buttons_panel, wxID_OK, wxGetTranslation(g_CloseLabel));
+    buttons_sizer->Add(btnClose, g_flagsH);
 
-    wxBitmapButton* magicButton = new wxBitmapButton(buttons_panel, wxID_APPLY, mmBitmap(png::MORE_OPTIONS));
+    wxBitmapButton* magicButton = new wxBitmapButton(buttons_panel, wxID_APPLY, mmBitmap(png::RUN));
     magicButton->SetToolTip(_("Other tools"));
     buttons_sizer->Add(magicButton, g_flagsH);
 
@@ -108,11 +105,11 @@ void mmCustomFieldListDialog::CreateControls()
 }
 
 void mmCustomFieldListDialog::fillControls()
-{    
+{
     fieldListBox_->DeleteAllItems();
 
     Model_CustomField::Data_Set fields = Model_CustomField::instance().find(Model_CustomField::DB_Table_CUSTOMFIELD_V1::REFTYPE(m_RefType));
-    if (fields.size() == 0) return;
+    if (fields.empty()) return;
 
     std::sort(fields.begin(), fields.end(), SorterByDESCRIPTION());
     int firstInTheListID = -1;
@@ -148,7 +145,7 @@ void mmCustomFieldListDialog::OnListItemSelected(wxDataViewEvent& event)
 
 void mmCustomFieldListDialog::AddField()
 {
-    mmCustomFieldEditDialog dlg(this, static_cast<Model_CustomField::Data*>(nullptr), m_RefType);
+    mmCustomFieldEditDialog dlg(this, nullptr, m_RefType);
     if (dlg.ShowModal() != wxID_OK)
         return;
     fillControls();
@@ -191,8 +188,9 @@ void mmCustomFieldListDialog::UpdateField()
         return;
 
     int UpdateResponse = wxMessageBox(
-        _("This function will massive update (search & replace for entire value, not inside value), please remind that there isn't any validation!\n"
-            "Do you want to proceed?")
+        wxString::Format(_("This function will massive search & replace for \"%s\" custom field values\n"
+            "It will match & replace only complete field value, no partial or middle-value replaces allowed\n"
+            "Please consider that there isn't any validation!"),field->DESCRIPTION)
         , _("Confirm Custom Field Content Update")
         , wxYES_NO | wxNO_DEFAULT | wxICON_WARNING);
     if (UpdateResponse != wxYES)
@@ -230,7 +228,7 @@ void mmCustomFieldListDialog::UpdateField()
     }
     Model_CustomFieldData::instance().save(data);
 
-    wxMessageBox(wxString::Format(_("%i occurrences founded and replaced!"), static_cast<int>(data.size()))
+    wxMessageBox(wxString::Format(wxPLURAL("%zu occurrence founded and replaced!", "%zu occurrences founded and replaced!", data.size()), data.size())
         , _("Update Custom Field Content"), wxOK | wxICON_INFORMATION);
 }
 
@@ -255,7 +253,7 @@ void mmCustomFieldListDialog::OnMagicButton(wxCommandEvent& WXUNUSED(event))
 void mmCustomFieldListDialog::OnItemRightClick(wxDataViewEvent& event)
 {
     wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, wxID_ANY) ;
-    evt.SetEventObject(this);
+    evt.SetEventObject( this );
 
     Model_CustomField::Data *field = Model_CustomField::instance().get(m_field_id);
 
@@ -283,12 +281,7 @@ void mmCustomFieldListDialog::OnListItemActivated(wxDataViewEvent& WXUNUSED(even
     mmCustomFieldListDialog::EditField();
 }
 
-void mmCustomFieldListDialog::OnCancel(wxCommandEvent& WXUNUSED(event))
-{
-    EndModal(wxID_CANCEL);
-}
-
-void mmCustomFieldListDialog::OnOk(wxCommandEvent& WXUNUSED(event))
+void mmCustomFieldListDialog::OnClose(wxCommandEvent& WXUNUSED(event))
 {
     EndModal(wxID_OK);
 }
