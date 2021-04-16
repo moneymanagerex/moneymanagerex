@@ -2846,6 +2846,7 @@ void mmGUIFrame::createCheckingAccountPage(int accountID)
     if (gotoTransID_ > 0)
     {
         wxDynamicCast(panelCurrent_, mmCheckingPanel)->SetSelectedTransaction(gotoTransID_);
+        gotoTransID_ = -1;
     }
     m_nav_tree_ctrl->SetEvtHandlerEnabled(true);
 }

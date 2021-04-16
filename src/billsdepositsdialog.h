@@ -69,10 +69,12 @@ private:
     void OnTo(wxCommandEvent& event);
     void OnTypeChanged(wxCommandEvent& event);
     void OnAttachments(wxCommandEvent& event);
+    void OnColourButton(wxCommandEvent& event);
+    void OnColourSelected(wxCommandEvent& event);
 
     void dataToControls();
     void updateControlsForTransType();
-    void addPayee(wxString payee, int categID, int subcategID );
+    //void addPayee(wxString payee, int categID, int subcategID );
     void OnAccountName(wxCommandEvent& event);
     void OnSplitChecked(wxCommandEvent& event);
     void OnAutoExecutionUserAckChecked(wxCommandEvent& event);
@@ -99,6 +101,7 @@ private:
     wxButton* bPayee_;
     wxButton* bAccount_;
     wxButton* bAttachments_;
+    wxButton* bColours_;
     wxCheckBox* cSplit_;
     wxCheckBox* cAdvanced_;
     wxChoice* m_choice_status;
@@ -135,7 +138,7 @@ private:
     void OnSpinEventPaid(wxSpinEvent& event);
     void OnSpinEventDue(wxSpinEvent& event);
     void OnFrequentUsedNotes(wxCommandEvent& event);
-    void onNoteSelected(wxCommandEvent& event);
+    void OnNoteSelected(wxCommandEvent& event);
 
     void OnRepeatTypeChanged(wxCommandEvent& event);
     void OnsetNextRepeatDate(wxCommandEvent& event);
