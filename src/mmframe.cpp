@@ -38,6 +38,7 @@
 #include "dbcheck.h"
 #include "dbupgrade.h"
 #include "dbwrapper.h"
+#include "diagnostics.h"
 #include "filtertransdialog.h"
 #include "general_report_manager.h"
 #include "images_list.h"
@@ -110,6 +111,7 @@ EVT_MENU(MENU_CHECKUPDATE, mmGUIFrame::OnCheckUpdate)
 EVT_MENU(MENU_ANNOUNCEMENTMAILING, mmGUIFrame::OnBeNotified)
 EVT_MENU_RANGE(MENU_FACEBOOK, MENU_TWITTER, mmGUIFrame::OnSimpleURLOpen)
 EVT_MENU(MENU_REPORT_BUG, mmGUIFrame::OnReportBug)
+EVT_MENU(MENU_DIAGNOSTICS, mmGUIFrame::OnDiagnostics)
 EVT_MENU(wxID_ABOUT, mmGUIFrame::OnAbout)
 EVT_MENU(wxID_PRINT, mmGUIFrame::OnPrintPage)
 EVT_MENU(MENU_SHOW_APPSTART, mmGUIFrame::OnShowAppStartDialog)
@@ -1622,6 +1624,11 @@ void mmGUIFrame::createMenu()
         , _("Report a &Bug")
         , _("Report an error in application to the developers"));
     menuHelp->Append(menuItemReportBug);
+    
+    wxMenuItem* menuItemDiagnostics = new wxMenuItem(menuTools, MENU_DIAGNOSTICS
+        , _("View Diagnostics")
+        , _("Help provide information to the developers"));
+    menuHelp->Append(menuItemDiagnostics);
 
     wxMenuItem* menuItemAppStart = new wxMenuItem(menuTools, MENU_SHOW_APPSTART
         , _("&Show App Start Dialog"), _("App Start Dialog"));
@@ -2518,6 +2525,12 @@ void mmGUIFrame::OnReportBug(wxCommandEvent& WXUNUSED(event))
     mmPrintableBase* br = new mmBugReport();
     setNavTreeSection(_("Reports"));
     createReportsPage(br, true);
+}
+
+void mmGUIFrame::OnDiagnostics(wxCommandEvent& /*event*/)
+{
+    mmDiagnosticsDialog dlg(this, _("Diagnostics"));
+    dlg.ShowModal();
 }
 
 void mmGUIFrame::OnAbout(wxCommandEvent& WXUNUSED(event))

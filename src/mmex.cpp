@@ -176,7 +176,7 @@ void mmGUIApp::ReportFatalException(wxDebugReport::Context ctx)
 
     if (!report.IsOk())
     {
-        return wxSafeShowMessage(mmex::getProgramName()
+        wxSafeShowMessage(mmex::getProgramName()
             , _("Fatal error occured.\nApplication will be terminated."));
     }
 
