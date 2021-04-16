@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-04-15 18:53+0300\n"
-"PO-Revision-Date: 2021-04-15 17:30\n"
+"PO-Revision-Date: 2021-04-16 22:32\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "MIME-Version: 1.0\n"
@@ -1865,19 +1865,19 @@ msgstr "Insira as escolhas para este campo separadas por um ponto e vírgula"
 
 #: customfieldeditdialog.cpp:169
 msgid "Digits scale"
-msgstr ""
+msgstr "Dígitos"
 
 #: customfieldeditdialog.cpp:171
 msgid "Enter the decimal digits scale allowed"
-msgstr ""
+msgstr "Insira as casas decimais permitidas"
 
 #: customfieldeditdialog.cpp:174
 msgid "Panel's column"
-msgstr ""
+msgstr "Coluna do painel"
 
 #: customfieldeditdialog.cpp:179
 msgid "Select a value to represent the item on a panel"
-msgstr ""
+msgstr "Selecione um valor para representar o item no painel"
 
 #: customfieldeditdialog.cpp:221
 msgid "Changing field type will delete all content!"
@@ -1898,7 +1898,7 @@ msgstr "Você modificou as opções: as removidas serão limpas!"
 
 #: customfieldlistdialog.cpp:52
 msgid "#"
-msgstr ""
+msgstr "#"
 
 #: customfieldlistdialog.cpp:55
 msgid "Properties"
@@ -1922,7 +1922,9 @@ msgstr "Confirma Exclusão do Campo Personalizado"
 msgid "This function will massive search & replace for \"%s\" custom field values\n"
 "It will match & replace only complete field value, no partial or middle-value replaces allowed\n"
 "Please consider that there isn't any validation!"
-msgstr ""
+msgstr "Esta função fará uma busca & substituição massiva para os \"%s\" campos personalizados\n"
+"Fará uma busca & substituição apenas dos campos completos, nenhuma substituição de valor parcial ou pela metade é permitida\n"
+"Por favor, considere que não há qualquer validação!"
 
 #: customfieldlistdialog.cpp:194
 msgid "Confirm Custom Field Content Update"
@@ -1958,8 +1960,8 @@ msgstr "Você quer atualizar para branco?\n"
 #, c-format
 msgid "%zu occurrence founded and replaced!"
 msgid_plural "%zu occurrences founded and replaced!"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%zu ocorrência encontrada e substituída!"
+msgstr[1] "%zu ocorrências encontradas e substituídas!"
 
 #: customfieldlistdialog.cpp:266
 msgid "&Massive content update "
@@ -6480,12 +6482,12 @@ msgstr "Especifique a data da transação"
 
 #: transdialog.cpp:1320
 msgid "Clear color"
-msgstr ""
+msgstr "Limpar cor"
 
 #: transdialog.cpp:1325
 #, c-format
 msgid "Color #%i"
-msgstr ""
+msgstr "Cor #%i"
 
 #: usertransactionpanel.cpp:114
 msgid "Specify the associated Account that will contain this transaction"
