@@ -10,6 +10,7 @@ function generateLangMenu(nav) {
         { id: "de", flag: "de", lang: "German"    },
         { id: "fr", flag: "fr", lang: "French"    },
         { id: "hu", flag: "hu", lang: "Hungarian" },
+        { id: "he", flag: "he", lang: "Hebrew"    },
         { id: "it", flag: "it", lang: "Italian"   },
         { id: "pl", flag: "pl", lang: "Polish"    },
         { id: "ru", flag: "ru", lang: "Russian"   },
