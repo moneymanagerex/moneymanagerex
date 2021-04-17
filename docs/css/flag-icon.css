@@ -39,6 +39,10 @@
   background-image: url(../img/flags/hu.svg);
 }
 
+.flag-icon-he {
+  background-image: url(../img/flags/he.svg);
+}
+
 .flag-icon-it {
   background-image: url(../img/flags/it.svg);
 }
