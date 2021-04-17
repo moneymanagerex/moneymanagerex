@@ -430,14 +430,14 @@ function(create_zip output_file input_files working_dir)
     )
 endfunction()
 
-file(GLOB THEME_DEFAULT_FILES "${PROJECT_SOURCE_DIR}/resources/themes/default/*")
-create_zip("${CMAKE_CURRENT_BINARY_DIR}/default.mmextheme" "${THEME_DEFAULT_FILES}" "${PROJECT_SOURCE_DIR}/resources/themes/default/")
-file(GLOB THEME_COLORFUL_FILES "${PROJECT_SOURCE_DIR}/resources/themes/colorful/*")
-create_zip("${CMAKE_CURRENT_BINARY_DIR}/colorful.mmextheme" "${THEME_COLORFUL_FILES}" "${PROJECT_SOURCE_DIR}/resources/themes/colorful/")
-file(GLOB THEME_SIMPLEBLACK_FILES "${PROJECT_SOURCE_DIR}/resources/themes/simple-black/*")
-create_zip("${CMAKE_CURRENT_BINARY_DIR}/simple-black.mmextheme" "${THEME_SIMPLEBLACK_FILES}" "${PROJECT_SOURCE_DIR}/resources/themes/simple-black/")
-file(GLOB THEME_YELLOWBLUE_FILES "${PROJECT_SOURCE_DIR}/resources/themes/yellow-blue/*")
-create_zip("${CMAKE_CURRENT_BINARY_DIR}/yellow-blue.mmextheme" "${THEME_YELLOWBLUE_FILES}" "${PROJECT_SOURCE_DIR}/resources/themes/yellow-blue/")
+file(GLOB THEME_DEFAULT_FILES "${PROJECT_SOURCE_DIR}/themes/system-themes/default/*")
+create_zip("${CMAKE_CURRENT_BINARY_DIR}/default.mmextheme" "${THEME_DEFAULT_FILES}" "${PROJECT_SOURCE_DIR}/themes/system-themes/default/")
+file(GLOB THEME_COLORFUL_FILES "${PROJECT_SOURCE_DIR}/themes/system-themes/colorful/*")
+create_zip("${CMAKE_CURRENT_BINARY_DIR}/colorful.mmextheme" "${THEME_COLORFUL_FILES}" "${PROJECT_SOURCE_DIR}/themes/system-themes/colorful/")
+file(GLOB THEME_SIMPLEBLACK_FILES "${PROJECT_SOURCE_DIR}/themes/system-themes/simple-black/*")
+create_zip("${CMAKE_CURRENT_BINARY_DIR}/simple-black.mmextheme" "${THEME_SIMPLEBLACK_FILES}" "${PROJECT_SOURCE_DIR}/themes/system-themes/simple-black/")
+file(GLOB THEME_YELLOWBLUE_FILES "${PROJECT_SOURCE_DIR}/themes/system-themes/yellow-blue/*")
+create_zip("${CMAKE_CURRENT_BINARY_DIR}/yellow-blue.mmextheme" "${THEME_YELLOWBLUE_FILES}" "${PROJECT_SOURCE_DIR}/themes/system-themes/yellow-blue/")
 
 add_custom_target(generate_theme_default ALL DEPENDS "${CMAKE_CURRENT_BINARY_DIR}/default.mmextheme"
                                                      "${CMAKE_CURRENT_BINARY_DIR}/colorful.mmextheme"
