@@ -271,8 +271,25 @@ const wxArrayString Model_CustomField::UDFC_FIELDS()
 
 const wxArrayString Model_CustomField::getUDFCList(DB_Table_CUSTOMFIELD_V1::Data* r)
 {
-    wxString i;
-    wxArrayString choices = UDFC_FIELDS();
+    const wxString& ref_type = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
+    const auto& a = Model_CustomField::instance().find(Model_CustomField::DB_Table_CUSTOMFIELD_V1::REFTYPE(ref_type));
+
+    wxSortedArrayString choices = UDFC_FIELDS();
+
+    for (const auto& item : a)
+    {
+        Document json_doc;
+        if (!json_doc.Parse(item.PROPERTIES.c_str()).HasParseError())
+        {
+            if (json_doc.HasMember("UDFC") && json_doc["UDFC"].IsString())
+            {
+                Value& s = json_doc["UDFC"];
+                if (choices.Index(s.GetString()) != wxNOT_FOUND) {
+                    choices.Remove(s.GetString());
+                }
+            }
+        }
+    }
 
     if (r)
     {
@@ -282,22 +299,7 @@ const wxArrayString Model_CustomField::getUDFCList(DB_Table_CUSTOMFIELD_V1::Data
             if (json_doc.HasMember("UDFC") && json_doc["UDFC"].IsString())
             {
                 Value& s = json_doc["UDFC"];
-                i = s.GetString();
-            }
-        }
-
-        const auto& a = Model_CustomField::instance().find(Model_CustomField::DB_Table_CUSTOMFIELD_V1::REFTYPE(r->REFTYPE));
-        for (const auto& item : a)
-        {
-            if (!json_doc.Parse(item.PROPERTIES.c_str()).HasParseError())
-            {
-                if (json_doc.HasMember("UDFC") && json_doc["UDFC"].IsString())
-                {
-                    Value& s = json_doc["UDFC"];
-                    if (choices.Index(s.GetString()) != wxNOT_FOUND && i != s.GetString()) {
-                        choices.Remove(s.GetString());
-                    }
-                }
+                choices.Add(wxString::FromUTF8(s.GetString()));
             }
         }
     }

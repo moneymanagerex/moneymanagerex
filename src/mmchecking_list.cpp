@@ -233,9 +233,11 @@ TransactionListCtrl::TransactionListCtrl(
     {
         if (udfc_entry.empty()) continue;
         const auto& name = Model_CustomField::getUDFCName(ref_type, udfc_entry);
-        int width = name == udfc_entry ? 0 : 100;
-        m_columns.push_back(PANEL_COLUMN(name, width, wxLIST_FORMAT_LEFT));
-        m_real_columns.push_back(static_cast<EColumn>(++i));
+        if (name != udfc_entry)
+        {
+            m_columns.push_back(PANEL_COLUMN(name, 100, wxLIST_FORMAT_LEFT));
+            m_real_columns.push_back(static_cast<EColumn>(++i));
+        }
     }
 
     m_col_width = m_cp->m_allAccounts ? "ALLTRANS_COL%d_WIDTH" : "CHECK_COL%d_WIDTH";
