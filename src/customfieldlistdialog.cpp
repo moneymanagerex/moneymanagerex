@@ -68,10 +68,8 @@ void mmCustomFieldListDialog::Create(wxWindow* parent)
 
     CreateControls();
     fillControls();
-    GetSizer()->Fit(this);
-    GetSizer()->SetSizeHints(this);
-    fillControls();
     SetIcon(mmex::getProgramIcon());
+    Fit();
     Centre();
 }
 
@@ -79,8 +77,8 @@ void mmCustomFieldListDialog::CreateControls()
 {
     wxBoxSizer* mainBoxSizer = new wxBoxSizer(wxVERTICAL);
 
-    fieldListBox_ = new wxDataViewListCtrl( this
-        , wxID_ANY, wxDefaultPosition, wxSize(460, 500)/*, wxDV_HORIZ_RULES*/);
+    fieldListBox_ = new wxDataViewListCtrl( this, wxID_ANY);
+    fieldListBox_->SetMinSize(wxSize(460, 500));
 
     if (debug_) fieldListBox_->AppendTextColumn(ColName_[FIELD_ID], wxDATAVIEW_CELL_INERT, wxLIST_AUTOSIZE_USEHEADER);
     fieldListBox_->AppendTextColumn(ColName_[FIELD_DESCRIPTION], wxDATAVIEW_CELL_INERT, wxLIST_AUTOSIZE_USEHEADER);
@@ -96,11 +94,10 @@ void mmCustomFieldListDialog::CreateControls()
     wxButton* btnClose = new wxButton(buttons_panel, wxID_OK, wxGetTranslation(g_CloseLabel));
     buttons_sizer->Add(btnClose, g_flagsH);
 
-    wxBitmapButton* magicButton = new wxBitmapButton(buttons_panel, wxID_APPLY, mmBitmap(png::RUN));
+    wxBitmapButton* magicButton = new wxBitmapButton(buttons_panel, wxID_APPLY, mmBitmap(png::MORE_OPTIONS));
     magicButton->SetToolTip(_("Other tools"));
     buttons_sizer->Add(magicButton, g_flagsH);
 
-    Center();
     this->SetSizer(mainBoxSizer);
 }
 
