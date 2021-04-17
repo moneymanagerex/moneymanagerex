@@ -53,8 +53,8 @@ mmCustomFieldEditDialog::mmCustomFieldEditDialog(wxWindow* parent, Model_CustomF
     , m_itemChoices(nullptr)
     , m_itemDigitScale(nullptr)
 {
-    long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX;
-    Create(parent, wxID_ANY, _("New/Edit Custom Field"), wxDefaultPosition, wxSize(400, 300), style);
+    Create(parent);
+    Fit();
 }
 
 bool mmCustomFieldEditDialog::Create(wxWindow* parent
@@ -71,7 +71,6 @@ bool mmCustomFieldEditDialog::Create(wxWindow* parent
 
     CreateControls();
     dataToControls();
-    GetSizer()->Fit(this);
     this->SetInitialSize();
     GetSizer()->SetSizeHints(this);
     SetIcon(mmex::getProgramIcon());
@@ -115,29 +114,32 @@ void mmCustomFieldEditDialog::CreateControls()
     this->SetSizer(itemBoxSizer2);
 
     wxBoxSizer* itemBoxSizer3 = new wxBoxSizer(wxVERTICAL);
-    itemBoxSizer2->Add(itemBoxSizer3, 0, wxALIGN_CENTER_VERTICAL | wxALL, 5);
+    itemBoxSizer2->Add(itemBoxSizer3, g_flagsExpand);
 
     wxStaticBox* itemStaticBoxSizer4Static = new wxStaticBox(this, wxID_ANY, _("Custom Field Details"));
     wxStaticBoxSizer* itemStaticBoxSizer4 = new wxStaticBoxSizer(itemStaticBoxSizer4Static, wxVERTICAL);
-    itemBoxSizer3->Add(itemStaticBoxSizer4, g_flagsV);
+    itemBoxSizer3->Add(itemStaticBoxSizer4, g_flagsExpand);
 
     wxPanel* itemPanel5 = new wxPanel(this, wxID_STATIC, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
-    itemStaticBoxSizer4->Add(itemPanel5, g_flagsV);
+    itemStaticBoxSizer4->Add(itemPanel5, g_flagsExpand);
 
     wxFlexGridSizer* itemFlexGridSizer6 = new wxFlexGridSizer(0, 2, 0, 0);
+    itemFlexGridSizer6->AddGrowableCol(1, 1);
     itemPanel5->SetSizer(itemFlexGridSizer6);
 
-    itemFlexGridSizer6->Add(new wxStaticText(itemPanel5, wxID_STATIC, _("Name")), g_flagsH);
-    m_itemDescription = new wxTextCtrl(itemPanel5, wxID_ANY, wxGetEmptyString());
+    itemFlexGridSizer6->Add(new wxStaticText(itemPanel5, wxID_STATIC, _("Name")), g_flagsExpand);
+    m_itemDescription = new wxTextCtrl(itemPanel5, wxID_ANY);
+    m_itemDescription->SetMinSize(wxSize(150, -1));
+
     m_itemDescription->SetToolTip(_("Enter the name of the custom field"));
     itemFlexGridSizer6->Add(m_itemDescription, g_flagsExpand);
 
     itemFlexGridSizer6->Add(new wxStaticText(itemPanel5, wxID_STATIC, _("Field Type")), g_flagsH);
-    m_itemType = new wxChoice(itemPanel5, wxID_HIGHEST, wxDefaultPosition, wxSize(150, -1));
+    m_itemType = new wxChoice(itemPanel5, wxID_HIGHEST);
     for (const auto& type : Model_CustomField::all_type())
         m_itemType->Append(wxGetTranslation(type), new wxStringClientData(type));
     m_itemType->SetToolTip(_("Select type of custom field"));
-    itemFlexGridSizer6->Add(m_itemType, 0, wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL | wxALL, 5);
+    itemFlexGridSizer6->Add(m_itemType, g_flagsExpand);
 
     itemFlexGridSizer6->Add(new wxStaticText(itemPanel5, wxID_STATIC, _("ToolTip")), g_flagsH);
     m_itemTooltip = new wxTextCtrl(itemPanel5, wxID_ANY, "");
@@ -172,12 +174,12 @@ void mmCustomFieldEditDialog::CreateControls()
     itemFlexGridSizer6->Add(m_itemDigitScale, g_flagsExpand);
 
     itemFlexGridSizer6->Add(new wxStaticText(itemPanel5, wxID_STATIC, _("Panel's column")), g_flagsH);
-    m_itemUDFC = new wxChoice(itemPanel5, wxID_APPLY, wxDefaultPosition, wxSize(150, -1));
+    m_itemUDFC = new wxChoice(itemPanel5, wxID_APPLY);
     for (const auto& type : Model_CustomField::getUDFCList(m_field)) {
         m_itemUDFC->Append(wxGetTranslation(type), new wxStringClientData(type));
     }
     m_itemUDFC->SetToolTip(_("Select a value to represent the item on a panel"));
-    itemFlexGridSizer6->Add(m_itemUDFC, 0, wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL | wxALL, 5);
+    itemFlexGridSizer6->Add(m_itemUDFC, g_flagsExpand);
 
     wxPanel* itemPanel27 = new wxPanel(this, wxID_STATIC, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
     itemBoxSizer3->Add(itemPanel27, wxSizerFlags(g_flagsV).Center());
