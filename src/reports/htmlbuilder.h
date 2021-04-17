@@ -28,13 +28,14 @@
 struct GraphSeries
 {
     wxString name;
+    wxString type;
     std::vector<double> values;
 };
 
 struct GraphData
 {
     wxString title;
-    enum { BAR = 0, LINE, LINE_DATETIME, PIE, DONUT, RADAR } type;
+    enum { BAR = 0, LINE, LINE_DATETIME, PIE, DONUT, RADAR, BARLINE } type;
     std::vector<wxString> labels;
     std::vector<GraphSeries> series;
     std::vector<wxColour> colors;

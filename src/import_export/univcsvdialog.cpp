@@ -1859,7 +1859,7 @@ void mmUnivCSVDialog::UpdateListItemBackground()
     int lastRow = m_list_ctrl_->GetItemCount() - m_spinIgnoreLastRows_->GetValue() - 1;
     for (int row = 0; row < m_list_ctrl_->GetItemCount(); row++)
     {
-        wxColor color = row >= firstRow && row <= lastRow ? m_list_ctrl_->GetBackgroundColour() : *wxLIGHT_GREY;
+        wxColour color = row >= firstRow && row <= lastRow ? m_list_ctrl_->GetBackgroundColour() : *wxLIGHT_GREY;
         m_list_ctrl_->SetItemBackgroundColour(row, color);
     }
 }

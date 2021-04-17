@@ -27,4 +27,4 @@
 	url = https://github.com/sammycage/lunasvg.git
 [submodule "themes"]
 	path = themes
-	url = https://github.com/moneymanagerex/themes
+	url = https://github.com/moneymanagerex/themes.git

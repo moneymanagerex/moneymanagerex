@@ -18,6 +18,7 @@
  ********************************************************/
 
 #include "htmlbuilder.h"
+#include "images_list.h"
 #include "util.h"
 #include "option.h"
 #include "constants.h"
@@ -98,34 +99,6 @@ namespace tags
     static const wxString TABLE_CELL_RIGHT = "<td style='text-align: right'>";
     static const wxString SPAN = "<span %s>%s";
     static const wxString SPAN_END = "</span>\n";
-    static const wxString COLORS[] = {
-        "#008FFB"
-        , "#00E396"
-        , "#FEB019"
-        , "#FF4560"
-        , "#775DD0"
-        , "#3F51B5"
-        , "#03A9F4"
-        , "#4cAF50"
-        , "#F9CE1D"
-        , "#FF9800"
-        , "#33B2DF"
-        , "#546E7A"
-        , "#D4526E"
-        , "#13D8AA"
-        , "#A5978B"
-        , "#4ECDC4" 
-        , "#81D4FA"
-        , "#546E7A"
-        , "#FD6A6A"
-        , "#2B908F"
-        , "#F9A3A4"
-        , "#90EE7E"
-        , "#FA4443"
-        , "#69D2E7"
-        , "#449DD1"
-        , "#F86624"
-        };
 }
 
 mmHTMLBuilder::mmHTMLBuilder()
@@ -347,9 +320,9 @@ void mmHTMLBuilder::addColorMarker(const wxString& color)
 
 const wxString mmHTMLBuilder::getColor(int i)
 {
-    int c = i % (sizeof(tags::COLORS) / sizeof(wxString));
-    wxString color = tags::COLORS[c];
-    return color;
+    std::vector<wxColour> colours = mmThemeMetaColourArray(meta::COLOR_REPORT_PALETTE);
+    int c = i % colours.size();
+    return colours.at(c).GetAsString(wxC2S_HTML_SYNTAX);
 }
 
 const wxString mmHTMLBuilder::getRandomColor(bool positive)
@@ -529,6 +502,11 @@ void mmHTMLBuilder::addChart(const GraphData& gd)
         case GraphData::RADAR:
             gtype = "radar";
             chartWidth = 70;
+            break;
+        case GraphData::BARLINE:
+            gtype = "line";
+            if (gd.labels.size() < 5)
+                chartWidth = 70;
     };
 
     htmlChart += wxString::Format("chart: { type: '%s', toolbar: { tools: { download: false } }, width: '%i%%' }", gtype, chartWidth);
@@ -558,14 +536,8 @@ void mmHTMLBuilder::addChart(const GraphData& gd)
     std::vector<wxColour> colors;
     if (!gd.colors.empty())
         colors = gd.colors;
-    {
-        wxColour col;
-        for(const auto& color : tags::COLORS)
-        {
-            col.Set(color);
-            colors.push_back(col);
-        }
-    }
+    else  
+        colors = mmThemeMetaColourArray(meta::COLOR_REPORT_PALETTE);
 
     htmlChart += ", colors: ";
     bool first = true;
@@ -587,8 +559,8 @@ void mmHTMLBuilder::addChart(const GraphData& gd)
         first = false; 
     }
 
-    // Pie/donut charts just have a single series / data
-    if (gd.type == GraphData::PIE || gd.type == GraphData::DONUT)
+    // Pie/donut charts just have a single series / data, and mixed have a single set of labels
+    if (gd.type == GraphData::PIE || gd.type == GraphData::DONUT || gd.type == GraphData::BARLINE)
        htmlChart += wxString::Format(",labels: [%s]", categories);
     else
         htmlChart += wxString::Format(", xaxis: { type: '%s', categories: [%s], labels: { hideOverlappingLabels: true } }\n", gSeriesType, categories);
@@ -626,10 +598,17 @@ void mmHTMLBuilder::addChart(const GraphData& gd)
         if (gd.type == GraphData::PIE || gd.type == GraphData::DONUT) 
             seriesList = seriesEntries;
         else
-            seriesList += wxString::Format("%s{ name: '%s', data: [%s] }", firstList ? "":",", entry.name, seriesEntries);
+        {
+            const wxString typeString = (gd.type == GraphData::BARLINE) ? wxString::Format("type: '%s',", entry.type) : "";
+            seriesList += wxString::Format("%s{ name: '%s', %s data: [%s] }", firstList ? "":",", entry.name, typeString, seriesEntries);
+        }
         firstList = false;
     }
     htmlChart += wxString::Format(", series: [%s]", seriesList);
+
+    if (gd.type == GraphData::BARLINE)
+        htmlChart += ", dataLabels: { enabled: true, enabledOnSeries: [1] }";
+
     htmlPieData += wxString::Format("var chart_%s = [ %s ]", divid, pieEntries);
 
     addText(wxString::Format("<div id='%s' class='%s'></div>\n"

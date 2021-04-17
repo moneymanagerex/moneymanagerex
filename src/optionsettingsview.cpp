@@ -19,6 +19,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 #include "optionsettingsview.h"
 #include "images_list.h"
+#include "themes.h"
 #include "util.h"
 
 #include <wx/colordlg.h>
@@ -171,18 +172,10 @@ void OptionSettingsView::Create()
 
     // Theme
 
-    m_choice_theme = new wxChoice(this, wxID_ANY);
+    m_theme_manager = new wxButton(this, ID_DIALOG_THEMEMANAGER, _("Open Theme Manager"));
 
     view_sizer2->Add(new wxStaticText(this, wxID_STATIC, _("Style Template")), g_flagsH);
-    view_sizer2->Add(m_choice_theme, g_flagsH);
-
-    wxString myTheme = Model_Setting::instance().Theme();
-    for (const auto& entry : getThemes())
-    {
-        m_choice_theme->Append(wxGetTranslation(entry), new wxStringClientData(entry));
-        if (entry == myTheme)
-            m_choice_theme->SetStringSelection(wxGetTranslation(entry));
-    }
+    view_sizer2->Add(m_theme_manager, g_flagsH);
 
     view_sizer2->Add(new wxStaticText(this, wxID_STATIC, _("HTML Scale Factor")), g_flagsH);
 
@@ -236,6 +229,7 @@ void OptionSettingsView::Create()
     m_others_icon_size->SetSelection(selection);
 
     this->Connect(wxID_ANY, wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(OptionSettingsView::OnNavTreeColorChanged), nullptr, this);
+    this->Connect(ID_DIALOG_THEMEMANAGER, wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(OptionSettingsView::OnThemeManagerSelected), nullptr, this);
 }
 
 void OptionSettingsView::OnNavTreeColorChanged(wxCommandEvent& event)
@@ -257,6 +251,12 @@ void OptionSettingsView::OnNavTreeColorChanged(wxCommandEvent& event)
     }
 }
 
+void OptionSettingsView::OnThemeManagerSelected(wxCommandEvent& event)
+{
+    mmThemesDialog dlg(this, _("Theme Manager"));
+    dlg.ShowModal();
+}
+
 bool OptionSettingsView::SaveSettings()
 {
     auto delimiter = m_categ_delimiter_list->GetValue();
@@ -268,12 +268,6 @@ bool OptionSettingsView::SaveSettings()
     if (visible_acc_obj)
         accVisible = visible_acc_obj->GetData();
     Model_Setting::instance().SetViewAccounts(accVisible);
-
-    wxString themeName = "default";
-    wxStringClientData* theme_obj = static_cast<wxStringClientData*>(m_choice_theme->GetClientObject(m_choice_theme->GetSelection()));
-    if (theme_obj)
-        themeName = theme_obj->GetData();
-    Model_Setting::instance().SetTheme(themeName);
 
     int size = m_scale_factor->GetValue();
     Option::instance().setHTMLFontSizes(size);

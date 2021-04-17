@@ -136,7 +136,7 @@
                     var data = {
                         chart: { type : 'bar', toolbar : { show : false } },
                         dataLabels : { enabled : false },
-                        colors: [ '#50b381', '#f75e5e' ],
+                        colors: [ <TMPL_VAR INCOME_VS_EXPENSES_COLORS> ],
                         tooltip : { theme : "dark" },
                         xaxis : { labels : { show : false }, categories : [ive_json[9]]},
                         series : [
