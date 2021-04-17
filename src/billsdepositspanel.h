@@ -48,6 +48,7 @@ public:
 
 protected:
     virtual void OnColClick(wxListEvent& event);
+    virtual wxListItemAttr *OnGetItemAttr(long item) const;
 
 private:
     /* required overrides for virtual style list control */
