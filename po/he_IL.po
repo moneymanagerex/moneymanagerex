@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-04-15 18:53+0300\n"
-"PO-Revision-Date: 2021-04-15 17:31\n"
+"PO-Revision-Date: 2021-04-18 10:32\n"
 "Last-Translator: \n"
 "Language-Team: Hebrew\n"
 "MIME-Version: 1.0\n"
@@ -1870,15 +1870,15 @@ msgstr "הזנת אפשרויות עבור שדה זה, הפרד בין האפש
 
 #: customfieldeditdialog.cpp:169
 msgid "Digits scale"
-msgstr ""
+msgstr "מקומות עשרוניים"
 
 #: customfieldeditdialog.cpp:171
 msgid "Enter the decimal digits scale allowed"
-msgstr ""
+msgstr "נא להזין מספר מקומות עשרוניים על פי המותר"
 
 #: customfieldeditdialog.cpp:174
 msgid "Panel's column"
-msgstr ""
+msgstr "עמודות לוח"
 
 #: customfieldeditdialog.cpp:179
 msgid "Select a value to represent the item on a panel"
@@ -1903,7 +1903,7 @@ msgstr "בוצעו שינוים באפשרויות: עם הסרה, השינוי�
 
 #: customfieldlistdialog.cpp:52
 msgid "#"
-msgstr ""
+msgstr "#"
 
 #: customfieldlistdialog.cpp:55
 msgid "Properties"
