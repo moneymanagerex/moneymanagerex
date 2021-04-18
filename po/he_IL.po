@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-04-15 18:53+0300\n"
-"PO-Revision-Date: 2021-04-18 10:32\n"
+"PO-Revision-Date: 2021-04-18 10:42\n"
 "Last-Translator: \n"
 "Language-Team: Hebrew\n"
 "MIME-Version: 1.0\n"
@@ -1882,7 +1882,7 @@ msgstr "עמודות לוח"
 
 #: customfieldeditdialog.cpp:179
 msgid "Select a value to represent the item on a panel"
-msgstr ""
+msgstr "נא לבחור ערך לייצוג הפריט בלוח"
 
 #: customfieldeditdialog.cpp:221
 msgid "Changing field type will delete all content!"
@@ -1927,7 +1927,9 @@ msgstr "אישור מחיקת שדה מותאם אישית"
 msgid "This function will massive search & replace for \"%s\" custom field values\n"
 "It will match & replace only complete field value, no partial or middle-value replaces allowed\n"
 "Please consider that there isn't any validation!"
-msgstr ""
+msgstr "פונקציה זו תבצע חיפוש והחלפה מסיביים לערכים \"%s\" בשדה מותאם אישית\n"
+"היא תתאים ותחליף את מלוא ערך השדה, ללא החלפה חלקית או מצומצמת\n"
+"יש לשקול היטב לפני ביצוע שכן אין כל כללי אימות!"
 
 #: customfieldlistdialog.cpp:194
 msgid "Confirm Custom Field Content Update"
@@ -1963,10 +1965,10 @@ msgstr "האם לעדכן תוכן לריק?\n"
 #, c-format
 msgid "%zu occurrence founded and replaced!"
 msgid_plural "%zu occurrences founded and replaced!"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "מופע %zu נמצא והוחלף!"
+msgstr[1] "%zu מופעים נמצאו והוחלפו!"
+msgstr[2] "%zu מופעים נמצאו והוחלפו!"
+msgstr[3] "%zu מופעים נמצאו והוחלפו!"
 
 #: customfieldlistdialog.cpp:266
 msgid "&Massive content update "
@@ -6501,12 +6503,12 @@ msgstr "הזנת את תאריך התנועה"
 
 #: transdialog.cpp:1320
 msgid "Clear color"
-msgstr ""
+msgstr "ניקוי צבע"
 
 #: transdialog.cpp:1325
 #, c-format
 msgid "Color #%i"
-msgstr ""
+msgstr "צבע #%i"
 
 #: usertransactionpanel.cpp:114
 msgid "Specify the associated Account that will contain this transaction"
