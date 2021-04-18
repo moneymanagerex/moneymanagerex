@@ -2545,7 +2545,7 @@ void mmGUIFrame::OnReportBug(wxCommandEvent& WXUNUSED(event))
 
 void mmGUIFrame::OnDiagnostics(wxCommandEvent& /*event*/)
 {
-    mmDiagnosticsDialog dlg(this, _("Diagnostics"));
+    mmDiagnosticsDialog dlg(this, this->IsMaximized());
     dlg.ShowModal();
 }
 

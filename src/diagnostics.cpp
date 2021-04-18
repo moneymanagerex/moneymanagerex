@@ -25,11 +25,10 @@ Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
 #include "model/Model_Setting.h"
 #include <wx/display.h>
 
-
 wxIMPLEMENT_DYNAMIC_CLASS(mmDiagnosticsDialog, wxDialog);
 
 wxBEGIN_EVENT_TABLE(mmDiagnosticsDialog, wxDialog)
-    EVT_BUTTON(wxID_OK, mmDiagnosticsDialog::OnOk)
+EVT_BUTTON(wxID_OK, mmDiagnosticsDialog::OnOk)
 wxEND_EVENT_TABLE()
 
 const char HTMLPANEL[] = R"(<!DOCTYPE html>
@@ -43,41 +42,46 @@ const char HTMLPANEL[] = R"(<!DOCTYPE html>
 </body>
 </html>)";
 
-mmDiagnosticsDialog::mmDiagnosticsDialog(wxWindow *parent, const wxString &name)
+mmDiagnosticsDialog::mmDiagnosticsDialog(wxWindow* parent, bool is_maximized)
+    : m_parent(parent)
+    , m_is_max(is_maximized)
 {
-    Create(parent, name);
+
+    createWindow(parent, _("Diagnostics"));
 }
 
-void mmDiagnosticsDialog::Create(wxWindow* parent, const wxString &name)
+bool mmDiagnosticsDialog::createWindow(wxWindow* parent
+    , const wxString& caption
+)
 {
-    long style = wxCAPTION | wxCLOSE_BOX | wxRESIZE_BORDER;
-    if (!wxDialog::Create(parent, wxID_ANY, _("Diagnostics Report")
-        , wxDefaultPosition, wxDefaultSize, style, name))
+    const wxString name = "mmDiagnosticsDialog";
+    long style = wxCAPTION | wxRESIZE_BORDER | wxCLOSE_BOX;
+    SetExtraStyle(GetExtraStyle() | wxWS_EX_BLOCK_EVENTS);
+
+    bool ok = wxDialog::Create(parent, wxID_ANY, caption, wxDefaultPosition, wxDefaultSize, style, name);
+
+    if (ok)
     {
-        return;
+        SetIcon(mmex::getProgramIcon());
+        CreateControls();
+        RefreshView();
+
+        SetMinSize(wxSize(500, 350));
+        Fit();
+        Centre();
     }
 
-    CreateControls();
-
-    GetSizer()->Fit(this);
-    GetSizer()->SetSizeHints(this);
-
-    SetIcon(mmex::getProgramIcon());
-
-    RefreshView();
-
-    Centre();
+    return ok;
 }
 
 void mmDiagnosticsDialog::CreateControls()
 {
     wxBoxSizer* bSizer0 = new wxBoxSizer(wxVERTICAL);
 
-	wxBoxSizer* bSizer01 = new wxBoxSizer(wxHORIZONTAL);
+    wxBoxSizer* bSizer01 = new wxBoxSizer(wxHORIZONTAL);
     m_diagPanel = new wxHtmlWindow(this, wxID_ANY);
-    m_diagPanel->SetMinSize(wxSize(400, 300));
-    bSizer01->Add(m_diagPanel, g_flagsExpand);
-	bSizer0->Add(bSizer01, g_flagsExpand);
+    bSizer01->Add(m_diagPanel.get(), g_flagsExpand);
+    bSizer0->Add(bSizer01, g_flagsExpand);
 
     wxBoxSizer* bSizer02 = new wxBoxSizer(wxHORIZONTAL);
     m_okButton = new wxButton(this, wxID_OK, _("Close"));
@@ -86,36 +90,57 @@ void mmDiagnosticsDialog::CreateControls()
 
     this->SetSizer(bSizer0);
     this->Layout();
-    bSizer0->Fit(this);
 }
 
 void mmDiagnosticsDialog::RefreshView()
 {
-    wxString html = _("<b>Developers may ask you to provide information presented here in order to help diagnose issues you may report with the program.</b><p>");
-    
-    html << "#3222: Screen geometry<p>";
+    wxString html;
+
+    html << "<p><b>";
+    html << _("Developers may ask you to provide information presented here in order to help diagnose issues you may report with the program.");
+    html << "</b></p>";
+
+    html << "<p>";
+    html << "#3222: Screen geometry";
+    html << "<br>";
 
     // Saved dimensions
     int valX = Model_Setting::instance().GetIntSetting("ORIGINX", -1);
     int valY = Model_Setting::instance().GetIntSetting("ORIGINY", -1);
     int valW = Model_Setting::instance().GetIntSetting("SIZEW", -1);
     int valH = Model_Setting::instance().GetIntSetting("SIZEH", -1);
-    html += wxString::Format("saved dimensions : x:%i, y:%i, w:%i, h:%i<br>"
-                , valX, valY, valW, valH);
+    bool is_max = Model_Setting::instance().GetBoolSetting("ISMAXIMIZED", "?");
+    html << wxString::Format("saved dimensions : x:%i, y:%i, w:%i, h:%i, maximized:%s"
+        , valX, valY, valW, valH
+        , is_max ? "true" : "false");
+    html << "</p>";
 
     // Check if it fits into any of the windows
-    bool itFits = false;
-    for (unsigned int i = 0; i < wxDisplay::GetCount(); i++) 
+    for (unsigned int i = 0; i < wxDisplay::GetCount(); i++)
     {
-        wxDisplay* display = new wxDisplay(i);
+        wxSharedPtr<wxDisplay> display(new wxDisplay(i));
         wxRect rect = display->GetClientArea();
-        html += wxString::Format("screen %i: x:%i, y:%i, w:%i, h:%i, fit:%s, primary:%s<br>"
-                    , i, rect.GetX(), rect.GetY(), rect.GetWidth(), rect.GetHeight()
-                    , (display->GetGeometry().Contains(wxRect(valX, valY, valW, valH))) ? "true" : "false"
-                    , (display->IsPrimary()) ? "true" : "false" );
+        html << "<p>";
+        html << wxString::Format("screen %i: x:%i, y:%i, w:%i, h:%i, fit:%s, primary:%s<br>"
+            , i, rect.GetX(), rect.GetY(), rect.GetWidth(), rect.GetHeight()
+            , (display->GetGeometry().Contains(wxRect(valX, valY, valW, valH))) ? "true" : "false"
+            , (display->IsPrimary()) ? "true" : "false");
+        html << "</p>";
     }
 
-    wxString displayHtml = wxString::Format(HTMLPANEL, html);
+    //
+    int value_x = 0, value_y = 0;
+    m_parent->GetPosition(&value_x, &value_y);
+    int value_w = 0, value_h = 0;
+    m_parent->GetSize(&value_w, &value_h);
+
+    html << "<p>";
+    html << wxString::Format("current dimensions : x:%i, y:%i, w:%i, h:%i, maximized:%s"
+        , value_x, value_y, value_w, value_h
+        , m_is_max ? "true" : "false");
+    html << "</p>";
+
+    const wxString displayHtml = wxString::Format(HTMLPANEL, html);
     m_diagPanel->SetPage(displayHtml);
 }
 

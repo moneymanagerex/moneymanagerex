@@ -28,17 +28,20 @@ class mmDiagnosticsDialog : public wxDialog
     wxDECLARE_EVENT_TABLE();
 
 public:
-    mmDiagnosticsDialog(wxWindow* parent, const wxString &name = "mmDiagnosticsDialog");
-
+    mmDiagnosticsDialog(wxWindow* parent, bool is_maximized);
+    ~mmDiagnosticsDialog() {};
 private:
-
-    wxHtmlWindow* m_diagPanel;
-    wxButton* m_okButton;
-
-private:
+    bool createWindow(wxWindow* parent
+        , const wxString& caption
+    );
     mmDiagnosticsDialog() {};
+    wxSharedPtr<wxHtmlWindow> m_diagPanel;
+    wxWindow* m_parent;
+    wxButton* m_okButton;
+    bool m_is_max;
 
-    void Create(wxWindow* parent, const wxString &name);
+private:
+
     void CreateControls();
     void RefreshView();
  
