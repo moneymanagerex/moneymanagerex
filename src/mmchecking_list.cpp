@@ -1271,11 +1271,13 @@ void TransactionListCtrl::doSearchText(const wxString& value)
 
 const wxString TransactionListCtrl::getItem(long item, long column, bool realenum) const
 {
-    Model_Currency::Data* m_currency = Model_Currency::GetBaseCurrency();
     if (item < 0 || item >= static_cast<int>(m_trans.size())) return "";
 
-    wxString value = wxEmptyString;
     const Model_Checking::Full_Data& tran = m_trans.at(item);
+    Model_Account::Data* account = Model_Account::instance().get(tran.ACCOUNTID);
+    Model_Currency::Data* currency = Model_Currency::instance().get(account->CURRENCYID);
+
+    wxString value = wxEmptyString;
     switch (realenum ? column : m_real_columns[column])
     {
     case TransactionListCtrl::COL_ID:
@@ -1293,11 +1295,21 @@ const wxString TransactionListCtrl::getItem(long item, long column, bool realenu
     case TransactionListCtrl::COL_STATUS:
         return tran.is_foreign() ? "< " + tran.STATUS : tran.STATUS;
     case TransactionListCtrl::COL_WITHDRAWAL:
-        return tran.AMOUNT <= 0 ? Model_Currency::toString(std::fabs(tran.AMOUNT), m_currency) : "";
+        if (tran.AMOUNT <= 0.0) {
+            return m_cp->m_allAccounts
+                ? Model_Currency::toCurrency(-tran.AMOUNT, currency)
+                : Model_Currency::toString(-tran.AMOUNT, currency);
+        }
+        return "";
     case TransactionListCtrl::COL_DEPOSIT:
-        return tran.AMOUNT > 0 ? Model_Currency::toString(tran.AMOUNT, m_currency) : "";
+        if (tran.AMOUNT > 0.0) {
+            return m_cp->m_allAccounts
+                ? Model_Currency::toCurrency(tran.AMOUNT, currency)
+                : Model_Currency::toString(tran.AMOUNT, currency);
+        }
+        return "";
     case TransactionListCtrl::COL_BALANCE:
-        return Model_Currency::toString(tran.BALANCE, m_currency);
+        return Model_Currency::toString(tran.BALANCE, currency);
     case TransactionListCtrl::COL_NOTES:
         value = tran.NOTES;
         value.Replace("\n", " ");
