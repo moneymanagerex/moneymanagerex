@@ -169,7 +169,7 @@ wxString mmBudgetingPanel::GetPanelTitle() const
             long year;
             yearStr.ToLong(&year);
             year++;
-            yearStr = wxString::Format(_("Financial Year: %s - %ld"), yearStr, year);
+            yearStr = wxString::Format(_("Financial Year: %s - %li"), yearStr, year);
         }
         else
         {
@@ -180,6 +180,12 @@ wxString mmBudgetingPanel::GetPanelTitle() const
     {
         yearStr = wxString::Format(_("Month: %s"), yearStr);
     }
+
+    if (Option::instance().getBudgetDaysOffset() != 0)
+    {
+        yearStr = wxString::Format(_("%s    Start Date of: %s"), yearStr, mmGetDateForDisplay(m_budget_offset_date));
+    }
+
     return wxString::Format(_("Budget Setup for %s"), yearStr);
 }
 
@@ -376,10 +382,10 @@ void mmBudgetingPanel::initVirtualListControl()
         budgetDetails.AdjustDateForEndFinancialYear(dtEnd);
     }
 
-    /* // Readjust dates by the Budget Offset Option
+    // Readjust dates by the Budget Offset Option
     Option::instance().setBudgetDateOffset(dtBegin);
     m_budget_offset_date = dtBegin.FormatISODate();
-    Option::instance().setBudgetDateOffset(dtEnd); */
+    Option::instance().setBudgetDateOffset(dtEnd);
     mmSpecifiedRange date_range(dtBegin, dtEnd);
 
     //Get statistics
