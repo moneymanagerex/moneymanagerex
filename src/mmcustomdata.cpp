@@ -19,6 +19,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 #include "mmcustomdata.h"
 #include "constants.h"
+#include "mmSimpleDialogs.h"
 #include "Model_CustomFieldData.h"
 #include "Model_Attachment.h"
 
@@ -611,3 +612,37 @@ void mmCustomData::ShowHideCustomPanel() const
             m_static_box->Show();
     }
 }
+
+bool mmCustomData::ValidateCustomValues(int ref_id)
+{
+    bool Result = true;
+    m_data_changed;
+    for (const auto &field : m_fields)
+    {
+        wxWindowID labelID = GetLabelID() + field.FIELDID;
+        wxCheckBox* cb = static_cast<wxCheckBox*>(FindWindowById(labelID));
+        if (!cb || !cb->GetValue())
+            continue;
+
+        const wxString regExStr = Model_CustomField::getRegEx(field.PROPERTIES);
+        if (!regExStr.empty())
+        {
+            wxWindowID controlID = GetBaseID() + field.FIELDID;
+            const auto& data = GetWidgetData(controlID);
+            wxRegEx regEx(regExStr, wxRE_EXTENDED);
+
+            if (!regEx.Matches(data))
+            {
+                mmErrorDialogs::MessageError(this, wxString::Format(_("Unable to save custom field \"%s\":\nvalue \"%s\" "
+                    "does not match RegEx validation \"%s\"")
+                    , field.DESCRIPTION, data, regExStr)
+                    , _("CustomField validation error"));
+                Result = false;
+                continue;
+            }
+        }
+    }
+
+    return Result;
+}
+
