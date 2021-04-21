@@ -119,6 +119,8 @@ private:
     void datePresetMenuSelected(wxCommandEvent& event);
     void OnPayeeUpdated(wxCommandEvent& event);
     void OnTextEntered(wxCommandEvent& event);
+    void OnSaveSettings(wxCommandEvent& event);
+    void SaveSettings(int menu_item);
 
     void OnCategs(wxCommandEvent& event);
     const wxString to_json(bool i18n = false);
@@ -152,7 +154,8 @@ private:
     mmTextCtrl* amountMaxEdit_;
     wxCheckBox* notesCheckBox_;
     wxTextCtrl* notesEdit_;
-    wxRadioBox* m_radio_box_;
+    wxChoice* m_setting_name;
+    wxBitmapButton* m_btnSaveAs;
     wxCheckBox* transNumberCheckBox_;
     wxTextCtrl* transNumberEdit_;
     wxString m_begin_date;
@@ -163,7 +166,6 @@ private:
     int payeeID_;
     int refAccountID_;
     bool bSimilarCategoryStatus_;
-    wxTextCtrl* m_settingLabel;
     wxString payeeStr_;
 };
 
