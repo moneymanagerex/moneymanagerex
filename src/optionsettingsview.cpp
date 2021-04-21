@@ -118,6 +118,23 @@ void OptionSettingsView::Create()
     m_budget_summary_without_category->SetValue(Option::instance().BudgetReportWithSummaries());
     trxStaticBoxSizer->Add(m_budget_summary_without_category, g_flagsV);
 
+
+
+    // Allows a year or financial year to start before or after the 1st of the month.
+    wxBoxSizer* budget_offset_sizer = new wxBoxSizer(wxHORIZONTAL);
+    trxStaticBoxSizer->Add(budget_offset_sizer);
+
+    budget_offset_sizer->Add(new wxStaticText(this, wxID_STATIC, _("Budget Offset (days):")), g_flagsH);
+
+    m_budget_days_offset = new wxSpinCtrl(this, wxID_ANY
+        , wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, -30, +30);
+    m_budget_days_offset->SetToolTip(_("Advance or retard the start date from the 1st of the month or year by the number of days"));
+    m_budget_days_offset->SetValue(Option::instance().getBudgetDaysOffset());
+    budget_offset_sizer->Add(m_budget_days_offset, g_flagsH);
+
+
+
+
     m_ignore_future_transactions = new wxCheckBox(this, wxID_STATIC
         , _("Ignore Future Transactions")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
@@ -288,6 +305,7 @@ bool OptionSettingsView::SaveSettings()
     Option::instance().BudgetFinancialYears(m_budget_financial_years->GetValue());
     Option::instance().BudgetIncludeTransfers(m_budget_include_transfers->GetValue());
     Option::instance().BudgetReportWithSummaries(m_budget_summary_without_category->GetValue());
+    Option::instance().setBudgetDaysOffset(m_budget_days_offset->GetValue());
     Option::instance().IgnoreFutureTransactions(m_ignore_future_transactions->GetValue());
 
     mmColors::userDefColor1 = m_UDFCB1->GetBackgroundColour();
