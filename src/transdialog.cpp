@@ -1188,7 +1188,6 @@ void mmTransDialog::OnOk(wxCommandEvent& WXUNUSED(event))
     }
 
     if (!ValidateData()) return;
-    if(!m_custom_fields->ValidateCustomValues(m_trx_data.TRANSID)) return;
 
     Model_Checking::Data *r = Model_Checking::instance().get(m_trx_data.TRANSID);
     if (m_new_trx || m_duplicate)
