@@ -1274,8 +1274,6 @@ const wxString TransactionListCtrl::getItem(long item, long column, bool realenu
     if (item < 0 || item >= static_cast<int>(m_trans.size())) return "";
 
     const Model_Checking::Full_Data& tran = m_trans.at(item);
-    Model_Account::Data* account = Model_Account::instance().get(tran.ACCOUNTID);
-    Model_Currency::Data* currency = Model_Currency::instance().get(account->CURRENCYID);
 
     wxString value = wxEmptyString;
     switch (realenum ? column : m_real_columns[column])
@@ -1294,22 +1292,6 @@ const wxString TransactionListCtrl::getItem(long item, long column, bool realenu
         return tran.is_foreign_transfer() ? "< " + tran.PAYEENAME : tran.PAYEENAME;
     case TransactionListCtrl::COL_STATUS:
         return tran.is_foreign() ? "< " + tran.STATUS : tran.STATUS;
-    case TransactionListCtrl::COL_WITHDRAWAL:
-        if (tran.AMOUNT <= 0.0) {
-            return m_cp->m_allAccounts
-                ? Model_Currency::toCurrency(-tran.AMOUNT, currency)
-                : Model_Currency::toString(-tran.AMOUNT, currency);
-        }
-        return "";
-    case TransactionListCtrl::COL_DEPOSIT:
-        if (tran.AMOUNT > 0.0) {
-            return m_cp->m_allAccounts
-                ? Model_Currency::toCurrency(tran.AMOUNT, currency)
-                : Model_Currency::toString(tran.AMOUNT, currency);
-        }
-        return "";
-    case TransactionListCtrl::COL_BALANCE:
-        return Model_Currency::toString(tran.BALANCE, currency);
     case TransactionListCtrl::COL_NOTES:
         value = tran.NOTES;
         value.Replace("\n", " ");
@@ -1324,9 +1306,35 @@ const wxString TransactionListCtrl::getItem(long item, long column, bool realenu
         return tran.UDFC04;
     case TransactionListCtrl::COL_UDFC05:
         return tran.UDFC05;
-    default:
-        return value;
     }
+
+    Model_Account::Data* account = Model_Account::instance().get(tran.ACCOUNTID);
+    Model_Currency::Data* currency = Model_Currency::instance().get(account->CURRENCYID);
+    double balance = m_cp->m_allAccounts
+        ? Model_Checking::balance(tran, account->ACCOUNTID)
+        : tran.AMOUNT;
+
+    switch (realenum ? column : m_real_columns[column])
+    {
+    case TransactionListCtrl::COL_WITHDRAWAL:
+        if (balance <= 0.0) {
+            return m_cp->m_allAccounts
+                ? Model_Currency::toCurrency(-balance, currency)
+                : Model_Currency::toString(-balance, currency);
+        }
+        return "";
+    case TransactionListCtrl::COL_DEPOSIT:
+        if (balance > 0.0) {
+            return m_cp->m_allAccounts
+                ? Model_Currency::toCurrency(balance, currency)
+                : Model_Currency::toString(balance, currency);
+        }
+        return "";
+    case TransactionListCtrl::COL_BALANCE:
+        return Model_Currency::toString(tran.BALANCE, currency);
+    }
+
+    return value;
 }
 
 void TransactionListCtrl::FindSelectedTransactions()
