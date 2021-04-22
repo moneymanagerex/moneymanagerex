@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-04-22 00:36+0300\n"
-"PO-Revision-Date: 2021-04-22 07:43\n"
+"PO-Revision-Date: 2021-04-22 07:49\n"
 "Last-Translator: \n"
 "Language-Team: Hebrew\n"
 "MIME-Version: 1.0\n"
@@ -2645,12 +2645,12 @@ msgstr "התראה"
 #: images_list.cpp:401
 #, c-format
 msgid "File '%s' missing or invalid in chosen theme '%s'"
-msgstr ""
+msgstr "בערכת הנושא '%s' שנבחרה, חסר קובץ '%s' או שהוא לא תקין"
 
 #: images_list.cpp:412
 #, c-format
 msgid "Metadata '%s' missing in chosen theme '%s'"
-msgstr ""
+msgstr "בערכת הנושא '%s' שנבחרה, חסרים מטה נתונים '%s'"
 
 #: images_list.cpp:445
 msgid "and more..."
@@ -6535,7 +6535,7 @@ msgstr ""
 
 #: themes.cpp:308
 msgid "Something went wrong importing the theme"
-msgstr ""
+msgstr "משהו השתבש בעת הניסיון לייבא את ערכת הנושא"
 
 #: themes.cpp:320
 msgid "Are you sure you want to delete this theme? If you want to use it again you will need to re-import it."
@@ -6543,7 +6543,7 @@ msgstr ""
 
 #: themes.cpp:327
 msgid "Something went wrong when attempting to delete the theme"
-msgstr ""
+msgstr "משהו השתבש בעת הניסיון למחוק את ערכת הנושא"
 
 #: themes.cpp:339
 msgid "Are you sure you want to use this theme? Please note that this will only take effect when MMEX is re-started."
