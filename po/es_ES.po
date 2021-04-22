@@ -6601,6 +6601,15 @@ msgstr "Especificar a quién va a la transacción"
 msgid "Specify the date of the transaction"
 msgstr "Especifique la fecha de la transacción"
 
+#: transdialog.cpp:1319
+msgid "Clear color"
+msgstr "Limpiar color"
+
+#: transdialog.cpp:1324
+#, c-format
+msgid "Color #%i"
+msgstr "Color #%i"
+
 #: usertransactionpanel.cpp:114
 msgid "Specify the associated Account that will contain this transaction"
 msgstr "Especifique la cuenta asociada que contendrá esta transacción"

@@ -6546,6 +6546,18 @@ msgstr "取引の相手先を指定します"
 msgid "Specify the date of the transaction"
 msgstr "取引の日付を指定してください"
 
+
+
+#: transdialog.cpp:1319
+msgid "Clear color"
+msgstr ""
+
+#: transdialog.cpp:1324
+#, c-format
+msgid "Color #%i"
+msgstr ""
+
+
 #: usertransactionpanel.cpp:114
 msgid "Specify the associated Account that will contain this transaction"
 msgstr ""

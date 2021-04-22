@@ -52,6 +52,7 @@ mmAssetsListCtrl::mmAssetsListCtrl(mmAssetsPanel* cp, wxWindow *parent, wxWindow
 : mmListCtrl(parent, winid)
 , m_panel(cp)
 {
+    this->SetBackgroundColour(mmThemeMetaColour(meta::COLOR_LISTPANEL));
     ToggleWindowStyle(wxLC_EDIT_LABELS);
 
     m_columns.push_back(PANEL_COLUMN(" ", 25, wxLIST_FORMAT_LEFT));
@@ -419,7 +420,7 @@ void mmAssetsPanel::CreateControls()
     itemBoxSizerVHeader->Add(itemBoxSizerHHeader2);
 
     m_bitmapTransFilter = new wxButton(headerPanel, wxID_FILE2);
-    m_bitmapTransFilter->SetBitmap(mmBitmap(png::RIGHTARROW));
+    m_bitmapTransFilter->SetBitmap(mmBitmap(png::TRANSFILTER));
     m_bitmapTransFilter->SetLabel(_("All"));
     m_bitmapTransFilter->SetMinSize(wxSize(150, -1));
     itemBoxSizerHHeader2->Add(m_bitmapTransFilter, g_flagsBorder1H);
@@ -707,11 +708,13 @@ void mmAssetsPanel::OnViewPopupSelected(wxCommandEvent& event)
     if (evt == 0)
     {
         m_bitmapTransFilter->SetLabel(_("All"));
+        m_bitmapTransFilter->SetBitmap(mmBitmap(png::TRANSFILTER));
         this->m_filter_type = Model_Asset::TYPE(-1);
     }
     else
     {
         this->m_filter_type = Model_Asset::TYPE(evt - 1);
+        m_bitmapTransFilter->SetBitmap(mmBitmap(png::TRANSFILTER_ACTIVE));
         m_bitmapTransFilter->SetLabel(wxGetTranslation(Model_Asset::all_type()[evt - 1]));
     }
 

@@ -6547,6 +6547,18 @@ msgstr "指定交易的对象"
 msgid "Specify the date of the transaction"
 msgstr "指定交易日期"
 
+
+
+#: transdialog.cpp:1319
+msgid "Clear color"
+msgstr ""
+
+#: transdialog.cpp:1324
+#, c-format
+msgid "Color #%i"
+msgstr ""
+
+
 #: usertransactionpanel.cpp:114
 msgid "Specify the associated Account that will contain this transaction"
 msgstr ""

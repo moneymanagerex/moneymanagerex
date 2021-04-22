@@ -1,6 +1,6 @@
 /*******************************************************
 Copyright (C) 2017 Gabriele-V
-Copyright (C) 2018 Nikolay Akimov
+Copyright (C) 2018, 2021 Nikolay Akimov
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -32,8 +32,8 @@ class mmCustomData : public wxDialog
 public:
     mmCustomData();
     bool FillCustomFields(wxBoxSizer* box_sizer);
-    bool ValidateCustomValues(int ref_id);
     bool SaveCustomValues(int ref_id);
+    bool ValidateCustomValues(int ref_id);
     const wxString GetWidgetData(wxWindowID controlID) const;
     int GetWidgetType(wxWindowID controlID) const;
     size_t GetCustomFieldsCount() const;
@@ -54,7 +54,6 @@ public:
 
 protected:
     mmCustomData(wxDialog* dialog, const wxString& ref_type, int ref_id);
-
 private:
     wxDialog* m_dialog;
     wxStaticBox* m_static_box;
@@ -76,17 +75,19 @@ private:
     void ResetWidgetChanged(wxWindowID id);
     wxWindowID m_init_control_id;
     wxWindowID m_init_label_id;
-};
 
-inline size_t mmCustomData::GetCustomFieldsCount() const { return m_fields.size(); }
-inline void  mmCustomData::SetBaseID(wxWindowID id) { m_init_control_id = id; }
-inline wxWindowID  mmCustomData::GetBaseID() const { return m_init_control_id; }
-inline void  mmCustomData::SetLabelID(wxWindowID id) { m_init_label_id = id; }
-inline wxWindowID  mmCustomData::GetLabelID() const { return m_init_label_id; }
-inline void  mmCustomData::ResetRefID() { m_ref_id = -1; }
+};
 
 class mmCustomDataTransaction : public mmCustomData
 {
 public:
     mmCustomDataTransaction(wxDialog* dialog, int ref_id, wxWindowID base_id);
 };
+
+inline void       mmCustomData::SetLabelID(wxWindowID id) { m_init_label_id = id; }
+inline void       mmCustomData::ResetRefID() { m_ref_id = -1; }
+inline void       mmCustomData::SetBaseID(wxWindowID id) { m_init_control_id = id; }
+inline size_t     mmCustomData::GetCustomFieldsCount() const { return m_fields.size(); }
+inline wxWindowID mmCustomData::GetBaseID() const { return m_init_control_id; }
+inline wxWindowID mmCustomData::GetLabelID() const { return m_init_label_id; }
+

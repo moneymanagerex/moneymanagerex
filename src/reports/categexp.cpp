@@ -19,6 +19,7 @@
 
 #include "categexp.h"
 #include "budget.h"
+#include "images_list.h"
 #include "reports/htmlbuilder.h"
 #include "reports/mmDateRange.h"
 #include "option.h"
@@ -379,7 +380,8 @@ wxString mmReportCategoryOverTimePerformance::getHTMLText()
             hb.addDivContainer("shadow"); 
             {                 
                 gd.type = GraphData::BAR;
-                gd.colors = { wxColour(80, 179, 129), wxColour(247, 94, 94) };  // Green, Red
+                gd.colors = { mmThemeMetaColour(meta::COLOR_REPORT_CREDIT)
+                                , mmThemeMetaColour(meta::COLOR_REPORT_DEBIT) }; 
                 hb.addChart(gd);
             }
             hb.endDiv();

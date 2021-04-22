@@ -38,6 +38,7 @@
 #include "dbcheck.h"
 #include "dbupgrade.h"
 #include "dbwrapper.h"
+#include "diagnostics.h"
 #include "filtertransdialog.h"
 #include "general_report_manager.h"
 #include "images_list.h"
@@ -55,6 +56,7 @@
 #include "relocatepayeedialog.h"
 #include "recentfiles.h"
 #include "stockspanel.h"
+#include "themes.h"
 #include "transdialog.h"
 #include "util.h"
 #include "webapp.h"
@@ -110,6 +112,7 @@ EVT_MENU(MENU_CHECKUPDATE, mmGUIFrame::OnCheckUpdate)
 EVT_MENU(MENU_ANNOUNCEMENTMAILING, mmGUIFrame::OnBeNotified)
 EVT_MENU_RANGE(MENU_FACEBOOK, MENU_TWITTER, mmGUIFrame::OnSimpleURLOpen)
 EVT_MENU(MENU_REPORT_BUG, mmGUIFrame::OnReportBug)
+EVT_MENU(MENU_DIAGNOSTICS, mmGUIFrame::OnDiagnostics)
 EVT_MENU(wxID_ABOUT, mmGUIFrame::OnAbout)
 EVT_MENU(wxID_PRINT, mmGUIFrame::OnPrintPage)
 EVT_MENU(MENU_SHOW_APPSTART, mmGUIFrame::OnShowAppStartDialog)
@@ -126,6 +129,7 @@ EVT_MENU(MENU_RATES, mmGUIFrame::OnRates)
 EVT_MENU(MENU_TRANSACTIONREPORT, mmGUIFrame::OnTransactionReport)
 EVT_MENU(wxID_BROWSE, mmGUIFrame::OnCustomFieldsManager)
 EVT_MENU(wxID_VIEW_LIST, mmGUIFrame::OnGeneralReportManager)
+EVT_MENU(MENU_THEME_MANAGER, mmGUIFrame::OnThemeManager)
 EVT_MENU(MENU_TREEPOPUP_LAUNCHWEBSITE, mmGUIFrame::OnLaunchAccountWebsite)
 EVT_MENU(MENU_TREEPOPUP_ACCOUNTATTACHMENTS, mmGUIFrame::OnAccountAttachments)
 EVT_MENU(MENU_VIEW_TOOLBAR, mmGUIFrame::OnViewToolbar)
@@ -229,6 +233,7 @@ mmGUIFrame::mmGUIFrame(mmGUIApp* app, const wxString& title
         getNewsRSS(websiteNewsArray_);
 
     /* Create the Controls for the frame */
+    LoadTheme();
     createMenu();
     createControls();
     CreateToolBar();
@@ -325,7 +330,7 @@ mmGUIFrame::~mmGUIFrame()
 void mmGUIFrame::cleanup()
 {
     autoRepeatTransactionsTimer_.Stop();
-    delete m_recentFiles;
+
     if (!m_filename.IsEmpty()) // Exiting before file is opened
         saveSettings();
 
@@ -446,7 +451,8 @@ bool mmGUIFrame::setNavTreeSection(const wxString &sectionName)
         accountNotFound = false;
     }
     m_nav_tree_ctrl->SetEvtHandlerEnabled(true);
-    return accountNotFound;
+
+    return !accountNotFound;
 }
 
 //----------------------------------------------------------------------------
@@ -647,6 +653,7 @@ void mmGUIFrame::createControls()
 
 #endif
     m_nav_tree_ctrl->SetMinSize(wxSize(100, 100));
+    m_nav_tree_ctrl->SetBackgroundColour(mmThemeMetaColour(meta::COLOR_NAVPANEL));
 
     int all_icons_size = Option::instance().getIconSize();
     int nav_icon_size = Option::instance().getNavigationIconSize();
@@ -1042,7 +1049,6 @@ void mmGUIFrame::OnSelChanged(wxTreeEvent& event)
                 wxASSERT(false);
             }
         }
-        m_nav_tree_ctrl->SetFocus();
     }
     else
     {
@@ -1070,6 +1076,24 @@ void mmGUIFrame::OnSelChanged(wxTreeEvent& event)
             createHomePage();
             return;
         }
+        else if (data == "item@Favourites")
+            return; //do nothing
+        else if (data == "item@Bank Accounts")
+            return; //do nothing
+        else if (data == "item@All Transactions") {
+            createAllTransactionsPage();
+            return;
+        }
+
+        wxRegEx pattern(R"(^(report@))");
+        if (pattern.Matches(data))
+        {
+
+            activeReport_ = true;
+            createReportsPage(iData->get_report(), false);
+            return;
+        }
+
         wxSharedPtr<wxCommandEvent> evt;
         if (data == "item@Assets")
             evt = new wxCommandEvent(wxEVT_COMMAND_MENU_SELECTED, MENU_ASSETS);
@@ -1077,16 +1101,9 @@ void mmGUIFrame::OnSelChanged(wxTreeEvent& event)
             evt = new wxCommandEvent(wxEVT_COMMAND_MENU_SELECTED, MENU_BILLSDEPOSITS);
         else if (data == "item@Transaction Report")
             evt = new wxCommandEvent(wxEVT_COMMAND_MENU_SELECTED, MENU_TRANSACTIONREPORT);
-        else if (data == "item@All Transactions")
-            createAllTransactionsPage();
         if (evt)
-        {
             AddPendingEvent(*evt.get());
-            return;
-        }
 
-        activeReport_ = true;
-        createReportsPage(iData->get_report(), false);
     }
 }
 //----------------------------------------------------------------------------
@@ -1498,6 +1515,12 @@ void mmGUIFrame::createMenu()
 
     menuTools->AppendSeparator();
 
+    wxMenuItem* menuItemThemes = new wxMenuItem(menuTools, MENU_THEME_MANAGER
+        , _("T&heme Manager"), _("Theme Manager"));
+    menuTools->Append(menuItemThemes);
+    
+    menuTools->AppendSeparator();
+
     wxMenuItem* menuItemTransactions = new wxMenuItem(menuTools, MENU_TRANSACTIONREPORT
         , _("Transaction Report &Filter..."), _("Transaction Report Filter"));
     menuTools->Append(menuItemTransactions);
@@ -1611,6 +1634,11 @@ void mmGUIFrame::createMenu()
         , _("Report a &Bug")
         , _("Report an error in application to the developers"));
     menuHelp->Append(menuItemReportBug);
+    
+    wxMenuItem* menuItemDiagnostics = new wxMenuItem(menuTools, MENU_DIAGNOSTICS
+        , _("View Diagnostics")
+        , _("Help provide information to the developers"));
+    menuHelp->Append(menuItemDiagnostics);
 
     wxMenuItem* menuItemAppStart = new wxMenuItem(menuTools, MENU_SHOW_APPSTART
         , _("&Show App Start Dialog"), _("App Start Dialog"));
@@ -1656,6 +1684,8 @@ void mmGUIFrame::CreateToolBar()
     toolBar_->AddTool(MENU_NEWACCT, _("New Account"), mmBitmap(png::NEW_ACC), _("New Account"));
     toolBar_->AddTool(MENU_HOMEPAGE, _("Home Page"), mmBitmap(png::HOME), _("Show Home Page"));
     toolBar_->AddSeparator();
+    toolBar_->AddTool(wxID_NEW, _("New"), mmBitmap(png::NEW_TRX), _("New Transaction"));
+    toolBar_->AddSeparator();
     toolBar_->AddTool(MENU_ORGCATEGS, _("Organize Categories"), mmBitmap(png::CATEGORY), _("Show Organize Categories Dialog"));
     toolBar_->AddTool(MENU_ORGPAYEE, _("Organize Payees"), mmBitmap(png::PAYEE), _("Show Organize Payees Dialog"));
     toolBar_->AddTool(MENU_CURRENCY, _("Organize Currency"), mmBitmap(png::CURR), _("Show Organize Currency Dialog"));
@@ -1665,8 +1695,6 @@ void mmGUIFrame::CreateToolBar()
     toolBar_->AddTool(wxID_VIEW_LIST, _("General Report Manager"), mmBitmap(png::GRM), _("General Report Manager"));
     toolBar_->AddSeparator();
     toolBar_->AddTool(wxID_PREFERENCES, _("&Options..."), mmBitmap(png::OPTIONS), _("Show the Options Dialog"));
-    toolBar_->AddSeparator();
-    toolBar_->AddTool(wxID_NEW, _("New"), mmBitmap(png::NEW_TRX), _("New Transaction"));
     toolBar_->AddSeparator();
 
     wxString news_array;
@@ -2310,10 +2338,13 @@ void mmGUIFrame::refreshPanelData()
     case mmID_CHECKING:
         wxDynamicCast(panelCurrent_, mmCheckingPanel)->RefreshList();
         break;
+    case mmID_ALLTRANSACTIONS:
+        wxDynamicCast(panelCurrent_, mmCheckingPanel)->RefreshList();
+        break;
     case mmID_ASSETS:
         break;
     case mmID_BILLS:
-        createBillsDeposits();
+        wxDynamicCast(panelCurrent_, mmBillsDepositsPanel)->RefreshList();
         break;
     case mmID_BUDGET:
         wxDynamicCast(panelCurrent_, mmBudgetingPanel)->RefreshList();
@@ -2380,6 +2411,7 @@ void mmGUIFrame::OnBudgetSetupDialog(wxCommandEvent& /*event*/)
     {
         mmBudgetYearDialog(this).ShowModal();
         updateNavTreeControl();
+        createHomePage();
     }
 }
 //----------------------------------------------------------------------------
@@ -2408,6 +2440,12 @@ void mmGUIFrame::OnCustomFieldsManager(wxCommandEvent& WXUNUSED(event))
     mmCustomFieldListDialog dlg(this, ref_type);
     dlg.ShowModal();
     createHomePage();
+}
+
+void mmGUIFrame::OnThemeManager(wxCommandEvent& /*event*/)
+{
+    mmThemesDialog dlg(this, _("Theme Manager"));
+    dlg.ShowModal();
 }
 
 void mmGUIFrame::OnGeneralReportManager(wxCommandEvent& /*event*/)
@@ -2503,6 +2541,12 @@ void mmGUIFrame::OnReportBug(wxCommandEvent& WXUNUSED(event))
     mmPrintableBase* br = new mmBugReport();
     setNavTreeSection(_("Reports"));
     createReportsPage(br, true);
+}
+
+void mmGUIFrame::OnDiagnostics(wxCommandEvent& /*event*/)
+{
+    mmDiagnosticsDialog dlg(this, this->IsMaximized());
+    dlg.ShowModal();
 }
 
 void mmGUIFrame::OnAbout(wxCommandEvent& WXUNUSED(event))
@@ -2651,8 +2695,7 @@ void mmGUIFrame::createHelpPage()
     m_nav_tree_ctrl->SetEvtHandlerEnabled(false);
     windowsFreezeThaw(homePanel_);
     wxSizer *sizer = cleanupHomePanel();
-    panelCurrent_ = new mmHelpPanel(homePanel_, this, wxID_HELP
-        , wxDefaultPosition, wxDefaultSize, wxNO_BORDER | wxTAB_TRAVERSAL);
+    panelCurrent_ = new mmHelpPanel(homePanel_, this, wxID_HELP);
     sizer->Add(panelCurrent_, 1, wxGROW | wxALL, 1);
     homePanel_->Layout();
     windowsFreezeThaw(homePanel_);
@@ -2672,28 +2715,33 @@ void mmGUIFrame::createBillsDeposits()
 
     const auto time = wxDateTime::UNow();
 
+    m_nav_tree_ctrl->SetEvtHandlerEnabled(false);
     if (panelCurrent_->GetId() == mmID_BILLS)
     {
-        mmBillsDepositsPanel* billsDepositsPanel_ = wxDynamicCast(panelCurrent_, mmBillsDepositsPanel);
-        billsDepositsPanel_->RefreshList();
+        mmBillsDepositsPanel* billsDepositsPanel = wxDynamicCast(panelCurrent_, mmBillsDepositsPanel);
+        billsDepositsPanel->RefreshList();
     }
     else
     {
+        windowsFreezeThaw(homePanel_);
         wxSizer *sizer = cleanupHomePanel();
-        panelCurrent_ = new mmBillsDepositsPanel(homePanel_, mmID_BILLS
-            , wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
+        panelCurrent_ = new mmBillsDepositsPanel(homePanel_, mmID_BILLS);
 
         sizer->Add(panelCurrent_, 1, wxGROW | wxALL, 1);
 
         homePanel_->Layout();
+        windowsFreezeThaw(homePanel_);
     }
     menuPrintingEnable(true);
+    m_nav_tree_ctrl->SetEvtHandlerEnabled(true);
 
     json_writer.Key("seconds");
     json_writer.Double((wxDateTime::UNow() - time).GetMilliseconds().ToDouble() / 1000);
     json_writer.EndObject();
 
     Model_Usage::instance().AppendToUsage(wxString::FromUTF8(json_buffer.GetString()));
+    m_nav_tree_ctrl->SetFocus();
+    setNavTreeSection(_("Recurring Transactions"));
 }
 //----------------------------------------------------------------------------
 
@@ -2748,13 +2796,21 @@ void mmGUIFrame::createAllTransactionsPage()
     const auto time = wxDateTime::UNow();
 
     m_nav_tree_ctrl->SetEvtHandlerEnabled(false);
- 
-    windowsFreezeThaw(homePanel_);
-    wxSizer *sizer = cleanupHomePanel();
-    panelCurrent_ = new mmCheckingPanel(homePanel_, this, -1, mmID_ALLTRANSACTIONS);
-    sizer->Add(panelCurrent_, 1, wxGROW | wxALL, 1);
-    homePanel_->Layout();
-    windowsFreezeThaw(homePanel_);
+    if (panelCurrent_->GetId() == mmID_ALLTRANSACTIONS)
+    {
+        mmCheckingPanel* checkingAccountPage = wxDynamicCast(panelCurrent_, mmCheckingPanel);
+        checkingAccountPage->RefreshList();
+    }
+    else
+    {
+
+        windowsFreezeThaw(homePanel_);
+        wxSizer *sizer = cleanupHomePanel();
+        panelCurrent_ = new mmCheckingPanel(homePanel_, this, -1, mmID_ALLTRANSACTIONS);
+        sizer->Add(panelCurrent_, 1, wxGROW | wxALL, 1);
+        homePanel_->Layout();
+        windowsFreezeThaw(homePanel_);
+    }
 
     json_writer.Key("seconds");
     json_writer.Double((wxDateTime::UNow() - time).GetMilliseconds().ToDouble() / 1000);
@@ -2803,6 +2859,7 @@ void mmGUIFrame::createCheckingAccountPage(int accountID)
     if (gotoTransID_ > 0)
     {
         wxDynamicCast(panelCurrent_, mmCheckingPanel)->SetSelectedTransaction(gotoTransID_);
+        gotoTransID_ = -1;
     }
     m_nav_tree_ctrl->SetEvtHandlerEnabled(true);
 }
@@ -2818,12 +2875,17 @@ void mmGUIFrame::createStocksAccountPage(int accountID)
 
     const auto time = wxDateTime::UNow();
 
-    //TODO: Refresh Panel
+    if (panelCurrent_->GetId() == mmID_STOCKS)
+    {
+        mmStocksPanel* stocksPage = wxDynamicCast(panelCurrent_, mmStocksPanel);
+        stocksPage->DisplayAccountDetails(accountID);
+    }
+    else
     {
         //updateNavTreeControl();
         windowsFreezeThaw(homePanel_);
         wxSizer *sizer = cleanupHomePanel();
-        panelCurrent_ = new mmStocksPanel(accountID, this, homePanel_, mmID_STOCKS);
+        panelCurrent_ = new mmStocksPanel(accountID, this, homePanel_);
         sizer->Add(panelCurrent_, 1, wxGROW | wxALL, 1);
         homePanel_->Layout();
         windowsFreezeThaw(homePanel_);
@@ -2879,6 +2941,7 @@ void mmGUIFrame::OnAssets(wxCommandEvent& /*event*/)
     homePanel_->Layout();
     windowsFreezeThaw(homePanel_);
     menuPrintingEnable(true);
+    setNavTreeSection(_("Assets"));
 
     json_writer.Key("seconds");
     json_writer.Double((wxDateTime::UNow() - time).GetMilliseconds().ToDouble() / 1000);

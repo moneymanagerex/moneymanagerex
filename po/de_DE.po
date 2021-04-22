@@ -6601,6 +6601,15 @@ msgstr "Legen Sie fest an wen die Buchung gehen soll"
 msgid "Specify the date of the transaction"
 msgstr "Datum der Buchung"
 
+#: transdialog.cpp:1319
+msgid "Clear color"
+msgstr "Farbe löschen"
+
+#: transdialog.cpp:1324
+#, c-format
+msgid "Color #%i"
+msgstr "Farbe #%i"
+
 #: usertransactionpanel.cpp:114
 msgid "Specify the associated Account that will contain this transaction"
 msgstr "Geben Sie das zugehörige Konto an, das diese Transaktion enthalten wird"

@@ -19,15 +19,11 @@
 #ifndef MM_EX_CUSTOMFIELDEDITDIALOG_H_
 #define MM_EX_CUSTOMFIELDEDITDIALOG_H_
 
-#include "defs.h"
-#include <wx/dataview.h>
-#include <map>
-
-#include "model/Model_CustomField.h"
-#include "model/Model_Currency.h"
-
-class wxDatePickerCtrl;
-class mmTextCtrl;
+#include <wx/dialog.h>
+#include "Model_CustomField.h"
+class wxChoice;
+class wxCheckBox;
+class wxSpinCtrl;
 
 class mmCustomFieldEditDialog : public wxDialog
 {
@@ -41,26 +37,29 @@ public:
     Model_CustomField::Data* m_field;
 private:
     bool Create(wxWindow* parent
-        , wxWindowID id
-        , const wxString& caption
-        , const wxPoint& pos
-        , const wxSize& size
-        , long style);
+        , wxWindowID id = wxID_ANY
+        , const wxString& caption = _("New/Edit Custom Field")
+        , const wxPoint& pos = wxDefaultPosition
+        , const wxSize& size = wxDefaultSize
+        , long style = wxCAPTION | wxSYSTEM_MENU | wxRESIZE_BORDER | wxCLOSE_BOX);
     void CreateControls();
     void dataToControls();
     void OnOk(wxCommandEvent& event);
     void OnCancel(wxCommandEvent& event);
     void OnQuit(wxCloseEvent& event);
     void OnChangeType(wxCommandEvent& event);
+    void OnChangeType(wxCommandEvent& event, bool OnDataToControls);
 
     wxString m_fieldRefType;
     wxTextCtrl* m_itemDescription;
     wxChoice*  m_itemType;
+    wxChoice*  m_itemUDFC;
     wxTextCtrl* m_itemTooltip;
     wxTextCtrl* m_itemRegEx;
     wxCheckBox* m_itemAutocomplete;
     wxTextCtrl* m_itemDefault;
     wxTextCtrl* m_itemChoices;
+    wxSpinCtrl* m_itemDigitScale;
 
     enum
     {

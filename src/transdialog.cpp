@@ -530,6 +530,7 @@ void mmTransDialog::CreateControls()
       you have to add the wxTE_PROCESS_ENTER window style flag.
       If you create a wxComboBox with the flag wxTE_PROCESS_ENTER, the tab key won't jump to the next control anymore.*/
     cbPayee_ = new wxComboBox(this, ID_DIALOG_TRANS_PAYEECOMBO);
+    cbPayee_->SetMaxSize(cbAccount_->GetSize());
 
     flex_sizer->Add(payee_label_, g_flagsH);
     flex_sizer->Add(cbPayee_, g_flagsExpand);
@@ -602,7 +603,7 @@ void mmTransDialog::CreateControls()
     wxButton* itemButtonOK = new wxButton(buttons_panel, wxID_OK, _("&OK "));
     itemButtonCancel_ = new wxButton(buttons_panel, wxID_CANCEL, wxGetTranslation(g_CancelLabel));
 
-    wxBitmapButton* itemButtonHide = new wxBitmapButton(buttons_panel, ID_DIALOG_TRANS_CUSTOMFIELDS, mmBitmap(png::MORE_OPTIONS));
+    wxBitmapButton* itemButtonHide = new wxBitmapButton(buttons_panel, ID_DIALOG_TRANS_CUSTOMFIELDS, mmBitmap(png::RIGHTARROW));
     itemButtonHide->SetToolTip(_("Show/Hide custom fields window"));
     if (m_custom_fields->GetCustomFieldsCount() == 0) {
         itemButtonHide->Hide();
@@ -1187,7 +1188,7 @@ void mmTransDialog::OnOk(wxCommandEvent& WXUNUSED(event))
     }
 
     if (!ValidateData()) return;
-    if(!m_custom_fields->ValidateCustomValues(m_trx_data.TRANSID)) return;
+    if (!m_custom_fields->ValidateCustomValues(m_trx_data.TRANSID)) return;
 
     Model_Checking::Data *r = Model_Checking::instance().get(m_trx_data.TRANSID);
     if (m_new_trx || m_duplicate)
@@ -1316,12 +1317,12 @@ void mmTransDialog::OnColourButton(wxCommandEvent& /*event*/)
 
     wxMenu* mainMenu = new wxMenu;
 
-    wxMenuItem* menuItem = new wxMenuItem(mainMenu, wxID_HIGHEST, wxString::Format(_("Clear colour"), 0));
+    wxMenuItem* menuItem = new wxMenuItem(mainMenu, wxID_HIGHEST, wxString::Format(_("Clear color"), 0));
     mainMenu->Append(menuItem);
 
     for (int i = 1; i <= 7; ++i)
     {
-        menuItem = new wxMenuItem(mainMenu, wxID_HIGHEST + i, wxString::Format(_("Colour #%i"), i));
+        menuItem = new wxMenuItem(mainMenu, wxID_HIGHEST + i, wxString::Format(_("Color #%i"), i));
 #ifdef __WXMSW__
         menuItem->SetBackgroundColour(getUDColour(i)); //only available for the wxMSW port.
 #endif

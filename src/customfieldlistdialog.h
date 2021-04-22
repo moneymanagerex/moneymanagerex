@@ -19,9 +19,10 @@
 #ifndef MM_EX_CUSTOMFIELDLISTDIALOG_H_
 #define MM_EX_CUSTOMFIELDLISTDIALOG_H_
 
-#include "defs.h"
-#include <wx/dataview.h>
+#include <wx/dialog.h>
 #include <map>
+class wxDataViewListCtrl;
+class wxDataViewEvent;
 
 class mmCustomFieldListDialog : public wxDialog
 {
@@ -54,8 +55,6 @@ private:
     int m_field_id;
     mmCustomFieldListDialog() : m_field_id(-1) {}
     std::map<int, wxString> ColName_;
-    wxButton* btnCancel_;
-    wxButton* button_OK_;
 
     void Create(wxWindow* parent);
     void CreateControls();
@@ -65,8 +64,7 @@ private:
     void EditField();
     void DeleteField();
     void UpdateField();
-    void OnCancel(wxCommandEvent& /*event*/);
-    void OnOk(wxCommandEvent& /*event*/);
+    void OnClose(wxCommandEvent& WXUNUSED(event));
 
     void OnListItemSelected(wxDataViewEvent& event);
     void OnMenuSelected(wxCommandEvent& event);

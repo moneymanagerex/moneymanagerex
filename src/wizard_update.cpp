@@ -106,8 +106,12 @@ void mmUpdateWizard::CreateControls(const Document& json_releases, wxArrayInt ne
             separator = wxString::Format("<h3> %s </h3>", _("Historical releases:"));
         }
 
-        bool p = (r.HasMember("prerelease") && r["prerelease"].IsBool() && r["prerelease"].GetBool());
-        const auto prerelease = !p ? _("Stable") : _("Unstable");
+        bool is_prerelease = (r.HasMember("prerelease") && r["prerelease"].IsBool() && r["prerelease"].GetBool());
+        bool update_stable = Model_Setting::instance().GetIntSetting("UPDATESOURCE", 0) == 0;
+        if (update_stable && is_prerelease)
+            continue;
+
+        const auto prerelease = !is_prerelease ? _("Stable") : _("Unstable");
 
         const auto html_url = (r.HasMember("html_url") && r["html_url"].IsString())
             ? r["html_url"].GetString() : "";
@@ -183,7 +187,7 @@ void mmUpdateWizard::CreateControls(const Document& json_releases, wxArrayInt ne
     buttonOk->SetDefault();
     buttonOk->SetFocus();
 
-    GetSizer()->Fit(this);
+    Fit();
 }
 
 void mmUpdateWizard::OnNewWindow(wxWebViewEvent& evt)

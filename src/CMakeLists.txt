@@ -103,6 +103,8 @@ add_executable(${MMEX_EXE} WIN32 MACOSX_BUNDLE
     dbwrapper.cpp
     dbwrapper.h
     defs.h
+    diagnostics.cpp
+    diagnostics.h
     filtertransdialog.cpp
     filtertransdialog.h
     general_report_manager.cpp
@@ -180,6 +182,10 @@ add_executable(${MMEX_EXE} WIN32 MACOSX_BUNDLE
     stockdialog.h
     stockspanel.cpp
     stockspanel.h
+    stocks_list.cpp
+    stocks_list.h
+    themes.cpp
+    themes.h
     transdialog.cpp
     transdialog.h
     transactionsupdatedialog.cpp

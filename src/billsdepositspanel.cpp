@@ -88,6 +88,7 @@ billsDepositsListCtrl::billsDepositsListCtrl(mmBillsDepositsPanel* bdp, wxWindow
 : mmListCtrl(parent, winid)
 , m_bdp(bdp)
 {
+    this->SetBackgroundColour(mmThemeMetaColour(meta::COLOR_LISTPANEL));
     // load the global variables
     m_selected_col = Model_Setting::instance().GetIntSetting("BD_SORT_COL", m_bdp->col_sort());
     m_asc = Model_Setting::instance().GetBoolSetting("BD_ASC", true);
@@ -156,15 +157,11 @@ void billsDepositsListCtrl::OnColClick(wxListEvent& event)
 
 mmBillsDepositsPanel::mmBillsDepositsPanel(wxWindow *parent, wxWindowID winid
     , const wxPoint& pos, const wxSize& size, long style, const wxString& name)
-    : m_imageList(nullptr)
-    , listCtrlAccount_(nullptr)
-    , transFilterDlg_(nullptr)
-    , m_bitmapTransFilter(nullptr)
-    , m_infoTextMini(nullptr)
-    , m_infoText(nullptr)
 {
     m_today = wxDate::Today();
-    this->tips_.Add(_("MMEX allows regular payments to be set up as transactions. These transactions can also be regular deposits, or transfers that will occur at some future time. These transactions act as a reminder that an event is about to occur, and appears on the Home Page 14 days before the transaction is due. "));
+    this->tips_.Add(_("MMEX allows regular payments to be set up as transactions. These transactions can also be regular deposits,"
+        " or transfers that will occur at some future time. These transactions act as a reminder that an event is about to occur,"
+        " and appears on the Home Page 14 days before the transaction is due. "));
     this->tips_.Add(_("Tip: These transactions can be set up to activate - allowing the user to adjust any values on the due date."));
 
     Create(parent, winid, pos, size, style, name);
@@ -177,8 +174,6 @@ bool mmBillsDepositsPanel::Create(wxWindow *parent
     SetExtraStyle(GetExtraStyle()|wxWS_EX_BLOCK_EVENTS);
     wxPanel::Create(parent, winid, pos, size, style, name);
 
-    this->windowsFreezeThaw();
-
     CreateControls();
     GetSizer()->Fit(this);
     GetSizer()->SetSizeHints(this);
@@ -190,7 +185,6 @@ bool mmBillsDepositsPanel::Create(wxWindow *parent
 
     initVirtualListControl();
 
-    this->windowsFreezeThaw();
     Model_Usage::instance().pageview(this);
 
     return TRUE;
@@ -198,10 +192,6 @@ bool mmBillsDepositsPanel::Create(wxWindow *parent
 
 mmBillsDepositsPanel::~mmBillsDepositsPanel()
 {
-    if (m_imageList)
-        delete m_imageList;
-    if (transFilterDlg_)
-        delete transFilterDlg_;
 }
 
 void mmBillsDepositsPanel::CreateControls()
@@ -244,7 +234,7 @@ void mmBillsDepositsPanel::CreateControls()
 
     listCtrlAccount_ = new billsDepositsListCtrl(this, itemSplitterWindowBillsDeposit);
 
-    listCtrlAccount_->SetImageList(m_imageList, wxIMAGE_LIST_SMALL);
+    listCtrlAccount_->SetImageList(m_imageList.get(), wxIMAGE_LIST_SMALL);
 
     wxPanel* bdPanel = new wxPanel(itemSplitterWindowBillsDeposit, wxID_ANY
         , wxDefaultPosition, wxDefaultSize, wxNO_BORDER | wxTAB_TRAVERSAL);
@@ -837,6 +827,38 @@ void billsDepositsListCtrl::RefreshList()
         id = m_bdp->bills_[m_selected_row].BDID;
     }
     refreshVisualList(m_bdp->initVirtualListControl(id));
+}
+
+wxListItemAttr* billsDepositsListCtrl::OnGetItemAttr(long item) const
+{
+    if (item < 0 || item >= static_cast<int>(m_bdp->bills_.size())) return 0;
+
+    int color_id = m_bdp->bills_[item].FOLLOWUPID;
+
+    static std::map<int, wxSharedPtr<wxListItemAttr> > cache;
+    if (color_id > -1)
+    {
+        color_id = std::min(7, color_id);
+        const auto it = cache.find(color_id);
+        if (it != cache.end())
+            return it->second.get();
+        else {
+            switch (color_id)
+            {
+            case 1: cache[color_id] = new wxListItemAttr(*wxBLACK, mmColors::userDefColor1, wxNullFont); break;
+            case 2: cache[color_id] = new wxListItemAttr(*wxBLACK, mmColors::userDefColor2, wxNullFont); break;
+            case 3: cache[color_id] = new wxListItemAttr(*wxBLACK, mmColors::userDefColor3, wxNullFont); break;
+            case 4: cache[color_id] = new wxListItemAttr(*wxBLACK, mmColors::userDefColor4, wxNullFont); break;
+            case 5: cache[color_id] = new wxListItemAttr(*wxBLACK, mmColors::userDefColor5, wxNullFont); break;
+            case 6: cache[color_id] = new wxListItemAttr(*wxBLACK, mmColors::userDefColor6, wxNullFont); break;
+            case 7: cache[color_id] = new wxListItemAttr(*wxBLACK, mmColors::userDefColor7, wxNullFont); break;
+            }
+            return cache[color_id].get();
+        }
+    }
+
+    /* Returns the alternating background pattern */
+    return (item % 2) ? attr2_.get() : attr1_.get();
 }
 
 void mmBillsDepositsPanel::RefreshList()

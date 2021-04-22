@@ -6612,6 +6612,15 @@ msgstr "Odredi kome transakcija ide"
 msgid "Specify the date of the transaction"
 msgstr "Odredi datum transakcije"
 
+#: transdialog.cpp:1319
+msgid "Clear color"
+msgstr "Ukloni boju"
+
+#: transdialog.cpp:1324
+#, c-format
+msgid "Color #%i"
+msgstr "Boja broj %i"
+
 #: usertransactionpanel.cpp:114
 msgid "Specify the associated Account that will contain this transaction"
 msgstr "Odredi račun koji će sadržati ovu transakciju"

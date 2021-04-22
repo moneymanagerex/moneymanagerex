@@ -212,6 +212,7 @@ private:
     void OnTransactionReport(wxCommandEvent& event);
     void OnCustomFieldsManager(wxCommandEvent& event);
     void OnGeneralReportManager(wxCommandEvent& event);
+    void OnThemeManager(wxCommandEvent& event);
 
     void OnHelp(wxCommandEvent& event);
     void OnShowAppStartDialog(wxCommandEvent& WXUNUSED(event));
@@ -220,6 +221,7 @@ private:
     void OnAbout(wxCommandEvent& event);
     void OnSimpleURLOpen(wxCommandEvent& event);
     void OnReportBug(wxCommandEvent& event);
+    void OnDiagnostics(wxCommandEvent& event);
 private:
     void OnItemRightClick(wxTreeEvent& event);
     void OnItemMenu(wxTreeEvent& event);
@@ -238,7 +240,7 @@ private:
     void ReallocateAccount(int accountID);
 private:
     /* Recent Files */
-    mmFileHistory* m_recentFiles;
+    wxSharedPtr<mmFileHistory> m_recentFiles;
     wxMenu* m_menuRecentFiles;
 
     void OnRecentFiles(wxCommandEvent& event);
@@ -312,12 +314,14 @@ private:
         MENU_CATEGORY_RELOCATION,
         MENU_PAYEE_RELOCATION,
         MENU_RELOCATION,
+        MENU_THEME_MANAGER,
         MENU_CONVERT_ENC_DB,
         MENU_CHANGE_ENCRYPT_PASSWORD,
         MENU_DB_VACUUM,
         MENU_DB_DEBUG,
         MENU_ONLINE_UPD_CURRENCY_RATE,
         MENU_ACCOUNT_REALLOCATE,
+        MENU_DIAGNOSTICS,
 
         //magic munber needed to fix [bugs:#408]
         ID_NAVTREECTRL = MENU_ONLINE_UPD_CURRENCY_RATE + 233,

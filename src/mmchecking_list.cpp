@@ -39,7 +39,6 @@
 #include "model/allmodel.h"
 #include <wx/clipbrd.h>
 
-
 #include <wx/srchctrl.h>
 #include <algorithm>
 #include <wx/sound.h>
@@ -90,11 +89,10 @@ void TransactionListCtrl::sortTable()
 {
     if (m_trans.empty()) return;
 
+    std::stable_sort(this->m_trans.begin(), this->m_trans.end(), SorterByTRANSID());
+
     switch (m_real_columns[g_sortcol])
     {
-    case TransactionListCtrl::COL_ID:
-        std::stable_sort(this->m_trans.begin(), this->m_trans.end(), SorterByTRANSID());
-        break;
     case TransactionListCtrl::COL_NUMBER:
         std::stable_sort(this->m_trans.begin(), this->m_trans.end(), Model_Checking::SorterByNUMBER());
         break;
@@ -125,6 +123,21 @@ void TransactionListCtrl::sortTable()
     case TransactionListCtrl::COL_DATE:
         std::stable_sort(this->m_trans.begin(), this->m_trans.end(), SorterByTRANSDATE());
         break;
+    case TransactionListCtrl::COL_UDFC01:
+        std::stable_sort(this->m_trans.begin(), this->m_trans.end(), SorterByUDFC01);
+        break;
+    case TransactionListCtrl::COL_UDFC02:
+        std::stable_sort(this->m_trans.begin(), this->m_trans.end(), SorterByUDFC02);
+        break;
+    case TransactionListCtrl::COL_UDFC03:
+        std::stable_sort(this->m_trans.begin(), this->m_trans.end(), SorterByUDFC03);
+        break;
+    case TransactionListCtrl::COL_UDFC04:
+        std::stable_sort(this->m_trans.begin(), this->m_trans.end(), SorterByUDFC04);
+        break;
+    case TransactionListCtrl::COL_UDFC05:
+        std::stable_sort(this->m_trans.begin(), this->m_trans.end(), SorterByUDFC05);
+        break;
     default:
         break;
     }
@@ -142,10 +155,10 @@ TransactionListCtrl::TransactionListCtrl(
 ) :
     mmListCtrl(parent, id),
     m_cp(cp),
-    m_attr1(new wxListItemAttr(*wxBLACK, m_cp->m_allAccounts ? mmColors::listAlternativeColor0A : mmColors::listAlternativeColor0, wxNullFont)),
-    m_attr2(new wxListItemAttr(*wxBLACK, mmColors::listAlternativeColor1, wxNullFont)),
-    m_attr3(new wxListItemAttr(mmColors::listFutureDateColor, m_cp->m_allAccounts ? mmColors::listAlternativeColor0A : mmColors::listAlternativeColor0, wxNullFont)),
-    m_attr4(new wxListItemAttr(mmColors::listFutureDateColor, mmColors::listAlternativeColor1, wxNullFont)),
+    m_attr1(new wxListItemAttr(*wxBLACK, m_cp->m_allAccounts ? mmThemeMetaColour(meta::COLOR_LISTALT0A) : mmThemeMetaColour(meta::COLOR_LISTALT0), wxNullFont)),
+    m_attr2(new wxListItemAttr(*wxBLACK, wxNullColour, wxNullFont)),
+    m_attr3(new wxListItemAttr(mmThemeMetaColour(meta::COLOR_LISTFUTURE), m_cp->m_allAccounts ? mmThemeMetaColour(meta::COLOR_LISTALT0A) : mmThemeMetaColour(meta::COLOR_LISTALT0), wxNullFont)),
+    m_attr4(new wxListItemAttr(mmThemeMetaColour(meta::COLOR_LISTFUTURE), wxNullColour, wxNullFont)),
     m_attr11(new wxListItemAttr(*wxBLACK, mmColors::userDefColor1, wxNullFont)),
     m_attr12(new wxListItemAttr(*wxBLACK, mmColors::userDefColor2, wxNullFont)),
     m_attr13(new wxListItemAttr(*wxBLACK, mmColors::userDefColor3, wxNullFont)),
@@ -162,6 +175,7 @@ TransactionListCtrl::TransactionListCtrl(
     wxASSERT(m_cp);
     m_selected_id.clear();
     m_selectedForCopy.clear();
+    this->SetBackgroundColour(mmThemeMetaColour(meta::COLOR_LISTPANEL));
 
     const wxAcceleratorEntry entries[] =
     {
@@ -212,6 +226,19 @@ TransactionListCtrl::TransactionListCtrl(
     }
     m_columns.push_back(PANEL_COLUMN(_("Notes"), 250, wxLIST_FORMAT_LEFT));
     m_real_columns.push_back(COL_NOTES);
+
+    int i = COL_NOTES;
+    const auto& ref_type = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
+    for (const auto& udfc_entry : Model_CustomField::UDFC_FIELDS())
+    {
+        if (udfc_entry.empty()) continue;
+        const auto& name = Model_CustomField::getUDFCName(ref_type, udfc_entry);
+        if (name != udfc_entry)
+        {
+            m_columns.push_back(PANEL_COLUMN(name, 100, wxLIST_FORMAT_LEFT));
+            m_real_columns.push_back(static_cast<EColumn>(++i));
+        }
+    }
 
     m_col_width = m_cp->m_allAccounts ? "ALLTRANS_COL%d_WIDTH" : "CHECK_COL%d_WIDTH";
 
@@ -951,6 +978,7 @@ void TransactionListCtrl::OnSetUserColour(wxCommandEvent& event)
         }
     }
     Model_Checking::instance().ReleaseSavepoint();
+    m_topItemIndex = GetTopItem() + GetCountPerPage() - 1;
 
     refreshVisualList();
 }
@@ -1098,8 +1126,6 @@ void TransactionListCtrl::OnCreateReoccurance(wxCommandEvent& /*event*/)
 
 void TransactionListCtrl::markSelectedTransaction()
 {
-    if (GetSelectedItemCount() == 0) return;
-
     long i = 0;
     for (const auto & tran : m_trans)
     {
@@ -1108,17 +1134,19 @@ void TransactionListCtrl::markSelectedTransaction()
         {
             SetItemState(i, 0, wxLIST_STATE_SELECTED);
         }
-        // discover where the transaction has ended up in the list
-        if (g_asc) {
-            if (m_topItemIndex < i && tran.TRANSID == m_selected_id.back()) {
-                m_topItemIndex = i;
-            }
-        } else {
-            if (m_topItemIndex > i && tran.TRANSID == m_selected_id.back()) {
-                m_topItemIndex = i;
+        if (!m_selected_id.empty())
+        {
+            // discover where the transaction has ended up in the list
+            if (g_asc) {
+                if (m_topItemIndex < i && tran.TRANSID == m_selected_id.back()) {
+                    m_topItemIndex = i;
+                }
+            } else {
+                if (m_topItemIndex > i && tran.TRANSID == m_selected_id.back()) {
+                    m_topItemIndex = i;
+                }
             }
         }
-
         ++i;
     }
 
@@ -1243,11 +1271,11 @@ void TransactionListCtrl::doSearchText(const wxString& value)
 
 const wxString TransactionListCtrl::getItem(long item, long column, bool realenum) const
 {
-    Model_Currency::Data* m_currency = Model_Currency::GetBaseCurrency();
     if (item < 0 || item >= static_cast<int>(m_trans.size())) return "";
 
-    wxString value = wxEmptyString;
     const Model_Checking::Full_Data& tran = m_trans.at(item);
+
+    wxString value = wxEmptyString;
     switch (realenum ? column : m_real_columns[column])
     {
     case TransactionListCtrl::COL_ID:
@@ -1264,19 +1292,49 @@ const wxString TransactionListCtrl::getItem(long item, long column, bool realenu
         return tran.is_foreign_transfer() ? "< " + tran.PAYEENAME : tran.PAYEENAME;
     case TransactionListCtrl::COL_STATUS:
         return tran.is_foreign() ? "< " + tran.STATUS : tran.STATUS;
-    case TransactionListCtrl::COL_WITHDRAWAL:
-        return tran.AMOUNT <= 0 ? Model_Currency::toString(std::fabs(tran.AMOUNT), m_currency) : "";
-    case TransactionListCtrl::COL_DEPOSIT:
-        return tran.AMOUNT > 0 ? Model_Currency::toString(tran.AMOUNT, m_currency) : "";
-    case TransactionListCtrl::COL_BALANCE:
-        return Model_Currency::toString(tran.BALANCE, m_currency);
     case TransactionListCtrl::COL_NOTES:
         value = tran.NOTES;
         value.Replace("\n", " ");
         return value;
-    default:
-        return value;
+    case TransactionListCtrl::COL_UDFC01:
+        return tran.UDFC01;
+    case TransactionListCtrl::COL_UDFC02:
+        return tran.UDFC02;
+    case TransactionListCtrl::COL_UDFC03:
+        return tran.UDFC03;
+    case TransactionListCtrl::COL_UDFC04:
+        return tran.UDFC04;
+    case TransactionListCtrl::COL_UDFC05:
+        return tran.UDFC05;
     }
+
+    Model_Account::Data* account = Model_Account::instance().get(tran.ACCOUNTID);
+    Model_Currency::Data* currency = Model_Currency::instance().get(account->CURRENCYID);
+    double balance = m_cp->m_allAccounts
+        ? Model_Checking::balance(tran, account->ACCOUNTID)
+        : tran.AMOUNT;
+
+    switch (realenum ? column : m_real_columns[column])
+    {
+    case TransactionListCtrl::COL_WITHDRAWAL:
+        if (balance <= 0.0) {
+            return m_cp->m_allAccounts
+                ? Model_Currency::toCurrency(-balance, currency)
+                : Model_Currency::toString(-balance, currency);
+        }
+        return "";
+    case TransactionListCtrl::COL_DEPOSIT:
+        if (balance > 0.0) {
+            return m_cp->m_allAccounts
+                ? Model_Currency::toCurrency(balance, currency)
+                : Model_Currency::toString(balance, currency);
+        }
+        return "";
+    case TransactionListCtrl::COL_BALANCE:
+        return Model_Currency::toString(tran.BALANCE, currency);
+    }
+
+    return value;
 }
 
 void TransactionListCtrl::FindSelectedTransactions()
@@ -1287,6 +1345,23 @@ void TransactionListCtrl::FindSelectedTransactions()
     for (const auto& i : m_trans)
         if (GetItemState(x++, wxLIST_STATE_SELECTED) == wxLIST_STATE_SELECTED)
             m_selected_id.push_back(i.TRANSID);
+}
+
+void TransactionListCtrl::setSelectedID(int v)
+{ 
+    int i = 0;
+    for(const auto& entry : m_trans)
+    {
+        if (v == entry.TRANSID)
+        {
+            SetItemState(i, wxLIST_STATE_SELECTED, wxLIST_STATE_SELECTED);
+            SetItemState(i, wxLIST_STATE_FOCUSED, wxLIST_STATE_FOCUSED);
+            m_topItemIndex = i;
+            break;
+        }
+        i++;
+    }
+  
 }
 
 //----------------------------------------------------------------------------

@@ -19,6 +19,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 #include "optionsettingsview.h"
 #include "images_list.h"
+#include "themes.h"
 #include "util.h"
 
 #include <wx/colordlg.h>
@@ -117,6 +118,23 @@ void OptionSettingsView::Create()
     m_budget_summary_without_category->SetValue(Option::instance().BudgetReportWithSummaries());
     trxStaticBoxSizer->Add(m_budget_summary_without_category, g_flagsV);
 
+
+
+    // Allows a year or financial year to start before or after the 1st of the month.
+    wxBoxSizer* budget_offset_sizer = new wxBoxSizer(wxHORIZONTAL);
+    trxStaticBoxSizer->Add(budget_offset_sizer);
+
+    budget_offset_sizer->Add(new wxStaticText(this, wxID_STATIC, _("Budget Offset (days):")), g_flagsH);
+
+    m_budget_days_offset = new wxSpinCtrl(this, wxID_ANY
+        , wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, -30, +30);
+    m_budget_days_offset->SetToolTip(_("Advance or retard the start date from the 1st of the month or year by the number of days"));
+    m_budget_days_offset->SetValue(Option::instance().getBudgetDaysOffset());
+    budget_offset_sizer->Add(m_budget_days_offset, g_flagsH);
+
+
+
+
     m_ignore_future_transactions = new wxCheckBox(this, wxID_STATIC
         , _("Ignore Future Transactions")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
@@ -171,18 +189,10 @@ void OptionSettingsView::Create()
 
     // Theme
 
-    m_choice_theme = new wxChoice(this, wxID_ANY);
+    m_theme_manager = new wxButton(this, ID_DIALOG_THEMEMANAGER, _("Open Theme Manager"));
 
     view_sizer2->Add(new wxStaticText(this, wxID_STATIC, _("Style Template")), g_flagsH);
-    view_sizer2->Add(m_choice_theme, g_flagsH);
-
-    wxString myTheme = Model_Setting::instance().Theme();
-    for (const auto& entry : getThemes())
-    {
-        m_choice_theme->Append(wxGetTranslation(entry), new wxStringClientData(entry));
-        if (entry == myTheme)
-            m_choice_theme->SetStringSelection(wxGetTranslation(entry));
-    }
+    view_sizer2->Add(m_theme_manager, g_flagsH);
 
     view_sizer2->Add(new wxStaticText(this, wxID_STATIC, _("HTML Scale Factor")), g_flagsH);
 
@@ -236,6 +246,7 @@ void OptionSettingsView::Create()
     m_others_icon_size->SetSelection(selection);
 
     this->Connect(wxID_ANY, wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(OptionSettingsView::OnNavTreeColorChanged), nullptr, this);
+    this->Connect(ID_DIALOG_THEMEMANAGER, wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(OptionSettingsView::OnThemeManagerSelected), nullptr, this);
 }
 
 void OptionSettingsView::OnNavTreeColorChanged(wxCommandEvent& event)
@@ -257,6 +268,12 @@ void OptionSettingsView::OnNavTreeColorChanged(wxCommandEvent& event)
     }
 }
 
+void OptionSettingsView::OnThemeManagerSelected(wxCommandEvent& event)
+{
+    mmThemesDialog dlg(this, _("Theme Manager"));
+    dlg.ShowModal();
+}
+
 bool OptionSettingsView::SaveSettings()
 {
     auto delimiter = m_categ_delimiter_list->GetValue();
@@ -268,12 +285,6 @@ bool OptionSettingsView::SaveSettings()
     if (visible_acc_obj)
         accVisible = visible_acc_obj->GetData();
     Model_Setting::instance().SetViewAccounts(accVisible);
-
-    wxString themeName = "default";
-    wxStringClientData* theme_obj = static_cast<wxStringClientData*>(m_choice_theme->GetClientObject(m_choice_theme->GetSelection()));
-    if (theme_obj)
-        themeName = theme_obj->GetData();
-    Model_Setting::instance().SetTheme(themeName);
 
     int size = m_scale_factor->GetValue();
     Option::instance().setHTMLFontSizes(size);
@@ -294,6 +305,7 @@ bool OptionSettingsView::SaveSettings()
     Option::instance().BudgetFinancialYears(m_budget_financial_years->GetValue());
     Option::instance().BudgetIncludeTransfers(m_budget_include_transfers->GetValue());
     Option::instance().BudgetReportWithSummaries(m_budget_summary_without_category->GetValue());
+    Option::instance().setBudgetDaysOffset(m_budget_days_offset->GetValue());
     Option::instance().IgnoreFutureTransactions(m_ignore_future_transactions->GetValue());
 
     mmColors::userDefColor1 = m_UDFCB1->GetBackgroundColour();

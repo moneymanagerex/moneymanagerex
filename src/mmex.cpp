@@ -33,6 +33,7 @@
 #include <wx/fs_filter.h>
 #include <wx/fs_mem.h>
 #include <wx/mstream.h>
+#include <wx/imagpng.h>
 #include "../resources/money.xpm"
  //----------------------------------------------------------------------------
 wxIMPLEMENT_APP(mmGUIApp);
@@ -176,7 +177,7 @@ void mmGUIApp::ReportFatalException(wxDebugReport::Context ctx)
 
     if (!report.IsOk())
     {
-        return wxSafeShowMessage(mmex::getProgramName()
+        wxSafeShowMessage(mmex::getProgramName()
             , _("Fatal error occured.\nApplication will be terminated."));
     }
 
@@ -260,6 +261,7 @@ bool OnInitImpl(mmGUIApp* app)
     trans->AddCatalog("mmex", wxLANGUAGE_ENGLISH_US);
     wxTranslations::Set(trans);
 
+    wxImage::AddHandler(new wxPNGHandler);  
     // Resource files
 #ifndef __WXGTK__
 

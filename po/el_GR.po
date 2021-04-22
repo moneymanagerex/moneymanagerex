@@ -6595,6 +6595,15 @@ msgstr "Καθορίστε σε ποιον θα γίνει η συναλλαγή
 msgid "Specify the date of the transaction"
 msgstr "Δηλώστε την ημερομηνία της συναλλαγής"
 
+#: transdialog.cpp:1319
+msgid "Clear color"
+msgstr "Καθαρισμός χρώματος"
+
+#: transdialog.cpp:1324
+#, c-format
+msgid "Color #%i"
+msgstr "Χρώμα #%i"
+
 #: usertransactionpanel.cpp:114
 msgid "Specify the associated Account that will contain this transaction"
 msgstr "Καθορίστε τον συνδεδεμένο λογαριασμό που θα περιέχει αυτή τη συναλλαγή"

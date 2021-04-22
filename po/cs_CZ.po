@@ -6625,6 +6625,15 @@ msgstr "Zadejte kam transakce odejde"
 msgid "Specify the date of the transaction"
 msgstr "Zadejte datum transakce"
 
+#: transdialog.cpp:1319
+msgid "Clear color"
+msgstr "Odebrat barvu"
+
+#: transdialog.cpp:1324
+#, c-format
+msgid "Color #%i"
+msgstr "Barva #%i"
+
 #: usertransactionpanel.cpp:114
 msgid "Specify the associated Account that will contain this transaction"
 msgstr "Zadejte účet, který bude přiřazen této transakci"

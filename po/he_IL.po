@@ -6626,6 +6626,15 @@ msgstr "הגדרה למי הולכת התנועה"
 msgid "Specify the date of the transaction"
 msgstr "הזנת את תאריך התנועה"
 
+#: transdialog.cpp:1319
+msgid "Clear color"
+msgstr "ניקוי צבע"
+
+#: transdialog.cpp:1324
+#, c-format
+msgid "Color #%i"
+msgstr "צבע #%i"
+
 #: usertransactionpanel.cpp:114
 msgid "Specify the associated Account that will contain this transaction"
 msgstr "נא להגדיר את החשבון המשוייך שיכיל את התנועה"

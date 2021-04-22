@@ -6370,12 +6370,12 @@ msgid "Specify the date of the transaction"
 msgstr ""
 
 #: transdialog.cpp:1309
-msgid "Clear colour"
+msgid "Clear color"
 msgstr ""
 
 #: transdialog.cpp:1314
 #, c-format
-msgid "Colour #%i"
+msgid "Color #%i"
 msgstr ""
 
 #: usertransactionpanel.cpp:115

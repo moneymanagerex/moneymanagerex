@@ -17,6 +17,7 @@ Copyright (C) 2014 - 2020 Nikolay Akimov
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
+#include "images_list.h"
 #include "mmhomepagepanel.h"
 #include "mmhomepage.h"
 #include "mmex.h"
@@ -161,6 +162,8 @@ void mmHomePagePanel::insertDataIntoTemplate()
     //
     htmlWidgetIncomeVsExpenses income_vs_expenses;
     m_frames["INCOME_VS_EXPENSES"] = income_vs_expenses.getHTMLText();
+    m_frames["INCOME_VS_EXPENSES_COLORS"] = wxString::Format("'%s', '%s'", mmThemeMetaString(meta::COLOR_REPORT_CREDIT)
+                                                , mmThemeMetaString(meta::COLOR_REPORT_DEBIT));
 
     htmlWidgetBillsAndDeposits bills_and_deposits(_("Upcoming Transactions"));
     m_frames["BILLS_AND_DEPOSITS"] = bills_and_deposits.getHTMLText();

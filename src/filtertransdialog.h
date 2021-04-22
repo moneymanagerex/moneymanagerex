@@ -1,5 +1,6 @@
 /*******************************************************
 Copyright (C) 2006-2012
+Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -65,6 +66,7 @@ private:
     void BuildPayeeList();
 
     bool getDateRangeCheckBox();
+    bool getStartDateCheckBox();
     bool getAmountRangeCheckBoxMin();
     bool getAmountRangeCheckBoxMax();
     double getAmountMax();
@@ -117,6 +119,8 @@ private:
     void datePresetMenuSelected(wxCommandEvent& event);
     void OnPayeeUpdated(wxCommandEvent& event);
     void OnTextEntered(wxCommandEvent& event);
+    void OnSaveSettings(wxCommandEvent& event);
+    void SaveSettings(int menu_item);
 
     void OnCategs(wxCommandEvent& event);
     const wxString to_json(bool i18n = false);
@@ -128,6 +132,8 @@ private:
     wxString prev_value_;
     wxCheckBox* accountCheckBox_;
     wxChoice* accountDropDown_;
+    wxCheckBox* startDateCheckBox_;
+    wxChoice* startDateDropDown_;
     wxCheckBox* dateRangeCheckBox_;
     wxDatePickerCtrl* fromDateCtrl_;
     wxDatePickerCtrl* toDateControl_;
@@ -148,7 +154,8 @@ private:
     mmTextCtrl* amountMaxEdit_;
     wxCheckBox* notesCheckBox_;
     wxTextCtrl* notesEdit_;
-    wxRadioBox* m_radio_box_;
+    wxChoice* m_setting_name;
+    wxBitmapButton* m_btnSaveAs;
     wxCheckBox* transNumberCheckBox_;
     wxTextCtrl* transNumberEdit_;
     wxString m_begin_date;
@@ -159,7 +166,6 @@ private:
     int payeeID_;
     int refAccountID_;
     bool bSimilarCategoryStatus_;
-    wxTextCtrl* m_settingLabel;
     wxString payeeStr_;
 };
 

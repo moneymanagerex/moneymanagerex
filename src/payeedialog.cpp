@@ -36,7 +36,7 @@ wxBEGIN_EVENT_TABLE(mmPayeeDialog, wxDialog)
     EVT_BUTTON(wxID_CANCEL, mmPayeeDialog::OnCancel)
     EVT_BUTTON(wxID_OK, mmPayeeDialog::OnOk)
     EVT_BUTTON(wxID_APPLY, mmPayeeDialog::OnMagicButton)
-    EVT_TEXT(wxID_ANY, mmPayeeDialog::OnTextChanged)
+    EVT_TEXT(wxID_FIND, mmPayeeDialog::OnTextChanged)
     EVT_DATAVIEW_ITEM_VALUE_CHANGED(wxID_ANY, mmPayeeDialog::OnDataChanged)
     EVT_DATAVIEW_ITEM_EDITING_STARTED(wxID_ANY, mmPayeeDialog::OnDataEditStart)
     EVT_DATAVIEW_SELECTION_CHANGED(wxID_ANY, mmPayeeDialog::OnListItemSelected)
@@ -157,32 +157,48 @@ void mmPayeeDialog::OnDataEditStart(wxDataViewEvent& WXUNUSED(event))
     m_payee_rename = m_payee_id;
 }
 
+void mmPayeeDialog::OnTextChanged(wxCommandEvent& event)
+{
+    m_maskStr = event.GetString();
+    fillControls();
+}
+
 void mmPayeeDialog::OnDataChanged(wxDataViewEvent& event)
 {
+    auto payee = Model_Payee::instance().get(m_payee_rename);
+    int col = event.GetColumn();
     int row = payeeListBox_->ItemToRow(event.GetItem());
     wxVariant var;
-    payeeListBox_->GetValue(var, row, event.GetColumn());
+    payeeListBox_->GetValue(var, row, col);
     const wxString value = var.GetString();
+    if (value.empty() || value == payee->PAYEENAME) {
+        SetEvtHandlerEnabled(false);
+        payeeListBox_->SetValue(payee->PAYEENAME, row, col);
+        SetEvtHandlerEnabled(true);
+        return event.Veto();
+    }
 
-    auto payee = Model_Payee::instance().get(m_payee_rename);
-    if (!payee || value == payee->PAYEENAME) return;
+    Model_Payee::Data_Set payees;
+    auto all_payees = Model_Payee::instance().all();
+    for (const auto& p : all_payees)
+    {
+        if (m_payee_rename != p.PAYEEID && value.CmpNoCase(p.PAYEENAME) == 0)
+            payees.push_back(p);
+    }
 
-    const auto payees = Model_Payee::instance().find(Model_Payee::PAYEENAME(value));
     if (payees.empty())
     {
-        if (payee)
-        {
-            payee->PAYEENAME = value;
-            Model_Payee::instance().save(payee);
-            mmWebApp::MMEX_WebApp_UpdatePayee();
-            refreshRequested_ = true;
-        }
+        payee->PAYEENAME = value;
+        Model_Payee::instance().save(payee);
+        mmWebApp::MMEX_WebApp_UpdatePayee();
+        refreshRequested_ = true;
     }
     else
     {
         wxMessageBox(_("Payee with same name exists")
             , _("Organize Payees: Add Payee"), wxOK | wxICON_ERROR);
     }
+
     fillControls();
 }
 
@@ -320,12 +336,6 @@ void mmPayeeDialog::OnPayeeRelocate()
         wxMessageBox(msgStr, _("Payee Relocation Result"));
         refreshRequested_ = true;
     }
-}
-
-void mmPayeeDialog::OnTextChanged(wxCommandEvent& event)
-{
-    m_maskStr = event.GetString();
-    fillControls();
 }
 
 void mmPayeeDialog::OnMenuSelected(wxCommandEvent& event)
