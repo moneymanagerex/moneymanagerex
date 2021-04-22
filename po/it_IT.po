@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-04-22 00:36+0300\n"
-"PO-Revision-Date: 2021-04-22 05:42\n"
+"PO-Revision-Date: 2021-04-22 05:54\n"
 "Last-Translator: \n"
 "Language-Team: Italian\n"
 "MIME-Version: 1.0\n"
@@ -2396,24 +2396,24 @@ msgstr "%i: Vuoto"
 
 #: filtertransdialog.cpp:375
 msgid "Save active values into current Preset selection"
-msgstr ""
+msgstr "Salva i valori attivi nella selezione Preset corrente"
 
 #: filtertransdialog.cpp:380
 msgid "Clear all fields for current Preset selection"
-msgstr ""
+msgstr "Deselezionare tutti i campi della selezione Preset corrente"
 
 #: filtertransdialog.cpp:696 filtertransdialog.cpp:1347
 msgid "Please Enter"
-msgstr ""
+msgstr "Prego, inserire"
 
 #: filtertransdialog.cpp:696 filtertransdialog.cpp:1347
 msgid "Setting Name"
-msgstr ""
+msgstr "Nome impostazione"
 
 #: filtertransdialog.cpp:700 filtertransdialog.cpp:1343
 #: filtertransdialog.cpp:1351
 msgid "Could not save settings"
-msgstr ""
+msgstr "Impossibile salvare le impostazioni"
 
 #: filtertransdialog.cpp:700 filtertransdialog.cpp:915
 #: filtertransdialog.cpp:929 filtertransdialog.cpp:1343
@@ -2428,7 +2428,7 @@ msgstr "Dettagli Filtro: "
 
 #: filtertransdialog.cpp:951
 msgid "Label"
-msgstr ""
+msgstr "Etichetta"
 
 #: filtertransdialog.cpp:967
 msgid "Since"
@@ -2624,7 +2624,7 @@ msgstr "Parametri:"
 #: images_list.cpp:318
 #, c-format
 msgid "Metadata JSON in Theme '%s' cannot be parsed and looks badly constructed, please correct."
-msgstr ""
+msgstr "I metadati JSON nel Tema '%s' non possono essere analizzati e sembrano mal costruiti, si prega di correggere."
 
 #: images_list.cpp:319 images_list.cpp:402 images_list.cpp:413
 #: images_list.cpp:448 images_list.cpp:473 images_list.cpp:479
@@ -2635,12 +2635,12 @@ msgstr "Attenzione"
 #: images_list.cpp:401
 #, c-format
 msgid "File '%s' missing or invalid in chosen theme '%s'"
-msgstr ""
+msgstr "File '%s' mancante o non valido nel tema scelto '%s'"
 
 #: images_list.cpp:412
 #, c-format
 msgid "Metadata '%s' missing in chosen theme '%s'"
-msgstr ""
+msgstr "Metadati '%s' mancanti nel tema scelto '%s'"
 
 #: images_list.cpp:445
 msgid "and more..."
@@ -4244,11 +4244,11 @@ msgstr "&Cespiti"
 
 #: mmframe.cpp:1517
 msgid "T&heme Manager"
-msgstr ""
+msgstr "Gestore T&ema"
 
 #: mmframe.cpp:1517 mmframe.cpp:2440 optionsettingsview.cpp:273 themes.cpp:144
 msgid "Theme Manager"
-msgstr ""
+msgstr "Gestore dei temi"
 
 #: mmframe.cpp:1523
 msgid "Transaction Report &Filter..."
@@ -5560,11 +5560,11 @@ msgstr "Riepilogo Budget Categorie con totali"
 
 #: optionsettingsview.cpp:127
 msgid "Budget Offset (days):"
-msgstr ""
+msgstr "Scostamento Budget (giorni):"
 
 #: optionsettingsview.cpp:131
 msgid "Advance or retard the start date from the 1st of the month or year by the number of days"
-msgstr ""
+msgstr "Anticipa o ritarda la data di inizio dal primo giorno del mese o anno per il numero di giorni"
 
 #: optionsettingsview.cpp:139
 msgid "Ignore Future Transactions"
@@ -5580,7 +5580,7 @@ msgstr "Aspetto Interfaccia Utente"
 
 #: optionsettingsview.cpp:192
 msgid "Open Theme Manager"
-msgstr ""
+msgstr "Apri il Gestore dei Temi"
 
 #: optionsettingsview.cpp:194
 msgid "Style Template"
@@ -6495,35 +6495,35 @@ msgstr "Elimina"
 
 #: themes.cpp:189
 msgid "Use"
-msgstr ""
+msgstr "Usa"
 
 #: themes.cpp:235
 msgid "No description available"
-msgstr ""
+msgstr "Nessuna descrizione disponibile"
 
 #: themes.cpp:278
 msgid "Choose theme file to import"
-msgstr ""
+msgstr "Scegli il file del tema da importare"
 
 #: themes.cpp:298
 msgid "The theme already exists, do you still want to import and overwrite the existing theme?"
-msgstr ""
+msgstr "Il tema esiste già, vuoi ancora importare e sovrascrivere il tema esistente?"
 
 #: themes.cpp:308
 msgid "Something went wrong importing the theme"
-msgstr ""
+msgstr "Qualcosa è andato storto importando il tema"
 
 #: themes.cpp:320
 msgid "Are you sure you want to delete this theme? If you want to use it again you will need to re-import it."
-msgstr ""
+msgstr "Sei sicuro di voler eliminare questo tema? Se vuoi usarlo di nuovo, devi reimportarlo."
 
 #: themes.cpp:327
 msgid "Something went wrong when attempting to delete the theme"
-msgstr ""
+msgstr "Qualcosa è andato storto nel tentativo di cancellare il tema."
 
 #: themes.cpp:339
 msgid "Are you sure you want to use this theme? Please note that this will only take effect when MMEX is re-started."
-msgstr ""
+msgstr "Sei sicuro di voler usare questo tema? Nota che questo avrà effetto solo quando MMEX sarà riavviato."
 
 #: transactionsupdatedialog.cpp:78
 msgid "Multi Transactions Update"
