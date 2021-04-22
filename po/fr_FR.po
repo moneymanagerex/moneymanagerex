@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-04-22 00:36+0300\n"
-"PO-Revision-Date: 2021-04-22 13:09\n"
+"PO-Revision-Date: 2021-04-22 13:35\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -6499,11 +6499,11 @@ msgstr "Supprimer"
 
 #: themes.cpp:189
 msgid "Use"
-msgstr ""
+msgstr "Utiliser"
 
 #: themes.cpp:235
 msgid "No description available"
-msgstr "Pas de description disponible"
+msgstr "Aucune description disponible"
 
 #: themes.cpp:278
 msgid "Choose theme file to import"
@@ -6511,23 +6511,23 @@ msgstr "Sélectionnez un fichier de thème à importer"
 
 #: themes.cpp:298
 msgid "The theme already exists, do you still want to import and overwrite the existing theme?"
-msgstr ""
+msgstr "Le thème existe déjà, voulez-vous toujours importer et écraser le thème existant ?"
 
 #: themes.cpp:308
 msgid "Something went wrong importing the theme"
-msgstr ""
+msgstr "Une erreur s'est produite lors de l'importation du thème"
 
 #: themes.cpp:320
 msgid "Are you sure you want to delete this theme? If you want to use it again you will need to re-import it."
-msgstr ""
+msgstr "Êtes-vous sûr de vouloir supprimer ce thème ? Si vous voulez l'utiliser à nouveau, vous devrez le réimporter."
 
 #: themes.cpp:327
 msgid "Something went wrong when attempting to delete the theme"
-msgstr ""
+msgstr "Une erreur s'est produite lors de la tentative de suppression du thème"
 
 #: themes.cpp:339
 msgid "Are you sure you want to use this theme? Please note that this will only take effect when MMEX is re-started."
-msgstr ""
+msgstr "Êtes-vous sûr de vouloir utiliser ce thème ? Veuillez noter que cela ne prendra effet que lorsque MMEX sera redémarré."
 
 #: transactionsupdatedialog.cpp:78
 msgid "Multi Transactions Update"
