@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-04-22 00:36+0300\n"
-"PO-Revision-Date: 2021-04-22 11:56\n"
+"PO-Revision-Date: 2021-04-22 12:36\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -1984,7 +1984,7 @@ msgid "%zu occurrence founded and replaced!"
 msgid_plural "%zu occurrences founded and replaced!"
 msgstr[0] ""
 msgstr[1] ""
-msgstr[2] ""
+msgstr[2] "%zu вхождений найдено и заменено!"
 msgstr[3] ""
 
 #: customfieldlistdialog.cpp:263
@@ -2327,23 +2327,23 @@ msgstr "Кроме выверенных"
 
 #: filtertransdialog.cpp:63
 msgid "Start of Financial Year"
-msgstr ""
+msgstr "Начало финансового года"
 
 #: filtertransdialog.cpp:64
 msgid "Start of This Year"
-msgstr ""
+msgstr "Начало этого года"
 
 #: filtertransdialog.cpp:65
 msgid "Since 90 days ago"
-msgstr ""
+msgstr "Начиная с 90 дней назад"
 
 #: filtertransdialog.cpp:66
 msgid "Since 30 days ago"
-msgstr ""
+msgstr "Начиная с 30 дней назад"
 
 #: filtertransdialog.cpp:67
 msgid "Since Today"
-msgstr ""
+msgstr "С сегодняшнего дня"
 
 #: filtertransdialog.cpp:174 transactionsupdatedialog.cpp:108
 msgid "Specify"
@@ -2394,35 +2394,35 @@ msgstr "Диапазон цен"
 
 #: filtertransdialog.cpp:345
 msgid "Settings"
-msgstr ""
+msgstr "Настройки"
 
 #: filtertransdialog.cpp:366 filtertransdialog.cpp:694
 #: filtertransdialog.cpp:739 filtertransdialog.cpp:948
 #: filtertransdialog.cpp:1083 filtertransdialog.cpp:1345
 #, c-format
 msgid "%i: Empty"
-msgstr ""
+msgstr "%i: Пусто"
 
 #: filtertransdialog.cpp:375
 msgid "Save active values into current Preset selection"
-msgstr ""
+msgstr "Сохранить активные значения в текущем выборе пресета"
 
 #: filtertransdialog.cpp:380
 msgid "Clear all fields for current Preset selection"
-msgstr ""
+msgstr "Очистить все поля для выбранного пресета"
 
 #: filtertransdialog.cpp:696 filtertransdialog.cpp:1347
 msgid "Please Enter"
-msgstr ""
+msgstr "Пожалуйста, введите"
 
 #: filtertransdialog.cpp:696 filtertransdialog.cpp:1347
 msgid "Setting Name"
-msgstr ""
+msgstr "Название настройки"
 
 #: filtertransdialog.cpp:700 filtertransdialog.cpp:1343
 #: filtertransdialog.cpp:1351
 msgid "Could not save settings"
-msgstr ""
+msgstr "Не удалось сохранить настройки"
 
 #: filtertransdialog.cpp:700 filtertransdialog.cpp:915
 #: filtertransdialog.cpp:929 filtertransdialog.cpp:1343
@@ -2437,7 +2437,7 @@ msgstr "Детали фильтра: "
 
 #: filtertransdialog.cpp:951
 msgid "Label"
-msgstr ""
+msgstr "Метка"
 
 #: filtertransdialog.cpp:967
 msgid "Since"
@@ -2635,7 +2635,7 @@ msgstr "Параметры:"
 #: images_list.cpp:318
 #, c-format
 msgid "Metadata JSON in Theme '%s' cannot be parsed and looks badly constructed, please correct."
-msgstr ""
+msgstr "Метаданные JSON в теме '%s' не могут быть проанализированы и выглядят неправильно, пожалуйста исправьте."
 
 #: images_list.cpp:319 images_list.cpp:402 images_list.cpp:413
 #: images_list.cpp:448 images_list.cpp:473 images_list.cpp:479
@@ -2646,12 +2646,12 @@ msgstr "Внимание"
 #: images_list.cpp:401
 #, c-format
 msgid "File '%s' missing or invalid in chosen theme '%s'"
-msgstr ""
+msgstr "Файл '%s' отсутствует в выбранной теме '%s'"
 
 #: images_list.cpp:412
 #, c-format
 msgid "Metadata '%s' missing in chosen theme '%s'"
-msgstr ""
+msgstr "Метаданные '%s' отсутствуют в выбранной теме '%s'"
 
 #: images_list.cpp:445
 msgid "and more..."
@@ -4266,11 +4266,11 @@ msgstr "&Активы"
 
 #: mmframe.cpp:1517
 msgid "T&heme Manager"
-msgstr ""
+msgstr "Менеджер &тем"
 
 #: mmframe.cpp:1517 mmframe.cpp:2440 optionsettingsview.cpp:273 themes.cpp:144
 msgid "Theme Manager"
-msgstr ""
+msgstr "Менеджер тем"
 
 #: mmframe.cpp:1523
 msgid "Transaction Report &Filter..."
@@ -5582,11 +5582,11 @@ msgstr "Бюджет по категориям с итогами"
 
 #: optionsettingsview.cpp:127
 msgid "Budget Offset (days):"
-msgstr ""
+msgstr "Смещение бюджета (дней):"
 
 #: optionsettingsview.cpp:131
 msgid "Advance or retard the start date from the 1st of the month or year by the number of days"
-msgstr ""
+msgstr "Смещение или сдвиг даты начала с 1-го числа месяца или года на указанное количество дней"
 
 #: optionsettingsview.cpp:139
 msgid "Ignore Future Transactions"
@@ -5602,7 +5602,7 @@ msgstr "Внешний вид интерфейса"
 
 #: optionsettingsview.cpp:192
 msgid "Open Theme Manager"
-msgstr ""
+msgstr "Открыть менеджер тем"
 
 #: optionsettingsview.cpp:194
 msgid "Style Template"
@@ -6519,35 +6519,35 @@ msgstr "Удалить"
 
 #: themes.cpp:189
 msgid "Use"
-msgstr ""
+msgstr "Использовать"
 
 #: themes.cpp:235
 msgid "No description available"
-msgstr ""
+msgstr "Описание отсутствует"
 
 #: themes.cpp:278
 msgid "Choose theme file to import"
-msgstr ""
+msgstr "Выберите файл для импорта"
 
 #: themes.cpp:298
 msgid "The theme already exists, do you still want to import and overwrite the existing theme?"
-msgstr ""
+msgstr "Тема уже существует, вы хотите импортировать и перезаписать существующую тему?"
 
 #: themes.cpp:308
 msgid "Something went wrong importing the theme"
-msgstr ""
+msgstr "Ошибка при импорте темы"
 
 #: themes.cpp:320
 msgid "Are you sure you want to delete this theme? If you want to use it again you will need to re-import it."
-msgstr ""
+msgstr "Вы уверены, что хотите удалить эту тему? Если вы хотите использовать ее снова, вам нужно будет повторно импортировать её."
 
 #: themes.cpp:327
 msgid "Something went wrong when attempting to delete the theme"
-msgstr ""
+msgstr "Что-то пошло не так при попытке удалить тему"
 
 #: themes.cpp:339
 msgid "Are you sure you want to use this theme? Please note that this will only take effect when MMEX is re-started."
-msgstr ""
+msgstr "Вы уверены, что хотите использовать эту тему? Обратите внимание, что это вступит в силу только тогда, когда MMEX будет перезапущен."
 
 #: transactionsupdatedialog.cpp:78
 msgid "Multi Transactions Update"
