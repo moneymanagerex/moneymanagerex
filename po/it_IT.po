@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-04-22 00:36+0300\n"
-"PO-Revision-Date: 2021-04-22 05:54\n"
+"PO-Revision-Date: 2021-04-22 07:13\n"
 "Last-Translator: \n"
 "Language-Team: Italian\n"
 "MIME-Version: 1.0\n"
@@ -2318,7 +2318,7 @@ msgstr "Mostra tutto eccetto le riconciliate"
 
 #: filtertransdialog.cpp:63
 msgid "Start of Financial Year"
-msgstr "Inizio dell'esercizio finanziario"
+msgstr "Inizio dell'Anno Finanziario"
 
 #: filtertransdialog.cpp:64
 msgid "Start of This Year"
@@ -2326,11 +2326,11 @@ msgstr "Inizio di questo anno"
 
 #: filtertransdialog.cpp:65
 msgid "Since 90 days ago"
-msgstr "90 giorni fa"
+msgstr "Da 90 giorni"
 
 #: filtertransdialog.cpp:66
 msgid "Since 30 days ago"
-msgstr "30 giorni fa"
+msgstr "Da 30 giorni"
 
 #: filtertransdialog.cpp:67
 msgid "Since Today"
