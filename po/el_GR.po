@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-04-22 00:36+0300\n"
-"PO-Revision-Date: 2021-04-21 21:46\n"
+"PO-Revision-Date: 2021-04-22 08:32\n"
 "Last-Translator: \n"
 "Language-Team: Greek\n"
 "MIME-Version: 1.0\n"
@@ -1385,7 +1385,7 @@ msgstr "Εμφάνιση της περίληψης των κατηγοριών �
 #: budgetingpanel.cpp:172
 #, c-format
 msgid "Financial Year: %s - %li"
-msgstr ""
+msgstr "Οικονομικό Έτος: %s - %li"
 
 #: budgetingpanel.cpp:176 reports/budget.cpp:92
 #, c-format
@@ -1400,7 +1400,7 @@ msgstr "Μήνας: %s"
 #: budgetingpanel.cpp:186
 #, c-format
 msgid "%s    Start Date of: %s"
-msgstr ""
+msgstr "%s    Ημερομηνία έναρξης της: %s"
 
 #: budgetingpanel.cpp:189
 #, c-format
@@ -2320,23 +2320,23 @@ msgstr "Όλα Εκτός Επανασύνδεσης"
 
 #: filtertransdialog.cpp:63
 msgid "Start of Financial Year"
-msgstr ""
+msgstr "Έναρξη οικονομικού έτους"
 
 #: filtertransdialog.cpp:64
 msgid "Start of This Year"
-msgstr ""
+msgstr "Έναρξη αυτού του έτους"
 
 #: filtertransdialog.cpp:65
 msgid "Since 90 days ago"
-msgstr ""
+msgstr "Από 90 ημέρες πριν"
 
 #: filtertransdialog.cpp:66
 msgid "Since 30 days ago"
-msgstr ""
+msgstr "Από 30 ημέρες πριν"
 
 #: filtertransdialog.cpp:67
 msgid "Since Today"
-msgstr ""
+msgstr "Από Σήμερα"
 
 #: filtertransdialog.cpp:174 transactionsupdatedialog.cpp:108
 msgid "Specify"
@@ -2387,35 +2387,35 @@ msgstr "Εύρος Ποσότητας"
 
 #: filtertransdialog.cpp:345
 msgid "Settings"
-msgstr ""
+msgstr "Ρυθμίσεις"
 
 #: filtertransdialog.cpp:366 filtertransdialog.cpp:694
 #: filtertransdialog.cpp:739 filtertransdialog.cpp:948
 #: filtertransdialog.cpp:1083 filtertransdialog.cpp:1345
 #, c-format
 msgid "%i: Empty"
-msgstr ""
+msgstr "%i: Κενό"
 
 #: filtertransdialog.cpp:375
 msgid "Save active values into current Preset selection"
-msgstr ""
+msgstr "Αποθήκευση ενεργών τιμών στην τρέχουσα επιλογή προεπιλογών"
 
 #: filtertransdialog.cpp:380
 msgid "Clear all fields for current Preset selection"
-msgstr ""
+msgstr "Εκκαθάριση όλων των πεδίων για την τρέχουσα προκαθορισμένη επιλογή"
 
 #: filtertransdialog.cpp:696 filtertransdialog.cpp:1347
 msgid "Please Enter"
-msgstr ""
+msgstr "Παρακαλούμε εισάγετε"
 
 #: filtertransdialog.cpp:696 filtertransdialog.cpp:1347
 msgid "Setting Name"
-msgstr ""
+msgstr "Όνομα Ρύθμισης"
 
 #: filtertransdialog.cpp:700 filtertransdialog.cpp:1343
 #: filtertransdialog.cpp:1351
 msgid "Could not save settings"
-msgstr ""
+msgstr "Αδυναμία αποθήκευσης των ρυθμίσεων"
 
 #: filtertransdialog.cpp:700 filtertransdialog.cpp:915
 #: filtertransdialog.cpp:929 filtertransdialog.cpp:1343
@@ -2430,7 +2430,7 @@ msgstr "Λεπτομέρειες φιλτραρίσματος: "
 
 #: filtertransdialog.cpp:951
 msgid "Label"
-msgstr ""
+msgstr "Ετικέτα"
 
 #: filtertransdialog.cpp:967
 msgid "Since"
@@ -2625,7 +2625,7 @@ msgstr "Παράμετροι:"
 #: images_list.cpp:318
 #, c-format
 msgid "Metadata JSON in Theme '%s' cannot be parsed and looks badly constructed, please correct."
-msgstr ""
+msgstr "Τα μεταδεδομένα JSON στο θέμα '%s' δεν μπορούν να αναλυθούν και φαίνονται άσχημα κατασκευασμένα, παρακαλούμε διορθώστε τα."
 
 #: images_list.cpp:319 images_list.cpp:402 images_list.cpp:413
 #: images_list.cpp:448 images_list.cpp:473 images_list.cpp:479
@@ -2636,12 +2636,12 @@ msgstr "Προειδοποίηση"
 #: images_list.cpp:401
 #, c-format
 msgid "File '%s' missing or invalid in chosen theme '%s'"
-msgstr ""
+msgstr "Το αρχείο '%s' λείπει ή είναι μη έγκυρα από το επιλεγμένο θέμα '%s'"
 
 #: images_list.cpp:412
 #, c-format
 msgid "Metadata '%s' missing in chosen theme '%s'"
-msgstr ""
+msgstr "Τα μεταδεδομένα '%s' λείπουν από το επιλεγμένο θέμα '%s'"
 
 #: images_list.cpp:445
 msgid "and more..."
@@ -4248,7 +4248,7 @@ msgstr ""
 
 #: mmframe.cpp:1517 mmframe.cpp:2440 optionsettingsview.cpp:273 themes.cpp:144
 msgid "Theme Manager"
-msgstr ""
+msgstr "Διαχειριστής Θεμάτων"
 
 #: mmframe.cpp:1523
 msgid "Transaction Report &Filter..."
