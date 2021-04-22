@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-04-22 00:36+0300\n"
-"PO-Revision-Date: 2021-04-21 21:46\n"
+"PO-Revision-Date: 2021-04-22 07:33\n"
 "Last-Translator: \n"
 "Language-Team: Hebrew\n"
 "MIME-Version: 1.0\n"
@@ -1390,7 +1390,7 @@ msgstr "הצגת תמצית סוג-אב תקציב"
 #: budgetingpanel.cpp:172
 #, c-format
 msgid "Financial Year: %s - %li"
-msgstr ""
+msgstr "שנת כספים: %s - %li"
 
 #: budgetingpanel.cpp:176 reports/budget.cpp:92
 #, c-format
@@ -1405,7 +1405,7 @@ msgstr "חודש: %s"
 #: budgetingpanel.cpp:186
 #, c-format
 msgid "%s    Start Date of: %s"
-msgstr ""
+msgstr "%s    תאריך התחלה: %s"
 
 #: budgetingpanel.cpp:189
 #, c-format
@@ -2326,23 +2326,23 @@ msgstr "הכל למעט מותאמים"
 
 #: filtertransdialog.cpp:63
 msgid "Start of Financial Year"
-msgstr ""
+msgstr "תחילת שנה פיננסית"
 
 #: filtertransdialog.cpp:64
 msgid "Start of This Year"
-msgstr ""
+msgstr "תחילת שנה זו"
 
 #: filtertransdialog.cpp:65
 msgid "Since 90 days ago"
-msgstr ""
+msgstr "90 יום אחרונים"
 
 #: filtertransdialog.cpp:66
 msgid "Since 30 days ago"
-msgstr ""
+msgstr "30 יום אחרונים"
 
 #: filtertransdialog.cpp:67
 msgid "Since Today"
-msgstr ""
+msgstr "להיום"
 
 #: filtertransdialog.cpp:174 transactionsupdatedialog.cpp:108
 msgid "Specify"
@@ -2393,14 +2393,14 @@ msgstr "טווח סכומים"
 
 #: filtertransdialog.cpp:345
 msgid "Settings"
-msgstr ""
+msgstr "הגדרות"
 
 #: filtertransdialog.cpp:366 filtertransdialog.cpp:694
 #: filtertransdialog.cpp:739 filtertransdialog.cpp:948
 #: filtertransdialog.cpp:1083 filtertransdialog.cpp:1345
 #, c-format
 msgid "%i: Empty"
-msgstr ""
+msgstr "%i: ריק"
 
 #: filtertransdialog.cpp:375
 msgid "Save active values into current Preset selection"
@@ -6519,7 +6519,7 @@ msgstr "מחיקה"
 
 #: themes.cpp:189
 msgid "Use"
-msgstr ""
+msgstr "שימוש"
 
 #: themes.cpp:235
 msgid "No description available"
