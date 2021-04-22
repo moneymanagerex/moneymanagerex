@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-04-22 00:36+0300\n"
-"PO-Revision-Date: 2021-04-22 07:49\n"
+"PO-Revision-Date: 2021-04-22 13:09\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -2328,15 +2328,15 @@ msgstr "Début de cette année"
 
 #: filtertransdialog.cpp:65
 msgid "Since 90 days ago"
-msgstr "Depuis 90 jours"
+msgstr "Au cours des 90 jours précédents"
 
 #: filtertransdialog.cpp:66
 msgid "Since 30 days ago"
-msgstr "Depuis 30 jours"
+msgstr "Auu cours des 30 jours précédents"
 
 #: filtertransdialog.cpp:67
 msgid "Since Today"
-msgstr "Depuis aujourd'hui"
+msgstr "Aujourd'hui"
 
 #: filtertransdialog.cpp:174 transactionsupdatedialog.cpp:108
 msgid "Specify"
@@ -2398,15 +2398,15 @@ msgstr "%i: Vide"
 
 #: filtertransdialog.cpp:375
 msgid "Save active values into current Preset selection"
-msgstr ""
+msgstr "Enregistrer les valeurs actives dans la sélection prédéfinie actuelle"
 
 #: filtertransdialog.cpp:380
 msgid "Clear all fields for current Preset selection"
-msgstr ""
+msgstr "Effacer tous les champs de la sélection prédéfinie actuelle"
 
 #: filtertransdialog.cpp:696 filtertransdialog.cpp:1347
 msgid "Please Enter"
-msgstr "Veuillez entrer"
+msgstr "Saisir s'il vous plait"
 
 #: filtertransdialog.cpp:696 filtertransdialog.cpp:1347
 msgid "Setting Name"
@@ -2430,7 +2430,7 @@ msgstr "Détail du Filtre: "
 
 #: filtertransdialog.cpp:951
 msgid "Label"
-msgstr "Nom"
+msgstr "Légende"
 
 #: filtertransdialog.cpp:967
 msgid "Since"
@@ -2626,7 +2626,7 @@ msgstr "Paramètres :"
 #: images_list.cpp:318
 #, c-format
 msgid "Metadata JSON in Theme '%s' cannot be parsed and looks badly constructed, please correct."
-msgstr ""
+msgstr "Les métadonnées JSON dans le thème '%s' ne peuvent pas être analysées et semblent corrompues, veuillez corriger."
 
 #: images_list.cpp:319 images_list.cpp:402 images_list.cpp:413
 #: images_list.cpp:448 images_list.cpp:473 images_list.cpp:479
@@ -2637,12 +2637,12 @@ msgstr "Attention"
 #: images_list.cpp:401
 #, c-format
 msgid "File '%s' missing or invalid in chosen theme '%s'"
-msgstr ""
+msgstr "Fichier '%s' manquant ou non valide dans le thème choisi '%s'"
 
 #: images_list.cpp:412
 #, c-format
 msgid "Metadata '%s' missing in chosen theme '%s'"
-msgstr ""
+msgstr "Métadonnées '%s' manquantes dans le thème choisi '%s'"
 
 #: images_list.cpp:445
 msgid "and more..."
@@ -5563,11 +5563,11 @@ msgstr "Voir les Catégories du Budget avec les Résumés"
 
 #: optionsettingsview.cpp:127
 msgid "Budget Offset (days):"
-msgstr ""
+msgstr "Compensation budgétaire (jours):"
 
 #: optionsettingsview.cpp:131
 msgid "Advance or retard the start date from the 1st of the month or year by the number of days"
-msgstr ""
+msgstr "Avancer ou retarder la date de début du 1er du mois ou de l'année par le nombre de jours"
 
 #: optionsettingsview.cpp:139
 msgid "Ignore Future Transactions"
@@ -5583,7 +5583,7 @@ msgstr "Apparence de l'interface utilisateur"
 
 #: optionsettingsview.cpp:192
 msgid "Open Theme Manager"
-msgstr "Gestionnaire de thème"
+msgstr "Ouvrir le gestionnaire de thème"
 
 #: optionsettingsview.cpp:194
 msgid "Style Template"
@@ -6605,15 +6605,6 @@ msgstr "Préciser à qui va cette opération"
 #: transdialog.cpp:1282 usertransactionpanel.cpp:95
 msgid "Specify the date of the transaction"
 msgstr "Préciser la date de l'opération"
-
-#: transdialog.cpp:1319
-msgid "Clear color"
-msgstr "Effacer la couleur"
-
-#: transdialog.cpp:1324
-#, c-format
-msgid "Color #%i"
-msgstr "Couleur #%i"
 
 #: usertransactionpanel.cpp:114
 msgid "Specify the associated Account that will contain this transaction"
