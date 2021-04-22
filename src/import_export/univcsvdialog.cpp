@@ -1719,13 +1719,15 @@ void mmUnivCSVDialog::parseToken(int index, const wxString& orig_token, tran_hol
     case UNIV_CSV_WITHDRAWAL:
         if (token.IsEmpty())
             return;
-        // do nothing if an amount has already been stored by a previous call
+
+        // do nothing if an amount has already been stored by a previous call #3168
         if (holder.Amount != 0.0)
             break;
 
-        mmTrimAmount(token, decimal_, ".").ToCDouble(&amount);
+        if (!mmTrimAmount(token, decimal_, ".").ToCDouble(&amount))
+            break;
 
-        if (amount <= 0.0)
+        if (amount == 0.0)
             break;
 
         holder.Amount = fabs(amount);
@@ -1735,13 +1737,15 @@ void mmUnivCSVDialog::parseToken(int index, const wxString& orig_token, tran_hol
     case UNIV_CSV_DEPOSIT:
         if (token.IsEmpty())
             return;
-        // do nothing if an amount has already been stored by a previous call
+
+        // do nothing if an amount has already been stored by a previous call #3168
         if (holder.Amount != 0.0)
             break;
 
-        mmTrimAmount(token, decimal_, ".").ToCDouble(&amount);
+        if (!mmTrimAmount(token, decimal_, ".").ToCDouble(&amount))
+            break;
 
-        if (amount <= 0.0)
+        if (amount == 0.0)
             break;
 
         holder.Amount = fabs(amount);
