@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-04-22 00:36+0300\n"
-"PO-Revision-Date: 2021-04-21 21:46\n"
+"PO-Revision-Date: 2021-04-22 05:42\n"
 "Last-Translator: \n"
 "Language-Team: Italian\n"
 "MIME-Version: 1.0\n"
@@ -1385,7 +1385,7 @@ msgstr "Mostra riepilogo Categorie di Budget"
 #: budgetingpanel.cpp:172
 #, c-format
 msgid "Financial Year: %s - %li"
-msgstr ""
+msgstr "Anno finanziario: %s - %li"
 
 #: budgetingpanel.cpp:176 reports/budget.cpp:92
 #, c-format
@@ -1400,7 +1400,7 @@ msgstr "Mese: %s"
 #: budgetingpanel.cpp:186
 #, c-format
 msgid "%s    Start Date of: %s"
-msgstr ""
+msgstr "Data di inizio %s: %s"
 
 #: budgetingpanel.cpp:189
 #, c-format
@@ -2318,23 +2318,23 @@ msgstr "Mostra tutto eccetto le riconciliate"
 
 #: filtertransdialog.cpp:63
 msgid "Start of Financial Year"
-msgstr ""
+msgstr "Inizio dell'esercizio finanziario"
 
 #: filtertransdialog.cpp:64
 msgid "Start of This Year"
-msgstr ""
+msgstr "Inizio di questo anno"
 
 #: filtertransdialog.cpp:65
 msgid "Since 90 days ago"
-msgstr ""
+msgstr "90 giorni fa"
 
 #: filtertransdialog.cpp:66
 msgid "Since 30 days ago"
-msgstr ""
+msgstr "30 giorni fa"
 
 #: filtertransdialog.cpp:67
 msgid "Since Today"
-msgstr ""
+msgstr "Da Oggi"
 
 #: filtertransdialog.cpp:174 transactionsupdatedialog.cpp:108
 msgid "Specify"
@@ -2385,14 +2385,14 @@ msgstr "Intervallo Importo"
 
 #: filtertransdialog.cpp:345
 msgid "Settings"
-msgstr ""
+msgstr "Impostazioni"
 
 #: filtertransdialog.cpp:366 filtertransdialog.cpp:694
 #: filtertransdialog.cpp:739 filtertransdialog.cpp:948
 #: filtertransdialog.cpp:1083 filtertransdialog.cpp:1345
 #, c-format
 msgid "%i: Empty"
-msgstr ""
+msgstr "%i: Vuoto"
 
 #: filtertransdialog.cpp:375
 msgid "Save active values into current Preset selection"
