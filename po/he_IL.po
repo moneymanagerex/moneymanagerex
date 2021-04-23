@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-04-22 00:36+0300\n"
-"PO-Revision-Date: 2021-04-22 07:49\n"
+"PO-Revision-Date: 2021-04-23 08:11\n"
 "Last-Translator: \n"
 "Language-Team: Hebrew\n"
 "MIME-Version: 1.0\n"
@@ -2634,7 +2634,7 @@ msgstr "משתנים:"
 #: images_list.cpp:318
 #, c-format
 msgid "Metadata JSON in Theme '%s' cannot be parsed and looks badly constructed, please correct."
-msgstr ""
+msgstr "מטה נתוני JSON בערכת נושא '%s' לא ניתנים לנתוח ונראים בנויים בצורה גרועה, נא לתקן."
 
 #: images_list.cpp:319 images_list.cpp:402 images_list.cpp:413
 #: images_list.cpp:448 images_list.cpp:473 images_list.cpp:479
@@ -6531,7 +6531,7 @@ msgstr "נא לבחור קובץ ערכת נושא לייבוא"
 
 #: themes.cpp:298
 msgid "The theme already exists, do you still want to import and overwrite the existing theme?"
-msgstr ""
+msgstr "ערכת הנושא כבר קיימת, האם לייבא ולדרוס את ערכת הנושא הקיימת?"
 
 #: themes.cpp:308
 msgid "Something went wrong importing the theme"
@@ -6539,7 +6539,7 @@ msgstr "משהו השתבש בעת הניסיון לייבא את ערכת הנ�
 
 #: themes.cpp:320
 msgid "Are you sure you want to delete this theme? If you want to use it again you will need to re-import it."
-msgstr ""
+msgstr "האם למחוק ערכת נושא זו? לשימוש חוזר יהיה צורך לייבא אותה שוב."
 
 #: themes.cpp:327
 msgid "Something went wrong when attempting to delete the theme"
@@ -6547,7 +6547,7 @@ msgstr "משהו השתבש בעת הניסיון למחוק את ערכת הנ�
 
 #: themes.cpp:339
 msgid "Are you sure you want to use this theme? Please note that this will only take effect when MMEX is re-started."
-msgstr ""
+msgstr "האם להשתמש בערכת נושא זו? לתשומת לב השינוי ייכנס לתוקף רק לאחר אתחול MMEX מחדש."
 
 #: transactionsupdatedialog.cpp:78
 msgid "Multi Transactions Update"
@@ -6625,15 +6625,6 @@ msgstr "הגדרה למי הולכת התנועה"
 #: transdialog.cpp:1282 usertransactionpanel.cpp:95
 msgid "Specify the date of the transaction"
 msgstr "הזנת את תאריך התנועה"
-
-#: transdialog.cpp:1319
-msgid "Clear color"
-msgstr "ניקוי צבע"
-
-#: transdialog.cpp:1324
-#, c-format
-msgid "Color #%i"
-msgstr "צבע #%i"
 
 #: usertransactionpanel.cpp:114
 msgid "Specify the associated Account that will contain this transaction"
