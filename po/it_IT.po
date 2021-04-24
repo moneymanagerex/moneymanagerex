@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-04-22 00:36+0300\n"
-"PO-Revision-Date: 2021-04-24 15:57\n"
+"PO-Revision-Date: 2021-04-24 16:12\n"
 "Last-Translator: \n"
 "Language-Team: Italian\n"
 "MIME-Version: 1.0\n"
@@ -1939,7 +1939,9 @@ msgstr "Conferma Cancellazione Campi Personalizzati"
 msgid "This function will massive search & replace for \"%s\" custom field values\n"
 "It will match & replace only complete field value, no partial or middle-value replaces allowed\n"
 "Please consider that there isn't any validation!"
-msgstr ""
+msgstr "Questa funzione cercherà e sostituirà in modo massiccio i valori del campo personalizzato \"%s\" \n"
+"Confronterà la corrispondenza e sostituirà solo il completo valore del campo, non sono consentite sostituzioni parziali o intermedie\n"
+"Si prega di tenere ben presente che non c'è alcuna convalida!"
 
 #: customfieldlistdialog.cpp:191
 msgid "Confirm Custom Field Content Update"
@@ -1975,7 +1977,7 @@ msgstr "Vuoi svuotare i campi?\n"
 #, c-format
 msgid "%zu occurrence founded and replaced!"
 msgid_plural "%zu occurrences founded and replaced!"
-msgstr[0] ""
+msgstr[0] "%zu elementi trovati e sostituiti!"
 msgstr[1] ""
 
 #: customfieldlistdialog.cpp:263
@@ -2649,7 +2651,7 @@ msgstr "e altro..."
 #: images_list.cpp:447
 #, c-format
 msgid "There are %d missing or invalid icons in chosen theme '%s': %s"
-msgstr ""
+msgstr "Ci sono %d icone mancanti o non valide nel tema scelto '%s': %s"
 
 #: images_list.cpp:472
 #, c-format
@@ -4253,7 +4255,7 @@ msgstr "Gestore dei temi"
 
 #: mmframe.cpp:1523
 msgid "Transaction Report &Filter..."
-msgstr ""
+msgstr "&Filtro Resoconto Operazioni..."
 
 #: mmframe.cpp:1523 mmframe.cpp:1686
 msgid "Transaction Report Filter"
@@ -4261,7 +4263,7 @@ msgstr "Filtro Resoconto Operazioni"
 
 #: mmframe.cpp:1529
 msgid "General Report &Manager..."
-msgstr ""
+msgstr "&Manager Generale Resoconti..."
 
 #: mmframe.cpp:1533
 msgid "C&ustom Fields Manager..."
@@ -6754,7 +6756,7 @@ msgstr "MMEX utilizza i prodotti di supporto seguenti:"
 
 #: util.cpp:961
 msgid "Build using:"
-msgstr ""
+msgstr "Realizzato usando:"
 
 #: util.cpp:982
 msgid "Running on:"
