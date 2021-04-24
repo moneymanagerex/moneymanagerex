@@ -37,6 +37,96 @@ mmExportTransaction::mmExportTransaction()
 mmExportTransaction::~mmExportTransaction()
 {}
 
+const wxString mmExportTransaction::getTransactionCSV(const Model_Checking::Full_Data& full_tran
+    , const wxString& dateMask, bool reverce)
+{
+    wxString buffer = "";
+    bool transfer = Model_Checking::is_transfer(full_tran.TRANSCODE);
+    const wxString delimiter = Model_Infotable::instance().GetStringInfo("DELIMITER", mmex::DEFDELIMTER);
+
+    wxString categ = full_tran.m_splits.empty() ? full_tran.CATEGNAME : "";
+    wxString transNum = full_tran.TRANSACTIONNUMBER;
+    wxString notes = (full_tran.NOTES);
+    wxString payee = full_tran.PAYEENAME;
+
+    const auto acc_in = Model_Account::instance().get(full_tran.ACCOUNTID);
+    const auto curr_in = Model_Currency::instance().get(acc_in->CURRENCYID);
+    wxString account = acc_in->ACCOUNTNAME;
+    wxString currency = curr_in->CURRENCY_SYMBOL;
+
+    if (transfer)
+    {
+        const auto acc_to = Model_Account::instance().get(full_tran.TOACCOUNTID);
+        const auto curr_to = Model_Currency::instance().get(acc_to->CURRENCYID);
+
+        payee = wxString::Format("%s %s %s -> %s %s %s"
+            , wxString::FromCDouble(full_tran.TRANSAMOUNT, 2), curr_in->CURRENCY_SYMBOL, acc_in->ACCOUNTNAME
+            , wxString::FromCDouble(full_tran.TOTRANSAMOUNT, 2), curr_to->CURRENCY_SYMBOL, acc_to->ACCOUNTNAME);
+        //Transaction number used to make transaction unique
+        // to proper merge transfer records
+        if (transNum.IsEmpty() && notes.IsEmpty())
+            transNum = wxString::Format("#%i", full_tran.id());
+
+        if (reverce)
+        {
+            account = acc_to->ACCOUNTNAME;
+            currency = curr_to->CURRENCY_SYMBOL;
+        }
+    }
+
+    if (full_tran.has_split())
+    {
+        for (const auto &split_entry : full_tran.m_splits)
+        {
+            double valueSplit = split_entry.SPLITTRANSAMOUNT;
+            if (Model_Checking::type(full_tran) == Model_Checking::WITHDRAWAL)
+                valueSplit = -valueSplit;
+            const wxString split_amount = wxString::FromCDouble(valueSplit, 2);
+            const wxString split_categ = Model_Category::full_name(split_entry.CATEGID, split_entry.SUBCATEGID);
+
+            buffer << inQuotes(wxString::Format("%i", full_tran.TRANSID), delimiter) << delimiter;
+            buffer << inQuotes(Model_Checking::TRANSDATE(full_tran).Format(dateMask), delimiter) << delimiter;
+            buffer << inQuotes(full_tran.STATUS, delimiter) << delimiter;
+            buffer << inQuotes(full_tran.TRANSCODE, delimiter) << delimiter;
+
+            buffer << inQuotes(acc_in->ACCOUNTNAME, delimiter) << delimiter;
+
+            buffer << inQuotes(payee, delimiter) << delimiter;
+            buffer << inQuotes(split_categ, delimiter) << delimiter;
+
+            buffer << inQuotes(split_amount, delimiter) << delimiter;
+            buffer << inQuotes(curr_in->CURRENCY_SYMBOL, delimiter) << delimiter;
+            buffer << inQuotes(transNum, delimiter) << delimiter;
+            buffer << inQuotes(notes, delimiter);
+
+            buffer << "\n";
+        }
+    }
+    else
+    {
+        buffer << inQuotes(wxString::Format("%i", full_tran.TRANSID), delimiter) << delimiter;
+        buffer << inQuotes(Model_Checking::TRANSDATE(full_tran).Format(dateMask), delimiter) << delimiter;
+        buffer << inQuotes(full_tran.STATUS, delimiter) << delimiter;
+        buffer << inQuotes(full_tran.TRANSCODE, delimiter) << delimiter;
+
+        buffer << inQuotes(account, delimiter) << delimiter;
+
+        buffer << inQuotes(payee, delimiter) << delimiter;
+        buffer << inQuotes(categ, delimiter) << delimiter;
+        double value = Model_Checking::balance(full_tran
+            , (reverce ? full_tran.TOACCOUNTID : full_tran.ACCOUNTID));
+        const wxString& s = wxString::FromCDouble(value, 2);
+        buffer << inQuotes(s, delimiter) << delimiter;
+        buffer << inQuotes(currency, delimiter) << delimiter;
+        buffer << inQuotes(transNum, delimiter) << delimiter;
+        buffer << inQuotes(notes, delimiter);
+
+        buffer << "\n";
+    }
+
+    return buffer;
+}
+
 const wxString mmExportTransaction::getTransactionQIF(const Model_Checking::Full_Data& full_tran
     , const wxString& dateMask, bool reverce)
 {

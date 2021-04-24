@@ -29,6 +29,7 @@ public:
     mmExportTransaction();
 
     static const wxString getTransactionQIF(const Model_Checking::Full_Data & tran, const wxString& dateMask, bool reverce = false);
+    static const wxString getTransactionCSV(const Model_Checking::Full_Data & tran, const wxString& dateMask, bool reverce = false);
     static const wxString getAccountHeaderQIF(int accountID);
     static const wxString getCategoriesQIF();
     static const std::unordered_map <wxString, int> m_QIFaccountTypes;
