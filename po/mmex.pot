@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MMEX\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2021-04-22 00:36+0300\n"
+"POT-Creation-Date: 2021-04-24 14:07+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -111,7 +111,7 @@ msgstr ""
 msgid "Enter the initial balance in this account."
 msgstr ""
 
-#: accountdialog.cpp:173 import_export/univcsvdialog.cpp:1820
+#: accountdialog.cpp:173 import_export/univcsvdialog.cpp:1824
 msgid "Currency:"
 msgstr ""
 
@@ -3133,7 +3133,7 @@ msgid "Account does not exist"
 msgstr ""
 
 #: import_export/univcsvdialog.cpp:678 import_export/univcsvdialog.cpp:749
-#: import_export/univcsvdialog.cpp:1836
+#: import_export/univcsvdialog.cpp:1840
 #, c-format
 msgid "Positive if type has '%s'"
 msgstr ""
@@ -3282,11 +3282,11 @@ msgstr ""
 msgid "CSV Files (*.csv)"
 msgstr ""
 
-#: import_export/univcsvdialog.cpp:1832
+#: import_export/univcsvdialog.cpp:1836
 msgid "Please, type the word indicating positive values in your CSV file, e.g. 'debit'"
 msgstr ""
 
-#: import_export/univcsvdialog.cpp:1832
+#: import_export/univcsvdialog.cpp:1836
 msgid "Enter a value"
 msgstr ""
 
