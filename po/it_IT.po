@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-04-22 00:36+0300\n"
-"PO-Revision-Date: 2021-04-24 15:46\n"
+"PO-Revision-Date: 2021-04-24 15:57\n"
 "Last-Translator: \n"
 "Language-Team: Italian\n"
 "MIME-Version: 1.0\n"
@@ -1123,12 +1123,12 @@ msgstr "Categorie"
 
 #: billsdepositsdialog.cpp:1467 transdialog.cpp:1320
 msgid "Clear color"
-msgstr ""
+msgstr "Rimuovi colore"
 
 #: billsdepositsdialog.cpp:1472 transdialog.cpp:1325
 #, c-format
 msgid "Color #%i"
-msgstr ""
+msgstr "Colore #%i"
 
 #: billsdepositsdialog.h:56
 msgid "New Recurring Transaction"
@@ -1890,7 +1890,7 @@ msgstr ""
 
 #: customfieldeditdialog.cpp:181
 msgid "Select a value to represent the item on a panel"
-msgstr ""
+msgstr "Selezionare un valore per rappresentare l'elemento su un pannello"
 
 #: customfieldeditdialog.cpp:223
 msgid "Changing field type will delete all content!"
@@ -1915,7 +1915,7 @@ msgstr "Nuovo/Modifica Campo Personalizzato"
 
 #: customfieldlistdialog.cpp:52
 msgid "#"
-msgstr ""
+msgstr "#"
 
 #: customfieldlistdialog.cpp:55
 msgid "Properties"
@@ -2644,7 +2644,7 @@ msgstr "Metadati '%s' mancanti nel tema scelto '%s'"
 
 #: images_list.cpp:445
 msgid "and more..."
-msgstr ""
+msgstr "e altro..."
 
 #: images_list.cpp:447
 #, c-format
@@ -3740,7 +3740,8 @@ msgstr "Conferma eliminazione Operazione"
 #, c-format
 msgid "Locked transaction to date: %s\n\n"
 "Reconciled transactions."
-msgstr ""
+msgstr "Transazione bloccata alla data: %s\n\n"
+"Transazioni Riconciliate."
 
 #: mmchecking_list.cpp:837 transdialog.cpp:723 transdialog.cpp:756
 msgid "MMEX Transaction Check"
@@ -3818,7 +3819,7 @@ msgstr "Inserire una stringa da trovare nelle note operazioni"
 
 #: mmcheckingpanel.cpp:430
 msgid "Full Transactions Report"
-msgstr ""
+msgstr "Resoconto Operazioni"
 
 #: mmcheckingpanel.cpp:432
 #, c-format
@@ -4112,7 +4113,7 @@ msgstr "Mostra/Nasconde i conti titoli nel pannello di navigazione"
 
 #: mmframe.cpp:1388
 msgid "Budgets: As Financial &Years"
-msgstr ""
+msgstr "Budget: per Anno &Finanziario"
 
 #: mmframe.cpp:1388
 msgid "Display Budgets in Financial Year Format"
@@ -4152,7 +4153,7 @@ msgstr "Schermo Intero"
 
 #: mmframe.cpp:1417
 msgid "Switch Application &Language"
-msgstr ""
+msgstr "Cambia &Lingua dell'Applicazione"
 
 #: mmframe.cpp:1418
 msgid "Change language used for MMEX GUI"
@@ -4164,11 +4165,11 @@ msgstr "impostazioni predefinite"
 
 #: mmframe.cpp:1443
 msgid "&Home Page"
-msgstr ""
+msgstr "&Pagina iniziale"
 
 #: mmframe.cpp:1443 mmframe.cpp:1678
 msgid "Show Home Page"
-msgstr ""
+msgstr "Visualizza Pagina Iniziale"
 
 #: mmframe.cpp:1452
 msgid "Change the account type of an account."
@@ -4180,7 +4181,7 @@ msgstr "Elimina un conto dal Database"
 
 #: mmframe.cpp:1468
 msgid "Download Ra&tes..."
-msgstr ""
+msgstr "Aggiornamento &tassi..."
 
 #: mmframe.cpp:1468 mmframe.cpp:1705
 msgid "Download Currency and Stock rates"
@@ -4200,7 +4201,7 @@ msgstr "Organizza i Beneficiari"
 
 #: mmframe.cpp:1482
 msgid "Organize Curre&ncy..."
-msgstr ""
+msgstr "&Gestione Valuta..."
 
 #: mmframe.cpp:1482 mmframe.cpp:1684
 msgid "Organize Currency"
@@ -4220,7 +4221,7 @@ msgstr "Riassegna tutti i beneficiari ad un altro"
 
 #: mmframe.cpp:1492
 msgid "Re&location of..."
-msgstr ""
+msgstr "Sostituzione di..."
 
 #: mmframe.cpp:1493
 msgid "Relocate Categories && Payees"
@@ -4264,7 +4265,7 @@ msgstr ""
 
 #: mmframe.cpp:1533
 msgid "C&ustom Fields Manager..."
-msgstr ""
+msgstr "Gestore C&ampi Personalizzati..."
 
 #: mmframe.cpp:1533
 msgid "Custom Fields Manager"
@@ -4296,7 +4297,7 @@ msgstr "Cambia password ad un database criptato"
 
 #: mmframe.cpp:1552
 msgid "&Optimize Database"
-msgstr ""
+msgstr "&Ottimizza Database"
 
 #: mmframe.cpp:1553
 msgid "Optimize database space and performance"
@@ -4304,7 +4305,7 @@ msgstr "Ottimizza lo spazio e le performance del database"
 
 #: mmframe.cpp:1555
 msgid "Database De&bug"
-msgstr ""
+msgstr "De&bug del Database"
 
 #: mmframe.cpp:1556
 msgid "Generate database report or fix errors"
