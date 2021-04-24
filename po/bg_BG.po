@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-03-27 21:03+0300\n"
-"PO-Revision-Date: 2021-03-27 18:12\n"
+"PO-Revision-Date: 2021-04-24 15:07+0300\n"
 "Last-Translator: \n"
 "Language-Team: Bulgarian\n"
 "MIME-Version: 1.0\n"
@@ -12,9 +12,6 @@ msgstr ""
 "X-Generator: Poedit 2.4.2\n"
 "X-Poedit-Basepath: ../src\n"
 "X-Poedit-KeywordsList: _;wxTRANSLATE;wxPLURAL:1,2;wxGETTEXT_IN_CONTEXT:1c,2;wxGETTEXT_IN_CONTEXT_PLURAL:1c,2,3\n"
-"X-Poedit-SearchPath-0: .\n"
-"X-Poedit-SearchPathExcluded-0: db/DB_Upgrade.h\n"
-"X-Poedit-SearchPathExcluded-1: db/DB_Table_Currencyformats_V1.h\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Crowdin-Project: moneymanagerex\n"
 "X-Crowdin-Project-ID: 342055\n"
@@ -22,6 +19,9 @@ msgstr ""
 "X-Crowdin-File: /master/po/mmex.pot\n"
 "X-Crowdin-File-ID: 470\n"
 "Language: bg_BG\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: db/DB_Upgrade.h\n"
+"X-Poedit-SearchPathExcluded-1: db/DB_Table_Currencyformats_V1.h\n"
 
 #: aboutdialog.cpp:54
 msgid "License agreement"
@@ -439,7 +439,9 @@ msgid "Invalid Transaction"
 msgstr ""
 
 #: assetdialog.cpp:409
-msgid "Asset Account not found.\n\n"
+msgid ""
+"Asset Account not found.\n"
+"\n"
 "Would you want to create one?"
 msgstr ""
 
@@ -583,7 +585,9 @@ msgid "Change in Value: %s %s"
 msgstr "Промяна в стойността: %s %s"
 
 #: assetspanel.cpp:767
-msgid "This asset does not have its own account\n\n"
+msgid ""
+"This asset does not have its own account\n"
+"\n"
 "Multiple transactions for this asset are not recommended."
 msgstr ""
 
@@ -592,8 +596,12 @@ msgid "Asset Management"
 msgstr "Управление на активи"
 
 #: assetspanel.cpp:788
-msgid "Account \t Date\t   Value\n\n"
-msgstr "Сметка           Дата        Стойност\n\n"
+msgid ""
+"Account \t Date\t   Value\n"
+"\n"
+msgstr ""
+"Сметка           Дата        Стойност\n"
+"\n"
 
 #: attachmentdialog.cpp:55 customfieldeditdialog.cpp:125
 #: customfieldlistdialog.cpp:54 general_report_manager.cpp:430
@@ -1055,27 +1063,32 @@ msgid "Period: Months"
 msgstr "Период: Месеци"
 
 #: billsdepositsdialog.cpp:1265
-msgid "Specify period in Days to activate.\n"
+msgid ""
+"Specify period in Days to activate.\n"
 "Becomes blank when not active."
 msgstr ""
 
 #: billsdepositsdialog.cpp:1274
-msgid "Specify period in Months to activate.\n"
+msgid ""
+"Specify period in Months to activate.\n"
 "Becomes blank when not active."
 msgstr ""
 
 #: billsdepositsdialog.cpp:1283
-msgid "Specify period in Days to activate.\n"
+msgid ""
+"Specify period in Days to activate.\n"
 "Leave blank when not active."
 msgstr ""
 
 #: billsdepositsdialog.cpp:1291
-msgid "Specify period in Months to activate.\n"
+msgid ""
+"Specify period in Months to activate.\n"
 "Leave blank when not active."
 msgstr ""
 
 #: billsdepositsdialog.cpp:1299
-msgid "Specify the number of payments to be made.\n"
+msgid ""
+"Specify the number of payments to be made.\n"
 "Leave blank if the payments continue forever."
 msgstr ""
 
@@ -1458,9 +1471,11 @@ msgid "Budget Year:"
 msgstr "Бюджетна година:"
 
 #: budgetyearentrydialog.cpp:78
-msgid "Specify the required year.\n"
+msgid ""
+"Specify the required year.\n"
 "Use Spin buttons to increase or decrease the year."
-msgstr "Посочи необходимата година.\n"
+msgstr ""
+"Посочи необходимата година.\n"
 "Ползвай бутона Завърти, за да увеличиш или намалиш годината."
 
 #: budgetyearentrydialog.cpp:85
@@ -1468,9 +1483,11 @@ msgid "Budget Month:"
 msgstr "Бюджетен месец:"
 
 #: budgetyearentrydialog.cpp:94
-msgid "Specify the required month.\n"
+msgid ""
+"Specify the required month.\n"
 "Use Spin buttons to increase or decrease the month."
-msgstr "Посочете нужния месец.\n"
+msgstr ""
+"Посочете нужния месец.\n"
 "Използвайте бутоните за разбъркване за да увеличите или намалите месеца."
 
 #: budgetyearentrydialog.cpp:101
@@ -1542,9 +1559,11 @@ msgid "Category with same name exists"
 msgstr "Съществува категория със същото име"
 
 #: categdialog.cpp:268
-msgid "Tip: If category added now, check bottom of list.\n"
+msgid ""
+"Tip: If category added now, check bottom of list.\n"
 "Category will be in sorted order next time dialog appears"
-msgstr "Съвет: Проверете най-долу в списъка за току-що добавана категория.\n"
+msgstr ""
+"Съвет: Проверете най-долу в списъка за току-що добавана категория.\n"
 "Категорията ще бъде подредена следващия път, когато прозореца се появи."
 
 #: categdialog.cpp:270 categdialog.cpp:294 categdialog.cpp:312
@@ -1568,15 +1587,19 @@ msgid "Sub-Category in use."
 msgstr "Под-категорията се използва."
 
 #: categdialog.cpp:320
-msgid "Tip: Change all transactions using this Category to\n"
+msgid ""
+"Tip: Change all transactions using this Category to\n"
 "another Category using the relocate command:"
-msgstr "Съвет: Променете всички транзакции използвайки тази Категория към\n"
+msgstr ""
+"Съвет: Променете всички транзакции използвайки тази Категория към\n"
 "друга категория използвайки командата за преместване:"
 
 #: categdialog.cpp:323
-msgid "Tip: Change all transactions using this Sub-Category to\n"
+msgid ""
+"Tip: Change all transactions using this Sub-Category to\n"
 "another Sub-Category using the relocate command:"
-msgstr "Съвет: Променете всички транзакции използвайки тази Под-Категория към\n"
+msgstr ""
+"Съвет: Променете всички транзакции използвайки тази Под-Категория към\n"
 "друга Под-Категория използвайки командата за преместване:"
 
 #: categdialog.cpp:326
@@ -1843,9 +1866,11 @@ msgid "Default"
 msgstr "Стандартно"
 
 #: customfieldeditdialog.cpp:155
-msgid "Enter the default for this field\n"
+msgid ""
+"Enter the default for this field\n"
 "For date/time insert 'Now' to make current date/time as default"
-msgstr "Въведете стойността по подразбиране за това поле\n"
+msgstr ""
+"Въведете стойността по подразбиране за това поле\n"
 "За дата/час - изпишете 'Now', за да направите текущата дата и час стандартни"
 
 #: customfieldeditdialog.cpp:159
@@ -1891,7 +1916,8 @@ msgid "Confirm Custom Field Deletion"
 msgstr ""
 
 #: customfieldlistdialog.cpp:194
-msgid "This function will massive update (search & replace for entire value, not inside value), please remind that there isn't any validation!\n"
+msgid ""
+"This function will massive update (search & replace for entire value, not inside value), please remind that there isn't any validation!\n"
 "Do you want to proceed?"
 msgstr ""
 
@@ -1910,7 +1936,8 @@ msgid "Update Custom Field Content"
 msgstr ""
 
 #: customfieldlistdialog.cpp:205
-msgid "Do you want to update blank content?\n"
+msgid ""
+"Do you want to update blank content?\n"
 "Press no if you want to abort replace procedure!"
 msgstr ""
 
@@ -1919,7 +1946,8 @@ msgid "Replace with"
 msgstr ""
 
 #: customfieldlistdialog.cpp:217
-msgid "Do you want to update to blank?\n"
+msgid ""
+"Do you want to update to blank?\n"
 "Press no if you want to abort replace procedure!"
 msgstr ""
 
@@ -2156,9 +2184,11 @@ msgstr "Грешка в базата данни!"
 
 #: dbupgrade.cpp:107
 #, c-format
-msgid "MMEX database version %i doesn't work with this MMEX version.\n"
+msgid ""
+"MMEX database version %i doesn't work with this MMEX version.\n"
 "Please upgrade MMEX to newer version."
-msgstr "MMEX база данни версия %i не работи с тази версия на MMEX.\n"
+msgstr ""
+"MMEX база данни версия %i не работи с тази версия на MMEX.\n"
 "Моля, актуализирайте MMEX до по-съвременна версия."
 
 #: dbupgrade.cpp:119
@@ -2192,7 +2222,8 @@ msgid "Invalid file content, please contact MMEX support!"
 msgstr ""
 
 #: dbupgrade.cpp:255
-msgid "Send this log to MMEX support team:\n"
+msgid ""
+"Send this log to MMEX support team:\n"
 "press OK to save to file or Cancel to exit"
 msgstr ""
 
@@ -2221,7 +2252,8 @@ msgid "You must specify path to another database file"
 msgstr "Трябва да посочите път до друг файл с бази данни"
 
 #: dbwrapper.cpp:78
-msgid "An incorrect password given for an encrypted file\n"
+msgid ""
+"An incorrect password given for an encrypted file\n"
 "or\n"
 "attempt to open a File that is not a database file \n"
 msgstr ""
@@ -2426,10 +2458,14 @@ msgstr "ZIP файлове (* .zip)"
 
 #: general_report_manager.cpp:644
 #, c-format
-msgid "Unable to open file:\n"
-"%s\n\n"
-msgstr "Не може да отвори файл:\n"
-"%s\n\n"
+msgid ""
+"Unable to open file:\n"
+"%s\n"
+"\n"
+msgstr ""
+"Не може да отвори файл:\n"
+"%s\n"
+"\n"
 
 #: general_report_manager.cpp:708
 msgid "New Empty Report"
@@ -3010,9 +3046,11 @@ msgstr "Експортирай файл"
 
 #: import_export/univcsvdialog.cpp:533
 #, c-format
-msgid "Default account '%s' for this template does not exist.\n"
+msgid ""
+"Default account '%s' for this template does not exist.\n"
 "Please select a new account."
-msgstr "Акаунтът по подразбиране '%s' за този шаблон не съществува.\n"
+msgstr ""
+"Акаунтът по подразбиране '%s' за този шаблон не съществува.\n"
 "Моля, изберете нов акаунт."
 
 #: import_export/univcsvdialog.cpp:535
@@ -3259,7 +3297,8 @@ msgstr ""
 
 #: maincurrencydialog.cpp:420
 #, c-format
-msgid "Historic rates for %s found, but \"Use currency history\" in options is disabled:\n"
+msgid ""
+"Historic rates for %s found, but \"Use currency history\" in options is disabled:\n"
 "click no and enable it or click yes to remove all historic rates for %s"
 msgstr ""
 
@@ -3347,9 +3386,11 @@ msgid "Please use this button for category selection."
 msgstr ""
 
 #: mmSimpleDialogs.cpp:245
-msgid "Please use this button for category selection\n"
+msgid ""
+"Please use this button for category selection\n"
 "or use the 'Split' checkbox for multiple categories."
-msgstr "Моля използвайте този бутон за избор на категория\n"
+msgstr ""
+"Моля използвайте този бутон за избор на категория\n"
 "или използвайте кутийката 'Раздели' за множество категории."
 
 #: mmSimpleDialogs.cpp:248
@@ -3389,9 +3430,11 @@ msgid "Invalid Payee"
 msgstr "Невалиден получател"
 
 #: mmSimpleDialogs.cpp:281
-msgid "Please type in a new payee,\n"
+msgid ""
+"Please type in a new payee,\n"
 "or make a selection using the dropdown button."
-msgstr "Моля напишете нов получател,\n"
+msgstr ""
+"Моля напишете нов получател,\n"
 "или изберете от падащия бутон."
 
 #: mmSimpleDialogs.cpp:289 mmSimpleDialogs.cpp:301
@@ -3423,9 +3466,11 @@ msgid "Please enter a calculated value."
 msgstr ""
 
 #: mmTextCtrl.cpp:97
-msgid "Tip: For calculations, enter expressions like (2+2)*(2+2)\n"
+msgid ""
+"Tip: For calculations, enter expressions like (2+2)*(2+2)\n"
 "Calculations will be evaluated and the result used as the entry."
-msgstr "Съвет: За изчисления, въведете изрази като (2+2)*(2+2)\n"
+msgstr ""
+"Съвет: За изчисления, въведете изрази като (2+2)*(2+2)\n"
 "Изчисленията ще бъдат сметнати и резултатите ще се ползват за вписване."
 
 #: mmTips.h:22
@@ -3628,7 +3673,9 @@ msgstr "Потвърди изтриването на транзакцията"
 
 #: mmchecking_list.cpp:807
 #, c-format
-msgid "Locked transaction to date: %s\n\n"
+msgid ""
+"Locked transaction to date: %s\n"
+"\n"
 "Reconciled transactions."
 msgstr ""
 
@@ -3644,7 +3691,9 @@ msgstr[0] ""
 msgstr[1] ""
 
 #: mmchecking_list.cpp:845
-msgid "\n\n"
+msgid ""
+"\n"
+"\n"
 "Do you still want to perform the edit?"
 msgstr ""
 
@@ -3732,7 +3781,8 @@ msgstr ""
 
 #: mmcustomdata.cpp:448
 #, c-format
-msgid "Unable to save custom field \"%s\":\n"
+msgid ""
+"Unable to save custom field \"%s\":\n"
 "value \"%s\" does not match RegEx validation \"%s\""
 msgstr ""
 
@@ -3747,7 +3797,9 @@ msgstr "Не мога да заредя превод за езика по под
 
 #: mmex.cpp:135
 #, c-format
-msgid "Please use the Switch Application Language option in View menu to select one of the following available languages:\n\n"
+msgid ""
+"Please use the Switch Application Language option in View menu to select one of the following available languages:\n"
+"\n"
 "%s"
 msgstr ""
 
@@ -3756,7 +3808,8 @@ msgid "Language change"
 msgstr ""
 
 #: mmex.cpp:180
-msgid "Fatal error occured.\n"
+msgid ""
+"Fatal error occured.\n"
 "Application will be terminated."
 msgstr ""
 
@@ -4414,7 +4467,9 @@ msgstr "Превключване на цял екран F11"
 
 #: mmframe.cpp:1748
 #, c-format
-msgid "Please enter password for Database\n\n"
+msgid ""
+"Please enter password for Database\n"
+"\n"
 "%s"
 msgstr ""
 
@@ -4455,9 +4510,12 @@ msgid "portable mode"
 msgstr ""
 
 #: mmframe.cpp:1906
-msgid "Database that you trying to open has been marked as opened by another MMEX instance...\n"
-"To avoid data loss or conflict, it's strongly recommended to close all other applications that can use the DB.\n\n"
-"Possible it may be as result of a programm crash in previous usage.\n\n"
+msgid ""
+"Database that you trying to open has been marked as opened by another MMEX instance...\n"
+"To avoid data loss or conflict, it's strongly recommended to close all other applications that can use the DB.\n"
+"\n"
+"Possible it may be as result of a programm crash in previous usage.\n"
+"\n"
 "Would you like to continue?"
 msgstr ""
 
@@ -4499,7 +4557,9 @@ msgstr ""
 
 #: mmframe.cpp:2013
 #, c-format
-msgid "New password for database\n\n"
+msgid ""
+"New password for database\n"
+"\n"
 "%s"
 msgstr ""
 
@@ -4529,7 +4589,9 @@ msgstr ""
 
 #: mmframe.cpp:2047
 #, c-format
-msgid "Database Optimization Completed!\n\n"
+msgid ""
+"Database Optimization Completed!\n"
+"\n"
 "Size before: %s\n"
 "Size after: %s\n"
 msgstr ""
@@ -4559,9 +4621,12 @@ msgid "No account available to import"
 msgstr ""
 
 #: mmframe.cpp:2264
-msgid "Asset Accounts hold Asset transactions\n\n"
+msgid ""
+"Asset Accounts hold Asset transactions\n"
+"\n"
 "Asset transactions are created within the Assets View\n"
-"after the selection of the Asset within that view.\n\n"
+"after the selection of the Asset within that view.\n"
+"\n"
 "Asset Accounts can also hold normal transactions to regular accounts."
 msgstr ""
 
@@ -4570,9 +4635,12 @@ msgid "Asset Account Creation"
 msgstr ""
 
 #: mmframe.cpp:2274
-msgid "Share Accounts hold Share transactions\n\n"
+msgid ""
+"Share Accounts hold Share transactions\n"
+"\n"
 "Share transactions are created within the Stock Portfolio View\n"
-"after the selection of the Company Stock within the associated view.\n\n"
+"after the selection of the Company Stock within the associated view.\n"
+"\n"
 "These accounts only become visible after associating a Stock to the Share Account\n"
 "Or by using the Menu View --> 'Display Share Accounts'\n"
 "Share Accounts can also hold normal transactions to regular account."
@@ -4629,9 +4697,11 @@ msgstr "Изберете акаунт за изтриване"
 
 #: mmframe.cpp:3004
 #, c-format
-msgid "Are you sure you want to delete\n"
+msgid ""
+"Are you sure you want to delete\n"
 " %s account: %s ?"
-msgstr "Сигурни ли сте, че искате да изтриете\n"
+msgstr ""
+"Сигурни ли сте, че искате да изтриете\n"
 "%s акаунт: %s ?"
 
 #: mmframe.cpp:3023
@@ -4925,7 +4995,9 @@ msgid "Other"
 msgstr "Други"
 
 #: model/Model_Billsdeposits.cpp:300
-msgid "A recurring transaction will exceed your account limit.\n\n"
+msgid ""
+"A recurring transaction will exceed your account limit.\n"
+"\n"
 "Do you wish to continue?"
 msgstr ""
 
@@ -4987,10 +5059,12 @@ msgstr ""
 
 #: model/Model_Report.cpp:247
 #, c-format
-msgid "The SQL script:\n"
+msgid ""
+"The SQL script:\n"
 "%s \n"
 "will modify database! aborted!"
-msgstr "SQL кода:\n"
+msgstr ""
+"SQL кода:\n"
 "%s \n"
 "ще промени базата данни! Прекъснат!"
 
@@ -5273,9 +5347,11 @@ msgid "Create a new backup when MMEX Start"
 msgstr "Създай ново резервно копие, когато MMEX стартира"
 
 #: optionsettingsmisc.cpp:152
-msgid "When MMEX Starts,\n"
+msgid ""
+"When MMEX Starts,\n"
 "creates the backup database: dbFile_start_YYYY-MM-DD.ext."
-msgstr "Когато MMEX стартира,\n"
+msgstr ""
+"Когато MMEX стартира,\n"
 "създава резервно копие на базата данни: dbFile_start_YYY-MM-DD.ext."
 
 #: optionsettingsmisc.cpp:157
@@ -5283,9 +5359,11 @@ msgid "Backup database on exit."
 msgstr "Прави резервно копие на базата данни при Изход."
 
 #: optionsettingsmisc.cpp:159
-msgid "When MMEX shuts down and changes made to database,\n"
+msgid ""
+"When MMEX shuts down and changes made to database,\n"
 "creates or updates the backup database: dbFile_update_YYYY-MM-DD.ext."
-msgstr "Когато MMEX спре да работи и промените по базата данни,\n"
+msgstr ""
+"Когато MMEX спре да работи и промените по базата данни,\n"
 "създадени или обновени в резервното копие на базата данни: dbFile_Update_YYYY-MM-DD.ext."
 
 #: optionsettingsmisc.cpp:167
@@ -6034,7 +6112,8 @@ msgid "*Date"
 msgstr ""
 
 #: stockdialog.cpp:214
-msgid "Specify the initial date of the stock investment\n"
+msgid ""
+"Specify the initial date of the stock investment\n"
 "Used when creating the initial Share transaction."
 msgstr ""
 
@@ -6043,7 +6122,8 @@ msgid "*Share Number"
 msgstr ""
 
 #: stockdialog.cpp:224
-msgid "Enter number of shares.\n"
+msgid ""
+"Enter number of shares.\n"
 "Used when creating the initial Share transaction."
 msgstr ""
 
@@ -6052,7 +6132,8 @@ msgid "*Share Price"
 msgstr ""
 
 #: stockdialog.cpp:236
-msgid "Enter the initial price per share.\n"
+msgid ""
+"Enter the initial price per share.\n"
 "Used when creating the initial Share transaction."
 msgstr ""
 
@@ -6061,7 +6142,8 @@ msgid "*Commission"
 msgstr ""
 
 #: stockdialog.cpp:245
-msgid "Enter any commission paid.\n"
+msgid ""
+"Enter any commission paid.\n"
 "Used when creating the initial Share transaction."
 msgstr ""
 
@@ -6110,13 +6192,18 @@ msgid "Held At"
 msgstr "Държи се в"
 
 #: stockdialog.cpp:494
-msgid "Share Account not found.\n\n"
+msgid ""
+"Share Account not found.\n"
+"\n"
 "Do you want to create one?"
 msgstr ""
 
 #: stockdialog.cpp:504
-msgid "The Company name does not have an associated Share Account.\n\n"
-"You may want to readjust the Company Name to an existing Share Account with the same name. If this is an existing Stock without a Share Account, it is recommended that a Share Account is created.\n\n"
+msgid ""
+"The Company name does not have an associated Share Account.\n"
+"\n"
+"You may want to readjust the Company Name to an existing Share Account with the same name. If this is an existing Stock without a Share Account, it is recommended that a Share Account is created.\n"
+"\n"
 "Do you want to create a new Share Acccount?\n"
 msgstr ""
 
@@ -6252,8 +6339,11 @@ msgstr "Потвърдете изтриването на акционната и
 
 #: stockspanel.cpp:403
 #, c-format
-msgid "Temporary Stock list: %s\n\n"
-"Date          Lot          Shares          Price        Commission\n\n"
+msgid ""
+"Temporary Stock list: %s\n"
+"\n"
+"Date          Lot          Shares          Price        Commission\n"
+"\n"
 msgstr ""
 
 #: stockspanel.cpp:577
@@ -6345,9 +6435,11 @@ msgstr ""
 
 #: transactionsupdatedialog.cpp:312 transdialog.cpp:662
 #, c-format
-msgid "Do you want to add new payee: \n"
+msgid ""
+"Do you want to add new payee: \n"
 "%s?"
-msgstr "Искате ли да добавите нов Получател: \n"
+msgstr ""
+"Искате ли да добавите нов Получател: \n"
 "%s?"
 
 #: transactionsupdatedialog.cpp:313 transdialog.cpp:663
@@ -6383,7 +6475,9 @@ msgid "Show/Hide custom fields window"
 msgstr ""
 
 #: transdialog.cpp:753
-msgid "This transaction will exceed your account limit.\n\n"
+msgid ""
+"This transaction will exceed your account limit.\n"
+"\n"
 "Do you wish to continue?"
 msgstr ""
 
@@ -6670,7 +6764,8 @@ msgstr ""
 
 #: webapp.cpp:474
 #, c-format
-msgid "Transaction will be inserted with the first bank account:\n"
+msgid ""
+"Transaction will be inserted with the first bank account:\n"
 "'%s' and marked as  'Follow Up'"
 msgstr ""
 
@@ -6768,7 +6863,8 @@ msgid "%s models all transactions as belonging to accounts."
 msgstr ""
 
 #: wizard_newaccount.cpp:40
-msgid "The next pages will help you create a new account.\n"
+msgid ""
+"The next pages will help you create a new account.\n"
 "To help you get started, begin by making a list of all\n"
 "financial institutions where you hold an account."
 msgstr ""
@@ -6790,9 +6886,11 @@ msgid "Specify a descriptive name for the account."
 msgstr "Посочете описателно име на акаунта."
 
 #: wizard_newaccount.cpp:111
-msgid "This is generally the name of a financial institution\n"
+msgid ""
+"This is generally the name of a financial institution\n"
 "where the account is held. For example: 'ABC Bank'."
-msgstr "Това обикновено е името на финансовата институция,\n"
+msgstr ""
+"Това обикновено е името на финансовата институция,\n"
 "в която е акаунта. Например: 'Банка АБВ'."
 
 #: wizard_newaccount.cpp:131
@@ -6804,22 +6902,27 @@ msgid "Select the type of account you want to create:"
 msgstr "Изберете вида на акаунта, който искате да създадете:"
 
 #: wizard_newaccount.cpp:136
-msgid "General bank accounts cover a wide variety of account\n"
+msgid ""
+"General bank accounts cover a wide variety of account\n"
 "types like Checking, Savings and Credit card type accounts."
 msgstr ""
 
 #: wizard_newaccount.cpp:141
-msgid "Investment accounts are specialized accounts that only\n"
+msgid ""
+"Investment accounts are specialized accounts that only\n"
 "have stock/mutual fund investments associated with them."
-msgstr "Инвестиционните акаунти са специални акаунти, които имет само\n"
+msgstr ""
+"Инвестиционните акаунти са специални акаунти, които имет само\n"
 "стокови/взаимно инвестиционни фондове асоциирани с тях."
 
 #: wizard_newaccount.cpp:146
-msgid "Term accounts are specialized bank accounts. Intended for asset\n"
+msgid ""
+"Term accounts are specialized bank accounts. Intended for asset\n"
 "type accounts such as Term Deposits and Bonds. These accounts\n"
 "can have regular money coming in and out, being outside the\n"
 "general income stream."
-msgstr "Акаунтите за срочен депозит са специални банкови акаунти. Предвидени са за\n"
+msgstr ""
+"Акаунтите за срочен депозит са специални банкови акаунти. Предвидени са за\n"
 "видове акаунти като Срочни депозити и Облигации. Тези акаунти могат имат\n"
 "постоянен паричен поток към и от тях, който да не се отразява в общия поток."
 
@@ -6836,12 +6939,15 @@ msgid "New Database Wizard"
 msgstr "Помощник за нова База данни"
 
 #: wizard_newdb.cpp:30
-msgid "The next pages will help you create a new database.\n\n"
+msgid ""
+"The next pages will help you create a new database.\n"
+"\n"
 "Your database file is stored with an extension of .mmb.\n"
 "As this file contains important financial information,\n"
 "we recommended creating daily backups with the Options\n"
 "setting: 'Backup before opening', and store your backups\n"
-"in a separate location.\n\n"
+"in a separate location.\n"
+"\n"
 "The database can later be encrypted if required, by\n"
 "using the option: 'Save database as' and changing the\n"
 "file type before saving."
@@ -6852,11 +6958,13 @@ msgid "Base Currency for account"
 msgstr "Основна валута за акаунт"
 
 #: wizard_newdb.cpp:95
-msgid "Specify the base (or default) currency to be used for the\n"
+msgid ""
+"Specify the base (or default) currency to be used for the\n"
 "database. The base currency can later be changed by using\n"
 "the options dialog. New accounts, will use this currency by\n"
 "default, and can be changed when editing account details."
-msgstr "Избери основната валута, която да се ползва за\n"
+msgstr ""
+"Избери основната валута, която да се ползва за\n"
 "базата данни. Основната валута, може да се смени по-късно\n"
 "от прозореца с опции. Новите акаунти ще използват тази валута\n"
 "по подразбиране. Можете да смените това от детайлите на акаунта."
@@ -6909,4 +7017,3 @@ msgstr ""
 #: wizard_update.cpp:292 wizard_update.cpp:309
 msgid "MMEX Update Check"
 msgstr ""
-

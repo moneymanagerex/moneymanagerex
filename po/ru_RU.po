@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2021-04-15 18:53+0300\n"
-"PO-Revision-Date: 2021-04-15 19:03+0300\n"
+"POT-Creation-Date: 2021-04-22 00:36+0300\n"
+"PO-Revision-Date: 2021-04-24 11:13\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "Language: ru_RU\n"
@@ -1455,7 +1455,12 @@ msgstr "Год: %s"
 msgid "Month: %s"
 msgstr "Месяц: %s"
 
-#: budgetingpanel.cpp:183
+#: budgetingpanel.cpp:186
+#, c-format
+msgid "%s    Start Date of: %s"
+msgstr "%s    Дата начала: %s"
+
+#: budgetingpanel.cpp:189
 #, c-format
 msgid "Budget Setup for %s"
 msgstr "Бюджет на %s"
@@ -1962,7 +1967,7 @@ msgstr "Дробных"
 
 #: customfieldeditdialog.cpp:171
 msgid "Enter the decimal digits scale allowed"
-msgstr "Введите разрешенную шкалу десятизначных цифр"
+msgstr "Введите допустимый масштаб десятичных цифр"
 
 #: customfieldeditdialog.cpp:174
 msgid "Panel's column"
@@ -2065,7 +2070,7 @@ msgid_plural "%zu occurrences founded and replaced!"
 msgstr[0] "%zu вхождение найдено и заменено!"
 msgstr[1] "%zu вхождения найдено и заменено!"
 msgstr[2] "%zu вхождений найдено и заменено!"
-msgstr[3] "%zu вхождение найдено и заменено!"
+msgstr[3] "%zu вхождений найдено и заменено!"
 
 #: customfieldlistdialog.cpp:266
 msgid "&Massive content update "
@@ -2461,9 +2466,32 @@ msgstr "Перевод из"
 msgid "Amount Range"
 msgstr "Диапазон цен"
 
-#: filtertransdialog.cpp:347
-msgid "Clea&r "
-msgstr "Очи&стить "
+#: filtertransdialog.cpp:345
+msgid "Settings"
+msgstr "Настройки"
+
+#: filtertransdialog.cpp:366 filtertransdialog.cpp:694
+#: filtertransdialog.cpp:739 filtertransdialog.cpp:948
+#: filtertransdialog.cpp:1083 filtertransdialog.cpp:1345
+#, c-format
+msgid "%i: Empty"
+msgstr "%i: Пусто"
+
+#: filtertransdialog.cpp:375
+msgid "Save active values into current Preset selection"
+msgstr "Сохранить активные значения в текущий пресет"
+
+#: filtertransdialog.cpp:380
+msgid "Clear all fields for current Preset selection"
+msgstr "Очистить все поля для текущего пресета"
+
+#: filtertransdialog.cpp:696 filtertransdialog.cpp:1347
+msgid "Please Enter"
+msgstr "Пожалуйста, введите"
+
+#: filtertransdialog.cpp:696 filtertransdialog.cpp:1347
+msgid "Setting Name"
+msgstr "Название параметра"
 
 #: filtertransdialog.cpp:827 filtertransdialog.cpp:841 reports/myusage.cpp:104
 #: webappdialog.cpp:194 webappdialog.cpp:199
@@ -2688,12 +2716,8 @@ msgstr "Внимание"
 
 #: images_list.cpp:343
 #, c-format
-msgid ""
-"Image '%s' in Theme '%s' cannot be converted to bitmap, please correct. "
-"Default image will be used"
-msgstr ""
-"Изображение '%s' ' в теме '%s' не может быть преобразовано, пожалуйста "
-"исправьте. Будет использовано изображение по умолчанию"
+msgid "File '%s' missing or invalid in chosen theme '%s'"
+msgstr "Файл '%s' отсутствует или недопустим в выбранной теме '%s'"
 
 #: images_list.cpp:366
 #, c-format
