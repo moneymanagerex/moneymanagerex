@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-04-22 00:36+0300\n"
-"PO-Revision-Date: 2021-04-24 16:12\n"
+"PO-Revision-Date: 2021-04-24 16:22\n"
 "Last-Translator: \n"
 "Language-Team: Italian\n"
 "MIME-Version: 1.0\n"
@@ -1878,15 +1878,15 @@ msgstr "Inserire le scelte per questo campo separate da punto e virgola"
 
 #: customfieldeditdialog.cpp:171
 msgid "Digits scale"
-msgstr ""
+msgstr "Scala delle cifre"
 
 #: customfieldeditdialog.cpp:173
 msgid "Enter the decimal digits scale allowed"
-msgstr ""
+msgstr "Inserire il numero di decimali consentito"
 
 #: customfieldeditdialog.cpp:176
 msgid "Panel's column"
-msgstr ""
+msgstr "Colonna del pannello"
 
 #: customfieldeditdialog.cpp:181
 msgid "Select a value to represent the item on a panel"
@@ -2656,12 +2656,12 @@ msgstr "Ci sono %d icone mancanti o non valide nel tema scelto '%s': %s"
 #: images_list.cpp:472
 #, c-format
 msgid "Theme %s not found, it may no longer be supported. Reverting to default theme"
-msgstr ""
+msgstr "Tema %s non trovato, potrebbe non essere più supportato. Ripristino al tema predefinito"
 
 #: images_list.cpp:479
 #, c-format
 msgid "Theme %s has missing items and is incompatible. Reverting to default theme"
-msgstr ""
+msgstr "Il tema ha %s elementi mancanti ed è incompatibile. Ripristino al tema predefinito"
 
 #: import_export/parsers.cpp:46 import_export/univcsvdialog.cpp:1574
 #: mmSimpleDialogs.cpp:253
