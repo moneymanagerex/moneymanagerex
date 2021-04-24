@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-03-27 21:03+0300\n"
-"PO-Revision-Date: 2021-03-27 18:12\n"
+"PO-Revision-Date: 2021-04-24 15:09+0300\n"
 "Last-Translator: \n"
 "Language-Team: Czech\n"
 "MIME-Version: 1.0\n"
@@ -12,9 +12,6 @@ msgstr ""
 "X-Generator: Poedit 2.4.2\n"
 "X-Poedit-Basepath: ../src\n"
 "X-Poedit-KeywordsList: _;wxTRANSLATE;wxPLURAL:1,2;wxGETTEXT_IN_CONTEXT:1c,2;wxGETTEXT_IN_CONTEXT_PLURAL:1c,2,3\n"
-"X-Poedit-SearchPath-0: .\n"
-"X-Poedit-SearchPathExcluded-0: db/DB_Upgrade.h\n"
-"X-Poedit-SearchPathExcluded-1: db/DB_Table_Currencyformats_V1.h\n"
 "Plural-Forms: nplurals=4; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 3;\n"
 "X-Crowdin-Project: moneymanagerex\n"
 "X-Crowdin-Project-ID: 342055\n"
@@ -22,6 +19,9 @@ msgstr ""
 "X-Crowdin-File: /master/po/mmex.pot\n"
 "X-Crowdin-File-ID: 470\n"
 "Language: cs_CZ\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: db/DB_Upgrade.h\n"
+"X-Poedit-SearchPathExcluded-1: db/DB_Table_Currencyformats_V1.h\n"
 
 #: aboutdialog.cpp:54
 msgid "License agreement"
@@ -439,9 +439,13 @@ msgid "Invalid Transaction"
 msgstr "Neplatná transakce"
 
 #: assetdialog.cpp:409
-msgid "Asset Account not found.\n\n"
+msgid ""
+"Asset Account not found.\n"
+"\n"
 "Would you want to create one?"
-msgstr "Účet majetku nebyl nalezen.\n\n"
+msgstr ""
+"Účet majetku nebyl nalezen.\n"
+"\n"
 "Přejete si jej vytvořit?"
 
 #: assetspanel.cpp:58 billsdepositspanel.cpp:96 mmchecking_list.cpp:187
@@ -584,9 +588,13 @@ msgid "Change in Value: %s %s"
 msgstr "Změna hodnoty: %s %s"
 
 #: assetspanel.cpp:767
-msgid "This asset does not have its own account\n\n"
+msgid ""
+"This asset does not have its own account\n"
+"\n"
 "Multiple transactions for this asset are not recommended."
-msgstr "Tento majetek nemá vlastní účet\n\n"
+msgstr ""
+"Tento majetek nemá vlastní účet\n"
+"\n"
 "Nedoporučujeme přidávat více transakcí pro tento majetek."
 
 #: assetspanel.cpp:769
@@ -594,8 +602,12 @@ msgid "Asset Management"
 msgstr "Správa majetku"
 
 #: assetspanel.cpp:788
-msgid "Account \t Date\t   Value\n\n"
-msgstr "Účet \t Datum\t   Hodnota\n\n"
+msgid ""
+"Account \t Date\t   Value\n"
+"\n"
+msgstr ""
+"Účet \t Datum\t   Hodnota\n"
+"\n"
 
 #: attachmentdialog.cpp:55 customfieldeditdialog.cpp:125
 #: customfieldlistdialog.cpp:54 general_report_manager.cpp:430
@@ -1057,33 +1069,43 @@ msgid "Period: Months"
 msgstr "Období: Měsíce"
 
 #: billsdepositsdialog.cpp:1265
-msgid "Specify period in Days to activate.\n"
+msgid ""
+"Specify period in Days to activate.\n"
 "Becomes blank when not active."
-msgstr "Zvolte opakování ve dnech pro aktivaci.\n"
+msgstr ""
+"Zvolte opakování ve dnech pro aktivaci.\n"
 "Pro vypnutí ponechte prázdné."
 
 #: billsdepositsdialog.cpp:1274
-msgid "Specify period in Months to activate.\n"
+msgid ""
+"Specify period in Months to activate.\n"
 "Becomes blank when not active."
-msgstr "Zvolte opakování v měsících pro aktivaci.\n"
+msgstr ""
+"Zvolte opakování v měsících pro aktivaci.\n"
 "Pro vypnutí ponechte prázdné."
 
 #: billsdepositsdialog.cpp:1283
-msgid "Specify period in Days to activate.\n"
+msgid ""
+"Specify period in Days to activate.\n"
 "Leave blank when not active."
-msgstr "Zvolte opakování ve dnech pro aktivaci.\n"
+msgstr ""
+"Zvolte opakování ve dnech pro aktivaci.\n"
 "Pro vypnutí ponechte prázdné."
 
 #: billsdepositsdialog.cpp:1291
-msgid "Specify period in Months to activate.\n"
+msgid ""
+"Specify period in Months to activate.\n"
 "Leave blank when not active."
-msgstr "Zvolte opakování v měsících pro aktivaci.\n"
+msgstr ""
+"Zvolte opakování v měsících pro aktivaci.\n"
 "Pro vypnutí ponechte prázdné."
 
 #: billsdepositsdialog.cpp:1299
-msgid "Specify the number of payments to be made.\n"
+msgid ""
+"Specify the number of payments to be made.\n"
 "Leave blank if the payments continue forever."
-msgstr "Zadejte počet plateb, které mají být zadány.\n"
+msgstr ""
+"Zadejte počet plateb, které mají být zadány.\n"
 "Ponechte prázdné, pokud mají platby pokračovat do nekonečna."
 
 #: billsdepositsdialog.cpp:1325 billsdepositsdialog.cpp:1334
@@ -1261,9 +1283,9 @@ msgstr "Automaticky"
 msgid "%d day remaining"
 msgid_plural "%d days remaining"
 msgstr[0] "%d dnů zbývá"
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[1] "%d dnů zbývá"
+msgstr[2] "%d dnů zbývá"
+msgstr[3] "%d dnů zbývá"
 
 #: billsdepositspanel.cpp:505 billsdepositspanel.cpp:512
 #: billsdepositspanel.cpp:519 billsdepositspanel.cpp:572
@@ -1277,17 +1299,17 @@ msgid "%d day delay!"
 msgid_plural "%d days delay!"
 msgstr[0] "%d dnů prodlení!"
 msgstr[1] "%d dnů zpožděno!"
-msgstr[2] ""
-msgstr[3] ""
+msgstr[2] "%d dnů prodlení!"
+msgstr[3] "%d dnů prodlení!"
 
 #: billsdepositspanel.cpp:517 billsdepositspanel.cpp:577 mmhomepage.cpp:318
 #, c-format
 msgid "%d day overdue!"
 msgid_plural "%d days overdue!"
 msgstr[0] "%d dnů zpožděno!"
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[1] "%d dnů zpožděno!"
+msgstr[2] "%d dnů zpožděno!"
+msgstr[3] "%d dnů zpožděno!"
 
 #: billsdepositspanel.cpp:629
 msgid "Do you really want to delete the series?"
@@ -1471,9 +1493,11 @@ msgid "Budget Year:"
 msgstr "Rozpočet pro rok:"
 
 #: budgetyearentrydialog.cpp:78
-msgid "Specify the required year.\n"
+msgid ""
+"Specify the required year.\n"
 "Use Spin buttons to increase or decrease the year."
-msgstr "Zadejte rok.\n"
+msgstr ""
+"Zadejte rok.\n"
 "Použijte kolečko myši pro změnu roku."
 
 #: budgetyearentrydialog.cpp:85
@@ -1481,9 +1505,11 @@ msgid "Budget Month:"
 msgstr "Měsíční rozpočet:"
 
 #: budgetyearentrydialog.cpp:94
-msgid "Specify the required month.\n"
+msgid ""
+"Specify the required month.\n"
 "Use Spin buttons to increase or decrease the month."
-msgstr "Zadejte měsíc.\n"
+msgstr ""
+"Zadejte měsíc.\n"
 "Použijte kolečko myši pro změnu měsíce."
 
 #: budgetyearentrydialog.cpp:101
@@ -1555,9 +1581,11 @@ msgid "Category with same name exists"
 msgstr "Kategorie se stejným názvem již existuje"
 
 #: categdialog.cpp:268
-msgid "Tip: If category added now, check bottom of list.\n"
+msgid ""
+"Tip: If category added now, check bottom of list.\n"
 "Category will be in sorted order next time dialog appears"
-msgstr "Tip: Nově přidaná kategorie se bude nacházet dole v seznamu.\n"
+msgstr ""
+"Tip: Nově přidaná kategorie se bude nacházet dole v seznamu.\n"
 "Kategorie budou seřazeny až při příštím spuštění dialogu"
 
 #: categdialog.cpp:270 categdialog.cpp:294 categdialog.cpp:312
@@ -1581,15 +1609,19 @@ msgid "Sub-Category in use."
 msgstr "Podkategorie je již použita."
 
 #: categdialog.cpp:320
-msgid "Tip: Change all transactions using this Category to\n"
+msgid ""
+"Tip: Change all transactions using this Category to\n"
 "another Category using the relocate command:"
-msgstr "Tip: Změnu kategorie u všech transakcí můžete\n"
+msgstr ""
+"Tip: Změnu kategorie u všech transakcí můžete\n"
 "provést příkazem Přesunout:"
 
 #: categdialog.cpp:323
-msgid "Tip: Change all transactions using this Sub-Category to\n"
+msgid ""
+"Tip: Change all transactions using this Sub-Category to\n"
 "another Sub-Category using the relocate command:"
-msgstr "Tip: Změnu podkategorie u všech transakcí můžete\n"
+msgstr ""
+"Tip: Změnu podkategorie u všech transakcí můžete\n"
 "provést příkazem Přesunout:"
 
 #: categdialog.cpp:326
@@ -1856,9 +1888,11 @@ msgid "Default"
 msgstr "Výchozí"
 
 #: customfieldeditdialog.cpp:155
-msgid "Enter the default for this field\n"
+msgid ""
+"Enter the default for this field\n"
 "For date/time insert 'Now' to make current date/time as default"
-msgstr "Zadejte výchozí hodnotu pro toto pole\n"
+msgstr ""
+"Zadejte výchozí hodnotu pro toto pole\n"
 "Pro datum/čas zadejte 'Now' pro použití aktuálního data/času jako výchozí"
 
 #: customfieldeditdialog.cpp:159
@@ -1904,9 +1938,11 @@ msgid "Confirm Custom Field Deletion"
 msgstr "Potvrzení odstranění vlastního pole"
 
 #: customfieldlistdialog.cpp:194
-msgid "This function will massive update (search & replace for entire value, not inside value), please remind that there isn't any validation!\n"
+msgid ""
+"This function will massive update (search & replace for entire value, not inside value), please remind that there isn't any validation!\n"
 "Do you want to proceed?"
-msgstr "Tato funkce provede hromadnou aktualizaci (najde a nahradí celou hodnotu, nikoliv část), mějte na paměti, že po její aplikaci nelze provést ověření!\n"
+msgstr ""
+"Tato funkce provede hromadnou aktualizaci (najde a nahradí celou hodnotu, nikoliv část), mějte na paměti, že po její aplikaci nelze provést ověření!\n"
 "Přejete si pokračovat?"
 
 #: customfieldlistdialog.cpp:196
@@ -1924,9 +1960,11 @@ msgid "Update Custom Field Content"
 msgstr "Aktualizovat obsah vlastního pole"
 
 #: customfieldlistdialog.cpp:205
-msgid "Do you want to update blank content?\n"
+msgid ""
+"Do you want to update blank content?\n"
 "Press no if you want to abort replace procedure!"
-msgstr "Přejete si aktualizovat prázdný obsah?\n"
+msgstr ""
+"Přejete si aktualizovat prázdný obsah?\n"
 "Zvolte ne pro přerušení procesu nahrazování!"
 
 #: customfieldlistdialog.cpp:213
@@ -1934,9 +1972,11 @@ msgid "Replace with"
 msgstr "Nahradit za"
 
 #: customfieldlistdialog.cpp:217
-msgid "Do you want to update to blank?\n"
+msgid ""
+"Do you want to update to blank?\n"
 "Press no if you want to abort replace procedure!"
-msgstr "Přejete si aktualizovat prázdný obsah?\n"
+msgstr ""
+"Přejete si aktualizovat prázdný obsah?\n"
 "Zvolte ne pro přerušení procesu nahrazování!"
 
 #: customfieldlistdialog.cpp:233
@@ -2172,9 +2212,11 @@ msgstr "Chyba databáze MMEX!"
 
 #: dbupgrade.cpp:107
 #, c-format
-msgid "MMEX database version %i doesn't work with this MMEX version.\n"
+msgid ""
+"MMEX database version %i doesn't work with this MMEX version.\n"
 "Please upgrade MMEX to newer version."
-msgstr "S databází MMEX verze %i není možné pracovat v této verzi MMEX.\n"
+msgstr ""
+"S databází MMEX verze %i není možné pracovat v této verzi MMEX.\n"
 "Proveďte prosím upgrade MMEX na novější verzi."
 
 #: dbupgrade.cpp:119
@@ -2208,9 +2250,11 @@ msgid "Invalid file content, please contact MMEX support!"
 msgstr "Neplatný obsah souboru, kontaktujte prosím technikou podporu MMEX!"
 
 #: dbupgrade.cpp:255
-msgid "Send this log to MMEX support team:\n"
+msgid ""
+"Send this log to MMEX support team:\n"
 "press OK to save to file or Cancel to exit"
-msgstr "Odeslat tento záznam týmu technické podpory MMEX:\n"
+msgstr ""
+"Odeslat tento záznam týmu technické podpory MMEX:\n"
 "zvolte OK pro uložení do soubor nebo Storno pro ukončení"
 
 #: dbupgrade.cpp:256 dbupgrade.cpp:299
@@ -2238,10 +2282,12 @@ msgid "You must specify path to another database file"
 msgstr "Je nutné zadat cestu k jinému databázovému souboru"
 
 #: dbwrapper.cpp:78
-msgid "An incorrect password given for an encrypted file\n"
+msgid ""
+"An incorrect password given for an encrypted file\n"
 "or\n"
 "attempt to open a File that is not a database file \n"
-msgstr "Zadáno neplatné heslo pro šifrovaný soubor\n"
+msgstr ""
+"Zadáno neplatné heslo pro šifrovaný soubor\n"
 "nebo\n"
 "zadána výzva pro otevření souboru, který není databází \n"
 
@@ -2425,9 +2471,9 @@ msgstr "Vytvořit šablonu"
 msgid "%zu row returned, duration: %lld ms"
 msgid_plural "%zu rows returned, duration: %lld ms"
 msgstr[0] "%zu řádků vypsáno, doba trvání: %lld ms"
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[1] "%zu řádků vypsáno, doba trvání: %lld ms"
+msgstr[2] "%zu řádků vypsáno, doba trvání: %lld ms"
+msgstr[3] "%zu řádků vypsáno, doba trvání: %lld ms"
 
 #: general_report_manager.cpp:548
 msgid "SQL Syntax Error"
@@ -2447,10 +2493,14 @@ msgstr "ZIP soubory (*.zip)"
 
 #: general_report_manager.cpp:644
 #, c-format
-msgid "Unable to open file:\n"
-"%s\n\n"
-msgstr "Nelze otevřít soubor:\n"
-"%s\n\n"
+msgid ""
+"Unable to open file:\n"
+"%s\n"
+"\n"
+msgstr ""
+"Nelze otevřít soubor:\n"
+"%s\n"
+"\n"
 
 #: general_report_manager.cpp:708
 msgid "New Empty Report"
@@ -3031,9 +3081,11 @@ msgstr "Exportovat soubor"
 
 #: import_export/univcsvdialog.cpp:533
 #, c-format
-msgid "Default account '%s' for this template does not exist.\n"
+msgid ""
+"Default account '%s' for this template does not exist.\n"
 "Please select a new account."
-msgstr "Výchozí účet '%s' pro tuto šablonu neexistuje.\n"
+msgstr ""
+"Výchozí účet '%s' pro tuto šablonu neexistuje.\n"
 "Zvolte prosím nový účet."
 
 #: import_export/univcsvdialog.cpp:535
@@ -3280,9 +3332,11 @@ msgstr "Volba základní měny"
 
 #: maincurrencydialog.cpp:420
 #, c-format
-msgid "Historic rates for %s found, but \"Use currency history\" in options is disabled:\n"
+msgid ""
+"Historic rates for %s found, but \"Use currency history\" in options is disabled:\n"
 "click no and enable it or click yes to remove all historic rates for %s"
-msgstr "Historie kurzů pro %s byla nalezena, ale možnost \"Použít historii měn\" je v nastavení vypnuta:\n"
+msgstr ""
+"Historie kurzů pro %s byla nalezena, ale možnost \"Použít historii měn\" je v nastavení vypnuta:\n"
 "klepněte na Ne a aktivujte ji nebo klepněte na Ano a odeberte veškerou historii kurzů pro %s"
 
 #: maincurrencydialog.cpp:432
@@ -3369,9 +3423,11 @@ msgid "Please use this button for category selection."
 msgstr "Použijte prosím toto tlačítko pro výběr kategorie."
 
 #: mmSimpleDialogs.cpp:245
-msgid "Please use this button for category selection\n"
+msgid ""
+"Please use this button for category selection\n"
 "or use the 'Split' checkbox for multiple categories."
-msgstr "Použijte prosím toto tlačítko pro výběr kategorie\n"
+msgstr ""
+"Použijte prosím toto tlačítko pro výběr kategorie\n"
 "nebo označte 'Rozdělit' pro více kategorií."
 
 #: mmSimpleDialogs.cpp:248
@@ -3411,9 +3467,11 @@ msgid "Invalid Payee"
 msgstr "Neplatný příjemce"
 
 #: mmSimpleDialogs.cpp:281
-msgid "Please type in a new payee,\n"
+msgid ""
+"Please type in a new payee,\n"
 "or make a selection using the dropdown button."
-msgstr "Zadejte prosím nového příjemce,\n"
+msgstr ""
+"Zadejte prosím nového příjemce,\n"
 "nebo jej vyberte ze seznamu."
 
 #: mmSimpleDialogs.cpp:289 mmSimpleDialogs.cpp:301
@@ -3445,9 +3503,11 @@ msgid "Please enter a calculated value."
 msgstr "Zadejte prosím vypočítanou hodnotu."
 
 #: mmTextCtrl.cpp:97
-msgid "Tip: For calculations, enter expressions like (2+2)*(2+2)\n"
+msgid ""
+"Tip: For calculations, enter expressions like (2+2)*(2+2)\n"
 "Calculations will be evaluated and the result used as the entry."
-msgstr "Tip: Pro výpočty lze použít následující výrazy (2+2)*(2+2)\n"
+msgstr ""
+"Tip: Pro výpočty lze použít následující výrazy (2+2)*(2+2)\n"
 "Výpočty budou vyhodncoeny a jako záznam bude použit výsledek výpočtu."
 
 #: mmTips.h:22
@@ -3658,9 +3718,13 @@ msgstr "Potvrzení odstranění transakce"
 
 #: mmchecking_list.cpp:807
 #, c-format
-msgid "Locked transaction to date: %s\n\n"
+msgid ""
+"Locked transaction to date: %s\n"
+"\n"
 "Reconciled transactions."
-msgstr "Uzamknout transakci k datu: %s\n\n"
+msgstr ""
+"Uzamknout transakci k datu: %s\n"
+"\n"
 "Ověřené transakce."
 
 #: mmchecking_list.cpp:810 transdialog.cpp:722 transdialog.cpp:755
@@ -3677,9 +3741,13 @@ msgstr[2] ""
 msgstr[3] "Úprava bude mít dopad na %i transakcí, které náleží uzavřenému účtu."
 
 #: mmchecking_list.cpp:845
-msgid "\n\n"
+msgid ""
+"\n"
+"\n"
 "Do you still want to perform the edit?"
-msgstr "\n\n"
+msgstr ""
+"\n"
+"\n"
 "Opravdu si přejete provést úpravu?"
 
 #: mmchecking_list.cpp:846
@@ -3766,9 +3834,11 @@ msgstr "Vícenásobná volba"
 
 #: mmcustomdata.cpp:448
 #, c-format
-msgid "Unable to save custom field \"%s\":\n"
+msgid ""
+"Unable to save custom field \"%s\":\n"
 "value \"%s\" does not match RegEx validation \"%s\""
-msgstr "Nelze uložit vlastní pole \"%s\":\n"
+msgstr ""
+"Nelze uložit vlastní pole \"%s\":\n"
 "hodnota \"%s\" neodpovídá ověření RegEx \"%s\""
 
 #: mmcustomdata.cpp:449
@@ -3782,9 +3852,13 @@ msgstr "Nelze načíst překlad pro výchozí jazyk vašeho systému (%s)."
 
 #: mmex.cpp:135
 #, c-format
-msgid "Please use the Switch Application Language option in View menu to select one of the following available languages:\n\n"
+msgid ""
+"Please use the Switch Application Language option in View menu to select one of the following available languages:\n"
+"\n"
 "%s"
-msgstr "Použijte prosím možnost Přepnout jazyk aplikace v nabídce Zobrazení pro výběr jednoho z následujících dostupných jazyků:\n\n"
+msgstr ""
+"Použijte prosím možnost Přepnout jazyk aplikace v nabídce Zobrazení pro výběr jednoho z následujících dostupných jazyků:\n"
+"\n"
 "%s"
 
 #: mmex.cpp:140 mmframe.cpp:3231
@@ -3792,9 +3866,11 @@ msgid "Language change"
 msgstr "Změna jazyka"
 
 #: mmex.cpp:180
-msgid "Fatal error occured.\n"
+msgid ""
+"Fatal error occured.\n"
 "Application will be terminated."
-msgstr "Nastala kritická chyba.\n"
+msgstr ""
+"Nastala kritická chyba.\n"
 "Aplikace bude ukončena."
 
 #: mmframe.cpp:259
@@ -4451,9 +4527,13 @@ msgstr "Celá obrazovka\tF11"
 
 #: mmframe.cpp:1748
 #, c-format
-msgid "Please enter password for Database\n\n"
+msgid ""
+"Please enter password for Database\n"
+"\n"
 "%s"
-msgstr "Zadejte heslo pro databázi\n\n"
+msgstr ""
+"Zadejte heslo pro databázi\n"
+"\n"
 "%s"
 
 #: mmframe.cpp:1749 mmframe.cpp:1979 mmframe.cpp:2112
@@ -4493,13 +4573,19 @@ msgid "portable mode"
 msgstr "přenosný mód"
 
 #: mmframe.cpp:1906
-msgid "Database that you trying to open has been marked as opened by another MMEX instance...\n"
-"To avoid data loss or conflict, it's strongly recommended to close all other applications that can use the DB.\n\n"
-"Possible it may be as result of a programm crash in previous usage.\n\n"
+msgid ""
+"Database that you trying to open has been marked as opened by another MMEX instance...\n"
+"To avoid data loss or conflict, it's strongly recommended to close all other applications that can use the DB.\n"
+"\n"
+"Possible it may be as result of a programm crash in previous usage.\n"
+"\n"
 "Would you like to continue?"
-msgstr "Databáze, kterou se snažíte otevřít, je otevřena již jinou instancí MMEX...\n"
-"Doporučujeme zavřít všechny aplikace, které využívají databázi, aby nedošlo ke ztrátě dat nebo konfliktu.\n\n"
-"Tato situace může být důsledkem pádu programu, který databázi předtím používal.\n\n"
+msgstr ""
+"Databáze, kterou se snažíte otevřít, je otevřena již jinou instancí MMEX...\n"
+"Doporučujeme zavřít všechny aplikace, které využívají databázi, aby nedošlo ke ztrátě dat nebo konfliktu.\n"
+"\n"
+"Tato situace může být důsledkem pádu programu, který databázi předtím používal.\n"
+"\n"
 "Přejete si pokračovat?"
 
 #: mmframe.cpp:1910
@@ -4540,9 +4626,13 @@ msgstr "MMEX: Změna hesla šifrování"
 
 #: mmframe.cpp:2013
 #, c-format
-msgid "New password for database\n\n"
+msgid ""
+"New password for database\n"
+"\n"
 "%s"
-msgstr "Nové heslo pro databázi\n\n"
+msgstr ""
+"Nové heslo pro databázi\n"
+"\n"
 "%s"
 
 #: mmframe.cpp:2018
@@ -4571,10 +4661,14 @@ msgstr "Optimalizace DB"
 
 #: mmframe.cpp:2047
 #, c-format
-msgid "Database Optimization Completed!\n\n"
+msgid ""
+"Database Optimization Completed!\n"
+"\n"
 "Size before: %s\n"
 "Size after: %s\n"
-msgstr "Optimalizace databáze byla dokončena!\n\n"
+msgstr ""
+"Optimalizace databáze byla dokončena!\n"
+"\n"
 "Původní velikost: %s\n"
 "Aktuální velikost: %s\n"
 
@@ -4603,13 +4697,19 @@ msgid "No account available to import"
 msgstr "Není k dispozici žádný účet pro import"
 
 #: mmframe.cpp:2264
-msgid "Asset Accounts hold Asset transactions\n\n"
+msgid ""
+"Asset Accounts hold Asset transactions\n"
+"\n"
 "Asset transactions are created within the Assets View\n"
-"after the selection of the Asset within that view.\n\n"
+"after the selection of the Asset within that view.\n"
+"\n"
 "Asset Accounts can also hold normal transactions to regular accounts."
-msgstr "Majetkové účty spravují transakce majetku\n\n"
+msgstr ""
+"Majetkové účty spravují transakce majetku\n"
+"\n"
 "Transakce majetku vytvoříte v pohledu Majetek\n"
-"po vybrání položky majetku.\n\n"
+"po vybrání položky majetku.\n"
+"\n"
 "Majetkové účty mohou obsahovat i standardní transakce na běžné účty."
 
 #: mmframe.cpp:2268
@@ -4617,15 +4717,21 @@ msgid "Asset Account Creation"
 msgstr "Vytvoření majetkového účtu"
 
 #: mmframe.cpp:2274
-msgid "Share Accounts hold Share transactions\n\n"
+msgid ""
+"Share Accounts hold Share transactions\n"
+"\n"
 "Share transactions are created within the Stock Portfolio View\n"
-"after the selection of the Company Stock within the associated view.\n\n"
+"after the selection of the Company Stock within the associated view.\n"
+"\n"
 "These accounts only become visible after associating a Stock to the Share Account\n"
 "Or by using the Menu View --> 'Display Share Accounts'\n"
 "Share Accounts can also hold normal transactions to regular account."
-msgstr "Akciové účty spravují transakce akcií\n\n"
+msgstr ""
+"Akciové účty spravují transakce akcií\n"
+"\n"
 "Transakce akcií vytvoříte v pohledu Portfolio akcií\n"
-"po vybrání akcií společnosti, které jsou asociovány s pohledem.\n\n"
+"po vybrání akcií společnosti, které jsou asociovány s pohledem.\n"
+"\n"
 "Tyto účty jsou viditelné až po přiřazení akcie k akciovému účtu\n"
 "nebo zobrazením v menu Zobrazit --> 'Akciové účty'\n"
 "Akciové účty mohou obsahovat standardní transakce na běžné účty."
@@ -4681,9 +4787,11 @@ msgstr "Zvolte účet pro odstranění"
 
 #: mmframe.cpp:3004
 #, c-format
-msgid "Are you sure you want to delete\n"
+msgid ""
+"Are you sure you want to delete\n"
 " %s account: %s ?"
-msgstr "Opravdu si přejete odstranit\n"
+msgstr ""
+"Opravdu si přejete odstranit\n"
 " %s účet: %s ?"
 
 #: mmframe.cpp:3023
@@ -4977,9 +5085,13 @@ msgid "Other"
 msgstr "Ostatní"
 
 #: model/Model_Billsdeposits.cpp:300
-msgid "A recurring transaction will exceed your account limit.\n\n"
+msgid ""
+"A recurring transaction will exceed your account limit.\n"
+"\n"
 "Do you wish to continue?"
-msgstr "Trvalý příkaz překročí limit účtu.\n\n"
+msgstr ""
+"Trvalý příkaz překročí limit účtu.\n"
+"\n"
 "Přejete si pokračovat?"
 
 #: model/Model_Billsdeposits.cpp:302
@@ -5040,10 +5152,12 @@ msgstr "Šablona je prázdná"
 
 #: model/Model_Report.cpp:247
 #, c-format
-msgid "The SQL script:\n"
+msgid ""
+"The SQL script:\n"
 "%s \n"
 "will modify database! aborted!"
-msgstr "SQL script:\n"
+msgstr ""
+"SQL script:\n"
 "%s \n"
 "upraví databázi! zrušeno!"
 
@@ -5326,9 +5440,11 @@ msgid "Create a new backup when MMEX Start"
 msgstr "Vytvořit novou zálohu při spuštění MMEX"
 
 #: optionsettingsmisc.cpp:152
-msgid "When MMEX Starts,\n"
+msgid ""
+"When MMEX Starts,\n"
 "creates the backup database: dbFile_start_YYYY-MM-DD.ext."
-msgstr "Při každém spuštění MMEX,\n"
+msgstr ""
+"Při každém spuštění MMEX,\n"
 "vytvoří záložní databázi: dbFile_start_YYYY-MM-DD.ext."
 
 #: optionsettingsmisc.cpp:157
@@ -5336,9 +5452,11 @@ msgid "Backup database on exit."
 msgstr "Zálohovat databázi při ukončení."
 
 #: optionsettingsmisc.cpp:159
-msgid "When MMEX shuts down and changes made to database,\n"
+msgid ""
+"When MMEX shuts down and changes made to database,\n"
 "creates or updates the backup database: dbFile_update_YYYY-MM-DD.ext."
-msgstr "Při ukončení MMEX a provedení změn v databázi,\n"
+msgstr ""
+"Při ukončení MMEX a provedení změn v databázi,\n"
 "vytvoří nebo aktualizuje záložní databázi: dbFile_update_YYYY-MM-DD.ext."
 
 #: optionsettingsmisc.cpp:167
@@ -5788,9 +5906,9 @@ msgstr "Postupujte podle následujících pokynů před nahlášením nové chyb
 msgid "Cash Flow Forecast for %i Year Ahead"
 msgid_plural "Cash Flow Forecast for %i Years Ahead"
 msgstr[0] "Odhad cash flow na %i rok(ů) dopředu"
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[1] "Odhad cash flow na %i rok(ů) dopředu"
+msgstr[2] "Odhad cash flow na %i rok(ů) dopředu"
+msgstr[3] "Odhad cash flow na %i rok(ů) dopředu"
 
 #: reports/cashflow.cpp:251 reports/incexpenses.cpp:234 reports/payee.cpp:137
 msgid "Difference"
@@ -6089,9 +6207,11 @@ msgid "*Date"
 msgstr "*Datum"
 
 #: stockdialog.cpp:214
-msgid "Specify the initial date of the stock investment\n"
+msgid ""
+"Specify the initial date of the stock investment\n"
 "Used when creating the initial Share transaction."
-msgstr "Zadejte prvotní datum investice do akcí\n"
+msgstr ""
+"Zadejte prvotní datum investice do akcí\n"
 "Použijte při tvorbě první transakce akcií."
 
 #: stockdialog.cpp:218
@@ -6099,9 +6219,11 @@ msgid "*Share Number"
 msgstr "*Podíl"
 
 #: stockdialog.cpp:224
-msgid "Enter number of shares.\n"
+msgid ""
+"Enter number of shares.\n"
 "Used when creating the initial Share transaction."
-msgstr "Zadejte počet akcií.\n"
+msgstr ""
+"Zadejte počet akcií.\n"
 "Použijte při tvorbě první transakce akcií."
 
 #: stockdialog.cpp:230 stockspanel.cpp:92
@@ -6109,9 +6231,11 @@ msgid "*Share Price"
 msgstr "*Cena podílu"
 
 #: stockdialog.cpp:236
-msgid "Enter the initial price per share.\n"
+msgid ""
+"Enter the initial price per share.\n"
 "Used when creating the initial Share transaction."
-msgstr "Zadejte počáteční cenu za akcii.\n"
+msgstr ""
+"Zadejte počáteční cenu za akcii.\n"
 "Použijte při tvorbě první transakce akcií."
 
 #: stockdialog.cpp:241
@@ -6119,9 +6243,11 @@ msgid "*Commission"
 msgstr "*Provize"
 
 #: stockdialog.cpp:245
-msgid "Enter any commission paid.\n"
+msgid ""
+"Enter any commission paid.\n"
 "Used when creating the initial Share transaction."
-msgstr "Zadejte jakoukoliv provizi, která byla zaplacena.\n"
+msgstr ""
+"Zadejte jakoukoliv provizi, která byla zaplacena.\n"
 "Použijte při tvorbě první transakce akcií."
 
 #: stockdialog.cpp:250 stockspanel.cpp:95
@@ -6169,17 +6295,27 @@ msgid "Held At"
 msgstr "Vedeno v"
 
 #: stockdialog.cpp:494
-msgid "Share Account not found.\n\n"
+msgid ""
+"Share Account not found.\n"
+"\n"
 "Do you want to create one?"
-msgstr "Akciový účet nebyl nalezen.\n\n"
+msgstr ""
+"Akciový účet nebyl nalezen.\n"
+"\n"
 "Přejete si jej vytvořit?"
 
 #: stockdialog.cpp:504
-msgid "The Company name does not have an associated Share Account.\n\n"
-"You may want to readjust the Company Name to an existing Share Account with the same name. If this is an existing Stock without a Share Account, it is recommended that a Share Account is created.\n\n"
+msgid ""
+"The Company name does not have an associated Share Account.\n"
+"\n"
+"You may want to readjust the Company Name to an existing Share Account with the same name. If this is an existing Stock without a Share Account, it is recommended that a Share Account is created.\n"
+"\n"
 "Do you want to create a new Share Acccount?\n"
-msgstr "K názvu společnosti není přidružen akciový účet.\n\n"
-"Pravděpodobně bude nutné upravit název společnosti na stejný název jako název akciového účtu. Pokud se jedná o existující akcie bez akciového účtu, je doporučeno akciový účet vytvořit.\n\n"
+msgstr ""
+"K názvu společnosti není přidružen akciový účet.\n"
+"\n"
+"Pravděpodobně bude nutné upravit název společnosti na stejný název jako název akciového účtu. Pokud se jedná o existující akcie bez akciového účtu, je doporučeno akciový účet vytvořit.\n"
+"\n"
 "Přejete si vytvořit akciový účet?\n"
 
 #: stockdialog.cpp:599
@@ -6314,10 +6450,16 @@ msgstr "Potvrzení odstranění akcií"
 
 #: stockspanel.cpp:403
 #, c-format
-msgid "Temporary Stock list: %s\n\n"
-"Date          Lot          Shares          Price        Commission\n\n"
-msgstr "Provizorní výpis akcií: %s\n\n"
-"Datum          Lot          Akcie          Cena        Provize\n\n"
+msgid ""
+"Temporary Stock list: %s\n"
+"\n"
+"Date          Lot          Shares          Price        Commission\n"
+"\n"
+msgstr ""
+"Provizorní výpis akcií: %s\n"
+"\n"
+"Datum          Lot          Akcie          Cena        Provize\n"
+"\n"
 
 #: stockspanel.cpp:577
 msgid "Add Stock Transactions"
@@ -6408,9 +6550,11 @@ msgstr "Neplatný typ"
 
 #: transactionsupdatedialog.cpp:312 transdialog.cpp:662
 #, c-format
-msgid "Do you want to add new payee: \n"
+msgid ""
+"Do you want to add new payee: \n"
 "%s?"
-msgstr "Přejete si přidat nového příjemce: \n"
+msgstr ""
+"Přejete si přidat nového příjemce: \n"
 "%s?"
 
 #: transactionsupdatedialog.cpp:313 transdialog.cpp:663
@@ -6446,9 +6590,13 @@ msgid "Show/Hide custom fields window"
 msgstr "Zobrazit/skrýt okno vlastních polí"
 
 #: transdialog.cpp:753
-msgid "This transaction will exceed your account limit.\n\n"
+msgid ""
+"This transaction will exceed your account limit.\n"
+"\n"
 "Do you wish to continue?"
-msgstr "Touto transakcí překročíte Váš limit na účtu.\n\n"
+msgstr ""
+"Touto transakcí překročíte Váš limit na účtu.\n"
+"\n"
 "Přejete si pokračovat?"
 
 #: transdialog.cpp:1263
@@ -6734,9 +6882,11 @@ msgstr "Účet '%s' nebyl nalezen!"
 
 #: webapp.cpp:474
 #, c-format
-msgid "Transaction will be inserted with the first bank account:\n"
+msgid ""
+"Transaction will be inserted with the first bank account:\n"
 "'%s' and marked as  'Follow Up'"
-msgstr "Transakce bude zadána na první bankovní účet:\n"
+msgstr ""
+"Transakce bude zadána na první bankovní účet:\n"
 "'%s' a označena jako  'Sledovat'"
 
 #: webapp.cpp:477
@@ -6833,10 +6983,12 @@ msgid "%s models all transactions as belonging to accounts."
 msgstr "%s spravuje všechny transakce podle účtů, ke kterým náleží."
 
 #: wizard_newaccount.cpp:40
-msgid "The next pages will help you create a new account.\n"
+msgid ""
+"The next pages will help you create a new account.\n"
 "To help you get started, begin by making a list of all\n"
 "financial institutions where you hold an account."
-msgstr "Tento průvodce Vám pomůže vytvořit nový účet.\n"
+msgstr ""
+"Tento průvodce Vám pomůže vytvořit nový účet.\n"
 "Nejlepší způsob jak začít, je vytvořit si seznam všech\n"
 "finančních institucí, kde máte veden účet."
 
@@ -6857,9 +7009,11 @@ msgid "Specify a descriptive name for the account."
 msgstr "Zadejte název účtu."
 
 #: wizard_newaccount.cpp:111
-msgid "This is generally the name of a financial institution\n"
+msgid ""
+"This is generally the name of a financial institution\n"
 "where the account is held. For example: 'ABC Bank'."
-msgstr "Název účtu je obvykle stejný jako název finační instituce\n"
+msgstr ""
+"Název účtu je obvykle stejný jako název finační instituce\n"
 "u které je účet veden. Příklad: 'Česká spořitelna'."
 
 #: wizard_newaccount.cpp:131
@@ -6871,24 +7025,30 @@ msgid "Select the type of account you want to create:"
 msgstr "Zvolte typ účtu, který si přejete vytvořit."
 
 #: wizard_newaccount.cpp:136
-msgid "General bank accounts cover a wide variety of account\n"
+msgid ""
+"General bank accounts cover a wide variety of account\n"
 "types like Checking, Savings and Credit card type accounts."
-msgstr "Banky obvykle nabízí různé typy účtů jako např. běžný\n"
+msgstr ""
+"Banky obvykle nabízí různé typy účtů jako např. běžný\n"
 "a spořící účet nebo účet k platební kartě."
 
 #: wizard_newaccount.cpp:141
-msgid "Investment accounts are specialized accounts that only\n"
+msgid ""
+"Investment accounts are specialized accounts that only\n"
 "have stock/mutual fund investments associated with them."
-msgstr "Investiční účty jsou zvláštní typy účtů, kde můžete obchodovat \n"
+msgstr ""
+"Investiční účty jsou zvláštní typy účtů, kde můžete obchodovat \n"
 "pouze s akciemi a otevřenými podílovými fondy, které jsou účtu\n"
 "přiřazeny."
 
 #: wizard_newaccount.cpp:146
-msgid "Term accounts are specialized bank accounts. Intended for asset\n"
+msgid ""
+"Term accounts are specialized bank accounts. Intended for asset\n"
 "type accounts such as Term Deposits and Bonds. These accounts\n"
 "can have regular money coming in and out, being outside the\n"
 "general income stream."
-msgstr "Vkladové účty jsou bankovní účty zaměřené na zhodnocení\n"
+msgstr ""
+"Vkladové účty jsou bankovní účty zaměřené na zhodnocení\n"
 "majetku, jako např. termínované vklady nebo dluhopisy.\n"
 "Tyto účty mají pravidelný příjem a odliv financí, přicházejících\n"
 "pravidelně z externího zdroje."
@@ -6906,21 +7066,27 @@ msgid "New Database Wizard"
 msgstr "Průvodce novou databází"
 
 #: wizard_newdb.cpp:30
-msgid "The next pages will help you create a new database.\n\n"
+msgid ""
+"The next pages will help you create a new database.\n"
+"\n"
 "Your database file is stored with an extension of .mmb.\n"
 "As this file contains important financial information,\n"
 "we recommended creating daily backups with the Options\n"
 "setting: 'Backup before opening', and store your backups\n"
-"in a separate location.\n\n"
+"in a separate location.\n"
+"\n"
 "The database can later be encrypted if required, by\n"
 "using the option: 'Save database as' and changing the\n"
 "file type before saving."
-msgstr "Tento průvodce Vám pomůže s tvorbou nové databáze.\n\n"
+msgstr ""
+"Tento průvodce Vám pomůže s tvorbou nové databáze.\n"
+"\n"
 "Soubor databáze se uloží jako soubor s příponou .mmb.\n"
 "Jelikož tento soubor bude obsahovat důležité finanční informace,\n"
 "doporučujeme Vám vytvářet denně jeho zálohu v Nastavení:\n"
 "'Vytvořit novou zálohu při spuštění', a tuto uložit do\n"
-"jiného umístění.\n\n"
+"jiného umístění.\n"
+"\n"
 "Databázi lze následně i zašifrovat, volbou typu při\n"
 "ukládání: 'Uložit databázi jako'."
 
@@ -6929,11 +7095,13 @@ msgid "Base Currency for account"
 msgstr "Měna účtu"
 
 #: wizard_newdb.cpp:95
-msgid "Specify the base (or default) currency to be used for the\n"
+msgid ""
+"Specify the base (or default) currency to be used for the\n"
 "database. The base currency can later be changed by using\n"
 "the options dialog. New accounts, will use this currency by\n"
 "default, and can be changed when editing account details."
-msgstr "Určete základní (nebo výchozí) měnu, která bude použita \n"
+msgstr ""
+"Určete základní (nebo výchozí) měnu, která bude použita \n"
 "v databázi. Toto nastavení lze později změnit v Nasatvení.\n"
 "Nové účty budou mít automaticky přiřazenu výchozí měnu\n"
 "a můžete ji upravit ve vlastnostech účtu."
@@ -6986,4 +7154,3 @@ msgstr "Chyba: "
 #: wizard_update.cpp:292 wizard_update.cpp:309
 msgid "MMEX Update Check"
 msgstr "Ověření aktualizace MMEX"
-
