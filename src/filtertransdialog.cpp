@@ -948,7 +948,7 @@ const wxString mmFilterTransactionsDialog::to_json(bool i18n)
     const wxString default_label = wxString::Format(_("%i: Empty"), m_setting_name->GetSelection() + 1);
     if (!label.empty() && label != default_label)
     {
-        json_writer.Key((i18n ? _("Label") : "LABEL").c_str());
+        json_writer.Key((i18n ? _("Label") : "LABEL").utf8_str());
         json_writer.String(label.utf8_str());
     }
 
