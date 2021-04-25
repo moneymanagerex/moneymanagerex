@@ -157,7 +157,6 @@ private:
     void initFilterSettings();
     void setAccountSummary();
     void sortTable();
-    void filterTableAll();
     void filterTable();
     void CreateControls();
 

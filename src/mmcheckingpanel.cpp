@@ -121,51 +121,11 @@ void mmCheckingPanel::sortTable()
     m_listCtrlAccount->sortTable();
 }
 
-void mmCheckingPanel::filterTableAll()
-{
-    m_listCtrlAccount->m_trans.clear();
- 
-    bool ignore_future = Option::instance().getIgnoreFutureTransactions();
-    const wxString today_date_string = wxDate::Today().FormatISODate();
-
-    const auto splits = Model_Splittransaction::instance().get_all();
-    const auto attachments = Model_Attachment::instance().get_all(Model_Attachment::TRANSACTION);
-    for (const auto& tran : Model_Checking::instance().all())
-    {
-        if (ignore_future) {
-            if (tran.TRANSDATE > today_date_string) continue;
-        }
-
-        if (m_transFilterActive)
-        {
-            if (!m_trans_filter_dlg->checkAll(tran, -1, splits))
-                continue;
-        }
-        else
-        {
-            if (m_currentView != MENU_VIEW_ALLTRANSACTIONS)
-            {
-                if (tran.TRANSDATE < m_begin_date) continue;
-                if (tran.TRANSDATE > m_end_date) continue;
-            }
-        }
-
-        Model_Checking::Full_Data full_tran(tran, splits);
-        full_tran.PAYEENAME = full_tran.real_payee_name(m_AccountID);
-        full_tran.AMOUNT = Model_Checking::amount(tran);
-
-        if (attachments.count(full_tran.TRANSID))
-            full_tran.NOTES.Prepend(mmAttachmentManage::GetAttachmentNoteSign());
-
-        m_listCtrlAccount->m_trans.push_back(full_tran);
-    }
-}
-
 void mmCheckingPanel::filterTable()
 {
     m_listCtrlAccount->m_trans.clear();
 
-    m_account_balance = m_account ? m_account->INITIALBAL : 0.0;
+    m_account_balance = !m_allAccounts && m_account ? m_account->INITIALBAL : 0.0;
     m_reconciled_balance = m_account_balance;
     m_filteredBalance = 0.0;
 
@@ -182,7 +142,9 @@ void mmCheckingPanel::filterTable()
 
     const auto splits = Model_Splittransaction::instance().get_all();
     const auto attachments = Model_Attachment::instance().get_all(Model_Attachment::TRANSACTION);
-    for (const auto& tran : Model_Account::transaction(this->m_account))
+
+    const auto i = m_allAccounts ? Model_Checking::instance().all() : Model_Account::transaction(this->m_account);
+    for (const auto& tran : i)
     {
         double transaction_amount = Model_Checking::amount(tran, m_AccountID);
         if (Model_Checking::status(tran.STATUS) != Model_Checking::VOID_)
@@ -734,15 +696,9 @@ void mmCheckingPanel::DisplayAccountDetails(int accountID)
 
     initViewTransactionsHeader();
     initFilterSettings();
-    //if (!m_allAccounts)
-    //    filterTable();
-    //else
-    //    filterTableAll();
-    //m_listCtrlAccount->SetItemCount(m_listCtrlAccount->m_trans.size());
-    //m_listCtrlAccount->markSelectedTransaction();
+
     RefreshList();
     showTips();
-
 
     enableTransactionButtons(false, false, false);
 }
