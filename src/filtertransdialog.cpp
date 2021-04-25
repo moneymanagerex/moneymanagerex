@@ -949,7 +949,7 @@ const wxString mmFilterTransactionsDialog::to_json(bool i18n)
     if (!label.empty() && label != default_label)
     {
         json_writer.Key((i18n ? _("Label") : "LABEL").c_str());
-        json_writer.String(label.c_str());
+        json_writer.String(label.utf8_str());
     }
 
     if (accountCheckBox_->IsChecked())
