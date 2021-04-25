@@ -1005,8 +1005,8 @@ void TransactionListCtrl::refreshVisualList(bool filter)
 
     // decide whether top or down icon needs to be shown
     setColumnImage(g_sortcol, g_asc ? mmCheckingPanel::ICON_DESC : mmCheckingPanel::ICON_ASC);
-    if (filter) 
-        (!m_cp->m_allAccounts) ? m_cp->filterTable(): m_cp->filterTableAll();
+    if (filter)
+        m_cp->filterTable();
     SetItemCount(m_trans.size());
     Show();
     sortTable();
