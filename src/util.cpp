@@ -286,21 +286,43 @@ void csv2tab_separated_values(wxString& line, const wxString& delimit)
 
 //* Date Functions----------------------------------------------------------*//
 
-const wxString mmGetDateForDisplay(const wxString &iso_date)
+static const wxString MONTHS_SHORT[12] =
+{
+    wxTRANSLATE("Jan"), wxTRANSLATE("Feb"), wxTRANSLATE("Mar")
+    , wxTRANSLATE("Apr"), wxTRANSLATE("May"), wxTRANSLATE("Jun")
+    , wxTRANSLATE("Jul"), wxTRANSLATE("Aug"), wxTRANSLATE("Sep")
+    , wxTRANSLATE("Oct"), wxTRANSLATE("Nov"), wxTRANSLATE("Dec")
+};
+
+static const wxString g_days_of_week[7] =
+{
+    wxTRANSLATE("Sunday"), wxTRANSLATE("Monday"), wxTRANSLATE("Tuesday")
+    , wxTRANSLATE("Wednesday"), wxTRANSLATE("Thursday"), wxTRANSLATE("Friday")
+    , wxTRANSLATE("Saturday")
+};
+
+static const wxString g_short_days_of_week[7] =
+{
+    wxTRANSLATE("Sun"), wxTRANSLATE("Mon"), wxTRANSLATE("Tue")
+    , wxTRANSLATE("Wed"), wxTRANSLATE("Thu"), wxTRANSLATE("Fri")
+    , wxTRANSLATE("Sat")
+};
+
+
+const wxString mmGetDateForDisplay(const wxString &iso_date, const wxString& dateFormat)
 {
     //ISO Date to formatted string lookup table.
     static std::unordered_map<wxString, wxString> dateLookup;
 
-    static wxString dateFormat = Option::instance().getDateFormat();
-
     // If format has been changed, delete all stored strings.
     if (dateFormat != Option::instance().getDateFormat())
     {
-        dateFormat = Option::instance().getDateFormat();
         dateLookup.clear();
+        if (dateFormat.empty())
+            return "";
     }
 
-    // If date exists in lookup- return it.
+    // If date exists in lookup - return it.
     auto it = dateLookup.find(iso_date);
     if (it != dateLookup.end())
         return it->second; // The stored formatted date.
@@ -309,8 +331,21 @@ const wxString mmGetDateForDisplay(const wxString &iso_date)
     wxString date_str = dateFormat;
     if (date_str.Replace("%Y", iso_date.Mid(0, 4)) == 0)
         date_str.Replace("%y", iso_date.Mid(2, 2));
+
+    if (date_str.Contains("%Mon")) {
+        const auto mon = wxGetTranslation(MONTHS_SHORT[wxAtoi(iso_date.Mid(5, 2)) - 1]);
+        date_str.Replace("%Mon", wxGetTranslation(mon));
+    }
+
     date_str.Replace("%m", iso_date.Mid(5, 2));
     date_str.Replace("%d", iso_date.Mid(8, 2));
+    if (date_str.Contains("%w")) {
+        wxDateTime d;
+        d.ParseISODate(iso_date);
+        const auto week = wxGetTranslation(g_short_days_of_week[d.GetWeekDay()]);
+        date_str.Replace("%w", wxGetTranslation(week));
+    }
+
     return dateLookup[iso_date] = date_str;
 }
 
@@ -397,6 +432,8 @@ const std::map<wxString, wxString> &date_formats_regex()
 
     for (const auto entry : g_date_formats_map())
     {
+        if (entry.first.Contains("%w") || entry.first.Contains("%Mon"))
+            continue;
         wxString regexp = entry.first;
         regexp.Replace("%d", dd);
         regexp.Replace("%m", mm);
@@ -410,24 +447,43 @@ const std::map<wxString, wxString> &date_formats_regex()
     return date_regex;
 }
 
-const std::map<wxString, wxString> g_date_formats_map()
+const std::unordered_map<wxString, wxString> g_date_formats_map()
 {
-    static std::map<wxString, wxString> df;
+    static std::unordered_map<wxString, wxString> df;
     if (!df.empty())
         return df;
 
     const auto local_date_fmt = wxLocale::GetInfo(wxLOCALE_SHORT_DATE_FMT);
     const wxString formats[] = {
         local_date_fmt,
-        "%Y-%m-%d", "%d/%m/%y", "%d/%m/%Y",
-        "%d-%m-%y", "%d-%m-%Y", "%d.%m.%y",
-        "%d.%m.%Y", "%d,%m,%y", "%d/%m'%Y",
-        "%d/%m'%y", "%d/%m %Y", "%m/%d/%y",
-        "%m/%d/%Y", "%m-%d-%y", "%m-%d-%Y",
-        "%m/%d'%y", "%m/%d'%Y", "%m.%d.%y",
-        "%m.%d.%Y", "%y/%m/%d",
-        "%y-%m-%d", "%Y/%m/%d", "%Y.%m.%d",
-        "%Y %m %d", "%Y%m%d",   "%Y%d%m"
+        "%d,%m,%y",
+        "%d.%m.%y",
+        "%d.%m.%Y",
+        "%d.%m.%Y",
+        "%d/%m %Y",
+        "%d/%m/%y",
+        "%d/%m/%Y",
+        "%d/%m'%y",
+        "%d/%m'%Y",
+        "%d-%m-%y",
+        "%d-%m-%Y",
+        "%w %d %Mon'%y",
+        "%m.%d.%y",
+        "%m.%d.%Y",
+        "%m/%d/%y",
+        "%m/%d/%Y",
+        "%m/%d'%y",
+        "%m/%d'%Y",
+        "%m-%d-%y",
+        "%m-%d-%Y",
+        "%y/%m/%d",
+        "%y-%m-%d",
+        "%Y %m %d",
+        "%Y.%m.%d",
+        "%Y/%m/%d",
+        "%Y%d%m",
+        "%Y%m%d",
+        "%Y-%m-%d"
     };
 
     for (const auto& entry : formats)
@@ -436,7 +492,9 @@ const std::map<wxString, wxString> g_date_formats_map()
         local_date_mask.Replace("%Y", "YYYY");
         local_date_mask.Replace("%y", "YY");
         local_date_mask.Replace("%d", "DD");
+        local_date_mask.Replace("%Mon", "Mon");
         local_date_mask.Replace("%m", "MM");
+        local_date_mask.Replace("%w", "Wee");
         df[entry] = local_date_mask;
     }
 
@@ -454,21 +512,6 @@ const std::map<int, std::pair<wxConvAuto, wxString> > g_encoding = {
     , { 7, { wxConvAuto(wxFONTENCODING_CP1255), "1255" } }
     , { 8, { wxConvAuto(wxFONTENCODING_CP1256), "1256" } }
     , { 9, { wxConvAuto(wxFONTENCODING_CP1257), "1257" } }
-};
-
-static const wxString MONTHS_SHORT[12] =
-{
-    wxTRANSLATE("Jan"), wxTRANSLATE("Feb"), wxTRANSLATE("Mar")
-    , wxTRANSLATE("Apr"), wxTRANSLATE("May"), wxTRANSLATE("Jun")
-    , wxTRANSLATE("Jul"), wxTRANSLATE("Aug"), wxTRANSLATE("Sep")
-    , wxTRANSLATE("Oct"), wxTRANSLATE("Nov"), wxTRANSLATE("Dec")
-};
-
-static const wxString gDaysInWeek[7] =
-{
-    wxTRANSLATE("Sunday"), wxTRANSLATE("Monday"), wxTRANSLATE("Tuesday")
-    , wxTRANSLATE("Wednesday"), wxTRANSLATE("Thursday"), wxTRANSLATE("Friday")
-    , wxTRANSLATE("Saturday")
 };
 
 //
@@ -1060,7 +1103,7 @@ void mmDates::doHandleStatistics(const wxString &dateStr)
     if (m_error_count <= MAX_ATTEMPTS && m_date_formats_temp.size() > 1)
     {
         wxArrayString invalidMask;
-        const std::map<wxString, wxString> date_formats = m_date_formats_temp;
+        const std::unordered_map<wxString, wxString> date_formats = m_date_formats_temp;
         for (const auto& date_mask : date_formats)
         {
             const wxString mask = date_mask.first;

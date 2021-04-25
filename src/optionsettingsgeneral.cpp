@@ -117,7 +117,7 @@ void OptionSettingsGeneral::Create()
     m_sample_date_text = new wxStaticText(this, wxID_STATIC, "redefined elsewhere");
     dateFormatStaticBoxSizer->Add(new wxStaticText(this, wxID_STATIC, _("New date format sample:")), wxSizerFlags(g_flagsH).Border(wxLEFT, 15));
     dateFormatStaticBoxSizer->Add(m_sample_date_text, wxSizerFlags(g_flagsH).Border(wxLEFT, 5));
-    m_sample_date_text->SetLabelText(wxDateTime::Now().Format(Option::instance().getDateFormat()));
+    m_sample_date_text->SetLabelText(mmGetDateForDisplay(wxDateTime::Now().FormatISODate()));
 
     // Financial Year Settings
     wxStaticBox* financialYearStaticBox = new wxStaticBox(this, wxID_ANY, _("Financial Year"));
@@ -182,12 +182,10 @@ void OptionSettingsGeneral::OnDateFormatChanged(wxCommandEvent& /*event*/)
     if (data)
     {
         m_date_format = data->GetData();
-        m_sample_date_text->SetLabelText(wxDateTime::Now().Format(m_date_format));
+        mmGetDateForDisplay(wxDateTime::Now().FormatISODate(), ""); //clear the cache
+        m_sample_date_text->SetLabelText(mmGetDateForDisplay(wxDateTime::Now().FormatISODate(), m_date_format));
     }
-    else
-    {
-        return;
-    }
+
 }
 
 bool OptionSettingsGeneral::SaveFinancialYearStart()
