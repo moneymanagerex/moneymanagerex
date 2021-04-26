@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-04-22 00:36+0300\n"
-"PO-Revision-Date: 2021-04-26 17:20\n"
+"PO-Revision-Date: 2021-04-26 17:45\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "MIME-Version: 1.0\n"
@@ -1206,7 +1206,7 @@ msgstr "Transações Recorrentes"
 
 #: billsdepositspanel.cpp:220 filtertransdialog.h:101
 msgid "Transaction Filter"
-msgstr "Filtrar Transação"
+msgstr "Filtrar o que deseja exibir"
 
 #: billsdepositspanel.cpp:254
 msgid "New Bills & Deposit Series"
@@ -4855,11 +4855,11 @@ msgstr "Resumo das Contas"
 
 #: mmframereport.cpp:189
 msgid "Budget Performance"
-msgstr "Desempenho orçamental"
+msgstr "Desempenho do Orçamento"
 
 #: mmframereport.cpp:192
 msgid "Budget Category Summary"
-msgstr "Resumo da Categoria de Orçamento"
+msgstr "Resumo do Orçamento por Categorias"
 
 #: mmframereport.cpp:201
 msgid "Stocks Report"
