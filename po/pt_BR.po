@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-04-22 00:36+0300\n"
-"PO-Revision-Date: 2021-04-24 17:42\n"
+"PO-Revision-Date: 2021-04-26 17:12\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "MIME-Version: 1.0\n"
@@ -2398,11 +2398,11 @@ msgstr "%i: Vazio"
 
 #: filtertransdialog.cpp:375
 msgid "Save active values into current Preset selection"
-msgstr ""
+msgstr "Salvar os valores na predefinição atual"
 
 #: filtertransdialog.cpp:380
 msgid "Clear all fields for current Preset selection"
-msgstr ""
+msgstr "Limpar todos os campos para a predefinição atual"
 
 #: filtertransdialog.cpp:696 filtertransdialog.cpp:1347
 msgid "Please Enter"
@@ -2410,7 +2410,7 @@ msgstr "Por favor, insira"
 
 #: filtertransdialog.cpp:696 filtertransdialog.cpp:1347
 msgid "Setting Name"
-msgstr ""
+msgstr "Definir Nome"
 
 #: filtertransdialog.cpp:700 filtertransdialog.cpp:1343
 #: filtertransdialog.cpp:1351
@@ -2626,7 +2626,7 @@ msgstr "Parâmetros:"
 #: images_list.cpp:318
 #, c-format
 msgid "Metadata JSON in Theme '%s' cannot be parsed and looks badly constructed, please correct."
-msgstr ""
+msgstr "Metadado JSON no tema '%s' não pode ser analisado e parece mal construído, por favor corrija."
 
 #: images_list.cpp:319 images_list.cpp:402 images_list.cpp:413
 #: images_list.cpp:448 images_list.cpp:473 images_list.cpp:479
@@ -2637,7 +2637,7 @@ msgstr "Alerta"
 #: images_list.cpp:401
 #, c-format
 msgid "File '%s' missing or invalid in chosen theme '%s'"
-msgstr ""
+msgstr "Arquivo '%s' faltando ou inválido no tema escolhido '%s'"
 
 #: images_list.cpp:412
 #, c-format
@@ -4247,7 +4247,7 @@ msgstr "&Bens"
 
 #: mmframe.cpp:1517
 msgid "T&heme Manager"
-msgstr ""
+msgstr "Gerenciador de Temas"
 
 #: mmframe.cpp:1517 mmframe.cpp:2440 optionsettingsview.cpp:273 themes.cpp:144
 msgid "Theme Manager"
@@ -5563,7 +5563,7 @@ msgstr "Ver Relatório da Categoria de Orçamento com Resumos"
 
 #: optionsettingsview.cpp:127
 msgid "Budget Offset (days):"
-msgstr ""
+msgstr "Compensação de orçamento (dias):"
 
 #: optionsettingsview.cpp:131
 msgid "Advance or retard the start date from the 1st of the month or year by the number of days"
