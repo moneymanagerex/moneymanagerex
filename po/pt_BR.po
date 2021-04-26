@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-04-22 00:36+0300\n"
-"PO-Revision-Date: 2021-04-26 17:12\n"
+"PO-Revision-Date: 2021-04-26 17:20\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "MIME-Version: 1.0\n"
@@ -5567,7 +5567,7 @@ msgstr "Compensação de orçamento (dias):"
 
 #: optionsettingsview.cpp:131
 msgid "Advance or retard the start date from the 1st of the month or year by the number of days"
-msgstr ""
+msgstr "Adiantar ou atrasar a data de início a partir do primeiro dia do mês ou ano pelo número de dias"
 
 #: optionsettingsview.cpp:139
 msgid "Ignore Future Transactions"
@@ -6368,7 +6368,7 @@ msgstr "Erro do Histórico de Ações"
 
 #: stocks_list.cpp:92
 msgid "Share Total"
-msgstr "Total de Ações"
+msgstr "Total"
 
 #: stocks_list.cpp:94
 msgid "Init Value"
@@ -6453,7 +6453,7 @@ msgstr "Carteira de Ações: %s"
 #: stockspanel.cpp:340
 #, c-format
 msgid "Total Shares: %s"
-msgstr "Total de Ações: %s"
+msgstr "Total: %s"
 
 #: stockspanel.cpp:342
 #, c-format
