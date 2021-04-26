@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-04-22 00:36+0300\n"
-"PO-Revision-Date: 2021-04-26 09:12\n"
+"PO-Revision-Date: 2021-04-26 09:21\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -3675,7 +3675,7 @@ msgstr "Dupliquer l'opération"
 
 #: mmchecking_list.cpp:368
 msgid "&Move Transaction"
-msgstr "&Move: Déplacer l'opération"
+msgstr "&Déplacer l'opération"
 
 #: mmchecking_list.cpp:374
 msgid "&View Split Categories"
@@ -3697,11 +3697,11 @@ msgstr "Supprimer toutes les opérations visibles"
 
 #: mmchecking_list.cpp:392
 msgid "Delete Viewed \"Follow Up\" Transactions"
-msgstr ""
+msgstr "Supprimer les opérations \"Suivies\""
 
 #: mmchecking_list.cpp:393
 msgid "Delete Viewed \"Unreconciled\" Transactions"
-msgstr ""
+msgstr "Supprimer opérations \"Non réconcilées\""
 
 #: mmchecking_list.cpp:399
 msgid "as Reconciled"
@@ -3717,7 +3717,7 @@ msgstr "Nul"
 
 #: mmchecking_list.cpp:405
 msgid "as Followup"
-msgstr "comme suivi"
+msgstr "Suivie"
 
 #: mmchecking_list.cpp:407
 msgid "as Duplicate"
@@ -3725,7 +3725,7 @@ msgstr "Duplicata"
 
 #: mmchecking_list.cpp:409
 msgid "Mark all being selected"
-msgstr "Tout marquer comme vu"
+msgstr "Opérations sélectionnées marqué comme"
 
 #: mmchecking_list.cpp:780
 #, c-format
