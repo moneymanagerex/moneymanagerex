@@ -178,9 +178,6 @@ void mmUnivCSVDialog::CreateControls()
 
     const wxString& file_button_label = IsImporter() ? _("&Browse") : _("File");
     wxButton* button_browse = new wxButton(itemPanel6, wxID_BROWSE, file_button_label);
-    const wxString& file_tooltip = IsImporter()
-        ? _("Choose CSV data file to Import") : _("Choose CSV data file to Export");
-    button_browse->SetToolTip(file_tooltip);
     itemBoxSizer7->Add(button_browse, g_flagsH);
 
     // Predefined settings
@@ -200,17 +197,14 @@ void mmUnivCSVDialog::CreateControls()
 
     m_setting_name_ctrl_ = new wxTextCtrl(itemPanel67, ID_FILE_NAME);
     itemBoxSizer76->Add(m_setting_name_ctrl_, wxSizerFlags(g_flagsH).Center().Proportion(1));
-    m_setting_name_ctrl_->SetToolTip(_("Template name"));
 
     wxBitmapButton* itemButton_Save = new wxBitmapButton(itemPanel67
         , wxID_SAVEAS, mmBitmap(png::SAVE));
     itemBoxSizer76->Add(itemButton_Save, wxSizerFlags(g_flagsH).Center().Proportion(0));
-    itemButton_Save->SetToolTip(_("Save Template"));
 
     wxBitmapButton* itemButtonClear = new wxBitmapButton(itemPanel67
         , wxID_CLEAR, mmBitmap(png::CLEAR));
     itemBoxSizer76->Add(itemButtonClear, wxSizerFlags(g_flagsH).Center().Proportion(0));
-    itemButtonClear->SetToolTip(_("Clear Settings"));
 
     //
     wxStaticText* itemStaticText3 = new wxStaticText(this, wxID_STATIC
@@ -247,7 +241,6 @@ void mmUnivCSVDialog::CreateControls()
     //Standard MMEX CSV
     wxButton* itemButton_standard = new wxButton(itemPanel_AddRemove, wxID_STANDARD, _("&MMEX format"));
     itemBoxSizer_AddRemove->Add(itemButton_standard, g_flagsV);
-    itemButton_standard->SetToolTip(_("MMEX standard format"));
 
     //ListBox of attribute order
     csvListBox_ = new wxListBox(this, ID_LISTBOX
@@ -265,12 +258,10 @@ void mmUnivCSVDialog::CreateControls()
     //Move Up button
     wxButton* itemButton_MoveUp = new wxButton(itemPanel_Arranger, wxID_UP, _("&Up"));
     itemBoxSizer_Arranger->Add(itemButton_MoveUp, g_flagsV);
-    itemButton_MoveUp->SetToolTip(_("Move Up"));
 
     //Move down button
     wxButton* itemButton_MoveDown = new wxButton(itemPanel_Arranger, wxID_DOWN, _("&Down"));
     itemBoxSizer_Arranger->Add(itemButton_MoveDown, g_flagsV);
-    itemButton_MoveDown->SetToolTip(_("Move &Down"));
 
     wxStaticLine*  m_staticline1 = new wxStaticLine(this
         , wxID_ANY, wxDefaultPosition, wxDefaultSize, wxLI_HORIZONTAL);
@@ -318,7 +309,6 @@ void mmUnivCSVDialog::CreateControls()
 
         m_textDelimiter = new wxTextCtrl(itemPanel7, ID_UD_DELIMIT, "", wxDefaultPosition, wxDefaultSize
             , wxTE_PROCESS_ENTER | wxTE_PROCESS_TAB);
-        m_textDelimiter->SetToolTip(_("Specify the delimiter to use when importing/exporting CSV files"));
         m_textDelimiter->SetMaxLength(1);
         m_textDelimiter->Connect(ID_UD_DELIMIT
             , wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler(mmUnivCSVDialog::OnDelimiterChange), nullptr, this);
@@ -412,21 +402,15 @@ void mmUnivCSVDialog::CreateControls()
     wxBoxSizer* itemBoxSizer6 = new wxBoxSizer(wxHORIZONTAL);
     itemPanel5->SetSizer(itemBoxSizer6);
 
-    if (IsImporter())
-    {
+    if (IsImporter()) {
         itemButton_Import_ = new wxButton(itemPanel5, ID_UNIVCSVBUTTON_IMPORT, _("&Import")
             , wxDefaultPosition, wxDefaultSize, 0);
-        itemBoxSizer6->Add(itemButton_Import_, 0, wxALIGN_CENTER | wxALL, 5);
-        itemButton_Import_->SetToolTip(_("Import File"));
-        itemButton_Import_->Disable();
-    }
-    else
-    {
-        wxButton* itemButton_Export = new wxButton(itemPanel5, ID_UNIVCSVBUTTON_EXPORT, _("&Export")
+    } else {
+        itemButton_Import_ = new wxButton(itemPanel5, ID_UNIVCSVBUTTON_EXPORT, _("&Export")
             , wxDefaultPosition, wxDefaultSize, 0);
-        itemBoxSizer6->Add(itemButton_Export, 0, wxALIGN_CENTER | wxALL, 5);
-        itemButton_Export->SetToolTip(_("Export File"));
     }
+    itemButton_Import_->Disable();
+    itemBoxSizer6->Add(itemButton_Import_, 0, wxALIGN_CENTER | wxALL, 5);
 
     wxButton* itemCancelButton = new wxButton(itemPanel5, wxID_CANCEL, wxGetTranslation(g_CancelLabel));
     itemBoxSizer6->Add(itemCancelButton, 0, wxALIGN_CENTER | wxALL, 5);
@@ -445,6 +429,21 @@ void mmUnivCSVDialog::CreateControls()
     itemBoxSizer22->Add(itemClearButton, 0, wxALIGN_CENTER | wxALL, 5);
     itemClearButton->Connect(wxID_CLEAR, wxEVT_COMMAND_BUTTON_CLICKED
         , wxCommandEventHandler(mmUnivCSVDialog::OnButtonClear), nullptr, this);
+
+    const wxString& file_tooltip = IsImporter()
+        ? (IsXML() ? _("Choose XML data file to Import") : _("Choose CSV data file to Import"))
+        : (IsXML() ? _("Choose XML data file to Export") : _("Choose CSV data file to Export"));
+    button_browse->SetToolTip(file_tooltip);
+
+    m_setting_name_ctrl_->SetToolTip(_("Template name"));
+    itemButton_Save->SetToolTip(_("Save Template"));
+    itemButtonClear->SetToolTip(_("Clear Settings"));
+    itemButton_standard->SetToolTip(_("MMEX standard format"));
+    itemButton_MoveUp->SetToolTip(_("Move Up"));
+    itemButton_MoveDown->SetToolTip(_("Move &Down"));
+    if (IsCSV()) m_textDelimiter->SetToolTip(_("Specify the delimiter to use when importing/exporting CSV files"));
+    if (IsImporter()) itemButton_Import_->SetToolTip(_("Import File"));
+    if (!IsImporter()) itemButton_Import_->SetToolTip(_("Export File"));
 
 }
 
@@ -1132,7 +1131,7 @@ void mmUnivCSVDialog::OnExport(wxCommandEvent& WXUNUSED(event))
     long numRecords = 0;
     Model_Currency::Data* currency = Model_Account::currency(from_account);
 
-    ITransactionsFile *pTxFile = CreateFileHandler();
+    wxSharedPtr<ITransactionsFile> pTxFile(CreateFileHandler());
 
     // Write titles to file.
     if (m_checkBoxExportTitles->IsChecked())
@@ -1190,7 +1189,7 @@ void mmUnivCSVDialog::OnExport(wxCommandEvent& WXUNUSED(event))
                 {
                 case UNIV_CSV_DATE:
                     trx_date = Model_Checking::TRANSDATE(pBankTransaction);
-                    entry = trx_date.Format(date_format_);
+                    entry = mmGetDateForDisplay(trx_date.FormatISODate());
                     break;
                 case UNIV_CSV_PAYEE:
                     entry = tran.real_payee_name(fromAccountID);
@@ -1242,7 +1241,6 @@ void mmUnivCSVDialog::OnExport(wxCommandEvent& WXUNUSED(event))
     const wxString& msg = wxString::Format(_("Transactions exported: %ld"), numRecords);
     mmErrorDialogs::MessageWarning(this, msg, _("Export"));
 
-    delete pTxFile;
 }
 
 void mmUnivCSVDialog::update_preview()
@@ -1554,8 +1552,9 @@ void mmUnivCSVDialog::OnBrowse(wxCommandEvent& WXUNUSED(event))
     }
 
     long flags = IsImporter() ? wxFD_FILE_MUST_EXIST | wxFD_OPEN : wxFD_SAVE;
-    const wxString defaultWildcard = IsXML() ? wxString() << _("XML Files (*.xml)") << "|*.xml;*.XML|" << _("All Files") << "|" << wxFileSelectorDefaultWildcardStr :
-        wxString() << _("CSV Files (*.csv)") << "|*.csv;*.CSV";
+    const wxString defaultWildcard = IsXML()
+        ? wxString() << _("XML Files (*.xml)") << "|*.xml;*.XML|" << _("All Files") << "|" << wxFileSelectorDefaultWildcardStr
+        : wxString() << _("CSV Files (*.csv)") << "|*.csv;*.CSV";
     const wxString chooseExt = IsXML() ? "*.xml" : "*.csv";
 
     if (!IsImporter()) correctEmptyFileExt("csv", fileName);
@@ -1575,7 +1574,7 @@ void mmUnivCSVDialog::OnBrowse(wxCommandEvent& WXUNUSED(event))
                 return;
             }
 
-            mmSeparator* sep = new mmSeparator;
+            wxSharedPtr<mmSeparator> sep(new mmSeparator);
             wxString line;
             size_t count = 0;
             for (line = tFile.GetFirstLine(); !tFile.Eof(); line = tFile.GetNextLine())
@@ -1588,8 +1587,7 @@ void mmUnivCSVDialog::OnBrowse(wxCommandEvent& WXUNUSED(event))
             *log_field_ << "\n";
 
             delimit_ = sep->getSeparator();
-            m_textDelimiter->ChangeValue(delimit_);
-            delete sep;
+            if (!IsXML()) m_textDelimiter->ChangeValue(delimit_);
 
             // TODO: update_preview() is called twice. Once here and once in OnFileNameChanged().
             // This leads to double work and double error messages to the user.
@@ -1823,7 +1821,7 @@ void mmUnivCSVDialog::OnChoiceChanged(wxCommandEvent& event)
         Model_Currency::Data* currency = Model_Account::currency(account);
         *log_field_ << _("Currency:") << " " << wxGetTranslation(currency->CURRENCYNAME) << "\n";
         if (account) {
-            if (IsImporter()) itemButton_Import_->Enable();
+            itemButton_Import_->Enable();
         }
     }
     else if (i == ID_ENCODING)
