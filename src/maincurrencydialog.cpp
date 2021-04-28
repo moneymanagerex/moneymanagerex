@@ -178,7 +178,7 @@ void mmMainCurrencyDialog::CreateControls()
     //TODO:provide proper style and fix validator (does not working)
     currencyListBox_ = new wxDataViewListCtrl(this, wxID_ANY
         , wxDefaultPosition, wxDefaultSize /*, wxDV_HORIZ_RULES, mmDoubleValidator(4)*/);
-    currencyListBox_->SetMinSize(wxSize(-1, 200));
+    currencyListBox_->SetMinSize(wxSize(350, 350));
 
     currencyListBox_->AppendTextColumn(ColName_[CURR_BASE], wxDATAVIEW_CELL_INERT, 30);
     currencyListBox_->AppendTextColumn(ColName_[CURR_SYMBOL], wxDATAVIEW_CELL_INERT, wxLIST_AUTOSIZE_USEHEADER, wxALIGN_LEFT, wxDATAVIEW_COL_SORTABLE);
@@ -198,11 +198,10 @@ void mmMainCurrencyDialog::CreateControls()
     wxStdDialogButtonSizer* itemBoxSizer9 = new wxStdDialogButtonSizer;
     buttonsSizer->Add(itemBoxSizer9, wxSizerFlags(g_flagsExpand).Border(wxALL, 0));
 
-
+    itemBoxSizer66->Add(new wxStaticText(buttonsPanel, wxID_STATIC, _("Search:")), g_flagsH);
     m_maskTextCtrl = new wxSearchCtrl(buttonsPanel, wxID_FIND);
     m_maskTextCtrl->SetFocus();
     itemBoxSizer66->Add(m_maskTextCtrl, g_flagsExpand);
-    itemBoxSizer66->Add(new wxStaticText(buttonsPanel, wxID_STATIC, _("Search:")), g_flagsH);
 
     m_select_btn = new wxButton(buttonsPanel, wxID_SELECTALL, _("&Select"));
     itemBoxSizer9->Add(m_select_btn, wxSizerFlags(g_flagsExpand).Proportion(4));
