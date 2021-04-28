@@ -29,18 +29,18 @@ class mmQIFExportDialog : public wxDialog
     wxDECLARE_EVENT_TABLE();
 
 public:
-    enum type { QIF = 0, JSON };
+    enum type { QIF = 0, JSON, CSV };
     mmQIFExportDialog() {}
     //virtual ~mmQIFExportDialog() {}
 
     mmQIFExportDialog(wxWindow* parent, int type);
 
     bool Create(wxWindow* parent
-        , wxWindowID id
-        , const wxString&
-        , const wxPoint& pos
-        , const wxSize& size
-        , long style);
+        , const wxString& caption
+        , wxWindowID id = wxID_ANY
+        , const wxPoint& pos = wxDefaultPosition
+        , const wxSize& size = wxDefaultSize
+        , long style = wxCAPTION | wxRESIZE_BORDER | wxSYSTEM_MENU | wxCLOSE_BOX);
 
 private:
 
