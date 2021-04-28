@@ -1229,9 +1229,29 @@ void TransactionListCtrl::doSearchText(const wxString& value)
     if (selectedItem < 0 || selectedItem > last) //nothing selected
         selectedItem = g_asc ? last : 0;
 
-    while (selectedItem >= -1 && selectedItem <= last + 1)
+    while (selectedItem >= -1 && selectedItem < last)
     {
         g_asc ? selectedItem-- : selectedItem++;
+
+
+        wxString test1 = Model_Currency::fromString2Default(value);
+        double v;
+        if (test1.ToDouble(&v)) {
+            double amount = m_trans[selectedItem].TRANSAMOUNT;
+            double to_trans_amount = m_trans[selectedItem].TOTRANSAMOUNT;
+            if (v == amount || v == to_trans_amount)
+            {
+                //First of all any items should be unselected
+                long cursel = GetNextItem(-1, wxLIST_NEXT_ALL, wxLIST_STATE_SELECTED);
+                if (cursel != wxNOT_FOUND)
+                    SetItemState(cursel, 0, wxLIST_STATE_SELECTED | wxLIST_STATE_FOCUSED);
+
+                //Then finded item will be selected
+                SetItemState(selectedItem, wxLIST_STATE_SELECTED, wxLIST_STATE_SELECTED);
+                EnsureVisible(selectedItem);
+                return;
+            }
+        }
 
         for (const auto& t : {
             getItem(selectedItem, COL_NOTES, true)
@@ -1242,18 +1262,16 @@ void TransactionListCtrl::doSearchText(const wxString& value)
             , getItem(selectedItem, COL_WITHDRAWAL, true)
             , getItem(selectedItem, COL_DEPOSIT, true)})
         {
+
             if (t.Lower().Matches(value + "*"))
             {
                 //First of all any items should be unselected
-                long cursel = GetNextItem(-1
-                    , wxLIST_NEXT_ALL, wxLIST_STATE_SELECTED);
+                long cursel = GetNextItem(-1 , wxLIST_NEXT_ALL, wxLIST_STATE_SELECTED);
                 if (cursel != wxNOT_FOUND)
-                    SetItemState(cursel, 0
-                        , wxLIST_STATE_SELECTED | wxLIST_STATE_FOCUSED);
+                    SetItemState(cursel, 0, wxLIST_STATE_SELECTED | wxLIST_STATE_FOCUSED);
 
                 //Then finded item will be selected
-                SetItemState(selectedItem
-                    , wxLIST_STATE_SELECTED, wxLIST_STATE_SELECTED);
+                SetItemState(selectedItem, wxLIST_STATE_SELECTED, wxLIST_STATE_SELECTED);
                 EnsureVisible(selectedItem);
                 return;
             }

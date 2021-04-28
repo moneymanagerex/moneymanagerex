@@ -374,13 +374,13 @@ else()
     if(NOT CURL_FOUND)
         find_package(CURL REQUIRED COMPONENTS libcurl MODULE)
         if(NOT CURL_LIBRARIES MATCHES "_imp.lib$|${CMAKE_SHARED_LIBRARY_SUFFIX}$")
-            add_library(CURL::libcurl STATIC IMPORTED)
+            #add_library(CURL::libcurl STATIC IMPORTED)
             set_target_properties(CURL::libcurl PROPERTIES
                 INTERFACE_COMPILE_DEFINITIONS CURL_STATICLIB
                 IMPORTED_LINK_INTERFACE_LANGUAGES C
                 IMPORTED_LOCATION "${CURL_LIBRARIES}")
         else()
-            add_library(CURL::libcurl SHARED IMPORTED)
+            #add_library(CURL::libcurl SHARED IMPORTED)
             if(WIN32)
                 set_target_properties(CURL::libcurl PROPERTIES
                     IMPORTED_IMPLIB "${CURL_LIBRARIES}")
