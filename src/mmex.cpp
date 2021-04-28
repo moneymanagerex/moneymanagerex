@@ -347,11 +347,26 @@ bool OnInitImpl(mmGUIApp* app)
     int valW = Model_Setting::instance().GetIntSetting("SIZEW", defValW);
     int valH = Model_Setting::instance().GetIntSetting("SIZEH", defValH);
 
-    // Check if it fits into any of the windows
+    // Check if it 'fits' into any of the windows
+    // -- 'fit' means at least 50% of application is on a visible window)
     bool itFits = false;
     for (unsigned int i = 0; i < wxDisplay::GetCount(); i++) {
         display = new wxDisplay(i);
-        if (display->GetGeometry().Contains(wxRect(valX, valY, valW, valH))) itFits = true;
+        wxRect rect1 = display->GetGeometry();
+        wxRect rect2 = wxRect(valX, valY, valW, valH);
+        wxRect inter = rect1.Intersect(rect2);
+        double percent;
+        if (inter.IsEmpty())
+            percent = 0;
+        else
+            percent = static_cast<double>(inter.GetWidth()*inter.GetHeight() * 2.0) /
+                        static_cast<double>(rect1.GetWidth()*rect1.GetHeight() + 
+                        rect2.GetWidth()*rect2.GetHeight());
+        if (percent > 0.5)
+        {
+            itFits = true;
+            continue;
+        }
     }
 
     // If it doesn't fit then give it the 'sensible' default
