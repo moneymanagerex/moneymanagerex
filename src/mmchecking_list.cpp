@@ -1227,11 +1227,38 @@ void TransactionListCtrl::doSearchText(const wxString& value)
     long selectedItem = GetNextItem(-1, wxLIST_NEXT_ALL, wxLIST_STATE_SELECTED);
 
     if (selectedItem < 0 || selectedItem > last) //nothing selected
-        selectedItem = g_asc ? last : 0;
+        selectedItem = g_asc ? last + 1  : -1;
 
-    while (selectedItem >= -1 && selectedItem <= last + 1)
+    while (true)
     {
         g_asc ? selectedItem-- : selectedItem++;
+        if (selectedItem < 0 || selectedItem >= static_cast<int>(m_trans.size()))
+            break;
+
+        wxString test1 = Model_Currency::fromString2Default(value);
+        double v;
+        if (test1.ToDouble(&v)) {
+            try {
+                double amount = m_trans.at(selectedItem).TRANSAMOUNT;
+                double to_trans_amount = m_trans.at(selectedItem).TOTRANSAMOUNT;
+                if (v == amount || v == to_trans_amount)
+                {
+                    //First of all any items should be unselected
+                    long cursel = GetNextItem(-1, wxLIST_NEXT_ALL, wxLIST_STATE_SELECTED);
+                    if (cursel != wxNOT_FOUND)
+                        SetItemState(cursel, 0, wxLIST_STATE_SELECTED | wxLIST_STATE_FOCUSED);
+
+                    //Then finded item will be selected
+                    SetItemState(selectedItem, wxLIST_STATE_SELECTED, wxLIST_STATE_SELECTED);
+                    EnsureVisible(selectedItem);
+                    return;
+                }
+            }
+            catch (std::exception & ex) {
+                wxLogDebug("%s | row invalid %ld", ex.what(), selectedItem);
+            }
+
+        }
 
         for (const auto& t : {
             getItem(selectedItem, COL_NOTES, true)
@@ -1258,6 +1285,7 @@ void TransactionListCtrl::doSearchText(const wxString& value)
                 return;
             }
         }
+
     }
 
     wxLogDebug("Searching finished");
