@@ -352,6 +352,7 @@ bool OnInitImpl(mmGUIApp* app)
     bool itFits = false;
     for (unsigned int i = 0; i < wxDisplay::GetCount(); i++) {
         display = new wxDisplay(i);
+
         wxRect rect1 = display->GetGeometry();
         wxRect rect2 = wxRect(valX, valY, valW, valH);
         wxRect inter = rect1.Intersect(rect2);
@@ -359,9 +360,10 @@ bool OnInitImpl(mmGUIApp* app)
         if (inter.IsEmpty())
             percent = 0;
         else
-            percent = static_cast<double>(inter.GetWidth()*inter.GetHeight() * 2.0) /
-                        static_cast<double>(rect1.GetWidth()*rect1.GetHeight() + 
-                        rect2.GetWidth()*rect2.GetHeight());
+            percent = static_cast<double>(inter.GetWidth()*inter.GetHeight() /
+                        rect1.GetWidth()*rect1.GetHeight() + 
+                        rect2.GetWidth()*rect2.GetHeight()) * 2.0;
+
         if (percent > 0.5)
         {
             itFits = true;
