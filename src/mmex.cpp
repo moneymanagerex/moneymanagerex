@@ -359,9 +359,9 @@ bool OnInitImpl(mmGUIApp* app)
         if (inter.IsEmpty())
             percent = 0;
         else
-            percent = static_cast<double>(inter.GetWidth()*inter.GetHeight() * 2.0) /
-                        static_cast<double>(rect1.GetWidth()*rect1.GetHeight() + 
-                        rect2.GetWidth()*rect2.GetHeight());
+            percent = static_cast<double>(inter.GetWidth()*inter.GetHeight() /
+                        rect1.GetWidth()*rect1.GetHeight() + 
+                        rect2.GetWidth()*rect2.GetHeight()) * 2.0;
         if (percent > 0.5)
         {
             itFits = true;
