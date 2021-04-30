@@ -347,7 +347,8 @@ bool OnInitImpl(mmGUIApp* app)
     int valW = Model_Setting::instance().GetIntSetting("SIZEW", defValW);
     int valH = Model_Setting::instance().GetIntSetting("SIZEH", defValH);
 
-    // Check if it fits into any of the windows
+    // Check if it 'fits' into any of the windows
+    // -- 'fit' means at least 50% of application is on a visible window)
     bool itFits = false;
     for (unsigned int i = 0; i < wxDisplay::GetCount(); i++) {
         display = new wxDisplay(i);
@@ -362,6 +363,7 @@ bool OnInitImpl(mmGUIApp* app)
             percent = static_cast<double>(inter.GetWidth()*inter.GetHeight() /
                         rect1.GetWidth()*rect1.GetHeight() + 
                         rect2.GetWidth()*rect2.GetHeight()) * 2.0;
+
         if (percent > 0.5)
         {
             itFits = true;
