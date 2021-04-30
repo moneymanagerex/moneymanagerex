@@ -21,7 +21,6 @@
 
 #include "mmpanelbase.h"
 #include "constants.h"
-#include "reports/mmDateRange.h"
 #include "model/Model_Account.h"
 
 class mmGUIFrame;
