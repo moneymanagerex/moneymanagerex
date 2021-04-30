@@ -317,19 +317,25 @@ const wxString htmlWidgetBillsAndDeposits::getHTMLText()
         if (daysOverdue < 0)
             daysRemainingStr = wxString::Format(wxPLURAL("%d day overdue!", "%d days overdue!", std::abs(daysOverdue)), std::abs(daysOverdue));
 
+        wxString accountStr = "";
+        const auto *account = Model_Account::instance().get(entry.ACCOUNTID);
+        if (account) accountStr = account->ACCOUNTNAME;
+
         wxString payeeStr = "";
         if (Model_Billsdeposits::type(entry) == Model_Billsdeposits::TRANSFER)
         {
             const Model_Account::Data *account = Model_Account::instance().get(entry.TOACCOUNTID);
             if (account) payeeStr = account->ACCOUNTNAME;
+            payeeStr += " &larr; " + accountStr;
         }
         else
         {
             const Model_Payee::Data* payee = Model_Payee::instance().get(entry.PAYEEID);
-            if (payee) payeeStr = payee->PAYEENAME;
+            payeeStr = accountStr;
+            payeeStr += (Model_Billsdeposits::type(entry) == Model_Billsdeposits::WITHDRAWAL ? " &rarr; " : " &larr; ");
+            if (payee) payeeStr += payee->PAYEENAME;
         }
-        const auto *account = Model_Account::instance().get(entry.ACCOUNTID);
-        double amount = (Model_Billsdeposits::type(entry) == Model_Billsdeposits::DEPOSIT ? entry.TRANSAMOUNT : -entry.TRANSAMOUNT);
+        double amount = (Model_Billsdeposits::type(entry) == Model_Billsdeposits::WITHDRAWAL ? -entry.TRANSAMOUNT : entry.TRANSAMOUNT);
         bd_days.push_back(std::make_tuple(daysPayment, payeeStr, daysRemainingStr, amount, account));
     }
 
@@ -350,7 +356,7 @@ const wxString htmlWidgetBillsAndDeposits::getHTMLText()
 
         output += wxString::Format("<tbody id='%s'>\n", idStr);
         output += wxString::Format("<tr style='background-color: #d8ebf0'><th>%s</th>\n<th class='text-right'>%s</th>\n<th class='text-right'>%s</th></tr>\n"
-            , _("Payee"), _("Amount"), _("Payment"));
+            , _("Account / Payee"), _("Amount"), _("Payment"));
 
         for (const auto& item : bd_days)
         {
