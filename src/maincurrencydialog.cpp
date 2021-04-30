@@ -77,7 +77,7 @@ mmMainCurrencyDialog::mmMainCurrencyDialog(
 
     m_currency_id = currencyID == -1 ? Option::instance().getBaseCurrencyID() : currencyID;
     Create(parent);
-    SetMinSize(wxSize(350, 550));
+    bEnableSelect_ ? SetMinSize(wxSize(400, 550)) : SetMinSize(wxSize(700, 550));
     Fit();
 }
 
@@ -124,7 +124,7 @@ void mmMainCurrencyDialog::fillControls()
         }
 
         wxVector<wxVariant> data;
-        data.push_back(wxVariant(base_currency_id == currencyID ? L"\u2691" : L""));
+        data.push_back(wxVariant(base_currency_id == currencyID ? L"\u2713" : L""));
         data.push_back(wxVariant(currency.CURRENCY_SYMBOL));
         data.push_back(wxVariant(currency.CURRENCYNAME));
         data.push_back(wxVariant(bHistoryEnabled_ ? wxString() << Model_CurrencyHistory::getLastRate(currencyID) : wxString() << currency.BASECONVRATE));
@@ -178,7 +178,6 @@ void mmMainCurrencyDialog::CreateControls()
     //TODO:provide proper style and fix validator (does not working)
     currencyListBox_ = new wxDataViewListCtrl(this, wxID_ANY
         , wxDefaultPosition, wxDefaultSize /*, wxDV_HORIZ_RULES, mmDoubleValidator(4)*/);
-    currencyListBox_->SetMinSize(wxSize(350, 350));
 
     currencyListBox_->AppendTextColumn(ColName_[CURR_BASE], wxDATAVIEW_CELL_INERT, 30);
     currencyListBox_->AppendTextColumn(ColName_[CURR_SYMBOL], wxDATAVIEW_CELL_INERT, wxLIST_AUTOSIZE_USEHEADER, wxALIGN_LEFT, wxDATAVIEW_COL_SORTABLE);
@@ -207,7 +206,7 @@ void mmMainCurrencyDialog::CreateControls()
     itemBoxSizer9->Add(m_select_btn, wxSizerFlags(g_flagsExpand).Proportion(4));
     //itemButtonSelect->SetToolTip(_("Select the currently selected currency as the selected currency for the account"));
 
-    if (bEnableSelect_ == false)
+    if (!bEnableSelect_)
         m_select_btn->Disable();
 
     //Some interfaces has no any close buttons, it may confuse user. Cancel button added
@@ -226,7 +225,6 @@ void mmMainCurrencyDialog::CreateControls()
     rightBoxSizer->Add(historyStaticBox_Sizer, g_flagsExpand);
 
     valueListBox_ = new wxListCtrl(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxLC_REPORT);
-    valueListBox_->SetMinSize(wxSize(250, 150));
     historyStaticBox_Sizer->Add(valueListBox_, g_flagsExpand);
 
     wxListItem col0, col1, col2;
@@ -312,7 +310,6 @@ void mmMainCurrencyDialog::CreateControls()
         datePickerLabel->Hide();
         textBoxLabel->Hide();
     }
-    this->Fit();
 }
 
 void mmMainCurrencyDialog::OnBtnAdd()
