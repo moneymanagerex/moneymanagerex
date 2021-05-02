@@ -2383,14 +2383,15 @@ void mmGUIFrame::OnOrgPayees(wxCommandEvent& /*event*/)
 }
 //----------------------------------------------------------------------------
 
-void mmGUIFrame::OnNewTransaction(wxCommandEvent& /*event*/)
+void mmGUIFrame::OnNewTransaction(wxCommandEvent& event)
 {
     if (m_db)
     {
         if (Model_Account::instance().all_checking_account_names().empty()) return;
         mmTransDialog dlg(this, gotoAccountID_, 0, 0);
 
-        if (dlg.ShowModal() == wxID_OK)
+        int i = dlg.ShowModal();
+        if (i != wxID_CANCEL)
         {
             gotoAccountID_ = dlg.GetAccountID();
             gotoTransID_ = dlg.GetTransactionID();
@@ -2400,6 +2401,9 @@ void mmGUIFrame::OnNewTransaction(wxCommandEvent& /*event*/)
                 createCheckingAccountPage(gotoAccountID_);
                 setAccountNavTreeSection(account->ACCOUNTNAME);
             }
+
+            if (i == wxID_NEW)
+                OnNewTransaction(event);
         }
     }
 }

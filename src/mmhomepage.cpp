@@ -324,8 +324,8 @@ const wxString htmlWidgetBillsAndDeposits::getHTMLText()
         wxString payeeStr = "";
         if (Model_Billsdeposits::type(entry) == Model_Billsdeposits::TRANSFER)
         {
-            const Model_Account::Data *account = Model_Account::instance().get(entry.TOACCOUNTID);
-            if (account) payeeStr = account->ACCOUNTNAME;
+            const Model_Account::Data *to_account = Model_Account::instance().get(entry.TOACCOUNTID);
+            if (to_account) payeeStr = to_account->ACCOUNTNAME;
             payeeStr += " &larr; " + accountStr;
         }
         else
