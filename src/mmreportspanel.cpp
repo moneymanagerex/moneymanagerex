@@ -540,7 +540,7 @@ void mmReportsPanel::OnNewWindow(wxWebViewEvent& evt)
                 else
                 {
                     mmTransDialog dlg(m_frame, -1, transId, 0);
-                    if (dlg.ShowModal() == wxID_OK)
+                    if (dlg.ShowModal() != wxID_CANCEL)
                     {
                         rb_->getHTMLText();
                         saveReportText();

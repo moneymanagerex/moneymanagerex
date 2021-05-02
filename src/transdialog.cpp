@@ -1219,7 +1219,11 @@ void mmTransDialog::OnOk(wxCommandEvent& WXUNUSED(event))
     const Model_Checking::Data& tran(*r);
     Model_Checking::Full_Data trx(tran);
     wxLogDebug("%s", trx.to_json());
-    EndModal(wxID_OK);
+
+    if (!m_new_trx)
+        EndModal(wxID_OK);
+    else
+        EndModal(wxID_NEW);
 }
 
 void mmTransDialog::OnCancel(wxCommandEvent& WXUNUSED(event))
