@@ -121,6 +121,15 @@ void OptionSettingsMisc::Create()
 
     default_status->SetSelection(Option::instance().TransStatusReconciled());
 
+    wxArrayString true_false;
+    true_false.Add(wxTRANSLATE("Yes"));
+    true_false.Add(wxTRANSLATE("No"));
+    wxChoice* bulk_enter = new wxChoice(this, ID_DIALOG_OPTIONS_BULK_ENTER
+        , wxDefaultPosition, defaultDateChoice->GetSize());
+    for (const auto& i : true_false)
+        bulk_enter->Append(wxGetTranslation(i), new wxStringClientData(i));
+    bulk_enter->SetSelection(Option::instance().get_bulk_transactions() ? 0 : 1);
+
     wxFlexGridSizer* newTransflexGridSizer = new wxFlexGridSizer(0, 2, 0, 0);
     transSettingsStaticBoxSizer->Add(newTransflexGridSizer);
     newTransflexGridSizer->Add(new wxStaticText(this, wxID_STATIC, _("Default Date:")), g_flagsH);
@@ -131,6 +140,8 @@ void OptionSettingsMisc::Create()
     newTransflexGridSizer->Add(defaultCategoryChoice, g_flagsH);
     newTransflexGridSizer->Add(new wxStaticText(this, wxID_STATIC, _("Default Status:")), g_flagsH);
     newTransflexGridSizer->Add(default_status, g_flagsH);
+    newTransflexGridSizer->Add(new wxStaticText(this, wxID_STATIC, _("Bulk Transactions:")), g_flagsH);
+    newTransflexGridSizer->Add(bulk_enter, g_flagsH);
 
     //----------------------------------------------
     //a bit more space visual appearance
@@ -229,6 +240,9 @@ bool OptionSettingsMisc::SaveSettings()
 
     itemChoice = static_cast<wxChoice*>(FindWindow(ID_DIALOG_OPTIONS_DEFAULT_TRANSACTION_DATE));
     Option::instance().TransDateDefault(itemChoice->GetSelection());
+
+    itemChoice = static_cast<wxChoice*>(FindWindow(ID_DIALOG_OPTIONS_BULK_ENTER));
+    Option::instance().set_bulk_transactions(itemChoice->GetSelection() == 0);
 
     SaveStocksUrl();
     Option::instance().SharePrecision(m_share_precision->GetValue());

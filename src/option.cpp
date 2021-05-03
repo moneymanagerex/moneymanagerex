@@ -38,6 +38,7 @@ Option::Option()
     , m_budgetReportWithSummaries(true)
     , m_ignoreFutureTransactions(false)
     , m_currencyHistoryEnabled(false)
+    , m_bulk_enter(false)
     , m_transPayeeSelection(Option::NONE)
     , m_transCategorySelection(Option::NONE)
     , m_transStatusReconciled(Option::NONE)
@@ -237,9 +238,10 @@ void Option::TransCategorySelection(int value)
     m_transCategorySelection = value;
 }
 
-int Option::TransCategorySelection()
+void Option::set_bulk_transactions(bool value)
 {
-    return m_transCategorySelection;
+    Model_Setting::instance().Set("BULK_TRX", value);
+    m_bulk_enter = value;
 }
 
 void Option::TransStatusReconciled(int value)
