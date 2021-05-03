@@ -1240,9 +1240,9 @@ void TransactionListCtrl::doSearchText(const wxString& value)
         if (selectedItem < 0 || selectedItem >= static_cast<int>(m_trans.size()))
             break;
 
-        wxString test1 = Model_Currency::fromString2Default(value);
+        wxString test1 = Model_Currency::fromString2CLocale(value);
         double v;
-        if (test1.ToDouble(&v)) {
+        if (test1.ToCDouble(&v)) {
             try {
                 double amount = m_trans.at(selectedItem).TRANSAMOUNT;
                 double to_trans_amount = m_trans.at(selectedItem).TOTRANSAMOUNT;

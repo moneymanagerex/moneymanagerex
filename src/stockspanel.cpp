@@ -533,7 +533,7 @@ wxString StocksListCtrl::getStockInfo(int selectedIndex) const
         , sCurrentPrice, sPurchasePrice, sDifference
         , sDifference, sNumShares
         , Model_Currency::toCurrency(GetGainLoss(selectedIndex))
-        , wxNumberFormatter::ToString(stockPercentage, 2));
+        , Model_Currency::toStringNoFormatting(stockPercentage, nullptr, 2));
 
     //Summary for account for selected symbol
     if (purchasedTime > 1)
@@ -542,7 +542,7 @@ wxString StocksListCtrl::getStockInfo(int selectedIndex) const
             ,  sCurrentPrice, sAvgPurchasePrice, sTotalDifference
             , sTotalDifference, sTotalNumShares
             , Model_Currency::toCurrency(stocktotalgainloss)
-            , wxNumberFormatter::ToString(stocktotalPercentage, 2)
+            , Model_Currency::toStringNoFormatting(stocktotalPercentage, nullptr, 2)
             , OnGetItemText(selectedIndex, static_cast<long>(COL_NOTES)));
     }
     return additionInfo;
