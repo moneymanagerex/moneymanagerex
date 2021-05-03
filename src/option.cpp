@@ -129,14 +129,10 @@ void Option::UserName(const wxString& username)
     Model_Infotable::instance().Set("USERNAME", username);
 }
 
-wxString Option::UserName()
+void Option::LocaleName(const wxString& username)
 {
-    return m_userNameString;
-}
-
-wxString Option::FinancialYearStartDay()
-{
-    return m_financialYearStartDayString;
+    m_localeNameString = username;
+    Model_Infotable::instance().Set("LOCALE", username);
 }
 
 void Option::FinancialYearStartDay(const wxString& setting)

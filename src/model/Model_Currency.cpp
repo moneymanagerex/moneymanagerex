@@ -179,15 +179,19 @@ const wxString Model_Currency::toStringNoFormatting(double value, const Data* cu
 
 const wxString Model_Currency::toString(double value, const Data* currency, int precision)
 {
+    static wxString locale;
+    if (locale.empty())
+        locale = Model_Infotable::instance().GetStringInfo("LOCALE", "en_US");
     const Data* curr = currency ? currency : GetBaseCurrency();
     precision = (precision >= 0) ? precision : log10(curr->SCALE);
 
-    wxString s = fmt::format(std::locale("en_US.UTF-8"), "{:L}", static_cast<int>(value))
+    wxString s = fmt::format(std::locale(locale.c_str()), "{:L}", static_cast<int>(value))
         +
         wxString(fmt::format("{:.{}f}"
             , fabs(value - static_cast<int>(value))
             , precision)).Mid(1);
 
+#if 0
     s.Replace(".", "\x05");
     s.Replace(",", "\t");
 
@@ -197,6 +201,7 @@ const wxString Model_Currency::toString(double value, const Data* currency, int 
     if (s.Mid(0, 1) == "-" && value >= -ROUNDING_ERROR_f32) {
         s = s.Mid(1);
     }
+#endif
 
     return s;
 }
