@@ -128,6 +128,8 @@ extern const wxString ATTACHMENTS_FOLDER_APPDATA;
 
 extern const wxString INIDB_NEWS_LAST_READ_DATE;
 
+extern const wxArrayString g_locales();
+
 enum id
 {
     mmID_HOMEPAGE = wxID_HIGHEST + 1,

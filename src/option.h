@@ -47,11 +47,15 @@ public:
 
     // set and save the option: m_userNameString
     void UserName(const wxString& username);
-    wxString UserName();
+    const wxString UserName() const;
+
+    // set and save the option: m_localeNameString
+    void LocaleName(const wxString& username);
+    const wxString LocaleName() const;
 
     // set and save the option: m_financialYearStartDayString
     void FinancialYearStartDay(const wxString& setting);
-    wxString FinancialYearStartDay();
+    const wxString FinancialYearStartDay() const;
 
     // set and save the option: m_financialYearStartMonthString
     void FinancialYearStartMonth(const wxString& setting);
@@ -127,6 +131,7 @@ private:
     wxString m_dateFormat;
     wxLanguage m_language;
     wxString m_userNameString;
+    wxString m_localeNameString;
     wxString m_financialYearStartDayString;
     wxString m_financialYearStartMonthString;
     int m_baseCurrency;
@@ -157,7 +162,9 @@ private:
 inline int Option::getIconSize() { return m_ico_size; }
 inline int Option::getNavigationIconSize() { return m_navigation_ico_size; }
 inline int Option::getToolbarIconSize() { return m_toolbar_ico_size; }
-
+inline const wxString Option::LocaleName() const { return m_localeNameString; }
+inline const wxString Option::UserName() const { return m_userNameString; }
+inline const wxString Option::FinancialYearStartDay() const { return m_financialYearStartDayString; }
 
 inline const wxString Option::getDateFormat() const
 {

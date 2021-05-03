@@ -22,7 +22,9 @@
 #include "Model_Checking.h"
 #include "Model_Stock.h"
 #include "option.h"
-#include <wx/numformatter.h>
+
+#include <fmt/core.h>
+#include <fmt/locale.h>
 
 const double ROUNDING_ERROR_f32 = 0.000001;
 
@@ -177,36 +179,40 @@ const wxString Model_Currency::toStringNoFormatting(double value, const Data* cu
 
 const wxString Model_Currency::toString(double value, const Data* currency, int precision)
 {
-    const Data* curr = currency ? currency : GetBaseCurrency();
-    precision = (precision >= 0) ? precision : log10(curr->SCALE);
-    wxString s = wxString::FromCDouble(value, precision);
-    s.Replace(".", "\x05");
+    wxString s;
+    static wxString locale;
+    if (locale.empty())
+        locale = Model_Infotable::instance().GetStringInfo("LOCALE", "en_US");
 
-    // Thousands separators for numbers in scientific format are not relevant.
-    if ( s.find_first_of("eE") == wxString::npos )
+    static wxString use_locale;
+    if (use_locale.empty()) {
+        use_locale = locale.empty() ? "N" : "Y";
+    }
+
+    if (use_locale == "N")
     {
-        int pos = s.Find("\x05");
-        if ( pos == wxString::npos )
-        {
-            // Start grouping at the end of an integer number.
-            pos = s.length();
-        } 
+        const Data* curr = currency ? currency : GetBaseCurrency();
+        precision = (precision >= 0) ? precision : log10(curr->SCALE);
 
-        // End grouping at the beginning of the digits -- there could be at a sign
-        // before their start.
-        const size_t start = s.find_first_of("0123456789");
-        const size_t GROUP_LEN = 3; // should we make this configurable?
-        while ( pos > start + GROUP_LEN )
-        {
-            pos -= GROUP_LEN;
-            s.insert(pos, curr->GROUP_SEPARATOR);
-        }
-    }
-    s.Replace("\x05", curr->DECIMAL_POINT);
+        s = fmt::format(std::locale("en_US"), "{:L}", static_cast<int>(value))
+            + wxString(fmt::format("{:.{}f}", fabs(value - static_cast<int>(value)), precision)).Mid(1);
 
-    if (value >= -ROUNDING_ERROR_f32 && s.Mid(0, 1) == "-") {
-        s = s.Mid(1);
+        s.Replace(".", "\x05");
+        s.Replace(",", "\t");
+
+        s.Replace("\x05", curr->DECIMAL_POINT);
+        s.Replace("\t", curr->GROUP_SEPARATOR);
     }
+    else
+    {
+        precision = (precision >= 0) ? precision : 2;
+        s = fmt::format(std::locale(locale.c_str()), "{:L}", static_cast<int>(value))
+            + wxString(fmt::format("{:.{}f}", fabs(value - static_cast<int>(value)), precision)).Mid(1);
+    }
+
+
+    //if (s.Mid(0, 1) == "-" && value >= -ROUNDING_ERROR_f32) {
+    //    s = s.Mid(1);
 
     return s;
 }

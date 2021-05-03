@@ -380,11 +380,11 @@ else()
                 IMPORTED_LINK_INTERFACE_LANGUAGES C
                 IMPORTED_LOCATION "${CURL_LIBRARIES}")
         else()
-            #add_library(CURL::libcurl SHARED IMPORTED)
             if(WIN32)
                 set_target_properties(CURL::libcurl PROPERTIES
                     IMPORTED_IMPLIB "${CURL_LIBRARIES}")
             else()
+                add_library(CURL::libcurl SHARED IMPORTED)
                 set_target_properties(CURL::libcurl PROPERTIES
                     IMPORTED_LOCATION "${CURL_LIBRARIES}")
             endif()
@@ -395,6 +395,9 @@ else()
         set(CURL_VERSION ${CURL_VERSION_STRING})
     endif()
 endif()
+
+
+add_subdirectory(3rd/fmt)
 
 # --------- Collect sources and targets ---------
 set(MMEX_BIN_DIR bin)
