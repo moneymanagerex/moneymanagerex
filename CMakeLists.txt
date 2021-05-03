@@ -396,6 +396,9 @@ else()
     endif()
 endif()
 
+
+add_subdirectory(3rd/fmt)
+
 # --------- Collect sources and targets ---------
 set(MMEX_BIN_DIR bin)
 

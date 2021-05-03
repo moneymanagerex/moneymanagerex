@@ -371,6 +371,7 @@ target_link_libraries(${MMEX_EXE} PUBLIC
     RapidJSON
     HTML-template
     CURL::libcurl
+    fmt
     lunasvg
     LuaGlue
     Lua)
