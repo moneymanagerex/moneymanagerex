@@ -274,7 +274,7 @@ const wxArrayString Model_CustomField::getUDFCList(DB_Table_CUSTOMFIELD_V1::Data
     const wxString& ref_type = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
     const auto& a = Model_CustomField::instance().find(Model_CustomField::DB_Table_CUSTOMFIELD_V1::REFTYPE(ref_type));
 
-    wxSortedArrayString choices = UDFC_FIELDS();
+    wxArrayString choices = UDFC_FIELDS();
 
     for (const auto& item : a)
     {
@@ -304,6 +304,7 @@ const wxArrayString Model_CustomField::getUDFCList(DB_Table_CUSTOMFIELD_V1::Data
         }
     }
 
+    choices.Sort();
     return choices;
 }
 
