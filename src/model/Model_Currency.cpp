@@ -153,7 +153,6 @@ bool Model_Currency::remove(int id)
 
 const wxString Model_Currency::toCurrency(double value, const Data* currency, int precision)
 {
-    precision = precision >= 0 ? precision : (currency ? log10(currency->SCALE) : 2);
     wxString d2s = toString(value, currency, precision);
     if (currency) {
         d2s.Prepend(currency->PFX_SYMBOL);
@@ -162,27 +161,12 @@ const wxString Model_Currency::toCurrency(double value, const Data* currency, in
     return d2s;
 }
 
-const wxString Model_Currency::os_group_separator()
-{
-    static wxString sys_thousand_separator;
-    if (!sys_thousand_separator.empty())
-        return sys_thousand_separator;
-
-    wxChar sep = ' ';
-    if (wxNumberFormatter::GetThousandsSeparatorIfUsed(&sep)) {
-        sys_thousand_separator = wxString::Format("%c", sep);
-    }
-    else {
-        sys_thousand_separator = " ";
-    }
-    return sys_thousand_separator;
-}
-
 const wxString Model_Currency::toStringNoFormatting(double value, const Data* currency, int precision)
 {
-    precision = (precision >= 0 ? precision : (currency ? log10(currency->SCALE) : 2));
-    int style = wxNumberFormatter::Style_None;
-    wxString s = wxNumberFormatter::ToString(value, precision, style);
+    const Data* curr = currency ? currency : GetBaseCurrency();
+    precision = (precision >= 0) ? precision : log10(curr->SCALE);
+    wxString s = wxString::FromCDouble(value, precision);
+    s.Replace(".", curr->DECIMAL_POINT);
 
     if (value >= -ROUNDING_ERROR_f32 && s.Mid(0, 1) == "-") {
         s = s.Mid(1);
@@ -193,17 +177,32 @@ const wxString Model_Currency::toStringNoFormatting(double value, const Data* cu
 
 const wxString Model_Currency::toString(double value, const Data* currency, int precision)
 {
-    precision = (precision >= 0 ? precision : (currency ? log10(currency->SCALE) : 2));
-    int style = wxNumberFormatter::Style_WithThousandsSep;
-    wxString s = wxNumberFormatter::ToString(value, precision, style);
+    const Data* curr = currency ? currency : GetBaseCurrency();
+    precision = (precision >= 0) ? precision : log10(curr->SCALE);
+    wxString s = wxString::FromCDouble(value, precision);
+    s.Replace(".", "\x05");
 
-    if (currency)
+    // Thousands separators for numbers in scientific format are not relevant.
+    if ( s.find_first_of("eE") == wxString::npos )
     {
-        s.Replace(os_group_separator(), "\t");
-        s.Replace(wxNumberFormatter::GetDecimalSeparator(), "\x05");
-        s.Replace("\t", currency->GROUP_SEPARATOR);
-        s.Replace("\x05", currency->DECIMAL_POINT);
+        int pos = s.Find("\x05");
+        if ( pos == wxString::npos )
+        {
+            // Start grouping at the end of an integer number.
+            pos = s.length();
+        } 
+
+        // End grouping at the beginning of the digits -- there could be at a sign
+        // before their start.
+        const size_t start = s.find_first_of("0123456789");
+        const size_t GROUP_LEN = 3; // should we make this configurable?
+        while ( pos > start + GROUP_LEN )
+        {
+            pos -= GROUP_LEN;
+            s.insert(pos, curr->GROUP_SEPARATOR);
+        }
     }
+    s.Replace("\x05", curr->DECIMAL_POINT);
 
     if (value >= -ROUNDING_ERROR_f32 && s.Mid(0, 1) == "-") {
         s = s.Mid(1);
@@ -212,10 +211,10 @@ const wxString Model_Currency::toString(double value, const Data* currency, int 
     return s;
 }
 
-const wxString Model_Currency::fromString2Lua(const wxString &s, const Data* currency)
+const wxString Model_Currency::fromString2CLocale(const wxString &s, const Data* currency)
 {
     auto str = fromString2Default(s, currency);
-    str.Replace(wxNumberFormatter::GetDecimalSeparator(), ".");
+    str.Replace(currency->DECIMAL_POINT, ".");
     return str;
 }
 
@@ -223,19 +222,15 @@ const wxString Model_Currency::fromString2Default(const wxString &s, const Data*
 {
     if (s.empty()) return s;
     wxString str = s;
-    const auto bc = GetBaseCurrency();
-    const Data* c = currency ? currency : bc;
 
-    if (c)
-    {
-        if (!c->GROUP_SEPARATOR.empty())
-            str.Replace(c->GROUP_SEPARATOR, wxEmptyString);
-        if (!c->DECIMAL_POINT.empty())
-            str.Replace(c->DECIMAL_POINT, wxNumberFormatter::GetDecimalSeparator());
+    if (!currency->GROUP_SEPARATOR.empty())
+        str.Replace(currency->GROUP_SEPARATOR, wxEmptyString);
+    if (!currency->DECIMAL_POINT.empty())
+        str.Replace(currency->DECIMAL_POINT, GetBaseCurrency()->DECIMAL_POINT);
 
-        wxRegEx pattern(R"([^0-9.,+-/*()])");
-        pattern.ReplaceAll(&str, wxEmptyString);
-    }
+    wxRegEx pattern(R"([^0-9.,+-/*()])");
+    pattern.ReplaceAll(&str, wxEmptyString);
+
     wxLogDebug("%s -> %s", s, str);
     return str;
 }
@@ -243,8 +238,8 @@ const wxString Model_Currency::fromString2Default(const wxString &s, const Data*
 bool Model_Currency::fromString(wxString s, double& val, const Data* currency)
 {
     bool done = true;
-    const auto value = fromString2Default(s, currency);
-    if (!wxNumberFormatter::FromString(value, &val))
+    const auto value = fromString2CLocale(s, currency);
+    if (!value.ToCDouble(&val))
         done = false;
 
     return done;

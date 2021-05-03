@@ -51,7 +51,7 @@ void mmTextCtrl::SetValue(double value, const Model_Currency::Data* currency, in
 
 bool mmTextCtrl::Calculate(int alt_precision)
 {
-    const wxString str = Model_Currency::fromString2Lua(this->GetValue(), m_currency);
+    const wxString str = Model_Currency::fromString2CLocale(this->GetValue(), m_currency);
     if (str.empty()) return false;
 
     LuaGlue state;
@@ -110,7 +110,7 @@ wxChar mmTextCtrl::GetDecimalPoint()
         dp = m_currency->DECIMAL_POINT[0];
     }
     else {
-        dp = wxNumberFormatter::GetDecimalSeparator();
+        dp = Model_Currency::GetBaseCurrency()->DECIMAL_POINT[0];
     }
     return dp;
 }
