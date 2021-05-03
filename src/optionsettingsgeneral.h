@@ -46,8 +46,10 @@ private:
 
     void OnCurrency(wxCommandEvent& event);
     void OnDateFormatChanged(wxCommandEvent& event);
+    void OnLocaleChanged(wxCommandEvent& event);
 
     bool SaveFinancialYearStart();
+    bool doFormatDoubleValue(const wxString& locale, wxString& result);
 
 private:
     mmGUIApp* m_app;
@@ -56,6 +58,7 @@ private:
     wxChoice* m_date_format_choice;
     wxChoice* m_month_selection;
     wxStaticText* m_sample_date_text;
+    wxStaticText* m_sample_value_text;
 
     int m_currency_id;
     wxCheckBox* m_currency_history;
@@ -69,7 +72,7 @@ private:
         ID_DIALOG_OPTIONS_BUTTON_CURRENCY = wxID_HIGHEST + 10,
         ID_DIALOG_OPTIONS_WXCHOICE_DATE,
         ID_DIALOG_OPTIONS_TEXTCTRL_USERNAME,
-        ID_DIALOG_OPTIONS_TEXTCTRL_LOCALE,
+        ID_DIALOG_OPTIONS_LOCALE,
         ID_DIALOG_OPTIONS_FINANCIAL_YEAR_START_DAY,
         ID_DIALOG_OPTIONS_FINANCIAL_YEAR_START_MONTH
     };

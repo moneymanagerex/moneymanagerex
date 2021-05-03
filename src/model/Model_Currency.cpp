@@ -179,29 +179,40 @@ const wxString Model_Currency::toStringNoFormatting(double value, const Data* cu
 
 const wxString Model_Currency::toString(double value, const Data* currency, int precision)
 {
+    wxString s;
     static wxString locale;
     if (locale.empty())
         locale = Model_Infotable::instance().GetStringInfo("LOCALE", "en_US");
-    const Data* curr = currency ? currency : GetBaseCurrency();
-    precision = (precision >= 0) ? precision : log10(curr->SCALE);
 
-    wxString s = fmt::format(std::locale(locale.c_str()), "{:L}", static_cast<int>(value))
-        +
-        wxString(fmt::format("{:.{}f}"
-            , fabs(value - static_cast<int>(value))
-            , precision)).Mid(1);
-
-#if 0
-    s.Replace(".", "\x05");
-    s.Replace(",", "\t");
-
-    s.Replace("\x05", curr->DECIMAL_POINT);
-    s.Replace("\t", curr->GROUP_SEPARATOR);
-
-    if (s.Mid(0, 1) == "-" && value >= -ROUNDING_ERROR_f32) {
-        s = s.Mid(1);
+    static wxString use_locale;
+    if (use_locale.empty()) {
+        use_locale = locale.empty() ? "N" : "Y";
     }
-#endif
+
+    if (use_locale == "N")
+    {
+        const Data* curr = currency ? currency : GetBaseCurrency();
+        precision = (precision >= 0) ? precision : log10(curr->SCALE);
+
+        s = fmt::format(std::locale("en_US"), "{:L}", static_cast<int>(value))
+            + wxString(fmt::format("{:.{}f}", fabs(value - static_cast<int>(value)), precision)).Mid(1);
+
+        s.Replace(".", "\x05");
+        s.Replace(",", "\t");
+
+        s.Replace("\x05", curr->DECIMAL_POINT);
+        s.Replace("\t", curr->GROUP_SEPARATOR);
+    }
+    else
+    {
+        precision = (precision >= 0) ? precision : 2;
+        s = fmt::format(std::locale(locale.c_str()), "{:L}", static_cast<int>(value))
+            + wxString(fmt::format("{:.{}f}", fabs(value - static_cast<int>(value)), precision)).Mid(1);
+    }
+
+
+    //if (s.Mid(0, 1) == "-" && value >= -ROUNDING_ERROR_f32) {
+    //    s = s.Mid(1);
 
     return s;
 }

@@ -24,11 +24,14 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "model/Model_Currency.h"
 
 #include <wx/spinctrl.h>
+#include <fmt/core.h>
+#include <fmt/locale.h>
 
 /*******************************************************/
 wxBEGIN_EVENT_TABLE(OptionSettingsGeneral, wxPanel)
     EVT_BUTTON(ID_DIALOG_OPTIONS_BUTTON_CURRENCY, OptionSettingsGeneral::OnCurrency)
     EVT_CHOICE(ID_DIALOG_OPTIONS_WXCHOICE_DATE, OptionSettingsGeneral::OnDateFormatChanged)
+    EVT_COMBOBOX(wxID_ANY, OptionSettingsGeneral::OnLocaleChanged)
 wxEND_EVENT_TABLE()
 /*******************************************************/
 
@@ -76,186 +79,46 @@ void OptionSettingsGeneral::Create()
     // Locale
     wxStaticBox* localeStaticBox = new wxStaticBox(this, wxID_STATIC, _("Locale"));
     wxStaticBoxSizer* localeStaticBoxSizer = new wxStaticBoxSizer(localeStaticBox, wxHORIZONTAL);
-    localeStaticBoxSizer->Add(new wxStaticText(localeStaticBox, wxID_STATIC, _("Locale")), g_flagsH);
+    generalPanelSizer->Add(localeStaticBoxSizer, wxSizerFlags(g_flagsExpand).Proportion(0));
+
     const wxString locale = Model_Infotable::instance().GetStringInfo("LOCALE", "en_US");
 
-    wxArrayString list;
-    list.Add("af-ZA");
-    list.Add("am-ET");
-    list.Add("ar-AE");
-    list.Add("ar-BH");
-    list.Add("ar-DZ");
-    list.Add("ar-EG");
-    list.Add("ar-IQ");
-    list.Add("ar-JO");
-    list.Add("ar-KW");
-    list.Add("ar-LB");
-    list.Add("ar-LY");
-    list.Add("ar-MA");
-    list.Add("ar-OM");
-    list.Add("ar-QA");
-    list.Add("ar-SA");
-    list.Add("ar-SY");
-    list.Add("ar-TN");
-    list.Add("ar-YE");
-    list.Add("as-IN");
-    list.Add("ba-RU");
-    list.Add("be-BY");
-    list.Add("bg-BG");
-    list.Add("bn-BD");
-    list.Add("bn-IN");
-    list.Add("bo-CN");
-    list.Add("br-FR");
-    list.Add("ca-ES");
-    list.Add("co-FR");
-    list.Add("cs-CZ");
-    list.Add("cy-GB");
-    list.Add("da-DK");
-    list.Add("de-AT");
-    list.Add("de-CH");
-    list.Add("de-DE");
-    list.Add("de-LI");
-    list.Add("de-LU");
-    list.Add("dv-MV");
-    list.Add("el-GR");
-    list.Add("en-AU");
-    list.Add("en-BZ");
-    list.Add("en-CA");
-    list.Add("en-GB");
-    list.Add("en-IE");
-    list.Add("en-IN");
-    list.Add("en-JM");
-    list.Add("en-MY");
-    list.Add("en-NZ");
-    list.Add("en-PH");
-    list.Add("en-SG");
-    list.Add("en-TT");
-    list.Add("en-US");
-    list.Add("en-ZA");
-    list.Add("en-ZW");
-    list.Add("es-AR");
-    list.Add("es-BO");
-    list.Add("es-CL");
-    list.Add("es-CO");
-    list.Add("es-CR");
-    list.Add("es-DO");
-    list.Add("es-EC");
-    list.Add("es-ES");
-    list.Add("es-GT");
-    list.Add("es-HN");
-    list.Add("es-MX");
-    list.Add("es-NI");
-    list.Add("es-PA");
-    list.Add("es-PE");
-    list.Add("es-PR");
-    list.Add("es-PY");
-    list.Add("es-SV");
-    list.Add("es-US");
-    list.Add("es-UY");
-    list.Add("es-VE");
-    list.Add("et-EE");
-    list.Add("eu-ES");
-    list.Add("fa-IR");
-    list.Add("fi-FI");
-    list.Add("fo-FO");
-    list.Add("fr-BE");
-    list.Add("fr-CA");
-    list.Add("fr-CH");
-    list.Add("fr-FR");
-    list.Add("fr-LU");
-    list.Add("fr-MC");
-    list.Add("fy-NL");
-    list.Add("ga-IE");
-    list.Add("gd-GB");
-    list.Add("gl-ES");
-    list.Add("gu-IN");
-    list.Add("he-IL");
-    list.Add("hi-IN");
-    list.Add("hr-BA");
-    list.Add("hr-HR");
-    list.Add("hu-HU");
-    list.Add("hy-AM");
-    list.Add("id-ID");
-    list.Add("ig-NG");
-    list.Add("ii-CN");
-    list.Add("is-IS");
-    list.Add("it-CH");
-    list.Add("it-IT");
-    list.Add("ja-JP");
-    list.Add("ka-GE");
-    list.Add("kk-KZ");
-    list.Add("kl-GL");
-    list.Add("km-KH");
-    list.Add("kn-IN");
-    list.Add("ko-KR");
-    list.Add("ky-KG");
-    list.Add("lb-LU");
-    list.Add("lo-LA");
-    list.Add("lt-LT");
-    list.Add("lv-LV");
-    list.Add("mi-NZ");
-    list.Add("mk-MK");
-    list.Add("ml-IN");
-    list.Add("mn-MN");
-    list.Add("mr-IN");
-    list.Add("ms-BN");
-    list.Add("ms-MY");
-    list.Add("mt-MT");
-    list.Add("nb-NO");
-    list.Add("ne-NP");
-    list.Add("nl-BE");
-    list.Add("nl-NL");
-    list.Add("nn-NO");
-    list.Add("oc-FR");
-    list.Add("or-IN");
-    list.Add("pa-IN");
-    list.Add("pl-PL");
-    list.Add("ps-AF");
-    list.Add("pt-BR");
-    list.Add("pt-PT");
-    list.Add("rm-CH");
-    list.Add("ro-RO");
-    list.Add("ru-RU");
-    list.Add("rw-RW");
-    list.Add("sa-IN");
-    list.Add("se-FI");
-    list.Add("se-NO");
-    list.Add("se-SE");
-    list.Add("si-LK");
-    list.Add("sk-SK");
-    list.Add("sl-SI");
-    list.Add("sq-AL");
-    list.Add("sv-FI");
-    list.Add("sv-SE");
-    list.Add("sw-KE");
-    list.Add("ta-IN");
-    list.Add("te-IN");
-    list.Add("th-TH");
-    list.Add("tk-TM");
-    list.Add("tn-ZA");
-    list.Add("tr-TR");
-    list.Add("tt-RU");
-    list.Add("ug-CN");
-    list.Add("uk-UA");
-    list.Add("ur-PK");
-    list.Add("vi-VN");
-    list.Add("wo-SN");
-    list.Add("xh-ZA");
-    list.Add("yo-NG");
-    list.Add("zh-CN");
-    list.Add("zh-HK");
-    list.Add("zh-MO");
-    list.Add("zh-SG");
-    list.Add("zh-TW");
-    list.Add("zu-ZA");
-
-    wxComboBox* itemListOfLocales = new wxComboBox(localeStaticBox, ID_DIALOG_OPTIONS_TEXTCTRL_LOCALE, ""
-        , wxDefaultPosition, wxDefaultSize, list);
+    wxComboBox* itemListOfLocales = new wxComboBox(localeStaticBox, ID_DIALOG_OPTIONS_LOCALE, ""
+        , wxDefaultPosition, wxDefaultSize, g_locales());
     itemListOfLocales->SetValue(locale);
-    itemListOfLocales->SetMinSize(wxSize(200, -1));
-    localeStaticBoxSizer->Add(itemListOfLocales, g_flagsExpand);
-    generalPanelSizer->Add(localeStaticBoxSizer, wxSizerFlags(g_flagsExpand).Proportion(0));
+    itemListOfLocales->SetMinSize(wxSize(100, -1));
+    localeStaticBoxSizer->Add(itemListOfLocales, g_flagsH);
+
+    itemListOfLocales->Connect(ID_DIALOG_OPTIONS_LOCALE, wxEVT_COMMAND_TEXT_UPDATED
+        , wxCommandEventHandler(OptionSettingsGeneral::OnLocaleChanged), nullptr, this);
+
+    m_sample_value_text = new wxStaticText(localeStaticBox, wxID_STATIC, "redefined elsewhere");
+    localeStaticBoxSizer->Add(m_sample_value_text, wxSizerFlags(g_flagsH).Border(wxLEFT, 15));
+    wxString result;
+    doFormatDoubleValue(locale, result);
+    m_sample_value_text->SetLabelText(result);
+
     SetBoldFont(localeStaticBox);
+
+    // Date Format Settings
+    wxStaticBox* dateFormatStaticBox = new wxStaticBox(this, wxID_STATIC, _("Date Format"));
+    wxStaticBoxSizer* dateFormatStaticBoxSizer = new wxStaticBoxSizer(dateFormatStaticBox, wxHORIZONTAL);
+    generalPanelSizer->Add(dateFormatStaticBoxSizer, wxSizerFlags(g_flagsExpand).Proportion(0));
+
+    m_date_format_choice = new wxChoice(dateFormatStaticBox, ID_DIALOG_OPTIONS_WXCHOICE_DATE);
+    for (const auto& i : g_date_formats_map())
+    {
+        m_date_format_choice->Append(i.second, new wxStringClientData(i.first));
+        if (m_date_format == i.first) m_date_format_choice->SetStringSelection(i.second);
+    }
+    dateFormatStaticBoxSizer->Add(m_date_format_choice, g_flagsH);
+    m_date_format_choice->SetToolTip(_("Specify the date format for display"));
+
+    m_sample_date_text = new wxStaticText(dateFormatStaticBox, wxID_STATIC, "redefined elsewhere");
+    dateFormatStaticBoxSizer->Add(new wxStaticText(dateFormatStaticBox, wxID_STATIC, _("New date format sample:")), wxSizerFlags(g_flagsH).Border(wxLEFT, 15));
+    dateFormatStaticBoxSizer->Add(m_sample_date_text, wxSizerFlags(g_flagsH).Border(wxLEFT, 5));
+    m_sample_date_text->SetLabelText(mmGetDateForDisplay(wxDateTime::Now().FormatISODate()));
+    SetBoldFont(dateFormatStaticBox);
 
     // Currency Settings
     wxStaticBox* currencyStaticBox = new wxStaticBox(this, wxID_STATIC, _("Currency"));
@@ -267,7 +130,6 @@ void OptionSettingsGeneral::Create()
     m_currencyStaticBoxSizer->Add(currencyBaseSizer, wxSizerFlags(g_flagsV).Border(wxLEFT, 0));
     currencyBaseSizer->Add(new wxStaticText(this, wxID_STATIC, _("Base Currency")), g_flagsH);
 
-    
     Model_Currency::Data* currency = Model_Currency::instance().get(Option::instance().getBaseCurrencyID());
     wxString currName = currency ? currency->CURRENCYNAME : _("Set Currency");
     wxButton* baseCurrencyButton = new wxButton(this, ID_DIALOG_OPTIONS_BUTTON_CURRENCY, currName, wxDefaultPosition, wxDefaultSize);
@@ -283,26 +145,6 @@ void OptionSettingsGeneral::Create()
     m_currency_history->SetValue(Option::instance().getCurrencyHistoryEnabled());
     m_currency_history->SetToolTip(_("Select to use currency history (one rate for each day), deselect to use a fixed rate"));
     m_currencyStaticBoxSizer->Add(m_currency_history, g_flagsV);
-
-    // Date Format Settings
-    wxStaticBox* dateFormatStaticBox = new wxStaticBox(this, wxID_STATIC, _("Date Format"));
-    SetBoldFont(dateFormatStaticBox);
-    wxStaticBoxSizer* dateFormatStaticBoxSizer = new wxStaticBoxSizer(dateFormatStaticBox, wxHORIZONTAL);
-    generalPanelSizer->Add(dateFormatStaticBoxSizer, wxSizerFlags(g_flagsExpand).Proportion(0));
-
-    m_date_format_choice = new wxChoice(this, ID_DIALOG_OPTIONS_WXCHOICE_DATE);
-    for (const auto& i : g_date_formats_map())
-    {
-        m_date_format_choice->Append(i.second, new wxStringClientData(i.first));
-        if (m_date_format == i.first) m_date_format_choice->SetStringSelection(i.second);
-    }
-    dateFormatStaticBoxSizer->Add(m_date_format_choice, g_flagsH);
-    m_date_format_choice->SetToolTip(_("Specify the date format for display"));
-
-    m_sample_date_text = new wxStaticText(this, wxID_STATIC, "redefined elsewhere");
-    dateFormatStaticBoxSizer->Add(new wxStaticText(this, wxID_STATIC, _("New date format sample:")), wxSizerFlags(g_flagsH).Border(wxLEFT, 15));
-    dateFormatStaticBoxSizer->Add(m_sample_date_text, wxSizerFlags(g_flagsH).Border(wxLEFT, 5));
-    m_sample_date_text->SetLabelText(mmGetDateForDisplay(wxDateTime::Now().FormatISODate()));
 
     // Financial Year Settings
     wxStaticBox* financialYearStaticBox = new wxStaticBox(this, wxID_ANY, _("Financial Year"));
@@ -373,6 +215,17 @@ void OptionSettingsGeneral::OnDateFormatChanged(wxCommandEvent& /*event*/)
 
 }
 
+
+void OptionSettingsGeneral::OnLocaleChanged(wxCommandEvent& /*event*/)
+{
+    wxComboBox* cbln = static_cast<wxComboBox*>(FindWindow(ID_DIALOG_OPTIONS_LOCALE));
+    const wxString locale = cbln->GetValue();
+    wxString result;
+
+    doFormatDoubleValue(locale, result);
+    m_sample_value_text->SetLabelText(result);
+}
+
 bool OptionSettingsGeneral::SaveFinancialYearStart()
 {
     //Save Financial Year Start Month
@@ -396,8 +249,11 @@ bool OptionSettingsGeneral::SaveSettings()
     wxTextCtrl* stun = static_cast<wxTextCtrl*>(FindWindow(ID_DIALOG_OPTIONS_TEXTCTRL_USERNAME));
     Option::instance().UserName(stun->GetValue());
 
-    wxComboBox* cbln = static_cast<wxComboBox*>(FindWindow(ID_DIALOG_OPTIONS_TEXTCTRL_LOCALE));
-    Option::instance().LocaleName(cbln->GetValue());
+    wxComboBox* cbln = static_cast<wxComboBox*>(FindWindow(ID_DIALOG_OPTIONS_LOCALE));
+    wxString value;
+    if (doFormatDoubleValue(cbln->GetValue(), value)) {
+        Option::instance().LocaleName(cbln->GetValue());
+    }
 
     Option::instance().CurrencyHistoryEnabled(m_currency_history->GetValue());
 
@@ -406,6 +262,31 @@ bool OptionSettingsGeneral::SaveSettings()
 
     Model_Setting::instance().Set(INIDB_USE_ORG_DATE_COPYPASTE, m_use_org_date_copy_paste->GetValue());
     Model_Setting::instance().Set(INIDB_USE_TRANSACTION_SOUND, m_use_sound->GetValue());
+
+    return true;
+}
+
+bool OptionSettingsGeneral::doFormatDoubleValue(const wxString& locale, wxString& result)
+{
+    double value = 1234567.89;
+    int precision = 2;
+    wxString s;
+    if (locale.empty()) {
+        result = "";
+        return true;
+    }
+
+    try {
+        s = _("Double value sample: %s");
+        const wxString sample = fmt::format(std::locale(locale.c_str()), "{:L}", static_cast<int>(value))
+            + wxString(fmt::format("{:.{}f}", fabs(value - static_cast<int>(value)), precision)).Mid(1);
+        result = wxString::Format(s, sample);
+    }
+    catch (std::exception & ex) {
+        wxTRANSLATE("bad locale name");
+        result = wxString(ex.what());
+        return false;
+    }
 
     return true;
 }
