@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-04-22 00:36+0300\n"
-"PO-Revision-Date: 2021-04-26 17:45\n"
+"PO-Revision-Date: 2021-05-04 17:56\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "MIME-Version: 1.0\n"
@@ -6068,7 +6068,7 @@ msgstr "Preço Atual"
 #: reports/summarystocks.cpp:196 sharetransactiondialog.cpp:242
 #: stocks_list.cpp:99
 msgid "Commission"
-msgstr "Comissões"
+msgstr "Custo"
 
 #: reports/summarystocks.cpp:206
 msgid "Stocks Performance Charts"
@@ -6112,11 +6112,11 @@ msgstr "Digite o símbolo da ação. (Opcional) Incluir Tipo da Ação. Ex: PETR
 
 #: sharetransactiondialog.cpp:217
 msgid "Share Number"
-msgstr "Número da Ação"
+msgstr "Quantidade de Ações"
 
 #: sharetransactiondialog.cpp:223
 msgid "Enter number of shares held"
-msgstr "Digite o número de ações mantidas"
+msgstr "Insira a quantidade de ações"
 
 #: sharetransactiondialog.cpp:229
 msgid "Share Price"
@@ -6194,12 +6194,12 @@ msgstr "Especifique a data inicial do investimento em ações\n"
 
 #: stockdialog.cpp:218
 msgid "*Share Number"
-msgstr "*Número de Ações"
+msgstr "*Quantidade de Ações"
 
 #: stockdialog.cpp:224
 msgid "Enter number of shares.\n"
 "Used when creating the initial Share transaction."
-msgstr "Digite o número de ações.\n"
+msgstr "Digite a quantidade de ações.\n"
 "Usado ao criar a transação inicial de ação."
 
 #: stockdialog.cpp:230 stocks_list.cpp:93
