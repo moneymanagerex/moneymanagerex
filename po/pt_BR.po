@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-04-22 00:36+0300\n"
-"PO-Revision-Date: 2021-05-04 17:56\n"
+"PO-Revision-Date: 2021-05-04 18:05\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "MIME-Version: 1.0\n"
@@ -1703,7 +1703,7 @@ msgstr "Exibir últimos 90 dias"
 
 #: constants.cpp:177
 msgid "View Last Month"
-msgstr "Exibir último mês"
+msgstr "Exibir mês anterior"
 
 #: constants.cpp:178
 msgid "View Last 3 Months"
@@ -5970,7 +5970,7 @@ msgstr "Mês Atual até Hoje"
 
 #: reports/mmDateRange.cpp:78
 msgid "Last Month"
-msgstr "Último Mês"
+msgstr "Mês Anterior"
 
 #: reports/mmDateRange.cpp:88
 msgid "Last 30 Days"
@@ -6214,7 +6214,7 @@ msgstr "Digite o preço inicial por ação.\n"
 
 #: stockdialog.cpp:241
 msgid "*Commission"
-msgstr "*Comissões"
+msgstr "*Custo"
 
 #: stockdialog.cpp:245
 msgid "Enter any commission paid.\n"
