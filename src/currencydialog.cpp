@@ -128,6 +128,12 @@ void mmCurrencyDialog::fillControls()
         m_scale = log10(m_currency->SCALE);
         const wxString& scale_value = wxString::Format("%i", m_scale);
         scaleTx_->ChangeValue(scale_value);
+        if (!Model_Infotable::instance().GetStringInfo("LOCALE","").empty())
+        {
+            decTx_->Disable();
+            grpTx_->Disable();
+            scaleTx_->Disable();
+        }
         m_currencySymbol->ChangeValue(m_currency->CURRENCY_SYMBOL);
 
         bool baseCurrency = (Option::instance().getBaseCurrencyID() == m_currency->CURRENCYID);
@@ -293,6 +299,8 @@ void mmCurrencyDialog::OnTextChanged(wxCommandEvent& WXUNUSED(event))
     double base_amount = 123456.78;
 
     dispAmount = wxString::Format(_("%.2f Shown As: %s"), base_amount, Model_Currency::toCurrency(base_amount, m_currency));
+    if (!Model_Infotable::instance().GetStringInfo("LOCALE","").empty())
+        dispAmount = dispAmount + "  " + _("(Using Locale)");
     sampleText_->SetLabelText(dispAmount);
 }
 
