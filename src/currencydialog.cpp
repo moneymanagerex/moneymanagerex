@@ -21,6 +21,7 @@
 #include "constants.h"
 #include "util.h"
 #include "model/Model_Currency.h"
+#include "Model_CurrencyHistory.h"
 #include "defs.h"
 #include "option.h"
 #include "paths.h"
@@ -68,6 +69,7 @@ mmCurrencyDialog::mmCurrencyDialog(wxWindow* parent, const Model_Currency::Data 
     {
         m_currency = Model_Currency::instance().clone(currency);
         m_currency->CURRENCYID = currency->CURRENCYID;
+        m_currency->BASECONVRATE = Model_CurrencyHistory::getLastRate(m_currency->CURRENCYID);
     }
     else
     {
