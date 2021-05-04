@@ -152,28 +152,23 @@ static const std::map<std::string, std::pair<int, bool>> iconName2enum = {
 static const std::map<int, std::tuple<wxString, wxString, bool> > metaDataTrans()
 {
     return {
-    { THEME_NAME,           { "/theme/name",              "",        true  } },
-    { THEME_AUTHOR,         { "/theme/author",            "",        false } },
-    { THEME_DESCRIPTION,    { "/theme/description",       "",        true  } },
-    { THEME_URL,            { "/theme/url",               "",        false } },
-    { COLOR_NAVPANEL,       { "/colors/navigationPanel",  "#FFFFFF", false } },
-    { COLOR_LISTPANEL,      { "/colors/listPanel",        "#FFFFFF", false } },
-    { COLOR_LISTALT0,       { "/colors/listAlternative1", "#F0F5EB", false } },
-    { COLOR_LISTALT0A,      { "/colors/listAlternative2", "#E0E7F0", false } },
-    { COLOR_LISTTOTAL,      { "/colors/listTotal",        "#7486A8", false } },
-    { COLOR_LISTBORDER,     { "/colors/listBorder",       "#000000", false } },
-    { COLOR_LISTFUTURE,     { "/colors/listFutureDate",   "#7486A8", false } },
-    { COLOR_REPORT_CREDIT,  { "/colors/reports/credit",   "#50B381", false } },
-    { COLOR_REPORT_DEBIT,   { "/colors/reports/debit",    "#F75E51", false } },
-    { COLOR_REPORT_PALETTE, { "/colors/reports/palette",  "#008FFB #00E396 #FEB019 "
-                                                          "#FF4560 #775DD0 #3F51B5 "
-                                                          "#03A9F4 #4cAF50 #F9CE1D "
-                                                          "#FF9800 #33B2DF #546E7A "
-                                                          "#D4526E #13D8AA #A5978B "
-                                                          "#4ECDC4 #81D4FA #546E7A "
-                                                          "#FD6A6A #2B908F #F9A3A4 "
-                                                          "#90EE7E #FA4443 #69D2E7 "
-                                                          "#449DD1 #F86624", false } }
+    { THEME_NAME,           { wxString("/theme/name"),              wxString(""),        true  } },
+    { THEME_AUTHOR,         { wxString("/theme/author"),            wxString(""),        false } },
+    { THEME_DESCRIPTION,    { wxString("/theme/description"),       wxString(""),        true  } },
+    { THEME_URL,            { wxString("/theme/url"),               wxString(""),        false } },
+    { COLOR_NAVPANEL,       { wxString("/colors/navigationPanel"),  wxString("#FFFFFF"), false } },
+    { COLOR_LISTPANEL,      { wxString("/colors/listPanel"),        wxString("#FFFFFF"), false } },
+    { COLOR_LISTALT0,       { wxString("/colors/listAlternative1"), wxString("#F0F5EB"), false } },
+    { COLOR_LISTALT0A,      { wxString("/colors/listAlternative2"), wxString("#E0E7F0"), false } },
+    { COLOR_LISTTOTAL,      { wxString("/colors/listTotal"),        wxString("#7486A8"), false } },
+    { COLOR_LISTBORDER,     { wxString("/colors/listBorder"),       wxString("#000000"), false } },
+    { COLOR_LISTFUTURE,     { wxString("/colors/listFutureDate"),   wxString("#7486A8"), false } },
+    { COLOR_REPORT_CREDIT,  { wxString("/colors/reports/credit"),   wxString("#50B381"), false } },
+    { COLOR_REPORT_DEBIT,   { wxString("/colors/reports/debit"),    wxString("#F75E51"), false } },
+    { COLOR_REPORT_PALETTE, { wxString("/colors/reports/palette"),  wxString("#008FFB "
+        "#00E396 #FEB019 #FF4560 #775DD0 #3F51B5 #03A9F4 #4cAF50 #F9CE1D #FF9800 "
+        "#33B2DF #546E7A #D4526E #13D8AA #A5978B #4ECDC4 #81D4FA #546E7A #FD6A6A "
+        "#2B908F #F9A3A4 #90EE7E #FA4443 #69D2E7 #449DD1 #F86624"),                      false } }
     };
 };
 
@@ -505,7 +500,7 @@ const wxString mmThemeMetaString(int ref)
 }
 
 // helpers
-const long mmThemeMetaLong(int ref)
+long mmThemeMetaLong(int ref)
 {
     long retValue;
     if (!mmThemeMetaString(ref).ToLong(&retValue, 0))
