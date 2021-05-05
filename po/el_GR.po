@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-05-04 21:19+0300\n"
-"PO-Revision-Date: 2021-05-04 18:33\n"
+"PO-Revision-Date: 2021-05-05 05:39\n"
 "Last-Translator: \n"
 "Language-Team: Greek\n"
 "MIME-Version: 1.0\n"
@@ -2298,11 +2298,11 @@ msgstr "Άνοιγμα βάσης δεδομένων MMEX - Σφάλμα"
 
 #: diagnostics.cpp:50
 msgid "Diagnostics"
-msgstr ""
+msgstr "Διαγνωστικός Έλεγχος"
 
 #: diagnostics.cpp:100
 msgid "Developers may ask you to provide information presented here in order to help diagnose issues you may report with the program."
-msgstr ""
+msgstr "Οι προγραμματιστές μπορούν να σας ζητήσουν να παρέχετε πληροφορίες που παρουσιάζονται εδώ για να βοηθήσετε στη διάγνωση θεμάτων που μπορεί να αναφέρετε σχετικά με το πρόγραμμα."
 
 #: filtertransdialog.cpp:45 mmhomepage.cpp:653 model/Model_Billsdeposits.cpp:39
 #: model/Model_Checking.cpp:37
@@ -2734,7 +2734,7 @@ msgstr "Εξαγωγή JSON"
 
 #: import_export/qif_export.cpp:50
 msgid "CSV Export"
-msgstr ""
+msgstr "Εξαγωγή CSV"
 
 #: import_export/qif_export.cpp:110
 msgid "Parameters"
@@ -2754,7 +2754,7 @@ msgstr "JSON"
 
 #: import_export/qif_export.cpp:129
 msgid "CSV"
-msgstr ""
+msgstr "CSV"
 
 #: import_export/qif_export.cpp:143 mmframe.cpp:3039 mmframe.cpp:3043
 #: mmframe.cpp:3062 mmframe.cpp:3066
@@ -3106,7 +3106,7 @@ msgstr "Προεπισκόπηση"
 
 #: import_export/univcsvdialog.cpp:434
 msgid "Choose XML data file to Import"
-msgstr ""
+msgstr "Επιλογή αρχείου δεδομένων XML για εισαγωγή"
 
 #: import_export/univcsvdialog.cpp:434
 msgid "Choose CSV data file to Import"
@@ -3114,7 +3114,7 @@ msgstr "Επιλέξτε αρχείο δεδομένων CSV για εισαγω
 
 #: import_export/univcsvdialog.cpp:435
 msgid "Choose XML data file to Export"
-msgstr ""
+msgstr "Επιλογή αρχείου δεδομένων XML για εξαγωγή"
 
 #: import_export/univcsvdialog.cpp:435
 msgid "Choose CSV data file to Export"
@@ -4486,11 +4486,11 @@ msgstr "Αναφέρετε ένα σφάλμα στην εφαρμογή στο�
 
 #: mmframe.cpp:1639
 msgid "View Diagnostics"
-msgstr ""
+msgstr "Προβολή Διαγνωστικών"
 
 #: mmframe.cpp:1640
 msgid "Help provide information to the developers"
-msgstr ""
+msgstr "Βοήθεια για την παροχή πληροφοριών στους προγραμματιστές"
 
 #: mmframe.cpp:1644
 msgid "&Show App Start Dialog"
@@ -4931,7 +4931,7 @@ msgstr "Κορυφαίες Αποσύρσεις: %s"
 
 #: mmhomepage.cpp:359
 msgid "Account / Payee"
-msgstr ""
+msgstr "Λογαριασμός / Δικαιούχος"
 
 #: mmhomepage.cpp:437
 #, c-format
@@ -5324,7 +5324,7 @@ msgstr "Το όνομα χρήστη χρησιμοποιήθηκε ως τίτ�
 
 #: optionsettingsgeneral.cpp:80
 msgid "Locale"
-msgstr ""
+msgstr "Γλωσσικές Ρυθμίσεις"
 
 #: optionsettingsgeneral.cpp:115
 msgid "Specify the date format for display"
@@ -5397,11 +5397,11 @@ msgstr "Επιλέξτε αν θα χρησιμοποιούνται ήχοι κ�
 #: optionsettingsgeneral.cpp:280
 #, c-format
 msgid "Double value sample: %s"
-msgstr ""
+msgstr "Δείγμα διπλής τιμής: %s"
 
 #: optionsettingsgeneral.cpp:286
 msgid "bad locale name"
-msgstr ""
+msgstr "εσφαλμένο όνομα γλώσσας"
 
 #: optionsettingsmisc.cpp:56
 msgid "Stock Quote Web Page"
@@ -5437,11 +5437,11 @@ msgstr "Τελευταία χρησιμοποιημένος ως δικαιού�
 
 #: optionsettingsmisc.cpp:125
 msgid "Yes"
-msgstr ""
+msgstr "Ναι"
 
 #: optionsettingsmisc.cpp:126
 msgid "No"
-msgstr ""
+msgstr "Όχι"
 
 #: optionsettingsmisc.cpp:135
 msgid "Default Date:"
