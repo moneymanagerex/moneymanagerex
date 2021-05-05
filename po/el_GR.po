@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-05-04 21:19+0300\n"
-"PO-Revision-Date: 2021-05-05 05:39\n"
+"PO-Revision-Date: 2021-05-05 05:46\n"
 "Last-Translator: \n"
 "Language-Team: Greek\n"
 "MIME-Version: 1.0\n"
@@ -6780,31 +6780,31 @@ msgstr "Σάββατο"
 
 #: util.cpp:306
 msgid "Sun"
-msgstr ""
+msgstr "Κυρ"
 
 #: util.cpp:306
 msgid "Mon"
-msgstr ""
+msgstr "Δευ"
 
 #: util.cpp:306
 msgid "Tue"
-msgstr ""
+msgstr "Τρι"
 
 #: util.cpp:307
 msgid "Wed"
-msgstr ""
+msgstr "Τετ"
 
 #: util.cpp:307
 msgid "Thu"
-msgstr ""
+msgstr "Πεμ"
 
 #: util.cpp:307
 msgid "Fri"
-msgstr ""
+msgstr "Παρ"
 
 #: util.cpp:308
 msgid "Sat"
-msgstr ""
+msgstr "Σαβ"
 
 #: util.cpp:584
 msgid "Currency rates have been updated"
