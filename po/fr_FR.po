@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-05-04 21:19+0300\n"
-"PO-Revision-Date: 2021-05-05 07:28\n"
+"PO-Revision-Date: 2021-05-05 16:27\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -2298,7 +2298,7 @@ msgstr "Ouvrir une base de données existante: erreur"
 
 #: diagnostics.cpp:50
 msgid "Diagnostics"
-msgstr "Diagnostique"
+msgstr "Diagnostics"
 
 #: diagnostics.cpp:100
 msgid "Developers may ask you to provide information presented here in order to help diagnose issues you may report with the program."
@@ -5333,7 +5333,7 @@ msgstr "Le nom de l'utilisateur est utilisé comme titre de la base de données.
 
 #: optionsettingsgeneral.cpp:80
 msgid "Locale"
-msgstr "Locale"
+msgstr "Local(e)"
 
 #: optionsettingsgeneral.cpp:115
 msgid "Specify the date format for display"
@@ -5410,7 +5410,7 @@ msgstr "Échantillon de double valeur: %s"
 
 #: optionsettingsgeneral.cpp:286
 msgid "bad locale name"
-msgstr "mauvais nom de locale"
+msgstr "mauvais nom local"
 
 #: optionsettingsmisc.cpp:56
 msgid "Stock Quote Web Page"
