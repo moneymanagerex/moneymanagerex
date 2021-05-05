@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-05-04 21:19+0300\n"
-"PO-Revision-Date: 2021-05-04 18:33\n"
+"PO-Revision-Date: 2021-05-05 07:28\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -2298,11 +2298,11 @@ msgstr "Ouvrir une base de données existante: erreur"
 
 #: diagnostics.cpp:50
 msgid "Diagnostics"
-msgstr ""
+msgstr "Diagnostique"
 
 #: diagnostics.cpp:100
 msgid "Developers may ask you to provide information presented here in order to help diagnose issues you may report with the program."
-msgstr ""
+msgstr "Les développeurs peuvent vous demander de fournir les informations présentées ici afin d'aider à diagnostiquer les problèmes que vous pouvez signaler avec le programme."
 
 #: filtertransdialog.cpp:45 mmhomepage.cpp:653 model/Model_Billsdeposits.cpp:39
 #: model/Model_Checking.cpp:37
@@ -2735,7 +2735,7 @@ msgstr "Export JSON"
 
 #: import_export/qif_export.cpp:50
 msgid "CSV Export"
-msgstr ""
+msgstr "Export CSV"
 
 #: import_export/qif_export.cpp:110
 msgid "Parameters"
@@ -2755,7 +2755,7 @@ msgstr "JSON"
 
 #: import_export/qif_export.cpp:129
 msgid "CSV"
-msgstr ""
+msgstr "CSV"
 
 #: import_export/qif_export.cpp:143 mmframe.cpp:3039 mmframe.cpp:3043
 #: mmframe.cpp:3062 mmframe.cpp:3066
@@ -3107,7 +3107,7 @@ msgstr "Prévisualiser"
 
 #: import_export/univcsvdialog.cpp:434
 msgid "Choose XML data file to Import"
-msgstr ""
+msgstr "Sélectionner le fichier XML à importer"
 
 #: import_export/univcsvdialog.cpp:434
 msgid "Choose CSV data file to Import"
@@ -3115,7 +3115,7 @@ msgstr "Sélectionner un fichier CSV à importer"
 
 #: import_export/univcsvdialog.cpp:435
 msgid "Choose XML data file to Export"
-msgstr ""
+msgstr "Sélectionner le fichier XML à exporter"
 
 #: import_export/univcsvdialog.cpp:435
 msgid "Choose CSV data file to Export"
@@ -4489,11 +4489,11 @@ msgstr "Signaler une erreur dans l’application aux développeurs"
 
 #: mmframe.cpp:1639
 msgid "View Diagnostics"
-msgstr ""
+msgstr "Afficher les diagnostics"
 
 #: mmframe.cpp:1640
 msgid "Help provide information to the developers"
-msgstr ""
+msgstr "Aide à fournir des informations aux développeurs"
 
 #: mmframe.cpp:1644
 msgid "&Show App Start Dialog"
@@ -4938,7 +4938,7 @@ msgstr "les plus grands retraits: %s"
 
 #: mmhomepage.cpp:359
 msgid "Account / Payee"
-msgstr ""
+msgstr "Compte / Tiers"
 
 #: mmhomepage.cpp:437
 #, c-format
@@ -5333,7 +5333,7 @@ msgstr "Le nom de l'utilisateur est utilisé comme titre de la base de données.
 
 #: optionsettingsgeneral.cpp:80
 msgid "Locale"
-msgstr ""
+msgstr "Locale"
 
 #: optionsettingsgeneral.cpp:115
 msgid "Specify the date format for display"
@@ -5406,11 +5406,11 @@ msgstr "Cocher pour générer des sons en introduisant des opérations"
 #: optionsettingsgeneral.cpp:280
 #, c-format
 msgid "Double value sample: %s"
-msgstr ""
+msgstr "Échantillon de double valeur: %s"
 
 #: optionsettingsgeneral.cpp:286
 msgid "bad locale name"
-msgstr ""
+msgstr "mauvais nom de locale"
 
 #: optionsettingsmisc.cpp:56
 msgid "Stock Quote Web Page"
@@ -5446,11 +5446,11 @@ msgstr "Dernier bénéficiaires utilisé"
 
 #: optionsettingsmisc.cpp:125
 msgid "Yes"
-msgstr ""
+msgstr "Oui"
 
 #: optionsettingsmisc.cpp:126
 msgid "No"
-msgstr ""
+msgstr "Non"
 
 #: optionsettingsmisc.cpp:135
 msgid "Default Date:"
@@ -5470,7 +5470,7 @@ msgstr "Statut du compte par défaut :"
 
 #: optionsettingsmisc.cpp:143
 msgid "Bulk Transactions:"
-msgstr ""
+msgstr "Tansactions en lot:"
 
 #: optionsettingsmisc.cpp:154
 msgid "Database Backup"
@@ -6791,31 +6791,31 @@ msgstr "Samedi"
 
 #: util.cpp:306
 msgid "Sun"
-msgstr ""
+msgstr "Dim"
 
 #: util.cpp:306
 msgid "Mon"
-msgstr ""
+msgstr "Lun"
 
 #: util.cpp:306
 msgid "Tue"
-msgstr ""
+msgstr "Mar"
 
 #: util.cpp:307
 msgid "Wed"
-msgstr ""
+msgstr "Mer"
 
 #: util.cpp:307
 msgid "Thu"
-msgstr ""
+msgstr "Jeu"
 
 #: util.cpp:307
 msgid "Fri"
-msgstr ""
+msgstr "Ven"
 
 #: util.cpp:308
 msgid "Sat"
-msgstr ""
+msgstr "Sam"
 
 #: util.cpp:584
 msgid "Currency rates have been updated"
