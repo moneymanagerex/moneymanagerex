@@ -375,7 +375,7 @@ bool OnInitImpl(mmGUIApp* app)
         if (intersectRect.IsEmpty())
             percent = 0;
         else
-            percent = static_cast<double>(intersectRect.GetWidth()*intersectRect.GetHeight() * 2.0) /
+            percent = static_cast<double>(intersectRect.GetWidth()*intersectRect.GetHeight()) * 2.0 /
                         static_cast<double>(dispWidth*dispHeight + savedPosition.GetWidth()*savedPosition.GetHeight());
 
         if (percent > 0.2)
