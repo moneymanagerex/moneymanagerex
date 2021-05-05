@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-05-04 21:19+0300\n"
-"PO-Revision-Date: 2021-05-04 18:33\n"
+"PO-Revision-Date: 2021-05-05 05:56\n"
 "Last-Translator: \n"
 "Language-Team: Hebrew\n"
 "MIME-Version: 1.0\n"
@@ -2304,7 +2304,7 @@ msgstr "שגיאה - בפתיחת מסד נתוני MMEX"
 
 #: diagnostics.cpp:50
 msgid "Diagnostics"
-msgstr ""
+msgstr "אבחונים"
 
 #: diagnostics.cpp:100
 msgid "Developers may ask you to provide information presented here in order to help diagnose issues you may report with the program."
@@ -2743,7 +2743,7 @@ msgstr "יצוא JSON"
 
 #: import_export/qif_export.cpp:50
 msgid "CSV Export"
-msgstr ""
+msgstr "יצוא CSV"
 
 #: import_export/qif_export.cpp:110
 msgid "Parameters"
@@ -2763,7 +2763,7 @@ msgstr "JSON"
 
 #: import_export/qif_export.cpp:129
 msgid "CSV"
-msgstr ""
+msgstr "CSV"
 
 #: import_export/qif_export.cpp:143 mmframe.cpp:3039 mmframe.cpp:3043
 #: mmframe.cpp:3062 mmframe.cpp:3066
@@ -3116,7 +3116,7 @@ msgstr "תצוגה מקדימה"
 
 #: import_export/univcsvdialog.cpp:434
 msgid "Choose XML data file to Import"
-msgstr ""
+msgstr "בחירת קובץ נתונים XML לייבא"
 
 #: import_export/univcsvdialog.cpp:434
 msgid "Choose CSV data file to Import"
@@ -3124,7 +3124,7 @@ msgstr "בחירת קובץ נתוני CSV ליבוא"
 
 #: import_export/univcsvdialog.cpp:435
 msgid "Choose XML data file to Export"
-msgstr ""
+msgstr "בחירת קובץ נתונים XML ליצוא"
 
 #: import_export/univcsvdialog.cpp:435
 msgid "Choose CSV data file to Export"
@@ -4508,7 +4508,7 @@ msgstr "דווח למתכנתים על שגיאה בישום"
 
 #: mmframe.cpp:1639
 msgid "View Diagnostics"
-msgstr ""
+msgstr "צפיה באבחונים"
 
 #: mmframe.cpp:1640
 msgid "Help provide information to the developers"
@@ -4956,7 +4956,7 @@ msgstr "משיכות מובילות: %s"
 
 #: mmhomepage.cpp:359
 msgid "Account / Payee"
-msgstr ""
+msgstr "חשבון / מוטב"
 
 #: mmhomepage.cpp:437
 #, c-format
