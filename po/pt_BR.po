@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-05-04 21:19+0300\n"
-"PO-Revision-Date: 2021-05-04 18:32\n"
+"PO-Revision-Date: 2021-05-05 12:41\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "MIME-Version: 1.0\n"
@@ -2298,11 +2298,11 @@ msgstr "Erro ao abrir Arquivo de Dados do MMEX"
 
 #: diagnostics.cpp:50
 msgid "Diagnostics"
-msgstr ""
+msgstr "Diagnósticos"
 
 #: diagnostics.cpp:100
 msgid "Developers may ask you to provide information presented here in order to help diagnose issues you may report with the program."
-msgstr ""
+msgstr "Os desenvolvedores podem solicitar que você forneça informações apresentadas aqui para ajudar no diagnóstico de problemas que você venha relatar com o programa."
 
 #: filtertransdialog.cpp:45 mmhomepage.cpp:653 model/Model_Billsdeposits.cpp:39
 #: model/Model_Checking.cpp:37
@@ -2735,7 +2735,7 @@ msgstr "Exportar JSON"
 
 #: import_export/qif_export.cpp:50
 msgid "CSV Export"
-msgstr ""
+msgstr "Exportar CSV"
 
 #: import_export/qif_export.cpp:110
 msgid "Parameters"
@@ -2755,7 +2755,7 @@ msgstr "JSON"
 
 #: import_export/qif_export.cpp:129
 msgid "CSV"
-msgstr ""
+msgstr "CSV"
 
 #: import_export/qif_export.cpp:143 mmframe.cpp:3039 mmframe.cpp:3043
 #: mmframe.cpp:3062 mmframe.cpp:3066
@@ -3107,7 +3107,7 @@ msgstr "Pré-visualizar"
 
 #: import_export/univcsvdialog.cpp:434
 msgid "Choose XML data file to Import"
-msgstr ""
+msgstr "Escolha o arquivo de dados XML para importar"
 
 #: import_export/univcsvdialog.cpp:434
 msgid "Choose CSV data file to Import"
@@ -3115,7 +3115,7 @@ msgstr "Escolha o arquivo de dados CSV para importar"
 
 #: import_export/univcsvdialog.cpp:435
 msgid "Choose XML data file to Export"
-msgstr ""
+msgstr "Escolha o arquivo de dados XML para exportar"
 
 #: import_export/univcsvdialog.cpp:435
 msgid "Choose CSV data file to Export"
@@ -4489,11 +4489,11 @@ msgstr "Relatar um erro no aplicativo para os desenvolvedores"
 
 #: mmframe.cpp:1639
 msgid "View Diagnostics"
-msgstr ""
+msgstr "Visualizar Diagnósticos"
 
 #: mmframe.cpp:1640
 msgid "Help provide information to the developers"
-msgstr ""
+msgstr "Ajuda a fornecer informações aos desenvolvedores"
 
 #: mmframe.cpp:1644
 msgid "&Show App Start Dialog"
@@ -4938,7 +4938,7 @@ msgstr "Maiores Gastos: %s"
 
 #: mmhomepage.cpp:359
 msgid "Account / Payee"
-msgstr ""
+msgstr "Conta / Favorecido"
 
 #: mmhomepage.cpp:437
 #, c-format
@@ -5333,7 +5333,7 @@ msgstr "O Nome de Usuário é usado como título para o arquivo de dados."
 
 #: optionsettingsgeneral.cpp:80
 msgid "Locale"
-msgstr ""
+msgstr "Local"
 
 #: optionsettingsgeneral.cpp:115
 msgid "Specify the date format for display"
@@ -5406,11 +5406,11 @@ msgstr "Selecione se deseja usar sons quando registrar transações"
 #: optionsettingsgeneral.cpp:280
 #, c-format
 msgid "Double value sample: %s"
-msgstr ""
+msgstr "Amostra de valor duplo: %s"
 
 #: optionsettingsgeneral.cpp:286
 msgid "bad locale name"
-msgstr ""
+msgstr "nome do local incorreto"
 
 #: optionsettingsmisc.cpp:56
 msgid "Stock Quote Web Page"
@@ -5446,11 +5446,11 @@ msgstr "Último usado como beneficiário"
 
 #: optionsettingsmisc.cpp:125
 msgid "Yes"
-msgstr ""
+msgstr "Sim"
 
 #: optionsettingsmisc.cpp:126
 msgid "No"
-msgstr ""
+msgstr "Não"
 
 #: optionsettingsmisc.cpp:135
 msgid "Default Date:"
@@ -5470,7 +5470,7 @@ msgstr "Situação Padrão:"
 
 #: optionsettingsmisc.cpp:143
 msgid "Bulk Transactions:"
-msgstr ""
+msgstr "Transações em massa:"
 
 #: optionsettingsmisc.cpp:154
 msgid "Database Backup"
@@ -6790,31 +6790,31 @@ msgstr "Sábado"
 
 #: util.cpp:306
 msgid "Sun"
-msgstr ""
+msgstr "Dom"
 
 #: util.cpp:306
 msgid "Mon"
-msgstr ""
+msgstr "Seg"
 
 #: util.cpp:306
 msgid "Tue"
-msgstr ""
+msgstr "Ter"
 
 #: util.cpp:307
 msgid "Wed"
-msgstr ""
+msgstr "Qua"
 
 #: util.cpp:307
 msgid "Thu"
-msgstr ""
+msgstr "Qui"
 
 #: util.cpp:307
 msgid "Fri"
-msgstr ""
+msgstr "Sex"
 
 #: util.cpp:308
 msgid "Sat"
-msgstr ""
+msgstr "Sáb"
 
 #: util.cpp:584
 msgid "Currency rates have been updated"
