@@ -343,26 +343,40 @@ bool OnInitImpl(mmGUIApp* app)
     int valH = Model_Setting::instance().GetIntSetting("SIZEH", defValH);
 
     // Check if it 'fits' into any of the windows
-    // -- 'fit' means at least 50% of application is on a visible window)
+    // -- 'fit' means either an exact fit or at least 20% of application is on a visible window)
     bool itFits = false;
     for (unsigned int i = 0; i < wxDisplay::GetCount(); i++) {
         display = new wxDisplay(i);
 
-        wxRect rect1 = display->GetGeometry();
-        wxRect rect2 = wxRect(valX, valY, valW, valH);
-        wxRect inter = rect1.Intersect(rect2);
-        double percent;
-        if (inter.IsEmpty())
-            percent = 0;
-        else
-            percent = static_cast<double>(inter.GetWidth()*inter.GetHeight() /
-                        rect1.GetWidth()*rect1.GetHeight() + 
-                        rect2.GetWidth()*rect2.GetHeight()) * 2.0;
+        wxRect displayRect = display->GetGeometry();
+        wxRect savedPosition(valX, valY, valW, valH);
 
-        if (percent > 0.5)
+        // Check for exact fit.
+
+        if (displayRect.Contains(savedPosition))
         {
             itFits = true;
-            continue;
+            break;
+        }
+
+        // Check for partial fit
+
+        // Grab now as the Intersect will replace these
+        int dispWidth = displayRect.GetWidth();
+        int dispHeight = displayRect.GetHeight();
+
+        wxRect intersectRect = displayRect.Intersect(savedPosition);
+        double percent;
+        if (intersectRect.IsEmpty())
+            percent = 0;
+        else
+            percent = static_cast<double>(intersectRect.GetWidth()*intersectRect.GetHeight()) * 2.0 /
+                        static_cast<double>(dispWidth*dispHeight + savedPosition.GetWidth()*savedPosition.GetHeight());
+
+        if (percent > 0.2)
+        {
+            itFits = true;
+            break;
         }
     }
 
