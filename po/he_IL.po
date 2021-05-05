@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-05-04 21:19+0300\n"
-"PO-Revision-Date: 2021-05-05 05:56\n"
+"PO-Revision-Date: 2021-05-05 06:11\n"
 "Last-Translator: \n"
 "Language-Team: Hebrew\n"
 "MIME-Version: 1.0\n"
@@ -2308,7 +2308,7 @@ msgstr "אבחונים"
 
 #: diagnostics.cpp:100
 msgid "Developers may ask you to provide information presented here in order to help diagnose issues you may report with the program."
-msgstr ""
+msgstr "מפתחים עשויים לבקש לקבל מידע המוצג כאן על מנת לסייע באבחון סוגיות תוכנה עליהן דווח."
 
 #: filtertransdialog.cpp:45 mmhomepage.cpp:653 model/Model_Billsdeposits.cpp:39
 #: model/Model_Checking.cpp:37
@@ -4512,7 +4512,7 @@ msgstr "צפיה באבחונים"
 
 #: mmframe.cpp:1640
 msgid "Help provide information to the developers"
-msgstr ""
+msgstr "סיוע בהעברת מידע למפתחים"
 
 #: mmframe.cpp:1644
 msgid "&Show App Start Dialog"
@@ -5351,7 +5351,7 @@ msgstr "שם משתמש ישמש גם ככותרת למסד הנתונים."
 
 #: optionsettingsgeneral.cpp:80
 msgid "Locale"
-msgstr ""
+msgstr "מיקום"
 
 #: optionsettingsgeneral.cpp:115
 msgid "Specify the date format for display"
@@ -5424,11 +5424,11 @@ msgstr "הגדרה באם להשתמש בצליל בעת קליטת תנועה"
 #: optionsettingsgeneral.cpp:280
 #, c-format
 msgid "Double value sample: %s"
-msgstr ""
+msgstr "דוגמת ערך כפול: %s"
 
 #: optionsettingsgeneral.cpp:286
 msgid "bad locale name"
-msgstr ""
+msgstr "שם מיקום לא תקין"
 
 #: optionsettingsmisc.cpp:56
 msgid "Stock Quote Web Page"
@@ -5464,11 +5464,11 @@ msgstr "בשימוש לאחרונה עבור מוטב"
 
 #: optionsettingsmisc.cpp:125
 msgid "Yes"
-msgstr ""
+msgstr "כן"
 
 #: optionsettingsmisc.cpp:126
 msgid "No"
-msgstr ""
+msgstr "לא"
 
 #: optionsettingsmisc.cpp:135
 msgid "Default Date:"
@@ -5488,7 +5488,7 @@ msgstr "מצב ברירת מחדל:"
 
 #: optionsettingsmisc.cpp:143
 msgid "Bulk Transactions:"
-msgstr ""
+msgstr "צובר תנועות:"
 
 #: optionsettingsmisc.cpp:154
 msgid "Database Backup"
@@ -6811,31 +6811,31 @@ msgstr "שבת"
 
 #: util.cpp:306
 msgid "Sun"
-msgstr ""
+msgstr "א׳"
 
 #: util.cpp:306
 msgid "Mon"
-msgstr ""
+msgstr "ב'"
 
 #: util.cpp:306
 msgid "Tue"
-msgstr ""
+msgstr "ג'"
 
 #: util.cpp:307
 msgid "Wed"
-msgstr ""
+msgstr "ד׳"
 
 #: util.cpp:307
 msgid "Thu"
-msgstr ""
+msgstr "ה'"
 
 #: util.cpp:307
 msgid "Fri"
-msgstr ""
+msgstr "ו'"
 
 #: util.cpp:308
 msgid "Sat"
-msgstr ""
+msgstr "ש'"
 
 #: util.cpp:584
 msgid "Currency rates have been updated"
