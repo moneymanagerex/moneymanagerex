@@ -1222,7 +1222,7 @@ void mmTransDialog::OnOk(wxCommandEvent& WXUNUSED(event))
     wxLogDebug("%s", trx.to_json());
 
     bool loop = Option::instance().get_bulk_transactions();
-    bool s = wxGetKeyState(WXK_SHIFT) || loop;
+    bool s = (wxGetKeyState(WXK_SHIFT) && !loop) || (!wxGetKeyState(WXK_SHIFT) && loop);
     if (m_new_trx && s)
         return EndModal(wxID_NEW);
 
