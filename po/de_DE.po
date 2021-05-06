@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-05-04 21:19+0300\n"
-"PO-Revision-Date: 2021-05-06 09:07\n"
+"PO-Revision-Date: 2021-05-06 09:23\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -380,7 +380,7 @@ msgstr "Datum"
 
 #: assetdialog.cpp:206
 msgid "Specify the date of purchase of asset"
-msgstr "Erwerb des Vermögens am"
+msgstr "Datum des Erwerb des Vermögens angeben"
 
 #: assetdialog.cpp:208
 msgid "Asset Type"
@@ -845,7 +845,7 @@ msgstr "Datum der Frage an den Benutzer dieser Buchung zurück oder vor verlegen
 
 #: billsdepositsdialog.cpp:433 billsdepositspanel.cpp:98
 msgid "Date Paid"
-msgstr "Bezahlt am"
+msgstr "Zahlungsdatum"
 
 #: billsdepositsdialog.cpp:437 billsdepositsdialog.cpp:1265
 msgid "Repeats"
@@ -1128,7 +1128,7 @@ msgstr "Kategorien"
 
 #: billsdepositsdialog.cpp:1467 transdialog.cpp:1327
 msgid "Clear color"
-msgstr "Farbe löschen"
+msgstr "Farbe entfernen"
 
 #: billsdepositsdialog.cpp:1472 transdialog.cpp:1332
 #, c-format
@@ -2010,7 +2010,7 @@ msgstr "Bildung"
 
 #: db/DB_Table_Category_V1.h:116
 msgid "Homeneeds"
-msgstr "Heim- Hausbedarf"
+msgstr "Heim- und Hausbedarf"
 
 #: db/DB_Table_Category_V1.h:117
 msgid "Healthcare"
@@ -2217,7 +2217,7 @@ msgstr "MMEX Datenbankfehler!"
 msgid "MMEX database version %i doesn't work with this MMEX version.\n"
 "Please upgrade MMEX to newer version."
 msgstr "Die MMEX-Datenbankversion %i funktioniert nicht mit dieser MMEX-Version.\n"
-"Bitte aktualisieren Sie MMEX auf neuere Version."
+"Bitte aktualisieren Sie MMEX auf eine neuere Version."
 
 #: dbupgrade.cpp:119
 #, c-format
@@ -2440,7 +2440,7 @@ msgstr "Leerer Wert"
 
 #: filtertransdialog.cpp:925
 msgid "Filtering Details: "
-msgstr "Filterung Details: "
+msgstr "Filterdetails: "
 
 #: filtertransdialog.cpp:951
 msgid "Label"
