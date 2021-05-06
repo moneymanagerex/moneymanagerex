@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-05-04 21:19+0300\n"
-"PO-Revision-Date: 2021-05-04 18:33\n"
+"PO-Revision-Date: 2021-05-06 08:58\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -2298,11 +2298,11 @@ msgstr "Datenbank öffnen - Fehler"
 
 #: diagnostics.cpp:50
 msgid "Diagnostics"
-msgstr ""
+msgstr "Diagnose"
 
 #: diagnostics.cpp:100
 msgid "Developers may ask you to provide information presented here in order to help diagnose issues you may report with the program."
-msgstr ""
+msgstr "Entwickler können Sie bitten die hier dargestellte Informationen zur Verfügung zu stellen, um bei der Diagnose von Problemen, die Sie mit dem Programm melden, zu helfen."
 
 #: filtertransdialog.cpp:45 mmhomepage.cpp:653 model/Model_Billsdeposits.cpp:39
 #: model/Model_Checking.cpp:37
@@ -2735,7 +2735,7 @@ msgstr "JSON-Export"
 
 #: import_export/qif_export.cpp:50
 msgid "CSV Export"
-msgstr ""
+msgstr "CSV-Export"
 
 #: import_export/qif_export.cpp:110
 msgid "Parameters"
@@ -2755,7 +2755,7 @@ msgstr "JSON"
 
 #: import_export/qif_export.cpp:129
 msgid "CSV"
-msgstr ""
+msgstr "CSV"
 
 #: import_export/qif_export.cpp:143 mmframe.cpp:3039 mmframe.cpp:3043
 #: mmframe.cpp:3062 mmframe.cpp:3066
@@ -3107,7 +3107,7 @@ msgstr "Vorschau"
 
 #: import_export/univcsvdialog.cpp:434
 msgid "Choose XML data file to Import"
-msgstr ""
+msgstr "XML-Datei zum Importieren auswählen"
 
 #: import_export/univcsvdialog.cpp:434
 msgid "Choose CSV data file to Import"
@@ -3115,7 +3115,7 @@ msgstr "CSV-Datei zum importieren auswählen"
 
 #: import_export/univcsvdialog.cpp:435
 msgid "Choose XML data file to Export"
-msgstr ""
+msgstr "XML-Datei zum Exportieren auswählen"
 
 #: import_export/univcsvdialog.cpp:435
 msgid "Choose CSV data file to Export"
