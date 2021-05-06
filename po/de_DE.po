@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-05-04 21:19+0300\n"
-"PO-Revision-Date: 2021-05-06 08:58\n"
+"PO-Revision-Date: 2021-05-06 09:07\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -195,7 +195,7 @@ msgstr "Zugangsdaten:"
 
 #: accountdialog.cpp:233
 msgid "Enter any login/access information for the financial institution. This is not secure as anyone with access to the mmb file can access it."
-msgstr "ACHTUNG! Diese Daten können von allen eingesehen werden, die Zugriff auf Ihre .mmb Datei haben!"
+msgstr "Geben Sie alle Login/Zugangsdaten für das Finanzinstitut ein. Dies ist nicht sicher, da jeder mit Zugriff auf die mmb-Datei darauf zugreifen kann."
 
 #: accountdialog.cpp:238
 msgid "Statement"
@@ -4489,11 +4489,11 @@ msgstr "Melde den Entwicklern einen Fehler in der Anwendung"
 
 #: mmframe.cpp:1639
 msgid "View Diagnostics"
-msgstr ""
+msgstr "Diagnosebericht anzeigen"
 
 #: mmframe.cpp:1640
 msgid "Help provide information to the developers"
-msgstr ""
+msgstr "Hilf und stelle den Entwicklern Informationen zur Verfügung"
 
 #: mmframe.cpp:1644
 msgid "&Show App Start Dialog"
@@ -4935,7 +4935,7 @@ msgstr "Top Auszahlungen: %s"
 
 #: mmhomepage.cpp:359
 msgid "Account / Payee"
-msgstr ""
+msgstr "Konto / Zahlungsempfänger"
 
 #: mmhomepage.cpp:437
 #, c-format
@@ -5330,7 +5330,7 @@ msgstr "Der Benutzername wird als Titel verwendet."
 
 #: optionsettingsgeneral.cpp:80
 msgid "Locale"
-msgstr ""
+msgstr "Gebietsschema"
 
 #: optionsettingsgeneral.cpp:115
 msgid "Specify the date format for display"
@@ -5407,7 +5407,7 @@ msgstr ""
 
 #: optionsettingsgeneral.cpp:286
 msgid "bad locale name"
-msgstr ""
+msgstr "falscher Gebietsschema"
 
 #: optionsettingsmisc.cpp:56
 msgid "Stock Quote Web Page"
@@ -5443,11 +5443,11 @@ msgstr "zuletzt als Zahlungsempfänger eingesetzt"
 
 #: optionsettingsmisc.cpp:125
 msgid "Yes"
-msgstr ""
+msgstr "Ja"
 
 #: optionsettingsmisc.cpp:126
 msgid "No"
-msgstr ""
+msgstr "Nein"
 
 #: optionsettingsmisc.cpp:135
 msgid "Default Date:"
@@ -5467,7 +5467,7 @@ msgstr "Standard Status:"
 
 #: optionsettingsmisc.cpp:143
 msgid "Bulk Transactions:"
-msgstr ""
+msgstr "Massen-Transaktionen:"
 
 #: optionsettingsmisc.cpp:154
 msgid "Database Backup"
@@ -6788,31 +6788,31 @@ msgstr "Samstag"
 
 #: util.cpp:306
 msgid "Sun"
-msgstr ""
+msgstr "So"
 
 #: util.cpp:306
 msgid "Mon"
-msgstr ""
+msgstr "Mo"
 
 #: util.cpp:306
 msgid "Tue"
-msgstr ""
+msgstr "Di"
 
 #: util.cpp:307
 msgid "Wed"
-msgstr ""
+msgstr "Mi"
 
 #: util.cpp:307
 msgid "Thu"
-msgstr ""
+msgstr "Do"
 
 #: util.cpp:307
 msgid "Fri"
-msgstr ""
+msgstr "Fr"
 
 #: util.cpp:308
 msgid "Sat"
-msgstr ""
+msgstr "Sa"
 
 #: util.cpp:584
 msgid "Currency rates have been updated"
