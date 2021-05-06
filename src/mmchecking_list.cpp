@@ -365,8 +365,8 @@ void TransactionListCtrl::OnMouseRightClick(wxMouseEvent& event)
     menu.Append(MENU_ON_DUPLICATE_TRANSACTION, _("D&uplicate Transaction"));
     if (is_nothing_selected || multiselect) menu.Enable(MENU_ON_DUPLICATE_TRANSACTION, false);
 
-    menu.Append(MENU_TREEPOPUP_MOVE2, _("&Move Transaction"));
-    if (is_nothing_selected || multiselect || type_transfer || (Model_Account::money_accounts_num() < 2) || is_foreign)
+    menu.Append(MENU_TREEPOPUP_MOVE2, wxPLURAL("&Move Transaction", "&Move Transactions", selected));
+    if (is_nothing_selected || type_transfer || (Model_Account::money_accounts_num() < 2) || is_foreign)
         menu.Enable(MENU_TREEPOPUP_MOVE2, false);
 
     menu.AppendSeparator();
@@ -1049,38 +1049,52 @@ void TransactionListCtrl::refreshVisualList(bool filter)
 
 void TransactionListCtrl::OnMoveTransaction(wxCommandEvent& /*event*/)
 {
-    // we can only move a single transaction
-    if (GetSelectedItemCount() != 1) return;
-
     FindSelectedTransactions();
+    int sel = GetSelectedItemCount();
 
-    Model_Checking::Data* trx = Model_Checking::instance().get(m_selected_id[0]);
-    if (TransactionLocked(trx->ACCOUNTID, trx->TRANSDATE)) {
-        return;
-    }
+    //ask if they really want to move
+    const wxString text = wxString::Format(
+        wxPLURAL("Do you really want to move the selected transaction?"
+            , "Do you really want to move %i selected transactions?", sel)
+        , sel);
+    wxMessageDialog msgDlg(this
+        , text
+        , _("Confirm Transaction Move")
+        , wxYES_NO | wxYES_DEFAULT | wxICON_ERROR);
 
-    const Model_Account::Data* source_account = Model_Account::instance().get(trx->ACCOUNTID);
-    wxString source_name = source_account->ACCOUNTNAME;
-    wxString headerMsg = wxString::Format(_("Moving Transaction from %s to..."), source_name);
-
-    mmSingleChoiceDialog scd(this
-        , _("Select the destination Account ")
-        , headerMsg
-        , Model_Account::instance().all_checking_account_names());
-
-    if (scd.ShowModal() == wxID_OK)
+    if (msgDlg.ShowModal() == wxID_YES)
     {
-        int dest_account_id = -1;
-        wxString dest_account_name = scd.GetStringSelection();
-        Model_Account::Data* dest_account = Model_Account::instance().get(dest_account_name);
-        if (dest_account)
-            dest_account_id = dest_account->ACCOUNTID;
-        else
-            return;
-
-        trx->ACCOUNTID = dest_account_id;
-        Model_Checking::instance().save(trx);
-        refreshVisualList();
+        const wxString headerMsg = wxString::Format(
+                wxPLURAL("Moving transaction to..."
+                , "Moving %i transactions to...", sel)
+                , sel);
+        mmSingleChoiceDialog scd(this
+            , _("Select the destination Account ")
+            , headerMsg
+            , Model_Account::instance().all_checking_account_names());
+        if (scd.ShowModal() == wxID_OK)
+        {
+            int dest_account_id = -1;
+            wxString dest_account_name = scd.GetStringSelection();
+            Model_Account::Data* dest_account = Model_Account::instance().get(dest_account_name);
+            if (dest_account)
+                dest_account_id = dest_account->ACCOUNTID;
+            else
+                return;
+            Model_Checking::instance().Savepoint();
+            for (const auto& i : m_selected_id)
+            {
+                Model_Checking::Data* trx = Model_Checking::instance().get(i);
+                if (TransactionLocked(trx->ACCOUNTID, trx->TRANSDATE)
+                        || Model_Checking::foreignTransaction(*trx)
+                        || Model_Checking::type(trx->TRANSCODE) == Model_Checking::TRANSFER)
+                    continue;
+                trx->ACCOUNTID = dest_account_id;
+                Model_Checking::instance().save(trx);
+            }
+            Model_Checking::instance().ReleaseSavepoint();
+            refreshVisualList();
+        }
     }
 }
 
