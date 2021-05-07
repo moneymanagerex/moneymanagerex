@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-05-07 15:49+0300\n"
-"PO-Revision-Date: 2021-05-07 13:00\n"
+"PO-Revision-Date: 2021-05-07 13:27\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -3710,7 +3710,7 @@ msgstr "Dupliquer l'opération"
 #: mmchecking_list.cpp:368
 msgid "&Move Transaction"
 msgid_plural "&Move Transactions"
-msgstr[0] ""
+msgstr[0] "&Déplacer la transaction"
 msgstr[1] ""
 
 #: mmchecking_list.cpp:374
@@ -3807,11 +3807,11 @@ msgstr "Vérification du compte fermé"
 msgid "Do you really want to move the selected transaction?"
 msgid_plural "Do you really want to move %i selected transactions?"
 msgstr[0] ""
-msgstr[1] ""
+msgstr[1] "Voulez-vous vraiment déplacer les %i transactions sélectionnées ?"
 
 #: mmchecking_list.cpp:1062
 msgid "Confirm Transaction Move"
-msgstr ""
+msgstr "Confirmer le déplacement des transaction"
 
 #: mmchecking_list.cpp:1068
 #, c-format
