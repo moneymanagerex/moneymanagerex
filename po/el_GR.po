@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-05-07 15:49+0300\n"
-"PO-Revision-Date: 2021-05-07 13:01\n"
+"PO-Revision-Date: 2021-05-07 15:46\n"
 "Last-Translator: \n"
 "Language-Team: Greek\n"
 "MIME-Version: 1.0\n"
@@ -3708,8 +3708,8 @@ msgstr "Διπλότυπη συναλλαγή"
 #: mmchecking_list.cpp:368
 msgid "&Move Transaction"
 msgid_plural "&Move Transactions"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "&Μετακίνηση συναλλαγής"
+msgstr[1] "&Μετακίνηση Συναλλαγών"
 
 #: mmchecking_list.cpp:374
 msgid "&View Split Categories"
@@ -3804,19 +3804,19 @@ msgstr "Έλεγχος Κλειστού Λογαριασμού"
 #, c-format
 msgid "Do you really want to move the selected transaction?"
 msgid_plural "Do you really want to move %i selected transactions?"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Θέλετε πραγματικά να μετακινήσετε την επιλεγμένη συναλλαγή;"
+msgstr[1] "Θέλετε πραγματικά να μετακινήσετε %i επιλεγμένες συναλλαγές;"
 
 #: mmchecking_list.cpp:1062
 msgid "Confirm Transaction Move"
-msgstr ""
+msgstr "Επιβεβαίωση Μετακίνησης Συναλλαγής"
 
 #: mmchecking_list.cpp:1068
 #, c-format
 msgid "Moving transaction to..."
 msgid_plural "Moving %i transactions to..."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Μετακίνηση συναλλαγής σε..."
+msgstr[1] "Μετακίνηση %i συναλλαγών σε..."
 
 #: mmchecking_list.cpp:1072 stocks_list.cpp:292
 msgid "Select the destination Account "
