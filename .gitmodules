@@ -28,3 +28,6 @@
 [submodule "themes"]
 	path = themes
 	url = https://github.com/moneymanagerex/themes.git
+[submodule "3rd/fmt"]
+	path = 3rd/fmt
+	url = https://github.com/fmtlib/fmt
