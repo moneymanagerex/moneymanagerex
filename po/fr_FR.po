@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-05-07 15:49+0300\n"
-"PO-Revision-Date: 2021-05-07 13:27\n"
+"PO-Revision-Date: 2021-05-07 14:59\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -1826,7 +1826,7 @@ msgstr "%.2f affiché comme : %s"
 
 #: currencydialog.cpp:305
 msgid "(Using Locale)"
-msgstr ""
+msgstr "(Utilisation de la devise locale)"
 
 #: customfieldeditdialog.cpp:119
 msgid "Custom Field Details"
@@ -3710,8 +3710,8 @@ msgstr "Dupliquer l'opération"
 #: mmchecking_list.cpp:368
 msgid "&Move Transaction"
 msgid_plural "&Move Transactions"
-msgstr[0] "&Déplacer la transaction"
-msgstr[1] ""
+msgstr[0] "&Déplacer l'opération"
+msgstr[1] "&Move: Déplacer les opérations"
 
 #: mmchecking_list.cpp:374
 msgid "&View Split Categories"
@@ -3806,8 +3806,8 @@ msgstr "Vérification du compte fermé"
 #, c-format
 msgid "Do you really want to move the selected transaction?"
 msgid_plural "Do you really want to move %i selected transactions?"
-msgstr[0] ""
-msgstr[1] "Voulez-vous vraiment déplacer les %i transactions sélectionnées ?"
+msgstr[0] "Voulez-vous vraiment déplacer l'opération sélectionnée ?"
+msgstr[1] "Voulez-vous vraiment déplacer les %i opérations sélectionnées ?"
 
 #: mmchecking_list.cpp:1062
 msgid "Confirm Transaction Move"
@@ -3817,8 +3817,8 @@ msgstr "Confirmer le déplacement des transaction"
 #, c-format
 msgid "Moving transaction to..."
 msgid_plural "Moving %i transactions to..."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Move: Déplacer l'opération vers..."
+msgstr[1] "Déplacement de %i transactions vers..."
 
 #: mmchecking_list.cpp:1072 stocks_list.cpp:292
 msgid "Select the destination Account "
