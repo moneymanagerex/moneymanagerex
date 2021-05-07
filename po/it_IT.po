@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-05-04 21:19+0300\n"
-"PO-Revision-Date: 2021-05-04 18:33\n"
+"PO-Revision-Date: 2021-05-07 07:24\n"
 "Last-Translator: \n"
 "Language-Team: Italian\n"
 "MIME-Version: 1.0\n"
@@ -2298,11 +2298,11 @@ msgstr "Apertura del Database MMEX - Errore"
 
 #: diagnostics.cpp:50
 msgid "Diagnostics"
-msgstr ""
+msgstr "Diagnostica"
 
 #: diagnostics.cpp:100
 msgid "Developers may ask you to provide information presented here in order to help diagnose issues you may report with the program."
-msgstr ""
+msgstr "Gli sviluppatori possono chiederti di fornire le informazioni qui presentate per aiutare a diagnosticare i problemi che si possono segnalare con il programma."
 
 #: filtertransdialog.cpp:45 mmhomepage.cpp:653 model/Model_Billsdeposits.cpp:39
 #: model/Model_Checking.cpp:37
@@ -2735,7 +2735,7 @@ msgstr "Esportazione JSON"
 
 #: import_export/qif_export.cpp:50
 msgid "CSV Export"
-msgstr ""
+msgstr "Esporta CSV"
 
 #: import_export/qif_export.cpp:110
 msgid "Parameters"
@@ -2755,7 +2755,7 @@ msgstr "JSON"
 
 #: import_export/qif_export.cpp:129
 msgid "CSV"
-msgstr ""
+msgstr "CSV"
 
 #: import_export/qif_export.cpp:143 mmframe.cpp:3039 mmframe.cpp:3043
 #: mmframe.cpp:3062 mmframe.cpp:3066
@@ -3107,7 +3107,7 @@ msgstr "Anteprima"
 
 #: import_export/univcsvdialog.cpp:434
 msgid "Choose XML data file to Import"
-msgstr ""
+msgstr "Selezionare il file XML da importare"
 
 #: import_export/univcsvdialog.cpp:434
 msgid "Choose CSV data file to Import"
@@ -3115,7 +3115,7 @@ msgstr "Selezionare file CSV da importare"
 
 #: import_export/univcsvdialog.cpp:435
 msgid "Choose XML data file to Export"
-msgstr ""
+msgstr "Selezionare il file XML da esportare"
 
 #: import_export/univcsvdialog.cpp:435
 msgid "Choose CSV data file to Export"
@@ -4489,11 +4489,11 @@ msgstr "Riporta agli sviluppatori un errore nell'applicazione"
 
 #: mmframe.cpp:1639
 msgid "View Diagnostics"
-msgstr ""
+msgstr "Visualizza Diagnostica"
 
 #: mmframe.cpp:1640
 msgid "Help provide information to the developers"
-msgstr ""
+msgstr "Aiuta a fornire informazioni agli sviluppatori"
 
 #: mmframe.cpp:1644
 msgid "&Show App Start Dialog"
@@ -4938,7 +4938,7 @@ msgstr "Principali uscite: %s"
 
 #: mmhomepage.cpp:359
 msgid "Account / Payee"
-msgstr ""
+msgstr "Conto / Beneficiario"
 
 #: mmhomepage.cpp:437
 #, c-format
@@ -5406,7 +5406,7 @@ msgstr "Selezionare per associare un suono all'inserimento di un'operazione"
 #: optionsettingsgeneral.cpp:280
 #, c-format
 msgid "Double value sample: %s"
-msgstr ""
+msgstr "Esempio di valore doppio: %s"
 
 #: optionsettingsgeneral.cpp:286
 msgid "bad locale name"
@@ -5446,11 +5446,11 @@ msgstr "Ultima usata x beneficiario"
 
 #: optionsettingsmisc.cpp:125
 msgid "Yes"
-msgstr ""
+msgstr "Sì"
 
 #: optionsettingsmisc.cpp:126
 msgid "No"
-msgstr ""
+msgstr "No"
 
 #: optionsettingsmisc.cpp:135
 msgid "Default Date:"
@@ -5470,7 +5470,7 @@ msgstr "Stato predefinito:"
 
 #: optionsettingsmisc.cpp:143
 msgid "Bulk Transactions:"
-msgstr ""
+msgstr "Transazioni in blocco:"
 
 #: optionsettingsmisc.cpp:154
 msgid "Database Backup"
@@ -6790,31 +6790,31 @@ msgstr "Sabato"
 
 #: util.cpp:306
 msgid "Sun"
-msgstr ""
+msgstr "Dom"
 
 #: util.cpp:306
 msgid "Mon"
-msgstr ""
+msgstr "Lun"
 
 #: util.cpp:306
 msgid "Tue"
-msgstr ""
+msgstr "Mar"
 
 #: util.cpp:307
 msgid "Wed"
-msgstr ""
+msgstr "Mer"
 
 #: util.cpp:307
 msgid "Thu"
-msgstr ""
+msgstr "Gio"
 
 #: util.cpp:307
 msgid "Fri"
-msgstr ""
+msgstr "Ven"
 
 #: util.cpp:308
 msgid "Sat"
-msgstr ""
+msgstr "Sab"
 
 #: util.cpp:584
 msgid "Currency rates have been updated"
