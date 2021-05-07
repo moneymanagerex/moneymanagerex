@@ -154,7 +154,7 @@ EVT_TREE_ITEM_MENU(wxID_ANY, mmGUIFrame::OnItemMenu)
 EVT_TREE_ITEM_ACTIVATED(ID_NAVTREECTRL, mmGUIFrame::OnItemRightClick)
 EVT_TREE_ITEM_EXPANDED(ID_NAVTREECTRL, mmGUIFrame::OnTreeItemExpanded)
 EVT_TREE_ITEM_COLLAPSED(ID_NAVTREECTRL, mmGUIFrame::OnTreeItemCollapsed)
-EVT_TREE_KEY_DOWN(wxID_ANY, mmGUIFrame::OnKeyPressed)
+EVT_TREE_KEY_DOWN(wxID_ANY, mmGUIFrame::OnKeyDown)
 
 EVT_MENU(MENU_GOTOACCOUNT, mmGUIFrame::OnGotoAccount)
 EVT_MENU(MENU_STOCKS, mmGUIFrame::OnGotoStocksAccount)
@@ -3299,7 +3299,7 @@ void mmGUIFrame::OnChangeGUILanguage(wxCommandEvent& event)
             , _("Language change"));
 }
 
-void mmGUIFrame::OnKeyPressed(wxTreeEvent& event)
+void mmGUIFrame::OnKeyDown(wxTreeEvent& event)
 {
     if (selectedItemData_)
     {

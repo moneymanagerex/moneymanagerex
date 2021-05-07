@@ -182,7 +182,7 @@ private:
     bool m_hide_share_accounts;
     void OnHideShareAccounts(wxCommandEvent &event);
     void OnChangeGUILanguage(wxCommandEvent &event);
-    void OnKeyPressed(wxTreeEvent& event);
+    void OnKeyDown(wxTreeEvent& event);
 
     void OnViewToolbar(wxCommandEvent &event);
     void OnViewLinks(wxCommandEvent &event);
