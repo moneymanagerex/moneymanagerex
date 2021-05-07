@@ -65,6 +65,8 @@ private:
     void insertDataIntoTemplate();
     void fillData();
     const wxString getToggles();
+    void OnLinkClicked(wxWebViewEvent& event);
+
 };
 
 #endif
