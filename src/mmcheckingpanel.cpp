@@ -304,7 +304,6 @@ void mmCheckingPanel::CreateControls()
     m_listCtrlAccount->SetImageList(m_imageList.get(), wxIMAGE_LIST_SMALL);
     m_listCtrlAccount->setSortOrder(m_listCtrlAccount->g_asc);
     m_listCtrlAccount->setSortColumn(m_listCtrlAccount->g_sortcol);
-    m_listCtrlAccount->SetFocus();
 
     m_listCtrlAccount->createColumns(*m_listCtrlAccount);
 

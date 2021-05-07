@@ -154,6 +154,7 @@ EVT_TREE_ITEM_MENU(wxID_ANY, mmGUIFrame::OnItemMenu)
 EVT_TREE_ITEM_ACTIVATED(ID_NAVTREECTRL, mmGUIFrame::OnItemRightClick)
 EVT_TREE_ITEM_EXPANDED(ID_NAVTREECTRL, mmGUIFrame::OnTreeItemExpanded)
 EVT_TREE_ITEM_COLLAPSED(ID_NAVTREECTRL, mmGUIFrame::OnTreeItemCollapsed)
+EVT_TREE_KEY_DOWN(wxID_ANY, mmGUIFrame::OnKeyPressed)
 
 EVT_MENU(MENU_GOTOACCOUNT, mmGUIFrame::OnGotoAccount)
 EVT_MENU(MENU_STOCKS, mmGUIFrame::OnGotoStocksAccount)
@@ -2431,8 +2432,6 @@ void mmGUIFrame::OnTransactionReport(wxCommandEvent& /*event*/)
         mmReportTransactions* rs = new mmReportTransactions(dlg->getAccountID(), dlg);
         createReportsPage(rs, true);
     }
-    setNavTreeSection(_("Reports"));
-
     m_nav_tree_ctrl->Refresh();
 }
 
@@ -2824,6 +2823,7 @@ void mmGUIFrame::createAllTransactionsPage()
 
     menuPrintingEnable(true);
     m_nav_tree_ctrl->SetEvtHandlerEnabled(true);
+    m_nav_tree_ctrl->SetFocus();
 }
 
 void mmGUIFrame::createCheckingAccountPage(int accountID)
@@ -2866,6 +2866,7 @@ void mmGUIFrame::createCheckingAccountPage(int accountID)
         gotoTransID_ = -1;
     }
     m_nav_tree_ctrl->SetEvtHandlerEnabled(true);
+    m_nav_tree_ctrl->SetFocus();
 }
 
 void mmGUIFrame::createStocksAccountPage(int accountID)
@@ -3296,4 +3297,22 @@ void mmGUIFrame::OnChangeGUILanguage(wxCommandEvent& event)
             , _("The language for this application has been changed. "
                 "The change will take effect the next time the application is started.")
             , _("Language change"));
+}
+
+void mmGUIFrame::OnKeyPressed(wxTreeEvent& event)
+{
+    if (selectedItemData_)
+    {
+        auto data = selectedItemData_->getString();
+
+        int key_code = event.GetKeyCode();
+
+        if (key_code == WXK_RETURN || key_code == WXK_NUMPAD_ENTER)
+        {
+            if (data == "item@Transaction Report")
+            {
+                OnTransactionReport(event);
+            }
+        }
+    }
 }
