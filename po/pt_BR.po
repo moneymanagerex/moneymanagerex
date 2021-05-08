@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-05-07 15:49+0300\n"
-"PO-Revision-Date: 2021-05-08 13:16\n"
+"PO-Revision-Date: 2021-05-08 13:31\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "MIME-Version: 1.0\n"
@@ -3817,7 +3817,7 @@ msgstr ""
 #, c-format
 msgid "Moving transaction to..."
 msgid_plural "Moving %i transactions to..."
-msgstr[0] ""
+msgstr[0] "Movendo a transação para..."
 msgstr[1] ""
 
 #: mmchecking_list.cpp:1072 stocks_list.cpp:292
