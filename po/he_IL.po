@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-05-07 15:49+0300\n"
-"PO-Revision-Date: 2021-05-07 13:01\n"
+"PO-Revision-Date: 2021-05-08 10:48\n"
 "Last-Translator: \n"
 "Language-Team: Hebrew\n"
 "MIME-Version: 1.0\n"
@@ -1831,7 +1831,7 @@ msgstr "%.2f מוצג כ: %s"
 
 #: currencydialog.cpp:305
 msgid "(Using Locale)"
-msgstr ""
+msgstr "(שימוש במיקום)"
 
 #: customfieldeditdialog.cpp:119
 msgid "Custom Field Details"
@@ -3723,10 +3723,10 @@ msgstr "שכ&פול תנועה"
 #: mmchecking_list.cpp:368
 msgid "&Move Transaction"
 msgid_plural "&Move Transactions"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "ה&עברת תנועה"
+msgstr[1] "ה&עברת תנועות"
+msgstr[2] "ה&עברת תנועות"
+msgstr[3] "ה&עברת תנועות"
 
 #: mmchecking_list.cpp:374
 msgid "&View Split Categories"
@@ -3827,23 +3827,23 @@ msgstr "סימון חשבון סגור"
 #, c-format
 msgid "Do you really want to move the selected transaction?"
 msgid_plural "Do you really want to move %i selected transactions?"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "האם להעביר את התנועה שנבחרה?"
+msgstr[1] "האם להעביר את %i התנועות שנבחרו?"
+msgstr[2] "האם להעביר את %i התנועות שנבחרו?"
+msgstr[3] "האם להעביר את %i התנועות שנבחרו?"
 
 #: mmchecking_list.cpp:1062
 msgid "Confirm Transaction Move"
-msgstr ""
+msgstr "אישור העברת תנועה"
 
 #: mmchecking_list.cpp:1068
 #, c-format
 msgid "Moving transaction to..."
 msgid_plural "Moving %i transactions to..."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "העברת תנועה ל-..."
+msgstr[1] "העברת תנועות ל-..."
+msgstr[2] "העברת תנועות ל-..."
+msgstr[3] "העברת תנועות ל-..."
 
 #: mmchecking_list.cpp:1072 stocks_list.cpp:292
 msgid "Select the destination Account "
