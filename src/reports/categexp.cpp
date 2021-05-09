@@ -1,6 +1,7 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
  Copyright (C) 2017 James Higley
+ Copyright (C) 2021 Mark Whalley
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -336,7 +337,7 @@ wxString mmReportCategoryOverTimePerformance::getHTMLText()
     mmHTMLBuilder hb;
     hb.init();
     hb.addReportHeader(getReportTitle());
-    hb.DisplayDateHeading(m_date_range->start_date(), m_date_range->end_date(), m_date_range->is_with_date());
+    hb.DisplayDateHeading(sd, ed, true);
     hb.DisplayFooter(getAccountNames());
 
     const wxDateTime start_date = date_range->start_date();
