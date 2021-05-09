@@ -277,7 +277,7 @@ bool OptionSettingsGeneral::doFormatDoubleValue(const wxString& locale, wxString
     }
 
     try {
-        s = _("Double value sample: %s");
+        s = _("Currency value sample: %s");
         const wxString sample = fmt::format(std::locale(locale.c_str()), "{:L}", static_cast<int>(value))
             + wxString(fmt::format("{:.{}f}", fabs(value - static_cast<int>(value)), precision)).Mid(1);
         result = wxString::Format(s, sample);

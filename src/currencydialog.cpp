@@ -215,13 +215,13 @@ void mmCurrencyDialog::CreateControls()
     itemFlexGridSizer3->Add(baseConvRate_, g_flagsExpand);
 
     //--------------------------
-    wxStaticBox* itemStaticBox_01 = new wxStaticBox(this, wxID_STATIC, _("Value Display Sample:"));
+    wxStaticBox* itemStaticBox_01 = new wxStaticBox(this, wxID_STATIC, _("Currency Format Sample:"));
     wxStaticBoxSizer* itemStaticBoxSizer_01 = new wxStaticBoxSizer(itemStaticBox_01, wxHORIZONTAL);
     itemBoxSizer2->Add(itemStaticBoxSizer_01, wxSizerFlags(g_flagsExpand).Proportion(0));
 
     sampleText_ = new wxStaticText(this, wxID_STATIC, "");
     itemStaticBoxSizer_01->Add(sampleText_, g_flagsH);
-    sampleText_->SetMinSize(wxSize(220, -1));
+    sampleText_->SetMinSize(wxSize(400, -1));
 
     //--------------------------
     wxBoxSizer* itemBoxSizer22 = new wxBoxSizer(wxHORIZONTAL);
