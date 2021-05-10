@@ -47,8 +47,8 @@ public:
     static Model_Currency& instance();
 
 public:
-    wxArrayString all_currency_names();
-    wxArrayString all_currency_symbols();
+    const wxArrayString all_currency_names();
+    const wxArrayString all_currency_symbols();
 
     /** Return the Data record of the base currency.*/
     static Data* GetBaseCurrency();
