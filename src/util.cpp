@@ -642,6 +642,7 @@ bool get_yahoo_prices(std::map<wxString, double>& symbols
     , int type)
 {
     wxString buffer;
+
     for (const auto& entry : symbols)
     {
         wxRegEx pattern(R"(^([-a-zA-Z0-9_@\.]+)$)");
@@ -649,7 +650,11 @@ bool get_yahoo_prices(std::map<wxString, double>& symbols
             continue;
 
         if (type == yahoo_price_type::FIAT) {
-            buffer += wxString::Format("%s%s=X,", entry.first, base_currency_symbol);
+            auto curr = Model_Currency::instance().all_currency_symbols();
+            if (g_fiat_curr().Index(entry.first) != wxNOT_FOUND)
+                buffer += wxString::Format("%s%s=X,", entry.first, base_currency_symbol);
+            else
+                buffer += wxString::Format("%s-%s,", entry.first, base_currency_symbol);
         }
         else {
             buffer += entry.first + ",";
@@ -702,7 +707,6 @@ bool get_yahoo_prices(std::map<wxString, double>& symbols
 
     if (type == yahoo_price_type::FIAT)
     {
-        wxRegEx pattern("^(...)...=X$");
         for (rapidjson::SizeType i = 0; i < e.Size(); i++)
         {
             if (!e[i].IsObject()) continue;
@@ -711,14 +715,23 @@ bool get_yahoo_prices(std::map<wxString, double>& symbols
             if (!v.HasMember("symbol") || !v["symbol"].IsString())
                 continue;
             auto currency_symbol = wxString::FromUTF8(v["symbol"].GetString());
+
+            wxRegEx pattern("^([A-Z]{3})[A-Z]{3}=X$");
             if (pattern.Matches(currency_symbol))
             {
                 if (!v.HasMember("regularMarketPrice") || !v["regularMarketPrice"].IsFloat())
                     continue;
                 const auto price = v["regularMarketPrice"].GetFloat();
                 currency_symbol = pattern.GetMatch(currency_symbol, 1);
-
-                wxLogDebug("item: %u %s %f", i, currency_symbol, price);
+                out[currency_symbol] = (price <= 0 ? 0 : price);
+            }
+            wxRegEx crypto_pattern("^([A-Z]{3,})-[A-Z]{3}$");
+            if (crypto_pattern.Matches(currency_symbol))
+            {
+                if (!v.HasMember("regularMarketPrice") || !v["regularMarketPrice"].IsFloat())
+                    continue;
+                const auto price = v["regularMarketPrice"].GetFloat();
+                currency_symbol = crypto_pattern.GetMatch(currency_symbol, 1);
                 out[currency_symbol] = (price <= 0 ? 0 : price);
             }
         }

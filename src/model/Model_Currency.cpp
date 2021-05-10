@@ -57,7 +57,7 @@ Model_Currency& Model_Currency::instance()
     return Singleton<Model_Currency>::instance();
 }
 
-wxArrayString Model_Currency::all_currency_names()
+const wxArrayString Model_Currency::all_currency_names()
 {
     wxArrayString c;
     for (const auto&i : all(COL_CURRENCYNAME))
@@ -65,7 +65,7 @@ wxArrayString Model_Currency::all_currency_names()
     return c;
 }
 
-wxArrayString Model_Currency::all_currency_symbols()
+const wxArrayString Model_Currency::all_currency_symbols()
 {
     wxArrayString c;
     for (const auto&i : all(COL_CURRENCY_SYMBOL))

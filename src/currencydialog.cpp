@@ -76,6 +76,8 @@ mmCurrencyDialog::mmCurrencyDialog(wxWindow* parent, const Model_Currency::Data 
         m_currency = Model_Currency::instance().create();
         m_currency->BASECONVRATE = 1;
         m_currency->SCALE = 100;
+        m_currency->DECIMAL_POINT = ".";
+        m_currency->GROUP_SEPARATOR = ",";
     }
 
     Create(parent);
@@ -90,6 +92,8 @@ bool mmCurrencyDialog::Create(wxWindow* parent, wxWindowID id
     SetExtraStyle(GetExtraStyle() | wxWS_EX_BLOCK_EVENTS);
     wxDialog::Create(parent, id, caption, pos, size, style);
 
+    SetEvtHandlerEnabled(false);
+
     CreateControls();
 
     if (!m_currency)
@@ -103,7 +107,6 @@ bool mmCurrencyDialog::Create(wxWindow* parent, wxWindowID id
         }
     }
 
-    SetEvtHandlerEnabled(false);
     fillControls();
     SetEvtHandlerEnabled(true);
 
@@ -135,7 +138,6 @@ void mmCurrencyDialog::fillControls()
         {
             decTx_->Disable();
             grpTx_->Disable();
-            scaleTx_->Disable();
         }
         m_currencySymbol->ChangeValue(m_currency->CURRENCY_SYMBOL);
 
@@ -280,12 +282,15 @@ void mmCurrencyDialog::OnTextChanged(wxCommandEvent& WXUNUSED(event))
 {
     if (m_currency->SCALE > 1)
     {
-        if (decTx_->GetValue().empty()) {
-            return mmErrorDialogs::ToolTip4Object(decTx_, _("Invalid Entry"), _("Decimal Char"));
-        }
+        if (!Model_Infotable::instance().GetStringInfo("LOCALE", "").empty())
+        {
+            if (decTx_->GetValue().empty()) {
+                return mmErrorDialogs::ToolTip4Object(decTx_, _("Invalid Entry"), _("Decimal Char"));
+            }
 
-        if (grpTx_->GetValue() == m_currency->DECIMAL_POINT) {
-            return mmErrorDialogs::ToolTip4Object(grpTx_, _("Invalid Entry"), _("Grouping Char"));
+            if (grpTx_->GetValue() == m_currency->DECIMAL_POINT) {
+                return mmErrorDialogs::ToolTip4Object(grpTx_, _("Invalid Entry"), _("Grouping Char"));
+            }
         }
     }
 
@@ -301,7 +306,7 @@ void mmCurrencyDialog::OnTextChanged(wxCommandEvent& WXUNUSED(event))
     wxString dispAmount = "";
     double base_amount = 1234567.89;
 
-    dispAmount = wxString::Format(_("%.2f Shown As: %s"), base_amount, Model_Currency::toCurrency(base_amount, m_currency));
+    dispAmount = wxString::Format(_("%.2f Shown As: %s"), base_amount, Model_Currency::toCurrency(base_amount, m_currency, scale));
     if (!Model_Infotable::instance().GetStringInfo("LOCALE","").empty())
         dispAmount = dispAmount + "  " + _("(Using Locale)");
     sampleText_->SetLabelText(dispAmount);
