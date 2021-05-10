@@ -113,6 +113,7 @@ bool mmCurrencyDialog::Create(wxWindow* parent, wxWindowID id
     SetIcon(mmex::getProgramIcon());
 
     Centre();
+    Fit();
     return TRUE;
 }
 
@@ -220,7 +221,7 @@ void mmCurrencyDialog::CreateControls()
     itemBoxSizer2->Add(itemStaticBoxSizer_01, wxSizerFlags(g_flagsExpand).Proportion(0));
 
     sampleText_ = new wxStaticText(this, wxID_STATIC, "");
-    itemStaticBoxSizer_01->Add(sampleText_, g_flagsH);
+    itemStaticBoxSizer_01->Add(sampleText_, g_flagsExpand);
     sampleText_->SetMinSize(wxSize(220, -1));
 
     //--------------------------
@@ -298,7 +299,7 @@ void mmCurrencyDialog::OnTextChanged(wxCommandEvent& WXUNUSED(event))
     m_currency->CURRENCYNAME = m_currencyName->GetValue();
 
     wxString dispAmount = "";
-    double base_amount = 123456.78;
+    double base_amount = 1234567.89;
 
     dispAmount = wxString::Format(_("%.2f Shown As: %s"), base_amount, Model_Currency::toCurrency(base_amount, m_currency));
     if (!Model_Infotable::instance().GetStringInfo("LOCALE","").empty())
