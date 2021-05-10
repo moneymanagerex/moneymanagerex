@@ -592,11 +592,15 @@ bool getOnlineCurrencyRates(wxString& msg, int curr_id, bool used_only)
             if (currency_data.find(item.first) != currency_data.end())
             {
                 auto value1 = currency_data[item.first];
-                msg << wxString::Format("%s %f -> %f\n", item.first, value0, value1);
+                msg << wxString::Format("%s %s -> %s\n", item.first
+                    , Model_Currency::toCurrency(value0, Model_Currency::GetBaseCurrency(), 4)
+                    , Model_Currency::toCurrency(value1, Model_Currency::GetBaseCurrency(), 4));
             }
             else
             {
-                msg << wxString::Format("%s %f -> %s\n", item.first, value0, _("Invalid value"));
+                msg << wxString::Format("%s %s -> %s\n", item.first
+                    , Model_Currency::toCurrency(value0, Model_Currency::GetBaseCurrency(), 4)
+                    , _("Invalid value"));
             }
         }
     }
