@@ -118,19 +118,34 @@ Spanish
 ### 2021
 Renato
 Dimitrios Valsamis
+James Rogers
+Jesse Gac
 Michael Ellis
 Wiesław Stawiszyński
 Jean-Francois Zahnen
 Michel SERIN
+Roger Chandler
+David Coons
+Jose Manuel Marrero León
+Lucas Lopez Azcona
 Thierry PAPINOT
 Jiří Vyskočil
 Roger Spindler
+Edgar Lloren
 Jean-michel LOUISET
+Tim Carden
+Antonio Adam
+Gerald Mead
 Hermann Fessler
-Luisa Guglielmetti
+Israel Corbo
+Roger Gimbrere
 Brian Crow
+Glenn Fowler
+Luisa Guglielmetti
+Rafael Moreira
 Francisco Fos Ros
 Ian Rowe
+Jonathan Thomas
 José Moya Iglesias
 
 ### 2020
