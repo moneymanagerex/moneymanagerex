@@ -845,6 +845,11 @@ bool mmMainCurrencyDialog::GetOnlineHistory(const wxString &symbol, wxDateTime b
 {
     wxString base_currency_symbol;
 
+    wxString s = "%s%s=X";
+    if (g_fiat_curr().Index(symbol) == wxNOT_FOUND)
+        s = "%s-%s";
+
+
     if (!Model_Currency::GetBaseCurrencySymbol(base_currency_symbol)) {
         msg = _("Could not find base currency symbol!");
         return false;
@@ -852,7 +857,7 @@ bool mmMainCurrencyDialog::GetOnlineHistory(const wxString &symbol, wxDateTime b
 
     wxString period1 = wxString::Format("%lld", begin_date.GetTicks()); //"1577836800";
     const wxString URL = wxString::Format(mmex::weblink::YahooQuotesHistory
-        , wxString::Format("%s%s=X", symbol, base_currency_symbol)
+        , wxString::Format(s, symbol, base_currency_symbol)
         , wxString::Format("period1=%s&period2=9999999999&interval=1d", period1)
     );
 
