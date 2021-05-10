@@ -367,6 +367,7 @@ bool mmParseDisplayStringToDate(wxDateTime& date, const wxString& str_date, cons
 
     if (pattern.Matches(str_date))
     {
+        if (sDateMask.Contains("Mon")) return true;
         const auto date_mask = g_date_formats_map().at(sDateMask);
         wxString date_str = pattern.GetMatch(str_date);
         if (!date_mask.Contains(" ")) {
@@ -424,6 +425,8 @@ const std::map<wxString, wxString> &date_formats_regex()
         return date_regex;
 
     // First time this function is called, fill the map.
+    const wxString week = "([^0-9]{3})";
+    const wxString mon = "([^0-9]{3})";
     const wxString dd = "((([0 ][1-9])|([1-2][0-9])|(3[0-1]))|([1-9]))";
     const wxString mm = "((([0 ][1-9])|(1[0-2]))|([1-9]))";
     const wxString yy = "(([ ][0-9])|([0-9]{1,2}))";
@@ -432,9 +435,9 @@ const std::map<wxString, wxString> &date_formats_regex()
 
     for (const auto entry : g_date_formats_map())
     {
-        if (entry.first.Contains("%w") || entry.first.Contains("%Mon"))
-            continue;
         wxString regexp = entry.first;
+        regexp.Replace("%Mon", mon);
+        regexp.Replace("%w", week);
         regexp.Replace("%d", dd);
         regexp.Replace("%m", mm);
         regexp.Replace("%Y", yyyy);

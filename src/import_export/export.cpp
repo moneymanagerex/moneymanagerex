@@ -85,7 +85,7 @@ const wxString mmExportTransaction::getTransactionCSV(const Model_Checking::Full
             const wxString split_categ = Model_Category::full_name(split_entry.CATEGID, split_entry.SUBCATEGID);
 
             buffer << inQuotes(wxString::Format("%i", full_tran.TRANSID), delimiter) << delimiter;
-            buffer << inQuotes(Model_Checking::TRANSDATE(full_tran).Format(dateMask), delimiter) << delimiter;
+            buffer << inQuotes(mmGetDateForDisplay(full_tran.TRANSDATE, dateMask), delimiter) << delimiter;
             buffer << inQuotes(full_tran.STATUS, delimiter) << delimiter;
             buffer << inQuotes(full_tran.TRANSCODE, delimiter) << delimiter;
 
@@ -105,7 +105,7 @@ const wxString mmExportTransaction::getTransactionCSV(const Model_Checking::Full
     else
     {
         buffer << inQuotes(wxString::Format("%i", full_tran.TRANSID), delimiter) << delimiter;
-        buffer << inQuotes(Model_Checking::TRANSDATE(full_tran).Format(dateMask), delimiter) << delimiter;
+        buffer << inQuotes(mmGetDateForDisplay(full_tran.TRANSDATE, dateMask), delimiter) << delimiter;
         buffer << inQuotes(full_tran.STATUS, delimiter) << delimiter;
         buffer << inQuotes(full_tran.TRANSCODE, delimiter) << delimiter;
 
@@ -155,7 +155,7 @@ const wxString mmExportTransaction::getTransactionQIF(const Model_Checking::Full
             transNum = wxString::Format("#%i", full_tran.id());
     }
 
-    buffer << "D" << Model_Checking::TRANSDATE(full_tran).Format(dateMask) << "\n";
+    buffer << "D" << mmGetDateForDisplay(full_tran.TRANSDATE, dateMask) << "\n";
     buffer << "C" << (full_tran.STATUS == "R" ? "R" : "") << "\n";
     double value = Model_Checking::balance(full_tran
         , (reverce ? full_tran.TOACCOUNTID : full_tran.ACCOUNTID));
