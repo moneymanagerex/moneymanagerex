@@ -113,6 +113,7 @@ bool mmCurrencyDialog::Create(wxWindow* parent, wxWindowID id
     SetIcon(mmex::getProgramIcon());
 
     Centre();
+    Fit();
     return TRUE;
 }
 
@@ -130,6 +131,12 @@ void mmCurrencyDialog::fillControls()
         m_scale = log10(m_currency->SCALE);
         const wxString& scale_value = wxString::Format("%i", m_scale);
         scaleTx_->ChangeValue(scale_value);
+        if (!Model_Infotable::instance().GetStringInfo("LOCALE","").empty())
+        {
+            decTx_->Disable();
+            grpTx_->Disable();
+            scaleTx_->Disable();
+        }
         m_currencySymbol->ChangeValue(m_currency->CURRENCY_SYMBOL);
 
         bool baseCurrency = (Option::instance().getBaseCurrencyID() == m_currency->CURRENCYID);
@@ -209,12 +216,12 @@ void mmCurrencyDialog::CreateControls()
     itemFlexGridSizer3->Add(baseConvRate_, g_flagsExpand);
 
     //--------------------------
-    wxStaticBox* itemStaticBox_01 = new wxStaticBox(this, wxID_STATIC, _("Value Display Sample:"));
+    wxStaticBox* itemStaticBox_01 = new wxStaticBox(this, wxID_STATIC, _("Currency Format Sample:"));
     wxStaticBoxSizer* itemStaticBoxSizer_01 = new wxStaticBoxSizer(itemStaticBox_01, wxHORIZONTAL);
     itemBoxSizer2->Add(itemStaticBoxSizer_01, wxSizerFlags(g_flagsExpand).Proportion(0));
 
     sampleText_ = new wxStaticText(this, wxID_STATIC, "");
-    itemStaticBoxSizer_01->Add(sampleText_, g_flagsH);
+    itemStaticBoxSizer_01->Add(sampleText_, g_flagsExpand);
     sampleText_->SetMinSize(wxSize(220, -1));
 
     //--------------------------
@@ -292,9 +299,11 @@ void mmCurrencyDialog::OnTextChanged(wxCommandEvent& WXUNUSED(event))
     m_currency->CURRENCYNAME = m_currencyName->GetValue();
 
     wxString dispAmount = "";
-    double base_amount = 123456.78;
+    double base_amount = 1234567.89;
 
     dispAmount = wxString::Format(_("%.2f Shown As: %s"), base_amount, Model_Currency::toCurrency(base_amount, m_currency));
+    if (!Model_Infotable::instance().GetStringInfo("LOCALE","").empty())
+        dispAmount = dispAmount + "  " + _("(Using Locale)");
     sampleText_->SetLabelText(dispAmount);
 }
 

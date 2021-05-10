@@ -40,6 +40,7 @@ Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
 #include "model/Model_CurrencyHistory.h"
 #include "model/Model_CustomFieldData.h"
 #include "model/Model_Subcategory.h"
+#include "model/Model_Setting.h"
 
 #include <wx/numformatter.h>
 #include <wx/timectrl.h>
@@ -1219,6 +1220,12 @@ void mmTransDialog::OnOk(wxCommandEvent& WXUNUSED(event))
     const Model_Checking::Data& tran(*r);
     Model_Checking::Full_Data trx(tran);
     wxLogDebug("%s", trx.to_json());
+
+    bool loop = Option::instance().get_bulk_transactions();
+    bool s = (wxGetKeyState(WXK_SHIFT) && !loop) || (!wxGetKeyState(WXK_SHIFT) && loop);
+    if (m_new_trx && s)
+        return EndModal(wxID_NEW);
+
     EndModal(wxID_OK);
 }
 

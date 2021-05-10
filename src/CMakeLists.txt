@@ -103,6 +103,8 @@ add_executable(${MMEX_EXE} WIN32 MACOSX_BUNDLE
     dbwrapper.cpp
     dbwrapper.h
     defs.h
+    diagnostics.cpp
+    diagnostics.h
     filtertransdialog.cpp
     filtertransdialog.h
     general_report_manager.cpp
@@ -369,6 +371,7 @@ target_link_libraries(${MMEX_EXE} PUBLIC
     RapidJSON
     HTML-template
     CURL::libcurl
+    fmt
     lunasvg
     LuaGlue
     Lua)

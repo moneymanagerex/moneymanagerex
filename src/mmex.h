@@ -37,7 +37,6 @@ public:
 
     wxLanguage getGUILanguage() const;
     bool setGUILanguage(wxLanguage lang);
-    wxLocale& getLocale();
     virtual void OnInitCmdLine(wxCmdLineParser& parser);
     virtual bool OnCmdLineParsed(wxCmdLineParser& parser);
     mmGUIFrame* m_frame;
@@ -61,7 +60,6 @@ private:
     bool OSXOnShouldTerminate(); // called when OSX app is closed from dock
 #endif
     wxLanguage m_lang; // GUI translation language displayed
-    wxLocale m_locale;
 
 };
 

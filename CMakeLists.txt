@@ -17,10 +17,10 @@
 # ./resources/mmex.rc
 # ---------------------------------------------------------------------------
 
-set(MMEX_VERSION 1.5.2)
-SET(MMEX_VERSION_ALPHA -1)
+set(MMEX_VERSION 1.6.0)
+SET(MMEX_VERSION_ALPHA 1)
 SET(MMEX_VERSION_BETA -1)
-SET(MMEX_VERSION_RC 1)
+SET(MMEX_VERSION_RC -1)
 
 # ---------------------------------------------------------------------------
 
@@ -374,17 +374,17 @@ else()
     if(NOT CURL_FOUND)
         find_package(CURL REQUIRED COMPONENTS libcurl MODULE)
         if(NOT CURL_LIBRARIES MATCHES "_imp.lib$|${CMAKE_SHARED_LIBRARY_SUFFIX}$")
-            add_library(CURL::libcurl STATIC IMPORTED)
+            #add_library(CURL::libcurl STATIC IMPORTED)
             set_target_properties(CURL::libcurl PROPERTIES
                 INTERFACE_COMPILE_DEFINITIONS CURL_STATICLIB
                 IMPORTED_LINK_INTERFACE_LANGUAGES C
                 IMPORTED_LOCATION "${CURL_LIBRARIES}")
         else()
-            add_library(CURL::libcurl SHARED IMPORTED)
             if(WIN32)
                 set_target_properties(CURL::libcurl PROPERTIES
                     IMPORTED_IMPLIB "${CURL_LIBRARIES}")
             else()
+                add_library(CURL::libcurl SHARED IMPORTED)
                 set_target_properties(CURL::libcurl PROPERTIES
                     IMPORTED_LOCATION "${CURL_LIBRARIES}")
             endif()
@@ -395,6 +395,9 @@ else()
         set(CURL_VERSION ${CURL_VERSION_STRING})
     endif()
 endif()
+
+
+add_subdirectory(3rd/fmt)
 
 # --------- Collect sources and targets ---------
 set(MMEX_BIN_DIR bin)

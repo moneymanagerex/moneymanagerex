@@ -661,7 +661,7 @@ void TransactionListCtrl::OnDuplicateTransaction(wxCommandEvent& WXUNUSED(event)
 
     int transaction_id = m_selected_id[0];
     mmTransDialog dlg(this, m_cp->m_AccountID, transaction_id, m_cp->m_account_balance, true);
-    if (dlg.ShowModal() == wxID_OK)
+    if (dlg.ShowModal() != wxID_CANCEL)
     {
         m_selected_id[0] = dlg.GetTransactionID();
         refreshVisualList();
@@ -928,7 +928,7 @@ void TransactionListCtrl::OnEditTransaction(wxCommandEvent& /*event*/)
     else
     {
         mmTransDialog dlg(this, m_cp->m_AccountID, transaction_id, m_cp->m_account_balance);
-        if (dlg.ShowModal() == wxID_OK)
+        if (dlg.ShowModal() != wxID_CANCEL)
         {
             refreshVisualList(transaction_id);
         }
@@ -941,10 +941,15 @@ void TransactionListCtrl::OnNewTransaction(wxCommandEvent& event)
     FindSelectedTransactions();
     int type = event.GetId() == MENU_TREEPOPUP_NEW_DEPOSIT ? Model_Checking::DEPOSIT : Model_Checking::WITHDRAWAL;
     mmTransDialog dlg(this, m_cp->m_AccountID, 0, m_cp->m_account_balance, false, type);
-    if (dlg.ShowModal() == wxID_OK)
+    int i = dlg.ShowModal();
+    if (i != wxID_CANCEL)
     {
         m_cp->mmPlayTransactionSound();
         refreshVisualList(dlg.GetTransactionID());
+
+        if (i == wxID_NEW) {
+            OnNewTransaction(event);
+        }
     }
 }
 
@@ -952,7 +957,7 @@ void TransactionListCtrl::OnNewTransferTransaction(wxCommandEvent& /*event*/)
 {
     FindSelectedTransactions();
     mmTransDialog dlg(this, m_cp->m_AccountID, 0, m_cp->m_account_balance, false, Model_Checking::TRANSFER);
-    if (dlg.ShowModal() == wxID_OK)
+    if (dlg.ShowModal() != wxID_CANCEL)
     {
         m_cp->mmPlayTransactionSound();
         refreshVisualList(dlg.GetTransactionID());
@@ -1249,9 +1254,9 @@ void TransactionListCtrl::doSearchText(const wxString& value)
         if (selectedItem < 0 || selectedItem >= static_cast<int>(m_trans.size()))
             break;
 
-        wxString test1 = Model_Currency::fromString2Default(value);
+        wxString test1 = Model_Currency::fromString2CLocale(value);
         double v;
-        if (test1.ToDouble(&v)) {
+        if (test1.ToCDouble(&v)) {
             try {
                 double amount = m_trans.at(selectedItem).TRANSAMOUNT;
                 double to_trans_amount = m_trans.at(selectedItem).TOTRANSAMOUNT;
@@ -1283,18 +1288,16 @@ void TransactionListCtrl::doSearchText(const wxString& value)
             , getItem(selectedItem, COL_WITHDRAWAL, true)
             , getItem(selectedItem, COL_DEPOSIT, true)})
         {
+
             if (t.Lower().Matches(value + "*"))
             {
                 //First of all any items should be unselected
-                long cursel = GetNextItem(-1
-                    , wxLIST_NEXT_ALL, wxLIST_STATE_SELECTED);
+                long cursel = GetNextItem(-1 , wxLIST_NEXT_ALL, wxLIST_STATE_SELECTED);
                 if (cursel != wxNOT_FOUND)
-                    SetItemState(cursel, 0
-                        , wxLIST_STATE_SELECTED | wxLIST_STATE_FOCUSED);
+                    SetItemState(cursel, 0, wxLIST_STATE_SELECTED | wxLIST_STATE_FOCUSED);
 
                 //Then finded item will be selected
-                SetItemState(selectedItem
-                    , wxLIST_STATE_SELECTED, wxLIST_STATE_SELECTED);
+                SetItemState(selectedItem, wxLIST_STATE_SELECTED, wxLIST_STATE_SELECTED);
                 EnsureVisible(selectedItem);
                 return;
             }

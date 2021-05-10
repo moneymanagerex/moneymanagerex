@@ -38,6 +38,7 @@
 #include "dbcheck.h"
 #include "dbupgrade.h"
 #include "dbwrapper.h"
+#include "diagnostics.h"
 #include "filtertransdialog.h"
 #include "general_report_manager.h"
 #include "images_list.h"
@@ -111,6 +112,7 @@ EVT_MENU(MENU_CHECKUPDATE, mmGUIFrame::OnCheckUpdate)
 EVT_MENU(MENU_ANNOUNCEMENTMAILING, mmGUIFrame::OnBeNotified)
 EVT_MENU_RANGE(MENU_FACEBOOK, MENU_TWITTER, mmGUIFrame::OnSimpleURLOpen)
 EVT_MENU(MENU_REPORT_BUG, mmGUIFrame::OnReportBug)
+EVT_MENU(MENU_DIAGNOSTICS, mmGUIFrame::OnDiagnostics)
 EVT_MENU(wxID_ABOUT, mmGUIFrame::OnAbout)
 EVT_MENU(wxID_PRINT, mmGUIFrame::OnPrintPage)
 EVT_MENU(MENU_SHOW_APPSTART, mmGUIFrame::OnShowAppStartDialog)
@@ -152,6 +154,7 @@ EVT_TREE_ITEM_MENU(wxID_ANY, mmGUIFrame::OnItemMenu)
 EVT_TREE_ITEM_ACTIVATED(ID_NAVTREECTRL, mmGUIFrame::OnItemRightClick)
 EVT_TREE_ITEM_EXPANDED(ID_NAVTREECTRL, mmGUIFrame::OnTreeItemExpanded)
 EVT_TREE_ITEM_COLLAPSED(ID_NAVTREECTRL, mmGUIFrame::OnTreeItemCollapsed)
+EVT_TREE_KEY_DOWN(wxID_ANY, mmGUIFrame::OnKeyDown)
 
 EVT_MENU(MENU_GOTOACCOUNT, mmGUIFrame::OnGotoAccount)
 EVT_MENU(MENU_STOCKS, mmGUIFrame::OnGotoStocksAccount)
@@ -1632,6 +1635,11 @@ void mmGUIFrame::createMenu()
         , _("Report a &Bug")
         , _("Report an error in application to the developers"));
     menuHelp->Append(menuItemReportBug);
+    
+    wxMenuItem* menuItemDiagnostics = new wxMenuItem(menuTools, MENU_DIAGNOSTICS
+        , _("View Diagnostics")
+        , _("Help provide information to the developers"));
+    menuHelp->Append(menuItemDiagnostics);
 
     wxMenuItem* menuItemAppStart = new wxMenuItem(menuTools, MENU_SHOW_APPSTART
         , _("&Show App Start Dialog"), _("App Start Dialog"));
@@ -2376,14 +2384,15 @@ void mmGUIFrame::OnOrgPayees(wxCommandEvent& /*event*/)
 }
 //----------------------------------------------------------------------------
 
-void mmGUIFrame::OnNewTransaction(wxCommandEvent& /*event*/)
+void mmGUIFrame::OnNewTransaction(wxCommandEvent& event)
 {
     if (m_db)
     {
         if (Model_Account::instance().all_checking_account_names().empty()) return;
         mmTransDialog dlg(this, gotoAccountID_, 0, 0);
 
-        if (dlg.ShowModal() == wxID_OK)
+        int i = dlg.ShowModal();
+        if (i != wxID_CANCEL)
         {
             gotoAccountID_ = dlg.GetAccountID();
             gotoTransID_ = dlg.GetTransactionID();
@@ -2393,6 +2402,9 @@ void mmGUIFrame::OnNewTransaction(wxCommandEvent& /*event*/)
                 createCheckingAccountPage(gotoAccountID_);
                 setAccountNavTreeSection(account->ACCOUNTNAME);
             }
+
+            if (i == wxID_NEW)
+                OnNewTransaction(event);
         }
     }
 }
@@ -2420,8 +2432,6 @@ void mmGUIFrame::OnTransactionReport(wxCommandEvent& /*event*/)
         mmReportTransactions* rs = new mmReportTransactions(dlg->getAccountID(), dlg);
         createReportsPage(rs, true);
     }
-    setNavTreeSection(_("Reports"));
-
     m_nav_tree_ctrl->Refresh();
 }
 
@@ -2534,6 +2544,12 @@ void mmGUIFrame::OnReportBug(wxCommandEvent& WXUNUSED(event))
     mmPrintableBase* br = new mmBugReport();
     setNavTreeSection(_("Reports"));
     createReportsPage(br, true);
+}
+
+void mmGUIFrame::OnDiagnostics(wxCommandEvent& /*event*/)
+{
+    mmDiagnosticsDialog dlg(this, this->IsMaximized());
+    dlg.ShowModal();
 }
 
 void mmGUIFrame::OnAbout(wxCommandEvent& WXUNUSED(event))
@@ -2807,6 +2823,7 @@ void mmGUIFrame::createAllTransactionsPage()
 
     menuPrintingEnable(true);
     m_nav_tree_ctrl->SetEvtHandlerEnabled(true);
+    m_nav_tree_ctrl->SetFocus();
 }
 
 void mmGUIFrame::createCheckingAccountPage(int accountID)
@@ -2849,6 +2866,7 @@ void mmGUIFrame::createCheckingAccountPage(int accountID)
         gotoTransID_ = -1;
     }
     m_nav_tree_ctrl->SetEvtHandlerEnabled(true);
+    m_nav_tree_ctrl->SetFocus();
 }
 
 void mmGUIFrame::createStocksAccountPage(int accountID)
@@ -3279,4 +3297,22 @@ void mmGUIFrame::OnChangeGUILanguage(wxCommandEvent& event)
             , _("The language for this application has been changed. "
                 "The change will take effect the next time the application is started.")
             , _("Language change"));
+}
+
+void mmGUIFrame::OnKeyDown(wxTreeEvent& event)
+{
+    if (selectedItemData_)
+    {
+        auto data = selectedItemData_->getString();
+
+        int key_code = event.GetKeyCode();
+
+        if (key_code == WXK_RETURN || key_code == WXK_NUMPAD_ENTER)
+        {
+            if (data == "item@Transaction Report")
+            {
+                OnTransactionReport(event);
+            }
+        }
+    }
 }

@@ -182,6 +182,7 @@ private:
     bool m_hide_share_accounts;
     void OnHideShareAccounts(wxCommandEvent &event);
     void OnChangeGUILanguage(wxCommandEvent &event);
+    void OnKeyDown(wxTreeEvent& event);
 
     void OnViewToolbar(wxCommandEvent &event);
     void OnViewLinks(wxCommandEvent &event);
@@ -221,6 +222,7 @@ private:
     void OnAbout(wxCommandEvent& event);
     void OnSimpleURLOpen(wxCommandEvent& event);
     void OnReportBug(wxCommandEvent& event);
+    void OnDiagnostics(wxCommandEvent& event);
 private:
     void OnItemRightClick(wxTreeEvent& event);
     void OnItemMenu(wxTreeEvent& event);
@@ -320,6 +322,7 @@ private:
         MENU_DB_DEBUG,
         MENU_ONLINE_UPD_CURRENCY_RATE,
         MENU_ACCOUNT_REALLOCATE,
+        MENU_DIAGNOSTICS,
 
         //magic munber needed to fix [bugs:#408]
         ID_NAVTREECTRL = MENU_ONLINE_UPD_CURRENCY_RATE + 233,

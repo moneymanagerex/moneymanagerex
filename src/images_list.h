@@ -209,7 +209,7 @@ enum png {
 wxImageList* navtree_images_list();
 void LoadTheme();
 const wxString mmThemeMetaString(int ref);
-const long mmThemeMetaLong(int ref);
+long mmThemeMetaLong(int ref);
 const wxColour mmThemeMetaColour(int ref);
 const std::vector<wxColour> mmThemeMetaColourArray(int ref);
 const wxBitmap mmBitmap(int ref);

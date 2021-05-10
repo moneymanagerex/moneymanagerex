@@ -47,11 +47,15 @@ public:
 
     // set and save the option: m_userNameString
     void UserName(const wxString& username);
-    wxString UserName();
+    const wxString UserName() const;
+
+    // set and save the option: m_localeNameString
+    void LocaleName(const wxString& username);
+    const wxString LocaleName() const;
 
     // set and save the option: m_financialYearStartDayString
     void FinancialYearStartDay(const wxString& setting);
-    wxString FinancialYearStartDay();
+    const wxString FinancialYearStartDay() const;
 
     // set and save the option: m_financialYearStartMonthString
     void FinancialYearStartMonth(const wxString& setting);
@@ -79,7 +83,10 @@ public:
     int TransPayeeSelection();
 
     void TransCategorySelection(int value);
-    int TransCategorySelection();
+    int TransCategorySelection() const;
+
+    void set_bulk_transactions(bool value);
+    bool get_bulk_transactions() const;
 
     void TransStatusReconciled(int value);
     int TransStatusReconciled();
@@ -127,10 +134,12 @@ private:
     wxString m_dateFormat;
     wxLanguage m_language;
     wxString m_userNameString;
+    wxString m_localeNameString;
     wxString m_financialYearStartDayString;
     wxString m_financialYearStartMonthString;
     int m_baseCurrency;
     bool m_currencyHistoryEnabled;
+    bool m_bulk_enter;
 
     bool m_databaseUpdated;
     bool m_budgetFinancialYears;            //INIDB_BUDGET_FINANCIAL_YEARS
@@ -157,7 +166,11 @@ private:
 inline int Option::getIconSize() { return m_ico_size; }
 inline int Option::getNavigationIconSize() { return m_navigation_ico_size; }
 inline int Option::getToolbarIconSize() { return m_toolbar_ico_size; }
-
+inline const wxString Option::LocaleName() const { return m_localeNameString; }
+inline const wxString Option::UserName() const { return m_userNameString; }
+inline const wxString Option::FinancialYearStartDay() const { return m_financialYearStartDayString; }
+inline int Option::TransCategorySelection() const { return m_transCategorySelection; }
+inline bool Option::get_bulk_transactions() const { return m_bulk_enter; }
 
 inline const wxString Option::getDateFormat() const
 {
