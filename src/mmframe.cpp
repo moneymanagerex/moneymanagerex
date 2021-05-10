@@ -3315,4 +3315,5 @@ void mmGUIFrame::OnKeyDown(wxTreeEvent& event)
             }
         }
     }
+    event.Skip();
 }
