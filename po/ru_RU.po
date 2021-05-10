@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-05-10 12:47+0300\n"
-"PO-Revision-Date: 2021-05-10 10:49\n"
+"PO-Revision-Date: 2021-05-10 11:11\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -3828,7 +3828,7 @@ msgstr "Проверка закрытого счета"
 msgid "Do you really want to move the selected transaction?"
 msgid_plural "Do you really want to move %i selected transactions?"
 msgstr[0] "Вы действительно хотите переместить выбранную транзакцию?"
-msgstr[1] ""
+msgstr[1] "Вы действительно хотите переместить %i выбранные транзакции?"
 msgstr[2] "Вы действительно хотите переместить %i выбранных транзакций?"
 msgstr[3] "Вы действительно хотите переместить %i выбранные транзакции?"
 
@@ -3841,8 +3841,8 @@ msgstr "Подтвердите перемещение транзакции"
 msgid "Moving transaction to..."
 msgid_plural "Moving %i transactions to..."
 msgstr[0] "Перемещение транзакции в..."
-msgstr[1] ""
-msgstr[2] ""
+msgstr[1] "Перемещение %i транзакций в..."
+msgstr[2] "Перемещение %i транзакций в..."
 msgstr[3] "Перемещение %i транзакций в..."
 
 #: mmchecking_list.cpp:1072 stocks_list.cpp:292
@@ -6841,31 +6841,31 @@ msgstr "Суббота"
 
 #: util.cpp:306
 msgid "Sun"
-msgstr "Вск"
+msgstr "Вс"
 
 #: util.cpp:306
 msgid "Mon"
-msgstr "Пнд"
+msgstr "Пн"
 
 #: util.cpp:306
 msgid "Tue"
-msgstr "Втр"
+msgstr "Вт"
 
 #: util.cpp:307
 msgid "Wed"
-msgstr "Срд"
+msgstr "Ср"
 
 #: util.cpp:307
 msgid "Thu"
-msgstr "Чтв"
+msgstr "Чт"
 
 #: util.cpp:307
 msgid "Fri"
-msgstr "Птн"
+msgstr "Пт"
 
 #: util.cpp:308
 msgid "Sat"
-msgstr "Сбт"
+msgstr "Сб"
 
 #: util.cpp:587
 msgid "Currency rates have been updated"
