@@ -654,7 +654,6 @@ bool get_yahoo_prices(std::map<wxString, double>& symbols
             continue;
 
         if (type == yahoo_price_type::FIAT) {
-            auto curr = Model_Currency::instance().all_currency_symbols();
             if (g_fiat_curr().Index(entry.first) != wxNOT_FOUND)
                 buffer += wxString::Format("%s%s=X,", entry.first, base_currency_symbol);
             else
