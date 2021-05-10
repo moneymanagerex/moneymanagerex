@@ -298,6 +298,7 @@ bool Model_Account::FAVORITEACCT(const Data& r)
 
 bool Model_Account::is_used(const Model_Currency::Data* c)
 {
+    if (!c) return false;
     const auto &accounts = Model_Account::instance().find(CURRENCYID(c->CURRENCYID));
     return !accounts.empty();
 }
