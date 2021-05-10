@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-05-10 12:47+0300\n"
-"PO-Revision-Date: 2021-05-10 10:42\n"
+"PO-Revision-Date: 2021-05-10 10:49\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -2313,7 +2313,7 @@ msgstr "Диагностика"
 
 #: diagnostics.cpp:100
 msgid "Developers may ask you to provide information presented here in order to help diagnose issues you may report with the program."
-msgstr ""
+msgstr "Разработчики могут попросить вас предоставить информацию для диагностики проблем, с которыми вы можете столкнуться в программе."
 
 #: filtertransdialog.cpp:45 mmhomepage.cpp:653 model/Model_Billsdeposits.cpp:39
 #: model/Model_Checking.cpp:37
@@ -3725,8 +3725,8 @@ msgid "&Move Transaction"
 msgid_plural "&Move Transactions"
 msgstr[0] "&Переместить транзакцию"
 msgstr[1] "&Переместить транзакции"
-msgstr[2] ""
-msgstr[3] ""
+msgstr[2] "&Переместить транзакции"
+msgstr[3] "&Переместить транзакции"
 
 #: mmchecking_list.cpp:374
 msgid "&View Split Categories"
@@ -3827,23 +3827,23 @@ msgstr "Проверка закрытого счета"
 #, c-format
 msgid "Do you really want to move the selected transaction?"
 msgid_plural "Do you really want to move %i selected transactions?"
-msgstr[0] ""
+msgstr[0] "Вы действительно хотите переместить выбранную транзакцию?"
 msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[2] "Вы действительно хотите переместить %i выбранных транзакций?"
+msgstr[3] "Вы действительно хотите переместить %i выбранные транзакции?"
 
 #: mmchecking_list.cpp:1062
 msgid "Confirm Transaction Move"
-msgstr ""
+msgstr "Подтвердите перемещение транзакции"
 
 #: mmchecking_list.cpp:1068
 #, c-format
 msgid "Moving transaction to..."
 msgid_plural "Moving %i transactions to..."
-msgstr[0] ""
+msgstr[0] "Перемещение транзакции в..."
 msgstr[1] ""
 msgstr[2] ""
-msgstr[3] ""
+msgstr[3] "Перемещение %i транзакций в..."
 
 #: mmchecking_list.cpp:1072 stocks_list.cpp:292
 msgid "Select the destination Account "
@@ -4533,11 +4533,11 @@ msgstr "Сообщить  разработчикам об ошибке в при
 
 #: mmframe.cpp:1640
 msgid "View Diagnostics"
-msgstr ""
+msgstr "Диагностика"
 
 #: mmframe.cpp:1641
 msgid "Help provide information to the developers"
-msgstr ""
+msgstr "Помогите предоставить информацию разработчикам"
 
 #: mmframe.cpp:1645
 msgid "&Show App Start Dialog"
@@ -4982,7 +4982,7 @@ msgstr "Самые расходные: %s"
 
 #: mmhomepage.cpp:359
 msgid "Account / Payee"
-msgstr ""
+msgstr "Счет / Получатель"
 
 #: mmhomepage.cpp:437
 #, c-format
@@ -5377,7 +5377,7 @@ msgstr "Имя пользователя для заголовков."
 
 #: optionsettingsgeneral.cpp:80
 msgid "Locale"
-msgstr ""
+msgstr "Локаль"
 
 #: optionsettingsgeneral.cpp:115
 msgid "Specify the date format for display"
@@ -5450,11 +5450,11 @@ msgstr "Отметьте, использовать ли звуки при вво
 #: optionsettingsgeneral.cpp:280
 #, c-format
 msgid "Currency value sample: %s"
-msgstr ""
+msgstr "Пример валютного значения: %s"
 
 #: optionsettingsgeneral.cpp:286
 msgid "bad locale name"
-msgstr ""
+msgstr "неправильное имя локали"
 
 #: optionsettingsmisc.cpp:56
 msgid "Stock Quote Web Page"
@@ -5490,11 +5490,11 @@ msgstr "Как до того"
 
 #: optionsettingsmisc.cpp:125
 msgid "Yes"
-msgstr ""
+msgstr "Да"
 
 #: optionsettingsmisc.cpp:126
 msgid "No"
-msgstr ""
+msgstr "Нет"
 
 #: optionsettingsmisc.cpp:135
 msgid "Default Date:"
@@ -5514,7 +5514,7 @@ msgstr "Статус по умолчанию:"
 
 #: optionsettingsmisc.cpp:143
 msgid "Bulk Transactions:"
-msgstr ""
+msgstr "Массовые транзакции:"
 
 #: optionsettingsmisc.cpp:154
 msgid "Database Backup"
@@ -6841,7 +6841,7 @@ msgstr "Суббота"
 
 #: util.cpp:306
 msgid "Sun"
-msgstr ""
+msgstr "Вск"
 
 #: util.cpp:306
 msgid "Mon"
@@ -6849,15 +6849,15 @@ msgstr "Пнд"
 
 #: util.cpp:306
 msgid "Tue"
-msgstr ""
+msgstr "Втр"
 
 #: util.cpp:307
 msgid "Wed"
-msgstr ""
+msgstr "Срд"
 
 #: util.cpp:307
 msgid "Thu"
-msgstr ""
+msgstr "Чтв"
 
 #: util.cpp:307
 msgid "Fri"
