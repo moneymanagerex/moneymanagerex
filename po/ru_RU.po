@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-05-10 12:47+0300\n"
-"PO-Revision-Date: 2021-05-10 09:52\n"
+"PO-Revision-Date: 2021-05-10 10:42\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -1808,7 +1808,7 @@ msgstr "Фиксированный обменный курс"
 
 #: currencydialog.cpp:219
 msgid "Currency Format Sample:"
-msgstr ""
+msgstr "Образец формата валюты:"
 
 #: currencydialog.cpp:233
 msgid "Save any changes made"
@@ -1831,7 +1831,7 @@ msgstr "%.2f отобразится как: %s"
 
 #: currencydialog.cpp:306
 msgid "(Using Locale)"
-msgstr ""
+msgstr "(Используется локаль)"
 
 #: customfieldeditdialog.cpp:119
 msgid "Custom Field Details"
@@ -2309,7 +2309,7 @@ msgstr "Открытие базы данных - Ошибка"
 
 #: diagnostics.cpp:50
 msgid "Diagnostics"
-msgstr ""
+msgstr "Диагностика"
 
 #: diagnostics.cpp:100
 msgid "Developers may ask you to provide information presented here in order to help diagnose issues you may report with the program."
@@ -2748,7 +2748,7 @@ msgstr "Экспорт JSON"
 
 #: import_export/qif_export.cpp:50
 msgid "CSV Export"
-msgstr ""
+msgstr "Экспорт в CSV"
 
 #: import_export/qif_export.cpp:110
 msgid "Parameters"
@@ -2768,7 +2768,7 @@ msgstr "JSON"
 
 #: import_export/qif_export.cpp:129
 msgid "CSV"
-msgstr ""
+msgstr "CSV"
 
 #: import_export/qif_export.cpp:143 mmframe.cpp:3040 mmframe.cpp:3044
 #: mmframe.cpp:3063 mmframe.cpp:3067
@@ -3120,7 +3120,7 @@ msgstr "Просмотр"
 
 #: import_export/univcsvdialog.cpp:434
 msgid "Choose XML data file to Import"
-msgstr ""
+msgstr "Выберите файл XML для импорта"
 
 #: import_export/univcsvdialog.cpp:434
 msgid "Choose CSV data file to Import"
@@ -3128,7 +3128,7 @@ msgstr "Выберите файл CSV для импорта"
 
 #: import_export/univcsvdialog.cpp:435
 msgid "Choose XML data file to Export"
-msgstr ""
+msgstr "Выберите XML файл для экспорта"
 
 #: import_export/univcsvdialog.cpp:435
 msgid "Choose CSV data file to Export"
@@ -3723,8 +3723,8 @@ msgstr "Дублировать транзакцию"
 #: mmchecking_list.cpp:368
 msgid "&Move Transaction"
 msgid_plural "&Move Transactions"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "&Переместить транзакцию"
+msgstr[1] "&Переместить транзакции"
 msgstr[2] ""
 msgstr[3] ""
 
@@ -6845,7 +6845,7 @@ msgstr ""
 
 #: util.cpp:306
 msgid "Mon"
-msgstr ""
+msgstr "Пнд"
 
 #: util.cpp:306
 msgid "Tue"
@@ -6861,11 +6861,11 @@ msgstr ""
 
 #: util.cpp:307
 msgid "Fri"
-msgstr ""
+msgstr "Птн"
 
 #: util.cpp:308
 msgid "Sat"
-msgstr ""
+msgstr "Сбт"
 
 #: util.cpp:587
 msgid "Currency rates have been updated"
