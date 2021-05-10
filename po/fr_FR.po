@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-05-10 12:47+0300\n"
-"PO-Revision-Date: 2021-05-10 09:52\n"
+"PO-Revision-Date: 2021-05-10 11:38\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -1803,7 +1803,7 @@ msgstr "Taux de conversion fixe"
 
 #: currencydialog.cpp:219
 msgid "Currency Format Sample:"
-msgstr ""
+msgstr "Exemple de Format de Devise:"
 
 #: currencydialog.cpp:233
 msgid "Save any changes made"
@@ -5425,7 +5425,7 @@ msgstr "Cocher pour générer des sons en introduisant des opérations"
 #: optionsettingsgeneral.cpp:280
 #, c-format
 msgid "Currency value sample: %s"
-msgstr ""
+msgstr "Échantillon de valeur de la devise : %s"
 
 #: optionsettingsgeneral.cpp:286
 msgid "bad locale name"
