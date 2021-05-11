@@ -81,7 +81,7 @@ void OptionSettingsGeneral::Create()
     wxStaticBoxSizer* localeStaticBoxSizer = new wxStaticBoxSizer(localeStaticBox, wxHORIZONTAL);
     generalPanelSizer->Add(localeStaticBoxSizer, wxSizerFlags(g_flagsExpand).Proportion(0));
 
-    const wxString locale = Model_Infotable::instance().GetStringInfo("LOCALE", "en_US");
+    const wxString locale = Model_Infotable::instance().GetStringInfo("LOCALE", "en_US.UTF-8");
 
     wxComboBox* itemListOfLocales = new wxComboBox(localeStaticBox, ID_DIALOG_OPTIONS_LOCALE, ""
         , wxDefaultPosition, wxDefaultSize, g_locales());
