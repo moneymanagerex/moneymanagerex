@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-05-10 12:47+0300\n"
-"PO-Revision-Date: 2021-05-10 09:53\n"
+"PO-Revision-Date: 2021-05-10 14:15\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -1801,7 +1801,7 @@ msgstr "fester Umrechnungskurs"
 
 #: currencydialog.cpp:219
 msgid "Currency Format Sample:"
-msgstr ""
+msgstr "Währungsformat Beispiel:"
 
 #: currencydialog.cpp:233
 msgid "Save any changes made"
@@ -1824,7 +1824,7 @@ msgstr "%.2f angezeigt als: %s"
 
 #: currencydialog.cpp:306
 msgid "(Using Locale)"
-msgstr ""
+msgstr "(Lokal verwenden)"
 
 #: customfieldeditdialog.cpp:119
 msgid "Custom Field Details"
@@ -3710,8 +3710,8 @@ msgstr "Buchung D&uplizieren"
 #: mmchecking_list.cpp:368
 msgid "&Move Transaction"
 msgid_plural "&Move Transactions"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "&Buchung verschieben"
+msgstr[1] "&Buchung verschieben"
 
 #: mmchecking_list.cpp:374
 msgid "&View Split Categories"
@@ -3806,19 +3806,19 @@ msgstr "Abgeschlossene Kontoprüfung"
 #, c-format
 msgid "Do you really want to move the selected transaction?"
 msgid_plural "Do you really want to move %i selected transactions?"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Möchten Sie die ausgewählte Buchung wirklich verschieben?"
+msgstr[1] "Möchten Sie wirklich %i ausgewählte Buchungen verschieben?"
 
 #: mmchecking_list.cpp:1062
 msgid "Confirm Transaction Move"
-msgstr ""
+msgstr "verschieben der Buchung bestätigen"
 
 #: mmchecking_list.cpp:1068
 #, c-format
 msgid "Moving transaction to..."
 msgid_plural "Moving %i transactions to..."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Verschiebung Buchung nach..."
+msgstr[1] "Verschiebung von %i Buchungen nach..."
 
 #: mmchecking_list.cpp:1072 stocks_list.cpp:292
 msgid "Select the destination Account "
@@ -5422,7 +5422,7 @@ msgstr "Wählen Sie, ob ein Ton bei einer Buchung abgespielt werden soll."
 #: optionsettingsgeneral.cpp:280
 #, c-format
 msgid "Currency value sample: %s"
-msgstr ""
+msgstr "Währungswert Beispiel: %s"
 
 #: optionsettingsgeneral.cpp:286
 msgid "bad locale name"
