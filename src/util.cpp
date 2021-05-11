@@ -39,7 +39,7 @@ Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
 #include <map>
 #include <lua.hpp>
 #include <wx/fs_mem.h>
-
+#include <fmt/core.h>
 
 using namespace rapidjson;
 
@@ -583,24 +583,23 @@ bool getOnlineCurrencyRates(wxString& msg, int curr_id, bool used_only)
 
     if (get_yahoo_prices(fiat, currency_data, base_currency_symbol, output, yahoo_price_type::FIAT))
     {
-
+        const auto b = Model_Currency::GetBaseCurrency();
         msg << _("Currency rates have been updated");
         msg << "\n\n";
         for (const auto & item : fiat)
         {
-            auto value0 = item.second;
+            const wxString value0_str(fmt::format("{:>{}}", Model_Currency::toCurrency(item.second, b, 4).mb_str(), 20));
+            const wxString symbol(fmt::format("{:<{}}", item.first.mb_str(), 10));
+
             if (currency_data.find(item.first) != currency_data.end())
             {
                 auto value1 = currency_data[item.first];
-                msg << wxString::Format("%s %s -> %s\n", item.first
-                    , Model_Currency::toCurrency(value0, Model_Currency::GetBaseCurrency(), 4)
-                    , Model_Currency::toCurrency(value1, Model_Currency::GetBaseCurrency(), 4));
+                const wxString value1_str(fmt::format("{:>{}}", Model_Currency::toCurrency(value1, b, 4).mb_str(), 20));
+                msg << wxString::Format("%s\t%s\t\t%s\n", symbol, value0_str, value1_str);
             }
             else
             {
-                msg << wxString::Format("%s %s -> %s\n", item.first
-                    , Model_Currency::toCurrency(value0, Model_Currency::GetBaseCurrency(), 4)
-                    , _("Invalid value"));
+                msg << wxString::Format("%s\t%s\t\t%s\n", symbol, value0_str, _("Invalid value"));
             }
         }
     }
