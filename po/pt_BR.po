@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-05-10 12:47+0300\n"
-"PO-Revision-Date: 2021-05-10 09:52\n"
+"PO-Revision-Date: 2021-05-11 16:58\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "MIME-Version: 1.0\n"
@@ -882,7 +882,7 @@ msgstr "Detalhes da Transação"
 
 #: billsdepositsdialog.cpp:504
 msgid "Specify the date when this bill or deposit is due"
-msgstr "Especifique a data em que esta conta ou depósito vence"
+msgstr "Especifique a data em que esta conta ou recebimento vence"
 
 #: billsdepositsdialog.cpp:514
 msgid "Retard or advance the date of the 'next occurrence'"
@@ -1803,7 +1803,7 @@ msgstr "Taxa de câmbio fixa"
 
 #: currencydialog.cpp:219
 msgid "Currency Format Sample:"
-msgstr ""
+msgstr "Exemplo de formato de moeda:"
 
 #: currencydialog.cpp:233
 msgid "Save any changes made"
@@ -1826,7 +1826,7 @@ msgstr "%.2f Exibido Como: %s"
 
 #: currencydialog.cpp:306
 msgid "(Using Locale)"
-msgstr ""
+msgstr "(Usando Local)"
 
 #: customfieldeditdialog.cpp:119
 msgid "Custom Field Details"
@@ -3087,11 +3087,11 @@ msgstr "Exportar títulos de coluna"
 
 #: import_export/univcsvdialog.cpp:349
 msgid "Positive values are deposits"
-msgstr "Valores positivos são depósitos"
+msgstr "Valores positivos são recebimentos"
 
 #: import_export/univcsvdialog.cpp:350
 msgid "Positive values are withdrawals"
-msgstr "Valores positivos são retiradas"
+msgstr "Valores positivos são pagamentos"
 
 #: import_export/univcsvdialog.cpp:363
 msgid "Rows to ignore"
@@ -3184,7 +3184,7 @@ msgstr "O campo de data é obrigatório."
 
 #: import_export/univcsvdialog.cpp:920
 msgid "Amount field or both Withdrawal and Deposit fields are required."
-msgstr "O campo Valor ou os campos Retirada e Depósito são obrigatórios."
+msgstr "O campo Valor ou os campos Pagamento e Recebimento são obrigatórios."
 
 #: import_export/univcsvdialog.cpp:921 import_export/univcsvdialog.cpp:1049
 #: themes.cpp:183 webappdialog.cpp:417
@@ -3216,7 +3216,7 @@ msgstr "Montante Inválido."
 
 #: import_export/univcsvdialog.cpp:1002
 msgid "Type (withdrawal/deposit) unknown."
-msgstr "Tipo (retirada/depósito) desconhecido."
+msgstr "Tipo (pagamento/recebimento) desconhecido."
 
 #: import_export/univcsvdialog.cpp:1027
 #, c-format
@@ -3672,11 +3672,11 @@ msgstr "Se o campo Nome da Ação estiver vazio, ele será preenchido quando os 
 
 #: mmchecking_list.cpp:343
 msgid "&New Withdrawal"
-msgstr "&Nova Retirada"
+msgstr "&Novo Pagamento"
 
 #: mmchecking_list.cpp:344
 msgid "&New Deposit"
-msgstr "&Novo Depósito"
+msgstr "&Novo Recebimento"
 
 #: mmchecking_list.cpp:346
 msgid "&New Transfer"
@@ -3711,7 +3711,7 @@ msgstr "D&uplicar Transacção"
 msgid "&Move Transaction"
 msgid_plural "&Move Transactions"
 msgstr[0] "&Mover Transação"
-msgstr[1] ""
+msgstr[1] "&Mover Transações"
 
 #: mmchecking_list.cpp:374
 msgid "&View Split Categories"
@@ -3761,7 +3761,7 @@ msgstr "como Duplicada"
 
 #: mmchecking_list.cpp:409
 msgid "Mark all being selected"
-msgstr "Marcar todos como selecionados"
+msgstr "Marcar todos os selecionados"
 
 #: mmchecking_list.cpp:780
 #, c-format
@@ -3806,19 +3806,19 @@ msgstr "Verificação de conta fechada"
 #, c-format
 msgid "Do you really want to move the selected transaction?"
 msgid_plural "Do you really want to move %i selected transactions?"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Tem certeza que deseja mover a transação selecionada?"
+msgstr[1] "Tem certeza que deseja mover as %i transações selecionadas?"
 
 #: mmchecking_list.cpp:1062
 msgid "Confirm Transaction Move"
-msgstr ""
+msgstr "Confirmar Alteração"
 
 #: mmchecking_list.cpp:1068
 #, c-format
 msgid "Moving transaction to..."
 msgid_plural "Moving %i transactions to..."
 msgstr[0] "Movendo a transação para..."
-msgstr[1] ""
+msgstr[1] "Movendo %i transações para..."
 
 #: mmchecking_list.cpp:1072 stocks_list.cpp:292
 msgid "Select the destination Account "
@@ -5425,7 +5425,7 @@ msgstr "Selecione se deseja usar sons quando registrar transações"
 #: optionsettingsgeneral.cpp:280
 #, c-format
 msgid "Currency value sample: %s"
-msgstr ""
+msgstr "Exemplo de valor da moeda: %s"
 
 #: optionsettingsgeneral.cpp:286
 msgid "bad locale name"
