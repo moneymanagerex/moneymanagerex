@@ -96,7 +96,7 @@ void OptionSettingsGeneral::Create()
     localeStaticBoxSizer->Add(m_sample_value_text, wxSizerFlags(g_flagsH).Border(wxLEFT, 15));
     wxString result;
     doFormatDoubleValue(locale, result);
-    m_sample_value_text->SetLabelText(result);
+    m_sample_value_text->SetLabelText(wxGetTranslation(result));
 
     SetBoldFont(localeStaticBox);
 
@@ -223,7 +223,7 @@ void OptionSettingsGeneral::OnLocaleChanged(wxCommandEvent& /*event*/)
     wxString result;
 
     doFormatDoubleValue(locale, result);
-    m_sample_value_text->SetLabelText(result);
+    m_sample_value_text->SetLabelText(wxGetTranslation(result));
 }
 
 bool OptionSettingsGeneral::SaveFinancialYearStart()
@@ -268,6 +268,7 @@ bool OptionSettingsGeneral::SaveSettings()
 
 bool OptionSettingsGeneral::doFormatDoubleValue(const wxString& locale, wxString& result)
 {
+    wxTRANSLATE("bad locale name");
     double value = 1234567.89;
     int precision = 2;
     wxString s;
@@ -283,7 +284,6 @@ bool OptionSettingsGeneral::doFormatDoubleValue(const wxString& locale, wxString
         result = wxString::Format(s, sample);
     }
     catch (std::exception & ex) {
-        wxTRANSLATE("bad locale name");
         result = wxString(ex.what());
         return false;
     }
