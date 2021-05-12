@@ -194,7 +194,7 @@ const wxString Model_Currency::toString(double value, const Data* currency, int 
         const Data* curr = currency ? currency : GetBaseCurrency();
         precision = (precision >= 0) ? precision : log10(curr->SCALE);
 
-        s = fmt::format(std::locale("en_US"), "{:L}", static_cast<int>(value))
+        s = fmt::format(std::locale("en_US.UTF-8"), "{:L}", static_cast<int>(value))
             + wxString(fmt::format("{:.{}f}", fabs(value - static_cast<int>(value)), precision)).Mid(1);
 
         s.Replace(".", "\x05");

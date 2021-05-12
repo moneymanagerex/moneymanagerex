@@ -1030,13 +1030,14 @@ void TransactionListCtrl::refreshVisualList(bool filter)
             {
                 SetItemState(i, wxLIST_STATE_SELECTED, wxLIST_STATE_SELECTED);
                 SetItemState(i, wxLIST_STATE_FOCUSED, wxLIST_STATE_FOCUSED);
+                EnsureVisible(i);
             }
         }
         i++;
     }
     FindSelectedTransactions();
 
-    if (m_topItemIndex >= 0 && m_topItemIndex < i)
+    if (m_topItemIndex >= 0 && m_topItemIndex < i && m_selected_id.empty())
         EnsureVisible(m_topItemIndex);
 
     m_cp->setAccountSummary();
@@ -1406,7 +1407,6 @@ void TransactionListCtrl::setSelectedID(int v)
         }
         i++;
     }
-  
 }
 
 //----------------------------------------------------------------------------
