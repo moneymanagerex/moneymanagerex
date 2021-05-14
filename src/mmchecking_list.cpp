@@ -588,31 +588,32 @@ wxListItemAttr* TransactionListCtrl::OnGetItemAttr(long item) const
 void TransactionListCtrl::OnChar(wxKeyEvent& event)
 {
 
-    if (wxGetKeyState(WXK_ALT) ||
-        wxGetKeyState(WXK_COMMAND) ||
-        wxGetKeyState(WXK_UP) ||
-        wxGetKeyState(WXK_DOWN) ||
-        wxGetKeyState(WXK_LEFT) ||
-        wxGetKeyState(WXK_RIGHT) ||
-        wxGetKeyState(WXK_HOME) ||
-        wxGetKeyState(WXK_END) ||
-        wxGetKeyState(WXK_PAGEUP) ||
-        wxGetKeyState(WXK_PAGEDOWN) ||
-        wxGetKeyState(WXK_NUMPAD_UP) ||
-        wxGetKeyState(WXK_NUMPAD_DOWN) ||
-        wxGetKeyState(WXK_NUMPAD_LEFT) ||
-        wxGetKeyState(WXK_NUMPAD_RIGHT) ||
-        wxGetKeyState(WXK_NUMPAD_PAGEDOWN) ||
-        wxGetKeyState(WXK_NUMPAD_PAGEUP) ||
-        wxGetKeyState(WXK_NUMPAD_HOME) ||
-        wxGetKeyState(WXK_NUMPAD_END) ||
-        wxGetKeyState(WXK_DELETE) ||
-        wxGetKeyState(WXK_NUMPAD_DELETE) ||
-        wxGetKeyState(WXK_TAB) ||
-        wxGetKeyState(WXK_RETURN) ||
-        wxGetKeyState(WXK_NUMPAD_ENTER) ||
-        wxGetKeyState(WXK_SPACE) ||
-        wxGetKeyState(WXK_NUMPAD_SPACE)
+    int key = event.GetKeyCode();
+    if (key == WXK_ALT ||
+        key == WXK_COMMAND ||
+        key == WXK_UP ||
+        key == WXK_DOWN ||
+        key == WXK_LEFT ||
+        key == WXK_RIGHT ||
+        key == WXK_HOME ||
+        key == WXK_END ||
+        key == WXK_PAGEUP ||
+        key == WXK_PAGEDOWN ||
+        key == WXK_NUMPAD_UP ||
+        key == WXK_NUMPAD_DOWN ||
+        key == WXK_NUMPAD_LEFT ||
+        key == WXK_NUMPAD_RIGHT ||
+        key == WXK_NUMPAD_PAGEDOWN ||
+        key == WXK_NUMPAD_PAGEUP ||
+        key == WXK_NUMPAD_HOME ||
+        key == WXK_NUMPAD_END ||
+        key == WXK_DELETE ||
+        key == WXK_NUMPAD_DELETE ||
+        key == WXK_TAB ||
+        key == WXK_RETURN ||
+        key == WXK_NUMPAD_ENTER ||
+        key == WXK_SPACE ||
+        key == WXK_NUMPAD_SPACE
         )
     {
         event.Skip();
@@ -728,34 +729,35 @@ void TransactionListCtrl::OnOpenAttachment(wxCommandEvent& WXUNUSED(event))
 
 void TransactionListCtrl::OnListKeyDown(wxListEvent& event)
 {
-    if (wxGetKeyState(WXK_COMMAND) || wxGetKeyState(WXK_ALT) || wxGetKeyState(WXK_CONTROL)) {
+    int key = event.GetKeyCode();
+    if (key == WXK_COMMAND || key == WXK_ALT || key == WXK_CONTROL) {
         event.Skip();
         return;
     }
 
     m_topItemIndex = GetTopItem() + GetCountPerPage() - 1;
 
-    if (wxGetKeyState(wxKeyCode('R'))) {
+    if (key == wxKeyCode('R')) {
         wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_TREEPOPUP_MARKRECONCILED);
         OnMarkTransaction(evt);
     }
-    else if (wxGetKeyState(wxKeyCode('U'))) {
+    else if (key == wxKeyCode('U')) {
         wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_TREEPOPUP_MARKUNRECONCILED);
         OnMarkTransaction(evt);
     }
-    else if (wxGetKeyState(wxKeyCode('F'))) {
+    else if (key == wxKeyCode('F')) {
         wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_TREEPOPUP_MARK_ADD_FLAG_FOLLOWUP);
         OnMarkTransaction(evt);
     }
-    else if (wxGetKeyState(wxKeyCode('D'))) {
+    else if (key == wxKeyCode('D')) {
         wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_TREEPOPUP_MARKDUPLICATE);
         OnMarkTransaction(evt);
     }
-    else if (wxGetKeyState(wxKeyCode('V'))) {
+    else if (key == wxKeyCode('V')) {
         wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_TREEPOPUP_MARKVOID);
         OnMarkTransaction(evt);
     }
-    else if (wxGetKeyState(WXK_DELETE) || wxGetKeyState(WXK_NUMPAD_DELETE))
+    else if (key == WXK_DELETE || key == WXK_NUMPAD_DELETE)
     {
         wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_TREEPOPUP_DELETE2);
         OnDeleteTransaction(evt);
