@@ -229,13 +229,43 @@ const wxString Model_Currency::fromString2Default(const wxString &s, const Data*
     if (s.empty()) return s;
     wxString str = s;
 
-    if (!currency->GROUP_SEPARATOR.empty())
-        str.Replace(currency->GROUP_SEPARATOR, wxEmptyString);
-    if (!currency->DECIMAL_POINT.empty())
-        str.Replace(currency->DECIMAL_POINT, GetBaseCurrency()->DECIMAL_POINT);
-
     wxRegEx pattern(R"([^0-9.,+-/*()])");
     pattern.ReplaceAll(&str, wxEmptyString);
+
+    auto locale = Model_Infotable::instance().GetStringInfo("LOCALE", "en_US");
+
+    if (locale.empty())
+    {
+        if (!currency->GROUP_SEPARATOR.empty())
+            str.Replace(currency->GROUP_SEPARATOR, wxEmptyString);
+        if (!currency->DECIMAL_POINT.empty())
+            str.Replace(currency->DECIMAL_POINT, GetBaseCurrency()->DECIMAL_POINT);
+    }
+    else
+    {
+        wxString one = toString(1.0);
+        wxRegEx pattern2(R"([^.,])");
+        pattern2.ReplaceAll(&one, wxEmptyString);
+
+        wxString thousand = toString(1000.0, nullptr, 0);
+        wxRegEx pattern3(R"([0-9])");
+        pattern3.ReplaceAll(&thousand, wxEmptyString);
+
+        if (one != thousand)
+        {
+            if (!thousand.empty())
+                str.Replace(thousand, wxEmptyString);
+        }
+        else
+        {
+            auto i = str.Replace(one, one);
+            for (size_t k = 1; k < i ; k++)
+            {
+                str.Replace(thousand, wxEmptyString, false);
+            }
+        }
+
+    }
 
     wxLogDebug("%s -> %s", s, str);
     return str;

@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-05-10 12:47+0300\n"
-"PO-Revision-Date: 2021-05-10 09:52\n"
+"PO-Revision-Date: 2021-05-16 08:16\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
@@ -589,7 +589,8 @@ msgstr "值变化: %s %s"
 #: assetspanel.cpp:770
 msgid "This asset does not have its own account\n\n"
 "Multiple transactions for this asset are not recommended."
-msgstr ""
+msgstr "此资产没有自己的帐户\n\n"
+"不建议对此资产进行多次交易。"
 
 #: assetspanel.cpp:772
 msgid "Asset Management"
@@ -769,7 +770,7 @@ msgstr "每月"
 #: billsdepositsdialog.cpp:54 billsdepositspanel.cpp:43
 #: model/Model_Budget.cpp:59
 msgid "Every 2 Months"
-msgstr ""
+msgstr "每2个月"
 
 #: billsdepositsdialog.cpp:55 billsdepositspanel.cpp:44
 #: model/Model_Budget.cpp:60
@@ -1128,12 +1129,12 @@ msgstr "分类"
 
 #: billsdepositsdialog.cpp:1467 transdialog.cpp:1327
 msgid "Clear color"
-msgstr ""
+msgstr "消除颜色"
 
 #: billsdepositsdialog.cpp:1472 transdialog.cpp:1332
 #, c-format
 msgid "Color #%i"
-msgstr ""
+msgstr "颜色 #%i"
 
 #: billsdepositsdialog.h:56
 msgid "New Recurring Transaction"
@@ -1227,7 +1228,7 @@ msgstr "删除账单和存款项目"
 
 #: billsdepositspanel.cpp:267
 msgid "En&ter"
-msgstr ""
+msgstr "确定(&T)"
 
 #: billsdepositspanel.cpp:268
 msgid "Enter Next Bills & Deposit Occurrence"
@@ -1387,7 +1388,7 @@ msgstr "预算分类摘要"
 #: budgetingpanel.cpp:172
 #, c-format
 msgid "Financial Year: %s - %li"
-msgstr ""
+msgstr "财政年度: %s - %li"
 
 #: budgetingpanel.cpp:176 reports/budget.cpp:92
 #, c-format
@@ -1402,7 +1403,7 @@ msgstr "月份 %s"
 #: budgetingpanel.cpp:186
 #, c-format
 msgid "%s    Start Date of: %s"
-msgstr ""
+msgstr "%s    开始日期: %s"
 
 #: budgetingpanel.cpp:189
 #, c-format
@@ -1916,7 +1917,7 @@ msgstr "新建/编辑自定义字段"
 
 #: customfieldlistdialog.cpp:52
 msgid "#"
-msgstr ""
+msgstr "#"
 
 #: customfieldlistdialog.cpp:55
 msgid "Properties"
@@ -2288,7 +2289,7 @@ msgstr "打开 MMEX 数据库 - 错误"
 
 #: diagnostics.cpp:50
 msgid "Diagnostics"
-msgstr ""
+msgstr "诊断"
 
 #: diagnostics.cpp:100
 msgid "Developers may ask you to provide information presented here in order to help diagnose issues you may report with the program."
@@ -2324,23 +2325,23 @@ msgstr ""
 
 #: filtertransdialog.cpp:63
 msgid "Start of Financial Year"
-msgstr ""
+msgstr "财政年度开始"
 
 #: filtertransdialog.cpp:64
 msgid "Start of This Year"
-msgstr ""
+msgstr "本年开始"
 
 #: filtertransdialog.cpp:65
 msgid "Since 90 days ago"
-msgstr ""
+msgstr "从90天前开始"
 
 #: filtertransdialog.cpp:66
 msgid "Since 30 days ago"
-msgstr ""
+msgstr "从30天前开始"
 
 #: filtertransdialog.cpp:67
 msgid "Since Today"
-msgstr ""
+msgstr "从今天开始"
 
 #: filtertransdialog.cpp:174 transactionsupdatedialog.cpp:108
 msgid "Specify"
@@ -2391,14 +2392,14 @@ msgstr "金额区间"
 
 #: filtertransdialog.cpp:345
 msgid "Settings"
-msgstr ""
+msgstr "设置"
 
 #: filtertransdialog.cpp:366 filtertransdialog.cpp:694
 #: filtertransdialog.cpp:739 filtertransdialog.cpp:948
 #: filtertransdialog.cpp:1083 filtertransdialog.cpp:1345
 #, c-format
 msgid "%i: Empty"
-msgstr ""
+msgstr "%i: 为空"
 
 #: filtertransdialog.cpp:375
 msgid "Save active values into current Preset selection"
@@ -2649,7 +2650,7 @@ msgstr ""
 
 #: images_list.cpp:452
 msgid "and more..."
-msgstr ""
+msgstr "及更多..."
 
 #: images_list.cpp:454
 #, c-format
@@ -2711,7 +2712,7 @@ msgstr "找不到数据表。"
 
 #: import_export/parsers.cpp:216
 msgid "Transactions"
-msgstr ""
+msgstr "交易"
 
 #: import_export/qif_export.cpp:48 import_export/qif_export.cpp:251
 #: import_export/qif_export.cpp:345
@@ -2720,11 +2721,11 @@ msgstr "QIF 导出"
 
 #: import_export/qif_export.cpp:49
 msgid "JSON Export"
-msgstr ""
+msgstr "导出 JSON"
 
 #: import_export/qif_export.cpp:50
 msgid "CSV Export"
-msgstr ""
+msgstr "导出 CSV"
 
 #: import_export/qif_export.cpp:110
 msgid "Parameters"
@@ -2736,15 +2737,15 @@ msgstr "日志"
 
 #: import_export/qif_export.cpp:127
 msgid "QIF"
-msgstr ""
+msgstr "QIF"
 
 #: import_export/qif_export.cpp:128
 msgid "JSON"
-msgstr ""
+msgstr "JSON"
 
 #: import_export/qif_export.cpp:129
 msgid "CSV"
-msgstr ""
+msgstr "CSV"
 
 #: import_export/qif_export.cpp:143 mmframe.cpp:3040 mmframe.cpp:3044
 #: mmframe.cpp:3063 mmframe.cpp:3067
@@ -2753,7 +2754,7 @@ msgstr "账户"
 
 #: import_export/qif_export.cpp:164 import_export/qif_import_gui.cpp:184
 msgid "To Date"
-msgstr ""
+msgstr "到日期"
 
 #: import_export/qif_export.cpp:178 import_export/qif_import_gui.cpp:276
 #: optionsettingsgeneral.cpp:104
@@ -2787,11 +2788,11 @@ msgstr "QIF文件 (*.qif)"
 
 #: import_export/qif_export.cpp:306
 msgid "Choose JSON data file to Export"
-msgstr ""
+msgstr "选择要导出的 JSON 数据文件"
 
 #: import_export/qif_export.cpp:308
 msgid "JSON Files (*.json)"
-msgstr ""
+msgstr "JSON 文件(*.json)"
 
 #: import_export/qif_export.cpp:316 import_export/univcsvdialog.cpp:1557
 msgid "CSV Files (*.csv)"
@@ -2860,7 +2861,7 @@ msgstr "过滤细节："
 
 #: import_export/qif_import_gui.cpp:207
 msgid "Data"
-msgstr ""
+msgstr "数据"
 
 #: import_export/qif_import_gui.cpp:264
 msgid "Use account number instead of account name"
@@ -2892,7 +2893,7 @@ msgstr ""
 #: import_export/qif_import_gui.cpp:390
 #, c-format
 msgid "Line %zu \t %s\n"
-msgstr ""
+msgstr "行 %zu \t %s\n"
 
 #: import_export/qif_import_gui.cpp:463
 #, c-format
@@ -2952,7 +2953,7 @@ msgstr "导入交易 %i / %i"
 
 #: import_export/qif_import_gui.cpp:869
 msgid "Importing Transfers"
-msgstr ""
+msgstr "正在导入交易"
 
 #: import_export/qif_import_gui.cpp:894
 msgid "Importing Split transactions"
@@ -3112,7 +3113,7 @@ msgstr "选择要导出的CSV数据文件"
 
 #: import_export/univcsvdialog.cpp:438
 msgid "Template name"
-msgstr ""
+msgstr "模板名称"
 
 #: import_export/univcsvdialog.cpp:439
 msgid "Save Template"
@@ -3193,7 +3194,7 @@ msgstr ""
 
 #: import_export/univcsvdialog.cpp:999
 msgid "Invalid Date."
-msgstr ""
+msgstr "日期无效。"
 
 #: import_export/univcsvdialog.cpp:1000 mmTextCtrl.cpp:98
 msgid "Invalid Amount."
@@ -3211,7 +3212,7 @@ msgstr ""
 #: import_export/univcsvdialog.cpp:1034
 #, c-format
 msgid "Total Lines: %ld"
-msgstr ""
+msgstr "总行数： %ld"
 
 #: import_export/univcsvdialog.cpp:1036
 #, c-format
@@ -3305,7 +3306,7 @@ msgstr ""
 
 #: import_export/univcsvdialog.cpp:1834
 msgid "Enter a value"
-msgstr ""
+msgstr "输入值："
 
 #: maincurrencydialog.cpp:74 reports/summarystocks.cpp:191 stockdialog.cpp:427
 #: stocks_list.cpp:91
@@ -3314,7 +3315,7 @@ msgstr "股票代号"
 
 #: maincurrencydialog.cpp:76
 msgid "Last Rate"
-msgstr ""
+msgstr "上次评分"
 
 #: maincurrencydialog.cpp:76
 msgid "Fixed Rate"
@@ -4101,11 +4102,11 @@ msgstr "打印当前显示内容"
 
 #: mmframe.cpp:1378
 msgid "E&xit\tAlt-X"
-msgstr ""
+msgstr "退出(&X)\tAlt+X"
 
 #: mmframe.cpp:1378
 msgid "Quit this program"
-msgstr ""
+msgstr "退出此程序"
 
 #: mmframe.cpp:1384
 msgid "&Toolbar"
@@ -4185,11 +4186,11 @@ msgstr "系统默认"
 
 #: mmframe.cpp:1446
 msgid "&Home Page"
-msgstr ""
+msgstr "主页(&H)"
 
 #: mmframe.cpp:1446 mmframe.cpp:1686
 msgid "Show Home Page"
-msgstr ""
+msgstr "显示主页"
 
 #: mmframe.cpp:1455
 msgid "Change the account type of an account."
@@ -4265,11 +4266,11 @@ msgstr "资产(&A)"
 
 #: mmframe.cpp:1520
 msgid "T&heme Manager"
-msgstr ""
+msgstr "主题(&T) 管理器"
 
 #: mmframe.cpp:1520 mmframe.cpp:2450 optionsettingsview.cpp:273 themes.cpp:144
 msgid "Theme Manager"
-msgstr ""
+msgstr "主题管理器"
 
 #: mmframe.cpp:1526
 msgid "Transaction Report &Filter..."
@@ -4333,7 +4334,7 @@ msgstr "生成数据库报表或修复错误"
 
 #: mmframe.cpp:1564
 msgid "Databa&se"
-msgstr ""
+msgstr "数据库(&S)"
 
 #: mmframe.cpp:1565
 msgid "Database management"
@@ -4349,7 +4350,7 @@ msgstr "显示帮助文件"
 
 #: mmframe.cpp:1577
 msgid "&Website"
-msgstr ""
+msgstr "网站(&W)"
 
 #: mmframe.cpp:1578
 msgid "Open the Money Manager EX website for latest news, updates etc"

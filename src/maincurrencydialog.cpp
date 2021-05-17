@@ -123,11 +123,14 @@ void mmMainCurrencyDialog::fillControls()
                 continue;
         }
 
+        wxString amount = bHistoryEnabled_
+            ? Model_Currency::toString(Model_CurrencyHistory::getLastRate(currencyID), nullptr, 4)
+            : Model_Currency::toString(currency.BASECONVRATE, nullptr, 4);
         wxVector<wxVariant> data;
         data.push_back(wxVariant(base_currency_id == currencyID ? L"\u2713" : L""));
         data.push_back(wxVariant(currency.CURRENCY_SYMBOL));
         data.push_back(wxVariant(currency.CURRENCYNAME));
-        data.push_back(wxVariant(bHistoryEnabled_ ? wxString() << Model_CurrencyHistory::getLastRate(currencyID) : wxString() << currency.BASECONVRATE));
+        data.push_back(wxVariant(amount));
         currencyListBox_->AppendItem(data, static_cast<wxUIntPtr>(currencyID));
         if (selected_index == currencyListBox_->GetItemCount() - 1)
         {
@@ -844,16 +847,14 @@ void mmMainCurrencyDialog::OnTextChanged(wxCommandEvent& event)
 bool mmMainCurrencyDialog::GetOnlineHistory(const wxString &symbol, wxDateTime begin_date, std::map<wxDateTime, double> &historical_rates, wxString &msg)
 {
     wxString base_currency_symbol;
-
-    wxString s = "%s%s=X";
-    if (g_fiat_curr().Index(symbol) == wxNOT_FOUND)
-        s = "%s-%s";
-
-
     if (!Model_Currency::GetBaseCurrencySymbol(base_currency_symbol)) {
         msg = _("Could not find base currency symbol!");
         return false;
     }
+
+    wxString s = "%s%s=X";
+    if (!g_fiat_curr().Contains(symbol))
+        s = "%s-%s";
 
     wxString period1 = wxString::Format("%lld", begin_date.GetTicks()); //"1577836800";
     const wxString URL = wxString::Format(mmex::weblink::YahooQuotesHistory
