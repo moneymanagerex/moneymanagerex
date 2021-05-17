@@ -63,7 +63,7 @@ Model_Category::Data* Model_Category::get(const wxString& name)
     return category;
 }
 
-const std::map<wxString, std::pair<int, int> > Model_Category::all_categories()
+const std::map<wxString, std::pair<int, int> > Model_Category::all_categories(bool translate)
 {
     std::map<wxString, std::pair<int, int> > full_categs;
     for (const auto& c : instance().all(COL_CATEGNAME))
@@ -71,7 +71,7 @@ const std::map<wxString, std::pair<int, int> > Model_Category::all_categories()
         full_categs[c.CATEGNAME] = std::make_pair(c.CATEGID, -1);
         for (const auto& s : Model_Subcategory::instance().find(Model_Subcategory::CATEGID(c.CATEGID)))
         {
-            const wxString nameStr = instance().full_name(c.CATEGID, s.SUBCATEGID);
+            const wxString nameStr = instance().full_name(c.CATEGID, s.SUBCATEGID, translate);
             full_categs[nameStr] = std::make_pair(c.CATEGID, s.SUBCATEGID);
         }
     }
@@ -88,7 +88,7 @@ Model_Subcategory::Data_Set Model_Category::sub_category(const Data& r)
     return Model_Subcategory::instance().find(Model_Subcategory::CATEGID(r.CATEGID));
 }
 
-const wxString Model_Category::full_name(const Data* category, const Model_Subcategory::Data* sub_category)
+const wxString Model_Category::full_name(const Data* category, const Model_Subcategory::Data* sub_category, bool translate)
 {
     static wxString delimiter;
     if (delimiter.empty()) {
@@ -96,16 +96,19 @@ const wxString Model_Category::full_name(const Data* category, const Model_Subca
     }
     if (!category) return "";
     if (!sub_category)
-        return wxGetTranslation(category->CATEGNAME);
-    else
-        return wxGetTranslation(category->CATEGNAME) + delimiter + wxGetTranslation(sub_category->SUBCATEGNAME);
+        return translate ? wxGetTranslation(category->CATEGNAME) : category->CATEGNAME;
+    else {
+        return translate ?
+            wxGetTranslation(category->CATEGNAME) + delimiter + wxGetTranslation(sub_category->SUBCATEGNAME)
+            : category->CATEGNAME + delimiter + sub_category->SUBCATEGNAME;
+    }
 }
 
-const wxString Model_Category::full_name(const int category_id, const int subcategory_id)
+const wxString Model_Category::full_name(int category_id, int subcategory_id, bool translate)
 {
     Data* category = Model_Category::instance().get(category_id);
     Model_Subcategory::Data* sub_category = Model_Subcategory::instance().get(subcategory_id);
-    return full_name(category, sub_category);
+    return full_name(category, sub_category, translate);
 }
 
 bool Model_Category::is_used(int id, int sub_id)

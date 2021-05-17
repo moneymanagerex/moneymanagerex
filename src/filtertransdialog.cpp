@@ -991,7 +991,9 @@ const wxString mmFilterTransactionsDialog::to_json(bool i18n)
         json_writer.Key((i18n ? _("Include Similar") : "SIMILAR_YN").utf8_str());
         json_writer.Bool(bSimilarCategoryStatus_);
         json_writer.Key((i18n ? _("Category") : "CATEGORY").utf8_str());
-        json_writer.String(btnCategory_->GetLabel().utf8_str());
+        auto categ = Model_Category::full_name(categID_, subcategID_, i18n);
+        wxLogDebug("%s", categ);
+        json_writer.String(categ.utf8_str());
     }
 
     if (statusCheckBox_->IsChecked())
@@ -1118,28 +1120,30 @@ void mmFilterTransactionsDialog::from_json(const wxString &data)
 
     //Category
     Value& j_category = GetValueByPointerWithDefault(j_doc, "/CATEGORY", "");
-    const wxString& s_category = j_category.IsString() ? wxString::FromUTF8(j_category.GetString()) : "";
+    wxString s_category = j_category.IsString() ? wxString::FromUTF8(j_category.GetString()) : "";
     categoryCheckBox_->SetValue(!s_category.empty());
     btnCategory_->Enable(categoryCheckBox_->IsChecked());
 
     subcategID_ = -1;
     categID_ = -1;
+
+    const wxString delimiter = Model_Infotable::instance().GetStringInfo("CATEG_DELIMITER", ":");
     wxStringTokenizer categ_token(s_category, ":", wxTOKEN_RET_EMPTY_ALL);
     const auto categ_name = categ_token.GetNextToken().Trim();
-    Model_Category::Data* category = Model_Category::instance().get(categ_name);
-    if (category)
-    {
-        categID_ = category->CATEGID;
+    const auto subcateg_name = categ_token.GetNextToken().Trim(false);
+    s_category = categ_name + (s_category.Contains(":") ? delimiter + subcateg_name : "");
 
-        Model_Subcategory::Data* sub_category = nullptr;
-        const auto subcateg_name = categ_token.GetNextToken().Trim(false);
-        if (!subcateg_name.IsEmpty())
+    for (const auto& entry : Model_Category::instance().all_categories(false))
+    {
+        //wxLogDebug("%s : %i %i", entry.first, entry.second.first, entry.second.second);
+        if (s_category == entry.first)
         {
-            sub_category = Model_Subcategory::instance().get(subcateg_name, categID_);
-            if (sub_category)
-                subcategID_ = sub_category->SUBCATEGID;
+            categID_ = entry.second.first;
+            subcategID_ = entry.second.second;
+            break;
         }
     }
+
     btnCategory_->SetLabelText(Model_Category::full_name(categID_, subcategID_));
 
     bSimilarCategoryStatus_ = false;
