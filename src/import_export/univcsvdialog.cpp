@@ -925,10 +925,10 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& WXUNUSED(event))
     const wxString acctName = m_choice_account_->GetStringSelection();
     Model_Account::Data* from_account = Model_Account::instance().get(acctName);
 
-    if (!from_account)
-    {
+    if (!from_account){
         return mmErrorDialogs::InvalidAccount(m_choice_account_);
     }
+
     fromAccountID_ = from_account->ACCOUNTID;
 
     const wxString fileName = m_text_ctrl_->GetValue();

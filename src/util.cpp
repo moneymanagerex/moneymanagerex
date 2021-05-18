@@ -354,6 +354,9 @@ bool mmParseDisplayStringToDate(wxDateTime& date, const wxString& str_date, cons
     if (date_formats_regex().count(sDateMask) == 0)
         return false;
 
+    wxString date_str = str_date;
+    wxString mask_str = sDateMask;
+
     static std::unordered_map<wxString, wxDate> cache;
     const auto it = cache.find(str_date);
     if (it != cache.end())
@@ -362,21 +365,48 @@ bool mmParseDisplayStringToDate(wxDateTime& date, const wxString& str_date, cons
         return true;
     }
 
-    const wxString regex = date_formats_regex().at(sDateMask);
+    wxString regex = date_formats_regex().at(mask_str);
     wxRegEx pattern(regex);
 
     if (pattern.Matches(str_date))
     {
-        if (sDateMask.Contains("Mon")) return true;
-        const auto date_mask = g_date_formats_map().at(sDateMask);
-        wxString date_str = pattern.GetMatch(str_date);
-        if (!date_mask.Contains(" ")) {
-            date_str.Replace(" ", "");
+        if (mask_str.Contains("Mon")) {
+            int i = 1;
+            for (const auto& m : MONTHS_SHORT) {
+                if (date_str.Replace(m, wxString::Format("%02d", i)) != 0) {
+                    mask_str.Replace("%Mon", "%m");
+                    break;
+                }
+                i++;
+            }
+            mask_str.Replace("%w ", "");
+            wxRegEx pattern2(R"([^%dmyY])");
+            pattern2.ReplaceAll(&mask_str, " ");
+            regex = date_formats_regex().at(mask_str);
+
+            wxRegEx pattern3(R"([^0-9 ])");
+            pattern3.ReplaceAll(&date_str, " ");
+
         }
-        wxString::const_iterator end;
-        bool t = date.ParseFormat(date_str, sDateMask, &end);
-        //wxLogDebug("String:%s Mask:%s OK:%s ISO:%s Pattern:%s", date_str, date_mask, wxString(t ? "true" : "false"), date.FormatISODate(), regex);
-        return t;
+
+        wxRegEx pattern2(regex);
+        if (pattern2.Matches(date_str))
+        {
+            date_str = pattern2.GetMatch(date_str);
+            date_str.Trim(false);
+            try {
+                const auto date_mask = g_date_formats_map().at(mask_str);
+                if (!date_mask.Contains(" ")) {
+                    date_str.Replace(" ", "");
+                }
+            }
+            catch (...){}
+
+            wxString::const_iterator end;
+            bool t = date.ParseFormat(date_str, mask_str, &end);
+            wxLogDebug("String:%s Mask:%s OK:%s ISO:%s Pattern:%s", str_date, sDateMask, wxString(t ? "true" : "false"), date.FormatISODate(), regex);
+            return t;
+        }
     }
     return false;
 }
@@ -459,6 +489,10 @@ const std::unordered_map<wxString, wxString> g_date_formats_map()
     const auto local_date_fmt = wxLocale::GetInfo(wxLOCALE_SHORT_DATE_FMT);
     const wxString formats[] = {
         local_date_fmt,
+        "%d %Mon %Y",
+        "%d %Mon %y",
+        "%d %m %y",
+        "%d %m %Y",
         "%d,%m,%y",
         "%d.%m.%y",
         "%d.%m.%Y",
