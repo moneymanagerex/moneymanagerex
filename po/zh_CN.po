@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-05-10 12:47+0300\n"
-"PO-Revision-Date: 2021-05-16 13:16\n"
+"PO-Revision-Date: 2021-05-19 03:38\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
@@ -598,7 +598,7 @@ msgstr "资产管理"
 
 #: assetspanel.cpp:791
 msgid "Account \t Date\t   Value\n\n"
-msgstr ""
+msgstr "账户日期\n\n"
 
 #: attachmentdialog.cpp:55 general_report_manager.cpp:430
 msgid "Description"
@@ -2506,7 +2506,7 @@ msgstr ""
 
 #: general_report_manager.cpp:428
 msgid "Lua"
-msgstr ""
+msgstr "Lua语言"
 
 #: general_report_manager.cpp:429
 msgid "Template"
