@@ -1,4 +1,4 @@
-FROM debian:jessie-slim
+FROM debian:stretch-slim
 MAINTAINER developers@moneymanagerex.org
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \

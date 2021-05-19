@@ -22,7 +22,7 @@ env:
   # Debian
   # - OS=debian DIST=buster # see issue #1331 on GitHub
   - OS=debian DIST=buster
-  - OS=debian DIST=jessie
+  - OS=debian DIST=stretch
   # Fedora
   - OS=fedora DIST=31
   # Open SuSe
@@ -41,8 +41,6 @@ env:
 
 matrix:
   allow_failures:
-  - os: debian
-    dist: jessie
   - os: debian
     dist: buster
   - os: ubuntu
