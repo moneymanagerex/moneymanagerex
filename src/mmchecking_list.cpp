@@ -1356,10 +1356,14 @@ const wxString TransactionListCtrl::getItem(long item, long column, bool realenu
         return tran.UDFC05;
     }
 
-    Model_Account::Data* account = Model_Account::instance().get(tran.ACCOUNTID);
-    Model_Currency::Data* currency = Model_Currency::instance().get(account->CURRENCYID);
+    bool is_transfer = Model_Checking::is_transfer(tran.TRANSCODE)
+        && m_cp->m_AccountID != tran.ACCOUNTID;
+    Model_Account::Data* account = Model_Account::instance().get(is_transfer && !m_cp->m_allAccounts ? tran.TOACCOUNTID : tran.ACCOUNTID);
+    Model_Currency::Data* currency = account
+        ? Model_Currency::instance().get(account->CURRENCYID)
+        : Model_Currency::GetBaseCurrency();
     double balance = m_cp->m_allAccounts
-        ? Model_Checking::balance(tran, account->ACCOUNTID)
+        ? Model_Checking::balance(tran, tran.ACCOUNTID)
         : tran.AMOUNT;
 
     switch (realenum ? column : m_real_columns[column])
