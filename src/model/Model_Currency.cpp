@@ -189,11 +189,11 @@ const wxString Model_Currency::toString(double value, const Data* currency, int 
         use_locale = locale.empty() ? "N" : "Y";
     }
 
+    const Data* curr = currency ? currency : GetBaseCurrency();
+    precision = (precision >= 0) ? precision : log10(curr->SCALE);
+
     if (use_locale == "N")
     {
-        const Data* curr = currency ? currency : GetBaseCurrency();
-        precision = (precision >= 0) ? precision : log10(curr->SCALE);
-
         s = fmt::format(std::locale("en_US.UTF-8"), "{:L}", static_cast<int>(value))
             + wxString(fmt::format("{:.{}f}", fabs(value - static_cast<int>(value)), precision)).Mid(1);
 
@@ -205,7 +205,6 @@ const wxString Model_Currency::toString(double value, const Data* currency, int 
     }
     else
     {
-        precision = (precision >= 0) ? precision : 2;
         s = fmt::format(std::locale(locale.c_str()), "{:L}", static_cast<int>(value))
             + wxString(fmt::format("{:.{}f}", fabs(value - static_cast<int>(value)), precision)).Mid(1);
     }
