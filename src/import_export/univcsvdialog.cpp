@@ -1410,7 +1410,7 @@ void mmUnivCSVDialog::update_preview()
                         {
                         case UNIV_CSV_DATE:
                         {
-                            text << inQuotes(Model_Checking::TRANSDATE(pBankTransaction).Format(date_format_), delimit);
+                            text << inQuotes(mmGetDateForDisplay(Model_Checking::TRANSDATE(pBankTransaction).FormatISODate(),date_format_), delimit);
                             break;
                         }
                         case UNIV_CSV_PAYEE:
