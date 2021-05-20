@@ -504,8 +504,12 @@ void mmUnivCSVDialog::SetSettings(const wxString &json_data)
     if (!df.empty())
     {
         const auto m = g_date_formats_map();
-        if (m.find(df) != m.end()) {
-            const wxString mask = m.at(df);
+
+        auto it = std::find_if(m.begin(), m.end(),
+            [&df](const std::pair<wxString, wxString>& element) { return element.first == df; });
+
+        if (it != m.end()) {
+            const wxString mask = it->second;
             choiceDateFormat_->SetStringSelection(mask);
             date_format_ = df;
         }
