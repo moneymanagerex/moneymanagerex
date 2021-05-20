@@ -373,7 +373,9 @@ bool mmParseDisplayStringToDate(wxDateTime& date, const wxString& str_date, cons
         if (mask_str.Contains("Mon")) {
             int i = 1;
             for (const auto& m : MONTHS_SHORT) {
-                if (date_str.Replace(m, wxString::Format("%02d", i)) != 0) {
+                if (date_str.Replace(m, wxString::Format("%02d", i)) != 0
+                    || date_str.Replace(wxGetTranslation(m), wxString::Format("%02d", i)) != 0)
+                {
                     mask_str.Replace("%Mon", "%m");
                     break;
                 }
@@ -494,6 +496,8 @@ const std::vector<std::pair<wxString, wxString> > g_date_formats_map()
         local_date_fmt,
         "%d %Mon %Y",
         "%d %Mon %y",
+        "%d-%Mon-%Y",
+        "%d %Mon'%y",
         "%d %m %y",
         "%d %m %Y",
         "%d,%m,%y",
@@ -538,9 +542,7 @@ const std::vector<std::pair<wxString, wxString> > g_date_formats_map()
         df.push_back(std::make_pair(entry, local_date_mask));
     }
 
-    std::vector<std::pair<wxString, wxString>> elems(df.begin(), df.end());
     std::sort(df.begin(), df.end(), comp);
-
     return df;
 }
 
