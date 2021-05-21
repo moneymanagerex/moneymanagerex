@@ -482,7 +482,17 @@ const std::map<wxString, wxString> &date_formats_regex()
 }
 
 bool comp(std::pair<wxString, wxString> a, std::pair<wxString, wxString> b) {
-    return a.second < b.second;
+
+    wxString one = a.second;
+    wxRegEx pattern(R"([^DayMonY])");
+    pattern.ReplaceAll(&one, wxEmptyString);
+    one += a.second;
+
+    wxString two = b.second;
+    pattern.ReplaceAll(&two, wxEmptyString);
+    two += b.second;
+
+    return one < two;
 }
 
 const std::vector<std::pair<wxString, wxString> > g_date_formats_map()
