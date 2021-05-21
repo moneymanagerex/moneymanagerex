@@ -60,6 +60,7 @@ wxBEGIN_EVENT_TABLE(TransactionListCtrl, mmListCtrl)
     EVT_MENU_RANGE(MENU_TREEPOPUP_NEW_WITHDRAWAL, MENU_TREEPOPUP_NEW_DEPOSIT, TransactionListCtrl::OnNewTransaction)
     EVT_MENU(MENU_TREEPOPUP_NEW_TRANSFER, TransactionListCtrl::OnNewTransferTransaction)
     EVT_MENU(MENU_TREEPOPUP_DELETE2, TransactionListCtrl::OnDeleteTransaction)
+    EVT_MENU_RANGE(MENU_TREEPOPUP_DELETE_VIEWED, MENU_TREEPOPUP_DELETE_UNRECONCILED, TransactionListCtrl::OnDeleteViewedTransaction)
     EVT_MENU(MENU_TREEPOPUP_EDIT2, TransactionListCtrl::OnEditTransaction)
     EVT_MENU(MENU_TREEPOPUP_MOVE2, TransactionListCtrl::OnMoveTransaction)
 
@@ -769,7 +770,69 @@ void TransactionListCtrl::OnListKeyDown(wxListEvent& event)
 }
 //----------------------------------------------------------------------------
 
-void TransactionListCtrl::OnDeleteTransaction(wxCommandEvent& /*event*/)
+void TransactionListCtrl::OnDeleteViewedTransaction(wxCommandEvent& event)
+{
+    auto i = event.GetId();
+
+    if (i == MENU_TREEPOPUP_DELETE_VIEWED)
+    {
+        wxMessageDialog msgDlg(this
+            , _("Do you really want to delete all the transactions shown?")
+            , _("Confirm Transaction Deletion")
+            , wxYES_NO | wxNO_DEFAULT | wxICON_ERROR);
+        if (msgDlg.ShowModal() == wxID_YES)
+        {
+            DeleteTransactionsByStatus("");
+        }
+    }
+    else if (i == MENU_TREEPOPUP_DELETE_FLAGGED)
+    {
+        wxMessageDialog msgDlg(this
+            , wxString::Format(_("Do you really want to delete all the \"%s\" transactions shown?"), _("Follow Up"))
+            , _("Confirm Transaction Deletion")
+            , wxYES_NO | wxNO_DEFAULT | wxICON_QUESTION);
+        if (msgDlg.ShowModal() == wxID_YES)
+        {
+            DeleteTransactionsByStatus(Model_Checking::all_status()[Model_Checking::FOLLOWUP]);
+        }
+    }
+    else if (i == MENU_TREEPOPUP_DELETE_UNRECONCILED)
+    {
+        wxMessageDialog msgDlg(this
+            , wxString::Format(_("Do you really want to delete all the \"%s\" transactions shown?"), _("Unreconciled"))
+            , _("Confirm Transaction Deletion")
+            , wxYES_NO | wxNO_DEFAULT | wxICON_QUESTION);
+        if (msgDlg.ShowModal() == wxID_YES)
+        {
+            DeleteTransactionsByStatus(Model_Checking::all_status()[Model_Checking::NONE]);
+        }
+    }
+    refreshVisualList();
+}
+
+void TransactionListCtrl::DeleteTransactionsByStatus(const wxString& status)
+{
+    const auto s = Model_Checking::toShortStatus(status);
+    Model_Checking::instance().Savepoint();
+    Model_Attachment::instance().Savepoint();
+    Model_Splittransaction::instance().Savepoint();
+    for (const auto& tran : this->m_trans)
+    {
+        if (tran.STATUS == s || (s.empty() && status.empty()))
+        {
+            // remove also removes any split transactions
+            Model_Checking::instance().remove(tran.TRANSID);
+            mmAttachmentManage::DeleteAllAttachments(Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION), tran.TRANSID);
+
+        }
+    }
+    Model_Splittransaction::instance().ReleaseSavepoint();
+    Model_Attachment::instance().ReleaseSavepoint();
+    Model_Checking::instance().ReleaseSavepoint();
+}
+
+
+void TransactionListCtrl::OnDeleteTransaction(wxCommandEvent& WXUNUSED(event))
 {
     // check if any transactions selected
     int sel = GetSelectedItemCount();
@@ -1209,27 +1272,6 @@ void TransactionListCtrl::DeleteViewedTransactions()
     Model_Attachment::instance().ReleaseSavepoint();
     Model_Checking::instance().ReleaseSavepoint();
 }
-
-void TransactionListCtrl::DeleteFlaggedTransactions(const wxString& status)
-{
-    Model_Checking::instance().Savepoint();
-    Model_Attachment::instance().Savepoint();
-    Model_Splittransaction::instance().Savepoint();
-    for (const auto& tran : this->m_trans)
-    {
-        if (tran.STATUS == status)
-        {
-            // remove also removes any split transactions
-            Model_Checking::instance().remove(tran.TRANSID);
-            mmAttachmentManage::DeleteAllAttachments(Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION), tran.TRANSID);
-
-        }
-    }
-    Model_Splittransaction::instance().ReleaseSavepoint();
-    Model_Attachment::instance().ReleaseSavepoint();
-    Model_Checking::instance().ReleaseSavepoint();
-}
-
 
 void TransactionListCtrl::doSearchText(const wxString& value)
 {
