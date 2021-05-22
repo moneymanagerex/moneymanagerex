@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-05-21 17:23+0300\n"
-"PO-Revision-Date: 2021-05-21 16:23\n"
+"PO-Revision-Date: 2021-05-22 09:36\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -3775,15 +3775,15 @@ msgstr "Confirmez la suppression de l'opération"
 #: mmchecking_list.cpp:791 mmchecking_list.cpp:802
 #, c-format
 msgid "Do you really want to delete all the \"%s\" transactions shown?"
-msgstr "Souhaitez-vous réellement supprimer les \"%s\" opérations affichées ?"
+msgstr "Souhaitez-vous réellement supprimer l'ensemble des \"%s\" opérations affichées ?"
 
 #: mmchecking_list.cpp:791
 msgid "Follow Up"
-msgstr "A suivre"
+msgstr "Suivi"
 
 #: mmchecking_list.cpp:802
 msgid "Unreconciled"
-msgstr "Non-réconcilié"
+msgstr "Non rapproché"
 
 #: mmchecking_list.cpp:845
 #, c-format
