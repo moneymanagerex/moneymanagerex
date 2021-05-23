@@ -464,15 +464,47 @@ void mmCheckingPanel::updateExtraTransactionData(bool single, bool foreign)
     else
     {
         m_info_panel_mini->SetLabelText("");
-        if (m_listCtrlAccount->getSelectedId().size() > 0)
+        const auto s = m_listCtrlAccount->getSelectedId();
+        if (s.size() > 0)
         {
             enableTransactionButtons(true, false, false);
-            m_info_panel->SetLabelText("");
-        } else
+
+            wxString maxDate;
+            wxString minDate;
+            double balance = 0;
+            for (const auto& i : s)
+            {
+                const Model_Checking::Data* trx = Model_Checking::instance().get(i);
+                balance += Model_Checking::balance(trx, m_AccountID);
+                if (minDate > trx->TRANSDATE || maxDate.empty()) minDate = trx->TRANSDATE;
+                if (maxDate < trx->TRANSDATE || maxDate.empty()) maxDate = trx->TRANSDATE;
+            }
+
+            wxDateTime min_date, max_date;
+            min_date.ParseISODate(minDate);
+            max_date.ParseISODate(maxDate);
+            int days = max_date.Subtract(min_date).GetDays();
+
+            Model_Account::Data *account = Model_Account::instance().get(m_AccountID);
+            Model_Currency::Data* currency = nullptr;
+            if (account) currency = Model_Currency::instance().get(account->CURRENCYID);
+            wxString msg;
+            msg = wxString::Format(_("Transactions selected: %zu"), s.size());
+            msg += "\n";
+            if (currency) {
+                msg += wxString::Format(_("Selected transactions balance: %s")
+                    , Model_Currency::toCurrency(balance, currency));
+                msg += "\n";
+            }
+            msg += wxString::Format(_("Days between selected transactions: %d"), days);
+
+            m_info_panel->SetLabelText(msg);
+        }
+        else
         {
             enableTransactionButtons(false, false, false);
             showTips();
-        }   
+        }
     }
 }
 //----------------------------------------------------------------------------
