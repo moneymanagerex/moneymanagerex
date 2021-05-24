@@ -497,7 +497,9 @@ void mmCheckingPanel::updateExtraTransactionData(bool single, bool foreign)
                 msg += "\n";
             }
             msg += wxString::Format(_("Days between selected transactions: %d"), days);
-
+#ifdef __WXMAC__    // See issue #2914
+            msg = "";
+#endif
             m_info_panel->SetLabelText(msg);
         }
         else
