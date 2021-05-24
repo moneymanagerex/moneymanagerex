@@ -504,8 +504,12 @@ void mmUnivCSVDialog::SetSettings(const wxString &json_data)
     if (!df.empty())
     {
         const auto m = g_date_formats_map();
-        if (m.find(df) != m.end()) {
-            const wxString mask = m.at(df);
+
+        auto it = std::find_if(m.begin(), m.end(),
+            [&df](const std::pair<wxString, wxString>& element) { return element.first == df; });
+
+        if (it != m.end()) {
+            const wxString mask = it->second;
             choiceDateFormat_->SetStringSelection(mask);
             date_format_ = df;
         }
@@ -957,7 +961,8 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& WXUNUSED(event))
     const long linesToImport = lastRow - firstRow;
     long countEmptyLines = 0;
 
-    Model_Checking::instance().Savepoint();
+    Model_Checking::instance().Begin();
+    Model_Checking::instance().Savepoint("IMP");
 
     wxProgressDialog progressDlg(_("Universal CSV Import")
         , wxEmptyString, linesToImport
@@ -1058,11 +1063,12 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& WXUNUSED(event))
 
     msg << "\n\n";
 
-    // Since all database transactions are only in memory,
+    Model_Checking::instance().ReleaseSavepoint("IMP");
+
     if (!canceledbyuser && nImportedLines > 0)
     {
         // we need to save them to the database.
-        Model_Checking::instance().ReleaseSavepoint();
+        Model_Checking::instance().Commit();
         mmWebApp::MMEX_WebApp_UpdateAccount();
         mmWebApp::MMEX_WebApp_UpdatePayee();
         mmWebApp::MMEX_WebApp_UpdateCategory();
@@ -1074,8 +1080,8 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& WXUNUSED(event))
     }
     else
     {
-        // and discard the database changes.
-        Model_Checking::instance().Rollback();
+        // discard the database changes.
+        Model_Checking::instance().Rollback("");
         if (canceledbyuser) msg << _("Imported transactions discarded by user!");
         else msg << _("No imported transactions!");
         msg << "\n\n";
@@ -1406,7 +1412,7 @@ void mmUnivCSVDialog::update_preview()
                         {
                         case UNIV_CSV_DATE:
                         {
-                            text << inQuotes(Model_Checking::TRANSDATE(pBankTransaction).Format(date_format_), delimit);
+                            text << inQuotes(mmGetDateForDisplay(Model_Checking::TRANSDATE(pBankTransaction).FormatISODate(),date_format_), delimit);
                             break;
                         }
                         case UNIV_CSV_PAYEE:

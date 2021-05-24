@@ -162,7 +162,7 @@ const std::map<wxString, wxString> &date_formats_regex();
 const wxDateTime mmParseISODate(const wxString& str);
 const wxString mmGetDateForDisplay(const wxString &iso_date, const wxString& dateFormat = Option::instance().getDateFormat());
 bool mmParseDisplayStringToDate(wxDateTime& date, const wxString& sDate, const wxString& sDateMask);
-extern const std::unordered_map<wxString, wxString> g_date_formats_map();
+extern const std::vector<std::pair<wxString, wxString>> g_date_formats_map();
 extern const std::map<int, std::pair<wxConvAuto, wxString> > g_encoding;
 
 inline const wxString mmGetMonthName(wxDateTime::Month month) { return MONTHS[static_cast<int>(month)]; }
@@ -188,7 +188,7 @@ public:
     int getErrorCount() const;
     bool isDateFormatFound() const;
 private:
-    std::unordered_map<wxString, wxString> m_date_formats_temp;
+    std::vector<std::pair<wxString, wxString> > m_date_formats_temp;
 
     //Numbers of successfully applied Format Specifier for every handled date string
     std::map<wxString, int> m_date_parsing_stat;

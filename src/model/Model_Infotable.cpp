@@ -63,6 +63,11 @@ void Model_Infotable::Set(const wxString& key, int value)
     this->Set(key, wxString::Format("%d", value));
 }
 
+void Model_Infotable::Set(const wxString& key, bool value)
+{
+    this->Set(key, wxString::Format("%s", value ? "TRUE" : "FALSE"));
+}
+
 void Model_Infotable::Set(const wxString& key, const wxDateTime& date)
 {
     this->Set(key, date.FormatISODate());

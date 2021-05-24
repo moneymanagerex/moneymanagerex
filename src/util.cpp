@@ -373,7 +373,9 @@ bool mmParseDisplayStringToDate(wxDateTime& date, const wxString& str_date, cons
         if (mask_str.Contains("Mon")) {
             int i = 1;
             for (const auto& m : MONTHS_SHORT) {
-                if (date_str.Replace(m, wxString::Format("%02d", i)) != 0) {
+                if (date_str.Replace(m, wxString::Format("%02d", i)) != 0
+                    || date_str.Replace(wxGetTranslation(m), wxString::Format("%02d", i)) != 0)
+                {
                     mask_str.Replace("%Mon", "%m");
                     break;
                 }
@@ -394,13 +396,12 @@ bool mmParseDisplayStringToDate(wxDateTime& date, const wxString& str_date, cons
         {
             date_str = pattern2.GetMatch(date_str);
             date_str.Trim(false);
-            try {
-                const auto date_mask = g_date_formats_map().at(mask_str);
-                if (!date_mask.Contains(" ")) {
-                    date_str.Replace(" ", "");
-                }
+            const auto& date_formats = g_date_formats_map();
+            const auto it2 = std::find_if(date_formats.begin(), date_formats.end(),
+                [&mask_str](const std::pair<wxString, wxString>& element) { return element.first == mask_str; });
+            if (!it2->second.Contains(" ")) {
+                date_str.Replace(" ", "");
             }
-            catch (...){}
 
             wxString::const_iterator end;
             bool t = date.ParseFormat(date_str, mask_str, &end);
@@ -480,9 +481,23 @@ const std::map<wxString, wxString> &date_formats_regex()
     return date_regex;
 }
 
-const std::unordered_map<wxString, wxString> g_date_formats_map()
+bool comp(std::pair<wxString, wxString> a, std::pair<wxString, wxString> b) {
+
+    wxString one = a.second;
+    wxRegEx pattern(R"([^DayMonY])");
+    pattern.ReplaceAll(&one, wxEmptyString);
+    one += a.second;
+
+    wxString two = b.second;
+    pattern.ReplaceAll(&two, wxEmptyString);
+    two += b.second;
+
+    return one < two;
+}
+
+const std::vector<std::pair<wxString, wxString> > g_date_formats_map()
 {
-    static std::unordered_map<wxString, wxString> df;
+    static std::vector<std::pair<wxString, wxString>> df;
     if (!df.empty())
         return df;
 
@@ -491,6 +506,8 @@ const std::unordered_map<wxString, wxString> g_date_formats_map()
         local_date_fmt,
         "%d %Mon %Y",
         "%d %Mon %y",
+        "%d-%Mon-%Y",
+        "%d %Mon'%y",
         "%d %m %y",
         "%d %m %Y",
         "%d,%m,%y",
@@ -531,10 +548,11 @@ const std::unordered_map<wxString, wxString> g_date_formats_map()
         local_date_mask.Replace("%d", "DD");
         local_date_mask.Replace("%Mon", "Mon");
         local_date_mask.Replace("%m", "MM");
-        local_date_mask.Replace("%w", "Wee");
-        df[entry] = local_date_mask;
+        local_date_mask.Replace("%w", "Day");
+        df.push_back(std::make_pair(entry, local_date_mask));
     }
 
+    std::sort(df.begin(), df.end(), comp);
     return df;
 }
 
@@ -1143,7 +1161,11 @@ void mmDates::doFinalizeStatistics()
 
     if (result != m_date_parsing_stat.end()) {
         m_date_format = result->first;
-        m_date_mask = g_date_formats_map().at(m_date_format);
+        const auto& date_formats = g_date_formats_map();
+        wxString date_format = m_date_format;
+        const auto it = std::find_if(date_formats.begin(), date_formats.end(),
+            [&date_format](const std::pair<wxString, wxString>& element) { return element.first == date_format; });
+        m_date_mask = it->second;
     }
     else
         wxLogDebug("No date string has been handled");
@@ -1155,7 +1177,7 @@ void mmDates::doHandleStatistics(const wxString &dateStr)
     if (m_error_count <= MAX_ATTEMPTS && m_date_formats_temp.size() > 1)
     {
         wxArrayString invalidMask;
-        const std::unordered_map<wxString, wxString> date_formats = m_date_formats_temp;
+        std::vector<std::pair<wxString, wxString> > date_formats = m_date_formats_temp;
         for (const auto& date_mask : date_formats)
         {
             const wxString mask = date_mask.first;
@@ -1174,8 +1196,11 @@ void mmDates::doHandleStatistics(const wxString &dateStr)
 
         if (invalidMask.size() < m_date_formats_temp.size())
         {
-            for (const auto &i : invalidMask)
-                m_date_formats_temp.erase(i);
+            for (const auto &i : invalidMask) {
+                auto it = std::find_if(m_date_formats_temp.begin(), m_date_formats_temp.end(),
+                    [&i](const std::pair<wxString, wxString>& element) { return element.first == i; });
+                m_date_formats_temp.erase(it);
+            }
         }
         else {
             m_error_count++;

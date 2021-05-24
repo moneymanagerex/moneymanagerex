@@ -40,7 +40,7 @@ public:
     void createColumns(mmListCtrl &lst);
     Model_Checking::Full_Data_Set m_trans;
     void markSelectedTransaction();
-    void DeleteFlaggedTransactions(const wxString& status);
+    void DeleteTransactionsByStatus(const wxString& status);
     void DeleteViewedTransactions();
 public:
     enum EColumn
@@ -83,6 +83,7 @@ public:
     void OnNewTransaction(wxCommandEvent& event);
     void OnNewTransferTransaction(wxCommandEvent& event);
     void OnDeleteTransaction(wxCommandEvent& event);
+    void OnDeleteViewedTransaction(wxCommandEvent& event);
     void OnEditTransaction(wxCommandEvent& event);
     void OnDuplicateTransaction(wxCommandEvent& event);
     void OnSetUserColour(wxCommandEvent& event);
@@ -122,10 +123,6 @@ private:
         MENU_TREEPOPUP_MARKDUPLICATE,
         MENU_TREEPOPUP_MARKDELETE,
 
-        MENU_TREEPOPUP_DELETE_VIEWED,
-        MENU_TREEPOPUP_DELETE_FLAGGED,
-        MENU_TREEPOPUP_DELETE_UNRECONCILED,
-
         MENU_TREEPOPUP_VIEW_SPLIT_CATEGORIES,
         MENU_TREEPOPUP_ORGANIZE_ATTACHMENTS,
         MENU_TREEPOPUP_CREATE_REOCCURANCE,
@@ -155,6 +152,9 @@ private:
         MENU_TREEPOPUP_EDIT2,
         MENU_TREEPOPUP_MOVE2,
         MENU_TREEPOPUP_DELETE2,
+        MENU_TREEPOPUP_DELETE_VIEWED,
+        MENU_TREEPOPUP_DELETE_FLAGGED,
+        MENU_TREEPOPUP_DELETE_UNRECONCILED,
         ID_PANEL_CHECKING_STATIC_BITMAP_VIEW,
     };
 private:
