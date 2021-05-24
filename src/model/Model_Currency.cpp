@@ -26,8 +26,6 @@
 #include <fmt/core.h>
 #include <fmt/locale.h>
 
-const double ROUNDING_ERROR_f32 = 0.000001;
-
 Model_Currency::Model_Currency()
     : Model<DB_Table_CURRENCYFORMATS_V1>()
 {
@@ -170,10 +168,6 @@ const wxString Model_Currency::toStringNoFormatting(double value, const Data* cu
     wxString s = wxString::FromCDouble(value, precision);
     s.Replace(".", curr->DECIMAL_POINT);
 
-    if (value >= -ROUNDING_ERROR_f32 && s.Mid(0, 1) == "-") {
-        s = s.Mid(1);
-    }
-
     return s;
 }
 
@@ -194,7 +188,7 @@ const wxString Model_Currency::toString(double value, const Data* currency, int 
 
     if (use_locale == "N")
     {
-        s = fmt::format(std::locale("en_US.UTF-8"), "{:L}", static_cast<int>(value))
+        s = fmt::format(std::locale("en_US.UTF-8"), "{:L}", abs(static_cast<int>(value)))
             + wxString(fmt::format("{:.{}f}", fabs(value - static_cast<int>(value)), precision)).Mid(1);
 
         s.Replace(".", "\x05");
@@ -205,13 +199,13 @@ const wxString Model_Currency::toString(double value, const Data* currency, int 
     }
     else
     {
-        s = fmt::format(std::locale(locale.c_str()), "{:L}", static_cast<int>(value))
+        s = fmt::format(std::locale(locale.c_str()), "{:L}", abs(static_cast<int>(value)))
             + wxString(fmt::format("{:.{}f}", fabs(value - static_cast<int>(value)), precision)).Mid(1);
     }
 
-
-    //if (s.Mid(0, 1) == "-" && value >= -ROUNDING_ERROR_f32) {
-    //    s = s.Mid(1);
+    if (value < 0.0) {
+        s.Prepend("-");
+    }
 
     return s;
 }
