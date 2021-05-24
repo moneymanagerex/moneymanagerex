@@ -55,17 +55,25 @@ public:
     virtual ~ModelBase() {};
 
 public:
-    void Savepoint()
+    void Begin()
     {
-        this->db_->Savepoint("MMEX");
+        this->db_->Begin();
     }
-    void ReleaseSavepoint()
+    void Commit()
     {
-        this->db_->ReleaseSavepoint("MMEX");
+        this->db_->Commit();
     }
-    void Rollback()
+    void Savepoint(const wxString name = "MMEX")
     {
-        this->db_->Rollback("MMEX");
+        this->db_->Savepoint(name);
+    }
+    void ReleaseSavepoint(const wxString name = "MMEX")
+    {
+        this->db_->ReleaseSavepoint(name);
+    }
+    void Rollback(const wxString name = "MMEX")
+    {
+        this->db_->Rollback(name);
     }
 
 protected:

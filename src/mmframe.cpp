@@ -355,7 +355,9 @@ void mmGUIFrame::ShutdownDatabase()
     if (m_db)
     {
         if (!Model_Infotable::instance().cache_.empty()) //Cache empty on InfoTable means instance never initialized
+        {
             Model_Infotable::instance().Set("ISUSED", false);
+        }
         m_db->SetCommitHook(nullptr);
         m_db->Close();
         delete m_commit_callback_hook;
