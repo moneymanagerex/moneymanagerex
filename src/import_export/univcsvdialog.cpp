@@ -135,6 +135,7 @@ bool mmUnivCSVDialog::Create(wxWindow* parent
     this->SetInitialSize();
     SetIcon(mmex::getProgramIcon());
     Centre();
+    Fit();
     return TRUE;
 }
 
@@ -371,9 +372,12 @@ void mmUnivCSVDialog::CreateControls()
         rowSelectionStaticBoxSizer->Add(itemStaticText7, g_flagsH);
         m_spinIgnoreFirstRows_ = new wxSpinCtrl(rowSelectionStaticBoxSizer->GetStaticBox(), ID_FIRST_ROW
             , wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS);
+        m_spinIgnoreFirstRows_->SetMinSize(wxSize(50, -1));
         rowSelectionStaticBoxSizer->Add(m_spinIgnoreFirstRows_, g_flagsH);
         m_spinIgnoreFirstRows_->Connect(wxEVT_COMMAND_SPINCTRL_UPDATED
             , wxSpinEventHandler(mmUnivCSVDialog::OnSpinCtrlIgnoreRows), nullptr, this);
+
+        rowSelectionStaticBoxSizer->AddSpacer(30);
 
         // "Ignore last" title, spin and event handler.
         wxStaticText* itemStaticText8 = new wxStaticText(rowSelectionStaticBoxSizer->GetStaticBox()
@@ -381,6 +385,7 @@ void mmUnivCSVDialog::CreateControls()
         rowSelectionStaticBoxSizer->Add(itemStaticText8, g_flagsH);
         m_spinIgnoreLastRows_ = new wxSpinCtrl(rowSelectionStaticBoxSizer->GetStaticBox()
             , ID_LAST_ROW, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 0, 0, 0);
+        m_spinIgnoreLastRows_->SetMinSize(wxSize(50, -1));
         rowSelectionStaticBoxSizer->Add(m_spinIgnoreLastRows_, g_flagsH);
         m_spinIgnoreLastRows_->Connect(wxEVT_COMMAND_SPINCTRL_UPDATED
             , wxSpinEventHandler(mmUnivCSVDialog::OnSpinCtrlIgnoreRows), nullptr, this);
@@ -1257,7 +1262,7 @@ void mmUnivCSVDialog::update_preview()
     this->m_list_ctrl_->SetColumnWidth(colCount, 30);
     ++colCount;
 
-    const int MAX_ROWS_IN_PREVIEW = 20;
+    const int MAX_ROWS_IN_PREVIEW = 50;
     const int MAX_COLS = 30; // Not including line number col.
 
     int date_col = -1;
@@ -1295,9 +1300,13 @@ void mmUnivCSVDialog::update_preview()
 
         std::unique_ptr<mmDates> dParser(new mmDates);
 
+        int i = m_spinIgnoreLastRows_->GetValue();
+
         // Import- Add rows to preview
         for (unsigned int row = 0; row < totalLines; row++)
         {
+            if (row >= MAX_ROWS_IN_PREVIEW && row < (totalLines - MAX_ROWS_IN_PREVIEW - i))
+                continue;
             unsigned int col = 0;
             wxString buf;
             buf.Printf("%d", col);
@@ -1328,7 +1337,6 @@ void mmUnivCSVDialog::update_preview()
                 ++col;
                 m_list_ctrl_->SetItem(itemIndex, col, content);
             }
-            if (row >= MAX_ROWS_IN_PREVIEW) break;
         }
 
         m_spinIgnoreLastRows_->SetRange(m_spinIgnoreLastRows_->GetMin(), m_list_ctrl_->GetItemCount());
