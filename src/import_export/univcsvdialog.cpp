@@ -1515,17 +1515,17 @@ void mmUnivCSVDialog::OnStandard(wxCommandEvent& WXUNUSED(event))
     csvListBox_->Clear();
     csvFieldOrder_.clear();
     int standard[] = { UNIV_CSV_DATE, UNIV_CSV_PAYEE, UNIV_CSV_AMOUNT, UNIV_CSV_CATEGORY, UNIV_CSV_SUBCATEGORY, UNIV_CSV_TRANSNUM, UNIV_CSV_NOTES };
-    for (size_t i = 0; i < sizeof(standard) / sizeof(UNIV_CSV_DATE); ++i)
+    for (const auto i : standard)
     {
-        csvListBox_->Append(wxGetTranslation(CSVFieldName_[standard[i]]), new mmListBoxItem(standard[i], CSVFieldName_[standard[i]]));
-        csvFieldOrder_.push_back(standard[i]);
+        csvListBox_->Append(wxGetTranslation(CSVFieldName_[i]), new mmListBoxItem(i, CSVFieldName_[i]));
+        csvFieldOrder_.push_back(i);
     }
 
     csvFieldCandicate_->Clear();
-    int rest[] = { UNIV_CSV_DONTCARE, UNIV_CSV_WITHDRAWAL, UNIV_CSV_DEPOSIT, UNIV_CSV_BALANCE };
-    for (size_t i = 0; i < sizeof(rest) / sizeof(UNIV_CSV_DATE); ++i)
+    int rest[] = { UNIV_CSV_DONTCARE, UNIV_CSV_WITHDRAWAL, UNIV_CSV_DEPOSIT, UNIV_CSV_BALANCE, UNIV_CSV_NOTES };
+    for (const auto i : rest)
     {
-        csvFieldCandicate_->Append(wxGetTranslation(CSVFieldName_[rest[i]]), new mmListBoxItem(rest[i], CSVFieldName_[rest[i]]));
+        csvFieldCandicate_->Append(wxGetTranslation(CSVFieldName_[i]), new mmListBoxItem(i, CSVFieldName_[i]));
     }
 
     update_preview();
