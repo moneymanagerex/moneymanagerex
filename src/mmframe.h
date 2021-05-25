@@ -89,6 +89,9 @@ private:
     wxString m_filename;
     wxString m_password;
 
+    // Marker to indicate DB was inuse when opened and open cancelled
+    bool db_lockInPlace;
+
     int gotoAccountID_;
     int gotoTransID_;
 
