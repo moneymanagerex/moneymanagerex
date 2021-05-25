@@ -408,13 +408,10 @@ void mmUnivCSVDialog::CreateControls()
     itemPanel5->SetSizer(itemBoxSizer6);
 
     if (IsImporter()) {
-        itemButton_Import_ = new wxButton(itemPanel5, ID_UNIVCSVBUTTON_IMPORT, _("&Import")
-            , wxDefaultPosition, wxDefaultSize, 0);
+        itemButton_Import_ = new wxButton(itemPanel5, ID_UNIVCSVBUTTON_IMPORT, _("&Import"));
     } else {
-        itemButton_Import_ = new wxButton(itemPanel5, ID_UNIVCSVBUTTON_EXPORT, _("&Export")
-            , wxDefaultPosition, wxDefaultSize, 0);
+        itemButton_Import_ = new wxButton(itemPanel5, ID_UNIVCSVBUTTON_EXPORT, _("&Export"));
     }
-    itemButton_Import_->Disable();
     itemBoxSizer6->Add(itemButton_Import_, 0, wxALIGN_CENTER | wxALL, 5);
 
     wxButton* itemCancelButton = new wxButton(itemPanel5, wxID_CANCEL, wxGetTranslation(g_CancelLabel));
@@ -1132,7 +1129,7 @@ void mmUnivCSVDialog::OnExport(wxCommandEvent& WXUNUSED(event))
     Model_Account::Data* from_account = Model_Account::instance().get(acctName);
 
     if (!from_account)
-        return;
+        return mmErrorDialogs::ToolTip4Object(m_choice_account_, _("Invalid Account"), _("Error"));
 
     const auto split = Model_Splittransaction::instance().get_all();
     int fromAccountID = from_account->ACCOUNTID;
@@ -1283,12 +1280,9 @@ void mmUnivCSVDialog::update_preview()
         const wxString fileName = m_text_ctrl_->GetValue();
         wxFileName csv_file(fileName);
 
-        if (fileName.IsEmpty() || !csv_file.FileExists())
-        {
-            itemButton_Import_->Disable();
+        if (fileName.IsEmpty() || !csv_file.FileExists()) {
             return;
         }
-        itemButton_Import_->Enable();
 
         // Open and parse file
         std::unique_ptr <ITransactionsFile> pImporter(CreateFileHandler());
@@ -1834,9 +1828,6 @@ void mmUnivCSVDialog::OnChoiceChanged(wxCommandEvent& event)
         Model_Account::Data* account = Model_Account::instance().get(acctName);
         Model_Currency::Data* currency = Model_Account::currency(account);
         *log_field_ << _("Currency:") << " " << wxGetTranslation(currency->CURRENCYNAME) << "\n";
-        if (account) {
-            itemButton_Import_->Enable();
-        }
     }
     else if (i == ID_ENCODING)
     {
