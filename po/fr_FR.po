@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-05-25 13:38+0300\n"
-"PO-Revision-Date: 2021-05-25 11:13\n"
+"PO-Revision-Date: 2021-05-25 11:37\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -3898,7 +3898,7 @@ msgstr "Vue du compte: %s"
 #: mmcheckingpanel.cpp:492
 #, c-format
 msgid "Transactions selected: %zu"
-msgstr ""
+msgstr "Transactions sélectionnées: %zu"
 
 #: mmcheckingpanel.cpp:495
 #, c-format
