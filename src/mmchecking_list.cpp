@@ -876,6 +876,7 @@ void TransactionListCtrl::OnDeleteTransaction(wxCommandEvent& WXUNUSED(event))
             m_selectedForCopy.erase(std::remove(m_selectedForCopy.begin(), m_selectedForCopy.end(), i)
                 , m_selectedForCopy.end());
         }
+        m_selected_id.clear();
         Model_Splittransaction::instance().ReleaseSavepoint();
         Model_Attachment::instance().ReleaseSavepoint();
         Model_Checking::instance().ReleaseSavepoint();
@@ -1003,14 +1004,15 @@ void TransactionListCtrl::OnEditTransaction(wxCommandEvent& /*event*/)
 
 void TransactionListCtrl::OnNewTransaction(wxCommandEvent& event)
 {
-    FindSelectedTransactions();
     int type = event.GetId() == MENU_TREEPOPUP_NEW_DEPOSIT ? Model_Checking::DEPOSIT : Model_Checking::WITHDRAWAL;
     mmTransDialog dlg(this, m_cp->m_AccountID, 0, m_cp->m_account_balance, false, type);
     int i = dlg.ShowModal();
     if (i != wxID_CANCEL)
     {
+        m_selected_id.clear();
+        m_pasted_id.push_back(dlg.GetTransactionID());
         m_cp->mmPlayTransactionSound();
-        refreshVisualList(dlg.GetTransactionID());
+        refreshVisualList();
 
         if (i == wxID_NEW) {
             OnNewTransaction(event);
@@ -1235,17 +1237,14 @@ void TransactionListCtrl::markSelectedTransaction()
         ++i;
     }
 
-    if (!m_trans.empty() && m_selected_id.empty())
+    if (m_trans.empty()) return;
+
+    if (m_selected_id.empty())
     {
         i = static_cast<long>(m_trans.size()) - 1;
         if (!g_asc)
             i = 0;
         EnsureVisible(i);
-    }
-    else
-    {
-        m_cp->enableTransactionButtons(false, false, false);
-        m_cp->showTips();
     }
 }
 
