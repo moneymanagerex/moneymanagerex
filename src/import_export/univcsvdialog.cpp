@@ -1522,7 +1522,7 @@ void mmUnivCSVDialog::OnStandard(wxCommandEvent& WXUNUSED(event))
     }
 
     csvFieldCandicate_->Clear();
-    int rest[] = { UNIV_CSV_DONTCARE, UNIV_CSV_WITHDRAWAL, UNIV_CSV_DEPOSIT, UNIV_CSV_BALANCE, UNIV_CSV_NOTES };
+    int rest[] = { UNIV_CSV_NOTES, UNIV_CSV_DONTCARE, UNIV_CSV_WITHDRAWAL, UNIV_CSV_DEPOSIT, UNIV_CSV_BALANCE };
     for (const auto i : rest)
     {
         csvFieldCandicate_->Append(wxGetTranslation(CSVFieldName_[i]), new mmListBoxItem(i, CSVFieldName_[i]));
