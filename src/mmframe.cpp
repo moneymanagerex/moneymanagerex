@@ -356,7 +356,8 @@ void mmGUIFrame::ShutdownDatabase()
     {
         if (!Model_Infotable::instance().cache_.empty()) //Cache empty on InfoTable means instance never initialized
         {
-            Model_Infotable::instance().Set("ISUSED", false);
+            if (!db_lockInPlace)
+                Model_Infotable::instance().Set("ISUSED", false);
         }
         m_db->SetCommitHook(nullptr);
         m_db->Close();
@@ -1931,13 +1932,13 @@ bool mmGUIFrame::openFile(const wxString& fileName, bool openingNew, const wxStr
         }
 
         if (!m_app->GetSilentParam()) {
-            bool isUsed = Model_Infotable::instance().GetBoolInfo("ISUSED", false);
-            if (isUsed) {
+            db_lockInPlace = Model_Infotable::instance().GetBoolInfo("ISUSED", false);
+            if (db_lockInPlace) {
                 int response = wxMessageBox(_(
-                    "Database that you trying to open has been marked as opened by another MMEX instance...\n"
-                    "To avoid data loss or conflict, it's strongly recommended to close all other applications that can use the DB.\n\n"
-                    "Possible it may be as result of a programm crash in previous usage.\n\n"
-                    "Would you like to continue?")
+                    "The database you are trying to open has been marked as opened by another instance of MMEX.\n"
+                    "To avoid data loss or conflict, it's strongly recommended that you close all other applications that may be using the database.\n\n"
+                    "If nothing else is running, it's possible that the database was left open as a result of a crash during previous usage of MMEX.\n\n"
+                    "Would you like to continue to open this database?")
                     , _("MMEX Instance Check"), wxYES_NO | wxNO_DEFAULT | wxICON_WARNING);
                 if (response == wxNO)
                     return false;
@@ -1945,6 +1946,7 @@ bool mmGUIFrame::openFile(const wxString& fileName, bool openingNew, const wxStr
         }
 
         Model_Infotable::instance().Set("ISUSED", true);
+        db_lockInPlace = false;
         autoRepeatTransactionsTimer_.Start(REPEAT_TRANS_DELAY_TIME, wxTIMER_ONE_SHOT);
     }
     else return false;
