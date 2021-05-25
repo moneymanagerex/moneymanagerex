@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-05-25 13:38+0300\n"
-"PO-Revision-Date: 2021-05-25 10:51\n"
+"PO-Revision-Date: 2021-05-25 11:13\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -3903,12 +3903,12 @@ msgstr ""
 #: mmcheckingpanel.cpp:495
 #, c-format
 msgid "Selected transactions balance: %s"
-msgstr ""
+msgstr "Solde des transactions sélectionnées: %s"
 
 #: mmcheckingpanel.cpp:499
 #, c-format
 msgid "Days between selected transactions: %d"
-msgstr ""
+msgstr "Jours entre les transactions sélectionnées: %d"
 
 #: mmcheckingpanel.cpp:661
 msgid "Select account used in transfer transactions"
@@ -4675,7 +4675,10 @@ msgid "The database you are trying to open has been marked as opened by another 
 "To avoid data loss or conflict, it's strongly recommended that you close all other applications that may be using the database.\n\n"
 "If nothing else is running, it's possible that the database was left open as a result of a crash during previous usage of MMEX.\n\n"
 "Would you like to continue to open this database?"
-msgstr ""
+msgstr "La base de données que vous essayez d'ouvrir a été marquée comme ouverte par une autre instance de MMEX.\n"
+"Pour éviter toute perte de données ou tout conflit, il est fortement recommandé de fermer toutes les autres applications susceptibles d'utiliser la base de données.\n\n"
+"Si rien d'autre n'est en cours d'exécution, il est possible que la base de données soit restée ouverte suite à un crash lors d'une précédente utilisation de MMEX.\n\n"
+"Voulez-vous continuer à ouvrir cette base de données ?"
 
 #: mmframe.cpp:1942
 msgid "MMEX Instance Check"
@@ -5615,7 +5618,7 @@ msgstr "Vérifier les mises à jour au démarrage"
 
 #: optionsettingsnet.cpp:128
 msgid "Enable to allow news to be checked on application start"
-msgstr ""
+msgstr "Activer pour permettre la vérification des actualités au démarrage de l'application"
 
 #: optionsettingsnet.cpp:133
 msgid "Timeout"
