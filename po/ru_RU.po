@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-05-25 13:38+0300\n"
-"PO-Revision-Date: 2021-05-25 10:51\n"
+"PO-Revision-Date: 2021-05-25 12:01\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -3923,17 +3923,17 @@ msgstr "Просмотр счёта: %s"
 #: mmcheckingpanel.cpp:492
 #, c-format
 msgid "Transactions selected: %zu"
-msgstr ""
+msgstr "Транзакций выделено: %zu"
 
 #: mmcheckingpanel.cpp:495
 #, c-format
 msgid "Selected transactions balance: %s"
-msgstr ""
+msgstr "Баланс выделенных транзакций: %s"
 
 #: mmcheckingpanel.cpp:499
 #, c-format
 msgid "Days between selected transactions: %d"
-msgstr ""
+msgstr "Дней между выбранными транзакциями: %d"
 
 #: mmcheckingpanel.cpp:661
 msgid "Select account used in transfer transactions"
