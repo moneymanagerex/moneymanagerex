@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-05-25 13:38+0300\n"
-"PO-Revision-Date: 2021-05-25 10:51\n"
+"PO-Revision-Date: 2021-05-25 20:57\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "MIME-Version: 1.0\n"
@@ -3765,7 +3765,7 @@ msgstr "Marcar todos os selecionados"
 
 #: mmchecking_list.cpp:780
 msgid "Do you really want to delete all the transactions shown?"
-msgstr ""
+msgstr "Tem certeza de que deseja excluir todas as transações exibidas?"
 
 #: mmchecking_list.cpp:781 mmchecking_list.cpp:792 mmchecking_list.cpp:803
 #: mmchecking_list.cpp:850
@@ -3775,15 +3775,15 @@ msgstr "Confirmar a Exclusão da(s) Transação(ões)"
 #: mmchecking_list.cpp:791 mmchecking_list.cpp:802
 #, c-format
 msgid "Do you really want to delete all the \"%s\" transactions shown?"
-msgstr ""
+msgstr "Tem certeza de que deseja excluir todas as \"%s\" transações apresentadas?"
 
 #: mmchecking_list.cpp:791
 msgid "Follow Up"
-msgstr ""
+msgstr "Acompanhamento"
 
 #: mmchecking_list.cpp:802
 msgid "Unreconciled"
-msgstr ""
+msgstr "Não-reconciliada"
 
 #: mmchecking_list.cpp:845
 #, c-format
@@ -3898,17 +3898,17 @@ msgstr "Visão da conta: %s"
 #: mmcheckingpanel.cpp:492
 #, c-format
 msgid "Transactions selected: %zu"
-msgstr ""
+msgstr "Transações selecionadas: %zu"
 
 #: mmcheckingpanel.cpp:495
 #, c-format
 msgid "Selected transactions balance: %s"
-msgstr ""
+msgstr "Saldo das transações selecionadas: %s"
 
 #: mmcheckingpanel.cpp:499
 #, c-format
 msgid "Days between selected transactions: %d"
-msgstr ""
+msgstr "Dias entre as transações selecionadas: %d"
 
 #: mmcheckingpanel.cpp:661
 msgid "Select account used in transfer transactions"
@@ -4675,7 +4675,10 @@ msgid "The database you are trying to open has been marked as opened by another 
 "To avoid data loss or conflict, it's strongly recommended that you close all other applications that may be using the database.\n\n"
 "If nothing else is running, it's possible that the database was left open as a result of a crash during previous usage of MMEX.\n\n"
 "Would you like to continue to open this database?"
-msgstr ""
+msgstr "O banco de dados que você está tentando abrir foi marcado como aberto por outra instância do MMEX.\n"
+"Para evitar perda de dados ou conflito, é altamente recomendável que você feche todos os outros aplicativos que possam estar usando o banco de dados.\n\n"
+"Se nada mais estiver em execução, é possível que o banco de dados tenha sido deixado aberto como resultado de uma falha no uso anterior do MMEX.\n\n"
+"Gostaria de continuar a abrir esta base de dados?"
 
 #: mmframe.cpp:1942
 msgid "MMEX Instance Check"

@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-05-25 13:38+0300\n"
-"PO-Revision-Date: 2021-05-25 10:51\n"
+"PO-Revision-Date: 2021-05-26 05:05\n"
 "Last-Translator: \n"
 "Language-Team: Hebrew\n"
 "MIME-Version: 1.0\n"
@@ -3923,17 +3923,17 @@ msgstr "מצג חשבון: %s"
 #: mmcheckingpanel.cpp:492
 #, c-format
 msgid "Transactions selected: %zu"
-msgstr ""
+msgstr "תנועות שנבחרו: %zu"
 
 #: mmcheckingpanel.cpp:495
 #, c-format
 msgid "Selected transactions balance: %s"
-msgstr ""
+msgstr "יתרת תנועות שנבחרו: %s"
 
 #: mmcheckingpanel.cpp:499
 #, c-format
 msgid "Days between selected transactions: %d"
-msgstr ""
+msgstr "ימים שבין התנועות שנבחרו: %d"
 
 #: mmcheckingpanel.cpp:661
 msgid "Select account used in transfer transactions"
@@ -4700,7 +4700,10 @@ msgid "The database you are trying to open has been marked as opened by another 
 "To avoid data loss or conflict, it's strongly recommended that you close all other applications that may be using the database.\n\n"
 "If nothing else is running, it's possible that the database was left open as a result of a crash during previous usage of MMEX.\n\n"
 "Would you like to continue to open this database?"
-msgstr ""
+msgstr "מסד הנתונים אותו מנסים לפתוח, מסומן כפתוח במופע MMEX אחר.\n"
+"כדי להימנע מאבדן נתונים או התנגשויות, מומלץ בחום לסגור את כל היישומים האחרים שעשויים להשתמש במסד הנתונים.\n\n"
+"אם אין מופע פעיל אחר, יתכן ומסד הנתונים נשאר פתוח כתוצאה מכשל תכנה בשימוש קודם.\n\n"
+"האם להמשיך בפתיחת מסד הנתונים?"
 
 #: mmframe.cpp:1942
 msgid "MMEX Instance Check"
