@@ -142,8 +142,9 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
                     {
                         gd.type = GraphData::BAR; 
                     }
-                    gd.series.push_back(gsEstimated);
-                    gd.series.push_back(gsActual);
+                        gd.series.push_back(gsActual);
+                        gd.series.push_back(gsEstimated);
+
                     hb.addChart(gd);
                 }
                 hb.endDiv();
