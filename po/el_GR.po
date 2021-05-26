@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-05-25 13:38+0300\n"
-"PO-Revision-Date: 2021-05-25 10:51\n"
+"PO-Revision-Date: 2021-05-26 07:41\n"
 "Last-Translator: \n"
 "Language-Team: Greek\n"
 "MIME-Version: 1.0\n"
@@ -3897,17 +3897,17 @@ msgstr "Προβολή λογαριασμού: %s"
 #: mmcheckingpanel.cpp:492
 #, c-format
 msgid "Transactions selected: %zu"
-msgstr ""
+msgstr "Επιλεγμένες συναλλαγές: %zu"
 
 #: mmcheckingpanel.cpp:495
 #, c-format
 msgid "Selected transactions balance: %s"
-msgstr ""
+msgstr "Υπόλοιπο επιλεγμένων συναλλαγών: %s"
 
 #: mmcheckingpanel.cpp:499
 #, c-format
 msgid "Days between selected transactions: %d"
-msgstr ""
+msgstr "Ημέρες μεταξύ επιλεγμένων συναλλαγών: %d"
 
 #: mmcheckingpanel.cpp:661
 msgid "Select account used in transfer transactions"
@@ -4671,7 +4671,10 @@ msgid "The database you are trying to open has been marked as opened by another 
 "To avoid data loss or conflict, it's strongly recommended that you close all other applications that may be using the database.\n\n"
 "If nothing else is running, it's possible that the database was left open as a result of a crash during previous usage of MMEX.\n\n"
 "Would you like to continue to open this database?"
-msgstr ""
+msgstr "Η Βάση Δεδομένων που προσπαθείτε να ανοίξετε έχει ήδη ανοιχθεί από μια άλλη εφαρμογή MMEX.\n"
+"Για να αποφύγετε απώλεια ή διένεξη δεδομένων, προτείνουμε να κλείσετε όλες τις υπόλοιπες εφαρμογές που μπορεί να χρησιμοποιούν τη ΒΔ.\n\n"
+"Αν καμία εφαρμογή δεν την χρησιμοποιεί, είναι πιθανό η ΒΔ να έχει παραμείνει ανοιχτή ως αποτέλεσμα σφάλματος από προηγούμενη χρήση της εφαρμογής.\n\n"
+"Θα θέλατε να συνεχίσετε ανοίγοντας αυτή τη ΒΔ;"
 
 #: mmframe.cpp:1942
 msgid "MMEX Instance Check"
