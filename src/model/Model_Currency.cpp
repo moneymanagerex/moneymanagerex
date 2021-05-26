@@ -188,8 +188,8 @@ const wxString Model_Currency::toString(double value, const Data* currency, int 
 
     if (use_locale == "N")
     {
-        s = fmt::format(std::locale("en_US.UTF-8"), "{:L}", abs(static_cast<int>(value)))
-            + wxString(fmt::format("{:.{}f}", fabs(value - static_cast<int>(value)), precision)).Mid(1);
+        s = fmt::format(std::locale("en_US.UTF-8"), "{:L}", static_cast<int>(fabs(value) + 5 / (pow(10, precision + 1))))
+            + wxString(fmt::format("{:.{}f}", fabs(value - floor(value)), precision)).Mid(1);
 
         s.Replace(".", "\x05");
         s.Replace(",", "\t");
@@ -199,14 +199,14 @@ const wxString Model_Currency::toString(double value, const Data* currency, int 
     }
     else
     {
-        s = fmt::format(std::locale(locale.c_str()), "{:L}", abs(static_cast<int>(value)))
-            + wxString(fmt::format("{:.{}f}", fabs(value - static_cast<int>(value)), precision)).Mid(1);
+        s = fmt::format(std::locale(locale.c_str()), "{:L}", static_cast<int>(fabs(value) + 5/(pow(10, precision + 1))))
+            + wxString(fmt::format("{:.{}f}", fabs(value - floor(value)), precision)).Mid(1);
     }
 
     if (value < 0.0) {
         s.Prepend("-");
     }
-
+    //wxLogDebug("%s -> %s", fmt::format("{:f}", value), s);
     return s;
 }
 
