@@ -141,7 +141,6 @@ void mmCheckingPanel::filterTable()
     const wxString today_date_string = wxDate::Today().FormatISODate();
 
     const auto splits = Model_Splittransaction::instance().get_all();
-    const auto attachments = Model_Attachment::instance().get_all(Model_Attachment::TRANSACTION);
 
     const auto i = m_allAccounts ? Model_Checking::instance().all() : Model_Account::transaction(this->m_account);
     for (const auto& tran : i)
@@ -198,9 +197,6 @@ void mmCheckingPanel::filterTable()
                 }
             }
         }
-
-        if (attachments.count(full_tran.TRANSID))
-            full_tran.NOTES.Prepend(mmAttachmentManage::GetAttachmentNoteSign());
 
         m_listCtrlAccount->m_trans.push_back(full_tran);
     }
