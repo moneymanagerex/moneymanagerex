@@ -141,6 +141,7 @@ void mmCheckingPanel::filterTable()
     const wxString today_date_string = wxDate::Today().FormatISODate();
 
     const auto splits = Model_Splittransaction::instance().get_all();
+    const auto attachments = Model_Attachment::instance().get_all(Model_Attachment::TRANSACTION);
 
     const auto i = m_allAccounts ? Model_Checking::instance().all() : Model_Account::transaction(this->m_account);
     for (const auto& tran : i)
@@ -174,6 +175,7 @@ void mmCheckingPanel::filterTable()
         full_tran.PAYEENAME = full_tran.real_payee_name(m_AccountID);
         full_tran.BALANCE = m_account_balance;
         full_tran.AMOUNT = transaction_amount;
+        full_tran.HAS_SPLIT = attachments.count(tran.TRANSID) > 0;
         m_filteredBalance += transaction_amount;
 
         if (custom_fields.find(tran.TRANSID) != custom_fields.end()) {
