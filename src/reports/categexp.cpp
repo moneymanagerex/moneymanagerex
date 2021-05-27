@@ -392,7 +392,7 @@ wxString mmReportCategoryOverTimePerformance::getHTMLText()
                 gd.colors = { mmThemeMetaColour(meta::COLOR_REPORT_DELTA)
                                 , mmThemeMetaColour(meta::COLOR_REPORT_CREDIT)
                                 , mmThemeMetaColour(meta::COLOR_REPORT_DEBIT) }; 
-               hb.addChart(gd);
+                hb.addChart(gd);
             }
             hb.endDiv();
         }
