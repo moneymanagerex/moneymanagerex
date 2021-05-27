@@ -61,10 +61,9 @@ public:
         double BALANCE;
         bool HAS_ATTACHMENT;
         Model_Splittransaction::Data_Set m_splits;
-        std::map<int, Data_Set> m_attachments;
         wxString real_payee_name(int account_id) const;
         bool has_split() const;
-        bool has_attachmnet() const;
+        bool has_attachment() const;
         bool is_foreign() const;
         bool is_foreign_transfer() const;
 
@@ -178,5 +177,8 @@ public:
     static bool foreignTransaction(const Data& data);
     static bool foreignTransactionAsTransfer(const Data& data);
 };
+
+inline bool Model_Checking::Full_Data::has_split() const { return !this->m_splits.empty(); }
+inline bool Model_Checking::Full_Data::has_attachment() const { return HAS_ATTACHMENT; }
 
 #endif // 
