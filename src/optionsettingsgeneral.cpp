@@ -209,7 +209,6 @@ void OptionSettingsGeneral::OnDateFormatChanged(wxCommandEvent& /*event*/)
     if (data)
     {
         m_date_format = data->GetData();
-        mmGetDateForDisplay(wxDateTime::Now().FormatISODate(), ""); //clear the cache
         m_sample_date_text->SetLabelText(mmGetDateForDisplay(wxDateTime::Now().FormatISODate(), m_date_format));
     }
 
