@@ -1384,7 +1384,7 @@ const wxString TransactionListCtrl::getItem(long item, long column, bool realenu
     case TransactionListCtrl::COL_NOTES:
         value = tran.NOTES;
         value.Replace("\n", " ");
-        if (tran.HAS_SPLIT)
+        if (tran.has_attachmnet())
             value.Prepend(mmAttachmentManage::GetAttachmentNoteSign());
         return value;
     case TransactionListCtrl::COL_UDFC01:

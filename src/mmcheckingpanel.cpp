@@ -175,7 +175,7 @@ void mmCheckingPanel::filterTable()
         full_tran.PAYEENAME = full_tran.real_payee_name(m_AccountID);
         full_tran.BALANCE = m_account_balance;
         full_tran.AMOUNT = transaction_amount;
-        full_tran.HAS_SPLIT = attachments.count(tran.TRANSID) > 0;
+        full_tran.HAS_ATTACHMENT = attachments.count(tran.TRANSID) > 0;
         m_filteredBalance += transaction_amount;
 
         if (custom_fields.find(tran.TRANSID) != custom_fields.end()) {
