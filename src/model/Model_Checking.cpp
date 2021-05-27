@@ -396,6 +396,11 @@ bool Model_Checking::Full_Data::has_split() const
     return !this->m_splits.empty();
 }
 
+bool Model_Checking::Full_Data::has_attachmnet() const
+{
+    return !this->m_attachments.empty();
+}
+
 bool Model_Checking::Full_Data::is_foreign() const
 {
     return (this->TOACCOUNTID > 0) && ((this->TRANSCODE == all_type()[DEPOSIT]) || (this->TRANSCODE == all_type()[WITHDRAWAL]));

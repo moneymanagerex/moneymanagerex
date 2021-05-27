@@ -59,9 +59,12 @@ public:
 
         double AMOUNT;
         double BALANCE;
+        bool HAS_SPLIT;
         Model_Splittransaction::Data_Set m_splits;
+        std::map<int, Data_Set> m_attachments;
         wxString real_payee_name(int account_id) const;
         bool has_split() const;
+        bool has_attachmnet() const;
         bool is_foreign() const;
         bool is_foreign_transfer() const;
 

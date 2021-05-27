@@ -84,8 +84,8 @@ private:
 class mmAttachmentManage
 {
 public:
-    static wxString InfotablePathSetting();
-    static wxString GetAttachmentNoteSign();
+    static const wxString InfotablePathSetting();
+    static const wxString GetAttachmentNoteSign();
     static bool CreateReadmeFile(const wxString& FolderPath);
     static bool CopyAttachment(const wxString& FileToImport, const wxString& ImportedFile);
     static bool DeleteAttachment(const wxString& FileToDelete);

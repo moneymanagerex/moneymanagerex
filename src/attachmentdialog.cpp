@@ -351,12 +351,12 @@ void mmAttachmentDialog::OnOk(wxCommandEvent& /*event*/)
 ************************/
 wxString mmAttachmentManage::m_PathSep = wxFileName::GetPathSeparator();
 
-wxString mmAttachmentManage::InfotablePathSetting()
+const wxString mmAttachmentManage::InfotablePathSetting()
 {
     return Model_Infotable::instance().GetStringInfo("ATTACHMENTSFOLDER:" + mmPlatformType(), "");
 }
 
-wxString mmAttachmentManage::GetAttachmentNoteSign()
+const wxString mmAttachmentManage::GetAttachmentNoteSign()
 {
     return wxString::Format("[%s] ",_("Att."));
 }
