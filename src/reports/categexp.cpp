@@ -348,7 +348,7 @@ wxString mmReportCategoryOverTimePerformance::getHTMLText()
     if (getChartSelection() == 0)
     {
         GraphData gd;
-        GraphSeries data_negative, data_positive;
+        GraphSeries data_negative, data_positive, data_difference;
 
         for (int i = 0; i < MONTHS_IN_PERIOD; i++)
         {
@@ -366,13 +366,21 @@ wxString mmReportCategoryOverTimePerformance::getHTMLText()
 
             data_negative.values.push_back(val_negative);
             data_positive.values.push_back(val_positive);
+            data_difference.values.push_back(val_positive - val_negative);
 
             const auto label = wxString::Format("%s %i", wxGetTranslation(wxDateTime::GetEnglishMonthName(d.GetMonth())), d.GetYear());
             gd.labels.push_back(label);
         }
 
+        data_difference.name = _("Difference");
         data_negative.name = _("Expenses");
         data_positive.name = _("Income");
+
+        data_difference.type = "line";
+        data_positive.type = "column";
+        data_negative.type = "column";
+
+        gd.series.push_back(data_difference);
         gd.series.push_back(data_positive);
         gd.series.push_back(data_negative);
 
@@ -380,10 +388,11 @@ wxString mmReportCategoryOverTimePerformance::getHTMLText()
         {
             hb.addDivContainer("shadow"); 
             {                 
-                gd.type = GraphData::BAR;
-                gd.colors = { mmThemeMetaColour(meta::COLOR_REPORT_CREDIT)
+                gd.type = GraphData::BARLINE; 
+                gd.colors = { mmThemeMetaColour(meta::COLOR_REPORT_DELTA)
+                                , mmThemeMetaColour(meta::COLOR_REPORT_CREDIT)
                                 , mmThemeMetaColour(meta::COLOR_REPORT_DEBIT) }; 
-                hb.addChart(gd);
+               hb.addChart(gd);
             }
             hb.endDiv();
         }
