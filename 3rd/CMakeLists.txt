@@ -33,7 +33,6 @@ target_include_directories(RapidJSON SYSTEM INTERFACE
 
  add_subdirectory(lunasvg/include)
  add_subdirectory(lunasvg/source)
- add_subdirectory(lunasvg/3rdparty/stb)
  add_subdirectory(lunasvg/3rdparty/software)
  add_subdirectory(lunasvg/3rdparty/plutovg)
 
