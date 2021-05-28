@@ -1068,7 +1068,7 @@ const wxString getProgramDescription(int type)
         << eol
 
         << bull + wxSQLITE3_VERSION_STRING
-        << " (SQLite " << wxSQLite3Database::GetVersion() << ")"
+        << " (SQLite " << wxSQLite3Database::GetVersion() << ")" << eol
         << bull + "RapidJSON " << RAPIDJSON_VERSION_STRING << eol
         << bull + LUA_RELEASE << eol
         << bull + "lunasvg " << eol
