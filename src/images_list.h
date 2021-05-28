@@ -29,6 +29,7 @@ enum meta {
     THEME_DESCRIPTION,  
     THEME_URL,
     COLOR_NAVPANEL,
+    COLOR_NAVPANEL_FONT,
     COLOR_LISTPANEL,
     COLOR_LISTALT0,
     COLOR_LISTALT0A,
@@ -213,6 +214,6 @@ void LoadTheme();
 const wxString mmThemeMetaString(int ref);
 long mmThemeMetaLong(int ref);
 const wxColour mmThemeMetaColour(int ref);
-void mmThemeMetaColour(wxWindow *object, int ref);
+void mmThemeMetaColour(wxWindow *object, int ref, bool foreground = false);
 const std::vector<wxColour> mmThemeMetaColourArray(int ref);
 const wxBitmap mmBitmap(int ref);
