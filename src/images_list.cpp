@@ -1,5 +1,5 @@
 /*******************************************************
-Copyright (C) 2014, 2015 Nikolay Akimov
+Copyright (C) 2014, 2015, 2021 Nikolay Akimov
 Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
 
 This program is free software; you can redistribute it and/or modify
@@ -156,8 +156,8 @@ const std::map<int, std::tuple<wxString, wxString, bool> > metaDataTrans()
     md[THEME_AUTHOR]           = std::make_tuple("/theme/author",            "",        false);
     md[THEME_DESCRIPTION]      = std::make_tuple("/theme/description",       "",        true);
     md[THEME_URL]              = std::make_tuple("/colors/url",              "",        false);
-    md[COLOR_NAVPANEL]         = std::make_tuple("/colors/navigationPanel",  "#FFFFFF", false);
-    md[COLOR_LISTPANEL]        = std::make_tuple("/colors/listPanel",        "#FFFFFF", false);
+    md[COLOR_NAVPANEL]         = std::make_tuple("/colors/navigationPanel",  "",        false);
+    md[COLOR_LISTPANEL]        = std::make_tuple("/colors/listPanel",        "",        false);
     md[COLOR_LISTALT0]         = std::make_tuple("/colors/listAlternative1", "#F0F5EB", false);
     md[COLOR_LISTALT0A]        = std::make_tuple("/colors/listAlternative2", "#E0E7F0", false);
     md[COLOR_LISTTOTAL]        = std::make_tuple("/colors/listTotal",        "#7486A8", false);
@@ -298,8 +298,10 @@ bool processThemes(wxString themeDir, wxString myTheme, bool metaPhase)
 
             const wxString bgString = mmThemeMetaString(meta::COLOR_NAVPANEL).AfterFirst('#');
             long bgStringConv;
-            bgString.ToLong(&bgStringConv, 16);
-            bgStringConv =  bgStringConv * 256 + 255;  // Need to add Alpha
+            if (!bgString.ToLong(&bgStringConv, 16))
+                bgStringConv = -1;
+            else
+                bgStringConv = bgStringConv * 256 + 255;  // Need to add Alpha
 
             while (themeEntry.reset(themeStream.GetNextEntry()), themeEntry) // != nullptr
             {
@@ -373,7 +375,7 @@ bool processThemes(wxString themeDir, wxString myTheme, bool metaPhase)
                 int svgEnum = iconName2enum.find(fileName)->second.first;
 
                 std::uint32_t bgColor = 0;
-                if (iconName2enum.find(fileName)->second.second)
+                if (iconName2enum.find(fileName)->second.second && bgStringConv >= 0)
                     bgColor = bgStringConv;
 
                 lunasvg::Bitmap bitmap;
@@ -493,11 +495,12 @@ void LoadTheme()
 
 const wxString mmThemeMetaString(int ref)
 {
-    wxString metaLocation = std::get<0>(metaDataTrans().find(ref)->second);
+    auto i = metaDataTrans().find(ref)->second;
+    wxString metaLocation = std::get<0>(i);
     const Pointer ptr(metaLocation.mb_str());
     wxString metaValue = GetValueByPointerWithDefault(metaData_doc, ptr, "").GetString();
-    if (metaValue.IsEmpty())
-        metaValue = std::get<1>(metaDataTrans().find(ref)->second);
+    if (metaValue.IsEmpty() && std::get<2>(i))
+        metaValue = std::get<1>(i);
     return (metaValue);
 }
 
@@ -512,12 +515,20 @@ long mmThemeMetaLong(int ref)
 
 const wxColour mmThemeMetaColour(int ref)
 {
-    return wxColour(mmThemeMetaString(ref));
+    auto c = mmThemeMetaString(ref);
+    return wxColour(c);
+}
+
+void mmThemeMetaColour(wxWindow *object, int ref)
+{
+    auto c = mmThemeMetaString(ref);
+    if (!c.empty())
+        object->SetBackgroundColour(wxColour(c));
 }
 
 const std::vector<wxColour> mmThemeMetaColourArray(int ref)
 {
-    std::vector<wxColour> colours;   
+    std::vector<wxColour> colours;
     wxStringTokenizer input(mmThemeMetaString(ref));
     while (input.HasMoreTokens())
         colours.push_back(wxColour(input.GetNextToken()));
