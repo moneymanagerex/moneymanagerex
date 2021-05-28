@@ -176,7 +176,7 @@ TransactionListCtrl::TransactionListCtrl(
     wxASSERT(m_cp);
     m_selected_id.clear();
     m_selectedForCopy.clear();
-    this->SetBackgroundColour(mmThemeMetaColour(meta::COLOR_LISTPANEL));
+    mmThemeMetaColour(this, meta::COLOR_LISTPANEL);
 
     const wxAcceleratorEntry entries[] =
     {
