@@ -152,24 +152,25 @@ static const std::map<std::string, std::pair<int, bool>> iconName2enum = {
 const std::map<int, std::tuple<wxString, wxString, bool> > metaDataTrans()
 {
     std::map<int, std::tuple<wxString, wxString, bool> > md;
-    md[THEME_NAME]             = std::make_tuple("/theme/name",              "",        true);
-    md[THEME_AUTHOR]           = std::make_tuple("/theme/author",            "",        false);
-    md[THEME_DESCRIPTION]      = std::make_tuple("/theme/description",       "",        true);
-    md[THEME_URL]              = std::make_tuple("/colors/url",              "",        false);
-    md[COLOR_NAVPANEL]         = std::make_tuple("/colors/navigationPanel",  "",        false);
-    md[COLOR_LISTPANEL]        = std::make_tuple("/colors/listPanel",        "",        false);
-    md[COLOR_LISTALT0]         = std::make_tuple("/colors/listAlternative1", "#F0F5EB", false);
-    md[COLOR_LISTALT0A]        = std::make_tuple("/colors/listAlternative2", "#E0E7F0", false);
-    md[COLOR_LISTTOTAL]        = std::make_tuple("/colors/listTotal",        "#7486A8", false);
-    md[COLOR_LISTBORDER]       = std::make_tuple("/colors/listBorder",       "#000000", false);
-    md[COLOR_LISTFUTURE]       = std::make_tuple("/colors/listFutureDate",   "#7486A8", false);
-    md[COLOR_REPORT_CREDIT]    = std::make_tuple("/colors/reports/credit",   "#50B381", false);
-    md[COLOR_REPORT_DEBIT]     = std::make_tuple("/colors/reports/debit",    "#F75E51", false);
-    md[COLOR_REPORT_DELTA]     = std::make_tuple("/colors/reports/delta",    "#008FFB", false);
+    md[THEME_NAME]             = std::make_tuple("/theme/name",                 "",        true);
+    md[THEME_AUTHOR]           = std::make_tuple("/theme/author",               "",        false);
+    md[THEME_DESCRIPTION]      = std::make_tuple("/theme/description",          "",        true);
+    md[THEME_URL]              = std::make_tuple("/colors/url",                 "",        false);
+    md[COLOR_NAVPANEL_FONT]    = std::make_tuple("/colors/navigationPanelFont", "",        false);
+    md[COLOR_NAVPANEL]         = std::make_tuple("/colors/navigationPanel",     "",        false);
+    md[COLOR_LISTPANEL]        = std::make_tuple("/colors/listPanel",           "",        false);
+    md[COLOR_LISTALT0]         = std::make_tuple("/colors/listAlternative1",    "#F0F5EB", false);
+    md[COLOR_LISTALT0A]        = std::make_tuple("/colors/listAlternative2",    "#E0E7F0", false);
+    md[COLOR_LISTTOTAL]        = std::make_tuple("/colors/listTotal",           "#7486A8", false);
+    md[COLOR_LISTBORDER]       = std::make_tuple("/colors/listBorder",          "#000000", false);
+    md[COLOR_LISTFUTURE]       = std::make_tuple("/colors/listFutureDate",      "#7486A8", false);
+    md[COLOR_REPORT_CREDIT]    = std::make_tuple("/colors/reports/credit",      "#50B381", false);
+    md[COLOR_REPORT_DEBIT]     = std::make_tuple("/colors/reports/debit",       "#F75E51", false);
+    md[COLOR_REPORT_DELTA]     = std::make_tuple("/colors/reports/delta",       "#008FFB", false);
     md[COLOR_REPORT_PALETTE]   = std::make_tuple("/colors/reports/palette",  "#008FFB "
             "#00E396 #FEB019 #FF4560 #775DD0 #3F51B5 #03A9F4 #4cAF50 #F9CE1D #FF9800 "
             "#33B2DF #546E7A #D4526E #13D8AA #A5978B #4ECDC4 #81D4FA #546E7A #FD6A6A "
-            "#2B908F #F9A3A4 #90EE7E #FA4443 #69D2E7 #449DD1 #F86624",                  false);
+            "#2B908F #F9A3A4 #90EE7E #FA4443 #69D2E7 #449DD1 #F86624",                     false);
 
     return md;
 };
@@ -519,11 +520,16 @@ const wxColour mmThemeMetaColour(int ref)
     return wxColour(c);
 }
 
-void mmThemeMetaColour(wxWindow *object, int ref)
+void mmThemeMetaColour(wxWindow *object, int ref, bool foreground)
 {
-    auto c = mmThemeMetaString(ref);
+    const wxString c = mmThemeMetaString(ref);
     if (!c.empty())
-        object->SetBackgroundColour(wxColour(c));
+    {
+        if (foreground)
+            object->SetForegroundColour(wxColour(c));
+        else
+            object->SetBackgroundColour(wxColour(c));
+    }
 }
 
 const std::vector<wxColour> mmThemeMetaColourArray(int ref)
