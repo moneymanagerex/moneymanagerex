@@ -32,7 +32,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include <wx/fs_mem.h>
 #include <wx/mstream.h>
 #include <wx/tokenzr.h>
-#include "../3rd/lunasvg/include/svgdocument.h"
+#include "../3rd/lunasvg/include/document.h"
 
 // SVG filename in Zip, the PNG enum to which it relates, whether to recolor background
 static const std::map<std::string, std::pair<int, bool>> iconName2enum = {
@@ -367,16 +367,15 @@ bool processThemes(wxString themeDir, wxString myTheme, bool metaPhase)
                 wxMemoryOutputStream memOut(nullptr);
                 themeStream.Read(memOut);
                 const wxStreamBuffer* buffer = memOut.GetOutputStreamBuffer();
-                
-                lunasvg::SVGDocument document;
-                std::string svgDoc(static_cast<char *>(buffer->GetBufferStart()), buffer->GetBufferSize());
-                if (!document.loadFromData(svgDoc))
+
+                std::unique_ptr<lunasvg::Document> document = lunasvg::Document::loadFromData(static_cast<char *>(buffer->GetBufferStart()), buffer->GetBufferSize());
+                if (!document)
                     continue;
-        
+
                 int svgEnum = iconName2enum.find(fileName)->second.first;
 
                 std::uint32_t bgColor = 0;
-                if (iconName2enum.find(fileName)->second.second && bgStringConv >= 0)
+                if (iconName2enum.find(fileName)->second.second)
                     bgColor = bgStringConv;
 
                 lunasvg::Bitmap bitmap;
@@ -385,7 +384,7 @@ bool processThemes(wxString themeDir, wxString myTheme, bool metaPhase)
 
                 for (const auto& i : sizes)
                 {
-                    bitmap = document.renderToBitmap(i.second, i.second, 96.0, bgColor);
+                    bitmap = document->renderToBitmap(i.second, i.second, bgColor);
                     if (!bitmap.valid())
                         continue;
                     programIcons[i.first][svgEnum] = CreateBitmapFromRGBA(bitmap.data(), i.second);
