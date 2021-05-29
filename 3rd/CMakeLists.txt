@@ -27,7 +27,7 @@ target_include_directories(RapidJSON SYSTEM INTERFACE
     $<BUILD_INTERFACE:${RAPIDJSON_INCLUDE_DIRS}>)
 
 # lunasvg
- set(CMAKE_CXX_STANDARD 11)
+ set(CMAKE_CXX_STANDARD 14)
  set(CMAKE_C_STANDARD 11)
  add_library(lunasvg STATIC)
 
