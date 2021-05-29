@@ -516,6 +516,7 @@ const std::vector<std::pair<wxString, wxString> > g_date_formats_map()
         "%d,%m,%y",
         "%d.%m.%y",
         "%d.%m.%Y",
+        "%d,%m,%Y",
         "%d/%m %Y",
         "%d/%m/%y",
         "%d/%m/%Y",
