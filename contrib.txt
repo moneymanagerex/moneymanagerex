@@ -122,6 +122,7 @@ James Rogers
 Jesse Gac
 Michael Ellis
 Wiesław Stawiszyński
+Gérard AGNESIO
 Jean-Francois Zahnen
 Michel SERIN
 Roger Chandler
@@ -135,9 +136,11 @@ Edgar Lloren
 Jean-michel LOUISET
 Tim Carden
 Antonio Adam
+Frédéric Vandendris
 Gerald Mead
 Hermann Fessler
 Israel Corbo
+Fr. Cycus Chungu
 Roger Gimbrere
 Brian Crow
 Glenn Fowler
