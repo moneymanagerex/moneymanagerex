@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-05-25 13:38+0300\n"
-"PO-Revision-Date: 2021-05-25 10:51\n"
+"PO-Revision-Date: 2021-05-30 16:06\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Traditional\n"
 "MIME-Version: 1.0\n"
@@ -68,7 +68,7 @@ msgstr ""
 #: splittransactionsdialog.cpp:172 transactionsupdatedialog.cpp:222
 #: transdialog.cpp:604 wizard_update.cpp:184
 msgid "&OK "
-msgstr "&確定 "
+msgstr "確定(&O) "
 
 #: accountdialog.cpp:92 mmframe.cpp:1452 mmframe.cpp:1688
 #: wizard_newaccount.cpp:86 wizard_newaccount.cpp:93 wizard_newaccount.cpp:164
@@ -1666,7 +1666,7 @@ msgstr "關閉"
 
 #: constants.cpp:79
 msgid "&Close "
-msgstr "&關閉 "
+msgstr "關閉(&C) "
 
 #: constants.cpp:171
 msgid "Advanced Filter"
@@ -7153,7 +7153,7 @@ msgstr "無法檢查更新"
 
 #: wizard_update.cpp:295 wizard_update.cpp:310
 msgid "Error: "
-msgstr "錯誤: "
+msgstr "錯誤： "
 
 #: wizard_update.cpp:296 wizard_update.cpp:313
 msgid "MMEX Update Check"
