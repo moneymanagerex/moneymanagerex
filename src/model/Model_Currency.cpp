@@ -183,29 +183,36 @@ const wxString Model_Currency::toString(double value, const Data* currency, int 
         use_locale = locale.empty() ? "N" : "Y";
     }
 
-    const Data* curr = currency ? currency : GetBaseCurrency();
-    precision = (precision >= 0) ? precision : log10(curr->SCALE);
+    if (precision < 0)
+    {
+        precision = log10(currency ? currency->SCALE : GetBaseCurrency()->SCALE);
+    }
 
-    if (fabs(value) < 1000.0) {
+    int k = pow(10, precision);
+    double v = value * k;
+    v = round(v) / k;
+
+    if (fabs(v) < 1000.0) {
         s = fmt::format(use_locale == "Y" ? std::locale(locale.c_str()) : std::locale("en_US.UTF-8")
-            , "{:.{}f}", value, precision);
+            , "{:.{}f}", fabs(v), precision);
     }
     else {
         s = fmt::format(use_locale == "Y" ? std::locale(locale.c_str()) : std::locale("en_US.UTF-8")
-            , "{:L}", static_cast<int>(fabs(value) + 5 / (pow(10, precision + 1))))
-            + wxString(fmt::format("{:.{}f}", fabs(value) - static_cast<int>(fabs(value)), precision)).Mid(1);
-        if (value < 0.0) { s.Prepend("-"); }
+            , "{:L}", static_cast<int>(fabs(v) + 5 / (pow(10, precision + 1))))
+            + wxString(fmt::format("{:.{}f}", fabs(v) - static_cast<int>(fabs(v)), precision)).Mid(1);
     }
+
+    if (value < 0.0) { s.Prepend("-"); }
 
     if (use_locale == "N")
     {
         s.Replace(".", "\x05");
         s.Replace(",", "\t");
-        s.Replace("\x05", curr->DECIMAL_POINT);
-        s.Replace("\t", curr->GROUP_SEPARATOR);
+        s.Replace("\x05", currency ? currency->DECIMAL_POINT : GetBaseCurrency()->DECIMAL_POINT);
+        s.Replace("\t", currency ? currency->GROUP_SEPARATOR : GetBaseCurrency()->GROUP_SEPARATOR);
     }
 
-    //wxLogDebug("%s -> %s", fmt::format("{:f}", value), s);
+    wxLogDebug("%s -> %s", fmt::format("{:f}", value), s);
     return s;
 }
 
