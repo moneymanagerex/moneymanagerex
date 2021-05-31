@@ -84,10 +84,12 @@ int Model_CurrencyHistory::addUpdate(const int& currencyID, const wxDate& date, 
 }
 
 /** Return the rate for a specific currency in a specific day*/
-double Model_CurrencyHistory::getDayRate(const int& currencyID, const wxString& DateISO)
+double Model_CurrencyHistory::getDayRate(int currencyID, const wxString& DateISO)
 {
-    if (!Option::instance().getCurrencyHistoryEnabled())
-        return Model_Currency::instance().get(currencyID)->BASECONVRATE;
+    if (!Option::instance().getCurrencyHistoryEnabled()) {
+        auto c = Model_Currency::instance().get(currencyID);
+        return c ? c->BASECONVRATE : 1.0;
+    }
     wxDate Date;
     if (Date.ParseDate(DateISO))
         return Model_CurrencyHistory::getDayRate(currencyID, Date);
@@ -98,7 +100,7 @@ double Model_CurrencyHistory::getDayRate(const int& currencyID, const wxString& 
     }
 }
 
-double Model_CurrencyHistory::getDayRate(const int& currencyID, const wxDate& Date)
+double Model_CurrencyHistory::getDayRate(int currencyID, const wxDate& Date)
 {
     if (currencyID == Model_Currency::GetBaseCurrency()->CURRENCYID || currencyID == -1)
         return 1;

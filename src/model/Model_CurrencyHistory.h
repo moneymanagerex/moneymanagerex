@@ -57,8 +57,8 @@ public:
     int addUpdate(const int& currencyID, const wxDate& date, double price, UPDTYPE type);
 
     /** Return the rate for a specific currency in a specific day*/
-    static double getDayRate(const int& currencyID, const wxString& DateISO);
-    static double getDayRate(const int& currencyID, const wxDate& Date = wxDate::Today());
+    static double getDayRate(int currencyID, const wxString& DateISO);
+    static double getDayRate(int currencyID, const wxDate& Date = wxDate::Today());
 
     /** Return the last rate for a specific currency */
     static double getLastRate(const int& currencyID);
