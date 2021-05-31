@@ -129,7 +129,6 @@ wxString mmReportSummaryByDate::getHTMLText()
     mmHistoryItem   *pHistItem;
     mmHistoryData   arHistory;
     std::vector<balanceMap> balanceMapVec(Model_Account::instance().all().size());
-    std::vector<std::map<wxDate, double>::const_iterator>   arIt(balanceMapVec.size());
     std::vector<double> arBalance(balanceMapVec.size());
     struct BalanceEntry
     {
@@ -172,20 +171,20 @@ wxString mmReportSummaryByDate::getHTMLText()
                 if (Model_Account::type(account) != Model_Account::INVESTMENT)
                 {
                     // balanceMapVec contains transactions totals day by day
-                    const Model_Currency::Data* currency = Model_Account::currency(account);
                     for (const auto& tran : Model_Account::transaction(account))
                     {
                         balanceMapVec[i][Model_Checking::TRANSDATE(tran)]
                             += Model_Checking::balance(tran, account.ACCOUNTID)
-                            * Model_CurrencyHistory::getDayRate(currency->id(), tran.TRANSDATE);
+                            * Model_CurrencyHistory::getDayRate(account.CURRENCYID, tran.TRANSDATE);
                     }
+
                     if (Model_Account::type(account) != Model_Account::TERM && balanceMapVec[i].size())
                     {
                         date = balanceMapVec[i].begin()->first;
                         if (date.IsEarlierThan(dateStart))
                             dateStart = date;
                     }
-                    arBalance[i] = account.INITIALBAL * Model_CurrencyHistory::getDayRate(currency->id(), dateStart);
+                    arBalance[i] = account.INITIALBAL * Model_CurrencyHistory::getDayRate(account.CURRENCYID, dateStart);
                 }
                 else
                 {
@@ -228,10 +227,6 @@ wxString mmReportSummaryByDate::getHTMLText()
                 date -= span;
             dateStart = date;
 
-            int c = 0;
-            for (const auto& acctMap: balanceMapVec)
-                arIt[c++] = acctMap.begin();
-
             //  prepare the dates array
             while (dateStart <= dateEnd)
             {
@@ -248,11 +243,11 @@ wxString mmReportSummaryByDate::getHTMLText()
                 {
                     if (Model_Account::type(account) != Model_Account::INVESTMENT)
                     {
-                        for (; arIt[k] != balanceMapVec[k].end(); ++arIt[k])
+                        for (const auto& ar : balanceMapVec[k])
                         {
-                            if (arIt[k]->first.IsLaterThan(dd))
+                            if (ar.first.IsLaterThan(dd))
                                 break;
-                            arBalance[k] += arIt[k]->second;
+                            arBalance[k] += ar.second;
                         }
                     }
                     else
@@ -290,8 +285,7 @@ wxString mmReportSummaryByDate::getHTMLText()
                 totBalanceEntry.values.push_back(total);
                 totBalanceData.push_back(totBalanceEntry);
             }
-            
-            arIt.clear();
+
             arDates.clear();
 
             hb.startTbody();
