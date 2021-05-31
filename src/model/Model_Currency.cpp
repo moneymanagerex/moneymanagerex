@@ -202,7 +202,7 @@ const wxString Model_Currency::toString(double value, const Data* currency, int 
             + wxString(fmt::format("{:.{}f}", fabs(v) - static_cast<int>(fabs(v)), precision)).Mid(1);
     }
 
-    if (value < 0.0) { s.Prepend("-"); }
+    if (v < 0.0) { s.Prepend("-"); }
 
     if (use_locale == "N")
     {
