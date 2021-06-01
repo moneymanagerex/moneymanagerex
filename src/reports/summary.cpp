@@ -122,7 +122,7 @@ mmReportSummaryByDate::mmReportSummaryByDate(int mode)
 
 wxString mmReportSummaryByDate::getHTMLText()
 {
-    double          total, balancePerDay[Model_Account::SHARES];
+    double          balancePerDay[Model_Account::MAX];
     mmHTMLBuilder   hb;
     wxDate          date, dateStart = wxDate::Today(), dateEnd = wxDate::Today();
     wxDateSpan      span;
@@ -159,6 +159,8 @@ wxString mmReportSummaryByDate::getHTMLText()
                     hb.addTableHeaderCell(_("Credit Card Accounts"), true);
                     hb.addTableHeaderCell(_("Loan Accounts"), true);
                     hb.addTableHeaderCell(_("Term Accounts"), true);
+                    hb.addTableHeaderCell(_("Assets"), true);
+                    hb.addTableHeaderCell(_("Share Accounts"), true);
                     hb.addTableHeaderCell(_("Total"), true);
                     hb.addTableHeaderCell(_("Stocks"), true);
                     hb.addTableHeaderCell(_("Balance"), true);
@@ -238,12 +240,16 @@ wxString mmReportSummaryByDate::getHTMLText()
  
             for (const auto & dd : arDates)
             {
-
-                // prepare columns for report: date, cash, checking, credit card, loan, term, partial total, investment, grand total
+                double total = 0.0;
+                // prepare columns for report: date, cash, checking, CC, loan, term, asset, shares, partial total, investment, grand total
                 BalanceEntry totBalanceEntry;
                 totBalanceEntry.date = dd;
                 wxDate dd1 = dd;
-                dd1.SetDay(1);
+                if (mode_ == MONTHLY)
+                    dd1.SetDay(1);
+                else
+                    dd1.SetDay(1).SetMonth(wxDateTime::Jan);
+
                 for (int j = 0; j < sizeof(balancePerDay) / sizeof(*balancePerDay); j++)
                     balancePerDay[j] = 0.0;
 
@@ -253,10 +259,10 @@ wxString mmReportSummaryByDate::getHTMLText()
                     {
                         for (const auto& ar : balanceMapVec[account.ACCOUNTID])
                         {
-                            if (ar.first.IsLaterThan(dd))
-                                break;
                             if (ar.first.IsEarlierThan(dd1))
                                 continue;
+                            if (ar.first.IsLaterThan(dd))
+                                break;
                             arBalance[account.ACCOUNTID] += ar.second;
                         }
                     }
@@ -273,9 +279,14 @@ wxString mmReportSummaryByDate::getHTMLText()
                 totBalanceEntry.values.push_back(balancePerDay[Model_Account::CREDIT_CARD]);
                 totBalanceEntry.values.push_back(balancePerDay[Model_Account::LOAN]);
                 totBalanceEntry.values.push_back(balancePerDay[Model_Account::TERM]);
-                total = balancePerDay[Model_Account::CASH] + balancePerDay[Model_Account::CHECKING] 
-                    + balancePerDay[Model_Account::CREDIT_CARD] + balancePerDay[Model_Account::LOAN]
-                    + balancePerDay[Model_Account::TERM];
+                totBalanceEntry.values.push_back(balancePerDay[Model_Account::ASSET]);
+                totBalanceEntry.values.push_back(balancePerDay[Model_Account::SHARES]);
+
+                for (int i = 0; i < Model_Account::MAX; i++) {
+                    if (i != Model_Account::INVESTMENT)
+                        total += balancePerDay[i];
+                }
+
                 totBalanceEntry.values.push_back(total);
                 totBalanceEntry.values.push_back(balancePerDay[Model_Account::INVESTMENT]);
                 total += balancePerDay[Model_Account::INVESTMENT];
