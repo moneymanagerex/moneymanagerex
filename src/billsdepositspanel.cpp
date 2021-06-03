@@ -1,5 +1,6 @@
 ﻿/*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
+ Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -407,9 +408,9 @@ wxString mmBillsDepositsPanel::getItem(long item, long column)
     case COL_ID:
         return wxString::Format("%i", bill.BDID).Trim();
     case COL_PAYMENT_DATE:
-        return mmGetDateForDisplay(bill.NEXTOCCURRENCEDATE);
-    case COL_DUE_DATE:
         return mmGetDateForDisplay(bill.TRANSDATE);
+    case COL_DUE_DATE:
+        return mmGetDateForDisplay(bill.NEXTOCCURRENCEDATE);
     case COL_ACCOUNT:
         return bill.ACCOUNTNAME;
     case COL_PAYEE:
@@ -482,9 +483,9 @@ const wxString mmBillsDepositsPanel::GetRemainingDays(const Model_Billsdeposits:
     if (repeats >= BD_REPEATS_MULTIPLEX_BASE)    // Auto Execute Silent mode
         repeats -= BD_REPEATS_MULTIPLEX_BASE;
 
-    int daysRemaining = Model_Billsdeposits::NEXTOCCURRENCEDATE(item)
+    int daysRemaining = Model_Billsdeposits::TRANSDATE(item)
         .Subtract(this->getToday()).GetDays();
-    int daysOverdue = Model_Billsdeposits::TRANSDATE(item)
+    int daysOverdue = Model_Billsdeposits::NEXTOCCURRENCEDATE(item)
         .Subtract(this->getToday()).GetDays();
     wxString text = wxString::Format(wxPLURAL("%d day remaining", "%d days remaining", daysRemaining), daysRemaining);
 
@@ -715,10 +716,10 @@ void mmBillsDepositsPanel::sortTable()
         std::stable_sort(bills_.begin(), bills_.end(), SorterByBDID());
         break;
     case COL_PAYMENT_DATE:
-        std::stable_sort(bills_.begin(), bills_.end(), SorterByNEXTOCCURRENCEDATE());
+        std::stable_sort(bills_.begin(), bills_.end(), SorterByTRANSDATE());
         break;
     case COL_DUE_DATE:
-        std::stable_sort(bills_.begin(), bills_.end(), SorterByTRANSDATE());
+        std::stable_sort(bills_.begin(), bills_.end(), SorterByNEXTOCCURRENCEDATE());
         break;
     case COL_ACCOUNT:
         std::stable_sort(bills_.begin(), bills_.end(), SorterByACCOUNTNAME());

@@ -2,6 +2,7 @@
  Copyright (C) 2006 Madhan Kanagavel
  Copyright (C) 2016 - 2020 Nikolay Akimov
  Copyright (C) 2016 Stefano Giorgio
+ Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -224,11 +225,11 @@ void mmBDDialog::dataToControls()
 
     // Set the date paid
     wxDateTime field_date;
-    field_date.ParseDate(m_bill_data.NEXTOCCURRENCEDATE);
+    field_date.ParseDate(m_bill_data.TRANSDATE);
     m_date_paid->SetValue(field_date);
 
     // Set the due Date
-    field_date.ParseDate(m_bill_data.TRANSDATE);
+    field_date.ParseDate(m_bill_data.NEXTOCCURRENCEDATE);
     m_date_due->SetValue(field_date);
 
     // Have used repeatSel to multiplex auto repeat fields.
@@ -307,7 +308,7 @@ void mmBDDialog::dataToControls()
     else
     {
         SetDialogHeader(_("Enter Recurring Transaction"));
-        m_date_paid->Disable();
+        m_date_due->Disable();
         wxSpinButton* spinTransDate = static_cast<wxSpinButton*>(FindWindow(ID_DIALOG_TRANS_DATE_SPINNER));
         if (spinTransDate) spinTransDate->Disable();
         m_choice_transaction_type->Disable();
@@ -412,25 +413,25 @@ void mmBDDialog::CreateControls()
 
     // Date Due --------------------------------------------
 
-    m_date_paid = new wxDatePickerCtrl(this, ID_DIALOG_TRANS_BUTTON_PAYDATE
-        , wxDefaultDateTime, wxDefaultPosition, wxDefaultSize, wxDP_DROPDOWN | wxDP_SHOWCENTURY);
-    m_date_paid->SetValue(wxDateTime::Now()); // Required for Mac: Does not default to today
-    m_date_paid->SetToolTip(_("Specify the date the user is requested to enter this transaction"));
+    m_date_due = new wxDatePickerCtrl(this, ID_DIALOG_BD_DUE_DATE, wxDefaultDateTime
+        , wxDefaultPosition, wxDefaultSize, wxDP_DROPDOWN | wxDP_SHOWCENTURY);
+    m_date_due->SetValue(wxDateTime::Now()); // Required for Mac: Does not default to today
+    m_date_due->SetToolTip(_("Specify the date when this bill or deposit is due"));
 
     wxBoxSizer* dueDateDateBoxSizer = new wxBoxSizer(wxHORIZONTAL);
-    dueDateDateBoxSizer->Add(m_date_paid, g_flagsH);
+    dueDateDateBoxSizer->Add(m_date_due, g_flagsH);
 
 #ifdef __WXMSW__
-    int spinCtrlDirection = wxSP_VERTICAL;
-    wxSpinButton* spinTransDate = new wxSpinButton(this, ID_DIALOG_TRANS_DATE_SPINNER
-        , wxDefaultPosition, wxSize(-1, m_date_paid->GetSize().GetHeight())
+    int interval = 0;
+    wxSpinButton* spinNextOccDate = new wxSpinButton(this, ID_DIALOG_BD_REPEAT_DATE_SPINNER
+        , wxDefaultPosition, wxSize(-1, m_date_due->GetSize().GetHeight())
         , spinCtrlDirection | wxSP_ARROW_KEYS | wxSP_WRAP);
-    spinTransDate->SetToolTip(_("Advance or retard the user request date of this transaction"));
-    spinTransDate->SetRange(-32768, 32768);
-    dueDateDateBoxSizer->Add(spinTransDate, g_flagsH);
+    spinNextOccDate->SetToolTip(_("Retard or advance the date of the 'next occurrence'"));
+    spinNextOccDate->SetRange(-32768, 32768);
+    dueDateDateBoxSizer->Add(spinNextOccDate, 0, wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL | wxLEFT, interval);
 #endif
 
-    itemFlexGridSizer5->Add(new wxStaticText(this, wxID_STATIC, _("Date Paid")), g_flagsH);
+    itemFlexGridSizer5->Add(new wxStaticText(this, wxID_STATIC, _("Date Due")), g_flagsH);
     itemFlexGridSizer5->Add(dueDateDateBoxSizer);
 
     // Repeats --------------------------------------------
@@ -455,7 +456,7 @@ void mmBDDialog::CreateControls()
     itemFlexGridSizer5->Add(repeatTimesBoxSizer);
 
     textNumRepeats_ = new wxTextCtrl(this, ID_DIALOG_BD_TEXTCTRL_NUM_TIMES, ""
-        , wxDefaultPosition, m_date_paid->GetSize(), 0, wxIntegerValidator<int>());
+        , wxDefaultPosition, m_date_due->GetSize(), 0, wxIntegerValidator<int>());
     repeatTimesBoxSizer->Add(textNumRepeats_, g_flagsH);
     textNumRepeats_->SetMaxLength(12);
     setRepeatDetails();
@@ -498,25 +499,25 @@ void mmBDDialog::CreateControls()
     mainBoxSizerInner->Add(transDetailsStaticBoxSizer, g_flagsExpand);
 
     // Trans Date --------------------------------------------
-    m_date_due = new wxDatePickerCtrl(this, ID_DIALOG_BD_DUE_DATE, wxDefaultDateTime
-        , wxDefaultPosition, wxDefaultSize, wxDP_DROPDOWN | wxDP_SHOWCENTURY);
-    m_date_due->SetValue(wxDateTime::Now()); // Required for Mac: Does not default to today
-    m_date_due->SetToolTip(_("Specify the date when this bill or deposit is due"));
+    m_date_paid = new wxDatePickerCtrl(this, ID_DIALOG_TRANS_BUTTON_PAYDATE
+        , wxDefaultDateTime, wxDefaultPosition, wxDefaultSize, wxDP_DROPDOWN | wxDP_SHOWCENTURY);
+    m_date_paid->SetValue(wxDateTime::Now()); // Required for Mac: Does not default to today
+    m_date_paid->SetToolTip(_("Specify the date the user is requested to enter this transaction"));
 
     wxBoxSizer* transDateBoxSizer = new wxBoxSizer(wxHORIZONTAL);
-    transDateBoxSizer->Add(m_date_due, g_flagsH);
+    transDateBoxSizer->Add(m_date_paid, g_flagsH);
 
 #ifdef __WXMSW__
-    int interval = 0;
-    wxSpinButton* spinNextOccDate = new wxSpinButton(this, ID_DIALOG_BD_REPEAT_DATE_SPINNER
-        , wxDefaultPosition, wxSize(-1, m_date_due->GetSize().GetHeight())
+    int spinCtrlDirection = wxSP_VERTICAL;
+    wxSpinButton* spinTransDate = new wxSpinButton(this, ID_DIALOG_TRANS_DATE_SPINNER
+        , wxDefaultPosition, wxSize(-1, m_date_paid->GetSize().GetHeight())
         , spinCtrlDirection | wxSP_ARROW_KEYS | wxSP_WRAP);
-    spinNextOccDate->SetToolTip(_("Retard or advance the date of the 'next occurrence'"));
-    spinNextOccDate->SetRange(-32768, 32768);
-    transDateBoxSizer->Add(spinNextOccDate, 0, wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL | wxLEFT, interval);
+    spinTransDate->SetToolTip(_("Advance or retard the user request date of this transaction"));
+    spinTransDate->SetRange(-32768, 32768);
+    transDateBoxSizer->Add(spinTransDate, g_flagsH);
 #endif
 
-    transPanelSizer->Add(new wxStaticText(this, wxID_STATIC, _("Date Due")), g_flagsH);
+    transPanelSizer->Add(new wxStaticText(this, wxID_STATIC, _("Date Paid")), g_flagsH);
     transPanelSizer->Add(transDateBoxSizer);
 
     // Status --------------------------------------------
@@ -920,6 +921,13 @@ void mmBDDialog::OnNoteSelected(wxCommandEvent& event)
 
 void mmBDDialog::OnOk(wxCommandEvent& WXUNUSED(event))
 {
+    // Ideally 'paid date' should be on or before the 'due date'
+    if (m_date_paid->GetValue() > m_date_due->GetValue())
+        if (wxMessageBox(_("The payment date is after the due date, is this what you intended?"),
+                _("Looks like a late payment"),
+                wxYES_NO | wxNO_DEFAULT | wxICON_WARNING) != wxYES)
+            return;
+
     Model_Account::Data* acc = Model_Account::instance().get(m_bill_data.ACCOUNTID);
     if (!acc)
     {
@@ -1015,13 +1023,8 @@ void mmBDDialog::OnOk(wxCommandEvent& WXUNUSED(event))
         }
     }
 
-    m_bill_data.NEXTOCCURRENCEDATE = m_date_paid->GetValue().FormatISODate();
-    m_bill_data.TRANSDATE = m_date_due->GetValue().FormatISODate();
-    // Ensure that TRANDSATE is set correctly
-    if (m_date_paid->GetValue() > m_date_due->GetValue())
-    {
-        m_bill_data.TRANSDATE = m_date_paid->GetValue().FormatISODate();
-    }
+    m_bill_data.NEXTOCCURRENCEDATE = m_date_due->GetValue().FormatISODate();
+    m_bill_data.TRANSDATE = m_date_paid->GetValue().FormatISODate();
 
     wxStringClientData* status_obj = static_cast<wxStringClientData *>(m_choice_status->GetClientObject(m_choice_status->GetSelection()));
     if (status_obj)
@@ -1261,7 +1264,7 @@ void mmBDDialog::OnSpinEventDue(wxSpinEvent& event)
 
 void mmBDDialog::setRepeatDetails()
 {
-    m_btn_due_date->Enable(false);
+    m_btn_due_date->Enable(true);
     const wxString& repeatLabelRepeats = _("Repeats");
     const wxString& repeatLabelActivate = _("Activates");
 
@@ -1320,41 +1323,23 @@ void mmBDDialog::OnRepeatTypeChanged(wxCommandEvent& WXUNUSED(event))
 
 void mmBDDialog::OnsetNextRepeatDate(wxCommandEvent& WXUNUSED(event))
 {
+    int repeatType = m_choice_repeat->GetSelection();
     wxString valueStr = textNumRepeats_->GetValue();
-    if (valueStr.IsNumber())
+    int span = 1;
+    switch (repeatType)
     {
-        int value = wxAtoi(valueStr);
-        wxDateTime date = m_date_due->GetValue();
-
-        int repeats = m_choice_repeat->GetSelection();
-        if (repeats == INXDAYS)
-        {
-            if (value) {
-                date = date.Add(wxDateSpan::Days(value));
-            }
-            else {
+        case INXDAYS:
+        case INXMONTHS:
+        case EVERYXDAYS:
+        case EVERYXMONTHS:
+            if (!valueStr.IsNumber() || !(span = wxAtoi(valueStr)))
+            {
                 mmErrorDialogs::ToolTip4Object(textNumRepeats_, _("Invalid value"), _("Error"));
+                break;
             }
-        }
-        else if (repeats == INXMONTHS)
-        {
-            if (value) {
-                date = date.Add(wxDateSpan::Months(value));
-            }
-            else {
-                mmErrorDialogs::ToolTip4Object(textNumRepeats_, _("Invalid value"), _("Error"));
-            }
-        }
-        else
-        {
-            mmErrorDialogs::ToolTip4Object(m_choice_repeat
-                , _("Invalid Choice") + "\n\n" + _("Choose one of the following:") + "\n"
-                    + _("In (x) Days") + "\n" + _("In (x) Months")
-                , _("Error"));
-        }
-
-        m_date_paid->SetValue(date);
-        m_date_due->SetValue(date);
+        default:
+            m_date_paid->SetValue(Model_Billsdeposits::nextOccurDate(repeatType, span, m_date_paid->GetValue()));
+            m_date_due->SetValue(Model_Billsdeposits::nextOccurDate(repeatType, span, m_date_due->GetValue()));
     }
 }
 

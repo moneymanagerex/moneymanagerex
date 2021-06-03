@@ -1,5 +1,6 @@
 /*******************************************************
  Copyright (C) 2013,2014 Guan Lisheng (guanlisheng@gmail.com)
+ Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -324,10 +325,10 @@ void Model_Billsdeposits::completeBDInSeries(int bdID)
         if (repeats >= BD_REPEATS_MULTIPLEX_BASE)    // Auto Execute Silent mode
             repeats -= BD_REPEATS_MULTIPLEX_BASE;
         int numRepeats = bill->NUMOCCURRENCES;
-        const wxDateTime& payment_date_current = NEXTOCCURRENCEDATE(bill);
+        const wxDateTime& payment_date_current = TRANSDATE(bill);
         const wxDateTime& payment_date_update = nextOccurDate(repeats, numRepeats, payment_date_current);
 
-        const wxDateTime& due_date_current = TRANSDATE(bill);
+        const wxDateTime& due_date_current = NEXTOCCURRENCEDATE(bill);
         const wxDateTime& due_date_update = nextOccurDate(repeats, numRepeats, due_date_current);
 
         if (numRepeats != REPEAT_TYPE::REPEAT_INACTIVE)
@@ -344,12 +345,8 @@ void Model_Billsdeposits::completeBDInSeries(int bdID)
             if (numRepeats != -1) numRepeats = -1;
         }
 
-        bill->NEXTOCCURRENCEDATE = payment_date_update.FormatISODate();
-        bill->TRANSDATE = due_date_update.FormatISODate();
-
-        // Ensure that TRANDSATE is set correctly
-        if (payment_date_current > due_date_current)
-            bill->TRANSDATE = payment_date_update.FormatISODate();
+        bill->NEXTOCCURRENCEDATE = due_date_update.FormatISODate();
+        bill->TRANSDATE = payment_date_update.FormatISODate();
 
         bill->NUMOCCURRENCES = numRepeats;
         save(bill);
