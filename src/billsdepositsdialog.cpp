@@ -423,6 +423,7 @@ void mmBDDialog::CreateControls()
 
 #ifdef __WXMSW__
     int interval = 0;
+    int spinCtrlDirection = wxSP_VERTICAL;
     wxSpinButton* spinNextOccDate = new wxSpinButton(this, ID_DIALOG_BD_REPEAT_DATE_SPINNER
         , wxDefaultPosition, wxSize(-1, m_date_due->GetSize().GetHeight())
         , spinCtrlDirection | wxSP_ARROW_KEYS | wxSP_WRAP);
@@ -508,7 +509,6 @@ void mmBDDialog::CreateControls()
     transDateBoxSizer->Add(m_date_paid, g_flagsH);
 
 #ifdef __WXMSW__
-    int spinCtrlDirection = wxSP_VERTICAL;
     wxSpinButton* spinTransDate = new wxSpinButton(this, ID_DIALOG_TRANS_DATE_SPINNER
         , wxDefaultPosition, wxSize(-1, m_date_paid->GetSize().GetHeight())
         , spinCtrlDirection | wxSP_ARROW_KEYS | wxSP_WRAP);
@@ -1264,7 +1264,6 @@ void mmBDDialog::OnSpinEventDue(wxSpinEvent& event)
 
 void mmBDDialog::setRepeatDetails()
 {
-    m_btn_due_date->Enable(true);
     const wxString& repeatLabelRepeats = _("Repeats");
     const wxString& repeatLabelActivate = _("Activates");
 
@@ -1279,7 +1278,6 @@ void mmBDDialog::setRepeatDetails()
         const auto& toolTipsStr = _("Specify period in Days to activate.\n"
             "Becomes blank when not active.");
         textNumRepeats_->SetToolTip(toolTipsStr);
-        m_btn_due_date->Enable();
     }
     else if (repeats == INXMONTHS)
     {
@@ -1288,7 +1286,6 @@ void mmBDDialog::setRepeatDetails()
         const auto& toolTipsStr = _("Specify period in Months to activate.\n"
             "Becomes blank when not active.");
         textNumRepeats_->SetToolTip(toolTipsStr);
-        m_btn_due_date->Enable();
     }
     else if (repeats == EVERYXDAYS)
     {
