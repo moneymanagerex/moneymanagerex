@@ -313,13 +313,18 @@ const wxString mmGetDateForDisplay(const wxString &iso_date, const wxString& dat
 {
     //ISO Date to formatted string lookup table.
     static std::unordered_map<wxString, wxString> dateLookup;
+    static wxString date_format;
+    if (date_format.empty())
+        date_format = Option::instance().getDateFormat();
 
     // If format has been changed, delete all stored strings.
-    if (dateFormat != Option::instance().getDateFormat())
+    if (dateFormat != date_format)
     {
         dateLookup.clear();
-        if (dateFormat.empty())
+        if (dateFormat.empty()) {
             return "";
+        }
+        date_format = dateFormat;
     }
 
     // If date exists in lookup - return it.
@@ -501,9 +506,7 @@ const std::vector<std::pair<wxString, wxString> > g_date_formats_map()
     if (!df.empty())
         return df;
 
-    const auto local_date_fmt = wxLocale::GetInfo(wxLOCALE_SHORT_DATE_FMT);
-    const wxString formats[] = {
-        local_date_fmt,
+    std::vector<wxString> formats = {
         "%d %Mon %Y",
         "%d %Mon %y",
         "%d-%Mon-%Y",
@@ -513,7 +516,7 @@ const std::vector<std::pair<wxString, wxString> > g_date_formats_map()
         "%d,%m,%y",
         "%d.%m.%y",
         "%d.%m.%Y",
-        "%d.%m.%Y",
+        "%d,%m,%Y",
         "%d/%m %Y",
         "%d/%m/%y",
         "%d/%m/%Y",
@@ -539,6 +542,10 @@ const std::vector<std::pair<wxString, wxString> > g_date_formats_map()
         "%Y%m%d",
         "%Y-%m-%d"
     };
+
+    const auto local_date_fmt = wxLocale::GetInfo(wxLOCALE_SHORT_DATE_FMT);
+    if (std::find(formats.begin(), formats.end(), local_date_fmt) == formats.end())
+        formats.push_back(local_date_fmt);
 
     for (const auto& entry : formats)
     {
@@ -1062,7 +1069,7 @@ const wxString getProgramDescription(int type)
         << eol
 
         << bull + wxSQLITE3_VERSION_STRING
-        << " (SQLite " << wxSQLite3Database::GetVersion() << ")"
+        << " (SQLite " << wxSQLite3Database::GetVersion() << ")" << eol
         << bull + "RapidJSON " << RAPIDJSON_VERSION_STRING << eol
         << bull + LUA_RELEASE << eol
         << bull + "lunasvg " << eol

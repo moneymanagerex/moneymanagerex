@@ -176,7 +176,7 @@ TransactionListCtrl::TransactionListCtrl(
     wxASSERT(m_cp);
     m_selected_id.clear();
     m_selectedForCopy.clear();
-    this->SetBackgroundColour(mmThemeMetaColour(meta::COLOR_LISTPANEL));
+    mmThemeMetaColour(this, meta::COLOR_LISTPANEL);
 
     const wxAcceleratorEntry entries[] =
     {
@@ -696,7 +696,9 @@ int TransactionListCtrl::OnPaste(Model_Checking::Data* tran)
 
     Model_Checking::Data* copy = Model_Checking::instance().clone(tran); //TODO: this function can't clone split transactions
     if (!useOriginalDate) copy->TRANSDATE = wxDateTime::Now().FormatISODate();
-    copy->ACCOUNTID = m_cp->m_AccountID;
+    if ((Model_Checking::type(copy->TRANSCODE) != Model_Checking::TRANSFER) ||
+            (m_cp->m_AccountID != copy->ACCOUNTID && m_cp->m_AccountID != copy->TOACCOUNTID))
+        copy->ACCOUNTID = m_cp->m_AccountID;
     int transactionID = Model_Checking::instance().save(copy);
     m_pasted_id.push_back(transactionID);   // add the newly pasted transaction
 
@@ -1384,6 +1386,8 @@ const wxString TransactionListCtrl::getItem(long item, long column, bool realenu
     case TransactionListCtrl::COL_NOTES:
         value = tran.NOTES;
         value.Replace("\n", " ");
+        if (tran.has_attachment())
+            value.Prepend(mmAttachmentManage::GetAttachmentNoteSign());
         return value;
     case TransactionListCtrl::COL_UDFC01:
         return tran.UDFC01;

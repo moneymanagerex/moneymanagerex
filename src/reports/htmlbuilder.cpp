@@ -607,7 +607,7 @@ void mmHTMLBuilder::addChart(const GraphData& gd)
     htmlChart += wxString::Format(", series: [%s]", seriesList);
 
     if (gd.type == GraphData::BARLINE)
-        htmlChart += ", dataLabels: { enabled: true, enabledOnSeries: [1] }";
+        htmlChart += ", dataLabels: { enabled: true, enabledOnSeries: [0] }";   // Always label the first series (line)
 
     htmlPieData += wxString::Format("var chart_%s = [ %s ]", divid, pieEntries);
 

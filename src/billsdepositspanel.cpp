@@ -88,7 +88,7 @@ billsDepositsListCtrl::billsDepositsListCtrl(mmBillsDepositsPanel* bdp, wxWindow
 : mmListCtrl(parent, winid)
 , m_bdp(bdp)
 {
-    this->SetBackgroundColour(mmThemeMetaColour(meta::COLOR_LISTPANEL));
+    mmThemeMetaColour(this, meta::COLOR_LISTPANEL);
     // load the global variables
     m_selected_col = Model_Setting::instance().GetIntSetting("BD_SORT_COL", m_bdp->col_sort());
     m_asc = Model_Setting::instance().GetBoolSetting("BD_ASC", true);
@@ -311,9 +311,6 @@ int mmBillsDepositsPanel::initVirtualListControl(int id)
             continue;
 
         Model_Billsdeposits::Full_Data r(data);
-
-        if (Model_Attachment::NrAttachments(Model_Attachment::reftype_desc(Model_Attachment::BILLSDEPOSIT), r.BDID))
-            r.NOTES = r.NOTES.Prepend(mmAttachmentManage::GetAttachmentNoteSign());
         bills_.push_back(r);
     }
 
@@ -453,6 +450,8 @@ wxString mmBillsDepositsPanel::getItem(long item, long column)
     case COL_NUMBER:
         return bill.TRANSACTIONNUMBER;
     case COL_NOTES:
+        if (Model_Attachment::NrAttachments(Model_Attachment::reftype_desc(Model_Attachment::BILLSDEPOSIT), bill.BDID))
+            return mmAttachmentManage::GetAttachmentNoteSign() + bill.NOTES;
         return bill.NOTES;
     default:
         return wxEmptyString;

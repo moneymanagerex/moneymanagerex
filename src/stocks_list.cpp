@@ -78,7 +78,7 @@ StocksListCtrl::StocksListCtrl(mmStocksPanel* cp, wxWindow *parent, wxWindowID w
     m_imageList->Add(mmBitmap(png::UPARROW));
 
     SetImageList(m_imageList, wxIMAGE_LIST_SMALL);
-    this->SetBackgroundColour(mmThemeMetaColour(meta::COLOR_LISTPANEL));
+    mmThemeMetaColour(this, meta::COLOR_LISTPANEL);
 
     // load the global variables
     m_selected_col = Model_Setting::instance().GetIntSetting("STOCKS_SORT_COL", col_sort());
@@ -178,7 +178,7 @@ wxString StocksListCtrl::OnGetItemText(long item, long column) const
     {
         wxString full_notes = m_stocks[item].NOTES;
         if (Model_Attachment::NrAttachments(Model_Attachment::reftype_desc(Model_Attachment::STOCK), m_stocks[item].STOCKID))
-            full_notes = full_notes.Prepend(mmAttachmentManage::GetAttachmentNoteSign());
+            full_notes.Prepend(mmAttachmentManage::GetAttachmentNoteSign());
         return full_notes;
     }
 

@@ -175,6 +175,7 @@ void mmCheckingPanel::filterTable()
         full_tran.PAYEENAME = full_tran.real_payee_name(m_AccountID);
         full_tran.BALANCE = m_account_balance;
         full_tran.AMOUNT = transaction_amount;
+        full_tran.HAS_ATTACHMENT = attachments.count(tran.TRANSID) > 0;
         m_filteredBalance += transaction_amount;
 
         if (custom_fields.find(tran.TRANSID) != custom_fields.end()) {
@@ -198,9 +199,6 @@ void mmCheckingPanel::filterTable()
                 }
             }
         }
-
-        if (attachments.count(full_tran.TRANSID))
-            full_tran.NOTES.Prepend(mmAttachmentManage::GetAttachmentNoteSign());
 
         m_listCtrlAccount->m_trans.push_back(full_tran);
     }
@@ -445,9 +443,8 @@ void mmCheckingPanel::updateExtraTransactionData(bool single, bool foreign)
         int trx_id = m_listCtrlAccount->getSelectedId()[0];
         const Model_Checking::Data* trx = Model_Checking::instance().get(trx_id);
         Model_Checking::Full_Data full_tran(*trx);
-        m_info_panel->SetLabelText(full_tran.NOTES);
-        wxString miniStr = full_tran.info();
 
+        wxString miniStr = full_tran.info();
         //Show only first line but full string set as tooltip
         if (miniStr.Find("\n") > 1 && !miniStr.IsEmpty())
         {
@@ -460,6 +457,16 @@ void mmCheckingPanel::updateExtraTransactionData(bool single, bool foreign)
             m_info_panel_mini->SetToolTip(miniStr);
         }
 
+        wxString notesStr = full_tran.NOTES;
+        if (full_tran.has_attachment()) {
+            const wxString& RefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
+            Model_Attachment::Data_Set attachments = Model_Attachment::instance().FilterAttachments(RefType, full_tran.id());
+            for (const auto& i : attachments) {
+                notesStr += notesStr.empty() ? "" : "\n";
+                notesStr += _("Attachment") + " " + i.DESCRIPTION + " " + i.FILENAME;
+            }
+        }
+        m_info_panel->SetLabelText(notesStr);
     }
     else
     {

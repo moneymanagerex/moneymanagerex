@@ -657,7 +657,8 @@ void mmGUIFrame::createControls()
 
 #endif
     m_nav_tree_ctrl->SetMinSize(wxSize(100, 100));
-    m_nav_tree_ctrl->SetBackgroundColour(mmThemeMetaColour(meta::COLOR_NAVPANEL));
+    mmThemeMetaColour(m_nav_tree_ctrl, meta::COLOR_NAVPANEL);
+    mmThemeMetaColour(m_nav_tree_ctrl, meta::COLOR_NAVPANEL_FONT, true);
 
     int all_icons_size = Option::instance().getIconSize();
     int nav_icon_size = Option::instance().getNavigationIconSize();

@@ -17,6 +17,7 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 *******************************************************/
 
+#include <wx/window.h>
 #include <wx/imaglist.h>
 #include <wx/arrstr.h>
 #include <vector>
@@ -28,6 +29,7 @@ enum meta {
     THEME_DESCRIPTION,  
     THEME_URL,
     COLOR_NAVPANEL,
+    COLOR_NAVPANEL_FONT,
     COLOR_LISTPANEL,
     COLOR_LISTALT0,
     COLOR_LISTALT0A,
@@ -36,6 +38,7 @@ enum meta {
     COLOR_LISTFUTURE,
     COLOR_REPORT_CREDIT,
     COLOR_REPORT_DEBIT,
+    COLOR_REPORT_DELTA,
     COLOR_REPORT_PALETTE,
     // The end
     MAX_METADATA
@@ -211,5 +214,6 @@ void LoadTheme();
 const wxString mmThemeMetaString(int ref);
 long mmThemeMetaLong(int ref);
 const wxColour mmThemeMetaColour(int ref);
+void mmThemeMetaColour(wxWindow *object, int ref, bool foreground = false);
 const std::vector<wxColour> mmThemeMetaColourArray(int ref);
 const wxBitmap mmBitmap(int ref);
