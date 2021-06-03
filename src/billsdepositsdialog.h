@@ -113,6 +113,7 @@ private:
     wxCheckBox* itemCheckBoxAutoExeSilent_;
     wxStaticText* staticTimesRepeat_;
     wxStaticText* staticTextRepeats_;
+    wxBitmapButton* m_btn_due_prev_date;
     wxBitmapButton* m_btn_due_date;
 
     bool m_transfer;
@@ -141,7 +142,8 @@ private:
     void OnNoteSelected(wxCommandEvent& event);
 
     void OnRepeatTypeChanged(wxCommandEvent& event);
-    void OnsetNextRepeatDate(wxCommandEvent& event);
+    void OnsetPrevRepeatDate(wxCommandEvent& WXUNUSED(event));
+    void OnsetNextRepeatDate(wxCommandEvent& WXUNUSED(event));
     void setRepeatDetails();
 
     void activateSplitTransactionsDlg();
@@ -165,6 +167,7 @@ private:
         ID_DIALOG_TRANS_ADVANCED_FROM,
         ID_DIALOG_TRANS_ADVANCED_TO,
         ID_DIALOG_TRANS_SPLITCHECKBOX,
+        ID_DIALOG_TRANS_BUTTONTRANSNUMPREV,
         ID_DIALOG_TRANS_BUTTONTRANSNUM,
         ID_DIALOG_TRANS_PAYEECOMBO,
         ID_DIALOG_TRANS_BUTTON_FREQENTNOTES,

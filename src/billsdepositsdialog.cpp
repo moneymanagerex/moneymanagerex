@@ -89,6 +89,7 @@ wxBEGIN_EVENT_TABLE(mmBDDialog, wxDialog)
     EVT_CHECKBOX(ID_DIALOG_BD_CHECKBOX_AUTO_EXECUTE_USERACK, mmBDDialog::OnAutoExecutionUserAckChecked)
     EVT_CHECKBOX(ID_DIALOG_BD_CHECKBOX_AUTO_EXECUTE_SILENT, mmBDDialog::OnAutoExecutionSilentChecked)
     EVT_CHOICE(ID_DIALOG_BD_COMBOBOX_REPEATS, mmBDDialog::OnRepeatTypeChanged)
+    EVT_BUTTON(ID_DIALOG_TRANS_BUTTONTRANSNUMPREV, mmBDDialog::OnsetPrevRepeatDate)
     EVT_BUTTON(ID_DIALOG_TRANS_BUTTONTRANSNUM, mmBDDialog::OnsetNextRepeatDate)
     EVT_MENU_RANGE(wxID_LOWEST, wxID_LOWEST + 20, mmBDDialog::OnNoteSelected)
     EVT_MENU_RANGE(wxID_HIGHEST, wxID_HIGHEST + 8, mmBDDialog::OnColourSelected)
@@ -131,6 +132,7 @@ mmBDDialog::mmBDDialog(wxWindow* parent, int bdID, bool edit, bool enterOccur)
     , itemCheckBoxAutoExeSilent_(nullptr)
     , staticTimesRepeat_(nullptr)
     , staticTextRepeats_(nullptr)
+    , m_btn_due_prev_date(nullptr)
     , m_btn_due_date(nullptr)
 {
     const Model_Billsdeposits::Data* bill = Model_Billsdeposits::instance().get(bdID);
@@ -317,6 +319,7 @@ void mmBDDialog::dataToControls()
         itemCheckBoxAutoExeSilent_->Disable();
         itemCheckBoxAutoExeUserAck_->Disable();
         textNumRepeats_->Disable();
+        m_btn_due_prev_date->Disable();
         m_btn_due_date->Disable();
     }
 
@@ -442,8 +445,11 @@ void mmBDDialog::CreateControls()
     m_choice_repeat = new wxChoice(this, ID_DIALOG_BD_COMBOBOX_REPEATS);
 
     wxBoxSizer* repeatBoxSizer = new wxBoxSizer(wxHORIZONTAL);
+    m_btn_due_prev_date = new wxBitmapButton(this, ID_DIALOG_TRANS_BUTTONTRANSNUMPREV, mmBitmap(png::LEFTARROW));
+    m_btn_due_prev_date->SetToolTip(_("Back to the last occurring date with the specified values"));
     m_btn_due_date = new wxBitmapButton(this, ID_DIALOG_TRANS_BUTTONTRANSNUM, mmBitmap(png::RIGHTARROW));
     m_btn_due_date->SetToolTip(_("Advance the next occurring date with the specified values"));
+    repeatBoxSizer->Add(m_btn_due_prev_date, g_flagsExpand);
     repeatBoxSizer->Add(m_choice_repeat, wxSizerFlags(g_flagsExpand).Proportion(6));
     repeatBoxSizer->Add(m_btn_due_date, g_flagsExpand);
 
@@ -1316,6 +1322,28 @@ void mmBDDialog::setRepeatDetails()
 void mmBDDialog::OnRepeatTypeChanged(wxCommandEvent& WXUNUSED(event))
 {
     setRepeatDetails();
+}
+
+void mmBDDialog::OnsetPrevRepeatDate(wxCommandEvent& WXUNUSED(event))
+{
+    int repeatType = m_choice_repeat->GetSelection();
+    wxString valueStr = textNumRepeats_->GetValue();
+    int span = 1;
+    switch (repeatType)
+    {
+        case INXDAYS:
+        case INXMONTHS:
+        case EVERYXDAYS:
+        case EVERYXMONTHS:
+            if (!valueStr.IsNumber() || !(span = wxAtoi(valueStr)))
+            {
+                mmErrorDialogs::ToolTip4Object(textNumRepeats_, _("Invalid value"), _("Error"));
+                break;
+            }
+        default:
+            m_date_paid->SetValue(Model_Billsdeposits::previousOccurDate(repeatType, span, m_date_paid->GetValue()));
+            m_date_due->SetValue(Model_Billsdeposits::previousOccurDate(repeatType, span, m_date_due->GetValue()));
+    }
 }
 
 void mmBDDialog::OnsetNextRepeatDate(wxCommandEvent& WXUNUSED(event))
