@@ -33,6 +33,14 @@ enum
     MENU_POPUP_BD_ENTER_OCCUR,
     MENU_POPUP_BD_SKIP_OCCUR,
     MENU_TREEPOPUP_ORGANIZE_ATTACHMENTS,
+    MENU_ON_SET_UDC0,
+    MENU_ON_SET_UDC1,
+    MENU_ON_SET_UDC2,
+    MENU_ON_SET_UDC3,
+    MENU_ON_SET_UDC4,
+    MENU_ON_SET_UDC5,
+    MENU_ON_SET_UDC6,
+    MENU_ON_SET_UDC7
 };
 
 const wxString BILLSDEPOSITS_REPEATS[] =
@@ -80,6 +88,7 @@ wxBEGIN_EVENT_TABLE(billsDepositsListCtrl, mmListCtrl)
     EVT_MENU(MENU_POPUP_BD_ENTER_OCCUR,       billsDepositsListCtrl::OnEnterBDTransaction)
     EVT_MENU(MENU_POPUP_BD_SKIP_OCCUR,        billsDepositsListCtrl::OnSkipBDTransaction)
     EVT_MENU(MENU_TREEPOPUP_ORGANIZE_ATTACHMENTS, billsDepositsListCtrl::OnOrganizeAttachments)
+    EVT_MENU_RANGE(MENU_ON_SET_UDC0, MENU_ON_SET_UDC7, billsDepositsListCtrl::OnSetUserColour)
 
     EVT_LIST_KEY_DOWN(wxID_ANY,   billsDepositsListCtrl::OnListKeyDown)
 wxEND_EVENT_TABLE()
@@ -90,6 +99,25 @@ billsDepositsListCtrl::billsDepositsListCtrl(mmBillsDepositsPanel* bdp, wxWindow
 , m_bdp(bdp)
 {
     mmThemeMetaColour(this, meta::COLOR_LISTPANEL);
+
+    const wxAcceleratorEntry entries[] =
+    {
+        wxAcceleratorEntry(wxACCEL_CTRL, 'N', MENU_TREEPOPUP_NEW),   
+        wxAcceleratorEntry(wxACCEL_CTRL, 'E', MENU_TREEPOPUP_EDIT), 
+        wxAcceleratorEntry(wxACCEL_CTRL, 'D', MENU_TREEPOPUP_DELETE),               
+        wxAcceleratorEntry(wxACCEL_CTRL, '0', MENU_ON_SET_UDC0),
+        wxAcceleratorEntry(wxACCEL_CTRL, '1', MENU_ON_SET_UDC1),
+        wxAcceleratorEntry(wxACCEL_CTRL, '2', MENU_ON_SET_UDC2),
+        wxAcceleratorEntry(wxACCEL_CTRL, '3', MENU_ON_SET_UDC3),
+        wxAcceleratorEntry(wxACCEL_CTRL, '4', MENU_ON_SET_UDC4),
+        wxAcceleratorEntry(wxACCEL_CTRL, '5', MENU_ON_SET_UDC5),
+        wxAcceleratorEntry(wxACCEL_CTRL, '6', MENU_ON_SET_UDC6),
+        wxAcceleratorEntry(wxACCEL_CTRL, '7', MENU_ON_SET_UDC7)
+    };
+
+    wxAcceleratorTable tab(sizeof(entries) / sizeof(*entries), entries);
+    SetAcceleratorTable(tab);
+
     // load the global variables
     m_selected_col = Model_Setting::instance().GetIntSetting("BD_SORT_COL", m_bdp->col_sort());
     m_asc = Model_Setting::instance().GetBoolSetting("BD_ASC", true);
@@ -252,26 +280,26 @@ void mmBillsDepositsPanel::CreateControls()
     itemBoxSizer4->Add(itemBoxSizer5, g_flagsBorder1V);
 
     wxButton* itemButtonNew = new wxButton(bdPanel, wxID_NEW, _("&New "));
-    itemButtonNew->SetToolTip(_("New Bills & Deposit Series"));
+    itemButtonNew->SetToolTip(_("New Recurring Transaction"));
     itemBoxSizer5->Add(itemButtonNew, 0, wxRIGHT, 5);
 
     wxButton* itemButton81 = new wxButton(bdPanel, wxID_EDIT, _("&Edit "));
-    itemButton81->SetToolTip(_("Edit Bills & Deposit Series"));
+    itemButton81->SetToolTip(_("Edit Recurring Transaction"));
     itemBoxSizer5->Add(itemButton81, 0, wxRIGHT, 5);
     itemButton81->Enable(false);
 
     wxButton* itemButton7 = new wxButton(bdPanel, wxID_DELETE, _("&Delete "));
-    itemButton7->SetToolTip(_("Delete Bills & Deposit Series"));
+    itemButton7->SetToolTip(_("Delete Recurring Transaction"));
     itemBoxSizer5->Add(itemButton7, 0, wxRIGHT, 5);
     itemButton7->Enable(false);
 
     wxButton* itemButton8 = new wxButton(bdPanel, wxID_PASTE, _("En&ter"));
-    itemButton8->SetToolTip(_("Enter Next Bills & Deposit Occurrence"));
+    itemButton8->SetToolTip(_("Enter Next Recurring Transaction Occurrence"));
     itemBoxSizer5->Add(itemButton8, 0, wxRIGHT, 5);
     itemButton8->Enable(false);
 
     wxButton* buttonSkipTrans = new wxButton(bdPanel, wxID_IGNORE, _("&Skip"));
-    buttonSkipTrans->SetToolTip(_("Skip Next Bills & Deposit Occurrence"));
+    buttonSkipTrans->SetToolTip(_("Skip Next Recurring Transaction Occurrence"));
     itemBoxSizer5->Add(buttonSkipTrans, 0, wxRIGHT, 5);
     buttonSkipTrans->Enable(false);
 
@@ -384,9 +412,9 @@ void billsDepositsListCtrl::OnItemRightClick(wxMouseEvent& event)
     menu.AppendSeparator();
     menu.Append(MENU_POPUP_BD_SKIP_OCCUR, _("Skip next Occurrence"));
     menu.AppendSeparator();
-    menu.Append(MENU_TREEPOPUP_NEW, _("&New Bills && Deposit Series..."));
-    menu.Append(MENU_TREEPOPUP_EDIT, _("&Edit Bills && Deposit Series..."));
-    menu.Append(MENU_TREEPOPUP_DELETE, _("&Delete Bills && Deposit Series..."));
+    menu.Append(MENU_TREEPOPUP_NEW, _("&New Recurring Transaction..."));
+    menu.Append(MENU_TREEPOPUP_EDIT, _("&Edit Recurring Transaction..."));
+    menu.Append(MENU_TREEPOPUP_DELETE, _("&Delete Recurring Transaction..."));
     menu.AppendSeparator();
     menu.Append(MENU_TREEPOPUP_ORGANIZE_ATTACHMENTS, _("&Organize Attachments"));
     
@@ -616,8 +644,8 @@ void billsDepositsListCtrl::OnDeleteBDSeries(wxCommandEvent& WXUNUSED(event))
     if (m_bdp->bills_.empty()) return;
     if (m_selected_row < 0) return;
 
-    wxMessageDialog msgDlg(this, _("Do you really want to delete the series?")
-        , _("Confirm Series Deletion")
+    wxMessageDialog msgDlg(this, _("Do you really want to delete the recurring transaction?")
+        , _("Confirm Deletion")
         , wxYES_NO | wxNO_DEFAULT | wxICON_ERROR);
     if (msgDlg.ShowModal() == wxID_YES)
     {
@@ -859,6 +887,28 @@ wxListItemAttr* billsDepositsListCtrl::OnGetItemAttr(long item) const
 
     /* Returns the alternating background pattern */
     return (item % 2) ? attr2_.get() : attr1_.get();
+}
+
+void billsDepositsListCtrl::OnSetUserColour(wxCommandEvent& event)
+{
+    if (m_selected_row == -1) return;
+    int id = m_bdp->bills_[m_selected_row].BDID;
+
+    int user_colour_id = event.GetId();
+    user_colour_id -= MENU_ON_SET_UDC0;
+    wxLogDebug("id: %i", user_colour_id);
+
+    Model_Billsdeposits::instance().Savepoint();
+
+    Model_Billsdeposits::Data* item = Model_Billsdeposits::instance().get(id);
+    if (item)
+    {
+        item->FOLLOWUPID = user_colour_id;
+        Model_Billsdeposits::instance().save(item);
+    }
+    Model_Billsdeposits::instance().ReleaseSavepoint();
+
+    RefreshList();
 }
 
 void mmBillsDepositsPanel::RefreshList()
