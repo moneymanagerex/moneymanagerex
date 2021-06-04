@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-06-04 11:01+0300\n"
-"PO-Revision-Date: 2021-06-04 17:21\n"
+"PO-Revision-Date: 2021-06-04 17:31\n"
 "Last-Translator: \n"
 "Language-Team: Greek\n"
 "MIME-Version: 1.0\n"
@@ -1238,7 +1238,7 @@ msgstr "&Παράβλεψη"
 
 #: billsdepositspanel.cpp:302
 msgid "Skip Next Recurring Transaction Occurrence"
-msgstr ""
+msgstr "Παράλειψη Επόμενης Εμφάνισης Επαναλαμβανόμενης Συναλλαγής"
 
 #: billsdepositspanel.cpp:411
 msgid "Enter next Occurrence..."
@@ -1250,15 +1250,15 @@ msgstr "Παράκαμψη επόμενης εμφάνισης"
 
 #: billsdepositspanel.cpp:415
 msgid "&New Recurring Transaction..."
-msgstr ""
+msgstr "&Νέα Επαναλαμβανόμενη Συναλλαγή..."
 
 #: billsdepositspanel.cpp:416
 msgid "&Edit Recurring Transaction..."
-msgstr ""
+msgstr "&Επεξεργασία Επαναλαμβανόμενης Συναλλαγής..."
 
 #: billsdepositspanel.cpp:417
 msgid "&Delete Recurring Transaction..."
-msgstr ""
+msgstr "&Διαγραφή Επαναλαμβανόμενης Συναλλαγής..."
 
 #: billsdepositspanel.cpp:464
 msgid "Manual"
@@ -1301,11 +1301,11 @@ msgstr[1] "%d ημέρες καθυστέρηση!"
 
 #: billsdepositspanel.cpp:647
 msgid "Do you really want to delete the recurring transaction?"
-msgstr ""
+msgstr "Θέλετε πραγματικά να διαγράψετε την επαναλαμβανόμενη συναλλαγή;"
 
 #: billsdepositspanel.cpp:648
 msgid "Confirm Deletion"
-msgstr ""
+msgstr "Επιβεβαίωση Διαγραφής"
 
 #: budgetentrydialog.cpp:49
 msgid "Budget Year Entry"
