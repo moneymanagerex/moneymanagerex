@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-06-04 11:01+0300\n"
-"PO-Revision-Date: 2021-06-04 08:19\n"
+"PO-Revision-Date: 2021-06-04 17:21\n"
 "Last-Translator: \n"
 "Language-Team: Greek\n"
 "MIME-Version: 1.0\n"
@@ -855,7 +855,7 @@ msgstr "Επαναλήψεις"
 
 #: billsdepositsdialog.cpp:449
 msgid "Back to the last occurring date with the specified values"
-msgstr ""
+msgstr "Πίσω στην τελευταία ημερομηνία που συνέβη με τις καθορισμένες τιμές"
 
 #: billsdepositsdialog.cpp:451
 msgid "Advance the next occurring date with the specified values"
@@ -1056,11 +1056,11 @@ msgstr "Επιλέξτε λογαριασμό προορισμού"
 
 #: billsdepositsdialog.cpp:932
 msgid "The payment date is after the due date, is this what you intended?"
-msgstr ""
+msgstr "Η ημερομηνία πληρωμής είναι μετά την ημερομηνία λήξης, είναι αυτό που σκοπεύετε;"
 
 #: billsdepositsdialog.cpp:933
 msgid "Looks like a late payment"
-msgstr ""
+msgstr "Φαίνεται σαν μια καθυστερημένη πληρωμή"
 
 #: billsdepositsdialog.cpp:1232
 msgid "Specify the transfer amount in the From Account"
@@ -1222,7 +1222,7 @@ msgstr "Φίλτρο συναλλαγών"
 
 #: billsdepositspanel.cpp:292
 msgid "Delete Recurring Transaction"
-msgstr ""
+msgstr "Διαγραφή Επαναλαμβανόμενης Συναλλαγής"
 
 #: billsdepositspanel.cpp:296
 msgid "En&ter"
@@ -1230,7 +1230,7 @@ msgstr "&Αποδοχή"
 
 #: billsdepositspanel.cpp:297
 msgid "Enter Next Recurring Transaction Occurrence"
-msgstr ""
+msgstr "Εισάγετε Την Επόμενη Εμφάνιση Επαναλαμβανόμενης Συναλλαγής"
 
 #: billsdepositspanel.cpp:301
 msgid "&Skip"
