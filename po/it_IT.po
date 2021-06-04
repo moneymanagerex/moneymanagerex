@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-06-04 11:01+0300\n"
-"PO-Revision-Date: 2021-06-04 08:19\n"
+"PO-Revision-Date: 2021-06-04 09:19\n"
 "Last-Translator: \n"
 "Language-Team: Italian\n"
 "MIME-Version: 1.0\n"
@@ -855,7 +855,7 @@ msgstr "Ripetizioni"
 
 #: billsdepositsdialog.cpp:449
 msgid "Back to the last occurring date with the specified values"
-msgstr ""
+msgstr "Torna all'ultima data con i valori specificati"
 
 #: billsdepositsdialog.cpp:451
 msgid "Advance the next occurring date with the specified values"
@@ -1056,11 +1056,11 @@ msgstr "Selezionare Conto di Destinazione"
 
 #: billsdepositsdialog.cpp:932
 msgid "The payment date is after the due date, is this what you intended?"
-msgstr ""
+msgstr "La data di pagamento è dopo la data di scadenza, è questo ciò che si intendeva?"
 
 #: billsdepositsdialog.cpp:933
 msgid "Looks like a late payment"
-msgstr ""
+msgstr "Sembra un pagamento in ritardo"
 
 #: billsdepositsdialog.cpp:1232
 msgid "Specify the transfer amount in the From Account"
@@ -1222,7 +1222,7 @@ msgstr "Filtro Operazioni"
 
 #: billsdepositspanel.cpp:292
 msgid "Delete Recurring Transaction"
-msgstr ""
+msgstr "Eliminare l'operazione ricorrente"
 
 #: billsdepositspanel.cpp:296
 msgid "En&ter"
@@ -1230,7 +1230,7 @@ msgstr "In&serisci"
 
 #: billsdepositspanel.cpp:297
 msgid "Enter Next Recurring Transaction Occurrence"
-msgstr ""
+msgstr "Inserisci la prossima Operazione Ricorrente"
 
 #: billsdepositspanel.cpp:301
 msgid "&Skip"
@@ -1238,7 +1238,7 @@ msgstr "&Salta"
 
 #: billsdepositspanel.cpp:302
 msgid "Skip Next Recurring Transaction Occurrence"
-msgstr ""
+msgstr "Salta la prossima Transazione Ricorrente"
 
 #: billsdepositspanel.cpp:411
 msgid "Enter next Occurrence..."
@@ -1250,15 +1250,15 @@ msgstr "Ignora prossima Scadenza"
 
 #: billsdepositspanel.cpp:415
 msgid "&New Recurring Transaction..."
-msgstr ""
+msgstr "&Nuova operazione ricorrente..."
 
 #: billsdepositspanel.cpp:416
 msgid "&Edit Recurring Transaction..."
-msgstr ""
+msgstr "&Modifica operazione ricorrente..."
 
 #: billsdepositspanel.cpp:417
 msgid "&Delete Recurring Transaction..."
-msgstr ""
+msgstr "&Eliminare l'operazione ricorrente..."
 
 #: billsdepositspanel.cpp:464
 msgid "Manual"
@@ -1301,11 +1301,11 @@ msgstr[1] "%d giorni in ritardo!"
 
 #: billsdepositspanel.cpp:647
 msgid "Do you really want to delete the recurring transaction?"
-msgstr ""
+msgstr "Vuoi davvero eliminare l'Operazione Ricorrente selezionata?"
 
 #: billsdepositspanel.cpp:648
 msgid "Confirm Deletion"
-msgstr ""
+msgstr "Confermare l'eliminazione"
 
 #: budgetentrydialog.cpp:49
 msgid "Budget Year Entry"
