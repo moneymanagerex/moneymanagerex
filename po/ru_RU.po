@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-06-04 11:01+0300\n"
-"PO-Revision-Date: 2021-06-04 08:19\n"
+"PO-Revision-Date: 2021-06-04 18:31\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -855,7 +855,7 @@ msgstr "Повторы"
 
 #: billsdepositsdialog.cpp:449
 msgid "Back to the last occurring date with the specified values"
-msgstr ""
+msgstr "Вернуться к последней дате с указанными значениями"
 
 #: billsdepositsdialog.cpp:451
 msgid "Advance the next occurring date with the specified values"
@@ -1056,11 +1056,11 @@ msgstr "На счёт"
 
 #: billsdepositsdialog.cpp:932
 msgid "The payment date is after the due date, is this what you intended?"
-msgstr ""
+msgstr "Дата оплаты после срока оплаты, это то, что вы намеревались?"
 
 #: billsdepositsdialog.cpp:933
 msgid "Looks like a late payment"
-msgstr ""
+msgstr "Похоже, что запоздалый платеж"
 
 #: billsdepositsdialog.cpp:1232
 msgid "Specify the transfer amount in the From Account"
@@ -1221,7 +1221,7 @@ msgstr "Фильтр транзакций"
 
 #: billsdepositspanel.cpp:292
 msgid "Delete Recurring Transaction"
-msgstr ""
+msgstr "Удалить повторяющуюся транзакцию"
 
 #: billsdepositspanel.cpp:296
 msgid "En&ter"
@@ -1310,7 +1310,7 @@ msgstr ""
 
 #: billsdepositspanel.cpp:648
 msgid "Confirm Deletion"
-msgstr ""
+msgstr "Подтвердите удаление"
 
 #: budgetentrydialog.cpp:49
 msgid "Budget Year Entry"
