@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-06-04 11:01+0300\n"
-"PO-Revision-Date: 2021-06-04 09:19\n"
+"PO-Revision-Date: 2021-06-04 16:16\n"
 "Last-Translator: \n"
 "Language-Team: Italian\n"
 "MIME-Version: 1.0\n"
@@ -1222,7 +1222,7 @@ msgstr "Filtro Operazioni"
 
 #: billsdepositspanel.cpp:292
 msgid "Delete Recurring Transaction"
-msgstr "Eliminare l'operazione ricorrente"
+msgstr "Elimina Operazione Ricorrente"
 
 #: billsdepositspanel.cpp:296
 msgid "En&ter"
