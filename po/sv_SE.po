@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-05-31 19:22+0300\n"
-"PO-Revision-Date: 2021-06-04 07:57\n"
+"PO-Revision-Date: 2021-06-04 08:03\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
@@ -3811,18 +3811,18 @@ msgstr ""
 msgid "Do you really want to move the selected transaction?"
 msgid_plural "Do you really want to move %i selected transactions?"
 msgstr[0] "Vill du verkligen flytta den valda transaktionen?"
-msgstr[1] ""
+msgstr[1] "Vill du verkligen flytta %i valda transaktioner?"
 
 #: mmchecking_list.cpp:1130
 msgid "Confirm Transaction Move"
-msgstr ""
+msgstr "Bekräfta transaktionsflytt"
 
 #: mmchecking_list.cpp:1136
 #, c-format
 msgid "Moving transaction to..."
 msgid_plural "Moving %i transactions to..."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Flyttar transaktionen till..."
+msgstr[1] "Flyttar %i transaktioner till..."
 
 #: mmchecking_list.cpp:1140 stocks_list.cpp:292
 msgid "Select the destination Account "
@@ -3874,7 +3874,7 @@ msgstr ""
 
 #: mmcheckingpanel.cpp:389
 msgid "Full Transactions Report"
-msgstr ""
+msgstr "Full transaktionsrapport"
 
 #: mmcheckingpanel.cpp:391
 #, c-format
