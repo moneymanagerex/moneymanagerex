@@ -62,6 +62,7 @@ private:
     void OnMarkAllTransactions(wxCommandEvent& event);
     void OnListKeyDown(wxListEvent& event);
     void OnListItemSelected(wxListEvent& event);
+    void OnSetUserColour(wxCommandEvent& event);
 
     void refreshVisualList(int selected_index = -1);
 
