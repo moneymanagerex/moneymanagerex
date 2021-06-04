@@ -1332,14 +1332,16 @@ void mmBDDialog::OnsetPrevRepeatDate(wxCommandEvent& WXUNUSED(event))
     switch (repeatType)
     {
         case INXDAYS:
+            break;
         case INXMONTHS:
+            break;
         case EVERYXDAYS:
+            break;
         case EVERYXMONTHS:
-            if (!valueStr.IsNumber() || !(span = wxAtoi(valueStr)))
-            {
+            if (!valueStr.IsNumber() || !(span = wxAtoi(valueStr))) {
                 mmErrorDialogs::ToolTip4Object(textNumRepeats_, _("Invalid value"), _("Error"));
-                break;
             }
+            break;
         default:
             m_date_paid->SetValue(Model_Billsdeposits::previousOccurDate(repeatType, span, m_date_paid->GetValue()));
             m_date_due->SetValue(Model_Billsdeposits::previousOccurDate(repeatType, span, m_date_due->GetValue()));
