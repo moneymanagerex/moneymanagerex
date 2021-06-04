@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-06-04 11:01+0300\n"
-"PO-Revision-Date: 2021-06-04 16:16\n"
+"PO-Revision-Date: 2021-06-04 16:29\n"
 "Last-Translator: \n"
 "Language-Team: Italian\n"
 "MIME-Version: 1.0\n"
@@ -1238,7 +1238,7 @@ msgstr "&Salta"
 
 #: billsdepositspanel.cpp:302
 msgid "Skip Next Recurring Transaction Occurrence"
-msgstr "Salta la prossima Transazione Ricorrente"
+msgstr "Salta la prossima Operazione Ricorrente"
 
 #: billsdepositspanel.cpp:411
 msgid "Enter next Occurrence..."
@@ -1305,7 +1305,7 @@ msgstr "Vuoi davvero eliminare l'Operazione Ricorrente selezionata?"
 
 #: billsdepositspanel.cpp:648
 msgid "Confirm Deletion"
-msgstr "Confermare l'eliminazione"
+msgstr "Conferma Eliminazione"
 
 #: budgetentrydialog.cpp:49
 msgid "Budget Year Entry"
