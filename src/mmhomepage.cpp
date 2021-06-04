@@ -1,5 +1,6 @@
 /*******************************************************
 Copyright (C) 2014 - 2020 Nikolay Akimov
+Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -291,9 +292,9 @@ const wxString htmlWidgetBillsAndDeposits::getHTMLText()
 
     //                    days, payee, description, amount, account
     std::vector< std::tuple<int, wxString, wxString, double, const Model_Account::Data*> > bd_days;
-    for (const auto& entry : Model_Billsdeposits::instance().all(Model_Billsdeposits::COL_NEXTOCCURRENCEDATE))
+    for (const auto& entry : Model_Billsdeposits::instance().all(Model_Billsdeposits::COL_TRANSDATE))
     {
-        int daysPayment = Model_Billsdeposits::NEXTOCCURRENCEDATE(&entry)
+        int daysPayment = Model_Billsdeposits::TRANSDATE(&entry)
             .Subtract(today).GetDays();
         if (daysPayment > 14)
             break; // Done searching for all to include
@@ -309,7 +310,7 @@ const wxString htmlWidgetBillsAndDeposits::getHTMLText()
             continue; // Inactive
         }
 
-        int daysOverdue = Model_Billsdeposits::TRANSDATE(&entry)
+        int daysOverdue = Model_Billsdeposits::NEXTOCCURRENCEDATE(&entry)
             .Subtract(today).GetDays();
         wxString daysRemainingStr = (daysPayment > 0
             ? wxString::Format(wxPLURAL("%d day remaining", "%d days remaining", daysPayment), daysPayment)

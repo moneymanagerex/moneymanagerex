@@ -1,5 +1,6 @@
 /*******************************************************
  Copyright (C) 2013,2014 Guan Lisheng (guanlisheng@gmail.com)
+ Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -324,10 +325,10 @@ void Model_Billsdeposits::completeBDInSeries(int bdID)
         if (repeats >= BD_REPEATS_MULTIPLEX_BASE)    // Auto Execute Silent mode
             repeats -= BD_REPEATS_MULTIPLEX_BASE;
         int numRepeats = bill->NUMOCCURRENCES;
-        const wxDateTime& payment_date_current = NEXTOCCURRENCEDATE(bill);
+        const wxDateTime& payment_date_current = TRANSDATE(bill);
         const wxDateTime& payment_date_update = nextOccurDate(repeats, numRepeats, payment_date_current);
 
-        const wxDateTime& due_date_current = TRANSDATE(bill);
+        const wxDateTime& due_date_current = NEXTOCCURRENCEDATE(bill);
         const wxDateTime& due_date_update = nextOccurDate(repeats, numRepeats, due_date_current);
 
         if (numRepeats != REPEAT_TYPE::REPEAT_INACTIVE)
@@ -344,12 +345,8 @@ void Model_Billsdeposits::completeBDInSeries(int bdID)
             if (numRepeats != -1) numRepeats = -1;
         }
 
-        bill->NEXTOCCURRENCEDATE = payment_date_update.FormatISODate();
-        bill->TRANSDATE = due_date_update.FormatISODate();
-
-        // Ensure that TRANDSATE is set correctly
-        if (payment_date_current > due_date_current)
-            bill->TRANSDATE = payment_date_update.FormatISODate();
+        bill->NEXTOCCURRENCEDATE = due_date_update.FormatISODate();
+        bill->TRANSDATE = payment_date_update.FormatISODate();
 
         bill->NUMOCCURRENCES = numRepeats;
         save(bill);
@@ -397,6 +394,52 @@ const wxDateTime Model_Billsdeposits::nextOccurDate(int repeatsType, int numRepe
         || REPEAT_MONTHLY_LAST_BUSINESS_DAY == repeatsType)
     {
         dt = dt.Add(wxDateSpan::Month());
+        dt = dt.SetToLastMonthDay(dt.GetMonth(), dt.GetYear());
+        if (repeatsType == REPEAT_MONTHLY_LAST_BUSINESS_DAY) // last weekday of month
+        {
+            if (dt.GetWeekDay() == wxDateTime::Sun || dt.GetWeekDay() == wxDateTime::Sat)
+                dt.SetToPrevWeekDay(wxDateTime::Fri);
+        }
+    }
+    //wxLogDebug("init date: %s -> next date: %s", nextOccurDate.FormatISODate(), dt.FormatISODate());
+    return dt;
+}
+
+const wxDateTime Model_Billsdeposits::previousOccurDate(int repeatsType, int numRepeats, const wxDateTime& nextOccurDate)
+{
+    wxDateTime dt = nextOccurDate;
+    if (repeatsType == REPEAT_WEEKLY)
+        dt = dt.Subtract(wxTimeSpan::Week());
+    else if (repeatsType == REPEAT_BI_WEEKLY)
+        dt = dt.Subtract(wxTimeSpan::Weeks(2));
+    else if (repeatsType == REPEAT_MONTHLY)
+        dt = dt.Subtract(wxDateSpan::Month());
+    else if (repeatsType == REPEAT_BI_MONTHLY)
+        dt = dt.Subtract(wxDateSpan::Months(2));
+    else if (repeatsType == REPEAT_FOUR_MONTHLY)
+        dt = dt.Subtract(wxDateSpan::Months(4));
+    else if (repeatsType == REPEAT_HALF_YEARLY)
+        dt = dt.Subtract(wxDateSpan::Months(6));
+    else if (repeatsType == REPEAT_YEARLY)
+        dt = dt.Subtract(wxDateSpan::Year());
+    else if (repeatsType == REPEAT_QUARTERLY)
+        dt = dt.Subtract(wxDateSpan::Months(3));
+    else if (repeatsType == REPEAT_FOUR_WEEKLY)
+        dt = dt.Subtract(wxDateSpan::Weeks(4));
+    else if (repeatsType == REPEAT_DAILY)
+        dt = dt.Subtract(wxDateSpan::Days(1));
+    else if (repeatsType == REPEAT_IN_X_DAYS) // repeat in numRepeats Days (Once only)
+        dt = dt.Subtract(wxDateSpan::Days(numRepeats));
+    else if (repeatsType == REPEAT_IN_X_MONTHS) // repeat in numRepeats Months (Once only)
+        dt = dt.Subtract(wxDateSpan::Months(numRepeats));
+    else if (repeatsType == REPEAT_EVERY_X_DAYS) // repeat every numRepeats Days
+        dt = dt.Subtract(wxDateSpan::Days(numRepeats));
+    else if (repeatsType == REPEAT_EVERY_X_MONTHS) // repeat every numRepeats Months
+        dt = dt.Subtract(wxDateSpan::Months(numRepeats));
+    else if (repeatsType == REPEAT_MONTHLY_LAST_DAY
+        || REPEAT_MONTHLY_LAST_BUSINESS_DAY == repeatsType)
+    {
+        dt = dt.Subtract(wxDateSpan::Month());
         dt = dt.SetToLastMonthDay(dt.GetMonth(), dt.GetYear());
         if (repeatsType == REPEAT_MONTHLY_LAST_BUSINESS_DAY) // last weekday of month
         {

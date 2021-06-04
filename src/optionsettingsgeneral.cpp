@@ -267,20 +267,28 @@ bool OptionSettingsGeneral::SaveSettings()
 
 bool OptionSettingsGeneral::doFormatDoubleValue(const wxString& locale, wxString& result)
 {
-    wxTRANSLATE("bad locale name");
-    double value = 1234567.89;
-    int precision = 2;
-    wxString s;
     if (locale.empty()) {
         result = "";
         return true;
     }
 
+    result = wxTRANSLATE("bad locale name");
+    double value = 1234567.8910;
+
     try {
-        s = _("Currency value sample: %s");
+        auto test = fmt::format(std::locale(locale.c_str()), "{:L}", value);
+
+        wxString cents;
+        wxRegEx pattern(R"([^0-9][0-9]{2})");
+        if (pattern.Matches(test)) {
+            cents = pattern.GetMatch(test, 0);
+        }
+        else
+            return false;
+
         const wxString sample = fmt::format(std::locale(locale.c_str()), "{:L}", static_cast<int>(value))
-            + wxString(fmt::format("{:.{}f}", fabs(value - static_cast<int>(value)), precision)).Mid(1);
-        result = wxString::Format(s, sample);
+            + cents;
+        result = wxString::Format(_("Currency value sample: %s"), sample);
     }
     catch (std::exception & ex) {
         result = wxString(ex.what());

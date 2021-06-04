@@ -168,6 +168,7 @@ public:
 
     void completeBDInSeries(int bdID);
     static const wxDateTime nextOccurDate(int type, int numRepeats, const wxDateTime& nextOccurDate);
+    static const wxDateTime previousOccurDate(int repeatsType, int numRepeats, const wxDateTime& nextOccurDate);
 };
 
 #endif // 
