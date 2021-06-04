@@ -200,8 +200,8 @@ const wxString Model_Currency::toString(double value, const Data* currency, int 
 
     s = fmt::format(use_locale == "Y" ? std::locale(locale.c_str()) : std::locale("en_US.UTF-8")
         , "{:L}", static_cast<int>(fabs(v) + 5 / (pow(10, precision + 1))))
-        + (use_locale == "Y" ? decimal : currency->DECIMAL_POINT)
-        + wxString(fmt::format("{:.{}f}", fabs(v) - static_cast<int>(fabs(v)), precision)).Mid(2);
+        + (precision > 0 ? (use_locale == "Y" ? decimal : currency->DECIMAL_POINT)
+        + wxString(fmt::format("{:.{}f}", fabs(v) - static_cast<int>(fabs(v)), precision)).Mid(2) : "");
 
     if (v < 0.0) { s.Prepend("-"); }
 
@@ -218,13 +218,6 @@ const wxString Model_Currency::toString(double value, const Data* currency, int 
 }
 
 const wxString Model_Currency::fromString2CLocale(const wxString &s, const Data* currency)
-{
-    auto str = fromString2Default(s, currency);
-    str.Replace(currency->DECIMAL_POINT, ".");
-    return str;
-}
-
-const wxString Model_Currency::fromString2Default(const wxString &s, const Data* currency)
 {
     if (s.empty()) return s;
     wxString str = s;
@@ -243,28 +236,18 @@ const wxString Model_Currency::fromString2Default(const wxString &s, const Data*
     }
     else
     {
-        wxString one = toString(1.0);
+        wxString decimal = toString(1.0);
         wxRegEx pattern2(R"([^.,])");
-        pattern2.ReplaceAll(&one, wxEmptyString);
+        pattern2.ReplaceAll(&decimal, wxEmptyString);
 
         wxString thousand = toString(1000.0, nullptr, 0);
         wxRegEx pattern3(R"([0-9])");
         pattern3.ReplaceAll(&thousand, wxEmptyString);
 
-        if (one != thousand)
-        {
-            if (!thousand.empty())
-                str.Replace(thousand, wxEmptyString);
-        }
-        else
-        {
-            auto i = str.Replace(one, one);
-            for (size_t k = 1; k < i ; k++)
-            {
-                str.Replace(thousand, wxEmptyString, false);
-            }
-        }
+        if (!thousand.empty())
+            str.Replace(thousand, wxEmptyString);
 
+        str.Replace(decimal, ".");
     }
 
     wxLogDebug("%s -> %s", s, str);

@@ -740,7 +740,7 @@ const wxString htmlWidgetCurrency::getHtmlText()
     const wxString baseCurrencySymbol = Model_Currency::GetBaseCurrency()->CURRENCY_SYMBOL;
     std::map<wxString, double> usedRates;
     const auto currencies = Model_Currency::instance().all();
-    int limit = 10;
+
     for (const auto currency : currencies)
     {
         if (Model_Account::is_used(currency)) {
@@ -749,7 +749,7 @@ const wxString htmlWidgetCurrency::getHtmlText()
                 , today);
             usedRates[currency.CURRENCY_SYMBOL] = convertionRate;
 
-            if (--limit <= 0) {
+            if (usedRates.size() >= 10) {
                 break;
             }
         }
