@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-06-04 11:01+0300\n"
-"PO-Revision-Date: 2021-06-04 18:31\n"
+"PO-Revision-Date: 2021-06-04 18:48\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -1060,7 +1060,7 @@ msgstr "Дата оплаты после срока оплаты, это то, �
 
 #: billsdepositsdialog.cpp:933
 msgid "Looks like a late payment"
-msgstr "Похоже, что запоздалый платеж"
+msgstr "Похоже, что это запоздалый платеж"
 
 #: billsdepositsdialog.cpp:1232
 msgid "Specify the transfer amount in the From Account"
@@ -1229,7 +1229,7 @@ msgstr "&Зачислить"
 
 #: billsdepositspanel.cpp:297
 msgid "Enter Next Recurring Transaction Occurrence"
-msgstr ""
+msgstr "Ввести следующую повторяющуюся транзакцию"
 
 #: billsdepositspanel.cpp:301
 msgid "&Skip"
@@ -1237,7 +1237,7 @@ msgstr "Пропус&тить"
 
 #: billsdepositspanel.cpp:302
 msgid "Skip Next Recurring Transaction Occurrence"
-msgstr ""
+msgstr "Пропустить следующее появление повторяющейся транзакции"
 
 #: billsdepositspanel.cpp:411
 msgid "Enter next Occurrence..."
@@ -1249,15 +1249,15 @@ msgstr "Пропустить следующее начисление"
 
 #: billsdepositspanel.cpp:415
 msgid "&New Recurring Transaction..."
-msgstr ""
+msgstr "&Новая повторяющаяся Транзакция..."
 
 #: billsdepositspanel.cpp:416
 msgid "&Edit Recurring Transaction..."
-msgstr ""
+msgstr "&Редактировать повторяющуюся транзакцию..."
 
 #: billsdepositspanel.cpp:417
 msgid "&Delete Recurring Transaction..."
-msgstr ""
+msgstr "&Удалить повторяющуюся транзакцию..."
 
 #: billsdepositspanel.cpp:464
 msgid "Manual"
@@ -1306,7 +1306,7 @@ msgstr[3] "%d день просрочен!"
 
 #: billsdepositspanel.cpp:647
 msgid "Do you really want to delete the recurring transaction?"
-msgstr ""
+msgstr "Вы действительно хотите удалить повторяющуюся транзакцию?"
 
 #: billsdepositspanel.cpp:648
 msgid "Confirm Deletion"
