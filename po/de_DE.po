@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-06-04 11:01+0300\n"
-"PO-Revision-Date: 2021-06-04 08:19\n"
+"PO-Revision-Date: 2021-06-04 18:31\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -854,7 +854,7 @@ msgstr "Wiederholungen"
 
 #: billsdepositsdialog.cpp:449
 msgid "Back to the last occurring date with the specified values"
-msgstr ""
+msgstr "Zurück zum zuletzt auftretenden Datum mit den angegebenen Werten"
 
 #: billsdepositsdialog.cpp:451
 msgid "Advance the next occurring date with the specified values"
@@ -1055,11 +1055,11 @@ msgstr "Empfängerkonto wählen"
 
 #: billsdepositsdialog.cpp:932
 msgid "The payment date is after the due date, is this what you intended?"
-msgstr ""
+msgstr "Das Zahlungsdatum liegt nach dem Fälligkeitsdatum. Ist das das, was Sie beabsichtigten?"
 
 #: billsdepositsdialog.cpp:933
 msgid "Looks like a late payment"
-msgstr ""
+msgstr "Sieht aus wie eine verspätete Zahlung"
 
 #: billsdepositsdialog.cpp:1232
 msgid "Specify the transfer amount in the From Account"
@@ -1221,7 +1221,7 @@ msgstr "Buchungsfilter"
 
 #: billsdepositspanel.cpp:292
 msgid "Delete Recurring Transaction"
-msgstr ""
+msgstr "lösche wiederkehrende Buchung"
 
 #: billsdepositspanel.cpp:296
 msgid "En&ter"
@@ -1229,7 +1229,7 @@ msgstr "Ein&gabe"
 
 #: billsdepositspanel.cpp:297
 msgid "Enter Next Recurring Transaction Occurrence"
-msgstr ""
+msgstr "Geben Sie die nächste wiederkehrende Buchung ein"
 
 #: billsdepositspanel.cpp:301
 msgid "&Skip"
@@ -1237,7 +1237,7 @@ msgstr "&überspringen"
 
 #: billsdepositspanel.cpp:302
 msgid "Skip Next Recurring Transaction Occurrence"
-msgstr ""
+msgstr "Nächste wiederkehrende Buchung überspringen"
 
 #: billsdepositspanel.cpp:411
 msgid "Enter next Occurrence..."
@@ -1249,15 +1249,15 @@ msgstr "Überspringe nächstes Ereignis"
 
 #: billsdepositspanel.cpp:415
 msgid "&New Recurring Transaction..."
-msgstr ""
+msgstr "&Neue wiederkehrende Buchung..."
 
 #: billsdepositspanel.cpp:416
 msgid "&Edit Recurring Transaction..."
-msgstr ""
+msgstr "&Wiederkehrende Buchung bearbeiten..."
 
 #: billsdepositspanel.cpp:417
 msgid "&Delete Recurring Transaction..."
-msgstr ""
+msgstr "&lösche wiederkehrende Buchung..."
 
 #: billsdepositspanel.cpp:464
 msgid "Manual"
