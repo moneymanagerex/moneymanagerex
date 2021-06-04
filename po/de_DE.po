@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-06-04 11:01+0300\n"
-"PO-Revision-Date: 2021-06-04 18:31\n"
+"PO-Revision-Date: 2021-06-04 18:48\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -1300,11 +1300,11 @@ msgstr[1] "%d Tage überfällig!"
 
 #: billsdepositspanel.cpp:647
 msgid "Do you really want to delete the recurring transaction?"
-msgstr ""
+msgstr "Möchten Sie die wiederkehrende Buchung wirklich löschen?"
 
 #: billsdepositspanel.cpp:648
 msgid "Confirm Deletion"
-msgstr ""
+msgstr "Löschung bestätigen"
 
 #: budgetentrydialog.cpp:49
 msgid "Budget Year Entry"
@@ -3900,17 +3900,17 @@ msgstr "Anhang"
 #: mmcheckingpanel.cpp:499
 #, c-format
 msgid "Transactions selected: %zu"
-msgstr ""
+msgstr "Ausgewählte Buchungen: %zu"
 
 #: mmcheckingpanel.cpp:502
 #, c-format
 msgid "Selected transactions balance: %s"
-msgstr ""
+msgstr "Ausgewählter Buchungssaldo: %s"
 
 #: mmcheckingpanel.cpp:506
 #, c-format
 msgid "Days between selected transactions: %d"
-msgstr ""
+msgstr "Tage zwischen ausgewählten Buchungen: %d"
 
 #: mmcheckingpanel.cpp:668
 msgid "Select account used in transfer transactions"
@@ -4677,7 +4677,10 @@ msgid "The database you are trying to open has been marked as opened by another 
 "To avoid data loss or conflict, it's strongly recommended that you close all other applications that may be using the database.\n\n"
 "If nothing else is running, it's possible that the database was left open as a result of a crash during previous usage of MMEX.\n\n"
 "Would you like to continue to open this database?"
-msgstr ""
+msgstr "Die Datenbank, die Sie zu öffnen versuchen, wurde von einer anderen Instanz von MMEX als geöffnet markiert.\n"
+"Um Datenverluste oder Konflikte zu vermeiden, wird dringend empfohlen, alle anderen Anwendungen zu schließen, die die Datenbank möglicherweise verwenden.\n\n"
+"Wenn nichts anderes läuft, ist es möglich, dass die Datenbank durch einen Absturz während einer früheren Verwendung von MMEX offen gelassen wurde.\n\n"
+"Möchten Sie diese Datenbank weiterhin öffnen?"
 
 #: mmframe.cpp:1943
 msgid "MMEX Instance Check"
