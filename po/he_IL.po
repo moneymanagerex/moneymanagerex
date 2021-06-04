@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-06-04 11:01+0300\n"
-"PO-Revision-Date: 2021-06-04 08:19\n"
+"PO-Revision-Date: 2021-06-04 08:44\n"
 "Last-Translator: \n"
 "Language-Team: Hebrew\n"
 "MIME-Version: 1.0\n"
@@ -855,7 +855,7 @@ msgstr "חזרות"
 
 #: billsdepositsdialog.cpp:449
 msgid "Back to the last occurring date with the specified values"
-msgstr ""
+msgstr "חזרה לתאריך המופע האחרון בערכים שצוינו"
 
 #: billsdepositsdialog.cpp:451
 msgid "Advance the next occurring date with the specified values"
@@ -1056,11 +1056,11 @@ msgstr "בחירת חשבון יעד"
 
 #: billsdepositsdialog.cpp:932
 msgid "The payment date is after the due date, is this what you intended?"
-msgstr ""
+msgstr "מועד התשלום מאוחר מתאריך היעד, האם זאת הכוונה?"
 
 #: billsdepositsdialog.cpp:933
 msgid "Looks like a late payment"
-msgstr ""
+msgstr "נראה כמו פיגור בתשלום"
 
 #: billsdepositsdialog.cpp:1232
 msgid "Specify the transfer amount in the From Account"
@@ -1221,7 +1221,7 @@ msgstr "מסנן תנועות"
 
 #: billsdepositspanel.cpp:292
 msgid "Delete Recurring Transaction"
-msgstr ""
+msgstr "מחיקת תנועה מחזורית"
 
 #: billsdepositspanel.cpp:296
 msgid "En&ter"
@@ -1229,7 +1229,7 @@ msgstr "הז&נה"
 
 #: billsdepositspanel.cpp:297
 msgid "Enter Next Recurring Transaction Occurrence"
-msgstr ""
+msgstr "הזנת המופע תנועה מחזורית הבאה"
 
 #: billsdepositspanel.cpp:301
 msgid "&Skip"
@@ -1237,7 +1237,7 @@ msgstr "&דילוג"
 
 #: billsdepositspanel.cpp:302
 msgid "Skip Next Recurring Transaction Occurrence"
-msgstr ""
+msgstr "דילוג על המופע תנועה מחזורית הבאה"
 
 #: billsdepositspanel.cpp:411
 msgid "Enter next Occurrence..."
@@ -1249,15 +1249,15 @@ msgstr "דילוג על המופע הבא"
 
 #: billsdepositspanel.cpp:415
 msgid "&New Recurring Transaction..."
-msgstr ""
+msgstr "&תנועה מחזורית חדשה..."
 
 #: billsdepositspanel.cpp:416
 msgid "&Edit Recurring Transaction..."
-msgstr ""
+msgstr "&עריכת תנועה מחזורית..."
 
 #: billsdepositspanel.cpp:417
 msgid "&Delete Recurring Transaction..."
-msgstr ""
+msgstr "&מחיקת תנועה מחזורית..."
 
 #: billsdepositspanel.cpp:464
 msgid "Manual"
@@ -1306,11 +1306,11 @@ msgstr[3] "%d ימים בחריגה!"
 
 #: billsdepositspanel.cpp:647
 msgid "Do you really want to delete the recurring transaction?"
-msgstr ""
+msgstr "האם למחוק את התנועות המחזוריות?"
 
 #: billsdepositspanel.cpp:648
 msgid "Confirm Deletion"
-msgstr ""
+msgstr "אישור מחיקה"
 
 #: budgetentrydialog.cpp:49
 msgid "Budget Year Entry"
