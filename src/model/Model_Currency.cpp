@@ -174,17 +174,23 @@ const wxString Model_Currency::toStringNoFormatting(double value, const Data* cu
 const wxString Model_Currency::toString(double value, const Data* currency, int precision)
 {
     wxString s;
+
+    static wxString decimal;
     static wxString locale;
+
     if (locale.empty())
-        locale = Model_Infotable::instance().GetStringInfo("LOCALE", "en_US");
+        locale = Model_Infotable::instance().GetStringInfo("LOCALE", "");
 
     static wxString use_locale;
     if (use_locale.empty()) {
         use_locale = locale.empty() ? "N" : "Y";
     }
 
-    if (precision < 0)
-    {
+    if (use_locale == "Y" && decimal.empty()) {
+        decimal = wxString(fmt::format(std::locale(locale.c_str()), "{:L}", 1.1)).Mid(1, 1);
+    }
+
+    if (precision < 0) {
         precision = log10(currency ? currency->SCALE : GetBaseCurrency()->SCALE);
     }
 
@@ -192,15 +198,10 @@ const wxString Model_Currency::toString(double value, const Data* currency, int 
     double v = value * k;
     v = round(v) / k;
 
-    if (fabs(v) < 1000.0) {
-        s = fmt::format(use_locale == "Y" ? std::locale(locale.c_str()) : std::locale("en_US.UTF-8")
-            , "{:.{}f}", fabs(v), precision);
-    }
-    else {
-        s = fmt::format(use_locale == "Y" ? std::locale(locale.c_str()) : std::locale("en_US.UTF-8")
-            , "{:L}", static_cast<int>(fabs(v) + 5 / (pow(10, precision + 1))))
-            + wxString(fmt::format("{:.{}f}", fabs(v) - static_cast<int>(fabs(v)), precision)).Mid(1);
-    }
+    s = fmt::format(use_locale == "Y" ? std::locale(locale.c_str()) : std::locale("en_US.UTF-8")
+        , "{:L}", static_cast<int>(fabs(v) + 5 / (pow(10, precision + 1))))
+        + (use_locale == "Y" ? decimal : currency->DECIMAL_POINT)
+        + wxString(fmt::format("{:.{}f}", fabs(v) - static_cast<int>(fabs(v)), precision)).Mid(2);
 
     if (v < 0.0) { s.Prepend("-"); }
 
