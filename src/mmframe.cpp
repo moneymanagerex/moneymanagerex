@@ -2443,7 +2443,7 @@ void mmGUIFrame::OnTransactionReport(wxCommandEvent& /*event*/)
     mmFilterTransactionsDialog* dlg = new mmFilterTransactionsDialog(this);
     if (dlg->ShowModal() == wxID_OK)
     {
-        mmReportTransactions* rs = new mmReportTransactions(dlg->getAccountID(), dlg);
+        mmReportTransactions* rs = new mmReportTransactions(-1, dlg);
         createReportsPage(rs, true);
     }
     m_nav_tree_ctrl->Refresh();
