@@ -852,7 +852,7 @@ bool mmFilterTransactionsDialog::checkAll(const Model_Checking::Data &tran
     bool ok = true;
     //wxLogDebug("Check date? %i trx date:%s %s %s", getDateRangeCheckBox(), tran.TRANSDATE, getFromDateCtrl().GetDateOnly().FormatISODate(), getToDateControl().GetDateOnly().FormatISODate());
     if (getAccountCheckBox()
-        && selected_accounts_id_.Index(tran.ACCOUNTID) == wxNOT_FOUND
+           && selected_accounts_id_.Index(tran.ACCOUNTID) == wxNOT_FOUND
            && selected_accounts_id_.Index(tran.TOACCOUNTID) == wxNOT_FOUND)
         ok = false;
     else if (getDateRangeCheckBox() && (tran.TRANSDATE < m_begin_date || tran.TRANSDATE > m_end_date))
@@ -875,7 +875,10 @@ bool mmFilterTransactionsDialog::checkAll(const Model_Checking::Data &tran
 bool mmFilterTransactionsDialog::checkAll(const Model_Billsdeposits::Data &tran, const std::map<int, Model_Budgetsplittransaction::Data_Set>& split)
 {
     bool ok = true;
-    if (getAccountCheckBox() && (getAccountsID() != tran.ACCOUNTID && getAccountsID() != tran.TOACCOUNTID)) ok = false;
+    if (getAccountCheckBox()
+            && selected_accounts_id_.Index(tran.ACCOUNTID) == wxNOT_FOUND
+            && selected_accounts_id_.Index(tran.TOACCOUNTID) == wxNOT_FOUND)
+        ok = false;
     else if (getDateRangeCheckBox() && (tran.TRANSDATE < m_begin_date && tran.TRANSDATE > m_end_date))
         ok = false;
     else if (getStartDateCheckBox() && (tran.TRANSDATE < m_begin_date)) ok = false;
