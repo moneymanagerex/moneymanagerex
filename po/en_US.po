@@ -2252,6 +2252,10 @@ msgstr ""
 msgid "Opening MMEX Database - Error"
 msgstr ""
 
+#: mmframe.cpp:465 mmframe.cpp:703
+msgid "Favourites"
+msgstr "Favorites"
+
 #: filtertransdialog.cpp:44 mmhomepage.cpp:634 model/Model_Billsdeposits.cpp:39
 #: model/Model_Checking.cpp:37
 msgid "Reconciled"
