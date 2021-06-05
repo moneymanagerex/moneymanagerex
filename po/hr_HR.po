@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2021-06-04 11:01+0300\n"
-"PO-Revision-Date: 2021-06-04 08:19\n"
+"POT-Creation-Date: 2021-06-05 12:08+0300\n"
+"PO-Revision-Date: 2021-06-05 09:15\n"
 "Last-Translator: \n"
 "Language-Team: Croatian\n"
 "MIME-Version: 1.0\n"
@@ -271,7 +271,7 @@ msgid "Account Name "
 msgstr "Ime računa"
 
 #: accountdialog.cpp:511 import_export/qif_export.cpp:595
-#: import_export/qif_import_gui.cpp:233 optionsettingsgeneral.cpp:124
+#: import_export/qif_import_gui.cpp:233 optionsettingsgeneral.cpp:100
 #: reports/htmlbuilder.cpp:183
 msgid "Currency"
 msgstr "Valuta"
@@ -998,7 +998,7 @@ msgstr "Koristi podijeljene kategorije"
 msgid "Category"
 msgstr "Kategorija"
 
-#: billsdepositsdialog.cpp:611 billsdepositsdialog.cpp:1452
+#: billsdepositsdialog.cpp:611 billsdepositsdialog.cpp:1454
 #: transactionsupdatedialog.cpp:185 transdialog.cpp:403 transdialog.cpp:1029
 #: usertransactionpanel.cpp:189
 msgid "Select Category"
@@ -1108,14 +1108,14 @@ msgid "Specify the number of payments to be made.\n"
 msgstr "Odredi broj potrebnih plaćanja.\n"
 "Ostavi prazno, ako se plaćanja beskonačno ponavljaju."
 
-#: billsdepositsdialog.cpp:1340 billsdepositsdialog.cpp:1362
+#: billsdepositsdialog.cpp:1342 billsdepositsdialog.cpp:1364
 #: filtertransdialog.cpp:469 filtertransdialog.cpp:486
 #: filtertransdialog.cpp:497 filtertransdialog.cpp:513
 #: filtertransdialog.cpp:550 util.cpp:661
 msgid "Invalid value"
 msgstr "Nevaljana vrijednost"
 
-#: billsdepositsdialog.cpp:1340 billsdepositsdialog.cpp:1362
+#: billsdepositsdialog.cpp:1342 billsdepositsdialog.cpp:1364
 #: import_export/univcsvdialog.cpp:1132 maincurrencydialog.cpp:466
 #: mmframe.cpp:3267 splittransactionsdialog.cpp:209 stockspanel.cpp:394
 #: stockspanel.cpp:395 themes.cpp:307 themes.cpp:326 webappdialog.cpp:194
@@ -1123,21 +1123,21 @@ msgstr "Nevaljana vrijednost"
 msgid "Error"
 msgstr "Greška"
 
-#: billsdepositsdialog.cpp:1420 transdialog.cpp:1253
+#: billsdepositsdialog.cpp:1422 transdialog.cpp:1253
 #: usertransactionpanel.cpp:191
 msgid "Specify the category for this transaction"
 msgstr "Odredi kategoriju za ovu transakciju"
 
-#: billsdepositsdialog.cpp:1442 categdialog.cpp:118
+#: billsdepositsdialog.cpp:1444 categdialog.cpp:118
 #: import_export/qif_export.cpp:137 mmframereport.cpp:134 transdialog.cpp:391
 msgid "Categories"
 msgstr "Kategorije"
 
-#: billsdepositsdialog.cpp:1477 transdialog.cpp:1327
+#: billsdepositsdialog.cpp:1479 transdialog.cpp:1327
 msgid "Clear color"
 msgstr ""
 
-#: billsdepositsdialog.cpp:1482 transdialog.cpp:1332
+#: billsdepositsdialog.cpp:1484 transdialog.cpp:1332
 #, c-format
 msgid "Color #%i"
 msgstr ""
@@ -2772,7 +2772,7 @@ msgid "To Date"
 msgstr "Datum do"
 
 #: import_export/qif_export.cpp:178 import_export/qif_import_gui.cpp:276
-#: optionsettingsgeneral.cpp:104
+#: optionsettingsgeneral.cpp:80
 msgid "Date Format"
 msgstr "Format datuma"
 
@@ -5391,83 +5391,84 @@ msgstr "Korisničko ime"
 msgid "The User Name is used as a title for the database."
 msgstr "Korisničko ime se korsti kao naslov za bazu podataka."
 
-#: optionsettingsgeneral.cpp:80
-msgid "Locale"
-msgstr ""
-
-#: optionsettingsgeneral.cpp:115
+#: optionsettingsgeneral.cpp:91
 msgid "Specify the date format for display"
 msgstr "Odredi format datuma za prikaz"
 
-#: optionsettingsgeneral.cpp:118
+#: optionsettingsgeneral.cpp:94
 msgid "New date format sample:"
 msgstr "Novi primjer formata datuma:"
 
-#: optionsettingsgeneral.cpp:131
+#: optionsettingsgeneral.cpp:107
 msgid "Base Currency"
 msgstr "Osnovna valuta"
 
-#: optionsettingsgeneral.cpp:134 wizard_newdb.cpp:79
+#: optionsettingsgeneral.cpp:110 wizard_newdb.cpp:79
 msgid "Set Currency"
 msgstr "Odredi valutu"
 
-#: optionsettingsgeneral.cpp:137
+#: optionsettingsgeneral.cpp:113
 msgid "Sets the database default Currency using the 'Currency Dialog'"
 msgstr "Postavi standardnu valutu za bazu podataka upotrebom „Dijalog za valute”"
 
-#: optionsettingsgeneral.cpp:139
+#: optionsettingsgeneral.cpp:116
 msgid "Right click and select 'Set as Base Currency' in 'Currency Dialog'"
 msgstr "Desni klik i odaberi „Postavi kao osnovnu valutu” u „Dijalog za valute”"
 
-#: optionsettingsgeneral.cpp:144
+#: optionsettingsgeneral.cpp:140
+msgid "Format derived from locale.\n"
+"Leave blank to manually set format via 'Currency Dialog | Edit'"
+msgstr ""
+
+#: optionsettingsgeneral.cpp:150
 msgid "Use currency history"
 msgstr "Koristi povijest valuta"
 
-#: optionsettingsgeneral.cpp:146
+#: optionsettingsgeneral.cpp:152
 msgid "Select to use currency history (one rate for each day), deselect to use a fixed rate"
 msgstr "Označi za korištenje povijest valute (za svaki dan pojedinačan tečaj), odznači za korištenje fiksnog tečaja"
 
-#: optionsettingsgeneral.cpp:150
+#: optionsettingsgeneral.cpp:156
 msgid "Financial Year"
 msgstr "Fiskalna godina"
 
-#: optionsettingsgeneral.cpp:157
+#: optionsettingsgeneral.cpp:163
 msgid "Start Day"
 msgstr "Datum početka"
 
-#: optionsettingsgeneral.cpp:163
+#: optionsettingsgeneral.cpp:169
 msgid "Specify Day for start of financial year"
 msgstr "Odredi datum početka fiskalne godine"
 
-#: optionsettingsgeneral.cpp:167
+#: optionsettingsgeneral.cpp:173
 msgid "Start Month"
 msgstr "Mjesec početka"
 
-#: optionsettingsgeneral.cpp:179
+#: optionsettingsgeneral.cpp:185
 msgid "Specify month for start of financial year"
 msgstr "Odredi početni mjesec fiskalne godine"
 
-#: optionsettingsgeneral.cpp:184
+#: optionsettingsgeneral.cpp:190
 msgid "Use Original Date when Pasting Transactions"
 msgstr "Koristiti originalni datum prilikom lijepljenja transakcija"
 
-#: optionsettingsgeneral.cpp:186
+#: optionsettingsgeneral.cpp:192
 msgid "Select whether to use the original transaction date or current date when copying/pasting transactions"
 msgstr "Odaberi, da li želiš koristiti originalni datum transakcije ili aktualni datum, kad kopiraš/lijepiš transakcije"
 
-#: optionsettingsgeneral.cpp:189
+#: optionsettingsgeneral.cpp:195
 msgid "Use Transaction Sound"
 msgstr "Koristi zvuk za transakcije"
 
-#: optionsettingsgeneral.cpp:191
+#: optionsettingsgeneral.cpp:197
 msgid "Select whether to use sounds when entering transactions"
 msgstr "Odaberi, da li želiš koristiti zvukove prilikom unosa transakcija"
 
-#: optionsettingsgeneral.cpp:270
+#: optionsettingsgeneral.cpp:281
 msgid "bad locale name"
 msgstr ""
 
-#: optionsettingsgeneral.cpp:280
+#: optionsettingsgeneral.cpp:297
 #, c-format
 msgid "Currency value sample: %s"
 msgstr ""
