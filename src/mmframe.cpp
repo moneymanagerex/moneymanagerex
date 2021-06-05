@@ -91,6 +91,7 @@ EVT_MENU(MENU_EXPORT_CSV, mmGUIFrame::OnExportToCSV)
 EVT_MENU(MENU_EXPORT_XML, mmGUIFrame::OnExportToXML)
 EVT_MENU(MENU_EXPORT_QIF, mmGUIFrame::OnExportToQIF)
 EVT_MENU(MENU_EXPORT_JSON, mmGUIFrame::OnExportToJSON)
+EVT_MENU(MENU_EXPORT_MMEX, mmGUIFrame::OnExportToMMEX)
 EVT_MENU(MENU_IMPORT_QIF, mmGUIFrame::OnImportQIF)
 EVT_MENU(MENU_IMPORT_UNIVCSV, mmGUIFrame::OnImportUniversalCSV)
 EVT_MENU(MENU_IMPORT_XML, mmGUIFrame::OnImportXML)
@@ -165,6 +166,7 @@ EVT_MENU(MENU_TREEPOPUP_ACCOUNT_DELETE, mmGUIFrame::OnDeleteAccount)
 EVT_MENU(MENU_TREEPOPUP_ACCOUNT_EDIT, mmGUIFrame::OnEditAccount)
 EVT_MENU(MENU_TREEPOPUP_ACCOUNT_LIST, mmGUIFrame::OnAccountList)
 EVT_MENU(MENU_TREEPOPUP_ACCOUNT_EXPORT2CSV, mmGUIFrame::OnExportToCSV)
+EVT_MENU(MENU_TREEPOPUP_ACCOUNT_EXPORT2MMEX, mmGUIFrame::OnExportToMMEX)
 EVT_MENU(MENU_TREEPOPUP_ACCOUNT_EXPORT2XML, mmGUIFrame::OnExportToXML)
 EVT_MENU(MENU_TREEPOPUP_ACCOUNT_EXPORT2QIF, mmGUIFrame::OnExportToQIF)
 EVT_MENU(MENU_TREEPOPUP_ACCOUNT_EXPORT2JSON, mmGUIFrame::OnExportToJSON)
@@ -1294,6 +1296,7 @@ void mmGUIFrame::showTreePopupMenu(const wxTreeItemId& id, const wxPoint& pt)
                 menu.AppendSubMenu(importFrom, _("&Import"));
                 wxMenu* exportTo = new wxMenu;
                 exportTo->Append(MENU_TREEPOPUP_ACCOUNT_EXPORT2CSV, _("&CSV Files..."));
+                exportTo->Append(MENU_TREEPOPUP_ACCOUNT_EXPORT2MMEX, _("&MMEX CSV Files..."));
                 exportTo->Append(MENU_TREEPOPUP_ACCOUNT_EXPORT2XML, _("&XML Files..."));
                 exportTo->Append(MENU_TREEPOPUP_ACCOUNT_EXPORT2QIF, _("&QIF Files..."));
                 exportTo->Append(MENU_TREEPOPUP_ACCOUNT_EXPORT2JSON, _("&JSON Files..."));
@@ -1364,6 +1367,7 @@ void mmGUIFrame::createMenu()
 
     wxMenu* exportMenu = new wxMenu;
     exportMenu->Append(MENU_EXPORT_CSV, _("&CSV Files..."), _("Export to CSV"));
+    exportMenu->Append(MENU_EXPORT_MMEX, _("&MMEX CSV Files..."), _("Export to fixed CSV"));
     exportMenu->Append(MENU_EXPORT_XML, _("&XML Files..."), _("Export to XML"));
     exportMenu->Append(MENU_EXPORT_QIF, _("&QIF Files..."), _("Export to QIF"));
     exportMenu->Append(MENU_EXPORT_JSON, _("&JSON Files..."), _("Export to JSON"));
@@ -2196,6 +2200,11 @@ void mmGUIFrame::OnExportToQIF(wxCommandEvent& /*event*/)
 void mmGUIFrame::OnExportToJSON(wxCommandEvent& /*event*/)
 {
     mmQIFExportDialog dlg(this, mmQIFExportDialog::JSON);
+    dlg.ShowModal();
+}
+void mmGUIFrame::OnExportToMMEX(wxCommandEvent& /*event*/)
+{
+    mmQIFExportDialog dlg(this, mmQIFExportDialog::CSV);
     dlg.ShowModal();
 }
 //----------------------------------------------------------------------------
