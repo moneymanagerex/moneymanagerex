@@ -76,30 +76,6 @@ void OptionSettingsGeneral::Create()
     headerStaticBoxSizer->Add(userNameTextCtr, g_flagsExpand);
     generalPanelSizer->Add(headerStaticBoxSizer, wxSizerFlags(g_flagsExpand).Proportion(0));
 
-    // Locale
-    wxStaticBox* localeStaticBox = new wxStaticBox(this, wxID_STATIC, _("Locale"));
-    wxStaticBoxSizer* localeStaticBoxSizer = new wxStaticBoxSizer(localeStaticBox, wxHORIZONTAL);
-    generalPanelSizer->Add(localeStaticBoxSizer, wxSizerFlags(g_flagsExpand).Proportion(0));
-
-    const wxString locale = Model_Infotable::instance().GetStringInfo("LOCALE", "en_US.UTF-8");
-
-    wxComboBox* itemListOfLocales = new wxComboBox(localeStaticBox, ID_DIALOG_OPTIONS_LOCALE, ""
-        , wxDefaultPosition, wxDefaultSize, g_locales());
-    itemListOfLocales->SetValue(locale);
-    itemListOfLocales->SetMinSize(wxSize(100, -1));
-    localeStaticBoxSizer->Add(itemListOfLocales, g_flagsH);
-
-    itemListOfLocales->Connect(ID_DIALOG_OPTIONS_LOCALE, wxEVT_COMMAND_TEXT_UPDATED
-        , wxCommandEventHandler(OptionSettingsGeneral::OnLocaleChanged), nullptr, this);
-
-    m_sample_value_text = new wxStaticText(localeStaticBox, wxID_STATIC, "redefined elsewhere");
-    localeStaticBoxSizer->Add(m_sample_value_text, wxSizerFlags(g_flagsH).Border(wxLEFT, 15));
-    wxString result;
-    doFormatDoubleValue(locale, result);
-    m_sample_value_text->SetLabelText(wxGetTranslation(result));
-
-    SetBoldFont(localeStaticBox);
-
     // Date Format Settings
     wxStaticBox* dateFormatStaticBox = new wxStaticBox(this, wxID_STATIC, _("Date Format"));
     wxStaticBoxSizer* dateFormatStaticBoxSizer = new wxStaticBoxSizer(dateFormatStaticBox, wxHORIZONTAL);
@@ -136,8 +112,38 @@ void OptionSettingsGeneral::Create()
     baseCurrencyButton->SetLabel(currName);
     baseCurrencyButton->SetToolTip(_("Sets the database default Currency using the 'Currency Dialog'"));
     currencyBaseSizer->Add(baseCurrencyButton, g_flagsH);
-    m_currencyStaticBoxSizer->Add(new wxStaticText(this, wxID_STATIC, _("Right click and select 'Set as Base Currency' in 'Currency Dialog'")),
+    m_currencyStaticBoxSizer->Add(new wxStaticText(this, wxID_STATIC
+        , _("Right click and select 'Set as Base Currency' in 'Currency Dialog'")),
         wxSizerFlags(g_flagsV).Border(wxTOP, 0).Border(wxLEFT, 5));
+
+    m_currencyStaticBoxSizer->AddSpacer(10);
+
+    { // Locale
+        const wxString locale = Model_Infotable::instance().GetStringInfo("LOCALE", "en_US.UTF-8");
+
+        wxBoxSizer* localeBaseSizer = new wxBoxSizer(wxHORIZONTAL);
+        m_currencyStaticBoxSizer->Add(localeBaseSizer, wxSizerFlags(g_flagsV).Border(wxLEFT, 0));
+
+        wxComboBox* itemListOfLocales = new wxComboBox(this, ID_DIALOG_OPTIONS_LOCALE, ""
+            , wxDefaultPosition, wxDefaultSize, g_locales());
+        itemListOfLocales->SetValue(locale);
+        itemListOfLocales->SetMinSize(wxSize(100, -1));
+        localeBaseSizer->Add(itemListOfLocales, g_flagsH);
+
+        m_sample_value_text = new wxStaticText(this, wxID_STATIC, "redefined elsewhere");
+        localeBaseSizer->Add(m_sample_value_text, wxSizerFlags(g_flagsH).Border(wxLEFT, 15));
+        wxString result;
+        doFormatDoubleValue(locale, result);
+        m_sample_value_text->SetLabelText(wxGetTranslation(result));
+
+        m_currencyStaticBoxSizer->Add(new wxStaticText(this, wxID_STATIC
+            , _("Format derived from locale.\n"
+                "Leave blank to manually set format via 'Currency Dialog | Edit'")),
+            wxSizerFlags(g_flagsV).Border(wxTOP, 0).Border(wxLEFT, 5));
+
+        itemListOfLocales->Connect(ID_DIALOG_OPTIONS_LOCALE, wxEVT_COMMAND_TEXT_UPDATED
+            , wxCommandEventHandler(OptionSettingsGeneral::OnLocaleChanged), nullptr, this);
+    }
 
     m_currencyStaticBoxSizer->AddSpacer(15);
 
