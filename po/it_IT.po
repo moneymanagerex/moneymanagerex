@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-06-05 13:22+0300\n"
-"PO-Revision-Date: 2021-06-05 10:27\n"
+"PO-Revision-Date: 2021-06-05 17:56\n"
 "Last-Translator: \n"
 "Language-Team: Italian\n"
 "MIME-Version: 1.0\n"
@@ -4083,7 +4083,7 @@ msgstr "File &QIF"
 
 #: mmframe.cpp:1299 mmframe.cpp:1370
 msgid "&MMEX CSV Files..."
-msgstr ""
+msgstr "File CSV &MMEX..."
 
 #: mmframe.cpp:1302 mmframe.cpp:1373
 msgid "&JSON Files..."
