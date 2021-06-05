@@ -170,6 +170,7 @@ private:
     void OnExportToXML(wxCommandEvent& event);
     void OnExportToQIF(wxCommandEvent& event);
     void OnExportToJSON(wxCommandEvent& event);
+    void OnExportToMMEX(wxCommandEvent& event);
     void OnExportToHtml(wxCommandEvent& event);
     void OnImportUniversalCSV(wxCommandEvent& event);
     void OnImportXML(wxCommandEvent& event);
@@ -297,6 +298,7 @@ private:
         MENU_GOOGLEPLAY,
         MENU_TWITTER, // end range for OnSimpleURLOpen
         MENU_EXPORT_CSV,
+        MENU_EXPORT_MMEX,
         MENU_EXPORT_XML,
         MENU_EXPORT_QIF,
         MENU_EXPORT_JSON,
@@ -344,6 +346,7 @@ private:
         MENU_TREEPOPUP_ACCOUNT_EDIT,
         MENU_TREEPOPUP_ACCOUNT_LIST,
         MENU_TREEPOPUP_ACCOUNT_EXPORT2CSV,
+        MENU_TREEPOPUP_ACCOUNT_EXPORT2MMEX,
         MENU_TREEPOPUP_ACCOUNT_EXPORT2XML,
         MENU_TREEPOPUP_ACCOUNT_EXPORT2QIF,
         MENU_TREEPOPUP_ACCOUNT_EXPORT2JSON,
