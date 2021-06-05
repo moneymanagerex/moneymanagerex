@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2021-06-04 11:01+0300\n"
-"PO-Revision-Date: 2021-06-04 17:31\n"
+"POT-Creation-Date: 2021-06-05 12:08+0300\n"
+"PO-Revision-Date: 2021-06-05 09:16\n"
 "Last-Translator: \n"
 "Language-Team: Greek\n"
 "MIME-Version: 1.0\n"
@@ -271,7 +271,7 @@ msgid "Account Name "
 msgstr "Όνομα λογαριασμού"
 
 #: accountdialog.cpp:511 import_export/qif_export.cpp:595
-#: import_export/qif_import_gui.cpp:233 optionsettingsgeneral.cpp:124
+#: import_export/qif_import_gui.cpp:233 optionsettingsgeneral.cpp:100
 #: reports/htmlbuilder.cpp:183
 msgid "Currency"
 msgstr "Νόμισμα"
@@ -998,7 +998,7 @@ msgstr "Χρησιμοποιήστε την διαίρεση κατηγοριώ�
 msgid "Category"
 msgstr "Κατηγορία"
 
-#: billsdepositsdialog.cpp:611 billsdepositsdialog.cpp:1452
+#: billsdepositsdialog.cpp:611 billsdepositsdialog.cpp:1454
 #: transactionsupdatedialog.cpp:185 transdialog.cpp:403 transdialog.cpp:1029
 #: usertransactionpanel.cpp:189
 msgid "Select Category"
@@ -1108,14 +1108,14 @@ msgid "Specify the number of payments to be made.\n"
 msgstr "Καθορίστε τον αριθμό των πληρωμών που πρέπει να γίνουν.\n"
 "Αφήστε το κενό αν οι πληρωμές συνεχιστούν για πάντα."
 
-#: billsdepositsdialog.cpp:1340 billsdepositsdialog.cpp:1362
+#: billsdepositsdialog.cpp:1342 billsdepositsdialog.cpp:1364
 #: filtertransdialog.cpp:469 filtertransdialog.cpp:486
 #: filtertransdialog.cpp:497 filtertransdialog.cpp:513
 #: filtertransdialog.cpp:550 util.cpp:661
 msgid "Invalid value"
 msgstr "Μη έγκυρη τιμή"
 
-#: billsdepositsdialog.cpp:1340 billsdepositsdialog.cpp:1362
+#: billsdepositsdialog.cpp:1342 billsdepositsdialog.cpp:1364
 #: import_export/univcsvdialog.cpp:1132 maincurrencydialog.cpp:466
 #: mmframe.cpp:3267 splittransactionsdialog.cpp:209 stockspanel.cpp:394
 #: stockspanel.cpp:395 themes.cpp:307 themes.cpp:326 webappdialog.cpp:194
@@ -1123,21 +1123,21 @@ msgstr "Μη έγκυρη τιμή"
 msgid "Error"
 msgstr "Σφάλμα"
 
-#: billsdepositsdialog.cpp:1420 transdialog.cpp:1253
+#: billsdepositsdialog.cpp:1422 transdialog.cpp:1253
 #: usertransactionpanel.cpp:191
 msgid "Specify the category for this transaction"
 msgstr "Καθορίστε κατηγορία γι αυτήν την συναλλαγή"
 
-#: billsdepositsdialog.cpp:1442 categdialog.cpp:118
+#: billsdepositsdialog.cpp:1444 categdialog.cpp:118
 #: import_export/qif_export.cpp:137 mmframereport.cpp:134 transdialog.cpp:391
 msgid "Categories"
 msgstr "Κατηγορίες"
 
-#: billsdepositsdialog.cpp:1477 transdialog.cpp:1327
+#: billsdepositsdialog.cpp:1479 transdialog.cpp:1327
 msgid "Clear color"
 msgstr "Καθαρισμός χρώματος"
 
-#: billsdepositsdialog.cpp:1482 transdialog.cpp:1332
+#: billsdepositsdialog.cpp:1484 transdialog.cpp:1332
 #, c-format
 msgid "Color #%i"
 msgstr "Χρώμα #%i"
@@ -2768,7 +2768,7 @@ msgid "To Date"
 msgstr "Έως ημερομηνία"
 
 #: import_export/qif_export.cpp:178 import_export/qif_import_gui.cpp:276
-#: optionsettingsgeneral.cpp:104
+#: optionsettingsgeneral.cpp:80
 msgid "Date Format"
 msgstr "Μορφή ημερομηνίας"
 
@@ -5376,83 +5376,84 @@ msgstr "Όνομα χρήστη"
 msgid "The User Name is used as a title for the database."
 msgstr "Το όνομα χρήστη χρησιμοποιήθηκε ως τίτλος της βάσης δεδομένων."
 
-#: optionsettingsgeneral.cpp:80
-msgid "Locale"
-msgstr "Γλωσσικές Ρυθμίσεις"
-
-#: optionsettingsgeneral.cpp:115
+#: optionsettingsgeneral.cpp:91
 msgid "Specify the date format for display"
 msgstr "Καθορίστε τη μορφή εμφάνισης της ημερομηνίας"
 
-#: optionsettingsgeneral.cpp:118
+#: optionsettingsgeneral.cpp:94
 msgid "New date format sample:"
 msgstr "Νέο δείγμα μορφής ημερομηνίας:"
 
-#: optionsettingsgeneral.cpp:131
+#: optionsettingsgeneral.cpp:107
 msgid "Base Currency"
 msgstr "Βασικό νόμισμα"
 
-#: optionsettingsgeneral.cpp:134 wizard_newdb.cpp:79
+#: optionsettingsgeneral.cpp:110 wizard_newdb.cpp:79
 msgid "Set Currency"
 msgstr "Ορίστε νόμισμα"
 
-#: optionsettingsgeneral.cpp:137
+#: optionsettingsgeneral.cpp:113
 msgid "Sets the database default Currency using the 'Currency Dialog'"
 msgstr "Ορίζει το προεπιλεγμένο νόμισμα της βάσης δεδομένων χρησιμοποιώντας το 'διάλογο νομίσματος'"
 
-#: optionsettingsgeneral.cpp:139
+#: optionsettingsgeneral.cpp:116
 msgid "Right click and select 'Set as Base Currency' in 'Currency Dialog'"
 msgstr "Κάντε δεξί κλικ και επιλέξτε «Ορισμός ως βασικό νόμισμα» στο «Διάλογος νομίσματος»"
 
-#: optionsettingsgeneral.cpp:144
+#: optionsettingsgeneral.cpp:140
+msgid "Format derived from locale.\n"
+"Leave blank to manually set format via 'Currency Dialog | Edit'"
+msgstr ""
+
+#: optionsettingsgeneral.cpp:150
 msgid "Use currency history"
 msgstr "Χρησιμοποιήστε το ιστορικό ισοτιμίας"
 
-#: optionsettingsgeneral.cpp:146
+#: optionsettingsgeneral.cpp:152
 msgid "Select to use currency history (one rate for each day), deselect to use a fixed rate"
 msgstr "Επιλέξτε για να χρησιμοποιήσετε το ιστορικό νομισμάτων (μία ισοτιμία για κάθε ημέρα), αποεπιλέξτε για να χρησιμοποιήσετε μια σταθερή ισοτιμία"
 
-#: optionsettingsgeneral.cpp:150
+#: optionsettingsgeneral.cpp:156
 msgid "Financial Year"
 msgstr "Οικονομικό έτος"
 
-#: optionsettingsgeneral.cpp:157
+#: optionsettingsgeneral.cpp:163
 msgid "Start Day"
 msgstr "Ημέρα εκκίνησης"
 
-#: optionsettingsgeneral.cpp:163
+#: optionsettingsgeneral.cpp:169
 msgid "Specify Day for start of financial year"
 msgstr "Καθορίστε την ημέρα έναρξης του οικονομικού έτους"
 
-#: optionsettingsgeneral.cpp:167
+#: optionsettingsgeneral.cpp:173
 msgid "Start Month"
 msgstr "Μήνας εκκίνησης"
 
-#: optionsettingsgeneral.cpp:179
+#: optionsettingsgeneral.cpp:185
 msgid "Specify month for start of financial year"
 msgstr "Καθορίστε τον μήνα έναρξης του οικονομικού έτους"
 
-#: optionsettingsgeneral.cpp:184
+#: optionsettingsgeneral.cpp:190
 msgid "Use Original Date when Pasting Transactions"
 msgstr "Να χρησιμοποιείται η αρχική ημερομηνία όταν επικολλώνται συναλλαγές"
 
-#: optionsettingsgeneral.cpp:186
+#: optionsettingsgeneral.cpp:192
 msgid "Select whether to use the original transaction date or current date when copying/pasting transactions"
 msgstr "Επιλέξτε αν θα χρησιμοποιείτε την αρχική ημερομηνία της συναλλαγής ή την τρέχουσα ημερομηνία όταν αντιγράφετε/επικολλάτε συναλλαγές"
 
-#: optionsettingsgeneral.cpp:189
+#: optionsettingsgeneral.cpp:195
 msgid "Use Transaction Sound"
 msgstr "Χρήση ήχων συναλλαγής"
 
-#: optionsettingsgeneral.cpp:191
+#: optionsettingsgeneral.cpp:197
 msgid "Select whether to use sounds when entering transactions"
 msgstr "Επιλέξτε αν θα χρησιμοποιούνται ήχοι κατά την εισαγωγή συναλλαγών"
 
-#: optionsettingsgeneral.cpp:270
+#: optionsettingsgeneral.cpp:281
 msgid "bad locale name"
 msgstr "εσφαλμένο όνομα γλώσσας"
 
-#: optionsettingsgeneral.cpp:280
+#: optionsettingsgeneral.cpp:297
 #, c-format
 msgid "Currency value sample: %s"
 msgstr "Δείγμα αξίας νομίσματος: %s"
