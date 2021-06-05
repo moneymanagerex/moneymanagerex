@@ -40,7 +40,7 @@ const char* update_template = R"(
   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <link href="memory:master.css" rel="stylesheet" />
 <style>
-.header .image, 
+.header .image,
 .header .text {
     display: inline-block;
     vertical-align: middle;
@@ -97,7 +97,7 @@ void mmUpdateWizard::CreateControls(const Document& json_releases, wxArrayInt ne
 
     int i = 0;
     bool isHistory = false;
-    wxString html, separator = " ";
+    wxString html, separator = " ", new_html_url, new_tag;
 
     for (auto& r : json_releases.GetArray())
     {
@@ -114,10 +114,15 @@ void mmUpdateWizard::CreateControls(const Document& json_releases, wxArrayInt ne
         const auto prerelease = !is_prerelease ? _("Stable") : _("Unstable");
 
         const auto html_url = (r.HasMember("html_url") && r["html_url"].IsString())
-            ? r["html_url"].GetString() : "";
+            ? wxString::FromUTF8(r["html_url"].GetString()) : "";
 
         const auto tag = (r.HasMember("tag_name") && r["tag_name"].IsString())
-            ? r["tag_name"].GetString() : "";
+            ? wxString::FromUTF8(r["tag_name"].GetString()) : "";
+
+        if (new_tag.empty()) {
+            new_tag = tag;
+            new_html_url = html_url;
+        }
 
         const auto published_at = (r.HasMember("published_at") && r["published_at"].IsString())
             ? r["published_at"].GetString() : "";
@@ -145,7 +150,10 @@ void mmUpdateWizard::CreateControls(const Document& json_releases, wxArrayInt ne
         i++;
     }
 
-    wxString version = new_releases.empty() ? _("You already have the latest version") : _("A new version of MMEX is available!");
+    auto version = new_releases.empty() ? _("You already have the latest version") : _("A new version of MMEX is available!");
+    if (!new_releases.empty()) {
+        version = wxString::Format(R"(<a href="%s" target="_blank">%s</a>)", new_html_url, version);
+    }
     wxString header = wxString::Format(_("Your version is %s"), mmex::version::string);
     html = wxString::Format(update_template, header, version, html);
 
