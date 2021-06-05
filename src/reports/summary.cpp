@@ -159,7 +159,7 @@ wxString mmReportSummaryByDate::getHTMLText()
                     hb.addTableHeaderCell(_("Credit Card Accounts"), true);
                     hb.addTableHeaderCell(_("Loan Accounts"), true);
                     hb.addTableHeaderCell(_("Term Accounts"), true);
-                    hb.addTableHeaderCell(_("Assets"), true);
+                    hb.addTableHeaderCell(_("Asset Accounts"), true);
                     hb.addTableHeaderCell(_("Share Accounts"), true);
                     hb.addTableHeaderCell(_("Total"), true);
                     hb.addTableHeaderCell(_("Stocks"), true);

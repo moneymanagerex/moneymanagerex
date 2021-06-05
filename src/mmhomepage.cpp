@@ -1,5 +1,5 @@
 /*******************************************************
-Copyright (C) 2014 - 2020 Nikolay Akimov
+Copyright (C) 2014 - 2021 Nikolay Akimov
 Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
@@ -638,11 +638,14 @@ const wxString htmlWidgetAccounts::displayAccounts(double& tBalance, int type = 
 {
     static const std::vector < std::pair <wxString, wxString> > typeStr
     {
-        { "CASH_ACCOUNTS_INFO", _("Cash Accounts") },
-        { "ACCOUNTS_INFO", _("Bank Accounts") },
-        { "CARD_ACCOUNTS_INFO", _("Credit Card Accounts") },
-        { "LOAN_ACCOUNTS_INFO", _("Loan Accounts") },
-        { "TERM_ACCOUNTS_INFO", _("Term Accounts") },
+        { "CASH_ACCOUNTS_INFO",   _("Cash Accounts") },
+        { "ACCOUNTS_INFO",        _("Bank Accounts") },
+        { "CARD_ACCOUNTS_INFO",   _("Credit Card Accounts") },
+        { "LOAN_ACCOUNTS_INFO",   _("Loan Accounts") },
+        { "TERM_ACCOUNTS_INFO",   _("Term Accounts") },
+        { "INVEST_ACCOUNTS_INFO", _("Investment Accounts") },
+        { "ASSET_ACCOUNTS_INFO",  _("Asset Accounts") },
+        { "SHARE_ACCOUNTS_INFO",  _("Share Accounts") },
     };
 
     const wxString idStr = typeStr[type].first;
@@ -662,10 +665,10 @@ const wxString htmlWidgetAccounts::displayAccounts(double& tBalance, int type = 
     wxString body = "";
     const wxDate today = wxDate::Today();
     wxString vAccts = Model_Setting::instance().ViewAccounts();
-    for (const auto& account : Model_Account::instance().all(Model_Account::COL_ACCOUNTNAME))
+    for (const auto& account : Model_Account::instance().find(
+        Model_Account::ACCOUNTTYPE(Model_Account::all_type()[type])
+        , Model_Account::STATUS(Model_Account::CLOSED, NOT_EQUAL)))
     {
-        if (Model_Account::type(account) != type || Model_Account::status(account) == Model_Account::CLOSED) continue;
-
         Model_Currency::Data* currency = Model_Account::currency(account);
 
         double currency_rate = Model_CurrencyHistory::getDayRate(account.CURRENCYID, today);
