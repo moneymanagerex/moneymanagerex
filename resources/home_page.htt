@@ -45,6 +45,8 @@
                 <TMPL_VAR CASH_ACCOUNTS_INFO>
                 <TMPL_VAR LOAN_ACCOUNTS_INFO>
                 <TMPL_VAR TERM_ACCOUNTS_INFO>
+                <TMPL_VAR ASSET_ACCOUNTS_INFO>
+                <TMPL_VAR SHARE_ACCOUNTS_INFO>
                 </div>
                 
                 <!--Stocks-->
