@@ -665,7 +665,6 @@ void mmCheckingPanel::OnViewPopupSelected(wxCommandEvent& event)
 
     if (m_currentView == MENU_VIEW_FILTER_DIALOG)
     {
-        m_trans_filter_dlg->setAccountToolTip(_("Select account used in transfer transactions"));
         m_transFilterActive = (m_trans_filter_dlg->ShowModal() == wxID_OK
             && m_trans_filter_dlg->isSomethingSelected());
         if (!m_transFilterActive)

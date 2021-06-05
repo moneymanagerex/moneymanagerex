@@ -293,7 +293,7 @@ void mmBillsDepositsPanel::CreateControls()
     itemBoxSizer5->Add(itemButton7, 0, wxRIGHT, 5);
     itemButton7->Enable(false);
 
-    wxButton* itemButton8 = new wxButton(bdPanel, wxID_PASTE, _("En&ter"));
+    wxButton* itemButton8 = new wxButton(bdPanel, wxID_PASTE, _("Ente&r"));
     itemButton8->SetToolTip(_("Enter Next Recurring Transaction Occurrence"));
     itemBoxSizer5->Add(itemButton8, 0, wxRIGHT, 5);
     itemButton8->Enable(false);

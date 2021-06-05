@@ -51,10 +51,9 @@ public:
     void getDescription(mmHTMLBuilder &hb);
     void ResetFilterStatus();
     bool isSomethingSelected();
-    void setAccountToolTip(const wxString& tip) const;
     bool getStatusCheckBox();
     bool getAccountCheckBox();
-    int getAccountID();
+    const wxArrayInt getAccountsID() const;
     bool getCategoryCheckBox();
   
     bool getSimilarStatus();
@@ -121,6 +120,7 @@ private:
     void OnTextEntered(wxCommandEvent& event);
     void OnSaveSettings(wxCommandEvent& event);
     void SaveSettings(int menu_item);
+    void OnAccountsButton(wxCommandEvent& WXUNUSED(event));
 
     void OnCategs(wxCommandEvent& event);
     const wxString to_json(bool i18n = false);
@@ -131,7 +131,7 @@ private:
     wxString settings_string_;
     wxString prev_value_;
     wxCheckBox* accountCheckBox_;
-    wxChoice* accountDropDown_;
+    wxButton* bSelectedAccounts_;
     wxCheckBox* startDateCheckBox_;
     wxChoice* startDateDropDown_;
     wxCheckBox* dateRangeCheckBox_;
@@ -164,9 +164,14 @@ private:
     int categID_;
     int subcategID_;
     int payeeID_;
-    int refAccountID_;
     bool bSimilarCategoryStatus_;
     wxString payeeStr_;
+
+    /* Selected accounts values */
+    //All account names
+    wxArrayString m_accounts_name;
+    //Selected accountns ID
+    wxArrayInt selected_accounts_id_;
 };
 
 #endif
