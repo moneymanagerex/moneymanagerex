@@ -78,7 +78,7 @@ public:
     static row_t to_row_t();
 
 public:
-    wxString ViewAccounts();
+    wxString GetViewAccounts();
     void SetViewAccounts(const wxString& value);
     
     wxString Theme();
