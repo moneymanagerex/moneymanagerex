@@ -490,13 +490,11 @@ const wxString htmlWidgetStatistics::getHTMLText()
         date_range = new mmCurrentMonth;
 
     Model_Checking::Data_Set all_trans;
-    if (Option::instance().getIgnoreFutureTransactions())
-    {
+    if (Option::instance().getIgnoreFutureTransactions()) {
         all_trans = Model_Checking::instance().find(
             DB_Table_CHECKINGACCOUNT_V1::TRANSDATE(date_range->today().FormatISODate(), LESS_OR_EQUAL));
     }
-    else
-    {
+    else {
         all_trans = Model_Checking::instance().all();
     }
     int countFollowUp = 0;
@@ -509,7 +507,8 @@ const wxString htmlWidgetStatistics::getHTMLText()
         if (Model_Checking::foreignTransactionAsTransfer(trx))
             continue;
 
-        if (Model_Checking::status(trx) == Model_Checking::FOLLOWUP) countFollowUp++;
+        if (Model_Checking::status(trx) == Model_Checking::FOLLOWUP)
+            countFollowUp++;
 
         accountStats[trx.ACCOUNTID].first += Model_Checking::reconciled(trx, trx.ACCOUNTID);
         accountStats[trx.ACCOUNTID].second += Model_Checking::balance(trx, trx.ACCOUNTID);
@@ -665,9 +664,11 @@ const wxString htmlWidgetAccounts::displayAccounts(double& tBalance, int type = 
     wxString body = "";
     const wxDate today = wxDate::Today();
     wxString vAccts = Model_Setting::instance().ViewAccounts();
-    for (const auto& account : Model_Account::instance().find(
+    auto accounts = Model_Account::instance().find(
         Model_Account::ACCOUNTTYPE(Model_Account::all_type()[type])
-        , Model_Account::STATUS(Model_Account::CLOSED, NOT_EQUAL)))
+        , Model_Account::STATUS(Model_Account::CLOSED, NOT_EQUAL));
+    std::stable_sort(accounts.begin(), accounts.end(), SorterByACCOUNTNAME());
+    for (const auto& account : accounts)
     {
         Model_Currency::Data* currency = Model_Account::currency(account);
 
