@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MMEX\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2021-06-06 13:04+0300\n"
+"POT-Creation-Date: 2021-06-06 13:20+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -3403,7 +3403,7 @@ msgstr ""
 
 #: maincurrencydialog.cpp:351 maincurrencydialog.cpp:421
 #: maincurrencydialog.cpp:647 maincurrencydialog.cpp:764
-#: maincurrencydialog.cpp:788
+#: maincurrencydialog.cpp:788 maincurrencydialog.h:76
 msgid "Currency Dialog"
 msgstr ""
 

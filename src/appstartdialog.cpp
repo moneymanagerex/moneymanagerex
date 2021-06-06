@@ -43,7 +43,7 @@ mmAppStartDialog::mmAppStartDialog(wxWindow* parent, const wxString& name)
     , m_buttonClose(nullptr)
     , m_buttonExit(nullptr)
 {
-    wxString caption = wxString::Format("%s - %s", mmex::getProgramName(), mmex::getTitleProgramVersion());
+    const auto caption = wxString::Format("%s - %s", mmex::getProgramName(), mmex::getTitleProgramVersion());
     long style = wxCAPTION | wxRESIZE_BORDER | wxSYSTEM_MENU | wxCLOSE_BOX;
     Create(parent, wxID_ANY, caption, wxDefaultPosition, wxDefaultSize, style, name);
     SetMinSize(wxSize(400, 300));

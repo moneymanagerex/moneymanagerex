@@ -89,7 +89,7 @@ bool mmMainCurrencyDialog::Create(wxWindow* parent
     , long style)
 {
     SetExtraStyle(GetExtraStyle()|wxWS_EX_BLOCK_EVENTS);
-    wxDialog::Create(parent, id, caption, pos, size, style);
+    wxDialog::Create(parent, id, wxGetTranslation(caption), pos, size, style);
 
     CreateControls();
     SetIcon(mmex::getProgramIcon());
