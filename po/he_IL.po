@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-06-06 10:40+0300\n"
-"PO-Revision-Date: 2021-06-06 07:46\n"
+"PO-Revision-Date: 2021-06-06 09:16\n"
 "Last-Translator: \n"
 "Language-Team: Hebrew\n"
 "MIME-Version: 1.0\n"
@@ -1225,7 +1225,7 @@ msgstr "מחיקת תנועה מחזורית"
 
 #: billsdepositspanel.cpp:296
 msgid "Ente&r"
-msgstr ""
+msgstr "אנט&ר"
 
 #: billsdepositspanel.cpp:297
 msgid "Enter Next Recurring Transaction Occurrence"
@@ -5066,11 +5066,11 @@ msgstr "סך הכל כללי:"
 
 #: mmhomepage.cpp:646
 msgid "Investment Accounts"
-msgstr ""
+msgstr "חשבונות השקעה"
 
 #: mmhomepage.cpp:647 reports/summary.cpp:162
 msgid "Asset Accounts"
-msgstr ""
+msgstr "חשבון נכסים"
 
 #: mmhomepage.cpp:793
 msgid "Currency Exchange Rates"
