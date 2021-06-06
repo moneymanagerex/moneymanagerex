@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-06-06 10:40+0300\n"
-"PO-Revision-Date: 2021-06-06 07:46\n"
+"PO-Revision-Date: 2021-06-06 09:44\n"
 "Last-Translator: \n"
 "Language-Team: Greek\n"
 "MIME-Version: 1.0\n"
@@ -4081,7 +4081,7 @@ msgstr "&QIF αρχεία..."
 
 #: mmframe.cpp:1299 mmframe.cpp:1370
 msgid "&MMEX CSV Files..."
-msgstr ""
+msgstr "&MMEX CSV Αρχεία..."
 
 #: mmframe.cpp:1302 mmframe.cpp:1373
 msgid "&JSON Files..."
@@ -5035,11 +5035,11 @@ msgstr "Γενικό σύνολο:"
 
 #: mmhomepage.cpp:646
 msgid "Investment Accounts"
-msgstr ""
+msgstr "Επενδυτικοί λογαριασμοί"
 
 #: mmhomepage.cpp:647 reports/summary.cpp:162
 msgid "Asset Accounts"
-msgstr ""
+msgstr "Αποταμιευτικοί λογαριασμοί"
 
 #: mmhomepage.cpp:793
 msgid "Currency Exchange Rates"
