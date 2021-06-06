@@ -32,6 +32,8 @@ wxBEGIN_EVENT_TABLE(OptionSettingsGeneral, wxPanel)
     EVT_BUTTON(ID_DIALOG_OPTIONS_BUTTON_CURRENCY, OptionSettingsGeneral::OnCurrency)
     EVT_CHOICE(ID_DIALOG_OPTIONS_WXCHOICE_DATE, OptionSettingsGeneral::OnDateFormatChanged)
     EVT_COMBOBOX(wxID_ANY, OptionSettingsGeneral::OnLocaleChanged)
+    EVT_MENU(wxID_ANY, OptionSettingsGeneral::OnChangeGUILanguage)
+    EVT_BUTTON(ID_DIALOG_OPTIONS_BUTTON_LANG, OptionSettingsGeneral::OnMouseLeftDown)
 wxEND_EVENT_TABLE()
 /*******************************************************/
 
@@ -76,6 +78,20 @@ void OptionSettingsGeneral::Create()
     headerStaticBoxSizer->Add(userNameTextCtr, g_flagsExpand);
     generalPanelSizer->Add(headerStaticBoxSizer, wxSizerFlags(g_flagsExpand).Proportion(0));
 
+    // Language
+    auto language = static_cast<wxLanguage>(Model_Setting::instance().GetIntSetting(LANGUAGE_PARAMETER, wxLANGUAGE_UNKNOWN));
+    const auto langName = language == wxLANGUAGE_DEFAULT ? _("system default") : wxLocale::GetLanguageName(language);
+
+    wxStaticBox* langStaticBox = new wxStaticBox(this, wxID_STATIC, _("Language"));
+    SetBoldFont(langStaticBox);
+    wxStaticBoxSizer* langFormatStaticBoxSizer = new wxStaticBoxSizer(langStaticBox, wxHORIZONTAL);
+    generalPanelSizer->Add(langFormatStaticBoxSizer, wxSizerFlags(g_flagsExpand).Proportion(0));
+
+    wxButton* langButton = new wxButton(this, ID_DIALOG_OPTIONS_BUTTON_LANG, langName);
+    langButton->SetMinSize(wxSize(200, -1));
+    langFormatStaticBoxSizer->Add(langButton, g_flagsH);
+    langButton->SetToolTip(_("Change language used for MMEX GUI"));
+
     // Date Format Settings
     wxStaticBox* dateFormatStaticBox = new wxStaticBox(this, wxID_STATIC, _("Date Format"));
     wxStaticBoxSizer* dateFormatStaticBoxSizer = new wxStaticBoxSizer(dateFormatStaticBox, wxHORIZONTAL);
@@ -91,7 +107,7 @@ void OptionSettingsGeneral::Create()
     m_date_format_choice->SetToolTip(_("Specify the date format for display"));
 
     m_sample_date_text = new wxStaticText(dateFormatStaticBox, wxID_STATIC, "redefined elsewhere");
-    dateFormatStaticBoxSizer->Add(new wxStaticText(dateFormatStaticBox, wxID_STATIC, _("New date format sample:")), wxSizerFlags(g_flagsH).Border(wxLEFT, 15));
+    dateFormatStaticBoxSizer->Add(new wxStaticText(dateFormatStaticBox, wxID_STATIC, _("Date format sample:")), wxSizerFlags(g_flagsH).Border(wxLEFT, 15));
     dateFormatStaticBoxSizer->Add(m_sample_date_text, wxSizerFlags(g_flagsH).Border(wxLEFT, 5));
     m_sample_date_text->SetLabelText(mmGetDateForDisplay(wxDateTime::Now().FormatISODate()));
     SetBoldFont(dateFormatStaticBox);
@@ -108,7 +124,8 @@ void OptionSettingsGeneral::Create()
 
     Model_Currency::Data* currency = Model_Currency::instance().get(Option::instance().getBaseCurrencyID());
     wxString currName = currency ? currency->CURRENCYNAME : _("Set Currency");
-    wxButton* baseCurrencyButton = new wxButton(this, ID_DIALOG_OPTIONS_BUTTON_CURRENCY, currName, wxDefaultPosition, wxDefaultSize);
+    wxButton* baseCurrencyButton = new wxButton(this, ID_DIALOG_OPTIONS_BUTTON_CURRENCY);
+    baseCurrencyButton->SetMinSize(wxSize(200, -1));
     baseCurrencyButton->SetLabel(currName);
     baseCurrencyButton->SetToolTip(_("Sets the database default Currency using the 'Currency Dialog'"));
     currencyBaseSizer->Add(baseCurrencyButton, g_flagsH);
@@ -302,4 +319,37 @@ bool OptionSettingsGeneral::doFormatDoubleValue(const wxString& locale, wxString
     }
 
     return true;
+}
+void OptionSettingsGeneral::OnChangeGUILanguage(wxCommandEvent& event)
+{
+    wxLanguage lang = static_cast<wxLanguage>(event.GetId() - wxID_LAST - 1);
+    if (lang != m_app->getGUILanguage() && m_app->setGUILanguage(lang))
+        mmErrorDialogs::MessageWarning(this
+            , _("The language for this application has been changed. "
+                "The change will take effect the next time the application is started.")
+            , _("Language change"));
+}
+
+void OptionSettingsGeneral::OnMouseLeftDown(wxCommandEvent& event)
+{
+    wxMenu menuLang;
+    wxArrayString lang_files = wxTranslations::Get()->GetAvailableTranslations("mmex");
+    std::map<wxString, std::pair<int, wxString>> langs;
+    menuLang.AppendRadioItem(wxID_LAST + 1 + wxLANGUAGE_DEFAULT, _("system default"))
+        ->Check(m_app->getGUILanguage() == wxLANGUAGE_DEFAULT);
+    for (auto & file : lang_files)
+    {
+        const wxLanguageInfo* info = wxLocale::FindLanguageInfo(file);
+        if (info)
+            langs[info->Description] = std::make_pair(info->Language, info->CanonicalName);
+    }
+    langs[wxLocale::GetLanguageName(wxLANGUAGE_ENGLISH_US)] = std::make_pair(wxLANGUAGE_ENGLISH_US, "en_US");
+    for (auto const& lang : langs)
+    {
+        menuLang.AppendRadioItem(wxID_LAST + 1 + lang.second.first, lang.first, lang.second.second)
+            ->Check(lang.second.first == m_app->getGUILanguage());
+    }
+    PopupMenu(&menuLang);
+
+    event.Skip();
 }
