@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-06-06 13:20+0300\n"
-"PO-Revision-Date: 2021-06-06 18:16\n"
+"PO-Revision-Date: 2021-06-06 18:26\n"
 "Last-Translator: \n"
 "Language-Team: Italian\n"
 "MIME-Version: 1.0\n"
@@ -1801,7 +1801,7 @@ msgstr "Tasso di conversione fisso"
 
 #: currencydialog.cpp:221
 msgid "Currency Format Sample:"
-msgstr ""
+msgstr "Campione Formato Valuta:"
 
 #: currencydialog.cpp:235
 msgid "Save any changes made"
@@ -1824,7 +1824,7 @@ msgstr "%.2f Visualizzato come: %s"
 
 #: currencydialog.cpp:311
 msgid "(Using Locale)"
-msgstr ""
+msgstr "(Locale in Uso)"
 
 #: customfieldeditdialog.cpp:119
 msgid "Custom Field Details"
@@ -3713,8 +3713,8 @@ msgstr "D&uplica Operazione"
 #: mmchecking_list.cpp:369
 msgid "&Move Transaction"
 msgid_plural "&Move Transactions"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "&Sposta Operazione"
+msgstr[1] "&Sposta Operazioni"
 
 #: mmchecking_list.cpp:375
 msgid "&View Split Categories"
@@ -3827,19 +3827,19 @@ msgstr "Verifica Conto Chiuso"
 #, c-format
 msgid "Do you really want to move the selected transaction?"
 msgid_plural "Do you really want to move %i selected transactions?"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Vuoi davvero spostare l'operazione selezionata?"
+msgstr[1] "Vuoi davvero spostare le %i operazioni selezionate?"
 
 #: mmchecking_list.cpp:1132
 msgid "Confirm Transaction Move"
-msgstr ""
+msgstr "Conferma Spostamento Transazione"
 
 #: mmchecking_list.cpp:1138
 #, c-format
 msgid "Moving transaction to..."
 msgid_plural "Moving %i transactions to..."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Spostamento della transazione a..."
+msgstr[1] "Spostamento di %i transazioni su..."
 
 #: mmchecking_list.cpp:1142 stocks_list.cpp:292
 msgid "Select the destination Account "
@@ -4148,7 +4148,7 @@ msgstr "Esporta in file CSV"
 
 #: mmframe.cpp:1370
 msgid "Export to fixed CSV"
-msgstr ""
+msgstr "Esporta in CSV"
 
 #: mmframe.cpp:1371
 msgid "Export to XML"
@@ -5042,11 +5042,11 @@ msgstr "Totale Generale:"
 
 #: mmhomepage.cpp:645
 msgid "Investment Accounts"
-msgstr ""
+msgstr "Conti di investimento"
 
 #: mmhomepage.cpp:646 reports/summary.cpp:162
 msgid "Asset Accounts"
-msgstr ""
+msgstr "Conti Attività"
 
 #: mmhomepage.cpp:794
 msgid "Currency Exchange Rates"
@@ -5404,7 +5404,7 @@ msgstr "Il nome utente è usato come intestazione del database."
 
 #: optionsettingsgeneral.cpp:85
 msgid "Language"
-msgstr ""
+msgstr "Lingua"
 
 #: optionsettingsgeneral.cpp:107
 msgid "Specify the date format for display"
@@ -5412,7 +5412,7 @@ msgstr "Definire il formato in cui visualizzare la data"
 
 #: optionsettingsgeneral.cpp:110
 msgid "Date format sample:"
-msgstr ""
+msgstr "Anteprima nuovo formato data:"
 
 #: optionsettingsgeneral.cpp:123
 msgid "Base Currency"
@@ -5482,7 +5482,7 @@ msgstr "Selezionare per associare un suono all'inserimento di un'operazione"
 
 #: optionsettingsgeneral.cpp:298
 msgid "bad locale name"
-msgstr ""
+msgstr "nome locale errato"
 
 #: optionsettingsgeneral.cpp:314
 #, c-format
