@@ -63,7 +63,7 @@ void OptionSettingsView::Create()
 
     view_sizer1->Add(new wxStaticText(this, wxID_STATIC, _("Accounts Visible")), g_flagsH);
 
-    const wxString vAccts = Model_Setting::instance().ViewAccounts();
+    const wxString vAccts = Model_Setting::instance().GetViewAccounts();
     wxArrayString view_accounts;
     view_accounts.Add(VIEW_ACCOUNTS_ALL_STR);
     view_accounts.Add(VIEW_ACCOUNTS_OPEN_STR);
