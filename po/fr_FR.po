@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-06-06 10:40+0300\n"
-"PO-Revision-Date: 2021-06-06 07:46\n"
+"PO-Revision-Date: 2021-06-06 08:38\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -1226,7 +1226,7 @@ msgstr ""
 
 #: billsdepositspanel.cpp:296
 msgid "Ente&r"
-msgstr ""
+msgstr "Entrée"
 
 #: billsdepositspanel.cpp:297
 msgid "Enter Next Recurring Transaction Occurrence"
@@ -5042,11 +5042,11 @@ msgstr "Grand Total :"
 
 #: mmhomepage.cpp:646
 msgid "Investment Accounts"
-msgstr ""
+msgstr "Comptes de placement"
 
 #: mmhomepage.cpp:647 reports/summary.cpp:162
 msgid "Asset Accounts"
-msgstr ""
+msgstr "Comptes d’actif"
 
 #: mmhomepage.cpp:793
 msgid "Currency Exchange Rates"
