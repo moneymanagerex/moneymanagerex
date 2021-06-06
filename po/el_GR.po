@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-06-06 10:40+0300\n"
-"PO-Revision-Date: 2021-06-06 09:44\n"
+"PO-Revision-Date: 2021-06-06 09:55\n"
 "Last-Translator: \n"
 "Language-Team: Greek\n"
 "MIME-Version: 1.0\n"
@@ -5420,7 +5420,8 @@ msgstr "Κάντε δεξί κλικ και επιλέξτε «Ορισμός ω
 #: optionsettingsgeneral.cpp:140
 msgid "Format derived from locale.\n"
 "Leave blank to manually set format via 'Currency Dialog | Edit'"
-msgstr ""
+msgstr "Μορφή που προέρχεται από τις τοπικές ρυθμίσεις.\n"
+"Αφήστε κενό για να ορίσετε χειροκίνητα τη μορφή μέσω του 'Διάλογος Συναλλάγματος |Επεξεργασία'"
 
 #: optionsettingsgeneral.cpp:150
 msgid "Use currency history"
