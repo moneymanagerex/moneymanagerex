@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-06-06 13:04+0300\n"
-"PO-Revision-Date: 2021-06-06 10:06\n"
+"PO-Revision-Date: 2021-06-06 10:15\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -1225,7 +1225,7 @@ msgstr "Удалить повторяющуюся транзакцию"
 
 #: billsdepositspanel.cpp:296
 msgid "Ente&r"
-msgstr ""
+msgstr "Вво&д"
 
 #: billsdepositspanel.cpp:297
 msgid "Enter Next Recurring Transaction Occurrence"
@@ -4109,7 +4109,7 @@ msgstr "&QIF файлы..."
 
 #: mmframe.cpp:1299 mmframe.cpp:1370
 msgid "&MMEX CSV Files..."
-msgstr ""
+msgstr "&MMEX CSV файлы..."
 
 #: mmframe.cpp:1302 mmframe.cpp:1373
 msgid "&JSON Files..."
@@ -4173,7 +4173,7 @@ msgstr "Экспортировать в CSV"
 
 #: mmframe.cpp:1370
 msgid "Export to fixed CSV"
-msgstr ""
+msgstr "Экспорт в фиксированный CSV"
 
 #: mmframe.cpp:1371
 msgid "Export to XML"
@@ -5067,11 +5067,11 @@ msgstr "Всего:"
 
 #: mmhomepage.cpp:645
 msgid "Investment Accounts"
-msgstr ""
+msgstr "Инвестиционные счета"
 
 #: mmhomepage.cpp:646 reports/summary.cpp:162
 msgid "Asset Accounts"
-msgstr ""
+msgstr "Счета активов"
 
 #: mmhomepage.cpp:794
 msgid "Currency Exchange Rates"
@@ -5429,7 +5429,7 @@ msgstr "Имя пользователя для заголовков."
 
 #: optionsettingsgeneral.cpp:85
 msgid "Language"
-msgstr ""
+msgstr "Язык"
 
 #: optionsettingsgeneral.cpp:107
 msgid "Specify the date format for display"
@@ -5437,7 +5437,7 @@ msgstr "Укажите формат отображения даты"
 
 #: optionsettingsgeneral.cpp:110
 msgid "Date format sample:"
-msgstr ""
+msgstr "Пример даты:"
 
 #: optionsettingsgeneral.cpp:123
 msgid "Base Currency"
