@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2021-06-06 13:04+0300\n"
-"PO-Revision-Date: 2021-06-06 10:06\n"
+"POT-Creation-Date: 2021-06-06 13:20+0300\n"
+"PO-Revision-Date: 2021-06-06 10:27\n"
 "Last-Translator: \n"
 "Language-Team: Romanian\n"
 "MIME-Version: 1.0\n"
@@ -3383,7 +3383,7 @@ msgstr ""
 
 #: maincurrencydialog.cpp:351 maincurrencydialog.cpp:421
 #: maincurrencydialog.cpp:647 maincurrencydialog.cpp:764
-#: maincurrencydialog.cpp:788
+#: maincurrencydialog.cpp:788 maincurrencydialog.h:76
 msgid "Currency Dialog"
 msgstr "Administrează Valutele"
 
