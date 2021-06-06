@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2021-06-06 10:40+0300\n"
-"PO-Revision-Date: 2021-06-06 07:46\n"
+"POT-Creation-Date: 2021-06-06 13:04+0300\n"
+"PO-Revision-Date: 2021-06-06 10:06\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
@@ -271,7 +271,7 @@ msgid "Account Name "
 msgstr "Kontonamn "
 
 #: accountdialog.cpp:511 import_export/qif_export.cpp:595
-#: import_export/qif_import_gui.cpp:233 optionsettingsgeneral.cpp:100
+#: import_export/qif_import_gui.cpp:233 optionsettingsgeneral.cpp:116
 #: reports/htmlbuilder.cpp:183
 msgid "Currency"
 msgstr "Valuta"
@@ -518,7 +518,7 @@ msgstr ""
 
 #: assetspanel.cpp:415 assetspanel.h:108 general_report_manager.cpp:705
 #: general_report_manager.cpp:982 mmframe.cpp:474 mmframe.cpp:737
-#: mmframe.cpp:1522 mmframe.cpp:2963 mmhomepage.cpp:577 mmhomepagepanel.cpp:222
+#: mmframe.cpp:1522 mmframe.cpp:2963 mmhomepage.cpp:576 mmhomepagepanel.cpp:222
 msgid "Assets"
 msgstr "Tillgångar"
 
@@ -2295,7 +2295,7 @@ msgstr ""
 msgid "Developers may ask you to provide information presented here in order to help diagnose issues you may report with the program."
 msgstr ""
 
-#: filtertransdialog.cpp:45 mmhomepage.cpp:657 model/Model_Billsdeposits.cpp:40
+#: filtertransdialog.cpp:45 mmhomepage.cpp:656 model/Model_Billsdeposits.cpp:40
 #: model/Model_Checking.cpp:37
 msgid "Reconciled"
 msgstr "Fullbordad"
@@ -2763,7 +2763,7 @@ msgid "To Date"
 msgstr "Till datum"
 
 #: import_export/qif_export.cpp:178 import_export/qif_import_gui.cpp:276
-#: optionsettingsgeneral.cpp:80
+#: optionsettingsgeneral.cpp:96
 msgid "Date Format"
 msgstr "Datumformat"
 
@@ -3029,7 +3029,7 @@ msgid "Don't Care"
 msgstr "Bryr mig inte"
 
 #: import_export/univcsvdialog.cpp:114 mmchecking_list.cpp:225
-#: mmhomepage.cpp:658 reports/summary.cpp:166
+#: mmhomepage.cpp:657 reports/summary.cpp:166
 msgid "Balance"
 msgstr "Balans"
 
@@ -3925,22 +3925,22 @@ msgstr "Kunde inte spara anpassat fält \"%s\":\n"
 msgid "CustomField validation error"
 msgstr ""
 
-#: mmex.cpp:124
+#: mmex.cpp:122
 #, c-format
 msgid "Cannot load a translation for the default language of your system (%s)."
 msgstr ""
 
-#: mmex.cpp:131
+#: mmex.cpp:129
 #, c-format
 msgid "Please use the Switch Application Language option in View menu to select one of the following available languages:\n\n"
 "%s"
 msgstr ""
 
-#: mmex.cpp:136 mmframe.cpp:3313
+#: mmex.cpp:134 mmframe.cpp:3313 optionsettingsgeneral.cpp:330
 msgid "Language change"
 msgstr ""
 
-#: mmex.cpp:176
+#: mmex.cpp:174
 msgid "Fatal error occured.\n"
 "Application will be terminated."
 msgstr ""
@@ -3957,15 +3957,15 @@ msgstr "Verktygsfält"
 msgid "Favourites"
 msgstr ""
 
-#: mmframe.cpp:468 mmframe.cpp:709 mmhomepage.cpp:642 reports/summary.cpp:158
+#: mmframe.cpp:468 mmframe.cpp:709 mmhomepage.cpp:641 reports/summary.cpp:158
 msgid "Bank Accounts"
 msgstr "Bankkonton"
 
-#: mmframe.cpp:469 mmframe.cpp:713 mmhomepage.cpp:643 reports/summary.cpp:159
+#: mmframe.cpp:469 mmframe.cpp:713 mmhomepage.cpp:642 reports/summary.cpp:159
 msgid "Credit Card Accounts"
 msgstr "Kreditkortskonton"
 
-#: mmframe.cpp:470 mmframe.cpp:725 mmhomepage.cpp:645 reports/summary.cpp:161
+#: mmframe.cpp:470 mmframe.cpp:725 mmhomepage.cpp:644 reports/summary.cpp:161
 msgid "Term Accounts"
 msgstr ""
 
@@ -3973,11 +3973,11 @@ msgstr ""
 msgid "Stock Portfolios"
 msgstr ""
 
-#: mmframe.cpp:472 mmframe.cpp:717 mmhomepage.cpp:641
+#: mmframe.cpp:472 mmframe.cpp:717 mmhomepage.cpp:640
 msgid "Cash Accounts"
 msgstr "Kontantkonton"
 
-#: mmframe.cpp:473 mmframe.cpp:721 mmhomepage.cpp:644 reports/summary.cpp:160
+#: mmframe.cpp:473 mmframe.cpp:721 mmhomepage.cpp:643 reports/summary.cpp:160
 msgid "Loan Accounts"
 msgstr "Lånekonton"
 
@@ -3993,7 +3993,7 @@ msgstr "Övergripande"
 msgid "All Transactions"
 msgstr ""
 
-#: mmframe.cpp:733 mmhomepage.cpp:648 reports/summary.cpp:163
+#: mmframe.cpp:733 mmhomepage.cpp:647 reports/summary.cpp:163
 msgid "Share Accounts"
 msgstr ""
 
@@ -4233,11 +4233,11 @@ msgstr "Växla helskärm"
 msgid "Switch Application &Language"
 msgstr ""
 
-#: mmframe.cpp:1429
+#: mmframe.cpp:1429 optionsettingsgeneral.cpp:93
 msgid "Change language used for MMEX GUI"
 msgstr ""
 
-#: mmframe.cpp:1434
+#: mmframe.cpp:1434 optionsettingsgeneral.cpp:83 optionsettingsgeneral.cpp:338
 msgid "system default"
 msgstr "systemstandardvärde"
 
@@ -4870,7 +4870,7 @@ msgstr ""
 msgid "File %s not found"
 msgstr "Filen %s hittades inte"
 
-#: mmframe.cpp:3311
+#: mmframe.cpp:3311 optionsettingsgeneral.cpp:328
 msgid "The language for this application has been changed. The change will take effect the next time the application is started."
 msgstr "Språket för denna applikation har ändrats. Ändringen kommer att träda i kraft nästa gång applikationen startas."
 
@@ -4878,7 +4878,7 @@ msgstr "Språket för denna applikation har ändrats. Ändringen kommer att trä
 msgid "General Group Report"
 msgstr ""
 
-#: mmframereport.cpp:105 mmhomepage.cpp:807 model/Model_Report.cpp:403
+#: mmframereport.cpp:105 mmhomepage.cpp:808 model/Model_Report.cpp:403
 #: reports/bugreport.h:110
 msgid "Caught exception"
 msgstr ""
@@ -4957,7 +4957,7 @@ msgstr "Vinst/förlust"
 msgid "Total"
 msgstr "Totalt"
 
-#: mmhomepage.cpp:106 mmhomepage.cpp:695 reports/incexpenses.cpp:287
+#: mmhomepage.cpp:106 mmhomepage.cpp:696 reports/incexpenses.cpp:287
 #: reports/payee.cpp:164 reports/summarystocks.cpp:133
 #: splittransactionsdialog.cpp:143
 msgid "Total:"
@@ -4996,28 +4996,28 @@ msgstr ""
 msgid "Transaction Statistics"
 msgstr "Transaktionsstatistik"
 
-#: mmhomepage.cpp:527
+#: mmhomepage.cpp:526
 msgid "Follow Up On Transactions: "
 msgstr ""
 
-#: mmhomepage.cpp:531
+#: mmhomepage.cpp:530
 msgid "Total Transactions: "
 msgstr ""
 
-#: mmhomepage.cpp:553 reports/categexp.cpp:225 reports/summarystocks.cpp:149
+#: mmhomepage.cpp:552 reports/categexp.cpp:225 reports/summarystocks.cpp:149
 #: reports/transactions.cpp:197 reports/transactions.cpp:232
 msgid "Grand Total:"
 msgstr ""
 
-#: mmhomepage.cpp:646
+#: mmhomepage.cpp:645
 msgid "Investment Accounts"
 msgstr ""
 
-#: mmhomepage.cpp:647 reports/summary.cpp:162
+#: mmhomepage.cpp:646 reports/summary.cpp:162
 msgid "Asset Accounts"
 msgstr ""
 
-#: mmhomepage.cpp:793
+#: mmhomepage.cpp:794
 msgid "Currency Exchange Rates"
 msgstr ""
 
@@ -5357,96 +5357,100 @@ msgstr "Ursprung"
 msgid "Destination"
 msgstr "Destination"
 
-#: optionsettingsgeneral.cpp:65
+#: optionsettingsgeneral.cpp:67
 msgid "Display Heading"
 msgstr ""
 
-#: optionsettingsgeneral.cpp:70 wizard_newdb.cpp:106
+#: optionsettingsgeneral.cpp:72 wizard_newdb.cpp:106
 msgid "User Name"
 msgstr "Användarnamn"
 
-#: optionsettingsgeneral.cpp:75
+#: optionsettingsgeneral.cpp:77
 msgid "The User Name is used as a title for the database."
 msgstr ""
 
-#: optionsettingsgeneral.cpp:91
-msgid "Specify the date format for display"
-msgstr "Ange datumformat för visning"
-
-#: optionsettingsgeneral.cpp:94
-msgid "New date format sample:"
+#: optionsettingsgeneral.cpp:85
+msgid "Language"
 msgstr ""
 
 #: optionsettingsgeneral.cpp:107
+msgid "Specify the date format for display"
+msgstr "Ange datumformat för visning"
+
+#: optionsettingsgeneral.cpp:110
+msgid "Date format sample:"
+msgstr ""
+
+#: optionsettingsgeneral.cpp:123
 msgid "Base Currency"
 msgstr "Basvaluta"
 
-#: optionsettingsgeneral.cpp:110 wizard_newdb.cpp:79
+#: optionsettingsgeneral.cpp:126 wizard_newdb.cpp:79
 msgid "Set Currency"
 msgstr "Välj valuta"
 
-#: optionsettingsgeneral.cpp:113
+#: optionsettingsgeneral.cpp:130
 msgid "Sets the database default Currency using the 'Currency Dialog'"
 msgstr ""
 
-#: optionsettingsgeneral.cpp:116
+#: optionsettingsgeneral.cpp:133
 msgid "Right click and select 'Set as Base Currency' in 'Currency Dialog'"
 msgstr ""
 
-#: optionsettingsgeneral.cpp:140
+#: optionsettingsgeneral.cpp:157
 msgid "Format derived from locale.\n"
 "Leave blank to manually set format via 'Currency Dialog | Edit'"
 msgstr ""
 
-#: optionsettingsgeneral.cpp:150
+#: optionsettingsgeneral.cpp:167
 msgid "Use currency history"
 msgstr ""
 
-#: optionsettingsgeneral.cpp:152
+#: optionsettingsgeneral.cpp:169
 msgid "Select to use currency history (one rate for each day), deselect to use a fixed rate"
 msgstr ""
 
-#: optionsettingsgeneral.cpp:156
+#: optionsettingsgeneral.cpp:173
 msgid "Financial Year"
 msgstr "Räkenskapsår"
 
-#: optionsettingsgeneral.cpp:163
+#: optionsettingsgeneral.cpp:180
 msgid "Start Day"
 msgstr "Startdag"
 
-#: optionsettingsgeneral.cpp:169
+#: optionsettingsgeneral.cpp:186
 msgid "Specify Day for start of financial year"
 msgstr "Ange dag för början av räkenskapsåret"
 
-#: optionsettingsgeneral.cpp:173
+#: optionsettingsgeneral.cpp:190
 msgid "Start Month"
 msgstr "Startmånad"
 
-#: optionsettingsgeneral.cpp:185
+#: optionsettingsgeneral.cpp:202
 msgid "Specify month for start of financial year"
 msgstr "Ange månad för början av räkenskapsåret"
 
-#: optionsettingsgeneral.cpp:190
+#: optionsettingsgeneral.cpp:207
 msgid "Use Original Date when Pasting Transactions"
 msgstr "Använd ursprungsdatum vid inklistring av transaktioner"
 
-#: optionsettingsgeneral.cpp:192
+#: optionsettingsgeneral.cpp:209
 msgid "Select whether to use the original transaction date or current date when copying/pasting transactions"
 msgstr ""
 
-#: optionsettingsgeneral.cpp:195
+#: optionsettingsgeneral.cpp:212
 msgid "Use Transaction Sound"
 msgstr "Använd ljud vid transaktion"
 
-#: optionsettingsgeneral.cpp:197
+#: optionsettingsgeneral.cpp:214
 msgid "Select whether to use sounds when entering transactions"
 msgstr ""
 
-#: optionsettingsgeneral.cpp:281
+#: optionsettingsgeneral.cpp:298
 msgid "bad locale name"
 msgstr ""
 
-#: optionsettingsgeneral.cpp:297
+#: optionsettingsgeneral.cpp:314
 #, c-format
 msgid "Currency value sample: %s"
 msgstr "Valutavärde exempel: %s"
