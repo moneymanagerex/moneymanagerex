@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2021-06-06 13:04+0300\n"
-"PO-Revision-Date: 2021-06-06 10:15\n"
+"POT-Creation-Date: 2021-06-06 13:20+0300\n"
+"PO-Revision-Date: 2021-06-06 10:26\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -3410,9 +3410,9 @@ msgstr "Вы действительно хотите удалить выбран
 
 #: maincurrencydialog.cpp:351 maincurrencydialog.cpp:421
 #: maincurrencydialog.cpp:647 maincurrencydialog.cpp:764
-#: maincurrencydialog.cpp:788
+#: maincurrencydialog.cpp:788 maincurrencydialog.h:76
 msgid "Currency Dialog"
-msgstr "Валюта"
+msgstr "Диалог валют"
 
 #: maincurrencydialog.cpp:379
 msgid "Base Currency Selection"
@@ -5458,7 +5458,8 @@ msgstr "Щелкните правой кнопкой мыши и выберит�
 #: optionsettingsgeneral.cpp:157
 msgid "Format derived from locale.\n"
 "Leave blank to manually set format via 'Currency Dialog | Edit'"
-msgstr ""
+msgstr "Формат, полученный от локали.\n"
+"Оставьте пустым, чтобы вручную установить формат 'Диалог валют | Редактировать'"
 
 #: optionsettingsgeneral.cpp:167
 msgid "Use currency history"
