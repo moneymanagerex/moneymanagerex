@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-06-06 13:20+0300\n"
-"PO-Revision-Date: 2021-06-06 10:26\n"
+"PO-Revision-Date: 2021-06-06 13:26\n"
 "Last-Translator: \n"
 "Language-Team: Hebrew\n"
 "MIME-Version: 1.0\n"
@@ -5428,7 +5428,7 @@ msgstr "שם משתמש ישמש גם ככותרת למסד הנתונים."
 
 #: optionsettingsgeneral.cpp:85
 msgid "Language"
-msgstr ""
+msgstr "שפה"
 
 #: optionsettingsgeneral.cpp:107
 msgid "Specify the date format for display"
@@ -5436,7 +5436,7 @@ msgstr "נא להגדיר את תבנית תאריך לתצוגה"
 
 #: optionsettingsgeneral.cpp:110
 msgid "Date format sample:"
-msgstr ""
+msgstr "דוגמת תבנית תאריך:"
 
 #: optionsettingsgeneral.cpp:123
 msgid "Base Currency"
