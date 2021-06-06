@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2021-06-06 10:40+0300\n"
-"PO-Revision-Date: 2021-06-06 09:55\n"
+"POT-Creation-Date: 2021-06-06 13:04+0300\n"
+"PO-Revision-Date: 2021-06-06 10:06\n"
 "Last-Translator: \n"
 "Language-Team: Greek\n"
 "MIME-Version: 1.0\n"
@@ -271,7 +271,7 @@ msgid "Account Name "
 msgstr "Όνομα λογαριασμού"
 
 #: accountdialog.cpp:511 import_export/qif_export.cpp:595
-#: import_export/qif_import_gui.cpp:233 optionsettingsgeneral.cpp:100
+#: import_export/qif_import_gui.cpp:233 optionsettingsgeneral.cpp:116
 #: reports/htmlbuilder.cpp:183
 msgid "Currency"
 msgstr "Νόμισμα"
@@ -519,7 +519,7 @@ msgstr "Το MMEX σας επιτρέπει να παρακολουθείτε σ
 
 #: assetspanel.cpp:415 assetspanel.h:108 general_report_manager.cpp:705
 #: general_report_manager.cpp:982 mmframe.cpp:474 mmframe.cpp:737
-#: mmframe.cpp:1522 mmframe.cpp:2963 mmhomepage.cpp:577 mmhomepagepanel.cpp:222
+#: mmframe.cpp:1522 mmframe.cpp:2963 mmhomepage.cpp:576 mmhomepagepanel.cpp:222
 msgid "Assets"
 msgstr "Περιουσιακά στοιχεία"
 
@@ -2306,7 +2306,7 @@ msgstr "Διαγνωστικός Έλεγχος"
 msgid "Developers may ask you to provide information presented here in order to help diagnose issues you may report with the program."
 msgstr "Οι προγραμματιστές μπορούν να σας ζητήσουν να παρέχετε πληροφορίες που παρουσιάζονται εδώ για να βοηθήσετε στη διάγνωση θεμάτων που μπορεί να αναφέρετε σχετικά με το πρόγραμμα."
 
-#: filtertransdialog.cpp:45 mmhomepage.cpp:657 model/Model_Billsdeposits.cpp:40
+#: filtertransdialog.cpp:45 mmhomepage.cpp:656 model/Model_Billsdeposits.cpp:40
 #: model/Model_Checking.cpp:37
 msgid "Reconciled"
 msgstr "Τακτοποιημένο"
@@ -2773,7 +2773,7 @@ msgid "To Date"
 msgstr "Έως ημερομηνία"
 
 #: import_export/qif_export.cpp:178 import_export/qif_import_gui.cpp:276
-#: optionsettingsgeneral.cpp:80
+#: optionsettingsgeneral.cpp:96
 msgid "Date Format"
 msgstr "Μορφή ημερομηνίας"
 
@@ -3039,7 +3039,7 @@ msgid "Don't Care"
 msgstr "Αδιάφορο"
 
 #: import_export/univcsvdialog.cpp:114 mmchecking_list.cpp:225
-#: mmhomepage.cpp:658 reports/summary.cpp:166
+#: mmhomepage.cpp:657 reports/summary.cpp:166
 msgid "Balance"
 msgstr "Υπόλοιπο"
 
@@ -3938,22 +3938,22 @@ msgstr "Αδυναμία αποθήκευσης προσαρμοσμένου π�
 msgid "CustomField validation error"
 msgstr "Σφάλμα επικύρωσης CustomField"
 
-#: mmex.cpp:124
+#: mmex.cpp:122
 #, c-format
 msgid "Cannot load a translation for the default language of your system (%s)."
 msgstr "Δεν είναι δυνατή η φόρτωση μετάφρασης για την προεπιλεγμένη γλώσσα του συστήματός σας (%s)."
 
-#: mmex.cpp:131
+#: mmex.cpp:129
 #, c-format
 msgid "Please use the Switch Application Language option in View menu to select one of the following available languages:\n\n"
 "%s"
 msgstr "Παρακαλούμε χρησιμοποιήστε την επιλογή Switch Application Language στο μενού προβολής για να επιλέξετε μία από τις ακόλουθες διαθέσιμες γλώσσες: %s"
 
-#: mmex.cpp:136 mmframe.cpp:3313
+#: mmex.cpp:134 mmframe.cpp:3313 optionsettingsgeneral.cpp:330
 msgid "Language change"
 msgstr "Αλλαγή γλώσσας"
 
-#: mmex.cpp:176
+#: mmex.cpp:174
 msgid "Fatal error occured.\n"
 "Application will be terminated."
 msgstr "Παρουσιάστηκε μοιραίο σφάλμα.\n"
@@ -3971,15 +3971,15 @@ msgstr "Γραμμή Εργαλείων"
 msgid "Favourites"
 msgstr "Αγαπημένα"
 
-#: mmframe.cpp:468 mmframe.cpp:709 mmhomepage.cpp:642 reports/summary.cpp:158
+#: mmframe.cpp:468 mmframe.cpp:709 mmhomepage.cpp:641 reports/summary.cpp:158
 msgid "Bank Accounts"
 msgstr "Τραπεζικοί Λογαριασμοί"
 
-#: mmframe.cpp:469 mmframe.cpp:713 mmhomepage.cpp:643 reports/summary.cpp:159
+#: mmframe.cpp:469 mmframe.cpp:713 mmhomepage.cpp:642 reports/summary.cpp:159
 msgid "Credit Card Accounts"
 msgstr "Λογαριασμοί Πιστωτικής Κάρτας"
 
-#: mmframe.cpp:470 mmframe.cpp:725 mmhomepage.cpp:645 reports/summary.cpp:161
+#: mmframe.cpp:470 mmframe.cpp:725 mmhomepage.cpp:644 reports/summary.cpp:161
 msgid "Term Accounts"
 msgstr "Προθεσμιακοί λογαριασμοί"
 
@@ -3987,11 +3987,11 @@ msgstr "Προθεσμιακοί λογαριασμοί"
 msgid "Stock Portfolios"
 msgstr "Χαρτοφυλάκια Αποθεμάτων"
 
-#: mmframe.cpp:472 mmframe.cpp:717 mmhomepage.cpp:641
+#: mmframe.cpp:472 mmframe.cpp:717 mmhomepage.cpp:640
 msgid "Cash Accounts"
 msgstr "Λογαριασμοί Μετρητών"
 
-#: mmframe.cpp:473 mmframe.cpp:721 mmhomepage.cpp:644 reports/summary.cpp:160
+#: mmframe.cpp:473 mmframe.cpp:721 mmhomepage.cpp:643 reports/summary.cpp:160
 msgid "Loan Accounts"
 msgstr "Δανειακοί Λογαριασμοί"
 
@@ -4007,7 +4007,7 @@ msgstr "Αρχική σελίδα"
 msgid "All Transactions"
 msgstr "Όλες οι συναλλαγές"
 
-#: mmframe.cpp:733 mmhomepage.cpp:648 reports/summary.cpp:163
+#: mmframe.cpp:733 mmhomepage.cpp:647 reports/summary.cpp:163
 msgid "Share Accounts"
 msgstr "Κοινόχρηστοι λογαριασμοί"
 
@@ -4247,11 +4247,11 @@ msgstr "Εναλλαγή Πλήρους Οθόνης"
 msgid "Switch Application &Language"
 msgstr "Εναλλαγή Γλώσσας Εφαρμογής"
 
-#: mmframe.cpp:1429
+#: mmframe.cpp:1429 optionsettingsgeneral.cpp:93
 msgid "Change language used for MMEX GUI"
 msgstr "Αλλαγή γλώσσας που χρησιμοποιείται για το γραφικό περιβάλλον MMEX"
 
-#: mmframe.cpp:1434
+#: mmframe.cpp:1434 optionsettingsgeneral.cpp:83 optionsettingsgeneral.cpp:338
 msgid "system default"
 msgstr "προεπιλογή συστήματος"
 
@@ -4894,7 +4894,7 @@ msgstr "Αποτέλεσμα μετατόπισης δικαιούχου"
 msgid "File %s not found"
 msgstr "Το αρχείο %s δεν βρέθηκε"
 
-#: mmframe.cpp:3311
+#: mmframe.cpp:3311 optionsettingsgeneral.cpp:328
 msgid "The language for this application has been changed. The change will take effect the next time the application is started."
 msgstr "Η γλώσσα αυτής της εφαρμογής έχει αλλάξει. Η αλλαγή θα τεθεί σε ισχύ την επόμενη φορά που θα ξεκινήσει η εφαρμογή."
 
@@ -4902,7 +4902,7 @@ msgstr "Η γλώσσα αυτής της εφαρμογής έχει αλλάξ
 msgid "General Group Report"
 msgstr "Γενική Έκθεση Ομάδας"
 
-#: mmframereport.cpp:105 mmhomepage.cpp:807 model/Model_Report.cpp:403
+#: mmframereport.cpp:105 mmhomepage.cpp:808 model/Model_Report.cpp:403
 #: reports/bugreport.h:110
 msgid "Caught exception"
 msgstr "Προσοχή στην εξαίρεση"
@@ -4981,7 +4981,7 @@ msgstr "Κέρδη/Ζημιές"
 msgid "Total"
 msgstr "Σύνολο"
 
-#: mmhomepage.cpp:106 mmhomepage.cpp:695 reports/incexpenses.cpp:287
+#: mmhomepage.cpp:106 mmhomepage.cpp:696 reports/incexpenses.cpp:287
 #: reports/payee.cpp:164 reports/summarystocks.cpp:133
 #: splittransactionsdialog.cpp:143
 msgid "Total:"
@@ -5020,28 +5020,28 @@ msgstr "Έσοδα/Έξοδα"
 msgid "Transaction Statistics"
 msgstr "Στατιστικά συναλλαγών"
 
-#: mmhomepage.cpp:527
+#: mmhomepage.cpp:526
 msgid "Follow Up On Transactions: "
 msgstr "Επανέλεγχος στις συναλλαγές: "
 
-#: mmhomepage.cpp:531
+#: mmhomepage.cpp:530
 msgid "Total Transactions: "
 msgstr "Σύνολο συναλλαγών: "
 
-#: mmhomepage.cpp:553 reports/categexp.cpp:225 reports/summarystocks.cpp:149
+#: mmhomepage.cpp:552 reports/categexp.cpp:225 reports/summarystocks.cpp:149
 #: reports/transactions.cpp:197 reports/transactions.cpp:232
 msgid "Grand Total:"
 msgstr "Γενικό σύνολο:"
 
-#: mmhomepage.cpp:646
+#: mmhomepage.cpp:645
 msgid "Investment Accounts"
 msgstr "Επενδυτικοί λογαριασμοί"
 
-#: mmhomepage.cpp:647 reports/summary.cpp:162
+#: mmhomepage.cpp:646 reports/summary.cpp:162
 msgid "Asset Accounts"
 msgstr "Αποταμιευτικοί λογαριασμοί"
 
-#: mmhomepage.cpp:793
+#: mmhomepage.cpp:794
 msgid "Currency Exchange Rates"
 msgstr "Ισοτιμία Συναλλάγματος"
 
@@ -5381,97 +5381,101 @@ msgstr "Καταγωγή"
 msgid "Destination"
 msgstr "Προορισμός"
 
-#: optionsettingsgeneral.cpp:65
+#: optionsettingsgeneral.cpp:67
 msgid "Display Heading"
 msgstr "Τίτλος της εμφάνισης"
 
-#: optionsettingsgeneral.cpp:70 wizard_newdb.cpp:106
+#: optionsettingsgeneral.cpp:72 wizard_newdb.cpp:106
 msgid "User Name"
 msgstr "Όνομα χρήστη"
 
-#: optionsettingsgeneral.cpp:75
+#: optionsettingsgeneral.cpp:77
 msgid "The User Name is used as a title for the database."
 msgstr "Το όνομα χρήστη χρησιμοποιήθηκε ως τίτλος της βάσης δεδομένων."
 
-#: optionsettingsgeneral.cpp:91
+#: optionsettingsgeneral.cpp:85
+msgid "Language"
+msgstr ""
+
+#: optionsettingsgeneral.cpp:107
 msgid "Specify the date format for display"
 msgstr "Καθορίστε τη μορφή εμφάνισης της ημερομηνίας"
 
-#: optionsettingsgeneral.cpp:94
-msgid "New date format sample:"
-msgstr "Νέο δείγμα μορφής ημερομηνίας:"
+#: optionsettingsgeneral.cpp:110
+msgid "Date format sample:"
+msgstr ""
 
-#: optionsettingsgeneral.cpp:107
+#: optionsettingsgeneral.cpp:123
 msgid "Base Currency"
 msgstr "Βασικό νόμισμα"
 
-#: optionsettingsgeneral.cpp:110 wizard_newdb.cpp:79
+#: optionsettingsgeneral.cpp:126 wizard_newdb.cpp:79
 msgid "Set Currency"
 msgstr "Ορίστε νόμισμα"
 
-#: optionsettingsgeneral.cpp:113
+#: optionsettingsgeneral.cpp:130
 msgid "Sets the database default Currency using the 'Currency Dialog'"
 msgstr "Ορίζει το προεπιλεγμένο νόμισμα της βάσης δεδομένων χρησιμοποιώντας το 'διάλογο νομίσματος'"
 
-#: optionsettingsgeneral.cpp:116
+#: optionsettingsgeneral.cpp:133
 msgid "Right click and select 'Set as Base Currency' in 'Currency Dialog'"
 msgstr "Κάντε δεξί κλικ και επιλέξτε «Ορισμός ως βασικό νόμισμα» στο «Διάλογος νομίσματος»"
 
-#: optionsettingsgeneral.cpp:140
+#: optionsettingsgeneral.cpp:157
 msgid "Format derived from locale.\n"
 "Leave blank to manually set format via 'Currency Dialog | Edit'"
 msgstr "Μορφή που προέρχεται από τις τοπικές ρυθμίσεις.\n"
 "Αφήστε κενό για να ορίσετε χειροκίνητα τη μορφή μέσω του 'Διάλογος Συναλλάγματος |Επεξεργασία'"
 
-#: optionsettingsgeneral.cpp:150
+#: optionsettingsgeneral.cpp:167
 msgid "Use currency history"
 msgstr "Χρησιμοποιήστε το ιστορικό ισοτιμίας"
 
-#: optionsettingsgeneral.cpp:152
+#: optionsettingsgeneral.cpp:169
 msgid "Select to use currency history (one rate for each day), deselect to use a fixed rate"
 msgstr "Επιλέξτε για να χρησιμοποιήσετε το ιστορικό νομισμάτων (μία ισοτιμία για κάθε ημέρα), αποεπιλέξτε για να χρησιμοποιήσετε μια σταθερή ισοτιμία"
 
-#: optionsettingsgeneral.cpp:156
+#: optionsettingsgeneral.cpp:173
 msgid "Financial Year"
 msgstr "Οικονομικό έτος"
 
-#: optionsettingsgeneral.cpp:163
+#: optionsettingsgeneral.cpp:180
 msgid "Start Day"
 msgstr "Ημέρα εκκίνησης"
 
-#: optionsettingsgeneral.cpp:169
+#: optionsettingsgeneral.cpp:186
 msgid "Specify Day for start of financial year"
 msgstr "Καθορίστε την ημέρα έναρξης του οικονομικού έτους"
 
-#: optionsettingsgeneral.cpp:173
+#: optionsettingsgeneral.cpp:190
 msgid "Start Month"
 msgstr "Μήνας εκκίνησης"
 
-#: optionsettingsgeneral.cpp:185
+#: optionsettingsgeneral.cpp:202
 msgid "Specify month for start of financial year"
 msgstr "Καθορίστε τον μήνα έναρξης του οικονομικού έτους"
 
-#: optionsettingsgeneral.cpp:190
+#: optionsettingsgeneral.cpp:207
 msgid "Use Original Date when Pasting Transactions"
 msgstr "Να χρησιμοποιείται η αρχική ημερομηνία όταν επικολλώνται συναλλαγές"
 
-#: optionsettingsgeneral.cpp:192
+#: optionsettingsgeneral.cpp:209
 msgid "Select whether to use the original transaction date or current date when copying/pasting transactions"
 msgstr "Επιλέξτε αν θα χρησιμοποιείτε την αρχική ημερομηνία της συναλλαγής ή την τρέχουσα ημερομηνία όταν αντιγράφετε/επικολλάτε συναλλαγές"
 
-#: optionsettingsgeneral.cpp:195
+#: optionsettingsgeneral.cpp:212
 msgid "Use Transaction Sound"
 msgstr "Χρήση ήχων συναλλαγής"
 
-#: optionsettingsgeneral.cpp:197
+#: optionsettingsgeneral.cpp:214
 msgid "Select whether to use sounds when entering transactions"
 msgstr "Επιλέξτε αν θα χρησιμοποιούνται ήχοι κατά την εισαγωγή συναλλαγών"
 
-#: optionsettingsgeneral.cpp:281
+#: optionsettingsgeneral.cpp:298
 msgid "bad locale name"
 msgstr "εσφαλμένο όνομα γλώσσας"
 
-#: optionsettingsgeneral.cpp:297
+#: optionsettingsgeneral.cpp:314
 #, c-format
 msgid "Currency value sample: %s"
 msgstr "Δείγμα αξίας νομίσματος: %s"
