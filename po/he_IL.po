@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2021-06-06 10:40+0300\n"
-"PO-Revision-Date: 2021-06-06 07:46\n"
+"POT-Creation-Date: 2021-06-06 13:04+0300\n"
+"PO-Revision-Date: 2021-06-06 10:06\n"
 "Last-Translator: \n"
 "Language-Team: Hebrew\n"
 "MIME-Version: 1.0\n"
@@ -271,7 +271,7 @@ msgid "Account Name "
 msgstr "שם חשבון "
 
 #: accountdialog.cpp:511 import_export/qif_export.cpp:595
-#: import_export/qif_import_gui.cpp:233 optionsettingsgeneral.cpp:100
+#: import_export/qif_import_gui.cpp:233 optionsettingsgeneral.cpp:116
 #: reports/htmlbuilder.cpp:183
 msgid "Currency"
 msgstr "מטבע"
@@ -519,7 +519,7 @@ msgstr "MMEX מאפשרת מעקוב אחר נכסים קבועים כגון מ�
 
 #: assetspanel.cpp:415 assetspanel.h:108 general_report_manager.cpp:705
 #: general_report_manager.cpp:982 mmframe.cpp:474 mmframe.cpp:737
-#: mmframe.cpp:1522 mmframe.cpp:2963 mmhomepage.cpp:577 mmhomepagepanel.cpp:222
+#: mmframe.cpp:1522 mmframe.cpp:2963 mmhomepage.cpp:576 mmhomepagepanel.cpp:222
 msgid "Assets"
 msgstr "נכסים"
 
@@ -1225,7 +1225,7 @@ msgstr "מחיקת תנועה מחזורית"
 
 #: billsdepositspanel.cpp:296
 msgid "Ente&r"
-msgstr ""
+msgstr "אנט&ר"
 
 #: billsdepositspanel.cpp:297
 msgid "Enter Next Recurring Transaction Occurrence"
@@ -2312,7 +2312,7 @@ msgstr "אבחונים"
 msgid "Developers may ask you to provide information presented here in order to help diagnose issues you may report with the program."
 msgstr "מפתחים עשויים לבקש לקבל מידע המוצג כאן על מנת לסייע באבחון סוגיות תוכנה עליהן דווח."
 
-#: filtertransdialog.cpp:45 mmhomepage.cpp:657 model/Model_Billsdeposits.cpp:40
+#: filtertransdialog.cpp:45 mmhomepage.cpp:656 model/Model_Billsdeposits.cpp:40
 #: model/Model_Checking.cpp:37
 msgid "Reconciled"
 msgstr "מותאם"
@@ -2782,7 +2782,7 @@ msgid "To Date"
 msgstr "עד תאריך"
 
 #: import_export/qif_export.cpp:178 import_export/qif_import_gui.cpp:276
-#: optionsettingsgeneral.cpp:80
+#: optionsettingsgeneral.cpp:96
 msgid "Date Format"
 msgstr "תבנית תאריך"
 
@@ -3049,7 +3049,7 @@ msgid "Don't Care"
 msgstr "התעלם"
 
 #: import_export/univcsvdialog.cpp:114 mmchecking_list.cpp:225
-#: mmhomepage.cpp:658 reports/summary.cpp:166
+#: mmhomepage.cpp:657 reports/summary.cpp:166
 msgid "Balance"
 msgstr "יתרה"
 
@@ -3965,23 +3965,23 @@ msgstr "לא ניתן לשמור שדה מותאם אישית \"%s\":\n"
 msgid "CustomField validation error"
 msgstr "שגיאת אימות בשדה מותאם אישית"
 
-#: mmex.cpp:124
+#: mmex.cpp:122
 #, c-format
 msgid "Cannot load a translation for the default language of your system (%s)."
 msgstr "לא ניתן לטעון תרגום לשפת ברירת המחדל של המערכת שלך (%s)."
 
-#: mmex.cpp:131
+#: mmex.cpp:129
 #, c-format
 msgid "Please use the Switch Application Language option in View menu to select one of the following available languages:\n\n"
 "%s"
 msgstr "נא להשתמש בבורר השפה בתפריט תצוגה כדי לבחור באחת השפות הזמינות:\n\n"
 "%s"
 
-#: mmex.cpp:136 mmframe.cpp:3313
+#: mmex.cpp:134 mmframe.cpp:3313 optionsettingsgeneral.cpp:330
 msgid "Language change"
 msgstr "שינוי שפה"
 
-#: mmex.cpp:176
+#: mmex.cpp:174
 msgid "Fatal error occured.\n"
 "Application will be terminated."
 msgstr "אירעה שגיאה חמורה. \n"
@@ -3999,15 +3999,15 @@ msgstr "סרגל כלים"
 msgid "Favourites"
 msgstr "מועדפים"
 
-#: mmframe.cpp:468 mmframe.cpp:709 mmhomepage.cpp:642 reports/summary.cpp:158
+#: mmframe.cpp:468 mmframe.cpp:709 mmhomepage.cpp:641 reports/summary.cpp:158
 msgid "Bank Accounts"
 msgstr "חשבונות בנק"
 
-#: mmframe.cpp:469 mmframe.cpp:713 mmhomepage.cpp:643 reports/summary.cpp:159
+#: mmframe.cpp:469 mmframe.cpp:713 mmhomepage.cpp:642 reports/summary.cpp:159
 msgid "Credit Card Accounts"
 msgstr "כרטיסי אשראי"
 
-#: mmframe.cpp:470 mmframe.cpp:725 mmhomepage.cpp:645 reports/summary.cpp:161
+#: mmframe.cpp:470 mmframe.cpp:725 mmhomepage.cpp:644 reports/summary.cpp:161
 msgid "Term Accounts"
 msgstr "חשבונות חיסכון"
 
@@ -4015,11 +4015,11 @@ msgstr "חשבונות חיסכון"
 msgid "Stock Portfolios"
 msgstr "תיק ניירות ערך"
 
-#: mmframe.cpp:472 mmframe.cpp:717 mmhomepage.cpp:641
+#: mmframe.cpp:472 mmframe.cpp:717 mmhomepage.cpp:640
 msgid "Cash Accounts"
 msgstr "מזומנים"
 
-#: mmframe.cpp:473 mmframe.cpp:721 mmhomepage.cpp:644 reports/summary.cpp:160
+#: mmframe.cpp:473 mmframe.cpp:721 mmhomepage.cpp:643 reports/summary.cpp:160
 msgid "Loan Accounts"
 msgstr "חשבונות הלוואה"
 
@@ -4035,7 +4035,7 @@ msgstr "עמוד הבית"
 msgid "All Transactions"
 msgstr "כל התנועות"
 
-#: mmframe.cpp:733 mmhomepage.cpp:648 reports/summary.cpp:163
+#: mmframe.cpp:733 mmhomepage.cpp:647 reports/summary.cpp:163
 msgid "Share Accounts"
 msgstr "חשבונות  ניירות ערך"
 
@@ -4275,11 +4275,11 @@ msgstr "עבור/חזור מסך מלא"
 msgid "Switch Application &Language"
 msgstr "החלפת שפת &ישום"
 
-#: mmframe.cpp:1429
+#: mmframe.cpp:1429 optionsettingsgeneral.cpp:93
 msgid "Change language used for MMEX GUI"
 msgstr "החלפת שפה בממשק משתמש MMEX"
 
-#: mmframe.cpp:1434
+#: mmframe.cpp:1434 optionsettingsgeneral.cpp:83 optionsettingsgeneral.cpp:338
 msgid "system default"
 msgstr "ברירת מחדל של המערכת"
 
@@ -4925,7 +4925,7 @@ msgstr "תוצאת העברת מוטבים"
 msgid "File %s not found"
 msgstr "קובץ %s לא נמצא"
 
-#: mmframe.cpp:3311
+#: mmframe.cpp:3311 optionsettingsgeneral.cpp:328
 msgid "The language for this application has been changed. The change will take effect the next time the application is started."
 msgstr "שפת המשתמש שונתה. השינוי ייכנס לתוקף באתחול הבא של היישום."
 
@@ -4933,7 +4933,7 @@ msgstr "שפת המשתמש שונתה. השינוי ייכנס לתוקף בא�
 msgid "General Group Report"
 msgstr "ביטול קבוצת דוחות"
 
-#: mmframereport.cpp:105 mmhomepage.cpp:807 model/Model_Report.cpp:403
+#: mmframereport.cpp:105 mmhomepage.cpp:808 model/Model_Report.cpp:403
 #: reports/bugreport.h:110
 msgid "Caught exception"
 msgstr "נמצא חריג"
@@ -5012,7 +5012,7 @@ msgstr "רוח/הפסד"
 msgid "Total"
 msgstr "סך הכל"
 
-#: mmhomepage.cpp:106 mmhomepage.cpp:695 reports/incexpenses.cpp:287
+#: mmhomepage.cpp:106 mmhomepage.cpp:696 reports/incexpenses.cpp:287
 #: reports/payee.cpp:164 reports/summarystocks.cpp:133
 #: splittransactionsdialog.cpp:143
 msgid "Total:"
@@ -5051,28 +5051,28 @@ msgstr "הכנסות/הוצאות"
 msgid "Transaction Statistics"
 msgstr "סטטיסטיקת תנועות"
 
-#: mmhomepage.cpp:527
+#: mmhomepage.cpp:526
 msgid "Follow Up On Transactions: "
 msgstr "מעקב תנועות: "
 
-#: mmhomepage.cpp:531
+#: mmhomepage.cpp:530
 msgid "Total Transactions: "
 msgstr "סך כל תנועות: "
 
-#: mmhomepage.cpp:553 reports/categexp.cpp:225 reports/summarystocks.cpp:149
+#: mmhomepage.cpp:552 reports/categexp.cpp:225 reports/summarystocks.cpp:149
 #: reports/transactions.cpp:197 reports/transactions.cpp:232
 msgid "Grand Total:"
 msgstr "סך הכל כללי:"
 
-#: mmhomepage.cpp:646
+#: mmhomepage.cpp:645
 msgid "Investment Accounts"
-msgstr ""
+msgstr "חשבונות השקעה"
 
-#: mmhomepage.cpp:647 reports/summary.cpp:162
+#: mmhomepage.cpp:646 reports/summary.cpp:162
 msgid "Asset Accounts"
-msgstr ""
+msgstr "חשבון נכסים"
 
-#: mmhomepage.cpp:793
+#: mmhomepage.cpp:794
 msgid "Currency Exchange Rates"
 msgstr "שערי חליפין למטבעות"
 
@@ -5414,97 +5414,101 @@ msgstr "מקור"
 msgid "Destination"
 msgstr "יעד"
 
-#: optionsettingsgeneral.cpp:65
+#: optionsettingsgeneral.cpp:67
 msgid "Display Heading"
 msgstr "כותרת תצוגה"
 
-#: optionsettingsgeneral.cpp:70 wizard_newdb.cpp:106
+#: optionsettingsgeneral.cpp:72 wizard_newdb.cpp:106
 msgid "User Name"
 msgstr "שם משתמש"
 
-#: optionsettingsgeneral.cpp:75
+#: optionsettingsgeneral.cpp:77
 msgid "The User Name is used as a title for the database."
 msgstr "שם משתמש ישמש גם ככותרת למסד הנתונים."
 
-#: optionsettingsgeneral.cpp:91
+#: optionsettingsgeneral.cpp:85
+msgid "Language"
+msgstr ""
+
+#: optionsettingsgeneral.cpp:107
 msgid "Specify the date format for display"
 msgstr "נא להגדיר את תבנית תאריך לתצוגה"
 
-#: optionsettingsgeneral.cpp:94
-msgid "New date format sample:"
-msgstr "דוגמת תבנית תאריך חדש:"
+#: optionsettingsgeneral.cpp:110
+msgid "Date format sample:"
+msgstr ""
 
-#: optionsettingsgeneral.cpp:107
+#: optionsettingsgeneral.cpp:123
 msgid "Base Currency"
 msgstr "מטבע בסיס"
 
-#: optionsettingsgeneral.cpp:110 wizard_newdb.cpp:79
+#: optionsettingsgeneral.cpp:126 wizard_newdb.cpp:79
 msgid "Set Currency"
 msgstr "קבע מטבע"
 
-#: optionsettingsgeneral.cpp:113
+#: optionsettingsgeneral.cpp:130
 msgid "Sets the database default Currency using the 'Currency Dialog'"
 msgstr "הגדרת מטבע ברירת המחדל למסד הנתונים תיבת דו-שיח 'ניהול מטבעות'"
 
-#: optionsettingsgeneral.cpp:116
+#: optionsettingsgeneral.cpp:133
 msgid "Right click and select 'Set as Base Currency' in 'Currency Dialog'"
 msgstr "הקשה ימנית ובחירת 'הגדרה כמטבע הבסיס' בדו-שיח 'מטבע'"
 
-#: optionsettingsgeneral.cpp:140
+#: optionsettingsgeneral.cpp:157
 msgid "Format derived from locale.\n"
 "Leave blank to manually set format via 'Currency Dialog | Edit'"
 msgstr "תבנית נגזרת מהמיקום.\n"
 "נא להשאיר ריק כדי להגדיר תבנית ידנית באמצעות דו-שיח 'מטבע | עריכה'"
 
-#: optionsettingsgeneral.cpp:150
+#: optionsettingsgeneral.cpp:167
 msgid "Use currency history"
 msgstr "שימוש בהיסטורית מטבעות"
 
-#: optionsettingsgeneral.cpp:152
+#: optionsettingsgeneral.cpp:169
 msgid "Select to use currency history (one rate for each day), deselect to use a fixed rate"
 msgstr "נא לבחור לשימוש בהיסטוריית שערים (שער לכל יום), בטול בחירה לשימוש בשער קבוע"
 
-#: optionsettingsgeneral.cpp:156
+#: optionsettingsgeneral.cpp:173
 msgid "Financial Year"
 msgstr "שנה פיננסית"
 
-#: optionsettingsgeneral.cpp:163
+#: optionsettingsgeneral.cpp:180
 msgid "Start Day"
 msgstr "יום התחלה"
 
-#: optionsettingsgeneral.cpp:169
+#: optionsettingsgeneral.cpp:186
 msgid "Specify Day for start of financial year"
 msgstr "נא להגדיר את היום הראשון בשנה הפיננסית"
 
-#: optionsettingsgeneral.cpp:173
+#: optionsettingsgeneral.cpp:190
 msgid "Start Month"
 msgstr "חודש התחלה"
 
-#: optionsettingsgeneral.cpp:185
+#: optionsettingsgeneral.cpp:202
 msgid "Specify month for start of financial year"
 msgstr "נא להגדיר את החודש הראשון בשנה הפיננסית"
 
-#: optionsettingsgeneral.cpp:190
+#: optionsettingsgeneral.cpp:207
 msgid "Use Original Date when Pasting Transactions"
 msgstr "להשתמש בתאריך מקורי בזמן רישום תנועה"
 
-#: optionsettingsgeneral.cpp:192
+#: optionsettingsgeneral.cpp:209
 msgid "Select whether to use the original transaction date or current date when copying/pasting transactions"
 msgstr "הגדרה באם להשתמש בתאריך מקורי או תאריך היום בזמן העתקה והדבקה של תנועה"
 
-#: optionsettingsgeneral.cpp:195
+#: optionsettingsgeneral.cpp:212
 msgid "Use Transaction Sound"
 msgstr "להשתמש בצליל תנועה"
 
-#: optionsettingsgeneral.cpp:197
+#: optionsettingsgeneral.cpp:214
 msgid "Select whether to use sounds when entering transactions"
 msgstr "הגדרה באם להשתמש בצליל בעת קליטת תנועה"
 
-#: optionsettingsgeneral.cpp:281
+#: optionsettingsgeneral.cpp:298
 msgid "bad locale name"
 msgstr "שם מיקום לא תקין"
 
-#: optionsettingsgeneral.cpp:297
+#: optionsettingsgeneral.cpp:314
 #, c-format
 msgid "Currency value sample: %s"
 msgstr "דוגמת ערך מטבע: %s"

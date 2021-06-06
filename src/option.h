@@ -50,7 +50,7 @@ public:
     const wxString UserName() const;
 
     // set and save the option: m_localeNameString
-    void LocaleName(const wxString& username);
+    void LocaleName(const wxString& locale);
     const wxString LocaleName() const;
 
     // set and save the option: m_financialYearStartDayString
