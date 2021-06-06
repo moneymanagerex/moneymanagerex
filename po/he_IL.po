@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-06-05 13:22+0300\n"
-"PO-Revision-Date: 2021-06-05 12:39\n"
+"PO-Revision-Date: 2021-06-06 06:06\n"
 "Last-Translator: \n"
 "Language-Team: Hebrew\n"
 "MIME-Version: 1.0\n"
@@ -5444,7 +5444,8 @@ msgstr "הקשה ימנית ובחירת 'הגדרה כמטבע הבסיס' בד
 #: optionsettingsgeneral.cpp:140
 msgid "Format derived from locale.\n"
 "Leave blank to manually set format via 'Currency Dialog | Edit'"
-msgstr ""
+msgstr "תבנית נגזרת מהמיקום.\n"
+"נא להשאיר ריק כדי להגדיר תבנית ידנית באמצעות דו-שיח 'מטבע | עריכה'"
 
 #: optionsettingsgeneral.cpp:150
 msgid "Use currency history"
