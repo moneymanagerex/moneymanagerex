@@ -368,7 +368,7 @@ void mmFilterTransactionsDialog::CreateControls()
 
         //Label
         Value& j_label = GetValueByPointerWithDefault(j_doc, "/LABEL", "");
-        const wxString& s_label = j_label.IsString() ? j_label.GetString() : "";
+        const wxString& s_label = j_label.IsString() ? wxString::FromUTF8(j_label.GetString()) : "";
 
         m_setting_name->AppendString(s_label.empty() ? wxString::Format(_("%i: Empty"), i + 1) : s_label);
     }

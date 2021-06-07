@@ -171,9 +171,9 @@ bool mmReportsPanel::saveReportText(bool initial)
     json_writer.Double((wxDateTime::UNow() - time).GetMilliseconds().ToDouble() / 1000);
     json_writer.EndObject();
 
-    const auto t = json_buffer.GetString();
-    wxLogDebug("%s", wxString::FromUTF8(t));
-    Model_Usage::instance().AppendToUsage(wxString::FromUTF8(t));
+    const auto t = wxString::FromUTF8(json_buffer.GetString());
+    wxLogDebug("%s", t);
+    Model_Usage::instance().AppendToUsage(t);
 
     return true;
 }

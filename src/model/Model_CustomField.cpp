@@ -373,5 +373,5 @@ const wxString Model_CustomField::formatProperties(const wxString& Tooltip, cons
 
     json_writer.EndObject();
 
-    return json_buffer.GetString();
+    return wxString::FromUTF8(json_buffer.GetString());
 }
