@@ -49,7 +49,7 @@ wxString JSON_PrettyFormated(rapidjson::Document& j_doc)
     PrettyWriter<StringBuffer> j_writer(j_buffer);
     j_doc.Accept(j_writer);
 
-    return j_buffer.GetString();
+    return wxString::FromUTF8(j_buffer.GetString());
 }
 
 wxString JSON_Formated(rapidjson::Document& j_doc)
@@ -58,7 +58,7 @@ wxString JSON_Formated(rapidjson::Document& j_doc)
     Writer<StringBuffer> j_writer(j_buffer);
     j_doc.Accept(j_writer);
 
-    return j_buffer.GetString();
+    return wxString::FromUTF8(j_buffer.GetString());
 }
 
 //----------------------------------------------------------------------------

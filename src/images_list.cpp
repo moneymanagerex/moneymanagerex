@@ -498,7 +498,7 @@ const wxString mmThemeMetaString(int ref)
     auto i = metaDataTrans().find(ref)->second;
     wxString metaLocation = std::get<0>(i);
     const Pointer ptr(metaLocation.mb_str());
-    wxString metaValue = GetValueByPointerWithDefault(metaData_doc, ptr, "").GetString();
+    wxString metaValue = wxString::FromUTF8(GetValueByPointerWithDefault(metaData_doc, ptr, "").GetString());
     if (metaValue.IsEmpty() && !std::get<2>(i))
         metaValue = std::get<1>(i);
     return (metaValue);

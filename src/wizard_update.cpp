@@ -125,7 +125,7 @@ void mmUpdateWizard::CreateControls(const Document& json_releases, wxArrayInt ne
         }
 
         const auto published_at = (r.HasMember("published_at") && r["published_at"].IsString())
-            ? r["published_at"].GetString() : "";
+            ? wxString::FromUTF8(r["published_at"].GetString()) : "";
         wxDateTime pub_date;
         wxString::const_iterator end;
         pub_date.ParseFormat(published_at, "%Y-%m-%dT%H:%M:%SZ", &end);
@@ -133,7 +133,7 @@ void mmUpdateWizard::CreateControls(const Document& json_releases, wxArrayInt ne
         const wxString time = pub_date.FormatISOTime();
 
         const auto body = md2html((r.HasMember("body") && r["body"].IsString())
-            ? r["body"].GetString() : "");
+            ? wxString::FromUTF8(r["body"].GetString()) : "");
 
         wxString link = wxString::Format(R"(<a href="%s" target="_blank">%s</a>)", html_url, tag);
         const wxString github = "https://github.com/moneymanagerex/moneymanagerex/releases/tag/";
@@ -316,8 +316,7 @@ void mmUpdate::checkUpdates(wxFrame *frame, bool bSilent)
         {
             const wxString& msgStr = _("Unable to check for updates!")
                 + "\n\n" + _("Error: ")
-                + ((!res) ? GetParseError_En(res.Code())
-                    : json_releases.GetString());
+                + wxString::FromUTF8(!res ? GetParseError_En(res.Code()) : json_releases.GetString());
             wxMessageBox(msgStr, _("MMEX Update Check"));
         }
         return;
@@ -341,7 +340,7 @@ void mmUpdate::checkUpdates(wxFrame *frame, bool bSilent)
     int i = 0;
     for (auto& r : json_releases.GetArray())
     {
-        const auto tag_name = r["tag_name"].GetString();
+        const auto tag_name = wxString::FromUTF8(r["tag_name"].GetString());
         bool prerelease = r["prerelease"].GetBool();
         if (_stable && prerelease) {
             wxLogDebug("[Skip] tag %s", tag_name);
@@ -355,7 +354,7 @@ void mmUpdate::checkUpdates(wxFrame *frame, bool bSilent)
             new_releases.Add(i);
             if (top < check) {
                 top = check;
-                top_version = wxString::FromUTF8(tag_name);
+                top_version = tag_name;
                 if (last < top) {
                     is_update_available = true;
                 }

@@ -497,7 +497,7 @@ void mmUnivCSVDialog::SetSettings(const wxString &json_data)
 
     //Setting name
     Value& template_name = GetValueByPointerWithDefault(json_doc, "/SETTING_NAME", "");
-    const wxString setting_name =template_name.IsString() ? wxString::FromUTF8(template_name.GetString()) : "??";
+    const wxString setting_name = template_name.IsString() ? wxString::FromUTF8(template_name.GetString()) : "??";
     m_setting_name_ctrl_->ChangeValue(setting_name);
 
     //Date Mask
