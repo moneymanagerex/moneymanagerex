@@ -213,12 +213,39 @@ macOS with Homebrew
 2. After that, for comfortable installing software we use [Homebrew].
    Run the command:
 
-       /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+       /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
 3. Install required packages. You can choose which compiler you want to use:
 
-       brew update && brew install wxmac gettext cmake
+       brew update && brew install ccache gettext cmake
        brew link --force gettext
+
+#### 2. Build wxWidgets
+
+The wxmac stable version with homebrew is still 3.0.5.x, we need a later version so need to build wxWidgets from source
+
+1. Download Sources
+        
+        /bin/bash -c "$(curl -fsSL -O https://github.com/wxWidgets/wxWidgets/releases/download/v3.1.5/wxWidgets-3.1.5.tar.bz2)"
+        tar xzf wxWidgets-*.tar.bz2
+
+2. Build from source
+
+        cd wxWidgets-3.1.5
+        mkdir build-cocoa
+        cd build-cocoa
+        export MAKEFLAGS=-j4
+        ../configure --disable-shared --enable-cxx11 --with-cxx=11 \
+        --with-macosx-version-min=10.14 \
+        --without-libtiff
+        --enable-universal-binary=arm64,x86_64
+
+    If you want to enable debug then include `--enable-debug`
+
+    If you want to just build for the current architecture and don't require a universal build then you can omit `--enable-universal-binary=arm64,x86_64`
+
+    You could tune `-j4` option to different number to use all processor cores during build phase.
+
 
 #### 2. Download Sources
 
@@ -228,16 +255,24 @@ macOS with Homebrew
 
     mkdir moneymanagerex/build
     cd moneymanagerex/build
-    export MAKEFLAGS=-j4
-    cmake -DCMAKE_BUILD_TYPE=Release ..
-    cmake --build . --target package
+    export MAKEFLAGS=-j8
+    cmake -DCMAKE_CXX_FLAGS="-w" \
+    -DwxWidgets_CONFIG_EXECUTABLE={PATH-TO-wxWidgets}/wxWidgets-3.1.5/build-cocoa/wx-config \
+    -DCMAKE_BUILD_TYPE=Release \
+    -DCMAKE_OSX_ARCHITECTURES="arm64;x86_64" \
+    -DMACOSX_DEPLOYMENT_TARGET=10.14 \
+    --with-macosx-version-min=10.14 ..
+    cmake --build .. --target package
 
-If you want build the project with for debugging proposes replace CMake flag
+Replace `{PATH-TO-wxWidgets}` with the path to the directory in which you extracted the wxWidgets source in step 2.
+
+If you want build the project for debugging purposes replace CMake flag
 `-DCMAKE_BUILD_TYPE=Release` with `-DCMAKE_BUILD_TYPE=Debug`.
+
+If you want to just build for the current architecture and don't require a universal build then you can omit `-DCMAKE_OSX_ARCHITECTURES="arm64;x86_64"`
 
 You could tune `-j4` option to different number to use all processor cores
 during build phase.
-
 
 Linux
 -----
