@@ -163,21 +163,28 @@ void mmThemesDialog::CreateControls()
 {
     wxBoxSizer* bSizer0 = new wxBoxSizer(wxVERTICAL);
 
-    wxBoxSizer* bSizer1 = new wxBoxSizer(wxHORIZONTAL);
+    wxBoxSizer *sizermain = new wxBoxSizer(wxHORIZONTAL);
+    wxSplitterWindow *splittermain = new wxSplitterWindow(this, wxID_ANY);
+    splittermain->SetMinimumPaneSize(50); 
+    sizermain->Add(splittermain, 1, wxEXPAND,0 );
 
-    m_themesListBox_ = new wxListBox(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, 0, NULL, wxLB_SINGLE | wxLB_NEEDED_SB);
-    m_themesListBox_->SetMinSize(wxSize(200, 350));
-    bSizer1->Add(m_themesListBox_, wxSizerFlags(g_flagsExpand).Proportion(0));
+    wxPanel *pnl1 = new wxPanel(splittermain, wxID_ANY);
+    wxBoxSizer *bSizerp1 = new wxBoxSizer(wxVERTICAL);
+    m_themesListBox_ = new wxListBox(pnl1, wxID_ANY, wxDefaultPosition, wxDefaultSize, 0, NULL, wxLB_SINGLE | wxLB_NEEDED_SB);
+    m_themesListBox_->SetSize(200, wxDefaultCoord, wxDefaultCoord, wxDefaultCoord);
+    bSizerp1->Add(m_themesListBox_, 1, wxEXPAND, 0);
+    pnl1->SetSizer(bSizerp1);
+    pnl1->Fit();
 
-    wxBoxSizer* bSizer12 = new wxBoxSizer(wxVERTICAL);
+    wxPanel *pnl2 = new wxPanel(splittermain, wxID_ANY);
+    wxBoxSizer* bSizerp2 = new wxBoxSizer(wxVERTICAL);
+    m_themePanel = new wxHtmlWindow(pnl2, wxID_ANY);
+    bSizerp2->Add(m_themePanel, 1, wxEXPAND, 0);
+    pnl2->SetSizer(bSizerp2);
 
-    m_themePanel = new wxHtmlWindow(this, wxID_ANY);
-    m_themePanel->SetMinSize(wxSize(400, 350));
-    bSizer12->Add(m_themePanel, wxSizerFlags(g_flagsExpand).Proportion(1));
+    bSizer0->Add(sizermain, g_flagsExpand);
 
-    bSizer1->Add(bSizer12, g_flagsExpand);
-
-    bSizer0->Add(bSizer1, g_flagsExpand);
+    splittermain->SplitVertically(pnl1, pnl2);
 
     wxBoxSizer* bSizer02 = new wxBoxSizer(wxHORIZONTAL);
     m_importButton = new wxButton(this, ID_DIALOG_THEME_IMPORT, _("Import"));
