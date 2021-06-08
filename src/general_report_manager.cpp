@@ -439,11 +439,19 @@ void mmGeneralReportManager::createEditorTab(wxNotebook* editors_notebook, int t
 
     if (type == ID_SQL_CONTENT)
     {
-        wxBoxSizer *box_sizer3 = new wxBoxSizer(wxHORIZONTAL);
-        wxSplitterWindow *splitter_sql = new wxSplitterWindow(panel, wxID_ANY);
+        wxBoxSizer *sizermain = new wxBoxSizer(wxVERTICAL);
+        wxSplitterWindow *splittermain = new wxSplitterWindow(panel, wxID_ANY);
+        splittermain->SetMinimumPaneSize(50); 
+        sizermain->Add(splittermain, 1, wxEXPAND,0 );
+
+        wxPanel *pnl1 = new wxPanel(splittermain, wxID_ANY);
+        wxBoxSizer *bSizerp1 = new wxBoxSizer(wxVERTICAL);
+        pnl1->SetSizer(bSizerp1);
+
+        wxSplitterWindow *splitter_sql = new wxSplitterWindow(pnl1, wxID_ANY);
         splitter_sql->SetSashGravity(0.9);
-        splitter_sql->SetMinimumPaneSize(150); // Smalest size of panels
-        box_sizer3->Add(splitter_sql, g_flagsExpand);
+        splitter_sql->SetMinimumPaneSize(150); // Smallest size of panels
+        bSizerp1->Add(splitter_sql, g_flagsExpand);
 
         MinimalEditor* templateText = new MinimalEditor(splitter_sql, type);
 
@@ -457,7 +465,6 @@ void mmGeneralReportManager::createEditorTab(wxNotebook* editors_notebook, int t
 
         splitter_sql->SplitVertically(templateText, m_dbView);
         splitter_sql->SetSashPosition(500);
-        sizer->Add(box_sizer3, g_flagsExpand);
 
 #if wxUSE_DRAG_AND_DROP
         m_dbView->Connect(wxID_ANY, wxEVT_TREE_BEGIN_DRAG
@@ -465,11 +472,14 @@ void mmGeneralReportManager::createEditorTab(wxNotebook* editors_notebook, int t
             , nullptr, this);
 #endif // wxUSE_DRAG_AND_DROP
 
-        wxBoxSizer *box_sizer1 = new wxBoxSizer(wxVERTICAL);
+        wxPanel *pnl2 = new wxPanel(splittermain, wxID_ANY);
+        wxBoxSizer* bSizerp2 = new wxBoxSizer(wxVERTICAL);
+        pnl2->SetSizer(bSizerp2);
+
         wxBoxSizer *box_sizer2 = new wxBoxSizer(wxHORIZONTAL);
-        wxButton* buttonPlay = new wxButton(panel, ID_TEST, _("&Test"));
-        wxButton* buttonNewTemplate = new wxButton(panel, wxID_NEW, _("Create Template"));
-        wxStaticText *info = new wxStaticText(panel, wxID_INFO, "");
+        wxButton* buttonPlay = new wxButton(pnl2, ID_TEST, _("&Test"));
+        wxButton* buttonNewTemplate = new wxButton(pnl2, wxID_NEW, _("Create Template"));
+        wxStaticText *info = new wxStaticText(pnl2, wxID_INFO, "");
         buttonNewTemplate->Enable(false);
         box_sizer2->Add(buttonPlay);
         box_sizer2->AddSpacer(10);
@@ -477,11 +487,10 @@ void mmGeneralReportManager::createEditorTab(wxNotebook* editors_notebook, int t
         box_sizer2->AddSpacer(10);
         box_sizer2->Add(info, g_flagsExpand);
 
-        m_sqlListBox = new sqlListCtrl(this, panel, wxID_ANY);
-        box_sizer1->Add(box_sizer2, wxSizerFlags(g_flagsExpand).Proportion(0));
-        box_sizer1->Add(m_sqlListBox, g_flagsExpand);
-        sizer->Add(box_sizer1, wxSizerFlags(g_flagsExpand).Border(0).Proportion(0));
-        box_sizer1->SetMinSize(wxSize(-1, 100));
+        m_sqlListBox = new sqlListCtrl(this, pnl2, wxID_ANY);
+        bSizerp2->Add(box_sizer2);
+        bSizerp2->Add(m_sqlListBox, g_flagsExpand);
+        bSizerp2->SetMinSize(wxSize(-1, 100));
 
         // Populate database view
         std::vector<std::pair<wxString, wxArrayString>> sqlTableInfo;
@@ -494,6 +503,9 @@ void mmGeneralReportManager::createEditorTab(wxNotebook* editors_notebook, int t
                 m_dbView->AppendItem(id, c);
         }
         m_dbView->Expand(root_id);
+
+        sizer->Add(sizermain, g_flagsExpand);
+        splittermain->SplitHorizontally(pnl1, pnl2);
     }
     else
     {
