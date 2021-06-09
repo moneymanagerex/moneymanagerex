@@ -233,5 +233,7 @@ private:
 
 };
 
-// used where differences occure between platforms
+const wxColor* bestFontColour(wxColour background);
+
+// used where differences occur between platforms
 wxImageList* createImageList();
