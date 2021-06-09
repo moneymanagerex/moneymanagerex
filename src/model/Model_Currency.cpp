@@ -176,19 +176,18 @@ const wxString Model_Currency::toString(double value, const Data* currency, int 
     static wxString decimal;
     static wxString locale;
 
-    if (locale.empty())
-    {
+    if (locale.empty()) {
         locale = Model_Infotable::instance().GetStringInfo("LOCALE", "");
+    }
+
+    static wxString use_locale;
+    if (use_locale.empty()) {
         try {
             fmt::format(std::locale(locale.c_str()), "{:L}", 123);
         }
         catch (...) {
             locale = "";
         }
-    }
-
-    static wxString use_locale;
-    if (use_locale.empty()) {
         use_locale = locale.empty() ? "N" : "Y";
     }
 
