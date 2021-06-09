@@ -164,9 +164,11 @@ const std::map<int, std::tuple<wxString, wxString, bool> > metaDataTrans()
     md[COLOR_LISTTOTAL]        = std::make_tuple("/colors/listTotal",           "#7486A8", false);
     md[COLOR_LISTBORDER]       = std::make_tuple("/colors/listBorder",          "#000000", false);
     md[COLOR_LISTFUTURE]       = std::make_tuple("/colors/listFutureDate",      "#7486A8", false);
+    md[COLOR_REPORT_ALTROW]    = std::make_tuple("/colors/reports/altRow",      "#F5F5F5", false);    
     md[COLOR_REPORT_CREDIT]    = std::make_tuple("/colors/reports/credit",      "#50B381", false);
     md[COLOR_REPORT_DEBIT]     = std::make_tuple("/colors/reports/debit",       "#F75E51", false);
     md[COLOR_REPORT_DELTA]     = std::make_tuple("/colors/reports/delta",       "#008FFB", false);
+    md[COLOR_REPORT_FORECOLOR] = std::make_tuple("/colors/reports/foreColor",   "#373D3F", false);  
     md[COLOR_REPORT_PALETTE]   = std::make_tuple("/colors/reports/palette",  "#008FFB "
             "#00E396 #FEB019 #FF4560 #775DD0 #3F51B5 #03A9F4 #4cAF50 #F9CE1D #FF9800 "
             "#33B2DF #546E7A #D4526E #13D8AA #A5978B #4ECDC4 #81D4FA #546E7A #FD6A6A "
