@@ -1355,16 +1355,15 @@ wxImageList* createImageList()
 
 const wxColor* bestFontColour(wxColour background)
 {
-    wxUint32 rgb = background.GetRGB();
-
-    uint8_t r = rgb >> 16;
-    uint8_t g = rgb >> 8;
-    uint8_t b = rgb;
-    //wxLogDebug("best FontColour: [%s] -> r=%d, g=%d, b=%d", background.GetAsString(wxC2S_HTML_SYNTAX), r, g, b);
-
     // http://stackoverflow.com/a/3943023/112731
-    if ((r * 0.299 + g * 0.587 + b * 0.114) > 186)
-        return (wxBLACK);
-    else
-        return (wxWHITE);
+
+    int r = static_cast<int>(background.Red());
+    int g = static_cast<int>(background.Green());
+    int b = static_cast<int>(background.Blue());
+    int k = (r * 299 + g * 587 + b * 114);
+
+    wxLogDebug("best FontColour: [%s] -> r=%d, g=%d, b=%d | k: %d"
+        , background.GetAsString(wxC2S_HTML_SYNTAX), r, g, b, k);
+
+    return (k > 149000) ? wxBLACK : wxWHITE;
 }
