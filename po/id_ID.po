@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-06-06 13:20+0300\n"
-"PO-Revision-Date: 2021-06-09 16:27\n"
+"PO-Revision-Date: 2021-06-09 16:32\n"
 "Last-Translator: \n"
 "Language-Team: Indonesian\n"
 "MIME-Version: 1.0\n"
@@ -345,11 +345,11 @@ msgstr "Ubah Data Aset"
 
 #: assetdialog.cpp:71 assetdialog.cpp:93 assetspanel.cpp:470
 msgid "Add Asset Transaction"
-msgstr ""
+msgstr "Tambahkan Transaksi Aset"
 
 #: assetdialog.cpp:97
 msgid "Edit Asset Transaction"
-msgstr ""
+msgstr "Ubah Transaksi Aset"
 
 #: assetdialog.cpp:183
 msgid "Asset Details"
@@ -409,7 +409,7 @@ msgstr "Tentukan jika nilai aset berubah dari waktu ke waktu"
 
 #: assetdialog.cpp:241
 msgid "% Rate"
-msgstr ""
+msgstr "% Rate"
 
 #: assetdialog.cpp:247
 msgid "Enter the rate at which the asset changes its value in percentage per year"
@@ -429,15 +429,15 @@ msgstr "Rincian Transaksi Baru"
 
 #: assetdialog.cpp:271 sharetransactiondialog.cpp:290
 msgid "Edit Transaction Details"
-msgstr ""
+msgstr "Ubah Rincian Transaksi"
 
 #: assetdialog.cpp:306 constants.cpp:73 sharetransactiondialog.cpp:321
 msgid "&Cancel "
-msgstr ""
+msgstr "&Batal "
 
 #: assetdialog.cpp:402 sharetransactiondialog.cpp:429
 msgid "Invalid Transaction"
-msgstr ""
+msgstr "Transaksi tidak valid"
 
 #: assetdialog.cpp:409
 msgid "Asset Account not found.\n\n"
@@ -449,7 +449,7 @@ msgstr "Akun Aset tidak ditemukan. \n\n"
 #: import_export/qif_export.cpp:587 mmchecking_list.cpp:202
 #: reports/transactions.cpp:77 stocks_list.cpp:88
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #: assetspanel.cpp:62 billsdepositsdialog.cpp:554 billsdepositspanel.cpp:133
 #: customfieldlistdialog.cpp:54 filtertransdialog.cpp:285
@@ -465,12 +465,12 @@ msgstr "Tipe"
 
 #: assetspanel.cpp:63 reports/summarystocks.cpp:194
 msgid "Initial Value"
-msgstr ""
+msgstr "Nilai Awal"
 
 #: assetspanel.cpp:64 reports/summarystocks.cpp:158
 #: reports/summarystocks.cpp:198 stockdialog.cpp:259
 msgid "Current Value"
-msgstr ""
+msgstr "Nilai sekarang"
 
 #: assetspanel.cpp:97
 msgid "&New Asset"
@@ -482,15 +482,15 @@ msgstr "Aset D&uplikat"
 
 #: assetspanel.cpp:101
 msgid "&Add Asset Transaction"
-msgstr ""
+msgstr "&Tambahkan Transaksi Aset"
 
 #: assetspanel.cpp:102
 msgid "&View Asset Transactions"
-msgstr ""
+msgstr "&Tampilkan Transaksi Aset"
 
 #: assetspanel.cpp:103
 msgid "&Open Asset Account"
-msgstr ""
+msgstr "&Buka Akun Aset"
 
 #: assetspanel.cpp:105
 msgid "&Edit Asset"
@@ -533,32 +533,32 @@ msgstr "Semua"
 #: assetspanel.cpp:465 billsdepositspanel.cpp:282 mmcheckingpanel.cpp:340
 #: stockspanel.cpp:128
 msgid "&New "
-msgstr ""
+msgstr "&Baru "
 
 #: assetspanel.cpp:469 stockspanel.cpp:132
 msgid "&Add Trans "
-msgstr ""
+msgstr "&Tambah Transaksi "
 
 #: assetspanel.cpp:474 stockspanel.cpp:137
 msgid "&View Trans "
-msgstr ""
+msgstr "&Lihat Transaksi "
 
 #: assetspanel.cpp:475
 msgid "View Asset Transactions"
-msgstr ""
+msgstr "Tampilkan Transaksi Aset"
 
 #: assetspanel.cpp:479 attachmentdialog.cpp:317 billsdepositspanel.cpp:286
 #: categdialog.cpp:230 customfieldlistdialog.cpp:261 maincurrencydialog.cpp:524
 #: mmcheckingpanel.cpp:344 payeedialog.cpp:376 splittransactionsdialog.cpp:166
 #: stockspanel.cpp:142
 msgid "&Edit "
-msgstr ""
+msgstr "&Ubah "
 
 #: assetspanel.cpp:484 billsdepositspanel.cpp:291 budgetyeardialog.cpp:103
 #: categdialog.cpp:234 maincurrencydialog.cpp:289 mmchecking_list.cpp:395
 #: mmcheckingpanel.cpp:349 stockdialog.cpp:339 stockspanel.cpp:147
 msgid "&Delete "
-msgstr ""
+msgstr "&Hapus "
 
 #: assetspanel.cpp:485
 msgid "Delete Asset"
@@ -567,25 +567,25 @@ msgstr "Hapus Data Aset"
 #: assetspanel.cpp:492 billsdepositspanel.cpp:309 mmcheckingpanel.cpp:362
 #: stockspanel.cpp:160
 msgid "Open attachments"
-msgstr ""
+msgstr "Buka lampiran"
 
 #: assetspanel.cpp:499 assetspanel.cpp:500 mmcheckingpanel.cpp:370
 msgid "Search"
-msgstr ""
+msgstr "Cari"
 
 #: assetspanel.cpp:502
 msgid "Enter any string to find related assets"
-msgstr ""
+msgstr "Masukkan kata untuk mencari aset terkait"
 
 #: assetspanel.cpp:572 stockspanel.cpp:343 stockspanel.cpp:530
 #, c-format
 msgid "Total: %s"
-msgstr ""
+msgstr "Total:%s"
 
 #: assetspanel.cpp:654
 #, c-format
 msgid "Change in Value: %s %s"
-msgstr ""
+msgstr "Perubahan pada Nilai: %s %s"
 
 #: assetspanel.cpp:770
 msgid "This asset does not have its own account\n\n"
@@ -594,7 +594,7 @@ msgstr ""
 
 #: assetspanel.cpp:772
 msgid "Asset Management"
-msgstr ""
+msgstr "Manajemen Aset"
 
 #: assetspanel.cpp:791
 msgid "Account \t Date\t   Value\n\n"
@@ -602,7 +602,7 @@ msgstr ""
 
 #: attachmentdialog.cpp:55 general_report_manager.cpp:430
 msgid "Description"
-msgstr ""
+msgstr "Deskripsi"
 
 #: attachmentdialog.cpp:56 import_export/qif_export.cpp:194
 #: import_export/univcsvdialog.cpp:180
@@ -623,15 +623,15 @@ msgstr "Folder lampiran belum didefinisikan"
 
 #: attachmentdialog.cpp:70
 msgid "Unable to find attachments folder:"
-msgstr ""
+msgstr "Tidak dapat menemukan folder lampiran:"
 
 #: attachmentdialog.cpp:73
 msgid "Please verify that above path is correct"
-msgstr ""
+msgstr "Pastikan path di atas sudah sesuai"
 
 #: attachmentdialog.cpp:74
 msgid "Attachments folder not found"
-msgstr ""
+msgstr "Folder Lampiran tidak ditemukan"
 
 #: attachmentdialog.cpp:85
 #, c-format
