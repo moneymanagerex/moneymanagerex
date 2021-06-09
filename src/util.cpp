@@ -1352,3 +1352,19 @@ wxImageList* createImageList()
     return(new wxImageList(x, x, false));   // No mask creation, not needed and causes image correuption on Mac
 
 }
+
+const wxColor* bestFontColour(wxColour background)
+{
+    wxUint32 rgb = background.GetRGB();
+
+    uint8_t r = rgb >> 16;
+    uint8_t g = rgb >> 8;
+    uint8_t b = rgb;
+    //wxLogDebug("best FontColour: [%s] -> r=%d, g=%d, b=%d", background.GetAsString(wxC2S_HTML_SYNTAX), r, g, b);
+
+    // http://stackoverflow.com/a/3943023/112731
+    if ((r * 0.299 + g * 0.587 + b * 0.114) > 186)
+        return (wxBLACK);
+    else
+        return (wxWHITE);
+}
