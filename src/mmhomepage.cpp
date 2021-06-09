@@ -356,7 +356,7 @@ const wxString htmlWidgetBillsAndDeposits::getHTMLText()
         output += "</thead>\n";
 
         output += wxString::Format("<tbody id='%s'>\n", idStr);
-        output += wxString::Format("<tr style='background-color: #d8ebf0'><th>%s</th>\n<th class='text-right'>%s</th>\n<th class='text-right'>%s</th></tr>\n"
+        output += wxString::Format("<thead><tr><th>%s</th>\n<th class='text-right'>%s</th>\n<th class='text-right'>%s</th></tr></thead>\n"
             , _("Account / Payee"), _("Amount"), _("Payment"));
 
         for (const auto& item : bd_days)
