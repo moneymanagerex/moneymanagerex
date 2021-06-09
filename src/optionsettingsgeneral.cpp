@@ -136,7 +136,7 @@ void OptionSettingsGeneral::Create()
     m_currencyStaticBoxSizer->AddSpacer(10);
 
     { // Locale
-        const wxString locale = Model_Infotable::instance().GetStringInfo("LOCALE", "en_US.UTF-8");
+        const wxString locale = Model_Infotable::instance().GetStringInfo("LOCALE", "");
 
         wxBoxSizer* localeBaseSizer = new wxBoxSizer(wxHORIZONTAL);
         m_currencyStaticBoxSizer->Add(localeBaseSizer, wxSizerFlags(g_flagsV).Border(wxLEFT, 0));

@@ -173,8 +173,6 @@ const wxString Model_Currency::toStringNoFormatting(double value, const Data* cu
 
 const wxString Model_Currency::toString(double value, const Data* currency, int precision)
 {
-    wxString s;
-
     static wxString decimal;
     static wxString locale;
 
@@ -186,8 +184,11 @@ const wxString Model_Currency::toString(double value, const Data* currency, int 
         use_locale = locale.empty() ? "N" : "Y";
     }
 
-    if (use_locale == "Y" && decimal.empty()) {
-        decimal = wxString(fmt::format(std::locale(locale.c_str()), "{:L}", 1.1)).Mid(1, 1);
+    if (decimal.empty()) {
+        if (use_locale == "Y")
+            decimal = wxString(fmt::format(std::locale(locale.c_str()), "{:L}", 1.1)).Mid(1, 1);
+        else
+            decimal = ".";
     }
 
     if (precision < 0) {
@@ -198,10 +199,11 @@ const wxString Model_Currency::toString(double value, const Data* currency, int 
     double v = value * k;
     v = round(v) / k;
 
-    s = fmt::format(use_locale == "Y" ? std::locale(locale.c_str()) : std::locale("en_US.UTF-8")
-        , "{:L}", static_cast<int>(fabs(v) + 5 / (pow(10, precision + 1))))
-        + (precision > 0 ? (use_locale == "Y" ? decimal : currency->DECIMAL_POINT)
-        + wxString(fmt::format("{:.{}f}", fabs(v) - static_cast<int>(fabs(v)), precision)).Mid(2) : "");
+    wxString s = fmt::format(use_locale == "Y"
+        ? std::locale(locale.c_str())
+        : std::locale("en_US.UTF-8"), "{:L}", static_cast<int>(fabs(v) + 5 / (pow(10, precision + 1))));
+    if (precision > 0)
+        s += decimal + wxString(fmt::format("{:.{}f}", fabs(v) - static_cast<int>(fabs(v)), precision)).Mid(2);
 
     if (v < 0.0) { s.Prepend("-"); }
 
@@ -213,7 +215,7 @@ const wxString Model_Currency::toString(double value, const Data* currency, int 
         s.Replace("\t", currency ? currency->GROUP_SEPARATOR : GetBaseCurrency()->GROUP_SEPARATOR);
     }
 
-    wxLogDebug("%s -> %s", fmt::format("{:f}", value), s);
+    wxLogDebug("toString : %s -> %s", fmt::format("{:f}", value), s);
     return s;
 }
 
@@ -225,14 +227,14 @@ const wxString Model_Currency::fromString2CLocale(const wxString &s, const Data*
     wxRegEx pattern(R"([^0-9.,+-/*()])");
     pattern.ReplaceAll(&str, wxEmptyString);
 
-    auto locale = Model_Infotable::instance().GetStringInfo("LOCALE", "en_US");
+    auto locale = Model_Infotable::instance().GetStringInfo("LOCALE", "en_US.UTF8");
 
     if (locale.empty())
     {
         if (!currency->GROUP_SEPARATOR.empty())
             str.Replace(currency->GROUP_SEPARATOR, wxEmptyString);
         if (!currency->DECIMAL_POINT.empty())
-            str.Replace(currency->DECIMAL_POINT, GetBaseCurrency()->DECIMAL_POINT);
+            str.Replace(currency->DECIMAL_POINT, ".");
     }
     else
     {
@@ -247,10 +249,10 @@ const wxString Model_Currency::fromString2CLocale(const wxString &s, const Data*
         if (!thousand.empty())
             str.Replace(thousand, wxEmptyString);
 
-        str.Replace(decimal, ".");
+        if (!decimal.empty()) str.Replace(decimal, ".");
     }
 
-    wxLogDebug("%s -> %s", s, str);
+    wxLogDebug("fromString2CLocale : %s -> %s", s, str);
     return str;
 }
 
