@@ -189,6 +189,7 @@ const wxString Model_Currency::toString(double value, const Data* currency, int 
         }
         catch (...) {
             locale = "";
+            use_locale = "N";
         }
     }
 
