@@ -33,7 +33,7 @@ mmListCtrl::mmListCtrl(wxWindow *parent, wxWindowID winid)
     : wxListCtrl(parent, winid, wxDefaultPosition, wxDefaultSize
         , wxLC_REPORT | wxLC_HRULES | wxLC_VRULES | wxLC_VIRTUAL | wxLC_SINGLE_SEL | wxLC_AUTOARRANGE)
     , attr1_(new wxListItemAttr(*bestFontColour(mmThemeMetaColour(meta::COLOR_LISTALT0)), mmThemeMetaColour(meta::COLOR_LISTALT0), wxNullFont))
-    , attr2_(new wxListItemAttr(*bestFontColour(this->GetBackgroundColour()), wxNullColour, wxNullFont))
+    , attr2_(new wxListItemAttr(*bestFontColour(mmThemeMetaColour(meta::COLOR_LIST)), mmThemeMetaColour(meta::COLOR_LIST), wxNullFont))
     , m_selected_row(-1)
     , m_selected_col(0)
     , m_asc(true)
