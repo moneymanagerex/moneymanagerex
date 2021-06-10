@@ -136,7 +136,7 @@
                     <!-- Chart -->
                     var font_size = 10 + 4*(<TMPL_VAR HTMLSCALE>/100 -1);
                     var data = {
-                        chart: { type : 'bar', toolbar : { show : false } },
+                        chart: { type : 'bar', foreColor: '<TMPL_VAR INCOME_VS_EXPENSES_FORECOLOR>', toolbar : { show : false } },
                         dataLabels : { enabled : false },
                         colors: [ <TMPL_VAR INCOME_VS_EXPENSES_COLORS> ],
                         tooltip : { theme : "dark" },

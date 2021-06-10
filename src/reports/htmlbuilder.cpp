@@ -417,7 +417,7 @@ void mmHTMLBuilder::startTableRow(const wxString& color)
 
 void mmHTMLBuilder::startAltTableRow()
 {
-    startTableRow("whitesmoke");
+    startTableRow(mmThemeMetaString(meta::COLOR_REPORT_ALTROW));
 }
 
 void mmHTMLBuilder::startTotalTableRow()
@@ -509,7 +509,8 @@ void mmHTMLBuilder::addChart(const GraphData& gd)
                 chartWidth = 70;
     };
 
-    htmlChart += wxString::Format("chart: { type: '%s', toolbar: { tools: { download: false } }, width: '%i%%' }", gtype, chartWidth);
+    htmlChart += wxString::Format("chart: { type: '%s', foreColor: '%s', toolbar: { tools: { download: false } }, width: '%i%%' }", 
+                    gtype, mmThemeMetaString(meta::COLOR_REPORT_FORECOLOR), chartWidth);
     htmlChart += wxString::Format(", title: { text: '%s'}", gd.title);
 
     wxString toolTipFormatter;

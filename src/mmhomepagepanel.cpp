@@ -169,6 +169,7 @@ void mmHomePagePanel::insertDataIntoTemplate()
     //
     htmlWidgetIncomeVsExpenses income_vs_expenses;
     m_frames["INCOME_VS_EXPENSES"] = income_vs_expenses.getHTMLText();
+    m_frames["INCOME_VS_EXPENSES_FORECOLOR"] = mmThemeMetaString(meta::COLOR_REPORT_FORECOLOR);
     m_frames["INCOME_VS_EXPENSES_COLORS"] = wxString::Format("'%s', '%s'", mmThemeMetaString(meta::COLOR_REPORT_CREDIT)
                                                 , mmThemeMetaString(meta::COLOR_REPORT_DEBIT));
 
