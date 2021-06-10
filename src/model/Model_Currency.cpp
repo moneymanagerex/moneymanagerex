@@ -182,13 +182,14 @@ const wxString Model_Currency::toString(double value, const Data* currency, int 
 
     static wxString use_locale;
     if (use_locale.empty()) {
+        use_locale = locale.empty() ? "N" : "Y";
+        if (use_locale == "Y")
         try {
             fmt::format(std::locale(locale.c_str()), "{:L}", 123);
         }
         catch (...) {
             locale = "";
         }
-        use_locale = locale.empty() ? "N" : "Y";
     }
 
     if (decimal.empty()) {
