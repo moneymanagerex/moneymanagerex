@@ -529,8 +529,10 @@ void mmThemeMetaColour(wxWindow *object, int ref, bool foreground)
     {
         if (foreground)
             object->SetForegroundColour(wxColour(c));
-        else
+        else {
             object->SetBackgroundColour(wxColour(c));
+            object->SetForegroundColour(*bestFontColour(c));
+        }
     }
 }
 
