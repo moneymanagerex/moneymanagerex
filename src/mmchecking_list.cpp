@@ -157,7 +157,7 @@ TransactionListCtrl::TransactionListCtrl(
     mmListCtrl(parent, id),
     m_cp(cp),
     m_attr1(new wxListItemAttr(*bestFontColour(m_cp->m_allAccounts ? mmThemeMetaColour(meta::COLOR_LISTALT0A) : mmThemeMetaColour(meta::COLOR_LISTALT0)), m_cp->m_allAccounts ? mmThemeMetaColour(meta::COLOR_LISTALT0A) : mmThemeMetaColour(meta::COLOR_LISTALT0), wxNullFont)),
-    m_attr2(new wxListItemAttr(*bestFontColour(cp->GetBackgroundColour()), wxNullColour, wxNullFont)),
+    m_attr2(new wxListItemAttr(*bestFontColour(mmThemeMetaColour(meta::COLOR_LIST)), mmThemeMetaColour(meta::COLOR_LIST), wxNullFont)),
     m_attr3(new wxListItemAttr(mmThemeMetaColour(meta::COLOR_LISTFUTURE), m_cp->m_allAccounts ? mmThemeMetaColour(meta::COLOR_LISTALT0A) : mmThemeMetaColour(meta::COLOR_LISTALT0), wxNullFont)),
     m_attr4(new wxListItemAttr(mmThemeMetaColour(meta::COLOR_LISTFUTURE), wxNullColour, wxNullFont)),
     m_attr11(new wxListItemAttr(*bestFontColour(mmColors::userDefColor1), mmColors::userDefColor1, wxNullFont)),
