@@ -324,6 +324,7 @@ void mmCheckingPanel::CreateControls()
 
     wxPanel *itemPanel12 = new wxPanel(itemSplitterWindow10, wxID_ANY
         , wxDefaultPosition, wxDefaultSize, wxNO_BORDER|wxTAB_TRAVERSAL);
+    mmThemeMetaColour(itemPanel12, meta::COLOR_LISTPANEL);
 
     itemSplitterWindow10->SplitHorizontally(m_listCtrlAccount, itemPanel12);
     itemSplitterWindow10->SetMinimumPaneSize(100);
