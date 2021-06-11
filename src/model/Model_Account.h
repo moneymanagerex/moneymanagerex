@@ -115,6 +115,8 @@ public:
     static bool is_positive(int value);
     static wxDateTime get_date_by_string(const wxString& date_str);
 
+    const Data_Set FilterAccounts(const wxString& account_pattern);
+
 };
 
 inline wxDateTime Model_Account::get_date_by_string(const wxString& date_str) { return Model::to_date(date_str); }
