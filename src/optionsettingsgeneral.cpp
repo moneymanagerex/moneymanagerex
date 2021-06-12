@@ -144,6 +144,7 @@ void OptionSettingsGeneral::Create()
         m_itemListOfLocales = new wxComboBox(this, ID_DIALOG_OPTIONS_LOCALE, ""
             , wxDefaultPosition, wxDefaultSize, g_locales());
         m_itemListOfLocales->SetValue(locale);
+        m_itemListOfLocales->AutoComplete(g_locales());
         m_itemListOfLocales->SetMinSize(wxSize(100, -1));
         localeBaseSizer->Add(m_itemListOfLocales, g_flagsH);
 

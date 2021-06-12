@@ -44,15 +44,16 @@ public:
 
 private:
     /// Dialog Creation - Used by constructor
-    bool Create(wxWindow* parent, wxWindowID id,
-        const wxString& caption,
-        const wxPoint& pos,
-        const wxSize& size,
-        long style);
+    bool Create(wxWindow* parent, wxWindowID id = wxID_ANY,
+        const wxString& caption = _("MMEX Options"),
+        const wxPoint& pos = wxDefaultPosition,
+        const wxSize& size = wxDefaultSize,
+        long style = wxCAPTION | wxRESIZE_BORDER | wxSYSTEM_MENU | wxCLOSE_BOX);
 
     void CreateControls();
     void OnOk(wxCommandEvent& /*event*/);
     void OnApply(wxCommandEvent& /*event*/);
+    void OnPageChange(wxBookCtrlEvent& event);
 
 private:
     wxImageList* m_imageList;
