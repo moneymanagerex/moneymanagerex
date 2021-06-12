@@ -59,6 +59,7 @@ private:
 
     wxChoice* m_date_format_choice;
     wxChoice* m_month_selection;
+    wxComboBox* m_itemListOfLocales;
     wxStaticText* m_sample_date_text;
     wxStaticText* m_sample_value_text;
 
