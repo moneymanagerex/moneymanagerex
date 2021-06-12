@@ -334,3 +334,14 @@ bool Model_Account::BoolOf(int value)
 {
     return value > 0 ? true : false;
 }
+
+const Model_Account::Data_Set Model_Account::FilterAccounts(const wxString& account_pattern)
+{
+    Data_Set accounts;
+    for (auto &account : this->all(Model_Account::COL_ACCOUNTNAME))
+    {
+        if (account.ACCOUNTNAME.Lower().Matches(account_pattern.Lower().Append("*")))
+            accounts.push_back(account);
+    }
+    return accounts;
+}

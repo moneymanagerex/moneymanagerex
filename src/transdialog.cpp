@@ -2,7 +2,7 @@
  Copyright (C) 2006 Madhan Kanagavel
  Copyright (C) 2011-2018 Nikolay Akimov
  Copyright (C) 2011-2017 Stefano Giorgio [stef145g]
-Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
+ Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -953,24 +953,29 @@ void mmTransDialog::OnTransTypeChanged(wxCommandEvent& event)
 void mmTransDialog::OnAccountOrPayeeUpdated(wxCommandEvent& event)
 {
     // Filtering the combobox as the user types because on Mac autocomplete function doesn't work
-    // PLEASE DO NOT REMOVE!!!
-    if (!m_transfer)
+    // PLEASE DO NOT REMOVE!!
+    wxString payeeName = event.GetString();
+    if (cbPayee_->GetSelection() == -1) // make sure nothing is selected (ex. user presses down arrow)
     {
-        wxString payeeName = event.GetString();
-        if (cbPayee_->GetSelection() == -1) // make sure nothing is selected (ex. user presses down arrow)
+        cbPayee_->SetEvtHandlerEnabled(false); // things will crash if events are handled during Clear
+        cbPayee_->Clear();
+        if (m_transfer)
         {
-            cbPayee_->SetEvtHandlerEnabled(false); // things will crash if events are handled during Clear
-            cbPayee_->Clear();
-            Model_Payee::Data_Set filtd = Model_Payee::instance().FilterPayees(payeeName);
+            Model_Account::Data_Set filtd = Model_Account::instance().FilterAccounts(payeeName);
+            std::sort(filtd.rbegin(), filtd.rend(), SorterByACCOUNTNAME());
+            for (const auto &account : filtd)
+                cbPayee_->Insert(account.ACCOUNTNAME, 0);
+        } else
+        {
+            Model_Payee::Data_Set filtd = Model_Payee::instance().FilterPayees(payeeName);        
             std::sort(filtd.rbegin(), filtd.rend(), SorterByPAYEENAME());
-            for (const auto &payee : filtd) {
+            for (const auto &payee : filtd)
                 cbPayee_->Insert(payee.PAYEENAME, 0);
-            }
-            cbPayee_->ChangeValue(payeeName);
-            cbPayee_->SetInsertionPointEnd();
-            cbPayee_->Popup();
-            cbPayee_->SetEvtHandlerEnabled(true);
         }
+        cbPayee_->ChangeValue(payeeName);
+        cbPayee_->SetInsertionPointEnd();
+        cbPayee_->Popup();
+        cbPayee_->SetEvtHandlerEnabled(true);
     }
 #else
 void mmTransDialog::OnAccountOrPayeeUpdated(wxCommandEvent& WXUNUSED(event))
