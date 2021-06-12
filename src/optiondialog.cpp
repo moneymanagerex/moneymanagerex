@@ -23,6 +23,7 @@
 #include "paths.h"
 #include "images_list.h"
 #include "util.h"
+#include <wx/bookctrl.h>
 
 #include "optionsettingsgeneral.h"
 #include "optionsettingsview.h"
@@ -35,6 +36,7 @@ wxIMPLEMENT_DYNAMIC_CLASS(mmOptionsDialog, wxDialog);
 wxBEGIN_EVENT_TABLE( mmOptionsDialog, wxDialog )
     EVT_BUTTON(wxID_OK, mmOptionsDialog::OnOk)
     EVT_BUTTON(wxID_APPLY, mmOptionsDialog::OnApply)
+    EVT_LISTBOOK_PAGE_CHANGED(wxID_ANY, mmOptionsDialog::OnPageChange)
 wxEND_EVENT_TABLE()
 
 mmOptionsDialog::mmOptionsDialog( )
@@ -48,8 +50,8 @@ mmOptionsDialog::~mmOptionsDialog( )
 
 mmOptionsDialog::mmOptionsDialog(wxWindow* parent, mmGUIApp* app): m_app(app)
 {
-    long style = wxCAPTION | wxRESIZE_BORDER | wxSYSTEM_MENU | wxCLOSE_BOX;
-    Create(parent, wxID_ANY, _("MMEX Options"), wxDefaultPosition, wxSize(500, 400), style);
+    Create(parent);
+    SetMinSize(wxSize(500, 400));
 }
 
 bool mmOptionsDialog::Create(wxWindow* parent
@@ -179,6 +181,22 @@ void mmOptionsDialog::OnOk(wxCommandEvent& /*event*/)
 {
     if(this->SaveNewSystemSettings())
         EndModal(wxID_OK);
+}
+
+void mmOptionsDialog::OnPageChange(wxBookCtrlEvent& event)
+{
+    int old_page = event.GetOldSelection();
+    if (old_page == wxNOT_FOUND)
+        return;
+
+    if (old_page == 0 && !m_panel_list[old_page]->SaveSettings())
+    {
+        SetEvtHandlerEnabled(false);
+        m_notebook->GetEventHandler()->Disconnect();
+        m_notebook->SetSelection(old_page);
+        SetEvtHandlerEnabled(true);
+        event.Veto();
+    }
 }
 
 void mmOptionsDialog::OnApply(wxCommandEvent& /*event*/)

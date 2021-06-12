@@ -175,23 +175,35 @@ const wxString Model_Currency::toString(double value, const Data* currency, int 
 {
     static wxString decimal;
     static wxString locale;
+    static wxString defaultLocaleSupport;
 
     if (locale.empty()) {
-        locale = Model_Infotable::instance().GetStringInfo("LOCALE", "");
+        locale = Model_Infotable::instance().GetStringInfo("LOCALE", " ");
     }
 
     static wxString use_locale;
     if (use_locale.empty()) {
-        use_locale = locale.empty() ? "N" : "Y";
+        use_locale = locale == " " ? "N" : "Y";
         if (use_locale == "Y")
         {
             try {
                 fmt::format(std::locale(locale.c_str()), "{:L}", 123);
             }
             catch (...) {
-                locale = "";
+                locale = " ";
                 use_locale = "N";
             }
+        }
+    }
+
+    if (defaultLocaleSupport.empty())
+    {
+        try {
+            defaultLocaleSupport = "Y";
+            fmt::format(std::locale("en_US"), "{:L}", 123);
+        }
+        catch (...) {
+            defaultLocaleSupport = "N";
         }
     }
 
@@ -210,9 +222,17 @@ const wxString Model_Currency::toString(double value, const Data* currency, int 
     double v = value * k;
     v = round(v) / k;
 
-    wxString s = fmt::format(use_locale == "Y"
-        ? std::locale(locale.c_str())
-        : std::locale("en_US.UTF-8"), "{:L}", static_cast<int>(fabs(v) + 5 / (pow(10, precision + 1))));
+    wxString s;
+    if (defaultLocaleSupport == "Y")
+    {
+        s = fmt::format((use_locale == "Y" ? std::locale(locale.c_str()) : std::locale("en_US"))
+            , "{:L}", static_cast<int>(fabs(v) + 5 / (pow(10, precision + 1))));
+    }
+    else {
+        //In case if no en_US supported don't use any one
+        s = fmt::format("{:d}", static_cast<int>(fabs(v) + 5 / (pow(10, precision + 1))));
+    }
+
     if (precision > 0)
         s += decimal + wxString(fmt::format("{:.{}f}", fabs(v) - static_cast<int>(fabs(v)), precision)).Mid(2);
 
