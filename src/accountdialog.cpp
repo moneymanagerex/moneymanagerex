@@ -66,7 +66,7 @@ mmNewAcctDialog::mmNewAcctDialog()
 {
 }
 
-mmNewAcctDialog::mmNewAcctDialog(Model_Account::Data* account, wxWindow* parent, const wxString &name)
+mmNewAcctDialog::mmNewAcctDialog(Model_Account::Data* account, wxWindow* parent)
     : m_account(account)
     , m_textAccountName(nullptr)
     , m_notesCtrl(nullptr)
@@ -83,13 +83,12 @@ mmNewAcctDialog::mmNewAcctDialog(Model_Account::Data* account, wxWindow* parent,
     , m_accessinfo_infocus(false)
 {
     m_imageList = navtree_images_list();
-    long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX;
 
     m_currencyID = m_account->CURRENCYID;
     Model_Currency::Data* currency = Model_Currency::instance().get(m_currencyID);
     wxASSERT(currency);
 
-    Create(parent, wxID_ANY, _("New Account"), wxDefaultPosition, wxDefaultSize, style, name);
+    Create(parent);
     this->SetMinSize(wxSize(550, 300));
     this->Connect(wxID_ANY, wxEVT_CHILD_FOCUS, wxChildFocusEventHandler(mmNewAcctDialog::OnChangeFocus), nullptr, this);
 }
@@ -105,17 +104,16 @@ bool mmNewAcctDialog::Create(wxWindow* parent
     , const wxString& caption
     , const wxPoint& pos
     , const wxSize& size
-    , long style
-    , const wxString& name)
+    , long style)
 {
     SetExtraStyle(GetExtraStyle() | wxWS_EX_BLOCK_EVENTS);
-    wxDialog::Create(parent, id, caption, pos, size, style, name);
+    wxDialog::Create(parent, id, caption, pos, size, style);
     this->SetTitle(_("Edit Account"));
     SetIcon(mmex::getProgramIcon());
 
     CreateControls();
     fillControls();
-    
+
     OnAccountStatus();
 
     GetSizer()->Fit(this);
