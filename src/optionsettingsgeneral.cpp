@@ -141,11 +141,11 @@ void OptionSettingsGeneral::Create()
         wxBoxSizer* localeBaseSizer = new wxBoxSizer(wxHORIZONTAL);
         m_currencyStaticBoxSizer->Add(localeBaseSizer, wxSizerFlags(g_flagsV).Border(wxLEFT, 0));
 
-        wxComboBox* itemListOfLocales = new wxComboBox(this, ID_DIALOG_OPTIONS_LOCALE, ""
+        m_itemListOfLocales = new wxComboBox(this, ID_DIALOG_OPTIONS_LOCALE, ""
             , wxDefaultPosition, wxDefaultSize, g_locales());
-        itemListOfLocales->SetValue(locale);
-        itemListOfLocales->SetMinSize(wxSize(100, -1));
-        localeBaseSizer->Add(itemListOfLocales, g_flagsH);
+        m_itemListOfLocales->SetValue(locale);
+        m_itemListOfLocales->SetMinSize(wxSize(100, -1));
+        localeBaseSizer->Add(m_itemListOfLocales, g_flagsH);
 
         m_sample_value_text = new wxStaticText(this, wxID_STATIC, "redefined elsewhere");
         localeBaseSizer->Add(m_sample_value_text, wxSizerFlags(g_flagsH).Border(wxLEFT, 15));
@@ -158,7 +158,7 @@ void OptionSettingsGeneral::Create()
                 "Leave blank to manually set format via 'Currency Dialog | Edit'")),
             wxSizerFlags(g_flagsV).Border(wxTOP, 0).Border(wxLEFT, 5));
 
-        itemListOfLocales->Connect(ID_DIALOG_OPTIONS_LOCALE, wxEVT_COMMAND_TEXT_UPDATED
+        m_itemListOfLocales->Connect(ID_DIALOG_OPTIONS_LOCALE, wxEVT_COMMAND_TEXT_UPDATED
             , wxCommandEventHandler(OptionSettingsGeneral::OnLocaleChanged), nullptr, this);
     }
 
@@ -275,6 +275,10 @@ bool OptionSettingsGeneral::SaveSettings()
     wxString value;
     if (doFormatDoubleValue(cbln->GetValue(), value)) {
         Option::instance().LocaleName(cbln->GetValue());
+    }
+    else {
+        mmErrorDialogs::ToolTip4Object(m_itemListOfLocales, _("Invalid value"), _("Error"));
+        return false;
     }
 
     Option::instance().CurrencyHistoryEnabled(m_currency_history->GetValue());
