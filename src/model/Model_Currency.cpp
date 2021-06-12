@@ -184,12 +184,14 @@ const wxString Model_Currency::toString(double value, const Data* currency, int 
     if (use_locale.empty()) {
         use_locale = locale.empty() ? "N" : "Y";
         if (use_locale == "Y")
-        try {
-            fmt::format(std::locale(locale.c_str()), "{:L}", 123);
-        }
-        catch (...) {
-            locale = "";
-            use_locale = "N";
+        {
+            try {
+                fmt::format(std::locale(locale.c_str()), "{:L}", 123);
+            }
+            catch (...) {
+                locale = "";
+                use_locale = "N";
+            }
         }
     }
 
@@ -224,7 +226,7 @@ const wxString Model_Currency::toString(double value, const Data* currency, int 
         s.Replace("\t", currency ? currency->GROUP_SEPARATOR : GetBaseCurrency()->GROUP_SEPARATOR);
     }
 
-    wxLogDebug("toString : %s -> %s", fmt::format("{:f}", value), s);
+    //wxLogDebug("toString : %s -> %s", fmt::format("{:f}", value), s);
     return s;
 }
 

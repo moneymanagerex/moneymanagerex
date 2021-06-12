@@ -132,7 +132,7 @@ void mmHomePagePanel::insertDataIntoTemplate()
     m_frames["HTMLSCALE"] = wxString::Format("%d", Option::instance().getHtmlFontSize());
 
     double tBalance = 0.0, cardBalance = 0.0, termBalance = 0.0, cashBalance = 0.0, loanBalance = 0.0;
-    double shareBalance = 0.0, assetBalance = 0.0;
+    //double shareBalance = 0.0, assetBalance = 0.0;
 
     htmlWidgetAccounts account_stats;
     m_frames["ACCOUNTS_INFO"] = account_stats.displayAccounts(tBalance, Model_Account::CHECKING);
@@ -149,11 +149,11 @@ void mmHomePagePanel::insertDataIntoTemplate()
     m_frames["TERM_ACCOUNTS_INFO"] = account_stats.displayAccounts(termBalance, Model_Account::TERM);
     tBalance += termBalance;
 
-    m_frames["ASSET_ACCOUNTS_INFO"] = account_stats.displayAccounts(assetBalance, Model_Account::ASSET);
-    tBalance += assetBalance;
+    //m_frames["ASSET_ACCOUNTS_INFO"] = account_stats.displayAccounts(assetBalance, Model_Account::ASSET);
+    //tBalance += assetBalance;
 
-    m_frames["SHARE_ACCOUNTS_INFO"] = account_stats.displayAccounts(shareBalance, Model_Account::SHARES);
-    tBalance += shareBalance;
+    //m_frames["SHARE_ACCOUNTS_INFO"] = account_stats.displayAccounts(shareBalance, Model_Account::SHARES);
+    //tBalance += shareBalance;
 
     //Stocks
     htmlWidgetStocks stocks_widget;
