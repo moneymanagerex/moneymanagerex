@@ -553,7 +553,7 @@ void transactionsUpdateDialog::OnAccountUpdated(wxCommandEvent& event)
         m_transferAcc->SetEvtHandlerEnabled(true);
     }
 #else
-void transactionsUpdateDialog::OnPayeeUpdated(wxCommandEvent& WXUNUSED(event))
+void transactionsUpdateDialog::OnAccountUpdated(wxCommandEvent& WXUNUSED(event))
 {
 #endif
     wxChildFocusEvent evt;
