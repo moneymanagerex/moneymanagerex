@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-06-06 13:20+0300\n"
-"PO-Revision-Date: 2021-06-06 10:27\n"
+"PO-Revision-Date: 2021-06-13 11:45\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -1225,7 +1225,7 @@ msgstr "lösche wiederkehrende Buchung"
 
 #: billsdepositspanel.cpp:296
 msgid "Ente&r"
-msgstr ""
+msgstr "&Einfügen"
 
 #: billsdepositspanel.cpp:297
 msgid "Enter Next Recurring Transaction Occurrence"
@@ -4084,7 +4084,7 @@ msgstr "&QIF-Dateien..."
 
 #: mmframe.cpp:1299 mmframe.cpp:1370
 msgid "&MMEX CSV Files..."
-msgstr ""
+msgstr "&MMEX CSV Dateien..."
 
 #: mmframe.cpp:1302 mmframe.cpp:1373
 msgid "&JSON Files..."
@@ -4148,7 +4148,7 @@ msgstr "Export als CSV"
 
 #: mmframe.cpp:1370
 msgid "Export to fixed CSV"
-msgstr ""
+msgstr "Exportieren in feste CSV"
 
 #: mmframe.cpp:1371
 msgid "Export to XML"
@@ -5039,11 +5039,11 @@ msgstr "Gesamtsumme:"
 
 #: mmhomepage.cpp:645
 msgid "Investment Accounts"
-msgstr ""
+msgstr "Anlagekonten"
 
 #: mmhomepage.cpp:646 reports/summary.cpp:162
 msgid "Asset Accounts"
-msgstr ""
+msgstr "Anlagenkonten"
 
 #: mmhomepage.cpp:794
 msgid "Currency Exchange Rates"
@@ -5401,7 +5401,7 @@ msgstr "Der Benutzername wird als Titel verwendet."
 
 #: optionsettingsgeneral.cpp:85
 msgid "Language"
-msgstr ""
+msgstr "Sprache"
 
 #: optionsettingsgeneral.cpp:107
 msgid "Specify the date format for display"
@@ -5409,7 +5409,7 @@ msgstr "Format des Datums auswählen"
 
 #: optionsettingsgeneral.cpp:110
 msgid "Date format sample:"
-msgstr ""
+msgstr "Datumsformat Beispiel:"
 
 #: optionsettingsgeneral.cpp:123
 msgid "Base Currency"
@@ -5430,7 +5430,8 @@ msgstr "Klicken Sie mit der rechten Maustaste und wählen Sie 'Als Basiswährung
 #: optionsettingsgeneral.cpp:157
 msgid "Format derived from locale.\n"
 "Leave blank to manually set format via 'Currency Dialog | Edit'"
-msgstr ""
+msgstr "Format abgeleitet von Gebietsschema.\n"
+"Leer lassen um das Format manuell über den 'Währungsdialog | Bearbeiten' festzulegen"
 
 #: optionsettingsgeneral.cpp:167
 msgid "Use currency history"
