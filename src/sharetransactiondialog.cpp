@@ -85,19 +85,18 @@ ShareTransactionDialog::ShareTransactionDialog(wxWindow* parent, Model_Translink
     if (translink_entry)
     {
         m_translink_entry = translink_entry;
-        m_dialog_heading = _("Edit Share Transaction");
         m_stock = Model_Stock::instance().get(translink_entry->LINKRECORDID);
         if (translink_entry->LINKTYPE == Model_Attachment::reftype_desc(Model_Attachment::STOCK))
         {
             m_share_entry = Model_Shareinfo::ShareEntry(translink_entry->CHECKINGACCOUNTID);
         }
     }
-    if (checking_entry)
-    {
+
+    if (checking_entry) {
         m_checking_entry = checking_entry;
     }
-    long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX;
-    Create(parent, wxID_ANY, m_dialog_heading, wxDefaultPosition, wxSize(400, 300), style);
+    Create(parent);
+    this->SetMinSize(wxSize(400, 300));
 }
 
 bool ShareTransactionDialog::Create(wxWindow* parent, wxWindowID id, const wxString& caption

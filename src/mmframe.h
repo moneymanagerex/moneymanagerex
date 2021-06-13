@@ -1,7 +1,7 @@
 /*******************************************************
 Copyright (C) 2006 Madhan Kanagavel
 Copyright (C) 2012 Stefano Giorgio
-Copyright (C) 2013 Nikolay
+Copyright (C) 2013, 2021 Nikolay Akimov
 Copyright (C) 2014 James Higley
 Copyright (C) 2014 Guan Lisheng (guanlisheng@gmail.com)
 Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
@@ -88,6 +88,7 @@ private:
     /* Currently open file name */
     wxString m_filename;
     wxString m_password;
+    wxString m_temp_view;
 
     // Marker to indicate DB was inuse when opened and open cancelled
     bool db_lockInPlace;
@@ -170,6 +171,7 @@ private:
     void OnExportToXML(wxCommandEvent& event);
     void OnExportToQIF(wxCommandEvent& event);
     void OnExportToJSON(wxCommandEvent& event);
+    void OnExportToMMEX(wxCommandEvent& event);
     void OnExportToHtml(wxCommandEvent& event);
     void OnImportUniversalCSV(wxCommandEvent& event);
     void OnImportXML(wxCommandEvent& event);
@@ -297,6 +299,7 @@ private:
         MENU_GOOGLEPLAY,
         MENU_TWITTER, // end range for OnSimpleURLOpen
         MENU_EXPORT_CSV,
+        MENU_EXPORT_MMEX,
         MENU_EXPORT_XML,
         MENU_EXPORT_QIF,
         MENU_EXPORT_JSON,
@@ -344,6 +347,7 @@ private:
         MENU_TREEPOPUP_ACCOUNT_EDIT,
         MENU_TREEPOPUP_ACCOUNT_LIST,
         MENU_TREEPOPUP_ACCOUNT_EXPORT2CSV,
+        MENU_TREEPOPUP_ACCOUNT_EXPORT2MMEX,
         MENU_TREEPOPUP_ACCOUNT_EXPORT2XML,
         MENU_TREEPOPUP_ACCOUNT_EXPORT2QIF,
         MENU_TREEPOPUP_ACCOUNT_EXPORT2JSON,

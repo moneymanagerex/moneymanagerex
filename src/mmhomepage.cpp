@@ -1,5 +1,5 @@
 /*******************************************************
-Copyright (C) 2014 - 2020 Nikolay Akimov
+Copyright (C) 2014 - 2021 Nikolay Akimov
 Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
@@ -356,7 +356,7 @@ const wxString htmlWidgetBillsAndDeposits::getHTMLText()
         output += "</thead>\n";
 
         output += wxString::Format("<tbody id='%s'>\n", idStr);
-        output += wxString::Format("<tr style='background-color: #d8ebf0'><th>%s</th>\n<th class='text-right'>%s</th>\n<th class='text-right'>%s</th></tr>\n"
+        output += wxString::Format("<thead><tr><th>%s</th>\n<th class='text-right'>%s</th>\n<th class='text-right'>%s</th></tr></thead>\n"
             , _("Account / Payee"), _("Amount"), _("Payment"));
 
         for (const auto& item : bd_days)
@@ -490,13 +490,11 @@ const wxString htmlWidgetStatistics::getHTMLText()
         date_range = new mmCurrentMonth;
 
     Model_Checking::Data_Set all_trans;
-    if (Option::instance().getIgnoreFutureTransactions())
-    {
+    if (Option::instance().getIgnoreFutureTransactions()) {
         all_trans = Model_Checking::instance().find(
             DB_Table_CHECKINGACCOUNT_V1::TRANSDATE(date_range->today().FormatISODate(), LESS_OR_EQUAL));
     }
-    else
-    {
+    else {
         all_trans = Model_Checking::instance().all();
     }
     int countFollowUp = 0;
@@ -509,7 +507,8 @@ const wxString htmlWidgetStatistics::getHTMLText()
         if (Model_Checking::foreignTransactionAsTransfer(trx))
             continue;
 
-        if (Model_Checking::status(trx) == Model_Checking::FOLLOWUP) countFollowUp++;
+        if (Model_Checking::status(trx) == Model_Checking::FOLLOWUP)
+            countFollowUp++;
 
         accountStats[trx.ACCOUNTID].first += Model_Checking::reconciled(trx, trx.ACCOUNTID);
         accountStats[trx.ACCOUNTID].second += Model_Checking::balance(trx, trx.ACCOUNTID);
@@ -638,11 +637,14 @@ const wxString htmlWidgetAccounts::displayAccounts(double& tBalance, int type = 
 {
     static const std::vector < std::pair <wxString, wxString> > typeStr
     {
-        { "CASH_ACCOUNTS_INFO", _("Cash Accounts") },
-        { "ACCOUNTS_INFO", _("Bank Accounts") },
-        { "CARD_ACCOUNTS_INFO", _("Credit Card Accounts") },
-        { "LOAN_ACCOUNTS_INFO", _("Loan Accounts") },
-        { "TERM_ACCOUNTS_INFO", _("Term Accounts") },
+        { "CASH_ACCOUNTS_INFO",   _("Cash Accounts") },
+        { "ACCOUNTS_INFO",        _("Bank Accounts") },
+        { "CARD_ACCOUNTS_INFO",   _("Credit Card Accounts") },
+        { "LOAN_ACCOUNTS_INFO",   _("Loan Accounts") },
+        { "TERM_ACCOUNTS_INFO",   _("Term Accounts") },
+        { "INVEST_ACCOUNTS_INFO", _("Investment Accounts") },
+        { "ASSET_ACCOUNTS_INFO",  _("Asset Accounts") },
+        { "SHARE_ACCOUNTS_INFO",  _("Share Accounts") },
     };
 
     const wxString idStr = typeStr[type].first;
@@ -661,11 +663,13 @@ const wxString htmlWidgetAccounts::displayAccounts(double& tBalance, int type = 
     double tReconciled = 0;
     wxString body = "";
     const wxDate today = wxDate::Today();
-    wxString vAccts = Model_Setting::instance().ViewAccounts();
-    for (const auto& account : Model_Account::instance().all(Model_Account::COL_ACCOUNTNAME))
+    wxString vAccts = Model_Setting::instance().GetViewAccounts();
+    auto accounts = Model_Account::instance().find(
+        Model_Account::ACCOUNTTYPE(Model_Account::all_type()[type])
+        , Model_Account::STATUS(Model_Account::CLOSED, NOT_EQUAL));
+    std::stable_sort(accounts.begin(), accounts.end(), SorterByACCOUNTNAME());
+    for (const auto& account : accounts)
     {
-        if (Model_Account::type(account) != type || Model_Account::status(account) == Model_Account::CLOSED) continue;
-
         Model_Currency::Data* currency = Model_Account::currency(account);
 
         double currency_rate = Model_CurrencyHistory::getDayRate(account.CURRENCYID, today);

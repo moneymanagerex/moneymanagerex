@@ -102,11 +102,9 @@ bool mmGUIApp::setGUILanguage(wxLanguage lang)
         lang_names.Sort();
 
         wxString languages_list;
-        for (const auto & name : lang_names)
-        {
-            languages_list += name + ", ";
+        for (const auto & name : lang_names) {
+            languages_list += (languages_list.empty() ? "" : ", ") + name;
         }
-        languages_list.RemoveLast(2);
 
         wxString msg;
         if (lang != wxLANGUAGE_UNKNOWN)

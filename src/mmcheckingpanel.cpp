@@ -324,6 +324,7 @@ void mmCheckingPanel::CreateControls()
 
     wxPanel *itemPanel12 = new wxPanel(itemSplitterWindow10, wxID_ANY
         , wxDefaultPosition, wxDefaultSize, wxNO_BORDER|wxTAB_TRAVERSAL);
+    mmThemeMetaColour(itemPanel12, meta::COLOR_LISTPANEL);
 
     itemSplitterWindow10->SplitHorizontally(m_listCtrlAccount, itemPanel12);
     itemSplitterWindow10->SetMinimumPaneSize(100);
@@ -665,7 +666,6 @@ void mmCheckingPanel::OnViewPopupSelected(wxCommandEvent& event)
 
     if (m_currentView == MENU_VIEW_FILTER_DIALOG)
     {
-        m_trans_filter_dlg->setAccountToolTip(_("Select account used in transfer transactions"));
         m_transFilterActive = (m_trans_filter_dlg->ShowModal() == wxID_OK
             && m_trans_filter_dlg->isSomethingSelected());
         if (!m_transFilterActive)

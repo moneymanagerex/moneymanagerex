@@ -63,7 +63,7 @@ void OptionSettingsView::Create()
 
     view_sizer1->Add(new wxStaticText(this, wxID_STATIC, _("Accounts Visible")), g_flagsH);
 
-    const wxString vAccts = Model_Setting::instance().ViewAccounts();
+    const wxString vAccts = Model_Setting::instance().GetViewAccounts();
     wxArrayString view_accounts;
     view_accounts.Add(VIEW_ACCOUNTS_ALL_STR);
     view_accounts.Add(VIEW_ACCOUNTS_OPEN_STR);
@@ -118,8 +118,6 @@ void OptionSettingsView::Create()
     m_budget_summary_without_category->SetValue(Option::instance().BudgetReportWithSummaries());
     trxStaticBoxSizer->Add(m_budget_summary_without_category, g_flagsV);
 
-
-
     // Allows a year or financial year to start before or after the 1st of the month.
     wxBoxSizer* budget_offset_sizer = new wxBoxSizer(wxHORIZONTAL);
     trxStaticBoxSizer->Add(budget_offset_sizer);
@@ -131,9 +129,6 @@ void OptionSettingsView::Create()
     m_budget_days_offset->SetToolTip(_("Advance or retard the start date from the 1st of the month or year by the number of days"));
     m_budget_days_offset->SetValue(Option::instance().getBudgetDaysOffset());
     budget_offset_sizer->Add(m_budget_days_offset, g_flagsH);
-
-
-
 
     m_ignore_future_transactions = new wxCheckBox(this, wxID_STATIC
         , _("Ignore Future Transactions")
@@ -176,6 +171,9 @@ void OptionSettingsView::Create()
     m_UDFCB7->SetBackgroundColour(mmColors::userDefColor7);
     userColourSettingStBoxSizer->Add(m_UDFCB7, g_flagsH);
 
+    wxButton* reset = new wxButton(this, wxID_REDO, _("Default"), wxDefaultPosition, wxDefaultSize, 0);
+    m_UDFCB7->SetBackgroundColour(mmColors::userDefColor7);
+    userColourSettingStBoxSizer->Add(reset, g_flagsH);
     // UI Appearance
 
     wxStaticBox* iconStaticBox = new wxStaticBox(this, wxID_STATIC, _("UI Appearance"));
@@ -251,6 +249,20 @@ void OptionSettingsView::Create()
 
 void OptionSettingsView::OnNavTreeColorChanged(wxCommandEvent& event)
 {
+    if (event.GetId() == wxID_REDO)
+    {
+        mmLoadColorsFromDatabase(true);
+        m_UDFCB1->SetBackgroundColour(mmColors::userDefColor1);
+        m_UDFCB2->SetBackgroundColour(mmColors::userDefColor2);
+        m_UDFCB3->SetBackgroundColour(mmColors::userDefColor3);
+        m_UDFCB4->SetBackgroundColour(mmColors::userDefColor4);
+        m_UDFCB5->SetBackgroundColour(mmColors::userDefColor5);
+        m_UDFCB6->SetBackgroundColour(mmColors::userDefColor6);
+        m_UDFCB7->SetBackgroundColour(mmColors::userDefColor7);
+        return;
+    }
+
+
     wxButton* button = wxDynamicCast(FindWindow(event.GetId()), wxButton);
     if (button)
     {

@@ -267,6 +267,7 @@ void mmBillsDepositsPanel::CreateControls()
 
     wxPanel* bdPanel = new wxPanel(itemSplitterWindowBillsDeposit, wxID_ANY
         , wxDefaultPosition, wxDefaultSize, wxNO_BORDER | wxTAB_TRAVERSAL);
+    mmThemeMetaColour(bdPanel, meta::COLOR_LISTPANEL);
 
     itemSplitterWindowBillsDeposit->SplitHorizontally(listCtrlAccount_, bdPanel);
     itemSplitterWindowBillsDeposit->SetMinimumPaneSize(100);
@@ -293,7 +294,7 @@ void mmBillsDepositsPanel::CreateControls()
     itemBoxSizer5->Add(itemButton7, 0, wxRIGHT, 5);
     itemButton7->Enable(false);
 
-    wxButton* itemButton8 = new wxButton(bdPanel, wxID_PASTE, _("En&ter"));
+    wxButton* itemButton8 = new wxButton(bdPanel, wxID_PASTE, _("Ente&r"));
     itemButton8->SetToolTip(_("Enter Next Recurring Transaction Occurrence"));
     itemBoxSizer5->Add(itemButton8, 0, wxRIGHT, 5);
     itemButton8->Enable(false);
@@ -864,7 +865,7 @@ wxListItemAttr* billsDepositsListCtrl::OnGetItemAttr(long item) const
     int color_id = m_bdp->bills_[item].FOLLOWUPID;
 
     static std::map<int, wxSharedPtr<wxListItemAttr> > cache;
-    if (color_id > -1)
+    if (color_id > 0)
     {
         color_id = std::min(7, color_id);
         const auto it = cache.find(color_id);
@@ -873,13 +874,13 @@ wxListItemAttr* billsDepositsListCtrl::OnGetItemAttr(long item) const
         else {
             switch (color_id)
             {
-            case 1: cache[color_id] = new wxListItemAttr(*wxBLACK, mmColors::userDefColor1, wxNullFont); break;
-            case 2: cache[color_id] = new wxListItemAttr(*wxBLACK, mmColors::userDefColor2, wxNullFont); break;
-            case 3: cache[color_id] = new wxListItemAttr(*wxBLACK, mmColors::userDefColor3, wxNullFont); break;
-            case 4: cache[color_id] = new wxListItemAttr(*wxBLACK, mmColors::userDefColor4, wxNullFont); break;
-            case 5: cache[color_id] = new wxListItemAttr(*wxBLACK, mmColors::userDefColor5, wxNullFont); break;
-            case 6: cache[color_id] = new wxListItemAttr(*wxBLACK, mmColors::userDefColor6, wxNullFont); break;
-            case 7: cache[color_id] = new wxListItemAttr(*wxBLACK, mmColors::userDefColor7, wxNullFont); break;
+            case 1: cache[color_id] = new wxListItemAttr(*bestFontColour(mmColors::userDefColor1), mmColors::userDefColor1, wxNullFont); break;
+            case 2: cache[color_id] = new wxListItemAttr(*bestFontColour(mmColors::userDefColor2), mmColors::userDefColor2, wxNullFont); break;
+            case 3: cache[color_id] = new wxListItemAttr(*bestFontColour(mmColors::userDefColor3), mmColors::userDefColor3, wxNullFont); break;
+            case 4: cache[color_id] = new wxListItemAttr(*bestFontColour(mmColors::userDefColor4), mmColors::userDefColor4, wxNullFont); break;
+            case 5: cache[color_id] = new wxListItemAttr(*bestFontColour(mmColors::userDefColor5), mmColors::userDefColor5, wxNullFont); break;
+            case 6: cache[color_id] = new wxListItemAttr(*bestFontColour(mmColors::userDefColor6), mmColors::userDefColor6, wxNullFont); break;
+            case 7: cache[color_id] = new wxListItemAttr(*bestFontColour(mmColors::userDefColor7), mmColors::userDefColor7, wxNullFont); break;
             }
             return cache[color_id].get();
         }

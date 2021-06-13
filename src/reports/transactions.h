@@ -29,14 +29,14 @@ class mmReportTransactions : public mmPrintableBase
 {
 public:
     ~mmReportTransactions();
-    mmReportTransactions(int refAccountID, mmFilterTransactionsDialog* transDialog);
+    mmReportTransactions(int refAccountsID, mmFilterTransactionsDialog* transDialog);
 
     wxString getHTMLText();
 
 private:
     void Run(mmFilterTransactionsDialog* transDialog);
     Model_Checking::Full_Data_Set trans_;
-    int m_refAccountID;
+    int m_refAccountsID;
     mmFilterTransactionsDialog* m_transDialog;
 };
 

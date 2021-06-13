@@ -450,6 +450,7 @@ void mmAssetsPanel::CreateControls()
 
     wxPanel* assets_panel = new wxPanel(itemSplitterWindow10, wxID_ANY
         , wxDefaultPosition, wxDefaultSize, wxNO_BORDER | wxTAB_TRAVERSAL);
+    mmThemeMetaColour(assets_panel, meta::COLOR_LISTPANEL);
 
     itemSplitterWindow10->SplitHorizontally(m_listCtrlAssets, assets_panel);
     itemSplitterWindow10->SetMinimumPaneSize(100);

@@ -113,6 +113,7 @@ void mmStocksPanel::CreateControls()
 
     wxPanel* BottomPanel = new wxPanel(itemSplitterWindow10, wxID_ANY
         , wxDefaultPosition, wxDefaultSize, wxNO_BORDER | wxTAB_TRAVERSAL);
+    mmThemeMetaColour(BottomPanel, meta::COLOR_LISTPANEL);
 
     itemSplitterWindow10->SplitHorizontally(listCtrlAccount_, BottomPanel);
     itemSplitterWindow10->SetMinimumPaneSize(100);

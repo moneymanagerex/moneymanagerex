@@ -40,7 +40,7 @@ const char* update_template = R"(
   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <link href="memory:master.css" rel="stylesheet" />
 <style>
-.header .image, 
+.header .image,
 .header .text {
     display: inline-block;
     vertical-align: middle;
@@ -97,7 +97,7 @@ void mmUpdateWizard::CreateControls(const Document& json_releases, wxArrayInt ne
 
     int i = 0;
     bool isHistory = false;
-    wxString html, separator = " ";
+    wxString html, separator = " ", new_html_url, new_tag;
 
     for (auto& r : json_releases.GetArray())
     {
@@ -114,13 +114,18 @@ void mmUpdateWizard::CreateControls(const Document& json_releases, wxArrayInt ne
         const auto prerelease = !is_prerelease ? _("Stable") : _("Unstable");
 
         const auto html_url = (r.HasMember("html_url") && r["html_url"].IsString())
-            ? r["html_url"].GetString() : "";
+            ? wxString::FromUTF8(r["html_url"].GetString()) : "";
 
         const auto tag = (r.HasMember("tag_name") && r["tag_name"].IsString())
-            ? r["tag_name"].GetString() : "";
+            ? wxString::FromUTF8(r["tag_name"].GetString()) : "";
+
+        if (new_tag.empty()) {
+            new_tag = tag;
+            new_html_url = html_url;
+        }
 
         const auto published_at = (r.HasMember("published_at") && r["published_at"].IsString())
-            ? r["published_at"].GetString() : "";
+            ? wxString::FromUTF8(r["published_at"].GetString()) : "";
         wxDateTime pub_date;
         wxString::const_iterator end;
         pub_date.ParseFormat(published_at, "%Y-%m-%dT%H:%M:%SZ", &end);
@@ -128,7 +133,7 @@ void mmUpdateWizard::CreateControls(const Document& json_releases, wxArrayInt ne
         const wxString time = pub_date.FormatISOTime();
 
         const auto body = md2html((r.HasMember("body") && r["body"].IsString())
-            ? r["body"].GetString() : "");
+            ? wxString::FromUTF8(r["body"].GetString()) : "");
 
         wxString link = wxString::Format(R"(<a href="%s" target="_blank">%s</a>)", html_url, tag);
         const wxString github = "https://github.com/moneymanagerex/moneymanagerex/releases/tag/";
@@ -145,7 +150,10 @@ void mmUpdateWizard::CreateControls(const Document& json_releases, wxArrayInt ne
         i++;
     }
 
-    wxString version = new_releases.empty() ? _("You already have the latest version") : _("A new version of MMEX is available!");
+    auto version = new_releases.empty() ? _("You already have the latest version") : _("A new version of MMEX is available!");
+    if (!new_releases.empty()) {
+        version = wxString::Format(R"(<a href="%s" target="_blank">%s</a>)", new_html_url, version);
+    }
     wxString header = wxString::Format(_("Your version is %s"), mmex::version::string);
     html = wxString::Format(update_template, header, version, html);
 
@@ -308,8 +316,7 @@ void mmUpdate::checkUpdates(wxFrame *frame, bool bSilent)
         {
             const wxString& msgStr = _("Unable to check for updates!")
                 + "\n\n" + _("Error: ")
-                + ((!res) ? GetParseError_En(res.Code())
-                    : json_releases.GetString());
+                + wxString::FromUTF8(!res ? GetParseError_En(res.Code()) : json_releases.GetString());
             wxMessageBox(msgStr, _("MMEX Update Check"));
         }
         return;
@@ -333,7 +340,7 @@ void mmUpdate::checkUpdates(wxFrame *frame, bool bSilent)
     int i = 0;
     for (auto& r : json_releases.GetArray())
     {
-        const auto tag_name = r["tag_name"].GetString();
+        const auto tag_name = wxString::FromUTF8(r["tag_name"].GetString());
         bool prerelease = r["prerelease"].GetBool();
         if (_stable && prerelease) {
             wxLogDebug("[Skip] tag %s", tag_name);
@@ -347,7 +354,7 @@ void mmUpdate::checkUpdates(wxFrame *frame, bool bSilent)
             new_releases.Add(i);
             if (top < check) {
                 top = check;
-                top_version = wxString::FromUTF8(tag_name);
+                top_version = tag_name;
                 if (last < top) {
                     is_update_available = true;
                 }

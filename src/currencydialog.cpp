@@ -134,11 +134,20 @@ void mmCurrencyDialog::fillControls()
         m_scale = log10(m_currency->SCALE);
         const wxString& scale_value = wxString::Format("%i", m_scale);
         scaleTx_->ChangeValue(scale_value);
-        if (!Model_Infotable::instance().GetStringInfo("LOCALE","").empty())
+
+        /*const wxString locale = Model_Infotable::instance().GetStringInfo("LOCALE", "");
+        if (!locale.empty())
         {
-            decTx_->Disable();
-            grpTx_->Disable();
-        }
+            try {
+                fmt::format(std::locale(locale.c_str()), "{:L}", 123);
+                decTx_->Disable();
+                grpTx_->Disable();
+            }
+            catch (...) {
+                //Do nothing
+            }
+        }*/
+
         m_currencySymbol->ChangeValue(m_currency->CURRENCY_SYMBOL);
 
         bool baseCurrency = (Option::instance().getBaseCurrencyID() == m_currency->CURRENCYID);

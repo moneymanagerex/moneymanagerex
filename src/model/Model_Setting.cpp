@@ -160,7 +160,7 @@ row_t Model_Setting::to_row_t()
 }
 
 //-------------------------------------------------------------------
-wxString Model_Setting::ViewAccounts()
+wxString Model_Setting::GetViewAccounts()
 {
     return GetStringSetting("VIEWACCOUNTS", VIEW_ACCOUNTS_ALL_STR);
 }

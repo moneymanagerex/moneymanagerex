@@ -103,7 +103,6 @@ mmFilterTransactionsDialog::mmFilterTransactionsDialog(wxWindow* parent)
     : categID_(-1)
     , subcategID_(-1)
     , payeeID_(-1)
-    , refAccountID_(-1)
     , bSimilarCategoryStatus_(false)
 {
     Create(parent);
@@ -138,8 +137,6 @@ bool mmFilterTransactionsDialog::Create(wxWindow* parent
 
 int mmFilterTransactionsDialog::ShowModal()
 {
-    dataToControls();
-    // rebuild the payee list as it may have changed
     BuildPayeeList();
 
     return wxDialog::ShowModal();
@@ -161,6 +158,14 @@ void mmFilterTransactionsDialog::BuildPayeeList()
 
 void mmFilterTransactionsDialog::dataToControls()
 {
+    m_accounts_name.clear();
+    selected_accounts_id_.clear();
+
+    for (const auto& acc : Model_Account::instance().all()) {
+        m_accounts_name.push_back(acc.ACCOUNTNAME);
+    }
+    m_accounts_name.Sort();
+
     BuildPayeeList();
     from_json(settings_string_);
 }
@@ -195,10 +200,12 @@ void mmFilterTransactionsDialog::CreateControls()
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     itemPanelSizer->Add(accountCheckBox_, g_flagsH);
 
-    accountDropDown_ = new wxChoice(itemPanel
-        , wxID_ANY, wxDefaultPosition, wxSize(220, -1)
-        , Model_Account::instance().all_checking_account_names(), 0);
-    itemPanelSizer->Add(accountDropDown_, g_flagsExpand);
+    bSelectedAccounts_ = new wxButton(itemPanel, wxID_STATIC, _("All"));
+    bSelectedAccounts_->SetMinSize(wxSize(180, -1));
+    bSelectedAccounts_->Connect(wxID_ANY, wxEVT_COMMAND_BUTTON_CLICKED
+        , wxCommandEventHandler(mmFilterTransactionsDialog::OnAccountsButton), nullptr, this);
+
+    itemPanelSizer->Add(bSelectedAccounts_, g_flagsExpand);
 
     // From Date
     startDateCheckBox_ = new wxCheckBox(itemPanel, wxID_ANY, _("From Date")
@@ -355,13 +362,13 @@ void mmFilterTransactionsDialog::CreateControls()
             wxString::Format("TRANSACTIONS_FILTER_%d", i)
             , "");
         Document j_doc;
-        if (j_doc.Parse(data.c_str()).HasParseError()) {
+        if (j_doc.Parse(data.utf8_str()).HasParseError()) {
             j_doc.Parse("{}");
         }
 
         //Label
         Value& j_label = GetValueByPointerWithDefault(j_doc, "/LABEL", "");
-        const wxString& s_label = j_label.IsString() ? j_label.GetString() : "";
+        const wxString& s_label = j_label.IsString() ? wxString::FromUTF8(j_label.GetString()) : "";
 
         m_setting_name->AppendString(s_label.empty() ? wxString::Format(_("%i: Empty"), i + 1) : s_label);
     }
@@ -417,7 +424,7 @@ void mmFilterTransactionsDialog::OnCheckboxClick(wxCommandEvent& event)
         if ((event.GetId() == dateRangeCheckBox_->GetId()) && startDateCheckBox_->IsChecked())
             startDateCheckBox_->SetValue(false);
 
-        accountDropDown_->Enable(accountCheckBox_->IsChecked());
+        bSelectedAccounts_->Enable(accountCheckBox_->IsChecked());
         cbPayee_->Enable(payeeCheckBox_->IsChecked());
         btnCategory_->Enable(categoryCheckBox_->IsChecked());
         similarCategCheckBox_->Enable(categoryCheckBox_->IsChecked());
@@ -429,14 +436,14 @@ void mmFilterTransactionsDialog::OnCheckboxClick(wxCommandEvent& event)
         amountMinEdit_->Enable(amountRangeCheckBox_->IsChecked());
         amountMaxEdit_->Enable(amountRangeCheckBox_->IsChecked());
         notesEdit_->Enable(notesCheckBox_->IsChecked());
-        transNumberEdit_->Enable(transNumberCheckBox_->IsChecked());    
-        startDateDropDown_->Enable(startDateCheckBox_->IsChecked());   
+        transNumberEdit_->Enable(transNumberCheckBox_->IsChecked());
+        startDateDropDown_->Enable(startDateCheckBox_->IsChecked());
         fromDateCtrl_->Enable(dateRangeCheckBox_->IsChecked());
         toDateControl_->Enable(dateRangeCheckBox_->IsChecked());
     }
 
-    if (accountCheckBox_->IsChecked() && accountDropDown_->GetSelection() < 0)
-        accountDropDown_->SetSelection(0);
+    if (accountCheckBox_->IsChecked() && selected_accounts_id_.size() <= 0)
+        bSelectedAccounts_->SetLabelText("");
 
     event.Skip();
 }
@@ -445,14 +452,11 @@ bool mmFilterTransactionsDialog::isValuesCorrect()
 {
     if (accountCheckBox_->IsChecked())
     {
-        const wxString refAccountStr = accountDropDown_->GetStringSelection();
-        Model_Account::Data* account = Model_Account::instance().get(refAccountStr);
-        if (account)
-            refAccountID_ = account->ACCOUNTID;
+        //TODO
     }
     else
     {
-        refAccountID_ = -1;
+        selected_accounts_id_.clear();
     }
 
     if (payeeCheckBox_->IsChecked())
@@ -474,8 +478,6 @@ bool mmFilterTransactionsDialog::isValuesCorrect()
     if (amountRangeCheckBox_->IsChecked())
     {
         Model_Currency::Data *currency = Model_Currency::GetBaseCurrency();
-        Model_Account::Data *account = Model_Account::instance().get(refAccountID_);
-        if (account) currency = Model_Account::currency(account);
         int currency_precision = Model_Currency::precision(currency);
         double min_amount = 0;
 
@@ -662,8 +664,6 @@ bool mmFilterTransactionsDialog::allowType(const wxString& typeState, bool sameA
 double mmFilterTransactionsDialog::getAmountMin()
 {
     Model_Currency::Data *currency = Model_Currency::GetBaseCurrency();
-    Model_Account::Data *account = Model_Account::instance().get(refAccountID_);
-    if (account) currency = Model_Account::currency(account);
 
     wxString amountStr = amountMinEdit_->GetValue().Trim();
     double amount = 0;
@@ -676,8 +676,6 @@ double mmFilterTransactionsDialog::getAmountMin()
 double mmFilterTransactionsDialog::getAmountMax()
 {
     Model_Currency::Data *currency = Model_Currency::GetBaseCurrency();
-    Model_Account::Data *account = Model_Account::instance().get(refAccountID_);
-    if (account) currency = Model_Account::currency(account);
 
     wxString amountStr = amountMaxEdit_->GetValue().Trim();
     double amount = 0;
@@ -724,11 +722,6 @@ void mmFilterTransactionsDialog::SetStoredSettings(int id)
         wxString::Format("TRANSACTIONS_FILTER_%d", id)
         , "");
     dataToControls();
-}
-
-void mmFilterTransactionsDialog::setAccountToolTip(const wxString& tip) const
-{
-    accountDropDown_->SetToolTip(tip);
 }
 
 void mmFilterTransactionsDialog::clearSettings()
@@ -854,11 +847,13 @@ bool mmFilterTransactionsDialog::checkCategory(const DATA& tran, const std::map<
 }
 
 bool mmFilterTransactionsDialog::checkAll(const Model_Checking::Data &tran
-    , const int accountID, const std::map<int, Model_Splittransaction::Data_Set>& split)
+    , int accountID, const std::map<int, Model_Splittransaction::Data_Set>& split)
 {
     bool ok = true;
     //wxLogDebug("Check date? %i trx date:%s %s %s", getDateRangeCheckBox(), tran.TRANSDATE, getFromDateCtrl().GetDateOnly().FormatISODate(), getToDateControl().GetDateOnly().FormatISODate());
-    if (getAccountCheckBox() && (getAccountID() != tran.ACCOUNTID && getAccountID() != tran.TOACCOUNTID))
+    if (getAccountCheckBox()
+           && selected_accounts_id_.Index(tran.ACCOUNTID) == wxNOT_FOUND
+           && selected_accounts_id_.Index(tran.TOACCOUNTID) == wxNOT_FOUND)
         ok = false;
     else if (getDateRangeCheckBox() && (tran.TRANSDATE < m_begin_date || tran.TRANSDATE > m_end_date))
         ok = false;
@@ -880,7 +875,10 @@ bool mmFilterTransactionsDialog::checkAll(const Model_Checking::Data &tran
 bool mmFilterTransactionsDialog::checkAll(const Model_Billsdeposits::Data &tran, const std::map<int, Model_Budgetsplittransaction::Data_Set>& split)
 {
     bool ok = true;
-    if (getAccountCheckBox() && (getAccountID() != tran.ACCOUNTID && getAccountID() != tran.TOACCOUNTID)) ok = false;
+    if (getAccountCheckBox()
+            && selected_accounts_id_.Index(tran.ACCOUNTID) == wxNOT_FOUND
+            && selected_accounts_id_.Index(tran.TOACCOUNTID) == wxNOT_FOUND)
+        ok = false;
     else if (getDateRangeCheckBox() && (tran.TRANSDATE < m_begin_date && tran.TRANSDATE > m_end_date))
         ok = false;
     else if (getStartDateCheckBox() && (tran.TRANSDATE < m_begin_date)) ok = false;
@@ -914,6 +912,8 @@ const wxString mmFilterTransactionsDialog::getDescriptionToolTip()
     wxString filterDetails = to_json(true);
     filterDetails.Replace(R"("")", _("Empty value"));
     filterDetails.Replace("\"", "");
+    filterDetails.Replace("[", "");
+    filterDetails.Replace("]", "");
     filterDetails.replace(0, 1, ' ');
     filterDetails.RemoveLast(1);
     filterDetails.Append("\n ");
@@ -952,14 +952,16 @@ const wxString mmFilterTransactionsDialog::to_json(bool i18n)
         json_writer.String(label.utf8_str());
     }
 
-    if (accountCheckBox_->IsChecked())
+    if (accountCheckBox_->IsChecked() && !m_accounts_name.empty())
     {
-        const wxString acc = accountDropDown_->GetStringSelection();
-        if (!acc.empty())
+        json_writer.Key((i18n ? _("Account") : "ACCOUNT").utf8_str());
+        json_writer.StartArray();
+        for (const auto& acc : selected_accounts_id_)
         {
-            json_writer.Key((i18n ? _("Account") : "ACCOUNT").utf8_str());
-            json_writer.String(acc.utf8_str());
+            Model_Account::Data* a = Model_Account::instance().get(acc);
+            json_writer.String(a->ACCOUNTNAME.utf8_str());
         }
+        json_writer.EndArray();
     }
 
     if (dateRangeCheckBox_->IsChecked())
@@ -1088,10 +1090,33 @@ void mmFilterTransactionsDialog::from_json(const wxString &data)
 
     //Account
     Value& j_account = GetValueByPointerWithDefault(j_doc, "/ACCOUNT", "");
-    const wxString& s_account = j_account.IsString() ? wxString::FromUTF8(j_account.GetString()) : "";
-    accountCheckBox_->SetValue(!s_account.empty());
-    accountDropDown_->Enable(accountCheckBox_->IsChecked());
-    accountDropDown_->SetStringSelection(s_account);
+    if (j_account.IsArray())
+    {
+        wxString baloon = "";
+        wxString acc_name;
+        for (rapidjson::SizeType i = 0; i < j_account.Size(); i++)
+        {
+            wxASSERT(j_account[i].IsString());
+            acc_name = wxString::FromUTF8(j_account[i].GetString());
+            wxLogDebug("%s", acc_name);
+            accountCheckBox_->SetValue(true);
+            for (const auto& a : Model_Account::instance().find(Model_Account::ACCOUNTNAME(acc_name)))
+            {
+                selected_accounts_id_.Add(a.ACCOUNTID);
+                baloon += (baloon.empty() ? "" : "\n") + a.ACCOUNTNAME;
+            }
+        }
+        if (selected_accounts_id_.size() == 1)
+            bSelectedAccounts_->SetLabelText(acc_name);
+        else {
+            bSelectedAccounts_->SetToolTip(baloon);
+            bSelectedAccounts_->SetLabelText("...");
+        }
+    }
+    else
+        accountCheckBox_->SetValue(false);
+
+    bSelectedAccounts_->Enable(accountCheckBox_->IsChecked());
 
     //Dates
     Value& j_date1 = GetValueByPointerWithDefault(j_doc, "/DATE1", "");
@@ -1233,9 +1258,9 @@ void mmFilterTransactionsDialog::OnDateChanged(wxDateEvent& event)
 
 }
 
-int mmFilterTransactionsDialog::getAccountID()
+const wxArrayInt mmFilterTransactionsDialog::getAccountsID() const
 {
-    return refAccountID_;
+    return selected_accounts_id_;
 }
 
 bool mmFilterTransactionsDialog::getStatusCheckBox()
@@ -1245,8 +1270,7 @@ bool mmFilterTransactionsDialog::getStatusCheckBox()
 
 bool mmFilterTransactionsDialog::getAccountCheckBox()
 {
-    const auto s = accountDropDown_->GetStringSelection();
-    return accountCheckBox_->GetValue() && !s.empty();
+    return accountCheckBox_->GetValue() && !selected_accounts_id_.empty();
 }
 
 bool mmFilterTransactionsDialog::getCategoryCheckBox()
@@ -1359,5 +1383,63 @@ void mmFilterTransactionsDialog::OnSaveSettings(wxCommandEvent& WXUNUSED(event))
     m_setting_name->SetString(i, label);
 
     SaveSettings(i);
+}
+
+void mmFilterTransactionsDialog::OnAccountsButton(wxCommandEvent& WXUNUSED(event))
+{
+    bSelectedAccounts_->UnsetToolTip();
+    wxMultiChoiceDialog s_acc(this, _("Choose Accounts")
+       , "" , m_accounts_name);
+
+    wxButton* ok = static_cast<wxButton*>(s_acc.FindWindow(wxID_OK));
+    if (ok) ok->SetLabel(_("&OK "));
+    wxButton* ca = static_cast<wxButton*>(s_acc.FindWindow(wxID_CANCEL));
+    if (ca) ca->SetLabel(wxGetTranslation(g_CancelLabel));
+
+    wxString baloon = "";
+    wxArrayInt selected_items;
+
+    for (const auto& acc : selected_accounts_id_)
+    {
+        Model_Account::Data* a = Model_Account::instance().get(acc);
+        if (a && m_accounts_name.Index(a->ACCOUNTNAME) != wxNOT_FOUND)
+            selected_items.Add(m_accounts_name.Index(a->ACCOUNTNAME));
+    }
+    s_acc.SetSelections(selected_items);
+
+    selected_accounts_id_.Clear();
+    bSelectedAccounts_->UnsetToolTip();
+
+    if (s_acc.ShowModal() == wxID_OK)
+    {
+        selected_items = s_acc.GetSelections();
+        for (const auto &entry : selected_items)
+        {
+            int index = entry;
+            const wxString accounts_name = m_accounts_name[index];
+            const auto account = Model_Account::instance().get(accounts_name);
+            if (account) selected_accounts_id_.Add(account->ACCOUNTID);
+            baloon += accounts_name + "\n";
+        }
+    }
+
+    if (selected_accounts_id_.GetCount() == 0)
+    {
+        bSelectedAccounts_->SetLabelText("");
+        accountCheckBox_->SetValue(false);
+        bSelectedAccounts_->Disable();
+    }
+    else if (selected_accounts_id_.GetCount() == 1)
+    {
+        const Model_Account::Data* account = Model_Account::instance().get(*selected_accounts_id_.begin());
+        if (account)
+            bSelectedAccounts_->SetLabelText(account->ACCOUNTNAME);
+    }
+    else if (selected_accounts_id_.GetCount() > 1)
+    {
+        bSelectedAccounts_->SetLabelText("...");
+        bSelectedAccounts_->SetToolTip(baloon);
+    }
+
 }
 

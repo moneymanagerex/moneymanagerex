@@ -497,7 +497,7 @@ void mmUnivCSVDialog::SetSettings(const wxString &json_data)
 
     //Setting name
     Value& template_name = GetValueByPointerWithDefault(json_doc, "/SETTING_NAME", "");
-    const wxString setting_name =template_name.IsString() ? wxString::FromUTF8(template_name.GetString()) : "??";
+    const wxString setting_name = template_name.IsString() ? wxString::FromUTF8(template_name.GetString()) : "??";
     m_setting_name_ctrl_->ChangeValue(setting_name);
 
     //Date Mask
@@ -1134,8 +1134,6 @@ void mmUnivCSVDialog::OnExport(wxCommandEvent& WXUNUSED(event))
     const auto split = Model_Splittransaction::instance().get_all();
     int fromAccountID = from_account->ACCOUNTID;
 
-    wxDateTime trx_date;
-
     long numRecords = 0;
     Model_Currency::Data* currency = Model_Account::currency(from_account);
 
@@ -1196,8 +1194,7 @@ void mmUnivCSVDialog::OnExport(wxCommandEvent& WXUNUSED(event))
                 switch (*sit)
                 {
                 case UNIV_CSV_DATE:
-                    trx_date = Model_Checking::TRANSDATE(pBankTransaction);
-                    entry = mmGetDateForDisplay(trx_date.FormatISODate());
+                    entry = mmGetDateForDisplay(Model_Checking::TRANSDATE(pBankTransaction).FormatISODate(), date_format_);
                     break;
                 case UNIV_CSV_PAYEE:
                     entry = tran.real_payee_name(fromAccountID);
@@ -1414,7 +1411,7 @@ void mmUnivCSVDialog::update_preview()
                         {
                         case UNIV_CSV_DATE:
                         {
-                            text << inQuotes(mmGetDateForDisplay(Model_Checking::TRANSDATE(pBankTransaction).FormatISODate(),date_format_), delimit);
+                            text << inQuotes(mmGetDateForDisplay(Model_Checking::TRANSDATE(pBankTransaction).FormatISODate(), date_format_), delimit);
                             break;
                         }
                         case UNIV_CSV_PAYEE:

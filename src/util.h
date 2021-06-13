@@ -113,7 +113,7 @@ const wxString inQuotes(const wxString& label, const wxString& delimiter);
 void csv2tab_separated_values(wxString& line, const wxString& delimit);
 void correctEmptyFileExt(const wxString& ext, wxString & fileName );
 
-void mmLoadColorsFromDatabase();
+void mmLoadColorsFromDatabase(bool def = false);
 wxColour getUDColour(int c);
 
 class mmColors
@@ -233,5 +233,7 @@ private:
 
 };
 
-// used where differences occure between platforms
+const wxColor* bestFontColour(wxColour background);
+
+// used where differences occur between platforms
 wxImageList* createImageList();

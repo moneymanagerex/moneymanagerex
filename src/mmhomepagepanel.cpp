@@ -132,6 +132,7 @@ void mmHomePagePanel::insertDataIntoTemplate()
     m_frames["HTMLSCALE"] = wxString::Format("%d", Option::instance().getHtmlFontSize());
 
     double tBalance = 0.0, cardBalance = 0.0, termBalance = 0.0, cashBalance = 0.0, loanBalance = 0.0;
+    //double shareBalance = 0.0, assetBalance = 0.0;
 
     htmlWidgetAccounts account_stats;
     m_frames["ACCOUNTS_INFO"] = account_stats.displayAccounts(tBalance, Model_Account::CHECKING);
@@ -148,6 +149,12 @@ void mmHomePagePanel::insertDataIntoTemplate()
     m_frames["TERM_ACCOUNTS_INFO"] = account_stats.displayAccounts(termBalance, Model_Account::TERM);
     tBalance += termBalance;
 
+    //m_frames["ASSET_ACCOUNTS_INFO"] = account_stats.displayAccounts(assetBalance, Model_Account::ASSET);
+    //tBalance += assetBalance;
+
+    //m_frames["SHARE_ACCOUNTS_INFO"] = account_stats.displayAccounts(shareBalance, Model_Account::SHARES);
+    //tBalance += shareBalance;
+
     //Stocks
     htmlWidgetStocks stocks_widget;
     m_frames["STOCKS_INFO"] = stocks_widget.getHTMLText();
@@ -162,6 +169,7 @@ void mmHomePagePanel::insertDataIntoTemplate()
     //
     htmlWidgetIncomeVsExpenses income_vs_expenses;
     m_frames["INCOME_VS_EXPENSES"] = income_vs_expenses.getHTMLText();
+    m_frames["INCOME_VS_EXPENSES_FORECOLOR"] = mmThemeMetaString(meta::COLOR_REPORT_FORECOLOR);
     m_frames["INCOME_VS_EXPENSES_COLORS"] = wxString::Format("'%s', '%s'", mmThemeMetaString(meta::COLOR_REPORT_CREDIT)
                                                 , mmThemeMetaString(meta::COLOR_REPORT_DEBIT));
 
@@ -274,7 +282,8 @@ void mmHomePagePanel::OnLinkClicked(wxWebViewEvent& event)
 
         const wxString type[] = { "TOP_CATEGORIES", "INVEST", "ACCOUNTS_INFO"
             ,"CARD_ACCOUNTS_INFO" ,"CASH_ACCOUNTS_INFO", "LOAN_ACCOUNTS_INFO"
-            , "TERM_ACCOUNTS_INFO" , "CURRENCY_RATES", "BILLS_AND_DEPOSITS" };
+            , "TERM_ACCOUNTS_INFO", "ASSET_ACCOUNTS_INFO", "SHARE_ACCOUNTS_INFO"
+            , "CURRENCY_RATES", "BILLS_AND_DEPOSITS" };
 
         for (const auto& entry : type)
         {

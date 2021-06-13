@@ -30,7 +30,7 @@
 
 mmReportTransactions::mmReportTransactions(int refAccountID, mmFilterTransactionsDialog* transDialog)
     : mmPrintableBase("Transaction Report")
-    , m_refAccountID(refAccountID)
+    , m_refAccountsID(refAccountID)
     , m_transDialog(transDialog)
     , trans_()
 {
@@ -47,11 +47,14 @@ wxString mmReportTransactions::getHTMLText()
 {
     Run(m_transDialog);
 
-    const auto account = Model_Account::instance().get(m_transDialog->getAccountID());
-    bool monoAcc = m_transDialog->getAccountCheckBox() && account;
-    const wxString accounts = monoAcc
-        ? account->ACCOUNTNAME
-        : _("All Accounts");
+    wxString accounts = _("All Accounts");
+    if (m_transDialog->getAccountCheckBox() && !m_transDialog->getAccountsID().empty()) {
+        accounts.clear();
+        for (const auto& acc : m_transDialog->getAccountsID()) {
+            Model_Account::Data* a = Model_Account::instance().get(acc);
+            accounts += (accounts.empty() ? "" : ", ") + a->ACCOUNTNAME;
+        }
+    }
 
     mmHTMLBuilder hb;
     hb.init();
@@ -88,10 +91,6 @@ wxString mmReportTransactions::getHTMLText()
 
             hb.startTbody();
             {
-                const Model_Currency::Data* currency = account
-                    ? Model_Account::currency(account)
-                    : Model_Currency::GetBaseCurrency();
-
                 const wxString& AttRefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
 
                 // Display the data for each row
@@ -117,13 +116,14 @@ wxString mmReportTransactions::getHTMLText()
                             hb.addTableCell(wxGetTranslation(transaction.TRANSCODE));
                         }
 
-                        const Model_Account::Data* acc = account;
-                        const Model_Currency::Data* curr = currency;
-                        if (!monoAcc)
+                        Model_Account::Data* acc;
+                        const Model_Currency::Data* curr;
+                        //if (monoAcc)
                         {
                             acc = Model_Account::instance().get(transaction.ACCOUNTID);
                             curr = Model_Account::currency(acc);
                         }
+
                         if (acc)
                         {
                             const double amount = Model_Checking::balance(transaction, acc->ACCOUNTID);
@@ -151,7 +151,7 @@ wxString mmReportTransactions::getHTMLText()
                                 AttRefType, transaction.TRANSID, mmAttachmentManage::GetAttachmentNoteSign());
                         }
 
-                        //Notes                         
+                        //Notes
                         hb.addTableCell(AttachmentsLink + transaction.NOTES);
 
                      }
@@ -252,7 +252,7 @@ void mmReportTransactions::Run(mmFilterTransactionsDialog* dlg)
     const auto splits = Model_Splittransaction::instance().get_all();
     for (const auto& tran : Model_Checking::instance().all()) //TODO: find should be faster
     {
-        if (!dlg->checkAll(tran, m_refAccountID, splits)) continue;
+        if (!dlg->checkAll(tran, m_refAccountsID, splits)) continue;
         Model_Checking::Full_Data full_tran(tran, splits);
         
         //f (Model_Checking::type(tran) == Model_Checking::TRANSFER)
