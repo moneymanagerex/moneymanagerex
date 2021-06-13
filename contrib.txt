@@ -121,6 +121,8 @@ Dimitrios Valsamis
 James Rogers
 Jesse Gac
 Michael Ellis
+François Maréchal
+Peter Hulm
 Wiesław Stawiszyński
 Gérard AGNESIO
 Jean-Francois Zahnen
@@ -129,6 +131,7 @@ Roger Chandler
 David Coons
 Jose Manuel Marrero León
 Lucas Lopez Azcona
+Raleigh Meade
 Thierry PAPINOT
 Jiří Vyskočil
 Roger Spindler
@@ -140,6 +143,8 @@ Frédéric Vandendris
 Gerald Mead
 Hermann Fessler
 Israel Corbo
+Massimo casaccia
+Timothy Pope
 Fr. Cycus Chungu
 Roger Gimbrere
 Brian Crow
