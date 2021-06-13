@@ -961,7 +961,7 @@ void mmTransDialog::OnAccountOrPayeeUpdated(wxCommandEvent& event)
         cbPayee_->Clear();
         if (m_transfer)
         {
-            Model_Account::Data_Set filtd = Model_Account::instance().FilterAccounts(payeeName);
+            Model_Account::Data_Set filtd = Model_Account::instance().FilterAccounts(payeeName,true);
             std::sort(filtd.rbegin(), filtd.rend(), SorterByACCOUNTNAME());
             for (const auto &account : filtd)
                 cbPayee_->Insert(account.ACCOUNTNAME, 0);
