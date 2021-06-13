@@ -147,6 +147,7 @@ void transactionsUpdateDialog::CreateControls()
     m_type_choice = new wxChoice(this, ID_TRANS_TYPE
         , wxDefaultPosition, wxDefaultSize);
     m_type_choice->Enable(false);
+    m_type_choice->Select(0);
 
     for (const auto& i : Model_Checking::all_type())
     {
