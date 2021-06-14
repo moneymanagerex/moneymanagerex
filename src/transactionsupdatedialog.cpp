@@ -146,13 +146,13 @@ void transactionsUpdateDialog::CreateControls()
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     m_type_choice = new wxChoice(this, ID_TRANS_TYPE
         , wxDefaultPosition, wxDefaultSize);
-    m_type_choice->Enable(false);
-    m_type_choice->Select(0);
-
     for (const auto& i : Model_Checking::all_type())
     {
         m_type_choice->Append(wxGetTranslation(i), new wxStringClientData(i));
     }
+    m_type_choice->Enable(false);
+    m_type_choice->Select(0);
+
 
     grid_sizer->Add(m_type_checkbox, g_flagsH);
     grid_sizer->Add(m_type_choice, g_flagsH);
