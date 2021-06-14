@@ -1,6 +1,7 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
  Copyright (C) 2012 - 2021 Nikolay Akimov
+ Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -87,6 +88,7 @@ void do_read_file(std::vector<wxString>& data, const wxString& file_path)
     if (!wxFileName::FileExists(file_path)) return;
 
     mmHTMLBuilder hb;
+    hb.init(true);
     wxFileInputStream input(file_path);
     wxTextInputStream text(input);
     wxRegEx link(R"(\[([^][]+)\]\(([^\(\)]+)\))", wxRE_EXTENDED);
@@ -122,9 +124,10 @@ void do_read_file(std::vector<wxString>& data, const wxString& file_path)
         if (line.StartsWith("-------------") || input.Eof())
         {
             hb.addText(txt);
-            hb.end();
+            hb.end(true);
             data.push_back(hb.getHTMLText());
             hb.clear();
+            hb.init(true);
             txt.clear();
         }
         else
@@ -133,17 +136,18 @@ void do_read_file(std::vector<wxString>& data, const wxString& file_path)
             txt << line;
         }
     }
-
+    hb.end(true);
 }
 
 void mmAboutDialog::initControls()
 {
     mmHTMLBuilder hb;
+    hb.init(true);
     wxString html = getProgramDescription(2);
     html.Replace("\n", "<br>");
     hb.addHeader(1, ::mmex::getProgramName());
     hb.addText(html);
-    hb.end();
+    hb.end(true);
     html = hb.getHTMLText();
     aboutText_->SetPage(html);
 
