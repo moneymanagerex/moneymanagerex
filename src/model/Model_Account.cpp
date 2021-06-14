@@ -335,11 +335,15 @@ bool Model_Account::BoolOf(int value)
     return value > 0 ? true : false;
 }
 
-const Model_Account::Data_Set Model_Account::FilterAccounts(const wxString& account_pattern)
+const Model_Account::Data_Set Model_Account::FilterAccounts(const wxString& account_pattern, bool skip_closed)
 {
     Data_Set accounts;
     for (auto &account : this->all(Model_Account::COL_ACCOUNTNAME))
     {
+        if (skip_closed && status(account) == CLOSED)
+            continue;
+        if (type(account) == INVESTMENT)
+            continue;
         if (account.ACCOUNTNAME.Lower().Matches(account_pattern.Lower().Append("*")))
             accounts.push_back(account);
     }

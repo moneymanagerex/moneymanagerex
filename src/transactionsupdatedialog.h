@@ -49,10 +49,15 @@ private:
     void onFocusChange(wxChildFocusEvent& event);
     void OnCategChange(wxCommandEvent& event);
     void OnPayeeUpdated(wxCommandEvent& event);
+    void OnAccountUpdated(wxCommandEvent& event);
+    void SetPayeeTransferControls();
+    void OnTransTypeChanged(wxCommandEvent& event);
 
 private:
     wxCheckBox* m_payee_checkbox;
     wxComboBox* m_payee;
+    wxCheckBox* m_transferAcc_checkbox;
+    wxComboBox* m_transferAcc;    
     wxCheckBox* m_date_checkbox;
     wxDatePickerCtrl* m_dpc;
     wxCheckBox* m_status_checkbox;
@@ -75,6 +80,8 @@ private:
     {
         /* Transaction Dialog */
         ID_PAYEE = wxID_HIGHEST + 900,
+        ID_TRANS_TYPE,
+        ID_TRANS_ACC
     };
 };
 
