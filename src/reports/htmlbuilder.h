@@ -1,5 +1,6 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
+ Copyright (C) 21021 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -50,7 +51,7 @@ public:
     void DisplayDateHeading(const wxDateTime& startDate, const wxDateTime& endDate, bool withDateRange = true);
     void DisplayFooter(const wxString& footer);
     /** Starts a new HMTL report */
-    void init();
+    void init(bool simple=false);
 
     /** Clears the current HTML document */
     void clear()
@@ -98,7 +99,7 @@ public:
     /** Add a Cell value */
     void addTableCellLink(const wxString& href, const wxString& value);
 
-    void end();
+    void end(bool simple=false);
     void endTable();
     void endThead();
     void endTbody();
