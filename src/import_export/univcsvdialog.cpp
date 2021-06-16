@@ -28,6 +28,7 @@
 #include "platfdep.h"
 #include "util.h"
 #include "option.h"
+#include "util.h"
 #include "webapp.h"
 #include "parsers.h"
 
@@ -435,17 +436,17 @@ void mmUnivCSVDialog::CreateControls()
     const wxString& file_tooltip = IsImporter()
         ? (IsXML() ? _("Choose XML data file to Import") : _("Choose CSV data file to Import"))
         : (IsXML() ? _("Choose XML data file to Export") : _("Choose CSV data file to Export"));
-    button_browse->SetToolTip(file_tooltip);
+    mmToolTip(button_browse, file_tooltip);
 
-    m_setting_name_ctrl_->SetToolTip(_("Template name"));
-    itemButton_Save->SetToolTip(_("Save Template"));
-    itemButtonClear->SetToolTip(_("Clear Settings"));
-    itemButton_standard->SetToolTip(_("MMEX standard format"));
-    itemButton_MoveUp->SetToolTip(_("Move Up"));
-    itemButton_MoveDown->SetToolTip(_("Move &Down"));
-    if (IsCSV()) m_textDelimiter->SetToolTip(_("Specify the delimiter to use when importing/exporting CSV files"));
-    if (IsImporter()) itemButton_Import_->SetToolTip(_("Import File"));
-    if (!IsImporter()) itemButton_Import_->SetToolTip(_("Export File"));
+    mmToolTip(m_setting_name_ctrl_, _("Template name"));
+    mmToolTip(itemButton_Save, _("Save Template"));
+    mmToolTip(itemButtonClear, _("Clear Settings"));
+    mmToolTip(itemButton_standard, _("MMEX standard format"));
+    mmToolTip(itemButton_MoveUp, _("Move Up"));
+    mmToolTip(itemButton_MoveDown, _("Move &Down"));
+    if (IsCSV()) mmToolTip(m_textDelimiter, _("Specify the delimiter to use when importing/exporting CSV files"));
+    if (IsImporter()) mmToolTip(itemButton_Import_, _("Import File"));
+    if (!IsImporter()) mmToolTip(itemButton_Import_, _("Export File"));
 
 }
 

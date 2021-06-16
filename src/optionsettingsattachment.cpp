@@ -65,7 +65,7 @@ void OptionSettingsAttachment::Create()
 
     wxStaticText* attachmentStaticText = new wxStaticText(this, wxID_STATIC, attachmentStaticText_desc);
     attachmentStaticBoxSizer->Add(attachmentStaticText, g_flagsV);
-    attachmentStaticText->SetToolTip(_("Every OS type (Win,Mac,Unix) has its attachment folder"));
+    mmToolTip(attachmentStaticText, _("Every OS type (Win,Mac,Unix) has its attachment folder"));
 
     wxBoxSizer* attachDefinedSizer = new wxBoxSizer(wxHORIZONTAL);
     attachmentStaticBoxSizer->Add(attachDefinedSizer);
@@ -84,7 +84,7 @@ void OptionSettingsAttachment::Create()
 
     wxButton* AttachmentsFolderButton = new wxButton(this
         , ID_DIALOG_OPTIONS_BUTTON_ATTACHMENTSFOLDER, "...", wxDefaultPosition, wxSize(25, -1), 0);
-    AttachmentsFolderButton->SetToolTip(_("Browse for folder"));
+    mmToolTip(AttachmentsFolderButton, _("Browse for folder"));
 
     attachDefinedSizer->Add(m_attachments_path, g_flagsH);
     attachDefinedSizer->Add(AttachmentsFolderButton, g_flagsH);
@@ -121,21 +121,21 @@ void OptionSettingsAttachment::Create()
     if (mmPlatformType() != "Win")
     {
         wxStaticText* attachmentFolderWinText = new wxStaticText(this, wxID_STATIC, _("Windows folder -> ") + attachmentFolderWin.Left(50));
-        attachmentFolderWinText->SetToolTip(attachmentFolderWin);
+        mmToolTip(attachmentFolderWinText, attachmentFolderWin);
         attachmentStaticBoxSizerInfo->Add(attachmentFolderWinText);
     }
 
     if (mmPlatformType() != "Mac")
     {
         wxStaticText* attachmentFolderMacText = new wxStaticText(this, wxID_STATIC, _("Mac folder -> ") + attachmentFolderMac.Left(50));
-        attachmentFolderMacText->SetToolTip(attachmentFolderMac);
+        mmToolTip(attachmentFolderMacText, attachmentFolderMac);
         attachmentStaticBoxSizerInfo->Add(attachmentFolderMacText);
     }
 
     if (mmPlatformType() != "Uni")
     {
         wxStaticText* attachmentFolderUnixText = new wxStaticText(this, wxID_STATIC, _("Unix folder -> ") + attachmentFolderUnix.Left(50));
-        attachmentFolderUnixText->SetToolTip(attachmentFolderUnix);
+        mmToolTip(attachmentFolderUnixText, attachmentFolderUnix);
         attachmentStaticBoxSizerInfo->Add(attachmentFolderUnixText);
     }
     //End other OS folders
@@ -155,13 +155,13 @@ void OptionSettingsAttachment::Create()
     m_delete_attachments = new wxCheckBox(this, wxID_STATIC,
         _("Delete file after import"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     m_delete_attachments->SetValue(Model_Infotable::instance().GetBoolInfo("ATTACHMENTSDELETE", false));
-    m_delete_attachments->SetToolTip(_("Select to delete file after import in attachments archive"));
+    mmToolTip(m_delete_attachments, _("Select to delete file after import in attachments archive"));
     attachmentStaticBoxSizer->Add(m_delete_attachments, g_flagsV);
 
     m_trash_attachments = new wxCheckBox(this, wxID_STATIC,
         _("When remove attachment, move file instead of delete"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     m_trash_attachments->SetValue(Model_Infotable::instance().GetBoolInfo("ATTACHMENTSTRASH", false));
-    m_trash_attachments->SetToolTip(_("Select to don't delete file when attachment is removed, but instead move it to 'Deleted' subfolder"));
+    mmToolTip(m_trash_attachments, _("Select to don't delete file when attachment is removed, but instead move it to 'Deleted' subfolder"));
     attachmentStaticBoxSizer->Add(m_trash_attachments, g_flagsV);
 }
 

@@ -140,6 +140,8 @@ EVT_MENU(MENU_VIEW_BUDGET_FINANCIAL_YEARS, mmGUIFrame::OnViewBudgetFinancialYear
 EVT_MENU(MENU_VIEW_BUDGET_TRANSFER_TOTAL, mmGUIFrame::OnViewBudgetTransferTotal)
 EVT_MENU(MENU_VIEW_BUDGET_CATEGORY_SUMMARY, mmGUIFrame::OnViewBudgetCategorySummary)
 EVT_MENU(MENU_VIEW_IGNORE_FUTURE_TRANSACTIONS, mmGUIFrame::OnViewIgnoreFutureTransactions)
+EVT_MENU(MENU_VIEW_SHOW_TOOLTIPS, mmGUIFrame::OnViewShowToolTips)
+EVT_MENU(MENU_VIEW_SHOW_MONEYTIPS, mmGUIFrame::OnViewShowMoneyTips)
 
 EVT_MENU(MENU_CATEGORY_RELOCATION, mmGUIFrame::OnCategoryRelocation)
 EVT_MENU(MENU_PAYEE_RELOCATION, mmGUIFrame::OnPayeeRelocation)
@@ -621,6 +623,8 @@ void mmGUIFrame::menuEnableItems(bool enable)
     menuBar_->FindItem(MENU_VIEW_BUDGET_TRANSFER_TOTAL)->Enable(enable);
     menuBar_->FindItem(MENU_VIEW_BUDGET_CATEGORY_SUMMARY)->Enable(enable);
     menuBar_->FindItem(MENU_VIEW_IGNORE_FUTURE_TRANSACTIONS)->Enable(enable);
+    menuBar_->FindItem(MENU_VIEW_SHOW_TOOLTIPS)->Enable(enable);
+    menuBar_->FindItem(MENU_VIEW_SHOW_MONEYTIPS)->Enable(enable);
 
     menuBar_->FindItem(MENU_DB_VACUUM)->Enable(enable);
     menuBar_->FindItem(MENU_DB_DEBUG)->Enable(enable);
@@ -1407,6 +1411,11 @@ void mmGUIFrame::createMenu()
         _("Budget Category Report: with &Summaries"), _("Include the category summaries in the Budget Category Summary"), wxITEM_CHECK);
     wxMenuItem* menuItemIgnoreFutureTransactions = new wxMenuItem(menuView, MENU_VIEW_IGNORE_FUTURE_TRANSACTIONS,
         _("Ignore F&uture Transactions"), _("Ignore Future transactions"), wxITEM_CHECK);
+    wxMenuItem* menuItemShowToolTips = new wxMenuItem(menuView, MENU_VIEW_SHOW_TOOLTIPS,
+        _("Show Tooltips"), _("Show Tooltips"), wxITEM_CHECK);
+    wxMenuItem* menuItemShowMoneyTips = new wxMenuItem(menuView, MENU_VIEW_SHOW_MONEYTIPS,
+        _("Show Money Tips"), _("Show Money Tips"), wxITEM_CHECK);
+
     //Add the menu items to the menu bar
     menuView->Append(menuItemToolbar);
     menuView->Append(menuItemLinks);
@@ -1418,6 +1427,9 @@ void mmGUIFrame::createMenu()
     menuView->Append(menuItemBudgetCategorySummary);
     menuView->AppendSeparator();
     menuView->Append(menuItemIgnoreFutureTransactions);
+    menuView->AppendSeparator();
+    menuView->Append(menuItemShowToolTips);
+    menuView->Append(menuItemShowMoneyTips);
     menuView->AppendSeparator();
 
 #if (wxMAJOR_VERSION >= 3 && wxMINOR_VERSION >= 0)
@@ -1677,6 +1689,8 @@ void mmGUIFrame::createMenu()
     menuBar_->Check(MENU_VIEW_BUDGET_TRANSFER_TOTAL, Option::instance().BudgetIncludeTransfers());
     menuBar_->Check(MENU_VIEW_BUDGET_CATEGORY_SUMMARY, Option::instance().BudgetReportWithSummaries());
     menuBar_->Check(MENU_VIEW_IGNORE_FUTURE_TRANSACTIONS, Option::instance().getIgnoreFutureTransactions());
+    menuBar_->Check(MENU_VIEW_SHOW_TOOLTIPS, Option::instance().getShowToolTips());
+    menuBar_->Check(MENU_VIEW_SHOW_MONEYTIPS, Option::instance().getShowMoneyTips());
 }
 //----------------------------------------------------------------------------
 
@@ -2494,6 +2508,8 @@ void mmGUIFrame::OnOptions(wxCommandEvent& /*event*/)
         menuBar_->FindItem(MENU_VIEW_BUDGET_TRANSFER_TOTAL)->Check(Option::instance().BudgetIncludeTransfers());
         menuBar_->FindItem(MENU_VIEW_BUDGET_CATEGORY_SUMMARY)->Check(Option::instance().BudgetReportWithSummaries());
         menuBar_->FindItem(MENU_VIEW_IGNORE_FUTURE_TRANSACTIONS)->Check(Option::instance().getIgnoreFutureTransactions());
+        menuBar_->FindItem(MENU_VIEW_SHOW_TOOLTIPS)->Check(Option::instance().getShowToolTips());
+        menuBar_->FindItem(MENU_VIEW_SHOW_MONEYTIPS)->Check(Option::instance().getShowMoneyTips());        
         menuBar_->Refresh();
         menuBar_->Update();
 
@@ -3198,6 +3214,20 @@ void mmGUIFrame::OnViewBudgetCategorySummary(wxCommandEvent& WXUNUSED(event))
 void mmGUIFrame::OnViewIgnoreFutureTransactions(wxCommandEvent& WXUNUSED(event))
 {
     Option::instance().IgnoreFutureTransactions(!Option::instance().getIgnoreFutureTransactions());
+    updateNavTreeControl();
+    createHomePage();
+}
+
+void mmGUIFrame::OnViewShowToolTips(wxCommandEvent& WXUNUSED(event))
+{
+    Option::instance().ShowToolTips(!Option::instance().getShowToolTips());
+    updateNavTreeControl();
+    createHomePage();
+}
+
+void mmGUIFrame::OnViewShowMoneyTips(wxCommandEvent& WXUNUSED(event))
+{
+    Option::instance().ShowMoneyTips(!Option::instance().getShowMoneyTips());
     updateNavTreeControl();
     createHomePage();
 }

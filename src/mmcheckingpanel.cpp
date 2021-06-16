@@ -339,28 +339,28 @@ void mmCheckingPanel::CreateControls()
     itemBoxSizer4->Add(itemButtonsSizer, g_flagsBorder1V);
 
     m_btnNew = new wxButton(itemPanel12, wxID_NEW, _("&New "));
-    m_btnNew->SetToolTip(_("New Transaction"));
+    mmToolTip(m_btnNew, _("New Transaction"));
     itemButtonsSizer->Add(m_btnNew, 0, wxRIGHT, 5);
 
     m_btnEdit = new wxButton(itemPanel12, wxID_EDIT, _("&Edit "));
-    m_btnEdit->SetToolTip(_("Edit selected transaction"));
+    mmToolTip(m_btnEdit, _("Edit selected transaction"));
     itemButtonsSizer->Add(m_btnEdit, 0, wxRIGHT, 5);
     m_btnEdit->Enable(false);
 
     m_btnDelete = new wxButton(itemPanel12, wxID_REMOVE, _("&Delete "));
-    m_btnDelete->SetToolTip(_("Delete selected transaction"));
+    mmToolTip(m_btnDelete, _("Delete selected transaction"));
     itemButtonsSizer->Add(m_btnDelete, 0, wxRIGHT, 5);
     m_btnDelete->Enable(false);
 
     m_btnDuplicate = new wxButton(itemPanel12, wxID_DUPLICATE, _("D&uplicate "));
-    m_btnDuplicate->SetToolTip(_("Duplicate selected transaction"));
+    mmToolTip(m_btnDuplicate, _("Duplicate selected transaction"));
     itemButtonsSizer->Add(m_btnDuplicate, 0, wxRIGHT, 5);
     m_btnDuplicate->Enable(false);
 
     m_btnAttachment = new wxBitmapButton(itemPanel12, wxID_FILE
         , mmBitmap(png::CLIP), wxDefaultPosition
         , wxSize(30, m_btnDuplicate->GetSize().GetY()));
-    m_btnAttachment->SetToolTip(_("Open attachments"));
+    mmToolTip(m_btnAttachment, _("Open attachments"));
     itemButtonsSizer->Add(m_btnAttachment, 0, wxRIGHT, 5);
     m_btnAttachment->Enable(false);
 
@@ -370,7 +370,7 @@ void mmCheckingPanel::CreateControls()
         , wxTE_NOHIDESEL, wxDefaultValidator);
     searchCtrl->SetDescriptiveText(_("Search"));
     itemButtonsSizer->Add(searchCtrl, 0, wxCENTER, 1);
-    searchCtrl->SetToolTip(_("Enter any string to find it in the nearest transaction notes"));
+    mmToolTip(searchCtrl, _("Enter any string to find it in the nearest transaction notes"));
 
     //Infobar-mini
     m_info_panel_mini = new wxStaticText(itemPanel12, wxID_STATIC, "");
@@ -450,12 +450,12 @@ void mmCheckingPanel::updateExtraTransactionData(bool single, bool foreign)
         if (miniStr.Find("\n") > 1 && !miniStr.IsEmpty())
         {
             m_info_panel_mini->SetLabelText(miniStr.substr(0, miniStr.Find("\n")) + " ...");
-            m_info_panel_mini->SetToolTip(miniStr);
+            mmToolTip(m_info_panel_mini, miniStr);
         }
         else
         {
             m_info_panel_mini->SetLabelText(miniStr);
-            m_info_panel_mini->SetToolTip(miniStr);
+            mmToolTip(m_info_panel_mini, miniStr);
         }
 
         wxString notesStr = full_tran.NOTES;
@@ -520,7 +520,8 @@ void mmCheckingPanel::updateExtraTransactionData(bool single, bool foreign)
 //----------------------------------------------------------------------------
 void mmCheckingPanel::showTips()
 {
-    m_info_panel->SetLabelText(wxGetTranslation(TIPS[rand() % (sizeof(TIPS) / sizeof(wxString))]));
+    if (Option::instance().getShowMoneyTips()) 
+        m_info_panel->SetLabelText(wxGetTranslation(TIPS[rand() % (sizeof(TIPS) / sizeof(wxString))]));
 }
 //----------------------------------------------------------------------------
 
@@ -633,7 +634,7 @@ void mmCheckingPanel::initFilterSettings()
         }
         break;
     case MENU_VIEW_FILTER_DIALOG:
-        m_bitmapTransFilter->SetToolTip(m_trans_filter_dlg->getDescriptionToolTip());
+        mmToolTip(m_bitmapTransFilter, m_trans_filter_dlg->getDescriptionToolTip());
         m_transFilterActive = true;
         break;
     }

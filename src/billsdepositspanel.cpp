@@ -281,33 +281,33 @@ void mmBillsDepositsPanel::CreateControls()
     itemBoxSizer4->Add(itemBoxSizer5, g_flagsBorder1V);
 
     wxButton* itemButtonNew = new wxButton(bdPanel, wxID_NEW, _("&New "));
-    itemButtonNew->SetToolTip(_("New Recurring Transaction"));
+    mmToolTip(itemButtonNew, _("New Recurring Transaction"));
     itemBoxSizer5->Add(itemButtonNew, 0, wxRIGHT, 5);
 
     wxButton* itemButton81 = new wxButton(bdPanel, wxID_EDIT, _("&Edit "));
-    itemButton81->SetToolTip(_("Edit Recurring Transaction"));
+    mmToolTip(itemButton81, _("Edit Recurring Transaction"));
     itemBoxSizer5->Add(itemButton81, 0, wxRIGHT, 5);
     itemButton81->Enable(false);
 
     wxButton* itemButton7 = new wxButton(bdPanel, wxID_DELETE, _("&Delete "));
-    itemButton7->SetToolTip(_("Delete Recurring Transaction"));
+    mmToolTip(itemButton7, _("Delete Recurring Transaction"));
     itemBoxSizer5->Add(itemButton7, 0, wxRIGHT, 5);
     itemButton7->Enable(false);
 
     wxButton* itemButton8 = new wxButton(bdPanel, wxID_PASTE, _("Ente&r"));
-    itemButton8->SetToolTip(_("Enter Next Recurring Transaction Occurrence"));
+    mmToolTip(itemButton8, _("Enter Next Recurring Transaction Occurrence"));
     itemBoxSizer5->Add(itemButton8, 0, wxRIGHT, 5);
     itemButton8->Enable(false);
 
     wxButton* buttonSkipTrans = new wxButton(bdPanel, wxID_IGNORE, _("&Skip"));
-    buttonSkipTrans->SetToolTip(_("Skip Next Recurring Transaction Occurrence"));
+    mmToolTip(buttonSkipTrans, _("Skip Next Recurring Transaction Occurrence"));
     itemBoxSizer5->Add(buttonSkipTrans, 0, wxRIGHT, 5);
     buttonSkipTrans->Enable(false);
 
     wxBitmapButton* btnAttachment_ = new wxBitmapButton(bdPanel, wxID_FILE
         , mmBitmap(png::CLIP), wxDefaultPosition
         , wxSize(30, itemButton8->GetSize().GetY()));
-    btnAttachment_->SetToolTip(_("Open attachments"));
+    mmToolTip(btnAttachment_, _("Open attachments"));
     itemBoxSizer5->Add(btnAttachment_, 0, wxRIGHT, 5);
     btnAttachment_->Enable(false);
 

@@ -195,6 +195,8 @@ private:
     void OnViewBudgetTransferTotal(wxCommandEvent& WXUNUSED(event));
     void OnViewBudgetCategorySummary(wxCommandEvent& WXUNUSED(event));
     void OnViewIgnoreFutureTransactions(wxCommandEvent& WXUNUSED(event));
+    void OnViewShowToolTips(wxCommandEvent& WXUNUSED(event));
+    void OnViewShowMoneyTips(wxCommandEvent& WXUNUSED(event));
     void OnViewToolbarUpdateUI(wxUpdateUIEvent &event);
     void OnViewLinksUpdateUI(wxUpdateUIEvent &event);
 

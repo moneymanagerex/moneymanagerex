@@ -37,6 +37,8 @@ Option::Option()
     , m_budgetIncludeTransfers(false)
     , m_budgetReportWithSummaries(true)
     , m_ignoreFutureTransactions(false)
+    , m_showToolTips(true)
+    , m_showMoneyTips(true)
     , m_currencyHistoryEnabled(false)
     , m_bulk_enter(false)
     , m_transPayeeSelection(Option::NONE)
@@ -89,6 +91,8 @@ void Option::LoadOptions(bool include_infotable)
     m_budgetIncludeTransfers = Model_Setting::instance().GetBoolSetting(INIDB_BUDGET_INCLUDE_TRANSFERS, false);
     m_budgetReportWithSummaries = Model_Setting::instance().GetBoolSetting(INIDB_BUDGET_SUMMARY_WITHOUT_CATEG, true);
     m_ignoreFutureTransactions = Model_Setting::instance().GetBoolSetting(INIDB_IGNORE_FUTURE_TRANSACTIONS, false);
+    m_showToolTips = Model_Setting::instance().GetBoolSetting(INIDB_SHOW_TOOLTIPS, true);
+    m_showMoneyTips = Model_Setting::instance().GetBoolSetting(INIDB_SHOW_MONEYTIPS, true);
 
     // Read the preference as a string and convert to int
     m_transPayeeSelection = Model_Setting::instance().GetIntSetting("TRANSACTION_PAYEE_NONE", Option::NONE);
@@ -219,6 +223,18 @@ void Option::IgnoreFutureTransactions(bool value)
 {
     Model_Setting::instance().Set(INIDB_IGNORE_FUTURE_TRANSACTIONS, value);
     m_ignoreFutureTransactions = value;
+}
+
+void Option::ShowToolTips(bool value)
+{
+    Model_Setting::instance().Set(INIDB_SHOW_TOOLTIPS, value);
+    m_showToolTips = value;
+}
+
+void Option::ShowMoneyTips(bool value)
+{
+    Model_Setting::instance().Set(INIDB_SHOW_MONEYTIPS, value);
+    m_showMoneyTips = value;
 }
 
 void Option::TransPayeeSelection(int value)

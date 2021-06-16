@@ -124,7 +124,7 @@ void mmAttachmentDialog::CreateControls()
 
     wxBitmapButton* magicButton = new wxBitmapButton(buttons_panel
         , wxID_APPLY, mmBitmap(png::MORE_OPTIONS));
-    magicButton->SetToolTip(_("Other tools"));
+    mmToolTip(magicButton, _("Other tools"));
     buttons_sizer->Add(magicButton, g_flagsH);
 
     Center();

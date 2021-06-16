@@ -243,7 +243,7 @@ void mmAboutDialog::createControls(int tabToOpenNo)
 
     m_send_data = new wxCheckBox(buttonPanel, wxID_ANY
         , _("Send anonymous statistics usage data"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
-    m_send_data->SetToolTip(_("Enable to help us sending anonymous data about MMEX usage."));
+    mmToolTip(m_send_data, _("Enable to help us sending anonymous data about MMEX usage."));
 
     buttonPanelSizer->Add(m_send_data, g_flagsV);
 

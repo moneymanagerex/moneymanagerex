@@ -18,6 +18,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 #include "optionsettingsmisc.h"
 #include "option.h"
+#include "util.h"
 
 #include "model/Model_Checking.h"
 
@@ -70,7 +71,7 @@ void OptionSettingsMisc::Create()
     itemListOfURL->SetValue(stockURL);
 
     othersPanelSizer->Add(itemListOfURL, wxSizerFlags(g_flagsExpand).Proportion(0));
-    itemListOfURL->SetToolTip(_("Clear the field to Reset the value to system default."));
+    mmToolTip(itemListOfURL, _("Clear the field to Reset the value to system default."));
 
     // Share Precision
     wxFlexGridSizer* share_precision_sizer = new wxFlexGridSizer(0, 2, 0, 0);
@@ -79,7 +80,7 @@ void OptionSettingsMisc::Create()
     m_share_precision = new wxSpinCtrl(this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize
         , wxSP_ARROW_KEYS, 2, 10, Option::instance().SharePrecision());
     m_share_precision->SetValue(Option::instance().SharePrecision());
-    m_share_precision->SetToolTip(_("Set the precision for Share prices"));
+    mmToolTip(m_share_precision, _("Set the precision for Share prices"));
 
     share_precision_sizer->Add(m_share_precision, wxSizerFlags(g_flagsExpand).Proportion(0));
     othersPanelSizer->Add(share_precision_sizer, g_flagsBorder1V);
@@ -175,7 +176,7 @@ void OptionSettingsMisc::Create()
     m_max_files = new wxSpinCtrl(this, wxID_ANY
         , wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 1, 999, max);
     m_max_files->SetValue(max);
-    m_max_files->SetToolTip(_("Specify max number of backup files"));
+    mmToolTip(m_max_files, _("Specify max number of backup files"));
 
     wxFlexGridSizer* flex_sizer2 = new wxFlexGridSizer(0, 2, 0, 0);
     flex_sizer2->Add(new wxStaticText(this, wxID_STATIC, _("Max Files")), g_flagsH);
@@ -196,7 +197,7 @@ void OptionSettingsMisc::Create()
     csvStaticBoxSizerGrid->Add(new wxStaticText(this, wxID_STATIC, _("Delimiter")), g_flagsH);
     wxTextCtrl* textDelimiter4 = new wxTextCtrl(this
         , ID_DIALOG_OPTIONS_TEXTCTRL_DELIMITER4, delimiter);
-    textDelimiter4->SetToolTip(_("Specify the delimiter to use when importing/exporting CSV files"));
+    mmToolTip(textDelimiter4, _("Specify the delimiter to use when importing/exporting CSV files"));
     textDelimiter4->SetMaxLength(1);
     csvStaticBoxSizerGrid->Add(textDelimiter4, g_flagsH);
 

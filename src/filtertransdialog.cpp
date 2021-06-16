@@ -262,7 +262,7 @@ void mmFilterTransactionsDialog::CreateControls()
         wxCommandEventHandler(mmFilterTransactionsDialog::OnCategs), nullptr, this);
     similarCategCheckBox_ = new wxCheckBox(itemPanel, wxID_ANY, _("Include Similar"),
         wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
-    similarCategCheckBox_->SetToolTip(_("Include all subcategories for the selected category."));
+    mmToolTip(similarCategCheckBox_, _("Include all subcategories for the selected category."));
 
     categSizer->Add(btnCategory_, g_flagsExpand);
     categSizer->Add(similarCategCheckBox_, wxSizerFlags(g_flagsH).Center().Border(0));
@@ -279,7 +279,7 @@ void mmFilterTransactionsDialog::CreateControls()
         choiceStatus_->Append(wxGetTranslation(i), new wxStringClientData(i));
 
     itemPanelSizer->Add(choiceStatus_, g_flagsExpand);
-    choiceStatus_->SetToolTip(_("Specify the status for the transaction"));
+    mmToolTip(choiceStatus_, _("Specify the status for the transaction"));
 
     // Type
     typeCheckBox_ = new wxCheckBox(itemPanel, wxID_ANY, _("Type")
@@ -379,12 +379,12 @@ void mmFilterTransactionsDialog::CreateControls()
     settings_box_sizer->AddSpacer(5);
     m_btnSaveAs = new wxBitmapButton(this, wxID_SAVEAS, mmBitmap(png::SAVE));
     settings_box_sizer->Add(m_btnSaveAs, g_flagsH);
-    m_btnSaveAs->SetToolTip(_("Save active values into current Preset selection"));
+    mmToolTip(m_btnSaveAs, _("Save active values into current Preset selection"));
     m_btnSaveAs->Connect(wxID_SAVEAS, wxEVT_COMMAND_BUTTON_CLICKED
         , wxCommandEventHandler(mmFilterTransactionsDialog::OnSaveSettings), nullptr, this);
 
     wxBitmapButton* itemButtonClear = new wxBitmapButton(this, wxID_CLEAR, mmBitmap(png::CLEAR));
-    itemButtonClear->SetToolTip(_("Clear all fields for current Preset selection"));
+    mmToolTip(itemButtonClear, _("Clear all fields for current Preset selection"));
     settings_box_sizer->Add(itemButtonClear, g_flagsH);
 
     itemBoxSizer3->Add(settings_sizer, wxSizerFlags(g_flagsExpand).Border(wxALL, 0).Proportion(0));
@@ -1109,7 +1109,7 @@ void mmFilterTransactionsDialog::from_json(const wxString &data)
         if (selected_accounts_id_.size() == 1)
             bSelectedAccounts_->SetLabelText(acc_name);
         else {
-            bSelectedAccounts_->SetToolTip(baloon);
+            mmToolTip(bSelectedAccounts_, baloon);
             bSelectedAccounts_->SetLabelText("...");
         }
     }
@@ -1438,7 +1438,7 @@ void mmFilterTransactionsDialog::OnAccountsButton(wxCommandEvent& WXUNUSED(event
     else if (selected_accounts_id_.GetCount() > 1)
     {
         bSelectedAccounts_->SetLabelText("...");
-        bSelectedAccounts_->SetToolTip(baloon);
+        mmToolTip(bSelectedAccounts_, baloon);
     }
 
 }
