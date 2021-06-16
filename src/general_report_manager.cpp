@@ -1,6 +1,7 @@
 /*******************************************************
  Copyright (C) 2011 Stefano Giorgio
  Copyright (C) 2014 -2017 Nikolay Akimov
+ Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -22,6 +23,7 @@
 #include "minimal_editor.h"
 #include "mmpanelbase.h"
 #include "mmSimpleDialogs.h"
+#include "images_list.h"
 #include "paths.h"
 #include "platfdep.h"
 #include "util.h"
@@ -339,6 +341,8 @@ void mmGeneralReportManager::CreateControls()
 #endif
     m_treeCtrl = new wxTreeCtrl(this, ID_REPORT_LIST
         , wxDefaultPosition, wxSize(200, 200), treeCtrlFlags);
+    mmThemeMetaColour(m_treeCtrl, meta::COLOR_NAVPANEL);
+    mmThemeMetaColour(m_treeCtrl, meta::COLOR_NAVPANEL_FONT, true);
 
     wxBoxSizer* reportTreeSizer = new wxBoxSizer(wxVERTICAL);
     reportTreeSizer->Add(m_treeCtrl, g_flagsExpand);
@@ -462,6 +466,8 @@ void mmGeneralReportManager::createEditorTab(wxNotebook* editors_notebook, int t
 #endif
         m_dbView = new wxTreeCtrl(splitter_sql, wxID_ANY, wxDefaultPosition
             , wxDefaultSize, treeCtrlFlags);
+        mmThemeMetaColour(m_dbView, meta::COLOR_NAVPANEL);
+        mmThemeMetaColour(m_dbView, meta::COLOR_NAVPANEL_FONT, true);
 
         splitter_sql->SplitVertically(templateText, m_dbView);
         splitter_sql->SetSashPosition(500);
