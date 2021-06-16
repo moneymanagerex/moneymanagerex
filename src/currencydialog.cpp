@@ -223,7 +223,7 @@ void mmCurrencyDialog::CreateControls()
         ConvRateTooltip = _("Conversion rate will be used in case no currency history has been found for the currency");
     else
         ConvRateTooltip = _("Fixed conversion rate");
-    baseConvRate_->SetToolTip(ConvRateTooltip);
+    mmToolTip(baseConvRate_, ConvRateTooltip);
     itemFlexGridSizer3->Add(baseConvRate_, g_flagsExpand);
 
     //--------------------------
@@ -241,11 +241,11 @@ void mmCurrencyDialog::CreateControls()
 
     wxButton* itemButton24 = new wxButton(this, wxID_OK, _("&OK "));
     itemBoxSizer22->Add(itemButton24, g_flagsH);
-    itemButton24->SetToolTip(_("Save any changes made"));
+    mmToolTip(itemButton24, _("Save any changes made"));
 
     wxButton* itemButton25 = new wxButton(this, wxID_CANCEL, wxGetTranslation(g_CloseLabel));
     itemBoxSizer22->Add(itemButton25, g_flagsH);
-    itemButton25->SetToolTip(_("Any changes will be lost without update"));
+    mmToolTip(itemButton25, _("Any changes will be lost without update"));
 }
 
 void mmCurrencyDialog::OnOk(wxCommandEvent& WXUNUSED(event))

@@ -380,24 +380,24 @@ void mmGeneralReportManager::CreateControls()
     //
     m_buttonOpen = new wxButton(buttonPanel, wxID_OPEN, _("&Import"));
     buttonPanelSizer->Add(m_buttonOpen, g_flagsH);
-    m_buttonOpen->SetToolTip(_("Locate and load a report file."));
+    mmToolTip(m_buttonOpen, _("Locate and load a report file."));
 
     m_buttonSaveAs = new wxButton(buttonPanel, wxID_SAVEAS, _("&Export"));
     buttonPanelSizer->Add(m_buttonSaveAs, g_flagsH);
-    m_buttonSaveAs->SetToolTip(_("Export the report to a new file."));
+    mmToolTip(m_buttonSaveAs, _("Export the report to a new file."));
     buttonPanelSizer->AddSpacer(50);
 
     m_buttonSave = new wxButton(buttonPanel, wxID_SAVE, _("&Save "));
     buttonPanelSizer->Add(m_buttonSave, g_flagsH);
-    m_buttonSave->SetToolTip(_("Save changes."));
+    mmToolTip(m_buttonSave, _("Save changes."));
 
     m_buttonRun = new wxButton(buttonPanel, wxID_EXECUTE, _("&Run"));
     buttonPanelSizer->Add(m_buttonRun, g_flagsH);
-    m_buttonRun->SetToolTip(_("Run selected report."));
+    mmToolTip(m_buttonRun, _("Run selected report."));
 
     wxButton* button_Close = new wxButton(buttonPanel, wxID_CLOSE, wxGetTranslation(g_CloseLabel));
     buttonPanelSizer->Add(button_Close, g_flagsH);
-    //button_Close->SetToolTip(_("Save changes before closing. Changes without Save will be lost."));
+    //mmToolTip(button_Close, _("Save changes before closing. Changes without Save will be lost."));
 
 }
 

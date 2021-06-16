@@ -19,6 +19,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "optionsettingsnet.h"
 #include "constants.h"
 #include "option.h"
+#include "util.h"
 
 #include <wx/hyperlink.h>
 #include <wx/spinctrl.h>
@@ -65,14 +66,14 @@ void OptionSettingsNet::Create()
     wxString WebAppURL = Model_Infotable::instance().GetStringInfo("WEBAPPURL", "");
     wxTextCtrl* WebAppURLTextCtr = new wxTextCtrl(this, ID_DIALOG_OPTIONS_TEXTCTRL_WEBAPPURL,
         WebAppURL, wxDefaultPosition, wxSize(300, -1));
-    WebAppURLTextCtr->SetToolTip(_("Specify the Web App URL without final slash"));
+    mmToolTip(WebAppURLTextCtr, _("Specify the Web App URL without final slash"));
     WebAppStaticBoxSizerGrid->Add(WebAppURLTextCtr, 1, wxEXPAND | wxALL, 5);
 
     WebAppStaticBoxSizerGrid->Add(new wxStaticText(this, wxID_STATIC, _("GUID")), g_flagsH);
     wxString WebAppGUID = Model_Infotable::instance().GetStringInfo("WEBAPPGUID", "");
     wxTextCtrl* WebAppGUIDTextCtr = new wxTextCtrl(this, ID_DIALOG_OPTIONS_TEXTCTRL_WEBAPPGUID,
         WebAppGUID, wxDefaultPosition, wxSize(300, -1));
-    WebAppGUIDTextCtr->SetToolTip(_("Specify the Web App GUID"));
+    mmToolTip(WebAppGUIDTextCtr, _("Specify the Web App GUID"));
     WebAppStaticBoxSizerGrid->Add(WebAppGUIDTextCtr, 1, wxEXPAND | wxALL, 5);
 
     wxHyperlinkCtrl* WebAppLink = new wxHyperlinkCtrl(this, wxID_STATIC, _("More information about WebApp"), mmex::weblink::WebApp);
@@ -87,13 +88,13 @@ void OptionSettingsNet::Create()
     wxString proxyName = Model_Setting::instance().GetStringSetting("PROXYIP", "");
     m_proxy_address = new wxTextCtrl(this, ID_DIALOG_OPTIONS_TEXTCTRL_PROXY
         , proxyName, wxDefaultPosition, wxSize(150, -1));
-    m_proxy_address->SetToolTip(_("Specify the proxy IP address"));
+    mmToolTip(m_proxy_address, _("Specify the proxy IP address"));
 
     int proxyPort = Model_Setting::instance().GetIntSetting("PROXYPORT", 0);
     m_proxy_port = new wxSpinCtrl(this, wxID_ANY,
         wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 0, 65535, proxyPort);
     m_proxy_port->SetValue(proxyPort);
-    m_proxy_port->SetToolTip(_("Specify proxy port number"));
+    mmToolTip(m_proxy_port, _("Specify proxy port number"));
 
     wxFlexGridSizer* flex_sizer3 = new wxFlexGridSizer(0, 4, 0, 0);
     flex_sizer3->Add(new wxStaticText(this, wxID_STATIC, _("Proxy")), g_flagsH);
@@ -112,7 +113,7 @@ void OptionSettingsNet::Create()
     m_send_data = new wxCheckBox(this, wxID_ANY
         , _("Send anonymous statistics usage data"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     m_send_data->SetValue(Option::instance().SendUsageStatistics());
-    m_send_data->SetToolTip(_("Enable to help us sending anonymous data about MMEX usage."));
+    mmToolTip(m_send_data, _("Enable to help us sending anonymous data about MMEX usage."));
 
     usageStaticBoxSizer->Add(m_send_data, g_flagsV);
 
@@ -125,7 +126,7 @@ void OptionSettingsNet::Create()
     m_check_news = new wxCheckBox(this, wxID_ANY
         , _("Check for latest news on startup"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     m_check_news->SetValue(Option::instance().CheckNewsOnStartup());
-    m_check_news->SetToolTip(_("Enable to allow news to be checked on application start"));
+    mmToolTip(m_check_news, _("Enable to allow news to be checked on application start"));
     
     newsStaticBoxSizer->Add(m_check_news, g_flagsV);
 
@@ -139,7 +140,7 @@ void OptionSettingsNet::Create()
     m_network_timeout = new wxSpinCtrl(this, wxID_ANY,
         wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 1, 150, nTimeout);
     m_network_timeout->SetValue(nTimeout);
-    m_network_timeout->SetToolTip(_("Specify a network communication timeout value to use."));
+    mmToolTip(m_network_timeout, _("Specify a network communication timeout value to use."));
 
     wxFlexGridSizer* flex_sizer5 = new wxFlexGridSizer(0, 2, 0, 0);
     flex_sizer5->Add(new wxStaticText(this, wxID_STATIC, _("Seconds")), g_flagsH);
@@ -156,7 +157,7 @@ void OptionSettingsNet::Create()
     m_check_update = new wxCheckBox(this, ID_DIALOG_OPTIONS_UPDATES_CHECK
         , _("Check for updates at StartUp"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     m_check_update->SetValue(GetIniDatabaseCheckboxValue("UPDATECHECK", true));
-    m_check_update->SetToolTip(_("Enable to automatically check if new MMEX version is available at StartUp"));
+    mmToolTip(m_check_update, _("Enable to automatically check if new MMEX version is available at StartUp"));
 
     wxArrayString UpdatesType_;
     UpdatesType_.Add(_("Stable"));
@@ -164,7 +165,7 @@ void OptionSettingsNet::Create()
     m_update_source = new wxChoice(this, wxID_ANY
         , wxDefaultPosition, wxSize(150, -1), UpdatesType_);
     m_update_source->SetSelection(Model_Setting::instance().GetIntSetting("UPDATESOURCE", 0));
-    m_update_source->SetToolTip(_("Updates source"));
+    mmToolTip(m_update_source, _("Updates source"));
 
     wxFlexGridSizer* UpdateSourceStaticBoxSizerGrid = new wxFlexGridSizer(0, 2, 0, 0);
     UpdateSourceStaticBoxSizerGrid->Add(m_check_update, g_flagsH);

@@ -200,7 +200,7 @@ void ShareTransactionDialog::CreateControls()
 
     m_stock_name_ctrl = new mmTextCtrl(stock_details_panel, ID_STOCKTRANS_SHARE_NAME, "");
     itemFlexGridSizer6->Add(m_stock_name_ctrl, g_flagsExpand);
-    m_stock_name_ctrl->SetToolTip(_("Enter the stock company name"));
+    mmToolTip(m_stock_name_ctrl, _("Enter the stock company name"));
 
     //Symbol
     wxStaticText* symbol = new wxStaticText(stock_details_panel, wxID_STATIC, _("Stock Symbol"));
@@ -210,7 +210,7 @@ void ShareTransactionDialog::CreateControls()
     m_stock_symbol_ctrl = new mmTextCtrl(stock_details_panel, ID_STOCKTRANS_SHARE_SYMBOL
         , "", wxDefaultPosition, wxSize(150, -1), 0);
     itemFlexGridSizer6->Add(m_stock_symbol_ctrl, g_flagsH);
-    m_stock_symbol_ctrl->SetToolTip(_("Enter the stock symbol. (Optional) Include exchange. eg: IBM.BE"));
+    mmToolTip(m_stock_symbol_ctrl, _("Enter the stock symbol. (Optional) Include exchange. eg: IBM.BE"));
 
     //Share Unit Number 
     wxStaticText* number = new wxStaticText(stock_details_panel, wxID_STATIC, _("Share Number"));
@@ -219,7 +219,7 @@ void ShareTransactionDialog::CreateControls()
     m_share_num_ctrl = new mmTextCtrl(stock_details_panel, ID_STOCKTRANS_SHARE_NUMBER, ""
         , wxDefaultPosition, wxSize(150, -1), wxALIGN_RIGHT | wxTE_PROCESS_ENTER, mmCalcValidator());
     itemFlexGridSizer6->Add(m_share_num_ctrl, g_flagsH);
-    m_share_num_ctrl->SetToolTip(_("Enter number of shares held"));
+    mmToolTip(m_share_num_ctrl, _("Enter number of shares held"));
 
     m_share_num_ctrl->Connect(ID_STOCKTRANS_SHARE_NUMBER, wxEVT_COMMAND_TEXT_ENTER
         , wxCommandEventHandler(ShareTransactionDialog::OnTextEntered), nullptr, this);
@@ -232,7 +232,7 @@ void ShareTransactionDialog::CreateControls()
     m_share_price_ctrl->SetMinSize(wxSize(150, -1));
     itemFlexGridSizer6->Add(pprice, g_flagsH);
     itemFlexGridSizer6->Add(m_share_price_ctrl, g_flagsH);
-    m_share_price_ctrl->SetToolTip(_("Enter the current value for a single share unit"));
+    mmToolTip(m_share_price_ctrl, _("Enter the current value for a single share unit"));
 
     m_share_price_ctrl->Connect(ID_STOCKTRANS_SHARE_PRICE, wxEVT_COMMAND_TEXT_ENTER
         , wxCommandEventHandler(ShareTransactionDialog::OnTextEntered), nullptr, this);
@@ -243,7 +243,7 @@ void ShareTransactionDialog::CreateControls()
         , wxDefaultPosition, wxDefaultSize, wxALIGN_RIGHT | wxTE_PROCESS_ENTER, mmCalcValidator());
     m_share_commission_ctrl->SetMinSize(wxSize(150, -1));
     itemFlexGridSizer6->Add(m_share_commission_ctrl, g_flagsH);
-    m_share_commission_ctrl->SetToolTip(_("Enter any commission paid"));
+    mmToolTip(m_share_commission_ctrl, _("Enter any commission paid"));
 
     m_share_commission_ctrl->Connect(ID_STOCKTRANS_SHARE_COMMISSION, wxEVT_COMMAND_TEXT_ENTER
         , wxCommandEventHandler(ShareTransactionDialog::OnTextEntered), nullptr, this);
@@ -256,19 +256,19 @@ void ShareTransactionDialog::CreateControls()
     m_share_lot_ctrl = new mmTextCtrl(stock_details_panel, ID_STOCKTRANS_SHARE_LOT
         , "", wxDefaultPosition, wxSize(150, -1), 0);
     itemFlexGridSizer6->Add(m_share_lot_ctrl, g_flagsH);
-    m_share_lot_ctrl->SetToolTip(_("Enter the LOT that this parcel os shares belong to"));
+    mmToolTip(m_share_lot_ctrl, _("Enter the LOT that this parcel os shares belong to"));
 
     //Notes
     itemFlexGridSizer6->Add(new wxStaticText(stock_details_panel, wxID_STATIC, _("Notes")), g_flagsH);
 
     //Attachments
     m_attachments_btn = new wxBitmapButton(stock_details_panel, wxID_FILE, mmBitmap(png::CLIP));
-    m_attachments_btn->SetToolTip(_("Organize attachments of this stock"));
+    mmToolTip(m_attachments_btn, _("Organize attachments of this stock"));
     //TODO m_attachments not used here
     m_attachments_btn->Hide();
 
     wxBitmapButton* web_button = new wxBitmapButton(stock_details_panel, wxID_INDEX, mmBitmap(png::WEB));
-    web_button->SetToolTip(_("Display the web page for the specified Stock symbol"));
+    mmToolTip(web_button, _("Display the web page for the specified Stock symbol"));
 
     wxBoxSizer* icon_sizer = new wxBoxSizer(wxHORIZONTAL);
     icon_sizer->Add(m_attachments_btn, g_flagsH);
@@ -278,7 +278,7 @@ void ShareTransactionDialog::CreateControls()
     m_notes_ctrl = new mmTextCtrl(this, wxID_STATIC, "", wxDefaultPosition, wxSize(200, 162), wxTE_MULTILINE);
     details_frame_sizer->Add(m_notes_ctrl, g_flagsExpand);
     details_frame_sizer->AddSpacer(1);
-    m_notes_ctrl->SetToolTip(_("Enter notes associated with this investment"));
+    mmToolTip(m_notes_ctrl, _("Enter notes associated with this investment"));
 
     /********************************************************************
     Transaction Panel

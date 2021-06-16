@@ -131,30 +131,30 @@ void mmCustomFieldEditDialog::CreateControls()
     m_itemDescription = new wxTextCtrl(itemPanel5, wxID_ANY);
     m_itemDescription->SetMinSize(wxSize(150, -1));
 
-    m_itemDescription->SetToolTip(_("Enter the name of the custom field"));
+    mmToolTip(m_itemDescription, _("Enter the name of the custom field"));
     itemFlexGridSizer6->Add(m_itemDescription, g_flagsExpand);
 
     itemFlexGridSizer6->Add(new wxStaticText(itemPanel5, wxID_STATIC, _("Field Type")), g_flagsH);
     m_itemType = new wxChoice(itemPanel5, wxID_HIGHEST);
     for (const auto& type : Model_CustomField::all_type())
         m_itemType->Append(wxGetTranslation(type), new wxStringClientData(type));
-    m_itemType->SetToolTip(_("Select type of custom field"));
+    mmToolTip(m_itemType, _("Select type of custom field"));
     itemFlexGridSizer6->Add(m_itemType, g_flagsExpand);
 
     itemFlexGridSizer6->Add(new wxStaticText(itemPanel5, wxID_STATIC, _("ToolTip")), g_flagsH);
     m_itemTooltip = new wxTextCtrl(itemPanel5, wxID_ANY, "");
-    m_itemTooltip->SetToolTip(_("Enter the tooltip that will be shown"));
+    mmToolTip(m_itemTooltip, _("Enter the tooltip that will be shown"));
     itemFlexGridSizer6->Add(m_itemTooltip, g_flagsExpand);
 
     itemFlexGridSizer6->Add(new wxStaticText(itemPanel5, wxID_STATIC, _("RegEx")), g_flagsH);
     m_itemRegEx = new wxTextCtrl(itemPanel5, wxID_ANY, "");
-    m_itemRegEx->SetToolTip(_("Enter the RegEx to validate field"));
+    mmToolTip(m_itemRegEx, _("Enter the RegEx to validate field"));
     itemFlexGridSizer6->Add(m_itemRegEx, g_flagsExpand);
 
     itemFlexGridSizer6->Add(new wxStaticText(itemPanel5, wxID_STATIC, _("Autocomplete")), g_flagsH);
     m_itemAutocomplete = new wxCheckBox(itemPanel5, wxID_STATIC, "", wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     m_itemAutocomplete->SetValue(FALSE);
-    m_itemAutocomplete->SetToolTip(_("Enables autocomplete on custom field"));
+    mmToolTip(m_itemAutocomplete, _("Enables autocomplete on custom field"));
     itemFlexGridSizer6->Add(m_itemAutocomplete, g_flagsExpand);
 
     itemFlexGridSizer6->Add(new wxStaticText(itemPanel5, wxID_STATIC, _("Default")), g_flagsH);
@@ -165,12 +165,12 @@ void mmCustomFieldEditDialog::CreateControls()
 
     itemFlexGridSizer6->Add(new wxStaticText(itemPanel5, wxID_STATIC, _("Choices")), g_flagsH);
     m_itemChoices = new wxTextCtrl(itemPanel5, wxID_ANY, "");
-    m_itemChoices->SetToolTip(_("Enter the choices for this field separated with a semicolon"));
+    mmToolTip(m_itemChoices, _("Enter the choices for this field separated with a semicolon"));
     itemFlexGridSizer6->Add(m_itemChoices, g_flagsExpand);
 
     itemFlexGridSizer6->Add(new wxStaticText(itemPanel5, wxID_STATIC, _("Digits scale")), g_flagsH);
     m_itemDigitScale = new wxSpinCtrl(itemPanel5, wxID_ANY, "", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 0, 20, 0);
-    m_itemDigitScale->SetToolTip(_("Enter the decimal digits scale allowed"));
+    mmToolTip(m_itemDigitScale, _("Enter the decimal digits scale allowed"));
     itemFlexGridSizer6->Add(m_itemDigitScale, g_flagsExpand);
 
     itemFlexGridSizer6->Add(new wxStaticText(itemPanel5, wxID_STATIC, _("Panel's column")), g_flagsH);
@@ -178,7 +178,7 @@ void mmCustomFieldEditDialog::CreateControls()
     for (const auto& type : Model_CustomField::getUDFCList(m_field)) {
         m_itemUDFC->Append(wxGetTranslation(type), new wxStringClientData(type));
     }
-    m_itemUDFC->SetToolTip(_("Select a value to represent the item on a panel"));
+    mmToolTip(m_itemUDFC, _("Select a value to represent the item on a panel"));
     itemFlexGridSizer6->Add(m_itemUDFC, g_flagsExpand);
 
     wxPanel* itemPanel27 = new wxPanel(this, wxID_STATIC, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);

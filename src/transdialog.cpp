@@ -464,7 +464,7 @@ void mmTransDialog::CreateControls()
         , wxDefaultPosition, wxSize(-1, dpc_->GetSize().GetHeight())
         , wxSP_VERTICAL | wxSP_ARROW_KEYS | wxSP_WRAP);
     spinCtrl->SetRange(-32768, 32768);
-    spinCtrl->SetToolTip(_("Retard or advance the date of the transaction"));
+    mmToolTip(spinCtrl, _("Retard or advance the date of the transaction"));
     date_sizer->Add(spinCtrl, g_flagsH);
 #endif
     date_sizer->Add(itemStaticTextWeek_, g_flagsH);
@@ -556,7 +556,7 @@ void mmTransDialog::CreateControls()
 
     wxBitmapButton* bAuto = new wxBitmapButton(this, ID_DIALOG_TRANS_BUTTONTRANSNUM, mmBitmap(png::TRXNUM));
     bAuto->Connect(ID_DIALOG_TRANS_BUTTONTRANSNUM, wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(mmTransDialog::OnAutoTransNum), nullptr, this);
-    bAuto->SetToolTip(_("Populate Transaction #"));
+    mmToolTip(bAuto, _("Populate Transaction #"));
 
     flex_sizer->Add(new wxStaticText(this, wxID_STATIC, _("Number")), g_flagsH);
     wxBoxSizer* number_sizer = new wxBoxSizer(wxHORIZONTAL);
@@ -566,18 +566,18 @@ void mmTransDialog::CreateControls()
 
     // Attachments ---------------------------------------------
     bAttachments_ = new wxBitmapButton(this, wxID_FILE, mmBitmap(png::CLIP), wxDefaultPosition, wxSize(cbPayee_->GetSize().GetY(), cbPayee_->GetSize().GetY()));
-    bAttachments_->SetToolTip(_("Organize attachments of this transaction"));
+    mmToolTip(bAttachments_, _("Organize attachments of this transaction"));
 
     // Colours ---------------------------------------------
     bColours_ = new wxButton(this, wxID_INFO, " ", wxDefaultPosition, bAttachments_->GetSize(), 0);
     //bColours->SetBackgroundColour(mmColors::userDefColor1);
-    bColours_->SetToolTip(_("User Colors"));
+    mmToolTip(bColours_, _("User Colors"));
 
 
     // Notes ---------------------------------------------
     flex_sizer->Add(new wxStaticText(this, wxID_STATIC, _("Notes")), g_flagsH);
     wxButton* bFrequentUsedNotes = new wxButton(this, ID_DIALOG_TRANS_BUTTON_FREQENTNOTES, "...", wxDefaultPosition, bAttachments_->GetSize(), 0);
-    bFrequentUsedNotes->SetToolTip(_("Select one of the frequently used notes"));
+    mmToolTip(bFrequentUsedNotes, _("Select one of the frequently used notes"));
     bFrequentUsedNotes->Connect(ID_DIALOG_TRANS_BUTTON_FREQENTNOTES
         , wxEVT_COMMAND_BUTTON_CLICKED
         , wxCommandEventHandler(mmTransDialog::OnFrequentUsedNotes), nullptr, this);
@@ -605,7 +605,7 @@ void mmTransDialog::CreateControls()
     itemButtonCancel_ = new wxButton(buttons_panel, wxID_CANCEL, wxGetTranslation(g_CancelLabel));
 
     wxBitmapButton* itemButtonHide = new wxBitmapButton(buttons_panel, ID_DIALOG_TRANS_CUSTOMFIELDS, mmBitmap(png::RIGHTARROW));
-    itemButtonHide->SetToolTip(_("Show/Hide custom fields window"));
+    mmToolTip(itemButtonHide, _("Show/Hide custom fields window"));
     if (m_custom_fields->GetCustomFieldsCount() == 0) {
         itemButtonHide->Hide();
     }
@@ -1255,14 +1255,14 @@ void mmTransDialog::SetTooltips()
     bCategory_->UnsetToolTip();
     skip_tooltips_init_ = true;
     if (this->m_local_splits.empty())
-        bCategory_->SetToolTip(_("Specify the category for this transaction"));
+        mmToolTip(bCategory_, _("Specify the category for this transaction"));
     else {
         const Model_Currency::Data* currency = Model_Currency::GetBaseCurrency();
         const Model_Account::Data* account = Model_Account::instance().get(m_trx_data.ACCOUNTID);
         if (account)
             currency = Model_Account::currency(account);
 
-        bCategory_->SetToolTip(Model_Splittransaction::get_tooltip(m_local_splits, currency));
+        mmToolTip(bCategory_, Model_Splittransaction::get_tooltip(m_local_splits, currency));
     }
     if (!m_new_trx) return;
 
@@ -1273,31 +1273,31 @@ void mmTransDialog::SetTooltips()
 
     if (m_transfer)
     {
-        cbAccount_->SetToolTip(_("Specify account the money is taken from"));
-        cbPayee_->SetToolTip(_("Specify account the money is moved to"));
-        m_textAmount->SetToolTip(_("Specify the transfer amount in the From Account."));
+        mmToolTip(cbAccount_, _("Specify account the money is taken from"));
+        mmToolTip(cbPayee_, _("Specify account the money is moved to"));
+        mmToolTip(m_textAmount, _("Specify the transfer amount in the From Account."));
 
         if (m_advanced)
-            toTextAmount_->SetToolTip(_("Specify the transfer amount in the To Account"));
+            mmToolTip(toTextAmount_, _("Specify the transfer amount in the To Account"));
     }
     else
     {
-        m_textAmount->SetToolTip(_("Specify the amount for this transaction"));
-        cbAccount_->SetToolTip(_("Specify account for the transaction"));
+        mmToolTip(m_textAmount, _("Specify the amount for this transaction"));
+        mmToolTip(cbAccount_, _("Specify account for the transaction"));
         if (!Model_Checking::is_deposit(m_trx_data.TRANSCODE))
-            cbPayee_->SetToolTip(_("Specify to whom the transaction is going to"));
+            mmToolTip(cbPayee_, _("Specify to whom the transaction is going to"));
         else
-            cbPayee_->SetToolTip(_("Specify where the transaction is coming from"));
+            mmToolTip(cbPayee_, _("Specify where the transaction is coming from"));
     }
 
     // Not dynamically changed tooltips
-    dpc_->SetToolTip(_("Specify the date of the transaction"));
-    choiceStatus_->SetToolTip(_("Specify the status for the transaction"));
-    transaction_type_->SetToolTip(_("Specify the type of transactions to be created."));
-    cSplit_->SetToolTip(_("Use split Categories"));
-    textNumber_->SetToolTip(_("Specify any associated check number or transaction number"));
-    textNotes_->SetToolTip(_("Specify any text notes you want to add to this transaction."));
-    cAdvanced_->SetToolTip(_("Allows the setting of different amounts in the FROM and TO accounts."));
+    mmToolTip(dpc_, _("Specify the date of the transaction"));
+    mmToolTip(choiceStatus_, _("Specify the status for the transaction"));
+    mmToolTip(transaction_type_, _("Specify the type of transactions to be created."));
+    mmToolTip(cSplit_, _("Use split Categories"));
+    mmToolTip(textNumber_, _("Specify any associated check number or transaction number"));
+    mmToolTip(textNotes_, _("Specify any text notes you want to add to this transaction."));
+    mmToolTip(cAdvanced_, _("Allows the setting of different amounts in the FROM and TO accounts."));
 }
 
 void mmTransDialog::OnQuit(wxCloseEvent& WXUNUSED(event))

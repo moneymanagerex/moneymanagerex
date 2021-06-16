@@ -464,33 +464,33 @@ void mmAssetsPanel::CreateControls()
     itemBoxSizer4->Add(itemBoxSizer5, g_flagsBorder1V);
 
     wxButton* itemButton6 = new wxButton( assets_panel, wxID_NEW, _("&New "));
-    itemButton6->SetToolTip(_("New Asset"));
+    mmToolTip(itemButton6, _("New Asset"));
     itemBoxSizer5->Add(itemButton6, 0, wxRIGHT, 5);
 
     wxButton* add_trans_btn = new wxButton(assets_panel, wxID_ADD, _("&Add Trans "));
-    add_trans_btn->SetToolTip(_("Add Asset Transaction"));
+    mmToolTip(add_trans_btn, _("Add Asset Transaction"));
     itemBoxSizer5->Add(add_trans_btn, 0, wxRIGHT, 5);
     add_trans_btn->Enable(false);
 
     wxButton* view_trans_btn = new wxButton(assets_panel, wxID_VIEW_DETAILS, _("&View Trans "));
-    view_trans_btn->SetToolTip(_("View Asset Transactions"));
+    mmToolTip(view_trans_btn, _("View Asset Transactions"));
     itemBoxSizer5->Add(view_trans_btn, 0, wxRIGHT, 5);
     view_trans_btn->Enable(false);
 
     wxButton* itemButton81 = new wxButton( assets_panel, wxID_EDIT, _("&Edit "));
-    itemButton81->SetToolTip(_("Edit Asset"));
+    mmToolTip(itemButton81, _("Edit Asset"));
     itemBoxSizer5->Add(itemButton81, 0, wxRIGHT, 5);
     itemButton81->Enable(false);
 
     wxButton* itemButton7 = new wxButton( assets_panel, wxID_DELETE, _("&Delete "));
-    itemButton7->SetToolTip(_("Delete Asset"));
+    mmToolTip(itemButton7, _("Delete Asset"));
     itemBoxSizer5->Add(itemButton7, 0, wxRIGHT, 5);
     itemButton7->Enable(false);
 
     wxBitmapButton* attachment_button_ = new wxBitmapButton(assets_panel
         , wxID_FILE, mmBitmap(png::CLIP), wxDefaultPosition,
         wxSize(30, itemButton7->GetSize().GetY()));
-    attachment_button_->SetToolTip(_("Open attachments"));
+    mmToolTip(attachment_button_, _("Open attachments"));
     itemBoxSizer5->Add(attachment_button_, 0, wxRIGHT, 5);
     attachment_button_->Enable(false);
 
@@ -500,7 +500,7 @@ void mmAssetsPanel::CreateControls()
         , wxTE_PROCESS_ENTER, wxDefaultValidator, _("Search"));
     searchCtrl->SetHint(_("Search"));
     itemBoxSizer5->Add(searchCtrl, 0, wxCENTER, 1);
-    searchCtrl->SetToolTip(_("Enter any string to find related assets"));
+    mmToolTip(searchCtrl, _("Enter any string to find related assets"));
 
     //Infobar-mini
     wxStaticText* itemStaticText44 = new wxStaticText(assets_panel, IDC_PANEL_ASSET_STATIC_DETAILS_MINI, "");

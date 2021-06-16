@@ -237,3 +237,5 @@ const wxColor* bestFontColour(wxColour background);
 
 // used where differences occur between platforms
 wxImageList* createImageList();
+
+void mmToolTip(wxWindow* widget, wxString tip);

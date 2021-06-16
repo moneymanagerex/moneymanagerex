@@ -187,7 +187,7 @@ void mmCategDialog::CreateControls()
         , wxID_REPLACE_ALL, mmBitmap(png::RELOCATION));
     m_buttonRelocate->Connect(wxID_REPLACE_ALL, wxEVT_COMMAND_BUTTON_CLICKED
         , wxCommandEventHandler(mmCategDialog::OnCategoryRelocation), nullptr, this);
-    m_buttonRelocate->SetToolTip(_("Reassign all categories to another category"));
+    mmToolTip(m_buttonRelocate, _("Reassign all categories to another category"));
 
     m_cbExpand = new wxCheckBox(this, wxID_ANY, _("Expand"), wxDefaultPosition
         , wxDefaultSize, wxCHK_2STATE);
@@ -196,7 +196,7 @@ void mmCategDialog::CreateControls()
 
     m_cbShowAll = new wxCheckBox(this, wxID_SELECTALL, _("Show All"), wxDefaultPosition
         , wxDefaultSize, wxCHK_2STATE);
-    m_cbShowAll->SetToolTip(_("Show all hidden categories"));
+    mmToolTip(m_cbShowAll, _("Show all hidden categories"));
     m_cbShowAll->Connect(wxID_SELECTALL, wxEVT_COMMAND_CHECKBOX_CLICKED
         , wxCommandEventHandler(mmCategDialog::OnShowHiddenChbClick), nullptr, this);
 
@@ -228,22 +228,22 @@ void mmCategDialog::CreateControls()
 
     m_buttonAdd = new wxButton(buttonsPanel, wxID_ADD, _("&Add "));
     itemBoxSizer66->Add(m_buttonAdd, g_flagsH);
-    m_buttonAdd->SetToolTip(_("Add a new category"));
+    mmToolTip(m_buttonAdd, _("Add a new category"));
 
     m_buttonEdit = new wxButton(buttonsPanel, wxID_EDIT, _("&Edit "));
     itemBoxSizer66->Add(m_buttonEdit, g_flagsH);
-    m_buttonEdit->SetToolTip(_("Edit the name of an existing category"));
+    mmToolTip(m_buttonEdit, _("Edit the name of an existing category"));
 
     m_buttonDelete = new wxButton(buttonsPanel, wxID_REMOVE, _("&Delete "));
     itemBoxSizer66->Add(m_buttonDelete, g_flagsH);
-    m_buttonDelete->SetToolTip(_("Delete an existing category. The category cannot be used by existing transactions."));
+    mmToolTip(m_buttonDelete, _("Delete an existing category. The category cannot be used by existing transactions."));
 
     wxStdDialogButtonSizer* itemBoxSizer9 = new wxStdDialogButtonSizer;
     buttonsSizer->Add(itemBoxSizer9, wxSizerFlags(g_flagsV).Border(wxALL, 0).Center());
 
     m_buttonSelect = new wxButton(buttonsPanel, wxID_OK, _("&Select"));
     itemBoxSizer9->Add(m_buttonSelect, g_flagsH);
-    m_buttonSelect->SetToolTip(_("Select the currently selected category as the selected category for the transaction"));
+    mmToolTip(m_buttonSelect, _("Select the currently selected category as the selected category for the transaction"));
 
     //Some interfaces has no any close buttons, it may confuse user. Cancel button added
     wxButton* itemCancelButton = new wxButton(buttonsPanel, wxID_CANCEL, wxGetTranslation(g_CancelLabel));
@@ -432,7 +432,7 @@ void mmCategDialog::OnSelChanged(wxTreeEvent& event)
     if (bRootSelected)
     {
         m_buttonDelete->Disable();
-        m_buttonDelete->SetToolTip(_("Select an unused category to delete."));
+        mmToolTip(m_buttonDelete, _("Select an unused category to delete."));
     }
     else
     {
@@ -457,19 +457,19 @@ void mmCategDialog::OnSelChanged(wxTreeEvent& event)
         if (bUsed)
         {
             m_buttonDelete->Disable();
-            m_buttonDelete->SetToolTip(_("This category cannot be deleted because it's used by transactions."));
+            mmToolTip(m_buttonDelete, _("This category cannot be deleted because it's used by transactions."));
         }
         else
         {
             if (!m_treeCtrl->ItemHasChildren(m_selectedItemId))
             {
                 m_buttonDelete->Enable();
-                m_buttonDelete->SetToolTip(_("Delete an existing category."));
+                mmToolTip(m_buttonDelete, _("Delete an existing category."));
             }
             else
             {
                 m_buttonDelete->Disable();
-                m_buttonDelete->SetToolTip(_("Subcategories must be deleted before."));
+                mmToolTip(m_buttonDelete, _("Subcategories must be deleted before."));
             }
         }
     }
