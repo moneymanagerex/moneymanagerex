@@ -307,7 +307,7 @@ wxString mmReportSummaryByDate::getHTMLText()
                     {
                         hb.startAltTableRow();
                             hb.addTableCell(year);
-                            hb.addEmptyTableCell(8);
+                            hb.addEmptyTableCell(10);
                         hb.endTableRow();
                     }
                     hb.startTableRow();
