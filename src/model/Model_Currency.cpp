@@ -176,12 +176,15 @@ const wxString Model_Currency::toString(double value, const Data* currency, int 
     static wxString decimal;
     static wxString locale;
     static wxString defaultLocaleSupport;
+    static wxString use_locale;
 
     if (locale.empty()) {
         locale = Model_Infotable::instance().GetStringInfo("LOCALE", " ");
+        if (locale.empty()) {
+            locale = " ";
+        }
     }
 
-    static wxString use_locale;
     if (use_locale.empty()) {
         use_locale = locale == " " ? "N" : "Y";
         if (use_locale == "Y")
