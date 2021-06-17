@@ -419,7 +419,7 @@ void mmBDDialog::CreateControls()
     m_date_due = new wxDatePickerCtrl(this, ID_DIALOG_BD_DUE_DATE, wxDefaultDateTime
         , wxDefaultPosition, wxDefaultSize, wxDP_DROPDOWN | wxDP_SHOWCENTURY);
     m_date_due->SetValue(wxDateTime::Now()); // Required for Mac: Does not default to today
-    m_date_due->SetToolTip(_("Specify the date when this bill or deposit is due"));
+    mmToolTip(m_date_due, _("Specify the date when this bill or deposit is due"));
 
     wxBoxSizer* dueDateDateBoxSizer = new wxBoxSizer(wxHORIZONTAL);
     dueDateDateBoxSizer->Add(m_date_due, g_flagsH);
@@ -430,7 +430,7 @@ void mmBDDialog::CreateControls()
     wxSpinButton* spinNextOccDate = new wxSpinButton(this, ID_DIALOG_BD_REPEAT_DATE_SPINNER
         , wxDefaultPosition, wxSize(-1, m_date_due->GetSize().GetHeight())
         , spinCtrlDirection | wxSP_ARROW_KEYS | wxSP_WRAP);
-    spinNextOccDate->SetToolTip(_("Retard or advance the date of the 'next occurrence'"));
+    mmToolTip(spinNextOccDate, _("Retard or advance the date of the 'next occurrence'"));
     spinNextOccDate->SetRange(-32768, 32768);
     dueDateDateBoxSizer->Add(spinNextOccDate, 0, wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL | wxLEFT, interval);
 #endif
@@ -446,9 +446,9 @@ void mmBDDialog::CreateControls()
 
     wxBoxSizer* repeatBoxSizer = new wxBoxSizer(wxHORIZONTAL);
     m_btn_due_prev_date = new wxBitmapButton(this, ID_DIALOG_TRANS_BUTTONTRANSNUMPREV, mmBitmap(png::LEFTARROW));
-    m_btn_due_prev_date->SetToolTip(_("Back to the last occurring date with the specified values"));
+    mmToolTip(m_btn_due_prev_date, _("Back to the last occurring date with the specified values"));
     m_btn_due_date = new wxBitmapButton(this, ID_DIALOG_TRANS_BUTTONTRANSNUM, mmBitmap(png::RIGHTARROW));
-    m_btn_due_date->SetToolTip(_("Advance the next occurring date with the specified values"));
+    mmToolTip(m_btn_due_date, _("Advance the next occurring date with the specified values"));
     repeatBoxSizer->Add(m_btn_due_prev_date, g_flagsExpand);
     repeatBoxSizer->Add(m_choice_repeat, wxSizerFlags(g_flagsExpand).Proportion(6));
     repeatBoxSizer->Add(m_btn_due_date, g_flagsExpand);
@@ -471,11 +471,11 @@ void mmBDDialog::CreateControls()
     /* Auto Execution Status */
     itemCheckBoxAutoExeUserAck_ = new wxCheckBox(this, ID_DIALOG_BD_CHECKBOX_AUTO_EXECUTE_USERACK
        ,  _("Request user to enter payment"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
-    itemCheckBoxAutoExeUserAck_->SetToolTip(_("User requested to enter this transaction on the 'Date Paid'"));
+    mmToolTip(itemCheckBoxAutoExeUserAck_, _("User requested to enter this transaction on the 'Date Paid'"));
 
     itemCheckBoxAutoExeSilent_ = new wxCheckBox(this, ID_DIALOG_BD_CHECKBOX_AUTO_EXECUTE_SILENT
         , _("Grant automatic execute"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
-    itemCheckBoxAutoExeSilent_->SetToolTip(_("The requested payment will occur without user interaction"));
+    mmToolTip(itemCheckBoxAutoExeSilent_, _("The requested payment will occur without user interaction"));
     itemCheckBoxAutoExeSilent_->Disable();
 
     repeatTransBoxSizer->Add(itemCheckBoxAutoExeUserAck_, g_flagsExpand);
@@ -509,7 +509,7 @@ void mmBDDialog::CreateControls()
     m_date_paid = new wxDatePickerCtrl(this, ID_DIALOG_TRANS_BUTTON_PAYDATE
         , wxDefaultDateTime, wxDefaultPosition, wxDefaultSize, wxDP_DROPDOWN | wxDP_SHOWCENTURY);
     m_date_paid->SetValue(wxDateTime::Now()); // Required for Mac: Does not default to today
-    m_date_paid->SetToolTip(_("Specify the date the user is requested to enter this transaction"));
+    mmToolTip(m_date_paid, _("Specify the date the user is requested to enter this transaction"));
 
     wxBoxSizer* transDateBoxSizer = new wxBoxSizer(wxHORIZONTAL);
     transDateBoxSizer->Add(m_date_paid, g_flagsH);
@@ -518,7 +518,7 @@ void mmBDDialog::CreateControls()
     wxSpinButton* spinTransDate = new wxSpinButton(this, ID_DIALOG_TRANS_DATE_SPINNER
         , wxDefaultPosition, wxSize(-1, m_date_paid->GetSize().GetHeight())
         , spinCtrlDirection | wxSP_ARROW_KEYS | wxSP_WRAP);
-    spinTransDate->SetToolTip(_("Advance or retard the user request date of this transaction"));
+    mmToolTip(spinTransDate, _("Advance or retard the user request date of this transaction"));
     spinTransDate->SetRange(-32768, 32768);
     transDateBoxSizer->Add(spinTransDate, g_flagsH);
 #endif
@@ -534,18 +534,18 @@ void mmBDDialog::CreateControls()
         m_choice_status->Append(wxGetTranslation(i), new wxStringClientData(i));
     }
     m_choice_status->SetSelection(Option::instance().TransStatusReconciled());
-    m_choice_status->SetToolTip(_("Specify the status for the transaction"));
+    mmToolTip(m_choice_status, _("Specify the status for the transaction"));
 
     transPanelSizer->Add(new wxStaticText(this, wxID_STATIC, _("Status")), g_flagsH);
     transPanelSizer->Add(m_choice_status, g_flagsH);
 
     // Type --------------------------------------------
     m_choice_transaction_type = new wxChoice(this, wxID_VIEW_DETAILS);
-    m_choice_transaction_type->SetToolTip(_("Specify the type of transactions to be created."));
+    mmToolTip(m_choice_transaction_type, _("Specify the type of transactions to be created."));
     cAdvanced_ = new wxCheckBox(this, ID_DIALOG_TRANS_ADVANCED_CHECKBOX, _("&Advanced")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     cAdvanced_->SetValue(false);
-    cAdvanced_->SetToolTip(_("Allows the setting of different amounts in the FROM and TO accounts."));
+    mmToolTip(cAdvanced_, _("Allows the setting of different amounts in the FROM and TO accounts."));
 
     wxBoxSizer* typeSizer = new wxBoxSizer(wxHORIZONTAL);
     typeSizer->Add(m_choice_transaction_type, g_flagsH);
@@ -561,14 +561,14 @@ void mmBDDialog::CreateControls()
     textAmount_ = new mmTextCtrl(this, ID_DIALOG_TRANS_TEXTAMOUNT, ""
         , wxDefaultPosition, wxDefaultSize, wxALIGN_RIGHT | wxTE_PROCESS_ENTER
         , mmCalcValidator());
-    textAmount_->SetToolTip(amountNormalTip_);
+    mmToolTip(textAmount_, amountNormalTip_);
     textAmount_->Connect(ID_DIALOG_TRANS_TEXTAMOUNT, wxEVT_COMMAND_TEXT_ENTER
         , wxCommandEventHandler(mmBDDialog::OnTextEntered), nullptr, this);
 
     toTextAmount_ = new mmTextCtrl(this, ID_DIALOG_TRANS_TOTEXTAMOUNT, ""
         , wxDefaultPosition, wxDefaultSize, wxALIGN_RIGHT | wxTE_PROCESS_ENTER
         , mmCalcValidator());
-    toTextAmount_->SetToolTip(_("Specify the transfer amount in the To Account"));
+    mmToolTip(toTextAmount_, _("Specify the transfer amount in the To Account"));
     toTextAmount_->Connect(ID_DIALOG_TRANS_TOTEXTAMOUNT, wxEVT_COMMAND_TEXT_ENTER
         , wxCommandEventHandler(mmBDDialog::OnTextEntered), nullptr, this);
 
@@ -584,14 +584,14 @@ void mmBDDialog::CreateControls()
     acc_label->SetFont(this->GetFont().Bold());
     transPanelSizer->Add(acc_label, g_flagsH);
     bAccount_ = new wxButton(this, ID_DIALOG_BD_COMBOBOX_ACCOUNTNAME, _("Select Account"));
-    bAccount_->SetToolTip(_("Specify the Account that will own the recurring transaction"));
+    mmToolTip(bAccount_, _("Specify the Account that will own the recurring transaction"));
     transPanelSizer->Add(bAccount_, g_flagsExpand);
     // Payee ------------------------------------------------
     wxStaticText* payee_label = new wxStaticText(this, ID_DIALOG_TRANS_STATIC_PAYEE, _("Payee"));
     payee_label->SetFont(this->GetFont().Bold());
 
     bPayee_ = new wxButton(this, ID_DIALOG_TRANS_BUTTONPAYEE, _("Select Payee"));
-    bPayee_->SetToolTip(payeeWithdrawalTip_);
+    mmToolTip(bPayee_, payeeWithdrawalTip_);
 
     transPanelSizer->Add(payee_label, g_flagsH);
     transPanelSizer->Add(bPayee_, g_flagsExpand);
@@ -600,7 +600,7 @@ void mmBDDialog::CreateControls()
     cSplit_ = new wxCheckBox(this, ID_DIALOG_TRANS_SPLITCHECKBOX, _("Split")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     cSplit_->SetValue(FALSE);
-    cSplit_->SetToolTip(_("Use split Categories"));
+    mmToolTip(cSplit_, _("Use split Categories"));
 
     transPanelSizer->AddSpacer(20); // Fill empty space.
     transPanelSizer->Add(cSplit_, g_flagsH);
@@ -610,14 +610,14 @@ void mmBDDialog::CreateControls()
     categ_label->SetFont(this->GetFont().Bold());
     bCategory_ = new wxButton(this, ID_DIALOG_TRANS_BUTTONCATEGS, _("Select Category")
         , wxDefaultPosition, wxDefaultSize, 0);
-    //bCategory_->SetToolTip(_("Specify the category for this transaction"));
+    //mmToolTip(bCategory_, _("Specify the category for this transaction"));
 
     transPanelSizer->Add(categ_label, g_flagsExpand);
     transPanelSizer->Add(bCategory_, g_flagsExpand);
 
     // Number ---------------------------------------------
     textNumber_ = new wxTextCtrl(this, ID_DIALOG_TRANS_TEXTNUMBER);
-    textNumber_->SetToolTip(_("Specify any associated check number or transaction number"));
+    mmToolTip(textNumber_, _("Specify any associated check number or transaction number"));
 
     transPanelSizer->Add(new wxStaticText(this, wxID_STATIC, _("Number")), g_flagsH);
     transPanelSizer->Add(textNumber_, g_flagsExpand);
@@ -628,14 +628,14 @@ void mmBDDialog::CreateControls()
     bAttachments_ = new wxBitmapButton(this, wxID_FILE
         , mmBitmap(png::CLIP), wxDefaultPosition
         , wxSize(m_btn_due_date->GetSize().GetY(), m_btn_due_date->GetSize().GetY()));
-    bAttachments_->SetToolTip(_("Organize attachments of this recurring transaction"));
+    mmToolTip(bAttachments_, _("Organize attachments of this recurring transaction"));
 
     bColours_ = new wxButton(this, wxID_INFO, " ", wxDefaultPosition, bAttachments_->GetSize(), 0);
-    bColours_->SetToolTip(_("User Colors"));
+    mmToolTip(bColours_, _("User Colors"));
 
     wxButton* bFrequentUsedNotes = new wxButton(this, ID_DIALOG_TRANS_BUTTON_FREQENTNOTES, "..."
         , wxDefaultPosition, wxSize(bAttachments_->GetSize().GetX(), -1));
-    bFrequentUsedNotes->SetToolTip(_("Select one of the frequently used notes"));
+    mmToolTip(bFrequentUsedNotes, _("Select one of the frequently used notes"));
     bFrequentUsedNotes->Connect(ID_DIALOG_TRANS_BUTTON_FREQENTNOTES
         , wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(mmBDDialog::OnFrequentUsedNotes), nullptr, this);
 
@@ -647,7 +647,7 @@ void mmBDDialog::CreateControls()
 
     textNotes_ = new wxTextCtrl(this, ID_DIALOG_TRANS_TEXTNOTES, ""
         , wxDefaultPosition, wxSize(-1, m_date_due->GetSize().GetHeight() * 5), wxTE_MULTILINE);
-    textNotes_->SetToolTip(_("Specify any text notes you want to add to this transaction."));
+    mmToolTip(textNotes_, _("Specify any text notes you want to add to this transaction."));
 
     transDetailsStaticBoxSizer->Add(textNotes_, g_flagsExpand);
 
@@ -813,7 +813,7 @@ void mmBDDialog::updateControlsForTransType()
     case Model_Billsdeposits::TRANSFER:
     {
         m_transfer = true;
-        textAmount_->SetToolTip(amountTransferTip_);
+        mmToolTip(textAmount_, amountTransferTip_);
         accountLabel->SetLabelText(_("From"));
         if (m_bill_data.ACCOUNTID < 0)
         {
@@ -828,7 +828,7 @@ void mmBDDialog::updateControlsForTransType()
 
         stp->SetLabelText(_("To"));
         bPayee_->SetLabelText(_("Select To Account"));
-        bPayee_->SetToolTip(payeeTransferTip_);
+        mmToolTip(bPayee_, payeeTransferTip_);
         if (prevType_ != -1)
         {
             m_bill_data.TOACCOUNTID = -1;
@@ -838,10 +838,10 @@ void mmBDDialog::updateControlsForTransType()
     }
     case Model_Billsdeposits::WITHDRAWAL:
     {
-        textAmount_->SetToolTip(amountNormalTip_);
+        mmToolTip(textAmount_, amountNormalTip_);
         accountLabel->SetLabelText(_("Account"));
         stp->SetLabelText(_("Payee"));
-        bPayee_->SetToolTip(payeeWithdrawalTip_);
+        mmToolTip(bPayee_, payeeWithdrawalTip_);
         if (payeeUnknown_)
         {
             m_bill_data.PAYEEID = -1;
@@ -852,10 +852,10 @@ void mmBDDialog::updateControlsForTransType()
     }
     case Model_Billsdeposits::DEPOSIT:
     {
-        textAmount_->SetToolTip(amountNormalTip_);
+        mmToolTip(textAmount_, amountNormalTip_);
         accountLabel->SetLabelText(_("Account"));
         stp->SetLabelText(_("From"));
-        bPayee_->SetToolTip(payeeDepositTip_);
+        mmToolTip(bPayee_, payeeDepositTip_);
         if (payeeUnknown_)
         {
             m_bill_data.PAYEEID = -1;
@@ -1229,7 +1229,7 @@ void mmBDDialog::SetAdvancedTransferControls(bool advanced)
 {
     m_advanced = advanced;
     toTextAmount_->Enable(m_advanced);
-    textAmount_->SetToolTip(m_advanced ? amountTransferTip_ : _("Specify the transfer amount in the From Account"));
+    mmToolTip(textAmount_, m_advanced ? amountTransferTip_ : _("Specify the transfer amount in the From Account"));
     if (m_advanced)
     {
         // Display the transfer amount in the toTextAmount control.
@@ -1283,7 +1283,7 @@ void mmBDDialog::setRepeatDetails()
         staticTimesRepeat_->SetLabelText(timeLabelDays);
         const auto& toolTipsStr = _("Specify period in Days to activate.\n"
             "Becomes blank when not active.");
-        textNumRepeats_->SetToolTip(toolTipsStr);
+        mmToolTip(textNumRepeats_, toolTipsStr);
     }
     else if (repeats == INXMONTHS)
     {
@@ -1291,7 +1291,7 @@ void mmBDDialog::setRepeatDetails()
         staticTimesRepeat_->SetLabelText(timeLabelMonths);
         const auto& toolTipsStr = _("Specify period in Months to activate.\n"
             "Becomes blank when not active.");
-        textNumRepeats_->SetToolTip(toolTipsStr);
+        mmToolTip(textNumRepeats_, toolTipsStr);
     }
     else if (repeats == EVERYXDAYS)
     {
@@ -1299,7 +1299,7 @@ void mmBDDialog::setRepeatDetails()
         staticTimesRepeat_->SetLabelText(timeLabelDays);
         const auto& toolTipsStr = _("Specify period in Days to activate.\n"
             "Leave blank when not active.");
-        textNumRepeats_->SetToolTip(toolTipsStr);
+        mmToolTip(textNumRepeats_, toolTipsStr);
     }
     else if (repeats == EVERYXMONTHS)
     {
@@ -1307,7 +1307,7 @@ void mmBDDialog::setRepeatDetails()
         staticTimesRepeat_->SetLabelText(timeLabelMonths);
         const auto& toolTipsStr = _("Specify period in Months to activate.\n"
             "Leave blank when not active.");
-        textNumRepeats_->SetToolTip(toolTipsStr);
+        mmToolTip(textNumRepeats_, toolTipsStr);
     }
     else
     {
@@ -1315,7 +1315,7 @@ void mmBDDialog::setRepeatDetails()
         staticTimesRepeat_->SetLabelText(_("Payments Left"));
         const auto& toolTipsStr = _("Specify the number of payments to be made.\n"
             "Leave blank if the payments continue forever.");
-        textNumRepeats_->SetToolTip(toolTipsStr);
+        mmToolTip(textNumRepeats_, toolTipsStr);
     }
 }
 
@@ -1419,7 +1419,7 @@ void mmBDDialog::setTooltips()
 {
     if (this->m_bill_data.local_splits.empty())
     {
-        bCategory_->SetToolTip(_("Specify the category for this transaction"));
+        mmToolTip(bCategory_, _("Specify the category for this transaction"));
     }
     else
     {
@@ -1430,7 +1430,7 @@ void mmBDDialog::setTooltips()
             currency = Model_Account::currency(account);
         }
 
-        bCategory_->SetToolTip(Model_Splittransaction::get_tooltip(m_bill_data.local_splits, currency));
+        mmToolTip(bCategory_, Model_Splittransaction::get_tooltip(m_bill_data.local_splits, currency));
     }
 }
 

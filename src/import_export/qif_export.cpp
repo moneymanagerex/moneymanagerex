@@ -72,7 +72,7 @@ bool mmQIFExportDialog::Create(wxWindow* parent, const wxString& caption, wxWind
 void mmQIFExportDialog::fillControls()
 {
     bSelectedAccounts_->SetLabelText(_("All"));
-    bSelectedAccounts_->SetToolTip(_("All"));
+    mmToolTip(bSelectedAccounts_, _("All"));
 
     m_accounts_name.clear();
     selected_accounts_id_.clear();
@@ -283,7 +283,7 @@ void mmQIFExportDialog::OnAccountsButton(wxCommandEvent& WXUNUSED(event))
     else if (selected_accounts_id_.GetCount() > 1)
     {
         bSelectedAccounts_->SetLabelText("...");
-        bSelectedAccounts_->SetToolTip(baloon);
+        mmToolTip(bSelectedAccounts_, baloon);
     }
 
 }

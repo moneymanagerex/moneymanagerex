@@ -27,6 +27,7 @@ Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
 #include "build.h"
 #include "util.h"
 #include "constants.h"
+#include "option.h"
 #include "platfdep.h"
 #include "paths.h"
 #include "validators.h"
@@ -1366,4 +1367,11 @@ const wxColor* bestFontColour(wxColour background)
         , background.GetAsString(wxC2S_HTML_SYNTAX), r, g, b, k);
 
     return (k > 149000) ? wxBLACK : wxWHITE;
+}
+
+// Ideally we would use wxToolTip::Enable() to enable or disable tooltips globally.
+// but this only works on some platforms! 
+void mmToolTip(wxWindow* widget, wxString tip)
+{
+    if (Option::instance().getShowToolTips()) widget->SetToolTip(tip);
 }

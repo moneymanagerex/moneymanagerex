@@ -21,6 +21,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "categdialog.h"
 #include "constants.h"
 #include "mmSimpleDialogs.h"
+#include "util.h"
 #include "validators.h"
 #include "paths.h"
 
@@ -127,7 +128,7 @@ void SplitDetailDialog::CreateControls()
     m_choice_type = new wxChoice(itemPanel7, ID_DIALOG_SPLTTRANS_TYPE
         , wxDefaultPosition, wxDefaultSize
         , 2, itemChoiceStrings);
-    m_choice_type->SetToolTip(_("Specify the type of transactions to be created."));
+    mmToolTip(m_choice_type, _("Specify the type of transactions to be created."));
     controlSizer->Add(m_choice_type, g_flagsExpand);
     m_choice_type->SetSelection(split_.SPLITTRANSAMOUNT < 0 ? !transType_ : transType_);
 

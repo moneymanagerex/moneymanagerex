@@ -74,7 +74,7 @@ void OptionSettingsGeneral::Create()
     wxString userName = Model_Infotable::instance().GetStringInfo("USERNAME", "");
     wxTextCtrl* userNameTextCtr = new wxTextCtrl(this, ID_DIALOG_OPTIONS_TEXTCTRL_USERNAME, userName);
     userNameTextCtr->SetMinSize(wxSize(200, -1));
-    userNameTextCtr->SetToolTip(_("The User Name is used as a title for the database."));
+    mmToolTip(userNameTextCtr, _("The User Name is used as a title for the database."));
     headerStaticBoxSizer->Add(userNameTextCtr, g_flagsExpand);
     generalPanelSizer->Add(headerStaticBoxSizer, wxSizerFlags(g_flagsExpand).Proportion(0));
 
@@ -90,7 +90,7 @@ void OptionSettingsGeneral::Create()
     wxButton* langButton = new wxButton(this, ID_DIALOG_OPTIONS_BUTTON_LANG, langName);
     langButton->SetMinSize(wxSize(200, -1));
     langFormatStaticBoxSizer->Add(langButton, g_flagsH);
-    langButton->SetToolTip(_("Change language used for MMEX GUI"));
+    mmToolTip(langButton, _("Change language used for MMEX GUI"));
 
     // Date Format Settings
     wxStaticBox* dateFormatStaticBox = new wxStaticBox(this, wxID_STATIC, _("Date Format"));
@@ -104,7 +104,7 @@ void OptionSettingsGeneral::Create()
         if (m_date_format == i.first) m_date_format_choice->SetStringSelection(i.second);
     }
     dateFormatStaticBoxSizer->Add(m_date_format_choice, g_flagsH);
-    m_date_format_choice->SetToolTip(_("Specify the date format for display"));
+    mmToolTip(m_date_format_choice, _("Specify the date format for display"));
 
     m_sample_date_text = new wxStaticText(dateFormatStaticBox, wxID_STATIC, "redefined elsewhere");
     dateFormatStaticBoxSizer->Add(new wxStaticText(dateFormatStaticBox, wxID_STATIC, _("Date format sample:")), wxSizerFlags(g_flagsH).Border(wxLEFT, 15));
@@ -127,7 +127,7 @@ void OptionSettingsGeneral::Create()
     wxButton* baseCurrencyButton = new wxButton(this, ID_DIALOG_OPTIONS_BUTTON_CURRENCY);
     baseCurrencyButton->SetMinSize(wxSize(200, -1));
     baseCurrencyButton->SetLabel(currName);
-    baseCurrencyButton->SetToolTip(_("Sets the database default Currency using the 'Currency Dialog'"));
+    mmToolTip(baseCurrencyButton, _("Sets the database default Currency using the 'Currency Dialog'"));
     currencyBaseSizer->Add(baseCurrencyButton, g_flagsH);
     m_currencyStaticBoxSizer->Add(new wxStaticText(this, wxID_STATIC
         , _("Right click and select 'Set as Base Currency' in 'Currency Dialog'")),
@@ -167,7 +167,7 @@ void OptionSettingsGeneral::Create()
 
     m_currency_history = new wxCheckBox(this, wxID_STATIC, _("Use currency history"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     m_currency_history->SetValue(Option::instance().getCurrencyHistoryEnabled());
-    m_currency_history->SetToolTip(_("Select to use currency history (one rate for each day), deselect to use a fixed rate"));
+    mmToolTip(m_currency_history, _("Select to use currency history (one rate for each day), deselect to use a fixed rate"));
     m_currencyStaticBoxSizer->Add(m_currency_history, g_flagsV);
 
     // Financial Year Settings
@@ -184,7 +184,7 @@ void OptionSettingsGeneral::Create()
     wxSpinCtrl *textFPSDay = new wxSpinCtrl(this, ID_DIALOG_OPTIONS_FINANCIAL_YEAR_START_DAY,
         wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 1, 31, day);
     textFPSDay->SetValue(day);
-    textFPSDay->SetToolTip(_("Specify Day for start of financial year"));
+    mmToolTip(textFPSDay, _("Specify Day for start of financial year"));
 
     financialYearStaticBoxSizerGrid->Add(textFPSDay, g_flagsH);
 
@@ -200,19 +200,19 @@ void OptionSettingsGeneral::Create()
 
     int monthItem = Model_Infotable::instance().GetIntInfo("FINANCIAL_YEAR_START_MONTH", 7);
     m_month_selection->SetSelection(monthItem - 1);
-    m_month_selection->SetToolTip(_("Specify month for start of financial year"));
+    mmToolTip(m_month_selection, _("Specify month for start of financial year"));
 
     // Misc settings
     generalPanelSizer->AddSpacer(15);
 
     m_use_org_date_copy_paste = new wxCheckBox(this, wxID_STATIC, _("Use Original Date when Pasting Transactions"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     m_use_org_date_copy_paste->SetValue(GetIniDatabaseCheckboxValue(INIDB_USE_ORG_DATE_COPYPASTE, false));
-    m_use_org_date_copy_paste->SetToolTip(_("Select whether to use the original transaction date or current date when copying/pasting transactions"));
+    mmToolTip(m_use_org_date_copy_paste, _("Select whether to use the original transaction date or current date when copying/pasting transactions"));
     generalPanelSizer->Add(m_use_org_date_copy_paste, g_flagsV);
 
     m_use_sound = new wxCheckBox(this, wxID_STATIC, _("Use Transaction Sound"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     m_use_sound->SetValue(GetIniDatabaseCheckboxValue(INIDB_USE_TRANSACTION_SOUND, true));
-    m_use_sound->SetToolTip(_("Select whether to use sounds when entering transactions"));
+    mmToolTip(m_use_sound, _("Select whether to use sounds when entering transactions"));
     generalPanelSizer->Add(m_use_sound, g_flagsV);
 }
 

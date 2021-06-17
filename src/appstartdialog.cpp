@@ -21,6 +21,7 @@
 #include "paths.h"
 #include "constants.h"
 #include "option.h"
+#include "util.h"
 #include "model/Model_Setting.h"
 #include "../resources/money.xpm"
 
@@ -100,21 +101,21 @@ void mmAppStartDialog::CreateControls()
     itemBoxSizer5->Add(itemButton61, 0, wxGROW | wxALL, 5);
 
     wxButton* itemButton6 = new wxButton(this, wxID_NEW, _("Create a New Database"));
-    itemButton6->SetToolTip(_("Create a new database file to get started"));
+    mmToolTip(itemButton6, _("Create a new database file to get started"));
     itemBoxSizer5->Add(itemButton6, 0, wxGROW | wxALL, 5);
 
     wxButton* itemButton7 = new wxButton(this, wxID_OPEN, _("Open Existing Database"));
-    itemButton7->SetToolTip(_("Open an already created database file with extension (*.mmb)"));
+    mmToolTip(itemButton7, _("Open an already created database file with extension (*.mmb)"));
     itemBoxSizer5->Add(itemButton7, 0, wxGROW | wxALL, 5);
 
     wxButton* itemButton8 = new wxButton(this, wxID_HELP, _("Read Documentation"));
-    itemButton8->SetToolTip(_("Read the user manual"));
+    mmToolTip(itemButton8, _("Read the user manual"));
     itemBoxSizer5->Add(itemButton8, 0, wxGROW | wxALL, 5);
 
     wxButton* itemButton9 = new wxButton(this, wxID_INDEX, _("Visit Website for more information"));
     const wxString s = wxString::Format(_("Open the %s website for latest news, updates etc")
         , mmex::getProgramName());
-    itemButton9->SetToolTip(s);
+    mmToolTip(itemButton9, s);
     itemBoxSizer5->Add(itemButton9, 0, wxGROW | wxALL, 5);
 
     wxBoxSizer* itemBoxSizer10 = new wxBoxSizer(wxHORIZONTAL);
@@ -150,7 +151,7 @@ void mmAppStartDialog::CreateControls()
     }
     else
     {
-        itemButton61->SetToolTip(wxString::Format(_("Open the previously opened database : %s"), val));
+        mmToolTip(itemButton61, wxString::Format(_("Open the previously opened database : %s"), val));
     }
 }
 

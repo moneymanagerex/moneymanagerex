@@ -36,13 +36,17 @@ wxBEGIN_EVENT_TABLE(transactionsUpdateDialog, wxDialog)
     EVT_BUTTON(wxID_VIEW_DETAILS, transactionsUpdateDialog::OnCategChange)
     EVT_CHECKBOX(wxID_ANY, transactionsUpdateDialog::OnCheckboxClick)
     EVT_CHILD_FOCUS(transactionsUpdateDialog::onFocusChange)
-    EVT_COMBOBOX(wxID_ANY, transactionsUpdateDialog::OnPayeeUpdated)
+    EVT_COMBOBOX(ID_PAYEE, transactionsUpdateDialog::OnPayeeUpdated)
+    EVT_COMBOBOX(ID_TRANS_ACC, transactionsUpdateDialog::OnAccountUpdated)
+    EVT_CHOICE(ID_TRANS_TYPE, transactionsUpdateDialog::OnTransTypeChanged)
 wxEND_EVENT_TABLE()
 
 void transactionsUpdateDialog::SetEventHandlers()
 {
     m_payee->Connect(ID_PAYEE, wxEVT_COMMAND_TEXT_UPDATED
         , wxCommandEventHandler(transactionsUpdateDialog::OnPayeeUpdated), nullptr, this);
+    m_transferAcc->Connect(ID_TRANS_ACC, wxEVT_COMMAND_TEXT_UPDATED
+        , wxCommandEventHandler(transactionsUpdateDialog::OnAccountUpdated), nullptr, this);
 }
 
 transactionsUpdateDialog::transactionsUpdateDialog()
@@ -140,14 +144,15 @@ void transactionsUpdateDialog::CreateControls()
     // Type --------------------------------------------
     m_type_checkbox = new wxCheckBox(this, wxID_ANY, _("Type")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
-    m_type_choice = new wxChoice(this, wxID_ANY
+    m_type_choice = new wxChoice(this, ID_TRANS_TYPE
         , wxDefaultPosition, wxDefaultSize);
-    m_type_choice->Enable(false);
-
     for (const auto& i : Model_Checking::all_type())
     {
         m_type_choice->Append(wxGetTranslation(i), new wxStringClientData(i));
     }
+    m_type_choice->Enable(false);
+    m_type_choice->Select(0);
+
 
     grid_sizer->Add(m_type_checkbox, g_flagsH);
     grid_sizer->Add(m_type_choice, g_flagsH);
@@ -168,7 +173,7 @@ void transactionsUpdateDialog::CreateControls()
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
 
     m_payee = new wxComboBox(this, ID_PAYEE);
-    wxArrayString all_payees = Model_Payee::instance().all_payee_names();
+       wxArrayString all_payees = Model_Payee::instance().all_payee_names();
     if (!all_payees.empty()) {
         m_payee->Insert(all_payees, 0);
         m_payee->AutoComplete(all_payees);
@@ -177,6 +182,19 @@ void transactionsUpdateDialog::CreateControls()
 
     grid_sizer->Add(m_payee_checkbox, g_flagsH);
     grid_sizer->Add(m_payee, g_flagsExpand);
+
+    // Transfer to account --------------------------------------------
+    m_transferAcc_checkbox = new wxCheckBox(this, wxID_ANY, _("Transfer To")
+        , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
+
+    m_transferAcc = new wxComboBox(this, ID_TRANS_ACC);
+    wxArrayString account_names = Model_Account::instance().all_checking_account_names(true);
+    m_transferAcc->Insert(account_names, 0);
+    m_transferAcc->AutoComplete(account_names);
+    m_transferAcc->Enable(false);
+
+    grid_sizer->Add(m_transferAcc_checkbox, g_flagsH);
+    grid_sizer->Add(m_transferAcc, g_flagsExpand);
 
     // Category -------------------------------------------------
     m_categ_checkbox = new wxCheckBox(this, wxID_VIEW_DETAILS, _("Category")
@@ -245,17 +263,12 @@ void transactionsUpdateDialog::OnOk(wxCommandEvent& WXUNUSED(event))
     }
 
     wxString type = "";
+    bool transfer;
     if (m_type_checkbox->IsChecked())
     {
-        int i = m_type_choice->GetSelection();
-        wxStringClientData* type_obj = (i >= 0 && static_cast<unsigned>(i) < m_type_choice->GetCount())
-            ? static_cast<wxStringClientData*>(m_type_choice->GetClientObject(i)) : nullptr;
-        if (type_obj)
-            type = type_obj->GetData();
-        else
-            return mmErrorDialogs::ToolTip4Object(m_type_choice
-                , _("Selection can be made by using the dropdown button.")
-                , _("Invalid type"), wxICON_WARNING);
+        wxStringClientData* type_obj = static_cast<wxStringClientData*>(m_type_choice->GetClientObject(m_type_choice->GetSelection()));
+        type = type_obj->GetData();
+        transfer = Model_Checking::is_transfer(type);
     }
 
     if (m_categ_checkbox->IsChecked())
@@ -324,8 +337,26 @@ void transactionsUpdateDialog::OnOk(wxCommandEvent& WXUNUSED(event))
             }
 
             if (!Model_Checking::is_transfer(trx))
-                trx->PAYEEID = payee->PAYEEID;;
+                trx->PAYEEID = payee->PAYEEID;
         }
+
+        if (m_transferAcc_checkbox->IsChecked() && !is_locked)
+        {
+            wxString account_name = m_transferAcc->GetValue();
+            if (account_name.IsEmpty())
+                return mmErrorDialogs::InvalidAccount(m_transferAcc, true);
+            
+            // Get account string from populated list to address issues with case compare differences between autocomplete and account list
+            int account_loc = m_transferAcc->FindString(account_name);
+            if (account_loc != wxNOT_FOUND)
+                account_name = m_transferAcc->GetString(account_loc);
+            
+            Model_Account::Data* account = Model_Account::instance().get(account_name);
+ 
+            if (Model_Checking::is_transfer(trx) && (trx->ACCOUNTID != account->ACCOUNTID))
+                trx->TOACCOUNTID = account->ACCOUNTID;
+        }
+
 
         if (m_notes_checkbox->IsChecked())
         {
@@ -375,7 +406,7 @@ void transactionsUpdateDialog::OnOk(wxCommandEvent& WXUNUSED(event))
 
         if (m_type_checkbox->IsChecked() && !is_locked)
         {
-            if (type != Model_Checking::TRANSFER_STR) {
+            if (!Model_Checking::is_transfer(trx->TRANSCODE) && !transfer) {
                 trx->TRANSCODE = type;
             } else {
                 skip_trx.push_back(trx->TRANSID);
@@ -391,6 +422,28 @@ void transactionsUpdateDialog::OnOk(wxCommandEvent& WXUNUSED(event))
     EndModal(wxID_OK);
 }
 
+void transactionsUpdateDialog::SetPayeeTransferControls()
+{
+    wxStringClientData* trans_obj = static_cast<wxStringClientData*>(m_type_choice->GetClientObject(m_type_choice->GetSelection()));
+    bool transfer = (Model_Checking::is_transfer(trans_obj->GetData()));
+
+    m_payee_checkbox->Enable(!transfer);
+    m_transferAcc_checkbox->Enable(transfer);
+    if (transfer)
+    {
+        m_payee_checkbox->SetValue(false);
+        m_payee->Enable(false);
+    } else
+    {
+        m_transferAcc_checkbox->SetValue(false);
+        m_transferAcc->Enable(false);        
+    }
+}
+void transactionsUpdateDialog::OnTransTypeChanged(wxCommandEvent& event)
+{
+    SetPayeeTransferControls();
+}
+
 void transactionsUpdateDialog::OnCheckboxClick(wxCommandEvent& event)
 {
 
@@ -398,10 +451,20 @@ void transactionsUpdateDialog::OnCheckboxClick(wxCommandEvent& event)
     m_status_choice->Enable(m_status_checkbox->IsChecked());
     m_type_choice->Enable(m_type_checkbox->IsChecked());
     m_payee->Enable(m_payee_checkbox->IsChecked());
+    m_transferAcc->Enable(m_transferAcc_checkbox->IsChecked());
     m_categ_btn->Enable(m_categ_checkbox->IsChecked());
     m_amount_ctrl->Enable(m_amount_checkbox->IsChecked());
     m_notes_ctrl->Enable(m_notes_checkbox->IsChecked());
     m_append_checkbox->Enable(m_notes_checkbox->IsChecked());
+
+    if (m_type_checkbox->IsChecked())
+    {
+        SetPayeeTransferControls();
+    } else 
+    {
+        m_payee_checkbox->Enable(true);
+        m_transferAcc_checkbox->Enable(true);
+    }
 
     event.Skip();
 }
@@ -450,8 +513,8 @@ void transactionsUpdateDialog::OnPayeeUpdated(wxCommandEvent& event)
     if (m_payee->GetSelection() == -1) // make sure nothing is selected (ex. user presses down arrow)
     {
         m_payee->SetEvtHandlerEnabled(false); // things will crash if events are handled during Clear
-        m_payee->Clear();
-        Model_Payee::Data_Set filtd = Model_Payee::instance().FilterPayees(payeeName);
+        m_payee->Clear();      
+        Model_Payee::Data_Set filtd = Model_Payee::instance().FilterPayees(payeeName);        
         std::sort(filtd.rbegin(), filtd.rend(), SorterByPAYEENAME());
         for (const auto &payee : filtd) {
             m_payee->Insert(payee.PAYEENAME, 0);
@@ -463,6 +526,35 @@ void transactionsUpdateDialog::OnPayeeUpdated(wxCommandEvent& event)
     }
 #else
 void transactionsUpdateDialog::OnPayeeUpdated(wxCommandEvent& WXUNUSED(event))
+{
+#endif
+    wxChildFocusEvent evt;
+    onFocusChange(evt);
+}
+
+#if defined (__WXMAC__)
+void transactionsUpdateDialog::OnAccountUpdated(wxCommandEvent& event)
+{
+    // Filtering the combobox as the user types because on Mac autocomplete function doesn't work
+    // PLEASE DO NOT REMOVE!!
+    wxString accountName = event.GetString();
+    if (m_transferAcc->GetSelection() == -1) // make sure nothing is selected (ex. user presses down arrow)
+    {
+        m_transferAcc->SetEvtHandlerEnabled(false); // things will crash if events are handled during Clear
+        m_transferAcc->Clear();
+        
+        Model_Account::Data_Set filtd = Model_Account::instance().FilterAccounts(accountName, true);
+        std::sort(filtd.rbegin(), filtd.rend(), SorterByACCOUNTNAME());
+        for (const auto &account : filtd)
+            m_transferAcc->Insert(account.ACCOUNTNAME, 0);
+  
+        m_transferAcc->ChangeValue(accountName);
+        m_transferAcc->SetInsertionPointEnd();
+        m_transferAcc->Popup();
+        m_transferAcc->SetEvtHandlerEnabled(true);
+    }
+#else
+void transactionsUpdateDialog::OnAccountUpdated(wxCommandEvent& WXUNUSED(event))
 {
 #endif
     wxChildFocusEvent evt;

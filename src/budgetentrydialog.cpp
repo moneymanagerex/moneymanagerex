@@ -21,6 +21,7 @@
 #include "validators.h"
 #include "paths.h"
 #include <constants.h>
+#include "util.h"
 #include <wx/valnum.h>
 
 wxIMPLEMENT_DYNAMIC_CLASS(mmBudgetEntryDialog, wxDialog);
@@ -130,14 +131,14 @@ void mmBudgetEntryDialog::CreateControls()
     m_choiceType = new wxChoice(itemPanel7, wxID_ANY
         , wxDefaultPosition, wxDefaultSize, itemTypeStrings);
     itemGridSizer2->Add(m_choiceType, g_flagsExpand);
-    m_choiceType->SetToolTip(_("Specify whether this category is an income or an expense category"));
+    mmToolTip(m_choiceType, _("Specify whether this category is an income or an expense category"));
 
     itemGridSizer2->Add(new wxStaticText(itemPanel7, wxID_STATIC, _("Frequency:")), g_flagsH);
 
     m_choiceItem = new wxChoice(itemPanel7, wxID_ANY
         , wxDefaultPosition, wxDefaultSize, Model_Budget::all_period());
     itemGridSizer2->Add(m_choiceItem, g_flagsExpand);
-    m_choiceItem->SetToolTip(_("Specify the frequency of the expense or deposit"));
+    mmToolTip(m_choiceItem, _("Specify the frequency of the expense or deposit"));
     m_choiceItem->Connect(wxID_ANY, wxEVT_CHAR, wxKeyEventHandler(mmBudgetEntryDialog::onChoiceChar), nullptr, this);
 
     itemGridSizer2->Add(new wxStaticText(itemPanel7, wxID_STATIC, _("Amount:")), g_flagsH);
@@ -145,7 +146,7 @@ void mmBudgetEntryDialog::CreateControls()
     m_textAmount = new mmTextCtrl(itemPanel7, wxID_ANY, ""
         , wxDefaultPosition, wxDefaultSize, wxALIGN_RIGHT | wxTE_PROCESS_ENTER, mmCalcValidator());
     itemGridSizer2->Add(m_textAmount, g_flagsExpand);
-    m_textAmount->SetToolTip(_("Enter the amount budgeted for this category."));
+    mmToolTip(m_textAmount, _("Enter the amount budgeted for this category."));
     m_textAmount->Connect(wxID_ANY, wxEVT_COMMAND_TEXT_ENTER
         , wxCommandEventHandler(mmBudgetEntryDialog::OnTextEntered), nullptr, this);
     m_textAmount->SetFocus();

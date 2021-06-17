@@ -195,7 +195,7 @@ void mmAssetDialog::CreateControls()
     n->SetFont(this->GetFont().Bold());
 
     m_assetName = new mmTextCtrl(asset_details_panel, wxID_ANY, wxGetEmptyString());
-    m_assetName->SetToolTip(_("Enter the name of the asset"));
+    mmToolTip(m_assetName, _("Enter the name of the asset"));
     itemFlexGridSizer6->Add(m_assetName, g_flagsExpand);
 
     itemFlexGridSizer6->Add(new wxStaticText(asset_details_panel, wxID_STATIC, _("Date")), g_flagsH);
@@ -203,7 +203,7 @@ void mmAssetDialog::CreateControls()
     m_dpc = new wxDatePickerCtrl( asset_details_panel, wxID_ANY, wxDefaultDateTime,
               wxDefaultPosition, wxSize(150, -1), wxDP_DROPDOWN|wxDP_SHOWCENTURY);
     itemFlexGridSizer6->Add(m_dpc, g_flagsV);
-    m_dpc->SetToolTip(_("Specify the date of purchase of asset"));
+    mmToolTip(m_dpc, _("Specify the date of purchase of asset"));
 
     itemFlexGridSizer6->Add(new wxStaticText(asset_details_panel, wxID_STATIC, _("Asset Type")), g_flagsH);
 
@@ -211,7 +211,7 @@ void mmAssetDialog::CreateControls()
     for (const auto& a : Model_Asset::all_type())
         m_assetType->Append(wxGetTranslation(a), new wxStringClientData(a));
 
-    m_assetType->SetToolTip(_("Select type of asset"));
+    mmToolTip(m_assetType, _("Select type of asset"));
     m_assetType->SetSelection(Model_Asset::TYPE_PROPERTY);
     itemFlexGridSizer6->Add(m_assetType, 0,
         wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL, 5);
@@ -223,7 +223,7 @@ void mmAssetDialog::CreateControls()
     m_value = new mmTextCtrl(asset_details_panel, IDC_VALUE, wxGetEmptyString()
         , wxDefaultPosition, wxSize(150,-1), wxALIGN_RIGHT|wxTE_PROCESS_ENTER
         , mmCalcValidator() );
-    m_value->SetToolTip(_("Enter the current value of the asset"));
+    mmToolTip(m_value, _("Enter the current value of the asset"));
     itemFlexGridSizer6->Add(m_value, g_flagsV);
     m_value->Connect(IDC_VALUE, wxEVT_COMMAND_TEXT_ENTER
         , wxCommandEventHandler(mmAssetDialog::onTextEntered), nullptr, this);
@@ -234,7 +234,7 @@ void mmAssetDialog::CreateControls()
     for(const auto& a : Model_Asset::all_rate())
         m_valueChange->Append(wxGetTranslation(a));
 
-    m_valueChange->SetToolTip(_("Specify if the value of the asset changes over time"));
+    mmToolTip(m_valueChange, _("Specify if the value of the asset changes over time"));
     m_valueChange->SetSelection(Model_Asset::RATE_NONE);
     itemFlexGridSizer6->Add(m_valueChange, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5);
 
@@ -244,7 +244,7 @@ void mmAssetDialog::CreateControls()
     m_valueChangeRate = new mmTextCtrl(asset_details_panel, IDC_RATE, wxGetEmptyString()
         , wxDefaultPosition, wxSize(150,-1), wxALIGN_RIGHT|wxTE_PROCESS_ENTER
         , mmCalcValidator());
-    m_valueChangeRate->SetToolTip(_("Enter the rate at which the asset changes its value in percentage per year"));
+    mmToolTip(m_valueChangeRate, _("Enter the rate at which the asset changes its value in percentage per year"));
     itemFlexGridSizer6->Add(m_valueChangeRate, g_flagsV);
     m_valueChangeRate->Connect(IDC_RATE, wxEVT_COMMAND_TEXT_ENTER
         , wxCommandEventHandler(mmAssetDialog::onTextEntered), nullptr, this);
@@ -256,10 +256,10 @@ void mmAssetDialog::CreateControls()
         , mmBitmap(png::CLIP), wxDefaultPosition
         , wxSize(m_valueChange->GetSize().GetY(), m_valueChange->GetSize().GetY()));
     itemFlexGridSizer6->Add(bAttachments_, wxSizerFlags(g_flagsV).Align(wxALIGN_RIGHT));
-    bAttachments_->SetToolTip(_("Organize attachments of this asset"));
+    mmToolTip(bAttachments_, _("Organize attachments of this asset"));
 
     m_notes = new mmTextCtrl(this, IDC_NOTES, wxGetEmptyString(), wxDefaultPosition, wxSize(220, 170), wxTE_MULTILINE);
-    m_notes->SetToolTip(_("Enter notes associated with this asset"));
+    mmToolTip(m_notes, _("Enter notes associated with this asset"));
     details_frame_sizer->Add(m_notes, 0, wxGROW | wxLEFT | wxRIGHT | wxBOTTOM, 10);
 
     /********************************************************************

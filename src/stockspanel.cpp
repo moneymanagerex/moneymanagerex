@@ -127,45 +127,45 @@ void mmStocksPanel::CreateControls()
     BoxSizerVBottom->Add(BoxSizerHBottom, g_flagsBorder1V);
 
     wxButton* itemButton6 = new wxButton(BottomPanel, wxID_NEW, _("&New "));
-    itemButton6->SetToolTip(_("New Stock Investment"));
+    mmToolTip(itemButton6, _("New Stock Investment"));
     BoxSizerHBottom->Add(itemButton6, 0, wxRIGHT, 5);
 
     wxButton* add_trans_btn = new wxButton(BottomPanel, wxID_ADD, _("&Add Trans "));
-    add_trans_btn->SetToolTip(_("Add Stock Transactions"));
+    mmToolTip(add_trans_btn, _("Add Stock Transactions"));
     BoxSizerHBottom->Add(add_trans_btn, 0, wxRIGHT, 5);
     add_trans_btn->Enable(false);
 
     wxButton* view_trans_btn = new wxButton(BottomPanel, wxID_VIEW_DETAILS, _("&View Trans "));
-    view_trans_btn->SetToolTip(_("View Stock Transactions"));
+    mmToolTip(view_trans_btn, _("View Stock Transactions"));
     BoxSizerHBottom->Add(view_trans_btn, 0, wxRIGHT, 5);
     view_trans_btn->Enable(false);
 
     wxButton* itemButton81 = new wxButton(BottomPanel, wxID_EDIT, _("&Edit "));
-    itemButton81->SetToolTip(_("Edit Stock Investment"));
+    mmToolTip(itemButton81, _("Edit Stock Investment"));
     BoxSizerHBottom->Add(itemButton81, 0, wxRIGHT, 5);
     itemButton81->Enable(false);
 
     wxButton* itemButton7 = new wxButton(BottomPanel, wxID_DELETE, _("&Delete "));
-    itemButton7->SetToolTip(_("Delete Stock Investment"));
+    mmToolTip(itemButton7, _("Delete Stock Investment"));
     BoxSizerHBottom->Add(itemButton7, 0, wxRIGHT, 5);
     itemButton7->Enable(false);
 
     wxButton* bMove = new wxButton(BottomPanel, wxID_MOVE_FRAME, _("&Move"));
-    bMove->SetToolTip(_("Move selected transaction to another account"));
+    mmToolTip(bMove, _("Move selected transaction to another account"));
     BoxSizerHBottom->Add(bMove, 0, wxRIGHT, 5);
     bMove->Enable(false);
 
     attachment_button_ = new wxBitmapButton(BottomPanel
         , wxID_FILE, mmBitmap(png::CLIP), wxDefaultPosition
         , wxSize(30, bMove->GetSize().GetY()));
-    attachment_button_->SetToolTip(_("Open attachments"));
+    mmToolTip(attachment_button_, _("Open attachments"));
     BoxSizerHBottom->Add(attachment_button_, 0, wxRIGHT, 5);
     attachment_button_->Enable(false);
 
     refresh_button_ = new wxBitmapButton(BottomPanel
         , wxID_REFRESH, mmBitmap (png::LED_OFF), wxDefaultPosition, wxSize(30, bMove->GetSize().GetY()));
     refresh_button_->SetLabelText(_("Refresh"));
-    refresh_button_->SetToolTip(_("Refresh Stock Prices from Yahoo"));
+    mmToolTip(refresh_button_, _("Refresh Stock Prices from Yahoo"));
     BoxSizerHBottom->Add(refresh_button_, 0, wxRIGHT, 5);
 
     //Infobar-mini
@@ -567,7 +567,8 @@ void mmStocksPanel::enableEditDeleteButtons(bool en)
     attachment_button_->Enable(en);
     if (!en)
     {
-        stock_details_->SetLabelText(_(STOCKTIPS[rand() % (sizeof(STOCKTIPS) / sizeof(wxString))]));
+        if (Option::instance().getShowMoneyTips())
+            stock_details_->SetLabelText(_(STOCKTIPS[rand() % (sizeof(STOCKTIPS) / sizeof(wxString))]));
         stock_details_short_->SetLabelText(wxString::Format(_("Last updated %s"), strLastUpdate_));
     }
 }

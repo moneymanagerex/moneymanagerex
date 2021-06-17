@@ -1,6 +1,7 @@
 /*******************************************************
  Copyright (C) 2011 Stefano Giorgio
  Copyright (C) 2014 -2017 Nikolay Akimov
+ Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -22,6 +23,7 @@
 #include "minimal_editor.h"
 #include "mmpanelbase.h"
 #include "mmSimpleDialogs.h"
+#include "images_list.h"
 #include "paths.h"
 #include "platfdep.h"
 #include "util.h"
@@ -339,6 +341,8 @@ void mmGeneralReportManager::CreateControls()
 #endif
     m_treeCtrl = new wxTreeCtrl(this, ID_REPORT_LIST
         , wxDefaultPosition, wxSize(200, 200), treeCtrlFlags);
+    mmThemeMetaColour(m_treeCtrl, meta::COLOR_NAVPANEL);
+    mmThemeMetaColour(m_treeCtrl, meta::COLOR_NAVPANEL_FONT, true);
 
     wxBoxSizer* reportTreeSizer = new wxBoxSizer(wxVERTICAL);
     reportTreeSizer->Add(m_treeCtrl, g_flagsExpand);
@@ -376,24 +380,24 @@ void mmGeneralReportManager::CreateControls()
     //
     m_buttonOpen = new wxButton(buttonPanel, wxID_OPEN, _("&Import"));
     buttonPanelSizer->Add(m_buttonOpen, g_flagsH);
-    m_buttonOpen->SetToolTip(_("Locate and load a report file."));
+    mmToolTip(m_buttonOpen, _("Locate and load a report file."));
 
     m_buttonSaveAs = new wxButton(buttonPanel, wxID_SAVEAS, _("&Export"));
     buttonPanelSizer->Add(m_buttonSaveAs, g_flagsH);
-    m_buttonSaveAs->SetToolTip(_("Export the report to a new file."));
+    mmToolTip(m_buttonSaveAs, _("Export the report to a new file."));
     buttonPanelSizer->AddSpacer(50);
 
     m_buttonSave = new wxButton(buttonPanel, wxID_SAVE, _("&Save "));
     buttonPanelSizer->Add(m_buttonSave, g_flagsH);
-    m_buttonSave->SetToolTip(_("Save changes."));
+    mmToolTip(m_buttonSave, _("Save changes."));
 
     m_buttonRun = new wxButton(buttonPanel, wxID_EXECUTE, _("&Run"));
     buttonPanelSizer->Add(m_buttonRun, g_flagsH);
-    m_buttonRun->SetToolTip(_("Run selected report."));
+    mmToolTip(m_buttonRun, _("Run selected report."));
 
     wxButton* button_Close = new wxButton(buttonPanel, wxID_CLOSE, wxGetTranslation(g_CloseLabel));
     buttonPanelSizer->Add(button_Close, g_flagsH);
-    //button_Close->SetToolTip(_("Save changes before closing. Changes without Save will be lost."));
+    //mmToolTip(button_Close, _("Save changes before closing. Changes without Save will be lost."));
 
 }
 
@@ -462,6 +466,8 @@ void mmGeneralReportManager::createEditorTab(wxNotebook* editors_notebook, int t
 #endif
         m_dbView = new wxTreeCtrl(splitter_sql, wxID_ANY, wxDefaultPosition
             , wxDefaultSize, treeCtrlFlags);
+        mmThemeMetaColour(m_dbView, meta::COLOR_NAVPANEL);
+        mmThemeMetaColour(m_dbView, meta::COLOR_NAVPANEL_FONT, true);
 
         splitter_sql->SplitVertically(templateText, m_dbView);
         splitter_sql->SetSashPosition(500);

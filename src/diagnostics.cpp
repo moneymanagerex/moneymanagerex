@@ -23,6 +23,7 @@ Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
 #include "diagnostics.h"
 #include "util.h"
 #include "model/Model_Setting.h"
+#include "reports/htmlbuilder.h"
 #include <wx/display.h>
 
 wxIMPLEMENT_DYNAMIC_CLASS(mmDiagnosticsDialog, wxDialog);
@@ -140,8 +141,12 @@ void mmDiagnosticsDialog::RefreshView()
         , m_is_max ? "true" : "false");
     html << "</p>";
 
+    mmHTMLBuilder hb;
+    hb.init(true);
     const wxString displayHtml = wxString::Format(HTMLPANEL, html);
-    m_diagPanel->SetPage(displayHtml);
+    hb.addText(displayHtml);
+    hb.end(true);
+    m_diagPanel->SetPage(hb.getHTMLText());
 }
 
 void mmDiagnosticsDialog::OnOk(wxCommandEvent& event)
