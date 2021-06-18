@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-06-06 13:20+0300\n"
-"PO-Revision-Date: 2021-06-08 21:58\n"
+"PO-Revision-Date: 2021-06-18 11:49\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "MIME-Version: 1.0\n"
@@ -847,7 +847,7 @@ msgstr "Atrasar ou adiantar a data da 'próxima ocorrência'"
 
 #: billsdepositsdialog.cpp:438 billsdepositspanel.cpp:128
 msgid "Date Due"
-msgstr "Data do Pagamento"
+msgstr "Data de Vencimento"
 
 #: billsdepositsdialog.cpp:442 billsdepositsdialog.cpp:1273
 msgid "Repeats"
@@ -895,7 +895,7 @@ msgstr "Adiantar ou atrasar a data de solicitação do usuário desta transaçã
 
 #: billsdepositsdialog.cpp:526 billsdepositspanel.cpp:127
 msgid "Date Paid"
-msgstr "Data de Vencimento"
+msgstr "Data de pagamento"
 
 #: billsdepositsdialog.cpp:537 filtertransdialog.cpp:282 transdialog.cpp:1290
 msgid "Specify the status for the transaction"
