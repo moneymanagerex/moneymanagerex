@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-06-06 13:20+0300\n"
-"PO-Revision-Date: 2021-06-13 11:45\n"
+"PO-Revision-Date: 2021-06-18 07:43\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -6110,7 +6110,7 @@ msgstr "Heute"
 
 #: reports/mmDateRange.cpp:70
 msgid "Current Month to Date"
-msgstr "laufender Monat "
+msgstr "Aktueller Monat bis Datum"
 
 #: reports/mmDateRange.cpp:78
 msgid "Last Month"
@@ -6138,7 +6138,7 @@ msgstr "laufendes Jahr"
 
 #: reports/mmDateRange.cpp:139 stockdialog.cpp:721
 msgid "Current Year to Date"
-msgstr "laufendes Jahr "
+msgstr "Aktuelles Jahr bis Datum"
 
 #: reports/mmDateRange.cpp:148
 msgid "Last Year"
@@ -6150,7 +6150,7 @@ msgstr "laufendes Finanzjahr"
 
 #: reports/mmDateRange.cpp:180
 msgid "Current Financial Year to Date"
-msgstr "laufendes Finanzjahr"
+msgstr "laufendes Finanzjahr bis Datum"
 
 #: reports/mmDateRange.cpp:191
 msgid "Last Financial Year"
@@ -6162,7 +6162,7 @@ msgstr "Benutzerdefiniert"
 
 #: reports/mmDateRange.cpp:220
 msgid "Last 365 Days"
-msgstr "Letzte 30 Tage"
+msgstr "Letzte 365 Tage"
 
 #: reports/myusage.cpp:27
 msgid "MMEX Usage Frequency"
