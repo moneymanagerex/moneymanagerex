@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-06-19 10:49+0300\n"
-"PO-Revision-Date: 2021-06-19 12:12\n"
+"PO-Revision-Date: 2021-06-19 12:55\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -4244,7 +4244,7 @@ msgstr "Afficher les infobulles"
 
 #: mmframe.cpp:1417
 msgid "Show Money Tips"
-msgstr "Afficher les conseils d'argent"
+msgstr "Afficher les astuces financières"
 
 #: mmframe.cpp:1437
 msgid "Toggle &Fullscreen\tShift+F11"
@@ -5698,7 +5698,7 @@ msgstr "Délimiteur de catégories"
 
 #: optionsettingsview.cpp:105
 msgid "Show Money tips"
-msgstr "Afficher les conseils d'argent"
+msgstr "Afficher les astuces financières"
 
 #: optionsettingsview.cpp:111
 msgid "Transaction/Budget Options"
