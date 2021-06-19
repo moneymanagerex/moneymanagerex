@@ -855,7 +855,7 @@ msgstr "重复"
 
 #: billsdepositsdialog.cpp:449
 msgid "Back to the last occurring date with the specified values"
-msgstr ""
+msgstr "返回具有指定值的最后发生日期 "
 
 #: billsdepositsdialog.cpp:451
 msgid "Advance the next occurring date with the specified values"
@@ -871,7 +871,7 @@ msgstr "要求用户输入付款"
 
 #: billsdepositsdialog.cpp:474
 msgid "User requested to enter this transaction on the 'Date Paid'"
-msgstr ""
+msgstr "用户要求在“支付日期”上输入此交易  "
 
 #: billsdepositsdialog.cpp:477
 msgid "Grant automatic execute"
@@ -1056,11 +1056,11 @@ msgstr "选择存入账户"
 
 #: billsdepositsdialog.cpp:932
 msgid "The payment date is after the due date, is this what you intended?"
-msgstr ""
+msgstr "付款日期晚于到期日，这是您想要的吗？  "
 
 #: billsdepositsdialog.cpp:933
 msgid "Looks like a late payment"
-msgstr ""
+msgstr "看起来像是逾期付款"
 
 #: billsdepositsdialog.cpp:1232
 msgid "Specify the transfer amount in the From Account"
@@ -1205,7 +1205,7 @@ msgstr "付款"
 
 #: billsdepositspanel.cpp:191
 msgid "MMEX allows regular payments to be set up as transactions. These transactions can also be regular deposits, or transfers that will occur at some future time. These transactions act as a reminder that an event is about to occur, and appears on the Home Page 14 days before the transaction is due. "
-msgstr ""
+msgstr "MMEX允许将定期付款设置为交易。这些交易也可以是定期存款，也可以是将来某个时候发生的转账。这些交易作为事件即将发生的提醒，并在交易到期前14天出现在主页上。"
 
 #: billsdepositspanel.cpp:194
 msgid "Tip: These transactions can be set up to activate - allowing the user to adjust any values on the due date."
@@ -1222,15 +1222,15 @@ msgstr "交易过滤"
 
 #: billsdepositspanel.cpp:292
 msgid "Delete Recurring Transaction"
-msgstr ""
+msgstr "删除定期交易记录"
 
 #: billsdepositspanel.cpp:296
 msgid "Ente&r"
-msgstr ""
+msgstr "输入定期交易记录"
 
 #: billsdepositspanel.cpp:297
 msgid "Enter Next Recurring Transaction Occurrence"
-msgstr ""
+msgstr "输入下一个定期事件事件"
 
 #: billsdepositspanel.cpp:301
 msgid "&Skip"
@@ -1238,7 +1238,7 @@ msgstr "跳过"
 
 #: billsdepositspanel.cpp:302
 msgid "Skip Next Recurring Transaction Occurrence"
-msgstr ""
+msgstr "跳过下一个定期事件"
 
 #: billsdepositspanel.cpp:411
 msgid "Enter next Occurrence..."
@@ -1250,15 +1250,15 @@ msgstr "跳过下一次到期"
 
 #: billsdepositspanel.cpp:415
 msgid "&New Recurring Transaction..."
-msgstr ""
+msgstr "新建定期事务"
 
 #: billsdepositspanel.cpp:416
 msgid "&Edit Recurring Transaction..."
-msgstr ""
+msgstr "修改定期事务"
 
 #: billsdepositspanel.cpp:417
 msgid "&Delete Recurring Transaction..."
-msgstr ""
+msgstr "删除定期事务"
 
 #: billsdepositspanel.cpp:464
 msgid "Manual"
@@ -1298,11 +1298,11 @@ msgstr[0] "逾期 %d 天！"
 
 #: billsdepositspanel.cpp:647
 msgid "Do you really want to delete the recurring transaction?"
-msgstr ""
+msgstr "是否确认要删除该定期交易事务"
 
 #: billsdepositspanel.cpp:648
 msgid "Confirm Deletion"
-msgstr ""
+msgstr "确认删除"
 
 #: budgetentrydialog.cpp:49
 msgid "Budget Year Entry"
@@ -1485,7 +1485,8 @@ msgstr "预算年："
 #: budgetyearentrydialog.cpp:78
 msgid "Specify the required year.\n"
 "Use Spin buttons to increase or decrease the year."
-msgstr ""
+msgstr "指定所需年份.\n"
+"使用数字按键增加或减少年份"
 
 #: budgetyearentrydialog.cpp:85
 msgid "Budget Month:"
@@ -1494,7 +1495,8 @@ msgstr "预算月份："
 #: budgetyearentrydialog.cpp:94
 msgid "Specify the required month.\n"
 "Use Spin buttons to increase or decrease the month."
-msgstr ""
+msgstr "指定所需月份.\n"
+"使用数字按键增加或减少月份"
 
 #: budgetyearentrydialog.cpp:101
 msgid "Base Budget On:"
@@ -1514,7 +1516,7 @@ msgstr "分类管理"
 
 #: categdialog.cpp:189 mmframe.cpp:1498
 msgid "Reassign all categories to another category"
-msgstr ""
+msgstr "将所有类别重新分配给另一个类别"
 
 #: categdialog.cpp:191
 msgid "Expand"
@@ -1538,7 +1540,7 @@ msgstr "编辑已存在的分类的名称"
 
 #: categdialog.cpp:236
 msgid "Delete an existing category. The category cannot be used by existing transactions."
-msgstr ""
+msgstr "删除现有类别。该类别不能由现有交易记录使用。"
 
 #: categdialog.cpp:241 maincurrencydialog.cpp:208
 msgid "&Select"
@@ -1554,7 +1556,7 @@ msgstr "请输入类别名称："
 
 #: categdialog.cpp:255
 msgid "Tip: If category added now, check bottom of list."
-msgstr ""
+msgstr "提示：现在添加类别，请检查列表的底部"
 
 #: categdialog.cpp:258
 msgid "Add Category"
@@ -1567,7 +1569,8 @@ msgstr "主分类名称已存在"
 #: categdialog.cpp:268
 msgid "Tip: If category added now, check bottom of list.\n"
 "Category will be in sorted order next time dialog appears"
-msgstr ""
+msgstr "提示：现在添加类别，请检查列表的底部"
+"下次出现对话框时，类别将按排序顺序排列"
 
 #: categdialog.cpp:270 categdialog.cpp:294 categdialog.cpp:312
 msgid "Organise Categories: Adding Error"
@@ -1592,16 +1595,18 @@ msgstr "子分类正在使用"
 #: categdialog.cpp:320
 msgid "Tip: Change all transactions using this Category to\n"
 "another Category using the relocate command:"
-msgstr ""
+msgstr "提示：将使用此类别的所有事务更改为\n"
+“使用重新定位命令,到另一个类别："
 
 #: categdialog.cpp:323
 msgid "Tip: Change all transactions using this Sub-Category to\n"
 "another Sub-Category using the relocate command:"
-msgstr ""
+msgstr "提示：将使用此子类别的所有事务更改为\n"
+"使用重新定位命令,到另一个类别："
 
 #: categdialog.cpp:326
 msgid "Tools -> Relocation of -> Categories"
-msgstr ""
+msgstr "工具 -> 重新定位 -> 类别"
 
 #: categdialog.cpp:328
 msgid "Organise Categories: Delete Error"
