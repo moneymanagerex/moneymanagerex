@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-06-19 10:49+0300\n"
-"PO-Revision-Date: 2021-06-19 07:55\n"
+"PO-Revision-Date: 2021-06-19 10:06\n"
 "Last-Translator: \n"
 "Language-Team: Hebrew\n"
 "MIME-Version: 1.0\n"
@@ -4265,11 +4265,11 @@ msgstr "התעלם מתנועות עתידיות"
 
 #: mmframe.cpp:1415 optionsettingsview.cpp:99
 msgid "Show Tooltips"
-msgstr ""
+msgstr "הצגת רמז־צץ"
 
 #: mmframe.cpp:1417
 msgid "Show Money Tips"
-msgstr ""
+msgstr "הצגת עצות אודות כסף"
 
 #: mmframe.cpp:1437
 msgid "Toggle &Fullscreen\tShift+F11"
@@ -5723,7 +5723,7 @@ msgstr "מפריד סוג-אב"
 
 #: optionsettingsview.cpp:105
 msgid "Show Money tips"
-msgstr ""
+msgstr "הצגת עצות אודות כסף"
 
 #: optionsettingsview.cpp:111
 msgid "Transaction/Budget Options"
