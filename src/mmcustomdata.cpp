@@ -43,7 +43,7 @@ mmCustomData::mmCustomData(wxDialog* dialog, const wxString& ref_type, int ref_i
 {
     m_dialog = dialog;
     m_fields = Model_CustomField::instance().find(Model_CustomField::DB_Table_CUSTOMFIELD_V1::REFTYPE(m_ref_type));
-    std::sort(m_fields.begin(), m_fields.end(), SorterByDESCRIPTION());
+    std::sort(m_fields.begin(), m_fields.end(), SorterByFIELDID());
     m_data_changed.clear();
 }
 
