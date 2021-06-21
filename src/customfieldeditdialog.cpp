@@ -103,6 +103,7 @@ void mmCustomFieldEditDialog::dataToControls()
     else
     {
         m_itemType->SetSelection(Model_CustomField::STRING);
+        m_itemUDFC->SetSelection(0);
     }
     wxCommandEvent evt;
     OnChangeType(evt, true);
