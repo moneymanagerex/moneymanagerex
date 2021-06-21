@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-06-19 10:49+0300\n"
-"PO-Revision-Date: 2021-06-19 07:55\n"
+"PO-Revision-Date: 2021-06-21 16:45\n"
 "Last-Translator: \n"
 "Language-Team: Greek\n"
 "MIME-Version: 1.0\n"
@@ -4237,11 +4237,11 @@ msgstr "Να αγνοηθούν μελλοντικές συναλλαγές"
 
 #: mmframe.cpp:1415 optionsettingsview.cpp:99
 msgid "Show Tooltips"
-msgstr ""
+msgstr "Εμφάνιση Υποδείξεων"
 
 #: mmframe.cpp:1417
 msgid "Show Money Tips"
-msgstr ""
+msgstr "Εμφάνιση Συμβουλών Χρημάτων"
 
 #: mmframe.cpp:1437
 msgid "Toggle &Fullscreen\tShift+F11"
@@ -5690,7 +5690,7 @@ msgstr "Διαχωριστής κατηγορίας"
 
 #: optionsettingsview.cpp:105
 msgid "Show Money tips"
-msgstr ""
+msgstr "Εμφάνιση Συμβουλών Χρημάτων"
 
 #: optionsettingsview.cpp:111
 msgid "Transaction/Budget Options"
