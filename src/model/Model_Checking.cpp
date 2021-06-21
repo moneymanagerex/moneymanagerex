@@ -313,7 +313,10 @@ wxString Model_Checking::toShortStatus(const wxString& fullStatus)
     return s;
 }
 
-Model_Checking::Full_Data::Full_Data() : Data(0), BALANCE(0), AMOUNT(0)
+Model_Checking::Full_Data::Full_Data()
+    : Data(0), BALANCE(0), AMOUNT(0),
+    UDFC01(""), UDFC02(""), UDFC03(""), UDFC04(""), UDFC05(""),
+    UDFC01_Type(-1), UDFC02_Type(-1), UDFC03_Type(-1), UDFC04_Type(-1), UDFC05_Type(-1)
 {
 }
 

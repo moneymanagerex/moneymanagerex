@@ -129,7 +129,16 @@ void mmCheckingPanel::filterTable()
     m_reconciled_balance = m_account_balance;
     m_filteredBalance = 0.0;
 
-    auto custom_fields = Model_CustomFieldData::instance().get_all(Model_Attachment::TRANSACTION);
+    std::map<int, int> custom_field_type;
+    const wxString RefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
+    Model_CustomField::Data_Set custom_fields = Model_CustomField::instance().find(Model_CustomField::DB_Table_CUSTOMFIELD_V1::REFTYPE(RefType));
+    for (const auto& entry : custom_fields)
+    {
+        if (entry.REFTYPE != RefType) continue;
+        custom_field_type[entry.FIELDID] = Model_CustomField::all_type().Index(entry.TYPE);
+    }
+
+    auto custom_fields_data = Model_CustomFieldData::instance().get_all(Model_Attachment::TRANSACTION);
     const auto matrix = Model_CustomField::getMatrix(Model_Attachment::TRANSACTION);
     int udfc01_ref_id = matrix.at("UDFC01");
     int udfc02_ref_id = matrix.at("UDFC02");
@@ -178,24 +187,29 @@ void mmCheckingPanel::filterTable()
         full_tran.HAS_ATTACHMENT = attachments.count(tran.TRANSID) > 0;
         m_filteredBalance += transaction_amount;
 
-        if (custom_fields.find(tran.TRANSID) != custom_fields.end()) {
-            const auto& udfcs = custom_fields.at(tran.TRANSID);
+        if (custom_fields_data.find(tran.TRANSID) != custom_fields_data.end()) {
+            const auto& udfcs = custom_fields_data.at(tran.TRANSID);
             for (const auto& udfc : udfcs)
             {
                 if (udfc.FIELDID == udfc01_ref_id) {
                     full_tran.UDFC01 = udfc.CONTENT;
+                    full_tran.UDFC01_Type = custom_field_type.find(udfc.FIELDID) != custom_field_type.end() ? custom_field_type.at(udfc.FIELDID) : -1;
                 }
                 else if (udfc.FIELDID == udfc02_ref_id) {
                     full_tran.UDFC02 = udfc.CONTENT;
+                    full_tran.UDFC02_Type = custom_field_type.find(udfc.FIELDID) != custom_field_type.end() ? custom_field_type.at(udfc.FIELDID) : -1;
                 }
                 else if (udfc.FIELDID == udfc03_ref_id) {
                     full_tran.UDFC03 = udfc.CONTENT;
+                    full_tran.UDFC03_Type = custom_field_type.find(udfc.FIELDID) != custom_field_type.end() ? custom_field_type.at(udfc.FIELDID) : -1;
                 }
                 else if (udfc.FIELDID == udfc04_ref_id) {
                     full_tran.UDFC04 = udfc.CONTENT;
+                    full_tran.UDFC04_Type = custom_field_type.find(udfc.FIELDID) != custom_field_type.end() ? custom_field_type.at(udfc.FIELDID) : -1;
                 }
                 else if (udfc.FIELDID == udfc05_ref_id) {
                     full_tran.UDFC05 = udfc.CONTENT;
+                    full_tran.UDFC05_Type = custom_field_type.find(udfc.FIELDID) != custom_field_type.end() ? custom_field_type.at(udfc.FIELDID) : -1;
                 }
             }
         }

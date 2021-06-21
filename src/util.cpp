@@ -333,6 +333,11 @@ const wxString mmGetDateForDisplay(const wxString &iso_date, const wxString& dat
     if (it != dateLookup.end())
         return it->second; // The stored formatted date.
 
+    wxRegEx pattern(R"([0-9]{4}\-[0-9]{2}\-[0-9]{2})");
+    if (!pattern.Matches(iso_date)) {
+        return "";
+    }
+
     // Format date, store it and return it.
     wxString date_str = dateFormat;
     if (date_str.Replace("%Y", iso_date.Mid(0, 4)) == 0)

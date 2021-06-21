@@ -1365,6 +1365,7 @@ const wxString TransactionListCtrl::getItem(long item, long column, bool realenu
     if (item < 0 || item >= static_cast<int>(m_trans.size())) return "";
 
     const Model_Checking::Full_Data& tran = m_trans.at(item);
+    int d = static_cast<int>(Model_CustomField::DATE);
 
     wxString value = wxEmptyString;
     switch (realenum ? column : m_real_columns[column])
@@ -1390,15 +1391,15 @@ const wxString TransactionListCtrl::getItem(long item, long column, bool realenu
             value.Prepend(mmAttachmentManage::GetAttachmentNoteSign());
         return value;
     case TransactionListCtrl::COL_UDFC01:
-        return tran.UDFC01;
+        return tran.UDFC01_Type == d && !tran.UDFC01.empty() ? mmGetDateForDisplay(tran.UDFC01) : tran.UDFC01;
     case TransactionListCtrl::COL_UDFC02:
-        return tran.UDFC02;
+        return tran.UDFC02_Type == d && !tran.UDFC02.empty() ? mmGetDateForDisplay(tran.UDFC02) : tran.UDFC02;
     case TransactionListCtrl::COL_UDFC03:
-        return tran.UDFC03;
+        return tran.UDFC03_Type == d && !tran.UDFC03.empty() ? mmGetDateForDisplay(tran.UDFC03) : tran.UDFC03;
     case TransactionListCtrl::COL_UDFC04:
-        return tran.UDFC04;
+        return tran.UDFC04_Type == d && !tran.UDFC04.empty() ? mmGetDateForDisplay(tran.UDFC04) : tran.UDFC04;
     case TransactionListCtrl::COL_UDFC05:
-        return tran.UDFC05;
+        return tran.UDFC05_Type == d && !tran.UDFC05.empty() ? mmGetDateForDisplay(tran.UDFC05) : tran.UDFC05;
     }
 
     bool is_transfer = Model_Checking::is_transfer(tran.TRANSCODE)
