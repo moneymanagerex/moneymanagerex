@@ -1,6 +1,7 @@
 /*************************************************************************
  Copyright (C) 2012 Stefano Giorgio
  Copyright (C) 2017 James Higley
+ Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -42,9 +43,18 @@ mmReportBudgetCategorySummary::~mmReportBudgetCategorySummary()
 wxString mmReportBudgetCategorySummary::getHTMLText()
 {
     // Grab the data 
-    wxDateTime::wxDateTime_t startDay = 1;
+    int startDay;
+    wxDate::Month startMonth;
+    if (Option::instance().BudgetFinancialYears())
+    {
+        GetFinancialYearValues(startDay, startMonth);
+    } else
+    {
+        startDay = 1;
+        startMonth = wxDateTime::Jan;    
+    }
+
     long tmp;
-    wxDateTime::Month startMonth = wxDateTime::Jan;
     int startYear = wxDateTime::Today().GetYear();
 
     wxString value = Model_Budgetyear::instance().Get(m_date_selection);
