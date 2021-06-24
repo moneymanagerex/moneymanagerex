@@ -179,7 +179,7 @@ wxString mmReportBudgetingPerformance::getHTMLText()
     }
 
     const wxString& headingStr = wxString::Format(_("Budget Performance for %s"),
-        AdjustYearValues(static_cast<int>(startDay)
+        AdjustYearValues(startDay
             , startMonth, startYear, budget_year)
     );
     mmHTMLBuilder hb;
