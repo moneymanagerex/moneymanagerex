@@ -128,6 +128,7 @@ EVT_MENU(MENU_ASSETS, mmGUIFrame::OnAssets)
 EVT_MENU(MENU_CURRENCY, mmGUIFrame::OnCurrency)
 EVT_MENU(MENU_RATES, mmGUIFrame::OnRates)
 EVT_MENU(MENU_TRANSACTIONREPORT, mmGUIFrame::OnTransactionReport)
+EVT_MENU(MENU_REFRESH_WEBAPP, mmGUIFrame::OnRefreshWebApp)
 EVT_MENU(wxID_BROWSE, mmGUIFrame::OnCustomFieldsManager)
 EVT_MENU(wxID_VIEW_LIST, mmGUIFrame::OnGeneralReportManager)
 EVT_MENU(MENU_THEME_MANAGER, mmGUIFrame::OnThemeManager)
@@ -617,6 +618,7 @@ void mmGUIFrame::menuEnableItems(bool enable)
     menuBar_->FindItem(MENU_ASSETS)->Enable(enable);
     menuBar_->FindItem(MENU_BUDGETSETUPDIALOG)->Enable(enable);
     menuBar_->FindItem(MENU_TRANSACTIONREPORT)->Enable(enable);
+    menuBar_->FindItem(MENU_REFRESH_WEBAPP)->Enable(enable && mmWebApp::WebApp_CheckEnabled());
 
     menuBar_->FindItem(MENU_VIEW_HIDE_SHARE_ACCOUNTS)->Enable(enable);
     menuBar_->FindItem(MENU_VIEW_BUDGET_FINANCIAL_YEARS)->Enable(enable);
@@ -1562,6 +1564,11 @@ void mmGUIFrame::createMenu()
 
     menuTools->AppendSeparator();
 
+    wxMenuItem* menuItemWA = new wxMenuItem(menuTools, MENU_REFRESH_WEBAPP
+        , _("Refresh &WebApp"), _("Refresh WebApp"));
+    menuTools->Append(menuItemWA);
+    menuTools->AppendSeparator();
+
     wxMenuItem* menuItemOptions = new wxMenuItem(menuTools, wxID_PREFERENCES
         , _("&Options...\tCtrl-,"), _("Show the Options Dialog"));
     menuTools->Append(menuItemOptions);
@@ -2482,6 +2489,13 @@ void mmGUIFrame::OnThemeManager(wxCommandEvent& /*event*/)
 {
     mmThemesDialog dlg(this, _("Theme Manager"));
     dlg.ShowModal();
+}
+
+void mmGUIFrame::OnRefreshWebApp(wxCommandEvent& /*event*/)
+{
+    mmWebApp::MMEX_WebApp_UpdateAccount();
+    mmWebApp::MMEX_WebApp_UpdateCategory();
+    mmWebApp::MMEX_WebApp_UpdatePayee();
 }
 
 void mmGUIFrame::OnGeneralReportManager(wxCommandEvent& /*event*/)
