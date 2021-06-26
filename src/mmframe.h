@@ -221,6 +221,7 @@ private:
     void OnCustomFieldsManager(wxCommandEvent& event);
     void OnGeneralReportManager(wxCommandEvent& event);
     void OnThemeManager(wxCommandEvent& event);
+    void OnRefreshWebApp(wxCommandEvent& event);
 
     void OnHelp(wxCommandEvent& event);
     void OnShowAppStartDialog(wxCommandEvent& WXUNUSED(event));
@@ -317,6 +318,7 @@ private:
         MENU_ACCTEDIT,
         MENU_ACCTDELETE,
         MENU_TRANSACTIONREPORT,
+        MENU_REFRESH_WEBAPP,
         MENU_VIEW_TOOLBAR,
         MENU_VIEW_LINKS,
         MENU_VIEW_HIDE_SHARE_ACCOUNTS,
