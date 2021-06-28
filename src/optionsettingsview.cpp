@@ -102,7 +102,7 @@ void OptionSettingsView::Create()
     view_sizer1->Add(m_showToolTips, g_flagsH);
 
     m_showMoneyTips = new wxCheckBox(this, wxID_STATIC
-        , _("Show Money tips")
+        , _("Show Money Tips")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     m_showMoneyTips->SetValue(Option::instance().getShowMoneyTips());
     view_sizer1->Add(m_showMoneyTips, g_flagsH);
