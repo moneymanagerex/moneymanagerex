@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2021-06-28 19:53+0300\n"
-"PO-Revision-Date: 2021-06-28 17:03\n"
+"POT-Creation-Date: 2021-06-28 20:50+0300\n"
+"PO-Revision-Date: 2021-06-28 17:51\n"
 "Last-Translator: \n"
 "Language-Team: Italian\n"
 "MIME-Version: 1.0\n"
@@ -4242,7 +4242,7 @@ msgstr "Ignora le operazioni future"
 msgid "Show Tooltips"
 msgstr "Mostra Suggerimenti"
 
-#: mmframe.cpp:1419
+#: mmframe.cpp:1419 optionsettingsview.cpp:105
 msgid "Show Money Tips"
 msgstr ""
 
@@ -5716,10 +5716,6 @@ msgstr "Specificare quali conti sono visibili"
 #: optionsettingsview.cpp:84
 msgid "Category Delimiter"
 msgstr "Delimitatore di Categoria"
-
-#: optionsettingsview.cpp:105
-msgid "Show Money tips"
-msgstr ""
 
 #: optionsettingsview.cpp:111
 msgid "Transaction/Budget Options"
