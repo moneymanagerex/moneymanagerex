@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MMEX\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2021-06-28 20:50+0300\n"
+"POT-Creation-Date: 2021-06-28 22:30+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -4383,7 +4383,7 @@ msgstr ""
 msgid "Refresh &WebApp"
 msgstr ""
 
-#: mmframe.cpp:1568
+#: mmframe.cpp:1568 mmframe.cpp:2499
 msgid "Refresh WebApp"
 msgstr ""
 
@@ -4848,12 +4848,12 @@ msgstr ""
 msgid "Accounts, Payees, and Categories Updated"
 msgstr ""
 
-#: mmframe.cpp:2499 mmframe.cpp:2502
-msgid "WebApp Refresh"
-msgstr ""
-
 #: mmframe.cpp:2501
 msgid "Issue encountered updating WebApp, check Web server and WebApp settings"
+msgstr ""
+
+#: mmframe.cpp:2502
+msgid "WebApp Refresh"
 msgstr ""
 
 #: mmframe.cpp:2537
