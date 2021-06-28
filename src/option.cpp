@@ -110,6 +110,7 @@ void Option::LoadOptions(bool include_infotable)
     m_ico_size = Model_Setting::instance().GetIntSetting("ICONSIZE", 16);
     m_toolbar_ico_size = Model_Setting::instance().GetIntSetting("TOOLBARICONSIZE", 32);
     m_navigation_ico_size = Model_Setting::instance().GetIntSetting("NAVIGATIONICONSIZE", 24);
+    m_bulk_enter = Model_Setting::instance().GetBoolSetting("BULK_TRX", false);
 }
 
 void Option::setDateFormat(const wxString& date_format)

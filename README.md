@@ -89,7 +89,7 @@ Tips
 
 [website]: http://moneymanagerex.org "MMEX website"
 [AppVeyor]: https://ci.appveyor.com/project/moneymanagerex/moneymanagerex "AppVeyor CI"
-[Travis]: http://travis-ci.org/moneymanagerex/moneymanagerex "Travis CI"
+[Travis]: http://travis-ci.com/moneymanagerex/moneymanagerex "Travis CI"
 [OpenHub]: https://www.openhub.net/p/moneymanagerex "Open Hub report"
 [GitHubIssues]: https://github.com/moneymanagerex/moneymanagerex/issues "open issues on GitHub"
 [SourceForgeDL]: https://sourceforge.net/projects/moneymanagerex/files/latest "SourceForge downloads"
