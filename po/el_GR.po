@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2021-06-28 19:53+0300\n"
-"PO-Revision-Date: 2021-06-28 17:03\n"
+"POT-Creation-Date: 2021-06-28 20:50+0300\n"
+"PO-Revision-Date: 2021-06-28 17:51\n"
 "Last-Translator: \n"
 "Language-Team: Greek\n"
 "MIME-Version: 1.0\n"
@@ -4239,7 +4239,7 @@ msgstr "Να αγνοηθούν μελλοντικές συναλλαγές"
 msgid "Show Tooltips"
 msgstr "Εμφάνιση Υποδείξεων"
 
-#: mmframe.cpp:1419
+#: mmframe.cpp:1419 optionsettingsview.cpp:105
 msgid "Show Money Tips"
 msgstr "Εμφάνιση Συμβουλών Χρημάτων"
 
@@ -5707,10 +5707,6 @@ msgstr "Καθορίστε ποιοι λογαριασμοί θα εμφανίζ
 #: optionsettingsview.cpp:84
 msgid "Category Delimiter"
 msgstr "Διαχωριστής κατηγορίας"
-
-#: optionsettingsview.cpp:105
-msgid "Show Money tips"
-msgstr "Εμφάνιση Συμβουλών Χρημάτων"
 
 #: optionsettingsview.cpp:111
 msgid "Transaction/Budget Options"
