@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MMEX\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2021-06-28 19:53+0300\n"
+"POT-Creation-Date: 2021-06-28 20:50+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -4247,7 +4247,7 @@ msgstr ""
 msgid "Show Tooltips"
 msgstr ""
 
-#: mmframe.cpp:1419
+#: mmframe.cpp:1419 optionsettingsview.cpp:105
 msgid "Show Money Tips"
 msgstr ""
 
@@ -5720,10 +5720,6 @@ msgstr ""
 
 #: optionsettingsview.cpp:84
 msgid "Category Delimiter"
-msgstr ""
-
-#: optionsettingsview.cpp:105
-msgid "Show Money tips"
 msgstr ""
 
 #: optionsettingsview.cpp:111
