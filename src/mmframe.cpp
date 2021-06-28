@@ -2499,7 +2499,7 @@ void mmGUIFrame::OnRefreshWebApp(wxCommandEvent& /*event*/)
         wxMessageBox(_("Accounts, Payees, and Categories Updated"), _("Refresh WebApp"), wxOK | wxICON_INFORMATION);
     else
         wxMessageBox(_("Issue encountered updating WebApp, check Web server and WebApp settings"),
-                _("WebApp Refresh"), wxOK | wxICON_ERROR);
+                _("Refresh WebApp""), wxOK | wxICON_ERROR);
 }
 
 void mmGUIFrame::OnGeneralReportManager(wxCommandEvent& /*event*/)
