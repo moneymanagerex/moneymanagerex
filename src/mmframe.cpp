@@ -2496,7 +2496,7 @@ void mmGUIFrame::OnRefreshWebApp(wxCommandEvent& /*event*/)
     if (mmWebApp::MMEX_WebApp_UpdateAccount()
             && mmWebApp::MMEX_WebApp_UpdateCategory()
             && mmWebApp::MMEX_WebApp_UpdatePayee())
-        wxMessageBox(_("Accounts, Payees, and Categories Updated"), _("WebApp Refresh"), wxOK | wxICON_INFORMATION);
+        wxMessageBox(_("Accounts, Payees, and Categories Updated"), _("Refresh WebApp"), wxOK | wxICON_INFORMATION);
     else
         wxMessageBox(_("Issue encountered updating WebApp, check Web server and WebApp settings"),
                 _("WebApp Refresh"), wxOK | wxICON_ERROR);
