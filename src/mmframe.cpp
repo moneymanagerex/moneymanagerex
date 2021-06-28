@@ -2493,9 +2493,16 @@ void mmGUIFrame::OnThemeManager(wxCommandEvent& /*event*/)
 
 void mmGUIFrame::OnRefreshWebApp(wxCommandEvent& /*event*/)
 {
-    mmWebApp::MMEX_WebApp_UpdateAccount();
-    mmWebApp::MMEX_WebApp_UpdateCategory();
-    mmWebApp::MMEX_WebApp_UpdatePayee();
+    bool refreshOK =  
+        mmWebApp::MMEX_WebApp_UpdateAccount() &&
+        mmWebApp::MMEX_WebApp_UpdateCategory() &&
+        mmWebApp::MMEX_WebApp_UpdatePayee();
+    if (refreshOK)
+        wxMessageBox(_("Accounts, Payees, and Categories Updated"), _("WebApp Refresh"), wxOK | wxICON_INFORMATION);
+    else
+         wxMessageBox(_("Issue encountered updating WebApp, check Web server and WebApp settings"),
+                _("WebApp Refresh"), wxOK | wxICON_ERROR);
+      
 }
 
 void mmGUIFrame::OnGeneralReportManager(wxCommandEvent& /*event*/)
