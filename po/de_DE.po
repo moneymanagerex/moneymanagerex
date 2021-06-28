@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-06-28 19:53+0300\n"
-"PO-Revision-Date: 2021-06-28 17:03\n"
+"PO-Revision-Date: 2021-06-28 17:26\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -4240,11 +4240,11 @@ msgstr "Zukünftige Buchungen ignorieren"
 
 #: mmframe.cpp:1417 optionsettingsview.cpp:99
 msgid "Show Tooltips"
-msgstr ""
+msgstr "Anwendungstipps anzeigen"
 
 #: mmframe.cpp:1419
 msgid "Show Money Tips"
-msgstr ""
+msgstr "Geld-Tipps anzeigen"
 
 #: mmframe.cpp:1439
 msgid "Toggle &Fullscreen\tShift+F11"
@@ -4376,11 +4376,11 @@ msgstr "Benutzerdefinierte Felder verwalten"
 
 #: mmframe.cpp:1568
 msgid "Refresh &WebApp"
-msgstr ""
+msgstr "&WebApp aktualisieren"
 
 #: mmframe.cpp:1568
 msgid "Refresh WebApp"
-msgstr ""
+msgstr "WebApp aktualisieren"
 
 #: mmframe.cpp:1573
 msgid "&Options...\tCtrl-,"
@@ -4838,15 +4838,15 @@ msgstr "Aktionkonto erstellen"
 
 #: mmframe.cpp:2499
 msgid "Accounts, Payees, and Categories Updated"
-msgstr ""
+msgstr "Konten, Zahler und Kategorien aktualisiert"
 
 #: mmframe.cpp:2499 mmframe.cpp:2502
 msgid "WebApp Refresh"
-msgstr ""
+msgstr "WebApp aktualisieren"
 
 #: mmframe.cpp:2501
 msgid "Issue encountered updating WebApp, check Web server and WebApp settings"
-msgstr ""
+msgstr "Beim Aktualisieren der WebApp ist ein Fehler aufgetreten. Überprüfen Sie die Webserver- und WebApp-Einstellungen"
 
 #: mmframe.cpp:2537
 msgid "MMEX Options have been updated."
@@ -5716,7 +5716,7 @@ msgstr "Kategorietrenner"
 
 #: optionsettingsview.cpp:105
 msgid "Show Money tips"
-msgstr ""
+msgstr "Geld-Tipps anzeigen"
 
 #: optionsettingsview.cpp:111
 msgid "Transaction/Budget Options"
