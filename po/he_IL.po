@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2021-06-28 19:53+0300\n"
-"PO-Revision-Date: 2021-06-28 17:03\n"
+"POT-Creation-Date: 2021-06-28 20:50+0300\n"
+"PO-Revision-Date: 2021-06-28 17:51\n"
 "Last-Translator: \n"
 "Language-Team: Hebrew\n"
 "MIME-Version: 1.0\n"
@@ -4267,7 +4267,7 @@ msgstr "התעלם מתנועות עתידיות"
 msgid "Show Tooltips"
 msgstr "הצגת רמז־צץ"
 
-#: mmframe.cpp:1419
+#: mmframe.cpp:1419 optionsettingsview.cpp:105
 msgid "Show Money Tips"
 msgstr "הצגת עצות אודות כסף"
 
@@ -5740,10 +5740,6 @@ msgstr "נא להגדיר את החשבונות הגלויים"
 #: optionsettingsview.cpp:84
 msgid "Category Delimiter"
 msgstr "מפריד סוג-אב"
-
-#: optionsettingsview.cpp:105
-msgid "Show Money tips"
-msgstr "הצגת עצות אודות כסף"
 
 #: optionsettingsview.cpp:111
 msgid "Transaction/Budget Options"
