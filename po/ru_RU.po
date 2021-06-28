@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2021-06-28 20:50+0300\n"
-"PO-Revision-Date: 2021-06-28 17:58\n"
+"POT-Creation-Date: 2021-06-28 22:30+0300\n"
+"PO-Revision-Date: 2021-06-28 19:37\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -4403,7 +4403,7 @@ msgstr "Диспетчер пользовательских полей"
 msgid "Refresh &WebApp"
 msgstr "Обновить &WebApp"
 
-#: mmframe.cpp:1568
+#: mmframe.cpp:1568 mmframe.cpp:2499
 msgid "Refresh WebApp"
 msgstr "Обновить WebApp"
 
@@ -4868,13 +4868,13 @@ msgstr "Создание счёта ценных бумаг"
 msgid "Accounts, Payees, and Categories Updated"
 msgstr "Аккаунты, платежи и категории обновлены"
 
-#: mmframe.cpp:2499 mmframe.cpp:2502
-msgid "WebApp Refresh"
-msgstr "Обновление WebApp"
-
 #: mmframe.cpp:2501
 msgid "Issue encountered updating WebApp, check Web server and WebApp settings"
 msgstr "Возникла проблема при обновлении WebApp, проверьте настройки веб-сервера и WebApp"
+
+#: mmframe.cpp:2502
+msgid "WebApp Refresh"
+msgstr "Обновление WebApp"
 
 #: mmframe.cpp:2537
 msgid "MMEX Options have been updated."
