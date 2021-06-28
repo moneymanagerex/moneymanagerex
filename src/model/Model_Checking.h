@@ -52,7 +52,7 @@ public:
 
         double AMOUNT;
         double BALANCE;
-        bool HAS_ATTACHMENT;
+        wxArrayString ATTACHMENT_DESCRIPTION;
         Model_Splittransaction::Data_Set m_splits;
         wxString real_payee_name(int account_id) const;
         bool has_split() const;
@@ -184,6 +184,6 @@ public:
 };
 
 inline bool Model_Checking::Full_Data::has_split() const { return !this->m_splits.empty(); }
-inline bool Model_Checking::Full_Data::has_attachment() const { return HAS_ATTACHMENT; }
+inline bool Model_Checking::Full_Data::has_attachment() const { return !ATTACHMENT_DESCRIPTION.empty(); }
 
 #endif // 

@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-06-19 10:49+0300\n"
-"PO-Revision-Date: 2021-06-19 10:06\n"
+"PO-Revision-Date: 2021-06-24 05:58\n"
 "Last-Translator: \n"
 "Language-Team: Hebrew\n"
 "MIME-Version: 1.0\n"
@@ -174,7 +174,7 @@ msgstr "אתר מרשתת:"
 
 #: accountdialog.cpp:221
 msgid "Enter the URL of the website for the financial institution."
-msgstr "נא להזין את הפּוֹרְטָן של המוסד הכספי."
+msgstr "נא להזין מען url של המוסד הכספי."
 
 #: accountdialog.cpp:224
 msgid "Contact:"
@@ -273,11 +273,11 @@ msgstr "מטבע"
 
 #: accountdialog.cpp:517
 msgid "Please insert a valid URL"
-msgstr "נא להזין פּוֹרְטָן תקין"
+msgstr "נא להזין מען url תקין"
 
 #: accountdialog.cpp:517
 msgid "Invalid URL"
-msgstr "פורטן לא תקין"
+msgstr "מען url לא תקין"
 
 #: accountdialog.h:37 mmframe.cpp:1473 mmframe.cpp:1712
 #: wizard_newaccount.cpp:86 wizard_newaccount.cpp:93 wizard_newaccount.cpp:164
@@ -4935,7 +4935,7 @@ msgstr "קובץ %s לא נמצא"
 
 #: mmframe.cpp:3346 optionsettingsgeneral.cpp:333
 msgid "The language for this application has been changed. The change will take effect the next time the application is started."
-msgstr "שפת המשתמש שונתה. השינוי ייכנס לתוקף באתחול הבא של היישום."
+msgstr "שפת היישום השתנתה. השינוי ייכנס לתוקף באתחול הבא של היישום."
 
 #: mmframereport.cpp:78
 msgid "General Group Report"
@@ -5631,7 +5631,7 @@ msgstr "פורטן"
 
 #: optionsettingsnet.cpp:69
 msgid "Specify the Web App URL without final slash"
-msgstr "נא להגדיר את פורטן יישומון השרת ללא הלוכסן בסוף"
+msgstr "נא להגדיר את מען url יישומון השרת ללא הלוכסן בסוף"
 
 #: optionsettingsnet.cpp:72 webappdialog.cpp:110
 msgid "GUID"

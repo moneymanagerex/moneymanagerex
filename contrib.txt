@@ -126,11 +126,14 @@ Peter Hulm
 Wiesław Stawiszyński
 Gérard AGNESIO
 Jean-Francois Zahnen
+Markus Egg
 Michel SERIN
 Roger Chandler
+William R Detamore
 David Coons
 Jose Manuel Marrero León
 Lucas Lopez Azcona
+Officer Young
 Raleigh Meade
 Thierry PAPINOT
 Jiří Vyskočil
@@ -144,6 +147,7 @@ Gerald Mead
 Hermann Fessler
 Israel Corbo
 Massimo casaccia
+Sean Vinaja
 Timothy Pope
 Fr. Cycus Chungu
 Roger Gimbrere
@@ -151,6 +155,7 @@ Brian Crow
 Glenn Fowler
 Luisa Guglielmetti
 Rafael Moreira
+Antonio Navarro Sánchez
 Francisco Fos Ros
 Ian Rowe
 Jonathan Thomas
