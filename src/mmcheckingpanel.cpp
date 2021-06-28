@@ -184,7 +184,14 @@ void mmCheckingPanel::filterTable()
         full_tran.PAYEENAME = full_tran.real_payee_name(m_AccountID);
         full_tran.BALANCE = m_account_balance;
         full_tran.AMOUNT = transaction_amount;
-        full_tran.HAS_ATTACHMENT = attachments.count(tran.TRANSID) > 0;
+        if (attachments.find(tran.TRANSID) != attachments.end())
+        {
+            for (const auto& entry : attachments.at(tran.TRANSID))
+            {
+                full_tran.ATTACHMENT_DESCRIPTION.Add(entry.DESCRIPTION);
+            }
+        }
+
         m_filteredBalance += transaction_amount;
 
         if (custom_fields_data.find(tran.TRANSID) != custom_fields_data.end()) {
@@ -455,10 +462,15 @@ void mmCheckingPanel::updateExtraTransactionData(bool single, bool foreign)
     if (single)
     {
         enableTransactionButtons(true, !foreign, true);
-        int trx_id = m_listCtrlAccount->getSelectedId()[0];
-        const Model_Checking::Data* trx = Model_Checking::instance().get(trx_id);
-        Model_Checking::Full_Data full_tran(*trx);
 
+        long x = 0, y = -1;
+        for (const auto& i : m_listCtrlAccount->m_trans)
+            if (m_listCtrlAccount->GetItemState(x++, wxLIST_STATE_SELECTED) == wxLIST_STATE_SELECTED) {
+                y = x - 1;
+                break;
+            }
+
+        Model_Checking::Full_Data full_tran(m_listCtrlAccount->m_trans[y]);
         wxString miniStr = full_tran.info();
         //Show only first line but full string set as tooltip
         if (miniStr.Find("\n") > 1 && !miniStr.IsEmpty())
@@ -693,7 +705,7 @@ void mmCheckingPanel::OnViewPopupSelected(wxCommandEvent& event)
 
 void mmCheckingPanel::OnSearchTxtEntered(wxCommandEvent& event)
 {
-    const wxString search_string = event.GetString().Lower();
+    const wxString search_string = event.GetString();
     if (search_string.IsEmpty()) return;
 
     m_listCtrlAccount->doSearchText(search_string);

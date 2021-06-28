@@ -360,13 +360,11 @@ void UserTransactionPanel::OnEnteredText(wxCommandEvent& event)
     int currency_precision = Model_Currency::precision(currency);
 
     Model_Account::Data *account = Model_Account::instance().get(m_account_id);
-    if (account)
-    {
+    if (account) {
         currency = Model_Account::currency(account);
     }
 
-    if (event.GetId() == m_entered_amount->GetId())
-    {
+    if (event.GetId() == m_entered_amount->GetId()) {
         m_entered_amount->Calculate(currency_precision);
     }
 }
@@ -407,14 +405,7 @@ void UserTransactionPanel::OnAttachments(wxCommandEvent& WXUNUSED(event))
 
 bool UserTransactionPanel::ValidCheckingAccountEntry()
 {
-    if ((m_account_id != -1) && (m_payee_id != -1) && (m_category_id != -1) && (!m_entered_amount->GetValue().IsEmpty()))
-    {
-        return true;
-    }
-    else
-    {
-        return false;
-    }
+    return (m_account_id != -1) && (m_payee_id != -1) && (m_category_id != -1) && (!m_entered_amount->GetValue().IsEmpty());
 }
 
 wxDateTime UserTransactionPanel::TransactionDate()
@@ -430,8 +421,7 @@ void UserTransactionPanel::TransactionDate(const wxDateTime& trans_date)
 void UserTransactionPanel::SetTransactionValue(const double& trans_value, bool fixed_value)
 {
     m_entered_amount->SetValue(trans_value, 2);
-    if (fixed_value)
-    {
+    if (fixed_value) {
         m_entered_amount->Enable(false);
     }
 }
@@ -465,8 +455,7 @@ Model_Translink::CHECKING_TYPE UserTransactionPanel::CheckingType()
 void UserTransactionPanel::CheckingType(Model_Translink::CHECKING_TYPE ct)
 {
     m_transfer->SetValue(true);
-    if (ct == Model_Translink::AS_INCOME_EXPENSE)
-    {
+    if (ct == Model_Translink::AS_INCOME_EXPENSE) {
         m_transfer->SetValue(false);
     }
 }
@@ -476,8 +465,7 @@ int UserTransactionPanel::SaveChecking()
     double initial_amount = 0;
     m_entered_amount->checkValue(initial_amount);
 
-    if (!m_checking_entry)
-    {
+    if (!m_checking_entry) {
         m_checking_entry = Model_Checking::instance().create();
     }
 

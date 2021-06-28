@@ -109,6 +109,7 @@ protected:
     virtual void OnColClick(wxListEvent& event);
 
 private:
+    void markItem(long selectedItem);
     std::vector<EColumn> m_real_columns; // map from actual column to EColumn
 
     std::vector<int> m_selectedForCopy; // the copied transactions (held for pasting)
