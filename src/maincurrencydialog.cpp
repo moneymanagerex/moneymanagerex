@@ -122,8 +122,11 @@ void mmMainCurrencyDialog::fillControls()
             if (!currency.CURRENCYNAME.Lower().Matches(m_maskStr) && !currency.CURRENCY_SYMBOL.Lower().Matches(m_maskStr))
                 continue;
         }
-
-        wxString amount = bHistoryEnabled_
+        wxString amount;
+        if (-1 == base_currency_id) // Not yet set
+            amount = _("N/A");
+        else
+            amount = bHistoryEnabled_
             ? Model_Currency::toString(Model_CurrencyHistory::getLastRate(currencyID), nullptr, 4)
             : Model_Currency::toString(currency.BASECONVRATE, nullptr, 4);
         wxVector<wxVariant> data;
