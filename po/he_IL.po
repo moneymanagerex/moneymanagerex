@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-06-28 22:30+0300\n"
-"PO-Revision-Date: 2021-06-29 04:58\n"
+"PO-Revision-Date: 2021-06-29 05:07\n"
 "Last-Translator: \n"
 "Language-Team: Hebrew\n"
 "MIME-Version: 1.0\n"
@@ -4401,11 +4401,11 @@ msgstr "מנהל שדות מותאם אישית"
 
 #: mmframe.cpp:1568
 msgid "Refresh &WebApp"
-msgstr "רענון &יישום מרשתת"
+msgstr "רענון &יישומון מרשתת"
 
 #: mmframe.cpp:1568 mmframe.cpp:2499
 msgid "Refresh WebApp"
-msgstr "רענון יישום מרשתת"
+msgstr "רענון יישומון מרשתת"
 
 #: mmframe.cpp:1573
 msgid "&Options...\tCtrl-,"
