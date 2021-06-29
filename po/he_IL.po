@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-06-28 22:30+0300\n"
-"PO-Revision-Date: 2021-06-28 19:37\n"
+"PO-Revision-Date: 2021-06-29 04:58\n"
 "Last-Translator: \n"
 "Language-Team: Hebrew\n"
 "MIME-Version: 1.0\n"
@@ -4401,11 +4401,11 @@ msgstr "מנהל שדות מותאם אישית"
 
 #: mmframe.cpp:1568
 msgid "Refresh &WebApp"
-msgstr ""
+msgstr "רענון &יישום מרשתת"
 
 #: mmframe.cpp:1568 mmframe.cpp:2499
 msgid "Refresh WebApp"
-msgstr ""
+msgstr "רענון יישום מרשתת"
 
 #: mmframe.cpp:1573
 msgid "&Options...\tCtrl-,"
@@ -4865,15 +4865,15 @@ msgstr "יצירת חשבון ניירות ערך"
 
 #: mmframe.cpp:2499
 msgid "Accounts, Payees, and Categories Updated"
-msgstr ""
+msgstr "עדכון חשבונות, מוטבים, וסוגי־אב"
 
 #: mmframe.cpp:2501
 msgid "Issue encountered updating WebApp, check Web server and WebApp settings"
-msgstr ""
+msgstr "הסוגיה אירעה בעת עדכון יישומון מרשתת, נא לבדוק את שרת המרשתת ואת הגדרות יישומון המרשתת"
 
 #: mmframe.cpp:2502
 msgid "WebApp Refresh"
-msgstr ""
+msgstr "רענון יישמון מרשתת"
 
 #: mmframe.cpp:2537
 msgid "MMEX Options have been updated."
