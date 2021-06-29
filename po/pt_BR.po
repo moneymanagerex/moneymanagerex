@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-06-28 22:30+0300\n"
-"PO-Revision-Date: 2021-06-28 19:37\n"
+"PO-Revision-Date: 2021-06-29 12:24\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "MIME-Version: 1.0\n"
@@ -4376,11 +4376,11 @@ msgstr "Gerenciador de Campos Personalizados"
 
 #: mmframe.cpp:1568
 msgid "Refresh &WebApp"
-msgstr ""
+msgstr "Atualizar &WebApp"
 
 #: mmframe.cpp:1568 mmframe.cpp:2499
 msgid "Refresh WebApp"
-msgstr ""
+msgstr "Atualizar WebApp"
 
 #: mmframe.cpp:1573
 msgid "&Options...\tCtrl-,"
@@ -4841,15 +4841,15 @@ msgstr "Criação de Conta Compartilhada"
 
 #: mmframe.cpp:2499
 msgid "Accounts, Payees, and Categories Updated"
-msgstr ""
+msgstr "Contas, Favorecidos e Categorias Atualizadas"
 
 #: mmframe.cpp:2501
 msgid "Issue encountered updating WebApp, check Web server and WebApp settings"
-msgstr ""
+msgstr "Problema encontrado ao atualizar o WebApp, verifique o servidor da Web e as configurações do WebApp"
 
 #: mmframe.cpp:2502
 msgid "WebApp Refresh"
-msgstr ""
+msgstr "Atualização do WebApp"
 
 #: mmframe.cpp:2537
 msgid "MMEX Options have been updated."
