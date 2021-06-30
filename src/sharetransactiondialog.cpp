@@ -141,7 +141,7 @@ void ShareTransactionDialog::DataToControls()
         m_share_commission_ctrl->SetValue(m_stock->COMMISSION, Option::instance().SharePrecision());
         m_transaction_panel->TransactionDate(Model_Stock::PURCHASEDATE(m_stock));
         m_transaction_panel->SetTransactionValue(
-            ( m_stock->NUMSHARES * m_stock->PURCHASEPRICE) + m_stock->COMMISSION, true);
+            ( m_stock->NUMSHARES * m_stock->PURCHASEPRICE) - m_stock->COMMISSION, true);
     }
     else
     {
@@ -158,7 +158,7 @@ void ShareTransactionDialog::DataToControls()
                 Model_Checking::Data* checking_entry = Model_Checking::instance().get(m_translink_entry->CHECKINGACCOUNTID);
                 m_transaction_panel->TransactionDate(Model_Checking::TRANSDATE(checking_entry));
                 m_transaction_panel->SetTransactionValue(
-                    (std::abs(m_share_entry->SHARENUMBER) * m_share_entry->SHAREPRICE) + m_share_entry->SHARECOMMISSION, true);
+                    (std::abs(m_share_entry->SHARENUMBER) * m_share_entry->SHAREPRICE) - m_share_entry->SHARECOMMISSION, true);
             }
         }
         else
@@ -221,7 +221,7 @@ void ShareTransactionDialog::CreateControls()
     itemFlexGridSizer6->Add(m_share_num_ctrl, g_flagsH);
     mmToolTip(m_share_num_ctrl, _("Enter number of shares held"));
 
-    m_share_num_ctrl->Connect(ID_STOCKTRANS_SHARE_NUMBER, wxEVT_COMMAND_TEXT_ENTER
+    m_share_num_ctrl->Connect(ID_STOCKTRANS_SHARE_NUMBER, wxEVT_COMMAND_TEXT_UPDATED
         , wxCommandEventHandler(ShareTransactionDialog::OnTextEntered), nullptr, this);
 
     //Share Price
@@ -234,7 +234,7 @@ void ShareTransactionDialog::CreateControls()
     itemFlexGridSizer6->Add(m_share_price_ctrl, g_flagsH);
     mmToolTip(m_share_price_ctrl, _("Enter the current value for a single share unit"));
 
-    m_share_price_ctrl->Connect(ID_STOCKTRANS_SHARE_PRICE, wxEVT_COMMAND_TEXT_ENTER
+    m_share_price_ctrl->Connect(ID_STOCKTRANS_SHARE_PRICE, wxEVT_COMMAND_TEXT_UPDATED
         , wxCommandEventHandler(ShareTransactionDialog::OnTextEntered), nullptr, this);
 
     // Commission
@@ -245,7 +245,7 @@ void ShareTransactionDialog::CreateControls()
     itemFlexGridSizer6->Add(m_share_commission_ctrl, g_flagsH);
     mmToolTip(m_share_commission_ctrl, _("Enter any commission paid"));
 
-    m_share_commission_ctrl->Connect(ID_STOCKTRANS_SHARE_COMMISSION, wxEVT_COMMAND_TEXT_ENTER
+    m_share_commission_ctrl->Connect(ID_STOCKTRANS_SHARE_COMMISSION, wxEVT_COMMAND_TEXT_UPDATED
         , wxCommandEventHandler(ShareTransactionDialog::OnTextEntered), nullptr, this);
 
     //Share Lot
@@ -451,6 +451,6 @@ void ShareTransactionDialog::OnTextEntered(wxCommandEvent& WXUNUSED(event))
 
     if (share_num > 0)
     {
-        m_transaction_panel->SetTransactionValue((share_num * share_price) + share_commission);
+        m_transaction_panel->SetTransactionValue((share_num * share_price) - share_commission);
     }
 }
