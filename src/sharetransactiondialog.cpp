@@ -47,9 +47,9 @@ wxEND_EVENT_TABLE()
 double ShareTransactionDialog::GetAmount(double shares, double price, double commision)
 {
     if (m_transaction_panel->TransactionType() == Model_Checking::DEPOSIT)
-        return (shares * price + commision);
-    else
         return (shares * price - commision);
+    else
+        return (shares * price + commision);
 }
 
 ShareTransactionDialog::ShareTransactionDialog()
