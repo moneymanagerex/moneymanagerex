@@ -353,9 +353,9 @@ const wxString htmlWidgetBillsAndDeposits::getHTMLText()
         output += wxString::Format("<a href=\"billsdeposits:\" oncontextmenu=\"return false;\" target=\"_blank\">%s</a></th>\n<th></th>\n", title_);
         output += wxString::Format("<th nowrap class='text-right sorttable_nosort'>%i <a id='%s_label' onclick=\"toggleTable('%s'); \" href='#%s' oncontextmenu='return false;'>[-]</a></th></tr>\n"
             , int(bd_days.size()), idStr, idStr, idStr);
-        output += "</thead>\n";
+        output += "</thead></table>\n";
 
-        output += wxString::Format("<tbody id='%s'>\n", idStr);
+        output += wxString::Format("<table class='table' id='%s'>\n", idStr);
         output += wxString::Format("<thead><tr><th>%s</th>\n<th class='text-right'>%s</th>\n<th class='text-right'>%s</th></tr></thead>\n"
             , _("Account / Payee"), _("Amount"), _("Payment"));
 
@@ -367,7 +367,7 @@ const wxString htmlWidgetBillsAndDeposits::getHTMLText()
                 , Model_Account::toCurrency(std::get<3>(item), std::get<4>(item)));
             output += "<td  class='money'>" + std::get<2>(item) + "</td></tr>\n";
         }
-        output += "</tbody></table>\n";
+        output += "</table>\n";
         output += "</div>";
     }
     return output;
