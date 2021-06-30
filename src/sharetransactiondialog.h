@@ -48,11 +48,12 @@ private:
     void CreateControls();
     void DataToControls();
 
+    double GetAmount(double shares, double price, double commision);
     void OnQuit(wxCloseEvent& WXUNUSED(event));
     void OnOk(wxCommandEvent& WXUNUSED(event));
     void OnCancel(wxCommandEvent& WXUNUSED(event));
     void OnStockPriceButton(wxCommandEvent& event);
-    void OnTextEntered(wxCommandEvent& event);
+    void CalculateAmount(wxCommandEvent& event);
 
 private:
     Model_Stock::Data* m_stock;
