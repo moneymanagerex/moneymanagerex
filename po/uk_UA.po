@@ -3,9 +3,9 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-06-30 12:59+0300\n"
-"PO-Revision-Date: 2021-06-30 10:08\n"
+"PO-Revision-Date: 2021-07-01 13:39\n"
 "Last-Translator: \n"
-"Language-Team: Lithuanian\n"
+"Language-Team: Ukrainian\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -15,45 +15,45 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: db/DB_Upgrade.h\n"
 "X-Poedit-SearchPathExcluded-1: db/DB_Table_Currencyformats_V1.h\n"
-"Plural-Forms: nplurals=4; plural=(n%10==1 && (n%100>19 || n%100<11) ? 0 : (n%10>=2 && n%10<=9) && (n%100>19 || n%100<11) ? 1 : n%1!=0 ? 2: 3);\n"
+"Plural-Forms: nplurals=4; plural=((n%10==1 && n%100!=11) ? 0 : ((n%10 >= 2 && n%10 <=4 && (n%100 < 12 || n%100 > 14)) ? 1 : ((n%10 == 0 || (n%10 >= 5 && n%10 <=9)) || (n%100 >= 11 && n%100 <= 14)) ? 2 : 3));\n"
 "X-Crowdin-Project: moneymanagerex\n"
 "X-Crowdin-Project-ID: 342055\n"
-"X-Crowdin-Language: lt\n"
+"X-Crowdin-Language: uk\n"
 "X-Crowdin-File: /master/po/mmex.pot\n"
 "X-Crowdin-File-ID: 470\n"
-"Language: lt_LT\n"
+"Language: uk_UA\n"
 
 #: aboutdialog.cpp:55
 msgid "License agreement"
-msgstr "Licencijos sutartis"
+msgstr ""
 
 #: aboutdialog.cpp:187
 msgid "About"
-msgstr "Apie"
+msgstr ""
 
 #: aboutdialog.cpp:192
 msgid "Authors"
-msgstr "Autoriai"
+msgstr ""
 
 #: aboutdialog.cpp:197
 msgid "Sponsors"
-msgstr "Sponsoriai"
+msgstr "Спонсори"
 
 #: aboutdialog.cpp:202
 msgid "License"
-msgstr "Licencija"
+msgstr "Ліцензія"
 
 #: aboutdialog.cpp:207
 msgid "Privacy"
-msgstr "Privatumas"
+msgstr ""
 
 #: aboutdialog.cpp:245 optionsettingsnet.cpp:114
 msgid "Send anonymous statistics usage data"
-msgstr "Siųsti anoniminius statistinius naudojimo duomenis"
+msgstr ""
 
 #: aboutdialog.cpp:246 optionsettingsnet.cpp:116
 msgid "Enable to help us sending anonymous data about MMEX usage."
-msgstr "Įjungti, kad padėti mums, siunčiant nuasmenintus duomenis apie MMEX naudojimą."
+msgstr ""
 
 #: aboutdialog.cpp:253 accountdialog.cpp:306 appstartdialog.cpp:137
 #: assetdialog.cpp:305 attachmentdialog.cpp:120 billsdepositsdialog.cpp:491
@@ -68,64 +68,64 @@ msgstr "Įjungti, kad padėti mums, siunčiant nuasmenintus duomenis apie MMEX n
 #: splittransactionsdialog.cpp:172 transactionsupdatedialog.cpp:240
 #: transdialog.cpp:604 wizard_update.cpp:192
 msgid "&OK "
-msgstr "&Gerai "
+msgstr ""
 
 #: accountdialog.cpp:111 mmframe.cpp:1478
 msgid "Edit Account"
-msgstr "Redaguoti sąskaitą"
+msgstr "Редагувати рахунок"
 
 #: accountdialog.cpp:139
 msgid "Account Name:"
-msgstr "Paskyros pavadinimas:"
+msgstr "Назва рахунку:"
 
 #: accountdialog.cpp:142
 msgid "Enter the Name of the Account. This name can be renamed at any time."
-msgstr "Įveskite sąskaitos pavadinimą. Šis pavadinimas gali būti pakeistas bet kada."
+msgstr "Введіть назву рахунку. Назву можна змінити у будь-який час."
 
 #: accountdialog.cpp:145
 msgid "Account Type:"
-msgstr "Sąskaitos tipas:"
+msgstr "Тип рахунку:"
 
 #: accountdialog.cpp:152 wizard_newaccount.cpp:126
 msgid "Specify the type of account to be created."
-msgstr "Nurodykite kuriamos sąskaitos tipą."
+msgstr "Вкажіть тип рахунку який необхідно створити."
 
 #: accountdialog.cpp:156
 msgid "Account Status:"
-msgstr "Įgalinti įvykius jei jūsų paskyros būsena yra „Pasitraukęs“"
+msgstr "Статус рахунку:"
 
 #: accountdialog.cpp:161
 msgid "Specify if this account has been closed. Closed accounts are inactive in most calculations, reporting etc."
-msgstr "Nurodykite ar šį sąskaita yra uždaryta. Uždarytos sąskaitos yra neaktyvios daugumoje skaičiavimų, ataskaitose ir pan."
+msgstr "Вкажіть, чи цей рахунок закрито. Закриті рахунки не використовуються в більшості розрахунків та звітів, і т.п."
 
 #: accountdialog.cpp:165
 #, c-format
 msgid "Initial Balance: %s"
-msgstr "Pradinis balansas: %s"
+msgstr ""
 
 #: accountdialog.cpp:169
 msgid "Enter the initial balance in this account."
-msgstr "Įveskite pradinį šios sąskaitos balansą."
+msgstr "Введіть початковий баланс на цьому рахунку"
 
 #: accountdialog.cpp:171 import_export/univcsvdialog.cpp:1828
 msgid "Currency:"
-msgstr "Valiuta:"
+msgstr "Валюта:"
 
 #: accountdialog.cpp:173 currencydialog.cpp:101
 msgid "Select Currency"
-msgstr "Pasirinkite valiutą"
+msgstr "Оберіть валюту"
 
 #: accountdialog.cpp:179
 msgid "Specify the currency to be used by this account."
-msgstr "Nurodykite šioje sąskaitoje naudojamą valiutą."
+msgstr "Вкажіть валюту, яка буде використовуватись цим рахунком"
 
 #: accountdialog.cpp:182
 msgid "Favorite Account"
-msgstr "Mėgiama sąskaita"
+msgstr "Улюблений рахунок"
 
 #: accountdialog.cpp:184
 msgid "Select whether this is an account that is used often. This is used to filter accounts display view."
-msgstr "Nurodykite ar ši sąskaita yra dažnai naudojama. Tai naudojamas, kad filtruoti sąskaitas ekrano rodmenyje."
+msgstr "Вказати, чи часто цей рахунок використовується. Це впливає на показ рахунку у головному вікні"
 
 #: accountdialog.cpp:192 assetdialog.cpp:253 assetspanel.cpp:65
 #: billsdepositsdialog.cpp:626 billsdepositspanel.cpp:140
@@ -136,61 +136,61 @@ msgstr "Nurodykite ar ši sąskaita yra dažnai naudojama. Tai naudojamas, kad f
 #: stockdialog.cpp:264 stocks_list.cpp:100 transactionsupdatedialog.cpp:211
 #: transdialog.cpp:578 usertransactionpanel.cpp:206 webappdialog.cpp:154
 msgid "Notes"
-msgstr "Pastabos"
+msgstr "Примітки"
 
 #: accountdialog.cpp:197
 msgid "Enter user notes and details about this account."
-msgstr "Įveskite naudotoj pastabas ir informaciją apie šią sąskaitą."
+msgstr "Вкажіть примітки та деталі для  цього рахунку"
 
 #: accountdialog.cpp:201 db/DB_Table_Subcategory_V1.h:129
 #: db/DB_Table_Subcategory_V1.h:132 db/DB_Table_Subcategory_V1.h:148
 #: optiondialog.cpp:135
 msgid "Others"
-msgstr "Kita"
+msgstr "Інше"
 
 #: accountdialog.cpp:209
 msgid "Card Number:"
-msgstr "Kortelės numeris:"
+msgstr ""
 
 #: accountdialog.cpp:209
 msgid "Account Number:"
-msgstr "Sąskaitos numeris:"
+msgstr "Номер рахунку:"
 
 #: accountdialog.cpp:211
 msgid "Enter the Account Number associated with this account."
-msgstr "Įveskite sąskaitos numerį susietą su šia sąskaita."
+msgstr "Введіть номер рахунку, який пов'язаний з цим рахунком"
 
 #: accountdialog.cpp:214
 msgid "Held At:"
-msgstr "Sulaikyta:"
+msgstr "Зберігається в:"
 
 #: accountdialog.cpp:216
 msgid "Enter the name of the financial institution in which the account is held."
-msgstr "Įveskite finansinės institucijos, kurioje laikoma sąskaita, pavadinimą."
+msgstr "Вкажіть назву фінансової установи в якій відкрито рахунок."
 
 #: accountdialog.cpp:219
 msgid "Website:"
-msgstr "Svetainė:"
+msgstr "Вебсайт:"
 
 #: accountdialog.cpp:221
 msgid "Enter the URL of the website for the financial institution."
-msgstr "Įveskite finansinės institucijos internetinės svetainės adresą."
+msgstr "Вкажіть  URL веб-сайту фінансової установи"
 
 #: accountdialog.cpp:224
 msgid "Contact:"
-msgstr "Kontaktas:"
+msgstr "Контакт:"
 
 #: accountdialog.cpp:226
 msgid "Enter any contact information for the financial institution."
-msgstr "Įveskite finansinės institucijos kontaktinę informaciją."
+msgstr "Вкажіть будь-яку контактну інформацію для фінансової установи"
 
 #: accountdialog.cpp:229
 msgid "Access Info:"
-msgstr "Prieigos informacija:"
+msgstr "Інф. для доступу"
 
 #: accountdialog.cpp:231
 msgid "Enter any login/access information for the financial institution. This is not secure as anyone with access to the mmb file can access it."
-msgstr "Įveskite bet kokią prisijungimo / pasiekimo prie finansinės institucijos informaciją. Tai ne saugu, nes net kas turinti prieigą prie mmb failo gali pasiekti šią informaciją."
+msgstr "Введіть будь-яку інформацію, типу логіну, для фінансової установи. Це не є безпечним, так як кожен з доступом до файлу  mmb зможе її отримати."
 
 #: accountdialog.cpp:236
 msgid "Statement"
@@ -202,7 +202,7 @@ msgstr ""
 
 #: accountdialog.cpp:245
 msgid "Locked"
-msgstr "Užrakinta"
+msgstr ""
 
 #: accountdialog.cpp:246
 msgid "Enable or disable the transaction Lock"
@@ -210,7 +210,7 @@ msgstr ""
 
 #: accountdialog.cpp:249
 msgid "Reconciled Date:"
-msgstr "Suderintas bal.:"
+msgstr ""
 
 #: accountdialog.cpp:251
 msgid "The date of the transaction lock"
@@ -218,7 +218,7 @@ msgstr ""
 
 #: accountdialog.cpp:254
 msgid "Minimum Bal:"
-msgstr "Minimalus balansas:"
+msgstr ""
 
 #: accountdialog.cpp:256
 msgid "Account balance lower limit. Zero to disable"
@@ -226,50 +226,50 @@ msgstr ""
 
 #: accountdialog.cpp:261
 msgid "Credit"
-msgstr "Kreditas"
+msgstr ""
 
 #: accountdialog.cpp:269
 msgid "Credit Limit:"
-msgstr "Kredito limitas:"
+msgstr ""
 
 #: accountdialog.cpp:271
 msgid "Credit limit for the Account. Zero to disable"
-msgstr "Sąskaitos kredito limitas. Įveskite 0 panaikinimui"
+msgstr ""
 
 #: accountdialog.cpp:274
 msgid "Interest Rate:"
-msgstr "Palūkanų norma:"
+msgstr ""
 
 #: accountdialog.cpp:278
 msgid "Payment Due Date:"
-msgstr "Mokėjimo data:"
+msgstr ""
 
 #: accountdialog.cpp:282
 msgid "Minimum Payment:"
-msgstr "Minimalus mokėjimas:"
+msgstr ""
 
 #: accountdialog.cpp:301
 msgid "Organize attachments of this account"
-msgstr "Tvarkyti šios sąskaitos priedus"
+msgstr ""
 
 #: accountdialog.cpp:423
 msgid "Default Image"
-msgstr "Numatytas paveikslėlis"
+msgstr ""
 
 #: accountdialog.cpp:433
 #, c-format
 msgid "Image #%i"
-msgstr "Paveikslėlis #%i"
+msgstr ""
 
 #: accountdialog.cpp:504
 msgid "Account Name "
-msgstr "Sąskaitos pavadinimas "
+msgstr "Назва рахунку"
 
 #: accountdialog.cpp:509 import_export/qif_export.cpp:595
 #: import_export/qif_import_gui.cpp:233 optionsettingsgeneral.cpp:116
 #: reports/htmlbuilder.cpp:196
 msgid "Currency"
-msgstr "Valiuta"
+msgstr "Валюта"
 
 #: accountdialog.cpp:517
 msgid "Please insert a valid URL"
@@ -282,53 +282,53 @@ msgstr ""
 #: accountdialog.h:37 mmframe.cpp:1475 mmframe.cpp:1719
 #: wizard_newaccount.cpp:86 wizard_newaccount.cpp:93 wizard_newaccount.cpp:164
 msgid "New Account"
-msgstr "Nauja paskyra"
+msgstr "Новий рахунок"
 
 #: appstartdialog.cpp:100
 msgid "Open Last Opened Database"
-msgstr "Atverti paskiausiai atvertą duombazę"
+msgstr ""
 
 #: appstartdialog.cpp:103
 msgid "Create a New Database"
-msgstr "Sukurti naują duomenų bazę"
+msgstr ""
 
 #: appstartdialog.cpp:104
 msgid "Create a new database file to get started"
-msgstr "Sukurti naują duomenų bazės failą, kad pradėti"
+msgstr "Створити новий файл бази данних для початку"
 
 #: appstartdialog.cpp:107
 msgid "Open Existing Database"
-msgstr "Atverti esamą duomenų bazę"
+msgstr ""
 
 #: appstartdialog.cpp:108
 msgid "Open an already created database file with extension (*.mmb)"
-msgstr "Atverti jau sukurtą duomenų bazės failą su plėtiniu (*.mmb)"
+msgstr ""
 
 #: appstartdialog.cpp:111
 msgid "Read Documentation"
-msgstr "Skaityti dokumentaciją"
+msgstr "Прочитати документацію"
 
 #: appstartdialog.cpp:112
 msgid "Read the user manual"
-msgstr "Skaityti naudotojo vadovą"
+msgstr "Прочитати керівництво користувача"
 
 #: appstartdialog.cpp:115
 msgid "Visit Website for more information"
-msgstr "Aplankyti svetainę dėl papildomos informacijos"
+msgstr "Дивіться Веб-сайт для додаткової інформації"
 
 #: appstartdialog.cpp:116
 #, c-format
 msgid "Open the %s website for latest news, updates etc"
-msgstr "Atverti %s svetainę dėl naujienų, atnaujinimų ir pan."
+msgstr ""
 
 #: appstartdialog.cpp:124 wizard_update.cpp:185
 #, c-format
 msgid "Show this window next time %s starts"
-msgstr "Rodyti šį langą kitą kartą startuojant %s"
+msgstr ""
 
 #: appstartdialog.cpp:138
 msgid "&Exit "
-msgstr "&Išeiti "
+msgstr "Завершення"
 
 #: appstartdialog.cpp:154
 #, c-format
@@ -337,11 +337,11 @@ msgstr ""
 
 #: assetdialog.cpp:61 assetdialog.cpp:410 assetspanel.cpp:467
 msgid "New Asset"
-msgstr "Naujas turtas"
+msgstr "Нове майно"
 
 #: assetdialog.cpp:67 assetspanel.cpp:481
 msgid "Edit Asset"
-msgstr "Redaguoti turtą"
+msgstr "Редагувати майно"
 
 #: assetdialog.cpp:71 assetdialog.cpp:93 assetspanel.cpp:471
 msgid "Add Asset Transaction"
@@ -353,18 +353,18 @@ msgstr ""
 
 #: assetdialog.cpp:183
 msgid "Asset Details"
-msgstr "Turto informacija"
+msgstr "Детальні відомості про майно"
 
 #: assetdialog.cpp:193 assetspanel.cpp:60 customfieldeditdialog.cpp:131
 #: customfieldlistdialog.cpp:53 import_export/qif_import_gui.cpp:231
 #: import_export/qif_import_gui.cpp:244 import_export/qif_import_gui.cpp:254
 #: maincurrencydialog.cpp:75 payeedialog.cpp:64 reports/summarystocks.cpp:190
 msgid "Name"
-msgstr "Pavadinimas"
+msgstr "Назва"
 
 #: assetdialog.cpp:198
 msgid "Enter the name of the asset"
-msgstr "Įveskite turto pavadinimą"
+msgstr "Введіть назву майна"
 
 #: assetdialog.cpp:201 assetspanel.cpp:61 filtertransdialog.cpp:515
 #: import_export/qif_export.cpp:588 import_export/qif_import_gui.cpp:99
@@ -376,40 +376,40 @@ msgstr "Įveskite turto pavadinimą"
 #: transactionsupdatedialog.cpp:118 transdialog.cpp:456
 #: usertransactionpanel.cpp:108 webappdialog.cpp:147 wizard_update.cpp:145
 msgid "Date"
-msgstr "Data"
+msgstr "Дата"
 
 #: assetdialog.cpp:206
 msgid "Specify the date of purchase of asset"
-msgstr "Nurodykite turto pirkimo datą"
+msgstr "Введіть дату придбання майна"
 
 #: assetdialog.cpp:208
 msgid "Asset Type"
-msgstr "Turto tipas"
+msgstr "Тип майна"
 
 #: assetdialog.cpp:214
 msgid "Select type of asset"
-msgstr "Parinkite turto tipą"
+msgstr "Виберіть тип майна"
 
 #: assetdialog.cpp:219 import_export/qif_import_gui.cpp:104
 #: maincurrencydialog.cpp:270
 msgid "Value"
-msgstr "Vertė"
+msgstr "Вартість"
 
 #: assetdialog.cpp:226
 msgid "Enter the current value of the asset"
-msgstr "Įveskite esamą turto vertę"
+msgstr "Введіть поточну вартість майна"
 
 #: assetdialog.cpp:231
 msgid "Change in Value"
-msgstr "Pokytis vertėje"
+msgstr "Зміна вартості"
 
 #: assetdialog.cpp:237
 msgid "Specify if the value of the asset changes over time"
-msgstr "Nurodykite ar turto vertė kinta laike"
+msgstr "Задайте, якщо вартість майна змінюється з часом"
 
 #: assetdialog.cpp:241
 msgid "% Rate"
-msgstr "Tempas %"
+msgstr ""
 
 #: assetdialog.cpp:247
 msgid "Enter the rate at which the asset changes its value in percentage per year"
@@ -417,11 +417,11 @@ msgstr ""
 
 #: assetdialog.cpp:259
 msgid "Organize attachments of this asset"
-msgstr "Tvarkyti šio turto priedus"
+msgstr ""
 
 #: assetdialog.cpp:262
 msgid "Enter notes associated with this asset"
-msgstr "Įveskite pastabas susijusias su šia sąskaita"
+msgstr "Введіть примітки до цьго майна"
 
 #: assetdialog.cpp:268
 msgid "New Transaction Details"
@@ -433,7 +433,7 @@ msgstr ""
 
 #: assetdialog.cpp:306 constants.cpp:73 sharetransactiondialog.cpp:317
 msgid "&Cancel "
-msgstr "&Atšaukti "
+msgstr ""
 
 #: assetdialog.cpp:402 sharetransactiondialog.cpp:425
 msgid "Invalid Transaction"
@@ -460,24 +460,24 @@ msgstr ""
 #: transactionsupdatedialog.cpp:145 transdialog.cpp:499
 #: usertransactionpanel.cpp:138 webappdialog.cpp:150
 msgid "Type"
-msgstr "Tipas"
+msgstr "Тип"
 
 #: assetspanel.cpp:63 reports/summarystocks.cpp:194
 msgid "Initial Value"
-msgstr "Pradinė vertė"
+msgstr ""
 
 #: assetspanel.cpp:64 reports/summarystocks.cpp:158
 #: reports/summarystocks.cpp:198 stockdialog.cpp:259
 msgid "Current Value"
-msgstr "Dabartinė vertė"
+msgstr ""
 
 #: assetspanel.cpp:97
 msgid "&New Asset"
-msgstr "&Naujas turtas"
+msgstr "&Нове майно"
 
 #: assetspanel.cpp:99
 msgid "D&uplicate Asset"
-msgstr "D&ubliuoti turtą"
+msgstr ""
 
 #: assetspanel.cpp:101
 msgid "&Add Asset Transaction"
@@ -493,46 +493,46 @@ msgstr ""
 
 #: assetspanel.cpp:105
 msgid "&Edit Asset"
-msgstr "&Redaguoti turtą"
+msgstr "&Редагувати майно"
 
 #: assetspanel.cpp:106
 msgid "&Delete Asset"
-msgstr "&Ištrinti turtą"
+msgstr "&Видалити майно"
 
 #: assetspanel.cpp:108 billsdepositspanel.cpp:420 mmchecking_list.cpp:379
 #: mmframe.cpp:1257 payeedialog.cpp:382 stocks_list.cpp:145
 msgid "&Organize Attachments"
-msgstr "&Tvarkyti priedus"
+msgstr ""
 
 #: assetspanel.cpp:200
 msgid "Do you really want to delete the Asset?"
-msgstr "Ar tikrai norite ištrinti turtą?"
+msgstr "Ви дійсно хочете видалити це майно ?"
 
 #: assetspanel.cpp:201
 msgid "Confirm Asset Deletion"
-msgstr "Patvirtinkite turto ištrynimą"
+msgstr "Підтвердіть видалення майна"
 
 #: assetspanel.cpp:385
 msgid "MMEX allows you to track fixed assets like cars, houses, land and others. Each asset can have its value appreciate by a certain rate per year, depreciate by a certain rate per year, or not change in value. The total assets are added to your total financial worth."
-msgstr "MMEX leidžia sekti fiksuoto turto tokio kaip automobiliai, namai, žemė ir kitokį. Kiekvienas turtas gali turėti savo vertę kylančią tam tikru greičiu per metus, krintančią vertę per metus, arba nekintančią. Bendras turto dydis pridedamas į bendrą Jūsų finansinę vertę."
+msgstr ""
 
 #: assetspanel.cpp:415 assetspanel.h:108 general_report_manager.cpp:723
 #: general_report_manager.cpp:1000 mmframe.cpp:477 mmframe.cpp:743
 #: mmframe.cpp:1540 mmframe.cpp:3002 mmhomepage.cpp:576 mmhomepagepanel.cpp:224
 msgid "Assets"
-msgstr "Turtas"
+msgstr "Майно"
 
 #: assetspanel.cpp:424 assetspanel.cpp:694 assetspanel.cpp:711
 #: filtertransdialog.cpp:203 import_export/qif_export.cpp:74
 #: import_export/qif_export.cpp:75 import_export/qif_export.cpp:145
 #: mmframe.cpp:1315
 msgid "All"
-msgstr "Visi"
+msgstr "Всі"
 
 #: assetspanel.cpp:466 billsdepositspanel.cpp:283 mmcheckingpanel.cpp:362
 #: stockspanel.cpp:129
 msgid "&New "
-msgstr "&Naujas "
+msgstr ""
 
 #: assetspanel.cpp:470 stockspanel.cpp:133
 msgid "&Add Trans "
@@ -551,40 +551,40 @@ msgstr ""
 #: mmcheckingpanel.cpp:366 payeedialog.cpp:376 splittransactionsdialog.cpp:166
 #: stockspanel.cpp:143
 msgid "&Edit "
-msgstr "&Keisti "
+msgstr ""
 
 #: assetspanel.cpp:485 billsdepositspanel.cpp:292 budgetyeardialog.cpp:103
 #: categdialog.cpp:237 maincurrencydialog.cpp:292 mmchecking_list.cpp:395
 #: mmcheckingpanel.cpp:371 stockdialog.cpp:339 stockspanel.cpp:148
 msgid "&Delete "
-msgstr "&Ištrinti "
+msgstr ""
 
 #: assetspanel.cpp:486
 msgid "Delete Asset"
-msgstr "Ištrinti turtą"
+msgstr "Видалити майно"
 
 #: assetspanel.cpp:493 billsdepositspanel.cpp:310 mmcheckingpanel.cpp:384
 #: stockspanel.cpp:161
 msgid "Open attachments"
-msgstr "Atverti priedus"
+msgstr ""
 
 #: assetspanel.cpp:500 assetspanel.cpp:501 mmcheckingpanel.cpp:392
 msgid "Search"
-msgstr "Ieškoti"
+msgstr ""
 
 #: assetspanel.cpp:503
 msgid "Enter any string to find related assets"
-msgstr "Įveskite bet kokį terminą, kad rasti susijusį turtą"
+msgstr ""
 
 #: assetspanel.cpp:573 stockspanel.cpp:344 stockspanel.cpp:531
 #, c-format
 msgid "Total: %s"
-msgstr "Suma: %s"
+msgstr "Всього: %s"
 
 #: assetspanel.cpp:655
 #, c-format
 msgid "Change in Value: %s %s"
-msgstr "Pokytis vertėje: %s %s"
+msgstr ""
 
 #: assetspanel.cpp:771
 msgid "This asset does not have its own account\n\n"
@@ -601,62 +601,62 @@ msgstr ""
 
 #: attachmentdialog.cpp:55 general_report_manager.cpp:434
 msgid "Description"
-msgstr "Aprašymas"
+msgstr ""
 
 #: attachmentdialog.cpp:56 import_export/qif_export.cpp:194
 #: import_export/univcsvdialog.cpp:181
 msgid "File"
-msgstr "Failas"
+msgstr ""
 
 #: attachmentdialog.cpp:64
 msgid "Attachment folder not defined."
-msgstr "Priedo aplankas nenurodytas."
+msgstr ""
 
 #: attachmentdialog.cpp:65
 msgid "Please set it in Tools -> Options -> Attachments"
-msgstr "Prašome nustatyti tai čia: Įrankiai -> Parinktys -> Priedai"
+msgstr ""
 
 #: attachmentdialog.cpp:66
 msgid "Attachment folder not defined"
-msgstr "Priedo aplankas nenurodytas"
+msgstr ""
 
 #: attachmentdialog.cpp:70
 msgid "Unable to find attachments folder:"
-msgstr "Nepavyksta rasti priedų aplanko:"
+msgstr ""
 
 #: attachmentdialog.cpp:73
 msgid "Please verify that above path is correct"
-msgstr "Prašome patikrinti kad kelias aukščiau yra tikslus"
+msgstr ""
 
 #: attachmentdialog.cpp:74
 msgid "Attachments folder not found"
-msgstr "Priedų aplankas nerastas"
+msgstr ""
 
 #: attachmentdialog.cpp:85
 #, c-format
 msgid "Organize Attachments | %s %i"
-msgstr "Tvarkyti priedus | %s %i"
+msgstr ""
 
 #: attachmentdialog.cpp:87
 #, c-format
 msgid "Organize Attachments | New %s"
-msgstr "Tvarkyti priedus | Naujas %s"
+msgstr ""
 
 #: attachmentdialog.cpp:127 customfieldlistdialog.cpp:98 payeedialog.cpp:116
 msgid "Other tools"
-msgstr "Kiti įrankiai"
+msgstr ""
 
 #: attachmentdialog.cpp:159
 msgid "Import attachment:"
-msgstr "Importuoti priedą:"
+msgstr ""
 
 #: attachmentdialog.cpp:170
 msgid "Enter a description for the new attachment:"
-msgstr "Įveskite naujo priedo aprašymą:"
+msgstr ""
 
 #: attachmentdialog.cpp:171
 msgid "Organize Attachments: Add Attachment"
-msgstr "Tvarkyti priedus: Pridėti priedą"
+msgstr ""
 
 #: attachmentdialog.cpp:214
 msgid "Enter a new description for the attachment:"
@@ -664,83 +664,83 @@ msgstr ""
 
 #: attachmentdialog.cpp:215
 msgid "Organize Attachments: Edit Attachment"
-msgstr "Tvarkyti priedus: Redaguoti priedą"
+msgstr ""
 
 #: attachmentdialog.cpp:239
 msgid "Do you really want to delete this attachment?"
-msgstr "Ar tikrai norite ištrinti šį priedą?"
+msgstr ""
 
 #: attachmentdialog.cpp:240
 msgid "Confirm Attachment Deletion"
-msgstr "Patvirtinkite priedo ištrynimą"
+msgstr ""
 
 #: attachmentdialog.cpp:314 categdialog.cpp:229 customfieldlistdialog.cpp:259
 #: import_export/univcsvdialog.cpp:236 maincurrencydialog.cpp:526
 #: payeedialog.cpp:375 splittransactionsdialog.cpp:165 stockdialog.cpp:341
 msgid "&Add "
-msgstr "&Pridėti "
+msgstr ""
 
 #: attachmentdialog.cpp:316
 msgid "&Open "
-msgstr "&Atverti "
+msgstr ""
 
 #: attachmentdialog.cpp:319 customfieldlistdialog.cpp:262
 #: import_export/univcsvdialog.cpp:240 maincurrencydialog.cpp:528
 #: payeedialog.cpp:378 splittransactionsdialog.cpp:167
 msgid "&Remove "
-msgstr "&Pašalinti "
+msgstr ""
 
 #: attachmentdialog.cpp:361
 msgid "Att."
-msgstr "Pried."
+msgstr ""
 
 #: attachmentdialog.cpp:368
 msgid "This directory and its files are automatically managed by Money Manager EX software."
-msgstr "Šis katalogas ir jo failai yra automatiškai tvarkomi Money Manager EX programinės įrangos."
+msgstr ""
 
 #: attachmentdialog.cpp:370
 msgid "Please do not remove, rename or modify manually directories and files."
-msgstr "Prašome ne perkelti, pervadinti ar keisti rankiniu būdu katalogų ir failų."
+msgstr ""
 
 #: attachmentdialog.cpp:415 attachmentdialog.cpp:423
 msgid "Destination file already exist:"
-msgstr "Tikslo failas jau egzistuoja:"
+msgstr ""
 
 #: attachmentdialog.cpp:418
 msgid "File not found in attachments. Please delete or rename it."
-msgstr "Failas nerastas prieduose. Prašome ištrinti ar pervadinti jį."
+msgstr ""
 
 #: attachmentdialog.cpp:419 attachmentdialog.cpp:427
 msgid "Destination file already exist"
-msgstr "Tikslo failas jau egzistuoja"
+msgstr ""
 
 #: attachmentdialog.cpp:426
 msgid "File already found in attachments"
-msgstr "Failas jau rastas prieduose"
+msgstr ""
 
 #: attachmentdialog.cpp:469
 msgid "Attachment not found:"
-msgstr "Priedas nerastas:"
+msgstr ""
 
 #: attachmentdialog.cpp:472
 msgid "Do you want to continue and delete attachment on database?"
-msgstr "Ar norite tęsti ir ištrinti priedą duomenų bazėje?"
+msgstr ""
 
 #: attachmentdialog.cpp:473
 msgid "Delete attachment failed"
-msgstr "Priedo ištrynimas nepavyko"
+msgstr ""
 
 #: attachmentdialog.cpp:486
 msgid "Unable to open file:"
-msgstr "Nepavyksta atverti failo:"
+msgstr ""
 
 #: attachmentdialog.cpp:489
 msgid "Please verify that file exists and user has rights to read it."
-msgstr "Prašome patikrinti ar failas jau yra ir naudotojai turi teisę jį skaityti."
+msgstr ""
 
 #: attachmentdialog.cpp:490
 msgid "Open attachment failed"
-msgstr "Priedo atvėrimas nepavyko"
+msgstr ""
 
 #: billsdepositsdialog.cpp:51 billsdepositspanel.cpp:48
 #: filtertransdialog.cpp:44 mmSimpleDialogs.cpp:36 model/Model_Asset.cpp:23
@@ -748,12 +748,12 @@ msgstr "Priedo atvėrimas nepavyko"
 #: model/Model_Checking.cpp:36 optionsettingsmisc.cpp:96
 #: reports/reportbase.cpp:189
 msgid "None"
-msgstr "Jokia"
+msgstr "Нема"
 
 #: billsdepositsdialog.cpp:52 billsdepositspanel.cpp:49
 #: model/Model_Budget.cpp:56
 msgid "Weekly"
-msgstr "Kas savaitę"
+msgstr "Щотижнево"
 
 #: billsdepositsdialog.cpp:53 billsdepositspanel.cpp:50
 #: model/Model_Budget.cpp:57
@@ -764,7 +764,7 @@ msgstr ""
 #: mmframereport.cpp:137 mmframereport.cpp:159 mmframereport.cpp:177
 #: model/Model_Budget.cpp:58
 msgid "Monthly"
-msgstr "Kas mėnesį"
+msgstr "Щомісячно"
 
 #: billsdepositsdialog.cpp:55 billsdepositspanel.cpp:52
 #: model/Model_Budget.cpp:59
@@ -774,30 +774,30 @@ msgstr ""
 #: billsdepositsdialog.cpp:56 billsdepositspanel.cpp:53
 #: model/Model_Budget.cpp:60
 msgid "Quarterly"
-msgstr "Kas ketvirtį"
+msgstr "Поквартально"
 
 #: billsdepositsdialog.cpp:57 billsdepositspanel.cpp:54
 #: model/Model_Budget.cpp:61
 msgid "Half-Yearly"
-msgstr "Kas pusę metų"
+msgstr "Раз у півріччя"
 
 #: billsdepositsdialog.cpp:58 billsdepositspanel.cpp:55 mmframereport.cpp:180
 #: model/Model_Budget.cpp:62
 msgid "Yearly"
-msgstr "Kas metai"
+msgstr "Щорічно"
 
 #: billsdepositsdialog.cpp:59 billsdepositspanel.cpp:56
 msgid "Four Months"
-msgstr "Keturis mėnesius"
+msgstr "Чотири місяці"
 
 #: billsdepositsdialog.cpp:60 billsdepositspanel.cpp:57
 msgid "Four Weeks"
-msgstr "Keturios savaites"
+msgstr "Чотири тижні"
 
 #: billsdepositsdialog.cpp:61 billsdepositspanel.cpp:58 mmframereport.cpp:126
 #: model/Model_Budget.cpp:63
 msgid "Daily"
-msgstr "Kasdien"
+msgstr "Щодня"
 
 #: billsdepositsdialog.cpp:62
 msgid "In (x) Days"
@@ -817,11 +817,11 @@ msgstr ""
 
 #: billsdepositsdialog.cpp:66 billsdepositspanel.cpp:63
 msgid "Monthly (last day)"
-msgstr "Kas mėnesį (paskutinė diena)"
+msgstr ""
 
 #: billsdepositsdialog.cpp:67 billsdepositspanel.cpp:64
 msgid "Monthly (last business day)"
-msgstr "Kas mėnesį (paskutinė darbo diena)"
+msgstr ""
 
 #: billsdepositsdialog.cpp:308 billsdepositspanel.cpp:288
 msgid "Edit Recurring Transaction"
@@ -849,7 +849,7 @@ msgstr ""
 
 #: billsdepositsdialog.cpp:442 billsdepositsdialog.cpp:1273
 msgid "Repeats"
-msgstr "Pasikartoja"
+msgstr "Повторюється"
 
 #: billsdepositsdialog.cpp:449
 msgid "Back to the last occurring date with the specified values"
@@ -861,7 +861,7 @@ msgstr ""
 
 #: billsdepositsdialog.cpp:459 billsdepositsdialog.cpp:1315
 msgid "Payments Left"
-msgstr "Likę mokėjimai"
+msgstr ""
 
 #: billsdepositsdialog.cpp:473
 msgid "Request user to enter payment"
@@ -881,7 +881,7 @@ msgstr ""
 
 #: billsdepositsdialog.cpp:502 transdialog.cpp:435
 msgid "Transaction Details"
-msgstr "Operacijos informacija"
+msgstr "Транзакція детально"
 
 #: billsdepositsdialog.cpp:512
 msgid "Specify the date the user is requested to enter this transaction"
@@ -897,7 +897,7 @@ msgstr ""
 
 #: billsdepositsdialog.cpp:537 filtertransdialog.cpp:282 transdialog.cpp:1295
 msgid "Specify the status for the transaction"
-msgstr "Nurodykite operacijos būseną"
+msgstr "Вкажіть статус для транзакції"
 
 #: billsdepositsdialog.cpp:539 billsdepositspanel.cpp:131
 #: filtertransdialog.cpp:272 filtertransdialog.cpp:552
@@ -908,19 +908,19 @@ msgstr "Nurodykite operacijos būseną"
 #: transdialog.cpp:479 usertransactionpanel.cpp:178 webappdialog.cpp:149
 #: wizard_update.cpp:145
 msgid "Status"
-msgstr "Būsena"
+msgstr "Статус"
 
 #: billsdepositsdialog.cpp:544 splitdetailsdialog.cpp:131 transdialog.cpp:1296
 msgid "Specify the type of transactions to be created."
-msgstr "Nurodykite kuriamos sąskaitos tipą."
+msgstr "Задайте тип транзакцій що потрібно створити"
 
 #: billsdepositsdialog.cpp:545 transdialog.cpp:494
 msgid "&Advanced"
-msgstr "&Išsamiau"
+msgstr ""
 
 #: billsdepositsdialog.cpp:548 transdialog.cpp:1300
 msgid "Allows the setting of different amounts in the FROM and TO accounts."
-msgstr "Leidžia nustatyti skirtingus kiekius „Iš“ ir „Į“ sąskaitose."
+msgstr ""
 
 #: billsdepositsdialog.cpp:558 billsdepositspanel.cpp:134
 #: budgetingpanel.cpp:301 filtertransdialog.cpp:488 filtertransdialog.cpp:499
@@ -932,11 +932,11 @@ msgstr "Leidžia nustatyti skirtingus kiekius „Iš“ ir „Į“ sąskaitose.
 #: transactionsupdatedialog.cpp:161 transdialog.cpp:513
 #: usertransactionpanel.cpp:142 webappdialog.cpp:153
 msgid "Amount"
-msgstr "Suma"
+msgstr "Сума"
 
 #: billsdepositsdialog.cpp:571 transdialog.cpp:1281
 msgid "Specify the transfer amount in the To Account"
-msgstr "Nurodykite perkeliamą sumą „Į“ sąskaitoje"
+msgstr ""
 
 #: billsdepositsdialog.cpp:583 billsdepositsdialog.cpp:842
 #: billsdepositsdialog.cpp:856 billsdepositspanel.cpp:129
@@ -947,13 +947,13 @@ msgstr "Nurodykite perkeliamą sumą „Į“ sąskaitoje"
 #: reports/transactions.cpp:80 transdialog.cpp:309 transdialog.cpp:521
 #: usertransactionpanel.cpp:112 webappdialog.cpp:148
 msgid "Account"
-msgstr "Sąskaita"
+msgstr "Рахунок"
 
 #: billsdepositsdialog.cpp:586 billsdepositsdialog.cpp:680
 #: billsdepositsdialog.cpp:712 billsdepositsdialog.cpp:761
 #: billsdepositsdialog.cpp:820 usertransactionpanel.cpp:113
 msgid "Select Account"
-msgstr "Parinkti paskyrą"
+msgstr "Виберіть Рахунок"
 
 #: billsdepositsdialog.cpp:587
 msgid "Specify the Account that will own the recurring transaction"
@@ -968,20 +968,20 @@ msgstr ""
 #: transactionsupdatedialog.cpp:172 transdialog.cpp:303 transdialog.cpp:527
 #: usertransactionpanel.cpp:182 webappdialog.cpp:151
 msgid "Payee"
-msgstr "Korespondentas"
+msgstr "Отримувач"
 
 #: billsdepositsdialog.cpp:593 billsdepositsdialog.cpp:880
 #: usertransactionpanel.cpp:183
 msgid "Select Payee"
-msgstr "Pasirinkite kontrahentą"
+msgstr "Виберіть отримувача"
 
 #: billsdepositsdialog.cpp:600 transdialog.cpp:540
 msgid "Split"
-msgstr "Suskaldyti"
+msgstr "Розділити"
 
 #: billsdepositsdialog.cpp:603 transdialog.cpp:1297
 msgid "Use split Categories"
-msgstr "Naudoti suskaldytas kategorijas"
+msgstr ""
 
 #: billsdepositsdialog.cpp:609 billsdepositspanel.cpp:132
 #: budgetingpanel.cpp:298 filtertransdialog.cpp:250 filtertransdialog.cpp:995
@@ -994,17 +994,17 @@ msgstr "Naudoti suskaldytas kategorijas"
 #: splittransactionsdialog.cpp:137 transactionsupdatedialog.cpp:200
 #: transdialog.cpp:549 usertransactionpanel.cpp:189 webappdialog.cpp:152
 msgid "Category"
-msgstr "Kategorija"
+msgstr "Категорія"
 
 #: billsdepositsdialog.cpp:611 billsdepositsdialog.cpp:1454
 #: transactionsupdatedialog.cpp:203 transdialog.cpp:403 transdialog.cpp:1034
 #: usertransactionpanel.cpp:190
 msgid "Select Category"
-msgstr "Pasirinkite kategoriją"
+msgstr "Виберіть Категорію"
 
 #: billsdepositsdialog.cpp:620 transdialog.cpp:1298
 msgid "Specify any associated check number or transaction number"
-msgstr "Nurodykite bet kokį susietą čekio ar operacijos numerį"
+msgstr "Вкажіть номер асоційованого чека або номер транзакції"
 
 #: billsdepositsdialog.cpp:622 billsdepositspanel.cpp:139
 #: filtertransdialog.cpp:331 filtertransdialog.cpp:1053
@@ -1012,7 +1012,7 @@ msgstr "Nurodykite bet kokį susietą čekio ar operacijos numerį"
 #: import_export/univcsvdialog.cpp:110 mmchecking_list.cpp:206
 #: reports/transactions.cpp:79 transdialog.cpp:561 usertransactionpanel.cpp:202
 msgid "Number"
-msgstr "Numeris"
+msgstr "Номер"
 
 #: billsdepositsdialog.cpp:631
 msgid "Organize attachments of this recurring transaction"
@@ -1020,37 +1020,37 @@ msgstr ""
 
 #: billsdepositsdialog.cpp:634 transdialog.cpp:574
 msgid "User Colors"
-msgstr "Naudoti spalvas"
+msgstr ""
 
 #: billsdepositsdialog.cpp:638 transdialog.cpp:580 usertransactionpanel.cpp:217
 msgid "Select one of the frequently used notes"
-msgstr "Pasirinkti vieną iš dažniausiai naudojamų pastabų"
+msgstr ""
 
 #: billsdepositsdialog.cpp:650 transdialog.cpp:1299
 #: usertransactionpanel.cpp:226
 msgid "Specify any text notes you want to add to this transaction."
-msgstr "Nurodykite bet kokias teksto pastabas, kurias norite pridėti prie šios operacijos."
+msgstr "Вкажіть будь-які примітки, які ви бажаєте додати до цієї транзакції"
 
 #: billsdepositsdialog.cpp:679
 msgid "Choose Bank Account or Term Account"
-msgstr "Pasirinkite banko ar terminuotoji sąskaita"
+msgstr ""
 
 #: billsdepositsdialog.cpp:712 billsdepositsdialog.cpp:761
 msgid "Account name"
-msgstr "Paskyros pavadinimas"
+msgstr ""
 
 #: billsdepositsdialog.cpp:817 billsdepositsdialog.cpp:857
 #: filtertransdialog.cpp:980 transdialog.cpp:306 transdialog.cpp:378
 msgid "From"
-msgstr "Iš"
+msgstr "З"
 
 #: billsdepositsdialog.cpp:829 transdialog.cpp:376
 msgid "To"
-msgstr "Į"
+msgstr "На"
 
 #: billsdepositsdialog.cpp:830
 msgid "Select To Account"
-msgstr "Pasirinkti sąskaitai"
+msgstr "Вкажіть рахунок На"
 
 #: billsdepositsdialog.cpp:932
 msgid "The payment date is after the due date, is this what you intended?"
@@ -1062,19 +1062,19 @@ msgstr ""
 
 #: billsdepositsdialog.cpp:1232
 msgid "Specify the transfer amount in the From Account"
-msgstr "Nurodykite perkeliamą sumą „Iš“ sąskaitoje"
+msgstr ""
 
 #: billsdepositsdialog.cpp:1274
 msgid "Activates"
-msgstr "Aktyvuoja"
+msgstr ""
 
 #: billsdepositsdialog.cpp:1276
 msgid "Period: Days"
-msgstr "Periodas: Dienos"
+msgstr ""
 
 #: billsdepositsdialog.cpp:1277
 msgid "Period: Months"
-msgstr "Periodas: Mėnesiai"
+msgstr ""
 
 #: billsdepositsdialog.cpp:1284
 msgid "Specify period in Days to activate.\n"
@@ -1106,7 +1106,7 @@ msgstr ""
 #: filtertransdialog.cpp:499 filtertransdialog.cpp:515
 #: filtertransdialog.cpp:552 optionsettingsgeneral.cpp:281 util.cpp:667
 msgid "Invalid value"
-msgstr "Neteisinga reikšmė"
+msgstr ""
 
 #: billsdepositsdialog.cpp:1342 billsdepositsdialog.cpp:1364
 #: import_export/univcsvdialog.cpp:1133 maincurrencydialog.cpp:469
@@ -1114,17 +1114,17 @@ msgstr "Neteisinga reikšmė"
 #: splittransactionsdialog.cpp:209 stockspanel.cpp:395 stockspanel.cpp:396
 #: themes.cpp:310 themes.cpp:329 webappdialog.cpp:194 webappdialog.cpp:199
 msgid "Error"
-msgstr "Klaida"
+msgstr "Помилка"
 
 #: billsdepositsdialog.cpp:1422 transdialog.cpp:1258
 #: usertransactionpanel.cpp:192
 msgid "Specify the category for this transaction"
-msgstr "Nurodykite šios operacijos kategoriją"
+msgstr "Вкажіть категорію для цієї транзакції"
 
 #: billsdepositsdialog.cpp:1444 categdialog.cpp:119
 #: import_export/qif_export.cpp:137 mmframereport.cpp:134 transdialog.cpp:391
 msgid "Categories"
-msgstr "Kategorijos"
+msgstr "Категорії"
 
 #: billsdepositsdialog.cpp:1479 transdialog.cpp:1332
 msgid "Clear color"
@@ -1141,19 +1141,19 @@ msgstr ""
 
 #: billsdepositsdialog.h:124
 msgid "Specify where the transaction is going to"
-msgstr "Nurodykite kur pervedimas keliauja"
+msgstr ""
 
 #: billsdepositsdialog.h:125 transdialog.cpp:1290
 msgid "Specify where the transaction is coming from"
-msgstr "Nurodykite iš kur gaunamas pervedimas"
+msgstr ""
 
 #: billsdepositsdialog.h:126
 msgid "Specify which account the transfer is going to"
-msgstr "Nurodykite į kurią sąskaitą keliauja pervedimas"
+msgstr ""
 
 #: billsdepositsdialog.h:127 transdialog.cpp:1285 usertransactionpanel.cpp:146
 msgid "Specify the amount for this transaction"
-msgstr "Nurodykite šios operacijos sumą"
+msgstr "Вкажіть суму для цієї транзакції"
 
 #: billsdepositsdialog.h:128
 msgid "Specify the amount to be transferred"
@@ -1162,43 +1162,43 @@ msgstr ""
 #: billsdepositspanel.cpp:59
 #, c-format
 msgid "In %s Days"
-msgstr "už %s d."
+msgstr ""
 
 #: billsdepositspanel.cpp:60
 #, c-format
 msgid "In %s Months"
-msgstr "per %s mėn."
+msgstr ""
 
 #: billsdepositspanel.cpp:61
 #, c-format
 msgid "Every %s Days"
-msgstr "Kiekvieną %s dieną"
+msgstr ""
 
 #: billsdepositspanel.cpp:62
 #, c-format
 msgid "Every %s Months"
-msgstr "Kiekvieną %s mėnesį"
+msgstr ""
 
 #: billsdepositspanel.cpp:135 budgetingpanel.cpp:300
 #: reports/budgetcategorysummary.cpp:191 reports/myusage.cpp:163
 msgid "Frequency"
-msgstr "Dažnis"
+msgstr "Частота"
 
 #: billsdepositspanel.cpp:136
 msgid "Repetitions"
-msgstr "Pakartojimai"
+msgstr ""
 
 #: billsdepositspanel.cpp:137
 msgid "Autorepeat"
-msgstr "Auto kartojimas"
+msgstr ""
 
 #: billsdepositspanel.cpp:138 mmhomepage.cpp:360
 msgid "Payment"
-msgstr "Mokėjimas"
+msgstr ""
 
 #: billsdepositspanel.cpp:191
 msgid "MMEX allows regular payments to be set up as transactions. These transactions can also be regular deposits, or transfers that will occur at some future time. These transactions act as a reminder that an event is about to occur, and appears on the Home Page 14 days before the transaction is due. "
-msgstr "MMEX leidžia paprastiems mokėjimams būti nustatytais kaip operacijos. Šios operacijos gali irgi būti paprastos įmokos, ar pervedimai, kurie įvyks kažkuriuo metu ateityje. Šios operacijos veikia kaip priminimai, kad įvykis greitai įvyks, ir atsiranda pradžios puslapyje 14 dienų iki įvykio laiko. "
+msgstr ""
 
 #: billsdepositspanel.cpp:194
 msgid "Tip: These transactions can be set up to activate - allowing the user to adjust any values on the due date."
@@ -1211,7 +1211,7 @@ msgstr ""
 
 #: billsdepositspanel.cpp:249 filtertransdialog.h:100
 msgid "Transaction Filter"
-msgstr "Operacijų filtras"
+msgstr "Фільтр транзакцій"
 
 #: billsdepositspanel.cpp:293
 msgid "Delete Recurring Transaction"
@@ -1227,7 +1227,7 @@ msgstr ""
 
 #: billsdepositspanel.cpp:302
 msgid "&Skip"
-msgstr "Pra&leisti"
+msgstr ""
 
 #: billsdepositspanel.cpp:303
 msgid "Skip Next Recurring Transaction Occurrence"
@@ -1235,11 +1235,11 @@ msgstr ""
 
 #: billsdepositspanel.cpp:412
 msgid "Enter next Occurrence..."
-msgstr "Įveskite kitą įvykį..."
+msgstr ""
 
 #: billsdepositspanel.cpp:414
 msgid "Skip next Occurrence"
-msgstr "Praleisti kitą įvykį"
+msgstr ""
 
 #: billsdepositspanel.cpp:416
 msgid "&New Recurring Transaction..."
@@ -1255,15 +1255,15 @@ msgstr ""
 
 #: billsdepositspanel.cpp:465
 msgid "Manual"
-msgstr "Rankinis"
+msgstr ""
 
 #: billsdepositspanel.cpp:469
 msgid "Suggested"
-msgstr "Siūloma"
+msgstr ""
 
 #: billsdepositspanel.cpp:473
 msgid "Automated"
-msgstr "Automatiškai"
+msgstr ""
 
 #: billsdepositspanel.cpp:519 billsdepositspanel.cpp:586 mmhomepage.cpp:316
 #, c-format
@@ -1278,7 +1278,7 @@ msgstr[3] ""
 #: billsdepositspanel.cpp:538 billsdepositspanel.cpp:591
 #: billsdepositspanel.cpp:598 billsdepositspanel.cpp:602
 msgid "Inactive"
-msgstr "Neaktyvus"
+msgstr ""
 
 #: billsdepositspanel.cpp:529 mmhomepage.cpp:317
 #, c-format
@@ -1308,82 +1308,82 @@ msgstr ""
 
 #: budgetentrydialog.cpp:50
 msgid "Budget Year Entry"
-msgstr "Biudžeto metų įrašas"
+msgstr ""
 
 #: budgetentrydialog.cpp:108
 msgid "Category: "
-msgstr "Kategorija: "
+msgstr ""
 
 #: budgetentrydialog.cpp:113
 msgid "Sub Category: "
-msgstr "Sub kategorija: "
+msgstr ""
 
 #: budgetentrydialog.cpp:120
 msgid "Estimated:"
-msgstr "Apskaičiuota:"
+msgstr ""
 
 #: budgetentrydialog.cpp:122
 msgid "Actual:"
-msgstr "Tikrai:"
+msgstr ""
 
 #: budgetentrydialog.cpp:125
 msgid "Type:"
-msgstr "Tipas:"
+msgstr "Тип:"
 
 #: budgetentrydialog.cpp:128
 msgid "Expense"
-msgstr "Išlaidos"
+msgstr "Витрата"
 
 #: budgetentrydialog.cpp:129 db/DB_Table_Category_V1.h:123 mmhomepage.cpp:444
 #: reports/categexp.cpp:128 reports/categexp.cpp:157 reports/categexp.cpp:377
 #: reports/incexpenses.cpp:84 reports/incexpenses.cpp:212
 #: reports/incexpenses.cpp:245
 msgid "Income"
-msgstr "Įplaukos"
+msgstr "Дохід"
 
 #: budgetentrydialog.cpp:134
 msgid "Specify whether this category is an income or an expense category"
-msgstr "Nurodykite kokia yra ši kategorija - pajamų ar išlaidų "
+msgstr "Вкажіть, ця категорія це дохід, чи витрата "
 
 #: budgetentrydialog.cpp:136
 msgid "Frequency:"
-msgstr "Dažnis:"
+msgstr "Частота"
 
 #: budgetentrydialog.cpp:141
 msgid "Specify the frequency of the expense or deposit"
-msgstr "Nurodykite išlaidų ar indėlio dažnį "
+msgstr "Вкажіть частоту витрат чи доходу"
 
 #: budgetentrydialog.cpp:144 import_export/univcsvdialog.cpp:345
 msgid "Amount:"
-msgstr "Kiekis:"
+msgstr "Сума:"
 
 #: budgetentrydialog.cpp:149
 msgid "Enter the amount budgeted for this category."
-msgstr "Įveskite biudžeto dydį šiai kategorijai."
+msgstr "Вкажіть планову суму для данної категорії"
 
 #: budgetingpanel.cpp:50
 msgid "View All Budget Categories"
-msgstr "Žiūrėti visas biudžeto kategorijas"
+msgstr "Проглянути всі заплановані категорії"
 
 #: budgetingpanel.cpp:51
 msgid "View Non-Zero Budget Categories"
-msgstr "Žiūrėti ne tuščias biudžeto kategorijas"
+msgstr "Проглянути ненульові заплановані категорії"
 
 #: budgetingpanel.cpp:52
 msgid "View Planned Budget Categories"
-msgstr "Žiūrėti suplanuotas biudžeto kategorijas"
+msgstr ""
 
 #: budgetingpanel.cpp:53
 msgid "View Income Budget Categories"
-msgstr "Žiūrėti pajamų biudžeto kategorijas"
+msgstr ""
 
 #: budgetingpanel.cpp:54
 msgid "View Expense Budget Categories"
-msgstr "Žiūrėti išlaidų biudžeto kategorijas"
+msgstr ""
 
 #: budgetingpanel.cpp:55
 msgid "View Budget Category Summary"
-msgstr "Žiūrėti biudžeto kategorijų santrauką"
+msgstr ""
 
 #: budgetingpanel.cpp:172
 #, c-format
@@ -1393,12 +1393,12 @@ msgstr ""
 #: budgetingpanel.cpp:176 reports/budget.cpp:92
 #, c-format
 msgid "Year: %s"
-msgstr "Metai: %s"
+msgstr ""
 
 #: budgetingpanel.cpp:181
 #, c-format
 msgid "Month: %s"
-msgstr "Mėnuo: %s"
+msgstr ""
 
 #: budgetingpanel.cpp:186
 #, c-format
@@ -1408,27 +1408,27 @@ msgstr ""
 #: budgetingpanel.cpp:189
 #, c-format
 msgid "Budget Setup for %s"
-msgstr "Biudžeto %s nustatymas"
+msgstr ""
 
 #: budgetingpanel.cpp:246
 msgid "Income: "
-msgstr "Įplaukos: "
+msgstr ""
 
 #: budgetingpanel.cpp:247 budgetingpanel.cpp:255
 msgid "Estimated: "
-msgstr "Apskaičiuota: "
+msgstr ""
 
 #: budgetingpanel.cpp:249 budgetingpanel.cpp:257
 msgid "Actual: "
-msgstr "Tikrai: "
+msgstr ""
 
 #: budgetingpanel.cpp:251 budgetingpanel.cpp:259
 msgid "Difference: "
-msgstr "Skirtumas: "
+msgstr ""
 
 #: budgetingpanel.cpp:254
 msgid "Expenses: "
-msgstr "Išlaidos: "
+msgstr ""
 
 #: budgetingpanel.cpp:297
 msgid "Icon"
@@ -1436,109 +1436,107 @@ msgstr ""
 
 #: budgetingpanel.cpp:299
 msgid "Sub Category"
-msgstr "Sub kategorija"
+msgstr "Підкатегорія"
 
 #: budgetingpanel.cpp:302 reports/budgetcategorysummary.cpp:140
 #: reports/budgetcategorysummary.cpp:192
 msgid "Estimated"
-msgstr "Apskaičiuota"
+msgstr "Прогноз"
 
 #: budgetingpanel.cpp:303 reports/budgetcategorysummary.cpp:141
 #: reports/budgetcategorysummary.cpp:193
 msgid "Actual"
-msgstr "Tikrai"
+msgstr "Дісні"
 
 #: budgetyeardialog.cpp:46
 msgid "Budget Editor"
-msgstr "Biudžeto redaktorius"
+msgstr ""
 
 #: budgetyeardialog.cpp:93
 msgid "&Add Year"
-msgstr "&Pridėti metus"
+msgstr ""
 
 #: budgetyeardialog.cpp:95
 msgid "Add a new budget year"
-msgstr "Pridėti naujus biudžetinius metus"
+msgstr "Добавити новий бюджетний рік"
 
 #: budgetyeardialog.cpp:98
 msgid "&Add Month"
-msgstr "&Pridėti mėnesį"
+msgstr ""
 
 #: budgetyeardialog.cpp:100
 msgid "Add a new budget month"
-msgstr "Pridėti naują biudžetinį mėnesį"
+msgstr ""
 
 #: budgetyeardialog.cpp:105
 msgid "Delete existing budget"
-msgstr "Ištrinti esantį biudžetą"
+msgstr ""
 
 #: budgetyearentrydialog.cpp:43 budgetyearentrydialog.cpp:152
 msgid "Budget Entry Details"
-msgstr "Biudžeto įrašo informacija"
+msgstr ""
 
 #: budgetyearentrydialog.cpp:45
 msgid "Budget Month Entry"
-msgstr "Biudžeto mėnesio įrašas"
+msgstr ""
 
 #: budgetyearentrydialog.cpp:72
 msgid "Budget Year:"
-msgstr "Biudžeto metai:"
+msgstr "Бюджетний рік:"
 
 #: budgetyearentrydialog.cpp:79
 msgid "Specify the required year.\n"
 "Use Spin buttons to increase or decrease the year."
-msgstr "Nurodykite privalomus metus.\n"
-"Naudokite suktuką metų didinimui arba mažinimui."
+msgstr ""
 
 #: budgetyearentrydialog.cpp:86
 msgid "Budget Month:"
-msgstr "Biudžeto mėnesis:"
+msgstr ""
 
 #: budgetyearentrydialog.cpp:95
 msgid "Specify the required month.\n"
 "Use Spin buttons to increase or decrease the month."
-msgstr "Nurodykite privalomą mėnesį.\n"
-"Naudokite suktuką metų didinimui arba mažinimui."
+msgstr ""
 
 #: budgetyearentrydialog.cpp:102
 msgid "Base Budget On:"
-msgstr "Biudžetas pagrįstas:"
+msgstr "Базувати бюджет на :"
 
 #: budgetyearentrydialog.cpp:112
 msgid "Specify year to base budget on."
-msgstr "Nurodykite metus, kuriais pagrįstas biudžetas."
+msgstr "Вкажіть рік, на якому базувати бюджет"
 
 #: budgetyearentrydialog.cpp:151
 msgid "Budget Year already exists"
-msgstr "Biudžeto metai jau egzistuoja"
+msgstr "Бюджетний рік вже існує"
 
 #: categdialog.cpp:91 mmframe.cpp:1503 mmframe.cpp:1724
 msgid "Organize Categories"
-msgstr "Tvarkyti Kategorijas"
+msgstr "Організувати Категорії"
 
 #: categdialog.cpp:190 mmframe.cpp:1516
 msgid "Reassign all categories to another category"
-msgstr "Perskirstyti visas kategorijos kitai kategorijai"
+msgstr ""
 
 #: categdialog.cpp:192
 msgid "Expand"
-msgstr "Išplėsti"
+msgstr ""
 
 #: categdialog.cpp:197 maincurrencydialog.cpp:175
 msgid "Show All"
-msgstr "Rodyti viską"
+msgstr ""
 
 #: categdialog.cpp:199
 msgid "Show all hidden categories"
-msgstr "Rodyti visas paslėptas kategorijas"
+msgstr ""
 
 #: categdialog.cpp:231
 msgid "Add a new category"
-msgstr "Pridėti naują kategoriją"
+msgstr "Добавити нову категорію"
 
 #: categdialog.cpp:235
 msgid "Edit the name of an existing category"
-msgstr "Redaguoti egzistuojančios kategorijos pavadinimą"
+msgstr "Редагувати ім'я існуючої категорії"
 
 #: categdialog.cpp:239
 msgid "Delete an existing category. The category cannot be used by existing transactions."
@@ -1546,15 +1544,15 @@ msgstr ""
 
 #: categdialog.cpp:244 maincurrencydialog.cpp:211
 msgid "&Select"
-msgstr "&Pažymėti"
+msgstr ""
 
 #: categdialog.cpp:246
 msgid "Select the currently selected category as the selected category for the transaction"
-msgstr "Pasirinkti pažymėtą kategoriją kaip pasirinktą kategoriją operacijai"
+msgstr "Вибрати категорію що виділена у данний момент як вибрану категорію для транзакції"
 
 #: categdialog.cpp:255
 msgid "Enter the name for the new category:"
-msgstr "Įveskite naujos kategorijos pavadinimą:"
+msgstr ""
 
 #: categdialog.cpp:258
 msgid "Tip: If category added now, check bottom of list."
@@ -1562,57 +1560,54 @@ msgstr ""
 
 #: categdialog.cpp:261
 msgid "Add Category"
-msgstr "Pridėti kategoriją"
+msgstr ""
 
 #: categdialog.cpp:270 categdialog.cpp:506
 msgid "Category with same name exists"
-msgstr "Sub kategorija su tokiu pavadinimu jau yra"
+msgstr "Категорія з таким ім'ям вже існує"
 
 #: categdialog.cpp:271
 msgid "Tip: If category added now, check bottom of list.\n"
 "Category will be in sorted order next time dialog appears"
-msgstr "Patarimas: Jei kategorija pridėta dabar, patikrinkite sąrašo apačią.\n"
-"Kategorija bus išrikiuota kitą kartą atsidarius dialogo langui."
+msgstr ""
 
 #: categdialog.cpp:273 categdialog.cpp:297 categdialog.cpp:315
 msgid "Organise Categories: Adding Error"
-msgstr "Tvarkyti kategorijas: Pridėjimo klaida"
+msgstr ""
 
 #: categdialog.cpp:296 categdialog.cpp:523
 msgid "Sub Category with same name exists"
-msgstr "Sub kategorija su tokiu pavadinimu jau yra"
+msgstr "Підкатегорія з таким ім'ям вже існує"
 
 #: categdialog.cpp:314
 msgid "Invalid Parent Category. Choose Root or Main Category node."
-msgstr "Neteisinga aukštesnio lygio kategorija. Pasirinkite šakninį arba pagrindinį kategorijos mazgą."
+msgstr "Невірна батьківська категорія. Вкажіть кореневу чи одну з головних категорій."
 
 #: categdialog.cpp:321
 msgid "Category in use."
-msgstr "Kategorija naudojama."
+msgstr ""
 
 #: categdialog.cpp:321
 msgid "Sub-Category in use."
-msgstr "Sub kategorija naudojama."
+msgstr ""
 
 #: categdialog.cpp:323
 msgid "Tip: Change all transactions using this Category to\n"
 "another Category using the relocate command:"
-msgstr "Patarimas: Pakeiskite visas operacijas naudojančias šią kategoriją į\n"
-"kitą kategoriją, pasinaudojant perkėlimo komanda:"
+msgstr ""
 
 #: categdialog.cpp:326
 msgid "Tip: Change all transactions using this Sub-Category to\n"
 "another Sub-Category using the relocate command:"
-msgstr "Patarimas: Pakeiskite visas operacijas naudojančias šią sub kategoriją į\n"
-"kitą sub kategoriją, pasinaudojant perkėlimo komanda:"
+msgstr ""
 
 #: categdialog.cpp:329
 msgid "Tools -> Relocation of -> Categories"
-msgstr "Įrankiai -> Perkėlimas -> Kategorijos"
+msgstr ""
 
 #: categdialog.cpp:331
 msgid "Organise Categories: Delete Error"
-msgstr "Tvarkyti kategorijas: Ištrynimo klaida"
+msgstr ""
 
 #: categdialog.cpp:435
 msgid "Select an unused category to delete."
@@ -1637,40 +1632,40 @@ msgstr ""
 
 #: categdialog.cpp:489
 msgid "Edit Category"
-msgstr "Redaguoti kategoriją"
+msgstr ""
 
 #: categdialog.cpp:507 categdialog.cpp:524
 msgid "Organise Categories: Editing Error"
-msgstr "Tvarkyti kategorijas: Redagavimo klaida"
+msgstr ""
 
 #: categdialog.cpp:600 mmframe.cpp:3260
 msgid "Category Relocation Completed."
-msgstr "Kategorijų perkėlimas atliktas."
+msgstr ""
 
 #: categdialog.cpp:601 mmframe.cpp:3261 mmframe.cpp:3276 payeedialog.cpp:333
 #, c-format
 msgid "Records have been updated in the database: %i"
-msgstr "Įrašai bu atnaujinti duomenų bazėje: %i"
+msgstr ""
 
 #: categdialog.cpp:603 mmframe.cpp:3263
 msgid "Category Relocation Result"
-msgstr "Kategorijų perkėlimo rezultatas"
+msgstr ""
 
 #: categdialog.cpp:668
 msgid "Hide Selected Category"
-msgstr "Slėpti pažymėtą kategoriją"
+msgstr ""
 
 #: categdialog.cpp:669
 msgid "Unhide Selected Category"
-msgstr "Nebeslėpti pažymėtos kategorijos"
+msgstr ""
 
 #: categdialog.cpp:671 import_export/univcsvdialog.cpp:443
 msgid "Clear Settings"
-msgstr "Išvalyti nustatymus"
+msgstr ""
 
 #: constants.cpp:71
 msgid "Cancel"
-msgstr ""
+msgstr "Відмінити"
 
 #: constants.cpp:77 diagnostics.cpp:88 themes.cpp:189
 msgid "Close"
@@ -1678,7 +1673,7 @@ msgstr ""
 
 #: constants.cpp:79
 msgid "&Close "
-msgstr "&Užverti "
+msgstr ""
 
 #: constants.cpp:171
 msgid "Advanced Filter"
@@ -1686,39 +1681,39 @@ msgstr ""
 
 #: constants.cpp:172
 msgid "View All Transactions"
-msgstr "Žiūrėti visas operacijas"
+msgstr "Показати всі транзакції"
 
 #: constants.cpp:173
 msgid "View Today"
-msgstr "Žiūrėti šiandieną"
+msgstr "Показати сьогодні"
 
 #: constants.cpp:174
 msgid "View Current Month"
-msgstr "Žiūrėti einamą mėnesį"
+msgstr ""
 
 #: constants.cpp:175
 msgid "View Last 30 days"
-msgstr "Žiūrėti paskutines 30 dienų"
+msgstr ""
 
 #: constants.cpp:176
 msgid "View Last 90 days"
-msgstr "Žiūrėti paskutines 90 dienų"
+msgstr ""
 
 #: constants.cpp:177
 msgid "View Last Month"
-msgstr "Žiūrėti praeitą mėnesį"
+msgstr "Показати минулий місяць"
 
 #: constants.cpp:178
 msgid "View Last 3 Months"
-msgstr "Žiūrėti paskutinius 3 mėn."
+msgstr ""
 
 #: constants.cpp:179
 msgid "View Last 12 Months"
-msgstr "Žiūrėti paskutinius 12 mėn."
+msgstr ""
 
 #: constants.cpp:180
 msgid "View Current Year"
-msgstr "Žiūrėti einamuosius metus"
+msgstr ""
 
 #: constants.cpp:181
 msgid "View Current Financial Year"
@@ -1743,15 +1738,15 @@ msgstr ""
 #: constants.cpp:187 mmframe.cpp:1317 mmframe.cpp:1717
 #: model/Model_Account.cpp:26
 msgid "Open"
-msgstr "Atverti"
+msgstr "Відкрити"
 
 #: constants.cpp:188 mmframe.cpp:1318 model/Model_Account.cpp:27
 msgid "Closed"
-msgstr "Uždarytus"
+msgstr "Закритий"
 
 #: constants.cpp:189 mmframe.cpp:1316
 msgid "Favorites"
-msgstr "Mėgstamiausi"
+msgstr "Улюблені"
 
 #: currencydialog.cpp:101
 msgid "Currency name"
@@ -1759,32 +1754,32 @@ msgstr ""
 
 #: currencydialog.cpp:173
 msgid "Currency Name"
-msgstr "Valiutos pavadinimas"
+msgstr "Назва валюти"
 
 #: currencydialog.cpp:178
 msgid "Currency Symbol"
-msgstr "Valiutos simbolis"
+msgstr ""
 
 #: currencydialog.cpp:183
 msgid "Prefix Symbol"
-msgstr "Priešdėlio simbolis"
+msgstr "Символ-префікс"
 
 #: currencydialog.cpp:187
 msgid "Suffix Symbol"
-msgstr "Priesagos simbolis"
+msgstr "Символ-суфікс"
 
 #: currencydialog.cpp:198 currencydialog.cpp:268 currencydialog.cpp:297
 #: import_export/qif_import_gui.cpp:296 import_export/univcsvdialog.cpp:356
 msgid "Decimal Char"
-msgstr "Dežimtainis rašmuo"
+msgstr "Десятковий символ"
 
 #: currencydialog.cpp:205 currencydialog.cpp:272 currencydialog.cpp:301
 msgid "Grouping Char"
-msgstr "Grupavimo rašmuo"
+msgstr "Групуючий символ"
 
 #: currencydialog.cpp:213
 msgid "Scale"
-msgstr "Mastelis"
+msgstr "Мірило"
 
 #: currencydialog.cpp:217 currencydialog.cpp:279
 msgid "Conversion to Base Rate"
@@ -1804,17 +1799,17 @@ msgstr ""
 
 #: currencydialog.cpp:244
 msgid "Save any changes made"
-msgstr "Išsaugoti bet kokius pakeitimus"
+msgstr ""
 
 #: currencydialog.cpp:248
 msgid "Any changes will be lost without update"
-msgstr "Visi pakeitimai bus prarasti neatnaujinus"
+msgstr ""
 
 #: currencydialog.cpp:268 currencydialog.cpp:272 currencydialog.cpp:279
 #: currencydialog.cpp:297 currencydialog.cpp:301 maincurrencydialog.cpp:612
 #: mmSimpleDialogs.cpp:238
 msgid "Invalid Entry"
-msgstr "Netinkamas įrašas"
+msgstr "Невірний запис"
 
 #: currencydialog.cpp:318
 #, c-format
@@ -1905,7 +1900,7 @@ msgstr ""
 #: customfieldeditdialog.cpp:225 customfieldeditdialog.cpp:247 mmframe.cpp:2103
 #: mmframe.cpp:2122
 msgid "Do you want to proceed?"
-msgstr "Ar norite tęsti?"
+msgstr ""
 
 #: customfieldeditdialog.cpp:226 customfieldeditdialog.cpp:248
 msgid "Custom Field Change"
@@ -1990,208 +1985,208 @@ msgstr ""
 
 #: db/DB_Table_Category_V1.h:111
 msgid "Bills"
-msgstr "Mokėjimo sąskaitos"
+msgstr "Векселів"
 
 #: db/DB_Table_Category_V1.h:112
 msgid "Food"
-msgstr "Maistas"
+msgstr "Продовольство"
 
 #: db/DB_Table_Category_V1.h:113
 msgid "Leisure"
-msgstr "Laisvalaikis"
+msgstr "Дозвілля"
 
 #: db/DB_Table_Category_V1.h:114 model/Model_Asset.cpp:31
 msgid "Automobile"
-msgstr "Automobilis"
+msgstr "Автомобіль"
 
 #: db/DB_Table_Category_V1.h:115
 msgid "Education"
-msgstr "Išsilavinimas"
+msgstr "Освіта"
 
 #: db/DB_Table_Category_V1.h:116
 msgid "Homeneeds"
-msgstr "Namų poreikiai"
+msgstr ""
 
 #: db/DB_Table_Category_V1.h:117
 msgid "Healthcare"
-msgstr "Sveikatos priežiūra"
+msgstr ""
 
 #: db/DB_Table_Category_V1.h:118
 msgid "Insurance"
-msgstr "Draudimas"
+msgstr "Страхування"
 
 #: db/DB_Table_Category_V1.h:119
 msgid "Vacation"
-msgstr "Atostogos"
+msgstr "Відпустка"
 
 #: db/DB_Table_Category_V1.h:120
 msgid "Taxes"
-msgstr "Mokesčiai"
+msgstr "Податки"
 
 #: db/DB_Table_Category_V1.h:121
 msgid "Miscellaneous"
-msgstr "Įvairūs"
+msgstr "Різне"
 
 #: db/DB_Table_Category_V1.h:122
 msgid "Gifts"
-msgstr "Dovanos"
+msgstr "Подарунки"
 
 #: db/DB_Table_Category_V1.h:124
 msgid "Other Income"
-msgstr "Kitos pajamos"
+msgstr ""
 
 #: db/DB_Table_Category_V1.h:125
 msgid "Other Expenses"
-msgstr "Kitos išlaidos"
+msgstr ""
 
 #: db/DB_Table_Category_V1.h:126 model/Model_Billsdeposits.cpp:34
 #: model/Model_Checking.cpp:31 transdialog.cpp:359
 msgid "Transfer"
-msgstr "Perkėlimas"
+msgstr "Переміщення"
 
 #: db/DB_Table_Subcategory_V1.h:111
 msgid "Telephone"
-msgstr "Telefonas"
+msgstr "Телефон"
 
 #: db/DB_Table_Subcategory_V1.h:112
 msgid "Electricity"
-msgstr "Elektra"
+msgstr "Електрика"
 
 #: db/DB_Table_Subcategory_V1.h:113 db/DB_Table_Subcategory_V1.h:124
 msgid "Gas"
-msgstr "Dujos"
+msgstr "Газ"
 
 #: db/DB_Table_Subcategory_V1.h:114
 msgid "Internet"
-msgstr "Internetas"
+msgstr "Інтернет"
 
 #: db/DB_Table_Subcategory_V1.h:115
 msgid "Rent"
-msgstr "Nuoma"
+msgstr "Оренда"
 
 #: db/DB_Table_Subcategory_V1.h:116
 msgid "Cable TV"
-msgstr "Kabelinė TV"
+msgstr "Кабельне ТБ"
 
 #: db/DB_Table_Subcategory_V1.h:117
 msgid "Water"
-msgstr "Vanduo"
+msgstr "Вода"
 
 #: db/DB_Table_Subcategory_V1.h:118
 msgid "Groceries"
-msgstr "Pirkiniai"
+msgstr "Бакалійні товари"
 
 #: db/DB_Table_Subcategory_V1.h:119
 msgid "Dining out"
-msgstr "Pietūs kavinėje"
+msgstr "Вечеряти не вдома"
 
 #: db/DB_Table_Subcategory_V1.h:120
 msgid "Movies"
-msgstr "Filmai"
+msgstr "Прожекторист"
 
 #: db/DB_Table_Subcategory_V1.h:121
 msgid "Video Rental"
-msgstr "Video nuoma"
+msgstr "Відеопрокат"
 
 #: db/DB_Table_Subcategory_V1.h:122
 msgid "Magazines"
-msgstr "Žurnalai"
+msgstr "Журнали"
 
 #: db/DB_Table_Subcategory_V1.h:123
 msgid "Maintenance"
-msgstr "Priežiūra"
+msgstr "Ремонт"
 
 #: db/DB_Table_Subcategory_V1.h:125
 msgid "Parking"
-msgstr "Parkingas"
+msgstr "Паркування"
 
 #: db/DB_Table_Subcategory_V1.h:126
 msgid "Registration"
-msgstr "Registracija"
+msgstr "Реєстрація"
 
 #: db/DB_Table_Subcategory_V1.h:127
 msgid "Books"
-msgstr "Knygos"
+msgstr "Книжки"
 
 #: db/DB_Table_Subcategory_V1.h:128
 msgid "Tuition"
-msgstr "Mokymai"
+msgstr "Навчання"
 
 #: db/DB_Table_Subcategory_V1.h:130
 msgid "Clothing"
-msgstr "Apranga"
+msgstr ""
 
 #: db/DB_Table_Subcategory_V1.h:131
 msgid "Furnishing"
-msgstr "Baldai"
+msgstr "Обладнання"
 
 #: db/DB_Table_Subcategory_V1.h:133 db/DB_Table_Subcategory_V1.h:141
 msgid "Health"
-msgstr "Sveikata"
+msgstr "Здоров'я"
 
 #: db/DB_Table_Subcategory_V1.h:134
 msgid "Dental"
-msgstr "Dantys"
+msgstr "Стоматологія"
 
 #: db/DB_Table_Subcategory_V1.h:135
 msgid "Eyecare"
-msgstr "Akys"
+msgstr "Очної"
 
 #: db/DB_Table_Subcategory_V1.h:136
 msgid "Physician"
-msgstr "Terapeutas"
+msgstr ""
 
 #: db/DB_Table_Subcategory_V1.h:137
 msgid "Prescriptions"
-msgstr "Receptai"
+msgstr ""
 
 #: db/DB_Table_Subcategory_V1.h:138
 msgid "Auto"
-msgstr ""
+msgstr "Авто"
 
 #: db/DB_Table_Subcategory_V1.h:139
 msgid "Life"
-msgstr "Gyvybė"
+msgstr "Життя"
 
 #: db/DB_Table_Subcategory_V1.h:140
 msgid "Home"
-msgstr "Namai"
+msgstr ""
 
 #: db/DB_Table_Subcategory_V1.h:142
 msgid "Travel"
-msgstr "Kelionės"
+msgstr "Подорож"
 
 #: db/DB_Table_Subcategory_V1.h:143
 msgid "Lodging"
-msgstr "Viešbutis"
+msgstr "Подорожі"
 
 #: db/DB_Table_Subcategory_V1.h:144
 msgid "Sightseeing"
-msgstr "Vietovių lankymas"
+msgstr "Огляд визначних місць"
 
 #: db/DB_Table_Subcategory_V1.h:145
 msgid "Income Tax"
-msgstr "Pajamų mokestis"
+msgstr ""
 
 #: db/DB_Table_Subcategory_V1.h:146
 msgid "House Tax"
-msgstr "Namų mokesčiai"
+msgstr ""
 
 #: db/DB_Table_Subcategory_V1.h:147
 msgid "Water Tax"
-msgstr "Vandens mokesčiai"
+msgstr ""
 
 #: db/DB_Table_Subcategory_V1.h:149
 msgid "Salary"
-msgstr "Atlyginimas"
+msgstr "Зарплата"
 
 #: db/DB_Table_Subcategory_V1.h:150
 msgid "Reimbursement/Refunds"
-msgstr "Kompensacija/Grąžinimas"
+msgstr "Відшкодування / Повернення"
 
 #: db/DB_Table_Subcategory_V1.h:151
 msgid "Investment Income"
-msgstr "Investicijų pajamos"
+msgstr ""
 
 #: dbupgrade.cpp:72
 #, c-format
@@ -2269,11 +2264,11 @@ msgstr ""
 
 #: dbwrapper.cpp:74
 msgid "Can't open file"
-msgstr "Nepavyksta atverti failo"
+msgstr ""
 
 #: dbwrapper.cpp:74
 msgid "You must specify path to another database file"
-msgstr "Privalote nurodyti kelią į kitą duomenų bazę"
+msgstr ""
 
 #: dbwrapper.cpp:78
 msgid "An incorrect password given for an encrypted file\n"
@@ -2284,11 +2279,11 @@ msgstr ""
 #: dbwrapper.cpp:82 import_export/qif_import_gui.cpp:858 webapp.cpp:120
 #, c-format
 msgid "Error: %s"
-msgstr "Klaida: %s"
+msgstr "Помилка: %s"
 
 #: dbwrapper.cpp:85 mmframe.cpp:1817
 msgid "Opening MMEX Database - Error"
-msgstr "Klaida atidarant MMEX duomenų bazę"
+msgstr ""
 
 #: diagnostics.cpp:51
 msgid "Diagnostics"
@@ -2301,30 +2296,30 @@ msgstr ""
 #: filtertransdialog.cpp:45 mmhomepage.cpp:656 model/Model_Billsdeposits.cpp:40
 #: model/Model_Checking.cpp:37
 msgid "Reconciled"
-msgstr "Sutaikintos"
+msgstr "Проведена"
 
 #: filtertransdialog.cpp:46 model/Model_Billsdeposits.cpp:41
 #: model/Model_Checking.cpp:38
 msgid "Void"
-msgstr "Negaliojanti"
+msgstr "Недійсна"
 
 #: filtertransdialog.cpp:47 model/Model_Billsdeposits.cpp:42
 #: model/Model_Checking.cpp:39
 msgid "Follow up"
-msgstr "Stebima"
+msgstr ""
 
 #: filtertransdialog.cpp:48 model/Model_Billsdeposits.cpp:43
 #: model/Model_Checking.cpp:40
 msgid "Duplicate"
-msgstr "Dubliuota"
+msgstr "Задвоеніе"
 
 #: filtertransdialog.cpp:49 filtertransdialog.cpp:1004
 msgid "Un-Reconciled"
-msgstr "Ne - Suderintos"
+msgstr ""
 
 #: filtertransdialog.cpp:50 filtertransdialog.cpp:1005
 msgid "All Except Reconciled"
-msgstr "Visos išskyrus Suderintas"
+msgstr ""
 
 #: filtertransdialog.cpp:63
 msgid "Start of Financial Year"
@@ -2353,45 +2348,45 @@ msgstr ""
 #: filtertransdialog.cpp:211 import_export/qif_export.cpp:154
 #: import_export/qif_import_gui.cpp:174
 msgid "From Date"
-msgstr "Nuo datos"
+msgstr ""
 
 #: filtertransdialog.cpp:221 reports/mmDateRange.cpp:30
 msgid "Date Range"
-msgstr "Laikotarpis"
+msgstr ""
 
 #: filtertransdialog.cpp:263 filtertransdialog.cpp:993
 msgid "Include Similar"
-msgstr "Įtraukti panašius"
+msgstr ""
 
 #: filtertransdialog.cpp:265
 msgid "Include all subcategories for the selected category."
-msgstr "Įskaitant visas pažymėtos kategorijos sub kategorijas."
+msgstr ""
 
 #: filtertransdialog.cpp:291 import_export/univcsvdialog.cpp:113
 #: mmchecking_list.cpp:219 model/Model_Billsdeposits.cpp:32
 #: model/Model_Checking.cpp:29 reports/forecast.cpp:85
 #: splitdetailsdialog.cpp:125
 msgid "Withdrawal"
-msgstr "Išėmimas"
+msgstr "Витрата"
 
 #: filtertransdialog.cpp:293 import_export/univcsvdialog.cpp:114
 #: mmchecking_list.cpp:221 model/Model_Billsdeposits.cpp:33
 #: model/Model_Checking.cpp:30 reports/forecast.cpp:83
 #: splitdetailsdialog.cpp:126
 msgid "Deposit"
-msgstr "Pajamos"
+msgstr "Дохід"
 
 #: filtertransdialog.cpp:295 transactionsupdatedialog.cpp:187
 msgid "Transfer To"
-msgstr "Perkelti į"
+msgstr ""
 
 #: filtertransdialog.cpp:297
 msgid "Transfer From"
-msgstr "Perkelti iš"
+msgstr ""
 
 #: filtertransdialog.cpp:309
 msgid "Amount Range"
-msgstr "Sumos intervalas"
+msgstr ""
 
 #: filtertransdialog.cpp:352
 msgid "Settings"
@@ -2434,7 +2429,7 @@ msgstr ""
 
 #: filtertransdialog.cpp:925
 msgid "Filtering Details: "
-msgstr "Filtro informacija: "
+msgstr ""
 
 #: filtertransdialog.cpp:951
 msgid "Label"
@@ -2459,54 +2454,54 @@ msgstr ""
 #: filtertransdialog.cpp:1391 reports/reportbase.cpp:219
 #: reports/reportbase.cpp:333
 msgid "Choose Accounts"
-msgstr "Pasirinkite sąskaitas"
+msgstr ""
 
 #: general_report_manager.cpp:247 general_report_manager.cpp:663
 msgid "General Reports Manager"
-msgstr "Bendras ataskaitų tvarkytuvas"
+msgstr ""
 
 #: general_report_manager.cpp:290 mmframe.cpp:800 mmframe.cpp:2598
 #: reports/myusage.cpp:141 reports/myusage.cpp:162
 msgid "Reports"
-msgstr "Ataskaitos"
+msgstr "Звіти"
 
 #: general_report_manager.cpp:381 import_export/univcsvdialog.cpp:412
 #: mmframe.cpp:1303 mmframe.cpp:1376
 msgid "&Import"
-msgstr "&Importuoti"
+msgstr ""
 
 #: general_report_manager.cpp:383
 msgid "Locate and load a report file."
-msgstr "Rasti ir įkelti ataskaitos failą."
+msgstr ""
 
 #: general_report_manager.cpp:385 import_export/univcsvdialog.cpp:414
 #: mmframe.cpp:1310 mmframe.cpp:1385
 msgid "&Export"
-msgstr "&Eksportuoti"
+msgstr "Експорт"
 
 #: general_report_manager.cpp:387
 msgid "Export the report to a new file."
-msgstr "Eksportuoti ataskaitą į naują failą."
+msgstr ""
 
 #: general_report_manager.cpp:390 stockdialog.cpp:354
 msgid "&Save "
-msgstr "&Išsaugoti "
+msgstr ""
 
 #: general_report_manager.cpp:392
 msgid "Save changes."
-msgstr "Išsaugoti pakeitimus."
+msgstr ""
 
 #: general_report_manager.cpp:394
 msgid "&Run"
-msgstr "&Paleisti"
+msgstr ""
 
 #: general_report_manager.cpp:396
 msgid "Run selected report."
-msgstr "Paleisti pažymėtą ataskaitą."
+msgstr ""
 
 #: general_report_manager.cpp:408
 msgid "Output"
-msgstr "Išvestis"
+msgstr ""
 
 #: general_report_manager.cpp:431
 msgid "SQL"
@@ -2518,15 +2513,15 @@ msgstr ""
 
 #: general_report_manager.cpp:433
 msgid "Template"
-msgstr "Šablonas"
+msgstr ""
 
 #: general_report_manager.cpp:486
 msgid "&Test"
-msgstr "&Bandyti"
+msgstr ""
 
 #: general_report_manager.cpp:487
 msgid "Create Template"
-msgstr "Sukurti šabloną"
+msgstr ""
 
 #: general_report_manager.cpp:539
 #, c-format
@@ -2539,11 +2534,11 @@ msgstr[3] ""
 
 #: general_report_manager.cpp:566
 msgid "SQL Syntax Error"
-msgstr "SQL sintaksės klaida"
+msgstr ""
 
 #: general_report_manager.cpp:597
 msgid "Load report file:"
-msgstr "Įkelti ataskaitos failą:"
+msgstr ""
 
 #: general_report_manager.cpp:599 general_report_manager.cpp:1028
 msgid "General Report Manager files (*.grm)"
@@ -2557,20 +2552,19 @@ msgstr ""
 #, c-format
 msgid "Unable to open file:\n"
 "%s\n\n"
-msgstr "Nepavyksta atverti failo:\n"
-"%s\n\n"
+msgstr ""
 
 #: general_report_manager.cpp:726
 msgid "New Empty Report"
-msgstr "Nauja tuščia ataskaita"
+msgstr ""
 
 #: general_report_manager.cpp:727
 msgid "New Sample Report"
-msgstr "Nauja pavyzdinė ataskaita"
+msgstr ""
 
 #: general_report_manager.cpp:730
 msgid "Change Group"
-msgstr "Keisti grupę"
+msgstr ""
 
 #: general_report_manager.cpp:732 general_report_manager.cpp:897
 msgid "Rename Group"
@@ -2578,28 +2572,28 @@ msgstr ""
 
 #: general_report_manager.cpp:733
 msgid "UnGroup"
-msgstr "Išgrupuoti"
+msgstr ""
 
 #: general_report_manager.cpp:734
 msgid "Rename Report"
-msgstr "Pervadinti ataskaitą"
+msgstr ""
 
 #: general_report_manager.cpp:736
 msgid "Delete Report"
-msgstr "Ištrinti ataskaitą"
+msgstr ""
 
 #: general_report_manager.cpp:831 general_report_manager.cpp:979
 msgid "Enter the name for the report"
-msgstr "Įveskite ataskaitos pavadinimą"
+msgstr ""
 
 #: general_report_manager.cpp:832 general_report_manager.cpp:980
 #: mmframe.cpp:1277 mmframe.cpp:1558 mmframe.cpp:1730
 msgid "General Report Manager"
-msgstr "Bendras ataskaitų tvarkytuvas"
+msgstr ""
 
 #: general_report_manager.cpp:850
 msgid "Delete the Report Title:"
-msgstr "Ištrinti ataskaitos pavadinimą:"
+msgstr ""
 
 #: general_report_manager.cpp:879 general_report_manager.cpp:960
 msgid "Enter or choose name for the new report group"
@@ -2615,12 +2609,12 @@ msgstr ""
 
 #: general_report_manager.cpp:961
 msgid "Add Report Group"
-msgstr "Pridėti ataskaitų grupę"
+msgstr ""
 
 #: general_report_manager.cpp:974
 #, c-format
 msgid "New Report %s"
-msgstr "Nauja ataskaita %s"
+msgstr ""
 
 #: general_report_manager.cpp:987
 msgid "Report Name already exists"
@@ -2628,11 +2622,11 @@ msgstr ""
 
 #: general_report_manager.cpp:987 general_report_manager.cpp:994
 msgid "New Report"
-msgstr "Nauja ataskaita"
+msgstr ""
 
 #: general_report_manager.cpp:1025
 msgid "Choose file to Save As Report"
-msgstr "Parinkite failą, kurį išsaugoti kaip ataskaitą"
+msgstr ""
 
 #: general_report_manager.cpp:1203
 msgid "Parameters:"
@@ -2647,7 +2641,7 @@ msgstr ""
 #: images_list.cpp:463 images_list.cpp:488 images_list.cpp:494
 #: import_export/qif_import_gui.cpp:667 import_export/qif_import_gui.cpp:670
 msgid "Warning"
-msgstr "Dėmesio"
+msgstr ""
 
 #: images_list.cpp:416
 #, c-format
@@ -2681,12 +2675,12 @@ msgstr ""
 #: import_export/parsers.cpp:46 import_export/univcsvdialog.cpp:1579
 #: mmSimpleDialogs.cpp:253
 msgid "Unable to open file."
-msgstr "Nepavyksta atverti failo."
+msgstr "Не вдається відкрити файл."
 
 #: import_export/parsers.cpp:46 import_export/parsers.cpp:89
 #: import_export/univcsvdialog.cpp:970 mmframe.cpp:2265 mmframe.cpp:2284
 msgid "Universal CSV Import"
-msgstr "Universalus CSV importas"
+msgstr ""
 
 #: import_export/parsers.cpp:89
 msgid "Unable to create file."
@@ -2728,7 +2722,7 @@ msgstr ""
 #: import_export/qif_export.cpp:48 import_export/qif_export.cpp:251
 #: import_export/qif_export.cpp:345
 msgid "QIF Export"
-msgstr "QIF eksportas"
+msgstr ""
 
 #: import_export/qif_export.cpp:49
 msgid "JSON Export"
@@ -2740,11 +2734,11 @@ msgstr ""
 
 #: import_export/qif_export.cpp:110
 msgid "Parameters"
-msgstr "Parametrai"
+msgstr ""
 
 #: import_export/qif_export.cpp:115 import_export/qif_import_gui.cpp:197
 msgid "Log"
-msgstr "Žurnalas"
+msgstr ""
 
 #: import_export/qif_export.cpp:127
 msgid "QIF"
@@ -2761,37 +2755,37 @@ msgstr ""
 #: import_export/qif_export.cpp:143 mmframe.cpp:3093 mmframe.cpp:3097
 #: mmframe.cpp:3116 mmframe.cpp:3120
 msgid "Accounts"
-msgstr "Sąskaitos"
+msgstr "Рахунки"
 
 #: import_export/qif_export.cpp:164 import_export/qif_import_gui.cpp:184
 msgid "To Date"
-msgstr "Iki šiandien"
+msgstr ""
 
 #: import_export/qif_export.cpp:178 import_export/qif_import_gui.cpp:276
 #: optionsettingsgeneral.cpp:96
 msgid "Date Format"
-msgstr "Datos formatas"
+msgstr "Формат дати"
 
 #: import_export/qif_export.cpp:190
 msgid "Write to File"
-msgstr "Įrašyti į failą"
+msgstr ""
 
 #: import_export/qif_export.cpp:193 import_export/qif_import_gui.cpp:128
 #: import_export/univcsvdialog.cpp:168
 msgid "File Name:"
-msgstr "Failo pavadinimas:"
+msgstr ""
 
 #: import_export/qif_export.cpp:216 import_export/univcsvdialog.cpp:431
 msgid "Clear"
-msgstr "Išvalyti"
+msgstr ""
 
 #: import_export/qif_export.cpp:250
 msgid "Choose Account to Export from:"
-msgstr "Pasirinkite sąskaitą iš kurios eksportuoti:"
+msgstr "Виберіть рахунок для експорту"
 
 #: import_export/qif_export.cpp:298 import_export/qif_export.cpp:314
 msgid "Choose QIF data file to Export"
-msgstr "Pasirinkite QIF duomenų failą, skirtą eksportui"
+msgstr ""
 
 #: import_export/qif_export.cpp:300 import_export/qif_import_gui.cpp:723
 msgid "QIF Files (*.qif)"
@@ -2811,28 +2805,28 @@ msgstr ""
 
 #: import_export/qif_export.cpp:334
 msgid "No Account available for export"
-msgstr "Nėra sąskaitos tinkamos ekportui"
+msgstr ""
 
 #: import_export/qif_export.cpp:336
 msgid "No Accounts selected for export"
-msgstr "Nerasta sąskaitų pažymėtų eksportui"
+msgstr ""
 
 #: import_export/qif_export.cpp:338
 msgid "To Date less than From Date"
-msgstr "Pabaigos data yra ankstesnė nei pradžios data"
+msgstr ""
 
 #: import_export/qif_export.cpp:441
 msgid "Categories exported"
-msgstr "Kategorijos eksportuotos"
+msgstr ""
 
 #: import_export/qif_export.cpp:462 import_export/qif_import_gui.cpp:356
 #: import_export/qif_import_gui.cpp:807
 msgid "Please wait"
-msgstr "Prašome palaukti"
+msgstr ""
 
 #: import_export/qif_export.cpp:462
 msgid "Exporting"
-msgstr "Eksportuojama"
+msgstr ""
 
 #: import_export/qif_export.cpp:487
 #, c-format
@@ -2856,11 +2850,11 @@ msgstr ""
 
 #: import_export/qif_export.cpp:642 mmframe.cpp:1382
 msgid "Export to QIF"
-msgstr "Eksportuoti į QIF"
+msgstr ""
 
 #: import_export/qif_import_gui.cpp:129
 msgid "Choose &file"
-msgstr "Pasirinkite &failą"
+msgstr ""
 
 #: import_export/qif_import_gui.cpp:142 import_export/univcsvdialog.cpp:322
 msgid "Encoding:"
@@ -2868,11 +2862,11 @@ msgstr ""
 
 #: import_export/qif_import_gui.cpp:168
 msgid "Filtering Details:"
-msgstr "Filtro informacija:"
+msgstr ""
 
 #: import_export/qif_import_gui.cpp:207
 msgid "Data"
-msgstr "Duomenys"
+msgstr ""
 
 #: import_export/qif_import_gui.cpp:264
 msgid "Use account number instead of account name"
@@ -2890,11 +2884,11 @@ msgstr ""
 #: transdialog.cpp:995 transdialog.cpp:999 transdialog.cpp:1004 webapp.cpp:398
 #: webapp.cpp:407
 msgid "Unknown"
-msgstr "Nežinoma"
+msgstr "Невідомо"
 
 #: import_export/qif_import_gui.cpp:356
 msgid "Scanning"
-msgstr "Skenuojama"
+msgstr ""
 
 #: import_export/qif_import_gui.cpp:384
 #, c-format
@@ -2913,66 +2907,66 @@ msgstr ""
 
 #: import_export/qif_import_gui.cpp:466
 msgid "Press OK Button to continue"
-msgstr "Spausti mygtuką Gerai, kad tęsti"
+msgstr ""
 
 #: import_export/qif_import_gui.cpp:665 import_export/qif_import_gui.cpp:694
 #: import_export/qif_import_gui.cpp:711
 msgid "OK"
-msgstr "Gerai"
+msgstr "ОК"
 
 #: import_export/qif_import_gui.cpp:675 import_export/qif_import_gui.cpp:694
 #: stockspanel.cpp:460
 msgid "Missing"
-msgstr "Trūksta"
+msgstr ""
 
 #: import_export/qif_import_gui.cpp:721
 msgid "Choose QIF data file to Import"
-msgstr "Pasirinkite QIF duomenų failą, skirtą importui"
+msgstr ""
 
 #: import_export/qif_import_gui.cpp:800
 msgid "Do you want to import all transaction ?"
-msgstr "Ar norite importuoti visas operacijas ?"
+msgstr ""
 
 #: import_export/qif_import_gui.cpp:801
 msgid "All missing account, payees and categories will be created."
-msgstr "Visos trūkstamos sąskaitos, kontrahentai ir kategorijos bus sukurtos."
+msgstr ""
 
 #: import_export/qif_import_gui.cpp:802
 msgid "Confirm Import"
-msgstr "Patvirtinkite importavimą"
+msgstr ""
 
 #: import_export/qif_import_gui.cpp:807
 msgid "Importing"
-msgstr "Importuojama"
+msgstr ""
 
 #: import_export/qif_import_gui.cpp:809
 msgid "Importing Accounts"
-msgstr "Importuojamos sąskaitos"
+msgstr ""
 
 #: import_export/qif_import_gui.cpp:816
 msgid "Importing Payees"
-msgstr "Importuojami kontrahentai"
+msgstr ""
 
 #: import_export/qif_import_gui.cpp:819
 msgid "Importing Categories"
-msgstr "Importuojamos kategorijos"
+msgstr ""
 
 #: import_export/qif_import_gui.cpp:836
 #, c-format
 msgid "Importing transaction %i of %i"
-msgstr "Importuojama operacija %i iš %i"
+msgstr ""
 
 #: import_export/qif_import_gui.cpp:869
 msgid "Importing Transfers"
-msgstr "Importuojami perkėlimai"
+msgstr ""
 
 #: import_export/qif_import_gui.cpp:894
 msgid "Importing Split transactions"
-msgstr "Importuojamos suskaldytos operacijos"
+msgstr ""
 
 #: import_export/qif_import_gui.cpp:898
 msgid "Import finished successfully"
-msgstr "Importavimas baigtas sėkmingai"
+msgstr ""
 
 #: import_export/qif_import_gui.cpp:898
 #, c-format
@@ -2981,11 +2975,11 @@ msgstr ""
 
 #: import_export/qif_import_gui.cpp:906 import_export/univcsvdialog.cpp:1088
 msgid "Imported transactions discarded by user!"
-msgstr "Importuotos operacijos buvo atmestos naudotojo!"
+msgstr ""
 
 #: import_export/qif_import_gui.cpp:908 import_export/qif_import_gui.h:44
 msgid "QIF Import"
-msgstr "QIF importas"
+msgstr "Імпорт з QIF"
 
 #: import_export/qif_import_gui.cpp:988
 msgid "Transaction code is missing"
@@ -3018,25 +3012,25 @@ msgstr ""
 #: import_export/qif_import_gui.cpp:1181
 #, c-format
 msgid "Added account: %s"
-msgstr "Pridėta sąskaita: %s"
+msgstr ""
 
 #: import_export/qif_import_gui.cpp:1222 import_export/univcsvdialog.cpp:884
 #, c-format
 msgid "Added payee: %s"
-msgstr "Pridėtas kontahentas: %s"
+msgstr ""
 
 #: import_export/univcsvdialog.cpp:109
 msgid "SubCategory"
-msgstr "Sub kategorija"
+msgstr "Підкатегорія"
 
 #: import_export/univcsvdialog.cpp:112
 msgid "Don't Care"
-msgstr "Nesvarbu"
+msgstr "Не перейматись"
 
 #: import_export/univcsvdialog.cpp:115 mmchecking_list.cpp:225
 #: mmhomepage.cpp:657 reports/summary.cpp:167
 msgid "Balance"
-msgstr "Balansas"
+msgstr "Баланс"
 
 #: import_export/univcsvdialog.cpp:118
 msgid "Import dialog"
@@ -3056,23 +3050,23 @@ msgstr ""
 
 #: import_export/univcsvdialog.cpp:244
 msgid "&MMEX format"
-msgstr "&MMEX formatas"
+msgstr ""
 
 #: import_export/univcsvdialog.cpp:261
 msgid "&Up"
-msgstr "&Aukštyn"
+msgstr ""
 
 #: import_export/univcsvdialog.cpp:265
 msgid "&Down"
-msgstr "&Žemyn"
+msgstr ""
 
 #: import_export/univcsvdialog.cpp:283
 msgid "Account: "
-msgstr "Sąskaita: "
+msgstr ""
 
 #: import_export/univcsvdialog.cpp:296
 msgid "Date Format: "
-msgstr "Datos formatas: "
+msgstr ""
 
 #: import_export/univcsvdialog.cpp:308
 msgid "CSV Delimiter:"
@@ -3104,7 +3098,7 @@ msgstr ""
 
 #: import_export/univcsvdialog.cpp:397
 msgid "Preview"
-msgstr "Peržiūra"
+msgstr ""
 
 #: import_export/univcsvdialog.cpp:437
 msgid "Choose XML data file to Import"
@@ -3112,7 +3106,7 @@ msgstr ""
 
 #: import_export/univcsvdialog.cpp:437
 msgid "Choose CSV data file to Import"
-msgstr "Pasirinkite CSV duomenų failą, skirtą importui"
+msgstr ""
 
 #: import_export/univcsvdialog.cpp:438
 msgid "Choose XML data file to Export"
@@ -3120,7 +3114,7 @@ msgstr ""
 
 #: import_export/univcsvdialog.cpp:438
 msgid "Choose CSV data file to Export"
-msgstr "Pasirinkite CSV duomenų failą, skirtą eksportui"
+msgstr "Виберіть файл данних CSV для експорту"
 
 #: import_export/univcsvdialog.cpp:441
 msgid "Template name"
@@ -3128,31 +3122,31 @@ msgstr ""
 
 #: import_export/univcsvdialog.cpp:442
 msgid "Save Template"
-msgstr "Išsaugoti šabloną"
+msgstr ""
 
 #: import_export/univcsvdialog.cpp:444
 msgid "MMEX standard format"
-msgstr "MMEX standartinis formatas"
+msgstr ""
 
 #: import_export/univcsvdialog.cpp:445
 msgid "Move Up"
-msgstr "Perkelti aukštyn"
+msgstr ""
 
 #: import_export/univcsvdialog.cpp:446
 msgid "Move &Down"
-msgstr "Perkelti ž&emyn"
+msgstr ""
 
 #: import_export/univcsvdialog.cpp:447 optionsettingsmisc.cpp:200
 msgid "Specify the delimiter to use when importing/exporting CSV files"
-msgstr "Nurodykite naudotiną skirtuką importuojant/eksportuojant CSV failus"
+msgstr "Вкажіть розділяючий символ що буде використано при імпорті/експорті файлів CSV"
 
 #: import_export/univcsvdialog.cpp:448
 msgid "Import File"
-msgstr "Importuoti failą"
+msgstr ""
 
 #: import_export/univcsvdialog.cpp:449
 msgid "Export File"
-msgstr "Eksportuoti failą"
+msgstr ""
 
 #: import_export/univcsvdialog.cpp:539
 #, c-format
@@ -3185,7 +3179,7 @@ msgstr ""
 #: import_export/univcsvdialog.cpp:928 import_export/univcsvdialog.cpp:1057
 #: themes.cpp:183 webappdialog.cpp:417
 msgid "Import"
-msgstr "Importuoti"
+msgstr ""
 
 #: import_export/univcsvdialog.cpp:980
 #, c-format
@@ -3208,7 +3202,7 @@ msgstr ""
 
 #: import_export/univcsvdialog.cpp:1008 mmTextCtrl.cpp:98
 msgid "Invalid Amount."
-msgstr "Klaidinga suma."
+msgstr ""
 
 #: import_export/univcsvdialog.cpp:1010
 msgid "Type (withdrawal/deposit) unknown."
@@ -3251,7 +3245,7 @@ msgstr ""
 
 #: import_export/univcsvdialog.cpp:1056 stockdialog.cpp:680
 msgid "Please confirm saving..."
-msgstr "Prašome patvirtinti išsaugojimą..."
+msgstr ""
 
 #: import_export/univcsvdialog.cpp:1089
 msgid "No imported transactions!"
@@ -3283,16 +3277,16 @@ msgstr ""
 
 #: import_export/univcsvdialog.cpp:1133 mmSimpleDialogs.cpp:261
 msgid "Invalid Account"
-msgstr "Netinkama sąskaita"
+msgstr ""
 
 #: import_export/univcsvdialog.cpp:1247
 #, c-format
 msgid "Transactions exported: %ld"
-msgstr "Eksportuotų operacijų: %ld"
+msgstr ""
 
 #: import_export/univcsvdialog.cpp:1545 stockdialog.cpp:586
 msgid "Choose CSV data file to import"
-msgstr "Pasirinkite CSV duomenų failą, skirtą importui"
+msgstr ""
 
 #: import_export/univcsvdialog.cpp:1548
 msgid "Choose CSV data file to export"
@@ -3325,7 +3319,7 @@ msgstr ""
 #: maincurrencydialog.cpp:74 reports/summarystocks.cpp:191 stockdialog.cpp:427
 #: stocks_list.cpp:91
 msgid "Symbol"
-msgstr "Simbolis"
+msgstr "Символ"
 
 #: maincurrencydialog.cpp:76
 msgid "Last Rate"
@@ -3341,11 +3335,11 @@ msgstr ""
 
 #: maincurrencydialog.cpp:169 maincurrencydialog.cpp:461
 msgid "Online update currency rate"
-msgstr "Atnaujinti iš interneto valiutų kursą"
+msgstr ""
 
 #: maincurrencydialog.cpp:172
 msgid "Online Update"
-msgstr "Atnaujinti iš interneto"
+msgstr ""
 
 #: maincurrencydialog.cpp:176
 msgid "Show all even the unused currencies"
@@ -3353,7 +3347,7 @@ msgstr ""
 
 #: maincurrencydialog.cpp:206 payeedialog.cpp:122
 msgid "Search:"
-msgstr "Ieškoti:"
+msgstr ""
 
 #: maincurrencydialog.cpp:227
 msgid "Currency History Options"
@@ -3362,7 +3356,7 @@ msgstr ""
 #: maincurrencydialog.cpp:245 stockdialog.cpp:304 stockdialog.cpp:323
 #: stockdialog.cpp:676
 msgid "Price"
-msgstr "Kaina"
+msgstr ""
 
 #: maincurrencydialog.cpp:267
 msgid "Specify the date of currency value"
@@ -3394,13 +3388,13 @@ msgstr ""
 
 #: maincurrencydialog.cpp:353
 msgid "Do you really want to delete the selected Currency?"
-msgstr "Ar tikrai norite pašalinti pažymėtą valiutą?"
+msgstr ""
 
 #: maincurrencydialog.cpp:354 maincurrencydialog.cpp:424
 #: maincurrencydialog.cpp:650 maincurrencydialog.cpp:767
 #: maincurrencydialog.cpp:791 maincurrencydialog.h:76
 msgid "Currency Dialog"
-msgstr "Valiutos dialogo langas"
+msgstr ""
 
 #: maincurrencydialog.cpp:382
 msgid "Base Currency Selection"
@@ -3429,11 +3423,11 @@ msgstr ""
 
 #: maincurrencydialog.cpp:523
 msgid "Set as Base Currency"
-msgstr "Nustatyti kaip pagrindinę valiutą"
+msgstr ""
 
 #: maincurrencydialog.cpp:524
 msgid "Online Update Currency Rate"
-msgstr "Atnaujinti iš interneto valiutų kursą"
+msgstr ""
 
 #: maincurrencydialog.cpp:643
 msgid "No currency selected!"
@@ -3468,7 +3462,7 @@ msgstr ""
 
 #: maincurrencydialog.cpp:854 stockspanel.cpp:406 util.cpp:618
 msgid "Could not find base currency symbol!"
-msgstr "Nepavyko rasti bazinės valiutos simbolio!"
+msgstr ""
 
 #: mmSimpleDialogs.cpp:177
 msgid "Subtract one year"
@@ -3489,7 +3483,7 @@ msgstr ""
 #: mmSimpleDialogs.cpp:237
 #, c-format
 msgid "Entry %s is invalid"
-msgstr "Įrašas %s yra neteisingas"
+msgstr ""
 
 #: mmSimpleDialogs.cpp:244
 msgid "Please use this button for category selection."
@@ -3498,32 +3492,31 @@ msgstr ""
 #: mmSimpleDialogs.cpp:245
 msgid "Please use this button for category selection\n"
 "or use the 'Split' checkbox for multiple categories."
-msgstr "Prašome naudoti šį mygtuką kategorijos pasirinkimui,\n"
-"arba naudokite „Suskaldyti“ laukelį kelioms kategorijoms."
+msgstr ""
 
 #: mmSimpleDialogs.cpp:248
 msgid "Invalid Category"
-msgstr "Neteisinga kategorija"
+msgstr ""
 
 #: mmSimpleDialogs.cpp:253
 msgid "File name is empty."
-msgstr "Failo pavadinimas neįrašytas."
+msgstr ""
 
 #: mmSimpleDialogs.cpp:254
 msgid "Please select the file for this operation."
-msgstr "Prašome pasirinkti failą šiai operacijai."
+msgstr ""
 
 #: mmSimpleDialogs.cpp:264
 msgid "Please select the account for this transaction."
-msgstr "Prašome pasirinkti paskyrą šiai operacijai."
+msgstr ""
 
 #: mmSimpleDialogs.cpp:266
 msgid "Please specify which account the transfer is going to."
-msgstr "Prašome nurodyti į kurią sąskaitą vykdomas perkėlimas"
+msgstr ""
 
 #: mmSimpleDialogs.cpp:268
 msgid "Selection can be made by using the dropdown button."
-msgstr "Pasirinkimas gali būti atliktas naudojant išplečiamąjį mygtuką."
+msgstr ""
 
 #: mmSimpleDialogs.cpp:271
 msgid "Activating the button will provide a selection box where the account can be selected."
@@ -3531,17 +3524,16 @@ msgstr ""
 
 #: mmSimpleDialogs.cpp:280
 msgid "Invalid Payee"
-msgstr "Netinkamas kontrahentas"
+msgstr ""
 
 #: mmSimpleDialogs.cpp:281
 msgid "Please type in a new payee,\n"
 "or make a selection using the dropdown button."
-msgstr "Prašome įvesti naują kontrahentą,\n"
-"arba pasirinkti iš pasirenkamo meniu mygtuko."
+msgstr ""
 
 #: mmSimpleDialogs.cpp:289 mmSimpleDialogs.cpp:301
 msgid "Invalid Name"
-msgstr "Netinkamas pavadinimas"
+msgstr ""
 
 #: mmSimpleDialogs.cpp:292 mmSimpleDialogs.cpp:304
 msgid "Already exist!"
@@ -3549,7 +3541,7 @@ msgstr ""
 
 #: mmSimpleDialogs.cpp:294
 msgid "Please type in a non empty name."
-msgstr "Prašome įvesti ne tuščią pavadinimą."
+msgstr ""
 
 #: mmSimpleDialogs.cpp:306
 msgid "Please type in a non empty symbol."
@@ -3561,7 +3553,7 @@ msgstr ""
 
 #: mmTextCtrl.cpp:95
 msgid "Please enter a positive or calculated value."
-msgstr "Prašome įvesti teigiamą arba apskaičiuotą vertę."
+msgstr ""
 
 #: mmTextCtrl.cpp:95
 msgid "Please enter a calculated value."
@@ -3570,24 +3562,23 @@ msgstr ""
 #: mmTextCtrl.cpp:97
 msgid "Tip: For calculations, enter expressions like (2+2)*(2+2)\n"
 "Calculations will be evaluated and the result used as the entry."
-msgstr "Patarimas: Skaičiavimams, įveskite išraiškas kaip (2+2)*(2+2).\n"
-"Bus atlikti skaičiavimai, o rezultatas bus naudojamas kaip įrašas."
+msgstr ""
 
 #: mmTips.h:22
 msgid "Recommendation: Always backup your .mmb database file regularly."
-msgstr "Rekomendacija: Reguliariai darykite .mmb duomenų bazės failo atsargines kopijas."
+msgstr ""
 
 #: mmTips.h:23
 msgid "Recommendation: If upgrading to a new version of MMEX, make sure you backup your .mmb database file before doing so."
-msgstr "Rekomendacija: Jei naujinate MMEX versiją, įsitikinkite kad padarėte .mmb duomenų bazės failo atsarginę kopiją."
+msgstr ""
 
 #: mmTips.h:24
 msgid "Recommendation: Use copy (Ctrl+C) and paste (Ctrl+V) for frequently used transactions."
-msgstr "Rekomendacija: Naudokite kopijavimą (Ctrl+C) ir įdėjimą (Ctrl+V) dažniausiai naudotoms operacijoms."
+msgstr ""
 
 #: mmTips.h:25
 msgid "Tip: Remember to make backups of your .mmb."
-msgstr "Patarimas: Prisiminkite padaryti atsargines kopijas savo .mmb."
+msgstr ""
 
 #: mmTips.h:26
 msgid "Tip: The .mmb file is not encrypted. That means anyone else having the proper know how can actually open the file and read the contents. So make sure that if you are storing any sensitive financial information it is properly guarded."
@@ -3595,19 +3586,19 @@ msgstr ""
 
 #: mmTips.h:27
 msgid "Tip: To mark a transaction as reconciled, just select the transaction and hit the 'r' or 'R' key. To mark a transaction as unreconciled, just select the transaction and hit the 'u' or 'U' key."
-msgstr "Patarimas: Kad pažymėti operaciją kaip suderintą, tiesiog pažymėkite operaciją ir paspauskite „r“ arba „R“ klavišą. Kad pažymėti operaciją kaip nesuderintą, tiesiog pažymėkite operaciją ir paspauskite „u“ arba „U“ klavišą."
+msgstr ""
 
 #: mmTips.h:28
 msgid "Tip: To mark a transaction as requiring followup, just select the transaction and hit the 'f' or 'F' key."
-msgstr "Patarimas: Kad pažymėti operaciją kaip reikalaujančia stebėjimo, tiesiog pažymėkite operaciją ir paspauskite „f“ arba „F“ klavišą."
+msgstr ""
 
 #: mmTips.h:29
 msgid "Tip: MMEX supports printing of all reports that can be viewed. The print options are available under the menu, File->Print."
-msgstr "Patarimas: MMEX palaiko spausdinimą visų ataskaitų, kurios gali būti peržiūrimos. Spausdinimo parinktys yra pasiekiamos meniu, Failas->Spausdinti."
+msgstr ""
 
 #: mmTips.h:30
 msgid "Tip: You can modify some runtime behavior of MMEX by changing the options in the Options Dialog. "
-msgstr "Patarimas: Galite keisti MMEX veikimo elgseną keičiant pasirinktis Pasirinkčių dialogo lange. "
+msgstr ""
 
 #: mmTips.h:31
 msgid "Tip: To print a statement with transactions from any arbitrary set of criteria, use the transaction filter to select the transactions you want and then do a print from the menu."
@@ -3615,15 +3606,15 @@ msgstr ""
 
 #: mmTips.h:32
 msgid "Tip: Set exchange rate for currencies in case if you have accounts with different currencies."
-msgstr "Patarimas: Nustatykite kursą valiutoms, jei turite sąskaitų su skirtingomis valiutomis."
+msgstr ""
 
 #: mmTips.h:34
 msgid "Organize Categories Dialog Tip: Pressing the h key will cycle through all categories starting with the letter h"
-msgstr "Kategorijų tvarkymo dialogo lango patarimas: Spaudžiant „h“ klavišą judėsite per visas kategorijas prasidedančias raide „h“."
+msgstr ""
 
 #: mmTips.h:35
 msgid "Organize Categories Dialog Tip: Pressing 2 key combination will cycle through all categories starting with that key combination. Example: Pressing ho will select Homeneeds, Home, House Tax, etc..."
-msgstr "Kategorijų tvarkymo dialogo lango patarimas: Spaudžiant 2 klavišų kombinaciją, judėsite per visas kategorijas prasidedančias ta klavišų kombinacija. Pvz.: Spaudžiant „na“ pažymės „Namų apyvokos daiktas“, „Namų poreikiai“, pan."
+msgstr ""
 
 #: mmTips.h:37
 msgid "Tip to get out of debt: Pay yourself 10 percentage first. Put this into an account that is hard to touch. Make sure it is a chore to get the money out (you have to drive to the bank), so you will only tap it consciously and for major expenses."
@@ -3631,43 +3622,43 @@ msgstr ""
 
 #: mmTips.h:38
 msgid "Tip to get out of debt: Establish an emergency fund."
-msgstr "Patarimas kaip išsikapstyti iš skolų: Įkurkite fondą nenumatytiems atvejams."
+msgstr ""
 
 #: mmTips.h:39
 msgid "Tip to get out of debt: Stop acquiring new debt."
-msgstr "Patarimas kaip išsikapstyti iš skolų: Nustokite imti naujas paskolas."
+msgstr ""
 
 #: mmTips.h:40
 msgid "Tip to get out of debt: Create a realistic budget for your expenses."
-msgstr "Patarimas kaip išsikapstyti iš skolų: Sukurkite realistinį savo išlaidų biudžetą."
+msgstr ""
 
 #: mmTips.h:41
 msgid "Tip to get out of debt: Spend less than you earn."
-msgstr "Patarimas kaip išsikapstyti iš skolų: Išleiskite mažiau nei uždirbate."
+msgstr ""
 
 #: mmTips.h:42
 msgid "Tip to get out of debt: Pay more than the minimum."
-msgstr "Patarimas kaip išsikapstyti iš skolų: Grąžinkite daugiau nei mažiausia įmoka."
+msgstr ""
 
 #: mmTips.h:43
 msgid "Before going to a shop and buy something: take the time making a list of what you really need. In the shop buy what is in your list."
-msgstr "Prieš keliaujant į parduotuvę pirkti ko nors: skirkite laiko sudaryti sąrašą pirkinių, kurių Jums tikrai reikia. Parduotuvėje pirkite tik tai kas sąraše."
+msgstr ""
 
 #: mmTips.h:47
 msgid "Using MMEX it is possible to track stocks/mutual funds investments."
-msgstr "Naudojant MMEX galima sekti akcijų/bendruosius investicinius fondus."
+msgstr ""
 
 #: mmTips.h:48
 msgid "To create new stocks entry the Symbol, Number of shares and Purchase prise should be entered."
-msgstr "Kad sukurti naują akcijų įrašą, turi būti įvestas simbolis, akcijų kiekis ir pirkimo data."
+msgstr ""
 
 #: mmTips.h:49
 msgid "Sample of UK (HSBC HLDG) share: HSBA.L"
-msgstr "Pavyzdys JK (HSBC HLDG) akcijų: HSBA.L"
+msgstr ""
 
 #: mmTips.h:50
 msgid "If the Stock Name field is empty it will be filed when prices updated"
-msgstr "Jei akcijų pavadinimo laukas yra tuščias, jis bus užpildytas atnaujinus kainas"
+msgstr ""
 
 #: mmchecking_list.cpp:344
 msgid "&New Withdrawal"
@@ -3684,7 +3675,7 @@ msgstr ""
 #: mmchecking_list.cpp:351
 msgid "&Edit Transaction"
 msgid_plural "&Edit Transactions"
-msgstr[0] "&Redaguoti operaciją"
+msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
 msgstr[3] ""
@@ -3692,7 +3683,7 @@ msgstr[3] ""
 #: mmchecking_list.cpp:356
 msgid "&Copy Transaction"
 msgid_plural "&Copy Transactions"
-msgstr[0] "&Kopijuoti Operacija"
+msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
 msgstr[3] ""
@@ -3708,7 +3699,7 @@ msgstr ""
 
 #: mmchecking_list.cpp:366
 msgid "D&uplicate Transaction"
-msgstr "D&ubliuoti operaciją"
+msgstr ""
 
 #: mmchecking_list.cpp:369
 msgid "&Move Transaction"
@@ -3720,7 +3711,7 @@ msgstr[3] ""
 
 #: mmchecking_list.cpp:375
 msgid "&View Split Categories"
-msgstr "&Žiūrėti suskaldytas kategorijas"
+msgstr ""
 
 #: mmchecking_list.cpp:383
 msgid "Create Recurring T&ransaction"
@@ -3729,34 +3720,34 @@ msgstr ""
 #: mmchecking_list.cpp:389
 msgid "&Delete selected transaction"
 msgid_plural "&Delete selected transactions"
-msgstr[0] "&Ištrinti pažymėtą operaciją"
+msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
 msgstr[3] ""
 
 #: mmchecking_list.cpp:392
 msgid "Delete all transactions in current view"
-msgstr "Pašalinti visas operacijas šiame rodinyje"
+msgstr "Видалити всі транзакції у поточному виді"
 
 #: mmchecking_list.cpp:393
 msgid "Delete Viewed \"Follow Up\" Transactions"
-msgstr "Ištrinti peržiūrėtas „Stebimas\" operacijas"
+msgstr ""
 
 #: mmchecking_list.cpp:394
 msgid "Delete Viewed \"Unreconciled\" Transactions"
-msgstr "Ištrinti peržiūrėtas „Nesuderintas“ operacijas"
+msgstr ""
 
 #: mmchecking_list.cpp:400
 msgid "as Reconciled"
-msgstr "kaip Suderintos"
+msgstr "як Проведену"
 
 #: mmchecking_list.cpp:402
 msgid "as Unreconciled"
-msgstr "kaip Nesuderintos"
+msgstr "як Непроведену"
 
 #: mmchecking_list.cpp:404
 msgid "as Void"
-msgstr "kaip Negaliojanti"
+msgstr "як Недійсну"
 
 #: mmchecking_list.cpp:406
 msgid "as Followup"
@@ -3764,11 +3755,11 @@ msgstr ""
 
 #: mmchecking_list.cpp:408
 msgid "as Duplicate"
-msgstr "kaip dublikatas"
+msgstr ""
 
 #: mmchecking_list.cpp:410
 msgid "Mark all being selected"
-msgstr "Žymėti visas kaip peržiūrėtas"
+msgstr ""
 
 #: mmchecking_list.cpp:782
 msgid "Do you really want to delete all the transactions shown?"
@@ -3777,7 +3768,7 @@ msgstr ""
 #: mmchecking_list.cpp:783 mmchecking_list.cpp:794 mmchecking_list.cpp:805
 #: mmchecking_list.cpp:852
 msgid "Confirm Transaction Deletion"
-msgstr "Patvirtinkite operacijos ištrynimą"
+msgstr "Підтвердість видалення транзакцій"
 
 #: mmchecking_list.cpp:793 mmchecking_list.cpp:804
 #, c-format
@@ -3853,7 +3844,7 @@ msgstr[3] ""
 
 #: mmchecking_list.cpp:1142 stocks_list.cpp:292
 msgid "Select the destination Account "
-msgstr "Pasirinkite tikslo sąskaitą "
+msgstr ""
 
 #: mmchecking_list.cpp:1210
 msgid "Recurring Transaction saved."
@@ -3861,43 +3852,43 @@ msgstr ""
 
 #: mmcheckingpanel.cpp:290 mmcheckingpanel.cpp:438
 msgid "Displayed Bal: "
-msgstr "Rodomas bal.: "
+msgstr ""
 
 #: mmcheckingpanel.cpp:296
 msgid "Account Bal: "
-msgstr "Sąskaitos bal.: "
+msgstr ""
 
 #: mmcheckingpanel.cpp:298
 msgid "Reconciled Bal: "
-msgstr "Suderintas bal.: "
+msgstr ""
 
 #: mmcheckingpanel.cpp:300
 msgid "Diff: "
-msgstr "Skirtumas: "
+msgstr ""
 
 #: mmcheckingpanel.cpp:363 mmframe.cpp:1722 transdialog.cpp:180
 msgid "New Transaction"
-msgstr "Nauja operacija"
+msgstr "Нова Транзакція"
 
 #: mmcheckingpanel.cpp:367
 msgid "Edit selected transaction"
-msgstr "Redaguoti pažymėtą operaciją"
+msgstr ""
 
 #: mmcheckingpanel.cpp:372
 msgid "Delete selected transaction"
-msgstr "Ištrinti pažymėtą operaciją"
+msgstr ""
 
 #: mmcheckingpanel.cpp:376
 msgid "D&uplicate "
-msgstr "&Dubliuoti "
+msgstr ""
 
 #: mmcheckingpanel.cpp:377
 msgid "Duplicate selected transaction"
-msgstr "Dubliuoti pažymėtą operaciją"
+msgstr ""
 
 #: mmcheckingpanel.cpp:394
 msgid "Enter any string to find it in the nearest transaction notes"
-msgstr "Įveskite bet kokį terminą, kad rasti jį artimiausios operacijos pastabose"
+msgstr ""
 
 #: mmcheckingpanel.cpp:411
 msgid "Full Transactions Report"
@@ -3910,7 +3901,7 @@ msgstr ""
 
 #: mmcheckingpanel.cpp:493 webapp.cpp:584
 msgid "Attachment"
-msgstr "Priedas"
+msgstr ""
 
 #: mmcheckingpanel.cpp:526
 #, c-format
@@ -3971,11 +3962,11 @@ msgstr ""
 
 #: mmframe.cpp:270
 msgid "Navigation"
-msgstr "Navigacija"
+msgstr "Навігація"
 
 #: mmframe.cpp:271
 msgid "Toolbar"
-msgstr "Įrankinė"
+msgstr ""
 
 #: mmframe.cpp:470 mmframe.cpp:711
 msgid "Favourites"
@@ -3983,15 +3974,15 @@ msgstr ""
 
 #: mmframe.cpp:471 mmframe.cpp:715 mmhomepage.cpp:641 reports/summary.cpp:159
 msgid "Bank Accounts"
-msgstr "Banko sąskaitos"
+msgstr "Банківські Рахунки"
 
 #: mmframe.cpp:472 mmframe.cpp:719 mmhomepage.cpp:642 reports/summary.cpp:160
 msgid "Credit Card Accounts"
-msgstr "Kreditinių kortelių sąskaitos"
+msgstr ""
 
 #: mmframe.cpp:473 mmframe.cpp:731 mmhomepage.cpp:644 reports/summary.cpp:162
 msgid "Term Accounts"
-msgstr "Terminuotosios sąskaitos"
+msgstr ""
 
 #: mmframe.cpp:474 mmframe.cpp:735
 msgid "Stock Portfolios"
@@ -4011,7 +4002,7 @@ msgstr ""
 
 #: mmframe.cpp:702 mmframe.cpp:1720
 msgid "Home Page"
-msgstr "Pradžios puslapis"
+msgstr "Домашня сторінка"
 
 #: mmframe.cpp:707
 msgid "All Transactions"
@@ -4023,59 +4014,59 @@ msgstr ""
 
 #: mmframe.cpp:751 mmframe.cpp:1532
 msgid "Budget Setup"
-msgstr "Biudžeto nustatymas"
+msgstr "Настройка Бюджету"
 
 #: mmframe.cpp:808 mmframe.cpp:2547 mmhelppanel.cpp:69
 msgid "Help"
-msgstr "Pagalba"
+msgstr "Допомога"
 
 #: mmframe.cpp:1190
 msgid "Do you really want to delete the account?"
-msgstr "Ar tikrai norite ištrinti sąskaitą?"
+msgstr "Ви дійсно бажаєте видалити рахунок ?"
 
 #: mmframe.cpp:1197 mmframe.cpp:3128
 msgid "Confirm Account Deletion"
-msgstr "Patvirtinkite sąskaitos ištrynimą"
+msgstr "Підтвердження видалення рахунку"
 
 #: mmframe.cpp:1217
 msgid "MMEX has been opened without an active database."
-msgstr "MMEX buvo atverta be aktyvios duomenų bazės."
+msgstr ""
 
 #: mmframe.cpp:1218
 msgid "MMEX: Menu Popup Error"
-msgstr "MMEX: Meniu iššokimo klaida"
+msgstr ""
 
 #: mmframe.cpp:1249
 msgid "&New Transaction"
-msgstr "&Nauja operacija"
+msgstr "&Нова транзакція"
 
 #: mmframe.cpp:1252 mmframe.cpp:1292 mmframe.cpp:1478
 msgid "&Edit Account"
-msgstr "&Keisti sąskaitą"
+msgstr "&Редагувати рахунок"
 
 #: mmframe.cpp:1253 mmframe.cpp:1481
 msgid "&Reallocate Account"
-msgstr "&Perskirstyti sąskaitą"
+msgstr ""
 
 #: mmframe.cpp:1254 mmframe.cpp:1291 mmframe.cpp:1484
 msgid "&Delete Account"
-msgstr "Pa&šalinti paskyrą"
+msgstr "&Видалити рахунок"
 
 #: mmframe.cpp:1256
 msgid "&Launch Account Website"
-msgstr "&Atverti sąskaitos svetainę"
+msgstr "&Відкрити Веб-сайт Рахунка"
 
 #: mmframe.cpp:1290 mmframe.cpp:1475
 msgid "New &Account"
-msgstr "Nauja &sąskaita"
+msgstr "Новий &Рахунок"
 
 #: mmframe.cpp:1293
 msgid "Account &List (Home)"
-msgstr "Sąskaitų &sąrašas (Pradžia)"
+msgstr ""
 
 #: mmframe.cpp:1300 mmframe.cpp:1305 mmframe.cpp:1372 mmframe.cpp:1379
 msgid "&CSV Files..."
-msgstr "&CSV failai..."
+msgstr ""
 
 #: mmframe.cpp:1301 mmframe.cpp:1307 mmframe.cpp:1373 mmframe.cpp:1381
 msgid "&XML Files..."
@@ -4087,7 +4078,7 @@ msgstr ""
 
 #: mmframe.cpp:1302 mmframe.cpp:1308 mmframe.cpp:1374 mmframe.cpp:1382
 msgid "&QIF Files..."
-msgstr "&QIF failai..."
+msgstr ""
 
 #: mmframe.cpp:1306 mmframe.cpp:1380
 msgid "&MMEX CSV Files..."
@@ -4099,47 +4090,47 @@ msgstr ""
 
 #: mmframe.cpp:1320 optionsettingsview.cpp:64
 msgid "Accounts Visible"
-msgstr "Matomos sąskaitos"
+msgstr "Видимі рахунки"
 
 #: mmframe.cpp:1357
 msgid "&New Database\tCtrl-N"
-msgstr "&Nauja duomenų bazė\tCtrl-N"
+msgstr "&Нова база даних\tCtrl-N"
 
 #: mmframe.cpp:1357 mmframe.cpp:1716 wizard_newdb.cpp:124
 msgid "New Database"
-msgstr "Nauja duomenų bazė"
+msgstr ""
 
 #: mmframe.cpp:1358
 msgid "&Open Database\tCtrl-O"
-msgstr "&Atverti duomenų bazę\tCtrl-O"
+msgstr "&Відкрити базу даних\tCtrl-O"
 
 #: mmframe.cpp:1358 mmframe.cpp:1717
 msgid "Open Database"
-msgstr "Atverti duombazę"
+msgstr ""
 
 #: mmframe.cpp:1359
 msgid "Save Database &As"
-msgstr "Išsaugoti duomenų bazę &kaip"
+msgstr "Зберегти базу даних &як"
 
 #: mmframe.cpp:1359
 msgid "Save Database As"
-msgstr "Išsaugoti duomenų bazę kaip"
+msgstr ""
 
 #: mmframe.cpp:1366
 msgid "&Recent Files..."
-msgstr "&Paskiausi failai..."
+msgstr ""
 
 #: mmframe.cpp:1367
 msgid "&Clear Recent Files"
-msgstr "&Išvalyti paskiausius failus"
+msgstr ""
 
 #: mmframe.cpp:1372
 msgid "Import from any CSV file"
-msgstr "Importuoti iš bet kokio CSV failo"
+msgstr "Імпорт з будь-якого CSV файлу"
 
 #: mmframe.cpp:1374
 msgid "Import from QIF"
-msgstr "Importuoti iš QIF"
+msgstr "Імпорт з QIF"
 
 #: mmframe.cpp:1375
 msgid "&WebApp..."
@@ -4147,11 +4138,11 @@ msgstr ""
 
 #: mmframe.cpp:1375
 msgid "Import from WebApp"
-msgstr "Importuoti iš WebApp"
+msgstr ""
 
 #: mmframe.cpp:1379
 msgid "Export to CSV"
-msgstr "Eksportuoti į CSV"
+msgstr "Експорт до  CSV"
 
 #: mmframe.cpp:1380
 msgid "Export to fixed CSV"
@@ -4171,15 +4162,15 @@ msgstr ""
 
 #: mmframe.cpp:1384
 msgid "Export to HTML"
-msgstr "Eksportuoti į HTML"
+msgstr "Експорт до  HTML"
 
 #: mmframe.cpp:1390 mmframe.cpp:1753
 msgid "&Print..."
-msgstr "S&pausdinti..."
+msgstr ""
 
 #: mmframe.cpp:1390 mmframe.cpp:1753
 msgid "Print current view"
-msgstr "Spausdinti dabartinį rodinį"
+msgstr ""
 
 #: mmframe.cpp:1396
 msgid "E&xit\tAlt-X"
@@ -4191,19 +4182,19 @@ msgstr ""
 
 #: mmframe.cpp:1402
 msgid "&Toolbar"
-msgstr "&Įrankinė"
+msgstr ""
 
 #: mmframe.cpp:1402
 msgid "Show/Hide the toolbar"
-msgstr "Rodyti arba slėpti įrankinę"
+msgstr ""
 
 #: mmframe.cpp:1404
 msgid "&Navigation"
-msgstr "&Navigacija"
+msgstr "&Навігація"
 
 #: mmframe.cpp:1404
 msgid "Show/Hide the Navigation tree control"
-msgstr "Rodyti/Slėpti navigacijos medžio valdiklį"
+msgstr ""
 
 #: mmframe.cpp:1406
 msgid "&Display Share Accounts"
@@ -4219,15 +4210,15 @@ msgstr ""
 
 #: mmframe.cpp:1409
 msgid "Display Budgets in Financial Year Format"
-msgstr "Rodyti biudžetus finansinių metų formate"
+msgstr ""
 
 #: mmframe.cpp:1411
 msgid "Budgets: &Include Transfers in Totals"
-msgstr "Biudžetai: &Įtraukiant operacijas sumose"
+msgstr ""
 
 #: mmframe.cpp:1411
 msgid "Include the transfer transactions in the Budget Totals"
-msgstr "Įtraukti perkėlimo operacijas į biudžeto suvestinę"
+msgstr ""
 
 #: mmframe.cpp:1413
 msgid "Budget Category Report: with &Summaries"
@@ -4239,11 +4230,11 @@ msgstr ""
 
 #: mmframe.cpp:1415
 msgid "Ignore F&uture Transactions"
-msgstr "Ignor&uoti artėjančias operacijos"
+msgstr ""
 
 #: mmframe.cpp:1415
 msgid "Ignore Future transactions"
-msgstr "Ignoruoti artėjančias operacijos"
+msgstr ""
 
 #: mmframe.cpp:1417 optionsettingsview.cpp:99
 msgid "Show Tooltips"
@@ -4259,7 +4250,7 @@ msgstr ""
 
 #: mmframe.cpp:1440 mmframe.cpp:1750
 msgid "Toggle Fullscreen"
-msgstr "Perjungti viso ekrano veikseną"
+msgstr ""
 
 #: mmframe.cpp:1446
 msgid "Switch Application &Language"
@@ -4283,11 +4274,11 @@ msgstr ""
 
 #: mmframe.cpp:1481
 msgid "Change the account type of an account."
-msgstr "Keisti sąskaitos tipą."
+msgstr ""
 
 #: mmframe.cpp:1484
 msgid "Delete Account from database"
-msgstr "Ištrinti sąskaitą iš duomenų bazės"
+msgstr "Видалити рахунок з бази даних"
 
 #: mmframe.cpp:1497
 msgid "Download Ra&tes..."
@@ -4299,15 +4290,15 @@ msgstr ""
 
 #: mmframe.cpp:1503
 msgid "Organize &Categories..."
-msgstr "Tvarkyti &Kategorijas..."
+msgstr ""
 
 #: mmframe.cpp:1507
 msgid "Organize &Payees..."
-msgstr "Tvarkyti K&ontrahentus..."
+msgstr ""
 
 #: mmframe.cpp:1507 mmframe.cpp:1725 payeedialog.cpp:75
 msgid "Organize Payees"
-msgstr "Tvarkyti kontrahentus"
+msgstr "Організувати Одержувачів"
 
 #: mmframe.cpp:1511
 msgid "Organize Curre&ncy..."
@@ -4315,19 +4306,19 @@ msgstr ""
 
 #: mmframe.cpp:1511 mmframe.cpp:1726
 msgid "Organize Currency"
-msgstr "Tvarkyti valiutą"
+msgstr "Організувати &Валюти"
 
 #: mmframe.cpp:1515
 msgid "&Categories..."
-msgstr "&Kategorijos..."
+msgstr ""
 
 #: mmframe.cpp:1518
 msgid "&Payees..."
-msgstr "&Kontrahentai..."
+msgstr ""
 
 #: mmframe.cpp:1519
 msgid "Reassign all payees to another payee"
-msgstr "Perskirstyti visus kontrahentus kitam kontahentui"
+msgstr ""
 
 #: mmframe.cpp:1521
 msgid "Re&location of..."
@@ -4335,11 +4326,11 @@ msgstr ""
 
 #: mmframe.cpp:1522
 msgid "Relocate Categories && Payees"
-msgstr "Perkelti kategorijas ir kontrahentus"
+msgstr ""
 
 #: mmframe.cpp:1532
 msgid "&Budget Setup"
-msgstr "&Biudžeto nustatymas"
+msgstr ""
 
 #: mmframe.cpp:1536
 msgid "&Recurring Transactions"
@@ -4347,11 +4338,11 @@ msgstr ""
 
 #: mmframe.cpp:1536
 msgid "Bills && Deposits"
-msgstr "Mokesčiai ir susigrąžinimai"
+msgstr "Витрати і Доходи"
 
 #: mmframe.cpp:1540
 msgid "&Assets"
-msgstr "&Turtas"
+msgstr ""
 
 #: mmframe.cpp:1546
 msgid "T&heme Manager"
@@ -4367,7 +4358,7 @@ msgstr ""
 
 #: mmframe.cpp:1552 mmframe.cpp:1728
 msgid "Transaction Report Filter"
-msgstr "Operacijų ataskaitos filtras"
+msgstr ""
 
 #: mmframe.cpp:1558
 msgid "General Report &Manager..."
@@ -4395,7 +4386,7 @@ msgstr ""
 
 #: mmframe.cpp:1573 mmframe.cpp:1732
 msgid "Show the Options Dialog"
-msgstr "Rodyti pasirinkčių dialogo langą"
+msgstr ""
 
 #: mmframe.cpp:1580
 msgid "Convert Encrypted &DB"
@@ -4419,7 +4410,7 @@ msgstr ""
 
 #: mmframe.cpp:1587
 msgid "Optimize database space and performance"
-msgstr "Optimizuoti duomenų bazės vietą ir našumą"
+msgstr ""
 
 #: mmframe.cpp:1589
 msgid "Database De&bug"
@@ -4435,15 +4426,15 @@ msgstr ""
 
 #: mmframe.cpp:1596
 msgid "Database management"
-msgstr "Duomenų bazių tvarkymas"
+msgstr ""
 
 #: mmframe.cpp:1603 mmframe.cpp:1757
 msgid "&Help\tF1"
-msgstr "&Pagalba\tF1"
+msgstr ""
 
 #: mmframe.cpp:1603 mmframe.cpp:1757
 msgid "Show the Help file"
-msgstr "Rodyti pagalbos failą"
+msgstr ""
 
 #: mmframe.cpp:1608
 msgid "&Website"
@@ -4459,7 +4450,7 @@ msgstr ""
 
 #: mmframe.cpp:1611
 msgid "Visit us on Facebook"
-msgstr "Aplankykite mus Facebook'e"
+msgstr ""
 
 #: mmframe.cpp:1613
 msgid "&Crowdin"
@@ -4591,7 +4582,7 @@ msgstr ""
 
 #: mmframe.cpp:1680
 msgid "Check for &Updates"
-msgstr "Tikrinti, ar yra atna&ujinimų"
+msgstr "Перевірити на оновлення"
 
 #: mmframe.cpp:1680
 msgid "Check For Updates"
@@ -4599,55 +4590,55 @@ msgstr ""
 
 #: mmframe.cpp:1684 mmframe.cpp:1756
 msgid "&About..."
-msgstr "&Apie..."
+msgstr "&Про программу"
 
 #: mmframe.cpp:1684 mmframe.cpp:1756
 msgid "Show about dialog"
-msgstr "Rodyti apie dialogo langą"
+msgstr "Показати діалог відомостей про программу"
 
 #: mmframe.cpp:1688
 msgid "&File"
-msgstr "&Failas"
+msgstr "&Файл"
 
 #: mmframe.cpp:1689
 msgid "&Accounts"
-msgstr "&Paskyros"
+msgstr "&Рахунки"
 
 #: mmframe.cpp:1690
 msgid "&Tools"
-msgstr "Įrank&iai"
+msgstr "&Інструменти"
 
 #: mmframe.cpp:1691
 msgid "&View"
-msgstr "&Rodymas"
+msgstr ""
 
 #: mmframe.cpp:1692
 msgid "&Help"
-msgstr "&Pagalba"
+msgstr "&Допомога"
 
 #: mmframe.cpp:1716 mmframe.cpp:1722
 msgid "New"
-msgstr "Naujas"
+msgstr "Нове"
 
 #: mmframe.cpp:1724
 msgid "Show Organize Categories Dialog"
-msgstr "Rodyti kategorijų tvarkymo langą"
+msgstr "Показати діалог організації категорій"
 
 #: mmframe.cpp:1725
 msgid "Show Organize Payees Dialog"
-msgstr "Rodyti kontrahentų tvarkymo langą"
+msgstr "Показати діалог організації одержувачів"
 
 #: mmframe.cpp:1726
 msgid "Show Organize Currency Dialog"
-msgstr "Rodyti valiutos tvarkymo langą"
+msgstr "Показати діалог організації валют"
 
 #: mmframe.cpp:1732
 msgid "&Options..."
-msgstr "&Parinktys..."
+msgstr ""
 
 #: mmframe.cpp:1740 mmframe.cpp:2591
 msgid "Register/View Release &Notifications"
-msgstr "Registruotis/Žiūrėti išleidimo &pranešimus"
+msgstr ""
 
 #: mmframe.cpp:1745 optionsettingsnet.cpp:121
 msgid "News"
@@ -4659,7 +4650,7 @@ msgstr ""
 
 #: mmframe.cpp:1750
 msgid "Toggle Fullscreen\tF11"
-msgstr "Perjungti viso ekrano veikseną\tF11"
+msgstr ""
 
 #: mmframe.cpp:1811
 #, c-format
@@ -4689,7 +4680,7 @@ msgstr ""
 
 #: mmframe.cpp:1900
 msgid "&Next ->"
-msgstr "&Kitas ->"
+msgstr ""
 
 #: mmframe.cpp:1913
 msgid "Cannot locate previously opened database.\n"
@@ -4716,11 +4707,11 @@ msgstr ""
 
 #: mmframe.cpp:1993
 msgid "Choose database file to create"
-msgstr "Parinkite sukurtiną duomenų bazės failą"
+msgstr "Вибрати файл бази даних для створення"
 
 #: mmframe.cpp:2016
 msgid "Choose database file to open"
-msgstr "Parinkite, kurį duomenų bazės failą atverti"
+msgstr "Вибрати файл бази даних, щоб відкрити"
 
 #: mmframe.cpp:2033
 msgid "Choose Encrypted database file to open"
@@ -4762,19 +4753,19 @@ msgstr ""
 
 #: mmframe.cpp:2090
 msgid "Password change completed."
-msgstr "Slaptažodžio keitimas atliktas."
+msgstr ""
 
 #: mmframe.cpp:2094
 msgid "Confirm password failed."
-msgstr "Slaptažodžio patvirtinimas nepavyko."
+msgstr ""
 
 #: mmframe.cpp:2103
 msgid "Make sure you have a backup of DB before optimize it"
-msgstr "Įsitikinkite, kad turite DB atsarginę kopiją prieš jos optimizavimą"
+msgstr ""
 
 #: mmframe.cpp:2104 mmframe.cpp:2114
 msgid "DB Optimization"
-msgstr "DB optimizavimas"
+msgstr ""
 
 #: mmframe.cpp:2111
 #, c-format
@@ -4793,11 +4784,11 @@ msgstr ""
 
 #: mmframe.cpp:2142 mmframe.cpp:2163
 msgid "Save database file as"
-msgstr "Išsaugoti duomenų bazės failą kaip"
+msgstr ""
 
 #: mmframe.cpp:2163
 msgid "Can't copy file to itself"
-msgstr "Nepavyksta nukopijuoti failo į jį patį"
+msgstr ""
 
 #: mmframe.cpp:2176
 msgid "Enter password for new database"
@@ -4841,7 +4832,7 @@ msgstr ""
 
 #: mmframe.cpp:2537
 msgid "MMEX Options have been updated."
-msgstr "MMEX nustatymai buvo atnaujinti."
+msgstr ""
 
 #: mmframe.cpp:2538
 msgid "Some settings take effect only after an application restart."
@@ -4849,11 +4840,11 @@ msgstr ""
 
 #: mmframe.cpp:2539 optiondialog.cpp:211 optiondialog.h:48
 msgid "MMEX Options"
-msgstr "MMEX parinktys"
+msgstr ""
 
 #: mmframe.cpp:2661
 msgid "Choose HTML file to Export"
-msgstr "Pasirinkite HTML failą, skirtą eksportui"
+msgstr ""
 
 #: mmframe.cpp:3026 mmframe.cpp:3033
 msgid "Downloading stock prices from Yahoo"
@@ -4866,30 +4857,29 @@ msgstr ""
 #: mmframe.cpp:3076 stockspanel.cpp:473
 #, c-format
 msgid "%s on %s"
-msgstr "%s esanti %s"
+msgstr ""
 
 #: mmframe.cpp:3093
 msgid "No account available to edit!"
-msgstr "Nėra sąskaitos pasiekiamos redagavimui!"
+msgstr ""
 
 #: mmframe.cpp:3097
 msgid "Choose Account to Edit"
-msgstr "Pasirinkite paskyrą redagavimui"
+msgstr "Виберіть рахунок для редагування"
 
 #: mmframe.cpp:3116
 msgid "No account available to delete!"
-msgstr "Nėra sąskaitos pasiekiamos ištrynimui!"
+msgstr ""
 
 #: mmframe.cpp:3120
 msgid "Choose Account to Delete"
-msgstr "Pasirinkite paskyrą ištrynimui"
+msgstr "Виберіть рахунок для видалення"
 
 #: mmframe.cpp:3125
 #, c-format
 msgid "Are you sure you want to delete\n"
 " %s account: %s ?"
-msgstr "Ar tikrai norite pašalinti\n"
-" %s sąskaitą: %s ?"
+msgstr ""
 
 #: mmframe.cpp:3144
 msgid "Select the account to reallocate"
@@ -4897,7 +4887,7 @@ msgstr ""
 
 #: mmframe.cpp:3144 mmframe.cpp:3167
 msgid "Account Reallocation"
-msgstr "Sąskaitos perskirstymas"
+msgstr ""
 
 #: mmframe.cpp:3166
 #, c-format
@@ -4906,16 +4896,16 @@ msgstr ""
 
 #: mmframe.cpp:3275 payeedialog.cpp:332
 msgid "Payee Relocation Completed."
-msgstr "Kontrahentų perkėlimas atliktas."
+msgstr ""
 
 #: mmframe.cpp:3279 payeedialog.cpp:336
 msgid "Payee Relocation Result"
-msgstr "Kontrahento perkėlimo rezultatas"
+msgstr ""
 
 #: mmframe.cpp:3329
 #, c-format
 msgid "File %s not found"
-msgstr "Failas %s nerastas"
+msgstr ""
 
 #: mmframe.cpp:3364 optionsettingsgeneral.cpp:333
 msgid "The language for this application has been changed. The change will take effect the next time the application is started."
@@ -4932,23 +4922,23 @@ msgstr ""
 
 #: mmframereport.cpp:118
 msgid "Transaction Report"
-msgstr "Operacijų ataskaita"
+msgstr "Звіт по транзакціям"
 
 #: mmframereport.cpp:123
 msgid "Cash Flow"
-msgstr "Pinigų srautai"
+msgstr "Грошовий потік"
 
 #: mmframereport.cpp:140 mmframereport.cpp:204 mmhomepage.cpp:188
 msgid "Summary"
-msgstr "Santrauka"
+msgstr "Підсумок"
 
 #: mmframereport.cpp:143 reports/categexp.cpp:242
 msgid "Where the Money Goes"
-msgstr "Kur juda pinigai"
+msgstr "Куда подіваються гроші"
 
 #: mmframereport.cpp:146 reports/categexp.cpp:248
 msgid "Where the Money Comes From"
-msgstr "Iš kur gaunami pinigai"
+msgstr ""
 
 #: mmframereport.cpp:151
 msgid "Forecast Report"
@@ -4956,7 +4946,7 @@ msgstr ""
 
 #: mmframereport.cpp:156
 msgid "Income vs Expenses"
-msgstr "Pajamos ir išlaidos"
+msgstr "Прибутки проти Витрат"
 
 #: mmframereport.cpp:164
 msgid "My Usage"
@@ -4964,11 +4954,11 @@ msgstr ""
 
 #: mmframereport.cpp:169 reports/payee.cpp:113
 msgid "Payees"
-msgstr "Korespondentai"
+msgstr ""
 
 #: mmframereport.cpp:174
 msgid "Summary of Accounts"
-msgstr "Sąskaitų santrauka"
+msgstr "Зведення рахунків"
 
 #: mmframereport.cpp:189
 msgid "Budget Performance"
@@ -4980,40 +4970,40 @@ msgstr ""
 
 #: mmframereport.cpp:201
 msgid "Stocks Report"
-msgstr "Akcijų ataskaita"
+msgstr ""
 
 #: mmhelppanel.cpp:65
 msgid "&Back"
-msgstr "&Atgal"
+msgstr ""
 
 #: mmhelppanel.cpp:66
 msgid "&Forward"
-msgstr "&Pirmyn"
+msgstr ""
 
 #: mmhomepage.cpp:60 mmhomepage.cpp:79 reports/summary.cpp:166
 msgid "Stocks"
-msgstr "Akcijos"
+msgstr "Цінні папери"
 
 #: mmhomepage.cpp:79 reports/summarystocks.cpp:157
 #: reports/summarystocks.cpp:197 stocks_list.cpp:95
 msgid "Gain/Loss"
-msgstr "Pelnas/Nuostoliai"
+msgstr "Дохід/Втрати"
 
 #: mmhomepage.cpp:80 reports/budgetingperf.cpp:219 reports/cashflow.cpp:250
 #: reports/categexp.cpp:175 reports/categexp.cpp:451 reports/summary.cpp:165
 msgid "Total"
-msgstr "Suma"
+msgstr "Всього"
 
 #: mmhomepage.cpp:106 mmhomepage.cpp:696 reports/incexpenses.cpp:287
 #: reports/payee.cpp:164 reports/summarystocks.cpp:133
 #: splittransactionsdialog.cpp:143
 msgid "Total:"
-msgstr "Suma:"
+msgstr "Всього:"
 
 #: mmhomepage.cpp:160
 #, c-format
 msgid "Top Withdrawals: %s"
-msgstr "Didžiausios išlaidos: %s"
+msgstr ""
 
 #: mmhomepage.cpp:360
 msgid "Account / Payee"
@@ -5022,39 +5012,39 @@ msgstr ""
 #: mmhomepage.cpp:438
 #, c-format
 msgid "Income vs Expenses: %s"
-msgstr "Pajamos ir išlaidos: %s"
+msgstr ""
 
 #: mmhomepage.cpp:448 reports/categexp.cpp:123 reports/categexp.cpp:147
 #: reports/categexp.cpp:376 reports/categexp.cpp:450 reports/incexpenses.cpp:87
 #: reports/incexpenses.cpp:213 reports/incexpenses.cpp:246
 #: reports/payee.cpp:136
 msgid "Expenses"
-msgstr "Išlaidos"
+msgstr "Витрати"
 
 #: mmhomepage.cpp:452 reports/incexpenses.cpp:120
 msgid "Difference:"
-msgstr "Skirtumas:"
+msgstr "Баланс:"
 
 #: mmhomepage.cpp:456
 msgid "Income/Expenses"
-msgstr "Pajamos/Išlaidos"
+msgstr ""
 
 #: mmhomepage.cpp:484
 msgid "Transaction Statistics"
-msgstr "Operacijų statistika"
+msgstr ""
 
 #: mmhomepage.cpp:526
 msgid "Follow Up On Transactions: "
-msgstr "Stebėti operacijas: "
+msgstr ""
 
 #: mmhomepage.cpp:530
 msgid "Total Transactions: "
-msgstr "Viso operacijų: "
+msgstr ""
 
 #: mmhomepage.cpp:552 reports/categexp.cpp:225 reports/summarystocks.cpp:149
 #: reports/transactions.cpp:197 reports/transactions.cpp:232
 msgid "Grand Total:"
-msgstr "Bendra suma:"
+msgstr ""
 
 #: mmhomepage.cpp:645
 msgid "Investment Accounts"
@@ -5070,7 +5060,7 @@ msgstr ""
 
 #: mmhomepagepanel.cpp:176
 msgid "Upcoming Transactions"
-msgstr "Artėjančios operacijos"
+msgstr "Майбутні проводки"
 
 #: mmpanelbase.cpp:130
 msgid "Hide/Show Columns"
@@ -5082,7 +5072,7 @@ msgstr ""
 
 #: mmpanelbase.cpp:133
 msgid "Order by this column"
-msgstr "Rikiuoti pagal šį stulpelį"
+msgstr ""
 
 #: mmpanelbase.cpp:134
 msgid "Reset columns"
@@ -5098,11 +5088,11 @@ msgstr ""
 
 #: mmreportspanel.cpp:292
 msgid "Year:"
-msgstr "Metai:"
+msgstr ""
 
 #: mmreportspanel.cpp:316
 msgid "Budget:"
-msgstr "Biudžetas:"
+msgstr ""
 
 #: mmreportspanel.cpp:342
 msgid "Accounts:"
@@ -5111,7 +5101,7 @@ msgstr ""
 #: mmreportspanel.cpp:347 reports/reportbase.cpp:185
 #: reports/transactions.cpp:50
 msgid "All Accounts"
-msgstr "Visos sąskaitos"
+msgstr ""
 
 #: mmreportspanel.cpp:348
 msgid "Specific Accounts"
@@ -5123,39 +5113,39 @@ msgstr ""
 
 #: mmreportspanel.cpp:369
 msgid "Show"
-msgstr "Rodyti"
+msgstr ""
 
 #: mmreportspanel.cpp:370
 msgid "Hide"
-msgstr "Slėpti"
+msgstr ""
 
 #: model/Model_Account.cpp:32 model/Model_Asset.cpp:35 reports/summary.cpp:158
 msgid "Cash"
-msgstr "Grynieji"
+msgstr "Гроші"
 
 #: model/Model_Account.cpp:33
 msgid "Checking"
-msgstr "Einamoji"
+msgstr "Чековий"
 
 #: model/Model_Account.cpp:34
 msgid "Credit Card"
-msgstr "Kreditinė kortelė"
+msgstr ""
 
 #: model/Model_Account.cpp:35
 msgid "Loan"
-msgstr "Paskolos"
+msgstr ""
 
 #: model/Model_Account.cpp:36
 msgid "Term"
-msgstr "Terminas"
+msgstr ""
 
 #: model/Model_Account.cpp:37
 msgid "Investment"
-msgstr "Investicija"
+msgstr "Інвестиційний"
 
 #: model/Model_Account.cpp:38
 msgid "Asset"
-msgstr "Turtas"
+msgstr ""
 
 #: model/Model_Account.cpp:39
 msgid "Shares"
@@ -5163,35 +5153,35 @@ msgstr ""
 
 #: model/Model_Account.cpp:130
 msgid "Account Error"
-msgstr "Sąskaitos klaida"
+msgstr ""
 
 #: model/Model_Asset.cpp:24
 msgid "Appreciates"
-msgstr "Kyla"
+msgstr "Дорожчає"
 
 #: model/Model_Asset.cpp:25
 msgid "Depreciates"
-msgstr "Krenta"
+msgstr "Дешевшає"
 
 #: model/Model_Asset.cpp:30
 msgid "Property"
-msgstr "Savybė"
+msgstr "Власність"
 
 #: model/Model_Asset.cpp:32
 msgid "Household Object"
-msgstr "Namų apyvokos daiktas"
+msgstr "Домашне приладдя"
 
 #: model/Model_Asset.cpp:33
 msgid "Art"
-msgstr "Menas"
+msgstr "Мистецтво"
 
 #: model/Model_Asset.cpp:34
 msgid "Jewellery"
-msgstr "Juvelyriniai dirbiniai"
+msgstr "Дорогоцінності"
 
 #: model/Model_Asset.cpp:36
 msgid "Other"
-msgstr "Kita"
+msgstr "Інше"
 
 #: model/Model_Billsdeposits.cpp:301
 msgid "A recurring transaction will exceed your account limit.\n\n"
@@ -5232,7 +5222,7 @@ msgstr ""
 
 #: model/Model_Payee.cpp:80
 msgid "Payee Error"
-msgstr "Kontrahento klaida"
+msgstr ""
 
 #: model/Model_Report.cpp:85
 msgid "Begin date: "
@@ -5248,7 +5238,7 @@ msgstr ""
 
 #: model/Model_Report.cpp:88
 msgid "Year: "
-msgstr "Metai: "
+msgstr ""
 
 #: model/Model_Report.cpp:233
 msgid "Template is empty"
@@ -5259,43 +5249,41 @@ msgstr ""
 msgid "The SQL script:\n"
 "%s \n"
 "will modify database! aborted!"
-msgstr "SQL scenarijus:\n"
-"%s \n"
-"pakeis duomenų bazę! nutraukta!"
+msgstr ""
 
 #: optiondialog.cpp:131
 msgid "General"
-msgstr "Bendros"
+msgstr "Загальні"
 
 #: optiondialog.cpp:132 optionsettingsview.cpp:56
 msgid "View Options"
-msgstr "Vaizdo parinktys"
+msgstr "Переглянути опції"
 
 #: optiondialog.cpp:133 webappdialog.cpp:155
 msgid "Attachments"
-msgstr "Priedai"
+msgstr ""
 
 #: optiondialog.cpp:134
 msgid "Network"
-msgstr "Tinklas"
+msgstr ""
 
 #: optiondialog.cpp:152
 msgid "&Apply"
-msgstr "Pri&taikyti"
+msgstr ""
 
 #: optiondialog.cpp:210
 #, c-format
 msgid "%s page has been saved."
-msgstr "%s puslapis buvo išsaugotas."
+msgstr ""
 
 #: optionsettingsattachment.cpp:57
 msgid "Attachments Settings"
-msgstr "Priedų nustatymai"
+msgstr ""
 
 #: optionsettingsattachment.cpp:64
 #, c-format
 msgid "Attachment archive folder for %s only:"
-msgstr "Priedų archyvo aplankas skirtas tik „%s“:"
+msgstr ""
 
 #: optionsettingsattachment.cpp:68
 msgid "Every OS type (Win,Mac,Unix) has its attachment folder"
@@ -5303,11 +5291,11 @@ msgstr ""
 
 #: optionsettingsattachment.cpp:87
 msgid "Browse for folder"
-msgstr "Ieškoti aplanko"
+msgstr ""
 
 #: optionsettingsattachment.cpp:92 optionsettingsattachment.cpp:188
 msgid "Real path:"
-msgstr "Tikrasis kelias:"
+msgstr ""
 
 #: optionsettingsattachment.cpp:97
 msgid "Legend (can be used as variables at the beginning of above path)"
@@ -5335,7 +5323,7 @@ msgstr ""
 
 #: optionsettingsattachment.cpp:111
 msgid "Other OS folders "
-msgstr "Kitų OS aplankai "
+msgstr ""
 
 #: optionsettingsattachment.cpp:116
 msgid "Not set yet"
@@ -5355,27 +5343,27 @@ msgstr ""
 
 #: optionsettingsattachment.cpp:145
 msgid "Create and use Attachments subfolder"
-msgstr "Sukurti ir naudoti priedų sub aplanką"
+msgstr ""
 
 #: optionsettingsattachment.cpp:156
 msgid "Delete file after import"
-msgstr "Ištrinti failą po importo"
+msgstr ""
 
 #: optionsettingsattachment.cpp:158
 msgid "Select to delete file after import in attachments archive"
-msgstr "Pasirinkite, kad ištrinti failą po importo priedų archyve"
+msgstr ""
 
 #: optionsettingsattachment.cpp:162
 msgid "When remove attachment, move file instead of delete"
-msgstr "Kai šalinamas priedas, perkelti failą vietoje ištrynimo"
+msgstr ""
 
 #: optionsettingsattachment.cpp:164
 msgid "Select to don't delete file when attachment is removed, but instead move it to 'Deleted' subfolder"
-msgstr "Pasirinkite, kad neištrinti failo, kai pašalinamas priedas. Geriau perkelkite jį į „Ištrinta“ sub aplanką."
+msgstr ""
 
 #: optionsettingsattachment.cpp:173
 msgid "Choose folder to set as attachments archive"
-msgstr "Pasirinkite aplanką, skirtą priedų archyvui"
+msgstr ""
 
 #: optionsettingsattachment.cpp:213
 msgid "Attachments folder it's not writable!"
@@ -5407,15 +5395,15 @@ msgstr ""
 
 #: optionsettingsgeneral.cpp:67
 msgid "Display Heading"
-msgstr "Rodyti antraštę"
+msgstr ""
 
 #: optionsettingsgeneral.cpp:72 wizard_newdb.cpp:106
 msgid "User Name"
-msgstr "Naudotojo vardas"
+msgstr "Ім'я користувача"
 
 #: optionsettingsgeneral.cpp:77
 msgid "The User Name is used as a title for the database."
-msgstr "Naudotojo vardas naudojamas kaip duomenų bazės antraštė."
+msgstr ""
 
 #: optionsettingsgeneral.cpp:85
 msgid "Language"
@@ -5423,7 +5411,7 @@ msgstr ""
 
 #: optionsettingsgeneral.cpp:107
 msgid "Specify the date format for display"
-msgstr "Nurodykite rodomą datos formatą"
+msgstr "Вказати формат дати для показу"
 
 #: optionsettingsgeneral.cpp:110
 msgid "Date format sample:"
@@ -5431,11 +5419,11 @@ msgstr ""
 
 #: optionsettingsgeneral.cpp:123
 msgid "Base Currency"
-msgstr "Pagrindinė valiuta"
+msgstr "Базова валюта"
 
 #: optionsettingsgeneral.cpp:126 wizard_newdb.cpp:79
 msgid "Set Currency"
-msgstr "Nustatyti valiutą"
+msgstr "Встановити валюту"
 
 #: optionsettingsgeneral.cpp:130
 msgid "Sets the database default Currency using the 'Currency Dialog'"
@@ -5460,39 +5448,39 @@ msgstr ""
 
 #: optionsettingsgeneral.cpp:174
 msgid "Financial Year"
-msgstr "Finansiniai metai"
+msgstr ""
 
 #: optionsettingsgeneral.cpp:181
 msgid "Start Day"
-msgstr "Pradžios diena"
+msgstr ""
 
 #: optionsettingsgeneral.cpp:187
 msgid "Specify Day for start of financial year"
-msgstr "Nurodykite finansinių metų pradžios dieną"
+msgstr ""
 
 #: optionsettingsgeneral.cpp:191
 msgid "Start Month"
-msgstr "Pradžios mėnuo"
+msgstr ""
 
 #: optionsettingsgeneral.cpp:203
 msgid "Specify month for start of financial year"
-msgstr "Nurodykite finansinių metų pradžios mėnesį"
+msgstr ""
 
 #: optionsettingsgeneral.cpp:208
 msgid "Use Original Date when Pasting Transactions"
-msgstr "Naudoti originalią datą apdorojant įklijuojamas operacijas"
+msgstr ""
 
 #: optionsettingsgeneral.cpp:210
 msgid "Select whether to use the original transaction date or current date when copying/pasting transactions"
-msgstr "Pasirinkite ar naudoti originalią operacijos datą, ar dabartinę kai yra kopijuojamos/įklijuojamos operacijos"
+msgstr ""
 
 #: optionsettingsgeneral.cpp:213
 msgid "Use Transaction Sound"
-msgstr "Naudoto operacijos garsą"
+msgstr ""
 
 #: optionsettingsgeneral.cpp:215
 msgid "Select whether to use sounds when entering transactions"
-msgstr "Pasirinkite ar naudoti garsus įvedant operacijas"
+msgstr ""
 
 #: optionsettingsgeneral.cpp:303
 msgid "bad locale name"
@@ -5505,11 +5493,11 @@ msgstr ""
 
 #: optionsettingsmisc.cpp:57
 msgid "Stock Quote Web Page"
-msgstr "Akcijų kainų skelbimo svetainė"
+msgstr "Сторінка котировок цінних паперів"
 
 #: optionsettingsmisc.cpp:74
 msgid "Clear the field to Reset the value to system default."
-msgstr "Išvalykite lauką, kad atkurti reikšmę į sistemos numatytąją."
+msgstr ""
 
 #: optionsettingsmisc.cpp:78
 msgid "Share Precision"
@@ -5521,11 +5509,11 @@ msgstr ""
 
 #: optionsettingsmisc.cpp:89
 msgid "New Transaction Dialog Settings"
-msgstr "Naujos operacijos dialogo lango nustatymai"
+msgstr ""
 
 #: optionsettingsmisc.cpp:97
 msgid "Last Used"
-msgstr "Paskutinį kartą naudotas"
+msgstr ""
 
 #: optionsettingsmisc.cpp:104
 msgid "Unused"
@@ -5533,7 +5521,7 @@ msgstr ""
 
 #: optionsettingsmisc.cpp:110
 msgid "Last used for payee"
-msgstr "Paskiausiai naudota kontrahentui"
+msgstr ""
 
 #: optionsettingsmisc.cpp:126
 msgid "Yes"
@@ -5545,19 +5533,19 @@ msgstr ""
 
 #: optionsettingsmisc.cpp:136
 msgid "Default Date:"
-msgstr "Numatyta data:"
+msgstr ""
 
 #: optionsettingsmisc.cpp:138
 msgid "Default Payee:"
-msgstr "Numatytas kontrahentas:"
+msgstr ""
 
 #: optionsettingsmisc.cpp:140
 msgid "Default Category:"
-msgstr "Numatyta kategorija:"
+msgstr ""
 
 #: optionsettingsmisc.cpp:142
 msgid "Default Status:"
-msgstr "Numatyta būsena:"
+msgstr ""
 
 #: optionsettingsmisc.cpp:144
 msgid "Bulk Transactions:"
@@ -5565,47 +5553,45 @@ msgstr ""
 
 #: optionsettingsmisc.cpp:155
 msgid "Database Backup"
-msgstr "Duomenų bazės atsarginė kopija"
+msgstr ""
 
 #: optionsettingsmisc.cpp:162
 msgid "Create a new backup when MMEX Start"
-msgstr "Sukurti naują atsarginę kopiją startuojant MMEX"
+msgstr ""
 
 #: optionsettingsmisc.cpp:164
 msgid "When MMEX Starts,\n"
 "creates the backup database: dbFile_start_YYYY-MM-DD.ext."
-msgstr "Kai startuoja MMEX,\n"
-"sukuriama atsarginė duomenų bazė: dbFile_start_YYYY-MM-DD.ext."
+msgstr ""
 
 #: optionsettingsmisc.cpp:169
 msgid "Backup database on exit."
-msgstr "Kurti atsarginę duomenų bazės kopiją išeinant."
+msgstr ""
 
 #: optionsettingsmisc.cpp:171
 msgid "When MMEX shuts down and changes made to database,\n"
 "creates or updates the backup database: dbFile_update_YYYY-MM-DD.ext."
-msgstr "Kai išjungiama MMEX ir yra pokyčių duomenų bazėje,\n"
-"sukuriama ar atnaujinama atsarginė duomenų bazė: dbFile_update_YYYY-MM-DD.ext."
+msgstr ""
 
 #: optionsettingsmisc.cpp:179
 msgid "Specify max number of backup files"
-msgstr "Nurodykite didžiausią atsarginių kopijų failų skaičių"
+msgstr ""
 
 #: optionsettingsmisc.cpp:182
 msgid "Max Files"
-msgstr "Daigiausiai failų"
+msgstr ""
 
 #: optionsettingsmisc.cpp:189
 msgid "CSV Settings"
-msgstr "CSV nustatymai"
+msgstr ""
 
 #: optionsettingsmisc.cpp:197
 msgid "Delimiter"
-msgstr "Atskyriklis"
+msgstr ""
 
 #: optionsettingsnet.cpp:58
 msgid "WebApp Settings"
-msgstr "WebApp nustatymai"
+msgstr ""
 
 #: optionsettingsnet.cpp:65 webappdialog.cpp:103
 msgid "Url"
@@ -5613,7 +5599,7 @@ msgstr ""
 
 #: optionsettingsnet.cpp:69
 msgid "Specify the Web App URL without final slash"
-msgstr "Nurodykite Žiniatinklio programos URL be paskutinio pasvirojo brūkšnelio"
+msgstr ""
 
 #: optionsettingsnet.cpp:72 webappdialog.cpp:110
 msgid "GUID"
@@ -5621,7 +5607,7 @@ msgstr ""
 
 #: optionsettingsnet.cpp:76
 msgid "Specify the Web App GUID"
-msgstr "Nurodykite Žiniatinklio programos GUID"
+msgstr ""
 
 #: optionsettingsnet.cpp:79
 msgid "More information about WebApp"
@@ -5629,27 +5615,27 @@ msgstr ""
 
 #: optionsettingsnet.cpp:83
 msgid "Proxy Settings"
-msgstr "Įgaliotojo serverio nustatymai"
+msgstr ""
 
 #: optionsettingsnet.cpp:91
 msgid "Specify the proxy IP address"
-msgstr "Nurodykite įgaliotojo serverio IP adresą"
+msgstr ""
 
 #: optionsettingsnet.cpp:97
 msgid "Specify proxy port number"
-msgstr "Nurodykite įgaliotojo serverio prievado numerį"
+msgstr ""
 
 #: optionsettingsnet.cpp:100
 msgid "Proxy"
-msgstr "Įgaliotasis serveris"
+msgstr ""
 
 #: optionsettingsnet.cpp:102
 msgid "Port"
-msgstr "Prievadas"
+msgstr ""
 
 #: optionsettingsnet.cpp:108
 msgid "Usage statistics"
-msgstr "Naudojimo statistika"
+msgstr ""
 
 #: optionsettingsnet.cpp:127
 msgid "Check for latest news on startup"
@@ -5661,15 +5647,15 @@ msgstr ""
 
 #: optionsettingsnet.cpp:134
 msgid "Timeout"
-msgstr "Laukimo laikas"
+msgstr ""
 
 #: optionsettingsnet.cpp:143
 msgid "Specify a network communication timeout value to use."
-msgstr "Nurodykite tinklo ryšio skirtojo laiko reikšmę."
+msgstr ""
 
 #: optionsettingsnet.cpp:146
 msgid "Seconds"
-msgstr "Sekundės"
+msgstr ""
 
 #: optionsettingsnet.cpp:152
 msgid "Updates"
@@ -5681,15 +5667,15 @@ msgstr ""
 
 #: optionsettingsnet.cpp:160
 msgid "Enable to automatically check if new MMEX version is available at StartUp"
-msgstr "Įjungti, kad automatiškai tikrinti naujų pasiekiamų MMEX versijų paleidimo metu"
+msgstr ""
 
 #: optionsettingsnet.cpp:163 wizard_update.cpp:114
 msgid "Stable"
-msgstr "Stilius"
+msgstr ""
 
 #: optionsettingsnet.cpp:164 wizard_update.cpp:114
 msgid "Unstable"
-msgstr "Nestabilus"
+msgstr ""
 
 #: optionsettingsnet.cpp:168
 msgid "Updates source"
@@ -5697,7 +5683,7 @@ msgstr ""
 
 #: optionsettingsview.cpp:81
 msgid "Specify which accounts are visible"
-msgstr "Nurodyti, kurios sąskaitos yra matomos"
+msgstr "Вкажіть, які рахунки видимі"
 
 #: optionsettingsview.cpp:84
 msgid "Category Delimiter"
@@ -5785,31 +5771,31 @@ msgstr ""
 
 #: payeedialog.cpp:65
 msgid "Default Category"
-msgstr "Numatyta kategorija"
+msgstr ""
 
 #: payeedialog.cpp:198 payeedialog.cpp:238 payeedialog.cpp:266
 msgid "Payee with same name exists"
-msgstr "Kontrahentas su tokiu pavadinimu jau yra"
+msgstr "Одержувач з таким іменем вже існує"
 
 #: payeedialog.cpp:199 payeedialog.cpp:223 payeedialog.cpp:238
 msgid "Organize Payees: Add Payee"
-msgstr "Tvarkyti kontrahentus: Pridėti kontrahentą"
+msgstr ""
 
 #: payeedialog.cpp:222
 msgid "Enter the name for the new payee:"
-msgstr "Įveskite naujo kontahento pavadinimą:"
+msgstr ""
 
 #: payeedialog.cpp:249
 msgid "Modify the name for the payee:"
-msgstr "Keisti kontrahento pavadinimą"
+msgstr ""
 
 #: payeedialog.cpp:250 payeedialog.cpp:266
 msgid "Organize Payees: Edit Payee"
-msgstr "Tvarkyti kontrahentus: Redaguoti kontrahentą"
+msgstr ""
 
 #: payeedialog.cpp:280
 msgid "Payee in use."
-msgstr "Kontrahentas naudojamas."
+msgstr ""
 
 #: payeedialog.cpp:283
 msgid "Tip: Change all transactions using this Payee to another Payee using the relocate command:"
@@ -5817,23 +5803,23 @@ msgstr ""
 
 #: payeedialog.cpp:285
 msgid "Tools -> Relocation of -> Payees"
-msgstr "Įrankiai -> Perkėlimas -> Kontrahentai"
+msgstr ""
 
 #: payeedialog.cpp:286
 msgid "Organize Payees: Delete Error"
-msgstr "Tvarkyti kontrahentus: Ištrinti kontrahentą"
+msgstr ""
 
 #: payeedialog.cpp:371
 msgid "Define Default Category"
-msgstr "Apibrėžti numatytąją kategoriją"
+msgstr ""
 
 #: payeedialog.cpp:386
 msgid "Relocate Payee"
-msgstr "Perkelti kontrahentą"
+msgstr ""
 
 #: relocatecategorydialog.cpp:53
 msgid "Relocate Category Dialog"
-msgstr "Kategorijos perkėlimo dialogo langas"
+msgstr ""
 
 #: relocatecategorydialog.cpp:86
 msgid "Relocate source category to the destination category"
@@ -5849,29 +5835,29 @@ msgstr ""
 
 #: relocatecategorydialog.cpp:109 relocatepayeedialog.cpp:112
 msgid "Relocate:"
-msgstr "Perkelti:"
+msgstr ""
 
 #: relocatecategorydialog.cpp:110 relocatepayeedialog.cpp:113
 msgid "to:"
-msgstr "į:"
+msgstr ""
 
 #: relocatecategorydialog.cpp:171 relocatepayeedialog.cpp:156
 msgid "Please Confirm:"
-msgstr "Prašome patvirtinti:"
+msgstr ""
 
 #: relocatecategorydialog.cpp:171
 msgid "Category Relocation Confirmation"
-msgstr "Kategorijų perkėlimo patvirtinimas"
+msgstr ""
 
 #: relocatecategorydialog.cpp:269 relocatepayeedialog.cpp:232
 #, c-format
 msgid "Records found in transactions: %i"
-msgstr "Įrašai rasti operacijose: %i"
+msgstr ""
 
 #: relocatecategorydialog.cpp:270
 #, c-format
 msgid "Records found in split transactions: %i"
-msgstr "Įrašai rasti suskaldytose operacijose: %i"
+msgstr ""
 
 #: relocatecategorydialog.cpp:271 relocatepayeedialog.cpp:233
 #, c-format
@@ -5886,16 +5872,16 @@ msgstr ""
 #: relocatecategorydialog.cpp:273
 #, c-format
 msgid "Records found as Default Payee Category: %i"
-msgstr "Įrašas rastas kaip numatytoji kontrahento kategorija: %i"
+msgstr ""
 
 #: relocatecategorydialog.cpp:274
 #, c-format
 msgid "Records found in budget: %i"
-msgstr "Įrašai rasti biudžete: %i"
+msgstr ""
 
 #: relocatepayeedialog.cpp:52
 msgid "Relocate Payee Dialog"
-msgstr "Kontrahento perkėlimo dialogo langas"
+msgstr ""
 
 #: relocatepayeedialog.cpp:82
 msgid "Relocate all source payee to the destination payee"
@@ -5912,7 +5898,7 @@ msgstr ""
 
 #: relocatepayeedialog.cpp:157
 msgid "Payee Relocation Confirmation"
-msgstr "Kontrahentų perkėlimo patvirtinimas"
+msgstr ""
 
 #: reports/budget.cpp:88
 #, c-format
@@ -5927,40 +5913,40 @@ msgstr ""
 #: reports/budgetcategorysummary.cpp:119
 #, c-format
 msgid "Budget Categories for %s"
-msgstr "Biudžeto kategorijos skirtos %s"
+msgstr ""
 
 #: reports/budgetcategorysummary.cpp:119
 #, c-format
 msgid "Budget Category Summary for %s"
-msgstr "Biudžeto kategorijų suvestinė skirta %s"
+msgstr ""
 
 #: reports/budgetcategorysummary.cpp:122
 msgid "( Estimated Vs Actual )"
-msgstr "(Numatomos prieš Tikras)"
+msgstr ""
 
 #: reports/budgetcategorysummary.cpp:275
 msgid "Estimated Income:"
-msgstr "Numatomos pajamos:"
+msgstr ""
 
 #: reports/budgetcategorysummary.cpp:277
 msgid "Actual Income:"
-msgstr "Faktinės pajamos:"
+msgstr ""
 
 #: reports/budgetcategorysummary.cpp:279
 msgid "Difference Income:"
-msgstr "Skirtumo pajamos:"
+msgstr ""
 
 #: reports/budgetcategorysummary.cpp:286
 msgid "Estimated Expenses:"
-msgstr "Numatomos išlaidos:"
+msgstr ""
 
 #: reports/budgetcategorysummary.cpp:288
 msgid "Actual Expenses:"
-msgstr "Tikros išlaidos:"
+msgstr ""
 
 #: reports/budgetcategorysummary.cpp:290
 msgid "Difference Expenses:"
-msgstr "Skirtumo išlaidos:"
+msgstr ""
 
 #: reports/budgetingperf.cpp:192
 #, c-format
@@ -6054,11 +6040,11 @@ msgstr[3] ""
 #: reports/incexpenses.cpp:211 reports/incexpenses.cpp:247
 #: reports/payee.cpp:137
 msgid "Difference"
-msgstr "Skirtumas"
+msgstr "Баланс"
 
 #: reports/categexp.cpp:203
 msgid "Category Total: "
-msgstr "Kategorija viso: "
+msgstr ""
 
 #: reports/categexp.cpp:222
 msgid "Total Expenses:"
@@ -6078,11 +6064,11 @@ msgstr ""
 
 #: reports/categexp.cpp:419
 msgid "Overall"
-msgstr "Bendrai"
+msgstr "Cумарно"
 
 #: reports/categexp.cpp:449 reports/payee.cpp:135
 msgid "Incomes"
-msgstr "Pajamos"
+msgstr ""
 
 #: reports/forecast.cpp:29
 msgid "Forecast"
@@ -6096,11 +6082,11 @@ msgstr ""
 #: reports/htmlbuilder.cpp:169
 #, c-format
 msgid "From %s till %s"
-msgstr "Nuo %s iki %s"
+msgstr ""
 
 #: reports/htmlbuilder.cpp:175 reports/mmDateRange.cpp:199
 msgid "Over Time"
-msgstr "Visas laikas"
+msgstr ""
 
 #: reports/incexpenses.cpp:34
 msgid "Income vs Expenses Summary"
@@ -6108,11 +6094,11 @@ msgstr ""
 
 #: reports/incexpenses.cpp:118
 msgid "Income:"
-msgstr "Įplaukos:"
+msgstr ""
 
 #: reports/incexpenses.cpp:119
 msgid "Expenses:"
-msgstr "Išlaidos:"
+msgstr ""
 
 #: reports/incexpenses.cpp:136
 msgid "Income vs Expenses Monthly"
@@ -6120,59 +6106,59 @@ msgstr ""
 
 #: reports/mmDateRange.cpp:53
 msgid "Current Month"
-msgstr "Šis mėnuo"
+msgstr "Поточний місяць"
 
 #: reports/mmDateRange.cpp:61
 msgid "Today"
-msgstr "Šiandien"
+msgstr ""
 
 #: reports/mmDateRange.cpp:70
 msgid "Current Month to Date"
-msgstr "Einanti mėnuo iki datos"
+msgstr ""
 
 #: reports/mmDateRange.cpp:78
 msgid "Last Month"
-msgstr "Praeitą mėnesį"
+msgstr ""
 
 #: reports/mmDateRange.cpp:88
 msgid "Last 30 Days"
-msgstr "Paskutinių 30 dienų"
+msgstr "Останні 30 днів"
 
 #: reports/mmDateRange.cpp:98
 msgid "Last 90 Days"
-msgstr "Paskutinių 90 dienų"
+msgstr ""
 
 #: reports/mmDateRange.cpp:110
 msgid "Last 3 Months"
-msgstr "Paskutiniai 3 mėn."
+msgstr ""
 
 #: reports/mmDateRange.cpp:122
 msgid "Last 12 Months"
-msgstr "Paskutiniai 12 mėn."
+msgstr ""
 
 #: reports/mmDateRange.cpp:131
 msgid "Current Year"
-msgstr "Einamieji metai"
+msgstr "Поточний Рік"
 
 #: reports/mmDateRange.cpp:139 stockdialog.cpp:721
 msgid "Current Year to Date"
-msgstr "Einantys metai iki datos"
+msgstr ""
 
 #: reports/mmDateRange.cpp:148
 msgid "Last Year"
-msgstr "Praeitais metais"
+msgstr "Останній Рік"
 
 #: reports/mmDateRange.cpp:170
 msgid "Current Financial Year"
-msgstr "Einantys finansiniai metai"
+msgstr ""
 
 #: reports/mmDateRange.cpp:180
 msgid "Current Financial Year to Date"
-msgstr "Einantys finansiniai metai iki datos"
+msgstr ""
 
 #: reports/mmDateRange.cpp:191
 msgid "Last Financial Year"
-msgstr "Praeitais finansiniais metais"
+msgstr ""
 
 #: reports/mmDateRange.cpp:210
 msgid "Custom"
@@ -6180,7 +6166,7 @@ msgstr ""
 
 #: reports/mmDateRange.cpp:220
 msgid "Last 365 Days"
-msgstr "Paskutinės 365 dienos"
+msgstr ""
 
 #: reports/myusage.cpp:27
 msgid "MMEX Usage Frequency"
@@ -6188,11 +6174,11 @@ msgstr ""
 
 #: reports/payee.cpp:32
 msgid "Payee Report"
-msgstr "Kontrahentų ataskaita"
+msgstr ""
 
 #: reports/reportbase.cpp:191 reports/transactions.cpp:62
 msgid "Accounts: "
-msgstr "Sąskaitos: "
+msgstr ""
 
 #: reports/summary.cpp:146
 #, c-format
@@ -6201,15 +6187,15 @@ msgstr ""
 
 #: reports/summary.cpp:146
 msgid "Monthly Report"
-msgstr "Mėnesinė ataskaita"
+msgstr ""
 
 #: reports/summary.cpp:146
 msgid "Yearly Report"
-msgstr "Metinė ataskaita"
+msgstr ""
 
 #: reports/summarystocks.cpp:35
 msgid "Summary of Stocks"
-msgstr "Akcijų santrauka"
+msgstr "Підсумок по цінним паперам"
 
 #: reports/summarystocks.cpp:192
 msgid "*Purchase Date"
@@ -6217,20 +6203,20 @@ msgstr ""
 
 #: reports/summarystocks.cpp:193
 msgid "Quantity"
-msgstr "Kiekis"
+msgstr ""
 
 #: reports/summarystocks.cpp:195
 msgid "Current Price"
-msgstr "Dabartinė kaina"
+msgstr "Поточна ціна"
 
 #: reports/summarystocks.cpp:196 sharetransactiondialog.cpp:241
 #: stocks_list.cpp:99
 msgid "Commission"
-msgstr "Komisiniai"
+msgstr "Коміссія"
 
 #: reports/summarystocks.cpp:206
 msgid "Stocks Performance Charts"
-msgstr "Akcijų efektyvumo diagramos"
+msgstr ""
 
 #: reports/transactions.cpp:176
 msgid "All Transactions: Withdrawals, Deposits, and Transfers"
@@ -6246,7 +6232,7 @@ msgstr ""
 
 #: sharetransactiondialog.cpp:189 stockdialog.cpp:181
 msgid "Stock Investment Details"
-msgstr "Investicijos į akcijas informacija"
+msgstr " Цінні Папери детально"
 
 #: sharetransactiondialog.cpp:199 stockdialog.cpp:192 stocks_list.cpp:90
 msgid "Company Name"
@@ -6254,7 +6240,7 @@ msgstr ""
 
 #: sharetransactiondialog.cpp:203 stockdialog.cpp:195
 msgid "Enter the stock company name"
-msgstr "Įveskite akcijų įmonės pavadinimą"
+msgstr "Введіть назву компанії що випустила цінний папір"
 
 #: sharetransactiondialog.cpp:206 stockdialog.cpp:198
 msgid "Stock Symbol"
@@ -6262,7 +6248,7 @@ msgstr ""
 
 #: sharetransactiondialog.cpp:213 stockdialog.cpp:205
 msgid "Enter the stock symbol. (Optional) Include exchange. eg: IBM.BE"
-msgstr "Įveskite akcijų simbolį. (Nebūtina) Įskaitant biržą. Pvz.: IBM.BE"
+msgstr ""
 
 #: sharetransactiondialog.cpp:216
 msgid "Share Number"
@@ -6270,7 +6256,7 @@ msgstr ""
 
 #: sharetransactiondialog.cpp:222
 msgid "Enter number of shares held"
-msgstr "Įveskite turimų akcijų kiekį"
+msgstr "Вкажіть кількість часток що вами утримуються"
 
 #: sharetransactiondialog.cpp:228
 msgid "Share Price"
@@ -6282,7 +6268,7 @@ msgstr ""
 
 #: sharetransactiondialog.cpp:246
 msgid "Enter any commission paid"
-msgstr "Įveskite bet kokius sumokėtus komisinius"
+msgstr "Вкажіть комісію, якщо вона була сплачена"
 
 #: sharetransactiondialog.cpp:252
 msgid "Share Lot"
@@ -6294,15 +6280,15 @@ msgstr ""
 
 #: sharetransactiondialog.cpp:266 stockdialog.cpp:268
 msgid "Organize attachments of this stock"
-msgstr "Tvarkyti šių akcijų priedus"
+msgstr ""
 
 #: sharetransactiondialog.cpp:271 stockdialog.cpp:270
 msgid "Display the web page for the specified Stock symbol"
-msgstr "Rodyti svetainę specifiniam akcijų simboliui"
+msgstr ""
 
 #: sharetransactiondialog.cpp:281 stockdialog.cpp:277
 msgid "Enter notes associated with this investment"
-msgstr "Įveskite pastabas susijusias su šia investicija"
+msgstr "Введіть нотатки, пов'язані з цією інвестицією"
 
 #: sharetransactiondialog.cpp:286
 msgid "Add Transaction Details"
@@ -6314,15 +6300,15 @@ msgstr ""
 
 #: splitdetailsdialog.cpp:72
 msgid "Split Detail Dialog"
-msgstr "Skelti informacijos dialogo langą"
+msgstr ""
 
 #: splitdetailsdialog.cpp:109
 msgid "Split Transaction Details"
-msgstr "Suskaldytos operacijos informacija"
+msgstr ""
 
 #: splittransactionsdialog.cpp:75
 msgid "Split Transaction Dialog"
-msgstr "Skelti operacijos dialogo langą"
+msgstr ""
 
 #: splittransactionsdialog.cpp:129
 msgid "Split Category Details"
@@ -6330,15 +6316,15 @@ msgstr ""
 
 #: splittransactionsdialog.cpp:209
 msgid "Invalid Total Amount"
-msgstr "Neteisinga visa suma"
+msgstr ""
 
 #: stockdialog.cpp:137 stockdialog.cpp:508 stockspanel.cpp:144
 msgid "Edit Stock Investment"
-msgstr "Redaguoti investiciją į akcijas"
+msgstr "Редагувати Цінний папір"
 
 #: stockdialog.cpp:137 stockdialog.cpp:496 stockspanel.cpp:130
 msgid "New Stock Investment"
-msgstr "Nauja investicija į akcijas"
+msgstr "Новий Цінний папір"
 
 #: stockdialog.cpp:208 stocks_list.cpp:89
 msgid "*Date"
@@ -6386,15 +6372,15 @@ msgstr ""
 
 #: stockdialog.cpp:285
 msgid "Stock History Options"
-msgstr "Akcijų istorijos parinktys"
+msgstr ""
 
 #: stockdialog.cpp:292
 msgid "Stock Price History"
-msgstr "Akcijų kainų istorija"
+msgstr ""
 
 #: stockdialog.cpp:316 stocks_list.cpp:98
 msgid "Price Date"
-msgstr "Kainos data"
+msgstr ""
 
 #: stockdialog.cpp:320
 msgid "Specify the stock/share price date."
@@ -6402,11 +6388,11 @@ msgstr ""
 
 #: stockdialog.cpp:336
 msgid "Download Stock Price history"
-msgstr "Atsisiųsti akcijų kainų istoriją"
+msgstr ""
 
 #: stockdialog.cpp:338
 msgid "Import Stock Price history (CSV Format)"
-msgstr "Importuoti akcijų kainų istoriją (CSV formatas)"
+msgstr ""
 
 #: stockdialog.cpp:340
 msgid "Delete selected Stock Price"
@@ -6418,7 +6404,7 @@ msgstr ""
 
 #: stockdialog.cpp:420
 msgid "Held At"
-msgstr "Sulaikyta ties"
+msgstr "Зберігаються в "
 
 #: stockdialog.cpp:494
 msgid "Share Account not found.\n\n"
@@ -6433,11 +6419,11 @@ msgstr ""
 
 #: stockdialog.cpp:599
 msgid "Stock History CSV Import"
-msgstr "Akcijų istorijos CSV importas"
+msgstr ""
 
 #: stockdialog.cpp:600 stockdialog.cpp:616
 msgid "Quotes imported from CSV: "
-msgstr "Kainos importuotos iš CSV: "
+msgstr ""
 
 #: stockdialog.cpp:672
 #, c-format
@@ -6451,7 +6437,7 @@ msgstr ""
 
 #: stockdialog.cpp:682
 msgid "Importing CSV"
-msgstr "Importuojamas CSV"
+msgstr ""
 
 #: stockdialog.cpp:713 stockdialog.cpp:743
 msgid "5 Days"
@@ -6491,11 +6477,11 @@ msgstr ""
 
 #: stockdialog.cpp:728
 msgid "Specify type frequency of stock history"
-msgstr "Nurodykite akcijų istorijos tipo dažnį"
+msgstr ""
 
 #: stockdialog.cpp:729 stockdialog.cpp:753
 msgid "Stock History Update"
-msgstr "Akcijų istorijos atnaujinimas"
+msgstr ""
 
 #: stockdialog.cpp:742
 msgid "1 Day"
@@ -6511,11 +6497,11 @@ msgstr ""
 
 #: stockdialog.cpp:767 stockdialog.cpp:771
 msgid "Stock history not found!"
-msgstr "Akcijų istorija nerasta!"
+msgstr ""
 
 #: stockdialog.cpp:768 stockdialog.cpp:880
 msgid "Stock History Error"
-msgstr "Akcijų istorijos klaida"
+msgstr ""
 
 #: stocks_list.cpp:92
 msgid "Share Total"
@@ -6531,7 +6517,7 @@ msgstr ""
 
 #: stocks_list.cpp:137
 msgid "&New Stock Investment"
-msgstr "&Nauja investicija į akcijas"
+msgstr "&Новий Цінний папір"
 
 #: stocks_list.cpp:139
 msgid "&Add Stock Transactions"
@@ -6543,11 +6529,11 @@ msgstr ""
 
 #: stocks_list.cpp:142
 msgid "&Edit Stock Investment"
-msgstr "&Redaguoti investiciją į akcijas"
+msgstr "&Редагувати Цінний папір"
 
 #: stocks_list.cpp:143
 msgid "&Delete Stock Investment"
-msgstr "&Ištrinti investiciją į akcijas"
+msgstr "&Видалити Цінний папір"
 
 #: stocks_list.cpp:146
 msgid "Stock &Web Page"
@@ -6555,16 +6541,16 @@ msgstr ""
 
 #: stocks_list.cpp:269
 msgid "Do you really want to delete the stock investment?"
-msgstr "Ar tikrai norite ištrinti investiciją į akcijas?"
+msgstr "Ви дійсно бажаєте видалити цінний папір"
 
 #: stocks_list.cpp:270
 msgid "Confirm Stock Investment Deletion"
-msgstr "Patvirtinti investicijos į akcijas ištrynimą"
+msgstr "Підтвердження видалення цінного паперу"
 
 #: stocks_list.cpp:291
 #, c-format
 msgid "Moving Transaction from %s to..."
-msgstr "Perkeliamos operacijos iš „%s“ į..."
+msgstr ""
 
 #: stockspanel.cpp:134
 msgid "Add Stock Transactions"
@@ -6580,7 +6566,7 @@ msgstr ""
 
 #: stockspanel.cpp:153
 msgid "&Move"
-msgstr "&Perkelti"
+msgstr ""
 
 #: stockspanel.cpp:154
 msgid "Move selected transaction to another account"
@@ -6588,11 +6574,11 @@ msgstr ""
 
 #: stockspanel.cpp:167
 msgid "Refresh"
-msgstr "Atnaujinti"
+msgstr ""
 
 #: stockspanel.cpp:168
 msgid "Refresh Stock Prices from Yahoo"
-msgstr "Atnaujinti akcijų kainas iš Yahoo"
+msgstr ""
 
 #: stockspanel.cpp:207
 #, c-format
@@ -6613,43 +6599,43 @@ msgstr ""
 #: stockspanel.cpp:345
 #, c-format
 msgid "Invested: %s"
-msgstr "Investuota: %s"
+msgstr ""
 
 #: stockspanel.cpp:346
 #, c-format
 msgid "Gain: %s"
-msgstr "Gauta: %s"
+msgstr ""
 
 #: stockspanel.cpp:346
 #, c-format
 msgid "Loss: %s"
-msgstr "Prarasta: %s"
+msgstr ""
 
 #: stockspanel.cpp:384
 msgid "Stock prices successfully updated"
-msgstr "Akcijų kainos sėkmingai atnaujintos"
+msgstr ""
 
 #: stockspanel.cpp:386 stockspanel.cpp:572
 #, c-format
 msgid "Last updated %s"
-msgstr "Vėliausiai atnaujinta: %s"
+msgstr ""
 
 #: stockspanel.cpp:412 util.cpp:642 util.cpp:771
 msgid "Nothing to update"
-msgstr "Nėra ką naujinti"
+msgstr ""
 
 #: stockspanel.cpp:426
 msgid "Connecting..."
-msgstr "Jungiamasi..."
+msgstr ""
 
 #: stockspanel.cpp:530
 #, c-format
 msgid "Symbol: %s"
-msgstr "Simbolis: %s"
+msgstr ""
 
 #: themes.cpp:185 webappdialog.cpp:419
 msgid "Delete"
-msgstr "Ištrinti"
+msgstr ""
 
 #: themes.cpp:187
 msgid "Use"
@@ -6689,38 +6675,37 @@ msgstr ""
 
 #: transactionsupdatedialog.cpp:213
 msgid "Append"
-msgstr "Papildyti"
+msgstr ""
 
 #: transactionsupdatedialog.cpp:325 transdialog.cpp:664
 #, c-format
 msgid "Do you want to add new payee: \n"
 "%s?"
-msgstr "Ar norite pridėti naują kontrahentą: \n"
-"%s?"
+msgstr ""
 
 #: transactionsupdatedialog.cpp:326 transdialog.cpp:665
 msgid "Confirm to add new payee"
-msgstr "Patvirtinkite, kad pridėti naują kontrahentą"
+msgstr ""
 
 #: transdialog.cpp:180
 msgid "Duplicate Transaction"
-msgstr "D&ubliuoti operaciją"
+msgstr ""
 
 #: transdialog.cpp:180
 msgid "Edit Transaction"
-msgstr "Redaguoti operaciją"
+msgstr "Редагувати транзакцію"
 
 #: transdialog.cpp:467 usertransactionpanel.cpp:104
 msgid "Retard or advance the date of the transaction"
-msgstr "Vėlinti arba ankstinti operacijos datą"
+msgstr ""
 
 #: transdialog.cpp:559
 msgid "Populate Transaction #"
-msgstr "Užpildyti operaciją #"
+msgstr ""
 
 #: transdialog.cpp:569 usertransactionpanel.cpp:210
 msgid "Organize attachments of this transaction"
-msgstr "Tvarkyti šios operacijos priedus"
+msgstr ""
 
 #: transdialog.cpp:608
 msgid "Show/Hide custom fields window"
@@ -6733,27 +6718,27 @@ msgstr ""
 
 #: transdialog.cpp:1276
 msgid "Specify account the money is taken from"
-msgstr "Nurodykite sąskaitą, iš kurios yra paimti pinigai"
+msgstr ""
 
 #: transdialog.cpp:1277
 msgid "Specify account the money is moved to"
-msgstr "Nurodykite sąskaitą, į kurią pinigai yra perkelti"
+msgstr ""
 
 #: transdialog.cpp:1278
 msgid "Specify the transfer amount in the From Account."
-msgstr "Nurodykite perkeliamą sumą „Iš“ sąskaitoje."
+msgstr ""
 
 #: transdialog.cpp:1286
 msgid "Specify account for the transaction"
-msgstr "Nurodykite sąskaitą operacijai"
+msgstr ""
 
 #: transdialog.cpp:1288
 msgid "Specify to whom the transaction is going to"
-msgstr "Nurodykite kam pervedimas keliauja"
+msgstr ""
 
 #: transdialog.cpp:1294 usertransactionpanel.cpp:96
 msgid "Specify the date of the transaction"
-msgstr "Nurodykite operacijos datą"
+msgstr "Вкажіть дату транзакції"
 
 #: usertransactionpanel.cpp:115
 msgid "Specify the associated Account that will contain this transaction"
@@ -6845,31 +6830,31 @@ msgstr ""
 
 #: util.cpp:300
 msgid "Sunday"
-msgstr "Sekmadienis"
+msgstr "Неділя"
 
 #: util.cpp:300
 msgid "Monday"
-msgstr "Pirmadienis"
+msgstr "Понеділок"
 
 #: util.cpp:300
 msgid "Tuesday"
-msgstr "Antradienis"
+msgstr "Вівторок"
 
 #: util.cpp:301
 msgid "Wednesday"
-msgstr "Trečiadienis"
+msgstr "Середа"
 
 #: util.cpp:301
 msgid "Thursday"
-msgstr "Ketvirtadienis"
+msgstr "Четвер"
 
 #: util.cpp:301
 msgid "Friday"
-msgstr "Penktadienis"
+msgstr "П'ятниця"
 
 #: util.cpp:302
 msgid "Saturday"
-msgstr "Šeštadienis"
+msgstr "Субота"
 
 #: util.cpp:307
 msgid "Sun"
@@ -6942,125 +6927,124 @@ msgstr ""
 
 #: util.h:153
 msgid "January"
-msgstr "Sausis"
+msgstr "Січень"
 
 #: util.h:153
 msgid "February"
-msgstr "Vasaris"
+msgstr "Лютий"
 
 #: util.h:153
 msgid "March"
-msgstr "Kovas"
+msgstr "Березень"
 
 #: util.h:154
 msgid "April"
-msgstr "Balandis"
+msgstr "Квітень"
 
 #: util.h:154
 msgid "June"
-msgstr "Birželis"
+msgstr "Травень"
 
 #: util.h:155
 msgid "July"
-msgstr "Liepa"
+msgstr "Липень"
 
 #: util.h:155
 msgid "August"
-msgstr "Rugpjūtis"
+msgstr "Серпень"
 
 #: util.h:155
 msgid "September"
-msgstr "Rugsėjis"
+msgstr "Вересень"
 
 #: util.h:156
 msgid "October"
-msgstr "Spalis"
+msgstr "Жовтень"
 
 #: util.h:156
 msgid "November"
-msgstr "Lapkritis"
+msgstr "Листопад"
 
 #: util.h:156
 msgid "December"
-msgstr "Gruodis"
+msgstr "Грудень"
 
 #: webapp.cpp:111
 msgid "Wrong WebApp GUID:"
-msgstr "Neteisingas WebApp GUID:"
+msgstr ""
 
 #: webapp.cpp:112
 msgid "please check it in network options."
-msgstr "prašome patikrinti tai tinklo nustatymuose."
+msgstr ""
 
 #: webapp.cpp:113
 msgid "Wrong WebApp settings"
-msgstr "Neteisingi WebApp nustatymai"
+msgstr ""
 
 #: webapp.cpp:118
 msgid "Unable to connect to WebApp:"
-msgstr "Nepavyksta prisijungti prie WebApp:"
+msgstr ""
 
 #: webapp.cpp:119
 msgid "please check settings and / or internet connection."
-msgstr "prašome patikrinti nustatymus ir / arba interneto ryšį."
+msgstr ""
 
 #: webapp.cpp:121
 msgid "WebApp connection error"
-msgstr "WebApp ryšio klaida"
+msgstr ""
 
 #: webapp.cpp:131
 msgid "Wrong WebApp API version:"
-msgstr "Bloga WebApp API versija:"
+msgstr ""
 
 #: webapp.cpp:132
 #, c-format
 msgid "WebApp   API version -> %s"
-msgstr "WebApp   API versija -> %s"
+msgstr ""
 
 #: webapp.cpp:133
 #, c-format
 msgid "Expected API version -> %s"
-msgstr "Tikėtasi API versija -> %s"
+msgstr ""
 
 #: webapp.cpp:134
 msgid "Wrong WebApp API version"
-msgstr "Bloga WebApp API versija"
+msgstr ""
 
 #: webapp.cpp:472
 #, c-format
 msgid "Account '%s' not found!"
-msgstr "Sąskaita „%s“ nerasta!"
+msgstr ""
 
 #: webapp.cpp:474
 #, c-format
 msgid "Transaction will be inserted with the first bank account:\n"
 "'%s' and marked as  'Follow Up'"
-msgstr "Operacija bus įterpta į pirmą banko sąskaitą:\n"
-"„%s“ ir pažymėta kaip „Stebima“"
+msgstr ""
 
 #: webapp.cpp:477
 msgid "Wrong WebApp account"
-msgstr "Neteisinga WebApp paskyra"
+msgstr ""
 
 #: webapp.cpp:559 webapp.cpp:593 webappdialog.cpp:347
 msgid "Unable to download attachments from webapp."
-msgstr "Nepavyksta atsisiųsti priedų iš WebApp."
+msgstr ""
 
 #: webapp.cpp:560
 msgid "Attachments folder not set or unavailable"
-msgstr "Priedų aplankas nenustatytas arba nepasiekiamas"
+msgstr ""
 
 #: webapp.cpp:561
 msgid "Transaction not downloaded:"
-msgstr "Operacija neatsiųsta:"
+msgstr ""
 
 #: webapp.cpp:562
 msgid "please fix attachments folder or delete attachments from WebApp"
-msgstr "prašome pataisyti priedų aplanką arba ištrinti priedus iš WebApp"
+msgstr ""
 
 #: webapp.cpp:563
 msgid "Attachment folder error"
-msgstr "Priedų aplanko klaida"
+msgstr ""
 
 #: webapp.cpp:595
 msgid "Transaction not downloaded: please retry to download transactions"
@@ -7068,11 +7052,11 @@ msgstr ""
 
 #: webapp.cpp:596 webappdialog.cpp:348
 msgid "Attachment download error"
-msgstr "Priedo atsiuntimo klaida"
+msgstr ""
 
 #: webappdialog.cpp:77
 msgid "Import WebApp transactions"
-msgstr "Importuoti WebApp operacijas"
+msgstr ""
 
 #: webappdialog.cpp:100
 msgid "Network status (click to refresh)"
@@ -7084,11 +7068,11 @@ msgstr ""
 
 #: webappdialog.cpp:165
 msgid "&Import all "
-msgstr "&Importuoti viską "
+msgstr ""
 
 #: webappdialog.cpp:167
 msgid "Import and open all "
-msgstr "Importuoti ir atverti viską "
+msgstr ""
 
 #: webappdialog.cpp:214
 msgid "Unable to download transactions from webapp."
@@ -7100,15 +7084,15 @@ msgstr ""
 
 #: webappdialog.cpp:320
 msgid "Unable to insert transaction in MMEX database"
-msgstr "Nepavyksta įterpti operacijos į MMEX duomenų bazę"
+msgstr ""
 
 #: webappdialog.cpp:321
 msgid "WebApp communication error"
-msgstr "WebApp ryšio klaida"
+msgstr ""
 
 #: webappdialog.cpp:416
 msgid "Open Attachment"
-msgstr "Atverti priedą"
+msgstr ""
 
 #: webappdialog.cpp:418
 msgid "Import and open"
@@ -7116,7 +7100,7 @@ msgstr ""
 
 #: wizard_newaccount.cpp:30
 msgid "Add Account Wizard"
-msgstr "Sąskaitos pridėjimo vedlys"
+msgstr "Майстер Добавляння Рахунку"
 
 #: wizard_newaccount.cpp:39
 #, c-format
@@ -7131,33 +7115,32 @@ msgstr ""
 
 #: wizard_newaccount.cpp:86
 msgid "Account Name Invalid"
-msgstr "Sąskaitos pavadinimas neteisingas"
+msgstr "Назва рахунку невірна"
 
 #: wizard_newaccount.cpp:93
 msgid "Account Name already exists"
-msgstr "Sąskaita tokiu pavadinimu jau egzistuoja"
+msgstr "Така назва рахунку вже існує"
 
 #: wizard_newaccount.cpp:106
 msgid "Name of the Account"
-msgstr "Sąskaitos pavadinimas"
+msgstr "Назва рахунку"
 
 #: wizard_newaccount.cpp:110
 msgid "Specify a descriptive name for the account."
-msgstr "Nurodykite prasmingą sąskaitos pavadinimą."
+msgstr ""
 
 #: wizard_newaccount.cpp:111
 msgid "This is generally the name of a financial institution\n"
 "where the account is held. For example: 'ABC Bank'."
-msgstr "Tai dažniausiai pavadinimas finansinės institucijos,\n"
-"kurioje laikoma sąskaita. Pvz.: „SEB Bankas“."
+msgstr ""
 
 #: wizard_newaccount.cpp:131
 msgid "Type of Account"
-msgstr "Sąskaitos tipas"
+msgstr "Тип Рахунку"
 
 #: wizard_newaccount.cpp:135
 msgid "Select the type of account you want to create:"
-msgstr "Pasirinkite, kokio tipo paskyrą norite sukurti:"
+msgstr ""
 
 #: wizard_newaccount.cpp:136
 msgid "General bank accounts cover a wide variety of account\n"
@@ -7167,30 +7150,26 @@ msgstr ""
 #: wizard_newaccount.cpp:141
 msgid "Investment accounts are specialized accounts that only\n"
 "have stock/mutual fund investments associated with them."
-msgstr "Investicinės sąskaitos yra specializuotos, kurios turi tik\n"
-"akcijų/bendrųjų fondų investicijas susietas su jomis."
+msgstr ""
 
 #: wizard_newaccount.cpp:146
 msgid "Term accounts are specialized bank accounts. Intended for asset\n"
 "type accounts such as Term Deposits and Bonds. These accounts\n"
 "can have regular money coming in and out, being outside the\n"
 "general income stream."
-msgstr "Terminuotos sąskaitos yra specializuotos banko sąskaitos. Skirtos turto\n"
-"tipo sąskaitoms, tokioms kaip terminuoti indėliai. Šios sąskaitos\n"
-"gali turėti nuolatines įplaukas ir išlaidas, išliekant nuošalyje\n"
-"bendrųjų pajamų srovių."
+msgstr ""
 
 #: wizard_newaccount.cpp:162
 msgid "Base Account Currency Not set."
-msgstr "Pagrindinė sąskaitos valiuta nenustatyta."
+msgstr ""
 
 #: wizard_newaccount.cpp:163
 msgid "Set that first using Tools->Options menu and then add a new account."
-msgstr "Nustatykite tai pirmiausiai naudojant Įrankiai->Parinktys ir tada pridedant naują paskyrą."
+msgstr ""
 
 #: wizard_newdb.cpp:25
 msgid "New Database Wizard"
-msgstr "Naujos duomenų bazės vedlys"
+msgstr "Майстер Нової Бази Даних"
 
 #: wizard_newdb.cpp:30
 msgid "The next pages will help you create a new database.\n\n"
@@ -7206,34 +7185,30 @@ msgstr ""
 
 #: wizard_newdb.cpp:92
 msgid "Base Currency for account"
-msgstr "Pagrindinė sąskaitos valiuta"
+msgstr "Базова валюта для рахунку"
 
 #: wizard_newdb.cpp:95
 msgid "Specify the base (or default) currency to be used for the\n"
 "database. The base currency can later be changed by using\n"
 "the options dialog. New accounts, will use this currency by\n"
 "default, and can be changed when editing account details."
-msgstr "Nurodykite pagrindinę (arba numatytą) valiutą naudotiną\n"
-"duomenų bazėje. Pagrindinė valiuta vėliau gali būti pakeista\n"
-"naudojant Parinkčių dialogo langą. Naujos sąskaitos naudos\n"
-"šią valiutą pagal nutylėjimą. Tai gali būti pakeista redaguojant\n"
-"sąskaitas."
+msgstr ""
 
 #: wizard_newdb.cpp:112
 msgid "(Optional) Specify a title or your name."
-msgstr "(Nebūtina) Nurodykite savo vardo titulą."
+msgstr ""
 
 #: wizard_newdb.cpp:113
 msgid "Used as a database title for displayed and printed reports."
-msgstr "Naudojama kaip duomenų bazės antraštė rodomuose ir atspausdintose ataskaitose."
+msgstr ""
 
 #: wizard_newdb.cpp:124
 msgid "Base Currency Not Set"
-msgstr "Pagrindinė valiuta nenustatyta"
+msgstr "Базову валюту не встановлено"
 
 #: wizard_update.cpp:78
 msgid "Update Wizard"
-msgstr "Atnaujinimo vedlys"
+msgstr ""
 
 #: wizard_update.cpp:106
 msgid "Historical releases:"
@@ -7249,16 +7224,16 @@ msgstr ""
 
 #: wizard_update.cpp:153
 msgid "A new version of MMEX is available!"
-msgstr "Nauja MMEX versija pasiekiama!"
+msgstr ""
 
 #: wizard_update.cpp:157
 #, c-format
 msgid "Your version is %s"
-msgstr "Jūsų versija yra %s"
+msgstr ""
 
 #: wizard_update.cpp:302 wizard_update.cpp:317
 msgid "Unable to check for updates!"
-msgstr "Nepavyksta patikrinti, ar yra atnaujinimų!"
+msgstr ""
 
 #: wizard_update.cpp:303 wizard_update.cpp:318
 msgid "Error: "
@@ -7266,5 +7241,5 @@ msgstr ""
 
 #: wizard_update.cpp:304 wizard_update.cpp:320
 msgid "MMEX Update Check"
-msgstr "MMEX atnaujinimų tikrinimas"
+msgstr ""
 

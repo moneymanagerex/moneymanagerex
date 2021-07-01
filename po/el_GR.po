@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2021-06-28 22:30+0300\n"
-"PO-Revision-Date: 2021-06-29 06:27\n"
+"POT-Creation-Date: 2021-06-30 12:59+0300\n"
+"PO-Revision-Date: 2021-06-30 14:09\n"
 "Last-Translator: \n"
 "Language-Team: Greek\n"
 "MIME-Version: 1.0\n"
@@ -368,8 +368,8 @@ msgstr "Εισάγετε το όνομα του περιουσιακού στο�
 
 #: assetdialog.cpp:201 assetspanel.cpp:61 filtertransdialog.cpp:515
 #: import_export/qif_export.cpp:588 import_export/qif_import_gui.cpp:99
-#: import_export/univcsvdialog.cpp:105 maincurrencydialog.cpp:236
-#: maincurrencydialog.cpp:258 mmchecking_list.cpp:204 mmreportspanel.cpp:257
+#: import_export/univcsvdialog.cpp:105 maincurrencydialog.cpp:239
+#: maincurrencydialog.cpp:261 mmchecking_list.cpp:204 mmreportspanel.cpp:257
 #: mmreportspanel.cpp:275 model/Model_CustomField.cpp:29
 #: reports/cashflow.cpp:249 reports/incexpenses.cpp:244 reports/summary.cpp:157
 #: reports/transactions.cpp:78 stockdialog.cpp:297 stockdialog.cpp:676
@@ -391,7 +391,7 @@ msgid "Select type of asset"
 msgstr "Επιλέξτε τύπο περιουσιακού στοιχείου"
 
 #: assetdialog.cpp:219 import_export/qif_import_gui.cpp:104
-#: maincurrencydialog.cpp:267
+#: maincurrencydialog.cpp:270
 msgid "Value"
 msgstr "Αξία"
 
@@ -456,7 +456,7 @@ msgstr "Ταυτότητα"
 #: filtertransdialog.cpp:1026 import_export/qif_export.cpp:125
 #: import_export/qif_export.cpp:590 import_export/qif_import_gui.cpp:102
 #: import_export/qif_import_gui.cpp:232 import_export/univcsvdialog.cpp:116
-#: maincurrencydialog.cpp:248 mmhomepage.cpp:440 reports/incexpenses.cpp:111
+#: maincurrencydialog.cpp:251 mmhomepage.cpp:440 reports/incexpenses.cpp:111
 #: reports/transactions.cpp:84 splitdetailsdialog.cpp:120
 #: transactionsupdatedialog.cpp:145 transdialog.cpp:499
 #: usertransactionpanel.cpp:138 webappdialog.cpp:150
@@ -548,14 +548,14 @@ msgid "View Asset Transactions"
 msgstr "Προβολή Συναλλαγών Περιουσιακού Στοιχείου"
 
 #: assetspanel.cpp:480 attachmentdialog.cpp:317 billsdepositspanel.cpp:287
-#: categdialog.cpp:233 customfieldlistdialog.cpp:261 maincurrencydialog.cpp:524
+#: categdialog.cpp:233 customfieldlistdialog.cpp:261 maincurrencydialog.cpp:527
 #: mmcheckingpanel.cpp:366 payeedialog.cpp:376 splittransactionsdialog.cpp:166
 #: stockspanel.cpp:143
 msgid "&Edit "
 msgstr "&Επεξεργασία "
 
 #: assetspanel.cpp:485 billsdepositspanel.cpp:292 budgetyeardialog.cpp:103
-#: categdialog.cpp:237 maincurrencydialog.cpp:289 mmchecking_list.cpp:395
+#: categdialog.cpp:237 maincurrencydialog.cpp:292 mmchecking_list.cpp:395
 #: mmcheckingpanel.cpp:371 stockdialog.cpp:339 stockspanel.cpp:148
 msgid "&Delete "
 msgstr "&Διαγραφή "
@@ -677,7 +677,7 @@ msgid "Confirm Attachment Deletion"
 msgstr "Επιβεβαίωση Διαγραφής Συνημμένου"
 
 #: attachmentdialog.cpp:314 categdialog.cpp:229 customfieldlistdialog.cpp:259
-#: import_export/univcsvdialog.cpp:236 maincurrencydialog.cpp:523
+#: import_export/univcsvdialog.cpp:236 maincurrencydialog.cpp:526
 #: payeedialog.cpp:375 splittransactionsdialog.cpp:165 stockdialog.cpp:341
 msgid "&Add "
 msgstr "&Προσθήκη "
@@ -687,7 +687,7 @@ msgid "&Open "
 msgstr "&Άνοιγμα "
 
 #: attachmentdialog.cpp:319 customfieldlistdialog.cpp:262
-#: import_export/univcsvdialog.cpp:240 maincurrencydialog.cpp:525
+#: import_export/univcsvdialog.cpp:240 maincurrencydialog.cpp:528
 #: payeedialog.cpp:378 splittransactionsdialog.cpp:167
 msgid "&Remove "
 msgstr "&Διαγραφή "
@@ -927,7 +927,7 @@ msgstr "Επιτρέπει την ρύθμιση διαφορετικών ποσ
 #: billsdepositsdialog.cpp:558 billsdepositspanel.cpp:134
 #: budgetingpanel.cpp:301 filtertransdialog.cpp:488 filtertransdialog.cpp:499
 #: import_export/qif_export.cpp:594 import_export/univcsvdialog.cpp:107
-#: maincurrencydialog.cpp:609 mmhomepage.cpp:360 mmhomepage.cpp:442
+#: maincurrencydialog.cpp:612 mmhomepage.cpp:360 mmhomepage.cpp:442
 #: reports/budgetcategorysummary.cpp:190 reports/categexp.cpp:174
 #: reports/incexpenses.cpp:112 reports/transactions.cpp:85
 #: splitdetailsdialog.cpp:136 splittransactionsdialog.cpp:138
@@ -1116,7 +1116,7 @@ msgid "Invalid value"
 msgstr "Μη έγκυρη τιμή"
 
 #: billsdepositsdialog.cpp:1342 billsdepositsdialog.cpp:1364
-#: import_export/univcsvdialog.cpp:1133 maincurrencydialog.cpp:466
+#: import_export/univcsvdialog.cpp:1133 maincurrencydialog.cpp:469
 #: mmframe.cpp:3329 optionsettingsgeneral.cpp:281
 #: splittransactionsdialog.cpp:209 stockspanel.cpp:395 stockspanel.cpp:396
 #: themes.cpp:310 themes.cpp:329 webappdialog.cpp:194 webappdialog.cpp:199
@@ -1525,7 +1525,7 @@ msgstr "Εκχώρηση όλων των κατηγοριών σε μια άλλ
 msgid "Expand"
 msgstr "Ανάπτυξη"
 
-#: categdialog.cpp:197 maincurrencydialog.cpp:172
+#: categdialog.cpp:197 maincurrencydialog.cpp:175
 msgid "Show All"
 msgstr "Εμφάνιση Όλων"
 
@@ -1545,7 +1545,7 @@ msgstr "Επεξεργασθείτε το όνομα μιας υπάρχουσα
 msgid "Delete an existing category. The category cannot be used by existing transactions."
 msgstr "Διαγραφής μιας υπάρχουσας κατηγορίας. Η κατηγορία δεν μπορεί να χρησιμοποιηθεί από υπάρχουσες συναλλαγές."
 
-#: categdialog.cpp:244 maincurrencydialog.cpp:208
+#: categdialog.cpp:244 maincurrencydialog.cpp:211
 msgid "&Select"
 msgstr "&Επιλογή"
 
@@ -1812,7 +1812,7 @@ msgid "Any changes will be lost without update"
 msgstr "Τυχόν αλλαγές θα χαθούν χωρίς ενημέρωση"
 
 #: currencydialog.cpp:268 currencydialog.cpp:272 currencydialog.cpp:279
-#: currencydialog.cpp:297 currencydialog.cpp:301 maincurrencydialog.cpp:609
+#: currencydialog.cpp:297 currencydialog.cpp:301 maincurrencydialog.cpp:612
 #: mmSimpleDialogs.cpp:238
 msgid "Invalid Entry"
 msgstr "Μη έγκυρη εισαγωγή"
@@ -3340,135 +3340,139 @@ msgstr "Τελευταία Τιμή"
 msgid "Fixed Rate"
 msgstr "Σταθερός Συντελεστής"
 
-#: maincurrencydialog.cpp:166 maincurrencydialog.cpp:458
+#: maincurrencydialog.cpp:127
+msgid "N/A"
+msgstr "Μη διαθέσιμο"
+
+#: maincurrencydialog.cpp:169 maincurrencydialog.cpp:461
 msgid "Online update currency rate"
 msgstr "Διαδικτυακή ενημέρωση ισοτιμίας νομισμάτων"
 
-#: maincurrencydialog.cpp:169
+#: maincurrencydialog.cpp:172
 msgid "Online Update"
 msgstr "Ενημέρωση μέσω διαδικτύου"
 
-#: maincurrencydialog.cpp:173
+#: maincurrencydialog.cpp:176
 msgid "Show all even the unused currencies"
 msgstr "Εμφάνιση όλων ακόμη και των αχρησιμοποίητων νομισμάτων"
 
-#: maincurrencydialog.cpp:203 payeedialog.cpp:122
+#: maincurrencydialog.cpp:206 payeedialog.cpp:122
 msgid "Search:"
 msgstr "Αναζήτηση:"
 
-#: maincurrencydialog.cpp:224
+#: maincurrencydialog.cpp:227
 msgid "Currency History Options"
 msgstr "Επιλογές Ιστορικού Νομίσματος"
 
-#: maincurrencydialog.cpp:242 stockdialog.cpp:304 stockdialog.cpp:323
+#: maincurrencydialog.cpp:245 stockdialog.cpp:304 stockdialog.cpp:323
 #: stockdialog.cpp:676
 msgid "Price"
 msgstr "Τιμή"
 
-#: maincurrencydialog.cpp:264
+#: maincurrencydialog.cpp:267
 msgid "Specify the date of currency value"
 msgstr "Καθορίστε την ημερομηνία της αξίας νομίσματος"
 
-#: maincurrencydialog.cpp:272
+#: maincurrencydialog.cpp:275
 msgid "Enter the currency value"
 msgstr "Εισάγετε την αξία του νομίσματος"
 
-#: maincurrencydialog.cpp:282
+#: maincurrencydialog.cpp:285
 msgid "Download Currency Values history"
 msgstr "Λήψη ιστορικού τιμών νομισμάτων"
 
-#: maincurrencydialog.cpp:285
+#: maincurrencydialog.cpp:288
 msgid "&Add / Update "
 msgstr "&Προσθήκη / Ενημέρωση "
 
-#: maincurrencydialog.cpp:286
+#: maincurrencydialog.cpp:289
 msgid "Add Currency Values to history"
 msgstr "Προσθήκη τιμών συναλλάγματος στο ιστορικό"
 
-#: maincurrencydialog.cpp:290
+#: maincurrencydialog.cpp:293
 msgid "Delete selected Currency Values"
 msgstr "Διαγραφή επιλεγμένων τιμών νομίσματος"
 
-#: maincurrencydialog.cpp:294
+#: maincurrencydialog.cpp:297
 msgid "Delete Currency Values history for unused currencies and days"
 msgstr "Διαγραφή ιστορικού Τιμών Ισοτιμίας για μη χρησιμοποιούμενα νομίσματα και ημέρες"
 
-#: maincurrencydialog.cpp:350
+#: maincurrencydialog.cpp:353
 msgid "Do you really want to delete the selected Currency?"
 msgstr "Θέλετε πραγματικά να διαγράψετε το επιλεγμένο Νόμισμα;"
 
-#: maincurrencydialog.cpp:351 maincurrencydialog.cpp:421
-#: maincurrencydialog.cpp:647 maincurrencydialog.cpp:764
-#: maincurrencydialog.cpp:788 maincurrencydialog.h:76
+#: maincurrencydialog.cpp:354 maincurrencydialog.cpp:424
+#: maincurrencydialog.cpp:650 maincurrencydialog.cpp:767
+#: maincurrencydialog.cpp:791 maincurrencydialog.h:76
 msgid "Currency Dialog"
 msgstr "Παράθυρο νομισμάτων"
 
-#: maincurrencydialog.cpp:379
+#: maincurrencydialog.cpp:382
 msgid "Base Currency Selection"
 msgstr "Επιλογή Βασικού Νομίσματος"
 
-#: maincurrencydialog.cpp:419
+#: maincurrencydialog.cpp:422
 #, c-format
 msgid "Historic rates for %s found, but \"Use currency history\" in options is disabled:\n"
 "click no and enable it or click yes to remove all historic rates for %s"
 msgstr "Βρέθηκαν ιστορικές τιμές για το %s, αλλά το \"Χρησιμοποίησε το ιστορικό ισοτιμίας\" στις επιλογές έχει απενεργοποιηθεί:\n"
 "Πατήστε το όχι και ενεργοποιήστε το ή πατήστε το ναι για να αφαιρεθούν όλες οι ιστορικές τιμές για το %s"
 
-#: maincurrencydialog.cpp:431
+#: maincurrencydialog.cpp:434
 #, c-format
 msgid "Currency History Options: %s "
 msgstr "Επιλογές ιστορικού νομίσματος: %s "
 
-#: maincurrencydialog.cpp:487
+#: maincurrencydialog.cpp:490
 msgid "Unable to update history currency rates. Please update them manually!"
 msgstr "Δεν είναι δυνατή η ενημέρωση του ιστορικού των συναλλαγματικών ισοτιμιών. Παρακαλούμε ενημερώστε τα χειροκίνητα!"
 
-#: maincurrencydialog.cpp:488 maincurrencydialog.cpp:640
-#: maincurrencydialog.cpp:667 maincurrencydialog.cpp:703
-#: maincurrencydialog.cpp:809
+#: maincurrencydialog.cpp:491 maincurrencydialog.cpp:643
+#: maincurrencydialog.cpp:670 maincurrencydialog.cpp:706
+#: maincurrencydialog.cpp:812
 msgid "Currency history error"
 msgstr "Σφάλμα νομισματικού ιστορικού"
 
-#: maincurrencydialog.cpp:520
+#: maincurrencydialog.cpp:523
 msgid "Set as Base Currency"
 msgstr "Ορισμός ως βασικό νόμισμα"
 
-#: maincurrencydialog.cpp:521
+#: maincurrencydialog.cpp:524
 msgid "Online Update Currency Rate"
 msgstr "Διαδικτυακή ενημέρωση ισοτιμίας Συναλλάγματος"
 
-#: maincurrencydialog.cpp:640
+#: maincurrencydialog.cpp:643
 msgid "No currency selected!"
 msgstr "Δεν επιλέχθηκε νόμισμα!"
 
-#: maincurrencydialog.cpp:646
+#: maincurrencydialog.cpp:649
 msgid "Do you want to add also dates without any transaction?"
 msgstr "Θέλετε να προσθέσετε επίσης ημερομηνίες χωρίς καμία συναλλαγή;"
 
-#: maincurrencydialog.cpp:665
+#: maincurrencydialog.cpp:668
 #, c-format
 msgid "Unable to download %s currency rates"
 msgstr "Δεν είναι δυνατή η λήψη %s ισοτιμίας συναλλάγματος"
 
-#: maincurrencydialog.cpp:701
+#: maincurrencydialog.cpp:704
 #, c-format
 msgid "Unable to download history for symbol %s. History rates not available!"
 msgstr "Δεν είναι δυνατή η λήψη του ιστορικού για το σύμβολο %s. Οι τιμές ιστορικού δεν είναι διαθέσιμες!"
 
-#: maincurrencydialog.cpp:763
+#: maincurrencydialog.cpp:766
 msgid "Changing base currency will delete all history rates, proceed?"
 msgstr "Η αλλαγή του βασικού νομίσματος θα διαγράψει όλες τις τιμές ιστορικού, θα προχωρήσει;"
 
-#: maincurrencydialog.cpp:787
+#: maincurrencydialog.cpp:790
 msgid "Do you want to update today currency rates?"
 msgstr "Θέλετε να ενημερώσετε σήμερα τις συναλλαγματικές ισοτιμίες;"
 
-#: maincurrencydialog.cpp:808
+#: maincurrencydialog.cpp:811
 #, c-format
 msgid "Unable to download history for base symbol %s. History rates not available!"
 msgstr "Δεν είναι δυνατή η λήψη του ιστορικού για το σύμβολο βάσης %s. Οι τιμές ιστορικού δεν είναι διαθέσιμες!"
 
-#: maincurrencydialog.cpp:851 stockspanel.cpp:406 util.cpp:618
+#: maincurrencydialog.cpp:854 stockspanel.cpp:406 util.cpp:618
 msgid "Could not find base currency symbol!"
 msgstr "Αδυναμία εύρεσης του συμβόλου του βασικού νομίσματος!"
 
@@ -4375,7 +4379,7 @@ msgstr "Διαχειριστής Προσαρμοσμένων Πεδίων"
 msgid "Refresh &WebApp"
 msgstr "Ανανέωση του &WebApp"
 
-#: mmframe.cpp:1568 mmframe.cpp:2499
+#: mmframe.cpp:1568 mmframe.cpp:2499 mmframe.cpp:2502
 msgid "Refresh WebApp"
 msgstr "Ανανέωση του WebApp"
 
@@ -4840,10 +4844,6 @@ msgstr "Οι Λογαριασμοί, Δικαιούχοι και Κατηγορ�
 #: mmframe.cpp:2501
 msgid "Issue encountered updating WebApp, check Web server and WebApp settings"
 msgstr "Εμφανίστηκε ένα πρόβλημα κατά την ενημέρωση του WebApp, ελέγξτε τον Web Server και τις ρυθμίσεις του WebApp"
-
-#: mmframe.cpp:2502
-msgid "WebApp Refresh"
-msgstr "Ανανέωση WebApp"
 
 #: mmframe.cpp:2537
 msgid "MMEX Options have been updated."
