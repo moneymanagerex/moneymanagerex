@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-06-30 12:59+0300\n"
-"PO-Revision-Date: 2021-06-30 11:13\n"
+"PO-Revision-Date: 2021-07-01 07:25\n"
 "Last-Translator: \n"
 "Language-Team: Italian\n"
 "MIME-Version: 1.0\n"
@@ -4845,7 +4845,7 @@ msgstr "Creazione conto titoli"
 
 #: mmframe.cpp:2499
 msgid "Accounts, Payees, and Categories Updated"
-msgstr "Account, Beneficiari e Categorie Aggiornati"
+msgstr "Conti, Beneficiari e Categorie Aggiornati"
 
 #: mmframe.cpp:2501
 msgid "Issue encountered updating WebApp, check Web server and WebApp settings"
