@@ -192,7 +192,7 @@ void mmStockDialog::CreateControls()
     itemFlexGridSizer6->Add(new wxStaticText(itemPanel5, wxID_STATIC, _("Company Name")), g_flagsH);
     m_stock_name_ctrl = new mmTextCtrl(itemPanel5, ID_TEXTCTRL_STOCKNAME, "");
     itemFlexGridSizer6->Add(m_stock_name_ctrl, g_flagsExpand);
-    m_stock_name_ctrl->SetToolTip(_("Enter the stock company name"));
+    mmToolTip(m_stock_name_ctrl, _("Enter the stock company name"));
 
     //Symbol
     wxStaticText* symbol = new wxStaticText(itemPanel5, wxID_STATIC, _("Stock Symbol"));
@@ -202,7 +202,7 @@ void mmStockDialog::CreateControls()
     m_stock_symbol_ctrl = new mmTextCtrl(itemPanel5, ID_TEXTCTRL_STOCK_SYMBOL
         , "", wxDefaultPosition, wxSize(150, -1), 0);
     itemFlexGridSizer6->Add(m_stock_symbol_ctrl, g_flagsH);
-    m_stock_symbol_ctrl->SetToolTip(_("Enter the stock symbol. (Optional) Include exchange. eg: IBM.BE"));
+    mmToolTip(m_stock_symbol_ctrl, _("Enter the stock symbol. (Optional) Include exchange. eg: IBM.BE"));
 
     //Date
     wxStaticText* date_label = new wxStaticText(itemPanel5, wxID_STATIC, _("*Date"));
@@ -211,7 +211,7 @@ void mmStockDialog::CreateControls()
     m_purchase_date_ctrl = new wxDatePickerCtrl(itemPanel5, ID_DPC_STOCK_PDATE
         , wxDefaultDateTime, wxDefaultPosition, wxSize(150, -1), wxDP_DROPDOWN | wxDP_SHOWCENTURY);
     itemFlexGridSizer6->Add(m_purchase_date_ctrl, g_flagsH);
-    m_purchase_date_ctrl->SetToolTip(_("Specify the initial date of the stock investment\nUsed when creating the initial Share transaction."));
+    mmToolTip(m_purchase_date_ctrl, _("Specify the initial date of the stock investment\nUsed when creating the initial Share transaction."));
     m_purchase_date_ctrl->Enable(initial_stock_transaction);
 
     //Number of Shares
@@ -221,7 +221,7 @@ void mmStockDialog::CreateControls()
     m_num_shares_ctrl = new mmTextCtrl(itemPanel5, ID_TEXTCTRL_NUMBER_SHARES, ""
         , wxDefaultPosition, wxSize(150, -1), wxALIGN_RIGHT | wxTE_PROCESS_ENTER, mmCalcValidator());
     itemFlexGridSizer6->Add(m_num_shares_ctrl, g_flagsH);
-    m_num_shares_ctrl->SetToolTip(_("Enter number of shares.\nUsed when creating the initial Share transaction."));
+    mmToolTip(m_num_shares_ctrl, _("Enter number of shares.\nUsed when creating the initial Share transaction."));
     m_num_shares_ctrl->Connect(ID_TEXTCTRL_NUMBER_SHARES, wxEVT_COMMAND_TEXT_ENTER
         , wxCommandEventHandler(mmStockDialog::OnTextEntered), nullptr, this);
     m_num_shares_ctrl->Enable(initial_stock_transaction);
@@ -233,7 +233,7 @@ void mmStockDialog::CreateControls()
     m_purchase_price_ctrl = new mmTextCtrl(itemPanel5, ID_TEXTCTRL_STOCK_PP, ""
         , wxDefaultPosition, wxSize(150, -1), wxALIGN_RIGHT | wxTE_PROCESS_ENTER, mmCalcValidator());
     itemFlexGridSizer6->Add(m_purchase_price_ctrl, g_flagsH);
-    m_purchase_price_ctrl->SetToolTip(_("Enter the initial price per share.\nUsed when creating the initial Share transaction."));
+    mmToolTip(m_purchase_price_ctrl, _("Enter the initial price per share.\nUsed when creating the initial Share transaction."));
     m_purchase_price_ctrl->Connect(ID_TEXTCTRL_STOCK_PP, wxEVT_COMMAND_TEXT_ENTER
         , wxCommandEventHandler(mmStockDialog::OnTextEntered), nullptr, this);
     m_purchase_price_ctrl->Enable(initial_stock_transaction);
@@ -242,7 +242,7 @@ void mmStockDialog::CreateControls()
     m_commission_ctrl = new mmTextCtrl(itemPanel5, ID_TEXTCTRL_STOCK_COMMISSION, "0"
         , wxDefaultPosition, wxSize(150, -1), wxALIGN_RIGHT | wxTE_PROCESS_ENTER, mmCalcValidator());
     itemFlexGridSizer6->Add(m_commission_ctrl, g_flagsH);
-    m_commission_ctrl->SetToolTip(_("Enter any commission paid.\nUsed when creating the initial Share transaction."));
+    mmToolTip(m_commission_ctrl, _("Enter any commission paid.\nUsed when creating the initial Share transaction."));
     m_commission_ctrl->Connect(ID_TEXTCTRL_STOCK_COMMISSION, wxEVT_COMMAND_TEXT_ENTER
         , wxCommandEventHandler(mmStockDialog::OnTextEntered), nullptr, this);
     m_commission_ctrl->Enable(initial_stock_transaction);
@@ -250,7 +250,7 @@ void mmStockDialog::CreateControls()
     itemFlexGridSizer6->Add(new wxStaticText(itemPanel5, wxID_STATIC, _("Curr. Share Price")), g_flagsH);
     m_current_price_ctrl = new mmTextCtrl(itemPanel5, ID_TEXTCTRL_STOCK_CURR_PRICE, ""
         , wxDefaultPosition, wxSize(150, -1), wxALIGN_RIGHT | wxTE_PROCESS_ENTER, mmCalcValidator());
-    m_current_price_ctrl->SetToolTip(_("Enter current stock/share price."));
+    mmToolTip(m_current_price_ctrl, _("Enter current stock/share price."));
     itemFlexGridSizer6->Add(m_current_price_ctrl, g_flagsH);
     m_current_price_ctrl->Connect(ID_TEXTCTRL_STOCK_COMMISSION, wxEVT_COMMAND_TEXT_ENTER
         , wxCommandEventHandler(mmStockDialog::OnTextEntered), nullptr, this);
@@ -265,16 +265,16 @@ void mmStockDialog::CreateControls()
     wxBoxSizer* iconsSizer = new wxBoxSizer(wxHORIZONTAL);
     itemFlexGridSizer6->Add(iconsSizer, wxSizerFlags(g_flagsH).Align(wxALIGN_RIGHT));
     m_bAttachments = new wxBitmapButton(itemPanel5, wxID_FILE, mmBitmap(png::CLIP));
-    m_bAttachments->SetToolTip(_("Organize attachments of this stock"));
+    mmToolTip(m_bAttachments, _("Organize attachments of this stock"));
     wxBitmapButton* itemButton31 = new wxBitmapButton(itemPanel5, wxID_INDEX, mmBitmap(png::WEB));
-    itemButton31->SetToolTip(_("Display the web page for the specified Stock symbol"));
+    mmToolTip(itemButton31, _("Display the web page for the specified Stock symbol"));
     iconsSizer->Add(m_bAttachments, g_flagsH);
     iconsSizer->Add(itemButton31, g_flagsH);
 
     m_notes_ctrl = new mmTextCtrl(this, wxID_STATIC, "", wxDefaultPosition, wxSize(200, 90), wxTE_MULTILINE);
     itemStaticBoxSizer4->Add(m_notes_ctrl, g_flagsExpand);
     itemStaticBoxSizer4->AddSpacer(1);
-    m_notes_ctrl->SetToolTip(_("Enter notes associated with this investment"));
+    mmToolTip(m_notes_ctrl, _("Enter notes associated with this investment"));
 
     leftBoxSizer->AddSpacer(20);
 
@@ -289,7 +289,7 @@ void mmStockDialog::CreateControls()
     m_price_listbox = new wxListCtrl(this, wxID_ANY, wxDefaultPosition, wxSize(250, 150)
         , wxLC_REPORT);
     historyStaticBoxSizer->Add(m_price_listbox, g_flagsExpand);
-    m_price_listbox->SetToolTip(_("Stock Price History"));
+    mmToolTip(m_price_listbox, _("Stock Price History"));
 
     // Add first column
     wxListItem col0;
@@ -317,7 +317,7 @@ void mmStockDialog::CreateControls()
     m_history_date_ctrl = new wxDatePickerCtrl(buttons_panel, ID_DPC_CP_PDATE
         , wxDefaultDateTime, wxDefaultPosition, wxSize(150, -1), wxDP_DROPDOWN | wxDP_SHOWCENTURY);
     date_price->Add(m_history_date_ctrl, g_flagsH);
-    m_history_date_ctrl->SetToolTip(_("Specify the stock/share price date."));
+    mmToolTip(m_history_date_ctrl, _("Specify the stock/share price date."));
 
     //
     date_price->Add(new wxStaticText(buttons_panel, wxID_STATIC, _("Price")), g_flagsH);
@@ -333,13 +333,13 @@ void mmStockDialog::CreateControls()
 
     wxStdDialogButtonSizer*  std_buttons_sizer = new wxStdDialogButtonSizer;
     wxBitmapButton* buttonDownload = new wxBitmapButton(buttons_panel, ID_BUTTON_DOWNLOAD, mmBitmap(png::UPDATE));
-    buttonDownload->SetToolTip(_("Download Stock Price history"));
+    mmToolTip(buttonDownload, _("Download Stock Price history"));
     wxBitmapButton* buttonImport = new wxBitmapButton(buttons_panel, ID_BUTTON_IMPORT, mmBitmap(png::IMPORT));
-    buttonImport->SetToolTip(_("Import Stock Price history (CSV Format)"));
+    mmToolTip(buttonImport, _("Import Stock Price history (CSV Format)"));
     wxButton* buttonDel = new wxButton(buttons_panel, wxID_DELETE, _("&Delete "));
-    buttonDel->SetToolTip(_("Delete selected Stock Price"));
+    mmToolTip(buttonDel, _("Delete selected Stock Price"));
     wxButton* buttonAdd = new wxButton(buttons_panel, wxID_ADD, _("&Add "));
-    buttonAdd->SetToolTip(_("Add Stock Price to history"));
+    mmToolTip(buttonAdd, _("Add Stock Price to history"));
 
     std_buttons_sizer->Add(buttonDownload, g_flagsH);
     std_buttons_sizer->Add(buttonImport, g_flagsH);

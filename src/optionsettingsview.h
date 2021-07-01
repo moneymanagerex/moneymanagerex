@@ -73,6 +73,9 @@ private:
     wxCheckBox* m_ignore_future_transactions;
     wxSpinCtrl* m_budget_days_offset;
 
+    wxCheckBox* m_showToolTips;
+    wxCheckBox* m_showMoneyTips;
+
     enum
     {
         ID_DIALOG_THEMEMANAGER = wxID_HIGHEST + 100

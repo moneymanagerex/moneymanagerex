@@ -23,6 +23,7 @@ Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
 #include "themes.h"
 #include "util.h"
 #include "model/Model_Setting.h"
+#include "reports/htmlbuilder.h"
 #include <memory>
 #include <wx/mstream.h>
 #include <wx/fs_mem.h>
@@ -39,20 +40,12 @@ EVT_LISTBOX(wxID_ANY, mmThemesDialog::OnThemeView)
 EVT_HTML_LINK_CLICKED(wxID_ANY, mmThemesDialog::OnHtmlLink)
 wxEND_EVENT_TABLE()
 
-const char HTMLPANEL[] = R"(<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8" />
-    <meta http - equiv="Content-Type" content="text/html" />
-    <link href="memory:master.css" rel="stylesheet" />
-</head>
-<body>
+const char HTMLPANEL[] = R"(
 <h1>%s <a href="%s"><img src="%s"></a></h1>
 <h2>%s</h2>
 <p>%s</p>
 <p><img src="%s" width="300" height="150"></p>
-</body>
-</html>)";
+)";
 
 bool mmThemesDialog::vfsThemeImageLoaded = false;
 
@@ -264,10 +257,13 @@ void mmThemesDialog::RefreshView()
     thisTheme.bitMap.SaveFile(mmex::getTempFolder() + themeImageName, wxBITMAP_TYPE_PNG);
     themeImageUrl = "file://" + mmex::getTempFolder() + themeImageName;
 #endif
-
+    mmHTMLBuilder hb;
+    hb.init(true);
     wxString myHtml = wxString::Format(HTMLPANEL, s_name, s_url, imgUrl, s_author
         , s_description, themeImageUrl);
-    m_themePanel->SetPage(myHtml);
+    hb.addText(myHtml);
+    hb.end(true);
+    m_themePanel->SetPage(hb.getHTMLText());
 
     m_deleteButton->Enable(!thisTheme.isChosen && !thisTheme.isSystem);
     m_useButton->Enable(!thisTheme.isChosen);

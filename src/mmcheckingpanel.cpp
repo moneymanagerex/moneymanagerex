@@ -129,7 +129,16 @@ void mmCheckingPanel::filterTable()
     m_reconciled_balance = m_account_balance;
     m_filteredBalance = 0.0;
 
-    auto custom_fields = Model_CustomFieldData::instance().get_all(Model_Attachment::TRANSACTION);
+    std::map<int, int> custom_field_type;
+    const wxString RefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
+    Model_CustomField::Data_Set custom_fields = Model_CustomField::instance().find(Model_CustomField::DB_Table_CUSTOMFIELD_V1::REFTYPE(RefType));
+    for (const auto& entry : custom_fields)
+    {
+        if (entry.REFTYPE != RefType) continue;
+        custom_field_type[entry.FIELDID] = Model_CustomField::all_type().Index(entry.TYPE);
+    }
+
+    auto custom_fields_data = Model_CustomFieldData::instance().get_all(Model_Attachment::TRANSACTION);
     const auto matrix = Model_CustomField::getMatrix(Model_Attachment::TRANSACTION);
     int udfc01_ref_id = matrix.at("UDFC01");
     int udfc02_ref_id = matrix.at("UDFC02");
@@ -175,27 +184,39 @@ void mmCheckingPanel::filterTable()
         full_tran.PAYEENAME = full_tran.real_payee_name(m_AccountID);
         full_tran.BALANCE = m_account_balance;
         full_tran.AMOUNT = transaction_amount;
-        full_tran.HAS_ATTACHMENT = attachments.count(tran.TRANSID) > 0;
+        if (attachments.find(tran.TRANSID) != attachments.end())
+        {
+            for (const auto& entry : attachments.at(tran.TRANSID))
+            {
+                full_tran.ATTACHMENT_DESCRIPTION.Add(entry.DESCRIPTION);
+            }
+        }
+
         m_filteredBalance += transaction_amount;
 
-        if (custom_fields.find(tran.TRANSID) != custom_fields.end()) {
-            const auto& udfcs = custom_fields.at(tran.TRANSID);
+        if (custom_fields_data.find(tran.TRANSID) != custom_fields_data.end()) {
+            const auto& udfcs = custom_fields_data.at(tran.TRANSID);
             for (const auto& udfc : udfcs)
             {
                 if (udfc.FIELDID == udfc01_ref_id) {
                     full_tran.UDFC01 = udfc.CONTENT;
+                    full_tran.UDFC01_Type = custom_field_type.find(udfc.FIELDID) != custom_field_type.end() ? custom_field_type.at(udfc.FIELDID) : -1;
                 }
                 else if (udfc.FIELDID == udfc02_ref_id) {
                     full_tran.UDFC02 = udfc.CONTENT;
+                    full_tran.UDFC02_Type = custom_field_type.find(udfc.FIELDID) != custom_field_type.end() ? custom_field_type.at(udfc.FIELDID) : -1;
                 }
                 else if (udfc.FIELDID == udfc03_ref_id) {
                     full_tran.UDFC03 = udfc.CONTENT;
+                    full_tran.UDFC03_Type = custom_field_type.find(udfc.FIELDID) != custom_field_type.end() ? custom_field_type.at(udfc.FIELDID) : -1;
                 }
                 else if (udfc.FIELDID == udfc04_ref_id) {
                     full_tran.UDFC04 = udfc.CONTENT;
+                    full_tran.UDFC04_Type = custom_field_type.find(udfc.FIELDID) != custom_field_type.end() ? custom_field_type.at(udfc.FIELDID) : -1;
                 }
                 else if (udfc.FIELDID == udfc05_ref_id) {
                     full_tran.UDFC05 = udfc.CONTENT;
+                    full_tran.UDFC05_Type = custom_field_type.find(udfc.FIELDID) != custom_field_type.end() ? custom_field_type.at(udfc.FIELDID) : -1;
                 }
             }
         }
@@ -339,28 +360,28 @@ void mmCheckingPanel::CreateControls()
     itemBoxSizer4->Add(itemButtonsSizer, g_flagsBorder1V);
 
     m_btnNew = new wxButton(itemPanel12, wxID_NEW, _("&New "));
-    m_btnNew->SetToolTip(_("New Transaction"));
+    mmToolTip(m_btnNew, _("New Transaction"));
     itemButtonsSizer->Add(m_btnNew, 0, wxRIGHT, 5);
 
     m_btnEdit = new wxButton(itemPanel12, wxID_EDIT, _("&Edit "));
-    m_btnEdit->SetToolTip(_("Edit selected transaction"));
+    mmToolTip(m_btnEdit, _("Edit selected transaction"));
     itemButtonsSizer->Add(m_btnEdit, 0, wxRIGHT, 5);
     m_btnEdit->Enable(false);
 
     m_btnDelete = new wxButton(itemPanel12, wxID_REMOVE, _("&Delete "));
-    m_btnDelete->SetToolTip(_("Delete selected transaction"));
+    mmToolTip(m_btnDelete, _("Delete selected transaction"));
     itemButtonsSizer->Add(m_btnDelete, 0, wxRIGHT, 5);
     m_btnDelete->Enable(false);
 
     m_btnDuplicate = new wxButton(itemPanel12, wxID_DUPLICATE, _("D&uplicate "));
-    m_btnDuplicate->SetToolTip(_("Duplicate selected transaction"));
+    mmToolTip(m_btnDuplicate, _("Duplicate selected transaction"));
     itemButtonsSizer->Add(m_btnDuplicate, 0, wxRIGHT, 5);
     m_btnDuplicate->Enable(false);
 
     m_btnAttachment = new wxBitmapButton(itemPanel12, wxID_FILE
         , mmBitmap(png::CLIP), wxDefaultPosition
         , wxSize(30, m_btnDuplicate->GetSize().GetY()));
-    m_btnAttachment->SetToolTip(_("Open attachments"));
+    mmToolTip(m_btnAttachment, _("Open attachments"));
     itemButtonsSizer->Add(m_btnAttachment, 0, wxRIGHT, 5);
     m_btnAttachment->Enable(false);
 
@@ -370,7 +391,7 @@ void mmCheckingPanel::CreateControls()
         , wxTE_NOHIDESEL, wxDefaultValidator);
     searchCtrl->SetDescriptiveText(_("Search"));
     itemButtonsSizer->Add(searchCtrl, 0, wxCENTER, 1);
-    searchCtrl->SetToolTip(_("Enter any string to find it in the nearest transaction notes"));
+    mmToolTip(searchCtrl, _("Enter any string to find it in the nearest transaction notes"));
 
     //Infobar-mini
     m_info_panel_mini = new wxStaticText(itemPanel12, wxID_STATIC, "");
@@ -441,21 +462,26 @@ void mmCheckingPanel::updateExtraTransactionData(bool single, bool foreign)
     if (single)
     {
         enableTransactionButtons(true, !foreign, true);
-        int trx_id = m_listCtrlAccount->getSelectedId()[0];
-        const Model_Checking::Data* trx = Model_Checking::instance().get(trx_id);
-        Model_Checking::Full_Data full_tran(*trx);
 
+        long x = 0, y = -1;
+        for (const auto& i : m_listCtrlAccount->m_trans)
+            if (m_listCtrlAccount->GetItemState(x++, wxLIST_STATE_SELECTED) == wxLIST_STATE_SELECTED) {
+                y = x - 1;
+                break;
+            }
+
+        Model_Checking::Full_Data full_tran(m_listCtrlAccount->m_trans[y]);
         wxString miniStr = full_tran.info();
         //Show only first line but full string set as tooltip
         if (miniStr.Find("\n") > 1 && !miniStr.IsEmpty())
         {
             m_info_panel_mini->SetLabelText(miniStr.substr(0, miniStr.Find("\n")) + " ...");
-            m_info_panel_mini->SetToolTip(miniStr);
+            mmToolTip(m_info_panel_mini, miniStr);
         }
         else
         {
             m_info_panel_mini->SetLabelText(miniStr);
-            m_info_panel_mini->SetToolTip(miniStr);
+            mmToolTip(m_info_panel_mini, miniStr);
         }
 
         wxString notesStr = full_tran.NOTES;
@@ -520,7 +546,8 @@ void mmCheckingPanel::updateExtraTransactionData(bool single, bool foreign)
 //----------------------------------------------------------------------------
 void mmCheckingPanel::showTips()
 {
-    m_info_panel->SetLabelText(wxGetTranslation(TIPS[rand() % (sizeof(TIPS) / sizeof(wxString))]));
+    if (Option::instance().getShowMoneyTips()) 
+        m_info_panel->SetLabelText(wxGetTranslation(TIPS[rand() % (sizeof(TIPS) / sizeof(wxString))]));
 }
 //----------------------------------------------------------------------------
 
@@ -633,7 +660,7 @@ void mmCheckingPanel::initFilterSettings()
         }
         break;
     case MENU_VIEW_FILTER_DIALOG:
-        m_bitmapTransFilter->SetToolTip(m_trans_filter_dlg->getDescriptionToolTip());
+        mmToolTip(m_bitmapTransFilter, m_trans_filter_dlg->getDescriptionToolTip());
         m_transFilterActive = true;
         break;
     }
@@ -678,7 +705,7 @@ void mmCheckingPanel::OnViewPopupSelected(wxCommandEvent& event)
 
 void mmCheckingPanel::OnSearchTxtEntered(wxCommandEvent& event)
 {
-    const wxString search_string = event.GetString().Lower();
+    const wxString search_string = event.GetString();
     if (search_string.IsEmpty()) return;
 
     m_listCtrlAccount->doSearchText(search_string);

@@ -1,6 +1,7 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
  Copyright (C) 2017 James Higley
+ Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -169,7 +170,7 @@ wxString mmReportSummaryByDate::getHTMLText()
             }
             hb.endThead();
 
-            for (const auto& account: Model_Account::instance().find(Model_Account::STATUS(Model_Account::CLOSED, NOT_EQUAL)))
+            for (const auto& account: Model_Account::instance().all())
             {
 
                 if (Model_Account::type(account) != Model_Account::INVESTMENT)
@@ -253,7 +254,7 @@ wxString mmReportSummaryByDate::getHTMLText()
                 for (int j = 0; j < sizeof(balancePerDay) / sizeof(*balancePerDay); j++)
                     balancePerDay[j] = 0.0;
 
-                for (const auto& account : Model_Account::instance().find(Model_Account::STATUS(Model_Account::CLOSED, NOT_EQUAL)))
+                for (const auto& account : Model_Account::instance().all())
                 {
                     if (Model_Account::type(account) != Model_Account::INVESTMENT)
                     {
@@ -306,7 +307,7 @@ wxString mmReportSummaryByDate::getHTMLText()
                     {
                         hb.startAltTableRow();
                             hb.addTableCell(year);
-                            hb.addEmptyTableCell(8);
+                            hb.addEmptyTableCell(10);
                         hb.endTableRow();
                     }
                     hb.startTableRow();

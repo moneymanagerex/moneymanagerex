@@ -123,7 +123,7 @@ mmAddAccountTypePage::mmAddAccountTypePage(mmAddAccountWizard *parent)
     itemChoiceType_ = new wxChoice(this, wxID_ANY);
     for (const auto& type: Model_Account::all_type())
         itemChoiceType_->Append(wxGetTranslation(type), new wxStringClientData(type));
-    itemChoiceType_->SetToolTip(_("Specify the type of account to be created."));
+    mmToolTip(itemChoiceType_, _("Specify the type of account to be created."));
     itemChoiceType_->SetSelection(Model_Account::CHECKING);
 
     wxBoxSizer *mainSizer = new wxBoxSizer(wxVERTICAL);

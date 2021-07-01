@@ -92,17 +92,17 @@ void mmBudgetYearDialog::CreateControls()
     wxButton* itemButton7 = new wxButton(this, wxID_ADD
         , _("&Add Year"));
     itemBoxSizer5->Add(itemButton7, 0, wxALIGN_CENTER_VERTICAL);
-    itemButton7->SetToolTip(_("Add a new budget year"));
+    mmToolTip(itemButton7, _("Add a new budget year"));
 
     wxButton* itemBudgetMonth = new wxButton(this, ID_ADD_MONTH
         , _("&Add Month"));
     itemBoxSizer5->Add(itemBudgetMonth, 0, wxALIGN_CENTER_VERTICAL | wxLEFT, 5);
-    itemBudgetMonth->SetToolTip(_("Add a new budget month"));
+    mmToolTip(itemBudgetMonth, _("Add a new budget month"));
 
     wxButton* itemButtonDelete = new wxButton(this, wxID_DELETE
         , _("&Delete "));
     itemBoxSizer5->Add(itemButtonDelete, 0, wxALIGN_CENTER_VERTICAL | wxLEFT, 5);
-    itemButtonDelete->SetToolTip(_("Delete existing budget"));
+    mmToolTip(itemButtonDelete, _("Delete existing budget"));
 
     wxStaticLine* line = new wxStaticLine(this, wxID_STATIC, wxDefaultPosition, wxDefaultSize, wxLI_HORIZONTAL);
     itemBoxSizer2->Add(line, 0, wxGROW | wxALL, 5);

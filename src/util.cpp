@@ -27,6 +27,7 @@ Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
 #include "build.h"
 #include "util.h"
 #include "constants.h"
+#include "option.h"
 #include "platfdep.h"
 #include "paths.h"
 #include "validators.h"
@@ -331,6 +332,11 @@ const wxString mmGetDateForDisplay(const wxString &iso_date, const wxString& dat
     auto it = dateLookup.find(iso_date);
     if (it != dateLookup.end())
         return it->second; // The stored formatted date.
+
+    wxRegEx pattern(R"([0-9]{4}\-[0-9]{2}\-[0-9]{2})");
+    if (!pattern.Matches(iso_date)) {
+        return "";
+    }
 
     // Format date, store it and return it.
     wxString date_str = dateFormat;
@@ -1366,4 +1372,11 @@ const wxColor* bestFontColour(wxColour background)
         , background.GetAsString(wxC2S_HTML_SYNTAX), r, g, b, k);
 
     return (k > 149000) ? wxBLACK : wxWHITE;
+}
+
+// Ideally we would use wxToolTip::Enable() to enable or disable tooltips globally.
+// but this only works on some platforms! 
+void mmToolTip(wxWindow* widget, wxString tip)
+{
+    if (Option::instance().getShowToolTips()) widget->SetToolTip(tip);
 }

@@ -195,6 +195,8 @@ private:
     void OnViewBudgetTransferTotal(wxCommandEvent& WXUNUSED(event));
     void OnViewBudgetCategorySummary(wxCommandEvent& WXUNUSED(event));
     void OnViewIgnoreFutureTransactions(wxCommandEvent& WXUNUSED(event));
+    void OnViewShowToolTips(wxCommandEvent& WXUNUSED(event));
+    void OnViewShowMoneyTips(wxCommandEvent& WXUNUSED(event));
     void OnViewToolbarUpdateUI(wxUpdateUIEvent &event);
     void OnViewLinksUpdateUI(wxUpdateUIEvent &event);
 
@@ -219,6 +221,7 @@ private:
     void OnCustomFieldsManager(wxCommandEvent& event);
     void OnGeneralReportManager(wxCommandEvent& event);
     void OnThemeManager(wxCommandEvent& event);
+    void OnRefreshWebApp(wxCommandEvent& event);
 
     void OnHelp(wxCommandEvent& event);
     void OnShowAppStartDialog(wxCommandEvent& WXUNUSED(event));
@@ -315,6 +318,7 @@ private:
         MENU_ACCTEDIT,
         MENU_ACCTDELETE,
         MENU_TRANSACTIONREPORT,
+        MENU_REFRESH_WEBAPP,
         MENU_VIEW_TOOLBAR,
         MENU_VIEW_LINKS,
         MENU_VIEW_HIDE_SHARE_ACCOUNTS,

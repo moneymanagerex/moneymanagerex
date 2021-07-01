@@ -1274,8 +1274,23 @@ void TransactionListCtrl::DeleteViewedTransactions()
     Model_Checking::instance().ReleaseSavepoint();
 }
 
+void TransactionListCtrl::markItem(long selectedItem)
+{
+    //First of all any items should be unselected
+    long cursel = GetNextItem(-1, wxLIST_NEXT_ALL, wxLIST_STATE_SELECTED);
+    if (cursel != wxNOT_FOUND)
+        SetItemState(cursel, 0, wxLIST_STATE_SELECTED | wxLIST_STATE_FOCUSED);
+
+    //Then finded item will be selected
+    SetItemState(selectedItem, wxLIST_STATE_SELECTED, wxLIST_STATE_SELECTED);
+    EnsureVisible(selectedItem);
+    return;
+}
+
 void TransactionListCtrl::doSearchText(const wxString& value)
 {
+    const wxString pattern = value.Lower().Append("*");
+
     long last = static_cast<long>(GetItemCount() - 1);
     if (m_selected_id.size() > 1) {
 
@@ -1308,15 +1323,7 @@ void TransactionListCtrl::doSearchText(const wxString& value)
                 double to_trans_amount = m_trans.at(selectedItem).TOTRANSAMOUNT;
                 if (v == amount || v == to_trans_amount)
                 {
-                    //First of all any items should be unselected
-                    long cursel = GetNextItem(-1, wxLIST_NEXT_ALL, wxLIST_STATE_SELECTED);
-                    if (cursel != wxNOT_FOUND)
-                        SetItemState(cursel, 0, wxLIST_STATE_SELECTED | wxLIST_STATE_FOCUSED);
-
-                    //Then finded item will be selected
-                    SetItemState(selectedItem, wxLIST_STATE_SELECTED, wxLIST_STATE_SELECTED);
-                    EnsureVisible(selectedItem);
-                    return;
+                    return markItem(selectedItem);
                 }
             }
             catch (std::exception & ex) {
@@ -1325,27 +1332,23 @@ void TransactionListCtrl::doSearchText(const wxString& value)
 
         }
 
-        for (const auto& t : {
-            getItem(selectedItem, COL_NOTES, true)
-            , getItem(selectedItem, COL_NUMBER, true)
-            , getItem(selectedItem, COL_PAYEE_STR, true)
-            , getItem(selectedItem, COL_CATEGORY, true)
-            , getItem(selectedItem, COL_DATE, true)
-            , getItem(selectedItem, COL_WITHDRAWAL, true)
-            , getItem(selectedItem, COL_DEPOSIT, true)})
+        for (const auto& t : { COL_NOTES, COL_NUMBER, COL_PAYEE_STR, COL_CATEGORY, COL_DATE
+            , COL_UDFC01, COL_UDFC02, COL_UDFC03, COL_UDFC04, COL_UDFC05 } )
         {
-
-            if (t.Lower().Matches(value + "*"))
+            const auto test = getItem(selectedItem, t, true).Lower();
+            if (test.empty())
+                continue;
+            if (test.Matches(pattern))
             {
-                //First of all any items should be unselected
-                long cursel = GetNextItem(-1 , wxLIST_NEXT_ALL, wxLIST_STATE_SELECTED);
-                if (cursel != wxNOT_FOUND)
-                    SetItemState(cursel, 0, wxLIST_STATE_SELECTED | wxLIST_STATE_FOCUSED);
+                return markItem(selectedItem);
+            }
+        }
 
-                //Then finded item will be selected
-                SetItemState(selectedItem, wxLIST_STATE_SELECTED, wxLIST_STATE_SELECTED);
-                EnsureVisible(selectedItem);
-                return;
+        for (const auto& entry : m_trans.at(selectedItem).ATTACHMENT_DESCRIPTION)
+        {
+            wxString test = entry.Lower();
+            if (test.Matches(pattern)) {
+                return markItem(selectedItem);
             }
         }
 
@@ -1365,6 +1368,7 @@ const wxString TransactionListCtrl::getItem(long item, long column, bool realenu
     if (item < 0 || item >= static_cast<int>(m_trans.size())) return "";
 
     const Model_Checking::Full_Data& tran = m_trans.at(item);
+    int d = static_cast<int>(Model_CustomField::DATE);
 
     wxString value = wxEmptyString;
     switch (realenum ? column : m_real_columns[column])
@@ -1390,15 +1394,15 @@ const wxString TransactionListCtrl::getItem(long item, long column, bool realenu
             value.Prepend(mmAttachmentManage::GetAttachmentNoteSign());
         return value;
     case TransactionListCtrl::COL_UDFC01:
-        return tran.UDFC01;
+        return tran.UDFC01_Type == d && !tran.UDFC01.empty() ? mmGetDateForDisplay(tran.UDFC01) : tran.UDFC01;
     case TransactionListCtrl::COL_UDFC02:
-        return tran.UDFC02;
+        return tran.UDFC02_Type == d && !tran.UDFC02.empty() ? mmGetDateForDisplay(tran.UDFC02) : tran.UDFC02;
     case TransactionListCtrl::COL_UDFC03:
-        return tran.UDFC03;
+        return tran.UDFC03_Type == d && !tran.UDFC03.empty() ? mmGetDateForDisplay(tran.UDFC03) : tran.UDFC03;
     case TransactionListCtrl::COL_UDFC04:
-        return tran.UDFC04;
+        return tran.UDFC04_Type == d && !tran.UDFC04.empty() ? mmGetDateForDisplay(tran.UDFC04) : tran.UDFC04;
     case TransactionListCtrl::COL_UDFC05:
-        return tran.UDFC05;
+        return tran.UDFC05_Type == d && !tran.UDFC05.empty() ? mmGetDateForDisplay(tran.UDFC05) : tran.UDFC05;
     }
 
     bool is_transfer = Model_Checking::is_transfer(tran.TRANSCODE)

@@ -127,6 +127,12 @@ public:
     void IgnoreFutureTransactions(bool value);
     bool getIgnoreFutureTransactions() const;
 
+    void ShowToolTips(bool value);
+    bool getShowToolTips() const;
+
+    void ShowMoneyTips(bool value);
+    bool getShowMoneyTips() const;
+
     void CurrencyHistoryEnabled(bool value);
     bool getCurrencyHistoryEnabled() const;
 
@@ -146,6 +152,8 @@ private:
     bool m_budgetIncludeTransfers;          //INIDB_BUDGET_INCLUDE_TRANSFERS
     bool m_budgetReportWithSummaries;       //INIDB_BUDGET_SUMMARY_WITHOUT_CATEG
     bool m_ignoreFutureTransactions;        //INIDB_IGNORE_FUTURE_TRANSACTIONS
+    bool m_showToolTips;                    //INIDB_SHOW_TOOLTIPS
+    bool m_showMoneyTips;                   //INIDB_SHOW_MONEYTIPS
 
     int m_transPayeeSelection;
     int m_transCategorySelection;
@@ -194,6 +202,16 @@ inline bool Option::getCurrencyHistoryEnabled() const
 inline bool Option::getIgnoreFutureTransactions() const
 {
     return m_ignoreFutureTransactions;
+}
+
+inline bool Option::getShowToolTips() const
+{
+    return m_showToolTips;
+}
+
+inline bool Option::getShowMoneyTips() const
+{
+    return m_showMoneyTips;
 }
 
 inline int Option::getBudgetDaysOffset() const

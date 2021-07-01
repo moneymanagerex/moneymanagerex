@@ -50,16 +50,9 @@ public:
         wxString PAYEENAME;
         wxString CATEGNAME;
 
-        // Reserved string variables for custom data
-        wxString UDFC01;
-        wxString UDFC02;
-        wxString UDFC03;
-        wxString UDFC04;
-        wxString UDFC05;
-
         double AMOUNT;
         double BALANCE;
-        bool HAS_ATTACHMENT;
+        wxArrayString ATTACHMENT_DESCRIPTION;
         Model_Splittransaction::Data_Set m_splits;
         wxString real_payee_name(int account_id) const;
         bool has_split() const;
@@ -69,6 +62,18 @@ public:
 
         wxString info() const;
         const wxString to_json();
+
+        // Reserved string variables for custom data
+        wxString UDFC01;
+        int UDFC01_Type;
+        wxString UDFC02;
+        int UDFC02_Type;
+        wxString UDFC03;
+        int UDFC03_Type;
+        wxString UDFC04;
+        int UDFC04_Type;
+        wxString UDFC05;
+        int UDFC05_Type;
     };
     typedef std::vector<Full_Data> Full_Data_Set;
 
@@ -179,6 +184,6 @@ public:
 };
 
 inline bool Model_Checking::Full_Data::has_split() const { return !this->m_splits.empty(); }
-inline bool Model_Checking::Full_Data::has_attachment() const { return HAS_ATTACHMENT; }
+inline bool Model_Checking::Full_Data::has_attachment() const { return !ATTACHMENT_DESCRIPTION.empty(); }
 
 #endif // 

@@ -19,6 +19,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 #include "mmcustomdata.h"
 #include "constants.h"
+#include "util.h"
 #include "mmSimpleDialogs.h"
 #include "Model_CustomFieldData.h"
 #include "Model_Attachment.h"
@@ -42,7 +43,7 @@ mmCustomData::mmCustomData(wxDialog* dialog, const wxString& ref_type, int ref_i
 {
     m_dialog = dialog;
     m_fields = Model_CustomField::instance().find(Model_CustomField::DB_Table_CUSTOMFIELD_V1::REFTYPE(m_ref_type));
-    std::sort(m_fields.begin(), m_fields.end(), SorterByDESCRIPTION());
+    std::sort(m_fields.begin(), m_fields.end(), SorterByFIELDID());
     m_data_changed.clear();
 }
 
@@ -99,7 +100,7 @@ bool mmCustomData::FillCustomFields(wxBoxSizer* box_sizer)
         {
             const auto& data = fieldData->CONTENT;
             wxTextCtrl* CustomString = new wxTextCtrl(scrolled_window, controlID, data, wxDefaultPosition, wxDefaultSize);
-            CustomString->SetToolTip(Model_CustomField::getTooltip(field.PROPERTIES));
+            mmToolTip(CustomString, Model_CustomField::getTooltip(field.PROPERTIES));
             if (Model_CustomField::getAutocomplete(field.PROPERTIES))
             {
                 const wxArrayString& values = Model_CustomFieldData::instance().allValue(field.FIELDID);
@@ -130,7 +131,7 @@ bool mmCustomData::FillCustomFields(wxBoxSizer* box_sizer)
 
             wxSpinCtrl* CustomInteger = new wxSpinCtrl(scrolled_window, controlID,
                 wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, -2147483647, 2147483647, value);
-            CustomInteger->SetToolTip(Model_CustomField::getTooltip(field.PROPERTIES));
+            mmToolTip(CustomInteger, Model_CustomField::getTooltip(field.PROPERTIES));
             grid_sizer_custom->Add(CustomInteger, g_flagsExpand);
 
             CustomInteger->Connect(controlID, wxEVT_SPINCTRL, wxCommandEventHandler(mmCustomData::OnIntegerChanged), nullptr, this);
@@ -153,7 +154,7 @@ bool mmCustomData::FillCustomFields(wxBoxSizer* box_sizer)
                 , wxEmptyString, wxDefaultPosition, wxDefaultSize
                 , wxSP_ARROW_KEYS, -2147483647, 2147483647, value, 1 / pow(10, DigitScale));
             CustomDecimal->SetDigits(DigitScale);
-            CustomDecimal->SetToolTip(Model_CustomField::getTooltip(field.PROPERTIES));
+            mmToolTip(CustomDecimal, Model_CustomField::getTooltip(field.PROPERTIES));
             grid_sizer_custom->Add(CustomDecimal, g_flagsExpand);
 
             CustomDecimal->Connect(controlID, wxEVT_SPINCTRLDOUBLE, wxCommandEventHandler(mmCustomData::OnDoubleChanged), nullptr, this);
@@ -173,7 +174,7 @@ bool mmCustomData::FillCustomFields(wxBoxSizer* box_sizer)
                 Description->SetValue(true);
             }
 
-            CustomBoolean->SetToolTip(Model_CustomField::getTooltip(field.PROPERTIES));
+            mmToolTip(CustomBoolean, Model_CustomField::getTooltip(field.PROPERTIES));
             grid_sizer_custom->Add(CustomBoolean, g_flagsExpand);
 
             CustomBoolean->Connect(controlID, wxEVT_CHECKBOX, wxCommandEventHandler(mmCustomData::OnCheckBoxChanged), nullptr, this);
@@ -193,7 +194,7 @@ bool mmCustomData::FillCustomFields(wxBoxSizer* box_sizer)
 
             wxDatePickerCtrl* CustomDate = new wxDatePickerCtrl(scrolled_window, controlID
                 , value, wxDefaultPosition, wxDefaultSize, wxDP_DROPDOWN | wxDP_SHOWCENTURY);
-            CustomDate->SetToolTip(Model_CustomField::getTooltip(field.PROPERTIES));
+            mmToolTip(CustomDate, Model_CustomField::getTooltip(field.PROPERTIES));
             grid_sizer_custom->Add(CustomDate, g_flagsExpand);
 
             CustomDate->Connect(controlID, wxEVT_DATE_CHANGED, wxDateEventHandler(mmCustomData::OnDateChanged), nullptr, this);
@@ -213,7 +214,7 @@ bool mmCustomData::FillCustomFields(wxBoxSizer* box_sizer)
 
             wxTimePickerCtrl* CustomTime = new wxTimePickerCtrl(scrolled_window, controlID
                 , value, wxDefaultPosition, wxDefaultSize, wxDP_DROPDOWN);
-            CustomTime->SetToolTip(Model_CustomField::getTooltip(field.PROPERTIES));
+            mmToolTip(CustomTime, Model_CustomField::getTooltip(field.PROPERTIES));
             grid_sizer_custom->Add(CustomTime, g_flagsExpand);
 
             CustomTime->Connect(controlID, wxEVT_TIME_CHANGED, wxDateEventHandler(mmCustomData::OnTimeChanged), nullptr, this);
@@ -227,7 +228,7 @@ bool mmCustomData::FillCustomFields(wxBoxSizer* box_sizer)
 
             wxChoice* CustomChoice = new wxChoice(scrolled_window, controlID
                 , wxDefaultPosition, wxDefaultSize, Choices);
-            CustomChoice->SetToolTip(Model_CustomField::getTooltip(field.PROPERTIES));
+            mmToolTip(CustomChoice, Model_CustomField::getTooltip(field.PROPERTIES));
             grid_sizer_custom->Add(CustomChoice, g_flagsExpand);
 
             if (Choices.empty()) {
@@ -252,7 +253,7 @@ bool mmCustomData::FillCustomFields(wxBoxSizer* box_sizer)
 
             wxButton* multi_choice_button = new wxButton(scrolled_window, controlID, content
                 , wxDefaultPosition, wxDefaultSize, 0L, wxDefaultValidator, name);
-            multi_choice_button->SetToolTip(Model_CustomField::getTooltip(field.PROPERTIES));
+            mmToolTip(multi_choice_button, Model_CustomField::getTooltip(field.PROPERTIES));
             grid_sizer_custom->Add(multi_choice_button, g_flagsExpand);
 
             if (!content.empty()) {

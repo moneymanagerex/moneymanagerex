@@ -97,7 +97,7 @@ void mmWebAppDialog::CreateControls()
     wxFlexGridSizer* flex_sizer = new wxFlexGridSizer(0, 6, 0, 0);
 
     net_button_ = new wxBitmapButton(this, wxID_EXECUTE, mmBitmap(png::LED_OFF));
-    net_button_->SetToolTip(_("Network status (click to refresh)"));
+    mmToolTip(net_button_, _("Network status (click to refresh)"));
     flex_sizer->Add(net_button_, g_flagsCenter);
 
     wxStaticText* url_label = new wxStaticText(this, wxID_STATIC, _("Url"));
@@ -105,7 +105,7 @@ void mmWebAppDialog::CreateControls()
     url_text_->SetMinSize(wxSize(300, -1));
     url_text_->Enable(false);
     url_text_->SetValue(mmWebApp::getUrl());
-    url_text_->SetToolTip(mmWebApp::getUrl());
+    mmToolTip(url_text_, mmWebApp::getUrl());
 
     wxStaticText* guid_label = new wxStaticText(this, wxID_STATIC, _("GUID"));
     guid_text_ = new wxTextCtrl(this, wxID_FILE, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_READONLY);

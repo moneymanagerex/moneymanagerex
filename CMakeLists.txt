@@ -17,9 +17,9 @@
 # ./resources/mmex.rc
 # ---------------------------------------------------------------------------
 
-set(MMEX_VERSION 1.5.3)
+set(MMEX_VERSION 1.5.4)
 SET(MMEX_VERSION_ALPHA -1)
-SET(MMEX_VERSION_BETA -1)
+SET(MMEX_VERSION_BETA 1)
 SET(MMEX_VERSION_RC -1)
 
 # ---------------------------------------------------------------------------
@@ -262,7 +262,7 @@ endif()
 
 # --------- cmake --grapgviz settings ---------
 file(WRITE "${CMAKE_BINARY_DIR}/CMakeGraphVizOptions.cmake" "
-    set(GRAPHVIZ_GRAPH_NAME \"MMEX build dependency graph\")
+    set(GRAPHVIZ_GRAPH_NAME "MMEX build dependency graph")
     set(GRAPHVIZ_GENERATE_PER_TARGET FALSE)
     set(GRAPHVIZ_GENERATE_DEPENDERS FALSE)
 ")

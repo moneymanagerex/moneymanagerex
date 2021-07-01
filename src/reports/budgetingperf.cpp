@@ -1,6 +1,7 @@
 /*******************************************************
 Copyright (C) 2006-2012 Nikolay Akimov
 Copyright (C) 2017 James Higley
+Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -100,8 +101,18 @@ void mmReportBudgetingPerformance::DisplayRow(const wxString& catName
 
 wxString mmReportBudgetingPerformance::getHTMLText()
 {
-    unsigned short startDay = 1;
-    wxDate::Month startMonth = wxDateTime::Jan;
+
+    int startDay;
+    wxDate::Month startMonth;
+    if (Option::instance().BudgetFinancialYears())
+    {
+        GetFinancialYearValues(startDay, startMonth);
+    } else
+    {
+        startDay = 1;
+        startMonth = wxDateTime::Jan;    
+    }
+
     long startYear;
     int month = -1;
 
@@ -179,7 +190,7 @@ wxString mmReportBudgetingPerformance::getHTMLText()
     }
 
     const wxString& headingStr = wxString::Format(_("Budget Performance for %s"),
-        AdjustYearValues(static_cast<int>(startDay)
+        AdjustYearValues(startDay
             , startMonth, startYear, budget_year)
     );
     mmHTMLBuilder hb;

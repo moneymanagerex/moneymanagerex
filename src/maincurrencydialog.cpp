@@ -122,8 +122,11 @@ void mmMainCurrencyDialog::fillControls()
             if (!currency.CURRENCYNAME.Lower().Matches(m_maskStr) && !currency.CURRENCY_SYMBOL.Lower().Matches(m_maskStr))
                 continue;
         }
-
-        wxString amount = bHistoryEnabled_
+        wxString amount;
+        if (-1 == base_currency_id) // Not yet set
+            amount = _("N/A");
+        else
+            amount = bHistoryEnabled_
             ? Model_Currency::toString(Model_CurrencyHistory::getLastRate(currencyID), nullptr, 4)
             : Model_Currency::toString(currency.BASECONVRATE, nullptr, 4);
         wxVector<wxVariant> data;
@@ -163,14 +166,14 @@ void mmMainCurrencyDialog::CreateControls()
     wxBitmapButton* update_button = new wxBitmapButton(this, wxID_STATIC, mmBitmap(png::CURRATES));
     itemBoxSizer22->Add(update_button, g_flagsH);
     update_button->Connect(wxID_STATIC, wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(mmMainCurrencyDialog::OnOnlineUpdateCurRate), nullptr, this);
-    update_button->SetToolTip(_("Online update currency rate"));
+    mmToolTip(update_button, _("Online update currency rate"));
     itemBoxSizer22->AddSpacer(4);
 
     itemBoxSizer22->Add(new wxStaticText(this, wxID_STATIC, _("Online Update")), g_flagsH);
 
     itemBoxSizer22->AddSpacer(15);
     cbShowAll_ = new wxCheckBox(this, wxID_SELECTALL, _("Show All"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
-    cbShowAll_->SetToolTip(_("Show all even the unused currencies"));
+    mmToolTip(cbShowAll_, _("Show all even the unused currencies"));
     cbShowAll_->Connect(wxID_SELECTALL, wxEVT_COMMAND_CHECKBOX_CLICKED, wxCommandEventHandler(mmMainCurrencyDialog::OnShowHiddenChbClick), nullptr, this);
 
     itemBoxSizer22->Add(cbShowAll_, g_flagsH);
@@ -207,7 +210,7 @@ void mmMainCurrencyDialog::CreateControls()
 
     m_select_btn = new wxButton(buttonsPanel, wxID_SELECTALL, _("&Select"));
     itemBoxSizer9->Add(m_select_btn, wxSizerFlags(g_flagsExpand).Proportion(4));
-    //itemButtonSelect->SetToolTip(_("Select the currently selected currency as the selected currency for the account"));
+    //mmToolTip(itemButtonSelect, _("Select the currently selected currency as the selected currency for the account"));
 
     if (!bEnableSelect_)
         m_select_btn->Disable();
@@ -261,7 +264,7 @@ void mmMainCurrencyDialog::CreateControls()
     valueDatePicker_ = new wxDatePickerCtrl(values_panel, wxID_ANY, wxDefaultDateTime, wxDefaultPosition, wxDefaultSize, wxDP_DROPDOWN | wxDP_SHOWCENTURY);
     valueDatePicker_->SetMinSize(wxSize(120, -1));
     values_sizer->Add(valueDatePicker_, g_flagsH);
-    valueDatePicker_->SetToolTip(_("Specify the date of currency value"));
+    mmToolTip(valueDatePicker_, _("Specify the date of currency value"));
     valueDatePicker_->Disable();
 
     wxStaticText* textBoxLabel = new wxStaticText(values_panel, wxID_STATIC, _("Value"));
@@ -269,7 +272,7 @@ void mmMainCurrencyDialog::CreateControls()
 
     valueTextBox_ = new mmTextCtrl(values_panel, wxID_ANY, wxGetEmptyString(), wxDefaultPosition, wxDefaultSize, wxALIGN_RIGHT | wxTE_PROCESS_ENTER, mmCalcValidator());
     valueTextBox_->SetMinSize(wxSize(120, -1));
-    valueTextBox_->SetToolTip(_("Enter the currency value"));
+    mmToolTip(valueTextBox_, _("Enter the currency value"));
     values_sizer->Add(valueTextBox_, g_flagsH);
     valueTextBox_->Disable();
 
@@ -279,19 +282,19 @@ void mmMainCurrencyDialog::CreateControls()
     buttons_panel->SetSizer(buttons_sizer);
 
     buttonDownloadHistory_ = new wxBitmapButton(buttons_panel, HISTORY_UPDATE, mmBitmap(png::CURRATES));
-    buttonDownloadHistory_->SetToolTip(_("Download Currency Values history"));
+    mmToolTip(buttonDownloadHistory_, _("Download Currency Values history"));
     buttonDownloadHistory_->Disable();
 
     historyButtonAdd_ = new wxButton(buttons_panel, HISTORY_ADD, _("&Add / Update "), wxDefaultPosition, wxSize(-1, buttonDownloadHistory_->GetSize().GetY()));
-    historyButtonAdd_->SetToolTip(_("Add Currency Values to history"));
+    mmToolTip(historyButtonAdd_, _("Add Currency Values to history"));
     historyButtonAdd_->Disable();
 
     historyButtonDelete_ = new wxButton(buttons_panel, HISTORY_DELETE, _("&Delete "), wxDefaultPosition, wxSize(-1, buttonDownloadHistory_->GetSize().GetY()));
-    historyButtonDelete_->SetToolTip(_("Delete selected Currency Values"));
+    mmToolTip(historyButtonDelete_, _("Delete selected Currency Values"));
     historyButtonDelete_->Disable();
 
     buttonDelUnusedHistory_ = new wxBitmapButton(buttons_panel, HISTORY_DELUNUSED, mmBitmap(png::VOID_STAT));
-    buttonDelUnusedHistory_->SetToolTip(_("Delete Currency Values history for unused currencies and days"));
+    mmToolTip(buttonDelUnusedHistory_, _("Delete Currency Values history for unused currencies and days"));
     buttonDelUnusedHistory_->Disable();
 
     buttons_sizer->Add(buttonDownloadHistory_, g_flagsH);

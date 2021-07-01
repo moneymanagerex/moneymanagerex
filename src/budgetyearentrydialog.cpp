@@ -21,6 +21,7 @@
 #include "paths.h"
 #include "constants.h"
 #include <wx/spinctrl.h>
+#include "util.h"
 #include "model/Model_Budgetyear.h"
 #include "model/Model_Budget.h"
 
@@ -108,7 +109,7 @@ void mmBudgetYearEntryDialog::CreateControls()
     itemChoice_ = new wxChoice( this, wxID_ANY 
         , wxDefaultPosition, textYear_->GetSize(), itemYearStrings );
     itemGridSizer2->Add(itemChoice_, 0, wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL, 5);
-    itemChoice_->SetToolTip(_("Specify year to base budget on."));
+    mmToolTip(itemChoice_, _("Specify year to base budget on."));
 
     int index = 1;
     for (const auto& e : Model_Budgetyear::instance().all())

@@ -174,10 +174,10 @@ bool mmDateYearMonth::Create(wxWindow* parent, wxWindowID id)
     wxButton* button12Right = new wxButton(this, wxID_FORWARD, ">>");
     button12Right->SetMinSize(wxSize(y, -1));
 
-    button12Left->SetToolTip(_("Subtract one year"));
-    buttonLeft->SetToolTip(_("Subtract one month"));
-    buttonRight->SetToolTip(_("Add one month"));
-    button12Right->SetToolTip(_("Add one year"));
+    mmToolTip(button12Left, _("Subtract one year"));
+    mmToolTip(buttonLeft, _("Subtract one month"));
+    mmToolTip(buttonRight, _("Add one month"));
+    mmToolTip(button12Right, _("Add one year"));
 
     box_sizer->Add(button12Left);
     box_sizer->Add(buttonLeft);
