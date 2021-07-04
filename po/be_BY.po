@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-06-30 12:59+0300\n"
-"PO-Revision-Date: 2021-07-04 09:50\n"
+"PO-Revision-Date: 2021-07-04 21:18\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -53,7 +53,7 @@ msgstr "Дасылаць ананімныя дадзеныя статыстык�
 
 #: aboutdialog.cpp:246 optionsettingsnet.cpp:116
 msgid "Enable to help us sending anonymous data about MMEX usage."
-msgstr ""
+msgstr "Уключыць, каб дапамагчы нам праз дасыланне ананімнай інфармацыі выкарыстання MMEX."
 
 #: aboutdialog.cpp:253 accountdialog.cpp:306 appstartdialog.cpp:137
 #: assetdialog.cpp:305 attachmentdialog.cpp:120 billsdepositsdialog.cpp:491
@@ -72,60 +72,60 @@ msgstr "&Добра "
 
 #: accountdialog.cpp:111 mmframe.cpp:1478
 msgid "Edit Account"
-msgstr "Рэдагаваць рахунак"
+msgstr "Рэдагаваць Рахунак"
 
 #: accountdialog.cpp:139
 msgid "Account Name:"
-msgstr ""
+msgstr "Назва Рахунка:"
 
 #: accountdialog.cpp:142
 msgid "Enter the Name of the Account. This name can be renamed at any time."
-msgstr ""
+msgstr "Напішыце назву Рахунку. Гэтае імя можа быць змененае ў будь-які час."
 
 #: accountdialog.cpp:145
 msgid "Account Type:"
-msgstr ""
+msgstr "Тып Рахунку:"
 
 #: accountdialog.cpp:152 wizard_newaccount.cpp:126
 msgid "Specify the type of account to be created."
-msgstr ""
+msgstr "Вызначце тып рахунку, што будзе створаны."
 
 #: accountdialog.cpp:156
 msgid "Account Status:"
-msgstr ""
+msgstr "Стан Рахунку:"
 
 #: accountdialog.cpp:161
 msgid "Specify if this account has been closed. Closed accounts are inactive in most calculations, reporting etc."
-msgstr ""
+msgstr "Вызначце, ці быў гэты Рахунак зачынены. Закрытыя рахункі неактыўныя ў большасці разлікаў, справаздачнасці і г.д."
 
 #: accountdialog.cpp:165
 #, c-format
 msgid "Initial Balance: %s"
-msgstr ""
+msgstr "Пачатковы баланс: %s"
 
 #: accountdialog.cpp:169
 msgid "Enter the initial balance in this account."
-msgstr ""
+msgstr "Напішыце пачатковы баланс гэтага рахунка."
 
 #: accountdialog.cpp:171 import_export/univcsvdialog.cpp:1828
 msgid "Currency:"
-msgstr ""
+msgstr "Валюта:"
 
 #: accountdialog.cpp:173 currencydialog.cpp:101
 msgid "Select Currency"
-msgstr ""
+msgstr "Абярыце валюту"
 
 #: accountdialog.cpp:179
 msgid "Specify the currency to be used by this account."
-msgstr ""
+msgstr "Абярыце валюту, што будзе выкарыстаная для гэтага рахунка."
 
 #: accountdialog.cpp:182
 msgid "Favorite Account"
-msgstr ""
+msgstr "Улюбёный рахунак"
 
 #: accountdialog.cpp:184
 msgid "Select whether this is an account that is used often. This is used to filter accounts display view."
-msgstr ""
+msgstr "Выберыце ці часта выкарыстоўваецца гэты рахунак. Гэта выкарыстоўваецца для фільтрацыі рахункаў у спісе."
 
 #: accountdialog.cpp:192 assetdialog.cpp:253 assetspanel.cpp:65
 #: billsdepositsdialog.cpp:626 billsdepositspanel.cpp:140
@@ -136,7 +136,7 @@ msgstr ""
 #: stockdialog.cpp:264 stocks_list.cpp:100 transactionsupdatedialog.cpp:211
 #: transdialog.cpp:578 usertransactionpanel.cpp:206 webappdialog.cpp:154
 msgid "Notes"
-msgstr ""
+msgstr "Нататкі"
 
 #: accountdialog.cpp:197
 msgid "Enter user notes and details about this account."
