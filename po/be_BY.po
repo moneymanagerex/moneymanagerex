@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-06-30 12:59+0300\n"
-"PO-Revision-Date: 2021-07-01 13:39\n"
+"PO-Revision-Date: 2021-07-04 09:50\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -25,31 +25,31 @@ msgstr ""
 
 #: aboutdialog.cpp:55
 msgid "License agreement"
-msgstr ""
+msgstr "Ліцэнзійнае пагадненне"
 
 #: aboutdialog.cpp:187
 msgid "About"
-msgstr ""
+msgstr "Пра Прыкладанне"
 
 #: aboutdialog.cpp:192
 msgid "Authors"
-msgstr ""
+msgstr "Аўтары"
 
 #: aboutdialog.cpp:197
 msgid "Sponsors"
-msgstr ""
+msgstr "Пры падтрымцы"
 
 #: aboutdialog.cpp:202
 msgid "License"
-msgstr ""
+msgstr "Ліцэнзія"
 
 #: aboutdialog.cpp:207
 msgid "Privacy"
-msgstr ""
+msgstr "Канфідэнцыйнасць"
 
 #: aboutdialog.cpp:245 optionsettingsnet.cpp:114
 msgid "Send anonymous statistics usage data"
-msgstr ""
+msgstr "Дасылаць ананімныя дадзеныя статыстыкі выкарыстання"
 
 #: aboutdialog.cpp:246 optionsettingsnet.cpp:116
 msgid "Enable to help us sending anonymous data about MMEX usage."
@@ -68,11 +68,11 @@ msgstr ""
 #: splittransactionsdialog.cpp:172 transactionsupdatedialog.cpp:240
 #: transdialog.cpp:604 wizard_update.cpp:192
 msgid "&OK "
-msgstr ""
+msgstr "&Добра "
 
 #: accountdialog.cpp:111 mmframe.cpp:1478
 msgid "Edit Account"
-msgstr ""
+msgstr "Рэдагаваць рахунак"
 
 #: accountdialog.cpp:139
 msgid "Account Name:"
