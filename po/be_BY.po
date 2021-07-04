@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-06-30 12:59+0300\n"
-"PO-Revision-Date: 2021-07-04 21:18\n"
+"PO-Revision-Date: 2021-07-04 21:26\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -140,21 +140,21 @@ msgstr "Нататкі"
 
 #: accountdialog.cpp:197
 msgid "Enter user notes and details about this account."
-msgstr ""
+msgstr "Напішыце нататкі ды падрабязнасці аб гэтым рахунку."
 
 #: accountdialog.cpp:201 db/DB_Table_Subcategory_V1.h:129
 #: db/DB_Table_Subcategory_V1.h:132 db/DB_Table_Subcategory_V1.h:148
 #: optiondialog.cpp:135
 msgid "Others"
-msgstr ""
+msgstr "Іншыя"
 
 #: accountdialog.cpp:209
 msgid "Card Number:"
-msgstr ""
+msgstr "Нумар карткі:"
 
 #: accountdialog.cpp:209
 msgid "Account Number:"
-msgstr ""
+msgstr "Нумар рахунка:"
 
 #: accountdialog.cpp:211
 msgid "Enter the Account Number associated with this account."
