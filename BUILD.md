@@ -262,7 +262,7 @@ The wxmac stable version with homebrew is still 3.0.5.x, we need a later version
     -DCMAKE_OSX_ARCHITECTURES="arm64;x86_64" \
     -DMACOSX_DEPLOYMENT_TARGET=10.14 \
     --with-macosx-version-min=10.14 ..
-    cmake --build .. --target package
+    cmake --build . --target package
 
 Replace `{PATH-TO-wxWidgets}` with the path to the directory in which you extracted the wxWidgets source in step 2.
 
