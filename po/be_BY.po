@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-06-30 12:59+0300\n"
-"PO-Revision-Date: 2021-07-04 21:26\n"
+"PO-Revision-Date: 2021-07-04 21:50\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -158,55 +158,55 @@ msgstr "Нумар рахунка:"
 
 #: accountdialog.cpp:211
 msgid "Enter the Account Number associated with this account."
-msgstr ""
+msgstr "Напішыце нумар рахунка, што звязаный з гэтым рахункам."
 
 #: accountdialog.cpp:214
 msgid "Held At:"
-msgstr ""
+msgstr "Адчынены у:"
 
 #: accountdialog.cpp:216
 msgid "Enter the name of the financial institution in which the account is held."
-msgstr ""
+msgstr "Напішыце назву фінасавай установы, дзе адчынены гэты рахунак."
 
 #: accountdialog.cpp:219
 msgid "Website:"
-msgstr ""
+msgstr "Вэб-сайт:"
 
 #: accountdialog.cpp:221
 msgid "Enter the URL of the website for the financial institution."
-msgstr ""
+msgstr "Напішыце вэб-сайт фінансавай установы."
 
 #: accountdialog.cpp:224
 msgid "Contact:"
-msgstr ""
+msgstr "Сувязь:"
 
 #: accountdialog.cpp:226
 msgid "Enter any contact information for the financial institution."
-msgstr ""
+msgstr "Напішыце будзь-якую кантактную інфармацыю гэтай фінансавай установы."
 
 #: accountdialog.cpp:229
 msgid "Access Info:"
-msgstr ""
+msgstr "Сакрэты:"
 
 #: accountdialog.cpp:231
 msgid "Enter any login/access information for the financial institution. This is not secure as anyone with access to the mmb file can access it."
-msgstr ""
+msgstr "Напішыце лагін / пароль доступу да рахунка ў фінансавай установе. Дадзеная інфармацыя захоўваецца у адкрытым выглядзе і яе можа прачытаць будзь-хто, калі мае дасяг да файла."
 
 #: accountdialog.cpp:236
 msgid "Statement"
-msgstr ""
+msgstr "Ведамасць"
 
 #: accountdialog.cpp:244
 msgid "Statement:"
-msgstr ""
+msgstr "Ведамасць:"
 
 #: accountdialog.cpp:245
 msgid "Locked"
-msgstr ""
+msgstr "Заблакаваная"
 
 #: accountdialog.cpp:246
 msgid "Enable or disable the transaction Lock"
-msgstr ""
+msgstr "Уключыць або вымкнуць блакоўку транзакцыі"
 
 #: accountdialog.cpp:249
 msgid "Reconciled Date:"
