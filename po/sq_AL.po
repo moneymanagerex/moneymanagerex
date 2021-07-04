@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-06-30 12:59+0300\n"
-"PO-Revision-Date: 2021-06-30 10:08\n"
+"PO-Revision-Date: 2021-07-04 12:07\n"
 "Last-Translator: \n"
 "Language-Team: Albanian\n"
 "MIME-Version: 1.0\n"
@@ -206,7 +206,7 @@ msgstr "Mbyllur"
 
 #: accountdialog.cpp:246
 msgid "Enable or disable the transaction Lock"
-msgstr ""
+msgstr "Aktivizo ose Ç'aktivizo kyçjen e transaksionit"
 
 #: accountdialog.cpp:249
 msgid "Reconciled Date:"
@@ -214,27 +214,27 @@ msgstr "Data Rikoncilimit"
 
 #: accountdialog.cpp:251
 msgid "The date of the transaction lock"
-msgstr ""
+msgstr "Data e Kyçjes se Transaksionit"
 
 #: accountdialog.cpp:254
 msgid "Minimum Bal:"
-msgstr ""
+msgstr "Bilanci minimal:"
 
 #: accountdialog.cpp:256
 msgid "Account balance lower limit. Zero to disable"
-msgstr ""
+msgstr "Kufizo bilancin e llogarisë. Lëro zero, per ta ç'aktivizuar"
 
 #: accountdialog.cpp:261
 msgid "Credit"
-msgstr ""
+msgstr "Kredit"
 
 #: accountdialog.cpp:269
 msgid "Credit Limit:"
-msgstr ""
+msgstr "Caku i kreditit:"
 
 #: accountdialog.cpp:271
 msgid "Credit limit for the Account. Zero to disable"
-msgstr ""
+msgstr "Caku i Kreditit te Llogarisë. Lëre Zero per ç'aktivizuar"
 
 #: accountdialog.cpp:274
 msgid "Interest Rate:"
@@ -242,11 +242,11 @@ msgstr "Kursi i këmbimit:"
 
 #: accountdialog.cpp:278
 msgid "Payment Due Date:"
-msgstr ""
+msgstr "Afati i Pagesës:"
 
 #: accountdialog.cpp:282
 msgid "Minimum Payment:"
-msgstr ""
+msgstr "Pagesa Minimale:"
 
 #: accountdialog.cpp:301
 msgid "Organize attachments of this account"
@@ -273,11 +273,11 @@ msgstr "Vauta"
 
 #: accountdialog.cpp:517
 msgid "Please insert a valid URL"
-msgstr ""
+msgstr "Ju lutem, futni një link te Vlefshëm"
 
 #: accountdialog.cpp:517
 msgid "Invalid URL"
-msgstr ""
+msgstr "Link i Pavlefshëm"
 
 #: accountdialog.h:37 mmframe.cpp:1475 mmframe.cpp:1719
 #: wizard_newaccount.cpp:86 wizard_newaccount.cpp:93 wizard_newaccount.cpp:164
