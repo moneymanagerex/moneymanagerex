@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-06-30 12:59+0300\n"
-"PO-Revision-Date: 2021-07-04 12:18\n"
+"PO-Revision-Date: 2021-07-04 12:28\n"
 "Last-Translator: \n"
 "Language-Team: Albanian\n"
 "MIME-Version: 1.0\n"
@@ -590,11 +590,12 @@ msgstr "Ndryshim në Vlerë: %s %s"
 #: assetspanel.cpp:771
 msgid "This asset does not have its own account\n\n"
 "Multiple transactions for this asset are not recommended."
-msgstr ""
+msgstr "Aseti nuk ka nje llogari të vetën\n"
+"Transaksionet multiple per kete Aset, nuk rekomandohen."
 
 #: assetspanel.cpp:773
 msgid "Asset Management"
-msgstr ""
+msgstr "Menaxhimi i Aseteve"
 
 #: assetspanel.cpp:792
 msgid "Account \t Date\t   Value\n\n"
