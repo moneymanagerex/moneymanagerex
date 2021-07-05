@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-06-30 12:59+0300\n"
-"PO-Revision-Date: 2021-07-01 07:25\n"
+"PO-Revision-Date: 2021-07-05 12:00\n"
 "Last-Translator: \n"
 "Language-Team: Italian\n"
 "MIME-Version: 1.0\n"
@@ -1226,7 +1226,7 @@ msgstr "Elimina Operazione Ricorrente"
 
 #: billsdepositspanel.cpp:297
 msgid "Ente&r"
-msgstr ""
+msgstr "Invi&o"
 
 #: billsdepositspanel.cpp:298
 msgid "Enter Next Recurring Transaction Occurrence"
@@ -1985,8 +1985,8 @@ msgstr "Vuoi svuotare i campi?\n"
 #, c-format
 msgid "%zu occurrence founded and replaced!"
 msgid_plural "%zu occurrences founded and replaced!"
-msgstr[0] "%zu elementi trovati e sostituiti!"
-msgstr[1] ""
+msgstr[0] "%zu evento trovato e sostituito!"
+msgstr[1] "%zu eventi trovati e sostituiti!"
 
 #: customfieldlistdialog.cpp:263
 msgid "&Massive content update "
@@ -4248,7 +4248,7 @@ msgstr "Mostra Suggerimenti"
 
 #: mmframe.cpp:1419 optionsettingsview.cpp:105
 msgid "Show Money Tips"
-msgstr ""
+msgstr "Mostra Suggerimenti Finanziari"
 
 #: mmframe.cpp:1439
 msgid "Toggle &Fullscreen\tShift+F11"
@@ -5515,7 +5515,7 @@ msgstr "nome locale errato"
 #: optionsettingsgeneral.cpp:319
 #, c-format
 msgid "Currency value sample: %s"
-msgstr ""
+msgstr "Esempio di valore della valuta: %s"
 
 #: optionsettingsmisc.cpp:57
 msgid "Stock Quote Web Page"
