@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-06-30 12:59+0300\n"
-"PO-Revision-Date: 2021-07-04 21:50\n"
+"PO-Revision-Date: 2021-07-05 08:59\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -210,11 +210,11 @@ msgstr "Уключыць або вымкнуць блакоўку транзак
 
 #: accountdialog.cpp:249
 msgid "Reconciled Date:"
-msgstr ""
+msgstr "Дата ўзгаднення:"
 
 #: accountdialog.cpp:251
 msgid "The date of the transaction lock"
-msgstr ""
+msgstr "Дата блакавання транзакцыі"
 
 #: accountdialog.cpp:254
 msgid "Minimum Bal:"
