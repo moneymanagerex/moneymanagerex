@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-06-30 12:59+0300\n"
-"PO-Revision-Date: 2021-06-30 10:08\n"
+"PO-Revision-Date: 2021-07-04 12:28\n"
 "Last-Translator: \n"
 "Language-Team: Albanian\n"
 "MIME-Version: 1.0\n"
@@ -206,7 +206,7 @@ msgstr "Mbyllur"
 
 #: accountdialog.cpp:246
 msgid "Enable or disable the transaction Lock"
-msgstr ""
+msgstr "Aktivizo ose Ç'aktivizo kyçjen e transaksionit"
 
 #: accountdialog.cpp:249
 msgid "Reconciled Date:"
@@ -214,27 +214,27 @@ msgstr "Data Rikoncilimit"
 
 #: accountdialog.cpp:251
 msgid "The date of the transaction lock"
-msgstr ""
+msgstr "Data e Kyçjes se Transaksionit"
 
 #: accountdialog.cpp:254
 msgid "Minimum Bal:"
-msgstr ""
+msgstr "Bilanci minimal:"
 
 #: accountdialog.cpp:256
 msgid "Account balance lower limit. Zero to disable"
-msgstr ""
+msgstr "Kufizo bilancin e llogarisë. Lëro zero, per ta ç'aktivizuar"
 
 #: accountdialog.cpp:261
 msgid "Credit"
-msgstr ""
+msgstr "Kredit"
 
 #: accountdialog.cpp:269
 msgid "Credit Limit:"
-msgstr ""
+msgstr "Caku i kreditit:"
 
 #: accountdialog.cpp:271
 msgid "Credit limit for the Account. Zero to disable"
-msgstr ""
+msgstr "Caku i Kreditit te Llogarisë. Lëre Zero per ç'aktivizuar"
 
 #: accountdialog.cpp:274
 msgid "Interest Rate:"
@@ -242,11 +242,11 @@ msgstr "Kursi i këmbimit:"
 
 #: accountdialog.cpp:278
 msgid "Payment Due Date:"
-msgstr ""
+msgstr "Afati i Pagesës:"
 
 #: accountdialog.cpp:282
 msgid "Minimum Payment:"
-msgstr ""
+msgstr "Pagesa Minimale:"
 
 #: accountdialog.cpp:301
 msgid "Organize attachments of this account"
@@ -273,11 +273,11 @@ msgstr "Vauta"
 
 #: accountdialog.cpp:517
 msgid "Please insert a valid URL"
-msgstr ""
+msgstr "Ju lutem, futni një link te Vlefshëm"
 
 #: accountdialog.cpp:517
 msgid "Invalid URL"
-msgstr ""
+msgstr "Link i Pavlefshëm"
 
 #: accountdialog.h:37 mmframe.cpp:1475 mmframe.cpp:1719
 #: wizard_newaccount.cpp:86 wizard_newaccount.cpp:93 wizard_newaccount.cpp:164
@@ -333,7 +333,7 @@ msgstr "&Dil"
 #: appstartdialog.cpp:154
 #, c-format
 msgid "Open the previously opened database : %s"
-msgstr ""
+msgstr "Hap, Bazën e të dhënave , të hapur së fundmi:%s"
 
 #: assetdialog.cpp:61 assetdialog.cpp:410 assetspanel.cpp:467
 msgid "New Asset"
@@ -345,11 +345,11 @@ msgstr "Redakto Asetin"
 
 #: assetdialog.cpp:71 assetdialog.cpp:93 assetspanel.cpp:471
 msgid "Add Asset Transaction"
-msgstr ""
+msgstr "Shto një Transaksion Asetesh"
 
 #: assetdialog.cpp:97
 msgid "Edit Asset Transaction"
-msgstr ""
+msgstr "Redakto Transaksionin e Aseteve"
 
 #: assetdialog.cpp:183
 msgid "Asset Details"
@@ -413,7 +413,7 @@ msgstr "%Norma"
 
 #: assetdialog.cpp:247
 msgid "Enter the rate at which the asset changes its value in percentage per year"
-msgstr ""
+msgstr "Ndrysho normën në të cilën Assetet ndryshojnë në vlerë % për vit"
 
 #: assetdialog.cpp:259
 msgid "Organize attachments of this asset"
@@ -425,11 +425,11 @@ msgstr "Vendos shënimet e shoqëruara me këtë Aset"
 
 #: assetdialog.cpp:268
 msgid "New Transaction Details"
-msgstr ""
+msgstr "Detajet e Reja të Transaksionit"
 
 #: assetdialog.cpp:271 sharetransactiondialog.cpp:288
 msgid "Edit Transaction Details"
-msgstr ""
+msgstr "Redakto Detajet e Transaksionit"
 
 #: assetdialog.cpp:306 constants.cpp:73 sharetransactiondialog.cpp:317
 msgid "&Cancel "
@@ -437,12 +437,13 @@ msgstr "&Anullo"
 
 #: assetdialog.cpp:402 sharetransactiondialog.cpp:425
 msgid "Invalid Transaction"
-msgstr ""
+msgstr "Transaksion i parregullt"
 
 #: assetdialog.cpp:409
 msgid "Asset Account not found.\n\n"
 "Would you want to create one?"
-msgstr ""
+msgstr "Llogaria e Assetit nuk u Gjet\n"
+"Dëshironi të krijoni një të ri?"
 
 #: assetspanel.cpp:59 billsdepositspanel.cpp:126
 #: import_export/qif_export.cpp:587 mmchecking_list.cpp:202
@@ -481,15 +482,15 @@ msgstr "&Aset I Dybluar "
 
 #: assetspanel.cpp:101
 msgid "&Add Asset Transaction"
-msgstr ""
+msgstr "&Shto një Transaksion Asetesh"
 
 #: assetspanel.cpp:102
 msgid "&View Asset Transactions"
-msgstr ""
+msgstr "Shfaq transaksionet e Aseteve"
 
 #: assetspanel.cpp:103
 msgid "&Open Asset Account"
-msgstr ""
+msgstr "&Hapni Llogarinë e Aseteve"
 
 #: assetspanel.cpp:105
 msgid "&Edit Asset"
@@ -536,15 +537,15 @@ msgstr "&I Ri"
 
 #: assetspanel.cpp:470 stockspanel.cpp:133
 msgid "&Add Trans "
-msgstr ""
+msgstr "&Shto Transaksion "
 
 #: assetspanel.cpp:475 stockspanel.cpp:138
 msgid "&View Trans "
-msgstr ""
+msgstr "&Shfaq Transaksionin "
 
 #: assetspanel.cpp:476
 msgid "View Asset Transactions"
-msgstr ""
+msgstr "Shfaq Transaksionet e Asseteve"
 
 #: assetspanel.cpp:480 attachmentdialog.cpp:317 billsdepositspanel.cpp:287
 #: categdialog.cpp:233 customfieldlistdialog.cpp:261 maincurrencydialog.cpp:527
@@ -589,11 +590,12 @@ msgstr "Ndryshim në Vlerë: %s %s"
 #: assetspanel.cpp:771
 msgid "This asset does not have its own account\n\n"
 "Multiple transactions for this asset are not recommended."
-msgstr ""
+msgstr "Aseti nuk ka nje llogari të vetën\n"
+"Transaksionet multiple per kete Aset, nuk rekomandohen."
 
 #: assetspanel.cpp:773
 msgid "Asset Management"
-msgstr ""
+msgstr "Menaxhimi i Aseteve"
 
 #: assetspanel.cpp:792
 msgid "Account \t Date\t   Value\n\n"
