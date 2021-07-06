@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-06-30 12:59+0300\n"
-"PO-Revision-Date: 2021-07-06 08:11\n"
+"PO-Revision-Date: 2021-07-06 09:26\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -282,44 +282,44 @@ msgstr "Наслушная спасылка"
 #: accountdialog.h:37 mmframe.cpp:1475 mmframe.cpp:1719
 #: wizard_newaccount.cpp:86 wizard_newaccount.cpp:93 wizard_newaccount.cpp:164
 msgid "New Account"
-msgstr ""
+msgstr "Новы рахунак"
 
 #: appstartdialog.cpp:100
 msgid "Open Last Opened Database"
-msgstr ""
+msgstr "Адкрыць базу дадзеных з мінулага раза"
 
 #: appstartdialog.cpp:103
 msgid "Create a New Database"
-msgstr ""
+msgstr "Стварыць новую базу дадзеных"
 
 #: appstartdialog.cpp:104
 msgid "Create a new database file to get started"
-msgstr ""
+msgstr "Стварыць новы файл базы дадзеных каб пачаць"
 
 #: appstartdialog.cpp:107
 msgid "Open Existing Database"
-msgstr ""
+msgstr "Адчыніць існуючую базу дадзеных"
 
 #: appstartdialog.cpp:108
 msgid "Open an already created database file with extension (*.mmb)"
-msgstr ""
+msgstr "Адкрыць існуючую базу дадзеных з пашырэннем (*.mmb)"
 
 #: appstartdialog.cpp:111
 msgid "Read Documentation"
-msgstr ""
+msgstr "Чытаць дакументацыю"
 
 #: appstartdialog.cpp:112
 msgid "Read the user manual"
-msgstr ""
+msgstr "Чытаць кіраўніцтва карыстальніка"
 
 #: appstartdialog.cpp:115
 msgid "Visit Website for more information"
-msgstr ""
+msgstr "Наведаць вэб-сайт для дадатковай інфармацыі"
 
 #: appstartdialog.cpp:116
 #, c-format
 msgid "Open the %s website for latest news, updates etc"
-msgstr ""
+msgstr "Адкрыйце сайт %s для апошніх навінаў, абнаўленняў і г.д."
 
 #: appstartdialog.cpp:124 wizard_update.cpp:185
 #, c-format
