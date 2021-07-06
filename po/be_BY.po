@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-06-30 12:59+0300\n"
-"PO-Revision-Date: 2021-07-06 09:40\n"
+"PO-Revision-Date: 2021-07-06 12:57\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -397,19 +397,19 @@ msgstr "Кошт"
 
 #: assetdialog.cpp:226
 msgid "Enter the current value of the asset"
-msgstr ""
+msgstr "Напішыце бягучы кошт актыва"
 
 #: assetdialog.cpp:231
 msgid "Change in Value"
-msgstr ""
+msgstr "Змена кошту"
 
 #: assetdialog.cpp:237
 msgid "Specify if the value of the asset changes over time"
-msgstr ""
+msgstr "Абірайце, калі адбываецца змена кошта актыва з цягам часа"
 
 #: assetdialog.cpp:241
 msgid "% Rate"
-msgstr ""
+msgstr "% змены"
 
 #: assetdialog.cpp:247
 msgid "Enter the rate at which the asset changes its value in percentage per year"
