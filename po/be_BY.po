@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-06-30 12:59+0300\n"
-"PO-Revision-Date: 2021-07-04 21:50\n"
+"PO-Revision-Date: 2021-07-06 08:11\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -210,74 +210,74 @@ msgstr "Уключыць або вымкнуць блакоўку транзак
 
 #: accountdialog.cpp:249
 msgid "Reconciled Date:"
-msgstr ""
+msgstr "Дата ўзгаднення:"
 
 #: accountdialog.cpp:251
 msgid "The date of the transaction lock"
-msgstr ""
+msgstr "Дата блакавання транзакцыі"
 
 #: accountdialog.cpp:254
 msgid "Minimum Bal:"
-msgstr ""
+msgstr "Мін. баланс:"
 
 #: accountdialog.cpp:256
 msgid "Account balance lower limit. Zero to disable"
-msgstr ""
+msgstr "Рэшта на рахунку, ніжняя мяжа. Нуль каб вымкнуць"
 
 #: accountdialog.cpp:261
 msgid "Credit"
-msgstr ""
+msgstr "Крэдыт"
 
 #: accountdialog.cpp:269
 msgid "Credit Limit:"
-msgstr ""
+msgstr "Крэдытны ліміт:"
 
 #: accountdialog.cpp:271
 msgid "Credit limit for the Account. Zero to disable"
-msgstr ""
+msgstr "Крэдытный ліміт рахунка. Нуль каб вымкнуць"
 
 #: accountdialog.cpp:274
 msgid "Interest Rate:"
-msgstr ""
+msgstr "Адсоткавая стаўка:"
 
 #: accountdialog.cpp:278
 msgid "Payment Due Date:"
-msgstr ""
+msgstr "Чарговая дата:"
 
 #: accountdialog.cpp:282
 msgid "Minimum Payment:"
-msgstr ""
+msgstr "Мінімальная аплата:"
 
 #: accountdialog.cpp:301
 msgid "Organize attachments of this account"
-msgstr ""
+msgstr "Кіраваць укладаннямі да рахунка"
 
 #: accountdialog.cpp:423
 msgid "Default Image"
-msgstr ""
+msgstr "Абразок па змаўчанні"
 
 #: accountdialog.cpp:433
 #, c-format
 msgid "Image #%i"
-msgstr ""
+msgstr "Абразок #%i"
 
 #: accountdialog.cpp:504
 msgid "Account Name "
-msgstr ""
+msgstr "Назва Рахунка "
 
 #: accountdialog.cpp:509 import_export/qif_export.cpp:595
 #: import_export/qif_import_gui.cpp:233 optionsettingsgeneral.cpp:116
 #: reports/htmlbuilder.cpp:196
 msgid "Currency"
-msgstr ""
+msgstr "Валюта"
 
 #: accountdialog.cpp:517
 msgid "Please insert a valid URL"
-msgstr ""
+msgstr "Калі ласка, увядзіце слушную спасылку"
 
 #: accountdialog.cpp:517
 msgid "Invalid URL"
-msgstr ""
+msgstr "Наслушная спасылка"
 
 #: accountdialog.h:37 mmframe.cpp:1475 mmframe.cpp:1719
 #: wizard_newaccount.cpp:86 wizard_newaccount.cpp:93 wizard_newaccount.cpp:164
