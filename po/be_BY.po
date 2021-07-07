@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-06-30 12:59+0300\n"
-"PO-Revision-Date: 2021-07-07 11:24\n"
+"PO-Revision-Date: 2021-07-07 11:50\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -417,27 +417,27 @@ msgstr "Увядзіце штогадовае змяненне кошту маё
 
 #: assetdialog.cpp:259
 msgid "Organize attachments of this asset"
-msgstr ""
+msgstr "Кіраваць укладаннямі да маёмасці"
 
 #: assetdialog.cpp:262
 msgid "Enter notes associated with this asset"
-msgstr ""
+msgstr "Напішыце нататкі да маёмасці"
 
 #: assetdialog.cpp:268
 msgid "New Transaction Details"
-msgstr ""
+msgstr "Дэталі новай транзакцыі"
 
 #: assetdialog.cpp:271 sharetransactiondialog.cpp:288
 msgid "Edit Transaction Details"
-msgstr ""
+msgstr "Рэдагаваць дэталі транзакцыі"
 
 #: assetdialog.cpp:306 constants.cpp:73 sharetransactiondialog.cpp:317
 msgid "&Cancel "
-msgstr ""
+msgstr "&Скасаваць "
 
 #: assetdialog.cpp:402 sharetransactiondialog.cpp:425
 msgid "Invalid Transaction"
-msgstr ""
+msgstr "Памылковая транзакцыя"
 
 #: assetdialog.cpp:409
 msgid "Asset Account not found.\n\n"
