@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-06-30 12:59+0300\n"
-"PO-Revision-Date: 2021-07-06 08:11\n"
+"PO-Revision-Date: 2021-07-07 11:50\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -282,89 +282,89 @@ msgstr "Наслушная спасылка"
 #: accountdialog.h:37 mmframe.cpp:1475 mmframe.cpp:1719
 #: wizard_newaccount.cpp:86 wizard_newaccount.cpp:93 wizard_newaccount.cpp:164
 msgid "New Account"
-msgstr ""
+msgstr "Новы рахунак"
 
 #: appstartdialog.cpp:100
 msgid "Open Last Opened Database"
-msgstr ""
+msgstr "Адкрыць базу дадзеных з мінулага раза"
 
 #: appstartdialog.cpp:103
 msgid "Create a New Database"
-msgstr ""
+msgstr "Стварыць новую базу дадзеных"
 
 #: appstartdialog.cpp:104
 msgid "Create a new database file to get started"
-msgstr ""
+msgstr "Стварыць новы файл базы дадзеных каб пачаць"
 
 #: appstartdialog.cpp:107
 msgid "Open Existing Database"
-msgstr ""
+msgstr "Адчыніць існуючую базу дадзеных"
 
 #: appstartdialog.cpp:108
 msgid "Open an already created database file with extension (*.mmb)"
-msgstr ""
+msgstr "Адкрыць існуючую базу дадзеных з пашырэннем (*.mmb)"
 
 #: appstartdialog.cpp:111
 msgid "Read Documentation"
-msgstr ""
+msgstr "Чытаць дакументацыю"
 
 #: appstartdialog.cpp:112
 msgid "Read the user manual"
-msgstr ""
+msgstr "Чытаць кіраўніцтва карыстальніка"
 
 #: appstartdialog.cpp:115
 msgid "Visit Website for more information"
-msgstr ""
+msgstr "Наведаць вэб-сайт для дадатковай інфармацыі"
 
 #: appstartdialog.cpp:116
 #, c-format
 msgid "Open the %s website for latest news, updates etc"
-msgstr ""
+msgstr "Адкрыйце сайт %s для апошніх навінаў, абнаўленняў і г.д."
 
 #: appstartdialog.cpp:124 wizard_update.cpp:185
 #, c-format
 msgid "Show this window next time %s starts"
-msgstr ""
+msgstr "Паказваць гэтае акно падчас запуску %s"
 
 #: appstartdialog.cpp:138
 msgid "&Exit "
-msgstr ""
+msgstr "В&ыйсці "
 
 #: appstartdialog.cpp:154
 #, c-format
 msgid "Open the previously opened database : %s"
-msgstr ""
+msgstr "Адкрыць папярэднюю базу дадзеных: %s"
 
 #: assetdialog.cpp:61 assetdialog.cpp:410 assetspanel.cpp:467
 msgid "New Asset"
-msgstr ""
+msgstr "Унясенне новага актыва"
 
 #: assetdialog.cpp:67 assetspanel.cpp:481
 msgid "Edit Asset"
-msgstr ""
+msgstr "Рэдагаванне актыва"
 
 #: assetdialog.cpp:71 assetdialog.cpp:93 assetspanel.cpp:471
 msgid "Add Asset Transaction"
-msgstr ""
+msgstr "Дадаць транзакцыю для актыва"
 
 #: assetdialog.cpp:97
 msgid "Edit Asset Transaction"
-msgstr ""
+msgstr "Рэдагаваць транзакцыю для актыва"
 
 #: assetdialog.cpp:183
 msgid "Asset Details"
-msgstr ""
+msgstr "Падрабязнасці актыва"
 
 #: assetdialog.cpp:193 assetspanel.cpp:60 customfieldeditdialog.cpp:131
 #: customfieldlistdialog.cpp:53 import_export/qif_import_gui.cpp:231
 #: import_export/qif_import_gui.cpp:244 import_export/qif_import_gui.cpp:254
 #: maincurrencydialog.cpp:75 payeedialog.cpp:64 reports/summarystocks.cpp:190
 msgid "Name"
-msgstr ""
+msgstr "Назва"
 
 #: assetdialog.cpp:198
 msgid "Enter the name of the asset"
-msgstr ""
+msgstr "Напішыце назву актыва"
 
 #: assetdialog.cpp:201 assetspanel.cpp:61 filtertransdialog.cpp:515
 #: import_export/qif_export.cpp:588 import_export/qif_import_gui.cpp:99
@@ -376,68 +376,68 @@ msgstr ""
 #: transactionsupdatedialog.cpp:118 transdialog.cpp:456
 #: usertransactionpanel.cpp:108 webappdialog.cpp:147 wizard_update.cpp:145
 msgid "Date"
-msgstr ""
+msgstr "Дата"
 
 #: assetdialog.cpp:206
 msgid "Specify the date of purchase of asset"
-msgstr ""
+msgstr "Пакажыце дату набыцця актыва"
 
 #: assetdialog.cpp:208
 msgid "Asset Type"
-msgstr ""
+msgstr "Тып актыва"
 
 #: assetdialog.cpp:214
 msgid "Select type of asset"
-msgstr ""
+msgstr "Абярыце тып актыва"
 
 #: assetdialog.cpp:219 import_export/qif_import_gui.cpp:104
 #: maincurrencydialog.cpp:270
 msgid "Value"
-msgstr ""
+msgstr "Кошт"
 
 #: assetdialog.cpp:226
 msgid "Enter the current value of the asset"
-msgstr ""
+msgstr "Напішыце бягучы кошт актыва"
 
 #: assetdialog.cpp:231
 msgid "Change in Value"
-msgstr ""
+msgstr "Змена кошту"
 
 #: assetdialog.cpp:237
 msgid "Specify if the value of the asset changes over time"
-msgstr ""
+msgstr "Абірайце, калі адбываецца змена кошта актыва з цягам часа"
 
 #: assetdialog.cpp:241
 msgid "% Rate"
-msgstr ""
+msgstr "% змены"
 
 #: assetdialog.cpp:247
 msgid "Enter the rate at which the asset changes its value in percentage per year"
-msgstr ""
+msgstr "Увядзіце штогадовае змяненне кошту маёмасці ў адсотках"
 
 #: assetdialog.cpp:259
 msgid "Organize attachments of this asset"
-msgstr ""
+msgstr "Кіраваць укладаннямі да маёмасці"
 
 #: assetdialog.cpp:262
 msgid "Enter notes associated with this asset"
-msgstr ""
+msgstr "Напішыце нататкі да маёмасці"
 
 #: assetdialog.cpp:268
 msgid "New Transaction Details"
-msgstr ""
+msgstr "Дэталі новай транзакцыі"
 
 #: assetdialog.cpp:271 sharetransactiondialog.cpp:288
 msgid "Edit Transaction Details"
-msgstr ""
+msgstr "Рэдагаваць дэталі транзакцыі"
 
 #: assetdialog.cpp:306 constants.cpp:73 sharetransactiondialog.cpp:317
 msgid "&Cancel "
-msgstr ""
+msgstr "&Скасаваць "
 
 #: assetdialog.cpp:402 sharetransactiondialog.cpp:425
 msgid "Invalid Transaction"
-msgstr ""
+msgstr "Памылковая транзакцыя"
 
 #: assetdialog.cpp:409
 msgid "Asset Account not found.\n\n"
