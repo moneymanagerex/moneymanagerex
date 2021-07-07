@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-06-30 12:59+0300\n"
-"PO-Revision-Date: 2021-07-01 04:22\n"
+"PO-Revision-Date: 2021-07-07 06:45\n"
 "Last-Translator: \n"
 "Language-Team: Hebrew\n"
 "MIME-Version: 1.0\n"
@@ -616,7 +616,7 @@ msgstr "לא הוגדרה ספרית צרופות."
 
 #: attachmentdialog.cpp:65
 msgid "Please set it in Tools -> Options -> Attachments"
-msgstr "ניתן להגדיר ב: כלים->אפשרויות->צרופות"
+msgstr "נא להגדיר ב: כלים -> אפשרויות -> צרופות"
 
 #: attachmentdialog.cpp:66
 msgid "Attachment folder not defined"
@@ -983,7 +983,7 @@ msgstr "פיצול"
 
 #: billsdepositsdialog.cpp:603 transdialog.cpp:1297
 msgid "Use split Categories"
-msgstr "נא להשתמש בפיצול סוגי-אב"
+msgstr "נא להשתמש בפיצול סוג־אב"
 
 #: billsdepositsdialog.cpp:609 billsdepositspanel.cpp:132
 #: budgetingpanel.cpp:298 filtertransdialog.cpp:250 filtertransdialog.cpp:995
@@ -1130,7 +1130,7 @@ msgstr "בחירת סוג-אב עבור תנועה זו"
 #: billsdepositsdialog.cpp:1444 categdialog.cpp:119
 #: import_export/qif_export.cpp:137 mmframereport.cpp:134 transdialog.cpp:391
 msgid "Categories"
-msgstr "סוגי-אב"
+msgstr "סוג־אב"
 
 #: billsdepositsdialog.cpp:1479 transdialog.cpp:1332
 msgid "Clear color"
@@ -1369,23 +1369,23 @@ msgstr "הזנת הסכום שתוקצב לסוג-אב זה."
 
 #: budgetingpanel.cpp:50
 msgid "View All Budget Categories"
-msgstr "מצג כלל סוגי-אב התקציב"
+msgstr "מצג כלל סוג־אב התקציב"
 
 #: budgetingpanel.cpp:51
 msgid "View Non-Zero Budget Categories"
-msgstr "הסתרת סוגי-אב תקציב בסכום אפס"
+msgstr "הסתרת סוג־אב תקציב בסכום אפס"
 
 #: budgetingpanel.cpp:52
 msgid "View Planned Budget Categories"
-msgstr "הצגת סוגי-אב תכנון תקציב"
+msgstr "הצגת סוג־אב תכנון תקציב"
 
 #: budgetingpanel.cpp:53
 msgid "View Income Budget Categories"
-msgstr "הצגת סוגי-אב תקציב הכנסות"
+msgstr "הצגת סוג־אב תקציב הכנסות"
 
 #: budgetingpanel.cpp:54
 msgid "View Expense Budget Categories"
-msgstr "הצגת סוגי-אב תקציב הוצאות"
+msgstr "הצגת סוג־אב תקציב הוצאות"
 
 #: budgetingpanel.cpp:55
 msgid "View Budget Category Summary"
@@ -1520,7 +1520,7 @@ msgstr "שנת תקציב קיימת"
 
 #: categdialog.cpp:91 mmframe.cpp:1503 mmframe.cpp:1724
 msgid "Organize Categories"
-msgstr "ניהול סוגי-אב"
+msgstr "ניהול סוג־אב"
 
 #: categdialog.cpp:190 mmframe.cpp:1516
 msgid "Reassign all categories to another category"
@@ -1578,11 +1578,11 @@ msgstr "סוג-אב בשם זהה קיים כבר"
 msgid "Tip: If category added now, check bottom of list.\n"
 "Category will be in sorted order next time dialog appears"
 msgstr "עצה: סוג-אב שנוסף כעת, הוא ימצא בתחתית הרשימה.\n"
-"סוגי-אב ימוינו מחדש בפעם הבאה שתופיע תיבת דו-שיח"
+"סוג־אב ימוינו מחדש בפעם הבאה שתופיע תיבת דו-שיח"
 
 #: categdialog.cpp:273 categdialog.cpp:297 categdialog.cpp:315
 msgid "Organise Categories: Adding Error"
-msgstr "ניהול סוגי-אב: הוספת שגיאה"
+msgstr "ניהול סוג־אב: הוספת שגיאה"
 
 #: categdialog.cpp:296 categdialog.cpp:523
 msgid "Sub Category with same name exists"
@@ -1614,11 +1614,11 @@ msgstr "עצה: ניתן לשנות את תת סוג-אב בכל התנועות 
 
 #: categdialog.cpp:329
 msgid "Tools -> Relocation of -> Categories"
-msgstr "כלים -> מיקום מחדש -> סוגי-אב"
+msgstr "כלים -> מיקום מחדש -> סוג־אב"
 
 #: categdialog.cpp:331
 msgid "Organise Categories: Delete Error"
-msgstr "ניהול סוגי-אב: מחיקת שגיאה"
+msgstr "ניהול סוג־אב: מחיקת שגיאה"
 
 #: categdialog.cpp:435
 msgid "Select an unused category to delete."
@@ -1634,7 +1634,7 @@ msgstr "מחיקת סוג-אב קיים."
 
 #: categdialog.cpp:472
 msgid "Subcategories must be deleted before."
-msgstr "יש למחוק תת סוגי-אב תחילה."
+msgstr "יש למחוק תת סוג־אב תחילה."
 
 #: categdialog.cpp:488
 #, c-format
@@ -1647,7 +1647,7 @@ msgstr "עריכת סוג-אב"
 
 #: categdialog.cpp:507 categdialog.cpp:524
 msgid "Organise Categories: Editing Error"
-msgstr "ניהול סוגי-אב: שגיאת עריכה"
+msgstr "ניהול סוג־אב: שגיאת עריכה"
 
 #: categdialog.cpp:600 mmframe.cpp:3260
 msgid "Category Relocation Completed."
@@ -2379,7 +2379,7 @@ msgstr "כולל דומה"
 
 #: filtertransdialog.cpp:265
 msgid "Include all subcategories for the selected category."
-msgstr "הכללת כל תת סוגי-אב לסוג-אב שבחר."
+msgstr "הכללת כל תת סוג־אב לסוג-אב שבחר."
 
 #: filtertransdialog.cpp:291 import_export/univcsvdialog.cpp:113
 #: mmchecking_list.cpp:219 model/Model_Billsdeposits.cpp:32
@@ -2837,7 +2837,7 @@ msgstr "ערך שדה 'עד תאריך 'קטן מערך שדה 'מתאריך'"
 
 #: import_export/qif_export.cpp:441
 msgid "Categories exported"
-msgstr "סוגי-אב יוצאו"
+msgstr "סוג־אב יוצאו"
 
 #: import_export/qif_export.cpp:462 import_export/qif_import_gui.cpp:356
 #: import_export/qif_import_gui.cpp:807
@@ -2970,7 +2970,7 @@ msgstr "מייבא מוטבים"
 
 #: import_export/qif_import_gui.cpp:819
 msgid "Importing Categories"
-msgstr "ייבוא סוגי-אב"
+msgstr "ייבוא סוג־אב"
 
 #: import_export/qif_import_gui.cpp:836
 #, c-format
@@ -3332,7 +3332,7 @@ msgstr "כל הקבצים"
 
 #: import_export/univcsvdialog.cpp:1837
 msgid "Please, type the word indicating positive values in your CSV file, e.g. 'debit'"
-msgstr "נא להזין את המילה המציינת סימן חיובי בקובץ ה CSV, כלומר, 'debit'"
+msgstr "נא להזין את המילה המציינת סימן חיובי בקובץ ה־CSV, כלומר, 'debit'"
 
 #: import_export/univcsvdialog.cpp:1837
 msgid "Enter a value"
@@ -3516,7 +3516,7 @@ msgstr "ניתן להשתמש בלחצן זה לבחירת סוג-אב."
 msgid "Please use this button for category selection\n"
 "or use the 'Split' checkbox for multiple categories."
 msgstr "ניתן להשתמש בלחצן זה לבחירת סוג-אב\n"
-"או בתיבת הסימון 'פיצול' לבחירת מספר סוגי-אב."
+"או בתיבת הסימון 'פיצול' לבחירת מספר סוג־אב."
 
 #: mmSimpleDialogs.cpp:248
 msgid "Invalid Category"
@@ -3616,7 +3616,7 @@ msgstr "עצה: כדי לסמן תנועה כמותאמת, פשוט יש לבח�
 
 #: mmTips.h:28
 msgid "Tip: To mark a transaction as requiring followup, just select the transaction and hit the 'f' or 'F' key."
-msgstr "עצה: על מנת לסמן תנועה 'למעקב', יש לבחור את התנועה ולהקhש על מקש ה 'f' או 'F' במקלדת."
+msgstr "עצה: על מנת לסמן תנועה 'למעקב', יש לבחור את התנועה ולהקhש על מקש ה־'f' או 'F' במקלדת."
 
 #: mmTips.h:29
 msgid "Tip: MMEX supports printing of all reports that can be viewed. The print options are available under the menu, File->Print."
@@ -3636,11 +3636,11 @@ msgstr "עצה: נא להגדיר שערי מט\"ח למטבעות, במידה �
 
 #: mmTips.h:34
 msgid "Organize Categories Dialog Tip: Pressing the h key will cycle through all categories starting with the letter h"
-msgstr "עצה לתיבת דו-שיח ניהול סוגי-אב: לחיצה על המקש 'י', תגלול את כל סוגי-האב החל מהאות 'י'"
+msgstr "עצה לתיבת דו-שיח ניהול סוג־אב: לחיצה על המקש 'י', תגלול את כל סוגי-האב החל מהאות 'י'"
 
 #: mmTips.h:35
 msgid "Organize Categories Dialog Tip: Pressing 2 key combination will cycle through all categories starting with that key combination. Example: Pressing ho will select Homeneeds, Home, House Tax, etc..."
-msgstr "עצה לתיבת דו-שיח ניהול סוגי-אב: הקשה על צרוף של שתי אותיות בו זמנית תציב את הסמן על סוב-האב שמתחיל באותיות אלו. לדוגמה: הקשה על 'ד' ו- 'י' בו זמנית יציבו את הסמן על סוג-אב 'דיור', וכו'..."
+msgstr "עצה לתיבת דו-שיח ניהול סוג־אב: הקשה על צרוף של שתי אותיות בו זמנית תציב את הסמן על סוב-האב שמתחיל באותיות אלו. לדוגמה: הקשה על 'ד' ו- 'י' בו זמנית יציבו את הסמן על סוג-אב 'דיור', וכו'..."
 
 #: mmTips.h:37
 msgid "Tip to get out of debt: Pay yourself 10 percentage first. Put this into an account that is hard to touch. Make sure it is a chore to get the money out (you have to drive to the bank), so you will only tap it consciously and for major expenses."
@@ -4177,7 +4177,7 @@ msgstr "יצוא ל CAV"
 
 #: mmframe.cpp:1380
 msgid "Export to fixed CSV"
-msgstr "יצוא ל CSV קבוע"
+msgstr "יצוא ל־CSV קבוע"
 
 #: mmframe.cpp:1381
 msgid "Export to XML"
@@ -4185,7 +4185,7 @@ msgstr "יצוא ל XML"
 
 #: mmframe.cpp:1383
 msgid "Export to JSON"
-msgstr "יצוא ל JSON"
+msgstr "יצוא ל־JSON"
 
 #: mmframe.cpp:1384
 msgid "&HTML Files..."
@@ -5296,7 +5296,7 @@ msgstr "התבנית ריקה"
 msgid "The SQL script:\n"
 "%s \n"
 "will modify database! aborted!"
-msgstr "תסריט ה SQL:\n"
+msgstr "תסריט ה־SQL:\n"
 "% s\n"
 "ישנה את מסד הנתונים! נטישה!"
 
@@ -5659,7 +5659,7 @@ msgstr "GUID"
 
 #: optionsettingsnet.cpp:76
 msgid "Specify the Web App GUID"
-msgstr "נא להגדיר את ה GUID של יישומון הרשת"
+msgstr "נא להגדיר את ה־GUID של יישומון הרשת"
 
 #: optionsettingsnet.cpp:79
 msgid "More information about WebApp"
@@ -5671,7 +5671,7 @@ msgstr "הגדרות פרוקסי"
 
 #: optionsettingsnet.cpp:91
 msgid "Specify the proxy IP address"
-msgstr "נא להגדיר את כתובת ה IP של המתווך"
+msgstr "נא להגדיר את כתובת ה־IP של המתווך"
 
 #: optionsettingsnet.cpp:97
 msgid "Specify proxy port number"
@@ -5875,7 +5875,7 @@ msgstr "תיבת דו-שיח העברת סוג-אב"
 
 #: relocatecategorydialog.cpp:86
 msgid "Relocate source category to the destination category"
-msgstr "העברת כל סוגי-אב המקור לסוגי-אב היעד"
+msgstr "העברת כל סוג־אב המקור לסוג־אב היעד"
 
 #: relocatecategorydialog.cpp:89
 msgid "Select Source Category"
@@ -6068,7 +6068,7 @@ msgstr "הכללת הצעדים הנדרשים לשחזור התקלה, צרוף
 #: reports/bugreport.h:82
 #, c-format
 msgid "Before click the following link, be sure that you have already signed in to the <a href='%s'>GitHub</a>."
-msgstr "לפני הקשה על הקישור הבא, נא לוודא כי הנכם מחוברים כבר ל <a href='%s'>גיטהאב</a>."
+msgstr "לפני הקשה על הקישור הבא, נא לוודא כי הנכם מחוברים כבר ל־<a href='%s'>גיטהאב</a>."
 
 #: reports/bugreport.h:84
 #, c-format
@@ -6083,10 +6083,10 @@ msgstr "השלמת השלבים הבאים לפני יצירת תקלה חדשה
 #, c-format
 msgid "Cash Flow Forecast for %i Year Ahead"
 msgid_plural "Cash Flow Forecast for %i Years Ahead"
-msgstr[0] "תחזית תזרים מזומנים ל i% שנה"
-msgstr[1] "תחזית תזרים מזומנים ל %i שנים"
-msgstr[2] "תחזית תזרים מזומנים ל %i שנים"
-msgstr[3] "תחזית תזרים מזומנים ל %i שנים"
+msgstr[0] "תחזית תזרים מזומנים ל־i% שנה"
+msgstr[1] "תחזית תזרים מזומנים ל־%i שנים"
+msgstr[2] "תחזית תזרים מזומנים ל־%i שנים"
+msgstr[3] "תחזית תזרים מזומנים ל־%i שנים"
 
 #: reports/cashflow.cpp:251 reports/categexp.cpp:375
 #: reports/incexpenses.cpp:211 reports/incexpenses.cpp:247
@@ -7050,7 +7050,7 @@ msgstr "לא ניתן להתחבר ליישומון מרשתת:"
 
 #: webapp.cpp:119
 msgid "please check settings and / or internet connection."
-msgstr "נא לבדוק את הגדרות ו / או חיבור למרשתת."
+msgstr "נא לבדוק את הגדרות ו־/ או חיבור למרשתת."
 
 #: webapp.cpp:121
 msgid "WebApp connection error"
