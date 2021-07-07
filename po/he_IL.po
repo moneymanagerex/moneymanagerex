@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-06-30 12:59+0300\n"
-"PO-Revision-Date: 2021-07-07 07:11\n"
+"PO-Revision-Date: 2021-07-07 07:22\n"
 "Last-Translator: \n"
 "Language-Team: Hebrew\n"
 "MIME-Version: 1.0\n"
@@ -3656,7 +3656,7 @@ msgstr "עצה ליציאה מחובות: חשוב להימנע מצבירת ח�
 
 #: mmTips.h:40
 msgid "Tip to get out of debt: Create a realistic budget for your expenses."
-msgstr "עצה ליציאה מחובות: חשוב ליצור תקציב הוצאות ריאלי."
+msgstr "עצה ליציאה מחובות: חשוב ליצור תקציב הוצאות מְצִיאוּתִי."
 
 #: mmTips.h:41
 msgid "Tip to get out of debt: Spend less than you earn."
@@ -3664,7 +3664,7 @@ msgstr "עצה ליציאה מחובות: חשוב להוציא פחות ממה 
 
 #: mmTips.h:42
 msgid "Tip to get out of debt: Pay more than the minimum."
-msgstr "עצה ליציאה מחובות: כדאי לפרוע יותר מהמינימום הנדרש."
+msgstr "עצה ליציאה מחובות: כדאי לפרוע יותר מהסכום המזערי הנדרש."
 
 #: mmTips.h:43
 msgid "Before going to a shop and buy something: take the time making a list of what you really need. In the shop buy what is in your list."
@@ -5627,11 +5627,11 @@ msgstr "ביציאה מ- MMEX ובמידה ונעשו שינויים במסד ה
 
 #: optionsettingsmisc.cpp:179
 msgid "Specify max number of backup files"
-msgstr "נא להגדיר את מספר מקסימלי של קובצי גיבוי"
+msgstr "נא להגדיר מספר ממירבי של קובצי גיבוי"
 
 #: optionsettingsmisc.cpp:182
 msgid "Max Files"
-msgstr "מקסימום קבצים"
+msgstr "מספר קבצים מירבי"
 
 #: optionsettingsmisc.cpp:189
 msgid "CSV Settings"
@@ -6532,7 +6532,7 @@ msgstr "10 שנים"
 
 #: stockdialog.cpp:722
 msgid "Max"
-msgstr "מקסימום"
+msgstr "מירבי"
 
 #: stockdialog.cpp:728
 msgid "Specify type frequency of stock history"
