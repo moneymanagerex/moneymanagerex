@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-06-30 12:59+0300\n"
-"PO-Revision-Date: 2021-07-07 11:50\n"
+"PO-Revision-Date: 2021-07-09 15:10\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -442,13 +442,14 @@ msgstr "Памылковая транзакцыя"
 #: assetdialog.cpp:409
 msgid "Asset Account not found.\n\n"
 "Would you want to create one?"
-msgstr ""
+msgstr "Рахунак маёмасці ня знойдзены.\n\n"
+"Хочаце стварыць яго?"
 
 #: assetspanel.cpp:59 billsdepositspanel.cpp:126
 #: import_export/qif_export.cpp:587 mmchecking_list.cpp:202
 #: reports/transactions.cpp:77 stocks_list.cpp:88
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #: assetspanel.cpp:62 billsdepositsdialog.cpp:554 billsdepositspanel.cpp:133
 #: customfieldlistdialog.cpp:54 filtertransdialog.cpp:285
@@ -460,57 +461,57 @@ msgstr ""
 #: transactionsupdatedialog.cpp:145 transdialog.cpp:499
 #: usertransactionpanel.cpp:138 webappdialog.cpp:150
 msgid "Type"
-msgstr ""
+msgstr "Тып"
 
 #: assetspanel.cpp:63 reports/summarystocks.cpp:194
 msgid "Initial Value"
-msgstr ""
+msgstr "Пачатковае значэнне"
 
 #: assetspanel.cpp:64 reports/summarystocks.cpp:158
 #: reports/summarystocks.cpp:198 stockdialog.cpp:259
 msgid "Current Value"
-msgstr ""
+msgstr "Бягучае значэнне"
 
 #: assetspanel.cpp:97
 msgid "&New Asset"
-msgstr ""
+msgstr "&Новы актыў"
 
 #: assetspanel.cpp:99
 msgid "D&uplicate Asset"
-msgstr ""
+msgstr "Дубляваць актыў"
 
 #: assetspanel.cpp:101
 msgid "&Add Asset Transaction"
-msgstr ""
+msgstr "&Дадаць транзакцыю для актыва"
 
 #: assetspanel.cpp:102
 msgid "&View Asset Transactions"
-msgstr ""
+msgstr "&Усе транзакцыі для актыва"
 
 #: assetspanel.cpp:103
 msgid "&Open Asset Account"
-msgstr ""
+msgstr "Адчыніць рахунак актыва"
 
 #: assetspanel.cpp:105
 msgid "&Edit Asset"
-msgstr ""
+msgstr "&Рэдагаванне актыва"
 
 #: assetspanel.cpp:106
 msgid "&Delete Asset"
-msgstr ""
+msgstr "В&ыдаленне актыва"
 
 #: assetspanel.cpp:108 billsdepositspanel.cpp:420 mmchecking_list.cpp:379
 #: mmframe.cpp:1257 payeedialog.cpp:382 stocks_list.cpp:145
 msgid "&Organize Attachments"
-msgstr ""
+msgstr "Рэдактар далучэнняў"
 
 #: assetspanel.cpp:200
 msgid "Do you really want to delete the Asset?"
-msgstr ""
+msgstr "Сапраўды жадаеце выдаліць Актыў?"
 
 #: assetspanel.cpp:201
 msgid "Confirm Asset Deletion"
-msgstr ""
+msgstr "Пацверджанне выдалення актыва"
 
 #: assetspanel.cpp:385
 msgid "MMEX allows you to track fixed assets like cars, houses, land and others. Each asset can have its value appreciate by a certain rate per year, depreciate by a certain rate per year, or not change in value. The total assets are added to your total financial worth."
