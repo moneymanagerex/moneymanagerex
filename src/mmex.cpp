@@ -59,8 +59,8 @@ mmGUIApp::mmGUIApp() : m_frame(nullptr)
 , m_optParam2(wxEmptyString)
 , m_optParamSilent(false)
 , m_lang(wxLANGUAGE_UNKNOWN)
+, m_locale(wxLANGUAGE_DEFAULT)
 {
-    wxLocale(wxLANGUAGE_ENGLISH);
 #if wxUSE_ON_FATAL_EXCEPTION
     // catch fatal exceptions
     wxHandleFatalExceptions(true);

@@ -60,7 +60,7 @@ private:
     bool OSXOnShouldTerminate(); // called when OSX app is closed from dock
 #endif
     wxLanguage m_lang; // GUI translation language displayed
-
+    wxLocale m_locale;
 };
 
 inline wxSQLite3Database* mmGUIApp::GetSettingDB() const { return m_setting_db; }
