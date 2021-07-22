@@ -661,8 +661,8 @@ bool mmTransDialog::ValidateData()
         if (!payee)
         {
             wxMessageDialog msgDlg( this
-                , wxString::Format(_("Do you want to add new payee: \n%s?"), payee_name)
-                , _("Confirm to add new payee")
+                , wxString::Format(_("You have not used this payee name before. Is the name correct?\n%s"), payee_name)
+                , _("Confirm payee name")
                 , wxYES_NO | wxYES_DEFAULT | wxICON_WARNING);
             if (Option::instance().TransCategorySelection() == Option::UNUSED || msgDlg.ShowModal() == wxID_YES)
             {
