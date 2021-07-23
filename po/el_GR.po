@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-07-23 16:00+0300\n"
-"PO-Revision-Date: 2021-07-23 13:05\n"
+"PO-Revision-Date: 2021-07-23 13:39\n"
 "Last-Translator: \n"
 "Language-Team: Greek\n"
 "MIME-Version: 1.0\n"
@@ -2403,11 +2403,11 @@ msgstr "Εύρος Ποσότητας"
 
 #: filtertransdialog.cpp:349 filtertransdialog.cpp:1081
 msgid "Color"
-msgstr ""
+msgstr "Χρώμα"
 
 #: filtertransdialog.cpp:353
 msgid "Select the Color"
-msgstr ""
+msgstr "Επιλέξτε χρώμα"
 
 #: filtertransdialog.cpp:363
 msgid "Settings"
@@ -2479,7 +2479,7 @@ msgstr "Επιλέξτε λογαριασμούς"
 
 #: filtertransdialog.cpp:1487
 msgid "Not colored"
-msgstr ""
+msgstr "Μη χρωματισμένο"
 
 #: general_report_manager.cpp:247 general_report_manager.cpp:663
 msgid "General Reports Manager"
@@ -6718,11 +6718,12 @@ msgstr "Προσθήκη"
 #, c-format
 msgid "You have not used this payee name before. Is the name correct?\n"
 "%s"
-msgstr ""
+msgstr "Δεν έχετε χρησιμοποιήσει αυτό το όνομα δικαιούχου πριν. Είναι το όνομα σωστό?\n"
+"%s"
 
 #: transactionsupdatedialog.cpp:326 transdialog.cpp:665
 msgid "Confirm payee name"
-msgstr ""
+msgstr "Επιβεβαίωση ονόματος δικαιούχου"
 
 #: transdialog.cpp:180
 msgid "Duplicate Transaction"
