@@ -91,6 +91,7 @@ private:
     bool getPayeeCheckBox();
     bool getNumberCheckBox();
     bool getNotesCheckBox();
+    bool getColourCheckBox();
     void setPresettings(const wxString& view);
     void clearSettings();
 
@@ -121,6 +122,8 @@ private:
     void OnSaveSettings(wxCommandEvent& event);
     void SaveSettings(int menu_item);
     void OnAccountsButton(wxCommandEvent& WXUNUSED(event));
+    void OnColourButton(wxCommandEvent& /*event*/);
+    void OnColourSelected(wxCommandEvent& event);
 
     void OnCategs(wxCommandEvent& event);
     const wxString to_json(bool i18n = false);
@@ -161,6 +164,10 @@ private:
     wxString m_begin_date;
     wxString m_end_date;
 
+    wxCheckBox* colourCheckBox_;
+    wxButton* colourButton_;
+    int colourValue_;
+
     int categID_;
     int subcategID_;
     int payeeID_;
@@ -172,6 +179,13 @@ private:
     wxArrayString m_accounts_name;
     //Selected accountns ID
     wxArrayInt selected_accounts_id_;
+
+    enum
+    {
+        /* FIlter Dialog */
+        ID_DIALOG_DATEPRESET= wxID_HIGHEST + 900,
+        ID_DIALOG_COLOUR,
+    };
 };
 
 #endif
