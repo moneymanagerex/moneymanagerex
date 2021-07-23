@@ -46,6 +46,7 @@ private:
     enum menu_items
     {
         MENU_DEFINE_CATEGORY = 1,
+        MENU_REMOVE_CATEGORY,
         MENU_NEW_PAYEE,
         MENU_EDIT_PAYEE,
         MENU_DELETE_PAYEE,
@@ -75,6 +76,7 @@ private:
     void EditPayee();
     void DeletePayee();
     void DefineDefaultCategory();
+    void RemoveDefaultCategory();
     void OnOrganizeAttachments();
     void OnPayeeRelocate();
     void OnCancel(wxCommandEvent& /*event*/);
@@ -88,6 +90,7 @@ private:
     void OnItemRightClick(wxDataViewEvent& event);
     void OnTextChanged(wxCommandEvent& event);
     void OnMagicButton(wxCommandEvent& event);
+    void OnSorted(wxDataViewEvent& event);
 
     bool debug_;
 };
