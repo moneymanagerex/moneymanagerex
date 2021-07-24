@@ -42,6 +42,7 @@ wxBEGIN_EVENT_TABLE(mmPayeeDialog, wxDialog)
     EVT_DATAVIEW_SELECTION_CHANGED(wxID_ANY, mmPayeeDialog::OnListItemSelected)
     EVT_DATAVIEW_ITEM_ACTIVATED(wxID_ANY, mmPayeeDialog::OnListItemActivated)
     EVT_DATAVIEW_ITEM_CONTEXT_MENU(wxID_ANY, mmPayeeDialog::OnItemRightClick)
+    EVT_DATAVIEW_COLUMN_SORTED(wxID_ANY, mmPayeeDialog::OnSorted)
     EVT_MENU_RANGE(MENU_DEFINE_CATEGORY, MENU_RELOCATE_PAYEE, mmPayeeDialog::OnMenuSelected)
 wxEND_EVENT_TABLE()
 
@@ -62,7 +63,8 @@ mmPayeeDialog::mmPayeeDialog(wxWindow *parent, bool payee_choose, const wxString
 {
     if (debug_) ColName_[PAYEE_ID] = "#";
     ColName_[PAYEE_NAME] = _("Name");
-    ColName_[PAYEE_CATEGORY]   = _("Default Category");
+    ColName_[PAYEE_CATEGORY]  = (Option::instance().TransCategorySelection() == Option::LASTUSED) ?
+                                _("Last Used Category") : _("Default Category");
 
     Create(parent, name);
 }
@@ -99,8 +101,10 @@ void mmPayeeDialog::CreateControls()
         , wxID_ANY, wxDefaultPosition, wxSize(450, 500)/*, wxDV_HORIZ_RULES*/);
 
     if (debug_) payeeListBox_->AppendTextColumn(ColName_[PAYEE_ID], wxDATAVIEW_CELL_INERT, 30);
-    payeeListBox_->AppendTextColumn(ColName_[PAYEE_NAME], wxDATAVIEW_CELL_EDITABLE, 150);
-    payeeListBox_->AppendTextColumn(ColName_[PAYEE_CATEGORY], wxDATAVIEW_CELL_INERT, 250);
+    payeeListBox_->AppendTextColumn(ColName_[PAYEE_NAME], wxDATAVIEW_CELL_EDITABLE, 150
+                        , wxALIGN_NOT , wxDATAVIEW_COL_RESIZABLE | wxDATAVIEW_COL_SORTABLE);
+    payeeListBox_->AppendTextColumn(ColName_[PAYEE_CATEGORY], wxDATAVIEW_CELL_INERT, 250
+                        , wxALIGN_NOT , wxDATAVIEW_COL_RESIZABLE | wxDATAVIEW_COL_SORTABLE);
     mainBoxSizer->Add(payeeListBox_, wxSizerFlags(g_flagsExpand).Border(wxALL, 10));
 
     wxPanel* buttons_panel = new wxPanel(this, wxID_ANY);
@@ -313,6 +317,20 @@ void mmPayeeDialog::DefineDefaultCategory()
     }
 }
 
+void mmPayeeDialog::RemoveDefaultCategory()
+{
+    Model_Payee::Data *payee = Model_Payee::instance().get(m_payee_id);
+    if (payee)
+    {
+        payee->CATEGID = -1;
+        payee->SUBCATEGID = -1;
+        refreshRequested_ = true;
+        Model_Payee::instance().save(payee);
+        mmWebApp::MMEX_WebApp_UpdatePayee();
+        fillControls();
+    }
+}
+
 void mmPayeeDialog::OnOrganizeAttachments()
 {
     wxString RefType = Model_Attachment::reftype_desc(Model_Attachment::PAYEE);
@@ -343,6 +361,7 @@ void mmPayeeDialog::OnMenuSelected(wxCommandEvent& event)
     switch(event.GetId())
     {
         case MENU_DEFINE_CATEGORY: DefineDefaultCategory() ; break;
+        case MENU_REMOVE_CATEGORY: RemoveDefaultCategory() ; break;
         case MENU_NEW_PAYEE: AddPayee(); break;
         case MENU_EDIT_PAYEE: EditPayee(); break;
         case MENU_DELETE_PAYEE: DeletePayee(); break;
@@ -368,8 +387,10 @@ void mmPayeeDialog::OnItemRightClick(wxDataViewEvent& event)
 
     wxMenu* mainMenu = new wxMenu;
     if (payee) mainMenu->SetTitle(payee->PAYEENAME);
-    mainMenu->Append(new wxMenuItem(mainMenu, MENU_DEFINE_CATEGORY, _("Define Default Category")));
+    mainMenu->Append(new wxMenuItem(mainMenu, MENU_DEFINE_CATEGORY, _("Define Category")));
     if (!payee) mainMenu->Enable(MENU_DEFINE_CATEGORY, false);
+    mainMenu->Append(new wxMenuItem(mainMenu, MENU_REMOVE_CATEGORY, _("Remove Category")));
+    if (!payee) mainMenu->Enable(MENU_REMOVE_CATEGORY, false);
     mainMenu->AppendSeparator();
 
     mainMenu->Append(new wxMenuItem(mainMenu, MENU_NEW_PAYEE, _("&Add ")));
@@ -390,6 +411,13 @@ void mmPayeeDialog::OnItemRightClick(wxDataViewEvent& event)
     PopupMenu(mainMenu);
     delete mainMenu;
     event.Skip();
+}
+
+void mmPayeeDialog::OnSorted(wxDataViewEvent& event)
+{
+    int row = payeeListBox_->GetSelectedRow();
+    if (row != wxNOT_FOUND)
+        payeeListBox_->UnselectRow(row);
 }
 
 void mmPayeeDialog::OnCancel(wxCommandEvent& /*event*/)
