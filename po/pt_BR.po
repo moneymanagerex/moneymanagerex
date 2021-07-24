@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-07-23 16:00+0300\n"
-"PO-Revision-Date: 2021-07-23 13:05\n"
+"PO-Revision-Date: 2021-07-24 11:35\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "MIME-Version: 1.0\n"
@@ -2403,11 +2403,11 @@ msgstr "Intervalo de valor"
 
 #: filtertransdialog.cpp:349 filtertransdialog.cpp:1081
 msgid "Color"
-msgstr ""
+msgstr "Cor"
 
 #: filtertransdialog.cpp:353
 msgid "Select the Color"
-msgstr ""
+msgstr "Selecione a cor"
 
 #: filtertransdialog.cpp:363
 msgid "Settings"
@@ -2479,7 +2479,7 @@ msgstr "Escolher Contas"
 
 #: filtertransdialog.cpp:1487
 msgid "Not colored"
-msgstr ""
+msgstr "Sem cor"
 
 #: general_report_manager.cpp:247 general_report_manager.cpp:663
 msgid "General Reports Manager"
@@ -6727,11 +6727,12 @@ msgstr "Anexar"
 #, c-format
 msgid "You have not used this payee name before. Is the name correct?\n"
 "%s"
-msgstr ""
+msgstr "Você não usou este nome de beneficiário antes. O nome está correto?\n"
+"%s"
 
 #: transactionsupdatedialog.cpp:326 transdialog.cpp:665
 msgid "Confirm payee name"
-msgstr ""
+msgstr "Confirmar nome do beneficiário"
 
 #: transdialog.cpp:180
 msgid "Duplicate Transaction"
