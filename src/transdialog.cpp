@@ -681,10 +681,13 @@ bool mmTransDialog::ValidateData()
             m_trx_data.TOACCOUNTID = -1;
         }
 
-        payee->CATEGID = m_trx_data.CATEGID;
-        payee->SUBCATEGID = m_trx_data.SUBCATEGID;
-        Model_Payee::instance().save(payee);
-        mmWebApp::MMEX_WebApp_UpdatePayee();
+        if (Option::instance().TransCategorySelection() == Option::LASTUSED)
+        {
+            payee->CATEGID = m_trx_data.CATEGID;
+            payee->SUBCATEGID = m_trx_data.SUBCATEGID;
+            Model_Payee::instance().save(payee);
+            mmWebApp::MMEX_WebApp_UpdatePayee();
+        }
     }
     else //transfer
     {
@@ -1014,7 +1017,8 @@ void mmTransDialog::SetCategoryForPayee(const Model_Payee::Data *payee)
 
     // Only for new transactions: if user want to autofill last category used for payee.
     // If this is a Split Transaction, ignore displaying last category for payee
-    if (Option::instance().TransCategorySelection() == Option::LASTUSED
+    if ((Option::instance().TransCategorySelection() == Option::LASTUSED ||
+         Option::instance().TransCategorySelection() == Option::DEFAULT)
         && !categUpdated_ && m_local_splits.empty() && m_new_trx && !m_duplicate)
     {
         // if payee has memory of last category used then display last category for payee
