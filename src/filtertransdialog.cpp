@@ -1008,7 +1008,7 @@ const wxString mmFilterTransactionsDialog::to_json(bool i18n)
         json_writer.Key((i18n ? _("Include Similar") : "SIMILAR_YN").utf8_str());
         json_writer.Bool(bSimilarCategoryStatus_);
         json_writer.Key((i18n ? _("Category") : "CATEGORY").utf8_str());
-        auto categ = Model_Category::full_name(categID_, subcategID_, i18n);
+        auto categ = Model_Category::full_name(categID_, subcategID_);
         wxLogDebug("%s", categ);
         json_writer.String(categ.utf8_str());
     }
@@ -1179,7 +1179,7 @@ void mmFilterTransactionsDialog::from_json(const wxString &data)
     const auto subcateg_name = categ_token.GetNextToken().Trim(false);
     s_category = categ_name + (s_category.Contains(":") ? delimiter + subcateg_name : "");
 
-    for (const auto& entry : Model_Category::instance().all_categories(false))
+    for (const auto& entry : Model_Category::instance().all_categories())
     {
         //wxLogDebug("%s : %i %i", entry.first, entry.second.first, entry.second.second);
         if (s_category == entry.first)
