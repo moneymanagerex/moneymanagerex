@@ -268,7 +268,7 @@ void mmCheckingPanel::CreateControls()
     itemBoxSizerHHeader2->Add(itemFlexGridSizerHHeader2);
 
     m_bitmapTransFilter = new wxButton(headerPanel, ID_TRX_FILTER);
-    m_bitmapTransFilter->SetBitmap(mmBitmap(png::TRANSFILTER));
+    m_bitmapTransFilter->SetBitmap(mmBitmap(png::TRANSFILTER, mmBitmapButtonSize));
     m_bitmapTransFilter->SetMinSize(wxSize(220, -1));
 
     itemFlexGridSizerHHeader2->Add(m_bitmapTransFilter, g_flagsBorder1H);
@@ -379,7 +379,7 @@ void mmCheckingPanel::CreateControls()
     m_btnDuplicate->Enable(false);
 
     m_btnAttachment = new wxBitmapButton(itemPanel12, wxID_FILE
-        , mmBitmap(png::CLIP), wxDefaultPosition
+        , mmBitmap(png::CLIP, mmBitmapButtonSize), wxDefaultPosition
         , wxSize(30, m_btnDuplicate->GetSize().GetY()));
     mmToolTip(m_btnAttachment, _("Open attachments"));
     itemButtonsSizer->Add(m_btnAttachment, 0, wxRIGHT, 5);
@@ -681,7 +681,7 @@ void mmCheckingPanel::initFilterSettings()
     const auto item = menu_labels()[m_currentView];
     Model_Infotable::instance().Set(wxString::Format("CHECK_FILTER_ID_%d", m_AccountID), item);
     m_bitmapTransFilter->SetLabel(wxGetTranslation(item));
-    m_bitmapTransFilter->SetBitmap(m_transFilterActive ? mmBitmap(png::TRANSFILTER_ACTIVE) : mmBitmap(png::TRANSFILTER));
+    m_bitmapTransFilter->SetBitmap(m_transFilterActive ? mmBitmap(png::TRANSFILTER_ACTIVE, mmBitmapButtonSize) : mmBitmap(png::TRANSFILTER, mmBitmapButtonSize));
     m_statTextTransFilter->SetLabelText(label);
 }
 

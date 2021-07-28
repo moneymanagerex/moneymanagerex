@@ -245,7 +245,7 @@ void mmBillsDepositsPanel::CreateControls()
     itemBoxSizerVHeader->Add(itemBoxSizerHHeader2);
 
     m_bitmapTransFilter = new wxButton(headerPanel, wxID_FILE2);
-    m_bitmapTransFilter->SetBitmap(mmBitmap(png::TRANSFILTER));
+    m_bitmapTransFilter->SetBitmap(mmBitmap(png::TRANSFILTER, mmBitmapButtonSize));
     m_bitmapTransFilter->SetLabel(_("Transaction Filter"));
     itemBoxSizerHHeader2->Add(m_bitmapTransFilter, g_flagsBorder1H);
 
@@ -305,7 +305,7 @@ void mmBillsDepositsPanel::CreateControls()
     buttonSkipTrans->Enable(false);
 
     wxBitmapButton* btnAttachment_ = new wxBitmapButton(bdPanel, wxID_FILE
-        , mmBitmap(png::CLIP), wxDefaultPosition
+        , mmBitmap(png::CLIP, mmBitmapButtonSize), wxDefaultPosition
         , wxSize(30, itemButton8->GetSize().GetY()));
     mmToolTip(btnAttachment_, _("Open attachments"));
     itemBoxSizer5->Add(btnAttachment_, 0, wxRIGHT, 5);
@@ -923,12 +923,12 @@ void mmBillsDepositsPanel::OnFilterTransactions(wxCommandEvent& WXUNUSED(event))
     if (transFilterDlg_->ShowModal() == wxID_OK && transFilterDlg_->isSomethingSelected())
     {
         transFilterActive_ = true;
-        m_bitmapTransFilter->SetBitmap(mmBitmap(png::TRANSFILTER_ACTIVE));
+        m_bitmapTransFilter->SetBitmap(mmBitmap(png::TRANSFILTER_ACTIVE, mmBitmapButtonSize));
     }
     else 
     {
         transFilterActive_ = false;
-        m_bitmapTransFilter->SetBitmap(mmBitmap(png::TRANSFILTER));
+        m_bitmapTransFilter->SetBitmap(mmBitmap(png::TRANSFILTER, mmBitmapButtonSize));
     }
 
     initVirtualListControl();

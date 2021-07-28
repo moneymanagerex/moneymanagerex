@@ -554,18 +554,18 @@ void mmTransDialog::CreateControls()
     // Number  ---------------------------------------------
     textNumber_ = new mmTextCtrl(this, ID_DIALOG_TRANS_TEXTNUMBER, "", wxDefaultPosition, wxDefaultSize, wxTE_PROCESS_ENTER);
 
-    wxBitmapButton* bAuto = new wxBitmapButton(this, ID_DIALOG_TRANS_BUTTONTRANSNUM, mmBitmap(png::TRXNUM));
+    wxBitmapButton* bAuto = new wxBitmapButton(this, ID_DIALOG_TRANS_BUTTONTRANSNUM, mmBitmap(png::TRXNUM, mmBitmapButtonSize));
     bAuto->Connect(ID_DIALOG_TRANS_BUTTONTRANSNUM, wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(mmTransDialog::OnAutoTransNum), nullptr, this);
     mmToolTip(bAuto, _("Populate Transaction #"));
 
     flex_sizer->Add(new wxStaticText(this, wxID_STATIC, _("Number")), g_flagsH);
     wxBoxSizer* number_sizer = new wxBoxSizer(wxHORIZONTAL);
-    flex_sizer->Add(number_sizer, wxSizerFlags(g_flagsH).Border(wxALL, 0));
-    number_sizer->Add(textNumber_, g_flagsH);
+    flex_sizer->Add(number_sizer, wxSizerFlags(g_flagsExpand).Border(wxALL, 0));
+    number_sizer->Add(textNumber_, g_flagsExpand);
     number_sizer->Add(bAuto, g_flagsH);
 
     // Attachments ---------------------------------------------
-    bAttachments_ = new wxBitmapButton(this, wxID_FILE, mmBitmap(png::CLIP));
+    bAttachments_ = new wxBitmapButton(this, wxID_FILE, mmBitmap(png::CLIP, mmBitmapButtonSize));
     mmToolTip(bAttachments_, _("Organize attachments of this transaction"));
 
     // Colours ---------------------------------------------
@@ -604,7 +604,7 @@ void mmTransDialog::CreateControls()
     wxButton* itemButtonOK = new wxButton(buttons_panel, wxID_OK, _("&OK "));
     itemButtonCancel_ = new wxButton(buttons_panel, wxID_CANCEL, wxGetTranslation(g_CancelLabel));
 
-    wxBitmapButton* itemButtonHide = new wxBitmapButton(buttons_panel, ID_DIALOG_TRANS_CUSTOMFIELDS, mmBitmap(png::RIGHTARROW));
+    wxBitmapButton* itemButtonHide = new wxBitmapButton(buttons_panel, ID_DIALOG_TRANS_CUSTOMFIELDS, mmBitmap(png::RIGHTARROW, mmBitmapButtonSize));
     mmToolTip(itemButtonHide, _("Show/Hide custom fields window"));
     if (m_custom_fields->GetCustomFieldsCount() == 0) {
         itemButtonHide->Hide();
@@ -1318,7 +1318,7 @@ void mmTransDialog::OnMoreFields(wxCommandEvent& WXUNUSED(event))
     wxBitmapButton* button = static_cast<wxBitmapButton*>(FindWindow(ID_DIALOG_TRANS_CUSTOMFIELDS));
 
     if (button)
-        button->SetBitmap(mmBitmap(m_custom_fields->IsCustomPanelShown() ? png::RIGHTARROW : png::LEFTARROW));
+        button->SetBitmap(mmBitmap(m_custom_fields->IsCustomPanelShown() ? png::RIGHTARROW : png::LEFTARROW, mmBitmapButtonSize));
 
     m_custom_fields->ShowHideCustomPanel();
 
@@ -1342,13 +1342,13 @@ void mmTransDialog::OnColourButton(wxCommandEvent& /*event*/)
 #ifdef __WXMSW__
         menuItem->SetBackgroundColour(getUDColour(i)); //only available for the wxMSW port.
 #endif
-        wxBitmap bitmap(mmBitmap(png::EMPTY).GetSize());
+        wxBitmap bitmap(mmBitmap(png::EMPTY, mmBitmapButtonSize).GetSize());
         wxMemoryDC memoryDC(bitmap);
         wxRect rect(memoryDC.GetSize());
 
         memoryDC.SetBackground(wxBrush(getUDColour(i)));
         memoryDC.Clear();
-        memoryDC.DrawBitmap(mmBitmap(png::EMPTY), 0, 0, true);
+        memoryDC.DrawBitmap(mmBitmap(png::EMPTY, mmBitmapButtonSize), 0, 0, true);
         memoryDC.SelectObject(wxNullBitmap);
         menuItem->SetBitmap(bitmap);
 

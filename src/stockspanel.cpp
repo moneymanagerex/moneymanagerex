@@ -156,14 +156,14 @@ void mmStocksPanel::CreateControls()
     bMove->Enable(false);
 
     attachment_button_ = new wxBitmapButton(BottomPanel
-        , wxID_FILE, mmBitmap(png::CLIP), wxDefaultPosition
+        , wxID_FILE, mmBitmap(png::CLIP, mmBitmapButtonSize), wxDefaultPosition
         , wxSize(30, bMove->GetSize().GetY()));
     mmToolTip(attachment_button_, _("Open attachments"));
     BoxSizerHBottom->Add(attachment_button_, 0, wxRIGHT, 5);
     attachment_button_->Enable(false);
 
     refresh_button_ = new wxBitmapButton(BottomPanel
-        , wxID_REFRESH, mmBitmap (png::LED_OFF), wxDefaultPosition, wxSize(30, bMove->GetSize().GetY()));
+        , wxID_REFRESH, mmBitmap (png::LED_OFF, mmBitmapButtonSize), wxDefaultPosition, wxSize(30, bMove->GetSize().GetY()));
     refresh_button_->SetLabelText(_("Refresh"));
     mmToolTip(refresh_button_, _("Refresh Stock Prices from Yahoo"));
     BoxSizerHBottom->Add(refresh_button_, 0, wxRIGHT, 5);
@@ -386,11 +386,11 @@ void mmStocksPanel::OnRefreshQuotes(wxCommandEvent& WXUNUSED(event))
         stock_details_short_->SetLabelText(wxString::Format(_("Last updated %s"), strLastUpdate_));
         wxMessageDialog msgDlg(this, sError, header);
         msgDlg.ShowModal();
-        refresh_button_->SetBitmapLabel(mmBitmap(png::LED_GREEN));
+        refresh_button_->SetBitmapLabel(mmBitmap(png::LED_GREEN, mmBitmapButtonSize));
     }
     else
     {
-        refresh_button_->SetBitmapLabel(mmBitmap(png::LED_RED));
+        refresh_button_->SetBitmapLabel(mmBitmap(png::LED_RED, mmBitmapButtonSize));
         stock_details_->SetLabelText(sError);
         stock_details_short_->SetLabelText(_("Error"));
         mmErrorDialogs::MessageError(this, sError, _("Error"));
@@ -422,7 +422,7 @@ bool mmStocksPanel::onlineQuoteRefresh(wxString& msg)
         symbols[symbol] = stock.VALUE;
     }
 
-    refresh_button_->SetBitmapLabel(mmBitmap(png::LED_YELLOW));
+    refresh_button_->SetBitmapLabel(mmBitmap(png::LED_YELLOW, mmBitmapButtonSize));
     stock_details_->SetLabelText(_("Connecting..."));
 
     std::map<wxString, double > stocks_data;
