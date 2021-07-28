@@ -250,7 +250,7 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
                         {
                             hb.addTableCell(category.first);
                             hb.addMoneyCell(amt);
-                            hb.addTableCell(wxGetTranslation(Model_Budget::all_period()[budgetPeriod[category.second.first][category.second.second]]));
+                            hb.addTableCell(Model_Budget::all_period()[budgetPeriod[category.second.first][category.second.second]]);
                             hb.addMoneyCell(estimated);
                             hb.addMoneyCell(actual);
                         }

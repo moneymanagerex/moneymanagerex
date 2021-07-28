@@ -528,12 +528,12 @@ wxString mmBudgetingPanel::getItem(long item, long column)
         if (budget_[item].first < 0)
         {
             Model_Category::Data* category = Model_Category::instance().get(budget_[item].second);
-            if (category) return wxGetTranslation(category->CATEGNAME);
+            if (category) return category->CATEGNAME;
         }
         else
         {
             Model_Category::Data* category = Model_Category::instance().get(budget_[item].first);
-            if (category) return wxGetTranslation(category->CATEGNAME);
+            if (category) return category->CATEGNAME;
         }
         return wxEmptyString;
     }
@@ -542,7 +542,7 @@ wxString mmBudgetingPanel::getItem(long item, long column)
         if (budget_[item].first >= 0)
         {
             Model_Subcategory::Data* subcategory = Model_Subcategory::instance().get(budget_[item].second);
-            if (subcategory) return wxGetTranslation(subcategory->SUBCATEGNAME);
+            if (subcategory) return subcategory->SUBCATEGNAME;
         }
         return wxEmptyString;
     }
