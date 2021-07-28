@@ -560,12 +560,12 @@ void mmTransDialog::CreateControls()
 
     flex_sizer->Add(new wxStaticText(this, wxID_STATIC, _("Number")), g_flagsH);
     wxBoxSizer* number_sizer = new wxBoxSizer(wxHORIZONTAL);
-    flex_sizer->Add(number_sizer, wxSizerFlags(g_flagsExpand).Border(wxALL, 0));
-    number_sizer->Add(textNumber_, g_flagsExpand);
+    flex_sizer->Add(number_sizer, wxSizerFlags(g_flagsH).Border(wxALL, 0));
+    number_sizer->Add(textNumber_, g_flagsH);
     number_sizer->Add(bAuto, g_flagsH);
 
     // Attachments ---------------------------------------------
-    bAttachments_ = new wxBitmapButton(this, wxID_FILE, mmBitmap(png::CLIP), wxDefaultPosition, wxSize(cbPayee_->GetSize().GetY(), cbPayee_->GetSize().GetY()));
+    bAttachments_ = new wxBitmapButton(this, wxID_FILE, mmBitmap(png::CLIP));
     mmToolTip(bAttachments_, _("Organize attachments of this transaction"));
 
     // Colours ---------------------------------------------
