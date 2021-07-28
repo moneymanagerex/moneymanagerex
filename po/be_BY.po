@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-07-23 16:00+0300\n"
-"PO-Revision-Date: 2021-07-28 20:11\n"
+"PO-Revision-Date: 2021-07-28 20:20\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -562,56 +562,57 @@ msgstr "&Выдаліць "
 
 #: assetspanel.cpp:486
 msgid "Delete Asset"
-msgstr ""
+msgstr "В&ыдаленне актыва"
 
 #: assetspanel.cpp:493 billsdepositspanel.cpp:310 mmcheckingpanel.cpp:384
 #: stockspanel.cpp:161
 msgid "Open attachments"
-msgstr ""
+msgstr "Адкрыць далучэнні"
 
 #: assetspanel.cpp:500 assetspanel.cpp:501 mmcheckingpanel.cpp:392
 msgid "Search"
-msgstr ""
+msgstr "Пошук"
 
 #: assetspanel.cpp:503
 msgid "Enter any string to find related assets"
-msgstr ""
+msgstr "Увядзіце любы тэкст для будзь-якіх актываў"
 
 #: assetspanel.cpp:573 stockspanel.cpp:344 stockspanel.cpp:531
 #, c-format
 msgid "Total: %s"
-msgstr ""
+msgstr "Агулам: %s"
 
 #: assetspanel.cpp:655
 #, c-format
 msgid "Change in Value: %s %s"
-msgstr ""
+msgstr "Змена кошта: %s %s"
 
 #: assetspanel.cpp:771
 msgid "This asset does not have its own account\n\n"
 "Multiple transactions for this asset are not recommended."
-msgstr ""
+msgstr "У гэтага актыва няма уласнага ўліковага запісу\n\n"
+"Некалькі транзакцый для гэтага актыву не рэкамендуецца."
 
 #: assetspanel.cpp:773
 msgid "Asset Management"
-msgstr ""
+msgstr "Кіраванне актывамі"
 
 #: assetspanel.cpp:792
 msgid "Account \t Date\t   Value\n\n"
-msgstr ""
+msgstr "Рахунак \t Дата\t   Кошт\n\n"
 
 #: attachmentdialog.cpp:55 general_report_manager.cpp:434
 msgid "Description"
-msgstr ""
+msgstr "Апісанне"
 
 #: attachmentdialog.cpp:56 import_export/qif_export.cpp:194
 #: import_export/univcsvdialog.cpp:181
 msgid "File"
-msgstr ""
+msgstr "Файл"
 
 #: attachmentdialog.cpp:64
 msgid "Attachment folder not defined."
-msgstr ""
+msgstr "Не паказаная тэчка з файламі."
 
 #: attachmentdialog.cpp:65
 msgid "Please set it in Tools -> Options -> Attachments"
