@@ -214,6 +214,7 @@ enum png {
     MAX_PNG
 };
 
+extern const int mmBitmapButtonSize;
 wxImageList* navtree_images_list();
 void LoadTheme();
 const wxString mmThemeMetaString(int ref);
@@ -221,4 +222,4 @@ long mmThemeMetaLong(int ref);
 const wxColour mmThemeMetaColour(int ref);
 void mmThemeMetaColour(wxWindow *object, int ref, bool foreground = false);
 const std::vector<wxColour> mmThemeMetaColourArray(int ref);
-const wxBitmap mmBitmap(int ref);
+const wxBitmap mmBitmap(int ref, int size = -1);

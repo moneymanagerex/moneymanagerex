@@ -206,7 +206,7 @@ void UserTransactionPanel::Create()
     transPanelSizer->Add(new wxStaticText(this, wxID_STATIC, _("Notes")), g_flagsH);
 
     // Attachment ---------------------------------------------
-    m_attachment = new wxBitmapButton(this, wxID_FILE, mmBitmap(png::CLIP));
+    m_attachment = new wxBitmapButton(this, wxID_FILE, mmBitmap(png::CLIP, mmBitmapButtonSize));
     mmToolTip(m_attachment, _("Organize attachments of this transaction"));
     //TODO: m_attachment Enable/disable
     //m_attachment->Enable(false);
