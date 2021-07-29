@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-07-23 16:00+0300\n"
-"PO-Revision-Date: 2021-07-29 19:09\n"
+"PO-Revision-Date: 2021-07-29 20:18\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -4112,7 +4112,7 @@ msgstr ""
 
 #: mmframe.cpp:1357 mmframe.cpp:1716 wizard_newdb.cpp:124
 msgid "New Database"
-msgstr ""
+msgstr "Новая база дадзеных"
 
 #: mmframe.cpp:1358
 msgid "&Open Database\tCtrl-O"
@@ -4120,15 +4120,15 @@ msgstr ""
 
 #: mmframe.cpp:1358 mmframe.cpp:1717
 msgid "Open Database"
-msgstr ""
+msgstr "Адчыніць базу дадзеных"
 
 #: mmframe.cpp:1359
 msgid "Save Database &As"
-msgstr ""
+msgstr "Захаваць Базу дадзеных &як"
 
 #: mmframe.cpp:1359
 msgid "Save Database As"
-msgstr ""
+msgstr "Захаваць Базу дадзеных як"
 
 #: mmframe.cpp:1366
 msgid "&Recent Files..."
@@ -4612,7 +4612,7 @@ msgstr ""
 
 #: mmframe.cpp:1688
 msgid "&File"
-msgstr ""
+msgstr "&Файл"
 
 #: mmframe.cpp:1689
 msgid "&Accounts"
@@ -4737,7 +4737,7 @@ msgstr ""
 
 #: mmframe.cpp:2048
 msgid "Choose database file to Save As"
-msgstr ""
+msgstr "Абраць файл для захоування базы дадзеных"
 
 #: mmframe.cpp:2070
 msgid "Converted DB!"
@@ -4798,7 +4798,7 @@ msgstr ""
 
 #: mmframe.cpp:2142 mmframe.cpp:2163
 msgid "Save database file as"
-msgstr ""
+msgstr "Захаваць файл базы дадзеных як"
 
 #: mmframe.cpp:2163
 msgid "Can't copy file to itself"
@@ -5283,7 +5283,7 @@ msgstr ""
 
 #: optiondialog.cpp:152
 msgid "&Apply"
-msgstr ""
+msgstr "&Ужыць"
 
 #: optiondialog.cpp:210
 #, c-format
