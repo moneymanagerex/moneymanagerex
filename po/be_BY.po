@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-07-23 16:00+0300\n"
-"PO-Revision-Date: 2021-07-29 18:37\n"
+"PO-Revision-Date: 2021-07-29 18:58\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -620,49 +620,49 @@ msgstr "Калі ласка, задайце шлях праз -> Опцыі -> �
 
 #: attachmentdialog.cpp:66
 msgid "Attachment folder not defined"
-msgstr "Папка для далучэнняў ня вызначаная"
+msgstr "Тэчка далучэння ня вызначаная"
 
 #: attachmentdialog.cpp:70
 msgid "Unable to find attachments folder:"
-msgstr ""
+msgstr "Не магу знайсці каталог далучэнняў:"
 
 #: attachmentdialog.cpp:73
 msgid "Please verify that above path is correct"
-msgstr ""
+msgstr "Калі ласка праверце, што шлях слушны"
 
 #: attachmentdialog.cpp:74
 msgid "Attachments folder not found"
-msgstr ""
+msgstr "Тэчка для далучэнняў ня вызначаная"
 
 #: attachmentdialog.cpp:85
 #, c-format
 msgid "Organize Attachments | %s %i"
-msgstr ""
+msgstr "Уладкаваць далучэнні | %s %i"
 
 #: attachmentdialog.cpp:87
 #, c-format
 msgid "Organize Attachments | New %s"
-msgstr ""
+msgstr "Уладкаваць далучэнні | Новае %s"
 
 #: attachmentdialog.cpp:127 customfieldlistdialog.cpp:98 payeedialog.cpp:116
 msgid "Other tools"
-msgstr ""
+msgstr "Іншыя прылады"
 
 #: attachmentdialog.cpp:159
 msgid "Import attachment:"
-msgstr ""
+msgstr "Запампаваць далучэнне:"
 
 #: attachmentdialog.cpp:170
 msgid "Enter a description for the new attachment:"
-msgstr ""
+msgstr "Пакажыце апісанне новага далучэння:"
 
 #: attachmentdialog.cpp:171
 msgid "Organize Attachments: Add Attachment"
-msgstr ""
+msgstr "Уладкаванне далучэнняў: Дадаць далучэнне"
 
 #: attachmentdialog.cpp:214
 msgid "Enter a new description for the attachment:"
-msgstr ""
+msgstr "Пакажыце новае апісанне для далучэння:"
 
 #: attachmentdialog.cpp:215
 msgid "Organize Attachments: Edit Attachment"
