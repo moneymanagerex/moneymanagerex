@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-07-23 16:00+0300\n"
-"PO-Revision-Date: 2021-07-29 19:03\n"
+"PO-Revision-Date: 2021-07-29 19:09\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -680,25 +680,25 @@ msgstr "Пацверджанне выдалення далучэння"
 #: import_export/univcsvdialog.cpp:236 maincurrencydialog.cpp:526
 #: payeedialog.cpp:375 splittransactionsdialog.cpp:165 stockdialog.cpp:341
 msgid "&Add "
-msgstr ""
+msgstr "Д&адаць "
 
 #: attachmentdialog.cpp:316
 msgid "&Open "
-msgstr ""
+msgstr "А&дчыніць "
 
 #: attachmentdialog.cpp:319 customfieldlistdialog.cpp:262
 #: import_export/univcsvdialog.cpp:240 maincurrencydialog.cpp:528
 #: payeedialog.cpp:378 splittransactionsdialog.cpp:167
 msgid "&Remove "
-msgstr ""
+msgstr "В&ыдаліць "
 
 #: attachmentdialog.cpp:361
 msgid "Att."
-msgstr ""
+msgstr "Далуч."
 
 #: attachmentdialog.cpp:368
 msgid "This directory and its files are automatically managed by Money Manager EX software."
-msgstr ""
+msgstr "Гэтая тэчка і ўсе файлы ў ёй аўтаматычна кіруюцца дадаткам Money Manager EX."
 
 #: attachmentdialog.cpp:370
 msgid "Please do not remove, rename or modify manually directories and files."
