@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-07-23 16:00+0300\n"
-"PO-Revision-Date: 2021-07-28 20:20\n"
+"PO-Revision-Date: 2021-07-29 18:37\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -616,11 +616,11 @@ msgstr "Не паказаная тэчка з файламі."
 
 #: attachmentdialog.cpp:65
 msgid "Please set it in Tools -> Options -> Attachments"
-msgstr ""
+msgstr "Калі ласка, задайце шлях праз -> Опцыі -> Далучэнні"
 
 #: attachmentdialog.cpp:66
 msgid "Attachment folder not defined"
-msgstr ""
+msgstr "Папка для далучэнняў ня вызначаная"
 
 #: attachmentdialog.cpp:70
 msgid "Unable to find attachments folder:"
