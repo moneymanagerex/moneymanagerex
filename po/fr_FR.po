@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-07-30 14:06+0300\n"
-"PO-Revision-Date: 2021-07-30 12:51\n"
+"PO-Revision-Date: 2021-07-30 17:26\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -855,7 +855,7 @@ msgstr "Fréquence"
 
 #: billsdepositsdialog.cpp:449
 msgid "Back to the last occurring date with the specified values"
-msgstr ""
+msgstr "Retour à la dernière date survenue avec les valeurs spécifiées."
 
 #: billsdepositsdialog.cpp:451
 msgid "Advance the next occurring date with the specified values"
@@ -1056,11 +1056,11 @@ msgstr "Sélectionnez le compte \"Vers\""
 
 #: billsdepositsdialog.cpp:933
 msgid "The payment date is after the due date, is this what you intended?"
-msgstr ""
+msgstr "La date de paiement est postérieure à la date d'échéance, est-ce bien ce que vous vouliez ?"
 
 #: billsdepositsdialog.cpp:934
 msgid "Looks like a late payment"
-msgstr ""
+msgstr "On dirait un retard de paiement"
 
 #: billsdepositsdialog.cpp:1233
 msgid "Specify the transfer amount in the From Account"
@@ -1222,7 +1222,7 @@ msgstr "Filtrer les opérations"
 
 #: billsdepositspanel.cpp:293
 msgid "Delete Recurring Transaction"
-msgstr ""
+msgstr "Supprimer l'opération périodique"
 
 #: billsdepositspanel.cpp:297
 msgid "Ente&r"
@@ -1230,7 +1230,7 @@ msgstr "Entrée"
 
 #: billsdepositspanel.cpp:298
 msgid "Enter Next Recurring Transaction Occurrence"
-msgstr ""
+msgstr "Entrer la prochaine opération récurrente"
 
 #: billsdepositspanel.cpp:302
 msgid "&Skip"
@@ -1238,7 +1238,7 @@ msgstr "Passer"
 
 #: billsdepositspanel.cpp:303
 msgid "Skip Next Recurring Transaction Occurrence"
-msgstr ""
+msgstr "Ignorer la prochaine opération récurrente"
 
 #: billsdepositspanel.cpp:412
 msgid "Enter next Occurrence..."
@@ -1250,15 +1250,15 @@ msgstr "Passer la prochaine occurence"
 
 #: billsdepositspanel.cpp:416
 msgid "&New Recurring Transaction..."
-msgstr ""
+msgstr "&Créer une opération récurrente..."
 
 #: billsdepositspanel.cpp:417
 msgid "&Edit Recurring Transaction..."
-msgstr ""
+msgstr "&Éditer une opération récurrente..."
 
 #: billsdepositspanel.cpp:418
 msgid "&Delete Recurring Transaction..."
-msgstr ""
+msgstr "&Supprimer l'opération périodique..."
 
 #: billsdepositspanel.cpp:465
 msgid "Manual"
@@ -1301,11 +1301,11 @@ msgstr[1] "%d jours de retard !"
 
 #: billsdepositspanel.cpp:648
 msgid "Do you really want to delete the recurring transaction?"
-msgstr ""
+msgstr "Voulez-vous vraiment supprimer la transaction récurrente ?"
 
 #: billsdepositspanel.cpp:649
 msgid "Confirm Deletion"
-msgstr ""
+msgstr "Confirmer la suppression"
 
 #: budgetentrydialog.cpp:50
 msgid "Budget Year Entry"
@@ -3704,14 +3704,14 @@ msgstr "&Nouveau Virement"
 #: mmchecking_list.cpp:351
 msgid "&Edit Transaction"
 msgid_plural "&Edit Transactions"
-msgstr[0] "&Éditer l'opération"
-msgstr[1] ""
+msgstr[0] "&Éditer la transaction"
+msgstr[1] "Éditer la transaction"
 
 #: mmchecking_list.cpp:356
 msgid "&Copy Transaction"
 msgid_plural "&Copy Transactions"
-msgstr[0] "&Copier l'opération"
-msgstr[1] ""
+msgstr[0] "&Copier la transaction"
+msgstr[1] "&Copier la transaction"
 
 #: mmchecking_list.cpp:361
 msgid "&Paste Transaction"
@@ -3743,8 +3743,8 @@ msgstr "Créer une opération récurrente"
 #: mmchecking_list.cpp:389
 msgid "&Delete selected transaction"
 msgid_plural "&Delete selected transactions"
-msgstr[0] "&Supprimer les opérations sélectionnées"
-msgstr[1] ""
+msgstr[0] "&Supprimer les transactions sélectionnées"
+msgstr[1] "&Supprimer les transactions sélectionnées"
 
 #: mmchecking_list.cpp:392
 msgid "Delete all transactions in current view"
@@ -4100,7 +4100,7 @@ msgstr "Fichiers  &QIF"
 
 #: mmframe.cpp:1306 mmframe.cpp:1380
 msgid "&MMEX CSV Files..."
-msgstr ""
+msgstr "&MMEX Fichier CSV..."
 
 #: mmframe.cpp:1309 mmframe.cpp:1383
 msgid "&JSON Files..."
@@ -4164,7 +4164,7 @@ msgstr "Exporter un fichier en CSV"
 
 #: mmframe.cpp:1380
 msgid "Export to fixed CSV"
-msgstr ""
+msgstr "Exporter vers un CSV fixe"
 
 #: mmframe.cpp:1381
 msgid "Export to XML"
@@ -5444,7 +5444,7 @@ msgstr "Le nom de l'utilisateur est utilisé comme titre de la base de données.
 
 #: optionsettingsgeneral.cpp:85
 msgid "Language"
-msgstr ""
+msgstr "Langue"
 
 #: optionsettingsgeneral.cpp:107
 msgid "Specify the date format for display"
@@ -5452,7 +5452,7 @@ msgstr "Préciser le format de la date pour l'affichage"
 
 #: optionsettingsgeneral.cpp:110
 msgid "Date format sample:"
-msgstr ""
+msgstr "Exemple de format de date:"
 
 #: optionsettingsgeneral.cpp:123
 msgid "Base Currency"
@@ -5473,7 +5473,8 @@ msgstr "Faites un clic droit et sélectionnez \"Définir comme devise par défau
 #: optionsettingsgeneral.cpp:158
 msgid "Format derived from locale.\n"
 "Leave blank to manually set format via 'Currency Dialog | Edit'"
-msgstr ""
+msgstr "Format dérivé depuis locale.\n"
+"Laisser en blanc pour définir manuellement le format via 'Dialogue sur les devises | Modifier'."
 
 #: optionsettingsgeneral.cpp:168
 msgid "Use currency history"
