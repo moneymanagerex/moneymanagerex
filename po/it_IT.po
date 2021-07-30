@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-07-30 14:06+0300\n"
-"PO-Revision-Date: 2021-07-30 11:10\n"
+"PO-Revision-Date: 2021-07-30 16:11\n"
 "Last-Translator: \n"
 "Language-Team: Italian\n"
 "MIME-Version: 1.0\n"
@@ -5563,7 +5563,7 @@ msgstr "Ultima usata x beneficiario"
 
 #: optionsettingsmisc.cpp:111
 msgid "Use default for payee"
-msgstr ""
+msgstr "Usa il beneficiario predefinito"
 
 #: optionsettingsmisc.cpp:127
 msgid "Yes"
@@ -5815,7 +5815,7 @@ msgstr "Dimensione altre Icone"
 
 #: payeedialog.cpp:67
 msgid "Last Used Category"
-msgstr ""
+msgstr "Ultima Categoria Usata"
 
 #: payeedialog.cpp:67
 msgid "Default Category"
@@ -5859,11 +5859,11 @@ msgstr "Gestione Beneficiari: Errore di cancellazione"
 
 #: payeedialog.cpp:390
 msgid "Define Category"
-msgstr ""
+msgstr "Definisci Categoria"
 
 #: payeedialog.cpp:392
 msgid "Remove Category"
-msgstr ""
+msgstr "Rimuovi la categoria"
 
 #: payeedialog.cpp:407
 msgid "Relocate Payee"
