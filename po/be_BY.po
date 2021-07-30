@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-07-23 16:00+0300\n"
-"PO-Revision-Date: 2021-07-23 13:04\n"
+"PO-Revision-Date: 2021-07-29 20:32\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -515,189 +515,190 @@ msgstr "Пацверджанне выдалення актыва"
 
 #: assetspanel.cpp:385
 msgid "MMEX allows you to track fixed assets like cars, houses, land and others. Each asset can have its value appreciate by a certain rate per year, depreciate by a certain rate per year, or not change in value. The total assets are added to your total financial worth."
-msgstr ""
+msgstr "MMEX дазваляе адсочваць актывы і пасівы, такія як аўтамабілі, дома, зямельныя ўчасткі і іншае. Кожны аб'ект можа мець пачатковы кошт і пэўнае яго змяненне за год, або адсутнасць зменаў. Сумарны кошт актываў будзе дададзеная ў фінансавую зводку."
 
 #: assetspanel.cpp:415 assetspanel.h:108 general_report_manager.cpp:723
 #: general_report_manager.cpp:1000 mmframe.cpp:477 mmframe.cpp:743
 #: mmframe.cpp:1540 mmframe.cpp:3002 mmhomepage.cpp:576 mmhomepagepanel.cpp:224
 msgid "Assets"
-msgstr ""
+msgstr "Актывы"
 
 #: assetspanel.cpp:424 assetspanel.cpp:694 assetspanel.cpp:711
 #: filtertransdialog.cpp:205 import_export/qif_export.cpp:74
 #: import_export/qif_export.cpp:75 import_export/qif_export.cpp:145
 #: mmframe.cpp:1315
 msgid "All"
-msgstr ""
+msgstr "Усе"
 
 #: assetspanel.cpp:466 billsdepositspanel.cpp:283 mmcheckingpanel.cpp:362
 #: stockspanel.cpp:129
 msgid "&New "
-msgstr ""
+msgstr "&Новае "
 
 #: assetspanel.cpp:470 stockspanel.cpp:133
 msgid "&Add Trans "
-msgstr ""
+msgstr "Д&адаць транз "
 
 #: assetspanel.cpp:475 stockspanel.cpp:138
 msgid "&View Trans "
-msgstr ""
+msgstr "&Глядзець транз "
 
 #: assetspanel.cpp:476
 msgid "View Asset Transactions"
-msgstr ""
+msgstr "Паказаць транзакцыі актыва"
 
 #: assetspanel.cpp:480 attachmentdialog.cpp:317 billsdepositspanel.cpp:287
 #: categdialog.cpp:233 customfieldlistdialog.cpp:261 maincurrencydialog.cpp:527
 #: mmcheckingpanel.cpp:366 payeedialog.cpp:376 splittransactionsdialog.cpp:166
 #: stockspanel.cpp:143
 msgid "&Edit "
-msgstr ""
+msgstr "Р&эдагаваць "
 
 #: assetspanel.cpp:485 billsdepositspanel.cpp:292 budgetyeardialog.cpp:103
 #: categdialog.cpp:237 maincurrencydialog.cpp:292 mmchecking_list.cpp:395
 #: mmcheckingpanel.cpp:371 stockdialog.cpp:339 stockspanel.cpp:148
 msgid "&Delete "
-msgstr ""
+msgstr "&Выдаліць "
 
 #: assetspanel.cpp:486
 msgid "Delete Asset"
-msgstr ""
+msgstr "В&ыдаленне актыва"
 
 #: assetspanel.cpp:493 billsdepositspanel.cpp:310 mmcheckingpanel.cpp:384
 #: stockspanel.cpp:161
 msgid "Open attachments"
-msgstr ""
+msgstr "Адкрыць далучэнні"
 
 #: assetspanel.cpp:500 assetspanel.cpp:501 mmcheckingpanel.cpp:392
 msgid "Search"
-msgstr ""
+msgstr "Пошук"
 
 #: assetspanel.cpp:503
 msgid "Enter any string to find related assets"
-msgstr ""
+msgstr "Увядзіце любы тэкст для будзь-якіх актываў"
 
 #: assetspanel.cpp:573 stockspanel.cpp:344 stockspanel.cpp:531
 #, c-format
 msgid "Total: %s"
-msgstr ""
+msgstr "Агулам: %s"
 
 #: assetspanel.cpp:655
 #, c-format
 msgid "Change in Value: %s %s"
-msgstr ""
+msgstr "Змена кошта: %s %s"
 
 #: assetspanel.cpp:771
 msgid "This asset does not have its own account\n\n"
 "Multiple transactions for this asset are not recommended."
-msgstr ""
+msgstr "У гэтага актыва няма уласнага ўліковага запісу\n\n"
+"Некалькі транзакцый для гэтага актыву не рэкамендуецца."
 
 #: assetspanel.cpp:773
 msgid "Asset Management"
-msgstr ""
+msgstr "Кіраванне актывамі"
 
 #: assetspanel.cpp:792
 msgid "Account \t Date\t   Value\n\n"
-msgstr ""
+msgstr "Рахунак \t Дата\t   Кошт\n\n"
 
 #: attachmentdialog.cpp:55 general_report_manager.cpp:434
 msgid "Description"
-msgstr ""
+msgstr "Апісанне"
 
 #: attachmentdialog.cpp:56 import_export/qif_export.cpp:194
 #: import_export/univcsvdialog.cpp:181
 msgid "File"
-msgstr ""
+msgstr "Файл"
 
 #: attachmentdialog.cpp:64
 msgid "Attachment folder not defined."
-msgstr ""
+msgstr "Не паказаная тэчка з файламі."
 
 #: attachmentdialog.cpp:65
 msgid "Please set it in Tools -> Options -> Attachments"
-msgstr ""
+msgstr "Калі ласка, задайце шлях праз -> Опцыі -> Далучэнні"
 
 #: attachmentdialog.cpp:66
 msgid "Attachment folder not defined"
-msgstr ""
+msgstr "Тэчка далучэння ня вызначаная"
 
 #: attachmentdialog.cpp:70
 msgid "Unable to find attachments folder:"
-msgstr ""
+msgstr "Не магу знайсці каталог далучэнняў:"
 
 #: attachmentdialog.cpp:73
 msgid "Please verify that above path is correct"
-msgstr ""
+msgstr "Калі ласка праверце, што шлях слушны"
 
 #: attachmentdialog.cpp:74
 msgid "Attachments folder not found"
-msgstr ""
+msgstr "Тэчка для далучэнняў ня вызначаная"
 
 #: attachmentdialog.cpp:85
 #, c-format
 msgid "Organize Attachments | %s %i"
-msgstr ""
+msgstr "Уладкаваць далучэнні | %s %i"
 
 #: attachmentdialog.cpp:87
 #, c-format
 msgid "Organize Attachments | New %s"
-msgstr ""
+msgstr "Уладкаваць далучэнні | Новае %s"
 
 #: attachmentdialog.cpp:127 customfieldlistdialog.cpp:98 payeedialog.cpp:116
 msgid "Other tools"
-msgstr ""
+msgstr "Іншыя прылады"
 
 #: attachmentdialog.cpp:159
 msgid "Import attachment:"
-msgstr ""
+msgstr "Запампаваць далучэнне:"
 
 #: attachmentdialog.cpp:170
 msgid "Enter a description for the new attachment:"
-msgstr ""
+msgstr "Пакажыце апісанне новага далучэння:"
 
 #: attachmentdialog.cpp:171
 msgid "Organize Attachments: Add Attachment"
-msgstr ""
+msgstr "Уладкаванне далучэнняў: Дадаць далучэнне"
 
 #: attachmentdialog.cpp:214
 msgid "Enter a new description for the attachment:"
-msgstr ""
+msgstr "Пакажыце новае апісанне для далучэння:"
 
 #: attachmentdialog.cpp:215
 msgid "Organize Attachments: Edit Attachment"
-msgstr ""
+msgstr "Уладкаванне далучэнняў: Рэдагаваць далучэнне"
 
 #: attachmentdialog.cpp:239
 msgid "Do you really want to delete this attachment?"
-msgstr ""
+msgstr "Сапраўды жадаеце выдаліць далучэнне?"
 
 #: attachmentdialog.cpp:240
 msgid "Confirm Attachment Deletion"
-msgstr ""
+msgstr "Пацверджанне выдалення далучэння"
 
 #: attachmentdialog.cpp:314 categdialog.cpp:229 customfieldlistdialog.cpp:259
 #: import_export/univcsvdialog.cpp:236 maincurrencydialog.cpp:526
 #: payeedialog.cpp:375 splittransactionsdialog.cpp:165 stockdialog.cpp:341
 msgid "&Add "
-msgstr ""
+msgstr "Д&адаць "
 
 #: attachmentdialog.cpp:316
 msgid "&Open "
-msgstr ""
+msgstr "А&дчыніць "
 
 #: attachmentdialog.cpp:319 customfieldlistdialog.cpp:262
 #: import_export/univcsvdialog.cpp:240 maincurrencydialog.cpp:528
 #: payeedialog.cpp:378 splittransactionsdialog.cpp:167
 msgid "&Remove "
-msgstr ""
+msgstr "В&ыдаліць "
 
 #: attachmentdialog.cpp:361
 msgid "Att."
-msgstr ""
+msgstr "Далуч."
 
 #: attachmentdialog.cpp:368
 msgid "This directory and its files are automatically managed by Money Manager EX software."
-msgstr ""
+msgstr "Гэтая тэчка і ўсе файлы ў ёй аўтаматычна кіруюцца дадаткам Money Manager EX."
 
 #: attachmentdialog.cpp:370
 msgid "Please do not remove, rename or modify manually directories and files."
@@ -1666,7 +1667,7 @@ msgstr ""
 
 #: constants.cpp:71
 msgid "Cancel"
-msgstr ""
+msgstr "Скасаваць"
 
 #: constants.cpp:77 diagnostics.cpp:88 themes.cpp:189
 msgid "Close"
@@ -4111,7 +4112,7 @@ msgstr ""
 
 #: mmframe.cpp:1357 mmframe.cpp:1716 wizard_newdb.cpp:124
 msgid "New Database"
-msgstr ""
+msgstr "Новая база дадзеных"
 
 #: mmframe.cpp:1358
 msgid "&Open Database\tCtrl-O"
@@ -4119,15 +4120,15 @@ msgstr ""
 
 #: mmframe.cpp:1358 mmframe.cpp:1717
 msgid "Open Database"
-msgstr ""
+msgstr "Адчыніць базу дадзеных"
 
 #: mmframe.cpp:1359
 msgid "Save Database &As"
-msgstr ""
+msgstr "Захаваць Базу дадзеных &як"
 
 #: mmframe.cpp:1359
 msgid "Save Database As"
-msgstr ""
+msgstr "Захаваць Базу дадзеных як"
 
 #: mmframe.cpp:1366
 msgid "&Recent Files..."
@@ -4611,7 +4612,7 @@ msgstr ""
 
 #: mmframe.cpp:1688
 msgid "&File"
-msgstr ""
+msgstr "&Файл"
 
 #: mmframe.cpp:1689
 msgid "&Accounts"
@@ -4736,7 +4737,7 @@ msgstr ""
 
 #: mmframe.cpp:2048
 msgid "Choose database file to Save As"
-msgstr ""
+msgstr "Абраць файл для захоування базы дадзеных"
 
 #: mmframe.cpp:2070
 msgid "Converted DB!"
@@ -4797,7 +4798,7 @@ msgstr ""
 
 #: mmframe.cpp:2142 mmframe.cpp:2163
 msgid "Save database file as"
-msgstr ""
+msgstr "Захаваць файл базы дадзеных як"
 
 #: mmframe.cpp:2163
 msgid "Can't copy file to itself"
@@ -5282,7 +5283,7 @@ msgstr ""
 
 #: optiondialog.cpp:152
 msgid "&Apply"
-msgstr ""
+msgstr "&Ужыць"
 
 #: optiondialog.cpp:210
 #, c-format
