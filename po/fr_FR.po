@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-07-30 14:06+0300\n"
-"PO-Revision-Date: 2021-07-30 12:25\n"
+"PO-Revision-Date: 2021-07-30 12:51\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -5814,7 +5814,7 @@ msgstr "Taille des autres icônes"
 
 #: payeedialog.cpp:67
 msgid "Last Used Category"
-msgstr ""
+msgstr "Dernière catégorie utilisée"
 
 #: payeedialog.cpp:67
 msgid "Default Category"
@@ -5859,7 +5859,7 @@ msgstr "Gestion des tiers, erreur d'effacement"
 
 #: payeedialog.cpp:390
 msgid "Define Category"
-msgstr ""
+msgstr "Définir une catégorie"
 
 #: payeedialog.cpp:392
 msgid "Remove Category"
