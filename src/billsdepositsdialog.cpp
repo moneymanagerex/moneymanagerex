@@ -447,7 +447,7 @@ void mmBDDialog::CreateControls()
     wxBoxSizer* repeatBoxSizer = new wxBoxSizer(wxHORIZONTAL);
     m_btn_due_prev_date = new wxBitmapButton(this, ID_DIALOG_TRANS_BUTTONTRANSNUMPREV, mmBitmap(png::LEFTARROW));
     mmToolTip(m_btn_due_prev_date, _("Back to the last occurring date with the specified values"));
-    m_btn_due_date = new wxBitmapButton(this, ID_DIALOG_TRANS_BUTTONTRANSNUM, mmBitmap(png::RIGHTARROW));
+    m_btn_due_date = new wxBitmapButton(this, ID_DIALOG_TRANS_BUTTONTRANSNUM, mmBitmap(png::RIGHTARROW, mmBitmapButtonSize));
     mmToolTip(m_btn_due_date, _("Advance the next occurring date with the specified values"));
     repeatBoxSizer->Add(m_btn_due_prev_date, g_flagsExpand);
     repeatBoxSizer->Add(m_choice_repeat, wxSizerFlags(g_flagsExpand).Proportion(6));
@@ -626,7 +626,7 @@ void mmBDDialog::CreateControls()
     transPanelSizer->Add(new wxStaticText(this, wxID_STATIC, _("Notes")), g_flagsH);
 
     bAttachments_ = new wxBitmapButton(this, wxID_FILE
-        , mmBitmap(png::CLIP), wxDefaultPosition
+        , mmBitmap(png::CLIP, mmBitmapButtonSize), wxDefaultPosition
         , wxSize(m_btn_due_date->GetSize().GetY(), m_btn_due_date->GetSize().GetY()));
     mmToolTip(bAttachments_, _("Organize attachments of this recurring transaction"));
 
@@ -737,7 +737,8 @@ void mmBDDialog::OnPayee(wxCommandEvent& WXUNUSED(event))
             // Only for new transactions: if user want to autofill last category used for payee.
             // If this is a Split Transaction, ignore displaying last category for payee
             if (payee->CATEGID != -1 && m_bill_data.local_splits.empty()
-                && Option::instance().TransCategorySelection() == Option::LASTUSED
+                && (Option::instance().TransCategorySelection() == Option::LASTUSED || 
+                    Option::instance().TransCategorySelection() == Option::DEFAULT)
                 && !categUpdated_ && m_bill_data.BDID == 0)
             {
                 m_bill_data.CATEGID = payee->CATEGID;
@@ -1485,13 +1486,13 @@ void mmBDDialog::OnColourButton(wxCommandEvent& /*event*/)
 #ifdef __WXMSW__
         menuItem->SetBackgroundColour(getUDColour(i)); //only available for the wxMSW port.
 #endif
-        wxBitmap bitmap(mmBitmap(png::EMPTY).GetSize());
+        wxBitmap bitmap(mmBitmap(png::EMPTY, mmBitmapButtonSize).GetSize());
         wxMemoryDC memoryDC(bitmap);
         wxRect rect(memoryDC.GetSize());
 
         memoryDC.SetBackground(wxBrush(getUDColour(i)));
         memoryDC.Clear();
-        memoryDC.DrawBitmap(mmBitmap(png::EMPTY), 0, 0, true);
+        memoryDC.DrawBitmap(mmBitmap(png::EMPTY, mmBitmapButtonSize), 0, 0, true);
         memoryDC.SelectObject(wxNullBitmap);
         menuItem->SetBitmap(bitmap);
 

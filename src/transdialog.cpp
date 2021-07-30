@@ -53,7 +53,7 @@ wxBEGIN_EVENT_TABLE(mmTransDialog, wxDialog)
     EVT_CHILD_FOCUS(mmTransDialog::OnFocusChange)
     EVT_DATE_CHANGED(ID_DIALOG_TRANS_BUTTONDATE, mmTransDialog::OnDateChanged)
     EVT_SPIN(ID_DIALOG_TRANS_DATE_SPINNER, mmTransDialog::OnTransDateSpin)
-    EVT_COMBOBOX(wxID_ANY, mmTransDialog::OnAccountOrPayeeUpdated)
+    EVT_COMBOBOX(ID_DIALOG_TRANS_PAYEECOMBO, mmTransDialog::OnAccountOrPayeeUpdated)
     EVT_BUTTON(wxID_VIEW_DETAILS, mmTransDialog::OnCategs)
     EVT_CHOICE(ID_DIALOG_TRANS_TYPE, mmTransDialog::OnTransTypeChanged)
     EVT_CHECKBOX(ID_DIALOG_TRANS_ADVANCED_CHECKBOX, mmTransDialog::OnAdvanceChecked)
@@ -554,7 +554,7 @@ void mmTransDialog::CreateControls()
     // Number  ---------------------------------------------
     textNumber_ = new mmTextCtrl(this, ID_DIALOG_TRANS_TEXTNUMBER, "", wxDefaultPosition, wxDefaultSize, wxTE_PROCESS_ENTER);
 
-    wxBitmapButton* bAuto = new wxBitmapButton(this, ID_DIALOG_TRANS_BUTTONTRANSNUM, mmBitmap(png::TRXNUM));
+    wxBitmapButton* bAuto = new wxBitmapButton(this, ID_DIALOG_TRANS_BUTTONTRANSNUM, mmBitmap(png::TRXNUM, mmBitmapButtonSize));
     bAuto->Connect(ID_DIALOG_TRANS_BUTTONTRANSNUM, wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(mmTransDialog::OnAutoTransNum), nullptr, this);
     mmToolTip(bAuto, _("Populate Transaction #"));
 
@@ -565,7 +565,7 @@ void mmTransDialog::CreateControls()
     number_sizer->Add(bAuto, g_flagsH);
 
     // Attachments ---------------------------------------------
-    bAttachments_ = new wxBitmapButton(this, wxID_FILE, mmBitmap(png::CLIP), wxDefaultPosition, wxSize(cbPayee_->GetSize().GetY(), cbPayee_->GetSize().GetY()));
+    bAttachments_ = new wxBitmapButton(this, wxID_FILE, mmBitmap(png::CLIP, mmBitmapButtonSize));
     mmToolTip(bAttachments_, _("Organize attachments of this transaction"));
 
     // Colours ---------------------------------------------
@@ -604,7 +604,7 @@ void mmTransDialog::CreateControls()
     wxButton* itemButtonOK = new wxButton(buttons_panel, wxID_OK, _("&OK "));
     itemButtonCancel_ = new wxButton(buttons_panel, wxID_CANCEL, wxGetTranslation(g_CancelLabel));
 
-    wxBitmapButton* itemButtonHide = new wxBitmapButton(buttons_panel, ID_DIALOG_TRANS_CUSTOMFIELDS, mmBitmap(png::RIGHTARROW));
+    wxBitmapButton* itemButtonHide = new wxBitmapButton(buttons_panel, ID_DIALOG_TRANS_CUSTOMFIELDS, mmBitmap(png::RIGHTARROW, mmBitmapButtonSize));
     mmToolTip(itemButtonHide, _("Show/Hide custom fields window"));
     if (m_custom_fields->GetCustomFieldsCount() == 0) {
         itemButtonHide->Hide();
@@ -661,8 +661,8 @@ bool mmTransDialog::ValidateData()
         if (!payee)
         {
             wxMessageDialog msgDlg( this
-                , wxString::Format(_("Do you want to add new payee: \n%s?"), payee_name)
-                , _("Confirm to add new payee")
+                , wxString::Format(_("You have not used this payee name before. Is the name correct?\n%s"), payee_name)
+                , _("Confirm payee name")
                 , wxYES_NO | wxYES_DEFAULT | wxICON_WARNING);
             if (Option::instance().TransCategorySelection() == Option::UNUSED || msgDlg.ShowModal() == wxID_YES)
             {
@@ -681,10 +681,13 @@ bool mmTransDialog::ValidateData()
             m_trx_data.TOACCOUNTID = -1;
         }
 
-        payee->CATEGID = m_trx_data.CATEGID;
-        payee->SUBCATEGID = m_trx_data.SUBCATEGID;
-        Model_Payee::instance().save(payee);
-        mmWebApp::MMEX_WebApp_UpdatePayee();
+        if (Option::instance().TransCategorySelection() == Option::LASTUSED)
+        {
+            payee->CATEGID = m_trx_data.CATEGID;
+            payee->SUBCATEGID = m_trx_data.SUBCATEGID;
+            Model_Payee::instance().save(payee);
+            mmWebApp::MMEX_WebApp_UpdatePayee();
+        }
     }
     else //transfer
     {
@@ -1014,7 +1017,8 @@ void mmTransDialog::SetCategoryForPayee(const Model_Payee::Data *payee)
 
     // Only for new transactions: if user want to autofill last category used for payee.
     // If this is a Split Transaction, ignore displaying last category for payee
-    if (Option::instance().TransCategorySelection() == Option::LASTUSED
+    if ((Option::instance().TransCategorySelection() == Option::LASTUSED ||
+         Option::instance().TransCategorySelection() == Option::DEFAULT)
         && !categUpdated_ && m_local_splits.empty() && m_new_trx && !m_duplicate)
     {
         // if payee has memory of last category used then display last category for payee
@@ -1314,7 +1318,7 @@ void mmTransDialog::OnMoreFields(wxCommandEvent& WXUNUSED(event))
     wxBitmapButton* button = static_cast<wxBitmapButton*>(FindWindow(ID_DIALOG_TRANS_CUSTOMFIELDS));
 
     if (button)
-        button->SetBitmap(mmBitmap(m_custom_fields->IsCustomPanelShown() ? png::RIGHTARROW : png::LEFTARROW));
+        button->SetBitmap(mmBitmap(m_custom_fields->IsCustomPanelShown() ? png::RIGHTARROW : png::LEFTARROW, mmBitmapButtonSize));
 
     m_custom_fields->ShowHideCustomPanel();
 
@@ -1338,13 +1342,13 @@ void mmTransDialog::OnColourButton(wxCommandEvent& /*event*/)
 #ifdef __WXMSW__
         menuItem->SetBackgroundColour(getUDColour(i)); //only available for the wxMSW port.
 #endif
-        wxBitmap bitmap(mmBitmap(png::EMPTY).GetSize());
+        wxBitmap bitmap(mmBitmap(png::EMPTY, mmBitmapButtonSize).GetSize());
         wxMemoryDC memoryDC(bitmap);
         wxRect rect(memoryDC.GetSize());
 
         memoryDC.SetBackground(wxBrush(getUDColour(i)));
         memoryDC.Clear();
-        memoryDC.DrawBitmap(mmBitmap(png::EMPTY), 0, 0, true);
+        memoryDC.DrawBitmap(mmBitmap(png::EMPTY, mmBitmapButtonSize), 0, 0, true);
         memoryDC.SelectObject(wxNullBitmap);
         menuItem->SetBitmap(bitmap);
 

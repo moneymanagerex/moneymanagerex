@@ -141,16 +141,17 @@ bool mmWebApp::WebApp_CheckApiVersion()
 //POST data as JSON
 int mmWebApp::WebApp_SendJson(wxString& Website, const wxString& JsonData, wxString& Output)
 {
-    //Create multipart form
-    wxString Boundary = "Custom_Boundary_MMEX_WebApp";
-    wxString Text = wxEmptyString;
-    Text.Append(wxString::Format("--%s\r\n", Boundary));
-    Text.Append(wxString::Format("Content-Disposition: form-data; name=\"%s\"\r\n\r\n", "MMEX_Post"));
-    Text.Append(wxString::Format("%s\r\n", JsonData));
-    Text.Append(wxString::Format("\r\n--%s--\r\n", Boundary));
+    const auto temp =
+R"(--Custom_Boundary_MMEX_WebApp
+Content-Disposition: form-data; name="MMEX_Post"
 
-    wxString ContentType = wxString::Format("Content-Type: multipart/form-data; boundary=%s", Boundary);
+%s
 
+--Custom_Boundary_MMEX_WebApp--
+)";
+
+    const auto ContentType = "Content-Type: multipart/form-data; charset=utf-8; boundary=Custom_Boundary_MMEX_WebApp";
+    const auto Text = wxString::Format(temp, JsonData);
     return http_post_data(Website, Text, ContentType, Output);
 }
 
@@ -191,7 +192,7 @@ bool mmWebApp::WebApp_UpdateAccount()
 
     mmWebApp::WebApp_DeleteAllAccount();
     wxString update_account_url = mmWebApp::getServicesPageURL() + "&" + WebAppParam::ImportAccount + "=true";
-    wxString json_account_list = wxString::FromUTF8(json_buffer.GetString());
+    wxString json_account_list = /*wxString::FromUTF8*/(json_buffer.GetString());
     wxString output_message;
 
     int error_code = mmWebApp::WebApp_SendJson(update_account_url, json_account_list, output_message);
@@ -249,7 +250,7 @@ bool mmWebApp::WebApp_UpdatePayee()
 
     mmWebApp::WebApp_DeleteAllPayee();
     wxString update_payee_url = mmWebApp::getServicesPageURL() + "&" + WebAppParam::ImportPayee + "=true";
-    wxString json_payee_list = wxString::FromUTF8(json_buffer.GetString());
+    wxString json_payee_list = /*wxString::FromUTF8*/(json_buffer.GetString());
     wxString output_message;
     int error_code = mmWebApp::WebApp_SendJson(update_payee_url, json_payee_list, output_message);
 
@@ -323,7 +324,7 @@ bool mmWebApp::WebApp_UpdateCategory()
 
     mmWebApp::WebApp_DeleteAllCategory();
     wxString update_category_url = mmWebApp::getServicesPageURL() + "&" + WebAppParam::ImportCategory + "=true";
-    wxString category_list = wxString::FromUTF8(json_buffer.GetString());
+    wxString category_list = /*wxString::FromUTF8*/(json_buffer.GetString());
     wxString output_message;
     int error_code = mmWebApp::WebApp_SendJson(update_category_url, category_list, output_message);
 

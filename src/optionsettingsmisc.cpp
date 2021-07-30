@@ -108,6 +108,7 @@ void OptionSettingsMisc::Create()
     defaultPayeeChoice->SetSelection(Option::instance().TransPayeeSelection());
 
     default_values[1] = (_("Last used for payee"));
+    default_values.Add(_("Use default for payee"));
     wxChoice* defaultCategoryChoice = new wxChoice(this
         , ID_DIALOG_OPTIONS_DEFAULT_TRANSACTION_CATEGORY
         , wxDefaultPosition, defaultPayeeChoice->GetSize(), default_values);

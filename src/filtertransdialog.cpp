@@ -91,8 +91,10 @@ EVT_BUTTON(wxID_OK, mmFilterTransactionsDialog::OnButtonOkClick)
 EVT_BUTTON(wxID_CANCEL, mmFilterTransactionsDialog::OnButtonCancelClick)
 EVT_BUTTON(wxID_SAVE, mmFilterTransactionsDialog::OnButtonSaveClick)
 EVT_BUTTON(wxID_CLEAR, mmFilterTransactionsDialog::OnButtonClearClick)
-EVT_MENU(wxID_ANY, mmFilterTransactionsDialog::datePresetMenuSelected)
+EVT_MENU(ID_DIALOG_DATEPRESET, mmFilterTransactionsDialog::datePresetMenuSelected)
 EVT_DATE_CHANGED(wxID_ANY, mmFilterTransactionsDialog::OnDateChanged)
+EVT_BUTTON(ID_DIALOG_COLOUR, mmFilterTransactionsDialog::OnColourButton)
+EVT_MENU_RANGE(wxID_HIGHEST , wxID_HIGHEST + 8, mmFilterTransactionsDialog::OnColourSelected)
 wxEND_EVENT_TABLE()
 
 mmFilterTransactionsDialog::mmFilterTransactionsDialog()
@@ -226,7 +228,7 @@ void mmFilterTransactionsDialog::CreateControls()
         , wxDefaultPosition, wxDefaultSize, wxDP_DROPDOWN);
     toDateControl_ = new wxDatePickerCtrl(itemPanel, wxID_LAST, wxDefaultDateTime
         , wxDefaultPosition, wxDefaultSize, wxDP_DROPDOWN);
-    dateRangeCheckBox_->Connect(wxID_ANY, wxEVT_RIGHT_DOWN
+    dateRangeCheckBox_->Connect(ID_DIALOG_DATEPRESET, wxEVT_RIGHT_DOWN
         , wxMouseEventHandler(mmFilterTransactionsDialog::datePresetMenu), nullptr, this);
 
     wxBoxSizer* dateSizer = new wxBoxSizer(wxHORIZONTAL);
@@ -343,6 +345,15 @@ void mmFilterTransactionsDialog::CreateControls()
     notesEdit_ = new wxTextCtrl(itemPanel, wxID_ANY);
     itemPanelSizer->Add(notesEdit_, g_flagsExpand);
 
+    // Colour
+    colourCheckBox_ = new wxCheckBox(itemPanel, wxID_ANY, _("Color")
+        , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
+    itemPanelSizer->Add(colourCheckBox_, g_flagsH);
+
+    colourButton_ = new wxButton(itemPanel, ID_DIALOG_COLOUR, _("Select the Color"));
+    colourValue_ = 0;
+    itemPanelSizer->Add(colourButton_, g_flagsExpand);
+
     // Settings
     wxBoxSizer* settings_box_sizer = new wxBoxSizer(wxHORIZONTAL);
 
@@ -377,13 +388,13 @@ void mmFilterTransactionsDialog::CreateControls()
         , wxCommandEventHandler(mmFilterTransactionsDialog::OnSettingsSelected), nullptr, this);
 
     settings_box_sizer->AddSpacer(5);
-    m_btnSaveAs = new wxBitmapButton(this, wxID_SAVEAS, mmBitmap(png::SAVE));
+    m_btnSaveAs = new wxBitmapButton(this, wxID_SAVEAS, mmBitmap(png::SAVE, mmBitmapButtonSize));
     settings_box_sizer->Add(m_btnSaveAs, g_flagsH);
     mmToolTip(m_btnSaveAs, _("Save active values into current Preset selection"));
     m_btnSaveAs->Connect(wxID_SAVEAS, wxEVT_COMMAND_BUTTON_CLICKED
         , wxCommandEventHandler(mmFilterTransactionsDialog::OnSaveSettings), nullptr, this);
 
-    wxBitmapButton* itemButtonClear = new wxBitmapButton(this, wxID_CLEAR, mmBitmap(png::CLEAR));
+    wxBitmapButton* itemButtonClear = new wxBitmapButton(this, wxID_CLEAR, mmBitmap(png::CLEAR, mmBitmapButtonSize));
     mmToolTip(itemButtonClear, _("Clear all fields for current Preset selection"));
     settings_box_sizer->Add(itemButtonClear, g_flagsH);
 
@@ -440,6 +451,7 @@ void mmFilterTransactionsDialog::OnCheckboxClick(wxCommandEvent& event)
         startDateDropDown_->Enable(startDateCheckBox_->IsChecked());
         fromDateCtrl_->Enable(dateRangeCheckBox_->IsChecked());
         toDateControl_->Enable(dateRangeCheckBox_->IsChecked());
+        colourButton_->Enable(colourCheckBox_->IsChecked());
     }
 
     if (accountCheckBox_->IsChecked() && selected_accounts_id_.size() <= 0)
@@ -605,7 +617,8 @@ bool mmFilterTransactionsDialog::isSomethingSelected()
         || getAmountRangeCheckBoxMin()
         || getAmountRangeCheckBoxMax()
         || getNumberCheckBox()
-        || getNotesCheckBox();
+        || getNotesCheckBox()
+        || getColourCheckBox();
 }
 
 wxString mmFilterTransactionsDialog::getStatus() const
@@ -870,6 +883,8 @@ bool mmFilterTransactionsDialog::checkAll(const Model_Checking::Data &tran
     else if (getNotesCheckBox() && (getNotes().empty() ? !tran.NOTES.empty()
         : tran.NOTES.empty() || !tran.NOTES.Lower().Matches(getNotes().Lower())))
         ok = false;
+    else if (getColourCheckBox() && (colourValue_ != tran.FOLLOWUPID))
+        ok = false;
     return ok;
 }
 bool mmFilterTransactionsDialog::checkAll(const Model_Billsdeposits::Data &tran, const std::map<int, Model_Budgetsplittransaction::Data_Set>& split)
@@ -993,7 +1008,7 @@ const wxString mmFilterTransactionsDialog::to_json(bool i18n)
         json_writer.Key((i18n ? _("Include Similar") : "SIMILAR_YN").utf8_str());
         json_writer.Bool(bSimilarCategoryStatus_);
         json_writer.Key((i18n ? _("Category") : "CATEGORY").utf8_str());
-        auto categ = Model_Category::full_name(categID_, subcategID_, i18n);
+        auto categ = Model_Category::full_name(categID_, subcategID_);
         wxLogDebug("%s", categ);
         json_writer.String(categ.utf8_str());
     }
@@ -1059,6 +1074,12 @@ const wxString mmFilterTransactionsDialog::to_json(bool i18n)
         wxString notes = notesEdit_->GetValue();
         json_writer.Key((i18n ? _("Notes") : "NOTES").utf8_str());
         json_writer.String(notes.utf8_str());
+    }
+
+    if (colourCheckBox_->IsChecked())
+    {
+        json_writer.Key((i18n ? _("Color") : "COLOR").utf8_str());
+        json_writer.Int(colourValue_);
     }
 
     json_writer.EndObject();
@@ -1158,7 +1179,7 @@ void mmFilterTransactionsDialog::from_json(const wxString &data)
     const auto subcateg_name = categ_token.GetNextToken().Trim(false);
     s_category = categ_name + (s_category.Contains(":") ? delimiter + subcateg_name : "");
 
-    for (const auto& entry : Model_Category::instance().all_categories(false))
+    for (const auto& entry : Model_Category::instance().all_categories())
     {
         //wxLogDebug("%s : %i %i", entry.first, entry.second.first, entry.second.second);
         if (s_category == entry.first)
@@ -1246,6 +1267,17 @@ void mmFilterTransactionsDialog::from_json(const wxString &data)
     }
     notesEdit_->Enable(notesCheckBox_->IsChecked());
     notesEdit_->ChangeValue(s_notes);
+
+    //Colour
+    colourValue_ = 0;
+    colourCheckBox_->SetValue(false);
+    if (j_doc.HasMember("COLOR") && j_doc["COLOR"].IsInt()) {
+        colourCheckBox_->SetValue(true);
+        colourValue_ = j_doc["COLOR"].GetInt();
+    }
+    colourButton_->Enable(colourCheckBox_->IsChecked());
+    colourButton_->SetBackgroundColour(getUDColour(colourValue_));
+    colourButton_->Refresh(); // Needed as setting the background colour does not cause an immediate refresh
 }
 
 void mmFilterTransactionsDialog::OnDateChanged(wxDateEvent& event)
@@ -1341,6 +1373,11 @@ bool mmFilterTransactionsDialog::getNumberCheckBox()
 bool mmFilterTransactionsDialog::getNotesCheckBox()
 {
     return notesCheckBox_->IsChecked();
+}
+
+bool mmFilterTransactionsDialog::getColourCheckBox()
+{
+    return colourCheckBox_->IsChecked();
 }
 
 void mmFilterTransactionsDialog::ResetFilterStatus()
@@ -1443,3 +1480,39 @@ void mmFilterTransactionsDialog::OnAccountsButton(wxCommandEvent& WXUNUSED(event
 
 }
 
+void mmFilterTransactionsDialog::OnColourButton(wxCommandEvent& /*event*/)
+{
+    wxMenu* mainMenu = new wxMenu;
+
+    wxMenuItem* menuItem = new wxMenuItem(mainMenu, wxID_HIGHEST, wxString::Format(_("Not colored"), 0));
+    mainMenu->Append(menuItem);
+
+    for (int i = 1; i <= 7; ++i)
+    {
+        menuItem = new wxMenuItem(mainMenu, wxID_HIGHEST + i, wxString::Format(_("Color #%i"), i));
+#ifdef __WXMSW__
+        menuItem->SetBackgroundColour(getUDColour(i)); //only available for the wxMSW port.
+#endif
+        wxBitmap bitmap(mmBitmap(png::EMPTY, mmBitmapButtonSize).GetSize());
+        wxMemoryDC memoryDC(bitmap);
+        wxRect rect(memoryDC.GetSize());
+
+        memoryDC.SetBackground(wxBrush(getUDColour(i)));
+        memoryDC.Clear();
+        memoryDC.DrawBitmap(mmBitmap(png::EMPTY, mmBitmapButtonSize), 0, 0, true);
+        memoryDC.SelectObject(wxNullBitmap);
+        menuItem->SetBitmap(bitmap);
+
+        mainMenu->Append(menuItem);
+    }
+
+    PopupMenu(mainMenu);
+    delete mainMenu;
+}
+
+void mmFilterTransactionsDialog::OnColourSelected(wxCommandEvent& event)
+{
+    int selected_nemu_item = event.GetId() - wxID_HIGHEST;
+    colourButton_->SetBackgroundColour(getUDColour(selected_nemu_item));
+    colourValue_ = selected_nemu_item;
+}
