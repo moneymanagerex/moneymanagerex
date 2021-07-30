@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-07-30 14:06+0300\n"
-"PO-Revision-Date: 2021-07-30 11:10\n"
+"PO-Revision-Date: 2021-07-30 12:25\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -5562,7 +5562,7 @@ msgstr "Dernier bénéficiaires utilisé"
 
 #: optionsettingsmisc.cpp:111
 msgid "Use default for payee"
-msgstr ""
+msgstr "Utiliser la valeur par défaut pour le bénéficiaire"
 
 #: optionsettingsmisc.cpp:127
 msgid "Yes"
@@ -5863,7 +5863,7 @@ msgstr ""
 
 #: payeedialog.cpp:392
 msgid "Remove Category"
-msgstr ""
+msgstr "Supprimer la catégorie"
 
 #: payeedialog.cpp:407
 msgid "Relocate Payee"
