@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-07-30 14:06+0300\n"
-"PO-Revision-Date: 2021-07-31 05:17\n"
+"PO-Revision-Date: 2021-07-31 05:53\n"
 "Last-Translator: \n"
 "Language-Team: Hebrew\n"
 "MIME-Version: 1.0\n"
@@ -580,7 +580,7 @@ msgstr "הזנת מחרוזת לחיפוש נכס"
 #: assetspanel.cpp:573 stockspanel.cpp:344 stockspanel.cpp:531
 #, c-format
 msgid "Total: %s"
-msgstr "סך כל: %s"
+msgstr "סך־כל: %s"
 
 #: assetspanel.cpp:655
 #, c-format
@@ -3250,7 +3250,7 @@ msgstr "שורה %ld: יובא בהצלחה."
 #: import_export/univcsvdialog.cpp:1042
 #, c-format
 msgid "Total Lines: %ld"
-msgstr "סך כל שורות: %ld"
+msgstr "סך־כל שורות: %ld"
 
 #: import_export/univcsvdialog.cpp:1044
 #, c-format
@@ -5050,13 +5050,13 @@ msgstr "רוח/הפסד"
 #: mmhomepage.cpp:80 reports/budgetingperf.cpp:219 reports/cashflow.cpp:250
 #: reports/categexp.cpp:175 reports/categexp.cpp:451 reports/summary.cpp:165
 msgid "Total"
-msgstr "סך הכל"
+msgstr "סך־כל"
 
 #: mmhomepage.cpp:106 mmhomepage.cpp:696 reports/incexpenses.cpp:287
 #: reports/payee.cpp:164 reports/summarystocks.cpp:133
 #: splittransactionsdialog.cpp:143
 msgid "Total:"
-msgstr "סך הכל:"
+msgstr "סך־הכל:"
 
 #: mmhomepage.cpp:160
 #, c-format
@@ -5097,12 +5097,12 @@ msgstr "מעקב תנועות: "
 
 #: mmhomepage.cpp:530
 msgid "Total Transactions: "
-msgstr "סך כל תנועות: "
+msgstr "סך־כל תנועות: "
 
 #: mmhomepage.cpp:552 reports/categexp.cpp:225 reports/summarystocks.cpp:149
 #: reports/transactions.cpp:197 reports/transactions.cpp:232
 msgid "Grand Total:"
-msgstr "סך הכל כללי:"
+msgstr "סך־כל כללי:"
 
 #: mmhomepage.cpp:645
 msgid "Investment Accounts"
@@ -5899,15 +5899,15 @@ msgstr "תיבת דו־שיח העברת סוג־אב"
 
 #: relocatecategorydialog.cpp:86
 msgid "Relocate source category to the destination category"
-msgstr "העברת כל  המקור ל היעד"
+msgstr "העברת כל סוג־אב המקור לסוג־אב היעד"
 
 #: relocatecategorydialog.cpp:89
 msgid "Select Source Category"
-msgstr "בחירת  מקור"
+msgstr "בחירת סוג־אב מקור"
 
 #: relocatecategorydialog.cpp:95
 msgid "Select Destination Category"
-msgstr "בחירת  יעד"
+msgstr "בחירת סוג־אב יעד"
 
 #: relocatecategorydialog.cpp:109 relocatepayeedialog.cpp:112
 msgid "Relocate:"
@@ -5948,7 +5948,7 @@ msgstr "רשומות שנמצאו בתנועות מחזוריות מפוצלות
 #: relocatecategorydialog.cpp:273
 #, c-format
 msgid "Records found as Default Payee Category: %i"
-msgstr "רשומות שנמצאו כסוג־אב כמוטב ברירת מחדל: %i"
+msgstr "רשומות שנמצאו כסוג־אב מוטב ברירת מחדל: %i"
 
 #: relocatecategorydialog.cpp:274
 #, c-format
@@ -6043,7 +6043,7 @@ msgstr "%"
 
 #: reports/budgetingperf.cpp:283
 msgid "Monthly Total"
-msgstr "סך הכל חודשי"
+msgstr "סך־הכל חודשי"
 
 #: reports/bugreport.h:56
 msgid "Bug Report"
@@ -6124,11 +6124,11 @@ msgstr "סך־כל סוג־אב: "
 
 #: reports/categexp.cpp:222
 msgid "Total Expenses:"
-msgstr "סך כל הוצאות:"
+msgstr "סך־כל הוצאות:"
 
 #: reports/categexp.cpp:223
 msgid "Total Income:"
-msgstr "סך כל הכנסות:"
+msgstr "סך־כל הכנסות:"
 
 #: reports/categexp.cpp:254
 msgid "Categories Summary"
@@ -6588,7 +6588,7 @@ msgstr "שגיאת ההיסטוריה ניירות ערך"
 
 #: stocks_list.cpp:92
 msgid "Share Total"
-msgstr "סך כל מניה"
+msgstr "סך־כל מניות"
 
 #: stocks_list.cpp:94
 msgid "Init Value"
@@ -6679,7 +6679,7 @@ msgstr "תיק השקעות: %s"
 #: stockspanel.cpp:343
 #, c-format
 msgid "Total Shares: %s"
-msgstr "סה\"כ מניות: %s"
+msgstr "סך־כל מניות: %s"
 
 #: stockspanel.cpp:345
 #, c-format
