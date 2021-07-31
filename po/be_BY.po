@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-07-30 14:06+0300\n"
-"PO-Revision-Date: 2021-07-30 11:10\n"
+"PO-Revision-Date: 2021-07-31 11:53\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -702,11 +702,11 @@ msgstr "Гэтая тэчка і ўсе файлы ў ёй аўтаматычн�
 
 #: attachmentdialog.cpp:370
 msgid "Please do not remove, rename or modify manually directories and files."
-msgstr ""
+msgstr "Калі ласка, не выдаляйце і ня перасоўвайце файлы ўручную."
 
 #: attachmentdialog.cpp:415 attachmentdialog.cpp:423
 msgid "Destination file already exist:"
-msgstr ""
+msgstr "Файл прызначэння ўжо існуе:"
 
 #: attachmentdialog.cpp:418
 msgid "File not found in attachments. Please delete or rename it."
