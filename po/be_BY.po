@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-07-30 14:06+0300\n"
-"PO-Revision-Date: 2021-07-31 20:53\n"
+"PO-Revision-Date: 2021-07-31 21:07\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -879,27 +879,27 @@ msgstr "Аўтаматычны дазвол на выкананне"
 
 #: billsdepositsdialog.cpp:478
 msgid "The requested payment will occur without user interaction"
-msgstr ""
+msgstr "Аўтавыкананне будзе адбывацца без удзелу карыстальніка"
 
 #: billsdepositsdialog.cpp:502 transdialog.cpp:435
 msgid "Transaction Details"
-msgstr ""
+msgstr "Дэталі транзакцыі"
 
 #: billsdepositsdialog.cpp:512
 msgid "Specify the date the user is requested to enter this transaction"
-msgstr ""
+msgstr "Пакажыце дату, калі карыстальніку прапаноўваецца ўвесці гэтую транзакцыю"
 
 #: billsdepositsdialog.cpp:521
 msgid "Advance or retard the user request date of this transaction"
-msgstr ""
+msgstr "Апярэджанне або запазненне даты запыту карыстальніка гэтай тарнзакцыі"
 
 #: billsdepositsdialog.cpp:526 billsdepositspanel.cpp:127
 msgid "Date Paid"
-msgstr ""
+msgstr "Дата аплаты"
 
 #: billsdepositsdialog.cpp:537 filtertransdialog.cpp:284 transdialog.cpp:1299
 msgid "Specify the status for the transaction"
-msgstr ""
+msgstr "Абярыце стан транзакцыі"
 
 #: billsdepositsdialog.cpp:539 billsdepositspanel.cpp:131
 #: filtertransdialog.cpp:274 filtertransdialog.cpp:564
@@ -910,15 +910,15 @@ msgstr ""
 #: transdialog.cpp:479 usertransactionpanel.cpp:178 webappdialog.cpp:149
 #: wizard_update.cpp:145
 msgid "Status"
-msgstr ""
+msgstr "Стан"
 
 #: billsdepositsdialog.cpp:544 splitdetailsdialog.cpp:131 transdialog.cpp:1300
 msgid "Specify the type of transactions to be created."
-msgstr ""
+msgstr "Абярыце тып новай транзакцыі."
 
 #: billsdepositsdialog.cpp:545 transdialog.cpp:494
 msgid "&Advanced"
-msgstr ""
+msgstr "&Дадаткова"
 
 #: billsdepositsdialog.cpp:548 transdialog.cpp:1304
 msgid "Allows the setting of different amounts in the FROM and TO accounts."
