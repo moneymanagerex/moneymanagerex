@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-07-30 14:06+0300\n"
-"PO-Revision-Date: 2021-07-31 20:38\n"
+"PO-Revision-Date: 2021-07-31 20:53\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -847,35 +847,35 @@ msgstr "Затрымліваць або перасоўваць дату «нас
 
 #: billsdepositsdialog.cpp:438 billsdepositspanel.cpp:128
 msgid "Date Due"
-msgstr ""
+msgstr "Дата выплаты"
 
 #: billsdepositsdialog.cpp:442 billsdepositsdialog.cpp:1274
 msgid "Repeats"
-msgstr ""
+msgstr "Паўторы"
 
 #: billsdepositsdialog.cpp:449
 msgid "Back to the last occurring date with the specified values"
-msgstr ""
+msgstr "Вярнуцца да апошняй даты з паказанымі значэннямі"
 
 #: billsdepositsdialog.cpp:451
 msgid "Advance the next occurring date with the specified values"
-msgstr ""
+msgstr "Перайдзіце да наступнай даты з паказанымі значэннямі"
 
 #: billsdepositsdialog.cpp:459 billsdepositsdialog.cpp:1316
 msgid "Payments Left"
-msgstr ""
+msgstr "Плацяжоў агулам"
 
 #: billsdepositsdialog.cpp:473
 msgid "Request user to enter payment"
-msgstr ""
+msgstr "Карыстальнік мае ўвесці аплату"
 
 #: billsdepositsdialog.cpp:474
 msgid "User requested to enter this transaction on the 'Date Paid'"
-msgstr ""
+msgstr "Карыстальнік мае ўвесці транзакцыю на «Дата Аплаты»"
 
 #: billsdepositsdialog.cpp:477
 msgid "Grant automatic execute"
-msgstr ""
+msgstr "Аўтаматычны дазвол на выкананне"
 
 #: billsdepositsdialog.cpp:478
 msgid "The requested payment will occur without user interaction"
