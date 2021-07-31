@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-07-30 14:06+0300\n"
-"PO-Revision-Date: 2021-07-31 20:27\n"
+"PO-Revision-Date: 2021-07-31 20:38\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -811,39 +811,39 @@ msgstr "У (x) месяцы"
 
 #: billsdepositsdialog.cpp:64
 msgid "Every (x) Days"
-msgstr ""
+msgstr "Кожныя (x) дні"
 
 #: billsdepositsdialog.cpp:65
 msgid "Every (x) Months"
-msgstr ""
+msgstr "Кожныя (x) месяцы"
 
 #: billsdepositsdialog.cpp:66 billsdepositspanel.cpp:63
 msgid "Monthly (last day)"
-msgstr ""
+msgstr "Штомесяца (апошні дзень)"
 
 #: billsdepositsdialog.cpp:67 billsdepositspanel.cpp:64
 msgid "Monthly (last business day)"
-msgstr ""
+msgstr "Штомесяца (апошні працоўны дзень)"
 
 #: billsdepositsdialog.cpp:308 billsdepositspanel.cpp:288
 msgid "Edit Recurring Transaction"
-msgstr ""
+msgstr "Рэдактар запланаванай транзакцыі"
 
 #: billsdepositsdialog.cpp:312
 msgid "Enter Recurring Transaction"
-msgstr ""
+msgstr "Увядзіце транзакцыю, што паўтараецца"
 
 #: billsdepositsdialog.cpp:410
 msgid "Recurring Transaction Details"
-msgstr ""
+msgstr "Дэталі транзакцыі, што паўтараецца"
 
 #: billsdepositsdialog.cpp:422
 msgid "Specify the date when this bill or deposit is due"
-msgstr ""
+msgstr "Вызначыце дату наступнага налічэння"
 
 #: billsdepositsdialog.cpp:433
 msgid "Retard or advance the date of the 'next occurrence'"
-msgstr ""
+msgstr "Затрымліваць або перасоўваць дату «наступнай падзеі»"
 
 #: billsdepositsdialog.cpp:438 billsdepositspanel.cpp:128
 msgid "Date Due"
