@@ -64,7 +64,8 @@ public:
         , const wxArrayString* accountArray
         , mmDateRange* date_range, bool ignoreFuture
         , bool group_by_month = true
-        , std::map<int, std::map<int, double> > *budgetAmt = nullptr);
+        , std::map<int, std::map<int, double> > *budgetAmt = nullptr
+        , bool fin_months = false);
 };
 
 #endif //

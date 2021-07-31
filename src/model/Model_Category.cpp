@@ -166,19 +166,20 @@ void Model_Category::getCategoryStats(
     , mmDateRange* date_range
     , bool WXUNUSED(ignoreFuture) //TODO: deprecated
     , bool group_by_month
-    , std::map<int, std::map<int, double> > *budgetAmt)
+    , std::map<int, std::map<int, double> > *budgetAmt
+    , bool fin_months)
 {
     //Initialization
     //Set std::map with zerros
     const auto &allSubcategories = Model_Subcategory::instance().all();
     double value = 0;
     int columns = group_by_month ? 12 : 1;
-    const wxDateTime start_date(1, date_range->end_date().GetMonth(), date_range->end_date().GetYear());
+    const wxDateTime start_date(1, date_range->start_date().GetMonth(), date_range->start_date().GetYear());
     for (const auto& category : Model_Category::instance().all())
     {
         for (int m = 0; m < columns; m++)
         {
-            const wxDateTime d = start_date.Subtract(wxDateSpan::Months(m));
+            const wxDateTime d = start_date.Add(wxDateSpan::Months(m));
             int idx = group_by_month ? (d.GetYear() * 100 + d.GetMonth()) : 0;
             categoryStats[category.CATEGID][-1][idx] = value;
             for (const auto & sub_category : allSubcategories)
@@ -207,8 +208,15 @@ void Model_Category::getCategoryStats(
 
         const double convRate = Model_CurrencyHistory::getDayRate(
             Model_Account::instance().get(transaction.ACCOUNTID)->CURRENCYID, transaction.TRANSDATE);
-        const wxDateTime &d = Model_Checking::TRANSDATE(transaction);
-        int idx = group_by_month ? (d.GetYear() * 100 + d.GetMonth()) : 0;
+        wxDateTime d = Model_Checking::TRANSDATE(transaction);
+
+        // If financial month starts midway through month then make sure the entries for the calendar month
+        // are adjusted accordingly so we only have a full 12 months
+        int fin_day_start = Model_Infotable::instance().GetIntInfo("FINANCIAL_YEAR_START_DAY", 1);
+        if (fin_months && (d.GetDay() < fin_day_start))
+            d.Subtract(wxDateSpan::Month());
+
+        int idx = group_by_month ? (d.GetYear() * 100 + d.GetMonth()) : 0; 
         int categID = transaction.CATEGID;
 
         if (categID > -1)
