@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-07-30 14:06+0300\n"
-"PO-Revision-Date: 2021-07-30 11:10\n"
+"PO-Revision-Date: 2021-07-31 15:54\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -80,7 +80,7 @@ msgstr "Назва Рахунка:"
 
 #: accountdialog.cpp:142
 msgid "Enter the Name of the Account. This name can be renamed at any time."
-msgstr "Напішыце назву Рахунку. Гэтае імя можа быць змененае ў будь-які час."
+msgstr "Напішыце назву Рахунку. Гэтая назва можа быць змененая ў будзь-які час."
 
 #: accountdialog.cpp:145
 msgid "Account Type:"
@@ -96,7 +96,7 @@ msgstr "Стан Рахунку:"
 
 #: accountdialog.cpp:161
 msgid "Specify if this account has been closed. Closed accounts are inactive in most calculations, reporting etc."
-msgstr "Вызначце, ці быў гэты Рахунак зачынены. Закрытыя рахункі неактыўныя ў большасці разлікаў, справаздачнасці і г.д."
+msgstr "Вызначце, ці быў гэты Рахунак зачынены. Зачыненыя рахункі неактыўныя ў большасці разлікаў, справаздачнасці і г.д."
 
 #: accountdialog.cpp:165
 #, c-format
@@ -121,7 +121,7 @@ msgstr "Абярыце валюту, што будзе выкарыстаная 
 
 #: accountdialog.cpp:182
 msgid "Favorite Account"
-msgstr "Улюбёный рахунак"
+msgstr "Улюбёны рахунак"
 
 #: accountdialog.cpp:184
 msgid "Select whether this is an account that is used often. This is used to filter accounts display view."
@@ -702,23 +702,23 @@ msgstr "Гэтая тэчка і ўсе файлы ў ёй аўтаматычн�
 
 #: attachmentdialog.cpp:370
 msgid "Please do not remove, rename or modify manually directories and files."
-msgstr ""
+msgstr "Калі ласка, не выдаляйце і ня перасоўвайце файлы ўручную."
 
 #: attachmentdialog.cpp:415 attachmentdialog.cpp:423
 msgid "Destination file already exist:"
-msgstr ""
+msgstr "Файл прызначэння ўжо існуе:"
 
 #: attachmentdialog.cpp:418
 msgid "File not found in attachments. Please delete or rename it."
-msgstr ""
+msgstr "Файл не знойдзены ў далучэннях. Калі ласка, выдаліце або пераймянуйце яго."
 
 #: attachmentdialog.cpp:419 attachmentdialog.cpp:427
 msgid "Destination file already exist"
-msgstr ""
+msgstr "Файл прызначэння ўжо існуе"
 
 #: attachmentdialog.cpp:426
 msgid "File already found in attachments"
-msgstr ""
+msgstr "Файл ужо ёсць у далучэннях"
 
 #: attachmentdialog.cpp:469
 msgid "Attachment not found:"

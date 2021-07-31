@@ -8,7 +8,7 @@ assignees: ''
 ---
 
 MMEX version:
- - [ ] 1.5.x
+ - [x] 1.5.x
  - [ ] 1.6.x
 
 Note: bug reporters are expected to have verified the bug still exists
@@ -16,7 +16,7 @@ either in the last stable version of MMEX or on updated development code
 (master branch).
 
 Operating System:
- - [ ] Windows
+ - [x] Windows
  - [ ] Mac OSX
  - [ ] Linux 
 
@@ -28,7 +28,7 @@ Add screenshot or other files if needed.
 # Reproduction
 
 Is the bug reproducible? 
- - [ ] Always 
+ - [x] Always 
  - [ ] Randomly 
  - [ ] Happened only once
 
