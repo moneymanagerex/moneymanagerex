@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-07-30 14:06+0300\n"
-"PO-Revision-Date: 2021-07-31 21:07\n"
+"PO-Revision-Date: 2021-07-31 23:11\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -922,7 +922,7 @@ msgstr "&Дадаткова"
 
 #: billsdepositsdialog.cpp:548 transdialog.cpp:1304
 msgid "Allows the setting of different amounts in the FROM and TO accounts."
-msgstr ""
+msgstr "Вызначыце суму якая будзе пералічаная на іншы рахунак."
 
 #: billsdepositsdialog.cpp:558 billsdepositspanel.cpp:134
 #: budgetingpanel.cpp:301 filtertransdialog.cpp:500 filtertransdialog.cpp:511
@@ -934,11 +934,11 @@ msgstr ""
 #: transactionsupdatedialog.cpp:161 transdialog.cpp:513
 #: usertransactionpanel.cpp:142 webappdialog.cpp:153
 msgid "Amount"
-msgstr ""
+msgstr "Сума"
 
 #: billsdepositsdialog.cpp:571 transdialog.cpp:1285
 msgid "Specify the transfer amount in the To Account"
-msgstr ""
+msgstr "Пакажыце суму для рахунка куды робіцца пераклад"
 
 #: billsdepositsdialog.cpp:583 billsdepositsdialog.cpp:843
 #: billsdepositsdialog.cpp:857 billsdepositspanel.cpp:129
@@ -949,17 +949,17 @@ msgstr ""
 #: reports/transactions.cpp:80 transdialog.cpp:309 transdialog.cpp:521
 #: usertransactionpanel.cpp:112 webappdialog.cpp:148
 msgid "Account"
-msgstr ""
+msgstr "Рахунак"
 
 #: billsdepositsdialog.cpp:586 billsdepositsdialog.cpp:680
 #: billsdepositsdialog.cpp:712 billsdepositsdialog.cpp:762
 #: billsdepositsdialog.cpp:821 usertransactionpanel.cpp:113
 msgid "Select Account"
-msgstr ""
+msgstr "Абраць рахунак"
 
 #: billsdepositsdialog.cpp:587
 msgid "Specify the Account that will own the recurring transaction"
-msgstr ""
+msgstr "Пакажыце рахунак для гэтай транзакцыі, што паўтараецца"
 
 #: billsdepositsdialog.cpp:590 billsdepositsdialog.cpp:844
 #: billsdepositspanel.cpp:130 filtertransdialog.cpp:241
