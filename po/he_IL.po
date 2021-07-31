@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-07-30 14:06+0300\n"
-"PO-Revision-Date: 2021-07-31 04:38\n"
+"PO-Revision-Date: 2021-07-31 04:53\n"
 "Last-Translator: \n"
 "Language-Team: Hebrew\n"
 "MIME-Version: 1.0\n"
@@ -983,7 +983,7 @@ msgstr "פיצול"
 
 #: billsdepositsdialog.cpp:603 transdialog.cpp:1301
 msgid "Use split Categories"
-msgstr "נא להשתמש בפיצול סוג־אב"
+msgstr "נא להשתמש בפיצול "
 
 #: billsdepositsdialog.cpp:609 billsdepositspanel.cpp:132
 #: budgetingpanel.cpp:298 filtertransdialog.cpp:252 filtertransdialog.cpp:1010
@@ -1349,7 +1349,7 @@ msgstr "הכנסה"
 
 #: budgetentrydialog.cpp:134
 msgid "Specify whether this category is an income or an expense category"
-msgstr "הגדרת סוג־אב זה כסוג־אב הכנסה או הוצאה"
+msgstr "הגדרת סוג־אב זה כהכנסה או הוצאה"
 
 #: budgetentrydialog.cpp:136
 msgid "Frequency:"
@@ -1369,27 +1369,27 @@ msgstr "הזנת הסכום שתוקצב לסוג־אב זה."
 
 #: budgetingpanel.cpp:50
 msgid "View All Budget Categories"
-msgstr "מצג כלל סוג־אב התקציב"
+msgstr "מצג כלל  התקציב"
 
 #: budgetingpanel.cpp:51
 msgid "View Non-Zero Budget Categories"
-msgstr "הסתרת סוג־אב תקציב בסכום אפס"
+msgstr "הסתרת  תקציב בסכום אפס"
 
 #: budgetingpanel.cpp:52
 msgid "View Planned Budget Categories"
-msgstr "הצגת סוג־אב תכנון תקציב"
+msgstr "הצגת  תכנון תקציב"
 
 #: budgetingpanel.cpp:53
 msgid "View Income Budget Categories"
-msgstr "הצגת סוג־אב תקציב הכנסות"
+msgstr "הצגת  תקציב הכנסות"
 
 #: budgetingpanel.cpp:54
 msgid "View Expense Budget Categories"
-msgstr "הצגת סוג־אב תקציב הוצאות"
+msgstr "הצגת  תקציב הוצאות"
 
 #: budgetingpanel.cpp:55
 msgid "View Budget Category Summary"
-msgstr "הצגת תמצית סוג־אב תקציב"
+msgstr "הצגת תמצית  תקציב"
 
 #: budgetingpanel.cpp:172
 #, c-format
@@ -1442,7 +1442,7 @@ msgstr "צלמית"
 
 #: budgetingpanel.cpp:299
 msgid "Sub Category"
-msgstr "תת סוג־אב"
+msgstr "תת "
 
 #: budgetingpanel.cpp:302 reports/budgetcategorysummary.cpp:140
 #: reports/budgetcategorysummary.cpp:192
@@ -1520,11 +1520,11 @@ msgstr "שנת תקציב קיימת"
 
 #: categdialog.cpp:91 mmframe.cpp:1503 mmframe.cpp:1724
 msgid "Organize Categories"
-msgstr "ניהול סוג־אב"
+msgstr "ניהול "
 
 #: categdialog.cpp:190 mmframe.cpp:1516
 msgid "Reassign all categories to another category"
-msgstr "הקצאה מחודשת של כל סוגי-האב לסוג־אב אחר"
+msgstr "הקצאה מחודשת של כל סוגי־האב ל אחר"
 
 #: categdialog.cpp:192
 msgid "Expand"
@@ -1548,7 +1548,7 @@ msgstr "עריכת שם סוג־אב קיים"
 
 #: categdialog.cpp:239
 msgid "Delete an existing category. The category cannot be used by existing transactions."
-msgstr "מחיקת סוג־אב קיים. לא ניתן להשתמש בסוג־אב עם תנועות הקימות."
+msgstr "מחיקת  קיים. לא ניתן להשתמש ב עם תנועות הקימות."
 
 #: categdialog.cpp:244 maincurrencydialog.cpp:211
 msgid "&Select"
@@ -1564,77 +1564,77 @@ msgstr "הזנת שם סוג־אב חדש:"
 
 #: categdialog.cpp:258
 msgid "Tip: If category added now, check bottom of list."
-msgstr "עצה: סוג־אב שנוסף כעת, הוא ימצא בתחתית הרשימה."
+msgstr "עצה:  שנוסף כעת, הוא ימצא בתחתית הרשימה."
 
 #: categdialog.cpp:261
 msgid "Add Category"
-msgstr "הוספת סוג־אב"
+msgstr "הוספת "
 
 #: categdialog.cpp:270 categdialog.cpp:506
 msgid "Category with same name exists"
-msgstr "סוג־אב בשם זהה קיים כבר"
+msgstr " בשם זהה קיים כבר"
 
 #: categdialog.cpp:271
 msgid "Tip: If category added now, check bottom of list.\n"
 "Category will be in sorted order next time dialog appears"
-msgstr "עצה: סוג־אב שנוסף כעת, הוא ימצא בתחתית הרשימה.\n"
-"סוג־אב ימוינו מחדש בפעם הבאה שתופיע תיבת דו-שיח"
+msgstr "עצה:  שנוסף כעת, הוא ימצא בתחתית הרשימה.\n"
+" ימוינו מחדש בפעם הבאה שתופיע תיבת דו-שיח"
 
 #: categdialog.cpp:273 categdialog.cpp:297 categdialog.cpp:315
 msgid "Organise Categories: Adding Error"
-msgstr "ניהול סוג־אב: הוספת שגיאה"
+msgstr "ניהול : הוספת שגיאה"
 
 #: categdialog.cpp:296 categdialog.cpp:523
 msgid "Sub Category with same name exists"
-msgstr "תת סוג־אב בשם זהה כבר קיים"
+msgstr "תת  בשם זהה כבר קיים"
 
 #: categdialog.cpp:314
 msgid "Invalid Parent Category. Choose Root or Main Category node."
-msgstr "סוג־אב הורה לא תקין. נא לבחור רמת שורש או סוג־אב ראשי."
+msgstr " הורה לא תקין. נא לבחור רמת שורש או  ראשי."
 
 #: categdialog.cpp:321
 msgid "Category in use."
-msgstr "סוג־אב בשימוש."
+msgstr " בשימוש."
 
 #: categdialog.cpp:321
 msgid "Sub-Category in use."
-msgstr "תת סוג־אב בשימוש."
+msgstr "תת  בשימוש."
 
 #: categdialog.cpp:323
 msgid "Tip: Change all transactions using this Category to\n"
 "another Category using the relocate command:"
-msgstr "עצה: ניתן לשנות סוג־אב בכל התנועות לסוג־אב\n"
+msgstr "עצה: ניתן לשנות  בכל התנועות ל\n"
 "אחר תוך שימוש בפקודת העברה:"
 
 #: categdialog.cpp:326
 msgid "Tip: Change all transactions using this Sub-Category to\n"
 "another Sub-Category using the relocate command:"
-msgstr "עצה: ניתן לשנות את תת סוג־אב בכל התנועות לתת סוג־אב משנה\n"
+msgstr "עצה: ניתן לשנות את תת  בכל התנועות לתת  משנה\n"
 "אחר תוך שימוש בפקודת העברה:"
 
 #: categdialog.cpp:329
 msgid "Tools -> Relocation of -> Categories"
-msgstr "כלים -> מיקום מחדש -> סוג־אב"
+msgstr "כלים -> מיקום מחדש -> "
 
 #: categdialog.cpp:331
 msgid "Organise Categories: Delete Error"
-msgstr "ניהול סוג־אב: מחיקת שגיאה"
+msgstr "ניהול : מחיקת שגיאה"
 
 #: categdialog.cpp:435
 msgid "Select an unused category to delete."
-msgstr "למחיקה יש לבחור בסוג־אב ללא תנועות משויכות."
+msgstr "למחיקה יש לבחור ב ללא תנועות משויכות."
 
 #: categdialog.cpp:460
 msgid "This category cannot be deleted because it's used by transactions."
-msgstr "אין אפשרות למחוק סוג־אב זה מאחר שקיימות תנועות שמשויכות אליו."
+msgstr "אין אפשרות למחוק  זה מאחר שקיימות תנועות שמשויכות אליו."
 
 #: categdialog.cpp:467
 msgid "Delete an existing category."
-msgstr "מחיקת סוג־אב קיים."
+msgstr "מחיקת  קיים."
 
 #: categdialog.cpp:472
 msgid "Subcategories must be deleted before."
-msgstr "יש למחוק תת סוג־אב תחילה."
+msgstr "יש למחוק תת  תחילה."
 
 #: categdialog.cpp:488
 #, c-format
@@ -1643,15 +1643,15 @@ msgstr "נא להזין שם חדש עבור '%s'"
 
 #: categdialog.cpp:489
 msgid "Edit Category"
-msgstr "עריכת סוג־אב"
+msgstr "עריכת "
 
 #: categdialog.cpp:507 categdialog.cpp:524
 msgid "Organise Categories: Editing Error"
-msgstr "ניהול סוג־אב: שגיאת עריכה"
+msgstr "ניהול : שגיאת עריכה"
 
 #: categdialog.cpp:600 mmframe.cpp:3260
 msgid "Category Relocation Completed."
-msgstr "העברת סוג־אב הושלמה."
+msgstr "העברת  הושלמה."
 
 #: categdialog.cpp:601 mmframe.cpp:3261 mmframe.cpp:3276 payeedialog.cpp:351
 #, c-format
@@ -1660,15 +1660,15 @@ msgstr "רשומות עודכנו במסד הנתונים:  %i"
 
 #: categdialog.cpp:603 mmframe.cpp:3263
 msgid "Category Relocation Result"
-msgstr "תוצאת העברת סוג־אב"
+msgstr "תוצאת העברת "
 
 #: categdialog.cpp:668
 msgid "Hide Selected Category"
-msgstr "הסתרת סוג־אב שנבחר"
+msgstr "הסתרת  שנבחר"
 
 #: categdialog.cpp:669
 msgid "Unhide Selected Category"
-msgstr "הצגת סוג־אב שנבחר"
+msgstr "הצגת  שנבחר"
 
 #: categdialog.cpp:671 import_export/univcsvdialog.cpp:443
 msgid "Clear Settings"
@@ -2379,7 +2379,7 @@ msgstr "כולל דומה"
 
 #: filtertransdialog.cpp:267
 msgid "Include all subcategories for the selected category."
-msgstr "הכללת כל תת סוג־אב לסוג־אב שבחר."
+msgstr "הכללת כל תת  ל שבחר."
 
 #: filtertransdialog.cpp:293 import_export/univcsvdialog.cpp:113
 #: mmchecking_list.cpp:219 model/Model_Billsdeposits.cpp:32
@@ -2849,7 +2849,7 @@ msgstr "ערך שדה 'עד תאריך 'קטן מערך שדה 'מתאריך'"
 
 #: import_export/qif_export.cpp:441
 msgid "Categories exported"
-msgstr "סוג־אב יוצאו"
+msgstr " יוצאו"
 
 #: import_export/qif_export.cpp:462 import_export/qif_import_gui.cpp:356
 #: import_export/qif_import_gui.cpp:807
@@ -2982,7 +2982,7 @@ msgstr "מייבא מוטבים"
 
 #: import_export/qif_import_gui.cpp:819
 msgid "Importing Categories"
-msgstr "ייבוא סוג־אב"
+msgstr "ייבוא "
 
 #: import_export/qif_import_gui.cpp:836
 #, c-format
@@ -3040,7 +3040,7 @@ msgstr "חשבון תנועה שגוי"
 
 #: import_export/qif_import_gui.cpp:1089
 msgid "Transaction Category is incorrect"
-msgstr "סוג־אב התנועה שגוי"
+msgstr " התנועה שגוי"
 
 #: import_export/qif_import_gui.cpp:1181
 #, c-format
@@ -3054,7 +3054,7 @@ msgstr "התווסף מוטב:  %s"
 
 #: import_export/univcsvdialog.cpp:109
 msgid "SubCategory"
-msgstr "תת סוג־אב"
+msgstr "תת "
 
 #: import_export/univcsvdialog.cpp:112
 msgid "Don't Care"
@@ -3522,17 +3522,17 @@ msgstr "ערך %s לא תקין"
 
 #: mmSimpleDialogs.cpp:244
 msgid "Please use this button for category selection."
-msgstr "ניתן להשתמש בלחצן זה לבחירת סוג־אב."
+msgstr "ניתן להשתמש בלחצן זה לבחירת ."
 
 #: mmSimpleDialogs.cpp:245
 msgid "Please use this button for category selection\n"
 "or use the 'Split' checkbox for multiple categories."
-msgstr "ניתן להשתמש בלחצן זה לבחירת סוג־אב\n"
-"או בתיבת הסימון 'פיצול' לבחירת מספר סוג־אב."
+msgstr "ניתן להשתמש בלחצן זה לבחירת \n"
+"או בתיבת הסימון 'פיצול' לבחירת מספר ."
 
 #: mmSimpleDialogs.cpp:248
 msgid "Invalid Category"
-msgstr "סוג־אב לא תקין"
+msgstr " לא תקין"
 
 #: mmSimpleDialogs.cpp:253
 msgid "File name is empty."
@@ -3648,11 +3648,11 @@ msgstr "עצה: נא להגדיר שערי מט\"ח למטבעות, במידה �
 
 #: mmTips.h:34
 msgid "Organize Categories Dialog Tip: Pressing the h key will cycle through all categories starting with the letter h"
-msgstr "עצה לתיבת דו-שיח ניהול סוג־אב: לחיצה על המקש 'י', תגלול את כל סוגי-האב החל מהאות 'י'"
+msgstr "עצה לתיבת דו-שיח ניהול : לחיצה על המקש 'י', תגלול את כל סוגי-האב החל מהאות 'י'"
 
 #: mmTips.h:35
 msgid "Organize Categories Dialog Tip: Pressing 2 key combination will cycle through all categories starting with that key combination. Example: Pressing ho will select Homeneeds, Home, House Tax, etc..."
-msgstr "עצה לתיבת דו-שיח ניהול סוג־אב: הקשה על צרוף של שתי אותיות בו זמנית תציב את הסמן על סוב-האב שמתחיל באותיות אלו. לדוגמה: הקשה על 'ד' ו- 'י' בו זמנית יציבו את הסמן על סוג־אב 'דיור', וכו'..."
+msgstr "עצה לתיבת דו-שיח ניהול : הקשה על צרוף של שתי אותיות בו זמנית תציב את הסמן על סוב-האב שמתחיל באותיות אלו. לדוגמה: הקשה על 'ד'  ו־'י' בו זמנית יציבו את הסמן על  'דיור', וכו'..."
 
 #: mmTips.h:37
 msgid "Tip to get out of debt: Pay yourself 10 percentage first. Put this into an account that is hard to touch. Make sure it is a chore to get the money out (you have to drive to the bank), so you will only tap it consciously and for major expenses."
@@ -4265,11 +4265,11 @@ msgstr "כל תנועות מסוג העברה ביתרות התקציב"
 
 #: mmframe.cpp:1413
 msgid "Budget Category Report: with &Summaries"
-msgstr "דוח תקציב לפי סוג־אב: עם &סיכומים"
+msgstr "דוח תקציב לפי : עם &סיכומים"
 
 #: mmframe.cpp:1413
 msgid "Include the category summaries in the Budget Category Summary"
-msgstr "הכללת תמצית סוג־אב בדוח תקציב על פי סוג־אב"
+msgstr "הכללת תמצית  בדוח תקציב על פי "
 
 #: mmframe.cpp:1415
 msgid "Ignore F&uture Transactions"
@@ -5024,7 +5024,7 @@ msgstr "העדפות תקציב"
 
 #: mmframereport.cpp:192
 msgid "Budget Category Summary"
-msgstr "תמצית סוג־אב תקציב"
+msgstr "תמצית  תקציב"
 
 #: mmframereport.cpp:201
 msgid "Stocks Report"
@@ -5607,7 +5607,7 @@ msgstr "מוטב ברירת מחד:"
 
 #: optionsettingsmisc.cpp:141
 msgid "Default Category:"
-msgstr "סוג־אב ברירת מחדל:"
+msgstr " ברירת מחדל:"
 
 #: optionsettingsmisc.cpp:143
 msgid "Default Status:"
@@ -5755,7 +5755,7 @@ msgstr "נא להגדיר את החשבונות הגלויים"
 
 #: optionsettingsview.cpp:84
 msgid "Category Delimiter"
-msgstr "מפריד סוג־אב"
+msgstr "מפריד "
 
 #: optionsettingsview.cpp:111
 msgid "Transaction/Budget Options"
@@ -5771,7 +5771,7 @@ msgstr "מצג תקציב כולל תנועות מסוג 'העברה'"
 
 #: optionsettingsview.cpp:128
 msgid "View Budget Category Report with Summaries"
-msgstr "הצגת דוח תקציב לפי סוג־אב עם תמצית"
+msgstr "הצגת דוח תקציב לפי  עם תמצית"
 
 #: optionsettingsview.cpp:137
 msgid "Budget Offset (days):"
@@ -5839,7 +5839,7 @@ msgstr "גודל סמל אחרים"
 
 #: payeedialog.cpp:67
 msgid "Last Used Category"
-msgstr "סוג־אב ששימש לאחרונה"
+msgstr " ששימש לאחרונה"
 
 #: payeedialog.cpp:67
 msgid "Default Category"
@@ -5883,11 +5883,11 @@ msgstr "ניהול מוטבים: מחיקת שגיאה"
 
 #: payeedialog.cpp:390
 msgid "Define Category"
-msgstr "הגדרת סוג־אב"
+msgstr "הגדרת "
 
 #: payeedialog.cpp:392
 msgid "Remove Category"
-msgstr "הסרת סוג־אב"
+msgstr "הסרת "
 
 #: payeedialog.cpp:407
 msgid "Relocate Payee"
@@ -5895,19 +5895,19 @@ msgstr "העברת תנועות מוטב"
 
 #: relocatecategorydialog.cpp:53
 msgid "Relocate Category Dialog"
-msgstr "תיבת דו-שיח העברת סוג־אב"
+msgstr "תיבת דו-שיח העברת "
 
 #: relocatecategorydialog.cpp:86
 msgid "Relocate source category to the destination category"
-msgstr "העברת כל סוג־אב המקור לסוג־אב היעד"
+msgstr "העברת כל  המקור ל היעד"
 
 #: relocatecategorydialog.cpp:89
 msgid "Select Source Category"
-msgstr "בחירת סוג־אב מקור"
+msgstr "בחירת  מקור"
 
 #: relocatecategorydialog.cpp:95
 msgid "Select Destination Category"
-msgstr "בחירת סוג־אב יעד"
+msgstr "בחירת  יעד"
 
 #: relocatecategorydialog.cpp:109 relocatepayeedialog.cpp:112
 msgid "Relocate:"
@@ -5923,7 +5923,7 @@ msgstr "לאישור:"
 
 #: relocatecategorydialog.cpp:171
 msgid "Category Relocation Confirmation"
-msgstr "העברת סוג־אב הושלמה"
+msgstr "העברת  הושלמה"
 
 #: relocatecategorydialog.cpp:269 relocatepayeedialog.cpp:232
 #, c-format
@@ -7074,7 +7074,7 @@ msgstr "לא ניתן להתחבר ליישומון מרשתת:"
 
 #: webapp.cpp:119
 msgid "please check settings and / or internet connection."
-msgstr "נא לבדוק את הגדרות ו־/ או חיבור למרשתת."
+msgstr "נא לבדוק את הגדרות  ו־/ או חיבור למרשתת."
 
 #: webapp.cpp:121
 msgid "WebApp connection error"
