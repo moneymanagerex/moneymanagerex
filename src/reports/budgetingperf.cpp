@@ -158,7 +158,8 @@ wxString mmReportBudgetingPerformance::getHTMLText()
         , &date_range
         , Option::instance().getIgnoreFutureTransactions()
         , true
-        , (evaluateTransfer ? &budgetAmt : nullptr));
+        , (evaluateTransfer ? &budgetAmt : nullptr)
+        , Option::instance().BudgetFinancialYears());
     //Init totals
     const auto &allCategories = Model_Category::instance().all(Model_Category::COL_CATEGNAME);
     const auto &allSubcategories = Model_Subcategory::instance().all(Model_Subcategory::COL_SUBCATEGNAME);

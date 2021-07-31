@@ -117,6 +117,7 @@ Spanish
 
 ### 2021
 Renato
+Thomas Gretler
 Carmel George
 Dimitrios Valsamis
 James Rogers
@@ -132,6 +133,7 @@ Michel SERIN
 Roger Chandler
 William R Detamore
 David Coons
+David Morrison
 Jose Manuel Marrero León
 Kenneth Wiggers
 Lucas Lopez Azcona
@@ -141,6 +143,7 @@ Thierry PAPINOT
 Jiří Vyskočil
 Roger Spindler
 Edgar Lloren
+Xiaoyun Wang
 Jean-michel LOUISET
 Tim Carden
 Jérémy DUFRAISSE
@@ -157,13 +160,16 @@ Fr. Cycus Chungu
 Roger Gimbrere
 Brian Crow
 Mark Wilkerson
+Neil Cottis
 Glenn Fowler
 Luisa Guglielmetti
 Rafael Moreira
 Antonio Navarro Sánchez
 Francisco Fos Ros
+Marco Giuseppe Stimolo
 Ian Rowe
 Jonathan Thomas
+RICARDO ITURRIAGA
 José Moya Iglesias
 
 ### 2020
