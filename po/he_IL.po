@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-07-30 14:06+0300\n"
-"PO-Revision-Date: 2021-07-30 11:10\n"
+"PO-Revision-Date: 2021-07-31 04:38\n"
 "Last-Translator: \n"
 "Language-Team: Hebrew\n"
 "MIME-Version: 1.0\n"
@@ -698,7 +698,7 @@ msgstr "צרופה."
 
 #: attachmentdialog.cpp:368
 msgid "This directory and its files are automatically managed by Money Manager EX software."
-msgstr "מחיצה זו והקבצים שבה מנוהלים באופן אוטומטי על ידי תוכנת Money Manager EX."
+msgstr "מחיצה זו והקבצים שבה מנוהלים באופן אוטומטי  תוכנת Money Manager EX."
 
 #: attachmentdialog.cpp:370
 msgid "Please do not remove, rename or modify manually directories and files."
@@ -2225,7 +2225,7 @@ msgstr "שגיאה מסד נתוני MMEX!"
 #, c-format
 msgid "MMEX database version %i doesn't work with this MMEX version.\n"
 "Please upgrade MMEX to newer version."
-msgstr "גרסת מסד נתונים %i לא נתמכת על ידי גרסת MMEX זו \n"
+msgstr "גרסת מסד נתונים %i לא נתמכת  גרסת MMEX זו \n"
 "נא לשדרג את MMEX לגרסה חדשה יותר."
 
 #: dbupgrade.cpp:119
@@ -4825,7 +4825,7 @@ msgstr "אופטימיזצית מסד הנתונים הושלמה!\n\n"
 
 #: mmframe.cpp:2122
 msgid "Please use this function only if explicitly requested by MMEX support"
-msgstr "ניתן להשתמש בפונקציה זו רק אם נתבקשתם במפורש על ידי צוות תמיכת MMEX"
+msgstr "ניתן להשתמש בפונקציה זו רק אם נתבקשתם במפורש  צוות תמיכת MMEX"
 
 #: mmframe.cpp:2123
 msgid "DB Debug"
@@ -5587,7 +5587,7 @@ msgstr "בשימוש לאחרונה עבור מוטב"
 
 #: optionsettingsmisc.cpp:111
 msgid "Use default for payee"
-msgstr ""
+msgstr "שימוש במוטב ברירת מחדל"
 
 #: optionsettingsmisc.cpp:127
 msgid "Yes"
@@ -5839,7 +5839,7 @@ msgstr "גודל סמל אחרים"
 
 #: payeedialog.cpp:67
 msgid "Last Used Category"
-msgstr ""
+msgstr "סוג־אב ששימש לאחרונה"
 
 #: payeedialog.cpp:67
 msgid "Default Category"
@@ -5883,11 +5883,11 @@ msgstr "ניהול מוטבים: מחיקת שגיאה"
 
 #: payeedialog.cpp:390
 msgid "Define Category"
-msgstr ""
+msgstr "הגדרת סוג־אב"
 
 #: payeedialog.cpp:392
 msgid "Remove Category"
-msgstr ""
+msgstr "הסרת סוג־אב"
 
 #: payeedialog.cpp:407
 msgid "Relocate Payee"
