@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-07-30 14:06+0300\n"
-"PO-Revision-Date: 2021-07-31 05:08\n"
+"PO-Revision-Date: 2021-07-31 05:17\n"
 "Last-Translator: \n"
 "Language-Team: Hebrew\n"
 "MIME-Version: 1.0\n"
@@ -515,7 +515,7 @@ msgstr "אישור מחיקת נכס"
 
 #: assetspanel.cpp:385
 msgid "MMEX allows you to track fixed assets like cars, houses, land and others. Each asset can have its value appreciate by a certain rate per year, depreciate by a certain rate per year, or not change in value. The total assets are added to your total financial worth."
-msgstr "MMEX מאפשרת מעקוב אחר נכסים קבועים כגון מכוניות, בתים, קרקע ועוד. ערכו של כל נכס יכול לגדול או לקטון כל שנה בשיעור מסוים, או, לא לשנות ערך כלל. סך כל ערכם של הנכסים מתווסף לשווי הפיננסי הכולל."
+msgstr "MMEX מאפשרת מעקוב אחר נכסים קבועים כגון מכוניות, בתים, קרקע ועוד. ערכו של כל נכס יכול לגדול או לקטון כל שנה בשיעור מסוים, או, לא לשנות ערך כלל. סך־כל ערכם של הנכסים מתווסף לשווי הפיננסי הכולל."
 
 #: assetspanel.cpp:415 assetspanel.h:108 general_report_manager.cpp:723
 #: general_report_manager.cpp:1000 mmframe.cpp:477 mmframe.cpp:743
@@ -1578,7 +1578,7 @@ msgstr "סוג־אב בשם זהה קיים כבר"
 msgid "Tip: If category added now, check bottom of list.\n"
 "Category will be in sorted order next time dialog appears"
 msgstr "עצה: סוג־אב שזה עתה נוסף, ימצא בתחתית הרשימה.\n"
-" ימוינו מחדש בפעם הבאה שתופיע תיבת דו-שיח"
+" ימוינו מחדש בפעם הבאה שתופיע תיבת דו־שיח"
 
 #: categdialog.cpp:273 categdialog.cpp:297 categdialog.cpp:315
 msgid "Organise Categories: Adding Error"
@@ -3004,7 +3004,7 @@ msgstr "היבוא הסתיים בהצלחה"
 #: import_export/qif_import_gui.cpp:898
 #, c-format
 msgid "Total Imported: %zu"
-msgstr "סך כל יובאו: %zu"
+msgstr "סך־כל יובאו: %zu"
 
 #: import_export/qif_import_gui.cpp:906 import_export/univcsvdialog.cpp:1088
 msgid "Imported transactions discarded by user!"
@@ -3636,7 +3636,7 @@ msgstr "עצה: MMEX מאפשרת להדפיס את כל הדוחות הניתנ
 
 #: mmTips.h:30
 msgid "Tip: You can modify some runtime behavior of MMEX by changing the options in the Options Dialog. "
-msgstr "עצה: ניתן לשנות את התנהגות MMEX על-ידי שינוי האפשרויות בתיבת הדו-שיח 'אפשרויות'. "
+msgstr "עצה: ניתן לשנות את התנהגות MMEX על-ידי שינוי האפשרויות בתיבת הדו־שיח 'אפשרויות'. "
 
 #: mmTips.h:31
 msgid "Tip: To print a statement with transactions from any arbitrary set of criteria, use the transaction filter to select the transactions you want and then do a print from the menu."
@@ -3652,7 +3652,7 @@ msgstr "עצה לתיבת דו־שיח ניהול סוגי־אב: לחיצה ע�
 
 #: mmTips.h:35
 msgid "Organize Categories Dialog Tip: Pressing 2 key combination will cycle through all categories starting with that key combination. Example: Pressing ho will select Homeneeds, Home, House Tax, etc..."
-msgstr "עצה לתיבת דו-שיח ניהול סוג־אב: הקשה על צרוף של שתי אותיות בו זמנית תציב את הסמן על סוג־אב שמתחיל באותיות אלו. לדוגמה: הקשה על 'ד' ו־'י' בו זמנית יציבו את הסמן על 'דיור', וכן הלאה..."
+msgstr "עצה לתיבת דו־שיח ניהול סוג־אב: הקשה על צרוף של שתי אותיות בו זמנית תציב את הסמן על סוג־אב שמתחיל באותיות אלו. לדוגמה: הקשה על 'ד' ו־'י' בו זמנית יציבו את הסמן על 'דיור', וכן הלאה..."
 
 #: mmTips.h:37
 msgid "Tip to get out of debt: Pay yourself 10 percentage first. Put this into an account that is hard to touch. Make sure it is a chore to get the money out (you have to drive to the bank), so you will only tap it consciously and for major expenses."
@@ -4617,11 +4617,11 @@ msgstr "סיוע בהעברת מידע למפתחים"
 
 #: mmframe.cpp:1676
 msgid "&Show App Start Dialog"
-msgstr "&הצגת דו-שיח אתחול ישומון"
+msgstr "&הצגת דו־שיח אתחול ישומון"
 
 #: mmframe.cpp:1676
 msgid "App Start Dialog"
-msgstr "דו-שיח אתחול ישומון"
+msgstr "דו־שיח אתחול ישומון"
 
 #: mmframe.cpp:1680
 msgid "Check for &Updates"
@@ -5492,13 +5492,13 @@ msgstr "הגדרת מטבע ברירת המחדל למסד הנתונים תיב
 
 #: optionsettingsgeneral.cpp:133
 msgid "Right click and select 'Set as Base Currency' in 'Currency Dialog'"
-msgstr "הקשה ימנית ובחירת 'הגדרה כמטבע הבסיס' בדו-שיח 'מטבע'"
+msgstr "הקשה ימנית ובחירת 'הגדרה כמטבע הבסיס' בדו־שיח 'מטבע'"
 
 #: optionsettingsgeneral.cpp:158
 msgid "Format derived from locale.\n"
 "Leave blank to manually set format via 'Currency Dialog | Edit'"
 msgstr "תבנית נגזרת מהמיקום.\n"
-"נא להשאיר ריק כדי להגדיר תבנית ידנית באמצעות דו-שיח 'מטבע | עריכה'"
+"נא להשאיר ריק כדי להגדיר תבנית ידנית באמצעות דו־שיח 'מטבע | עריכה'"
 
 #: optionsettingsgeneral.cpp:168
 msgid "Use currency history"
@@ -5895,7 +5895,7 @@ msgstr "העברת תנועות מוטב"
 
 #: relocatecategorydialog.cpp:53
 msgid "Relocate Category Dialog"
-msgstr "תיבת דו-שיח העברת "
+msgstr "תיבת דו־שיח העברת סוג־אב"
 
 #: relocatecategorydialog.cpp:86
 msgid "Relocate source category to the destination category"
@@ -5923,7 +5923,7 @@ msgstr "לאישור:"
 
 #: relocatecategorydialog.cpp:171
 msgid "Category Relocation Confirmation"
-msgstr "העברת  הושלמה"
+msgstr "העברת סוג־אב הושלמה"
 
 #: relocatecategorydialog.cpp:269 relocatepayeedialog.cpp:232
 #, c-format
@@ -5948,7 +5948,7 @@ msgstr "רשומות שנמצאו בתנועות מחזוריות מפוצלות
 #: relocatecategorydialog.cpp:273
 #, c-format
 msgid "Records found as Default Payee Category: %i"
-msgstr "רשומות שנמצאו כמוטבים ברירת מחדל לקטגוריה: %i"
+msgstr "רשומות שנמצאו כסוג־אב כמוטב ברירת מחדל: %i"
 
 #: relocatecategorydialog.cpp:274
 #, c-format
@@ -5994,7 +5994,7 @@ msgstr "קטגוריות התקציב ל %s"
 #: reports/budgetcategorysummary.cpp:119
 #, c-format
 msgid "Budget Category Summary for %s"
-msgstr "סיכום קטגוריות תקציב ל %s"
+msgstr "סיכום סוג־אב תקציב ל־%s"
 
 #: reports/budgetcategorysummary.cpp:122
 msgid "( Estimated Vs Actual )"
@@ -6120,7 +6120,7 @@ msgstr "הפרש"
 
 #: reports/categexp.cpp:203
 msgid "Category Total: "
-msgstr "סך כל קטגוריה: "
+msgstr "סך־כל סוג־אב: "
 
 #: reports/categexp.cpp:222
 msgid "Total Expenses:"
@@ -6136,7 +6136,7 @@ msgstr "תמצית קטגוריות"
 
 #: reports/categexp.cpp:263
 msgid "Category Income/Expenses"
-msgstr "קטגוריה הכנסות/הוצאות"
+msgstr "סוג־אב הכנסות/הוצאות"
 
 #: reports/categexp.cpp:419
 msgid "Overall"
@@ -6511,12 +6511,12 @@ msgstr "שערי נירות ערך יובאו מקובץ CSV: "
 #: stockdialog.cpp:672
 #, c-format
 msgid "Total Lines : %ld"
-msgstr "סך כל שורות: %ld"
+msgstr "סך־כל שורות: %ld"
 
 #: stockdialog.cpp:674
 #, c-format
 msgid "Total Imported : %ld"
-msgstr "סך כל יובאו: %ld"
+msgstr "סך־כל יובאו: %ld"
 
 #: stockdialog.cpp:682
 msgid "Importing CSV"
