@@ -35,6 +35,7 @@ Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
 #include "model/Model_Infotable.h"
 #include "model/Model_Setting.h"
 #include "model/Model_CurrencyHistory.h"
+#include <wx/display.h>
 #include <wx/sstream.h>
 #include <wx/xml/xml.h>
 #include <map>
@@ -1113,19 +1114,33 @@ const wxString getProgramDescription(int type)
         << bull + wxGetOsDescription() << eol
         << bull + wxPlatformInfo::Get().GetDesktopEnvironment()
         << " " << wxLocale::GetLanguageName(wxLocale::GetSystemLanguage())
-        << " (" << wxLocale::GetSystemEncodingName() << ")" << eol
-        << wxString::Format(bull + "%ix%i %ibit %ix%ippi\n",
-            wxGetDisplaySize().GetX(),
-            wxGetDisplaySize().GetY(),
-            wxDisplayDepth(),
-            wxGetDisplayPPI().GetX(),
-            wxGetDisplayPPI().GetY())
-        ;
+        << " (" << wxLocale::GetSystemEncodingName() << ")" << eol;
+
+    for (unsigned int i = 0; i < wxDisplay::GetCount(); i++)
+    {
+        wxSharedPtr<wxDisplay> display(new wxDisplay(i));
+
+        if (display->IsPrimary())
+        {
+
+            description << wxString::Format(bull + "%ix%i %ibit %ix%ippi\n",
+                display->GetCurrentMode().GetWidth(),
+                display->GetCurrentMode().GetHeight(),
+                display->GetCurrentMode().bpp,
+                display->GetPPI().GetWidth(),
+                display->GetPPI().GetHeight()
+            );
+
+            auto z = display->GetScaleFactor();
+        }
+    }
 
     description.RemoveLast();
     if (simple) {
         description.Replace("#", "&asymp;");
     }
+
+
 
     return description;
 }
