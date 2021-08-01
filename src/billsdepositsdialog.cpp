@@ -89,8 +89,8 @@ wxBEGIN_EVENT_TABLE(mmBDDialog, wxDialog)
     EVT_CHECKBOX(ID_DIALOG_BD_CHECKBOX_AUTO_EXECUTE_USERACK, mmBDDialog::OnAutoExecutionUserAckChecked)
     EVT_CHECKBOX(ID_DIALOG_BD_CHECKBOX_AUTO_EXECUTE_SILENT, mmBDDialog::OnAutoExecutionSilentChecked)
     EVT_CHOICE(ID_DIALOG_BD_COMBOBOX_REPEATS, mmBDDialog::OnRepeatTypeChanged)
-    EVT_BUTTON(ID_DIALOG_TRANS_BUTTONTRANSNUMPREV, mmBDDialog::OnsetPrevRepeatDate)
-    EVT_BUTTON(ID_DIALOG_TRANS_BUTTONTRANSNUM, mmBDDialog::OnsetNextRepeatDate)
+    EVT_BUTTON(ID_DIALOG_TRANS_BUTTONTRANSNUMPREV, mmBDDialog::OnsetPrevOrNextRepeatDate)
+    EVT_BUTTON(ID_DIALOG_TRANS_BUTTONTRANSNUM, mmBDDialog::OnsetPrevOrNextRepeatDate)
     EVT_MENU_RANGE(wxID_LOWEST, wxID_LOWEST + 20, mmBDDialog::OnNoteSelected)
     EVT_MENU_RANGE(wxID_HIGHEST, wxID_HIGHEST + 8, mmBDDialog::OnColourSelected)
     EVT_CLOSE(mmBDDialog::OnQuit)
@@ -1325,31 +1325,7 @@ void mmBDDialog::OnRepeatTypeChanged(wxCommandEvent& WXUNUSED(event))
     setRepeatDetails();
 }
 
-void mmBDDialog::OnsetPrevRepeatDate(wxCommandEvent& WXUNUSED(event))
-{
-    int repeatType = m_choice_repeat->GetSelection();
-    wxString valueStr = textNumRepeats_->GetValue();
-    int span = 1;
-    switch (repeatType)
-    {
-        case INXDAYS:
-            break;
-        case INXMONTHS:
-            break;
-        case EVERYXDAYS:
-            break;
-        case EVERYXMONTHS:
-            if (!valueStr.IsNumber() || !(span = wxAtoi(valueStr))) {
-                mmErrorDialogs::ToolTip4Object(textNumRepeats_, _("Invalid value"), _("Error"));
-            }
-            break;
-        default:
-            m_date_paid->SetValue(Model_Billsdeposits::previousOccurDate(repeatType, span, m_date_paid->GetValue()));
-            m_date_due->SetValue(Model_Billsdeposits::previousOccurDate(repeatType, span, m_date_due->GetValue()));
-    }
-}
-
-void mmBDDialog::OnsetNextRepeatDate(wxCommandEvent& WXUNUSED(event))
+void mmBDDialog::OnsetPrevOrNextRepeatDate(wxCommandEvent& event)
 {
     int repeatType = m_choice_repeat->GetSelection();
     wxString valueStr = textNumRepeats_->GetValue();
@@ -1360,14 +1336,22 @@ void mmBDDialog::OnsetNextRepeatDate(wxCommandEvent& WXUNUSED(event))
         case INXMONTHS:
         case EVERYXDAYS:
         case EVERYXMONTHS:
-            if (!valueStr.IsNumber() || !(span = wxAtoi(valueStr)))
+            span = wxAtoi(valueStr);
+            if (!valueStr.IsNumber() || !span)
             {
                 mmErrorDialogs::ToolTip4Object(textNumRepeats_, _("Invalid value"), _("Error"));
-                break;
             }
         default:
-            m_date_paid->SetValue(Model_Billsdeposits::nextOccurDate(repeatType, span, m_date_paid->GetValue()));
-            m_date_due->SetValue(Model_Billsdeposits::nextOccurDate(repeatType, span, m_date_due->GetValue()));
+            if (event.GetId() == ID_DIALOG_TRANS_BUTTONTRANSNUMPREV)
+            {
+                m_date_paid->SetValue(Model_Billsdeposits::previousOccurDate(repeatType, span, m_date_paid->GetValue()));
+                m_date_due->SetValue(Model_Billsdeposits::previousOccurDate(repeatType, span, m_date_due->GetValue()));
+            } else
+            {
+                m_date_paid->SetValue(Model_Billsdeposits::nextOccurDate(repeatType, span, m_date_paid->GetValue()));
+                m_date_due->SetValue(Model_Billsdeposits::nextOccurDate(repeatType, span, m_date_due->GetValue()));
+  
+            }
     }
 }
 
