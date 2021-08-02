@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-07-30 14:06+0300\n"
-"PO-Revision-Date: 2021-07-31 23:11\n"
+"PO-Revision-Date: 2021-08-02 18:01\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -970,20 +970,20 @@ msgstr "Пакажыце рахунак для гэтай транзакцыі, 
 #: transactionsupdatedialog.cpp:172 transdialog.cpp:303 transdialog.cpp:527
 #: usertransactionpanel.cpp:182 webappdialog.cpp:151
 msgid "Payee"
-msgstr ""
+msgstr "Атрымальнік"
 
 #: billsdepositsdialog.cpp:593 billsdepositsdialog.cpp:881
 #: usertransactionpanel.cpp:183
 msgid "Select Payee"
-msgstr ""
+msgstr "Абярыце атрымальніка"
 
 #: billsdepositsdialog.cpp:600 transdialog.cpp:540
 msgid "Split"
-msgstr ""
+msgstr "Падзяліць"
 
 #: billsdepositsdialog.cpp:603 transdialog.cpp:1301
 msgid "Use split Categories"
-msgstr ""
+msgstr "Падзяліць па катыгорыях"
 
 #: billsdepositsdialog.cpp:609 billsdepositspanel.cpp:132
 #: budgetingpanel.cpp:298 filtertransdialog.cpp:252 filtertransdialog.cpp:1010
@@ -996,17 +996,17 @@ msgstr ""
 #: splittransactionsdialog.cpp:137 transactionsupdatedialog.cpp:200
 #: transdialog.cpp:549 usertransactionpanel.cpp:189 webappdialog.cpp:152
 msgid "Category"
-msgstr ""
+msgstr "Катыгорыя"
 
 #: billsdepositsdialog.cpp:611 billsdepositsdialog.cpp:1455
 #: transactionsupdatedialog.cpp:203 transdialog.cpp:403 transdialog.cpp:1038
 #: usertransactionpanel.cpp:190
 msgid "Select Category"
-msgstr ""
+msgstr "Абраць катыгорыю"
 
 #: billsdepositsdialog.cpp:620 transdialog.cpp:1302
 msgid "Specify any associated check number or transaction number"
-msgstr ""
+msgstr "Пакажыце нумар чэка або нумар тразакцыі"
 
 #: billsdepositsdialog.cpp:622 billsdepositspanel.cpp:139
 #: filtertransdialog.cpp:333 filtertransdialog.cpp:1068
@@ -1014,7 +1014,7 @@ msgstr ""
 #: import_export/univcsvdialog.cpp:110 mmchecking_list.cpp:206
 #: reports/transactions.cpp:79 transdialog.cpp:561 usertransactionpanel.cpp:202
 msgid "Number"
-msgstr ""
+msgstr "Нумар"
 
 #: billsdepositsdialog.cpp:631
 msgid "Organize attachments of this recurring transaction"
