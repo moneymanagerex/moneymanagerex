@@ -142,8 +142,7 @@ private:
     void OnNoteSelected(wxCommandEvent& event);
 
     void OnRepeatTypeChanged(wxCommandEvent& event);
-    void OnsetPrevRepeatDate(wxCommandEvent& WXUNUSED(event));
-    void OnsetNextRepeatDate(wxCommandEvent& WXUNUSED(event));
+    void OnsetPrevOrNextRepeatDate(wxCommandEvent& event);
     void setRepeatDetails();
 
     void activateSplitTransactionsDlg();
