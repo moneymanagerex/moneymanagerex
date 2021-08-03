@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-07-30 14:06+0300\n"
-"PO-Revision-Date: 2021-08-03 13:35\n"
+"PO-Revision-Date: 2021-08-03 13:57\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -1022,93 +1022,97 @@ msgstr "Мэнаджар далучэнняў транзакцыі, што па�
 
 #: billsdepositsdialog.cpp:634 transdialog.cpp:574
 msgid "User Colors"
-msgstr ""
+msgstr "Колеры карыстальніка"
 
 #: billsdepositsdialog.cpp:638 transdialog.cpp:580 usertransactionpanel.cpp:217
 msgid "Select one of the frequently used notes"
-msgstr ""
+msgstr "Нататкі, што часта выкарыстоўваюцца"
 
 #: billsdepositsdialog.cpp:650 transdialog.cpp:1303
 #: usertransactionpanel.cpp:226
 msgid "Specify any text notes you want to add to this transaction."
-msgstr ""
+msgstr "Увядзіце тэкставыя нататкі да гэтай транзакцыі."
 
 #: billsdepositsdialog.cpp:679
 msgid "Choose Bank Account or Term Account"
-msgstr ""
+msgstr "Абярыце рахунак"
 
 #: billsdepositsdialog.cpp:712 billsdepositsdialog.cpp:762
 msgid "Account name"
-msgstr ""
+msgstr "Назва рахунка"
 
 #: billsdepositsdialog.cpp:818 billsdepositsdialog.cpp:858
 #: filtertransdialog.cpp:995 transdialog.cpp:306 transdialog.cpp:378
 msgid "From"
-msgstr ""
+msgstr "Адкуль"
 
 #: billsdepositsdialog.cpp:830 transdialog.cpp:376
 msgid "To"
-msgstr ""
+msgstr "Куды"
 
 #: billsdepositsdialog.cpp:831
 msgid "Select To Account"
-msgstr ""
+msgstr "На рахунак"
 
 #: billsdepositsdialog.cpp:933
 msgid "The payment date is after the due date, is this what you intended?"
-msgstr ""
+msgstr "Дата аплаты пасля тэрміну аплаты. Гэта тое, што трэба?"
 
 #: billsdepositsdialog.cpp:934
 msgid "Looks like a late payment"
-msgstr ""
+msgstr "Падобна на тое, што гэта запознены плацёж"
 
 #: billsdepositsdialog.cpp:1233
 msgid "Specify the transfer amount in the From Account"
-msgstr ""
+msgstr "Пакажыце суму, што будзе перасунутая на іншы рахунак"
 
 #: billsdepositsdialog.cpp:1275
 msgid "Activates"
-msgstr ""
+msgstr "Актывацыя"
 
 #: billsdepositsdialog.cpp:1277
 msgid "Period: Days"
-msgstr ""
+msgstr "Перыяд: дзён"
 
 #: billsdepositsdialog.cpp:1278
 msgid "Period: Months"
-msgstr ""
+msgstr "Перыяд: месяцаў"
 
 #: billsdepositsdialog.cpp:1285
 msgid "Specify period in Days to activate.\n"
 "Becomes blank when not active."
-msgstr ""
+msgstr "Пакажыце перыяд у днях да выканання.\n"
+"Стае пустым, калі не выкарыстоўваецца."
 
 #: billsdepositsdialog.cpp:1293
 msgid "Specify period in Months to activate.\n"
 "Becomes blank when not active."
-msgstr ""
+msgstr "Пакажыце перыяд у месяцах да выканання.\n"
+"Стае пустым, калі не выкарыстоўваецца."
 
 #: billsdepositsdialog.cpp:1301
 msgid "Specify period in Days to activate.\n"
 "Leave blank when not active."
-msgstr ""
+msgstr "Пакажыце перыяд у днях да выканання.\n"
+"Пакіньце пустым, каб не выкарыстоўваць."
 
 #: billsdepositsdialog.cpp:1309
 msgid "Specify period in Months to activate.\n"
 "Leave blank when not active."
-msgstr ""
+msgstr "Пакажыце перыяд у месяцах да выканання.\n"
+"Пакіньце пустым, каб не выкарыстоўваць."
 
 #: billsdepositsdialog.cpp:1317
 msgid "Specify the number of payments to be made.\n"
 "Leave blank if the payments continue forever."
-msgstr ""
+msgstr "Увядзіце колькасць паўтораў. Пакіньце поле пустым, калі бясконца."
 
 #: billsdepositsdialog.cpp:1343 billsdepositsdialog.cpp:1365
 #: filtertransdialog.cpp:485 filtertransdialog.cpp:500
 #: filtertransdialog.cpp:511 filtertransdialog.cpp:527
 #: filtertransdialog.cpp:564 optionsettingsgeneral.cpp:281 util.cpp:667
 msgid "Invalid value"
-msgstr ""
+msgstr "Няслушнаае значэнне"
 
 #: billsdepositsdialog.cpp:1343 billsdepositsdialog.cpp:1365
 #: import_export/univcsvdialog.cpp:1133 maincurrencydialog.cpp:469
@@ -1116,50 +1120,50 @@ msgstr ""
 #: splittransactionsdialog.cpp:209 stockspanel.cpp:395 stockspanel.cpp:396
 #: themes.cpp:310 themes.cpp:329 webappdialog.cpp:194 webappdialog.cpp:199
 msgid "Error"
-msgstr ""
+msgstr "Памылка"
 
 #: billsdepositsdialog.cpp:1423 transdialog.cpp:1262
 #: usertransactionpanel.cpp:192
 msgid "Specify the category for this transaction"
-msgstr ""
+msgstr "Пакажыце катыгорыю гэтай транзакцыі"
 
 #: billsdepositsdialog.cpp:1445 categdialog.cpp:119
 #: import_export/qif_export.cpp:137 mmframereport.cpp:134 transdialog.cpp:391
 msgid "Categories"
-msgstr ""
+msgstr "Катыгорыі"
 
 #: billsdepositsdialog.cpp:1480 transdialog.cpp:1336
 msgid "Clear color"
-msgstr ""
+msgstr "Ачысціць колер"
 
 #: billsdepositsdialog.cpp:1485 filtertransdialog.cpp:1492 transdialog.cpp:1341
 #, c-format
 msgid "Color #%i"
-msgstr ""
+msgstr "Цвет #%i"
 
 #: billsdepositsdialog.h:56 billsdepositspanel.cpp:284
 msgid "New Recurring Transaction"
-msgstr ""
+msgstr "Новая запланаваная транзакцыя"
 
 #: billsdepositsdialog.h:124
 msgid "Specify where the transaction is going to"
-msgstr ""
+msgstr "Пакажыце куды будзе зроблена пералічэнне"
 
 #: billsdepositsdialog.h:125 transdialog.cpp:1294
 msgid "Specify where the transaction is coming from"
-msgstr ""
+msgstr "Пакажыце адкуль будзе зроблена пералічэнне"
 
 #: billsdepositsdialog.h:126
 msgid "Specify which account the transfer is going to"
-msgstr ""
+msgstr "Пакажыце рахунак, куды будзе зроблена пералічэнне"
 
 #: billsdepositsdialog.h:127 transdialog.cpp:1289 usertransactionpanel.cpp:146
 msgid "Specify the amount for this transaction"
-msgstr ""
+msgstr "Пакажыце суму для дадзенай транзакцыі"
 
 #: billsdepositsdialog.h:128
 msgid "Specify the amount to be transferred"
-msgstr ""
+msgstr "Сума, што будзе пераведзеная"
 
 #: billsdepositspanel.cpp:59
 #, c-format
