@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-07-30 14:06+0300\n"
-"PO-Revision-Date: 2021-08-02 18:01\n"
+"PO-Revision-Date: 2021-08-03 13:35\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -1018,7 +1018,7 @@ msgstr "Нумар"
 
 #: billsdepositsdialog.cpp:631
 msgid "Organize attachments of this recurring transaction"
-msgstr ""
+msgstr "Мэнаджар далучэнняў транзакцыі, што паўтараецца"
 
 #: billsdepositsdialog.cpp:634 transdialog.cpp:574
 msgid "User Colors"
