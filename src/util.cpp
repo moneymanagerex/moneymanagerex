@@ -649,6 +649,29 @@ bool getOnlineCurrencyRates(wxString& msg, int curr_id, bool used_only)
 
     if (get_yahoo_prices(fiat, currency_data, base_currency_symbol, output, yahoo_price_type::FIAT))
     {
+
+        // fallback to coincap if some currencies were not found
+        DB_Table_CURRENCYFORMATS_V1::Data* usd = nullptr;
+        for (const auto & item : fiat)
+        {
+            if (currency_data.find(item.first) == currency_data.end() && !g_fiat_curr().Contains(item.first))
+            {
+                wxString coincap_id;
+                wxString coincap_msg;
+                double coincap_price_usd;
+                if (getCoincapInfoFromSymbol(item.first, coincap_id, coincap_price_usd, coincap_msg) && coincap_price_usd > 0) {
+                    if (usd == nullptr) {
+                        usd = Model_Currency::instance().GetCurrencyRecord("USD");
+                        if (usd == nullptr) {
+                            break; // can't use coincap without USD, since all prices are in USD so give up
+                        }
+                    }
+
+                    currency_data[item.first] = coincap_price_usd * usd->BASECONVRATE;
+                }
+            }
+        }
+
         const auto b = Model_Currency::GetBaseCurrency();
         msg << _("Currency rates have been updated");
         msg << "\n\n";
@@ -826,6 +849,140 @@ bool get_yahoo_prices(std::map<wxString, double>& symbols
 
             wxLogDebug("item: %u %s %f", i, symbol, price);
             out[symbol] = price <= 0 ? 0 : price / k;
+        }
+    }
+
+    return true;
+}
+
+
+
+// coincap.io operates on ascii IDs for currencies, not their symbol
+// this method searches coincap using a symbol and gets the ID of the first
+// currency found with that symbol.
+// this method also tries to get the price in USD, or -1.0 if not found
+bool getCoincapInfoFromSymbol(const wxString symbol, wxString& out_id, double& price_usd, wxString& output) {
+    wxString url = wxString::Format(mmex::weblink::CoinCapSearch, symbol);
+
+    wxString json_data;
+    auto err_code = http_get_data(url, json_data);
+    if (err_code != CURLE_OK)
+    {
+        output = json_data;
+        return false;
+    }
+
+    Document json_doc;
+    if (json_doc.Parse(json_data.utf8_str()).HasParseError()) {
+        output = _("JSON Parse Error");
+        return false;
+    }
+    
+    if (!json_doc.HasMember("data") || !json_doc["data"].IsArray()) {
+        if (json_doc.HasMember("error") && json_doc["error"].IsString()) {
+            output = wxString::Format("Error from coincap API: %s", json_doc["error"].GetString());
+        } else {
+            output = _("Expected response to contain a data or error string");
+        }
+        
+        return false;
+    }
+
+    Value assets = json_doc["data"].GetArray();
+    for (rapidjson::SizeType i = 0; i < assets.Size(); ++i) {
+        if (!assets[i].IsObject()) continue;
+        Value asset = assets[i].GetObject();
+
+        if (asset.HasMember("symbol") && asset["symbol"].IsString() && asset.HasMember("id") && asset["id"].IsString()) {
+            const char* asset_symbol = asset["symbol"].GetString();
+            rapidjson::SizeType asset_symbol_len = asset["symbol"].GetStringLength();
+
+            // verify that the symbol matches the target symbol
+            // coincap search searches more than just symbols so the first results may not be the correct currency
+            if (symbol.compare(0, asset_symbol_len, asset_symbol) == 0) {
+                out_id = wxString::FromAscii(asset["id"].GetString(), asset["id"].GetStringLength());
+
+                price_usd = -1;
+                if (asset.HasMember("priceUsd") && asset["priceUsd"].IsString()) {
+                    // price is stored as a string, parse it to a double
+                    wxString(asset["priceUsd"].GetString(), asset["priceUsd"].GetStringLength()).ToDouble(&price_usd);
+                }
+
+                return true;
+            }
+        }
+    }
+
+    output = _("Could not find asset for symbol");
+    return false;
+}
+
+bool getCoincapAssetHistory(const wxString asset_id, wxDateTime begin_date, std::map<wxDateTime, double> &historical_rates, wxString &msg) {
+    // coincap uses unix time milliseconds
+    long long begin_date_unix = static_cast<long long>(begin_date.GetTicks()) * 1000;
+    long long end_date_unix = static_cast<long long>(wxDateTime::Today().GetTicks()) * 1000;
+    wxString url = wxString::Format(mmex::weblink::CoinCapHistory, asset_id, "d1", begin_date_unix, end_date_unix);
+
+    wxString json_data;
+    auto err_code = http_get_data(url, json_data);
+    if (err_code != CURLE_OK)
+    {
+        msg = json_data;
+        return false;
+    }
+
+    Document json_doc;
+    if (json_doc.Parse(json_data.utf8_str()).HasParseError()) {
+        msg = _("JSON Parse Error");
+        return false;
+    }
+
+    if (!json_doc.HasMember("data") || !json_doc["data"].IsArray()) {
+        if (json_doc.HasMember("error") && json_doc["error"].IsString()) {
+            msg = wxString::Format("Error from coincap API: %s", json_doc["error"].GetString());
+        } else {
+            msg = _("Expected response to contain a data or error string");
+        }
+        
+        return false;
+    }
+
+    wxString baseCurrencySymbol;
+    if (!Model_Currency::GetBaseCurrencySymbol(baseCurrencySymbol)) {
+        msg = _("Could not get base currency!");
+        return false;
+    }
+
+    // prices in USD are multiplied by this value to convert them to the base currency
+    double multiplier = 1.0;
+    if (baseCurrencySymbol != _("USD")) {
+        Model_Currency inst = Model_Currency::instance();
+        auto usd = inst.GetCurrencyRecord("USD");
+        if (usd == nullptr) {
+            msg = _("Could not find currency 'USD', needed for converting history prices");
+            return false;
+        }
+
+        multiplier = usd->BASECONVRATE;
+    }
+
+
+    Value history = json_doc["data"].GetArray();
+    for (rapidjson::SizeType i = 0; i < history.Size(); ++i) {
+        if (!history[i].IsObject()) continue;
+        Value entry = history[i].GetObject();
+
+        // if the object has both a symbol and id check if the symbol matches the target symbol
+        if (entry.HasMember("priceUsd") && entry["priceUsd"].IsString() && entry.HasMember("time") && entry["time"].IsInt64()) {
+            wxDateTime date = wxDateTime(static_cast<time_t>(entry["time"].GetInt64() / 1000)).GetDateOnly();
+            double price_usd = -1.0;
+            if (!wxString(entry["priceUsd"].GetString(), entry["priceUsd"].GetStringLength()).ToDouble(&price_usd)) {
+                msg = _("Could not parse price in asset history");
+                return false;
+            }
+
+            double price_base_currency = price_usd * multiplier;
+            historical_rates[date] = price_base_currency;
         }
     }
 

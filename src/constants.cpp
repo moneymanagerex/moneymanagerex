@@ -158,6 +158,12 @@ const wxString mmex::weblink::YahooQuotes = "https://query1.finance.yahoo.com/v7
    Valid intervals: [1m, 2m, 5m, 15m, 30m, 60m, 90m, 1h, 1d, 5d, 1wk, 1mo, 3mo]*/
 const wxString mmex::weblink::YahooQuotesHistory = "https://query1.finance.yahoo.com/v8/finance/chart/%s?%s&fields=currency";
 
+// coincap asset search by symbol and id 
+const wxString mmex::weblink::CoinCapSearch = "http://api.coincap.io/v2/assets?search=%s";
+
+// coincap asset price history, all values in USD
+// Valid intervals: [m1, m5, m15, m30, h1, h2, h6, h12, d1]
+const wxString mmex::weblink::CoinCapHistory = "http://api.coincap.io/v2/assets/%s/history?interval=%s&start=%lld&end=%lld";
 
 /* End namespace weblink */
 
