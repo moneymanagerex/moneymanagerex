@@ -905,7 +905,7 @@ bool getCoincapInfoFromSymbol(const wxString symbol, wxString& out_id, double& p
                 price_usd = -1;
                 if (asset.HasMember("priceUsd") && asset["priceUsd"].IsString()) {
                     // price is stored as a string, parse it to a double
-                    wxString(asset["priceUsd"].GetString(), asset["priceUsd"].GetStringLength()).ToDouble(&price_usd);
+                    wxString(asset["priceUsd"].GetString(), asset["priceUsd"].GetStringLength()).ToCDouble(&price_usd);
                 }
 
                 return true;
