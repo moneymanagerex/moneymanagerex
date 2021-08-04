@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-04 13:11+0300\n"
-"PO-Revision-Date: 2021-08-04 10:14\n"
+"PO-Revision-Date: 2021-08-04 10:38\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -1167,35 +1167,35 @@ msgstr "Сума, што будзе пераведзеная"
 #: billsdepositspanel.cpp:59
 #, c-format
 msgid "In %s Days"
-msgstr ""
+msgstr "На %s дзень"
 
 #: billsdepositspanel.cpp:60
 #, c-format
 msgid "In %s Months"
-msgstr ""
+msgstr "На %s месяц"
 
 #: billsdepositspanel.cpp:61
 #, c-format
 msgid "Every %s Days"
-msgstr ""
+msgstr "Кожны %s дзень"
 
 #: billsdepositspanel.cpp:62
 #, c-format
 msgid "Every %s Months"
-msgstr ""
+msgstr "Кожны %s месяц"
 
 #: billsdepositspanel.cpp:135 budgetingpanel.cpp:300
 #: reports/budgetcategorysummary.cpp:191 reports/myusage.cpp:163
 msgid "Frequency"
-msgstr ""
+msgstr "Перыяд"
 
 #: billsdepositspanel.cpp:136
 msgid "Repetitions"
-msgstr ""
+msgstr "Паўтарэнні"
 
 #: billsdepositspanel.cpp:137
 msgid "Autorepeat"
-msgstr ""
+msgstr "Аўтапаўтор"
 
 #: billsdepositspanel.cpp:138 mmhomepage.cpp:360
 msgid "Payment"
