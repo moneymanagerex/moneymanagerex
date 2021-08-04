@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-04 13:11+0300\n"
-"PO-Revision-Date: 2021-08-04 11:08\n"
+"PO-Revision-Date: 2021-08-04 19:16\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -1212,7 +1212,7 @@ msgstr "Падказка: Гэтыя транзакцыі можна налад�
 #: billsdepositspanel.cpp:240 billsdepositspanel.cpp:939 mmframe.cpp:747
 #: mmframe.cpp:2800 mmhomepagepanel.cpp:230
 msgid "Recurring Transactions"
-msgstr ""
+msgstr "Планаванне"
 
 #: billsdepositspanel.cpp:249 filtertransdialog.h:101
 msgid "Transaction Filter"
