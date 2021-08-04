@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-04 13:11+0300\n"
-"PO-Revision-Date: 2021-08-04 19:22\n"
+"PO-Revision-Date: 2021-08-04 19:44\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -1248,147 +1248,147 @@ msgstr "Прапусціць наступнае налічэнне"
 
 #: billsdepositspanel.cpp:416
 msgid "&New Recurring Transaction..."
-msgstr ""
+msgstr "&Новая транзакцыя, што паўтараецца..."
 
 #: billsdepositspanel.cpp:417
 msgid "&Edit Recurring Transaction..."
-msgstr ""
+msgstr "&Рэдагаваць транзакцыю, што паўтараецца..."
 
 #: billsdepositspanel.cpp:418
 msgid "&Delete Recurring Transaction..."
-msgstr ""
+msgstr "&Выдаліць транзакцыю, што паўтараецца..."
 
 #: billsdepositspanel.cpp:465
 msgid "Manual"
-msgstr ""
+msgstr "Уручную"
 
 #: billsdepositspanel.cpp:469
 msgid "Suggested"
-msgstr ""
+msgstr "Прапанаваны"
 
 #: billsdepositspanel.cpp:473
 msgid "Automated"
-msgstr ""
+msgstr "Аўтаматызаваны"
 
 #: billsdepositspanel.cpp:519 billsdepositspanel.cpp:586 mmhomepage.cpp:316
 #, c-format
 msgid "%d day remaining"
 msgid_plural "%d days remaining"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "%d дзень застаўся"
+msgstr[1] "%d дня засталося"
+msgstr[2] "%d дзён засталося"
+msgstr[3] "%d дзень застаўся"
 
 #: billsdepositspanel.cpp:524 billsdepositspanel.cpp:531
 #: billsdepositspanel.cpp:538 billsdepositspanel.cpp:591
 #: billsdepositspanel.cpp:598 billsdepositspanel.cpp:602
 msgid "Inactive"
-msgstr ""
+msgstr "Неактыўный"
 
 #: billsdepositspanel.cpp:529 mmhomepage.cpp:317
 #, c-format
 msgid "%d day delay!"
 msgid_plural "%d days delay!"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "%d дзень затрымкі!"
+msgstr[1] "%d дні затрымкі!"
+msgstr[2] "%d дзён затрымкі!"
+msgstr[3] "%d дзень затрымкі!"
 
 #: billsdepositspanel.cpp:536 billsdepositspanel.cpp:596 mmhomepage.cpp:319
 #, c-format
 msgid "%d day overdue!"
 msgid_plural "%d days overdue!"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "%d дзень пратырміноўкі!"
+msgstr[1] "%d дні пратырміноўкі!"
+msgstr[2] "%d дзён пратырміноўкі!"
+msgstr[3] "%d дзень пратырміноўкі!"
 
 #: billsdepositspanel.cpp:648
 msgid "Do you really want to delete the recurring transaction?"
-msgstr ""
+msgstr "Вы сапраўды жадаеце выдаліць транзакцыю, што паўтараецца?"
 
 #: billsdepositspanel.cpp:649
 msgid "Confirm Deletion"
-msgstr ""
+msgstr "Пацвердзіць выдаленне"
 
 #: budgetentrydialog.cpp:50
 msgid "Budget Year Entry"
-msgstr ""
+msgstr "Бюджэтны год"
 
 #: budgetentrydialog.cpp:108
 msgid "Category: "
-msgstr ""
+msgstr "Катыгорыя: "
 
 #: budgetentrydialog.cpp:113
 msgid "Sub Category: "
-msgstr ""
+msgstr "Падкатыгорыя: "
 
 #: budgetentrydialog.cpp:120
 msgid "Estimated:"
-msgstr ""
+msgstr "Чакаецца:"
 
 #: budgetentrydialog.cpp:122
 msgid "Actual:"
-msgstr ""
+msgstr "Фактычна:"
 
 #: budgetentrydialog.cpp:125
 msgid "Type:"
-msgstr ""
+msgstr "Тып:"
 
 #: budgetentrydialog.cpp:128
 msgid "Expense"
-msgstr ""
+msgstr "Выдатак"
 
 #: budgetentrydialog.cpp:129 db/DB_Table_Category_V1.h:123 mmhomepage.cpp:444
 #: reports/categexp.cpp:128 reports/categexp.cpp:157 reports/categexp.cpp:377
 #: reports/incexpenses.cpp:84 reports/incexpenses.cpp:212
 #: reports/incexpenses.cpp:245
 msgid "Income"
-msgstr ""
+msgstr "Даход"
 
 #: budgetentrydialog.cpp:134
 msgid "Specify whether this category is an income or an expense category"
-msgstr ""
+msgstr "Вызначце, ці з'яўляецца гэтая катэгорыя прыбыткам або выдаткам"
 
 #: budgetentrydialog.cpp:136
 msgid "Frequency:"
-msgstr ""
+msgstr "Перыядычнасць:"
 
 #: budgetentrydialog.cpp:141
 msgid "Specify the frequency of the expense or deposit"
-msgstr ""
+msgstr "Абярыце перыядычнасць расхода або дахода"
 
 #: budgetentrydialog.cpp:144 import_export/univcsvdialog.cpp:345
 msgid "Amount:"
-msgstr ""
+msgstr "Сума:"
 
 #: budgetentrydialog.cpp:149
 msgid "Enter the amount budgeted for this category."
-msgstr ""
+msgstr "Калі ласка, увядзіце памер бюджэту для дадзенай катэгорыі."
 
 #: budgetingpanel.cpp:50
 msgid "View All Budget Categories"
-msgstr ""
+msgstr "Паказаць усе катэгорыі бюджэту"
 
 #: budgetingpanel.cpp:51
 msgid "View Non-Zero Budget Categories"
-msgstr ""
+msgstr "Глядзець ненулявую катыгорыю бюджэта"
 
 #: budgetingpanel.cpp:52
 msgid "View Planned Budget Categories"
-msgstr ""
+msgstr "Глядзець запланаваныя катыгорыі бюджэта"
 
 #: budgetingpanel.cpp:53
 msgid "View Income Budget Categories"
-msgstr ""
+msgstr "Глядзець прыбытковыя катыгорыі бюджэта"
 
 #: budgetingpanel.cpp:54
 msgid "View Expense Budget Categories"
-msgstr ""
+msgstr "Глядзець расходныя катыгорыі бюджэта"
 
 #: budgetingpanel.cpp:55
 msgid "View Budget Category Summary"
-msgstr ""
+msgstr "Глядзець суму па катыгорыях у бюджэце"
 
 #: budgetingpanel.cpp:172
 #, c-format
