@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-04 13:11+0300\n"
-"PO-Revision-Date: 2021-08-04 19:16\n"
+"PO-Revision-Date: 2021-08-04 19:22\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -1216,35 +1216,35 @@ msgstr "Планаванне"
 
 #: billsdepositspanel.cpp:249 filtertransdialog.h:101
 msgid "Transaction Filter"
-msgstr ""
+msgstr "Фільтр транзакцый"
 
 #: billsdepositspanel.cpp:293
 msgid "Delete Recurring Transaction"
-msgstr ""
+msgstr "Выдаліць транзакцыю, што паўтараецца"
 
 #: billsdepositspanel.cpp:297
 msgid "Ente&r"
-msgstr ""
+msgstr "Уво&д"
 
 #: billsdepositspanel.cpp:298
 msgid "Enter Next Recurring Transaction Occurrence"
-msgstr ""
+msgstr "Увесці наступную транзакцыю, што паўтараецца"
 
 #: billsdepositspanel.cpp:302
 msgid "&Skip"
-msgstr ""
+msgstr "Прапус&ціць"
 
 #: billsdepositspanel.cpp:303
 msgid "Skip Next Recurring Transaction Occurrence"
-msgstr ""
+msgstr "Прапусціць наступнае з'яўленне транзакцыі, што паўтараецца"
 
 #: billsdepositspanel.cpp:412
 msgid "Enter next Occurrence..."
-msgstr ""
+msgstr "Выканаць транзакцыю..."
 
 #: billsdepositspanel.cpp:414
 msgid "Skip next Occurrence"
-msgstr ""
+msgstr "Прапусціць наступнае налічэнне"
 
 #: billsdepositspanel.cpp:416
 msgid "&New Recurring Transaction..."
