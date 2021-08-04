@@ -943,7 +943,6 @@ bool getCoincapAssetHistory(const wxString asset_id, wxDateTime begin_date, std:
         } else {
             msg = _("Expected response to contain a data or error string");
         }
-        
         return false;
     }
 
@@ -976,7 +975,9 @@ bool getCoincapAssetHistory(const wxString asset_id, wxDateTime begin_date, std:
         if (entry.HasMember("priceUsd") && entry["priceUsd"].IsString() && entry.HasMember("time") && entry["time"].IsInt64()) {
             wxDateTime date = wxDateTime(static_cast<time_t>(entry["time"].GetInt64() / 1000)).GetDateOnly();
             double price_usd = -1.0;
-            if (!wxString(entry["priceUsd"].GetString(), entry["priceUsd"].GetStringLength()).ToDouble(&price_usd)) {
+            auto priceUSD = wxString::FromUTF8(entry["priceUsd"].GetString());
+
+            if (!priceUSD.ToCDouble(&price_usd)) {
                 msg = _("Could not parse price in asset history");
                 return false;
             }
@@ -1287,8 +1288,6 @@ const wxString getProgramDescription(int type)
                 display->GetPPI().GetWidth(),
                 display->GetPPI().GetHeight()
             );
-
-            auto z = display->GetScaleFactor();
         }
     }
 

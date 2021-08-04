@@ -665,8 +665,8 @@ void mmMainCurrencyDialog::OnHistoryUpdate(wxCommandEvent& WXUNUSED(event))
     if (!UpdStatus && !g_fiat_curr().Contains(CurrentCurrency->CURRENCY_SYMBOL)) {
         wxString coincap_id;
         double coincap_price_usd;
-        UpdStatus = getCoincapInfoFromSymbol(CurrentCurrency->CURRENCY_SYMBOL, coincap_id, coincap_price_usd, msg)
-                    && getCoincapAssetHistory(coincap_id, begin_date, historical_rates, msg);
+        UpdStatus = getCoincapInfoFromSymbol(CurrentCurrency->CURRENCY_SYMBOL, coincap_id, coincap_price_usd, msg);
+        UpdStatus &= getCoincapAssetHistory(coincap_id, begin_date, historical_rates, msg);
     }
 
     if (!UpdStatus)
