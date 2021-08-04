@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-04 13:11+0300\n"
-"PO-Revision-Date: 2021-08-04 19:44\n"
+"PO-Revision-Date: 2021-08-04 19:54\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -1393,22 +1393,22 @@ msgstr "Глядзець суму па катыгорыях у бюджэце"
 #: budgetingpanel.cpp:172
 #, c-format
 msgid "Financial Year: %s - %li"
-msgstr ""
+msgstr "Фінансавы год: %s - %li"
 
 #: budgetingpanel.cpp:176 reports/budget.cpp:92
 #, c-format
 msgid "Year: %s"
-msgstr ""
+msgstr "Год: %s"
 
 #: budgetingpanel.cpp:181
 #, c-format
 msgid "Month: %s"
-msgstr ""
+msgstr "Месяц: %s"
 
 #: budgetingpanel.cpp:186
 #, c-format
 msgid "%s    Start Date of: %s"
-msgstr ""
+msgstr "%s    Дата пачатка: %s"
 
 #: budgetingpanel.cpp:189
 #, c-format
