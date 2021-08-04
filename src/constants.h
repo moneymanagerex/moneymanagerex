@@ -86,6 +86,8 @@ namespace weblink
     extern const wxString Crowdin;
     extern const wxString YahooQuotes;
     extern const wxString YahooQuotesHistory;
+    extern const wxString CoinCapSearch;
+    extern const wxString CoinCapHistory;
 } // namespace weblink
 } // namespace mmex
 
