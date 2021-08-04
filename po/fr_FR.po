@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-04 13:11+0300\n"
-"PO-Revision-Date: 2021-08-04 10:51\n"
+"PO-Revision-Date: 2021-08-04 14:52\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -6954,7 +6954,7 @@ msgstr "Erreur d'analyse JSON"
 
 #: util.cpp:885 util.cpp:944
 msgid "Expected response to contain a data or error string"
-msgstr "La réponse attendue contient une chaîne de données ou une chaîne d'erreur"
+msgstr "La réponse attendue doit contenir une chaîne de données ou une chaîne d'erreur"
 
 #: util.cpp:916
 msgid "Could not find asset for symbol"
