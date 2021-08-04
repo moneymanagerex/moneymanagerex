@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2021-07-30 14:06+0300\n"
-"PO-Revision-Date: 2021-07-30 11:10\n"
+"POT-Creation-Date: 2021-08-04 13:11+0300\n"
+"PO-Revision-Date: 2021-08-04 10:14\n"
 "Last-Translator: \n"
 "Language-Team: Indonesian\n"
 "MIME-Version: 1.0\n"
@@ -989,7 +989,7 @@ msgstr ""
 #: import_export/qif_export.cpp:593 import_export/qif_import_gui.cpp:103
 #: import_export/qif_import_gui.cpp:250 import_export/univcsvdialog.cpp:108
 #: mmchecking_list.cpp:217 mmhomepage.cpp:188
-#: reports/budgetcategorysummary.cpp:189 reports/budgetingperf.cpp:210
+#: reports/budgetcategorysummary.cpp:189 reports/budgetingperf.cpp:211
 #: reports/categexp.cpp:173 reports/categexp.cpp:411
 #: reports/transactions.cpp:83 splitdetailsdialog.cpp:145
 #: splittransactionsdialog.cpp:137 transactionsupdatedialog.cpp:200
@@ -997,7 +997,7 @@ msgstr ""
 msgid "Category"
 msgstr "Kategori"
 
-#: billsdepositsdialog.cpp:611 billsdepositsdialog.cpp:1455
+#: billsdepositsdialog.cpp:611 billsdepositsdialog.cpp:1439
 #: transactionsupdatedialog.cpp:203 transdialog.cpp:403 transdialog.cpp:1038
 #: usertransactionpanel.cpp:190
 msgid "Select Category"
@@ -1104,36 +1104,35 @@ msgid "Specify the number of payments to be made.\n"
 "Leave blank if the payments continue forever."
 msgstr ""
 
-#: billsdepositsdialog.cpp:1343 billsdepositsdialog.cpp:1365
-#: filtertransdialog.cpp:485 filtertransdialog.cpp:500
-#: filtertransdialog.cpp:511 filtertransdialog.cpp:527
-#: filtertransdialog.cpp:564 optionsettingsgeneral.cpp:281 util.cpp:667
+#: billsdepositsdialog.cpp:1342 filtertransdialog.cpp:485
+#: filtertransdialog.cpp:500 filtertransdialog.cpp:511
+#: filtertransdialog.cpp:527 filtertransdialog.cpp:564
+#: optionsettingsgeneral.cpp:281 util.cpp:691
 msgid "Invalid value"
 msgstr ""
 
-#: billsdepositsdialog.cpp:1343 billsdepositsdialog.cpp:1365
-#: import_export/univcsvdialog.cpp:1133 maincurrencydialog.cpp:469
-#: mmframe.cpp:3329 optionsettingsgeneral.cpp:281
+#: billsdepositsdialog.cpp:1342 import_export/univcsvdialog.cpp:1133
+#: maincurrencydialog.cpp:469 mmframe.cpp:3329 optionsettingsgeneral.cpp:281
 #: splittransactionsdialog.cpp:209 stockspanel.cpp:395 stockspanel.cpp:396
 #: themes.cpp:310 themes.cpp:329 webappdialog.cpp:194 webappdialog.cpp:199
 msgid "Error"
 msgstr "Error / Terjadi Kesalahan"
 
-#: billsdepositsdialog.cpp:1423 transdialog.cpp:1262
+#: billsdepositsdialog.cpp:1407 transdialog.cpp:1262
 #: usertransactionpanel.cpp:192
 msgid "Specify the category for this transaction"
 msgstr "Pilih kategori untuk transaksi ini"
 
-#: billsdepositsdialog.cpp:1445 categdialog.cpp:119
+#: billsdepositsdialog.cpp:1429 categdialog.cpp:119
 #: import_export/qif_export.cpp:137 mmframereport.cpp:134 transdialog.cpp:391
 msgid "Categories"
 msgstr "Kategori"
 
-#: billsdepositsdialog.cpp:1480 transdialog.cpp:1336
+#: billsdepositsdialog.cpp:1464 transdialog.cpp:1336
 msgid "Clear color"
 msgstr ""
 
-#: billsdepositsdialog.cpp:1485 filtertransdialog.cpp:1492 transdialog.cpp:1341
+#: billsdepositsdialog.cpp:1469 filtertransdialog.cpp:1492 transdialog.cpp:1341
 #, c-format
 msgid "Color #%i"
 msgstr ""
@@ -1671,76 +1670,76 @@ msgstr ""
 msgid "&Close "
 msgstr ""
 
-#: constants.cpp:171
+#: constants.cpp:177
 msgid "Advanced Filter"
 msgstr ""
 
-#: constants.cpp:172
+#: constants.cpp:178
 msgid "View All Transactions"
 msgstr "Tampilkan semua transaksi"
 
-#: constants.cpp:173
+#: constants.cpp:179
 msgid "View Today"
 msgstr "Lihat Hari Ini"
 
-#: constants.cpp:174
+#: constants.cpp:180
 msgid "View Current Month"
 msgstr "Bulan ini"
 
-#: constants.cpp:175
+#: constants.cpp:181
 msgid "View Last 30 days"
 msgstr "Lihat 30 Hari terakhir "
 
-#: constants.cpp:176
+#: constants.cpp:182
 msgid "View Last 90 days"
 msgstr "Lihat 90 Hari terakhir "
 
-#: constants.cpp:177
+#: constants.cpp:183
 msgid "View Last Month"
 msgstr "Bulan lalu"
 
-#: constants.cpp:178
+#: constants.cpp:184
 msgid "View Last 3 Months"
 msgstr "Lihat 3 Bulan terakhir "
 
-#: constants.cpp:179
+#: constants.cpp:185
 msgid "View Last 12 Months"
 msgstr "Lihat 12 Bulan terakhir"
 
-#: constants.cpp:180
+#: constants.cpp:186
 msgid "View Current Year"
 msgstr "Lihat Tahun Ini"
 
-#: constants.cpp:181
+#: constants.cpp:187
 msgid "View Current Financial Year"
 msgstr "Lihat Tahun Finansial Sekarang"
 
-#: constants.cpp:182
+#: constants.cpp:188
 msgid "View Last Year"
 msgstr "Lihat Tahun Lalu"
 
-#: constants.cpp:183
+#: constants.cpp:189
 msgid "View Last Financial Year"
 msgstr "Lihat Tahun Finansial Terakhir"
 
-#: constants.cpp:184
+#: constants.cpp:190
 msgid "View Since Statement Date"
 msgstr ""
 
-#: constants.cpp:186
+#: constants.cpp:192
 msgid "ALL"
 msgstr ""
 
-#: constants.cpp:187 mmframe.cpp:1317 mmframe.cpp:1717
+#: constants.cpp:193 mmframe.cpp:1317 mmframe.cpp:1717
 #: model/Model_Account.cpp:26
 msgid "Open"
 msgstr "Aktif"
 
-#: constants.cpp:188 mmframe.cpp:1318 model/Model_Account.cpp:27
+#: constants.cpp:194 mmframe.cpp:1318 model/Model_Account.cpp:27
 msgid "Closed"
 msgstr "Tidak Aktif / Ditutup"
 
-#: constants.cpp:189 mmframe.cpp:1316
+#: constants.cpp:195 mmframe.cpp:1316
 msgid "Favorites"
 msgstr "Favorit"
 
@@ -1856,7 +1855,7 @@ msgstr ""
 msgid "Enables autocomplete on custom field"
 msgstr ""
 
-#: customfieldeditdialog.cpp:161 optionsettingsview.cpp:186 util.cpp:573
+#: customfieldeditdialog.cpp:161 optionsettingsview.cpp:186 util.cpp:574
 msgid "Default"
 msgstr ""
 
@@ -3393,8 +3392,8 @@ msgid "Do you really want to delete the selected Currency?"
 msgstr ""
 
 #: maincurrencydialog.cpp:354 maincurrencydialog.cpp:424
-#: maincurrencydialog.cpp:650 maincurrencydialog.cpp:767
-#: maincurrencydialog.cpp:791 maincurrencydialog.h:76
+#: maincurrencydialog.cpp:650 maincurrencydialog.cpp:774
+#: maincurrencydialog.cpp:798 maincurrencydialog.h:76
 msgid "Currency Dialog"
 msgstr "Pengelolaan Mata Uang"
 
@@ -3418,8 +3417,8 @@ msgid "Unable to update history currency rates. Please update them manually!"
 msgstr ""
 
 #: maincurrencydialog.cpp:491 maincurrencydialog.cpp:643
-#: maincurrencydialog.cpp:670 maincurrencydialog.cpp:706
-#: maincurrencydialog.cpp:812
+#: maincurrencydialog.cpp:677 maincurrencydialog.cpp:713
+#: maincurrencydialog.cpp:819
 msgid "Currency history error"
 msgstr ""
 
@@ -3439,30 +3438,30 @@ msgstr ""
 msgid "Do you want to add also dates without any transaction?"
 msgstr ""
 
-#: maincurrencydialog.cpp:668
+#: maincurrencydialog.cpp:675
 #, c-format
 msgid "Unable to download %s currency rates"
 msgstr ""
 
-#: maincurrencydialog.cpp:704
+#: maincurrencydialog.cpp:711
 #, c-format
 msgid "Unable to download history for symbol %s. History rates not available!"
 msgstr ""
 
-#: maincurrencydialog.cpp:766
+#: maincurrencydialog.cpp:773
 msgid "Changing base currency will delete all history rates, proceed?"
 msgstr ""
 
-#: maincurrencydialog.cpp:790
+#: maincurrencydialog.cpp:797
 msgid "Do you want to update today currency rates?"
 msgstr ""
 
-#: maincurrencydialog.cpp:811
+#: maincurrencydialog.cpp:818
 #, c-format
 msgid "Unable to download history for base symbol %s. History rates not available!"
 msgstr ""
 
-#: maincurrencydialog.cpp:854 stockspanel.cpp:406 util.cpp:618
+#: maincurrencydialog.cpp:861 stockspanel.cpp:406 util.cpp:619
 msgid "Could not find base currency symbol!"
 msgstr ""
 
@@ -4968,7 +4967,7 @@ msgstr "Saham"
 msgid "Gain/Loss"
 msgstr "Rugi-Laba"
 
-#: mmhomepage.cpp:80 reports/budgetingperf.cpp:219 reports/cashflow.cpp:250
+#: mmhomepage.cpp:80 reports/budgetingperf.cpp:220 reports/cashflow.cpp:250
 #: reports/categexp.cpp:175 reports/categexp.cpp:451 reports/summary.cpp:165
 msgid "Total"
 msgstr ""
@@ -5941,24 +5940,24 @@ msgstr ""
 msgid "Difference Expenses:"
 msgstr ""
 
-#: reports/budgetingperf.cpp:192
+#: reports/budgetingperf.cpp:193
 #, c-format
 msgid "Budget Performance for %s"
 msgstr ""
 
-#: reports/budgetingperf.cpp:227 reports/budgetingperf.cpp:229
+#: reports/budgetingperf.cpp:228 reports/budgetingperf.cpp:230
 msgid "Est."
 msgstr ""
 
-#: reports/budgetingperf.cpp:227 reports/budgetingperf.cpp:229
+#: reports/budgetingperf.cpp:228 reports/budgetingperf.cpp:230
 msgid "Act."
 msgstr ""
 
-#: reports/budgetingperf.cpp:230
+#: reports/budgetingperf.cpp:231
 msgid "%"
 msgstr ""
 
-#: reports/budgetingperf.cpp:283
+#: reports/budgetingperf.cpp:284
 msgid "Monthly Total"
 msgstr ""
 
@@ -6610,7 +6609,7 @@ msgstr ""
 msgid "Last updated %s"
 msgstr ""
 
-#: stockspanel.cpp:412 util.cpp:642 util.cpp:771
+#: stockspanel.cpp:412 util.cpp:643 util.cpp:795
 msgid "Nothing to update"
 msgstr ""
 
@@ -6770,192 +6769,216 @@ msgstr ""
 msgid "Account Selection"
 msgstr ""
 
-#: util.cpp:292
+#: util.cpp:293
 msgid "Jan"
 msgstr ""
 
-#: util.cpp:292
+#: util.cpp:293
 msgid "Feb"
 msgstr ""
 
-#: util.cpp:292
+#: util.cpp:293
 msgid "Mar"
 msgstr ""
 
-#: util.cpp:293
+#: util.cpp:294
 msgid "Apr"
 msgstr ""
 
-#: util.cpp:293 util.h:154
+#: util.cpp:294 util.h:156
 msgid "May"
 msgstr ""
 
-#: util.cpp:293
+#: util.cpp:294
 msgid "Jun"
 msgstr ""
 
-#: util.cpp:294
+#: util.cpp:295
 msgid "Jul"
 msgstr ""
 
-#: util.cpp:294
+#: util.cpp:295
 msgid "Aug"
 msgstr ""
 
-#: util.cpp:294
+#: util.cpp:295
 msgid "Sep"
 msgstr ""
 
-#: util.cpp:295
+#: util.cpp:296
 msgid "Oct"
 msgstr ""
 
-#: util.cpp:295
+#: util.cpp:296
 msgid "Nov"
 msgstr ""
 
-#: util.cpp:295
+#: util.cpp:296
 msgid "Dec"
 msgstr ""
 
-#: util.cpp:300
+#: util.cpp:301
 msgid "Sunday"
 msgstr "Minggu"
 
-#: util.cpp:300
+#: util.cpp:301
 msgid "Monday"
 msgstr "Senin"
 
-#: util.cpp:300
+#: util.cpp:301
 msgid "Tuesday"
 msgstr "Selasa"
 
-#: util.cpp:301
+#: util.cpp:302
 msgid "Wednesday"
 msgstr "Rabu"
 
-#: util.cpp:301
+#: util.cpp:302
 msgid "Thursday"
 msgstr "Kamis"
 
-#: util.cpp:301
+#: util.cpp:302
 msgid "Friday"
 msgstr "jum'at"
 
-#: util.cpp:302
+#: util.cpp:303
 msgid "Saturday"
 msgstr "Sabtu"
 
-#: util.cpp:307
+#: util.cpp:308
 msgid "Sun"
 msgstr ""
 
-#: util.cpp:307
+#: util.cpp:308
 msgid "Mon"
 msgstr ""
 
-#: util.cpp:307
+#: util.cpp:308
 msgid "Tue"
 msgstr ""
 
-#: util.cpp:308
+#: util.cpp:309
 msgid "Wed"
 msgstr ""
 
-#: util.cpp:308
+#: util.cpp:309
 msgid "Thu"
 msgstr ""
 
-#: util.cpp:308
+#: util.cpp:309
 msgid "Fri"
 msgstr ""
 
-#: util.cpp:309
+#: util.cpp:310
 msgid "Sat"
 msgstr ""
 
-#: util.cpp:652
+#: util.cpp:676
 msgid "Currency rates have been updated"
 msgstr ""
 
-#: util.cpp:747
+#: util.cpp:771 util.cpp:877 util.cpp:936
 msgid "JSON Parse Error"
 msgstr ""
 
-#: util.cpp:1052
+#: util.cpp:885 util.cpp:944
+msgid "Expected response to contain a data or error string"
+msgstr ""
+
+#: util.cpp:916
+msgid "Could not find asset for symbol"
+msgstr ""
+
+#: util.cpp:951
+msgid "Could not get base currency!"
+msgstr ""
+
+#: util.cpp:957
+msgid "USD"
+msgstr ""
+
+#: util.cpp:961
+msgid "Could not find currency 'USD', needed for converting history prices"
+msgstr ""
+
+#: util.cpp:981
+msgid "Could not parse price in asset history"
+msgstr ""
+
+#: util.cpp:1211
 #, c-format
 msgid "Version: %s"
 msgstr ""
 
-#: util.cpp:1053
+#: util.cpp:1212
 msgid "Build on"
 msgstr ""
 
-#: util.cpp:1054
+#: util.cpp:1213
 msgid "Database version: "
 msgstr ""
 
-#: util.cpp:1061
+#: util.cpp:1220
 msgid "Git commit: "
 msgstr ""
 
-#: util.cpp:1065
+#: util.cpp:1224
 msgid "Git branch: "
 msgstr ""
 
-#: util.cpp:1069
+#: util.cpp:1228
 msgid "MMEX is using the following support products:"
 msgstr ""
 
-#: util.cpp:1087
+#: util.cpp:1246
 msgid "Build using:"
 msgstr ""
 
-#: util.cpp:1108
+#: util.cpp:1267
 msgid "Running on:"
 msgstr ""
 
-#: util.h:153
+#: util.h:155
 msgid "January"
 msgstr "Januari"
 
-#: util.h:153
+#: util.h:155
 msgid "February"
 msgstr "Februari"
 
-#: util.h:153
+#: util.h:155
 msgid "March"
 msgstr "Maret"
 
-#: util.h:154
+#: util.h:156
 msgid "April"
 msgstr ""
 
-#: util.h:154
+#: util.h:156
 msgid "June"
 msgstr "Juni"
 
-#: util.h:155
+#: util.h:157
 msgid "July"
 msgstr "Juli"
 
-#: util.h:155
+#: util.h:157
 msgid "August"
 msgstr "Agustus"
 
-#: util.h:155
+#: util.h:157
 msgid "September"
 msgstr ""
 
-#: util.h:156
+#: util.h:158
 msgid "October"
 msgstr "Oktober"
 
-#: util.h:156
+#: util.h:158
 msgid "November"
 msgstr ""
 
-#: util.h:156
+#: util.h:158
 msgid "December"
 msgstr "Desember"
 
