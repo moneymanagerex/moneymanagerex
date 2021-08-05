@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-04 13:11+0300\n"
-"PO-Revision-Date: 2021-08-05 12:27\n"
+"PO-Revision-Date: 2021-08-05 12:59\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -914,7 +914,7 @@ msgstr "Стан"
 
 #: billsdepositsdialog.cpp:544 splitdetailsdialog.cpp:131 transdialog.cpp:1300
 msgid "Specify the type of transactions to be created."
-msgstr "Абярыце тып новай транзакцыі."
+msgstr "Абярыце тып новай аперацыі."
 
 #: billsdepositsdialog.cpp:545 transdialog.cpp:494
 msgid "&Advanced"
@@ -983,7 +983,7 @@ msgstr "Некалькі катыгорый"
 
 #: billsdepositsdialog.cpp:603 transdialog.cpp:1301
 msgid "Use split Categories"
-msgstr "Падзяліць па катыгорыях"
+msgstr "Падзяліць агульную суму па розных катыгорыях"
 
 #: billsdepositsdialog.cpp:609 billsdepositspanel.cpp:132
 #: budgetingpanel.cpp:298 filtertransdialog.cpp:252 filtertransdialog.cpp:1010
@@ -2375,14 +2375,14 @@ msgstr ""
 #: model/Model_Checking.cpp:29 reports/forecast.cpp:85
 #: splitdetailsdialog.cpp:125
 msgid "Withdrawal"
-msgstr ""
+msgstr "Спісанне"
 
 #: filtertransdialog.cpp:295 import_export/univcsvdialog.cpp:114
 #: mmchecking_list.cpp:221 model/Model_Billsdeposits.cpp:33
 #: model/Model_Checking.cpp:30 reports/forecast.cpp:83
 #: splitdetailsdialog.cpp:126
 msgid "Deposit"
-msgstr ""
+msgstr "Залічэнне"
 
 #: filtertransdialog.cpp:297 transactionsupdatedialog.cpp:187
 msgid "Transfer To"
@@ -2982,7 +2982,7 @@ msgstr ""
 
 #: import_export/qif_import_gui.cpp:894
 msgid "Importing Split transactions"
-msgstr ""
+msgstr "Імпартаваць састаўныя аперацыі"
 
 #: import_export/qif_import_gui.cpp:898
 msgid "Import finished successfully"
@@ -3512,7 +3512,8 @@ msgstr ""
 #: mmSimpleDialogs.cpp:245
 msgid "Please use this button for category selection\n"
 "or use the 'Split' checkbox for multiple categories."
-msgstr ""
+msgstr "Калі ласка, выкарыстоўвайце гэтую кнопку для выбару катэгорыі\n"
+"або выкарыстоўвайце галачку «Падзяліць» для некалькіх катэгорый."
 
 #: mmSimpleDialogs.cpp:248
 msgid "Invalid Category"
@@ -3731,7 +3732,7 @@ msgstr[3] ""
 
 #: mmchecking_list.cpp:375
 msgid "&View Split Categories"
-msgstr ""
+msgstr "&Глядзець састаўныя катыгорыі"
 
 #: mmchecking_list.cpp:383
 msgid "Create Recurring T&ransaction"
@@ -5889,7 +5890,7 @@ msgstr "Знойдзена запісаў у транзакцыях: %i"
 #: relocatecategorydialog.cpp:270
 #, c-format
 msgid "Records found in split transactions: %i"
-msgstr ""
+msgstr "У састаўных аперацыях знойдзена запісаў: %i"
 
 #: relocatecategorydialog.cpp:271 relocatepayeedialog.cpp:233
 #, c-format
@@ -5899,7 +5900,7 @@ msgstr ""
 #: relocatecategorydialog.cpp:272
 #, c-format
 msgid "Records found in recurring split transactions: %i"
-msgstr ""
+msgstr "У састаўных аперацыях, што паўтараюцца, знойдзена запісаў: %i"
 
 #: relocatecategorydialog.cpp:273
 #, c-format
@@ -6344,11 +6345,11 @@ msgstr "Састаўная аперацыя"
 
 #: splittransactionsdialog.cpp:129
 msgid "Split Category Details"
-msgstr "Уласцівасці састаўной аперацыі"
+msgstr "Уласцівасці састаўной катыгорыі"
 
 #: splittransactionsdialog.cpp:209
 msgid "Invalid Total Amount"
-msgstr ""
+msgstr "Няслушная агульная сума"
 
 #: stockdialog.cpp:137 stockdialog.cpp:508 stockspanel.cpp:144
 msgid "Edit Stock Investment"
@@ -6951,7 +6952,7 @@ msgstr ""
 #: util.cpp:1211
 #, c-format
 msgid "Version: %s"
-msgstr ""
+msgstr "Вэрсія: %s"
 
 #: util.cpp:1212
 msgid "Build on"
@@ -6959,7 +6960,7 @@ msgstr ""
 
 #: util.cpp:1213
 msgid "Database version: "
-msgstr ""
+msgstr "Вэрсія базы дадзеных: "
 
 #: util.cpp:1220
 msgid "Git commit: "
@@ -7272,20 +7273,20 @@ msgstr ""
 
 #: wizard_update.cpp:145
 msgid "Version"
-msgstr ""
+msgstr "Вэрсія"
 
 #: wizard_update.cpp:153
 msgid "You already have the latest version"
-msgstr ""
+msgstr "Вы карыстуецеся найсучаснай вэрсіяй"
 
 #: wizard_update.cpp:153
 msgid "A new version of MMEX is available!"
-msgstr ""
+msgstr "Даступная новая вэрсія MMEX!"
 
 #: wizard_update.cpp:157
 #, c-format
 msgid "Your version is %s"
-msgstr ""
+msgstr "Вы карыстуецеся вэрсіяй %s"
 
 #: wizard_update.cpp:302 wizard_update.cpp:317
 msgid "Unable to check for updates!"
