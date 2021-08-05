@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-04 13:11+0300\n"
-"PO-Revision-Date: 2021-08-05 13:07\n"
+"PO-Revision-Date: 2021-08-05 13:29\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -533,7 +533,7 @@ msgstr "Усе"
 #: assetspanel.cpp:466 billsdepositspanel.cpp:283 mmcheckingpanel.cpp:362
 #: stockspanel.cpp:129
 msgid "&New "
-msgstr "&Новае "
+msgstr "&Новая "
 
 #: assetspanel.cpp:470 stockspanel.cpp:133
 msgid "&Add Trans "
@@ -2319,7 +2319,7 @@ msgstr ""
 #: filtertransdialog.cpp:48 model/Model_Billsdeposits.cpp:43
 #: model/Model_Checking.cpp:40
 msgid "Duplicate"
-msgstr ""
+msgstr "Дубляваць"
 
 #: filtertransdialog.cpp:49 filtertransdialog.cpp:1019
 msgid "Un-Reconciled"
@@ -3102,7 +3102,7 @@ msgstr ""
 
 #: import_export/univcsvdialog.cpp:352
 msgid "Positive values are withdrawals"
-msgstr ""
+msgstr "Пазітыўныя значэнні — гэта спісанні"
 
 #: import_export/univcsvdialog.cpp:365
 msgid "Rows to ignore"
@@ -3194,7 +3194,7 @@ msgstr ""
 
 #: import_export/univcsvdialog.cpp:927
 msgid "Amount field or both Withdrawal and Deposit fields are required."
-msgstr ""
+msgstr "Неабходна запоўніць або поле «Сума» або палі «Зняцце сродкаў» разам з «Дэпазіт»."
 
 #: import_export/univcsvdialog.cpp:928 import_export/univcsvdialog.cpp:1057
 #: themes.cpp:183 webappdialog.cpp:417
@@ -3226,7 +3226,7 @@ msgstr ""
 
 #: import_export/univcsvdialog.cpp:1010
 msgid "Type (withdrawal/deposit) unknown."
-msgstr ""
+msgstr "Невядомы тып (спісанне/папаўненне)."
 
 #: import_export/univcsvdialog.cpp:1035
 #, c-format
@@ -3683,7 +3683,7 @@ msgstr ""
 
 #: mmchecking_list.cpp:344
 msgid "&New Withdrawal"
-msgstr ""
+msgstr "&Новае спісанне"
 
 #: mmchecking_list.cpp:345
 msgid "&New Deposit"
@@ -3776,7 +3776,7 @@ msgstr ""
 
 #: mmchecking_list.cpp:408
 msgid "as Duplicate"
-msgstr ""
+msgstr "паўтор"
 
 #: mmchecking_list.cpp:410
 msgid "Mark all being selected"
@@ -3905,7 +3905,7 @@ msgstr ""
 
 #: mmcheckingpanel.cpp:377
 msgid "Duplicate selected transaction"
-msgstr ""
+msgstr "Дубляваць абраную аперацыю"
 
 #: mmcheckingpanel.cpp:394
 msgid "Enter any string to find it in the nearest transaction notes"
@@ -4315,11 +4315,11 @@ msgstr ""
 
 #: mmframe.cpp:1507
 msgid "Organize &Payees..."
-msgstr ""
+msgstr "А&трымальнікі..."
 
 #: mmframe.cpp:1507 mmframe.cpp:1725 payeedialog.cpp:77
 msgid "Organize Payees"
-msgstr ""
+msgstr "Рыдактар атрымальнікаў"
 
 #: mmframe.cpp:1511
 msgid "Organize Curre&ncy..."
@@ -4647,7 +4647,7 @@ msgstr ""
 
 #: mmframe.cpp:1725
 msgid "Show Organize Payees Dialog"
-msgstr ""
+msgstr "Адчыніць рыдактар атрымальнікаў"
 
 #: mmframe.cpp:1726
 msgid "Show Organize Currency Dialog"
@@ -4975,7 +4975,7 @@ msgstr ""
 
 #: mmframereport.cpp:169 reports/payee.cpp:113
 msgid "Payees"
-msgstr ""
+msgstr "Атрымальнікі"
 
 #: mmframereport.cpp:174
 msgid "Summary of Accounts"
@@ -5024,7 +5024,7 @@ msgstr ""
 #: mmhomepage.cpp:160
 #, c-format
 msgid "Top Withdrawals: %s"
-msgstr ""
+msgstr "Найбольш расходныя: %s"
 
 #: mmhomepage.cpp:360
 msgid "Account / Payee"
@@ -5808,7 +5808,7 @@ msgstr ""
 
 #: payeedialog.cpp:203 payeedialog.cpp:227 payeedialog.cpp:242
 msgid "Organize Payees: Add Payee"
-msgstr ""
+msgstr "Рыдактар атрымальнікаў: дадаць"
 
 #: payeedialog.cpp:226
 msgid "Enter the name for the new payee:"
@@ -5820,7 +5820,7 @@ msgstr ""
 
 #: payeedialog.cpp:254 payeedialog.cpp:270
 msgid "Organize Payees: Edit Payee"
-msgstr ""
+msgstr "Рыдактар атрымальнікаў: рыдагаваць"
 
 #: payeedialog.cpp:284
 msgid "Payee in use."
@@ -5836,7 +5836,7 @@ msgstr "Інструменты -> Замена -> Атрымальнікі"
 
 #: payeedialog.cpp:290
 msgid "Organize Payees: Delete Error"
-msgstr ""
+msgstr "Рыдактар атрымальнікаў: памылка выдалення"
 
 #: payeedialog.cpp:390
 msgid "Define Category"
@@ -6253,7 +6253,7 @@ msgstr ""
 
 #: reports/transactions.cpp:176
 msgid "All Transactions: Withdrawals, Deposits, and Transfers"
-msgstr ""
+msgstr "Усе аперацыі: спісанні, папаўненні і пераводы"
 
 #: reports/transactions.cpp:210
 msgid "All Transactions excluding Transfers"
@@ -6722,7 +6722,7 @@ msgstr ""
 
 #: transdialog.cpp:180
 msgid "Duplicate Transaction"
-msgstr ""
+msgstr "Дубляваць аперацыю"
 
 #: transdialog.cpp:180
 msgid "Edit Transaction"
