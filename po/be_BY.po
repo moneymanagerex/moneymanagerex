@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-04 13:11+0300\n"
-"PO-Revision-Date: 2021-08-05 12:59\n"
+"PO-Revision-Date: 2021-08-05 13:07\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -3591,7 +3591,7 @@ msgstr ""
 
 #: mmTips.h:23
 msgid "Recommendation: If upgrading to a new version of MMEX, make sure you backup your .mmb database file before doing so."
-msgstr ""
+msgstr "Рэкамендацыя: Пры абнаўленні да новай версіі MMEX, пераканайцеся, што вы зрабілі рэзервовае капіяванне файла базы дадзеных .mmb, перш чым працягваць."
 
 #: mmTips.h:24
 msgid "Recommendation: Use copy (Ctrl+C) and paste (Ctrl+V) for frequently used transactions."
@@ -5231,7 +5231,7 @@ msgstr ""
 
 #: model/Model_CustomField.cpp:30 wizard_update.cpp:145
 msgid "Time"
-msgstr ""
+msgstr "Час"
 
 #: model/Model_CustomField.cpp:31
 msgid "SingleChoice"
@@ -5672,11 +5672,11 @@ msgstr ""
 
 #: optionsettingsnet.cpp:134
 msgid "Timeout"
-msgstr ""
+msgstr "Час чакання сплыў"
 
 #: optionsettingsnet.cpp:143
 msgid "Specify a network communication timeout value to use."
-msgstr ""
+msgstr "Пакажыце час чакання для сеткавых падлучэнняў."
 
 #: optionsettingsnet.cpp:146
 msgid "Seconds"
@@ -5696,11 +5696,11 @@ msgstr ""
 
 #: optionsettingsnet.cpp:163 wizard_update.cpp:114
 msgid "Stable"
-msgstr ""
+msgstr "Стабільная"
 
 #: optionsettingsnet.cpp:164 wizard_update.cpp:114
 msgid "Unstable"
-msgstr ""
+msgstr "Нестабільная"
 
 #: optionsettingsnet.cpp:168
 msgid "Updates source"
@@ -6119,7 +6119,7 @@ msgstr ""
 
 #: reports/htmlbuilder.cpp:175 reports/mmDateRange.cpp:199
 msgid "Over Time"
-msgstr ""
+msgstr "Увесь час"
 
 #: reports/incexpenses.cpp:34
 msgid "Income vs Expenses Summary"
