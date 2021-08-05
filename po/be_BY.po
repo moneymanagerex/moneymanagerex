@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-04 13:11+0300\n"
-"PO-Revision-Date: 2021-08-05 12:02\n"
+"PO-Revision-Date: 2021-08-05 12:15\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -6332,11 +6332,11 @@ msgstr ""
 
 #: splitdetailsdialog.cpp:72
 msgid "Split Detail Dialog"
-msgstr ""
+msgstr "Дыталі чэка"
 
 #: splitdetailsdialog.cpp:109
 msgid "Split Transaction Details"
-msgstr ""
+msgstr "Уласцівасці падзеленай транзакцыі"
 
 #: splittransactionsdialog.cpp:75
 msgid "Split Transaction Dialog"
