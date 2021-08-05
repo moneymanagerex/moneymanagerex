@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-04 13:11+0300\n"
-"PO-Revision-Date: 2021-08-05 12:15\n"
+"PO-Revision-Date: 2021-08-05 12:27\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -979,7 +979,7 @@ msgstr "Абярыце атрымальніка"
 
 #: billsdepositsdialog.cpp:600 transdialog.cpp:540
 msgid "Split"
-msgstr "Падзяліць"
+msgstr "Некалькі катыгорый"
 
 #: billsdepositsdialog.cpp:603 transdialog.cpp:1301
 msgid "Use split Categories"
@@ -6332,19 +6332,19 @@ msgstr ""
 
 #: splitdetailsdialog.cpp:72
 msgid "Split Detail Dialog"
-msgstr "Дыталі чэка"
+msgstr "Занясенне састаўной аперацыі"
 
 #: splitdetailsdialog.cpp:109
 msgid "Split Transaction Details"
-msgstr "Уласцівасці падзеленай транзакцыі"
+msgstr "Уласцівасці састаўной аперацыі"
 
 #: splittransactionsdialog.cpp:75
 msgid "Split Transaction Dialog"
-msgstr ""
+msgstr "Састаўная аперацыя"
 
 #: splittransactionsdialog.cpp:129
 msgid "Split Category Details"
-msgstr ""
+msgstr "Уласцівасці састаўной аперацыі"
 
 #: splittransactionsdialog.cpp:209
 msgid "Invalid Total Amount"
