@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-04 13:11+0300\n"
-"PO-Revision-Date: 2021-08-05 13:29\n"
+"PO-Revision-Date: 2021-08-05 13:40\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -429,7 +429,7 @@ msgstr "Дэталі новай транзакцыі"
 
 #: assetdialog.cpp:271 sharetransactiondialog.cpp:296
 msgid "Edit Transaction Details"
-msgstr "Рэдагаваць дэталі транзакцыі"
+msgstr "Рэдагаваць дэталі аперацыі"
 
 #: assetdialog.cpp:306 constants.cpp:73 sharetransactiondialog.cpp:326
 msgid "&Cancel "
@@ -437,7 +437,7 @@ msgstr "&Скасаваць "
 
 #: assetdialog.cpp:402 sharetransactiondialog.cpp:434
 msgid "Invalid Transaction"
-msgstr "Памылковая транзакцыя"
+msgstr "Памылковая аперацыя"
 
 #: assetdialog.cpp:409
 msgid "Asset Account not found.\n\n"
@@ -1031,7 +1031,7 @@ msgstr "Нататкі, што часта выкарыстоўваюцца"
 #: billsdepositsdialog.cpp:650 transdialog.cpp:1303
 #: usertransactionpanel.cpp:226
 msgid "Specify any text notes you want to add to this transaction."
-msgstr "Увядзіце тэкставыя нататкі да гэтай транзакцыі."
+msgstr "Увядзіце тэкставыя нататкі да гэтай аперацыі."
 
 #: billsdepositsdialog.cpp:679
 msgid "Choose Bank Account or Term Account"
@@ -1124,7 +1124,7 @@ msgstr "Памылка"
 #: billsdepositsdialog.cpp:1407 transdialog.cpp:1262
 #: usertransactionpanel.cpp:192
 msgid "Specify the category for this transaction"
-msgstr "Пакажыце катыгорыю гэтай транзакцыі"
+msgstr "Пакажыце катыгорыю гэтай аперацыі"
 
 #: billsdepositsdialog.cpp:1429 categdialog.cpp:119
 #: import_export/qif_export.cpp:137 mmframereport.cpp:134 transdialog.cpp:391
@@ -1158,7 +1158,7 @@ msgstr "Пакажыце рахунак, куды будзе зроблена п
 
 #: billsdepositsdialog.h:127 transdialog.cpp:1289 usertransactionpanel.cpp:146
 msgid "Specify the amount for this transaction"
-msgstr "Пакажыце суму для дадзенай транзакцыі"
+msgstr "Пакажыце суму для дадзенай аперацыі"
 
 #: billsdepositsdialog.h:128
 msgid "Specify the amount to be transferred"
@@ -6257,11 +6257,11 @@ msgstr "Усе аперацыі: спісанні, папаўненні і пе�
 
 #: reports/transactions.cpp:210
 msgid "All Transactions excluding Transfers"
-msgstr ""
+msgstr "Усе аперацыі акрамя пераводаў"
 
 #: sharetransactiondialog.cpp:72 sharetransactiondialog.cpp:91
 msgid "Add Share Transaction"
-msgstr ""
+msgstr "Новая аперацыя"
 
 #: sharetransactiondialog.cpp:197 stockdialog.cpp:181
 msgid "Stock Investment Details"
@@ -6325,11 +6325,11 @@ msgstr ""
 
 #: sharetransactiondialog.cpp:294
 msgid "Add Transaction Details"
-msgstr ""
+msgstr "Дадаць дэталі аперацыі"
 
 #: sharetransactiondialog.h:43
 msgid "Edit Share Transaction"
-msgstr ""
+msgstr "Рэдагаванне аперацыі"
 
 #: splitdetailsdialog.cpp:72
 msgid "Split Detail Dialog"
@@ -6704,7 +6704,7 @@ msgstr ""
 
 #: transactionsupdatedialog.cpp:82
 msgid "Multi Transactions Update"
-msgstr ""
+msgstr "Абнаўленне некалькіх аперацый"
 
 #: transactionsupdatedialog.cpp:213
 msgid "Append"
@@ -6730,7 +6730,7 @@ msgstr ""
 
 #: transdialog.cpp:467 usertransactionpanel.cpp:104
 msgid "Retard or advance the date of the transaction"
-msgstr ""
+msgstr "Адставанне або апярэджанне даты аперацыі"
 
 #: transdialog.cpp:559
 msgid "Populate Transaction #"
@@ -6738,7 +6738,7 @@ msgstr ""
 
 #: transdialog.cpp:569 usertransactionpanel.cpp:210
 msgid "Organize attachments of this transaction"
-msgstr ""
+msgstr "Мэнаджар далучэнняў гэтай аперацыі"
 
 #: transdialog.cpp:608
 msgid "Show/Hide custom fields window"
@@ -6771,11 +6771,11 @@ msgstr ""
 
 #: transdialog.cpp:1298 usertransactionpanel.cpp:96
 msgid "Specify the date of the transaction"
-msgstr ""
+msgstr "Пакажыце дату аперацыі"
 
 #: usertransactionpanel.cpp:115
 msgid "Specify the associated Account that will contain this transaction"
-msgstr ""
+msgstr "Пакажыце рахунак для гэтай аперацыі"
 
 #: usertransactionpanel.cpp:127
 msgid "Withdraw funds from or deposit funds to this Account."
@@ -6791,7 +6791,7 @@ msgstr ""
 
 #: usertransactionpanel.cpp:157
 msgid "Currency used for this transaction."
-msgstr ""
+msgstr "Валюта аперацыі."
 
 #: usertransactionpanel.cpp:176
 msgid "Specify the status for this transaction"
