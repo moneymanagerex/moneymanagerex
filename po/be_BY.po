@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-04 13:11+0300\n"
-"PO-Revision-Date: 2021-08-05 13:46\n"
+"PO-Revision-Date: 2021-08-05 14:10\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -206,7 +206,7 @@ msgstr "Заблакаваная"
 
 #: accountdialog.cpp:246
 msgid "Enable or disable the transaction Lock"
-msgstr "Уключыць або вымкнуць блакоўку транзакцыі"
+msgstr "Уключыць або вымкнуць блакоўку аперацыі"
 
 #: accountdialog.cpp:249
 msgid "Reconciled Date:"
@@ -214,7 +214,7 @@ msgstr "Дата ўзгаднення:"
 
 #: accountdialog.cpp:251
 msgid "The date of the transaction lock"
-msgstr "Дата блакавання транзакцыі"
+msgstr "Дата блакавання аперацыі"
 
 #: accountdialog.cpp:254
 msgid "Minimum Bal:"
@@ -345,11 +345,11 @@ msgstr "Рэдагаванне актыва"
 
 #: assetdialog.cpp:71 assetdialog.cpp:93 assetspanel.cpp:471
 msgid "Add Asset Transaction"
-msgstr "Дадаць транзакцыю для актыва"
+msgstr "Дадаць аперацыю для актыва"
 
 #: assetdialog.cpp:97
 msgid "Edit Asset Transaction"
-msgstr "Рэдагаваць транзакцыю для актыва"
+msgstr "Рэдагаваць аперацыю для актыва"
 
 #: assetdialog.cpp:183
 msgid "Asset Details"
@@ -425,7 +425,7 @@ msgstr "Напішыце нататкі да маёмасці"
 
 #: assetdialog.cpp:268
 msgid "New Transaction Details"
-msgstr "Дэталі новай транзакцыі"
+msgstr "Дэталі новай аперацыі"
 
 #: assetdialog.cpp:271 sharetransactiondialog.cpp:296
 msgid "Edit Transaction Details"
@@ -6795,7 +6795,7 @@ msgstr "Валюта аперацыі."
 
 #: usertransactionpanel.cpp:176
 msgid "Specify the status for this transaction"
-msgstr "Абярыце стан транзакцыі"
+msgstr "Абярыце стан аперацыі"
 
 #: usertransactionpanel.cpp:184
 msgid "Specify a person, Company or Organisation for this transaction."
@@ -6803,7 +6803,7 @@ msgstr "Пакажыце чалавека, кампанію ці арганіз�
 
 #: usertransactionpanel.cpp:200
 msgid "Specify a transaction code or associated check details"
-msgstr "Пакажыце код транзакцыі або звязаныя з ім дэталі чэка"
+msgstr "Пакажыце код аперацыі або звязаныя з ёй дэталі чэка"
 
 #: usertransactionpanel.cpp:291
 msgid "Select the required account"
