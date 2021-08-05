@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-04 13:11+0300\n"
-"PO-Revision-Date: 2021-08-05 14:46\n"
+"PO-Revision-Date: 2021-08-05 14:52\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -29,7 +29,7 @@ msgstr "Ліцэнзійнае пагадненне"
 
 #: aboutdialog.cpp:187
 msgid "About"
-msgstr "Пра Прыкладанне"
+msgstr "Дататак"
 
 #: aboutdialog.cpp:192
 msgid "Authors"
@@ -37,7 +37,7 @@ msgstr "Аўтары"
 
 #: aboutdialog.cpp:197
 msgid "Sponsors"
-msgstr "Пры падтрымцы"
+msgstr "Падтрымка"
 
 #: aboutdialog.cpp:202
 msgid "License"
@@ -45,7 +45,7 @@ msgstr "Ліцэнзія"
 
 #: aboutdialog.cpp:207
 msgid "Privacy"
-msgstr "Канфідэнцыйнасць"
+msgstr "Прыватнасць"
 
 #: aboutdialog.cpp:245 optionsettingsnet.cpp:114
 msgid "Send anonymous statistics usage data"
@@ -3019,15 +3019,15 @@ msgstr "Адсутнічае рахунак для гэтай аперацыі"
 
 #: import_export/qif_import_gui.cpp:1041
 msgid "Transaction Account for transfer is incorrect"
-msgstr ""
+msgstr "Адсутнічае рахунак для гэтай аперацыі перавода"
 
 #: import_export/qif_import_gui.cpp:1067
 msgid "Transaction Amount is incorrect"
-msgstr ""
+msgstr "Няслушная сума аперацыі"
 
 #: import_export/qif_import_gui.cpp:1089
 msgid "Transaction Category is incorrect"
-msgstr ""
+msgstr "Няслушная катыгорыя аперацыі"
 
 #: import_export/qif_import_gui.cpp:1181
 #, c-format
@@ -3204,7 +3204,7 @@ msgstr ""
 #: import_export/univcsvdialog.cpp:980
 #, c-format
 msgid "Transactions imported to account %s: %ld"
-msgstr ""
+msgstr "Аперацыі былі імпартаваныя на рахунак %s: %ld"
 
 #: import_export/univcsvdialog.cpp:991
 #, c-format
@@ -3269,7 +3269,7 @@ msgstr ""
 
 #: import_export/univcsvdialog.cpp:1089
 msgid "No imported transactions!"
-msgstr ""
+msgstr "Няма імпартаваных аперацый!"
 
 #: import_export/univcsvdialog.cpp:1107
 msgid "Incorrect fields specified for export! Requires at least Date and Amount."
