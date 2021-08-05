@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-04 13:11+0300\n"
-"PO-Revision-Date: 2021-08-05 15:07\n"
+"PO-Revision-Date: 2021-08-05 17:09\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -3696,39 +3696,39 @@ msgstr ""
 #: mmchecking_list.cpp:351
 msgid "&Edit Transaction"
 msgid_plural "&Edit Transactions"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "&Рэдагаваць аперацыю"
+msgstr[1] "&Рэдагаваць аперацыі"
+msgstr[2] "&Рэдагаваць аперацыі"
+msgstr[3] "&Рэдагаваць аперацыі"
 
 #: mmchecking_list.cpp:356
 msgid "&Copy Transaction"
 msgid_plural "&Copy Transactions"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "&Капіяваць аперацыі"
+msgstr[1] "&Капіяваць аперацыі"
+msgstr[2] "&Капіяваць аперацыі"
+msgstr[3] "&Капіяваць аперацыі"
 
 #: mmchecking_list.cpp:361
 msgid "&Paste Transaction"
-msgstr ""
+msgstr "&Уставіць аперацыю"
 
 #: mmchecking_list.cpp:361
 #, c-format
 msgid "&Paste Transactions (%d)"
-msgstr ""
+msgstr "&Уставіць аперацыі (%d)"
 
 #: mmchecking_list.cpp:366
 msgid "D&uplicate Transaction"
-msgstr ""
+msgstr "Д&убляваць аперацыю"
 
 #: mmchecking_list.cpp:369
 msgid "&Move Transaction"
 msgid_plural "&Move Transactions"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "П&ерасунуць аперацыю"
+msgstr[1] "П&ерасунуць аперацыі"
+msgstr[2] "П&ерасунуць аперацыі"
+msgstr[3] "П&ерасунуць аперацыі"
 
 #: mmchecking_list.cpp:375
 msgid "&View Split Categories"
@@ -3741,14 +3741,14 @@ msgstr ""
 #: mmchecking_list.cpp:389
 msgid "&Delete selected transaction"
 msgid_plural "&Delete selected transactions"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "В&ыдаліць абраную аперацыю"
+msgstr[1] "В&ыдаліць абраныя аперацыі"
+msgstr[2] "В&ыдаліць абраныя аперацыі"
+msgstr[3] "В&ыдаліць абраныя аперацыі"
 
 #: mmchecking_list.cpp:392
 msgid "Delete all transactions in current view"
-msgstr ""
+msgstr "Выдаліць усе бачныя аперацыі"
 
 #: mmchecking_list.cpp:393
 msgid "Delete Viewed \"Follow Up\" Transactions"
