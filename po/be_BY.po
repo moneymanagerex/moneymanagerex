@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-04 13:11+0300\n"
-"PO-Revision-Date: 2021-08-05 14:10\n"
+"PO-Revision-Date: 2021-08-05 14:35\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -482,11 +482,11 @@ msgstr "Дубляваць актыў"
 
 #: assetspanel.cpp:101
 msgid "&Add Asset Transaction"
-msgstr "&Дадаць транзакцыю для актыва"
+msgstr "&Дадаць аперацыю для актыва"
 
 #: assetspanel.cpp:102
 msgid "&View Asset Transactions"
-msgstr "&Усе транзакцыі для актыва"
+msgstr "&Усе аперацыі для актыва"
 
 #: assetspanel.cpp:103
 msgid "&Open Asset Account"
@@ -545,7 +545,7 @@ msgstr "&Глядзець транз "
 
 #: assetspanel.cpp:476
 msgid "View Asset Transactions"
-msgstr "Паказаць транзакцыі актыва"
+msgstr "Усе аперацыі для актыва"
 
 #: assetspanel.cpp:480 attachmentdialog.cpp:317 billsdepositspanel.cpp:287
 #: categdialog.cpp:233 customfieldlistdialog.cpp:261 maincurrencydialog.cpp:527
@@ -590,8 +590,8 @@ msgstr "Змена кошта: %s %s"
 #: assetspanel.cpp:771
 msgid "This asset does not have its own account\n\n"
 "Multiple transactions for this asset are not recommended."
-msgstr "У гэтага актыва няма уласнага ўліковага запісу\n\n"
-"Некалькі транзакцый для гэтага актыву не рэкамендуецца."
+msgstr "У гэтага актыва няма уласнага рахунка\n\n"
+"Некалькі аперацый для гэтага актыва не рэкамендуецца."
 
 #: assetspanel.cpp:773
 msgid "Asset Management"
@@ -827,15 +827,15 @@ msgstr "Штомесяца (апошні працоўны дзень)"
 
 #: billsdepositsdialog.cpp:308 billsdepositspanel.cpp:288
 msgid "Edit Recurring Transaction"
-msgstr "Рэдактар запланаванай транзакцыі"
+msgstr "Рэдактар запланаванай аперацыі"
 
 #: billsdepositsdialog.cpp:312
 msgid "Enter Recurring Transaction"
-msgstr "Увядзіце транзакцыю, што паўтараецца"
+msgstr "Увядзіце аперацыю, што паўтараецца"
 
 #: billsdepositsdialog.cpp:410
 msgid "Recurring Transaction Details"
-msgstr "Дэталі транзакцыі, што паўтараецца"
+msgstr "Дэталі аперацыі, што паўтараецца"
 
 #: billsdepositsdialog.cpp:422
 msgid "Specify the date when this bill or deposit is due"
@@ -871,7 +871,7 @@ msgstr "Карыстальнік мае ўвесці аплату"
 
 #: billsdepositsdialog.cpp:474
 msgid "User requested to enter this transaction on the 'Date Paid'"
-msgstr "Карыстальнік мае ўвесці транзакцыю на «Дата Аплаты»"
+msgstr "Карыстальнік мае ўвесці аперацыю на «Дата Аплаты»"
 
 #: billsdepositsdialog.cpp:477
 msgid "Grant automatic execute"
@@ -883,15 +883,15 @@ msgstr "Аўтавыкананне будзе адбывацца без удзе
 
 #: billsdepositsdialog.cpp:502 transdialog.cpp:435
 msgid "Transaction Details"
-msgstr "Дэталі транзакцыі"
+msgstr "Дэталі аперацыі"
 
 #: billsdepositsdialog.cpp:512
 msgid "Specify the date the user is requested to enter this transaction"
-msgstr "Пакажыце дату, калі карыстальніку прапаноўваецца ўвесці гэтую транзакцыю"
+msgstr "Пакажыце дату, калі карыстальніку прапануецца ўвесці гэтую аперацыю"
 
 #: billsdepositsdialog.cpp:521
 msgid "Advance or retard the user request date of this transaction"
-msgstr "Апярэджанне або запазненне даты запыту карыстальніка гэтай тарнзакцыі"
+msgstr "Апярэджанне або запазненне даты запыту карыстальніка гэтай аперацыі"
 
 #: billsdepositsdialog.cpp:526 billsdepositspanel.cpp:127
 msgid "Date Paid"
@@ -899,7 +899,7 @@ msgstr "Дата аплаты"
 
 #: billsdepositsdialog.cpp:537 filtertransdialog.cpp:284 transdialog.cpp:1299
 msgid "Specify the status for the transaction"
-msgstr "Абярыце стан транзакцыі"
+msgstr "Абярыце стан аперацыі"
 
 #: billsdepositsdialog.cpp:539 billsdepositspanel.cpp:131
 #: filtertransdialog.cpp:274 filtertransdialog.cpp:564
@@ -959,7 +959,7 @@ msgstr "Абраць рахунак"
 
 #: billsdepositsdialog.cpp:587
 msgid "Specify the Account that will own the recurring transaction"
-msgstr "Пакажыце рахунак для гэтай транзакцыі, што паўтараецца"
+msgstr "Пакажыце рахунак для гэтай аперацыі, што паўтараецца"
 
 #: billsdepositsdialog.cpp:590 billsdepositsdialog.cpp:844
 #: billsdepositspanel.cpp:130 filtertransdialog.cpp:241
@@ -1006,7 +1006,7 @@ msgstr "Абраць катыгорыю"
 
 #: billsdepositsdialog.cpp:620 transdialog.cpp:1302
 msgid "Specify any associated check number or transaction number"
-msgstr "Пакажыце нумар чэка або нумар тразакцыі"
+msgstr "Пакажыце нумар чэка або нумар аперацыі"
 
 #: billsdepositsdialog.cpp:622 billsdepositspanel.cpp:139
 #: filtertransdialog.cpp:333 filtertransdialog.cpp:1068
@@ -1018,7 +1018,7 @@ msgstr "Нумар"
 
 #: billsdepositsdialog.cpp:631
 msgid "Organize attachments of this recurring transaction"
-msgstr "Мэнаджар далучэнняў транзакцыі, што паўтараецца"
+msgstr "Мэнаджар далучэнняў аперацыі, што паўтараецца"
 
 #: billsdepositsdialog.cpp:634 transdialog.cpp:574
 msgid "User Colors"
@@ -1142,7 +1142,7 @@ msgstr "Цвет #%i"
 
 #: billsdepositsdialog.h:56 billsdepositspanel.cpp:284
 msgid "New Recurring Transaction"
-msgstr "Новая запланаваная транзакцыя"
+msgstr "Новая запланаваная аперацыя"
 
 #: billsdepositsdialog.h:124
 msgid "Specify where the transaction is going to"
@@ -1150,7 +1150,7 @@ msgstr "Пакажыце куды будзе зроблена пералічэн
 
 #: billsdepositsdialog.h:125 transdialog.cpp:1294
 msgid "Specify where the transaction is coming from"
-msgstr "Пакажыце адкуль будзе зроблена пералічэнне"
+msgstr "Пакажыце адкуль будзе зробленае пералічэнне"
 
 #: billsdepositsdialog.h:126
 msgid "Specify which account the transfer is going to"
@@ -1203,11 +1203,11 @@ msgstr "Аплата"
 
 #: billsdepositspanel.cpp:191
 msgid "MMEX allows regular payments to be set up as transactions. These transactions can also be regular deposits, or transfers that will occur at some future time. These transactions act as a reminder that an event is about to occur, and appears on the Home Page 14 days before the transaction is due. "
-msgstr "MMEX дазваляе планаваць рэгулярныя плацяжы. У дзень налічэння можна пераўтварыць запіс з планавальніка ў звычайную транзакцыю. Нагадванні за 14 дзён да наступлення плацяжу можна ўбачыць у зводцы. "
+msgstr "MMEX дазваляе планаваць рэгулярныя плацяжы. У дзень налічэння можна пераўтварыць запіс з планавальніка ў звычайную аперацыю. Нагадванні за 14 дзён да наступлення плацяжу можна пабачыць у зводцы. "
 
 #: billsdepositspanel.cpp:194
 msgid "Tip: These transactions can be set up to activate - allowing the user to adjust any values on the due date."
-msgstr "Падказка: Гэтыя транзакцыі можна наладзіць для аўтаматычнай актывацыі, дазваляючы карыстачу паказаць любыя значэнні ў дату аплаты."
+msgstr "Падказка: Гэтыя аперацыі можна наладзіць для аўтаматычнай актывацыі, дазваляючы карыстачу паказаць любыя значэнні ў дату аплаты."
 
 #: billsdepositspanel.cpp:240 billsdepositspanel.cpp:939 mmframe.cpp:747
 #: mmframe.cpp:2800 mmhomepagepanel.cpp:230
@@ -1216,11 +1216,11 @@ msgstr "Планаванне"
 
 #: billsdepositspanel.cpp:249 filtertransdialog.h:101
 msgid "Transaction Filter"
-msgstr "Фільтр транзакцый"
+msgstr "Фільтр аперацый"
 
 #: billsdepositspanel.cpp:293
 msgid "Delete Recurring Transaction"
-msgstr "Выдаліць транзакцыю, што паўтараецца"
+msgstr "Выдаліць аперацыю, што паўтараецца"
 
 #: billsdepositspanel.cpp:297
 msgid "Ente&r"
@@ -1228,7 +1228,7 @@ msgstr "Уво&д"
 
 #: billsdepositspanel.cpp:298
 msgid "Enter Next Recurring Transaction Occurrence"
-msgstr "Увесці наступную транзакцыю, што паўтараецца"
+msgstr "Увесці наступную аперацыю, што паўтараецца"
 
 #: billsdepositspanel.cpp:302
 msgid "&Skip"
