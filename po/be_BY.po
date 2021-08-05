@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-04 13:11+0300\n"
-"PO-Revision-Date: 2021-08-05 14:35\n"
+"PO-Revision-Date: 2021-08-05 14:46\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -1236,11 +1236,11 @@ msgstr "Прапус&ціць"
 
 #: billsdepositspanel.cpp:303
 msgid "Skip Next Recurring Transaction Occurrence"
-msgstr "Прапусціць наступнае з'яўленне транзакцыі, што паўтараецца"
+msgstr "Прапусціць наступнае з'яўленне аперацыі, што паўтараецца"
 
 #: billsdepositspanel.cpp:412
 msgid "Enter next Occurrence..."
-msgstr "Выканаць транзакцыю..."
+msgstr "Выканаць аперацыю..."
 
 #: billsdepositspanel.cpp:414
 msgid "Skip next Occurrence"
@@ -1248,15 +1248,15 @@ msgstr "Прапусціць наступнае налічэнне"
 
 #: billsdepositspanel.cpp:416
 msgid "&New Recurring Transaction..."
-msgstr "&Новая транзакцыя, што паўтараецца..."
+msgstr "&Новая аперацыя, што паўтараецца..."
 
 #: billsdepositspanel.cpp:417
 msgid "&Edit Recurring Transaction..."
-msgstr "&Рэдагаваць транзакцыю, што паўтараецца..."
+msgstr "&Рэдагаваць аперацыю, што паўтараецца..."
 
 #: billsdepositspanel.cpp:418
 msgid "&Delete Recurring Transaction..."
-msgstr "&Выдаліць транзакцыю, што паўтараецца..."
+msgstr "&Выдаліць аперацыю, што паўтараецца..."
 
 #: billsdepositspanel.cpp:465
 msgid "Manual"
@@ -1305,7 +1305,7 @@ msgstr[3] "%d дзень пратырміноўкі!"
 
 #: billsdepositspanel.cpp:648
 msgid "Do you really want to delete the recurring transaction?"
-msgstr "Вы сапраўды жадаеце выдаліць транзакцыю, што паўтараецца?"
+msgstr "Вы сапраўды жадаеце выдаліць аперацыю, што паўтараецца?"
 
 #: billsdepositspanel.cpp:649
 msgid "Confirm Deletion"
@@ -1547,7 +1547,7 @@ msgstr "Рыдагаваць назву існуючай катыгорыі"
 
 #: categdialog.cpp:239
 msgid "Delete an existing category. The category cannot be used by existing transactions."
-msgstr "Выдаліць існуючую катыгорыю. Яна не мае выкарыстоўвацца ў транзакцыях."
+msgstr "Выдаліць існуючую катыгорыю. Яна не мае выкарыстоўвацца ў аперацыях."
 
 #: categdialog.cpp:244 maincurrencydialog.cpp:211
 msgid "&Select"
@@ -1555,7 +1555,7 @@ msgstr "&Абраць"
 
 #: categdialog.cpp:246
 msgid "Select the currently selected category as the selected category for the transaction"
-msgstr "Выбар выдзеленай катыгорыі для бягучай транзакцыі"
+msgstr "Выбар выдзеленай катыгорыі для бягучай аперацыі"
 
 #: categdialog.cpp:255
 msgid "Enter the name for the new category:"
@@ -1602,12 +1602,12 @@ msgstr "Падкатыгорыя выкарыстоўваецца."
 #: categdialog.cpp:323
 msgid "Tip: Change all transactions using this Category to\n"
 "another Category using the relocate command:"
-msgstr "Парада: змяніце гэту катыгорыю ва ўсіх яе транзакцыях на іншую катыгорыю з дапамогай каманды перасоўвання:"
+msgstr "Парада: змяніце гэту катыгорыю ва ўсіх яе аперацыях на іншую катыгорыю з дапамогай каманды перасоўвання:"
 
 #: categdialog.cpp:326
 msgid "Tip: Change all transactions using this Sub-Category to\n"
 "another Sub-Category using the relocate command:"
-msgstr "Парада: змяніце гэту падкатыгорыю ва ўсіх яе транзакцыях на іншую падкатыгорыю з дапамогай каманды перасоўвання:"
+msgstr "Парада: змяніце гэту падкатыгорыю ва ўсіх яе аперацыях на іншую падкатыгорыю з дапамогай каманды перасоўвання:"
 
 #: categdialog.cpp:329
 msgid "Tools -> Relocation of -> Categories"
@@ -1623,7 +1623,7 @@ msgstr ""
 
 #: categdialog.cpp:460
 msgid "This category cannot be deleted because it's used by transactions."
-msgstr ""
+msgstr "Гэтая катыгорыя не можа быць выдаленая, таму што яна выкарыстоўваецца."
 
 #: categdialog.cpp:467
 msgid "Delete an existing category."
@@ -1689,7 +1689,7 @@ msgstr ""
 
 #: constants.cpp:178
 msgid "View All Transactions"
-msgstr ""
+msgstr "Глядзець усе аперацыі"
 
 #: constants.cpp:179
 msgid "View Today"
@@ -2737,7 +2737,7 @@ msgstr ""
 
 #: import_export/parsers.cpp:216
 msgid "Transactions"
-msgstr ""
+msgstr "Аперацыі"
 
 #: import_export/qif_export.cpp:48 import_export/qif_export.cpp:251
 #: import_export/qif_export.cpp:345
@@ -2851,7 +2851,7 @@ msgstr ""
 #: import_export/qif_export.cpp:487
 #, c-format
 msgid "Exporting transaction %zu"
-msgstr ""
+msgstr "Экспартую аперацыю %zu"
 
 #: import_export/qif_export.cpp:637
 #, c-format
@@ -2861,7 +2861,7 @@ msgstr ""
 #: import_export/qif_export.cpp:639
 #, c-format
 msgid "Number of transactions exported: %zu"
-msgstr ""
+msgstr "Колькасць экспартаваных аперацый: %zu"
 
 #: import_export/qif_export.cpp:641
 #, c-format
@@ -2945,7 +2945,7 @@ msgstr ""
 
 #: import_export/qif_import_gui.cpp:800
 msgid "Do you want to import all transaction ?"
-msgstr ""
+msgstr "Жадаеце імпратаваць усе аперацыі?"
 
 #: import_export/qif_import_gui.cpp:801
 msgid "All missing account, payees and categories will be created."
@@ -2974,7 +2974,7 @@ msgstr ""
 #: import_export/qif_import_gui.cpp:836
 #, c-format
 msgid "Importing transaction %i of %i"
-msgstr ""
+msgstr "Было імпартавана аперацый %i з %i"
 
 #: import_export/qif_import_gui.cpp:869
 msgid "Importing Transfers"
@@ -2995,7 +2995,7 @@ msgstr ""
 
 #: import_export/qif_import_gui.cpp:906 import_export/univcsvdialog.cpp:1088
 msgid "Imported transactions discarded by user!"
-msgstr ""
+msgstr "Імпартаванне скасаванае карыстальнікам!"
 
 #: import_export/qif_import_gui.cpp:908 import_export/qif_import_gui.h:44
 msgid "QIF Import"
@@ -3003,11 +3003,11 @@ msgstr ""
 
 #: import_export/qif_import_gui.cpp:988
 msgid "Transaction code is missing"
-msgstr ""
+msgstr "Адсутнічае код аперацыі"
 
 #: import_export/qif_import_gui.cpp:1008
 msgid "Transaction Payee is missing or incorrect"
-msgstr ""
+msgstr "Адсутнічае або няслушны атрымальнік гэтай аперацыі"
 
 #: import_export/qif_import_gui.cpp:1020
 msgid "Date format or date mask is incorrect"
@@ -3015,7 +3015,7 @@ msgstr ""
 
 #: import_export/qif_import_gui.cpp:1032
 msgid "Transaction Account is incorrect"
-msgstr ""
+msgstr "Адсутнічае рахунак для гэтай аперацыі"
 
 #: import_export/qif_import_gui.cpp:1041
 msgid "Transaction Account for transfer is incorrect"
@@ -5019,7 +5019,7 @@ msgstr ""
 #: reports/payee.cpp:164 reports/summarystocks.cpp:133
 #: splittransactionsdialog.cpp:143
 msgid "Total:"
-msgstr ""
+msgstr "Агулам:"
 
 #: mmhomepage.cpp:160
 #, c-format
@@ -5828,7 +5828,7 @@ msgstr ""
 
 #: payeedialog.cpp:287
 msgid "Tip: Change all transactions using this Payee to another Payee using the relocate command:"
-msgstr "Парада: змяніце гэтага атрымальніка ва ўсіх ягоных/ейных транзакцыях на іншага атрымальніка з дапамогай каманды перасоўвання:"
+msgstr "Парада: змяніце гэтага атрымальніка ва ўсіх ягоных/ейных аперацыях на іншага атрымальніка з дапамогай каманды перасоўвання:"
 
 #: payeedialog.cpp:289
 msgid "Tools -> Relocation of -> Payees"
@@ -5885,7 +5885,7 @@ msgstr "Спраўдзіце замену катыгорыі"
 #: relocatecategorydialog.cpp:269 relocatepayeedialog.cpp:232
 #, c-format
 msgid "Records found in transactions: %i"
-msgstr "Знойдзена запісаў у транзакцыях: %i"
+msgstr "Знойдзена запісаў у аперацыях: %i"
 
 #: relocatecategorydialog.cpp:270
 #, c-format
@@ -5918,7 +5918,7 @@ msgstr "Замена атрымальніка"
 
 #: relocatepayeedialog.cpp:82
 msgid "Relocate all source payee to the destination payee"
-msgstr "Замяніць абранага атрымальніка ва ўсіх транзакцыях"
+msgstr "Замяніць абранага атрымальніка ва ўсіх аперацыях"
 
 #: relocatepayeedialog.cpp:95
 msgid "Delete source payee after relocation"
