@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-04 13:11+0300\n"
-"PO-Revision-Date: 2021-08-05 10:21\n"
+"PO-Revision-Date: 2021-08-05 11:29\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -1519,68 +1519,69 @@ msgstr "Бюджэт на гэты год ужо існуе"
 
 #: categdialog.cpp:91 mmframe.cpp:1503 mmframe.cpp:1724
 msgid "Organize Categories"
-msgstr ""
+msgstr "Рыдактар катыгорый"
 
 #: categdialog.cpp:190 mmframe.cpp:1516
 msgid "Reassign all categories to another category"
-msgstr ""
+msgstr "Замена адной катыгорыі на іншую"
 
 #: categdialog.cpp:192
 msgid "Expand"
-msgstr ""
+msgstr "Разгарнуць"
 
 #: categdialog.cpp:197 maincurrencydialog.cpp:175
 msgid "Show All"
-msgstr ""
+msgstr "Глядзець усе"
 
 #: categdialog.cpp:199
 msgid "Show all hidden categories"
-msgstr ""
+msgstr "Глядзець усе схаваныя катыгорыі"
 
 #: categdialog.cpp:231
 msgid "Add a new category"
-msgstr ""
+msgstr "Дадаць новую катыгорыю"
 
 #: categdialog.cpp:235
 msgid "Edit the name of an existing category"
-msgstr ""
+msgstr "Рыдагаваць назву існуючай катыгорыі"
 
 #: categdialog.cpp:239
 msgid "Delete an existing category. The category cannot be used by existing transactions."
-msgstr ""
+msgstr "Выдаліць існуючую катыгорыю. Яна не мае выкарыстоўвацца ў транзакцыях."
 
 #: categdialog.cpp:244 maincurrencydialog.cpp:211
 msgid "&Select"
-msgstr ""
+msgstr "&Абраць"
 
 #: categdialog.cpp:246
 msgid "Select the currently selected category as the selected category for the transaction"
-msgstr ""
+msgstr "Выбар выдзеленай катыгорыі для бягучай транзакцыі"
 
 #: categdialog.cpp:255
 msgid "Enter the name for the new category:"
-msgstr ""
+msgstr "Пакажыце імя новай катыгорыі:"
 
 #: categdialog.cpp:258
 msgid "Tip: If category added now, check bottom of list."
-msgstr ""
+msgstr "Парада: Калі катэгорыя толькі што дададзеная, праверце ніжнюю частку спісу."
 
 #: categdialog.cpp:261
 msgid "Add Category"
-msgstr ""
+msgstr "Дадаць катыгорыю"
 
 #: categdialog.cpp:270 categdialog.cpp:506
 msgid "Category with same name exists"
-msgstr ""
+msgstr "Катыгорыя з такім імем ужо існуе"
 
 #: categdialog.cpp:271
 msgid "Tip: If category added now, check bottom of list.\n"
 "Category will be in sorted order next time dialog appears"
-msgstr ""
+msgstr "Падказка: Калі катыгорыя дададзеная толькі што, то яна апынецца ў самым нізе спісу.\n"
+"Сартаванне будзе праведзена, калі дыялог будзе выкліканы паўторна"
 
 #: categdialog.cpp:273 categdialog.cpp:297 categdialog.cpp:315
 msgid "Organise Categories: Adding Error"
-msgstr ""
+msgstr "Рыдактар катыгорый: Памылка дадання"
 
 #: categdialog.cpp:296 categdialog.cpp:523
 msgid "Sub Category with same name exists"
