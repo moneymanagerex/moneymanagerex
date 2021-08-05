@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-04 13:11+0300\n"
-"PO-Revision-Date: 2021-08-05 14:52\n"
+"PO-Revision-Date: 2021-08-05 15:07\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -3302,7 +3302,7 @@ msgstr ""
 #: import_export/univcsvdialog.cpp:1247
 #, c-format
 msgid "Transactions exported: %ld"
-msgstr ""
+msgstr "Аперацыяў экспартавана: %ld"
 
 #: import_export/univcsvdialog.cpp:1545 stockdialog.cpp:586
 msgid "Choose CSV data file to import"
@@ -3455,7 +3455,7 @@ msgstr ""
 
 #: maincurrencydialog.cpp:649
 msgid "Do you want to add also dates without any transaction?"
-msgstr ""
+msgstr "Жадаеце таксама дадаць даты, калі не было аперацый?"
 
 #: maincurrencydialog.cpp:675
 #, c-format
@@ -3529,7 +3529,7 @@ msgstr ""
 
 #: mmSimpleDialogs.cpp:264
 msgid "Please select the account for this transaction."
-msgstr ""
+msgstr "Калі ласка, абярыце рахунак для гэтай аперацыі."
 
 #: mmSimpleDialogs.cpp:266
 msgid "Please specify which account the transfer is going to."
@@ -3595,7 +3595,7 @@ msgstr "Рэкамендацыя: Пры абнаўленні да новай в
 
 #: mmTips.h:24
 msgid "Recommendation: Use copy (Ctrl+C) and paste (Ctrl+V) for frequently used transactions."
-msgstr ""
+msgstr "Парада: Выкарыстоўвайце капіяванне (Ctrl+C) і ўстаўку (Ctrl+V) для аперацый, што часта выкарыстоўваюцца."
 
 #: mmTips.h:25
 msgid "Tip: Remember to make backups of your .mmb."
@@ -3607,11 +3607,11 @@ msgstr ""
 
 #: mmTips.h:27
 msgid "Tip: To mark a transaction as reconciled, just select the transaction and hit the 'r' or 'R' key. To mark a transaction as unreconciled, just select the transaction and hit the 'u' or 'U' key."
-msgstr ""
+msgstr "Парада: Каб адзначыць аперацыю як правераную, проста вылучыце яе і націсніце клавішу 'R'. Зняць пазнаку можна націскам клавішы 'U'."
 
 #: mmTips.h:28
 msgid "Tip: To mark a transaction as requiring followup, just select the transaction and hit the 'f' or 'F' key."
-msgstr ""
+msgstr "Парада: Каб адзначыць аперацыю такой, што патрабуе дапрацоўкі, проста вылучыце яе і націсніце клавішу 'F'."
 
 #: mmTips.h:29
 msgid "Tip: MMEX supports printing of all reports that can be viewed. The print options are available under the menu, File->Print."
@@ -3623,7 +3623,7 @@ msgstr ""
 
 #: mmTips.h:31
 msgid "Tip: To print a statement with transactions from any arbitrary set of criteria, use the transaction filter to select the transactions you want and then do a print from the menu."
-msgstr ""
+msgstr "Парада: Каб раздрукаваць зводку па аперацыях, зыходзячы з пэўных крытэраў, выкарыстоўвайце фільтр аперацый, а потым выканайце друк з асноўнага меню."
 
 #: mmTips.h:32
 msgid "Tip: Set exchange rate for currencies in case if you have accounts with different currencies."
