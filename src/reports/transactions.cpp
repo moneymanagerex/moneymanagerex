@@ -28,9 +28,8 @@
 #include <algorithm>
 #include <vector>
 
-mmReportTransactions::mmReportTransactions(int refAccountID, mmFilterTransactionsDialog* transDialog)
+mmReportTransactions::mmReportTransactions(mmFilterTransactionsDialog* transDialog)
     : mmPrintableBase("Transaction Report")
-    , m_refAccountsID(refAccountID)
     , m_transDialog(transDialog)
     , trans_()
 {
@@ -112,6 +111,8 @@ wxString mmReportTransactions::getHTMLText()
                     {
                         hb.startTableRow();
                         {
+                         /*  if ((Model_Checking::type(transaction) == Model_Checking::TRANSFER)
+                                && m_transDialog->getTypeCheckBox() && */
                             hb.addTableCellLink(wxString::Format("trx:%d", transaction.TRANSID)
                                 , wxString::Format("%i", transaction.TRANSID));
                             hb.addTableCellDate(transaction.TRANSDATE);
@@ -266,7 +267,7 @@ void mmReportTransactions::Run(mmFilterTransactionsDialog* dlg)
     const auto splits = Model_Splittransaction::instance().get_all();
     for (const auto& tran : Model_Checking::instance().all()) //TODO: find should be faster
     {
-        if (!dlg->checkAll(tran, m_refAccountsID, splits)) continue;
+        if (!dlg->checkAll(tran, splits)) continue;
         Model_Checking::Full_Data full_tran(tran, splits);
 
         full_tran.PAYEENAME = full_tran.real_payee_name(full_tran.ACCOUNTID);
@@ -289,7 +290,7 @@ void mmReportTransactions::Run(mmFilterTransactionsDialog* dlg)
             full_tran.CATEGNAME.RemoveLast(2);
         }
 
-        trans_.push_back(full_tran);
+            trans_.push_back(full_tran);
     }
     std::stable_sort(trans_.begin(), trans_.end(), SorterByTRANSDATE());
 }

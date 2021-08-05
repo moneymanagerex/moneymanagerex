@@ -101,11 +101,12 @@ mmFilterTransactionsDialog::mmFilterTransactionsDialog()
 {
 }
 
-mmFilterTransactionsDialog::mmFilterTransactionsDialog(wxWindow* parent)
+mmFilterTransactionsDialog::mmFilterTransactionsDialog(wxWindow* parent, bool showAccountFilter)
     : categID_(-1)
     , subcategID_(-1)
     , payeeID_(-1)
     , bSimilarCategoryStatus_(false)
+    , showAccountFilter_(showAccountFilter)
 {
     Create(parent);
     isValuesCorrect();
@@ -206,8 +207,14 @@ void mmFilterTransactionsDialog::CreateControls()
     bSelectedAccounts_->SetMinSize(wxSize(180, -1));
     bSelectedAccounts_->Connect(wxID_ANY, wxEVT_COMMAND_BUTTON_CLICKED
         , wxCommandEventHandler(mmFilterTransactionsDialog::OnAccountsButton), nullptr, this);
-
     itemPanelSizer->Add(bSelectedAccounts_, g_flagsExpand);
+
+    if (!showAccountFilter_) 
+    {
+            accountCheckBox_->Disable();
+            bSelectedAccounts_->SetLabelText("");
+            bSelectedAccounts_->Disable();
+    }
 
     // From Date
     startDateCheckBox_ = new wxCheckBox(itemPanel, wxID_ANY, _("From Date")
@@ -649,16 +656,18 @@ bool mmFilterTransactionsDialog::compareStatus(const wxString& itemStatus) const
     return false;
 }
 
-bool mmFilterTransactionsDialog::allowType(const wxString& typeState, bool sameAccount) const
+bool mmFilterTransactionsDialog::allowType(const wxString& typeState, int accountid, int toaccountid)
 {
     bool result = false;
     if (typeState == Model_Checking::all_type()[Model_Checking::TRANSFER]
-        && cbTypeTransferTo_->GetValue() && sameAccount)
+        && cbTypeTransferTo_->GetValue() 
+        && (!getAccountCheckBox() || (selected_accounts_id_.Index(accountid) != wxNOT_FOUND)))
     {
         result = true;
     }
     else if (typeState == Model_Checking::all_type()[Model_Checking::TRANSFER]
-        && cbTypeTransferFrom_->GetValue() && !sameAccount)
+        && cbTypeTransferFrom_->GetValue()
+        && (!getAccountCheckBox() || (selected_accounts_id_.Index(toaccountid) != wxNOT_FOUND)))
     {
         result = true;
     }
@@ -860,7 +869,7 @@ bool mmFilterTransactionsDialog::checkCategory(const DATA& tran, const std::map<
 }
 
 bool mmFilterTransactionsDialog::checkAll(const Model_Checking::Data &tran
-    , int accountID, const std::map<int, Model_Splittransaction::Data_Set>& split)
+    , const std::map<int, Model_Splittransaction::Data_Set>& split)
 {
     bool ok = true;
     //wxLogDebug("Check date? %i trx date:%s %s %s", getDateRangeCheckBox(), tran.TRANSDATE, getFromDateCtrl().GetDateOnly().FormatISODate(), getToDateControl().GetDateOnly().FormatISODate());
@@ -874,7 +883,7 @@ bool mmFilterTransactionsDialog::checkAll(const Model_Checking::Data &tran
     else if (getPayeeCheckBox() && !checkPayee<Model_Checking>(tran)) ok = false;
     else if (getCategoryCheckBox() && !checkCategory<Model_Checking>(tran, split)) ok = false;
     else if (getStatusCheckBox() && !compareStatus(tran.STATUS)) ok = false;
-    else if (getTypeCheckBox() && !allowType(tran.TRANSCODE, accountID == tran.ACCOUNTID)) ok = false;
+    else if (getTypeCheckBox() && !allowType(tran.TRANSCODE, tran.ACCOUNTID, tran.TOACCOUNTID)) ok = false;
     else if (getAmountRangeCheckBoxMin() && getAmountMin() > tran.TRANSAMOUNT) ok = false;
     else if (getAmountRangeCheckBoxMax() && getAmountMax() < tran.TRANSAMOUNT) ok = false;
     else if (getNumberCheckBox() && (getNumber().empty() ? !tran.TRANSACTIONNUMBER.empty()
@@ -900,7 +909,7 @@ bool mmFilterTransactionsDialog::checkAll(const Model_Billsdeposits::Data &tran,
     else if (getPayeeCheckBox() && !checkPayee<Model_Billsdeposits>(tran)) ok = false;
     else if (getCategoryCheckBox() && !checkCategory<Model_Billsdeposits>(tran, split)) ok = false;
     else if (getStatusCheckBox() && !compareStatus(tran.STATUS)) ok = false;
-    else if (getTypeCheckBox() && !allowType(tran.TRANSCODE, true)) ok = false;
+    else if (getTypeCheckBox() && !allowType(tran.TRANSCODE, tran.ACCOUNTID, tran.TOACCOUNTID)) ok = false;
     else if (getAmountRangeCheckBoxMin() && getAmountMin() > tran.TRANSAMOUNT) ok = false;
     else if (getAmountRangeCheckBoxMax() && getAmountMax() < tran.TRANSAMOUNT) ok = false;
     else if (getNumberCheckBox() && (getNumber().empty()
@@ -1111,7 +1120,7 @@ void mmFilterTransactionsDialog::from_json(const wxString &data)
 
     //Account
     Value& j_account = GetValueByPointerWithDefault(j_doc, "/ACCOUNT", "");
-    if (j_account.IsArray())
+    if (showAccountFilter_ && j_account.IsArray())
     {
         wxString baloon = "";
         wxString acc_name;
