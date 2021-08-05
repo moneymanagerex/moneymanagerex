@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-04 13:11+0300\n"
-"PO-Revision-Date: 2021-08-04 19:54\n"
+"PO-Revision-Date: 2021-08-05 08:32\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -1413,61 +1413,61 @@ msgstr "%s    Дата пачатка: %s"
 #: budgetingpanel.cpp:189
 #, c-format
 msgid "Budget Setup for %s"
-msgstr ""
+msgstr "Бюджэт на %s"
 
 #: budgetingpanel.cpp:246
 msgid "Income: "
-msgstr ""
+msgstr "Прыбытак: "
 
 #: budgetingpanel.cpp:247 budgetingpanel.cpp:255
 msgid "Estimated: "
-msgstr ""
+msgstr "Чакаецца: "
 
 #: budgetingpanel.cpp:249 budgetingpanel.cpp:257
 msgid "Actual: "
-msgstr ""
+msgstr "Фактычна: "
 
 #: budgetingpanel.cpp:251 budgetingpanel.cpp:259
 msgid "Difference: "
-msgstr ""
+msgstr "Розніца: "
 
 #: budgetingpanel.cpp:254
 msgid "Expenses: "
-msgstr ""
+msgstr "Выдаткі: "
 
 #: budgetingpanel.cpp:297
 msgid "Icon"
-msgstr ""
+msgstr "Абразок"
 
 #: budgetingpanel.cpp:299
 msgid "Sub Category"
-msgstr ""
+msgstr "Падкатыгорыя"
 
 #: budgetingpanel.cpp:302 reports/budgetcategorysummary.cpp:140
 #: reports/budgetcategorysummary.cpp:192
 msgid "Estimated"
-msgstr ""
+msgstr "Чакаецца"
 
 #: budgetingpanel.cpp:303 reports/budgetcategorysummary.cpp:141
 #: reports/budgetcategorysummary.cpp:193
 msgid "Actual"
-msgstr ""
+msgstr "Actual"
 
 #: budgetyeardialog.cpp:46
 msgid "Budget Editor"
-msgstr ""
+msgstr "Рэдактар бюджэта"
 
 #: budgetyeardialog.cpp:93
 msgid "&Add Year"
-msgstr ""
+msgstr "&Дадаць год"
 
 #: budgetyeardialog.cpp:95
 msgid "Add a new budget year"
-msgstr ""
+msgstr "Дадаць новы бюджэтны год"
 
 #: budgetyeardialog.cpp:98
 msgid "&Add Month"
-msgstr ""
+msgstr "&Дадаць месяц"
 
 #: budgetyeardialog.cpp:100
 msgid "Add a new budget month"
