@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-04 13:11+0300\n"
-"PO-Revision-Date: 2021-08-05 17:09\n"
+"PO-Revision-Date: 2021-08-05 17:26\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -3752,11 +3752,11 @@ msgstr "Выдаліць усе бачныя аперацыі"
 
 #: mmchecking_list.cpp:393
 msgid "Delete Viewed \"Follow Up\" Transactions"
-msgstr ""
+msgstr "Выдаліць бачныя аперацыі «Пераверыць»"
 
 #: mmchecking_list.cpp:394
 msgid "Delete Viewed \"Unreconciled\" Transactions"
-msgstr ""
+msgstr "Выдаліць бачныя «Непацверджаныя» аперацыі"
 
 #: mmchecking_list.cpp:400
 msgid "as Reconciled"
@@ -3784,17 +3784,17 @@ msgstr ""
 
 #: mmchecking_list.cpp:782
 msgid "Do you really want to delete all the transactions shown?"
-msgstr ""
+msgstr "Вы сапраўды хочаце выдаліць усе бачныя аперацыі?"
 
 #: mmchecking_list.cpp:783 mmchecking_list.cpp:794 mmchecking_list.cpp:805
 #: mmchecking_list.cpp:852
 msgid "Confirm Transaction Deletion"
-msgstr ""
+msgstr "Спраўдзіць выдаленне аперацыі"
 
 #: mmchecking_list.cpp:793 mmchecking_list.cpp:804
 #, c-format
 msgid "Do you really want to delete all the \"%s\" transactions shown?"
-msgstr ""
+msgstr "Вы сапраўды хочаце выдаліць усе бачныя транзакцыі ў устане «%s»?"
 
 #: mmchecking_list.cpp:793
 msgid "Follow Up"
@@ -3808,29 +3808,30 @@ msgstr ""
 #, c-format
 msgid "Do you really want to delete the selected transaction?"
 msgid_plural "Do you really want to delete %i selected transactions?"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Вы сапраўды хочаце выдаліць абраную аперацыю?"
+msgstr[1] "Вы сапраўды хочаце выдаліць %i абраныя аперацыі?"
+msgstr[2] "Вы сапраўды хочаце выдаліць %i абраных аперацыяў?"
+msgstr[3] "Вы сапраўды хочаце выдаліць %i абраных аперацыяў?"
 
 #: mmchecking_list.cpp:902
 #, c-format
 msgid "Locked transaction to date: %s\n\n"
 "Reconciled transactions."
-msgstr ""
+msgstr "Заблакаваная аперацыі з: %s\n\n"
+"Перавераныя аперацыі."
 
 #: mmchecking_list.cpp:905 transdialog.cpp:727 transdialog.cpp:760
 msgid "MMEX Transaction Check"
-msgstr ""
+msgstr "Праверка аперацыяў"
 
 #: mmchecking_list.cpp:938
 #, c-format
 msgid "You are about to edit a transaction involving an account that is closed."
 msgid_plural "The edit will affect %i transactions involving an account that is closed."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Вы збіраецеся змяніць транзакцыю ў зачыненым рахунку."
+msgstr[1] "Вы збіраецеся змяніць %i транзакцыі ў зачыненым рахунку."
+msgstr[2] "Вы збіраецеся змяніць %i транзакцый ў зачыненым рахунку."
+msgstr[3] "Вы збіраецеся змяніць %i транзакцый ў зачыненым рахунку."
 
 #: mmchecking_list.cpp:940
 msgid "\n\n"
