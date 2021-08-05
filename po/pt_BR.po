@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-04 13:11+0300\n"
-"PO-Revision-Date: 2021-08-04 10:14\n"
+"PO-Revision-Date: 2021-08-05 19:49\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "MIME-Version: 1.0\n"
@@ -6957,23 +6957,23 @@ msgstr ""
 
 #: util.cpp:916
 msgid "Could not find asset for symbol"
-msgstr ""
+msgstr "Não foi possível encontrar o ativo para este símbolo"
 
 #: util.cpp:951
 msgid "Could not get base currency!"
-msgstr ""
+msgstr "Não foi possível obter a moeda padrão!"
 
 #: util.cpp:957
 msgid "USD"
-msgstr ""
+msgstr "USD"
 
 #: util.cpp:961
 msgid "Could not find currency 'USD', needed for converting history prices"
-msgstr ""
+msgstr "Não foi possível encontrar a moeda 'USD', necessária para converter os preços no histórico"
 
 #: util.cpp:981
 msgid "Could not parse price in asset history"
-msgstr ""
+msgstr "Não foi possível analisar o preço no histórico de ativos"
 
 #: util.cpp:1211
 #, c-format
