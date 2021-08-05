@@ -39,11 +39,11 @@ class mmFilterTransactionsDialog: public wxDialog
 public:
     /// Constructors
     mmFilterTransactionsDialog();
-    mmFilterTransactionsDialog(wxWindow* parent);
+    mmFilterTransactionsDialog(wxWindow* parent, bool showAccountFilter = true);
 
     virtual int ShowModal();
 
-    bool checkAll(const Model_Checking::Data &tran, int accountID
+    bool checkAll(const Model_Checking::Data &tran
         , const std::map<int, Model_Splittransaction::Data_Set>& split);
     bool checkAll(const Model_Billsdeposits::Data &tran
         , const std::map<int, Model_Budgetsplittransaction::Data_Set>& split);
@@ -81,13 +81,15 @@ private:
     wxString getNumber();
     wxString getNotes();
 
+    bool showAccountFilter_;
+
 private:
     void OnDateChanged(wxDateEvent& event);
     /// Returns true if Status string matches.
     bool compareStatus(const wxString& itemStatus) const;
 
     bool getTypeCheckBox();
-    bool allowType(const wxString& typeState, bool sameAccount) const;
+    bool allowType(const wxString& typeState, int accountid, int toaccountid);
     bool getPayeeCheckBox();
     bool getNumberCheckBox();
     bool getNotesCheckBox();
