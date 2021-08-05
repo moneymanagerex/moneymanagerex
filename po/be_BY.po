@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-04 13:11+0300\n"
-"PO-Revision-Date: 2021-08-05 11:29\n"
+"PO-Revision-Date: 2021-08-05 11:44\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -1585,33 +1585,33 @@ msgstr "Рыдактар катыгорый: Памылка дадання"
 
 #: categdialog.cpp:296 categdialog.cpp:523
 msgid "Sub Category with same name exists"
-msgstr ""
+msgstr "Падкатыгорыя з такім імем ужо існуе"
 
 #: categdialog.cpp:314
 msgid "Invalid Parent Category. Choose Root or Main Category node."
-msgstr ""
+msgstr "Нслушная бацькоўская катыгорыя. Абярыце каранёвы або асноўны вузел."
 
 #: categdialog.cpp:321
 msgid "Category in use."
-msgstr ""
+msgstr "Катыгорыя выкарыстоўваецца."
 
 #: categdialog.cpp:321
 msgid "Sub-Category in use."
-msgstr ""
+msgstr "Падкатыгорыя выкарыстоўваецца."
 
 #: categdialog.cpp:323
 msgid "Tip: Change all transactions using this Category to\n"
 "another Category using the relocate command:"
-msgstr ""
+msgstr "Парада: змяніце ўсе аперацыі гэтай катыгорыі на іншую катыгорыю з дапамогай каманды перасоўвання:"
 
 #: categdialog.cpp:326
 msgid "Tip: Change all transactions using this Sub-Category to\n"
 "another Sub-Category using the relocate command:"
-msgstr ""
+msgstr "Парада: змяніце ўсе аперацыі гэтай падкатыгорыі на іншую падкатыгорыю з дапамогай каманды перасоўвання:"
 
 #: categdialog.cpp:329
 msgid "Tools -> Relocation of -> Categories"
-msgstr ""
+msgstr "Інструменты -> Перасоўванне -> Катыгорыі"
 
 #: categdialog.cpp:331
 msgid "Organise Categories: Delete Error"
@@ -5851,11 +5851,11 @@ msgstr ""
 
 #: relocatecategorydialog.cpp:53
 msgid "Relocate Category Dialog"
-msgstr ""
+msgstr "Замена катыгорыі"
 
 #: relocatecategorydialog.cpp:86
 msgid "Relocate source category to the destination category"
-msgstr ""
+msgstr "Замяніць катыгорыю крыніцы ў катыгорыю прызначэння"
 
 #: relocatecategorydialog.cpp:89
 msgid "Select Source Category"
@@ -5867,7 +5867,7 @@ msgstr ""
 
 #: relocatecategorydialog.cpp:109 relocatepayeedialog.cpp:112
 msgid "Relocate:"
-msgstr ""
+msgstr "Замяніць:"
 
 #: relocatecategorydialog.cpp:110 relocatepayeedialog.cpp:113
 msgid "to:"
@@ -5879,7 +5879,7 @@ msgstr ""
 
 #: relocatecategorydialog.cpp:171
 msgid "Category Relocation Confirmation"
-msgstr ""
+msgstr "Спраўдзіце замену катыгорыі"
 
 #: relocatecategorydialog.cpp:269 relocatepayeedialog.cpp:232
 #, c-format
@@ -5913,15 +5913,15 @@ msgstr ""
 
 #: relocatepayeedialog.cpp:52
 msgid "Relocate Payee Dialog"
-msgstr ""
+msgstr "Замена атрымальніка"
 
 #: relocatepayeedialog.cpp:82
 msgid "Relocate all source payee to the destination payee"
-msgstr ""
+msgstr "Замяніць абранага атрымальніка ва ўсіх транзакцыях"
 
 #: relocatepayeedialog.cpp:95
 msgid "Delete source payee after relocation"
-msgstr ""
+msgstr "Выдаліць абранага атрымальніка пасля замены"
 
 #: relocatepayeedialog.cpp:152
 #, c-format
@@ -5930,7 +5930,7 @@ msgstr ""
 
 #: relocatepayeedialog.cpp:157
 msgid "Payee Relocation Confirmation"
-msgstr ""
+msgstr "Спраўджанне замены атрымальніка"
 
 #: reports/budget.cpp:88
 #, c-format
