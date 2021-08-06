@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-04 13:11+0300\n"
-"PO-Revision-Date: 2021-08-06 10:55\n"
+"PO-Revision-Date: 2021-08-06 11:05\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -4240,7 +4240,7 @@ msgstr ""
 
 #: mmframe.cpp:1411
 msgid "Include the transfer transactions in the Budget Totals"
-msgstr ""
+msgstr "Улічваць пераводы ў вынікі бюджэту"
 
 #: mmframe.cpp:1413
 msgid "Budget Category Report: with &Summaries"
@@ -4252,11 +4252,11 @@ msgstr ""
 
 #: mmframe.cpp:1415
 msgid "Ignore F&uture Transactions"
-msgstr ""
+msgstr "Ігнараваць будучыя &аперацыі"
 
 #: mmframe.cpp:1415
 msgid "Ignore Future transactions"
-msgstr ""
+msgstr "Ігнараваць будучыя аперацыі"
 
 #: mmframe.cpp:1417 optionsettingsview.cpp:99
 msgid "Show Tooltips"
@@ -4356,7 +4356,7 @@ msgstr ""
 
 #: mmframe.cpp:1536
 msgid "&Recurring Transactions"
-msgstr ""
+msgstr "&Запланаваныя аперацыі"
 
 #: mmframe.cpp:1536
 msgid "Bills && Deposits"
@@ -4376,11 +4376,11 @@ msgstr ""
 
 #: mmframe.cpp:1552
 msgid "Transaction Report &Filter..."
-msgstr ""
+msgstr "&Справаздача па крытэрыях..."
 
 #: mmframe.cpp:1552 mmframe.cpp:1728
 msgid "Transaction Report Filter"
-msgstr ""
+msgstr "Справаздача па крытэрыях"
 
 #: mmframe.cpp:1558
 msgid "General Report &Manager..."
