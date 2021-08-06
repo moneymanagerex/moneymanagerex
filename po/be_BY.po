@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-04 13:11+0300\n"
-"PO-Revision-Date: 2021-08-06 14:55\n"
+"PO-Revision-Date: 2021-08-06 15:05\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -1737,96 +1737,96 @@ msgstr "Глядзець за мінулы фінансавы год"
 
 #: constants.cpp:190
 msgid "View Since Statement Date"
-msgstr ""
+msgstr "Глядзець ад даты аперацыі"
 
 #: constants.cpp:192
 msgid "ALL"
-msgstr ""
+msgstr "УСЕ"
 
 #: constants.cpp:193 mmframe.cpp:1317 mmframe.cpp:1717
 #: model/Model_Account.cpp:26
 msgid "Open"
-msgstr ""
+msgstr "Адчыніць"
 
 #: constants.cpp:194 mmframe.cpp:1318 model/Model_Account.cpp:27
 msgid "Closed"
-msgstr ""
+msgstr "Зачыненыя"
 
 #: constants.cpp:195 mmframe.cpp:1316
 msgid "Favorites"
-msgstr ""
+msgstr "Абранае"
 
 #: currencydialog.cpp:101
 msgid "Currency name"
-msgstr ""
+msgstr "Назва валюты"
 
 #: currencydialog.cpp:173
 msgid "Currency Name"
-msgstr ""
+msgstr "Назва валюты"
 
 #: currencydialog.cpp:178
 msgid "Currency Symbol"
-msgstr ""
+msgstr "Сімвал валюты"
 
 #: currencydialog.cpp:183
 msgid "Prefix Symbol"
-msgstr ""
+msgstr "Сімвал валюты перад сумай"
 
 #: currencydialog.cpp:187
 msgid "Suffix Symbol"
-msgstr ""
+msgstr "Сімвал валюты пасля сумы"
 
 #: currencydialog.cpp:198 currencydialog.cpp:268 currencydialog.cpp:297
 #: import_export/qif_import_gui.cpp:296 import_export/univcsvdialog.cpp:356
 msgid "Decimal Char"
-msgstr ""
+msgstr "Падзяляльнік цэлай і дробавай часткаў"
 
 #: currencydialog.cpp:205 currencydialog.cpp:272 currencydialog.cpp:301
 msgid "Grouping Char"
-msgstr ""
+msgstr "Падзяляльнік групаў"
 
 #: currencydialog.cpp:213
 msgid "Scale"
-msgstr ""
+msgstr "Дробавых"
 
 #: currencydialog.cpp:217 currencydialog.cpp:279
 msgid "Conversion to Base Rate"
-msgstr ""
+msgstr "Пераўтварэнне ў базавую стаўку"
 
 #: currencydialog.cpp:223
 msgid "Conversion rate will be used in case no currency history has been found for the currency"
-msgstr ""
+msgstr "Каэфіцыент канвертавання будзе выкарыстоўвацца ў выпадку, калі гісторыя валюты не была знойдзеная для валюты"
 
 #: currencydialog.cpp:225
 msgid "Fixed conversion rate"
-msgstr ""
+msgstr "Фіксаваны абменны курс"
 
 #: currencydialog.cpp:230
 msgid "Currency Format Sample:"
-msgstr ""
+msgstr "Узор фармата валюты:"
 
 #: currencydialog.cpp:244
 msgid "Save any changes made"
-msgstr ""
+msgstr "Захаваць будзь-якія зробленыя змены"
 
 #: currencydialog.cpp:248
 msgid "Any changes will be lost without update"
-msgstr ""
+msgstr "Без абнаўлення усе змены будуць страчаныя"
 
 #: currencydialog.cpp:268 currencydialog.cpp:272 currencydialog.cpp:279
 #: currencydialog.cpp:297 currencydialog.cpp:301 maincurrencydialog.cpp:612
 #: mmSimpleDialogs.cpp:238
 msgid "Invalid Entry"
-msgstr ""
+msgstr "Наслушны запіс"
 
 #: currencydialog.cpp:318
 #, c-format
 msgid "%.2f Shown As: %s"
-msgstr ""
+msgstr "%.2f адлюстроўваецца як: %s"
 
 #: currencydialog.cpp:320
 msgid "(Using Locale)"
-msgstr ""
+msgstr "(Выкарыстоўваецца лакаль)"
 
 #: customfieldeditdialog.cpp:120
 msgid "Custom Field Details"
