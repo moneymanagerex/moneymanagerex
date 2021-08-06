@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-04 13:11+0300\n"
-"PO-Revision-Date: 2021-08-06 14:34\n"
+"PO-Revision-Date: 2021-08-06 14:55\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -1581,7 +1581,7 @@ msgstr "Падказка: Калі катыгорыя дададзеная то�
 
 #: categdialog.cpp:273 categdialog.cpp:297 categdialog.cpp:315
 msgid "Organise Categories: Adding Error"
-msgstr "Рыдактар катыгорый: Памылка дадання"
+msgstr "Рыдактар катыгорыяў: памылка дадання"
 
 #: categdialog.cpp:296 categdialog.cpp:523
 msgid "Sub Category with same name exists"
@@ -1627,24 +1627,24 @@ msgstr "Гэтая катыгорыя не можа быць выдаленая,
 
 #: categdialog.cpp:467
 msgid "Delete an existing category."
-msgstr ""
+msgstr "Выдаліць існуючую катыгорыю."
 
 #: categdialog.cpp:472
 msgid "Subcategories must be deleted before."
-msgstr ""
+msgstr "Спачатку трэба выдаліць падкатыгорыі."
 
 #: categdialog.cpp:488
 #, c-format
 msgid "Enter a new name for '%s'"
-msgstr ""
+msgstr "Пакажыце новую назву для '%s'"
 
 #: categdialog.cpp:489
 msgid "Edit Category"
-msgstr ""
+msgstr "Рэдагаваць катыгорыю"
 
 #: categdialog.cpp:507 categdialog.cpp:524
 msgid "Organise Categories: Editing Error"
-msgstr ""
+msgstr "Рыдактар катыгорыяў: памылка рэдагавання"
 
 #: categdialog.cpp:600 mmframe.cpp:3260
 msgid "Category Relocation Completed."
@@ -1653,7 +1653,7 @@ msgstr "Замена катыгорый зроблена."
 #: categdialog.cpp:601 mmframe.cpp:3261 mmframe.cpp:3276 payeedialog.cpp:351
 #, c-format
 msgid "Records have been updated in the database: %i"
-msgstr ""
+msgstr "У базе дадзеных абноўлена запісаў: %i"
 
 #: categdialog.cpp:603 mmframe.cpp:3263
 msgid "Category Relocation Result"
@@ -1661,15 +1661,15 @@ msgstr "Вынік замены катыгорыі"
 
 #: categdialog.cpp:668
 msgid "Hide Selected Category"
-msgstr ""
+msgstr "Схаваць абраную катыгорыю"
 
 #: categdialog.cpp:669
 msgid "Unhide Selected Category"
-msgstr ""
+msgstr "Не хаваць абраную катыгорыю"
 
 #: categdialog.cpp:671 import_export/univcsvdialog.cpp:443
 msgid "Clear Settings"
-msgstr ""
+msgstr "Скінуць налады"
 
 #: constants.cpp:71
 msgid "Cancel"
@@ -1677,15 +1677,15 @@ msgstr "Скасаваць"
 
 #: constants.cpp:77 diagnostics.cpp:88 themes.cpp:189
 msgid "Close"
-msgstr ""
+msgstr "Зачыніць"
 
 #: constants.cpp:79
 msgid "&Close "
-msgstr ""
+msgstr "&Зачыніць "
 
 #: constants.cpp:177
 msgid "Advanced Filter"
-msgstr ""
+msgstr "Пашыраны фільтр"
 
 #: constants.cpp:178
 msgid "View All Transactions"
@@ -1693,47 +1693,47 @@ msgstr "Глядзець усе аперацыі"
 
 #: constants.cpp:179
 msgid "View Today"
-msgstr ""
+msgstr "Глядзець за сёння"
 
 #: constants.cpp:180
 msgid "View Current Month"
-msgstr ""
+msgstr "Глядзець за бягучы месяц"
 
 #: constants.cpp:181
 msgid "View Last 30 days"
-msgstr ""
+msgstr "Глядзець за апошнія 30 дзён"
 
 #: constants.cpp:182
 msgid "View Last 90 days"
-msgstr ""
+msgstr "Глядзець за апошнія 90 дзён"
 
 #: constants.cpp:183
 msgid "View Last Month"
-msgstr ""
+msgstr "Глядзець за мінулы месяц"
 
 #: constants.cpp:184
 msgid "View Last 3 Months"
-msgstr ""
+msgstr "Глядзець за мінулы квартал"
 
 #: constants.cpp:185
 msgid "View Last 12 Months"
-msgstr ""
+msgstr "Глядзець за мінулы год"
 
 #: constants.cpp:186
 msgid "View Current Year"
-msgstr ""
+msgstr "Глядзець за бягучы год"
 
 #: constants.cpp:187
 msgid "View Current Financial Year"
-msgstr ""
+msgstr "Глядзець за бягучы фінансавы год"
 
 #: constants.cpp:188
 msgid "View Last Year"
-msgstr ""
+msgstr "Глядзець за мінулы год"
 
 #: constants.cpp:189
 msgid "View Last Financial Year"
-msgstr ""
+msgstr "Глядзець за мінулы фінансавы год"
 
 #: constants.cpp:190
 msgid "View Since Statement Date"
