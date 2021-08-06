@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-04 13:11+0300\n"
-"PO-Revision-Date: 2021-08-06 11:13\n"
+"PO-Revision-Date: 2021-08-06 11:25\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -4841,7 +4841,12 @@ msgid "Share Accounts hold Share transactions\n\n"
 "These accounts only become visible after associating a Stock to the Share Account\n"
 "Or by using the Menu View --> 'Display Share Accounts'\n"
 "Share Accounts can also hold normal transactions to regular account."
-msgstr ""
+msgstr "Паявыя рахункі ўтрымліваюць аперацыі з акцыямі.\n\n"
+"Аперацыі з акцыямі ствараюцца ў спецыяльных рахунках\n"
+"адпаведнага віду пасля выбару акцыяў кампаніі ў звязаным праглядзе.\n\n"
+"Гэтыя рахункі становяцца бачнымі толькі пасля звязвання акцыі з Паявым рахункам\n"
+"або з дапамогай меню Паказаць -> 'Паказваць паявы кошт'\n"
+"Паявыя рахункі таксама могуць утрымліваць звычайныя транзакцыі для рэгулярных рахункаў."
 
 #: mmframe.cpp:2349
 msgid "Share Account Creation"
@@ -4947,7 +4952,7 @@ msgstr ""
 
 #: mmframereport.cpp:118
 msgid "Transaction Report"
-msgstr ""
+msgstr "Справаздача па крытэрыях"
 
 #: mmframereport.cpp:123
 msgid "Cash Flow"
@@ -6265,7 +6270,7 @@ msgstr "Усе аперацыі акрамя пераводаў"
 
 #: sharetransactiondialog.cpp:72 sharetransactiondialog.cpp:91
 msgid "Add Share Transaction"
-msgstr "Новая аперацыя"
+msgstr "Новая аперацыя з акцыямі"
 
 #: sharetransactiondialog.cpp:197 stockdialog.cpp:181
 msgid "Stock Investment Details"
@@ -6329,7 +6334,7 @@ msgstr ""
 
 #: sharetransactiondialog.cpp:294
 msgid "Add Transaction Details"
-msgstr "Дадаць дэталі аперацыі"
+msgstr "Дадаць дыталі аперацыі"
 
 #: sharetransactiondialog.h:43
 msgid "Edit Share Transaction"
