@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-04 13:11+0300\n"
-"PO-Revision-Date: 2021-08-06 20:04\n"
+"PO-Revision-Date: 2021-08-06 20:10\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -2093,39 +2093,39 @@ msgstr "Харчы"
 
 #: db/DB_Table_Subcategory_V1.h:119
 msgid "Dining out"
-msgstr ""
+msgstr "Рэстараны"
 
 #: db/DB_Table_Subcategory_V1.h:120
 msgid "Movies"
-msgstr ""
+msgstr "Кіно"
 
 #: db/DB_Table_Subcategory_V1.h:121
 msgid "Video Rental"
-msgstr ""
+msgstr "Відэа падпіскі"
 
 #: db/DB_Table_Subcategory_V1.h:122
 msgid "Magazines"
-msgstr ""
+msgstr "Часопісы"
 
 #: db/DB_Table_Subcategory_V1.h:123
 msgid "Maintenance"
-msgstr ""
+msgstr "Абслугоўванне"
 
 #: db/DB_Table_Subcategory_V1.h:125
 msgid "Parking"
-msgstr ""
+msgstr "Паркоўка"
 
 #: db/DB_Table_Subcategory_V1.h:126
 msgid "Registration"
-msgstr ""
+msgstr "ТА"
 
 #: db/DB_Table_Subcategory_V1.h:127
 msgid "Books"
-msgstr ""
+msgstr "Кнігі"
 
 #: db/DB_Table_Subcategory_V1.h:128
 msgid "Tuition"
-msgstr ""
+msgstr "Адукацыя"
 
 #: db/DB_Table_Subcategory_V1.h:130
 msgid "Clothing"
