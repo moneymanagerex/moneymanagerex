@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-04 13:11+0300\n"
-"PO-Revision-Date: 2021-08-06 18:27\n"
+"PO-Revision-Date: 2021-08-06 18:34\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -1890,11 +1890,11 @@ msgstr "Пакажыце варыянты значэнняў для гэтага
 
 #: customfieldeditdialog.cpp:172
 msgid "Digits scale"
-msgstr ""
+msgstr "Маштаб лічбаў"
 
 #: customfieldeditdialog.cpp:174
 msgid "Enter the decimal digits scale allowed"
-msgstr ""
+msgstr "Пакажыце дапушчальны маштаб лічбаў"
 
 #: customfieldeditdialog.cpp:177
 msgid "Panel's column"
