@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-04 13:11+0300\n"
-"PO-Revision-Date: 2021-08-06 18:34\n"
+"PO-Revision-Date: 2021-08-06 18:41\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -1894,15 +1894,15 @@ msgstr "Маштаб лічбаў"
 
 #: customfieldeditdialog.cpp:174
 msgid "Enter the decimal digits scale allowed"
-msgstr "Пакажыце дапушчальны маштаб лічбаў"
+msgstr "Пакажыце дапушчальны маштаб дзесятковых лічбаў"
 
 #: customfieldeditdialog.cpp:177
 msgid "Panel's column"
-msgstr ""
+msgstr "Стоўбчык панэлі"
 
 #: customfieldeditdialog.cpp:182
 msgid "Select a value to represent the item on a panel"
-msgstr ""
+msgstr "Абярыце значэнне для прадстаўлення элемента на панэлі"
 
 #: customfieldeditdialog.cpp:224
 msgid "Changing field type will delete all content!"
