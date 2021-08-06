@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-04 13:11+0300\n"
-"PO-Revision-Date: 2021-08-06 11:31\n"
+"PO-Revision-Date: 2021-08-06 11:40\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -3772,7 +3772,7 @@ msgstr ""
 
 #: mmchecking_list.cpp:406
 msgid "as Followup"
-msgstr ""
+msgstr "на Дапрацоўку"
 
 #: mmchecking_list.cpp:408
 msgid "as Duplicate"
@@ -5069,7 +5069,7 @@ msgstr "Дапрацаваць аперацыі: "
 
 #: mmhomepage.cpp:530
 msgid "Total Transactions: "
-msgstr ""
+msgstr "Аперацыяў агулам: "
 
 #: mmhomepage.cpp:552 reports/categexp.cpp:225 reports/summarystocks.cpp:149
 #: reports/transactions.cpp:197 reports/transactions.cpp:232
@@ -5090,7 +5090,7 @@ msgstr ""
 
 #: mmhomepagepanel.cpp:176
 msgid "Upcoming Transactions"
-msgstr ""
+msgstr "Запланаваныя аперацыі"
 
 #: mmpanelbase.cpp:130
 msgid "Hide/Show Columns"
@@ -5216,11 +5216,12 @@ msgstr ""
 #: model/Model_Billsdeposits.cpp:301
 msgid "A recurring transaction will exceed your account limit.\n\n"
 "Do you wish to continue?"
-msgstr ""
+msgstr "Аперацыя, што паўтараецца, перавысіць ліміт рахунка.\n\n"
+"Вы жадаеце працягнуць?"
 
 #: model/Model_Billsdeposits.cpp:303
 msgid "MMEX Recurring Transaction Check"
-msgstr ""
+msgstr "Правекрка запланаванай аперацыі"
 
 #: model/Model_CustomField.cpp:25
 msgid "String"
@@ -7086,7 +7087,8 @@ msgstr ""
 #, c-format
 msgid "Transaction will be inserted with the first bank account:\n"
 "'%s' and marked as  'Follow Up'"
-msgstr ""
+msgstr "Аперацыя будзе ўстаўлена з першым банкаўскім рахункам:\n"
+"\"%s\" і пазначана як «Дапрацаваць»"
 
 #: webapp.cpp:478
 msgid "Wrong WebApp account"
