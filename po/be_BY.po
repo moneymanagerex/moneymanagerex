@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-04 13:11+0300\n"
-"PO-Revision-Date: 2021-08-06 19:01\n"
+"PO-Revision-Date: 2021-08-06 19:12\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -1923,28 +1923,28 @@ msgstr "Вы змянілі варыянты: выдаленыя будуць а
 
 #: customfieldeditdialog.h:41
 msgid "New/Edit Custom Field"
-msgstr ""
+msgstr "Рыдактар карыстальніцкіх палёў"
 
 #: customfieldlistdialog.cpp:52
 msgid "#"
-msgstr ""
+msgstr "№"
 
 #: customfieldlistdialog.cpp:55
 msgid "Properties"
-msgstr ""
+msgstr "Уласцівасці"
 
 #: customfieldlistdialog.cpp:65
 #, c-format
 msgid "Personalize custom fields | %s"
-msgstr ""
+msgstr "Персаналізаваць карыстальніцкія палі | %s"
 
 #: customfieldlistdialog.cpp:169
 msgid "Do you really want to delete this custom field and all its data?"
-msgstr ""
+msgstr "Вы сапраўды жадаеце выдаліць карыстальніцкае поле і ягоныя дадзеныя?"
 
 #: customfieldlistdialog.cpp:170
 msgid "Confirm Custom Field Deletion"
-msgstr ""
+msgstr "Сцвердзіце выдаленне карыстальніцкага поля"
 
 #: customfieldlistdialog.cpp:188
 #, c-format
