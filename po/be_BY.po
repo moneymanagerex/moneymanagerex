@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-04 13:11+0300\n"
-"PO-Revision-Date: 2021-08-06 12:40\n"
+"PO-Revision-Date: 2021-08-06 12:49\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -1146,7 +1146,7 @@ msgstr "Новая запланаваная аперацыя"
 
 #: billsdepositsdialog.h:124
 msgid "Specify where the transaction is going to"
-msgstr "Пакажыце куды будзе зроблена пералічэнне"
+msgstr "Пакажыце куды будзе зробленае пералічэнне"
 
 #: billsdepositsdialog.h:125 transdialog.cpp:1294
 msgid "Specify where the transaction is coming from"
@@ -6748,7 +6748,7 @@ msgstr "Адставанне або апярэджанне даты аперац
 
 #: transdialog.cpp:559
 msgid "Populate Transaction #"
-msgstr ""
+msgstr "Паказаць нумар для аперацыі"
 
 #: transdialog.cpp:569 usertransactionpanel.cpp:210
 msgid "Organize attachments of this transaction"
@@ -6761,7 +6761,8 @@ msgstr ""
 #: transdialog.cpp:758
 msgid "This transaction will exceed your account limit.\n\n"
 "Do you wish to continue?"
-msgstr ""
+msgstr "Гэтая аперацыя перавысіць ліміт рахунка.\n\n"
+"Вы жадаеце працягнуць?"
 
 #: transdialog.cpp:1280
 msgid "Specify account the money is taken from"
@@ -6777,11 +6778,11 @@ msgstr "Пакажыце суму для рахунка, адкуль робіц
 
 #: transdialog.cpp:1290
 msgid "Specify account for the transaction"
-msgstr ""
+msgstr "Пакажыце рахунак для дадзенай аперацыі"
 
 #: transdialog.cpp:1292
 msgid "Specify to whom the transaction is going to"
-msgstr ""
+msgstr "Пакажыце каму будзе зробленае пералічэнне"
 
 #: transdialog.cpp:1298 usertransactionpanel.cpp:96
 msgid "Specify the date of the transaction"
