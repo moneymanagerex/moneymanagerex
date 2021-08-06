@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-04 13:11+0300\n"
-"PO-Revision-Date: 2021-08-06 11:25\n"
+"PO-Revision-Date: 2021-08-06 11:31\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -2314,7 +2314,7 @@ msgstr ""
 #: filtertransdialog.cpp:47 model/Model_Billsdeposits.cpp:42
 #: model/Model_Checking.cpp:39
 msgid "Follow up"
-msgstr ""
+msgstr "Дапрацаваць"
 
 #: filtertransdialog.cpp:48 model/Model_Billsdeposits.cpp:43
 #: model/Model_Checking.cpp:40
@@ -3752,7 +3752,7 @@ msgstr "Выдаліць усе бачныя аперацыі"
 
 #: mmchecking_list.cpp:393
 msgid "Delete Viewed \"Follow Up\" Transactions"
-msgstr "Выдаліць бачныя аперацыі «Пераверыць»"
+msgstr "Выдаліць бачныя аперацыі «Дапрацаваць»"
 
 #: mmchecking_list.cpp:394
 msgid "Delete Viewed \"Unreconciled\" Transactions"
@@ -3798,7 +3798,7 @@ msgstr "Вы сапраўды хочаце выдаліць усе бачныя 
 
 #: mmchecking_list.cpp:793
 msgid "Follow Up"
-msgstr ""
+msgstr "Дапрацаваць"
 
 #: mmchecking_list.cpp:804
 msgid "Unreconciled"
@@ -5061,11 +5061,11 @@ msgstr ""
 
 #: mmhomepage.cpp:484
 msgid "Transaction Statistics"
-msgstr ""
+msgstr "Статыстыка аперацыяў"
 
 #: mmhomepage.cpp:526
 msgid "Follow Up On Transactions: "
-msgstr ""
+msgstr "Дапрацаваць аперацыі: "
 
 #: mmhomepage.cpp:530
 msgid "Total Transactions: "
