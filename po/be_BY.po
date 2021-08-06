@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-04 13:11+0300\n"
-"PO-Revision-Date: 2021-08-06 19:32\n"
+"PO-Revision-Date: 2021-08-06 19:40\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -2032,23 +2032,23 @@ msgstr "Страхоўка"
 
 #: db/DB_Table_Category_V1.h:119
 msgid "Vacation"
-msgstr ""
+msgstr "Адпачынак"
 
 #: db/DB_Table_Category_V1.h:120
 msgid "Taxes"
-msgstr ""
+msgstr "Падаткі"
 
 #: db/DB_Table_Category_V1.h:121
 msgid "Miscellaneous"
-msgstr ""
+msgstr "Рознае"
 
 #: db/DB_Table_Category_V1.h:122
 msgid "Gifts"
-msgstr ""
+msgstr "Падарункі"
 
 #: db/DB_Table_Category_V1.h:124
 msgid "Other Income"
-msgstr ""
+msgstr "Іншыя даходы"
 
 #: db/DB_Table_Category_V1.h:125
 msgid "Other Expenses"
