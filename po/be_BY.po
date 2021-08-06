@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-04 13:11+0300\n"
-"PO-Revision-Date: 2021-08-06 18:04\n"
+"PO-Revision-Date: 2021-08-06 18:12\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -1832,15 +1832,15 @@ msgstr "(Выкарыстоўваецца лакаль)"
 
 #: customfieldeditdialog.cpp:120
 msgid "Custom Field Details"
-msgstr ""
+msgstr "Падрабязнасці"
 
 #: customfieldeditdialog.cpp:135
 msgid "Enter the name of the custom field"
-msgstr ""
+msgstr "Пакажыце назву поля"
 
 #: customfieldeditdialog.cpp:138
 msgid "Field Type"
-msgstr ""
+msgstr "Тып поля"
 
 #: customfieldeditdialog.cpp:142
 msgid "Select type of custom field"
