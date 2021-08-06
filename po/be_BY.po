@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-04 13:11+0300\n"
-"PO-Revision-Date: 2021-08-06 19:24\n"
+"PO-Revision-Date: 2021-08-06 19:32\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -1989,46 +1989,46 @@ msgstr "Вы жадаеце замяніць на пустое значэнне?
 #, c-format
 msgid "%zu occurrence founded and replaced!"
 msgid_plural "%zu occurrences founded and replaced!"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "%zu супадзенне знойдзенае і замененае!"
+msgstr[1] "%zu супадзенні знойдзеныя і замененыя!"
+msgstr[2] "%zu супадзенняў знойдзеныя і замененыя!"
+msgstr[3] "%zu супадзенняў знойдзеныя і замененыя!"
 
 #: customfieldlistdialog.cpp:263
 msgid "&Massive content update "
-msgstr ""
+msgstr "Масавае абнаўленне змесціва "
 
 #: db/DB_Table_Category_V1.h:111
 msgid "Bills"
-msgstr ""
+msgstr "Камунальныя"
 
 #: db/DB_Table_Category_V1.h:112
 msgid "Food"
-msgstr ""
+msgstr "Харчы"
 
 #: db/DB_Table_Category_V1.h:113
 msgid "Leisure"
-msgstr ""
+msgstr "Забавы"
 
 #: db/DB_Table_Category_V1.h:114 model/Model_Asset.cpp:31
 msgid "Automobile"
-msgstr ""
+msgstr "Аўтамабіль"
 
 #: db/DB_Table_Category_V1.h:115
 msgid "Education"
-msgstr ""
+msgstr "Адукацыя"
 
 #: db/DB_Table_Category_V1.h:116
 msgid "Homeneeds"
-msgstr ""
+msgstr "Быт"
 
 #: db/DB_Table_Category_V1.h:117
 msgid "Healthcare"
-msgstr ""
+msgstr "Здароўе"
 
 #: db/DB_Table_Category_V1.h:118
 msgid "Insurance"
-msgstr ""
+msgstr "Страхоўка"
 
 #: db/DB_Table_Category_V1.h:119
 msgid "Vacation"
