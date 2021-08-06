@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-04 13:11+0300\n"
-"PO-Revision-Date: 2021-08-06 12:34\n"
+"PO-Revision-Date: 2021-08-06 12:40\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -6568,11 +6568,11 @@ msgstr ""
 
 #: stocks_list.cpp:139
 msgid "&Add Stock Transactions"
-msgstr ""
+msgstr "&Дадаць аперацыю з акцыямі"
 
 #: stocks_list.cpp:140
 msgid "&View Stock Transactions"
-msgstr ""
+msgstr "&Глядзець аперацыю з акцыямі"
 
 #: stocks_list.cpp:142
 msgid "&Edit Stock Investment"
@@ -6597,15 +6597,15 @@ msgstr ""
 #: stocks_list.cpp:291
 #, c-format
 msgid "Moving Transaction from %s to..."
-msgstr ""
+msgstr "Перасоўванне аперацыі з %s на..."
 
 #: stockspanel.cpp:134
 msgid "Add Stock Transactions"
-msgstr ""
+msgstr "Дадаць аперацыю з акцыямі"
 
 #: stockspanel.cpp:139
 msgid "View Stock Transactions"
-msgstr ""
+msgstr "Глядзець аперацыю з акцыямі"
 
 #: stockspanel.cpp:149
 msgid "Delete Stock Investment"
@@ -6617,7 +6617,7 @@ msgstr ""
 
 #: stockspanel.cpp:154
 msgid "Move selected transaction to another account"
-msgstr ""
+msgstr "Перасунуць абраную аперацыю на іншы рахунак"
 
 #: stockspanel.cpp:167
 msgid "Refresh"
@@ -6740,7 +6740,7 @@ msgstr "Дубляваць аперацыю"
 
 #: transdialog.cpp:180
 msgid "Edit Transaction"
-msgstr ""
+msgstr "Рэдагаваць аперацыю"
 
 #: transdialog.cpp:467 usertransactionpanel.cpp:104
 msgid "Retard or advance the date of the transaction"
