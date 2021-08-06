@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-04 13:11+0300\n"
-"PO-Revision-Date: 2021-08-06 11:40\n"
+"PO-Revision-Date: 2021-08-06 11:47\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -5499,19 +5499,19 @@ msgstr ""
 
 #: optionsettingsgeneral.cpp:208
 msgid "Use Original Date when Pasting Transactions"
-msgstr ""
+msgstr "Пакінуць зыходную дату падчас капіявання"
 
 #: optionsettingsgeneral.cpp:210
 msgid "Select whether to use the original transaction date or current date when copying/pasting transactions"
-msgstr ""
+msgstr "Выкарыстоўваць першапачатковую або бягучую дату аперацыі пры капіяваньні або ўстаўцы"
 
 #: optionsettingsgeneral.cpp:213
 msgid "Use Transaction Sound"
-msgstr ""
+msgstr "Агучваць аперацыі"
 
 #: optionsettingsgeneral.cpp:215
 msgid "Select whether to use sounds when entering transactions"
-msgstr ""
+msgstr "Ці выкарыстоўваць гукі падчас увода аперацыяў"
 
 #: optionsettingsgeneral.cpp:303
 msgid "bad locale name"
@@ -5540,7 +5540,7 @@ msgstr ""
 
 #: optionsettingsmisc.cpp:89
 msgid "New Transaction Dialog Settings"
-msgstr ""
+msgstr "Параметры дыялога новых аперацыяў"
 
 #: optionsettingsmisc.cpp:97
 msgid "Last Used"
