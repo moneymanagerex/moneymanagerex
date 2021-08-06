@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-04 13:11+0300\n"
-"PO-Revision-Date: 2021-08-06 19:40\n"
+"PO-Revision-Date: 2021-08-06 20:04\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -2004,7 +2004,7 @@ msgstr "Камунальныя"
 
 #: db/DB_Table_Category_V1.h:112
 msgid "Food"
-msgstr "Харчы"
+msgstr "Ежа"
 
 #: db/DB_Table_Category_V1.h:113
 msgid "Leisure"
@@ -2061,35 +2061,35 @@ msgstr "Пераказ"
 
 #: db/DB_Table_Subcategory_V1.h:111
 msgid "Telephone"
-msgstr ""
+msgstr "Тыляфон"
 
 #: db/DB_Table_Subcategory_V1.h:112
 msgid "Electricity"
-msgstr ""
+msgstr "Электрычнасць"
 
 #: db/DB_Table_Subcategory_V1.h:113 db/DB_Table_Subcategory_V1.h:124
 msgid "Gas"
-msgstr ""
+msgstr "Газ"
 
 #: db/DB_Table_Subcategory_V1.h:114
 msgid "Internet"
-msgstr ""
+msgstr "Інтырнэт"
 
 #: db/DB_Table_Subcategory_V1.h:115
 msgid "Rent"
-msgstr ""
+msgstr "Арэнда"
 
 #: db/DB_Table_Subcategory_V1.h:116
 msgid "Cable TV"
-msgstr ""
+msgstr "Кабельнае"
 
 #: db/DB_Table_Subcategory_V1.h:117
 msgid "Water"
-msgstr ""
+msgstr "Вада"
 
 #: db/DB_Table_Subcategory_V1.h:118
 msgid "Groceries"
-msgstr ""
+msgstr "Харчы"
 
 #: db/DB_Table_Subcategory_V1.h:119
 msgid "Dining out"
