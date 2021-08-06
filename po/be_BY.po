@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-04 13:11+0300\n"
-"PO-Revision-Date: 2021-08-06 13:27\n"
+"PO-Revision-Date: 2021-08-06 13:55\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -6279,59 +6279,59 @@ msgstr "Дыталі па каштоўных паперах"
 
 #: sharetransactiondialog.cpp:207 stockdialog.cpp:192 stocks_list.cpp:90
 msgid "Company Name"
-msgstr ""
+msgstr "Назва кампаніі"
 
 #: sharetransactiondialog.cpp:211 stockdialog.cpp:195
 msgid "Enter the stock company name"
-msgstr ""
+msgstr "Пакажыце назву акцыянернай кампаніі"
 
 #: sharetransactiondialog.cpp:214 stockdialog.cpp:198
 msgid "Stock Symbol"
-msgstr ""
+msgstr "Цікер"
 
 #: sharetransactiondialog.cpp:221 stockdialog.cpp:205
 msgid "Enter the stock symbol. (Optional) Include exchange. eg: IBM.BE"
-msgstr ""
+msgstr "Пакажыце біржавы сімвал. (Апцыянальна) далучыце біржу, напр.: IBM.BE"
 
 #: sharetransactiondialog.cpp:224
 msgid "Share Number"
-msgstr ""
+msgstr "Колькасць"
 
 #: sharetransactiondialog.cpp:230
 msgid "Enter number of shares held"
-msgstr ""
+msgstr "Пакажыце колькасць акцыяў"
 
 #: sharetransactiondialog.cpp:236
 msgid "Share Price"
-msgstr ""
+msgstr "Пакупны кошт"
 
 #: sharetransactiondialog.cpp:243
 msgid "Enter the current value for a single share unit"
-msgstr ""
+msgstr "Пакажыце бягучае значэнне за адну акцыю"
 
 #: sharetransactiondialog.cpp:254
 msgid "Enter any commission paid"
-msgstr ""
+msgstr "Пакажыце будзь-якую камісію, што была сплачаная"
 
 #: sharetransactiondialog.cpp:260
 msgid "Share Lot"
-msgstr ""
+msgstr "Лот"
 
 #: sharetransactiondialog.cpp:267
 msgid "Enter the LOT that this parcel os shares belong to"
-msgstr ""
+msgstr "Пакажыце лот, якому належыць гэты пакет акцыяў"
 
 #: sharetransactiondialog.cpp:274 stockdialog.cpp:268
 msgid "Organize attachments of this stock"
-msgstr ""
+msgstr "Кіраваць укладаннямі да інвестыцыі"
 
 #: sharetransactiondialog.cpp:279 stockdialog.cpp:270
 msgid "Display the web page for the specified Stock symbol"
-msgstr ""
+msgstr "Адчыніць вэб-старонку абранага цікера"
 
 #: sharetransactiondialog.cpp:289 stockdialog.cpp:277
 msgid "Enter notes associated with this investment"
-msgstr ""
+msgstr "Напішыце нататкі да інвестыцыі"
 
 #: sharetransactiondialog.cpp:294
 msgid "Add Transaction Details"
@@ -6722,17 +6722,18 @@ msgstr "Абнаўленне некалькіх аперацый"
 
 #: transactionsupdatedialog.cpp:213
 msgid "Append"
-msgstr ""
+msgstr "Далучаць"
 
 #: transactionsupdatedialog.cpp:325 transdialog.cpp:664
 #, c-format
 msgid "You have not used this payee name before. Is the name correct?\n"
 "%s"
-msgstr ""
+msgstr "Гэтае імя атрымальніка раней не выкарыстоўвалася. Гэта слушнае імя?\n"
+"%s"
 
 #: transactionsupdatedialog.cpp:326 transdialog.cpp:665
 msgid "Confirm payee name"
-msgstr ""
+msgstr "Сцвердзіце імя атрымальніка"
 
 #: transdialog.cpp:180
 msgid "Duplicate Transaction"
@@ -6794,7 +6795,7 @@ msgstr "Пакажыце рахунак для гэтай аперацыі"
 
 #: usertransactionpanel.cpp:127
 msgid "Withdraw funds from or deposit funds to this Account."
-msgstr ""
+msgstr "Вывад сродкаў з або ўвод сродкаў на гэты рахунак."
 
 #: usertransactionpanel.cpp:129
 msgid "&Transfer"
@@ -6822,11 +6823,11 @@ msgstr "Пакажыце код аперацыі або звязаныя з ёй
 
 #: usertransactionpanel.cpp:291
 msgid "Select the required account"
-msgstr ""
+msgstr "Абярыце абавязковы рахунак"
 
 #: usertransactionpanel.cpp:292
 msgid "Account Selection"
-msgstr ""
+msgstr "Выбар рахунка"
 
 #: util.cpp:293
 msgid "Jan"
