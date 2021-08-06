@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-04 13:11+0300\n"
-"PO-Revision-Date: 2021-08-06 13:55\n"
+"PO-Revision-Date: 2021-08-06 14:21\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -3671,11 +3671,11 @@ msgstr ""
 
 #: mmTips.h:48
 msgid "To create new stocks entry the Symbol, Number of shares and Purchase prise should be entered."
-msgstr ""
+msgstr "Для стварэння новага актыва трэба задаць Біржавы сімвал, колькасць і пакупную цану."
 
 #: mmTips.h:49
 msgid "Sample of UK (HSBC HLDG) share: HSBA.L"
-msgstr ""
+msgstr "Прыклад актыва UK (HSBC HLDG), цікер: HSBA.L"
 
 #: mmTips.h:50
 msgid "If the Stock Name field is empty it will be filed when prices updated"
@@ -4032,7 +4032,7 @@ msgstr "Усе аперацыі"
 
 #: mmframe.cpp:739 mmhomepage.cpp:647 reports/summary.cpp:164
 msgid "Share Accounts"
-msgstr ""
+msgstr "Рахункі каштоўных папераў"
 
 #: mmframe.cpp:751 mmframe.cpp:1532
 msgid "Budget Setup"
@@ -4220,11 +4220,11 @@ msgstr ""
 
 #: mmframe.cpp:1406
 msgid "&Display Share Accounts"
-msgstr ""
+msgstr "&Глядзець рахункі каштоўных папераў"
 
 #: mmframe.cpp:1406
 msgid "Show/Hide Share Accounts in the navigation tree"
-msgstr ""
+msgstr "Адлюстраваць/схаваць з панэлі навігацыі"
 
 #: mmframe.cpp:1409
 msgid "Budgets: As Financial &Years"
@@ -4850,7 +4850,7 @@ msgstr "Паявыя рахункі ўтрымліваюць аперацыі з
 
 #: mmframe.cpp:2349
 msgid "Share Account Creation"
-msgstr ""
+msgstr "Стварэнне рахунка каштоўных папераў"
 
 #: mmframe.cpp:2499
 msgid "Accounts, Payees, and Categories Updated"
@@ -5179,7 +5179,7 @@ msgstr ""
 
 #: model/Model_Account.cpp:39
 msgid "Shares"
-msgstr ""
+msgstr "Паі"
 
 #: model/Model_Account.cpp:130
 msgid "Account Error"
@@ -5532,11 +5532,11 @@ msgstr ""
 
 #: optionsettingsmisc.cpp:78
 msgid "Share Precision"
-msgstr ""
+msgstr "Знакаў пасля коскі"
 
 #: optionsettingsmisc.cpp:83
 msgid "Set the precision for Share prices"
-msgstr ""
+msgstr "Усталяваць дакладнасць для коштаў на акцыі"
 
 #: optionsettingsmisc.cpp:89
 msgid "New Transaction Dialog Settings"
@@ -6381,7 +6381,7 @@ msgstr "Пакажыце пачатковую дату інвестыцый у �
 
 #: stockdialog.cpp:218
 msgid "*Share Number"
-msgstr ""
+msgstr "*Колькасць"
 
 #: stockdialog.cpp:224
 msgid "Enter number of shares.\n"
@@ -6391,7 +6391,7 @@ msgstr "Агульная колькасць акцыяў.\n"
 
 #: stockdialog.cpp:230 stocks_list.cpp:93
 msgid "*Share Price"
-msgstr ""
+msgstr "*Кошт набыцця"
 
 #: stockdialog.cpp:236
 msgid "Enter the initial price per share.\n"
@@ -6411,11 +6411,11 @@ msgstr "Калі ласка, пакажыце суму выплачанай ка
 
 #: stockdialog.cpp:250 stocks_list.cpp:96
 msgid "Curr. Share Price"
-msgstr ""
+msgstr "Бягучая цана"
 
 #: stockdialog.cpp:253
 msgid "Enter current stock/share price."
-msgstr ""
+msgstr "Пакажыце бягучую цану акцыяў."
 
 #: stockdialog.cpp:285
 msgid "Stock History Options"
@@ -6431,7 +6431,7 @@ msgstr ""
 
 #: stockdialog.cpp:320
 msgid "Specify the stock/share price date."
-msgstr ""
+msgstr "Пакажыце дату набыцця актыва."
 
 #: stockdialog.cpp:336
 msgid "Download Stock Price history"
