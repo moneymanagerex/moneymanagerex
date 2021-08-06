@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-04 13:11+0300\n"
-"PO-Revision-Date: 2021-08-06 12:49\n"
+"PO-Revision-Date: 2021-08-06 12:59\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -7109,7 +7109,7 @@ msgstr ""
 
 #: webapp.cpp:562
 msgid "Transaction not downloaded:"
-msgstr ""
+msgstr "Аперацыя не спампаваная:"
 
 #: webapp.cpp:563
 msgid "please fix attachments folder or delete attachments from WebApp"
@@ -7121,7 +7121,7 @@ msgstr ""
 
 #: webapp.cpp:596
 msgid "Transaction not downloaded: please retry to download transactions"
-msgstr ""
+msgstr "Аперацыя не спампаваная: калі ласка, спрабуйце спампаваць наноў"
 
 #: webapp.cpp:597 webappdialog.cpp:348
 msgid "Attachment download error"
@@ -7129,7 +7129,7 @@ msgstr ""
 
 #: webappdialog.cpp:77
 msgid "Import WebApp transactions"
-msgstr ""
+msgstr "Імпартую WebApp аперацыі"
 
 #: webappdialog.cpp:100
 msgid "Network status (click to refresh)"
