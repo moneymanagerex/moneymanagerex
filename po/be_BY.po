@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-04 13:11+0300\n"
-"PO-Revision-Date: 2021-08-06 18:12\n"
+"PO-Revision-Date: 2021-08-06 18:27\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -1844,48 +1844,49 @@ msgstr "Тып поля"
 
 #: customfieldeditdialog.cpp:142
 msgid "Select type of custom field"
-msgstr ""
+msgstr "Абярыце тып поля"
 
 #: customfieldeditdialog.cpp:145
 msgid "ToolTip"
-msgstr ""
+msgstr "Падказка"
 
 #: customfieldeditdialog.cpp:147
 msgid "Enter the tooltip that will be shown"
-msgstr ""
+msgstr "Пакажыце тэкст падказкі"
 
 #: customfieldeditdialog.cpp:150
 msgid "RegEx"
-msgstr ""
+msgstr "RegEx"
 
 #: customfieldeditdialog.cpp:152
 msgid "Enter the RegEx to validate field"
-msgstr ""
+msgstr "Пакажыце рыгулярны выраз для праверкі поля"
 
 #: customfieldeditdialog.cpp:155
 msgid "Autocomplete"
-msgstr ""
+msgstr "Аўтазапаўненне"
 
 #: customfieldeditdialog.cpp:158
 msgid "Enables autocomplete on custom field"
-msgstr ""
+msgstr "Увамкнуць аўтазапаўненне карыстальніцкага поля"
 
 #: customfieldeditdialog.cpp:161 optionsettingsview.cpp:186 util.cpp:574
 msgid "Default"
-msgstr ""
+msgstr "Па змаўчанні"
 
 #: customfieldeditdialog.cpp:163
 msgid "Enter the default for this field\n"
 "For date/time insert 'Now' to make current date/time as default"
-msgstr ""
+msgstr "Калі ласка, пакажыце значэнне па змаўчанні для гэтага поля\n"
+"Абярыце 'Зараз', каб па змаўчанні выкарыстоўваць бягучую дату / час"
 
 #: customfieldeditdialog.cpp:167
 msgid "Choices"
-msgstr ""
+msgstr "Выбар"
 
 #: customfieldeditdialog.cpp:169
 msgid "Enter the choices for this field separated with a semicolon"
-msgstr ""
+msgstr "Пакажыце варыянты значэнняў для гэтага поля, падзеленыя кропкай з коскай"
 
 #: customfieldeditdialog.cpp:172
 msgid "Digits scale"
