@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-04 13:11+0300\n"
-"PO-Revision-Date: 2021-08-06 12:59\n"
+"PO-Revision-Date: 2021-08-06 13:27\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -2351,7 +2351,7 @@ msgstr ""
 
 #: filtertransdialog.cpp:181 transactionsupdatedialog.cpp:112
 msgid "Specify"
-msgstr ""
+msgstr "Пакажыце"
 
 #: filtertransdialog.cpp:213 import_export/qif_export.cpp:154
 #: import_export/qif_import_gui.cpp:174
@@ -5074,7 +5074,7 @@ msgstr "Аперацыяў агулам: "
 #: mmhomepage.cpp:552 reports/categexp.cpp:225 reports/summarystocks.cpp:149
 #: reports/transactions.cpp:197 reports/transactions.cpp:232
 msgid "Grand Total:"
-msgstr ""
+msgstr "Цалкам:"
 
 #: mmhomepage.cpp:645
 msgid "Investment Accounts"
@@ -5131,7 +5131,7 @@ msgstr ""
 #: mmreportspanel.cpp:347 reports/reportbase.cpp:185
 #: reports/transactions.cpp:50
 msgid "All Accounts"
-msgstr ""
+msgstr "Усе рахункі"
 
 #: mmreportspanel.cpp:348
 msgid "Specific Accounts"
@@ -6221,7 +6221,7 @@ msgstr ""
 
 #: reports/reportbase.cpp:191 reports/transactions.cpp:62
 msgid "Accounts: "
-msgstr ""
+msgstr "Рахункі: "
 
 #: reports/summary.cpp:146
 #, c-format
@@ -6255,7 +6255,7 @@ msgstr ""
 #: reports/summarystocks.cpp:196 sharetransactiondialog.cpp:249
 #: stocks_list.cpp:99
 msgid "Commission"
-msgstr ""
+msgstr "Камісія"
 
 #: reports/summarystocks.cpp:206
 msgid "Stocks Performance Charts"
@@ -6275,7 +6275,7 @@ msgstr "Новая аперацыя з акцыямі"
 
 #: sharetransactiondialog.cpp:197 stockdialog.cpp:181
 msgid "Stock Investment Details"
-msgstr ""
+msgstr "Дыталі па каштоўных паперах"
 
 #: sharetransactiondialog.cpp:207 stockdialog.cpp:192 stocks_list.cpp:90
 msgid "Company Name"
@@ -7137,7 +7137,7 @@ msgstr ""
 
 #: webappdialog.cpp:132
 msgid "Checking for new transactions..."
-msgstr ""
+msgstr "Праверка новых аперацыяў..."
 
 #: webappdialog.cpp:165
 msgid "&Import all "
@@ -7149,15 +7149,15 @@ msgstr ""
 
 #: webappdialog.cpp:214
 msgid "Unable to download transactions from webapp."
-msgstr ""
+msgstr "Немагчыма спампаваць аперацыі з webapp."
 
 #: webappdialog.cpp:215
 msgid "Transactions download error"
-msgstr ""
+msgstr "Памылка спампавання аперацый"
 
 #: webappdialog.cpp:320
 msgid "Unable to insert transaction in MMEX database"
-msgstr ""
+msgstr "Немагчыма ўставіць аперацыю у базе дадзеных MMEX"
 
 #: webappdialog.cpp:321
 msgid "WebApp communication error"
@@ -7178,7 +7178,7 @@ msgstr ""
 #: wizard_newaccount.cpp:39
 #, c-format
 msgid "%s models all transactions as belonging to accounts."
-msgstr ""
+msgstr "%s месціць ўсе транзакцыі ўнутры рахункаў."
 
 #: wizard_newaccount.cpp:40
 msgid "The next pages will help you create a new account.\n"
