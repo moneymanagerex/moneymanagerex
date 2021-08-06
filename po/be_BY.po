@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-04 13:11+0300\n"
-"PO-Revision-Date: 2021-08-06 18:41\n"
+"PO-Revision-Date: 2021-08-06 19:01\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -1906,20 +1906,20 @@ msgstr "Абярыце значэнне для прадстаўлення эле
 
 #: customfieldeditdialog.cpp:224
 msgid "Changing field type will delete all content!"
-msgstr ""
+msgstr "Змена тыпа поля выдаліць усё змесціва!"
 
 #: customfieldeditdialog.cpp:225 customfieldeditdialog.cpp:247 mmframe.cpp:2103
 #: mmframe.cpp:2122
 msgid "Do you want to proceed?"
-msgstr ""
+msgstr "Жадаеце працягнуць?"
 
 #: customfieldeditdialog.cpp:226 customfieldeditdialog.cpp:248
 msgid "Custom Field Change"
-msgstr ""
+msgstr "Змяніць"
 
 #: customfieldeditdialog.cpp:246
 msgid "You have modified choices: ones removed will be cleaned!"
-msgstr ""
+msgstr "Вы змянілі варыянты: выдаленыя будуць ачышчаныя!"
 
 #: customfieldeditdialog.h:41
 msgid "New/Edit Custom Field"
