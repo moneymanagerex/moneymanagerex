@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-04 13:11+0300\n"
-"PO-Revision-Date: 2021-08-06 11:47\n"
+"PO-Revision-Date: 2021-08-06 12:13\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -938,7 +938,7 @@ msgstr "Сума"
 
 #: billsdepositsdialog.cpp:571 transdialog.cpp:1285
 msgid "Specify the transfer amount in the To Account"
-msgstr "Пакажыце суму для рахунка куды робіцца пераклад"
+msgstr "Пакажыце суму для рахунка куды робіцца пераказ"
 
 #: billsdepositsdialog.cpp:583 billsdepositsdialog.cpp:843
 #: billsdepositsdialog.cpp:857 billsdepositspanel.cpp:129
@@ -1064,7 +1064,7 @@ msgstr "Падобна на тое, што гэта запознены плац�
 
 #: billsdepositsdialog.cpp:1233
 msgid "Specify the transfer amount in the From Account"
-msgstr "Пакажыце суму, што будзе перасунутая на іншы рахунак"
+msgstr "Пакажыце суму, што будзе пераказаная на іншы рахунак"
 
 #: billsdepositsdialog.cpp:1275
 msgid "Activates"
@@ -1154,7 +1154,7 @@ msgstr "Пакажыце адкуль будзе зробленае пералі
 
 #: billsdepositsdialog.h:126
 msgid "Specify which account the transfer is going to"
-msgstr "Пакажыце рахунак, куды будзе зроблена пералічэнне"
+msgstr "Пакажыце рахунак, куды будзе зроблены пераказ"
 
 #: billsdepositsdialog.h:127 transdialog.cpp:1289 usertransactionpanel.cpp:146
 msgid "Specify the amount for this transaction"
@@ -1162,7 +1162,7 @@ msgstr "Пакажыце суму для дадзенай аперацыі"
 
 #: billsdepositsdialog.h:128
 msgid "Specify the amount to be transferred"
-msgstr "Сума, што будзе пераведзеная"
+msgstr "Сума, што будзе пераказаная"
 
 #: billsdepositspanel.cpp:59
 #, c-format
@@ -2050,7 +2050,7 @@ msgstr ""
 #: db/DB_Table_Category_V1.h:126 model/Model_Billsdeposits.cpp:34
 #: model/Model_Checking.cpp:31 transdialog.cpp:359
 msgid "Transfer"
-msgstr ""
+msgstr "Пераказ"
 
 #: db/DB_Table_Subcategory_V1.h:111
 msgid "Telephone"
@@ -2386,11 +2386,11 @@ msgstr "Залічэнне"
 
 #: filtertransdialog.cpp:297 transactionsupdatedialog.cpp:187
 msgid "Transfer To"
-msgstr ""
+msgstr "Пераказаць на"
 
 #: filtertransdialog.cpp:299
 msgid "Transfer From"
-msgstr ""
+msgstr "Пераказаць з"
 
 #: filtertransdialog.cpp:311
 msgid "Amount Range"
@@ -2978,7 +2978,7 @@ msgstr "Было імпартавана аперацый %i з %i"
 
 #: import_export/qif_import_gui.cpp:869
 msgid "Importing Transfers"
-msgstr ""
+msgstr "Імпарт пераказаў"
 
 #: import_export/qif_import_gui.cpp:894
 msgid "Importing Split transactions"
@@ -3019,7 +3019,7 @@ msgstr "Адсутнічае рахунак для гэтай аперацыі"
 
 #: import_export/qif_import_gui.cpp:1041
 msgid "Transaction Account for transfer is incorrect"
-msgstr "Адсутнічае рахунак для гэтай аперацыі перавода"
+msgstr "Адсутнічае рахунак для гэтай аперацыі пераказа"
 
 #: import_export/qif_import_gui.cpp:1067
 msgid "Transaction Amount is incorrect"
@@ -3533,7 +3533,7 @@ msgstr "Калі ласка, абярыце рахунак для гэтай а�
 
 #: mmSimpleDialogs.cpp:266
 msgid "Please specify which account the transfer is going to."
-msgstr ""
+msgstr "Пакажыце рахунак, куды накіроўваецца пераказ."
 
 #: mmSimpleDialogs.cpp:268
 msgid "Selection can be made by using the dropdown button."
@@ -3691,7 +3691,7 @@ msgstr ""
 
 #: mmchecking_list.cpp:347
 msgid "&New Transfer"
-msgstr ""
+msgstr "&Новы пераказ"
 
 #: mmchecking_list.cpp:351
 msgid "&Edit Transaction"
@@ -4236,11 +4236,11 @@ msgstr ""
 
 #: mmframe.cpp:1411
 msgid "Budgets: &Include Transfers in Totals"
-msgstr ""
+msgstr "Бюджэты: \"Агулам\" &улічвае пераказы"
 
 #: mmframe.cpp:1411
 msgid "Include the transfer transactions in the Budget Totals"
-msgstr "Улічваць пераводы ў вынікі бюджэту"
+msgstr "Улічваць пераказы ў агульнай суме бюджэта"
 
 #: mmframe.cpp:1413
 msgid "Budget Category Report: with &Summaries"
@@ -5584,7 +5584,7 @@ msgstr ""
 
 #: optionsettingsmisc.cpp:145
 msgid "Bulk Transactions:"
-msgstr ""
+msgstr "Шматлікія аперацыі:"
 
 #: optionsettingsmisc.cpp:156
 msgid "Database Backup"
@@ -5726,7 +5726,7 @@ msgstr ""
 
 #: optionsettingsview.cpp:111
 msgid "Transaction/Budget Options"
-msgstr ""
+msgstr "Опцыі аперацый і бюджэта"
 
 #: optionsettingsview.cpp:117
 msgid "View Budgets as Financial Years"
@@ -5734,7 +5734,7 @@ msgstr ""
 
 #: optionsettingsview.cpp:122
 msgid "View Budgets with 'transfer' transactions"
-msgstr ""
+msgstr "Прагляд з аперацыямі пераказаў"
 
 #: optionsettingsview.cpp:128
 msgid "View Budget Category Report with Summaries"
@@ -5750,11 +5750,11 @@ msgstr ""
 
 #: optionsettingsview.cpp:146
 msgid "Ignore Future Transactions"
-msgstr ""
+msgstr "Ігнараваць аперацыі з датай у будучым"
 
 #: optionsettingsview.cpp:152
 msgid "Transaction Colors"
-msgstr ""
+msgstr "Колеры аперацыі"
 
 #: optionsettingsview.cpp:191
 msgid "UI Appearance"
@@ -5905,7 +5905,7 @@ msgstr "У састаўных аперацыях знойдзена запіса
 #: relocatecategorydialog.cpp:271 relocatepayeedialog.cpp:233
 #, c-format
 msgid "Records found in recurring transactions: %i"
-msgstr ""
+msgstr "У аперацыях, што паўтараюцца, знойдзена запісаў: %i"
 
 #: relocatecategorydialog.cpp:272
 #, c-format
@@ -6263,11 +6263,11 @@ msgstr ""
 
 #: reports/transactions.cpp:176
 msgid "All Transactions: Withdrawals, Deposits, and Transfers"
-msgstr "Усе аперацыі: спісанні, папаўненні і пераводы"
+msgstr "Усе аперацыі: спісанні, папаўненні і пераказы"
 
 #: reports/transactions.cpp:210
 msgid "All Transactions excluding Transfers"
-msgstr "Усе аперацыі акрамя пераводаў"
+msgstr "Усе аперацыі акрамя пераказаў"
 
 #: sharetransactiondialog.cpp:72 sharetransactiondialog.cpp:91
 msgid "Add Share Transaction"
@@ -6376,7 +6376,8 @@ msgstr ""
 #: stockdialog.cpp:214
 msgid "Specify the initial date of the stock investment\n"
 "Used when creating the initial Share transaction."
-msgstr ""
+msgstr "Пакажыце пачатковую дату інвестыцый у акцыі\n"
+"Выкарыстоўваецца пры стварэнні першапачатковай аперацыі да акцыяў."
 
 #: stockdialog.cpp:218
 msgid "*Share Number"
@@ -6385,7 +6386,8 @@ msgstr ""
 #: stockdialog.cpp:224
 msgid "Enter number of shares.\n"
 "Used when creating the initial Share transaction."
-msgstr ""
+msgstr "Агульная колькасць акцыяў.\n"
+"Выкарыстоўваецца пры стварэнні начальнай аперацыі."
 
 #: stockdialog.cpp:230 stocks_list.cpp:93
 msgid "*Share Price"
@@ -6394,7 +6396,8 @@ msgstr ""
 #: stockdialog.cpp:236
 msgid "Enter the initial price per share.\n"
 "Used when creating the initial Share transaction."
-msgstr ""
+msgstr "Пачатковы кошт куплі акцыяў.\n"
+"Выкарыстоўваецца пры стварэнні пачатковай аперацыі."
 
 #: stockdialog.cpp:241
 msgid "*Commission"
@@ -6769,7 +6772,7 @@ msgstr ""
 
 #: transdialog.cpp:1282
 msgid "Specify the transfer amount in the From Account."
-msgstr ""
+msgstr "Пакажыце суму для рахунка, адкуль робіцца пераказ."
 
 #: transdialog.cpp:1290
 msgid "Specify account for the transaction"
@@ -6793,11 +6796,11 @@ msgstr ""
 
 #: usertransactionpanel.cpp:129
 msgid "&Transfer"
-msgstr ""
+msgstr "&Пераказ"
 
 #: usertransactionpanel.cpp:132
 msgid "Funds transfer from/to this account. Uncheck to set as Expense/Income."
-msgstr ""
+msgstr "Пераказ грошаў з/да гэтага рахунка. Здыміце адметку, каб гэта было залічэнне/спісанне."
 
 #: usertransactionpanel.cpp:157
 msgid "Currency used for this transaction."
