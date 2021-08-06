@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-04 13:11+0300\n"
-"PO-Revision-Date: 2021-08-06 10:44\n"
+"PO-Revision-Date: 2021-08-06 10:55\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -3870,7 +3870,7 @@ msgstr ""
 
 #: mmchecking_list.cpp:1210
 msgid "Recurring Transaction saved."
-msgstr ""
+msgstr "Захаваная аперацыя, што паўтараецца."
 
 #: mmcheckingpanel.cpp:290 mmcheckingpanel.cpp:438
 msgid "Displayed Bal: "
@@ -3890,15 +3890,15 @@ msgstr ""
 
 #: mmcheckingpanel.cpp:363 mmframe.cpp:1722 transdialog.cpp:180
 msgid "New Transaction"
-msgstr ""
+msgstr "Новая аперацыя"
 
 #: mmcheckingpanel.cpp:367
 msgid "Edit selected transaction"
-msgstr ""
+msgstr "Рэдагаваць абраную аперацыю"
 
 #: mmcheckingpanel.cpp:372
 msgid "Delete selected transaction"
-msgstr ""
+msgstr "Выдаліць абраную аперацыю"
 
 #: mmcheckingpanel.cpp:376
 msgid "D&uplicate "
@@ -3910,11 +3910,11 @@ msgstr "Дубляваць абраную аперацыю"
 
 #: mmcheckingpanel.cpp:394
 msgid "Enter any string to find it in the nearest transaction notes"
-msgstr ""
+msgstr "Калі ласка, увядзіце будзь-якой тэкст для пошука па нататках"
 
 #: mmcheckingpanel.cpp:411
 msgid "Full Transactions Report"
-msgstr ""
+msgstr "Справаздача па аперацыях"
 
 #: mmcheckingpanel.cpp:413
 #, c-format
@@ -3928,17 +3928,17 @@ msgstr ""
 #: mmcheckingpanel.cpp:526
 #, c-format
 msgid "Transactions selected: %zu"
-msgstr ""
+msgstr "Аперацый вылучана: %zu"
 
 #: mmcheckingpanel.cpp:529
 #, c-format
 msgid "Selected transactions balance: %s"
-msgstr ""
+msgstr "Баланс вылучаных аперацый: %s"
 
 #: mmcheckingpanel.cpp:533
 #, c-format
 msgid "Days between selected transactions: %d"
-msgstr ""
+msgstr "Дзён паміж абранымі аперацыямі: %d"
 
 #: mmcustomdata.cpp:61
 msgid "Custom fields"
@@ -4020,7 +4020,7 @@ msgstr ""
 
 #: mmframe.cpp:508
 msgid "Auto Repeat Transactions"
-msgstr ""
+msgstr "Аўтаматычны паўтор аперацыяў"
 
 #: mmframe.cpp:702 mmframe.cpp:1720
 msgid "Home Page"
@@ -4028,7 +4028,7 @@ msgstr ""
 
 #: mmframe.cpp:707
 msgid "All Transactions"
-msgstr ""
+msgstr "Усе аперацыі"
 
 #: mmframe.cpp:739 mmhomepage.cpp:647 reports/summary.cpp:164
 msgid "Share Accounts"
@@ -4060,7 +4060,7 @@ msgstr ""
 
 #: mmframe.cpp:1249
 msgid "&New Transaction"
-msgstr ""
+msgstr "&Новая аперацыя"
 
 #: mmframe.cpp:1252 mmframe.cpp:1292 mmframe.cpp:1478
 msgid "&Edit Account"
