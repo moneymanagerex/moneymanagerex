@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-04 13:11+0300\n"
-"PO-Revision-Date: 2021-08-06 14:21\n"
+"PO-Revision-Date: 2021-08-06 14:34\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -1615,11 +1615,11 @@ msgstr "Інструменты -> Замена -> Катыгорыі"
 
 #: categdialog.cpp:331
 msgid "Organise Categories: Delete Error"
-msgstr ""
+msgstr "Рыдактар катыгорыяў: памылка выдалення"
 
 #: categdialog.cpp:435
 msgid "Select an unused category to delete."
-msgstr ""
+msgstr "Абярыце катыгорыю, што не выкарыстоўваецца, для выдалення."
 
 #: categdialog.cpp:460
 msgid "This category cannot be deleted because it's used by transactions."
@@ -6456,13 +6456,16 @@ msgstr ""
 #: stockdialog.cpp:494
 msgid "Share Account not found.\n\n"
 "Do you want to create one?"
-msgstr ""
+msgstr "Рахунак Акцыяў як імя Кампаніі ня знойдзены.\n\n"
+"Вы хочаце стварыць яго?"
 
 #: stockdialog.cpp:504
 msgid "The Company name does not have an associated Share Account.\n\n"
 "You may want to readjust the Company Name to an existing Share Account with the same name. If this is an existing Stock without a Share Account, it is recommended that a Share Account is created.\n\n"
 "Do you want to create a new Share Acccount?\n"
-msgstr ""
+msgstr "У кампаніі няма злучанага рахунка Акцый.\n\n"
+"Вы можаце перанакіраваць назву кампаніі на існуючую Акцыю рахунка з тым жа імем. Калі гэта ўжо існуючая Акцыя без рахунка Акцый, рэкамендуецца стварыць Рахунка Акцый.\n\n"
+"Вы хочаце стварыць новы рахунак Акцый?\n"
 
 #: stockdialog.cpp:599
 msgid "Stock History CSV Import"
@@ -6552,7 +6555,7 @@ msgstr ""
 
 #: stocks_list.cpp:92
 msgid "Share Total"
-msgstr ""
+msgstr "Агулам"
 
 #: stocks_list.cpp:94
 msgid "Init Value"
@@ -6631,7 +6634,8 @@ msgstr ""
 #, c-format
 msgid "Temporary Stock list: %s\n\n"
 "Date          Lot          Shares          Price        Commission\n\n"
-msgstr ""
+msgstr "Часовы спіс каштоўных папераў: %s\n\n"
+"Дата          Лот          Акцыі          Кошт        Камісія\n\n"
 
 #: stockspanel.cpp:299
 #, c-format
@@ -6641,7 +6645,7 @@ msgstr ""
 #: stockspanel.cpp:343
 #, c-format
 msgid "Total Shares: %s"
-msgstr ""
+msgstr "Агулам: %s"
 
 #: stockspanel.cpp:345
 #, c-format
