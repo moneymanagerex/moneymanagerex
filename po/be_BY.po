@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-04 13:11+0300\n"
-"PO-Revision-Date: 2021-08-06 20:10\n"
+"PO-Revision-Date: 2021-08-06 20:30\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -2129,132 +2129,133 @@ msgstr "Адукацыя"
 
 #: db/DB_Table_Subcategory_V1.h:130
 msgid "Clothing"
-msgstr ""
+msgstr "Вопратка"
 
 #: db/DB_Table_Subcategory_V1.h:131
 msgid "Furnishing"
-msgstr ""
+msgstr "Мэбля"
 
 #: db/DB_Table_Subcategory_V1.h:133 db/DB_Table_Subcategory_V1.h:141
 msgid "Health"
-msgstr ""
+msgstr "Здароўе"
 
 #: db/DB_Table_Subcategory_V1.h:134
 msgid "Dental"
-msgstr ""
+msgstr "Стаматолаг"
 
 #: db/DB_Table_Subcategory_V1.h:135
 msgid "Eyecare"
-msgstr ""
+msgstr "Афтальмолаг"
 
 #: db/DB_Table_Subcategory_V1.h:136
 msgid "Physician"
-msgstr ""
+msgstr "Тырапеўт"
 
 #: db/DB_Table_Subcategory_V1.h:137
 msgid "Prescriptions"
-msgstr ""
+msgstr "Лекі"
 
 #: db/DB_Table_Subcategory_V1.h:138
 msgid "Auto"
-msgstr ""
+msgstr "Аўта"
 
 #: db/DB_Table_Subcategory_V1.h:139
 msgid "Life"
-msgstr ""
+msgstr "Жыццё"
 
 #: db/DB_Table_Subcategory_V1.h:140
 msgid "Home"
-msgstr ""
+msgstr "Хата"
 
 #: db/DB_Table_Subcategory_V1.h:142
 msgid "Travel"
-msgstr ""
+msgstr "Вандроўкі"
 
 #: db/DB_Table_Subcategory_V1.h:143
 msgid "Lodging"
-msgstr ""
+msgstr "Жыллё"
 
 #: db/DB_Table_Subcategory_V1.h:144
 msgid "Sightseeing"
-msgstr ""
+msgstr "Экскурсіі"
 
 #: db/DB_Table_Subcategory_V1.h:145
 msgid "Income Tax"
-msgstr ""
+msgstr "Падаходны падатак"
 
 #: db/DB_Table_Subcategory_V1.h:146
 msgid "House Tax"
-msgstr ""
+msgstr "Падатак на хату"
 
 #: db/DB_Table_Subcategory_V1.h:147
 msgid "Water Tax"
-msgstr ""
+msgstr "Падатак на ваду"
 
 #: db/DB_Table_Subcategory_V1.h:149
 msgid "Salary"
-msgstr ""
+msgstr "Заробак"
 
 #: db/DB_Table_Subcategory_V1.h:150
 msgid "Reimbursement/Refunds"
-msgstr ""
+msgstr "Вяртанне падаткаў/сродкаў"
 
 #: db/DB_Table_Subcategory_V1.h:151
 msgid "Investment Income"
-msgstr ""
+msgstr "Прыбытак ад інвестыцыяў"
 
 #: dbupgrade.cpp:72
 #, c-format
 msgid "MMEX database upgrade to version %i failed!"
-msgstr ""
+msgstr "Памылка абнаўлення базы дадзеных MMEX да вэрсіі %i"
 
 #: dbupgrade.cpp:73
 msgid "Please restore DB from autocreated pre-upgrade backup and retry or contact MMEX support"
-msgstr ""
+msgstr "Калі ласка, аднавіце БД з аўтаматычна створанай рэзервовай копіі перад пачаткам абнаўлення і паўтарыце спробу або звярніцеся ў службу падтрымкі MMEX"
 
 #: dbupgrade.cpp:74 dbupgrade.cpp:108 dbupgrade.cpp:120
 msgid "MMEX database upgrade"
-msgstr ""
+msgstr "Абнаўлення базы дадзеных MMEX"
 
 #: dbupgrade.cpp:106
 msgid "MMEX database error!"
-msgstr ""
+msgstr "Памылка ў базе дадзеных MMEX"
 
 #: dbupgrade.cpp:107
 #, c-format
 msgid "MMEX database version %i doesn't work with this MMEX version.\n"
 "Please upgrade MMEX to newer version."
-msgstr ""
+msgstr "Версія %i базы дадзеных MMEX не працуе з гэтай версіяй MMEX.\n"
+"Калі ласка, абнавіце MMEX да больш новай версіі."
 
 #: dbupgrade.cpp:119
 #, c-format
 msgid "MMEX database succesfully upgraded to version %i"
-msgstr ""
+msgstr "База дадзеных MMEX паспяхова абноўленая да вэрсіі %i"
 
 #: dbupgrade.cpp:120
 msgid "We suggest a database optimization under Tools -> Database -> Optimize"
-msgstr ""
+msgstr "Мы прапануем аптымізацыю базы дадзеных у меню Сэрвіс -> База дадзеных -> Аптымізатар"
 
 #: dbupgrade.cpp:197
 msgid "Load debug file"
-msgstr ""
+msgstr "Запампаваць файл адладкі"
 
 #: dbupgrade.cpp:204
 msgid "Wrong file type!"
-msgstr ""
+msgstr "Няслушны тып файла"
 
 #: dbupgrade.cpp:204 dbupgrade.cpp:241 dbupgrade.cpp:248 dbupgrade.cpp:292
 #: dbupgrade.cpp:303
 msgid "MMEX debug error"
-msgstr ""
+msgstr "Памылка адладкі MMEX"
 
 #: dbupgrade.cpp:241 dbupgrade.cpp:292
 msgid "Query error, please contact MMEX support!"
-msgstr ""
+msgstr "Памылка запыта. Калі ласка, звярніцеся ў службу падтрымкі MMEX"
 
 #: dbupgrade.cpp:248 dbupgrade.cpp:303
 msgid "Invalid file content, please contact MMEX support!"
-msgstr ""
+msgstr "Недапушчальнае змесціва файла адладкі. Калі ласка, звяртайцеся ў службу падтрымкі MMEX"
 
 #: dbupgrade.cpp:255
 msgid "Send this log to MMEX support team:\n"
