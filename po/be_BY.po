@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-04 13:11+0300\n"
-"PO-Revision-Date: 2021-08-06 20:30\n"
+"PO-Revision-Date: 2021-08-07 22:39\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -4878,7 +4878,7 @@ msgstr ""
 
 #: mmframe.cpp:2539 optiondialog.cpp:211 optiondialog.h:48
 msgid "MMEX Options"
-msgstr ""
+msgstr "Налады MMEX"
 
 #: mmframe.cpp:2661
 msgid "Choose HTML file to Export"
@@ -5292,19 +5292,19 @@ msgstr ""
 
 #: optiondialog.cpp:131
 msgid "General"
-msgstr ""
+msgstr "Агульныя"
 
 #: optiondialog.cpp:132 optionsettingsview.cpp:56
 msgid "View Options"
-msgstr ""
+msgstr "Адлюстраванне"
 
 #: optiondialog.cpp:133 webappdialog.cpp:155
 msgid "Attachments"
-msgstr ""
+msgstr "Далучэнні"
 
 #: optiondialog.cpp:134
 msgid "Network"
-msgstr ""
+msgstr "Сеткавыя"
 
 #: optiondialog.cpp:152
 msgid "&Apply"
