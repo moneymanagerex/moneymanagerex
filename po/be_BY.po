@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-04 13:11+0300\n"
-"PO-Revision-Date: 2021-08-07 22:55\n"
+"PO-Revision-Date: 2021-08-07 23:05\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -2375,11 +2375,11 @@ msgstr "Прамежак часу"
 
 #: filtertransdialog.cpp:265 filtertransdialog.cpp:1008
 msgid "Include Similar"
-msgstr ""
+msgstr "Уключаючы падобныя"
 
 #: filtertransdialog.cpp:267
 msgid "Include all subcategories for the selected category."
-msgstr ""
+msgstr "Уключаючы ўсе падкатыгорыі для абранай катыгорыі."
 
 #: filtertransdialog.cpp:293 import_export/univcsvdialog.cpp:113
 #: mmchecking_list.cpp:219 model/Model_Billsdeposits.cpp:32
@@ -2405,83 +2405,83 @@ msgstr "Пераказаць з"
 
 #: filtertransdialog.cpp:311
 msgid "Amount Range"
-msgstr ""
+msgstr "Дыяпазон цэнаў"
 
 #: filtertransdialog.cpp:349 filtertransdialog.cpp:1081
 msgid "Color"
-msgstr ""
+msgstr "Колер"
 
 #: filtertransdialog.cpp:353
 msgid "Select the Color"
-msgstr ""
+msgstr "Абраць колер"
 
 #: filtertransdialog.cpp:363
 msgid "Settings"
-msgstr ""
+msgstr "Налады"
 
 #: filtertransdialog.cpp:384 filtertransdialog.cpp:705
 #: filtertransdialog.cpp:745 filtertransdialog.cpp:963
 #: filtertransdialog.cpp:1108 filtertransdialog.cpp:1410
 #, c-format
 msgid "%i: Empty"
-msgstr ""
+msgstr "%i: пуста"
 
 #: filtertransdialog.cpp:393
 msgid "Save active values into current Preset selection"
-msgstr ""
+msgstr "Захаваць актыўныя значэння ў бягучы прысэт"
 
 #: filtertransdialog.cpp:398
 msgid "Clear all fields for current Preset selection"
-msgstr ""
+msgstr "Ачысціць усе палі бягучага прысэта"
 
 #: filtertransdialog.cpp:707 filtertransdialog.cpp:1412
 msgid "Please Enter"
-msgstr ""
+msgstr "Калі ласка, пакажыце"
 
 #: filtertransdialog.cpp:707 filtertransdialog.cpp:1412
 msgid "Setting Name"
-msgstr ""
+msgstr "Назва наладаў"
 
 #: filtertransdialog.cpp:711 filtertransdialog.cpp:1408
 #: filtertransdialog.cpp:1416
 msgid "Could not save settings"
-msgstr ""
+msgstr "Не атрымалася захаваць налады"
 
 #: filtertransdialog.cpp:711 filtertransdialog.cpp:928
 #: filtertransdialog.cpp:944 filtertransdialog.cpp:1408
 #: filtertransdialog.cpp:1416 reports/myusage.cpp:104 webappdialog.cpp:194
 #: webappdialog.cpp:199
 msgid "Empty value"
-msgstr ""
+msgstr "Пустое значэнне"
 
 #: filtertransdialog.cpp:940
 msgid "Filtering Details: "
-msgstr ""
+msgstr "Дыталі фільтра: "
 
 #: filtertransdialog.cpp:966
 msgid "Label"
-msgstr ""
+msgstr "Пазнака"
 
 #: filtertransdialog.cpp:984
 msgid "Since"
-msgstr ""
+msgstr "Пачынаючы з"
 
 #: filtertransdialog.cpp:986
 msgid "Before"
-msgstr ""
+msgstr "Перад"
 
 #: filtertransdialog.cpp:1052
 msgid "Amount Min."
-msgstr ""
+msgstr "Сума мін."
 
 #: filtertransdialog.cpp:1060
 msgid "Amount Max."
-msgstr ""
+msgstr "Сума макс."
 
 #: filtertransdialog.cpp:1428 reports/reportbase.cpp:219
 #: reports/reportbase.cpp:333
 msgid "Choose Accounts"
-msgstr ""
+msgstr "Абярыце рахункі"
 
 #: filtertransdialog.cpp:1487
 msgid "Not colored"
