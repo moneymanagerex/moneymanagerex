@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-04 13:11+0300\n"
-"PO-Revision-Date: 2021-08-07 22:39\n"
+"PO-Revision-Date: 2021-08-07 22:46\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -2260,31 +2260,32 @@ msgstr "Недапушчальнае змесціва файла адладкі.
 #: dbupgrade.cpp:255
 msgid "Send this log to MMEX support team:\n"
 "press OK to save to file or Cancel to exit"
-msgstr ""
+msgstr "Даслаць гэтую справаздачу у службу падтрымкі MMEX:\n"
+"націсніце кнопку «Добра», каб захаваць у файл або «Скасаваць», каб выйсці"
 
 #: dbupgrade.cpp:256 dbupgrade.cpp:299
 msgid "MMEX debug"
-msgstr ""
+msgstr "Адладка MMEX"
 
 #: dbupgrade.cpp:259
 msgid "Save debug file"
-msgstr ""
+msgstr "Захаваць файл адладкі"
 
 #: dbupgrade.cpp:299
 msgid "DB maintenance completed, please close and re-open MMEX!"
-msgstr ""
+msgstr "Абслугоўванне БД завершанае, калі ласка, зачыніце і зноў адчыніце MMEX!"
 
 #: dbwrapper.cpp:70
 msgid "When database file opening:"
-msgstr ""
+msgstr "Падчас адчынення базы дадзеных:"
 
 #: dbwrapper.cpp:74
 msgid "Can't open file"
-msgstr ""
+msgstr "Немагчыма адчыніць файл"
 
 #: dbwrapper.cpp:74
 msgid "You must specify path to another database file"
-msgstr ""
+msgstr "Вам трэба будзе паказаць іншы шлях да базы дадзеных"
 
 #: dbwrapper.cpp:78
 msgid "An incorrect password given for an encrypted file\n"
