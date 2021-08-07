@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-04 13:11+0300\n"
-"PO-Revision-Date: 2021-08-07 22:46\n"
+"PO-Revision-Date: 2021-08-07 22:55\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -2291,34 +2291,36 @@ msgstr "Вам трэба будзе паказаць іншы шлях да б�
 msgid "An incorrect password given for an encrypted file\n"
 "or\n"
 "attempt to open a File that is not a database file \n"
-msgstr ""
+msgstr "Для шыфраванага файла паказаны няслушны пароль \n"
+"або\n"
+"спроба адкрыць файл, што не з'яўляецца базай дадзеных\n"
 
 #: dbwrapper.cpp:82 import_export/qif_import_gui.cpp:858 webapp.cpp:120
 #, c-format
 msgid "Error: %s"
-msgstr ""
+msgstr "Памылка: %s"
 
 #: dbwrapper.cpp:85 mmframe.cpp:1817
 msgid "Opening MMEX Database - Error"
-msgstr ""
+msgstr "Памылка падчас адчынення базы дадзеных"
 
 #: diagnostics.cpp:51
 msgid "Diagnostics"
-msgstr ""
+msgstr "Дыягностыка"
 
 #: diagnostics.cpp:101
 msgid "Developers may ask you to provide information presented here in order to help diagnose issues you may report with the program."
-msgstr ""
+msgstr "Распрацоўшчыкі могуць папрасіць вас даць інфармацыю для дыягностыкі праблемаў, з якімі вы можаце сутыкнуцца ў праграме."
 
 #: filtertransdialog.cpp:45 mmhomepage.cpp:656 model/Model_Billsdeposits.cpp:40
 #: model/Model_Checking.cpp:37
 msgid "Reconciled"
-msgstr ""
+msgstr "Узгодненая"
 
 #: filtertransdialog.cpp:46 model/Model_Billsdeposits.cpp:41
 #: model/Model_Checking.cpp:38
 msgid "Void"
-msgstr ""
+msgstr "Ануляваная"
 
 #: filtertransdialog.cpp:47 model/Model_Billsdeposits.cpp:42
 #: model/Model_Checking.cpp:39
@@ -2332,31 +2334,31 @@ msgstr "Дубляваць"
 
 #: filtertransdialog.cpp:49 filtertransdialog.cpp:1019
 msgid "Un-Reconciled"
-msgstr ""
+msgstr "Не перавераная"
 
 #: filtertransdialog.cpp:50 filtertransdialog.cpp:1020
 msgid "All Except Reconciled"
-msgstr ""
+msgstr "Усе акрамя узгодненых"
 
 #: filtertransdialog.cpp:63
 msgid "Start of Financial Year"
-msgstr ""
+msgstr "Пачатак фінансавага года"
 
 #: filtertransdialog.cpp:64
 msgid "Start of This Year"
-msgstr ""
+msgstr "Пачатак бягучага года"
 
 #: filtertransdialog.cpp:65
 msgid "Since 90 days ago"
-msgstr ""
+msgstr "Пачыная з 90 дзён таму"
 
 #: filtertransdialog.cpp:66
 msgid "Since 30 days ago"
-msgstr ""
+msgstr "Пачыная з 30 дзён таму"
 
 #: filtertransdialog.cpp:67
 msgid "Since Today"
-msgstr ""
+msgstr "Пачыная ад сёння"
 
 #: filtertransdialog.cpp:181 transactionsupdatedialog.cpp:112
 msgid "Specify"
@@ -2365,11 +2367,11 @@ msgstr "Пакажыце"
 #: filtertransdialog.cpp:213 import_export/qif_export.cpp:154
 #: import_export/qif_import_gui.cpp:174
 msgid "From Date"
-msgstr ""
+msgstr "Ад даты"
 
 #: filtertransdialog.cpp:223 reports/mmDateRange.cpp:30
 msgid "Date Range"
-msgstr ""
+msgstr "Прамежак часу"
 
 #: filtertransdialog.cpp:265 filtertransdialog.cpp:1008
 msgid "Include Similar"
