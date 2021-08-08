@@ -666,7 +666,8 @@ void mmMainCurrencyDialog::OnHistoryUpdate(wxCommandEvent& WXUNUSED(event))
         wxString coincap_id;
         double coincap_price_usd;
         UpdStatus = getCoincapInfoFromSymbol(CurrentCurrency->CURRENCY_SYMBOL, coincap_id, coincap_price_usd, msg);
-        UpdStatus &= getCoincapAssetHistory(coincap_id, begin_date, historical_rates, msg);
+        if (UpdStatus)
+            UpdStatus = getCoincapAssetHistory(coincap_id, begin_date, historical_rates, msg);
     }
 
     if (!UpdStatus)
