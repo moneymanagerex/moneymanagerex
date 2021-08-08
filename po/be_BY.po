@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-04 13:11+0300\n"
-"PO-Revision-Date: 2021-08-08 22:57\n"
+"PO-Revision-Date: 2021-08-08 23:07\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -2678,31 +2678,31 @@ msgstr "Папярэджанне"
 #: images_list.cpp:418
 #, c-format
 msgid "File '%s' missing or invalid in chosen theme '%s'"
-msgstr ""
+msgstr "Файл '%s' адсутнічае або недапушчальны ў абранай тэме '%s'"
 
 #: images_list.cpp:429
 #, c-format
 msgid "Metadata '%s' missing in chosen theme '%s'"
-msgstr ""
+msgstr "Метададзеныя '%s' адсутнічаюць у абранай тэме '%s'"
 
 #: images_list.cpp:462
 msgid "and more..."
-msgstr ""
+msgstr "і яшчэ..."
 
 #: images_list.cpp:464
 #, c-format
 msgid "There are %d missing or invalid icons in chosen theme '%s': %s"
-msgstr ""
+msgstr "Адсутнічаюць або сапсаваныя абразкі: %d. Тэма: '%s': %s"
 
 #: images_list.cpp:489
 #, c-format
 msgid "Theme %s not found, it may no longer be supported. Reverting to default theme"
-msgstr ""
+msgstr "Тэма %s ня знойдзеная. Можа быць, яна больш не падтрымліваецца. Прызначаная тэма па змаўчанні"
 
 #: images_list.cpp:496
 #, c-format
 msgid "Theme %s has missing items and is incompatible. Reverting to default theme"
-msgstr ""
+msgstr "Тэма %s не ўтрымлівае некаторых элементаў, таму несумяшчальная. Вяртанне да тэмы па змаўчанні"
 
 #: import_export/parsers.cpp:46 import_export/univcsvdialog.cpp:1579
 #: mmSimpleDialogs.cpp:253
