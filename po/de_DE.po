@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-04 13:11+0300\n"
-"PO-Revision-Date: 2021-08-04 10:15\n"
+"PO-Revision-Date: 2021-08-08 20:38\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -6950,27 +6950,27 @@ msgstr "JSON-Parse-Fehler"
 
 #: util.cpp:885 util.cpp:944
 msgid "Expected response to contain a data or error string"
-msgstr ""
+msgstr "Erwartete Antwort wird einen Daten- oder Fehlerstring enthalten"
 
 #: util.cpp:916
 msgid "Could not find asset for symbol"
-msgstr ""
+msgstr "Kein Vermögenswert für das Symbol gefunden"
 
 #: util.cpp:951
 msgid "Could not get base currency!"
-msgstr ""
+msgstr "Basiswährung konnte nicht abgerufen werden!"
 
 #: util.cpp:957
 msgid "USD"
-msgstr ""
+msgstr "USD"
 
 #: util.cpp:961
 msgid "Could not find currency 'USD', needed for converting history prices"
-msgstr ""
+msgstr "Die Währung 'USD', die für die Umrechnung der historischen Preise benötigt wird, konnte nicht gefunden werden."
 
 #: util.cpp:981
 msgid "Could not parse price in asset history"
-msgstr ""
+msgstr "Preis in Vermögenshistorie konnte nicht analysiert werden"
 
 #: util.cpp:1211
 #, c-format
