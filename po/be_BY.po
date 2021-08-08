@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-04 13:11+0300\n"
-"PO-Revision-Date: 2021-08-08 22:49\n"
+"PO-Revision-Date: 2021-08-08 22:57\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -2658,22 +2658,22 @@ msgstr "Новая справаздача"
 
 #: general_report_manager.cpp:1025
 msgid "Choose file to Save As Report"
-msgstr ""
+msgstr "Абярыце файл, каб захаваць як справаздачу"
 
 #: general_report_manager.cpp:1203
 msgid "Parameters:"
-msgstr ""
+msgstr "Параметры:"
 
 #: images_list.cpp:336
 #, c-format
 msgid "Metadata JSON in Theme '%s' cannot be parsed and looks badly constructed, please correct."
-msgstr ""
+msgstr "Метададзеныя JSON ў тэме '%s' ня могуць быць прааналізаваныя і выглядаюць хібна. Калі ласка, выпраўце."
 
 #: images_list.cpp:337 images_list.cpp:419 images_list.cpp:430
 #: images_list.cpp:465 images_list.cpp:490 images_list.cpp:496
 #: import_export/qif_import_gui.cpp:667 import_export/qif_import_gui.cpp:670
 msgid "Warning"
-msgstr ""
+msgstr "Папярэджанне"
 
 #: images_list.cpp:418
 #, c-format
