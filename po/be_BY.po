@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-04 13:11+0300\n"
-"PO-Revision-Date: 2021-08-08 22:42\n"
+"PO-Revision-Date: 2021-08-08 22:49\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -2600,61 +2600,61 @@ msgstr "Змяніць групу"
 
 #: general_report_manager.cpp:732 general_report_manager.cpp:897
 msgid "Rename Group"
-msgstr ""
+msgstr "Перайменаваць групу"
 
 #: general_report_manager.cpp:733
 msgid "UnGroup"
-msgstr ""
+msgstr "Разгрупаваць"
 
 #: general_report_manager.cpp:734
 msgid "Rename Report"
-msgstr ""
+msgstr "Перайменаваць справаздачу"
 
 #: general_report_manager.cpp:736
 msgid "Delete Report"
-msgstr ""
+msgstr "Выдліць справаздачу"
 
 #: general_report_manager.cpp:831 general_report_manager.cpp:979
 msgid "Enter the name for the report"
-msgstr ""
+msgstr "Напішыце назву справаздачы"
 
 #: general_report_manager.cpp:832 general_report_manager.cpp:980
 #: mmframe.cpp:1277 mmframe.cpp:1558 mmframe.cpp:1730
 msgid "General Report Manager"
-msgstr ""
+msgstr "Мэнаджар справаздачаў"
 
 #: general_report_manager.cpp:850
 msgid "Delete the Report Title:"
-msgstr ""
+msgstr "Выдаліць справаздачу:"
 
 #: general_report_manager.cpp:879 general_report_manager.cpp:960
 msgid "Enter or choose name for the new report group"
-msgstr ""
+msgstr "Калі ласка, пакажыце імя новай групы справаздачаў"
 
 #: general_report_manager.cpp:880
 msgid "Change report group"
-msgstr ""
+msgstr "Змяніцу групу"
 
 #: general_report_manager.cpp:896
 msgid "Enter or choose name for the new group"
-msgstr ""
+msgstr "Пакажыце імя новай групы"
 
 #: general_report_manager.cpp:961
 msgid "Add Report Group"
-msgstr ""
+msgstr "Дадаць групу"
 
 #: general_report_manager.cpp:974
 #, c-format
 msgid "New Report %s"
-msgstr ""
+msgstr "Новая справаздача %s"
 
 #: general_report_manager.cpp:987
 msgid "Report Name already exists"
-msgstr ""
+msgstr "Назва справаздачы ўжо выкарыстоўваецца"
 
 #: general_report_manager.cpp:987 general_report_manager.cpp:994
 msgid "New Report"
-msgstr ""
+msgstr "Новая справаздача"
 
 #: general_report_manager.cpp:1025
 msgid "Choose file to Save As Report"
