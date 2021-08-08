@@ -647,55 +647,51 @@ bool getOnlineCurrencyRates(wxString& msg, int curr_id, bool used_only)
     wxString output;
     std::map<wxString, double> currency_data;
 
-    if (get_yahoo_prices(fiat, currency_data, base_currency_symbol, output, yahoo_price_type::FIAT))
-    {
+    get_yahoo_prices(fiat, currency_data, base_currency_symbol, output, yahoo_price_type::FIAT);
 
-        // fallback to coincap if some currencies were not found
-        DB_Table_CURRENCYFORMATS_V1::Data* usd = nullptr;
-        for (const auto & item : fiat)
+    // fallback to coincap if some currencies were not found
+    double usd_conv_rate = -1;
+    for (const auto & item : fiat)
+    {
+        if (currency_data.find(item.first) == currency_data.end() && !g_fiat_curr().Contains(item.first))
         {
-            if (currency_data.find(item.first) == currency_data.end() && !g_fiat_curr().Contains(item.first))
-            {
-                wxString coincap_id;
-                wxString coincap_msg;
-                double coincap_price_usd;
-                if (getCoincapInfoFromSymbol(item.first, coincap_id, coincap_price_usd, coincap_msg) && coincap_price_usd > 0) {
+            wxString coincap_id;
+            wxString coincap_msg;
+            double coincap_price_usd;
+            if (getCoincapInfoFromSymbol(item.first, coincap_id, coincap_price_usd, coincap_msg) && coincap_price_usd > 0) {
+                if (usd_conv_rate < 0) {
+                    auto usd = Model_Currency::instance().GetCurrencyRecord("USD");
                     if (usd == nullptr) {
-                        usd = Model_Currency::instance().GetCurrencyRecord("USD");
-                        if (usd == nullptr) {
-                            break; // can't use coincap without USD, since all prices are in USD so give up
-                        }
+                        break; // can't use coincap without USD, since all prices are in USD so give up
                     }
-
-                    currency_data[item.first] = coincap_price_usd * usd->BASECONVRATE;
+                    usd_conv_rate = usd->BASECONVRATE;
                 }
-            }
-        }
 
-        const auto b = Model_Currency::GetBaseCurrency();
-        msg << _("Currency rates have been updated");
-        msg << "\n\n";
-        for (const auto & item : fiat)
-        {
-            const wxString value0_str(fmt::format("{:>{}}", Model_Currency::toCurrency(item.second, b, 4).mb_str(), 20));
-            const wxString symbol(fmt::format("{:<{}}", item.first.mb_str(), 10));
-
-            if (currency_data.find(item.first) != currency_data.end())
-            {
-                auto value1 = currency_data[item.first];
-                const wxString value1_str(fmt::format("{:>{}}", Model_Currency::toCurrency(value1, b, 4).mb_str(), 20));
-                msg << wxString::Format("%s\t%s\t\t%s\n", symbol, value0_str, value1_str);
-            }
-            else
-            {
-                msg << wxString::Format("%s\t%s\t\t%s\n", symbol, value0_str, _("Invalid value"));
+                currency_data[item.first] = coincap_price_usd * usd_conv_rate;
             }
         }
     }
-    else
+
+    const auto b = Model_Currency::GetBaseCurrency();
+    msg << _("Currency rates have been updated");
+    msg << "\n\n";
+    for (const auto & item : fiat)
     {
-        msg = output;
+        const wxString value0_str(fmt::format("{:>{}}", Model_Currency::toCurrency(item.second, b, 4).mb_str(), 20));
+        const wxString symbol(fmt::format("{:<{}}", item.first.mb_str(), 10));
+
+        if (currency_data.find(item.first) != currency_data.end())
+        {
+            auto value1 = currency_data[item.first];
+            const wxString value1_str(fmt::format("{:>{}}", Model_Currency::toCurrency(value1, b, 4).mb_str(), 20));
+            msg << wxString::Format("%s\t%s\t\t%s\n", symbol, value0_str, value1_str);
+        }
+        else
+        {
+            msg << wxString::Format("%s\t%s\t\t%s\n", symbol, value0_str, _("Invalid value"));
+        }
     }
+
 
     Model_Currency::instance().Savepoint();
     Model_CurrencyHistory::instance().Savepoint();
@@ -955,8 +951,7 @@ bool getCoincapAssetHistory(const wxString asset_id, wxDateTime begin_date, std:
     // prices in USD are multiplied by this value to convert them to the base currency
     double multiplier = 1.0;
     if (baseCurrencySymbol != _("USD")) {
-        Model_Currency inst = Model_Currency::instance();
-        auto usd = inst.GetCurrencyRecord("USD");
+        auto usd = Model_Currency::instance().GetCurrencyRecord("USD");
         if (usd == nullptr) {
             msg = _("Could not find currency 'USD', needed for converting history prices");
             return false;
