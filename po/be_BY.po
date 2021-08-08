@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-04 13:11+0300\n"
-"PO-Revision-Date: 2021-08-08 19:27\n"
+"PO-Revision-Date: 2021-08-08 19:43\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -2528,48 +2528,48 @@ msgstr "В&ыканаць"
 
 #: general_report_manager.cpp:396
 msgid "Run selected report."
-msgstr ""
+msgstr "Выканаць абраную справаздачу."
 
 #: general_report_manager.cpp:408
 msgid "Output"
-msgstr ""
+msgstr "Вывад"
 
 #: general_report_manager.cpp:431
 msgid "SQL"
-msgstr ""
+msgstr "SQL"
 
 #: general_report_manager.cpp:432
 msgid "Lua"
-msgstr ""
+msgstr "Lua"
 
 #: general_report_manager.cpp:433
 msgid "Template"
-msgstr ""
+msgstr "Шаблон"
 
 #: general_report_manager.cpp:486
 msgid "&Test"
-msgstr ""
+msgstr "&Праверка"
 
 #: general_report_manager.cpp:487
 msgid "Create Template"
-msgstr ""
+msgstr "Стварыць шаблон"
 
 #: general_report_manager.cpp:539
 #, c-format
 msgid "%zu row returned, duration: %lld ms"
 msgid_plural "%zu rows returned, duration: %lld ms"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "%zu радок вярнуўся, працягласць: %lld мс"
+msgstr[1] "%zu радкі вярнуліся, працягласць: %lld мс"
+msgstr[2] "%zu радкоў вярнулася, працягласць: %lld мс"
+msgstr[3] "%zu радкоў вярнулася, працягласць: %lld мс"
 
 #: general_report_manager.cpp:566
 msgid "SQL Syntax Error"
-msgstr ""
+msgstr "Сінтаксічная памылка SQL"
 
 #: general_report_manager.cpp:597
 msgid "Load report file:"
-msgstr ""
+msgstr "Запампаваць файл справаздачы:"
 
 #: general_report_manager.cpp:599 general_report_manager.cpp:1028
 msgid "General Report Manager files (*.grm)"
