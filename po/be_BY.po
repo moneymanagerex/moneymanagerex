@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-04 13:11+0300\n"
-"PO-Revision-Date: 2021-08-08 19:43\n"
+"PO-Revision-Date: 2021-08-08 22:42\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -2573,29 +2573,30 @@ msgstr "Запампаваць файл справаздачы:"
 
 #: general_report_manager.cpp:599 general_report_manager.cpp:1028
 msgid "General Report Manager files (*.grm)"
-msgstr ""
+msgstr "Файлы дыспетчара справаздачаў (*.grm)"
 
 #: general_report_manager.cpp:599 general_report_manager.cpp:1028
 msgid "ZIP files (*.zip)"
-msgstr ""
+msgstr "ZIP файлы (*.zip)"
 
 #: general_report_manager.cpp:662
 #, c-format
 msgid "Unable to open file:\n"
 "%s\n\n"
-msgstr ""
+msgstr "Немагчыма адчыніць файл:\n"
+"%s\n\n"
 
 #: general_report_manager.cpp:726
 msgid "New Empty Report"
-msgstr ""
+msgstr "Новая справаздача"
 
 #: general_report_manager.cpp:727
 msgid "New Sample Report"
-msgstr ""
+msgstr "Новы прыклад справаздачы"
 
 #: general_report_manager.cpp:730
 msgid "Change Group"
-msgstr ""
+msgstr "Змяніць групу"
 
 #: general_report_manager.cpp:732 general_report_manager.cpp:897
 msgid "Rename Group"
