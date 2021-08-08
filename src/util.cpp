@@ -651,7 +651,7 @@ bool getOnlineCurrencyRates(wxString& msg, int curr_id, bool used_only)
     {
 
         // fallback to coincap if some currencies were not found
-        DB_Table_CURRENCYFORMATS_V1::Data* usd = nullptr;
+        double usd_conv_rate = -1;
         for (const auto & item : fiat)
         {
             if (currency_data.find(item.first) == currency_data.end() && !g_fiat_curr().Contains(item.first))
@@ -660,14 +660,15 @@ bool getOnlineCurrencyRates(wxString& msg, int curr_id, bool used_only)
                 wxString coincap_msg;
                 double coincap_price_usd;
                 if (getCoincapInfoFromSymbol(item.first, coincap_id, coincap_price_usd, coincap_msg) && coincap_price_usd > 0) {
-                    if (usd == nullptr) {
-                        usd = Model_Currency::instance().GetCurrencyRecord("USD");
+                    if (usd_conv_rate < 0) {
+                        auto usd = Model_Currency::instance().GetCurrencyRecord("USD");
                         if (usd == nullptr) {
                             break; // can't use coincap without USD, since all prices are in USD so give up
                         }
+                        usd_conv_rate = usd->BASECONVRATE;
                     }
 
-                    currency_data[item.first] = coincap_price_usd * usd->BASECONVRATE;
+                    currency_data[item.first] = coincap_price_usd * usd_conv_rate;
                 }
             }
         }
@@ -955,8 +956,7 @@ bool getCoincapAssetHistory(const wxString asset_id, wxDateTime begin_date, std:
     // prices in USD are multiplied by this value to convert them to the base currency
     double multiplier = 1.0;
     if (baseCurrencySymbol != _("USD")) {
-        Model_Currency inst = Model_Currency::instance();
-        auto usd = inst.GetCurrencyRecord("USD");
+        auto usd = Model_Currency::instance().GetCurrencyRecord("USD");
         if (usd == nullptr) {
             msg = _("Could not find currency 'USD', needed for converting history prices");
             return false;
