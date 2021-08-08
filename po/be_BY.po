@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-04 13:11+0300\n"
-"PO-Revision-Date: 2021-08-07 23:05\n"
+"PO-Revision-Date: 2021-08-08 19:27\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -2485,46 +2485,46 @@ msgstr "Абярыце рахункі"
 
 #: filtertransdialog.cpp:1487
 msgid "Not colored"
-msgstr ""
+msgstr "Колер не пазначаны"
 
 #: general_report_manager.cpp:247 general_report_manager.cpp:663
 msgid "General Reports Manager"
-msgstr ""
+msgstr "Мэнаджар справаздачаў"
 
 #: general_report_manager.cpp:290 mmframe.cpp:800 mmframe.cpp:2598
 #: reports/myusage.cpp:141 reports/myusage.cpp:162
 msgid "Reports"
-msgstr ""
+msgstr "Справаздачы"
 
 #: general_report_manager.cpp:381 import_export/univcsvdialog.cpp:412
 #: mmframe.cpp:1303 mmframe.cpp:1376
 msgid "&Import"
-msgstr ""
+msgstr "&Імпарт"
 
 #: general_report_manager.cpp:383
 msgid "Locate and load a report file."
-msgstr ""
+msgstr "Абраць і запампаваць файл справаздачы."
 
 #: general_report_manager.cpp:385 import_export/univcsvdialog.cpp:414
 #: mmframe.cpp:1310 mmframe.cpp:1385
 msgid "&Export"
-msgstr ""
+msgstr "&Экспарт"
 
 #: general_report_manager.cpp:387
 msgid "Export the report to a new file."
-msgstr ""
+msgstr "Экспартаваць справаздачу у новый файл."
 
 #: general_report_manager.cpp:390 stockdialog.cpp:354
 msgid "&Save "
-msgstr ""
+msgstr "&Захаваць "
 
 #: general_report_manager.cpp:392
 msgid "Save changes."
-msgstr ""
+msgstr "Захаваць змены."
 
 #: general_report_manager.cpp:394
 msgid "&Run"
-msgstr ""
+msgstr "В&ыканаць"
 
 #: general_report_manager.cpp:396
 msgid "Run selected report."
