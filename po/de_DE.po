@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-04 13:11+0300\n"
-"PO-Revision-Date: 2021-08-08 20:38\n"
+"PO-Revision-Date: 2021-08-10 20:18\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -5559,7 +5559,7 @@ msgstr "zuletzt als Zahlungsempfänger eingesetzt"
 
 #: optionsettingsmisc.cpp:111
 msgid "Use default for payee"
-msgstr ""
+msgstr "Standard für Zahler verwenden"
 
 #: optionsettingsmisc.cpp:127
 msgid "Yes"
@@ -5811,7 +5811,7 @@ msgstr "Sonstige Symbolgröße"
 
 #: payeedialog.cpp:67
 msgid "Last Used Category"
-msgstr ""
+msgstr "Zuletzt verwendete Kategorie"
 
 #: payeedialog.cpp:67
 msgid "Default Category"
@@ -5856,11 +5856,11 @@ msgstr "Empfänger/Zahler verwalten, lösch Fehler"
 
 #: payeedialog.cpp:390
 msgid "Define Category"
-msgstr ""
+msgstr "Kategorie definieren"
 
 #: payeedialog.cpp:392
 msgid "Remove Category"
-msgstr ""
+msgstr "Kategorie löschen"
 
 #: payeedialog.cpp:407
 msgid "Relocate Payee"
