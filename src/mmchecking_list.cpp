@@ -273,7 +273,7 @@ void TransactionListCtrl::createColumns(mmListCtrl &lst)
         lst.InsertColumn(count
             , entry.HEADER
             , entry.FORMAT
-            , Model_Setting::instance().GetIntSetting(wxString::Format(m_col_width, m_real_columns[count]), entry.WIDTH));
+            , Model_Setting::instance().GetIntSetting(wxString::Format(m_col_width, GetRealColumn(count)), entry.WIDTH));
     }
 }
 
