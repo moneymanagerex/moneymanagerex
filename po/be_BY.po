@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-04 13:11+0300\n"
-"PO-Revision-Date: 2021-08-11 13:52\n"
+"PO-Revision-Date: 2021-08-11 14:31\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -841,7 +841,7 @@ msgstr "Дэталі аперацыі, што паўтараецца"
 
 #: billsdepositsdialog.cpp:422
 msgid "Specify the date when this bill or deposit is due"
-msgstr "Вызначыце дату наступнага налічэння"
+msgstr "Вызначыце дату наступнага залічэння"
 
 #: billsdepositsdialog.cpp:433
 msgid "Retard or advance the date of the 'next occurrence'"
@@ -1205,7 +1205,7 @@ msgstr "Аплата"
 
 #: billsdepositspanel.cpp:191
 msgid "MMEX allows regular payments to be set up as transactions. These transactions can also be regular deposits, or transfers that will occur at some future time. These transactions act as a reminder that an event is about to occur, and appears on the Home Page 14 days before the transaction is due. "
-msgstr "MMEX дазваляе планаваць рэгулярныя плацяжы. У дзень налічэння можна пераўтварыць запіс з планавальніка ў звычайную аперацыю. Нагадванні за 14 дзён да наступлення плацяжу можна пабачыць у зводцы. "
+msgstr "MMEX дазваляе планаваць рэгулярныя плацяжы. У дзень залічэння можна пераўтварыць запіс з планавальніка ў звычайную аперацыю. Нагадванні за 14 дзён да наступлення плацяжу можна пабачыць у зводцы. "
 
 #: billsdepositspanel.cpp:194
 msgid "Tip: These transactions can be set up to activate - allowing the user to adjust any values on the due date."
@@ -1358,7 +1358,7 @@ msgstr "Перыядычнасць:"
 
 #: budgetentrydialog.cpp:141
 msgid "Specify the frequency of the expense or deposit"
-msgstr "Абярыце перыядычнасць расхода або дахода"
+msgstr "Абярыце перыядычнасць выдатка або залічэння"
 
 #: budgetentrydialog.cpp:144 import_export/univcsvdialog.cpp:345
 msgid "Amount:"
@@ -2800,65 +2800,65 @@ msgstr "Фармат даты"
 
 #: import_export/qif_export.cpp:190
 msgid "Write to File"
-msgstr ""
+msgstr "Запіс у файл"
 
 #: import_export/qif_export.cpp:193 import_export/qif_import_gui.cpp:128
 #: import_export/univcsvdialog.cpp:168
 msgid "File Name:"
-msgstr ""
+msgstr "Назва файла:"
 
 #: import_export/qif_export.cpp:216 import_export/univcsvdialog.cpp:431
 msgid "Clear"
-msgstr ""
+msgstr "Ачысціць"
 
 #: import_export/qif_export.cpp:250
 msgid "Choose Account to Export from:"
-msgstr ""
+msgstr "Абярыце рахунак адкуль экспартаваць:"
 
 #: import_export/qif_export.cpp:298 import_export/qif_export.cpp:314
 msgid "Choose QIF data file to Export"
-msgstr ""
+msgstr "Абярыце файл QIF для экспарта"
 
 #: import_export/qif_export.cpp:300 import_export/qif_import_gui.cpp:723
 msgid "QIF Files (*.qif)"
-msgstr ""
+msgstr "QIF файлы (*.qif)"
 
 #: import_export/qif_export.cpp:306
 msgid "Choose JSON data file to Export"
-msgstr ""
+msgstr "Абярыце файл JSON для экспарта"
 
 #: import_export/qif_export.cpp:308
 msgid "JSON Files (*.json)"
-msgstr ""
+msgstr "JSON файлы (*.qif)"
 
 #: import_export/qif_export.cpp:316 import_export/univcsvdialog.cpp:1563
 msgid "CSV Files (*.csv)"
-msgstr ""
+msgstr "CSV файлы (*.qif)"
 
 #: import_export/qif_export.cpp:334
 msgid "No Account available for export"
-msgstr ""
+msgstr "Нямае рахунка для экспарта"
 
 #: import_export/qif_export.cpp:336
 msgid "No Accounts selected for export"
-msgstr ""
+msgstr "Не абраныя рахункі для экспарта"
 
 #: import_export/qif_export.cpp:338
 msgid "To Date less than From Date"
-msgstr ""
+msgstr "Несупадзенне датаў"
 
 #: import_export/qif_export.cpp:441
 msgid "Categories exported"
-msgstr ""
+msgstr "Катыгорыі экспартаваныя"
 
 #: import_export/qif_export.cpp:462 import_export/qif_import_gui.cpp:356
 #: import_export/qif_import_gui.cpp:807
 msgid "Please wait"
-msgstr ""
+msgstr "Калі ласка, пачакайце"
 
 #: import_export/qif_export.cpp:462
 msgid "Exporting"
-msgstr ""
+msgstr "Экспартую"
 
 #: import_export/qif_export.cpp:487
 #, c-format
@@ -2868,45 +2868,45 @@ msgstr "Экспартую аперацыю %zu"
 #: import_export/qif_export.cpp:637
 #, c-format
 msgid "Number of categories exported: %zu"
-msgstr ""
+msgstr "Колькасць экспартаваных катыгорыяў: %zu"
 
 #: import_export/qif_export.cpp:639
 #, c-format
 msgid "Number of transactions exported: %zu"
-msgstr "Колькасць экспартаваных аперацый: %zu"
+msgstr "Колькасць экспартаваных аперацыяў: %zu"
 
 #: import_export/qif_export.cpp:641
 #, c-format
 msgid "Number of accounts exported: %zu"
-msgstr ""
+msgstr "Колькасць экспартаваных рахункаў: %zu"
 
 #: import_export/qif_export.cpp:642 mmframe.cpp:1382
 msgid "Export to QIF"
-msgstr ""
+msgstr "Экспарт у QIF"
 
 #: import_export/qif_import_gui.cpp:129
 msgid "Choose &file"
-msgstr ""
+msgstr "Абраць &файл"
 
 #: import_export/qif_import_gui.cpp:142 import_export/univcsvdialog.cpp:322
 msgid "Encoding:"
-msgstr ""
+msgstr "Кадоўка:"
 
 #: import_export/qif_import_gui.cpp:168
 msgid "Filtering Details:"
-msgstr ""
+msgstr "Дыталі фільтра:"
 
 #: import_export/qif_import_gui.cpp:207
 msgid "Data"
-msgstr ""
+msgstr "Дадзеныя"
 
 #: import_export/qif_import_gui.cpp:264
 msgid "Use account number instead of account name"
-msgstr ""
+msgstr "Выкарыстоўваць нумар рахунка замест назвы"
 
 #: import_export/qif_import_gui.cpp:268
 msgid "Include payee field in notes"
-msgstr ""
+msgstr "Уключыць поле атрымальніка плацяжа ў нататкі"
 
 #: import_export/qif_import_gui.cpp:347 import_export/qif_import_gui.cpp:350
 #: import_export/qif_import_gui.cpp:549 import_export/qif_import_gui.cpp:1122
@@ -2916,44 +2916,44 @@ msgstr ""
 #: transdialog.cpp:998 transdialog.cpp:1002 transdialog.cpp:1007 webapp.cpp:399
 #: webapp.cpp:408
 msgid "Unknown"
-msgstr ""
+msgstr "Невядома"
 
 #: import_export/qif_import_gui.cpp:356
 msgid "Scanning"
-msgstr ""
+msgstr "Сканаванне"
 
 #: import_export/qif_import_gui.cpp:384
 #, c-format
 msgid "Reading line %zu, %lld ms"
-msgstr ""
+msgstr "Чытанне радка %zu, %lld мс"
 
 #: import_export/qif_import_gui.cpp:390
 #, c-format
 msgid "Line %zu \t %s\n"
-msgstr ""
+msgstr "Радок %zu \t %s\n"
 
 #: import_export/qif_import_gui.cpp:463
 #, c-format
 msgid "Number of lines read from QIF file: %zu in %lld ms"
-msgstr ""
+msgstr "Кольскасць прачытаных радкоў з файла QIF: %zu за %lld мс"
 
 #: import_export/qif_import_gui.cpp:466
 msgid "Press OK Button to continue"
-msgstr ""
+msgstr "Націсніце кнопку Добра, каб працягнуць"
 
 #: import_export/qif_import_gui.cpp:665 import_export/qif_import_gui.cpp:694
 #: import_export/qif_import_gui.cpp:711
 msgid "OK"
-msgstr ""
+msgstr "Добра"
 
 #: import_export/qif_import_gui.cpp:675 import_export/qif_import_gui.cpp:694
 #: stockspanel.cpp:460
 msgid "Missing"
-msgstr ""
+msgstr "Адсутнічае"
 
 #: import_export/qif_import_gui.cpp:721
 msgid "Choose QIF data file to Import"
-msgstr ""
+msgstr "Абярыце файл QIF для імпарта"
 
 #: import_export/qif_import_gui.cpp:800
 msgid "Do you want to import all transaction ?"
@@ -2961,27 +2961,27 @@ msgstr "Жадаеце імпратаваць усе аперацыі?"
 
 #: import_export/qif_import_gui.cpp:801
 msgid "All missing account, payees and categories will be created."
-msgstr ""
+msgstr "Будуць створаныя усе рахункі, платнікі і катыгорыя, што адсутнічаюць."
 
 #: import_export/qif_import_gui.cpp:802
 msgid "Confirm Import"
-msgstr ""
+msgstr "Спраўдзіць імпарт"
 
 #: import_export/qif_import_gui.cpp:807
 msgid "Importing"
-msgstr ""
+msgstr "Імпартую"
 
 #: import_export/qif_import_gui.cpp:809
 msgid "Importing Accounts"
-msgstr ""
+msgstr "Імпартую рахункі"
 
 #: import_export/qif_import_gui.cpp:816
 msgid "Importing Payees"
-msgstr ""
+msgstr "Імпартую платнікоў"
 
 #: import_export/qif_import_gui.cpp:819
 msgid "Importing Categories"
-msgstr ""
+msgstr "Імпартую катыгорыі"
 
 #: import_export/qif_import_gui.cpp:836
 #, c-format
@@ -2998,12 +2998,12 @@ msgstr "Імпартаваць састаўныя аперацыі"
 
 #: import_export/qif_import_gui.cpp:898
 msgid "Import finished successfully"
-msgstr ""
+msgstr "Імпарт скончыўся паспяхова"
 
 #: import_export/qif_import_gui.cpp:898
 #, c-format
 msgid "Total Imported: %zu"
-msgstr ""
+msgstr "Імпартавана агулам: %zu"
 
 #: import_export/qif_import_gui.cpp:906 import_export/univcsvdialog.cpp:1088
 msgid "Imported transactions discarded by user!"
@@ -3011,7 +3011,7 @@ msgstr "Імпартаванне скасаванае карыстальніка
 
 #: import_export/qif_import_gui.cpp:908 import_export/qif_import_gui.h:44
 msgid "QIF Import"
-msgstr ""
+msgstr "Імпарт з QIF"
 
 #: import_export/qif_import_gui.cpp:988
 msgid "Transaction code is missing"
@@ -3023,7 +3023,7 @@ msgstr "Адсутнічае або няслушны атрымальнік гэ
 
 #: import_export/qif_import_gui.cpp:1020
 msgid "Date format or date mask is incorrect"
-msgstr ""
+msgstr "Фармат або маска даты няслушная"
 
 #: import_export/qif_import_gui.cpp:1032
 msgid "Transaction Account is incorrect"
@@ -3044,73 +3044,73 @@ msgstr "Няслушная катыгорыя аперацыі"
 #: import_export/qif_import_gui.cpp:1181
 #, c-format
 msgid "Added account: %s"
-msgstr ""
+msgstr "Даданы рахунак: %s"
 
 #: import_export/qif_import_gui.cpp:1222 import_export/univcsvdialog.cpp:884
 #, c-format
 msgid "Added payee: %s"
-msgstr ""
+msgstr "Даданы платнік: %s"
 
 #: import_export/univcsvdialog.cpp:109
 msgid "SubCategory"
-msgstr ""
+msgstr "Падкатыгорыя"
 
 #: import_export/univcsvdialog.cpp:112
 msgid "Don't Care"
-msgstr ""
+msgstr "Ігнараваць"
 
 #: import_export/univcsvdialog.cpp:115 mmchecking_list.cpp:225
 #: mmhomepage.cpp:657 reports/summary.cpp:167
 msgid "Balance"
-msgstr ""
+msgstr "Баланс"
 
 #: import_export/univcsvdialog.cpp:118
 msgid "Import dialog"
-msgstr ""
+msgstr "Імпарт файла"
 
 #: import_export/univcsvdialog.cpp:118
 msgid "Export dialog"
-msgstr ""
+msgstr "Экспарт файла"
 
 #: import_export/univcsvdialog.cpp:181
 msgid "&Browse"
-msgstr ""
+msgstr "&Агляд"
 
 #: import_export/univcsvdialog.cpp:213
 msgid "Specify the order of fields in the file"
-msgstr ""
+msgstr "Пакажыце парадак палёў у файле"
 
 #: import_export/univcsvdialog.cpp:244
 msgid "&MMEX format"
-msgstr ""
+msgstr "Фармат &MMEX"
 
 #: import_export/univcsvdialog.cpp:261
 msgid "&Up"
-msgstr ""
+msgstr "&Да гары"
 
 #: import_export/univcsvdialog.cpp:265
 msgid "&Down"
-msgstr ""
+msgstr "&Уніз"
 
 #: import_export/univcsvdialog.cpp:283
 msgid "Account: "
-msgstr ""
+msgstr "Рахунак: "
 
 #: import_export/univcsvdialog.cpp:296
 msgid "Date Format: "
-msgstr ""
+msgstr "Фармат даты: "
 
 #: import_export/univcsvdialog.cpp:308
 msgid "CSV Delimiter:"
-msgstr ""
+msgstr "Падзяляльнік CSV:"
 
 #: import_export/univcsvdialog.cpp:336
 msgid "Export column titles"
-msgstr ""
+msgstr "Экспарт загалоўкаў слупкоў"
 
 #: import_export/univcsvdialog.cpp:351
 msgid "Positive values are deposits"
-msgstr ""
+msgstr "Станоўчыя значэнні гэта залічэнні"
 
 #: import_export/univcsvdialog.cpp:352
 msgid "Positive values are withdrawals"
@@ -3118,19 +3118,19 @@ msgstr "Пазітыўныя значэнні — гэта спісанні"
 
 #: import_export/univcsvdialog.cpp:365
 msgid "Rows to ignore"
-msgstr ""
+msgstr "Сколькі радкоў ігнараваць"
 
 #: import_export/univcsvdialog.cpp:372
 msgid "From start: "
-msgstr ""
+msgstr "Ад пачатка: "
 
 #: import_export/univcsvdialog.cpp:385
 msgid "From end: "
-msgstr ""
+msgstr "Ад канца: "
 
 #: import_export/univcsvdialog.cpp:397
 msgid "Preview"
-msgstr ""
+msgstr "Перадпрагляд"
 
 #: import_export/univcsvdialog.cpp:437
 msgid "Choose XML data file to Import"
@@ -3206,7 +3206,7 @@ msgstr ""
 
 #: import_export/univcsvdialog.cpp:927
 msgid "Amount field or both Withdrawal and Deposit fields are required."
-msgstr "Неабходна запоўніць або поле «Сума» або палі «Зняцце сродкаў» разам з «Дэпазіт»."
+msgstr "Неабходна запоўніць або поле «Сума» або палі «Выдатак» разам з «Залічэнне»."
 
 #: import_export/univcsvdialog.cpp:928 import_export/univcsvdialog.cpp:1057
 #: themes.cpp:183 webappdialog.cpp:417
@@ -3238,7 +3238,7 @@ msgstr ""
 
 #: import_export/univcsvdialog.cpp:1010
 msgid "Type (withdrawal/deposit) unknown."
-msgstr "Невядомы тып (спісанне/папаўненне)."
+msgstr "Невядомы тып (выдатак/залічэнне)."
 
 #: import_export/univcsvdialog.cpp:1035
 #, c-format
@@ -3699,7 +3699,7 @@ msgstr "&Новае спісанне"
 
 #: mmchecking_list.cpp:345
 msgid "&New Deposit"
-msgstr ""
+msgstr "&Новае залічэнне"
 
 #: mmchecking_list.cpp:347
 msgid "&New Transfer"
@@ -4372,7 +4372,7 @@ msgstr "&Запланаваныя аперацыі"
 
 #: mmframe.cpp:1536
 msgid "Bills && Deposits"
-msgstr ""
+msgstr "Чэкі і залічэнні"
 
 #: mmframe.cpp:1540
 msgid "&Assets"
@@ -6275,7 +6275,7 @@ msgstr ""
 
 #: reports/transactions.cpp:176
 msgid "All Transactions: Withdrawals, Deposits, and Transfers"
-msgstr "Усе аперацыі: спісанні, папаўненні і пераказы"
+msgstr "Усе аперацыі: выдаткі, залічэнні і пераказы"
 
 #: reports/transactions.cpp:210
 msgid "All Transactions excluding Transfers"
@@ -7247,7 +7247,8 @@ msgid "Term accounts are specialized bank accounts. Intended for asset\n"
 "type accounts such as Term Deposits and Bonds. These accounts\n"
 "can have regular money coming in and out, being outside the\n"
 "general income stream."
-msgstr ""
+msgstr "Тэрміновыя рахункі - гэта спецыялізаваныя банкаўскія рахункі. Прызначаныя для актываў тыпавыя рахункі, такія як тэрміновыя дэпазіты і аблігацыі. На гэтыя рахункі\n"
+"могуць залічацца і спісвацца звычайныя грошы, знаходзячыся па-за межамі агульнага патока дахода."
 
 #: wizard_newaccount.cpp:162
 msgid "Base Account Currency Not set."
