@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-04 13:11+0300\n"
-"PO-Revision-Date: 2021-08-11 14:31\n"
+"PO-Revision-Date: 2021-08-11 14:59\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -3134,47 +3134,47 @@ msgstr "Перадпрагляд"
 
 #: import_export/univcsvdialog.cpp:437
 msgid "Choose XML data file to Import"
-msgstr ""
+msgstr "Абярыце файл XML для імпарта"
 
 #: import_export/univcsvdialog.cpp:437
 msgid "Choose CSV data file to Import"
-msgstr ""
+msgstr "Абярыце файл CSV для імпарта"
 
 #: import_export/univcsvdialog.cpp:438
 msgid "Choose XML data file to Export"
-msgstr ""
+msgstr "Абярыце файл XML для экспарта"
 
 #: import_export/univcsvdialog.cpp:438
 msgid "Choose CSV data file to Export"
-msgstr ""
+msgstr "Абярыце файл CSV для экспарта"
 
 #: import_export/univcsvdialog.cpp:441
 msgid "Template name"
-msgstr ""
+msgstr "Назва шаблона"
 
 #: import_export/univcsvdialog.cpp:442
 msgid "Save Template"
-msgstr ""
+msgstr "Захаваць шаблон"
 
 #: import_export/univcsvdialog.cpp:444
 msgid "MMEX standard format"
-msgstr ""
+msgstr "Стандартны фармат MMEX"
 
 #: import_export/univcsvdialog.cpp:445
 msgid "Move Up"
-msgstr ""
+msgstr "Перамясціць вышэй"
 
 #: import_export/univcsvdialog.cpp:446
 msgid "Move &Down"
-msgstr ""
+msgstr "Перамясціць &ніжэй"
 
 #: import_export/univcsvdialog.cpp:447 optionsettingsmisc.cpp:201
 msgid "Specify the delimiter to use when importing/exporting CSV files"
-msgstr ""
+msgstr "Пакажыце, які падзельнік выкарыстоўваць пры імпарце / экспарце CSV файлаў"
 
 #: import_export/univcsvdialog.cpp:448
 msgid "Import File"
-msgstr ""
+msgstr "Імпарт файла"
 
 #: import_export/univcsvdialog.cpp:449
 msgid "Export File"
