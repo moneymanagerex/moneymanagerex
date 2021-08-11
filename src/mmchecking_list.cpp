@@ -118,6 +118,9 @@ void TransactionListCtrl::sortTable()
     case TransactionListCtrl::COL_BALANCE:
         std::stable_sort(this->m_trans.begin(), this->m_trans.end(), Model_Checking::SorterByBALANCE());
         break;
+    case TransactionListCtrl::COL_CREDIT:
+        std::stable_sort(this->m_trans.begin(), this->m_trans.end(), Model_Checking::SorterByBALANCE());
+        break;
     case TransactionListCtrl::COL_NOTES:
         std::stable_sort(this->m_trans.begin(), this->m_trans.end(), SorterByNOTES());
         break;
@@ -224,6 +227,12 @@ TransactionListCtrl::TransactionListCtrl(
     {
         m_columns.push_back(PANEL_COLUMN(_("Balance"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT));
         m_real_columns.push_back(COL_BALANCE);
+        Model_Account::Data* account = Model_Account::instance().get(m_cp->m_AccountID);
+        if (0 != account->CREDITLIMIT)
+        {
+            m_columns.push_back(PANEL_COLUMN(_("Credit"), wxLIST_AUTOSIZE_USEHEADER, wxLIST_FORMAT_RIGHT));
+            m_real_columns.push_back(COL_CREDIT);
+        }
     }
     m_columns.push_back(PANEL_COLUMN(_("Notes"), 250, wxLIST_FORMAT_LEFT));
     m_real_columns.push_back(COL_NOTES);
@@ -241,7 +250,9 @@ TransactionListCtrl::TransactionListCtrl(
         }
     }
 
-    m_col_width = m_cp->m_allAccounts ? "ALLTRANS_COL%d_WIDTH" : "CHECK_COL%d_WIDTH";
+    // V2 used as now maps to real column names and this resets everything to default
+    // to avoid strange column widths when this code version is first
+    m_col_width = m_cp->m_allAccounts ? "ALLTRANS_COLV2%d_WIDTH" : "CHECK2_COLV2%d_WIDTH";
 
     m_default_sort_column = COL_DEF_SORT;
     m_today = wxDateTime::Today().FormatISODate();
@@ -262,7 +273,7 @@ void TransactionListCtrl::createColumns(mmListCtrl &lst)
         lst.InsertColumn(count
             , entry.HEADER
             , entry.FORMAT
-            , Model_Setting::instance().GetIntSetting(wxString::Format(m_col_width, count), entry.WIDTH));
+            , Model_Setting::instance().GetIntSetting(wxString::Format(m_col_width, m_real_columns[count]), entry.WIDTH));
     }
 }
 
@@ -1433,6 +1444,9 @@ const wxString TransactionListCtrl::getItem(long item, long column, bool realenu
         return "";
     case TransactionListCtrl::COL_BALANCE:
         return Model_Currency::toString(tran.BALANCE, currency);
+    case TransactionListCtrl::COL_CREDIT:
+        Model_Account::Data* account = Model_Account::instance().get(m_cp->m_AccountID);
+        return Model_Currency::toString(account->CREDITLIMIT + tran.BALANCE, currency);
     }
 
     return value;

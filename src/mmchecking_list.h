@@ -56,6 +56,7 @@ public:
         COL_WITHDRAWAL,
         COL_DEPOSIT,
         COL_BALANCE,
+        COL_CREDIT,
         COL_NOTES,
         COL_UDFC01,
         COL_UDFC02,
@@ -110,7 +111,6 @@ protected:
 
 private:
     void markItem(long selectedItem);
-    std::vector<EColumn> m_real_columns; // map from actual column to EColumn
 
     std::vector<int> m_selectedForCopy; // the copied transactions (held for pasting)
     std::vector<int> m_pasted_id;       // the last pasted transactions
