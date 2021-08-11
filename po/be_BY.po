@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-04 13:11+0300\n"
-"PO-Revision-Date: 2021-08-11 14:59\n"
+"PO-Revision-Date: 2021-08-11 15:14\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -3174,35 +3174,36 @@ msgstr "Пакажыце, які падзельнік выкарыстоўвац
 
 #: import_export/univcsvdialog.cpp:448
 msgid "Import File"
-msgstr "Імпарт файла"
+msgstr "Імпартаваць файл"
 
 #: import_export/univcsvdialog.cpp:449
 msgid "Export File"
-msgstr ""
+msgstr "Экспартаваць файл"
 
 #: import_export/univcsvdialog.cpp:539
 #, c-format
 msgid "Default account '%s' for this template does not exist.\n"
 "Please select a new account."
-msgstr ""
+msgstr "Рахунак па змаўчанні '%s' для гэтага шаблона не існуе.\n"
+"Калі ласка, абярыце іншы рахунак."
 
 #: import_export/univcsvdialog.cpp:541
 msgid "Account does not exist"
-msgstr ""
+msgstr "Рахунак не існуе"
 
 #: import_export/univcsvdialog.cpp:684 import_export/univcsvdialog.cpp:755
 #: import_export/univcsvdialog.cpp:1841
 #, c-format
 msgid "Positive if type has '%s'"
-msgstr ""
+msgstr "Станоўчы, калі тып мае '%s'"
 
 #: import_export/univcsvdialog.cpp:925
 msgid "Incorrect fields specified for import!"
-msgstr ""
+msgstr "Для імпарта паказаныя няслушныя палі!"
 
 #: import_export/univcsvdialog.cpp:926
 msgid "Date field is required."
-msgstr ""
+msgstr "Поле Дата з'яўляецца абавязковым."
 
 #: import_export/univcsvdialog.cpp:927
 msgid "Amount field or both Withdrawal and Deposit fields are required."
@@ -3211,7 +3212,7 @@ msgstr "Неабходна запоўніць або поле «Сума» аб�
 #: import_export/univcsvdialog.cpp:928 import_export/univcsvdialog.cpp:1057
 #: themes.cpp:183 webappdialog.cpp:417
 msgid "Import"
-msgstr ""
+msgstr "Імпарт"
 
 #: import_export/univcsvdialog.cpp:980
 #, c-format
@@ -3221,20 +3222,20 @@ msgstr "Аперацыі былі імпартаваныя на рахунак %
 #: import_export/univcsvdialog.cpp:991
 #, c-format
 msgid "Line %ld: Empty"
-msgstr ""
+msgstr "Радок %ld: пуста"
 
 #: import_export/univcsvdialog.cpp:1005
 #, c-format
 msgid "Line %ld: Error:"
-msgstr ""
+msgstr "Радок %ld: памылка:"
 
 #: import_export/univcsvdialog.cpp:1007
 msgid "Invalid Date."
-msgstr ""
+msgstr "Памылковая дата."
 
 #: import_export/univcsvdialog.cpp:1008 mmTextCtrl.cpp:98
 msgid "Invalid Amount."
-msgstr ""
+msgstr "Няслушная сума."
 
 #: import_export/univcsvdialog.cpp:1010
 msgid "Type (withdrawal/deposit) unknown."
@@ -3243,41 +3244,41 @@ msgstr "Невядомы тып (выдатак/залічэнне)."
 #: import_export/univcsvdialog.cpp:1035
 #, c-format
 msgid "Line %ld: OK, imported."
-msgstr ""
+msgstr "Радок %ld: слушны, імпартаваны."
 
 #: import_export/univcsvdialog.cpp:1042
 #, c-format
 msgid "Total Lines: %ld"
-msgstr ""
+msgstr "Радкоў агулам: %ld"
 
 #: import_export/univcsvdialog.cpp:1044
 #, c-format
 msgid "Lines Selected to Import: %ld"
-msgstr ""
+msgstr "Для імпарта абрана радкоў: %ld"
 
 #: import_export/univcsvdialog.cpp:1046
 #, c-format
 msgid "Empty Lines: %ld"
-msgstr ""
+msgstr "Пустых радкоў: %ld"
 
 #: import_export/univcsvdialog.cpp:1048
 #, c-format
 msgid "Imported: %ld"
-msgstr ""
+msgstr "Імпартавана: %ld"
 
 #: import_export/univcsvdialog.cpp:1050
 #, c-format
 msgid "Errored: %ld"
-msgstr ""
+msgstr "З памылкамі: %ld"
 
 #: import_export/univcsvdialog.cpp:1053
 #, c-format
 msgid "Log file written to: %s"
-msgstr ""
+msgstr "Файл справаздачы запісаны ў: %s"
 
 #: import_export/univcsvdialog.cpp:1056 stockdialog.cpp:680
 msgid "Please confirm saving..."
-msgstr ""
+msgstr "Калі ласка, сцвердзіце захаванне..."
 
 #: import_export/univcsvdialog.cpp:1089
 msgid "No imported transactions!"
@@ -3285,31 +3286,31 @@ msgstr "Няма імпартаваных аперацый!"
 
 #: import_export/univcsvdialog.cpp:1107
 msgid "Incorrect fields specified for export! Requires at least Date and Amount."
-msgstr ""
+msgstr "Паказаныя няслушныя поля для экспарта! Абавязковыя дата і сума."
 
 #: import_export/univcsvdialog.cpp:1108 import_export/univcsvdialog.cpp:1248
 msgid "Export"
-msgstr ""
+msgstr "Экспартаваць"
 
 #: import_export/univcsvdialog.cpp:1118
 msgid "Overwrite existing file?"
-msgstr ""
+msgstr "Перазапісаць файл, што існуе?"
 
 #: import_export/univcsvdialog.cpp:1118
 msgid "File exists"
-msgstr ""
+msgstr "Файл існуе"
 
 #: import_export/univcsvdialog.cpp:1124
 msgid "Failed to delete existing file. File may be locked by another program."
-msgstr ""
+msgstr "Не атрымалася выдаліць існуючы файл. Файл можа быць заблякаваны іншай праграмай."
 
 #: import_export/univcsvdialog.cpp:1125
 msgid "Destination file error"
-msgstr ""
+msgstr "Памылка файла прызначэння"
 
 #: import_export/univcsvdialog.cpp:1133 mmSimpleDialogs.cpp:261
 msgid "Invalid Account"
-msgstr ""
+msgstr "Няслушны рахунак"
 
 #: import_export/univcsvdialog.cpp:1247
 #, c-format
@@ -3318,35 +3319,35 @@ msgstr "Аперацыяў экспартавана: %ld"
 
 #: import_export/univcsvdialog.cpp:1545 stockdialog.cpp:586
 msgid "Choose CSV data file to import"
-msgstr ""
+msgstr "Абярыце файл CSV для імпарта"
 
 #: import_export/univcsvdialog.cpp:1548
 msgid "Choose CSV data file to export"
-msgstr ""
+msgstr "Абярыце файл CSV для экспарта"
 
 #: import_export/univcsvdialog.cpp:1551
 msgid "Choose XML data file to import"
-msgstr ""
+msgstr "Абярыце файл XML для імпарта"
 
 #: import_export/univcsvdialog.cpp:1554
 msgid "Choose XML data file to export"
-msgstr ""
+msgstr "Абярыце файл XML для экспарта"
 
 #: import_export/univcsvdialog.cpp:1562
 msgid "XML Files (*.xml)"
-msgstr ""
+msgstr "XML-файлы (*.xml)"
 
 #: import_export/univcsvdialog.cpp:1562
 msgid "All Files"
-msgstr ""
+msgstr "Усе файлы"
 
 #: import_export/univcsvdialog.cpp:1837
 msgid "Please, type the word indicating positive values in your CSV file, e.g. 'debit'"
-msgstr ""
+msgstr "Калі ласка, пакажыце слова, якое паказвае станоўчыя значэння ў вашым файле CSV, напрыклад, 'дэбет'"
 
 #: import_export/univcsvdialog.cpp:1837
 msgid "Enter a value"
-msgstr ""
+msgstr "Пакажыце значэнне"
 
 #: maincurrencydialog.cpp:74 reports/summarystocks.cpp:191 stockdialog.cpp:427
 #: stocks_list.cpp:91
