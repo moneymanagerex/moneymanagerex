@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-04 13:11+0300\n"
-"PO-Revision-Date: 2021-08-08 23:07\n"
+"PO-Revision-Date: 2021-08-11 13:52\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -2707,45 +2707,45 @@ msgstr "Тэма %s не ўтрымлівае некаторых элемент�
 #: import_export/parsers.cpp:46 import_export/univcsvdialog.cpp:1579
 #: mmSimpleDialogs.cpp:253
 msgid "Unable to open file."
-msgstr ""
+msgstr "Немагчыма адчыніць файл."
 
 #: import_export/parsers.cpp:46 import_export/parsers.cpp:89
 #: import_export/univcsvdialog.cpp:970 mmframe.cpp:2265 mmframe.cpp:2284
 msgid "Universal CSV Import"
-msgstr ""
+msgstr "Універсальны CSV імпарт"
 
 #: import_export/parsers.cpp:89
 msgid "Unable to create file."
-msgstr ""
+msgstr "Немагчыма стварыць файл."
 
 #: import_export/parsers.cpp:109 import_export/parsers.cpp:248
 msgid "Could not save file."
-msgstr ""
+msgstr "Немагчыма захаваць файл."
 
 #: import_export/parsers.cpp:109 import_export/parsers.cpp:248
 msgid "Export error"
-msgstr ""
+msgstr "Памылка экспарта"
 
 #: import_export/parsers.cpp:135 import_export/parsers.cpp:144
 msgid "File is not in Excel XML Spreadsheet 2003 format."
-msgstr ""
+msgstr "Файл не ў фармаце Excel XML Spreadsheet 2003."
 
 #: import_export/parsers.cpp:135 import_export/parsers.cpp:144
 #: import_export/parsers.cpp:157 import_export/parsers.cpp:165
 msgid "Parsing error"
-msgstr ""
+msgstr "Памылка парсынга"
 
 #: import_export/parsers.cpp:157
 msgid "Could not find Worksheet."
-msgstr ""
+msgstr "Немагчыма знайсці працоўны аркуш."
 
 #: import_export/parsers.cpp:163
 msgid "Table"
-msgstr ""
+msgstr "Табліца"
 
 #: import_export/parsers.cpp:165
 msgid "Could not find Table."
-msgstr ""
+msgstr "Немагчыма знайсці табліцу."
 
 #: import_export/parsers.cpp:216
 msgid "Transactions"
@@ -2754,49 +2754,49 @@ msgstr "Аперацыі"
 #: import_export/qif_export.cpp:48 import_export/qif_export.cpp:251
 #: import_export/qif_export.cpp:345
 msgid "QIF Export"
-msgstr ""
+msgstr "Экспарт у QIF"
 
 #: import_export/qif_export.cpp:49
 msgid "JSON Export"
-msgstr ""
+msgstr "Экспарт у JSON"
 
 #: import_export/qif_export.cpp:50
 msgid "CSV Export"
-msgstr ""
+msgstr "Экспарт у CSV"
 
 #: import_export/qif_export.cpp:110
 msgid "Parameters"
-msgstr ""
+msgstr "Параметры"
 
 #: import_export/qif_export.cpp:115 import_export/qif_import_gui.cpp:197
 msgid "Log"
-msgstr ""
+msgstr "Справаздача"
 
 #: import_export/qif_export.cpp:127
 msgid "QIF"
-msgstr ""
+msgstr "QIF"
 
 #: import_export/qif_export.cpp:128
 msgid "JSON"
-msgstr ""
+msgstr "JSON"
 
 #: import_export/qif_export.cpp:129
 msgid "CSV"
-msgstr ""
+msgstr "CSV"
 
 #: import_export/qif_export.cpp:143 mmframe.cpp:3093 mmframe.cpp:3097
 #: mmframe.cpp:3116 mmframe.cpp:3120
 msgid "Accounts"
-msgstr ""
+msgstr "Рахункі"
 
 #: import_export/qif_export.cpp:164 import_export/qif_import_gui.cpp:184
 msgid "To Date"
-msgstr ""
+msgstr "Да даты"
 
 #: import_export/qif_export.cpp:178 import_export/qif_import_gui.cpp:276
 #: optionsettingsgeneral.cpp:96
 msgid "Date Format"
-msgstr ""
+msgstr "Фармат даты"
 
 #: import_export/qif_export.cpp:190
 msgid "Write to File"
