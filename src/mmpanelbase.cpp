@@ -1,6 +1,7 @@
 /*******************************************************
 Copyright (C) 2006 Madhan Kanagavel
 Copyright (C) 2015 James Higley
+Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -124,7 +125,8 @@ void mmListCtrl::OnColRightClick(wxListEvent& event)
         {
             int id = MENU_HEADER_COLUMN + i;
             submenu->AppendCheckItem(id, m_columns[i].HEADER);
-            if (Model_Setting::instance().GetIntSetting(wxString::Format(m_col_width, i), m_columns[i].WIDTH) != 0)
+            int colidx = (0 == m_real_columns.size()) ? i : m_real_columns[i];
+            if (Model_Setting::instance().GetIntSetting(wxString::Format(m_col_width, colidx), m_columns[i].WIDTH) != 0)
                 submenu->Check(id, true);
         }
         menu.AppendSubMenu(submenu, _("Hide/Show Columns"));
@@ -160,7 +162,8 @@ void mmListCtrl::OnHeaderHide(wxCommandEvent& WXUNUSED(event))
     if (m_ColumnHeaderNbr >= 0 && !m_col_width.IsEmpty())
     {
         SetColumnWidth(m_ColumnHeaderNbr, 0);
-        const wxString parameter_name = wxString::Format(m_col_width, m_ColumnHeaderNbr);
+        int colidx = (0 == m_real_columns.size()) ? m_ColumnHeaderNbr : m_real_columns[m_ColumnHeaderNbr];
+        const wxString parameter_name = wxString::Format(m_col_width, colidx);
         Model_Setting::instance().Set(parameter_name, 0);
     }
 }
@@ -180,7 +183,8 @@ void mmListCtrl::OnHeaderReset(wxCommandEvent& WXUNUSED(event))
         SetColumnWidth(i, m_columns[i].WIDTH);
         if (!m_col_width.IsEmpty())
         {
-            parameter_name = wxString::Format(m_col_width, i);
+            int colidx = (0 == m_real_columns.size()) ? i : m_real_columns[i];
+            parameter_name = wxString::Format(m_col_width, colidx);
             Model_Setting::instance().Set(parameter_name, GetColumnWidth(i));
         }
     }
@@ -200,7 +204,8 @@ void mmListCtrl::OnHeaderColumn(wxCommandEvent& event)
         int default_width = m_columns[columnNbr].WIDTH;
         if (default_width == 0)
             default_width = wxLIST_AUTOSIZE_USEHEADER;
-        const wxString parameter_name = wxString::Format(m_col_width, columnNbr);
+        int colidx = (0 == m_real_columns.size()) ? columnNbr : m_real_columns[columnNbr];
+        const wxString parameter_name = wxString::Format(m_col_width, colidx);
         int cur_width = Model_Setting::instance().GetIntSetting(parameter_name, default_width);
         int new_width = (cur_width != 0 ? 0 : default_width);
         SetColumnWidth(columnNbr, new_width);
@@ -210,13 +215,17 @@ void mmListCtrl::OnHeaderColumn(wxCommandEvent& event)
 
 int mmListCtrl::GetColumnWidthSetting(int column_number, int default_size)
 {
-    return Model_Setting::instance().GetIntSetting(wxString::Format(m_col_width, column_number), default_size);
+    int colidx = (0 == m_real_columns.size()) ? column_number : m_real_columns[column_number];
+    return Model_Setting::instance().GetIntSetting(wxString::Format(m_col_width, colidx), default_size);
 }
 
 void mmListCtrl::SetColumnWidthSetting(int column_number, int column_width)
 {
     if (!m_col_width.IsEmpty())
-        Model_Setting::instance().Set(wxString::Format(m_col_width, column_number), column_width);
+    {
+        int colidx = (0 == m_real_columns.size()) ? column_number : m_real_columns[column_number];
+        Model_Setting::instance().Set(wxString::Format(m_col_width, colidx), column_width);
+    }
 }
 
 mmPanelBase::mmPanelBase()

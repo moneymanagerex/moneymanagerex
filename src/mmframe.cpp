@@ -2891,7 +2891,13 @@ void mmGUIFrame::createCheckingAccountPage(int accountID)
     const auto time = wxDateTime::UNow();
 
     m_nav_tree_ctrl->SetEvtHandlerEnabled(false);
-    if (panelCurrent_->GetId() == mmID_CHECKING)
+
+    // Check if the credit balance needs to be displayed or not
+    // If this differs from before then we need to rebuild
+    Model_Account::Data* account = Model_Account::instance().get(accountID);
+    bool newCreditDisplayed = (0 == account->CREDITLIMIT) ? false : true;
+
+    if (panelCurrent_->GetId() == mmID_CHECKING && (newCreditDisplayed == creditDisplayed))
     {
         mmCheckingPanel* checkingAccountPage = wxDynamicCast(panelCurrent_, mmCheckingPanel);
         checkingAccountPage->DisplayAccountDetails(accountID);
@@ -2899,6 +2905,8 @@ void mmGUIFrame::createCheckingAccountPage(int accountID)
     else
     {
         windowsFreezeThaw(homePanel_);
+        Model_Account::Data* account = Model_Account::instance().get(accountID);
+        creditDisplayed = (0 == account->CREDITLIMIT) ? false : true;
         wxSizer *sizer = cleanupHomePanel();
         panelCurrent_ = new mmCheckingPanel(homePanel_, this, accountID, mmID_CHECKING);
         sizer->Add(panelCurrent_, 1, wxGROW | wxALL, 1);
