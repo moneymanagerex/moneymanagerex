@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-04 13:11+0300\n"
-"PO-Revision-Date: 2021-08-13 07:25\n"
+"PO-Revision-Date: 2021-08-13 07:40\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -3437,34 +3437,35 @@ msgstr "Выбар базавай валюты"
 #, c-format
 msgid "Historic rates for %s found, but \"Use currency history\" in options is disabled:\n"
 "click no and enable it or click yes to remove all historic rates for %s"
-msgstr ""
+msgstr "Знойдзеная гістарычныя курсы для %s, але «Выкарыстоўваць гісторыю валют» у опцыях адключана:\n"
+"націсніце «Не» і уключыце яе або націсніце «Так», каб выдаліць усе гістарычныя стаўкі для %s"
 
 #: maincurrencydialog.cpp:434
 #, c-format
 msgid "Currency History Options: %s "
-msgstr ""
+msgstr "Опцыі гісторыі валютаў: %s "
 
 #: maincurrencydialog.cpp:490
 msgid "Unable to update history currency rates. Please update them manually!"
-msgstr ""
+msgstr "Немагчыма абнавіць курсы валютаў. Калі ласка, абнавіце іх уручную"
 
 #: maincurrencydialog.cpp:491 maincurrencydialog.cpp:643
 #: maincurrencydialog.cpp:677 maincurrencydialog.cpp:713
 #: maincurrencydialog.cpp:819
 msgid "Currency history error"
-msgstr ""
+msgstr "Памылка гісторыі валютаў"
 
 #: maincurrencydialog.cpp:523
 msgid "Set as Base Currency"
-msgstr ""
+msgstr "Абраць як базавую валюту"
 
 #: maincurrencydialog.cpp:524
 msgid "Online Update Currency Rate"
-msgstr ""
+msgstr "Абнаўленне курса валютаў анлайн"
 
 #: maincurrencydialog.cpp:643
 msgid "No currency selected!"
-msgstr ""
+msgstr "Няма абранай валюты"
 
 #: maincurrencydialog.cpp:649
 msgid "Do you want to add also dates without any transaction?"
@@ -3473,59 +3474,59 @@ msgstr "Жадаеце таксама дадаць даты, калі не бы�
 #: maincurrencydialog.cpp:675
 #, c-format
 msgid "Unable to download %s currency rates"
-msgstr ""
+msgstr "Немагчыма спампаваць курсы валюты %s"
 
 #: maincurrencydialog.cpp:711
 #, c-format
 msgid "Unable to download history for symbol %s. History rates not available!"
-msgstr ""
+msgstr "Немагчыма спампаваць гісторыю валюты %s. Гісторыя курсаў недасяжная"
 
 #: maincurrencydialog.cpp:773
 msgid "Changing base currency will delete all history rates, proceed?"
-msgstr ""
+msgstr "Змена базавай валюты прывядзе да выдалення усей гісторыі курсаў, працягнуць?"
 
 #: maincurrencydialog.cpp:797
 msgid "Do you want to update today currency rates?"
-msgstr ""
+msgstr "Жадаеце абнавіць сённяшнія курсы валютаў?"
 
 #: maincurrencydialog.cpp:818
 #, c-format
 msgid "Unable to download history for base symbol %s. History rates not available!"
-msgstr ""
+msgstr "Немагчыма спампаваць гісторыю базавай валюты %s. Гісторыя курсаў недасяжная"
 
 #: maincurrencydialog.cpp:861 stockspanel.cpp:406 util.cpp:619
 msgid "Could not find base currency symbol!"
-msgstr ""
+msgstr "Немагчыма знайсці сімвал базавай валюты"
 
 #: mmSimpleDialogs.cpp:177
 msgid "Subtract one year"
-msgstr ""
+msgstr "Адняць адзін год"
 
 #: mmSimpleDialogs.cpp:178
 msgid "Subtract one month"
-msgstr ""
+msgstr "Адняць адзін месяц"
 
 #: mmSimpleDialogs.cpp:179
 msgid "Add one month"
-msgstr ""
+msgstr "Дадаць адзін месяц"
 
 #: mmSimpleDialogs.cpp:180
 msgid "Add one year"
-msgstr ""
+msgstr "Дадаць адзін год"
 
 #: mmSimpleDialogs.cpp:237
 #, c-format
 msgid "Entry %s is invalid"
-msgstr ""
+msgstr "Наслушны запіс %s"
 
 #: mmSimpleDialogs.cpp:244
 msgid "Please use this button for category selection."
-msgstr ""
+msgstr "Калі ласка, выкарыстоўвайце гэтую кнопку, каб абраць катыгорыю."
 
 #: mmSimpleDialogs.cpp:245
 msgid "Please use this button for category selection\n"
 "or use the 'Split' checkbox for multiple categories."
-msgstr "Калі ласка, выкарыстоўвайце гэтую кнопку для выбару катэгорыі\n"
+msgstr "Калі ласка, выкарыстоўвайце гэтую кнопку, каб абраць катыгорыю\n"
 "або выкарыстоўвайце галачку «Падзяліць» для некалькіх катэгорый."
 
 #: mmSimpleDialogs.cpp:248
