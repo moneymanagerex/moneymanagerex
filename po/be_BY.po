@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-04 13:11+0300\n"
-"PO-Revision-Date: 2021-08-13 08:41\n"
+"PO-Revision-Date: 2021-08-13 09:09\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -3796,7 +3796,7 @@ msgstr "паўтор"
 
 #: mmchecking_list.cpp:410
 msgid "Mark all being selected"
-msgstr ""
+msgstr "Адзначыць усе, што ёсць абраныя"
 
 #: mmchecking_list.cpp:782
 msgid "Do you really want to delete all the transactions shown?"
@@ -3852,11 +3852,12 @@ msgstr[3] "Вы збіраецеся змяніць %i транзакцый ў �
 #: mmchecking_list.cpp:940
 msgid "\n\n"
 "Do you still want to perform the edit?"
-msgstr ""
+msgstr "\n\n"
+"Вы ўсё яшчэ хочаце выканаць рэдагаванне?"
 
 #: mmchecking_list.cpp:941
 msgid "Closed Account Check"
-msgstr ""
+msgstr "Пераверка зачыненага рахунка"
 
 #: mmchecking_list.cpp:1127
 #, c-format
@@ -3882,7 +3883,7 @@ msgstr[3] "Перасоўванне %i аперацыяў..."
 
 #: mmchecking_list.cpp:1142 stocks_list.cpp:292
 msgid "Select the destination Account "
-msgstr ""
+msgstr "Абраць рахунак прызначэння "
 
 #: mmchecking_list.cpp:1210
 msgid "Recurring Transaction saved."
@@ -3890,11 +3891,11 @@ msgstr "Захаваная аперацыя, што паўтараецца."
 
 #: mmcheckingpanel.cpp:290 mmcheckingpanel.cpp:438
 msgid "Displayed Bal: "
-msgstr ""
+msgstr "Адлюстраваны Бал.: "
 
 #: mmcheckingpanel.cpp:296
 msgid "Account Bal: "
-msgstr ""
+msgstr "Бал. рахунка:"
 
 #: mmcheckingpanel.cpp:298
 msgid "Reconciled Bal: "
