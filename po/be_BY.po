@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-04 13:11+0300\n"
-"PO-Revision-Date: 2021-08-13 08:29\n"
+"PO-Revision-Date: 2021-08-13 08:41\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -2320,7 +2320,7 @@ msgstr "Узгодненая"
 #: filtertransdialog.cpp:46 model/Model_Billsdeposits.cpp:41
 #: model/Model_Checking.cpp:38
 msgid "Void"
-msgstr "Ануляваная"
+msgstr "Скасаваная"
 
 #: filtertransdialog.cpp:47 model/Model_Billsdeposits.cpp:42
 #: model/Model_Checking.cpp:39
@@ -2334,7 +2334,7 @@ msgstr "Дубляваць"
 
 #: filtertransdialog.cpp:49 filtertransdialog.cpp:1019
 msgid "Un-Reconciled"
-msgstr "Не перавераная"
+msgstr "Ня Ўзгодненая"
 
 #: filtertransdialog.cpp:50 filtertransdialog.cpp:1020
 msgid "All Except Reconciled"
@@ -3623,7 +3623,7 @@ msgstr "Папярэджанне: Файл базы дадзеных .mmb не �
 
 #: mmTips.h:27
 msgid "Tip: To mark a transaction as reconciled, just select the transaction and hit the 'r' or 'R' key. To mark a transaction as unreconciled, just select the transaction and hit the 'u' or 'U' key."
-msgstr "Парада: Каб адзначыць аперацыю як спраўджаную, проста вылучыце яе і націсніце клавішу 'R'. Зняць пазнаку можна націскам клавішы 'U'."
+msgstr "Парада: Каб адзначыць аперацыю як Узгодненую, проста вылучыце яе і націсніце клавішу 'R'. Зняць пазнаку можна націскам клавішы 'U'."
 
 #: mmTips.h:28
 msgid "Tip: To mark a transaction as requiring followup, just select the transaction and hit the 'f' or 'F' key."
@@ -3772,15 +3772,15 @@ msgstr "Выдаліць бачныя аперацыі «Дапрацаваць�
 
 #: mmchecking_list.cpp:394
 msgid "Delete Viewed \"Unreconciled\" Transactions"
-msgstr "Выдаліць бачныя «Непацверджаныя» аперацыі"
+msgstr "Выдаліць бачныя «Ня Ўзгодненыя» аперацыі"
 
 #: mmchecking_list.cpp:400
 msgid "as Reconciled"
-msgstr "як Пацверджаная (R)"
+msgstr "як Узгодненая (R)"
 
 #: mmchecking_list.cpp:402
 msgid "as Unreconciled"
-msgstr "як Для Пераверкі (U)"
+msgstr "як Ня Ўзгодненая (U)"
 
 #: mmchecking_list.cpp:404
 msgid "as Void"
@@ -3818,7 +3818,7 @@ msgstr "Дапрацаваць"
 
 #: mmchecking_list.cpp:804
 msgid "Unreconciled"
-msgstr ""
+msgstr "Ня Ўзгодненая"
 
 #: mmchecking_list.cpp:847
 #, c-format
@@ -3834,7 +3834,7 @@ msgstr[3] "Вы сапраўды хочаце выдаліць %i абраных
 msgid "Locked transaction to date: %s\n\n"
 "Reconciled transactions."
 msgstr "Заблакаваная аперацыі з: %s\n\n"
-"Перавераныя аперацыі."
+"Узгодненыя аперацыі."
 
 #: mmchecking_list.cpp:905 transdialog.cpp:727 transdialog.cpp:760
 msgid "MMEX Transaction Check"
@@ -3898,7 +3898,7 @@ msgstr ""
 
 #: mmcheckingpanel.cpp:298
 msgid "Reconciled Bal: "
-msgstr ""
+msgstr "Узгоднены баланс: "
 
 #: mmcheckingpanel.cpp:300
 msgid "Diff: "
@@ -7114,7 +7114,7 @@ msgstr ""
 msgid "Transaction will be inserted with the first bank account:\n"
 "'%s' and marked as  'Follow Up'"
 msgstr "Аперацыя будзе ўстаўлена з першым банкаўскім рахункам:\n"
-"\"%s\" і пазначана як «Дапрацаваць»"
+"\"%s\" і пазначана як «На Дапрацоўку»"
 
 #: webapp.cpp:478
 msgid "Wrong WebApp account"
