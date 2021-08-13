@@ -181,14 +181,15 @@ wxString mmReportTransactions::getHTMLText()
 
     hb.addDivContainer("shadow");
     {
-        // display the total balance 
         hb.startTable();
         {
+            // display the total balance 
             hb.startThead();
             {
                 hb.startTableRow();
                 {
                     hb.addTableHeaderCell(_("All Transactions: Withdrawals, Deposits, and Transfers"));
+                    hb.addTableHeaderCell("");
                     hb.addTableHeaderCell("");
                 }
                 hb.endTableRow();
@@ -200,29 +201,27 @@ wxString mmReportTransactions::getHTMLText()
                 for (const auto& curr_total : total)
                 {
                     const auto curr = Model_Currency::instance().get(curr_total.first);
-                    const wxString totalStr = Model_Currency::toCurrency(curr_total.second, curr);
+                    const bool isBaseCurr = (curr->CURRENCY_SYMBOL == Model_Currency::GetBaseCurrency()->CURRENCY_SYMBOL);
+                    const wxString totalStr_curr = isBaseCurr ? "" : Model_Currency::toCurrency(curr_total.second, curr);
                     grand_total += total_in_base_curr[curr_total.first];
-                    const std::vector<wxString> v{ totalStr };
-                    if (total.size() > 1
-                        || (curr->CURRENCY_SYMBOL != Model_Currency::GetBaseCurrency()->CURRENCY_SYMBOL))
-                        hb.addTotalRow(curr->CURRENCY_SYMBOL, 1, v);
+                    const wxString totalStr = Model_Currency::toCurrency(total_in_base_curr[curr_total.first], Model_Currency::GetBaseCurrency());
+                    const std::vector<wxString> v{ totalStr_curr,  totalStr };
+                    if (total.size() > 1 || !isBaseCurr)
+                        hb.addTotalRow(curr->CURRENCY_SYMBOL, 2, v);
                 }
                 const wxString totalStr = Model_Currency::toCurrency(grand_total, Model_Currency::GetBaseCurrency());
-                const std::vector<wxString> v{ totalStr };
-                hb.addTotalRow(_("Grand Total:"), 1, v);
+                const std::vector<wxString> v{ "", totalStr };
+                hb.addTotalRow(_("Grand Total:"), 2, v);
             }
             hb.endTbody();
-        }
-        hb.endTable();
 
-        // display the total balance (excluding TRANSFERS)
-        hb.startTable();
-        {
+            // display the total balance (excluding TRANSFERS)
             hb.startThead();
             {
                 hb.startTableRow();
                 {
                     hb.addTableHeaderCell(_("All Transactions excluding Transfers"));
+                    hb.addTableHeaderCell("");
                     hb.addTableHeaderCell("");
                 }
                 hb.endTableRow();
@@ -235,16 +234,17 @@ wxString mmReportTransactions::getHTMLText()
                 for (const auto& curr_total : total_extrans)
                 {
                     const auto curr = Model_Currency::instance().get(curr_total.first);
-                    const wxString totalStr = Model_Currency::toCurrency(curr_total.second, curr);
+                    const bool isBaseCurr = (curr->CURRENCY_SYMBOL == Model_Currency::GetBaseCurrency()->CURRENCY_SYMBOL);
+                    const wxString totalStr_curr = isBaseCurr ? "" : Model_Currency::toCurrency(curr_total.second, curr);
                     grand_total += total_in_base_curr_extrans[curr_total.first];
-                    const std::vector<wxString> v{ totalStr };
-                    if (total.size() > 1
-                        || (curr->CURRENCY_SYMBOL != Model_Currency::GetBaseCurrency()->CURRENCY_SYMBOL))
-                        hb.addTotalRow(curr->CURRENCY_SYMBOL, 1, v);
+                    const wxString totalStr = Model_Currency::toCurrency(total_in_base_curr_extrans[curr_total.first], Model_Currency::GetBaseCurrency());
+                    const std::vector<wxString> v{ totalStr_curr,  totalStr };
+                    if (total.size() > 1 || !isBaseCurr)
+                        hb.addTotalRow(curr->CURRENCY_SYMBOL, 2, v);
                 }
                 const wxString totalStr = Model_Currency::toCurrency(grand_total, Model_Currency::GetBaseCurrency());
-                const std::vector<wxString> v{ totalStr };
-                hb.addTotalRow(_("Grand Total:"), 1, v);
+                const std::vector<wxString> v{ "", totalStr };
+                hb.addTotalRow(_("Grand Total:"), 2, v);
             }
             hb.endTbody();
         }
