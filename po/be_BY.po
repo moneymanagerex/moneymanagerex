@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-04 13:11+0300\n"
-"PO-Revision-Date: 2021-08-13 07:59\n"
+"PO-Revision-Date: 2021-08-13 08:19\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -3589,20 +3589,21 @@ msgstr "Хібнае значэнне"
 
 #: mmTextCtrl.cpp:95
 msgid "Please enter a positive or calculated value."
-msgstr ""
+msgstr "Калі ласка, пакажыце станоўчую лічбу або арыфметычны выраз."
 
 #: mmTextCtrl.cpp:95
 msgid "Please enter a calculated value."
-msgstr ""
+msgstr "Калі ласка, пакажыце арыфметычны выраз."
 
 #: mmTextCtrl.cpp:97
 msgid "Tip: For calculations, enter expressions like (2+2)*(2+2)\n"
 "Calculations will be evaluated and the result used as the entry."
-msgstr ""
+msgstr "Парада: Увядзіце выраз, напрыклад (2+2)*(2+2)\n"
+"Адбудзецца вылічэнне і вынік будзе выкарыстаны."
 
 #: mmTips.h:22
 msgid "Recommendation: Always backup your .mmb database file regularly."
-msgstr ""
+msgstr "Рэкамендацыя: Рыгулярна рабіце рызервовую копію файла базы дадзеных Always backup your .mmb."
 
 #: mmTips.h:23
 msgid "Recommendation: If upgrading to a new version of MMEX, make sure you backup your .mmb database file before doing so."
@@ -3614,23 +3615,23 @@ msgstr "Парада: Выкарыстоўвайце капіяванне (Ctrl+
 
 #: mmTips.h:25
 msgid "Tip: Remember to make backups of your .mmb."
-msgstr ""
+msgstr "Рэкамендацыя: Рабіце рызервовую копію файла .mmb."
 
 #: mmTips.h:26
 msgid "Tip: The .mmb file is not encrypted. That means anyone else having the proper know how can actually open the file and read the contents. So make sure that if you are storing any sensitive financial information it is properly guarded."
-msgstr ""
+msgstr "Папярэджанне: Файл базы дадзеных .mmb не зашыфраваны. Гэта значыць, што любы, хто валодае адпаведнымі навыкамі, можа адчыніць гэты файл і прачытаць ягонае змесціва. Паклапаціцеся аб абароне вашых фінансавых дадзеных."
 
 #: mmTips.h:27
 msgid "Tip: To mark a transaction as reconciled, just select the transaction and hit the 'r' or 'R' key. To mark a transaction as unreconciled, just select the transaction and hit the 'u' or 'U' key."
-msgstr "Парада: Каб адзначыць аперацыю як правераную, проста вылучыце яе і націсніце клавішу 'R'. Зняць пазнаку можна націскам клавішы 'U'."
+msgstr "Парада: Каб адзначыць аперацыю як спраўджаную, проста вылучыце яе і націсніце клавішу 'R'. Зняць пазнаку можна націскам клавішы 'U'."
 
 #: mmTips.h:28
 msgid "Tip: To mark a transaction as requiring followup, just select the transaction and hit the 'f' or 'F' key."
-msgstr "Парада: Каб адзначыць аперацыю такой, што патрабуе дапрацоўкі, проста вылучыце яе і націсніце клавішу 'F'."
+msgstr "Парада: Каб адзначыць аперацыю такой, што патрабуе дапрацоўкі, проста вылучыце яе і націсніце клавішу 'f'  або 'F'."
 
 #: mmTips.h:29
 msgid "Tip: MMEX supports printing of all reports that can be viewed. The print options are available under the menu, File->Print."
-msgstr ""
+msgstr "Парада: MMEX падтрымлівае друк справаздачаў пасля прагляда. Параметры друка можна задаць у меню, Файл -> Друкаваць."
 
 #: mmTips.h:30
 msgid "Tip: You can modify some runtime behavior of MMEX by changing the options in the Options Dialog. "
@@ -3642,15 +3643,15 @@ msgstr "Парада: Каб раздрукаваць зводку па апер
 
 #: mmTips.h:32
 msgid "Tip: Set exchange rate for currencies in case if you have accounts with different currencies."
-msgstr ""
+msgstr "Парада: Калі вядзеце рахункі ў розных валютах, усталюйце курс абмена."
 
 #: mmTips.h:34
 msgid "Organize Categories Dialog Tip: Pressing the h key will cycle through all categories starting with the letter h"
-msgstr ""
+msgstr "Парада: У мэнаджары катыгорый, націскаючы паслядоўна клавішу адпаведную першай літары назвы, курсор будзе пераключацца паміж адпаведнымі катыгорыямі"
 
 #: mmTips.h:35
 msgid "Organize Categories Dialog Tip: Pressing 2 key combination will cycle through all categories starting with that key combination. Example: Pressing ho will select Homeneeds, Home, House Tax, etc..."
-msgstr ""
+msgstr "Парада: У мэнэджары катыгорый, націскаючы паслядоўна некальці клавішаў, можна цыклічна перамыкацца паміж адпаведнымі назвамі. Напрыклад, клавішы АД пераключаць паміж Адзенне, Адпачынак і г.д."
 
 #: mmTips.h:37
 msgid "Tip to get out of debt: Pay yourself 10 percentage first. Put this into an account that is hard to touch. Make sure it is a chore to get the money out (you have to drive to the bank), so you will only tap it consciously and for major expenses."
@@ -4203,11 +4204,11 @@ msgstr ""
 
 #: mmframe.cpp:1390 mmframe.cpp:1753
 msgid "&Print..."
-msgstr ""
+msgstr "&Друкаваць..."
 
 #: mmframe.cpp:1390 mmframe.cpp:1753
 msgid "Print current view"
-msgstr ""
+msgstr "Другаваць бягучы выгляд"
 
 #: mmframe.cpp:1396
 msgid "E&xit\tAlt-X"
@@ -5190,7 +5191,7 @@ msgstr ""
 
 #: model/Model_Account.cpp:38
 msgid "Asset"
-msgstr ""
+msgstr "Актыў"
 
 #: model/Model_Account.cpp:39
 msgid "Shares"
