@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-04 13:11+0300\n"
-"PO-Revision-Date: 2021-08-11 15:14\n"
+"PO-Revision-Date: 2021-08-13 07:14\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -1944,7 +1944,7 @@ msgstr "Вы сапраўды жадаеце выдаліць карысталь
 
 #: customfieldlistdialog.cpp:170
 msgid "Confirm Custom Field Deletion"
-msgstr "Сцвердзіце выдаленне карыстальніцкага поля"
+msgstr "Спраўдзіце выдаленне карыстальніцкага поля"
 
 #: customfieldlistdialog.cpp:188
 #, c-format
@@ -1957,7 +1957,7 @@ msgstr "Гэтая функцыя будзе выконваць масавы п�
 
 #: customfieldlistdialog.cpp:191
 msgid "Confirm Custom Field Content Update"
-msgstr "Сцвердзіце абнаўленне карыстальніцкага поля"
+msgstr "Спраўдзіце абнаўленне карыстальніцкага поля"
 
 #: customfieldlistdialog.cpp:196
 msgid "Find what"
@@ -3278,7 +3278,7 @@ msgstr "Файл справаздачы запісаны ў: %s"
 
 #: import_export/univcsvdialog.cpp:1056 stockdialog.cpp:680
 msgid "Please confirm saving..."
-msgstr "Калі ласка, сцвердзіце захаванне..."
+msgstr "Калі ласка, спраўдзіце захаванне..."
 
 #: import_export/univcsvdialog.cpp:1089
 msgid "No imported transactions!"
@@ -3352,11 +3352,11 @@ msgstr "Пакажыце значэнне"
 #: maincurrencydialog.cpp:74 reports/summarystocks.cpp:191 stockdialog.cpp:427
 #: stocks_list.cpp:91
 msgid "Symbol"
-msgstr ""
+msgstr "Цікер"
 
 #: maincurrencydialog.cpp:76
 msgid "Last Rate"
-msgstr ""
+msgstr "Найноўшы курс"
 
 #: maincurrencydialog.cpp:76
 msgid "Fixed Rate"
@@ -6750,7 +6750,7 @@ msgstr "Гэтае імя атрымальніка раней не выкары�
 
 #: transactionsupdatedialog.cpp:326 transdialog.cpp:665
 msgid "Confirm payee name"
-msgstr "Сцвердзіце імя атрымальніка"
+msgstr "Спраўдзіце імя атрымальніка"
 
 #: transdialog.cpp:180
 msgid "Duplicate Transaction"
