@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-04 13:11+0300\n"
-"PO-Revision-Date: 2021-08-13 08:19\n"
+"PO-Revision-Date: 2021-08-13 08:29\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -3655,35 +3655,35 @@ msgstr "Парада: У мэнэджары катыгорый, націскаю
 
 #: mmTips.h:37
 msgid "Tip to get out of debt: Pay yourself 10 percentage first. Put this into an account that is hard to touch. Make sure it is a chore to get the money out (you have to drive to the bank), so you will only tap it consciously and for major expenses."
-msgstr ""
+msgstr "Парада, каб пазбавіцца пазыкаў: Захоўвайце 10 адсоткаў заробка. Змесціце гэта ў цяжка даступнае месца. Такое, каб атрымаць грошы было цяжка (напрыклад, вам трэба паехаць у банк). У гэтым выпадку вы будзеце выкарыстоўваць гэтыя грошы свядома і толькі для асноўных выдаткаў."
 
 #: mmTips.h:38
 msgid "Tip to get out of debt: Establish an emergency fund."
-msgstr ""
+msgstr "Парада, каб пазбавіцца пазыкаў: уладкуйце фонд рызерваў."
 
 #: mmTips.h:39
 msgid "Tip to get out of debt: Stop acquiring new debt."
-msgstr ""
+msgstr "Парада, каб пазбавіцца пазыкаў: не рабіце новыя пазыкі."
 
 #: mmTips.h:40
 msgid "Tip to get out of debt: Create a realistic budget for your expenses."
-msgstr ""
+msgstr "Парада, каб пазбавіцца пазыкаў: зрабіце рыалістычны бюджэт вашых выдаткаў."
 
 #: mmTips.h:41
 msgid "Tip to get out of debt: Spend less than you earn."
-msgstr ""
+msgstr "Парада, каб пазбавіцца пазыкаў: выдаткоўвайце менш, чым зарабляеце."
 
 #: mmTips.h:42
 msgid "Tip to get out of debt: Pay more than the minimum."
-msgstr ""
+msgstr "Парада, каб пазбавіцца пазыкаў: выплочвайце больш, чым патрабаваны мінімум."
 
 #: mmTips.h:43
 msgid "Before going to a shop and buy something: take the time making a list of what you really need. In the shop buy what is in your list."
-msgstr ""
+msgstr "Перад тым, як ісці па пакупкі: прыдзяліце час і зрабіце спіс таго, што вам сапраўды патрэбна. У краме кладзіце ў кошык толькі тое, што ёсць у спісе."
 
 #: mmTips.h:47
 msgid "Using MMEX it is possible to track stocks/mutual funds investments."
-msgstr ""
+msgstr "Выкарыстоўваючы MMEX, можна адсочваць інвестыцыі, такія як акцыі, аблігацыі і да т.п."
 
 #: mmTips.h:48
 msgid "To create new stocks entry the Symbol, Number of shares and Purchase prise should be entered."
@@ -3695,11 +3695,11 @@ msgstr "Прыклад актыва UK (HSBC HLDG), цікер: HSBA.L"
 
 #: mmTips.h:50
 msgid "If the Stock Name field is empty it will be filed when prices updated"
-msgstr ""
+msgstr "Пустая назва актыва запоўніцца падчас абнаўлення біржавых каціровак"
 
 #: mmchecking_list.cpp:344
 msgid "&New Withdrawal"
-msgstr "&Новае спісанне"
+msgstr "&Новы выдатак"
 
 #: mmchecking_list.cpp:345
 msgid "&New Deposit"
@@ -3752,7 +3752,7 @@ msgstr "&Глядзець састаўныя катыгорыі"
 
 #: mmchecking_list.cpp:383
 msgid "Create Recurring T&ransaction"
-msgstr ""
+msgstr "Стварыць аперацыю, што паўтараецца"
 
 #: mmchecking_list.cpp:389
 msgid "&Delete selected transaction"
@@ -3776,15 +3776,15 @@ msgstr "Выдаліць бачныя «Непацверджаныя» апер�
 
 #: mmchecking_list.cpp:400
 msgid "as Reconciled"
-msgstr ""
+msgstr "як Пацверджаная (R)"
 
 #: mmchecking_list.cpp:402
 msgid "as Unreconciled"
-msgstr ""
+msgstr "як Для Пераверкі (U)"
 
 #: mmchecking_list.cpp:404
 msgid "as Void"
-msgstr ""
+msgstr "як Скасаваная (V)"
 
 #: mmchecking_list.cpp:406
 msgid "as Followup"
