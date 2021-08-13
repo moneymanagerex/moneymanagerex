@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-04 13:11+0300\n"
-"PO-Revision-Date: 2021-08-13 07:14\n"
+"PO-Revision-Date: 2021-08-13 07:25\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -3360,78 +3360,78 @@ msgstr "Найноўшы курс"
 
 #: maincurrencydialog.cpp:76
 msgid "Fixed Rate"
-msgstr ""
+msgstr "Фіксаваны курс"
 
 #: maincurrencydialog.cpp:127
 msgid "N/A"
-msgstr ""
+msgstr "Не дастасоўваецца"
 
 #: maincurrencydialog.cpp:169 maincurrencydialog.cpp:461
 msgid "Online update currency rate"
-msgstr ""
+msgstr "Абнаўленне курса валютаў анлайн"
 
 #: maincurrencydialog.cpp:172
 msgid "Online Update"
-msgstr ""
+msgstr "Абнавіць анлайн"
 
 #: maincurrencydialog.cpp:176
 msgid "Show all even the unused currencies"
-msgstr ""
+msgstr "Паказаць усе валюты, нават тыя, што не выкарыстоўваюцца"
 
 #: maincurrencydialog.cpp:206 payeedialog.cpp:126
 msgid "Search:"
-msgstr ""
+msgstr "Пошук:"
 
 #: maincurrencydialog.cpp:227
 msgid "Currency History Options"
-msgstr ""
+msgstr "Опцыі гісторыі валютаў"
 
 #: maincurrencydialog.cpp:245 stockdialog.cpp:304 stockdialog.cpp:323
 #: stockdialog.cpp:676
 msgid "Price"
-msgstr ""
+msgstr "Цана"
 
 #: maincurrencydialog.cpp:267
 msgid "Specify the date of currency value"
-msgstr ""
+msgstr "Пакажыце дату"
 
 #: maincurrencydialog.cpp:275
 msgid "Enter the currency value"
-msgstr ""
+msgstr "Пакажыце курс валюты"
 
 #: maincurrencydialog.cpp:285
 msgid "Download Currency Values history"
-msgstr ""
+msgstr "Спампаваць гісторыю валютаў"
 
 #: maincurrencydialog.cpp:288
 msgid "&Add / Update "
-msgstr ""
+msgstr "Д&адаць / Абнавіць "
 
 #: maincurrencydialog.cpp:289
 msgid "Add Currency Values to history"
-msgstr ""
+msgstr "Дадаць курс валюты да гісторыі"
 
 #: maincurrencydialog.cpp:293
 msgid "Delete selected Currency Values"
-msgstr ""
+msgstr "Выдаліць абраныя значэнні курса"
 
 #: maincurrencydialog.cpp:297
 msgid "Delete Currency Values history for unused currencies and days"
-msgstr ""
+msgstr "Выдаленне гісторыі для валютаў, што не выкарыстоўваюцца"
 
 #: maincurrencydialog.cpp:353
 msgid "Do you really want to delete the selected Currency?"
-msgstr ""
+msgstr "Вы сапраўды хочаце выдаліць абраную валюту?"
 
 #: maincurrencydialog.cpp:354 maincurrencydialog.cpp:424
 #: maincurrencydialog.cpp:650 maincurrencydialog.cpp:774
 #: maincurrencydialog.cpp:798 maincurrencydialog.h:76
 msgid "Currency Dialog"
-msgstr ""
+msgstr "Дыялог валютаў"
 
 #: maincurrencydialog.cpp:382
 msgid "Base Currency Selection"
-msgstr ""
+msgstr "Выбар базавай валюты"
 
 #: maincurrencydialog.cpp:422
 #, c-format
