@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-04 13:11+0300\n"
-"PO-Revision-Date: 2021-08-13 09:09\n"
+"PO-Revision-Date: 2021-08-13 09:29\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -3895,7 +3895,7 @@ msgstr "Адлюстраваны Бал.: "
 
 #: mmcheckingpanel.cpp:296
 msgid "Account Bal: "
-msgstr "Бал. рахунка:"
+msgstr "Бал. рахунка: "
 
 #: mmcheckingpanel.cpp:298
 msgid "Reconciled Bal: "
@@ -3903,7 +3903,7 @@ msgstr "Узгоднены баланс: "
 
 #: mmcheckingpanel.cpp:300
 msgid "Diff: "
-msgstr ""
+msgstr "Розніца: "
 
 #: mmcheckingpanel.cpp:363 mmframe.cpp:1722 transdialog.cpp:180
 msgid "New Transaction"
@@ -3919,7 +3919,7 @@ msgstr "Выдаліць абраную аперацыю"
 
 #: mmcheckingpanel.cpp:376
 msgid "D&uplicate "
-msgstr ""
+msgstr "Д&убляваць "
 
 #: mmcheckingpanel.cpp:377
 msgid "Duplicate selected transaction"
@@ -3936,11 +3936,11 @@ msgstr "Справаздача па аперацыях"
 #: mmcheckingpanel.cpp:413
 #, c-format
 msgid "Account View : %s"
-msgstr ""
+msgstr "Прагляд рахунка: %s"
 
 #: mmcheckingpanel.cpp:493 webapp.cpp:585
 msgid "Attachment"
-msgstr ""
+msgstr "Далучэнне"
 
 #: mmcheckingpanel.cpp:526
 #, c-format
@@ -3959,69 +3959,72 @@ msgstr "Дзён паміж абранымі аперацыямі: %d"
 
 #: mmcustomdata.cpp:61
 msgid "Custom fields"
-msgstr ""
+msgstr "Карыстальніцкія палі"
 
 #: mmcustomdata.cpp:309
 msgid "Please select"
-msgstr ""
+msgstr "Калі ласка, абярыце"
 
 #: mmcustomdata.cpp:309
 msgid "Multi Choice"
-msgstr ""
+msgstr "Шматлікі выбар"
 
 #: mmcustomdata.cpp:637
 #, c-format
 msgid "Unable to save custom field \"%s\":\n"
 "value \"%s\" does not match RegEx validation \"%s\""
-msgstr ""
+msgstr "Не атрымалася захаваць карыстальніцкае поле \"%s\":\n"
+"значэнне \"%s\" не адпавядае праверцы RegEx \"%s\""
 
 #: mmcustomdata.cpp:640
 msgid "CustomField validation error"
-msgstr ""
+msgstr "Памылка пераверкі карыстальніцкага поля"
 
 #: mmex.cpp:122
 #, c-format
 msgid "Cannot load a translation for the default language of your system (%s)."
-msgstr ""
+msgstr "Немагчыма спампаваць пераклад для мовы вашай сістэмы (%s)."
 
 #: mmex.cpp:129
 #, c-format
 msgid "Please use the Switch Application Language option in View menu to select one of the following available languages:\n\n"
 "%s"
-msgstr ""
+msgstr "Калі ласка, выкарыстоўвайце параметр Мова Прыкладання ў меню Выгляд, каб абраць адну з дасяжных моваў:\n\n"
+"%s"
 
 #: mmex.cpp:134 mmframe.cpp:3366 optionsettingsgeneral.cpp:335
 msgid "Language change"
-msgstr ""
+msgstr "Выбар мовы"
 
 #: mmex.cpp:174
 msgid "Fatal error occured.\n"
 "Application will be terminated."
-msgstr ""
+msgstr "Сталася непапраўная памылка.\n"
+"Дадатак будзе спынены."
 
 #: mmframe.cpp:270
 msgid "Navigation"
-msgstr ""
+msgstr "Навігацыя"
 
 #: mmframe.cpp:271
 msgid "Toolbar"
-msgstr ""
+msgstr "Панэль прыладаў"
 
 #: mmframe.cpp:470 mmframe.cpp:711
 msgid "Favourites"
-msgstr ""
+msgstr "Улюбёнае"
 
 #: mmframe.cpp:471 mmframe.cpp:715 mmhomepage.cpp:641 reports/summary.cpp:159
 msgid "Bank Accounts"
-msgstr ""
+msgstr "Банкаўскія рахункі"
 
 #: mmframe.cpp:472 mmframe.cpp:719 mmhomepage.cpp:642 reports/summary.cpp:160
 msgid "Credit Card Accounts"
-msgstr ""
+msgstr "Крыдытныя рахункі"
 
 #: mmframe.cpp:473 mmframe.cpp:731 mmhomepage.cpp:644 reports/summary.cpp:162
 msgid "Term Accounts"
-msgstr ""
+msgstr "Тэрміновыя рахункі"
 
 #: mmframe.cpp:474 mmframe.cpp:735
 msgid "Stock Portfolios"
