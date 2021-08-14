@@ -1,5 +1,6 @@
 /*******************************************************
 Copyright (C) 2016 Gabriele-V
+Copyright (C) 2021 Nikolay Akimov
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -165,9 +166,9 @@ void dbUpgrade::BackupDB(const wxString& FileName, int BackupType, int FilesToKe
 
         while (backupFileArray.GetCount() > static_cast<size_t>(FilesToKeep))
         {
-            // ensure file is not read only before deleting file.
             wxFileName fnLastFile(backupFileArray.Item(0));
             wxLogDebug("%s", backupFileArray.Item(0));
+            // ensure file is not read only before deleting file.
             if (fnLastFile.IsFileWritable())
                 wxRemoveFile(backupFileArray.Item(0));
 
