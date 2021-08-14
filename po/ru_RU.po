@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-14 14:35+0300\n"
-"PO-Revision-Date: 2021-08-14 11:46\n"
+"PO-Revision-Date: 2021-08-14 11:57\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -1919,7 +1919,7 @@ msgstr "Изменить"
 
 #: customfieldeditdialog.cpp:246
 msgid "You have modified choices: ones removed will be cleaned!"
-msgstr "Вы изменили выбор: одни удалены будут очищены!"
+msgstr "Вы изменили варианты: удаленные будут очищены!"
 
 #: customfieldeditdialog.h:41
 msgid "New/Edit Custom Field"
@@ -1972,7 +1972,7 @@ msgstr "Обновление пользовательского поля"
 #: customfieldlistdialog.cpp:200
 msgid "Do you want to update blank content?\n"
 "Press no if you want to abort replace procedure!"
-msgstr "Вы хотите, чтобы обновить содержимое на пустое значение?\n"
+msgstr "Вы хотите обновить содержимое на пустое значение?\n"
 "Нажмите Нет, если вы хотите прервать процедуру замены!"
 
 #: customfieldlistdialog.cpp:208
@@ -2712,7 +2712,7 @@ msgstr "Невозможно открыть файл."
 #: import_export/parsers.cpp:46 import_export/parsers.cpp:89
 #: import_export/univcsvdialog.cpp:970 mmframe.cpp:2265 mmframe.cpp:2284
 msgid "Universal CSV Import"
-msgstr "Импорт Universal CSV"
+msgstr "Универсальный CSV Импорт"
 
 #: import_export/parsers.cpp:89
 msgid "Unable to create file."
@@ -3106,7 +3106,7 @@ msgstr "CSV разделитель:"
 
 #: import_export/univcsvdialog.cpp:336
 msgid "Export column titles"
-msgstr "Экспорт названия столбцов"
+msgstr "Экспорт заголовков столбцов"
 
 #: import_export/univcsvdialog.cpp:351
 msgid "Positive values are deposits"
@@ -3483,7 +3483,7 @@ msgstr "Невозможно загрузить курсы для валюты %
 
 #: maincurrencydialog.cpp:774
 msgid "Changing base currency will delete all history rates, proceed?"
-msgstr "Изменение базовой валюты приведет к удалению всех курсов истории, продолжить?"
+msgstr "Изменение базовой валюты приведет к удалению всей истории курсов, продолжить?"
 
 #: maincurrencydialog.cpp:798
 msgid "Do you want to update today currency rates?"
@@ -3593,7 +3593,7 @@ msgstr "Пожалуйста введите положительное числ�
 
 #: mmTextCtrl.cpp:95
 msgid "Please enter a calculated value."
-msgstr "Пожалуйста введите положительное число или арифметическое выражение."
+msgstr "Пожалуйста введите арифметическое выражение."
 
 #: mmTextCtrl.cpp:97
 msgid "Tip: For calculations, enter expressions like (2+2)*(2+2)\n"
@@ -3631,7 +3631,7 @@ msgstr "Подсказка: Чтобы отметить транзакцию т�
 
 #: mmTips.h:29
 msgid "Tip: MMEX supports printing of all reports that can be viewed. The print options are available under the menu, File->Print."
-msgstr "Подсказка: MMEX поддерживает печать отчетов после просмотра. Параметры печати можно задать в меню, Файл-> Настройка печати."
+msgstr "Подсказка: MMEX поддерживает печать отчетов после просмотра. Параметры печати можно задать в меню, Файл-> Печать."
 
 #: mmTips.h:30
 msgid "Tip: You can modify some runtime behavior of MMEX by changing the options in the Options Dialog. "
@@ -5587,7 +5587,7 @@ msgstr "Как до того"
 
 #: optionsettingsmisc.cpp:111
 msgid "Use default for payee"
-msgstr ""
+msgstr "Использовать по умолчанию для получателя"
 
 #: optionsettingsmisc.cpp:127
 msgid "Yes"
@@ -5839,7 +5839,7 @@ msgstr "Размер прочих значков"
 
 #: payeedialog.cpp:67
 msgid "Last Used Category"
-msgstr ""
+msgstr "Последняя используемая категория"
 
 #: payeedialog.cpp:67
 msgid "Default Category"
@@ -5883,11 +5883,11 @@ msgstr "Редактор получателей: Ошибка удаления"
 
 #: payeedialog.cpp:390
 msgid "Define Category"
-msgstr ""
+msgstr "Категория по умолчанию"
 
 #: payeedialog.cpp:392
 msgid "Remove Category"
-msgstr ""
+msgstr "Удалить категорию"
 
 #: payeedialog.cpp:407
 msgid "Relocate Payee"
@@ -6980,27 +6980,27 @@ msgstr "Ошибка анализа JSON"
 
 #: util.cpp:881 util.cpp:940
 msgid "Expected response to contain a data or error string"
-msgstr ""
+msgstr "Ожидался ответ на запрос содержащий строку данных или ошибки"
 
 #: util.cpp:912
 msgid "Could not find asset for symbol"
-msgstr ""
+msgstr "Не удалось найти актив для символа"
 
 #: util.cpp:947
 msgid "Could not get base currency!"
-msgstr ""
+msgstr "Не удалось получить базовую валюту!"
 
 #: util.cpp:953
 msgid "USD"
-msgstr ""
+msgstr "USD"
 
 #: util.cpp:956
 msgid "Could not find currency 'USD', needed for converting history prices"
-msgstr ""
+msgstr "Не удалось найти валюту 'USD', необходимую для конвертации цен в историю"
 
 #: util.cpp:976
 msgid "Could not parse price in asset history"
-msgstr ""
+msgstr "Не удалось определить цену из истории активов"
 
 #: util.cpp:1206
 #, c-format
