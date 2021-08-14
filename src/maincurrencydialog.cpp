@@ -662,6 +662,14 @@ void mmMainCurrencyDialog::OnHistoryUpdate(wxCommandEvent& WXUNUSED(event))
     std::map<wxDateTime, double> historical_rates;
     bool UpdStatus = GetOnlineHistory(CurrentCurrency->CURRENCY_SYMBOL, begin_date, historical_rates, msg);
 
+    if (!UpdStatus && !g_fiat_curr().Contains(CurrentCurrency->CURRENCY_SYMBOL)) {
+        wxString coincap_id;
+        double coincap_price_usd;
+        UpdStatus = getCoincapInfoFromSymbol(CurrentCurrency->CURRENCY_SYMBOL, coincap_id, coincap_price_usd, msg);
+        if (UpdStatus)
+            UpdStatus = getCoincapAssetHistory(coincap_id, begin_date, historical_rates, msg);
+    }
+
     if (!UpdStatus)
     {
         return mmErrorDialogs::MessageError(this

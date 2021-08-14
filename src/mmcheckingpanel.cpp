@@ -103,7 +103,7 @@ bool mmCheckingPanel::Create(
     initViewTransactionsHeader();
 
     m_transFilterActive = false;
-    m_trans_filter_dlg = new mmFilterTransactionsDialog(this);
+    m_trans_filter_dlg = new mmFilterTransactionsDialog(this, m_allAccounts);
     initFilterSettings();
 
     RefreshList();
@@ -168,7 +168,7 @@ void mmCheckingPanel::filterTable()
 
         if (m_transFilterActive)
         {
-            if (!m_trans_filter_dlg->checkAll(tran, m_AccountID, splits))
+            if (!m_trans_filter_dlg->checkAll(tran, splits))
                 continue;
         }
         else
