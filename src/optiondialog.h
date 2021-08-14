@@ -1,6 +1,7 @@
 /*************************************************************************
  Copyright (C) 2006 Madhan Kanagavel
- copyright (C) 2011, 2012 Nikolay & Stefano Giorgio.
+ copyright (C) 2011, 2012 Nikolay Akimov
+ copyright (C) 2011, 2012 Stefano Giorgio.
  copyright (C) 2014 Guan Lisheng (guanlisheng@gmail.com)
 
  This program is free software; you can redistribute it and/or modify
