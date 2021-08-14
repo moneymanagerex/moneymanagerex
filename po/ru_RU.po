@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-14 14:35+0300\n"
-"PO-Revision-Date: 2021-08-14 12:06\n"
+"PO-Revision-Date: 2021-08-14 12:18\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -843,7 +843,7 @@ msgstr "Определите дату следующего начисления"
 
 #: billsdepositsdialog.cpp:433
 msgid "Retard or advance the date of the 'next occurrence'"
-msgstr "Задерживать или продвигать дату 'следующего события'"
+msgstr "Задерживать или передвигать дату 'следующего события'"
 
 #: billsdepositsdialog.cpp:438 billsdepositspanel.cpp:128
 msgid "Date Due"
@@ -1602,14 +1602,14 @@ msgstr "Подкатегория используется."
 #: categdialog.cpp:323
 msgid "Tip: Change all transactions using this Category to\n"
 "another Category using the relocate command:"
-msgstr "Совет: Меняйте плательщика всех транзакций на другого,\n"
-"используя команду замены:"
+msgstr "Совет. Измените все транзакции, использующие эту категорию, на\n"
+"другую категорию с помощью команды переназначения:"
 
 #: categdialog.cpp:326
 msgid "Tip: Change all transactions using this Sub-Category to\n"
 "another Sub-Category using the relocate command:"
-msgstr "Совет: Меняйте плательщика всех транзакций на другого,\n"
-"используя команду замены:"
+msgstr "Совет. Измените все транзакции, использующие эту подкатегорию, на\n"
+"другую подкатегорию с помощью команды переназначения:"
 
 #: categdialog.cpp:329
 msgid "Tools -> Relocation of -> Categories"
@@ -3526,7 +3526,7 @@ msgstr "Пожалуйста используйте это кнопку для �
 #: mmSimpleDialogs.cpp:245
 msgid "Please use this button for category selection\n"
 "or use the 'Split' checkbox for multiple categories."
-msgstr "Пожалуйста используйте это кнопку для выбора категории\n"
+msgstr "Пожалуйста используйте эту кнопку для выбора категории\n"
 "или используйте 'Разделить' для множественных категорий."
 
 #: mmSimpleDialogs.cpp:248
@@ -5871,7 +5871,7 @@ msgstr "Получатель используется."
 
 #: payeedialog.cpp:287
 msgid "Tip: Change all transactions using this Payee to another Payee using the relocate command:"
-msgstr "Совет: Изменить все транзакции этого получателя на другого получателю с помощью команды:"
+msgstr "Совет: Изменить все транзакции этого получателя на другого получателя с помощью команды:"
 
 #: payeedialog.cpp:289
 msgid "Tools -> Relocation of -> Payees"
@@ -5928,7 +5928,7 @@ msgstr "Подтвердите замену категории"
 #: relocatecategorydialog.cpp:269 relocatepayeedialog.cpp:232
 #, c-format
 msgid "Records found in transactions: %i"
-msgstr "Найдено транзакций в счетах: %i"
+msgstr "Найдено записей в транзакциях: %i"
 
 #: relocatecategorydialog.cpp:270
 #, c-format
