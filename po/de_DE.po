@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2021-07-30 14:06+0300\n"
-"PO-Revision-Date: 2021-07-30 11:10\n"
+"POT-Creation-Date: 2021-08-04 13:11+0300\n"
+"PO-Revision-Date: 2021-08-10 20:18\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -989,7 +989,7 @@ msgstr "Verwenden Sie Split-Kategorien"
 #: import_export/qif_export.cpp:593 import_export/qif_import_gui.cpp:103
 #: import_export/qif_import_gui.cpp:250 import_export/univcsvdialog.cpp:108
 #: mmchecking_list.cpp:217 mmhomepage.cpp:188
-#: reports/budgetcategorysummary.cpp:189 reports/budgetingperf.cpp:210
+#: reports/budgetcategorysummary.cpp:189 reports/budgetingperf.cpp:211
 #: reports/categexp.cpp:173 reports/categexp.cpp:411
 #: reports/transactions.cpp:83 splitdetailsdialog.cpp:145
 #: splittransactionsdialog.cpp:137 transactionsupdatedialog.cpp:200
@@ -997,7 +997,7 @@ msgstr "Verwenden Sie Split-Kategorien"
 msgid "Category"
 msgstr "Kategorie"
 
-#: billsdepositsdialog.cpp:611 billsdepositsdialog.cpp:1455
+#: billsdepositsdialog.cpp:611 billsdepositsdialog.cpp:1439
 #: transactionsupdatedialog.cpp:203 transdialog.cpp:403 transdialog.cpp:1038
 #: usertransactionpanel.cpp:190
 msgid "Select Category"
@@ -1107,36 +1107,35 @@ msgid "Specify the number of payments to be made.\n"
 msgstr "Geben Sie die Anzahl der Zahlungen an.\n"
 "Geben Sie nichts ein, wenn die Zahlungen für immer fortgesetzt werden."
 
-#: billsdepositsdialog.cpp:1343 billsdepositsdialog.cpp:1365
-#: filtertransdialog.cpp:485 filtertransdialog.cpp:500
-#: filtertransdialog.cpp:511 filtertransdialog.cpp:527
-#: filtertransdialog.cpp:564 optionsettingsgeneral.cpp:281 util.cpp:667
+#: billsdepositsdialog.cpp:1342 filtertransdialog.cpp:485
+#: filtertransdialog.cpp:500 filtertransdialog.cpp:511
+#: filtertransdialog.cpp:527 filtertransdialog.cpp:564
+#: optionsettingsgeneral.cpp:281 util.cpp:691
 msgid "Invalid value"
 msgstr "Ungültiger Wert"
 
-#: billsdepositsdialog.cpp:1343 billsdepositsdialog.cpp:1365
-#: import_export/univcsvdialog.cpp:1133 maincurrencydialog.cpp:469
-#: mmframe.cpp:3329 optionsettingsgeneral.cpp:281
+#: billsdepositsdialog.cpp:1342 import_export/univcsvdialog.cpp:1133
+#: maincurrencydialog.cpp:469 mmframe.cpp:3329 optionsettingsgeneral.cpp:281
 #: splittransactionsdialog.cpp:209 stockspanel.cpp:395 stockspanel.cpp:396
 #: themes.cpp:310 themes.cpp:329 webappdialog.cpp:194 webappdialog.cpp:199
 msgid "Error"
 msgstr "Fehler"
 
-#: billsdepositsdialog.cpp:1423 transdialog.cpp:1262
+#: billsdepositsdialog.cpp:1407 transdialog.cpp:1262
 #: usertransactionpanel.cpp:192
 msgid "Specify the category for this transaction"
 msgstr "Kategorie für diese Buchung"
 
-#: billsdepositsdialog.cpp:1445 categdialog.cpp:119
+#: billsdepositsdialog.cpp:1429 categdialog.cpp:119
 #: import_export/qif_export.cpp:137 mmframereport.cpp:134 transdialog.cpp:391
 msgid "Categories"
 msgstr "Kategorien"
 
-#: billsdepositsdialog.cpp:1480 transdialog.cpp:1336
+#: billsdepositsdialog.cpp:1464 transdialog.cpp:1336
 msgid "Clear color"
 msgstr "Farbe entfernen"
 
-#: billsdepositsdialog.cpp:1485 filtertransdialog.cpp:1492 transdialog.cpp:1341
+#: billsdepositsdialog.cpp:1469 filtertransdialog.cpp:1492 transdialog.cpp:1341
 #, c-format
 msgid "Color #%i"
 msgstr "Farbe #%i"
@@ -1679,76 +1678,76 @@ msgstr "Schließen"
 msgid "&Close "
 msgstr "&Schließen "
 
-#: constants.cpp:171
+#: constants.cpp:177
 msgid "Advanced Filter"
 msgstr "Erweiterter Filter"
 
-#: constants.cpp:172
+#: constants.cpp:178
 msgid "View All Transactions"
 msgstr "Alle Buchungen ansehen"
 
-#: constants.cpp:173
+#: constants.cpp:179
 msgid "View Today"
 msgstr "Zeige heute"
 
-#: constants.cpp:174
+#: constants.cpp:180
 msgid "View Current Month"
 msgstr "Zeige aktuellen Monat"
 
-#: constants.cpp:175
+#: constants.cpp:181
 msgid "View Last 30 days"
 msgstr "Zeige 30 Tage"
 
-#: constants.cpp:176
+#: constants.cpp:182
 msgid "View Last 90 days"
 msgstr "Zeige 90 Tage"
 
-#: constants.cpp:177
+#: constants.cpp:183
 msgid "View Last Month"
 msgstr "Zeige letzten Monat"
 
-#: constants.cpp:178
+#: constants.cpp:184
 msgid "View Last 3 Months"
 msgstr "Zeige letzte 3 Monate"
 
-#: constants.cpp:179
+#: constants.cpp:185
 msgid "View Last 12 Months"
 msgstr "Zeige letzte 12 Monate"
 
-#: constants.cpp:180
+#: constants.cpp:186
 msgid "View Current Year"
 msgstr "Zeige laufendes Jahr"
 
-#: constants.cpp:181
+#: constants.cpp:187
 msgid "View Current Financial Year"
 msgstr "Zeige laufendes Finanzjahr"
 
-#: constants.cpp:182
+#: constants.cpp:188
 msgid "View Last Year"
 msgstr "Zeige letztes Jahr"
 
-#: constants.cpp:183
+#: constants.cpp:189
 msgid "View Last Financial Year"
 msgstr "Zeige letztes Finanzjahr"
 
-#: constants.cpp:184
+#: constants.cpp:190
 msgid "View Since Statement Date"
 msgstr "Ansicht seit dem Buchungsdatum"
 
-#: constants.cpp:186
+#: constants.cpp:192
 msgid "ALL"
 msgstr "ALLE"
 
-#: constants.cpp:187 mmframe.cpp:1317 mmframe.cpp:1717
+#: constants.cpp:193 mmframe.cpp:1317 mmframe.cpp:1717
 #: model/Model_Account.cpp:26
 msgid "Open"
 msgstr "Offen"
 
-#: constants.cpp:188 mmframe.cpp:1318 model/Model_Account.cpp:27
+#: constants.cpp:194 mmframe.cpp:1318 model/Model_Account.cpp:27
 msgid "Closed"
 msgstr "Geschlossen"
 
-#: constants.cpp:189 mmframe.cpp:1316
+#: constants.cpp:195 mmframe.cpp:1316
 msgid "Favorites"
 msgstr "Favoriten"
 
@@ -1864,7 +1863,7 @@ msgstr "Auto-Vervollständigung"
 msgid "Enables autocomplete on custom field"
 msgstr "Aktiviert die automatische Vervollständigung für ein benutzerdefiniertes Feld"
 
-#: customfieldeditdialog.cpp:161 optionsettingsview.cpp:186 util.cpp:573
+#: customfieldeditdialog.cpp:161 optionsettingsview.cpp:186 util.cpp:574
 msgid "Default"
 msgstr "Standard"
 
@@ -2403,11 +2402,11 @@ msgstr "Betragsspanne:"
 
 #: filtertransdialog.cpp:349 filtertransdialog.cpp:1081
 msgid "Color"
-msgstr ""
+msgstr "Farbe"
 
 #: filtertransdialog.cpp:353
 msgid "Select the Color"
-msgstr ""
+msgstr "Farbe auswählen"
 
 #: filtertransdialog.cpp:363
 msgid "Settings"
@@ -2479,7 +2478,7 @@ msgstr "Konten auswählen"
 
 #: filtertransdialog.cpp:1487
 msgid "Not colored"
-msgstr ""
+msgstr "nicht farbig"
 
 #: general_report_manager.cpp:247 general_report_manager.cpp:663
 msgid "General Reports Manager"
@@ -3416,8 +3415,8 @@ msgid "Do you really want to delete the selected Currency?"
 msgstr "Wollen Sie die Währung wirklich löschen?"
 
 #: maincurrencydialog.cpp:354 maincurrencydialog.cpp:424
-#: maincurrencydialog.cpp:650 maincurrencydialog.cpp:767
-#: maincurrencydialog.cpp:791 maincurrencydialog.h:76
+#: maincurrencydialog.cpp:650 maincurrencydialog.cpp:774
+#: maincurrencydialog.cpp:798 maincurrencydialog.h:76
 msgid "Currency Dialog"
 msgstr "Währungen"
 
@@ -3442,8 +3441,8 @@ msgid "Unable to update history currency rates. Please update them manually!"
 msgstr "Währungskurse im Verlauf konnten nicht aktualisiert werden. Bitte manuell aktualisieren!"
 
 #: maincurrencydialog.cpp:491 maincurrencydialog.cpp:643
-#: maincurrencydialog.cpp:670 maincurrencydialog.cpp:706
-#: maincurrencydialog.cpp:812
+#: maincurrencydialog.cpp:677 maincurrencydialog.cpp:713
+#: maincurrencydialog.cpp:819
 msgid "Currency history error"
 msgstr "Währungsverlaufsfehler"
 
@@ -3463,30 +3462,30 @@ msgstr "Keine Währung ausgewählt!"
 msgid "Do you want to add also dates without any transaction?"
 msgstr "Möchten Sie auch Tage ohne Buchungen hinzufügen?"
 
-#: maincurrencydialog.cpp:668
+#: maincurrencydialog.cpp:675
 #, c-format
 msgid "Unable to download %s currency rates"
 msgstr "Kann die Wechselkurse %s nicht herunterladen"
 
-#: maincurrencydialog.cpp:704
+#: maincurrencydialog.cpp:711
 #, c-format
 msgid "Unable to download history for symbol %s. History rates not available!"
 msgstr "Der Verlauf für das Symbol %s kann nicht heruntergeladen werden. Vorherige Kurse sind nicht verfügbar!"
 
-#: maincurrencydialog.cpp:766
+#: maincurrencydialog.cpp:773
 msgid "Changing base currency will delete all history rates, proceed?"
 msgstr "Ändern der Basiswährung löscht alle Verlaufsraten. Fortfahren?"
 
-#: maincurrencydialog.cpp:790
+#: maincurrencydialog.cpp:797
 msgid "Do you want to update today currency rates?"
 msgstr "Möchten Sie heute die Wechselkurse aktualisieren?"
 
-#: maincurrencydialog.cpp:811
+#: maincurrencydialog.cpp:818
 #, c-format
 msgid "Unable to download history for base symbol %s. History rates not available!"
 msgstr "Downloadverlauf für das Basissymbol %s nicht möglich. Verlaufsraten nicht verfügbar!"
 
-#: maincurrencydialog.cpp:854 stockspanel.cpp:406 util.cpp:618
+#: maincurrencydialog.cpp:861 stockspanel.cpp:406 util.cpp:619
 msgid "Could not find base currency symbol!"
 msgstr "Konnte Währungssymbol nicht finden!"
 
@@ -5020,7 +5019,7 @@ msgstr "Wertpapiere"
 msgid "Gain/Loss"
 msgstr "Gewinn/Verlust"
 
-#: mmhomepage.cpp:80 reports/budgetingperf.cpp:219 reports/cashflow.cpp:250
+#: mmhomepage.cpp:80 reports/budgetingperf.cpp:220 reports/cashflow.cpp:250
 #: reports/categexp.cpp:175 reports/categexp.cpp:451 reports/summary.cpp:165
 msgid "Total"
 msgstr "Gesamt"
@@ -5560,7 +5559,7 @@ msgstr "zuletzt als Zahlungsempfänger eingesetzt"
 
 #: optionsettingsmisc.cpp:111
 msgid "Use default for payee"
-msgstr ""
+msgstr "Standard für Zahler verwenden"
 
 #: optionsettingsmisc.cpp:127
 msgid "Yes"
@@ -5812,7 +5811,7 @@ msgstr "Sonstige Symbolgröße"
 
 #: payeedialog.cpp:67
 msgid "Last Used Category"
-msgstr ""
+msgstr "Zuletzt verwendete Kategorie"
 
 #: payeedialog.cpp:67
 msgid "Default Category"
@@ -5857,11 +5856,11 @@ msgstr "Empfänger/Zahler verwalten, lösch Fehler"
 
 #: payeedialog.cpp:390
 msgid "Define Category"
-msgstr ""
+msgstr "Kategorie definieren"
 
 #: payeedialog.cpp:392
 msgid "Remove Category"
-msgstr ""
+msgstr "Kategorie löschen"
 
 #: payeedialog.cpp:407
 msgid "Relocate Payee"
@@ -5998,24 +5997,24 @@ msgstr "Tatsächliche Ausgaben:"
 msgid "Difference Expenses:"
 msgstr "Unterschied Ausgaben:"
 
-#: reports/budgetingperf.cpp:192
+#: reports/budgetingperf.cpp:193
 #, c-format
 msgid "Budget Performance for %s"
 msgstr "Budgeterfüllung für %s"
 
-#: reports/budgetingperf.cpp:227 reports/budgetingperf.cpp:229
+#: reports/budgetingperf.cpp:228 reports/budgetingperf.cpp:230
 msgid "Est."
 msgstr "Schätzung"
 
-#: reports/budgetingperf.cpp:227 reports/budgetingperf.cpp:229
+#: reports/budgetingperf.cpp:228 reports/budgetingperf.cpp:230
 msgid "Act."
 msgstr "Empfehlung"
 
-#: reports/budgetingperf.cpp:230
+#: reports/budgetingperf.cpp:231
 msgid "%"
 msgstr "%"
 
-#: reports/budgetingperf.cpp:283
+#: reports/budgetingperf.cpp:284
 msgid "Monthly Total"
 msgstr "Monatlich Gesamt"
 
@@ -6676,7 +6675,7 @@ msgstr "Aktienkurse erfolgreich aktualisiert"
 msgid "Last updated %s"
 msgstr "Letzte Aktualisierung %s"
 
-#: stockspanel.cpp:412 util.cpp:642 util.cpp:771
+#: stockspanel.cpp:412 util.cpp:643 util.cpp:795
 msgid "Nothing to update"
 msgstr "Nichts zu aktualisieren"
 
@@ -6737,11 +6736,11 @@ msgstr "anfügen"
 #, c-format
 msgid "You have not used this payee name before. Is the name correct?\n"
 "%s"
-msgstr ""
+msgstr "Sie haben diesen Namen als Zahlungsempfänger noch nie verwendet. Ist der Name korrekt? %s"
 
 #: transactionsupdatedialog.cpp:326 transdialog.cpp:665
 msgid "Confirm payee name"
-msgstr ""
+msgstr "Namen des Zahlungsempfängers bestätigen"
 
 #: transdialog.cpp:180
 msgid "Duplicate Transaction"
@@ -6837,192 +6836,216 @@ msgstr "Wählen Sie das gewünschte Konto"
 msgid "Account Selection"
 msgstr "Kontoauswahl"
 
-#: util.cpp:292
+#: util.cpp:293
 msgid "Jan"
 msgstr "Jan"
 
-#: util.cpp:292
+#: util.cpp:293
 msgid "Feb"
 msgstr "Feb"
 
-#: util.cpp:292
+#: util.cpp:293
 msgid "Mar"
 msgstr "Mär"
 
-#: util.cpp:293
+#: util.cpp:294
 msgid "Apr"
 msgstr "Apr"
 
-#: util.cpp:293 util.h:154
+#: util.cpp:294 util.h:156
 msgid "May"
 msgstr "Mai"
 
-#: util.cpp:293
+#: util.cpp:294
 msgid "Jun"
 msgstr "Juni"
 
-#: util.cpp:294
+#: util.cpp:295
 msgid "Jul"
 msgstr "Juli"
 
-#: util.cpp:294
+#: util.cpp:295
 msgid "Aug"
 msgstr "Aug"
 
-#: util.cpp:294
+#: util.cpp:295
 msgid "Sep"
 msgstr "Sep"
 
-#: util.cpp:295
+#: util.cpp:296
 msgid "Oct"
 msgstr "Okt"
 
-#: util.cpp:295
+#: util.cpp:296
 msgid "Nov"
 msgstr "Nov"
 
-#: util.cpp:295
+#: util.cpp:296
 msgid "Dec"
 msgstr "Dez"
 
-#: util.cpp:300
+#: util.cpp:301
 msgid "Sunday"
 msgstr "Sonntag"
 
-#: util.cpp:300
+#: util.cpp:301
 msgid "Monday"
 msgstr "Montag"
 
-#: util.cpp:300
+#: util.cpp:301
 msgid "Tuesday"
 msgstr "Dienstag"
 
-#: util.cpp:301
+#: util.cpp:302
 msgid "Wednesday"
 msgstr "Mittwoch"
 
-#: util.cpp:301
+#: util.cpp:302
 msgid "Thursday"
 msgstr "Donnerstag"
 
-#: util.cpp:301
+#: util.cpp:302
 msgid "Friday"
 msgstr "Freitag"
 
-#: util.cpp:302
+#: util.cpp:303
 msgid "Saturday"
 msgstr "Samstag"
 
-#: util.cpp:307
+#: util.cpp:308
 msgid "Sun"
 msgstr "So"
 
-#: util.cpp:307
+#: util.cpp:308
 msgid "Mon"
 msgstr "Mo"
 
-#: util.cpp:307
+#: util.cpp:308
 msgid "Tue"
 msgstr "Di"
 
-#: util.cpp:308
+#: util.cpp:309
 msgid "Wed"
 msgstr "Mi"
 
-#: util.cpp:308
+#: util.cpp:309
 msgid "Thu"
 msgstr "Do"
 
-#: util.cpp:308
+#: util.cpp:309
 msgid "Fri"
 msgstr "Fr"
 
-#: util.cpp:309
+#: util.cpp:310
 msgid "Sat"
 msgstr "Sa"
 
-#: util.cpp:652
+#: util.cpp:676
 msgid "Currency rates have been updated"
 msgstr "Währungskurse wurden aktualisiert"
 
-#: util.cpp:747
+#: util.cpp:771 util.cpp:877 util.cpp:936
 msgid "JSON Parse Error"
 msgstr "JSON-Parse-Fehler"
 
-#: util.cpp:1052
+#: util.cpp:885 util.cpp:944
+msgid "Expected response to contain a data or error string"
+msgstr "Erwartete Antwort wird einen Daten- oder Fehlerstring enthalten"
+
+#: util.cpp:916
+msgid "Could not find asset for symbol"
+msgstr "Kein Vermögenswert für das Symbol gefunden"
+
+#: util.cpp:951
+msgid "Could not get base currency!"
+msgstr "Basiswährung konnte nicht abgerufen werden!"
+
+#: util.cpp:957
+msgid "USD"
+msgstr "USD"
+
+#: util.cpp:961
+msgid "Could not find currency 'USD', needed for converting history prices"
+msgstr "Die Währung 'USD', die für die Umrechnung der historischen Preise benötigt wird, konnte nicht gefunden werden."
+
+#: util.cpp:981
+msgid "Could not parse price in asset history"
+msgstr "Preis in Vermögenshistorie konnte nicht analysiert werden"
+
+#: util.cpp:1211
 #, c-format
 msgid "Version: %s"
 msgstr "Version: %s"
 
-#: util.cpp:1053
+#: util.cpp:1212
 msgid "Build on"
 msgstr "Aufbauend auf"
 
-#: util.cpp:1054
+#: util.cpp:1213
 msgid "Database version: "
 msgstr "Datenbankversion: "
 
-#: util.cpp:1061
+#: util.cpp:1220
 msgid "Git commit: "
 msgstr "Git commit: "
 
-#: util.cpp:1065
+#: util.cpp:1224
 msgid "Git branch: "
 msgstr "Git branch: "
 
-#: util.cpp:1069
+#: util.cpp:1228
 msgid "MMEX is using the following support products:"
 msgstr "MMEX verwendet folgene Unterstützungsprodukte:"
 
-#: util.cpp:1087
+#: util.cpp:1246
 msgid "Build using:"
 msgstr "Genutztes Build:"
 
-#: util.cpp:1108
+#: util.cpp:1267
 msgid "Running on:"
 msgstr "Läuft auf:"
 
-#: util.h:153
+#: util.h:155
 msgid "January"
 msgstr "Januar"
 
-#: util.h:153
+#: util.h:155
 msgid "February"
 msgstr "Februar"
 
-#: util.h:153
+#: util.h:155
 msgid "March"
 msgstr "März"
 
-#: util.h:154
+#: util.h:156
 msgid "April"
 msgstr "April"
 
-#: util.h:154
+#: util.h:156
 msgid "June"
 msgstr "Juni"
 
-#: util.h:155
+#: util.h:157
 msgid "July"
 msgstr "Juli"
 
-#: util.h:155
+#: util.h:157
 msgid "August"
 msgstr "August"
 
-#: util.h:155
+#: util.h:157
 msgid "September"
 msgstr "September"
 
-#: util.h:156
+#: util.h:158
 msgid "October"
 msgstr "Oktober"
 
-#: util.h:156
+#: util.h:158
 msgid "November"
 msgstr "November"
 
-#: util.h:156
+#: util.h:158
 msgid "December"
 msgstr "Dezember"
 
