@@ -127,33 +127,15 @@ void dbUpgrade::BackupDB(const wxString& FileName, int BackupType, int FilesToKe
     wxFileName fn(FileName);
     if (!fn.IsOk()) return;
 
-    wxString BackupName = "";
-
-    // define string in backup filename
-    switch (BackupType)
-    {
-    case BACKUPTYPE::START :
-        BackupName = "_start_";
-        break;
-    case BACKUPTYPE::CLOSE :
-        BackupName = "_update_";
-        break;
-    case BACKUPTYPE::VERSION_UPGRADE :
-        BackupName = wxString::Format("_upgrade_v%i_", UpgradeVersion);
-        break;
-    default:
-        break;
-    }
-
-    wxString backupFileName = FileName + BackupName + wxDateTime().Today().FormatISODate() + "." + fn.GetExt();
+    const wxString BackupName[3] = { "_start_", "_update_", wxString::Format("_upgrade_v%i_", UpgradeVersion) };
+    const auto backupFileName = wxString::Format("%s%s%s.bak", FileName, BackupName[BackupType], wxDateTime().Today().FormatISODate());
     wxFileName fnBak(backupFileName);
 
     // process backup
     switch (BackupType)
     {
     case BACKUPTYPE::START:
-        if (!fnBak.FileExists())
-        {
+        if (!fnBak.FileExists()) {
             wxCopyFile(FileName, backupFileName, true);
         }
         break;
@@ -161,8 +143,7 @@ void dbUpgrade::BackupDB(const wxString& FileName, int BackupType, int FilesToKe
         wxCopyFile(FileName, backupFileName, true);
         break;
     case BACKUPTYPE::VERSION_UPGRADE:
-        if (!fnBak.FileExists())
-        {
+        if (!fnBak.FileExists()) {
             wxCopyFile(FileName, backupFileName, true);
         }
         break;
@@ -173,8 +154,8 @@ void dbUpgrade::BackupDB(const wxString& FileName, int BackupType, int FilesToKe
     // Cleanup old backups
     if (BackupType != BACKUPTYPE::VERSION_UPGRADE)
     {
-        wxArrayString backupFileArray;
-        wxString fileSearch = FileName + BackupName + "*." + fn.GetExt();
+        wxSortedArrayString backupFileArray;
+        const auto fileSearch = wxString::Format("%s%s????-??-??.bak", FileName, BackupName[BackupType]);
         wxString backupFile = wxFindFirstFile(fileSearch);
         while (!backupFile.empty())
         {
@@ -182,12 +163,15 @@ void dbUpgrade::BackupDB(const wxString& FileName, int BackupType, int FilesToKe
             backupFile = wxFindNextFile();
         }
 
-        if (backupFileArray.Count() > static_cast<size_t>(FilesToKeep))
+        while (backupFileArray.GetCount() > static_cast<size_t>(FilesToKeep))
         {
-            backupFileArray.Sort(true);
             // ensure file is not read only before deleting file.
-            wxFileName fnLastFile(backupFileArray.Last());
-            if (fnLastFile.IsFileWritable()) wxRemoveFile(backupFileArray.Last());
+            wxFileName fnLastFile(backupFileArray.Item(0));
+            wxLogDebug("%s", backupFileArray.Item(0));
+            if (fnLastFile.IsFileWritable())
+                wxRemoveFile(backupFileArray.Item(0));
+
+            backupFileArray.erase(backupFileArray.begin());
         }
     }
 }
