@@ -1,5 +1,5 @@
 /*******************************************************
-Copyright (C) 2014, 2015 Nikolay
+Copyright (C) 2014, 2015 Nikolay Akimov
 Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
 
 This program is free software; you can redistribute it and/or modify
