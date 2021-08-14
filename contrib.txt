@@ -132,6 +132,7 @@ Markus Egg
 Michel SERIN
 Roger Chandler
 William R Detamore
+Alexander Habegger
 David Coons
 David Morrison
 Jose Manuel Marrero León
@@ -145,9 +146,12 @@ Roger Spindler
 Edgar Lloren
 Xiaoyun Wang
 Jean-michel LOUISET
+Antonio Navarro Sánchez
 Tim Carden
 Jérémy DUFRAISSE
+Brian Crow
 Antonio Adam
+EMMANOUIL MASTROPETROS
 Frédéric Vandendris
 Gerald Mead
 Hermann Fessler
@@ -158,13 +162,11 @@ Sean Vinaja
 Timothy Pope
 Fr. Cycus Chungu
 Roger Gimbrere
-Brian Crow
 Mark Wilkerson
 Neil Cottis
 Glenn Fowler
 Luisa Guglielmetti
 Rafael Moreira
-Antonio Navarro Sánchez
 Francisco Fos Ros
 Marco Giuseppe Stimolo
 Ian Rowe
