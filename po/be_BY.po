@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-15 15:41+0300\n"
-"PO-Revision-Date: 2021-08-15 19:19\n"
+"PO-Revision-Date: 2021-08-15 19:34\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -1561,7 +1561,7 @@ msgstr "Выбар выдзеленай катыгорыі для бягучай
 
 #: categdialog.cpp:255
 msgid "Enter the name for the new category:"
-msgstr "Пакажыце імя новай катыгорыі:"
+msgstr "Пакажыце назву новай катыгорыі:"
 
 #: categdialog.cpp:258
 msgid "Tip: If category added now, check bottom of list."
@@ -2616,7 +2616,7 @@ msgstr "Выдліць справаздачу"
 
 #: general_report_manager.cpp:831 general_report_manager.cpp:979
 msgid "Enter the name for the report"
-msgstr "Напішыце назву справаздачы"
+msgstr "Пакажыце назву справаздачы"
 
 #: general_report_manager.cpp:832 general_report_manager.cpp:980
 #: mmframe.cpp:1277 mmframe.cpp:1558 mmframe.cpp:1730
@@ -2629,7 +2629,7 @@ msgstr "Выдаліць справаздачу:"
 
 #: general_report_manager.cpp:879 general_report_manager.cpp:960
 msgid "Enter or choose name for the new report group"
-msgstr "Калі ласка, пакажыце імя новай групы справаздачаў"
+msgstr "Пакажыце або абярыце назву новай групы справаздачаў"
 
 #: general_report_manager.cpp:880
 msgid "Change report group"
@@ -2637,7 +2637,7 @@ msgstr "Змяніцу групу"
 
 #: general_report_manager.cpp:896
 msgid "Enter or choose name for the new group"
-msgstr "Пакажыце імя новай групы"
+msgstr "Пакажыце або абярыце назву новай групы"
 
 #: general_report_manager.cpp:961
 msgid "Add Report Group"
@@ -5855,11 +5855,11 @@ msgstr "Рыдактар платнікоў: дадаць"
 
 #: payeedialog.cpp:226
 msgid "Enter the name for the new payee:"
-msgstr ""
+msgstr "Пакажыце імя новага платніка:"
 
 #: payeedialog.cpp:253
 msgid "Modify the name for the payee:"
-msgstr ""
+msgstr "Змяніць імя новага платніка:"
 
 #: payeedialog.cpp:254 payeedialog.cpp:270
 msgid "Organize Payees: Edit Payee"
@@ -5867,7 +5867,7 @@ msgstr "Рыдактар атрымальнікаў: рыдагаваць"
 
 #: payeedialog.cpp:284
 msgid "Payee in use."
-msgstr ""
+msgstr "Платнік выкарыстоўваецца."
 
 #: payeedialog.cpp:287
 msgid "Tip: Change all transactions using this Payee to another Payee using the relocate command:"
@@ -5883,11 +5883,11 @@ msgstr "Рыдактар атрымальнікаў: памылка выдале
 
 #: payeedialog.cpp:390
 msgid "Define Category"
-msgstr ""
+msgstr "Вызначыць катыгорыю"
 
 #: payeedialog.cpp:392
 msgid "Remove Category"
-msgstr ""
+msgstr "Выдаліць катыгорыю"
 
 #: payeedialog.cpp:407
 msgid "Relocate Payee"
