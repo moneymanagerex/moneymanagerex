@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-15 15:41+0300\n"
-"PO-Revision-Date: 2021-08-15 19:34\n"
+"PO-Revision-Date: 2021-08-15 20:06\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -5948,12 +5948,12 @@ msgstr "У састаўных аперацыях, што паўтараюцца,
 #: relocatecategorydialog.cpp:273
 #, c-format
 msgid "Records found as Default Payee Category: %i"
-msgstr ""
+msgstr "Знойдзена запісаў, прывязаных да атрымальніка: %i"
 
 #: relocatecategorydialog.cpp:274
 #, c-format
 msgid "Records found in budget: %i"
-msgstr ""
+msgstr "Знойдзена запісаў у бюджэце: %i"
 
 #: relocatepayeedialog.cpp:52
 msgid "Relocate Payee Dialog"
@@ -5970,7 +5970,7 @@ msgstr "Выдаліць абранага атрымальніка пасля з
 #: relocatepayeedialog.cpp:152
 #, c-format
 msgid "From %s to %s"
-msgstr ""
+msgstr "З %s па %s"
 
 #: relocatepayeedialog.cpp:157
 msgid "Payee Relocation Confirmation"
@@ -5979,17 +5979,17 @@ msgstr "Спраўджанне замены атрымальніка"
 #: reports/budget.cpp:88
 #, c-format
 msgid "Financial Year: %s - %i"
-msgstr ""
+msgstr "Фінансавы год: %s — %i"
 
 #: reports/budget.cpp:98
 #, c-format
 msgid "Year: %i Month: %s"
-msgstr ""
+msgstr "Год: %i Месяц: %s"
 
 #: reports/budgetcategorysummary.cpp:119
 #, c-format
 msgid "Budget Categories for %s"
-msgstr ""
+msgstr "Бюджэт на %s"
 
 #: reports/budgetcategorysummary.cpp:119
 #, c-format
