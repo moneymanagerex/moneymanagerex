@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-15 15:41+0300\n"
-"PO-Revision-Date: 2021-08-15 17:48\n"
+"PO-Revision-Date: 2021-08-15 17:57\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -4988,27 +4988,27 @@ msgstr "Рух сродкаў"
 
 #: mmframereport.cpp:140 mmframereport.cpp:204 mmhomepage.cpp:188
 msgid "Summary"
-msgstr ""
+msgstr "Зводка"
 
 #: mmframereport.cpp:143 reports/categexp.cpp:242
 msgid "Where the Money Goes"
-msgstr ""
+msgstr "Куды сыходзяць грошы"
 
 #: mmframereport.cpp:146 reports/categexp.cpp:248
 msgid "Where the Money Comes From"
-msgstr ""
+msgstr "Адкуль прыходзяць грошы"
 
 #: mmframereport.cpp:151
 msgid "Forecast Report"
-msgstr ""
+msgstr "Прагноз"
 
 #: mmframereport.cpp:156
 msgid "Income vs Expenses"
-msgstr ""
+msgstr "Прыбыткі і выдаткі"
 
 #: mmframereport.cpp:164
 msgid "My Usage"
-msgstr ""
+msgstr "Маё выкарыстанне"
 
 #: mmframereport.cpp:169 reports/payee.cpp:113
 msgid "Payees"
@@ -5016,41 +5016,41 @@ msgstr "Атрымальнікі"
 
 #: mmframereport.cpp:174
 msgid "Summary of Accounts"
-msgstr ""
+msgstr "Зводка рахункаў"
 
 #: mmframereport.cpp:189
 msgid "Budget Performance"
-msgstr ""
+msgstr "Паказнікі бюджэта"
 
 #: mmframereport.cpp:192
 msgid "Budget Category Summary"
-msgstr ""
+msgstr "Зводка бюджэта па катыгорыях"
 
 #: mmframereport.cpp:201
 msgid "Stocks Report"
-msgstr ""
+msgstr "Справаздача па каціроўках"
 
 #: mmhelppanel.cpp:65
 msgid "&Back"
-msgstr ""
+msgstr "&Назад"
 
 #: mmhelppanel.cpp:66
 msgid "&Forward"
-msgstr ""
+msgstr "&Наперад"
 
 #: mmhomepage.cpp:60 mmhomepage.cpp:79 reports/summary.cpp:166
 msgid "Stocks"
-msgstr ""
+msgstr "Акцыі"
 
 #: mmhomepage.cpp:79 reports/summarystocks.cpp:157
 #: reports/summarystocks.cpp:197 stocks_list.cpp:95
 msgid "Gain/Loss"
-msgstr ""
+msgstr "Атрымана/Згублена"
 
 #: mmhomepage.cpp:80 reports/budgetingperf.cpp:220 reports/cashflow.cpp:250
 #: reports/categexp.cpp:175 reports/categexp.cpp:451 reports/summary.cpp:165
 msgid "Total"
-msgstr ""
+msgstr "Агулам"
 
 #: mmhomepage.cpp:106 mmhomepage.cpp:696 reports/incexpenses.cpp:287
 #: reports/payee.cpp:164 reports/summarystocks.cpp:133
@@ -5065,27 +5065,27 @@ msgstr "Найбольш расходныя: %s"
 
 #: mmhomepage.cpp:360
 msgid "Account / Payee"
-msgstr ""
+msgstr "Рахунак / Платнік"
 
 #: mmhomepage.cpp:438
 #, c-format
 msgid "Income vs Expenses: %s"
-msgstr ""
+msgstr "Прыбыткі і выдаткі: %s"
 
 #: mmhomepage.cpp:448 reports/categexp.cpp:123 reports/categexp.cpp:147
 #: reports/categexp.cpp:376 reports/categexp.cpp:450 reports/incexpenses.cpp:87
 #: reports/incexpenses.cpp:213 reports/incexpenses.cpp:246
 #: reports/payee.cpp:136
 msgid "Expenses"
-msgstr ""
+msgstr "Выдаткі"
 
 #: mmhomepage.cpp:452 reports/incexpenses.cpp:120
 msgid "Difference:"
-msgstr ""
+msgstr "Розніца:"
 
 #: mmhomepage.cpp:456
 msgid "Income/Expenses"
-msgstr ""
+msgstr "Прыбыткі і выдаткі"
 
 #: mmhomepage.cpp:484
 msgid "Transaction Statistics"
