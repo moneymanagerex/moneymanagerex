@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-15 15:41+0300\n"
-"PO-Revision-Date: 2021-08-15 21:15\n"
+"PO-Revision-Date: 2021-08-15 21:31\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -6992,15 +6992,15 @@ msgstr "Немагчыма атрымаць базавую валюту"
 
 #: util.cpp:953
 msgid "USD"
-msgstr ""
+msgstr "USD"
 
 #: util.cpp:956
 msgid "Could not find currency 'USD', needed for converting history prices"
-msgstr ""
+msgstr "Не атрымалася знайсці валюту 'USD', неабходную для канвертавання цэнаў у гісторыі"
 
 #: util.cpp:976
 msgid "Could not parse price in asset history"
-msgstr ""
+msgstr "Аналіз цаны з гісторыі актываў не атрымаўся"
 
 #: util.cpp:1206
 #, c-format
@@ -7009,7 +7009,7 @@ msgstr "Вэрсія: %s"
 
 #: util.cpp:1207
 msgid "Build on"
-msgstr ""
+msgstr "Створаная"
 
 #: util.cpp:1208
 msgid "Database version: "
@@ -7017,67 +7017,67 @@ msgstr "Вэрсія базы дадзеных: "
 
 #: util.cpp:1215
 msgid "Git commit: "
-msgstr ""
+msgstr "Git commit: "
 
 #: util.cpp:1219
 msgid "Git branch: "
-msgstr ""
+msgstr "Галіінка Git: "
 
 #: util.cpp:1223
 msgid "MMEX is using the following support products:"
-msgstr ""
+msgstr "MMEX выкарыстоўвае наступныя прадукты:"
 
 #: util.cpp:1241
 msgid "Build using:"
-msgstr ""
+msgstr "Ствована з дапамогай:"
 
 #: util.cpp:1262
 msgid "Running on:"
-msgstr ""
+msgstr "Запушчана на:"
 
 #: util.h:155
 msgid "January"
-msgstr ""
+msgstr "Студзень"
 
 #: util.h:155
 msgid "February"
-msgstr ""
+msgstr "Люты"
 
 #: util.h:155
 msgid "March"
-msgstr ""
+msgstr "Сакавік"
 
 #: util.h:156
 msgid "April"
-msgstr ""
+msgstr "Красавік"
 
 #: util.h:156
 msgid "June"
-msgstr ""
+msgstr "Чэрвень"
 
 #: util.h:157
 msgid "July"
-msgstr ""
+msgstr "Ліпень"
 
 #: util.h:157
 msgid "August"
-msgstr ""
+msgstr "Жнівень"
 
 #: util.h:157
 msgid "September"
-msgstr ""
+msgstr "Верасень"
 
 #: util.h:158
 msgid "October"
-msgstr ""
+msgstr "Кастрычнік"
 
 #: util.h:158
 msgid "November"
-msgstr ""
+msgstr "Лістапад"
 
 #: util.h:158
 msgid "December"
-msgstr ""
+msgstr "Снежань"
 
 #: webapp.cpp:111
 msgid "Wrong WebApp GUID:"
@@ -7085,7 +7085,7 @@ msgstr "Хібны WebApp GUID:"
 
 #: webapp.cpp:112
 msgid "please check it in network options."
-msgstr ""
+msgstr "калі ласка, праверце гэта ў наладах сеткі."
 
 #: webapp.cpp:113
 msgid "Wrong WebApp settings"
@@ -7097,7 +7097,7 @@ msgstr "Немагчыма далучыцца да WebApp:"
 
 #: webapp.cpp:119
 msgid "please check settings and / or internet connection."
-msgstr ""
+msgstr "калі ласка, праверце налады і / або інтэрнэт спалучэнне."
 
 #: webapp.cpp:121
 msgid "WebApp connection error"
@@ -7115,7 +7115,7 @@ msgstr "WebApp   API версія -> %s"
 #: webapp.cpp:133
 #, c-format
 msgid "Expected API version -> %s"
-msgstr ""
+msgstr "Чаканая версія API -> %s"
 
 #: webapp.cpp:134
 msgid "Wrong WebApp API version"
@@ -7124,7 +7124,7 @@ msgstr "Хібная версія WebApp API"
 #: webapp.cpp:473
 #, c-format
 msgid "Account '%s' not found!"
-msgstr ""
+msgstr "Рахунак '%s' ня знойдзены!"
 
 #: webapp.cpp:475
 #, c-format
@@ -7143,7 +7143,7 @@ msgstr "Немагчыма спампаваць далучэнні з WebApp."
 
 #: webapp.cpp:561
 msgid "Attachments folder not set or unavailable"
-msgstr ""
+msgstr "Тэчка для далучэнняў не паказаная альбо не дасяжная"
 
 #: webapp.cpp:562
 msgid "Transaction not downloaded:"
@@ -7155,7 +7155,7 @@ msgstr "Калі ласка, выпраўце тэчку з далучэнням
 
 #: webapp.cpp:564
 msgid "Attachment folder error"
-msgstr ""
+msgstr "Памылка тэчкі для далучэнняў"
 
 #: webapp.cpp:596
 msgid "Transaction not downloaded: please retry to download transactions"
@@ -7163,7 +7163,7 @@ msgstr "Аперацыя не спампаваная: калі ласка, сп�
 
 #: webapp.cpp:597 webappdialog.cpp:348
 msgid "Attachment download error"
-msgstr ""
+msgstr "Памылка спампавання далучэння"
 
 #: webappdialog.cpp:77
 msgid "Import WebApp transactions"
@@ -7171,7 +7171,7 @@ msgstr "Імпартую аперацый WebApp"
 
 #: webappdialog.cpp:100
 msgid "Network status (click to refresh)"
-msgstr ""
+msgstr "Статус сеткі (націсніце, каб абнавіць)"
 
 #: webappdialog.cpp:132
 msgid "Checking for new transactions..."
@@ -7179,11 +7179,11 @@ msgstr "Праверка новых аперацыяў..."
 
 #: webappdialog.cpp:165
 msgid "&Import all "
-msgstr ""
+msgstr "&Імпартаваць усе "
 
 #: webappdialog.cpp:167
 msgid "Import and open all "
-msgstr ""
+msgstr "Імпартаваць і адчыніць усе "
 
 #: webappdialog.cpp:214
 msgid "Unable to download transactions from webapp."
@@ -7203,15 +7203,15 @@ msgstr "Памылка обмена дадзенымі з WebApp"
 
 #: webappdialog.cpp:416
 msgid "Open Attachment"
-msgstr ""
+msgstr "Адчыніць далучэнне"
 
 #: webappdialog.cpp:418
 msgid "Import and open"
-msgstr ""
+msgstr "Імпартаваць і адчыніць"
 
 #: wizard_newaccount.cpp:30
 msgid "Add Account Wizard"
-msgstr ""
+msgstr "Майстар стварэння рахунка"
 
 #: wizard_newaccount.cpp:39
 #, c-format
@@ -7231,15 +7231,15 @@ msgstr "Хібная назва рахунка"
 
 #: wizard_newaccount.cpp:93
 msgid "Account Name already exists"
-msgstr ""
+msgstr "Назва рахунка ўжо існуе"
 
 #: wizard_newaccount.cpp:106
 msgid "Name of the Account"
-msgstr ""
+msgstr "Назва рахунка"
 
 #: wizard_newaccount.cpp:110
 msgid "Specify a descriptive name for the account."
-msgstr ""
+msgstr "Пакажыце назву для рахунка."
 
 #: wizard_newaccount.cpp:111
 msgid "This is generally the name of a financial institution\n"
