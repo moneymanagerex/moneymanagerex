@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-14 14:35+0300\n"
-"PO-Revision-Date: 2021-08-14 17:31\n"
+"PO-Revision-Date: 2021-08-15 07:56\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -4124,19 +4124,19 @@ msgstr "Файлы &QIF..."
 
 #: mmframe.cpp:1306 mmframe.cpp:1380
 msgid "&MMEX CSV Files..."
-msgstr ""
+msgstr "Файлы &MMEX CSV..."
 
 #: mmframe.cpp:1309 mmframe.cpp:1383
 msgid "&JSON Files..."
-msgstr ""
+msgstr "Файлы &JSON..."
 
 #: mmframe.cpp:1320 optionsettingsview.cpp:64
 msgid "Accounts Visible"
-msgstr ""
+msgstr "Паказваць рахункі"
 
 #: mmframe.cpp:1357
 msgid "&New Database\tCtrl-N"
-msgstr ""
+msgstr "&Новая база дадзеных\tCtrl-N"
 
 #: mmframe.cpp:1357 mmframe.cpp:1716 wizard_newdb.cpp:124
 msgid "New Database"
