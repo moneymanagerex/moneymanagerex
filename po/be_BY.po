@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-15 15:41+0300\n"
-"PO-Revision-Date: 2021-08-15 17:05\n"
+"PO-Revision-Date: 2021-08-15 17:31\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -4819,15 +4819,17 @@ msgstr "Аптымізацыя базы дадзеных"
 msgid "Database Optimization Completed!\n\n"
 "Size before: %s\n"
 "Size after: %s\n"
-msgstr ""
+msgstr "Аптымізацыя базы дадзеных завершаная!\n\n"
+"Памер перад: %s\n"
+"Памер пасля: %s\n"
 
 #: mmframe.cpp:2122
 msgid "Please use this function only if explicitly requested by MMEX support"
-msgstr ""
+msgstr "Увага! Выкарыстоўвайце гэтую функцю толькі калі Вам гэта яўным чынам сказала служба падтрымкі MMEX"
 
 #: mmframe.cpp:2123
 msgid "DB Debug"
-msgstr ""
+msgstr "Адладка БД"
 
 #: mmframe.cpp:2142 mmframe.cpp:2163
 msgid "Save database file as"
@@ -4835,11 +4837,11 @@ msgstr "Захаваць файл базы дадзеных як"
 
 #: mmframe.cpp:2163
 msgid "Can't copy file to itself"
-msgstr ""
+msgstr "Нельга скапіяваць файл у самога сябе"
 
 #: mmframe.cpp:2176
 msgid "Enter password for new database"
-msgstr ""
+msgstr "Пакажыце пароль для новай базы дадзеных"
 
 #: mmframe.cpp:2265 mmframe.cpp:2284
 msgid "No account available to import"
