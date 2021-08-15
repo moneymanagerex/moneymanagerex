@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-15 15:41+0300\n"
-"PO-Revision-Date: 2021-08-15 16:16\n"
+"PO-Revision-Date: 2021-08-15 16:56\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -4773,21 +4773,22 @@ msgstr "Абраць файл для захоўвання базы дадзен�
 
 #: mmframe.cpp:2070
 msgid "Converted DB!"
-msgstr ""
+msgstr "Ператвораная БД!"
 
 #: mmframe.cpp:2070
 msgid "MMEX message"
-msgstr ""
+msgstr "Паведамленне MMEX"
 
 #: mmframe.cpp:2076
 msgid "MMEX: Encryption Password Change"
-msgstr ""
+msgstr "MMEX: Змена пароля шыфраванай БД"
 
 #: mmframe.cpp:2077
 #, c-format
 msgid "New password for database\n\n"
 "%s"
-msgstr ""
+msgstr "Новы пароль для базы дадзеных\n\n"
+"%s"
 
 #: mmframe.cpp:2082
 msgid "New password must not be empty."
