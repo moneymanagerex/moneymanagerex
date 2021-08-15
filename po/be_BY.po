@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-15 15:41+0300\n"
-"PO-Revision-Date: 2021-08-15 20:16\n"
+"PO-Revision-Date: 2021-08-15 20:31\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -1346,7 +1346,7 @@ msgstr "Выдатак"
 #: reports/incexpenses.cpp:84 reports/incexpenses.cpp:212
 #: reports/incexpenses.cpp:245
 msgid "Income"
-msgstr "Даход"
+msgstr "Прыбытак"
 
 #: budgetentrydialog.cpp:134
 msgid "Specify whether this category is an income or an expense category"
@@ -2048,7 +2048,7 @@ msgstr "Падарункі"
 
 #: db/DB_Table_Category_V1.h:124
 msgid "Other Income"
-msgstr "Іншыя даходы"
+msgstr "Іншы прыбытак"
 
 #: db/DB_Table_Category_V1.h:125
 msgid "Other Expenses"
@@ -4808,7 +4808,7 @@ msgstr "Пароль ня спраўджаны."
 
 #: mmframe.cpp:2103
 msgid "Make sure you have a backup of DB before optimize it"
-msgstr "Упэўніцеся, што маеце рызервовую копію БД перш чым аптымізаваць яе"
+msgstr "Пераканайцеся, што маеце рызервовую копію БД перш чым аптымізаваць яе"
 
 #: mmframe.cpp:2104 mmframe.cpp:2114
 msgid "DB Optimization"
@@ -6079,86 +6079,86 @@ msgstr "Далучайцеся да нашай супольнасці ў <a href
 #: reports/bugreport.h:79
 #, c-format
 msgid "Read <a href='%s'>How to Report Bugs Effectively</a> for useful tips."
-msgstr ""
+msgstr "Прачытайце карысныя парады па спасылцы: <a href='%s'>Як эфектыўна паведамляць пра памылкі</a>."
 
 #: reports/bugreport.h:80
 msgid "Come up with a descriptive name for your problem."
-msgstr ""
+msgstr "Сфармулюйце апісанне вашай праблемы."
 
 #: reports/bugreport.h:81
 msgid "Include steps to reproduce your problem, attach screenshots where appropriate."
-msgstr ""
+msgstr "Уключыце крокі для паўтарэння вашай праблемы, пры неабходнасці далучыце скрыншоты."
 
 #: reports/bugreport.h:82
 #, c-format
 msgid "Before click the following link, be sure that you have already signed in to the <a href='%s'>GitHub</a>."
-msgstr ""
+msgstr "Перш чым перайсці па спаслцы, пераканайцеся, што вы ўжо ўвайшлі ў <a href='%s'>GitHub</a>."
 
 #: reports/bugreport.h:84
 #, c-format
 msgid "Finally, report a bug using GitHub <a href='%s'>online form</a> opened in your web browser."
-msgstr ""
+msgstr "Нарэшце, паведаміце пра памылку, выкарыстоўваючы GitHub <a href='%s'>анлайн-форму</a>, адчыненую ў вашым вэб-браўзэры."
 
 #: reports/bugreport.h:95
 msgid "Please, follow these instructions before submitting a new bug report:"
-msgstr ""
+msgstr "Перад адпраўкай новай памылкі, калі ласка, выканайце наступныя дзеянні:"
 
 #: reports/cashflow.cpp:211
 #, c-format
 msgid "Cash Flow Forecast for %i Year Ahead"
 msgid_plural "Cash Flow Forecast for %i Years Ahead"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Прагноз грашовага патока на %i год"
+msgstr[1] "Прагноз грашовага патока на %i гады"
+msgstr[2] "Прагноз грашовага патока на %i гадоў"
+msgstr[3] "Прагноз грашовага патока на %i гадоў"
 
 #: reports/cashflow.cpp:251 reports/categexp.cpp:375
 #: reports/incexpenses.cpp:211 reports/incexpenses.cpp:247
 #: reports/payee.cpp:137
 msgid "Difference"
-msgstr ""
+msgstr "Розніца"
 
 #: reports/categexp.cpp:203
 msgid "Category Total: "
-msgstr ""
+msgstr "Агулам па катыгорыі: "
 
 #: reports/categexp.cpp:222
 msgid "Total Expenses:"
-msgstr ""
+msgstr "Выдаткаў агулам:"
 
 #: reports/categexp.cpp:223
 msgid "Total Income:"
-msgstr ""
+msgstr "Агульны прыбытак:"
 
 #: reports/categexp.cpp:254
 msgid "Categories Summary"
-msgstr ""
+msgstr "Зводка па катыгорыях"
 
 #: reports/categexp.cpp:263
 msgid "Category Income/Expenses"
-msgstr ""
+msgstr "Прыбыткі і выдаткі па катыгорыях"
 
 #: reports/categexp.cpp:419
 msgid "Overall"
-msgstr ""
+msgstr "У цэлым"
 
 #: reports/categexp.cpp:449 reports/payee.cpp:135
 msgid "Incomes"
-msgstr ""
+msgstr "Прыбыткі"
 
 #: reports/forecast.cpp:29
 msgid "Forecast"
-msgstr ""
+msgstr "Прагноз"
 
 #: reports/htmlbuilder.cpp:111
 #, c-format
 msgid "Report Generated %s %s"
-msgstr ""
+msgstr "Справаздача ёсць сгенераваная %s %s"
 
 #: reports/htmlbuilder.cpp:169
 #, c-format
 msgid "From %s till %s"
-msgstr ""
+msgstr "З %s па %s"
 
 #: reports/htmlbuilder.cpp:175 reports/mmDateRange.cpp:199
 msgid "Over Time"
@@ -6166,79 +6166,79 @@ msgstr "Увесь час"
 
 #: reports/incexpenses.cpp:34
 msgid "Income vs Expenses Summary"
-msgstr ""
+msgstr "Зводка прыбыткаў і выдаткаў"
 
 #: reports/incexpenses.cpp:118
 msgid "Income:"
-msgstr ""
+msgstr "Прыбытак:"
 
 #: reports/incexpenses.cpp:119
 msgid "Expenses:"
-msgstr ""
+msgstr "Выдаткі:"
 
 #: reports/incexpenses.cpp:136
 msgid "Income vs Expenses Monthly"
-msgstr ""
+msgstr "Прыбытак і выдаткі па месяцах"
 
 #: reports/mmDateRange.cpp:53
 msgid "Current Month"
-msgstr ""
+msgstr "Бягучы месяц"
 
 #: reports/mmDateRange.cpp:61
 msgid "Today"
-msgstr ""
+msgstr "Сёння"
 
 #: reports/mmDateRange.cpp:70
 msgid "Current Month to Date"
-msgstr ""
+msgstr "Бягучы месяц да сёння"
 
 #: reports/mmDateRange.cpp:78
 msgid "Last Month"
-msgstr ""
+msgstr "Мінулы месяц"
 
 #: reports/mmDateRange.cpp:88
 msgid "Last 30 Days"
-msgstr ""
+msgstr "Апошнія 30 дзён"
 
 #: reports/mmDateRange.cpp:98
 msgid "Last 90 Days"
-msgstr ""
+msgstr "Апошнія 90 дзён"
 
 #: reports/mmDateRange.cpp:110
 msgid "Last 3 Months"
-msgstr ""
+msgstr "Мінулы 3 месяцы"
 
 #: reports/mmDateRange.cpp:122
 msgid "Last 12 Months"
-msgstr ""
+msgstr "Мінулыя 12 месяцы"
 
 #: reports/mmDateRange.cpp:131
 msgid "Current Year"
-msgstr ""
+msgstr "Бягучы год"
 
 #: reports/mmDateRange.cpp:139 stockdialog.cpp:721
 msgid "Current Year to Date"
-msgstr ""
+msgstr "Бягучы год да сёння"
 
 #: reports/mmDateRange.cpp:148
 msgid "Last Year"
-msgstr ""
+msgstr "Мінулы год"
 
 #: reports/mmDateRange.cpp:170
 msgid "Current Financial Year"
-msgstr ""
+msgstr "Бягучы фінансавы год"
 
 #: reports/mmDateRange.cpp:180
 msgid "Current Financial Year to Date"
-msgstr ""
+msgstr "Бягучы фінансавы год да сёння"
 
 #: reports/mmDateRange.cpp:191
 msgid "Last Financial Year"
-msgstr ""
+msgstr "Мінулы фінансавы год"
 
 #: reports/mmDateRange.cpp:210
 msgid "Custom"
-msgstr ""
+msgstr "Карыстальніцкі"
 
 #: reports/mmDateRange.cpp:220
 msgid "Last 365 Days"
@@ -7269,7 +7269,7 @@ msgid "Term accounts are specialized bank accounts. Intended for asset\n"
 "can have regular money coming in and out, being outside the\n"
 "general income stream."
 msgstr "Тэрміновыя рахункі - гэта спецыялізаваныя банкаўскія рахункі. Прызначаныя для актываў тыпавыя рахункі, такія як тэрміновыя дэпазіты і аблігацыі. На гэтыя рахункі\n"
-"могуць залічацца і спісвацца звычайныя грошы, знаходзячыся па-за межамі агульнага патока дахода."
+"могуць залічацца і спісвацца звычайныя грошы, знаходзячыся па-за межамі агульнага патока прыбытка."
 
 #: wizard_newaccount.cpp:162
 msgid "Base Account Currency Not set."
