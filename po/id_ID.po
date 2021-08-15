@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2021-08-14 14:35+0300\n"
-"PO-Revision-Date: 2021-08-14 11:46\n"
+"POT-Creation-Date: 2021-08-15 15:41+0300\n"
+"PO-Revision-Date: 2021-08-15 12:46\n"
 "Last-Translator: \n"
 "Language-Team: Indonesian\n"
 "MIME-Version: 1.0\n"
@@ -66,7 +66,7 @@ msgstr "Aktifkan untuk membantu kami mengirimkan data anonim tentang penggunaan 
 #: relocatepayeedialog.cpp:131 reports/reportbase.cpp:335
 #: sharetransactiondialog.cpp:325 splitdetailsdialog.cpp:161
 #: splittransactionsdialog.cpp:172 transactionsupdatedialog.cpp:240
-#: transdialog.cpp:604 wizard_update.cpp:192
+#: transdialog.cpp:605 wizard_update.cpp:192
 msgid "&OK "
 msgstr "&Ya "
 
@@ -134,7 +134,7 @@ msgstr "Pilih rekening yang paling sering digunakan untuk menyeleksi tampilan re
 #: import_export/univcsvdialog.cpp:111 mmchecking_list.cpp:237
 #: reports/transactions.cpp:88 sharetransactiondialog.cpp:270
 #: stockdialog.cpp:264 stocks_list.cpp:100 transactionsupdatedialog.cpp:211
-#: transdialog.cpp:578 usertransactionpanel.cpp:206 webappdialog.cpp:154
+#: transdialog.cpp:579 usertransactionpanel.cpp:206 webappdialog.cpp:154
 msgid "Notes"
 msgstr "Catatan"
 
@@ -373,7 +373,7 @@ msgstr "Isi dengan nama aset"
 #: mmreportspanel.cpp:275 model/Model_CustomField.cpp:29
 #: reports/cashflow.cpp:249 reports/incexpenses.cpp:244 reports/summary.cpp:157
 #: reports/transactions.cpp:80 stockdialog.cpp:297 stockdialog.cpp:676
-#: transactionsupdatedialog.cpp:118 transdialog.cpp:456
+#: transactionsupdatedialog.cpp:118 transdialog.cpp:457
 #: usertransactionpanel.cpp:108 webappdialog.cpp:147 wizard_update.cpp:145
 msgid "Date"
 msgstr "Tanggal"
@@ -458,7 +458,7 @@ msgstr "ID"
 #: import_export/qif_import_gui.cpp:232 import_export/univcsvdialog.cpp:116
 #: maincurrencydialog.cpp:251 mmhomepage.cpp:440 reports/incexpenses.cpp:111
 #: reports/transactions.cpp:86 splitdetailsdialog.cpp:120
-#: transactionsupdatedialog.cpp:145 transdialog.cpp:499
+#: transactionsupdatedialog.cpp:145 transdialog.cpp:500
 #: usertransactionpanel.cpp:138 webappdialog.cpp:150
 msgid "Type"
 msgstr "Tipe"
@@ -880,7 +880,7 @@ msgstr ""
 msgid "The requested payment will occur without user interaction"
 msgstr ""
 
-#: billsdepositsdialog.cpp:502 transdialog.cpp:435
+#: billsdepositsdialog.cpp:502 transdialog.cpp:436
 msgid "Transaction Details"
 msgstr "Rincian Transaksi"
 
@@ -896,7 +896,7 @@ msgstr ""
 msgid "Date Paid"
 msgstr ""
 
-#: billsdepositsdialog.cpp:537 filtertransdialog.cpp:291 transdialog.cpp:1299
+#: billsdepositsdialog.cpp:537 filtertransdialog.cpp:291 transdialog.cpp:1300
 msgid "Specify the status for the transaction"
 msgstr "Tentukan status transaksi"
 
@@ -906,20 +906,20 @@ msgstr "Tentukan status transaksi"
 #: import_export/qif_import_gui.cpp:234 import_export/qif_import_gui.cpp:245
 #: import_export/qif_import_gui.cpp:255 mmchecking_list.cpp:218
 #: reports/transactions.cpp:84 transactionsupdatedialog.cpp:131
-#: transdialog.cpp:479 usertransactionpanel.cpp:178 webappdialog.cpp:149
+#: transdialog.cpp:480 usertransactionpanel.cpp:178 webappdialog.cpp:149
 #: wizard_update.cpp:145
 msgid "Status"
 msgstr ""
 
-#: billsdepositsdialog.cpp:544 splitdetailsdialog.cpp:131 transdialog.cpp:1300
+#: billsdepositsdialog.cpp:544 splitdetailsdialog.cpp:131 transdialog.cpp:1301
 msgid "Specify the type of transactions to be created."
 msgstr "Isi dengan tipe transaksi yang dibuat"
 
-#: billsdepositsdialog.cpp:545 transdialog.cpp:494
+#: billsdepositsdialog.cpp:545 transdialog.cpp:495
 msgid "&Advanced"
 msgstr ""
 
-#: billsdepositsdialog.cpp:548 transdialog.cpp:1304
+#: billsdepositsdialog.cpp:548 transdialog.cpp:1305
 msgid "Allows the setting of different amounts in the FROM and TO accounts."
 msgstr ""
 
@@ -930,12 +930,12 @@ msgstr ""
 #: reports/budgetcategorysummary.cpp:190 reports/categexp.cpp:174
 #: reports/incexpenses.cpp:112 reports/transactions.cpp:87
 #: splitdetailsdialog.cpp:136 splittransactionsdialog.cpp:138
-#: transactionsupdatedialog.cpp:161 transdialog.cpp:513
+#: transactionsupdatedialog.cpp:161 transdialog.cpp:514
 #: usertransactionpanel.cpp:142 webappdialog.cpp:153
 msgid "Amount"
 msgstr "Jumlah (Rp.)"
 
-#: billsdepositsdialog.cpp:571 transdialog.cpp:1285
+#: billsdepositsdialog.cpp:571 transdialog.cpp:1286
 msgid "Specify the transfer amount in the To Account"
 msgstr ""
 
@@ -945,7 +945,7 @@ msgstr ""
 #: import_export/qif_export.cpp:591 import_export/qif_import_gui.cpp:98
 #: import_export/qif_import_gui.cpp:154 import_export/qif_import_gui.cpp:226
 #: import_export/qif_import_gui.cpp:813 mmchecking_list.cpp:213
-#: reports/transactions.cpp:82 transdialog.cpp:309 transdialog.cpp:521
+#: reports/transactions.cpp:82 transdialog.cpp:309 transdialog.cpp:522
 #: usertransactionpanel.cpp:112 webappdialog.cpp:148
 msgid "Account"
 msgstr "Rekening"
@@ -966,7 +966,7 @@ msgstr ""
 #: import_export/qif_export.cpp:592 import_export/qif_import_gui.cpp:101
 #: import_export/qif_import_gui.cpp:239 import_export/univcsvdialog.cpp:106
 #: mmchecking_list.cpp:216 reports/payee.cpp:134 reports/transactions.cpp:83
-#: transactionsupdatedialog.cpp:172 transdialog.cpp:303 transdialog.cpp:527
+#: transactionsupdatedialog.cpp:172 transdialog.cpp:303 transdialog.cpp:528
 #: usertransactionpanel.cpp:182 webappdialog.cpp:151
 msgid "Payee"
 msgstr "Kepada"
@@ -976,11 +976,11 @@ msgstr "Kepada"
 msgid "Select Payee"
 msgstr "Pilih nama, institusi atau lainnya"
 
-#: billsdepositsdialog.cpp:600 transdialog.cpp:540
+#: billsdepositsdialog.cpp:600 transdialog.cpp:541
 msgid "Split"
 msgstr "Rinci"
 
-#: billsdepositsdialog.cpp:603 transdialog.cpp:1301
+#: billsdepositsdialog.cpp:603 transdialog.cpp:1302
 msgid "Use split Categories"
 msgstr ""
 
@@ -993,17 +993,17 @@ msgstr ""
 #: reports/categexp.cpp:173 reports/categexp.cpp:411
 #: reports/transactions.cpp:85 splitdetailsdialog.cpp:145
 #: splittransactionsdialog.cpp:137 transactionsupdatedialog.cpp:200
-#: transdialog.cpp:549 usertransactionpanel.cpp:189 webappdialog.cpp:152
+#: transdialog.cpp:550 usertransactionpanel.cpp:189 webappdialog.cpp:152
 msgid "Category"
 msgstr "Kategori"
 
 #: billsdepositsdialog.cpp:611 billsdepositsdialog.cpp:1439
-#: transactionsupdatedialog.cpp:203 transdialog.cpp:403 transdialog.cpp:1038
+#: transactionsupdatedialog.cpp:203 transdialog.cpp:404 transdialog.cpp:1039
 #: usertransactionpanel.cpp:190
 msgid "Select Category"
 msgstr "Pilih Kategori"
 
-#: billsdepositsdialog.cpp:620 transdialog.cpp:1302
+#: billsdepositsdialog.cpp:620 transdialog.cpp:1303
 msgid "Specify any associated check number or transaction number"
 msgstr "Isi dengan nomor cek/giro atau nomor transaksi"
 
@@ -1011,7 +1011,7 @@ msgstr "Isi dengan nomor cek/giro atau nomor transaksi"
 #: filtertransdialog.cpp:340 filtertransdialog.cpp:1077
 #: import_export/qif_export.cpp:596 import_export/qif_import_gui.cpp:100
 #: import_export/univcsvdialog.cpp:110 mmchecking_list.cpp:209
-#: reports/transactions.cpp:81 transdialog.cpp:561 usertransactionpanel.cpp:202
+#: reports/transactions.cpp:81 transdialog.cpp:562 usertransactionpanel.cpp:202
 msgid "Number"
 msgstr "Nomor"
 
@@ -1019,15 +1019,15 @@ msgstr "Nomor"
 msgid "Organize attachments of this recurring transaction"
 msgstr ""
 
-#: billsdepositsdialog.cpp:634 transdialog.cpp:574
+#: billsdepositsdialog.cpp:634 transdialog.cpp:575
 msgid "User Colors"
 msgstr ""
 
-#: billsdepositsdialog.cpp:638 transdialog.cpp:580 usertransactionpanel.cpp:217
+#: billsdepositsdialog.cpp:638 transdialog.cpp:581 usertransactionpanel.cpp:217
 msgid "Select one of the frequently used notes"
 msgstr "Pilih salah satu dari catatan yang sering digunakan"
 
-#: billsdepositsdialog.cpp:650 transdialog.cpp:1303
+#: billsdepositsdialog.cpp:650 transdialog.cpp:1304
 #: usertransactionpanel.cpp:226
 msgid "Specify any text notes you want to add to this transaction."
 msgstr "Isi dengan keterangan yang diinginkan untuk transaksi ini"
@@ -1041,11 +1041,11 @@ msgid "Account name"
 msgstr ""
 
 #: billsdepositsdialog.cpp:818 billsdepositsdialog.cpp:858
-#: filtertransdialog.cpp:1004 transdialog.cpp:306 transdialog.cpp:378
+#: filtertransdialog.cpp:1004 transdialog.cpp:306 transdialog.cpp:379
 msgid "From"
 msgstr "Dari"
 
-#: billsdepositsdialog.cpp:830 transdialog.cpp:376
+#: billsdepositsdialog.cpp:830 transdialog.cpp:377
 msgid "To"
 msgstr "Ke"
 
@@ -1118,21 +1118,21 @@ msgstr ""
 msgid "Error"
 msgstr "Error / Terjadi Kesalahan"
 
-#: billsdepositsdialog.cpp:1407 transdialog.cpp:1262
+#: billsdepositsdialog.cpp:1407 transdialog.cpp:1263
 #: usertransactionpanel.cpp:192
 msgid "Specify the category for this transaction"
 msgstr "Pilih kategori untuk transaksi ini"
 
 #: billsdepositsdialog.cpp:1429 categdialog.cpp:119
-#: import_export/qif_export.cpp:137 mmframereport.cpp:134 transdialog.cpp:391
+#: import_export/qif_export.cpp:137 mmframereport.cpp:134 transdialog.cpp:392
 msgid "Categories"
 msgstr "Kategori"
 
-#: billsdepositsdialog.cpp:1464 transdialog.cpp:1336
+#: billsdepositsdialog.cpp:1464 transdialog.cpp:1337
 msgid "Clear color"
 msgstr ""
 
-#: billsdepositsdialog.cpp:1469 filtertransdialog.cpp:1501 transdialog.cpp:1341
+#: billsdepositsdialog.cpp:1469 filtertransdialog.cpp:1501 transdialog.cpp:1342
 #, c-format
 msgid "Color #%i"
 msgstr ""
@@ -1145,7 +1145,7 @@ msgstr ""
 msgid "Specify where the transaction is going to"
 msgstr ""
 
-#: billsdepositsdialog.h:125 transdialog.cpp:1294
+#: billsdepositsdialog.h:125 transdialog.cpp:1295
 msgid "Specify where the transaction is coming from"
 msgstr ""
 
@@ -1153,7 +1153,7 @@ msgstr ""
 msgid "Specify which account the transfer is going to"
 msgstr ""
 
-#: billsdepositsdialog.h:127 transdialog.cpp:1289 usertransactionpanel.cpp:146
+#: billsdepositsdialog.h:127 transdialog.cpp:1290 usertransactionpanel.cpp:146
 msgid "Specify the amount for this transaction"
 msgstr "Isi dengan jumlah (Rp.) untuk transaksi ini"
 
@@ -2032,7 +2032,7 @@ msgid "Other Expenses"
 msgstr "Biaya Lainnya"
 
 #: db/DB_Table_Category_V1.h:126 model/Model_Billsdeposits.cpp:34
-#: model/Model_Checking.cpp:31 transdialog.cpp:359
+#: model/Model_Checking.cpp:31 transdialog.cpp:360
 msgid "Transfer"
 msgstr "Pemindahbukuan"
 
@@ -2180,73 +2180,73 @@ msgstr "Penggantian / Pengembalian"
 msgid "Investment Income"
 msgstr "Pendapatan investasi"
 
-#: dbupgrade.cpp:72
+#: dbupgrade.cpp:73
 #, c-format
 msgid "MMEX database upgrade to version %i failed!"
 msgstr "Upgrade MMEX database ke versi %i gagal!"
 
-#: dbupgrade.cpp:73
+#: dbupgrade.cpp:74
 msgid "Please restore DB from autocreated pre-upgrade backup and retry or contact MMEX support"
 msgstr ""
 
-#: dbupgrade.cpp:74 dbupgrade.cpp:108 dbupgrade.cpp:120
+#: dbupgrade.cpp:75 dbupgrade.cpp:109 dbupgrade.cpp:121
 msgid "MMEX database upgrade"
 msgstr "Pembaruan MMEX database"
 
-#: dbupgrade.cpp:106
+#: dbupgrade.cpp:107
 msgid "MMEX database error!"
 msgstr "MMEX database error!"
 
-#: dbupgrade.cpp:107
+#: dbupgrade.cpp:108
 #, c-format
 msgid "MMEX database version %i doesn't work with this MMEX version.\n"
 "Please upgrade MMEX to newer version."
 msgstr ""
 
-#: dbupgrade.cpp:119
+#: dbupgrade.cpp:120
 #, c-format
 msgid "MMEX database succesfully upgraded to version %i"
 msgstr ""
 
-#: dbupgrade.cpp:120
+#: dbupgrade.cpp:121
 msgid "We suggest a database optimization under Tools -> Database -> Optimize"
 msgstr ""
 
-#: dbupgrade.cpp:181
+#: dbupgrade.cpp:182
 msgid "Load debug file"
 msgstr ""
 
-#: dbupgrade.cpp:188
+#: dbupgrade.cpp:189
 msgid "Wrong file type!"
 msgstr "Jenis file salah!"
 
-#: dbupgrade.cpp:188 dbupgrade.cpp:225 dbupgrade.cpp:232 dbupgrade.cpp:276
-#: dbupgrade.cpp:287
+#: dbupgrade.cpp:189 dbupgrade.cpp:226 dbupgrade.cpp:233 dbupgrade.cpp:277
+#: dbupgrade.cpp:288
 msgid "MMEX debug error"
 msgstr ""
 
-#: dbupgrade.cpp:225 dbupgrade.cpp:276
+#: dbupgrade.cpp:226 dbupgrade.cpp:277
 msgid "Query error, please contact MMEX support!"
 msgstr ""
 
-#: dbupgrade.cpp:232 dbupgrade.cpp:287
+#: dbupgrade.cpp:233 dbupgrade.cpp:288
 msgid "Invalid file content, please contact MMEX support!"
 msgstr ""
 
-#: dbupgrade.cpp:239
+#: dbupgrade.cpp:240
 msgid "Send this log to MMEX support team:\n"
 "press OK to save to file or Cancel to exit"
 msgstr ""
 
-#: dbupgrade.cpp:240 dbupgrade.cpp:283
+#: dbupgrade.cpp:241 dbupgrade.cpp:284
 msgid "MMEX debug"
 msgstr ""
 
-#: dbupgrade.cpp:243
+#: dbupgrade.cpp:244
 msgid "Save debug file"
 msgstr ""
 
-#: dbupgrade.cpp:283
+#: dbupgrade.cpp:284
 msgid "DB maintenance completed, please close and re-open MMEX!"
 msgstr "Pemeliharaan DB selesai, silakan tutup dan buka kembali MMEX!"
 
@@ -2881,8 +2881,8 @@ msgstr ""
 #: import_export/qif_import_gui.cpp:549 import_export/qif_import_gui.cpp:1122
 #: import_export/univcsvdialog.cpp:742 import_export/univcsvdialog.cpp:877
 #: import_export/univcsvdialog.cpp:880 import_export/univcsvdialog.cpp:901
-#: import_export/univcsvdialog.cpp:908 themes.cpp:229 transdialog.cpp:337
-#: transdialog.cpp:998 transdialog.cpp:1002 transdialog.cpp:1007 webapp.cpp:399
+#: import_export/univcsvdialog.cpp:908 themes.cpp:229 transdialog.cpp:338
+#: transdialog.cpp:999 transdialog.cpp:1003 transdialog.cpp:1008 webapp.cpp:399
 #: webapp.cpp:408
 msgid "Unknown"
 msgstr "Tidak diketahui"
@@ -3784,7 +3784,7 @@ msgid "Locked transaction to date: %s\n\n"
 "Reconciled transactions."
 msgstr ""
 
-#: mmchecking_list.cpp:916 transdialog.cpp:727 transdialog.cpp:760
+#: mmchecking_list.cpp:916 transdialog.cpp:728 transdialog.cpp:761
 msgid "MMEX Transaction Check"
 msgstr ""
 
@@ -4071,8 +4071,8 @@ msgid "Accounts Visible"
 msgstr "Rekening yang ditampilkan"
 
 #: mmframe.cpp:1357
-msgid "&New Database\tCtrl-N"
-msgstr "&Data Keuangan Baru\tCtrl-N"
+msgid "&New Database"
+msgstr ""
 
 #: mmframe.cpp:1357 mmframe.cpp:1716 wizard_newdb.cpp:124
 msgid "New Database"
@@ -4816,7 +4816,7 @@ msgstr "Pilihan MMEX sudah dirubah."
 msgid "Some settings take effect only after an application restart."
 msgstr ""
 
-#: mmframe.cpp:2539 optiondialog.cpp:211 optiondialog.h:48
+#: mmframe.cpp:2539 optiondialog.cpp:211 optiondialog.h:49
 msgid "MMEX Options"
 msgstr ""
 
@@ -6666,13 +6666,13 @@ msgstr ""
 msgid "Append"
 msgstr ""
 
-#: transactionsupdatedialog.cpp:325 transdialog.cpp:664
+#: transactionsupdatedialog.cpp:325 transdialog.cpp:665
 #, c-format
 msgid "You have not used this payee name before. Is the name correct?\n"
 "%s"
 msgstr ""
 
-#: transactionsupdatedialog.cpp:326 transdialog.cpp:665
+#: transactionsupdatedialog.cpp:326 transdialog.cpp:666
 msgid "Confirm payee name"
 msgstr ""
 
@@ -6684,48 +6684,48 @@ msgstr ""
 msgid "Edit Transaction"
 msgstr "Ubah Transaksi"
 
-#: transdialog.cpp:467 usertransactionpanel.cpp:104
+#: transdialog.cpp:468 usertransactionpanel.cpp:104
 msgid "Retard or advance the date of the transaction"
 msgstr ""
 
-#: transdialog.cpp:559
+#: transdialog.cpp:560
 msgid "Populate Transaction #"
 msgstr "Buat nomor transaksi otomatis"
 
-#: transdialog.cpp:569 usertransactionpanel.cpp:210
+#: transdialog.cpp:570 usertransactionpanel.cpp:210
 msgid "Organize attachments of this transaction"
 msgstr ""
 
-#: transdialog.cpp:608
+#: transdialog.cpp:609
 msgid "Show/Hide custom fields window"
 msgstr ""
 
-#: transdialog.cpp:758
+#: transdialog.cpp:759
 msgid "This transaction will exceed your account limit.\n\n"
 "Do you wish to continue?"
 msgstr ""
 
-#: transdialog.cpp:1280
+#: transdialog.cpp:1281
 msgid "Specify account the money is taken from"
 msgstr ""
 
-#: transdialog.cpp:1281
+#: transdialog.cpp:1282
 msgid "Specify account the money is moved to"
 msgstr ""
 
-#: transdialog.cpp:1282
+#: transdialog.cpp:1283
 msgid "Specify the transfer amount in the From Account."
 msgstr ""
 
-#: transdialog.cpp:1290
+#: transdialog.cpp:1291
 msgid "Specify account for the transaction"
 msgstr ""
 
-#: transdialog.cpp:1292
+#: transdialog.cpp:1293
 msgid "Specify to whom the transaction is going to"
 msgstr ""
 
-#: transdialog.cpp:1298 usertransactionpanel.cpp:96
+#: transdialog.cpp:1299 usertransactionpanel.cpp:96
 msgid "Specify the date of the transaction"
 msgstr "Isi dengan tanggal transaksi"
 
