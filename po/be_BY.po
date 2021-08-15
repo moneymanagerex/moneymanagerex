@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-15 15:41+0300\n"
-"PO-Revision-Date: 2021-08-15 12:46\n"
+"PO-Revision-Date: 2021-08-15 14:16\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -7068,7 +7068,7 @@ msgstr ""
 
 #: webapp.cpp:111
 msgid "Wrong WebApp GUID:"
-msgstr ""
+msgstr "Хібны WebApp GUID:"
 
 #: webapp.cpp:112
 msgid "please check it in network options."
@@ -7076,11 +7076,11 @@ msgstr ""
 
 #: webapp.cpp:113
 msgid "Wrong WebApp settings"
-msgstr ""
+msgstr "Хібныя налады WebApp"
 
 #: webapp.cpp:118
 msgid "Unable to connect to WebApp:"
-msgstr ""
+msgstr "Немагчыма далучыцца да WebApp:"
 
 #: webapp.cpp:119
 msgid "please check settings and / or internet connection."
@@ -7088,7 +7088,7 @@ msgstr ""
 
 #: webapp.cpp:121
 msgid "WebApp connection error"
-msgstr ""
+msgstr "Памылка з'еднання з WebApp"
 
 #: webapp.cpp:131
 msgid "Wrong WebApp API version:"
