@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-15 15:41+0300\n"
-"PO-Revision-Date: 2021-08-15 20:56\n"
+"PO-Revision-Date: 2021-08-15 21:06\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -6731,27 +6731,27 @@ msgstr "Няма даступнага апісання"
 
 #: themes.cpp:279
 msgid "Choose theme file to import"
-msgstr ""
+msgstr "Абярыце файл тэмы для імпарта"
 
 #: themes.cpp:299
 msgid "The theme already exists, do you still want to import and overwrite the existing theme?"
-msgstr ""
+msgstr "Тэма ўжо існуе, вы хочаце імпартаваць і перазапісаць існуючую тэму?"
 
 #: themes.cpp:309
 msgid "Something went wrong importing the theme"
-msgstr ""
+msgstr "Памылка пры імпарце тэмы"
 
 #: themes.cpp:321
 msgid "Are you sure you want to delete this theme? If you want to use it again you will need to re-import it."
-msgstr ""
+msgstr "Вы ўпэўненыя, што жадаеце выдаліць гэтую тэму? Калі вы захочаце выкарыстоўваць яе зноў, вам трэба будзе паўторна імпартаваць яе."
 
 #: themes.cpp:328
 msgid "Something went wrong when attempting to delete the theme"
-msgstr ""
+msgstr "Нешта хібнае здарылася падчас выдалення тэмы"
 
 #: themes.cpp:340
 msgid "Are you sure you want to use this theme? Please note that this will only take effect when MMEX is re-started."
-msgstr ""
+msgstr "Вы ўпэўненыя, што хочаце выкарыстоўваць гэтую тэму? Звярніце ўвагу, што гэта ўступіць у моц толькі тады, калі MMEX будзе наноў запушчаны."
 
 #: transactionsupdatedialog.cpp:82
 msgid "Multi Transactions Update"
