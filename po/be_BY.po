@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-15 15:41+0300\n"
-"PO-Revision-Date: 2021-08-15 18:46\n"
+"PO-Revision-Date: 2021-08-15 18:56\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -5551,15 +5551,15 @@ msgstr "Няслушнае імя лакалі"
 #: optionsettingsgeneral.cpp:319
 #, c-format
 msgid "Currency value sample: %s"
-msgstr ""
+msgstr "Прыклад значэння валюты: %s"
 
 #: optionsettingsmisc.cpp:57
 msgid "Stock Quote Web Page"
-msgstr ""
+msgstr "Вэб-старонка каціроўкаў"
 
 #: optionsettingsmisc.cpp:74
 msgid "Clear the field to Reset the value to system default."
-msgstr ""
+msgstr "Усталяваць значэнне па змаўчанні."
 
 #: optionsettingsmisc.cpp:78
 msgid "Share Precision"
@@ -5575,43 +5575,43 @@ msgstr "Параметры дыялога новых аперацыяў"
 
 #: optionsettingsmisc.cpp:97
 msgid "Last Used"
-msgstr ""
+msgstr "Апошняе, што было выкарыставана"
 
 #: optionsettingsmisc.cpp:104
 msgid "Unused"
-msgstr ""
+msgstr "Такое, што не выкарыстоўваецца"
 
 #: optionsettingsmisc.cpp:110
 msgid "Last used for payee"
-msgstr ""
+msgstr "Апошняе, што было выкарыставана для палтніка"
 
 #: optionsettingsmisc.cpp:111
 msgid "Use default for payee"
-msgstr ""
+msgstr "Выкарыстоўваць па змаўчанні для платніка"
 
 #: optionsettingsmisc.cpp:127
 msgid "Yes"
-msgstr ""
+msgstr "Так"
 
 #: optionsettingsmisc.cpp:128
 msgid "No"
-msgstr ""
+msgstr "Не"
 
 #: optionsettingsmisc.cpp:137
 msgid "Default Date:"
-msgstr ""
+msgstr "Дата па змаўчанні:"
 
 #: optionsettingsmisc.cpp:139
 msgid "Default Payee:"
-msgstr ""
+msgstr "Платнік па змаўчанні:"
 
 #: optionsettingsmisc.cpp:141
 msgid "Default Category:"
-msgstr ""
+msgstr "Катыгорыя па змаўчанні:"
 
 #: optionsettingsmisc.cpp:143
 msgid "Default Status:"
-msgstr ""
+msgstr "Статус па змаўчанні:"
 
 #: optionsettingsmisc.cpp:145
 msgid "Bulk Transactions:"
@@ -5619,11 +5619,11 @@ msgstr "Шматлікія аперацыі:"
 
 #: optionsettingsmisc.cpp:156
 msgid "Database Backup"
-msgstr ""
+msgstr "Рызервовая копія базы дадзеных"
 
 #: optionsettingsmisc.cpp:163
 msgid "Create a new backup when MMEX Start"
-msgstr ""
+msgstr "Ствараць новую рызервовую копію падчас запуска MMEX"
 
 #: optionsettingsmisc.cpp:165
 msgid "When MMEX Starts,\n"
