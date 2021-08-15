@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-15 15:41+0300\n"
-"PO-Revision-Date: 2021-08-15 18:33\n"
+"PO-Revision-Date: 2021-08-15 19:19\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -1366,11 +1366,11 @@ msgstr "Сума:"
 
 #: budgetentrydialog.cpp:149
 msgid "Enter the amount budgeted for this category."
-msgstr "Калі ласка, увядзіце памер бюджэту для дадзенай катэгорыі."
+msgstr "Калі ласка, увядзіце памер бюджэту для дадзенай катыгорыі."
 
 #: budgetingpanel.cpp:50
 msgid "View All Budget Categories"
-msgstr "Паказаць усе катэгорыі бюджэту"
+msgstr "Паказаць усе катыгорыі бюджэту"
 
 #: budgetingpanel.cpp:51
 msgid "View Non-Zero Budget Categories"
@@ -1573,7 +1573,7 @@ msgstr "Дадаць катыгорыю"
 
 #: categdialog.cpp:270 categdialog.cpp:506
 msgid "Category with same name exists"
-msgstr "Катыгорыя з такім імем ужо існуе"
+msgstr "Катыгорыя з такою назвай ужо існуе"
 
 #: categdialog.cpp:271
 msgid "Tip: If category added now, check bottom of list.\n"
@@ -1587,7 +1587,7 @@ msgstr "Рыдактар катыгорыяў: памылка дадання"
 
 #: categdialog.cpp:296 categdialog.cpp:523
 msgid "Sub Category with same name exists"
-msgstr "Падкатыгорыя з такім імем ужо існуе"
+msgstr "Падкатыгорыя з такою назвай ужо існуе"
 
 #: categdialog.cpp:314
 msgid "Invalid Parent Category. Choose Root or Main Category node."
@@ -4264,7 +4264,7 @@ msgstr "Улічваць пераказы ў агульнай суме бюдж�
 
 #: mmframe.cpp:1413
 msgid "Budget Category Report: with &Summaries"
-msgstr "Бюджэт па &катэгорыях з вынікамі"
+msgstr "Бюджэт па &катыгорыях з вынікамі"
 
 #: mmframe.cpp:1413
 msgid "Include the category summaries in the Budget Category Summary"
@@ -5424,108 +5424,109 @@ msgstr "Абярыце, каб не выдаляць далучэнні, а пе
 
 #: optionsettingsattachment.cpp:173
 msgid "Choose folder to set as attachments archive"
-msgstr ""
+msgstr "Абярыце тэчку для далучэнняў"
 
 #: optionsettingsattachment.cpp:213
 msgid "Attachments folder it's not writable!"
-msgstr ""
+msgstr "Забаронены запіс у тэчку для далучэнняў"
 
 #: optionsettingsattachment.cpp:213
 msgid "Attachments folder"
-msgstr ""
+msgstr "Тэчка для далучэнняў"
 
 #: optionsettingsattachment.cpp:221
 msgid "Attachments path has been changed!"
-msgstr ""
+msgstr "Шлях для далучэнняў быў зменены"
 
 #: optionsettingsattachment.cpp:223 optionsettingsattachment.cpp:232
 msgid "Attachments folder migration"
-msgstr ""
+msgstr "Міграцыя тэчкі для далучэнняў"
 
 #: optionsettingsattachment.cpp:229
 msgid "Error moving attachments folder: please move it manually!"
-msgstr ""
+msgstr "Памылка падчас перасоўвання тэчкі з далучэннямі: калі ласка, перасуньце ўручную"
 
 #: optionsettingsattachment.cpp:230
 msgid "Origin"
-msgstr ""
+msgstr "Крыніца"
 
 #: optionsettingsattachment.cpp:231
 msgid "Destination"
-msgstr ""
+msgstr "Прызначэнне"
 
 #: optionsettingsgeneral.cpp:67
 msgid "Display Heading"
-msgstr ""
+msgstr "Загаловак"
 
 #: optionsettingsgeneral.cpp:72 wizard_newdb.cpp:106
 msgid "User Name"
-msgstr ""
+msgstr "Імя карыстальніка"
 
 #: optionsettingsgeneral.cpp:77
 msgid "The User Name is used as a title for the database."
-msgstr ""
+msgstr "Імя карыстальніка выкарыстоўваецца як назва для базы дадзеных."
 
 #: optionsettingsgeneral.cpp:85
 msgid "Language"
-msgstr ""
+msgstr "Мова"
 
 #: optionsettingsgeneral.cpp:107
 msgid "Specify the date format for display"
-msgstr ""
+msgstr "Пакажыце фармат адлюстравання даты"
 
 #: optionsettingsgeneral.cpp:110
 msgid "Date format sample:"
-msgstr ""
+msgstr "Прыклад фармата даты:"
 
 #: optionsettingsgeneral.cpp:123
 msgid "Base Currency"
-msgstr ""
+msgstr "Базавая валюта"
 
 #: optionsettingsgeneral.cpp:126 wizard_newdb.cpp:79
 msgid "Set Currency"
-msgstr ""
+msgstr "Усталяваць валюту"
 
 #: optionsettingsgeneral.cpp:130
 msgid "Sets the database default Currency using the 'Currency Dialog'"
-msgstr ""
+msgstr "Усталёўвае валюту па змаўчанні з дапамогай 'Мэнаджара валютаў'"
 
 #: optionsettingsgeneral.cpp:133
 msgid "Right click and select 'Set as Base Currency' in 'Currency Dialog'"
-msgstr ""
+msgstr "Пстрыкніце правай кнопкай мышы і абярыце 'Усталяваць у якасці базавай валюты' ў 'мэнаджары валютаў"
 
 #: optionsettingsgeneral.cpp:158
 msgid "Format derived from locale.\n"
 "Leave blank to manually set format via 'Currency Dialog | Edit'"
-msgstr ""
+msgstr "Фармат, атрыманы ад лакалі.\n"
+"Пакіньце пустым, каб ўручную ўсталяваць фармат 'Дыялог валютаў | рыдагаваць'"
 
 #: optionsettingsgeneral.cpp:168
 msgid "Use currency history"
-msgstr ""
+msgstr "Выкарыстоўваць гісторыю валютаў"
 
 #: optionsettingsgeneral.cpp:170
 msgid "Select to use currency history (one rate for each day), deselect to use a fixed rate"
-msgstr ""
+msgstr "Абярыце выкарыстанне гісторыі валютаў (адзін курс на кожны дзень) або скасуйце выбар для выкарыстання фіксаванага курса"
 
 #: optionsettingsgeneral.cpp:174
 msgid "Financial Year"
-msgstr ""
+msgstr "Фінансавы год"
 
 #: optionsettingsgeneral.cpp:181
 msgid "Start Day"
-msgstr ""
+msgstr "Першы дзень"
 
 #: optionsettingsgeneral.cpp:187
 msgid "Specify Day for start of financial year"
-msgstr ""
+msgstr "Пазначце першы дзень фінансавага года"
 
 #: optionsettingsgeneral.cpp:191
 msgid "Start Month"
-msgstr ""
+msgstr "Першы месяц"
 
 #: optionsettingsgeneral.cpp:203
 msgid "Specify month for start of financial year"
-msgstr ""
+msgstr "Пазначце першы месяц фінансавага года"
 
 #: optionsettingsgeneral.cpp:208
 msgid "Use Original Date when Pasting Transactions"
@@ -5545,20 +5546,20 @@ msgstr "Ці выкарыстоўваць гукі падчас увода ап�
 
 #: optionsettingsgeneral.cpp:303
 msgid "bad locale name"
-msgstr ""
+msgstr "Няслушнае імя лакалі"
 
 #: optionsettingsgeneral.cpp:319
 #, c-format
 msgid "Currency value sample: %s"
-msgstr ""
+msgstr "Прыклад значэння валюты: %s"
 
 #: optionsettingsmisc.cpp:57
 msgid "Stock Quote Web Page"
-msgstr ""
+msgstr "Вэб-старонка каціроўкаў"
 
 #: optionsettingsmisc.cpp:74
 msgid "Clear the field to Reset the value to system default."
-msgstr ""
+msgstr "Усталяваць значэнне па змаўчанні."
 
 #: optionsettingsmisc.cpp:78
 msgid "Share Precision"
@@ -5574,43 +5575,43 @@ msgstr "Параметры дыялога новых аперацыяў"
 
 #: optionsettingsmisc.cpp:97
 msgid "Last Used"
-msgstr ""
+msgstr "Апошняе, што было выкарыставана"
 
 #: optionsettingsmisc.cpp:104
 msgid "Unused"
-msgstr ""
+msgstr "Такое, што не выкарыстоўваецца"
 
 #: optionsettingsmisc.cpp:110
 msgid "Last used for payee"
-msgstr ""
+msgstr "Апошняе, што было выкарыставана для палтніка"
 
 #: optionsettingsmisc.cpp:111
 msgid "Use default for payee"
-msgstr ""
+msgstr "Выкарыстоўваць па змаўчанні для платніка"
 
 #: optionsettingsmisc.cpp:127
 msgid "Yes"
-msgstr ""
+msgstr "Так"
 
 #: optionsettingsmisc.cpp:128
 msgid "No"
-msgstr ""
+msgstr "Не"
 
 #: optionsettingsmisc.cpp:137
 msgid "Default Date:"
-msgstr ""
+msgstr "Дата па змаўчанні:"
 
 #: optionsettingsmisc.cpp:139
 msgid "Default Payee:"
-msgstr ""
+msgstr "Платнік па змаўчанні:"
 
 #: optionsettingsmisc.cpp:141
 msgid "Default Category:"
-msgstr ""
+msgstr "Катыгорыя па змаўчанні:"
 
 #: optionsettingsmisc.cpp:143
 msgid "Default Status:"
-msgstr ""
+msgstr "Статус па змаўчанні:"
 
 #: optionsettingsmisc.cpp:145
 msgid "Bulk Transactions:"
@@ -5618,41 +5619,43 @@ msgstr "Шматлікія аперацыі:"
 
 #: optionsettingsmisc.cpp:156
 msgid "Database Backup"
-msgstr ""
+msgstr "Рызервовая копія базы дадзеных"
 
 #: optionsettingsmisc.cpp:163
 msgid "Create a new backup when MMEX Start"
-msgstr ""
+msgstr "Ствараць новую рызервовую копію падчас запуска MMEX"
 
 #: optionsettingsmisc.cpp:165
 msgid "When MMEX Starts,\n"
 "creates the backup database: dbFile_start_YYYY-MM-DD.ext."
-msgstr ""
+msgstr "Калі MMEX запускаецца,\n"
+"стварыць рызервовую копію базы дадзеных: dbFile_start_YYYY-MM-DD.ext."
 
 #: optionsettingsmisc.cpp:170
 msgid "Backup database on exit."
-msgstr ""
+msgstr "Ствараць рызервовую копію базы дадзеных, калі MMEX зачыняецца."
 
 #: optionsettingsmisc.cpp:172
 msgid "When MMEX shuts down and changes made to database,\n"
 "creates or updates the backup database: dbFile_update_YYYY-MM-DD.ext."
-msgstr ""
+msgstr "Падчас зачынення MMEX, калі зробленыя змены,\n"
+"стварыць або абнавіць рызервовую копію базы дадзеных: dbFile_update_YYYY-MM-DD.ext."
 
 #: optionsettingsmisc.cpp:180
 msgid "Specify max number of backup files"
-msgstr ""
+msgstr "Пазначце масімальную колькасць рызервовых копіяў"
 
 #: optionsettingsmisc.cpp:183
 msgid "Max Files"
-msgstr ""
+msgstr "Ліміт файлаў"
 
 #: optionsettingsmisc.cpp:190
 msgid "CSV Settings"
-msgstr ""
+msgstr "Налады CSV"
 
 #: optionsettingsmisc.cpp:198
 msgid "Delimiter"
-msgstr ""
+msgstr "Падзельнік"
 
 #: optionsettingsnet.cpp:58
 msgid "WebApp Settings"
@@ -5664,7 +5667,7 @@ msgstr "Url"
 
 #: optionsettingsnet.cpp:69
 msgid "Specify the Web App URL without final slash"
-msgstr ""
+msgstr "Пакажыце URL-адрас WebApp без / у канцы"
 
 #: optionsettingsnet.cpp:72 webappdialog.cpp:110
 msgid "GUID"
@@ -5672,7 +5675,7 @@ msgstr "GUID"
 
 #: optionsettingsnet.cpp:76
 msgid "Specify the Web App GUID"
-msgstr ""
+msgstr "Пазначце WebApp GUID"
 
 #: optionsettingsnet.cpp:79
 msgid "More information about WebApp"
@@ -5680,35 +5683,35 @@ msgstr "Больш інфармацыі пра WebApp"
 
 #: optionsettingsnet.cpp:83
 msgid "Proxy Settings"
-msgstr ""
+msgstr "Налады проксі"
 
 #: optionsettingsnet.cpp:91
 msgid "Specify the proxy IP address"
-msgstr ""
+msgstr "Пазначце IP адрас проксі"
 
 #: optionsettingsnet.cpp:97
 msgid "Specify proxy port number"
-msgstr ""
+msgstr "Пазначце нумар порта проксі"
 
 #: optionsettingsnet.cpp:100
 msgid "Proxy"
-msgstr ""
+msgstr "Проксі"
 
 #: optionsettingsnet.cpp:102
 msgid "Port"
-msgstr ""
+msgstr "Порт"
 
 #: optionsettingsnet.cpp:108
 msgid "Usage statistics"
-msgstr ""
+msgstr "Статыстыка выкарыстання"
 
 #: optionsettingsnet.cpp:127
 msgid "Check for latest news on startup"
-msgstr ""
+msgstr "Правяраць найноўшыя навіны падчас запуска"
 
 #: optionsettingsnet.cpp:129
 msgid "Enable to allow news to be checked on application start"
-msgstr ""
+msgstr "Увамкніце, каб дазволіць правяраць навіны пры запуску прыкладання"
 
 #: optionsettingsnet.cpp:134
 msgid "Timeout"
@@ -5720,19 +5723,19 @@ msgstr "Пакажыце час чакання для сеткавых падл�
 
 #: optionsettingsnet.cpp:146
 msgid "Seconds"
-msgstr ""
+msgstr "Секундаў"
 
 #: optionsettingsnet.cpp:152
 msgid "Updates"
-msgstr ""
+msgstr "Абнаўленні"
 
 #: optionsettingsnet.cpp:158
 msgid "Check for updates at StartUp"
-msgstr ""
+msgstr "Правяраць наяўнасць новай версіі праграмы падчас яе запуску"
 
 #: optionsettingsnet.cpp:160
 msgid "Enable to automatically check if new MMEX version is available at StartUp"
-msgstr ""
+msgstr "Увамкніце, каб аўтаматычна правяраць наяўнасць новай версіі MMEX пры запуску прыкладання"
 
 #: optionsettingsnet.cpp:163 wizard_update.cpp:114
 msgid "Stable"
@@ -5744,15 +5747,15 @@ msgstr "Нестабільная"
 
 #: optionsettingsnet.cpp:168
 msgid "Updates source"
-msgstr ""
+msgstr "Крыніцы абнаўленняў"
 
 #: optionsettingsview.cpp:81
 msgid "Specify which accounts are visible"
-msgstr ""
+msgstr "Пазначце, якія рахункі ёсць бачныя"
 
 #: optionsettingsview.cpp:84
 msgid "Category Delimiter"
-msgstr ""
+msgstr "Падзяляльнік катыгорыяў"
 
 #: optionsettingsview.cpp:111
 msgid "Transaction/Budget Options"
@@ -5760,7 +5763,7 @@ msgstr "Опцыі аперацый і бюджэта"
 
 #: optionsettingsview.cpp:117
 msgid "View Budgets as Financial Years"
-msgstr ""
+msgstr "Глядзець бюджэты як фінансавыя гады"
 
 #: optionsettingsview.cpp:122
 msgid "View Budgets with 'transfer' transactions"
@@ -5768,15 +5771,15 @@ msgstr "Прагляд з аперацыямі пераказаў"
 
 #: optionsettingsview.cpp:128
 msgid "View Budget Category Report with Summaries"
-msgstr ""
+msgstr "Бюджэт па катыгорыях з вынікамі"
 
 #: optionsettingsview.cpp:137
 msgid "Budget Offset (days):"
-msgstr ""
+msgstr "Зрушэнне бюджэту (дзён):"
 
 #: optionsettingsview.cpp:141
 msgid "Advance or retard the start date from the 1st of the month or year by the number of days"
-msgstr ""
+msgstr "Зрушэнне або зрух даты пачатка з 1-га ліка месяца або года на паказаную колькасць дзён"
 
 #: optionsettingsview.cpp:146
 msgid "Ignore Future Transactions"
@@ -5788,67 +5791,67 @@ msgstr "Колеры аперацыі"
 
 #: optionsettingsview.cpp:191
 msgid "UI Appearance"
-msgstr ""
+msgstr "Вонкавы выгляд"
 
 #: optionsettingsview.cpp:202
 msgid "Open Theme Manager"
-msgstr ""
+msgstr "Адчыніць Мэнаджар Тэмаў"
 
 #: optionsettingsview.cpp:204
 msgid "Style Template"
-msgstr ""
+msgstr "Шаблон стыля"
 
 #: optionsettingsview.cpp:207
 msgid "HTML Scale Factor"
-msgstr ""
+msgstr "Маштаб HTML"
 
 #: optionsettingsview.cpp:215
 msgid "Specify which scale factor is used for the report pages"
-msgstr ""
+msgstr "Пазначце, які маштаб выкарыстоўваць для справаздачаў"
 
 #: optionsettingsview.cpp:220
 msgid "Small (16 px)"
-msgstr ""
+msgstr "Малы (16 px)"
 
 #: optionsettingsview.cpp:221
 msgid "Normal (24 px)"
-msgstr ""
+msgstr "Звычайны (24 px)"
 
 #: optionsettingsview.cpp:222
 msgid "Large (32 px)"
-msgstr ""
+msgstr "Вялікі (32 px)"
 
 #: optionsettingsview.cpp:223
 msgid "Huge (48 px)"
-msgstr ""
+msgstr "Велізарны (48 px)"
 
 #: optionsettingsview.cpp:237
 msgid "Toolbar Icon Size"
-msgstr ""
+msgstr "Памер значкоў панэлі прыладаў"
 
 #: optionsettingsview.cpp:240
 msgid "Navigation Icon Size"
-msgstr ""
+msgstr "Памер значкоў навігацыі"
 
 #: optionsettingsview.cpp:243
 msgid "Others Icon Size"
-msgstr ""
+msgstr "Памер іншых значкоў"
 
 #: payeedialog.cpp:67
 msgid "Last Used Category"
-msgstr ""
+msgstr "Катыгорыя, што выкарыстоўвалася апошняй"
 
 #: payeedialog.cpp:67
 msgid "Default Category"
-msgstr ""
+msgstr "Катыгорыя па змаўчанні"
 
 #: payeedialog.cpp:202 payeedialog.cpp:242 payeedialog.cpp:270
 msgid "Payee with same name exists"
-msgstr ""
+msgstr "Платнік з такім імем ужо існуе"
 
 #: payeedialog.cpp:203 payeedialog.cpp:227 payeedialog.cpp:242
 msgid "Organize Payees: Add Payee"
-msgstr "Рыдактар атрымальнікаў: дадаць"
+msgstr "Рыдактар платнікоў: дадаць"
 
 #: payeedialog.cpp:226
 msgid "Enter the name for the new payee:"
