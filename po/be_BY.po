@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-15 15:41+0300\n"
-"PO-Revision-Date: 2021-08-15 19:06\n"
+"PO-Revision-Date: 2021-08-15 19:19\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -1366,11 +1366,11 @@ msgstr "Сума:"
 
 #: budgetentrydialog.cpp:149
 msgid "Enter the amount budgeted for this category."
-msgstr "Калі ласка, увядзіце памер бюджэту для дадзенай катэгорыі."
+msgstr "Калі ласка, увядзіце памер бюджэту для дадзенай катыгорыі."
 
 #: budgetingpanel.cpp:50
 msgid "View All Budget Categories"
-msgstr "Паказаць усе катэгорыі бюджэту"
+msgstr "Паказаць усе катыгорыі бюджэту"
 
 #: budgetingpanel.cpp:51
 msgid "View Non-Zero Budget Categories"
@@ -1573,7 +1573,7 @@ msgstr "Дадаць катыгорыю"
 
 #: categdialog.cpp:270 categdialog.cpp:506
 msgid "Category with same name exists"
-msgstr "Катыгорыя з такім імем ужо існуе"
+msgstr "Катыгорыя з такою назвай ужо існуе"
 
 #: categdialog.cpp:271
 msgid "Tip: If category added now, check bottom of list.\n"
@@ -1587,7 +1587,7 @@ msgstr "Рыдактар катыгорыяў: памылка дадання"
 
 #: categdialog.cpp:296 categdialog.cpp:523
 msgid "Sub Category with same name exists"
-msgstr "Падкатыгорыя з такім імем ужо існуе"
+msgstr "Падкатыгорыя з такою назвай ужо існуе"
 
 #: categdialog.cpp:314
 msgid "Invalid Parent Category. Choose Root or Main Category node."
@@ -4264,7 +4264,7 @@ msgstr "Улічваць пераказы ў агульнай суме бюдж�
 
 #: mmframe.cpp:1413
 msgid "Budget Category Report: with &Summaries"
-msgstr "Бюджэт па &катэгорыях з вынікамі"
+msgstr "Бюджэт па &катыгорыях з вынікамі"
 
 #: mmframe.cpp:1413
 msgid "Include the category summaries in the Budget Category Summary"
@@ -5711,7 +5711,7 @@ msgstr "Правяраць найноўшыя навіны падчас запу
 
 #: optionsettingsnet.cpp:129
 msgid "Enable to allow news to be checked on application start"
-msgstr ""
+msgstr "Увамкніце, каб дазволіць правяраць навіны пры запуску прыкладання"
 
 #: optionsettingsnet.cpp:134
 msgid "Timeout"
@@ -5723,19 +5723,19 @@ msgstr "Пакажыце час чакання для сеткавых падл�
 
 #: optionsettingsnet.cpp:146
 msgid "Seconds"
-msgstr ""
+msgstr "Секундаў"
 
 #: optionsettingsnet.cpp:152
 msgid "Updates"
-msgstr ""
+msgstr "Абнаўленні"
 
 #: optionsettingsnet.cpp:158
 msgid "Check for updates at StartUp"
-msgstr ""
+msgstr "Правяраць наяўнасць новай версіі праграмы падчас яе запуску"
 
 #: optionsettingsnet.cpp:160
 msgid "Enable to automatically check if new MMEX version is available at StartUp"
-msgstr ""
+msgstr "Увамкніце, каб аўтаматычна правяраць наяўнасць новай версіі MMEX пры запуску прыкладання"
 
 #: optionsettingsnet.cpp:163 wizard_update.cpp:114
 msgid "Stable"
@@ -5747,15 +5747,15 @@ msgstr "Нестабільная"
 
 #: optionsettingsnet.cpp:168
 msgid "Updates source"
-msgstr ""
+msgstr "Крыніцы абнаўленняў"
 
 #: optionsettingsview.cpp:81
 msgid "Specify which accounts are visible"
-msgstr ""
+msgstr "Пазначце, якія рахункі ёсць бачныя"
 
 #: optionsettingsview.cpp:84
 msgid "Category Delimiter"
-msgstr ""
+msgstr "Падзяляльнік катыгорыяў"
 
 #: optionsettingsview.cpp:111
 msgid "Transaction/Budget Options"
@@ -5763,7 +5763,7 @@ msgstr "Опцыі аперацый і бюджэта"
 
 #: optionsettingsview.cpp:117
 msgid "View Budgets as Financial Years"
-msgstr ""
+msgstr "Глядзець бюджэты як фінансавыя гады"
 
 #: optionsettingsview.cpp:122
 msgid "View Budgets with 'transfer' transactions"
@@ -5771,15 +5771,15 @@ msgstr "Прагляд з аперацыямі пераказаў"
 
 #: optionsettingsview.cpp:128
 msgid "View Budget Category Report with Summaries"
-msgstr ""
+msgstr "Бюджэт па катыгорыях з вынікамі"
 
 #: optionsettingsview.cpp:137
 msgid "Budget Offset (days):"
-msgstr ""
+msgstr "Зрушэнне бюджэту (дзён):"
 
 #: optionsettingsview.cpp:141
 msgid "Advance or retard the start date from the 1st of the month or year by the number of days"
-msgstr ""
+msgstr "Зрушэнне або зрух даты пачатка з 1-га ліка месяца або года на паказаную колькасць дзён"
 
 #: optionsettingsview.cpp:146
 msgid "Ignore Future Transactions"
@@ -5791,67 +5791,67 @@ msgstr "Колеры аперацыі"
 
 #: optionsettingsview.cpp:191
 msgid "UI Appearance"
-msgstr ""
+msgstr "Вонкавы выгляд"
 
 #: optionsettingsview.cpp:202
 msgid "Open Theme Manager"
-msgstr ""
+msgstr "Адчыніць Мэнаджар Тэмаў"
 
 #: optionsettingsview.cpp:204
 msgid "Style Template"
-msgstr ""
+msgstr "Шаблон стыля"
 
 #: optionsettingsview.cpp:207
 msgid "HTML Scale Factor"
-msgstr ""
+msgstr "Маштаб HTML"
 
 #: optionsettingsview.cpp:215
 msgid "Specify which scale factor is used for the report pages"
-msgstr ""
+msgstr "Пазначце, які маштаб выкарыстоўваць для справаздачаў"
 
 #: optionsettingsview.cpp:220
 msgid "Small (16 px)"
-msgstr ""
+msgstr "Малы (16 px)"
 
 #: optionsettingsview.cpp:221
 msgid "Normal (24 px)"
-msgstr ""
+msgstr "Звычайны (24 px)"
 
 #: optionsettingsview.cpp:222
 msgid "Large (32 px)"
-msgstr ""
+msgstr "Вялікі (32 px)"
 
 #: optionsettingsview.cpp:223
 msgid "Huge (48 px)"
-msgstr ""
+msgstr "Велізарны (48 px)"
 
 #: optionsettingsview.cpp:237
 msgid "Toolbar Icon Size"
-msgstr ""
+msgstr "Памер значкоў панэлі прыладаў"
 
 #: optionsettingsview.cpp:240
 msgid "Navigation Icon Size"
-msgstr ""
+msgstr "Памер значкоў навігацыі"
 
 #: optionsettingsview.cpp:243
 msgid "Others Icon Size"
-msgstr ""
+msgstr "Памер іншых значкоў"
 
 #: payeedialog.cpp:67
 msgid "Last Used Category"
-msgstr ""
+msgstr "Катыгорыя, што выкарыстоўвалася апошняй"
 
 #: payeedialog.cpp:67
 msgid "Default Category"
-msgstr ""
+msgstr "Катыгорыя па змаўчанні"
 
 #: payeedialog.cpp:202 payeedialog.cpp:242 payeedialog.cpp:270
 msgid "Payee with same name exists"
-msgstr ""
+msgstr "Платнік з такім імем ужо існуе"
 
 #: payeedialog.cpp:203 payeedialog.cpp:227 payeedialog.cpp:242
 msgid "Organize Payees: Add Payee"
-msgstr "Рыдактар атрымальнікаў: дадаць"
+msgstr "Рыдактар платнікоў: дадаць"
 
 #: payeedialog.cpp:226
 msgid "Enter the name for the new payee:"
