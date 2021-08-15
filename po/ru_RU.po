@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-15 15:41+0300\n"
-"PO-Revision-Date: 2021-08-15 12:57\n"
+"PO-Revision-Date: 2021-08-15 18:07\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -4556,7 +4556,7 @@ msgstr "Money Manager Ex для &Android"
 
 #: mmframe.cpp:1629
 msgid "Get free Android version and run MMEX on your smart phone or tablet"
-msgstr "Получите бесплатную версию Android и запустите MMEX на своем смартфоне или планшете"
+msgstr "Получите бесплатную версию для Android и запустите MMEX на своем смартфоне или планшете"
 
 #: mmframe.cpp:1631
 msgid "&Newsletter"
@@ -4781,7 +4781,7 @@ msgstr "MMEX сообщение"
 
 #: mmframe.cpp:2076
 msgid "MMEX: Encryption Password Change"
-msgstr "MMEX: Смена пароля зишифрованной БД"
+msgstr "MMEX: Смена пароля зашифрованной БД"
 
 #: mmframe.cpp:2077
 #, c-format
