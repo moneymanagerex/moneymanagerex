@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-15 15:41+0300\n"
-"PO-Revision-Date: 2021-08-15 20:31\n"
+"PO-Revision-Date: 2021-08-15 20:46\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -6242,15 +6242,15 @@ msgstr "Карыстальніцкі"
 
 #: reports/mmDateRange.cpp:220
 msgid "Last 365 Days"
-msgstr ""
+msgstr "Апошнія 365 дзён"
 
 #: reports/myusage.cpp:27
 msgid "MMEX Usage Frequency"
-msgstr ""
+msgstr "Як часта выкарыстоўваецца MMEX"
 
 #: reports/payee.cpp:32
 msgid "Payee Report"
-msgstr ""
+msgstr "Справаздача па платніках"
 
 #: reports/reportbase.cpp:191 reports/transactions.cpp:64
 msgid "Accounts: "
@@ -6259,31 +6259,31 @@ msgstr "Рахункі: "
 #: reports/summary.cpp:146
 #, c-format
 msgid "Accounts Balance - %s"
-msgstr ""
+msgstr "Баланс рахункаў — %s"
 
 #: reports/summary.cpp:146
 msgid "Monthly Report"
-msgstr ""
+msgstr "Штомесячная справаздача"
 
 #: reports/summary.cpp:146
 msgid "Yearly Report"
-msgstr ""
+msgstr "Штогадовая справаздача"
 
 #: reports/summarystocks.cpp:35
 msgid "Summary of Stocks"
-msgstr ""
+msgstr "Зводка па інвестыцыях"
 
 #: reports/summarystocks.cpp:192
 msgid "*Purchase Date"
-msgstr ""
+msgstr "*Дата набыцця"
 
 #: reports/summarystocks.cpp:193
 msgid "Quantity"
-msgstr ""
+msgstr "Колькасць"
 
 #: reports/summarystocks.cpp:195
 msgid "Current Price"
-msgstr ""
+msgstr "Бягучая цана"
 
 #: reports/summarystocks.cpp:196 sharetransactiondialog.cpp:249
 #: stocks_list.cpp:99
@@ -6292,7 +6292,7 @@ msgstr "Камісія"
 
 #: reports/summarystocks.cpp:206
 msgid "Stocks Performance Charts"
-msgstr ""
+msgstr "Прадстаўленне каціровак"
 
 #: reports/transactions.cpp:191
 msgid "All Transactions: Withdrawals, Deposits, and Transfers"
@@ -6396,15 +6396,15 @@ msgstr "Хібная агульная сума"
 
 #: stockdialog.cpp:137 stockdialog.cpp:508 stockspanel.cpp:144
 msgid "Edit Stock Investment"
-msgstr ""
+msgstr "Рыдагаванне інвестыцыі"
 
 #: stockdialog.cpp:137 stockdialog.cpp:496 stockspanel.cpp:130
 msgid "New Stock Investment"
-msgstr ""
+msgstr "Дадаванне новай інвестыцыі"
 
 #: stockdialog.cpp:208 stocks_list.cpp:89
 msgid "*Date"
-msgstr ""
+msgstr "*Дата"
 
 #: stockdialog.cpp:214
 msgid "Specify the initial date of the stock investment\n"
@@ -6434,7 +6434,7 @@ msgstr "Пачатковы кошт куплі акцыяў.\n"
 
 #: stockdialog.cpp:241
 msgid "*Commission"
-msgstr ""
+msgstr "*Камісія"
 
 #: stockdialog.cpp:245
 msgid "Enter any commission paid.\n"
@@ -6452,15 +6452,15 @@ msgstr "Пакажыце бягучую цану акцыяў."
 
 #: stockdialog.cpp:285
 msgid "Stock History Options"
-msgstr ""
+msgstr "Налады гісторыі каціровак"
 
 #: stockdialog.cpp:292
 msgid "Stock Price History"
-msgstr ""
+msgstr "Гісторыя каціровак"
 
 #: stockdialog.cpp:316 stocks_list.cpp:98
 msgid "Price Date"
-msgstr ""
+msgstr "Дата цаны"
 
 #: stockdialog.cpp:320
 msgid "Specify the stock/share price date."
@@ -6468,23 +6468,23 @@ msgstr "Пакажыце дату набыцця актыва."
 
 #: stockdialog.cpp:336
 msgid "Download Stock Price history"
-msgstr ""
+msgstr "Спампаваць гістрыю каціровак"
 
 #: stockdialog.cpp:338
 msgid "Import Stock Price history (CSV Format)"
-msgstr ""
+msgstr "Імпартаваць гістрыю каціровак (CSV Format)"
 
 #: stockdialog.cpp:340
 msgid "Delete selected Stock Price"
-msgstr ""
+msgstr "Выдаліць пазначаную каціроўку"
 
 #: stockdialog.cpp:342
 msgid "Add Stock Price to history"
-msgstr ""
+msgstr "Дадаць каціроўку да гісторыі"
 
 #: stockdialog.cpp:420
 msgid "Held At"
-msgstr ""
+msgstr "Біржа"
 
 #: stockdialog.cpp:494
 msgid "Share Account not found.\n\n"
@@ -6502,77 +6502,77 @@ msgstr "У кампаніі няма злучанага рахунка Акцы�
 
 #: stockdialog.cpp:599
 msgid "Stock History CSV Import"
-msgstr ""
+msgstr "CSV імпарт гістрыі каціровак"
 
 #: stockdialog.cpp:600 stockdialog.cpp:616
 msgid "Quotes imported from CSV: "
-msgstr ""
+msgstr "Каціровак іспратавана з CSV: "
 
 #: stockdialog.cpp:672
 #, c-format
 msgid "Total Lines : %ld"
-msgstr ""
+msgstr "Радкоў агулам : %ld"
 
 #: stockdialog.cpp:674
 #, c-format
 msgid "Total Imported : %ld"
-msgstr ""
+msgstr "Імпартавана агулам : %ld"
 
 #: stockdialog.cpp:682
 msgid "Importing CSV"
-msgstr ""
+msgstr "Імпарт CSV"
 
 #: stockdialog.cpp:713 stockdialog.cpp:743
 msgid "5 Days"
-msgstr ""
+msgstr "5 дзён"
 
 #: stockdialog.cpp:714 stockdialog.cpp:745
 msgid "1 Month"
-msgstr ""
+msgstr "1 месяц"
 
 #: stockdialog.cpp:715 stockdialog.cpp:746
 msgid "3 Months"
-msgstr ""
+msgstr "3 месяцы"
 
 #: stockdialog.cpp:716
 msgid "6 Months"
-msgstr ""
+msgstr "6 месяцаў"
 
 #: stockdialog.cpp:717
 msgid "1 Year"
-msgstr ""
+msgstr "1 год"
 
 #: stockdialog.cpp:718
 msgid "2 Years"
-msgstr ""
+msgstr "2 гады"
 
 #: stockdialog.cpp:719
 msgid "5 Years"
-msgstr ""
+msgstr "5 гадоў"
 
 #: stockdialog.cpp:720
 msgid "10 Years"
-msgstr ""
+msgstr "10 гадоў"
 
 #: stockdialog.cpp:722
 msgid "Max"
-msgstr ""
+msgstr "Макс."
 
 #: stockdialog.cpp:728
 msgid "Specify type frequency of stock history"
-msgstr ""
+msgstr "Абярыце перыяд гісторыі каціровак"
 
 #: stockdialog.cpp:729 stockdialog.cpp:753
 msgid "Stock History Update"
-msgstr ""
+msgstr "Абнавіць гістрыю каціровак"
 
 #: stockdialog.cpp:742
 msgid "1 Day"
-msgstr ""
+msgstr "1 дзень"
 
 #: stockdialog.cpp:744
 msgid "1 Week"
-msgstr ""
+msgstr "1 тыдзень"
 
 #: stockdialog.cpp:752
 msgid "Specify interval of stock history"
