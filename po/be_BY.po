@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-15 15:41+0300\n"
-"PO-Revision-Date: 2021-08-15 18:56\n"
+"PO-Revision-Date: 2021-08-15 19:06\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -5628,32 +5628,34 @@ msgstr "Ствараць новую рызервовую копію падчас
 #: optionsettingsmisc.cpp:165
 msgid "When MMEX Starts,\n"
 "creates the backup database: dbFile_start_YYYY-MM-DD.ext."
-msgstr ""
+msgstr "Калі MMEX запускаецца,\n"
+"стварыць рызервовую копію базы дадзеных: dbFile_start_YYYY-MM-DD.ext."
 
 #: optionsettingsmisc.cpp:170
 msgid "Backup database on exit."
-msgstr ""
+msgstr "Ствараць рызервовую копію базы дадзеных, калі MMEX зачыняецца."
 
 #: optionsettingsmisc.cpp:172
 msgid "When MMEX shuts down and changes made to database,\n"
 "creates or updates the backup database: dbFile_update_YYYY-MM-DD.ext."
-msgstr ""
+msgstr "Падчас зачынення MMEX, калі зробленыя змены,\n"
+"стварыць або абнавіць рызервовую копію базы дадзеных: dbFile_update_YYYY-MM-DD.ext."
 
 #: optionsettingsmisc.cpp:180
 msgid "Specify max number of backup files"
-msgstr ""
+msgstr "Пазначце масімальную колькасць рызервовых копіяў"
 
 #: optionsettingsmisc.cpp:183
 msgid "Max Files"
-msgstr ""
+msgstr "Ліміт файлаў"
 
 #: optionsettingsmisc.cpp:190
 msgid "CSV Settings"
-msgstr ""
+msgstr "Налады CSV"
 
 #: optionsettingsmisc.cpp:198
 msgid "Delimiter"
-msgstr ""
+msgstr "Падзельнік"
 
 #: optionsettingsnet.cpp:58
 msgid "WebApp Settings"
@@ -5665,7 +5667,7 @@ msgstr "Url"
 
 #: optionsettingsnet.cpp:69
 msgid "Specify the Web App URL without final slash"
-msgstr ""
+msgstr "Пакажыце URL-адрас WebApp без / у канцы"
 
 #: optionsettingsnet.cpp:72 webappdialog.cpp:110
 msgid "GUID"
@@ -5673,7 +5675,7 @@ msgstr "GUID"
 
 #: optionsettingsnet.cpp:76
 msgid "Specify the Web App GUID"
-msgstr ""
+msgstr "Пазначце WebApp GUID"
 
 #: optionsettingsnet.cpp:79
 msgid "More information about WebApp"
@@ -5681,31 +5683,31 @@ msgstr "Больш інфармацыі пра WebApp"
 
 #: optionsettingsnet.cpp:83
 msgid "Proxy Settings"
-msgstr ""
+msgstr "Налады проксі"
 
 #: optionsettingsnet.cpp:91
 msgid "Specify the proxy IP address"
-msgstr ""
+msgstr "Пазначце IP адрас проксі"
 
 #: optionsettingsnet.cpp:97
 msgid "Specify proxy port number"
-msgstr ""
+msgstr "Пазначце нумар порта проксі"
 
 #: optionsettingsnet.cpp:100
 msgid "Proxy"
-msgstr ""
+msgstr "Проксі"
 
 #: optionsettingsnet.cpp:102
 msgid "Port"
-msgstr ""
+msgstr "Порт"
 
 #: optionsettingsnet.cpp:108
 msgid "Usage statistics"
-msgstr ""
+msgstr "Статыстыка выкарыстання"
 
 #: optionsettingsnet.cpp:127
 msgid "Check for latest news on startup"
-msgstr ""
+msgstr "Правяраць найноўшыя навіны падчас запуска"
 
 #: optionsettingsnet.cpp:129
 msgid "Enable to allow news to be checked on application start"
