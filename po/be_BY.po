@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-15 15:41+0300\n"
-"PO-Revision-Date: 2021-08-15 14:46\n"
+"PO-Revision-Date: 2021-08-15 17:57\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -4384,15 +4384,15 @@ msgstr "Чэкі і залічэнні"
 
 #: mmframe.cpp:1540
 msgid "&Assets"
-msgstr ""
+msgstr "&Актывы"
 
 #: mmframe.cpp:1546
 msgid "T&heme Manager"
-msgstr ""
+msgstr "Мэнаджар Т&эмаў"
 
 #: mmframe.cpp:1546 mmframe.cpp:2490 optionsettingsview.cpp:297 themes.cpp:137
 msgid "Theme Manager"
-msgstr ""
+msgstr "Мэнаджар Тэмаў"
 
 #: mmframe.cpp:1552
 msgid "Transaction Report &Filter..."
@@ -4404,15 +4404,15 @@ msgstr "Справаздача па крытэрыях"
 
 #: mmframe.cpp:1558
 msgid "General Report &Manager..."
-msgstr ""
+msgstr "Мэнаджар &справаздачаў..."
 
 #: mmframe.cpp:1562
 msgid "C&ustom Fields Manager..."
-msgstr ""
+msgstr "Мэнаджар карыстальніцкіх &палёў..."
 
 #: mmframe.cpp:1562
 msgid "Custom Fields Manager"
-msgstr ""
+msgstr "Мэнаджар карыстальніцкіх палёў"
 
 #: mmframe.cpp:1568
 msgid "Refresh &WebApp"
@@ -4424,219 +4424,219 @@ msgstr "Абнавіць WebApp"
 
 #: mmframe.cpp:1573
 msgid "&Options...\tCtrl-,"
-msgstr ""
+msgstr "&Налады...\tCtrl-,"
 
 #: mmframe.cpp:1573 mmframe.cpp:1732
 msgid "Show the Options Dialog"
-msgstr ""
+msgstr "Налады"
 
 #: mmframe.cpp:1580
 msgid "Convert Encrypted &DB"
-msgstr ""
+msgstr "Канвертаваць зашыфраваную &БД"
 
 #: mmframe.cpp:1581
 msgid "Convert Encrypted DB to Non-Encrypted DB"
-msgstr ""
+msgstr "Канвертаванне зашыфраваную БД у нешыфраваную"
 
 #: mmframe.cpp:1583
 msgid "Change Encrypted &Password"
-msgstr ""
+msgstr "Змяніць &пароль шыфравання"
 
 #: mmframe.cpp:1584
 msgid "Change the password of an encrypted database"
-msgstr ""
+msgstr "Змена пароля зашыфраванай базы дадзеных"
 
 #: mmframe.cpp:1586
 msgid "&Optimize Database"
-msgstr ""
+msgstr "&Аптымізаваць базу дадзеных"
 
 #: mmframe.cpp:1587
 msgid "Optimize database space and performance"
-msgstr ""
+msgstr "Аптымізацыя памера і хуткасці базы дадзеных"
 
 #: mmframe.cpp:1589
 msgid "Database De&bug"
-msgstr ""
+msgstr "А&дладка базы дадзеных"
 
 #: mmframe.cpp:1590
 msgid "Generate database report or fix errors"
-msgstr ""
+msgstr "Генераваць справаздачу базы дадзеных або выправіць памылкі"
 
 #: mmframe.cpp:1595
 msgid "Databa&se"
-msgstr ""
+msgstr "Ба&за дадзеных"
 
 #: mmframe.cpp:1596
 msgid "Database management"
-msgstr ""
+msgstr "Кіраванне базай дадзеных"
 
 #: mmframe.cpp:1603 mmframe.cpp:1757
 msgid "&Help\tF1"
-msgstr ""
+msgstr "&Дапамога\tF1"
 
 #: mmframe.cpp:1603 mmframe.cpp:1757
 msgid "Show the Help file"
-msgstr ""
+msgstr "Паказаць даведку"
 
 #: mmframe.cpp:1608
 msgid "&Website"
-msgstr ""
+msgstr "&Вэб-сайт"
 
 #: mmframe.cpp:1609
 msgid "Open the Money Manager EX website for latest news, updates etc"
-msgstr ""
+msgstr "Адкрыйце сайт Money Manager EX для апошніх навінаў, абнаўленняў і г.д."
 
 #: mmframe.cpp:1611
 msgid "&Facebook"
-msgstr ""
+msgstr "&Facebook"
 
 #: mmframe.cpp:1611
 msgid "Visit us on Facebook"
-msgstr ""
+msgstr "Завітайце да нас у Facebook"
 
 #: mmframe.cpp:1613
 msgid "&Crowdin"
-msgstr ""
+msgstr "&Crowdin"
 
 #: mmframe.cpp:1613
 msgid "We use Crowdin to translate MMEX"
-msgstr ""
+msgstr "Мы карыстуемся Crowdin для пераклада MMEX"
 
 #: mmframe.cpp:1615
 msgid "&Twitter"
-msgstr ""
+msgstr "&Twitter"
 
 #: mmframe.cpp:1615
 msgid "Follow us on Twitter"
-msgstr ""
+msgstr "Сачыце за намі ў Twitter"
 
 #: mmframe.cpp:1617
 msgid "&YouTube"
-msgstr ""
+msgstr "&YouTube"
 
 #: mmframe.cpp:1617
 msgid "Watch free video materials about MMEX"
-msgstr ""
+msgstr "Глядзіце бескаштоўныя відыа пра MMEX"
 
 #: mmframe.cpp:1619
 msgid "&Slack"
-msgstr ""
+msgstr "&Slack"
 
 #: mmframe.cpp:1619
 msgid "Communicate online with MMEX team from your desktop or mobile device"
-msgstr ""
+msgstr "Размаўляйце ў сетцы з MMEX са свайго кампутара або мабільнага"
 
 #: mmframe.cpp:1621
 msgid "&GitHub"
-msgstr ""
+msgstr "&GitHub"
 
 #: mmframe.cpp:1621
 msgid "Access open source code repository and track reported bug statuses"
-msgstr ""
+msgstr "Дасяг да рыпазіторыяў з адкрытым сыходным кодам і адсочванне паведамленняў пра памылкі"
 
 #: mmframe.cpp:1623
 msgid "W&iki pages"
-msgstr ""
+msgstr "Старонкі W&iki"
 
 #: mmframe.cpp:1623
 msgid "Read and update wiki pages"
-msgstr ""
+msgstr "Чытанне да абнаўленне старонак wiki"
 
 #: mmframe.cpp:1625
 msgid "F&orum"
-msgstr ""
+msgstr "Ф&орум"
 
 #: mmframe.cpp:1626
 msgid "Visit the MMEX forum to see existing user comments or report new issues with the software"
-msgstr ""
+msgstr "Наведайце форум MMEX, каб пачытаць камэнтары карыстальнікаў або паведаміць пра новыя праблемы з дадаткам"
 
 #: mmframe.cpp:1628
 msgid "Money Manager Ex for &Android"
-msgstr ""
+msgstr "Money Manager Ex для &Android"
 
 #: mmframe.cpp:1629
 msgid "Get free Android version and run MMEX on your smart phone or tablet"
-msgstr ""
+msgstr "Атрымайце бясплатную версію для Android і запусціце MMEX на сваім смартфоне або планшэце"
 
 #: mmframe.cpp:1631
 msgid "&Newsletter"
-msgstr ""
+msgstr "Расылка &навінаў"
 
 #: mmframe.cpp:1632
 msgid "Subscribe to e-mail newsletter or view existing announcements"
-msgstr ""
+msgstr "Падпішыцеся на рассылку навінаў па электроннай пошце ці праглядзіце бягучыя аб'явы"
 
 #: mmframe.cpp:1634
 msgid "&RSS Feed"
-msgstr ""
+msgstr "Стужка &RSS"
 
 #: mmframe.cpp:1634
 msgid "Connect RSS web feed to news aggregator"
-msgstr ""
+msgstr "Падлучыце RSS-стужку навінаў да агрыгатара"
 
 #: mmframe.cpp:1636
 msgid "&Donate via PayPal"
-msgstr ""
+msgstr "&Ахвяраваць праз PayPal"
 
 #: mmframe.cpp:1637
 msgid "Donate the team to support infrastructure etc"
-msgstr ""
+msgstr "Ахвяраваць камандзе для падтрымкі інфраструктуры і г.д."
 
 #: mmframe.cpp:1639
 msgid "&Buy us a Coffee"
-msgstr ""
+msgstr "&Прыгасціць нас кавай"
 
 #: mmframe.cpp:1640
 msgid "Buy key developer a coffee"
-msgstr ""
+msgstr "Набыць каву для вядучага распрацоўшчыка"
 
 #: mmframe.cpp:1643
 msgid "&Community"
-msgstr ""
+msgstr "&Супольнасць"
 
 #: mmframe.cpp:1644
 msgid "Stay in touch with MMEX community"
-msgstr ""
+msgstr "Заставайцеся на сувязі з супольнасцю MMEX"
 
 #: mmframe.cpp:1666
 msgid "Report a &Bug"
-msgstr ""
+msgstr "Паведаміць пра &памылку"
 
 #: mmframe.cpp:1667
 msgid "Report an error in application to the developers"
-msgstr ""
+msgstr "Паведаміць распрацоўшчыкам пра памылку"
 
 #: mmframe.cpp:1671
 msgid "View Diagnostics"
-msgstr ""
+msgstr "Дыягностыка"
 
 #: mmframe.cpp:1672
 msgid "Help provide information to the developers"
-msgstr ""
+msgstr "Дапамога, каб прадаставіць інфармацыю распрацоўшчыкам"
 
 #: mmframe.cpp:1676
 msgid "&Show App Start Dialog"
-msgstr ""
+msgstr "Паказаць &пачатковы дыялог"
 
 #: mmframe.cpp:1676
 msgid "App Start Dialog"
-msgstr ""
+msgstr "Вакенца запуска дадатка"
 
 #: mmframe.cpp:1680
 msgid "Check for &Updates"
-msgstr ""
+msgstr "Праверыць наяўнасць &абнаўлення"
 
 #: mmframe.cpp:1680
 msgid "Check For Updates"
-msgstr ""
+msgstr "Праверыць, ці існуе новая версія"
 
 #: mmframe.cpp:1684 mmframe.cpp:1756
 msgid "&About..."
-msgstr ""
+msgstr "Пра Пра&граму..."
 
 #: mmframe.cpp:1684 mmframe.cpp:1756
 msgid "Show about dialog"
-msgstr ""
+msgstr "Паказаць звесткі пра дадатак"
 
 #: mmframe.cpp:1688
 msgid "&File"
@@ -4644,27 +4644,27 @@ msgstr "&Файл"
 
 #: mmframe.cpp:1689
 msgid "&Accounts"
-msgstr ""
+msgstr "&Рахункі"
 
 #: mmframe.cpp:1690
 msgid "&Tools"
-msgstr ""
+msgstr "&Прылады"
 
 #: mmframe.cpp:1691
 msgid "&View"
-msgstr ""
+msgstr "&Выгляд"
 
 #: mmframe.cpp:1692
 msgid "&Help"
-msgstr ""
+msgstr "&Даведка"
 
 #: mmframe.cpp:1716 mmframe.cpp:1722
 msgid "New"
-msgstr ""
+msgstr "Новая"
 
 #: mmframe.cpp:1724
 msgid "Show Organize Categories Dialog"
-msgstr ""
+msgstr "Адчыніць рыдактар катыгорыяў"
 
 #: mmframe.cpp:1725
 msgid "Show Organize Payees Dialog"
@@ -4672,92 +4672,96 @@ msgstr "Адчыніць рыдактар атрымальнікаў"
 
 #: mmframe.cpp:1726
 msgid "Show Organize Currency Dialog"
-msgstr ""
+msgstr "Адчыніць рыдактар валютаў"
 
 #: mmframe.cpp:1732
 msgid "&Options..."
-msgstr ""
+msgstr "&Налады..."
 
 #: mmframe.cpp:1740 mmframe.cpp:2591
 msgid "Register/View Release &Notifications"
-msgstr ""
+msgstr "Праглядзець інфармацыю пра новыя версіі"
 
 #: mmframe.cpp:1745 optionsettingsnet.cpp:121
 msgid "News"
-msgstr ""
+msgstr "Навіны"
 
 #: mmframe.cpp:1747
 msgid "Download rates"
-msgstr ""
+msgstr "Спампаваць курсы"
 
 #: mmframe.cpp:1750
 msgid "Toggle Fullscreen\tF11"
-msgstr ""
+msgstr "Пераключыць на ўвесь экран\tF11"
 
 #: mmframe.cpp:1811
 #, c-format
 msgid "Please enter password for Database\n\n"
 "%s"
-msgstr ""
+msgstr "Калі ласка, пакажыце пароль да базы дадзеных\n\n"
+"%s"
 
 #: mmframe.cpp:1812 mmframe.cpp:2043 mmframe.cpp:2176
 msgid "MMEX: Encrypted Database"
-msgstr ""
+msgstr "MMEX: зашыфраваная база дадзеных"
 
 #: mmframe.cpp:1846
 msgid "Have MMEX support provided you a debug/patch file?"
-msgstr ""
+msgstr "Ці прадаставіла служба падтрымкі MMEX файл адладкі/патч?"
 
 #: mmframe.cpp:1846
 msgid "MMEX upgrade"
-msgstr ""
+msgstr "Прасунутае абнаўленне MMEX"
 
 #: mmframe.cpp:1868 mmframe.cpp:1910
 msgid "No File opened"
-msgstr ""
+msgstr "Файл не адчынены"
 
 #: mmframe.cpp:1870
 msgid "Sorry. The Database version is too old or Database password is incorrect"
-msgstr ""
+msgstr "Выбачце. Версія базы дадзеных занадта старая або хібны пароль базы дадзеных"
 
 #: mmframe.cpp:1900
 msgid "&Next ->"
-msgstr ""
+msgstr "&Наступны ->"
 
 #: mmframe.cpp:1913
 msgid "Cannot locate previously opened database.\n"
-msgstr ""
+msgstr "Немагчыма адчыніць базу дадзеных, што выкарыстоўвалася раней.\n"
 
 #: mmframe.cpp:1915
 msgid "Password not entered for encrypted Database.\n"
-msgstr ""
+msgstr "Не паказаны пароль для зашыфраванай базы дадзеных.\n"
 
 #: mmframe.cpp:1933
 msgid "portable mode"
-msgstr ""
+msgstr "партатыўны рэжым"
 
 #: mmframe.cpp:1969
 msgid "The database you are trying to open has been marked as opened by another instance of MMEX.\n"
 "To avoid data loss or conflict, it's strongly recommended that you close all other applications that may be using the database.\n\n"
 "If nothing else is running, it's possible that the database was left open as a result of a crash during previous usage of MMEX.\n\n"
 "Would you like to continue to open this database?"
-msgstr ""
+msgstr "База дадзеных, якую вы спрабуеце адкрыць, ужо адкрыта іншым асобнікам MMEX.\n"
+"Каб пазбегнуць страты дадзеных або канфлікта, рэкамендуецца зачыніць усе іншыя дадаткі, што могуць выкарыстоўваць БД.\n\n"
+"Калі больш нічога не запушчана, магчыма, база дадзеных была пакінутая адкрытай у выніку збою падчас папярэдняга выкарыстання MMEX.\n\n"
+"Сапраўды жадаеце адчыніць гэтую базу дадзеных?"
 
 #: mmframe.cpp:1973
 msgid "MMEX Instance Check"
-msgstr ""
+msgstr "Праверка MMEX"
 
 #: mmframe.cpp:1993
 msgid "Choose database file to create"
-msgstr ""
+msgstr "Абраць файл для стварэння базы дадзеных"
 
 #: mmframe.cpp:2016
 msgid "Choose database file to open"
-msgstr ""
+msgstr "Абраць файл базы дадзеных, штоб адчыніць"
 
 #: mmframe.cpp:2033
 msgid "Choose Encrypted database file to open"
-msgstr ""
+msgstr "Абраць файл шыфраванай БД, штоб адчыніць"
 
 #: mmframe.cpp:2043
 msgid "Enter password for database"
@@ -4765,64 +4769,67 @@ msgstr ""
 
 #: mmframe.cpp:2048
 msgid "Choose database file to Save As"
-msgstr "Абраць файл для захоування базы дадзеных"
+msgstr "Абраць файл для захоўвання базы дадзеных"
 
 #: mmframe.cpp:2070
 msgid "Converted DB!"
-msgstr ""
+msgstr "Ператвораная БД!"
 
 #: mmframe.cpp:2070
 msgid "MMEX message"
-msgstr ""
+msgstr "Паведамленне MMEX"
 
 #: mmframe.cpp:2076
 msgid "MMEX: Encryption Password Change"
-msgstr ""
+msgstr "MMEX: Змена пароля шыфраванай БД"
 
 #: mmframe.cpp:2077
 #, c-format
 msgid "New password for database\n\n"
 "%s"
-msgstr ""
+msgstr "Новы пароль для базы дадзеных\n\n"
+"%s"
 
 #: mmframe.cpp:2082
 msgid "New password must not be empty."
-msgstr ""
+msgstr "Новы пароль мае быць запоўнены."
 
 #: mmframe.cpp:2086
 msgid "Please confirm new password"
-msgstr ""
+msgstr "Калі ласка, спраўдзіце новы пароль"
 
 #: mmframe.cpp:2090
 msgid "Password change completed."
-msgstr ""
+msgstr "Змена пароля адбылася."
 
 #: mmframe.cpp:2094
 msgid "Confirm password failed."
-msgstr ""
+msgstr "Пароль ня спраўджаны."
 
 #: mmframe.cpp:2103
 msgid "Make sure you have a backup of DB before optimize it"
-msgstr ""
+msgstr "Упэўніцеся, што маеце рызервовую копію БД перш чым аптымізаваць яе"
 
 #: mmframe.cpp:2104 mmframe.cpp:2114
 msgid "DB Optimization"
-msgstr ""
+msgstr "Аптымізацыя базы дадзеных"
 
 #: mmframe.cpp:2111
 #, c-format
 msgid "Database Optimization Completed!\n\n"
 "Size before: %s\n"
 "Size after: %s\n"
-msgstr ""
+msgstr "Аптымізацыя базы дадзеных завершаная!\n\n"
+"Памер перад: %s\n"
+"Памер пасля: %s\n"
 
 #: mmframe.cpp:2122
 msgid "Please use this function only if explicitly requested by MMEX support"
-msgstr ""
+msgstr "Увага! Выкарыстоўвайце гэтую функцю толькі калі Вам гэта яўным чынам сказала служба падтрымкі MMEX"
 
 #: mmframe.cpp:2123
 msgid "DB Debug"
-msgstr ""
+msgstr "Адладка БД"
 
 #: mmframe.cpp:2142 mmframe.cpp:2163
 msgid "Save database file as"
@@ -4830,15 +4837,15 @@ msgstr "Захаваць файл базы дадзеных як"
 
 #: mmframe.cpp:2163
 msgid "Can't copy file to itself"
-msgstr ""
+msgstr "Нельга скапіяваць файл у самога сябе"
 
 #: mmframe.cpp:2176
 msgid "Enter password for new database"
-msgstr ""
+msgstr "Пакажыце пароль для новай базы дадзеных"
 
 #: mmframe.cpp:2265 mmframe.cpp:2284
 msgid "No account available to import"
-msgstr ""
+msgstr "Нямае рахунка для імпарта"
 
 #: mmframe.cpp:2333
 msgid "Asset Accounts hold Asset transactions\n\n"
@@ -4874,7 +4881,7 @@ msgstr "Стварэнне рахунка каштоўных папераў"
 
 #: mmframe.cpp:2499
 msgid "Accounts, Payees, and Categories Updated"
-msgstr ""
+msgstr "Рахункі, платнікі і катыгорыі абноўленыя"
 
 #: mmframe.cpp:2501
 msgid "Issue encountered updating WebApp, check Web server and WebApp settings"
@@ -4882,11 +4889,11 @@ msgstr "Сталася перашкода падчас абнаўлення WebA
 
 #: mmframe.cpp:2537
 msgid "MMEX Options have been updated."
-msgstr ""
+msgstr "Налады MMEX абноўленыя."
 
 #: mmframe.cpp:2538
 msgid "Some settings take effect only after an application restart."
-msgstr ""
+msgstr "Некаторыя налады ўступяць у моц толькі пасля перазапуска дадатка."
 
 #: mmframe.cpp:2539 optiondialog.cpp:211 optiondialog.h:49
 msgid "MMEX Options"
@@ -4894,59 +4901,60 @@ msgstr "Налады MMEX"
 
 #: mmframe.cpp:2661
 msgid "Choose HTML file to Export"
-msgstr ""
+msgstr "Абярыце файл HTML для экспарта"
 
 #: mmframe.cpp:3034 mmframe.cpp:3041
 msgid "Downloading stock prices from Yahoo"
-msgstr ""
+msgstr "Спампоўваю каціроўкі з Yahoo"
 
 #: mmframe.cpp:3035
 msgid "Please wait..."
-msgstr ""
+msgstr "Калі ласка, пачакайце..."
 
 #: mmframe.cpp:3084 stockspanel.cpp:473
 #, c-format
 msgid "%s on %s"
-msgstr ""
+msgstr "%s на %s"
 
 #: mmframe.cpp:3101
 msgid "No account available to edit!"
-msgstr ""
+msgstr "Нямае рахунка для рыдагавання!"
 
 #: mmframe.cpp:3105
 msgid "Choose Account to Edit"
-msgstr ""
+msgstr "Абярыце рахунак для рыдагавання"
 
 #: mmframe.cpp:3124
 msgid "No account available to delete!"
-msgstr ""
+msgstr "Нямае рахунка для выдалення!"
 
 #: mmframe.cpp:3128
 msgid "Choose Account to Delete"
-msgstr ""
+msgstr "Абярыце рахунак для выдалення"
 
 #: mmframe.cpp:3133
 #, c-format
 msgid "Are you sure you want to delete\n"
 " %s account: %s ?"
-msgstr ""
+msgstr "Вы ўпэўнены, што жадаеце выдаліць\n"
+" %s account: %s ?"
 
 #: mmframe.cpp:3152
 msgid "Select the account to reallocate"
-msgstr ""
+msgstr "Абярыце рахунак для перасоўвання"
 
 #: mmframe.cpp:3152 mmframe.cpp:3175
 msgid "Account Reallocation"
-msgstr ""
+msgstr "Перасоўванне рахунка"
 
 #: mmframe.cpp:3174
 #, c-format
 msgid "Account: %s - Select new type."
-msgstr ""
+msgstr "Рахунак: %s — Абярыце новы тып."
 
 #: mmframe.cpp:3283 payeedialog.cpp:350
 msgid "Payee Relocation Completed."
-msgstr "Замена атрымальніка зроблена."
+msgstr "Замена атрымальніка зробленая."
 
 #: mmframe.cpp:3287 payeedialog.cpp:354
 msgid "Payee Relocation Result"
@@ -4955,15 +4963,15 @@ msgstr "Вынік замены атрымальніка"
 #: mmframe.cpp:3337
 #, c-format
 msgid "File %s not found"
-msgstr ""
+msgstr "Файл %s не знойдзены"
 
 #: mmframe.cpp:3372 optionsettingsgeneral.cpp:333
 msgid "The language for this application has been changed. The change will take effect the next time the application is started."
-msgstr ""
+msgstr "Мова для гэтага прыкладання змененая. Гэта змяненне ўступіць у моц пры наступным запуску дадатка."
 
 #: mmframereport.cpp:78
 msgid "General Group Report"
-msgstr ""
+msgstr "Мэнаджар справаздачаў"
 
 #: mmframereport.cpp:105 mmhomepage.cpp:808 model/Model_Report.cpp:403
 #: reports/bugreport.h:110
@@ -4976,31 +4984,31 @@ msgstr "Справаздача па крытэрыях"
 
 #: mmframereport.cpp:123
 msgid "Cash Flow"
-msgstr ""
+msgstr "Рух сродкаў"
 
 #: mmframereport.cpp:140 mmframereport.cpp:204 mmhomepage.cpp:188
 msgid "Summary"
-msgstr ""
+msgstr "Зводка"
 
 #: mmframereport.cpp:143 reports/categexp.cpp:242
 msgid "Where the Money Goes"
-msgstr ""
+msgstr "Куды сыходзяць грошы"
 
 #: mmframereport.cpp:146 reports/categexp.cpp:248
 msgid "Where the Money Comes From"
-msgstr ""
+msgstr "Адкуль прыходзяць грошы"
 
 #: mmframereport.cpp:151
 msgid "Forecast Report"
-msgstr ""
+msgstr "Прагноз"
 
 #: mmframereport.cpp:156
 msgid "Income vs Expenses"
-msgstr ""
+msgstr "Прыбыткі і выдаткі"
 
 #: mmframereport.cpp:164
 msgid "My Usage"
-msgstr ""
+msgstr "Маё выкарыстанне"
 
 #: mmframereport.cpp:169 reports/payee.cpp:113
 msgid "Payees"
@@ -5008,41 +5016,41 @@ msgstr "Атрымальнікі"
 
 #: mmframereport.cpp:174
 msgid "Summary of Accounts"
-msgstr ""
+msgstr "Зводка рахункаў"
 
 #: mmframereport.cpp:189
 msgid "Budget Performance"
-msgstr ""
+msgstr "Паказнікі бюджэта"
 
 #: mmframereport.cpp:192
 msgid "Budget Category Summary"
-msgstr ""
+msgstr "Зводка бюджэта па катыгорыях"
 
 #: mmframereport.cpp:201
 msgid "Stocks Report"
-msgstr ""
+msgstr "Справаздача па каціроўках"
 
 #: mmhelppanel.cpp:65
 msgid "&Back"
-msgstr ""
+msgstr "&Назад"
 
 #: mmhelppanel.cpp:66
 msgid "&Forward"
-msgstr ""
+msgstr "&Наперад"
 
 #: mmhomepage.cpp:60 mmhomepage.cpp:79 reports/summary.cpp:166
 msgid "Stocks"
-msgstr ""
+msgstr "Акцыі"
 
 #: mmhomepage.cpp:79 reports/summarystocks.cpp:157
 #: reports/summarystocks.cpp:197 stocks_list.cpp:95
 msgid "Gain/Loss"
-msgstr ""
+msgstr "Атрымана/Згублена"
 
 #: mmhomepage.cpp:80 reports/budgetingperf.cpp:220 reports/cashflow.cpp:250
 #: reports/categexp.cpp:175 reports/categexp.cpp:451 reports/summary.cpp:165
 msgid "Total"
-msgstr ""
+msgstr "Агулам"
 
 #: mmhomepage.cpp:106 mmhomepage.cpp:696 reports/incexpenses.cpp:287
 #: reports/payee.cpp:164 reports/summarystocks.cpp:133
@@ -5057,27 +5065,27 @@ msgstr "Найбольш расходныя: %s"
 
 #: mmhomepage.cpp:360
 msgid "Account / Payee"
-msgstr ""
+msgstr "Рахунак / Платнік"
 
 #: mmhomepage.cpp:438
 #, c-format
 msgid "Income vs Expenses: %s"
-msgstr ""
+msgstr "Прыбыткі і выдаткі: %s"
 
 #: mmhomepage.cpp:448 reports/categexp.cpp:123 reports/categexp.cpp:147
 #: reports/categexp.cpp:376 reports/categexp.cpp:450 reports/incexpenses.cpp:87
 #: reports/incexpenses.cpp:213 reports/incexpenses.cpp:246
 #: reports/payee.cpp:136
 msgid "Expenses"
-msgstr ""
+msgstr "Выдаткі"
 
 #: mmhomepage.cpp:452 reports/incexpenses.cpp:120
 msgid "Difference:"
-msgstr ""
+msgstr "Розніца:"
 
 #: mmhomepage.cpp:456
 msgid "Income/Expenses"
-msgstr ""
+msgstr "Прыбыткі і выдаткі"
 
 #: mmhomepage.cpp:484
 msgid "Transaction Statistics"
