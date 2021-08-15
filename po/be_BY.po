@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-15 15:41+0300\n"
-"PO-Revision-Date: 2021-08-15 18:07\n"
+"PO-Revision-Date: 2021-08-15 18:17\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -5273,42 +5273,44 @@ msgstr "Час"
 
 #: model/Model_CustomField.cpp:31
 msgid "SingleChoice"
-msgstr ""
+msgstr "АдзіныВыбар"
 
 #: model/Model_CustomField.cpp:32
 msgid "MultiChoice"
-msgstr ""
+msgstr "МножныВыбар"
 
 #: model/Model_Payee.cpp:80
 msgid "Payee Error"
-msgstr ""
+msgstr "Памылка платніка"
 
 #: model/Model_Report.cpp:85
 msgid "Begin date: "
-msgstr ""
+msgstr "Дата пачатка: "
 
 #: model/Model_Report.cpp:86
 msgid "Date: "
-msgstr ""
+msgstr "Дата: "
 
 #: model/Model_Report.cpp:87
 msgid "End date: "
-msgstr ""
+msgstr "Дата заканчэння: "
 
 #: model/Model_Report.cpp:88
 msgid "Year: "
-msgstr ""
+msgstr "Год: "
 
 #: model/Model_Report.cpp:233
 msgid "Template is empty"
-msgstr ""
+msgstr "Шаблон не запоўнены"
 
 #: model/Model_Report.cpp:247
 #, c-format
 msgid "The SQL script:\n"
 "%s \n"
 "will modify database! aborted!"
-msgstr ""
+msgstr "SQL скрыпт:\n"
+"%s \n"
+"намагаецца змяніць базу дадзеных! скасавана!"
 
 #: optiondialog.cpp:131
 msgid "General"
@@ -5333,28 +5335,28 @@ msgstr "&Ужыць"
 #: optiondialog.cpp:210
 #, c-format
 msgid "%s page has been saved."
-msgstr ""
+msgstr "%s старонка захаваная."
 
 #: optionsettingsattachment.cpp:57
 msgid "Attachments Settings"
-msgstr ""
+msgstr "Налады далучэнняў"
 
 #: optionsettingsattachment.cpp:64
 #, c-format
 msgid "Attachment archive folder for %s only:"
-msgstr ""
+msgstr "Тэчка далучэнняў толькі для %s:"
 
 #: optionsettingsattachment.cpp:68
 msgid "Every OS type (Win,Mac,Unix) has its attachment folder"
-msgstr ""
+msgstr "Кожная АС (Win,Mac,Unix) мае сваю тэчку далучэнняў"
 
 #: optionsettingsattachment.cpp:87
 msgid "Browse for folder"
-msgstr ""
+msgstr "Агляд тэчкаў"
 
 #: optionsettingsattachment.cpp:92 optionsettingsattachment.cpp:188
 msgid "Real path:"
-msgstr ""
+msgstr "Шлях:"
 
 #: optionsettingsattachment.cpp:97
 msgid "Legend (can be used as variables at the beginning of above path)"
