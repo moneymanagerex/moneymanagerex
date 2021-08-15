@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-15 15:41+0300\n"
-"PO-Revision-Date: 2021-08-15 15:31\n"
+"PO-Revision-Date: 2021-08-15 15:46\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -4540,79 +4540,79 @@ msgstr "Старонкі W&iki"
 
 #: mmframe.cpp:1623
 msgid "Read and update wiki pages"
-msgstr ""
+msgstr "Чытанне да абнаўленне старонак wiki"
 
 #: mmframe.cpp:1625
 msgid "F&orum"
-msgstr ""
+msgstr "Ф&орум"
 
 #: mmframe.cpp:1626
 msgid "Visit the MMEX forum to see existing user comments or report new issues with the software"
-msgstr ""
+msgstr "Наведайце форум MMEX, каб пачытаць камэнтары карыстальнікаў або паведаміць пра новыя праблемы з дадаткам"
 
 #: mmframe.cpp:1628
 msgid "Money Manager Ex for &Android"
-msgstr ""
+msgstr "Money Manager Ex для &Android"
 
 #: mmframe.cpp:1629
 msgid "Get free Android version and run MMEX on your smart phone or tablet"
-msgstr ""
+msgstr "Атрымайце бясплатную версію для Android і запусціце MMEX на сваім смартфоне або планшэце"
 
 #: mmframe.cpp:1631
 msgid "&Newsletter"
-msgstr ""
+msgstr "Расылка &навінаў"
 
 #: mmframe.cpp:1632
 msgid "Subscribe to e-mail newsletter or view existing announcements"
-msgstr ""
+msgstr "Падпішыцеся на рассылку навінаў па электроннай пошце ці праглядзіце бягучыя аб'явы"
 
 #: mmframe.cpp:1634
 msgid "&RSS Feed"
-msgstr ""
+msgstr "Стужка &RSS"
 
 #: mmframe.cpp:1634
 msgid "Connect RSS web feed to news aggregator"
-msgstr ""
+msgstr "Падлучыце RSS-стужку навінаў да агрыгатара"
 
 #: mmframe.cpp:1636
 msgid "&Donate via PayPal"
-msgstr ""
+msgstr "&Ахвяраваць праз PayPal"
 
 #: mmframe.cpp:1637
 msgid "Donate the team to support infrastructure etc"
-msgstr ""
+msgstr "Ахвяраваць камандзе для падтрымкі інфраструктуры і г.д."
 
 #: mmframe.cpp:1639
 msgid "&Buy us a Coffee"
-msgstr ""
+msgstr "&Прыгасціць нас кавай"
 
 #: mmframe.cpp:1640
 msgid "Buy key developer a coffee"
-msgstr ""
+msgstr "Набыць каву для вядучага распрацоўшчыка"
 
 #: mmframe.cpp:1643
 msgid "&Community"
-msgstr ""
+msgstr "&Супольнасць"
 
 #: mmframe.cpp:1644
 msgid "Stay in touch with MMEX community"
-msgstr ""
+msgstr "Заставайцеся на сувязі з супольнасцю MMEX"
 
 #: mmframe.cpp:1666
 msgid "Report a &Bug"
-msgstr ""
+msgstr "Паведаміць пра &памылку"
 
 #: mmframe.cpp:1667
 msgid "Report an error in application to the developers"
-msgstr ""
+msgstr "Паведаміць распрацоўшчыкам пра памылку"
 
 #: mmframe.cpp:1671
 msgid "View Diagnostics"
-msgstr ""
+msgstr "Дыягностыка"
 
 #: mmframe.cpp:1672
 msgid "Help provide information to the developers"
-msgstr ""
+msgstr "Дапамога, каб прадаставіць інфармацыю распрацоўшчыкам"
 
 #: mmframe.cpp:1676
 msgid "&Show App Start Dialog"
