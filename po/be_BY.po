@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-15 15:41+0300\n"
-"PO-Revision-Date: 2021-08-15 20:06\n"
+"PO-Revision-Date: 2021-08-15 20:16\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -5994,87 +5994,87 @@ msgstr "Бюджэт на %s"
 #: reports/budgetcategorysummary.cpp:119
 #, c-format
 msgid "Budget Category Summary for %s"
-msgstr ""
+msgstr "Вынікі бюджэта на %s"
 
 #: reports/budgetcategorysummary.cpp:122
 msgid "( Estimated Vs Actual )"
-msgstr ""
+msgstr "( Ацэначнае і фактычнае )"
 
 #: reports/budgetcategorysummary.cpp:275
 msgid "Estimated Income:"
-msgstr ""
+msgstr "Чаканыя прыбытак:"
 
 #: reports/budgetcategorysummary.cpp:277
 msgid "Actual Income:"
-msgstr ""
+msgstr "Фактычны прыбытак:"
 
 #: reports/budgetcategorysummary.cpp:279
 msgid "Difference Income:"
-msgstr ""
+msgstr "Розніца прыбытка:"
 
 #: reports/budgetcategorysummary.cpp:286
 msgid "Estimated Expenses:"
-msgstr ""
+msgstr "Чаканыя выдаткі:"
 
 #: reports/budgetcategorysummary.cpp:288
 msgid "Actual Expenses:"
-msgstr ""
+msgstr "Фактычныя выдаткі:"
 
 #: reports/budgetcategorysummary.cpp:290
 msgid "Difference Expenses:"
-msgstr ""
+msgstr "Розніца выдаткаў:"
 
 #: reports/budgetingperf.cpp:193
 #, c-format
 msgid "Budget Performance for %s"
-msgstr ""
+msgstr "Прадстаўленне бюджэта %s"
 
 #: reports/budgetingperf.cpp:228 reports/budgetingperf.cpp:230
 msgid "Est."
-msgstr ""
+msgstr "Чак."
 
 #: reports/budgetingperf.cpp:228 reports/budgetingperf.cpp:230
 msgid "Act."
-msgstr ""
+msgstr "Факт."
 
 #: reports/budgetingperf.cpp:231
 msgid "%"
-msgstr ""
+msgstr "%"
 
 #: reports/budgetingperf.cpp:284
 msgid "Monthly Total"
-msgstr ""
+msgstr "Агулам за месяц"
 
 #: reports/bugreport.h:56
 msgid "Bug Report"
-msgstr ""
+msgstr "Справаздача пра памылку"
 
 #: reports/bugreport.h:68
 msgid "Replace this text (marked with >) with detailed description of your problem."
-msgstr ""
+msgstr "Замяніце гэты тэкст (з пазнакай >) падрабязным апісаннем праблемы."
 
 #: reports/bugreport.h:69
 msgid "Please do not remove information attached below this text."
-msgstr ""
+msgstr "Калі ласка, не выдаляйце інфармацыю, паказаную ніжэй гэтага тэкста."
 
 #: reports/bugreport.h:74
 msgid "Use Help->Check for Updates in MMEX to get latest version, where your problem might be already fixed."
-msgstr ""
+msgstr "У меню Дапамога -> Праверыць абнаўленні пераканайцеся, што ў вас ўстаноўленая новая версія праграмы, ваша праблема ўжо можа быць выпраўленая."
 
 #: reports/bugreport.h:75
 #, c-format
 msgid "Search <a href='%s'>a list of known issues</a> for similar problem. If so, update existing issue instead of creating a new one."
-msgstr ""
+msgstr "Праверце <a href='%s'>спіс вядомых праблемаў</a> на прадмет таго, што такая праблема ўжо зарэгістраваная. Калі так, абнавіце існуючую заяўку замест стварэння новай."
 
 #: reports/bugreport.h:77
 #, c-format
 msgid "As you know, <a href='%s'>a forum</a> for users is available where you can discuss problems and find solutions."
-msgstr ""
+msgstr "Як вы ведаеце, <a href='%s'>форум</a> для карыстальнікаў дасяжны для абмеркавання праблемаў і пошуку рашэнняў."
 
 #: reports/bugreport.h:78
 #, c-format
 msgid "Please, join our community in <a href='%s'>Slack</a>. Here you can also pose your question and learn latest news."
-msgstr ""
+msgstr "Далучайцеся да нашай супольнасці ў <a href='%s'>Slack</a>. Тут вы таксама можаце задаць сваё пытанне і даведацца апошнія навіны."
 
 #: reports/bugreport.h:79
 #, c-format
