@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-15 15:41+0300\n"
-"PO-Revision-Date: 2021-08-15 17:57\n"
+"PO-Revision-Date: 2021-08-15 18:33\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -5106,7 +5106,7 @@ msgstr "Цалкам:"
 
 #: mmhomepage.cpp:645
 msgid "Investment Accounts"
-msgstr ""
+msgstr "Рахункі інвестыцыяў"
 
 #: mmhomepage.cpp:646 reports/summary.cpp:163
 msgid "Asset Accounts"
@@ -5114,7 +5114,7 @@ msgstr "Рахункі актываў"
 
 #: mmhomepage.cpp:794
 msgid "Currency Exchange Rates"
-msgstr ""
+msgstr "Курсы абмена валютаў"
 
 #: mmhomepagepanel.cpp:176
 msgid "Upcoming Transactions"
@@ -5122,39 +5122,39 @@ msgstr "Запланаваныя аперацыі"
 
 #: mmpanelbase.cpp:136
 msgid "Hide/Show Columns"
-msgstr ""
+msgstr "Паказаць/схаваць слупкі"
 
 #: mmpanelbase.cpp:137
 msgid "Hide this column"
-msgstr ""
+msgstr "Схаваць гэты слупок"
 
 #: mmpanelbase.cpp:139
 msgid "Order by this column"
-msgstr ""
+msgstr "Сартаваць па гэтым слупку"
 
 #: mmpanelbase.cpp:140
 msgid "Reset columns"
-msgstr ""
+msgstr "Скінуць слупкі"
 
 #: mmreportspanel.cpp:161
 msgid "Report"
-msgstr ""
+msgstr "Справаздача"
 
 #: mmreportspanel.cpp:218
 msgid "Period:"
-msgstr ""
+msgstr "Перыяд:"
 
 #: mmreportspanel.cpp:292
 msgid "Year:"
-msgstr ""
+msgstr "Год:"
 
 #: mmreportspanel.cpp:316
 msgid "Budget:"
-msgstr ""
+msgstr "Бюджэт:"
 
 #: mmreportspanel.cpp:342
 msgid "Accounts:"
-msgstr ""
+msgstr "Рахункі:"
 
 #: mmreportspanel.cpp:347 reports/reportbase.cpp:185
 #: reports/transactions.cpp:50
@@ -5163,43 +5163,43 @@ msgstr "Усе рахункі"
 
 #: mmreportspanel.cpp:348
 msgid "Specific Accounts"
-msgstr ""
+msgstr "Пазначаныя рахункі"
 
 #: mmreportspanel.cpp:364
 msgid "Chart:"
-msgstr ""
+msgstr "Графік:"
 
 #: mmreportspanel.cpp:369
 msgid "Show"
-msgstr ""
+msgstr "Паказаць"
 
 #: mmreportspanel.cpp:370
 msgid "Hide"
-msgstr ""
+msgstr "Схаваць"
 
 #: model/Model_Account.cpp:32 model/Model_Asset.cpp:35 reports/summary.cpp:158
 msgid "Cash"
-msgstr ""
+msgstr "Наяўныя"
 
 #: model/Model_Account.cpp:33
 msgid "Checking"
-msgstr ""
+msgstr "Чэкавы"
 
 #: model/Model_Account.cpp:34
 msgid "Credit Card"
-msgstr ""
+msgstr "Крыдытная картка"
 
 #: model/Model_Account.cpp:35
 msgid "Loan"
-msgstr ""
+msgstr "Пазыка"
 
 #: model/Model_Account.cpp:36
 msgid "Term"
-msgstr ""
+msgstr "Тэрмін"
 
 #: model/Model_Account.cpp:37
 msgid "Investment"
-msgstr ""
+msgstr "Інвестыцыя"
 
 #: model/Model_Account.cpp:38
 msgid "Asset"
@@ -5211,35 +5211,35 @@ msgstr "Паі"
 
 #: model/Model_Account.cpp:130
 msgid "Account Error"
-msgstr ""
+msgstr "Памылка рахунка"
 
 #: model/Model_Asset.cpp:24
 msgid "Appreciates"
-msgstr ""
+msgstr "Падаражэнне"
 
 #: model/Model_Asset.cpp:25
 msgid "Depreciates"
-msgstr ""
+msgstr "Патанненне"
 
 #: model/Model_Asset.cpp:30
 msgid "Property"
-msgstr ""
+msgstr "Уласнасць"
 
 #: model/Model_Asset.cpp:32
 msgid "Household Object"
-msgstr ""
+msgstr "Гаспадарчы аб'ект"
 
 #: model/Model_Asset.cpp:33
 msgid "Art"
-msgstr ""
+msgstr "Мастацтва"
 
 #: model/Model_Asset.cpp:34
 msgid "Jewellery"
-msgstr ""
+msgstr "Ювелірныя вырабы"
 
 #: model/Model_Asset.cpp:36
 msgid "Other"
-msgstr ""
+msgstr "Iншае"
 
 #: model/Model_Billsdeposits.cpp:301
 msgid "A recurring transaction will exceed your account limit.\n\n"
@@ -5253,19 +5253,19 @@ msgstr "Правекрка запланаванай аперацыі"
 
 #: model/Model_CustomField.cpp:25
 msgid "String"
-msgstr ""
+msgstr "Тэкст"
 
 #: model/Model_CustomField.cpp:26
 msgid "Integer"
-msgstr ""
+msgstr "Цэлы лік"
 
 #: model/Model_CustomField.cpp:27
 msgid "Decimal"
-msgstr ""
+msgstr "Дробавы лік"
 
 #: model/Model_CustomField.cpp:28
 msgid "Boolean"
-msgstr ""
+msgstr "Лагічнае"
 
 #: model/Model_CustomField.cpp:30 wizard_update.cpp:145
 msgid "Time"
@@ -5273,42 +5273,44 @@ msgstr "Час"
 
 #: model/Model_CustomField.cpp:31
 msgid "SingleChoice"
-msgstr ""
+msgstr "АдзіныВыбар"
 
 #: model/Model_CustomField.cpp:32
 msgid "MultiChoice"
-msgstr ""
+msgstr "МножныВыбар"
 
 #: model/Model_Payee.cpp:80
 msgid "Payee Error"
-msgstr ""
+msgstr "Памылка платніка"
 
 #: model/Model_Report.cpp:85
 msgid "Begin date: "
-msgstr ""
+msgstr "Дата пачатка: "
 
 #: model/Model_Report.cpp:86
 msgid "Date: "
-msgstr ""
+msgstr "Дата: "
 
 #: model/Model_Report.cpp:87
 msgid "End date: "
-msgstr ""
+msgstr "Дата заканчэння: "
 
 #: model/Model_Report.cpp:88
 msgid "Year: "
-msgstr ""
+msgstr "Год: "
 
 #: model/Model_Report.cpp:233
 msgid "Template is empty"
-msgstr ""
+msgstr "Шаблон не запоўнены"
 
 #: model/Model_Report.cpp:247
 #, c-format
 msgid "The SQL script:\n"
 "%s \n"
 "will modify database! aborted!"
-msgstr ""
+msgstr "SQL скрыпт:\n"
+"%s \n"
+"намагаецца змяніць базу дадзеных! скасавана!"
 
 #: optiondialog.cpp:131
 msgid "General"
@@ -5333,92 +5335,92 @@ msgstr "&Ужыць"
 #: optiondialog.cpp:210
 #, c-format
 msgid "%s page has been saved."
-msgstr ""
+msgstr "%s старонка захаваная."
 
 #: optionsettingsattachment.cpp:57
 msgid "Attachments Settings"
-msgstr ""
+msgstr "Налады далучэнняў"
 
 #: optionsettingsattachment.cpp:64
 #, c-format
 msgid "Attachment archive folder for %s only:"
-msgstr ""
+msgstr "Тэчка далучэнняў толькі для %s:"
 
 #: optionsettingsattachment.cpp:68
 msgid "Every OS type (Win,Mac,Unix) has its attachment folder"
-msgstr ""
+msgstr "Кожная АС (Win,Mac,Unix) мае сваю тэчку далучэнняў"
 
 #: optionsettingsattachment.cpp:87
 msgid "Browse for folder"
-msgstr ""
+msgstr "Агляд тэчкаў"
 
 #: optionsettingsattachment.cpp:92 optionsettingsattachment.cpp:188
 msgid "Real path:"
-msgstr ""
+msgstr "Шлях:"
 
 #: optionsettingsattachment.cpp:97
 msgid "Legend (can be used as variables at the beginning of above path)"
-msgstr ""
+msgstr "Умоўныя позначкі (можа выкарыстоўвацца як зменная ў пачатку паказанага вышэй шляха)"
 
 #: optionsettingsattachment.cpp:102
 #, c-format
 msgid "%s -> User document directory"
-msgstr ""
+msgstr "%s -> Тэчка дакументаў карыстальніка"
 
 #: optionsettingsattachment.cpp:103
 #, c-format
 msgid "%s -> User profile folder"
-msgstr ""
+msgstr "%s -> Тэчка профіля карыстальніка"
 
 #: optionsettingsattachment.cpp:104
 #, c-format
 msgid "%s -> Folder of .MMB database file"
-msgstr ""
+msgstr "%s -> Тэчка файла базы дадзеных .MMB"
 
 #: optionsettingsattachment.cpp:105
 #, c-format
 msgid "%s -> MMEX Application data folder"
-msgstr ""
+msgstr "%s -> Тэчка дадзеных дадатка MMEX"
 
 #: optionsettingsattachment.cpp:111
 msgid "Other OS folders "
-msgstr ""
+msgstr "Тэчкі для іншых АС "
 
 #: optionsettingsattachment.cpp:116
 msgid "Not set yet"
-msgstr ""
+msgstr "Яшчэ не пазначана"
 
 #: optionsettingsattachment.cpp:123
 msgid "Windows folder -> "
-msgstr ""
+msgstr "Тэчка Windows -> "
 
 #: optionsettingsattachment.cpp:130
 msgid "Mac folder -> "
-msgstr ""
+msgstr "Тэчка Mac -> "
 
 #: optionsettingsattachment.cpp:137
 msgid "Unix folder -> "
-msgstr ""
+msgstr "Тэчка Unix -> "
 
 #: optionsettingsattachment.cpp:145
 msgid "Create and use Attachments subfolder"
-msgstr ""
+msgstr "Стварыць і выкарыстоўваць падтэчку далучэннў"
 
 #: optionsettingsattachment.cpp:156
 msgid "Delete file after import"
-msgstr ""
+msgstr "Выдаліць файл пасля імпарта"
 
 #: optionsettingsattachment.cpp:158
 msgid "Select to delete file after import in attachments archive"
-msgstr ""
+msgstr "Пазначце, каб файл быў выдалены пасля імпарта далучэнняў"
 
 #: optionsettingsattachment.cpp:162
 msgid "When remove attachment, move file instead of delete"
-msgstr ""
+msgstr "Перасунуць файл замест сцірання падчас выдалення далучэння"
 
 #: optionsettingsattachment.cpp:164
 msgid "Select to don't delete file when attachment is removed, but instead move it to 'Deleted' subfolder"
-msgstr ""
+msgstr "Абярыце, каб не выдаляць далучэнні, а перасоўваць іх у падтэчку 'Сцёртыя'"
 
 #: optionsettingsattachment.cpp:173
 msgid "Choose folder to set as attachments archive"
