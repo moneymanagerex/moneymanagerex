@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-15 15:41+0300\n"
-"PO-Revision-Date: 2021-08-15 14:32\n"
+"PO-Revision-Date: 2021-08-15 14:46\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -4300,39 +4300,39 @@ msgstr "&Мова прыкладання"
 
 #: mmframe.cpp:1447 optionsettingsgeneral.cpp:93
 msgid "Change language used for MMEX GUI"
-msgstr ""
+msgstr "Змяніць мову для MMEX GUI"
 
 #: mmframe.cpp:1452 optionsettingsgeneral.cpp:83 optionsettingsgeneral.cpp:343
 msgid "system default"
-msgstr ""
+msgstr "Па змаўчанні"
 
 #: mmframe.cpp:1472
 msgid "&Home Page"
-msgstr ""
+msgstr "&Галоўная старонка"
 
 #: mmframe.cpp:1472 mmframe.cpp:1720
 msgid "Show Home Page"
-msgstr ""
+msgstr "Паказаць галоўную старонку"
 
 #: mmframe.cpp:1481
 msgid "Change the account type of an account."
-msgstr ""
+msgstr "Змяненіць тып рахунка."
 
 #: mmframe.cpp:1484
 msgid "Delete Account from database"
-msgstr ""
+msgstr "Выдаліць рахунак з базы дадзеных"
 
 #: mmframe.cpp:1497
 msgid "Download Ra&tes..."
-msgstr ""
+msgstr "Спампаваць ку&рсы..."
 
 #: mmframe.cpp:1497 mmframe.cpp:1747
 msgid "Download Currency and Stock rates"
-msgstr ""
+msgstr "Спампаваць курсы валютаў і акцыяў"
 
 #: mmframe.cpp:1503
 msgid "Organize &Categories..."
-msgstr ""
+msgstr "Арганізаваць &катыгорыі..."
 
 #: mmframe.cpp:1507
 msgid "Organize &Payees..."
@@ -4344,27 +4344,27 @@ msgstr "Рыдактар атрымальнікаў"
 
 #: mmframe.cpp:1511
 msgid "Organize Curre&ncy..."
-msgstr ""
+msgstr "Арганізаваць валю&ты..."
 
 #: mmframe.cpp:1511 mmframe.cpp:1726
 msgid "Organize Currency"
-msgstr ""
+msgstr "Арганізаваць валюты"
 
 #: mmframe.cpp:1515
 msgid "&Categories..."
-msgstr ""
+msgstr "&Катыгорыі..."
 
 #: mmframe.cpp:1518
 msgid "&Payees..."
-msgstr ""
+msgstr "&Атрымальнікі..."
 
 #: mmframe.cpp:1519
 msgid "Reassign all payees to another payee"
-msgstr ""
+msgstr "Замена аднаго атрымальніка на іншага"
 
 #: mmframe.cpp:1521
 msgid "Re&location of..."
-msgstr ""
+msgstr "Перасоўванне..."
 
 #: mmframe.cpp:1522
 msgid "Relocate Categories && Payees"
@@ -4372,7 +4372,7 @@ msgstr "Замена катыгорый і атрымальнікаў"
 
 #: mmframe.cpp:1532
 msgid "&Budget Setup"
-msgstr ""
+msgstr "&Бюджэт"
 
 #: mmframe.cpp:1536
 msgid "&Recurring Transactions"
