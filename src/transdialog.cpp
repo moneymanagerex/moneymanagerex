@@ -318,7 +318,8 @@ void mmTransDialog::dataToControls()
                 cbPayee_->AutoComplete(all_payees);
             }
 
-            if (m_new_trx && !m_duplicate && Option::instance().TransPayeeSelection() == Option::LASTUSED)
+            if (m_new_trx && !m_duplicate && Option::instance().TransPayeeSelection() == Option::LASTUSED
+                && (-1 != m_account_id))
             {
                 Model_Account::Data* account = Model_Account::instance().get(cbAccount_->GetValue());
                 Model_Checking::Data_Set transactions = Model_Checking::instance().find(
