@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-14 14:35+0300\n"
-"PO-Revision-Date: 2021-08-15 08:06\n"
+"PO-Revision-Date: 2021-08-15 08:16\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -7174,7 +7174,7 @@ msgstr ""
 
 #: webappdialog.cpp:214
 msgid "Unable to download transactions from webapp."
-msgstr "Немагчыма спампаваць аперацыі з webapp."
+msgstr "Немагчыма спампаваць аперацыі з WebApp."
 
 #: webappdialog.cpp:215
 msgid "Transactions download error"
