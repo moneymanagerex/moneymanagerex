@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-15 15:41+0300\n"
-"PO-Revision-Date: 2021-08-15 20:46\n"
+"PO-Revision-Date: 2021-08-15 20:56\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -6576,15 +6576,15 @@ msgstr "1 тыдзень"
 
 #: stockdialog.cpp:752
 msgid "Specify interval of stock history"
-msgstr ""
+msgstr "Пакажыце інтырвал для гісторыі акцыяў"
 
 #: stockdialog.cpp:767 stockdialog.cpp:771
 msgid "Stock history not found!"
-msgstr ""
+msgstr "Гістоыя каціровак ня знойдзеная"
 
 #: stockdialog.cpp:768 stockdialog.cpp:880
 msgid "Stock History Error"
-msgstr ""
+msgstr "Памылка гісторыі каціровак"
 
 #: stocks_list.cpp:92
 msgid "Share Total"
@@ -6592,15 +6592,15 @@ msgstr "Агулам"
 
 #: stocks_list.cpp:94
 msgid "Init Value"
-msgstr ""
+msgstr "Пачатковае значэнне"
 
 #: stocks_list.cpp:97
 msgid "Curr. Total Value"
-msgstr ""
+msgstr "Бягучая сума"
 
 #: stocks_list.cpp:137
 msgid "&New Stock Investment"
-msgstr ""
+msgstr "&Новая фондавая інвестыцыя"
 
 #: stocks_list.cpp:139
 msgid "&Add Stock Transactions"
@@ -6612,23 +6612,23 @@ msgstr "&Глядзець аперацыю з акцыямі"
 
 #: stocks_list.cpp:142
 msgid "&Edit Stock Investment"
-msgstr ""
+msgstr "&Змяніць фондавыя інвестыцыі"
 
 #: stocks_list.cpp:143
 msgid "&Delete Stock Investment"
-msgstr ""
+msgstr "&Выдаліць фондавыя інвестыцыі"
 
 #: stocks_list.cpp:146
 msgid "Stock &Web Page"
-msgstr ""
+msgstr "&Вэб-старонка каціровак"
 
 #: stocks_list.cpp:269
 msgid "Do you really want to delete the stock investment?"
-msgstr ""
+msgstr "Вы сапраўды жадаеце выдаліць гэтую інвестыцыю?"
 
 #: stocks_list.cpp:270
 msgid "Confirm Stock Investment Deletion"
-msgstr ""
+msgstr "Спраўдзіце выдаленне інвестыцыі"
 
 #: stocks_list.cpp:291
 #, c-format
@@ -6645,11 +6645,11 @@ msgstr "Глядзець аперацыю з акцыямі"
 
 #: stockspanel.cpp:149
 msgid "Delete Stock Investment"
-msgstr ""
+msgstr "Выдаліць інвестыцыю"
 
 #: stockspanel.cpp:153
 msgid "&Move"
-msgstr ""
+msgstr "&Перасунуць"
 
 #: stockspanel.cpp:154
 msgid "Move selected transaction to another account"
@@ -6657,11 +6657,11 @@ msgstr "Перасунуць абраную аперацыю на іншы ра�
 
 #: stockspanel.cpp:167
 msgid "Refresh"
-msgstr ""
+msgstr "Абнавіць"
 
 #: stockspanel.cpp:168
 msgid "Refresh Stock Prices from Yahoo"
-msgstr ""
+msgstr "Абнавіць каціроўкі з Yahoo"
 
 #: stockspanel.cpp:207
 #, c-format
@@ -6673,7 +6673,7 @@ msgstr "Часовы спіс каштоўных папераў: %s\n\n"
 #: stockspanel.cpp:299
 #, c-format
 msgid "Stock Portfolio: %s"
-msgstr ""
+msgstr "Агулам акцыі: %s"
 
 #: stockspanel.cpp:343
 #, c-format
@@ -6683,34 +6683,34 @@ msgstr "Агулам: %s"
 #: stockspanel.cpp:345
 #, c-format
 msgid "Invested: %s"
-msgstr ""
+msgstr "Інвеставана: %s"
 
 #: stockspanel.cpp:346
 #, c-format
 msgid "Gain: %s"
-msgstr ""
+msgstr "Атрымана: %s"
 
 #: stockspanel.cpp:346
 #, c-format
 msgid "Loss: %s"
-msgstr ""
+msgstr "Згублена: %s"
 
 #: stockspanel.cpp:384
 msgid "Stock prices successfully updated"
-msgstr ""
+msgstr "Каціроўкі паспяхова абноўленыя"
 
 #: stockspanel.cpp:386 stockspanel.cpp:572
 #, c-format
 msgid "Last updated %s"
-msgstr ""
+msgstr "Апошняе абнаўленне %s"
 
 #: stockspanel.cpp:412 util.cpp:643 util.cpp:791
 msgid "Nothing to update"
-msgstr ""
+msgstr "Няма чаго абнаўляць"
 
 #: stockspanel.cpp:426
 msgid "Connecting..."
-msgstr ""
+msgstr "Падлучэнне..."
 
 #: stockspanel.cpp:530
 #, c-format
@@ -6723,11 +6723,11 @@ msgstr "Выдаліць"
 
 #: themes.cpp:187
 msgid "Use"
-msgstr ""
+msgstr "Выкарыстоўваць"
 
 #: themes.cpp:233
 msgid "No description available"
-msgstr ""
+msgstr "Няма даступнага апісання"
 
 #: themes.cpp:279
 msgid "Choose theme file to import"
