@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-15 15:41+0300\n"
-"PO-Revision-Date: 2021-08-15 15:46\n"
+"PO-Revision-Date: 2021-08-15 15:59\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -4616,27 +4616,27 @@ msgstr "Дапамога, каб прадаставіць інфармацыю �
 
 #: mmframe.cpp:1676
 msgid "&Show App Start Dialog"
-msgstr ""
+msgstr "Паказаць &пачатковы дыялог"
 
 #: mmframe.cpp:1676
 msgid "App Start Dialog"
-msgstr ""
+msgstr "Вакенца запуска дадатка"
 
 #: mmframe.cpp:1680
 msgid "Check for &Updates"
-msgstr ""
+msgstr "Праверыць наяўнасць &абнаўлення"
 
 #: mmframe.cpp:1680
 msgid "Check For Updates"
-msgstr ""
+msgstr "Праверыць, ці існуе новая версія"
 
 #: mmframe.cpp:1684 mmframe.cpp:1756
 msgid "&About..."
-msgstr ""
+msgstr "Пра Пра&граму..."
 
 #: mmframe.cpp:1684 mmframe.cpp:1756
 msgid "Show about dialog"
-msgstr ""
+msgstr "Паказаць звесткі пра дадатак"
 
 #: mmframe.cpp:1688
 msgid "&File"
@@ -4644,27 +4644,27 @@ msgstr "&Файл"
 
 #: mmframe.cpp:1689
 msgid "&Accounts"
-msgstr ""
+msgstr "&Рахункі"
 
 #: mmframe.cpp:1690
 msgid "&Tools"
-msgstr ""
+msgstr "&Прылады"
 
 #: mmframe.cpp:1691
 msgid "&View"
-msgstr ""
+msgstr "&Выгляд"
 
 #: mmframe.cpp:1692
 msgid "&Help"
-msgstr ""
+msgstr "&Даведка"
 
 #: mmframe.cpp:1716 mmframe.cpp:1722
 msgid "New"
-msgstr ""
+msgstr "Новая"
 
 #: mmframe.cpp:1724
 msgid "Show Organize Categories Dialog"
-msgstr ""
+msgstr "Адчыніць рыдактар катыгорыяў"
 
 #: mmframe.cpp:1725
 msgid "Show Organize Payees Dialog"
@@ -4672,57 +4672,58 @@ msgstr "Адчыніць рыдактар атрымальнікаў"
 
 #: mmframe.cpp:1726
 msgid "Show Organize Currency Dialog"
-msgstr ""
+msgstr "Адчыніць рыдактар валютаў"
 
 #: mmframe.cpp:1732
 msgid "&Options..."
-msgstr ""
+msgstr "&Налады..."
 
 #: mmframe.cpp:1740 mmframe.cpp:2591
 msgid "Register/View Release &Notifications"
-msgstr ""
+msgstr "Праглядзець інфармацыю пра новыя версіі"
 
 #: mmframe.cpp:1745 optionsettingsnet.cpp:121
 msgid "News"
-msgstr ""
+msgstr "Навіны"
 
 #: mmframe.cpp:1747
 msgid "Download rates"
-msgstr ""
+msgstr "Спампаваць курсы"
 
 #: mmframe.cpp:1750
 msgid "Toggle Fullscreen\tF11"
-msgstr ""
+msgstr "Пераключыць на ўвесь экран\tF11"
 
 #: mmframe.cpp:1811
 #, c-format
 msgid "Please enter password for Database\n\n"
 "%s"
-msgstr ""
+msgstr "Калі ласка, пакажыце пароль да базы дадзеных\n\n"
+"%s"
 
 #: mmframe.cpp:1812 mmframe.cpp:2043 mmframe.cpp:2176
 msgid "MMEX: Encrypted Database"
-msgstr ""
+msgstr "MMEX: зашыфраваная база дадзеных"
 
 #: mmframe.cpp:1846
 msgid "Have MMEX support provided you a debug/patch file?"
-msgstr ""
+msgstr "Ці прадаставіла служба падтрымкі MMEX файл адладкі/патч?"
 
 #: mmframe.cpp:1846
 msgid "MMEX upgrade"
-msgstr ""
+msgstr "Прасунутае абнаўленне MMEX"
 
 #: mmframe.cpp:1868 mmframe.cpp:1910
 msgid "No File opened"
-msgstr ""
+msgstr "Файл не адчынены"
 
 #: mmframe.cpp:1870
 msgid "Sorry. The Database version is too old or Database password is incorrect"
-msgstr ""
+msgstr "Выбачце. Версія базы дадзеных занадта старая або хібны пароль базы дадзеных"
 
 #: mmframe.cpp:1900
 msgid "&Next ->"
-msgstr ""
+msgstr "&Наступны ->"
 
 #: mmframe.cpp:1913
 msgid "Cannot locate previously opened database.\n"
