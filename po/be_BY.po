@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-14 14:35+0300\n"
-"PO-Revision-Date: 2021-08-15 07:56\n"
+"PO-Revision-Date: 2021-08-15 08:06\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -4136,7 +4136,7 @@ msgstr "Паказваць рахункі"
 
 #: mmframe.cpp:1357
 msgid "&New Database\tCtrl-N"
-msgstr "&Новая база дадзеных\tCtrl-N"
+msgstr "&Новая база дадзеных"
 
 #: mmframe.cpp:1357 mmframe.cpp:1716 wizard_newdb.cpp:124
 msgid "New Database"
@@ -4144,7 +4144,7 @@ msgstr "Новая база дадзеных"
 
 #: mmframe.cpp:1358
 msgid "&Open Database\tCtrl-O"
-msgstr ""
+msgstr "&Адчыніць базу дадзеных\tCtrl-O"
 
 #: mmframe.cpp:1358 mmframe.cpp:1717
 msgid "Open Database"
@@ -4160,19 +4160,19 @@ msgstr "Захаваць Базу дадзеных як"
 
 #: mmframe.cpp:1366
 msgid "&Recent Files..."
-msgstr ""
+msgstr "&Апошнія файлы..."
 
 #: mmframe.cpp:1367
 msgid "&Clear Recent Files"
-msgstr ""
+msgstr "&Ачысціць спіс апошніх файлаў"
 
 #: mmframe.cpp:1372
 msgid "Import from any CSV file"
-msgstr ""
+msgstr "Імпарт з файла CSV"
 
 #: mmframe.cpp:1374
 msgid "Import from QIF"
-msgstr ""
+msgstr "Імпарт з QIF"
 
 #: mmframe.cpp:1375
 msgid "&WebApp..."
@@ -7154,7 +7154,7 @@ msgstr ""
 
 #: webappdialog.cpp:77
 msgid "Import WebApp transactions"
-msgstr "Імпартую WebApp аперацыі"
+msgstr "Імпартую аперацый WebApp"
 
 #: webappdialog.cpp:100
 msgid "Network status (click to refresh)"
