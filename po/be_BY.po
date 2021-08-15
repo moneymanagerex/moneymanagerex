@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-15 15:41+0300\n"
-"PO-Revision-Date: 2021-08-15 21:06\n"
+"PO-Revision-Date: 2021-08-15 21:15\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -6794,7 +6794,7 @@ msgstr "Мэнаджар далучэнняў гэтай аперацыі"
 
 #: transdialog.cpp:609
 msgid "Show/Hide custom fields window"
-msgstr ""
+msgstr "Пацказаць ці схаваць вакенца карыстальніцкіх палёў"
 
 #: transdialog.cpp:759
 msgid "This transaction will exceed your account limit.\n\n"
@@ -6804,11 +6804,11 @@ msgstr "Гэтая аперацыя перавысіць ліміт рахунк
 
 #: transdialog.cpp:1281
 msgid "Specify account the money is taken from"
-msgstr ""
+msgstr "Пазначце рахунак-крыніцу"
 
 #: transdialog.cpp:1282
 msgid "Specify account the money is moved to"
-msgstr ""
+msgstr "Пазначце рахунак-прызначэнне"
 
 #: transdialog.cpp:1283
 msgid "Specify the transfer amount in the From Account."
@@ -6868,119 +6868,119 @@ msgstr "Выбар рахунка"
 
 #: util.cpp:293
 msgid "Jan"
-msgstr ""
+msgstr "Сту"
 
 #: util.cpp:293
 msgid "Feb"
-msgstr ""
+msgstr "Лют"
 
 #: util.cpp:293
 msgid "Mar"
-msgstr ""
+msgstr "Сак"
 
 #: util.cpp:294
 msgid "Apr"
-msgstr ""
+msgstr "Кра"
 
 #: util.cpp:294 util.h:156
 msgid "May"
-msgstr ""
+msgstr "Тра"
 
 #: util.cpp:294
 msgid "Jun"
-msgstr ""
+msgstr "Чэр"
 
 #: util.cpp:295
 msgid "Jul"
-msgstr ""
+msgstr "Ліп"
 
 #: util.cpp:295
 msgid "Aug"
-msgstr ""
+msgstr "Жні"
 
 #: util.cpp:295
 msgid "Sep"
-msgstr ""
+msgstr "Вер"
 
 #: util.cpp:296
 msgid "Oct"
-msgstr ""
+msgstr "Кас"
 
 #: util.cpp:296
 msgid "Nov"
-msgstr ""
+msgstr "Ліс"
 
 #: util.cpp:296
 msgid "Dec"
-msgstr ""
+msgstr "Dec"
 
 #: util.cpp:301
 msgid "Sunday"
-msgstr ""
+msgstr "Нядзеля"
 
 #: util.cpp:301
 msgid "Monday"
-msgstr ""
+msgstr "Панядзелак"
 
 #: util.cpp:301
 msgid "Tuesday"
-msgstr ""
+msgstr "Аўторак"
 
 #: util.cpp:302
 msgid "Wednesday"
-msgstr ""
+msgstr "Серада"
 
 #: util.cpp:302
 msgid "Thursday"
-msgstr ""
+msgstr "Чацвер"
 
 #: util.cpp:302
 msgid "Friday"
-msgstr ""
+msgstr "Пятніца"
 
 #: util.cpp:303
 msgid "Saturday"
-msgstr ""
+msgstr "Субота"
 
 #: util.cpp:308
 msgid "Sun"
-msgstr ""
+msgstr "Нд"
 
 #: util.cpp:308
 msgid "Mon"
-msgstr ""
+msgstr "Пн"
 
 #: util.cpp:308
 msgid "Tue"
-msgstr ""
+msgstr "Аў"
 
 #: util.cpp:309
 msgid "Wed"
-msgstr ""
+msgstr "Ср"
 
 #: util.cpp:309
 msgid "Thu"
-msgstr ""
+msgstr "Чц"
 
 #: util.cpp:309
 msgid "Fri"
-msgstr ""
+msgstr "Пт"
 
 #: util.cpp:310
 msgid "Sat"
-msgstr ""
+msgstr "Сб"
 
 #: util.cpp:676
 msgid "Currency rates have been updated"
-msgstr ""
+msgstr "Курсы валютаў абноўленыя"
 
 #: util.cpp:767 util.cpp:873 util.cpp:932
 msgid "JSON Parse Error"
-msgstr ""
+msgstr "Памылка аналіза JSON"
 
 #: util.cpp:881 util.cpp:940
 msgid "Expected response to contain a data or error string"
-msgstr ""
+msgstr "Чакаўся адказ на запыт які змяшчае радок дадзеных або памылку"
 
 #: util.cpp:912
 msgid "Could not find asset for symbol"
@@ -6988,7 +6988,7 @@ msgstr "Немагчыма знайсці актыў для сымбаля"
 
 #: util.cpp:947
 msgid "Could not get base currency!"
-msgstr ""
+msgstr "Немагчыма атрымаць базавую валюту"
 
 #: util.cpp:953
 msgid "USD"
@@ -7222,7 +7222,8 @@ msgstr "%s месціць ўсе транзакцыі ўнутры рахунк�
 msgid "The next pages will help you create a new account.\n"
 "To help you get started, begin by making a list of all\n"
 "financial institutions where you hold an account."
-msgstr ""
+msgstr "Наступныя старонкі дапамогуць вам стварыць новы рахунак.\n"
+"Каб дапамагчы вам распачаць працу, пачніце са складання спісу ўсіх фінансавых прадпрыемстваў, дзе вы трымаеце рахункі."
 
 #: wizard_newaccount.cpp:86
 msgid "Account Name Invalid"
