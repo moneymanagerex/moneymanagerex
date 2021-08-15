@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-15 15:41+0300\n"
-"PO-Revision-Date: 2021-08-15 15:59\n"
+"PO-Revision-Date: 2021-08-15 16:06\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -4727,30 +4727,33 @@ msgstr "&Наступны ->"
 
 #: mmframe.cpp:1913
 msgid "Cannot locate previously opened database.\n"
-msgstr ""
+msgstr "Немагчыма адчыніць базу дадзеных, што выкарыстоўвалася раней.\n"
 
 #: mmframe.cpp:1915
 msgid "Password not entered for encrypted Database.\n"
-msgstr ""
+msgstr "Не паказаны пароль для зашыфраванай базы дадзеных.\n"
 
 #: mmframe.cpp:1933
 msgid "portable mode"
-msgstr ""
+msgstr "партатыўны рэжым"
 
 #: mmframe.cpp:1969
 msgid "The database you are trying to open has been marked as opened by another instance of MMEX.\n"
 "To avoid data loss or conflict, it's strongly recommended that you close all other applications that may be using the database.\n\n"
 "If nothing else is running, it's possible that the database was left open as a result of a crash during previous usage of MMEX.\n\n"
 "Would you like to continue to open this database?"
-msgstr ""
+msgstr "База дадзеных, якую вы спрабуеце адкрыць, ужо адкрыта іншым асобнікам MMEX.\n"
+"Каб пазбегнуць страты дадзеных або канфлікта, рэкамендуецца зачыніць усе іншыя дадаткі, што могуць выкарыстоўваць БД.\n\n"
+"Калі больш нічога не запушчана, магчыма, база дадзеных была пакінутая адкрытай у выніку збою падчас папярэдняга выкарыстання MMEX.\n\n"
+"Сапраўды жадаеце адчыніць гэтую базу дадзеных?"
 
 #: mmframe.cpp:1973
 msgid "MMEX Instance Check"
-msgstr ""
+msgstr "Праверка MMEX"
 
 #: mmframe.cpp:1993
 msgid "Choose database file to create"
-msgstr ""
+msgstr "Абраць файл для стварэння базы дадзеных"
 
 #: mmframe.cpp:2016
 msgid "Choose database file to open"
