@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-15 15:41+0300\n"
-"PO-Revision-Date: 2021-08-15 21:31\n"
+"PO-Revision-Date: 2021-08-15 21:45\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -7244,25 +7244,27 @@ msgstr "Пакажыце назву для рахунка."
 #: wizard_newaccount.cpp:111
 msgid "This is generally the name of a financial institution\n"
 "where the account is held. For example: 'ABC Bank'."
-msgstr ""
+msgstr "Як правіла, гэта назва фінансавай установы,\n"
+"дзе знаходзіцца рахунак. Напрыклад, 'МТБанк'."
 
 #: wizard_newaccount.cpp:131
 msgid "Type of Account"
-msgstr ""
+msgstr "Тып рахунка"
 
 #: wizard_newaccount.cpp:135
 msgid "Select the type of account you want to create:"
-msgstr ""
+msgstr "Абярыце тып рахунка, што вы жадаеце стварыць:"
 
 #: wizard_newaccount.cpp:136
 msgid "General bank accounts cover a wide variety of account\n"
 "types like Checking, Savings and Credit card type accounts."
-msgstr ""
+msgstr "У асноўным банкаўскія рахункі выкарыстоўваюцца для вядзення уліка наяўных, заашчаджань і крыдытнага баланса."
 
 #: wizard_newaccount.cpp:141
 msgid "Investment accounts are specialized accounts that only\n"
 "have stock/mutual fund investments associated with them."
-msgstr ""
+msgstr "Інвестыцыйныя рахункі ствараюцца адмыслова для\n"
+"адсочвання інвестыцыяў, такіх як акцыі, аблігацыі і да т.п."
 
 #: wizard_newaccount.cpp:146
 msgid "Term accounts are specialized bank accounts. Intended for asset\n"
@@ -7274,15 +7276,15 @@ msgstr "Тэрміновыя рахункі - гэта спецыялізава�
 
 #: wizard_newaccount.cpp:162
 msgid "Base Account Currency Not set."
-msgstr ""
+msgstr "Асноўная валюта рахунка не абраная."
 
 #: wizard_newaccount.cpp:163
 msgid "Set that first using Tools->Options menu and then add a new account."
-msgstr ""
+msgstr "Усталюйце яе праз меню Інструманты -> Налады, а потым дадайце рахунак."
 
 #: wizard_newdb.cpp:25
 msgid "New Database Wizard"
-msgstr ""
+msgstr "Майстра стварэння новай базы дадзеных"
 
 #: wizard_newdb.cpp:30
 msgid "The next pages will help you create a new database.\n\n"
@@ -7294,18 +7296,20 @@ msgid "The next pages will help you create a new database.\n\n"
 "The database can later be encrypted if required, by\n"
 "using the option: 'Save database as' and changing the\n"
 "file type before saving."
-msgstr ""
+msgstr "Наступныя старонкі дапамогуць вам стварыць новую базу дадзеных.\n\n"
+"Файл базы дадзеных захоўваецца з пашырэннем .mmb. Паколькі гэты файл змяшчае важную фінансавую інфармацыю, мы рэкамендавалі ствараць штодзённыя рэзервовыя копіі. Наладзьце гэта ў опцыях: «Рызервовае капіяванне перад адчыненнем». Таксама капіюйце і захоўваеце рэзервовыя копіі у асобным месцы.\n\n"
+"Пазней база дадзеных можа быць зашыфраваная, пры неабходнасці, з дапамогай опцыі: «Захаваць базу дадзеных як» са зменай тыпа файла перад захаваннем."
 
 #: wizard_newdb.cpp:92
 msgid "Base Currency for account"
-msgstr ""
+msgstr "Асноўная валюта рахунка"
 
 #: wizard_newdb.cpp:95
 msgid "Specify the base (or default) currency to be used for the\n"
 "database. The base currency can later be changed by using\n"
 "the options dialog. New accounts, will use this currency by\n"
 "default, and can be changed when editing account details."
-msgstr ""
+msgstr "Пакажыце асноўную (або па змаўчанні) валюту, што будзе выкарыстоўвацца ў базе дадзеных. У далейшым Вы можаце змяняць валюту, звязаную з кожным рахункам, калі гэта будзе неабходна. Выкарыстоўвайце для гэтага ўласцівасці рахунка."
 
 #: wizard_newdb.cpp:112
 msgid "(Optional) Specify a title or your name."
