@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-15 15:41+0300\n"
-"PO-Revision-Date: 2021-08-15 15:16\n"
+"PO-Revision-Date: 2021-08-15 15:31\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -4440,7 +4440,7 @@ msgstr "Канвертаванне зашыфраваную БД у нешыфр
 
 #: mmframe.cpp:1583
 msgid "Change Encrypted &Password"
-msgstr "Змена &пароля шыфравання"
+msgstr "Змяніць &пароль шыфравання"
 
 #: mmframe.cpp:1584
 msgid "Change the password of an encrypted database"
@@ -4448,95 +4448,95 @@ msgstr "Змена пароля зашыфраванай базы дадзены
 
 #: mmframe.cpp:1586
 msgid "&Optimize Database"
-msgstr ""
+msgstr "&Аптымізаваць базу дадзеных"
 
 #: mmframe.cpp:1587
 msgid "Optimize database space and performance"
-msgstr ""
+msgstr "Аптымізацыя памера і хуткасці базы дадзеных"
 
 #: mmframe.cpp:1589
 msgid "Database De&bug"
-msgstr ""
+msgstr "А&дладка базы дадзеных"
 
 #: mmframe.cpp:1590
 msgid "Generate database report or fix errors"
-msgstr ""
+msgstr "Генераваць справаздачу базы дадзеных або выправіць памылкі"
 
 #: mmframe.cpp:1595
 msgid "Databa&se"
-msgstr ""
+msgstr "Ба&за дадзеных"
 
 #: mmframe.cpp:1596
 msgid "Database management"
-msgstr ""
+msgstr "Кіраванне базай дадзеных"
 
 #: mmframe.cpp:1603 mmframe.cpp:1757
 msgid "&Help\tF1"
-msgstr ""
+msgstr "&Дапамога\tF1"
 
 #: mmframe.cpp:1603 mmframe.cpp:1757
 msgid "Show the Help file"
-msgstr ""
+msgstr "Паказаць даведку"
 
 #: mmframe.cpp:1608
 msgid "&Website"
-msgstr ""
+msgstr "&Вэб-сайт"
 
 #: mmframe.cpp:1609
 msgid "Open the Money Manager EX website for latest news, updates etc"
-msgstr ""
+msgstr "Адкрыйце сайт Money Manager EX для апошніх навінаў, абнаўленняў і г.д."
 
 #: mmframe.cpp:1611
 msgid "&Facebook"
-msgstr ""
+msgstr "&Facebook"
 
 #: mmframe.cpp:1611
 msgid "Visit us on Facebook"
-msgstr ""
+msgstr "Завітайце да нас у Facebook"
 
 #: mmframe.cpp:1613
 msgid "&Crowdin"
-msgstr ""
+msgstr "&Crowdin"
 
 #: mmframe.cpp:1613
 msgid "We use Crowdin to translate MMEX"
-msgstr ""
+msgstr "Мы карыстуемся Crowdin для пераклада MMEX"
 
 #: mmframe.cpp:1615
 msgid "&Twitter"
-msgstr ""
+msgstr "&Twitter"
 
 #: mmframe.cpp:1615
 msgid "Follow us on Twitter"
-msgstr ""
+msgstr "Сачыце за намі ў Twitter"
 
 #: mmframe.cpp:1617
 msgid "&YouTube"
-msgstr ""
+msgstr "&YouTube"
 
 #: mmframe.cpp:1617
 msgid "Watch free video materials about MMEX"
-msgstr ""
+msgstr "Глядзіце бескаштоўныя відыа пра MMEX"
 
 #: mmframe.cpp:1619
 msgid "&Slack"
-msgstr ""
+msgstr "&Slack"
 
 #: mmframe.cpp:1619
 msgid "Communicate online with MMEX team from your desktop or mobile device"
-msgstr ""
+msgstr "Размаўляйце ў сетцы з MMEX са свайго кампутара або мабільнага"
 
 #: mmframe.cpp:1621
 msgid "&GitHub"
-msgstr ""
+msgstr "&GitHub"
 
 #: mmframe.cpp:1621
 msgid "Access open source code repository and track reported bug statuses"
-msgstr ""
+msgstr "Дасяг да рыпазіторыяў з адкрытым сыходным кодам і адсочванне паведамленняў пра памылкі"
 
 #: mmframe.cpp:1623
 msgid "W&iki pages"
-msgstr ""
+msgstr "Старонкі W&iki"
 
 #: mmframe.cpp:1623
 msgid "Read and update wiki pages"
