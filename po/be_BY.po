@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-15 15:41+0300\n"
-"PO-Revision-Date: 2021-08-15 18:33\n"
+"PO-Revision-Date: 2021-08-15 18:46\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -5424,108 +5424,109 @@ msgstr "Абярыце, каб не выдаляць далучэнні, а пе
 
 #: optionsettingsattachment.cpp:173
 msgid "Choose folder to set as attachments archive"
-msgstr ""
+msgstr "Абярыце тэчку для далучэнняў"
 
 #: optionsettingsattachment.cpp:213
 msgid "Attachments folder it's not writable!"
-msgstr ""
+msgstr "Забаронены запіс у тэчку для далучэнняў"
 
 #: optionsettingsattachment.cpp:213
 msgid "Attachments folder"
-msgstr ""
+msgstr "Тэчка для далучэнняў"
 
 #: optionsettingsattachment.cpp:221
 msgid "Attachments path has been changed!"
-msgstr ""
+msgstr "Шлях для далучэнняў быў зменены"
 
 #: optionsettingsattachment.cpp:223 optionsettingsattachment.cpp:232
 msgid "Attachments folder migration"
-msgstr ""
+msgstr "Міграцыя тэчкі для далучэнняў"
 
 #: optionsettingsattachment.cpp:229
 msgid "Error moving attachments folder: please move it manually!"
-msgstr ""
+msgstr "Памылка падчас перасоўвання тэчкі з далучэннямі: калі ласка, перасуньце ўручную"
 
 #: optionsettingsattachment.cpp:230
 msgid "Origin"
-msgstr ""
+msgstr "Крыніца"
 
 #: optionsettingsattachment.cpp:231
 msgid "Destination"
-msgstr ""
+msgstr "Прызначэнне"
 
 #: optionsettingsgeneral.cpp:67
 msgid "Display Heading"
-msgstr ""
+msgstr "Загаловак"
 
 #: optionsettingsgeneral.cpp:72 wizard_newdb.cpp:106
 msgid "User Name"
-msgstr ""
+msgstr "Імя карыстальніка"
 
 #: optionsettingsgeneral.cpp:77
 msgid "The User Name is used as a title for the database."
-msgstr ""
+msgstr "Імя карыстальніка выкарыстоўваецца як назва для базы дадзеных."
 
 #: optionsettingsgeneral.cpp:85
 msgid "Language"
-msgstr ""
+msgstr "Мова"
 
 #: optionsettingsgeneral.cpp:107
 msgid "Specify the date format for display"
-msgstr ""
+msgstr "Пакажыце фармат адлюстравання даты"
 
 #: optionsettingsgeneral.cpp:110
 msgid "Date format sample:"
-msgstr ""
+msgstr "Прыклад фармата даты:"
 
 #: optionsettingsgeneral.cpp:123
 msgid "Base Currency"
-msgstr ""
+msgstr "Базавая валюта"
 
 #: optionsettingsgeneral.cpp:126 wizard_newdb.cpp:79
 msgid "Set Currency"
-msgstr ""
+msgstr "Усталяваць валюту"
 
 #: optionsettingsgeneral.cpp:130
 msgid "Sets the database default Currency using the 'Currency Dialog'"
-msgstr ""
+msgstr "Усталёўвае валюту па змаўчанні з дапамогай 'Мэнаджара валютаў'"
 
 #: optionsettingsgeneral.cpp:133
 msgid "Right click and select 'Set as Base Currency' in 'Currency Dialog'"
-msgstr ""
+msgstr "Пстрыкніце правай кнопкай мышы і абярыце 'Усталяваць у якасці базавай валюты' ў 'мэнаджары валютаў"
 
 #: optionsettingsgeneral.cpp:158
 msgid "Format derived from locale.\n"
 "Leave blank to manually set format via 'Currency Dialog | Edit'"
-msgstr ""
+msgstr "Фармат, атрыманы ад лакалі.\n"
+"Пакіньце пустым, каб ўручную ўсталяваць фармат 'Дыялог валютаў | рыдагаваць'"
 
 #: optionsettingsgeneral.cpp:168
 msgid "Use currency history"
-msgstr ""
+msgstr "Выкарыстоўваць гісторыю валютаў"
 
 #: optionsettingsgeneral.cpp:170
 msgid "Select to use currency history (one rate for each day), deselect to use a fixed rate"
-msgstr ""
+msgstr "Абярыце выкарыстанне гісторыі валютаў (адзін курс на кожны дзень) або скасуйце выбар для выкарыстання фіксаванага курса"
 
 #: optionsettingsgeneral.cpp:174
 msgid "Financial Year"
-msgstr ""
+msgstr "Фінансавы год"
 
 #: optionsettingsgeneral.cpp:181
 msgid "Start Day"
-msgstr ""
+msgstr "Першы дзень"
 
 #: optionsettingsgeneral.cpp:187
 msgid "Specify Day for start of financial year"
-msgstr ""
+msgstr "Пазначце першы дзень фінансавага года"
 
 #: optionsettingsgeneral.cpp:191
 msgid "Start Month"
-msgstr ""
+msgstr "Першы месяц"
 
 #: optionsettingsgeneral.cpp:203
 msgid "Specify month for start of financial year"
-msgstr ""
+msgstr "Пазначце першы месяц фінансавага года"
 
 #: optionsettingsgeneral.cpp:208
 msgid "Use Original Date when Pasting Transactions"
@@ -5545,7 +5546,7 @@ msgstr "Ці выкарыстоўваць гукі падчас увода ап�
 
 #: optionsettingsgeneral.cpp:303
 msgid "bad locale name"
-msgstr ""
+msgstr "Няслушнае імя лакалі"
 
 #: optionsettingsgeneral.cpp:319
 #, c-format
