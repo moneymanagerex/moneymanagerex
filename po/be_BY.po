@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-15 15:41+0300\n"
-"PO-Revision-Date: 2021-08-15 14:46\n"
+"PO-Revision-Date: 2021-08-15 15:07\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -4384,15 +4384,15 @@ msgstr "Чэкі і залічэнні"
 
 #: mmframe.cpp:1540
 msgid "&Assets"
-msgstr ""
+msgstr "&Актывы"
 
 #: mmframe.cpp:1546
 msgid "T&heme Manager"
-msgstr ""
+msgstr "Мэнаджар Т&эмаў"
 
 #: mmframe.cpp:1546 mmframe.cpp:2490 optionsettingsview.cpp:297 themes.cpp:137
 msgid "Theme Manager"
-msgstr ""
+msgstr "Мэнаджар Тэмаў"
 
 #: mmframe.cpp:1552
 msgid "Transaction Report &Filter..."
@@ -4404,7 +4404,7 @@ msgstr "Справаздача па крытэрыях"
 
 #: mmframe.cpp:1558
 msgid "General Report &Manager..."
-msgstr ""
+msgstr "Мэнаджар &справаздачаў..."
 
 #: mmframe.cpp:1562
 msgid "C&ustom Fields Manager..."
@@ -4412,7 +4412,7 @@ msgstr ""
 
 #: mmframe.cpp:1562
 msgid "Custom Fields Manager"
-msgstr ""
+msgstr "Мэнаджар карыстальніцкіх палёў"
 
 #: mmframe.cpp:1568
 msgid "Refresh &WebApp"
