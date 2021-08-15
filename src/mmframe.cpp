@@ -1354,7 +1354,7 @@ void mmGUIFrame::createMenu()
 {
     wxMenu* menu_file = new wxMenu;
 
-    wxMenuItem* menuItemNew = new wxMenuItem(menu_file, MENU_NEW, _("&New Database\tCtrl-N"), _("New Database"));
+    wxMenuItem* menuItemNew = new wxMenuItem(menu_file, MENU_NEW, _("&New Database"), _("New Database"));
     wxMenuItem* menuItemOpen = new wxMenuItem(menu_file, MENU_OPEN, _("&Open Database\tCtrl-O"), _("Open Database"));
     wxMenuItem* menuItemSaveAs = new wxMenuItem(menu_file, MENU_SAVE_AS, _("Save Database &As"), _("Save Database As"));
     menu_file->Append(menuItemNew);
