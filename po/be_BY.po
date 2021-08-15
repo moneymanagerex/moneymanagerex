@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-15 15:41+0300\n"
-"PO-Revision-Date: 2021-08-15 12:46\n"
+"PO-Revision-Date: 2021-08-15 14:46\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -4136,7 +4136,7 @@ msgstr "Паказваць рахункі"
 
 #: mmframe.cpp:1357
 msgid "&New Database"
-msgstr ""
+msgstr "&Новая база дадзеных"
 
 #: mmframe.cpp:1357 mmframe.cpp:1716 wizard_newdb.cpp:124
 msgid "New Database"
@@ -4176,35 +4176,35 @@ msgstr "Імпарт з QIF"
 
 #: mmframe.cpp:1375
 msgid "&WebApp..."
-msgstr ""
+msgstr "&WebApp..."
 
 #: mmframe.cpp:1375
 msgid "Import from WebApp"
-msgstr ""
+msgstr "Імпартаваць з WebApp"
 
 #: mmframe.cpp:1379
 msgid "Export to CSV"
-msgstr ""
+msgstr "Экспарт у CSV"
 
 #: mmframe.cpp:1380
 msgid "Export to fixed CSV"
-msgstr ""
+msgstr "Экспарт у фіксаваны CSV"
 
 #: mmframe.cpp:1381
 msgid "Export to XML"
-msgstr ""
+msgstr "Экспарт у XML"
 
 #: mmframe.cpp:1383
 msgid "Export to JSON"
-msgstr ""
+msgstr "Экспарт у JSON"
 
 #: mmframe.cpp:1384
 msgid "&HTML Files..."
-msgstr ""
+msgstr "Файлы &HTML..."
 
 #: mmframe.cpp:1384
 msgid "Export to HTML"
-msgstr ""
+msgstr "Экспарт у HTML"
 
 #: mmframe.cpp:1390 mmframe.cpp:1753
 msgid "&Print..."
@@ -4216,27 +4216,27 @@ msgstr "Другаваць бягучы выгляд"
 
 #: mmframe.cpp:1396
 msgid "E&xit\tAlt-X"
-msgstr ""
+msgstr "В&ыхад\tAlt+X"
 
 #: mmframe.cpp:1396
 msgid "Quit this program"
-msgstr ""
+msgstr "Выйсці з дадатка"
 
 #: mmframe.cpp:1402
 msgid "&Toolbar"
-msgstr ""
+msgstr "&Панэль прыладаў"
 
 #: mmframe.cpp:1402
 msgid "Show/Hide the toolbar"
-msgstr ""
+msgstr "Панэль прыладаў бачная/схаваная"
 
 #: mmframe.cpp:1404
 msgid "&Navigation"
-msgstr ""
+msgstr "&Навігацыя"
 
 #: mmframe.cpp:1404
 msgid "Show/Hide the Navigation tree control"
-msgstr ""
+msgstr "Вакенца навігацыі бачнае/схаванае"
 
 #: mmframe.cpp:1406
 msgid "&Display Share Accounts"
@@ -4248,11 +4248,11 @@ msgstr "Адлюстраваць/схаваць з панэлі навігацы
 
 #: mmframe.cpp:1409
 msgid "Budgets: As Financial &Years"
-msgstr ""
+msgstr "Бюджэты: як фінансавыя &гады"
 
 #: mmframe.cpp:1409
 msgid "Display Budgets in Financial Year Format"
-msgstr ""
+msgstr "Паказаць бюджэт за фінансавы год"
 
 #: mmframe.cpp:1411
 msgid "Budgets: &Include Transfers in Totals"
@@ -4264,11 +4264,11 @@ msgstr "Улічваць пераказы ў агульнай суме бюдж�
 
 #: mmframe.cpp:1413
 msgid "Budget Category Report: with &Summaries"
-msgstr ""
+msgstr "Бюджэт па &катэгорыях з вынікамі"
 
 #: mmframe.cpp:1413
 msgid "Include the category summaries in the Budget Category Summary"
-msgstr ""
+msgstr "Адлюстроўваць суму па катыгорыях у бюджэце"
 
 #: mmframe.cpp:1415
 msgid "Ignore F&uture Transactions"
@@ -4280,59 +4280,59 @@ msgstr "Ігнараваць будучыя аперацыі"
 
 #: mmframe.cpp:1417 optionsettingsview.cpp:99
 msgid "Show Tooltips"
-msgstr ""
+msgstr "Паказваць падказкі"
 
 #: mmframe.cpp:1419 optionsettingsview.cpp:105
 msgid "Show Money Tips"
-msgstr ""
+msgstr "Паказваць парады"
 
 #: mmframe.cpp:1439
 msgid "Toggle &Fullscreen\tShift+F11"
-msgstr ""
+msgstr "На ўвесь &Экран\tShift+F11"
 
 #: mmframe.cpp:1440 mmframe.cpp:1750
 msgid "Toggle Fullscreen"
-msgstr ""
+msgstr "На ўвесь Экран"
 
 #: mmframe.cpp:1446
 msgid "Switch Application &Language"
-msgstr ""
+msgstr "&Мова прыкладання"
 
 #: mmframe.cpp:1447 optionsettingsgeneral.cpp:93
 msgid "Change language used for MMEX GUI"
-msgstr ""
+msgstr "Змяніць мову для MMEX GUI"
 
 #: mmframe.cpp:1452 optionsettingsgeneral.cpp:83 optionsettingsgeneral.cpp:343
 msgid "system default"
-msgstr ""
+msgstr "Па змаўчанні"
 
 #: mmframe.cpp:1472
 msgid "&Home Page"
-msgstr ""
+msgstr "&Галоўная старонка"
 
 #: mmframe.cpp:1472 mmframe.cpp:1720
 msgid "Show Home Page"
-msgstr ""
+msgstr "Паказаць галоўную старонку"
 
 #: mmframe.cpp:1481
 msgid "Change the account type of an account."
-msgstr ""
+msgstr "Змяненіць тып рахунка."
 
 #: mmframe.cpp:1484
 msgid "Delete Account from database"
-msgstr ""
+msgstr "Выдаліць рахунак з базы дадзеных"
 
 #: mmframe.cpp:1497
 msgid "Download Ra&tes..."
-msgstr ""
+msgstr "Спампаваць ку&рсы..."
 
 #: mmframe.cpp:1497 mmframe.cpp:1747
 msgid "Download Currency and Stock rates"
-msgstr ""
+msgstr "Спампаваць курсы валютаў і акцыяў"
 
 #: mmframe.cpp:1503
 msgid "Organize &Categories..."
-msgstr ""
+msgstr "Арганізаваць &катыгорыі..."
 
 #: mmframe.cpp:1507
 msgid "Organize &Payees..."
@@ -4344,27 +4344,27 @@ msgstr "Рыдактар атрымальнікаў"
 
 #: mmframe.cpp:1511
 msgid "Organize Curre&ncy..."
-msgstr ""
+msgstr "Арганізаваць валю&ты..."
 
 #: mmframe.cpp:1511 mmframe.cpp:1726
 msgid "Organize Currency"
-msgstr ""
+msgstr "Арганізаваць валюты"
 
 #: mmframe.cpp:1515
 msgid "&Categories..."
-msgstr ""
+msgstr "&Катыгорыі..."
 
 #: mmframe.cpp:1518
 msgid "&Payees..."
-msgstr ""
+msgstr "&Атрымальнікі..."
 
 #: mmframe.cpp:1519
 msgid "Reassign all payees to another payee"
-msgstr ""
+msgstr "Замена аднаго атрымальніка на іншага"
 
 #: mmframe.cpp:1521
 msgid "Re&location of..."
-msgstr ""
+msgstr "Перасоўванне..."
 
 #: mmframe.cpp:1522
 msgid "Relocate Categories && Payees"
@@ -4372,7 +4372,7 @@ msgstr "Замена катыгорый і атрымальнікаў"
 
 #: mmframe.cpp:1532
 msgid "&Budget Setup"
-msgstr ""
+msgstr "&Бюджэт"
 
 #: mmframe.cpp:1536
 msgid "&Recurring Transactions"
@@ -4416,11 +4416,11 @@ msgstr ""
 
 #: mmframe.cpp:1568
 msgid "Refresh &WebApp"
-msgstr ""
+msgstr "Абнавіць &WebApp"
 
 #: mmframe.cpp:1568 mmframe.cpp:2499 mmframe.cpp:2502
 msgid "Refresh WebApp"
-msgstr ""
+msgstr "Абнавіць WebApp"
 
 #: mmframe.cpp:1573
 msgid "&Options...\tCtrl-,"
@@ -4878,7 +4878,7 @@ msgstr ""
 
 #: mmframe.cpp:2501
 msgid "Issue encountered updating WebApp, check Web server and WebApp settings"
-msgstr ""
+msgstr "Сталася перашкода падчас абнаўлення WebApp. Пераверце вэб-паслужнік і налады WebApp"
 
 #: mmframe.cpp:2537
 msgid "MMEX Options have been updated."
@@ -5646,11 +5646,11 @@ msgstr ""
 
 #: optionsettingsnet.cpp:58
 msgid "WebApp Settings"
-msgstr ""
+msgstr "Налады WebApp"
 
 #: optionsettingsnet.cpp:65 webappdialog.cpp:103
 msgid "Url"
-msgstr ""
+msgstr "Url"
 
 #: optionsettingsnet.cpp:69
 msgid "Specify the Web App URL without final slash"
@@ -5658,7 +5658,7 @@ msgstr ""
 
 #: optionsettingsnet.cpp:72 webappdialog.cpp:110
 msgid "GUID"
-msgstr ""
+msgstr "GUID"
 
 #: optionsettingsnet.cpp:76
 msgid "Specify the Web App GUID"
@@ -5666,7 +5666,7 @@ msgstr ""
 
 #: optionsettingsnet.cpp:79
 msgid "More information about WebApp"
-msgstr ""
+msgstr "Больш інфармацыі пра WebApp"
 
 #: optionsettingsnet.cpp:83
 msgid "Proxy Settings"
@@ -6706,7 +6706,7 @@ msgstr "Сымбаль: %s"
 
 #: themes.cpp:185 webappdialog.cpp:419
 msgid "Delete"
-msgstr ""
+msgstr "Выдаліць"
 
 #: themes.cpp:187
 msgid "Use"
@@ -7068,7 +7068,7 @@ msgstr ""
 
 #: webapp.cpp:111
 msgid "Wrong WebApp GUID:"
-msgstr ""
+msgstr "Хібны WebApp GUID:"
 
 #: webapp.cpp:112
 msgid "please check it in network options."
@@ -7076,11 +7076,11 @@ msgstr ""
 
 #: webapp.cpp:113
 msgid "Wrong WebApp settings"
-msgstr ""
+msgstr "Хібныя налады WebApp"
 
 #: webapp.cpp:118
 msgid "Unable to connect to WebApp:"
-msgstr ""
+msgstr "Немагчыма далучыцца да WebApp:"
 
 #: webapp.cpp:119
 msgid "please check settings and / or internet connection."
@@ -7088,16 +7088,16 @@ msgstr ""
 
 #: webapp.cpp:121
 msgid "WebApp connection error"
-msgstr ""
+msgstr "Памылка з'еднання з WebApp"
 
 #: webapp.cpp:131
 msgid "Wrong WebApp API version:"
-msgstr ""
+msgstr "Хібная версія WebApp API:"
 
 #: webapp.cpp:132
 #, c-format
 msgid "WebApp   API version -> %s"
-msgstr ""
+msgstr "WebApp   API версія -> %s"
 
 #: webapp.cpp:133
 #, c-format
@@ -7106,7 +7106,7 @@ msgstr ""
 
 #: webapp.cpp:134
 msgid "Wrong WebApp API version"
-msgstr ""
+msgstr "Хібная версія WebApp API"
 
 #: webapp.cpp:473
 #, c-format
@@ -7122,11 +7122,11 @@ msgstr "Аперацыя будзе ўстаўлена з першым банк�
 
 #: webapp.cpp:478
 msgid "Wrong WebApp account"
-msgstr ""
+msgstr "Хібны рахунак WebApp"
 
 #: webapp.cpp:560 webapp.cpp:594 webappdialog.cpp:347
 msgid "Unable to download attachments from webapp."
-msgstr ""
+msgstr "Немагчыма спампаваць далучэнні з WebApp."
 
 #: webapp.cpp:561
 msgid "Attachments folder not set or unavailable"
@@ -7138,7 +7138,7 @@ msgstr "Аперацыя не спампаваная:"
 
 #: webapp.cpp:563
 msgid "please fix attachments folder or delete attachments from WebApp"
-msgstr ""
+msgstr "Калі ласка, выпраўце тэчку з далучэннямі або выдаліце далучэнні ў WebApp"
 
 #: webapp.cpp:564
 msgid "Attachment folder error"
@@ -7186,7 +7186,7 @@ msgstr "Немагчыма ўставіць аперацыю у базе дад�
 
 #: webappdialog.cpp:321
 msgid "WebApp communication error"
-msgstr ""
+msgstr "Памылка обмена дадзенымі з WebApp"
 
 #: webappdialog.cpp:416
 msgid "Open Attachment"
