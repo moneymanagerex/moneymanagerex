@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-15 15:41+0300\n"
-"PO-Revision-Date: 2021-08-15 21:45\n"
+"PO-Revision-Date: 2021-08-15 21:57\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -2052,7 +2052,7 @@ msgstr "Іншы прыбытак"
 
 #: db/DB_Table_Category_V1.h:125
 msgid "Other Expenses"
-msgstr ""
+msgstr "Іншыя выдаткі"
 
 #: db/DB_Table_Category_V1.h:126 model/Model_Billsdeposits.cpp:34
 #: model/Model_Checking.cpp:31 transdialog.cpp:360
@@ -3431,7 +3431,7 @@ msgstr "Дыялог валютаў"
 
 #: maincurrencydialog.cpp:382
 msgid "Base Currency Selection"
-msgstr "Выбар базавай валюты"
+msgstr "Выбар асноўнай валюты"
 
 #: maincurrencydialog.cpp:422
 #, c-format
@@ -3457,7 +3457,7 @@ msgstr "Памылка гісторыі валютаў"
 
 #: maincurrencydialog.cpp:523
 msgid "Set as Base Currency"
-msgstr "Абраць як базавую валюту"
+msgstr "Абраць як асноўную валюту"
 
 #: maincurrencydialog.cpp:524
 msgid "Online Update Currency Rate"
@@ -3483,7 +3483,7 @@ msgstr "Немагчыма спампаваць гісторыю валюты %s
 
 #: maincurrencydialog.cpp:774
 msgid "Changing base currency will delete all history rates, proceed?"
-msgstr "Змена базавай валюты прывядзе да выдалення усей гісторыі курсаў, працягнуць?"
+msgstr "Змена асноўнай валюты прывядзе да выдалення усей гісторыі курсаў, працягнуць?"
 
 #: maincurrencydialog.cpp:798
 msgid "Do you want to update today currency rates?"
@@ -3492,11 +3492,11 @@ msgstr "Жадаеце абнавіць сённяшнія курсы валют
 #: maincurrencydialog.cpp:819
 #, c-format
 msgid "Unable to download history for base symbol %s. History rates not available!"
-msgstr "Немагчыма спампаваць гісторыю базавай валюты %s. Гісторыя курсаў недасяжная"
+msgstr "Немагчыма спампаваць гісторыю асноўнай валюты %s. Гісторыя курсаў недасяжная"
 
 #: maincurrencydialog.cpp:862 stockspanel.cpp:406 util.cpp:619
 msgid "Could not find base currency symbol!"
-msgstr "Немагчыма знайсці сымбаль базавай валюты"
+msgstr "Немагчыма знайсці сымбаль асноўнай валюты"
 
 #: mmSimpleDialogs.cpp:177
 msgid "Subtract one year"
@@ -3635,7 +3635,7 @@ msgstr "Парада: MMEX падтрымлівае друк справазда�
 
 #: mmTips.h:30
 msgid "Tip: You can modify some runtime behavior of MMEX by changing the options in the Options Dialog. "
-msgstr ""
+msgstr "Парада: Вы можаце змяніць паводзіны MMEX шляхам змены параметраў у дыялогавым акне Налады. "
 
 #: mmTips.h:31
 msgid "Tip: To print a statement with transactions from any arbitrary set of criteria, use the transaction filter to select the transactions you want and then do a print from the menu."
@@ -4765,7 +4765,7 @@ msgstr "Абраць файл шыфраванай БД, штоб адчыніц
 
 #: mmframe.cpp:2043
 msgid "Enter password for database"
-msgstr ""
+msgstr "Пакажыце пароль для базы дадзеных"
 
 #: mmframe.cpp:2048
 msgid "Choose database file to Save As"
@@ -4976,7 +4976,7 @@ msgstr "Мэнаджар справаздачаў"
 #: mmframereport.cpp:105 mmhomepage.cpp:808 model/Model_Report.cpp:403
 #: reports/bugreport.h:110
 msgid "Caught exception"
-msgstr ""
+msgstr "Сталася выключэнне"
 
 #: mmframereport.cpp:118
 msgid "Transaction Report"
@@ -5480,7 +5480,7 @@ msgstr "Прыклад фармата даты:"
 
 #: optionsettingsgeneral.cpp:123
 msgid "Base Currency"
-msgstr "Базавая валюта"
+msgstr "Асноўная валюта"
 
 #: optionsettingsgeneral.cpp:126 wizard_newdb.cpp:79
 msgid "Set Currency"
@@ -5488,11 +5488,11 @@ msgstr "Усталяваць валюту"
 
 #: optionsettingsgeneral.cpp:130
 msgid "Sets the database default Currency using the 'Currency Dialog'"
-msgstr "Усталёўвае валюту па змаўчанні з дапамогай 'Мэнаджара валютаў'"
+msgstr "Усталёўвае асноўную валюту з дапамогай 'Мэнаджара валютаў'"
 
 #: optionsettingsgeneral.cpp:133
 msgid "Right click and select 'Set as Base Currency' in 'Currency Dialog'"
-msgstr "Пстрыкніце правай кнопкай мышы і абярыце 'Усталяваць у якасці базавай валюты' ў 'мэнаджары валютаў"
+msgstr "Пстрыкніце правай кнопкай мышы і абярыце 'Усталяваць у якасці асноўнай валюты' ў 'мэнаджары валютаў"
 
 #: optionsettingsgeneral.cpp:158
 msgid "Format derived from locale.\n"
@@ -6988,7 +6988,7 @@ msgstr "Немагчыма знайсці актыў для сымбаля"
 
 #: util.cpp:947
 msgid "Could not get base currency!"
-msgstr "Немагчыма атрымаць базавую валюту"
+msgstr "Немагчыма атрымаць асноўную валюту"
 
 #: util.cpp:953
 msgid "USD"
@@ -7313,23 +7313,23 @@ msgstr "Пакажыце асноўную (або па змаўчанні) ва�
 
 #: wizard_newdb.cpp:112
 msgid "(Optional) Specify a title or your name."
-msgstr ""
+msgstr "(Па жаданні) Пакажыце загаловак або сваё імя."
 
 #: wizard_newdb.cpp:113
 msgid "Used as a database title for displayed and printed reports."
-msgstr ""
+msgstr "Загаловак для адлюстравання ў праграме і справаздачах."
 
 #: wizard_newdb.cpp:124
 msgid "Base Currency Not Set"
-msgstr ""
+msgstr "Асноўная валюта не абраная"
 
 #: wizard_update.cpp:78
 msgid "Update Wizard"
-msgstr ""
+msgstr "Майстар абнаўлення"
 
 #: wizard_update.cpp:106
 msgid "Historical releases:"
-msgstr ""
+msgstr "Папярэднія выпускі:"
 
 #: wizard_update.cpp:145
 msgid "Version"
@@ -7350,13 +7350,13 @@ msgstr "Вы карыстуецеся вэрсіяй %s"
 
 #: wizard_update.cpp:302 wizard_update.cpp:317
 msgid "Unable to check for updates!"
-msgstr ""
+msgstr "Немагчыма праверыць абнаўленні"
 
 #: wizard_update.cpp:303 wizard_update.cpp:318
 msgid "Error: "
-msgstr ""
+msgstr "Памылка: "
 
 #: wizard_update.cpp:304 wizard_update.cpp:320
 msgid "MMEX Update Check"
-msgstr ""
+msgstr "Праверка версіі MMEX"
 
