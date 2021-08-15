@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-15 15:41+0300\n"
-"PO-Revision-Date: 2021-08-15 17:57\n"
+"PO-Revision-Date: 2021-08-15 18:07\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -5106,7 +5106,7 @@ msgstr "Цалкам:"
 
 #: mmhomepage.cpp:645
 msgid "Investment Accounts"
-msgstr ""
+msgstr "Рахункі інвестыцыяў"
 
 #: mmhomepage.cpp:646 reports/summary.cpp:163
 msgid "Asset Accounts"
@@ -5114,7 +5114,7 @@ msgstr "Рахункі актываў"
 
 #: mmhomepage.cpp:794
 msgid "Currency Exchange Rates"
-msgstr ""
+msgstr "Курсы абмена валютаў"
 
 #: mmhomepagepanel.cpp:176
 msgid "Upcoming Transactions"
@@ -5122,39 +5122,39 @@ msgstr "Запланаваныя аперацыі"
 
 #: mmpanelbase.cpp:136
 msgid "Hide/Show Columns"
-msgstr ""
+msgstr "Паказаць/схаваць слупкі"
 
 #: mmpanelbase.cpp:137
 msgid "Hide this column"
-msgstr ""
+msgstr "Схаваць гэты слупок"
 
 #: mmpanelbase.cpp:139
 msgid "Order by this column"
-msgstr ""
+msgstr "Сартаваць па гэтым слупку"
 
 #: mmpanelbase.cpp:140
 msgid "Reset columns"
-msgstr ""
+msgstr "Скінуць слупкі"
 
 #: mmreportspanel.cpp:161
 msgid "Report"
-msgstr ""
+msgstr "Справаздача"
 
 #: mmreportspanel.cpp:218
 msgid "Period:"
-msgstr ""
+msgstr "Перыяд:"
 
 #: mmreportspanel.cpp:292
 msgid "Year:"
-msgstr ""
+msgstr "Год:"
 
 #: mmreportspanel.cpp:316
 msgid "Budget:"
-msgstr ""
+msgstr "Бюджэт:"
 
 #: mmreportspanel.cpp:342
 msgid "Accounts:"
-msgstr ""
+msgstr "Рахункі:"
 
 #: mmreportspanel.cpp:347 reports/reportbase.cpp:185
 #: reports/transactions.cpp:50
@@ -5163,43 +5163,43 @@ msgstr "Усе рахункі"
 
 #: mmreportspanel.cpp:348
 msgid "Specific Accounts"
-msgstr ""
+msgstr "Пазначаныя рахункі"
 
 #: mmreportspanel.cpp:364
 msgid "Chart:"
-msgstr ""
+msgstr "Графік:"
 
 #: mmreportspanel.cpp:369
 msgid "Show"
-msgstr ""
+msgstr "Паказаць"
 
 #: mmreportspanel.cpp:370
 msgid "Hide"
-msgstr ""
+msgstr "Схаваць"
 
 #: model/Model_Account.cpp:32 model/Model_Asset.cpp:35 reports/summary.cpp:158
 msgid "Cash"
-msgstr ""
+msgstr "Наяўныя"
 
 #: model/Model_Account.cpp:33
 msgid "Checking"
-msgstr ""
+msgstr "Чэкавы"
 
 #: model/Model_Account.cpp:34
 msgid "Credit Card"
-msgstr ""
+msgstr "Крыдытная картка"
 
 #: model/Model_Account.cpp:35
 msgid "Loan"
-msgstr ""
+msgstr "Пазыка"
 
 #: model/Model_Account.cpp:36
 msgid "Term"
-msgstr ""
+msgstr "Тэрмін"
 
 #: model/Model_Account.cpp:37
 msgid "Investment"
-msgstr ""
+msgstr "Інвестыцыя"
 
 #: model/Model_Account.cpp:38
 msgid "Asset"
@@ -5211,35 +5211,35 @@ msgstr "Паі"
 
 #: model/Model_Account.cpp:130
 msgid "Account Error"
-msgstr ""
+msgstr "Памылка рахунка"
 
 #: model/Model_Asset.cpp:24
 msgid "Appreciates"
-msgstr ""
+msgstr "Падаражэнне"
 
 #: model/Model_Asset.cpp:25
 msgid "Depreciates"
-msgstr ""
+msgstr "Патанненне"
 
 #: model/Model_Asset.cpp:30
 msgid "Property"
-msgstr ""
+msgstr "Уласнасць"
 
 #: model/Model_Asset.cpp:32
 msgid "Household Object"
-msgstr ""
+msgstr "Гаспадарчы аб'ект"
 
 #: model/Model_Asset.cpp:33
 msgid "Art"
-msgstr ""
+msgstr "Мастацтва"
 
 #: model/Model_Asset.cpp:34
 msgid "Jewellery"
-msgstr ""
+msgstr "Ювелірныя вырабы"
 
 #: model/Model_Asset.cpp:36
 msgid "Other"
-msgstr ""
+msgstr "Iншае"
 
 #: model/Model_Billsdeposits.cpp:301
 msgid "A recurring transaction will exceed your account limit.\n\n"
@@ -5253,19 +5253,19 @@ msgstr "Правекрка запланаванай аперацыі"
 
 #: model/Model_CustomField.cpp:25
 msgid "String"
-msgstr ""
+msgstr "Тэкст"
 
 #: model/Model_CustomField.cpp:26
 msgid "Integer"
-msgstr ""
+msgstr "Цэлы лік"
 
 #: model/Model_CustomField.cpp:27
 msgid "Decimal"
-msgstr ""
+msgstr "Дробавы лік"
 
 #: model/Model_CustomField.cpp:28
 msgid "Boolean"
-msgstr ""
+msgstr "Лагічнае"
 
 #: model/Model_CustomField.cpp:30 wizard_update.cpp:145
 msgid "Time"
