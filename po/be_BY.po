@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-15 15:41+0300\n"
-"PO-Revision-Date: 2021-08-15 16:56\n"
+"PO-Revision-Date: 2021-08-15 17:05\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -4792,27 +4792,27 @@ msgstr "Новы пароль для базы дадзеных\n\n"
 
 #: mmframe.cpp:2082
 msgid "New password must not be empty."
-msgstr ""
+msgstr "Новы пароль мае быць запоўнены."
 
 #: mmframe.cpp:2086
 msgid "Please confirm new password"
-msgstr ""
+msgstr "Калі ласка, спраўдзіце новы пароль"
 
 #: mmframe.cpp:2090
 msgid "Password change completed."
-msgstr ""
+msgstr "Змена пароля адбылася."
 
 #: mmframe.cpp:2094
 msgid "Confirm password failed."
-msgstr ""
+msgstr "Пароль ня спраўджаны."
 
 #: mmframe.cpp:2103
 msgid "Make sure you have a backup of DB before optimize it"
-msgstr ""
+msgstr "Упэўніцеся, што маеце рызервовую копію БД перш чым аптымізаваць яе"
 
 #: mmframe.cpp:2104 mmframe.cpp:2114
 msgid "DB Optimization"
-msgstr ""
+msgstr "Аптымізацыя базы дадзеных"
 
 #: mmframe.cpp:2111
 #, c-format
