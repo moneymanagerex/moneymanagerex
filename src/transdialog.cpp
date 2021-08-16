@@ -1126,7 +1126,7 @@ void mmTransDialog::OnCategs(wxCommandEvent& WXUNUSED(event))
             categUpdated_ = true;
         }
     }
-    skip_amount_init_ = false;
+    skip_amount_init_ = true;
     skip_tooltips_init_ = false;
     dataToControls();
 }
