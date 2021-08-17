@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-15 15:41+0300\n"
-"PO-Revision-Date: 2021-08-17 08:39\n"
+"PO-Revision-Date: 2021-08-17 08:58\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -4967,7 +4967,7 @@ msgstr "Файл %s не знойдзены"
 
 #: mmframe.cpp:3372 optionsettingsgeneral.cpp:333
 msgid "The language for this application has been changed. The change will take effect the next time the application is started."
-msgstr "Мова для гэтага прыкладання змененая. Гэта змяненне ўступіць у моц пры наступным запуску дадатка."
+msgstr "Мова прыкладання змененая. Гэтае змяненне ўступіць у моц пры наступным запуску дадатка."
 
 #: mmframereport.cpp:78
 msgid "General Group Report"
