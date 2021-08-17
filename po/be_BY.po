@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-15 15:41+0300\n"
-"PO-Revision-Date: 2021-08-15 21:57\n"
+"PO-Revision-Date: 2021-08-17 08:39\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -72,7 +72,7 @@ msgstr "&Добра "
 
 #: accountdialog.cpp:111 mmframe.cpp:1478
 msgid "Edit Account"
-msgstr "Рэдагаваць Рахунак"
+msgstr "Рыдагаваць Рахунак"
 
 #: accountdialog.cpp:139
 msgid "Account Name:"
@@ -341,7 +341,7 @@ msgstr "Унясенне новага актыва"
 
 #: assetdialog.cpp:67 assetspanel.cpp:481
 msgid "Edit Asset"
-msgstr "Рэдагаванне актыва"
+msgstr "Рыдагаванне актыва"
 
 #: assetdialog.cpp:71 assetdialog.cpp:93 assetspanel.cpp:471
 msgid "Add Asset Transaction"
@@ -349,7 +349,7 @@ msgstr "Дадаць аперацыю для актыва"
 
 #: assetdialog.cpp:97
 msgid "Edit Asset Transaction"
-msgstr "Рэдагаваць аперацыю для актыва"
+msgstr "Рыдагаваць аперацыю для актыва"
 
 #: assetdialog.cpp:183
 msgid "Asset Details"
@@ -494,7 +494,7 @@ msgstr "Адчыніць рахунак актыва"
 
 #: assetspanel.cpp:105
 msgid "&Edit Asset"
-msgstr "&Рэдагаванне актыва"
+msgstr "&Рыдагаванне актыва"
 
 #: assetspanel.cpp:106
 msgid "&Delete Asset"
@@ -668,7 +668,7 @@ msgstr "Пакажыце новае апісанне для далучэння:"
 
 #: attachmentdialog.cpp:215
 msgid "Organize Attachments: Edit Attachment"
-msgstr "Уладкаванне далучэнняў: Рэдагаваць далучэнне"
+msgstr "Уладкаванне далучэнняў: Рыдагаваць далучэнне"
 
 #: attachmentdialog.cpp:239
 msgid "Do you really want to delete this attachment?"
@@ -752,7 +752,7 @@ msgstr "Далучэнне не адчыніць"
 #: model/Model_Checking.cpp:36 optionsettingsmisc.cpp:96
 #: reports/reportbase.cpp:189
 msgid "None"
-msgstr "Не"
+msgstr "Ня вызначаны"
 
 #: billsdepositsdialog.cpp:52 billsdepositspanel.cpp:49
 #: model/Model_Budget.cpp:56
@@ -981,7 +981,7 @@ msgstr "Абярыце атрымальніка"
 
 #: billsdepositsdialog.cpp:600 transdialog.cpp:541
 msgid "Split"
-msgstr "Некалькі катыгорый"
+msgstr "Некалькі катыгорыяў"
 
 #: billsdepositsdialog.cpp:603 transdialog.cpp:1302
 msgid "Use split Categories"
@@ -1140,7 +1140,7 @@ msgstr "Ачысціць колер"
 #: billsdepositsdialog.cpp:1469 filtertransdialog.cpp:1501 transdialog.cpp:1342
 #, c-format
 msgid "Color #%i"
-msgstr "Цвет #%i"
+msgstr "Колер #%i"
 
 #: billsdepositsdialog.h:56 billsdepositspanel.cpp:284
 msgid "New Recurring Transaction"
@@ -1218,7 +1218,7 @@ msgstr "Планаванне"
 
 #: billsdepositspanel.cpp:249 filtertransdialog.h:103
 msgid "Transaction Filter"
-msgstr "Фільтр аперацый"
+msgstr "Фільтр аперацыяў"
 
 #: billsdepositspanel.cpp:293
 msgid "Delete Recurring Transaction"
@@ -1254,7 +1254,7 @@ msgstr "&Новая аперацыя, што паўтараецца..."
 
 #: billsdepositspanel.cpp:417
 msgid "&Edit Recurring Transaction..."
-msgstr "&Рэдагаваць аперацыю, што паўтараецца..."
+msgstr "&Рыдагаваць аперацыю, што паўтараецца..."
 
 #: billsdepositspanel.cpp:418
 msgid "&Delete Recurring Transaction..."
@@ -1521,7 +1521,7 @@ msgstr "Бюджэт на гэты год ужо існуе"
 
 #: categdialog.cpp:91 mmframe.cpp:1503 mmframe.cpp:1724
 msgid "Organize Categories"
-msgstr "Рыдактар катыгорый"
+msgstr "Рыдактар катыгорыяў"
 
 #: categdialog.cpp:190 mmframe.cpp:1516
 msgid "Reassign all categories to another category"
@@ -1642,15 +1642,15 @@ msgstr "Пакажыце новую назву для '%s'"
 
 #: categdialog.cpp:489
 msgid "Edit Category"
-msgstr "Рэдагаваць катыгорыю"
+msgstr "Рыдагаваць катыгорыю"
 
 #: categdialog.cpp:507 categdialog.cpp:524
 msgid "Organise Categories: Editing Error"
-msgstr "Рыдактар катыгорыяў: памылка рэдагавання"
+msgstr "Рыдактар катыгорыяў: памылка рыдагавання"
 
 #: categdialog.cpp:600 mmframe.cpp:3268
 msgid "Category Relocation Completed."
-msgstr "Замена катыгорый зроблена."
+msgstr "Замена катыгорыяў зроблена."
 
 #: categdialog.cpp:601 mmframe.cpp:3269 mmframe.cpp:3284 payeedialog.cpp:351
 #, c-format
@@ -2315,12 +2315,12 @@ msgstr "Распрацоўшчыкі могуць папрасіць вас да
 #: filtertransdialog.cpp:45 mmhomepage.cpp:656 model/Model_Billsdeposits.cpp:40
 #: model/Model_Checking.cpp:37
 msgid "Reconciled"
-msgstr "Узгодненая"
+msgstr "Узгодненыя"
 
 #: filtertransdialog.cpp:46 model/Model_Billsdeposits.cpp:41
 #: model/Model_Checking.cpp:38
 msgid "Void"
-msgstr "Скасаваная"
+msgstr "Скасаваныя"
 
 #: filtertransdialog.cpp:47 model/Model_Billsdeposits.cpp:42
 #: model/Model_Checking.cpp:39
@@ -2330,15 +2330,15 @@ msgstr "Дапрацаваць"
 #: filtertransdialog.cpp:48 model/Model_Billsdeposits.cpp:43
 #: model/Model_Checking.cpp:40
 msgid "Duplicate"
-msgstr "Дубляваць"
+msgstr "Дублікат"
 
 #: filtertransdialog.cpp:49 filtertransdialog.cpp:1028
 msgid "Un-Reconciled"
-msgstr "Ня Ўзгодненая"
+msgstr "Няўзгодненыя"
 
 #: filtertransdialog.cpp:50 filtertransdialog.cpp:1029
 msgid "All Except Reconciled"
-msgstr "Усе акрамя узгодненых"
+msgstr "Акрамя узгодненых"
 
 #: filtertransdialog.cpp:63
 msgid "Start of Financial Year"
@@ -2375,7 +2375,7 @@ msgstr "Прамежак часу"
 
 #: filtertransdialog.cpp:272 filtertransdialog.cpp:1017
 msgid "Include Similar"
-msgstr "Уключаючы падобныя"
+msgstr "Уключаючы падкатыгорыі"
 
 #: filtertransdialog.cpp:274
 msgid "Include all subcategories for the selected category."
@@ -3639,7 +3639,7 @@ msgstr "Парада: Вы можаце змяніць паводзіны MMEX �
 
 #: mmTips.h:31
 msgid "Tip: To print a statement with transactions from any arbitrary set of criteria, use the transaction filter to select the transactions you want and then do a print from the menu."
-msgstr "Парада: Каб раздрукаваць зводку па аперацыях, зыходзячы з пэўных крытэраў, выкарыстоўвайце фільтр аперацый, а потым выканайце друк з асноўнага меню."
+msgstr "Парада: Каб раздрукаваць зводку па аперацыях, зыходзячы з пэўных крытэраў, выкарыстоўвайце фільтр аперацыяў, а потым выканайце друк з асноўнага меню."
 
 #: mmTips.h:32
 msgid "Tip: Set exchange rate for currencies in case if you have accounts with different currencies."
@@ -3647,11 +3647,11 @@ msgstr "Парада: Калі вядзеце рахункі ў розных в�
 
 #: mmTips.h:34
 msgid "Organize Categories Dialog Tip: Pressing the h key will cycle through all categories starting with the letter h"
-msgstr "Парада: У мэнаджары катыгорый, націскаючы паслядоўна клавішу адпаведную першай літары назвы, курсор будзе пераключацца паміж адпаведнымі катыгорыямі"
+msgstr "Парада: У мэнаджары катыгорыяў, націскаючы паслядоўна клавішу, адпаведную першай літары назвы, курсор будзе пераключацца паміж адпаведнымі катыгорыямі"
 
 #: mmTips.h:35
 msgid "Organize Categories Dialog Tip: Pressing 2 key combination will cycle through all categories starting with that key combination. Example: Pressing ho will select Homeneeds, Home, House Tax, etc..."
-msgstr "Парада: У мэнэджары катыгорый, націскаючы паслядоўна некальці клавішаў, можна цыклічна перамыкацца паміж адпаведнымі назвамі. Напрыклад, клавішы АД пераключаць паміж Адзенне, Адпачынак і г.д."
+msgstr "Парада: У мэнэджары катыгорыяў, націскаючы паслядоўна некальці клавішаў, можна цыклічна перамыкацца паміж адпаведнымі назвамі. Напрыклад, клавішы АД пераключаць паміж Адзенне, Адпачынак і г.д."
 
 #: mmTips.h:37
 msgid "Tip to get out of debt: Pay yourself 10 percentage first. Put this into an account that is hard to touch. Make sure it is a chore to get the money out (you have to drive to the bank), so you will only tap it consciously and for major expenses."
@@ -3712,10 +3712,10 @@ msgstr "&Новы пераказ"
 #: mmchecking_list.cpp:362
 msgid "&Edit Transaction"
 msgid_plural "&Edit Transactions"
-msgstr[0] "&Рэдагаваць аперацыю"
-msgstr[1] "&Рэдагаваць аперацыі"
-msgstr[2] "&Рэдагаваць аперацыі"
-msgstr[3] "&Рэдагаваць аперацыі"
+msgstr[0] "&Рыдагаваць аперацыю"
+msgstr[1] "&Рыдагаваць аперацыі"
+msgstr[2] "&Рыдагаваць аперацыі"
+msgstr[3] "&Рыдагаваць аперацыі"
 
 #: mmchecking_list.cpp:367
 msgid "&Copy Transaction"
@@ -3776,27 +3776,27 @@ msgstr "Выдаліць бачныя «Ня Ўзгодненыя» аперац
 
 #: mmchecking_list.cpp:411
 msgid "as Reconciled"
-msgstr "як Узгодненая (R)"
+msgstr "як Узгодненыя (R)"
 
 #: mmchecking_list.cpp:413
 msgid "as Unreconciled"
-msgstr "як Ня Ўзгодненая (U)"
+msgstr "як Няўзгодненая (U)"
 
 #: mmchecking_list.cpp:415
 msgid "as Void"
-msgstr "як Скасаваная (V)"
+msgstr "як Скасаваныя (V)"
 
 #: mmchecking_list.cpp:417
 msgid "as Followup"
-msgstr "на Дапрацоўку"
+msgstr "на Дапрацаванне (F)"
 
 #: mmchecking_list.cpp:419
 msgid "as Duplicate"
-msgstr "паўтор"
+msgstr "Дублікаты (D)"
 
 #: mmchecking_list.cpp:421
 msgid "Mark all being selected"
-msgstr "Адзначыць усе, што ёсць абраныя"
+msgstr "Пазначыць усе абраныя"
 
 #: mmchecking_list.cpp:793
 msgid "Do you really want to delete all the transactions shown?"
@@ -3853,7 +3853,7 @@ msgstr[3] "Вы збіраецеся змяніць %i транзакцый ў �
 msgid "\n\n"
 "Do you still want to perform the edit?"
 msgstr "\n\n"
-"Вы ўсё яшчэ хочаце выканаць рэдагаванне?"
+"Вы ўсё яшчэ хочаце выканаць рыдагаванне?"
 
 #: mmchecking_list.cpp:952
 msgid "Closed Account Check"
@@ -3911,7 +3911,7 @@ msgstr "Новая аперацыя"
 
 #: mmcheckingpanel.cpp:367
 msgid "Edit selected transaction"
-msgstr "Рэдагаваць абраную аперацыю"
+msgstr "Рыдагаваць абраную аперацыю"
 
 #: mmcheckingpanel.cpp:372
 msgid "Delete selected transaction"
@@ -4084,7 +4084,7 @@ msgstr "&Новая аперацыя"
 
 #: mmframe.cpp:1252 mmframe.cpp:1292 mmframe.cpp:1478
 msgid "&Edit Account"
-msgstr "&Рэдагаваць Рахунак"
+msgstr "&Рыдагаваць Рахунак"
 
 #: mmframe.cpp:1253 mmframe.cpp:1481
 msgid "&Reallocate Account"
@@ -4368,7 +4368,7 @@ msgstr "Перасоўванне..."
 
 #: mmframe.cpp:1522
 msgid "Relocate Categories && Payees"
-msgstr "Замена катыгорый і атрымальнікаў"
+msgstr "Замена катыгорыяў і атрымальнікаў"
 
 #: mmframe.cpp:1532
 msgid "&Budget Setup"
@@ -6372,7 +6372,7 @@ msgstr "Дадаць дыталі аперацыі"
 
 #: sharetransactiondialog.h:43
 msgid "Edit Share Transaction"
-msgstr "Рэдагаванне аперацыі"
+msgstr "Рыдагаванне аперацыі"
 
 #: splitdetailsdialog.cpp:72
 msgid "Split Detail Dialog"
@@ -6778,7 +6778,7 @@ msgstr "Дубляваць аперацыю"
 
 #: transdialog.cpp:180
 msgid "Edit Transaction"
-msgstr "Рэдагаваць аперацыю"
+msgstr "Рыдагаваць аперацыю"
 
 #: transdialog.cpp:468 usertransactionpanel.cpp:104
 msgid "Retard or advance the date of the transaction"
@@ -6786,7 +6786,7 @@ msgstr "Адставанне або апярэджанне даты аперац
 
 #: transdialog.cpp:560
 msgid "Populate Transaction #"
-msgstr "Паказаць нумар для аперацыі"
+msgstr "Запоўніць нумар аперацыі"
 
 #: transdialog.cpp:570 usertransactionpanel.cpp:210
 msgid "Organize attachments of this transaction"
