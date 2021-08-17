@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-15 15:41+0300\n"
-"PO-Revision-Date: 2021-08-15 21:57\n"
+"PO-Revision-Date: 2021-08-17 07:11\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -752,7 +752,7 @@ msgstr "Далучэнне не адчыніць"
 #: model/Model_Checking.cpp:36 optionsettingsmisc.cpp:96
 #: reports/reportbase.cpp:189
 msgid "None"
-msgstr "Не"
+msgstr "Ня вызначаны"
 
 #: billsdepositsdialog.cpp:52 billsdepositspanel.cpp:49
 #: model/Model_Budget.cpp:56
@@ -1218,7 +1218,7 @@ msgstr "Планаванне"
 
 #: billsdepositspanel.cpp:249 filtertransdialog.h:103
 msgid "Transaction Filter"
-msgstr "Фільтр аперацый"
+msgstr "Фільтр аперацыяў"
 
 #: billsdepositspanel.cpp:293
 msgid "Delete Recurring Transaction"
@@ -2315,7 +2315,7 @@ msgstr "Распрацоўшчыкі могуць папрасіць вас да
 #: filtertransdialog.cpp:45 mmhomepage.cpp:656 model/Model_Billsdeposits.cpp:40
 #: model/Model_Checking.cpp:37
 msgid "Reconciled"
-msgstr "Узгодненая"
+msgstr "Узгодненыя"
 
 #: filtertransdialog.cpp:46 model/Model_Billsdeposits.cpp:41
 #: model/Model_Checking.cpp:38
@@ -2334,11 +2334,11 @@ msgstr "Дубляваць"
 
 #: filtertransdialog.cpp:49 filtertransdialog.cpp:1028
 msgid "Un-Reconciled"
-msgstr "Ня Ўзгодненая"
+msgstr "Няўзгодненыя"
 
 #: filtertransdialog.cpp:50 filtertransdialog.cpp:1029
 msgid "All Except Reconciled"
-msgstr "Усе акрамя узгодненых"
+msgstr "Акрамя узгодненых"
 
 #: filtertransdialog.cpp:63
 msgid "Start of Financial Year"
@@ -2375,7 +2375,7 @@ msgstr "Прамежак часу"
 
 #: filtertransdialog.cpp:272 filtertransdialog.cpp:1017
 msgid "Include Similar"
-msgstr "Уключаючы падобныя"
+msgstr "Уключаючы падкатыгорыі"
 
 #: filtertransdialog.cpp:274
 msgid "Include all subcategories for the selected category."
@@ -3639,7 +3639,7 @@ msgstr "Парада: Вы можаце змяніць паводзіны MMEX �
 
 #: mmTips.h:31
 msgid "Tip: To print a statement with transactions from any arbitrary set of criteria, use the transaction filter to select the transactions you want and then do a print from the menu."
-msgstr "Парада: Каб раздрукаваць зводку па аперацыях, зыходзячы з пэўных крытэраў, выкарыстоўвайце фільтр аперацый, а потым выканайце друк з асноўнага меню."
+msgstr "Парада: Каб раздрукаваць зводку па аперацыях, зыходзячы з пэўных крытэраў, выкарыстоўвайце фільтр аперацыяў, а потым выканайце друк з асноўнага меню."
 
 #: mmTips.h:32
 msgid "Tip: Set exchange rate for currencies in case if you have accounts with different currencies."
