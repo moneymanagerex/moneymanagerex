@@ -32,7 +32,6 @@ public:
     virtual wxString getHTMLText();
 
 private:
-    void display_header(mmHTMLBuilder& hb);
     // structure for sorting of data
     struct data_holder { wxString name; wxString symbol; wxString date; double qty; double purchase; double current; double commission; double gainloss; double value; };
     struct account_holder { int id; wxString name; std::vector<data_holder> data; double gainloss; double total; };

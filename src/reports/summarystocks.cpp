@@ -96,15 +96,41 @@ wxString mmReportSummaryStocks::getHTMLText()
 
     hb.addDivContainer("shadow");
     {
-        for (const auto& acct : m_stocks)
+        hb.startTable();
         {
-            const Model_Account::Data* account = Model_Account::instance().get(acct.id);
-            const Model_Currency::Data* currency = Model_Account::currency(account);
-            hb.addHeader(3, acct.name);
-
-            hb.startTable();
+            hb.startThead();
             {
-                display_header(hb);
+                hb.startTableRow();
+                {
+                    hb.addTableHeaderCell(_("Name"));
+                    hb.addTableHeaderCell(_("Symbol"));
+                    hb.addTableHeaderCell(_("*Purchase Date"));
+                    hb.addTableHeaderCell(_("Quantity"), true);
+                    hb.addTableHeaderCell(_("Initial Value"), true);
+                    hb.addTableHeaderCell(_("Current Price"), true);
+                    hb.addTableHeaderCell(_("Commission"), true);
+                    hb.addTableHeaderCell(_("Gain/Loss"), true);
+                    hb.addTableHeaderCell(_("Current Value"), true);
+                }
+                hb.endTableRow();
+            }
+            hb.endThead();
+
+            for (const auto& acct : m_stocks)
+            {
+                const Model_Account::Data* account = Model_Account::instance().get(acct.id);
+                const Model_Currency::Data* currency = Model_Account::currency(account);
+
+                hb.startThead();
+                {
+                    hb.startTableRow();
+                    {
+                        hb.addTableHeaderCell(acct.name,false,false,9,false);
+                    }
+                    hb.endTableRow();
+                }
+                hb.endThead();
+
                 hb.startTbody();
                 {
                     for (const auto& entry : acct.data)
@@ -120,14 +146,9 @@ wxString mmReportSummaryStocks::getHTMLText()
                             hb.addCurrencyCell(entry.commission, currency, 4);
                             hb.addCurrencyCell(entry.gainloss, currency);
                             hb.addCurrencyCell(entry.value, currency);
-                            }
+                        }
                         hb.endTableRow();
                     }
-                }
-                hb.endTbody();
-
-                hb.startTfoot();
-                {
                     hb.startTotalTableRow();
                     {
                         hb.addTableCell(_("Total:"));
@@ -137,10 +158,10 @@ wxString mmReportSummaryStocks::getHTMLText()
                     }
                     hb.endTableRow();
                 }
-                hb.endTfoot();
+                hb.endTbody();
             }
-            hb.endTable();
         }
+        hb.endTable();
     }
     hb.endDiv();
 
@@ -179,27 +200,6 @@ wxString mmReportSummaryStocks::getHTMLText()
     hb.end();
 
     return hb.getHTMLText();
-}
-
-void mmReportSummaryStocks::display_header(mmHTMLBuilder& hb)
-{
-    hb.startThead();
-    {
-        hb.startTableRow();
-        {
-            hb.addTableHeaderCell(_("Name"));
-            hb.addTableHeaderCell(_("Symbol"));
-            hb.addTableHeaderCell(_("*Purchase Date"));
-            hb.addTableHeaderCell(_("Quantity"), true);
-            hb.addTableHeaderCell(_("Initial Value"), true);
-            hb.addTableHeaderCell(_("Current Price"), true);
-            hb.addTableHeaderCell(_("Commission"), true);
-            hb.addTableHeaderCell(_("Gain/Loss"), true);
-            hb.addTableHeaderCell(_("Current Value"), true);
-        }
-        hb.endTableRow();
-    }
-    hb.endThead();
 }
 
 mmReportChartStocks::mmReportChartStocks()
