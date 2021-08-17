@@ -266,7 +266,7 @@ wxString mmReportChartStocks::getHTMLText()
             Model_Account::Data* account = Model_Account::instance().get(stock.HELDAT);
             hb.addDivContainer("shadow");
             {
-                hb.addHeader(1, wxString::Format("%s - (%s)", stock.SYMBOL, account->ACCOUNTNAME));
+                hb.addHeader(1, wxString::Format("%s / %s - (%s)", stock.SYMBOL, stock.STOCKNAME, account->ACCOUNTNAME));
                 gd.type = GraphData::LINE_DATETIME;
                 hb.addChart(gd);
             }
