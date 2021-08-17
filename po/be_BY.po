@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-15 15:41+0300\n"
-"PO-Revision-Date: 2021-08-17 07:11\n"
+"PO-Revision-Date: 2021-08-17 07:28\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -1140,7 +1140,7 @@ msgstr "Ачысціць колер"
 #: billsdepositsdialog.cpp:1469 filtertransdialog.cpp:1501 transdialog.cpp:1342
 #, c-format
 msgid "Color #%i"
-msgstr "Цвет #%i"
+msgstr "Колер #%i"
 
 #: billsdepositsdialog.h:56 billsdepositspanel.cpp:284
 msgid "New Recurring Transaction"
@@ -2320,7 +2320,7 @@ msgstr "Узгодненыя"
 #: filtertransdialog.cpp:46 model/Model_Billsdeposits.cpp:41
 #: model/Model_Checking.cpp:38
 msgid "Void"
-msgstr "Скасаваная"
+msgstr "Скасаваныя"
 
 #: filtertransdialog.cpp:47 model/Model_Billsdeposits.cpp:42
 #: model/Model_Checking.cpp:39
@@ -2330,7 +2330,7 @@ msgstr "Дапрацаваць"
 #: filtertransdialog.cpp:48 model/Model_Billsdeposits.cpp:43
 #: model/Model_Checking.cpp:40
 msgid "Duplicate"
-msgstr "Дубляваць"
+msgstr "Дублікат"
 
 #: filtertransdialog.cpp:49 filtertransdialog.cpp:1028
 msgid "Un-Reconciled"
@@ -3776,27 +3776,27 @@ msgstr "Выдаліць бачныя «Ня Ўзгодненыя» аперац
 
 #: mmchecking_list.cpp:411
 msgid "as Reconciled"
-msgstr "як Узгодненая (R)"
+msgstr "як Узгодненыя (R)"
 
 #: mmchecking_list.cpp:413
 msgid "as Unreconciled"
-msgstr "як Ня Ўзгодненая (U)"
+msgstr "як Няўзгодненая (U)"
 
 #: mmchecking_list.cpp:415
 msgid "as Void"
-msgstr "як Скасаваная (V)"
+msgstr "як Скасаваныя (V)"
 
 #: mmchecking_list.cpp:417
 msgid "as Followup"
-msgstr "на Дапрацоўку"
+msgstr "на Дапрацаванне (F)"
 
 #: mmchecking_list.cpp:419
 msgid "as Duplicate"
-msgstr "паўтор"
+msgstr "Дублікаты (D)"
 
 #: mmchecking_list.cpp:421
 msgid "Mark all being selected"
-msgstr "Адзначыць усе, што ёсць абраныя"
+msgstr "Пазначыць усе абраныя"
 
 #: mmchecking_list.cpp:793
 msgid "Do you really want to delete all the transactions shown?"
@@ -6786,7 +6786,7 @@ msgstr "Адставанне або апярэджанне даты аперац
 
 #: transdialog.cpp:560
 msgid "Populate Transaction #"
-msgstr "Паказаць нумар для аперацыі"
+msgstr "Запоўніць нумар аперацыі"
 
 #: transdialog.cpp:570 usertransactionpanel.cpp:210
 msgid "Organize attachments of this transaction"
