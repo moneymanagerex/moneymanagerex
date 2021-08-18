@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-15 15:41+0300\n"
-"PO-Revision-Date: 2021-08-15 12:57\n"
+"PO-Revision-Date: 2021-08-16 06:55\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -4556,7 +4556,7 @@ msgstr "Money Manager Ex для &Android"
 
 #: mmframe.cpp:1629
 msgid "Get free Android version and run MMEX on your smart phone or tablet"
-msgstr "Получите бесплатную версию Android и запустите MMEX на своем смартфоне или планшете"
+msgstr "Получите бесплатную версию для Android и запустите MMEX на своем смартфоне или планшете"
 
 #: mmframe.cpp:1631
 msgid "&Newsletter"
@@ -4781,7 +4781,7 @@ msgstr "MMEX сообщение"
 
 #: mmframe.cpp:2076
 msgid "MMEX: Encryption Password Change"
-msgstr "MMEX: Смена пароля зишифрованной БД"
+msgstr "MMEX: Смена пароля зашифрованной БД"
 
 #: mmframe.cpp:2077
 #, c-format
@@ -5344,7 +5344,7 @@ msgstr "Настройки вложений"
 #: optionsettingsattachment.cpp:64
 #, c-format
 msgid "Attachment archive folder for %s only:"
-msgstr "Папка вложений для %s только:"
+msgstr "Папка вложений только для %s:"
 
 #: optionsettingsattachment.cpp:68
 msgid "Every OS type (Win,Mac,Unix) has its attachment folder"
@@ -7306,7 +7306,7 @@ msgstr "Следующие страницы помогут вам создать
 "мы рекомендовали создавать ежедневные резервные копии. Настройте это в опциях:\n"
 "\"Резервное копирование перед открытием\". Также копируйте и храните резервные копии\n"
 "в отдельном месте.\n\n"
-"В базе данных может быть зашифрована, при необходимости,\n"
+"Позднее база данных может быть зашифрована, при необходимости,\n"
 "с помощью опции: \"Сохранить базу данных как\" с изменением\n"
 "типа файла перед сохранением."
 
