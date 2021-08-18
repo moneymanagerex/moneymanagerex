@@ -110,6 +110,7 @@ public:
     void addDivCol25_50();
     void addDivCol8_84();
     void endDiv();
+    void addEmptyTableRow(int cols);
     void startTableRow();
     void startTableRow(const wxString& color);
     void startAltTableRow();
