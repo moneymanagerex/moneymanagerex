@@ -939,16 +939,20 @@ void mmTransDialog::OnTransTypeChanged(wxCommandEvent& event)
     if (client_obj) m_trx_data.TRANSCODE = client_obj->GetData();
     if (old_type != m_trx_data.TRANSCODE)
     {
-        skip_payee_init_ = false;
         m_transfer = Model_Checking::is_transfer(m_trx_data.TRANSCODE);
+        if (m_transfer || Model_Checking::is_transfer(old_type))
+            skip_payee_init_ = false;
+        else
+            skip_payee_init_ = true;      
+        skip_account_init_ = true;
+        skip_tooltips_init_ = false;
+
         if (m_transfer) {
             m_trx_data.PAYEEID = -1;
         } else {
             m_trx_data.TOTRANSAMOUNT = m_trx_data.TRANSAMOUNT;
             m_trx_data.TOACCOUNTID = -1;
         }
-        skip_account_init_ = false;
-        skip_tooltips_init_ = false;
         dataToControls();
     }
 }
