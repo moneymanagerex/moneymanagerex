@@ -104,7 +104,7 @@ wxString mmReportSummaryStocks::getHTMLText()
                 {
                     hb.addTableHeaderCell(_("Name"));
                     hb.addTableHeaderCell(_("Symbol"));
-                    hb.addTableHeaderCell(_("*Purchase Date"));
+                    hb.addTableHeaderCell(_("Purchase Date"));
                     hb.addTableHeaderCell(_("Quantity"), true);
                     hb.addTableHeaderCell(_("Initial Value"), true);
                     hb.addTableHeaderCell(_("Current Price"), true);
@@ -157,46 +157,23 @@ wxString mmReportSummaryStocks::getHTMLText()
                         hb.addCurrencyCell(acct.total, currency);
                     }
                     hb.endTableRow();
+                    hb.addEmptyTableRow(9);
                 }
                 hb.endTbody();
             }
-        }
-        hb.endTable();
-    }
-    hb.endDiv();
-
-    hb.addDivContainer("shadow");
-    {
-        hb.addHeader(3, _("Grand Total:"));
-
-        hb.startTable();
-        {
-            hb.startThead();
-            {
-                hb.startTableRow();
-                {
-                    hb.addTableHeaderCell(_("Gain/Loss"), true);
-                    hb.addTableHeaderCell(_("Current Value"), true);
-                } hb.endTableRow();
-            }
-            hb.endThead();
 
             hb.startTfoot();
             {
-                hb.startTotalTableRow();
-                {
-                    hb.addCurrencyCell(m_gain_loss_sum_total);
-                    hb.addCurrencyCell(m_stock_balance);
-                }
-                hb.endTableRow();
-            hb.endTfoot();
+                const std::vector<wxString> v{ Model_Currency::toCurrency(m_gain_loss_sum_total),
+                                               Model_Currency::toCurrency(m_stock_balance) };
+                hb.addTotalRow(_("Grand Total:"), 9, v);
             }
-        hb.endTable();
+            hb.endTfoot();
         }
-        hb.endDiv();
+        hb.endTable();
     }
     hb.endDiv();
-   
+
     hb.end();
 
     return hb.getHTMLText();

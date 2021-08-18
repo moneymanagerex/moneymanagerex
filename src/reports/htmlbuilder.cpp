@@ -222,6 +222,14 @@ void mmHTMLBuilder::startTfoot()
     html_ += tags::TFOOT_START;
 }
 
+void mmHTMLBuilder::addEmptyTableRow(int cols)
+{
+    this->startTotalTableRow();
+    html_ += wxString::Format(tags::TABLE_CELL_SPAN, cols);
+    this->endTableCell();
+    this->endTableRow();
+}
+
 void mmHTMLBuilder::addTotalRow(const wxString& caption
     , int cols, double value)
 {
