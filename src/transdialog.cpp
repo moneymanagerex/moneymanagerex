@@ -288,6 +288,17 @@ void mmTransDialog::dataToControls()
         skip_account_init_ = true;
     }
 
+    if (m_transfer)
+    {
+        payee_label_->SetLabelText(_("To"));
+    } else if (!Model_Checking::is_deposit(m_trx_data.TRANSCODE))
+    {
+        payee_label_->SetLabelText(_("Payee"));
+    } else 
+    {
+        payee_label_->SetLabelText(_("From"));
+    }
+    
     if (!skip_payee_init_) //Payee or To Account
     {
         cbPayee_->SetEvtHandlerEnabled(false);
@@ -298,14 +309,6 @@ void mmTransDialog::dataToControls()
         wxString payee_tooltip = "";
         if (!m_transfer)
         {
-            if (!Model_Checking::is_deposit(m_trx_data.TRANSCODE))
-            {
-                payee_label_->SetLabelText(_("Payee"));
-            }
-            else {
-                payee_label_->SetLabelText(_("From"));
-            }
-
             account_label_->SetLabelText(_("Account"));
             if (!Model_Checking::foreignTransaction(m_trx_data))
             {
@@ -373,8 +376,6 @@ void mmTransDialog::dataToControls()
                 cbPayee_->ChangeValue(account->ACCOUNTNAME);
 
             cbPayee_->AutoComplete(account_names);
-
-            payee_label_->SetLabelText(_("To"));
             m_trx_data.PAYEEID = -1;
             account_label_->SetLabelText(_("From"));
         }
