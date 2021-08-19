@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-15 15:41+0300\n"
-"PO-Revision-Date: 2021-08-15 19:34\n"
+"PO-Revision-Date: 2021-08-19 16:40\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -1294,7 +1294,7 @@ msgstr[1] "%d Tage Verzögerung!"
 #, c-format
 msgid "%d day overdue!"
 msgid_plural "%d days overdue!"
-msgstr[0] "%d Tag überfällig"
+msgstr[0] "%d Tag/e überfällig!"
 msgstr[1] "%d Tage überfällig!"
 
 #: billsdepositspanel.cpp:648
