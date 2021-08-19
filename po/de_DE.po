@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-15 15:41+0300\n"
-"PO-Revision-Date: 2021-08-19 16:40\n"
+"PO-Revision-Date: 2021-08-19 16:56\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -1274,7 +1274,7 @@ msgstr "Automatisiert"
 #, c-format
 msgid "%d day remaining"
 msgid_plural "%d days remaining"
-msgstr[0] "%d Tag verbleiben"
+msgstr[0] "%d Tag(e) verbleiben"
 msgstr[1] "%d Tage verbleibend"
 
 #: billsdepositspanel.cpp:524 billsdepositspanel.cpp:531
@@ -4303,7 +4303,7 @@ msgstr "Kurse herunterladen..."
 
 #: mmframe.cpp:1497 mmframe.cpp:1747
 msgid "Download Currency and Stock rates"
-msgstr "Währungs- und Börsenkurse herunterladen"
+msgstr "Währungs- und Aktienkurse herunterladen"
 
 #: mmframe.cpp:1503
 msgid "Organize &Categories..."
