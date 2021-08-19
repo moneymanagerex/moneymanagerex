@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-15 15:41+0300\n"
-"PO-Revision-Date: 2021-08-17 08:58\n"
+"PO-Revision-Date: 2021-08-19 05:09\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -7337,7 +7337,7 @@ msgstr "Вэрсія"
 
 #: wizard_update.cpp:153
 msgid "You already have the latest version"
-msgstr "Вы карыстуецеся найсучаснай вэрсіяй"
+msgstr "Гэта найсучасная вэрсія"
 
 #: wizard_update.cpp:153
 msgid "A new version of MMEX is available!"
