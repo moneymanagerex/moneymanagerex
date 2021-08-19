@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-15 15:41+0300\n"
-"PO-Revision-Date: 2021-08-19 05:09\n"
+"PO-Revision-Date: 2021-08-19 08:15\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -2489,7 +2489,7 @@ msgstr "Колер не пазначаны"
 
 #: general_report_manager.cpp:247 general_report_manager.cpp:663
 msgid "General Reports Manager"
-msgstr "Мэнаджар справаздачаў"
+msgstr "Дыспетчар справаздачаў"
 
 #: general_report_manager.cpp:290 mmframe.cpp:800 mmframe.cpp:2598
 #: reports/myusage.cpp:141 reports/myusage.cpp:162
@@ -2621,7 +2621,7 @@ msgstr "Пакажыце назву справаздачы"
 #: general_report_manager.cpp:832 general_report_manager.cpp:980
 #: mmframe.cpp:1277 mmframe.cpp:1558 mmframe.cpp:1730
 msgid "General Report Manager"
-msgstr "Мэнаджар справаздачаў"
+msgstr "Дыспетчар справаздачы"
 
 #: general_report_manager.cpp:850
 msgid "Delete the Report Title:"
@@ -4404,7 +4404,7 @@ msgstr "Справаздача па крытэрыях"
 
 #: mmframe.cpp:1558
 msgid "General Report &Manager..."
-msgstr "Мэнаджар &справаздачаў..."
+msgstr "Дыспетчар &справаздачаў..."
 
 #: mmframe.cpp:1562
 msgid "C&ustom Fields Manager..."
