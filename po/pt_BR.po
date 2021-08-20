@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-20 10:54+0300\n"
-"PO-Revision-Date: 2021-08-20 14:39\n"
+"PO-Revision-Date: 2021-08-20 18:49\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "MIME-Version: 1.0\n"
@@ -846,7 +846,7 @@ msgstr "Atrasar ou adiantar a data da 'próxima ocorrência'"
 
 #: billsdepositsdialog.cpp:438 billsdepositspanel.cpp:128
 msgid "Date Due"
-msgstr "Data de Vencimento"
+msgstr "Vencimento"
 
 #: billsdepositsdialog.cpp:442 billsdepositsdialog.cpp:1274
 msgid "Repeats"
@@ -6951,7 +6951,7 @@ msgstr "Erro de análise JSON"
 
 #: util.cpp:881 util.cpp:940
 msgid "Expected response to contain a data or error string"
-msgstr ""
+msgstr "A resposta esperada contém um dado ou erro de string"
 
 #: util.cpp:912
 msgid "Could not find asset for symbol"
