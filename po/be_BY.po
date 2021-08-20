@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-20 10:54+0300\n"
-"PO-Revision-Date: 2021-08-20 08:06\n"
+"PO-Revision-Date: 2021-08-20 16:42\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -425,11 +425,11 @@ msgstr "Напішыце нататкі да маёмасці"
 
 #: assetdialog.cpp:268
 msgid "New Transaction Details"
-msgstr "Дэталі новай аперацыі"
+msgstr "Дыталі новай аперацыі"
 
 #: assetdialog.cpp:271 sharetransactiondialog.cpp:296
 msgid "Edit Transaction Details"
-msgstr "Рыдагаваць дэталі аперацыі"
+msgstr "Рыдагаваць дыталі аперацыі"
 
 #: assetdialog.cpp:306 constants.cpp:73 sharetransactiondialog.cpp:326
 msgid "&Cancel "
@@ -836,7 +836,7 @@ msgstr "Увядзіце аперацыю, што паўтараецца"
 
 #: billsdepositsdialog.cpp:410
 msgid "Recurring Transaction Details"
-msgstr "Дэталі аперацыі, што паўтараецца"
+msgstr "Дыталі аперацыі, што паўтараецца"
 
 #: billsdepositsdialog.cpp:422
 msgid "Specify the date when this bill or deposit is due"
@@ -884,7 +884,7 @@ msgstr "Аўтавыкананне будзе адбывацца без удзе
 
 #: billsdepositsdialog.cpp:502 transdialog.cpp:437
 msgid "Transaction Details"
-msgstr "Дэталі аперацыі"
+msgstr "Дыталі аперацыі"
 
 #: billsdepositsdialog.cpp:512
 msgid "Specify the date the user is requested to enter this transaction"
@@ -6273,7 +6273,7 @@ msgstr "Зводка па інвестыцыях"
 
 #: reports/summarystocks.cpp:107
 msgid "Purchase Date"
-msgstr ""
+msgstr "Дата набыцця"
 
 #: reports/summarystocks.cpp:108
 msgid "Quantity"
@@ -6854,7 +6854,7 @@ msgstr "Пакажыце чалавека, кампанію ці арганіз�
 
 #: usertransactionpanel.cpp:200
 msgid "Specify a transaction code or associated check details"
-msgstr "Пакажыце код аперацыі або звязаныя з ёй дэталі чэка"
+msgstr "Пакажыце код аперацыі або звязаныя з ёй дыталі чэка"
 
 #: usertransactionpanel.cpp:291
 msgid "Select the required account"
