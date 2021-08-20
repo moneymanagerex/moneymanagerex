@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-20 10:54+0300\n"
-"PO-Revision-Date: 2021-08-20 08:53\n"
+"PO-Revision-Date: 2021-08-20 13:33\n"
 "Last-Translator: \n"
 "Language-Team: Italian\n"
 "MIME-Version: 1.0\n"
@@ -6246,7 +6246,7 @@ msgstr "Saldo dei Titoli"
 
 #: reports/summarystocks.cpp:107
 msgid "Purchase Date"
-msgstr "Data di Acquisto"
+msgstr "Data d'Acquisto"
 
 #: reports/summarystocks.cpp:108
 msgid "Quantity"
