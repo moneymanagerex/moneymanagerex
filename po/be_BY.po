@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-20 10:54+0300\n"
-"PO-Revision-Date: 2021-08-20 16:42\n"
+"PO-Revision-Date: 2021-08-20 16:53\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -751,7 +751,7 @@ msgstr "Далучэнне не адчыніць"
 #: model/Model_Checking.cpp:36 optionsettingsmisc.cpp:96
 #: reports/reportbase.cpp:189
 msgid "None"
-msgstr "Ня вызначаны"
+msgstr "Ня вызначаная"
 
 #: billsdepositsdialog.cpp:52 billsdepositspanel.cpp:49
 #: model/Model_Budget.cpp:56
@@ -2314,12 +2314,12 @@ msgstr "Распрацоўшчыкі могуць папрасіць вас да
 #: filtertransdialog.cpp:45 mmhomepage.cpp:656 model/Model_Billsdeposits.cpp:40
 #: model/Model_Checking.cpp:37
 msgid "Reconciled"
-msgstr "Узгодненыя"
+msgstr "Узгодненая"
 
 #: filtertransdialog.cpp:46 model/Model_Billsdeposits.cpp:41
 #: model/Model_Checking.cpp:38
 msgid "Void"
-msgstr "Скасаваныя"
+msgstr "Скасаваная"
 
 #: filtertransdialog.cpp:47 model/Model_Billsdeposits.cpp:42
 #: model/Model_Checking.cpp:39
@@ -7007,7 +7007,7 @@ msgstr "Вэрсія: %s"
 
 #: util.cpp:1207
 msgid "Build on"
-msgstr "Створаная"
+msgstr "Створаны"
 
 #: util.cpp:1208
 msgid "Database version: "
@@ -7027,11 +7027,11 @@ msgstr "MMEX выкарыстоўвае наступныя прадукты:"
 
 #: util.cpp:1241
 msgid "Build using:"
-msgstr "Ствована з дапамогай:"
+msgstr "Створаны з дапамогай:"
 
 #: util.cpp:1262
 msgid "Running on:"
-msgstr "Запушчана на:"
+msgstr "Працуе на:"
 
 #: util.h:155
 msgid "January"
