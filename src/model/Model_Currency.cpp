@@ -229,15 +229,15 @@ const wxString Model_Currency::toString(double value, const Data* currency, int 
     if (defaultLocaleSupport == "Y")
     {
         s = fmt::format((use_locale == "Y" ? std::locale(locale.c_str()) : std::locale("en_US"))
-            , "{:L}", static_cast<int>(fabs(v) + 5 / (pow(10, precision + 1))));
+            , "{:L}", static_cast<long>(fabs(v) + 5 / (pow(10, precision + 1))));
     }
     else {
         //In case if no en_US supported don't use any one
-        s = fmt::format("{:d}", static_cast<int>(fabs(v) + 5 / (pow(10, precision + 1))));
+        s = fmt::format("{:d}", static_cast<long>(fabs(v) + 5 / (pow(10, precision + 1))));
     }
 
     if (precision > 0)
-        s += decimal + wxString(fmt::format("{:.{}f}", fabs(v) - static_cast<int>(fabs(v)), precision)).Mid(2);
+        s += decimal + wxString(fmt::format("{:.{}f}", fabs(v) - static_cast<long>(fabs(v)), precision)).Mid(2);
 
     if (v < 0.0) { s.Prepend("-"); }
 
