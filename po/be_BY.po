@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-22 15:52+0300\n"
-"PO-Revision-Date: 2021-08-22 12:55\n"
+"PO-Revision-Date: 2021-08-22 18:29\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -828,15 +828,15 @@ msgstr "Штомесяца (апошні працоўны дзень)"
 
 #: billsdepositsdialog.cpp:308 billsdepositspanel.cpp:288
 msgid "Edit Recurring Transaction"
-msgstr "Рэдактар запланаванай аперацыі"
+msgstr "Рыдактар запланаванай аперацыі"
 
 #: billsdepositsdialog.cpp:312
 msgid "Enter Recurring Transaction"
-msgstr "Увядзіце аперацыю, што паўтараецца"
+msgstr "Увядзіце запланаваную аперацыю"
 
 #: billsdepositsdialog.cpp:410
 msgid "Recurring Transaction Details"
-msgstr "Дыталі аперацыі, што паўтараецца"
+msgstr "Дыталі запланаванай аперацыі"
 
 #: billsdepositsdialog.cpp:422
 msgid "Specify the date when this bill or deposit is due"
@@ -960,7 +960,7 @@ msgstr "Абраць рахунак"
 
 #: billsdepositsdialog.cpp:587
 msgid "Specify the Account that will own the recurring transaction"
-msgstr "Пакажыце рахунак для гэтай аперацыі, што паўтараецца"
+msgstr "Пакажыце рахунак для гэтай запланаванай аперацыі"
 
 #: billsdepositsdialog.cpp:590 billsdepositsdialog.cpp:844
 #: billsdepositspanel.cpp:130 filtertransdialog.cpp:248
@@ -1020,7 +1020,7 @@ msgstr "Нумар"
 
 #: billsdepositsdialog.cpp:631
 msgid "Organize attachments of this recurring transaction"
-msgstr "Мэнаджар далучэнняў аперацыі, што паўтараецца"
+msgstr "Дыстпетчар далучэнняў запланаванай аперацыі"
 
 #: billsdepositsdialog.cpp:634 transdialog.cpp:576
 msgid "User Colors"
@@ -1222,7 +1222,7 @@ msgstr "Фільтр аперацыяў"
 
 #: billsdepositspanel.cpp:293
 msgid "Delete Recurring Transaction"
-msgstr "Выдаліць аперацыю, што паўтараецца"
+msgstr "Выдаліць запланаваную аперацыю"
 
 #: billsdepositspanel.cpp:297
 msgid "Ente&r"
@@ -1230,7 +1230,7 @@ msgstr "Уво&д"
 
 #: billsdepositspanel.cpp:298
 msgid "Enter Next Recurring Transaction Occurrence"
-msgstr "Увесці наступную аперацыю, што паўтараецца"
+msgstr "Увесці наступную запланаваную аперацыю"
 
 #: billsdepositspanel.cpp:302
 msgid "&Skip"
@@ -1238,7 +1238,7 @@ msgstr "Прапус&ціць"
 
 #: billsdepositspanel.cpp:303
 msgid "Skip Next Recurring Transaction Occurrence"
-msgstr "Прапусціць наступнае з'яўленне аперацыі, што паўтараецца"
+msgstr "Прапусціць наступнае з'яўленне запланаванай аперацыі"
 
 #: billsdepositspanel.cpp:412
 msgid "Enter next Occurrence..."
@@ -1250,15 +1250,15 @@ msgstr "Прапусціць наступнае налічэнне"
 
 #: billsdepositspanel.cpp:416
 msgid "&New Recurring Transaction..."
-msgstr "&Новая аперацыя, што паўтараецца..."
+msgstr "&Новая запланаваная аперацыя..."
 
 #: billsdepositspanel.cpp:417
 msgid "&Edit Recurring Transaction..."
-msgstr "&Рыдагаваць аперацыю, што паўтараецца..."
+msgstr "&Рыдагаваць запланаваную аперацыю..."
 
 #: billsdepositspanel.cpp:418
 msgid "&Delete Recurring Transaction..."
-msgstr "&Выдаліць аперацыю, што паўтараецца..."
+msgstr "&Выдаліць запланаваную аперацыю..."
 
 #: billsdepositspanel.cpp:465
 msgid "Manual"
@@ -1307,7 +1307,7 @@ msgstr[3] "%d дзень пратырміноўкі!"
 
 #: billsdepositspanel.cpp:648
 msgid "Do you really want to delete the recurring transaction?"
-msgstr "Вы сапраўды жадаеце выдаліць аперацыю, што паўтараецца?"
+msgstr "Вы сапраўды жадаеце выдаліць запланаваную аперацыю?"
 
 #: billsdepositspanel.cpp:649
 msgid "Confirm Deletion"
@@ -2532,7 +2532,7 @@ msgstr "Выканаць абраную справаздачу."
 
 #: general_report_manager.cpp:408
 msgid "Output"
-msgstr "Вывад"
+msgstr "Вынік"
 
 #: general_report_manager.cpp:431
 msgid "SQL"
@@ -2612,7 +2612,7 @@ msgstr "Перайменаваць справаздачу"
 
 #: general_report_manager.cpp:736
 msgid "Delete Report"
-msgstr "Выдліць справаздачу"
+msgstr "Выдаліць справаздачу"
 
 #: general_report_manager.cpp:831 general_report_manager.cpp:979
 msgid "Enter the name for the report"
@@ -3647,7 +3647,7 @@ msgstr "Парада: Калі вядзеце рахункі ў розных в�
 
 #: mmTips.h:34
 msgid "Organize Categories Dialog Tip: Pressing the h key will cycle through all categories starting with the letter h"
-msgstr "Парада: У мэнаджары катыгорыяў, націскаючы паслядоўна клавішу, адпаведную першай літары назвы, курсор будзе пераключацца паміж адпаведнымі катыгорыямі"
+msgstr "Парада: У дыстпетчары катыгорыяў, націскаючы паслядоўна клавішу, адпаведную першай літары назвы, курсор будзе пераключацца паміж адпаведнымі катыгорыямі"
 
 #: mmTips.h:35
 msgid "Organize Categories Dialog Tip: Pressing 2 key combination will cycle through all categories starting with that key combination. Example: Pressing ho will select Homeneeds, Home, House Tax, etc..."
@@ -3887,7 +3887,7 @@ msgstr "Абраць рахунак прызначэння "
 
 #: mmchecking_list.cpp:1221
 msgid "Recurring Transaction saved."
-msgstr "Захаваная аперацыя, што паўтараецца."
+msgstr "Запланаваная аперацыя была захаваная."
 
 #: mmcheckingpanel.cpp:333 mmframe.cpp:1722 transdialog.cpp:180
 msgid "New Transaction"
@@ -4388,11 +4388,11 @@ msgstr "&Актывы"
 
 #: mmframe.cpp:1546
 msgid "T&heme Manager"
-msgstr "Мэнаджар Т&эмаў"
+msgstr "Дыстпетчар Т&эмаў"
 
 #: mmframe.cpp:1546 mmframe.cpp:2490 optionsettingsview.cpp:297 themes.cpp:137
 msgid "Theme Manager"
-msgstr "Мэнаджар Тэмаў"
+msgstr "Дыстпетчар Тэмаў"
 
 #: mmframe.cpp:1552
 msgid "Transaction Report &Filter..."
@@ -4404,15 +4404,15 @@ msgstr "Справаздача па крытэрыях"
 
 #: mmframe.cpp:1558
 msgid "General Report &Manager..."
-msgstr "Дыспетчар &справаздачаў..."
+msgstr "Дыспетчар &справаздачы..."
 
 #: mmframe.cpp:1562
 msgid "C&ustom Fields Manager..."
-msgstr "Мэнаджар карыстальніцкіх &палёў..."
+msgstr "Дыстпетчар карыстальніцкіх &палёў..."
 
 #: mmframe.cpp:1562
 msgid "Custom Fields Manager"
-msgstr "Мэнаджар карыстальніцкіх палёў"
+msgstr "Дыстпетчар карыстальніцкіх палёў"
 
 #: mmframe.cpp:1568
 msgid "Refresh &WebApp"
@@ -4971,7 +4971,7 @@ msgstr "Мова прыкладання змененая. Гэтае змяне�
 
 #: mmframereport.cpp:78
 msgid "General Group Report"
-msgstr "Мэнаджар справаздачаў"
+msgstr "Дыстпетчар справаздачаў"
 
 #: mmframereport.cpp:105 mmhomepage.cpp:808 model/Model_Report.cpp:403
 #: reports/bugreport.h:110
@@ -5242,29 +5242,29 @@ msgstr "Iншае"
 
 #: model/Model_Attachment.cpp:24
 msgid "Transaction"
-msgstr ""
+msgstr "Аперацыя"
 
 #: model/Model_Attachment.cpp:25
 msgid "Stock"
-msgstr ""
+msgstr "Акцыя"
 
 #: model/Model_Attachment.cpp:27
 msgid "BankAccount"
-msgstr ""
+msgstr "БанкаўскіРахунак"
 
 #: model/Model_Attachment.cpp:28
 msgid "RecurringTransaction"
-msgstr ""
+msgstr "ЗапланаванаяАперацыя"
 
 #: model/Model_Billsdeposits.cpp:301
 msgid "A recurring transaction will exceed your account limit.\n\n"
 "Do you wish to continue?"
-msgstr "Аперацыя, што паўтараецца, перавысіць ліміт рахунка.\n\n"
+msgstr "Запланаваная аперацыя перавысіць ліміт рахунка.\n\n"
 "Вы жадаеце працягнуць?"
 
 #: model/Model_Billsdeposits.cpp:303
 msgid "MMEX Recurring Transaction Check"
-msgstr "Правекрка запланаванай аперацыі"
+msgstr "Пераверка запланаванай аперацыі"
 
 #: model/Model_CustomField.cpp:25
 msgid "String"
@@ -5503,11 +5503,11 @@ msgstr "Усталяваць валюту"
 
 #: optionsettingsgeneral.cpp:130
 msgid "Sets the database default Currency using the 'Currency Dialog'"
-msgstr "Усталёўвае асноўную валюту з дапамогай 'Мэнаджара валютаў'"
+msgstr "Усталёўвае асноўную валюту з дапамогай 'Дыстпетчары валютаў'"
 
 #: optionsettingsgeneral.cpp:133
 msgid "Right click and select 'Set as Base Currency' in 'Currency Dialog'"
-msgstr "Пстрыкніце правай кнопкай мышы і абярыце 'Усталяваць у якасці асноўнай валюты' ў 'мэнаджары валютаў"
+msgstr "Пстрыкніце правай кнопкай мышы і абярыце 'Усталяваць у якасці асноўнай валюты' ў 'Дыстпетчары валютаў'"
 
 #: optionsettingsgeneral.cpp:158
 msgid "Format derived from locale.\n"
@@ -5549,15 +5549,15 @@ msgstr "Пакінуць зыходную дату падчас капіяван
 
 #: optionsettingsgeneral.cpp:210
 msgid "Select whether to use the original transaction date or current date when copying/pasting transactions"
-msgstr "Выкарыстоўваць першапачатковую або бягучую дату аперацыі пры капіяваньні або ўстаўцы"
+msgstr "Выкарыстоўваць зыходную або бягучую дату аперацыі падчас капіявання або ўстаўкі"
 
 #: optionsettingsgeneral.cpp:213
 msgid "Use Original Date when Duplicating Transactions"
-msgstr ""
+msgstr "Пакінуць зыходную дату падчас дублявання"
 
 #: optionsettingsgeneral.cpp:215
 msgid "Select whether to use the original transaction date or current date when duplicating transactions"
-msgstr ""
+msgstr "Выкарыстоўваць зыходную або бягучую дату аперацыі падчас дублявання"
 
 #: optionsettingsgeneral.cpp:218
 msgid "Use Transaction Sound"
@@ -5818,7 +5818,7 @@ msgstr "Вонкавы выгляд"
 
 #: optionsettingsview.cpp:202
 msgid "Open Theme Manager"
-msgstr "Адчыніць Мэнаджар Тэмаў"
+msgstr "Адчыніць Дыстпетчар Тэмаў"
 
 #: optionsettingsview.cpp:204
 msgid "Style Template"
@@ -5961,12 +5961,12 @@ msgstr "У састаўных аперацыях знойдзена запіса
 #: relocatecategorydialog.cpp:271 relocatepayeedialog.cpp:233
 #, c-format
 msgid "Records found in recurring transactions: %i"
-msgstr "У аперацыях, што паўтараюцца, знойдзена запісаў: %i"
+msgstr "У запланаваных аперацыях знойдзена запісаў: %i"
 
 #: relocatecategorydialog.cpp:272
 #, c-format
 msgid "Records found in recurring split transactions: %i"
-msgstr "У састаўных аперацыях, што паўтараюцца, знойдзена запісаў: %i"
+msgstr "У састаўных запланаваных аперацыях знойдзена запісаў: %i"
 
 #: relocatecategorydialog.cpp:273
 #, c-format
@@ -6813,7 +6813,7 @@ msgstr "Запоўніць нумар аперацыі"
 
 #: transdialog.cpp:571 usertransactionpanel.cpp:210
 msgid "Organize attachments of this transaction"
-msgstr "Мэнаджар далучэнняў гэтай аперацыі"
+msgstr "Дыстпетчар далучэнняў гэтай аперацыі"
 
 #: transdialog.cpp:610
 msgid "Show/Hide custom fields window"
