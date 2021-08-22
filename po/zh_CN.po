@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-20 10:54+0300\n"
-"PO-Revision-Date: 2021-08-22 01:29\n"
+"PO-Revision-Date: 2021-08-22 01:45\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
@@ -1055,7 +1055,7 @@ msgstr "选择存入账户"
 
 #: billsdepositsdialog.cpp:933
 msgid "The payment date is after the due date, is this what you intended?"
-msgstr ""
+msgstr "付款日期在到期日之后，这是您想要的吗？"
 
 #: billsdepositsdialog.cpp:934
 msgid "Looks like a late payment"
