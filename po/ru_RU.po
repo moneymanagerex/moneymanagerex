@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-22 15:52+0300\n"
-"PO-Revision-Date: 2021-08-22 12:55\n"
+"PO-Revision-Date: 2021-08-22 13:06\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -5242,19 +5242,19 @@ msgstr "Прочий"
 
 #: model/Model_Attachment.cpp:24
 msgid "Transaction"
-msgstr ""
+msgstr "Транзакция"
 
 #: model/Model_Attachment.cpp:25
 msgid "Stock"
-msgstr ""
+msgstr "Акции"
 
 #: model/Model_Attachment.cpp:27
 msgid "BankAccount"
-msgstr ""
+msgstr "Счёт"
 
 #: model/Model_Attachment.cpp:28
 msgid "RecurringTransaction"
-msgstr ""
+msgstr "Повторяющаяся транзакция"
 
 #: model/Model_Billsdeposits.cpp:301
 msgid "A recurring transaction will exceed your account limit.\n\n"
@@ -5553,11 +5553,11 @@ msgstr "Отметьте, использовать ли первоначальн
 
 #: optionsettingsgeneral.cpp:213
 msgid "Use Original Date when Duplicating Transactions"
-msgstr ""
+msgstr "Использовать исходную дату при дублировании транзакций"
 
 #: optionsettingsgeneral.cpp:215
 msgid "Select whether to use the original transaction date or current date when duplicating transactions"
-msgstr ""
+msgstr "Выберите, использовать ли первоначальную дату транзакции или текущую дату при дублировании транзакций"
 
 #: optionsettingsgeneral.cpp:218
 msgid "Use Transaction Sound"
@@ -6298,7 +6298,7 @@ msgstr "Сводка по инвестициям"
 
 #: reports/summarystocks.cpp:107
 msgid "Purchase Date"
-msgstr ""
+msgstr "Дата покупки"
 
 #: reports/summarystocks.cpp:108
 msgid "Quantity"
