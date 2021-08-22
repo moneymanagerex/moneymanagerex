@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-20 10:54+0300\n"
-"PO-Revision-Date: 2021-08-22 03:36\n"
+"PO-Revision-Date: 2021-08-22 03:45\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
@@ -2424,16 +2424,16 @@ msgstr "清除当前预设选择的所有字段"
 
 #: filtertransdialog.cpp:716 filtertransdialog.cpp:1421
 msgid "Please Enter"
-msgstr ""
+msgstr "请输入"
 
 #: filtertransdialog.cpp:716 filtertransdialog.cpp:1421
 msgid "Setting Name"
-msgstr ""
+msgstr "设置名称"
 
 #: filtertransdialog.cpp:720 filtertransdialog.cpp:1417
 #: filtertransdialog.cpp:1425
 msgid "Could not save settings"
-msgstr ""
+msgstr "无法保存设置"
 
 #: filtertransdialog.cpp:720 filtertransdialog.cpp:937
 #: filtertransdialog.cpp:953 filtertransdialog.cpp:1417
@@ -2448,7 +2448,7 @@ msgstr "过滤细节"
 
 #: filtertransdialog.cpp:975
 msgid "Label"
-msgstr ""
+msgstr "标签"
 
 #: filtertransdialog.cpp:993
 msgid "Since"
@@ -2473,7 +2473,7 @@ msgstr "选择账户"
 
 #: filtertransdialog.cpp:1496
 msgid "Not colored"
-msgstr ""
+msgstr "没有颜色"
 
 #: general_report_manager.cpp:247 general_report_manager.cpp:663
 msgid "General Reports Manager"
@@ -2524,7 +2524,7 @@ msgstr "输出"
 
 #: general_report_manager.cpp:431
 msgid "SQL"
-msgstr ""
+msgstr "SQL"
 
 #: general_report_manager.cpp:432
 msgid "Lua"
@@ -2546,7 +2546,7 @@ msgstr "创建模板"
 #, c-format
 msgid "%zu row returned, duration: %lld ms"
 msgid_plural "%zu rows returned, duration: %lld ms"
-msgstr[0] ""
+msgstr[0] "返回 %zu 行，持续时间： %lld 毫秒"
 
 #: general_report_manager.cpp:566
 msgid "SQL Syntax Error"
@@ -2647,12 +2647,12 @@ msgstr "选择要保存报表的文件"
 
 #: general_report_manager.cpp:1203
 msgid "Parameters:"
-msgstr ""
+msgstr "参数："
 
 #: images_list.cpp:336
 #, c-format
 msgid "Metadata JSON in Theme '%s' cannot be parsed and looks badly constructed, please correct."
-msgstr ""
+msgstr "无法解析主题中的%s中的 Metadata JSON 并看起来构造不当，请纠正。"
 
 #: images_list.cpp:337 images_list.cpp:419 images_list.cpp:430
 #: images_list.cpp:465 images_list.cpp:490 images_list.cpp:496
@@ -2663,12 +2663,12 @@ msgstr "警告"
 #: images_list.cpp:418
 #, c-format
 msgid "File '%s' missing or invalid in chosen theme '%s'"
-msgstr ""
+msgstr "文件 %s 缺失或在选定主题中无效 '%s'"
 
 #: images_list.cpp:429
 #, c-format
 msgid "Metadata '%s' missing in chosen theme '%s'"
-msgstr ""
+msgstr "所选主题 '%s' 中缺少元数据 '%s'"
 
 #: images_list.cpp:462
 msgid "and more..."
@@ -2677,17 +2677,17 @@ msgstr "及更多..."
 #: images_list.cpp:464
 #, c-format
 msgid "There are %d missing or invalid icons in chosen theme '%s': %s"
-msgstr ""
+msgstr "所选主题 %s 中有 '%d' 个缺失或无效的图标： %s"
 
 #: images_list.cpp:489
 #, c-format
 msgid "Theme %s not found, it may no longer be supported. Reverting to default theme"
-msgstr ""
+msgstr "找不到主题 %s ，可能不再支持。还原为默认主题。"
 
 #: images_list.cpp:496
 #, c-format
 msgid "Theme %s has missing items and is incompatible. Reverting to default theme"
-msgstr ""
+msgstr "主题 %s 缺少条目且不兼容。恢复到默认主题"
 
 #: import_export/parsers.cpp:46 import_export/univcsvdialog.cpp:1579
 #: mmSimpleDialogs.cpp:253
@@ -2830,7 +2830,7 @@ msgstr "没有选择要导出的账户"
 
 #: import_export/qif_export.cpp:338
 msgid "To Date less than From Date"
-msgstr ""
+msgstr "截止日期小于日期"
 
 #: import_export/qif_export.cpp:441
 msgid "Categories exported"
@@ -2848,22 +2848,22 @@ msgstr "正在导出"
 #: import_export/qif_export.cpp:487
 #, c-format
 msgid "Exporting transaction %zu"
-msgstr ""
+msgstr "正在导出交易 %zu"
 
 #: import_export/qif_export.cpp:637
 #, c-format
 msgid "Number of categories exported: %zu"
-msgstr ""
+msgstr "导出的类别数量： %zu"
 
 #: import_export/qif_export.cpp:639
 #, c-format
 msgid "Number of transactions exported: %zu"
-msgstr ""
+msgstr "导出的交易数量： %zu"
 
 #: import_export/qif_export.cpp:641
 #, c-format
 msgid "Number of accounts exported: %zu"
-msgstr ""
+msgstr "导出的账户数量： %zu"
 
 #: import_export/qif_export.cpp:642 mmframe.cpp:1382
 msgid "Export to QIF"
@@ -2891,7 +2891,7 @@ msgstr "使用账号代替账号名称"
 
 #: import_export/qif_import_gui.cpp:268
 msgid "Include payee field in notes"
-msgstr ""
+msgstr "在备注中包含收款人字段"
 
 #: import_export/qif_import_gui.cpp:347 import_export/qif_import_gui.cpp:350
 #: import_export/qif_import_gui.cpp:549 import_export/qif_import_gui.cpp:1122
@@ -2910,7 +2910,7 @@ msgstr "扫描中"
 #: import_export/qif_import_gui.cpp:384
 #, c-format
 msgid "Reading line %zu, %lld ms"
-msgstr ""
+msgstr "读取行 %zu， %lld 毫秒"
 
 #: import_export/qif_import_gui.cpp:390
 #, c-format
@@ -2920,7 +2920,7 @@ msgstr "行 %zu \t %s\n"
 #: import_export/qif_import_gui.cpp:463
 #, c-format
 msgid "Number of lines read from QIF file: %zu in %lld ms"
-msgstr ""
+msgstr "从 QIF 文件读取的行数：%zu in %lld ms"
 
 #: import_export/qif_import_gui.cpp:466
 msgid "Press OK Button to continue"
@@ -2979,20 +2979,20 @@ msgstr "正在导入交易"
 
 #: import_export/qif_import_gui.cpp:894
 msgid "Importing Split transactions"
-msgstr ""
+msgstr "导入拆分交易"
 
 #: import_export/qif_import_gui.cpp:898
 msgid "Import finished successfully"
-msgstr ""
+msgstr "导入成功完成"
 
 #: import_export/qif_import_gui.cpp:898
 #, c-format
 msgid "Total Imported: %zu"
-msgstr ""
+msgstr "总导入： %zu"
 
 #: import_export/qif_import_gui.cpp:906 import_export/univcsvdialog.cpp:1088
 msgid "Imported transactions discarded by user!"
-msgstr ""
+msgstr "导入的交易被用户丢弃！"
 
 #: import_export/qif_import_gui.cpp:908 import_export/qif_import_gui.h:44
 msgid "QIF Import"
@@ -3119,7 +3119,7 @@ msgstr "预览"
 
 #: import_export/univcsvdialog.cpp:437
 msgid "Choose XML data file to Import"
-msgstr ""
+msgstr "选择要导入的 XML 数据文件"
 
 #: import_export/univcsvdialog.cpp:437
 msgid "Choose CSV data file to Import"
@@ -3127,7 +3127,7 @@ msgstr "选择要导入的 CSV 数据文件"
 
 #: import_export/univcsvdialog.cpp:438
 msgid "Choose XML data file to Export"
-msgstr ""
+msgstr "选择要导出的 XML 数据文件"
 
 #: import_export/univcsvdialog.cpp:438
 msgid "Choose CSV data file to Export"
@@ -3180,7 +3180,7 @@ msgstr "账户不存在"
 #: import_export/univcsvdialog.cpp:1841
 #, c-format
 msgid "Positive if type has '%s'"
-msgstr ""
+msgstr "如果类型有 '%s ' 则为正数"
 
 #: import_export/univcsvdialog.cpp:925
 msgid "Incorrect fields specified for import!"
@@ -3207,12 +3207,12 @@ msgstr "导入交易到账户 %s : %ld"
 #: import_export/univcsvdialog.cpp:991
 #, c-format
 msgid "Line %ld: Empty"
-msgstr ""
+msgstr "行 %ld：为空"
 
 #: import_export/univcsvdialog.cpp:1005
 #, c-format
 msgid "Line %ld: Error:"
-msgstr ""
+msgstr "行 %ld：错误"
 
 #: import_export/univcsvdialog.cpp:1007
 msgid "Invalid Date."
@@ -3229,7 +3229,7 @@ msgstr "类型(支出/存款) 未知。"
 #: import_export/univcsvdialog.cpp:1035
 #, c-format
 msgid "Line %ld: OK, imported."
-msgstr ""
+msgstr "行 %ld：正常，已导入。"
 
 #: import_export/univcsvdialog.cpp:1042
 #, c-format
@@ -3239,22 +3239,22 @@ msgstr "总行数： %ld"
 #: import_export/univcsvdialog.cpp:1044
 #, c-format
 msgid "Lines Selected to Import: %ld"
-msgstr ""
+msgstr "选择导入的行：%ld"
 
 #: import_export/univcsvdialog.cpp:1046
 #, c-format
 msgid "Empty Lines: %ld"
-msgstr ""
+msgstr "空行： %ld"
 
 #: import_export/univcsvdialog.cpp:1048
 #, c-format
 msgid "Imported: %ld"
-msgstr ""
+msgstr "已导入： %ld"
 
 #: import_export/univcsvdialog.cpp:1050
 #, c-format
 msgid "Errored: %ld"
-msgstr ""
+msgstr "已错误： %ld"
 
 #: import_export/univcsvdialog.cpp:1053
 #, c-format
@@ -6243,15 +6243,15 @@ msgstr "库存性能图表"
 
 #: reports/transactions.cpp:191
 msgid "All Transactions: Withdrawals, Deposits, and Transfers"
-msgstr ""
+msgstr "所有交易：提款、存款和转让"
 
 #: reports/transactions.cpp:225
 msgid "All Transactions excluding Transfers"
-msgstr ""
+msgstr "不包括转移的所有交易"
 
 #: sharetransactiondialog.cpp:72 sharetransactiondialog.cpp:91
 msgid "Add Share Transaction"
-msgstr ""
+msgstr "添加共享交易"
 
 #: sharetransactiondialog.cpp:197 stockdialog.cpp:181
 msgid "Stock Investment Details"
@@ -6287,7 +6287,7 @@ msgstr "股价"
 
 #: sharetransactiondialog.cpp:243
 msgid "Enter the current value for a single share unit"
-msgstr ""
+msgstr "输入一个共享单位的当前值"
 
 #: sharetransactiondialog.cpp:254
 msgid "Enter any commission paid"
@@ -6299,7 +6299,7 @@ msgstr "股票批号"
 
 #: sharetransactiondialog.cpp:267
 msgid "Enter the LOT that this parcel os shares belong to"
-msgstr ""
+msgstr "输入这批股票所属的手数到"
 
 #: sharetransactiondialog.cpp:274 stockdialog.cpp:268
 msgid "Organize attachments of this stock"
@@ -6307,7 +6307,7 @@ msgstr "管理此股票的附件"
 
 #: sharetransactiondialog.cpp:279 stockdialog.cpp:270
 msgid "Display the web page for the specified Stock symbol"
-msgstr ""
+msgstr "显示指定股票代码的网页"
 
 #: sharetransactiondialog.cpp:289 stockdialog.cpp:277
 msgid "Enter notes associated with this investment"
@@ -6315,7 +6315,7 @@ msgstr "输入投资相关的备注"
 
 #: sharetransactiondialog.cpp:294
 msgid "Add Transaction Details"
-msgstr ""
+msgstr "添加交易详细信息"
 
 #: sharetransactiondialog.h:43
 msgid "Edit Share Transaction"
@@ -6339,7 +6339,7 @@ msgstr "多笔交易详情"
 
 #: splittransactionsdialog.cpp:209
 msgid "Invalid Total Amount"
-msgstr ""
+msgstr "总金额无效"
 
 #: stockdialog.cpp:137 stockdialog.cpp:508 stockspanel.cpp:144
 msgid "Edit Stock Investment"
@@ -6356,7 +6356,8 @@ msgstr "*日期"
 #: stockdialog.cpp:214
 msgid "Specify the initial date of the stock investment\n"
 "Used when creating the initial Share transaction."
-msgstr ""
+msgstr "指定股票投资的初始日期\n"
+"用于创建初始股份交易。"
 
 #: stockdialog.cpp:218
 msgid "*Share Number"
@@ -6365,7 +6366,8 @@ msgstr "*持股数量"
 #: stockdialog.cpp:224
 msgid "Enter number of shares.\n"
 "Used when creating the initial Share transaction."
-msgstr ""
+msgstr "输入共享数量。\n"
+"在创建初始共享交易时使用。"
 
 #: stockdialog.cpp:230 stocks_list.cpp:93
 msgid "*Share Price"
@@ -6374,7 +6376,8 @@ msgstr "*股价"
 #: stockdialog.cpp:236
 msgid "Enter the initial price per share.\n"
 "Used when creating the initial Share transaction."
-msgstr ""
+msgstr "输入每个分享的初始价格。\n"
+"在创建初始分享交易时使用。"
 
 #: stockdialog.cpp:241
 msgid "*Commission"
@@ -6383,7 +6386,8 @@ msgstr "*佣金"
 #: stockdialog.cpp:245
 msgid "Enter any commission paid.\n"
 "Used when creating the initial Share transaction."
-msgstr ""
+msgstr "输入支付的任何佣金。\n"
+"在创建初始分享交易时使用。"
 
 #: stockdialog.cpp:250 stocks_list.cpp:96
 msgid "Curr. Share Price"
@@ -6391,7 +6395,7 @@ msgstr "当前价格"
 
 #: stockdialog.cpp:253
 msgid "Enter current stock/share price."
-msgstr ""
+msgstr "输入当前股票/股票价格。"
 
 #: stockdialog.cpp:285
 msgid "Stock History Options"
@@ -6407,7 +6411,7 @@ msgstr "股价日期"
 
 #: stockdialog.cpp:320
 msgid "Specify the stock/share price date."
-msgstr ""
+msgstr "指定股票/股票价格日期。"
 
 #: stockdialog.cpp:336
 msgid "Download Stock Price history"
@@ -6419,11 +6423,11 @@ msgstr "从CSV文件导入股价历史"
 
 #: stockdialog.cpp:340
 msgid "Delete selected Stock Price"
-msgstr ""
+msgstr "删除所选股票价格"
 
 #: stockdialog.cpp:342
 msgid "Add Stock Price to history"
-msgstr ""
+msgstr "添加股票价格历史"
 
 #: stockdialog.cpp:420
 msgid "Held At"
@@ -6432,17 +6436,20 @@ msgstr "主账户"
 #: stockdialog.cpp:494
 msgid "Share Account not found.\n\n"
 "Do you want to create one?"
-msgstr ""
+msgstr "未找到共享帐户。\n\n"
+"您想要创建一个吗？"
 
 #: stockdialog.cpp:504
 msgid "The Company name does not have an associated Share Account.\n\n"
 "You may want to readjust the Company Name to an existing Share Account with the same name. If this is an existing Stock without a Share Account, it is recommended that a Share Account is created.\n\n"
 "Do you want to create a new Share Acccount?\n"
-msgstr ""
+msgstr "公司名称没有关联的股票账户。\n\n"
+"您可能希望将公司名称重新调整为现有的同名股票账户。 如果这是没有股票账户的现有股票，建议创建一个股票账户。\n\n"
+"您要创建一个新的共享帐户吗？\n"
 
 #: stockdialog.cpp:599
 msgid "Stock History CSV Import"
-msgstr ""
+msgstr "股票历史 CSV 导入"
 
 #: stockdialog.cpp:600 stockdialog.cpp:616
 msgid "Quotes imported from CSV: "
@@ -6451,7 +6458,7 @@ msgstr "从CSV导入引用："
 #: stockdialog.cpp:672
 #, c-format
 msgid "Total Lines : %ld"
-msgstr ""
+msgstr "总行数： %ld"
 
 #: stockdialog.cpp:674
 #, c-format
