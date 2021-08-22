@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-22 13:38+0300\n"
-"PO-Revision-Date: 2021-08-22 10:46\n"
+"PO-Revision-Date: 2021-08-22 11:13\n"
 "Last-Translator: \n"
 "Language-Team: Greek\n"
 "MIME-Version: 1.0\n"
@@ -5502,11 +5502,11 @@ msgstr "Επιλέξτε αν θα χρησιμοποιείτε την αρχι�
 
 #: optionsettingsgeneral.cpp:213
 msgid "Use Original Date when Duplicating Transactions"
-msgstr ""
+msgstr "Χρησιμοποιήστε την αρχική ημερομηνία όταν δημιουργείτε διπλότυπες συναλλαγές"
 
 #: optionsettingsgeneral.cpp:215
 msgid "Select whether to use the original transaction date or current date when duplicating transactions"
-msgstr ""
+msgstr "Επιλέξτε αν θα χρησιμοποιηθεί η αρχική ημερομηνία της συναλλαγής ή η τρέχουσα ημερομηνία όταν δημιουργείτε διπλότυπες συναλλαγές"
 
 #: optionsettingsgeneral.cpp:218
 msgid "Use Transaction Sound"
