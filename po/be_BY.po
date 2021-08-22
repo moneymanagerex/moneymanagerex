@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-22 15:52+0300\n"
-"PO-Revision-Date: 2021-08-22 16:55\n"
+"PO-Revision-Date: 2021-08-22 18:29\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -2612,7 +2612,7 @@ msgstr "Перайменаваць справаздачу"
 
 #: general_report_manager.cpp:736
 msgid "Delete Report"
-msgstr "Выдліць справаздачу"
+msgstr "Выдаліць справаздачу"
 
 #: general_report_manager.cpp:831 general_report_manager.cpp:979
 msgid "Enter the name for the report"
