@@ -968,7 +968,7 @@ bool getCoincapAssetHistory(const wxString asset_id, wxDateTime begin_date, std:
 
         // if the object has both a symbol and id check if the symbol matches the target symbol
         if (entry.HasMember("priceUsd") && entry["priceUsd"].IsString() && entry.HasMember("time") && entry["time"].IsInt64()) {
-            wxDateTime date = wxDateTime(static_cast<time_t>(entry["time"].GetInt64() / 1000)).GetDateOnly();
+            wxDateTime date = static_cast<wxDateTime>(entry["time"].GetInt64() / 1000).GetDateOnly();
             double price_usd = -1.0;
             auto priceUSD = wxString::FromUTF8(entry["priceUsd"].GetString());
 
