@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-20 10:54+0300\n"
-"PO-Revision-Date: 2021-08-22 02:30\n"
+"PO-Revision-Date: 2021-08-22 02:37\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
@@ -449,7 +449,7 @@ msgstr "资产账户未找到。\n\n"
 #: import_export/qif_export.cpp:587 mmchecking_list.cpp:205
 #: reports/transactions.cpp:79 stocks_list.cpp:88
 msgid "ID"
-msgstr "# "
+msgstr "ID"
 
 #: assetspanel.cpp:62 billsdepositsdialog.cpp:554 billsdepositspanel.cpp:133
 #: customfieldlistdialog.cpp:54 filtertransdialog.cpp:294
@@ -461,7 +461,7 @@ msgstr "# "
 #: transactionsupdatedialog.cpp:145 transdialog.cpp:501
 #: usertransactionpanel.cpp:138 webappdialog.cpp:150
 msgid "Type"
-msgstr "分类"
+msgstr "类型"
 
 #: assetspanel.cpp:63 reports/summarystocks.cpp:109
 msgid "Initial Value"
@@ -6906,11 +6906,11 @@ msgstr "无法获取基本货币！"
 
 #: util.cpp:953
 msgid "USD"
-msgstr ""
+msgstr "USD"
 
 #: util.cpp:956
 msgid "Could not find currency 'USD', needed for converting history prices"
-msgstr ""
+msgstr "找不到货币“USD”，需要转换历史价格"
 
 #: util.cpp:976
 msgid "Could not parse price in asset history"
