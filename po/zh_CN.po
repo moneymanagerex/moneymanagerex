@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-20 10:54+0300\n"
-"PO-Revision-Date: 2021-08-22 03:30\n"
+"PO-Revision-Date: 2021-08-22 03:36\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
@@ -4718,41 +4718,42 @@ msgstr "选择要打开数据库文件"
 
 #: mmframe.cpp:2033
 msgid "Choose Encrypted database file to open"
-msgstr ""
+msgstr "选择要打开的加密数据库文件"
 
 #: mmframe.cpp:2043
 msgid "Enter password for database"
-msgstr ""
+msgstr "输入数据库密码"
 
 #: mmframe.cpp:2048
 msgid "Choose database file to Save As"
-msgstr ""
+msgstr "选择要另存为的数据库文件"
 
 #: mmframe.cpp:2070
 msgid "Converted DB!"
-msgstr ""
+msgstr "已转换数据库！"
 
 #: mmframe.cpp:2070
 msgid "MMEX message"
-msgstr ""
+msgstr "MMEX 信息"
 
 #: mmframe.cpp:2076
 msgid "MMEX: Encryption Password Change"
-msgstr ""
+msgstr "MMEX：加密密码更改"
 
 #: mmframe.cpp:2077
 #, c-format
 msgid "New password for database\n\n"
 "%s"
-msgstr ""
+msgstr "数据库新密码\n\n"
+"%s"
 
 #: mmframe.cpp:2082
 msgid "New password must not be empty."
-msgstr ""
+msgstr "新密码不能为空。"
 
 #: mmframe.cpp:2086
 msgid "Please confirm new password"
-msgstr ""
+msgstr "请确认新密码"
 
 #: mmframe.cpp:2090
 msgid "Password change completed."
@@ -4795,18 +4796,21 @@ msgstr "不能复制文件到它本身"
 
 #: mmframe.cpp:2176
 msgid "Enter password for new database"
-msgstr ""
+msgstr "输入新数据库密码"
 
 #: mmframe.cpp:2265 mmframe.cpp:2284
 msgid "No account available to import"
-msgstr ""
+msgstr "没有账户可供导入"
 
 #: mmframe.cpp:2333
 msgid "Asset Accounts hold Asset transactions\n\n"
 "Asset transactions are created within the Assets View\n"
 "after the selection of the Asset within that view.\n\n"
 "Asset Accounts can also hold normal transactions to regular accounts."
-msgstr ""
+msgstr "资产账户持有资产交易\n\n"
+"资产交易是在资产视图\n"
+"中选择资产之后创建的。\n\n"
+"资产账户也可以保持正常往来账户的交易。"
 
 #: mmframe.cpp:2337
 msgid "Asset Account Creation"
@@ -4819,7 +4823,12 @@ msgid "Share Accounts hold Share transactions\n\n"
 "These accounts only become visible after associating a Stock to the Share Account\n"
 "Or by using the Menu View --> 'Display Share Accounts'\n"
 "Share Accounts can also hold normal transactions to regular account."
-msgstr ""
+msgstr "分享账户持有股份交易\n\n"
+"共享交易是在关联视图中选择公司股票后在股票组合视图\n"
+"中创建的。\n\n"
+"这些账户只有在将库存关联到共享账户\n"
+"或者使用菜单视图--> '显示共享账户'\n"
+"共享账户也可以保持正常交易到普通账户。"
 
 #: mmframe.cpp:2349
 msgid "Share Account Creation"
@@ -5902,16 +5911,16 @@ msgstr "转移收款人对话框"
 
 #: relocatepayeedialog.cpp:82
 msgid "Relocate all source payee to the destination payee"
-msgstr ""
+msgstr "将所有来源收款人重新定位到目标收款人"
 
 #: relocatepayeedialog.cpp:95
 msgid "Delete source payee after relocation"
-msgstr ""
+msgstr "迁移后删除来源收款人"
 
 #: relocatepayeedialog.cpp:152
 #, c-format
 msgid "From %s to %s"
-msgstr ""
+msgstr "从 %s 到 %s"
 
 #: relocatepayeedialog.cpp:157
 msgid "Payee Relocation Confirmation"
@@ -5920,12 +5929,12 @@ msgstr "收款人重写位确认"
 #: reports/budget.cpp:88
 #, c-format
 msgid "Financial Year: %s - %i"
-msgstr ""
+msgstr "财政年度: %s - %i"
 
 #: reports/budget.cpp:98
 #, c-format
 msgid "Year: %i Month: %s"
-msgstr ""
+msgstr "年份: %i 月: %s"
 
 #: reports/budgetcategorysummary.cpp:119
 #, c-format
@@ -5951,11 +5960,11 @@ msgstr "实际收入："
 
 #: reports/budgetcategorysummary.cpp:279
 msgid "Difference Income:"
-msgstr ""
+msgstr "差额收入："
 
 #: reports/budgetcategorysummary.cpp:286
 msgid "Estimated Expenses:"
-msgstr ""
+msgstr "估计费用："
 
 #: reports/budgetcategorysummary.cpp:288
 msgid "Actual Expenses:"
@@ -5963,12 +5972,12 @@ msgstr "实际支出："
 
 #: reports/budgetcategorysummary.cpp:290
 msgid "Difference Expenses:"
-msgstr ""
+msgstr "差异开支："
 
 #: reports/budgetingperf.cpp:193
 #, c-format
 msgid "Budget Performance for %s"
-msgstr ""
+msgstr "%s 的预算执行情况"
 
 #: reports/budgetingperf.cpp:228 reports/budgetingperf.cpp:230
 msgid "Est."
@@ -5984,7 +5993,7 @@ msgstr "%"
 
 #: reports/budgetingperf.cpp:284
 msgid "Monthly Total"
-msgstr ""
+msgstr "每月总计"
 
 #: reports/bugreport.h:56
 msgid "Bug Report"
@@ -5992,53 +6001,53 @@ msgstr "Bug 报告"
 
 #: reports/bugreport.h:68
 msgid "Replace this text (marked with >) with detailed description of your problem."
-msgstr ""
+msgstr "用您的问题详细描述替换此文本 (标记为 >)。"
 
 #: reports/bugreport.h:69
 msgid "Please do not remove information attached below this text."
-msgstr ""
+msgstr "请不要删除此文本下所附的信息。"
 
 #: reports/bugreport.h:74
 msgid "Use Help->Check for Updates in MMEX to get latest version, where your problem might be already fixed."
-msgstr ""
+msgstr "使用 帮助->检查 MMEX 中的更新，获取您的问题可能已经修复的最新版本。"
 
 #: reports/bugreport.h:75
 #, c-format
 msgid "Search <a href='%s'>a list of known issues</a> for similar problem. If so, update existing issue instead of creating a new one."
-msgstr ""
+msgstr "搜索 <a href='%s'>类似问题的已知问题</a> 列表。如果是，请更新现有问题而不是创建一个新问题。"
 
 #: reports/bugreport.h:77
 #, c-format
 msgid "As you know, <a href='%s'>a forum</a> for users is available where you can discuss problems and find solutions."
-msgstr ""
+msgstr "如您所知， <a href='%s'>用户论坛</a> 可以在这里讨论问题并找到解决办法。"
 
 #: reports/bugreport.h:78
 #, c-format
 msgid "Please, join our community in <a href='%s'>Slack</a>. Here you can also pose your question and learn latest news."
-msgstr ""
+msgstr "请加入我们的社区在 <a href='%s'>Slack</a>中。在这里你也可以提出你的问题并学习最新消息。"
 
 #: reports/bugreport.h:79
 #, c-format
 msgid "Read <a href='%s'>How to Report Bugs Effectively</a> for useful tips."
-msgstr ""
+msgstr "阅读 <a href='%s'>如何有效地报告错误</a> 以获取有用的提示。"
 
 #: reports/bugreport.h:80
 msgid "Come up with a descriptive name for your problem."
-msgstr ""
+msgstr "为你的问题提供一个描述性的名称。"
 
 #: reports/bugreport.h:81
 msgid "Include steps to reproduce your problem, attach screenshots where appropriate."
-msgstr ""
+msgstr "包括重现您的问题的步骤，并在适当时附上屏幕截图。"
 
 #: reports/bugreport.h:82
 #, c-format
 msgid "Before click the following link, be sure that you have already signed in to the <a href='%s'>GitHub</a>."
-msgstr ""
+msgstr "在点击下面的链接之前，请确定您已经登录到 <a href='%s'>GitHub</a>。"
 
 #: reports/bugreport.h:84
 #, c-format
 msgid "Finally, report a bug using GitHub <a href='%s'>online form</a> opened in your web browser."
-msgstr ""
+msgstr "最后，使用 GitHub <a href='%s'>在线表格</a> 在您的浏览器中打开的错误报告。"
 
 #: reports/bugreport.h:95
 msgid "Please, follow these instructions before submitting a new bug report:"
@@ -6048,7 +6057,7 @@ msgstr "请在提交新的 bug 报告之前遵循这些说明:"
 #, c-format
 msgid "Cash Flow Forecast for %i Year Ahead"
 msgid_plural "Cash Flow Forecast for %i Years Ahead"
-msgstr[0] ""
+msgstr[0] "%i 年前现金流预测"
 
 #: reports/cashflow.cpp:251 reports/categexp.cpp:375
 #: reports/incexpenses.cpp:211 reports/incexpenses.cpp:247
@@ -6070,7 +6079,7 @@ msgstr "总收入："
 
 #: reports/categexp.cpp:254
 msgid "Categories Summary"
-msgstr ""
+msgstr "类别摘要"
 
 #: reports/categexp.cpp:263
 msgid "Category Income/Expenses"
@@ -6091,7 +6100,7 @@ msgstr "预测"
 #: reports/htmlbuilder.cpp:111
 #, c-format
 msgid "Report Generated %s %s"
-msgstr ""
+msgstr "生成报表 %s %s"
 
 #: reports/htmlbuilder.cpp:169
 #, c-format
@@ -6104,7 +6113,7 @@ msgstr "按月"
 
 #: reports/incexpenses.cpp:34
 msgid "Income vs Expenses Summary"
-msgstr ""
+msgstr "收入与支出汇总表"
 
 #: reports/incexpenses.cpp:118
 msgid "Income:"
@@ -6116,7 +6125,7 @@ msgstr "支出："
 
 #: reports/incexpenses.cpp:136
 msgid "Income vs Expenses Monthly"
-msgstr ""
+msgstr "收入与每月支出"
 
 #: reports/mmDateRange.cpp:53
 msgid "Current Month"
@@ -6176,7 +6185,7 @@ msgstr "上财年"
 
 #: reports/mmDateRange.cpp:210
 msgid "Custom"
-msgstr ""
+msgstr "自定义"
 
 #: reports/mmDateRange.cpp:220
 msgid "Last 365 Days"
@@ -6184,7 +6193,7 @@ msgstr "最近365天"
 
 #: reports/myusage.cpp:27
 msgid "MMEX Usage Frequency"
-msgstr ""
+msgstr "MMEX 使用频率"
 
 #: reports/payee.cpp:32
 msgid "Payee Report"
@@ -6213,7 +6222,7 @@ msgstr "股票汇总"
 
 #: reports/summarystocks.cpp:107
 msgid "Purchase Date"
-msgstr ""
+msgstr "购买日期"
 
 #: reports/summarystocks.cpp:108
 msgid "Quantity"
@@ -6230,7 +6239,7 @@ msgstr "佣金"
 
 #: reports/summarystocks.cpp:183
 msgid "Stocks Performance Charts"
-msgstr ""
+msgstr "库存性能图表"
 
 #: reports/transactions.cpp:191
 msgid "All Transactions: Withdrawals, Deposits, and Transfers"
