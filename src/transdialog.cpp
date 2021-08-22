@@ -125,7 +125,7 @@ mmTransDialog::mmTransDialog(wxWindow* parent
         for (const auto& item : s)
             m_local_splits.push_back({ item.CATEGID, item.SUBCATEGID, item.SPLITTRANSAMOUNT });
 
-        if (m_duplicate)
+        if (m_duplicate && !Model_Setting::instance().GetBoolSetting(INIDB_USE_ORG_DATE_DUPLICATE, false))
         {
             // Use the empty transaction logic to generate the new date to be used
             Model_Checking::Data emptyTrx;
