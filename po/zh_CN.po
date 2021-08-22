@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-20 10:54+0300\n"
-"PO-Revision-Date: 2021-08-22 02:55\n"
+"PO-Revision-Date: 2021-08-22 03:06\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
@@ -1646,7 +1646,7 @@ msgstr "重定位分类已完成。"
 #: categdialog.cpp:601 mmframe.cpp:3269 mmframe.cpp:3284 payeedialog.cpp:351
 #, c-format
 msgid "Records have been updated in the database: %i"
-msgstr ""
+msgstr "数据库中的记录已更新：%i"
 
 #: categdialog.cpp:603 mmframe.cpp:3271
 msgid "Category Relocation Result"
@@ -1730,11 +1730,11 @@ msgstr "查看上财年"
 
 #: constants.cpp:190
 msgid "View Since Statement Date"
-msgstr ""
+msgstr "查看自对账单日期"
 
 #: constants.cpp:192
 msgid "ALL"
-msgstr ""
+msgstr "全部"
 
 #: constants.cpp:193 mmframe.cpp:1317 mmframe.cpp:1717
 #: model/Model_Account.cpp:26
@@ -1788,15 +1788,15 @@ msgstr "转换为基率"
 
 #: currencydialog.cpp:223
 msgid "Conversion rate will be used in case no currency history has been found for the currency"
-msgstr ""
+msgstr "如果没有找到该货币的货币历史记录将使用转换率"
 
 #: currencydialog.cpp:225
 msgid "Fixed conversion rate"
-msgstr ""
+msgstr "固定转化率"
 
 #: currencydialog.cpp:230
 msgid "Currency Format Sample:"
-msgstr ""
+msgstr "货币格式示例："
 
 #: currencydialog.cpp:244
 msgid "Save any changes made"
@@ -1815,11 +1815,11 @@ msgstr "输入无效"
 #: currencydialog.cpp:318
 #, c-format
 msgid "%.2f Shown As: %s"
-msgstr ""
+msgstr "%.2f 显示为：%s"
 
 #: currencydialog.cpp:320
 msgid "(Using Locale)"
-msgstr ""
+msgstr "（使用语言环境）"
 
 #: customfieldeditdialog.cpp:120
 msgid "Custom Field Details"
@@ -1877,23 +1877,23 @@ msgstr "选项"
 
 #: customfieldeditdialog.cpp:169
 msgid "Enter the choices for this field separated with a semicolon"
-msgstr ""
+msgstr "输入此字段的选项，以分号分隔"
 
 #: customfieldeditdialog.cpp:172
 msgid "Digits scale"
-msgstr ""
+msgstr "数字刻度"
 
 #: customfieldeditdialog.cpp:174
 msgid "Enter the decimal digits scale allowed"
-msgstr ""
+msgstr "输入允许的十进制数字刻度"
 
 #: customfieldeditdialog.cpp:177
 msgid "Panel's column"
-msgstr ""
+msgstr "面板栏"
 
 #: customfieldeditdialog.cpp:182
 msgid "Select a value to represent the item on a panel"
-msgstr ""
+msgstr "选择一个值来表示面板上的项目"
 
 #: customfieldeditdialog.cpp:224
 msgid "Changing field type will delete all content!"
@@ -1942,7 +1942,9 @@ msgstr "确认自定义字段删除"
 msgid "This function will massive search & replace for \"%s\" custom field values\n"
 "It will match & replace only complete field value, no partial or middle-value replaces allowed\n"
 "Please consider that there isn't any validation!"
-msgstr ""
+msgstr "此函数将大规模搜索并替换\"%s\"自定义字段值\n"
+"它将匹配并只替换完整的字段值，不允许替换部分或中值\n"
+"此处不会有任何验证还请三思而行！"
 
 #: customfieldlistdialog.cpp:191
 msgid "Confirm Custom Field Content Update"
@@ -1978,11 +1980,11 @@ msgstr "您想要更新为空吗？\n"
 #, c-format
 msgid "%zu occurrence founded and replaced!"
 msgid_plural "%zu occurrences founded and replaced!"
-msgstr[0] ""
+msgstr[0] "创建并替换了 %zu 次事件！"
 
 #: customfieldlistdialog.cpp:263
 msgid "&Massive content update "
-msgstr ""
+msgstr "海量内容更新(&M)"
 
 #: db/DB_Table_Category_V1.h:111
 msgid "Bills"
@@ -2192,7 +2194,7 @@ msgstr "投资收入"
 #: dbupgrade.cpp:73
 #, c-format
 msgid "MMEX database upgrade to version %i failed!"
-msgstr ""
+msgstr "MMEX 数据库升级到版本 %i 失败！"
 
 #: dbupgrade.cpp:74
 msgid "Please restore DB from autocreated pre-upgrade backup and retry or contact MMEX support"
@@ -2216,11 +2218,11 @@ msgstr "MMEX 数据库版本 %i 与此 MMEX 版本不兼容。\n"
 #: dbupgrade.cpp:120
 #, c-format
 msgid "MMEX database succesfully upgraded to version %i"
-msgstr ""
+msgstr "MMEX 数据库已成功升级到版本 %i"
 
 #: dbupgrade.cpp:121
 msgid "We suggest a database optimization under Tools -> Database -> Optimize"
-msgstr ""
+msgstr "我们建议在工具 -> 数据库 -> 优化数据库下实现数据库优化"
 
 #: dbupgrade.cpp:182
 msgid "Load debug file"
@@ -2228,7 +2230,7 @@ msgstr "加载调试文件"
 
 #: dbupgrade.cpp:189
 msgid "Wrong file type!"
-msgstr ""
+msgstr "文件类型错误！"
 
 #: dbupgrade.cpp:189 dbupgrade.cpp:226 dbupgrade.cpp:233 dbupgrade.cpp:277
 #: dbupgrade.cpp:288
@@ -2241,7 +2243,7 @@ msgstr "查询错误，请联系 MMEX 支持！"
 
 #: dbupgrade.cpp:233 dbupgrade.cpp:288
 msgid "Invalid file content, please contact MMEX support!"
-msgstr ""
+msgstr "文件内容无效，请联系 MMEX 支持！"
 
 #: dbupgrade.cpp:240
 msgid "Send this log to MMEX support team:\n"
@@ -2263,7 +2265,7 @@ msgstr "数据库维护已完成，请关闭并重新打开 MMEX！"
 
 #: dbwrapper.cpp:70
 msgid "When database file opening:"
-msgstr ""
+msgstr "打开数据库文件时："
 
 #: dbwrapper.cpp:74
 msgid "Can't open file"
@@ -2277,7 +2279,9 @@ msgstr "必须重新指定一个数据库文件"
 msgid "An incorrect password given for an encrypted file\n"
 "or\n"
 "attempt to open a File that is not a database file \n"
-msgstr ""
+msgstr "为加密文件提供的错误密码\n"
+"或\n"
+"尝试打开一个不是数据库文件的文件\n"
 
 #: dbwrapper.cpp:82 import_export/qif_import_gui.cpp:858 webapp.cpp:120
 #, c-format
@@ -2294,7 +2298,7 @@ msgstr "诊断"
 
 #: diagnostics.cpp:101
 msgid "Developers may ask you to provide information presented here in order to help diagnose issues you may report with the program."
-msgstr ""
+msgstr "开发人员可能会要求您提供此处显示的信息，以帮助诊断您可能会报告的程序问题。"
 
 #: filtertransdialog.cpp:45 mmhomepage.cpp:656 model/Model_Billsdeposits.cpp:40
 #: model/Model_Checking.cpp:37
@@ -2318,11 +2322,11 @@ msgstr "重复"
 
 #: filtertransdialog.cpp:49 filtertransdialog.cpp:1028
 msgid "Un-Reconciled"
-msgstr ""
+msgstr "未核对"
 
 #: filtertransdialog.cpp:50 filtertransdialog.cpp:1029
 msgid "All Except Reconciled"
-msgstr ""
+msgstr "除已对账以外的所有项目"
 
 #: filtertransdialog.cpp:63
 msgid "Start of Financial Year"
@@ -2393,11 +2397,11 @@ msgstr "金额区间"
 
 #: filtertransdialog.cpp:356 filtertransdialog.cpp:1090
 msgid "Color"
-msgstr ""
+msgstr "颜色"
 
 #: filtertransdialog.cpp:360
 msgid "Select the Color"
-msgstr ""
+msgstr "选择颜色"
 
 #: filtertransdialog.cpp:370
 msgid "Settings"
@@ -2412,11 +2416,11 @@ msgstr "%i: 为空"
 
 #: filtertransdialog.cpp:400
 msgid "Save active values into current Preset selection"
-msgstr ""
+msgstr "活动值保存到当前预设选择"
 
 #: filtertransdialog.cpp:405
 msgid "Clear all fields for current Preset selection"
-msgstr ""
+msgstr "清除当前预设选择的所有字段"
 
 #: filtertransdialog.cpp:716 filtertransdialog.cpp:1421
 msgid "Please Enter"
@@ -3484,20 +3488,20 @@ msgstr ""
 
 #: mmSimpleDialogs.cpp:178
 msgid "Subtract one month"
-msgstr ""
+msgstr "减一个月"
 
 #: mmSimpleDialogs.cpp:179
 msgid "Add one month"
-msgstr ""
+msgstr "加一个月"
 
 #: mmSimpleDialogs.cpp:180
 msgid "Add one year"
-msgstr ""
+msgstr "加一年"
 
 #: mmSimpleDialogs.cpp:237
 #, c-format
 msgid "Entry %s is invalid"
-msgstr ""
+msgstr "条目 %s 无效"
 
 #: mmSimpleDialogs.cpp:244
 msgid "Please use this button for category selection."
@@ -3506,7 +3510,8 @@ msgstr "请使用此按钮来选择分类。"
 #: mmSimpleDialogs.cpp:245
 msgid "Please use this button for category selection\n"
 "or use the 'Split' checkbox for multiple categories."
-msgstr ""
+msgstr "请使用此按钮进行类别选择\n"
+"或对多个类别使用“拆分”复选框。"
 
 #: mmSimpleDialogs.cpp:248
 msgid "Invalid Category"
@@ -3534,7 +3539,7 @@ msgstr "可以使用下拉按钮进行选择。"
 
 #: mmSimpleDialogs.cpp:271
 msgid "Activating the button will provide a selection box where the account can be selected."
-msgstr ""
+msgstr "激活该按钮将提供一个选择框，可以在其中选择帐户。"
 
 #: mmSimpleDialogs.cpp:280
 msgid "Invalid Payee"
@@ -3564,20 +3569,21 @@ msgstr "请输入一个非空白符号。"
 
 #: mmTextCtrl.cpp:69
 msgid "Invalid Value"
-msgstr ""
+msgstr "无效值"
 
 #: mmTextCtrl.cpp:95
 msgid "Please enter a positive or calculated value."
-msgstr ""
+msgstr "请输入正值或计算值。"
 
 #: mmTextCtrl.cpp:95
 msgid "Please enter a calculated value."
-msgstr ""
+msgstr "请输入计算值。"
 
 #: mmTextCtrl.cpp:97
 msgid "Tip: For calculations, enter expressions like (2+2)*(2+2)\n"
 "Calculations will be evaluated and the result used as the entry."
-msgstr ""
+msgstr "提示：对于计算，输入类似 (2+2)*(2+2) 的表达式\n"
+"将评估计算并将结果用作条目。"
 
 #: mmTips.h:22
 msgid "Recommendation: Always backup your .mmb database file regularly."
