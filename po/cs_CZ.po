@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2021-08-20 10:54+0300\n"
-"PO-Revision-Date: 2021-08-20 08:06\n"
+"POT-Creation-Date: 2021-08-22 13:38+0300\n"
+"PO-Revision-Date: 2021-08-22 10:46\n"
 "Last-Translator: \n"
 "Language-Team: Czech\n"
 "MIME-Version: 1.0\n"
@@ -107,7 +107,7 @@ msgstr "Počáteční zůstatek: %s"
 msgid "Enter the initial balance in this account."
 msgstr "Zadejte počáteční zůstatek na tomto účtu."
 
-#: accountdialog.cpp:171 import_export/univcsvdialog.cpp:1828
+#: accountdialog.cpp:171 import_export/univcsvdialog.cpp:1830
 msgid "Currency:"
 msgstr "Měna:"
 
@@ -529,7 +529,7 @@ msgstr "Majetek"
 msgid "All"
 msgstr "Všechny"
 
-#: assetspanel.cpp:466 billsdepositspanel.cpp:283 mmcheckingpanel.cpp:362
+#: assetspanel.cpp:466 billsdepositspanel.cpp:283 mmcheckingpanel.cpp:332
 #: stockspanel.cpp:129
 msgid "&New "
 msgstr "&Nová "
@@ -548,14 +548,14 @@ msgstr "Zobrazit transakce majetku"
 
 #: assetspanel.cpp:480 attachmentdialog.cpp:317 billsdepositspanel.cpp:287
 #: categdialog.cpp:233 customfieldlistdialog.cpp:261 maincurrencydialog.cpp:527
-#: mmcheckingpanel.cpp:366 payeedialog.cpp:397 splittransactionsdialog.cpp:166
+#: mmcheckingpanel.cpp:336 payeedialog.cpp:397 splittransactionsdialog.cpp:166
 #: stockspanel.cpp:143
 msgid "&Edit "
 msgstr "Upr&avit "
 
 #: assetspanel.cpp:485 billsdepositspanel.cpp:292 budgetyeardialog.cpp:103
 #: categdialog.cpp:237 maincurrencydialog.cpp:292 mmchecking_list.cpp:406
-#: mmcheckingpanel.cpp:371 stockdialog.cpp:339 stockspanel.cpp:148
+#: mmcheckingpanel.cpp:341 stockdialog.cpp:339 stockspanel.cpp:148
 msgid "&Delete "
 msgstr "O&dstranit "
 
@@ -563,12 +563,12 @@ msgstr "O&dstranit "
 msgid "Delete Asset"
 msgstr "Odstranit majetek"
 
-#: assetspanel.cpp:493 billsdepositspanel.cpp:310 mmcheckingpanel.cpp:384
+#: assetspanel.cpp:493 billsdepositspanel.cpp:310 mmcheckingpanel.cpp:354
 #: stockspanel.cpp:161
 msgid "Open attachments"
 msgstr "Otevřít přílohy"
 
-#: assetspanel.cpp:500 assetspanel.cpp:501 mmcheckingpanel.cpp:392
+#: assetspanel.cpp:500 assetspanel.cpp:501 mmcheckingpanel.cpp:362
 msgid "Search"
 msgstr "Hledat"
 
@@ -1110,12 +1110,12 @@ msgstr "Zadejte počet plateb, které mají být zadány.\n"
 #: billsdepositsdialog.cpp:1342 filtertransdialog.cpp:492
 #: filtertransdialog.cpp:507 filtertransdialog.cpp:518
 #: filtertransdialog.cpp:534 filtertransdialog.cpp:571
-#: optionsettingsgeneral.cpp:281 util.cpp:691
+#: optionsettingsgeneral.cpp:286 util.cpp:691
 msgid "Invalid value"
 msgstr "Neplatná hodnota"
 
 #: billsdepositsdialog.cpp:1342 import_export/univcsvdialog.cpp:1133
-#: maincurrencydialog.cpp:469 mmframe.cpp:3337 optionsettingsgeneral.cpp:281
+#: maincurrencydialog.cpp:469 mmframe.cpp:3337 optionsettingsgeneral.cpp:286
 #: splittransactionsdialog.cpp:209 stockspanel.cpp:395 stockspanel.cpp:396
 #: themes.cpp:310 themes.cpp:329 webappdialog.cpp:194 webappdialog.cpp:199
 msgid "Error"
@@ -1685,76 +1685,76 @@ msgstr "Zavřít"
 msgid "&Close "
 msgstr "&Zavřít "
 
-#: constants.cpp:177
+#: constants.cpp:178
 msgid "Advanced Filter"
 msgstr "Pokročilé filtrování"
 
-#: constants.cpp:178
+#: constants.cpp:179
 msgid "View All Transactions"
 msgstr "Zobrazit všechny transakce"
 
-#: constants.cpp:179
+#: constants.cpp:180
 msgid "View Today"
 msgstr "Zobrazit dnešek"
 
-#: constants.cpp:180
+#: constants.cpp:181
 msgid "View Current Month"
 msgstr "Zobrazit aktuální měsíc"
 
-#: constants.cpp:181
+#: constants.cpp:182
 msgid "View Last 30 days"
 msgstr "Zobrazit posledních 30 dnů"
 
-#: constants.cpp:182
+#: constants.cpp:183
 msgid "View Last 90 days"
 msgstr "Zobrazit posledních 90 dnů"
 
-#: constants.cpp:183
+#: constants.cpp:184
 msgid "View Last Month"
 msgstr "Zobrazit poslední měsíc"
 
-#: constants.cpp:184
+#: constants.cpp:185
 msgid "View Last 3 Months"
 msgstr "Zobrazit poslední 3 měsíce"
 
-#: constants.cpp:185
+#: constants.cpp:186
 msgid "View Last 12 Months"
 msgstr "Zobrazit posledních 12 měsíců"
 
-#: constants.cpp:186
+#: constants.cpp:187
 msgid "View Current Year"
 msgstr "Zobrazit aktuální rok"
 
-#: constants.cpp:187
+#: constants.cpp:188
 msgid "View Current Financial Year"
 msgstr "Zobrazit aktuální finanční rok"
 
-#: constants.cpp:188
+#: constants.cpp:189
 msgid "View Last Year"
 msgstr "Zobrazit poslení rok"
 
-#: constants.cpp:189
+#: constants.cpp:190
 msgid "View Last Financial Year"
 msgstr "Zobrazit poslední finanční rok"
 
-#: constants.cpp:190
+#: constants.cpp:191
 msgid "View Since Statement Date"
 msgstr "Zobrazit od data vyúčtování"
 
-#: constants.cpp:192
+#: constants.cpp:193
 msgid "ALL"
 msgstr "VŠE"
 
-#: constants.cpp:193 mmframe.cpp:1317 mmframe.cpp:1717
+#: constants.cpp:194 mmframe.cpp:1317 mmframe.cpp:1717
 #: model/Model_Account.cpp:26
 msgid "Open"
 msgstr "Otevřený"
 
-#: constants.cpp:194 mmframe.cpp:1318 model/Model_Account.cpp:27
+#: constants.cpp:195 mmframe.cpp:1318 model/Model_Account.cpp:27
 msgid "Closed"
 msgstr "Zavřený"
 
-#: constants.cpp:195 mmframe.cpp:1316
+#: constants.cpp:196 mmframe.cpp:1316
 msgid "Favorites"
 msgstr "Oblíbené"
 
@@ -3190,7 +3190,7 @@ msgid "Account does not exist"
 msgstr "Účet neexistuje"
 
 #: import_export/univcsvdialog.cpp:684 import_export/univcsvdialog.cpp:755
-#: import_export/univcsvdialog.cpp:1841
+#: import_export/univcsvdialog.cpp:1843
 #, c-format
 msgid "Positive if type has '%s'"
 msgstr "Kladné pokud zadáno '%s'"
@@ -3339,11 +3339,11 @@ msgstr "XML soubory (*.xml)"
 msgid "All Files"
 msgstr "Všechny soubory"
 
-#: import_export/univcsvdialog.cpp:1837
+#: import_export/univcsvdialog.cpp:1839
 msgid "Please, type the word indicating positive values in your CSV file, e.g. 'debit'"
 msgstr "Zadejte prosím slovo označující kladné hodnoty v CSV souboru, např. 'vklad'"
 
-#: import_export/univcsvdialog.cpp:1837
+#: import_export/univcsvdialog.cpp:1839
 msgid "Enter a value"
 msgstr "Zadejte hodnotu"
 
@@ -3887,70 +3887,70 @@ msgstr "Vyberte cílový účet "
 msgid "Recurring Transaction saved."
 msgstr "Trvalý příkaz byl zadán."
 
-#: mmcheckingpanel.cpp:290 mmcheckingpanel.cpp:438
-msgid "Displayed Bal: "
-msgstr "Zobrazený zůstatek: "
-
-#: mmcheckingpanel.cpp:296
-msgid "Account Bal: "
-msgstr "Účetní zůstatek: "
-
-#: mmcheckingpanel.cpp:298
-msgid "Reconciled Bal: "
-msgstr "Ověřený zůstatek: "
-
-#: mmcheckingpanel.cpp:300
-msgid "Diff: "
-msgstr "Rozdíl: "
-
-#: mmcheckingpanel.cpp:363 mmframe.cpp:1722 transdialog.cpp:180
+#: mmcheckingpanel.cpp:333 mmframe.cpp:1722 transdialog.cpp:180
 msgid "New Transaction"
 msgstr "Nová transakce"
 
-#: mmcheckingpanel.cpp:367
+#: mmcheckingpanel.cpp:337
 msgid "Edit selected transaction"
 msgstr "Upravit vybrané transakce"
 
-#: mmcheckingpanel.cpp:372
+#: mmcheckingpanel.cpp:342
 msgid "Delete selected transaction"
 msgstr "Odstranit vybrané transakce"
 
-#: mmcheckingpanel.cpp:376
+#: mmcheckingpanel.cpp:346
 msgid "D&uplicate "
 msgstr "D&uplikovat "
 
-#: mmcheckingpanel.cpp:377
+#: mmcheckingpanel.cpp:347
 msgid "Duplicate selected transaction"
 msgstr "Duplikovat vybrané transakce"
 
-#: mmcheckingpanel.cpp:394
+#: mmcheckingpanel.cpp:364
 msgid "Enter any string to find it in the nearest transaction notes"
 msgstr "Zadejte jakýkoliv řetězec poznámky pro nalezení nejbližší transkace, která jej obsahuje"
 
-#: mmcheckingpanel.cpp:411
+#: mmcheckingpanel.cpp:381
 msgid "Full Transactions Report"
 msgstr "Úplný výpis transakcí"
 
-#: mmcheckingpanel.cpp:413
+#: mmcheckingpanel.cpp:383
 #, c-format
 msgid "Account View : %s"
 msgstr "Zobrazený účet : %s"
 
-#: mmcheckingpanel.cpp:493 webapp.cpp:585
+#: mmcheckingpanel.cpp:401
+msgid "Account Bal: "
+msgstr "Účetní zůstatek: "
+
+#: mmcheckingpanel.cpp:403
+msgid "Reconciled Bal: "
+msgstr "Ověřený zůstatek: "
+
+#: mmcheckingpanel.cpp:405
+msgid "Diff: "
+msgstr "Rozdíl: "
+
+#: mmcheckingpanel.cpp:407
+msgid "Displayed Bal: "
+msgstr "Zobrazený zůstatek: "
+
+#: mmcheckingpanel.cpp:461 webapp.cpp:585
 msgid "Attachment"
 msgstr "Příloha"
 
-#: mmcheckingpanel.cpp:526
+#: mmcheckingpanel.cpp:494
 #, c-format
 msgid "Transactions selected: %zu"
 msgstr ""
 
-#: mmcheckingpanel.cpp:529
+#: mmcheckingpanel.cpp:497
 #, c-format
 msgid "Selected transactions balance: %s"
 msgstr ""
 
-#: mmcheckingpanel.cpp:533
+#: mmcheckingpanel.cpp:501
 #, c-format
 msgid "Days between selected transactions: %d"
 msgstr ""
@@ -3990,7 +3990,7 @@ msgid "Please use the Switch Application Language option in View menu to select 
 msgstr "Použijte prosím možnost Přepnout jazyk aplikace v nabídce Zobrazení pro výběr jednoho z následujících dostupných jazyků:\n\n"
 "%s"
 
-#: mmex.cpp:134 mmframe.cpp:3374 optionsettingsgeneral.cpp:335
+#: mmex.cpp:134 mmframe.cpp:3374 optionsettingsgeneral.cpp:341
 msgid "Language change"
 msgstr "Změna jazyka"
 
@@ -4300,7 +4300,7 @@ msgstr "Přepnout &jazyk aplikace"
 msgid "Change language used for MMEX GUI"
 msgstr "Změnit jazyk použitý pro MMEX GUI"
 
-#: mmframe.cpp:1452 optionsettingsgeneral.cpp:83 optionsettingsgeneral.cpp:343
+#: mmframe.cpp:1452 optionsettingsgeneral.cpp:83 optionsettingsgeneral.cpp:349
 msgid "system default"
 msgstr "výchozí nastavení systému"
 
@@ -4960,7 +4960,7 @@ msgstr "Výsledek třízení příjemců"
 msgid "File %s not found"
 msgstr "Soubor %s nebyl nalezen"
 
-#: mmframe.cpp:3372 optionsettingsgeneral.cpp:333
+#: mmframe.cpp:3372 optionsettingsgeneral.cpp:339
 msgid "The language for this application has been changed. The change will take effect the next time the application is started."
 msgstr "Jazyk aplikace byl změněn. Změny se projeví při příštím spuštění aplikace."
 
@@ -5530,18 +5530,26 @@ msgid "Select whether to use the original transaction date or current date when 
 msgstr "Zvolte zda se použije původní datum transakce nebo datum aktuální při kopírování/vkládání transakcí"
 
 #: optionsettingsgeneral.cpp:213
+msgid "Use Original Date when Duplicating Transactions"
+msgstr ""
+
+#: optionsettingsgeneral.cpp:215
+msgid "Select whether to use the original transaction date or current date when duplicating transactions"
+msgstr ""
+
+#: optionsettingsgeneral.cpp:218
 msgid "Use Transaction Sound"
 msgstr "Přehrát zvuk při transakci"
 
-#: optionsettingsgeneral.cpp:215
+#: optionsettingsgeneral.cpp:220
 msgid "Select whether to use sounds when entering transactions"
 msgstr "Zvolte zda se při zadání transakce přehraje zvuk"
 
-#: optionsettingsgeneral.cpp:303
+#: optionsettingsgeneral.cpp:309
 msgid "bad locale name"
 msgstr ""
 
-#: optionsettingsgeneral.cpp:319
+#: optionsettingsgeneral.cpp:325
 #, c-format
 msgid "Currency value sample: %s"
 msgstr ""
