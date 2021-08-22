@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-20 10:54+0300\n"
-"PO-Revision-Date: 2021-08-22 01:45\n"
+"PO-Revision-Date: 2021-08-22 01:54\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
@@ -1059,7 +1059,7 @@ msgstr "付款日期在到期日之后，这是您想要的吗？"
 
 #: billsdepositsdialog.cpp:934
 msgid "Looks like a late payment"
-msgstr ""
+msgstr "看起来像一个逾期付款"
 
 #: billsdepositsdialog.cpp:1233
 msgid "Specify the transfer amount in the From Account"
@@ -1203,7 +1203,7 @@ msgstr "付款"
 
 #: billsdepositspanel.cpp:191
 msgid "MMEX allows regular payments to be set up as transactions. These transactions can also be regular deposits, or transfers that will occur at some future time. These transactions act as a reminder that an event is about to occur, and appears on the Home Page 14 days before the transaction is due. "
-msgstr ""
+msgstr "MMEX 允许将定期付款设置为交易。 这些交易也可以是定期存款，或将在未来某个时间发生的转账。 这些交易作为事件即将发生的提醒，并在交易到期前 14 天出现在主页上。"
 
 #: billsdepositspanel.cpp:194
 msgid "Tip: These transactions can be set up to activate - allowing the user to adjust any values on the due date."
@@ -1220,7 +1220,7 @@ msgstr "交易过滤"
 
 #: billsdepositspanel.cpp:293
 msgid "Delete Recurring Transaction"
-msgstr ""
+msgstr "删除重复交易"
 
 #: billsdepositspanel.cpp:297
 msgid "Ente&r"
@@ -4838,7 +4838,7 @@ msgstr ""
 
 #: mmframe.cpp:3035
 msgid "Please wait..."
-msgstr ""
+msgstr "请稍候..."
 
 #: mmframe.cpp:3084 stockspanel.cpp:473
 #, c-format
@@ -4869,20 +4869,20 @@ msgstr "您确认删除 %s 账户 %s 吗？"
 
 #: mmframe.cpp:3152
 msgid "Select the account to reallocate"
-msgstr ""
+msgstr "选择要重新分配的帐户"
 
 #: mmframe.cpp:3152 mmframe.cpp:3175
 msgid "Account Reallocation"
-msgstr ""
+msgstr "帐户重新分配"
 
 #: mmframe.cpp:3174
 #, c-format
 msgid "Account: %s - Select new type."
-msgstr ""
+msgstr "帐户： %s - 选择新类型。"
 
 #: mmframe.cpp:3283 payeedialog.cpp:350
 msgid "Payee Relocation Completed."
-msgstr ""
+msgstr "收款人迁移已完成。"
 
 #: mmframe.cpp:3287 payeedialog.cpp:354
 msgid "Payee Relocation Result"
@@ -4899,12 +4899,12 @@ msgstr "这个应用程序的语言已经被改变。当应用程序再次启动
 
 #: mmframereport.cpp:78
 msgid "General Group Report"
-msgstr ""
+msgstr "常规组报告"
 
 #: mmframereport.cpp:105 mmhomepage.cpp:808 model/Model_Report.cpp:403
 #: reports/bugreport.h:110
 msgid "Caught exception"
-msgstr ""
+msgstr "捕获异常"
 
 #: mmframereport.cpp:118
 msgid "Transaction Report"
@@ -4936,7 +4936,7 @@ msgstr "收支情况"
 
 #: mmframereport.cpp:164
 msgid "My Usage"
-msgstr ""
+msgstr "我的用法"
 
 #: mmframereport.cpp:169 reports/payee.cpp:113
 msgid "Payees"
@@ -4948,11 +4948,11 @@ msgstr "所有账户汇总"
 
 #: mmframereport.cpp:189
 msgid "Budget Performance"
-msgstr ""
+msgstr "预算执行情况"
 
 #: mmframereport.cpp:192
 msgid "Budget Category Summary"
-msgstr ""
+msgstr "预算类别汇总"
 
 #: mmframereport.cpp:201
 msgid "Stocks Report"
@@ -4992,7 +4992,7 @@ msgstr "收支排行：%s"
 
 #: mmhomepage.cpp:360
 msgid "Account / Payee"
-msgstr ""
+msgstr "账户/收款人"
 
 #: mmhomepage.cpp:438
 #, c-format
@@ -5033,15 +5033,15 @@ msgstr "总计："
 
 #: mmhomepage.cpp:645
 msgid "Investment Accounts"
-msgstr ""
+msgstr "投资账户"
 
 #: mmhomepage.cpp:646 reports/summary.cpp:163
 msgid "Asset Accounts"
-msgstr ""
+msgstr "资产账户"
 
 #: mmhomepage.cpp:794
 msgid "Currency Exchange Rates"
-msgstr ""
+msgstr "货币汇率"
 
 #: mmhomepagepanel.cpp:176
 msgid "Upcoming Transactions"
@@ -5065,23 +5065,23 @@ msgstr "复位排序"
 
 #: mmreportspanel.cpp:161
 msgid "Report"
-msgstr ""
+msgstr "报告"
 
 #: mmreportspanel.cpp:218
 msgid "Period:"
-msgstr ""
+msgstr "期间："
 
 #: mmreportspanel.cpp:292
 msgid "Year:"
-msgstr ""
+msgstr "年份："
 
 #: mmreportspanel.cpp:316
 msgid "Budget:"
-msgstr ""
+msgstr "预算："
 
 #: mmreportspanel.cpp:342
 msgid "Accounts:"
-msgstr ""
+msgstr "帐户："
 
 #: mmreportspanel.cpp:347 reports/reportbase.cpp:185
 #: reports/transactions.cpp:50
@@ -5090,11 +5090,11 @@ msgstr "所有账户"
 
 #: mmreportspanel.cpp:348
 msgid "Specific Accounts"
-msgstr ""
+msgstr "特定账户"
 
 #: mmreportspanel.cpp:364
 msgid "Chart:"
-msgstr ""
+msgstr "图表："
 
 #: mmreportspanel.cpp:369
 msgid "Show"
@@ -5171,7 +5171,8 @@ msgstr "其他"
 #: model/Model_Billsdeposits.cpp:301
 msgid "A recurring transaction will exceed your account limit.\n\n"
 "Do you wish to continue?"
-msgstr ""
+msgstr "重复交易将超过您的账户限额。\n\n"
+"你想继续吗？"
 
 #: model/Model_Billsdeposits.cpp:303
 msgid "MMEX Recurring Transaction Check"
@@ -5179,7 +5180,7 @@ msgstr "MMEX 定期交易检查"
 
 #: model/Model_CustomField.cpp:25
 msgid "String"
-msgstr ""
+msgstr "字符串"
 
 #: model/Model_CustomField.cpp:26
 msgid "Integer"
@@ -5191,7 +5192,7 @@ msgstr "小数点"
 
 #: model/Model_CustomField.cpp:28
 msgid "Boolean"
-msgstr ""
+msgstr "布尔值"
 
 #: model/Model_CustomField.cpp:30 wizard_update.cpp:145
 msgid "Time"
@@ -5207,34 +5208,36 @@ msgstr "多选"
 
 #: model/Model_Payee.cpp:80
 msgid "Payee Error"
-msgstr ""
+msgstr "收款人错误"
 
 #: model/Model_Report.cpp:85
 msgid "Begin date: "
-msgstr ""
+msgstr "开始日期："
 
 #: model/Model_Report.cpp:86
 msgid "Date: "
-msgstr ""
+msgstr "日期："
 
 #: model/Model_Report.cpp:87
 msgid "End date: "
-msgstr ""
+msgstr "结束日期："
 
 #: model/Model_Report.cpp:88
 msgid "Year: "
-msgstr ""
+msgstr "年份："
 
 #: model/Model_Report.cpp:233
 msgid "Template is empty"
-msgstr ""
+msgstr "模板为空"
 
 #: model/Model_Report.cpp:247
 #, c-format
 msgid "The SQL script:\n"
 "%s \n"
 "will modify database! aborted!"
-msgstr ""
+msgstr "SQL 脚本：\n"
+"%s \n"
+"会修改数据库！ 已中止！"
 
 #: optiondialog.cpp:131
 msgid "General"
@@ -5272,7 +5275,7 @@ msgstr "用于 %s 的附件压缩文件夹："
 
 #: optionsettingsattachment.cpp:68
 msgid "Every OS type (Win,Mac,Unix) has its attachment folder"
-msgstr ""
+msgstr "每个操作系统类型（Win、Mac、Unix）都有其附件文件夹"
 
 #: optionsettingsattachment.cpp:87
 msgid "Browse for folder"
@@ -5284,27 +5287,27 @@ msgstr "真实路径："
 
 #: optionsettingsattachment.cpp:97
 msgid "Legend (can be used as variables at the beginning of above path)"
-msgstr ""
+msgstr "图例（可用作上述路径开头的变量）"
 
 #: optionsettingsattachment.cpp:102
 #, c-format
 msgid "%s -> User document directory"
-msgstr ""
+msgstr "%s -> 用户文档目录"
 
 #: optionsettingsattachment.cpp:103
 #, c-format
 msgid "%s -> User profile folder"
-msgstr ""
+msgstr "%s -> 用户配置文件夹"
 
 #: optionsettingsattachment.cpp:104
 #, c-format
 msgid "%s -> Folder of .MMB database file"
-msgstr ""
+msgstr "%s -> .MMB 数据库文件的文件夹"
 
 #: optionsettingsattachment.cpp:105
 #, c-format
 msgid "%s -> MMEX Application data folder"
-msgstr ""
+msgstr "%s -> MMEX 应用程序数据文件夹"
 
 #: optionsettingsattachment.cpp:111
 msgid "Other OS folders "
@@ -5312,7 +5315,7 @@ msgstr "其它系统文件夹"
 
 #: optionsettingsattachment.cpp:116
 msgid "Not set yet"
-msgstr ""
+msgstr "未设置"
 
 #: optionsettingsattachment.cpp:123
 msgid "Windows folder -> "
