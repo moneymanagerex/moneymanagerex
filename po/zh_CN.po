@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-20 10:54+0300\n"
-"PO-Revision-Date: 2021-08-22 03:06\n"
+"PO-Revision-Date: 2021-08-22 03:15\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
@@ -3595,7 +3595,7 @@ msgstr "建议：如果要升级到 MMEX 的新版本，请确保您已经提前
 
 #: mmTips.h:24
 msgid "Recommendation: Use copy (Ctrl+C) and paste (Ctrl+V) for frequently used transactions."
-msgstr ""
+msgstr "建议：对常用事务使用复制 (Ctrl+C) 和粘贴 (Ctrl+V)。"
 
 #: mmTips.h:25
 msgid "Tip: Remember to make backups of your .mmb."
@@ -3603,27 +3603,27 @@ msgstr "提示：记住要备份您的 .mmb。"
 
 #: mmTips.h:26
 msgid "Tip: The .mmb file is not encrypted. That means anyone else having the proper know how can actually open the file and read the contents. So make sure that if you are storing any sensitive financial information it is properly guarded."
-msgstr ""
+msgstr "提示：.mmb 文件未加密。 这意味着其他任何拥有正确知识的人都可以实际打开文件并读取内容。 因此，如果您要存储任何敏感的财务信息，请确保对其进行妥善保护。"
 
 #: mmTips.h:27
 msgid "Tip: To mark a transaction as reconciled, just select the transaction and hit the 'r' or 'R' key. To mark a transaction as unreconciled, just select the transaction and hit the 'u' or 'U' key."
-msgstr ""
+msgstr "提示：要将交易标记为已对帐，只需选择该交易并按“r”或“R”键。 要将交易标记为未对帐，只需选择该交易并按“u”或“U”键。"
 
 #: mmTips.h:28
 msgid "Tip: To mark a transaction as requiring followup, just select the transaction and hit the 'f' or 'F' key."
-msgstr ""
+msgstr "提示：要将交易标记为需要跟进，只需选择该交易并按“f”或“F”键。"
 
 #: mmTips.h:29
 msgid "Tip: MMEX supports printing of all reports that can be viewed. The print options are available under the menu, File->Print."
-msgstr ""
+msgstr "提示：MMEX 支持打印所有可以查看的报告。打印选项可在菜单栏，文件>打印。"
 
 #: mmTips.h:30
 msgid "Tip: You can modify some runtime behavior of MMEX by changing the options in the Options Dialog. "
-msgstr ""
+msgstr "提示：您可以通过更改选项对话框中的选项来修改 MMEX 的某些运行时行为。"
 
 #: mmTips.h:31
 msgid "Tip: To print a statement with transactions from any arbitrary set of criteria, use the transaction filter to select the transactions you want and then do a print from the menu."
-msgstr ""
+msgstr "提示：根据任意一套标准打印交易报表； 使用交易过滤器选择您想要的交易，然后从菜单中打印。"
 
 #: mmTips.h:32
 msgid "Tip: Set exchange rate for currencies in case if you have accounts with different currencies."
@@ -3631,39 +3631,39 @@ msgstr "提示：如果您有不同的货币帐户，请为货币设置汇率。
 
 #: mmTips.h:34
 msgid "Organize Categories Dialog Tip: Pressing the h key will cycle through all categories starting with the letter h"
-msgstr ""
+msgstr "组织分类对话提示：按下 h 键将通过从字母h 开始的所有类别进行周期"
 
 #: mmTips.h:35
 msgid "Organize Categories Dialog Tip: Pressing 2 key combination will cycle through all categories starting with that key combination. Example: Pressing ho will select Homeneeds, Home, House Tax, etc..."
-msgstr ""
+msgstr "组织类别对话框提示：按 2 个组合键将循环显示以该组合键开始的所有类别。 示例：按 ho 将选择 Homeneeds、Home、House Tax 等..."
 
 #: mmTips.h:37
 msgid "Tip to get out of debt: Pay yourself 10 percentage first. Put this into an account that is hard to touch. Make sure it is a chore to get the money out (you have to drive to the bank), so you will only tap it consciously and for major expenses."
-msgstr ""
+msgstr "摆脱债务的提示：先支付自己 10% 的钱。 把这个放到一个很难触及的账户里。 确保取出钱是一件苦差事（你必须开车去银行），所以你只会有意识地使用它并支付主要费用。"
 
 #: mmTips.h:38
 msgid "Tip to get out of debt: Establish an emergency fund."
-msgstr ""
+msgstr "摆脱债务的提示：建立应急基金。"
 
 #: mmTips.h:39
 msgid "Tip to get out of debt: Stop acquiring new debt."
-msgstr ""
+msgstr "要摆脱债务的提示：停止获取新债务。"
 
 #: mmTips.h:40
 msgid "Tip to get out of debt: Create a realistic budget for your expenses."
-msgstr ""
+msgstr "提取债务的提示：为您的费用创建一个现实的预算。"
 
 #: mmTips.h:41
 msgid "Tip to get out of debt: Spend less than you earn."
-msgstr ""
+msgstr "提示，摆脱债务：花费比您赚得的要少。"
 
 #: mmTips.h:42
 msgid "Tip to get out of debt: Pay more than the minimum."
-msgstr ""
+msgstr "提取债务的提示：支付超过最低值。"
 
 #: mmTips.h:43
 msgid "Before going to a shop and buy something: take the time making a list of what you really need. In the shop buy what is in your list."
-msgstr ""
+msgstr "在去商店购买东西之前：花时间来列出你真正需要的东西。 在商店购买您列表中的内容。"
 
 #: mmTips.h:47
 msgid "Using MMEX it is possible to track stocks/mutual funds investments."
@@ -3696,21 +3696,21 @@ msgstr "新增转帐(&N)"
 #: mmchecking_list.cpp:362
 msgid "&Edit Transaction"
 msgid_plural "&Edit Transactions"
-msgstr[0] ""
+msgstr[0] "编辑交易(&E)"
 
 #: mmchecking_list.cpp:367
 msgid "&Copy Transaction"
 msgid_plural "&Copy Transactions"
-msgstr[0] ""
+msgstr[0] "复制交易(&C)"
 
 #: mmchecking_list.cpp:372
 msgid "&Paste Transaction"
-msgstr ""
+msgstr "粘贴交易(&P)"
 
 #: mmchecking_list.cpp:372
 #, c-format
 msgid "&Paste Transactions (%d)"
-msgstr ""
+msgstr "粘贴交易 (%d)(&P)"
 
 #: mmchecking_list.cpp:377
 msgid "D&uplicate Transaction"
@@ -3719,7 +3719,7 @@ msgstr "复制并增加交易(&U)"
 #: mmchecking_list.cpp:380
 msgid "&Move Transaction"
 msgid_plural "&Move Transactions"
-msgstr[0] ""
+msgstr[0] "转移交易(&M)"
 
 #: mmchecking_list.cpp:386
 msgid "&View Split Categories"
@@ -3727,12 +3727,12 @@ msgstr "查看所有预算分类"
 
 #: mmchecking_list.cpp:394
 msgid "Create Recurring T&ransaction"
-msgstr ""
+msgstr "创建定期交易(&T)"
 
 #: mmchecking_list.cpp:400
 msgid "&Delete selected transaction"
 msgid_plural "&Delete selected transactions"
-msgstr[0] ""
+msgstr[0] "删除所选交易(&D)"
 
 #: mmchecking_list.cpp:403
 msgid "Delete all transactions in current view"
@@ -3740,11 +3740,11 @@ msgstr "删除目前查看的所有交易"
 
 #: mmchecking_list.cpp:404
 msgid "Delete Viewed \"Follow Up\" Transactions"
-msgstr ""
+msgstr "删除已查看“跟进”交易"
 
 #: mmchecking_list.cpp:405
 msgid "Delete Viewed \"Unreconciled\" Transactions"
-msgstr ""
+msgstr "删除已查看“未核实”交易"
 
 #: mmchecking_list.cpp:411
 msgid "as Reconciled"
@@ -3760,7 +3760,7 @@ msgstr "无效"
 
 #: mmchecking_list.cpp:417
 msgid "as Followup"
-msgstr ""
+msgstr "为跟进"
 
 #: mmchecking_list.cpp:419
 msgid "as Duplicate"
@@ -3768,11 +3768,11 @@ msgstr "作为重复"
 
 #: mmchecking_list.cpp:421
 msgid "Mark all being selected"
-msgstr ""
+msgstr "标记所有被选中"
 
 #: mmchecking_list.cpp:793
 msgid "Do you really want to delete all the transactions shown?"
-msgstr ""
+msgstr "您真的要删除显示的所有交易吗？"
 
 #: mmchecking_list.cpp:794 mmchecking_list.cpp:805 mmchecking_list.cpp:816
 #: mmchecking_list.cpp:863
@@ -3782,27 +3782,28 @@ msgstr "确认删除交易"
 #: mmchecking_list.cpp:804 mmchecking_list.cpp:815
 #, c-format
 msgid "Do you really want to delete all the \"%s\" transactions shown?"
-msgstr ""
+msgstr "您真的想要删除显示的所有 \"%s\"交易吗？"
 
 #: mmchecking_list.cpp:804
 msgid "Follow Up"
-msgstr ""
+msgstr "跟进"
 
 #: mmchecking_list.cpp:815
 msgid "Unreconciled"
-msgstr ""
+msgstr "未核实"
 
 #: mmchecking_list.cpp:858
 #, c-format
 msgid "Do you really want to delete the selected transaction?"
 msgid_plural "Do you really want to delete %i selected transactions?"
-msgstr[0] ""
+msgstr[0] "您真的要删除 %i 所选的交易吗？"
 
 #: mmchecking_list.cpp:913
 #, c-format
 msgid "Locked transaction to date: %s\n\n"
 "Reconciled transactions."
-msgstr ""
+msgstr "已锁定交易日期：%s\n\n"
+"已核实对账交易。"
 
 #: mmchecking_list.cpp:916 transdialog.cpp:729 transdialog.cpp:762
 msgid "MMEX Transaction Check"
@@ -3812,32 +3813,33 @@ msgstr "MMEX 交易检查"
 #, c-format
 msgid "You are about to edit a transaction involving an account that is closed."
 msgid_plural "The edit will affect %i transactions involving an account that is closed."
-msgstr[0] ""
+msgstr[0] "该编辑将影响涉及已关闭帐户的 %i 笔交易。"
 
 #: mmchecking_list.cpp:951
 msgid "\n\n"
 "Do you still want to perform the edit?"
-msgstr ""
+msgstr "\n\n"
+"是否仍要执行编辑？"
 
 #: mmchecking_list.cpp:952
 msgid "Closed Account Check"
-msgstr ""
+msgstr "已关闭帐户检查"
 
 #: mmchecking_list.cpp:1138
 #, c-format
 msgid "Do you really want to move the selected transaction?"
 msgid_plural "Do you really want to move %i selected transactions?"
-msgstr[0] ""
+msgstr[0] "您真的要移动 %i 所选的交易吗？"
 
 #: mmchecking_list.cpp:1143
 msgid "Confirm Transaction Move"
-msgstr ""
+msgstr "确认交易移动"
 
 #: mmchecking_list.cpp:1149
 #, c-format
 msgid "Moving transaction to..."
 msgid_plural "Moving %i transactions to..."
-msgstr[0] ""
+msgstr[0] "正在将 %i 笔交易移动到..."
 
 #: mmchecking_list.cpp:1153 stocks_list.cpp:292
 msgid "Select the destination Account "
@@ -3845,7 +3847,7 @@ msgstr "选择存入账户"
 
 #: mmchecking_list.cpp:1221
 msgid "Recurring Transaction saved."
-msgstr ""
+msgstr "定期交易已保存。"
 
 #: mmcheckingpanel.cpp:290 mmcheckingpanel.cpp:438
 msgid "Displayed Bal: "
@@ -4451,11 +4453,11 @@ msgstr "访问我们的 Facebook"
 
 #: mmframe.cpp:1613
 msgid "&Crowdin"
-msgstr ""
+msgstr "Crowdin(&C)"
 
 #: mmframe.cpp:1613
 msgid "We use Crowdin to translate MMEX"
-msgstr ""
+msgstr "我们使用 Crowdin 翻译 MMEX"
 
 #: mmframe.cpp:1615
 msgid "&Twitter"
