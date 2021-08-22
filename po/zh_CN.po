@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-20 10:54+0300\n"
-"PO-Revision-Date: 2021-08-22 02:07\n"
+"PO-Revision-Date: 2021-08-22 02:30\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
@@ -5375,7 +5375,7 @@ msgstr "移动附件文件夹时出错：请手动移动它！"
 
 #: optionsettingsattachment.cpp:230
 msgid "Origin"
-msgstr ""
+msgstr "来源"
 
 #: optionsettingsattachment.cpp:231
 msgid "Destination"
@@ -5395,7 +5395,7 @@ msgstr "用户名用作数据库的标题。"
 
 #: optionsettingsgeneral.cpp:85
 msgid "Language"
-msgstr ""
+msgstr "语言"
 
 #: optionsettingsgeneral.cpp:107
 msgid "Specify the date format for display"
@@ -5403,7 +5403,7 @@ msgstr "指定显示的时间格式"
 
 #: optionsettingsgeneral.cpp:110
 msgid "Date format sample:"
-msgstr ""
+msgstr "日期格式示例："
 
 #: optionsettingsgeneral.cpp:123
 msgid "Base Currency"
@@ -5799,7 +5799,7 @@ msgstr ""
 
 #: payeedialog.cpp:289
 msgid "Tools -> Relocation of -> Payees"
-msgstr ""
+msgstr "工具 -> 搬迁 -> 收款人"
 
 #: payeedialog.cpp:290
 msgid "Organize Payees: Delete Error"
@@ -5807,15 +5807,15 @@ msgstr "收款人管理"
 
 #: payeedialog.cpp:390
 msgid "Define Category"
-msgstr ""
+msgstr "定义类别"
 
 #: payeedialog.cpp:392
 msgid "Remove Category"
-msgstr ""
+msgstr "删除类别"
 
 #: payeedialog.cpp:407
 msgid "Relocate Payee"
-msgstr ""
+msgstr "转移收款人"
 
 #: relocatecategorydialog.cpp:53
 msgid "Relocate Category Dialog"
@@ -5852,36 +5852,36 @@ msgstr "分类重定位确认"
 #: relocatecategorydialog.cpp:269 relocatepayeedialog.cpp:232
 #, c-format
 msgid "Records found in transactions: %i"
-msgstr ""
+msgstr "在交易中找到的记录：%i"
 
 #: relocatecategorydialog.cpp:270
 #, c-format
 msgid "Records found in split transactions: %i"
-msgstr ""
+msgstr "在拆分交易中找到的记录： %i"
 
 #: relocatecategorydialog.cpp:271 relocatepayeedialog.cpp:233
 #, c-format
 msgid "Records found in recurring transactions: %i"
-msgstr ""
+msgstr "在重复交易中找到记录： %i"
 
 #: relocatecategorydialog.cpp:272
 #, c-format
 msgid "Records found in recurring split transactions: %i"
-msgstr ""
+msgstr "在重复性分割交易中找到记录： %i"
 
 #: relocatecategorydialog.cpp:273
 #, c-format
 msgid "Records found as Default Payee Category: %i"
-msgstr ""
+msgstr "作为默认收款人类别找到的记录：%i"
 
 #: relocatecategorydialog.cpp:274
 #, c-format
 msgid "Records found in budget: %i"
-msgstr ""
+msgstr "在预算中找到的记录： %i"
 
 #: relocatepayeedialog.cpp:52
 msgid "Relocate Payee Dialog"
-msgstr ""
+msgstr "转移收款人对话框"
 
 #: relocatepayeedialog.cpp:82
 msgid "Relocate all source payee to the destination payee"
@@ -5955,15 +5955,15 @@ msgstr ""
 
 #: reports/budgetingperf.cpp:228 reports/budgetingperf.cpp:230
 msgid "Est."
-msgstr ""
+msgstr "Est."
 
 #: reports/budgetingperf.cpp:228 reports/budgetingperf.cpp:230
 msgid "Act."
-msgstr ""
+msgstr "Act."
 
 #: reports/budgetingperf.cpp:231
 msgid "%"
-msgstr ""
+msgstr "%"
 
 #: reports/budgetingperf.cpp:284
 msgid "Monthly Total"
@@ -6430,7 +6430,7 @@ msgstr ""
 #: stockdialog.cpp:674
 #, c-format
 msgid "Total Imported : %ld"
-msgstr ""
+msgstr "总共导入： %ld"
 
 #: stockdialog.cpp:682
 msgid "Importing CSV"
@@ -6470,15 +6470,15 @@ msgstr "10 年"
 
 #: stockdialog.cpp:722
 msgid "Max"
-msgstr ""
+msgstr "最大"
 
 #: stockdialog.cpp:728
 msgid "Specify type frequency of stock history"
-msgstr ""
+msgstr "指定股票历史的类型频率"
 
 #: stockdialog.cpp:729 stockdialog.cpp:753
 msgid "Stock History Update"
-msgstr ""
+msgstr "股票历史更新"
 
 #: stockdialog.cpp:742
 msgid "1 Day"
@@ -6490,15 +6490,15 @@ msgstr "1 周"
 
 #: stockdialog.cpp:752
 msgid "Specify interval of stock history"
-msgstr ""
+msgstr "指定股票历史间隔"
 
 #: stockdialog.cpp:767 stockdialog.cpp:771
 msgid "Stock history not found!"
-msgstr ""
+msgstr "未找到股票历史！"
 
 #: stockdialog.cpp:768 stockdialog.cpp:880
 msgid "Stock History Error"
-msgstr ""
+msgstr "股票历史错误"
 
 #: stocks_list.cpp:92
 msgid "Share Total"
@@ -6551,7 +6551,7 @@ msgstr "正在将交易从 %s 移动到..."
 
 #: stockspanel.cpp:134
 msgid "Add Stock Transactions"
-msgstr ""
+msgstr "添加股票交易"
 
 #: stockspanel.cpp:139
 msgid "View Stock Transactions"
@@ -6559,7 +6559,7 @@ msgstr "查看股票交易"
 
 #: stockspanel.cpp:149
 msgid "Delete Stock Investment"
-msgstr ""
+msgstr "删除股票投资"
 
 #: stockspanel.cpp:153
 msgid "&Move"
@@ -6567,7 +6567,7 @@ msgstr "转移(&M)"
 
 #: stockspanel.cpp:154
 msgid "Move selected transaction to another account"
-msgstr ""
+msgstr "移动所选交易到另一个帐户"
 
 #: stockspanel.cpp:167
 msgid "Refresh"
@@ -6581,7 +6581,8 @@ msgstr "从 Yahoo 刷新股票价格"
 #, c-format
 msgid "Temporary Stock list: %s\n\n"
 "Date          Lot          Shares          Price        Commission\n\n"
-msgstr ""
+msgstr "临时库存清单：%s\n\n"
+"日期          阶段         股份          价格        佣金\n\n"
 
 #: stockspanel.cpp:299
 #, c-format
@@ -6591,7 +6592,7 @@ msgstr "股票投资：%s"
 #: stockspanel.cpp:343
 #, c-format
 msgid "Total Shares: %s"
-msgstr ""
+msgstr "总份额：%s"
 
 #: stockspanel.cpp:345
 #, c-format
@@ -6636,53 +6637,54 @@ msgstr "删除(&D)"
 
 #: themes.cpp:187
 msgid "Use"
-msgstr ""
+msgstr "使用"
 
 #: themes.cpp:233
 msgid "No description available"
-msgstr ""
+msgstr "没有可用的描述"
 
 #: themes.cpp:279
 msgid "Choose theme file to import"
-msgstr ""
+msgstr "选择要导入的主题文件"
 
 #: themes.cpp:299
 msgid "The theme already exists, do you still want to import and overwrite the existing theme?"
-msgstr ""
+msgstr "主题已存在，是否仍要导入并覆盖现有主题？"
 
 #: themes.cpp:309
 msgid "Something went wrong importing the theme"
-msgstr ""
+msgstr "导入主题时出了点问题"
 
 #: themes.cpp:321
 msgid "Are you sure you want to delete this theme? If you want to use it again you will need to re-import it."
-msgstr ""
+msgstr "您确定要删除此主题吗？ 如果您想再次使用它，则需要重新导入它。"
 
 #: themes.cpp:328
 msgid "Something went wrong when attempting to delete the theme"
-msgstr ""
+msgstr "尝试删除主题时出了点问题"
 
 #: themes.cpp:340
 msgid "Are you sure you want to use this theme? Please note that this will only take effect when MMEX is re-started."
-msgstr ""
+msgstr "您确定要使用此主题吗？ 请注意，这只有在重新启动 MMEX 时才会生效。"
 
 #: transactionsupdatedialog.cpp:82
 msgid "Multi Transactions Update"
-msgstr ""
+msgstr "多交易更新"
 
 #: transactionsupdatedialog.cpp:213
 msgid "Append"
-msgstr ""
+msgstr "追加"
 
 #: transactionsupdatedialog.cpp:325 transdialog.cpp:666
 #, c-format
 msgid "You have not used this payee name before. Is the name correct?\n"
 "%s"
-msgstr ""
+msgstr "您以前没有使用过这个收款人姓名。 名字正确吗？\n"
+"%s"
 
 #: transactionsupdatedialog.cpp:326 transdialog.cpp:667
 msgid "Confirm payee name"
-msgstr ""
+msgstr "确认收款人姓名"
 
 #: transdialog.cpp:180
 msgid "Duplicate Transaction"
@@ -6740,7 +6742,7 @@ msgstr "指定交易日期"
 
 #: usertransactionpanel.cpp:115
 msgid "Specify the associated Account that will contain this transaction"
-msgstr ""
+msgstr "指定将包含此交易的关联账户"
 
 #: usertransactionpanel.cpp:127
 msgid "Withdraw funds from or deposit funds to this Account."
@@ -6780,51 +6782,51 @@ msgstr "账户选择"
 
 #: util.cpp:293
 msgid "Jan"
-msgstr ""
+msgstr "一月"
 
 #: util.cpp:293
 msgid "Feb"
-msgstr ""
+msgstr "二月"
 
 #: util.cpp:293
 msgid "Mar"
-msgstr ""
+msgstr "三月"
 
 #: util.cpp:294
 msgid "Apr"
-msgstr ""
+msgstr "四月"
 
 #: util.cpp:294 util.h:156
 msgid "May"
-msgstr ""
+msgstr "五月"
 
 #: util.cpp:294
 msgid "Jun"
-msgstr ""
+msgstr "六月"
 
 #: util.cpp:295
 msgid "Jul"
-msgstr ""
+msgstr "七月"
 
 #: util.cpp:295
 msgid "Aug"
-msgstr ""
+msgstr "八月"
 
 #: util.cpp:295
 msgid "Sep"
-msgstr ""
+msgstr "九月"
 
 #: util.cpp:296
 msgid "Oct"
-msgstr ""
+msgstr "十月"
 
 #: util.cpp:296
 msgid "Nov"
-msgstr ""
+msgstr "十一月"
 
 #: util.cpp:296
 msgid "Dec"
-msgstr ""
+msgstr "十二月"
 
 #: util.cpp:301
 msgid "Sunday"
@@ -6856,31 +6858,31 @@ msgstr "周六"
 
 #: util.cpp:308
 msgid "Sun"
-msgstr ""
+msgstr "星期日"
 
 #: util.cpp:308
 msgid "Mon"
-msgstr ""
+msgstr "星期一"
 
 #: util.cpp:308
 msgid "Tue"
-msgstr ""
+msgstr "星期二"
 
 #: util.cpp:309
 msgid "Wed"
-msgstr ""
+msgstr "星期三"
 
 #: util.cpp:309
 msgid "Thu"
-msgstr ""
+msgstr "星期四"
 
 #: util.cpp:309
 msgid "Fri"
-msgstr ""
+msgstr "星期五"
 
 #: util.cpp:310
 msgid "Sat"
-msgstr ""
+msgstr "星期六"
 
 #: util.cpp:676
 msgid "Currency rates have been updated"
@@ -6888,19 +6890,19 @@ msgstr "货币汇率已更新"
 
 #: util.cpp:767 util.cpp:873 util.cpp:932
 msgid "JSON Parse Error"
-msgstr ""
+msgstr "JSON 分析错误"
 
 #: util.cpp:881 util.cpp:940
 msgid "Expected response to contain a data or error string"
-msgstr ""
+msgstr "包含数据或错误字符串的预期响应"
 
 #: util.cpp:912
 msgid "Could not find asset for symbol"
-msgstr ""
+msgstr "找不到符号的资产"
 
 #: util.cpp:947
 msgid "Could not get base currency!"
-msgstr ""
+msgstr "无法获取基本货币！"
 
 #: util.cpp:953
 msgid "USD"
@@ -6912,7 +6914,7 @@ msgstr ""
 
 #: util.cpp:976
 msgid "Could not parse price in asset history"
-msgstr ""
+msgstr "无法解析资产历史中的价格"
 
 #: util.cpp:1206
 #, c-format
@@ -6941,7 +6943,7 @@ msgstr "MMEX 正在使用以下产品进行支持："
 
 #: util.cpp:1241
 msgid "Build using:"
-msgstr ""
+msgstr "构建使用："
 
 #: util.cpp:1262
 msgid "Running on:"
@@ -7071,7 +7073,7 @@ msgstr "附件文件夹错误"
 
 #: webapp.cpp:596
 msgid "Transaction not downloaded: please retry to download transactions"
-msgstr ""
+msgstr "交易未下载：请重试下载交易"
 
 #: webapp.cpp:597 webappdialog.cpp:348
 msgid "Attachment download error"
@@ -7083,11 +7085,11 @@ msgstr "导入 WebApp 交易"
 
 #: webappdialog.cpp:100
 msgid "Network status (click to refresh)"
-msgstr ""
+msgstr "网络状态（点击刷新）"
 
 #: webappdialog.cpp:132
 msgid "Checking for new transactions..."
-msgstr ""
+msgstr "正在检查新交易..."
 
 #: webappdialog.cpp:165
 msgid "&Import all "
@@ -7099,11 +7101,11 @@ msgstr "导入和打开所有"
 
 #: webappdialog.cpp:214
 msgid "Unable to download transactions from webapp."
-msgstr ""
+msgstr "无法从 webapp 下载交易。"
 
 #: webappdialog.cpp:215
 msgid "Transactions download error"
-msgstr ""
+msgstr "交易下载错误"
 
 #: webappdialog.cpp:320
 msgid "Unable to insert transaction in MMEX database"
@@ -7119,7 +7121,7 @@ msgstr "打开附件"
 
 #: webappdialog.cpp:418
 msgid "Import and open"
-msgstr ""
+msgstr "导入并打开"
 
 #: wizard_newaccount.cpp:30
 msgid "Add Account Wizard"
@@ -7170,7 +7172,7 @@ msgstr "选择您想要创建哪种类型的账户："
 #: wizard_newaccount.cpp:136
 msgid "General bank accounts cover a wide variety of account\n"
 "types like Checking, Savings and Credit card type accounts."
-msgstr ""
+msgstr "一般银行账户涵盖多种账户类型，如支票、储蓄和信用卡类型的账户。"
 
 #: wizard_newaccount.cpp:141
 msgid "Investment accounts are specialized accounts that only\n"
@@ -7245,11 +7247,11 @@ msgstr "更新向导"
 
 #: wizard_update.cpp:106
 msgid "Historical releases:"
-msgstr ""
+msgstr "历史版本："
 
 #: wizard_update.cpp:145
 msgid "Version"
-msgstr ""
+msgstr "版本 "
 
 #: wizard_update.cpp:153
 msgid "You already have the latest version"
