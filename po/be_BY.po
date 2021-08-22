@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-22 15:52+0300\n"
-"PO-Revision-Date: 2021-08-22 14:25\n"
+"PO-Revision-Date: 2021-08-22 14:47\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -1020,7 +1020,7 @@ msgstr "Нумар"
 
 #: billsdepositsdialog.cpp:631
 msgid "Organize attachments of this recurring transaction"
-msgstr "Мэнаджар далучэнняў аперацыі, што паўтараецца"
+msgstr "Мэнаджар далучэнняў запланаванай аперацыі"
 
 #: billsdepositsdialog.cpp:634 transdialog.cpp:576
 msgid "User Colors"
@@ -1222,7 +1222,7 @@ msgstr "Фільтр аперацыяў"
 
 #: billsdepositspanel.cpp:293
 msgid "Delete Recurring Transaction"
-msgstr "Выдаліць аперацыю, што паўтараецца"
+msgstr "Выдаліць запланаваную аперацыю"
 
 #: billsdepositspanel.cpp:297
 msgid "Ente&r"
@@ -1230,7 +1230,7 @@ msgstr "Уво&д"
 
 #: billsdepositspanel.cpp:298
 msgid "Enter Next Recurring Transaction Occurrence"
-msgstr "Увесці наступную аперацыю, што паўтараецца"
+msgstr "Увесці наступную запланаваную аперацыю"
 
 #: billsdepositspanel.cpp:302
 msgid "&Skip"
@@ -1238,7 +1238,7 @@ msgstr "Прапус&ціць"
 
 #: billsdepositspanel.cpp:303
 msgid "Skip Next Recurring Transaction Occurrence"
-msgstr "Прапусціць наступнае з'яўленне аперацыі, што паўтараецца"
+msgstr "Прапусціць наступнае з'яўленне запланаванай аперацыі"
 
 #: billsdepositspanel.cpp:412
 msgid "Enter next Occurrence..."
@@ -1250,15 +1250,15 @@ msgstr "Прапусціць наступнае налічэнне"
 
 #: billsdepositspanel.cpp:416
 msgid "&New Recurring Transaction..."
-msgstr "&Новая аперацыя, што паўтараецца..."
+msgstr "&Новая запланаваная аперацыя..."
 
 #: billsdepositspanel.cpp:417
 msgid "&Edit Recurring Transaction..."
-msgstr "&Рыдагаваць аперацыю, што паўтараецца..."
+msgstr "&Рыдагаваць запланаваную аперацыю..."
 
 #: billsdepositspanel.cpp:418
 msgid "&Delete Recurring Transaction..."
-msgstr "&Выдаліць аперацыю, што паўтараецца..."
+msgstr "&Выдаліць запланаваную аперацыю..."
 
 #: billsdepositspanel.cpp:465
 msgid "Manual"
@@ -1307,7 +1307,7 @@ msgstr[3] "%d дзень пратырміноўкі!"
 
 #: billsdepositspanel.cpp:648
 msgid "Do you really want to delete the recurring transaction?"
-msgstr "Вы сапраўды жадаеце выдаліць аперацыю, што паўтараецца?"
+msgstr "Вы сапраўды жадаеце выдаліць запланаваную аперацыю?"
 
 #: billsdepositspanel.cpp:649
 msgid "Confirm Deletion"
@@ -3887,7 +3887,7 @@ msgstr "Абраць рахунак прызначэння "
 
 #: mmchecking_list.cpp:1221
 msgid "Recurring Transaction saved."
-msgstr "Захаваная аперацыя, што паўтараецца."
+msgstr "Запланаваная аперацыя была захаваная."
 
 #: mmcheckingpanel.cpp:333 mmframe.cpp:1722 transdialog.cpp:180
 msgid "New Transaction"
@@ -5254,17 +5254,17 @@ msgstr "БанкаўскіРахунак"
 
 #: model/Model_Attachment.cpp:28
 msgid "RecurringTransaction"
-msgstr ""
+msgstr "ЗапланаванаяАперацыя"
 
 #: model/Model_Billsdeposits.cpp:301
 msgid "A recurring transaction will exceed your account limit.\n\n"
 "Do you wish to continue?"
-msgstr "Аперацыя, што паўтараецца, перавысіць ліміт рахунка.\n\n"
+msgstr "Запланаваная аперацыя перавысіць ліміт рахунка.\n\n"
 "Вы жадаеце працягнуць?"
 
 #: model/Model_Billsdeposits.cpp:303
 msgid "MMEX Recurring Transaction Check"
-msgstr "Правекрка запланаванай аперацыі"
+msgstr "Пераверка запланаванай аперацыі"
 
 #: model/Model_CustomField.cpp:25
 msgid "String"
@@ -5549,15 +5549,15 @@ msgstr "Пакінуць зыходную дату падчас капіяван
 
 #: optionsettingsgeneral.cpp:210
 msgid "Select whether to use the original transaction date or current date when copying/pasting transactions"
-msgstr "Выкарыстоўваць першапачатковую або бягучую дату аперацыі пры капіяваньні або ўстаўцы"
+msgstr "Выкарыстоўваць зыходную або бягучую дату аперацыі падчас капіявання або ўстаўкі"
 
 #: optionsettingsgeneral.cpp:213
 msgid "Use Original Date when Duplicating Transactions"
-msgstr ""
+msgstr "Пакінуць зыходную дату падчас дублявання"
 
 #: optionsettingsgeneral.cpp:215
 msgid "Select whether to use the original transaction date or current date when duplicating transactions"
-msgstr ""
+msgstr "Выкарыстоўваць зыходную або бягучую дату аперацыі падчас дублявання"
 
 #: optionsettingsgeneral.cpp:218
 msgid "Use Transaction Sound"
@@ -5961,12 +5961,12 @@ msgstr "У састаўных аперацыях знойдзена запіса
 #: relocatecategorydialog.cpp:271 relocatepayeedialog.cpp:233
 #, c-format
 msgid "Records found in recurring transactions: %i"
-msgstr "У аперацыях, што паўтараюцца, знойдзена запісаў: %i"
+msgstr "У запланаваных аперацыях знойдзена запісаў: %i"
 
 #: relocatecategorydialog.cpp:272
 #, c-format
 msgid "Records found in recurring split transactions: %i"
-msgstr "У састаўных аперацыях, што паўтараюцца, знойдзена запісаў: %i"
+msgstr "У састаўных запланаваных аперацыях знойдзена запісаў: %i"
 
 #: relocatecategorydialog.cpp:273
 #, c-format
