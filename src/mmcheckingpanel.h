@@ -73,13 +73,7 @@ public:
 private:
     enum
     {
-        ID_PANEL_CHECKING_STATIC_BALHEADER1 = wxID_HIGHEST + 50,
-        ID_PANEL_CHECKING_STATIC_BALHEADER2,
-        ID_PANEL_CHECKING_STATIC_BALHEADER3,
-        ID_PANEL_CHECKING_STATIC_BALHEADER4,
-        ID_PANEL_CHECKING_STATIC_BALHEADER5,
-        ID_PANEL_CHECKING_STATIC_DETAILS,
-        ID_TRX_FILTER,
+        ID_TRX_FILTER = wxID_HIGHEST + 50,
     };
 
     enum menu
@@ -130,6 +124,7 @@ private:
     wxButton* m_btnDelete;
     wxButton* m_btnAttachment;
     wxStaticText* m_header_text;
+    wxStaticText* m_header_balance;
     wxStaticText* m_info_panel;
     wxStaticText* m_info_panel_mini;
     wxStaticText* m_statTextTransFilter;
