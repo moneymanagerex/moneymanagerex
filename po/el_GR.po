@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-22 15:52+0300\n"
-"PO-Revision-Date: 2021-08-22 12:55\n"
+"PO-Revision-Date: 2021-08-22 15:47\n"
 "Last-Translator: \n"
 "Language-Team: Greek\n"
 "MIME-Version: 1.0\n"
@@ -5210,19 +5210,19 @@ msgstr "Άλλο"
 
 #: model/Model_Attachment.cpp:24
 msgid "Transaction"
-msgstr ""
+msgstr "Συναλλαγή"
 
 #: model/Model_Attachment.cpp:25
 msgid "Stock"
-msgstr ""
+msgstr "Απόθεμα"
 
 #: model/Model_Attachment.cpp:27
 msgid "BankAccount"
-msgstr ""
+msgstr "Τραπεζικός Λογαριασμός"
 
 #: model/Model_Attachment.cpp:28
 msgid "RecurringTransaction"
-msgstr ""
+msgstr "Επαναλαμβανόμενη Συναλλαγή"
 
 #: model/Model_Billsdeposits.cpp:301
 msgid "A recurring transaction will exceed your account limit.\n\n"
