@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-20 10:54+0300\n"
-"PO-Revision-Date: 2021-08-22 02:37\n"
+"PO-Revision-Date: 2021-08-22 02:55\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
@@ -1224,11 +1224,11 @@ msgstr "删除重复交易"
 
 #: billsdepositspanel.cpp:297
 msgid "Ente&r"
-msgstr ""
+msgstr "条目(&R)"
 
 #: billsdepositspanel.cpp:298
 msgid "Enter Next Recurring Transaction Occurrence"
-msgstr ""
+msgstr "输入下一个重复发生的事务"
 
 #: billsdepositspanel.cpp:302
 msgid "&Skip"
@@ -1236,7 +1236,7 @@ msgstr "跳过"
 
 #: billsdepositspanel.cpp:303
 msgid "Skip Next Recurring Transaction Occurrence"
-msgstr ""
+msgstr "跳过下一次重复发生的事务"
 
 #: billsdepositspanel.cpp:412
 msgid "Enter next Occurrence..."
@@ -1248,15 +1248,15 @@ msgstr "跳过下一次到期"
 
 #: billsdepositspanel.cpp:416
 msgid "&New Recurring Transaction..."
-msgstr ""
+msgstr "新建定期交易(&N)..."
 
 #: billsdepositspanel.cpp:417
 msgid "&Edit Recurring Transaction..."
-msgstr ""
+msgstr "编辑定期交易(&E)..."
 
 #: billsdepositspanel.cpp:418
 msgid "&Delete Recurring Transaction..."
-msgstr ""
+msgstr "删除重复交易(&D)..."
 
 #: billsdepositspanel.cpp:465
 msgid "Manual"
@@ -1296,11 +1296,11 @@ msgstr[0] "逾期 %d 天！"
 
 #: billsdepositspanel.cpp:648
 msgid "Do you really want to delete the recurring transaction?"
-msgstr ""
+msgstr "您真的要删除重复交易吗？"
 
 #: billsdepositspanel.cpp:649
 msgid "Confirm Deletion"
-msgstr ""
+msgstr "确认删除"
 
 #: budgetentrydialog.cpp:50
 msgid "Budget Year Entry"
@@ -1483,7 +1483,8 @@ msgstr "预算年："
 #: budgetyearentrydialog.cpp:79
 msgid "Specify the required year.\n"
 "Use Spin buttons to increase or decrease the year."
-msgstr ""
+msgstr "指定所需的年份。\n"
+"使用旋转按钮增加或减少年份。"
 
 #: budgetyearentrydialog.cpp:86
 msgid "Budget Month:"
@@ -1492,7 +1493,8 @@ msgstr "预算月份："
 #: budgetyearentrydialog.cpp:95
 msgid "Specify the required month.\n"
 "Use Spin buttons to increase or decrease the month."
-msgstr ""
+msgstr "指定所需的月份。\n"
+"使用旋转按钮增加或减少月份。"
 
 #: budgetyearentrydialog.cpp:102
 msgid "Base Budget On:"
@@ -1512,7 +1514,7 @@ msgstr "分类管理"
 
 #: categdialog.cpp:190 mmframe.cpp:1516
 msgid "Reassign all categories to another category"
-msgstr ""
+msgstr "重新分配所有收款人到另一个收款人"
 
 #: categdialog.cpp:192
 msgid "Expand"
@@ -1536,7 +1538,7 @@ msgstr "编辑已存在的分类的名称"
 
 #: categdialog.cpp:239
 msgid "Delete an existing category. The category cannot be used by existing transactions."
-msgstr ""
+msgstr "删除已存在的分类。该分类可能被已存在的交易使用。"
 
 #: categdialog.cpp:244 maincurrencydialog.cpp:211
 msgid "&Select"
@@ -1552,7 +1554,7 @@ msgstr "请输入类别名称："
 
 #: categdialog.cpp:258
 msgid "Tip: If category added now, check bottom of list."
-msgstr ""
+msgstr "提示：如果类别已添加，请选中列表底部。"
 
 #: categdialog.cpp:261
 msgid "Add Category"
@@ -1565,7 +1567,8 @@ msgstr "主分类名称已存在"
 #: categdialog.cpp:271
 msgid "Tip: If category added now, check bottom of list.\n"
 "Category will be in sorted order next time dialog appears"
-msgstr ""
+msgstr "提示：如果现在添加类别，请检查列表底部。\n"
+"下次出现对话框时，类别将按排序顺序排列"
 
 #: categdialog.cpp:273 categdialog.cpp:297 categdialog.cpp:315
 msgid "Organise Categories: Adding Error"
@@ -1590,16 +1593,18 @@ msgstr "子分类正在使用"
 #: categdialog.cpp:323
 msgid "Tip: Change all transactions using this Category to\n"
 "another Category using the relocate command:"
-msgstr ""
+msgstr "提示：将使用此类别的所有交易更改为\n"
+"使用命令移居另一个类别："
 
 #: categdialog.cpp:326
 msgid "Tip: Change all transactions using this Sub-Category to\n"
 "another Sub-Category using the relocate command:"
-msgstr ""
+msgstr "提示：将使用此子类别的所有交易更改为\n"
+"使用重定位命令另一个子类别："
 
 #: categdialog.cpp:329
 msgid "Tools -> Relocation of -> Categories"
-msgstr ""
+msgstr "工具 -> 重定位 -> 类别"
 
 #: categdialog.cpp:331
 msgid "Organise Categories: Delete Error"
@@ -1611,7 +1616,7 @@ msgstr "选择一个未使用的分类删除。"
 
 #: categdialog.cpp:460
 msgid "This category cannot be deleted because it's used by transactions."
-msgstr ""
+msgstr "无法删除此类别，因为它已被交易使用。"
 
 #: categdialog.cpp:467
 msgid "Delete an existing category."
@@ -1619,12 +1624,12 @@ msgstr "删除一个现有分类。"
 
 #: categdialog.cpp:472
 msgid "Subcategories must be deleted before."
-msgstr ""
+msgstr "必须先删除子类别。"
 
 #: categdialog.cpp:488
 #, c-format
 msgid "Enter a new name for '%s'"
-msgstr ""
+msgstr "为 '%s' 输入一个新名称"
 
 #: categdialog.cpp:489
 msgid "Edit Category"
