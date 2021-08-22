@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-20 10:54+0300\n"
-"PO-Revision-Date: 2021-08-22 03:45\n"
+"PO-Revision-Date: 2021-08-22 03:55\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
@@ -3259,7 +3259,7 @@ msgstr "已错误： %ld"
 #: import_export/univcsvdialog.cpp:1053
 #, c-format
 msgid "Log file written to: %s"
-msgstr ""
+msgstr "日志文件写入到： %s"
 
 #: import_export/univcsvdialog.cpp:1056 stockdialog.cpp:680
 msgid "Please confirm saving..."
@@ -3328,7 +3328,7 @@ msgstr "所有文件"
 
 #: import_export/univcsvdialog.cpp:1837
 msgid "Please, type the word indicating positive values in your CSV file, e.g. 'debit'"
-msgstr ""
+msgstr "请在您的 CSV 文件中输入表示正值的单词，例如“debit”"
 
 #: import_export/univcsvdialog.cpp:1837
 msgid "Enter a value"
@@ -3345,11 +3345,11 @@ msgstr "上次评分"
 
 #: maincurrencydialog.cpp:76
 msgid "Fixed Rate"
-msgstr ""
+msgstr "固定率"
 
 #: maincurrencydialog.cpp:127
 msgid "N/A"
-msgstr ""
+msgstr "未知"
 
 #: maincurrencydialog.cpp:169 maincurrencydialog.cpp:461
 msgid "Online update currency rate"
@@ -3361,7 +3361,7 @@ msgstr "在线更新"
 
 #: maincurrencydialog.cpp:176
 msgid "Show all even the unused currencies"
-msgstr ""
+msgstr "显示所有未使用的货币"
 
 #: maincurrencydialog.cpp:206 payeedialog.cpp:126
 msgid "Search:"
@@ -3402,7 +3402,7 @@ msgstr "删除选定的货币值"
 
 #: maincurrencydialog.cpp:297
 msgid "Delete Currency Values history for unused currencies and days"
-msgstr ""
+msgstr "删除未使用货币和天数的货币值历史"
 
 #: maincurrencydialog.cpp:353
 msgid "Do you really want to delete the selected Currency?"
@@ -3422,7 +3422,8 @@ msgstr "基本货币选择"
 #, c-format
 msgid "Historic rates for %s found, but \"Use currency history\" in options is disabled:\n"
 "click no and enable it or click yes to remove all historic rates for %s"
-msgstr ""
+msgstr "找到了 %s 的历史速率。 但选项中的“使用货币历史”已禁用：\n"
+"单击不启用它，或单击是删除所有历史汇率为 %s"
 
 #: maincurrencydialog.cpp:434
 #, c-format
@@ -3431,7 +3432,7 @@ msgstr "货币历史选项： %s "
 
 #: maincurrencydialog.cpp:490
 msgid "Unable to update history currency rates. Please update them manually!"
-msgstr ""
+msgstr "无法更新历史货币汇率。请手动更新它们！"
 
 #: maincurrencydialog.cpp:491 maincurrencydialog.cpp:643
 #: maincurrencydialog.cpp:678 maincurrencydialog.cpp:714
@@ -3453,7 +3454,7 @@ msgstr "未选择货币！"
 
 #: maincurrencydialog.cpp:649
 msgid "Do you want to add also dates without any transaction?"
-msgstr ""
+msgstr "您想要同时添加没有任何交易的日期吗？"
 
 #: maincurrencydialog.cpp:676
 #, c-format
@@ -3463,20 +3464,20 @@ msgstr "无法下载 %s 货币汇率"
 #: maincurrencydialog.cpp:712
 #, c-format
 msgid "Unable to download history for symbol %s. History rates not available!"
-msgstr ""
+msgstr "无法下载符号 %s 的历史记录。历史汇率不可用！"
 
 #: maincurrencydialog.cpp:774
 msgid "Changing base currency will delete all history rates, proceed?"
-msgstr ""
+msgstr "更改基本货币将删除所有历史汇率，继续吗？"
 
 #: maincurrencydialog.cpp:798
 msgid "Do you want to update today currency rates?"
-msgstr ""
+msgstr "您想要更新今天的货币汇率吗？"
 
 #: maincurrencydialog.cpp:819
 #, c-format
 msgid "Unable to download history for base symbol %s. History rates not available!"
-msgstr ""
+msgstr "无法下载基本符号 %s 的历史记录。历史记录汇率不可用！"
 
 #: maincurrencydialog.cpp:862 stockspanel.cpp:406 util.cpp:619
 msgid "Could not find base currency symbol!"
@@ -3484,7 +3485,7 @@ msgstr "无法找到基础的货币符号！"
 
 #: mmSimpleDialogs.cpp:177
 msgid "Subtract one year"
-msgstr ""
+msgstr "减去一年"
 
 #: mmSimpleDialogs.cpp:178
 msgid "Subtract one month"
@@ -3851,7 +3852,7 @@ msgstr "定期交易已保存。"
 
 #: mmcheckingpanel.cpp:290 mmcheckingpanel.cpp:438
 msgid "Displayed Bal: "
-msgstr ""
+msgstr "显示边距： "
 
 #: mmcheckingpanel.cpp:296
 msgid "Account Bal: "
@@ -3883,20 +3884,20 @@ msgstr "重复"
 
 #: mmcheckingpanel.cpp:377
 msgid "Duplicate selected transaction"
-msgstr ""
+msgstr "复制所选交易"
 
 #: mmcheckingpanel.cpp:394
 msgid "Enter any string to find it in the nearest transaction notes"
-msgstr ""
+msgstr "输入任何字符串以在最近的交易记录中查找它"
 
 #: mmcheckingpanel.cpp:411
 msgid "Full Transactions Report"
-msgstr ""
+msgstr "完整交易报告"
 
 #: mmcheckingpanel.cpp:413
 #, c-format
 msgid "Account View : %s"
-msgstr ""
+msgstr "账户视图： %s"
 
 #: mmcheckingpanel.cpp:493 webapp.cpp:585
 msgid "Attachment"
@@ -3905,17 +3906,17 @@ msgstr "附件"
 #: mmcheckingpanel.cpp:526
 #, c-format
 msgid "Transactions selected: %zu"
-msgstr ""
+msgstr "所选交易： %zu"
 
 #: mmcheckingpanel.cpp:529
 #, c-format
 msgid "Selected transactions balance: %s"
-msgstr ""
+msgstr "所选交易余额： %s"
 
 #: mmcheckingpanel.cpp:533
 #, c-format
 msgid "Days between selected transactions: %d"
-msgstr ""
+msgstr "所选交易之间的天数： %d"
 
 #: mmcustomdata.cpp:61
 msgid "Custom fields"
@@ -3927,13 +3928,14 @@ msgstr "请选择"
 
 #: mmcustomdata.cpp:309
 msgid "Multi Choice"
-msgstr ""
+msgstr "多项选择"
 
 #: mmcustomdata.cpp:637
 #, c-format
 msgid "Unable to save custom field \"%s\":\n"
 "value \"%s\" does not match RegEx validation \"%s\""
-msgstr ""
+msgstr "无法保存自定义字段%s\":\n"
+"值 \"%s\" 与 RegEx 验证\"%s 不匹配"
 
 #: mmcustomdata.cpp:640
 msgid "CustomField validation error"
@@ -4836,11 +4838,11 @@ msgstr "创建共享账户"
 
 #: mmframe.cpp:2499
 msgid "Accounts, Payees, and Categories Updated"
-msgstr ""
+msgstr "帐户、收款人和类别已更新"
 
 #: mmframe.cpp:2501
 msgid "Issue encountered updating WebApp, check Web server and WebApp settings"
-msgstr ""
+msgstr "更新 WebApp 时遇到问题，请检查 Web 服务器和 WebApp 设置"
 
 #: mmframe.cpp:2537
 msgid "MMEX Options have been updated."
@@ -4848,7 +4850,7 @@ msgstr "MMEX 选项已更新。"
 
 #: mmframe.cpp:2538
 msgid "Some settings take effect only after an application restart."
-msgstr ""
+msgstr "某些设置仅在应用程序重新启动后生效。"
 
 #: mmframe.cpp:2539 optiondialog.cpp:211 optiondialog.h:49
 msgid "MMEX Options"
@@ -4860,7 +4862,7 @@ msgstr "选择要导出的 HTML 文件"
 
 #: mmframe.cpp:3034 mmframe.cpp:3041
 msgid "Downloading stock prices from Yahoo"
-msgstr ""
+msgstr "从雅虎下载股票价格"
 
 #: mmframe.cpp:3035
 msgid "Please wait..."
@@ -5450,15 +5452,16 @@ msgstr "在基本货币对话框中选择一种货币，并右击鼠标，在菜
 #: optionsettingsgeneral.cpp:158
 msgid "Format derived from locale.\n"
 "Leave blank to manually set format via 'Currency Dialog | Edit'"
-msgstr ""
+msgstr "从本地生成的格式。\n"
+"留空则通过“货币对话框|编辑”手动设置格式"
 
 #: optionsettingsgeneral.cpp:168
 msgid "Use currency history"
-msgstr ""
+msgstr "使用货币历史"
 
 #: optionsettingsgeneral.cpp:170
 msgid "Select to use currency history (one rate for each day), deselect to use a fixed rate"
-msgstr ""
+msgstr "选择使用货币历史记录(每日一个汇率)，取消选择使用固定汇率"
 
 #: optionsettingsgeneral.cpp:174
 msgid "Financial Year"
@@ -5498,12 +5501,12 @@ msgstr "选择当登记交易时是否使用声音提示"
 
 #: optionsettingsgeneral.cpp:303
 msgid "bad locale name"
-msgstr ""
+msgstr "错误的语言环境名称"
 
 #: optionsettingsgeneral.cpp:319
 #, c-format
 msgid "Currency value sample: %s"
-msgstr ""
+msgstr "货币值示例： %s"
 
 #: optionsettingsmisc.cpp:57
 msgid "Stock Quote Web Page"
@@ -5511,7 +5514,7 @@ msgstr "股票报价网页"
 
 #: optionsettingsmisc.cpp:74
 msgid "Clear the field to Reset the value to system default."
-msgstr ""
+msgstr "清除字段以将值重置为系统默认值。"
 
 #: optionsettingsmisc.cpp:78
 msgid "Share Precision"
@@ -5539,15 +5542,15 @@ msgstr "最近收款人使用的"
 
 #: optionsettingsmisc.cpp:111
 msgid "Use default for payee"
-msgstr ""
+msgstr "使用默认收款人"
 
 #: optionsettingsmisc.cpp:127
 msgid "Yes"
-msgstr ""
+msgstr "是"
 
 #: optionsettingsmisc.cpp:128
 msgid "No"
-msgstr ""
+msgstr "否"
 
 #: optionsettingsmisc.cpp:137
 msgid "Default Date:"
@@ -5567,7 +5570,7 @@ msgstr "默认状态："
 
 #: optionsettingsmisc.cpp:145
 msgid "Bulk Transactions:"
-msgstr ""
+msgstr "批量交易："
 
 #: optionsettingsmisc.cpp:156
 msgid "Database Backup"
@@ -5580,7 +5583,8 @@ msgstr "在 Money Manager Ex 启动时创建一个数据库备份"
 #: optionsettingsmisc.cpp:165
 msgid "When MMEX Starts,\n"
 "creates the backup database: dbFile_start_YYYY-MM-DD.ext."
-msgstr ""
+msgstr "当MMEX 开始时，\n"
+"创建备份数据库: dbFile_start_YYYY-MM-DD.ext."
 
 #: optionsettingsmisc.cpp:170
 msgid "Backup database on exit."
@@ -5589,11 +5593,12 @@ msgstr "退出时备份数据库。"
 #: optionsettingsmisc.cpp:172
 msgid "When MMEX shuts down and changes made to database,\n"
 "creates or updates the backup database: dbFile_update_YYYY-MM-DD.ext."
-msgstr ""
+msgstr "当MMEX关闭并更改数据库时，\n"
+"创建或更新备份数据库: dbFile_update_YYYY-MM-DD.ext."
 
 #: optionsettingsmisc.cpp:180
 msgid "Specify max number of backup files"
-msgstr ""
+msgstr "指定最大备份文件数"
 
 #: optionsettingsmisc.cpp:183
 msgid "Max Files"
@@ -5617,15 +5622,15 @@ msgstr "网址"
 
 #: optionsettingsnet.cpp:69
 msgid "Specify the Web App URL without final slash"
-msgstr ""
+msgstr "指定 Web App URL，不含最终斜线"
 
 #: optionsettingsnet.cpp:72 webappdialog.cpp:110
 msgid "GUID"
-msgstr ""
+msgstr "GUID"
 
 #: optionsettingsnet.cpp:76
 msgid "Specify the Web App GUID"
-msgstr ""
+msgstr "指定 Web App GUID"
 
 #: optionsettingsnet.cpp:79
 msgid "More information about WebApp"
@@ -5657,11 +5662,11 @@ msgstr "使用统计"
 
 #: optionsettingsnet.cpp:127
 msgid "Check for latest news on startup"
-msgstr ""
+msgstr "在启动时检查更新"
 
 #: optionsettingsnet.cpp:129
 msgid "Enable to allow news to be checked on application start"
-msgstr ""
+msgstr "启用以允许在应用程序启动时检查新闻"
 
 #: optionsettingsnet.cpp:134
 msgid "Timeout"
@@ -5669,7 +5674,7 @@ msgstr "超时"
 
 #: optionsettingsnet.cpp:143
 msgid "Specify a network communication timeout value to use."
-msgstr ""
+msgstr "指定要使用的网络通信超时值。"
 
 #: optionsettingsnet.cpp:146
 msgid "Seconds"
@@ -5677,11 +5682,11 @@ msgstr "秒"
 
 #: optionsettingsnet.cpp:152
 msgid "Updates"
-msgstr ""
+msgstr "更新"
 
 #: optionsettingsnet.cpp:158
 msgid "Check for updates at StartUp"
-msgstr ""
+msgstr "在启动时检查更新"
 
 #: optionsettingsnet.cpp:160
 msgid "Enable to automatically check if new MMEX version is available at StartUp"
@@ -5697,7 +5702,7 @@ msgstr "开发版"
 
 #: optionsettingsnet.cpp:168
 msgid "Updates source"
-msgstr ""
+msgstr "更新来源"
 
 #: optionsettingsview.cpp:81
 msgid "Specify which accounts are visible"
@@ -5705,91 +5710,91 @@ msgstr "选定该项当账户可见时"
 
 #: optionsettingsview.cpp:84
 msgid "Category Delimiter"
-msgstr ""
+msgstr "类别分隔符"
 
 #: optionsettingsview.cpp:111
 msgid "Transaction/Budget Options"
-msgstr ""
+msgstr "交易/预算选项"
 
 #: optionsettingsview.cpp:117
 msgid "View Budgets as Financial Years"
-msgstr ""
+msgstr "预算视为财政年度"
 
 #: optionsettingsview.cpp:122
 msgid "View Budgets with 'transfer' transactions"
-msgstr ""
+msgstr "查看带有“转移”交易的预算"
 
 #: optionsettingsview.cpp:128
 msgid "View Budget Category Report with Summaries"
-msgstr ""
+msgstr "查看带摘要的预算类别报告"
 
 #: optionsettingsview.cpp:137
 msgid "Budget Offset (days):"
-msgstr ""
+msgstr "预算偏移(天)："
 
 #: optionsettingsview.cpp:141
 msgid "Advance or retard the start date from the 1st of the month or year by the number of days"
-msgstr ""
+msgstr "按天数提前或推迟月或年份第一个起始日期"
 
 #: optionsettingsview.cpp:146
 msgid "Ignore Future Transactions"
-msgstr ""
+msgstr "忽略未来交易"
 
 #: optionsettingsview.cpp:152
 msgid "Transaction Colors"
-msgstr ""
+msgstr "交易颜色"
 
 #: optionsettingsview.cpp:191
 msgid "UI Appearance"
-msgstr ""
+msgstr "界面外观"
 
 #: optionsettingsview.cpp:202
 msgid "Open Theme Manager"
-msgstr ""
+msgstr "打开主题管理器"
 
 #: optionsettingsview.cpp:204
 msgid "Style Template"
-msgstr ""
+msgstr "样式模板"
 
 #: optionsettingsview.cpp:207
 msgid "HTML Scale Factor"
-msgstr ""
+msgstr "HTML 缩放系数"
 
 #: optionsettingsview.cpp:215
 msgid "Specify which scale factor is used for the report pages"
-msgstr ""
+msgstr "指定报告页面使用哪个比例系数"
 
 #: optionsettingsview.cpp:220
 msgid "Small (16 px)"
-msgstr ""
+msgstr "小 (16px)"
 
 #: optionsettingsview.cpp:221
 msgid "Normal (24 px)"
-msgstr ""
+msgstr "正常 (24 px)"
 
 #: optionsettingsview.cpp:222
 msgid "Large (32 px)"
-msgstr ""
+msgstr "大 (32 px)"
 
 #: optionsettingsview.cpp:223
 msgid "Huge (48 px)"
-msgstr ""
+msgstr "巨大 (48 px)"
 
 #: optionsettingsview.cpp:237
 msgid "Toolbar Icon Size"
-msgstr ""
+msgstr "工具栏图标大小"
 
 #: optionsettingsview.cpp:240
 msgid "Navigation Icon Size"
-msgstr ""
+msgstr "导航栏图标大小"
 
 #: optionsettingsview.cpp:243
 msgid "Others Icon Size"
-msgstr ""
+msgstr "其他图标大小"
 
 #: payeedialog.cpp:67
 msgid "Last Used Category"
-msgstr ""
+msgstr "最近使用类别"
 
 #: payeedialog.cpp:67
 msgid "Default Category"
@@ -5809,7 +5814,7 @@ msgstr "请输入收款人名字："
 
 #: payeedialog.cpp:253
 msgid "Modify the name for the payee:"
-msgstr ""
+msgstr "修改收款人名称："
 
 #: payeedialog.cpp:254 payeedialog.cpp:270
 msgid "Organize Payees: Edit Payee"
@@ -5821,7 +5826,7 @@ msgstr "收款人正在使用"
 
 #: payeedialog.cpp:287
 msgid "Tip: Change all transactions using this Payee to another Payee using the relocate command:"
-msgstr ""
+msgstr "提示：使用此收款人将所有交易更改为另一个收款人，使用迁移命令："
 
 #: payeedialog.cpp:289
 msgid "Tools -> Relocation of -> Payees"
