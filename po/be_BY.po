@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-22 15:52+0300\n"
-"PO-Revision-Date: 2021-08-22 16:47\n"
+"PO-Revision-Date: 2021-08-22 16:55\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -1020,7 +1020,7 @@ msgstr "Нумар"
 
 #: billsdepositsdialog.cpp:631
 msgid "Organize attachments of this recurring transaction"
-msgstr "Мэнаджар далучэнняў запланаванай аперацыі"
+msgstr "Дыстпетчар далучэнняў запланаванай аперацыі"
 
 #: billsdepositsdialog.cpp:634 transdialog.cpp:576
 msgid "User Colors"
@@ -2532,7 +2532,7 @@ msgstr "Выканаць абраную справаздачу."
 
 #: general_report_manager.cpp:408
 msgid "Output"
-msgstr "Вывад"
+msgstr "Вынік"
 
 #: general_report_manager.cpp:431
 msgid "SQL"
@@ -3647,7 +3647,7 @@ msgstr "Парада: Калі вядзеце рахункі ў розных в�
 
 #: mmTips.h:34
 msgid "Organize Categories Dialog Tip: Pressing the h key will cycle through all categories starting with the letter h"
-msgstr "Парада: У мэнаджары катыгорыяў, націскаючы паслядоўна клавішу, адпаведную першай літары назвы, курсор будзе пераключацца паміж адпаведнымі катыгорыямі"
+msgstr "Парада: У дыстпетчары катыгорыяў, націскаючы паслядоўна клавішу, адпаведную першай літары назвы, курсор будзе пераключацца паміж адпаведнымі катыгорыямі"
 
 #: mmTips.h:35
 msgid "Organize Categories Dialog Tip: Pressing 2 key combination will cycle through all categories starting with that key combination. Example: Pressing ho will select Homeneeds, Home, House Tax, etc..."
@@ -4388,11 +4388,11 @@ msgstr "&Актывы"
 
 #: mmframe.cpp:1546
 msgid "T&heme Manager"
-msgstr "Мэнаджар Т&эмаў"
+msgstr "Дыстпетчар Т&эмаў"
 
 #: mmframe.cpp:1546 mmframe.cpp:2490 optionsettingsview.cpp:297 themes.cpp:137
 msgid "Theme Manager"
-msgstr "Мэнаджар Тэмаў"
+msgstr "Дыстпетчар Тэмаў"
 
 #: mmframe.cpp:1552
 msgid "Transaction Report &Filter..."
@@ -4408,11 +4408,11 @@ msgstr "Дыспетчар &справаздачы..."
 
 #: mmframe.cpp:1562
 msgid "C&ustom Fields Manager..."
-msgstr "Мэнаджар карыстальніцкіх &палёў..."
+msgstr "Дыстпетчар карыстальніцкіх &палёў..."
 
 #: mmframe.cpp:1562
 msgid "Custom Fields Manager"
-msgstr "Мэнаджар карыстальніцкіх палёў"
+msgstr "Дыстпетчар карыстальніцкіх палёў"
 
 #: mmframe.cpp:1568
 msgid "Refresh &WebApp"
@@ -4971,7 +4971,7 @@ msgstr "Мова прыкладання змененая. Гэтае змяне�
 
 #: mmframereport.cpp:78
 msgid "General Group Report"
-msgstr "Мэнаджар справаздачаў"
+msgstr "Дыстпетчар справаздачаў"
 
 #: mmframereport.cpp:105 mmhomepage.cpp:808 model/Model_Report.cpp:403
 #: reports/bugreport.h:110
@@ -5503,11 +5503,11 @@ msgstr "Усталяваць валюту"
 
 #: optionsettingsgeneral.cpp:130
 msgid "Sets the database default Currency using the 'Currency Dialog'"
-msgstr "Усталёўвае асноўную валюту з дапамогай 'Мэнаджара валютаў'"
+msgstr "Усталёўвае асноўную валюту з дапамогай 'Дыстпетчары валютаў'"
 
 #: optionsettingsgeneral.cpp:133
 msgid "Right click and select 'Set as Base Currency' in 'Currency Dialog'"
-msgstr "Пстрыкніце правай кнопкай мышы і абярыце 'Усталяваць у якасці асноўнай валюты' ў 'мэнаджары валютаў"
+msgstr "Пстрыкніце правай кнопкай мышы і абярыце 'Усталяваць у якасці асноўнай валюты' ў 'Дыстпетчары валютаў'"
 
 #: optionsettingsgeneral.cpp:158
 msgid "Format derived from locale.\n"
@@ -5818,7 +5818,7 @@ msgstr "Вонкавы выгляд"
 
 #: optionsettingsview.cpp:202
 msgid "Open Theme Manager"
-msgstr "Адчыніць Мэнаджар Тэмаў"
+msgstr "Адчыніць Дыстпетчар Тэмаў"
 
 #: optionsettingsview.cpp:204
 msgid "Style Template"
@@ -6813,7 +6813,7 @@ msgstr "Запоўніць нумар аперацыі"
 
 #: transdialog.cpp:571 usertransactionpanel.cpp:210
 msgid "Organize attachments of this transaction"
-msgstr "Мэнаджар далучэнняў гэтай аперацыі"
+msgstr "Дыстпетчар далучэнняў гэтай аперацыі"
 
 #: transdialog.cpp:610
 msgid "Show/Hide custom fields window"
