@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-22 15:52+0300\n"
-"PO-Revision-Date: 2021-08-22 12:55\n"
+"PO-Revision-Date: 2021-08-22 14:25\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -828,15 +828,15 @@ msgstr "Штомесяца (апошні працоўны дзень)"
 
 #: billsdepositsdialog.cpp:308 billsdepositspanel.cpp:288
 msgid "Edit Recurring Transaction"
-msgstr "Рэдактар запланаванай аперацыі"
+msgstr "Рыдактар запланаванай аперацыі"
 
 #: billsdepositsdialog.cpp:312
 msgid "Enter Recurring Transaction"
-msgstr "Увядзіце аперацыю, што паўтараецца"
+msgstr "Увядзіце запланаваную аперацыю"
 
 #: billsdepositsdialog.cpp:410
 msgid "Recurring Transaction Details"
-msgstr "Дыталі аперацыі, што паўтараецца"
+msgstr "Дыталі запланаванай аперацыі"
 
 #: billsdepositsdialog.cpp:422
 msgid "Specify the date when this bill or deposit is due"
@@ -960,7 +960,7 @@ msgstr "Абраць рахунак"
 
 #: billsdepositsdialog.cpp:587
 msgid "Specify the Account that will own the recurring transaction"
-msgstr "Пакажыце рахунак для гэтай аперацыі, што паўтараецца"
+msgstr "Пакажыце рахунак для гэтай запланаванай аперацыі"
 
 #: billsdepositsdialog.cpp:590 billsdepositsdialog.cpp:844
 #: billsdepositspanel.cpp:130 filtertransdialog.cpp:248
@@ -5242,15 +5242,15 @@ msgstr "Iншае"
 
 #: model/Model_Attachment.cpp:24
 msgid "Transaction"
-msgstr ""
+msgstr "Аперацыя"
 
 #: model/Model_Attachment.cpp:25
 msgid "Stock"
-msgstr ""
+msgstr "Акцыя"
 
 #: model/Model_Attachment.cpp:27
 msgid "BankAccount"
-msgstr ""
+msgstr "БанкаўскіРахунак"
 
 #: model/Model_Attachment.cpp:28
 msgid "RecurringTransaction"
