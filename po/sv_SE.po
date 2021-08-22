@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2021-08-20 10:54+0300\n"
-"PO-Revision-Date: 2021-08-20 10:40\n"
+"POT-Creation-Date: 2021-08-22 13:38+0300\n"
+"PO-Revision-Date: 2021-08-22 10:45\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
@@ -107,7 +107,7 @@ msgstr "Ursprungligt saldo: %s"
 msgid "Enter the initial balance in this account."
 msgstr "Ange det ursprungliga saldot för detta konto."
 
-#: accountdialog.cpp:171 import_export/univcsvdialog.cpp:1828
+#: accountdialog.cpp:171 import_export/univcsvdialog.cpp:1830
 msgid "Currency:"
 msgstr "Valuta:"
 
@@ -528,7 +528,7 @@ msgstr "Tillgångar"
 msgid "All"
 msgstr "Alla"
 
-#: assetspanel.cpp:466 billsdepositspanel.cpp:283 mmcheckingpanel.cpp:362
+#: assetspanel.cpp:466 billsdepositspanel.cpp:283 mmcheckingpanel.cpp:332
 #: stockspanel.cpp:129
 msgid "&New "
 msgstr "&Ny "
@@ -547,14 +547,14 @@ msgstr ""
 
 #: assetspanel.cpp:480 attachmentdialog.cpp:317 billsdepositspanel.cpp:287
 #: categdialog.cpp:233 customfieldlistdialog.cpp:261 maincurrencydialog.cpp:527
-#: mmcheckingpanel.cpp:366 payeedialog.cpp:397 splittransactionsdialog.cpp:166
+#: mmcheckingpanel.cpp:336 payeedialog.cpp:397 splittransactionsdialog.cpp:166
 #: stockspanel.cpp:143
 msgid "&Edit "
 msgstr "&Redigera "
 
 #: assetspanel.cpp:485 billsdepositspanel.cpp:292 budgetyeardialog.cpp:103
 #: categdialog.cpp:237 maincurrencydialog.cpp:292 mmchecking_list.cpp:406
-#: mmcheckingpanel.cpp:371 stockdialog.cpp:339 stockspanel.cpp:148
+#: mmcheckingpanel.cpp:341 stockdialog.cpp:339 stockspanel.cpp:148
 msgid "&Delete "
 msgstr "&Radera "
 
@@ -562,12 +562,12 @@ msgstr "&Radera "
 msgid "Delete Asset"
 msgstr "Ta bort tillgång"
 
-#: assetspanel.cpp:493 billsdepositspanel.cpp:310 mmcheckingpanel.cpp:384
+#: assetspanel.cpp:493 billsdepositspanel.cpp:310 mmcheckingpanel.cpp:354
 #: stockspanel.cpp:161
 msgid "Open attachments"
 msgstr "Öppna bilagor"
 
-#: assetspanel.cpp:500 assetspanel.cpp:501 mmcheckingpanel.cpp:392
+#: assetspanel.cpp:500 assetspanel.cpp:501 mmcheckingpanel.cpp:362
 msgid "Search"
 msgstr "Sök"
 
@@ -1108,12 +1108,12 @@ msgstr "Ange antalet betalningar som ska göras.\n"
 #: billsdepositsdialog.cpp:1342 filtertransdialog.cpp:492
 #: filtertransdialog.cpp:507 filtertransdialog.cpp:518
 #: filtertransdialog.cpp:534 filtertransdialog.cpp:571
-#: optionsettingsgeneral.cpp:281 util.cpp:691
+#: optionsettingsgeneral.cpp:286 util.cpp:691
 msgid "Invalid value"
 msgstr "Ogiltigt värde"
 
 #: billsdepositsdialog.cpp:1342 import_export/univcsvdialog.cpp:1133
-#: maincurrencydialog.cpp:469 mmframe.cpp:3337 optionsettingsgeneral.cpp:281
+#: maincurrencydialog.cpp:469 mmframe.cpp:3337 optionsettingsgeneral.cpp:286
 #: splittransactionsdialog.cpp:209 stockspanel.cpp:395 stockspanel.cpp:396
 #: themes.cpp:310 themes.cpp:329 webappdialog.cpp:194 webappdialog.cpp:199
 msgid "Error"
@@ -1673,76 +1673,76 @@ msgstr "Stäng"
 msgid "&Close "
 msgstr "&Stäng "
 
-#: constants.cpp:177
+#: constants.cpp:178
 msgid "Advanced Filter"
 msgstr "Avancerat filter"
 
-#: constants.cpp:178
+#: constants.cpp:179
 msgid "View All Transactions"
 msgstr "Visa alla transaktioner"
 
-#: constants.cpp:179
+#: constants.cpp:180
 msgid "View Today"
 msgstr "Visa idag"
 
-#: constants.cpp:180
+#: constants.cpp:181
 msgid "View Current Month"
 msgstr "Visa nuvarande månad"
 
-#: constants.cpp:181
+#: constants.cpp:182
 msgid "View Last 30 days"
 msgstr "Visa senaste 30 dagarna"
 
-#: constants.cpp:182
+#: constants.cpp:183
 msgid "View Last 90 days"
 msgstr "Visa senaste 90 dagarna"
 
-#: constants.cpp:183
+#: constants.cpp:184
 msgid "View Last Month"
 msgstr "Visa föregående månad"
 
-#: constants.cpp:184
+#: constants.cpp:185
 msgid "View Last 3 Months"
 msgstr "Visa de senaste 3 månaderna"
 
-#: constants.cpp:185
+#: constants.cpp:186
 msgid "View Last 12 Months"
 msgstr "Visa de senaste 12 månaderna"
 
-#: constants.cpp:186
+#: constants.cpp:187
 msgid "View Current Year"
 msgstr "Visa nuvarande månad"
 
-#: constants.cpp:187
+#: constants.cpp:188
 msgid "View Current Financial Year"
 msgstr "Visa nuvarande räkenskapsår"
 
-#: constants.cpp:188
+#: constants.cpp:189
 msgid "View Last Year"
 msgstr "Visa förra året"
 
-#: constants.cpp:189
+#: constants.cpp:190
 msgid "View Last Financial Year"
 msgstr "Visa förra räkenskapsåret"
 
-#: constants.cpp:190
+#: constants.cpp:191
 msgid "View Since Statement Date"
 msgstr ""
 
-#: constants.cpp:192
+#: constants.cpp:193
 msgid "ALL"
 msgstr "ALLA"
 
-#: constants.cpp:193 mmframe.cpp:1317 mmframe.cpp:1717
+#: constants.cpp:194 mmframe.cpp:1317 mmframe.cpp:1717
 #: model/Model_Account.cpp:26
 msgid "Open"
 msgstr "Öppet"
 
-#: constants.cpp:194 mmframe.cpp:1318 model/Model_Account.cpp:27
+#: constants.cpp:195 mmframe.cpp:1318 model/Model_Account.cpp:27
 msgid "Closed"
 msgstr "Stängt"
 
-#: constants.cpp:195 mmframe.cpp:1316
+#: constants.cpp:196 mmframe.cpp:1316
 msgid "Favorites"
 msgstr "Favoriter"
 
@@ -3170,7 +3170,7 @@ msgid "Account does not exist"
 msgstr "Kontot finns inte"
 
 #: import_export/univcsvdialog.cpp:684 import_export/univcsvdialog.cpp:755
-#: import_export/univcsvdialog.cpp:1841
+#: import_export/univcsvdialog.cpp:1843
 #, c-format
 msgid "Positive if type has '%s'"
 msgstr "Positiv om typen har '%s'"
@@ -3319,11 +3319,11 @@ msgstr ""
 msgid "All Files"
 msgstr ""
 
-#: import_export/univcsvdialog.cpp:1837
+#: import_export/univcsvdialog.cpp:1839
 msgid "Please, type the word indicating positive values in your CSV file, e.g. 'debit'"
 msgstr ""
 
-#: import_export/univcsvdialog.cpp:1837
+#: import_export/univcsvdialog.cpp:1839
 msgid "Enter a value"
 msgstr "Ange ett värde"
 
@@ -3848,70 +3848,70 @@ msgstr ""
 msgid "Recurring Transaction saved."
 msgstr "Återkommande transaktion sparad."
 
-#: mmcheckingpanel.cpp:290 mmcheckingpanel.cpp:438
-msgid "Displayed Bal: "
-msgstr "Visad balans: "
-
-#: mmcheckingpanel.cpp:296
-msgid "Account Bal: "
-msgstr "Kontobalans: "
-
-#: mmcheckingpanel.cpp:298
-msgid "Reconciled Bal: "
-msgstr ""
-
-#: mmcheckingpanel.cpp:300
-msgid "Diff: "
-msgstr "Skillnad: "
-
-#: mmcheckingpanel.cpp:363 mmframe.cpp:1722 transdialog.cpp:180
+#: mmcheckingpanel.cpp:333 mmframe.cpp:1722 transdialog.cpp:180
 msgid "New Transaction"
 msgstr "Ny transaktion"
 
-#: mmcheckingpanel.cpp:367
+#: mmcheckingpanel.cpp:337
 msgid "Edit selected transaction"
 msgstr "Redigera vald transaktion"
 
-#: mmcheckingpanel.cpp:372
+#: mmcheckingpanel.cpp:342
 msgid "Delete selected transaction"
 msgstr "Ta bort vald transaktion"
 
-#: mmcheckingpanel.cpp:376
+#: mmcheckingpanel.cpp:346
 msgid "D&uplicate "
 msgstr "D&uplicera "
 
-#: mmcheckingpanel.cpp:377
+#: mmcheckingpanel.cpp:347
 msgid "Duplicate selected transaction"
 msgstr ""
 
-#: mmcheckingpanel.cpp:394
+#: mmcheckingpanel.cpp:364
 msgid "Enter any string to find it in the nearest transaction notes"
 msgstr ""
 
-#: mmcheckingpanel.cpp:411
+#: mmcheckingpanel.cpp:381
 msgid "Full Transactions Report"
 msgstr "Full transaktionsrapport"
 
-#: mmcheckingpanel.cpp:413
+#: mmcheckingpanel.cpp:383
 #, c-format
 msgid "Account View : %s"
 msgstr ""
 
-#: mmcheckingpanel.cpp:493 webapp.cpp:585
+#: mmcheckingpanel.cpp:401
+msgid "Account Bal: "
+msgstr "Kontobalans: "
+
+#: mmcheckingpanel.cpp:403
+msgid "Reconciled Bal: "
+msgstr ""
+
+#: mmcheckingpanel.cpp:405
+msgid "Diff: "
+msgstr "Skillnad: "
+
+#: mmcheckingpanel.cpp:407
+msgid "Displayed Bal: "
+msgstr "Visad balans: "
+
+#: mmcheckingpanel.cpp:461 webapp.cpp:585
 msgid "Attachment"
 msgstr "Bilaga"
 
-#: mmcheckingpanel.cpp:526
+#: mmcheckingpanel.cpp:494
 #, c-format
 msgid "Transactions selected: %zu"
 msgstr ""
 
-#: mmcheckingpanel.cpp:529
+#: mmcheckingpanel.cpp:497
 #, c-format
 msgid "Selected transactions balance: %s"
 msgstr ""
 
-#: mmcheckingpanel.cpp:533
+#: mmcheckingpanel.cpp:501
 #, c-format
 msgid "Days between selected transactions: %d"
 msgstr ""
@@ -3950,7 +3950,7 @@ msgid "Please use the Switch Application Language option in View menu to select 
 "%s"
 msgstr ""
 
-#: mmex.cpp:134 mmframe.cpp:3374 optionsettingsgeneral.cpp:335
+#: mmex.cpp:134 mmframe.cpp:3374 optionsettingsgeneral.cpp:341
 msgid "Language change"
 msgstr ""
 
@@ -4259,7 +4259,7 @@ msgstr ""
 msgid "Change language used for MMEX GUI"
 msgstr ""
 
-#: mmframe.cpp:1452 optionsettingsgeneral.cpp:83 optionsettingsgeneral.cpp:343
+#: mmframe.cpp:1452 optionsettingsgeneral.cpp:83 optionsettingsgeneral.cpp:349
 msgid "system default"
 msgstr "systemstandardvärde"
 
@@ -4908,7 +4908,7 @@ msgstr ""
 msgid "File %s not found"
 msgstr "Filen %s hittades inte"
 
-#: mmframe.cpp:3372 optionsettingsgeneral.cpp:333
+#: mmframe.cpp:3372 optionsettingsgeneral.cpp:339
 msgid "The language for this application has been changed. The change will take effect the next time the application is started."
 msgstr "Språket för denna applikation har ändrats. Ändringen kommer att träda i kraft nästa gång applikationen startas."
 
@@ -5476,18 +5476,26 @@ msgid "Select whether to use the original transaction date or current date when 
 msgstr ""
 
 #: optionsettingsgeneral.cpp:213
+msgid "Use Original Date when Duplicating Transactions"
+msgstr ""
+
+#: optionsettingsgeneral.cpp:215
+msgid "Select whether to use the original transaction date or current date when duplicating transactions"
+msgstr ""
+
+#: optionsettingsgeneral.cpp:218
 msgid "Use Transaction Sound"
 msgstr "Använd ljud vid transaktion"
 
-#: optionsettingsgeneral.cpp:215
+#: optionsettingsgeneral.cpp:220
 msgid "Select whether to use sounds when entering transactions"
 msgstr ""
 
-#: optionsettingsgeneral.cpp:303
+#: optionsettingsgeneral.cpp:309
 msgid "bad locale name"
 msgstr ""
 
-#: optionsettingsgeneral.cpp:319
+#: optionsettingsgeneral.cpp:325
 #, c-format
 msgid "Currency value sample: %s"
 msgstr "Valutavärde exempel: %s"
