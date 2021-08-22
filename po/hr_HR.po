@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2021-08-22 13:38+0300\n"
-"PO-Revision-Date: 2021-08-22 10:46\n"
+"POT-Creation-Date: 2021-08-22 15:52+0300\n"
+"PO-Revision-Date: 2021-08-22 12:56\n"
 "Last-Translator: \n"
 "Language-Team: Croatian\n"
 "MIME-Version: 1.0\n"
@@ -965,9 +965,10 @@ msgstr "Odaberi račun, koji će sadržavati ponavljajuću transakciju"
 #: filtertransdialog.cpp:492 filtertransdialog.cpp:1011
 #: import_export/qif_export.cpp:592 import_export/qif_import_gui.cpp:101
 #: import_export/qif_import_gui.cpp:239 import_export/univcsvdialog.cpp:106
-#: mmchecking_list.cpp:216 reports/payee.cpp:134 reports/transactions.cpp:83
-#: transactionsupdatedialog.cpp:172 transdialog.cpp:296 transdialog.cpp:529
-#: usertransactionpanel.cpp:182 webappdialog.cpp:151
+#: mmchecking_list.cpp:216 model/Model_Attachment.cpp:29 reports/payee.cpp:134
+#: reports/transactions.cpp:83 transactionsupdatedialog.cpp:172
+#: transdialog.cpp:296 transdialog.cpp:529 usertransactionpanel.cpp:182
+#: webappdialog.cpp:151
 msgid "Payee"
 msgstr "Primatelj"
 
@@ -5180,7 +5181,7 @@ msgstr "Oročena štednja/Zajam"
 msgid "Investment"
 msgstr "Investicije"
 
-#: model/Model_Account.cpp:38
+#: model/Model_Account.cpp:38 model/Model_Attachment.cpp:26
 msgid "Asset"
 msgstr "Imovina"
 
@@ -5219,6 +5220,22 @@ msgstr "Nakit"
 #: model/Model_Asset.cpp:36
 msgid "Other"
 msgstr "Ostalo"
+
+#: model/Model_Attachment.cpp:24
+msgid "Transaction"
+msgstr ""
+
+#: model/Model_Attachment.cpp:25
+msgid "Stock"
+msgstr ""
+
+#: model/Model_Attachment.cpp:27
+msgid "BankAccount"
+msgstr ""
+
+#: model/Model_Attachment.cpp:28
+msgid "RecurringTransaction"
+msgstr ""
 
 #: model/Model_Billsdeposits.cpp:301
 msgid "A recurring transaction will exceed your account limit.\n\n"
