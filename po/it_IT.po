@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-22 15:52+0300\n"
-"PO-Revision-Date: 2021-08-22 12:55\n"
+"PO-Revision-Date: 2021-08-23 07:13\n"
 "Last-Translator: \n"
 "Language-Team: Italian\n"
 "MIME-Version: 1.0\n"
@@ -5217,19 +5217,19 @@ msgstr "Altro"
 
 #: model/Model_Attachment.cpp:24
 msgid "Transaction"
-msgstr ""
+msgstr "Operazioni"
 
 #: model/Model_Attachment.cpp:25
 msgid "Stock"
-msgstr ""
+msgstr "Titolo"
 
 #: model/Model_Attachment.cpp:27
 msgid "BankAccount"
-msgstr ""
+msgstr "Account bancario"
 
 #: model/Model_Attachment.cpp:28
 msgid "RecurringTransaction"
-msgstr ""
+msgstr "Transazione Ricorrente"
 
 #: model/Model_Billsdeposits.cpp:301
 msgid "A recurring transaction will exceed your account limit.\n\n"
@@ -5528,11 +5528,11 @@ msgstr "Nel copia/incolla delle operazioni selezionare se utilizzare la data ori
 
 #: optionsettingsgeneral.cpp:213
 msgid "Use Original Date when Duplicating Transactions"
-msgstr ""
+msgstr "Usa la Data Originale quando Duplichi le Transazioni"
 
 #: optionsettingsgeneral.cpp:215
 msgid "Select whether to use the original transaction date or current date when duplicating transactions"
-msgstr ""
+msgstr "Nel duplicare le operazioni selezionare se utilizzare la data originale dell'operazione oppure la data attuale"
 
 #: optionsettingsgeneral.cpp:218
 msgid "Use Transaction Sound"

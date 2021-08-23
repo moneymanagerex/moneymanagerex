@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-22 15:52+0300\n"
-"PO-Revision-Date: 2021-08-22 12:55\n"
+"PO-Revision-Date: 2021-08-23 03:18\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
@@ -37,7 +37,7 @@ msgstr "作者"
 
 #: aboutdialog.cpp:197
 msgid "Sponsors"
-msgstr "赞助商"
+msgstr "赞助人员"
 
 #: aboutdialog.cpp:202
 msgid "License"
@@ -117,7 +117,7 @@ msgstr "选择货币"
 
 #: accountdialog.cpp:179
 msgid "Specify the currency to be used by this account."
-msgstr "设定账目使用的货币。"
+msgstr "指定此帐户要使用的货币。"
 
 #: accountdialog.cpp:182
 msgid "Favorite Account"
@@ -125,7 +125,7 @@ msgstr "常用账户"
 
 #: accountdialog.cpp:184
 msgid "Select whether this is an account that is used often. This is used to filter accounts display view."
-msgstr "选择该项当该账户经常使用。该选项被用来在账户显示时排序。"
+msgstr "选择这是否是经常使用的帐户。 这是用来筛选帐户显示图。"
 
 #: accountdialog.cpp:192 assetdialog.cpp:253 assetspanel.cpp:65
 #: billsdepositsdialog.cpp:626 billsdepositspanel.cpp:140
@@ -190,7 +190,7 @@ msgstr "登陆信息："
 
 #: accountdialog.cpp:231
 msgid "Enter any login/access information for the financial institution. This is not secure as anyone with access to the mmb file can access it."
-msgstr "输出登陆信息。警告：任何可以打开该mmb文件的人都可访问该信息"
+msgstr "输入金融机构的任何登录/访问信息。 这并不安全，因为任何有权访问 mmb 文件的人都可以访问它。"
 
 #: accountdialog.cpp:236
 msgid "Statement"
@@ -202,7 +202,7 @@ msgstr "状态："
 
 #: accountdialog.cpp:245
 msgid "Locked"
-msgstr "锁定"
+msgstr "已锁定"
 
 #: accountdialog.cpp:246
 msgid "Enable or disable the transaction Lock"
@@ -290,7 +290,7 @@ msgstr "打开上次打开的数据库"
 
 #: appstartdialog.cpp:103
 msgid "Create a New Database"
-msgstr "建立新数据库文件"
+msgstr "创建一个新的数据库"
 
 #: appstartdialog.cpp:104
 msgid "Create a new database file to get started"
@@ -298,11 +298,11 @@ msgstr "创建一个新的数据库并打开"
 
 #: appstartdialog.cpp:107
 msgid "Open Existing Database"
-msgstr "打开上次打开的数据库"
+msgstr "打开现有数据库"
 
 #: appstartdialog.cpp:108
 msgid "Open an already created database file with extension (*.mmb)"
-msgstr "打开一个已建立的 Money Manager Ex 数据库文件（*.mmb文件）"
+msgstr "打开一个已创建的扩展名数据库文件(*.mmb)"
 
 #: appstartdialog.cpp:111
 msgid "Read Documentation"
@@ -314,7 +314,7 @@ msgstr "阅读用户手册"
 
 #: appstartdialog.cpp:115
 msgid "Visit Website for more information"
-msgstr "访问Web站点以寻找更多信息"
+msgstr "访问网站获取更多信息"
 
 #: appstartdialog.cpp:116
 #, c-format
@@ -333,7 +333,7 @@ msgstr "退出(&E) "
 #: appstartdialog.cpp:154
 #, c-format
 msgid "Open the previously opened database : %s"
-msgstr "打开先前打开的数据库： %s"
+msgstr "打开之前已打开的数据库： %s"
 
 #: assetdialog.cpp:61 assetdialog.cpp:410 assetspanel.cpp:467
 msgid "New Asset"
@@ -477,15 +477,15 @@ msgstr "新增资产(&N)"
 
 #: assetspanel.cpp:99
 msgid "D&uplicate Asset"
-msgstr "重做资产(&D)"
+msgstr "重复资产(&D)"
 
 #: assetspanel.cpp:101
 msgid "&Add Asset Transaction"
-msgstr "添加资产(&A)"
+msgstr "添加资产交易(&A)"
 
 #: assetspanel.cpp:102
 msgid "&View Asset Transactions"
-msgstr "查看资产(&O)"
+msgstr "查看资产交易(&)"
 
 #: assetspanel.cpp:103
 msgid "&Open Asset Account"
@@ -514,7 +514,7 @@ msgstr "确认删除资产"
 
 #: assetspanel.cpp:385
 msgid "MMEX allows you to track fixed assets like cars, houses, land and others. Each asset can have its value appreciate by a certain rate per year, depreciate by a certain rate per year, or not change in value. The total assets are added to your total financial worth."
-msgstr "MMEX允许您跟踪固定资产，如汽车、房屋、土地和其他资产。 每项资产的价值可按每年一定的汇率升值，每年折旧以一定的汇率折旧，或不改变价值。 总资产被添加到您的总金融价值中。"
+msgstr "MMEX 允许您跟踪固定资产，如汽车、房屋、土地和其他资产。 每项资产的价值可按每年一定的汇率升值，每年折旧以一定的汇率折旧，或不改变价值。 总资产被添加到您的总金融价值中。"
 
 #: assetspanel.cpp:415 assetspanel.h:108 general_report_manager.cpp:723
 #: general_report_manager.cpp:1000 mmframe.cpp:477 mmframe.cpp:743
@@ -540,7 +540,7 @@ msgstr "新增预算年(&A) "
 
 #: assetspanel.cpp:475 stockspanel.cpp:138
 msgid "&View Trans "
-msgstr "转帐 "
+msgstr "查看预算(&V)"
 
 #: assetspanel.cpp:476
 msgid "View Asset Transactions"
@@ -584,7 +584,7 @@ msgstr "总计：%s"
 #: assetspanel.cpp:655
 #, c-format
 msgid "Change in Value: %s %s"
-msgstr "值变化: %s %s"
+msgstr "价值变化: %s %s"
 
 #: assetspanel.cpp:771
 msgid "This asset does not have its own account\n\n"
@@ -598,7 +598,7 @@ msgstr "资产管理"
 
 #: assetspanel.cpp:792
 msgid "Account \t Date\t   Value\n\n"
-msgstr "账户日期\n\n"
+msgstr "帐户 \t 日期\t   价值\n\n"
 
 #: attachmentdialog.cpp:55 general_report_manager.cpp:434
 msgid "Description"
@@ -607,7 +607,7 @@ msgstr "描述"
 #: attachmentdialog.cpp:56 import_export/qif_export.cpp:194
 #: import_export/univcsvdialog.cpp:181
 msgid "File"
-msgstr "文件(&F)"
+msgstr "文件"
 
 #: attachmentdialog.cpp:64
 msgid "Attachment folder not defined."
@@ -615,7 +615,7 @@ msgstr "没有指定附件文件夹的位置。"
 
 #: attachmentdialog.cpp:65
 msgid "Please set it in Tools -> Options -> Attachments"
-msgstr "请在工具 -> 选项 -> 附件中设置它"
+msgstr "请在工具 -> 选项 -> 附件中设置它。"
 
 #: attachmentdialog.cpp:66
 msgid "Attachment folder not defined"
@@ -770,7 +770,7 @@ msgstr "每月"
 #: billsdepositsdialog.cpp:55 billsdepositspanel.cpp:52
 #: model/Model_Budget.cpp:59
 msgid "Every 2 Months"
-msgstr "每2个月"
+msgstr "每二个月"
 
 #: billsdepositsdialog.cpp:56 billsdepositspanel.cpp:53
 #: model/Model_Budget.cpp:60
@@ -917,7 +917,7 @@ msgstr "指定要创建的交易的类型"
 
 #: billsdepositsdialog.cpp:545 transdialog.cpp:496
 msgid "&Advanced"
-msgstr "高级"
+msgstr "高级(&A)"
 
 #: billsdepositsdialog.cpp:548 transdialog.cpp:1310
 msgid "Allows the setting of different amounts in the FROM and TO accounts."
@@ -970,7 +970,7 @@ msgstr "指定此定期交易所属的账户"
 #: transdialog.cpp:296 transdialog.cpp:529 usertransactionpanel.cpp:182
 #: webappdialog.cpp:151
 msgid "Payee"
-msgstr "交易方"
+msgstr "收款人"
 
 #: billsdepositsdialog.cpp:593 billsdepositsdialog.cpp:881
 #: usertransactionpanel.cpp:183
@@ -1044,11 +1044,11 @@ msgstr "账户名称"
 #: billsdepositsdialog.cpp:818 billsdepositsdialog.cpp:858
 #: filtertransdialog.cpp:1004 transdialog.cpp:299 transdialog.cpp:380
 msgid "From"
-msgstr "由"
+msgstr "从"
 
 #: billsdepositsdialog.cpp:830 transdialog.cpp:293
 msgid "To"
-msgstr "至"
+msgstr "到"
 
 #: billsdepositsdialog.cpp:831
 msgid "Select To Account"
@@ -1233,7 +1233,7 @@ msgstr "输入下一个重复发生的事务"
 
 #: billsdepositspanel.cpp:302
 msgid "&Skip"
-msgstr "跳过"
+msgstr "跳过(&S)"
 
 #: billsdepositspanel.cpp:303
 msgid "Skip Next Recurring Transaction Occurrence"
@@ -1451,7 +1451,7 @@ msgstr "预算编辑器"
 
 #: budgetyeardialog.cpp:93
 msgid "&Add Year"
-msgstr "新增预算年(&A)"
+msgstr "添加年份(&A)"
 
 #: budgetyeardialog.cpp:95
 msgid "Add a new budget year"
@@ -1459,7 +1459,7 @@ msgstr "新增预算年"
 
 #: budgetyeardialog.cpp:98
 msgid "&Add Month"
-msgstr "月份"
+msgstr "添加月份(&A)"
 
 #: budgetyeardialog.cpp:100
 msgid "Add a new budget month"
@@ -1475,11 +1475,11 @@ msgstr "预算入口详情"
 
 #: budgetyearentrydialog.cpp:45
 msgid "Budget Month Entry"
-msgstr "预算月入口"
+msgstr "预算月条目"
 
 #: budgetyearentrydialog.cpp:72
 msgid "Budget Year:"
-msgstr "预算年："
+msgstr "预算年份："
 
 #: budgetyearentrydialog.cpp:79
 msgid "Specify the required year.\n"
@@ -1671,7 +1671,7 @@ msgstr "取消"
 
 #: constants.cpp:77 diagnostics.cpp:88 themes.cpp:189
 msgid "Close"
-msgstr "关闭(&C)"
+msgstr "关闭"
 
 #: constants.cpp:79
 msgid "&Close "
@@ -1707,7 +1707,7 @@ msgstr "查看上月"
 
 #: constants.cpp:185
 msgid "View Last 3 Months"
-msgstr "查看最近三个月"
+msgstr "查看最近 3 个月"
 
 #: constants.cpp:186
 msgid "View Last 12 Months"
@@ -1744,11 +1744,11 @@ msgstr "打开"
 
 #: constants.cpp:195 mmframe.cpp:1318 model/Model_Account.cpp:27
 msgid "Closed"
-msgstr "关闭"
+msgstr "已关闭"
 
 #: constants.cpp:196 mmframe.cpp:1316
 msgid "Favorites"
-msgstr "收藏"
+msgstr "收藏夹 "
 
 #: currencydialog.cpp:101
 msgid "Currency name"
@@ -1832,7 +1832,7 @@ msgstr "输入自定义域名称"
 
 #: customfieldeditdialog.cpp:138
 msgid "Field Type"
-msgstr "域类型"
+msgstr "字段类型"
 
 #: customfieldeditdialog.cpp:142
 msgid "Select type of custom field"
@@ -1840,7 +1840,7 @@ msgstr "选择自定义域类型"
 
 #: customfieldeditdialog.cpp:145
 msgid "ToolTip"
-msgstr "工具条(&T)"
+msgstr "工具提示"
 
 #: customfieldeditdialog.cpp:147
 msgid "Enter the tooltip that will be shown"
@@ -2513,7 +2513,7 @@ msgstr "保存更改。"
 
 #: general_report_manager.cpp:394
 msgid "&Run"
-msgstr "运行"
+msgstr "运行(&R)"
 
 #: general_report_manager.cpp:396
 msgid "Run selected report."
@@ -2653,7 +2653,7 @@ msgstr "参数："
 #: images_list.cpp:336
 #, c-format
 msgid "Metadata JSON in Theme '%s' cannot be parsed and looks badly constructed, please correct."
-msgstr "无法解析主题中的%s中的 Metadata JSON 并看起来构造不当，请纠正。"
+msgstr "无法解析主题中的 %s 中的 Metadata JSON 并看起来构造不当，请纠正。"
 
 #: images_list.cpp:337 images_list.cpp:419 images_list.cpp:430
 #: images_list.cpp:465 images_list.cpp:490 images_list.cpp:496
@@ -2803,7 +2803,7 @@ msgstr "选择要导出的账户："
 
 #: import_export/qif_export.cpp:298 import_export/qif_export.cpp:314
 msgid "Choose QIF data file to Export"
-msgstr "选择QIF数据文件导出"
+msgstr "选择 QIF 数据文件导出"
 
 #: import_export/qif_export.cpp:300 import_export/qif_import_gui.cpp:723
 msgid "QIF Files (*.qif)"
@@ -2868,11 +2868,11 @@ msgstr "导出的账户数量： %zu"
 
 #: import_export/qif_export.cpp:642 mmframe.cpp:1382
 msgid "Export to QIF"
-msgstr "导出QIF"
+msgstr "导出到 QIF"
 
 #: import_export/qif_import_gui.cpp:129
 msgid "Choose &file"
-msgstr "选择文件（F）"
+msgstr "选择文件(&F)"
 
 #: import_export/qif_import_gui.cpp:142 import_export/univcsvdialog.cpp:322
 msgid "Encoding:"
@@ -3060,7 +3060,7 @@ msgstr "导出对话框"
 
 #: import_export/univcsvdialog.cpp:181
 msgid "&Browse"
-msgstr "浏览"
+msgstr "浏览(&B)"
 
 #: import_export/univcsvdialog.cpp:213
 msgid "Specify the order of fields in the file"
@@ -3132,7 +3132,7 @@ msgstr "选择要导出的 XML 数据文件"
 
 #: import_export/univcsvdialog.cpp:438
 msgid "Choose CSV data file to Export"
-msgstr "选择要导出的CSV数据文件"
+msgstr "选择要导出的 CSV 数据文件"
 
 #: import_export/univcsvdialog.cpp:441
 msgid "Template name"
@@ -3140,7 +3140,7 @@ msgstr "模板名称"
 
 #: import_export/univcsvdialog.cpp:442
 msgid "Save Template"
-msgstr "保存为模板(&A)"
+msgstr "保存模板"
 
 #: import_export/univcsvdialog.cpp:444
 msgid "MMEX standard format"
@@ -3156,15 +3156,15 @@ msgstr "向下移动(&D)"
 
 #: import_export/univcsvdialog.cpp:447 optionsettingsmisc.cpp:201
 msgid "Specify the delimiter to use when importing/exporting CSV files"
-msgstr "指定当导入/导出CSV文件时的分隔符"
+msgstr "指定当导入/导出 CSV 文件时的分隔符"
 
 #: import_export/univcsvdialog.cpp:448
 msgid "Import File"
-msgstr "导入文件(&I)"
+msgstr "导入文件"
 
 #: import_export/univcsvdialog.cpp:449
 msgid "Export File"
-msgstr "导出文件(&I)"
+msgstr "导出文件"
 
 #: import_export/univcsvdialog.cpp:539
 #, c-format
@@ -3198,7 +3198,7 @@ msgstr "必须填写金额字段并在分类中选择是支出或收入。"
 #: import_export/univcsvdialog.cpp:928 import_export/univcsvdialog.cpp:1057
 #: themes.cpp:183 webappdialog.cpp:417
 msgid "Import"
-msgstr "导入(&I)"
+msgstr "导入"
 
 #: import_export/univcsvdialog.cpp:980
 #, c-format
@@ -3276,7 +3276,7 @@ msgstr "指定用于导出的字段不正确！至少需要日期和金额。"
 
 #: import_export/univcsvdialog.cpp:1108 import_export/univcsvdialog.cpp:1248
 msgid "Export"
-msgstr "导出(&E)"
+msgstr "导出"
 
 #: import_export/univcsvdialog.cpp:1118
 msgid "Overwrite existing file?"
@@ -3447,7 +3447,7 @@ msgstr "设为基本货币"
 
 #: maincurrencydialog.cpp:524
 msgid "Online Update Currency Rate"
-msgstr "在线更新现金汇率(&U)"
+msgstr "在线更新现金汇率"
 
 #: maincurrencydialog.cpp:643
 msgid "No currency selected!"
@@ -3725,7 +3725,7 @@ msgstr[0] "转移交易(&M)"
 
 #: mmchecking_list.cpp:386
 msgid "&View Split Categories"
-msgstr "查看所有预算分类"
+msgstr "查看所有预算分类(&V)"
 
 #: mmchecking_list.cpp:394
 msgid "Create Recurring T&ransaction"
@@ -3865,7 +3865,7 @@ msgstr "删除已标记的交易"
 
 #: mmcheckingpanel.cpp:346
 msgid "D&uplicate "
-msgstr "重复"
+msgstr "重复(&U)"
 
 #: mmcheckingpanel.cpp:347
 msgid "Duplicate selected transaction"
@@ -4070,19 +4070,19 @@ msgstr "帐户列表(&L)"
 
 #: mmframe.cpp:1300 mmframe.cpp:1305 mmframe.cpp:1372 mmframe.cpp:1379
 msgid "&CSV Files..."
-msgstr "&CSV文件"
+msgstr "CSV 文件(&C)..."
 
 #: mmframe.cpp:1301 mmframe.cpp:1307 mmframe.cpp:1373 mmframe.cpp:1381
 msgid "&XML Files..."
-msgstr "&XML文件"
+msgstr "XML 文件(&X)..."
 
 #: mmframe.cpp:1301 mmframe.cpp:1373
 msgid "Import from XML (Excel format)"
-msgstr "导入XML文件"
+msgstr "从 XML 导入(Excel 格式)"
 
 #: mmframe.cpp:1302 mmframe.cpp:1308 mmframe.cpp:1374 mmframe.cpp:1382
 msgid "&QIF Files..."
-msgstr "QIF文件"
+msgstr "QIF 文件(&Q)..."
 
 #: mmframe.cpp:1306 mmframe.cpp:1380
 msgid "&MMEX CSV Files..."
@@ -4114,7 +4114,7 @@ msgstr "打开数据库"
 
 #: mmframe.cpp:1359
 msgid "Save Database &As"
-msgstr "另存数据库(&A)"
+msgstr "数据库另存为(&A)"
 
 #: mmframe.cpp:1359
 msgid "Save Database As"
@@ -4122,11 +4122,11 @@ msgstr "保存数据库"
 
 #: mmframe.cpp:1366
 msgid "&Recent Files..."
-msgstr "最近打开的文件"
+msgstr "最近打开的文件(R)..."
 
 #: mmframe.cpp:1367
 msgid "&Clear Recent Files"
-msgstr "清除最近打开文件纪录"
+msgstr "清除最近打开文件纪录(&C)"
 
 #: mmframe.cpp:1372
 msgid "Import from any CSV file"
@@ -4146,7 +4146,7 @@ msgstr "从 WebApp 导入"
 
 #: mmframe.cpp:1379
 msgid "Export to CSV"
-msgstr "导出CSV文件"
+msgstr "导出 CSV 文件"
 
 #: mmframe.cpp:1380
 msgid "Export to fixed CSV"
@@ -4154,11 +4154,11 @@ msgstr "导出到固定的 CSV"
 
 #: mmframe.cpp:1381
 msgid "Export to XML"
-msgstr "导出到XML"
+msgstr "导出到 XML"
 
 #: mmframe.cpp:1383
 msgid "Export to JSON"
-msgstr "导出为 JSON"
+msgstr "导出到 JSON"
 
 #: mmframe.cpp:1384
 msgid "&HTML Files..."
@@ -4166,11 +4166,11 @@ msgstr "HTML 文件(&H)..."
 
 #: mmframe.cpp:1384
 msgid "Export to HTML"
-msgstr "导出HTML文件"
+msgstr "导出到 HTML"
 
 #: mmframe.cpp:1390 mmframe.cpp:1753
 msgid "&Print..."
-msgstr "打印...(&P)"
+msgstr "打印(&P)..."
 
 #: mmframe.cpp:1390 mmframe.cpp:1753
 msgid "Print current view"
@@ -4186,7 +4186,7 @@ msgstr "退出此程序"
 
 #: mmframe.cpp:1402
 msgid "&Toolbar"
-msgstr "工具(&T)"
+msgstr "工具栏(&T)"
 
 #: mmframe.cpp:1402
 msgid "Show/Hide the toolbar"
@@ -4194,7 +4194,7 @@ msgstr "显示/隐藏工具条"
 
 #: mmframe.cpp:1404
 msgid "&Navigation"
-msgstr "导航条(&N)"
+msgstr "导航(&N)"
 
 #: mmframe.cpp:1404
 msgid "Show/Hide the Navigation tree control"
@@ -4202,7 +4202,7 @@ msgstr "显示/隐藏导航树控件"
 
 #: mmframe.cpp:1406
 msgid "&Display Share Accounts"
-msgstr "显示股票账户"
+msgstr "显示股票账户(&D)"
 
 #: mmframe.cpp:1406
 msgid "Show/Hide Share Accounts in the navigation tree"
@@ -4218,7 +4218,7 @@ msgstr "以财政年度格式显示预算"
 
 #: mmframe.cpp:1411
 msgid "Budgets: &Include Transfers in Totals"
-msgstr "预算：包括总的转账"
+msgstr "预算：包括总的转账(&I)"
 
 #: mmframe.cpp:1411
 msgid "Include the transfer transactions in the Budget Totals"
@@ -4226,7 +4226,7 @@ msgstr "转移交易未导入。"
 
 #: mmframe.cpp:1413
 msgid "Budget Category Report: with &Summaries"
-msgstr "预算分类报告：摘要"
+msgstr "预算分类报告：摘要(&S)"
 
 #: mmframe.cpp:1413
 msgid "Include the category summaries in the Budget Category Summary"
@@ -4234,7 +4234,7 @@ msgstr "将类别摘要列入预算类别摘要"
 
 #: mmframe.cpp:1415
 msgid "Ignore F&uture Transactions"
-msgstr "跳过将来的交易"
+msgstr "忽略未来交易(&U)"
 
 #: mmframe.cpp:1415
 msgid "Ignore Future transactions"
@@ -4282,7 +4282,7 @@ msgstr "更改帐户的帐户类型。"
 
 #: mmframe.cpp:1484
 msgid "Delete Account from database"
-msgstr "从数据库中删除账户(&D)"
+msgstr "从数据库中删除账户"
 
 #: mmframe.cpp:1497
 msgid "Download Ra&tes..."
@@ -4314,11 +4314,11 @@ msgstr "货币管理"
 
 #: mmframe.cpp:1515
 msgid "&Categories..."
-msgstr "分类"
+msgstr "分类(&C)..."
 
 #: mmframe.cpp:1518
 msgid "&Payees..."
-msgstr "收款人(&P)"
+msgstr "收款人(&P)..."
 
 #: mmframe.cpp:1519
 msgid "Reassign all payees to another payee"
@@ -4350,7 +4350,7 @@ msgstr "资产(&A)"
 
 #: mmframe.cpp:1546
 msgid "T&heme Manager"
-msgstr "主题(&T) 管理器"
+msgstr "主题管理器(&T)"
 
 #: mmframe.cpp:1546 mmframe.cpp:2490 optionsettingsview.cpp:297 themes.cpp:137
 msgid "Theme Manager"
@@ -4434,7 +4434,7 @@ msgstr "数据库管理"
 
 #: mmframe.cpp:1603 mmframe.cpp:1757
 msgid "&Help\tF1"
-msgstr "帮助F1(&H)"
+msgstr "帮助(&H)\tF1"
 
 #: mmframe.cpp:1603 mmframe.cpp:1757
 msgid "Show the Help file"
@@ -4466,7 +4466,7 @@ msgstr "我们使用 Crowdin 翻译 MMEX"
 
 #: mmframe.cpp:1615
 msgid "&Twitter"
-msgstr "推特(&T)"
+msgstr "Twitter(&T)"
 
 #: mmframe.cpp:1615
 msgid "Follow us on Twitter"
@@ -4614,7 +4614,7 @@ msgstr "工具(&T)"
 
 #: mmframe.cpp:1691
 msgid "&View"
-msgstr "查看"
+msgstr "视图(&V)"
 
 #: mmframe.cpp:1692
 msgid "&Help"
@@ -4638,11 +4638,11 @@ msgstr "显示货币管理对话框"
 
 #: mmframe.cpp:1732
 msgid "&Options..."
-msgstr "选项(&O)"
+msgstr "选项(&O)..."
 
 #: mmframe.cpp:1740 mmframe.cpp:2591
 msgid "Register/View Release &Notifications"
-msgstr "注册/查看发布通知"
+msgstr "注册/查看发布通知(&N)"
 
 #: mmframe.cpp:1745 optionsettingsnet.cpp:121
 msgid "News"
@@ -4650,7 +4650,7 @@ msgstr "新闻"
 
 #: mmframe.cpp:1747
 msgid "Download rates"
-msgstr "下载速度"
+msgstr "下载费率"
 
 #: mmframe.cpp:1750
 msgid "Toggle Fullscreen\tF11"
@@ -4685,7 +4685,7 @@ msgstr "抱歉。数据库版本过旧或数据库密码不正确"
 
 #: mmframe.cpp:1900
 msgid "&Next ->"
-msgstr "下一步(&N)"
+msgstr "下一步(&N) ->"
 
 #: mmframe.cpp:1913
 msgid "Cannot locate previously opened database.\n"
@@ -4865,7 +4865,7 @@ msgstr "选择要导出的 HTML 文件"
 
 #: mmframe.cpp:3034 mmframe.cpp:3041
 msgid "Downloading stock prices from Yahoo"
-msgstr "从雅虎下载股票价格"
+msgstr "正在从雅虎下载股票价格"
 
 #: mmframe.cpp:3035
 msgid "Please wait..."
@@ -4991,11 +4991,11 @@ msgstr "股票报告"
 
 #: mmhelppanel.cpp:65
 msgid "&Back"
-msgstr "后退"
+msgstr "返回(&B)"
 
 #: mmhelppanel.cpp:66
 msgid "&Forward"
-msgstr "前进"
+msgstr "向前(&F)"
 
 #: mmhomepage.cpp:60 mmhomepage.cpp:79 reports/summary.cpp:166
 msgid "Stocks"
@@ -5201,19 +5201,19 @@ msgstr "其他"
 
 #: model/Model_Attachment.cpp:24
 msgid "Transaction"
-msgstr ""
+msgstr "交易"
 
 #: model/Model_Attachment.cpp:25
 msgid "Stock"
-msgstr ""
+msgstr "股票"
 
 #: model/Model_Attachment.cpp:27
 msgid "BankAccount"
-msgstr ""
+msgstr "银行账户"
 
 #: model/Model_Attachment.cpp:28
 msgid "RecurringTransaction"
-msgstr ""
+msgstr "经常性交易"
 
 #: model/Model_Billsdeposits.cpp:301
 msgid "A recurring transaction will exceed your account limit.\n\n"
@@ -5288,7 +5288,7 @@ msgstr "SQL 脚本：\n"
 
 #: optiondialog.cpp:131
 msgid "General"
-msgstr "一般"
+msgstr "常规"
 
 #: optiondialog.cpp:132 optionsettingsview.cpp:56
 msgid "View Options"
@@ -5304,7 +5304,7 @@ msgstr "网络"
 
 #: optiondialog.cpp:152
 msgid "&Apply"
-msgstr "应用"
+msgstr "应用(&A)"
 
 #: optiondialog.cpp:210
 #, c-format
@@ -5512,11 +5512,11 @@ msgstr "选择当复制/粘贴交易时使用原来的交易日期或当前日�
 
 #: optionsettingsgeneral.cpp:213
 msgid "Use Original Date when Duplicating Transactions"
-msgstr ""
+msgstr "复制交易时使用原始日期"
 
 #: optionsettingsgeneral.cpp:215
 msgid "Select whether to use the original transaction date or current date when duplicating transactions"
-msgstr ""
+msgstr "复制交易时选择是使用原始交易日期还是当前日期"
 
 #: optionsettingsgeneral.cpp:218
 msgid "Use Transaction Sound"
@@ -6132,7 +6132,7 @@ msgstr "预测"
 #: reports/htmlbuilder.cpp:111
 #, c-format
 msgid "Report Generated %s %s"
-msgstr "生成报表 %s %s"
+msgstr "报告生成于 %s %s"
 
 #: reports/htmlbuilder.cpp:169
 #, c-format
@@ -6185,11 +6185,11 @@ msgstr "最近90天"
 
 #: reports/mmDateRange.cpp:110
 msgid "Last 3 Months"
-msgstr "查看最近三个月"
+msgstr "查看最近 3 个月"
 
 #: reports/mmDateRange.cpp:122
 msgid "Last 12 Months"
-msgstr "查看最近十二个月"
+msgstr "查看最近 12 个月"
 
 #: reports/mmDateRange.cpp:131
 msgid "Current Year"
@@ -6583,11 +6583,11 @@ msgstr "新增股票(&N)"
 
 #: stocks_list.cpp:139
 msgid "&Add Stock Transactions"
-msgstr "添加股票交 （&A）"
+msgstr "添加股票交(&A)"
 
 #: stocks_list.cpp:140
 msgid "&View Stock Transactions"
-msgstr "查看股票交易（&V）"
+msgstr "查看股票交易(&V)"
 
 #: stocks_list.cpp:142
 msgid "&Edit Stock Investment"
@@ -6599,7 +6599,7 @@ msgstr "删除股票(&D)"
 
 #: stocks_list.cpp:146
 msgid "Stock &Web Page"
-msgstr "股票报价网页（&W）"
+msgstr "股票报价网页(&W)"
 
 #: stocks_list.cpp:269
 msgid "Do you really want to delete the stock investment?"
@@ -6636,7 +6636,7 @@ msgstr "移动所选交易到另一个帐户"
 
 #: stockspanel.cpp:167
 msgid "Refresh"
-msgstr "刷新(&R)"
+msgstr "刷新"
 
 #: stockspanel.cpp:168
 msgid "Refresh Stock Prices from Yahoo"
@@ -6698,7 +6698,7 @@ msgstr "符号：%s"
 
 #: themes.cpp:185 webappdialog.cpp:419
 msgid "Delete"
-msgstr "删除(&D)"
+msgstr "删除"
 
 #: themes.cpp:187
 msgid "Use"
@@ -7250,10 +7250,7 @@ msgid "Term accounts are specialized bank accounts. Intended for asset\n"
 "type accounts such as Term Deposits and Bonds. These accounts\n"
 "can have regular money coming in and out, being outside the\n"
 "general income stream."
-msgstr "定期账户是专门的银行账户。为资产\n"
-"类账户，如定期存款和债券等。 这些账户\n"
-"可以有经常性的进出资金，在\n"
-"一般收入流之外。"
+msgstr "定期账户是专门的银行账户。为资产类账户，如定期存款和债券等。 这些账户可以有经常性的进出资金，在一般收入流之外。"
 
 #: wizard_newaccount.cpp:162
 msgid "Base Account Currency Not set."
