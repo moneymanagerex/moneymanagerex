@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-22 15:52+0300\n"
-"PO-Revision-Date: 2021-08-23 02:09\n"
+"PO-Revision-Date: 2021-08-23 02:17\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
@@ -2513,7 +2513,7 @@ msgstr "保存更改。"
 
 #: general_report_manager.cpp:394
 msgid "&Run"
-msgstr "运行"
+msgstr "运行(&R)"
 
 #: general_report_manager.cpp:396
 msgid "Run selected report."
@@ -2872,7 +2872,7 @@ msgstr "导出QIF"
 
 #: import_export/qif_import_gui.cpp:129
 msgid "Choose &file"
-msgstr "选择文件（F）"
+msgstr "选择文件(&F)"
 
 #: import_export/qif_import_gui.cpp:142 import_export/univcsvdialog.cpp:322
 msgid "Encoding:"
@@ -3060,7 +3060,7 @@ msgstr "导出对话框"
 
 #: import_export/univcsvdialog.cpp:181
 msgid "&Browse"
-msgstr "浏览"
+msgstr "浏览(&B)"
 
 #: import_export/univcsvdialog.cpp:213
 msgid "Specify the order of fields in the file"
@@ -4070,11 +4070,11 @@ msgstr "帐户列表(&L)"
 
 #: mmframe.cpp:1300 mmframe.cpp:1305 mmframe.cpp:1372 mmframe.cpp:1379
 msgid "&CSV Files..."
-msgstr "&CSV文件"
+msgstr "CSV 文件(&C)..."
 
 #: mmframe.cpp:1301 mmframe.cpp:1307 mmframe.cpp:1373 mmframe.cpp:1381
 msgid "&XML Files..."
-msgstr "&XML文件"
+msgstr "XML 文件(&X)..."
 
 #: mmframe.cpp:1301 mmframe.cpp:1373
 msgid "Import from XML (Excel format)"
@@ -4114,7 +4114,7 @@ msgstr "打开数据库"
 
 #: mmframe.cpp:1359
 msgid "Save Database &As"
-msgstr "另存数据库(&A)"
+msgstr "数据库另存为(&A)"
 
 #: mmframe.cpp:1359
 msgid "Save Database As"
@@ -4186,7 +4186,7 @@ msgstr "退出此程序"
 
 #: mmframe.cpp:1402
 msgid "&Toolbar"
-msgstr "工具(&T)"
+msgstr "工具栏(&T)"
 
 #: mmframe.cpp:1402
 msgid "Show/Hide the toolbar"
@@ -4194,7 +4194,7 @@ msgstr "显示/隐藏工具条"
 
 #: mmframe.cpp:1404
 msgid "&Navigation"
-msgstr "导航条(&N)"
+msgstr "导航(&N)"
 
 #: mmframe.cpp:1404
 msgid "Show/Hide the Navigation tree control"
@@ -4318,7 +4318,7 @@ msgstr "分类"
 
 #: mmframe.cpp:1518
 msgid "&Payees..."
-msgstr "收款人(&P)"
+msgstr "收款人(&P)..."
 
 #: mmframe.cpp:1519
 msgid "Reassign all payees to another payee"
@@ -4434,7 +4434,7 @@ msgstr "数据库管理"
 
 #: mmframe.cpp:1603 mmframe.cpp:1757
 msgid "&Help\tF1"
-msgstr "帮助F1(&H)"
+msgstr "帮助(&H)\tF1"
 
 #: mmframe.cpp:1603 mmframe.cpp:1757
 msgid "Show the Help file"
@@ -4466,7 +4466,7 @@ msgstr "我们使用 Crowdin 翻译 MMEX"
 
 #: mmframe.cpp:1615
 msgid "&Twitter"
-msgstr "推特(&T)"
+msgstr "Twitter(&T)"
 
 #: mmframe.cpp:1615
 msgid "Follow us on Twitter"
@@ -4614,7 +4614,7 @@ msgstr "工具(&T)"
 
 #: mmframe.cpp:1691
 msgid "&View"
-msgstr "查看"
+msgstr "视图(&V)"
 
 #: mmframe.cpp:1692
 msgid "&Help"
@@ -4638,7 +4638,7 @@ msgstr "显示货币管理对话框"
 
 #: mmframe.cpp:1732
 msgid "&Options..."
-msgstr "选项(&O)"
+msgstr "选项(&O)..."
 
 #: mmframe.cpp:1740 mmframe.cpp:2591
 msgid "Register/View Release &Notifications"
@@ -4685,7 +4685,7 @@ msgstr "抱歉。数据库版本过旧或数据库密码不正确"
 
 #: mmframe.cpp:1900
 msgid "&Next ->"
-msgstr "下一步(&N)"
+msgstr "下一步(&N) ->"
 
 #: mmframe.cpp:1913
 msgid "Cannot locate previously opened database.\n"
@@ -6583,11 +6583,11 @@ msgstr "新增股票(&N)"
 
 #: stocks_list.cpp:139
 msgid "&Add Stock Transactions"
-msgstr "添加股票交 （&A）"
+msgstr "添加股票交(&A)"
 
 #: stocks_list.cpp:140
 msgid "&View Stock Transactions"
-msgstr "查看股票交易（&V）"
+msgstr "查看股票交易(&V)"
 
 #: stocks_list.cpp:142
 msgid "&Edit Stock Investment"
@@ -6599,7 +6599,7 @@ msgstr "删除股票(&D)"
 
 #: stocks_list.cpp:146
 msgid "Stock &Web Page"
-msgstr "股票报价网页（&W）"
+msgstr "股票报价网页(&W)"
 
 #: stocks_list.cpp:269
 msgid "Do you really want to delete the stock investment?"
