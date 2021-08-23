@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-22 15:52+0300\n"
-"PO-Revision-Date: 2021-08-23 02:17\n"
+"PO-Revision-Date: 2021-08-23 02:26\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
@@ -37,7 +37,7 @@ msgstr "作者"
 
 #: aboutdialog.cpp:197
 msgid "Sponsors"
-msgstr "赞助商"
+msgstr "赞助人员"
 
 #: aboutdialog.cpp:202
 msgid "License"
@@ -607,7 +607,7 @@ msgstr "描述"
 #: attachmentdialog.cpp:56 import_export/qif_export.cpp:194
 #: import_export/univcsvdialog.cpp:181
 msgid "File"
-msgstr "文件(&F)"
+msgstr "文件"
 
 #: attachmentdialog.cpp:64
 msgid "Attachment folder not defined."
@@ -615,7 +615,7 @@ msgstr "没有指定附件文件夹的位置。"
 
 #: attachmentdialog.cpp:65
 msgid "Please set it in Tools -> Options -> Attachments"
-msgstr "请在工具 -> 选项 -> 附件中设置它"
+msgstr "请在工具 -> 选项 -> 附件中设置它。"
 
 #: attachmentdialog.cpp:66
 msgid "Attachment folder not defined"
@@ -1840,7 +1840,7 @@ msgstr "选择自定义域类型"
 
 #: customfieldeditdialog.cpp:145
 msgid "ToolTip"
-msgstr "工具条(&T)"
+msgstr "工具提示"
 
 #: customfieldeditdialog.cpp:147
 msgid "Enter the tooltip that will be shown"
@@ -2803,7 +2803,7 @@ msgstr "选择要导出的账户："
 
 #: import_export/qif_export.cpp:298 import_export/qif_export.cpp:314
 msgid "Choose QIF data file to Export"
-msgstr "选择QIF数据文件导出"
+msgstr "选择 QIF 数据文件导出"
 
 #: import_export/qif_export.cpp:300 import_export/qif_import_gui.cpp:723
 msgid "QIF Files (*.qif)"
@@ -2868,7 +2868,7 @@ msgstr "导出的账户数量： %zu"
 
 #: import_export/qif_export.cpp:642 mmframe.cpp:1382
 msgid "Export to QIF"
-msgstr "导出QIF"
+msgstr "导出到 QIF"
 
 #: import_export/qif_import_gui.cpp:129
 msgid "Choose &file"
@@ -3132,7 +3132,7 @@ msgstr "选择要导出的 XML 数据文件"
 
 #: import_export/univcsvdialog.cpp:438
 msgid "Choose CSV data file to Export"
-msgstr "选择要导出的CSV数据文件"
+msgstr "选择要导出的 CSV 数据文件"
 
 #: import_export/univcsvdialog.cpp:441
 msgid "Template name"
@@ -3140,7 +3140,7 @@ msgstr "模板名称"
 
 #: import_export/univcsvdialog.cpp:442
 msgid "Save Template"
-msgstr "保存为模板(&A)"
+msgstr "保存模板"
 
 #: import_export/univcsvdialog.cpp:444
 msgid "MMEX standard format"
@@ -3156,15 +3156,15 @@ msgstr "向下移动(&D)"
 
 #: import_export/univcsvdialog.cpp:447 optionsettingsmisc.cpp:201
 msgid "Specify the delimiter to use when importing/exporting CSV files"
-msgstr "指定当导入/导出CSV文件时的分隔符"
+msgstr "指定当导入/导出 CSV 文件时的分隔符"
 
 #: import_export/univcsvdialog.cpp:448
 msgid "Import File"
-msgstr "导入文件(&I)"
+msgstr "导入文件"
 
 #: import_export/univcsvdialog.cpp:449
 msgid "Export File"
-msgstr "导出文件(&I)"
+msgstr "导出文件"
 
 #: import_export/univcsvdialog.cpp:539
 #, c-format
@@ -3198,7 +3198,7 @@ msgstr "必须填写金额字段并在分类中选择是支出或收入。"
 #: import_export/univcsvdialog.cpp:928 import_export/univcsvdialog.cpp:1057
 #: themes.cpp:183 webappdialog.cpp:417
 msgid "Import"
-msgstr "导入(&I)"
+msgstr "导入"
 
 #: import_export/univcsvdialog.cpp:980
 #, c-format
@@ -3276,7 +3276,7 @@ msgstr "指定用于导出的字段不正确！至少需要日期和金额。"
 
 #: import_export/univcsvdialog.cpp:1108 import_export/univcsvdialog.cpp:1248
 msgid "Export"
-msgstr "导出(&E)"
+msgstr "导出"
 
 #: import_export/univcsvdialog.cpp:1118
 msgid "Overwrite existing file?"
@@ -3447,7 +3447,7 @@ msgstr "设为基本货币"
 
 #: maincurrencydialog.cpp:524
 msgid "Online Update Currency Rate"
-msgstr "在线更新现金汇率(&U)"
+msgstr "在线更新现金汇率"
 
 #: maincurrencydialog.cpp:643
 msgid "No currency selected!"
@@ -3725,7 +3725,7 @@ msgstr[0] "转移交易(&M)"
 
 #: mmchecking_list.cpp:386
 msgid "&View Split Categories"
-msgstr "查看所有预算分类"
+msgstr "查看所有预算分类(&V)"
 
 #: mmchecking_list.cpp:394
 msgid "Create Recurring T&ransaction"
@@ -3865,7 +3865,7 @@ msgstr "删除已标记的交易"
 
 #: mmcheckingpanel.cpp:346
 msgid "D&uplicate "
-msgstr "重复"
+msgstr "重复(&U)"
 
 #: mmcheckingpanel.cpp:347
 msgid "Duplicate selected transaction"
@@ -4078,11 +4078,11 @@ msgstr "XML 文件(&X)..."
 
 #: mmframe.cpp:1301 mmframe.cpp:1373
 msgid "Import from XML (Excel format)"
-msgstr "导入XML文件"
+msgstr "从 XML 导入(Excel 格式)"
 
 #: mmframe.cpp:1302 mmframe.cpp:1308 mmframe.cpp:1374 mmframe.cpp:1382
 msgid "&QIF Files..."
-msgstr "QIF文件"
+msgstr "QIF 文件(&Q)..."
 
 #: mmframe.cpp:1306 mmframe.cpp:1380
 msgid "&MMEX CSV Files..."
@@ -4122,11 +4122,11 @@ msgstr "保存数据库"
 
 #: mmframe.cpp:1366
 msgid "&Recent Files..."
-msgstr "最近打开的文件"
+msgstr "最近打开的文件(R)..."
 
 #: mmframe.cpp:1367
 msgid "&Clear Recent Files"
-msgstr "清除最近打开文件纪录"
+msgstr "清除最近打开文件纪录(&C)"
 
 #: mmframe.cpp:1372
 msgid "Import from any CSV file"
@@ -4146,7 +4146,7 @@ msgstr "从 WebApp 导入"
 
 #: mmframe.cpp:1379
 msgid "Export to CSV"
-msgstr "导出CSV文件"
+msgstr "导出 CSV 文件"
 
 #: mmframe.cpp:1380
 msgid "Export to fixed CSV"
@@ -4154,11 +4154,11 @@ msgstr "导出到固定的 CSV"
 
 #: mmframe.cpp:1381
 msgid "Export to XML"
-msgstr "导出到XML"
+msgstr "导出到 XML"
 
 #: mmframe.cpp:1383
 msgid "Export to JSON"
-msgstr "导出为 JSON"
+msgstr "导出到 JSON"
 
 #: mmframe.cpp:1384
 msgid "&HTML Files..."
@@ -4166,7 +4166,7 @@ msgstr "HTML 文件(&H)..."
 
 #: mmframe.cpp:1384
 msgid "Export to HTML"
-msgstr "导出HTML文件"
+msgstr "导出到 HTML"
 
 #: mmframe.cpp:1390 mmframe.cpp:1753
 msgid "&Print..."
@@ -4202,7 +4202,7 @@ msgstr "显示/隐藏导航树控件"
 
 #: mmframe.cpp:1406
 msgid "&Display Share Accounts"
-msgstr "显示股票账户"
+msgstr "显示股票账户(&D)"
 
 #: mmframe.cpp:1406
 msgid "Show/Hide Share Accounts in the navigation tree"
@@ -4218,7 +4218,7 @@ msgstr "以财政年度格式显示预算"
 
 #: mmframe.cpp:1411
 msgid "Budgets: &Include Transfers in Totals"
-msgstr "预算：包括总的转账"
+msgstr "预算：包括总的转账(&I)"
 
 #: mmframe.cpp:1411
 msgid "Include the transfer transactions in the Budget Totals"
@@ -4226,7 +4226,7 @@ msgstr "转移交易未导入。"
 
 #: mmframe.cpp:1413
 msgid "Budget Category Report: with &Summaries"
-msgstr "预算分类报告：摘要"
+msgstr "预算分类报告：摘要(&S)"
 
 #: mmframe.cpp:1413
 msgid "Include the category summaries in the Budget Category Summary"
@@ -4234,7 +4234,7 @@ msgstr "将类别摘要列入预算类别摘要"
 
 #: mmframe.cpp:1415
 msgid "Ignore F&uture Transactions"
-msgstr "跳过将来的交易"
+msgstr "忽略未来交易(&U)"
 
 #: mmframe.cpp:1415
 msgid "Ignore Future transactions"
@@ -4282,7 +4282,7 @@ msgstr "更改帐户的帐户类型。"
 
 #: mmframe.cpp:1484
 msgid "Delete Account from database"
-msgstr "从数据库中删除账户(&D)"
+msgstr "从数据库中删除账户"
 
 #: mmframe.cpp:1497
 msgid "Download Ra&tes..."
@@ -4314,7 +4314,7 @@ msgstr "货币管理"
 
 #: mmframe.cpp:1515
 msgid "&Categories..."
-msgstr "分类"
+msgstr "分类(&C)..."
 
 #: mmframe.cpp:1518
 msgid "&Payees..."
@@ -4642,7 +4642,7 @@ msgstr "选项(&O)..."
 
 #: mmframe.cpp:1740 mmframe.cpp:2591
 msgid "Register/View Release &Notifications"
-msgstr "注册/查看发布通知"
+msgstr "注册/查看发布通知(&N)"
 
 #: mmframe.cpp:1745 optionsettingsnet.cpp:121
 msgid "News"
@@ -4991,11 +4991,11 @@ msgstr "股票报告"
 
 #: mmhelppanel.cpp:65
 msgid "&Back"
-msgstr "后退"
+msgstr "返回(&B)"
 
 #: mmhelppanel.cpp:66
 msgid "&Forward"
-msgstr "前进"
+msgstr "向前(&F)"
 
 #: mmhomepage.cpp:60 mmhomepage.cpp:79 reports/summary.cpp:166
 msgid "Stocks"
@@ -5304,7 +5304,7 @@ msgstr "网络"
 
 #: optiondialog.cpp:152
 msgid "&Apply"
-msgstr "应用"
+msgstr "应用(&A)"
 
 #: optiondialog.cpp:210
 #, c-format
@@ -6636,7 +6636,7 @@ msgstr "移动所选交易到另一个帐户"
 
 #: stockspanel.cpp:167
 msgid "Refresh"
-msgstr "刷新(&R)"
+msgstr "刷新"
 
 #: stockspanel.cpp:168
 msgid "Refresh Stock Prices from Yahoo"
@@ -6698,7 +6698,7 @@ msgstr "符号：%s"
 
 #: themes.cpp:185 webappdialog.cpp:419
 msgid "Delete"
-msgstr "删除(&D)"
+msgstr "删除"
 
 #: themes.cpp:187
 msgid "Use"
