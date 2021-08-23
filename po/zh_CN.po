@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-22 15:52+0300\n"
-"PO-Revision-Date: 2021-08-22 12:55\n"
+"PO-Revision-Date: 2021-08-23 00:37\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
@@ -5512,11 +5512,11 @@ msgstr "选择当复制/粘贴交易时使用原来的交易日期或当前日�
 
 #: optionsettingsgeneral.cpp:213
 msgid "Use Original Date when Duplicating Transactions"
-msgstr ""
+msgstr "复制交易时使用原始日期"
 
 #: optionsettingsgeneral.cpp:215
 msgid "Select whether to use the original transaction date or current date when duplicating transactions"
-msgstr ""
+msgstr "复制交易时选择是使用原始交易日期还是当前日期"
 
 #: optionsettingsgeneral.cpp:218
 msgid "Use Transaction Sound"
