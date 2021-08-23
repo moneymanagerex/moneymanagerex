@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-22 15:52+0300\n"
-"PO-Revision-Date: 2021-08-23 01:56\n"
+"PO-Revision-Date: 2021-08-23 02:09\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
@@ -770,7 +770,7 @@ msgstr "每月"
 #: billsdepositsdialog.cpp:55 billsdepositspanel.cpp:52
 #: model/Model_Budget.cpp:59
 msgid "Every 2 Months"
-msgstr "每2个月"
+msgstr "每二个月"
 
 #: billsdepositsdialog.cpp:56 billsdepositspanel.cpp:53
 #: model/Model_Budget.cpp:60
@@ -917,7 +917,7 @@ msgstr "指定要创建的交易的类型"
 
 #: billsdepositsdialog.cpp:545 transdialog.cpp:496
 msgid "&Advanced"
-msgstr "高级"
+msgstr "高级(&A)"
 
 #: billsdepositsdialog.cpp:548 transdialog.cpp:1310
 msgid "Allows the setting of different amounts in the FROM and TO accounts."
@@ -970,7 +970,7 @@ msgstr "指定此定期交易所属的账户"
 #: transdialog.cpp:296 transdialog.cpp:529 usertransactionpanel.cpp:182
 #: webappdialog.cpp:151
 msgid "Payee"
-msgstr "交易方"
+msgstr "收款人"
 
 #: billsdepositsdialog.cpp:593 billsdepositsdialog.cpp:881
 #: usertransactionpanel.cpp:183
@@ -1044,11 +1044,11 @@ msgstr "账户名称"
 #: billsdepositsdialog.cpp:818 billsdepositsdialog.cpp:858
 #: filtertransdialog.cpp:1004 transdialog.cpp:299 transdialog.cpp:380
 msgid "From"
-msgstr "由"
+msgstr "从"
 
 #: billsdepositsdialog.cpp:830 transdialog.cpp:293
 msgid "To"
-msgstr "至"
+msgstr "到"
 
 #: billsdepositsdialog.cpp:831
 msgid "Select To Account"
@@ -1233,7 +1233,7 @@ msgstr "输入下一个重复发生的事务"
 
 #: billsdepositspanel.cpp:302
 msgid "&Skip"
-msgstr "跳过"
+msgstr "跳过(&S)"
 
 #: billsdepositspanel.cpp:303
 msgid "Skip Next Recurring Transaction Occurrence"
@@ -1451,7 +1451,7 @@ msgstr "预算编辑器"
 
 #: budgetyeardialog.cpp:93
 msgid "&Add Year"
-msgstr "新增预算年(&A)"
+msgstr "添加年份(&A)"
 
 #: budgetyeardialog.cpp:95
 msgid "Add a new budget year"
@@ -1459,7 +1459,7 @@ msgstr "新增预算年"
 
 #: budgetyeardialog.cpp:98
 msgid "&Add Month"
-msgstr "月份"
+msgstr "添加月份(&A)"
 
 #: budgetyeardialog.cpp:100
 msgid "Add a new budget month"
@@ -1475,11 +1475,11 @@ msgstr "预算入口详情"
 
 #: budgetyearentrydialog.cpp:45
 msgid "Budget Month Entry"
-msgstr "预算月入口"
+msgstr "预算月条目"
 
 #: budgetyearentrydialog.cpp:72
 msgid "Budget Year:"
-msgstr "预算年："
+msgstr "预算年份："
 
 #: budgetyearentrydialog.cpp:79
 msgid "Specify the required year.\n"
@@ -1671,7 +1671,7 @@ msgstr "取消"
 
 #: constants.cpp:77 diagnostics.cpp:88 themes.cpp:189
 msgid "Close"
-msgstr "关闭(&C)"
+msgstr "关闭"
 
 #: constants.cpp:79
 msgid "&Close "
@@ -1744,11 +1744,11 @@ msgstr "打开"
 
 #: constants.cpp:195 mmframe.cpp:1318 model/Model_Account.cpp:27
 msgid "Closed"
-msgstr "关闭"
+msgstr "已关闭"
 
 #: constants.cpp:196 mmframe.cpp:1316
 msgid "Favorites"
-msgstr "收藏"
+msgstr "收藏夹 "
 
 #: currencydialog.cpp:101
 msgid "Currency name"
@@ -1832,7 +1832,7 @@ msgstr "输入自定义域名称"
 
 #: customfieldeditdialog.cpp:138
 msgid "Field Type"
-msgstr "域类型"
+msgstr "字段类型"
 
 #: customfieldeditdialog.cpp:142
 msgid "Select type of custom field"
@@ -2653,7 +2653,7 @@ msgstr "参数："
 #: images_list.cpp:336
 #, c-format
 msgid "Metadata JSON in Theme '%s' cannot be parsed and looks badly constructed, please correct."
-msgstr "无法解析主题中的%s中的 Metadata JSON 并看起来构造不当，请纠正。"
+msgstr "无法解析主题中的 %s 中的 Metadata JSON 并看起来构造不当，请纠正。"
 
 #: images_list.cpp:337 images_list.cpp:419 images_list.cpp:430
 #: images_list.cpp:465 images_list.cpp:490 images_list.cpp:496
@@ -4170,7 +4170,7 @@ msgstr "导出HTML文件"
 
 #: mmframe.cpp:1390 mmframe.cpp:1753
 msgid "&Print..."
-msgstr "打印...(&P)"
+msgstr "打印(&P)..."
 
 #: mmframe.cpp:1390 mmframe.cpp:1753
 msgid "Print current view"
@@ -4350,7 +4350,7 @@ msgstr "资产(&A)"
 
 #: mmframe.cpp:1546
 msgid "T&heme Manager"
-msgstr "主题(&T) 管理器"
+msgstr "主题管理器(&T)"
 
 #: mmframe.cpp:1546 mmframe.cpp:2490 optionsettingsview.cpp:297 themes.cpp:137
 msgid "Theme Manager"
@@ -4650,7 +4650,7 @@ msgstr "新闻"
 
 #: mmframe.cpp:1747
 msgid "Download rates"
-msgstr "下载速度"
+msgstr "下载费率"
 
 #: mmframe.cpp:1750
 msgid "Toggle Fullscreen\tF11"
@@ -4865,7 +4865,7 @@ msgstr "选择要导出的 HTML 文件"
 
 #: mmframe.cpp:3034 mmframe.cpp:3041
 msgid "Downloading stock prices from Yahoo"
-msgstr "从雅虎下载股票价格"
+msgstr "正在从雅虎下载股票价格"
 
 #: mmframe.cpp:3035
 msgid "Please wait..."
@@ -5288,7 +5288,7 @@ msgstr "SQL 脚本：\n"
 
 #: optiondialog.cpp:131
 msgid "General"
-msgstr "一般"
+msgstr "常规"
 
 #: optiondialog.cpp:132 optionsettingsview.cpp:56
 msgid "View Options"
@@ -6132,7 +6132,7 @@ msgstr "预测"
 #: reports/htmlbuilder.cpp:111
 #, c-format
 msgid "Report Generated %s %s"
-msgstr "生成报表 %s %s"
+msgstr "报告生成于 %s %s"
 
 #: reports/htmlbuilder.cpp:169
 #, c-format
@@ -7250,10 +7250,7 @@ msgid "Term accounts are specialized bank accounts. Intended for asset\n"
 "type accounts such as Term Deposits and Bonds. These accounts\n"
 "can have regular money coming in and out, being outside the\n"
 "general income stream."
-msgstr "定期账户是专门的银行账户。为资产\n"
-"类账户，如定期存款和债券等。 这些账户\n"
-"可以有经常性的进出资金，在\n"
-"一般收入流之外。"
+msgstr "定期账户是专门的银行账户。为资产类账户，如定期存款和债券等。 这些账户可以有经常性的进出资金，在一般收入流之外。"
 
 #: wizard_newaccount.cpp:162
 msgid "Base Account Currency Not set."
