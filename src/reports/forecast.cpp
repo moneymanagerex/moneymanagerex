@@ -1,5 +1,6 @@
 /*******************************************************
  Copyright (C) 2016 Guan Lisheng (guanlisheng@gmail.com)
+ Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -63,7 +64,7 @@ wxString mmReportForecast::getHTMLText()
     // Build the report
     mmHTMLBuilder hb;
     hb.init();
-    hb.addReportHeader(getReportTitle());
+    hb.addReportHeader(getReportTitle(), m_date_range->startDay());
     hb.DisplayDateHeading(m_date_range->start_date(), m_date_range->end_date(), m_date_range->is_with_date());
 
     GraphData gd;

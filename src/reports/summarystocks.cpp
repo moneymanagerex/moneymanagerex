@@ -1,5 +1,6 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
+ Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -92,7 +93,7 @@ wxString mmReportSummaryStocks::getHTMLText()
     // Build the report
     mmHTMLBuilder hb;
     hb.init();
-    hb.addReportHeader(getReportTitle());
+    hb.addReportHeader(getReportTitle(), m_date_range->startDay());
 
     hb.addDivContainer("shadow");
     {
@@ -194,7 +195,7 @@ wxString mmReportChartStocks::getHTMLText()
     // Build the report
     mmHTMLBuilder hb;
     hb.init();
-    hb.addReportHeader(getReportTitle());
+    hb.addReportHeader(getReportTitle(), m_date_range->startDay());
     wxTimeSpan dtDiff = m_date_range->end_date() - m_date_range->start_date();
     if (m_date_range->is_with_date() && dtDiff.GetDays() <= 366)
         hb.DisplayDateHeading(m_date_range->start_date(), m_date_range->end_date(), true);

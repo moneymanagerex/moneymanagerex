@@ -107,7 +107,7 @@ void OptionSettingsView::Create()
     m_showMoneyTips->SetValue(Option::instance().getShowMoneyTips());
     view_sizer1->Add(m_showMoneyTips, g_flagsH);
 
-    // Budget options
+    // Transaction/Budget options
     wxStaticBox* trxStaticBox = new wxStaticBox(this, wxID_STATIC, _("Transaction/Budget Options"));
     SetBoldFont(trxStaticBox);
     wxStaticBoxSizer* trxStaticBoxSizer = new wxStaticBoxSizer(trxStaticBox, wxVERTICAL);
@@ -141,6 +141,18 @@ void OptionSettingsView::Create()
     mmToolTip(m_budget_days_offset, _("Advance or retard the start date from the 1st of the month or year by the number of days"));
     m_budget_days_offset->SetValue(Option::instance().getBudgetDaysOffset());
     budget_offset_sizer->Add(m_budget_days_offset, g_flagsH);
+
+    // Allows the 'first day' in the month to be adjusted for reporting purposes
+    wxBoxSizer* reporting_firstday_sizer = new wxBoxSizer(wxHORIZONTAL);
+    trxStaticBoxSizer->Add(reporting_firstday_sizer);
+
+    reporting_firstday_sizer->Add(new wxStaticText(this, wxID_STATIC, _("Start day of month for reporting:")), g_flagsH);
+
+    m_reporting_firstday = new wxSpinCtrl(this, wxID_ANY
+        , wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 1, 31);
+    mmToolTip(m_reporting_firstday, _("Allows the 'first day' in the month to be adjusted for reporting purposes"));
+    m_reporting_firstday->SetValue(Option::instance().getReportingFirstDay());
+    reporting_firstday_sizer->Add(m_reporting_firstday, g_flagsH);
 
     m_ignore_future_transactions = new wxCheckBox(this, wxID_STATIC
         , _("Ignore Future Transactions")
@@ -330,6 +342,7 @@ bool OptionSettingsView::SaveSettings()
     Option::instance().BudgetIncludeTransfers(m_budget_include_transfers->GetValue());
     Option::instance().BudgetReportWithSummaries(m_budget_summary_without_category->GetValue());
     Option::instance().setBudgetDaysOffset(m_budget_days_offset->GetValue());
+    Option::instance().setReportingFirstDay(m_reporting_firstday->GetValue());
     Option::instance().IgnoreFutureTransactions(m_ignore_future_transactions->GetValue());
     Option::instance().ShowToolTips(m_showToolTips->GetValue());
     Option::instance().ShowMoneyTips(m_showMoneyTips->GetValue());
