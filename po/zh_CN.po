@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-22 15:52+0300\n"
-"PO-Revision-Date: 2021-08-23 01:45\n"
+"PO-Revision-Date: 2021-08-23 01:56\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
@@ -290,7 +290,7 @@ msgstr "打开上次打开的数据库"
 
 #: appstartdialog.cpp:103
 msgid "Create a New Database"
-msgstr "建立新数据库文件"
+msgstr "创建一个新数据库"
 
 #: appstartdialog.cpp:104
 msgid "Create a new database file to get started"
@@ -298,11 +298,11 @@ msgstr "创建一个新的数据库并打开"
 
 #: appstartdialog.cpp:107
 msgid "Open Existing Database"
-msgstr "打开上次打开的数据库"
+msgstr "打开现有数据库"
 
 #: appstartdialog.cpp:108
 msgid "Open an already created database file with extension (*.mmb)"
-msgstr "打开一个已建立的 Money Manager Ex 数据库文件（*.mmb文件）"
+msgstr "打开一个已创建的扩展名数据库文件(*.mmb)"
 
 #: appstartdialog.cpp:111
 msgid "Read Documentation"
@@ -314,7 +314,7 @@ msgstr "阅读用户手册"
 
 #: appstartdialog.cpp:115
 msgid "Visit Website for more information"
-msgstr "访问Web站点以寻找更多信息"
+msgstr "访问网站获取更多信息"
 
 #: appstartdialog.cpp:116
 #, c-format
@@ -477,15 +477,15 @@ msgstr "新增资产(&N)"
 
 #: assetspanel.cpp:99
 msgid "D&uplicate Asset"
-msgstr "重做资产(&D)"
+msgstr "重复资产(&D)"
 
 #: assetspanel.cpp:101
 msgid "&Add Asset Transaction"
-msgstr "添加资产(&A)"
+msgstr "添加资产交易(&A)"
 
 #: assetspanel.cpp:102
 msgid "&View Asset Transactions"
-msgstr "查看资产(&O)"
+msgstr "查看资产交易(&)"
 
 #: assetspanel.cpp:103
 msgid "&Open Asset Account"
@@ -514,7 +514,7 @@ msgstr "确认删除资产"
 
 #: assetspanel.cpp:385
 msgid "MMEX allows you to track fixed assets like cars, houses, land and others. Each asset can have its value appreciate by a certain rate per year, depreciate by a certain rate per year, or not change in value. The total assets are added to your total financial worth."
-msgstr "MMEX允许您跟踪固定资产，如汽车、房屋、土地和其他资产。 每项资产的价值可按每年一定的汇率升值，每年折旧以一定的汇率折旧，或不改变价值。 总资产被添加到您的总金融价值中。"
+msgstr "MMEX 允许您跟踪固定资产，如汽车、房屋、土地和其他资产。 每项资产的价值可按每年一定的汇率升值，每年折旧以一定的汇率折旧，或不改变价值。 总资产被添加到您的总金融价值中。"
 
 #: assetspanel.cpp:415 assetspanel.h:108 general_report_manager.cpp:723
 #: general_report_manager.cpp:1000 mmframe.cpp:477 mmframe.cpp:743
@@ -540,7 +540,7 @@ msgstr "新增预算年(&A) "
 
 #: assetspanel.cpp:475 stockspanel.cpp:138
 msgid "&View Trans "
-msgstr "转帐 "
+msgstr "查看预算(&V)"
 
 #: assetspanel.cpp:476
 msgid "View Asset Transactions"
@@ -584,7 +584,7 @@ msgstr "总计：%s"
 #: assetspanel.cpp:655
 #, c-format
 msgid "Change in Value: %s %s"
-msgstr "值变化: %s %s"
+msgstr "价值变化: %s %s"
 
 #: assetspanel.cpp:771
 msgid "This asset does not have its own account\n\n"
@@ -598,7 +598,7 @@ msgstr "资产管理"
 
 #: assetspanel.cpp:792
 msgid "Account \t Date\t   Value\n\n"
-msgstr "账户日期\n\n"
+msgstr "帐户 \t 日期\t   价值\n\n"
 
 #: attachmentdialog.cpp:55 general_report_manager.cpp:434
 msgid "Description"
