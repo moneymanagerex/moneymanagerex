@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-22 15:52+0300\n"
-"PO-Revision-Date: 2021-08-23 00:47\n"
+"PO-Revision-Date: 2021-08-23 01:45\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
@@ -117,7 +117,7 @@ msgstr "选择货币"
 
 #: accountdialog.cpp:179
 msgid "Specify the currency to be used by this account."
-msgstr "设定账目使用的货币。"
+msgstr "指定此帐户要使用的货币。"
 
 #: accountdialog.cpp:182
 msgid "Favorite Account"
@@ -125,7 +125,7 @@ msgstr "常用账户"
 
 #: accountdialog.cpp:184
 msgid "Select whether this is an account that is used often. This is used to filter accounts display view."
-msgstr "选择该项当该账户经常使用。该选项被用来在账户显示时排序。"
+msgstr "选择这是否是经常使用的帐户。 这是用来筛选帐户显示图。"
 
 #: accountdialog.cpp:192 assetdialog.cpp:253 assetspanel.cpp:65
 #: billsdepositsdialog.cpp:626 billsdepositspanel.cpp:140
@@ -190,7 +190,7 @@ msgstr "登陆信息："
 
 #: accountdialog.cpp:231
 msgid "Enter any login/access information for the financial institution. This is not secure as anyone with access to the mmb file can access it."
-msgstr "输出登陆信息。警告：任何可以打开该mmb文件的人都可访问该信息"
+msgstr "输入金融机构的任何登录/访问信息。 这并不安全，因为任何有权访问 mmb 文件的人都可以访问它。"
 
 #: accountdialog.cpp:236
 msgid "Statement"
