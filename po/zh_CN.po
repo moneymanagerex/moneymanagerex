@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-22 15:52+0300\n"
-"PO-Revision-Date: 2021-08-23 02:26\n"
+"PO-Revision-Date: 2021-08-23 03:18\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
@@ -290,7 +290,7 @@ msgstr "打开上次打开的数据库"
 
 #: appstartdialog.cpp:103
 msgid "Create a New Database"
-msgstr "创建一个新数据库"
+msgstr "创建一个新的数据库"
 
 #: appstartdialog.cpp:104
 msgid "Create a new database file to get started"
@@ -333,7 +333,7 @@ msgstr "退出(&E) "
 #: appstartdialog.cpp:154
 #, c-format
 msgid "Open the previously opened database : %s"
-msgstr "打开先前打开的数据库： %s"
+msgstr "打开之前已打开的数据库： %s"
 
 #: assetdialog.cpp:61 assetdialog.cpp:410 assetspanel.cpp:467
 msgid "New Asset"
@@ -1707,7 +1707,7 @@ msgstr "查看上月"
 
 #: constants.cpp:185
 msgid "View Last 3 Months"
-msgstr "查看最近三个月"
+msgstr "查看最近 3 个月"
 
 #: constants.cpp:186
 msgid "View Last 12 Months"
@@ -6185,11 +6185,11 @@ msgstr "最近90天"
 
 #: reports/mmDateRange.cpp:110
 msgid "Last 3 Months"
-msgstr "查看最近三个月"
+msgstr "查看最近 3 个月"
 
 #: reports/mmDateRange.cpp:122
 msgid "Last 12 Months"
-msgstr "查看最近十二个月"
+msgstr "查看最近 12 个月"
 
 #: reports/mmDateRange.cpp:131
 msgid "Current Year"
