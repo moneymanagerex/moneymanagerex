@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2021-08-22 15:52+0300\n"
-"PO-Revision-Date: 2021-08-22 12:55\n"
+"POT-Creation-Date: 2021-08-24 11:11+0300\n"
+"PO-Revision-Date: 2021-08-24 08:20\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "MIME-Version: 1.0\n"
@@ -267,7 +267,7 @@ msgstr "Nome da Conta "
 
 #: accountdialog.cpp:509 import_export/qif_export.cpp:595
 #: import_export/qif_import_gui.cpp:233 optionsettingsgeneral.cpp:116
-#: reports/htmlbuilder.cpp:196
+#: reports/htmlbuilder.cpp:197
 msgid "Currency"
 msgstr "Moeda"
 
@@ -358,7 +358,7 @@ msgstr "Detalhes do Bem"
 #: assetdialog.cpp:193 assetspanel.cpp:60 customfieldeditdialog.cpp:131
 #: customfieldlistdialog.cpp:53 import_export/qif_import_gui.cpp:231
 #: import_export/qif_import_gui.cpp:244 import_export/qif_import_gui.cpp:254
-#: maincurrencydialog.cpp:75 payeedialog.cpp:65 reports/summarystocks.cpp:105
+#: maincurrencydialog.cpp:75 payeedialog.cpp:65 reports/summarystocks.cpp:106
 msgid "Name"
 msgstr "Nome"
 
@@ -371,7 +371,7 @@ msgstr "Coloque o nome do bem"
 #: import_export/univcsvdialog.cpp:105 maincurrencydialog.cpp:239
 #: maincurrencydialog.cpp:261 mmchecking_list.cpp:207 mmreportspanel.cpp:257
 #: mmreportspanel.cpp:275 model/Model_CustomField.cpp:29
-#: reports/cashflow.cpp:249 reports/incexpenses.cpp:244 reports/summary.cpp:157
+#: reports/cashflow.cpp:249 reports/incexpenses.cpp:245 reports/summary.cpp:157
 #: reports/transactions.cpp:80 stockdialog.cpp:297 stockdialog.cpp:676
 #: transactionsupdatedialog.cpp:118 transdialog.cpp:458
 #: usertransactionpanel.cpp:108 webappdialog.cpp:147 wizard_update.cpp:145
@@ -456,18 +456,18 @@ msgstr "ID"
 #: filtertransdialog.cpp:1050 import_export/qif_export.cpp:125
 #: import_export/qif_export.cpp:590 import_export/qif_import_gui.cpp:102
 #: import_export/qif_import_gui.cpp:232 import_export/univcsvdialog.cpp:116
-#: maincurrencydialog.cpp:251 mmhomepage.cpp:440 reports/incexpenses.cpp:111
+#: maincurrencydialog.cpp:251 mmhomepage.cpp:440 reports/incexpenses.cpp:112
 #: reports/transactions.cpp:86 splitdetailsdialog.cpp:120
 #: transactionsupdatedialog.cpp:145 transdialog.cpp:501
 #: usertransactionpanel.cpp:138 webappdialog.cpp:150
 msgid "Type"
 msgstr "Tipo"
 
-#: assetspanel.cpp:63 reports/summarystocks.cpp:109
+#: assetspanel.cpp:63 reports/summarystocks.cpp:110
 msgid "Initial Value"
 msgstr "Valor Inicial"
 
-#: assetspanel.cpp:64 reports/summarystocks.cpp:113 stockdialog.cpp:259
+#: assetspanel.cpp:64 reports/summarystocks.cpp:114 stockdialog.cpp:259
 msgid "Current Value"
 msgstr "Valor Atual"
 
@@ -928,7 +928,7 @@ msgstr "Permite a configuração de diferentes montantes nas contas de Origem e 
 #: import_export/qif_export.cpp:594 import_export/univcsvdialog.cpp:107
 #: maincurrencydialog.cpp:612 mmhomepage.cpp:360 mmhomepage.cpp:442
 #: reports/budgetcategorysummary.cpp:190 reports/categexp.cpp:174
-#: reports/incexpenses.cpp:112 reports/transactions.cpp:87
+#: reports/incexpenses.cpp:113 reports/transactions.cpp:87
 #: splitdetailsdialog.cpp:136 splittransactionsdialog.cpp:138
 #: transactionsupdatedialog.cpp:161 transdialog.cpp:515
 #: usertransactionpanel.cpp:142 webappdialog.cpp:153
@@ -965,7 +965,7 @@ msgstr "Defina a conta que será dona da transação recorrente"
 #: filtertransdialog.cpp:492 filtertransdialog.cpp:1011
 #: import_export/qif_export.cpp:592 import_export/qif_import_gui.cpp:101
 #: import_export/qif_import_gui.cpp:239 import_export/univcsvdialog.cpp:106
-#: mmchecking_list.cpp:216 model/Model_Attachment.cpp:29 reports/payee.cpp:134
+#: mmchecking_list.cpp:216 model/Model_Attachment.cpp:29 reports/payee.cpp:135
 #: reports/transactions.cpp:83 transactionsupdatedialog.cpp:172
 #: transdialog.cpp:296 transdialog.cpp:529 usertransactionpanel.cpp:182
 #: webappdialog.cpp:151
@@ -1186,7 +1186,7 @@ msgid "Every %s Months"
 msgstr "A Cada %s Meses"
 
 #: billsdepositspanel.cpp:135 budgetingpanel.cpp:300
-#: reports/budgetcategorysummary.cpp:191 reports/myusage.cpp:163
+#: reports/budgetcategorysummary.cpp:191 reports/myusage.cpp:164
 msgid "Frequency"
 msgstr "Periodicidade"
 
@@ -1336,8 +1336,8 @@ msgstr "Gasto"
 
 #: budgetentrydialog.cpp:129 db/DB_Table_Category_V1.h:123 mmhomepage.cpp:444
 #: reports/categexp.cpp:128 reports/categexp.cpp:157 reports/categexp.cpp:377
-#: reports/incexpenses.cpp:84 reports/incexpenses.cpp:212
-#: reports/incexpenses.cpp:245
+#: reports/incexpenses.cpp:85 reports/incexpenses.cpp:213
+#: reports/incexpenses.cpp:246
 msgid "Income"
 msgstr "Receita"
 
@@ -1865,7 +1865,7 @@ msgstr "Autocompletar"
 msgid "Enables autocomplete on custom field"
 msgstr "Ativar autocompletar no campo personalizado"
 
-#: customfieldeditdialog.cpp:161 optionsettingsview.cpp:186 util.cpp:574
+#: customfieldeditdialog.cpp:161 optionsettingsview.cpp:198 util.cpp:574
 msgid "Default"
 msgstr "Padrão"
 
@@ -2362,7 +2362,7 @@ msgstr "Especifique"
 msgid "From Date"
 msgstr "Data Inicial"
 
-#: filtertransdialog.cpp:230 reports/mmDateRange.cpp:30
+#: filtertransdialog.cpp:230 reports/mmDateRange.cpp:33
 msgid "Date Range"
 msgstr "Intervalo de Datas"
 
@@ -2376,14 +2376,14 @@ msgstr "Incluir todas as subcategorias para a categoria selecionada."
 
 #: filtertransdialog.cpp:300 import_export/univcsvdialog.cpp:113
 #: mmchecking_list.cpp:222 model/Model_Billsdeposits.cpp:32
-#: model/Model_Checking.cpp:29 reports/forecast.cpp:85
+#: model/Model_Checking.cpp:29 reports/forecast.cpp:86
 #: splitdetailsdialog.cpp:125
 msgid "Withdrawal"
 msgstr "Pagamento"
 
 #: filtertransdialog.cpp:302 import_export/univcsvdialog.cpp:114
 #: mmchecking_list.cpp:224 model/Model_Billsdeposits.cpp:33
-#: model/Model_Checking.cpp:30 reports/forecast.cpp:83
+#: model/Model_Checking.cpp:30 reports/forecast.cpp:84
 #: splitdetailsdialog.cpp:126
 msgid "Deposit"
 msgstr "Recebimento"
@@ -2442,7 +2442,7 @@ msgstr "Não foi possível salvar as configurações"
 
 #: filtertransdialog.cpp:720 filtertransdialog.cpp:937
 #: filtertransdialog.cpp:953 filtertransdialog.cpp:1417
-#: filtertransdialog.cpp:1425 reports/myusage.cpp:104 webappdialog.cpp:194
+#: filtertransdialog.cpp:1425 reports/myusage.cpp:105 webappdialog.cpp:194
 #: webappdialog.cpp:199
 msgid "Empty value"
 msgstr "Valor vazio"
@@ -2485,7 +2485,7 @@ msgid "General Reports Manager"
 msgstr "Gerenciador de Relatórios Personalizados"
 
 #: general_report_manager.cpp:290 mmframe.cpp:800 mmframe.cpp:2598
-#: reports/myusage.cpp:141 reports/myusage.cpp:162
+#: reports/myusage.cpp:142 reports/myusage.cpp:163
 msgid "Reports"
 msgstr "Relatórios"
 
@@ -3340,7 +3340,7 @@ msgstr "Por favor, digite a palavra indicando valores positivos no arquivo CSV, 
 msgid "Enter a value"
 msgstr "Digite o valor"
 
-#: maincurrencydialog.cpp:74 reports/summarystocks.cpp:106 stockdialog.cpp:427
+#: maincurrencydialog.cpp:74 reports/summarystocks.cpp:107 stockdialog.cpp:427
 #: stocks_list.cpp:91
 msgid "Symbol"
 msgstr "Símbolo"
@@ -4365,7 +4365,7 @@ msgstr "&Bens"
 msgid "T&heme Manager"
 msgstr "Gerenciador de Temas"
 
-#: mmframe.cpp:1546 mmframe.cpp:2490 optionsettingsview.cpp:297 themes.cpp:137
+#: mmframe.cpp:1546 mmframe.cpp:2490 optionsettingsview.cpp:309 themes.cpp:137
 msgid "Theme Manager"
 msgstr "Gerenciador de Temas"
 
@@ -4985,7 +4985,7 @@ msgstr "Receitas vs Despesas"
 msgid "My Usage"
 msgstr "Minha Utilização"
 
-#: mmframereport.cpp:169 reports/payee.cpp:113
+#: mmframereport.cpp:169 reports/payee.cpp:114
 msgid "Payees"
 msgstr "Favorecidos"
 
@@ -5017,7 +5017,7 @@ msgstr "&Avançar"
 msgid "Stocks"
 msgstr "Contas de Investimento"
 
-#: mmhomepage.cpp:79 reports/summarystocks.cpp:112 stocks_list.cpp:95
+#: mmhomepage.cpp:79 reports/summarystocks.cpp:113 stocks_list.cpp:95
 msgid "Gain/Loss"
 msgstr "Ganho/Perda"
 
@@ -5026,8 +5026,8 @@ msgstr "Ganho/Perda"
 msgid "Total"
 msgstr "Total"
 
-#: mmhomepage.cpp:106 mmhomepage.cpp:696 reports/incexpenses.cpp:287
-#: reports/payee.cpp:164 reports/summarystocks.cpp:154
+#: mmhomepage.cpp:106 mmhomepage.cpp:696 reports/incexpenses.cpp:288
+#: reports/payee.cpp:165 reports/summarystocks.cpp:155
 #: splittransactionsdialog.cpp:143
 msgid "Total:"
 msgstr "Total:"
@@ -5047,13 +5047,13 @@ msgid "Income vs Expenses: %s"
 msgstr "Receitas vs Despesas: %s"
 
 #: mmhomepage.cpp:448 reports/categexp.cpp:123 reports/categexp.cpp:147
-#: reports/categexp.cpp:376 reports/categexp.cpp:450 reports/incexpenses.cpp:87
-#: reports/incexpenses.cpp:213 reports/incexpenses.cpp:246
-#: reports/payee.cpp:136
+#: reports/categexp.cpp:376 reports/categexp.cpp:450 reports/incexpenses.cpp:88
+#: reports/incexpenses.cpp:214 reports/incexpenses.cpp:247
+#: reports/payee.cpp:137
 msgid "Expenses"
 msgstr "Despesas"
 
-#: mmhomepage.cpp:452 reports/incexpenses.cpp:120
+#: mmhomepage.cpp:452 reports/incexpenses.cpp:121
 msgid "Difference:"
 msgstr "Diferença:"
 
@@ -5073,7 +5073,7 @@ msgstr "Acompanhamento das Transações: "
 msgid "Total Transactions: "
 msgstr "Total de Transações: "
 
-#: mmhomepage.cpp:552 reports/categexp.cpp:225 reports/summarystocks.cpp:169
+#: mmhomepage.cpp:552 reports/categexp.cpp:225 reports/summarystocks.cpp:170
 #: reports/transactions.cpp:216 reports/transactions.cpp:250
 msgid "Grand Total:"
 msgstr "Total Geral:"
@@ -5779,59 +5779,67 @@ msgstr "Compensação de orçamento (dias):"
 msgid "Advance or retard the start date from the 1st of the month or year by the number of days"
 msgstr "Adiantar ou atrasar a data de início a partir do primeiro dia do mês ou ano pelo número de dias"
 
-#: optionsettingsview.cpp:146
+#: optionsettingsview.cpp:149
+msgid "Start day of month for reporting:"
+msgstr ""
+
+#: optionsettingsview.cpp:153
+msgid "Allows the 'first day' in the month to be adjusted for reporting purposes"
+msgstr ""
+
+#: optionsettingsview.cpp:158
 msgid "Ignore Future Transactions"
 msgstr "Ignorar Transações Futuras"
 
-#: optionsettingsview.cpp:152
+#: optionsettingsview.cpp:164
 msgid "Transaction Colors"
 msgstr "Cores da Transação"
 
-#: optionsettingsview.cpp:191
+#: optionsettingsview.cpp:203
 msgid "UI Appearance"
 msgstr "Aparência"
 
-#: optionsettingsview.cpp:202
+#: optionsettingsview.cpp:214
 msgid "Open Theme Manager"
 msgstr "Abrir o Gerenciador de Temas"
 
-#: optionsettingsview.cpp:204
+#: optionsettingsview.cpp:216
 msgid "Style Template"
 msgstr "Estilo do Modelo"
 
-#: optionsettingsview.cpp:207
+#: optionsettingsview.cpp:219
 msgid "HTML Scale Factor"
 msgstr "Fator de escala HTML"
 
-#: optionsettingsview.cpp:215
+#: optionsettingsview.cpp:227
 msgid "Specify which scale factor is used for the report pages"
 msgstr "Especifique qual fator de escala é usado para as páginas do relatório"
 
-#: optionsettingsview.cpp:220
+#: optionsettingsview.cpp:232
 msgid "Small (16 px)"
 msgstr "Pequeno (16 px)"
 
-#: optionsettingsview.cpp:221
+#: optionsettingsview.cpp:233
 msgid "Normal (24 px)"
 msgstr "Normal (24 px)"
 
-#: optionsettingsview.cpp:222
+#: optionsettingsview.cpp:234
 msgid "Large (32 px)"
 msgstr "Grande (32 px)"
 
-#: optionsettingsview.cpp:223
+#: optionsettingsview.cpp:235
 msgid "Huge (48 px)"
 msgstr "Enorme (48 px)"
 
-#: optionsettingsview.cpp:237
+#: optionsettingsview.cpp:249
 msgid "Toolbar Icon Size"
 msgstr "Tamanho do ícone na barra de ferramentas"
 
-#: optionsettingsview.cpp:240
+#: optionsettingsview.cpp:252
 msgid "Navigation Icon Size"
 msgstr "Tamanho do ícone de navegação"
 
-#: optionsettingsview.cpp:243
+#: optionsettingsview.cpp:255
 msgid "Others Icon Size"
 msgstr "Tamanho de outros ícones"
 
@@ -6109,8 +6117,8 @@ msgstr[0] "Previsão de fluxo de caixa para %i ano à frente"
 msgstr[1] "Previsão de fluxo de caixa para %i anos à frente"
 
 #: reports/cashflow.cpp:251 reports/categexp.cpp:375
-#: reports/incexpenses.cpp:211 reports/incexpenses.cpp:247
-#: reports/payee.cpp:137
+#: reports/incexpenses.cpp:212 reports/incexpenses.cpp:248
+#: reports/payee.cpp:138
 msgid "Difference"
 msgstr "Diferença"
 
@@ -6138,11 +6146,11 @@ msgstr "Categoria Receitas/Despesas"
 msgid "Overall"
 msgstr "Global"
 
-#: reports/categexp.cpp:449 reports/payee.cpp:135
+#: reports/categexp.cpp:449 reports/payee.cpp:136
 msgid "Incomes"
 msgstr "Receitas"
 
-#: reports/forecast.cpp:29
+#: reports/forecast.cpp:30
 msgid "Forecast"
 msgstr "Previsão"
 
@@ -6151,100 +6159,104 @@ msgstr "Previsão"
 msgid "Report Generated %s %s"
 msgstr "Relatório Gerado %s %s"
 
-#: reports/htmlbuilder.cpp:169
+#: reports/htmlbuilder.cpp:170
 #, c-format
 msgid "From %s till %s"
 msgstr "Desde %s até %s"
 
-#: reports/htmlbuilder.cpp:175 reports/mmDateRange.cpp:199
+#: reports/htmlbuilder.cpp:176 reports/mmDateRange.cpp:237
 msgid "Over Time"
 msgstr "Desde o Início"
 
-#: reports/incexpenses.cpp:34
+#: reports/htmlbuilder.cpp:204
+msgid "User specified start day"
+msgstr ""
+
+#: reports/incexpenses.cpp:35
 msgid "Income vs Expenses Summary"
 msgstr "Rendimentos vs Despesas Resumo"
 
-#: reports/incexpenses.cpp:118
+#: reports/incexpenses.cpp:119
 msgid "Income:"
 msgstr "Receitas:"
 
-#: reports/incexpenses.cpp:119
+#: reports/incexpenses.cpp:120
 msgid "Expenses:"
 msgstr "Despesas:"
 
-#: reports/incexpenses.cpp:136
+#: reports/incexpenses.cpp:137
 msgid "Income vs Expenses Monthly"
 msgstr "Receitas vs Despesas Mensais"
 
-#: reports/mmDateRange.cpp:53
+#: reports/mmDateRange.cpp:85
 msgid "Current Month"
 msgstr "Mês Atual"
 
-#: reports/mmDateRange.cpp:61
+#: reports/mmDateRange.cpp:91
 msgid "Today"
 msgstr "Hoje"
 
-#: reports/mmDateRange.cpp:70
+#: reports/mmDateRange.cpp:101
 msgid "Current Month to Date"
 msgstr "Mês Atual até Hoje"
 
-#: reports/mmDateRange.cpp:78
+#: reports/mmDateRange.cpp:113
 msgid "Last Month"
 msgstr "Mês Anterior"
 
-#: reports/mmDateRange.cpp:88
+#: reports/mmDateRange.cpp:123
 msgid "Last 30 Days"
 msgstr "Últimos 30 dias"
 
-#: reports/mmDateRange.cpp:98
+#: reports/mmDateRange.cpp:133
 msgid "Last 90 Days"
 msgstr "Últimos 90 Dias"
 
-#: reports/mmDateRange.cpp:110
+#: reports/mmDateRange.cpp:142
 msgid "Last 3 Months"
 msgstr "Últimos 3 Meses"
 
-#: reports/mmDateRange.cpp:122
+#: reports/mmDateRange.cpp:151
 msgid "Last 12 Months"
 msgstr "Últimos 12 Meses"
 
-#: reports/mmDateRange.cpp:131
+#: reports/mmDateRange.cpp:163
 msgid "Current Year"
 msgstr "Ano Atual"
 
-#: reports/mmDateRange.cpp:139 stockdialog.cpp:721
+#: reports/mmDateRange.cpp:173 stockdialog.cpp:721
 msgid "Current Year to Date"
 msgstr "Ano Atual até Hoje"
 
-#: reports/mmDateRange.cpp:148
+#: reports/mmDateRange.cpp:186
 msgid "Last Year"
 msgstr "Último Ano"
 
-#: reports/mmDateRange.cpp:170
+#: reports/mmDateRange.cpp:208
 msgid "Current Financial Year"
 msgstr "Exercício Financeiro Atual"
 
-#: reports/mmDateRange.cpp:180
+#: reports/mmDateRange.cpp:218
 msgid "Current Financial Year to Date"
 msgstr "Exercício Financeiro Atual até o Hoje"
 
-#: reports/mmDateRange.cpp:191
+#: reports/mmDateRange.cpp:229
 msgid "Last Financial Year"
 msgstr "Último Exercício Financeiro"
 
-#: reports/mmDateRange.cpp:210
+#: reports/mmDateRange.cpp:248
 msgid "Custom"
 msgstr "Personalizado"
 
-#: reports/mmDateRange.cpp:220
+#: reports/mmDateRange.cpp:257
 msgid "Last 365 Days"
 msgstr "Últimos 365 Dias"
 
-#: reports/myusage.cpp:27
+#: reports/myusage.cpp:28
 msgid "MMEX Usage Frequency"
 msgstr "Frequência de Uso do MMEX"
 
-#: reports/payee.cpp:32
+#: reports/payee.cpp:33
 msgid "Payee Report"
 msgstr "Relatório de Favorecidos"
 
@@ -6265,28 +6277,28 @@ msgstr "Relatório Mensal"
 msgid "Yearly Report"
 msgstr "Relatório Anual"
 
-#: reports/summarystocks.cpp:35
+#: reports/summarystocks.cpp:36
 msgid "Summary of Stocks"
 msgstr "Resumo dos Investimentos"
 
-#: reports/summarystocks.cpp:107
+#: reports/summarystocks.cpp:108
 msgid "Purchase Date"
 msgstr "Data da compra"
 
-#: reports/summarystocks.cpp:108
+#: reports/summarystocks.cpp:109
 msgid "Quantity"
 msgstr "Quantidade"
 
-#: reports/summarystocks.cpp:110
+#: reports/summarystocks.cpp:111
 msgid "Current Price"
 msgstr "Preço Atual"
 
-#: reports/summarystocks.cpp:111 sharetransactiondialog.cpp:249
+#: reports/summarystocks.cpp:112 sharetransactiondialog.cpp:249
 #: stocks_list.cpp:99
 msgid "Commission"
 msgstr "Custo"
 
-#: reports/summarystocks.cpp:183
+#: reports/summarystocks.cpp:184
 msgid "Stocks Performance Charts"
 msgstr "Gráficos de Desempenho de Ações"
 
