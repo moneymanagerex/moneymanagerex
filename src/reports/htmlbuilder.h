@@ -1,6 +1,6 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
- Copyright (C) 21021 Mark Whalley (mark@ipx.co.uk)
+ Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -60,11 +60,12 @@ public:
     }
 
     /** Add an HTML header */
-    void addReportHeader(const wxString& name);
+    void addReportHeader(const wxString& name, int startDay = 1);
     void addHeader(int level, const wxString& header);
     void showUserName();
     void addReportCurrency();
     void addDateNow();
+    void addOffsetIndication(int startDay);
 
     /** Start a table element */
     void startTable();

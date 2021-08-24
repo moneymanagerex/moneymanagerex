@@ -1,5 +1,6 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
+ Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -109,6 +110,10 @@ public:
     /**Re-adjust date by the date offset value*/
     void setBudgetDateOffset(wxDateTime& date) const;
 
+    // Allows the 'first day' in the month to be adjusted for reporting purposes
+    void setReportingFirstDay(int value);
+    int getReportingFirstDay() const;
+
     /* stored value in percantage for scale html font and other objects */
     void setHTMLFontSizes(int value);
     int getHtmlFontSize();
@@ -169,6 +174,7 @@ private:
     int m_navigation_ico_size;
 
     int m_budget_days_offset;
+    int m_reporting_firstday;
 };
 
 inline int Option::getIconSize() { return m_ico_size; }
@@ -217,4 +223,9 @@ inline bool Option::getShowMoneyTips() const
 inline int Option::getBudgetDaysOffset() const
 {
     return m_budget_days_offset;
+}
+
+inline int Option::getReportingFirstDay() const
+{
+    return m_reporting_firstday;
 }
