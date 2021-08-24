@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-24 11:11+0300\n"
-"PO-Revision-Date: 2021-08-24 09:54\n"
+"PO-Revision-Date: 2021-08-24 10:24\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -4869,8 +4869,8 @@ msgid "Share Accounts hold Share transactions\n\n"
 "Or by using the Menu View --> 'Display Share Accounts'\n"
 "Share Accounts can also hold normal transactions to regular account."
 msgstr "Паявыя рахункі ўтрымліваюць аперацыі з акцыямі.\n\n"
-"Аперацыі з акцыямі ствараюцца ў спецыяльных рахунках\n"
-"адпаведнага віду пасля выбару акцыяў кампаніі ў звязаным праглядзе.\n\n"
+"Аперацыі з акцыямі рэгіструюцца ў спецыяльных рахунках\n"
+"пасля выбара акцыяў кампаніі ў звязаным выглядзе.\n\n"
 "Гэтыя рахункі становяцца бачнымі толькі пасля звязвання акцыі з Паявым рахункам\n"
 "або з дапамогай меню Паказаць -> 'Паказваць паявы кошт'\n"
 "Паявыя рахункі таксама могуць утрымліваць звычайныя транзакцыі для рэгулярных рахункаў."
@@ -6708,7 +6708,7 @@ msgstr "Часовы спіс каштоўных папераў: %s\n\n"
 #: stockspanel.cpp:299
 #, c-format
 msgid "Stock Portfolio: %s"
-msgstr "Агулам акцыі: %s"
+msgstr "Фондавы партфель: %s"
 
 #: stockspanel.cpp:343
 #, c-format
