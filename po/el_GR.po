@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-24 11:11+0300\n"
-"PO-Revision-Date: 2021-08-24 08:20\n"
+"PO-Revision-Date: 2021-08-24 08:44\n"
 "Last-Translator: \n"
 "Language-Team: Greek\n"
 "MIME-Version: 1.0\n"
@@ -5772,11 +5772,11 @@ msgstr ""
 
 #: optionsettingsview.cpp:149
 msgid "Start day of month for reporting:"
-msgstr ""
+msgstr "Ημερομηνία έναρξης του μήνα για αναφορά:"
 
 #: optionsettingsview.cpp:153
 msgid "Allows the 'first day' in the month to be adjusted for reporting purposes"
-msgstr ""
+msgstr "Επιτρέπει την \"πρώτη ημέρα\" του μήνα να ρυθμιστεί για σκοπούς υποβολής αναφορών"
 
 #: optionsettingsview.cpp:158
 msgid "Ignore Future Transactions"
@@ -6161,7 +6161,7 @@ msgstr "Με Το Χρόνο"
 
 #: reports/htmlbuilder.cpp:204
 msgid "User specified start day"
-msgstr ""
+msgstr "Καθορισμένη ημέρα έναρξης από τον χρήστη"
 
 #: reports/incexpenses.cpp:35
 msgid "Income vs Expenses Summary"
