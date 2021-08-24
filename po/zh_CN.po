@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2021-08-22 15:52+0300\n"
-"PO-Revision-Date: 2021-08-23 03:18\n"
+"POT-Creation-Date: 2021-08-24 11:11+0300\n"
+"PO-Revision-Date: 2021-08-24 11:04\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
@@ -267,7 +267,7 @@ msgstr "帐户名称 "
 
 #: accountdialog.cpp:509 import_export/qif_export.cpp:595
 #: import_export/qif_import_gui.cpp:233 optionsettingsgeneral.cpp:116
-#: reports/htmlbuilder.cpp:196
+#: reports/htmlbuilder.cpp:197
 msgid "Currency"
 msgstr "货币"
 
@@ -358,7 +358,7 @@ msgstr "资产明细"
 #: assetdialog.cpp:193 assetspanel.cpp:60 customfieldeditdialog.cpp:131
 #: customfieldlistdialog.cpp:53 import_export/qif_import_gui.cpp:231
 #: import_export/qif_import_gui.cpp:244 import_export/qif_import_gui.cpp:254
-#: maincurrencydialog.cpp:75 payeedialog.cpp:65 reports/summarystocks.cpp:105
+#: maincurrencydialog.cpp:75 payeedialog.cpp:65 reports/summarystocks.cpp:106
 msgid "Name"
 msgstr "名称"
 
@@ -371,7 +371,7 @@ msgstr "请输入资产名称"
 #: import_export/univcsvdialog.cpp:105 maincurrencydialog.cpp:239
 #: maincurrencydialog.cpp:261 mmchecking_list.cpp:207 mmreportspanel.cpp:257
 #: mmreportspanel.cpp:275 model/Model_CustomField.cpp:29
-#: reports/cashflow.cpp:249 reports/incexpenses.cpp:244 reports/summary.cpp:157
+#: reports/cashflow.cpp:249 reports/incexpenses.cpp:245 reports/summary.cpp:157
 #: reports/transactions.cpp:80 stockdialog.cpp:297 stockdialog.cpp:676
 #: transactionsupdatedialog.cpp:118 transdialog.cpp:458
 #: usertransactionpanel.cpp:108 webappdialog.cpp:147 wizard_update.cpp:145
@@ -456,18 +456,18 @@ msgstr "ID"
 #: filtertransdialog.cpp:1050 import_export/qif_export.cpp:125
 #: import_export/qif_export.cpp:590 import_export/qif_import_gui.cpp:102
 #: import_export/qif_import_gui.cpp:232 import_export/univcsvdialog.cpp:116
-#: maincurrencydialog.cpp:251 mmhomepage.cpp:440 reports/incexpenses.cpp:111
+#: maincurrencydialog.cpp:251 mmhomepage.cpp:440 reports/incexpenses.cpp:112
 #: reports/transactions.cpp:86 splitdetailsdialog.cpp:120
 #: transactionsupdatedialog.cpp:145 transdialog.cpp:501
 #: usertransactionpanel.cpp:138 webappdialog.cpp:150
 msgid "Type"
 msgstr "类型"
 
-#: assetspanel.cpp:63 reports/summarystocks.cpp:109
+#: assetspanel.cpp:63 reports/summarystocks.cpp:110
 msgid "Initial Value"
 msgstr "初始价值"
 
-#: assetspanel.cpp:64 reports/summarystocks.cpp:113 stockdialog.cpp:259
+#: assetspanel.cpp:64 reports/summarystocks.cpp:114 stockdialog.cpp:259
 msgid "Current Value"
 msgstr "当前价值"
 
@@ -928,7 +928,7 @@ msgstr "指定转账账户"
 #: import_export/qif_export.cpp:594 import_export/univcsvdialog.cpp:107
 #: maincurrencydialog.cpp:612 mmhomepage.cpp:360 mmhomepage.cpp:442
 #: reports/budgetcategorysummary.cpp:190 reports/categexp.cpp:174
-#: reports/incexpenses.cpp:112 reports/transactions.cpp:87
+#: reports/incexpenses.cpp:113 reports/transactions.cpp:87
 #: splitdetailsdialog.cpp:136 splittransactionsdialog.cpp:138
 #: transactionsupdatedialog.cpp:161 transdialog.cpp:515
 #: usertransactionpanel.cpp:142 webappdialog.cpp:153
@@ -965,7 +965,7 @@ msgstr "指定此定期交易所属的账户"
 #: filtertransdialog.cpp:492 filtertransdialog.cpp:1011
 #: import_export/qif_export.cpp:592 import_export/qif_import_gui.cpp:101
 #: import_export/qif_import_gui.cpp:239 import_export/univcsvdialog.cpp:106
-#: mmchecking_list.cpp:216 model/Model_Attachment.cpp:29 reports/payee.cpp:134
+#: mmchecking_list.cpp:216 model/Model_Attachment.cpp:29 reports/payee.cpp:135
 #: reports/transactions.cpp:83 transactionsupdatedialog.cpp:172
 #: transdialog.cpp:296 transdialog.cpp:529 usertransactionpanel.cpp:182
 #: webappdialog.cpp:151
@@ -1186,7 +1186,7 @@ msgid "Every %s Months"
 msgstr "每 %s 月"
 
 #: billsdepositspanel.cpp:135 budgetingpanel.cpp:300
-#: reports/budgetcategorysummary.cpp:191 reports/myusage.cpp:163
+#: reports/budgetcategorysummary.cpp:191 reports/myusage.cpp:164
 msgid "Frequency"
 msgstr "频率"
 
@@ -1333,8 +1333,8 @@ msgstr "支出"
 
 #: budgetentrydialog.cpp:129 db/DB_Table_Category_V1.h:123 mmhomepage.cpp:444
 #: reports/categexp.cpp:128 reports/categexp.cpp:157 reports/categexp.cpp:377
-#: reports/incexpenses.cpp:84 reports/incexpenses.cpp:212
-#: reports/incexpenses.cpp:245
+#: reports/incexpenses.cpp:85 reports/incexpenses.cpp:213
+#: reports/incexpenses.cpp:246
 msgid "Income"
 msgstr "收入"
 
@@ -1862,7 +1862,7 @@ msgstr "自动完成"
 msgid "Enables autocomplete on custom field"
 msgstr "启用自定义字段自动完成"
 
-#: customfieldeditdialog.cpp:161 optionsettingsview.cpp:186 util.cpp:574
+#: customfieldeditdialog.cpp:161 optionsettingsview.cpp:198 util.cpp:574
 msgid "Default"
 msgstr "默认"
 
@@ -2358,7 +2358,7 @@ msgstr "条件"
 msgid "From Date"
 msgstr "开始日期"
 
-#: filtertransdialog.cpp:230 reports/mmDateRange.cpp:30
+#: filtertransdialog.cpp:230 reports/mmDateRange.cpp:33
 msgid "Date Range"
 msgstr "选择日期区间"
 
@@ -2372,14 +2372,14 @@ msgstr "包含选中分类的所有子分类。"
 
 #: filtertransdialog.cpp:300 import_export/univcsvdialog.cpp:113
 #: mmchecking_list.cpp:222 model/Model_Billsdeposits.cpp:32
-#: model/Model_Checking.cpp:29 reports/forecast.cpp:85
+#: model/Model_Checking.cpp:29 reports/forecast.cpp:86
 #: splitdetailsdialog.cpp:125
 msgid "Withdrawal"
 msgstr "支出"
 
 #: filtertransdialog.cpp:302 import_export/univcsvdialog.cpp:114
 #: mmchecking_list.cpp:224 model/Model_Billsdeposits.cpp:33
-#: model/Model_Checking.cpp:30 reports/forecast.cpp:83
+#: model/Model_Checking.cpp:30 reports/forecast.cpp:84
 #: splitdetailsdialog.cpp:126
 msgid "Deposit"
 msgstr "收入"
@@ -2438,7 +2438,7 @@ msgstr "无法保存设置"
 
 #: filtertransdialog.cpp:720 filtertransdialog.cpp:937
 #: filtertransdialog.cpp:953 filtertransdialog.cpp:1417
-#: filtertransdialog.cpp:1425 reports/myusage.cpp:104 webappdialog.cpp:194
+#: filtertransdialog.cpp:1425 reports/myusage.cpp:105 webappdialog.cpp:194
 #: webappdialog.cpp:199
 msgid "Empty value"
 msgstr "空值"
@@ -2481,7 +2481,7 @@ msgid "General Reports Manager"
 msgstr "通用报表管理器"
 
 #: general_report_manager.cpp:290 mmframe.cpp:800 mmframe.cpp:2598
-#: reports/myusage.cpp:141 reports/myusage.cpp:162
+#: reports/myusage.cpp:142 reports/myusage.cpp:163
 msgid "Reports"
 msgstr "报表"
 
@@ -3335,7 +3335,7 @@ msgstr "请在您的 CSV 文件中输入表示正值的单词，例如“debit�
 msgid "Enter a value"
 msgstr "输入值："
 
-#: maincurrencydialog.cpp:74 reports/summarystocks.cpp:106 stockdialog.cpp:427
+#: maincurrencydialog.cpp:74 reports/summarystocks.cpp:107 stockdialog.cpp:427
 #: stocks_list.cpp:91
 msgid "Symbol"
 msgstr "股票代号"
@@ -4352,7 +4352,7 @@ msgstr "资产(&A)"
 msgid "T&heme Manager"
 msgstr "主题管理器(&T)"
 
-#: mmframe.cpp:1546 mmframe.cpp:2490 optionsettingsview.cpp:297 themes.cpp:137
+#: mmframe.cpp:1546 mmframe.cpp:2490 optionsettingsview.cpp:309 themes.cpp:137
 msgid "Theme Manager"
 msgstr "主题管理器"
 
@@ -4969,7 +4969,7 @@ msgstr "收支情况"
 msgid "My Usage"
 msgstr "我的用法"
 
-#: mmframereport.cpp:169 reports/payee.cpp:113
+#: mmframereport.cpp:169 reports/payee.cpp:114
 msgid "Payees"
 msgstr "收款人"
 
@@ -5001,7 +5001,7 @@ msgstr "向前(&F)"
 msgid "Stocks"
 msgstr "股票"
 
-#: mmhomepage.cpp:79 reports/summarystocks.cpp:112 stocks_list.cpp:95
+#: mmhomepage.cpp:79 reports/summarystocks.cpp:113 stocks_list.cpp:95
 msgid "Gain/Loss"
 msgstr "盈亏"
 
@@ -5010,8 +5010,8 @@ msgstr "盈亏"
 msgid "Total"
 msgstr "总计："
 
-#: mmhomepage.cpp:106 mmhomepage.cpp:696 reports/incexpenses.cpp:287
-#: reports/payee.cpp:164 reports/summarystocks.cpp:154
+#: mmhomepage.cpp:106 mmhomepage.cpp:696 reports/incexpenses.cpp:288
+#: reports/payee.cpp:165 reports/summarystocks.cpp:155
 #: splittransactionsdialog.cpp:143
 msgid "Total:"
 msgstr "总计："
@@ -5031,13 +5031,13 @@ msgid "Income vs Expenses: %s"
 msgstr "收支情况：%s"
 
 #: mmhomepage.cpp:448 reports/categexp.cpp:123 reports/categexp.cpp:147
-#: reports/categexp.cpp:376 reports/categexp.cpp:450 reports/incexpenses.cpp:87
-#: reports/incexpenses.cpp:213 reports/incexpenses.cpp:246
-#: reports/payee.cpp:136
+#: reports/categexp.cpp:376 reports/categexp.cpp:450 reports/incexpenses.cpp:88
+#: reports/incexpenses.cpp:214 reports/incexpenses.cpp:247
+#: reports/payee.cpp:137
 msgid "Expenses"
 msgstr "支出"
 
-#: mmhomepage.cpp:452 reports/incexpenses.cpp:120
+#: mmhomepage.cpp:452 reports/incexpenses.cpp:121
 msgid "Difference:"
 msgstr "差额："
 
@@ -5057,7 +5057,7 @@ msgstr "需跟进的交易"
 msgid "Total Transactions: "
 msgstr "交易笔数"
 
-#: mmhomepage.cpp:552 reports/categexp.cpp:225 reports/summarystocks.cpp:169
+#: mmhomepage.cpp:552 reports/categexp.cpp:225 reports/summarystocks.cpp:170
 #: reports/transactions.cpp:216 reports/transactions.cpp:250
 msgid "Grand Total:"
 msgstr "总计："
@@ -5763,59 +5763,67 @@ msgstr "预算偏移(天)："
 msgid "Advance or retard the start date from the 1st of the month or year by the number of days"
 msgstr "按天数提前或推迟月或年份第一个起始日期"
 
-#: optionsettingsview.cpp:146
+#: optionsettingsview.cpp:149
+msgid "Start day of month for reporting:"
+msgstr "报告的开始日期："
+
+#: optionsettingsview.cpp:153
+msgid "Allows the 'first day' in the month to be adjusted for reporting purposes"
+msgstr "允许为报告目的调整当月的“第一天”"
+
+#: optionsettingsview.cpp:158
 msgid "Ignore Future Transactions"
 msgstr "忽略未来交易"
 
-#: optionsettingsview.cpp:152
+#: optionsettingsview.cpp:164
 msgid "Transaction Colors"
 msgstr "交易颜色"
 
-#: optionsettingsview.cpp:191
+#: optionsettingsview.cpp:203
 msgid "UI Appearance"
 msgstr "界面外观"
 
-#: optionsettingsview.cpp:202
+#: optionsettingsview.cpp:214
 msgid "Open Theme Manager"
 msgstr "打开主题管理器"
 
-#: optionsettingsview.cpp:204
+#: optionsettingsview.cpp:216
 msgid "Style Template"
 msgstr "样式模板"
 
-#: optionsettingsview.cpp:207
+#: optionsettingsview.cpp:219
 msgid "HTML Scale Factor"
 msgstr "HTML 缩放系数"
 
-#: optionsettingsview.cpp:215
+#: optionsettingsview.cpp:227
 msgid "Specify which scale factor is used for the report pages"
 msgstr "指定报告页面使用哪个比例系数"
 
-#: optionsettingsview.cpp:220
+#: optionsettingsview.cpp:232
 msgid "Small (16 px)"
 msgstr "小 (16px)"
 
-#: optionsettingsview.cpp:221
+#: optionsettingsview.cpp:233
 msgid "Normal (24 px)"
 msgstr "正常 (24 px)"
 
-#: optionsettingsview.cpp:222
+#: optionsettingsview.cpp:234
 msgid "Large (32 px)"
 msgstr "大 (32 px)"
 
-#: optionsettingsview.cpp:223
+#: optionsettingsview.cpp:235
 msgid "Huge (48 px)"
 msgstr "巨大 (48 px)"
 
-#: optionsettingsview.cpp:237
+#: optionsettingsview.cpp:249
 msgid "Toolbar Icon Size"
 msgstr "工具栏图标大小"
 
-#: optionsettingsview.cpp:240
+#: optionsettingsview.cpp:252
 msgid "Navigation Icon Size"
 msgstr "导航栏图标大小"
 
-#: optionsettingsview.cpp:243
+#: optionsettingsview.cpp:255
 msgid "Others Icon Size"
 msgstr "其他图标大小"
 
@@ -6092,8 +6100,8 @@ msgid_plural "Cash Flow Forecast for %i Years Ahead"
 msgstr[0] "%i 年前现金流预测"
 
 #: reports/cashflow.cpp:251 reports/categexp.cpp:375
-#: reports/incexpenses.cpp:211 reports/incexpenses.cpp:247
-#: reports/payee.cpp:137
+#: reports/incexpenses.cpp:212 reports/incexpenses.cpp:248
+#: reports/payee.cpp:138
 msgid "Difference"
 msgstr "差额"
 
@@ -6121,11 +6129,11 @@ msgstr "收支分类"
 msgid "Overall"
 msgstr "总计"
 
-#: reports/categexp.cpp:449 reports/payee.cpp:135
+#: reports/categexp.cpp:449 reports/payee.cpp:136
 msgid "Incomes"
 msgstr "收入"
 
-#: reports/forecast.cpp:29
+#: reports/forecast.cpp:30
 msgid "Forecast"
 msgstr "预测"
 
@@ -6134,100 +6142,104 @@ msgstr "预测"
 msgid "Report Generated %s %s"
 msgstr "报告生成于 %s %s"
 
-#: reports/htmlbuilder.cpp:169
+#: reports/htmlbuilder.cpp:170
 #, c-format
 msgid "From %s till %s"
 msgstr "从 %s 至 %s"
 
-#: reports/htmlbuilder.cpp:175 reports/mmDateRange.cpp:199
+#: reports/htmlbuilder.cpp:176 reports/mmDateRange.cpp:237
 msgid "Over Time"
 msgstr "按月"
 
-#: reports/incexpenses.cpp:34
+#: reports/htmlbuilder.cpp:204
+msgid "User specified start day"
+msgstr "用户指定的开始日期"
+
+#: reports/incexpenses.cpp:35
 msgid "Income vs Expenses Summary"
 msgstr "收入与支出汇总表"
 
-#: reports/incexpenses.cpp:118
+#: reports/incexpenses.cpp:119
 msgid "Income:"
 msgstr "收入："
 
-#: reports/incexpenses.cpp:119
+#: reports/incexpenses.cpp:120
 msgid "Expenses:"
 msgstr "支出："
 
-#: reports/incexpenses.cpp:136
+#: reports/incexpenses.cpp:137
 msgid "Income vs Expenses Monthly"
 msgstr "收入与每月支出"
 
-#: reports/mmDateRange.cpp:53
+#: reports/mmDateRange.cpp:85
 msgid "Current Month"
 msgstr "本月"
 
-#: reports/mmDateRange.cpp:61
+#: reports/mmDateRange.cpp:91
 msgid "Today"
 msgstr "今天"
 
-#: reports/mmDateRange.cpp:70
+#: reports/mmDateRange.cpp:101
 msgid "Current Month to Date"
 msgstr "月初到今日"
 
-#: reports/mmDateRange.cpp:78
+#: reports/mmDateRange.cpp:113
 msgid "Last Month"
 msgstr "上月"
 
-#: reports/mmDateRange.cpp:88
+#: reports/mmDateRange.cpp:123
 msgid "Last 30 Days"
 msgstr "最近30天"
 
-#: reports/mmDateRange.cpp:98
+#: reports/mmDateRange.cpp:133
 msgid "Last 90 Days"
 msgstr "最近90天"
 
-#: reports/mmDateRange.cpp:110
+#: reports/mmDateRange.cpp:142
 msgid "Last 3 Months"
 msgstr "查看最近 3 个月"
 
-#: reports/mmDateRange.cpp:122
+#: reports/mmDateRange.cpp:151
 msgid "Last 12 Months"
 msgstr "查看最近 12 个月"
 
-#: reports/mmDateRange.cpp:131
+#: reports/mmDateRange.cpp:163
 msgid "Current Year"
 msgstr "本年"
 
-#: reports/mmDateRange.cpp:139 stockdialog.cpp:721
+#: reports/mmDateRange.cpp:173 stockdialog.cpp:721
 msgid "Current Year to Date"
 msgstr "年初到今日"
 
-#: reports/mmDateRange.cpp:148
+#: reports/mmDateRange.cpp:186
 msgid "Last Year"
 msgstr "上年"
 
-#: reports/mmDateRange.cpp:170
+#: reports/mmDateRange.cpp:208
 msgid "Current Financial Year"
 msgstr "本财年"
 
-#: reports/mmDateRange.cpp:180
+#: reports/mmDateRange.cpp:218
 msgid "Current Financial Year to Date"
 msgstr "本财年初到今日"
 
-#: reports/mmDateRange.cpp:191
+#: reports/mmDateRange.cpp:229
 msgid "Last Financial Year"
 msgstr "上财年"
 
-#: reports/mmDateRange.cpp:210
+#: reports/mmDateRange.cpp:248
 msgid "Custom"
 msgstr "自定义"
 
-#: reports/mmDateRange.cpp:220
+#: reports/mmDateRange.cpp:257
 msgid "Last 365 Days"
 msgstr "最近365天"
 
-#: reports/myusage.cpp:27
+#: reports/myusage.cpp:28
 msgid "MMEX Usage Frequency"
 msgstr "MMEX 使用频率"
 
-#: reports/payee.cpp:32
+#: reports/payee.cpp:33
 msgid "Payee Report"
 msgstr "收款人报告"
 
@@ -6248,28 +6260,28 @@ msgstr "月度报告"
 msgid "Yearly Report"
 msgstr "年度报告"
 
-#: reports/summarystocks.cpp:35
+#: reports/summarystocks.cpp:36
 msgid "Summary of Stocks"
 msgstr "股票汇总"
 
-#: reports/summarystocks.cpp:107
+#: reports/summarystocks.cpp:108
 msgid "Purchase Date"
 msgstr "购买日期"
 
-#: reports/summarystocks.cpp:108
+#: reports/summarystocks.cpp:109
 msgid "Quantity"
 msgstr "数量"
 
-#: reports/summarystocks.cpp:110
+#: reports/summarystocks.cpp:111
 msgid "Current Price"
 msgstr "当前价格"
 
-#: reports/summarystocks.cpp:111 sharetransactiondialog.cpp:249
+#: reports/summarystocks.cpp:112 sharetransactiondialog.cpp:249
 #: stocks_list.cpp:99
 msgid "Commission"
 msgstr "佣金"
 
-#: reports/summarystocks.cpp:183
+#: reports/summarystocks.cpp:184
 msgid "Stocks Performance Charts"
 msgstr "库存性能图表"
 
