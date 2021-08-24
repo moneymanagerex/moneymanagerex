@@ -137,7 +137,7 @@ void mmHTMLBuilder::showUserName()
         addHeader(2, Option::instance().UserName());
 }
 
-void mmHTMLBuilder::addReportHeader(const wxString& name)
+void mmHTMLBuilder::addReportHeader(const wxString& name, int startDay)
 {
     addDivContainer("shadowTitle");
     {
@@ -149,6 +149,7 @@ void mmHTMLBuilder::addReportHeader(const wxString& name)
         {
             showUserName();
             addText("<TMPL_VAR DATE_HEADING>");
+            addOffsetIndication(startDay);
             addReportCurrency();
             addDateNow();
         }
@@ -194,6 +195,14 @@ void mmHTMLBuilder::addReportCurrency()
     wxASSERT_MSG(Model_Currency::GetBaseCurrencySymbol(base_currency_symbol), "Could not find base currency symbol");
 
     addHeader(5, wxString::Format("%s: %s", _("Currency"), base_currency_symbol));  
+}
+
+void mmHTMLBuilder::addOffsetIndication(int startDay)
+{       
+    if (startDay > 1)
+        addHeader(5, wxString::Format ("%s: %d"
+            , _("User specified start day")
+            , startDay));
 }
 
 void mmHTMLBuilder::addDateNow()

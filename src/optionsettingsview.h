@@ -72,6 +72,7 @@ private:
     wxCheckBox* m_budget_summary_without_category;
     wxCheckBox* m_ignore_future_transactions;
     wxSpinCtrl* m_budget_days_offset;
+    wxSpinCtrl* m_reporting_firstday;
 
     wxCheckBox* m_showToolTips;
     wxCheckBox* m_showMoneyTips;

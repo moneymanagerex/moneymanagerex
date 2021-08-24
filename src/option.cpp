@@ -1,5 +1,6 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
+ Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -52,6 +53,7 @@ Option::Option()
     , m_toolbar_ico_size(32)
     , m_navigation_ico_size(24)
     , m_budget_days_offset(0)
+    , m_reporting_firstday(1)
 {}
 
 //----------------------------------------------------------------------------
@@ -73,6 +75,7 @@ void Option::LoadOptions(bool include_infotable)
         m_baseCurrency = Model_Infotable::instance().GetIntInfo("BASECURRENCYID", -1);
         m_currencyHistoryEnabled = Model_Infotable::instance().GetBoolInfo(INIDB_USE_CURRENCY_HISTORY, true);
         m_budget_days_offset = Model_Infotable::instance().GetIntInfo("BUDGET_DAYS_OFFSET", 0);
+        m_reporting_firstday = Model_Infotable::instance().GetIntInfo("REPORTING_FIRSTDAY", 1);
         // Ensure that base currency is set for the database.
         while (m_baseCurrency < 1)
         {
@@ -356,6 +359,12 @@ void Option::setBudgetDateOffset(wxDateTime& date) const
 {
     if (m_budget_days_offset != 0)
         date.Add(wxDateSpan::Days(m_budget_days_offset));
+}
+
+void Option::setReportingFirstDay(int value)
+{
+    Model_Infotable::instance().Set("REPORTING_FIRSTDAY", value);
+    m_reporting_firstday = value;
 }
 
 int Option::AccountImageId(int account_id, bool def)
