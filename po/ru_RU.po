@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-24 11:11+0300\n"
-"PO-Revision-Date: 2021-08-24 08:20\n"
+"PO-Revision-Date: 2021-08-24 13:17\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -5806,11 +5806,11 @@ msgstr "Смещение или сдвиг даты начала с 1-го чи�
 
 #: optionsettingsview.cpp:149
 msgid "Start day of month for reporting:"
-msgstr ""
+msgstr "Первый день месяца для отчётов:"
 
 #: optionsettingsview.cpp:153
 msgid "Allows the 'first day' in the month to be adjusted for reporting purposes"
-msgstr ""
+msgstr "Позволяет указать 'первый день' месяца для отчётов"
 
 #: optionsettingsview.cpp:158
 msgid "Ignore Future Transactions"
