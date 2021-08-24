@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-24 11:11+0300\n"
-"PO-Revision-Date: 2021-08-24 10:24\n"
+"PO-Revision-Date: 2021-08-24 10:35\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -3687,7 +3687,7 @@ msgstr "Выкарыстоўваючы MMEX, можна адсочваць ін�
 
 #: mmTips.h:48
 msgid "To create new stocks entry the Symbol, Number of shares and Purchase prise should be entered."
-msgstr "Для стварэння новага актыва трэба задаць Біржавы сымбаль, колькасць і пакупную цану."
+msgstr "Для стварэння новага актыва трэба задаць цікер, колькасць і пакупную цану."
 
 #: mmTips.h:49
 msgid "Sample of UK (HSBC HLDG) share: HSBA.L"
@@ -6359,7 +6359,7 @@ msgstr "Цікер"
 
 #: sharetransactiondialog.cpp:221 stockdialog.cpp:205
 msgid "Enter the stock symbol. (Optional) Include exchange. eg: IBM.BE"
-msgstr "Пакажыце біржавы сымбаль. (Апцыянальна) далучыце біржу, напр.: IBM.BE"
+msgstr "Пакажыце цікер (біржавы сымбаль). (Апцыянальна) далучыце біржу, напр.: IBM.BE"
 
 #: sharetransactiondialog.cpp:224
 msgid "Share Number"
