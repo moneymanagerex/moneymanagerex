@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-24 11:11+0300\n"
-"PO-Revision-Date: 2021-08-24 08:20\n"
+"PO-Revision-Date: 2021-08-24 09:13\n"
 "Last-Translator: \n"
 "Language-Team: Italian\n"
 "MIME-Version: 1.0\n"
@@ -5781,11 +5781,11 @@ msgstr "Anticipa o ritarda la data di inizio dal primo giorno del mese o anno pe
 
 #: optionsettingsview.cpp:149
 msgid "Start day of month for reporting:"
-msgstr ""
+msgstr "Giorno iniziale del mese per la reportistica:"
 
 #: optionsettingsview.cpp:153
 msgid "Allows the 'first day' in the month to be adjusted for reporting purposes"
-msgstr ""
+msgstr "Consente di modificare il 'primo giorno' del mese ai fini della reportistica"
 
 #: optionsettingsview.cpp:158
 msgid "Ignore Future Transactions"
@@ -6170,7 +6170,7 @@ msgstr "Storico"
 
 #: reports/htmlbuilder.cpp:204
 msgid "User specified start day"
-msgstr ""
+msgstr "Giorno di inizio specificato dall'utente"
 
 #: reports/incexpenses.cpp:35
 msgid "Income vs Expenses Summary"
