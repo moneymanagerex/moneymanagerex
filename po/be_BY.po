@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-24 11:11+0300\n"
-"PO-Revision-Date: 2021-08-24 10:35\n"
+"PO-Revision-Date: 2021-08-24 11:04\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -3352,7 +3352,7 @@ msgstr "Пакажыце значэнне"
 #: maincurrencydialog.cpp:74 reports/summarystocks.cpp:107 stockdialog.cpp:427
 #: stocks_list.cpp:91
 msgid "Symbol"
-msgstr "Цікер"
+msgstr "Сымбаль"
 
 #: maincurrencydialog.cpp:76
 msgid "Last Rate"
@@ -6359,7 +6359,7 @@ msgstr "Цікер"
 
 #: sharetransactiondialog.cpp:221 stockdialog.cpp:205
 msgid "Enter the stock symbol. (Optional) Include exchange. eg: IBM.BE"
-msgstr "Пакажыце цікер (біржавы сымбаль). (Апцыянальна) далучыце біржу, напр.: IBM.BE"
+msgstr "Пакажыце цікер (фондавы сымбаль). (Апцыянальна) далучыце біржу, напр.: IBM.BE"
 
 #: sharetransactiondialog.cpp:224
 msgid "Share Number"
