@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-24 11:11+0300\n"
-"PO-Revision-Date: 2021-08-24 08:21\n"
+"PO-Revision-Date: 2021-08-24 13:07\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -5781,11 +5781,11 @@ msgstr "Avancer ou retarder la date de début du 1er du mois ou de l'année par 
 
 #: optionsettingsview.cpp:149
 msgid "Start day of month for reporting:"
-msgstr ""
+msgstr "Jour de début du mois pour le rapport :"
 
 #: optionsettingsview.cpp:153
 msgid "Allows the 'first day' in the month to be adjusted for reporting purposes"
-msgstr ""
+msgstr "Autorise le 'premier jour' du mois à être ajusté pour les besoins du rapport"
 
 #: optionsettingsview.cpp:158
 msgid "Ignore Future Transactions"
@@ -6171,7 +6171,7 @@ msgstr "Over Time"
 
 #: reports/htmlbuilder.cpp:204
 msgid "User specified start day"
-msgstr ""
+msgstr "Date de début spécifiée par l'utilisateur"
 
 #: reports/incexpenses.cpp:35
 msgid "Income vs Expenses Summary"
