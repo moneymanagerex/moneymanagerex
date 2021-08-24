@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-24 11:11+0300\n"
-"PO-Revision-Date: 2021-08-24 08:20\n"
+"PO-Revision-Date: 2021-08-24 11:04\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
@@ -5765,11 +5765,11 @@ msgstr "按天数提前或推迟月或年份第一个起始日期"
 
 #: optionsettingsview.cpp:149
 msgid "Start day of month for reporting:"
-msgstr ""
+msgstr "报告的开始日期："
 
 #: optionsettingsview.cpp:153
 msgid "Allows the 'first day' in the month to be adjusted for reporting purposes"
-msgstr ""
+msgstr "允许为报告目的调整当月的“第一天”"
 
 #: optionsettingsview.cpp:158
 msgid "Ignore Future Transactions"
@@ -6153,7 +6153,7 @@ msgstr "按月"
 
 #: reports/htmlbuilder.cpp:204
 msgid "User specified start day"
-msgstr ""
+msgstr "用户指定的开始日期"
 
 #: reports/incexpenses.cpp:35
 msgid "Income vs Expenses Summary"
