@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-24 11:11+0300\n"
-"PO-Revision-Date: 2021-08-24 08:20\n"
+"PO-Revision-Date: 2021-08-24 14:20\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -5214,19 +5214,19 @@ msgstr "Andere"
 
 #: model/Model_Attachment.cpp:24
 msgid "Transaction"
-msgstr ""
+msgstr "Buchung"
 
 #: model/Model_Attachment.cpp:25
 msgid "Stock"
-msgstr ""
+msgstr "Wertpapier"
 
 #: model/Model_Attachment.cpp:27
 msgid "BankAccount"
-msgstr ""
+msgstr "Bankkonto"
 
 #: model/Model_Attachment.cpp:28
 msgid "RecurringTransaction"
-msgstr ""
+msgstr "Wiederkehrende Transaktion"
 
 #: model/Model_Billsdeposits.cpp:301
 msgid "A recurring transaction will exceed your account limit.\n\n"
@@ -5525,11 +5525,11 @@ msgstr "Wählen Sie hier aus, ob das aktuelle oder das Original-Datum beim Kopie
 
 #: optionsettingsgeneral.cpp:213
 msgid "Use Original Date when Duplicating Transactions"
-msgstr ""
+msgstr "Originaldatum beim Kopieren von Buchungen beibehalten"
 
 #: optionsettingsgeneral.cpp:215
 msgid "Select whether to use the original transaction date or current date when duplicating transactions"
-msgstr ""
+msgstr "Wählen Sie hier aus, ob das aktuelle oder das Original-Datum beim Kopieren/Einfügen einer Buchung verwendet werden soll"
 
 #: optionsettingsgeneral.cpp:218
 msgid "Use Transaction Sound"
@@ -5778,11 +5778,11 @@ msgstr "Das Startdatum ab dem 1. des Monats bzw. des Jahres um die Anzahl der Ta
 
 #: optionsettingsview.cpp:149
 msgid "Start day of month for reporting:"
-msgstr ""
+msgstr "Start Tag im Monat für die Berichtserstellung:"
 
 #: optionsettingsview.cpp:153
 msgid "Allows the 'first day' in the month to be adjusted for reporting purposes"
-msgstr ""
+msgstr "Ermöglicht die Anpassung des 'ersten Tag' im Monat für Berichtszwecke"
 
 #: optionsettingsview.cpp:158
 msgid "Ignore Future Transactions"
@@ -6168,7 +6168,7 @@ msgstr "über die ganze Zeit"
 
 #: reports/htmlbuilder.cpp:204
 msgid "User specified start day"
-msgstr ""
+msgstr "vom Benutzer angegebener Starttag"
 
 #: reports/incexpenses.cpp:35
 msgid "Income vs Expenses Summary"
@@ -6281,7 +6281,7 @@ msgstr "Zusammenfassung der Wertpapiere"
 
 #: reports/summarystocks.cpp:108
 msgid "Purchase Date"
-msgstr ""
+msgstr "Kaufdatum"
 
 #: reports/summarystocks.cpp:109
 msgid "Quantity"
