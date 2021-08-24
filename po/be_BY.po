@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-24 11:11+0300\n"
-"PO-Revision-Date: 2021-08-24 08:27\n"
+"PO-Revision-Date: 2021-08-24 09:54\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -4028,7 +4028,7 @@ msgstr "Тэрміновыя рахункі"
 
 #: mmframe.cpp:474 mmframe.cpp:735
 msgid "Stock Portfolios"
-msgstr "Партфоліо"
+msgstr "Фондавыя партфелі"
 
 #: mmframe.cpp:475 mmframe.cpp:723 mmhomepage.cpp:640
 msgid "Cash Accounts"
