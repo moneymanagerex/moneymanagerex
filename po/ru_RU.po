@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-24 11:11+0300\n"
-"PO-Revision-Date: 2021-08-24 13:17\n"
+"PO-Revision-Date: 2021-08-24 13:28\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -4028,7 +4028,7 @@ msgstr "Счета вкладов"
 
 #: mmframe.cpp:474 mmframe.cpp:735
 msgid "Stock Portfolios"
-msgstr "Портфель"
+msgstr "Фондовые портфели"
 
 #: mmframe.cpp:475 mmframe.cpp:723 mmhomepage.cpp:640
 msgid "Cash Accounts"
@@ -4869,7 +4869,7 @@ msgid "Share Accounts hold Share transactions\n\n"
 "Or by using the Menu View --> 'Display Share Accounts'\n"
 "Share Accounts can also hold normal transactions to regular account."
 msgstr "Паевые счета содержат сделки с акциями.\n\n"
-"Сделки с акциями регистрируются в специальных счетах\n"
+"Сделки с акциями регистрируются в фондовом портфеле\n"
 "после выбора акций компании в связанном виде.\n\n"
 "Эти счета становятся видимыми только после связывания акции со счётом\n"
 "или с помощью меню Показать -> 'Показывать паевой счёт'\n"
@@ -6197,7 +6197,7 @@ msgstr "Всё время"
 
 #: reports/htmlbuilder.cpp:204
 msgid "User specified start day"
-msgstr ""
+msgstr "Первый день указан пользователем"
 
 #: reports/incexpenses.cpp:35
 msgid "Income vs Expenses Summary"
