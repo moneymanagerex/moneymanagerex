@@ -1031,6 +1031,7 @@ void mmGUIFrame::OnSelChanged(wxTreeEvent& event)
     wxTreeItemId selectedItem = event.GetItem();
     if (!selectedItem) return;
 
+    m_nav_tree_ctrl->Update();
     mmTreeItemData* iData = dynamic_cast<mmTreeItemData*>(m_nav_tree_ctrl->GetItemData(selectedItem));
     if (!iData) return;
 
