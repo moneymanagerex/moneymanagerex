@@ -60,7 +60,7 @@ wxString mmReportTransactions::getHTMLText()
 
     mmHTMLBuilder hb;
     hb.init();
-    hb.addReportHeader(getReportTitle(), m_date_range->startDay());
+    hb.addReportHeader(getReportTitle());
     hb.DisplayFooter(_("Accounts: ") + accounts);
 
     std::map<int, double> total; //Store transaction amount with original currency
