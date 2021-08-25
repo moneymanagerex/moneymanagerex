@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2021-08-22 13:38+0300\n"
-"PO-Revision-Date: 2021-08-22 10:46\n"
+"POT-Creation-Date: 2021-08-24 11:11+0300\n"
+"PO-Revision-Date: 2021-08-24 13:28\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -267,7 +267,7 @@ msgstr "Название счёта "
 
 #: accountdialog.cpp:509 import_export/qif_export.cpp:595
 #: import_export/qif_import_gui.cpp:233 optionsettingsgeneral.cpp:116
-#: reports/htmlbuilder.cpp:196
+#: reports/htmlbuilder.cpp:197
 msgid "Currency"
 msgstr "Валюта"
 
@@ -358,7 +358,7 @@ msgstr "Детали актива"
 #: assetdialog.cpp:193 assetspanel.cpp:60 customfieldeditdialog.cpp:131
 #: customfieldlistdialog.cpp:53 import_export/qif_import_gui.cpp:231
 #: import_export/qif_import_gui.cpp:244 import_export/qif_import_gui.cpp:254
-#: maincurrencydialog.cpp:75 payeedialog.cpp:65 reports/summarystocks.cpp:105
+#: maincurrencydialog.cpp:75 payeedialog.cpp:65 reports/summarystocks.cpp:106
 msgid "Name"
 msgstr "Название"
 
@@ -371,7 +371,7 @@ msgstr "Введите название актива"
 #: import_export/univcsvdialog.cpp:105 maincurrencydialog.cpp:239
 #: maincurrencydialog.cpp:261 mmchecking_list.cpp:207 mmreportspanel.cpp:257
 #: mmreportspanel.cpp:275 model/Model_CustomField.cpp:29
-#: reports/cashflow.cpp:249 reports/incexpenses.cpp:244 reports/summary.cpp:157
+#: reports/cashflow.cpp:249 reports/incexpenses.cpp:245 reports/summary.cpp:157
 #: reports/transactions.cpp:80 stockdialog.cpp:297 stockdialog.cpp:676
 #: transactionsupdatedialog.cpp:118 transdialog.cpp:458
 #: usertransactionpanel.cpp:108 webappdialog.cpp:147 wizard_update.cpp:145
@@ -456,18 +456,18 @@ msgstr "ID"
 #: filtertransdialog.cpp:1050 import_export/qif_export.cpp:125
 #: import_export/qif_export.cpp:590 import_export/qif_import_gui.cpp:102
 #: import_export/qif_import_gui.cpp:232 import_export/univcsvdialog.cpp:116
-#: maincurrencydialog.cpp:251 mmhomepage.cpp:440 reports/incexpenses.cpp:111
+#: maincurrencydialog.cpp:251 mmhomepage.cpp:440 reports/incexpenses.cpp:112
 #: reports/transactions.cpp:86 splitdetailsdialog.cpp:120
 #: transactionsupdatedialog.cpp:145 transdialog.cpp:501
 #: usertransactionpanel.cpp:138 webappdialog.cpp:150
 msgid "Type"
 msgstr "Тип"
 
-#: assetspanel.cpp:63 reports/summarystocks.cpp:109
+#: assetspanel.cpp:63 reports/summarystocks.cpp:110
 msgid "Initial Value"
 msgstr "Начальное значение"
 
-#: assetspanel.cpp:64 reports/summarystocks.cpp:113 stockdialog.cpp:259
+#: assetspanel.cpp:64 reports/summarystocks.cpp:114 stockdialog.cpp:259
 msgid "Current Value"
 msgstr "Текущее значение"
 
@@ -928,7 +928,7 @@ msgstr "Определите сумму которая будет перевед
 #: import_export/qif_export.cpp:594 import_export/univcsvdialog.cpp:107
 #: maincurrencydialog.cpp:612 mmhomepage.cpp:360 mmhomepage.cpp:442
 #: reports/budgetcategorysummary.cpp:190 reports/categexp.cpp:174
-#: reports/incexpenses.cpp:112 reports/transactions.cpp:87
+#: reports/incexpenses.cpp:113 reports/transactions.cpp:87
 #: splitdetailsdialog.cpp:136 splittransactionsdialog.cpp:138
 #: transactionsupdatedialog.cpp:161 transdialog.cpp:515
 #: usertransactionpanel.cpp:142 webappdialog.cpp:153
@@ -965,9 +965,10 @@ msgstr "Укажите счёт для данной повторяющейся �
 #: filtertransdialog.cpp:492 filtertransdialog.cpp:1011
 #: import_export/qif_export.cpp:592 import_export/qif_import_gui.cpp:101
 #: import_export/qif_import_gui.cpp:239 import_export/univcsvdialog.cpp:106
-#: mmchecking_list.cpp:216 reports/payee.cpp:134 reports/transactions.cpp:83
-#: transactionsupdatedialog.cpp:172 transdialog.cpp:296 transdialog.cpp:529
-#: usertransactionpanel.cpp:182 webappdialog.cpp:151
+#: mmchecking_list.cpp:216 model/Model_Attachment.cpp:29 reports/payee.cpp:135
+#: reports/transactions.cpp:83 transactionsupdatedialog.cpp:172
+#: transdialog.cpp:296 transdialog.cpp:529 usertransactionpanel.cpp:182
+#: webappdialog.cpp:151
 msgid "Payee"
 msgstr "Получатель"
 
@@ -1184,7 +1185,7 @@ msgid "Every %s Months"
 msgstr "Каждые %s месяцев"
 
 #: billsdepositspanel.cpp:135 budgetingpanel.cpp:300
-#: reports/budgetcategorysummary.cpp:191 reports/myusage.cpp:163
+#: reports/budgetcategorysummary.cpp:191 reports/myusage.cpp:164
 msgid "Frequency"
 msgstr "Период"
 
@@ -1340,8 +1341,8 @@ msgstr "Расход"
 
 #: budgetentrydialog.cpp:129 db/DB_Table_Category_V1.h:123 mmhomepage.cpp:444
 #: reports/categexp.cpp:128 reports/categexp.cpp:157 reports/categexp.cpp:377
-#: reports/incexpenses.cpp:84 reports/incexpenses.cpp:212
-#: reports/incexpenses.cpp:245
+#: reports/incexpenses.cpp:85 reports/incexpenses.cpp:213
+#: reports/incexpenses.cpp:246
 msgid "Income"
 msgstr "Доход"
 
@@ -1869,7 +1870,7 @@ msgstr "Автозаполнение"
 msgid "Enables autocomplete on custom field"
 msgstr "Включить автозаполнение на пользовательском поле"
 
-#: customfieldeditdialog.cpp:161 optionsettingsview.cpp:186 util.cpp:574
+#: customfieldeditdialog.cpp:161 optionsettingsview.cpp:198 util.cpp:574
 msgid "Default"
 msgstr "По умолчанию"
 
@@ -2368,7 +2369,7 @@ msgstr "Укажите"
 msgid "From Date"
 msgstr "С даты"
 
-#: filtertransdialog.cpp:230 reports/mmDateRange.cpp:30
+#: filtertransdialog.cpp:230 reports/mmDateRange.cpp:33
 msgid "Date Range"
 msgstr "Диапазон дат"
 
@@ -2382,14 +2383,14 @@ msgstr "Включая все подкатегории для выбранной
 
 #: filtertransdialog.cpp:300 import_export/univcsvdialog.cpp:113
 #: mmchecking_list.cpp:222 model/Model_Billsdeposits.cpp:32
-#: model/Model_Checking.cpp:29 reports/forecast.cpp:85
+#: model/Model_Checking.cpp:29 reports/forecast.cpp:86
 #: splitdetailsdialog.cpp:125
 msgid "Withdrawal"
 msgstr "Снятие"
 
 #: filtertransdialog.cpp:302 import_export/univcsvdialog.cpp:114
 #: mmchecking_list.cpp:224 model/Model_Billsdeposits.cpp:33
-#: model/Model_Checking.cpp:30 reports/forecast.cpp:83
+#: model/Model_Checking.cpp:30 reports/forecast.cpp:84
 #: splitdetailsdialog.cpp:126
 msgid "Deposit"
 msgstr "Пополнение"
@@ -2448,7 +2449,7 @@ msgstr "Не удалось сохранить настройки"
 
 #: filtertransdialog.cpp:720 filtertransdialog.cpp:937
 #: filtertransdialog.cpp:953 filtertransdialog.cpp:1417
-#: filtertransdialog.cpp:1425 reports/myusage.cpp:104 webappdialog.cpp:194
+#: filtertransdialog.cpp:1425 reports/myusage.cpp:105 webappdialog.cpp:194
 #: webappdialog.cpp:199
 msgid "Empty value"
 msgstr "Пустое значение"
@@ -2491,7 +2492,7 @@ msgid "General Reports Manager"
 msgstr "Менеджер отчётов"
 
 #: general_report_manager.cpp:290 mmframe.cpp:800 mmframe.cpp:2598
-#: reports/myusage.cpp:141 reports/myusage.cpp:162
+#: reports/myusage.cpp:142 reports/myusage.cpp:163
 msgid "Reports"
 msgstr "Отчёты"
 
@@ -3348,7 +3349,7 @@ msgstr "Пожалуйста, введите слово, указывающее 
 msgid "Enter a value"
 msgstr "Введите значение"
 
-#: maincurrencydialog.cpp:74 reports/summarystocks.cpp:106 stockdialog.cpp:427
+#: maincurrencydialog.cpp:74 reports/summarystocks.cpp:107 stockdialog.cpp:427
 #: stocks_list.cpp:91
 msgid "Symbol"
 msgstr "Тикер"
@@ -4027,7 +4028,7 @@ msgstr "Счета вкладов"
 
 #: mmframe.cpp:474 mmframe.cpp:735
 msgid "Stock Portfolios"
-msgstr "Портфель"
+msgstr "Фондовые портфели"
 
 #: mmframe.cpp:475 mmframe.cpp:723 mmhomepage.cpp:640
 msgid "Cash Accounts"
@@ -4389,7 +4390,7 @@ msgstr "&Активы"
 msgid "T&heme Manager"
 msgstr "Менеджер &тем"
 
-#: mmframe.cpp:1546 mmframe.cpp:2490 optionsettingsview.cpp:297 themes.cpp:137
+#: mmframe.cpp:1546 mmframe.cpp:2490 optionsettingsview.cpp:309 themes.cpp:137
 msgid "Theme Manager"
 msgstr "Менеджер тем"
 
@@ -4868,7 +4869,7 @@ msgid "Share Accounts hold Share transactions\n\n"
 "Or by using the Menu View --> 'Display Share Accounts'\n"
 "Share Accounts can also hold normal transactions to regular account."
 msgstr "Паевые счета содержат сделки с акциями.\n\n"
-"Сделки с акциями регистрируются в специальных счетах\n"
+"Сделки с акциями регистрируются в фондовом портфеле\n"
 "после выбора акций компании в связанном виде.\n\n"
 "Эти счета становятся видимыми только после связывания акции со счётом\n"
 "или с помощью меню Показать -> 'Показывать паевой счёт'\n"
@@ -5009,7 +5010,7 @@ msgstr "Доходы/Расходы"
 msgid "My Usage"
 msgstr "Статистика"
 
-#: mmframereport.cpp:169 reports/payee.cpp:113
+#: mmframereport.cpp:169 reports/payee.cpp:114
 msgid "Payees"
 msgstr "Получатели"
 
@@ -5041,7 +5042,7 @@ msgstr "&Вперёд"
 msgid "Stocks"
 msgstr "Акции"
 
-#: mmhomepage.cpp:79 reports/summarystocks.cpp:112 stocks_list.cpp:95
+#: mmhomepage.cpp:79 reports/summarystocks.cpp:113 stocks_list.cpp:95
 msgid "Gain/Loss"
 msgstr "Прибыль"
 
@@ -5050,8 +5051,8 @@ msgstr "Прибыль"
 msgid "Total"
 msgstr "Сумма"
 
-#: mmhomepage.cpp:106 mmhomepage.cpp:696 reports/incexpenses.cpp:287
-#: reports/payee.cpp:164 reports/summarystocks.cpp:154
+#: mmhomepage.cpp:106 mmhomepage.cpp:696 reports/incexpenses.cpp:288
+#: reports/payee.cpp:165 reports/summarystocks.cpp:155
 #: splittransactionsdialog.cpp:143
 msgid "Total:"
 msgstr "Всего:"
@@ -5071,13 +5072,13 @@ msgid "Income vs Expenses: %s"
 msgstr "Доходы/Расходы: %s"
 
 #: mmhomepage.cpp:448 reports/categexp.cpp:123 reports/categexp.cpp:147
-#: reports/categexp.cpp:376 reports/categexp.cpp:450 reports/incexpenses.cpp:87
-#: reports/incexpenses.cpp:213 reports/incexpenses.cpp:246
-#: reports/payee.cpp:136
+#: reports/categexp.cpp:376 reports/categexp.cpp:450 reports/incexpenses.cpp:88
+#: reports/incexpenses.cpp:214 reports/incexpenses.cpp:247
+#: reports/payee.cpp:137
 msgid "Expenses"
 msgstr "Расход"
 
-#: mmhomepage.cpp:452 reports/incexpenses.cpp:120
+#: mmhomepage.cpp:452 reports/incexpenses.cpp:121
 msgid "Difference:"
 msgstr "Баланс:"
 
@@ -5097,7 +5098,7 @@ msgstr "Отследить транзакций: "
 msgid "Total Transactions: "
 msgstr "Транзакций всего: "
 
-#: mmhomepage.cpp:552 reports/categexp.cpp:225 reports/summarystocks.cpp:169
+#: mmhomepage.cpp:552 reports/categexp.cpp:225 reports/summarystocks.cpp:170
 #: reports/transactions.cpp:216 reports/transactions.cpp:250
 msgid "Grand Total:"
 msgstr "Всего:"
@@ -5199,7 +5200,7 @@ msgstr "Срочный"
 msgid "Investment"
 msgstr "Инвестиция"
 
-#: model/Model_Account.cpp:38
+#: model/Model_Account.cpp:38 model/Model_Attachment.cpp:26
 msgid "Asset"
 msgstr "Вклад"
 
@@ -5238,6 +5239,22 @@ msgstr "Драгоценности"
 #: model/Model_Asset.cpp:36
 msgid "Other"
 msgstr "Прочий"
+
+#: model/Model_Attachment.cpp:24
+msgid "Transaction"
+msgstr "Транзакция"
+
+#: model/Model_Attachment.cpp:25
+msgid "Stock"
+msgstr "Акции"
+
+#: model/Model_Attachment.cpp:27
+msgid "BankAccount"
+msgstr "Счёт"
+
+#: model/Model_Attachment.cpp:28
+msgid "RecurringTransaction"
+msgstr "Повторяющаяся транзакция"
 
 #: model/Model_Billsdeposits.cpp:301
 msgid "A recurring transaction will exceed your account limit.\n\n"
@@ -5536,11 +5553,11 @@ msgstr "Отметьте, использовать ли первоначальн
 
 #: optionsettingsgeneral.cpp:213
 msgid "Use Original Date when Duplicating Transactions"
-msgstr ""
+msgstr "Использовать исходную дату при дублировании транзакций"
 
 #: optionsettingsgeneral.cpp:215
 msgid "Select whether to use the original transaction date or current date when duplicating transactions"
-msgstr ""
+msgstr "Выберите, использовать ли первоначальную дату транзакции или текущую дату при дублировании транзакций"
 
 #: optionsettingsgeneral.cpp:218
 msgid "Use Transaction Sound"
@@ -5787,59 +5804,67 @@ msgstr "Смещение бюджета (дней):"
 msgid "Advance or retard the start date from the 1st of the month or year by the number of days"
 msgstr "Смещение или сдвиг даты начала с 1-го числа месяца или года на указанное количество дней"
 
-#: optionsettingsview.cpp:146
+#: optionsettingsview.cpp:149
+msgid "Start day of month for reporting:"
+msgstr "Первый день месяца для отчётов:"
+
+#: optionsettingsview.cpp:153
+msgid "Allows the 'first day' in the month to be adjusted for reporting purposes"
+msgstr "Позволяет указать 'первый день' месяца для отчётов"
+
+#: optionsettingsview.cpp:158
 msgid "Ignore Future Transactions"
 msgstr "Игнорировать предстоящие транзакции"
 
-#: optionsettingsview.cpp:152
+#: optionsettingsview.cpp:164
 msgid "Transaction Colors"
 msgstr "Цвет транзакций"
 
-#: optionsettingsview.cpp:191
+#: optionsettingsview.cpp:203
 msgid "UI Appearance"
 msgstr "Внешний вид интерфейса"
 
-#: optionsettingsview.cpp:202
+#: optionsettingsview.cpp:214
 msgid "Open Theme Manager"
 msgstr "Открыть менеджер тем"
 
-#: optionsettingsview.cpp:204
+#: optionsettingsview.cpp:216
 msgid "Style Template"
 msgstr "Шаблон стиля"
 
-#: optionsettingsview.cpp:207
+#: optionsettingsview.cpp:219
 msgid "HTML Scale Factor"
 msgstr "HTML масштаб"
 
-#: optionsettingsview.cpp:215
+#: optionsettingsview.cpp:227
 msgid "Specify which scale factor is used for the report pages"
 msgstr "Определите, какой масштаб использовать для отчётов"
 
-#: optionsettingsview.cpp:220
+#: optionsettingsview.cpp:232
 msgid "Small (16 px)"
 msgstr "Маленький (16 px)"
 
-#: optionsettingsview.cpp:221
+#: optionsettingsview.cpp:233
 msgid "Normal (24 px)"
 msgstr "Нормальный (24 px)"
 
-#: optionsettingsview.cpp:222
+#: optionsettingsview.cpp:234
 msgid "Large (32 px)"
 msgstr "Большой (32 px)"
 
-#: optionsettingsview.cpp:223
+#: optionsettingsview.cpp:235
 msgid "Huge (48 px)"
 msgstr "Огромный (48 px)"
 
-#: optionsettingsview.cpp:237
+#: optionsettingsview.cpp:249
 msgid "Toolbar Icon Size"
 msgstr "Размер значков панели инструментов"
 
-#: optionsettingsview.cpp:240
+#: optionsettingsview.cpp:252
 msgid "Navigation Icon Size"
 msgstr "Размер значков панели навигации"
 
-#: optionsettingsview.cpp:243
+#: optionsettingsview.cpp:255
 msgid "Others Icon Size"
 msgstr "Размер прочих значков"
 
@@ -6119,8 +6144,8 @@ msgstr[2] "Прогноз денежного потока на %i лет"
 msgstr[3] "Прогноз денежного потока на %i лет"
 
 #: reports/cashflow.cpp:251 reports/categexp.cpp:375
-#: reports/incexpenses.cpp:211 reports/incexpenses.cpp:247
-#: reports/payee.cpp:137
+#: reports/incexpenses.cpp:212 reports/incexpenses.cpp:248
+#: reports/payee.cpp:138
 msgid "Difference"
 msgstr "Разница"
 
@@ -6148,11 +6173,11 @@ msgstr "Доход/Расход по категориям"
 msgid "Overall"
 msgstr "Суммарно"
 
-#: reports/categexp.cpp:449 reports/payee.cpp:135
+#: reports/categexp.cpp:449 reports/payee.cpp:136
 msgid "Incomes"
 msgstr "Доходы"
 
-#: reports/forecast.cpp:29
+#: reports/forecast.cpp:30
 msgid "Forecast"
 msgstr "Прогноз"
 
@@ -6161,100 +6186,104 @@ msgstr "Прогноз"
 msgid "Report Generated %s %s"
 msgstr "Отчёт сформирован %s %s"
 
-#: reports/htmlbuilder.cpp:169
+#: reports/htmlbuilder.cpp:170
 #, c-format
 msgid "From %s till %s"
 msgstr "С %s по %s"
 
-#: reports/htmlbuilder.cpp:175 reports/mmDateRange.cpp:199
+#: reports/htmlbuilder.cpp:176 reports/mmDateRange.cpp:237
 msgid "Over Time"
 msgstr "Всё время"
 
-#: reports/incexpenses.cpp:34
+#: reports/htmlbuilder.cpp:204
+msgid "User specified start day"
+msgstr "Первый день указан пользователем"
+
+#: reports/incexpenses.cpp:35
 msgid "Income vs Expenses Summary"
 msgstr "Доходы/Расходы суммарно"
 
-#: reports/incexpenses.cpp:118
+#: reports/incexpenses.cpp:119
 msgid "Income:"
 msgstr "Доход:"
 
-#: reports/incexpenses.cpp:119
+#: reports/incexpenses.cpp:120
 msgid "Expenses:"
 msgstr "Расход:"
 
-#: reports/incexpenses.cpp:136
+#: reports/incexpenses.cpp:137
 msgid "Income vs Expenses Monthly"
 msgstr "Доходы/Расходы по месяцам"
 
-#: reports/mmDateRange.cpp:53
+#: reports/mmDateRange.cpp:85
 msgid "Current Month"
 msgstr "Текущий месяц"
 
-#: reports/mmDateRange.cpp:61
+#: reports/mmDateRange.cpp:91
 msgid "Today"
 msgstr "Cегодня"
 
-#: reports/mmDateRange.cpp:70
+#: reports/mmDateRange.cpp:101
 msgid "Current Month to Date"
 msgstr "Текущий месяц по сегодня"
 
-#: reports/mmDateRange.cpp:78
+#: reports/mmDateRange.cpp:113
 msgid "Last Month"
 msgstr "Прошлый месяц"
 
-#: reports/mmDateRange.cpp:88
+#: reports/mmDateRange.cpp:123
 msgid "Last 30 Days"
 msgstr "Последние 30 дней"
 
-#: reports/mmDateRange.cpp:98
+#: reports/mmDateRange.cpp:133
 msgid "Last 90 Days"
 msgstr "Последние 90 дней"
 
-#: reports/mmDateRange.cpp:110
+#: reports/mmDateRange.cpp:142
 msgid "Last 3 Months"
 msgstr "Последние 3 месяца"
 
-#: reports/mmDateRange.cpp:122
+#: reports/mmDateRange.cpp:151
 msgid "Last 12 Months"
 msgstr "Последние 12 месяцев"
 
-#: reports/mmDateRange.cpp:131
+#: reports/mmDateRange.cpp:163
 msgid "Current Year"
 msgstr "Текущий год"
 
-#: reports/mmDateRange.cpp:139 stockdialog.cpp:721
+#: reports/mmDateRange.cpp:173 stockdialog.cpp:721
 msgid "Current Year to Date"
 msgstr "Текущий год по сегодня"
 
-#: reports/mmDateRange.cpp:148
+#: reports/mmDateRange.cpp:186
 msgid "Last Year"
 msgstr "Прошлый год"
 
-#: reports/mmDateRange.cpp:170
+#: reports/mmDateRange.cpp:208
 msgid "Current Financial Year"
 msgstr "Текущий финансовый год"
 
-#: reports/mmDateRange.cpp:180
+#: reports/mmDateRange.cpp:218
 msgid "Current Financial Year to Date"
 msgstr "Текущий финансовый год по сегодня"
 
-#: reports/mmDateRange.cpp:191
+#: reports/mmDateRange.cpp:229
 msgid "Last Financial Year"
 msgstr "Прошлый финансовый год"
 
-#: reports/mmDateRange.cpp:210
+#: reports/mmDateRange.cpp:248
 msgid "Custom"
 msgstr "Пользовательский"
 
-#: reports/mmDateRange.cpp:220
+#: reports/mmDateRange.cpp:257
 msgid "Last 365 Days"
 msgstr "Последние 365 дней"
 
-#: reports/myusage.cpp:27
+#: reports/myusage.cpp:28
 msgid "MMEX Usage Frequency"
 msgstr "Частота использования MMEX"
 
-#: reports/payee.cpp:32
+#: reports/payee.cpp:33
 msgid "Payee Report"
 msgstr "Отчёт по получателям"
 
@@ -6275,28 +6304,28 @@ msgstr "Ежемесячный отчёт"
 msgid "Yearly Report"
 msgstr "Годовой отчёт"
 
-#: reports/summarystocks.cpp:35
+#: reports/summarystocks.cpp:36
 msgid "Summary of Stocks"
 msgstr "Сводка по инвестициям"
 
-#: reports/summarystocks.cpp:107
-msgid "Purchase Date"
-msgstr ""
-
 #: reports/summarystocks.cpp:108
+msgid "Purchase Date"
+msgstr "Дата покупки"
+
+#: reports/summarystocks.cpp:109
 msgid "Quantity"
 msgstr "Количество"
 
-#: reports/summarystocks.cpp:110
+#: reports/summarystocks.cpp:111
 msgid "Current Price"
 msgstr "Текущая цена"
 
-#: reports/summarystocks.cpp:111 sharetransactiondialog.cpp:249
+#: reports/summarystocks.cpp:112 sharetransactiondialog.cpp:249
 #: stocks_list.cpp:99
 msgid "Commission"
 msgstr "Комиссия"
 
-#: reports/summarystocks.cpp:183
+#: reports/summarystocks.cpp:184
 msgid "Stocks Performance Charts"
 msgstr "Представление которовок"
 

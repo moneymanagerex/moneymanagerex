@@ -75,6 +75,7 @@ FILE (WRITE ${PROJECT_SOURCE_DIR}/src/build.h "#define BUILD_DATE __DATE__\n"
 
 # Find Git commit details to put into versions.h later
 # Get the current working branch
+find_package(Git REQUIRED)
 execute_process(COMMAND ${GIT_EXECUTABLE} symbolic-ref --short -q HEAD
     WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
     OUTPUT_VARIABLE GIT_BRANCH
