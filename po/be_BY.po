@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-24 11:11+0300\n"
-"PO-Revision-Date: 2021-08-24 11:04\n"
+"PO-Revision-Date: 2021-08-26 20:06\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -4240,7 +4240,7 @@ msgstr "Вакенца навігацыі бачнае/схаванае"
 
 #: mmframe.cpp:1406
 msgid "&Display Share Accounts"
-msgstr "&Глядзець рахункі каштоўных папераў"
+msgstr "&Паказаць рахункі акцыяў"
 
 #: mmframe.cpp:1406
 msgid "Show/Hide Share Accounts in the navigation tree"
@@ -4872,7 +4872,7 @@ msgstr "Паявыя рахункі ўтрымліваюць аперацыі з
 "Аперацыі з акцыямі рэгіструюцца ў спецыяльных рахунках\n"
 "пасля выбара акцыяў кампаніі ў звязаным выглядзе.\n\n"
 "Гэтыя рахункі становяцца бачнымі толькі пасля звязвання акцыі з Паявым рахункам\n"
-"або з дапамогай меню Паказаць -> 'Паказваць паявы кошт'\n"
+"або з дапамогай меню Паказаць -> 'Паказаць рахункі акцыяў'\n"
 "Паявыя рахункі таксама могуць утрымліваць звычайныя транзакцыі для рэгулярных рахункаў."
 
 #: mmframe.cpp:2349
