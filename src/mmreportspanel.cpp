@@ -57,27 +57,6 @@ mmReportsPanel::mmReportsPanel(
     , cleanupmem_(false)
     , m_shift(0)
 {
-    m_all_date_ranges.push_back(new mmCurrentMonth());
-    m_all_date_ranges.push_back(new mmCurrentMonthToDate());
-    m_all_date_ranges.push_back(new mmLastMonth());
-    m_all_date_ranges.push_back(new mmLast30Days());
-    m_all_date_ranges.push_back(new mmLast90Days());
-    m_all_date_ranges.push_back(new mmLast3Months());
-    m_all_date_ranges.push_back(new mmLast12Months());
-    m_all_date_ranges.push_back(new mmCurrentYear());
-    m_all_date_ranges.push_back(new mmCurrentYearToDate());
-    m_all_date_ranges.push_back(new mmLastYear());
-
-    int day = Model_Infotable::instance().GetIntInfo("FINANCIAL_YEAR_START_DAY", 1);
-    int month = Model_Infotable::instance().GetIntInfo("FINANCIAL_YEAR_START_MONTH", 7);
-
-    m_all_date_ranges.push_back(new mmCurrentFinancialYear(day, month));
-    m_all_date_ranges.push_back(new mmCurrentFinancialYearToDate(day, month));
-    m_all_date_ranges.push_back(new mmLastFinancialYear(day, month));
-    m_all_date_ranges.push_back(new mmAllTime());
-    m_all_date_ranges.push_back(new mmLast365Days());
-    m_all_date_ranges.push_back(new mmSpecifiedRange(wxDate::Today().SetDay(1), wxDate::Today()));
-
     Create(parent, winid, pos, size, style, name);
 }
 
@@ -86,7 +65,8 @@ mmReportsPanel::~mmReportsPanel()
     if (cleanup_ && rb_) {
         delete rb_;
     }
-    std::for_each(m_all_date_ranges.begin(), m_all_date_ranges.end(), std::mem_fun(&mmDateRange::destroy));
+    if (!m_all_date_ranges.empty())
+        std::for_each(m_all_date_ranges.begin(), m_all_date_ranges.end(), std::mem_fun(&mmDateRange::destroy));
     m_all_date_ranges.clear();
     clearVFprintedFiles("rep");
 }
@@ -221,6 +201,27 @@ void mmReportsPanel::CreateControls()
             itemBoxSizerHeader->AddSpacer(5);
             m_date_ranges = new wxChoice(itemPanel3, ID_CHOICE_DATE_RANGE);
             m_date_ranges->SetName("DateRanges");
+
+            m_all_date_ranges.push_back(new mmCurrentMonth());
+            m_all_date_ranges.push_back(new mmCurrentMonthToDate());
+            m_all_date_ranges.push_back(new mmLastMonth());
+            m_all_date_ranges.push_back(new mmLast30Days());
+            m_all_date_ranges.push_back(new mmLast90Days());
+            m_all_date_ranges.push_back(new mmLast3Months());
+            m_all_date_ranges.push_back(new mmLast12Months());
+            m_all_date_ranges.push_back(new mmCurrentYear());
+            m_all_date_ranges.push_back(new mmCurrentYearToDate());
+            m_all_date_ranges.push_back(new mmLastYear());
+
+            int day = Model_Infotable::instance().GetIntInfo("FINANCIAL_YEAR_START_DAY", 1);
+            int month = Model_Infotable::instance().GetIntInfo("FINANCIAL_YEAR_START_MONTH", 7);
+
+            m_all_date_ranges.push_back(new mmCurrentFinancialYear(day, month));
+            m_all_date_ranges.push_back(new mmCurrentFinancialYearToDate(day, month));
+            m_all_date_ranges.push_back(new mmLastFinancialYear(day, month));
+            m_all_date_ranges.push_back(new mmAllTime());
+            m_all_date_ranges.push_back(new mmLast365Days());
+            m_all_date_ranges.push_back(new mmSpecifiedRange(wxDate::Today().SetDay(1), wxDate::Today()));
 
             for (const auto & date_range : m_all_date_ranges) {
                 m_date_ranges->Append(date_range->local_title(), date_range);
