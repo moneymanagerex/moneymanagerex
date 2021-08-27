@@ -49,11 +49,11 @@ configure_file(versions.h.in versions.h @ONLY)
 include_directories("${CMAKE_CURRENT_BINARY_DIR}")
 
 if(APPLE)
-    set(MMEX_PLATFDEP mac)
+    set(MMEX_PLATFDEP mac.mm)
 elseif(UNIX)
-    set(MMEX_PLATFDEP unix)
+    set(MMEX_PLATFDEP unix.cpp)
 elseif(WIN32)
-    set(MMEX_PLATFDEP win)
+    set(MMEX_PLATFDEP win.cpp)
     configure_file(
         "${PROJECT_SOURCE_DIR}/resources/mmex.rc.in"
         mmex.rc @ONLY)
@@ -330,7 +330,7 @@ add_executable(${MMEX_EXE} WIN32 MACOSX_BUNDLE
     model/Model_Usage.h
 
     "${CMAKE_CURRENT_BINARY_DIR}/versions.h"
-    "platfdep_${MMEX_PLATFDEP}.cpp"
+    "platfdep_${MMEX_PLATFDEP}"
 
     "${MACOSX_APP_ICON_FILE}"
     "${MMEX_RC}")

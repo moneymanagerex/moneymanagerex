@@ -1,5 +1,6 @@
 /*******************************************************
 Copyright (C) 2009 VaDiM
+Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -55,3 +56,16 @@ const wxString mmex::GetAppName()
     return "MoneyManagerEx";
 }
 //----------------------------------------------------------------------------
+
+// Objective-C functions to access Mac environment settings
+
+#import <Cocoa/Cocoa.h>
+
+const bool mmex::isDarkMode()
+{
+    NSAppearance *appearance = NSAppearance.currentAppearance;
+    if (@available(*, macOS 10.14)) {
+        return appearance.name == NSAppearanceNameDarkAqua;
+    }
+    return NO;
+}

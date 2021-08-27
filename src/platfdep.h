@@ -42,6 +42,7 @@ namespace mmex
         Use mmex::getProgramName() for others purposes.
         */
     const wxString GetAppName();
+    const bool isDarkMode();
 } // namespace mmex
 
 //----------------------------------------------------------------------------
