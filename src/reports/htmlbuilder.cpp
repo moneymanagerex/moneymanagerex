@@ -162,14 +162,14 @@ void mmHTMLBuilder::addReportHeader(const wxString& name, int startDay)
     endDiv();
 }
 
-void mmHTMLBuilder::DisplayDateHeading(const wxDateTime& startDate, const wxDateTime& endDate, bool withDateRange)
+void mmHTMLBuilder::DisplayDateHeading(const wxDateTime& startDate, const wxDateTime& endDate, bool withDateRange, bool withNoEndDate)
 {
     wxString sDate;
     if (withDateRange)
     {
         sDate << wxString::Format(_("From %s till %s")
             , mmGetDateForDisplay(startDate.FormatISODate())
-            , mmGetDateForDisplay(endDate.FormatISODate()));
+            , withNoEndDate ? _("Future") : mmGetDateForDisplay(endDate.FormatISODate()));
     }
     else
     {

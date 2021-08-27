@@ -108,3 +108,5 @@ const wxString mmex::GetAppName()
     return "mmex";
 }
 //----------------------------------------------------------------------------
+
+const bool mmex::isDarkMode() { return false; }   // Not implemented yet
