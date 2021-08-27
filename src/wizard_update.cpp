@@ -137,10 +137,10 @@ void mmUpdateWizard::CreateControls(const Document& json_releases, wxArrayInt ne
 
         wxString link = wxString::Format(R"(<a href="%s" target="_blank">%s</a>)", html_url, tag);
         const wxString github = "https://github.com/moneymanagerex/moneymanagerex/releases/tag/";
-        const wxString sf = "https://sourceforge.net/projects/moneymanagerex/files/";
-        if (link.Contains(github)) {
-            link.Replace(github, sf);
-        }
+        //const wxString sf = "https://sourceforge.net/projects/moneymanagerex/files/";
+        //if (link.Contains(github)) {
+        //    link.Replace(github, sf);
+        //}
         html += wxString::Format("%s<table class='table'><thead><tr><th>%s</th><th>%s</th><th>%s</th><th>%s</th></tr></thead>\n"
             , separator, _("Version"), _("Status"), _("Date"), _("Time"));
         html += wxString::Format("<tbody><tr class='success'><td>%s</td><td>%s</td><td>%s</td><td>%s</td></tr>"
