@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-24 11:11+0300\n"
-"PO-Revision-Date: 2021-08-24 11:04\n"
+"PO-Revision-Date: 2021-08-26 20:25\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -4052,7 +4052,7 @@ msgstr "Усе аперацыі"
 
 #: mmframe.cpp:739 mmhomepage.cpp:647 reports/summary.cpp:164
 msgid "Share Accounts"
-msgstr "Рахункі каштоўных папераў"
+msgstr "Паявыя Рахункі"
 
 #: mmframe.cpp:751 mmframe.cpp:1532
 msgid "Budget Setup"
@@ -4240,11 +4240,11 @@ msgstr "Вакенца навігацыі бачнае/схаванае"
 
 #: mmframe.cpp:1406
 msgid "&Display Share Accounts"
-msgstr "&Глядзець рахункі каштоўных папераў"
+msgstr "&Паказаць паявыя рахункі"
 
 #: mmframe.cpp:1406
 msgid "Show/Hide Share Accounts in the navigation tree"
-msgstr "Адлюстраваць/схаваць з панэлі навігацыі"
+msgstr "Адлюстраваць/схаваць паявы рахунак з панэлі навігацыі"
 
 #: mmframe.cpp:1409
 msgid "Budgets: As Financial &Years"
@@ -4872,12 +4872,12 @@ msgstr "Паявыя рахункі ўтрымліваюць аперацыі з
 "Аперацыі з акцыямі рэгіструюцца ў спецыяльных рахунках\n"
 "пасля выбара акцыяў кампаніі ў звязаным выглядзе.\n\n"
 "Гэтыя рахункі становяцца бачнымі толькі пасля звязвання акцыі з Паявым рахункам\n"
-"або з дапамогай меню Паказаць -> 'Паказваць паявы кошт'\n"
-"Паявыя рахункі таксама могуць утрымліваць звычайныя транзакцыі для рэгулярных рахункаў."
+"або з дапамогай меню Паказаць -> 'Паказаць паявыя рахункі'\n"
+"Паявыя рахункі таксама могуць утрымліваць звычайныя транзакцыі для звычайных рахункаў."
 
 #: mmframe.cpp:2349
 msgid "Share Account Creation"
-msgstr "Стварэнне рахунка каштоўных папераў"
+msgstr "Стварэнне паявога рахунка"
 
 #: mmframe.cpp:2499
 msgid "Accounts, Payees, and Categories Updated"
@@ -5206,7 +5206,7 @@ msgstr "Актыў"
 
 #: model/Model_Account.cpp:39
 msgid "Shares"
-msgstr "Паі"
+msgstr "Паі (Акцыі)"
 
 #: model/Model_Account.cpp:130
 msgid "Account Error"
@@ -6524,16 +6524,16 @@ msgstr "Біржа"
 #: stockdialog.cpp:494
 msgid "Share Account not found.\n\n"
 "Do you want to create one?"
-msgstr "Рахунак Акцыяў як імя Кампаніі ня знойдзены.\n\n"
+msgstr "Паявы Рахунак як імя Кампаніі ня знойдзены.\n\n"
 "Вы хочаце стварыць яго?"
 
 #: stockdialog.cpp:504
 msgid "The Company name does not have an associated Share Account.\n\n"
 "You may want to readjust the Company Name to an existing Share Account with the same name. If this is an existing Stock without a Share Account, it is recommended that a Share Account is created.\n\n"
 "Do you want to create a new Share Acccount?\n"
-msgstr "У кампаніі няма злучанага рахунка Акцый.\n\n"
-"Вы можаце перанакіраваць назву кампаніі на існуючую Акцыю рахунка з тым жа імем. Калі гэта ўжо існуючая Акцыя без рахунка Акцый, рэкамендуецца стварыць Рахунка Акцый.\n\n"
-"Вы хочаце стварыць новы рахунак Акцый?\n"
+msgstr "У кампаніі няма злучанага паявога рахунка.\n\n"
+"Вы можаце перанакіраваць назву кампаніі на існуючый Паявы рахунак з тым жа імем. Калі гэта ўжо існуючы Фонд без паявога рахунка, рэкамендуецца стварыць Паявы Рахунак.\n\n"
+"Вы хочаце стварыць новы Паявы рахунак?\n"
 
 #: stockdialog.cpp:599
 msgid "Stock History CSV Import"
