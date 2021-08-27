@@ -216,6 +216,20 @@ void OptionSettingsView::Create()
     view_sizer2->Add(new wxStaticText(this, wxID_STATIC, _("Style Template")), g_flagsH);
     view_sizer2->Add(m_theme_manager, g_flagsH);
 
+    //
+    wxArrayString theme_mode_values;
+    theme_mode_values.Add(_("Auto"));
+    theme_mode_values.Add(_("Light"));
+    theme_mode_values.Add(_("Dark"));
+
+    m_theme_mode = new wxChoice(this, wxID_RESIZE_FRAME, wxDefaultPosition
+                        , wxDefaultSize, theme_mode_values);
+    mmToolTip(m_theme_mode, _("Specify preferred theme variant to use if supported"));
+    m_theme_mode->SetSelection(Option::instance().getThemeMode());
+    view_sizer2->Add(new wxStaticText(this, wxID_STATIC, _("Theme Mode")), g_flagsH);
+    view_sizer2->Add(m_theme_mode, g_flagsH);
+
+    //
     view_sizer2->Add(new wxStaticText(this, wxID_STATIC, _("HTML Scale Factor")), g_flagsH);
 
     int max = 300; int min = 25;
@@ -322,9 +336,11 @@ bool OptionSettingsView::SaveSettings()
         accVisible = visible_acc_obj->GetData();
     Model_Setting::instance().SetViewAccounts(accVisible);
 
+    int themeMode = m_theme_mode->GetSelection();
+    Option::instance().setThemeMode(themeMode);
+    
     int size = m_scale_factor->GetValue();
     Option::instance().setHTMLFontSizes(size);
-
     int i[4] = { 16, 24, 32, 48 };
     size = m_others_icon_size->GetSelection();
     size = i[size];

@@ -30,6 +30,7 @@ class Option
 {
 public:
     enum USAGE_TYPE { NONE = 0, LASTUSED, UNUSED, DEFAULT };
+    enum THEME_MODE { AUTO = 0, LIGHT, DARK };
 
 public:
     Option();
@@ -118,6 +119,9 @@ public:
     void setHTMLFontSizes(int value);
     int getHtmlFontSize();
 
+    void setThemeMode(int value);
+    int getThemeMode();
+
     void setIconSize(int value);
     void setToolbarIconSize(int value);
     void setNavigationIconSize(int value);
@@ -168,6 +172,7 @@ private:
     bool m_newsChecking;                    //INIDB_CHECK_NEWS
     int m_sharePrecision;
 
+    int m_theme_mode;
     int m_html_font_size;
     int m_ico_size;
     int m_toolbar_ico_size;
