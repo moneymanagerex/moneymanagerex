@@ -91,10 +91,9 @@ EVT_BUTTON(wxID_OK, mmFilterTransactionsDialog::OnButtonOkClick)
 EVT_BUTTON(wxID_CANCEL, mmFilterTransactionsDialog::OnButtonCancelClick)
 EVT_BUTTON(wxID_SAVE, mmFilterTransactionsDialog::OnButtonSaveClick)
 EVT_BUTTON(wxID_CLEAR, mmFilterTransactionsDialog::OnButtonClearClick)
-EVT_MENU(ID_DIALOG_DATEPRESET, mmFilterTransactionsDialog::datePresetMenuSelected)
+EVT_MENU(wxID_ANY, mmFilterTransactionsDialog::OnMenuSelected)
 EVT_DATE_CHANGED(wxID_ANY, mmFilterTransactionsDialog::OnDateChanged)
 EVT_BUTTON(ID_DIALOG_COLOUR, mmFilterTransactionsDialog::OnColourButton)
-EVT_MENU_RANGE(wxID_HIGHEST , wxID_HIGHEST + 8, mmFilterTransactionsDialog::OnColourSelected)
 wxEND_EVENT_TABLE()
 
 mmFilterTransactionsDialog::mmFilterTransactionsDialog()
@@ -227,7 +226,7 @@ void mmFilterTransactionsDialog::CreateControls()
     itemPanelSizer->Add(startDateDropDown_, g_flagsExpand);
 
     // Date Range
-    dateRangeCheckBox_ = new wxCheckBox(itemPanel, wxID_ANY, _("Date Range")
+    dateRangeCheckBox_ = new wxCheckBox(itemPanel, ID_DIALOG_DATEPRESET, _("Date Range")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     itemPanelSizer->Add(dateRangeCheckBox_, g_flagsH);
 
@@ -757,10 +756,19 @@ void mmFilterTransactionsDialog::clearSettings()
 
     dataToControls();
 }
-void mmFilterTransactionsDialog::datePresetMenuSelected(wxCommandEvent& event)
+void mmFilterTransactionsDialog::OnMenuSelected(wxCommandEvent& event)
 {
-    int id = event.GetId();
-    setPresettings(DATE_PRESETTINGS[id]);
+    auto selected_nemu_item = event.GetId();
+    if (selected_nemu_item < wxID_HIGHEST)
+    {
+        setPresettings(DATE_PRESETTINGS[selected_nemu_item]);
+    }
+    else
+    {
+        selected_nemu_item -= wxID_HIGHEST;
+        colourButton_->SetBackgroundColour(getUDColour(selected_nemu_item));
+        colourValue_ = selected_nemu_item;
+    }
 }
 
 void mmFilterTransactionsDialog::datePresetMenu(wxMouseEvent& event)
@@ -776,7 +784,7 @@ void mmFilterTransactionsDialog::datePresetMenu(wxMouseEvent& event)
 
 void mmFilterTransactionsDialog::setPresettings(const wxString& view)
 {
-    mmDateRange* date_range = NULL;
+    wxSharedPtr<mmDateRange> date_range;
     dateRangeCheckBox_->SetValue(true);
 
     if (view == VIEW_TRANS_ALL_STR)
@@ -818,7 +826,6 @@ void mmFilterTransactionsDialog::setPresettings(const wxString& view)
         fromDateCtrl_->Enable();
         toDateControl_->Enable();
     }
-    delete date_range;
 }
 
 void mmFilterTransactionsDialog::OnPayeeUpdated(wxCommandEvent& event)
@@ -1517,11 +1524,4 @@ void mmFilterTransactionsDialog::OnColourButton(wxCommandEvent& /*event*/)
 
     PopupMenu(mainMenu);
     delete mainMenu;
-}
-
-void mmFilterTransactionsDialog::OnColourSelected(wxCommandEvent& event)
-{
-    int selected_nemu_item = event.GetId() - wxID_HIGHEST;
-    colourButton_->SetBackgroundColour(getUDColour(selected_nemu_item));
-    colourValue_ = selected_nemu_item;
 }
