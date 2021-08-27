@@ -61,11 +61,14 @@ public:
     int getSubCategId();
     void SetStoredSettings(int id);
 
+    const wxString getBeginDate() { return m_begin_date; };
+    const wxString getEndDate() { return m_end_date; };
+    bool getDateRangeCheckBox();
+    bool getStartDateCheckBox();
+
 private:
     void BuildPayeeList();
 
-    bool getDateRangeCheckBox();
-    bool getStartDateCheckBox();
     bool getAmountRangeCheckBoxMin();
     bool getAmountRangeCheckBoxMax();
     double getAmountMax();
