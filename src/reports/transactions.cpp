@@ -109,7 +109,7 @@ wxString mmReportTransactions::getHTMLText()
 
                     while (noOfTrans--)
                     {
-                        hb.startTableRow();
+                        hb.startTableRow(getUDColour(transaction.FOLLOWUPID).GetAsString());
                         {
                          /*  if ((Model_Checking::type(transaction) == Model_Checking::TRANSFER)
                                 && m_transDialog->getTypeCheckBox() && */
