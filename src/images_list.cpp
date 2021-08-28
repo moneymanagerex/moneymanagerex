@@ -494,7 +494,8 @@ void reverttoDefaultTheme()
 
 void LoadTheme()
 {
-    darkMode = mmex::isDarkMode();
+    darkMode = ( (mmex::isDarkMode() && (Option::THEME_MODE::AUTO == Option::instance().getThemeMode())) 
+                    || (Option::THEME_MODE::DARK == Option::instance().getThemeMode()));
     filesInVFS = new wxArrayString();
 
     // Scan first for metadata then for the icons and other files
