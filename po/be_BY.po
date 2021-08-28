@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-24 11:11+0300\n"
-"PO-Revision-Date: 2021-08-28 19:08\n"
+"PO-Revision-Date: 2021-08-28 19:22\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -5561,7 +5561,7 @@ msgstr "Выкарыстоўваць зыходную або бягучую да
 
 #: optionsettingsgeneral.cpp:218
 msgid "Use Transaction Sound"
-msgstr "Агучваць аперацыі"
+msgstr "Абвяшчаць аперацыю гукам"
 
 #: optionsettingsgeneral.cpp:220
 msgid "Select whether to use sounds when entering transactions"
@@ -6758,7 +6758,7 @@ msgstr "Выдаліць"
 
 #: themes.cpp:187
 msgid "Use"
-msgstr "Выкарыстаць"
+msgstr "Ужыць"
 
 #: themes.cpp:233
 msgid "No description available"
