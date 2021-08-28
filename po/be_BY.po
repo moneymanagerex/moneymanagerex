@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-24 11:11+0300\n"
-"PO-Revision-Date: 2021-08-28 18:58\n"
+"PO-Revision-Date: 2021-08-28 19:08\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -2499,7 +2499,7 @@ msgstr "Справаздачы"
 #: general_report_manager.cpp:381 import_export/univcsvdialog.cpp:412
 #: mmframe.cpp:1303 mmframe.cpp:1376
 msgid "&Import"
-msgstr "&Імпарт"
+msgstr "&Імпартаваць"
 
 #: general_report_manager.cpp:383
 msgid "Locate and load a report file."
@@ -5598,7 +5598,7 @@ msgstr "Параметры дыялога новых аперацыяў"
 
 #: optionsettingsmisc.cpp:97
 msgid "Last Used"
-msgstr "Апошняе, што было выкарыставана"
+msgstr "З мінулай аперацыі"
 
 #: optionsettingsmisc.cpp:104
 msgid "Unused"
@@ -5606,7 +5606,7 @@ msgstr "Такое, што не выкарыстоўваецца"
 
 #: optionsettingsmisc.cpp:110
 msgid "Last used for payee"
-msgstr "Апошняе, што было выкарыставана для палтніка"
+msgstr "Што быў мінулага разу"
 
 #: optionsettingsmisc.cpp:111
 msgid "Use default for payee"
@@ -5870,7 +5870,7 @@ msgstr "Памер іншых значкоў"
 
 #: payeedialog.cpp:67
 msgid "Last Used Category"
-msgstr "Катыгорыя, што выкарыстоўвалася апошняй"
+msgstr "Што была мінулага разу"
 
 #: payeedialog.cpp:67
 msgid "Default Category"
@@ -6758,7 +6758,7 @@ msgstr "Выдаліць"
 
 #: themes.cpp:187
 msgid "Use"
-msgstr "Выкарыстоўваць"
+msgstr "Выкарыстаць"
 
 #: themes.cpp:233
 msgid "No description available"
