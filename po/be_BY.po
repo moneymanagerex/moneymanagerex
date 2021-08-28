@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-24 11:11+0300\n"
-"PO-Revision-Date: 2021-08-28 18:48\n"
+"PO-Revision-Date: 2021-08-28 18:58\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -198,11 +198,11 @@ msgstr "Праверка"
 
 #: accountdialog.cpp:244
 msgid "Statement:"
-msgstr "Пераверана:"
+msgstr "Узгоднена:"
 
 #: accountdialog.cpp:245
 msgid "Locked"
-msgstr "Заблакаваць"
+msgstr "Заблакаванае"
 
 #: accountdialog.cpp:246
 msgid "Enable or disable the transaction Lock"
@@ -1739,7 +1739,7 @@ msgstr "Глядзець за мінулы фінансавы год"
 
 #: constants.cpp:191
 msgid "View Since Statement Date"
-msgstr "Глядзець ад даты аперацыі"
+msgstr "Глядзець ад даты ўзгаднення"
 
 #: constants.cpp:193
 msgid "ALL"
@@ -4388,11 +4388,11 @@ msgstr "&Актывы"
 
 #: mmframe.cpp:1546
 msgid "T&heme Manager"
-msgstr "Дыстпетчар Т&эмаў"
+msgstr "Дыспетчар Т&эмаў"
 
 #: mmframe.cpp:1546 mmframe.cpp:2490 optionsettingsview.cpp:309 themes.cpp:137
 msgid "Theme Manager"
-msgstr "Дыстпетчар Тэмаў"
+msgstr "Дыспетчар Тэмаў"
 
 #: mmframe.cpp:1552
 msgid "Transaction Report &Filter..."
@@ -4408,11 +4408,11 @@ msgstr "Дыспетчар &справаздачы..."
 
 #: mmframe.cpp:1562
 msgid "C&ustom Fields Manager..."
-msgstr "Дыстпетчар карыстальніцкіх &палёў..."
+msgstr "Дыспетчар карыстальніцкіх &палёў..."
 
 #: mmframe.cpp:1562
 msgid "Custom Fields Manager"
-msgstr "Дыстпетчар карыстальніцкіх палёў"
+msgstr "Дыспетчар карыстальніцкіх палёў"
 
 #: mmframe.cpp:1568
 msgid "Refresh &WebApp"
