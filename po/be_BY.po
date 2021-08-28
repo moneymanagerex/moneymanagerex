@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-24 11:11+0300\n"
-"PO-Revision-Date: 2021-08-28 18:22\n"
+"PO-Revision-Date: 2021-08-28 18:28\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -5182,7 +5182,7 @@ msgstr "Наяўныя"
 
 #: model/Model_Account.cpp:33
 msgid "Checking"
-msgstr "Чэкавы"
+msgstr "Дыпазітны"
 
 #: model/Model_Account.cpp:34
 msgid "Credit Card"
@@ -5198,7 +5198,7 @@ msgstr "Тэрмін"
 
 #: model/Model_Account.cpp:37
 msgid "Investment"
-msgstr "Інвестыцыя"
+msgstr "Інвестыцыйны"
 
 #: model/Model_Account.cpp:38 model/Model_Attachment.cpp:26
 msgid "Asset"
