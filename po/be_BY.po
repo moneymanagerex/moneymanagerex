@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-24 11:11+0300\n"
-"PO-Revision-Date: 2021-08-28 19:28\n"
+"PO-Revision-Date: 2021-08-28 19:38\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -1386,7 +1386,7 @@ msgstr "Глядзець прыбытковыя катыгорыі бюджэт�
 
 #: budgetingpanel.cpp:54
 msgid "View Expense Budget Categories"
-msgstr "Глядзець расходныя катыгорыі бюджэта"
+msgstr "Глядзець вытратныя катыгорыі бюджэта"
 
 #: budgetingpanel.cpp:55
 msgid "View Budget Category Summary"
@@ -1756,7 +1756,7 @@ msgstr "Зачынены"
 
 #: constants.cpp:196 mmframe.cpp:1316
 msgid "Favorites"
-msgstr "Абранае"
+msgstr "Улюбёныя рахункі"
 
 #: currencydialog.cpp:101
 msgid "Currency name"
@@ -5060,7 +5060,7 @@ msgstr "Агулам:"
 #: mmhomepage.cpp:160
 #, c-format
 msgid "Top Withdrawals: %s"
-msgstr "Найбольш расходныя: %s"
+msgstr "Найбольш вытратныя: %s"
 
 #: mmhomepage.cpp:360
 msgid "Account / Payee"
