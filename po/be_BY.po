@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-24 11:11+0300\n"
-"PO-Revision-Date: 2021-08-28 18:28\n"
+"PO-Revision-Date: 2021-08-28 18:48\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -194,15 +194,15 @@ msgstr "Напішыце лагін / пароль доступу да раху�
 
 #: accountdialog.cpp:236
 msgid "Statement"
-msgstr "Ведамасць"
+msgstr "Праверка"
 
 #: accountdialog.cpp:244
 msgid "Statement:"
-msgstr "Ведамасць:"
+msgstr "Пераверана:"
 
 #: accountdialog.cpp:245
 msgid "Locked"
-msgstr "Заблакаваная"
+msgstr "Заблакаваць"
 
 #: accountdialog.cpp:246
 msgid "Enable or disable the transaction Lock"
@@ -226,7 +226,7 @@ msgstr "Рэшта на рахунку, ніжняя мяжа. Нуль каб �
 
 #: accountdialog.cpp:261 mmchecking_list.cpp:233
 msgid "Credit"
-msgstr "Крэдыт"
+msgstr "Крыдыт"
 
 #: accountdialog.cpp:269
 msgid "Credit Limit:"
@@ -1748,11 +1748,11 @@ msgstr "УСЕ"
 #: constants.cpp:194 mmframe.cpp:1317 mmframe.cpp:1717
 #: model/Model_Account.cpp:26
 msgid "Open"
-msgstr "Адчыніць"
+msgstr "Адчынены"
 
 #: constants.cpp:195 mmframe.cpp:1318 model/Model_Account.cpp:27
 msgid "Closed"
-msgstr "Зачыненыя"
+msgstr "Зачынены"
 
 #: constants.cpp:196 mmframe.cpp:1316
 msgid "Favorites"
@@ -3857,7 +3857,7 @@ msgstr "\n\n"
 
 #: mmchecking_list.cpp:952
 msgid "Closed Account Check"
-msgstr "Пераверка зачыненага рахунка"
+msgstr "Узгадненне зачыненага рахунка"
 
 #: mmchecking_list.cpp:1138
 #, c-format
@@ -4012,7 +4012,7 @@ msgstr "Панэль прыладаў"
 
 #: mmframe.cpp:470 mmframe.cpp:711
 msgid "Favourites"
-msgstr "Улюбёнае"
+msgstr "Улюбёныя рахункі"
 
 #: mmframe.cpp:471 mmframe.cpp:715 mmhomepage.cpp:641 reports/summary.cpp:159
 msgid "Bank Accounts"
@@ -4020,7 +4020,7 @@ msgstr "Банкаўскія рахункі"
 
 #: mmframe.cpp:472 mmframe.cpp:719 mmhomepage.cpp:642 reports/summary.cpp:160
 msgid "Credit Card Accounts"
-msgstr "Крыдытныя рахункі"
+msgstr "Карткавыя рахункі"
 
 #: mmframe.cpp:473 mmframe.cpp:731 mmhomepage.cpp:644 reports/summary.cpp:162
 msgid "Term Accounts"
@@ -5264,7 +5264,7 @@ msgstr "Запланаваная аперацыя перавысіць лімі�
 
 #: model/Model_Billsdeposits.cpp:303
 msgid "MMEX Recurring Transaction Check"
-msgstr "Пераверка запланаванай аперацыі"
+msgstr "Узгадненне запланаванай аперацыі"
 
 #: model/Model_CustomField.cpp:25
 msgid "String"
