@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-24 11:11+0300\n"
-"PO-Revision-Date: 2021-08-28 19:38\n"
+"PO-Revision-Date: 2021-08-29 12:34\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -7294,7 +7294,7 @@ msgstr "Абярыце тып рахунка, што вы жадаеце ств�
 msgid "General bank accounts cover a wide variety of account\n"
 "types like Checking, Savings and Credit card type accounts."
 msgstr "У асноўным банкаўскія рахункі выкарыстоўваюцца для \n"
-"вядзення уліка наяўных, заашчаджань і крыдытнага баланса."
+"вядзення уліка дыпазітаў, заашчаджань і крыдытнага баланса."
 
 #: wizard_newaccount.cpp:141
 msgid "Investment accounts are specialized accounts that only\n"
