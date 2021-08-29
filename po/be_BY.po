@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-24 11:11+0300\n"
-"PO-Revision-Date: 2021-08-29 12:34\n"
+"PO-Revision-Date: 2021-08-29 13:47\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -3818,7 +3818,7 @@ msgstr "Дапрацаваць"
 
 #: mmchecking_list.cpp:815
 msgid "Unreconciled"
-msgstr "Ня Ўзгодненая"
+msgstr "Няўзгодненая"
 
 #: mmchecking_list.cpp:858
 #, c-format
