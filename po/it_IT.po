@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-31 10:25+0300\n"
-"PO-Revision-Date: 2021-08-31 07:32\n"
+"PO-Revision-Date: 2021-08-31 08:16\n"
 "Last-Translator: \n"
 "Language-Team: Italian\n"
 "MIME-Version: 1.0\n"
@@ -5809,19 +5809,19 @@ msgstr "Modello di Stile"
 
 #: optionsettingsview.cpp:222
 msgid "Light"
-msgstr ""
+msgstr "Chiaro"
 
 #: optionsettingsview.cpp:223
 msgid "Dark"
-msgstr ""
+msgstr "Scuro"
 
 #: optionsettingsview.cpp:227
 msgid "Specify preferred theme variant to use if supported"
-msgstr ""
+msgstr "Specifica la variante del tema preferito da usare se supportata"
 
 #: optionsettingsview.cpp:229
 msgid "Theme Mode"
-msgstr ""
+msgstr "Modalità del tema"
 
 #: optionsettingsview.cpp:233
 msgid "HTML Scale Factor"
@@ -6182,7 +6182,7 @@ msgstr "Da %s a %s"
 
 #: reports/htmlbuilder.cpp:172
 msgid "Future"
-msgstr ""
+msgstr "Futuro"
 
 #: reports/htmlbuilder.cpp:176 reports/mmDateRange.cpp:237
 msgid "Over Time"
