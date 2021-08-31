@@ -48,6 +48,7 @@ Option::Option()
     , m_usageStatistics(true)
     , m_transDateDefault(0)
     , m_sharePrecision(4)
+    , m_theme_mode(Option::AUTO)
     , m_html_font_size(100)
     , m_ico_size(16)
     , m_toolbar_ico_size(32)
@@ -108,7 +109,7 @@ void Option::LoadOptions(bool include_infotable)
     m_usageStatistics = Model_Setting::instance().GetBoolSetting(INIDB_SEND_USAGE_STATS, true);
     m_newsChecking = Model_Setting::instance().GetBoolSetting(INIDB_CHECK_NEWS, true);
     
-
+    m_theme_mode = Model_Setting::instance().GetIntSetting("THEMEMODE", Option::THEME_MODE::AUTO);
     m_html_font_size = Model_Setting::instance().GetIntSetting("HTMLSCALE", 100);
     m_ico_size = Model_Setting::instance().GetIntSetting("ICONSIZE", 16);
     m_toolbar_ico_size = Model_Setting::instance().GetIntSetting("TOOLBARICONSIZE", 32);
@@ -317,6 +318,17 @@ void Option::CheckNewsOnStartup(bool value)
 bool Option::CheckNewsOnStartup()
 {
     return m_newsChecking;
+}
+
+void Option::setThemeMode(int value)
+{
+    Model_Setting::instance().Set("THEMEMODE", value);
+    m_theme_mode = value;
+}
+
+int Option::getThemeMode()
+{
+    return m_theme_mode;
 }
 
 void Option::setHTMLFontSizes(int value)

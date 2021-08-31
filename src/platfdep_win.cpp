@@ -71,3 +71,6 @@ const wxFileName mmex::GetResourceDir()
 
     return fname;
 }
+//-----------------------------------------------------------------------------
+
+const bool mmex::isDarkMode() { return false; }   // Not implemented yet

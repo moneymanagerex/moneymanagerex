@@ -60,6 +60,7 @@ private:
 
     
     wxButton* m_theme_manager;
+    wxChoice* m_theme_mode;
     wxChoice* m_choice_visible;
     wxSpinCtrl* m_scale_factor;
     wxChoice* m_toolbar_icon_size;

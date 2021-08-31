@@ -48,7 +48,7 @@ public:
     mmHTMLBuilder();
     ~mmHTMLBuilder() {}
 
-    void DisplayDateHeading(const wxDateTime& startDate, const wxDateTime& endDate, bool withDateRange = true);
+    void DisplayDateHeading(const wxDateTime& startDate, const wxDateTime& endDate, bool withDateRange = true, bool withNoEndDate = false);
     void DisplayFooter(const wxString& footer);
     /** Starts a new HMTL report */
     void init(bool simple=false);

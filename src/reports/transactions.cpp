@@ -61,6 +61,12 @@ wxString mmReportTransactions::getHTMLText()
     mmHTMLBuilder hb;
     hb.init();
     hb.addReportHeader(getReportTitle());
+    wxDateTime start,end;
+    start.ParseISODate(m_transDialog->getBeginDate());
+    end.ParseISODate(m_transDialog->getEndDate());
+    hb.DisplayDateHeading(start, end
+        , m_transDialog->getDateRangeCheckBox() || m_transDialog->getStartDateCheckBox()
+        , m_transDialog->getStartDateCheckBox());
     hb.DisplayFooter(_("Accounts: ") + accounts);
 
     std::map<int, double> total; //Store transaction amount with original currency
