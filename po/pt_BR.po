@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-24 11:11+0300\n"
-"PO-Revision-Date: 2021-08-24 08:20\n"
+"PO-Revision-Date: 2021-08-28 15:36\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "MIME-Version: 1.0\n"
@@ -5528,11 +5528,11 @@ msgstr "Selecione se é para usar a data original da transação ou a data atual
 
 #: optionsettingsgeneral.cpp:213
 msgid "Use Original Date when Duplicating Transactions"
-msgstr ""
+msgstr "Usar a data original ao duplicar transações"
 
 #: optionsettingsgeneral.cpp:215
 msgid "Select whether to use the original transaction date or current date when duplicating transactions"
-msgstr ""
+msgstr "Selecione se deve usar a data original da transação ou a data atual ao duplicar transações"
 
 #: optionsettingsgeneral.cpp:218
 msgid "Use Transaction Sound"
@@ -5781,11 +5781,11 @@ msgstr "Adiantar ou atrasar a data de início a partir do primeiro dia do mês o
 
 #: optionsettingsview.cpp:149
 msgid "Start day of month for reporting:"
-msgstr ""
+msgstr "Dia de início do mês para relatório:"
 
 #: optionsettingsview.cpp:153
 msgid "Allows the 'first day' in the month to be adjusted for reporting purposes"
-msgstr ""
+msgstr "Permite que o 'primeiro dia' do mês seja ajustado para fins de relatório"
 
 #: optionsettingsview.cpp:158
 msgid "Ignore Future Transactions"
@@ -6170,7 +6170,7 @@ msgstr "Desde o Início"
 
 #: reports/htmlbuilder.cpp:204
 msgid "User specified start day"
-msgstr ""
+msgstr "Dia de início especificado pelo usuário"
 
 #: reports/incexpenses.cpp:35
 msgid "Income vs Expenses Summary"
