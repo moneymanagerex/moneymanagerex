@@ -58,8 +58,26 @@ wxString mmReportTransactions::getHTMLText()
         }
     }
 
+    const wxString extra_style = R"(
+table {
+  width: 100%;
+}
+  th.ID, th.Status {
+  width: 3%;
+}
+  th.Color, th.Date, th.Number, th.Type, th.Amount {
+  width: 5%;
+}
+  th.Amount {
+  width: 8%;
+}
+  th.Account, th.Category, th.Payee {
+  width: 10%;
+}
+)";
+
     mmHTMLBuilder hb;
-    hb.init();
+    hb.init(false, extra_style);
     hb.addReportHeader(getReportTitle());
     wxDateTime start,end;
     start.ParseISODate(m_transDialog->getBeginDate());
@@ -82,16 +100,17 @@ wxString mmReportTransactions::getHTMLText()
             {
                 hb.startTableRow();
                 {
-                    hb.addTableHeaderCell(_("ID"));
-                    hb.addTableHeaderCell(_("Date"));
-                    hb.addTableHeaderCell(_("Number"));
-                    hb.addTableHeaderCell(_("Account"));
-                    hb.addTableHeaderCell(_("Payee"));
-                    hb.addTableHeaderCell(_("Status"));
-                    hb.addTableHeaderCell(_("Category"));
-                    hb.addTableHeaderCell(_("Type"));
-                    hb.addTableHeaderCell(_("Amount"), true);
-                    hb.addTableHeaderCell(_("Notes"));
+                    hb.addTableHeaderCellWithClass(_("ID"), "ID");
+                    hb.addTableHeaderCellWithClass(_("Color"), "Color");
+                    hb.addTableHeaderCellWithClass(_("Date"), "Date");
+                    hb.addTableHeaderCellWithClass(_("Number"), "Number");
+                    hb.addTableHeaderCellWithClass(_("Account"), "Account");
+                    hb.addTableHeaderCellWithClass(_("Payee"), "Payee");
+                    hb.addTableHeaderCellWithClass(_("Status"), "Status");
+                    hb.addTableHeaderCellWithClass(_("Category"), "Category");
+                    hb.addTableHeaderCellWithClass(_("Type"), "Type");
+                    hb.addTableHeaderCellWithClass(_("Amount"), "Amount text-right");
+                    hb.addTableHeaderCellWithClass(_("Notes"), "Notes");
                 }
                 hb.endTableRow();
             }
@@ -115,12 +134,13 @@ wxString mmReportTransactions::getHTMLText()
 
                     while (noOfTrans--)
                     {
-                        hb.startTableRow(getUDColour(transaction.FOLLOWUPID).GetAsString());
+                        hb.startTableRow();
                         {
                          /*  if ((Model_Checking::type(transaction) == Model_Checking::TRANSFER)
                                 && m_transDialog->getTypeCheckBox() && */
                             hb.addTableCellLink(wxString::Format("trx:%d", transaction.TRANSID)
                                 , wxString::Format("%i", transaction.TRANSID));
+                            hb.addColorMarker(getUDColour(transaction.FOLLOWUPID).GetAsString());
                             hb.addTableCellDate(transaction.TRANSDATE);
                             hb.addTableCell(transaction.TRANSACTIONNUMBER);
                             hb.addTableCellLink(wxString::Format("trxid:%d", transaction.TRANSID)

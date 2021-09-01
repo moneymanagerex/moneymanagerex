@@ -61,6 +61,7 @@ namespace tags
     /* Sortable tables */
     table.sortable thead {cursor: default;}
     body { font-size: %s%%; }
+%s
 </style>
 </head>
 <body>
@@ -113,7 +114,7 @@ mmHTMLBuilder::mmHTMLBuilder()
         , today_.date.FormatISOTime());
 }
 
-void mmHTMLBuilder::init(bool simple)
+void mmHTMLBuilder::init(bool simple, const wxString& extra_style)
 {
     if (simple)
     {
@@ -126,7 +127,8 @@ void mmHTMLBuilder::init(bool simple)
     {
         html_ = wxString::Format(wxString::FromUTF8(tags::HTML)
             , mmex::getProgramName()
-            , wxString::Format("%d", Option::instance().getHtmlFontSize()));
+            , wxString::Format("%d", Option::instance().getHtmlFontSize())
+            , extra_style);
     }
 }
 
@@ -285,7 +287,7 @@ void mmHTMLBuilder::addMoneyTotalRow(const wxString& caption, int cols, const st
     this->addTotalRow(caption, cols, data_str);
 }
 
-void mmHTMLBuilder::addTableHeaderCell(const wxString& value, const bool numeric, const bool sortable, const int cols, const bool center)
+void mmHTMLBuilder::addTableHeaderCell(const wxString& value, bool numeric, bool sortable, int cols, bool center)
 {
     const wxString sort = (sortable ? "" : "sorttable_nosort");
     const wxString align = (center ? "text-center" : (numeric ? "text-right" : "text-left"));
@@ -293,6 +295,14 @@ void mmHTMLBuilder::addTableHeaderCell(const wxString& value, const bool numeric
 
     html_ += wxString::Format(tags::TABLE_HEADER
         , wxString::Format(" class='%s %s'", sort, align) + cspan);
+    html_ += value;
+    html_ += tags::TABLE_HEADER_END;
+}
+
+void mmHTMLBuilder::addTableHeaderCellWithClass(const wxString& value, const wxString& css_class)
+{
+    html_ += wxString::Format(tags::TABLE_HEADER
+        , wxString::Format(" class='%s'", css_class) );
     html_ += value;
     html_ += tags::TABLE_HEADER_END;
 }
@@ -344,7 +354,9 @@ void mmHTMLBuilder::addEmptyTableCell(const int number)
 void mmHTMLBuilder::addColorMarker(const wxString& color)
 {
     html_ += wxString::Format(tags::TABLE_CELL, "");
-    html_ += wxString::Format("<span style='font-family: serif; color: %s'>%s</span>", color, L"\u2588");
+    html_ += wxString::Format("<span style='font-family: serif; %s'>%s</span>"
+        , (color.empty() ? "": wxString::Format("color: %s", color))
+        , (color.empty() ? L" " : L"\u2588"));
     this->endTableCell();
 }
 
