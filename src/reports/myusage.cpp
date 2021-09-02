@@ -161,7 +161,7 @@ wxString mmReportMyUsage::getHTMLText()
             {
                 hb.startTableRow();
                 hb.addTableHeaderCell(_("Reports"));
-                hb.addTableHeaderCell(_("Frequency"), true);
+                hb.addTableHeaderCell(_("Frequency"), "text-right");
                 hb.endTableRow();
                 hb.endThead();
             }

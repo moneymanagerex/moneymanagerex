@@ -110,7 +110,7 @@ wxString mmReportIncomeExpenses::getHTMLText()
             {
                 hb.startTableRow();
                     hb.addTableHeaderCell(_("Type"));
-                    hb.addTableHeaderCell(_("Amount"), true);
+                    hb.addTableHeaderCell(_("Amount"), "text-right");
                 hb.endTableRow();
             }
             hb.endThead();
@@ -243,9 +243,9 @@ wxString mmReportIncomeExpensesMonthly::getHTMLText()
         {
             hb.startTableRow();
             hb.addTableHeaderCell(_("Date"));
-            hb.addTableHeaderCell(_("Income"), true);
-            hb.addTableHeaderCell(_("Expenses"), true);
-            hb.addTableHeaderCell(_("Difference"), true);
+            hb.addTableHeaderCell(_("Income"), "text-right");
+            hb.addTableHeaderCell(_("Expenses"), "text-right");
+            hb.addTableHeaderCell(_("Difference"), "text-right");
             hb.endTableRow();
         }
         hb.endThead();

@@ -247,8 +247,8 @@ wxString mmReportCashFlow::getHTMLText_i()
             {
                 hb.startTableRow();
                 hb.addTableHeaderCell(_("Date"));
-                hb.addTableHeaderCell(_("Total"), true);
-                hb.addTableHeaderCell(_("Difference"), true);
+                hb.addTableHeaderCell(_("Total"), "text-right");
+                hb.addTableHeaderCell(_("Difference"), "text-right");
                 hb.endTableRow();
             }
             hb.endThead();

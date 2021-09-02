@@ -1,6 +1,6 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel, Paulo Lopes
- copyright (C) 2012 Nikolay Akimov
+ copyright (C) 2012 - 2021 Nikolay Akimov
  Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
@@ -287,22 +287,13 @@ void mmHTMLBuilder::addMoneyTotalRow(const wxString& caption, int cols, const st
     this->addTotalRow(caption, cols, data_str);
 }
 
-void mmHTMLBuilder::addTableHeaderCell(const wxString& value, bool numeric, bool sortable, int cols, bool center)
+void mmHTMLBuilder::addTableHeaderCell(const wxString& value, const wxString& css_class, int cols)
 {
-    const wxString sort = (sortable ? "" : "sorttable_nosort");
-    const wxString align = (center ? "text-center" : (numeric ? "text-right" : "text-left"));
-    const wxString cspan = (cols > 1 ? wxString::Format(" colspan='%i'", cols) : "");
-
-    html_ += wxString::Format(tags::TABLE_HEADER
-        , wxString::Format(" class='%s %s'", sort, align) + cspan);
-    html_ += value;
-    html_ += tags::TABLE_HEADER_END;
-}
-
-void mmHTMLBuilder::addTableHeaderCellWithClass(const wxString& value, const wxString& css_class)
-{
-    html_ += wxString::Format(tags::TABLE_HEADER
-        , wxString::Format(" class='%s'", css_class) );
+    html_ += wxString::Format(tags::TABLE_HEADER //TABLE_HEADER = "<th%s>";
+        , wxString::Format("%s%s"
+            , css_class.empty() ? "" : wxString::Format(" class='%s'", css_class)
+            , cols > 1 ? wxString::Format(" colspan='%i'", cols) : "")
+    );
     html_ += value;
     html_ += tags::TABLE_HEADER_END;
 }

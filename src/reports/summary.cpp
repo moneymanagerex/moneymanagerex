@@ -155,16 +155,16 @@ wxString mmReportSummaryByDate::getHTMLText()
                 hb.startTableRow();
                 {
                     hb.addTableHeaderCell(_("Date"));
-                    hb.addTableHeaderCell(_("Cash"), true);
-                    hb.addTableHeaderCell(_("Bank Accounts"), true);
-                    hb.addTableHeaderCell(_("Credit Card Accounts"), true);
-                    hb.addTableHeaderCell(_("Loan Accounts"), true);
-                    hb.addTableHeaderCell(_("Term Accounts"), true);
-                    hb.addTableHeaderCell(_("Asset Accounts"), true);
-                    hb.addTableHeaderCell(_("Share Accounts"), true);
-                    hb.addTableHeaderCell(_("Total"), true);
-                    hb.addTableHeaderCell(_("Stocks"), true);
-                    hb.addTableHeaderCell(_("Balance"), true);
+                    hb.addTableHeaderCell(_("Cash"), "text-right");
+                    hb.addTableHeaderCell(_("Bank Accounts"), "text-right");
+                    hb.addTableHeaderCell(_("Credit Card Accounts"), "text-right");
+                    hb.addTableHeaderCell(_("Loan Accounts"), "text-right");
+                    hb.addTableHeaderCell(_("Term Accounts"), "text-right");
+                    hb.addTableHeaderCell(_("Asset Accounts"), "text-right");
+                    hb.addTableHeaderCell(_("Share Accounts"), "text-right");
+                    hb.addTableHeaderCell(_("Total"), "text-right");
+                    hb.addTableHeaderCell(_("Stocks"), "text-right");
+                    hb.addTableHeaderCell(_("Balance"), "text-right");
                 }
                 hb.endTableRow();
             }

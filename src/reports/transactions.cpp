@@ -1,7 +1,7 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
  Copyright (C) 2011, 2012 Nikolay & Stefano Giorgio
- Copyright (C) 2015, 2017 Nikolay Akimov
+ Copyright (C) 2015, 2017, 2021 Nikolay Akimov
  Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute transcation and/or modify
@@ -65,7 +65,7 @@ table {
   th.ID, th.Status {
   width: 3%;
 }
-  th.Color, th.Date, th.Number, th.Type, th.Amount {
+  th.Color, th.Date, th.Number, th.Type {
   width: 5%;
 }
   th.Amount {
@@ -100,17 +100,17 @@ table {
             {
                 hb.startTableRow();
                 {
-                    hb.addTableHeaderCellWithClass(_("ID"), "ID");
-                    hb.addTableHeaderCellWithClass(_("Color"), "Color");
-                    hb.addTableHeaderCellWithClass(_("Date"), "Date");
-                    hb.addTableHeaderCellWithClass(_("Number"), "Number");
-                    hb.addTableHeaderCellWithClass(_("Account"), "Account");
-                    hb.addTableHeaderCellWithClass(_("Payee"), "Payee");
-                    hb.addTableHeaderCellWithClass(_("Status"), "Status");
-                    hb.addTableHeaderCellWithClass(_("Category"), "Category");
-                    hb.addTableHeaderCellWithClass(_("Type"), "Type");
-                    hb.addTableHeaderCellWithClass(_("Amount"), "Amount text-right");
-                    hb.addTableHeaderCellWithClass(_("Notes"), "Notes");
+                    hb.addTableHeaderCell(_("ID"), "ID");
+                    hb.addTableHeaderCell(_("Color"), "Color");
+                    hb.addTableHeaderCell(_("Date"), "Date");
+                    hb.addTableHeaderCell(_("Number"), "Number");
+                    hb.addTableHeaderCell(_("Account"), "Account");
+                    hb.addTableHeaderCell(_("Payee"), "Payee");
+                    hb.addTableHeaderCell(_("Status"), "Status");
+                    hb.addTableHeaderCell(_("Category"), "Category");
+                    hb.addTableHeaderCell(_("Type"), "Type");
+                    hb.addTableHeaderCell(_("Amount"), "Amount text-right");
+                    hb.addTableHeaderCell(_("Notes"), "Notes");
                 }
                 hb.endTableRow();
             }

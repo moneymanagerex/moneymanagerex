@@ -171,8 +171,8 @@ wxString mmReportCategoryExpenses::getHTMLText()
                 hb.startTableRow();
                 {
                     hb.addTableHeaderCell(_("Category"));
-                    hb.addTableHeaderCell(_("Amount"), true);
-                    hb.addTableHeaderCell(_("Total"), true);
+                    hb.addTableHeaderCell(_("Amount"), "text-right");
+                    hb.addTableHeaderCell(_("Total"), "text-right");
                 }
                 hb.endTableRow();
             }
@@ -422,9 +422,9 @@ wxString mmReportCategoryOverTimePerformance::getHTMLText()
                     {
                         wxDateTime d = start_date.Add(wxDateSpan::Months(i));
                         hb.addTableHeaderCell(wxGetTranslation(wxDateTime::GetEnglishMonthName(d.GetMonth()
-                            , wxDateTime::Name_Abbr)) + wxString::Format("<br>%i", d.GetYear()), true);
+                            , wxDateTime::Name_Abbr)) + wxString::Format("<br>%i", d.GetYear()), "text-right");
                     }
-                    hb.addTableHeaderCell(_("Overall"), true);
+                    hb.addTableHeaderCell(_("Overall"), "text-right");
                 }
                 hb.endTableRow();
             }
