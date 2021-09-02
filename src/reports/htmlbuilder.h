@@ -51,7 +51,7 @@ public:
     void DisplayDateHeading(const wxDateTime& startDate, const wxDateTime& endDate, bool withDateRange = true, bool withNoEndDate = false);
     void DisplayFooter(const wxString& footer);
     /** Starts a new HMTL report */
-    void init(bool simple=false);
+    void init(bool simple = false, const wxString& extra_style = "");
 
     /** Clears the current HTML document */
     void clear()
@@ -83,7 +83,8 @@ public:
     void addMoneyTotalRow(const wxString& caption, int cols, const std::vector<double>& data);
 
     /** Add a Table header cell */
-    void addTableHeaderCell(const wxString& value, const bool numeric = false, const bool sortable = true, const int cols = 1, const bool center = false);
+    void addTableHeaderCell(const wxString& value, bool numeric = false, bool sortable = true, int cols = 1, bool center = false);
+    void addTableHeaderCellWithClass(const wxString& value, const wxString& css_class);
 
     void addCurrencyCell(double amount, const Model_Currency::Data *currency = Model_Currency::instance().GetBaseCurrency(), int precision = -1);
     void addMoneyCell(double amount, int precision = -1);
