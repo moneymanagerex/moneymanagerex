@@ -1,5 +1,6 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
+  copyright (C) 2012 - 2021 Nikolay Akimov
  Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
@@ -83,8 +84,8 @@ public:
     void addMoneyTotalRow(const wxString& caption, int cols, const std::vector<double>& data);
 
     /** Add a Table header cell */
-    void addTableHeaderCell(const wxString& value, bool numeric = false, bool sortable = true, int cols = 1, bool center = false);
-    void addTableHeaderCellWithClass(const wxString& value, const wxString& css_class);
+    //void addTableHeaderCell(const wxString& value, bool numeric = false, bool sortable = true, int cols = 1, bool center = false);
+    void addTableHeaderCell(const wxString& value, const wxString& css_class = "", int cols = 1);
 
     void addCurrencyCell(double amount, const Model_Currency::Data *currency = Model_Currency::instance().GetBaseCurrency(), int precision = -1);
     void addMoneyCell(double amount, int precision = -1);

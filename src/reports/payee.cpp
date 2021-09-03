@@ -133,9 +133,9 @@ wxString mmReportPayeeExpenses::getHTMLText()
             {
                 hb.startTableRow();
                 hb.addTableHeaderCell(_("Payee"));
-                hb.addTableHeaderCell(_("Incomes"), true);
-                hb.addTableHeaderCell(_("Expenses"), true);
-                hb.addTableHeaderCell(_("Difference"), true);
+                hb.addTableHeaderCell(_("Incomes"), "text-right");
+                hb.addTableHeaderCell(_("Expenses"), "text-right");
+                hb.addTableHeaderCell(_("Difference"), "text-right");
                 hb.endTableRow();
             }
             hb.endThead();

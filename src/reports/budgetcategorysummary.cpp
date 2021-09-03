@@ -187,10 +187,10 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
                 hb.startTableRow();
                 {
                     hb.addTableHeaderCell(_("Category"));
-                    hb.addTableHeaderCell(_("Amount"), true);
+                    hb.addTableHeaderCell(_("Amount"), "text-right");
                     hb.addTableHeaderCell(_("Frequency"));
-                    hb.addTableHeaderCell(_("Estimated"), true);
-                    hb.addTableHeaderCell(_("Actual"), true);
+                    hb.addTableHeaderCell(_("Estimated"), "text-right");
+                    hb.addTableHeaderCell(_("Actual"), "text-right");
                 }
                 hb.endTableRow();
             }
