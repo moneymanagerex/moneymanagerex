@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-31 10:25+0300\n"
-"PO-Revision-Date: 2021-09-02 21:32\n"
+"PO-Revision-Date: 2021-09-03 19:10\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -1358,7 +1358,7 @@ msgstr "Перыядычнасць:"
 
 #: budgetentrydialog.cpp:141
 msgid "Specify the frequency of the expense or deposit"
-msgstr "Абярыце перыядычнасць выдатка або залічэння"
+msgstr "Абярыце перыядычнасць спісання або унёска"
 
 #: budgetentrydialog.cpp:144 import_export/univcsvdialog.cpp:345
 msgid "Amount:"
@@ -2393,7 +2393,7 @@ msgstr "Спісанне"
 #: model/Model_Checking.cpp:30 reports/forecast.cpp:84
 #: splitdetailsdialog.cpp:126
 msgid "Deposit"
-msgstr "Залічэнне"
+msgstr "Унёсак"
 
 #: filtertransdialog.cpp:303 transactionsupdatedialog.cpp:187
 msgid "Transfer To"
@@ -3110,7 +3110,7 @@ msgstr "Экспарт загалоўкаў слупкоў"
 
 #: import_export/univcsvdialog.cpp:351
 msgid "Positive values are deposits"
-msgstr "Станоўчыя значэнні гэта залічэнні"
+msgstr "Станоўчыя значэнні гэта ўнёскі"
 
 #: import_export/univcsvdialog.cpp:352
 msgid "Positive values are withdrawals"
@@ -3207,7 +3207,7 @@ msgstr "Поле Дата з'яўляецца абавязковым."
 
 #: import_export/univcsvdialog.cpp:927
 msgid "Amount field or both Withdrawal and Deposit fields are required."
-msgstr "Неабходна запоўніць або поле «Сума» або палі «Выдатак» разам з «Залічэнне»."
+msgstr "Неабходна запоўніць або поле «Сума» або палі «Выдатак» разам з «Унёсак»."
 
 #: import_export/univcsvdialog.cpp:928 import_export/univcsvdialog.cpp:1057
 #: themes.cpp:183 webappdialog.cpp:417
@@ -3703,7 +3703,7 @@ msgstr "&Новы выдатак"
 
 #: mmchecking_list.cpp:356
 msgid "&New Deposit"
-msgstr "&Новае залічэнне"
+msgstr "&Новы ўнёсак"
 
 #: mmchecking_list.cpp:358
 msgid "&New Transfer"
@@ -4380,7 +4380,7 @@ msgstr "&Запланаваныя аперацыі"
 
 #: mmframe.cpp:1537
 msgid "Bills && Deposits"
-msgstr "Чэкі і залічэнні"
+msgstr "Чэкі і унёскі"
 
 #: mmframe.cpp:1541
 msgid "&Assets"
@@ -6351,7 +6351,7 @@ msgstr "Прадстаўленне каціровак"
 
 #: reports/transactions.cpp:197
 msgid "All Transactions: Withdrawals, Deposits, and Transfers"
-msgstr "Усе аперацыі: выдаткі, залічэнні і пераказы"
+msgstr "Усе аперацыі: спісанні, унёскі і пераказы"
 
 #: reports/transactions.cpp:231
 msgid "All Transactions excluding Transfers"
