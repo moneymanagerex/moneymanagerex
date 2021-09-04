@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-31 10:25+0300\n"
-"PO-Revision-Date: 2021-09-03 21:43\n"
+"PO-Revision-Date: 2021-09-04 18:56\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -2489,7 +2489,7 @@ msgstr "Колер не пазначаны"
 
 #: general_report_manager.cpp:247 general_report_manager.cpp:663
 msgid "General Reports Manager"
-msgstr "Дыспетчар справаздачаў"
+msgstr "Дыспетчар агульных справаздачаў"
 
 #: general_report_manager.cpp:290 mmframe.cpp:800 mmframe.cpp:2599
 #: reports/myusage.cpp:142 reports/myusage.cpp:163
@@ -2573,7 +2573,7 @@ msgstr "Запампаваць файл справаздачы:"
 
 #: general_report_manager.cpp:599 general_report_manager.cpp:1028
 msgid "General Report Manager files (*.grm)"
-msgstr "Файлы дыспетчара справаздачаў (*.grm)"
+msgstr "Файлы дыспетчара агульных справаздачаў (*.grm)"
 
 #: general_report_manager.cpp:599 general_report_manager.cpp:1028
 msgid "ZIP files (*.zip)"
@@ -2621,7 +2621,7 @@ msgstr "Пакажыце назву справаздачы"
 #: general_report_manager.cpp:832 general_report_manager.cpp:980
 #: mmframe.cpp:1278 mmframe.cpp:1559 mmframe.cpp:1731
 msgid "General Report Manager"
-msgstr "Дыспетчар справаздачы"
+msgstr "Дыспетчар агульных справаздачаў"
 
 #: general_report_manager.cpp:850
 msgid "Delete the Report Title:"
@@ -4404,7 +4404,7 @@ msgstr "Справаздача па крытэрыях"
 
 #: mmframe.cpp:1559
 msgid "General Report &Manager..."
-msgstr "Дыспетчар &справаздачы..."
+msgstr "Дыспетчар агульнай &справаздачы..."
 
 #: mmframe.cpp:1563
 msgid "C&ustom Fields Manager..."
