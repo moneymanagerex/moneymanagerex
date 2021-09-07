@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-31 10:25+0300\n"
-"PO-Revision-Date: 2021-09-01 07:04\n"
+"PO-Revision-Date: 2021-09-05 12:30\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -977,7 +977,7 @@ msgstr "Атрымальнік"
 #: billsdepositsdialog.cpp:593 billsdepositsdialog.cpp:881
 #: usertransactionpanel.cpp:183
 msgid "Select Payee"
-msgstr "Абярыце атрымальніка"
+msgstr "Абраць атрымальніка"
 
 #: billsdepositsdialog.cpp:600 transdialog.cpp:542
 msgid "Split"
@@ -1358,7 +1358,7 @@ msgstr "Перыядычнасць:"
 
 #: budgetentrydialog.cpp:141
 msgid "Specify the frequency of the expense or deposit"
-msgstr "Абярыце перыядычнасць выдатка або залічэння"
+msgstr "Абярыце перыядычнасць спісання або унёска"
 
 #: budgetentrydialog.cpp:144 import_export/univcsvdialog.cpp:345
 msgid "Amount:"
@@ -2393,7 +2393,7 @@ msgstr "Спісанне"
 #: model/Model_Checking.cpp:30 reports/forecast.cpp:84
 #: splitdetailsdialog.cpp:126
 msgid "Deposit"
-msgstr "Залічэнне"
+msgstr "Унёсак"
 
 #: filtertransdialog.cpp:303 transactionsupdatedialog.cpp:187
 msgid "Transfer To"
@@ -2489,7 +2489,7 @@ msgstr "Колер не пазначаны"
 
 #: general_report_manager.cpp:247 general_report_manager.cpp:663
 msgid "General Reports Manager"
-msgstr "Дыспетчар справаздачаў"
+msgstr "Дыспетчар агульных справаздачаў"
 
 #: general_report_manager.cpp:290 mmframe.cpp:800 mmframe.cpp:2599
 #: reports/myusage.cpp:142 reports/myusage.cpp:163
@@ -2573,7 +2573,7 @@ msgstr "Запампаваць файл справаздачы:"
 
 #: general_report_manager.cpp:599 general_report_manager.cpp:1028
 msgid "General Report Manager files (*.grm)"
-msgstr "Файлы дыспетчара справаздачаў (*.grm)"
+msgstr "Файлы дыспетчара агульных справаздачаў (*.grm)"
 
 #: general_report_manager.cpp:599 general_report_manager.cpp:1028
 msgid "ZIP files (*.zip)"
@@ -2621,7 +2621,7 @@ msgstr "Пакажыце назву справаздачы"
 #: general_report_manager.cpp:832 general_report_manager.cpp:980
 #: mmframe.cpp:1278 mmframe.cpp:1559 mmframe.cpp:1731
 msgid "General Report Manager"
-msgstr "Дыспетчар справаздачы"
+msgstr "Дыспетчар агульных справаздачаў"
 
 #: general_report_manager.cpp:850
 msgid "Delete the Report Title:"
@@ -3110,7 +3110,7 @@ msgstr "Экспарт загалоўкаў слупкоў"
 
 #: import_export/univcsvdialog.cpp:351
 msgid "Positive values are deposits"
-msgstr "Станоўчыя значэнні гэта залічэнні"
+msgstr "Станоўчыя значэнні гэта ўнёскі"
 
 #: import_export/univcsvdialog.cpp:352
 msgid "Positive values are withdrawals"
@@ -3207,7 +3207,7 @@ msgstr "Поле Дата з'яўляецца абавязковым."
 
 #: import_export/univcsvdialog.cpp:927
 msgid "Amount field or both Withdrawal and Deposit fields are required."
-msgstr "Неабходна запоўніць або поле «Сума» або палі «Выдатак» разам з «Залічэнне»."
+msgstr "Неабходна запоўніць або поле «Сума» або палі «Выдатак» разам з «Унёсак»."
 
 #: import_export/univcsvdialog.cpp:928 import_export/univcsvdialog.cpp:1057
 #: themes.cpp:183 webappdialog.cpp:417
@@ -3703,7 +3703,7 @@ msgstr "&Новы выдатак"
 
 #: mmchecking_list.cpp:356
 msgid "&New Deposit"
-msgstr "&Новае залічэнне"
+msgstr "&Новы ўнёсак"
 
 #: mmchecking_list.cpp:358
 msgid "&New Transfer"
@@ -4336,11 +4336,11 @@ msgstr "Арганізаваць &катыгорыі..."
 
 #: mmframe.cpp:1508
 msgid "Organize &Payees..."
-msgstr "А&трымальнікі..."
+msgstr "Дыспетчар А&трымальнікаў..."
 
 #: mmframe.cpp:1508 mmframe.cpp:1726 payeedialog.cpp:77
 msgid "Organize Payees"
-msgstr "Рыдактар атрымальнікаў"
+msgstr "Дыспетчар атрымальнікаў"
 
 #: mmframe.cpp:1512
 msgid "Organize Curre&ncy..."
@@ -4380,7 +4380,7 @@ msgstr "&Запланаваныя аперацыі"
 
 #: mmframe.cpp:1537
 msgid "Bills && Deposits"
-msgstr "Чэкі і залічэнні"
+msgstr "Чэкі і унёскі"
 
 #: mmframe.cpp:1541
 msgid "&Assets"
@@ -4396,15 +4396,15 @@ msgstr "Дыспетчар Тэмаў"
 
 #: mmframe.cpp:1553
 msgid "Transaction Report &Filter..."
-msgstr "&Справаздача па крытэрыях..."
+msgstr "Фільтр &Справаздачы па крытэрыях..."
 
 #: mmframe.cpp:1553 mmframe.cpp:1729
 msgid "Transaction Report Filter"
-msgstr "Справаздача па крытэрыях"
+msgstr "Фільтр справаздача па крытэрыях"
 
 #: mmframe.cpp:1559
 msgid "General Report &Manager..."
-msgstr "Дыспетчар &справаздачы..."
+msgstr "Дыспетчар агульнай &справаздачы..."
 
 #: mmframe.cpp:1563
 msgid "C&ustom Fields Manager..."
@@ -4980,7 +4980,7 @@ msgstr "Сталася выключэнне"
 
 #: mmframereport.cpp:118
 msgid "Transaction Report"
-msgstr "Справаздача па крытэрыях"
+msgstr "Справаздача аб аперацыях"
 
 #: mmframereport.cpp:123
 msgid "Cash Flow"
@@ -6351,7 +6351,7 @@ msgstr "Прадстаўленне каціровак"
 
 #: reports/transactions.cpp:197
 msgid "All Transactions: Withdrawals, Deposits, and Transfers"
-msgstr "Усе аперацыі: выдаткі, залічэнні і пераказы"
+msgstr "Усе аперацыі: спісанні, унёскі і пераказы"
 
 #: reports/transactions.cpp:231
 msgid "All Transactions excluding Transfers"

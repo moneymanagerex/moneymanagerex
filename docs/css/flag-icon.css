@@ -19,6 +19,10 @@
   width: 1em;
 }
 
+.flag-icon-be {
+  background-image: url(../img/flags/be.svg);
+}
+
 .flag-icon-de {
   background-image: url(../img/flags/de.svg);
 }
