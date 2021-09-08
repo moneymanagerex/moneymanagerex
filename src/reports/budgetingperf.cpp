@@ -215,7 +215,7 @@ wxString mmReportBudgetingPerformance::getHTMLText()
                         if (m >= 12) m -= 12;
                         hb.addTableHeaderCell(wxGetTranslation(
                             wxDateTime::GetEnglishMonthName(wxDateTime::Month(m)
-                            , wxDateTime::Name_Abbr)), "text-center", 2);
+                            , wxDateTime::Name_Abbr)), "text-center", 1);
                     }
                     hb.addTableHeaderCell(_("Total"), "text-center", 2);
                 }
