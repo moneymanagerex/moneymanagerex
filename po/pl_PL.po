@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-31 10:25+0300\n"
-"PO-Revision-Date: 2021-09-08 18:50\n"
+"PO-Revision-Date: 2021-09-08 19:05\n"
 "Last-Translator: \n"
 "Language-Team: Polish\n"
 "MIME-Version: 1.0\n"
@@ -442,7 +442,8 @@ msgstr "Nieprawidłowa transakcja"
 #: assetdialog.cpp:409
 msgid "Asset Account not found.\n\n"
 "Would you want to create one?"
-msgstr ""
+msgstr "Nie znaleziono konta aktywów.\n\n"
+"Czy chcesz utworzyć nowe?"
 
 #: assetspanel.cpp:59 billsdepositspanel.cpp:126
 #: import_export/qif_export.cpp:587 mmchecking_list.cpp:205
@@ -588,7 +589,8 @@ msgstr "Zmiana wartości: %s %s"
 #: assetspanel.cpp:771
 msgid "This asset does not have its own account\n\n"
 "Multiple transactions for this asset are not recommended."
-msgstr ""
+msgstr "Te aktywa nie mają własnego konta\n\n"
+"Nie jest zalecane wiele transakcji dla tego zasobu."
 
 #: assetspanel.cpp:773
 msgid "Asset Management"
@@ -768,7 +770,7 @@ msgstr "Co miesiąc"
 #: billsdepositsdialog.cpp:55 billsdepositspanel.cpp:52
 #: model/Model_Budget.cpp:59
 msgid "Every 2 Months"
-msgstr ""
+msgstr "Co 2 miesiące"
 
 #: billsdepositsdialog.cpp:56 billsdepositspanel.cpp:53
 #: model/Model_Budget.cpp:60
@@ -852,7 +854,7 @@ msgstr "Powtórzenia"
 
 #: billsdepositsdialog.cpp:449
 msgid "Back to the last occurring date with the specified values"
-msgstr ""
+msgstr "Wróć do ostatniej daty wystąpienia z określonymi wartościami"
 
 #: billsdepositsdialog.cpp:451
 msgid "Advance the next occurring date with the specified values"
@@ -1054,11 +1056,11 @@ msgstr "Wybierz konto docelowe"
 
 #: billsdepositsdialog.cpp:933
 msgid "The payment date is after the due date, is this what you intended?"
-msgstr ""
+msgstr "Data płatności przypada po terminie płatności, czy to jest zamierzone?"
 
 #: billsdepositsdialog.cpp:934
 msgid "Looks like a late payment"
-msgstr ""
+msgstr "Wygląda na spóźnioną płatność"
 
 #: billsdepositsdialog.cpp:1233
 msgid "Specify the transfer amount in the From Account"
@@ -1132,12 +1134,12 @@ msgstr "Kategorie"
 
 #: billsdepositsdialog.cpp:1464 transdialog.cpp:1342
 msgid "Clear color"
-msgstr ""
+msgstr "Usuń kolor"
 
 #: billsdepositsdialog.cpp:1469 filtertransdialog.cpp:1508 transdialog.cpp:1347
 #, c-format
 msgid "Color #%i"
-msgstr ""
+msgstr "Kolor #%i"
 
 #: billsdepositsdialog.h:56 billsdepositspanel.cpp:284
 msgid "New Recurring Transaction"
@@ -1219,7 +1221,7 @@ msgstr "Filtr transakcji"
 
 #: billsdepositspanel.cpp:293
 msgid "Delete Recurring Transaction"
-msgstr ""
+msgstr "Usuń transakcję cykliczną"
 
 #: billsdepositspanel.cpp:297
 msgid "Ente&r"
@@ -1247,15 +1249,15 @@ msgstr "Pomiń następne wystąpienie"
 
 #: billsdepositspanel.cpp:416
 msgid "&New Recurring Transaction..."
-msgstr ""
+msgstr "&Nowa transakcja cykliczna..."
 
 #: billsdepositspanel.cpp:417
 msgid "&Edit Recurring Transaction..."
-msgstr ""
+msgstr "&Edytuj transakcję cykliczną..."
 
 #: billsdepositspanel.cpp:418
 msgid "&Delete Recurring Transaction..."
-msgstr ""
+msgstr "&Usuń transakcję cykliczną..."
 
 #: billsdepositspanel.cpp:465
 msgid "Manual"
@@ -1273,10 +1275,10 @@ msgstr "Automatycznie"
 #, c-format
 msgid "%d day remaining"
 msgid_plural "%d days remaining"
-msgstr[0] ""
+msgstr[0] "Pozostał %d dzień"
 msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[2] "Pozostało %d dni"
+msgstr[3] "Pozostało %d dni"
 
 #: billsdepositspanel.cpp:524 billsdepositspanel.cpp:531
 #: billsdepositspanel.cpp:538 billsdepositspanel.cpp:591
@@ -1291,7 +1293,7 @@ msgid_plural "%d days delay!"
 msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
-msgstr[3] ""
+msgstr[3] "%d dni spóźnienia!"
 
 #: billsdepositspanel.cpp:536 billsdepositspanel.cpp:596 mmhomepage.cpp:319
 #, c-format
@@ -1300,15 +1302,15 @@ msgid_plural "%d days overdue!"
 msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
-msgstr[3] ""
+msgstr[3] "%d dni zaległości!"
 
 #: billsdepositspanel.cpp:648
 msgid "Do you really want to delete the recurring transaction?"
-msgstr ""
+msgstr "Czy na pewno chcesz usunąć wybraną transakcję cykliczną?"
 
 #: billsdepositspanel.cpp:649
 msgid "Confirm Deletion"
-msgstr ""
+msgstr "Potwiedź usunięcie"
 
 #: budgetentrydialog.cpp:50
 msgid "Budget Year Entry"
@@ -1392,7 +1394,7 @@ msgstr "Pokaż podsumowanie kategorii budżetu"
 #: budgetingpanel.cpp:172
 #, c-format
 msgid "Financial Year: %s - %li"
-msgstr ""
+msgstr "Rok finansowy: %s - %li"
 
 #: budgetingpanel.cpp:176 reports/budget.cpp:92
 #, c-format
@@ -1407,7 +1409,7 @@ msgstr "miesiąc: %s"
 #: budgetingpanel.cpp:186
 #, c-format
 msgid "%s    Start Date of: %s"
-msgstr ""
+msgstr "%s    Data rozpoczęcia: %s"
 
 #: budgetingpanel.cpp:189
 #, c-format
@@ -1546,7 +1548,7 @@ msgstr "Edytuj nazwę istniejącej kategorii"
 
 #: categdialog.cpp:239
 msgid "Delete an existing category. The category cannot be used by existing transactions."
-msgstr ""
+msgstr "Usuń istniejącą kategorię. Kategoria nie może być używana przez istniejące transakcje."
 
 #: categdialog.cpp:244 maincurrencydialog.cpp:211
 msgid "&Select"
@@ -1637,7 +1639,7 @@ msgstr "Podkategorie muszą być wcześniej usunięte."
 #: categdialog.cpp:488
 #, c-format
 msgid "Enter a new name for '%s'"
-msgstr ""
+msgstr "Wprowadź nową nazwę dla '%s'"
 
 #: categdialog.cpp:489
 msgid "Edit Category"
@@ -1686,7 +1688,7 @@ msgstr "Zamknij"
 
 #: constants.cpp:178
 msgid "Advanced Filter"
-msgstr ""
+msgstr "Zaawansowany filtr"
 
 #: constants.cpp:179
 msgid "View All Transactions"
@@ -1742,7 +1744,7 @@ msgstr "Pokaż od daty wyciągu"
 
 #: constants.cpp:193
 msgid "ALL"
-msgstr ""
+msgstr "WSZYSTKIE"
 
 #: constants.cpp:194 mmframe.cpp:1318 mmframe.cpp:1718
 #: model/Model_Account.cpp:26
@@ -1759,7 +1761,7 @@ msgstr "Ulubione"
 
 #: currencydialog.cpp:101
 msgid "Currency name"
-msgstr ""
+msgstr "Nazwa waluty"
 
 #: currencydialog.cpp:173
 msgid "Currency Name"
