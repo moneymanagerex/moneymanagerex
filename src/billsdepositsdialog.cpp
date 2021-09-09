@@ -809,6 +809,7 @@ void mmBDDialog::updateControlsForTransType()
     wxStaticText* accountLabel = static_cast<wxStaticText*>(FindWindow(ID_DIALOG_TRANS_STATIC_ACCOUNT));
     wxStaticText* stp = static_cast<wxStaticText*>(FindWindow(ID_DIALOG_TRANS_STATIC_PAYEE));
 
+    m_transfer = false;
     switch (m_choice_transaction_type->GetSelection())
     {
     case Model_Billsdeposits::TRANSFER:
