@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-31 10:25+0300\n"
-"PO-Revision-Date: 2021-09-09 05:07\n"
+"PO-Revision-Date: 2021-09-09 05:13\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
@@ -80,7 +80,7 @@ msgstr "账户名称："
 
 #: accountdialog.cpp:142
 msgid "Enter the Name of the Account. This name can be renamed at any time."
-msgstr "输入帐户名称，名称可随时更改。"
+msgstr "输入账户名称，名称可随时更改。"
 
 #: accountdialog.cpp:145
 msgid "Account Type:"
@@ -186,7 +186,7 @@ msgstr "输入该金融机构的联系方式。"
 
 #: accountdialog.cpp:229
 msgid "Access Info:"
-msgstr "登陆信息："
+msgstr "访问信息"
 
 #: accountdialog.cpp:231
 msgid "Enter any login/access information for the financial institution. This is not secure as anyone with access to the mmb file can access it."
@@ -206,7 +206,7 @@ msgstr "已锁定"
 
 #: accountdialog.cpp:246
 msgid "Enable or disable the transaction Lock"
-msgstr "切换交易锁定"
+msgstr "启用或禁用交易锁定"
 
 #: accountdialog.cpp:249
 msgid "Reconciled Date:"
