@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-31 10:25+0300\n"
-"PO-Revision-Date: 2021-08-31 09:22\n"
+"PO-Revision-Date: 2021-09-09 05:07\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
@@ -68,7 +68,7 @@ msgstr "启用以发送关于 MMEX 使用情况的匿名数据。"
 #: splittransactionsdialog.cpp:172 transactionsupdatedialog.cpp:240
 #: transdialog.cpp:606 wizard_update.cpp:192
 msgid "&OK "
-msgstr "确定(&O) "
+msgstr "&OK "
 
 #: accountdialog.cpp:111 mmframe.cpp:1479
 msgid "Edit Account"
