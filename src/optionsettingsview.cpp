@@ -232,9 +232,16 @@ void OptionSettingsView::Create()
     //
     view_sizer2->Add(new wxStaticText(this, wxID_STATIC, _("HTML Scale Factor")), g_flagsH);
 
-    int max = 300; int min = 25;
-    m_scale_factor = new wxSpinCtrl(this, wxID_ANY
-        , wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, min, max);
+    htmlScaleMax = 300;
+    htmlScaleMin = 25;
+
+    m_scale_factor = new wxSpinCtrl(this, ID_DIALOG_HTML_SCALE
+        , wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, htmlScaleMin, htmlScaleMax);
+#ifdef __WXMAC__ // Workaround for bug https://trac.wxwidgets.org/ticket/12968
+    m_scale_factor->SetRange(0, htmlScaleMax);
+    m_scale_factor->Connect(ID_DIALOG_HTML_SCALE, wxEVT_SPINCTRL
+        , wxSpinEventHandler(OptionSettingsView::OnHTMLScaleSpin), nullptr, this);
+#endif
 
     int vFontSize = Option::instance().getHtmlFontSize();
     m_scale_factor->SetValue(vFontSize);
@@ -285,6 +292,14 @@ void OptionSettingsView::Create()
     this->Connect(ID_DIALOG_THEMEMANAGER, wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(OptionSettingsView::OnThemeManagerSelected), nullptr, this);
 }
 
+//----------------------------------------------------------------------------
+// Workaround for bug https://trac.wxwidgets.org/ticket/12968
+void OptionSettingsView::OnHTMLScaleSpin(wxSpinEvent& event)
+{
+    if (m_scale_factor->GetValue() < htmlScaleMin)
+        m_scale_factor->SetValue(htmlScaleMin);
+    event.Skip();
+}
 void OptionSettingsView::OnNavTreeColorChanged(wxCommandEvent& event)
 {
     if (event.GetId() == wxID_REDO)
