@@ -45,6 +45,7 @@ public:
 
 private:
     void Create();
+    void OnHTMLScaleSpin(wxSpinEvent& event);
     void OnThemeManagerSelected(wxCommandEvent& event);
     void OnNavTreeColorChanged(wxCommandEvent& event);
 
@@ -63,6 +64,7 @@ private:
     wxChoice* m_theme_mode;
     wxChoice* m_choice_visible;
     wxSpinCtrl* m_scale_factor;
+    int htmlScaleMin, htmlScaleMax;
     wxChoice* m_toolbar_icon_size;
     wxChoice* m_navigation_icon_size;
     wxChoice* m_others_icon_size;
@@ -80,6 +82,7 @@ private:
 
     enum
     {
-        ID_DIALOG_THEMEMANAGER = wxID_HIGHEST + 100
+        ID_DIALOG_THEMEMANAGER = wxID_HIGHEST + 100,
+        ID_DIALOG_HTML_SCALE
     };
 };
