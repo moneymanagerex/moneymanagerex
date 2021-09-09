@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-31 10:25+0300\n"
-"PO-Revision-Date: 2021-09-05 12:30\n"
+"PO-Revision-Date: 2021-09-09 17:15\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -840,11 +840,11 @@ msgstr "Дыталі запланаванай аперацыі"
 
 #: billsdepositsdialog.cpp:422
 msgid "Specify the date when this bill or deposit is due"
-msgstr "Вызначыце дату наступнага залічэння"
+msgstr "Вызначыце дату наступнай сплаты"
 
 #: billsdepositsdialog.cpp:433
 msgid "Retard or advance the date of the 'next occurrence'"
-msgstr "Затрымліваць або перасоўваць дату «наступнай падзеі»"
+msgstr "Затрымаць або перасунуць дату «наступнай падзеі»"
 
 #: billsdepositsdialog.cpp:438 billsdepositspanel.cpp:128
 msgid "Date Due"
@@ -5333,11 +5333,11 @@ msgstr "Агульныя"
 
 #: optiondialog.cpp:132 optionsettingsview.cpp:56
 msgid "View Options"
-msgstr "Адлюстраванне"
+msgstr "Вонкавыя"
 
 #: optiondialog.cpp:133 webappdialog.cpp:155
 msgid "Attachments"
-msgstr "Далучэнні"
+msgstr "Файлавыя"
 
 #: optiondialog.cpp:134
 msgid "Network"
@@ -5350,7 +5350,7 @@ msgstr "&Ужыць"
 #: optiondialog.cpp:210
 #, c-format
 msgid "%s page has been saved."
-msgstr "%s старонка захаваная."
+msgstr "%s налады захаваныя."
 
 #: optionsettingsattachment.cpp:57
 msgid "Attachments Settings"
@@ -5471,7 +5471,7 @@ msgstr "Прызначэнне"
 
 #: optionsettingsgeneral.cpp:67
 msgid "Display Heading"
-msgstr "Загаловак"
+msgstr "Асноўныя налады дадатка"
 
 #: optionsettingsgeneral.cpp:72 wizard_newdb.cpp:106
 msgid "User Name"
