@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-31 10:25+0300\n"
-"PO-Revision-Date: 2021-09-09 17:24\n"
+"PO-Revision-Date: 2021-09-11 06:46\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -4980,7 +4980,7 @@ msgstr "Сталася выключэнне"
 
 #: mmframereport.cpp:118
 msgid "Transaction Report"
-msgstr "Справаздача аб аперацыях"
+msgstr "Аперацыі"
 
 #: mmframereport.cpp:123
 msgid "Cash Flow"
@@ -5024,7 +5024,7 @@ msgstr "Паказнікі бюджэта"
 
 #: mmframereport.cpp:192
 msgid "Budget Category Summary"
-msgstr "Зводка бюджэта па катыгорыях"
+msgstr "Зводка бюджэта"
 
 #: mmframereport.cpp:201
 msgid "Stocks Report"
