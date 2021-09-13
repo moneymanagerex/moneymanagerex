@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-31 10:25+0300\n"
-"PO-Revision-Date: 2021-09-13 21:21\n"
+"PO-Revision-Date: 2021-09-13 21:32\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -1972,7 +1972,8 @@ msgstr "Абнаўленне карыстальніцкага поля"
 #: customfieldlistdialog.cpp:200
 msgid "Do you want to update blank content?\n"
 "Press no if you want to abort replace procedure!"
-msgstr ""
+msgstr "Вы жадаеце замяніць на пустое значэнне?\n"
+"Націсніце Не, калі хочаце скасаваць працэс замены!"
 
 #: customfieldlistdialog.cpp:208
 msgid "Replace with"
@@ -2290,7 +2291,7 @@ msgstr "Вам трэба будзе паказаць іншы шлях да б�
 msgid "An incorrect password given for an encrypted file\n"
 "or\n"
 "attempt to open a File that is not a database file \n"
-msgstr "Для шыфраванага файла паказаны няслушны пароль \n"
+msgstr "Для шыфраванага файла паказаны хібны пароль \n"
 "або\n"
 "спроба адкрыць файл, што не з'яўляецца базай дадзеных\n"
 
@@ -2309,7 +2310,7 @@ msgstr "Дыягностыка"
 
 #: diagnostics.cpp:101
 msgid "Developers may ask you to provide information presented here in order to help diagnose issues you may report with the program."
-msgstr "Распрацоўшчыкі могуць папрасіць вас даць інфармацыю для дыягностыкі праблемаў, з якімі вы можаце сутыкнуцца ў праграме."
+msgstr "Распрацоўшчыкі могуць папрасіць вас надаць інфармацыю для дыягностыкі праблемаў, з якімі вы можаце сутыкнуцца ў праграме."
 
 #: filtertransdialog.cpp:45 mmhomepage.cpp:656 model/Model_Billsdeposits.cpp:40
 #: model/Model_Checking.cpp:37
@@ -2319,7 +2320,7 @@ msgstr "Узгоднены"
 #: filtertransdialog.cpp:46 model/Model_Billsdeposits.cpp:41
 #: model/Model_Checking.cpp:38
 msgid "Void"
-msgstr "Скасаваная"
+msgstr "Скасаваны"
 
 #: filtertransdialog.cpp:47 model/Model_Billsdeposits.cpp:42
 #: model/Model_Checking.cpp:39
@@ -3206,7 +3207,7 @@ msgstr "Поле Дата з'яўляецца абавязковым."
 
 #: import_export/univcsvdialog.cpp:927
 msgid "Amount field or both Withdrawal and Deposit fields are required."
-msgstr "Неабходна запоўніць або поле «Сума» або палі «Выдатак» разам з «Унёсак»."
+msgstr "Неабходна запоўніць або толькі поле «Сума», або абодва полі «Спісанне» разам з «Унёсак»."
 
 #: import_export/univcsvdialog.cpp:928 import_export/univcsvdialog.cpp:1057
 #: themes.cpp:183 webappdialog.cpp:417
@@ -3238,7 +3239,7 @@ msgstr "Хібная сума."
 
 #: import_export/univcsvdialog.cpp:1010
 msgid "Type (withdrawal/deposit) unknown."
-msgstr "Невядомы тып (выдатак/залічэнне)."
+msgstr "Невядомы тып (спісанне/унёсак)."
 
 #: import_export/univcsvdialog.cpp:1035
 #, c-format
@@ -3698,7 +3699,7 @@ msgstr "Пустая назва актыва запоўніцца падчас �
 
 #: mmchecking_list.cpp:355
 msgid "&New Withdrawal"
-msgstr "&Новы выдатак"
+msgstr "&Новае спісанне"
 
 #: mmchecking_list.cpp:356
 msgid "&New Deposit"
@@ -5059,7 +5060,7 @@ msgstr "Агулам:"
 #: mmhomepage.cpp:160
 #, c-format
 msgid "Top Withdrawals: %s"
-msgstr "Найбольш вытратныя: %s"
+msgstr "Найбольш спісанняў: %s"
 
 #: mmhomepage.cpp:360
 msgid "Account / Payee"
@@ -6886,7 +6887,7 @@ msgstr "Пакажыце рахунак для гэтай аперацыі"
 
 #: usertransactionpanel.cpp:127
 msgid "Withdraw funds from or deposit funds to this Account."
-msgstr "Вывад сродкаў з або ўвод сродкаў на гэты рахунак."
+msgstr "Спісанне сродкаў з або ўнёсак сродкаў на гэты рахунак."
 
 #: usertransactionpanel.cpp:129
 msgid "&Transfer"
