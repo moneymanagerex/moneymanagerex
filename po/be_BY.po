@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-31 10:25+0300\n"
-"PO-Revision-Date: 2021-09-13 21:32\n"
+"PO-Revision-Date: 2021-09-13 21:50\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -2428,11 +2428,11 @@ msgstr "%i: пуста"
 
 #: filtertransdialog.cpp:399
 msgid "Save active values into current Preset selection"
-msgstr "Захаваць актыўныя значэння ў бягучы прысэт"
+msgstr "Захаваць актыўныя значэння ў бягучы шаблон"
 
 #: filtertransdialog.cpp:404
 msgid "Clear all fields for current Preset selection"
-msgstr "Ачысціць усе палі бягучага прысэта"
+msgstr "Ачысціць усе палі бягучага шаблона"
 
 #: filtertransdialog.cpp:715 filtertransdialog.cpp:1428
 msgid "Please Enter"
