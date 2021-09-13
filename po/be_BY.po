@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-31 10:25+0300\n"
-"PO-Revision-Date: 2021-09-13 20:26\n"
+"PO-Revision-Date: 2021-09-13 20:32\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -1311,11 +1311,11 @@ msgstr "Вы сапраўды жадаеце выдаліць запланава
 
 #: billsdepositspanel.cpp:649
 msgid "Confirm Deletion"
-msgstr "Пацвердзіць выдаленне"
+msgstr "Схваліць выдаленне"
 
 #: budgetentrydialog.cpp:50
 msgid "Budget Year Entry"
-msgstr "Бюджэтны год"
+msgstr "Бюджэт на год"
 
 #: budgetentrydialog.cpp:108
 msgid "Category: "
