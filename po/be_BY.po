@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-31 10:25+0300\n"
-"PO-Revision-Date: 2021-09-13 17:43\n"
+"PO-Revision-Date: 2021-09-13 18:54\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -900,7 +900,7 @@ msgstr "Дата аплаты"
 
 #: billsdepositsdialog.cpp:537 filtertransdialog.cpp:290 transdialog.cpp:1305
 msgid "Specify the status for the transaction"
-msgstr "Абярыце стан аперацыі"
+msgstr "Пакажыце стан аперацыі"
 
 #: billsdepositsdialog.cpp:539 billsdepositspanel.cpp:131
 #: filtertransdialog.cpp:280 filtertransdialog.cpp:570
@@ -915,7 +915,7 @@ msgstr "Стан"
 
 #: billsdepositsdialog.cpp:544 splitdetailsdialog.cpp:131 transdialog.cpp:1306
 msgid "Specify the type of transactions to be created."
-msgstr "Абярыце тып новай аперацыі."
+msgstr "Пакажыце тып новай аперацыі."
 
 #: billsdepositsdialog.cpp:545 transdialog.cpp:496
 msgid "&Advanced"
