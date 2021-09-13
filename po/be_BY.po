@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-31 10:25+0300\n"
-"PO-Revision-Date: 2021-09-13 19:32\n"
+"PO-Revision-Date: 2021-09-13 19:49\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -534,7 +534,7 @@ msgstr "Усе"
 #: assetspanel.cpp:466 billsdepositspanel.cpp:283 mmcheckingpanel.cpp:332
 #: stockspanel.cpp:129
 msgid "&New "
-msgstr "&Новая "
+msgstr "&Стварыць "
 
 #: assetspanel.cpp:470 stockspanel.cpp:133
 msgid "&Add Trans "
@@ -828,7 +828,7 @@ msgstr "Штомесяца (апошні працоўны дзень)"
 
 #: billsdepositsdialog.cpp:308 billsdepositspanel.cpp:288
 msgid "Edit Recurring Transaction"
-msgstr "Рыдактар запланаванай аперацыі"
+msgstr "Змяніць запланаваную аперацыю"
 
 #: billsdepositsdialog.cpp:312
 msgid "Enter Recurring Transaction"
@@ -1209,7 +1209,7 @@ msgstr "MMEX дазваляе планаваць рэгулярныя плаця
 
 #: billsdepositspanel.cpp:194
 msgid "Tip: These transactions can be set up to activate - allowing the user to adjust any values on the due date."
-msgstr "Падказка: Гэтыя аперацыі можна наладзіць для аўтаматычнай актывацыі, дазваляючы карыстачу паказаць любыя значэнні ў дату аплаты."
+msgstr "Падказка: Гэтыя аперацыі можна наладзіць для аўтаматычнай актывацыі, дазваляючы карыстальніку паказаць любыя значэнні ў дату сплаты."
 
 #: billsdepositspanel.cpp:240 billsdepositspanel.cpp:939 mmframe.cpp:747
 #: mmframe.cpp:2801 mmhomepagepanel.cpp:230
@@ -1222,7 +1222,7 @@ msgstr "Фільтр аперацыяў"
 
 #: billsdepositspanel.cpp:293
 msgid "Delete Recurring Transaction"
-msgstr "Выдаліць запланаваную аперацыю"
+msgstr "Прыбраць запланаваную аперацыю"
 
 #: billsdepositspanel.cpp:297
 msgid "Ente&r"
@@ -1250,15 +1250,15 @@ msgstr "Прапусціць наступнае налічэнне"
 
 #: billsdepositspanel.cpp:416
 msgid "&New Recurring Transaction..."
-msgstr "&Новая запланаваная аперацыя..."
+msgstr "Стварыць &новую"
 
 #: billsdepositspanel.cpp:417
 msgid "&Edit Recurring Transaction..."
-msgstr "&Рыдагаваць запланаваную аперацыю..."
+msgstr "&Рыдагаваць"
 
 #: billsdepositspanel.cpp:418
 msgid "&Delete Recurring Transaction..."
-msgstr "&Выдаліць запланаваную аперацыю..."
+msgstr "&Выдаліць"
 
 #: billsdepositspanel.cpp:465
 msgid "Manual"
@@ -4660,7 +4660,7 @@ msgstr "&Даведка"
 
 #: mmframe.cpp:1717 mmframe.cpp:1723
 msgid "New"
-msgstr "Новая"
+msgstr "Стварыць"
 
 #: mmframe.cpp:1725
 msgid "Show Organize Categories Dialog"
