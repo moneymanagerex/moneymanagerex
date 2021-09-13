@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-31 10:25+0300\n"
-"PO-Revision-Date: 2021-09-13 16:59\n"
+"PO-Revision-Date: 2021-09-13 17:43\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -510,7 +510,7 @@ msgstr "Сапраўды жадаеце выдаліць Актыў?"
 
 #: assetspanel.cpp:201
 msgid "Confirm Asset Deletion"
-msgstr "Пацверджанне выдалення актыва"
+msgstr "Спраўдзіце выдаленне актыва"
 
 #: assetspanel.cpp:385
 msgid "MMEX allows you to track fixed assets like cars, houses, land and others. Each asset can have its value appreciate by a certain rate per year, depreciate by a certain rate per year, or not change in value. The total assets are added to your total financial worth."
@@ -617,19 +617,19 @@ msgstr "Не паказаная тэчка з файламі."
 
 #: attachmentdialog.cpp:65
 msgid "Please set it in Tools -> Options -> Attachments"
-msgstr "Калі ласка, задайце шлях праз -> Опцыі -> Далучэнні"
+msgstr "Калі ласка, задайце шлях праз MMEX -> Налады -> Далучэнні"
 
 #: attachmentdialog.cpp:66
 msgid "Attachment folder not defined"
-msgstr "Тэчка далучэння ня вызначаная"
+msgstr "Тэчка для далучэнняў ня вызначаная"
 
 #: attachmentdialog.cpp:70
 msgid "Unable to find attachments folder:"
-msgstr "Не магу знайсці каталог далучэнняў:"
+msgstr "Не магу знайсці тэчку для далучэнняў:"
 
 #: attachmentdialog.cpp:73
 msgid "Please verify that above path is correct"
-msgstr "Калі ласка праверце, што шлях слушны"
+msgstr "Калі ласка, праверце, што шлях слушны"
 
 #: attachmentdialog.cpp:74
 msgid "Attachments folder not found"
@@ -675,7 +675,7 @@ msgstr "Сапраўды жадаеце выдаліць далучэнне?"
 
 #: attachmentdialog.cpp:240
 msgid "Confirm Attachment Deletion"
-msgstr "Пацверджанне выдалення далучэння"
+msgstr "Спраўдзіце выдаленне далучэння"
 
 #: attachmentdialog.cpp:314 categdialog.cpp:229 customfieldlistdialog.cpp:259
 #: import_export/univcsvdialog.cpp:236 maincurrencydialog.cpp:526
@@ -711,7 +711,7 @@ msgstr "Файл прызначэння ўжо існуе:"
 
 #: attachmentdialog.cpp:418
 msgid "File not found in attachments. Please delete or rename it."
-msgstr "Файл не знойдзены ў далучэннях. Калі ласка, выдаліце або пераймянуйце яго."
+msgstr "Файл ня знойдзены ў далучэннях. Калі ласка, выдаліце або пераназавіце яго."
 
 #: attachmentdialog.cpp:419 attachmentdialog.cpp:427
 msgid "Destination file already exist"
@@ -739,11 +739,11 @@ msgstr "Немагчыма адчыніць файл:"
 
 #: attachmentdialog.cpp:489
 msgid "Please verify that file exists and user has rights to read it."
-msgstr "Калі ласка, праверце, што файл існуе і карыстальніка дастаткова правоў чытаць яго."
+msgstr "Калі ласка, праверце, што файл існуе і ў карыстальніка дастаткова правоў чытаць яго."
 
 #: attachmentdialog.cpp:490
 msgid "Open attachment failed"
-msgstr "Далучэнне не адчыніць"
+msgstr "Немагчыма адчыніць далучэнне"
 
 #: billsdepositsdialog.cpp:51 billsdepositspanel.cpp:48
 #: filtertransdialog.cpp:44 mmSimpleDialogs.cpp:36 model/Model_Asset.cpp:23
@@ -761,7 +761,7 @@ msgstr "Штотыдня"
 #: billsdepositsdialog.cpp:53 billsdepositspanel.cpp:50
 #: model/Model_Budget.cpp:57
 msgid "Fortnightly"
-msgstr "Раз на два тыжня"
+msgstr "Раз на два тыдня"
 
 #: billsdepositsdialog.cpp:54 billsdepositspanel.cpp:51 mmframereport.cpp:129
 #: mmframereport.cpp:137 mmframereport.cpp:159 mmframereport.cpp:177
@@ -832,7 +832,7 @@ msgstr "Рыдактар запланаванай аперацыі"
 
 #: billsdepositsdialog.cpp:312
 msgid "Enter Recurring Transaction"
-msgstr "Увядзіце запланаваную аперацыю"
+msgstr "Пакажыце запланаваную аперацыю"
 
 #: billsdepositsdialog.cpp:410
 msgid "Recurring Transaction Details"
@@ -840,7 +840,7 @@ msgstr "Дыталі запланаванай аперацыі"
 
 #: billsdepositsdialog.cpp:422
 msgid "Specify the date when this bill or deposit is due"
-msgstr "Вызначыце дату наступнай сплаты"
+msgstr "Вызначце дату наступнай сплаты"
 
 #: billsdepositsdialog.cpp:433
 msgid "Retard or advance the date of the 'next occurrence'"
@@ -872,11 +872,11 @@ msgstr "Карыстальнік мае ўвесці аплату"
 
 #: billsdepositsdialog.cpp:474
 msgid "User requested to enter this transaction on the 'Date Paid'"
-msgstr "Карыстальнік мае ўвесці аперацыю на «Дата Аплаты»"
+msgstr "Карыстальнік мае ўвесці аперацыю у «Дату Аплаты»"
 
 #: billsdepositsdialog.cpp:477
 msgid "Grant automatic execute"
-msgstr "Аўтаматычны дазвол на выкананне"
+msgstr "Дазволіць аўтаматычнае выкананне"
 
 #: billsdepositsdialog.cpp:478
 msgid "The requested payment will occur without user interaction"
@@ -4068,7 +4068,7 @@ msgstr "Сапраўды жадаеце выдаліць рахунак?"
 
 #: mmframe.cpp:1198 mmframe.cpp:3137
 msgid "Confirm Account Deletion"
-msgstr "Спарўдзіце выдаленне рахунка"
+msgstr "Спраўдзіце выдаленне рахунка"
 
 #: mmframe.cpp:1218
 msgid "MMEX has been opened without an active database."
@@ -4980,7 +4980,7 @@ msgstr "Сталася выключэнне"
 
 #: mmframereport.cpp:118
 msgid "Transaction Report"
-msgstr "Аперацыі"
+msgstr "Справаздача па аперацыях"
 
 #: mmframereport.cpp:123
 msgid "Cash Flow"
