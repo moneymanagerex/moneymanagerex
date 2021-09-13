@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-31 10:25+0300\n"
-"PO-Revision-Date: 2021-09-11 06:46\n"
+"PO-Revision-Date: 2021-09-13 14:58\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -80,11 +80,11 @@ msgstr "Назва Рахунка:"
 
 #: accountdialog.cpp:142
 msgid "Enter the Name of the Account. This name can be renamed at any time."
-msgstr "Напішыце назву Рахунку. Гэтая назва можа быць змененая ў будзь-які час."
+msgstr "Пакажыце назву Рахунку. Гэтая назва можа быць змененая ў будзь-які час."
 
 #: accountdialog.cpp:145
 msgid "Account Type:"
-msgstr "Тып Рахунку:"
+msgstr "Тып Рахунка:"
 
 #: accountdialog.cpp:152 wizard_newaccount.cpp:126
 msgid "Specify the type of account to be created."
@@ -92,7 +92,7 @@ msgstr "Вызначце тып рахунка, што будзе створан
 
 #: accountdialog.cpp:156
 msgid "Account Status:"
-msgstr "Стан Рахунку:"
+msgstr "Стан Рахунка:"
 
 #: accountdialog.cpp:161
 msgid "Specify if this account has been closed. Closed accounts are inactive in most calculations, reporting etc."
@@ -105,7 +105,7 @@ msgstr "Пачатковы баланс: %s"
 
 #: accountdialog.cpp:169
 msgid "Enter the initial balance in this account."
-msgstr "Напішыце пачатковы баланс гэтага рахунка."
+msgstr "Пакажыце пачатковы баланс гэтага рахунка."
 
 #: accountdialog.cpp:171 import_export/univcsvdialog.cpp:1830
 msgid "Currency:"
@@ -125,7 +125,7 @@ msgstr "Улюбёны рахунак"
 
 #: accountdialog.cpp:184
 msgid "Select whether this is an account that is used often. This is used to filter accounts display view."
-msgstr "Выберыце ці часта выкарыстоўваецца гэты рахунак. Гэта выкарыстоўваецца для фільтрацыі рахункаў у спісе."
+msgstr "Абярыце, ці часта выкарыстоўваеце гэты рахунак. Гэта ўлічваецца для фільтрацыі рахункаў у спісе."
 
 #: accountdialog.cpp:192 assetdialog.cpp:253 assetspanel.cpp:65
 #: billsdepositsdialog.cpp:626 billsdepositspanel.cpp:140
@@ -140,7 +140,7 @@ msgstr "Нататкі"
 
 #: accountdialog.cpp:197
 msgid "Enter user notes and details about this account."
-msgstr "Напішыце нататкі ды падрабязнасці аб гэтым рахунку."
+msgstr "Напішыце нататкі ды звесткі аб гэтым рахунку."
 
 #: accountdialog.cpp:201 db/DB_Table_Subcategory_V1.h:129
 #: db/DB_Table_Subcategory_V1.h:132 db/DB_Table_Subcategory_V1.h:148
@@ -158,7 +158,7 @@ msgstr "Нумар рахунка:"
 
 #: accountdialog.cpp:211
 msgid "Enter the Account Number associated with this account."
-msgstr "Напішыце нумар рахунка, што звязаный з гэтым рахункам."
+msgstr "Пакажыце нумар, што звязаный з гэтым рахункам."
 
 #: accountdialog.cpp:214
 msgid "Held At:"
@@ -166,7 +166,7 @@ msgstr "Адчынены у:"
 
 #: accountdialog.cpp:216
 msgid "Enter the name of the financial institution in which the account is held."
-msgstr "Напішыце назву фінасавай установы, дзе адчынены гэты рахунак."
+msgstr "Пакажыце назву фінасавай установы, дзе адчынены гэты рахунак."
 
 #: accountdialog.cpp:219
 msgid "Website:"
@@ -174,7 +174,7 @@ msgstr "Вэб-сайт:"
 
 #: accountdialog.cpp:221
 msgid "Enter the URL of the website for the financial institution."
-msgstr "Напішыце вэб-сайт фінансавай установы."
+msgstr "Пакажыце вэб-сайт фінансавай установы."
 
 #: accountdialog.cpp:224
 msgid "Contact:"
@@ -190,19 +190,19 @@ msgstr "Сакрэты:"
 
 #: accountdialog.cpp:231
 msgid "Enter any login/access information for the financial institution. This is not secure as anyone with access to the mmb file can access it."
-msgstr "Напішыце лагін / пароль доступу да рахунка ў фінансавай установе. Дадзеная інфармацыя захоўваецца у адкрытым выглядзе і яе можа прачытаць будзь-хто, калі мае дасяг да файла."
+msgstr "Напішыце лагін / пароль доступа да рахунка ва ў фінансавай установе. Дадзеная інфармацыя захоўваецца у адкрытым выглядзе і яе здольны прачытаць будзь-хто, калі мае дасяг да файла."
 
 #: accountdialog.cpp:236
 msgid "Statement"
-msgstr "Праверка"
+msgstr "Выпіска"
 
 #: accountdialog.cpp:244
 msgid "Statement:"
-msgstr "Узгоднена:"
+msgstr "Узгодненая:"
 
 #: accountdialog.cpp:245
 msgid "Locked"
-msgstr "Заблакаванае"
+msgstr "Заблакаваны"
 
 #: accountdialog.cpp:246
 msgid "Enable or disable the transaction Lock"
