@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-31 10:25+0300\n"
-"PO-Revision-Date: 2021-09-13 18:54\n"
+"PO-Revision-Date: 2021-09-13 19:17\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -751,7 +751,7 @@ msgstr "Немагчыма адчыніць далучэнне"
 #: model/Model_Checking.cpp:36 optionsettingsmisc.cpp:96
 #: reports/reportbase.cpp:189
 msgid "None"
-msgstr "Ня вызначаная"
+msgstr "Ня вызначаныя"
 
 #: billsdepositsdialog.cpp:52 billsdepositspanel.cpp:49
 #: model/Model_Budget.cpp:56
@@ -804,11 +804,11 @@ msgstr "Штодня"
 
 #: billsdepositsdialog.cpp:62
 msgid "In (x) Days"
-msgstr "У (x) дні"
+msgstr "На (x) дзень"
 
 #: billsdepositsdialog.cpp:63
 msgid "In (x) Months"
-msgstr "У (x) месяцы"
+msgstr "На (x) месяц"
 
 #: billsdepositsdialog.cpp:64
 msgid "Every (x) Days"
@@ -840,7 +840,7 @@ msgstr "Дыталі запланаванай аперацыі"
 
 #: billsdepositsdialog.cpp:422
 msgid "Specify the date when this bill or deposit is due"
-msgstr "Вызначце дату наступнай сплаты"
+msgstr "Вызначыце дату наступнай сплаты"
 
 #: billsdepositsdialog.cpp:433
 msgid "Retard or advance the date of the 'next occurrence'"
@@ -888,7 +888,7 @@ msgstr "Дыталі аперацыі"
 
 #: billsdepositsdialog.cpp:512
 msgid "Specify the date the user is requested to enter this transaction"
-msgstr "Пакажыце дату, калі карыстальніку прапануецца ўвесці гэтую аперацыю"
+msgstr "Пакажыце дату, калі карыстальніку прапануецца зрабіць гэтую аперацыю"
 
 #: billsdepositsdialog.cpp:521
 msgid "Advance or retard the user request date of this transaction"
@@ -919,11 +919,11 @@ msgstr "Пакажыце тып новай аперацыі."
 
 #: billsdepositsdialog.cpp:545 transdialog.cpp:496
 msgid "&Advanced"
-msgstr "&Дадаткова"
+msgstr "&Сума «куды»"
 
 #: billsdepositsdialog.cpp:548 transdialog.cpp:1310
 msgid "Allows the setting of different amounts in the FROM and TO accounts."
-msgstr "Вызначыце суму якая будзе пералічаная на іншы рахунак."
+msgstr "Ручное пазначэнне сумы, што будзе пералічаная на рахунак «куды»."
 
 #: billsdepositsdialog.cpp:558 billsdepositspanel.cpp:134
 #: budgetingpanel.cpp:301 filtertransdialog.cpp:506 filtertransdialog.cpp:517
@@ -939,7 +939,7 @@ msgstr "Сума"
 
 #: billsdepositsdialog.cpp:571 transdialog.cpp:1291
 msgid "Specify the transfer amount in the To Account"
-msgstr "Пакажыце суму для рахунка куды робіцца пераказ"
+msgstr "Пакажыце суму для рахунка, куды робіцца пераказ"
 
 #: billsdepositsdialog.cpp:583 billsdepositsdialog.cpp:843
 #: billsdepositsdialog.cpp:857 billsdepositspanel.cpp:129
@@ -985,7 +985,7 @@ msgstr "Некалькі катыгорыяў"
 
 #: billsdepositsdialog.cpp:603 transdialog.cpp:1307
 msgid "Use split Categories"
-msgstr "Падзяліць агульную суму па розных катыгорыях"
+msgstr "Распадзяліць агульную суму па розных катыгорыях"
 
 #: billsdepositsdialog.cpp:609 billsdepositspanel.cpp:132
 #: budgetingpanel.cpp:298 filtertransdialog.cpp:258 filtertransdialog.cpp:1026
@@ -1058,11 +1058,11 @@ msgstr "На рахунак"
 
 #: billsdepositsdialog.cpp:933
 msgid "The payment date is after the due date, is this what you intended?"
-msgstr "Дата аплаты пасля тэрміну аплаты. Гэта тое, што трэба?"
+msgstr "Дата аплаты пазней за тэрмін аплаты. Гэта тое, што трэба?"
 
 #: billsdepositsdialog.cpp:934
 msgid "Looks like a late payment"
-msgstr "Падобна на тое, што гэта запознены плацёж"
+msgstr "Падобнае на тое, што гэта пратэмінаваны плацёж"
 
 #: billsdepositsdialog.cpp:1233
 msgid "Specify the transfer amount in the From Account"
@@ -1148,7 +1148,7 @@ msgstr "Новая запланаваная аперацыя"
 
 #: billsdepositsdialog.h:124
 msgid "Specify where the transaction is going to"
-msgstr "Пакажыце куды будзе зробленае пералічэнне"
+msgstr "Пакажыце, куды будзе зробленае пералічэнне"
 
 #: billsdepositsdialog.h:125 transdialog.cpp:1300
 msgid "Specify where the transaction is coming from"
@@ -7417,5 +7417,5 @@ msgstr "Памылка: "
 
 #: wizard_update.cpp:304 wizard_update.cpp:320
 msgid "MMEX Update Check"
-msgstr "Праверка версіі MMEX"
+msgstr "Праверка ці ёсць новыя версіі MMEX"
 
