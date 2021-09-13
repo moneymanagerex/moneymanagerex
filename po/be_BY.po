@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-31 10:25+0300\n"
-"PO-Revision-Date: 2021-09-13 21:01\n"
+"PO-Revision-Date: 2021-09-13 21:12\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -1565,7 +1565,7 @@ msgstr "Пакажыце назву новай катыгорыі:"
 
 #: categdialog.cpp:258
 msgid "Tip: If category added now, check bottom of list."
-msgstr "Парада: Калі катэгорыя толькі што дададзеная, праверце ніжнюю частку спісу."
+msgstr "Парада: Калі катэгорыя была толькі што дададзеная, пераверце ніжнюю частку спісу."
 
 #: categdialog.cpp:261
 msgid "Add Category"
@@ -1579,11 +1579,11 @@ msgstr "Катыгорыя з такою назвай ужо існуе"
 msgid "Tip: If category added now, check bottom of list.\n"
 "Category will be in sorted order next time dialog appears"
 msgstr "Падказка: Калі катыгорыя дададзеная толькі што, то яна апынецца ў самым нізе спісу.\n"
-"Сартаванне будзе праведзена, калі дыялог будзе выкліканы паўторна"
+"Сартаванне будзе праведзена, калі дыспетчар будзе выкліканы наноў"
 
 #: categdialog.cpp:273 categdialog.cpp:297 categdialog.cpp:315
 msgid "Organise Categories: Adding Error"
-msgstr "Рыдактар катыгорыяў: памылка дадання"
+msgstr "Дыспетчар катыгорыяў: памылка дадавання"
 
 #: categdialog.cpp:296 categdialog.cpp:523
 msgid "Sub Category with same name exists"
