@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-31 10:25+0300\n"
-"PO-Revision-Date: 2021-09-13 19:49\n"
+"PO-Revision-Date: 2021-09-13 20:04\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -844,7 +844,7 @@ msgstr "Вызначыце дату наступнай сплаты"
 
 #: billsdepositsdialog.cpp:433
 msgid "Retard or advance the date of the 'next occurrence'"
-msgstr "Затрымаць або перасунуць дату «наступнай падзеі»"
+msgstr "Затрымаць або перасунуць дату чэргавай аперацыі"
 
 #: billsdepositsdialog.cpp:438 billsdepositspanel.cpp:128
 msgid "Date Due"
@@ -860,7 +860,7 @@ msgstr "Вярнуцца да апошняй даты з паказанымі з
 
 #: billsdepositsdialog.cpp:451
 msgid "Advance the next occurring date with the specified values"
-msgstr "Перайдзіце да наступнай даты з паказанымі значэннямі"
+msgstr "Перасунуць да наступнай даты з паказанымі значэннямі"
 
 #: billsdepositsdialog.cpp:459 billsdepositsdialog.cpp:1316
 msgid "Payments Left"
@@ -1230,7 +1230,7 @@ msgstr "Уво&д"
 
 #: billsdepositspanel.cpp:298
 msgid "Enter Next Recurring Transaction Occurrence"
-msgstr "Увесці наступную запланаваную аперацыю"
+msgstr "Увесці чэргавую дату для запланавай аперацыі"
 
 #: billsdepositspanel.cpp:302
 msgid "&Skip"
@@ -1238,19 +1238,19 @@ msgstr "Прапус&ціць"
 
 #: billsdepositspanel.cpp:303
 msgid "Skip Next Recurring Transaction Occurrence"
-msgstr "Прапусціць наступнае з'яўленне запланаванай аперацыі"
+msgstr "Ігнараваць наступнае з’яўленне запланаванай аперацыі"
 
 #: billsdepositspanel.cpp:412
 msgid "Enter next Occurrence..."
-msgstr "Выканаць аперацыю..."
+msgstr "Выканаць чэргавую"
 
 #: billsdepositspanel.cpp:414
 msgid "Skip next Occurrence"
-msgstr "Прапусціць наступнае налічэнне"
+msgstr "Абмінуць чэргавую дату"
 
 #: billsdepositspanel.cpp:416
 msgid "&New Recurring Transaction..."
-msgstr "Стварыць &новую"
+msgstr "&Стварыць"
 
 #: billsdepositspanel.cpp:417
 msgid "&Edit Recurring Transaction..."
@@ -3853,7 +3853,7 @@ msgstr[3] "Вы збіраецеся змяніць %i транзакцый ў �
 msgid "\n\n"
 "Do you still want to perform the edit?"
 msgstr "\n\n"
-"Вы ўсё яшчэ хочаце выканаць рыдагаванне?"
+"Вы дагэтуль хочаце выканаць рыдагаванне?"
 
 #: mmchecking_list.cpp:952
 msgid "Closed Account Check"
