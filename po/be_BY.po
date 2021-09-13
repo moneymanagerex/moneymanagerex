@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-31 10:25+0300\n"
-"PO-Revision-Date: 2021-09-13 20:04\n"
+"PO-Revision-Date: 2021-09-13 20:14\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -1020,7 +1020,7 @@ msgstr "Нумар"
 
 #: billsdepositsdialog.cpp:631
 msgid "Organize attachments of this recurring transaction"
-msgstr "Дыстпетчар далучэнняў запланаванай аперацыі"
+msgstr "Дыспетчар далучэнняў запланаванай аперацыі"
 
 #: billsdepositsdialog.cpp:634 transdialog.cpp:576
 msgid "User Colors"
@@ -1144,7 +1144,7 @@ msgstr "Колер #%i"
 
 #: billsdepositsdialog.h:56 billsdepositspanel.cpp:284
 msgid "New Recurring Transaction"
-msgstr "Новая запланаваная аперацыя"
+msgstr "Дадаць новую запланаваную аперацыя"
 
 #: billsdepositsdialog.h:124
 msgid "Specify where the transaction is going to"
@@ -1378,7 +1378,7 @@ msgstr "Ненулявыя катыгорыі бюджэта"
 
 #: budgetingpanel.cpp:52
 msgid "View Planned Budget Categories"
-msgstr "Запланаваныя катыгорыі бюджэта"
+msgstr "Катыгорыі запланаванага бюджэта"
 
 #: budgetingpanel.cpp:53
 msgid "View Income Budget Categories"
