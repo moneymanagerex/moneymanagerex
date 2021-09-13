@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-31 10:25+0300\n"
-"PO-Revision-Date: 2021-09-13 20:44\n"
+"PO-Revision-Date: 2021-09-13 21:01\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -1366,7 +1366,7 @@ msgstr "Сума:"
 
 #: budgetentrydialog.cpp:149
 msgid "Enter the amount budgeted for this category."
-msgstr "Калі ласка, увядзіце памер бюджэту для дадзенай катыгорыі."
+msgstr "Калі ласка, пакажыце памер бюджэту для дадзенай катыгорыі."
 
 #: budgetingpanel.cpp:50
 msgid "View All Budget Categories"
@@ -1453,11 +1453,11 @@ msgstr "Чакаецца"
 #: budgetingpanel.cpp:303 reports/budgetcategorysummary.cpp:141
 #: reports/budgetcategorysummary.cpp:193
 msgid "Actual"
-msgstr "Actual"
+msgstr "Фактычна"
 
 #: budgetyeardialog.cpp:46
 msgid "Budget Editor"
-msgstr "Рэдактар бюджэта"
+msgstr "Рыдактар бюджэта"
 
 #: budgetyeardialog.cpp:93
 msgid "&Add Year"
@@ -1509,7 +1509,7 @@ msgstr "Пакажыце патрэбны месяц.\n"
 
 #: budgetyearentrydialog.cpp:102
 msgid "Base Budget On:"
-msgstr "Узяць за аснову бюджэт:"
+msgstr "Грунтавацца на бюджэце:"
 
 #: budgetyearentrydialog.cpp:112
 msgid "Specify year to base budget on."
@@ -3655,7 +3655,7 @@ msgstr "Парада: У мэнэджары катыгорыяў, націска
 
 #: mmTips.h:37
 msgid "Tip to get out of debt: Pay yourself 10 percentage first. Put this into an account that is hard to touch. Make sure it is a chore to get the money out (you have to drive to the bank), so you will only tap it consciously and for major expenses."
-msgstr "Парада, каб пазбавіцца пазыкаў: Захоўвайце 10 адсоткаў заробка. Змесціце гэта ў цяжка даступнае месца. Такое, каб атрымаць грошы было цяжка (напрыклад, вам трэба паехаць у банк). У гэтым выпадку вы будзеце выкарыстоўваць гэтыя грошы свядома і толькі для асноўных выдаткаў."
+msgstr "Парада, каб пазбавіцца пазыкаў: Захоўвайце 10 адсоткаў заробка. Змесціце гэта ў нязручнае месца. Такое, каб атрымаць грошы было цяжка (напрыклад, вам трэба паехаць у банк). У гэтым выпадку вы будзеце выкарыстоўваць гэтыя грошы свядома і толькі для важных выдаткаў."
 
 #: mmTips.h:38
 msgid "Tip to get out of debt: Establish an emergency fund."
@@ -4256,7 +4256,7 @@ msgstr "Паказаць бюджэт за фінансавы год"
 
 #: mmframe.cpp:1412
 msgid "Budgets: &Include Transfers in Totals"
-msgstr "Бюджэты: \"Агулам\" &улічвае пераказы"
+msgstr "Бюджэты: «Агулам» &улічвае пераказы"
 
 #: mmframe.cpp:1412
 msgid "Include the transfer transactions in the Budget Totals"
@@ -6643,7 +6643,7 @@ msgstr "Памылка гісторыі каціровак"
 
 #: stocks_list.cpp:92
 msgid "Share Total"
-msgstr "Агулам"
+msgstr "Агулам за акцыю"
 
 #: stocks_list.cpp:94
 msgid "Init Value"
@@ -6733,7 +6733,7 @@ msgstr "Фондавы партфель: %s"
 #: stockspanel.cpp:343
 #, c-format
 msgid "Total Shares: %s"
-msgstr "Агулам: %s"
+msgstr "Агулам за акцыі: %s"
 
 #: stockspanel.cpp:345
 #, c-format
