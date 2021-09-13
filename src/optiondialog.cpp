@@ -31,6 +31,10 @@
 #include "optionsettingsnet.h"
 #include "optionsettingsmisc.h"
 
+static const char * const s_pagetitle[] = {
+    N_("General"), N_("View Options"), N_("Attachments"), N_("Network"), N_("Others")
+};
+
 wxIMPLEMENT_DYNAMIC_CLASS(mmOptionsDialog, wxDialog);
 
 wxBEGIN_EVENT_TABLE( mmOptionsDialog, wxDialog )
@@ -128,11 +132,11 @@ void mmOptionsDialog::CreateControls()
     /**********************************************************************************************
     Add the panels to the notebook
     **********************************************************************************************/
-    m_notebook->InsertPage(0, general_panel, _("General"), true, 2);
-    m_notebook->InsertPage(1, views_panel, _("View Options"), false, 0);
-    m_notebook->InsertPage(2, attachment_panel, _("Attachments"), false, 1);
-    m_notebook->InsertPage(3, network_panel, _("Network"), false, 4);
-    m_notebook->InsertPage(4, others_panel, _("Others"), false, 3);
+    m_notebook->InsertPage(0, general_panel, _(s_pagetitle[0]), true, 2);
+    m_notebook->InsertPage(1, views_panel, _(s_pagetitle[1]), false, 0);
+    m_notebook->InsertPage(2, attachment_panel, _(s_pagetitle[2]), false, 1);
+    m_notebook->InsertPage(3, network_panel, _(s_pagetitle[3]), false, 4);
+    m_notebook->InsertPage(4, others_panel, _(s_pagetitle[4]), false, 3);
 
     mainDialogPanelSizer->Add(m_notebook, g_flagsExpand);
     mainDialogPanelSizer->Layout();
@@ -207,7 +211,7 @@ void mmOptionsDialog::OnApply(wxCommandEvent& /*event*/)
     int selected_page = m_notebook->GetSelection();
     if (m_panel_list[selected_page]->SaveSettings())
     {
-        const wxString& msg = wxString::Format(_("%s page has been saved."), m_notebook->GetPageText(selected_page));
+        const wxString& msg = wxString::Format(_("%s page has been saved."), _(s_pagetitle[selected_page]));
         wxMessageBox(msg, _("MMEX Options"));
     }
 
