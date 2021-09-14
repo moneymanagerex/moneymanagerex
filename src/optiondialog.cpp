@@ -32,7 +32,7 @@
 #include "optionsettingsmisc.h"
 
 static const char * const s_pagetitle[] = {
-    N_("General"), N_("View Options"), N_("Attachments"), N_("Network"), N_("Others")
+    wxTRANSLATE("General"), wxTRANSLATE("View Options"), wxTRANSLATE("Attachments"), wxTRANSLATE("Network"), wxTRANSLATE("Others")
 };
 
 wxIMPLEMENT_DYNAMIC_CLASS(mmOptionsDialog, wxDialog);
@@ -132,11 +132,11 @@ void mmOptionsDialog::CreateControls()
     /**********************************************************************************************
     Add the panels to the notebook
     **********************************************************************************************/
-    m_notebook->InsertPage(0, general_panel, _(s_pagetitle[0]), true, 2);
-    m_notebook->InsertPage(1, views_panel, _(s_pagetitle[1]), false, 0);
-    m_notebook->InsertPage(2, attachment_panel, _(s_pagetitle[2]), false, 1);
-    m_notebook->InsertPage(3, network_panel, _(s_pagetitle[3]), false, 4);
-    m_notebook->InsertPage(4, others_panel, _(s_pagetitle[4]), false, 3);
+    m_notebook->InsertPage(0, general_panel, wxGetTranslation(s_pagetitle[0]), true, 2);
+    m_notebook->InsertPage(1, views_panel, wxGetTranslation(s_pagetitle[1]), false, 0);
+    m_notebook->InsertPage(2, attachment_panel, wxGetTranslation(s_pagetitle[2]), false, 1);
+    m_notebook->InsertPage(3, network_panel, wxGetTranslation(s_pagetitle[3]), false, 4);
+    m_notebook->InsertPage(4, others_panel, wxGetTranslation(s_pagetitle[4]), false, 3);
 
     mainDialogPanelSizer->Add(m_notebook, g_flagsExpand);
     mainDialogPanelSizer->Layout();
