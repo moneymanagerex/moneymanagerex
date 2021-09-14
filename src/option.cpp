@@ -1,5 +1,6 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
+ Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -47,11 +48,13 @@ Option::Option()
     , m_usageStatistics(true)
     , m_transDateDefault(0)
     , m_sharePrecision(4)
+    , m_theme_mode(Option::AUTO)
     , m_html_font_size(100)
     , m_ico_size(16)
     , m_toolbar_ico_size(32)
     , m_navigation_ico_size(24)
     , m_budget_days_offset(0)
+    , m_reporting_firstday(1)
 {}
 
 //----------------------------------------------------------------------------
@@ -73,6 +76,7 @@ void Option::LoadOptions(bool include_infotable)
         m_baseCurrency = Model_Infotable::instance().GetIntInfo("BASECURRENCYID", -1);
         m_currencyHistoryEnabled = Model_Infotable::instance().GetBoolInfo(INIDB_USE_CURRENCY_HISTORY, true);
         m_budget_days_offset = Model_Infotable::instance().GetIntInfo("BUDGET_DAYS_OFFSET", 0);
+        m_reporting_firstday = Model_Infotable::instance().GetIntInfo("REPORTING_FIRSTDAY", 1);
         // Ensure that base currency is set for the database.
         while (m_baseCurrency < 1)
         {
@@ -105,7 +109,7 @@ void Option::LoadOptions(bool include_infotable)
     m_usageStatistics = Model_Setting::instance().GetBoolSetting(INIDB_SEND_USAGE_STATS, true);
     m_newsChecking = Model_Setting::instance().GetBoolSetting(INIDB_CHECK_NEWS, true);
     
-
+    m_theme_mode = Model_Setting::instance().GetIntSetting("THEMEMODE", Option::THEME_MODE::AUTO);
     m_html_font_size = Model_Setting::instance().GetIntSetting("HTMLSCALE", 100);
     m_ico_size = Model_Setting::instance().GetIntSetting("ICONSIZE", 16);
     m_toolbar_ico_size = Model_Setting::instance().GetIntSetting("TOOLBARICONSIZE", 32);
@@ -316,6 +320,17 @@ bool Option::CheckNewsOnStartup()
     return m_newsChecking;
 }
 
+void Option::setThemeMode(int value)
+{
+    Model_Setting::instance().Set("THEMEMODE", value);
+    m_theme_mode = value;
+}
+
+int Option::getThemeMode()
+{
+    return m_theme_mode;
+}
+
 void Option::setHTMLFontSizes(int value)
 {
     Model_Setting::instance().Set("HTMLSCALE", value);
@@ -356,6 +371,12 @@ void Option::setBudgetDateOffset(wxDateTime& date) const
 {
     if (m_budget_days_offset != 0)
         date.Add(wxDateSpan::Days(m_budget_days_offset));
+}
+
+void Option::setReportingFirstDay(int value)
+{
+    Model_Infotable::instance().Set("REPORTING_FIRSTDAY", value);
+    m_reporting_firstday = value;
 }
 
 int Option::AccountImageId(int account_id, bool def)

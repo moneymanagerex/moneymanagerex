@@ -1,6 +1,6 @@
 /*******************************************************
 Copyright (C) 2006-2012     Lisheng Guan (guanlisheng@gmail.com)
-
+Copyright (C) 2021          Mark Whalley (mark@ipx.co.uk)
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
 the Free Software Foundation; either version 2 of the License, or
@@ -27,6 +27,7 @@ protected:
     const wxDateTime today_;
     const wxDateTime future_;
     wxDateTime start_date_, end_date_;
+    int startDay_;
     wxString title_;
 
 public:
@@ -43,6 +44,11 @@ public:
     void virtual start_date(wxDateTime& start_date);
     void virtual end_date(wxDateTime& end_date);
     void set_end_date(wxDateTime v);
+    void findEndOfMonth();
+    const int startDay() const;
+
+    enum DATE_TYPE { START = 0, END };
+    void setValidDate(const DATE_TYPE dateType);
 
 };
 
@@ -158,6 +164,7 @@ inline const wxString mmDateRange::title() const { return title_; }
 inline void mmDateRange::start_date(wxDateTime& start_date) { this->start_date_ = start_date; }
 inline void mmDateRange::end_date(wxDateTime& end_date) { this->end_date_ = end_date; }
 inline void mmDateRange::set_end_date(wxDateTime v) { end_date_ = v; }
+inline const int mmDateRange::startDay() const { return this ? startDay_ : 1; }
 
 
 #endif // MM_EX_DATE_RANGE_H_

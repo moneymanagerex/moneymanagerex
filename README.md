@@ -42,7 +42,10 @@ Main features
 Download
 ================
 
-You can [download](https://sourceforge.net/projects/moneymanagerex/files/) the latest installable version of MoneyManagerEx for Windows, macOS and Linux.
+You can [download](https://github.com/moneymanagerex/moneymanagerex/releases/) the latest installable version of MoneyManagerEx for Windows, macOS and Linux.
+
+[Download stats](https://tooomm.github.io/github-release-stats/?username=moneymanagerex&repository=moneymanagerex)
+
 
 Credits
 ================

@@ -1,6 +1,6 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel, Paulo Lopes
- copyright (C) 2012 Nikolay Akimov
+ copyright (C) 2012 - 2021 Nikolay Akimov
  Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
@@ -61,6 +61,7 @@ namespace tags
     /* Sortable tables */
     table.sortable thead {cursor: default;}
     body { font-size: %s%%; }
+%s
 </style>
 </head>
 <body>
@@ -113,7 +114,7 @@ mmHTMLBuilder::mmHTMLBuilder()
         , today_.date.FormatISOTime());
 }
 
-void mmHTMLBuilder::init(bool simple)
+void mmHTMLBuilder::init(bool simple, const wxString& extra_style)
 {
     if (simple)
     {
@@ -126,7 +127,8 @@ void mmHTMLBuilder::init(bool simple)
     {
         html_ = wxString::Format(wxString::FromUTF8(tags::HTML)
             , mmex::getProgramName()
-            , wxString::Format("%d", Option::instance().getHtmlFontSize()));
+            , wxString::Format("%d", Option::instance().getHtmlFontSize())
+            , extra_style);
     }
 }
 
@@ -137,7 +139,7 @@ void mmHTMLBuilder::showUserName()
         addHeader(2, Option::instance().UserName());
 }
 
-void mmHTMLBuilder::addReportHeader(const wxString& name)
+void mmHTMLBuilder::addReportHeader(const wxString& name, int startDay)
 {
     addDivContainer("shadowTitle");
     {
@@ -149,6 +151,7 @@ void mmHTMLBuilder::addReportHeader(const wxString& name)
         {
             showUserName();
             addText("<TMPL_VAR DATE_HEADING>");
+            addOffsetIndication(startDay);
             addReportCurrency();
             addDateNow();
         }
@@ -161,14 +164,14 @@ void mmHTMLBuilder::addReportHeader(const wxString& name)
     endDiv();
 }
 
-void mmHTMLBuilder::DisplayDateHeading(const wxDateTime& startDate, const wxDateTime& endDate, bool withDateRange)
+void mmHTMLBuilder::DisplayDateHeading(const wxDateTime& startDate, const wxDateTime& endDate, bool withDateRange, bool withNoEndDate)
 {
     wxString sDate;
     if (withDateRange)
     {
         sDate << wxString::Format(_("From %s till %s")
             , mmGetDateForDisplay(startDate.FormatISODate())
-            , mmGetDateForDisplay(endDate.FormatISODate()));
+            , withNoEndDate ? _("Future") : mmGetDateForDisplay(endDate.FormatISODate()));
     }
     else
     {
@@ -194,6 +197,14 @@ void mmHTMLBuilder::addReportCurrency()
     wxASSERT_MSG(Model_Currency::GetBaseCurrencySymbol(base_currency_symbol), "Could not find base currency symbol");
 
     addHeader(5, wxString::Format("%s: %s", _("Currency"), base_currency_symbol));  
+}
+
+void mmHTMLBuilder::addOffsetIndication(int startDay)
+{       
+    if (startDay > 1)
+        addHeader(5, wxString::Format ("%s: %d"
+            , _("User specified start day")
+            , startDay));
 }
 
 void mmHTMLBuilder::addDateNow()
@@ -276,14 +287,13 @@ void mmHTMLBuilder::addMoneyTotalRow(const wxString& caption, int cols, const st
     this->addTotalRow(caption, cols, data_str);
 }
 
-void mmHTMLBuilder::addTableHeaderCell(const wxString& value, const bool numeric, const bool sortable, const int cols, const bool center)
+void mmHTMLBuilder::addTableHeaderCell(const wxString& value, const wxString& css_class, int cols)
 {
-    const wxString sort = (sortable ? "" : "sorttable_nosort");
-    const wxString align = (center ? "text-center" : (numeric ? "text-right" : "text-left"));
-    const wxString cspan = (cols > 1 ? wxString::Format(" colspan='%i'", cols) : "");
-
-    html_ += wxString::Format(tags::TABLE_HEADER
-        , wxString::Format(" class='%s %s'", sort, align) + cspan);
+    html_ += wxString::Format(tags::TABLE_HEADER //TABLE_HEADER = "<th%s>";
+        , wxString::Format("%s%s"
+            , css_class.empty() ? "" : wxString::Format(" class='%s'", css_class)
+            , cols > 1 ? wxString::Format(" colspan='%i'", cols) : "")
+    );
     html_ += value;
     html_ += tags::TABLE_HEADER_END;
 }
@@ -335,7 +345,9 @@ void mmHTMLBuilder::addEmptyTableCell(const int number)
 void mmHTMLBuilder::addColorMarker(const wxString& color)
 {
     html_ += wxString::Format(tags::TABLE_CELL, "");
-    html_ += wxString::Format("<span style='font-family: serif; color: %s'>%s</span>", color, L"\u2588");
+    html_ += wxString::Format("<span style='font-family: serif; %s'>%s</span>"
+        , (color.empty() ? "": wxString::Format("color: %s", color))
+        , (color.empty() ? L" " : L"\u2588"));
     this->endTableCell();
 }
 

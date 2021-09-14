@@ -1,6 +1,7 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
- Copyright (C) 21021 Mark Whalley (mark@ipx.co.uk)
+  copyright (C) 2012 - 2021 Nikolay Akimov
+ Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -48,10 +49,10 @@ public:
     mmHTMLBuilder();
     ~mmHTMLBuilder() {}
 
-    void DisplayDateHeading(const wxDateTime& startDate, const wxDateTime& endDate, bool withDateRange = true);
+    void DisplayDateHeading(const wxDateTime& startDate, const wxDateTime& endDate, bool withDateRange = true, bool withNoEndDate = false);
     void DisplayFooter(const wxString& footer);
     /** Starts a new HMTL report */
-    void init(bool simple=false);
+    void init(bool simple = false, const wxString& extra_style = "");
 
     /** Clears the current HTML document */
     void clear()
@@ -60,11 +61,12 @@ public:
     }
 
     /** Add an HTML header */
-    void addReportHeader(const wxString& name);
+    void addReportHeader(const wxString& name, int startDay = 1);
     void addHeader(int level, const wxString& header);
     void showUserName();
     void addReportCurrency();
     void addDateNow();
+    void addOffsetIndication(int startDay);
 
     /** Start a table element */
     void startTable();
@@ -82,7 +84,8 @@ public:
     void addMoneyTotalRow(const wxString& caption, int cols, const std::vector<double>& data);
 
     /** Add a Table header cell */
-    void addTableHeaderCell(const wxString& value, const bool numeric = false, const bool sortable = true, const int cols = 1, const bool center = false);
+    //void addTableHeaderCell(const wxString& value, bool numeric = false, bool sortable = true, int cols = 1, bool center = false);
+    void addTableHeaderCell(const wxString& value, const wxString& css_class = "", int cols = 1);
 
     void addCurrencyCell(double amount, const Model_Currency::Data *currency = Model_Currency::instance().GetBaseCurrency(), int precision = -1);
     void addMoneyCell(double amount, int precision = -1);

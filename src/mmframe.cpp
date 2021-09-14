@@ -1031,6 +1031,7 @@ void mmGUIFrame::OnSelChanged(wxTreeEvent& event)
     wxTreeItemId selectedItem = event.GetItem();
     if (!selectedItem) return;
 
+    m_nav_tree_ctrl->Update();
     mmTreeItemData* iData = dynamic_cast<mmTreeItemData*>(m_nav_tree_ctrl->GetItemData(selectedItem));
     if (!iData) return;
 
@@ -2471,6 +2472,7 @@ void mmGUIFrame::OnTransactionReport(wxCommandEvent& /*event*/)
     {
         mmReportTransactions* rs = new mmReportTransactions(dlg);
         createReportsPage(rs, true);
+        setNavTreeSection(_("Reports"));
     }
     m_nav_tree_ctrl->Refresh();
 }
@@ -2905,7 +2907,6 @@ void mmGUIFrame::createCheckingAccountPage(int accountID)
     else
     {
         windowsFreezeThaw(homePanel_);
-        Model_Account::Data* account = Model_Account::instance().get(accountID);
         creditDisplayed = (0 == account->CREDITLIMIT) ? false : true;
         wxSizer *sizer = cleanupHomePanel();
         panelCurrent_ = new mmCheckingPanel(homePanel_, this, accountID, mmID_CHECKING);

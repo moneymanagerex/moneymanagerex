@@ -255,53 +255,23 @@ void mmCheckingPanel::CreateControls()
     wxBoxSizer* itemBoxSizerVHeader = new wxBoxSizer(wxVERTICAL);
     headerPanel->SetSizer(itemBoxSizerVHeader);
 
-    wxGridSizer* itemBoxSizerVHeader2 = new wxGridSizer(0, 1, 5, 20);
-    itemBoxSizerVHeader->Add(itemBoxSizerVHeader2);
-
     m_header_text = new wxStaticText( headerPanel, wxID_STATIC, "");
     m_header_text->SetFont(this->GetFont().Larger().Bold());
-    itemBoxSizerVHeader2->Add(m_header_text, g_flagsBorder1H);
+    itemBoxSizerVHeader->Add(m_header_text, g_flagsBorder1V);
 
     wxBoxSizer* itemBoxSizerHHeader2 = new wxBoxSizer(wxHORIZONTAL);
-    wxFlexGridSizer* itemFlexGridSizerHHeader2 = new wxFlexGridSizer(3, 1, 1);
-    itemBoxSizerVHeader2->Add(itemBoxSizerHHeader2);
-    itemBoxSizerHHeader2->Add(itemFlexGridSizerHHeader2);
+    itemBoxSizerVHeader->Add(itemBoxSizerHHeader2);
 
     m_bitmapTransFilter = new wxButton(headerPanel, ID_TRX_FILTER);
     m_bitmapTransFilter->SetBitmap(mmBitmap(png::TRANSFILTER, mmBitmapButtonSize));
     m_bitmapTransFilter->SetMinSize(wxSize(220, -1));
-
-    itemFlexGridSizerHHeader2->Add(m_bitmapTransFilter, g_flagsBorder1H);
-
-    itemFlexGridSizerHHeader2->AddSpacer(20);
-
+    itemBoxSizerHHeader2->Add(m_bitmapTransFilter, g_flagsBorder1H);
+    itemBoxSizerHHeader2->AddSpacer(20);
     m_statTextTransFilter = new wxStaticText(headerPanel, wxID_ANY, "");
-    itemFlexGridSizerHHeader2->Add(m_statTextTransFilter, g_flagsBorder1H);
+    itemBoxSizerHHeader2->Add(m_statTextTransFilter, g_flagsBorder1H);
 
-    if (!m_allAccounts)  // not relevant to full transaction view
-    {
-        wxStaticText* itemStaticText12 = new wxStaticText(headerPanel
-            , ID_PANEL_CHECKING_STATIC_BALHEADER1, "$", wxDefaultPosition, wxSize(120, -1));
-        wxStaticText* itemStaticText14 = new wxStaticText(headerPanel
-            , ID_PANEL_CHECKING_STATIC_BALHEADER2, "$", wxDefaultPosition, wxSize(120, -1));
-        wxStaticText* itemStaticText16 = new wxStaticText(headerPanel
-            , ID_PANEL_CHECKING_STATIC_BALHEADER3, "$", wxDefaultPosition, wxSize(120, -1));
-        wxStaticText* itemStaticText17 = new wxStaticText(headerPanel
-            , ID_PANEL_CHECKING_STATIC_BALHEADER4, _("Displayed Bal: "));
-        wxStaticText* itemStaticText18 = new wxStaticText(headerPanel
-            , ID_PANEL_CHECKING_STATIC_BALHEADER5, "$", wxDefaultPosition, wxSize(120, -1));
-
-        wxFlexGridSizer* balances_header = new wxFlexGridSizer(0,8,5,10);
-        itemBoxSizerVHeader->Add(balances_header, g_flagsExpandBorder1);
-        balances_header->Add(new wxStaticText(headerPanel, wxID_STATIC, _("Account Bal: ")));
-        balances_header->Add(itemStaticText12);
-        balances_header->Add(new wxStaticText(headerPanel,  wxID_STATIC, _("Reconciled Bal: ")));
-        balances_header->Add(itemStaticText14);
-        balances_header->Add(new wxStaticText(headerPanel, wxID_STATIC, _("Diff: ")));
-        balances_header->Add(itemStaticText16);
-        balances_header->Add(itemStaticText17);
-        balances_header->Add(itemStaticText18);
-    }
+    m_header_balance = new wxStaticText(headerPanel, wxID_STATIC, "");
+    itemBoxSizerVHeader->Add(m_header_balance, g_flagsBorder1V);
 
     /* ---------------------- */
 
@@ -427,18 +397,16 @@ void mmCheckingPanel::setAccountSummary()
     if (!m_allAccounts)
     {
         bool show_displayed_balance_ = (m_transFilterActive || m_currentView != MENU_VIEW_ALLTRANSACTIONS);
-        wxStaticText* header = static_cast<wxStaticText*>(FindWindow(ID_PANEL_CHECKING_STATIC_BALHEADER1));
-        header->SetLabelText(Model_Account::toCurrency(m_account_balance, account));
-        header = static_cast<wxStaticText*>(FindWindow(ID_PANEL_CHECKING_STATIC_BALHEADER2));
-        header->SetLabelText(Model_Account::toCurrency(m_reconciled_balance, account));
-        header = static_cast<wxStaticText*>(FindWindow(ID_PANEL_CHECKING_STATIC_BALHEADER3));
-        header->SetLabelText(Model_Account::toCurrency(m_account_balance - m_reconciled_balance, account));
-        header = static_cast<wxStaticText*>(FindWindow(ID_PANEL_CHECKING_STATIC_BALHEADER4));
-        header->SetLabelText(show_displayed_balance_
-            ? _("Displayed Bal: ") : "");
-        header = static_cast<wxStaticText*>(FindWindow(ID_PANEL_CHECKING_STATIC_BALHEADER5));
-        header->SetLabelText(show_displayed_balance_
-            ? Model_Account::toCurrency(m_filteredBalance, account) : "");
+        const wxString summaryLine = wxString::Format("%s%s     %s%s     %s%s     %s%s"
+            , _("Account Bal: ")
+            , Model_Account::toCurrency(m_account_balance, account)
+            , _("Reconciled Bal: ")
+            , Model_Account::toCurrency(m_reconciled_balance, account)
+            , _("Diff: ")
+            , Model_Account::toCurrency(m_account_balance - m_reconciled_balance, account)
+            , show_displayed_balance_ ? _("Displayed Bal: ") : ""
+            , show_displayed_balance_ ? Model_Account::toCurrency(m_filteredBalance, account) : "");
+        m_header_balance->SetLabelText(summaryLine);
     }
     this->Layout();
 }

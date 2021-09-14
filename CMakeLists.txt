@@ -17,9 +17,9 @@
 # ./resources/mmex.rc
 # ---------------------------------------------------------------------------
 
-set(MMEX_VERSION 1.5.6)
+set(MMEX_VERSION 1.5.7)
 SET(MMEX_VERSION_ALPHA -1)
-SET(MMEX_VERSION_BETA -1)
+SET(MMEX_VERSION_BETA 1)
 SET(MMEX_VERSION_RC -1)
 
 # ---------------------------------------------------------------------------
@@ -75,6 +75,7 @@ FILE (WRITE ${PROJECT_SOURCE_DIR}/src/build.h "#define BUILD_DATE __DATE__\n"
 
 # Find Git commit details to put into versions.h later
 # Get the current working branch
+find_package(Git REQUIRED)
 execute_process(COMMAND ${GIT_EXECUTABLE} symbolic-ref --short -q HEAD
     WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
     OUTPUT_VARIABLE GIT_BRANCH

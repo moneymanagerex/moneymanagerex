@@ -311,7 +311,7 @@ void mmBDDialog::dataToControls()
     {
         SetDialogHeader(_("Enter Recurring Transaction"));
         m_date_due->Disable();
-        wxSpinButton* spinTransDate = static_cast<wxSpinButton*>(FindWindow(ID_DIALOG_TRANS_DATE_SPINNER));
+        wxSpinButton* spinTransDate = static_cast<wxSpinButton*>(FindWindow(ID_DIALOG_BD_REPEAT_DATE_SPINNER));
         if (spinTransDate) spinTransDate->Disable();
         m_choice_transaction_type->Disable();
         m_choice_repeat->Disable();
@@ -809,6 +809,7 @@ void mmBDDialog::updateControlsForTransType()
     wxStaticText* accountLabel = static_cast<wxStaticText*>(FindWindow(ID_DIALOG_TRANS_STATIC_ACCOUNT));
     wxStaticText* stp = static_cast<wxStaticText*>(FindWindow(ID_DIALOG_TRANS_STATIC_PAYEE));
 
+    m_transfer = false;
     switch (m_choice_transaction_type->GetSelection())
     {
     case Model_Billsdeposits::TRANSFER:

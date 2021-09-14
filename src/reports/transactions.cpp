@@ -1,7 +1,7 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
  Copyright (C) 2011, 2012 Nikolay & Stefano Giorgio
- Copyright (C) 2015, 2017 Nikolay Akimov
+ Copyright (C) 2015, 2017, 2021 Nikolay Akimov
  Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute transcation and/or modify
@@ -58,9 +58,33 @@ wxString mmReportTransactions::getHTMLText()
         }
     }
 
+    const wxString extra_style = R"(
+table {
+  width: 100%;
+}
+  th.ID, th.Status {
+  width: 3%;
+}
+  th.Color, th.Date, th.Number, th.Type {
+  width: 5%;
+}
+  th.Amount {
+  width: 8%;
+}
+  th.Account, th.Category, th.Payee {
+  width: 10%;
+}
+)";
+
     mmHTMLBuilder hb;
-    hb.init();
+    hb.init(false, extra_style);
     hb.addReportHeader(getReportTitle());
+    wxDateTime start,end;
+    start.ParseISODate(m_transDialog->getBeginDate());
+    end.ParseISODate(m_transDialog->getEndDate());
+    hb.DisplayDateHeading(start, end
+        , m_transDialog->getDateRangeCheckBox() || m_transDialog->getStartDateCheckBox()
+        , m_transDialog->getStartDateCheckBox());
     hb.DisplayFooter(_("Accounts: ") + accounts);
 
     std::map<int, double> total; //Store transaction amount with original currency
@@ -76,16 +100,17 @@ wxString mmReportTransactions::getHTMLText()
             {
                 hb.startTableRow();
                 {
-                    hb.addTableHeaderCell(_("ID"));
-                    hb.addTableHeaderCell(_("Date"));
-                    hb.addTableHeaderCell(_("Number"));
-                    hb.addTableHeaderCell(_("Account"));
-                    hb.addTableHeaderCell(_("Payee"));
-                    hb.addTableHeaderCell(_("Status"));
-                    hb.addTableHeaderCell(_("Category"));
-                    hb.addTableHeaderCell(_("Type"));
-                    hb.addTableHeaderCell(_("Amount"), true);
-                    hb.addTableHeaderCell(_("Notes"));
+                    hb.addTableHeaderCell(_("ID"), "ID");
+                    hb.addTableHeaderCell(_("Color"), "Color");
+                    hb.addTableHeaderCell(_("Date"), "Date");
+                    hb.addTableHeaderCell(_("Number"), "Number");
+                    hb.addTableHeaderCell(_("Account"), "Account");
+                    hb.addTableHeaderCell(_("Payee"), "Payee");
+                    hb.addTableHeaderCell(_("Status"), "Status");
+                    hb.addTableHeaderCell(_("Category"), "Category");
+                    hb.addTableHeaderCell(_("Type"), "Type");
+                    hb.addTableHeaderCell(_("Amount"), "Amount text-right");
+                    hb.addTableHeaderCell(_("Notes"), "Notes");
                 }
                 hb.endTableRow();
             }
@@ -115,6 +140,7 @@ wxString mmReportTransactions::getHTMLText()
                                 && m_transDialog->getTypeCheckBox() && */
                             hb.addTableCellLink(wxString::Format("trx:%d", transaction.TRANSID)
                                 , wxString::Format("%i", transaction.TRANSID));
+                            hb.addColorMarker(getUDColour(transaction.FOLLOWUPID).GetAsString());
                             hb.addTableCellDate(transaction.TRANSDATE);
                             hb.addTableCell(transaction.TRANSACTIONNUMBER);
                             hb.addTableCellLink(wxString::Format("trxid:%d", transaction.TRANSID)

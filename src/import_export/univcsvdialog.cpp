@@ -1,7 +1,7 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
  Copyright (c) 2013,2014 Guan Lisheng (guanlisheng@gmail.com)
- Copyright (C) 2015, 2019 Nikolay Akimov
+ Copyright (C) 2015, 2019, 2021 Nikolay Akimov
  Copyright (C) 2015 Yosef
 
  This program is free software; you can redistribute it and/or modify
@@ -1756,8 +1756,10 @@ void mmUnivCSVDialog::parseToken(int index, const wxString& orig_token, tran_hol
         holder.Type = Model_Checking::all_type()[Model_Checking::DEPOSIT];
         break;
 
+    // A number of type options are supported to make amount positive 
+    // ('debit' seems odd but is there for backwards compatability!)
     case UNIV_CSV_TYPE:
-        if (token == "debit") {
+        if ( wxString("Debit|debit|Deposit|deposit|+").Contains(token)) {
             holder.Type = Model_Checking::all_type()[Model_Checking::DEPOSIT];
         }
         break;

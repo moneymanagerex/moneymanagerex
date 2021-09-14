@@ -45,6 +45,7 @@ public:
 
 private:
     void Create();
+    void OnHTMLScaleSpin(wxSpinEvent& event);
     void OnThemeManagerSelected(wxCommandEvent& event);
     void OnNavTreeColorChanged(wxCommandEvent& event);
 
@@ -60,8 +61,10 @@ private:
 
     
     wxButton* m_theme_manager;
+    wxChoice* m_theme_mode;
     wxChoice* m_choice_visible;
     wxSpinCtrl* m_scale_factor;
+    int htmlScaleMin, htmlScaleMax;
     wxChoice* m_toolbar_icon_size;
     wxChoice* m_navigation_icon_size;
     wxChoice* m_others_icon_size;
@@ -72,12 +75,14 @@ private:
     wxCheckBox* m_budget_summary_without_category;
     wxCheckBox* m_ignore_future_transactions;
     wxSpinCtrl* m_budget_days_offset;
+    wxSpinCtrl* m_reporting_firstday;
 
     wxCheckBox* m_showToolTips;
     wxCheckBox* m_showMoneyTips;
 
     enum
     {
-        ID_DIALOG_THEMEMANAGER = wxID_HIGHEST + 100
+        ID_DIALOG_THEMEMANAGER = wxID_HIGHEST + 100,
+        ID_DIALOG_HTML_SCALE
     };
 };

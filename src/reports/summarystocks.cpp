@@ -1,5 +1,6 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
+ Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -92,7 +93,7 @@ wxString mmReportSummaryStocks::getHTMLText()
     // Build the report
     mmHTMLBuilder hb;
     hb.init();
-    hb.addReportHeader(getReportTitle());
+    hb.addReportHeader(getReportTitle(), m_date_range->startDay());
 
     hb.addDivContainer("shadow");
     {
@@ -105,12 +106,12 @@ wxString mmReportSummaryStocks::getHTMLText()
                     hb.addTableHeaderCell(_("Name"));
                     hb.addTableHeaderCell(_("Symbol"));
                     hb.addTableHeaderCell(_("Purchase Date"));
-                    hb.addTableHeaderCell(_("Quantity"), true);
-                    hb.addTableHeaderCell(_("Initial Value"), true);
-                    hb.addTableHeaderCell(_("Current Price"), true);
-                    hb.addTableHeaderCell(_("Commission"), true);
-                    hb.addTableHeaderCell(_("Gain/Loss"), true);
-                    hb.addTableHeaderCell(_("Current Value"), true);
+                    hb.addTableHeaderCell(_("Quantity"), "text-right");
+                    hb.addTableHeaderCell(_("Initial Value"), "text-right");
+                    hb.addTableHeaderCell(_("Current Price"), "text-right");
+                    hb.addTableHeaderCell(_("Commission"), "text-right");
+                    hb.addTableHeaderCell(_("Gain/Loss"), "text-right");
+                    hb.addTableHeaderCell(_("Current Value"), "text-right");
                 }
                 hb.endTableRow();
             }
@@ -125,7 +126,7 @@ wxString mmReportSummaryStocks::getHTMLText()
                 {
                     hb.startTableRow();
                     {
-                        hb.addTableHeaderCell(acct.name,false,false,9,false);
+                        hb.addTableHeaderCell(acct.name, "text-left", 9);
                     }
                     hb.endTableRow();
                 }
@@ -140,7 +141,7 @@ wxString mmReportSummaryStocks::getHTMLText()
                             hb.addTableCell(entry.name);
                             hb.addTableCell(entry.symbol);
                             hb.addTableCellDate(entry.date);
-                            hb.addTableCell(Model_Account::toString(entry.qty, account, floor(entry.qty) ? 0 : 4), true);
+                            hb.addTableCell(Model_Account::toString(entry.qty, account, floor(entry.qty) ? 0 : 4), "text-right");
                             hb.addCurrencyCell(entry.purchase, currency, 4);
                             hb.addCurrencyCell(entry.current, currency, 4);
                             hb.addCurrencyCell(entry.commission, currency, 4);
@@ -194,7 +195,7 @@ wxString mmReportChartStocks::getHTMLText()
     // Build the report
     mmHTMLBuilder hb;
     hb.init();
-    hb.addReportHeader(getReportTitle());
+    hb.addReportHeader(getReportTitle(), m_date_range->startDay());
     wxTimeSpan dtDiff = m_date_range->end_date() - m_date_range->start_date();
     if (m_date_range->is_with_date() && dtDiff.GetDays() <= 366)
         hb.DisplayDateHeading(m_date_range->start_date(), m_date_range->end_date(), true);

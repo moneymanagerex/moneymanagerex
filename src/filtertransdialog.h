@@ -61,11 +61,14 @@ public:
     int getSubCategId();
     void SetStoredSettings(int id);
 
+    const wxString getBeginDate() { return m_begin_date; };
+    const wxString getEndDate() { return m_end_date; };
+    bool getDateRangeCheckBox();
+    bool getStartDateCheckBox();
+
 private:
     void BuildPayeeList();
 
-    bool getDateRangeCheckBox();
-    bool getStartDateCheckBox();
     bool getAmountRangeCheckBoxMin();
     bool getAmountRangeCheckBoxMax();
     double getAmountMax();
@@ -118,14 +121,13 @@ private:
     void OnButtonClearClick(wxCommandEvent& event);
     void OnSettingsSelected(wxCommandEvent& event);
     void datePresetMenu(wxMouseEvent& event);
-    void datePresetMenuSelected(wxCommandEvent& event);
+    void OnMenuSelected(wxCommandEvent& event);
     void OnPayeeUpdated(wxCommandEvent& event);
     void OnTextEntered(wxCommandEvent& event);
     void OnSaveSettings(wxCommandEvent& event);
     void SaveSettings(int menu_item);
     void OnAccountsButton(wxCommandEvent& WXUNUSED(event));
     void OnColourButton(wxCommandEvent& /*event*/);
-    void OnColourSelected(wxCommandEvent& event);
 
     void OnCategs(wxCommandEvent& event);
     const wxString to_json(bool i18n = false);

@@ -133,7 +133,7 @@ wxString mmReportCategoryExpenses::getHTMLText()
     mmHTMLBuilder hb;
     hb.init();
 
-    hb.addReportHeader(getReportTitle());
+    hb.addReportHeader(getReportTitle(), m_date_range->startDay());
     hb.DisplayDateHeading(m_date_range->start_date(), m_date_range->end_date(), m_date_range->is_with_date());
     hb.DisplayFooter(getAccountNames());
 
@@ -171,8 +171,8 @@ wxString mmReportCategoryExpenses::getHTMLText()
                 hb.startTableRow();
                 {
                     hb.addTableHeaderCell(_("Category"));
-                    hb.addTableHeaderCell(_("Amount"), true);
-                    hb.addTableHeaderCell(_("Total"), true);
+                    hb.addTableHeaderCell(_("Amount"), "text-right");
+                    hb.addTableHeaderCell(_("Total"), "text-right");
                 }
                 hb.endTableRow();
             }
@@ -279,8 +279,16 @@ wxString mmReportCategoryOverTimePerformance::getHTMLText()
     wxDate sd = m_date_range->start_date();
     wxDate ed = m_date_range->end_date();
     sd.Add(wxDateSpan::Months(m_date_selection));
-    ed.Add(wxDateSpan::Months(m_date_selection));
-    ed = ed.GetLastMonthDay();
+    ed.Add(wxDateSpan::Months(m_date_selection+1));
+    // Use mmDateRange logic to get the right start/end days
+    mmDateRange temp_date;
+    temp_date.findEndOfMonth(); // Sets up start day
+    temp_date.start_date(sd);
+    temp_date.set_end_date(ed);
+    temp_date.setValidDate(mmDateRange::START);
+    temp_date.setValidDate(mmDateRange::END); 
+    sd = temp_date.start_date();
+    ed = temp_date.end_date();   
     mmDateRange* date_range = new mmSpecifiedRange(sd, ed);
 
     //Get statistic
@@ -336,7 +344,7 @@ wxString mmReportCategoryOverTimePerformance::getHTMLText()
     // Build the report
     mmHTMLBuilder hb;
     hb.init();
-    hb.addReportHeader(getReportTitle());
+    hb.addReportHeader(getReportTitle(), m_date_range->startDay());
     hb.DisplayDateHeading(sd, ed, true);
     hb.DisplayFooter(getAccountNames());
 
@@ -414,9 +422,9 @@ wxString mmReportCategoryOverTimePerformance::getHTMLText()
                     {
                         wxDateTime d = start_date.Add(wxDateSpan::Months(i));
                         hb.addTableHeaderCell(wxGetTranslation(wxDateTime::GetEnglishMonthName(d.GetMonth()
-                            , wxDateTime::Name_Abbr)) + wxString::Format("<br>%i", d.GetYear()), true);
+                            , wxDateTime::Name_Abbr)) + wxString::Format("<br>%i", d.GetYear()), "text-right");
                     }
-                    hb.addTableHeaderCell(_("Overall"), true);
+                    hb.addTableHeaderCell(_("Overall"), "text-right");
                 }
                 hb.endTableRow();
             }

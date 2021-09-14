@@ -107,7 +107,7 @@ void OptionSettingsView::Create()
     m_showMoneyTips->SetValue(Option::instance().getShowMoneyTips());
     view_sizer1->Add(m_showMoneyTips, g_flagsH);
 
-    // Budget options
+    // Transaction/Budget options
     wxStaticBox* trxStaticBox = new wxStaticBox(this, wxID_STATIC, _("Transaction/Budget Options"));
     SetBoldFont(trxStaticBox);
     wxStaticBoxSizer* trxStaticBoxSizer = new wxStaticBoxSizer(trxStaticBox, wxVERTICAL);
@@ -141,6 +141,18 @@ void OptionSettingsView::Create()
     mmToolTip(m_budget_days_offset, _("Advance or retard the start date from the 1st of the month or year by the number of days"));
     m_budget_days_offset->SetValue(Option::instance().getBudgetDaysOffset());
     budget_offset_sizer->Add(m_budget_days_offset, g_flagsH);
+
+    // Allows the 'first day' in the month to be adjusted for reporting purposes
+    wxBoxSizer* reporting_firstday_sizer = new wxBoxSizer(wxHORIZONTAL);
+    trxStaticBoxSizer->Add(reporting_firstday_sizer);
+
+    reporting_firstday_sizer->Add(new wxStaticText(this, wxID_STATIC, _("Start day of month for reporting:")), g_flagsH);
+
+    m_reporting_firstday = new wxSpinCtrl(this, wxID_ANY
+        , wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 1, 31);
+    mmToolTip(m_reporting_firstday, _("Allows the 'first day' in the month to be adjusted for reporting purposes"));
+    m_reporting_firstday->SetValue(Option::instance().getReportingFirstDay());
+    reporting_firstday_sizer->Add(m_reporting_firstday, g_flagsH);
 
     m_ignore_future_transactions = new wxCheckBox(this, wxID_STATIC
         , _("Ignore Future Transactions")
@@ -204,11 +216,32 @@ void OptionSettingsView::Create()
     view_sizer2->Add(new wxStaticText(this, wxID_STATIC, _("Style Template")), g_flagsH);
     view_sizer2->Add(m_theme_manager, g_flagsH);
 
+    //
+    wxArrayString theme_mode_values;
+    theme_mode_values.Add(_("Auto"));
+    theme_mode_values.Add(_("Light"));
+    theme_mode_values.Add(_("Dark"));
+
+    m_theme_mode = new wxChoice(this, wxID_RESIZE_FRAME, wxDefaultPosition
+                        , wxDefaultSize, theme_mode_values);
+    mmToolTip(m_theme_mode, _("Specify preferred theme variant to use if supported"));
+    m_theme_mode->SetSelection(Option::instance().getThemeMode());
+    view_sizer2->Add(new wxStaticText(this, wxID_STATIC, _("Theme Mode")), g_flagsH);
+    view_sizer2->Add(m_theme_mode, g_flagsH);
+
+    //
     view_sizer2->Add(new wxStaticText(this, wxID_STATIC, _("HTML Scale Factor")), g_flagsH);
 
-    int max = 300; int min = 25;
-    m_scale_factor = new wxSpinCtrl(this, wxID_ANY
-        , wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, min, max);
+    htmlScaleMax = 300;
+    htmlScaleMin = 25;
+
+    m_scale_factor = new wxSpinCtrl(this, ID_DIALOG_HTML_SCALE
+        , wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, htmlScaleMin, htmlScaleMax);
+#ifdef __WXMAC__ // Workaround for bug https://trac.wxwidgets.org/ticket/12968
+    m_scale_factor->SetRange(0, htmlScaleMax);
+    m_scale_factor->Connect(ID_DIALOG_HTML_SCALE, wxEVT_SPINCTRL
+        , wxSpinEventHandler(OptionSettingsView::OnHTMLScaleSpin), nullptr, this);
+#endif
 
     int vFontSize = Option::instance().getHtmlFontSize();
     m_scale_factor->SetValue(vFontSize);
@@ -259,6 +292,14 @@ void OptionSettingsView::Create()
     this->Connect(ID_DIALOG_THEMEMANAGER, wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(OptionSettingsView::OnThemeManagerSelected), nullptr, this);
 }
 
+//----------------------------------------------------------------------------
+// Workaround for bug https://trac.wxwidgets.org/ticket/12968
+void OptionSettingsView::OnHTMLScaleSpin(wxSpinEvent& event)
+{
+    if (m_scale_factor->GetValue() < htmlScaleMin)
+        m_scale_factor->SetValue(htmlScaleMin);
+    event.Skip();
+}
 void OptionSettingsView::OnNavTreeColorChanged(wxCommandEvent& event)
 {
     if (event.GetId() == wxID_REDO)
@@ -310,9 +351,11 @@ bool OptionSettingsView::SaveSettings()
         accVisible = visible_acc_obj->GetData();
     Model_Setting::instance().SetViewAccounts(accVisible);
 
+    int themeMode = m_theme_mode->GetSelection();
+    Option::instance().setThemeMode(themeMode);
+    
     int size = m_scale_factor->GetValue();
     Option::instance().setHTMLFontSizes(size);
-
     int i[4] = { 16, 24, 32, 48 };
     size = m_others_icon_size->GetSelection();
     size = i[size];
@@ -330,6 +373,7 @@ bool OptionSettingsView::SaveSettings()
     Option::instance().BudgetIncludeTransfers(m_budget_include_transfers->GetValue());
     Option::instance().BudgetReportWithSummaries(m_budget_summary_without_category->GetValue());
     Option::instance().setBudgetDaysOffset(m_budget_days_offset->GetValue());
+    Option::instance().setReportingFirstDay(m_reporting_firstday->GetValue());
     Option::instance().IgnoreFutureTransactions(m_ignore_future_transactions->GetValue());
     Option::instance().ShowToolTips(m_showToolTips->GetValue());
     Option::instance().ShowMoneyTips(m_showMoneyTips->GetValue());

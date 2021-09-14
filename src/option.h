@@ -1,5 +1,6 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
+ Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -29,6 +30,7 @@ class Option
 {
 public:
     enum USAGE_TYPE { NONE = 0, LASTUSED, UNUSED, DEFAULT };
+    enum THEME_MODE { AUTO = 0, LIGHT, DARK };
 
 public:
     Option();
@@ -109,9 +111,16 @@ public:
     /**Re-adjust date by the date offset value*/
     void setBudgetDateOffset(wxDateTime& date) const;
 
+    // Allows the 'first day' in the month to be adjusted for reporting purposes
+    void setReportingFirstDay(int value);
+    int getReportingFirstDay() const;
+
     /* stored value in percantage for scale html font and other objects */
     void setHTMLFontSizes(int value);
     int getHtmlFontSize();
+
+    void setThemeMode(int value);
+    int getThemeMode();
 
     void setIconSize(int value);
     void setToolbarIconSize(int value);
@@ -163,12 +172,14 @@ private:
     bool m_newsChecking;                    //INIDB_CHECK_NEWS
     int m_sharePrecision;
 
+    int m_theme_mode;
     int m_html_font_size;
     int m_ico_size;
     int m_toolbar_ico_size;
     int m_navigation_ico_size;
 
     int m_budget_days_offset;
+    int m_reporting_firstday;
 };
 
 inline int Option::getIconSize() { return m_ico_size; }
@@ -217,4 +228,9 @@ inline bool Option::getShowMoneyTips() const
 inline int Option::getBudgetDaysOffset() const
 {
     return m_budget_days_offset;
+}
+
+inline int Option::getReportingFirstDay() const
+{
+    return m_reporting_firstday;
 }

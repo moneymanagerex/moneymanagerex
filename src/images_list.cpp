@@ -20,6 +20,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "images_list.h"
 #include "model/Model_Setting.h"
 #include "option.h"
+#include "platfdep.h"
 #include "util.h"
 #include <wx/image.h>
 #include <wx/bitmap.h>
@@ -182,6 +183,7 @@ const std::map<int, std::tuple<wxString, wxString, bool> > metaDataTrans()
 
 const std::vector<std::pair<int, int> > sizes = { {0, 16}, {1, 24}, {2, 32}, {3, 48} };
 const int mmBitmapButtonSize = 16;
+bool darkFound, darkMode;
 
 static wxSharedPtr<wxBitmap> programIcons[4][MAX_PNG];
 Document metaData_doc;
@@ -319,11 +321,12 @@ bool processThemes(wxString themeDir, wxString myTheme, bool metaPhase)
                 const wxString fileFullPath = fileEntryName.GetFullPath();
                 const wxString fileEntry = fileEntryName.GetFullName();
                 std::string fileName = std::string(fileEntry.mb_str());
+                const wxString fileNameString(fileName);
 
                 if (fileEntryName.IsDir())
                     continue;   // We can skip directories
                 
-                if (metaPhase)  // For this phase we are only interested in the metadata
+                if (metaPhase)  // For this phase we are only interested in the metadata and checking if theme has dark-mode components
                 {
                     if (fileName == "_theme.json")
                     {
@@ -336,11 +339,24 @@ bool processThemes(wxString themeDir, wxString myTheme, bool metaPhase)
                             wxMessageBox(wxString::Format(_("Metadata JSON in Theme '%s' cannot be parsed and looks badly constructed, please correct.")
                                 , thisTheme), _("Warning"), wxOK | wxICON_WARNING);
                         }
+                    } else
+                    {
+                        if (!darkFound && fileNameString.StartsWith("dark-"))
+                            darkFound = true;
                     }
                     continue;
                 }
 
-                //wxLogDebug("fileEntry: %s", fileEntry);
+                // Only process dark mode files when in theme and needed
+                if (darkFound)
+                    if (darkMode && !fileNameString.StartsWith("dark-"))
+                            continue;
+                    else if (!darkMode && fileNameString.StartsWith("dark-"))
+                        continue;
+
+                // Remove dark mode prefix 
+                if (darkFound && darkMode) 
+                    fileName = fileName.substr(5);
 
                 // If the file does not match an icon file then just load into VFS / tmp
                 if (!iconName2enum.count(fileName))
@@ -410,11 +426,12 @@ bool checkThemeContents(wxArrayString *filesinTheme)
     bool success = true;
 
     // Check for required files
-    const wxString neededFiles[] = { "master.css", "_theme.json", "_theme.png", "" };
+    const wxString neededFiles[] = { "master.css", "" };
     
     for (int i = 0; !neededFiles[i].IsEmpty(); i++)
     {
-        if (wxNOT_FOUND == filesinTheme->Index(neededFiles[i])) {
+        wxString realName = (darkFound && darkMode) ? neededFiles[i].AfterLast('-') : neededFiles[i];
+        if (wxNOT_FOUND == filesinTheme->Index(realName)) {
             wxMessageBox(wxString::Format(_("File '%s' missing or invalid in chosen theme '%s'")
                 , neededFiles[i], Model_Setting::instance().Theme()), _("Warning"), wxOK | wxICON_WARNING);
             success = false;
@@ -470,15 +487,19 @@ bool checkThemeContents(wxArrayString *filesinTheme)
 void reverttoDefaultTheme()
 {
     Model_Setting::instance().SetTheme("default");
+    darkFound = false;
     processThemes(mmex::getPathResource(mmex::THEMESDIR), Model_Setting::instance().Theme(), true);
     processThemes(mmex::getPathResource(mmex::THEMESDIR), Model_Setting::instance().Theme(), false);  
 }
 
 void LoadTheme()
 {
+    darkMode = ( (mmex::isDarkMode() && (Option::THEME_MODE::AUTO == Option::instance().getThemeMode())) 
+                    || (Option::THEME_MODE::DARK == Option::instance().getThemeMode()));
     filesInVFS = new wxArrayString();
 
     // Scan first for metadata then for the icons and other files
+    darkFound = false;
     if (processThemes(mmex::getPathResource(mmex::THEMESDIR), Model_Setting::instance().Theme(), true))
         processThemes(mmex::getPathResource(mmex::THEMESDIR), Model_Setting::instance().Theme(), false);
     else
@@ -504,6 +525,8 @@ const wxString mmThemeMetaString(int ref)
 {
     auto i = metaDataTrans().find(ref)->second;
     wxString metaLocation = std::get<0>(i);
+    if (darkFound && darkMode && !metaLocation.StartsWith("/theme"))
+        metaLocation.Prepend("/dark");
     const Pointer ptr(metaLocation.mb_str());
     wxString metaValue = wxString::FromUTF8(GetValueByPointerWithDefault(metaData_doc, ptr, "").GetString());
     if (metaValue.IsEmpty() && !std::get<2>(i))
