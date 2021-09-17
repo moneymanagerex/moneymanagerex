@@ -152,7 +152,7 @@ bool mmCustomData::FillCustomFields(wxBoxSizer* box_sizer)
             int DigitScale = Model_CustomField::getDigitScale(field.PROPERTIES);
             wxSpinCtrlDouble* CustomDecimal = new wxSpinCtrlDouble(scrolled_window, controlID
                 , wxEmptyString, wxDefaultPosition, wxDefaultSize
-                , wxSP_ARROW_KEYS, -2147483647, 2147483647, value, 1 / pow(10, DigitScale));
+                , wxSP_ARROW_KEYS, -2147483647, 2147483647, value, 1 / pow10(DigitScale));
             CustomDecimal->SetDigits(DigitScale);
             mmToolTip(CustomDecimal, Model_CustomField::getTooltip(field.PROPERTIES));
             grid_sizer_custom->Add(CustomDecimal, g_flagsExpand);

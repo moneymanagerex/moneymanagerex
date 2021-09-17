@@ -502,7 +502,7 @@ void mmHTMLBuilder::endTableCell()
 void mmHTMLBuilder::addChart(const GraphData& gd)
 {
     int precision = Model_Currency::precision(Model_Currency::GetBaseCurrency());
-    int round = pow(10, precision);
+    int round = pow10(precision);
     wxString htmlChart, htmlPieData;
     wxString divid = wxString::Format("apex%i", rand()); // Generate unique identifier for each graph
  

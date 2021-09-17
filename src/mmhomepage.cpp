@@ -427,7 +427,7 @@ const wxString htmlWidgetIncomeVsExpenses::getHTMLText()
     if (scaleStepWidth <= 1.0)
         scaleStepWidth = 1.0;
     else {
-        double s = (pow(10, ceil(log10(scaleStepWidth)) - 1.0));
+        double s = (pow10(ceil(log10(scaleStepWidth)) - 1.0));
         if (s > 0) scaleStepWidth = ceil(scaleStepWidth / s)*s;
     }
 

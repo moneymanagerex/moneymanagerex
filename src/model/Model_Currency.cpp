@@ -22,6 +22,7 @@
 #include "Model_Checking.h"
 #include "Model_Stock.h"
 #include "option.h"
+#include "util.h"
 
 #include <fmt/core.h>
 #include <fmt/locale.h>
@@ -221,7 +222,7 @@ const wxString Model_Currency::toString(double value, const Data* currency, int 
         precision = log10(currency ? currency->SCALE : GetBaseCurrency()->SCALE);
     }
 
-    int k = pow(10, precision);
+    long long k = pow10(precision);
     long double v = value * k;
     v = round(v) / k;
 
@@ -229,11 +230,11 @@ const wxString Model_Currency::toString(double value, const Data* currency, int 
     if (defaultLocaleSupport == "Y")
     {
         s = fmt::format((use_locale == "Y" ? std::locale(locale.c_str()) : std::locale("en_US"))
-            , "{:L}", static_cast<unsigned long long>(fabs(v) + 5 / (pow(10, precision + 1))));
+            , "{:L}", static_cast<unsigned long long>(fabs(v) + 5 / (pow10(precision + 1))));
     }
     else {
         //In case if no en_US supported don't use any one
-        s = fmt::format("{:d}", static_cast<unsigned long long>(fabs(v) + 5 / (pow(10, precision + 1))));
+        s = fmt::format("{:d}", static_cast<unsigned long long>(fabs(v) + 5 / (pow10(precision + 1))));
     }
 
     if (precision > 0) {
