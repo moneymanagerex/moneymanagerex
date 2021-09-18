@@ -241,3 +241,6 @@ const wxColor* bestFontColour(wxColour background);
 wxImageList* createImageList();
 
 void mmToolTip(wxWindow* widget, wxString tip);
+
+//fast alternative for pow(10, y)
+int pow10(int y);
