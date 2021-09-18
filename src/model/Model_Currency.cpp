@@ -222,7 +222,7 @@ const wxString Model_Currency::toString(double value, const Data* currency, int 
         precision = log10(currency ? currency->SCALE : GetBaseCurrency()->SCALE);
     }
 
-    long long k = pow10(precision);
+    int k = pow10(precision);
     long double v = value * k;
     v = round(v) / k;
 

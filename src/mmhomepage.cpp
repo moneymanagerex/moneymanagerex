@@ -427,8 +427,9 @@ const wxString htmlWidgetIncomeVsExpenses::getHTMLText()
     if (scaleStepWidth <= 1.0)
         scaleStepWidth = 1.0;
     else {
-        double s = (pow10(ceil(log10(scaleStepWidth)) - 1.0));
-        if (s > 0) scaleStepWidth = ceil(scaleStepWidth / s)*s;
+        double s = pow10(ceil(log10(scaleStepWidth)) - 1.0);
+        if (s > 0)
+            scaleStepWidth = ceil(scaleStepWidth / s)*s;
     }
 
     StringBuffer json_buffer;
