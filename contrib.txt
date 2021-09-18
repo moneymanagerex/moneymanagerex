@@ -169,9 +169,11 @@ Luisa Guglielmetti
 Rafael Moreira
 Francisco Fos Ros
 Marco Giuseppe Stimolo
+David Lehmann
 Ian Rowe
 Jonathan Thomas
 RICARDO ITURRIAGA
+Doru Stoica
 José Moya Iglesias
 
 ### 2020

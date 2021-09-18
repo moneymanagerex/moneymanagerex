@@ -350,6 +350,7 @@ void mmFilterTransactionsDialog::CreateControls()
 
     notesEdit_ = new wxTextCtrl(itemPanel, wxID_ANY);
     itemPanelSizer->Add(notesEdit_, g_flagsExpand);
+    notesEdit_->SetHint("*");
 
     // Colour
     colourCheckBox_ = new wxCheckBox(itemPanel, wxID_ANY, _("Color")
