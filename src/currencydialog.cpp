@@ -308,7 +308,7 @@ void mmCurrencyDialog::OnTextChanged(wxCommandEvent& WXUNUSED(event))
     m_currency->SFX_SYMBOL = sfxTx_->GetValue();
     m_currency->DECIMAL_POINT = decTx_->GetValue();
     m_currency->GROUP_SEPARATOR = grpTx_->GetValue();
-    m_currency->SCALE = static_cast<int>(pow(10, scale));
+    m_currency->SCALE = pow10(scale);
     m_currency->CURRENCY_SYMBOL = m_currencySymbol->GetValue().Trim();
     m_currency->CURRENCYNAME = m_currencyName->GetValue();
 
