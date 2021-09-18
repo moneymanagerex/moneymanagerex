@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-31 10:25+0300\n"
-"PO-Revision-Date: 2021-09-18 18:31\n"
+"PO-Revision-Date: 2021-09-18 18:44\n"
 "Last-Translator: \n"
 "Language-Team: Ukrainian\n"
 "MIME-Version: 1.0\n"
@@ -25,15 +25,15 @@ msgstr ""
 
 #: aboutdialog.cpp:55
 msgid "License agreement"
-msgstr ""
+msgstr "Ліцензійна угода"
 
 #: aboutdialog.cpp:187
 msgid "About"
-msgstr ""
+msgstr "Про програму"
 
 #: aboutdialog.cpp:192
 msgid "Authors"
-msgstr ""
+msgstr "Автори"
 
 #: aboutdialog.cpp:197
 msgid "Sponsors"
@@ -45,15 +45,15 @@ msgstr "Ліцензія"
 
 #: aboutdialog.cpp:207
 msgid "Privacy"
-msgstr ""
+msgstr "Конфіденційність"
 
 #: aboutdialog.cpp:245 optionsettingsnet.cpp:114
 msgid "Send anonymous statistics usage data"
-msgstr ""
+msgstr "Надсилати анонімну статистику про використання даних"
 
 #: aboutdialog.cpp:246 optionsettingsnet.cpp:116
 msgid "Enable to help us sending anonymous data about MMEX usage."
-msgstr ""
+msgstr "Увімкніть, щоб допомогти нам надсилати анонімні дані про використання MMEX."
 
 #: aboutdialog.cpp:253 accountdialog.cpp:306 appstartdialog.cpp:137
 #: assetdialog.cpp:305 attachmentdialog.cpp:120 billsdepositsdialog.cpp:491
@@ -68,7 +68,7 @@ msgstr ""
 #: splittransactionsdialog.cpp:172 transactionsupdatedialog.cpp:240
 #: transdialog.cpp:606 wizard_update.cpp:192
 msgid "&OK "
-msgstr ""
+msgstr "&ОК "
 
 #: accountdialog.cpp:111 mmframe.cpp:1479
 msgid "Edit Account"
@@ -101,7 +101,7 @@ msgstr "Вкажіть, чи цей рахунок закрито. Закрит�
 #: accountdialog.cpp:165
 #, c-format
 msgid "Initial Balance: %s"
-msgstr ""
+msgstr "Початковий баланс: %s"
 
 #: accountdialog.cpp:169
 msgid "Enter the initial balance in this account."
@@ -150,7 +150,7 @@ msgstr "Інше"
 
 #: accountdialog.cpp:209
 msgid "Card Number:"
-msgstr ""
+msgstr "Номер картки:"
 
 #: accountdialog.cpp:209
 msgid "Account Number:"
@@ -425,15 +425,15 @@ msgstr "Введіть примітки до цьго майна"
 
 #: assetdialog.cpp:268
 msgid "New Transaction Details"
-msgstr ""
+msgstr "Нові деталі транзакції"
 
 #: assetdialog.cpp:271 sharetransactiondialog.cpp:296
 msgid "Edit Transaction Details"
-msgstr ""
+msgstr "Редагувати деталі транзакції"
 
 #: assetdialog.cpp:306 constants.cpp:73 sharetransactiondialog.cpp:326
 msgid "&Cancel "
-msgstr ""
+msgstr "Скасувати "
 
 #: assetdialog.cpp:402 sharetransactiondialog.cpp:434
 msgid "Invalid Transaction"
@@ -605,7 +605,7 @@ msgstr ""
 #: attachmentdialog.cpp:56 import_export/qif_export.cpp:194
 #: import_export/univcsvdialog.cpp:181
 msgid "File"
-msgstr ""
+msgstr "Файл"
 
 #: attachmentdialog.cpp:64
 msgid "Attachment folder not defined."
