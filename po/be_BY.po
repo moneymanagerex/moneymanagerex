@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-31 10:25+0300\n"
-"PO-Revision-Date: 2021-09-19 19:42\n"
+"PO-Revision-Date: 2021-09-19 19:56\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -4668,11 +4668,11 @@ msgstr "Адчыніць рыдактар катыгорыяў"
 
 #: mmframe.cpp:1726
 msgid "Show Organize Payees Dialog"
-msgstr "Адчыніць рыдактар атрымальнікаў"
+msgstr "Адчыніць дыспетчара атрымальнікаў"
 
 #: mmframe.cpp:1727
 msgid "Show Organize Currency Dialog"
-msgstr "Адчыніць рыдактар валютаў"
+msgstr "Адчыніць дыспетчара валютаў"
 
 #: mmframe.cpp:1733
 msgid "&Options..."
@@ -4680,7 +4680,7 @@ msgstr "&Налады..."
 
 #: mmframe.cpp:1741 mmframe.cpp:2592
 msgid "Register/View Release &Notifications"
-msgstr "Праглядзець інфармацыю пра новыя версіі"
+msgstr "Праглядзець інфармацыю пра &новыя версіі"
 
 #: mmframe.cpp:1746 optionsettingsnet.cpp:121
 msgid "News"
@@ -4692,7 +4692,7 @@ msgstr "Спампаваць курсы"
 
 #: mmframe.cpp:1751
 msgid "Toggle Fullscreen\tF11"
-msgstr "Пераключыць на ўвесь экран\tF11"
+msgstr "Перамкнуць на ўвесь экран\tF11"
 
 #: mmframe.cpp:1812
 #, c-format
@@ -4715,7 +4715,7 @@ msgstr "Прасунутае абнаўленне MMEX"
 
 #: mmframe.cpp:1869 mmframe.cpp:1911
 msgid "No File opened"
-msgstr "Файл не адчынены"
+msgstr "Аніводны файл не адчынены"
 
 #: mmframe.cpp:1871
 msgid "Sorry. The Database version is too old or Database password is incorrect"
@@ -4742,9 +4742,9 @@ msgid "The database you are trying to open has been marked as opened by another 
 "To avoid data loss or conflict, it's strongly recommended that you close all other applications that may be using the database.\n\n"
 "If nothing else is running, it's possible that the database was left open as a result of a crash during previous usage of MMEX.\n\n"
 "Would you like to continue to open this database?"
-msgstr "База дадзеных, якую вы спрабуеце адкрыць, ужо адкрыта іншым асобнікам MMEX.\n"
+msgstr "База дадзеных, якую вы спрабуеце адчыніць, ужо адчыненая іншым асобнікам MMEX.\n"
 "Каб пазбегнуць страты дадзеных або канфлікта, рэкамендуецца зачыніць усе іншыя дадаткі, што могуць выкарыстоўваць БД.\n\n"
-"Калі больш нічога не запушчана, магчыма, база дадзеных была пакінутая адкрытай у выніку збою падчас папярэдняга выкарыстання MMEX.\n\n"
+"Калі больш нічога не запушчанае, то, магчыма, база дадзеных была пакінутая адчыненай у выніку збою падчас папярэдняга выкарыстання MMEX.\n\n"
 "Сапраўды жадаеце адчыніць гэтую базу дадзеных?"
 
 #: mmframe.cpp:1974
