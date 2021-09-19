@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-31 10:25+0300\n"
-"PO-Revision-Date: 2021-09-19 14:50\n"
+"PO-Revision-Date: 2021-09-19 15:21\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -1793,11 +1793,11 @@ msgstr "Дробавых"
 
 #: currencydialog.cpp:217 currencydialog.cpp:279
 msgid "Conversion to Base Rate"
-msgstr "Пераўтварэнне ў базавую стаўку"
+msgstr "Курс абмена на базавую валюту"
 
 #: currencydialog.cpp:223
 msgid "Conversion rate will be used in case no currency history has been found for the currency"
-msgstr "Каэфіцыент канвертавання будзе выкарыстоўвацца ў выпадку, калі гісторыя валюты не была знойдзеная для валюты"
+msgstr "Абменны курс будзе выкарыстоўвацца ў выпадку, калі для валюты не была знойдзеная гісторыя"
 
 #: currencydialog.cpp:225
 msgid "Fixed conversion rate"
