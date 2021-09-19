@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-31 10:25+0300\n"
-"PO-Revision-Date: 2021-09-19 18:11\n"
+"PO-Revision-Date: 2021-09-19 18:25\n"
 "Last-Translator: \n"
 "Language-Team: Serbian (Cyrillic)\n"
 "MIME-Version: 1.0\n"
@@ -194,35 +194,35 @@ msgstr "Унети приступне информације за финанси
 
 #: accountdialog.cpp:236
 msgid "Statement"
-msgstr ""
+msgstr "Стање"
 
 #: accountdialog.cpp:244
 msgid "Statement:"
-msgstr ""
+msgstr "Стање:"
 
 #: accountdialog.cpp:245
 msgid "Locked"
-msgstr ""
+msgstr "Закључано"
 
 #: accountdialog.cpp:246
 msgid "Enable or disable the transaction Lock"
-msgstr ""
+msgstr "Омогући или онемогући закључавање трансакција"
 
 #: accountdialog.cpp:249
 msgid "Reconciled Date:"
-msgstr ""
+msgstr "Датум измирења:"
 
 #: accountdialog.cpp:251
 msgid "The date of the transaction lock"
-msgstr ""
+msgstr "Datum закључавања трансакција"
 
 #: accountdialog.cpp:254
 msgid "Minimum Bal:"
-msgstr ""
+msgstr "Минимално стање:"
 
 #: accountdialog.cpp:256
 msgid "Account balance lower limit. Zero to disable"
-msgstr ""
+msgstr "Доњи лимит стања рачуна. Нула за онемогућење"
 
 #: accountdialog.cpp:261 mmchecking_list.cpp:233
 msgid "Credit"
@@ -230,36 +230,36 @@ msgstr "Кредит"
 
 #: accountdialog.cpp:269
 msgid "Credit Limit:"
-msgstr ""
+msgstr "Кредитни лимит:"
 
 #: accountdialog.cpp:271
 msgid "Credit limit for the Account. Zero to disable"
-msgstr ""
+msgstr "Кредитни лимит за рачун. Нула за онемогућавање"
 
 #: accountdialog.cpp:274
 msgid "Interest Rate:"
-msgstr ""
+msgstr "Каматна стопа:"
 
 #: accountdialog.cpp:278
 msgid "Payment Due Date:"
-msgstr ""
+msgstr "Рок плаћања:"
 
 #: accountdialog.cpp:282
 msgid "Minimum Payment:"
-msgstr ""
+msgstr "Минимална уплата:"
 
 #: accountdialog.cpp:301
 msgid "Organize attachments of this account"
-msgstr ""
+msgstr "Организуј прилоге овог рачуна"
 
 #: accountdialog.cpp:423
 msgid "Default Image"
-msgstr ""
+msgstr "Подразумевана слика"
 
 #: accountdialog.cpp:433
 #, c-format
 msgid "Image #%i"
-msgstr ""
+msgstr "Слика #%i"
 
 #: accountdialog.cpp:504
 msgid "Account Name "
