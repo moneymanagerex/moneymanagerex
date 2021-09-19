@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-31 10:25+0300\n"
-"PO-Revision-Date: 2021-09-13 21:50\n"
+"PO-Revision-Date: 2021-09-19 14:39\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -1604,28 +1604,28 @@ msgstr "Падкатыгорыя выкарыстоўваецца."
 #: categdialog.cpp:323
 msgid "Tip: Change all transactions using this Category to\n"
 "another Category using the relocate command:"
-msgstr "Парада: змяніце гэту катыгорыю ва ўсіх яе аперацыях на іншую катыгорыю з дапамогай каманды перасоўвання:"
+msgstr "Парада: змяніце гэтую катыгорыю ва ўсіх ейных аперацыях на іншую катыгорыю з дапамогай каманды перасоўвання:"
 
 #: categdialog.cpp:326
 msgid "Tip: Change all transactions using this Sub-Category to\n"
 "another Sub-Category using the relocate command:"
-msgstr "Парада: змяніце гэту падкатыгорыю ва ўсіх яе аперацыях на іншую падкатыгорыю з дапамогай каманды перасоўвання:"
+msgstr "Парада: змяніце гэтую падкатыгорыю ва ўсіх ейных аперацыях на іншую падкатыгорыю з дапамогай каманды перасоўвання:"
 
 #: categdialog.cpp:329
 msgid "Tools -> Relocation of -> Categories"
-msgstr "Інструменты -> Замена -> Катыгорыі"
+msgstr "Прылады -> Перасоўванне -> Катыгорыі"
 
 #: categdialog.cpp:331
 msgid "Organise Categories: Delete Error"
-msgstr "Рыдактар катыгорыяў: памылка выдалення"
+msgstr "Дыспетчар катыгорыяў: памылка выдалення"
 
 #: categdialog.cpp:435
 msgid "Select an unused category to delete."
-msgstr "Абярыце катыгорыю, што не выкарыстоўваецца, для выдалення."
+msgstr "Для выдалення абярыце катыгорыю, што не выкарыстоўваецца."
 
 #: categdialog.cpp:460
 msgid "This category cannot be deleted because it's used by transactions."
-msgstr "Гэтая катыгорыя не можа быць выдаленая, таму што яна выкарыстоўваецца."
+msgstr "Гэтая катыгорыя ня можа быць выдаленая, таму што яна выкарыстоўваецца."
 
 #: categdialog.cpp:467
 msgid "Delete an existing category."
