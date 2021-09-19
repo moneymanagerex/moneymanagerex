@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-31 10:25+0300\n"
-"PO-Revision-Date: 2021-09-19 19:10\n"
+"PO-Revision-Date: 2021-09-19 19:20\n"
 "Last-Translator: \n"
 "Language-Team: Serbian (Cyrillic)\n"
 "MIME-Version: 1.0\n"
@@ -544,29 +544,29 @@ msgstr "Погледај транс. "
 
 #: assetspanel.cpp:476
 msgid "View Asset Transactions"
-msgstr ""
+msgstr "Погледај трансакције за имовину"
 
 #: assetspanel.cpp:480 attachmentdialog.cpp:317 billsdepositspanel.cpp:287
 #: categdialog.cpp:233 customfieldlistdialog.cpp:261 maincurrencydialog.cpp:527
 #: mmcheckingpanel.cpp:336 payeedialog.cpp:397 splittransactionsdialog.cpp:166
 #: stockspanel.cpp:143
 msgid "&Edit "
-msgstr ""
+msgstr "Измени "
 
 #: assetspanel.cpp:485 billsdepositspanel.cpp:292 budgetyeardialog.cpp:103
 #: categdialog.cpp:237 maincurrencydialog.cpp:292 mmchecking_list.cpp:406
 #: mmcheckingpanel.cpp:341 stockdialog.cpp:339 stockspanel.cpp:148
 msgid "&Delete "
-msgstr ""
+msgstr "Обриши "
 
 #: assetspanel.cpp:486
 msgid "Delete Asset"
-msgstr "Бриши имовину"
+msgstr "Обриши имовину"
 
 #: assetspanel.cpp:493 billsdepositspanel.cpp:310 mmcheckingpanel.cpp:354
 #: stockspanel.cpp:161
 msgid "Open attachments"
-msgstr ""
+msgstr "Отвори прилоге"
 
 #: assetspanel.cpp:500 assetspanel.cpp:501 mmcheckingpanel.cpp:362
 msgid "Search"
@@ -574,7 +574,7 @@ msgstr "Претрага"
 
 #: assetspanel.cpp:503
 msgid "Enter any string to find related assets"
-msgstr ""
+msgstr "Унесите било који слог да пронађете повезану имовину"
 
 #: assetspanel.cpp:573 stockspanel.cpp:344 stockspanel.cpp:531
 #, c-format
@@ -584,7 +584,7 @@ msgstr "Збир: %s"
 #: assetspanel.cpp:655
 #, c-format
 msgid "Change in Value: %s %s"
-msgstr ""
+msgstr "Промена вредности: %s %s"
 
 #: assetspanel.cpp:771
 msgid "This asset does not have its own account\n\n"
@@ -606,7 +606,7 @@ msgstr ""
 #: attachmentdialog.cpp:56 import_export/qif_export.cpp:194
 #: import_export/univcsvdialog.cpp:181
 msgid "File"
-msgstr "Фајл"
+msgstr "Датотека"
 
 #: attachmentdialog.cpp:64
 msgid "Attachment folder not defined."
