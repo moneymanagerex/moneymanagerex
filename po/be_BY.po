@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-31 10:25+0300\n"
-"PO-Revision-Date: 2021-09-19 18:40\n"
+"PO-Revision-Date: 2021-09-19 18:58\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -4524,7 +4524,7 @@ msgstr "&Slack"
 
 #: mmframe.cpp:1620
 msgid "Communicate online with MMEX team from your desktop or mobile device"
-msgstr "Размаўляйце ў сетцы з MMEX са свайго кампутара або мабільнага"
+msgstr "Размаўляйце ў сетцы з камандай MMEX са свайго кампутара або мабільнага"
 
 #: mmframe.cpp:1622
 msgid "&GitHub"
@@ -4532,7 +4532,7 @@ msgstr "&GitHub"
 
 #: mmframe.cpp:1622
 msgid "Access open source code repository and track reported bug statuses"
-msgstr "Дасяг да рыпазіторыяў з адкрытым сыходным кодам і адсочванне паведамленняў пра памылкі"
+msgstr "Дасяг да рыпазіторыя адкрытага сыходнага кода і адсочванне паведамленняў пра памылкі"
 
 #: mmframe.cpp:1624
 msgid "W&iki pages"
@@ -4540,7 +4540,7 @@ msgstr "Старонкі W&iki"
 
 #: mmframe.cpp:1624
 msgid "Read and update wiki pages"
-msgstr "Чытанне да абнаўленне старонак wiki"
+msgstr "Чытанне ды абнаўленне старонак wiki"
 
 #: mmframe.cpp:1626
 msgid "F&orum"
@@ -4556,7 +4556,7 @@ msgstr "Money Manager Ex для &Android"
 
 #: mmframe.cpp:1630
 msgid "Get free Android version and run MMEX on your smart phone or tablet"
-msgstr "Атрымайце бясплатную версію для Android і запусціце MMEX на сваім смартфоне або планшэце"
+msgstr "Спампуйце бясплатную версію для Android і працуйце з MMEX на сваім смартфоне або планшэце"
 
 #: mmframe.cpp:1632
 msgid "&Newsletter"
@@ -4612,7 +4612,7 @@ msgstr "Дыягностыка"
 
 #: mmframe.cpp:1673
 msgid "Help provide information to the developers"
-msgstr "Дапамога, каб прадаставіць інфармацыю распрацоўшчыкам"
+msgstr "Дапамагчы прадаставіць інфармацыю распрацоўшчыкам"
 
 #: mmframe.cpp:1677
 msgid "&Show App Start Dialog"
