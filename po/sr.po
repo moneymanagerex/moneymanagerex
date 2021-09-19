@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-31 10:25+0300\n"
-"PO-Revision-Date: 2021-09-19 18:58\n"
+"PO-Revision-Date: 2021-09-19 19:10\n"
 "Last-Translator: \n"
 "Language-Team: Serbian (Cyrillic)\n"
 "MIME-Version: 1.0\n"
@@ -345,11 +345,11 @@ msgstr "Уреди имовину"
 
 #: assetdialog.cpp:71 assetdialog.cpp:93 assetspanel.cpp:471
 msgid "Add Asset Transaction"
-msgstr "Додај имовинску трансакцију"
+msgstr "Додај трансакцију за имовину"
 
 #: assetdialog.cpp:97
 msgid "Edit Asset Transaction"
-msgstr "Измени имовинску трансакцију"
+msgstr "Измени трансакцију за имовину"
 
 #: assetdialog.cpp:183
 msgid "Asset Details"
@@ -364,7 +364,7 @@ msgstr "Име"
 
 #: assetdialog.cpp:198
 msgid "Enter the name of the asset"
-msgstr "Унети име имовине"
+msgstr "Унесите назив имовине"
 
 #: assetdialog.cpp:201 assetspanel.cpp:61 filtertransdialog.cpp:533
 #: import_export/qif_export.cpp:588 import_export/qif_import_gui.cpp:99
@@ -384,11 +384,11 @@ msgstr "Датум куповине имовине"
 
 #: assetdialog.cpp:208
 msgid "Asset Type"
-msgstr "Тип имовине"
+msgstr "Врста имовине"
 
 #: assetdialog.cpp:214
 msgid "Select type of asset"
-msgstr "Одабрати тип имовине"
+msgstr "Одаберите врсту имовине"
 
 #: assetdialog.cpp:219 import_export/qif_import_gui.cpp:104
 #: maincurrencydialog.cpp:270
@@ -397,7 +397,7 @@ msgstr "Вредност"
 
 #: assetdialog.cpp:226
 msgid "Enter the current value of the asset"
-msgstr "Унети тренутну вредност имовине"
+msgstr "Унесите тренутну вредност имовине"
 
 #: assetdialog.cpp:231
 msgid "Change in Value"
@@ -405,7 +405,7 @@ msgstr "Промена вредности"
 
 #: assetdialog.cpp:237
 msgid "Specify if the value of the asset changes over time"
-msgstr "Одреди да ли се вредност имовине мења током времена"
+msgstr "Одреди да ли се вредност имовине мења временом"
 
 #: assetdialog.cpp:241
 msgid "% Rate"
@@ -421,7 +421,7 @@ msgstr "Органиуј прилоге за ову имовину"
 
 #: assetdialog.cpp:262
 msgid "Enter notes associated with this asset"
-msgstr "Унети белешке асоциране за ову имовину"
+msgstr "Унесите белешке повезане са овом имовином"
 
 #: assetdialog.cpp:268
 msgid "New Transaction Details"
@@ -433,7 +433,7 @@ msgstr "Измени детаље трансакције"
 
 #: assetdialog.cpp:306 constants.cpp:73 sharetransactiondialog.cpp:326
 msgid "&Cancel "
-msgstr "%Откажи "
+msgstr "&Поништи "
 
 #: assetdialog.cpp:402 sharetransactiondialog.cpp:434
 msgid "Invalid Transaction"
@@ -443,7 +443,7 @@ msgstr "Неважећа трансакција"
 msgid "Asset Account not found.\n\n"
 "Would you want to create one?"
 msgstr "Рачун за имовину није пронађен.\n\n"
-"Да ли желите да направите?"
+"Да ли желите да га направите?"
 
 #: assetspanel.cpp:59 billsdepositspanel.cpp:126
 #: import_export/qif_export.cpp:587 mmchecking_list.cpp:205
@@ -461,7 +461,7 @@ msgstr "ID"
 #: transactionsupdatedialog.cpp:145 transdialog.cpp:501
 #: usertransactionpanel.cpp:138 webappdialog.cpp:150
 msgid "Type"
-msgstr "Тип"
+msgstr "Врста"
 
 #: assetspanel.cpp:63 reports/summarystocks.cpp:110
 msgid "Initial Value"
@@ -506,7 +506,7 @@ msgstr "Организуј прилоге"
 
 #: assetspanel.cpp:200
 msgid "Do you really want to delete the Asset?"
-msgstr "Зтварно избрисати ову имовину?"
+msgstr "Да ли стварно желите да обришете имовину?"
 
 #: assetspanel.cpp:201
 msgid "Confirm Asset Deletion"
@@ -514,13 +514,13 @@ msgstr "Потврда брисања имовине"
 
 #: assetspanel.cpp:385
 msgid "MMEX allows you to track fixed assets like cars, houses, land and others. Each asset can have its value appreciate by a certain rate per year, depreciate by a certain rate per year, or not change in value. The total assets are added to your total financial worth."
-msgstr "MMEX Вам омогућава да пратите сталну имовину попут аутомобила, некретнина, земљишта и остало. Вредност сваке имовине може да се увећава или смањује према годишљој стопи, или да остане непромењена. Збир вредности имовине се додаје Вашем нето богатству."
+msgstr "MMEX Вам омогућава да пратите сталну имовину попут аутомобила, некретнина, земљишта и остало. Вредност сваке имовине може да се увећава или смањује према годишњој стопи, или да остане непромењена. Збир вредности имовине се додаје Вашем нето богатству."
 
 #: assetspanel.cpp:415 assetspanel.h:108 general_report_manager.cpp:723
 #: general_report_manager.cpp:1000 mmframe.cpp:477 mmframe.cpp:743
 #: mmframe.cpp:1541 mmframe.cpp:3011 mmhomepage.cpp:576 mmhomepagepanel.cpp:224
 msgid "Assets"
-msgstr "Имовине"
+msgstr "Имовина"
 
 #: assetspanel.cpp:424 assetspanel.cpp:694 assetspanel.cpp:711
 #: filtertransdialog.cpp:205 import_export/qif_export.cpp:74
