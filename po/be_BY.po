@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-31 10:25+0300\n"
-"PO-Revision-Date: 2021-09-19 17:27\n"
+"PO-Revision-Date: 2021-09-19 17:41\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -4088,7 +4088,7 @@ msgstr "&Рыдагаваць Рахунак"
 
 #: mmframe.cpp:1254 mmframe.cpp:1482
 msgid "&Reallocate Account"
-msgstr "&Пераразмеркаваць кошт"
+msgstr "&Перасунуць рахунак"
 
 #: mmframe.cpp:1255 mmframe.cpp:1292 mmframe.cpp:1485
 msgid "&Delete Account"
@@ -4941,7 +4941,7 @@ msgstr "Вы ўпэўнены, што жадаеце выдаліць\n"
 
 #: mmframe.cpp:3153
 msgid "Select the account to reallocate"
-msgstr "Абярыце рахунак для перасоўвання"
+msgstr "Абярыце рахунак прызначэння"
 
 #: mmframe.cpp:3153 mmframe.cpp:3176
 msgid "Account Reallocation"
