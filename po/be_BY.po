@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-31 10:25+0300\n"
-"PO-Revision-Date: 2021-09-19 15:42\n"
+"PO-Revision-Date: 2021-09-19 15:50\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -2210,11 +2210,11 @@ msgstr "Памылка абнаўлення базы дадзеных MMEX да 
 
 #: dbupgrade.cpp:74
 msgid "Please restore DB from autocreated pre-upgrade backup and retry or contact MMEX support"
-msgstr ""
+msgstr "Калі ласка, аднавіце БД з аўтаматычна створанай рызервовай копіі перад пачаткам абнаўлення і паўтарыце спробу або звярніцеся ў службу падтрымкі MMEX"
 
 #: dbupgrade.cpp:75 dbupgrade.cpp:109 dbupgrade.cpp:121
 msgid "MMEX database upgrade"
-msgstr "Абнаўлення базы дадзеных MMEX"
+msgstr "Абнаўленне базы дадзеных MMEX"
 
 #: dbupgrade.cpp:107
 msgid "MMEX database error!"
@@ -2225,7 +2225,7 @@ msgstr "Памылка ў базе дадзеных MMEX"
 msgid "MMEX database version %i doesn't work with this MMEX version.\n"
 "Please upgrade MMEX to newer version."
 msgstr "Версія %i базы дадзеных MMEX не працуе з гэтай версіяй MMEX.\n"
-"Калі ласка, абнавіце MMEX да больш новай версіі."
+"Калі ласка, абнавіце базу дадзеных MMEX да больш новай версіі."
 
 #: dbupgrade.cpp:120
 #, c-format
@@ -2234,7 +2234,7 @@ msgstr "База дадзеных MMEX паспяхова абноўленая �
 
 #: dbupgrade.cpp:121
 msgid "We suggest a database optimization under Tools -> Database -> Optimize"
-msgstr "Мы прапануем аптымізацыю базы дадзеных у меню Сэрвіс -> База дадзеных -> Аптымізатар"
+msgstr "Мы прапануем аптымізацыю базы дадзеных у меню Прылады -> База дадзеных -> Аптымізаваць базу дадзеных"
 
 #: dbupgrade.cpp:182
 msgid "Load debug file"
@@ -2242,7 +2242,7 @@ msgstr "Запампаваць файл адладкі"
 
 #: dbupgrade.cpp:189
 msgid "Wrong file type!"
-msgstr "Няслушны тып файла"
+msgstr "Хібны тып файла"
 
 #: dbupgrade.cpp:189 dbupgrade.cpp:226 dbupgrade.cpp:233 dbupgrade.cpp:277
 #: dbupgrade.cpp:288
@@ -4448,7 +4448,7 @@ msgstr "Змена пароля зашыфраванай базы дадзены
 
 #: mmframe.cpp:1587
 msgid "&Optimize Database"
-msgstr "&Аптымізаваць базу дадзеных"
+msgstr "&Аптымізаваць"
 
 #: mmframe.cpp:1588
 msgid "Optimize database space and performance"
