@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-31 10:25+0300\n"
-"PO-Revision-Date: 2021-09-19 16:58\n"
+"PO-Revision-Date: 2021-09-19 17:17\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -2849,7 +2849,7 @@ msgstr "Несупадзенне датаў"
 
 #: import_export/qif_export.cpp:441
 msgid "Categories exported"
-msgstr "Катыгорыі экспартаваныя"
+msgstr "Катыгорыі былі экспартаваныя"
 
 #: import_export/qif_export.cpp:462 import_export/qif_import_gui.cpp:356
 #: import_export/qif_import_gui.cpp:807
@@ -2957,11 +2957,11 @@ msgstr "Абярыце файл QIF для імпарта"
 
 #: import_export/qif_import_gui.cpp:800
 msgid "Do you want to import all transaction ?"
-msgstr "Жадаеце імпратаваць усе аперацыі?"
+msgstr "Жадаеце імпартаваць усе аперацыі?"
 
 #: import_export/qif_import_gui.cpp:801
 msgid "All missing account, payees and categories will be created."
-msgstr "Будуць створаныя усе рахункі, платнікі і катыгорыя, што адсутнічаюць."
+msgstr "Будуць створаныя усе рахункі, платнікі і катыгорыі, што адсутнічаюць."
 
 #: import_export/qif_import_gui.cpp:802
 msgid "Confirm Import"
@@ -3687,7 +3687,7 @@ msgstr "Выкарыстоўваючы MMEX, можна адсочваць ін�
 
 #: mmTips.h:48
 msgid "To create new stocks entry the Symbol, Number of shares and Purchase prise should be entered."
-msgstr "Для стварэння новага актыва трэба задаць сымбаль, колькасць і кошт набыцця."
+msgstr "Для стварэння новага актыва трэба задаць цікер, колькасць і кошт набыцця."
 
 #: mmTips.h:49
 msgid "Sample of UK (HSBC HLDG) share: HSBA.L"
@@ -3714,15 +3714,15 @@ msgid "&Edit Transaction"
 msgid_plural "&Edit Transactions"
 msgstr[0] "&Рыдагаваць аперацыю"
 msgstr[1] "&Рыдагаваць аперацыі"
-msgstr[2] "&Рыдагаваць аперацыі"
+msgstr[2] "&Рыдагаваць аперацыяў"
 msgstr[3] "&Рыдагаваць аперацыі"
 
 #: mmchecking_list.cpp:367
 msgid "&Copy Transaction"
 msgid_plural "&Copy Transactions"
-msgstr[0] "&Капіяваць аперацыі"
+msgstr[0] "&Капіяваць аперацыю"
 msgstr[1] "&Капіяваць аперацыі"
-msgstr[2] "&Капіяваць аперацыі"
+msgstr[2] "&Капіяваць аперацыяў"
 msgstr[3] "&Капіяваць аперацыі"
 
 #: mmchecking_list.cpp:372
@@ -3743,7 +3743,7 @@ msgid "&Move Transaction"
 msgid_plural "&Move Transactions"
 msgstr[0] "П&ерасунуць аперацыю"
 msgstr[1] "П&ерасунуць аперацыі"
-msgstr[2] "П&ерасунуць аперацыі"
+msgstr[2] "П&ерасунуць аперацыяў"
 msgstr[3] "П&ерасунуць аперацыі"
 
 #: mmchecking_list.cpp:386
@@ -3759,7 +3759,7 @@ msgid "&Delete selected transaction"
 msgid_plural "&Delete selected transactions"
 msgstr[0] "В&ыдаліць абраную аперацыю"
 msgstr[1] "В&ыдаліць абраныя аперацыі"
-msgstr[2] "В&ыдаліць абраныя аперацыі"
+msgstr[2] "В&ыдаліць абраных аперацыяў"
 msgstr[3] "В&ыдаліць абраныя аперацыі"
 
 #: mmchecking_list.cpp:403
@@ -3768,11 +3768,11 @@ msgstr "Выдаліць усе бачныя аперацыі"
 
 #: mmchecking_list.cpp:404
 msgid "Delete Viewed \"Follow Up\" Transactions"
-msgstr "Выдаліць бачныя аперацыі «Дапрацаваць»"
+msgstr "Выдаліць бачныя аперацыі у стане «Дапрацаваць»"
 
 #: mmchecking_list.cpp:405
 msgid "Delete Viewed \"Unreconciled\" Transactions"
-msgstr "Выдаліць бачныя «Ня Ўзгодненыя» аперацыі"
+msgstr "Выдаліць бачныя «Няўзгодненыя» аперацыі"
 
 #: mmchecking_list.cpp:411
 msgid "as Reconciled"
@@ -3788,11 +3788,11 @@ msgstr "як Скасаваныя (V)"
 
 #: mmchecking_list.cpp:417
 msgid "as Followup"
-msgstr "на Дапрацаванне (F)"
+msgstr "як Дапрацаваць (F)"
 
 #: mmchecking_list.cpp:419
 msgid "as Duplicate"
-msgstr "Дублікаты (D)"
+msgstr "як Дублікаты (D)"
 
 #: mmchecking_list.cpp:421
 msgid "Mark all being selected"
@@ -3810,7 +3810,7 @@ msgstr "Спраўдзіць выдаленне аперацыі"
 #: mmchecking_list.cpp:804 mmchecking_list.cpp:815
 #, c-format
 msgid "Do you really want to delete all the \"%s\" transactions shown?"
-msgstr "Вы сапраўды хочаце выдаліць усе бачныя транзакцыі ў устане «%s»?"
+msgstr "Вы сапраўды хочаце выдаліць усе бачныя аперацыі ў устане «%s»?"
 
 #: mmchecking_list.cpp:804
 msgid "Follow Up"
@@ -3827,13 +3827,13 @@ msgid_plural "Do you really want to delete %i selected transactions?"
 msgstr[0] "Вы сапраўды хочаце выдаліць абраную аперацыю?"
 msgstr[1] "Вы сапраўды хочаце выдаліць %i абраныя аперацыі?"
 msgstr[2] "Вы сапраўды хочаце выдаліць %i абраных аперацыяў?"
-msgstr[3] "Вы сапраўды хочаце выдаліць %i абраных аперацыяў?"
+msgstr[3] "Вы сапраўды хочаце выдаліць %i абраныя аперацыі?"
 
 #: mmchecking_list.cpp:913
 #, c-format
 msgid "Locked transaction to date: %s\n\n"
 "Reconciled transactions."
-msgstr "Заблакаваная аперацыі з: %s\n\n"
+msgstr "Заблакаваных аперацыяў да сёння: %s\n\n"
 "Узгодненыя аперацыі."
 
 #: mmchecking_list.cpp:916 transdialog.cpp:729 transdialog.cpp:762
@@ -3844,10 +3844,10 @@ msgstr "Праверка аперацыяў"
 #, c-format
 msgid "You are about to edit a transaction involving an account that is closed."
 msgid_plural "The edit will affect %i transactions involving an account that is closed."
-msgstr[0] "Вы збіраецеся змяніць транзакцыю ў зачыненым рахунку."
+msgstr[0] "Вы збіраецеся змяніць аперацыю ў зачыненым рахунку."
 msgstr[1] "Вы збіраецеся змяніць %i транзакцыі ў зачыненым рахунку."
-msgstr[2] "Вы збіраецеся змяніць %i транзакцый ў зачыненым рахунку."
-msgstr[3] "Вы збіраецеся змяніць %i транзакцый ў зачыненым рахунку."
+msgstr[2] "Вы збіраецеся змяніць %i транзакцыяў ў зачыненым рахунку."
+msgstr[3] "Вы збіраецеся змяніць %i транзакцыі ў зачыненым рахунку."
 
 #: mmchecking_list.cpp:951
 msgid "\n\n"
@@ -3866,7 +3866,7 @@ msgid_plural "Do you really want to move %i selected transactions?"
 msgstr[0] "Вы сапраўды хочаце перасунуць абраную аперацыю?"
 msgstr[1] "Вы сапраўды хочаце перасунуць %i абраныя аперацыі?"
 msgstr[2] "Вы сапраўды хочаце перасунуць %i абраных аперацыяў?"
-msgstr[3] "Вы сапраўды хочаце перасунуць %i абраных аперацыяў?"
+msgstr[3] "Вы сапраўды хочаце перасунуць %i абраныя аперацыі?"
 
 #: mmchecking_list.cpp:1143
 msgid "Confirm Transaction Move"
@@ -3924,7 +3924,7 @@ msgstr "Прагляд рахунка: %s"
 
 #: mmcheckingpanel.cpp:401
 msgid "Account Bal: "
-msgstr "Бал. рахунка: "
+msgstr "Баланс рахунка: "
 
 #: mmcheckingpanel.cpp:403
 msgid "Reconciled Bal: "
@@ -3936,7 +3936,7 @@ msgstr "Розніца: "
 
 #: mmcheckingpanel.cpp:407
 msgid "Displayed Bal: "
-msgstr "Адлюстраваны Бал.: "
+msgstr "Бачны Баланс: "
 
 #: mmcheckingpanel.cpp:461 webapp.cpp:585
 msgid "Attachment"
@@ -3945,7 +3945,7 @@ msgstr "Далучэнне"
 #: mmcheckingpanel.cpp:494
 #, c-format
 msgid "Transactions selected: %zu"
-msgstr "Аперацый вылучана: %zu"
+msgstr "Аперацыяў вылучана: %zu"
 
 #: mmcheckingpanel.cpp:497
 #, c-format
@@ -3973,8 +3973,8 @@ msgstr "Шматлікі выбар"
 #, c-format
 msgid "Unable to save custom field \"%s\":\n"
 "value \"%s\" does not match RegEx validation \"%s\""
-msgstr "Не атрымалася захаваць карыстальніцкае поле \"%s\":\n"
-"значэнне \"%s\" не адпавядае праверцы RegEx \"%s\""
+msgstr "Не атрымалася захаваць карыстальніцкае поле «%s»:\n"
+"значэнне «%s» не адпавядае праверцы RegEx «%s»"
 
 #: mmcustomdata.cpp:640
 msgid "CustomField validation error"
@@ -3989,7 +3989,7 @@ msgstr "Немагчыма спампаваць пераклад для мовы
 #, c-format
 msgid "Please use the Switch Application Language option in View menu to select one of the following available languages:\n\n"
 "%s"
-msgstr "Калі ласка, выкарыстоўвайце параметр Мова Прыкладання ў меню Выгляд, каб абраць адну з дасяжных моваў:\n\n"
+msgstr "Калі ласка, выкарыстоўвайце параметр «Мова Прыкладання» ў меню «Выгляд», каб абраць адну з дасяжных моваў:\n\n"
 "%s"
 
 #: mmex.cpp:134 mmframe.cpp:3375 optionsettingsgeneral.cpp:341
@@ -4024,7 +4024,7 @@ msgstr "Карткавыя рахункі"
 
 #: mmframe.cpp:473 mmframe.cpp:731 mmhomepage.cpp:644 reports/summary.cpp:162
 msgid "Term Accounts"
-msgstr "Тэрміновыя рахункі"
+msgstr "Тырміновыя рахункі"
 
 #: mmframe.cpp:474 mmframe.cpp:735
 msgid "Stock Portfolios"
@@ -7327,7 +7327,7 @@ msgid "Term accounts are specialized bank accounts. Intended for asset\n"
 "type accounts such as Term Deposits and Bonds. These accounts\n"
 "can have regular money coming in and out, being outside the\n"
 "general income stream."
-msgstr "Тэрміновыя рахункі - гэта спецыялізаваныя банкаўскія рахункі. \n"
+msgstr "Тырміновыя рахункі - гэта спецыялізаваныя банкаўскія рахункі. \n"
 "Прызначаныя для актываў, такіх як тэрміновыя \n"
 "дэпазіты і аблігацыі. На гэтыя рахункі могуць залічацца і \n"
 "спісвацца звычайныя грошы, знаходзячыся па-за межамі \n"
