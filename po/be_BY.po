@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-31 10:25+0300\n"
-"PO-Revision-Date: 2021-09-19 18:17\n"
+"PO-Revision-Date: 2021-09-19 18:25\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -4036,7 +4036,7 @@ msgstr "Наяўныя рахункі"
 
 #: mmframe.cpp:476 mmframe.cpp:727 mmhomepage.cpp:643 reports/summary.cpp:161
 msgid "Loan Accounts"
-msgstr "Рахункі позык"
+msgstr "Рахункі пазыкаў"
 
 #: mmframe.cpp:508
 msgid "Auto Repeat Transactions"
@@ -4052,7 +4052,7 @@ msgstr "Усе аперацыі"
 
 #: mmframe.cpp:739 mmhomepage.cpp:647 reports/summary.cpp:164
 msgid "Share Accounts"
-msgstr "Паявыя Рахункі"
+msgstr "Паявыя Рахункі (рахункі акцыяў)"
 
 #: mmframe.cpp:751 mmframe.cpp:1533
 msgid "Budget Setup"
@@ -4072,7 +4072,7 @@ msgstr "Спраўдзіце выдаленне рахунка"
 
 #: mmframe.cpp:1218
 msgid "MMEX has been opened without an active database."
-msgstr "MMEX працуе без актыўнай базы дадзеных."
+msgstr "MMEX працуе без адчыненай базы дадзеных."
 
 #: mmframe.cpp:1219
 msgid "MMEX: Menu Popup Error"
