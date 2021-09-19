@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-31 10:25+0300\n"
-"PO-Revision-Date: 2021-09-19 18:58\n"
+"PO-Revision-Date: 2021-09-19 19:10\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -1390,7 +1390,7 @@ msgstr "Вытратныя катыгорыі бюджэта"
 
 #: budgetingpanel.cpp:55
 msgid "View Budget Category Summary"
-msgstr "Глядзець суму па катыгорыях у бюджэце"
+msgstr "Глядзець зводку па катыгорыях у бюджэце"
 
 #: budgetingpanel.cpp:172
 #, c-format
@@ -4268,7 +4268,7 @@ msgstr "Бюджэт па &катыгорыях з вынікамі"
 
 #: mmframe.cpp:1414
 msgid "Include the category summaries in the Budget Category Summary"
-msgstr "Адлюстроўваць суму па катыгорыях у бюджэце"
+msgstr "Адлюстроўваць зводку па катыгорыях у бюджэце"
 
 #: mmframe.cpp:1416
 msgid "Ignore F&uture Transactions"
@@ -4616,11 +4616,11 @@ msgstr "Дапамагчы прадаставіць інфармацыю рас�
 
 #: mmframe.cpp:1677
 msgid "&Show App Start Dialog"
-msgstr "Паказаць &пачатковы дыялог"
+msgstr "Паказаць &пачатковае вакенца дадатка"
 
 #: mmframe.cpp:1677
 msgid "App Start Dialog"
-msgstr "Вакенца запуска дадатка"
+msgstr "Пачатковае вакенца дадатка"
 
 #: mmframe.cpp:1681
 msgid "Check for &Updates"
@@ -4632,7 +4632,7 @@ msgstr "Праверыць, ці існуе новая версія"
 
 #: mmframe.cpp:1685 mmframe.cpp:1757
 msgid "&About..."
-msgstr "Пра Пра&граму..."
+msgstr "Пра Д&адатак..."
 
 #: mmframe.cpp:1685 mmframe.cpp:1757
 msgid "Show about dialog"
@@ -4936,8 +4936,8 @@ msgstr "Абярыце рахунак для выдалення"
 #, c-format
 msgid "Are you sure you want to delete\n"
 " %s account: %s ?"
-msgstr "Вы ўпэўнены, што жадаеце выдаліць\n"
-" %s account: %s ?"
+msgstr "Вы ўпэўненыя, што жадаеце выдаліць\n"
+" %s рахунак: %s ?"
 
 #: mmframe.cpp:3153
 msgid "Select the account to reallocate"
@@ -4963,15 +4963,15 @@ msgstr "Вынік замены атрымальніка"
 #: mmframe.cpp:3338
 #, c-format
 msgid "File %s not found"
-msgstr "Файл %s не знойдзены"
+msgstr "Файл %s ня знойдзены"
 
 #: mmframe.cpp:3373 optionsettingsgeneral.cpp:339
 msgid "The language for this application has been changed. The change will take effect the next time the application is started."
-msgstr "Мова прыкладання змененая. Гэтае змяненне ўступіць у моц пры наступным запуску дадатка."
+msgstr "Мова прыкладання змененая. Але ўступіць у моц пры наступным запуску дадатка."
 
 #: mmframereport.cpp:78
 msgid "General Group Report"
-msgstr "Дыстпетчар справаздачаў"
+msgstr "Дыспетчар справаздачаў"
 
 #: mmframereport.cpp:105 mmhomepage.cpp:808 model/Model_Report.cpp:403
 #: reports/bugreport.h:110
