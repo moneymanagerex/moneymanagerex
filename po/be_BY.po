@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-31 10:25+0300\n"
-"PO-Revision-Date: 2021-09-19 19:56\n"
+"PO-Revision-Date: 2021-09-19 20:05\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -1311,7 +1311,7 @@ msgstr "Вы сапраўды жадаеце выдаліць запланава
 
 #: billsdepositspanel.cpp:649
 msgid "Confirm Deletion"
-msgstr "Схваліць выдаленне"
+msgstr "Спраўдзіце выдаленне"
 
 #: budgetentrydialog.cpp:50
 msgid "Budget Year Entry"
@@ -4773,7 +4773,7 @@ msgstr "Абраць файл для захоўвання базы дадзен�
 
 #: mmframe.cpp:2071
 msgid "Converted DB!"
-msgstr "Ператвораная БД!"
+msgstr "БД ператвораная!"
 
 #: mmframe.cpp:2071
 msgid "MMEX message"
@@ -4808,7 +4808,7 @@ msgstr "Пароль ня спраўджаны."
 
 #: mmframe.cpp:2104
 msgid "Make sure you have a backup of DB before optimize it"
-msgstr "Пераканайцеся, што маеце рызервовую копію БД перш чым аптымізаваць яе"
+msgstr "Пераканайцеся, што маеце рызервовую копію БД, перш чым аптымізаваць яе"
 
 #: mmframe.cpp:2105 mmframe.cpp:2115
 msgid "DB Optimization"
@@ -4881,7 +4881,7 @@ msgstr "Стварэнне паявога рахунка"
 
 #: mmframe.cpp:2500
 msgid "Accounts, Payees, and Categories Updated"
-msgstr "Рахункі, платнікі і катыгорыі абноўленыя"
+msgstr "Абноўленыя рахункі, платнікі і катыгорыі"
 
 #: mmframe.cpp:2502
 msgid "Issue encountered updating WebApp, check Web server and WebApp settings"
@@ -5966,7 +5966,7 @@ msgstr "куды:"
 
 #: relocatecategorydialog.cpp:171 relocatepayeedialog.cpp:156
 msgid "Please Confirm:"
-msgstr "Калі ласка, пацвядзіце:"
+msgstr "Калі ласка, спраўдзіце:"
 
 #: relocatecategorydialog.cpp:171
 msgid "Category Relocation Confirmation"
