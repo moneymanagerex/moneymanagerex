@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-31 10:25+0300\n"
-"PO-Revision-Date: 2021-09-19 19:20\n"
+"PO-Revision-Date: 2021-09-19 19:27\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -4304,7 +4304,7 @@ msgstr "Змяніць мову для MMEX GUI"
 
 #: mmframe.cpp:1453 optionsettingsgeneral.cpp:83 optionsettingsgeneral.cpp:349
 msgid "system default"
-msgstr "Па змаўчанні"
+msgstr "Сістэмная"
 
 #: mmframe.cpp:1473
 msgid "&Home Page"
@@ -4312,11 +4312,11 @@ msgstr "&Галоўная старонка"
 
 #: mmframe.cpp:1473 mmframe.cpp:1721
 msgid "Show Home Page"
-msgstr "Паказаць галоўную старонку"
+msgstr "Паказаць хатнюю старонку"
 
 #: mmframe.cpp:1482
 msgid "Change the account type of an account."
-msgstr "Змяненіць тып рахунка."
+msgstr "Змяніць тып рахунка."
 
 #: mmframe.cpp:1485
 msgid "Delete Account from database"
