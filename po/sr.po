@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-31 10:25+0300\n"
-"PO-Revision-Date: 2021-09-19 18:40\n"
+"PO-Revision-Date: 2021-09-19 18:46\n"
 "Last-Translator: \n"
 "Language-Team: Serbian (Cyrillic)\n"
 "MIME-Version: 1.0\n"
@@ -485,11 +485,11 @@ msgstr "Додај трансакцију за имовину"
 
 #: assetspanel.cpp:102
 msgid "&View Asset Transactions"
-msgstr ""
+msgstr "Погледај трансакције за имовину"
 
 #: assetspanel.cpp:103
 msgid "&Open Asset Account"
-msgstr ""
+msgstr "Отвори рачун за имовину"
 
 #: assetspanel.cpp:105
 msgid "&Edit Asset"
@@ -502,7 +502,7 @@ msgstr "Обриши имовину"
 #: assetspanel.cpp:108 billsdepositspanel.cpp:420 mmchecking_list.cpp:390
 #: mmframe.cpp:1258 payeedialog.cpp:403 stocks_list.cpp:145
 msgid "&Organize Attachments"
-msgstr ""
+msgstr "Организуј прилоге"
 
 #: assetspanel.cpp:200
 msgid "Do you really want to delete the Asset?"
@@ -514,7 +514,7 @@ msgstr "Потврда брисања имовине"
 
 #: assetspanel.cpp:385
 msgid "MMEX allows you to track fixed assets like cars, houses, land and others. Each asset can have its value appreciate by a certain rate per year, depreciate by a certain rate per year, or not change in value. The total assets are added to your total financial worth."
-msgstr ""
+msgstr "MMEX Вам омогућава да пратите сталну имовину попут аутомобила, некретнина, земљишта и остало. Вредност сваке имовине може да се увећава или смањује према годишљој стопи, или да остане непромењена. Збир вредности имовине се додаје Вашем нето богатству."
 
 #: assetspanel.cpp:415 assetspanel.h:108 general_report_manager.cpp:723
 #: general_report_manager.cpp:1000 mmframe.cpp:477 mmframe.cpp:743
@@ -532,15 +532,15 @@ msgstr "Све"
 #: assetspanel.cpp:466 billsdepositspanel.cpp:283 mmcheckingpanel.cpp:332
 #: stockspanel.cpp:129
 msgid "&New "
-msgstr ""
+msgstr "Ново "
 
 #: assetspanel.cpp:470 stockspanel.cpp:133
 msgid "&Add Trans "
-msgstr ""
+msgstr "Додај транс. "
 
 #: assetspanel.cpp:475 stockspanel.cpp:138
 msgid "&View Trans "
-msgstr ""
+msgstr "Погледај транс. "
 
 #: assetspanel.cpp:476
 msgid "View Asset Transactions"
