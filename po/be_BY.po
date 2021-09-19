@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-31 10:25+0300\n"
-"PO-Revision-Date: 2021-09-19 16:18\n"
+"PO-Revision-Date: 2021-09-19 16:30\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -2633,7 +2633,7 @@ msgstr "Пакажыце або абярыце назву новай групы 
 
 #: general_report_manager.cpp:880
 msgid "Change report group"
-msgstr "Змяніцу групу"
+msgstr "Змяніць групу"
 
 #: general_report_manager.cpp:896
 msgid "Enter or choose name for the new group"
@@ -2658,7 +2658,7 @@ msgstr "Новая справаздача"
 
 #: general_report_manager.cpp:1025
 msgid "Choose file to Save As Report"
-msgstr "Абярыце файл, каб захаваць як справаздачу"
+msgstr "Абярыце файл, куды захаваць справаздачу"
 
 #: general_report_manager.cpp:1203
 msgid "Parameters:"
@@ -2702,7 +2702,7 @@ msgstr "Тэма %s ня знойдзеная. Можа быць, яна бол�
 #: images_list.cpp:517
 #, c-format
 msgid "Theme %s has missing items and is incompatible. Reverting to default theme"
-msgstr "Тэма %s не ўтрымлівае некаторых элементаў, таму несумяшчальная. Вяртанне да тэмы па змаўчанні"
+msgstr "Тэма %s ня ўтрымлівае некаторых элементаў, таму несумяшчальная. Вяртанне да тэмы па змаўчанні"
 
 #: import_export/parsers.cpp:46 import_export/univcsvdialog.cpp:1579
 #: mmSimpleDialogs.cpp:253
@@ -2733,7 +2733,7 @@ msgstr "Файл не ў фармаце Excel XML Spreadsheet 2003."
 #: import_export/parsers.cpp:135 import_export/parsers.cpp:144
 #: import_export/parsers.cpp:157 import_export/parsers.cpp:165
 msgid "Parsing error"
-msgstr "Памылка парсынга"
+msgstr "Памылка аналіза"
 
 #: import_export/parsers.cpp:157
 msgid "Could not find Worksheet."
@@ -2829,11 +2829,11 @@ msgstr "Абярыце файл JSON для экспарта"
 
 #: import_export/qif_export.cpp:308
 msgid "JSON Files (*.json)"
-msgstr "JSON файлы (*.qif)"
+msgstr "JSON файлы (*.json)"
 
 #: import_export/qif_export.cpp:316 import_export/univcsvdialog.cpp:1563
 msgid "CSV Files (*.csv)"
-msgstr "CSV файлы (*.qif)"
+msgstr "CSV файлы (*.csv)"
 
 #: import_export/qif_export.cpp:334
 msgid "No Account available for export"
