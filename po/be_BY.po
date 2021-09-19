@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-31 10:25+0300\n"
-"PO-Revision-Date: 2021-09-19 16:42\n"
+"PO-Revision-Date: 2021-09-19 16:47\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -3170,7 +3170,7 @@ msgstr "Перасунуць &ніжэй"
 
 #: import_export/univcsvdialog.cpp:447 optionsettingsmisc.cpp:201
 msgid "Specify the delimiter to use when importing/exporting CSV files"
-msgstr "Пакажыце, які падзельнік выкарыстоўваць пры імпарце / экспарце CSV файлаў"
+msgstr "Пакажыце, які падзельнік выкарыстоўваць падчас імпарта / экспарта CSV файлаў"
 
 #: import_export/univcsvdialog.cpp:448
 msgid "Import File"
@@ -3184,7 +3184,7 @@ msgstr "Экспартаваць файл"
 #, c-format
 msgid "Default account '%s' for this template does not exist.\n"
 "Please select a new account."
-msgstr "Рахунак па змаўчанні '%s' для гэтага шаблона не існуе.\n"
+msgstr "Для гэтага шаблона не існуе рахунка па змаўчанні '%s'.\n"
 "Калі ласка, абярыце іншы рахунак."
 
 #: import_export/univcsvdialog.cpp:541
@@ -3199,7 +3199,7 @@ msgstr "Станоўчы, калі тып мае '%s'"
 
 #: import_export/univcsvdialog.cpp:925
 msgid "Incorrect fields specified for import!"
-msgstr "Для імпарта паказаныя няслушныя палі!"
+msgstr "Для імпарта паказаныя няслушныя палі"
 
 #: import_export/univcsvdialog.cpp:926
 msgid "Date field is required."
@@ -3217,7 +3217,7 @@ msgstr "Імпарт"
 #: import_export/univcsvdialog.cpp:980
 #, c-format
 msgid "Transactions imported to account %s: %ld"
-msgstr "Аперацыі былі імпартаваныя на рахунак %s: %ld"
+msgstr "На рахунак %s было імпартавана аперацыяў: %ld"
 
 #: import_export/univcsvdialog.cpp:991
 #, c-format
@@ -3286,7 +3286,7 @@ msgstr "Няма імпартаваных аперацый!"
 
 #: import_export/univcsvdialog.cpp:1107
 msgid "Incorrect fields specified for export! Requires at least Date and Amount."
-msgstr "Паказаныя няслушныя поля для экспарта! Абавязковыя дата і сума."
+msgstr "Паказаныя няслушныя палі для экспарта. Абавязковыя хаця б дата і сума."
 
 #: import_export/univcsvdialog.cpp:1108 import_export/univcsvdialog.cpp:1248
 msgid "Export"
