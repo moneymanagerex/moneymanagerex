@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-31 10:25+0300\n"
-"PO-Revision-Date: 2021-09-19 14:39\n"
+"PO-Revision-Date: 2021-09-19 14:50\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -1646,11 +1646,11 @@ msgstr "Рыдагаваць катыгорыю"
 
 #: categdialog.cpp:507 categdialog.cpp:524
 msgid "Organise Categories: Editing Error"
-msgstr "Рыдактар катыгорыяў: памылка рыдагавання"
+msgstr "Дыспетчар катыгорыяў: памылка рыдагавання"
 
 #: categdialog.cpp:600 mmframe.cpp:3269
 msgid "Category Relocation Completed."
-msgstr "Замена катыгорыяў зроблена."
+msgstr "Замена катыгорыяў зробленая."
 
 #: categdialog.cpp:601 mmframe.cpp:3270 mmframe.cpp:3285 payeedialog.cpp:351
 #, c-format
@@ -1659,7 +1659,7 @@ msgstr "У базе дадзеных абноўлена запісаў: %i"
 
 #: categdialog.cpp:603 mmframe.cpp:3272
 msgid "Category Relocation Result"
-msgstr "Вынік замены катыгорыі"
+msgstr "Вынік перасоўвання катыгорыі"
 
 #: categdialog.cpp:668
 msgid "Hide Selected Category"
