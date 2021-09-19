@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-31 10:25+0300\n"
-"PO-Revision-Date: 2021-09-19 17:41\n"
+"PO-Revision-Date: 2021-09-19 17:50\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -3335,7 +3335,7 @@ msgstr "Абярыце файл XML для экспарта"
 
 #: import_export/univcsvdialog.cpp:1562
 msgid "XML Files (*.xml)"
-msgstr "XML-файлы (*.xml)"
+msgstr "Файлы XML (*.xml)"
 
 #: import_export/univcsvdialog.cpp:1562
 msgid "All Files"
@@ -3384,12 +3384,12 @@ msgstr "Пошук:"
 
 #: maincurrencydialog.cpp:227
 msgid "Currency History Options"
-msgstr "Опцыі гісторыі валютаў"
+msgstr "Налады для гісторыі валютаў"
 
 #: maincurrencydialog.cpp:245 stockdialog.cpp:304 stockdialog.cpp:323
 #: stockdialog.cpp:676
 msgid "Price"
-msgstr "Цана"
+msgstr "Кошт"
 
 #: maincurrencydialog.cpp:267
 msgid "Specify the date of currency value"
