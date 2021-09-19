@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-31 10:25+0300\n"
-"PO-Revision-Date: 2021-09-19 16:47\n"
+"PO-Revision-Date: 2021-09-19 16:58\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -3302,7 +3302,7 @@ msgstr "Файл існуе"
 
 #: import_export/univcsvdialog.cpp:1124
 msgid "Failed to delete existing file. File may be locked by another program."
-msgstr "Не атрымалася выдаліць існуючы файл. Файл можа быць заблякаваны іншай праграмай."
+msgstr "Не атрымалася выдаліць існуючы файл. Файл можа быць заблакаваным іншай праграмай."
 
 #: import_export/univcsvdialog.cpp:1125
 msgid "Destination file error"
@@ -3555,7 +3555,7 @@ msgstr "Выбар робіцца праз меню, што выпадае."
 
 #: mmSimpleDialogs.cpp:271
 msgid "Activating the button will provide a selection box where the account can be selected."
-msgstr "Актывацыя кнопкі дае акно выбару, у якім можна выбраць рахунак."
+msgstr "Актывацыя кнопкі адчыніць спіс, у якім можна абраць рахунак."
 
 #: mmSimpleDialogs.cpp:280
 msgid "Invalid Payee"
@@ -3564,7 +3564,7 @@ msgstr "Хібны платнік"
 #: mmSimpleDialogs.cpp:281
 msgid "Please type in a new payee,\n"
 "or make a selection using the dropdown button."
-msgstr "Калі ласка, увядзіце назву новага атрымальніка\n"
+msgstr "Калі ласка, пакажыце назву новага атрымальніка\n"
 "або абярыце атрымальніка са спіса, што выпадае."
 
 #: mmSimpleDialogs.cpp:289 mmSimpleDialogs.cpp:301
@@ -3599,11 +3599,11 @@ msgstr "Калі ласка, пакажыце арыфметычны выраз.
 msgid "Tip: For calculations, enter expressions like (2+2)*(2+2)\n"
 "Calculations will be evaluated and the result used as the entry."
 msgstr "Парада: Увядзіце выраз, напрыклад (2+2)*(2+2)\n"
-"Адбудзецца вылічэнне і вынік будзе выкарыстаны."
+"Адбудзецца вылічэнне і будзе ўжыты вынік."
 
 #: mmTips.h:22
 msgid "Recommendation: Always backup your .mmb database file regularly."
-msgstr "Рэкамендацыя: Рыгулярна рабіце рызервовую копію файла базы дадзеных Always backup your .mmb."
+msgstr "Рэкамендацыя: Рыгулярна рабіце рызервовую копію файла базы дадзеных .mmb."
 
 #: mmTips.h:23
 msgid "Recommendation: If upgrading to a new version of MMEX, make sure you backup your .mmb database file before doing so."
@@ -3611,7 +3611,7 @@ msgstr "Рэкамендацыя: Пры абнаўленні да новай в
 
 #: mmTips.h:24
 msgid "Recommendation: Use copy (Ctrl+C) and paste (Ctrl+V) for frequently used transactions."
-msgstr "Парада: Выкарыстоўвайце капіяванне (Ctrl+C) і ўстаўку (Ctrl+V) для аперацый, што часта выкарыстоўваюцца."
+msgstr "Парада: Выкарыстоўвайце капіяванне (Ctrl+C) і ўстаўку (Ctrl+V) для аперацыяў, што часта выкарыстоўваюцца."
 
 #: mmTips.h:25
 msgid "Tip: Remember to make backups of your .mmb."
@@ -3623,7 +3623,7 @@ msgstr "Папярэджанне: Файл базы дадзеных .mmb не �
 
 #: mmTips.h:27
 msgid "Tip: To mark a transaction as reconciled, just select the transaction and hit the 'r' or 'R' key. To mark a transaction as unreconciled, just select the transaction and hit the 'u' or 'U' key."
-msgstr "Парада: Каб адзначыць аперацыю як Узгодненую, проста вылучыце яе і націсніце клавішу 'R'. Зняць пазнаку можна націскам клавішы 'U'."
+msgstr "Парада: Каб адзначыць аперацыю як Узгодненую, проста вылучыце яе і націсніце клавішу 'r' або 'R'. Зняць пазнаку можна націскам клавішы 'u' або 'U'."
 
 #: mmTips.h:28
 msgid "Tip: To mark a transaction as requiring followup, just select the transaction and hit the 'f' or 'F' key."
@@ -3631,7 +3631,7 @@ msgstr "Парада: Каб адзначыць аперацыю такой, ш�
 
 #: mmTips.h:29
 msgid "Tip: MMEX supports printing of all reports that can be viewed. The print options are available under the menu, File->Print."
-msgstr "Парада: MMEX падтрымлівае друк справаздачаў пасля прагляда. Параметры друка можна задаць у меню, Файл -> Друкаваць."
+msgstr "Парада: MMEX падтрымлівае друк справаздачаў пасля прагляда. Параметры друка можна задаць у меню, Файл -> Друкаваць…"
 
 #: mmTips.h:30
 msgid "Tip: You can modify some runtime behavior of MMEX by changing the options in the Options Dialog. "
@@ -3643,7 +3643,7 @@ msgstr "Парада: Каб раздрукаваць зводку па апер
 
 #: mmTips.h:32
 msgid "Tip: Set exchange rate for currencies in case if you have accounts with different currencies."
-msgstr "Парада: Калі вядзеце рахункі ў розных валютах, усталюйце курс абмена."
+msgstr "Парада: Калі вы вядзеце рахункі ў розных валютах, пазначце курс абмена."
 
 #: mmTips.h:34
 msgid "Organize Categories Dialog Tip: Pressing the h key will cycle through all categories starting with the letter h"
@@ -3651,7 +3651,7 @@ msgstr "Парада: У дыстпетчары катыгорыяў, націс
 
 #: mmTips.h:35
 msgid "Organize Categories Dialog Tip: Pressing 2 key combination will cycle through all categories starting with that key combination. Example: Pressing ho will select Homeneeds, Home, House Tax, etc..."
-msgstr "Парада: У мэнэджары катыгорыяў, націскаючы паслядоўна некальці клавішаў, можна цыклічна перамыкацца паміж адпаведнымі назвамі. Напрыклад, клавішы АД пераключаць паміж Адзенне, Адпачынак і г.д."
+msgstr "Парада: У дыстпетчары катыгорыяў, націскаючы паслядоўна некальці клавішаў, можна цыклічна перамыкацца паміж адпаведнымі назвамі. Напрыклад, клавішы АД пераключаць паміж Адзенне, Адпачынак і г.д."
 
 #: mmTips.h:37
 msgid "Tip to get out of debt: Pay yourself 10 percentage first. Put this into an account that is hard to touch. Make sure it is a chore to get the money out (you have to drive to the bank), so you will only tap it consciously and for major expenses."
@@ -3659,7 +3659,7 @@ msgstr "Парада, каб пазбавіцца пазыкаў: Захоўва
 
 #: mmTips.h:38
 msgid "Tip to get out of debt: Establish an emergency fund."
-msgstr "Парада, каб пазбавіцца пазыкаў: уладкуйце фонд рызерваў."
+msgstr "Парада, каб пазбавіцца пазыкаў: стварыце рызервны фонд."
 
 #: mmTips.h:39
 msgid "Tip to get out of debt: Stop acquiring new debt."
@@ -3687,7 +3687,7 @@ msgstr "Выкарыстоўваючы MMEX, можна адсочваць ін�
 
 #: mmTips.h:48
 msgid "To create new stocks entry the Symbol, Number of shares and Purchase prise should be entered."
-msgstr "Для стварэння новага актыва трэба задаць цікер, колькасць і пакупную цану."
+msgstr "Для стварэння новага актыва трэба задаць сымбаль, колькасць і кошт набыцця."
 
 #: mmTips.h:49
 msgid "Sample of UK (HSBC HLDG) share: HSBA.L"
