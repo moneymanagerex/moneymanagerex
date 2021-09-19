@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-31 10:25+0300\n"
-"PO-Revision-Date: 2021-09-19 17:59\n"
+"PO-Revision-Date: 2021-09-19 18:11\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -3437,13 +3437,13 @@ msgstr "Выбар асноўнай валюты"
 #, c-format
 msgid "Historic rates for %s found, but \"Use currency history\" in options is disabled:\n"
 "click no and enable it or click yes to remove all historic rates for %s"
-msgstr "Знойдзеная гістарычныя курсы для %s, але «Выкарыстоўваць гісторыю валют» у опцыях адключана:\n"
-"націсніце «Не» і уключыце яе або націсніце «Так», каб выдаліць усе гістарычныя стаўкі для %s"
+msgstr "Знойдзеная гістарыя курсаў для %s, але «Выкарыстоўваць гісторыю валютаў» у опцыях вымкнута:\n"
+"націсніце «Не» і увамкніце яе або націсніце «Так», каб выдаліць усю гістарыю курсаў для %s"
 
 #: maincurrencydialog.cpp:434
 #, c-format
 msgid "Currency History Options: %s "
-msgstr "Опцыі гісторыі валютаў: %s "
+msgstr "Налады гісторыі для валюты: %s "
 
 #: maincurrencydialog.cpp:490
 msgid "Unable to update history currency rates. Please update them manually!"
@@ -3465,11 +3465,11 @@ msgstr "Абнаўленне курса валютаў анлайн"
 
 #: maincurrencydialog.cpp:643
 msgid "No currency selected!"
-msgstr "Няма абранай валюты"
+msgstr "Валюта не абраная"
 
 #: maincurrencydialog.cpp:649
 msgid "Do you want to add also dates without any transaction?"
-msgstr "Жадаеце таксама дадаць даты, калі не было аперацый?"
+msgstr "Жадаеце таксама дадаць даты, калі не было аперацыяў?"
 
 #: maincurrencydialog.cpp:676
 #, c-format
@@ -3479,11 +3479,11 @@ msgstr "Немагчыма спампаваць курсы валюты %s"
 #: maincurrencydialog.cpp:712
 #, c-format
 msgid "Unable to download history for symbol %s. History rates not available!"
-msgstr "Немагчыма спампаваць гісторыю валюты %s. Гісторыя курсаў недасяжная"
+msgstr "Немагчыма спампаваць гісторыю для валюты %s. Гісторыя курсаў недасяжная"
 
 #: maincurrencydialog.cpp:774
 msgid "Changing base currency will delete all history rates, proceed?"
-msgstr "Змена асноўнай валюты прывядзе да выдалення усей гісторыі курсаў, працягнуць?"
+msgstr "Змена асноўнай валюты прывядзе да выдалення усёй гісторыі курсаў. Працягнуць?"
 
 #: maincurrencydialog.cpp:798
 msgid "Do you want to update today currency rates?"
