@@ -100,17 +100,17 @@ table {
             {
                 hb.startTableRow();
                 {
-                    hb.addTableHeaderCell(_("ID"), "ID");
-                    hb.addTableHeaderCell(_("Color"), "Color");
-                    hb.addTableHeaderCell(_("Date"), "Date");
-                    hb.addTableHeaderCell(_("Number"), "Number");
-                    hb.addTableHeaderCell(_("Account"), "Account");
-                    hb.addTableHeaderCell(_("Payee"), "Payee");
-                    hb.addTableHeaderCell(_("Status"), "Status");
-                    hb.addTableHeaderCell(_("Category"), "Category");
-                    hb.addTableHeaderCell(_("Type"), "Type");
-                    hb.addTableHeaderCell(_("Amount"), "Amount text-right");
-                    hb.addTableHeaderCell(_("Notes"), "Notes");
+                    if (showColumnById(0)) hb.addTableHeaderCell(_("ID"), "ID");
+                    if (showColumnById(1)) hb.addTableHeaderCell(_("Color"), "Color");
+                    if (showColumnById(2)) hb.addTableHeaderCell(_("Date"), "Date");
+                    if (showColumnById(3)) hb.addTableHeaderCell(_("Number"), "Number");
+                    if (showColumnById(4)) hb.addTableHeaderCell(_("Account"), "Account");
+                    if (showColumnById(5)) hb.addTableHeaderCell(_("Payee"), "Payee");
+                    if (showColumnById(6)) hb.addTableHeaderCell(_("Status"), "Status");
+                    if (showColumnById(7)) hb.addTableHeaderCell(_("Category"), "Category");
+                    if (showColumnById(8)) hb.addTableHeaderCell(_("Type"), "Type");
+                    if (showColumnById(9)) hb.addTableHeaderCell(_("Amount"), "Amount text-right");
+                    if (showColumnById(10)) hb.addTableHeaderCell(_("Notes"), "Notes");
                 }
                 hb.endTableRow();
             }
@@ -138,23 +138,26 @@ table {
                         {
                          /*  if ((Model_Checking::type(transaction) == Model_Checking::TRANSFER)
                                 && m_transDialog->getTypeCheckBox() && */
-                            hb.addTableCellLink(wxString::Format("trx:%d", transaction.TRANSID)
-                                , wxString::Format("%i", transaction.TRANSID));
-                            hb.addColorMarker(getUDColour(transaction.FOLLOWUPID).GetAsString());
-                            hb.addTableCellDate(transaction.TRANSDATE);
-                            hb.addTableCell(transaction.TRANSACTIONNUMBER);
-                            hb.addTableCellLink(wxString::Format("trxid:%d", transaction.TRANSID)
-                                , noOfTrans ? transaction.TOACCOUNTNAME : transaction.ACCOUNTNAME);
-                            hb.addTableCell(noOfTrans ? "< " + transaction.ACCOUNTNAME : transaction.PAYEENAME);
-                            hb.addTableCell(transaction.STATUS);
-                            hb.addTableCell(transaction.CATEGNAME);
-                            if (Model_Checking::foreignTransactionAsTransfer(transaction))
-                            {
-                                hb.addTableCell("< " + wxGetTranslation(transaction.TRANSCODE));
+                            if (showColumnById(0)) {
+                                hb.addTableCellLink(wxString::Format("trx:%d", transaction.TRANSID)
+                                    , wxString::Format("%i", transaction.TRANSID));
                             }
-                            else
+                            if (showColumnById(1)) hb.addColorMarker(getUDColour(transaction.FOLLOWUPID).GetAsString());
+                            if (showColumnById(2)) hb.addTableCellDate(transaction.TRANSDATE);
+                            if (showColumnById(3)) hb.addTableCell(transaction.TRANSACTIONNUMBER);
+                            if (showColumnById(4)) {
+                                hb.addTableCellLink(wxString::Format("trxid:%d", transaction.TRANSID)
+                                    , noOfTrans ? transaction.TOACCOUNTNAME : transaction.ACCOUNTNAME);
+                            }
+                            if (showColumnById(5)) hb.addTableCell(noOfTrans ? "< " + transaction.ACCOUNTNAME : transaction.PAYEENAME);
+                            if (showColumnById(6)) hb.addTableCell(transaction.STATUS);
+                            if (showColumnById(7)) hb.addTableCell(transaction.CATEGNAME);
+                            if (showColumnById(8))
                             {
-                                hb.addTableCell(wxGetTranslation(transaction.TRANSCODE));
+                                if (Model_Checking::foreignTransactionAsTransfer(transaction))
+                                    hb.addTableCell("< " + wxGetTranslation(transaction.TRANSCODE));
+                                else
+                                    hb.addTableCell(wxGetTranslation(transaction.TRANSCODE));
                             }
 
                             Model_Account::Data* acc;
@@ -168,7 +171,7 @@ table {
                                 if (noOfTrans || (!allAccounts && (selectedAccounts.Index(transaction.ACCOUNTID) == wxNOT_FOUND)))
                                     amount = -amount;
                                 const double convRate = Model_CurrencyHistory::getDayRate(curr->CURRENCYID, transaction.TRANSDATE);
-                                hb.addCurrencyCell(amount, curr);
+                                if (showColumnById(9)) hb.addCurrencyCell(amount, curr);
                                 total[curr->CURRENCYID] += amount;
                                 total_in_base_curr[curr->CURRENCYID] += amount * convRate;
                                 if (Model_Checking::type(transaction) != Model_Checking::TRANSFER)
@@ -180,7 +183,7 @@ table {
                             else
                             {
                                 wxFAIL_MSG("account for transaction not found");
-                                hb.addEmptyTableCell();
+                                if (showColumnById(9)) hb.addEmptyTableCell();
                             }
 
                             // Attachments
@@ -192,7 +195,7 @@ table {
                             }
 
                             //Notes
-                            hb.addTableCell(AttachmentsLink + transaction.NOTES);
+                            if (showColumnById(10)) hb.addTableCell(AttachmentsLink + transaction.NOTES);
 
                         }
                         hb.endTableRow();
@@ -322,4 +325,14 @@ void mmReportTransactions::Run(mmFilterTransactionsDialog* dlg)
             trans_.push_back(full_tran);
     }
     std::stable_sort(trans_.begin(), trans_.end(), SorterByTRANSDATE());
+}
+
+bool mmReportTransactions::showColumnById(int num)
+{
+    if (m_transDialog->getHideColumnsCheckBox())
+    {
+        wxArrayInt columns = m_transDialog->getHideColumnsID();
+        return columns.Index(num) == wxNOT_FOUND;
+    }
+    return true;
 }

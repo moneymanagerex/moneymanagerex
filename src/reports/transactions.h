@@ -37,6 +37,7 @@ private:
     void Run(mmFilterTransactionsDialog* transDialog);
     Model_Checking::Full_Data_Set trans_;
     mmFilterTransactionsDialog* m_transDialog;
+    bool showColumnById(int num);
 };
 
 #endif // MM_EX_REPORTTRANSACT_H_
