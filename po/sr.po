@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-31 10:25+0300\n"
-"PO-Revision-Date: 2021-09-19 18:46\n"
+"PO-Revision-Date: 2021-09-19 18:58\n"
 "Last-Translator: \n"
 "Language-Team: Serbian (Cyrillic)\n"
 "MIME-Version: 1.0\n"
@@ -33,7 +33,7 @@ msgstr "О програму"
 
 #: aboutdialog.cpp:192
 msgid "Authors"
-msgstr "Autori"
+msgstr "Аутори"
 
 #: aboutdialog.cpp:197
 msgid "Sponsors"
@@ -96,7 +96,7 @@ msgstr "Статус рачуна:"
 
 #: accountdialog.cpp:161
 msgid "Specify if this account has been closed. Closed accounts are inactive in most calculations, reporting etc."
-msgstr "Унети да ли је овај рачун затворен. Затворени рачуни су инактивни у већини калкулација, извештаја итд."
+msgstr "Унети да ли је овај рачун затворен. Затворени рачуни су неактивни у већини калкулација, извештаја итд."
 
 #: accountdialog.cpp:165
 #, c-format
@@ -105,7 +105,7 @@ msgstr "Почетно стање: %s"
 
 #: accountdialog.cpp:169
 msgid "Enter the initial balance in this account."
-msgstr "Унети почетни баланс овог рачуна."
+msgstr "Унети почетно стање овог рачуна."
 
 #: accountdialog.cpp:171 import_export/univcsvdialog.cpp:1830
 msgid "Currency:"
@@ -146,7 +146,7 @@ msgstr "Унети белешке о овом рачуну."
 #: db/DB_Table_Subcategory_V1.h:132 db/DB_Table_Subcategory_V1.h:148
 #: optiondialog.cpp:135
 msgid "Others"
-msgstr "Друго"
+msgstr "Остало"
 
 #: accountdialog.cpp:209
 msgid "Card Number:"
@@ -158,7 +158,7 @@ msgstr "Број рачуна:"
 
 #: accountdialog.cpp:211
 msgid "Enter the Account Number associated with this account."
-msgstr "Унети број рачуна који је асоциран са овим рачуном."
+msgstr "Унети број рачуна који је повезан са овим рачуном."
 
 #: accountdialog.cpp:214
 msgid "Held At:"
@@ -174,7 +174,7 @@ msgstr "Сајт:"
 
 #: accountdialog.cpp:221
 msgid "Enter the URL of the website for the financial institution."
-msgstr "Унети УРЛ сајта за финансиску институцију."
+msgstr "Унети URL сајта за финансиску институцију."
 
 #: accountdialog.cpp:224
 msgid "Contact:"
@@ -190,7 +190,7 @@ msgstr "Инфо приступа:"
 
 #: accountdialog.cpp:231
 msgid "Enter any login/access information for the financial institution. This is not secure as anyone with access to the mmb file can access it."
-msgstr "Унети приступне информације за финансијску институцију. Поступан није сигуран пошто су читљиве преко mmb датотеке."
+msgstr "Унети приступне информације за финансијску институцију. Уношење није безбедно јер свако са приступом mmb датотеке може да их очита."
 
 #: accountdialog.cpp:236
 msgid "Statement"
@@ -234,7 +234,7 @@ msgstr "Кредитни лимит:"
 
 #: accountdialog.cpp:271
 msgid "Credit limit for the Account. Zero to disable"
-msgstr "Кредитни лимит за рачун. Нула за онемогућавање"
+msgstr "Кредитни лимит рачуна. Нула за онемогућавање"
 
 #: accountdialog.cpp:274
 msgid "Interest Rate:"
@@ -286,35 +286,35 @@ msgstr "Нови рачун"
 
 #: appstartdialog.cpp:100
 msgid "Open Last Opened Database"
-msgstr "Отвори последњу отворену Базу"
+msgstr "Отвори последњу отворену базу података"
 
 #: appstartdialog.cpp:103
 msgid "Create a New Database"
-msgstr "Креирај нову Базу"
+msgstr "Креирај нову базу података"
 
 #: appstartdialog.cpp:104
 msgid "Create a new database file to get started"
-msgstr "Креирај нову базу да би сте започели"
+msgstr "Креирајте нову базу података да би сте започели"
 
 #: appstartdialog.cpp:107
 msgid "Open Existing Database"
-msgstr "Отвори постојећу Базу"
+msgstr "Отвори постојећу базу података"
 
 #: appstartdialog.cpp:108
 msgid "Open an already created database file with extension (*.mmb)"
-msgstr "Отвори постојећу Базу (*.mmb)"
+msgstr "Отвори постојећу базу података (*.mmb)"
 
 #: appstartdialog.cpp:111
 msgid "Read Documentation"
-msgstr "Читај приручник"
+msgstr "Прочитај документацију"
 
 #: appstartdialog.cpp:112
 msgid "Read the user manual"
-msgstr "Прочитај приручник"
+msgstr "Прочитај корисничко упуство"
 
 #: appstartdialog.cpp:115
 msgid "Visit Website for more information"
-msgstr "Ићи на сајт за више информација"
+msgstr "Посетите веб страницу за више информација"
 
 #: appstartdialog.cpp:116
 #, c-format
