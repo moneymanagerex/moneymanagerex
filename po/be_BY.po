@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-31 10:25+0300\n"
-"PO-Revision-Date: 2021-09-19 17:17\n"
+"PO-Revision-Date: 2021-09-19 17:27\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -2986,15 +2986,15 @@ msgstr "Імпартую катыгорыі"
 #: import_export/qif_import_gui.cpp:836
 #, c-format
 msgid "Importing transaction %i of %i"
-msgstr "Было імпартавана аперацый %i з %i"
+msgstr "Было імпартавана аперацыяў %i з %i"
 
 #: import_export/qif_import_gui.cpp:869
 msgid "Importing Transfers"
-msgstr "Імпарт пераказаў"
+msgstr "Імпартую пераказы"
 
 #: import_export/qif_import_gui.cpp:894
 msgid "Importing Split transactions"
-msgstr "Імпартаваць састаўныя аперацыі"
+msgstr "Імпартую састаўныя аперацыі"
 
 #: import_export/qif_import_gui.cpp:898
 msgid "Import finished successfully"
@@ -3035,11 +3035,11 @@ msgstr "Адсутнічае рахунак для гэтай аперацыі �
 
 #: import_export/qif_import_gui.cpp:1067
 msgid "Transaction Amount is incorrect"
-msgstr "Няслушная сума аперацыі"
+msgstr "Хібная сума аперацыі"
 
 #: import_export/qif_import_gui.cpp:1089
 msgid "Transaction Category is incorrect"
-msgstr "Няслушная катыгорыя аперацыі"
+msgstr "Хібная катыгорыя аперацыі"
 
 #: import_export/qif_import_gui.cpp:1181
 #, c-format
