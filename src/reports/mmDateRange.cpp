@@ -73,13 +73,13 @@ void mmDateRange::findEndOfMonth()
     if (!(this->end_date_.GetDay() < startDay_))
         this->end_date_.Add(wxDateSpan::Months(1));
     this->start_date_ = this->end_date_;
-    setValidDate(END);
 }
 
 mmCurrentMonth::mmCurrentMonth()
 : mmDateRange()
 {
     this->findEndOfMonth();
+    setValidDate(END);
     this->start_date_.Subtract(wxDateSpan::Months(1));
     setValidDate(START);
     this->title_ = wxTRANSLATE("Current Month");
@@ -106,8 +106,8 @@ mmLastMonth::mmLastMonth()
 {
     this->findEndOfMonth();
     this->end_date_.Subtract(wxDateSpan::Months(1));
-    setValidDate(END);
     this->start_date_ = this->end_date_;
+    setValidDate(END);
     this->start_date_.Subtract(wxDateSpan::Months(1));
     setValidDate(START);
     this->title_ = wxTRANSLATE("Last Month");
@@ -137,6 +137,7 @@ mmLast3Months::mmLast3Months()
 : mmDateRange()
 {
     this->findEndOfMonth();
+    setValidDate(END);
     this->start_date_.Subtract(wxDateSpan::Months(3));
     setValidDate(START);
     this->title_ = wxTRANSLATE("Last 3 Months");
@@ -146,6 +147,7 @@ mmLast12Months::mmLast12Months()
 : mmDateRange()
 {
     this->findEndOfMonth();
+    setValidDate(END);
     this->start_date_.Subtract(wxDateSpan::Months(12));
     setValidDate(START);
     this->title_ = wxTRANSLATE("Last 12 Months");
@@ -156,8 +158,8 @@ mmCurrentYear::mmCurrentYear()
 {
     this->findEndOfMonth();
     this->start_date_.SetMonth(wxDateTime::Jan);
-    setValidDate(START);
     this->end_date_ = start_date_;
+    setValidDate(START);
     this->end_date_.Add(wxDateSpan::Months(12));
     setValidDate(END);
     this->title_ = wxTRANSLATE("Current Year");
@@ -179,8 +181,8 @@ mmLastYear::mmLastYear()
     this->findEndOfMonth();
     this->start_date_.SetMonth(wxDateTime::Jan);
     this->start_date_.Subtract(wxDateSpan::Years(1));
-    setValidDate(START);
     this->end_date_ = start_date_;
+    setValidDate(START);
     this->end_date_.Add(wxDateSpan::Months(12));
     setValidDate(END);
     this->title_ = wxTRANSLATE("Last Year");
