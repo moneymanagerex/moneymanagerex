@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-08-31 10:25+0300\n"
-"PO-Revision-Date: 2021-09-18 09:45\n"
+"PO-Revision-Date: 2021-09-19 19:20\n"
 "Last-Translator: \n"
 "Language-Team: Serbian (Cyrillic)\n"
 "MIME-Version: 1.0\n"
@@ -25,7 +25,7 @@ msgstr ""
 
 #: aboutdialog.cpp:55
 msgid "License agreement"
-msgstr ""
+msgstr "Уговор о лиценцирању"
 
 #: aboutdialog.cpp:187
 msgid "About"
@@ -33,7 +33,7 @@ msgstr "О програму"
 
 #: aboutdialog.cpp:192
 msgid "Authors"
-msgstr "Autori"
+msgstr "Аутори"
 
 #: aboutdialog.cpp:197
 msgid "Sponsors"
@@ -41,19 +41,19 @@ msgstr "Спонзори"
 
 #: aboutdialog.cpp:202
 msgid "License"
-msgstr ""
+msgstr "Лиценца"
 
 #: aboutdialog.cpp:207
 msgid "Privacy"
-msgstr ""
+msgstr "Приватност"
 
 #: aboutdialog.cpp:245 optionsettingsnet.cpp:114
 msgid "Send anonymous statistics usage data"
-msgstr ""
+msgstr "Слање анонимних података о статистици употребе"
 
 #: aboutdialog.cpp:246 optionsettingsnet.cpp:116
 msgid "Enable to help us sending anonymous data about MMEX usage."
-msgstr ""
+msgstr "Омогућите да шаљемо анонимне податке о коришћењу MMEX-а."
 
 #: aboutdialog.cpp:253 accountdialog.cpp:306 appstartdialog.cpp:137
 #: assetdialog.cpp:305 attachmentdialog.cpp:120 billsdepositsdialog.cpp:491
@@ -68,7 +68,7 @@ msgstr ""
 #: splittransactionsdialog.cpp:172 transactionsupdatedialog.cpp:240
 #: transdialog.cpp:606 wizard_update.cpp:192
 msgid "&OK "
-msgstr ""
+msgstr "&У реду"
 
 #: accountdialog.cpp:111 mmframe.cpp:1479
 msgid "Edit Account"
@@ -96,16 +96,16 @@ msgstr "Статус рачуна:"
 
 #: accountdialog.cpp:161
 msgid "Specify if this account has been closed. Closed accounts are inactive in most calculations, reporting etc."
-msgstr "Унети да ли је овај рачун затворен. Затворени рачуни су инактивни у већини калкулација, извештаја итд."
+msgstr "Унети да ли је овај рачун затворен. Затворени рачуни су неактивни у већини калкулација, извештаја итд."
 
 #: accountdialog.cpp:165
 #, c-format
 msgid "Initial Balance: %s"
-msgstr ""
+msgstr "Почетно стање: %s"
 
 #: accountdialog.cpp:169
 msgid "Enter the initial balance in this account."
-msgstr "Унети почетни баланс овог рачуна."
+msgstr "Унети почетно стање овог рачуна."
 
 #: accountdialog.cpp:171 import_export/univcsvdialog.cpp:1830
 msgid "Currency:"
@@ -146,11 +146,11 @@ msgstr "Унети белешке о овом рачуну."
 #: db/DB_Table_Subcategory_V1.h:132 db/DB_Table_Subcategory_V1.h:148
 #: optiondialog.cpp:135
 msgid "Others"
-msgstr "Друго"
+msgstr "Остало"
 
 #: accountdialog.cpp:209
 msgid "Card Number:"
-msgstr ""
+msgstr "Број картице:"
 
 #: accountdialog.cpp:209
 msgid "Account Number:"
@@ -158,7 +158,7 @@ msgstr "Број рачуна:"
 
 #: accountdialog.cpp:211
 msgid "Enter the Account Number associated with this account."
-msgstr "Унети број рачуна који је асоциран са овим рачуном."
+msgstr "Унети број рачуна који је повезан са овим рачуном."
 
 #: accountdialog.cpp:214
 msgid "Held At:"
@@ -174,7 +174,7 @@ msgstr "Сајт:"
 
 #: accountdialog.cpp:221
 msgid "Enter the URL of the website for the financial institution."
-msgstr "Унети УРЛ сајта за финансиску институцију."
+msgstr "Унети URL сајта за финансиску институцију."
 
 #: accountdialog.cpp:224
 msgid "Contact:"
@@ -190,39 +190,39 @@ msgstr "Инфо приступа:"
 
 #: accountdialog.cpp:231
 msgid "Enter any login/access information for the financial institution. This is not secure as anyone with access to the mmb file can access it."
-msgstr "Унети приступне информације за финансијску институцију. Поступан није сигуран пошто су читљиве преко mmb датотеке."
+msgstr "Унети приступне информације за финансијску институцију. Уношење није безбедно јер свако са приступом mmb датотеке може да их очита."
 
 #: accountdialog.cpp:236
 msgid "Statement"
-msgstr ""
+msgstr "Стање"
 
 #: accountdialog.cpp:244
 msgid "Statement:"
-msgstr ""
+msgstr "Стање:"
 
 #: accountdialog.cpp:245
 msgid "Locked"
-msgstr ""
+msgstr "Закључано"
 
 #: accountdialog.cpp:246
 msgid "Enable or disable the transaction Lock"
-msgstr ""
+msgstr "Омогући или онемогући закључавање трансакција"
 
 #: accountdialog.cpp:249
 msgid "Reconciled Date:"
-msgstr ""
+msgstr "Датум измирења:"
 
 #: accountdialog.cpp:251
 msgid "The date of the transaction lock"
-msgstr ""
+msgstr "Datum закључавања трансакција"
 
 #: accountdialog.cpp:254
 msgid "Minimum Bal:"
-msgstr ""
+msgstr "Минимално стање:"
 
 #: accountdialog.cpp:256
 msgid "Account balance lower limit. Zero to disable"
-msgstr ""
+msgstr "Доњи лимит стања рачуна. Нула за онемогућење"
 
 #: accountdialog.cpp:261 mmchecking_list.cpp:233
 msgid "Credit"
@@ -230,36 +230,36 @@ msgstr "Кредит"
 
 #: accountdialog.cpp:269
 msgid "Credit Limit:"
-msgstr ""
+msgstr "Кредитни лимит:"
 
 #: accountdialog.cpp:271
 msgid "Credit limit for the Account. Zero to disable"
-msgstr ""
+msgstr "Кредитни лимит рачуна. Нула за онемогућавање"
 
 #: accountdialog.cpp:274
 msgid "Interest Rate:"
-msgstr ""
+msgstr "Каматна стопа:"
 
 #: accountdialog.cpp:278
 msgid "Payment Due Date:"
-msgstr ""
+msgstr "Рок плаћања:"
 
 #: accountdialog.cpp:282
 msgid "Minimum Payment:"
-msgstr ""
+msgstr "Минимална уплата:"
 
 #: accountdialog.cpp:301
 msgid "Organize attachments of this account"
-msgstr ""
+msgstr "Организуј прилоге овог рачуна"
 
 #: accountdialog.cpp:423
 msgid "Default Image"
-msgstr ""
+msgstr "Подразумевана слика"
 
 #: accountdialog.cpp:433
 #, c-format
 msgid "Image #%i"
-msgstr ""
+msgstr "Слика #%i"
 
 #: accountdialog.cpp:504
 msgid "Account Name "
@@ -273,11 +273,11 @@ msgstr "Валута"
 
 #: accountdialog.cpp:517
 msgid "Please insert a valid URL"
-msgstr ""
+msgstr "Молимо унесите валидан URL"
 
 #: accountdialog.cpp:517
 msgid "Invalid URL"
-msgstr ""
+msgstr "URL није валидан"
 
 #: accountdialog.h:37 mmframe.cpp:1476 mmframe.cpp:1720
 #: wizard_newaccount.cpp:86 wizard_newaccount.cpp:93 wizard_newaccount.cpp:164
@@ -286,45 +286,45 @@ msgstr "Нови рачун"
 
 #: appstartdialog.cpp:100
 msgid "Open Last Opened Database"
-msgstr "Отвори последњу отворену Базу"
+msgstr "Отвори последњу отворену базу података"
 
 #: appstartdialog.cpp:103
 msgid "Create a New Database"
-msgstr "Креирај нову Базу"
+msgstr "Креирај нову базу података"
 
 #: appstartdialog.cpp:104
 msgid "Create a new database file to get started"
-msgstr "Креирај нову базу да би сте започели"
+msgstr "Креирајте нову базу података да би сте започели"
 
 #: appstartdialog.cpp:107
 msgid "Open Existing Database"
-msgstr "Отвори постојећу Базу"
+msgstr "Отвори постојећу базу података"
 
 #: appstartdialog.cpp:108
 msgid "Open an already created database file with extension (*.mmb)"
-msgstr "Отвори постојећу Базу (*.mmb)"
+msgstr "Отвори постојећу базу података (*.mmb)"
 
 #: appstartdialog.cpp:111
 msgid "Read Documentation"
-msgstr "Читај приручник"
+msgstr "Прочитај документацију"
 
 #: appstartdialog.cpp:112
 msgid "Read the user manual"
-msgstr "Прочитај приручник"
+msgstr "Прочитај корисничко упуство"
 
 #: appstartdialog.cpp:115
 msgid "Visit Website for more information"
-msgstr "Ићи на сајт за више информација"
+msgstr "Посетите веб страницу за више информација"
 
 #: appstartdialog.cpp:116
 #, c-format
 msgid "Open the %s website for latest news, updates etc"
-msgstr ""
+msgstr "Отвори %s страницу за најновије вести, ажурирања итд."
 
 #: appstartdialog.cpp:124 wizard_update.cpp:185
 #, c-format
 msgid "Show this window next time %s starts"
-msgstr ""
+msgstr "Покажи овај прозор кад се следећи пут %s покрене"
 
 #: appstartdialog.cpp:138
 msgid "&Exit "
@@ -333,7 +333,7 @@ msgstr "&Излаз "
 #: appstartdialog.cpp:154
 #, c-format
 msgid "Open the previously opened database : %s"
-msgstr ""
+msgstr "Отвори претходно отварану базу података: %s"
 
 #: assetdialog.cpp:61 assetdialog.cpp:410 assetspanel.cpp:467
 msgid "New Asset"
@@ -345,11 +345,11 @@ msgstr "Уреди имовину"
 
 #: assetdialog.cpp:71 assetdialog.cpp:93 assetspanel.cpp:471
 msgid "Add Asset Transaction"
-msgstr ""
+msgstr "Додај трансакцију за имовину"
 
 #: assetdialog.cpp:97
 msgid "Edit Asset Transaction"
-msgstr ""
+msgstr "Измени трансакцију за имовину"
 
 #: assetdialog.cpp:183
 msgid "Asset Details"
@@ -364,7 +364,7 @@ msgstr "Име"
 
 #: assetdialog.cpp:198
 msgid "Enter the name of the asset"
-msgstr "Унети име имовине"
+msgstr "Унесите назив имовине"
 
 #: assetdialog.cpp:201 assetspanel.cpp:61 filtertransdialog.cpp:533
 #: import_export/qif_export.cpp:588 import_export/qif_import_gui.cpp:99
@@ -384,11 +384,11 @@ msgstr "Датум куповине имовине"
 
 #: assetdialog.cpp:208
 msgid "Asset Type"
-msgstr "Тип имовине"
+msgstr "Врста имовине"
 
 #: assetdialog.cpp:214
 msgid "Select type of asset"
-msgstr "Одабрати тип имовине"
+msgstr "Одаберите врсту имовине"
 
 #: assetdialog.cpp:219 import_export/qif_import_gui.cpp:104
 #: maincurrencydialog.cpp:270
@@ -397,7 +397,7 @@ msgstr "Вредност"
 
 #: assetdialog.cpp:226
 msgid "Enter the current value of the asset"
-msgstr "Унети тренутну вредност имовине"
+msgstr "Унесите тренутну вредност имовине"
 
 #: assetdialog.cpp:231
 msgid "Change in Value"
@@ -405,50 +405,51 @@ msgstr "Промена вредности"
 
 #: assetdialog.cpp:237
 msgid "Specify if the value of the asset changes over time"
-msgstr "Одреди да ли се вредност имовине мења током времена"
+msgstr "Одреди да ли се вредност имовине мења временом"
 
 #: assetdialog.cpp:241
 msgid "% Rate"
-msgstr ""
+msgstr "% стопа"
 
 #: assetdialog.cpp:247
 msgid "Enter the rate at which the asset changes its value in percentage per year"
-msgstr ""
+msgstr "Унесите годишњу стопу по којој имовина мења вредност у процентима"
 
 #: assetdialog.cpp:259
 msgid "Organize attachments of this asset"
-msgstr ""
+msgstr "Органиуј прилоге за ову имовину"
 
 #: assetdialog.cpp:262
 msgid "Enter notes associated with this asset"
-msgstr "Унети белешке асоциране за ову имовину"
+msgstr "Унесите белешке повезане са овом имовином"
 
 #: assetdialog.cpp:268
 msgid "New Transaction Details"
-msgstr ""
+msgstr "Детаљи нове трансакције"
 
 #: assetdialog.cpp:271 sharetransactiondialog.cpp:296
 msgid "Edit Transaction Details"
-msgstr ""
+msgstr "Измени детаље трансакције"
 
 #: assetdialog.cpp:306 constants.cpp:73 sharetransactiondialog.cpp:326
 msgid "&Cancel "
-msgstr ""
+msgstr "&Поништи "
 
 #: assetdialog.cpp:402 sharetransactiondialog.cpp:434
 msgid "Invalid Transaction"
-msgstr ""
+msgstr "Неважећа трансакција"
 
 #: assetdialog.cpp:409
 msgid "Asset Account not found.\n\n"
 "Would you want to create one?"
-msgstr ""
+msgstr "Рачун за имовину није пронађен.\n\n"
+"Да ли желите да га направите?"
 
 #: assetspanel.cpp:59 billsdepositspanel.cpp:126
 #: import_export/qif_export.cpp:587 mmchecking_list.cpp:205
 #: reports/transactions.cpp:85 stocks_list.cpp:88
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #: assetspanel.cpp:62 billsdepositsdialog.cpp:554 billsdepositspanel.cpp:133
 #: customfieldlistdialog.cpp:54 filtertransdialog.cpp:293
@@ -460,11 +461,11 @@ msgstr ""
 #: transactionsupdatedialog.cpp:145 transdialog.cpp:501
 #: usertransactionpanel.cpp:138 webappdialog.cpp:150
 msgid "Type"
-msgstr "Тип"
+msgstr "Врста"
 
 #: assetspanel.cpp:63 reports/summarystocks.cpp:110
 msgid "Initial Value"
-msgstr ""
+msgstr "Почетна вредност"
 
 #: assetspanel.cpp:64 reports/summarystocks.cpp:114 stockdialog.cpp:259
 msgid "Current Value"
@@ -480,15 +481,15 @@ msgstr ""
 
 #: assetspanel.cpp:101
 msgid "&Add Asset Transaction"
-msgstr ""
+msgstr "Додај трансакцију за имовину"
 
 #: assetspanel.cpp:102
 msgid "&View Asset Transactions"
-msgstr ""
+msgstr "Погледај трансакције за имовину"
 
 #: assetspanel.cpp:103
 msgid "&Open Asset Account"
-msgstr ""
+msgstr "Отвори рачун за имовину"
 
 #: assetspanel.cpp:105
 msgid "&Edit Asset"
@@ -501,11 +502,11 @@ msgstr "Обриши имовину"
 #: assetspanel.cpp:108 billsdepositspanel.cpp:420 mmchecking_list.cpp:390
 #: mmframe.cpp:1258 payeedialog.cpp:403 stocks_list.cpp:145
 msgid "&Organize Attachments"
-msgstr ""
+msgstr "Организуј прилоге"
 
 #: assetspanel.cpp:200
 msgid "Do you really want to delete the Asset?"
-msgstr "Зтварно избрисати ову имовину?"
+msgstr "Да ли стварно желите да обришете имовину?"
 
 #: assetspanel.cpp:201
 msgid "Confirm Asset Deletion"
@@ -513,13 +514,13 @@ msgstr "Потврда брисања имовине"
 
 #: assetspanel.cpp:385
 msgid "MMEX allows you to track fixed assets like cars, houses, land and others. Each asset can have its value appreciate by a certain rate per year, depreciate by a certain rate per year, or not change in value. The total assets are added to your total financial worth."
-msgstr ""
+msgstr "MMEX Вам омогућава да пратите сталну имовину попут аутомобила, некретнина, земљишта и остало. Вредност сваке имовине може да се увећава или смањује према годишњој стопи, или да остане непромењена. Збир вредности имовине се додаје Вашем нето богатству."
 
 #: assetspanel.cpp:415 assetspanel.h:108 general_report_manager.cpp:723
 #: general_report_manager.cpp:1000 mmframe.cpp:477 mmframe.cpp:743
 #: mmframe.cpp:1541 mmframe.cpp:3011 mmhomepage.cpp:576 mmhomepagepanel.cpp:224
 msgid "Assets"
-msgstr "Имовине"
+msgstr "Имовина"
 
 #: assetspanel.cpp:424 assetspanel.cpp:694 assetspanel.cpp:711
 #: filtertransdialog.cpp:205 import_export/qif_export.cpp:74
@@ -531,41 +532,41 @@ msgstr "Све"
 #: assetspanel.cpp:466 billsdepositspanel.cpp:283 mmcheckingpanel.cpp:332
 #: stockspanel.cpp:129
 msgid "&New "
-msgstr ""
+msgstr "Ново "
 
 #: assetspanel.cpp:470 stockspanel.cpp:133
 msgid "&Add Trans "
-msgstr ""
+msgstr "Додај транс. "
 
 #: assetspanel.cpp:475 stockspanel.cpp:138
 msgid "&View Trans "
-msgstr ""
+msgstr "Погледај транс. "
 
 #: assetspanel.cpp:476
 msgid "View Asset Transactions"
-msgstr ""
+msgstr "Погледај трансакције за имовину"
 
 #: assetspanel.cpp:480 attachmentdialog.cpp:317 billsdepositspanel.cpp:287
 #: categdialog.cpp:233 customfieldlistdialog.cpp:261 maincurrencydialog.cpp:527
 #: mmcheckingpanel.cpp:336 payeedialog.cpp:397 splittransactionsdialog.cpp:166
 #: stockspanel.cpp:143
 msgid "&Edit "
-msgstr ""
+msgstr "Измени "
 
 #: assetspanel.cpp:485 billsdepositspanel.cpp:292 budgetyeardialog.cpp:103
 #: categdialog.cpp:237 maincurrencydialog.cpp:292 mmchecking_list.cpp:406
 #: mmcheckingpanel.cpp:341 stockdialog.cpp:339 stockspanel.cpp:148
 msgid "&Delete "
-msgstr ""
+msgstr "Обриши "
 
 #: assetspanel.cpp:486
 msgid "Delete Asset"
-msgstr "Бриши имовину"
+msgstr "Обриши имовину"
 
 #: assetspanel.cpp:493 billsdepositspanel.cpp:310 mmcheckingpanel.cpp:354
 #: stockspanel.cpp:161
 msgid "Open attachments"
-msgstr ""
+msgstr "Отвори прилоге"
 
 #: assetspanel.cpp:500 assetspanel.cpp:501 mmcheckingpanel.cpp:362
 msgid "Search"
@@ -573,7 +574,7 @@ msgstr "Претрага"
 
 #: assetspanel.cpp:503
 msgid "Enter any string to find related assets"
-msgstr ""
+msgstr "Унесите било који слог да пронађете повезану имовину"
 
 #: assetspanel.cpp:573 stockspanel.cpp:344 stockspanel.cpp:531
 #, c-format
@@ -583,7 +584,7 @@ msgstr "Збир: %s"
 #: assetspanel.cpp:655
 #, c-format
 msgid "Change in Value: %s %s"
-msgstr ""
+msgstr "Промена вредности: %s %s"
 
 #: assetspanel.cpp:771
 msgid "This asset does not have its own account\n\n"
@@ -605,7 +606,7 @@ msgstr ""
 #: attachmentdialog.cpp:56 import_export/qif_export.cpp:194
 #: import_export/univcsvdialog.cpp:181
 msgid "File"
-msgstr "Фајл"
+msgstr "Датотека"
 
 #: attachmentdialog.cpp:64
 msgid "Attachment folder not defined."
