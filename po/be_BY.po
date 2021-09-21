@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-09-21 12:43+0300\n"
-"PO-Revision-Date: 2021-09-21 09:47\n"
+"PO-Revision-Date: 2021-09-21 22:15\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -2420,7 +2420,7 @@ msgstr "Абраць колер"
 
 #: filtertransdialog.cpp:365
 msgid "Hide Columns"
-msgstr ""
+msgstr "Схаваць слупкі"
 
 #: filtertransdialog.cpp:382
 msgid "Settings"
