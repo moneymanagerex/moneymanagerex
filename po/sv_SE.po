@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-09-21 12:43+0300\n"
-"PO-Revision-Date: 2021-09-21 09:47\n"
+"PO-Revision-Date: 2021-09-21 14:54\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
@@ -2402,7 +2402,7 @@ msgstr ""
 
 #: filtertransdialog.cpp:365
 msgid "Hide Columns"
-msgstr ""
+msgstr "Dölj kolumner"
 
 #: filtertransdialog.cpp:382
 msgid "Settings"
@@ -2425,7 +2425,7 @@ msgstr ""
 
 #: filtertransdialog.cpp:642
 msgid "Hide Report Columns"
-msgstr ""
+msgstr "Dölj rapportkolumner"
 
 #: filtertransdialog.cpp:784 filtertransdialog.cpp:1507
 msgid "Please Enter"
