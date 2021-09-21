@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-09-21 12:43+0300\n"
-"PO-Revision-Date: 2021-09-21 22:15\n"
+"PO-Revision-Date: 2021-09-21 22:35\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -2443,7 +2443,7 @@ msgstr "Ачысціць усе палі бягучага шаблона"
 
 #: filtertransdialog.cpp:642
 msgid "Hide Report Columns"
-msgstr ""
+msgstr "Схаваць слупкі справаздачы"
 
 #: filtertransdialog.cpp:784 filtertransdialog.cpp:1507
 msgid "Please Enter"
