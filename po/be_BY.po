@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-09-21 12:43+0300\n"
-"PO-Revision-Date: 2021-09-21 22:35\n"
+"PO-Revision-Date: 2021-09-22 07:29\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -7233,7 +7233,7 @@ msgstr "Памылка спампавання далучэння"
 
 #: webappdialog.cpp:77
 msgid "Import WebApp transactions"
-msgstr "Імпартую аперацый WebApp"
+msgstr "Імпарт аперацыяў з WebApp у дадатак"
 
 #: webappdialog.cpp:100
 msgid "Network status (click to refresh)"
