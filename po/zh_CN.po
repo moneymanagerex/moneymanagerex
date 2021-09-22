@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-09-21 12:43+0300\n"
-"PO-Revision-Date: 2021-09-21 09:48\n"
+"PO-Revision-Date: 2021-09-22 00:37\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
@@ -2409,7 +2409,7 @@ msgstr "选择颜色"
 
 #: filtertransdialog.cpp:365
 msgid "Hide Columns"
-msgstr ""
+msgstr "隐藏列"
 
 #: filtertransdialog.cpp:382
 msgid "Settings"
@@ -2432,7 +2432,7 @@ msgstr "清除当前预设选择的所有字段"
 
 #: filtertransdialog.cpp:642
 msgid "Hide Report Columns"
-msgstr ""
+msgstr "隐藏报告列"
 
 #: filtertransdialog.cpp:784 filtertransdialog.cpp:1507
 msgid "Please Enter"
