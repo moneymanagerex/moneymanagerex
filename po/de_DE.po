@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-09-21 12:43+0300\n"
-"PO-Revision-Date: 2021-09-21 09:48\n"
+"PO-Revision-Date: 2021-09-22 08:36\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -2413,7 +2413,7 @@ msgstr "Farbe auswählen"
 
 #: filtertransdialog.cpp:365
 msgid "Hide Columns"
-msgstr ""
+msgstr "Spalten ausblenden"
 
 #: filtertransdialog.cpp:382
 msgid "Settings"
@@ -2436,7 +2436,7 @@ msgstr "Alle Felder der aktuellen Preset-Auswahl löschen"
 
 #: filtertransdialog.cpp:642
 msgid "Hide Report Columns"
-msgstr ""
+msgstr "Berichtsspalten ausblenden"
 
 #: filtertransdialog.cpp:784 filtertransdialog.cpp:1507
 msgid "Please Enter"
