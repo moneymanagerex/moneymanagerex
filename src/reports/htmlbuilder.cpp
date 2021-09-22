@@ -640,8 +640,19 @@ void mmHTMLBuilder::addChart(const GraphData& gd)
     }
     htmlChart += wxString::Format(", series: [%s]", seriesList);
 
-    if (gd.type == GraphData::BARLINE)
-        htmlChart += ", dataLabels: { enabled: true, enabledOnSeries: [0] }";   // Always label the first series (line)
+    if (gd.type == GraphData::BARLINE) {
+        htmlChart += ", dataLabels: { enabled: true, enabledOnSeries: [";   // Always label the lines
+        int seriesNo = 0;
+        first = true;
+        for (const auto& item : gd.series) {
+            if (item.type == "line") {
+                htmlChart += wxString::Format("%s%i", first ? "":",", seriesNo);
+                first = false;
+            }
+            seriesNo++;
+        }
+        htmlChart += "] }";   // Always label the lines
+    }
 
     htmlPieData += wxString::Format("var chart_%s = [ %s ]", divid, pieEntries);
 
