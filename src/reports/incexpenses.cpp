@@ -273,7 +273,7 @@ wxString mmReportIncomeExpensesMonthly::getHTMLText()
             {
                 hb.startAltTableRow();
                     hb.addTableCell(year);
-                    hb.addEmptyTableCell(3);
+                    hb.addEmptyTableCell(4);
                 hb.endTableRow();
             }
             hb.startTableRow();
@@ -293,8 +293,9 @@ wxString mmReportIncomeExpensesMonthly::getHTMLText()
         totals.push_back(total_income);
         totals.push_back(total_expenses);
         totals.push_back(total_income - total_expenses);
+        totals.push_back(total_income - total_expenses);
 
-        hb.addMoneyTotalRow(_("Total:"), 4, totals);
+        hb.addMoneyTotalRow(_("Total:"), 5, totals);
     }
     hb.endTable();
 
