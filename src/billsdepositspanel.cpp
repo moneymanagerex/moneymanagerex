@@ -1,5 +1,6 @@
 ﻿/*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
+ Copyright (C) 2021 Nikolay Akimov
  Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
@@ -210,7 +211,7 @@ bool mmBillsDepositsPanel::Create(wxWindow *parent
     /* Set up the transaction filter.  The transFilter dialog will be destroyed
        when the checking panel is destroyed. */
     transFilterActive_ = false;
-    transFilterDlg_ = new mmFilterTransactionsDialog(this);
+    transFilterDlg_ = new mmFilterTransactionsDialog(this, false, false);
 
     initVirtualListControl();
 

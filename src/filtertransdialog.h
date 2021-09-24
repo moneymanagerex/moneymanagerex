@@ -1,5 +1,5 @@
 /*******************************************************
-Copyright (C) 2006-2012
+Copyright (C) 2021 Nikolay Akimov
 Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
 
 This program is free software; you can redistribute it and/or modify
@@ -39,7 +39,7 @@ class mmFilterTransactionsDialog: public wxDialog
 public:
     /// Constructors
     mmFilterTransactionsDialog();
-    mmFilterTransactionsDialog(wxWindow* parent, bool showAccountFilter = true);
+    mmFilterTransactionsDialog(wxWindow* parent, bool showAccountFilter = true, bool isReportMode = false);
 
     virtual int ShowModal();
 
@@ -88,7 +88,8 @@ private:
     wxString getNumber();
     wxString getNotes();
 
-    bool showAccountFilter_;
+    bool isMultiAccount_;
+    bool isReportMode_;
 
 private:
     void OnDateChanged(wxDateEvent& event);
@@ -178,7 +179,7 @@ private:
     int colourValue_;
 
     wxCheckBox* showColumnsCheckBox_;
-    wxButton* bShowColumns_;
+    wxButton* bHideColumns_;
 
     int categID_;
     int subcategID_;

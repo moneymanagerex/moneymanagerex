@@ -1,7 +1,7 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
- Copyright (C) 2011, 2012 Nikolay & Stefano Giorgio
- Copyright (C) 2015, 2017, 2021 Nikolay Akimov
+ Copyright (C) 2011, 2012 Stefano Giorgio
+ Copyright (C) 2011, 2012, 2015, 2017, 2021 Nikolay Akimov
  Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute transcation and/or modify

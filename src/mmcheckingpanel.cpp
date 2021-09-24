@@ -1,6 +1,6 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
- Copyright (C) 2014-2021 Nikolay Akimov
+ Copyright (C) 2014 - 2021 Nikolay Akimov
  Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
@@ -103,7 +103,7 @@ bool mmCheckingPanel::Create(
     initViewTransactionsHeader();
 
     m_transFilterActive = false;
-    m_trans_filter_dlg = new mmFilterTransactionsDialog(this, m_allAccounts);
+    m_trans_filter_dlg = new mmFilterTransactionsDialog(this, m_allAccounts, false);
     initFilterSettings();
 
     RefreshList();
