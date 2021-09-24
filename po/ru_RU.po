@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-09-24 17:06+0300\n"
-"PO-Revision-Date: 2021-09-24 14:31\n"
+"PO-Revision-Date: 2021-09-24 14:43\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -195,15 +195,15 @@ msgstr "Введите логин/пароль доступа к счёту в �
 
 #: accountdialog.cpp:236
 msgid "Statement"
-msgstr "Ведомость"
+msgstr "Выписка"
 
 #: accountdialog.cpp:244
 msgid "Statement:"
-msgstr "Ведомость:"
+msgstr "Состояние:"
 
 #: accountdialog.cpp:245
 msgid "Locked"
-msgstr "Заблокированный"
+msgstr "Зафиксировать"
 
 #: accountdialog.cpp:246
 msgid "Enable or disable the transaction Lock"
@@ -211,7 +211,7 @@ msgstr "Включение или отключение блокировки тр
 
 #: accountdialog.cpp:249
 msgid "Reconciled Date:"
-msgstr "Дата согласования:"
+msgstr "Дата фиксации:"
 
 #: accountdialog.cpp:251
 msgid "The date of the transaction lock"
