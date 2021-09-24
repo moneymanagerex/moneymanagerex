@@ -59,7 +59,7 @@ EVT_BUTTON(wxID_UP, mmUnivCSVDialog::OnMoveUp)
 EVT_BUTTON(wxID_DOWN, mmUnivCSVDialog::OnMoveDown)
 EVT_BUTTON(wxID_CLEAR, mmUnivCSVDialog::OnButtonClearClick)
 EVT_BUTTON(wxID_STANDARD, mmUnivCSVDialog::OnStandard)
-EVT_BUTTON(wxID_BROWSE, mmUnivCSVDialog::OnBrowse)
+EVT_BUTTON(wxID_BROWSE, mmUnivCSVDialog::OnFileBrowse)
 EVT_LISTBOX_DCLICK(wxID_ANY, mmUnivCSVDialog::OnListBox)
 EVT_CHOICE(wxID_ANY, mmUnivCSVDialog::OnChoiceChanged)
 wxEND_EVENT_TABLE()
@@ -79,7 +79,7 @@ mmUnivCSVDialog::mmUnivCSVDialog(
 ) :
     dialogType_(dialogType),
     delimit_(","),
-    itemButton_Import_(nullptr),
+    bImport_(nullptr),
     csvFieldCandicate_(nullptr),
     csvListBox_(nullptr),
     m_button_add_(nullptr),
@@ -409,11 +409,11 @@ void mmUnivCSVDialog::CreateControls()
     itemPanel5->SetSizer(itemBoxSizer6);
 
     if (IsImporter()) {
-        itemButton_Import_ = new wxButton(itemPanel5, ID_UNIVCSVBUTTON_IMPORT, _("&Import"));
+        bImport_ = new wxButton(itemPanel5, ID_UNIVCSVBUTTON_IMPORT, _("&Import"));
     } else {
-        itemButton_Import_ = new wxButton(itemPanel5, ID_UNIVCSVBUTTON_EXPORT, _("&Export"));
+        bImport_ = new wxButton(itemPanel5, ID_UNIVCSVBUTTON_EXPORT, _("&Export"));
     }
-    itemBoxSizer6->Add(itemButton_Import_, 0, wxALIGN_CENTER | wxALL, 5);
+    itemBoxSizer6->Add(bImport_, 0, wxALIGN_CENTER | wxALL, 5);
 
     wxButton* itemCancelButton = new wxButton(itemPanel5, wxID_CANCEL, wxGetTranslation(g_CancelLabel));
     itemBoxSizer6->Add(itemCancelButton, 0, wxALIGN_CENTER | wxALL, 5);
@@ -445,8 +445,8 @@ void mmUnivCSVDialog::CreateControls()
     mmToolTip(itemButton_MoveUp, _("Move Up"));
     mmToolTip(itemButton_MoveDown, _("Move &Down"));
     if (IsCSV()) mmToolTip(m_textDelimiter, _("Specify the delimiter to use when importing/exporting CSV files"));
-    if (IsImporter()) mmToolTip(itemButton_Import_, _("Import File"));
-    if (!IsImporter()) mmToolTip(itemButton_Import_, _("Export File"));
+    if (IsImporter()) mmToolTip(bImport_, _("Import File"));
+    if (!IsImporter()) mmToolTip(bImport_, _("Export File"));
 
 }
 
@@ -1094,7 +1094,9 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& WXUNUSED(event))
 
     outputLog.Close();
 
-    if (!canceledbyuser && nImportedLines > 0) Close();
+    /*if (!canceledbyuser && nImportedLines > 0)
+        Close(); // bugfix #3877 */
+    bImport_->Disable();
 }
 
 void mmUnivCSVDialog::OnExport(wxCommandEvent& WXUNUSED(event))
@@ -1535,7 +1537,7 @@ void mmUnivCSVDialog::OnButtonClearClick(wxCommandEvent& WXUNUSED(event))
 }
 
 
-void mmUnivCSVDialog::OnBrowse(wxCommandEvent& WXUNUSED(event))
+void mmUnivCSVDialog::OnFileBrowse(wxCommandEvent& WXUNUSED(event))
 {
     wxString fileName = m_text_ctrl_->GetValue();
     wxString header;
@@ -1598,6 +1600,7 @@ void mmUnivCSVDialog::OnBrowse(wxCommandEvent& WXUNUSED(event))
             // TODO: update_preview() is called twice. Once here and once in OnFileNameChanged().
             // This leads to double work and double error messages to the user.
             this->update_preview();
+            bImport_->Enable();
         }
     }
 }
