@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-09-24 17:06+0300\n"
-"PO-Revision-Date: 2021-09-24 14:31\n"
+"PO-Revision-Date: 2021-09-24 14:43\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -585,15 +585,15 @@ msgstr "Парада: Можна выкарыстоўваць падстанов
 
 #: assetspanel.cpp:506 filtertransdialog.cpp:358 mmcheckingpanel.cpp:367
 msgid "Use the question mark (?) to find any single character - for example, s?t finds 'sat' and 'set'."
-msgstr ""
+msgstr "Выкарыстоўвайце знак пытання (?), каб знайсці будзь-які адзін сымбаль — напрыклад, д?м знаходзіць \"дом\" і \"дым\"."
 
 #: assetspanel.cpp:507 filtertransdialog.cpp:359 mmcheckingpanel.cpp:368
 msgid "Use the asterisk (*) to find any number of characters - for example, s*d finds 'sad' and 'started'."
-msgstr ""
+msgstr "Выкарыстоўвайце зорачку (*), каб знайсці будзь-якую колькасць знакаў — напрыклад, д*м знаходзіць \"дом\" і \"дынамікам\"."
 
 #: assetspanel.cpp:508 filtertransdialog.cpp:360 mmcheckingpanel.cpp:369
 msgid "Use the asterisk (*) in the begin to find any string in the middle of the sentence."
-msgstr ""
+msgstr "Выкарыстоўвайце зорачку (*) у пачатку, каб знайсці будзь-які радок у сярэдзіне сказа."
 
 #: assetspanel.cpp:579 stockspanel.cpp:344 stockspanel.cpp:531
 #, c-format
@@ -2427,7 +2427,7 @@ msgstr "Дыяпазон цэнаў"
 
 #: filtertransdialog.cpp:356
 msgid "Enter any string to find it in transaction notes"
-msgstr ""
+msgstr "Пакажыце будзь-якой тэкст для пошука па нататках"
 
 #: filtertransdialog.cpp:364 filtertransdialog.cpp:1181
 #: reports/transactions.cpp:104
@@ -3942,7 +3942,7 @@ msgstr "Дубляваць абраную аперацыю"
 
 #: mmcheckingpanel.cpp:365
 msgid "Enter any string to find it in the nearest transaction data"
-msgstr ""
+msgstr "Пакажыце будзь-якой тэкст для праверкі, ці ёсць ён у бліжэйшай аперацыі"
 
 #: mmcheckingpanel.cpp:387
 msgid "Full Transactions Report"
@@ -6268,7 +6268,7 @@ msgstr "Прыбытак і выдаткі па месяцах"
 
 #: reports/incexpenses.cpp:215 reports/incexpenses.cpp:256
 msgid "Cumulative"
-msgstr ""
+msgstr "Сукупна"
 
 #: reports/mmDateRange.cpp:85
 msgid "Current Month"
