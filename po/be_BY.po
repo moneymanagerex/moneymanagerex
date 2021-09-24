@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-09-24 17:06+0300\n"
-"PO-Revision-Date: 2021-09-24 14:18\n"
+"PO-Revision-Date: 2021-09-24 14:31\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -581,7 +581,7 @@ msgstr "Напішыце любы тэкст для пошука будзь-як
 
 #: assetspanel.cpp:505 filtertransdialog.cpp:357 mmcheckingpanel.cpp:366
 msgid "Tips: You can use wildcard characters - question mark (?), asterisk (*) - in your search criteria."
-msgstr ""
+msgstr "Парада: Можна выкарыстоўваць падстановачныя знакі — знак пытання (?) і зорачку (*) — у крытэры пошуку."
 
 #: assetspanel.cpp:506 filtertransdialog.cpp:358 mmcheckingpanel.cpp:367
 msgid "Use the question mark (?) to find any single character - for example, s?t finds 'sat' and 'set'."
