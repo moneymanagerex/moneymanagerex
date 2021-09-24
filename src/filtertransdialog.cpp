@@ -1,6 +1,6 @@
 /*******************************************************
 Copyright (C) 2006 Madhan Kanagavel
-Copyright (C) 2016 - 2020 Nikolay Akimov
+Copyright (C) 2016 - 2021 Nikolay Akimov
 Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
 
 This program is free software; you can redistribute it and/or modify
@@ -100,12 +100,13 @@ mmFilterTransactionsDialog::mmFilterTransactionsDialog()
 {
 }
 
-mmFilterTransactionsDialog::mmFilterTransactionsDialog(wxWindow* parent, bool showAccountFilter)
+mmFilterTransactionsDialog::mmFilterTransactionsDialog(wxWindow* parent, bool showAccountFilter, bool isReportMode)
     : categID_(-1)
     , subcategID_(-1)
     , payeeID_(-1)
     , bSimilarCategoryStatus_(false)
-    , showAccountFilter_(showAccountFilter)
+    , isMultiAccount_(showAccountFilter)
+    , isReportMode_(isReportMode)
 {
     Create(parent);
     isValuesCorrect();
@@ -208,7 +209,7 @@ void mmFilterTransactionsDialog::CreateControls()
         , wxCommandEventHandler(mmFilterTransactionsDialog::OnAccountsButton), nullptr, this);
     itemPanelSizer->Add(bSelectedAccounts_, g_flagsExpand);
 
-    if (!showAccountFilter_) 
+    if (!isMultiAccount_) 
     {
             accountCheckBox_->Disable();
             bSelectedAccounts_->SetLabelText("");
@@ -366,11 +367,18 @@ void mmFilterTransactionsDialog::CreateControls()
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     itemPanelSizer->Add(showColumnsCheckBox_, g_flagsH);
 
-    bShowColumns_ = new wxButton(itemPanel, ID_DIALOG_COLUMNS, "");
-    bShowColumns_->SetMinSize(wxSize(180, -1));
-    bShowColumns_->Connect(wxID_ANY, wxEVT_COMMAND_BUTTON_CLICKED
+    bHideColumns_ = new wxButton(itemPanel, ID_DIALOG_COLUMNS, "");
+    bHideColumns_->SetMinSize(wxSize(180, -1));
+    bHideColumns_->Connect(wxID_ANY, wxEVT_COMMAND_BUTTON_CLICKED
         , wxCommandEventHandler(mmFilterTransactionsDialog::OnShowColumnsButton), nullptr, this);
-    itemPanelSizer->Add(bShowColumns_, g_flagsExpand);
+    itemPanelSizer->Add(bHideColumns_, g_flagsExpand);
+
+    if (!isReportMode_)
+    {
+        showColumnsCheckBox_->Disable();
+        bHideColumns_->SetLabelText("");
+        bHideColumns_->Disable();
+    }
 
 
     // Settings
@@ -471,7 +479,7 @@ void mmFilterTransactionsDialog::OnCheckboxClick(wxCommandEvent& event)
         fromDateCtrl_->Enable(dateRangeCheckBox_->IsChecked());
         toDateControl_->Enable(dateRangeCheckBox_->IsChecked());
         colourButton_->Enable(colourCheckBox_->IsChecked());
-        bShowColumns_->Enable(showColumnsCheckBox_->IsChecked());
+        bHideColumns_->Enable(showColumnsCheckBox_->IsChecked());
     }
 
     if (accountCheckBox_->IsChecked() && selected_accounts_id_.size() <= 0)
@@ -651,7 +659,7 @@ void mmFilterTransactionsDialog::OnShowColumnsButton(wxCommandEvent& /*event*/)
     wxArrayInt selected_items;
 
     selected_columns_id_.Clear();
-    bShowColumns_->UnsetToolTip();
+    bHideColumns_->UnsetToolTip();
 
     if (s_col.ShowModal() == wxID_OK)
     {
@@ -668,14 +676,14 @@ void mmFilterTransactionsDialog::OnShowColumnsButton(wxCommandEvent& /*event*/)
 
     if (selected_columns_id_.GetCount() == 0)
     {
-        bShowColumns_->SetLabelText("");
+        bHideColumns_->SetLabelText("");
         showColumnsCheckBox_->SetValue(false);
-        bShowColumns_->Disable();
+        bHideColumns_->Disable();
     }
     else if (selected_columns_id_.GetCount() > 0)
     {
-        bShowColumns_->SetLabelText("...");
-        mmToolTip(bShowColumns_, baloon);
+        bHideColumns_->SetLabelText("...");
+        mmToolTip(bHideColumns_, baloon);
     }
 }
 
@@ -1196,7 +1204,7 @@ void mmFilterTransactionsDialog::from_json(const wxString &data)
 
     //Account
     Value& j_account = GetValueByPointerWithDefault(j_doc, "/ACCOUNT", "");
-    if (showAccountFilter_ && j_account.IsArray())
+    if (isMultiAccount_ && j_account.IsArray())
     {
         wxString baloon = "";
         wxString acc_name;
