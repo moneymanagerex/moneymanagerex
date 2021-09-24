@@ -361,7 +361,13 @@ void mmCheckingPanel::CreateControls()
         , wxTE_NOHIDESEL, wxDefaultValidator);
     searchCtrl->SetDescriptiveText(_("Search"));
     itemButtonsSizer->Add(searchCtrl, 0, wxCENTER, 1);
-    mmToolTip(searchCtrl, _("Enter any string to find it in the nearest transaction notes"));
+    mmToolTip(searchCtrl, 
+         _("Enter any string to find it in the nearest transaction data") + "\n\n" +
+        _("Tips: You can use wildcard characters - question mark (?), asterisk (*) - in your search criteria.") + "\n" +
+        _("Use the question mark (?) to find any single character - for example, s?t finds 'sat' and 'set'.") + "\n" +
+        _("Use the asterisk (*) to find any number of characters - for example, s*d finds 'sad' and 'started'.") + "\n" +
+        _("Use the asterisk (*) in the begin to find any string in the middle of the sentence.")
+    );
 
     //Infobar-mini
     m_info_panel_mini = new wxStaticText(itemPanel12, wxID_STATIC, "");
