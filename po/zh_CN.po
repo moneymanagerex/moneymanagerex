@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-09-24 17:06+0300\n"
-"PO-Revision-Date: 2021-09-24 14:19\n"
+"PO-Revision-Date: 2021-09-25 00:35\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
@@ -579,19 +579,19 @@ msgstr "输入任意字符串来查找相关的资产"
 
 #: assetspanel.cpp:505 filtertransdialog.cpp:357 mmcheckingpanel.cpp:366
 msgid "Tips: You can use wildcard characters - question mark (?), asterisk (*) - in your search criteria."
-msgstr ""
+msgstr "提示：您可以在搜索条件中使用通配符 - 问号 (?)、星号 (*)。"
 
 #: assetspanel.cpp:506 filtertransdialog.cpp:358 mmcheckingpanel.cpp:367
 msgid "Use the question mark (?) to find any single character - for example, s?t finds 'sat' and 'set'."
-msgstr ""
+msgstr "使用问号 (?) 查找任何单个字符 - 例如， s?t 查找 'sat' 和 'set'。"
 
 #: assetspanel.cpp:507 filtertransdialog.cpp:359 mmcheckingpanel.cpp:368
 msgid "Use the asterisk (*) to find any number of characters - for example, s*d finds 'sad' and 'started'."
-msgstr ""
+msgstr "使用星号 (*) 查找任意数量的字符 - 例如，s*d 查找 'sad' 和 'started'。"
 
 #: assetspanel.cpp:508 filtertransdialog.cpp:360 mmcheckingpanel.cpp:369
 msgid "Use the asterisk (*) in the begin to find any string in the middle of the sentence."
-msgstr ""
+msgstr "在开头使用星号 (*) 查找句子中间的任何字符串。"
 
 #: assetspanel.cpp:579 stockspanel.cpp:344 stockspanel.cpp:531
 #, c-format
@@ -2416,7 +2416,7 @@ msgstr "金额区间"
 
 #: filtertransdialog.cpp:356
 msgid "Enter any string to find it in transaction notes"
-msgstr ""
+msgstr "输入任何字符串以在交易记录中找到它"
 
 #: filtertransdialog.cpp:364 filtertransdialog.cpp:1181
 #: reports/transactions.cpp:104
@@ -3904,7 +3904,7 @@ msgstr "复制所选交易"
 
 #: mmcheckingpanel.cpp:365
 msgid "Enter any string to find it in the nearest transaction data"
-msgstr ""
+msgstr "输入任何字符串以在最近的交易数据中找到它"
 
 #: mmcheckingpanel.cpp:387
 msgid "Full Transactions Report"
@@ -6224,7 +6224,7 @@ msgstr "收入与每月支出"
 
 #: reports/incexpenses.cpp:215 reports/incexpenses.cpp:256
 msgid "Cumulative"
-msgstr ""
+msgstr "累计"
 
 #: reports/mmDateRange.cpp:85
 msgid "Current Month"
