@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-09-24 17:06+0300\n"
-"PO-Revision-Date: 2021-09-25 00:35\n"
+"PO-Revision-Date: 2021-09-27 07:14\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
@@ -3444,7 +3444,7 @@ msgstr "您真的要删除选定的货币吗？"
 #: maincurrencydialog.cpp:650 maincurrencydialog.cpp:775
 #: maincurrencydialog.cpp:799 maincurrencydialog.h:76
 msgid "Currency Dialog"
-msgstr "货币信息"
+msgstr "货币对话框"
 
 #: maincurrencydialog.cpp:382
 msgid "Base Currency Selection"
@@ -4337,7 +4337,7 @@ msgstr "收款人管理"
 
 #: mmframe.cpp:1513
 msgid "Organize Curre&ncy..."
-msgstr "整理货币(&N)..."
+msgstr "货币管理(&N)..."
 
 #: mmframe.cpp:1513 mmframe.cpp:1728
 msgid "Organize Currency"
@@ -4357,7 +4357,7 @@ msgstr "重新分配所有收款人到另一个收款人"
 
 #: mmframe.cpp:1523
 msgid "Re&location of..."
-msgstr "重新定位(&L)..."
+msgstr "移动类目和转移收款人(&L)..."
 
 #: mmframe.cpp:1524
 msgid "Relocate Categories && Payees"
