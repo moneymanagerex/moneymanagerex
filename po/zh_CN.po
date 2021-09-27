@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-09-24 17:06+0300\n"
-"PO-Revision-Date: 2021-09-27 07:58\n"
+"PO-Revision-Date: 2021-09-27 08:05\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
@@ -4931,7 +4931,7 @@ msgstr "您确认删除 %s 账户 %s 吗？"
 
 #: mmframe.cpp:3154
 msgid "Select the account to reallocate"
-msgstr "选择要移动的账户"
+msgstr "选择要更改的账户"
 
 #: mmframe.cpp:3154 mmframe.cpp:3177
 msgid "Account Reallocation"
