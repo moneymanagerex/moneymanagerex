@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-09-24 17:06+0300\n"
-"PO-Revision-Date: 2021-09-27 07:58\n"
+"PO-Revision-Date: 2021-09-27 08:05\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -443,7 +443,7 @@ msgstr "Хібная аперацыя"
 #: assetdialog.cpp:409
 msgid "Asset Account not found.\n\n"
 "Would you want to create one?"
-msgstr "Рахунак маёмасці ня знойдзены.\n\n"
+msgstr "Рахунак актыва ня знойдзены.\n\n"
 "Хочаце стварыць яго?"
 
 #: assetspanel.cpp:59 billsdepositspanel.cpp:127
@@ -6950,7 +6950,7 @@ msgstr "Пакажыце код аперацыі або звязаныя з ёй
 
 #: usertransactionpanel.cpp:291
 msgid "Select the required account"
-msgstr "Абярыце абавязковы рахунак"
+msgstr "Абавязкова абярыце рахунак"
 
 #: usertransactionpanel.cpp:292
 msgid "Account Selection"
