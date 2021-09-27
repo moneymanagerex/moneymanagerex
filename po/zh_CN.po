@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-09-24 17:06+0300\n"
-"PO-Revision-Date: 2021-09-27 07:14\n"
+"PO-Revision-Date: 2021-09-27 07:23\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
@@ -1569,7 +1569,7 @@ msgstr "选择当前被选分类作为交易的分类"
 
 #: categdialog.cpp:255
 msgid "Enter the name for the new category:"
-msgstr "请输入类别名称："
+msgstr "请输入类目名称："
 
 #: categdialog.cpp:258
 msgid "Tip: If category added now, check bottom of list."
@@ -1623,7 +1623,7 @@ msgstr "提示：将使用此子类别的所有交易更改为\n"
 
 #: categdialog.cpp:329
 msgid "Tools -> Relocation of -> Categories"
-msgstr "工具 -> 重定位 -> 类别"
+msgstr "工具 -> 移动类目或转移收款人 -> 类目"
 
 #: categdialog.cpp:331
 msgid "Organise Categories: Delete Error"
@@ -4081,7 +4081,7 @@ msgstr "编辑账户(&E)"
 
 #: mmframe.cpp:1255 mmframe.cpp:1483
 msgid "&Reallocate Account"
-msgstr "重新定位账户(&R)"
+msgstr "更改账户类型(&R)"
 
 #: mmframe.cpp:1256 mmframe.cpp:1293 mmframe.cpp:1486
 msgid "&Delete Account"
@@ -4357,11 +4357,11 @@ msgstr "重新分配所有收款人到另一个收款人"
 
 #: mmframe.cpp:1523
 msgid "Re&location of..."
-msgstr "移动类目和转移收款人(&L)..."
+msgstr "移动类目或转移收款人(&L)..."
 
 #: mmframe.cpp:1524
 msgid "Relocate Categories && Payees"
-msgstr "重新定位类别和收款人(&P)"
+msgstr "移动类目&转移收款人(&P)"
 
 #: mmframe.cpp:1534
 msgid "&Budget Setup"
@@ -5912,7 +5912,7 @@ msgstr "提示：使用此收款人将所有交易更改为另一个收款人，
 
 #: payeedialog.cpp:289
 msgid "Tools -> Relocation of -> Payees"
-msgstr "工具 -> 搬迁 -> 收款人"
+msgstr "工具 -> 移动类目或转移收款人 -> 收款人"
 
 #: payeedialog.cpp:290
 msgid "Organize Payees: Delete Error"
@@ -5936,7 +5936,7 @@ msgstr "重定位对话框"
 
 #: relocatecategorydialog.cpp:86
 msgid "Relocate source category to the destination category"
-msgstr "将源分类重新定位到目标分类"
+msgstr "将类目从原位置移动到目标位置"
 
 #: relocatecategorydialog.cpp:89
 msgid "Select Source Category"
@@ -5998,11 +5998,11 @@ msgstr "转移收款人对话框"
 
 #: relocatepayeedialog.cpp:82
 msgid "Relocate all source payee to the destination payee"
-msgstr "将所有来源收款人重新定位到目标收款人"
+msgstr "将原收款人的交易全部转移至目标收款人中"
 
 #: relocatepayeedialog.cpp:95
 msgid "Delete source payee after relocation"
-msgstr "迁移后删除来源收款人"
+msgstr "转移后删除原收款人"
 
 #: relocatepayeedialog.cpp:152
 #, c-format
