@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-09-24 17:06+0300\n"
-"PO-Revision-Date: 2021-09-27 07:23\n"
+"PO-Revision-Date: 2021-09-27 07:31\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
@@ -843,15 +843,15 @@ msgstr "每月（过去营业日）"
 
 #: billsdepositsdialog.cpp:308 billsdepositspanel.cpp:289
 msgid "Edit Recurring Transaction"
-msgstr "编辑定期交易"
+msgstr "编辑周期性交易"
 
 #: billsdepositsdialog.cpp:312
 msgid "Enter Recurring Transaction"
-msgstr "输入定期交易"
+msgstr "输入周期性交易"
 
 #: billsdepositsdialog.cpp:410
 msgid "Recurring Transaction Details"
-msgstr "定期交易详情"
+msgstr "周期性交易详情"
 
 #: billsdepositsdialog.cpp:422
 msgid "Specify the date when this bill or deposit is due"
@@ -975,7 +975,7 @@ msgstr "选择账户"
 
 #: billsdepositsdialog.cpp:587
 msgid "Specify the Account that will own the recurring transaction"
-msgstr "指定此定期交易所属的账户"
+msgstr "指定此周期性交易所属的账户"
 
 #: billsdepositsdialog.cpp:590 billsdepositsdialog.cpp:845
 #: billsdepositspanel.cpp:131 filtertransdialog.cpp:248
@@ -1036,7 +1036,7 @@ msgstr "账号"
 
 #: billsdepositsdialog.cpp:631
 msgid "Organize attachments of this recurring transaction"
-msgstr "管理此定期交易的附件"
+msgstr "管理此周期性交易的附件"
 
 #: billsdepositsdialog.cpp:634 transdialog.cpp:576
 msgid "User Colors"
@@ -1161,7 +1161,7 @@ msgstr "颜色 #%i"
 
 #: billsdepositsdialog.h:56 billsdepositspanel.cpp:285
 msgid "New Recurring Transaction"
-msgstr "新的定期交易"
+msgstr "新的周期性交易"
 
 #: billsdepositsdialog.h:124
 msgid "Specify where the transaction is going to"
@@ -1231,7 +1231,7 @@ msgstr "提示：这些交易可以设置为激活 - 并允许用户在截止日
 #: billsdepositspanel.cpp:241 billsdepositspanel.cpp:940 mmframe.cpp:748
 #: mmframe.cpp:2803 mmhomepagepanel.cpp:230
 msgid "Recurring Transactions"
-msgstr "定期交易"
+msgstr "周期性交易"
 
 #: billsdepositspanel.cpp:250 filtertransdialog.h:111
 msgid "Transaction Filter"
@@ -1267,11 +1267,11 @@ msgstr "跳过下一次到期"
 
 #: billsdepositspanel.cpp:417
 msgid "&New Recurring Transaction..."
-msgstr "新建定期交易(&N)..."
+msgstr "新建周期性交易(&N)..."
 
 #: billsdepositspanel.cpp:418
 msgid "&Edit Recurring Transaction..."
-msgstr "编辑定期交易(&E)..."
+msgstr "编辑周期性交易(&E)..."
 
 #: billsdepositspanel.cpp:419
 msgid "&Delete Recurring Transaction..."
@@ -1660,7 +1660,7 @@ msgstr "分类管理：编辑错误"
 
 #: categdialog.cpp:600 mmframe.cpp:3270
 msgid "Category Relocation Completed."
-msgstr "重定位分类已完成。"
+msgstr "类目移动已完成。"
 
 #: categdialog.cpp:601 mmframe.cpp:3271 mmframe.cpp:3286 payeedialog.cpp:351
 #, c-format
@@ -1669,7 +1669,7 @@ msgstr "数据库中的记录已更新：%i"
 
 #: categdialog.cpp:603 mmframe.cpp:3273
 msgid "Category Relocation Result"
-msgstr "分类重定位结果"
+msgstr "类目移动结果"
 
 #: categdialog.cpp:668
 msgid "Hide Selected Category"
@@ -3760,7 +3760,7 @@ msgstr "查看所有预算分类(&V)"
 
 #: mmchecking_list.cpp:394
 msgid "Create Recurring T&ransaction"
-msgstr "创建定期交易(&T)"
+msgstr "创建周期性交易(&T)"
 
 #: mmchecking_list.cpp:400
 msgid "&Delete selected transaction"
@@ -3880,7 +3880,7 @@ msgstr "选择存入账户"
 
 #: mmchecking_list.cpp:1221
 msgid "Recurring Transaction saved."
-msgstr "定期交易已保存。"
+msgstr "周期性交易已保存。"
 
 #: mmcheckingpanel.cpp:333 mmframe.cpp:1724 transdialog.cpp:180
 msgid "New Transaction"
@@ -4013,11 +4013,11 @@ msgstr "银行账户"
 
 #: mmframe.cpp:473 mmframe.cpp:720 mmhomepage.cpp:643 reports/summary.cpp:160
 msgid "Credit Card Accounts"
-msgstr "储值卡和银行账户"
+msgstr "信用卡账户"
 
 #: mmframe.cpp:474 mmframe.cpp:732 mmhomepage.cpp:645 reports/summary.cpp:162
 msgid "Term Accounts"
-msgstr "限期账户"
+msgstr "定期账户"
 
 #: mmframe.cpp:475 mmframe.cpp:736
 msgid "Stock Portfolios"
@@ -4033,7 +4033,7 @@ msgstr "贷款账户"
 
 #: mmframe.cpp:509
 msgid "Auto Repeat Transactions"
-msgstr "定期交易"
+msgstr "自动重复交易"
 
 #: mmframe.cpp:703 mmframe.cpp:1722
 msgid "Home Page"
@@ -4944,11 +4944,11 @@ msgstr "帐户： %s - 选择新类型。"
 
 #: mmframe.cpp:3285 payeedialog.cpp:350
 msgid "Payee Relocation Completed."
-msgstr "收款人迁移已完成。"
+msgstr "收款人转移已完成。"
 
 #: mmframe.cpp:3289 payeedialog.cpp:354
 msgid "Payee Relocation Result"
-msgstr "收款人重定位结果"
+msgstr "收款人转移结果"
 
 #: mmframe.cpp:3339
 #, c-format
@@ -4998,7 +4998,7 @@ msgstr "收支情况"
 
 #: mmframereport.cpp:164
 msgid "My Usage"
-msgstr "我的用法"
+msgstr "使用情况"
 
 #: mmframereport.cpp:169 reports/payee.cpp:114
 msgid "Payees"
@@ -5176,7 +5176,7 @@ msgstr "未指定"
 
 #: model/Model_Account.cpp:34
 msgid "Credit Card"
-msgstr "储值卡和银行卡"
+msgstr "信用卡"
 
 #: model/Model_Account.cpp:35
 msgid "Loan"
@@ -5184,7 +5184,7 @@ msgstr "贷款账户"
 
 #: model/Model_Account.cpp:36
 msgid "Term"
-msgstr "限期账户"
+msgstr "定期账户"
 
 #: model/Model_Account.cpp:37
 msgid "Investment"
@@ -5254,7 +5254,7 @@ msgstr "重复交易将超过您的账户限额。\n\n"
 
 #: model/Model_Billsdeposits.cpp:303
 msgid "MMEX Recurring Transaction Check"
-msgstr "MMEX 定期交易检查"
+msgstr "MMEX 周期性交易检查"
 
 #: model/Model_CustomField.cpp:25
 msgid "String"
@@ -5960,7 +5960,7 @@ msgstr "请确认："
 
 #: relocatecategorydialog.cpp:171
 msgid "Category Relocation Confirmation"
-msgstr "分类重定位确认"
+msgstr "类目移动确认"
 
 #: relocatecategorydialog.cpp:269 relocatepayeedialog.cpp:232
 #, c-format
@@ -6011,7 +6011,7 @@ msgstr "从 %s 到 %s"
 
 #: relocatepayeedialog.cpp:157
 msgid "Payee Relocation Confirmation"
-msgstr "收款人重写位确认"
+msgstr "收款人转移确认"
 
 #: reports/budget.cpp:88
 #, c-format
