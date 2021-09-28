@@ -52,8 +52,8 @@ void mmPrintableBase::setReportParameters(int id)
 
     switch (id) {
     case MyUsage:                     m_parameters = DATE_RANGE | CHART; break;
-    case MonthlySummaryofAccounts:    m_parameters = NONE; break;
-    case YearlySummaryofAccounts:     m_parameters = NONE; break;
+    case MonthlySummaryofAccounts:    m_parameters = CHART; break;
+    case YearlySummaryofAccounts:     m_parameters = CHART; break;
     case WheretheMoneyGoes:           m_parameters = DATE_RANGE | CHART | ACCOUNTS_LIST; break;
     case WheretheMoneyComesFrom:      m_parameters = DATE_RANGE | CHART | ACCOUNTS_LIST; break;
     case CategoriesSummary:           m_parameters = DATE_RANGE | CHART | ACCOUNTS_LIST; break;

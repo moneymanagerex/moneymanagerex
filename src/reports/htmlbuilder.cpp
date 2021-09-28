@@ -512,6 +512,11 @@ void mmHTMLBuilder::addChart(const GraphData& gd)
     wxString gSeriesType = "category";
     switch (gd.type)
     {
+        case GraphData::STACKEDAREA:
+            gtype = "area";
+            if (gd.labels.size() < 5)
+                chartWidth = 70;
+            break;
         case GraphData::BAR:
             gtype = "bar";
             if (gd.labels.size() < 5)
@@ -542,8 +547,12 @@ void mmHTMLBuilder::addChart(const GraphData& gd)
                 chartWidth = 70;
     };
 
-    htmlChart += wxString::Format("chart: { type: '%s', foreColor: '%s', toolbar: { tools: { download: false } }, width: '%i%%' }", 
-                    gtype, mmThemeMetaString(meta::COLOR_REPORT_FORECOLOR), chartWidth);
+
+    htmlChart += wxString::Format("chart: { type: '%s', %s foreColor: '%s', toolbar: { tools: { download: false } }, width: '%i%%' }" 
+                    , gtype
+                    , (gd.type == GraphData::STACKEDAREA) ? "stacked: true," : ""
+                    , mmThemeMetaString(meta::COLOR_REPORT_FORECOLOR)
+                    , chartWidth);
     htmlChart += wxString::Format(", title: { text: '%s'}", gd.title);
 
     wxString toolTipFormatter;
@@ -557,8 +566,8 @@ void mmHTMLBuilder::addChart(const GraphData& gd)
 
     htmlChart += wxString::Format(", tooltip: { theme: 'dark' %s }\n", toolTipFormatter);
 
-    // Turn off data labels for bar charts as it gets too cluttered
-    if (gd.type == GraphData::BAR) 
+    // Turn off data labels for bar charts when they get too cluttered
+    if ((gd.type == GraphData::BAR || gd.type == GraphData::STACKEDAREA) && gd.labels.size() > 10) 
     {
         htmlChart += ", dataLabels: { enabled: false }";
     } else if (gd.type == GraphData::PIE || gd.type == GraphData::DONUT)
@@ -581,7 +590,6 @@ void mmHTMLBuilder::addChart(const GraphData& gd)
         first = false;
     }
     htmlChart += "]";
-
 
     wxString categories;
     first = true;
