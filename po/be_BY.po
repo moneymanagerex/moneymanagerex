@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-09-24 17:06+0300\n"
-"PO-Revision-Date: 2021-09-24 14:43\n"
+"PO-Revision-Date: 2021-09-27 08:05\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -443,7 +443,7 @@ msgstr "Хібная аперацыя"
 #: assetdialog.cpp:409
 msgid "Asset Account not found.\n\n"
 "Would you want to create one?"
-msgstr "Рахунак маёмасці ня знойдзены.\n\n"
+msgstr "Рахунак актыва ня знойдзены.\n\n"
 "Хочаце стварыць яго?"
 
 #: assetspanel.cpp:59 billsdepositspanel.cpp:127
@@ -2463,7 +2463,7 @@ msgstr "Ачысціць усе палі бягучага шаблона"
 
 #: filtertransdialog.cpp:657
 msgid "Hide Report Columns"
-msgstr "Схаваць слупкі справаздачы"
+msgstr "Схаваць слупкі у справаздачы"
 
 #: filtertransdialog.cpp:799 filtertransdialog.cpp:1522
 msgid "Please Enter"
@@ -3942,7 +3942,7 @@ msgstr "Дубляваць абраную аперацыю"
 
 #: mmcheckingpanel.cpp:365
 msgid "Enter any string to find it in the nearest transaction data"
-msgstr "Пакажыце будзь-якой тэкст для праверкі, ці ёсць ён у бліжэйшай аперацыі"
+msgstr "Пакажыце будзь-якой тэкст для пошука у бліжэйшай аперацыі"
 
 #: mmcheckingpanel.cpp:387
 msgid "Full Transactions Report"
@@ -5217,15 +5217,15 @@ msgstr "Дыпазітны"
 
 #: model/Model_Account.cpp:34
 msgid "Credit Card"
-msgstr "Крыдытная картка"
+msgstr "Крыдытны"
 
 #: model/Model_Account.cpp:35
 msgid "Loan"
-msgstr "Пазыка"
+msgstr "Пазыкавы"
 
 #: model/Model_Account.cpp:36
 msgid "Term"
-msgstr "Тэрмін"
+msgstr "Тэрміновы"
 
 #: model/Model_Account.cpp:37
 msgid "Investment"
@@ -5233,11 +5233,11 @@ msgstr "Інвестыцыйны"
 
 #: model/Model_Account.cpp:38 model/Model_Attachment.cpp:26
 msgid "Asset"
-msgstr "Актыў"
+msgstr "Актывы"
 
 #: model/Model_Account.cpp:39
 msgid "Shares"
-msgstr "Паі (Акцыі)"
+msgstr "Паявы (Акцыйны)"
 
 #: model/Model_Account.cpp:130
 msgid "Account Error"
@@ -6950,7 +6950,7 @@ msgstr "Пакажыце код аперацыі або звязаныя з ёй
 
 #: usertransactionpanel.cpp:291
 msgid "Select the required account"
-msgstr "Абярыце абавязковы рахунак"
+msgstr "Абавязкова абярыце рахунак"
 
 #: usertransactionpanel.cpp:292
 msgid "Account Selection"
