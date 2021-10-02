@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2021-09-24 17:06+0300\n"
-"PO-Revision-Date: 2021-09-24 18:08\n"
+"POT-Creation-Date: 2021-10-02 17:56+0300\n"
+"PO-Revision-Date: 2021-10-02 15:20\n"
 "Last-Translator: \n"
 "Language-Team: Greek\n"
 "MIME-Version: 1.0\n"
@@ -108,7 +108,7 @@ msgstr "Αρχικό υπόλοιπο: %s"
 msgid "Enter the initial balance in this account."
 msgstr "Εισάγετε το αρχικό υπόλοιπο του λογαριασμού αυτού."
 
-#: accountdialog.cpp:171 import_export/univcsvdialog.cpp:1830
+#: accountdialog.cpp:171 import_export/univcsvdialog.cpp:1833
 msgid "Currency:"
 msgstr "Νόμισμα:"
 
@@ -372,7 +372,7 @@ msgstr "Εισάγετε το όνομα του περιουσιακού στο�
 #: import_export/univcsvdialog.cpp:105 maincurrencydialog.cpp:239
 #: maincurrencydialog.cpp:261 mmchecking_list.cpp:207 mmreportspanel.cpp:258
 #: mmreportspanel.cpp:276 model/Model_CustomField.cpp:29
-#: reports/cashflow.cpp:249 reports/incexpenses.cpp:252 reports/summary.cpp:157
+#: reports/cashflow.cpp:249 reports/incexpenses.cpp:252 reports/summary.cpp:319
 #: reports/transactions.cpp:105 stockdialog.cpp:297 stockdialog.cpp:676
 #: transactionsupdatedialog.cpp:118 transdialog.cpp:458
 #: usertransactionpanel.cpp:108 webappdialog.cpp:147 wizard_update.cpp:145
@@ -1133,7 +1133,7 @@ msgstr "Καθορίστε τον αριθμό των πληρωμών που π
 msgid "Invalid value"
 msgstr "Μη έγκυρη τιμή"
 
-#: billsdepositsdialog.cpp:1343 import_export/univcsvdialog.cpp:1133
+#: billsdepositsdialog.cpp:1343 import_export/univcsvdialog.cpp:1135
 #: maincurrencydialog.cpp:469 mmframe.cpp:3339 optionsettingsgeneral.cpp:286
 #: splittransactionsdialog.cpp:209 stockspanel.cpp:395 stockspanel.cpp:396
 #: themes.cpp:310 themes.cpp:329 webappdialog.cpp:194 webappdialog.cpp:199
@@ -2725,7 +2725,7 @@ msgstr "Το θέμα %s δεν βρέθηκε, μπορεί να μην υπο�
 msgid "Theme %s has missing items and is incompatible. Reverting to default theme"
 msgstr "Το θέμα %s έχει στοιχεία που λείπουν και δεν είναι συμβατό. Επαναφορά στο προεπιλεγμένο θέμα"
 
-#: import_export/parsers.cpp:46 import_export/univcsvdialog.cpp:1579
+#: import_export/parsers.cpp:46 import_export/univcsvdialog.cpp:1581
 #: mmSimpleDialogs.cpp:253
 msgid "Unable to open file."
 msgstr "Αδυναμία ανοίγματος αρχείου."
@@ -2852,7 +2852,7 @@ msgstr "Επιλέξτε ένα αρχείο JSON για εξαγωγή"
 msgid "JSON Files (*.json)"
 msgstr "Αρχεία JSON (*.json)"
 
-#: import_export/qif_export.cpp:316 import_export/univcsvdialog.cpp:1563
+#: import_export/qif_export.cpp:316 import_export/univcsvdialog.cpp:1565
 msgid "CSV Files (*.csv)"
 msgstr "Αρχεία CSV (*.csv)"
 
@@ -3081,7 +3081,7 @@ msgid "Don't Care"
 msgstr "Αδιάφορο"
 
 #: import_export/univcsvdialog.cpp:115 mmchecking_list.cpp:228
-#: mmhomepage.cpp:658 reports/summary.cpp:167
+#: mmhomepage.cpp:658 reports/summary.cpp:329
 msgid "Balance"
 msgstr "Υπόλοιπο"
 
@@ -3212,7 +3212,7 @@ msgid "Account does not exist"
 msgstr "Ο λογαριασμός δεν υπάρχει"
 
 #: import_export/univcsvdialog.cpp:684 import_export/univcsvdialog.cpp:755
-#: import_export/univcsvdialog.cpp:1843
+#: import_export/univcsvdialog.cpp:1846
 #, c-format
 msgid "Positive if type has '%s'"
 msgstr "Θετικό αν ο τύπος έχει %s"
@@ -3304,68 +3304,68 @@ msgstr "Παρακαλώ επιβεβαιώστε την αποθήκευση...
 msgid "No imported transactions!"
 msgstr "Δεν έχουν εισαχθεί συναλλαγές!"
 
-#: import_export/univcsvdialog.cpp:1107
+#: import_export/univcsvdialog.cpp:1109
 msgid "Incorrect fields specified for export! Requires at least Date and Amount."
 msgstr "Λανθασμένα πεδία που έχουν καθοριστεί για εξαγωγή! Απαιτεί τουλάχιστον Ημερομηνία και Ποσό."
 
-#: import_export/univcsvdialog.cpp:1108 import_export/univcsvdialog.cpp:1248
+#: import_export/univcsvdialog.cpp:1110 import_export/univcsvdialog.cpp:1250
 msgid "Export"
 msgstr "Εξαγωγή"
 
-#: import_export/univcsvdialog.cpp:1118
+#: import_export/univcsvdialog.cpp:1120
 msgid "Overwrite existing file?"
 msgstr "Αντικατάσταση υπάρχοντος αρχείου;"
 
-#: import_export/univcsvdialog.cpp:1118
+#: import_export/univcsvdialog.cpp:1120
 msgid "File exists"
 msgstr "Το αρχείο υπάρχει"
 
-#: import_export/univcsvdialog.cpp:1124
+#: import_export/univcsvdialog.cpp:1126
 msgid "Failed to delete existing file. File may be locked by another program."
 msgstr "Αποτυχία διαγραφής υπάρχοντος αρχείου. Το αρχείο μπορεί να κλειδωθεί από άλλο πρόγραμμα."
 
-#: import_export/univcsvdialog.cpp:1125
+#: import_export/univcsvdialog.cpp:1127
 msgid "Destination file error"
 msgstr "Σφάλμα αρχείου προορισμού"
 
-#: import_export/univcsvdialog.cpp:1133 mmSimpleDialogs.cpp:261
+#: import_export/univcsvdialog.cpp:1135 mmSimpleDialogs.cpp:261
 msgid "Invalid Account"
 msgstr "Μη Έγκυρος Λογαριασμός"
 
-#: import_export/univcsvdialog.cpp:1247
+#: import_export/univcsvdialog.cpp:1249
 #, c-format
 msgid "Transactions exported: %ld"
 msgstr "Συναλλαγές που εξήχθησαν: %ld"
 
-#: import_export/univcsvdialog.cpp:1545 stockdialog.cpp:586
+#: import_export/univcsvdialog.cpp:1547 stockdialog.cpp:586
 msgid "Choose CSV data file to import"
 msgstr "Επιλέξτε ένα αρχείο δεδομένων CSV για εισαγωγή"
 
-#: import_export/univcsvdialog.cpp:1548
+#: import_export/univcsvdialog.cpp:1550
 msgid "Choose CSV data file to export"
 msgstr "Επιλέξτε αρχείο δεδομένων CSV για εξαγωγή"
 
-#: import_export/univcsvdialog.cpp:1551
+#: import_export/univcsvdialog.cpp:1553
 msgid "Choose XML data file to import"
 msgstr "Επιλογή αρχείου δεδομένων XML για εισαγωγή"
 
-#: import_export/univcsvdialog.cpp:1554
+#: import_export/univcsvdialog.cpp:1556
 msgid "Choose XML data file to export"
 msgstr "Επιλογή αρχείου δεδομένων XML για εξαγωγή"
 
-#: import_export/univcsvdialog.cpp:1562
+#: import_export/univcsvdialog.cpp:1564
 msgid "XML Files (*.xml)"
 msgstr "Αρχεία XML (*.xml)"
 
-#: import_export/univcsvdialog.cpp:1562
+#: import_export/univcsvdialog.cpp:1564
 msgid "All Files"
 msgstr "Όλα Τα Αρχεία"
 
-#: import_export/univcsvdialog.cpp:1839
+#: import_export/univcsvdialog.cpp:1842
 msgid "Please, type the word indicating positive values in your CSV file, e.g. 'debit'"
 msgstr "Παρακαλώ, πληκτρολογήστε τη λέξη που δείχνει θετικές τιμές στο αρχείο CSV, π.χ. 'χρέωση'"
 
-#: import_export/univcsvdialog.cpp:1839
+#: import_export/univcsvdialog.cpp:1842
 msgid "Enter a value"
 msgstr "Εισάγετε μια τιμή"
 
@@ -4017,15 +4017,18 @@ msgstr "Γραμμή Εργαλείων"
 msgid "Favourites"
 msgstr "Αγαπημένα"
 
-#: mmframe.cpp:472 mmframe.cpp:716 mmhomepage.cpp:642 reports/summary.cpp:159
+#: mmframe.cpp:472 mmframe.cpp:716 mmhomepage.cpp:642 reports/summary.cpp:285
+#: reports/summary.cpp:321
 msgid "Bank Accounts"
 msgstr "Τραπεζικοί Λογαριασμοί"
 
-#: mmframe.cpp:473 mmframe.cpp:720 mmhomepage.cpp:643 reports/summary.cpp:160
+#: mmframe.cpp:473 mmframe.cpp:720 mmhomepage.cpp:643 reports/summary.cpp:286
+#: reports/summary.cpp:322
 msgid "Credit Card Accounts"
 msgstr "Λογαριασμοί Πιστωτικής Κάρτας"
 
-#: mmframe.cpp:474 mmframe.cpp:732 mmhomepage.cpp:645 reports/summary.cpp:162
+#: mmframe.cpp:474 mmframe.cpp:732 mmhomepage.cpp:645 reports/summary.cpp:288
+#: reports/summary.cpp:324
 msgid "Term Accounts"
 msgstr "Προθεσμιακοί λογαριασμοί"
 
@@ -4037,7 +4040,8 @@ msgstr "Χαρτοφυλάκια Αποθεμάτων"
 msgid "Cash Accounts"
 msgstr "Λογαριασμοί Μετρητών"
 
-#: mmframe.cpp:477 mmframe.cpp:728 mmhomepage.cpp:644 reports/summary.cpp:161
+#: mmframe.cpp:477 mmframe.cpp:728 mmhomepage.cpp:644 reports/summary.cpp:287
+#: reports/summary.cpp:323
 msgid "Loan Accounts"
 msgstr "Δανειακοί Λογαριασμοί"
 
@@ -4053,7 +4057,8 @@ msgstr "Αρχική σελίδα"
 msgid "All Transactions"
 msgstr "Όλες οι συναλλαγές"
 
-#: mmframe.cpp:740 mmhomepage.cpp:648 reports/summary.cpp:164
+#: mmframe.cpp:740 mmhomepage.cpp:648 reports/summary.cpp:290
+#: reports/summary.cpp:326
 msgid "Share Accounts"
 msgstr "Κοινόχρηστοι λογαριασμοί"
 
@@ -5037,7 +5042,8 @@ msgstr "&Πίσω"
 msgid "&Forward"
 msgstr "&Μπροστά"
 
-#: mmhomepage.cpp:60 mmhomepage.cpp:79 reports/summary.cpp:166
+#: mmhomepage.cpp:60 mmhomepage.cpp:79 reports/summary.cpp:291
+#: reports/summary.cpp:328
 msgid "Stocks"
 msgstr "Μετοχές"
 
@@ -5046,7 +5052,7 @@ msgid "Gain/Loss"
 msgstr "Κέρδη/Ζημιές"
 
 #: mmhomepage.cpp:80 reports/budgetingperf.cpp:220 reports/cashflow.cpp:250
-#: reports/categexp.cpp:175 reports/categexp.cpp:459 reports/summary.cpp:165
+#: reports/categexp.cpp:175 reports/categexp.cpp:459 reports/summary.cpp:327
 msgid "Total"
 msgstr "Σύνολο"
 
@@ -5106,7 +5112,7 @@ msgstr "Γενικό σύνολο:"
 msgid "Investment Accounts"
 msgstr "Επενδυτικοί λογαριασμοί"
 
-#: mmhomepage.cpp:647 reports/summary.cpp:163
+#: mmhomepage.cpp:647 reports/summary.cpp:289 reports/summary.cpp:325
 msgid "Asset Accounts"
 msgstr "Αποταμιευτικοί λογαριασμοί"
 
@@ -5175,7 +5181,8 @@ msgstr "Εμφάνιση"
 msgid "Hide"
 msgstr "Απόκρυψη"
 
-#: model/Model_Account.cpp:32 model/Model_Asset.cpp:35 reports/summary.cpp:158
+#: model/Model_Account.cpp:32 model/Model_Asset.cpp:35 reports/summary.cpp:284
+#: reports/summary.cpp:320
 msgid "Cash"
 msgstr "Μετρητά"
 
@@ -6310,16 +6317,16 @@ msgstr "Έκθεση δικαιούχου"
 msgid "Accounts: "
 msgstr "Λογαριασμοί: "
 
-#: reports/summary.cpp:146
+#: reports/summary.cpp:149
 #, c-format
 msgid "Accounts Balance - %s"
 msgstr "Υπόλοιπο Λογαριασμών - %s"
 
-#: reports/summary.cpp:146
+#: reports/summary.cpp:149
 msgid "Monthly Report"
 msgstr "Μηνιαία Αναφορά"
 
-#: reports/summary.cpp:146
+#: reports/summary.cpp:149
 msgid "Yearly Report"
 msgstr "Ετήσια Έκθεση"
 
