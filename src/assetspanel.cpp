@@ -1,6 +1,6 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
- Copyright (C) 2015 Nikolay Akimov
+ Copyright (C) 2015 -2021 Nikolay Akimov
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -500,7 +500,13 @@ void mmAssetsPanel::CreateControls()
         , wxTE_PROCESS_ENTER, wxDefaultValidator, _("Search"));
     searchCtrl->SetHint(_("Search"));
     itemBoxSizer5->Add(searchCtrl, 0, wxCENTER, 1);
-    mmToolTip(searchCtrl, _("Enter any string to find related assets"));
+    mmToolTip(searchCtrl,
+        _("Enter any string to find related assets") + "\n\n" +
+        _("Tips: You can use wildcard characters - question mark (?), asterisk (*) - in your search criteria.") + "\n" +
+        _("Use the question mark (?) to find any single character - for example, s?t finds 'sat' and 'set'.") + "\n" +
+        _("Use the asterisk (*) to find any number of characters - for example, s*d finds 'sad' and 'started'.") + "\n" +
+        _("Use the asterisk (*) in the begin to find any string in the middle of the sentence.")
+    );
 
     //Infobar-mini
     wxStaticText* itemStaticText44 = new wxStaticText(assets_panel, IDC_PANEL_ASSET_STATIC_DETAILS_MINI, "");

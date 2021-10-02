@@ -100,7 +100,7 @@ public:
     wxString GetSettingsPrfix() const;
 
 private:
-    wxButton* itemButton_Import_;
+    wxButton* bImport_;
 
     enum EUnivCvs
     {
@@ -197,7 +197,7 @@ private:
     void OnMoveDown(wxCommandEvent& event);
     void OnStandard(wxCommandEvent& event);
     void OnButtonClearClick(wxCommandEvent& event);
-    void OnBrowse(wxCommandEvent& event);
+    void OnFileBrowse(wxCommandEvent& event);
     void OnListBox(wxCommandEvent& event);
     void OnDelimiterChange(wxCommandEvent& event);
     void OnDecimalChange(wxCommandEvent& event);

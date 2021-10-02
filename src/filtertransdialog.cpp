@@ -1,6 +1,6 @@
 /*******************************************************
 Copyright (C) 2006 Madhan Kanagavel
-Copyright (C) 2016 - 2020 Nikolay Akimov
+Copyright (C) 2016 - 2021 Nikolay Akimov
 Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
 
 This program is free software; you can redistribute it and/or modify
@@ -100,12 +100,13 @@ mmFilterTransactionsDialog::mmFilterTransactionsDialog()
 {
 }
 
-mmFilterTransactionsDialog::mmFilterTransactionsDialog(wxWindow* parent, bool showAccountFilter)
+mmFilterTransactionsDialog::mmFilterTransactionsDialog(wxWindow* parent, bool showAccountFilter, bool isReportMode)
     : categID_(-1)
     , subcategID_(-1)
     , payeeID_(-1)
     , bSimilarCategoryStatus_(false)
-    , showAccountFilter_(showAccountFilter)
+    , isMultiAccount_(showAccountFilter)
+    , isReportMode_(isReportMode)
 {
     Create(parent);
     isValuesCorrect();
@@ -208,7 +209,7 @@ void mmFilterTransactionsDialog::CreateControls()
         , wxCommandEventHandler(mmFilterTransactionsDialog::OnAccountsButton), nullptr, this);
     itemPanelSizer->Add(bSelectedAccounts_, g_flagsExpand);
 
-    if (!showAccountFilter_) 
+    if (!isMultiAccount_) 
     {
             accountCheckBox_->Disable();
             bSelectedAccounts_->SetLabelText("");
@@ -351,6 +352,13 @@ void mmFilterTransactionsDialog::CreateControls()
     notesEdit_ = new wxTextCtrl(itemPanel, wxID_ANY);
     itemPanelSizer->Add(notesEdit_, g_flagsExpand);
     notesEdit_->SetHint("*");
+    mmToolTip(notesEdit_,
+        _("Enter any string to find it in transaction notes") + "\n\n" +
+        _("Tips: You can use wildcard characters - question mark (?), asterisk (*) - in your search criteria.") + "\n" +
+        _("Use the question mark (?) to find any single character - for example, s?t finds 'sat' and 'set'.") + "\n" +
+        _("Use the asterisk (*) to find any number of characters - for example, s*d finds 'sad' and 'started'.") + "\n" +
+        _("Use the asterisk (*) in the begin to find any string in the middle of the sentence.")
+    );
 
     // Colour
     colourCheckBox_ = new wxCheckBox(itemPanel, wxID_ANY, _("Color")
@@ -360,6 +368,25 @@ void mmFilterTransactionsDialog::CreateControls()
     colourButton_ = new wxButton(itemPanel, ID_DIALOG_COLOUR, _("Select the Color"));
     colourValue_ = 0;
     itemPanelSizer->Add(colourButton_, g_flagsExpand);
+
+    //Hide columns
+    showColumnsCheckBox_ = new wxCheckBox(itemPanel, wxID_ANY, _("Hide Columns")
+        , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
+    itemPanelSizer->Add(showColumnsCheckBox_, g_flagsH);
+
+    bHideColumns_ = new wxButton(itemPanel, ID_DIALOG_COLUMNS, "");
+    bHideColumns_->SetMinSize(wxSize(180, -1));
+    bHideColumns_->Connect(wxID_ANY, wxEVT_COMMAND_BUTTON_CLICKED
+        , wxCommandEventHandler(mmFilterTransactionsDialog::OnShowColumnsButton), nullptr, this);
+    itemPanelSizer->Add(bHideColumns_, g_flagsExpand);
+
+    if (!isReportMode_)
+    {
+        showColumnsCheckBox_->Disable();
+        bHideColumns_->SetLabelText("");
+        bHideColumns_->Disable();
+    }
+
 
     // Settings
     wxBoxSizer* settings_box_sizer = new wxBoxSizer(wxHORIZONTAL);
@@ -459,6 +486,7 @@ void mmFilterTransactionsDialog::OnCheckboxClick(wxCommandEvent& event)
         fromDateCtrl_->Enable(dateRangeCheckBox_->IsChecked());
         toDateControl_->Enable(dateRangeCheckBox_->IsChecked());
         colourButton_->Enable(colourCheckBox_->IsChecked());
+        bHideColumns_->Enable(showColumnsCheckBox_->IsChecked());
     }
 
     if (accountCheckBox_->IsChecked() && selected_accounts_id_.size() <= 0)
@@ -608,6 +636,61 @@ void mmFilterTransactionsDialog::OnCategs(wxCommandEvent& /*event*/)
         sub_category = Model_Subcategory::instance().get(subcategID_);
 
         btnCategory_->SetLabelText(Model_Category::full_name(category, sub_category));
+    }
+}
+
+void mmFilterTransactionsDialog::OnShowColumnsButton(wxCommandEvent& /*event*/)
+{
+    wxArrayString column_names;
+    column_names.Add("ID");
+    column_names.Add("Color");
+    column_names.Add("Date");
+    column_names.Add("Number");
+    column_names.Add("Account");
+    column_names.Add("Payee");
+    column_names.Add("Status");
+    column_names.Add("Category");
+    column_names.Add("Type");
+    column_names.Add("Amount");
+    column_names.Add("Notes");
+
+    wxMultiChoiceDialog s_col(this, _("Hide Report Columns")
+        , "", column_names);
+
+    wxButton* ok = static_cast<wxButton*>(s_col.FindWindow(wxID_OK));
+    if (ok) ok->SetLabel(_("&OK "));
+    wxButton* ca = static_cast<wxButton*>(s_col.FindWindow(wxID_CANCEL));
+    if (ca) ca->SetLabel(wxGetTranslation(g_CancelLabel));
+
+    wxString baloon = "";
+    wxArrayInt selected_items;
+
+    selected_columns_id_.Clear();
+    bHideColumns_->UnsetToolTip();
+
+    if (s_col.ShowModal() == wxID_OK)
+    {
+        selected_items = s_col.GetSelections();
+        for (const auto &entry : selected_items)
+        {
+            int index = entry;
+            const wxString column_name = column_names[index];
+            selected_columns_id_.Add(index);
+            baloon += wxGetTranslation(column_name) + "\n";
+        }
+    }
+
+
+    if (selected_columns_id_.GetCount() == 0)
+    {
+        bHideColumns_->SetLabelText("");
+        showColumnsCheckBox_->SetValue(false);
+        bHideColumns_->Disable();
+    }
+    else if (selected_columns_id_.GetCount() > 0)
+    {
+        bHideColumns_->SetLabelText("...");
+        mmToolTip(bHideColumns_, baloon);
     }
 }
 
@@ -1128,7 +1211,7 @@ void mmFilterTransactionsDialog::from_json(const wxString &data)
 
     //Account
     Value& j_account = GetValueByPointerWithDefault(j_doc, "/ACCOUNT", "");
-    if (showAccountFilter_ && j_account.IsArray())
+    if (isMultiAccount_ && j_account.IsArray())
     {
         wxString baloon = "";
         wxString acc_name;
@@ -1312,6 +1395,11 @@ const wxArrayInt mmFilterTransactionsDialog::getAccountsID() const
     return selected_accounts_id_;
 }
 
+const wxArrayInt mmFilterTransactionsDialog::getHideColumnsID() const
+{
+    return selected_columns_id_;
+}
+
 bool mmFilterTransactionsDialog::getStatusCheckBox()
 {
     return statusCheckBox_->IsChecked();
@@ -1320,6 +1408,11 @@ bool mmFilterTransactionsDialog::getStatusCheckBox()
 bool mmFilterTransactionsDialog::getAccountCheckBox()
 {
     return accountCheckBox_->GetValue() && !selected_accounts_id_.empty();
+}
+
+bool mmFilterTransactionsDialog::getHideColumnsCheckBox()
+{
+    return showColumnsCheckBox_->GetValue();
 }
 
 bool mmFilterTransactionsDialog::getCategoryCheckBox()
@@ -1441,7 +1534,6 @@ void mmFilterTransactionsDialog::OnSaveSettings(wxCommandEvent& WXUNUSED(event))
 
 void mmFilterTransactionsDialog::OnAccountsButton(wxCommandEvent& WXUNUSED(event))
 {
-    bSelectedAccounts_->UnsetToolTip();
     wxMultiChoiceDialog s_acc(this, _("Choose Accounts")
        , "" , m_accounts_name);
 
@@ -1494,7 +1586,6 @@ void mmFilterTransactionsDialog::OnAccountsButton(wxCommandEvent& WXUNUSED(event
         bSelectedAccounts_->SetLabelText("...");
         mmToolTip(bSelectedAccounts_, baloon);
     }
-
 }
 
 void mmFilterTransactionsDialog::OnColourButton(wxCommandEvent& /*event*/)

@@ -196,27 +196,33 @@ wxString mmReportIncomeExpensesMonthly::getHTMLText()
     if (getChartSelection() == 0)
     {
         GraphData gd;
-        GraphSeries data_negative, data_positive, data_difference;
+        GraphSeries data_negative, data_positive, data_difference, data_performance;
 
+        double performance = 0;
         for (const auto &stats : incomeExpensesStats)
         {
             data_positive.values.push_back(stats.second.first);
             data_negative.values.push_back(stats.second.second);
             data_difference.values.push_back(stats.second.first - stats.second.second);
+            performance = performance + stats.second.first - stats.second.second;
+            data_performance.values.push_back(performance);
 
             const auto label = wxString::Format("%s %i"
                 , wxGetTranslation(wxDateTime::GetEnglishMonthName(static_cast<wxDateTime::Month>(stats.first % 100))), stats.first / 100);
             gd.labels.push_back(label);
         }
 
+        data_performance.name = _("Cumulative");
         data_difference.name = _("Difference");
         data_positive.name = _("Income");
         data_negative.name = _("Expenses");
 
+        data_performance.type = "line";
         data_difference.type = "line";
         data_positive.type = "column";
         data_negative.type = "column";
 
+        gd.series.push_back(data_performance);
         gd.series.push_back(data_difference);
         gd.series.push_back(data_positive);
         gd.series.push_back(data_negative);
@@ -227,7 +233,8 @@ wxString mmReportIncomeExpensesMonthly::getHTMLText()
             hb.addDivContainer("shadow");
             {
                 gd.type = GraphData::BARLINE; 
-                gd.colors = { mmThemeMetaColour(meta::COLOR_REPORT_DELTA)
+                gd.colors = { mmThemeMetaColour(meta::COLOR_REPORT_PERF)
+                                , mmThemeMetaColour(meta::COLOR_REPORT_DELTA)
                                 , mmThemeMetaColour(meta::COLOR_REPORT_CREDIT)
                                 , mmThemeMetaColour(meta::COLOR_REPORT_DEBIT) }; 
                 hb.addChart(gd);
@@ -246,6 +253,7 @@ wxString mmReportIncomeExpensesMonthly::getHTMLText()
             hb.addTableHeaderCell(_("Income"), "text-right");
             hb.addTableHeaderCell(_("Expenses"), "text-right");
             hb.addTableHeaderCell(_("Difference"), "text-right");
+            hb.addTableHeaderCell(_("Cumulative"), "text-right");
             hb.endTableRow();
         }
         hb.endThead();
@@ -265,7 +273,7 @@ wxString mmReportIncomeExpensesMonthly::getHTMLText()
             {
                 hb.startAltTableRow();
                     hb.addTableCell(year);
-                    hb.addEmptyTableCell(3);
+                    hb.addEmptyTableCell(4);
                 hb.endTableRow();
             }
             hb.startTableRow();
@@ -274,6 +282,7 @@ wxString mmReportIncomeExpensesMonthly::getHTMLText()
                 hb.addMoneyCell(stats.second.first);
                 hb.addMoneyCell(stats.second.second);
                 hb.addMoneyCell(stats.second.first - stats.second.second);
+                hb.addMoneyCell(total_income - total_expenses);
             }
             hb.endTableRow();
             yearPrec = year;
@@ -284,8 +293,9 @@ wxString mmReportIncomeExpensesMonthly::getHTMLText()
         totals.push_back(total_income);
         totals.push_back(total_expenses);
         totals.push_back(total_income - total_expenses);
+        totals.push_back(total_income - total_expenses);
 
-        hb.addMoneyTotalRow(_("Total:"), 4, totals);
+        hb.addMoneyTotalRow(_("Total:"), 5, totals);
     }
     hb.endTable();
 

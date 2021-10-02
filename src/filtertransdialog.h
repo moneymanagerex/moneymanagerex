@@ -1,5 +1,5 @@
 /*******************************************************
-Copyright (C) 2006-2012
+Copyright (C) 2021 Nikolay Akimov
 Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
 
 This program is free software; you can redistribute it and/or modify
@@ -39,7 +39,7 @@ class mmFilterTransactionsDialog: public wxDialog
 public:
     /// Constructors
     mmFilterTransactionsDialog();
-    mmFilterTransactionsDialog(wxWindow* parent, bool showAccountFilter = true);
+    mmFilterTransactionsDialog(wxWindow* parent, bool showAccountFilter = true, bool isReportMode = false);
 
     virtual int ShowModal();
 
@@ -50,21 +50,25 @@ public:
     const wxString getDescriptionToolTip();
     void getDescription(mmHTMLBuilder &hb);
     void ResetFilterStatus();
+
     bool isSomethingSelected();
     bool getStatusCheckBox();
     bool getAccountCheckBox();
-    const wxArrayInt getAccountsID() const;
     bool getCategoryCheckBox();
-  
     bool getSimilarStatus();
+    bool getDateRangeCheckBox();
+    bool getStartDateCheckBox();
+    bool getHideColumnsCheckBox();
+
     int getCategId();
     int getSubCategId();
+    const wxArrayInt getAccountsID() const;
+    const wxArrayInt getHideColumnsID() const;
+    
     void SetStoredSettings(int id);
 
     const wxString getBeginDate() { return m_begin_date; };
     const wxString getEndDate() { return m_end_date; };
-    bool getDateRangeCheckBox();
-    bool getStartDateCheckBox();
 
 private:
     void BuildPayeeList();
@@ -84,7 +88,8 @@ private:
     wxString getNumber();
     wxString getNotes();
 
-    bool showAccountFilter_;
+    bool isMultiAccount_;
+    bool isReportMode_;
 
 private:
     void OnDateChanged(wxDateEvent& event);
@@ -128,6 +133,7 @@ private:
     void SaveSettings(int menu_item);
     void OnAccountsButton(wxCommandEvent& WXUNUSED(event));
     void OnColourButton(wxCommandEvent& /*event*/);
+    void OnShowColumnsButton(wxCommandEvent& /*event*/);
 
     void OnCategs(wxCommandEvent& event);
     const wxString to_json(bool i18n = false);
@@ -172,6 +178,9 @@ private:
     wxButton* colourButton_;
     int colourValue_;
 
+    wxCheckBox* showColumnsCheckBox_;
+    wxButton* bHideColumns_;
+
     int categID_;
     int subcategID_;
     int payeeID_;
@@ -183,12 +192,14 @@ private:
     wxArrayString m_accounts_name;
     //Selected accountns ID
     wxArrayInt selected_accounts_id_;
+    wxArrayInt selected_columns_id_;
 
     enum
     {
         /* FIlter Dialog */
         ID_DIALOG_DATEPRESET= wxID_HIGHEST + 900,
         ID_DIALOG_COLOUR,
+        ID_DIALOG_COLUMNS,
     };
 };
 
