@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-10-02 17:56+0300\n"
-"PO-Revision-Date: 2021-10-02 15:20\n"
+"PO-Revision-Date: 2021-10-02 20:22\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -73,7 +73,7 @@ msgstr "&Добра "
 
 #: accountdialog.cpp:111 mmframe.cpp:1480
 msgid "Edit Account"
-msgstr "Рыдагаваць Рахунак"
+msgstr "Рыдагаваць рахунак"
 
 #: accountdialog.cpp:139
 msgid "Account Name:"
@@ -4120,7 +4120,7 @@ msgstr "&Новая аперацыя"
 
 #: mmframe.cpp:1254 mmframe.cpp:1294 mmframe.cpp:1480
 msgid "&Edit Account"
-msgstr "&Рыдагаваць Рахунак"
+msgstr "&Рыдагаваць рахунак"
 
 #: mmframe.cpp:1255 mmframe.cpp:1483
 msgid "&Reallocate Account"
@@ -5016,7 +5016,7 @@ msgstr "Сталася выключэнне"
 
 #: mmframereport.cpp:118
 msgid "Transaction Report"
-msgstr "Справаздача па аперацыях"
+msgstr "Фильтр аперацыяў"
 
 #: mmframereport.cpp:123
 msgid "Cash Flow"
