@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-10-02 17:56+0300\n"
-"PO-Revision-Date: 2021-10-03 08:55\n"
+"PO-Revision-Date: 2021-10-03 09:05\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -6461,7 +6461,7 @@ msgstr "Адчыніць вэб-старонку абранага цікера"
 
 #: sharetransactiondialog.cpp:289 stockdialog.cpp:277
 msgid "Enter notes associated with this investment"
-msgstr "Напішыце нататкі да інвестыцыі"
+msgstr "Пакажыце нататкі да інвестыцыі"
 
 #: sharetransactiondialog.cpp:294
 msgid "Add Transaction Details"
@@ -6507,7 +6507,7 @@ msgstr "*Дата"
 msgid "Specify the initial date of the stock investment\n"
 "Used when creating the initial Share transaction."
 msgstr "Пакажыце пачатковую дату інвестыцый у акцыі\n"
-"Выкарыстоўваецца пры стварэнні першапачатковай аперацыі да акцыяў."
+"Выкарыстоўваецца пры стварэнні першаснай аперацыі да акцыяў."
 
 #: stockdialog.cpp:218
 msgid "*Share Number"
@@ -6517,17 +6517,17 @@ msgstr "*Колькасць"
 msgid "Enter number of shares.\n"
 "Used when creating the initial Share transaction."
 msgstr "Агульная колькасць акцыяў.\n"
-"Выкарыстоўваецца пры стварэнні начальнай аперацыі."
+"Выкарыстоўваецца пры стварэнні першаснай аперацыі."
 
 #: stockdialog.cpp:230 stocks_list.cpp:93
 msgid "*Share Price"
-msgstr "*Кошт набыцця"
+msgstr "*Пакупны кошт"
 
 #: stockdialog.cpp:236
 msgid "Enter the initial price per share.\n"
 "Used when creating the initial Share transaction."
 msgstr "Пачатковы кошт куплі акцыяў.\n"
-"Выкарыстоўваецца пры стварэнні пачатковай аперацыі."
+"Выкарыстоўваецца пры стварэнні першаснай аперацыі."
 
 #: stockdialog.cpp:241
 msgid "*Commission"
@@ -6537,15 +6537,15 @@ msgstr "*Камісія"
 msgid "Enter any commission paid.\n"
 "Used when creating the initial Share transaction."
 msgstr "Калі ласка, пакажыце суму выплачанай камісіі.\n"
-"Выкарыстоўваецца пры стварэнні пачатковай аперацыі."
+"Выкарыстоўваецца пры стварэнні першаснай аперацыі."
 
 #: stockdialog.cpp:250 stocks_list.cpp:96
 msgid "Curr. Share Price"
-msgstr "Бягучая цана"
+msgstr "Бягучы кошт"
 
 #: stockdialog.cpp:253
 msgid "Enter current stock/share price."
-msgstr "Пакажыце бягучую цану акцыяў."
+msgstr "Пакажыце сучасную вартасць акцыяў."
 
 #: stockdialog.cpp:285
 msgid "Stock History Options"
@@ -6557,7 +6557,7 @@ msgstr "Гісторыя каціровак"
 
 #: stockdialog.cpp:316 stocks_list.cpp:98
 msgid "Price Date"
-msgstr "Дата цаны"
+msgstr "Дата кошта"
 
 #: stockdialog.cpp:320
 msgid "Specify the stock/share price date."
@@ -6599,11 +6599,11 @@ msgstr "У кампаніі няма злучанага паявога раху�
 
 #: stockdialog.cpp:599
 msgid "Stock History CSV Import"
-msgstr "CSV імпарт гістрыі каціровак"
+msgstr "Імпарт гістрыі каціровак з CSV"
 
 #: stockdialog.cpp:600 stockdialog.cpp:616
 msgid "Quotes imported from CSV: "
-msgstr "Каціровак іспратавана з CSV: "
+msgstr "Каціровак імпратавана з CSV: "
 
 #: stockdialog.cpp:672
 #, c-format
@@ -6617,7 +6617,7 @@ msgstr "Імпартавана агулам : %ld"
 
 #: stockdialog.cpp:682
 msgid "Importing CSV"
-msgstr "Імпарт CSV"
+msgstr "Імпартую CSV"
 
 #: stockdialog.cpp:713 stockdialog.cpp:743
 msgid "5 Days"
@@ -6677,7 +6677,7 @@ msgstr "Пакажыце інтырвал для гісторыі акцыяў"
 
 #: stockdialog.cpp:767 stockdialog.cpp:771
 msgid "Stock history not found!"
-msgstr "Гістоыя каціровак ня знойдзеная"
+msgstr "Гісторыя каціровак ня знойдзеная"
 
 #: stockdialog.cpp:768 stockdialog.cpp:880
 msgid "Stock History Error"
@@ -6764,7 +6764,7 @@ msgstr "Абнавіць каціроўкі з Yahoo"
 #, c-format
 msgid "Temporary Stock list: %s\n\n"
 "Date          Lot          Shares          Price        Commission\n\n"
-msgstr "Часовы спіс каштоўных папераў: %s\n\n"
+msgstr "Часавы спіс каштоўных папераў: %s\n\n"
 "Дата          Лот          Акцыі          Кошт        Камісія\n\n"
 
 #: stockspanel.cpp:299
@@ -7009,7 +7009,7 @@ msgstr "Ліс"
 
 #: util.cpp:296
 msgid "Dec"
-msgstr "Dec"
+msgstr "Сне"
 
 #: util.cpp:301
 msgid "Sunday"
