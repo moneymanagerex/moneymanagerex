@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-10-02 17:56+0300\n"
-"PO-Revision-Date: 2021-10-03 08:14\n"
+"PO-Revision-Date: 2021-10-03 08:30\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -768,7 +768,7 @@ msgstr "Немагчыма адчыніць далучэнне"
 #: model/Model_Checking.cpp:36 optionsettingsmisc.cpp:96
 #: reports/reportbase.cpp:189
 msgid "None"
-msgstr "Ня вызначаныя"
+msgstr "Няма/Ня вызначаны/а"
 
 #: billsdepositsdialog.cpp:52 billsdepositspanel.cpp:50
 #: model/Model_Budget.cpp:56
@@ -2328,7 +2328,7 @@ msgstr "Дыягностыка"
 
 #: diagnostics.cpp:101
 msgid "Developers may ask you to provide information presented here in order to help diagnose issues you may report with the program."
-msgstr "Распрацоўшчыкі могуць папрасіць вас надаць інфармацыю для дыягностыкі праблемаў, з якімі вы можаце сутыкнуцца ў праграме."
+msgstr "Распрацоўшчыкі могуць папрасіць вас надаць інфармацыю для дыягностыкі праблемаў, з якімі вы можаце сутыкнуцца ў дадатку."
 
 #: filtertransdialog.cpp:45 mmhomepage.cpp:657 model/Model_Billsdeposits.cpp:40
 #: model/Model_Checking.cpp:37
@@ -3333,7 +3333,7 @@ msgstr "Файл існуе"
 
 #: import_export/univcsvdialog.cpp:1126
 msgid "Failed to delete existing file. File may be locked by another program."
-msgstr "Не атрымалася выдаліць існуючы файл. Файл можа быць заблакаваным іншай праграмай."
+msgstr "Не атрымалася выдаліць існуючы файл. Файл можа быць заблакаваным іншым дадаткам."
 
 #: import_export/univcsvdialog.cpp:1127
 msgid "Destination file error"
@@ -4020,7 +4020,7 @@ msgstr "Немагчыма спампаваць пераклад для мовы
 #, c-format
 msgid "Please use the Switch Application Language option in View menu to select one of the following available languages:\n\n"
 "%s"
-msgstr "Калі ласка, выкарыстоўвайце параметр «Мова Прыкладання» ў меню «Выгляд», каб абраць адну з дасяжных моваў:\n\n"
+msgstr "Калі ласка, выкарыстоўвайце параметр «Мова Дадатка» ў меню «Выгляд», каб абраць адну з дасяжных моваў:\n\n"
 "%s"
 
 #: mmex.cpp:134 mmframe.cpp:3376 optionsettingsgeneral.cpp:341
@@ -4332,7 +4332,7 @@ msgstr "Зрабіць вакенца найвялікшым"
 
 #: mmframe.cpp:1448
 msgid "Switch Application &Language"
-msgstr "&Мова прыкладання"
+msgstr "&Мова дадатка"
 
 #: mmframe.cpp:1449 optionsettingsgeneral.cpp:93
 msgid "Change language used for MMEX GUI"
@@ -5003,7 +5003,7 @@ msgstr "Файл %s ня знойдзены"
 
 #: mmframe.cpp:3374 optionsettingsgeneral.cpp:339
 msgid "The language for this application has been changed. The change will take effect the next time the application is started."
-msgstr "Мова прыкладання змененая. Але ўступіць у моц пры наступным запуску дадатка."
+msgstr "Мова дадатка змененая. Але ўступіць у моц пры наступным запуску дадатка."
 
 #: mmframereport.cpp:78
 msgid "General Group Report"
@@ -5644,7 +5644,7 @@ msgstr "Не выкарыстоўваецца"
 
 #: optionsettingsmisc.cpp:110
 msgid "Last used for payee"
-msgstr "Што быў мінулага разу"
+msgstr "Апошні выкарыстаны"
 
 #: optionsettingsmisc.cpp:111
 msgid "Use default for payee"
@@ -5672,7 +5672,7 @@ msgstr "Катыгорыя па змаўчанні:"
 
 #: optionsettingsmisc.cpp:143
 msgid "Default Status:"
-msgstr "Статус па змаўчанні:"
+msgstr "Стан па змаўчанні:"
 
 #: optionsettingsmisc.cpp:145
 msgid "Bulk Transactions:"
@@ -5704,7 +5704,7 @@ msgstr "Падчас зачынення MMEX, калі зробленыя зме
 
 #: optionsettingsmisc.cpp:180
 msgid "Specify max number of backup files"
-msgstr "Пазначце масімальную колькасць рызервовых копіяў"
+msgstr "Пазначце максімальную колькасць рызервовых копіяў"
 
 #: optionsettingsmisc.cpp:183
 msgid "Max Files"
@@ -5736,7 +5736,7 @@ msgstr "GUID"
 
 #: optionsettingsnet.cpp:76
 msgid "Specify the Web App GUID"
-msgstr "Пазначце WebApp GUID"
+msgstr "Пакажыце WebApp GUID"
 
 #: optionsettingsnet.cpp:79
 msgid "More information about WebApp"
@@ -5748,11 +5748,11 @@ msgstr "Налады проксі"
 
 #: optionsettingsnet.cpp:91
 msgid "Specify the proxy IP address"
-msgstr "Пазначце IP адрас проксі"
+msgstr "Пакажыце IP адрас проксі"
 
 #: optionsettingsnet.cpp:97
 msgid "Specify proxy port number"
-msgstr "Пазначце нумар порта проксі"
+msgstr "Пакажыце нумар порта проксі"
 
 #: optionsettingsnet.cpp:100
 msgid "Proxy"
@@ -5772,7 +5772,7 @@ msgstr "Правяраць найноўшыя навіны падчас запу
 
 #: optionsettingsnet.cpp:129
 msgid "Enable to allow news to be checked on application start"
-msgstr "Увамкніце, каб дазволіць правяраць навіны пры запуску прыкладання"
+msgstr "Увамкніце, каб дазволіць правяраць навіны пры запуску дадатка"
 
 #: optionsettingsnet.cpp:134
 msgid "Timeout"
@@ -5792,11 +5792,11 @@ msgstr "Абнаўленні"
 
 #: optionsettingsnet.cpp:158
 msgid "Check for updates at StartUp"
-msgstr "Правяраць наяўнасць новай версіі праграмы падчас яе запуску"
+msgstr "Правяраць наяўнасць новай версіі дадатка падчас ягонага запуска"
 
 #: optionsettingsnet.cpp:160
 msgid "Enable to automatically check if new MMEX version is available at StartUp"
-msgstr "Увамкніце, каб аўтаматычна правяраць наяўнасць новай версіі MMEX пры запуску прыкладання"
+msgstr "Увамкніце, каб аўтаматычна правяраць наяўнасць новай версіі MMEX пры запуску дадатка"
 
 #: optionsettingsnet.cpp:163 wizard_update.cpp:114
 msgid "Stable"
@@ -6144,7 +6144,7 @@ msgstr "Калі ласка, не выдаляйце інфармацыю, па�
 
 #: reports/bugreport.h:74
 msgid "Use Help->Check for Updates in MMEX to get latest version, where your problem might be already fixed."
-msgstr "У меню Дапамога -> Праверыць абнаўленні пераканайцеся, што ў вас ўстаноўленая новая версія праграмы, ваша праблема ўжо можа быць выпраўленая."
+msgstr "У меню Дапамога -> Праверыць абнаўленні пераканайцеся, што ў вас ўстаноўленая найноўшая версія дадатка, у якой вашая праблема ўжо можа быць выпраўленая."
 
 #: reports/bugreport.h:75
 #, c-format
@@ -7418,7 +7418,7 @@ msgstr "(Па жаданні) Пакажыце загаловак або сва�
 
 #: wizard_newdb.cpp:113
 msgid "Used as a database title for displayed and printed reports."
-msgstr "Загаловак для адлюстравання ў праграме і справаздачах."
+msgstr "Загаловак для адлюстравання ў дадатку і справаздачах."
 
 #: wizard_newdb.cpp:124
 msgid "Base Currency Not Set"
