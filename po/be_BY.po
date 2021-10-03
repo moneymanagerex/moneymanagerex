@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-10-02 17:56+0300\n"
-"PO-Revision-Date: 2021-10-03 06:34\n"
+"PO-Revision-Date: 2021-10-03 06:44\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -5457,23 +5457,23 @@ msgstr "Тэчка Unix -> "
 
 #: optionsettingsattachment.cpp:145
 msgid "Create and use Attachments subfolder"
-msgstr "Стварыць і выкарыстоўваць падтэчку далучэннў"
+msgstr "Стварыць і выкарыстоўваць падтэчку далучэнняў"
 
 #: optionsettingsattachment.cpp:156
 msgid "Delete file after import"
-msgstr "Выдаліць файл пасля імпарта"
+msgstr "Выдаліць арыгінал файла пасля імпарта"
 
 #: optionsettingsattachment.cpp:158
 msgid "Select to delete file after import in attachments archive"
-msgstr "Пазначце, каб файл быў выдалены пасля імпарта далучэнняў"
+msgstr "Пазначце, каб арыгінальны файл быў выдалены пасля імпарта ў дадатак"
 
 #: optionsettingsattachment.cpp:162
 msgid "When remove attachment, move file instead of delete"
-msgstr "Перасунуць файл замест сцірання падчас выдалення далучэння"
+msgstr "Перасунуць далучэнне замест сцірання"
 
 #: optionsettingsattachment.cpp:164
 msgid "Select to don't delete file when attachment is removed, but instead move it to 'Deleted' subfolder"
-msgstr "Абярыце, каб не выдаляць далучэнні, а перасоўваць іх у падтэчку 'Сцёртыя'"
+msgstr "Пазначце, каб не выдаляць далучэнні, а перасоўваць іх у падтэчку 'Сцёртыя'"
 
 #: optionsettingsattachment.cpp:173
 msgid "Choose folder to set as attachments archive"
