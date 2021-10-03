@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-10-02 17:56+0300\n"
-"PO-Revision-Date: 2021-10-03 09:05\n"
+"PO-Revision-Date: 2021-10-03 09:15\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -2242,7 +2242,7 @@ msgstr "Памылка ў базе дадзеных MMEX"
 #, c-format
 msgid "MMEX database version %i doesn't work with this MMEX version.\n"
 "Please upgrade MMEX to newer version."
-msgstr "Версія %i базы дадзеных MMEX не працуе з гэтай версіяй MMEX.\n"
+msgstr "Вэрсія %i базы дадзеных MMEX не працуе з гэтай версіяй MMEX.\n"
 "Калі ласка, абнавіце базу дадзеных MMEX да больш новай версіі."
 
 #: dbupgrade.cpp:120
@@ -3638,7 +3638,7 @@ msgstr "Рэкамендацыя: Рыгулярна рабіце рызерво
 
 #: mmTips.h:23
 msgid "Recommendation: If upgrading to a new version of MMEX, make sure you backup your .mmb database file before doing so."
-msgstr "Рэкамендацыя: Пры абнаўленні да новай версіі MMEX, пераканайцеся, што вы зрабілі рэзервовае капіяванне файла базы дадзеных .mmb, перш чым працягваць."
+msgstr "Рэкамендацыя: Пры абнаўленні да новай вэрсіі MMEX, пераканайцеся, што вы зрабілі рэзервовае капіяванне файла базы дадзеных .mmb, перш чым працягваць."
 
 #: mmTips.h:24
 msgid "Recommendation: Use copy (Ctrl+C) and paste (Ctrl+V) for frequently used transactions."
@@ -4592,7 +4592,7 @@ msgstr "Money Manager Ex для &Android"
 
 #: mmframe.cpp:1631
 msgid "Get free Android version and run MMEX on your smart phone or tablet"
-msgstr "Спампуйце бясплатную версію для Android і працуйце з MMEX на сваім смартфоне або планшэце"
+msgstr "Спампуйце бясплатную вэрсію для Android і працуйце з MMEX на сваім смартфоне або планшэце"
 
 #: mmframe.cpp:1633
 msgid "&Newsletter"
@@ -4664,7 +4664,7 @@ msgstr "Праверыць наяўнасць &абнаўлення"
 
 #: mmframe.cpp:1682
 msgid "Check For Updates"
-msgstr "Праверыць, ці існуе новая версія"
+msgstr "Праверыць, ці існуе новая вэрсія"
 
 #: mmframe.cpp:1686 mmframe.cpp:1758
 msgid "&About..."
@@ -4716,7 +4716,7 @@ msgstr "&Налады..."
 
 #: mmframe.cpp:1742 mmframe.cpp:2594
 msgid "Register/View Release &Notifications"
-msgstr "Праглядзець інфармацыю пра &новыя версіі"
+msgstr "Праглядзець інфармацыю пра &новыя вэрсіі"
 
 #: mmframe.cpp:1747 optionsettingsnet.cpp:121
 msgid "News"
@@ -4755,7 +4755,7 @@ msgstr "Аніводны файл не адчынены"
 
 #: mmframe.cpp:1872
 msgid "Sorry. The Database version is too old or Database password is incorrect"
-msgstr "Выбачце. Версія базы дадзеных занадта старая або хібны пароль базы дадзеных"
+msgstr "Выбачце. Вэрсія базы дадзеных занадта старая або хібны пароль базы дадзеных"
 
 #: mmframe.cpp:1902
 msgid "&Next ->"
@@ -5792,11 +5792,11 @@ msgstr "Абнаўленні"
 
 #: optionsettingsnet.cpp:158
 msgid "Check for updates at StartUp"
-msgstr "Правяраць наяўнасць новай версіі дадатка падчас ягонага запуска"
+msgstr "Правяраць наяўнасць новай вэрсіі дадатка падчас ягонага запуска"
 
 #: optionsettingsnet.cpp:160
 msgid "Enable to automatically check if new MMEX version is available at StartUp"
-msgstr "Увамкніце, каб аўтаматычна правяраць наяўнасць новай версіі MMEX пры запуску дадатка"
+msgstr "Увамкніце, каб аўтаматычна правяраць наяўнасць новай вэрсіі MMEX пры запуску дадатка"
 
 #: optionsettingsnet.cpp:163 wizard_update.cpp:114
 msgid "Stable"
@@ -6144,7 +6144,7 @@ msgstr "Калі ласка, не выдаляйце інфармацыю, па�
 
 #: reports/bugreport.h:74
 msgid "Use Help->Check for Updates in MMEX to get latest version, where your problem might be already fixed."
-msgstr "У меню Дапамога -> Праверыць абнаўленні пераканайцеся, што ў вас ўстаноўленая найноўшая версія дадатка, у якой вашая праблема ўжо можа быць выпраўленая."
+msgstr "У меню Дапамога -> Праверыць абнаўленні пераканайцеся, што ў вас ўстаноўленая найноўшая вэрсія дадатка, у якой вашая праблема ўжо можа быць выпраўленая."
 
 #: reports/bugreport.h:75
 #, c-format
@@ -6852,7 +6852,7 @@ msgstr "Вы ўпэўненыя, што хочаце выкарыстоўвац�
 
 #: transactionsupdatedialog.cpp:82
 msgid "Multi Transactions Update"
-msgstr "Абнаўленне некалькіх аперацый"
+msgstr "Абнаўленне некалькіх аперацыяў"
 
 #: transactionsupdatedialog.cpp:213
 msgid "Append"
@@ -6917,7 +6917,7 @@ msgstr "Пакажыце рахунак для дадзенай аперацыі
 
 #: transdialog.cpp:1298
 msgid "Specify to whom the transaction is going to"
-msgstr "Пакажыце каму будзе зробленае пералічэнне"
+msgstr "Пакажыце, каму будзе зробленае пералічэнне"
 
 #: transdialog.cpp:1304 usertransactionpanel.cpp:96
 msgid "Specify the date of the transaction"
@@ -7077,7 +7077,7 @@ msgstr "Памылка аналіза JSON"
 
 #: util.cpp:881 util.cpp:940
 msgid "Expected response to contain a data or error string"
-msgstr "Чакаўся адказ на запыт які змяшчае радок дадзеных або памылку"
+msgstr "На запыт чакаўся адказ, што змяшчае радок дадзеных або памылку"
 
 #: util.cpp:912
 msgid "Could not find asset for symbol"
@@ -7093,11 +7093,11 @@ msgstr "USD"
 
 #: util.cpp:956
 msgid "Could not find currency 'USD', needed for converting history prices"
-msgstr "Не атрымалася знайсці валюту 'USD', неабходную для канвертавання цэнаў у гісторыі"
+msgstr "Не атрымалася знайсці валюту «USD», неабходную для канвертавання цэнаў у гісторыі"
 
 #: util.cpp:977
 msgid "Could not parse price in asset history"
-msgstr "Аналіз цаны з гісторыі актываў не атрымаўся"
+msgstr "Аналіз кошта з гісторыі актываў не атрымаўся"
 
 #: util.cpp:1207
 #, c-format
@@ -7106,7 +7106,7 @@ msgstr "Вэрсія: %s"
 
 #: util.cpp:1208
 msgid "Build on"
-msgstr "Створаны"
+msgstr "Створаная"
 
 #: util.cpp:1209
 msgid "Database version: "
@@ -7118,7 +7118,7 @@ msgstr "Git commit: "
 
 #: util.cpp:1220
 msgid "Git branch: "
-msgstr "Галіінка Git: "
+msgstr "Галінка Git: "
 
 #: util.cpp:1224
 msgid "MMEX is using the following support products:"
@@ -7202,21 +7202,21 @@ msgstr "Памылка з'еднання з WebApp"
 
 #: webapp.cpp:131
 msgid "Wrong WebApp API version:"
-msgstr "Хібная версія WebApp API:"
+msgstr "Хібная вэрсія WebApp API:"
 
 #: webapp.cpp:132
 #, c-format
 msgid "WebApp   API version -> %s"
-msgstr "WebApp   API версія -> %s"
+msgstr "WebApp   вэрсія API -> %s"
 
 #: webapp.cpp:133
 #, c-format
 msgid "Expected API version -> %s"
-msgstr "Чаканая версія API -> %s"
+msgstr "Чаканая вэрсія API -> %s"
 
 #: webapp.cpp:134
 msgid "Wrong WebApp API version"
-msgstr "Хібная версія WebApp API"
+msgstr "Хібная вэрсія WebApp API"
 
 #: webapp.cpp:473
 #, c-format
@@ -7459,5 +7459,5 @@ msgstr "Памылка: "
 
 #: wizard_update.cpp:304 wizard_update.cpp:320
 msgid "MMEX Update Check"
-msgstr "Праверка ці ёсць новыя версіі MMEX"
+msgstr "Праверка ці ёсць новыя вэрсіі MMEX"
 
