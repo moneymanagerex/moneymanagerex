@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-10-02 17:56+0300\n"
-"PO-Revision-Date: 2021-10-03 07:06\n"
+"PO-Revision-Date: 2021-10-03 07:14\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -5607,7 +5607,7 @@ msgstr "Ці выкарыстоўваць гукі падчас увода ап�
 
 #: optionsettingsgeneral.cpp:309
 msgid "bad locale name"
-msgstr "Няслушнае імя лакалі"
+msgstr "Хібнае імя лакалі"
 
 #: optionsettingsgeneral.cpp:325
 #, c-format
@@ -6717,7 +6717,7 @@ msgstr "&Выдаліць фондавыя інвестыцыі"
 
 #: stocks_list.cpp:146
 msgid "Stock &Web Page"
-msgstr "&Вэб-старонка каціровак"
+msgstr "&Вэб-старонка каціроўкаў"
 
 #: stocks_list.cpp:269
 msgid "Do you really want to delete the stock investment?"
