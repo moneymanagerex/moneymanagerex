@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-10-02 17:56+0300\n"
-"PO-Revision-Date: 2021-10-02 20:22\n"
+"PO-Revision-Date: 2021-10-03 06:34\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -5441,7 +5441,7 @@ msgstr "Тэчкі для іншых АС "
 
 #: optionsettingsattachment.cpp:116
 msgid "Not set yet"
-msgstr "Яшчэ не пазначана"
+msgstr "Яшчэ не пазначаная"
 
 #: optionsettingsattachment.cpp:123
 msgid "Windows folder -> "
