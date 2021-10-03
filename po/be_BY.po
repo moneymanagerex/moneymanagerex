@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-10-02 17:56+0300\n"
-"PO-Revision-Date: 2021-10-03 06:54\n"
+"PO-Revision-Date: 2021-10-03 07:06\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -394,7 +394,7 @@ msgstr "Абярыце тып актыва"
 #: assetdialog.cpp:219 import_export/qif_import_gui.cpp:104
 #: maincurrencydialog.cpp:270
 msgid "Value"
-msgstr "Кошт"
+msgstr "Кошт/Курс"
 
 #: assetdialog.cpp:226
 msgid "Enter the current value of the asset"
@@ -5587,7 +5587,7 @@ msgstr "Пакінуць зыходную дату падчас капіяван
 
 #: optionsettingsgeneral.cpp:210
 msgid "Select whether to use the original transaction date or current date when copying/pasting transactions"
-msgstr "Выкарыстоўваць зыходную або бягучую дату аперацыі падчас капіявання або ўстаўкі"
+msgstr "Выкарыстоўваць зыходную або бягучую дату аперацыі пасля капіявання і ўстаўкі аперацыі"
 
 #: optionsettingsgeneral.cpp:213
 msgid "Use Original Date when Duplicating Transactions"
