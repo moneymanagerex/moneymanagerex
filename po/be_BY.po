@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-10-02 17:56+0300\n"
-"PO-Revision-Date: 2021-10-03 09:15\n"
+"PO-Revision-Date: 2021-10-03 09:31\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -7182,7 +7182,7 @@ msgstr "Хібны WebApp GUID:"
 
 #: webapp.cpp:112
 msgid "please check it in network options."
-msgstr "калі ласка, праверце гэта ў наладах сеткі."
+msgstr "калі ласка, праверце гэта ў сеткавых наладах."
 
 #: webapp.cpp:113
 msgid "Wrong WebApp settings"
@@ -7221,18 +7221,18 @@ msgstr "Хібная вэрсія WebApp API"
 #: webapp.cpp:473
 #, c-format
 msgid "Account '%s' not found!"
-msgstr "Рахунак '%s' ня знойдзены!"
+msgstr "Рахунак «%s» ня знойдзены!"
 
 #: webapp.cpp:475
 #, c-format
 msgid "Transaction will be inserted with the first bank account:\n"
 "'%s' and marked as  'Follow Up'"
-msgstr "Аперацыя будзе ўстаўлена з першым банкаўскім рахункам:\n"
-"\"%s\" і пазначана як «На Дапрацоўку»"
+msgstr "Аперацыя будзе ўстаўленая з першым банкаўскім рахункам:\n"
+"«%s» і пазначаная як «Дапрацаваць»"
 
 #: webapp.cpp:478
 msgid "Wrong WebApp account"
-msgstr "Хібны рахунак WebApp"
+msgstr "Хібны рахунак з WebApp"
 
 #: webapp.cpp:560 webapp.cpp:594 webappdialog.cpp:347
 msgid "Unable to download attachments from webapp."
@@ -7288,15 +7288,15 @@ msgstr "Немагчыма спампаваць аперацыі з WebApp."
 
 #: webappdialog.cpp:215
 msgid "Transactions download error"
-msgstr "Памылка спампавання аперацый"
+msgstr "Памылка спампавання аперацыяў"
 
 #: webappdialog.cpp:320
 msgid "Unable to insert transaction in MMEX database"
-msgstr "Немагчыма ўставіць аперацыю у базе дадзеных MMEX"
+msgstr "Немагчыма ўставіць аперацыю у базу дадзеных MMEX"
 
 #: webappdialog.cpp:321
 msgid "WebApp communication error"
-msgstr "Памылка обмена дадзенымі з WebApp"
+msgstr "Памылка абмена дадзенымі з WebApp"
 
 #: webappdialog.cpp:416
 msgid "Open Attachment"
@@ -7313,14 +7313,14 @@ msgstr "Майстар стварэння рахунка"
 #: wizard_newaccount.cpp:39
 #, c-format
 msgid "%s models all transactions as belonging to accounts."
-msgstr "%s месціць ўсе транзакцыі ўнутры рахункаў."
+msgstr "%s месціць ўсе аперацыі ўнутры рахункаў."
 
 #: wizard_newaccount.cpp:40
 msgid "The next pages will help you create a new account.\n"
 "To help you get started, begin by making a list of all\n"
 "financial institutions where you hold an account."
 msgstr "Наступныя старонкі дапамогуць вам стварыць новы рахунак.\n"
-"Каб дапамагчы вам распачаць працу, пачніце са складання спісу ўсіх фінансавых прадпрыемстваў, дзе вы трымаеце рахункі."
+"Каб дапамагчы вам распачаць працу, пачніце са складання спісу ўсіх фінансавых установаў, дзе вы трымаеце рахункі."
 
 #: wizard_newaccount.cpp:86
 msgid "Account Name Invalid"
@@ -7342,7 +7342,7 @@ msgstr "Пакажыце назву для рахунка."
 msgid "This is generally the name of a financial institution\n"
 "where the account is held. For example: 'ABC Bank'."
 msgstr "Як правіла, гэта назва фінансавай установы,\n"
-"дзе знаходзіцца рахунак. Напрыклад, 'Прыёрбанк'."
+"дзе знаходзіцца рахунак. Напрыклад, «Прыёрбанк»."
 
 #: wizard_newaccount.cpp:131
 msgid "Type of Account"
@@ -7381,7 +7381,7 @@ msgstr "Асноўная валюта рахунка не абраная."
 
 #: wizard_newaccount.cpp:163
 msgid "Set that first using Tools->Options menu and then add a new account."
-msgstr "Усталюйце яе праз меню Інструманты -> Налады, а потым дадайце рахунак."
+msgstr "Усталюйце яе праз меню MMEX -> Налады, а потым дадайце рахунак."
 
 #: wizard_newdb.cpp:25
 msgid "New Database Wizard"
@@ -7397,9 +7397,16 @@ msgid "The next pages will help you create a new database.\n\n"
 "The database can later be encrypted if required, by\n"
 "using the option: 'Save database as' and changing the\n"
 "file type before saving."
-msgstr "Наступныя старонкі дапамогуць вам стварыць новую базу дадзеных.\n\n"
-"Файл базы дадзеных захоўваецца з пашырэннем .mmb. Паколькі гэты файл змяшчае важную фінансавую інфармацыю, мы рэкамендавалі ствараць штодзённыя рэзервовыя копіі. Наладзьце гэта ў опцыях: «Рызервовае капіяванне перад адчыненнем». Таксама капіюйце і захоўваеце рэзервовыя копіі у асобным месцы.\n\n"
-"Пазней база дадзеных можа быць зашыфраваная, пры неабходнасці, з дапамогай опцыі: «Захаваць базу дадзеных як» са зменай тыпа файла перад захаваннем."
+msgstr "Наступныя старонкі дапамогуць стварыць новую базу дадзеных.\n\n"
+"Файл базы дадзеных захоўваецца з пашырэннем .mmb. \n"
+"Паколькі гэты файл змяшчае важную фінансавую інфармацыю, \n"
+"мы рыкамендавалі ствараць штодзённыя рэзервовыя копіі. \n"
+"Наладзьце гэта ў опцыях: «Рызервовае капіяванне перад \n"
+"адчыненнем». Таксама капіюйце і захоўваеце рэзервовыя копіі \n"
+"у асобным месцы.\n\n"
+"Пазней база дадзеных можа быць зашыфраваная, пры \n"
+"неабходнасці, з дапамогай опцыі: «Захаваць базу дадзеных \n"
+"як» са зменай тыпа файла перад захаваннем."
 
 #: wizard_newdb.cpp:92
 msgid "Base Currency for account"
@@ -7410,7 +7417,11 @@ msgid "Specify the base (or default) currency to be used for the\n"
 "database. The base currency can later be changed by using\n"
 "the options dialog. New accounts, will use this currency by\n"
 "default, and can be changed when editing account details."
-msgstr "Пакажыце асноўную (або па змаўчанні) валюту, што будзе выкарыстоўвацца ў базе дадзеных. У далейшым Вы можаце змяняць валюту, звязаную з кожным рахункам, калі гэта будзе неабходна. Выкарыстоўвайце для гэтага ўласцівасці рахунка."
+msgstr "Пакажыце асноўную (па змаўчанні) валюту, што будзе \n"
+"выкарыстоўвацца ў базе дадзеных. У далейшым Вы \n"
+"можаце змяняць валюту, звязаную з кожным рахункам, \n"
+"калі гэта будзе неабходна. Выкарыстоўвайце для \n"
+"гэтага ўласцівасці адпаведнага рахунка."
 
 #: wizard_newdb.cpp:112
 msgid "(Optional) Specify a title or your name."
