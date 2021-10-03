@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-10-02 17:56+0300\n"
-"PO-Revision-Date: 2021-10-03 07:54\n"
+"PO-Revision-Date: 2021-10-03 08:05\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -3678,11 +3678,11 @@ msgstr "Парада: Калі вы вядзеце рахункі ў розны�
 
 #: mmTips.h:34
 msgid "Organize Categories Dialog Tip: Pressing the h key will cycle through all categories starting with the letter h"
-msgstr "Парада: У дыстпетчары катыгорыяў, націскаючы паслядоўна клавішу, адпаведную першай літары назвы, курсор будзе пераключацца паміж адпаведнымі катыгорыямі"
+msgstr "Парада: У дыспетчары катыгорыяў, націскаючы паслядоўна клавішу, адпаведную першай літары назвы, курсор будзе пераключацца паміж адпаведнымі катыгорыямі"
 
 #: mmTips.h:35
 msgid "Organize Categories Dialog Tip: Pressing 2 key combination will cycle through all categories starting with that key combination. Example: Pressing ho will select Homeneeds, Home, House Tax, etc..."
-msgstr "Парада: У дыстпетчары катыгорыяў, націскаючы паслядоўна некальці клавішаў, можна цыклічна перамыкацца паміж адпаведнымі назвамі. Напрыклад, клавішы АД пераключаць паміж Адзенне, Адпачынак і г.д."
+msgstr "Парада: У дыспетчары катыгорыяў, націскаючы паслядоўна некальці клавішаў, можна цыклічна перамыкацца паміж адпаведнымі назвамі. Напрыклад, клавішы АД пераключаць паміж Адзенне, Адпачынак і г.д."
 
 #: mmTips.h:37
 msgid "Tip to get out of debt: Pay yourself 10 percentage first. Put this into an account that is hard to touch. Make sure it is a chore to get the money out (you have to drive to the bank), so you will only tap it consciously and for major expenses."
@@ -4428,7 +4428,7 @@ msgstr "Дыспетчар Т&эмаў"
 
 #: mmframe.cpp:1548 mmframe.cpp:2493 optionsettingsview.cpp:338 themes.cpp:137
 msgid "Theme Manager"
-msgstr "Дыспетчар Тэмаў"
+msgstr "Дыспетчар тэмаў"
 
 #: mmframe.cpp:1554
 msgid "Transaction Report &Filter..."
@@ -5541,11 +5541,11 @@ msgstr "Усталяваць валюту"
 
 #: optionsettingsgeneral.cpp:130
 msgid "Sets the database default Currency using the 'Currency Dialog'"
-msgstr "Усталёўвае асноўную валюту з дапамогай 'Дыстпетчара валютаў'"
+msgstr "Усталёўвае асноўную валюту з дапамогай 'Дыспетчара валютаў'"
 
 #: optionsettingsgeneral.cpp:133
 msgid "Right click and select 'Set as Base Currency' in 'Currency Dialog'"
-msgstr "Пстрыкніце правай кнопкай мышы і абярыце 'Усталяваць у якасці асноўнай валюты' ў 'Дыстпетчары валютаў'"
+msgstr "Пстрыкніце правай кнопкай мышы і абярыце 'Усталяваць у якасці асноўнай валюты' ў 'Дыспетчары валютаў'"
 
 #: optionsettingsgeneral.cpp:158
 msgid "Format derived from locale.\n"
@@ -5864,7 +5864,7 @@ msgstr "Вонкавы выгляд"
 
 #: optionsettingsview.cpp:214
 msgid "Open Theme Manager"
-msgstr "Адчыніць Дыстпетчар Тэмаў"
+msgstr "Адчыніць Дыспетчар тэмаў"
 
 #: optionsettingsview.cpp:216
 msgid "Style Template"
@@ -5948,7 +5948,7 @@ msgstr "Змяніць імя новага платніка:"
 
 #: payeedialog.cpp:254 payeedialog.cpp:270
 msgid "Organize Payees: Edit Payee"
-msgstr "Рыдактар атрымальнікаў: рыдагаваць"
+msgstr "Дыспетчар атрымальнікаў: рыдагаваць"
 
 #: payeedialog.cpp:284
 msgid "Payee in use."
@@ -5964,7 +5964,7 @@ msgstr "Інструменты -> Замена -> Атрымальнікі"
 
 #: payeedialog.cpp:290
 msgid "Organize Payees: Delete Error"
-msgstr "Рыдактар атрымальнікаў: памылка выдалення"
+msgstr "Дыспетчар атрымальнікаў: памылка выдалення"
 
 #: payeedialog.cpp:390
 msgid "Define Category"
@@ -6453,7 +6453,7 @@ msgstr "Пакажыце лот, якому належыць гэты пакет
 
 #: sharetransactiondialog.cpp:274 stockdialog.cpp:268
 msgid "Organize attachments of this stock"
-msgstr "Кіраваць укладаннямі да інвестыцыі"
+msgstr "Дыспетчар укладанняў да інвестыцыі"
 
 #: sharetransactiondialog.cpp:279 stockdialog.cpp:270
 msgid "Display the web page for the specified Stock symbol"
@@ -6887,7 +6887,7 @@ msgstr "Запоўніць нумар аперацыі"
 
 #: transdialog.cpp:571 usertransactionpanel.cpp:210
 msgid "Organize attachments of this transaction"
-msgstr "Дыстпетчар далучэнняў гэтай аперацыі"
+msgstr "Дыспетчар далучэнняў гэтай аперацыі"
 
 #: transdialog.cpp:610
 msgid "Show/Hide custom fields window"
