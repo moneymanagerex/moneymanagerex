@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-10-02 17:56+0300\n"
-"PO-Revision-Date: 2021-10-03 08:30\n"
+"PO-Revision-Date: 2021-10-03 08:45\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -989,12 +989,12 @@ msgstr "Пакажыце рахунак для гэтай запланавана
 #: transdialog.cpp:296 transdialog.cpp:529 usertransactionpanel.cpp:182
 #: webappdialog.cpp:151
 msgid "Payee"
-msgstr "Атрымальнік"
+msgstr "Платнік"
 
 #: billsdepositsdialog.cpp:593 billsdepositsdialog.cpp:882
 #: usertransactionpanel.cpp:183
 msgid "Select Payee"
-msgstr "Абраць атрымальніка"
+msgstr "Абраць платніка"
 
 #: billsdepositsdialog.cpp:600 transdialog.cpp:542
 msgid "Split"
@@ -2937,7 +2937,7 @@ msgstr "Выкарыстоўваць нумар рахунка замест на
 
 #: import_export/qif_import_gui.cpp:268
 msgid "Include payee field in notes"
-msgstr "Уключыць поле атрымальніка плацяжа ў нататкі"
+msgstr "Уключыць поле платніка плацяжа ў нататкі"
 
 #: import_export/qif_import_gui.cpp:347 import_export/qif_import_gui.cpp:350
 #: import_export/qif_import_gui.cpp:549 import_export/qif_import_gui.cpp:1122
@@ -3050,7 +3050,7 @@ msgstr "Адсутнічае код аперацыі"
 
 #: import_export/qif_import_gui.cpp:1008
 msgid "Transaction Payee is missing or incorrect"
-msgstr "Адсутнічае або няслушны атрымальнік гэтай аперацыі"
+msgstr "Адсутнічае або няслушны платнік гэтай аперацыі"
 
 #: import_export/qif_import_gui.cpp:1020
 msgid "Date format or date mask is incorrect"
@@ -3595,8 +3595,8 @@ msgstr "Хібны платнік"
 #: mmSimpleDialogs.cpp:281
 msgid "Please type in a new payee,\n"
 "or make a selection using the dropdown button."
-msgstr "Калі ласка, пакажыце назву новага атрымальніка\n"
-"або абярыце атрымальніка са спіса, што выпадае."
+msgstr "Калі ласка, пакажыце імя новага платніка\n"
+"або абярыце са спіса, што выпадае."
 
 #: mmSimpleDialogs.cpp:289 mmSimpleDialogs.cpp:301
 msgid "Invalid Name"
@@ -4376,7 +4376,7 @@ msgstr "Дыспетчар а&трымальнікаў..."
 
 #: mmframe.cpp:1509 mmframe.cpp:1727 payeedialog.cpp:77
 msgid "Organize Payees"
-msgstr "Дыспетчар атрымальнікаў"
+msgstr "Дыспетчар платнікоў"
 
 #: mmframe.cpp:1513
 msgid "Organize Curre&ncy..."
@@ -4392,11 +4392,11 @@ msgstr "&Катыгорыі..."
 
 #: mmframe.cpp:1520
 msgid "&Payees..."
-msgstr "&Атрымальнікі..."
+msgstr "&Платнікі..."
 
 #: mmframe.cpp:1521
 msgid "Reassign all payees to another payee"
-msgstr "Замена аднаго атрымальніка на іншага"
+msgstr "Замена аднаго платніка на іншага"
 
 #: mmframe.cpp:1523
 msgid "Re&location of..."
@@ -4404,7 +4404,7 @@ msgstr "Перасоўванне..."
 
 #: mmframe.cpp:1524
 msgid "Relocate Categories && Payees"
-msgstr "Замена катыгорыяў і атрымальнікаў"
+msgstr "Замена катыгорыяў і платнікоў"
 
 #: mmframe.cpp:1534
 msgid "&Budget Setup"
@@ -4704,7 +4704,7 @@ msgstr "Адчыніць рыдактар катыгорыяў"
 
 #: mmframe.cpp:1727
 msgid "Show Organize Payees Dialog"
-msgstr "Адчыніць дыспетчар атрымальнікаў"
+msgstr "Адчыніць дыспетчар платнікоў"
 
 #: mmframe.cpp:1728
 msgid "Show Organize Currency Dialog"
@@ -4990,11 +4990,11 @@ msgstr "Рахунак: %s — Абярыце новы тып."
 
 #: mmframe.cpp:3285 payeedialog.cpp:350
 msgid "Payee Relocation Completed."
-msgstr "Замена атрымальніка зробленая."
+msgstr "Замена платніка зробленая."
 
 #: mmframe.cpp:3289 payeedialog.cpp:354
 msgid "Payee Relocation Result"
-msgstr "Вынік замены атрымальніка"
+msgstr "Вынік замены платніка"
 
 #: mmframe.cpp:3339
 #, c-format
@@ -5003,7 +5003,7 @@ msgstr "Файл %s ня знойдзены"
 
 #: mmframe.cpp:3374 optionsettingsgeneral.cpp:339
 msgid "The language for this application has been changed. The change will take effect the next time the application is started."
-msgstr "Мова дадатка змененая. Але ўступіць у моц пры наступным запуску дадатка."
+msgstr "Мова дадатка змененая. Аднак ўступіць у моц пры наступным запуску дадатка."
 
 #: mmframereport.cpp:78
 msgid "General Group Report"
@@ -5048,7 +5048,7 @@ msgstr "Маё выкарыстанне"
 
 #: mmframereport.cpp:169 reports/payee.cpp:114
 msgid "Payees"
-msgstr "Атрымальнікі"
+msgstr "Платнікі"
 
 #: mmframereport.cpp:174
 msgid "Summary of Accounts"
@@ -5820,7 +5820,7 @@ msgstr "Падзяляльнік катыгорыяў"
 
 #: optionsettingsview.cpp:111
 msgid "Transaction/Budget Options"
-msgstr "Опцыі аперацый і бюджэта"
+msgstr "Опцыі аперацыяў і бюджэта"
 
 #: optionsettingsview.cpp:117
 msgid "View Budgets as Financial Years"
@@ -5852,7 +5852,7 @@ msgstr "Дазваляе карэктаваць «першы дзень» мес
 
 #: optionsettingsview.cpp:158
 msgid "Ignore Future Transactions"
-msgstr "Ігнараваць аперацыі з датай у будучым"
+msgstr "Ігнараваць аперацыі з датай у будучыні"
 
 #: optionsettingsview.cpp:164
 msgid "Transaction Colors"
@@ -5880,7 +5880,7 @@ msgstr "Цёмная"
 
 #: optionsettingsview.cpp:227
 msgid "Specify preferred theme variant to use if supported"
-msgstr "Пакажыце пераважны варыянт тэмы, калі ён падтрымліваецца"
+msgstr "Пакажыце пераважны варыянт тэмы для выкарыстання ў выпадку ягонай падтрымкі"
 
 #: optionsettingsview.cpp:229
 msgid "Theme Mode"
@@ -5924,7 +5924,7 @@ msgstr "Памер іншых значкоў"
 
 #: payeedialog.cpp:67
 msgid "Last Used Category"
-msgstr "Што была мінулага разу"
+msgstr "Што была мінулага раза"
 
 #: payeedialog.cpp:67
 msgid "Default Category"
@@ -5956,11 +5956,11 @@ msgstr "Платнік выкарыстоўваецца."
 
 #: payeedialog.cpp:287
 msgid "Tip: Change all transactions using this Payee to another Payee using the relocate command:"
-msgstr "Парада: змяніце гэтага атрымальніка ва ўсіх ягоных/ейных аперацыях на іншага атрымальніка з дапамогай каманды перасоўвання:"
+msgstr "Парада: змяніце гэтага платніка ва ўсіх ягоных/ейных аперацыях на іншага атрымальніка з дапамогай каманды перасоўвання:"
 
 #: payeedialog.cpp:289
 msgid "Tools -> Relocation of -> Payees"
-msgstr "Інструменты -> Замена -> Атрымальнікі"
+msgstr "Інструменты -> Замена -> Платнікі"
 
 #: payeedialog.cpp:290
 msgid "Organize Payees: Delete Error"
@@ -5976,15 +5976,15 @@ msgstr "Выдаліць катыгорыю"
 
 #: payeedialog.cpp:407
 msgid "Relocate Payee"
-msgstr "Замена атрымальніка"
+msgstr "Замена платніка"
 
 #: relocatecategorydialog.cpp:53
 msgid "Relocate Category Dialog"
-msgstr "Замена катыгорыі"
+msgstr "Замена катыгорыяў"
 
 #: relocatecategorydialog.cpp:86
 msgid "Relocate source category to the destination category"
-msgstr "Замяніць катыгорыю крыніцы ў катыгорыю прызначэння"
+msgstr "Перасунуць катыгорыю крыніцы ў катыгорыю прызначэння"
 
 #: relocatecategorydialog.cpp:89
 msgid "Select Source Category"
@@ -6000,7 +6000,7 @@ msgstr "Замяніць:"
 
 #: relocatecategorydialog.cpp:110 relocatepayeedialog.cpp:113
 msgid "to:"
-msgstr "куды:"
+msgstr "у:"
 
 #: relocatecategorydialog.cpp:171 relocatepayeedialog.cpp:156
 msgid "Please Confirm:"
@@ -6033,7 +6033,7 @@ msgstr "У састаўных запланаваных аперацыях зно
 #: relocatecategorydialog.cpp:273
 #, c-format
 msgid "Records found as Default Payee Category: %i"
-msgstr "Знойдзена запісаў, прывязаных да атрымальніка: %i"
+msgstr "Знойдзена запісаў, прывязаных да платніка: %i"
 
 #: relocatecategorydialog.cpp:274
 #, c-format
@@ -6042,15 +6042,15 @@ msgstr "Знойдзена запісаў у бюджэце: %i"
 
 #: relocatepayeedialog.cpp:52
 msgid "Relocate Payee Dialog"
-msgstr "Замена атрымальніка"
+msgstr "Замена платніка"
 
 #: relocatepayeedialog.cpp:82
 msgid "Relocate all source payee to the destination payee"
-msgstr "Замяніць абранага атрымальніка ва ўсіх аперацыях"
+msgstr "Замяніць абранага платніка ва ўсіх аперацыях"
 
 #: relocatepayeedialog.cpp:95
 msgid "Delete source payee after relocation"
-msgstr "Выдаліць абранага атрымальніка пасля замены"
+msgstr "Выдаліць абранага платніка пасля замены"
 
 #: relocatepayeedialog.cpp:152
 #, c-format
@@ -6059,7 +6059,7 @@ msgstr "З %s па %s"
 
 #: relocatepayeedialog.cpp:157
 msgid "Payee Relocation Confirmation"
-msgstr "Спраўджанне замены атрымальніка"
+msgstr "Спраўджанне замены платніка"
 
 #: reports/budget.cpp:88
 #, c-format
@@ -6247,7 +6247,7 @@ msgstr "З %s па %s"
 
 #: reports/htmlbuilder.cpp:174
 msgid "Future"
-msgstr "Будучыя"
+msgstr "Такія, што яшчэ адбудуцца"
 
 #: reports/htmlbuilder.cpp:178 reports/mmDateRange.cpp:239
 msgid "Over Time"
@@ -6862,12 +6862,12 @@ msgstr "Далучаць"
 #, c-format
 msgid "You have not used this payee name before. Is the name correct?\n"
 "%s"
-msgstr "Гэтае імя атрымальніка раней не выкарыстоўвалася. Гэта слушнае імя?\n"
+msgstr "Гэтае імя платніка раней не выкарыстоўвалася. Гэта слушнае імя?\n"
 "%s"
 
 #: transactionsupdatedialog.cpp:326 transdialog.cpp:667
 msgid "Confirm payee name"
-msgstr "Спраўдзіце імя атрымальніка"
+msgstr "Спраўдзіце імя платніка"
 
 #: transdialog.cpp:180
 msgid "Duplicate Transaction"
