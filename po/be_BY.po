@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-10-02 17:56+0300\n"
-"PO-Revision-Date: 2021-10-03 08:05\n"
+"PO-Revision-Date: 2021-10-03 08:14\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -4372,7 +4372,7 @@ msgstr "Дыспетчар &катыгорыяў..."
 
 #: mmframe.cpp:1509
 msgid "Organize &Payees..."
-msgstr "Дыспетчар А&трымальнікаў..."
+msgstr "Дыспетчар а&трымальнікаў..."
 
 #: mmframe.cpp:1509 mmframe.cpp:1727 payeedialog.cpp:77
 msgid "Organize Payees"
@@ -4424,7 +4424,7 @@ msgstr "&Актывы"
 
 #: mmframe.cpp:1548
 msgid "T&heme Manager"
-msgstr "Дыспетчар Т&эмаў"
+msgstr "Дыспетчар т&эмаў"
 
 #: mmframe.cpp:1548 mmframe.cpp:2493 optionsettingsview.cpp:338 themes.cpp:137
 msgid "Theme Manager"
@@ -4708,7 +4708,7 @@ msgstr "Адчыніць дыспетчар атрымальнікаў"
 
 #: mmframe.cpp:1728
 msgid "Show Organize Currency Dialog"
-msgstr "Адчыніць дыспетчара валютаў"
+msgstr "Адчыніць дыспетчар валютаў"
 
 #: mmframe.cpp:1734
 msgid "&Options..."
@@ -5551,7 +5551,7 @@ msgstr "Пстрыкніце правай кнопкай мышы і абяры�
 msgid "Format derived from locale.\n"
 "Leave blank to manually set format via 'Currency Dialog | Edit'"
 msgstr "Фармат, атрыманы ад лакалі.\n"
-"Пакіньце пустым, каб ўручную ўсталяваць фармат праз 'Дыспетчар валютаў | Рыдагаваць'"
+"Пакіньце пустым, каб ўручную ўсталяваць фармат праз 'Дыспетчар валютаў -> Рыдагаваць'"
 
 #: optionsettingsgeneral.cpp:168
 msgid "Use currency history"
@@ -5640,7 +5640,7 @@ msgstr "З мінулай аперацыі"
 
 #: optionsettingsmisc.cpp:104
 msgid "Unused"
-msgstr "Такое, што не выкарыстоўваецца"
+msgstr "Не выкарыстоўваецца"
 
 #: optionsettingsmisc.cpp:110
 msgid "Last used for payee"
@@ -5648,7 +5648,7 @@ msgstr "Што быў мінулага разу"
 
 #: optionsettingsmisc.cpp:111
 msgid "Use default for payee"
-msgstr "Выкарыстоўваць па змаўчанні для платніка"
+msgstr "Па змаўчанні для платніка"
 
 #: optionsettingsmisc.cpp:127
 msgid "Yes"
@@ -5948,7 +5948,7 @@ msgstr "Змяніць імя новага платніка:"
 
 #: payeedialog.cpp:254 payeedialog.cpp:270
 msgid "Organize Payees: Edit Payee"
-msgstr "Дыспетчар атрымальнікаў: рыдагаваць"
+msgstr "Дыспетчар платнікоў: рыдагаваць"
 
 #: payeedialog.cpp:284
 msgid "Payee in use."
@@ -5964,7 +5964,7 @@ msgstr "Інструменты -> Замена -> Атрымальнікі"
 
 #: payeedialog.cpp:290
 msgid "Organize Payees: Delete Error"
-msgstr "Дыспетчар атрымальнікаў: памылка выдалення"
+msgstr "Дыспетчар платнікоў: памылка выдалення"
 
 #: payeedialog.cpp:390
 msgid "Define Category"
@@ -6453,7 +6453,7 @@ msgstr "Пакажыце лот, якому належыць гэты пакет
 
 #: sharetransactiondialog.cpp:274 stockdialog.cpp:268
 msgid "Organize attachments of this stock"
-msgstr "Дыспетчар укладанняў да інвестыцыі"
+msgstr "Дыспетчар далучэнняў да інвестыцыі"
 
 #: sharetransactiondialog.cpp:279 stockdialog.cpp:270
 msgid "Display the web page for the specified Stock symbol"
