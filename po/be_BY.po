@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-10-02 17:56+0300\n"
-"PO-Revision-Date: 2021-10-03 06:44\n"
+"PO-Revision-Date: 2021-10-03 06:54\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -581,7 +581,7 @@ msgstr "Напішыце любы тэкст для пошука будзь-як
 
 #: assetspanel.cpp:505 filtertransdialog.cpp:357 mmcheckingpanel.cpp:366
 msgid "Tips: You can use wildcard characters - question mark (?), asterisk (*) - in your search criteria."
-msgstr "Парада: Можна выкарыстоўваць падстановачныя знакі — знак пытання (?) і зорачку (*) — у крытэры пошуку."
+msgstr "Парада: Знакі пытання (?) і зорачку (*) можна выкарыстоўваць падстановачныя у крытэры пошуку."
 
 #: assetspanel.cpp:506 filtertransdialog.cpp:358 mmcheckingpanel.cpp:367
 msgid "Use the question mark (?) to find any single character - for example, s?t finds 'sat' and 'set'."
@@ -5473,7 +5473,7 @@ msgstr "Перасунуць далучэнне замест сцірання"
 
 #: optionsettingsattachment.cpp:164
 msgid "Select to don't delete file when attachment is removed, but instead move it to 'Deleted' subfolder"
-msgstr "Пазначце, каб не выдаляць далучэнні, а перасоўваць іх у падтэчку 'Сцёртыя'"
+msgstr "Пазначце, каб не выдаляць далучэнні з дадатка, а перасоўваць іх у падтэчку 'Сцёртыя'"
 
 #: optionsettingsattachment.cpp:173
 msgid "Choose folder to set as attachments archive"
@@ -5541,7 +5541,7 @@ msgstr "Усталяваць валюту"
 
 #: optionsettingsgeneral.cpp:130
 msgid "Sets the database default Currency using the 'Currency Dialog'"
-msgstr "Усталёўвае асноўную валюту з дапамогай 'Дыстпетчары валютаў'"
+msgstr "Усталёўвае асноўную валюту з дапамогай 'Дыстпетчара валютаў'"
 
 #: optionsettingsgeneral.cpp:133
 msgid "Right click and select 'Set as Base Currency' in 'Currency Dialog'"
