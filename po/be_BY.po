@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-10-02 17:56+0300\n"
-"PO-Revision-Date: 2021-10-03 07:14\n"
+"PO-Revision-Date: 2021-10-03 07:54\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "MIME-Version: 1.0\n"
@@ -3458,7 +3458,7 @@ msgstr "Вы сапраўды хочаце выдаліць абраную ва�
 #: maincurrencydialog.cpp:650 maincurrencydialog.cpp:775
 #: maincurrencydialog.cpp:799 maincurrencydialog.h:76
 msgid "Currency Dialog"
-msgstr "Дыялог валютаў"
+msgstr "Дыспетчар валютаў"
 
 #: maincurrencydialog.cpp:382
 msgid "Base Currency Selection"
@@ -4376,7 +4376,7 @@ msgstr "Дыспетчар А&трымальнікаў..."
 
 #: mmframe.cpp:1509 mmframe.cpp:1727 payeedialog.cpp:77
 msgid "Organize Payees"
-msgstr "Уладкаваць атрымальнікаў"
+msgstr "Дыспетчар атрымальнікаў"
 
 #: mmframe.cpp:1513
 msgid "Organize Curre&ncy..."
@@ -4704,7 +4704,7 @@ msgstr "Адчыніць рыдактар катыгорыяў"
 
 #: mmframe.cpp:1727
 msgid "Show Organize Payees Dialog"
-msgstr "Адчыніць дыспетчара атрымальнікаў"
+msgstr "Адчыніць дыспетчар атрымальнікаў"
 
 #: mmframe.cpp:1728
 msgid "Show Organize Currency Dialog"
@@ -5551,7 +5551,7 @@ msgstr "Пстрыкніце правай кнопкай мышы і абяры�
 msgid "Format derived from locale.\n"
 "Leave blank to manually set format via 'Currency Dialog | Edit'"
 msgstr "Фармат, атрыманы ад лакалі.\n"
-"Пакіньце пустым, каб ўручную ўсталяваць фармат 'Дыялог валютаў | рыдагаваць'"
+"Пакіньце пустым, каб ўручную ўсталяваць фармат праз 'Дыспетчар валютаў | Рыдагаваць'"
 
 #: optionsettingsgeneral.cpp:168
 msgid "Use currency history"
@@ -5936,7 +5936,7 @@ msgstr "Платнік з такім імем ужо існуе"
 
 #: payeedialog.cpp:203 payeedialog.cpp:227 payeedialog.cpp:242
 msgid "Organize Payees: Add Payee"
-msgstr "Рыдактар платнікоў: дадаць"
+msgstr "Дыспетчар платнікоў: дадаць"
 
 #: payeedialog.cpp:226
 msgid "Enter the name for the new payee:"
