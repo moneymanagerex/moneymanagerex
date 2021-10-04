@@ -127,6 +127,7 @@ François Maréchal
 Peter Hulm
 Wiesław Stawiszyński
 Gérard AGNESIO
+Jose Manuel Marrero León
 Jean-Francois Zahnen
 Markus Egg
 Michel SERIN
@@ -135,7 +136,6 @@ William R Detamore
 Alexander Habegger
 David Coons
 David Morrison
-Jose Manuel Marrero León
 Kenneth Wiggers
 Lucas Lopez Azcona
 Officer Young
@@ -148,8 +148,8 @@ Xiaoyun Wang
 Jean-michel LOUISET
 Antonio Navarro Sánchez
 Tim Carden
-Jérémy DUFRAISSE
 Brian Crow
+Jérémy DUFRAISSE
 Antonio Adam
 EMMANOUIL MASTROPETROS
 Frédéric Vandendris
@@ -160,6 +160,7 @@ Massimo casaccia
 Nicolas Arzamendia
 Sean Vinaja
 Timothy Pope
+David Lehmann
 Fr. Cycus Chungu
 Roger Gimbrere
 Mark Wilkerson
@@ -169,11 +170,10 @@ Luisa Guglielmetti
 Rafael Moreira
 Francisco Fos Ros
 Marco Giuseppe Stimolo
-David Lehmann
+Doru Stoica
 Ian Rowe
 Jonathan Thomas
 RICARDO ITURRIAGA
-Doru Stoica
 José Moya Iglesias
 
 ### 2020
@@ -305,10 +305,10 @@ Jose A Sanz Martín
 Etta niswonger
 Jesus Marcelino Medina Sevilla
 John Toumpis
-matteo cigola
+Matteo Cigola
 Ricardo Filipe P Faustino
 Lorenzo Giustino
-paulo silveira goncalves
+Paulo Silveira Goncalves
 Claudio Bottieri
 Hugo Sottomayor
 
