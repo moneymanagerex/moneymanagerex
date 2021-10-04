@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2021-09-24 17:06+0300\n"
-"PO-Revision-Date: 2021-09-24 14:43\n"
+"POT-Creation-Date: 2021-10-02 17:56+0300\n"
+"PO-Revision-Date: 2021-10-02 15:20\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
@@ -108,7 +108,7 @@ msgstr "Начальный баланс: %s"
 msgid "Enter the initial balance in this account."
 msgstr "Введите начальный баланс для данного счёта."
 
-#: accountdialog.cpp:171 import_export/univcsvdialog.cpp:1830
+#: accountdialog.cpp:171 import_export/univcsvdialog.cpp:1833
 msgid "Currency:"
 msgstr "Валюта:"
 
@@ -372,7 +372,7 @@ msgstr "Введите название актива"
 #: import_export/univcsvdialog.cpp:105 maincurrencydialog.cpp:239
 #: maincurrencydialog.cpp:261 mmchecking_list.cpp:207 mmreportspanel.cpp:258
 #: mmreportspanel.cpp:276 model/Model_CustomField.cpp:29
-#: reports/cashflow.cpp:249 reports/incexpenses.cpp:252 reports/summary.cpp:157
+#: reports/cashflow.cpp:249 reports/incexpenses.cpp:252 reports/summary.cpp:319
 #: reports/transactions.cpp:105 stockdialog.cpp:297 stockdialog.cpp:676
 #: transactionsupdatedialog.cpp:118 transdialog.cpp:458
 #: usertransactionpanel.cpp:108 webappdialog.cpp:147 wizard_update.cpp:145
@@ -1132,7 +1132,7 @@ msgstr "Введите количество повторов. Оставьте �
 msgid "Invalid value"
 msgstr "Неверное значение"
 
-#: billsdepositsdialog.cpp:1343 import_export/univcsvdialog.cpp:1133
+#: billsdepositsdialog.cpp:1343 import_export/univcsvdialog.cpp:1135
 #: maincurrencydialog.cpp:469 mmframe.cpp:3339 optionsettingsgeneral.cpp:286
 #: splittransactionsdialog.cpp:209 stockspanel.cpp:395 stockspanel.cpp:396
 #: themes.cpp:310 themes.cpp:329 webappdialog.cpp:194 webappdialog.cpp:199
@@ -2735,7 +2735,7 @@ msgstr "Тема %s не найдена, она может быть больше
 msgid "Theme %s has missing items and is incompatible. Reverting to default theme"
 msgstr "Тема %s не содержит некоторых элементов, поэтому несовместима. Возврат к теме по умолчанию"
 
-#: import_export/parsers.cpp:46 import_export/univcsvdialog.cpp:1579
+#: import_export/parsers.cpp:46 import_export/univcsvdialog.cpp:1581
 #: mmSimpleDialogs.cpp:253
 msgid "Unable to open file."
 msgstr "Невозможно открыть файл."
@@ -2862,7 +2862,7 @@ msgstr "Выберите файл данных JSON для экспорта"
 msgid "JSON Files (*.json)"
 msgstr "Файлы JSON (*.json)"
 
-#: import_export/qif_export.cpp:316 import_export/univcsvdialog.cpp:1563
+#: import_export/qif_export.cpp:316 import_export/univcsvdialog.cpp:1565
 msgid "CSV Files (*.csv)"
 msgstr "CSV файлы (*.csv)"
 
@@ -3091,7 +3091,7 @@ msgid "Don't Care"
 msgstr "Игнорировать"
 
 #: import_export/univcsvdialog.cpp:115 mmchecking_list.cpp:228
-#: mmhomepage.cpp:658 reports/summary.cpp:167
+#: mmhomepage.cpp:658 reports/summary.cpp:329
 msgid "Balance"
 msgstr "Баланс"
 
@@ -3223,7 +3223,7 @@ msgid "Account does not exist"
 msgstr "Счёт не существует"
 
 #: import_export/univcsvdialog.cpp:684 import_export/univcsvdialog.cpp:755
-#: import_export/univcsvdialog.cpp:1843
+#: import_export/univcsvdialog.cpp:1846
 #, c-format
 msgid "Positive if type has '%s'"
 msgstr "Положительный, если тип имеет '%s'"
@@ -3315,68 +3315,68 @@ msgstr "Подтвердите сохранение..."
 msgid "No imported transactions!"
 msgstr "Нет импортированных транзакций!"
 
-#: import_export/univcsvdialog.cpp:1107
+#: import_export/univcsvdialog.cpp:1109
 msgid "Incorrect fields specified for export! Requires at least Date and Amount."
 msgstr "Указаны неверные поля для экспорта! Обязательны дата и сумма."
 
-#: import_export/univcsvdialog.cpp:1108 import_export/univcsvdialog.cpp:1248
+#: import_export/univcsvdialog.cpp:1110 import_export/univcsvdialog.cpp:1250
 msgid "Export"
 msgstr "Экспорт"
 
-#: import_export/univcsvdialog.cpp:1118
+#: import_export/univcsvdialog.cpp:1120
 msgid "Overwrite existing file?"
 msgstr "Перезаписать имеющийся файл?"
 
-#: import_export/univcsvdialog.cpp:1118
+#: import_export/univcsvdialog.cpp:1120
 msgid "File exists"
 msgstr "Файл существует"
 
-#: import_export/univcsvdialog.cpp:1124
+#: import_export/univcsvdialog.cpp:1126
 msgid "Failed to delete existing file. File may be locked by another program."
 msgstr "Не удалось удалить существующий файл. Файл может быть заблокирован другой программой."
 
-#: import_export/univcsvdialog.cpp:1125
+#: import_export/univcsvdialog.cpp:1127
 msgid "Destination file error"
 msgstr "Ошибка в файле назначения"
 
-#: import_export/univcsvdialog.cpp:1133 mmSimpleDialogs.cpp:261
+#: import_export/univcsvdialog.cpp:1135 mmSimpleDialogs.cpp:261
 msgid "Invalid Account"
 msgstr "Неверный счёт"
 
-#: import_export/univcsvdialog.cpp:1247
+#: import_export/univcsvdialog.cpp:1249
 #, c-format
 msgid "Transactions exported: %ld"
 msgstr "Транзакций выгружено: %ld"
 
-#: import_export/univcsvdialog.cpp:1545 stockdialog.cpp:586
+#: import_export/univcsvdialog.cpp:1547 stockdialog.cpp:586
 msgid "Choose CSV data file to import"
 msgstr "Выберите файл CSV для экспорта"
 
-#: import_export/univcsvdialog.cpp:1548
+#: import_export/univcsvdialog.cpp:1550
 msgid "Choose CSV data file to export"
 msgstr "Выберите файл данных СSV для экспорта"
 
-#: import_export/univcsvdialog.cpp:1551
+#: import_export/univcsvdialog.cpp:1553
 msgid "Choose XML data file to import"
 msgstr "Выберите файл  XML для импорта"
 
-#: import_export/univcsvdialog.cpp:1554
+#: import_export/univcsvdialog.cpp:1556
 msgid "Choose XML data file to export"
 msgstr "Выберите XML файл для экспорта"
 
-#: import_export/univcsvdialog.cpp:1562
+#: import_export/univcsvdialog.cpp:1564
 msgid "XML Files (*.xml)"
 msgstr "XML файлы (*.xml)"
 
-#: import_export/univcsvdialog.cpp:1562
+#: import_export/univcsvdialog.cpp:1564
 msgid "All Files"
 msgstr "Все файлы"
 
-#: import_export/univcsvdialog.cpp:1839
+#: import_export/univcsvdialog.cpp:1842
 msgid "Please, type the word indicating positive values in your CSV file, e.g. 'debit'"
 msgstr "Пожалуйста, введите слово, указывающее положительные значения в вашем файле CSV, например, 'дебет'"
 
-#: import_export/univcsvdialog.cpp:1839
+#: import_export/univcsvdialog.cpp:1842
 msgid "Enter a value"
 msgstr "Введите значение"
 
@@ -4045,15 +4045,18 @@ msgstr "Панель инструментов"
 msgid "Favourites"
 msgstr "Избранное"
 
-#: mmframe.cpp:472 mmframe.cpp:716 mmhomepage.cpp:642 reports/summary.cpp:159
+#: mmframe.cpp:472 mmframe.cpp:716 mmhomepage.cpp:642 reports/summary.cpp:285
+#: reports/summary.cpp:321
 msgid "Bank Accounts"
 msgstr "Банковские счета"
 
-#: mmframe.cpp:473 mmframe.cpp:720 mmhomepage.cpp:643 reports/summary.cpp:160
+#: mmframe.cpp:473 mmframe.cpp:720 mmhomepage.cpp:643 reports/summary.cpp:286
+#: reports/summary.cpp:322
 msgid "Credit Card Accounts"
 msgstr "Кредитно-карточные счета"
 
-#: mmframe.cpp:474 mmframe.cpp:732 mmhomepage.cpp:645 reports/summary.cpp:162
+#: mmframe.cpp:474 mmframe.cpp:732 mmhomepage.cpp:645 reports/summary.cpp:288
+#: reports/summary.cpp:324
 msgid "Term Accounts"
 msgstr "Счета вкладов"
 
@@ -4065,7 +4068,8 @@ msgstr "Фондовые портфели"
 msgid "Cash Accounts"
 msgstr "Наличные счёта"
 
-#: mmframe.cpp:477 mmframe.cpp:728 mmhomepage.cpp:644 reports/summary.cpp:161
+#: mmframe.cpp:477 mmframe.cpp:728 mmhomepage.cpp:644 reports/summary.cpp:287
+#: reports/summary.cpp:323
 msgid "Loan Accounts"
 msgstr "Долговые счета"
 
@@ -4081,7 +4085,8 @@ msgstr "Сводка"
 msgid "All Transactions"
 msgstr "Все транзакции"
 
-#: mmframe.cpp:740 mmhomepage.cpp:648 reports/summary.cpp:164
+#: mmframe.cpp:740 mmhomepage.cpp:648 reports/summary.cpp:290
+#: reports/summary.cpp:326
 msgid "Share Accounts"
 msgstr "Счёта активов"
 
@@ -5069,7 +5074,8 @@ msgstr "&Назад"
 msgid "&Forward"
 msgstr "&Вперёд"
 
-#: mmhomepage.cpp:60 mmhomepage.cpp:79 reports/summary.cpp:166
+#: mmhomepage.cpp:60 mmhomepage.cpp:79 reports/summary.cpp:291
+#: reports/summary.cpp:328
 msgid "Stocks"
 msgstr "Акции"
 
@@ -5078,7 +5084,7 @@ msgid "Gain/Loss"
 msgstr "Прибыль"
 
 #: mmhomepage.cpp:80 reports/budgetingperf.cpp:220 reports/cashflow.cpp:250
-#: reports/categexp.cpp:175 reports/categexp.cpp:459 reports/summary.cpp:165
+#: reports/categexp.cpp:175 reports/categexp.cpp:459 reports/summary.cpp:327
 msgid "Total"
 msgstr "Сумма"
 
@@ -5138,7 +5144,7 @@ msgstr "Всего:"
 msgid "Investment Accounts"
 msgstr "Инвестиционные счета"
 
-#: mmhomepage.cpp:647 reports/summary.cpp:163
+#: mmhomepage.cpp:647 reports/summary.cpp:289 reports/summary.cpp:325
 msgid "Asset Accounts"
 msgstr "Счета активов"
 
@@ -5207,7 +5213,8 @@ msgstr "Показать"
 msgid "Hide"
 msgstr "Скрыть"
 
-#: model/Model_Account.cpp:32 model/Model_Asset.cpp:35 reports/summary.cpp:158
+#: model/Model_Account.cpp:32 model/Model_Asset.cpp:35 reports/summary.cpp:284
+#: reports/summary.cpp:320
 msgid "Cash"
 msgstr "Наличные"
 
@@ -6346,16 +6353,16 @@ msgstr "Отчёт по получателям"
 msgid "Accounts: "
 msgstr "Счета: "
 
-#: reports/summary.cpp:146
+#: reports/summary.cpp:149
 #, c-format
 msgid "Accounts Balance - %s"
 msgstr "Баланс счётов - %s"
 
-#: reports/summary.cpp:146
+#: reports/summary.cpp:149
 msgid "Monthly Report"
 msgstr "Ежемесячный отчёт"
 
-#: reports/summary.cpp:146
+#: reports/summary.cpp:149
 msgid "Yearly Report"
 msgstr "Годовой отчёт"
 
