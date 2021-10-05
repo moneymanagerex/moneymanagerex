@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-10-02 17:56+0300\n"
-"PO-Revision-Date: 2021-10-05 18:43\n"
+"PO-Revision-Date: 2021-10-05 18:50\n"
 "Last-Translator: \n"
 "Language-Team: Serbian (Cyrillic)\n"
 "MIME-Version: 1.0\n"
@@ -855,15 +855,15 @@ msgstr "Детаљи понављајуће трансакције"
 
 #: billsdepositsdialog.cpp:422
 msgid "Specify the date when this bill or deposit is due"
-msgstr ""
+msgstr "Наведите датум кад овај рачун или уплата доспева"
 
 #: billsdepositsdialog.cpp:433
 msgid "Retard or advance the date of the 'next occurrence'"
-msgstr ""
+msgstr "Померите датум следећег доспевања напред или уназад"
 
 #: billsdepositsdialog.cpp:438 billsdepositspanel.cpp:129
 msgid "Date Due"
-msgstr ""
+msgstr "Датум доспевања"
 
 #: billsdepositsdialog.cpp:442 billsdepositsdialog.cpp:1275
 msgid "Repeats"
@@ -871,31 +871,31 @@ msgstr "Понавља се"
 
 #: billsdepositsdialog.cpp:449
 msgid "Back to the last occurring date with the specified values"
-msgstr ""
+msgstr "Врати се на последњи датум са наведеним вредностима"
 
 #: billsdepositsdialog.cpp:451
 msgid "Advance the next occurring date with the specified values"
-msgstr ""
+msgstr "Напред на следећи датум са наведеним вредностима"
 
 #: billsdepositsdialog.cpp:459 billsdepositsdialog.cpp:1317
 msgid "Payments Left"
-msgstr ""
+msgstr "Преостало плаћања"
 
 #: billsdepositsdialog.cpp:473
 msgid "Request user to enter payment"
-msgstr ""
+msgstr "Захтевај од корисника да унесе уплату"
 
 #: billsdepositsdialog.cpp:474
 msgid "User requested to enter this transaction on the 'Date Paid'"
-msgstr ""
+msgstr "Захтевано од корисника да унесе ову трансакцију на датум плаћања"
 
 #: billsdepositsdialog.cpp:477
 msgid "Grant automatic execute"
-msgstr ""
+msgstr "Дозволи аутоматско извршавање"
 
 #: billsdepositsdialog.cpp:478
 msgid "The requested payment will occur without user interaction"
-msgstr ""
+msgstr "Захтевано плаћање ће се извршити без интеракције корисника"
 
 #: billsdepositsdialog.cpp:502 transdialog.cpp:437
 msgid "Transaction Details"
