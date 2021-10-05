@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-10-02 17:56+0300\n"
-"PO-Revision-Date: 2021-10-05 19:09\n"
+"PO-Revision-Date: 2021-10-05 19:20\n"
 "Last-Translator: \n"
 "Language-Team: Serbian (Cyrillic)\n"
 "MIME-Version: 1.0\n"
@@ -1165,15 +1165,15 @@ msgstr "Нова понављајућа трансакција"
 
 #: billsdepositsdialog.h:124
 msgid "Specify where the transaction is going to"
-msgstr ""
+msgstr "Одреди где ће трансакција ићи"
 
 #: billsdepositsdialog.h:125 transdialog.cpp:1300
 msgid "Specify where the transaction is coming from"
-msgstr ""
+msgstr "Одреди одакле трансакција потиче"
 
 #: billsdepositsdialog.h:126
 msgid "Specify which account the transfer is going to"
-msgstr ""
+msgstr "Одреди који рачун ће потраживати пренос"
 
 #: billsdepositsdialog.h:127 transdialog.cpp:1295 usertransactionpanel.cpp:146
 msgid "Specify the amount for this transaction"
@@ -1181,7 +1181,7 @@ msgstr "Одреди износ трансакције"
 
 #: billsdepositsdialog.h:128
 msgid "Specify the amount to be transferred"
-msgstr ""
+msgstr "Одреди износ за пренос"
 
 #: billsdepositspanel.cpp:60
 #, c-format
