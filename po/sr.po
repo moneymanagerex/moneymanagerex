@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-10-02 17:56+0300\n"
-"PO-Revision-Date: 2021-10-05 19:00\n"
+"PO-Revision-Date: 2021-10-05 19:09\n"
 "Last-Translator: \n"
 "Language-Team: Serbian (Cyrillic)\n"
 "MIME-Version: 1.0\n"
@@ -1036,15 +1036,15 @@ msgstr "Број"
 
 #: billsdepositsdialog.cpp:631
 msgid "Organize attachments of this recurring transaction"
-msgstr ""
+msgstr "Уреди прилоге ове понављајуће трансакције"
 
 #: billsdepositsdialog.cpp:634 transdialog.cpp:576
 msgid "User Colors"
-msgstr ""
+msgstr "Користи боје"
 
 #: billsdepositsdialog.cpp:638 transdialog.cpp:582 usertransactionpanel.cpp:217
 msgid "Select one of the frequently used notes"
-msgstr ""
+msgstr "Изабери једну од често коришћених белешки"
 
 #: billsdepositsdialog.cpp:650 transdialog.cpp:1309
 #: usertransactionpanel.cpp:226
@@ -1053,11 +1053,11 @@ msgstr "Одреди белешке које желите да додате ов
 
 #: billsdepositsdialog.cpp:679
 msgid "Choose Bank Account or Term Account"
-msgstr ""
+msgstr "Одаберите текући рачун или привремени рачун"
 
 #: billsdepositsdialog.cpp:712 billsdepositsdialog.cpp:762
 msgid "Account name"
-msgstr ""
+msgstr "Назив рачуна"
 
 #: billsdepositsdialog.cpp:819 billsdepositsdialog.cpp:859
 #: filtertransdialog.cpp:1095 transdialog.cpp:299 transdialog.cpp:380
@@ -1066,67 +1066,72 @@ msgstr "Од"
 
 #: billsdepositsdialog.cpp:831 transdialog.cpp:293
 msgid "To"
-msgstr "Рачун"
+msgstr "До"
 
 #: billsdepositsdialog.cpp:832
 msgid "Select To Account"
-msgstr "Одабери рачун"
+msgstr "Одабери потражни рачун"
 
 #: billsdepositsdialog.cpp:934
 msgid "The payment date is after the due date, is this what you intended?"
-msgstr ""
+msgstr "Датум плаћања је након доспећа, да ли сте то намеравали?"
 
 #: billsdepositsdialog.cpp:935
 msgid "Looks like a late payment"
-msgstr ""
+msgstr "Изгледа као плаћање ван валуте"
 
 #: billsdepositsdialog.cpp:1234
 msgid "Specify the transfer amount in the From Account"
-msgstr ""
+msgstr "Наведите износ за пренос у дуговном рачуну"
 
 #: billsdepositsdialog.cpp:1276
 msgid "Activates"
-msgstr ""
+msgstr "Активира"
 
 #: billsdepositsdialog.cpp:1278
 msgid "Period: Days"
-msgstr ""
+msgstr "Период: Дани"
 
 #: billsdepositsdialog.cpp:1279
 msgid "Period: Months"
-msgstr ""
+msgstr "Период: Месеци"
 
 #: billsdepositsdialog.cpp:1286
 msgid "Specify period in Days to activate.\n"
 "Becomes blank when not active."
-msgstr ""
+msgstr "Наведи период у данима да се активира.\n"
+"Постаје празно ако није активно."
 
 #: billsdepositsdialog.cpp:1294
 msgid "Specify period in Months to activate.\n"
 "Becomes blank when not active."
-msgstr ""
+msgstr "Наведи период у месецима да се активира.\n"
+"Постаје празно ако није активно."
 
 #: billsdepositsdialog.cpp:1302
 msgid "Specify period in Days to activate.\n"
 "Leave blank when not active."
-msgstr ""
+msgstr "Наведи период у данима да се активира.\n"
+"Остави празно ако није активно."
 
 #: billsdepositsdialog.cpp:1310
 msgid "Specify period in Months to activate.\n"
 "Leave blank when not active."
-msgstr ""
+msgstr "Наведи период у месецима да се активира.\n"
+"Остави празно ако није активно."
 
 #: billsdepositsdialog.cpp:1318
 msgid "Specify the number of payments to be made.\n"
 "Leave blank if the payments continue forever."
-msgstr ""
+msgstr "Наведи број плаћања који треба да се изврше.\n"
+"Оставити празно ако плаћања требају да трају заувек."
 
 #: billsdepositsdialog.cpp:1343 filtertransdialog.cpp:520
 #: filtertransdialog.cpp:535 filtertransdialog.cpp:546
 #: filtertransdialog.cpp:562 filtertransdialog.cpp:599
 #: optionsettingsgeneral.cpp:286 util.cpp:691
 msgid "Invalid value"
-msgstr ""
+msgstr "Неважећа вредност"
 
 #: billsdepositsdialog.cpp:1343 import_export/univcsvdialog.cpp:1135
 #: maincurrencydialog.cpp:469 mmframe.cpp:3339 optionsettingsgeneral.cpp:286
@@ -1147,16 +1152,16 @@ msgstr "Категорије"
 
 #: billsdepositsdialog.cpp:1465 transdialog.cpp:1342
 msgid "Clear color"
-msgstr ""
+msgstr "Обриши боју"
 
 #: billsdepositsdialog.cpp:1470 filtertransdialog.cpp:1600 transdialog.cpp:1347
 #, c-format
 msgid "Color #%i"
-msgstr ""
+msgstr "Боја #%i"
 
 #: billsdepositsdialog.h:56 billsdepositspanel.cpp:285
 msgid "New Recurring Transaction"
-msgstr ""
+msgstr "Нова понављајућа трансакција"
 
 #: billsdepositsdialog.h:124
 msgid "Specify where the transaction is going to"
