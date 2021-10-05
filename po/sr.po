@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-10-02 17:56+0300\n"
-"PO-Revision-Date: 2021-10-05 18:50\n"
+"PO-Revision-Date: 2021-10-05 19:00\n"
 "Last-Translator: \n"
 "Language-Team: Serbian (Cyrillic)\n"
 "MIME-Version: 1.0\n"
@@ -903,15 +903,15 @@ msgstr "Детаљи трансакције"
 
 #: billsdepositsdialog.cpp:512
 msgid "Specify the date the user is requested to enter this transaction"
-msgstr ""
+msgstr "Наведите датум када се захтева од корисника да унесе ову трансакцију"
 
 #: billsdepositsdialog.cpp:521
 msgid "Advance or retard the user request date of this transaction"
-msgstr ""
+msgstr "Померите датум захтева корисника ове трансакције напред или уназад"
 
 #: billsdepositsdialog.cpp:526 billsdepositspanel.cpp:128
 msgid "Date Paid"
-msgstr ""
+msgstr "Датум плаћања"
 
 #: billsdepositsdialog.cpp:537 filtertransdialog.cpp:291 transdialog.cpp:1305
 msgid "Specify the status for the transaction"
@@ -934,11 +934,11 @@ msgstr "Одреди тип трансакције која треба да се
 
 #: billsdepositsdialog.cpp:545 transdialog.cpp:496
 msgid "&Advanced"
-msgstr ""
+msgstr "&Напредно"
 
 #: billsdepositsdialog.cpp:548 transdialog.cpp:1310
 msgid "Allows the setting of different amounts in the FROM and TO accounts."
-msgstr ""
+msgstr "Дозвољава унос различитих износа у дуговном и потражном рачуну."
 
 #: billsdepositsdialog.cpp:558 billsdepositspanel.cpp:135
 #: budgetingpanel.cpp:301 filtertransdialog.cpp:535 filtertransdialog.cpp:546
@@ -954,7 +954,7 @@ msgstr "Износ"
 
 #: billsdepositsdialog.cpp:571 transdialog.cpp:1291
 msgid "Specify the transfer amount in the To Account"
-msgstr ""
+msgstr "Наведите износ за пренос у потражни рачун"
 
 #: billsdepositsdialog.cpp:583 billsdepositsdialog.cpp:844
 #: billsdepositsdialog.cpp:858 billsdepositspanel.cpp:130
@@ -975,7 +975,7 @@ msgstr "Одабир рачуна"
 
 #: billsdepositsdialog.cpp:587
 msgid "Specify the Account that will own the recurring transaction"
-msgstr ""
+msgstr "Наведите рачун у који ће се понављати трансакција"
 
 #: billsdepositsdialog.cpp:590 billsdepositsdialog.cpp:845
 #: billsdepositspanel.cpp:131 filtertransdialog.cpp:248
@@ -992,7 +992,7 @@ msgstr "Прималац"
 #: billsdepositsdialog.cpp:593 billsdepositsdialog.cpp:882
 #: usertransactionpanel.cpp:183
 msgid "Select Payee"
-msgstr "Одабери примлац"
+msgstr "Одабери примаоца"
 
 #: billsdepositsdialog.cpp:600 transdialog.cpp:542
 msgid "Split"
@@ -1000,7 +1000,7 @@ msgstr "Раздвоји"
 
 #: billsdepositsdialog.cpp:603 transdialog.cpp:1307
 msgid "Use split Categories"
-msgstr ""
+msgstr "Користи раздвојене категорије"
 
 #: billsdepositsdialog.cpp:609 billsdepositspanel.cpp:133
 #: budgetingpanel.cpp:298 filtertransdialog.cpp:259 filtertransdialog.cpp:1110
