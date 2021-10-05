@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-10-02 17:56+0300\n"
-"PO-Revision-Date: 2021-10-02 15:20\n"
+"PO-Revision-Date: 2021-10-05 18:43\n"
 "Last-Translator: \n"
 "Language-Team: Serbian (Cyrillic)\n"
 "MIME-Version: 1.0\n"
@@ -478,7 +478,7 @@ msgstr "Нова имовина"
 
 #: assetspanel.cpp:99
 msgid "D&uplicate Asset"
-msgstr ""
+msgstr "Умножи имовину"
 
 #: assetspanel.cpp:101
 msgid "&Add Asset Transaction"
@@ -579,19 +579,19 @@ msgstr "Унесите било који слог да пронађете пов
 
 #: assetspanel.cpp:505 filtertransdialog.cpp:357 mmcheckingpanel.cpp:366
 msgid "Tips: You can use wildcard characters - question mark (?), asterisk (*) - in your search criteria."
-msgstr ""
+msgstr "Савет: Можете користити заменске знакове као критеријуме претраге - упитник (?), звездицу (*)."
 
 #: assetspanel.cpp:506 filtertransdialog.cpp:358 mmcheckingpanel.cpp:367
 msgid "Use the question mark (?) to find any single character - for example, s?t finds 'sat' and 'set'."
-msgstr ""
+msgstr "Користите упитник (?) да пронађете појединачне карактере - на пример \"с?т\" проналази \"сат\" и \"сет\"."
 
 #: assetspanel.cpp:507 filtertransdialog.cpp:359 mmcheckingpanel.cpp:368
 msgid "Use the asterisk (*) to find any number of characters - for example, s*d finds 'sad' and 'started'."
-msgstr ""
+msgstr "Користите звездицу (*) да пронађете било који број карактера - на пример \"с*д\" проналази \"сад\" и \"стратед\"."
 
 #: assetspanel.cpp:508 filtertransdialog.cpp:360 mmcheckingpanel.cpp:369
 msgid "Use the asterisk (*) in the begin to find any string in the middle of the sentence."
-msgstr ""
+msgstr "Користите звездицу (*) на почетку да пронађете било који низ у средини реченице."
 
 #: assetspanel.cpp:579 stockspanel.cpp:344 stockspanel.cpp:531
 #, c-format
@@ -606,19 +606,20 @@ msgstr "Промена вредности: %s %s"
 #: assetspanel.cpp:777
 msgid "This asset does not have its own account\n\n"
 "Multiple transactions for this asset are not recommended."
-msgstr ""
+msgstr "Ова имовина нема свој рачун.\n"
+"Вишеструке трансакције за ову имовину нису препоручљиве."
 
 #: assetspanel.cpp:779
 msgid "Asset Management"
-msgstr ""
+msgstr "Управљање имовином"
 
 #: assetspanel.cpp:798
 msgid "Account \t Date\t   Value\n\n"
-msgstr ""
+msgstr "Рачун Датум Вредност\n\n"
 
 #: attachmentdialog.cpp:55 general_report_manager.cpp:434
 msgid "Description"
-msgstr ""
+msgstr "Опис"
 
 #: attachmentdialog.cpp:56 import_export/qif_export.cpp:194
 #: import_export/univcsvdialog.cpp:181
@@ -627,113 +628,113 @@ msgstr "Датотека"
 
 #: attachmentdialog.cpp:64
 msgid "Attachment folder not defined."
-msgstr ""
+msgstr "Директоријум за прилоге није дефинисан."
 
 #: attachmentdialog.cpp:65
 msgid "Please set it in Tools -> Options -> Attachments"
-msgstr ""
+msgstr "Молимо Вас подесите у Алатке -> Опције -> Прилози"
 
 #: attachmentdialog.cpp:66
 msgid "Attachment folder not defined"
-msgstr ""
+msgstr "Директоријум за прилоге није дефинисан"
 
 #: attachmentdialog.cpp:70
 msgid "Unable to find attachments folder:"
-msgstr ""
+msgstr "Немогуће пронаћи директоријум за прилоге:"
 
 #: attachmentdialog.cpp:73
 msgid "Please verify that above path is correct"
-msgstr ""
+msgstr "Молимо Вас проверите да ли је путања исправна"
 
 #: attachmentdialog.cpp:74
 msgid "Attachments folder not found"
-msgstr ""
+msgstr "Директоријум за прилоге није пронађен"
 
 #: attachmentdialog.cpp:85
 #, c-format
 msgid "Organize Attachments | %s %i"
-msgstr ""
+msgstr "Уреди прилоге | %s %i"
 
 #: attachmentdialog.cpp:87
 #, c-format
 msgid "Organize Attachments | New %s"
-msgstr ""
+msgstr "Уреди прилоге | New %s"
 
 #: attachmentdialog.cpp:127 customfieldlistdialog.cpp:98 payeedialog.cpp:120
 msgid "Other tools"
-msgstr ""
+msgstr "Остали алати"
 
 #: attachmentdialog.cpp:159
 msgid "Import attachment:"
-msgstr ""
+msgstr "Увези прилог:"
 
 #: attachmentdialog.cpp:170
 msgid "Enter a description for the new attachment:"
-msgstr ""
+msgstr "Унесите опис за нови прилог:"
 
 #: attachmentdialog.cpp:171
 msgid "Organize Attachments: Add Attachment"
-msgstr ""
+msgstr "Уредите прилоге: Додај прилог"
 
 #: attachmentdialog.cpp:214
 msgid "Enter a new description for the attachment:"
-msgstr ""
+msgstr "Унесите нови опис за прилог:"
 
 #: attachmentdialog.cpp:215
 msgid "Organize Attachments: Edit Attachment"
-msgstr ""
+msgstr "Уредите прилоге: Измени прилог"
 
 #: attachmentdialog.cpp:239
 msgid "Do you really want to delete this attachment?"
-msgstr ""
+msgstr "Да ли сте сигурни да желите да обришете прилог?"
 
 #: attachmentdialog.cpp:240
 msgid "Confirm Attachment Deletion"
-msgstr ""
+msgstr "Потврди брисање прилога"
 
 #: attachmentdialog.cpp:314 categdialog.cpp:229 customfieldlistdialog.cpp:259
 #: import_export/univcsvdialog.cpp:236 maincurrencydialog.cpp:526
 #: payeedialog.cpp:396 splittransactionsdialog.cpp:165 stockdialog.cpp:341
 msgid "&Add "
-msgstr ""
+msgstr "&Додај "
 
 #: attachmentdialog.cpp:316
 msgid "&Open "
-msgstr ""
+msgstr "&Отвори "
 
 #: attachmentdialog.cpp:319 customfieldlistdialog.cpp:262
 #: import_export/univcsvdialog.cpp:240 maincurrencydialog.cpp:528
 #: payeedialog.cpp:399 splittransactionsdialog.cpp:167
 msgid "&Remove "
-msgstr ""
+msgstr "&Уклони "
 
 #: attachmentdialog.cpp:361
 msgid "Att."
-msgstr ""
+msgstr "Прилог"
 
 #: attachmentdialog.cpp:368
 msgid "This directory and its files are automatically managed by Money Manager EX software."
-msgstr ""
+msgstr "Money Manager Ex софтвер управља овим директоријумом и његовим датотекама."
 
 #: attachmentdialog.cpp:370
 msgid "Please do not remove, rename or modify manually directories and files."
-msgstr ""
+msgstr "Молимо Вас, немојте обрисати, преименовати или мењати ручно директоријум и датотеке."
 
 #: attachmentdialog.cpp:415 attachmentdialog.cpp:423
 msgid "Destination file already exist:"
-msgstr ""
+msgstr "Датотека на одредишту већ постоји:"
 
 #: attachmentdialog.cpp:418
 msgid "File not found in attachments. Please delete or rename it."
-msgstr ""
+msgstr "Датотека није пронађена у прилозима. Молимо Вас обришите или преименујте је."
 
 #: attachmentdialog.cpp:419 attachmentdialog.cpp:427
 msgid "Destination file already exist"
-msgstr ""
+msgstr "Датотека на одредишту већ постоји"
 
 #: attachmentdialog.cpp:426
 msgid "File already found in attachments"
-msgstr ""
+msgstr "Датотека већ пронађена у прилозима"
 
 #: attachmentdialog.cpp:469
 msgid "Attachment not found:"
@@ -741,23 +742,23 @@ msgstr "Прилог није пронађен:"
 
 #: attachmentdialog.cpp:472
 msgid "Do you want to continue and delete attachment on database?"
-msgstr ""
+msgstr "Да ли желите да наставите и обришете прилог у бази података?"
 
 #: attachmentdialog.cpp:473
 msgid "Delete attachment failed"
-msgstr ""
+msgstr "Брисање прилога није успело"
 
 #: attachmentdialog.cpp:486
 msgid "Unable to open file:"
-msgstr ""
+msgstr "Не може се отворити датотека:"
 
 #: attachmentdialog.cpp:489
 msgid "Please verify that file exists and user has rights to read it."
-msgstr ""
+msgstr "Молимо Вас да утврдите да датотека постоји и да корисник има права да је чита."
 
 #: attachmentdialog.cpp:490
 msgid "Open attachment failed"
-msgstr ""
+msgstr "Отварање прилога није успело"
 
 #: billsdepositsdialog.cpp:51 billsdepositspanel.cpp:49
 #: filtertransdialog.cpp:44 mmSimpleDialogs.cpp:36 model/Model_Asset.cpp:23
@@ -765,7 +766,7 @@ msgstr ""
 #: model/Model_Checking.cpp:36 optionsettingsmisc.cpp:96
 #: reports/reportbase.cpp:189
 msgid "None"
-msgstr "Стабилно"
+msgstr "Нема"
 
 #: billsdepositsdialog.cpp:52 billsdepositspanel.cpp:50
 #: model/Model_Budget.cpp:56
@@ -775,7 +776,7 @@ msgstr "Недељно"
 #: billsdepositsdialog.cpp:53 billsdepositspanel.cpp:51
 #: model/Model_Budget.cpp:57
 msgid "Fortnightly"
-msgstr ""
+msgstr "Двонедељно"
 
 #: billsdepositsdialog.cpp:54 billsdepositspanel.cpp:52 mmframereport.cpp:129
 #: mmframereport.cpp:137 mmframereport.cpp:159 mmframereport.cpp:177
@@ -786,7 +787,7 @@ msgstr "Месечно"
 #: billsdepositsdialog.cpp:55 billsdepositspanel.cpp:53
 #: model/Model_Budget.cpp:59
 msgid "Every 2 Months"
-msgstr ""
+msgstr "Двомесечно"
 
 #: billsdepositsdialog.cpp:56 billsdepositspanel.cpp:54
 #: model/Model_Budget.cpp:60
@@ -805,11 +806,11 @@ msgstr "Годишње"
 
 #: billsdepositsdialog.cpp:59 billsdepositspanel.cpp:57
 msgid "Four Months"
-msgstr "Четири месеца"
+msgstr "Четворомесечно"
 
 #: billsdepositsdialog.cpp:60 billsdepositspanel.cpp:58
 msgid "Four Weeks"
-msgstr "Четири недеља"
+msgstr "Четворонедељно"
 
 #: billsdepositsdialog.cpp:61 billsdepositspanel.cpp:59 mmframereport.cpp:126
 #: model/Model_Budget.cpp:63
@@ -818,39 +819,39 @@ msgstr "Свакодневно"
 
 #: billsdepositsdialog.cpp:62
 msgid "In (x) Days"
-msgstr ""
+msgstr "За (x) дана"
 
 #: billsdepositsdialog.cpp:63
 msgid "In (x) Months"
-msgstr ""
+msgstr "За (x) месеци"
 
 #: billsdepositsdialog.cpp:64
 msgid "Every (x) Days"
-msgstr ""
+msgstr "Сваких (x) дана"
 
 #: billsdepositsdialog.cpp:65
 msgid "Every (x) Months"
-msgstr ""
+msgstr "Сваких (x) месеци"
 
 #: billsdepositsdialog.cpp:66 billsdepositspanel.cpp:64
 msgid "Monthly (last day)"
-msgstr ""
+msgstr "Месечно (последњи дан)"
 
 #: billsdepositsdialog.cpp:67 billsdepositspanel.cpp:65
 msgid "Monthly (last business day)"
-msgstr ""
+msgstr "Месечно (последњи радни дан)"
 
 #: billsdepositsdialog.cpp:308 billsdepositspanel.cpp:289
 msgid "Edit Recurring Transaction"
-msgstr ""
+msgstr "Уреди понављајућу трансакцију"
 
 #: billsdepositsdialog.cpp:312
 msgid "Enter Recurring Transaction"
-msgstr ""
+msgstr "Унеси понављајућу трансакцију"
 
 #: billsdepositsdialog.cpp:410
 msgid "Recurring Transaction Details"
-msgstr ""
+msgstr "Детаљи понављајуће трансакције"
 
 #: billsdepositsdialog.cpp:422
 msgid "Specify the date when this bill or deposit is due"
