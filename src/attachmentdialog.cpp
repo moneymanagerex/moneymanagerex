@@ -532,7 +532,6 @@ void mmAttachmentManage::OpenAttachmentFromPanelIcon(wxWindow* parent, const wxS
     if (AttachmentsNr == 1)
     {
         Model_Attachment::Data_Set attachments = Model_Attachment::instance().FilterAttachments(RefType, RefId);
-        const auto test = mmex::getPathAttachment(mmAttachmentManage::InfotablePathSetting());
         wxString attachmentFilePath = mmex::getPathAttachment(mmAttachmentManage::InfotablePathSetting())
             + attachments[0].REFTYPE + m_PathSep + attachments[0].FILENAME;
         mmAttachmentManage::OpenAttachment(attachmentFilePath);
