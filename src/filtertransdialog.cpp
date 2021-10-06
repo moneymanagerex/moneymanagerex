@@ -141,6 +141,7 @@ bool mmFilterTransactionsDialog::Create(wxWindow* parent
 int mmFilterTransactionsDialog::ShowModal()
 {
     BuildPayeeList();
+    SetStoredSettings(-1);
 
     return wxDialog::ShowModal();
 }
@@ -172,6 +173,7 @@ void mmFilterTransactionsDialog::dataToControls()
     BuildPayeeList();
     from_json(settings_string_);
 }
+
 void mmFilterTransactionsDialog::CreateControls()
 {
     wxBoxSizer* itemBoxSizer2 = new wxBoxSizer(wxHORIZONTAL);
@@ -606,11 +608,23 @@ bool mmFilterTransactionsDialog::isValuesCorrect()
 void mmFilterTransactionsDialog::OnButtonOkClick(wxCommandEvent& /*event*/)
 {
     if (isValuesCorrect()) {
-        settings_string_ = to_json();
-        int id = m_setting_name->GetSelection(); //Model_Infotable::instance().GetIntInfo("TRANSACTIONS_FILTER_VIEW_NO", 0);
+        int id = m_setting_name->GetSelection();
         Model_Infotable::instance().Set("TRANSACTIONS_FILTER_VIEW_NO", id);
-        Model_Infotable::instance().Set(wxString::Format("TRANSACTIONS_FILTER_%d", id), settings_string_);
-        wxLogDebug("Settings Saved to registry %i\n %s", id, settings_string_);
+        const wxString new_settings_string = to_json();
+        if (settings_string_ != new_settings_string) 
+        {
+            // settings have been changed to ask if we want to save
+            wxMessageDialog msgDlg(this
+                , _("Do you want to save them before continuing?")
+                , _("Filter settings have changed")
+                , wxYES_NO | wxYES_DEFAULT | wxICON_INFORMATION);
+            if (msgDlg.ShowModal() == wxID_YES)
+            {
+                settings_string_ = to_json();
+                Model_Infotable::instance().Set(wxString::Format("TRANSACTIONS_FILTER_%d", id), settings_string_);
+                wxLogDebug("Settings Saved to registry %i\n %s", id, settings_string_);
+            }
+        }
         EndModal(wxID_OK);
     }
 }
@@ -1507,7 +1521,6 @@ void mmFilterTransactionsDialog::OnSettingsSelected(wxCommandEvent& event)
 {
     int i = event.GetSelection();
     SetStoredSettings(i);
-    dataToControls();
 }
 
 void mmFilterTransactionsDialog::OnSaveSettings(wxCommandEvent& WXUNUSED(event))
