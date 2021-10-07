@@ -196,7 +196,7 @@ void OptionSettingsAttachment::OnAttachmentsSubfolderChanged(wxCommandEvent& eve
 
 bool OptionSettingsAttachment::SaveSettings()
 {
-    wxString attachmentsFolder = mmex::getPathAttachment(m_attachments_path->GetValue().Trim());
+    const wxString attachmentsFolder = mmex::getPathAttachment(m_attachments_path->GetValue().Trim());
 
     if (attachmentsFolder != wxEmptyString)
     {
