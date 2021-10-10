@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-10-02 17:56+0300\n"
-"PO-Revision-Date: 2021-10-10 17:25\n"
+"PO-Revision-Date: 2021-10-10 18:16\n"
 "Last-Translator: \n"
 "Language-Team: Dutch\n"
 "MIME-Version: 1.0\n"
@@ -1646,12 +1646,12 @@ msgstr "Verwijdert een bestaande categorie."
 
 #: categdialog.cpp:472
 msgid "Subcategories must be deleted before."
-msgstr ""
+msgstr "Subcategorieën moeten eerst worden verwijderd."
 
 #: categdialog.cpp:488
 #, c-format
 msgid "Enter a new name for '%s'"
-msgstr ""
+msgstr "Voer een nieuwe naam in voor %s'"
 
 #: categdialog.cpp:489
 msgid "Edit Category"
@@ -1700,7 +1700,7 @@ msgstr "&Sluiten"
 
 #: constants.cpp:178
 msgid "Advanced Filter"
-msgstr ""
+msgstr "Geavanceerd filter"
 
 #: constants.cpp:179
 msgid "View All Transactions"
@@ -1756,12 +1756,12 @@ msgstr "Tonen vanaf afschriftdatum"
 
 #: constants.cpp:193
 msgid "ALL"
-msgstr ""
+msgstr "ALLE"
 
 #: constants.cpp:194 mmframe.cpp:1319 mmframe.cpp:1719
 #: model/Model_Account.cpp:26
 msgid "Open"
-msgstr ""
+msgstr "Open"
 
 #: constants.cpp:195 mmframe.cpp:1320 model/Model_Account.cpp:27
 msgid "Closed"
@@ -1773,7 +1773,7 @@ msgstr "Alleen standaard"
 
 #: currencydialog.cpp:101
 msgid "Currency name"
-msgstr ""
+msgstr "Valutanaam"
 
 #: currencydialog.cpp:173
 msgid "Currency Name"
@@ -1806,19 +1806,19 @@ msgstr "Schaal"
 
 #: currencydialog.cpp:217 currencydialog.cpp:279
 msgid "Conversion to Base Rate"
-msgstr ""
+msgstr "Conversie naar basistarief"
 
 #: currencydialog.cpp:223
 msgid "Conversion rate will be used in case no currency history has been found for the currency"
-msgstr ""
+msgstr "De conversieratio zal gebruikt worden in het geval er geen valuta geschiedenis gevonden is voor de valuta"
 
 #: currencydialog.cpp:225
 msgid "Fixed conversion rate"
-msgstr ""
+msgstr "Vaste conversieratio"
 
 #: currencydialog.cpp:230
 msgid "Currency Format Sample:"
-msgstr ""
+msgstr "Valuta formaat voorbeeld:"
 
 #: currencydialog.cpp:244
 msgid "Save any changes made"
@@ -1837,7 +1837,7 @@ msgstr "Foutieve invoer"
 #: currencydialog.cpp:318
 #, c-format
 msgid "%.2f Shown As: %s"
-msgstr ""
+msgstr "%.2f Weergegeven als: %s"
 
 #: currencydialog.cpp:320
 msgid "(Using Locale)"
