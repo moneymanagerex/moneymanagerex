@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-10-02 17:56+0300\n"
-"PO-Revision-Date: 2021-10-10 11:57\n"
+"PO-Revision-Date: 2021-10-10 12:05\n"
 "Last-Translator: \n"
 "Language-Team: Serbian (Cyrillic)\n"
 "MIME-Version: 1.0\n"
@@ -1295,19 +1295,19 @@ msgid "%d day remaining"
 msgid_plural "%d days remaining"
 msgstr[0] ""
 msgstr[1] ""
-msgstr[2] ""
+msgstr[2] "%d дана преостаје"
 
 #: billsdepositspanel.cpp:525 billsdepositspanel.cpp:532
 #: billsdepositspanel.cpp:539 billsdepositspanel.cpp:592
 #: billsdepositspanel.cpp:599 billsdepositspanel.cpp:603
 msgid "Inactive"
-msgstr ""
+msgstr "Неактивно"
 
 #: billsdepositspanel.cpp:530 mmhomepage.cpp:317
 #, c-format
 msgid "%d day delay!"
 msgid_plural "%d days delay!"
-msgstr[0] ""
+msgstr[0] "%d дан кашњења!"
 msgstr[1] ""
 msgstr[2] ""
 
@@ -1317,35 +1317,35 @@ msgid "%d day overdue!"
 msgid_plural "%d days overdue!"
 msgstr[0] ""
 msgstr[1] ""
-msgstr[2] ""
+msgstr[2] "%d дана ван валуте!"
 
 #: billsdepositspanel.cpp:649
 msgid "Do you really want to delete the recurring transaction?"
-msgstr ""
+msgstr "Да ли заиста желите да обришете понављајућу трансакцију?"
 
 #: billsdepositspanel.cpp:650
 msgid "Confirm Deletion"
-msgstr ""
+msgstr "Потврдите брисање"
 
 #: budgetentrydialog.cpp:50
 msgid "Budget Year Entry"
-msgstr "Унос годишњег дуџета"
+msgstr "Унос годишњег буџета"
 
 #: budgetentrydialog.cpp:108
 msgid "Category: "
-msgstr ""
+msgstr "Категорија: "
 
 #: budgetentrydialog.cpp:113
 msgid "Sub Category: "
-msgstr ""
+msgstr "Подкатегорија: "
 
 #: budgetentrydialog.cpp:120
 msgid "Estimated:"
-msgstr ""
+msgstr "Процењено:"
 
 #: budgetentrydialog.cpp:122
 msgid "Actual:"
-msgstr ""
+msgstr "Стварно:"
 
 #: budgetentrydialog.cpp:125
 msgid "Type:"
@@ -1353,7 +1353,7 @@ msgstr "Тип:"
 
 #: budgetentrydialog.cpp:128
 msgid "Expense"
-msgstr "Трошак"
+msgstr "Расход"
 
 #: budgetentrydialog.cpp:129 db/DB_Table_Category_V1.h:123 mmhomepage.cpp:445
 #: reports/categexp.cpp:128 reports/categexp.cpp:157 reports/categexp.cpp:385
