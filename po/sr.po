@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-10-02 17:56+0300\n"
-"PO-Revision-Date: 2021-10-05 19:20\n"
+"PO-Revision-Date: 2021-10-10 11:57\n"
 "Last-Translator: \n"
 "Language-Team: Serbian (Cyrillic)\n"
 "MIME-Version: 1.0\n"
@@ -1186,22 +1186,22 @@ msgstr "Одреди износ за пренос"
 #: billsdepositspanel.cpp:60
 #, c-format
 msgid "In %s Days"
-msgstr ""
+msgstr "За %s дана"
 
 #: billsdepositspanel.cpp:61
 #, c-format
 msgid "In %s Months"
-msgstr ""
+msgstr "За %s месеци"
 
 #: billsdepositspanel.cpp:62
 #, c-format
 msgid "Every %s Days"
-msgstr ""
+msgstr "Сваких %s дана"
 
 #: billsdepositspanel.cpp:63
 #, c-format
 msgid "Every %s Months"
-msgstr ""
+msgstr "Сваких %s месеци"
 
 #: billsdepositspanel.cpp:136 budgetingpanel.cpp:300
 #: reports/budgetcategorysummary.cpp:191 reports/myusage.cpp:164
@@ -1214,80 +1214,80 @@ msgstr ""
 
 #: billsdepositspanel.cpp:138
 msgid "Autorepeat"
-msgstr ""
+msgstr "Аутоматско понављање"
 
 #: billsdepositspanel.cpp:139 mmhomepage.cpp:360
 msgid "Payment"
-msgstr ""
+msgstr "Плаћања"
 
 #: billsdepositspanel.cpp:192
 msgid "MMEX allows regular payments to be set up as transactions. These transactions can also be regular deposits, or transfers that will occur at some future time. These transactions act as a reminder that an event is about to occur, and appears on the Home Page 14 days before the transaction is due. "
-msgstr ""
+msgstr "MMEX омогућава редновна плаћања да се подесе као трансакције. Ове трансакције могу бити и приливи или трансфери који ће се десити у будућности. Ове трансакције служе и као подсетник да ће се десити неки догађај и појављују се на Главној страници 14 дана пре него што трансакција доспева. "
 
 #: billsdepositspanel.cpp:195
 msgid "Tip: These transactions can be set up to activate - allowing the user to adjust any values on the due date."
-msgstr ""
+msgstr "Савет: Ове трансакције могу да се подесе да се активирају, тако да омогућавају кориснику да унесу било коју вредност на дан доспевања."
 
 #: billsdepositspanel.cpp:241 billsdepositspanel.cpp:940 mmframe.cpp:748
 #: mmframe.cpp:2803 mmhomepagepanel.cpp:230
 msgid "Recurring Transactions"
-msgstr ""
+msgstr "Понављајуће трансакције"
 
 #: billsdepositspanel.cpp:250 filtertransdialog.h:111
 msgid "Transaction Filter"
-msgstr "Филтер трансакције"
+msgstr "Филтер трансакција"
 
 #: billsdepositspanel.cpp:294
 msgid "Delete Recurring Transaction"
-msgstr ""
+msgstr "Обриши понављајућу трансакцију"
 
 #: billsdepositspanel.cpp:298
 msgid "Ente&r"
-msgstr ""
+msgstr "Унеси"
 
 #: billsdepositspanel.cpp:299
 msgid "Enter Next Recurring Transaction Occurrence"
-msgstr ""
+msgstr "Унеси следећу ставку понављајуће трансакције"
 
 #: billsdepositspanel.cpp:303
 msgid "&Skip"
-msgstr ""
+msgstr "Прескочи"
 
 #: billsdepositspanel.cpp:304
 msgid "Skip Next Recurring Transaction Occurrence"
-msgstr ""
+msgstr "Прескочи следећу ставку понављајуће трансакције"
 
 #: billsdepositspanel.cpp:413
 msgid "Enter next Occurrence..."
-msgstr ""
+msgstr "Унеси следећу ставку..."
 
 #: billsdepositspanel.cpp:415
 msgid "Skip next Occurrence"
-msgstr ""
+msgstr "Прескочи следећу ставку"
 
 #: billsdepositspanel.cpp:417
 msgid "&New Recurring Transaction..."
-msgstr ""
+msgstr "&Нова понављајућа трансакција..."
 
 #: billsdepositspanel.cpp:418
 msgid "&Edit Recurring Transaction..."
-msgstr ""
+msgstr "&Уреди понављајућу трансакцију..."
 
 #: billsdepositspanel.cpp:419
 msgid "&Delete Recurring Transaction..."
-msgstr ""
+msgstr "&Обриши понављајућу трансакцију..."
 
 #: billsdepositspanel.cpp:466
 msgid "Manual"
-msgstr ""
+msgstr "Ручно"
 
 #: billsdepositspanel.cpp:470
 msgid "Suggested"
-msgstr ""
+msgstr "Предложено"
 
 #: billsdepositspanel.cpp:474
 msgid "Automated"
-msgstr ""
+msgstr "Аутоматски"
 
 #: billsdepositspanel.cpp:520 billsdepositspanel.cpp:587 mmhomepage.cpp:316
 #, c-format
