@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-10-02 17:56+0300\n"
-"PO-Revision-Date: 2021-10-02 15:20\n"
+"PO-Revision-Date: 2021-10-10 17:15\n"
 "Last-Translator: \n"
 "Language-Team: Dutch\n"
 "MIME-Version: 1.0\n"
@@ -69,7 +69,7 @@ msgstr "Help ons met het versturen van anonieme gegevens over MMEX gebruik."
 #: splittransactionsdialog.cpp:172 transactionsupdatedialog.cpp:240
 #: transdialog.cpp:606 wizard_update.cpp:192
 msgid "&OK "
-msgstr ""
+msgstr "&OK "
 
 #: accountdialog.cpp:111 mmframe.cpp:1480
 msgid "Edit Account"
@@ -171,7 +171,7 @@ msgstr "Vul de naam van de financiële instelling in waar deze rekening is onder
 
 #: accountdialog.cpp:219
 msgid "Website:"
-msgstr ""
+msgstr "Website:"
 
 #: accountdialog.cpp:221
 msgid "Enter the URL of the website for the financial institution."
@@ -219,7 +219,7 @@ msgstr "Datum van de transactieblokkering"
 
 #: accountdialog.cpp:254
 msgid "Minimum Bal:"
-msgstr ""
+msgstr "Minimum saldo:"
 
 #: accountdialog.cpp:256
 msgid "Account balance lower limit. Zero to disable"
@@ -274,11 +274,11 @@ msgstr "Valuta"
 
 #: accountdialog.cpp:517
 msgid "Please insert a valid URL"
-msgstr ""
+msgstr "Voer een geldige URL in"
 
 #: accountdialog.cpp:517
 msgid "Invalid URL"
-msgstr ""
+msgstr "Ongeldige url"
 
 #: accountdialog.h:37 mmframe.cpp:1477 mmframe.cpp:1721
 #: wizard_newaccount.cpp:86 wizard_newaccount.cpp:93 wizard_newaccount.cpp:164
@@ -334,7 +334,7 @@ msgstr "&Afsluiten "
 #: appstartdialog.cpp:154
 #, c-format
 msgid "Open the previously opened database : %s"
-msgstr ""
+msgstr "Open de eerder geopende database: %s"
 
 #: assetdialog.cpp:61 assetdialog.cpp:410 assetspanel.cpp:467
 msgid "New Asset"
@@ -414,7 +414,7 @@ msgstr "% Koers"
 
 #: assetdialog.cpp:247
 msgid "Enter the rate at which the asset changes its value in percentage per year"
-msgstr ""
+msgstr "Voer de frequentie in waarmee de bezittingen in waarde wijzigen in % per jaar"
 
 #: assetdialog.cpp:259
 msgid "Organize attachments of this asset"
@@ -438,18 +438,19 @@ msgstr "&Annuleren"
 
 #: assetdialog.cpp:402 sharetransactiondialog.cpp:434
 msgid "Invalid Transaction"
-msgstr ""
+msgstr "Ongeldige transactie"
 
 #: assetdialog.cpp:409
 msgid "Asset Account not found.\n\n"
 "Would you want to create one?"
-msgstr ""
+msgstr "Betaalrekening niet gevonden.\n\n"
+"Wilt u er een aanmaken?"
 
 #: assetspanel.cpp:59 billsdepositspanel.cpp:127
 #: import_export/qif_export.cpp:587 mmchecking_list.cpp:205
 #: reports/transactions.cpp:103 stocks_list.cpp:88
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #: assetspanel.cpp:62 billsdepositsdialog.cpp:554 billsdepositspanel.cpp:134
 #: customfieldlistdialog.cpp:54 filtertransdialog.cpp:294
@@ -461,7 +462,7 @@ msgstr ""
 #: transactionsupdatedialog.cpp:145 transdialog.cpp:501
 #: usertransactionpanel.cpp:138 webappdialog.cpp:150
 msgid "Type"
-msgstr ""
+msgstr "Type"
 
 #: assetspanel.cpp:63 reports/summarystocks.cpp:110
 msgid "Initial Value"
@@ -578,19 +579,19 @@ msgstr "Voer een tekst in om verwante bezittingen te zoeken"
 
 #: assetspanel.cpp:505 filtertransdialog.cpp:357 mmcheckingpanel.cpp:366
 msgid "Tips: You can use wildcard characters - question mark (?), asterisk (*) - in your search criteria."
-msgstr ""
+msgstr "Tips: Je kunt gebruik maken van jokertekens - vraagteken (?), asterisk (*) - in je zoekcriteria."
 
 #: assetspanel.cpp:506 filtertransdialog.cpp:358 mmcheckingpanel.cpp:367
 msgid "Use the question mark (?) to find any single character - for example, s?t finds 'sat' and 'set'."
-msgstr ""
+msgstr "Gebruik het vraagteken (?) om een enkel teken te vinden - zoals s?t vindt ''sat' en 'set'."
 
 #: assetspanel.cpp:507 filtertransdialog.cpp:359 mmcheckingpanel.cpp:368
 msgid "Use the asterisk (*) to find any number of characters - for example, s*d finds 'sad' and 'started'."
-msgstr ""
+msgstr "Gebruik het vraagteken (?) om een enkel teken te vinden - zoals s? t vindt ''sat' en 'set'."
 
 #: assetspanel.cpp:508 filtertransdialog.cpp:360 mmcheckingpanel.cpp:369
 msgid "Use the asterisk (*) in the begin to find any string in the middle of the sentence."
-msgstr ""
+msgstr "Gebruik de asterisk (*) in het begin om een tekenreeks in het midden van de zin te vinden."
 
 #: assetspanel.cpp:579 stockspanel.cpp:344 stockspanel.cpp:531
 #, c-format
@@ -605,7 +606,8 @@ msgstr "Waardewijziging: %s %s"
 #: assetspanel.cpp:777
 msgid "This asset does not have its own account\n\n"
 "Multiple transactions for this asset are not recommended."
-msgstr ""
+msgstr "Deze activa heeft geen eigen rekening\n\n"
+"Meerdere transacties voor dit product worden niet aanbevolen."
 
 #: assetspanel.cpp:779
 msgid "Asset Management"
@@ -785,7 +787,7 @@ msgstr "Maandelijks"
 #: billsdepositsdialog.cpp:55 billsdepositspanel.cpp:53
 #: model/Model_Budget.cpp:59
 msgid "Every 2 Months"
-msgstr ""
+msgstr "Iedere 2 maanden"
 
 #: billsdepositsdialog.cpp:56 billsdepositspanel.cpp:54
 #: model/Model_Budget.cpp:60
@@ -817,19 +819,19 @@ msgstr "Dagelijks"
 
 #: billsdepositsdialog.cpp:62
 msgid "In (x) Days"
-msgstr ""
+msgstr "In (x) dagen"
 
 #: billsdepositsdialog.cpp:63
 msgid "In (x) Months"
-msgstr ""
+msgstr "Over (x) maanden"
 
 #: billsdepositsdialog.cpp:64
 msgid "Every (x) Days"
-msgstr ""
+msgstr "Elke (x) dagen"
 
 #: billsdepositsdialog.cpp:65
 msgid "Every (x) Months"
-msgstr ""
+msgstr "Elke (x) maanden"
 
 #: billsdepositsdialog.cpp:66 billsdepositspanel.cpp:64
 msgid "Monthly (last day)"
@@ -869,11 +871,11 @@ msgstr "Herhaling"
 
 #: billsdepositsdialog.cpp:449
 msgid "Back to the last occurring date with the specified values"
-msgstr ""
+msgstr "Terug naar de laatste gebeurtenisdatum met de opgegeven waarden"
 
 #: billsdepositsdialog.cpp:451
 msgid "Advance the next occurring date with the specified values"
-msgstr ""
+msgstr "Doorzetten naar de volgende datum met de opgegeven waarden"
 
 #: billsdepositsdialog.cpp:459 billsdepositsdialog.cpp:1317
 msgid "Payments Left"
@@ -881,7 +883,7 @@ msgstr "Betalingen resterend"
 
 #: billsdepositsdialog.cpp:473
 msgid "Request user to enter payment"
-msgstr ""
+msgstr "Verzoek gebruiker om betaling in te voeren"
 
 #: billsdepositsdialog.cpp:474
 msgid "User requested to enter this transaction on the 'Date Paid'"
@@ -889,7 +891,7 @@ msgstr "De gebruiker vraagt om invoer van deze transactie op de 'betaaldatum'"
 
 #: billsdepositsdialog.cpp:477
 msgid "Grant automatic execute"
-msgstr ""
+msgstr "Verleen automatisch uitvoeren"
 
 #: billsdepositsdialog.cpp:478
 msgid "The requested payment will occur without user interaction"
@@ -924,7 +926,7 @@ msgstr "Geef de status van de transactie aan"
 #: transdialog.cpp:481 usertransactionpanel.cpp:178 webappdialog.cpp:149
 #: wizard_update.cpp:145
 msgid "Status"
-msgstr ""
+msgstr "Status"
 
 #: billsdepositsdialog.cpp:544 splitdetailsdialog.cpp:131 transdialog.cpp:1306
 msgid "Specify the type of transactions to be created."
@@ -1072,11 +1074,11 @@ msgstr "Kies naar rekening"
 
 #: billsdepositsdialog.cpp:934
 msgid "The payment date is after the due date, is this what you intended?"
-msgstr ""
+msgstr "De betaaldatum is na de vervaldatum, is dit wat je van plan was?"
 
 #: billsdepositsdialog.cpp:935
 msgid "Looks like a late payment"
-msgstr ""
+msgstr "Het lijkt erop dat betalingsachterstand"
 
 #: billsdepositsdialog.cpp:1234
 msgid "Specify the transfer amount in the From Account"
@@ -1150,12 +1152,12 @@ msgstr "Categorieën"
 
 #: billsdepositsdialog.cpp:1465 transdialog.cpp:1342
 msgid "Clear color"
-msgstr ""
+msgstr "Kleur wissen"
 
 #: billsdepositsdialog.cpp:1470 filtertransdialog.cpp:1600 transdialog.cpp:1347
 #, c-format
 msgid "Color #%i"
-msgstr ""
+msgstr "Kleur #%i"
 
 #: billsdepositsdialog.h:56 billsdepositspanel.cpp:285
 msgid "New Recurring Transaction"
@@ -1237,15 +1239,15 @@ msgstr "Transactiefilter"
 
 #: billsdepositspanel.cpp:294
 msgid "Delete Recurring Transaction"
-msgstr ""
+msgstr "Nieuwe herhalende transactie"
 
 #: billsdepositspanel.cpp:298
 msgid "Ente&r"
-msgstr ""
+msgstr "In&voeren"
 
 #: billsdepositspanel.cpp:299
 msgid "Enter Next Recurring Transaction Occurrence"
-msgstr ""
+msgstr "Voer de volgende herhalende transactie in"
 
 #: billsdepositspanel.cpp:303
 msgid "&Skip"
