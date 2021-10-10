@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-10-02 17:56+0300\n"
-"PO-Revision-Date: 2021-10-10 15:39\n"
+"PO-Revision-Date: 2021-10-10 15:46\n"
 "Last-Translator: \n"
 "Language-Team: Serbian (Cyrillic)\n"
 "MIME-Version: 1.0\n"
@@ -1579,40 +1579,41 @@ msgstr "Унесите назив нове категорије:"
 
 #: categdialog.cpp:258
 msgid "Tip: If category added now, check bottom of list."
-msgstr ""
+msgstr "Савет: Ако сада додате категорију, проверите листу испод."
 
 #: categdialog.cpp:261
 msgid "Add Category"
-msgstr ""
+msgstr "Додај категорију"
 
 #: categdialog.cpp:270 categdialog.cpp:506
 msgid "Category with same name exists"
-msgstr "Име те категорије већ постоји"
+msgstr "Назив те категорије већ постоји"
 
 #: categdialog.cpp:271
 msgid "Tip: If category added now, check bottom of list.\n"
 "Category will be in sorted order next time dialog appears"
-msgstr ""
+msgstr "Савет: Ако додате категорију, проверите листу испод.\n"
+"Категорија ће бити пресложена када следећи пут покренете прозор"
 
 #: categdialog.cpp:273 categdialog.cpp:297 categdialog.cpp:315
 msgid "Organise Categories: Adding Error"
-msgstr ""
+msgstr "Уреди категорије: Грешка у додавању"
 
 #: categdialog.cpp:296 categdialog.cpp:523
 msgid "Sub Category with same name exists"
-msgstr "Поткатегорија са тим именом већ постоји"
+msgstr "Подкатегорија са тим именом већ постоји"
 
 #: categdialog.cpp:314
 msgid "Invalid Parent Category. Choose Root or Main Category node."
-msgstr "Погрешна надкатегорија.  Одаберите Корен или главну категорију."
+msgstr "Непостојећа матична категорија. Одаберите основу или главну категорију."
 
 #: categdialog.cpp:321
 msgid "Category in use."
-msgstr ""
+msgstr "Категорија у употреби."
 
 #: categdialog.cpp:321
 msgid "Sub-Category in use."
-msgstr ""
+msgstr "Поткатегорија у употреби."
 
 #: categdialog.cpp:323
 msgid "Tip: Change all transactions using this Category to\n"
