@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-10-02 17:56+0300\n"
-"PO-Revision-Date: 2021-10-10 17:15\n"
+"PO-Revision-Date: 2021-10-10 17:25\n"
 "Last-Translator: \n"
 "Language-Team: Dutch\n"
 "MIME-Version: 1.0\n"
@@ -1255,7 +1255,7 @@ msgstr "&Overslaan"
 
 #: billsdepositspanel.cpp:304
 msgid "Skip Next Recurring Transaction Occurrence"
-msgstr ""
+msgstr "Sla volgende herhalende transactie over"
 
 #: billsdepositspanel.cpp:413
 msgid "Enter next Occurrence..."
@@ -1267,15 +1267,15 @@ msgstr "Overslaan volgende gebeurtenis"
 
 #: billsdepositspanel.cpp:417
 msgid "&New Recurring Transaction..."
-msgstr ""
+msgstr "&Nieuwe herhalende transactie..."
 
 #: billsdepositspanel.cpp:418
 msgid "&Edit Recurring Transaction..."
-msgstr ""
+msgstr "&Herhalende transactie wijzigen..."
 
 #: billsdepositspanel.cpp:419
 msgid "&Delete Recurring Transaction..."
-msgstr ""
+msgstr "&Verwijder periodieke transactie..."
 
 #: billsdepositspanel.cpp:466
 msgid "Manual"
@@ -1293,8 +1293,8 @@ msgstr "Automatisch"
 #, c-format
 msgid "%d day remaining"
 msgid_plural "%d days remaining"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d dagen resterend"
+msgstr[1] "%d dagen resterend"
 
 #: billsdepositspanel.cpp:525 billsdepositspanel.cpp:532
 #: billsdepositspanel.cpp:539 billsdepositspanel.cpp:592
@@ -1306,23 +1306,23 @@ msgstr "Inactief"
 #, c-format
 msgid "%d day delay!"
 msgid_plural "%d days delay!"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d dagen vertraging!"
+msgstr[1] "%d dagen vertraging!"
 
 #: billsdepositspanel.cpp:537 billsdepositspanel.cpp:597 mmhomepage.cpp:319
 #, c-format
 msgid "%d day overdue!"
 msgid_plural "%d days overdue!"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d dagen na vervaldatum!"
+msgstr[1] "%d dagen na vervaldatum!"
 
 #: billsdepositspanel.cpp:649
 msgid "Do you really want to delete the recurring transaction?"
-msgstr ""
+msgstr "Wilt u deze herhalende transactie werkelijk verwijderen?"
 
 #: billsdepositspanel.cpp:650
 msgid "Confirm Deletion"
-msgstr ""
+msgstr "Verwijderen bevestigen"
 
 #: budgetentrydialog.cpp:50
 msgid "Budget Year Entry"
@@ -1346,7 +1346,7 @@ msgstr "Actueel"
 
 #: budgetentrydialog.cpp:125
 msgid "Type:"
-msgstr ""
+msgstr "Type:"
 
 #: budgetentrydialog.cpp:128
 msgid "Expense"
@@ -1406,7 +1406,7 @@ msgstr "Toon begroting categorie samenvatting"
 #: budgetingpanel.cpp:172
 #, c-format
 msgid "Financial Year: %s - %li"
-msgstr ""
+msgstr "Financieel jaar: %s - %li"
 
 #: budgetingpanel.cpp:176 reports/budget.cpp:92
 #, c-format
@@ -1421,7 +1421,7 @@ msgstr "Maand: %s"
 #: budgetingpanel.cpp:186
 #, c-format
 msgid "%s    Start Date of: %s"
-msgstr ""
+msgstr "%s    Startdatum van: %s"
 
 #: budgetingpanel.cpp:189
 #, c-format
@@ -1450,7 +1450,7 @@ msgstr "Uitgaven: "
 
 #: budgetingpanel.cpp:297
 msgid "Icon"
-msgstr ""
+msgstr "Icoon"
 
 #: budgetingpanel.cpp:299
 msgid "Sub Category"
@@ -1560,7 +1560,7 @@ msgstr "Wijzig naam van een bestaande categorie"
 
 #: categdialog.cpp:239
 msgid "Delete an existing category. The category cannot be used by existing transactions."
-msgstr ""
+msgstr "Verwijder een bestaande categorie. De categorie kan niet gebruikt worden voor bestaande transacties."
 
 #: categdialog.cpp:244 maincurrencydialog.cpp:211
 msgid "&Select"
@@ -1634,15 +1634,15 @@ msgstr "Beheer categorieën: Fout bij verwijderen"
 
 #: categdialog.cpp:435
 msgid "Select an unused category to delete."
-msgstr ""
+msgstr "Selecteer een ongebruikte categorie om te verwijderen."
 
 #: categdialog.cpp:460
 msgid "This category cannot be deleted because it's used by transactions."
-msgstr ""
+msgstr "Deze categorie kan niet worden verwijderd omdat deze door transacties wordt gebruikt."
 
 #: categdialog.cpp:467
 msgid "Delete an existing category."
-msgstr ""
+msgstr "Verwijdert een bestaande categorie."
 
 #: categdialog.cpp:472
 msgid "Subcategories must be deleted before."
@@ -2480,7 +2480,7 @@ msgstr "Filter details: "
 
 #: filtertransdialog.cpp:1066
 msgid "Label"
-msgstr ""
+msgstr "Label"
 
 #: filtertransdialog.cpp:1084
 msgid "Since"
@@ -2505,7 +2505,7 @@ msgstr "Kies rekeningen"
 
 #: filtertransdialog.cpp:1595
 msgid "Not colored"
-msgstr ""
+msgstr "Niet gekleurd"
 
 #: general_report_manager.cpp:247 general_report_manager.cpp:663
 msgid "General Reports Manager"
@@ -2680,12 +2680,12 @@ msgstr "Kies bestand om als rapport op te slaan"
 
 #: general_report_manager.cpp:1203
 msgid "Parameters:"
-msgstr ""
+msgstr "Parameters:"
 
 #: images_list.cpp:340
 #, c-format
 msgid "Metadata JSON in Theme '%s' cannot be parsed and looks badly constructed, please correct."
-msgstr ""
+msgstr "Metadata JSON in Thema '%s' kan niet verwerkt worden, de opbouw ziet er slecht uit, graag corrigeren."
 
 #: images_list.cpp:341 images_list.cpp:437 images_list.cpp:448
 #: images_list.cpp:483 images_list.cpp:512 images_list.cpp:518
@@ -2696,31 +2696,31 @@ msgstr "Waarschuwing"
 #: images_list.cpp:436
 #, c-format
 msgid "File '%s' missing or invalid in chosen theme '%s'"
-msgstr ""
+msgstr "Bestand '%s' ontbrekende of ongeldig in het gekozen thema '%s'"
 
 #: images_list.cpp:447
 #, c-format
 msgid "Metadata '%s' missing in chosen theme '%s'"
-msgstr ""
+msgstr "Metadata '%s' ontbreekt in het gekozen thema '%s'"
 
 #: images_list.cpp:480
 msgid "and more..."
-msgstr ""
+msgstr "en meer..."
 
 #: images_list.cpp:482
 #, c-format
 msgid "There are %d missing or invalid icons in chosen theme '%s': %s"
-msgstr ""
+msgstr "Er zijn %d ontbrekende of ongeldige pictogrammen in het gekozen thema '%s': %s"
 
 #: images_list.cpp:511
 #, c-format
 msgid "Theme %s not found, it may no longer be supported. Reverting to default theme"
-msgstr ""
+msgstr "Thema %s niet gevonden, het kan niet langer worden ondersteund. Terugdraaien naar het standaard thema"
 
 #: images_list.cpp:518
 #, c-format
 msgid "Theme %s has missing items and is incompatible. Reverting to default theme"
-msgstr ""
+msgstr "Thema %s heeft ontbrekende items en is niet compatibel. Terugdraaien naar het standaard thema"
 
 #: import_export/parsers.cpp:46 import_export/univcsvdialog.cpp:1581
 #: mmSimpleDialogs.cpp:253
@@ -2776,11 +2776,11 @@ msgstr "QIF-Bestand Exporteren"
 
 #: import_export/qif_export.cpp:49
 msgid "JSON Export"
-msgstr ""
+msgstr "JSON export"
 
 #: import_export/qif_export.cpp:50
 msgid "CSV Export"
-msgstr ""
+msgstr "CSV Export"
 
 #: import_export/qif_export.cpp:110
 msgid "Parameters"
@@ -2792,15 +2792,15 @@ msgstr "Logboek"
 
 #: import_export/qif_export.cpp:127
 msgid "QIF"
-msgstr ""
+msgstr "QIF"
 
 #: import_export/qif_export.cpp:128
 msgid "JSON"
-msgstr ""
+msgstr "JSON"
 
 #: import_export/qif_export.cpp:129
 msgid "CSV"
-msgstr ""
+msgstr "CSV"
 
 #: import_export/qif_export.cpp:143 mmframe.cpp:3103 mmframe.cpp:3107
 #: mmframe.cpp:3126 mmframe.cpp:3130
