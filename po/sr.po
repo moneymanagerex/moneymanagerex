@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-10-02 17:56+0300\n"
-"PO-Revision-Date: 2021-10-10 15:46\n"
+"PO-Revision-Date: 2021-10-10 15:59\n"
 "Last-Translator: \n"
 "Language-Team: Serbian (Cyrillic)\n"
 "MIME-Version: 1.0\n"
@@ -251,7 +251,7 @@ msgstr "Минимална уплата:"
 
 #: accountdialog.cpp:301
 msgid "Organize attachments of this account"
-msgstr "Организуј прилоге овог рачуна"
+msgstr "Уредите прилоге овог рачуна"
 
 #: accountdialog.cpp:423
 msgid "Default Image"
@@ -503,7 +503,7 @@ msgstr "Обриши имовину"
 #: assetspanel.cpp:108 billsdepositspanel.cpp:421 mmchecking_list.cpp:390
 #: mmframe.cpp:1259 payeedialog.cpp:403 stocks_list.cpp:145
 msgid "&Organize Attachments"
-msgstr "Организуј прилоге"
+msgstr "&Уреди прилоге"
 
 #: assetspanel.cpp:200
 msgid "Do you really want to delete the Asset?"
@@ -1337,7 +1337,7 @@ msgstr "Категорија: "
 
 #: budgetentrydialog.cpp:113
 msgid "Sub Category: "
-msgstr "Подкатегорија: "
+msgstr "Поткатегорија: "
 
 #: budgetentrydialog.cpp:120
 msgid "Estimated:"
@@ -1535,7 +1535,7 @@ msgstr "Ова буџетска година већ постоји"
 
 #: categdialog.cpp:91 mmframe.cpp:1505 mmframe.cpp:1726
 msgid "Organize Categories"
-msgstr "Организуј категорије"
+msgstr "Уреди категорије"
 
 #: categdialog.cpp:190 mmframe.cpp:1518
 msgid "Reassign all categories to another category"
@@ -1601,7 +1601,7 @@ msgstr "Уреди категорије: Грешка у додавању"
 
 #: categdialog.cpp:296 categdialog.cpp:523
 msgid "Sub Category with same name exists"
-msgstr "Подкатегорија са тим именом већ постоји"
+msgstr "Поткатегорија са тим именом већ постоји"
 
 #: categdialog.cpp:314
 msgid "Invalid Parent Category. Choose Root or Main Category node."
@@ -1618,7 +1618,7 @@ msgstr "Поткатегорија у употреби."
 #: categdialog.cpp:323
 msgid "Tip: Change all transactions using this Category to\n"
 "another Category using the relocate command:"
-msgstr ""
+msgstr "Савет: Преместите све трансакције које користе ову категорију у другу категорију користећи команду за премештање:"
 
 #: categdialog.cpp:326
 msgid "Tip: Change all transactions using this Sub-Category to\n"
@@ -4342,7 +4342,7 @@ msgstr ""
 
 #: mmframe.cpp:1509 mmframe.cpp:1727 payeedialog.cpp:77
 msgid "Organize Payees"
-msgstr "Организуј прималце"
+msgstr "Уредите примаоце"
 
 #: mmframe.cpp:1513
 msgid "Organize Curre&ncy..."
@@ -4350,7 +4350,7 @@ msgstr ""
 
 #: mmframe.cpp:1513 mmframe.cpp:1728
 msgid "Organize Currency"
-msgstr "Организуј валуту"
+msgstr "Уредите валуту"
 
 #: mmframe.cpp:1517
 msgid "&Categories..."
