@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-10-02 17:56+0300\n"
-"PO-Revision-Date: 2021-10-10 15:59\n"
+"PO-Revision-Date: 2021-10-10 16:05\n"
 "Last-Translator: \n"
 "Language-Team: Serbian (Cyrillic)\n"
 "MIME-Version: 1.0\n"
@@ -1623,57 +1623,57 @@ msgstr "Савет: Преместите све трансакције које 
 #: categdialog.cpp:326
 msgid "Tip: Change all transactions using this Sub-Category to\n"
 "another Sub-Category using the relocate command:"
-msgstr ""
+msgstr "Савет: Преместите све трансакције које користе ову поткатегорију у другу поткатегорију користећи команду за премештање:"
 
 #: categdialog.cpp:329
 msgid "Tools -> Relocation of -> Categories"
-msgstr ""
+msgstr "Алати -> Премештање -> Категорије"
 
 #: categdialog.cpp:331
 msgid "Organise Categories: Delete Error"
-msgstr ""
+msgstr "Уреди категорије: Грешка у брисању"
 
 #: categdialog.cpp:435
 msgid "Select an unused category to delete."
-msgstr ""
+msgstr "Одаберите неискоришћену категорију за брисање."
 
 #: categdialog.cpp:460
 msgid "This category cannot be deleted because it's used by transactions."
-msgstr ""
+msgstr "Ова категорија не може бити обрисана јер је употребљавају постојеће трансакције."
 
 #: categdialog.cpp:467
 msgid "Delete an existing category."
-msgstr ""
+msgstr "Обришите постојећу категорију."
 
 #: categdialog.cpp:472
 msgid "Subcategories must be deleted before."
-msgstr ""
+msgstr "Морате претходно обрисати поткатегорију."
 
 #: categdialog.cpp:488
 #, c-format
 msgid "Enter a new name for '%s'"
-msgstr ""
+msgstr "Унесите нови назив за \"%s\""
 
 #: categdialog.cpp:489
 msgid "Edit Category"
-msgstr ""
+msgstr "Уреди категорију"
 
 #: categdialog.cpp:507 categdialog.cpp:524
 msgid "Organise Categories: Editing Error"
-msgstr ""
+msgstr "Уреди категорије: Грешка у изменама"
 
 #: categdialog.cpp:600 mmframe.cpp:3270
 msgid "Category Relocation Completed."
-msgstr ""
+msgstr "Премештање категорије завршено."
 
 #: categdialog.cpp:601 mmframe.cpp:3271 mmframe.cpp:3286 payeedialog.cpp:351
 #, c-format
 msgid "Records have been updated in the database: %i"
-msgstr ""
+msgstr "Записи у бази податка су ажурирани: %i"
 
 #: categdialog.cpp:603 mmframe.cpp:3273
 msgid "Category Relocation Result"
-msgstr ""
+msgstr "Резултат премештања категорије"
 
 #: categdialog.cpp:668
 msgid "Hide Selected Category"
