@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-10-02 17:56+0300\n"
-"PO-Revision-Date: 2021-10-10 12:05\n"
+"PO-Revision-Date: 2021-10-10 15:27\n"
 "Last-Translator: \n"
 "Language-Team: Serbian (Cyrillic)\n"
 "MIME-Version: 1.0\n"
@@ -1210,7 +1210,7 @@ msgstr "Учесталост"
 
 #: billsdepositspanel.cpp:137
 msgid "Repetitions"
-msgstr ""
+msgstr "Понављања"
 
 #: billsdepositspanel.cpp:138
 msgid "Autorepeat"
@@ -1384,76 +1384,76 @@ msgstr "Унеси предвиђен буџет за ову категориј�
 
 #: budgetingpanel.cpp:50
 msgid "View All Budget Categories"
-msgstr "Прикажи све категорије буџета"
+msgstr "Прикажи све буџетске категорије"
 
 #: budgetingpanel.cpp:51
 msgid "View Non-Zero Budget Categories"
-msgstr "Прикажи све категорије буџета не празне"
+msgstr "Прикажи све буџетске категорије које нису нула"
 
 #: budgetingpanel.cpp:52
 msgid "View Planned Budget Categories"
-msgstr ""
+msgstr "Прикажи све планиране буџетске категорије"
 
 #: budgetingpanel.cpp:53
 msgid "View Income Budget Categories"
-msgstr "Приказ приходовне буџетне категорије"
+msgstr "Прикажи приходне, буџетске категорије"
 
 #: budgetingpanel.cpp:54
 msgid "View Expense Budget Categories"
-msgstr "Приказ трошковние буџетне категорије"
+msgstr "Прикажи расходне, буџетске категорије"
 
 #: budgetingpanel.cpp:55
 msgid "View Budget Category Summary"
-msgstr ""
+msgstr "Прикажи збир буџетске категорије"
 
 #: budgetingpanel.cpp:172
 #, c-format
 msgid "Financial Year: %s - %li"
-msgstr ""
+msgstr "Финансијска година: %s - %li"
 
 #: budgetingpanel.cpp:176 reports/budget.cpp:92
 #, c-format
 msgid "Year: %s"
-msgstr ""
+msgstr "Година: %s"
 
 #: budgetingpanel.cpp:181
 #, c-format
 msgid "Month: %s"
-msgstr ""
+msgstr "Месец: %s"
 
 #: budgetingpanel.cpp:186
 #, c-format
 msgid "%s    Start Date of: %s"
-msgstr ""
+msgstr "%s  Почетни датум од: %s"
 
 #: budgetingpanel.cpp:189
 #, c-format
 msgid "Budget Setup for %s"
-msgstr ""
+msgstr "Направи буџет за %s"
 
 #: budgetingpanel.cpp:246
 msgid "Income: "
-msgstr ""
+msgstr "Приход: "
 
 #: budgetingpanel.cpp:247 budgetingpanel.cpp:255
 msgid "Estimated: "
-msgstr ""
+msgstr "Планирано: "
 
 #: budgetingpanel.cpp:249 budgetingpanel.cpp:257
 msgid "Actual: "
-msgstr ""
+msgstr "Остварено: "
 
 #: budgetingpanel.cpp:251 budgetingpanel.cpp:259
 msgid "Difference: "
-msgstr ""
+msgstr "Разлика: "
 
 #: budgetingpanel.cpp:254
 msgid "Expenses: "
-msgstr ""
+msgstr "Расходи: "
 
 #: budgetingpanel.cpp:297
 msgid "Icon"
-msgstr ""
+msgstr "Иконица"
 
 #: budgetingpanel.cpp:299
 msgid "Sub Category"
@@ -1471,35 +1471,35 @@ msgstr "Стварно"
 
 #: budgetyeardialog.cpp:46
 msgid "Budget Editor"
-msgstr ""
+msgstr "Уређење буџета"
 
 #: budgetyeardialog.cpp:93
 msgid "&Add Year"
-msgstr ""
+msgstr "&Додај годину"
 
 #: budgetyeardialog.cpp:95
 msgid "Add a new budget year"
-msgstr "Унеси нову буџетску годину"
+msgstr "Додај нову буџетску годину"
 
 #: budgetyeardialog.cpp:98
 msgid "&Add Month"
-msgstr ""
+msgstr "&Додај месец"
 
 #: budgetyeardialog.cpp:100
 msgid "Add a new budget month"
-msgstr ""
+msgstr "Додај нови буџетски месец"
 
 #: budgetyeardialog.cpp:105
 msgid "Delete existing budget"
-msgstr ""
+msgstr "Обриши постојећи буџет"
 
 #: budgetyearentrydialog.cpp:43 budgetyearentrydialog.cpp:152
 msgid "Budget Entry Details"
-msgstr ""
+msgstr "Детаљи буџетских ставки"
 
 #: budgetyearentrydialog.cpp:45
 msgid "Budget Month Entry"
-msgstr ""
+msgstr "Унос месечног буџета"
 
 #: budgetyearentrydialog.cpp:72
 msgid "Budget Year:"
