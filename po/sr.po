@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-10-02 17:56+0300\n"
-"PO-Revision-Date: 2021-10-10 15:27\n"
+"PO-Revision-Date: 2021-10-10 15:39\n"
 "Last-Translator: \n"
 "Language-Team: Serbian (Cyrillic)\n"
 "MIME-Version: 1.0\n"
@@ -1508,28 +1508,30 @@ msgstr "Буџетска година:"
 #: budgetyearentrydialog.cpp:79
 msgid "Specify the required year.\n"
 "Use Spin buttons to increase or decrease the year."
-msgstr ""
+msgstr "Одредите захтевану годину.\n"
+"Користите тастере да повећате или смањите годину."
 
 #: budgetyearentrydialog.cpp:86
 msgid "Budget Month:"
-msgstr ""
+msgstr "Месечни буџет:"
 
 #: budgetyearentrydialog.cpp:95
 msgid "Specify the required month.\n"
 "Use Spin buttons to increase or decrease the month."
-msgstr ""
+msgstr "Одредите захтеван месец.\n"
+"Користите тастера да повећате или смањите месец."
 
 #: budgetyearentrydialog.cpp:102
 msgid "Base Budget On:"
-msgstr "Буџет базиран на:"
+msgstr "Буџет заснован на основу:"
 
 #: budgetyearentrydialog.cpp:112
 msgid "Specify year to base budget on."
-msgstr "Одреди годину на коју да се базира буџет."
+msgstr "Одреди годину на којој да се заснива буџет."
 
 #: budgetyearentrydialog.cpp:151
 msgid "Budget Year already exists"
-msgstr "Ова година буџета већ постоји"
+msgstr "Ова буџетска година већ постоји"
 
 #: categdialog.cpp:91 mmframe.cpp:1505 mmframe.cpp:1726
 msgid "Organize Categories"
@@ -1537,19 +1539,19 @@ msgstr "Организуј категорије"
 
 #: categdialog.cpp:190 mmframe.cpp:1518
 msgid "Reassign all categories to another category"
-msgstr ""
+msgstr "Прерасподели све из категорије другој категорији"
 
 #: categdialog.cpp:192
 msgid "Expand"
-msgstr ""
+msgstr "Прошири"
 
 #: categdialog.cpp:197 maincurrencydialog.cpp:175
 msgid "Show All"
-msgstr "Prikažite sve"
+msgstr "Прикажи све"
 
 #: categdialog.cpp:199
 msgid "Show all hidden categories"
-msgstr ""
+msgstr "Прикажи све скривене категорије"
 
 #: categdialog.cpp:231
 msgid "Add a new category"
@@ -1561,7 +1563,7 @@ msgstr "Промени име постојеће категорије"
 
 #: categdialog.cpp:239
 msgid "Delete an existing category. The category cannot be used by existing transactions."
-msgstr ""
+msgstr "Обриши постојећу категорију. Категорију не смеју да користе постојеће трансакције."
 
 #: categdialog.cpp:244 maincurrencydialog.cpp:211
 msgid "&Select"
@@ -1569,11 +1571,11 @@ msgstr "Одабери"
 
 #: categdialog.cpp:246
 msgid "Select the currently selected category as the selected category for the transaction"
-msgstr "Одабрати актуелни одабрани категорију као категорију трансакције"
+msgstr "Одабери сада изабрану категорију као категорију трансакције"
 
 #: categdialog.cpp:255
 msgid "Enter the name for the new category:"
-msgstr ""
+msgstr "Унесите назив нове категорије:"
 
 #: categdialog.cpp:258
 msgid "Tip: If category added now, check bottom of list."
