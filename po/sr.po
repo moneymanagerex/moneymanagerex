@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-10-02 17:56+0300\n"
-"PO-Revision-Date: 2021-10-10 16:16\n"
+"PO-Revision-Date: 2021-10-10 16:27\n"
 "Last-Translator: \n"
 "Language-Team: Serbian (Cyrillic)\n"
 "MIME-Version: 1.0\n"
@@ -1753,11 +1753,11 @@ msgstr "Прикажи претходну финансијску годину"
 
 #: constants.cpp:191
 msgid "View Since Statement Date"
-msgstr ""
+msgstr "Прикажи од почетног датума"
 
 #: constants.cpp:193
 msgid "ALL"
-msgstr ""
+msgstr "СВЕ"
 
 #: constants.cpp:194 mmframe.cpp:1319 mmframe.cpp:1719
 #: model/Model_Account.cpp:26
@@ -1774,11 +1774,11 @@ msgstr "Омиљени"
 
 #: currencydialog.cpp:101
 msgid "Currency name"
-msgstr ""
+msgstr "Назив валуте"
 
 #: currencydialog.cpp:173
 msgid "Currency Name"
-msgstr "Име валуте"
+msgstr "Назив валуте"
 
 #: currencydialog.cpp:178
 msgid "Currency Symbol"
@@ -1795,11 +1795,11 @@ msgstr "Суфикс валуте"
 #: currencydialog.cpp:198 currencydialog.cpp:268 currencydialog.cpp:297
 #: import_export/qif_import_gui.cpp:296 import_export/univcsvdialog.cpp:356
 msgid "Decimal Char"
-msgstr "Ознака децимала"
+msgstr "Симбол децимала"
 
 #: currencydialog.cpp:205 currencydialog.cpp:272 currencydialog.cpp:301
 msgid "Grouping Char"
-msgstr "Ознака груписања"
+msgstr "Симбол за груписање"
 
 #: currencydialog.cpp:213
 msgid "Scale"
@@ -1807,27 +1807,27 @@ msgstr "Скала"
 
 #: currencydialog.cpp:217 currencydialog.cpp:279
 msgid "Conversion to Base Rate"
-msgstr ""
+msgstr "Конверзија у основни курс"
 
 #: currencydialog.cpp:223
 msgid "Conversion rate will be used in case no currency history has been found for the currency"
-msgstr ""
+msgstr "Конверзија у основни курс ће се користити уколико се за дату валуту не пронађе курсна листа"
 
 #: currencydialog.cpp:225
 msgid "Fixed conversion rate"
-msgstr ""
+msgstr "Фиксни курс"
 
 #: currencydialog.cpp:230
 msgid "Currency Format Sample:"
-msgstr ""
+msgstr "Пример форматирања валуте:"
 
 #: currencydialog.cpp:244
 msgid "Save any changes made"
-msgstr ""
+msgstr "Сними све измене"
 
 #: currencydialog.cpp:248
 msgid "Any changes will be lost without update"
-msgstr ""
+msgstr "Измене ће бити обрисане без ажурирања"
 
 #: currencydialog.cpp:268 currencydialog.cpp:272 currencydialog.cpp:279
 #: currencydialog.cpp:297 currencydialog.cpp:301 maincurrencydialog.cpp:612
@@ -1838,11 +1838,11 @@ msgstr "Погрешан унос"
 #: currencydialog.cpp:318
 #, c-format
 msgid "%.2f Shown As: %s"
-msgstr ""
+msgstr "%.2f се приказује као: %s"
 
 #: currencydialog.cpp:320
 msgid "(Using Locale)"
-msgstr ""
+msgstr "(Користећи локална подешавања)"
 
 #: customfieldeditdialog.cpp:120
 msgid "Custom Field Details"
