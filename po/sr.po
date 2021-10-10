@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-10-02 17:56+0300\n"
-"PO-Revision-Date: 2021-10-10 16:27\n"
+"PO-Revision-Date: 2021-10-10 17:06\n"
 "Last-Translator: \n"
 "Language-Team: Serbian (Cyrillic)\n"
 "MIME-Version: 1.0\n"
@@ -287,7 +287,7 @@ msgstr "Нови рачун"
 
 #: appstartdialog.cpp:100
 msgid "Open Last Opened Database"
-msgstr "Отвори последњу отворену базу података"
+msgstr "Отвори последњу отбарану базу података"
 
 #: appstartdialog.cpp:103
 msgid "Create a New Database"
@@ -4058,7 +4058,7 @@ msgstr ""
 
 #: mmframe.cpp:752 mmframe.cpp:1534
 msgid "Budget Setup"
-msgstr "Подешавање буџета"
+msgstr "Буџетирање"
 
 #: mmframe.cpp:809 mmframe.cpp:2550 mmhelppanel.cpp:69
 msgid "Help"
@@ -4374,7 +4374,7 @@ msgstr ""
 
 #: mmframe.cpp:1534
 msgid "&Budget Setup"
-msgstr "Подешавање буџета"
+msgstr "&Буџетирање"
 
 #: mmframe.cpp:1538
 msgid "&Recurring Transactions"
