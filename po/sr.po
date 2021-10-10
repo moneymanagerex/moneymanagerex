@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-10-02 17:56+0300\n"
-"PO-Revision-Date: 2021-10-10 16:05\n"
+"PO-Revision-Date: 2021-10-10 16:16\n"
 "Last-Translator: \n"
 "Language-Team: Serbian (Cyrillic)\n"
 "MIME-Version: 1.0\n"
@@ -1677,15 +1677,15 @@ msgstr "Резултат премештања категорије"
 
 #: categdialog.cpp:668
 msgid "Hide Selected Category"
-msgstr ""
+msgstr "Сакриј изабрану категорију"
 
 #: categdialog.cpp:669
 msgid "Unhide Selected Category"
-msgstr ""
+msgstr "Откриј изабрану категорију"
 
 #: categdialog.cpp:671 import_export/univcsvdialog.cpp:443
 msgid "Clear Settings"
-msgstr ""
+msgstr "Обриши подешавања"
 
 #: constants.cpp:71
 msgid "Cancel"
@@ -1693,15 +1693,15 @@ msgstr "Поништи"
 
 #: constants.cpp:77 diagnostics.cpp:88 themes.cpp:189
 msgid "Close"
-msgstr ""
+msgstr "Затвори"
 
 #: constants.cpp:79
 msgid "&Close "
-msgstr ""
+msgstr "&Затвори "
 
 #: constants.cpp:178
 msgid "Advanced Filter"
-msgstr ""
+msgstr "Напредни филтер"
 
 #: constants.cpp:179
 msgid "View All Transactions"
@@ -1709,47 +1709,47 @@ msgstr "Прикажи све трансакције"
 
 #: constants.cpp:180
 msgid "View Today"
-msgstr "Види данас"
+msgstr "Прикажи данашњи дан"
 
 #: constants.cpp:181
 msgid "View Current Month"
-msgstr "Види актуелни месец"
+msgstr "Прикажи текући месец"
 
 #: constants.cpp:182
 msgid "View Last 30 days"
-msgstr ""
+msgstr "Прикажи претходних 30 дана"
 
 #: constants.cpp:183
 msgid "View Last 90 days"
-msgstr ""
+msgstr "Прикажи претходних 90 дана"
 
 #: constants.cpp:184
 msgid "View Last Month"
-msgstr "Види прошли месец"
+msgstr "Прикажи претходни месец"
 
 #: constants.cpp:185
 msgid "View Last 3 Months"
-msgstr ""
+msgstr "Прикажи претходна 3 месеца"
 
 #: constants.cpp:186
 msgid "View Last 12 Months"
-msgstr ""
+msgstr "Прикажи претходних 12 месеци"
 
 #: constants.cpp:187
 msgid "View Current Year"
-msgstr ""
+msgstr "Прикажи текућу годину"
 
 #: constants.cpp:188
 msgid "View Current Financial Year"
-msgstr ""
+msgstr "Прикажи текућу финансијску годину"
 
 #: constants.cpp:189
 msgid "View Last Year"
-msgstr ""
+msgstr "Прикажи претходну годину"
 
 #: constants.cpp:190
 msgid "View Last Financial Year"
-msgstr ""
+msgstr "Прикажи претходну финансијску годину"
 
 #: constants.cpp:191
 msgid "View Since Statement Date"
