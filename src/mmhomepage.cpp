@@ -384,13 +384,10 @@ const wxString htmlWidgetIncomeVsExpenses::getHTMLText()
     int i = Option::instance().getHomePageIncExpRange();
     const mmDateRange* date_range = static_cast<mmDateRange*>(home_options.m_all_date_ranges[i]);
     
-    bool ignoreFuture = Option::instance().getIgnoreFutureTransactions();
-
     wxLogDebug("%s - %s", date_range->start_date().FormatISODate(), date_range->end_date().FormatISODate());
 
     double tIncome = 0.0, tExpenses = 0.0;
     std::map<int, std::pair<double, double> > incomeExpensesStats;
-
 
     //Calculations
     const auto &transactions = Model_Checking::instance().find(
