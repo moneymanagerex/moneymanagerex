@@ -72,7 +72,7 @@
                 <TMPL_VAR CURRENCY_RATES>
             </td>
             <td>
-                <!--Income vs Expenses: Current Month-->
+                <!--Income vs Expenses -->
                 <div class = "shadow">
                 <table class='table'>
                     <thead>
