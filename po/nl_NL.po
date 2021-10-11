@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-10-02 17:56+0300\n"
-"PO-Revision-Date: 2021-10-11 16:26\n"
+"PO-Revision-Date: 2021-10-11 16:39\n"
 "Last-Translator: \n"
 "Language-Team: Dutch\n"
 "MIME-Version: 1.0\n"
@@ -1940,7 +1940,7 @@ msgstr "Nieuw/Wijzig eigen veld"
 
 #: customfieldlistdialog.cpp:52
 msgid "#"
-msgstr ""
+msgstr "#"
 
 #: customfieldlistdialog.cpp:55
 msgid "Properties"
@@ -2416,12 +2416,12 @@ msgstr "Bedrag bereik"
 
 #: filtertransdialog.cpp:356
 msgid "Enter any string to find it in transaction notes"
-msgstr ""
+msgstr "Geef de zoektekst die u in de transactienotities wilt opzoeken"
 
 #: filtertransdialog.cpp:364 filtertransdialog.cpp:1181
 #: reports/transactions.cpp:104
 msgid "Color"
-msgstr ""
+msgstr "Kleur"
 
 #: filtertransdialog.cpp:368
 msgid "Select the Color"
@@ -2440,7 +2440,7 @@ msgstr "Instellingen"
 #: filtertransdialog.cpp:1208 filtertransdialog.cpp:1520
 #, c-format
 msgid "%i: Empty"
-msgstr ""
+msgstr "%i: Leeg"
 
 #: filtertransdialog.cpp:427
 msgid "Save active values into current Preset selection"
@@ -2452,7 +2452,7 @@ msgstr ""
 
 #: filtertransdialog.cpp:657
 msgid "Hide Report Columns"
-msgstr ""
+msgstr "Verberg rapport kolommen"
 
 #: filtertransdialog.cpp:799 filtertransdialog.cpp:1522
 msgid "Please Enter"
@@ -2460,12 +2460,12 @@ msgstr "Voer in"
 
 #: filtertransdialog.cpp:799 filtertransdialog.cpp:1522
 msgid "Setting Name"
-msgstr ""
+msgstr "Instellingsnaam"
 
 #: filtertransdialog.cpp:803 filtertransdialog.cpp:1518
 #: filtertransdialog.cpp:1526
 msgid "Could not save settings"
-msgstr ""
+msgstr "Kon deze wijzigingen niet opslaan"
 
 #: filtertransdialog.cpp:803 filtertransdialog.cpp:1028
 #: filtertransdialog.cpp:1044 filtertransdialog.cpp:1518
@@ -2962,7 +2962,7 @@ msgstr "Klik op OK om verder te gaan"
 #: import_export/qif_import_gui.cpp:665 import_export/qif_import_gui.cpp:694
 #: import_export/qif_import_gui.cpp:711
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: import_export/qif_import_gui.cpp:675 import_export/qif_import_gui.cpp:694
 #: stockspanel.cpp:460
@@ -3021,7 +3021,7 @@ msgstr "Import succesvol voltooid"
 #: import_export/qif_import_gui.cpp:898
 #, c-format
 msgid "Total Imported: %zu"
-msgstr ""
+msgstr "Totaal geïmporteerd: %zu"
 
 #: import_export/qif_import_gui.cpp:906 import_export/univcsvdialog.cpp:1088
 msgid "Imported transactions discarded by user!"
@@ -3152,7 +3152,7 @@ msgstr "Voorbeeld"
 
 #: import_export/univcsvdialog.cpp:437
 msgid "Choose XML data file to Import"
-msgstr ""
+msgstr "Selecteer het te importeren XML-bestand"
 
 #: import_export/univcsvdialog.cpp:437
 msgid "Choose CSV data file to Import"
@@ -3213,7 +3213,7 @@ msgstr "Rekening bestaat niet"
 #: import_export/univcsvdialog.cpp:1846
 #, c-format
 msgid "Positive if type has '%s'"
-msgstr ""
+msgstr "Positief als type '%s ' heeft"
 
 #: import_export/univcsvdialog.cpp:925
 msgid "Incorrect fields specified for import!"
@@ -3240,12 +3240,12 @@ msgstr ""
 #: import_export/univcsvdialog.cpp:991
 #, c-format
 msgid "Line %ld: Empty"
-msgstr ""
+msgstr "Regel %ld: Leeg"
 
 #: import_export/univcsvdialog.cpp:1005
 #, c-format
 msgid "Line %ld: Error:"
-msgstr ""
+msgstr "Regel %ld: Fout:"
 
 #: import_export/univcsvdialog.cpp:1007
 msgid "Invalid Date."
