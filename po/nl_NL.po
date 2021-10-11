@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-10-02 17:56+0300\n"
-"PO-Revision-Date: 2021-10-10 18:16\n"
+"PO-Revision-Date: 2021-10-11 16:09\n"
 "Last-Translator: \n"
 "Language-Team: Dutch\n"
 "MIME-Version: 1.0\n"
@@ -1869,7 +1869,7 @@ msgstr "Voer de te tonen knopinformatie in"
 
 #: customfieldeditdialog.cpp:150
 msgid "RegEx"
-msgstr ""
+msgstr "RegEx"
 
 #: customfieldeditdialog.cpp:152
 msgid "Enter the RegEx to validate field"
@@ -1903,7 +1903,7 @@ msgstr "Keuzemogelijkheden voor dit veld invoeren, gescheiden door een puntkomma
 
 #: customfieldeditdialog.cpp:172
 msgid "Digits scale"
-msgstr ""
+msgstr "Cijfers schaal"
 
 #: customfieldeditdialog.cpp:174
 msgid "Enter the decimal digits scale allowed"
@@ -2078,7 +2078,7 @@ msgstr "Electriciteit"
 
 #: db/DB_Table_Subcategory_V1.h:113 db/DB_Table_Subcategory_V1.h:124
 msgid "Gas"
-msgstr ""
+msgstr "Gas"
 
 #: db/DB_Table_Subcategory_V1.h:114
 msgid "Internet"
@@ -2094,7 +2094,7 @@ msgstr "Kabel TV"
 
 #: db/DB_Table_Subcategory_V1.h:117
 msgid "Water"
-msgstr ""
+msgstr "Water"
 
 #: db/DB_Table_Subcategory_V1.h:118
 msgid "Groceries"
@@ -2166,7 +2166,7 @@ msgstr "Recepten"
 
 #: db/DB_Table_Subcategory_V1.h:138 optionsettingsview.cpp:221
 msgid "Auto"
-msgstr ""
+msgstr "Auto"
 
 #: db/DB_Table_Subcategory_V1.h:139
 msgid "Life"
@@ -2251,7 +2251,7 @@ msgstr "Laad debugbestand"
 
 #: dbupgrade.cpp:189
 msgid "Wrong file type!"
-msgstr ""
+msgstr "Verkeerd bestandstype!"
 
 #: dbupgrade.cpp:189 dbupgrade.cpp:226 dbupgrade.cpp:233 dbupgrade.cpp:277
 #: dbupgrade.cpp:288
