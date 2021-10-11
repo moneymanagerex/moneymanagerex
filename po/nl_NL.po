@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-10-02 17:56+0300\n"
-"PO-Revision-Date: 2021-10-11 16:39\n"
+"PO-Revision-Date: 2021-10-11 17:04\n"
 "Last-Translator: \n"
 "Language-Team: Dutch\n"
 "MIME-Version: 1.0\n"
@@ -1915,7 +1915,7 @@ msgstr ""
 
 #: customfieldeditdialog.cpp:182
 msgid "Select a value to represent the item on a panel"
-msgstr ""
+msgstr "Selecteer een waarde om het item op een paneel weer te geven"
 
 #: customfieldeditdialog.cpp:224
 msgid "Changing field type will delete all content!"
@@ -2215,7 +2215,7 @@ msgstr "Inkomsten uit investeringen"
 #: dbupgrade.cpp:73
 #, c-format
 msgid "MMEX database upgrade to version %i failed!"
-msgstr ""
+msgstr "MMEX database bijwerken naar versie %i mislukt!"
 
 #: dbupgrade.cpp:74
 msgid "Please restore DB from autocreated pre-upgrade backup and retry or contact MMEX support"
@@ -2843,11 +2843,11 @@ msgstr "QIF bestanden (*.qif)"
 
 #: import_export/qif_export.cpp:306
 msgid "Choose JSON data file to Export"
-msgstr ""
+msgstr "Selecteer JSON data bestand om te exporteren"
 
 #: import_export/qif_export.cpp:308
 msgid "JSON Files (*.json)"
-msgstr ""
+msgstr "JSON bestanden (*.json)"
 
 #: import_export/qif_export.cpp:316 import_export/univcsvdialog.cpp:1565
 msgid "CSV Files (*.csv)"
@@ -3257,22 +3257,22 @@ msgstr "Foutief bedrag."
 
 #: import_export/univcsvdialog.cpp:1010
 msgid "Type (withdrawal/deposit) unknown."
-msgstr ""
+msgstr "Type (opname / storting) onbekend."
 
 #: import_export/univcsvdialog.cpp:1035
 #, c-format
 msgid "Line %ld: OK, imported."
-msgstr ""
+msgstr "Regel %ld: OK, geïmporteerd."
 
 #: import_export/univcsvdialog.cpp:1042
 #, c-format
 msgid "Total Lines: %ld"
-msgstr ""
+msgstr "Totaal aantal lijnen: %ld"
 
 #: import_export/univcsvdialog.cpp:1044
 #, c-format
 msgid "Lines Selected to Import: %ld"
-msgstr ""
+msgstr "Geselecteerde regels om te importeren: %ld"
 
 #: import_export/univcsvdialog.cpp:1046
 #, c-format
@@ -3282,17 +3282,17 @@ msgstr "Lege regels: %ld"
 #: import_export/univcsvdialog.cpp:1048
 #, c-format
 msgid "Imported: %ld"
-msgstr ""
+msgstr "Geïmporteerd: %ld"
 
 #: import_export/univcsvdialog.cpp:1050
 #, c-format
 msgid "Errored: %ld"
-msgstr ""
+msgstr "Fout: %ld"
 
 #: import_export/univcsvdialog.cpp:1053
 #, c-format
 msgid "Log file written to: %s"
-msgstr ""
+msgstr "Logbestand geschreven naar: %s"
 
 #: import_export/univcsvdialog.cpp:1056 stockdialog.cpp:680
 msgid "Please confirm saving..."
@@ -3300,7 +3300,7 @@ msgstr "A.u.b. opslaan mutaties bevestigen..."
 
 #: import_export/univcsvdialog.cpp:1089
 msgid "No imported transactions!"
-msgstr ""
+msgstr "Geen geïmporteerde transacties!"
 
 #: import_export/univcsvdialog.cpp:1109
 msgid "Incorrect fields specified for export! Requires at least Date and Amount."
@@ -3357,7 +3357,7 @@ msgstr ""
 
 #: import_export/univcsvdialog.cpp:1564
 msgid "All Files"
-msgstr ""
+msgstr "Alle bestanden"
 
 #: import_export/univcsvdialog.cpp:1842
 msgid "Please, type the word indicating positive values in your CSV file, e.g. 'debit'"
@@ -3365,7 +3365,7 @@ msgstr ""
 
 #: import_export/univcsvdialog.cpp:1842
 msgid "Enter a value"
-msgstr ""
+msgstr "Voer een waarde in"
 
 #: maincurrencydialog.cpp:74 reports/summarystocks.cpp:107 stockdialog.cpp:427
 #: stocks_list.cpp:91
@@ -3378,7 +3378,7 @@ msgstr "Laatste koers"
 
 #: maincurrencydialog.cpp:76
 msgid "Fixed Rate"
-msgstr ""
+msgstr "Vaste koers"
 
 #: maincurrencydialog.cpp:127
 msgid "N/A"
