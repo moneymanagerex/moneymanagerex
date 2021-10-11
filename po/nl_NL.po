@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-10-02 17:56+0300\n"
-"PO-Revision-Date: 2021-10-11 20:00\n"
+"PO-Revision-Date: 2021-10-11 20:10\n"
 "Last-Translator: \n"
 "Language-Team: Dutch\n"
 "MIME-Version: 1.0\n"
@@ -3437,7 +3437,7 @@ msgstr "Verwijder de geselecteerde valuta transacties"
 
 #: maincurrencydialog.cpp:297
 msgid "Delete Currency Values history for unused currencies and days"
-msgstr ""
+msgstr "Wis valutahistorie voor ongebruikte valuta en dagen"
 
 #: maincurrencydialog.cpp:353
 msgid "Do you really want to delete the selected Currency?"
@@ -3457,7 +3457,8 @@ msgstr "Standaardvaluta selectie"
 #, c-format
 msgid "Historic rates for %s found, but \"Use currency history\" in options is disabled:\n"
 "click no and enable it or click yes to remove all historic rates for %s"
-msgstr ""
+msgstr "Historische tarieven voor %s gevonden maar \"Gebruik valuta geschiedenis\" bij opties is uitgeschakeld:\n"
+"klik nee en schakel het in of klik op Ja om alle historische tarieven voor %s te verwijderen"
 
 #: maincurrencydialog.cpp:434
 #, c-format
@@ -3466,7 +3467,7 @@ msgstr "Valutahistorie opties: %s "
 
 #: maincurrencydialog.cpp:490
 msgid "Unable to update history currency rates. Please update them manually!"
-msgstr ""
+msgstr "Kan de historie van de wisselkoersen niet bijwerken. Werk deze handmatig bij!"
 
 #: maincurrencydialog.cpp:491 maincurrencydialog.cpp:643
 #: maincurrencydialog.cpp:678 maincurrencydialog.cpp:714
@@ -3484,7 +3485,7 @@ msgstr "Online wisselkoersen bijwerken"
 
 #: maincurrencydialog.cpp:643
 msgid "No currency selected!"
-msgstr ""
+msgstr "Geen valuta geselecteerd!"
 
 #: maincurrencydialog.cpp:649
 msgid "Do you want to add also dates without any transaction?"
@@ -3493,7 +3494,7 @@ msgstr "Wilt u ook datums zonder transacties invoeren?"
 #: maincurrencydialog.cpp:676
 #, c-format
 msgid "Unable to download %s currency rates"
-msgstr ""
+msgstr "Kan %s wisselkoersen niet downloaden"
 
 #: maincurrencydialog.cpp:712
 #, c-format
@@ -3502,16 +3503,16 @@ msgstr "Kon de historie voor symbool %s niet downloaden. Historische koersen nie
 
 #: maincurrencydialog.cpp:774
 msgid "Changing base currency will delete all history rates, proceed?"
-msgstr ""
+msgstr "Het wijzigen van de basisvaluta zal alle historisch tarieven verwijderen, verder gaan?"
 
 #: maincurrencydialog.cpp:798
 msgid "Do you want to update today currency rates?"
-msgstr ""
+msgstr "Wilt u de valutakoersen van vandaag bijwerken?"
 
 #: maincurrencydialog.cpp:819
 #, c-format
 msgid "Unable to download history for base symbol %s. History rates not available!"
-msgstr ""
+msgstr "Kon de historie voor symbool %s niet downloaden. Historische koersen niet beschikbaar!"
 
 #: maincurrencydialog.cpp:862 stockspanel.cpp:406 util.cpp:619
 msgid "Could not find base currency symbol!"
@@ -3574,7 +3575,7 @@ msgstr "Een keuze kan worden gemaakt via het uitklapmenu."
 
 #: mmSimpleDialogs.cpp:271
 msgid "Activating the button will provide a selection box where the account can be selected."
-msgstr ""
+msgstr "Activeren van de knop geeft een selectievakje aan waar het account kan worden geselecteerd."
 
 #: mmSimpleDialogs.cpp:280
 msgid "Invalid Payee"
@@ -3807,11 +3808,11 @@ msgstr "naar kopie"
 
 #: mmchecking_list.cpp:421
 msgid "Mark all being selected"
-msgstr ""
+msgstr "Markeer alle geselecteerde items"
 
 #: mmchecking_list.cpp:793
 msgid "Do you really want to delete all the transactions shown?"
-msgstr ""
+msgstr "Weet u zeker dat u alle zichtbare transacties wilt verwijderen?"
 
 #: mmchecking_list.cpp:794 mmchecking_list.cpp:805 mmchecking_list.cpp:816
 #: mmchecking_list.cpp:863
@@ -3821,28 +3822,29 @@ msgstr "Bevestig verwijderen transactie"
 #: mmchecking_list.cpp:804 mmchecking_list.cpp:815
 #, c-format
 msgid "Do you really want to delete all the \"%s\" transactions shown?"
-msgstr ""
+msgstr "Wilt u werkelijk alle getoonde \"%s\" transacties verwijderen?"
 
 #: mmchecking_list.cpp:804
 msgid "Follow Up"
-msgstr ""
+msgstr "Te controleren"
 
 #: mmchecking_list.cpp:815
 msgid "Unreconciled"
-msgstr ""
+msgstr "Openstaand"
 
 #: mmchecking_list.cpp:858
 #, c-format
 msgid "Do you really want to delete the selected transaction?"
 msgid_plural "Do you really want to delete %i selected transactions?"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Weet u zeker dat u de %i geselecteerde transactie(s) wilt verwijderen?"
+msgstr[1] "Weet je zeker dat je %i geselecteerde transacties wilt verwijderen?"
 
 #: mmchecking_list.cpp:913
 #, c-format
 msgid "Locked transaction to date: %s\n\n"
 "Reconciled transactions."
-msgstr ""
+msgstr "Vergrendelde transactie tot datum: %s\n\n"
+"Afgestemde transacties."
 
 #: mmchecking_list.cpp:916 transdialog.cpp:729 transdialog.cpp:762
 msgid "MMEX Transaction Check"
