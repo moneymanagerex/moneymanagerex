@@ -20,6 +20,8 @@ Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
 #include "mmhomepage.h"
 #include "html_template.h"
 #include "billsdepositspanel.h"
+#include "option.h"
+#include "optionsettingshome.h"
 #include "constants.h"
 #include <algorithm>
 #include <cmath>
@@ -378,12 +380,11 @@ const wxString htmlWidgetBillsAndDeposits::getHTMLText()
 //* Income vs Expenses *//
 const wxString htmlWidgetIncomeVsExpenses::getHTMLText()
 {
+    OptionSettingsHome home_options;
+    int i = Option::instance().getHomePageIncExpRange();
+    const mmDateRange* date_range = static_cast<mmDateRange*>(home_options.m_all_date_ranges[i]);
+    
     bool ignoreFuture = Option::instance().getIgnoreFutureTransactions();
-    wxSharedPtr<mmDateRange> date_range;
-    if (ignoreFuture)
-        date_range = new mmCurrentMonthToDate;
-    else
-        date_range = new mmCurrentMonth;
 
     wxLogDebug("%s - %s", date_range->start_date().FormatISODate(), date_range->end_date().FormatISODate());
 
@@ -421,22 +422,13 @@ const wxString htmlWidgetIncomeVsExpenses::getHTMLText()
         tIncome += incomeExpensesStats[idx].first;
         tExpenses += incomeExpensesStats[idx].second;
     }
-    // Compute chart spacing and interval (chart forced to start at zero)
-    double steps = 10.0;
-    double scaleStepWidth = ceil(std::max(tIncome, tExpenses) / steps);
-    if (scaleStepWidth <= 1.0)
-        scaleStepWidth = 1.0;
-    else {
-        double s = pow10(ceil(log10(scaleStepWidth)) - 1.0);
-        if (s > 0)
-            scaleStepWidth = ceil(scaleStepWidth / s)*s;
-    }
+
 
     StringBuffer json_buffer;
     PrettyWriter<StringBuffer> json_writer(json_buffer);
     json_writer.StartObject();
     json_writer.Key("0");
-    json_writer.String(wxString::Format(_("Income vs Expenses: %s"), date_range.get()->local_title()).utf8_str());
+    json_writer.String(wxString::Format(_("Income vs Expenses: %s"), date_range->local_title()).utf8_str());
     json_writer.Key("1");
     json_writer.String(_("Type").utf8_str());
     json_writer.Key("2");
@@ -459,10 +451,6 @@ const wxString htmlWidgetIncomeVsExpenses::getHTMLText()
     json_writer.String(wxString::FromCDouble(tIncome, 2).utf8_str());
     json_writer.Key("11");
     json_writer.String(wxString::FromCDouble(tExpenses, 2).utf8_str());
-    json_writer.Key("12");
-    json_writer.Int(steps);
-    json_writer.Key("13");
-    json_writer.Int(scaleStepWidth);
     json_writer.EndObject();
 
     wxLogDebug("======= mmHomePagePanel::getIncomeVsExpensesJSON =======");

@@ -1,5 +1,6 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
+ Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -212,13 +213,9 @@ void mmReportsPanel::CreateControls()
             m_all_date_ranges.push_back(new mmCurrentYear());
             m_all_date_ranges.push_back(new mmCurrentYearToDate());
             m_all_date_ranges.push_back(new mmLastYear());
-
-            int day = Model_Infotable::instance().GetIntInfo("FINANCIAL_YEAR_START_DAY", 1);
-            int month = Model_Infotable::instance().GetIntInfo("FINANCIAL_YEAR_START_MONTH", 7);
-
-            m_all_date_ranges.push_back(new mmCurrentFinancialYear(day, month));
-            m_all_date_ranges.push_back(new mmCurrentFinancialYearToDate(day, month));
-            m_all_date_ranges.push_back(new mmLastFinancialYear(day, month));
+            m_all_date_ranges.push_back(new mmCurrentFinancialYear());
+            m_all_date_ranges.push_back(new mmCurrentFinancialYearToDate());
+            m_all_date_ranges.push_back(new mmLastFinancialYear());
             m_all_date_ranges.push_back(new mmAllTime());
             m_all_date_ranges.push_back(new mmLast365Days());
             m_all_date_ranges.push_back(new mmSpecifiedRange(wxDate::Today().SetDay(1), wxDate::Today()));

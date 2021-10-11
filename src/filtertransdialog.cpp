@@ -572,8 +572,7 @@ bool mmFilterTransactionsDialog::isValuesCorrect()
         switch (startDateDropDown_->GetSelection())
         {
             case FROM_FIN_YEAR:
-                date_range = new mmCurrentFinancialYear(wxAtoi(Option::instance().FinancialYearStartDay())
-                                        , wxAtoi(Option::instance().FinancialYearStartMonth()));
+                date_range = new mmCurrentFinancialYear();
                 break;
             case FROM_CAL_YEAR:
                 date_range = new mmCurrentYear;
@@ -904,13 +903,11 @@ void mmFilterTransactionsDialog::setPresettings(const wxString& view)
     else if (view == VIEW_TRANS_CURRENT_YEAR_STR)
         date_range = new mmCurrentYear;
     else if (view == VIEW_TRANS_CRRNT_FIN_YEAR_STR)
-        date_range = new mmCurrentFinancialYear(wxAtoi(Option::instance().FinancialYearStartDay())
-            , wxAtoi(Option::instance().FinancialYearStartMonth()));
+        date_range = new mmCurrentFinancialYear();
     else if (view == VIEW_TRANS_LAST_YEAR_STR)
         date_range = new mmLastYear;
     else if (view == VIEW_TRANS_LAST_FIN_YEAR_STR)
-        date_range = new mmLastFinancialYear(wxAtoi(Option::instance().FinancialYearStartDay())
-            , wxAtoi(Option::instance().FinancialYearStartMonth()));
+        date_range = new mmLastFinancialYear();
     if (date_range == NULL)
         date_range = new mmCurrentMonth;
 
