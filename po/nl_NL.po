@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-10-02 17:56+0300\n"
-"PO-Revision-Date: 2021-10-11 19:29\n"
+"PO-Revision-Date: 2021-10-11 20:00\n"
 "Last-Translator: \n"
 "Language-Team: Dutch\n"
 "MIME-Version: 1.0\n"
@@ -2286,7 +2286,7 @@ msgstr "DB onderhoud voltooid, a.u.b. MMEX sluiten en opnieuw openen!"
 
 #: dbwrapper.cpp:70
 msgid "When database file opening:"
-msgstr ""
+msgstr "Wanneer het databasebestand wordt geopend:"
 
 #: dbwrapper.cpp:74
 msgid "Can't open file"
@@ -2300,7 +2300,9 @@ msgstr "U moet een pad naar een ander databestand opgeven"
 msgid "An incorrect password given for an encrypted file\n"
 "or\n"
 "attempt to open a File that is not a database file \n"
-msgstr ""
+msgstr "Een onjuist wachtwoord gegeven voor een versleuteld bestand\n"
+"of\n"
+"probeert een bestand te openen dat geen databasebestand is \n"
 
 #: dbwrapper.cpp:82 import_export/qif_import_gui.cpp:858 webapp.cpp:120
 #, c-format
@@ -2317,7 +2319,7 @@ msgstr ""
 
 #: diagnostics.cpp:101
 msgid "Developers may ask you to provide information presented here in order to help diagnose issues you may report with the program."
-msgstr ""
+msgstr "Ontwikkelaars kunnen u vragen om informatie te verstrekken die hier wordt gepresenteerd om te helpen bij het diagnosticeren van problemen die u kunt melden met het programma."
 
 #: filtertransdialog.cpp:45 mmhomepage.cpp:657 model/Model_Billsdeposits.cpp:40
 #: model/Model_Checking.cpp:37
@@ -2448,7 +2450,7 @@ msgstr "Sla alle actieve waarden op in de huidige voorkeursinstelling selectie"
 
 #: filtertransdialog.cpp:432
 msgid "Clear all fields for current Preset selection"
-msgstr ""
+msgstr "Alle velden wissen voor huidige voorkeursinstelling selectie"
 
 #: filtertransdialog.cpp:657
 msgid "Hide Report Columns"
@@ -2953,7 +2955,7 @@ msgstr "Regel %zu \t %s\n"
 #: import_export/qif_import_gui.cpp:463
 #, c-format
 msgid "Number of lines read from QIF file: %zu in %lld ms"
-msgstr ""
+msgstr "Aantal gelezen regels van QIF-bestand: %zu in %lld ms"
 
 #: import_export/qif_import_gui.cpp:466
 msgid "Press OK Button to continue"
@@ -3225,7 +3227,7 @@ msgstr "Datum veld is verplicht."
 
 #: import_export/univcsvdialog.cpp:927
 msgid "Amount field or both Withdrawal and Deposit fields are required."
-msgstr ""
+msgstr "Bedrag veld of Opname en Storting velden zijn vereist."
 
 #: import_export/univcsvdialog.cpp:928 import_export/univcsvdialog.cpp:1057
 #: themes.cpp:183 webappdialog.cpp:417
@@ -3235,7 +3237,7 @@ msgstr "Importeren"
 #: import_export/univcsvdialog.cpp:980
 #, c-format
 msgid "Transactions imported to account %s: %ld"
-msgstr ""
+msgstr "Transacties geïmporteerd naar account %s: %ld"
 
 #: import_export/univcsvdialog.cpp:991
 #, c-format
