@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-10-02 17:56+0300\n"
-"PO-Revision-Date: 2021-10-11 17:04\n"
+"PO-Revision-Date: 2021-10-11 19:29\n"
 "Last-Translator: \n"
 "Language-Team: Dutch\n"
 "MIME-Version: 1.0\n"
@@ -2444,7 +2444,7 @@ msgstr "%i: Leeg"
 
 #: filtertransdialog.cpp:427
 msgid "Save active values into current Preset selection"
-msgstr ""
+msgstr "Sla alle actieve waarden op in de huidige voorkeursinstelling selectie"
 
 #: filtertransdialog.cpp:432
 msgid "Clear all fields for current Preset selection"
@@ -2851,7 +2851,7 @@ msgstr "JSON bestanden (*.json)"
 
 #: import_export/qif_export.cpp:316 import_export/univcsvdialog.cpp:1565
 msgid "CSV Files (*.csv)"
-msgstr ""
+msgstr "CSV-bestanden (*.csv)"
 
 #: import_export/qif_export.cpp:334
 msgid "No Account available for export"
@@ -3160,7 +3160,7 @@ msgstr "Selecteer CSV-bestand voor import"
 
 #: import_export/univcsvdialog.cpp:438
 msgid "Choose XML data file to Export"
-msgstr ""
+msgstr "Selecteer het te exporteren XML-bestand"
 
 #: import_export/univcsvdialog.cpp:438
 msgid "Choose CSV data file to Export"
@@ -3217,7 +3217,7 @@ msgstr "Positief als type '%s ' heeft"
 
 #: import_export/univcsvdialog.cpp:925
 msgid "Incorrect fields specified for import!"
-msgstr ""
+msgstr "Onjuiste velden gespecificeerd voor import!"
 
 #: import_export/univcsvdialog.cpp:926
 msgid "Date field is required."
@@ -3353,7 +3353,7 @@ msgstr "Selecteer het te exporteren XML-bestand"
 
 #: import_export/univcsvdialog.cpp:1564
 msgid "XML Files (*.xml)"
-msgstr ""
+msgstr "Xml bestanden (*.xml)"
 
 #: import_export/univcsvdialog.cpp:1564
 msgid "All Files"
@@ -3521,15 +3521,15 @@ msgstr "Eén jaar aftrekken"
 
 #: mmSimpleDialogs.cpp:178
 msgid "Subtract one month"
-msgstr ""
+msgstr "Een maand aftrekken"
 
 #: mmSimpleDialogs.cpp:179
 msgid "Add one month"
-msgstr ""
+msgstr "Een maand toevoegen"
 
 #: mmSimpleDialogs.cpp:180
 msgid "Add one year"
-msgstr ""
+msgstr "Eén jaar toevoegen"
 
 #: mmSimpleDialogs.cpp:237
 #, c-format
@@ -3602,7 +3602,7 @@ msgstr "A.u.b. een niet leeg teken invoeren."
 
 #: mmTextCtrl.cpp:69
 msgid "Invalid Value"
-msgstr ""
+msgstr "Foutieve waarde"
 
 #: mmTextCtrl.cpp:95
 msgid "Please enter a positive or calculated value."
@@ -3763,7 +3763,7 @@ msgstr "Toon &Splitsen categorieën"
 
 #: mmchecking_list.cpp:394
 msgid "Create Recurring T&ransaction"
-msgstr ""
+msgstr "Nieuwe herhalende t&ransactie"
 
 #: mmchecking_list.cpp:400
 msgid "&Delete selected transaction"
