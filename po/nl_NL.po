@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-10-02 17:56+0300\n"
-"PO-Revision-Date: 2021-10-11 16:09\n"
+"PO-Revision-Date: 2021-10-11 16:26\n"
 "Last-Translator: \n"
 "Language-Team: Dutch\n"
 "MIME-Version: 1.0\n"
@@ -1907,7 +1907,7 @@ msgstr "Cijfers schaal"
 
 #: customfieldeditdialog.cpp:174
 msgid "Enter the decimal digits scale allowed"
-msgstr ""
+msgstr "Voer de toegestane decimale schaal in"
 
 #: customfieldeditdialog.cpp:177
 msgid "Panel's column"
@@ -2223,7 +2223,7 @@ msgstr "A.u.b. restore de DB met de automatisch aangemaakte back-up van voor de 
 
 #: dbupgrade.cpp:75 dbupgrade.cpp:109 dbupgrade.cpp:121
 msgid "MMEX database upgrade"
-msgstr ""
+msgstr "MMEX database bijwerken"
 
 #: dbupgrade.cpp:107
 msgid "MMEX database error!"
@@ -2349,23 +2349,23 @@ msgstr "Alles uitgezonderd bevestigde"
 
 #: filtertransdialog.cpp:63
 msgid "Start of Financial Year"
-msgstr ""
+msgstr "Begin van financieel jaar"
 
 #: filtertransdialog.cpp:64
 msgid "Start of This Year"
-msgstr ""
+msgstr "Begin van dit jaar"
 
 #: filtertransdialog.cpp:65
 msgid "Since 90 days ago"
-msgstr ""
+msgstr "Sinds 90 dagen geleden"
 
 #: filtertransdialog.cpp:66
 msgid "Since 30 days ago"
-msgstr ""
+msgstr "Sinds 30 dagen geleden"
 
 #: filtertransdialog.cpp:67
 msgid "Since Today"
-msgstr ""
+msgstr "Sinds vandaag"
 
 #: filtertransdialog.cpp:182 transactionsupdatedialog.cpp:112
 msgid "Specify"
@@ -2425,15 +2425,15 @@ msgstr ""
 
 #: filtertransdialog.cpp:368
 msgid "Select the Color"
-msgstr ""
+msgstr "Selecteer de kleur"
 
 #: filtertransdialog.cpp:373
 msgid "Hide Columns"
-msgstr ""
+msgstr "Verberg kolommen"
 
 #: filtertransdialog.cpp:397
 msgid "Settings"
-msgstr ""
+msgstr "Instellingen"
 
 #: filtertransdialog.cpp:418 filtertransdialog.cpp:797
 #: filtertransdialog.cpp:837 filtertransdialog.cpp:1063
@@ -2456,7 +2456,7 @@ msgstr ""
 
 #: filtertransdialog.cpp:799 filtertransdialog.cpp:1522
 msgid "Please Enter"
-msgstr ""
+msgstr "Voer in"
 
 #: filtertransdialog.cpp:799 filtertransdialog.cpp:1522
 msgid "Setting Name"
@@ -2948,7 +2948,7 @@ msgstr "Regel lezen %zu, %lld ms"
 #: import_export/qif_import_gui.cpp:390
 #, c-format
 msgid "Line %zu \t %s\n"
-msgstr ""
+msgstr "Regel %zu \t %s\n"
 
 #: import_export/qif_import_gui.cpp:463
 #, c-format
@@ -3168,7 +3168,7 @@ msgstr "Selecteer CSV-bestand om te exporteren"
 
 #: import_export/univcsvdialog.cpp:441
 msgid "Template name"
-msgstr ""
+msgstr "Template naam"
 
 #: import_export/univcsvdialog.cpp:442
 msgid "Save Template"
@@ -3221,7 +3221,7 @@ msgstr ""
 
 #: import_export/univcsvdialog.cpp:926
 msgid "Date field is required."
-msgstr ""
+msgstr "Datum veld is verplicht."
 
 #: import_export/univcsvdialog.cpp:927
 msgid "Amount field or both Withdrawal and Deposit fields are required."
@@ -3249,7 +3249,7 @@ msgstr ""
 
 #: import_export/univcsvdialog.cpp:1007
 msgid "Invalid Date."
-msgstr ""
+msgstr "Onjuiste datum."
 
 #: import_export/univcsvdialog.cpp:1008 mmTextCtrl.cpp:98
 msgid "Invalid Amount."
@@ -3277,7 +3277,7 @@ msgstr ""
 #: import_export/univcsvdialog.cpp:1046
 #, c-format
 msgid "Empty Lines: %ld"
-msgstr ""
+msgstr "Lege regels: %ld"
 
 #: import_export/univcsvdialog.cpp:1048
 #, c-format
@@ -3394,7 +3394,7 @@ msgstr "Online bijwerken"
 
 #: maincurrencydialog.cpp:176
 msgid "Show all even the unused currencies"
-msgstr ""
+msgstr "Toon alle ongebruikte valuta's"
 
 #: maincurrencydialog.cpp:206 payeedialog.cpp:126
 msgid "Search:"
@@ -3517,7 +3517,7 @@ msgstr "Kan het standaard valutasymbool niet vinden!"
 
 #: mmSimpleDialogs.cpp:177
 msgid "Subtract one year"
-msgstr ""
+msgstr "Eén jaar aftrekken"
 
 #: mmSimpleDialogs.cpp:178
 msgid "Subtract one month"
