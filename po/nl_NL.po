@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-10-02 17:56+0300\n"
-"PO-Revision-Date: 2021-10-12 16:40\n"
+"PO-Revision-Date: 2021-10-12 18:52\n"
 "Last-Translator: \n"
 "Language-Team: Dutch\n"
 "MIME-Version: 1.0\n"
@@ -3363,7 +3363,7 @@ msgstr "Alle bestanden"
 
 #: import_export/univcsvdialog.cpp:1842
 msgid "Please, type the word indicating positive values in your CSV file, e.g. 'debit'"
-msgstr ""
+msgstr "Typ het woord voor positieve waarden in uw CSV-bestand, bijv. 'debit'"
 
 #: import_export/univcsvdialog.cpp:1842
 msgid "Enter a value"
@@ -3890,7 +3890,7 @@ msgstr "Kies de doel rekening"
 
 #: mmchecking_list.cpp:1221
 msgid "Recurring Transaction saved."
-msgstr ""
+msgstr "Herhalende transactie opgeslagen."
 
 #: mmcheckingpanel.cpp:333 mmframe.cpp:1724 transdialog.cpp:180
 msgid "New Transaction"
@@ -3923,7 +3923,7 @@ msgstr "Volledige Transacties Rapport"
 #: mmcheckingpanel.cpp:389
 #, c-format
 msgid "Account View : %s"
-msgstr ""
+msgstr "Account weergave: %s"
 
 #: mmcheckingpanel.cpp:407
 msgid "Account Bal: "
@@ -3948,7 +3948,7 @@ msgstr "Bijlage"
 #: mmcheckingpanel.cpp:500
 #, c-format
 msgid "Transactions selected: %zu"
-msgstr ""
+msgstr "Geselecteerde transacties: %zu"
 
 #: mmcheckingpanel.cpp:503
 #, c-format
@@ -4052,7 +4052,7 @@ msgstr "Startpagina"
 
 #: mmframe.cpp:708
 msgid "All Transactions"
-msgstr ""
+msgstr "Alle transacties"
 
 #: mmframe.cpp:740 mmhomepage.cpp:648 reports/summary.cpp:290
 #: reports/summary.cpp:326
