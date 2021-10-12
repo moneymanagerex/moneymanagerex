@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-10-02 17:56+0300\n"
-"PO-Revision-Date: 2021-10-11 20:10\n"
+"PO-Revision-Date: 2021-10-12 16:40\n"
 "Last-Translator: \n"
 "Language-Team: Dutch\n"
 "MIME-Version: 1.0\n"
@@ -2239,11 +2239,11 @@ msgstr "MMEX database versie %i is niet compatibel met deze MMEX programmaversie
 #: dbupgrade.cpp:120
 #, c-format
 msgid "MMEX database succesfully upgraded to version %i"
-msgstr ""
+msgstr "MMEX databestand succesvol bijgewerkt naar versie %i"
 
 #: dbupgrade.cpp:121
 msgid "We suggest a database optimization under Tools -> Database -> Optimize"
-msgstr ""
+msgstr "We suggereren een database optimalisatie onder Tools -> Database -> Optimaliseren"
 
 #: dbupgrade.cpp:182
 msgid "Load debug file"
@@ -2264,7 +2264,7 @@ msgstr "Query fout, a.u.b. contact met MMEX support opnemen!"
 
 #: dbupgrade.cpp:233 dbupgrade.cpp:288
 msgid "Invalid file content, please contact MMEX support!"
-msgstr ""
+msgstr "Ongeldige bestandsinhoud, neem contact op met MMEX support!"
 
 #: dbupgrade.cpp:240
 msgid "Send this log to MMEX support team:\n"
@@ -3639,7 +3639,7 @@ msgstr "TIP: Denk eraan om regelmatig een back-up te maken van het *.mmb  bestan
 
 #: mmTips.h:26
 msgid "Tip: The .mmb file is not encrypted. That means anyone else having the proper know how can actually open the file and read the contents. So make sure that if you are storing any sensitive financial information it is properly guarded."
-msgstr ""
+msgstr "Tip: Het .mmb bestand is niet versleuteld. Dat betekent dat iedereen die kennis heeft van het bestand deze kan openen en de inhoud kan lezen. Dus zorg ervoor dat als u gevoelige financiële informatie opslaat, deze naar behoren wordt bewaakt."
 
 #: mmTips.h:27
 msgid "Tip: To mark a transaction as reconciled, just select the transaction and hit the 'r' or 'R' key. To mark a transaction as unreconciled, just select the transaction and hit the 'u' or 'U' key."
@@ -3800,7 +3800,7 @@ msgstr "naar ongeldig"
 
 #: mmchecking_list.cpp:417
 msgid "as Followup"
-msgstr ""
+msgstr "als opvolging"
 
 #: mmchecking_list.cpp:419
 msgid "as Duplicate"
@@ -3864,7 +3864,7 @@ msgstr ""
 
 #: mmchecking_list.cpp:952
 msgid "Closed Account Check"
-msgstr ""
+msgstr "Gesloten account controle"
 
 #: mmchecking_list.cpp:1138
 #, c-format
@@ -3875,7 +3875,7 @@ msgstr[1] ""
 
 #: mmchecking_list.cpp:1143
 msgid "Confirm Transaction Move"
-msgstr ""
+msgstr "Transactie verplaatsen bevestigen"
 
 #: mmchecking_list.cpp:1149
 #, c-format
@@ -3918,7 +3918,7 @@ msgstr ""
 
 #: mmcheckingpanel.cpp:387
 msgid "Full Transactions Report"
-msgstr ""
+msgstr "Volledige Transacties Rapport"
 
 #: mmcheckingpanel.cpp:389
 #, c-format
@@ -3953,7 +3953,7 @@ msgstr ""
 #: mmcheckingpanel.cpp:503
 #, c-format
 msgid "Selected transactions balance: %s"
-msgstr ""
+msgstr "Geselecteerde transacties balans: %s"
 
 #: mmcheckingpanel.cpp:507
 #, c-format
@@ -3966,11 +3966,11 @@ msgstr "Aangepaste velden"
 
 #: mmcustomdata.cpp:309
 msgid "Please select"
-msgstr ""
+msgstr "Gelieve een keuze te maken"
 
 #: mmcustomdata.cpp:309
 msgid "Multi Choice"
-msgstr ""
+msgstr "Meerdere keuzes"
 
 #: mmcustomdata.cpp:637
 #, c-format
@@ -3995,7 +3995,7 @@ msgstr ""
 
 #: mmex.cpp:134 mmframe.cpp:3376 optionsettingsgeneral.cpp:341
 msgid "Language change"
-msgstr ""
+msgstr "Taal wijzigen"
 
 #: mmex.cpp:174
 msgid "Fatal error occured.\n"
@@ -4012,7 +4012,7 @@ msgstr "Knoppenbalk"
 
 #: mmframe.cpp:471 mmframe.cpp:712
 msgid "Favourites"
-msgstr ""
+msgstr "Favorieten"
 
 #: mmframe.cpp:472 mmframe.cpp:716 mmhomepage.cpp:642 reports/summary.cpp:285
 #: reports/summary.cpp:321
@@ -4065,7 +4065,7 @@ msgstr "Begrotingen"
 
 #: mmframe.cpp:809 mmframe.cpp:2550 mmhelppanel.cpp:69
 msgid "Help"
-msgstr ""
+msgstr "Help"
 
 #: mmframe.cpp:1192
 msgid "Do you really want to delete the account?"
@@ -4193,7 +4193,7 @@ msgstr "Export naar CSV-bestand"
 
 #: mmframe.cpp:1382
 msgid "Export to fixed CSV"
-msgstr ""
+msgstr "Exporteren naar een vast CSV-bestand"
 
 #: mmframe.cpp:1383
 msgid "Export to XML"
@@ -4301,7 +4301,7 @@ msgstr "Fullscreen"
 
 #: mmframe.cpp:1448
 msgid "Switch Application &Language"
-msgstr ""
+msgstr "Verander applicatie &taal"
 
 #: mmframe.cpp:1449 optionsettingsgeneral.cpp:93
 msgid "Change language used for MMEX GUI"
@@ -4313,11 +4313,11 @@ msgstr ""
 
 #: mmframe.cpp:1474
 msgid "&Home Page"
-msgstr ""
+msgstr "&Startpagina"
 
 #: mmframe.cpp:1474 mmframe.cpp:1722
 msgid "Show Home Page"
-msgstr ""
+msgstr "Toon home pagina"
 
 #: mmframe.cpp:1483
 msgid "Change the account type of an account."
@@ -4329,7 +4329,7 @@ msgstr "Verwijder een rekening uit het databestand"
 
 #: mmframe.cpp:1499
 msgid "Download Ra&tes..."
-msgstr ""
+msgstr "Download &tarieven..."
 
 #: mmframe.cpp:1499 mmframe.cpp:1749
 msgid "Download Currency and Stock rates"
@@ -4397,7 +4397,7 @@ msgstr ""
 
 #: mmframe.cpp:1548 mmframe.cpp:2493 optionsettingsview.cpp:338 themes.cpp:137
 msgid "Theme Manager"
-msgstr ""
+msgstr "Thema Beheerder"
 
 #: mmframe.cpp:1554
 msgid "Transaction Report &Filter..."
@@ -4469,7 +4469,7 @@ msgstr "Genereer een databaserapport of herstel de fouten"
 
 #: mmframe.cpp:1597
 msgid "Databa&se"
-msgstr ""
+msgstr "Databa&se"
 
 #: mmframe.cpp:1598
 msgid "Database management"
@@ -4485,7 +4485,7 @@ msgstr "Toon het helpbestand"
 
 #: mmframe.cpp:1610
 msgid "&Website"
-msgstr ""
+msgstr "&Website"
 
 #: mmframe.cpp:1611
 msgid "Open the Money Manager EX website for latest news, updates etc"
@@ -4493,7 +4493,7 @@ msgstr ""
 
 #: mmframe.cpp:1613
 msgid "&Facebook"
-msgstr ""
+msgstr "&Facebook"
 
 #: mmframe.cpp:1613
 msgid "Visit us on Facebook"
@@ -4501,7 +4501,7 @@ msgstr "Bezoek ons op Facebook"
 
 #: mmframe.cpp:1615
 msgid "&Crowdin"
-msgstr ""
+msgstr "&Crowdin"
 
 #: mmframe.cpp:1615
 msgid "We use Crowdin to translate MMEX"
@@ -4509,7 +4509,7 @@ msgstr ""
 
 #: mmframe.cpp:1617
 msgid "&Twitter"
-msgstr ""
+msgstr "&Twitter"
 
 #: mmframe.cpp:1617
 msgid "Follow us on Twitter"
