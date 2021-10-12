@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-10-02 17:56+0300\n"
-"PO-Revision-Date: 2021-10-12 19:42\n"
+"PO-Revision-Date: 2021-10-12 19:57\n"
 "Last-Translator: \n"
 "Language-Team: Dutch\n"
 "MIME-Version: 1.0\n"
@@ -3757,8 +3757,8 @@ msgstr "Kopieer transactie"
 #: mmchecking_list.cpp:380
 msgid "&Move Transaction"
 msgid_plural "&Move Transactions"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "&Verplaats transactie"
+msgstr[1] "Transacties &verplaatsen"
 
 #: mmchecking_list.cpp:386
 msgid "&View Split Categories"
@@ -3771,8 +3771,8 @@ msgstr "Nieuwe herhalende t&ransactie"
 #: mmchecking_list.cpp:400
 msgid "&Delete selected transaction"
 msgid_plural "&Delete selected transactions"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "&Geselecteerde transactie verwijderen"
+msgstr[1] "&Verwijder de geselecteerde transacties"
 
 #: mmchecking_list.cpp:403
 msgid "Delete all transactions in current view"
@@ -3860,7 +3860,8 @@ msgstr[1] ""
 #: mmchecking_list.cpp:951
 msgid "\n\n"
 "Do you still want to perform the edit?"
-msgstr ""
+msgstr "\n\n"
+"Wil je nog steeds de bewerking uitvoeren?"
 
 #: mmchecking_list.cpp:952
 msgid "Closed Account Check"
@@ -3870,8 +3871,8 @@ msgstr "Gesloten account controle"
 #, c-format
 msgid "Do you really want to move the selected transaction?"
 msgid_plural "Do you really want to move %i selected transactions?"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Wilt u de geselecteerde transactie echt verplaatsen?"
+msgstr[1] "Wilt u echt %i geselecteerde transacties verplaatsen?"
 
 #: mmchecking_list.cpp:1143
 msgid "Confirm Transaction Move"
@@ -3881,8 +3882,8 @@ msgstr "Transactie verplaatsen bevestigen"
 #, c-format
 msgid "Moving transaction to..."
 msgid_plural "Moving %i transactions to..."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Transactie verplaatsen naar..."
+msgstr[1] "%i transacties verplaatsen naar..."
 
 #: mmchecking_list.cpp:1153 stocks_list.cpp:292
 msgid "Select the destination Account "
@@ -4181,7 +4182,7 @@ msgstr "Importeer een QIF-bestand"
 
 #: mmframe.cpp:1377
 msgid "&WebApp..."
-msgstr ""
+msgstr "&WebApp..."
 
 #: mmframe.cpp:1377
 msgid "Import from WebApp"
@@ -4213,7 +4214,7 @@ msgstr "Export naar HTML-bestand"
 
 #: mmframe.cpp:1392 mmframe.cpp:1755
 msgid "&Print..."
-msgstr ""
+msgstr "&Afdrukken..."
 
 #: mmframe.cpp:1392 mmframe.cpp:1755
 msgid "Print current view"
@@ -4221,7 +4222,7 @@ msgstr "Print huidige weergave"
 
 #: mmframe.cpp:1398
 msgid "E&xit\tAlt-X"
-msgstr ""
+msgstr "&Afsluiten Alt-X"
 
 #: mmframe.cpp:1398
 msgid "Quit this program"
@@ -4309,7 +4310,7 @@ msgstr ""
 
 #: mmframe.cpp:1454 optionsettingsgeneral.cpp:83 optionsettingsgeneral.cpp:349
 msgid "system default"
-msgstr ""
+msgstr "systeem standaard"
 
 #: mmframe.cpp:1474
 msgid "&Home Page"
@@ -4401,7 +4402,7 @@ msgstr "Thema Beheerder"
 
 #: mmframe.cpp:1554
 msgid "Transaction Report &Filter..."
-msgstr ""
+msgstr "Transactie &Rapport Filter..."
 
 #: mmframe.cpp:1554 mmframe.cpp:1730
 msgid "Transaction Report Filter"
@@ -4409,7 +4410,7 @@ msgstr "Transactie rapportfilter"
 
 #: mmframe.cpp:1560
 msgid "General Report &Manager..."
-msgstr ""
+msgstr "Algemene Rapport &Beheerder..."
 
 #: mmframe.cpp:1564
 msgid "C&ustom Fields Manager..."
@@ -4453,7 +4454,7 @@ msgstr ""
 
 #: mmframe.cpp:1588
 msgid "&Optimize Database"
-msgstr ""
+msgstr "&Database optimaliseren"
 
 #: mmframe.cpp:1589
 msgid "Optimize database space and performance"
@@ -4477,7 +4478,7 @@ msgstr "Databasebeheer"
 
 #: mmframe.cpp:1605 mmframe.cpp:1759
 msgid "&Help\tF1"
-msgstr ""
+msgstr "&Help F1"
 
 #: mmframe.cpp:1605 mmframe.cpp:1759
 msgid "Show the Help file"
@@ -4513,7 +4514,7 @@ msgstr "&Twitter"
 
 #: mmframe.cpp:1617
 msgid "Follow us on Twitter"
-msgstr ""
+msgstr "Volg ons op Twitter"
 
 #: mmframe.cpp:1619
 msgid "&YouTube"
@@ -4581,7 +4582,7 @@ msgstr ""
 
 #: mmframe.cpp:1638
 msgid "&Donate via PayPal"
-msgstr ""
+msgstr "Doneer via PayPal"
 
 #: mmframe.cpp:1639
 msgid "Donate the team to support infrastructure etc"
@@ -4589,43 +4590,43 @@ msgstr ""
 
 #: mmframe.cpp:1641
 msgid "&Buy us a Coffee"
-msgstr ""
+msgstr "Koop een kopje koffie voor ons"
 
 #: mmframe.cpp:1642
 msgid "Buy key developer a coffee"
-msgstr ""
+msgstr "Koop voor een belangrijke ontwikkelaar een kopje koffie"
 
 #: mmframe.cpp:1645
 msgid "&Community"
-msgstr ""
+msgstr "&Gemeenschap"
 
 #: mmframe.cpp:1646
 msgid "Stay in touch with MMEX community"
-msgstr ""
+msgstr "Blijf in contact met MMEX community"
 
 #: mmframe.cpp:1668
 msgid "Report a &Bug"
-msgstr ""
+msgstr "Meld een bug"
 
 #: mmframe.cpp:1669
 msgid "Report an error in application to the developers"
-msgstr ""
+msgstr "Rapporteer een fout in de applicatie aan de ontwikkelaars"
 
 #: mmframe.cpp:1673
 msgid "View Diagnostics"
-msgstr ""
+msgstr "Diagnose weergeven"
 
 #: mmframe.cpp:1674
 msgid "Help provide information to the developers"
-msgstr ""
+msgstr "Help de ontwikkelaars door informatie te verstrekken"
 
 #: mmframe.cpp:1678
 msgid "&Show App Start Dialog"
-msgstr ""
+msgstr "&App Startvenster weergeven"
 
 #: mmframe.cpp:1678
 msgid "App Start Dialog"
-msgstr ""
+msgstr "App Startvenster weergeven"
 
 #: mmframe.cpp:1682
 msgid "Check for &Updates"
@@ -4633,7 +4634,7 @@ msgstr "Controleren op nieuwe &versie"
 
 #: mmframe.cpp:1682
 msgid "Check For Updates"
-msgstr ""
+msgstr "Controleer op updates"
 
 #: mmframe.cpp:1686 mmframe.cpp:1758
 msgid "&About..."
@@ -4661,7 +4662,7 @@ msgstr "&Beeld"
 
 #: mmframe.cpp:1694
 msgid "&Help"
-msgstr ""
+msgstr "&Help"
 
 #: mmframe.cpp:1718 mmframe.cpp:1724
 msgid "New"
@@ -4693,7 +4694,7 @@ msgstr "Nieuws"
 
 #: mmframe.cpp:1749
 msgid "Download rates"
-msgstr ""
+msgstr "Download &tarieven"
 
 #: mmframe.cpp:1752
 msgid "Toggle Fullscreen\tF11"
@@ -4703,11 +4704,12 @@ msgstr "Fullscreen\tF11"
 #, c-format
 msgid "Please enter password for Database\n\n"
 "%s"
-msgstr ""
+msgstr "Voer een wachtwoord in voor de Database\n\n"
+"%s"
 
 #: mmframe.cpp:1814 mmframe.cpp:2045 mmframe.cpp:2178
 msgid "MMEX: Encrypted Database"
-msgstr ""
+msgstr "MMEX: Gecodeerde Database"
 
 #: mmframe.cpp:1848
 msgid "Have MMEX support provided you a debug/patch file?"
@@ -4715,15 +4717,15 @@ msgstr "Heeft MMEX support u een debug/patch bestand toegezonden?"
 
 #: mmframe.cpp:1848
 msgid "MMEX upgrade"
-msgstr ""
+msgstr "MMEX upgrade"
 
 #: mmframe.cpp:1870 mmframe.cpp:1912
 msgid "No File opened"
-msgstr ""
+msgstr "Geen bestand geopend"
 
 #: mmframe.cpp:1872
 msgid "Sorry. The Database version is too old or Database password is incorrect"
-msgstr ""
+msgstr "Sorry. De Database versie is te oud of het wachtwoord van de database is onjuist"
 
 #: mmframe.cpp:1902
 msgid "&Next ->"
@@ -4731,15 +4733,15 @@ msgstr "&Volgende ->"
 
 #: mmframe.cpp:1915
 msgid "Cannot locate previously opened database.\n"
-msgstr ""
+msgstr "Kan eerder geopende database niet vinden.\n"
 
 #: mmframe.cpp:1917
 msgid "Password not entered for encrypted Database.\n"
-msgstr ""
+msgstr "Wachtwoord niet ingevoerd voor versleutelde Database.\n"
 
 #: mmframe.cpp:1935
 msgid "portable mode"
-msgstr ""
+msgstr "draagbare modus"
 
 #: mmframe.cpp:1971
 msgid "The database you are trying to open has been marked as opened by another instance of MMEX.\n"
