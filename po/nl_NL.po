@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-10-02 17:56+0300\n"
-"PO-Revision-Date: 2021-10-12 19:00\n"
+"PO-Revision-Date: 2021-10-12 19:42\n"
 "Last-Translator: \n"
 "Language-Team: Dutch\n"
 "MIME-Version: 1.0\n"
@@ -3732,23 +3732,23 @@ msgstr "&Nieuwe overboeking"
 #: mmchecking_list.cpp:362
 msgid "&Edit Transaction"
 msgid_plural "&Edit Transactions"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "&Bewerk transactie"
+msgstr[1] "&Bewerk transacties"
 
 #: mmchecking_list.cpp:367
 msgid "&Copy Transaction"
 msgid_plural "&Copy Transactions"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "&Kopieer transactie"
+msgstr[1] "&Kopieer transacties"
 
 #: mmchecking_list.cpp:372
 msgid "&Paste Transaction"
-msgstr ""
+msgstr "&Plak transactie"
 
 #: mmchecking_list.cpp:372
 #, c-format
 msgid "&Paste Transactions (%d)"
-msgstr ""
+msgstr "&Plak Transacties (%d)"
 
 #: mmchecking_list.cpp:377
 msgid "D&uplicate Transaction"
@@ -4285,11 +4285,11 @@ msgstr "Negeer toekomstige transacties"
 
 #: mmframe.cpp:1419 optionsettingsview.cpp:99
 msgid "Show Tooltips"
-msgstr ""
+msgstr "Tooltips weergeven"
 
 #: mmframe.cpp:1421 optionsettingsview.cpp:105
 msgid "Show Money Tips"
-msgstr ""
+msgstr "Toon Geld Tips"
 
 #: mmframe.cpp:1441
 msgid "Toggle &Fullscreen\tShift+F11"
@@ -4333,7 +4333,7 @@ msgstr "Download &tarieven..."
 
 #: mmframe.cpp:1499 mmframe.cpp:1749
 msgid "Download Currency and Stock rates"
-msgstr ""
+msgstr "Download valutakoersen en aandelenkoersen"
 
 #: mmframe.cpp:1505
 msgid "Organize &Categories..."
@@ -4349,7 +4349,7 @@ msgstr "Beheren begunstigden: "
 
 #: mmframe.cpp:1513
 msgid "Organize Curre&ncy..."
-msgstr ""
+msgstr "Beheren &valuta's..."
 
 #: mmframe.cpp:1513 mmframe.cpp:1728
 msgid "Organize Currency"
@@ -4369,7 +4369,7 @@ msgstr "Alle begunstigden aan een andere begunstigde toewijzen"
 
 #: mmframe.cpp:1523
 msgid "Re&location of..."
-msgstr ""
+msgstr "Opnieuw Toewijzen van..."
 
 #: mmframe.cpp:1524
 msgid "Relocate Categories && Payees"
@@ -4393,7 +4393,7 @@ msgstr "&Bezittingen"
 
 #: mmframe.cpp:1548
 msgid "T&heme Manager"
-msgstr ""
+msgstr "T&hema Beheerder"
 
 #: mmframe.cpp:1548 mmframe.cpp:2493 optionsettingsview.cpp:338 themes.cpp:137
 msgid "Theme Manager"
@@ -4425,7 +4425,7 @@ msgstr ""
 
 #: mmframe.cpp:1570 mmframe.cpp:2502 mmframe.cpp:2505
 msgid "Refresh WebApp"
-msgstr ""
+msgstr "Vernieuw WebApp"
 
 #: mmframe.cpp:1575
 msgid "&Options...\tCtrl-,"
@@ -4517,7 +4517,7 @@ msgstr ""
 
 #: mmframe.cpp:1619
 msgid "&YouTube"
-msgstr ""
+msgstr "&YouTube"
 
 #: mmframe.cpp:1619
 msgid "Watch free video materials about MMEX"
@@ -4525,7 +4525,7 @@ msgstr ""
 
 #: mmframe.cpp:1621
 msgid "&Slack"
-msgstr ""
+msgstr "&Slack"
 
 #: mmframe.cpp:1621
 msgid "Communicate online with MMEX team from your desktop or mobile device"
@@ -4533,7 +4533,7 @@ msgstr ""
 
 #: mmframe.cpp:1623
 msgid "&GitHub"
-msgstr ""
+msgstr "&GitHub"
 
 #: mmframe.cpp:1623
 msgid "Access open source code repository and track reported bug statuses"
@@ -4541,7 +4541,7 @@ msgstr ""
 
 #: mmframe.cpp:1625
 msgid "W&iki pages"
-msgstr ""
+msgstr "W&iki pagina's"
 
 #: mmframe.cpp:1625
 msgid "Read and update wiki pages"
@@ -4549,7 +4549,7 @@ msgstr ""
 
 #: mmframe.cpp:1627
 msgid "F&orum"
-msgstr ""
+msgstr "F&orum"
 
 #: mmframe.cpp:1628
 msgid "Visit the MMEX forum to see existing user comments or report new issues with the software"
