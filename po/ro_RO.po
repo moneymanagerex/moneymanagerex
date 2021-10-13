@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-10-02 17:56+0300\n"
-"PO-Revision-Date: 2021-10-02 15:20\n"
+"PO-Revision-Date: 2021-10-13 13:39\n"
 "Last-Translator: \n"
 "Language-Team: Romanian\n"
 "MIME-Version: 1.0\n"
@@ -25,35 +25,35 @@ msgstr ""
 
 #: aboutdialog.cpp:55
 msgid "License agreement"
-msgstr ""
+msgstr "Acorduri de licență"
 
 #: aboutdialog.cpp:187
 msgid "About"
-msgstr ""
+msgstr "Despre"
 
 #: aboutdialog.cpp:192
 msgid "Authors"
-msgstr ""
+msgstr "Autori"
 
 #: aboutdialog.cpp:197
 msgid "Sponsors"
-msgstr ""
+msgstr "Sponsori"
 
 #: aboutdialog.cpp:202
 msgid "License"
-msgstr ""
+msgstr "Licență"
 
 #: aboutdialog.cpp:207
 msgid "Privacy"
-msgstr ""
+msgstr "Confidențialitate"
 
 #: aboutdialog.cpp:245 optionsettingsnet.cpp:114
 msgid "Send anonymous statistics usage data"
-msgstr ""
+msgstr "Trimite date statistice anonime de utilizare"
 
 #: aboutdialog.cpp:246 optionsettingsnet.cpp:116
 msgid "Enable to help us sending anonymous data about MMEX usage."
-msgstr ""
+msgstr "Permite să ne ajute să trimitem date anonime despre utilizarea MMEX."
 
 #: aboutdialog.cpp:253 accountdialog.cpp:306 appstartdialog.cpp:137
 #: assetdialog.cpp:305 attachmentdialog.cpp:120 billsdepositsdialog.cpp:491
@@ -69,7 +69,7 @@ msgstr ""
 #: splittransactionsdialog.cpp:172 transactionsupdatedialog.cpp:240
 #: transdialog.cpp:606 wizard_update.cpp:192
 msgid "&OK "
-msgstr ""
+msgstr "&OK "
 
 #: accountdialog.cpp:111 mmframe.cpp:1480
 msgid "Edit Account"
@@ -102,7 +102,7 @@ msgstr "Specifică dacă acest cont este deschis sau închis. Conturile închise
 #: accountdialog.cpp:165
 #, c-format
 msgid "Initial Balance: %s"
-msgstr ""
+msgstr "Sold inițial: %s"
 
 #: accountdialog.cpp:169
 msgid "Enter the initial balance in this account."
@@ -151,7 +151,7 @@ msgstr "Altele"
 
 #: accountdialog.cpp:209
 msgid "Card Number:"
-msgstr ""
+msgstr "Număr card:"
 
 #: accountdialog.cpp:209
 msgid "Account Number:"
@@ -179,7 +179,7 @@ msgstr "Introdu adresa de internet a instituției financiare."
 
 #: accountdialog.cpp:224
 msgid "Contact:"
-msgstr ""
+msgstr "Contact:"
 
 #: accountdialog.cpp:226
 msgid "Enter any contact information for the financial institution."
@@ -195,72 +195,72 @@ msgstr "Introdu informațiile de autentificare/acces pentru instituția financia
 
 #: accountdialog.cpp:236
 msgid "Statement"
-msgstr ""
+msgstr "Extras"
 
 #: accountdialog.cpp:244
 msgid "Statement:"
-msgstr ""
+msgstr "Extras:"
 
 #: accountdialog.cpp:245
 msgid "Locked"
-msgstr ""
+msgstr "Blocat"
 
 #: accountdialog.cpp:246
 msgid "Enable or disable the transaction Lock"
-msgstr ""
+msgstr "Activează sau dezactivează blocarea tranzacției"
 
 #: accountdialog.cpp:249
 msgid "Reconciled Date:"
-msgstr ""
+msgstr "Data Reconciliată:"
 
 #: accountdialog.cpp:251
 msgid "The date of the transaction lock"
-msgstr ""
+msgstr "Data blocării tranzacției"
 
 #: accountdialog.cpp:254
 msgid "Minimum Bal:"
-msgstr ""
+msgstr "Sold minim:"
 
 #: accountdialog.cpp:256
 msgid "Account balance lower limit. Zero to disable"
-msgstr ""
+msgstr "Limita minima pentru soldul contului. Zero pentru a dezactiva"
 
 #: accountdialog.cpp:261 mmchecking_list.cpp:233
 msgid "Credit"
-msgstr ""
+msgstr "Credit"
 
 #: accountdialog.cpp:269
 msgid "Credit Limit:"
-msgstr ""
+msgstr "Limită de credit:"
 
 #: accountdialog.cpp:271
 msgid "Credit limit for the Account. Zero to disable"
-msgstr ""
+msgstr "Limita de credit pentru Cont. Zero pentru dezactivare"
 
 #: accountdialog.cpp:274
 msgid "Interest Rate:"
-msgstr ""
+msgstr "Rata dobânzii:"
 
 #: accountdialog.cpp:278
 msgid "Payment Due Date:"
-msgstr ""
+msgstr "Termen de plată:"
 
 #: accountdialog.cpp:282
 msgid "Minimum Payment:"
-msgstr ""
+msgstr "Plată minimă:"
 
 #: accountdialog.cpp:301
 msgid "Organize attachments of this account"
-msgstr ""
+msgstr "Organizează atașamentele acestui cont"
 
 #: accountdialog.cpp:423
 msgid "Default Image"
-msgstr ""
+msgstr "Imagine implicită"
 
 #: accountdialog.cpp:433
 #, c-format
 msgid "Image #%i"
-msgstr ""
+msgstr "Imagine #%i"
 
 #: accountdialog.cpp:504
 msgid "Account Name "
@@ -274,11 +274,11 @@ msgstr "Valuta"
 
 #: accountdialog.cpp:517
 msgid "Please insert a valid URL"
-msgstr ""
+msgstr "Introduceți un URL valid"
 
 #: accountdialog.cpp:517
 msgid "Invalid URL"
-msgstr ""
+msgstr "URL invalid"
 
 #: accountdialog.h:37 mmframe.cpp:1477 mmframe.cpp:1721
 #: wizard_newaccount.cpp:86 wizard_newaccount.cpp:93 wizard_newaccount.cpp:164
@@ -320,21 +320,21 @@ msgstr "Situl Softului"
 #: appstartdialog.cpp:116
 #, c-format
 msgid "Open the %s website for latest news, updates etc"
-msgstr ""
+msgstr "Deschide site-ul %s pentru cele mai recente știri, actualizări etc"
 
 #: appstartdialog.cpp:124 wizard_update.cpp:185
 #, c-format
 msgid "Show this window next time %s starts"
-msgstr ""
+msgstr "Arată această fereastră data viitoare când începe %s"
 
 #: appstartdialog.cpp:138
 msgid "&Exit "
-msgstr ""
+msgstr "&Închide "
 
 #: appstartdialog.cpp:154
 #, c-format
 msgid "Open the previously opened database : %s"
-msgstr ""
+msgstr "Deschide baza de date deschisă anterior: %s"
 
 #: assetdialog.cpp:61 assetdialog.cpp:410 assetspanel.cpp:467
 msgid "New Asset"
@@ -346,11 +346,11 @@ msgstr "Editează Bunul"
 
 #: assetdialog.cpp:71 assetdialog.cpp:93 assetspanel.cpp:471
 msgid "Add Asset Transaction"
-msgstr ""
+msgstr "Adăugați o tranzacție de active"
 
 #: assetdialog.cpp:97
 msgid "Edit Asset Transaction"
-msgstr ""
+msgstr "Editați tranzacția de active"
 
 #: assetdialog.cpp:183
 msgid "Asset Details"
@@ -410,15 +410,15 @@ msgstr "Specifică dacă valoarea bunului se modifică în timp"
 
 #: assetdialog.cpp:241
 msgid "% Rate"
-msgstr ""
+msgstr "% Evaluează"
 
 #: assetdialog.cpp:247
 msgid "Enter the rate at which the asset changes its value in percentage per year"
-msgstr ""
+msgstr "Introduceți rata la care activul își schimbă valoarea în procente pe an"
 
 #: assetdialog.cpp:259
 msgid "Organize attachments of this asset"
-msgstr ""
+msgstr "Organizează atașamentele acestui activ"
 
 #: assetdialog.cpp:262
 msgid "Enter notes associated with this asset"
@@ -426,24 +426,25 @@ msgstr "Adaugă note asociate cu acest bun"
 
 #: assetdialog.cpp:268
 msgid "New Transaction Details"
-msgstr ""
+msgstr "Detalii despre tranzacțiile noi"
 
 #: assetdialog.cpp:271 sharetransactiondialog.cpp:296
 msgid "Edit Transaction Details"
-msgstr ""
+msgstr "Editați detaliile tranzacției"
 
 #: assetdialog.cpp:306 constants.cpp:73 sharetransactiondialog.cpp:326
 msgid "&Cancel "
-msgstr ""
+msgstr "&Anulați "
 
 #: assetdialog.cpp:402 sharetransactiondialog.cpp:434
 msgid "Invalid Transaction"
-msgstr ""
+msgstr "Tranzacţie invalidă"
 
 #: assetdialog.cpp:409
 msgid "Asset Account not found.\n\n"
 "Would you want to create one?"
-msgstr ""
+msgstr "Contul de Active nu a fost găsit.\n\n"
+"Doriți să creați unul?"
 
 #: assetspanel.cpp:59 billsdepositspanel.cpp:127
 #: import_export/qif_export.cpp:587 mmchecking_list.cpp:205
