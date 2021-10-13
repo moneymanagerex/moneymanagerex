@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-10-02 17:56+0300\n"
-"PO-Revision-Date: 2021-10-13 15:55\n"
+"PO-Revision-Date: 2021-10-13 16:21\n"
 "Last-Translator: \n"
 "Language-Team: Dutch\n"
 "MIME-Version: 1.0\n"
@@ -4493,7 +4493,7 @@ msgstr "&Website"
 
 #: mmframe.cpp:1611
 msgid "Open the Money Manager EX website for latest news, updates etc"
-msgstr ""
+msgstr "Open de Money Manager EX website voor het laatste nieuws, updates enz"
 
 #: mmframe.cpp:1613
 msgid "&Facebook"
@@ -4525,7 +4525,7 @@ msgstr "&YouTube"
 
 #: mmframe.cpp:1619
 msgid "Watch free video materials about MMEX"
-msgstr ""
+msgstr "Bekijk gratis videomateriaal over MMEX"
 
 #: mmframe.cpp:1621
 msgid "&Slack"
@@ -4541,7 +4541,7 @@ msgstr "&GitHub"
 
 #: mmframe.cpp:1623
 msgid "Access open source code repository and track reported bug statuses"
-msgstr ""
+msgstr "Toegang tot open source code repository en track gerapporteerde bug statussen"
 
 #: mmframe.cpp:1625
 msgid "W&iki pages"
@@ -4561,11 +4561,11 @@ msgstr "Bezoek het MMEX-forum om bestaande gebruikersopmerkingen te zien of nieu
 
 #: mmframe.cpp:1630
 msgid "Money Manager Ex for &Android"
-msgstr ""
+msgstr "Money Manager Ex voor &Android"
 
 #: mmframe.cpp:1631
 msgid "Get free Android version and run MMEX on your smart phone or tablet"
-msgstr ""
+msgstr "Krijg gratis Android versie en start MMEX op uw smartphone of tablet"
 
 #: mmframe.cpp:1633
 msgid "&Newsletter"
@@ -4573,11 +4573,11 @@ msgstr "&Nieuwsbrief"
 
 #: mmframe.cpp:1634
 msgid "Subscribe to e-mail newsletter or view existing announcements"
-msgstr ""
+msgstr "Abonneren op nieuwsbrief via e-mail of bekijk bestaande mededelingen"
 
 #: mmframe.cpp:1636
 msgid "&RSS Feed"
-msgstr ""
+msgstr "&RSS feed"
 
 #: mmframe.cpp:1636
 msgid "Connect RSS web feed to news aggregator"
@@ -4775,15 +4775,15 @@ msgstr ""
 
 #: mmframe.cpp:2050
 msgid "Choose database file to Save As"
-msgstr ""
+msgstr "Kies databasebestand om op te slaan"
 
 #: mmframe.cpp:2072
 msgid "Converted DB!"
-msgstr ""
+msgstr "Geconverteerde DB!"
 
 #: mmframe.cpp:2072
 msgid "MMEX message"
-msgstr ""
+msgstr "MMEX bericht"
 
 #: mmframe.cpp:2078
 msgid "MMEX: Encryption Password Change"
@@ -4797,11 +4797,11 @@ msgstr ""
 
 #: mmframe.cpp:2084
 msgid "New password must not be empty."
-msgstr ""
+msgstr "Het wachtwoord mag niet leeg zijn."
 
 #: mmframe.cpp:2088
 msgid "Please confirm new password"
-msgstr ""
+msgstr "Bevestig het nieuwe wachtwoord"
 
 #: mmframe.cpp:2092
 msgid "Password change completed."
@@ -4834,7 +4834,7 @@ msgstr "A.u.b. de funktie alleen op expliciet verzoek van MMEX support gebruiken
 
 #: mmframe.cpp:2125
 msgid "DB Debug"
-msgstr ""
+msgstr "DB Debug"
 
 #: mmframe.cpp:2144 mmframe.cpp:2165
 msgid "Save database file as"
@@ -4846,11 +4846,11 @@ msgstr "Kan het bestand niet naar zichzelf kopiëren"
 
 #: mmframe.cpp:2178
 msgid "Enter password for new database"
-msgstr ""
+msgstr "Voer wachtwoord in voor nieuwe database"
 
 #: mmframe.cpp:2267 mmframe.cpp:2286
 msgid "No account available to import"
-msgstr ""
+msgstr "Geen rekening beschikbaar voor import"
 
 #: mmframe.cpp:2335
 msgid "Asset Accounts hold Asset transactions\n\n"
@@ -4886,7 +4886,7 @@ msgstr "Aandelenrekening aanmaken"
 
 #: mmframe.cpp:2502
 msgid "Accounts, Payees, and Categories Updated"
-msgstr ""
+msgstr "Accounts, begunstigden en categorieën bijgewerkt"
 
 #: mmframe.cpp:2504
 msgid "Issue encountered updating WebApp, check Web server and WebApp settings"
@@ -5155,7 +5155,7 @@ msgstr ""
 
 #: mmreportspanel.cpp:317
 msgid "Budget:"
-msgstr ""
+msgstr "Budget:"
 
 #: mmreportspanel.cpp:343
 msgid "Accounts:"
@@ -5580,7 +5580,7 @@ msgstr ""
 #: optionsettingsgeneral.cpp:325
 #, c-format
 msgid "Currency value sample: %s"
-msgstr ""
+msgstr "Valuta waarde voorbeeld: %s"
 
 #: optionsettingsmisc.cpp:57
 msgid "Stock Quote Web Page"
@@ -5616,15 +5616,15 @@ msgstr "Laatst gebruikt voor begunstigde"
 
 #: optionsettingsmisc.cpp:111
 msgid "Use default for payee"
-msgstr ""
+msgstr "Gebruik standaard voor begunstigde"
 
 #: optionsettingsmisc.cpp:127
 msgid "Yes"
-msgstr ""
+msgstr "Ja"
 
 #: optionsettingsmisc.cpp:128
 msgid "No"
-msgstr ""
+msgstr "Nee"
 
 #: optionsettingsmisc.cpp:137
 msgid "Default Date:"
@@ -5692,7 +5692,7 @@ msgstr "WebApp instellingen"
 
 #: optionsettingsnet.cpp:65 webappdialog.cpp:103
 msgid "Url"
-msgstr ""
+msgstr "Url"
 
 #: optionsettingsnet.cpp:69
 msgid "Specify the Web App URL without final slash"
@@ -5700,7 +5700,7 @@ msgstr "Specificeer de WebApp URL zonder slash aan het einde"
 
 #: optionsettingsnet.cpp:72 webappdialog.cpp:110
 msgid "GUID"
-msgstr ""
+msgstr "GUID"
 
 #: optionsettingsnet.cpp:76
 msgid "Specify the Web App GUID"
@@ -5724,7 +5724,7 @@ msgstr "Specificeer proxy poortnummer"
 
 #: optionsettingsnet.cpp:100
 msgid "Proxy"
-msgstr ""
+msgstr "Proxy"
 
 #: optionsettingsnet.cpp:102
 msgid "Port"
@@ -5736,7 +5736,7 @@ msgstr "Gebruiksstatistieken"
 
 #: optionsettingsnet.cpp:127
 msgid "Check for latest news on startup"
-msgstr ""
+msgstr "Controleer op laatste nieuws bij opstarten"
 
 #: optionsettingsnet.cpp:129
 msgid "Enable to allow news to be checked on application start"
@@ -5756,7 +5756,7 @@ msgstr "Seconden"
 
 #: optionsettingsnet.cpp:152
 msgid "Updates"
-msgstr ""
+msgstr "Updates"
 
 #: optionsettingsnet.cpp:158
 msgid "Check for updates at StartUp"
@@ -5824,7 +5824,7 @@ msgstr ""
 
 #: optionsettingsview.cpp:164
 msgid "Transaction Colors"
-msgstr ""
+msgstr "Transactie kleuren"
 
 #: optionsettingsview.cpp:203
 msgid "UI Appearance"
@@ -5832,19 +5832,19 @@ msgstr ""
 
 #: optionsettingsview.cpp:214
 msgid "Open Theme Manager"
-msgstr ""
+msgstr "Themabeheer openen"
 
 #: optionsettingsview.cpp:216
 msgid "Style Template"
-msgstr ""
+msgstr "Stijl template"
 
 #: optionsettingsview.cpp:222
 msgid "Light"
-msgstr ""
+msgstr "Licht"
 
 #: optionsettingsview.cpp:223
 msgid "Dark"
-msgstr ""
+msgstr "Donker"
 
 #: optionsettingsview.cpp:227
 msgid "Specify preferred theme variant to use if supported"
