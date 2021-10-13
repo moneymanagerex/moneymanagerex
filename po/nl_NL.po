@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2021-10-02 17:56+0300\n"
-"PO-Revision-Date: 2021-10-13 05:40\n"
+"PO-Revision-Date: 2021-10-13 15:44\n"
 "Last-Translator: \n"
 "Language-Team: Dutch\n"
 "MIME-Version: 1.0\n"
@@ -4205,7 +4205,7 @@ msgstr "Export naar HTML"
 
 #: mmframe.cpp:1385
 msgid "Export to JSON"
-msgstr ""
+msgstr "Exporteren als JSON"
 
 #: mmframe.cpp:1386
 msgid "&HTML Files..."
@@ -4229,7 +4229,7 @@ msgstr "&Afsluiten Alt-X"
 
 #: mmframe.cpp:1398
 msgid "Quit this program"
-msgstr ""
+msgstr "Sluit dit programma af"
 
 #: mmframe.cpp:1404
 msgid "&Toolbar"
